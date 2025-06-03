@@ -38,6 +38,8 @@ The [UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExt
 
 The sample code of **Index.ets** is as follows:
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct Index {
@@ -68,15 +70,24 @@ struct Index {
           .onReceive((data) => {
             this.message = JSON.stringify(data);
           })
-          .onResult((data) => {
-            this.message = JSON.stringify(data);
+          .onTerminated((terminateInfo: TerminationInfo) => {
+            // This callback is triggered when the started UIExtensionAbility is terminated by calling terminateSelfWithResult or terminateSelf.
+            // It returns the result of the UIExtensionAbility's normal exit, including the result code and Want data.
+            this.message = `terminate code: ${terminateInfo.code}, want: ${terminateInfo.want}`;
           })
-          .onRelease((code) => {
-            this.message = "release code:" + code;
+          .onError((error: BusinessError) => {
+            // This callback is invoked when an error occurs during the running of the started UIExtensionAbility.
+            // It returns the error code and error message when the UIExtensionAbility encounters an exception.
+            this.message = `error code: ${error.code}, error msg: ${error.message}`;
           })
           .offset({ x: 0, y: 10 })
           .size({ width: 300, height: 300 })
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
+          .border({
+            width: 5,
+            color: 0x317AF7,
+            radius: 10,
+            style: BorderStyle.Dotted
+          })
 
         UIExtensionComponent(
           {
@@ -93,15 +104,24 @@ struct Index {
           .onReceive((data) => {
             this.message = JSON.stringify(data);
           })
-          .onResult((data) => {
-            this.message = JSON.stringify(data);
+          .onTerminated((terminateInfo: TerminationInfo) => {
+            // This callback is triggered when the started UIExtensionAbility is terminated by calling terminateSelfWithResult or terminateSelf.
+            // It returns the result of the UIExtensionAbility's normal exit, including the result code and Want data.
+            this.message = `terminate code: ${terminateInfo.code}, want: ${terminateInfo.want}`;
           })
-          .onRelease((code) => {
-            this.message = "release code:" + code;
+          .onError((error: BusinessError) => {
+            // This callback is invoked when an error occurs during the running of the started UIExtensionAbility.
+            // It returns the error code and error message when the UIExtensionAbility encounters an exception.
+            this.message = `error code: ${error.code}, error msg: ${error.message}`;
           })
           .offset({ x: 0, y: 50 })
           .size({ width: 300, height: 300 })
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
+          .border({
+            width: 5,
+            color: 0x317AF7,
+            radius: 10,
+            style: BorderStyle.Dotted
+          })
       }
       .width('100%')
     }
@@ -132,6 +152,8 @@ Processes are allocated based on the [UIExtensionAbility](../reference/apis-abil
 
 The sample code of **Index.ets** is as follows:
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct Index {
@@ -162,15 +184,24 @@ struct Index {
           .onReceive((data) => {
             this.message = JSON.stringify(data);
           })
-          .onResult((data) => {
-            this.message = JSON.stringify(data);
+          .onTerminated((terminateInfo: TerminationInfo) => {
+            // This callback is triggered when the started UIExtensionAbility is terminated by calling terminateSelfWithResult or terminateSelf.
+            // It returns the result of the UIExtensionAbility's normal exit, including the result code and Want data.
+            this.message = `terminate code: ${terminateInfo.code}, want: ${terminateInfo.want}`;
           })
-          .onRelease((code) => {
-            this.message = "release code:" + code;
+          .onError((error: BusinessError) => {
+            // This callback is invoked when an error occurs during the running of the started UIExtensionAbility.
+            // It returns the error code and error message when the UIExtensionAbility encounters an exception.
+            this.message = `error code: ${error.code}, error msg: ${error.message}`;
           })
           .offset({ x: 0, y: 10 })
           .size({ width: 300, height: 300 })
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
+          .border({
+            width: 5,
+            color: 0x317AF7,
+            radius: 10,
+            style: BorderStyle.Dotted
+          })
 
         UIExtensionComponent(
           {
@@ -187,15 +218,24 @@ struct Index {
           .onReceive((data) => {
             this.message = JSON.stringify(data);
           })
-          .onResult((data) => {
-            this.message = JSON.stringify(data);
+          .onTerminated((terminateInfo: TerminationInfo) => {
+            // This callback is triggered when the started UIExtensionAbility is terminated by calling terminateSelfWithResult or terminateSelf.
+            // It returns the result of the UIExtensionAbility's normal exit, including the result code and Want data.
+            this.message = `terminate code: ${terminateInfo.code}, want: ${terminateInfo.want}`;
           })
-          .onRelease((code) => {
-            this.message = "release code:" + code;
+          .onError((error: BusinessError) => {
+            // This callback is invoked when an error occurs during the running of the started UIExtensionAbility.
+            // It returns the error code and error message when the UIExtensionAbility encounters an exception.
+            this.message = `error code: ${error.code}, error msg: ${error.message}`;
           })
           .offset({ x: 0, y: 50 })
           .size({ width: 300, height: 300 })
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
+          .border({
+            width: 5,
+            color: 0x317AF7,
+            radius: 10,
+            style: BorderStyle.Dotted
+          })
       }
       .width('100%')
     }
@@ -227,6 +267,8 @@ Processes are allocated based on the [UIExtensionAbility](../reference/apis-abil
 
 The sample code of **Index.ets** is as follows:
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct Index {
@@ -257,15 +299,24 @@ struct Index {
           .onReceive((data) => {
             this.message = JSON.stringify(data);
           })
-          .onResult((data) => {
-            this.message = JSON.stringify(data);
+          .onTerminated((terminateInfo: TerminationInfo) => {
+            // This callback is triggered when the started UIExtensionAbility is terminated by calling terminateSelfWithResult or terminateSelf.
+            // It returns the result of the UIExtensionAbility's normal exit, including the result code and Want data.
+            this.message = `terminate code: ${terminateInfo.code}, want: ${terminateInfo.want}`;
           })
-          .onRelease((code) => {
-            this.message = "release code:" + code;
+          .onError((error: BusinessError) => {
+            // This callback is invoked when an error occurs during the running of the started UIExtensionAbility.
+            // It returns the error code and error message when the UIExtensionAbility encounters an exception.
+            this.message = `error code: ${error.code}, error msg: ${error.message}`;
           })
           .offset({ x: 0, y: 10 })
           .size({ width: 300, height: 300 })
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
+          .border({
+            width: 5,
+            color: 0x317AF7,
+            radius: 10,
+            style: BorderStyle.Dotted
+          })
 
         UIExtensionComponent(
           {
@@ -282,15 +333,24 @@ struct Index {
           .onReceive((data) => {
             this.message = JSON.stringify(data);
           })
-          .onResult((data) => {
-            this.message = JSON.stringify(data);
+          .onTerminated((terminateInfo: TerminationInfo) => {
+            // This callback is triggered when the started UIExtensionAbility is terminated by calling terminateSelfWithResult or terminateSelf.
+            // It returns the result of the UIExtensionAbility's normal exit, including the result code and Want data.
+            this.message = `terminate code: ${terminateInfo.code}, want: ${terminateInfo.want}`;
           })
-          .onRelease((code) => {
-            this.message = "release code:" + code;
+          .onError((error: BusinessError) => {
+            // This callback is invoked when an error occurs during the running of the started UIExtensionAbility.
+            // It returns the error code and error message when the UIExtensionAbility encounters an exception.
+            this.message = `error code: ${error.code}, error msg: ${error.message}`;
           })
           .offset({ x: 0, y: 50 })
           .size({ width: 300, height: 300 })
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
+          .border({
+            width: 5,
+            color: 0x317AF7,
+            radius: 10,
+            style: BorderStyle.Dotted
+          })
       }
       .width('100%')
     }
@@ -368,14 +428,14 @@ To implement a provider, create a [UIExtensionAbility](../reference/apis-ability
     ```ts
     import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-    let storage = LocalStorage.GetShared();
     const TAG: string = `[testTag] ExtensionPage`;
 
-    @Entry(storage)
+    @Entry()
     @Component
     struct Extension {
       @State message: string = `UIExtension provider`;
-      private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+      localStorage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+      private session: UIExtensionContentSession | undefined = this.localStorage?.get<UIExtensionContentSession>('session');
 
       onPageShow() {
         console.info(TAG, 'show');
@@ -403,7 +463,7 @@ To implement a provider, create a [UIExtensionAbility](../reference/apis-ability
               .margin({ top: 20 })
               .onClick(() => {
                 this.session?.terminateSelf();
-                storage.clear();
+                this.localStorage?.clear();
               })
 
             Button("terminate self with result")
@@ -449,6 +509,8 @@ To implement a provider, create a [UIExtensionAbility](../reference/apis-ability
 You can load the [UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md) in the application through the [UIExtensionComponent](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md) on the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) page. For example, add the following content to the home page file **pages/Index.ets**:
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct Index {
@@ -479,15 +541,24 @@ struct Index {
           .onReceive((data) => {
             this.message = JSON.stringify(data);
           })
-          .onResult((data) => {
-            this.message = JSON.stringify(data);
+          .onTerminated((terminateInfo: TerminationInfo) => {
+            // This callback is triggered when the started UIExtensionAbility is terminated by calling terminateSelfWithResult or terminateSelf.
+            // It returns the result of the UIExtensionAbility's normal exit, including the result code and Want data.
+            this.message = `terminate code: ${terminateInfo.code}, want: ${terminateInfo.want}`;
           })
-          .onRelease((code) => {
-            this.message = "release code:" + code;
+          .onError((error: BusinessError) => {
+            // This callback is invoked when an error occurs during the running of the started UIExtensionAbility.
+            // It returns the error code and error message when the UIExtensionAbility encounters an exception.
+            this.message = `error code: ${error.code}, error msg: ${error.message}`;
           })
           .offset({ x: 0, y: 30 })
           .size({ width: 300, height: 300 })
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
+          .border({
+            width: 5,
+            color: 0x317AF7,
+            radius: 10,
+            style: BorderStyle.Dotted
+          })
 
         Button("sendData")
           .type(ButtonType.Capsule)

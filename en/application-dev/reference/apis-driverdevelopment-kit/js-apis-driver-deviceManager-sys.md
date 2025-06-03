@@ -29,7 +29,7 @@ Obtains the list of detailed information about peripherals. If the device has no
 
 | Name     | Type    | Mandatory | Description                    |
 |----------|--------|-----|------------------------|
-| deviceId | number | No  | Device ID, which can be obtained by **queryDevices**.|
+| deviceId | number | No  | Device ID, which is obtained through [queryDevices](js-apis-driver-deviceManager.md#devicemanagerquerydevices). If no device ID is passed, all device information is obtained by default. If no external device is connected and no device ID is passed, an empty array is returned.|
 
 **Return value**
 

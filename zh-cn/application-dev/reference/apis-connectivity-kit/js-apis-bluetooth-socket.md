@@ -160,11 +160,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let clientSocket = (code: BusinessError, number: number) => {
   if (code) {
-    console.error('sppListen error, code is ' + code);
+    console.error('sppConnect error, code is ' + code);
     return;
   } else {
-    // 获取的number用作客户端后续读/写操作socket的id。
-    console.info('bluetooth serverSocket Number: ' + number);
+    // 获取的number用作客户端后续读/写操作的socket id。
+    console.info('bluetooth clientSocket Number: ' + number);
   }
 }
 let sppOption:socket.SppOptions = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
@@ -523,7 +523,7 @@ let data = new Uint8Array(buffer);
 let flag = 1;
 while (flag) {
   try {
-    buffer = socket.sppReadAsync(this.clientNumber).then(outBuffer => {
+    socket.sppReadAsync(clientNumber).then(outBuffer => {
       buffer = outBuffer;
     });
     if (buffer != null) {

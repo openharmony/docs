@@ -24,7 +24,6 @@ Repeat根据容器组件的**有效加载范围**（屏幕可视区域+预加载
 - Repeat必须在滚动类容器组件内使用，仅有[List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持Repeat懒加载场景。
 <br/>循环渲染只允许创建一个子组件，子组件应当是允许包含在容器组件中的子组件。例如：Repeat与[List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)组件配合使用时，子组件必须为[ListItem](../../reference/apis-arkui/arkui-ts/ts-container-listitem.md)组件。
 - Repeat不支持V1装饰器，混用V1装饰器会导致渲染异常。
-- Repeat当前不支持动画效果。
 - 滚动容器组件内只能包含一个Repeat。以List为例，同时包含ListItem、ForEach、LazyForEach的场景是不推荐的；同时包含多个Repeat也是不推荐的。
 - 当Repeat与自定义组件或[@Builder](./arkts-builder.md)函数混用时，必须将RepeatItem类型整体进行传参，组件才能监听到数据变化。详见[Repeat与@Builder混用](#repeat与builder混用)。
 
@@ -398,95 +397,155 @@ struct RepeatVirtualScrollOnMove {
 
 运行效果：
 
-![Repeat-Drag-Sort](figures/ForEach-Drag-Sort.gif)
+![Repeat-Drag-Sort](./figures/ForEach-Drag-Sort.gif)
 
 ## 动画
 
-从API version 20开始，当父容器为滚动容器组件时，可视区域内Repeat子组件的插入、删除、交换操作均支持animateTo动画。
+从API version 20开始，当父容器为滚动容器组件时，可视区内Repeat子组件的插入、删除、交换操作均支持animateTo动画，子组件更新操作不支持animateTo动画。Repeat子组件在动画过程中不会复用。滚动容器组件的`cachedCount(count: number, show: boolean)`属性包含两个参数，`count`设置预加载数量，`show`设置是否显示预加载的组件（show设置为true，可视区包含预加载的组件）。
 
-**示例代码**
-
+### 示例
 ```ts
+@ObservedV2
+class DemoData {
+  @Trace key: string;
+  @Trace value: string;
+
+  constructor(key: string, value: string) {
+    this.key = key;
+    this.value = value;
+  }
+}
+
 @Entry
 @ComponentV2
 struct AnimateToDemo {
-  @Local simpleList: Array<number> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  @Local simpleList: Array<DemoData> = [];
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 10; i++) {
+      this.simpleList.push(new DemoData(i.toString(), i.toString()));
+    }
+  }
 
   build() {
     Row() {
       Column() {
         Button('update index 1').onClick(() => {
-          animateTo({ duration: 1000 }, () => {
-            this.simpleList[1] = this.simpleList[1] + 0.5;
+          this.getUIContext()?.animateTo({ duration: 3000 }, () => {
+            this.simpleList[1].value = Math.random().toPrecision(2).toString();
           });
-        }).margin({ top: 10 })
+        }).fontSize(16).width(230).margin({ top: 10 })
+
+        Button('exchange index 2 7').onClick(() => {
+          this.getUIContext()?.animateTo({ duration: 3000 }, () => {
+            let temp = this.simpleList[2];
+            this.simpleList[2] = this.simpleList[7];
+            this.simpleList[7] = temp;
+          });
+        }).fontSize(16).width(230).margin({ top: 10 })
 
         Button('exchange index 2 3').onClick(() => {
-          animateTo({ duration: 1000 }, () => {
+          this.getUIContext()?.animateTo({ duration: 3000 }, () => {
             let temp = this.simpleList[2];
             this.simpleList[2] = this.simpleList[3];
             this.simpleList[3] = temp;
           });
-        }).margin({ top: 10 })
+        }).fontSize(16).width(230).margin({ top: 10 })
 
         Button('delete index 2').onClick(() => {
-          animateTo({ duration: 1000 }, () => {
+          this.getUIContext()?.animateTo({ duration: 3000 }, () => {
             this.simpleList.splice(2, 1);
           });
-        }).margin({ top: 10 })
+        }).fontSize(16).width(230).margin({ top: 10 })
 
-        Button('add index 2 with value 1.5').onClick(() => {
-          animateTo({ duration: 1000 }, () => {
-            this.simpleList.splice(2, 0, 1.5);
+        Button('add item to index 2').onClick(() => {
+          this.getUIContext()?.animateTo({ duration: 3000 }, () => {
+            this.simpleList.splice(2, 0, new DemoData(this.simpleList.length.toString(), this.simpleList.length.toString()));
           });
-        }).margin({ top: 10 })
+        }).fontSize(16).width(230).margin({ top: 10 })
 
         Column() {
           List() {
-            Repeat<number>(this.simpleList)
-              .each((obj: RepeatItem<number>) => {
+            Repeat<DemoData>(this.simpleList)
+              .each((obj: RepeatItem<DemoData>) => {
                 ListItem() {
-                  Text(obj.item.toString())
+                  Text(obj.item.value)
                     .fontSize(30)
-                    .margin({ top: 20, left: 20 })
+                    .margin({ top: 20, left: 10 })
                 }
                 // 设置平移转场效果，组件出现或消失的位置在x=300处
                 .transition(TransitionEffect.translate({ x: 300 }))
               })
-              .key((item: number) => item.toString())
-              .virtualScroll({ totalCount: this.simpleList.length, reusable: true })
+              .key((item: DemoData) => item.key) // 不同的数组项生成的key要具有唯一性
+              .virtualScroll({ totalCount: this.simpleList.length })
               .templateId(() => 'a')
               .template('a', (ri) => {
                 ListItem() {
-                  Text(ri.item.toString())
+                  Text(ri.item.value)
                     .fontSize(30)
-                    .margin({ top: 20, left: 20 })
+                    .margin({ top: 20, left: 10 })
                 }
                 // 设置平移转场效果，组件出现或消失的位置在x=300处
                 .transition(TransitionEffect.translate({ x: 300 }))
               })
           }
           // Repeat动画一般需配合滚动容器组件cachedCount属性的show参数(设置true时显示预加载的子组件)一起使用；
-          // 当show参数设置为false、插入数组项时，可视区域内Repeat子组件离开屏幕时无动画，效果如下图(show参数设置为false、插入数组项时的动画效果)所示
+          // 当show参数设置为false、插入数组项时，Repeat子组件离开屏幕时无动画，效果如下图(show参数设置为false、插入数组项时的动画效果)所示
           .cachedCount(1, true)
+          .border({ width: 1 })
+          .height(386)
         }
       }
       .justifyContent(FlexAlign.Center)
       .width('100%')
-      .height('50%')
+      .height('100%')
     }
     .height('100%')
   }
 }
 ```
+点击“udpate index 1”按钮，更新Repeat子组件没有动画效果。点击其他按钮，可视区内Repeat子组件的交换、删除、插入都有相应的动画效果：
 
-运行效果：
-
-![Repeat-Support-animateTo](figures/repeat_animateTo.gif)
+![Repeat-Support-animateTo](./figures/repeat_animateTo.gif)
 
 show参数设置为false、插入数组项时的动画效果：
 
-![Repeat-No-Disappearing-Animation](figures/repeat_animateTo_exception.gif)
+![Repeat-No-Disappearing-Animation](./figures/repeat_animateTo_exception.gif)
+
+### 最佳实践
+通过设置Repeat父容器组件的cachedCount属性来控制动画效果。
+| 操作     | 设置   | 动画效果 | 说明                                                         |
+| ---------- | ------ | ---- | ------------------------------------------------------------ |
+| 组件插入 | cachedCount(0, true) | 组件“6”移除动画 | 插入“10”后，组件“6”出可视区，下树做移除动画。|
+| 组件插入 | cachedCount(1, true) | 组件“6”下移动画 | 插入“10”后，组件“6”进入预加载区，没有下树，做下移动画。|
+| 组件删除 | cachedCount(0, true) | 组件“7”插入动画 | 删除“2”后，组件“7”进可视区，上树做插入动画。|
+| 组件删除 | cachedCount(1, true) | 组件“7”上移动画 | 删除“2”后，组件“7”从预加载区进入显示区，做上移动画。|
+| 组件交换 | cachedCount(0, true) | 组件“2”移除动画，组件“7”插入动画 | 组件“2”出可视区，下树做移除动画；组件“7”进可视区，上树做插入动画。|
+| 组件交换 | cachedCount(1, true) | 组件“2”和组件“7”挤位动画 | 组件“2”从显示区进入预加载区，组件“7”从预加载区进入显示区。两个组件都一直在可视区，只是位置发生变化，因此做挤位动画。|
+
+没有预加载组件时，组件插入的运行效果：
+
+![Repeat-Support-animateTo_add_0](./figures/repeat_animateTo_add_0.gif)
+
+预加载组件时，组件插入的运行效果：
+
+![Repeat-Support-animateTo_add_1](./figures/repeat_animateTo_add_1.gif)
+
+没有预加载组件时，组件删除的运行效果：
+
+![Repeat-Support-animateTo_add_0](./figures/repeat_animateTo_delete_0.gif)
+
+预加载组件时，组件删除的运行效果：
+
+![Repeat-Support-animateTo_add_1](./figures/repeat_animateTo_delete_1.gif)
+
+没有预加载组件时，组件交换的运行效果：
+
+![Repeat-Support-animateTo_add_0](./figures/repeat_animateTo_exchange_0.gif)
+
+预加载组件时，组件交换的运行效果：
+
+![Repeat-Support-animateTo_add_1](./figures/repeat_animateTo_exchange_1.gif)
 
 ## 前插保持
 
@@ -558,7 +617,7 @@ struct PreInsertDemo {
 
 运行效果：
 
-![Repeat-pre-insert-preserve](figures/repeat-pre-insert-preserve.gif)
+![Repeat-pre-insert-preserve](./figures/repeat-pre-insert-preserve.gif)
 
 ## 常见使用场景
 

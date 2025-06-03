@@ -295,6 +295,12 @@ createAVMetadataExtractor(): Promise\<AVMetadataExtractor>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
 
+**返回值：**
+
+| 类型           | 说明                                     |
+| -------------- | ---------------------------------------- |
+| Promise\<[AVMetadataExtractor](#avmetadataextractor11)>  | Promise对象。异步返回元数据获取类对象（AVMetadataExtractor）。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
@@ -1876,6 +1882,12 @@ isSeekContinuousSupported() : boolean
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
+**返回值：**
+
+| 类型           | 说明                                       |
+| -------------- | ------------------------------------------ |
+| boolean | 媒体源是否支持以SEEK_CONTINUOUS模式进行seek。 |
+
 **示例：**
 
 ```ts
@@ -1998,6 +2010,91 @@ off(type: 'speedDone', callback?: Callback\<number>): void
 ```ts
 avPlayer.off('speedDone')
 ```
+
+
+### setPlaybackRate<sup>20+</sup>
+
+setPlaybackRate(rate: number): void
+
+设置倍速模式。只能在prepared/playing/paused/completed状态调用，取值范围是[0.125, 4.0]，可以通过[playbackRateDone](#onplaybackratedone20)事件确认是否生效。<br>
+>**注意：**
+>
+>直播场景不支持setPlaybackRate。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名 | 类型                             | 必填 | 说明               |
+| ------ | -------------------------------- | ---- | ------------------ |
+| rate  | number | 是   | 指定播放倍速速率。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400108  | The parameter check failed, parameter value out of range.      |
+| 5400102  | Operation not allowed，if invalid state or live stream.      |
+
+**示例：**
+
+```ts
+avPlayer.setPlaybackRate(2.0)
+```
+
+
+### on('playbackRateDone')<sup>20+</sup>
+
+on(type: 'playbackRateDone', callback: OnPlaybackRateDone): void
+
+监听[setPlaybackRate](#setplaybackrate20)生效的事件。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | setPlaybackRate生效的事件回调类型，支持的事件：'playbackRateDone'，每次调用setPlaybackRate后都会回调此事件。 |
+| callback | [OnPlaybackRateDone](#onplaybackratedone20) | 是   | setPlaybackRate生效的事件回调方法，上报设置后的播放速率。<br/>从API version 20开始支持此参数。 |
+
+**示例：**
+
+```ts
+avPlayer.on('playbackRateDone', (rate:number) => {
+  console.info('playbackRateDone called,and rate value is:' + rate)
+})
+```
+
+### off('playbackRateDone')<sup>20+</sup>
+
+off(type: 'playbackRateDone', callback?: OnPlaybackRateDone): void
+
+取消监听[setPlaybackRate](#setplaybackrate20)生效的事件。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                      |
+| ------ | ------ | ---- | --------------------------------------------------------- |
+| type   | string | 是   | setPlaybackRate生效的事件回调类型，取消注册的事件：'playbackRateDone'。 |
+| callback | [OnPlaybackRateDone](#onplaybackratedone20) | 否   |  setPlaybackRate生效的事件回调方法，上报设置后的播放速率。如填写该参数，则仅取消注册此回调方法，否则取消注册playbackRateDone事件的所有回调方法。<br/>从API version 20开始支持此参数。 |
+
+**示例：**
+
+```ts
+avPlayer.off('playbackRateDone')
+```
+
 
 ### setBitrate<sup>9+</sup>
 
@@ -3154,8 +3251,8 @@ track变更事件回调方法。
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ---------------------------------------------------------- |
-| index  | number | 是 | 当前选中的track索引。     |
-| isSelected | boolean | 是 | 当前索引的选中状态。 |
+| index  | number | 是 | 当前变更的track索引。     |
+| isSelected | boolean | 是 | 当前变更的track索引是否被选中。true表示处于选中状态，false表示处于非选中状态。 |
 
 ## OnAVPlayerStateChangeHandle<sup>12+</sup>
 
@@ -3236,6 +3333,20 @@ type OnSuperResolutionChanged = (enabled: boolean) => void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
 | enabled  | boolean | 是 | 表示当前超分是否开启。true表示超分开启，false表示超分关闭。     |
+
+## OnPlaybackRateDone<sup>20+</sup>
+
+type OnPlaybackRateDone = (rate: number) => void
+
+播放速率设置完成事件回调方法。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ------ | ------------------------------------------------------------ |
+| rate | number | 是 | 播放速率。 |
 
 ## AVFileDescriptor<sup>9+</sup>
 
@@ -3345,10 +3456,11 @@ SEI信息内容，描述SEI信息的负载类型和数据。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-| 名称                      | 值   | 说明                                             |
-| ------------------------- | ---- | ------------------------------------------------ |
-| VIDEO_SCALE_TYPE_FIT      | 0    | 默认比例类型，视频拉伸至与窗口等大。              |
-| VIDEO_SCALE_TYPE_FIT_CROP | 1    | 保持视频宽高比拉伸至填满窗口，内容可能会有裁剪。 |
+| 名称                        | 值   | 说明                                              |
+| ----------------------------| ---- | ------------------------------------------------ |
+| VIDEO_SCALE_TYPE_FIT        | 0    | 默认比例类型，视频拉伸至与窗口等大。                |
+| VIDEO_SCALE_TYPE_FIT_CROP   | 1    | 保持视频宽高比缩放至最短边填满窗口，长边超出窗口部分被裁剪。     |
+| VIDEO_SCALE_TYPE_FIT_ASPECT<sup>20+</sup> | 2    | 保持视频宽高比缩放至长边填满窗口，短边居中对齐，未填满部分留黑。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。  |
 
 ## MediaDescription<sup>8+</sup>
 
@@ -4877,7 +4989,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。|
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，支持范围[176 - 4096]。         |
 | videoFrameHeight | number                                       | 否   | 视频帧的高，选择视频录制时必填，支持范围[144 - 4096]。         |
-| videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，支持范围[1 - 60]。             |
+| videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，推荐范围[1 - 60]。             |
 | isHdr<sup>11+</sup>            | boolean                        | 否   | HDR编码，选择视频录制时选填，isHdr默认为false，对应编码格式没有要求，isHdr为true时，对应的编码格式必须为video/hevc。|
 | enableTemporalScale<sup>12+</sup>            | boolean                        | 否   | 视频录制是否支持时域分层编码功能，选择视频录制时选填，enableTemporalScale默认为false。设置为true时，编码输出的码流中部分帧可以支持跳过不编码。|
 
@@ -5015,6 +5127,7 @@ prepare(config: AVTranscoderConfig): Promise\<void>
 | -------- | -------------------------------------- |
 | 401  | The parameter check failed. Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | IO error. Return by promise.              |
 | 5400105  | Service died. Return by promise.       |
 | 5400106  | Unsupported format. Returned by promise.  |
 
@@ -8086,9 +8199,9 @@ createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 
 **参数：**
 
-| 参数名  | 类型                                 | 只读 | 可选 | 说明                                                  |
-| ------- | ------------------------------------ | --- | ---- | ----------------------------------------------------- |
-| streams | Array<[MediaStream](#mediastream19)> | 否 | 否   | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
+| 参数名  | 类型                                 | 必填 | 说明                                                  |
+| ------- | ------------------------------------ | ---- | ----------------------------------------------------- |
+| streams | Array<[MediaStream](#mediastream19)> | 是 | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
 
 **返回值：**
 
@@ -8101,8 +8214,8 @@ createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 ```ts
 let streams : Array<media.MediaStream> = [];
 streams.push({url: "http://xxx/480p.flv", width: 854, height: 480, bitrate: 800000});
-streams.push({url: "http:/xxx/720p.flv", width: 1280, height: 720, bitrate: 2000000});
-streams.push({url: "http:/xxx/1080p.flv", width: 1280, height: 720, bitrate: 2000000});
+streams.push({url: "http://xxx/720p.flv", width: 1280, height: 720, bitrate: 2000000});
+streams.push({url: "http://xxx/1080p.flv", width: 1280, height: 720, bitrate: 2000000});
 let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(streams);
 ```
 
@@ -8110,9 +8223,11 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(stre
 
 媒体流数据信息。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
-| 参数名  | 类型   | 只读 | 可选 | 说明                                                         |
+| 名称  | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | url     | string | 否   | 否   | 媒体资源链接，当前仅支持http或者https。                                                 |
 | width   | number | 否   | 否   | 媒体资源视频宽像素值。未知时可以填0，此时将无法通过[PlaybackStrategy](#playbackstrategy12)优选匹配。 |
@@ -8160,16 +8275,37 @@ setMediaResourceLoaderDelegate(resourceLoader: MediaSourceLoader): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import HashMap from '@ohos.util.HashMap';
 
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
+let uuid: number = 1;
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+
+let sourceOpenCallback: media.SourceOpenCallback = (request: media.MediaSourceLoadingRequest) => {
+  console.log(`Opening resource: ${request.url}`);
+  // 成功打开资源，返回唯一的句柄, 保证uuid和request对应。
+  uuid += 1;
+  requests.set(uuid, request);
+  return uuid;
+}
+
+let sourceReadCallback: media.SourceReadCallback = (uuid: number, requestedOffset: number, requestedLength: number) => {
+  console.log(`Reading resource with handle ${uuid}, offset: ${requestedOffset}, length: ${requestedLength}`);
+  // 判断uuid是否合法、存储read请求，不要在read请求阻塞去推送数据和头信息。
+}
+
+let sourceCloseCallback: media.SourceCloseCallback = (uuid: number) => {
+  console.log(`Closing resource with handle ${uuid}`);
+  // 清除当前uuid相关资源。
+  requests.remove(uuid);
+}
 
 // 应用按需实现。
 let resourceLoader: media.MediaSourceLoader = {
-  open: SourceOpenCallback,
-  read: SourceReadCallback,
-  close: SourceCloseCallback
+  open: sourceOpenCallback,
+  read: sourceReadCallback,
+  close: sourceCloseCallback
 };
 
 mediaSource.setMediaResourceLoaderDelegate(resourceLoader);
@@ -8326,8 +8462,11 @@ mediaSource.setMediaResourceLoaderDelegate(mediaSourceLoader);
 let playStrategy : media.PlaybackStrategy = {
   preferredBufferDuration: 20,
 };
-let player = media.createAVPlayer();
-player.setMediaSource(mediaSource, playStrategy);
+
+async function setupPlayer() {
+  let player = await media.createAVPlayer();
+  player.setMediaSource(mediaSource, playStrategy);
+}
 ```
 
 ## MediaSourceLoadingRequest<sup>18+</sup>
@@ -8342,8 +8481,8 @@ player.setMediaSource(mediaSource, playStrategy);
 
 | 名称   | 类型    | 只读   | 可选   | 说明                |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>18+</sup>        | string                        | 否   | 否   | 资源url，需要应用程序打开的资源路径。 |
-| header<sup>18+</sup>     | Record<string, string>        | 否   | 是   | 网络请求标头，如果存在需要应用在下载数据是将头信息设置到http请求中。 |
+| url        | string                        | 否   | 否   | 资源url，需要应用程序打开的资源路径。 |
+| header     | Record<string, string>        | 否   | 是   | 网络请求标头，如果存在需要应用在下载数据是将头信息设置到http请求中。 |
 
 ### respondData<sup>18+</sup>
 
@@ -8500,7 +8639,7 @@ request.finishLoading(uuid, loadingError);
 | preferredAudioLanguage<sup>13+</sup> | string | 否 | 播放策略首选音轨语言。dash场景下应用可按需设置。非dash场景暂不支持，建议缺省。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | preferredSubtitleLanguage<sup>13+</sup> | string | 否 | 播放策略首选字幕语言。dash场景下应用可按需设置。非dash场景暂不支持，建议缺省。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | preferredBufferDurationForPlaying<sup>18+</sup> | number | 否 | 播放策略首选起播缓冲水线。当起播缓冲时间超过该值，开始播放。单位s，取值范围0-20。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| thresholdForAutoQuickPlay<sup>18+</sup> | number | 否 | 智能追帧水线，单位为s，取值应不小于2s，且需大于起播缓冲水线，默认设置为5s。<br>播放策略可以通过设置智能追帧水线来保证直播的实时性。flv直播场景下应用可按需设置，非flv直播场景暂不支持。网络状态的变化可能会导致播放器在某段时间内积压大量数据。播放器会定期检查当前播放时间与缓存中最新的帧时间戳之间的差值，当这个差值过大时，播放器将以1.2倍速开始追帧；当差值小于起播缓冲水线时，则停止追帧并恢复到正常播放速度。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| thresholdForAutoQuickPlay<sup>18+</sup> | number | 否 | 智能追帧水线，单位为s，取值应不小于2s，且需大于起播缓冲水线，默认设置为5s。<br>播放策略可以通过设置智能追帧水线来保证直播的实时性。flv直播场景下应用可按需设置，非flv直播场景暂不支持。网络状态的变化可能会导致播放器在某段时间内积压大量数据。播放器会定期检查当前播放时间与缓存中最新的帧时间戳之间的差值，当这个差值过大时，播放器将以1.2倍速开始智能追帧。[speedDone事件](#onspeeddone9)会回调特定值100，表示智能追帧开启成功。当差值小于起播缓冲水线时，则停止追帧并恢复到正常播放速度。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## AVScreenCaptureRecordPreset<sup>12+</sup>
 
@@ -8544,6 +8683,16 @@ request.finishLoading(uuid, loadingError);
 | PRESERVE_ASPECT_RATIO | 0    | 保持与原始图像相同的宽高比例，即与物理屏幕宽高比例一致。 |
 | SCALE_TO_FILL | 1    | 进行图像拉伸填充，适配设置的宽度和高度。 |
 
+## AVScreenCaptureStrategy<sup>20+</sup>
+
+录屏策略。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+| 名称                  | 类型    | 必填 | 说明                 |
+| --------------------- | ------- | --- | -------------------- |
+| keepCaptureDuringCall | boolean | 否  | 蜂窝通话时是否保持录屏。 |
+
 ## AVScreenCaptureRecordConfig<sup>12+</sup>
 
 表示录屏参数配置。
@@ -8562,6 +8711,7 @@ request.finishLoading(uuid, loadingError);
 | preset            | [AVScreenCaptureRecordPreset](#avscreencapturerecordpreset12) | 否   | 录屏使用的编码和封装格式，默认SCREEN_RECORD_PRESET_H264_AAC_MP4格式。 |
 | displayId<sup>15+</sup>            | number | 否   | 指定录屏使用的屏幕，默认主屏幕。 |
 | fillMode<sup>18+</sup>            | [AVScreenCaptureFillMode](#avscreencapturefillmode18)| 否   | 录屏时视频流的填充模式。 |
+| strategy<sup>20+</sup>            | [AVScreenCaptureStrategy](#avscreencapturestrategy20)| 否   | 录屏策略。 |
 
 ## AVScreenCaptureRecorder<sup>12+</sup>
 

@@ -36,6 +36,61 @@ Stacktrace:
 
 JS Crash多为应用问题，开发者可通过崩溃文件中的Error message和StackTrace来定位问题。
 
+### 异常代码调用栈格式规范
+
+异常代码调用栈内容在Debug和Release模式存在差异：Debug模式保留完整调试信息，Release模式通过代码优化和混淆技术剥离调试信息，导致异常代码调用栈格式不同。
+
+#### Release模式
+
+Release模式构建的应用中，异常堆栈信息遵循以下标准化格式：
+
+at <执行方法名> (<本模块名|依赖的模块名|版本号|编译产物路径>:<行号>:<列号>)
+
+示例如下：
+
+```txt
+at onPageShow (entry|har1|1.0.0|src/main/ets/pages/Index.ts:7:13);
+```
+
+格式解析：
+
+1. 固定标识：at为堆栈调用链的固定起始标识符。
+
+2. 执行方法名：onPageShow表示触发异常的调用方法名称。
+
+3. 源码路径结构：
+
+   - 源码路径：详见[异常堆栈解析原理 sourcemap结构：key字段介绍](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-exception-stack-parsing-principle#section1145914292713)。
+   - 文件类型：文件扩展名多为.ts。
+
+4. 行列号：以“:”为分隔符分隔行号列号。
+
+#### Debug模式
+
+Release模式构建的应用产生的异常堆栈在通过Source Map进行代码转译或使用Debug模式构建的应用中，异常堆栈信息遵循以下标准化格式：
+
+at <执行方法名> <源码路径所属模块名> (<源码路径>:<行号>:<列号>)
+
+示例如下：
+
+```txt
+at onPageShow har1 (har1/src/main/ets/pages/Index.ets:7:13);
+```
+
+格式解析：
+
+1. 固定标识：at为堆栈调用链的固定起始标识符。
+
+2. 执行方法名：onPageShow表示触发异常的调用方法名称。
+
+3. 源码路径结构：
+
+   - 所属模块名：路径源码路径所属模块名（如示例中的har1）。
+   - 源码路径：基于工程目录的源码文件路径。
+   - 文件类型：文件扩展名多为.ets。
+
+4. 行列号：以“:”为分隔符分隔行号列号。
+
 ### JS Crash异常捕获场景
 
 JS Crash异常根据不同的异常场景，在Reason字段进行了分类，分为Error、TypeError、SyntaxError、RangeError等错误类型。

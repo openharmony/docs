@@ -64,6 +64,9 @@ Grid布局选项。其中，irregularIndexes和onGetIrregularSizeByIndex可对�
 ## 属性
 
 除支持[通用属性](ts-component-general-attributes.md)和[滚动组件通用属性](ts-container-scrollable-common.md#属性)外，还支持以下属性：
+> **说明：** 
+>
+> Grid组件使用通用属性[clip<sup>12+</sup>](ts-universal-attributes-sharp-clipping.md#clip12)和通用属性[clip<sup>18+</sup>](ts-universal-attributes-sharp-clipping.md#clip18)时默认值都为true。
 
 ### columnsTemplate
 
@@ -375,7 +378,7 @@ cellLength(value: number)
 
 multiSelectable(value: boolean)
 
-设置是否开启鼠标框选。开启框选后，可以配合Griditem的selected属性和onSelect事件获取GridItem的选中状态，还可以设置[选中态样式](./ts-universal-attributes-polymorphic-style.md)（无默认选中样式）。
+设置是否开启鼠标框选。开启框选后，可以配合GridItem的selected属性和onSelect事件获取GridItem的选中状态，还可以设置[选中态样式](./ts-universal-attributes-polymorphic-style.md)（无默认选中样式）。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -484,6 +487,22 @@ alignItems(alignment: Optional\<GridItemAlignment\>)
 | ---------- | ------ | ---- | ------------------------------- |
 | alignment | Optional\<[GridItemAlignment](#griditemalignment12枚举说明)\> | 是   | 设置Grid中GridItem的对齐方式。<br/>默认值：GridItemAlignment.DEFAULT |
 
+### focusWrapMode<sup>20+</sup>
+
+focusWrapMode(mode: Optional\<FocusWrapMode\>)
+
+设置方向键走焦模式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| mode   | Optional\<[FocusWrapMode](ts-appendix-enums.md#focuswrapmode20)\> | 是   | 交叉轴方向键走焦模式。<br/>默认值：FocusWrapMode.DEFAULT<br/>**说明：** <br/>异常值按默认值处理，即交叉轴方向键不能换行。 |
+
 ## GridItemAlignment<sup>12+</sup>枚举说明
 
 GridItem的对齐方式枚举。
@@ -519,10 +538,6 @@ GridItem的对齐方式枚举。
 | Column |  1  | 主轴布局方向沿垂直方向布局，即自上往下先填满一列，再去填下一列。 |
 | RowReverse    |  2  | 主轴布局方向沿水平方向反向布局，即自右往左先填满一行，再去填下一行。 |
 | ColumnReverse   |  3  | 主轴布局方向沿垂直方向反向布局，即自下往上先填满一列，再去填下一列。 |
-
-> **说明：** 
->
-> Grid组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。
 
 ## 事件
 
@@ -1709,6 +1724,7 @@ struct Index {
 通过[fadingEdge](ts-container-scrollable-common.md#fadingedge14)属性来设置边缘渐隐效果。
 
 <!--code_no_check-->
+
 ```ts
 // xxx.ets
 //该示例实现了Grid组件开启边缘渐隐效果并设置边缘渐隐长度
@@ -1812,3 +1828,89 @@ struct GridExample {
 ```
 
 ![edgeEffect_grid](figures/edgeEffect_grid.gif)
+
+### 示例12（方向键走焦换行模式）
+
+该示例通过focusWrapMode接口，实现了Grid组件方向键走焦换行效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct GridExample {
+  scroller: Scroller = new Scroller()
+  build() {
+    Column() {
+      Grid(this.scroller) {
+        GridItem() {
+          Text('A')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+        GridItem() {
+          Text('B')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+        GridItem() {
+          Text('C')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+        GridItem() {
+          Text('D')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+        GridItem() {
+          Text('E')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+        GridItem() {
+          Text('F')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+      }
+      .focusWrapMode(FocusWrapMode.WRAP_WITH_ARROW)
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(20)
+      .backgroundColor(0xDCDCDC)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![edgeEffect_grid](figures/gridFocus.gif)

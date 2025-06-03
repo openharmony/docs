@@ -33,15 +33,16 @@ import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Resource。
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Resource。
 
-| 名称                                      | 值         | 说明                                                         |
-| ----------------------------------------- | ---------- | ------------------------------------------------------------ |
-| GET_RESOURCE_INFO_ALL                   | 0x00000001 | 用于同时获取icon和label信息。|
-| GET_RESOURCE_INFO_WITH_LABEL          | 0x00000002 | 用于获取仅包含label信息，iocn信息为空。 |
-| GET_RESOURCE_INFO_WITH_ICON           | 0x00000004 | 用于获取仅包含icon信息，label信息为空。 |
-| GET_RESOURCE_INFO_WITH_SORTED_BY_LABEL| 0x00000008 | 用于获取根据label排序后的信息。它不能单独使用需要与GET_RESOURCE_INFO_ALL 或 GET_RESOURCE_INFO_WITH_LABEL一起使用。 |
-| GET_RESOURCE_INFO_WITH_DRAWABLE_DESCRIPTOR<sup>12+</sup>| 0x00000010 | 用于获取应用图标的[drawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor-sys.md)对象。 |
+| 名称                                                     | 值         | 说明                                                         |
+| -------------------------------------------------------- | ---------- | ------------------------------------------------------------ |
+| GET_RESOURCE_INFO_ALL                                    | 0x00000001 | 用于同时获取icon和label信息。                                |
+| GET_RESOURCE_INFO_WITH_LABEL                             | 0x00000002 | 用于获取仅包含label信息，iocn信息为空。                      |
+| GET_RESOURCE_INFO_WITH_ICON                              | 0x00000004 | 用于获取仅包含icon信息，label信息为空。                      |
+| GET_RESOURCE_INFO_WITH_SORTED_BY_LABEL                   | 0x00000008 | 用于获取根据label排序后的信息。它不能单独使用需要与GET_RESOURCE_INFO_ALL 或 GET_RESOURCE_INFO_WITH_LABEL一起使用。 |
+| GET_RESOURCE_INFO_WITH_DRAWABLE_DESCRIPTOR<sup>12+</sup> | 0x00000010 | 用于获取应用图标的[drawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor-sys.md)对象。 |
+| GET_RESOURCE_INFO_ONLY_WITH_MAIN_ABILITY<sup>20+</sup>   | 0x00000020 | 用于获取仅在桌面上展示图标的Ability资源，它仅在[getLauncherAbilityResourceInfo](#bundleresourcemanagergetlauncherabilityresourceinfo)和[getAllLauncherAbilityResourceInfo](#bundleresourcemanagergetalllauncherabilityresourceinfo)接口中生效。 |
 
 
 ## 接口
@@ -172,7 +173,7 @@ getAllBundleResourceInfo(resourceFlags: [number](#resourceflag), callback: Async
 | 参数名     | 类型   | 必填 | 说明                |
 | ----------- | ------ | ---- | --------------------- |
 | resourceFlags | [number](#resourceflag) | 是   | 指定返回的BundleResourceInfo所包含的信息。 |
-| callback | AsyncCallback\<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的BundleResourceInfo数值；否则为错误对象。 |
+| callback | AsyncCallback\<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md)>> | 是 | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，当获取成功时，err为null，data为获取到的BundleResourceInfo数值；否则为错误对象。 |
 
 **错误码：**
 
@@ -275,7 +276,7 @@ getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag), callba
 | 参数名     | 类型   | 必填 | 说明                |
 | ----------- | ------ | ---- | --------------------- |
 | resourceFlags | [number](#resourceflag) | 是   | 指定返回的LauncherAbilityResourceInfo所包含的信息。 |
-| callback | AsyncCallback\<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的LauncherAbilityResourceInfo数值；否则为错误对象。 |
+| callback | AsyncCallback\<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)>> | 是 | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，当获取成功时，err为null，data为获取到的LauncherAbilityResourceInfo数值；否则为错误对象。 |
 
 **错误码：**
 
@@ -310,7 +311,7 @@ try {
 
 ### bundleResourceManager.getAllLauncherAbilityResourceInfo
 
-getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag)) : Promise<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)>>
+getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag)): Promise<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)>>
 
 根据给定的resourceFlags获取当前所有应用的LauncherAbilityResourceInfo。使用Promise异步回调。
 
@@ -491,7 +492,7 @@ getExtensionAbilityResourceInfo(bundleName: string, extensionAbilityType: bundle
 | 参数名     | 类型   | 必填 | 说明                |
 | ----------- | ------ | ---- | --------------------- |
 | bundleName | string | 是   | 应用包名。 |
-| extensionAbilityType | [bundleManager.ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | 是   | 应用的扩展组件类型，仅支持ExtensionAbilityType.INPUTMETHOD、ExtensionAbilityType.SHARE、ExtensionAbilityType.ACTION。 |
+| extensionAbilityType | [bundleManager.ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | 是   | 应用的扩展组件类型，仅支持ExtensionAbilityType.INPUT_METHOD、ExtensionAbilityType.SHARE、ExtensionAbilityType.ACTION。 |
 | [resourceFlags](#resourceflag) | number | 是   | 资源信息标志，指示需要获取的资源信息的内容。 |
 | appIndex | number | 否   | 应用分身的ID，默认值是0。取值范围0~5，取值为0表示主应用。 |
 

@@ -3,7 +3,7 @@
 
 子组件中被\@Link装饰的变量与其父组件中对应的数据源建立双向数据绑定。
 
-在阅读\@Link文档前，建议开发者首先了解[\@State](./arkts-state.md)的基本用法。最佳实践请参考[状态管理最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-status-management)。
+在阅读\@Link文档前，建议先熟悉[\@State](./arkts-state.md)的基本用法。最佳实践请参考[状态管理最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-status-management)。
 
 > **说明：**
 >
@@ -21,8 +21,8 @@
 | \@Link变量装饰器                                             | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 装饰器参数                                                   | 无。                                                           |
-| 同步类型                                                     | 双向同步。<br/>父组件中的状态变量可以与子组件\@Link建立双向同步，当其中一方改变时，另外一方能够感知到变化。 |
-| 允许装饰的变量类型                                           | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>类型必须被指定，且和双向绑定状态变量的类型相同。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Link支持联合类型实例](#link支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@Link a : string \| undefined`。 |
+| 同步类型                                                     | 双向同步。<br/>父组件状态变量与子组件\@Link建立双向同步，当其中一方改变时，另一方也会同步更新。 |
+| 允许装饰的变量类型                                           | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API version 11及以上支持Map、Set类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>类型必须指定，且与双向绑定状态变量类型相同。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any类型。<br/>API version 11及以上支持上述支持类型的联合类型。例如：string \| number, string \| undefined或者ClassA \| null，示例见[Link支持联合类型实例](#link支持联合类型实例)。 <br/>**注意：**<br/>使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验。例如：`@Link a : string \| undefined`。 |
 | 被装饰变量的初始值                                           | 无，禁止本地初始化。                                         |
 
 
@@ -30,11 +30,11 @@
 
 | 传递/访问      | 说明                                       |
 | ---------- | ---------------------------------------- |
-| 从父组件初始化和更新 | 必选。与父组件\@State,&nbsp;\@StorageLink和\@Link&nbsp;建立双向绑定。允许父组件中[\@State](./arkts-state.md)、\@Link、[\@Prop](./arkts-prop.md)、[\@Provide](./arkts-provide-and-consume.md)、[\@Consume](./arkts-provide-and-consume.md)、[\@ObjectLink](./arkts-observed-and-objectlink.md)、[\@StorageLink](./arkts-appstorage.md#storagelink)、[\@StorageProp](./arkts-appstorage.md#storageprop)、[\@LocalStorageLink](./arkts-localstorage.md#localstoragelink)和[\@LocalStorageProp](./arkts-localstorage.md#localstorageprop)装饰变量初始化子组件\@Link。<br/>从API&nbsp;version&nbsp;9开始，\@Link子组件从父组件初始化\@State的语法为Comp({&nbsp;aLink:&nbsp;this.aState&nbsp;})。同样Comp({aLink:&nbsp;$aState})也支持。 |
+| 从父组件初始化和更新 | 必选。<br/>- 与父组件\@State,&nbsp;\@StorageLink和\@Link&nbsp;建立双向绑定。允许父组件中[\@State](./arkts-state.md)、\@Link、[\@Prop](./arkts-prop.md)、[\@Provide](./arkts-provide-and-consume.md)、[\@Consume](./arkts-provide-and-consume.md)、[\@ObjectLink](./arkts-observed-and-objectlink.md)、[\@StorageLink](./arkts-appstorage.md#storagelink)、[\@StorageProp](./arkts-appstorage.md#storageprop)、[\@LocalStorageLink](./arkts-localstorage.md#localstoragelink)和[\@LocalStorageProp](./arkts-localstorage.md#localstorageprop)装饰变量初始化子组件\@Link。<br/>- 从API&nbsp;version&nbsp;9开始，\@Link子组件从父组件初始化\@State的语法为Comp({&nbsp;aLink:&nbsp;this.aState&nbsp;})，同样支持Comp({aLink:&nbsp;$aState})。 |
 | 用于初始化子组件   | 允许，可用于初始化常规变量、\@State、\@Link、\@Prop、\@Provide。 |
 | 是否支持组件外访问  | 私有，只能在所属组件内访问。                           |
 
-  **图1** 初始化规则图示  
+ **图1** 初始化规则示意图
 
 ![zh-cn_image_0000001502092556](figures/zh-cn_image_0000001502092556.png)
 
@@ -46,11 +46,11 @@
 
 - 当装饰的数据类型为boolean、string、number类型时，可以同步观察到数值的变化，示例请参考[简单类型和类对象类型的@Link](#简单类型和类对象类型的link)。
 
-- 当装饰的数据类型为class或者Object时，可以观察到赋值和属性赋值的变化，即Object.keys(observedObject)返回的所有属性，示例请参考[简单类型和类对象类型的@Link](#简单类型和类对象类型的link)。
+- 当装饰的数据类型为class或者Object时，可以观察到赋值和属性赋值的变化，即`Object.keys(observedObject)`返回的所有属性，示例请参考[简单类型和类对象类型的@Link](#简单类型和类对象类型的link)。
 
-- 当装饰的对象是array时，可以观察到数组添加、删除、更新数组单元的变化，示例请参考[数组类型的@Link](#数组类型的link)。
+- 当装饰的对象是Array时，可以观察到数组添加、删除、更新数组单元的变化，示例请参考[数组类型的@Link](#数组类型的link)。
 
-- 当装饰的对象是Date时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。
+- 当装饰的对象是Date时，可以观察到Date的整体赋值，以及通过调用`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds`方法更新其属性。
 
 ```ts
 @Component
@@ -74,7 +74,6 @@ struct DateComponent {
         selected: this.selectedDate
       })
     }
-
   }
 }
 
@@ -107,27 +106,26 @@ struct ParentComponent {
 }
 ```
 
-- 当装饰的变量是Map时，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
+- 当装饰的变量是Map时，可以观察到Map整体的赋值，以及可通过调用Map的`set`、`clear`、`delete`接口更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
 
-- 当装饰的变量是Set时，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。详见[装饰Set类型变量](#装饰set类型变量)。
-
+- 当装饰的变量是Set时，可以观察Set整体的赋值，以及通过调用Set的`add`、`clear`、`delete`接口更新其值。详见[装饰Set类型变量](#装饰set类型变量)。
 ### 框架行为
 
-\@Link装饰的变量和其所属的自定义组件共享生命周期。
+\@Link装饰的变量和所属的自定义组件共享生命周期。
 
-为了了解\@Link变量初始化和更新机制，有必要先了解父组件和拥有\@Link变量的子组件的关系，初始渲染和双向更新的流程（以父组件为\@State为例）。
+为了了解\@Link变量的初始化和更新机制，有必要先了解父组件和拥有\@Link变量的子组件的关系，以及初始渲染和双向更新的流程（以父组件为\@State为例）。
 
-1. 初始渲染：执行父组件的build()函数后将创建子组件的新实例。初始化过程如下：
-   1. 必须指定父组件中的\@State变量，用于初始化子组件的\@Link变量。子组件的\@Link变量值与其父组件的数据源变量保持同步（双向数据同步）。
-   2. 父组件的\@State状态变量包装类通过构造函数传给子组件，子组件的\@Link包装类拿到父组件的\@State的状态变量后，将当前\@Link包装类this指针注册给父组件的\@State变量。
+1. 初始渲染：执行父组件的 `build()` 函数，创建子组件的新实例。初始化过程如下：
+   1. 指定父组件中的\@State变量用于初始化子组件的\@Link变量。子组件的\@Link变量值与其父组件的数据源变量保持双向数据同步。
+   2. 父组件的\@State状态变量包装类通过构造函数传给子组件，子组件的\@Link包装类拿到父组件的\@State的状态变量后，将当前\@Link包装类实例注册给父组件的\@State变量。
 
 2. \@Link的数据源的更新：即父组件中状态变量更新，引起相关子组件的\@Link的更新。处理步骤：
-   1. 通过初始渲染的步骤可知，子组件\@Link包装类把当前this指针注册给父组件。父组件\@State变量变更后，会遍历更新所有依赖它的系统组件（elementid）和状态变量（比如\@Link包装类）。
-   2. 通知\@Link包装类更新后，子组件中所有依赖\@Link状态变量的系统组件（elementId）都会被通知更新。以此实现父组件对子组件的状态数据同步。
+   1. 通过初始渲染的步骤可知，子组件\@Link包装类把当前this指针注册给父组件。父组件\@State变量变更后，会遍历更新所有依赖它的系统组件和状态变量（例如：\@Link包装类）。
+   2. 通知\@Link包装类更新后，子组件中所有依赖\@Link状态变量的系统组件都会被通知更新。以此实现父组件对子组件的状态数据同步。
 
 3. \@Link的更新：当子组件中\@Link更新后，处理步骤如下（以父组件为\@State为例）：
-   1. \@Link更新后，调用父组件的\@State包装类的set方法，将更新后的数值同步回父组件。
-   2. 子组件\@Link和父组件\@State分别遍历依赖的系统组件，进行对应的UI的更新。以此实现子组件\@Link同步回父组件\@State。
+   1. \@Link更新后，调用父组件的\@State包装类的set方法，将数值同步回父组件。
+   2. 子组件\@Link和父组件\@State分别遍历依赖的系统组件，更新对应的UI。从而实现子组件\@Link与父组件\@State的同步。
 
 
 ## 限制条件
@@ -212,7 +210,7 @@ struct ParentComponent {
   }
   ```
 
-4. \@Link装饰的变量仅能被状态变量初始化，不能用常量初始化，编译期会有warn告警，运行时会抛出is not callable运行时错误。
+4. \@Link装饰的变量仅能被状态变量初始化，不能使用常量初始化，否则编译期会给出告警，并在运行时崩溃。
 
   【反例】
 
@@ -290,7 +288,7 @@ struct ParentComponent {
 
   1.点击子组件GreenButton和YellowButton中的Button，子组件会发生相应变化，将变化同步给父组件。因为@Link是双向同步，会将变化同步给@State。
   
-  2.当点击父组件ShufflingContainer中的Button时，@State变化，也会同步给@Link，子组件也会发生对应的刷新。
+  2.当点击父组件ShufflingContainer中的Button时，@State会发生变化，并同步给\@Link，子组件也会进行对应的刷新。
 
 ```ts
 class GreenButtonState {
@@ -436,7 +434,7 @@ struct Parent {
 
 ![Video-link-UsageScenario-two](figures/Video-link-UsageScenario-two.gif)
 
-上文所述，ArkUI框架可以观察到数组元素的添加，删除和替换。在该示例中\@State和\@Link的类型是相同的number[]，不允许将\@Link定义成number类型（\@Link item : number），并在父组件中用\@State数组中每个数据项创建子组件。如果要使用这个场景，可以参考[\@Prop](arkts-prop.md)和[\@Observed](./arkts-observed-and-objectlink.md)。
+ArkUI框架可以观察到数组元素的添加、删除和替换。在该示例中，\@State和\@Link的类型均为number[]，不支持将\@Link定义成number类型（\@Link item : number），并用\@State数组中的每个数据项在父组件中创建子组件。如需使用这种场景，可以参考[\@Prop](arkts-prop.md)和[\@Observed](./arkts-observed-and-objectlink.md)。
 
 ### 装饰Map类型变量
 
@@ -551,9 +549,9 @@ struct SetSample {
 
 ### 使用双向同步机制更改本地其他变量
 
-使用[\@Watch](./arkts-watch.md)可以在双向同步时，更改本地变量。
+通过[\@Watch](./arkts-watch.md)可以在双向同步时更改本地变量。
 
-下面的示例中，在\@Link的\@Watch里面修改了一个\@State装饰的变量memberMessage，实现了父子组件间的变量同步。但是\@State装饰的变量memberMessage在本地修改又不会影响到父组件中的变量改变。
+以下示例中，在\@Link的\@Watch里面修改了一个\@State装饰的变量memberMessage，实现父子组件间的变量同步。但是\@State装饰的变量memberMessage在本地修改不会影响到父组件中的变量改变。
 
 ```ts
 @Entry
@@ -599,7 +597,7 @@ struct Child {
 
 ## Link支持联合类型实例
 
-@Link支持联合类型和undefined和null，在下面的示例中，name类型为string | undefined，点击父组件Index中的Button改变name的属性或者类型，Child中也会对应刷新。
+`@Link`支持联合类型、`undefined`和`null`。在以下示例中，`name`类型为`string | undefined`。点击父组件`Index`中的按钮可以改变`name`的属性或类型，`Child`组件也会相应刷新。
 
 ```ts
 @Component
@@ -652,7 +650,7 @@ struct Index {
 
 ### \@Link装饰状态变量类型错误
 
-在子组件中使用\@Link装饰状态变量需要保证该变量与数据源类型完全相同，且该数据源需为被诸如\@State等装饰器装饰的状态变量。
+在子组件中使用\@Link装饰状态变量时，需要保证该变量与数据源类型完全相同。数据源必须是被@State等装饰器装饰的状态变量。
 
 【反例】
 
@@ -693,7 +691,7 @@ struct Parent {
 }
 ```
 
-\@Link testNum: number从父组件的LinkChild({testNum:this.info.age})初始化。\@Link的数据源必须是装饰器装饰的状态变量，简而言之，\@Link装饰的数据必须和数据源类型相同，比如\@Link: T和\@State : T。所以，这里应该改为\@Link testNum: Info，从父组件初始化的方式为LinkChild({testNum: this.info})。
+\@Link testNum: number从父组件的LinkChild({testNum:this.info.age})初始化。\@Link的数据源必须是装饰器装饰的状态变量，简而言之，\@Link装饰的数据必须和数据源类型相同，例如：\@Link: T和\@State : T。所以，此处应该改为\@Link testNum: Info，从父组件初始化的方式为LinkChild({testNum: this.info})。
 
 【正例】
 
@@ -739,7 +737,7 @@ struct Parent {
 
 ### 使用a.b(this.object)形式调用，不会触发UI刷新
 
-在build方法内，当@Link装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原始对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法Score.changeScore1或者this.changeScore2修改Child组件中的this.score.value时，UI不会刷新。
+在build方法内，当\@Link装饰的变量是Object类型且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原始对象，修改其属性无法触发UI刷新。以下示例中，通过静态方法Score.changeScore1或this.changeScore2修改Child组件中的this.score.value时，UI不会刷新。
 
 【反例】
 

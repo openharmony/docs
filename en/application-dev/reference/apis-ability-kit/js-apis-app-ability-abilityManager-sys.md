@@ -990,8 +990,8 @@ Describes the rule for launching an embedded atomic service.
 
 | Name| Type| Read-Only| Optional| Description|
 | -------- | ---------| ---- | ---- | --------- |
-| isOpenAllowed | boolean   | Yes  | No  | Whether launching the atomic service is allowed.|
-| isEmbeddedAllowed | boolean   | Yes  | No | Whether launching the embedded atomic service is allowed.         |
+| isOpenAllowed | boolean   | Yes  | No  | Whether launching the atomic service is allowed. The value **true** means that launching the atomic service is allowed, and **false** means the opposite.|
+| isEmbeddedAllowed | boolean   | Yes  | No | Whether launching the embedded atomic service is allowed. The value **true** means that launching the embedded atomic service is allowed, and **false** means the opposite.|
 
 ## abilityManager.queryAtomicServiceStartupRule<sup>18+</sup>
 

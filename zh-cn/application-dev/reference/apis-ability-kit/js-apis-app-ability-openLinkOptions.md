@@ -1,6 +1,6 @@
 # @ohos.app.ability.OpenLinkOptions (OpenLinkOptions)
 
-OpenLinkOptions可以作为[openLink()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)的入参，用于标识是否仅打开AppLinking和传递键值对可选参数。
+OpenLinkOptions可以作为[openLink()](js-apis-inner-application-uiAbilityContext.md#openlink12)的入参，用于标识是否仅打开AppLinking和传递键值对可选参数。
 
 > **说明：**
 >
@@ -14,7 +14,7 @@ OpenLinkOptions可以作为[openLink()](js-apis-inner-application-uiAbilityConte
 import { OpenLinkOptions } from '@kit.AbilityKit';
 ```
 
-## 属性
+## OpenLinkOptions
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 

@@ -10,10 +10,41 @@
 >
 > 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
+## 导入模块
+
+```ts
+import {
+  AtomicServiceBar, ComponentUtils, ContextMenuController, CursorController, DragController, Font, KeyboardAvoidMode, MediaQuery, OverlayManager,
+  PromptAction, Router, UIContext, UIInspector, UIObserver, PageInfo, SwiperDynamicSyncScene, SwiperDynamicSyncSceneType, MeasureUtils, FrameCallback,
+  OverlayManagerOptions, TargetInfo, MarqueeDynamicSyncScene, MarqueeDynamicSyncSceneType
+} from "@kit.ArkUI";
+```
+
 ## UIContext
 
 以下API需先使用ohos.window中的[getUIContext()](js-apis-window.md#getuicontext10)方法获取UIContext实例，再通过此实例调用对应方法。或者可以通过自定义组件内置方法[getUIContext()](arkui-ts/ts-custom-component-api.md#getuicontext)获取。本文中UIContext对象以uiContext表示。
 
+### isAvailable<sup>20+</sup>
+
+isAvailable(): boolean
+
+判断UIContext对象对应的UI实例是否有效。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型            | 说明          |
+| ------------- | ----------- |
+| boolean | 返回UIContext对象对应的UI实例是否有效。true表示有效，false表示无效。 |
+
+**示例：**
+
+```ts
+uiContext.isAvailable();
+```
 ### getFont
 
 getFont(): Font
@@ -2590,7 +2621,7 @@ enableSwipeBack(enabled: Optional\<boolean\>): void
 
 | 参数名     | 类型    | 必填   | 说明      |
 | --- | --- | --- | --- |
-| enabled | boolean | 是 | 是否支持应用内横向滑动返回，默认值为true。|
+| enabled | boolean | 是 | 是否支持应用内横向滑动返回，默认值为true。<br>当值为true时，支持应用内横向滑动返回。<br>当值为false时，不支持应用内横向滑动返回。|
 
 **示例：**
 
@@ -4359,7 +4390,7 @@ function afterEndCallBack() {
 }
 
 function beforeStartCallBack() {
-  console.info('bxq on == beforeStartCallBack');
+  console.info('on == beforeStartCallBack');
 }
 
 function panGestureCallBack(event: GestureEvent, current: GestureRecognizer, node?: FrameNode) {
@@ -4588,6 +4619,211 @@ off(type: 'afterPanEnd', callback?: PanListenerCallback): void
 
 参考[on('beforePanStart')](#onbeforepanstart19)接口示例
 
+### on('nodeRenderState')<sup>20+</sup>
+
+on(type: 'nodeRenderState', nodeIdentity: NodeIdentity, callback: NodeRenderStateChangeCallback): void
+
+注册一个回调函数，以便在特定节点的渲染状态发生变化时调用，当注册成功时，此回调将立即执行一次。
+
+注意节点数量的限制。出于性能考虑，在单个UI实例中，注册节点太多，将会抛出异常。
+
+通常，当组件被移动到屏幕外时，会收到RENDER_OUT的通知。但在某些情况下，即使组件移动到屏幕外也不会触发RENDER_OUT通知。例如，具有缓存功能的组件[Swiper](./arkui-ts/ts-container-swiper.md#swiper)，即使[cachedCount](./arkui-ts/ts-container-swiper.md#cachedcount15)属性中的参数isShown配置为true，也不会触发RENDER_OUT通知。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                        | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                      | 是   | 监听事件，固定为'nodeRenderState'，用于监听节点渲染状态发生改变。 |
+| nodeIdentity | [NodeIdentity](#nodeidentity20) | 是   | 组件标识。   |
+| callback | [NodeRenderStateChangeCallback](#noderenderstatechangecallback20) | 是   | 回调函数。可以获得组件渲染状态改变事件的NodeRenderState和组件的FrameNode。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[注册节点渲染状态监听错误码](errorcode-node-render-monitor.md)。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 161001    | The count of nodes monitoring render state is over the limitation. |
+
+**示例：**
+
+该示例展示了如何对目标组件添加监听和取消监听。当向左滑动，被监听组件从屏幕消失，会收到RENDER_OUT的通知，然后向右滑动，被监听组件重新出现在屏幕上，会收到RENDER_IN通知。
+
+```ts
+// 在页面Component中使用
+import { NodeRenderState } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct Index {
+  @State fontColor: string = '#182431'
+  @State selectedFontColor: string = '#007DFF'
+  @State currentIndex: number = 0
+  @State selectedIndex: number = 0
+  @State notice: string = ""
+  private controller: TabsController = new TabsController()
+
+  @Builder
+  tabBuilder(index: number, name: string) {
+    Column() {
+      Text(name)
+        .fontColor(this.selectedIndex === index ? this.selectedFontColor : this.fontColor)
+        .fontSize(16)
+        .fontWeight(this.selectedIndex === index ? 500 : 400)
+        .lineHeight(22)
+        .margin({ top: 17, bottom: 7 })
+      Divider()
+        .strokeWidth(2)
+        .color('#007DFF')
+        .opacity(this.selectedIndex === index ? 1 : 0)
+    }.width('100%')
+  }
+
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.Start, index: this.currentIndex, controller: this.controller }) {
+        TabContent() {
+          Column() {
+            Column() {
+              Button("被监听节点").margin({ top: 5 }).id("button_1")
+              Button("添加监听").margin({ top: 5 }).onClick(() => {
+                let node: FrameNode | null = this.getUIContext().getFrameNodeById("button_1");
+                if (node) {
+                  let observer = this.getUIContext().getUIObserver();
+                  observer.on("nodeRenderState", node?.getUniqueId(), (state: NodeRenderState, node?: FrameNode) => {
+                    if (state === 0)
+                    {
+                      this.notice = "RENDER_IN";
+                    }
+                    else
+                    {
+                      this.notice = "RENDER_OUT";
+                    }
+                    console.log("节点状态发生改变，当前状态：", state)
+                  })
+                }
+              })
+              Button("取消监听").margin({ top: 5 }).onClick(() => {
+                let node: FrameNode | null = this.getUIContext().getFrameNodeById("button_1");
+                if (node) {
+                  let observer = this.getUIContext().getUIObserver();
+                  observer.off("nodeRenderState", node?.getUniqueId())
+                }
+                this.notice = "";
+              })
+            }
+          }.width('100%').height('100%').backgroundColor('#00CB87')
+        }.tabBar(this.tabBuilder(0, 'green'))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#FFBF00')
+        }.tabBar(this.tabBuilder(1, 'blue'))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#FFBF00')
+        }.tabBar(this.tabBuilder(2, 'yellow'))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#E67C92')
+        }.tabBar(this.tabBuilder(3, 'pink'))
+      }
+      .vertical(false)
+      .barMode(BarMode.Fixed)
+      .barWidth(360)
+      .barHeight(56)
+      .animationDuration(400)
+      .onChange((index: number) => {
+        this.currentIndex = index
+        this.selectedIndex = index
+      })
+      .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
+        if (index === targetIndex) {
+          return
+        }
+        this.selectedIndex = targetIndex
+      })
+      .width(360)
+      .height(296)
+      .margin({ top: 52 })
+      .backgroundColor('#F1F3F5')
+
+      Text(`收到的通知: ${this.notice}`)
+        .fontSize(20)
+        .margin(10)
+    }.width('100%')
+  }
+}
+```
+![example](figures/node_render_status.gif)
+
+### off('nodeRenderState')<sup>20+</sup>
+
+off(type: 'nodeRenderState', nodeIdentity: NodeIdentity, callback?: NodeRenderStateChangeCallback): void
+
+取消监听节点渲染状态发生变化的callback回调。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                        | 必填 | 说明                                                 |
+| -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| type     | string                                                      | 是   | 监听事件，固定为'nodeRenderState'，即节点渲染状态变化指令下发情况。 |
+| nodeIdentity | [NodeIdentity](#nodeidentity20) | 是   | 组件标识。   |
+| callback | [NodeRenderStateChangeCallback](#noderenderstatechangecallback20) | 否   | 需要被注销的回调函数。   |                               |
+
+**示例：**
+
+参考[on('nodeRenderState')](#onnoderenderstate20)接口示例。
+
+## NodeIdentity<sup>20+</sup>
+type NodeIdentity = string | number
+
+组件标识。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型              | 说明                                |
+| ----------------- | --------------------------------- |
+| string      | 指定组件id，该id通过通用属性[id](./arkui-ts/ts-universal-attributes-component-id.md#id)设置。   |
+| number | 系统分配的唯一标识的节点UniqueID，可通过[getUniqueId](js-apis-arkui-frameNode.md#getuniqueid12)获取。  |
+
+## NodeRenderStateChangeCallback<sup>20+</sup>
+type NodeRenderStateChangeCallback = (state: NodeRenderState, node?: FrameNode) => void
+
+定义了用于在UIObserver中监控某个特定节点渲染状态的回调类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型              | 必填 | 说明                                |
+| ------- | ----------------- | ---- | --------------------------------- |
+| state   | [NodeRenderState](#noderenderstate20)     | 是   | 触发事件监听的手势事件的相关信息。   |
+| node    | [FrameNode](js-apis-arkui-frameNode.md#framenode)         | 否   | 触发事件监听的手势事件所绑定的组件，如果组件被释放将返回null。 |
+
+## NodeRenderState<sup>20+</sup>
+
+组件的渲染状态。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 |说明 |
+| -------- | ------- | -------- |
+| ABOUT_TO_RENDER_IN | 0 | 该节点已挂载到渲染树上，一般将会在下一帧被渲染。一般情况下可被看见，但会被渲染并不等同于一定可见。 |
+| ABOUT_TO_RENDER_OUT | 1 | 该节点已从渲染树中删除，一般下一帧不会被渲染，用户将不会看到此节点。 |
 
 ## PanListenerCallback<sup>19+</sup>
 type PanListenerCallback = (event: GestureEvent, current: GestureRecognizer, node?: FrameNode) => void
@@ -7685,7 +7921,7 @@ closePopup\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt
 
 请参考[openPopup](#openpopup18)示例。
 
-### openMenu<sup>19+</sup>
+### openMenu<sup>18+</sup>
 
 openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, options?: MenuOptions): Promise&lt;void&gt;
 
@@ -7695,11 +7931,11 @@ openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, o
 >
 > 1. 使用该接口时，若未传入有效的target，则无法弹出menu弹窗。
 >
-> 2. 由于[updateMenu](#updatemenu19)和[closeMenu](#closemenu19)依赖content去更新或者关闭指定的menu弹窗，开发者需自行维护传入的content。
+> 2. 由于[updateMenu](#updatemenu18)和[closeMenu](#closemenu18)依赖content去更新或者关闭指定的menu弹窗，开发者需自行维护传入的content。
 >
 > 3. 如果在wrapBuilder中包含其他组件（例如：[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)、[Chip](arkui-ts/ohos-arkui-advanced-Chip.md#chip)组件），则[ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent-1)应采用带有四个参数的构造函数constructor，其中options参数应传递{ nestingBuilderSupported: true }。
 
-**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -7780,7 +8016,7 @@ struct Index {
 }
 ```
 
-### updateMenu<sup>19+</sup>
+### updateMenu<sup>18+</sup>
 
 updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOptions, partialUpdate?: boolean ): Promise&lt;void&gt;
 
@@ -7790,8 +8026,10 @@ updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOption
 >
 > 不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear。
 >
+> 支持mask通过设置[MenuMaskType](./arkui-ts/ts-universal-attributes-menu.md#menumasktype20类型说明)实现更新蒙层样式，不支持mask通过设置boolean实现蒙层从无到有或者从有到无的更新。
+>
 
-**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -7800,7 +8038,7 @@ updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOption
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
 | content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | menu弹窗中显示的组件内容。 |
-| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | 是 | menu弹窗样式。<br/>**说明：** <br/>不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear。 |
+| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | 是 | menu弹窗样式。<br/>**说明：** <br/>1. 不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear。<br/>2. 支持mask通过设置[MenuMaskType](./arkui-ts/ts-universal-attributes-menu.md#menumasktype20类型说明)实现更新蒙层样式，不支持mask通过设置boolean实现蒙层从无到有或者从有到无的更新。 |
 | partialUpdate | boolean | 否 | menu弹窗更新方式，默认值为false。<br/>**说明：** <br/>1. true为增量更新，保留当前值，更新options中的指定属性。 <br/>2. false为全量更新，除options中的指定属性，其他属性恢复默认值。 |
 
 **返回值：**
@@ -7875,13 +8113,13 @@ struct Index {
 }
 ```
 
-### closeMenu<sup>19+</sup>
+### closeMenu<sup>18+</sup>
 
 closeMenu\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
 
 关闭content对应的menu弹窗。使用Promise异步回调。
 
-**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -7962,7 +8200,7 @@ struct Index {
 ```
 
 ## DragController<sup>11+</sup>
-以下API需先使用UIContext中的[getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取UIContext实例，再通过此实例调用对应方法。
+以下API需先使用UIContext中的[getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取DragController实例，再通过此实例调用对应方法。
 
 ### executeDrag<sup>11+</sup>
 
@@ -9143,7 +9381,7 @@ struct Index {
 
 
 ## FocusController<sup>12+</sup>
-以下API需先使用UIContext中的[getFocusController()](js-apis-arkui-UIContext.md#getFocusController12)方法获取UIContext实例，再通过该实例调用对应方法。
+以下API需先使用UIContext中的[getFocusController()](js-apis-arkui-UIContext.md#getfocuscontroller12)方法获取FocusController实例，再通过该实例调用对应方法。
 
 ### clearFocus<sup>12+</sup>
 
@@ -9340,7 +9578,9 @@ struct ActivateExample {
 
 isActive(): boolean
 
-返回UI实例的获焦状态。
+返回UI实例的焦点激活态。
+
+焦点激活态可参考[基础概念：焦点激活态](../../ui/arkts-common-events-focus-event.md#基础概念)。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -9350,10 +9590,11 @@ isActive(): boolean
 
 | 类型          | 说明       |
 | ------------  | --------- |
-|  boolean  | 返回UI实例的获焦状态。true表示UI实例获取焦点，false表示UI实例失去焦点。 |
+|  boolean  | 返回UI实例的焦点激活态。true表示当前进入焦点激活态，false表示当前已退出焦点激活态。 |
 
 **示例：**
 
+验证isActive返回UI实例的焦点激活态。
 ```ts
 @Entry
 @Component
@@ -9822,7 +10063,7 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: componentSnap
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| id       | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
+| id       | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。<br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。 |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。                                         |
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
@@ -9888,7 +10129,7 @@ get(id: string, options?: componentSnapshot.SnapshotOptions): Promise<image.Pixe
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| id     | string | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
+| id     | string | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。<br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。 |
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -9947,10 +10188,10 @@ struct SnapshotExample {
 
 createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): void
 
-在应用后台渲染[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)自定义组件，并输出其截图。通过回调返回结果。
+传入[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)自定义组件，系统对其进行离屏构建后进行截图，并通过回调返回结果。
 > **说明：** 
 >
-> 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
+> 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟，不适宜使用在对性能敏感的场景。
 >
 > 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
 
@@ -10037,11 +10278,11 @@ struct ComponentSnapshotExample {
 
 createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
 
-在应用后台渲染[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)自定义组件，并输出其截图。通过Promise返回结果。
+传入[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)自定义组件，系统对其进行离屏构建后进行截图，并通过回调返回结果。
 
 > **说明：** 
 >
-> 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
+> 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟，不适宜使用在对性能敏感的场景。
 >
 > 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
 
@@ -10146,7 +10387,7 @@ getSync(id: string, options?: componentSnapshot.SnapshotOptions): image.PixelMap
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
+| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 <br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。|
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -10217,7 +10458,7 @@ getWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOptions): 
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| uniqueId   | number | 是    | 目标组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12) |
+| uniqueId   | number | 是    | 目标组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12) <br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。|
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -10315,7 +10556,7 @@ getSyncWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOption
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| uniqueId   | number | 是    | 目标组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)。 |
+| uniqueId   | number | 是    | 目标组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)。<br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。|
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -10878,7 +11119,7 @@ struct MarqueeExample {
 }
 ```
 ## TextMenuController<sup>16+</sup>
-以下API需先使用UIContext中的[getTextMenuController()](js-apis-arkui-UIContext.md#gettextmenucontroller16)方法获取TextMenuController实例，再通过此实例调用对应方法。
+以下非静态API需先使用UIContext中的[getTextMenuController()](js-apis-arkui-UIContext.md#gettextmenucontroller16)方法获取TextMenuController实例，再通过此实例调用对应方法。
 
 ### setMenuOptions<sup>16+</sup>
 
@@ -10930,6 +11171,148 @@ struct Index {
           .fontStyle(FontStyle.Italic)
           .fontWeight(FontWeight.Bold)
           .textAlign(TextAlign.Center)
+      }.width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+### disableSystemServiceMenuItems<sup>20+</sup>
+
+static disableSystemServiceMenuItems(disable: boolean): void
+
+屏蔽文本选择菜单内所有系统服务菜单项。
+
+> **说明：**
+> 
+> 此接口调用后整个应用进程都会生效。
+>
+> 此接口可在[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)使用。
+>
+> 此接口调用后将影响文本组件的接口[editMenuOptions](./arkui-ts/ts-basic-components-text.md#editmenuoptions12)，其回调方法[onCreateMenu](./arkui-ts/ts-text-common.md#oncreatemenu12)的入参列表中不包含被屏蔽的菜单选项。
+>
+> 涉及文本选择菜单的组件有 [Text](./arkui-ts/ts-basic-components-text.md)、[TextArea](./arkui-ts/ts-basic-components-textarea.md)、[TextInput](./arkui-ts/ts-basic-components-textinput.md)、[Search](./arkui-ts/ts-basic-components-search.md)、[RichEditor](./arkui-ts/ts-basic-components-richeditor.md)、[Web](../apis-arkweb/ts-basic-components-web.md)。
+>
+> 系统服务菜单项指除[TextMenuItemId](./arkui-ts/ts-text-common.md#textmenuitemid12)中的复制、剪切、全选、粘贴以外的菜单项。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型         | 必填   | 说明   |
+| -------- | ---------- | ---- | ---- |
+| disable | boolean | 是    | 是否禁用系统服务菜单。true表示禁用，false表示不禁用。<br />默认值: false |
+
+**示例：**
+
+```ts
+import { TextMenuController } from '@kit.ArkUI';
+
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  aboutToAppear(): void {
+    // 禁用所有系统服务菜单。
+    TextMenuController.disableSystemServiceMenuItems(true)
+  }
+
+  aboutToDisappear(): void {
+    // 页面消失恢复系统服务菜单。
+    TextMenuController.disableSystemServiceMenuItems(false)
+  }
+
+  build() {
+    Row() {
+      Column() {
+        TextInput({ text: "这是一个TextInput，长按弹出文本选择菜单" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .textAlign(TextAlign.Center)
+          .caretStyle({ width: '4vp' })
+          .editMenuOptions({
+            onCreateMenu: (menuItems: Array<TextMenuItem>) => {
+                // menuItems不包含被屏蔽的系统菜单项。
+                return menuItems
+            },
+            onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
+                return false
+            }
+          })
+      }.width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+### disableMenuItems<sup>20+</sup>
+
+static disableMenuItems(items: Array\<TextMenuItemId>): void
+
+屏蔽文本选择菜单内指定的系统服务菜单项。
+
+> **说明：**
+> 
+> 此接口调用后整个应用进程都会生效。
+>
+> 此接口可在[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)使用。
+>
+> 此接口调用后将影响文本组件的接口[editMenuOptions](./arkui-ts/ts-basic-components-text.md#editmenuoptions12)，其回调方法[onCreateMenu](./arkui-ts/ts-text-common.md#oncreatemenu12)的入参列表中不包含被屏蔽的菜单选项。
+>
+> 涉及文本选择菜单的组件有 [Text](./arkui-ts/ts-basic-components-text.md)、[TextArea](./arkui-ts/ts-basic-components-textarea.md)、[TextInput](./arkui-ts/ts-basic-components-textinput.md)、[Search](./arkui-ts/ts-basic-components-search.md)、[RichEditor](./arkui-ts/ts-basic-components-richeditor.md)、[Web](../apis-arkweb/ts-basic-components-web.md)。
+>
+> 系统服务菜单项指除[TextMenuItemId](./arkui-ts/ts-text-common.md#textmenuitemid12)中的复制、剪切、全选、粘贴以外的菜单项。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型         | 必填   | 说明   |
+| -------- | ---------- | ---- | ---- |
+| items | Array<[TextMenuItemId](./arkui-ts/ts-text-common.md#textmenuitemid12)> | 是    | 禁用菜单项的列表。<br />默认值: [] |
+
+**示例：**
+
+```ts
+import { TextMenuController } from '@kit.ArkUI';
+
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  aboutToAppear(): void {
+    // 禁用搜索和翻译菜单。
+    TextMenuController.disableMenuItems([TextMenuItemId.SEARCH, TextMenuItemId.TRANSLATE])
+  }
+
+  aboutToDisappear(): void {
+    // 恢复系统服务菜单。
+    TextMenuController.disableMenuItems([])
+  }
+
+  build() {
+    Row() {
+      Column() {
+        TextInput({ text: "这是一个TextInput，长按弹出文本选择菜单" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .textAlign(TextAlign.Center)
+          .caretStyle({ width: '4vp' })
+          .editMenuOptions({
+            onCreateMenu: (menuItems: Array<TextMenuItem>) => {
+                // menuItems不包含搜索和翻译。
+                return menuItems;
+            },
+            onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
+                return false
+            }
+          })
       }.width('100%')
     }
     .height('100%')

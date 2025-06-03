@@ -305,6 +305,57 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 }
 ```
 
+整体或者按域名的明文HTTP是否允许的配置示例如下：
+```
+{
+  "network-security-config": {
+    "base-config": {
+      "cleartextTrafficPermitted": true
+    },
+    "domain-config": [
+      {
+        "domains": [
+          {
+            "include-subdomains": true,
+            "name": "example.com"
+          }
+        ],
+        "cleartextTrafficPermitted": false
+      }
+    ]
+  }
+}
+```
+
+证书锁定的配置例子如下:
+```
+{
+  "network-security-config": {
+    "domain-config": [
+      {
+        "domains": [
+          {
+            "include-subdomains": true,
+            "name": "server.com"
+          }
+        ],
+        "pin-set": {
+          "expiration": "2024-11-08",
+          "pin": [
+            {
+              "digest-algorithm": "sha256",
+              "digest": "FEDCBA987654321"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "trust-global-user-ca": false,
+  "trust-current-user-ca": false,
+}
+```
+
 **各个字段含义:**
 
 | 字段                      | 类型            | 说明                                   |   
@@ -315,14 +366,26 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 |trust-anchors              | array           |受信任的CA。可以包含任意个item。item必须包含1个certificates。|
 |certificates               | string          |CA证书路径。 |
 |domains                    | array           |域。可以包含任意个item。item必须包含1个name(string：指示域名)，可以包含0或者1个include-subdomains。|
-|include-subdomains         | boolean         |指示规则是否适用于子域。 |
+|include-subdomains         | boolean         |指示规则是否适用于子域。true：指示规则适用于子域；false：指示规则不适用于子域。 |
 |pin-set                    | object          |证书公钥哈希设置。必须包含1个pin，可以包含0或者1个expiration。|
 |expiration                 | string          |指示证书公钥哈希的过期时间。 |
 |pin                        | array           |证书公钥哈希。可以包含任意个item。item必须包含1个digest-algorithm，item必须包含1个digest。|
 |digest-algorithm           | string          |指示用于生成哈希的摘要算法。目前只支持`sha256`。                                    |
 |digest                     | string          |指示公钥哈希。 |
+|cleartextTrafficPermitted  | boolean          |明文HTTP是否允许。true表示允许，false表示不允许，默认为true。 |
 
 
+## 配置不信任用户安装的CA证书
+系统默认信任系统预置的CA证书和用户安装的CA证书，可配置不信任用户安装的CA证书提升安全性。配置不信任用安装的CA证书可以在src/main/resources/base/profile/network_config.json进行配置，更多网络连接安全相关的配置可以参考[网络连接安全配置](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-network-ca-security#section5454123841911)。
+```
+{
+  "network-security-config": {
+    ... ...
+  },
+  "trust-global-user-ca": false, // 配置是否信任企业MDM系统或设备管理员用户手动安装的CA证书，默认为true
+  "trust-current-user-ca" : false // 配置是否信任当前用户安装的CA证书，默认为true
+}
+```
 ## 相关实例
 
 针对HTTP数据请求，有以下相关实例可供参考：

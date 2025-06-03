@@ -1,8 +1,6 @@
 # \@Provide装饰器和\@Consume装饰器：与后代组件双向同步
 
-
-\@Provide和\@Consume，应用于与后代组件的双向数据同步，应用于状态数据在多个层级之间传递的场景。不同于上文提到的父子组件之间通过命名参数机制传递，\@Provide和\@Consume摆脱参数传递机制的束缚，实现跨层级传递。
-
+\@Provide和\@Consume，应用于与后代组件的双向数据同步、状态数据在多个层级之间传递的场景。不同于上文提到的父子组件之间通过命名参数机制传递，\@Provide和\@Consume摆脱参数传递机制的束缚，实现跨层级传递。
 
 其中\@Provide装饰的变量是在祖先组件中，可以理解为被“提供”给后代的状态变量。\@Consume装饰的变量是在后代组件中，去“消费（绑定）”祖先组件提供的变量。
 
@@ -24,7 +22,6 @@
 
 - \@Provide和\@Consume可以通过相同的变量名或者相同的变量别名绑定，建议类型相同，否则会发生类型隐式转换，从而导致应用行为异常。
 
-
 ```ts
 // 通过相同的变量名绑定
 @Provide age: number = 0;
@@ -35,9 +32,7 @@
 @Consume('a') age: number;
 ```
 
-
 \@Provide和\@Consume通过相同的变量名或者相同的变量别名绑定时，\@Provide装饰的变量和\@Consume装饰的变量是一对多的关系。不允许在同一个自定义组件内，包括其子组件中声明多个同名或者同别名的\@Provide装饰的变量，@Provide的属性名或别名需要唯一且确定，如果声明多个同名或者同别名的@Provide装饰的变量，会发生运行时报错。
-
 
 ## 装饰器说明
 
@@ -47,7 +42,7 @@
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。<br/>如果指定了别名，则通过别名来绑定变量；如果未指定别名，则通过变量名绑定变量。 |
 | 同步类型           | 双向同步。<br/>从\@Provide变量到所有\@Consume变量以及相反的方向的数据同步。双向同步的操作与\@State和\@Link的组合相同。 |
-| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>必须指定类型。<br/>\@Provide变量的\@Consume变量的类型必须相同。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@Provide_and_Consume支持联合类型实例](#provide_and_consume支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@Provide a : string \| undefined = undefined`是推荐的，不推荐`@Provide a: string = undefined`。
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API version 11及以上支持Map、Set类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>必须指定类型。<br/>\@Provide变量和\@Consume变量的类型必须相同。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any类型。<br/>API version 11及以上支持上述支持类型的联合类型。例如：string \| number, string \| undefined或者ClassA \| null，示例见[@Provide和Consume支持联合类型实例](#provide和consume支持联合类型实例)。 <br/>**注意：**<br/>当使用undefined和null的时候，建议显示指定类型，遵循TypeScript类型校验。例如：推荐`@Provide a : string \| undefined = undefined`，不推荐`@Provide a: string = undefined`。
 | 被装饰变量的初始值      | 必须指定。                                    |
 | 支持allowOverride参数          | 允许重写，只要声明了allowOverride，则别名和属性名都可以被Override。示例见[\@Provide支持allowOverride参数](#provide支持allowoverride参数)。 |
 
@@ -55,12 +50,10 @@
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。<br/>如果提供了别名，则必须有\@Provide的变量和其有相同的别名才可以匹配成功；否则，则需要变量名相同才能匹配成功。 |
 | 同步类型           | 双向：从\@Provide变量（具体请参见\@Provide）到所有\@Consume变量，以及相反的方向。双向同步操作与\@State和\@Link的组合相同。 |
-| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。必须指定类型。<br/>\@Provide变量和\@Consume变量的类型必须相同。<br/>\@Consume装饰的变量，在其父组件或者祖先组件上，必须有对应的属性和别名的\@Provide装饰的变量。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@Provide_and_Consume支持联合类型实例](#provide_and_consume支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@Consume a : string \| undefined`。
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>必须指定类型。<br/>\@Provide变量和\@Consume变量的类型必须相同。<br/>\@Consume装饰的变量，在其父组件或者祖先组件上，必须有对应的属性和别名的\@Provide装饰的变量。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any类型。<br/>API version 11及以上支持上述支持类型的联合类型。例如：string \| number, string \| undefined或者ClassA \| null，示例见[@Provide和Consume支持联合类型实例](#provide和consume支持联合类型实例)。 <br/>**注意：**<br/>当使用undefined和null的时候，建议显示指定类型，遵循TypeScript类型校验。例如：`@Consume a : string \| undefined`。
 | 被装饰变量的初始值      | 无，禁止本地初始化。                               |
 
-
 ## 变量的传递/访问规则说明
-
 
 | \@Provide传递/访问 | 说明                                       |
 | -------------- | ---------------------------------------- |
@@ -70,12 +63,9 @@
 | 和后代组件同步        | 和\@Consume双向同步。                          |
 | 是否支持组件外访问      | 私有，仅可以在所属组件内访问。                          |
 
-
   **图1** \@Provide初始化规则图示  
 
-
 ![zh-cn_image_0000001552614217](figures/zh-cn_image_0000001552614217.png)
-
 
 | \@Consume传递/访问 | 说明                                       |
 | -------------- | ---------------------------------------- |
@@ -84,15 +74,12 @@
 | 和祖先组件同步        | 和\@Provide双向同步。                          |
 | 是否支持组件外访问      | 私有，仅可以在所属组件内访问                           |
 
-
   **图2** \@Consume初始化规则图示  
 
 
 ![zh-cn_image_0000001502094666](figures/zh-cn_image_0000001502094666.png)
 
-
 ## 观察变化和行为表现
-
 
 ### 观察变化
 
@@ -164,7 +151,7 @@ struct Parent {
 ### 框架行为
 
 1. 初始渲染：
-   1. \@Provide装饰的变量会以map的形式，传递给当前\@Provide所属组件的所有子组件。
+   1. \@Provide装饰的变量会以Map的形式，传递给当前\@Provide所属组件的所有子组件。
    2. 子组件中如果使用\@Consume变量，则会在map中查找是否有该变量名/alias（别名）对应的\@Provide的变量，如果查找不到，框架会抛出JS ERROR。
    3. 在初始化\@Consume变量时，和\@State/\@Link的流程类似，\@Consume变量会在map中查找到对应的\@Provide变量进行保存，并把自己注册给\@Provide。
 
@@ -177,7 +164,6 @@ struct Parent {
    通过初始渲染的步骤可知，子组件\@Consume持有\@Provide的实例。在\@Consume更新后调用\@Provide的更新方法，将更新的数值同步回\@Provide，以此实现\@Consume向\@Provide的同步更新。
 
 ![Provide_Consume_framework_behavior](figures/Provide_Consume_framework_behavior.png)
-
 
 ## 限制条件
 
@@ -325,12 +311,9 @@ struct Parent {
 
 5. \@Provide与\@Consume不支持装饰Function类型的变量，框架会抛出运行时错误。
 
-
 ## 使用场景
 
-在下面的示例是与后代组件双向同步状态\@Provide和\@Consume场景。当分别点击ToDo和ToDoItem组件内Button时，count 的更改会双向同步在ToDo和ToDoItem中。
-
-
+以下示例是@Provide变量与后代组件中@Consume变量进行双向同步的场景。当分别点击ToDo和ToDoItem组件内的Button时，count的更改会双向同步在ToDo和ToDoItem中。
 
 ```ts
 @Component
@@ -387,7 +370,7 @@ struct ToDo {
 >
 > 从API version 11开始，\@Provide，\@Consume支持Map类型。
 
-在下面的示例中，message类型为Map<number, string>，点击Button改变message的值，视图会随之刷新。
+以下示例中，message类型为Map\<number, string\>，点击Button改变message的值，视图会随之刷新。
 
 ```ts
 @Component
@@ -447,7 +430,7 @@ struct MapSample {
 >
 > 从API version 11开始，\@Provide，\@Consume支持Set类型。
 
-在下面的示例中，message类型为Set\<number\>，点击Button改变message的值，视图会随之刷新。
+以下示例中，message类型为Set\<number\>，点击Button改变message的值，视图会随之刷新。
 
 ```ts
 @Component
@@ -498,9 +481,9 @@ struct SetSample {
 }
 ```
 
-### Provide_and_Consume支持联合类型实例
+### Provide和Consume支持联合类型实例
 
-@Provide和@Consume支持联合类型和undefined和null，在下面的示例中，count类型为string | undefined，点击父组件Parent中的Button改变count的属性或者类型，Child中也会对应刷新。
+@Provide和@Consume支持联合类型和undefined和null。以下示例中，count类型为string | undefined，当点击父组件Parent中的Button改变count的属性或者类型时，Child中也会对应刷新。
 
 ```ts
 @Component
@@ -622,7 +605,6 @@ struct GrandParent {
 - GrandSon查找到相同属性名的@Provide在祖先Child中，所以@Consume("reviewVotes") reviewVotes: number初始化数值为10。如果Child中没有定义与@Consume同名的@Provide，则继续向上寻找Parent中的同名@Provide值为20，以此类推。
 - 如果查找到根节点还没有找到key对应的@Provide，则会报初始化@Consume找不到@Provide的报错。
 
-
 ## 常见问题
 
 ### \@BuilderParam尾随闭包情况下\@Provide未定义错误
@@ -639,6 +621,7 @@ class Tmp {
 @Entry
 @Component
 struct HomePage {
+  // 错误点1：HomePage未声明@Provide
   @Builder
   builder2($$: Tmp) {
     Text(`${$$.a}测试`)
@@ -646,6 +629,7 @@ struct HomePage {
 
   build() {
     Column() {
+      // 错误点2：使用尾随闭包的形式将创建CustomWidgetChild的函数传递给CustomWidget，此时尾随闭包中this指向HomePage
       CustomWidget() {
         CustomWidgetChild({ builder: this.builder2 })
       }
@@ -655,6 +639,7 @@ struct HomePage {
 
 @Component
 struct CustomWidget {
+  // 错误点3：@Provide变量声明在CustomWidget中，仅有CustomWidget自身及其子组件能够消费
   @Provide('a') a: string = 'abc';
   @BuilderParam
   builder: () => void;
@@ -677,6 +662,7 @@ struct CustomWidget {
 
 @Component
 struct CustomWidgetChild {
+  // 错误点4：尝试消费CustomWidget的@Provide('a')，但实际上CustomWidgetChild的父组件为HomePage，无法找到对应的@Provide
   @Consume('a') a: string;
   @BuilderParam
   builder: ($$: Tmp) => void;
@@ -699,6 +685,7 @@ class Tmp {
 @Entry
 @Component
 struct HomePage {
+  // 修正点1：将@Provide声明在Entry组件（根作用域），确保子组件能正确消费
   @Provide('name') name: string = 'abc';
 
   @Builder
@@ -715,6 +702,7 @@ struct HomePage {
           this.name = 'ddd';
         }
       })
+      // 修正点2：CustomWidget不再声明@Provide，仅作为容器传递builder
       CustomWidget() {
         CustomWidgetChild({ builder: this.builder2 })
       }
@@ -734,6 +722,7 @@ struct CustomWidget {
 
 @Component
 struct CustomWidgetChild {
+  // 修正点3：@Consume从根作用域（HomePage）获取@Provide('name')，作用域正确
   @Consume('name') name: string;
   @BuilderParam
   builder: ($$: Tmp) => void;
@@ -842,7 +831,7 @@ struct ZooGrandChild {
 }
 ```
 
-可以通过如下先赋值、再调用新赋值的变量的方式为this.dog加上Proxy代理，实现UI刷新。
+可以通过如下先赋值、再调用新赋值的变量的方式为this.dog保留Proxy代理，实现UI刷新。
 
 【正例】
 
@@ -882,13 +871,13 @@ struct Zoo {
         .fontSize(30)
       Button('changeAge')
         .onClick(()=>{
-          // 通过赋值添加 Proxy 代理
+          // 通过赋值给临时变量保留Proxy代理
           let newDog = this.dog;
           Animal.changeAge(newDog);
         })
       Button('changeZooDogAge')
         .onClick(()=>{
-          // 通过赋值添加 Proxy 代理
+          // 通过赋值给临时变量保留Proxy代理
           let newDog = this.dog;
           this.changeZooDogAge(newDog);
         })
@@ -925,13 +914,13 @@ struct ZooGrandChild {
         .fontSize(30)
       Button('changeName')
         .onClick(()=>{
-          // 通过赋值添加 Proxy 代理
+          // 通过赋值给临时变量保留Proxy代理
           let newDog = this.dog;
           Animal.changeName(newDog);
         })
       Button('changeZooGrandChildName')
         .onClick(()=>{
-          // 通过赋值添加 Proxy 代理
+          // 通过赋值给临时变量保留Proxy代理
           let newDog = this.dog;
           this.changeZooGrandChildName(newDog);
         })

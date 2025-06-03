@@ -64,7 +64,7 @@ wrapBuilder方法返回的WrappedBuilder对象的builder属性方法只能在str
 
 ## @Builder方法赋值给变量
 
-使用`@Builder`装饰器装饰的方法`MyBuilder`作为`wrapBuilder`的参数，再将`wrapBuilder`赋值给变量`globalBuilder`，以解决`@Builder`方法赋值给变量后无法使用的问题。
+使用`@Builder`装饰器装饰的方法`MyBuilder`作为`wrapBuilder`的参数，再将`wrapBuilder`函数的返回值赋值给变量`globalBuilder`，以解决`@Builder`方法赋值给变量后无法使用的问题。
 
 ```ts
 @Builder

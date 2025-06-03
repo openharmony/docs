@@ -142,7 +142,7 @@ Queue支持增、删、改、查操作，常用API如下：
 | 访问元素 | getFirst() | 获取队首元素，不进行出队操作。 |
 | 访问元素 | pop() | 获取队首元素，并进行出队操作。 |
 | 访问元素 | forEach(callbackFn: (value: T, index?: number, queue?: Queue&lt;T&gt;) =&gt; void,thisArg?: Object) | 遍历访问整个Queue容器的元素。 |
-| 访问元素 | [Symbol.iterator]():IterableIterator&lt;T&gt; | 创建迭代器以进行数据访问。 |
+| 访问元素 | \[Symbol.iterator]():IterableIterator&lt;T&gt; | 创建迭代器以进行数据访问。 |
 | 修改元素 | forEach(callbackFn: (value: T, index?: number, queue?: Queue&lt;T&gt;) =&gt; void,thisArg?: Object) | 通过遍历修改整个Queue容器的元素。 |
 | 删除元素 | pop() | 对队首元素进行出队操作并删除。|
 
@@ -195,7 +195,7 @@ Vector支持增、删、改、查操作，常用API如下：
 | 访问元素 | \[Symbol.iterator]():IterableIterator&lt;T&gt; | 创建迭代器以进行数据访问。 |
 | 修改元素 | set(index:number, element: T) | 修改指定index位置的元素值为element。 |
 | 修改元素 | vec[index] = element | 修改指定index位置的元素值为element。 |
-| 修改元素 | replaceAllElements(callbackFn:(value: T,index?: number,list?: List&lt;T&gt;)=&gt;T,thisArg?: Object) | 逐个替换Vector内的元素。|
+| 修改元素 | replaceAllElements(callbackFn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => T, thisArg?: Object) | 逐个替换Vector内的元素。|
 | 修改元素 | setLength(newSize:number) | 设置Vector的长度大小。 |
 | 删除元素 | remove(element: T) | 删除第一个匹配到的元素。 |
 | 删除元素 | removeByIndex(index:number) | 删除index位置对应的元素。 |

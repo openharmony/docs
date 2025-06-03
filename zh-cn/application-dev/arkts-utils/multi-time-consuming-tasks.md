@@ -1,6 +1,6 @@
 # 使用TaskPool执行多个耗时任务
 
-多个任务同时执行时，由于任务复杂度不同，执行时间和返回数据的时间也会不同。如果宿主线程需要所有任务执行完毕的数据，可以通过以下方式实现。
+多个任务同时执行时，由于任务复杂度不同，执行时间和返回数据的时间也会不同。如果宿主线程需要所有任务执行完毕的数据，可以通过[TaskGroup](../reference/apis-arkts/js-apis-taskpool.md#taskgroup10)的方式实现。
 
 除此以外，如果需要处理的数据量较大，例如一个列表中有10000条数据，将这些数据放在一个Task中处理会非常耗时。那么就可以将原始数据拆分成多个子列表，为每个子列表分配一个独立的Task执行，等待全部Task执行完成后合并结果形成完整的数据，这样可以节省处理时间，提升用户体验。
 
@@ -25,7 +25,7 @@
    // IndependentTask.ets
    import { IconItemSource } from './IconItemSource';
     
-   // 在Task中执行的方法，需要添加@Concurrent注解，否则无法正常调用。
+   // 在TaskPool线程中执行的方法，需要添加@Concurrent注解，否则无法正常调用。
    @Concurrent
    export function loadPicture(count: number): IconItemSource[] {
      let iconItemSourceList: IconItemSource[] = [];
@@ -45,7 +45,7 @@
    }
    ```
 
-2. 将需要执行的Task放到了一个TaskGroup里面，当TaskGroup中的所有Task执行完毕后，会将每个Task的结果都放在一个数组中并返回给宿主线程，而不是每执行完一个Task就返回一次，这样宿主线程就可以在返回的数据里拿到所有Task的执行结果，便于后续使用。
+2. 将需要执行的Task放到了一个TaskGroup里面，当TaskGroup中的所有Task执行完毕后，会将所有Task的结果都放在一个数组中并返回给宿主线程，而不是每执行完一个Task就返回一次，这样宿主线程就可以在返回的数据里拿到所有Task的执行结果，便于后续使用。
 
    ```ts
    // MultiTask.ets

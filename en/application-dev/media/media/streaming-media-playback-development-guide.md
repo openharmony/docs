@@ -66,7 +66,7 @@ If the download speed falls below the bit rate of the media source, playback stu
 Sample code for listening for the bufferingUpdate event:
 
 ```ts
-avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value : number) => {
+this.avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value : number) => {
   console.info(`AVPlayer bufferingUpdate, infoType is ${infoType}, value is ${value}.`);
 })
 ```
@@ -79,9 +79,9 @@ HLS streams currently support playback at multiple bit rates. By default, the AV
 
     ```ts
     // Create an AVPlayer instance.
-    let avPlayer: media.AVPlayer = await media.createAVPlayer();
+    this.avPlayer: media.AVPlayer = await media.createAVPlayer();
     // Listen for the available bit rates of the current HLS stream.
-    avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
+    this.avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
       console.info('availableBitrates called, and availableBitrates length is: ' + bitrates.length);
     })
     ```
@@ -90,13 +90,13 @@ HLS streams currently support playback at multiple bit rates. By default, the AV
 
     ```ts
     // Create an AVPlayer instance.
-    let avPlayer: media.AVPlayer = await media.createAVPlayer();
+    this.avPlayer: media.AVPlayer = await media.createAVPlayer();
     // Check whether the bit rate setting takes effect.
-    avPlayer.on('bitrateDone', (bitrate: number) => {
+    this.avPlayer.on('bitrateDone', (bitrate: number) => {
       console.info('bitrateDone called, and bitrate value is: ' + bitrate);
     })
     // Set the playback bit rate.
-    let bitrate: number = 96000;
+    this.bitrate: number = 96000;
     avPlayer.setBitrate(bitrate);
     ```
 
@@ -109,7 +109,7 @@ The sample code below demonstrates setting the video to start at a width of 1920
 ```ts
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://test.cn/dash/aaa.mpd",  {"User-Agent" : "User-Agent-Value"});
 let playbackStrategy : media.PlaybackStrategy = {preferredWidth: 1920, preferredHeight: 1080};
-avPlayer.setMediaSource(mediaSource, playbackStrategy);
+this.avPlayer.setMediaSource(mediaSource, playbackStrategy);
 ```
 
 ### DASH Audio and Video Track Switching
@@ -119,7 +119,7 @@ DASH streaming media includes multiple audio, video, and subtitle tracks, each w
 1. Set the [trackChange](../../reference/apis-media-kit/js-apis-media.md#ontrackchange12) event.
 
     ```ts
-    avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
+    this.avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
       console.info(`trackChange info, index: ${index}, isSelect: ${isSelect}`);
     })
     ```
@@ -128,8 +128,7 @@ DASH streaming media includes multiple audio, video, and subtitle tracks, each w
 
     ```ts
     // The following uses the 1080p video track index as an example.
-    public videoTrackIndex: number;
-    avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
+    this.avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
       if (arrList != null) {
         for (let i = 0; i < arrList.length; i++) {
           let propertyIndex: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
@@ -137,7 +136,7 @@ DASH streaming media includes multiple audio, video, and subtitle tracks, each w
           let propertyWidth: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_WIDTH];
           let propertyHeight: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_HEIGHT];
           if (propertyType == media.MediaType.MEDIA_TYPE_VID && propertyWidth == 1920 && propertyHeight == 1080) {
-            videoTrackIndex = parseInt(propertyIndex.toString()); // Obtain the 1080p video track index.
+            this.videoTrackIndex = parseInt(propertyIndex.toString()); // Obtain the 1080p video track index.
           }
         }
       } else {
@@ -159,157 +158,420 @@ DASH streaming media includes multiple audio, video, and subtitle tracks, each w
 
 If the network is disconnected when the AVPlayer is playing streaming media, the AVPlayer module handles the fault based on the returned error code, server response time, and number of requests. If the error code type does not require a retry, the module reports the corresponding error code to the application. If the error code type requires a retry, the module initiates a maximum of 10 retries within 30 seconds. If the number of retries exceeds 10 or the total retry duration exceeds 30 seconds, the module reports the corresponding error code to the application. If the retry is successful, the module continues the playback.
 
-## Sample Code
+## Running the Sample Project
 
 Refer to the following example to play a complete streaming video.
 
-```ts
-import { media } from '@kit.MediaKit';
-import { fileIo as fs } from '@kit.CoreFileKit';
-import { common } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+1. Create a project, download the [sample project](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVPlayer/AVPlayerArkTSStreamingMedia), and copy the following resources of the sample project to the corresponding directories.
+    ```
+    AVPlayerArkTSAudio
+    entry/src/main/ets/
+    └── pages
+        └── Index.ets (playback page)
+    entry/src/main/resources/
+    ├── base
+    │   ├── element
+    │   │   ├── color.json
+    │   │   ├── float.json
+    │   │   └── string.json
+    │   └── media
+    │       ├── ic_video_play.svg (play button image resource)
+    │       └── ic_video_pause.svg (pause button image resource)
+    └── rawfile
+        └── test1.mp4 (video resource)
+    ```
 
-export class AVPlayerDemo {
-  private count: number = 0;
-  private surfaceID: string = ''; // The surfaceID parameter specifies the window used to display the video. Its value is obtained through XComponent.
-  private isSeek: boolean = true; // Specify whether the seek operation is supported.
-  public audioTrackList: number[] = [];
-  public videoTrackList: number[] = [];
-
-  constructor(surfaceID: string) {
-    this.surfaceID = surfaceID;
-  }
-
-  // Set AVPlayer callback functions.
-  setAVPlayerCallback(avPlayer: media.AVPlayer) {
-    // startRenderFrame: callback function invoked when the first frame starts rendering.
-    avPlayer.on('startRenderFrame', () => {
-      console.info(`AVPlayer start render frame`);
-    });
-    // Callback function for the seek operation.
-    avPlayer.on('seekDone', (seekDoneTime: number) => {
-      console.info(`AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
-    })
-    // avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
-    //   console.info(`AVPlayer track changed, track index: ${index}, isSelect: ${isSelect}`);
-    // })
-    // Callback function for errors. If an error occurs during the operation on the AVPlayer, reset() is called to reset the AVPlayer.
-    avPlayer.on('error', (err: BusinessError) => {
-      console.error(`Invoke avPlayer failed, code is ${err.code}, message is ${err.message}`);
-      avPlayer.reset(); // Call reset() to reset the AVPlayer, which enters the idle state.
-    })
-    // Callback for state changes.
-    avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
-      switch (state) {
-        case 'idle': // This state is reported upon a successful callback of reset().
-          console.info('AVPlayer state idle called.');
-          avPlayer.release(); // Call release() to release the instance.
-          break;
-        case 'initialized': // This state is reported when the AVPlayer sets the playback source.
-          console.info('AVPlayer state initialized called.');
-          avPlayer.surfaceId = this.surfaceID; // Set the window to display the video. This setting is not required when a pure audio asset is to be played.
-          avPlayer.prepare();
-          break;
-        case 'prepared': // This state is reported upon a successful callback of prepare().
-          console.info('AVPlayer state prepared called.');
-          avPlayer.play(); // Call play() to start playback.
-          break;
-        case 'playing': // This state is reported upon a successful callback of play().
-          console.info('AVPlayer state playing called.');
-          break;
-        case 'paused': // This state is reported upon a successful callback of pause().
-          console.info('AVPlayer state paused called.');
-          break;
-        case 'completed': // This state is reported upon the completion of the playback.
-          console.info('AVPlayer state completed called.');
-          avPlayer.stop(); // Call stop() to stop the playback.
-          break;
-        case 'stopped': // This state is reported upon a successful callback of stop().
-          console.info('AVPlayer state stopped called.');
-          avPlayer.reset(); // Call reset() to reset the AVPlayer.
-          break;
-        case 'released':
-          console.info('AVPlayer state released called.');
-          break;
-        default:
-          console.info('AVPlayer state unknown called.');
-          break;
+2. Request the network permission in the **/entry/src/main/module.json5** file. Alternatively, replace the **module.json5** file with that in the sample project.
+    ```json
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.INTERNET"
+      },
+      {
+        "name": "ohos.permission.GET_WIFI_INFO"
       }
+    ]
+    ```
+3. Comment out or uncomment the above examples in the **entry/src/main/ets/pages/Index.ets** file, and compile and run the application.
+
+## Development Example
+
+```ts
+@Entry
+@Component
+struct Index {
+  private avPlayer: media.AVPlayer | null = null;
+  private context: common.UIAbilityContext | undefined = undefined;
+  public videoTrackIndex: number = 0;
+  public bitrate: number = 0;
+  ...
+
+  getDurationTime(): number {
+    return this.durationTime;
+  }
+
+  getCurrentTime(): number {
+    return this.currentTime;
+  }
+
+  timeConvert(time: number): string {
+    let min: number = Math.floor(time / TIME_ONE);
+    let second: string = ((time % TIME_ONE) / TIME_TWO).toFixed(0);
+    // return `${min}:${(+second < TIME_THREE ? '0' : '') + second}`;
+    second = second.padStart(2, '0');
+    return `${min}:${second}`;
+  }
+
+  async msleepAsync(ms: number): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(true)
+      }, ms)
     })
-    // Listen for the streaming media buffering status, buffering percentage, and estimated playback duration of buffered data.
-    avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value : number) => {
-      console.info(`AVPlayer bufferingUpdate, infoType is ${infoType}, value is ${value}.`);
+  }
+
+  async avSetupStreaminMediaVideo() {
+    if (this.context == undefined) return;
+    // Create an AVPlayer instance.
+    this.avPlayer = await media.createAVPlayer();
+
+    // Set a callback function for state changes.
+    await this.setAVPlayerCallback((avPlayer: media.AVPlayer) => {
+      this.percent = avPlayer.width / avPlayer.height;
+      this.setVideoWH();
+      this.durationTime = this.getDurationTime();
+      setInterval(() => { // Update the current time.
+        if (!this.isSwiping) {
+          this.currentTime = this.getCurrentTime();
+        }
+      }, SET_INTERVAL);
+    });
+
+    // Case 1: HTTP video playback.
+    this.avPlayer.url = "http://media.iyuns.top:1000/http/720p_1m.mp4";
+
+    // Case 2: HLS video playback.
+    // this.avPlayer.url = "http://media.iyuns.top:1000/720-270-480.m3u8";
+
+    // Case 3: DASH video playback.
+    // this.avPlayer.url = "http://media.iyuns.top:1000/dash/720p/720-1/720-1.mpd";
+
+    // Case 4: setMediaSource is used to set custom header fields and preferred media playback parameters to implement initial playback parameter settings, and HTTP on-demand streaming media is used as an example.
+    /*
+    let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://media.iyuns.top:1000/http/720p_1m.mp4", {"":""});
+    // Set the playback strategy and set the data volume in the buffer to 20s.
+    let playbackStrategy : media.PlaybackStrategy = {preferredBufferDuration: 20};
+    // Set the media source and playback strategy for the AVPlayer.
+    this.avPlayer.setMediaSource(mediaSource, playbackStrategy);
+    * */
+
+    // Case 5: HLS bit rate switching.
+    /*
+    this.avPlayer.url = "https://upftimae.dailyworkout.cn/videos/course/c800f81a209b5ee7891f1128ed301db/4/master.m3u8";
+    let bitrate: number = 0;
+    // Listen for the available bit rates of the current HLS stream.
+    this.avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
+      console.info('availableBitrates called, and availableBitrates length is: ' + bitrates.length);
+      this.bitrate = bitrates[0]; // Save the bit rate to be switched.
     })
-  }
+    // Check whether the bit rate setting takes effect.
+    this.avPlayer.on('bitrateDone', (bitrate: number) => {
+      console.info('bitrateDone called, and bitrate value is: ' + bitrate);
+    })
+    * */
 
-  // The following demo shows how to play an HLS on-demand video by setting the network address through url.
-  async avPlayerVodDemo() {
-    // Create an AVPlayer instance.
-    let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // Set a callback for state changes.
-    this.setAVPlayerCallback(avPlayer);
-    this.isSeek = true; // The seek operation is supported in VOD scenarios.
-    avPlayer.url = 'http://xxx.xxx.xxx.xxx:xx/xx/index.m3u8';
-  }
-
-  // The following demo shows how to play an HLS live streaming video by setting the network address through url.
-  async avPlayerLiveDemo() {
-    // Create an AVPlayer instance.
-    let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // Set a callback for state changes.
-    this.setAVPlayerCallback(avPlayer);
-    this.isSeek = false; // The seek operation is not supported in live streaming scenarios.
-    avPlayer.url = 'http://xxx.xxx.xxx.xxx:xx/xx/index.m3u8';
-  }
-
-  // The following demo shows how to play a DASH streaming video by setting the network address through url.
-  async avPlayerDashDemo() {
-    // Create an AVPlayer instance.
-    let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // Set a callback for state changes.
-    this.setAVPlayerCallback(avPlayer);
-    // Set the playback strategy.
-    // let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://test.cn/dash/aaa.mpd",  {"User-Agent" : "User-Agent-Value"});
-    // let playbackStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false};
-    // avPlayer.setMediaSource(mediaSource, playbackStrategy);
-    this.isSeek = true; // The seek operation is supported.
-    avPlayer.url = 'http://test.cn/dash/aaa.mpd'; // Use the actual address of the DASH streaming video.
-
-    // Set the audio or video track by calling selectTrack, and cancel the audio or video track selected last time by calling deselectTrack. After the cancellation, the default audio or video track is restored.
-    avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
+    // Case 6: DASH audio and video track switching.
+    /*
+    this.avPlayer.url = "http://poster-inland.hwcloudtest.cn/AiMaxEngine/ProductionEnvVideo/DASH_SDR_MultiAudio_MultiSubtitle_yinHeHuWeiDui3/DASH_SDR_MultiAudio_MultiSubtitle_yinHeHuWeiDui3.mpd";
+    // 
+    this.avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
       if (arrList != null) {
         for (let i = 0; i < arrList.length; i++) {
           let propertyIndex: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
           let propertyType: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_TYPE];
-          if (propertyType == 0) {
-            this.audioTrackList.push(parseInt(propertyIndex.toString())); // Obtain the audio track list.
-          } else if (propertyType == 1) {
-            this.videoTrackList.push(parseInt(propertyIndex.toString())); // Obtain the video track list.
+          let propertyWidth: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_WIDTH];
+          let propertyHeight: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_HEIGHT];
+          if (propertyType == media.MediaType.MEDIA_TYPE_VID && propertyWidth == 1920 && propertyHeight == 1080) {
+            this.videoTrackIndex = parseInt(propertyIndex.toString()); // Obtain the 1080p video track index.
           }
         }
       } else {
         console.error(`getTrackDescription fail, error:${error}`);
       }
     });
-    // Select a video track.
-    // avPlayer.selectTrack(this.videoTrackList[0]);
-    // Deselect the video track.
-    // avPlayer.deselectTrack(this.videoTrackList[0]);
+    * */
   }
 
-  // The following demo uses setMediaSource to set custom header fields and preferred media playback parameters to implement initial playback parameter settings. It uses HTTPS on-demand streaming media as an example.
-  async preDownloadDemo() {
-    // Create an AVPlayer instance.
-    let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // Set a callback for state changes.
-    this.setAVPlayerCallback(avPlayer);
-    this.isSeek = true; // The seek operation is supported in VOD scenarios.
-    // Create a mediaSource instance, set the media source, and customize an HTTP request. If necessary, set fields such as User-Agent, Cookie, and Referer in key-value pairs.
-    let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("https://xxx.xxx",  {"User-Agent" : "User-Agent-Value", "Cookie" : "Cookie-Value", "Referer" : "Referer-Value"});
-    // Set the playback strategy and set the data volume in the buffer to 20s.
-    let playbackStrategy : media.PlaybackStrategy = {preferredBufferDuration: 20};
-    // Set the media source and playback strategy for the AVPlayer.
-    avPlayer.setMediaSource(mediaSource, playbackStrategy);
+  // HLS bit rate switching.
+  changeBitrate(bitrate: number) {
+    if (this.avPlayer == null) {
+      return;
+    }
+    // Set the playback bit rate.
+    try {
+      this.avPlayer.setBitrate(bitrate);
+    } catch (error) {
+      console.error(`${this.tag}: setBitrate failed, error message is = ${JSON.stringify(error.message)}`);
+    }
   }
+
+  // DASH audio and video track switching.
+  changeTrack(track: number) {
+    if (this.avPlayer == null) {
+      return;
+    }
+    // Select a video track.
+    try {
+      this.avPlayer.selectTrack(track);
+    } catch (error) {
+      console.error(`${this.tag}: selectTrack failed, error message is = ${JSON.stringify(error.message)}`);
+    }
+    // Deselect the video track.
+    /*
+    try {
+      this.avPlayer.deselectTrack(track);
+    } catch (error) {
+      console.error(`${this.tag}: deselectTrack failed, error message is = ${JSON.stringify(error.message)}`);
+    }
+    * */
+  }
+
+  avPlay(): void {
+    if (this.avPlayer) {
+      try {
+        this.avPlayer.play();
+      } catch (e) {
+        console.error(`${this.tag}: avPlay = ${JSON.stringify(e)}`);
+      }
+    }
+  }
+
+  avPause(): void {
+    if (this.avPlayer) {
+      try {
+        this.avPlayer.pause();
+        console.info(`${this.tag}: avPause==`);
+      } catch (e) {
+        console.error(`${this.tag}: avPause== ${JSON.stringify(e)}`);
+      }
+    }
+  }
+
+  async avSeek(seekTime: number, mode: SliderChangeMode): Promise<void> {
+    if (this.avPlayer) {
+      try {
+        console.info(`${this.tag}: videoSeek  seekTime== ${seekTime}`);
+        this.avPlayer.seek(seekTime, 2);
+        this.currentTime = seekTime;
+      } catch (e) {
+        console.error(`${this.tag}: videoSeek== ${JSON.stringify(e)}`);
+      }
+    }
+  }
+
+  avSetSpeed(speed: number): void {
+    if (this.avPlayer) {
+      try {
+        this.avPlayer.setSpeed(speed);
+        console.info(`${this.tag}: avSetSpeed enum ${speed}`);
+      } catch (e) {
+        console.error(`${this.tag}: avSetSpeed == ${JSON.stringify(e)}`);
+      }
+    }
+  }
+
+  // Set AVPlayer callback functions.
+  async setAVPlayerCallback(callback: (avPlayer: media.AVPlayer) => void, vType?: number): Promise<void> {
+    // Callback function for the seek operation.
+    if (this.avPlayer == null) {
+      console.error(`${this.tag}: avPlayer has not init!`);
+      return;
+    }
+    this.avPlayer.on('seekDone', (seekDoneTime) => {
+      console.info(`${this.tag}: setAVPlayerCallback AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
+    });
+    this.avPlayer.on('speedDone', (speed) => {
+      console.info(`${this.tag}: setAVPlayerCallback AVPlayer speedDone, speed is ${speed}`);
+    });
+    // Callback function for errors. If an error occurs during the operation on the AVPlayer, reset() is called to reset the AVPlayer.
+    this.avPlayer.on('error', (err) => {
+      console.error(`${this.tag}: setAVPlayerCallback Invoke avPlayer failed ${JSON.stringify(err)}`);
+      if (this.avPlayer == null) {
+        console.error(`${this.tag}: avPlayer has not init on error`);
+        return;
+      }
+      this.avPlayer.reset();
+    });
+    // Callback function for state changes.
+    this.avPlayer.on('stateChange', async (state, reason) => {
+      if (this.avPlayer == null) {
+        console.info(`${this.tag}: avPlayer has not init on state change`);
+        return;
+      }
+      switch (state) {
+        case 'idle': // This state is reported upon a successful callback of reset().
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state idle called.`);
+          break;
+        case 'initialized': // This state is reported when the AVPlayer sets the playback source.
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state initialized called.`);
+          if (this.surfaceId) {
+            this.avPlayer.surfaceId = this.surfaceId; // Set the window to display the video. This setting is not required when a pure audio asset is to be played.
+            console.info(`${this.tag}: setAVPlayerCallback this.avPlayer.surfaceId = ${this.avPlayer.surfaceId}`);
+            this.avPlayer.prepare();
+          }
+          break;
+        case 'prepared': // This state is reported upon a successful callback of prepare().
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state prepared called.`);
+          this.avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
+            console.info(`${this.tag}: bufferingUpdate called, infoType value: ${infoType}, value:${value}}`);
+          })
+          this.durationTime = this.avPlayer.duration;
+          this.currentTime = this.avPlayer.currentTime;
+          this.avPlayer.play(); // Call play() to start playback.
+          console.info(`${this.tag}:
+            setAVPlayerCallback speedSelect: ${this.speedSelect}, duration: ${this.durationTime}`);
+          if (this.speedSelect != -1) {
+            switch (this.speedSelect) {
+              case SPEED_ZERO:
+                this.avSetSpeed(media.PlaybackSpeed.SPEED_FORWARD_1_00_X);
+                break;
+              case SPEED_ONE:
+                this.avSetSpeed(media.PlaybackSpeed.SPEED_FORWARD_1_25_X);
+                break;
+              case SPEED_TWO:
+                this.avSetSpeed(media.PlaybackSpeed.SPEED_FORWARD_1_75_X);
+                break;
+              case SPEED_THREE:
+                this.avSetSpeed(media.PlaybackSpeed.SPEED_FORWARD_2_00_X);
+                break;
+            }
+          }
+          callback(this.avPlayer);
+          break;
+        case 'playing': // This state is reported upon a successful callback of play().
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state playing called.`);
+          if (this.intervalID != -1) {
+            clearInterval(this.intervalID)
+          }
+          this.intervalID = setInterval(() => { // Update the current time.
+            AppStorage.setOrCreate('durationTime', this.durationTime);
+            AppStorage.setOrCreate('currentTime', this.currentTime);
+          }, 100);
+          let eventDataTrue: emitter.EventData = {
+            data: {
+              'flag': true
+            }
+          };
+          let innerEventTrue: emitter.InnerEvent = {
+            eventId: 2,
+            priority: emitter.EventPriority.HIGH
+          };
+          emitter.emit(innerEventTrue, eventDataTrue);
+          break;
+        case 'completed': // This state is reported upon the completion of the playback.
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state completed called.`);
+          let eventDataFalse: emitter.EventData = {
+            data: {
+              'flag': false
+            }
+          };
+          let innerEvent: emitter.InnerEvent = {
+            eventId: 1,
+            priority: emitter.EventPriority.HIGH
+          };
+          emitter.emit(innerEvent, eventDataFalse);
+          if (this.intervalID != -1) {
+            clearInterval(this.intervalID)
+          }
+          this.avPlayer.off('bufferingUpdate')
+          AppStorage.setOrCreate('currentTime', this.durationTime);
+          break;
+        case 'released':
+          console.info(`${this.tag}: setAVPlayerCallback released called.`);
+          break
+        case 'stopped':
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state stopped called.`);
+          break
+        case 'error':
+          console.error(`${this.tag}: setAVPlayerCallback AVPlayer state error called.`);
+          break
+        case 'paused':
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state paused called.`);
+          break
+        default:
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state unknown called.`);
+          break;
+      }
+    });
+    // Callback function for time updates.
+    this.avPlayer.on('timeUpdate', (time: number) => {
+      this.currentTime = time;
+    });
+  }
+
+  aboutToAppear() {
+    this.windowWidth = display.getDefaultDisplaySync().width;
+    this.windowHeight = display.getDefaultDisplaySync().height;
+    this.surfaceW = this.windowWidth * SURFACE_W;
+    this.surfaceH = this.surfaceW / SURFACE_H;
+    this.isPaused = true;
+    this.context = getContext(this) as common.UIAbilityContext;
+  }
+
+  aboutToDisappear() {
+    if (this.avPlayer == null) {
+      console.info(`${this.tag}: avPlayer has not init aboutToDisappear`);
+      return;
+    }
+    this.avPlayer.release((err) => {
+      if (err == null) {
+        console.info(`${this.tag}: videoRelease release success`);
+      } else {
+        console.error(`${this.tag}: videoRelease release failed, error message is = ${JSON.stringify(err.message)}`);
+      }
+    });
+    emitter.off(innerEventFalse.eventId);
+  }
+
+  onPageHide() {
+    this.avPause();
+    this.isPaused = false;
+  }
+
+  onPageShow() {
+    emitter.on(innerEventTrue, (res: emitter.EventData) => {
+      if (res.data) {
+        this.isPaused = res.data.flag;
+        this.XComponentFlag = res.data.flag;
+      }
+    });
+    emitter.on(innerEventFalse, (res: emitter.EventData) => {
+      if (res.data) {
+        this.isPaused = res.data.flag;
+      }
+    });
+    emitter.on(innerEventWH, (res: emitter.EventData) => {
+      if (res.data) {
+        this.windowWidth = res.data.width;
+        this.windowHeight = res.data.height;
+        this.setVideoWH();
+      }
+    });
+  }
+
+  setVideoWH(): void {
+    if (this.percent >= 1) { // Horizontal video.
+      this.surfaceW = Math.round(this.windowWidth * PROPORTION);
+      this.surfaceH = Math.round(this.surfaceW / this.percent);
+    } else { // Vertical video.
+      this.surfaceH = Math.round(this.windowHeight * PROPORTION);
+      this.surfaceW = Math.round(this.surfaceH * this.percent);
+    }
+  }
+
+  @Builder
+  CoverXComponent() {...}
+
+  build() {...}
 }
 ```

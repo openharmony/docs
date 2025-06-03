@@ -22,7 +22,7 @@ ArkGuard支持ArkTS、TS和JS语言，不支持C/C++、JSON、资源文件等。
 ### 混淆能力
 ArkGuard支持基础的名称混淆、代码压缩和注释删除功能，不支持控制混淆、数据混淆等高级混淆功能。
 
-名称混淆主要提供**名称重命名**和**配置保留白名单**的能力。  
+名称混淆主要提供**名称重命名**和**配置保留白名单**的能力。
   
 ### 混淆能力局限性
 
@@ -169,11 +169,20 @@ test(a2);
 
 * 被[保留选项](#-keep-property-name)指定的属性名不会被混淆。
 * SDK API列表中的属性名不会被混淆。SDK API列表是构建时从SDK中自动提取出来的一个名称列表，其缓存文件为systemApiCache.json，路径为工程目录下build/default/cache/{...}/release/obfuscation中。
-* 字符串字面量属性名不会被混淆。例如下面例子中的`"exampleName"`和`"exampleAge"`或者其他不在白名单的内容不会被混淆。
+* 字符串字面量属性名不会被混淆。例如下面例子中的`exampleName`和`exampleAge`。
 
     ```
     let person = {"exampleName": "abc"};
     person["exampleAge"] = 22;
+    ```
+
+* 注解成员名不会被混淆。例如下面例子中的`authorName`和`revision`不会被混淆。
+
+    ```
+    @interface MyAnnotation {
+      authorName: string;
+      revision: number = 1;
+    }
     ```
 
 ### -enable-string-property-obfuscation
@@ -187,7 +196,7 @@ test(a2);
   -enable-string-property-obfuscation
   ```
 
-根据上述配置，下面例子中的`"exampleName"`和`"exampleAge"`或者其他不在白名单的内容混淆效果如下：
+根据上述配置，下面例子中的`exampleName`和`exampleAge`混淆效果如下：
 
   ```
   // 混淆前：
@@ -362,7 +371,11 @@ let params = obj['ohos.want.action.home'];
 
 若配置该选项，以下场景中的console.*语句会被删除：
 
-1. 文件顶层的调用。
+1. 文件顶层的调用。  
+   例如：
+   ```js
+   console.log("in tolevel");
+   ```
 2. 代码块中的调用。  
    例如：
    ```
@@ -377,7 +390,17 @@ let params = obj['ohos.want.action.home'];
     console.log('in ns');
    }
    ```
-4. switch语句中的调用。
+4. switch语句中的调用。  
+   例如：
+   ```js
+   switch (value) {
+     case 1:
+       console.log("in switch case");
+       break;
+     default:
+       console.warn("default");
+   }
+   ```
 
 ### -print-namecache
 
@@ -666,6 +689,25 @@ namespace MyNameSpace {
 // 保留被标记的变量名，myVal不会被混淆。
 // @KeepSymbol
 const myVal = 1;
+```
+
+#### 注解
+
+当前仅支持标记并保留注解声明。标记注解成员无效，注解成员本身不会被混淆。
+
+从API version 20开始，支持标记注解声明。
+
+**示例**
+
+```typescript
+// 保留被标记的注解声明，MyAnnotation不会被混淆。
+// @KeepSymbol
+@interface MyAnnotation {
+  // 标记注解成员无效，authorName不会被收集到白名单。
+  // @KeepSymbol
+  authorName: string;
+  revision: number = 1;
+}
 ```
 
 #### 白名单添加规则

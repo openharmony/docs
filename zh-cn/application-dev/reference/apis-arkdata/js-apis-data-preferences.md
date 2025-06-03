@@ -24,10 +24,10 @@ import { preferences } from '@kit.ArkData';
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
-| 名称             | 参数类型 | 可读 | 可写 | 说明                                    |
-| ---------------- | -------- | ---- | ---- | --------------------------------------- |
-| MAX_KEY_LENGTH   | number   | 是   | 否   | Key的最大长度限制为1024个字节。     |
-| MAX_VALUE_LENGTH | number   | 是   | 否   | Value的最大长度限制为16MB。 |
+| 名称             | 类型      | 只读 | 说明                                    |
+| ---------------- | -------- | ---- | --------------------------------------- |
+| MAX_KEY_LENGTH   | number   | 是   | Key的最大长度限制为1024个字节。     |
+| MAX_VALUE_LENGTH | number   | 是   | Value的最大长度限制为16MB。 |
 
 
 ## preferences.getPreferences
@@ -1139,8 +1139,8 @@ Preferences的存储模式枚举。
 
 | 名称 | 值   | 说明 |
 | ---- | ---- | ---- |
-| XML |  0    | 表示XML存储模式，这是Preferences的默认存储模式。<br> **特点：** 数据XML格式进行存储。对数据的操作发生在内存中，需要调用flush接口进行落盘。     |
-| GSKV |  1    |表示GSKV存储模式。<br> **特点：** 数据以GSKV数据库模式进行存储。对数据的操作实时落盘，无需调用flush接口对数据进行落盘。      |
+| XML |  0    | 表示XML存储模式，这是Preferences的默认存储模式。<br>**特点：** 数据XML格式进行存储。对数据的操作发生在内存中，需要调用flush接口进行落盘。     |
+| GSKV |  1    |表示GSKV存储模式。<br>**特点：** 数据以GSKV数据库模式进行存储。对数据的操作实时落盘，无需调用flush接口对数据进行落盘。      |
 
 
 > **说明：**
@@ -1872,6 +1872,8 @@ flush(callback: AsyncCallback&lt;void&gt;): void
   > **说明：**
   >
   > 当数据未修改或修改后的数据与缓存数据一致时，不会刷新持久化文件。
+  >
+  > 只在XML存储模式下使用，在GSKV存储模式下无需调用，因为当选择该模式时首选项对数据的操作会实时落盘。Preferences存储模式可见[存储模式说明](../../database/data-persistence-by-preferences.md#存储模式说明)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1916,6 +1918,8 @@ flush(): Promise&lt;void&gt;
   > **说明：**
   >
   > 当数据未修改或修改后的数据与缓存数据一致时，不会刷新持久化文件。
+  >
+  > 只在XML存储模式下使用，在GSKV存储模式下无需调用，因为当选择该模式时首选项对数据的操作会实时落盘。Preferences存储模式可见[存储模式说明](../../database/data-persistence-by-preferences.md#存储模式说明)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

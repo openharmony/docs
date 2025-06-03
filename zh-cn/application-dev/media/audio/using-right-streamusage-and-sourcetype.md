@@ -33,7 +33,7 @@
 | ---------- | ---------- |
 | SOURCE_TYPE_MIC | 适用于普通录音。|
 | SOURCE_TYPE_RECOGNITION<sup>9+</sup> | 适用于语音识别。 |
-| SOURCE_TYPE_PLAYBACK_CAPTURE | （API12已废弃）适用于录制其他应用送到系统中播放的原始音频数据。<br>AudioKit不再提供内录接口，请通过[录屏接口AVScreenCapture](../../reference/apis-media-kit/_a_v_screen_capture.md)进行内录。 |
+| SOURCE_TYPE_PLAYBACK_CAPTURE | （API12已废弃）适用于录制其他应用送到系统中播放的原始音频数据。<br>AudioKit不再提供内录接口，请通过[录屏接口AVScreenCapture](../../reference/apis-media-kit/capi-avscreencapture.md)进行内录。 |
 | SOURCE_TYPE_VOICE_COMMUNICATION | 适用于VoIP语音通话。 |
 | SOURCE_TYPE_VOICE_MESSAGE | 适用于录制语音短消息。 |
 | SOURCE_TYPE_CAMCORDER<sup>13+</sup> | 适用于相机录像。 |
@@ -103,7 +103,7 @@
 
 - **[使用OHAudio开发音频播放功能](using-ohaudio-for-playback.md)**：
   
-  可以在调用[OH_AudioStreamBuilder_SetRendererInfo](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setrendererinfo)接口时，传入对应的[OH_AudioStream_Usage](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_usage)指定音频流类型。
+  可以在调用[OH_AudioStreamBuilder_SetRendererInfo](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_setrendererinfo)接口时，传入对应的[OH_AudioStream_Usage](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_usage)指定音频流类型。
 
 - **[使用AVPlayer开发音频播放功能(ArkTS)](../media/using-avplayer-for-playback.md)**：
   
@@ -116,7 +116,7 @@
 
 - **[使用AVPlayer开发音频播放功能(C/C++)](../media/using-ndk-avplayer-for-playback.md)**：
   
-  可以在调用[OH_AVPlayer_SetAudioRendererInfo](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setaudiorendererinfo)接口时，传入对应的[OH_AudioStream_Usage](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_usage)指定音频流类型。
+  可以在调用[OH_AVPlayer_SetAudioRendererInfo](../../reference/apis-media-kit/capi-avplayer-h.md#oh_avplayer_setaudiorendererinfo)接口时，传入对应的[OH_AudioStream_Usage](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_usage)指定音频流类型。
 
 - **[使用SoundPool开发音频播放功能](../media/using-soundpool-for-playback.md)**：
   
@@ -132,7 +132,7 @@
 
 - **[使用OHAudio开发音频录制功能](using-ohaudio-for-recording.md)**：
   
-  可以在调用[OH_AudioStreamBuilder_SetCapturerInfo](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setcapturerinfo)接口时，传入对应的[OH_AudioStream_SourceType](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_sourcetype)指定音源类型。
+  可以在调用[OH_AudioStreamBuilder_SetCapturerInfo](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_setcapturerinfo)接口时，传入对应的[OH_AudioStream_SourceType](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_sourcetype)指定音源类型。
 
 - **[使用AVRecorder开发音频录制功能](../media/using-avrecorder-for-recording.md)**：
   

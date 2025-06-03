@@ -40,7 +40,7 @@ struct AnimationToAnimationDemo {
           x: this.SetAnimation.isAnimation ? 2 : 1,
           y: this.SetAnimation.isAnimation ? 2 : 1
         })
-        .animation({ curve: curves.springMotion(0.4, 0.8) }) // 第四步：通过隐式动画接口开启隐式动画，动画终点值改变时，系统自动添加衔接动画
+        .animation({ curve: curves.springMotion(0.4, 0.8) }) // 第四步：通过animation接口开启动画，动画终点值改变时，系统自动添加衔接动画
 
       Button('Click')
         .margin({ top: 200 })

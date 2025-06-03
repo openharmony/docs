@@ -181,7 +181,7 @@ export default class EntryAbility extends UIAbility {
 
 createSystemHspModuleResourceManager(bundleName: string, moduleName: string): resmgr.ResourceManager
 
-创建系统级HSP的某个模块的资源管理对象。
+该接口用于OEM厂商预置的[系统级HSP](../../quick-start/application-package-glossary.md#系统级hsp)创建自己的[ResourceManager](../apis-localization-kit/js-apis-resource-manager.md#resourcemanager)。
 
 **系统接口**：此接口为系统接口。
 
@@ -201,7 +201,7 @@ createSystemHspModuleResourceManager(bundleName: string, moduleName: string): re
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16400001 | The specified ability does not exist. |
+| 16400001 | The input bundleName is not a system HSP. |
 
 **示例：**
 

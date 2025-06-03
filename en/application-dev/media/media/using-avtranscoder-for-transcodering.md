@@ -85,11 +85,12 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
    import { common } from '@kit.AbilityKit';
 
    private context: Context | undefined;
-    constructor(context: Context) {
+    constructor(context: Context | undefined) {
       if (context != undefined) {
         this.context = context; // this.getUIContext().getHostContext();
       }
    }
+   // Obtain the file descriptor of the input file. H264_AAC.mp4 is a preset resource in the rawfile directory. Replace it with the actual one.
    let fileDescriptor = await this.context.resourceManager.getRawFd('H264_AAC.mp4');
    // Set fdSrc used for transcoding.
    this.avTranscoder.fdSrc = fileDescriptor;
@@ -98,7 +99,7 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
 4. Set the FD of the target video file.
    > **NOTE**
    >
-   > **fdDst** specifies the FD of the output file after transcoding. The value is a number. You must call [ohos.file.fs of Core File Kit](../../reference/apis-core-file-kit/js-apis-file-fs.md) to implement access to the application file. For details, see [Application File Access and Management](../../file-management/app-file-access.md).
+   > **fdDst** specifies the FD of the output file after transcoding. The value is a number. You must call [ohos.file.fs of Core File Kit](../../reference/apis-core-file-kit/js-apis-file-fs.md) to implement access to the application file. For details, see [Accessing Application Files](../../file-management/app-file-access.md).
    
    ```ts
    // Set the sandbox path of the output target file.
@@ -106,7 +107,7 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
    // Create and open a file if the file does not exist. Open it if the file exists.
    let file = fs.openSync(outputFilePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
    // Set fdDst of the output file.
-   this.avTranscoder.fdDst = file.fd; // Obtain the file descriptor of the created video file by referring to the sample code in Application File Access and Management.
+   this.avTranscoder.fdDst = file.fd; // Obtain the file descriptor of the created video file by referring to the sample code in Accessing Application Files.
    ```
 
 5. Set video transcoding parameters and call **prepare()**.
@@ -171,7 +172,7 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
    avTranscoder.release();
    ```
 
-## Sample Code
+## Development Example
 
   Refer to the sample code below to implement transcoding, covering the process of starting, pausing, resuming, and exiting transcoding.
   
@@ -184,7 +185,7 @@ import fs from '@ohos.file.fs';
 export class AVTranscoderDemo {
   private avTranscoder: media.AVTranscoder | undefined = undefined;
   private context: Context | undefined;
-  constructor(context: Context) {
+  constructor(context: Context | undefined) {
     if (context != undefined) {
       this.context = context;
     }
@@ -226,8 +227,13 @@ export class AVTranscoderDemo {
       this.setAVTranscoderCallback();
       // 2. Obtain the source file FD and output file FD and assign them to avTranscoder. For details, see the FilePicker document.
       if (this.context != undefined) {
-        let fileDescriptor = await this.context.resourceManager.getRawFd('H264_AAC.mp4');
-        this.avTranscoder.fdSrc = fileDescriptor;
+        try {
+          // Obtain the file descriptor of the input file. H264_AAC.mp4 is a preset resource in the rawfile directory. Replace it with the actual one.
+          let fileDescriptor = await this.context.resourceManager.getRawFd('H264_AAC.mp4');
+          this.avTranscoder.fdSrc = fileDescriptor;
+        } catch (error) {
+          console.error('Failed to get the file descriptor, please check the resource and path.');
+        }
         let outputFilePath = this.context.filesDir + "/output.mp4";
         let file = fs.openSync(outputFilePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
         this.avTranscoder.fdDst = file.fd;

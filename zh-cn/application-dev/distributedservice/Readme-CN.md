@@ -7,5 +7,6 @@
   <!--Del-->
   - [UIAbility与Extension连接开发指南](distributedextension-guidelines.md)
   <!--DelEnd-->
+  - [增强连接开发指南](linnkEnhance_development-guide.md)
 - 硬件跨设备连接管理<!--devconnect-distributed-->
   - [分布式相机开发指南](camera-distributed.md)
