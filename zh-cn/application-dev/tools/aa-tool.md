@@ -75,7 +75,7 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
   | -S | 可选参数，调试时是否进入应用沙箱。携带该参数代表进入，不携带代表不进入。 |
   | -D | 可选参数，调试模式。        |
   | -p | 可选参数，调优命令。命令由调用方自定义。        |
-  | -W | 可选参数，调优命令。打印UIAbility从启动到[前台](../application-models/uiability-lifecycle.md#foreground和background状态)耗时，输出如下信息。<br>StartMode：UIAbility启动模式，值：[Cold](../application-models/uiability-intra-device-interaction.md#目标uiability冷启动)/[Hot](../application-models/uiability-intra-device-interaction.md#目标uiability热启动)。<br> BundleName：目标应用bundleName。<br> AbilityName：目标应用abilityName。<br> ModuleName：目标应用moduleName，<br>**说明：** aa 命令中带有-m 参数时打印，没有带 -m 参数则不打印。<br>TotalTime：系统侧启动UIAbility到该UIAbility切换至[前台](../application-models/uiability-lifecycle.md#foreground和background状态)状态耗时，单位毫秒（ms）。<br>  WaitTime:命令启动到命令执行结束的耗时，单位毫秒（ms）。<br>**说明：** 从API version 20开始，支持该参数。<br>**约束：**<br>仅当显式启动UIAbility，该参数生效。        |
+  | -W | 可选参数，调优命令。统计UIAbility从启动到完成切换至[前台](../application-models/uiability-lifecycle.md#foreground和background状态)状态耗时，输出如下信息。<br>StartMode：UIAbility启动模式，值：[Cold](../application-models/uiability-intra-device-interaction.md#目标uiability冷启动)/[Hot](../application-models/uiability-intra-device-interaction.md#目标uiability热启动)。<br> BundleName：目标应用bundleName。<br> AbilityName：目标应用abilityName。<br> ModuleName：目标应用moduleName，<br>**说明：** 命令中带有"-m"参数时打印，没有带"-m"参数则不打印。<br>TotalTime：系统侧启动UIAbility到该UIAbility完成切换至[前台](../application-models/uiability-lifecycle.md#foreground和background状态)状态耗时，单位毫秒（ms）。<br>  WaitTime:命令启动到命令执行结束的耗时，单位毫秒（ms）。<br>**说明：** 从API version 20开始，支持该参数。<br>**约束：**<br>仅当显式启动UIAbility，该参数生效。        |
 
   **返回值**：
 
