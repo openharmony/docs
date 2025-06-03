@@ -142,7 +142,10 @@ if (createdVDecNum < NEEDED_VDEC_NUM) {
 
 ### 控制编码质量
 
-当前提供四种码控模式供开发者选用，分别是恒定码率（CBR）码控模式、动态码率（VBR）码控模式、恒定质量（CQ）码控模式以及质量稳定（SQR）码控模式。对于CBR和VBR码控模式，编码质量由码率参数决定。对于CQ码控模式，编码质量由质量参数决定。对于SQR码控模式，编码质量由质量稳定码率因子参数和最大码率参数决定，SQR码控模式仅支持H265（HEVC）编码。
+当前提供四种码控模式供开发者选用，分别是恒定码率（CBR）码控模式、动态码率（VBR）码控模式、恒定质量（CQ）码控模式以及质量稳定（SQR）码控模式。<br>
+- CBR和VBR码控模式：编码质量由码率参数决定。
+- CQ码控模式：编码质量由质量参数决定。
+- SQR码控模式：编码质量由质量稳定码率因子参数和最大码率参数决定，SQR码控模式仅支持H265（HEVC）编码。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
@@ -226,8 +229,8 @@ SQR码控模式示例如下：
 
 ```c++
 OH_BitrateMode bitrateMode = BITRATE_MODE_SQR;
-int32_t sqrFactor = 30; // 质量稳定码率因子
-int32_t maxBitrate = 20000000; // 最大码率
+int32_t sqrFactor = 30; // 质量稳定码率因子。
+int32_t maxBitrate = 20000000; // 最大码率。
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_HEVC, true);
 if (capability == nullptr) {
    // 异常处理。
