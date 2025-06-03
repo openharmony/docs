@@ -69,7 +69,7 @@ struct Index {
         // 当点击了某个post后，会使其余的post消失下树
         if (!this.isExpand || this.selectedIndex === index) {
           Column() {
-            Post({ data: postData, selecteIndex: this.selectedIndex, index: index })
+            Post({ data: postData, selectedIndex: this.selectedIndex, index: index })
           }
           .width('100%')
           // 对出现消失的post添加透明度转场和位移转场效果
@@ -86,7 +86,7 @@ struct Index {
 
 @Component
 export default struct  Post {
-  @Link selecteIndex: number;
+  @Link selectedIndex: number;
 
   @Prop data: PostData;
   @Prop index: number;
@@ -139,8 +139,8 @@ export default struct  Post {
     .alignItems(HorizontalAlign.Start)
     .padding({ left: 10, top: 10 })
     .onClick(() => {
-      this.selecteIndex = -1;
-      this.selecteIndex = this.index;
+      this.selectedIndex = -1;
+      this.selectedIndex = this.index;
       this.getUIContext()?.animateTo({
         duration: 350,
         curve: Curve.Friction
@@ -177,7 +177,7 @@ export default struct  Post {
 
 ```ts
 // Index.ets
-import { createPostNode, getPostNode, PostNode } from "../PostNode";
+import { createPostNode, getPostNode, PostNode } from "./PostNode";
 import { componentUtils, curves, UIContext } from '@kit.ArkUI';
 
 @Entry
