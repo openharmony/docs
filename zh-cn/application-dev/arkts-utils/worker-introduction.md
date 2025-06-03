@@ -9,16 +9,16 @@ Worker的主要作用是为应用程序提供一个多线程的运行环境，�
 
 ![worker](figures/worker.png)
 
-创建Worker的线程称为宿主线程（不一定是主线程，工作线程也支持创建Worker子线程）。Worker子线程（或Actor线程、工作线程）是Worker自身运行的线程。每个Worker子线程和宿主线程拥有独立的实例，包含基础设施、对象、代码段等。因此，启动每个Worker存在一定的内存开销，需要限制Worker子线程的数量。Worker子线程和宿主线程通过消息传递机制通信，利用序列化机制完成命令和数据的交互。
+创建Worker的线程称为宿主线程（不局限于主线程，Worker线程也支持创建Worker子线程）。Worker子线程（或Actor线程、工作线程）是Worker自身运行的线程。每个Worker子线程和宿主线程拥有独立的实例，包含独立执行环境、对象、代码段等。因此，启动每个Worker存在一定的内存开销，需要限制Worker子线程的数量。Worker子线程和宿主线程通过消息传递机制通信，利用序列化机制完成命令和数据的交互。
 
 
 ## Worker注意事项
 
-- 创建Worker时，提供手动和自动两种创建方式，手动创建Worker线程目录及文件时，需同步进行相关配置，具体要求请参阅[创建Worker的注意事项](#创建worker的注意事项)。
+- 创建Worker时，提供手动和自动两种创建方式，推荐使用自动创建方式。手动创建Worker线程目录及文件时，需同步进行相关配置，具体要求请参阅[创建Worker的注意事项](#创建worker的注意事项)。
 - 使用Worker能力时，构造函数中传入的Worker线程文件的路径在不同版本有不同的规则，详情请参见[文件路径注意事项](#文件路径注意事项)。
 - Worker创建后需要手动管理生命周期。同时运行的Worker子线程数量最多为64个，并且与[napi_create_ark_runtime](../reference/native-lib/napi.md#napi_create_ark_runtime)创建的runtime总数不超过80。详情请参见[生命周期注意事项](#生命周期注意事项)。
-- 不同线程中上下文对象是不同的，因此Worker线程只能使用线程安全的库，例如UI相关的非线程安全库不能使用。
-- 序列化传输的数据量大小限制为16MB。
+- 不同线程中上下文对象是不同的，因此Worker线程只能使用线程安全的库，例如UI相关的非线程安全库不能在Worker子线程中使用。
+- 单次序列化传输的数据量大小限制为16MB。
 - 使用Worker模块时，API version 18及之后的版本建议在宿主线程中注册onAllErrors回调，以捕获Worker线程生命周期内的各种异常。API version 18之前的版本应注册onerror回调。如果未注册onAllErrors或onerror接口，当Worker线程出现异常时会发生jscrash问题。需要注意的是，onerror接口仅能捕获onmessage回调中的同步异常，捕获异常后，Worker线程将进入销毁流程，无法继续使用。详情请参见[onAllErrors接口与onerror接口之间的行为差异](#onallerrors接口与onerror接口之间的行为差异)。
 - 不支持跨HAP使用Worker线程文件。
 - 引用HAR/HSP中的worker前，需要先配置对HAR/HSP的依赖，详见[引用共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har-import)。
@@ -42,6 +42,7 @@ Worker线程文件需要放在"{moduleName}/src/main/ets/"目录层级之下，�
     }
   }
   ```
+  <!-- @[manual_create_worker](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/build-profile.json5) -->
 
   FA模型：
 
@@ -165,7 +166,7 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
 
     onAllErrors接口可以捕获Worker线程的onmessage回调、timer回调以及文件执行等流程产生的全局异常。
 
-    onerror接口仅能捕获onmessage回调中同步方法产生的异常，无法捕获多线程回调和模块化相关异常。
+    onerror接口仅能捕获Worker线程的onmessage回调中同步方法产生的异常，无法捕获多线程回调和模块化相关异常。
 
 2. 异常捕获后的线程状态
 
@@ -249,6 +250,7 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
         }
       }
       ```
+      <!-- @[create_worker_object_register_callback_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/basicusage.ets) -->
 
 4. 在Worker文件中注册回调函数。
 
@@ -277,6 +279,7 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
         console.info('workerPort onerror err is: ', err.message);
       }
       ```
+      <!-- @[register_callback_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/workers/worker.ets) -->
 
 
 ## 跨har包加载Worker
@@ -292,6 +295,7 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
      workerPort.postMessage('worker thread post message to main thread');
    }
    ```
+   <!-- @[create_har_worker](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/har/src/main/ets/workers/worker.ets) -->
 
 3. 在entry模块的oh-package.json5文件中配置har包的依赖。
 
@@ -309,6 +313,7 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
      }
    }
    ```
+   <!-- @[config_har_dependency](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/oh-package.json5) -->
 
 4. 在entry模块中加载har包中的Worker线程文件。
 
@@ -345,6 +350,7 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
      }
    }
    ```
+   <!-- @[load_har_worker](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/crosshar.ets) -->
 
 
 ## 多级Worker生命周期管理
@@ -375,6 +381,7 @@ parentworker.onAllErrors = (err: ErrorEvent) => {
 
 parentworker.postMessage('主线程发送消息给父worker-推荐示例');
 ```
+<!-- @[recommended_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/recommend.ets) -->
 
 ```ts
 // parentworker.ets
@@ -408,6 +415,7 @@ workerPort.onmessage = (e : MessageEvents) => {
   }
 }
 ```
+<!-- @[recommended_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/recommendworkers/parentworker.ets) -->
 
 ```ts
 // childworker.ets
@@ -424,6 +432,7 @@ workerPort.onmessage = (e: MessageEvents) => {
   }
 }
 ```
+<!-- @[recommended_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/recommendworkers/childworker.ets) -->
 
 
 ### 不推荐使用示例
@@ -450,6 +459,7 @@ parentworker.onAllErrors = (err: ErrorEvent) => {
 
 parentworker.postMessage('主线程发送消息给父Worker');
 ```
+<!-- @[not_recommended_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/notrecommendedone.ets) -->
 
 ```ts
 // parentworker.ets
@@ -481,6 +491,7 @@ workerPort.onmessage = (e : MessageEvents) => {
   workerPort.close();
 }
 ```
+<!-- @[not_recommended_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/notrecommendedoneworker/parentworker.ets) -->
 
 ```ts
 // childworker.ets
@@ -498,6 +509,7 @@ workerPort.onmessage = (e: MessageEvents) => {
   }, 1000);
 }
 ```
+<!-- @[not_recommended_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/notrecommendedoneworker/childworker.ets) -->
 
 不建议在父Worker发起销毁操作的执行阶段创建子Worker。在创建子Worker线程之前，需确保父Worker线程始终处于存活状态，不建议在不确定父Worker是否发起销毁操作的情况下创建子Worker。
 
@@ -521,6 +533,7 @@ parentworker.onAllErrors = (err: ErrorEvent) => {
 
 parentworker.postMessage('主线程发送消息给父Worker');
 ```
+<!-- @[not_recommended_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/notrecommendedtwo.ets) -->
 
 ```ts
 // parentworker.ets
@@ -555,6 +568,7 @@ workerPort.onmessage = (e : MessageEvents) => {
   childworker.postMessage('父Worker向子Worker发送信息');
 }
 ```
+<!-- @[not_recommended_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/notrecommendedtwoworker/parentworker.ets) -->
 
 ```ts
 // childworker.ets
@@ -566,3 +580,4 @@ workerPort.onmessage = (e: MessageEvents) => {
   console.info('子Worker收到信息 ' + e.data);
 }
 ```
+<!-- @[not_recommended_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/notrecommendedtwoworker/childworker.ets) -->

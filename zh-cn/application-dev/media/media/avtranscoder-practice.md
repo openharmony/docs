@@ -136,8 +136,13 @@
             transcoder.on('progressUpdate', (progress: number) => {
             })
 
-            let fileDescriptor = await context.resourceManager.getRawFd('3.mkv');
-            transcoder.fdSrc = fileDescriptor;
+            try {
+                // 获取输入文件fd，3.mkv为rawfile目录下的预置资源，需要开发者根据实际情况进行替换。
+                let fileDescriptor = await context.resourceManager.getRawFd('3.mkv');
+                transcoder.fdSrc = fileDescriptor;
+            } catch (error) {
+                console.error('Failed to get the file descriptor, please check the resource and path.');
+            }
             let fdPath = context.filesDir + "/" + "VID_" + Date.parse(new Date().toString()) + ".mp4";
             let file = fs.openSync(fdPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
             let fd = file.fd;
@@ -154,7 +159,7 @@
             await transcoder?.prepare(config);
             await transcoder?.start();
         } catch (e) {
-            console.info(`error :  ${e}`);
+            console.error(`transcode error: code = ` + e.code.toString() + `, message = ${JSON.stringify(e.message)}`);
         }
     }
     ```
@@ -336,9 +341,13 @@ async function doSome(context: common.Context) {
         // 转码进度更新
         transcoder.on('progressUpdate', (progress: number) => {
         })
-        // 读取rawfile目录下的原始文件
-        let fileDescriptor = await context.resourceManager.getRawFd('3.mkv');
-        transcoder.fdSrc = fileDescriptor;
+        try {
+            // 获取输入文件fd，3.mkv为rawfile目录下的预置资源，需要开发者根据实际情况进行替换。
+            let fileDescriptor = await context.resourceManager.getRawFd('3.mkv');
+            transcoder.fdSrc = fileDescriptor;
+        } catch (error) {
+            console.error('Failed to get the file descriptor, please check the resource and path.');
+        }
         let fdPath = context.filesDir + "/" + "VID_" + Date.parse(new Date().toString()) + ".mp4";
         let file = fs.openSync(fdPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
         let fd = file.fd;
@@ -354,7 +363,7 @@ async function doSome(context: common.Context) {
         await transcoder?.prepare(config);
         await transcoder?.start();
     } catch (e) {
-        console.info(`error :  ${e}`);
+        console.error(`transcode error: code = ` + e.code.toString() + `, message = ${JSON.stringify(e.message)}`);
     }
 }
 ```

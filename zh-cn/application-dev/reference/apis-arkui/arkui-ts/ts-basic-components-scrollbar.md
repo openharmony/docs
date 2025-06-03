@@ -164,11 +164,13 @@ struct ScrollBarExample {
 该示例为ScrollBar组件没有子节点时的滚动条样式。
 
 ```ts
+import { ColorMetrics } from '@kit.ArkUI'
 @Entry
 @Component
 struct ScrollBarExample {
   private scroller: Scroller = new Scroller();
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+  @State scrollBarColor:ColorMetrics = ColorMetrics.rgba(24, 35, 48, 0.4);
 
   build() {
     Column() {
@@ -193,6 +195,7 @@ struct ScrollBarExample {
         .scrollBar(BarState.Off)
         .scrollable(ScrollDirection.Vertical)
         ScrollBar({ scroller: this.scroller, direction: ScrollBarDirection.Vertical,state: BarState.Auto })
+          .scrollBarColor(this.scrollBarColor)
       }
     }
   }
@@ -206,11 +209,13 @@ struct ScrollBarExample {
 
 该示例通过enableNestedScroll属性使ScrollBar组件支持嵌套滚动。
 ```ts
+import { ColorMetrics } from '@kit.ArkUI'
 @Entry
 @Component
 struct StickyNestedScroll {
   listScroller: Scroller = new Scroller();
   @State array: number[] = [];
+  @State scrollBarColor:ColorMetrics = ColorMetrics.rgba(24, 35, 48, 0.4);
 
   @Styles
   listCard() {
@@ -255,6 +260,7 @@ struct StickyNestedScroll {
       ScrollBar({ scroller: this.listScroller})
         .position({right:0})
         .enableNestedScroll(true)
+        .scrollBarColor(this.scrollBarColor)
     }
   }
 

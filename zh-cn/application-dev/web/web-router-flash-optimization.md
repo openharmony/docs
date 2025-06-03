@@ -25,6 +25,6 @@
 
 以下为设置Web组件背景色的接口示例（示例中将Web组件背景色设置为灰色，若不设置，Web组件背景色默认为白色）：
   ```ts
-      Web({ src: $rawfile('xxx.html'),  controller: this.webController})
-        .backgroundColor(Color.Gray)
+  Web({ src: $rawfile('xxx.html'),  controller: this.webController})
+    .backgroundColor(Color.Gray)
   ```

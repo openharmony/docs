@@ -8,11 +8,16 @@
 
 1. 切换到伪本地化测试区域，如“ar-XB”。
 
-   通过代码切换（需要系统应用权限）：
+   >  **说明：**
+   >
+   >  测试区域的切换接口为系统接口，需由系统应用调用。系统应用切换测试区域成功后，普通应用可以进行伪本地化测试。
+   <!--RP1-->
    ```ts
    import { i18n } from '@kit.LocalizationKit';
-   i18n.System.setSystemLanguage('ar-XB')
+
+   i18n.System.setSystemLanguage('ar-XB');
    ```
+   <!--RP1End-->
 
 2. 遍历需要测试的APP。
 

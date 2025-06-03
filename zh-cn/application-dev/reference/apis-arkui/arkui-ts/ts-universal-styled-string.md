@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 >  属性字符串目前不支持在worker线程中使用。
 
@@ -553,7 +553,7 @@ TextShadowStyle | GestureStyle | ImageAttachment | ParagraphStyle | LineHeightSt
 | fontSize    | number                                   | 是   | 是   | 获取属性字符串的文本字体大小。<br/>单位：[fp](ts-pixel-units.md#像素单位) <br/>**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。 |
 | fontWeight  | number                                   | 是   | 是   | 获取属性字符串的文本字体粗细。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                           |
 | fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle) | 是   | 是   | 获取属性字符串的文本字体样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                           |
-| strokeWidth<sup>20+</sup> | number                                   | 是   | 是   | 获取属性字符串的文本描边宽度。<br/>默认返回0，单位为[px](ts-pixel-units.md#像素单位)。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
+| strokeWidth<sup>20+</sup> | number                                   | 是   | 是   | 获取属性字符串的文本描边宽度。<br/>默认返回0，单位为[vp](ts-pixel-units.md#像素单位)。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
 | strokeColor<sup>20+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 是   | 是   | 获取属性字符串的文本描边颜色。<br/>默认返回字体颜色。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
 | superscript<sup>20+</sup> | [SuperscriptStyle](ts-text-common.md#superscriptstyle20枚举说明)  | 是   | 是   | 获取属性字符串的文本上下角标。<br/>默认值：SuperscriptStyle.NORMAL。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
 
@@ -584,7 +584,7 @@ constructor(value?: TextStyleInterface)
 | fontSize    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)    | 否   | 字体大小。如果LengthMetrics的unit值是percent，当前设置不生效，处理为16fp。<br/>单位：[fp](ts-pixel-units.md#像素单位) <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                        |
 | fontWeight  | number\| [FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | 字体粗细。<br/>number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle)                      | 否   | 字体样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                  |
-| strokeWidth<sup>20+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)    | 否   | 文本描边宽度。如果LengthMetrics的unit值是percent，当前设置不生效，处理为0px。<br/>设置值小于0时为实心字，大于0时为空心字。默认值为0，单位为[px](ts-pixel-units.md#像素单位)。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                                                                                                                                                      |
+| strokeWidth<sup>20+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)    | 否   | 文本描边宽度。如果LengthMetrics的unit值是percent，当前设置不生效，处理为0。<br/>设置值小于0时为实心字，大于0时为空心字。<br/>默认值为0。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                                                                                                                                                      |
 | strokeColor<sup>20+</sup> | [ResourceColor](ts-types.md#resourcecolor)                       | 否   | 文本描边颜色。<br/>默认值为字体颜色，设置异常值时取字体颜色。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                              |
 | superscript<sup>20+</sup> | [SuperscriptStyle](ts-text-common.md#superscriptstyle20枚举说明)                       | 否   | 文本上下角标。<br/>默认值：SuperscriptStyle.NORMAL。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                              |
 
@@ -2466,8 +2466,70 @@ struct styled_string_demo12 {
 
 ![](figures/styledString_12.png)
 
+### 示例13（fromHtml和toHtml互相转换）
 
+该示例通过fromHtml、toHtml接口，将HTML中b、strong、em、i、u、del、s、a、sub、sup标签及其style属性中的background-color转换为属性字符串并转回HTML。
 
+``` ts
+// xxx.ets
+@Entry
+@Component
+struct HtmlSpanStringDemo {
+  @State html: string = "<p>This is <b>b</b> <strong>strong</strong> <em>em</em> <i>i</i> <u>u</u> <del>del</del> <s>s</s> <span style = \"foreground-color:blue\"> <a href='https://www.example.com'>www.example</a> </span> <span style=\"background-color: red;\">red span</span> <sup>superscript</sup> and <sub>subscript</sub></p>";
+  @State spanString: StyledString | undefined = undefined;
+  @State resultText: string = ""; // 保存结果文本的状态
+  controller: TextController = new TextController;
 
+  build() {
+    Column() {
+      // 显示转换后的spanString
+      Text(undefined, { controller: this.controller }).height(100)
 
+      // TextArea显示每个步骤的结果
+      TextArea({ text: this.html })
+        .width("100%")
+        .height(100)
+        .margin(5)
+
+      // 按钮1:将HTML转换为SpanString
+      Button("将HTML转换为SpanString").onClick(async () => {
+        this.spanString = await StyledString.fromHtml(this.html);
+        this.controller.setStyledString(this.spanString);
+        this.resultText = "Converted HTML to SpanString successfully.";
+      }).margin(5)
+
+      // 按钮2:将SpanString转换为HTML
+      Button("将SpanString转换为HTML").onClick(() => {
+        if (this.spanString) {
+          // 将spanString转换为HTML并替换当前的HTML状态
+          const newHtml = StyledString.toHtml(this.spanString);
+          if (newHtml !== this.html) { // 通过检查内容是否已经相同来防止重复
+            this.html = newHtml;
+          }
+          this.resultText = "Converted SpanString to HTML successfully.";
+        } else {
+          this.resultText = "SpanString is undefined.";
+        }
+      }).margin(5)
+
+      // 按钮3:将HTML转换回SpanString
+      Button("将HTML转换回SpanString").onClick(async () => {
+        this.spanString = await StyledString.fromHtml(this.html);
+        this.controller.setStyledString(this.spanString);
+        this.resultText = "Converted HTML back to SpanString successfully.";
+      }).margin(5)
+
+      // 重置：重置HTML和SpanString
+      Button("重置").onClick(() => {
+        this.html = "<p>This is <b>b</b> <strong>strong</strong> <em>em</em> <i>i</i> <u>u</u> <del>del</del> <s>s</s> <span style = \"foreground-color:blue\"> <a href='https://www.example.com'>www.example</a> </span> <span style=\"background-color: red;\">red span</span> <sup>superscript</sup> and <sub>subscript</sub></p>";
+        this.spanString = undefined;
+        this.controller.setStyledString(new StyledString("")); // 使用空的StyledString实例
+        this.resultText = "Reset HTML and SpanString successfully.";
+      }).margin(5)
+    }.width("100%").padding(20)
+  }
+}
+```
+
+![](figures/styledString_13.gif)
 

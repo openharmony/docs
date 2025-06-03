@@ -1,6 +1,6 @@
 # Image
 
-Image为图片组件，常用于在应用中显示图片。Image支持加载[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)、[ResourceStr](ts-types.md#resourcestr)和[DrawableDescriptor](#drawabledescriptor10)类型的数据源，支持png、jpg、jpeg、bmp、svg、webp、gif和heif类型的图片格式。
+Image为图片组件，常用于在应用中显示图片。Image支持加载[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)、[ResourceStr](ts-types.md#resourcestr)和[DrawableDescriptor](#drawabledescriptor10)类型的数据源，支持png、jpg、jpeg、bmp、svg、webp、gif和heif类型的图片格式，不支持apng和svga格式。
 
 > **说明：**
 >
@@ -54,7 +54,7 @@ Image加载成功且组件不设置宽高时，其显示大小自适应父组件
 >
 > Image直接传入URL可能会带来的潜在性能问题，例如：(1) 大图加载时无法提前下载，白块显示的时间较长；(2) 小图设置同步加载，在弱网环境下，可能会阻塞UI线程造成冻屏问题；(3) 在快速滑动的瀑布流中，无法提前对即将要显示的图片进行下载，导致滑动白块较多。不同场景下，性能问题会有不同的表现，建议将网络下载部分与Image的显示剥离，可提前下载或者异步下载。如果图片加载过程中出现白色块，请参考[Image白块问题解决方案](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-image-white-lump-solution)。如果图片加载时间过长，请参考按照步骤[优化应用预置图片资源加载耗时问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-texture-compression-improve-performance)。
 >
-> src由有效切换为无效时，图片保持不动。
+> src由有效值（可正常解析并加载的图片资源）切换为无效值（无法解析或加载的图片路径）时，组件应保持显示此前成功加载的图片内容，不进行清除或重置操作。
 >
 > 当Image组件入参为[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型时，只有当PixelMap对象的引用发生变化（即指向一个新的PixelMap实例），Image组件才能感知到数据的变化。仅修改PixelMap对象的内容（如像素值）而不更换对象引用，无法触发数据变化的感知。
 
@@ -267,7 +267,9 @@ matchTextDirection(value: boolean)
 
 fitOriginalSize(value: boolean)
 
-设置图片的显示尺寸是否跟随图源尺寸。图片组件尺寸未设置时，其显示尺寸是否跟随图源尺寸。
+设置图片的显示尺寸是否跟随图源尺寸。
+
+图片组件已设置width、height属性时，fitOriginalSize属性不生效。
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
 
@@ -510,7 +512,7 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| value  | [DynamicRangeMode](#dynamicrangemode12枚举说明) | 是   | 图像显示的动态范围。<br/>默认值：dynamicRangeMode.Standard |
+| value  | [DynamicRangeMode](#dynamicrangemode12枚举说明) | 是   | 图像显示的动态范围。<br/>默认值：DynamicRangeMode.STANDARD |
 
 ### orientation<sup>14+</sup>
 
@@ -528,7 +530,7 @@ orientation(orientation: ImageRotateOrientation)
 | ------ | --------------------------------------- | ---- | -------------------------------- |
 | orientation  | [ImageRotateOrientation](#imagerotateorientation14) | 是   | 图像内容的显示方向。<br/>不支持gif和svg类型的图片。<br/>如果需要显示携带旋转角度信息或翻转信息的图片，建议使用ImageRotateOrientation.AUTO进行设置。<br/>默认值：ImageRotateOrientation.UP |
 
-### hdrBrightness<sup>20+</sup>
+### hdrBrightness<sup>19+</sup>
 
 hdrBrightness(brightness: number)
 
@@ -538,7 +540,7 @@ svg类型图源不支持该属性。
 
 该属性与[dynamicRangeMode](#dynamicrangemode12)属性同时设置时，[dynamicRangeMode](#dynamicrangemode12)属性不生效。
 
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -977,7 +979,7 @@ struct ImageExample2 {
 }
 ```
 
-![zh-cn_image_0000001607845173](figures/zh-cn_image_view2.gif)
+![zh-cn_image_0000001607845173](figures/zh-cn_image_view2.png)
 
 ### 示例3（为图片添加事件）
 
@@ -1096,10 +1098,11 @@ struct Index {
       Image($r("app.media.landscape"))
         .resizable({
           slice: {
-            left: this.left,
-            right: this.right,
-            top: this.top,
-            bottom: this.bottom
+            //传入数字时默认为vp单位，但在不同设备上vp单位会被解析成不同大小的px单位，可以根据需要选择传入的单位
+            left: `${this.left}px`,
+            right: `${this.right}px`,
+            top: `${this.top}px`,
+            bottom: `${this.bottom}px`
           }
         })
         .width(200)
@@ -1698,7 +1701,7 @@ struct Index {
 
 ### 示例18（设置HDR图源动态提亮）
 
-该示例通过[hdrBrightness](#hdrbrightness20)调整HDR图源的亮度，将hdrBrightness从0调整到1。
+该示例通过[hdrBrightness](#hdrbrightness19)调整HDR图源的亮度，将hdrBrightness从0调整到1。
 
 ```ts
 import { image } from '@kit.ImageKit';

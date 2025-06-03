@@ -119,6 +119,7 @@ void TestJSVM() {
 }
 
 ```
+<!-- @[oh_jsvm_open_inspector](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmDebug/openinspector/src/main/cpp/hello.cpp) -->
 
 ### 使用 OH_JSVM_OpenInspectorWithName
 
@@ -306,6 +307,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 ```cpp
 const char *srcCallNative = R"JS(runScriptWithStatistics();)JS";
 ```
+<!-- @[heap_snapshot](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmDebug/snapshot/src/main/cpp/hello.cpp) -->
 预计的输出结果：
 ```
 在对应鸿蒙设备内生成两个文件用于后续调优：

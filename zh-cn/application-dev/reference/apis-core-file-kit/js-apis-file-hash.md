@@ -59,8 +59,8 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 13900020 | Invalid argument |
-| 13900042 | Unknown error |
+| 13900020 | Invalid argument. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -98,8 +98,8 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 13900020 | Invalid argument |
-| 13900042 | Unknown error |
+| 13900020 | Invalid argument. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -136,7 +136,13 @@ createHash(algorithm: string): HashStream;
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md#通用错误码)和[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 401 | Parameter error. |
+| 13900020 | Invalid argument. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -177,7 +183,12 @@ update(data: ArrayBuffer): void
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md#通用错误码)和[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 401 | Parameter error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -201,7 +212,12 @@ digest(): string
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md#通用错误码)和[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 401 | Parameter error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 

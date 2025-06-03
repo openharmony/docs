@@ -22,6 +22,7 @@
   // entry/src/main/cpp/types/libentry/index.d.ts
   export const runTest: () => void;
   ```
+  <!-- @[export_native](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmProcess/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 - 在oh-package.json5文件中将index.d.ts与cpp文件关联起来。
 
@@ -205,6 +206,7 @@
   
   extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
   ```
+  <!-- @[oh_jsvm_process](K3278code/DocsSample/ArkTs/JSVMAPI/JsvmProcess/entry/src/main/cpp/hello.cpp) -->
   
 ## ArkTS侧调用C/C++方法实现
 
@@ -235,6 +237,7 @@ struct Index {
   }
 }
 ```
+<!-- @[call_native_cpp](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmProcess/entry/src/main/ets/pages/Index.ets) -->
 
 预期输出结果
 ```ts

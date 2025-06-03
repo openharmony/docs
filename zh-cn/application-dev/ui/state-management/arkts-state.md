@@ -1,10 +1,8 @@
 # \@State装饰器：组件内状态
 
+被@State装饰的变量称为状态变量，使普通变量具备状态属性。当状态变量改变时，会触发其直接绑定的UI组件渲染更新。
 
-\@State装饰的变量，或称为状态变量，一旦变量拥有了状态属性，就可以触发其直接绑定UI组件的刷新。当状态改变时，UI会发生对应的渲染改变。
-
-
-在状态变量相关装饰器中，\@State是最基础的，使变量拥有状态属性的装饰器，它也是大部分状态变量的数据源。
+在状态变量相关装饰器中，@State是最基础的装饰器，也是大部分状态变量的数据源。
 
 在阅读\@State文档前，建议开发者对状态管理框架有基本的了解。建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)。最佳实践请参考[状态管理最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-status-management)。
 
@@ -16,7 +14,7 @@
 
 ## 概述
 
-\@State装饰的变量，与声明式范式中的其他被装饰变量一样，是私有的，只能从组件内部访问，在声明时必须指定其类型和本地初始化。初始化也可选择使用命名参数机制从父组件完成初始化。
+\@State装饰的变量与声明式范式中的其他被装饰变量一样，是私有的，只能从组件内部访问，在声明时必须指定其类型并完成本地初始化；若需从父组件初始化，也可选择使用命名参数机制完成赋值。
 
 \@State装饰的变量拥有以下特点：
 
@@ -24,34 +22,30 @@
 
 - \@State装饰的变量生命周期与其所属自定义组件的生命周期相同。
 
-
 ## 装饰器使用规则说明
 
 | \@State变量装饰器  | 说明                                                         |
 | ------------------ | ------------------------------------------------------------ |
 | 装饰器参数         | 无                                                           |
 | 同步类型           | 不与父组件中任何类型的变量同步。                             |
-| 允许装饰的变量类型 | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型。<br/>支持undefined和null类型。<br/>支持ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型。 <br/>类型必须被指定。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@State支持联合类型实例](#state支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@State a : string \| undefined = undefined`是支持的，不支持`@State a: string = undefined`。|
+| 允许装饰的变量类型 | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API version 11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型。<br/>支持undefined和null类型。<br/>支持ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型。 <br/>类型必须指定。<br/>支持类型的场景见[观察变化](#观察变化)。<br/>不支持any。<br/>API version 11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@State支持联合类型实例](#state支持联合类型实例)。 <br/>**注意：**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验。比如：支持`@State a : string \| undefined = undefined`；不支持`@State a: string = undefined`。|
 | 被装饰变量的初始值 | 必须本地初始化。                                               |
-
 
 ## 变量的传递/访问规则说明
 
 | 传递/访问          | 说明                                                         |
 | ------------------ | ------------------------------------------------------------ |
-| 从父组件初始化     | 可选，从父组件初始化或者本地初始化。如果从父组件初始化，并且从父组件传入的值非undefined，将会覆盖本地初始化；如果从父组件传入的值为undefined，则初值为@State装饰变量自身的初值。<br/>支持父组件中常规变量（常规变量对@State赋值，只是数值的初始化，常规变量的变化不会触发UI刷新，只有状态变量才能触发UI刷新）、\@State、[\@Link](arkts-link.md)、[\@Prop](arkts-prop.md)、[\@Provide](arkts-provide-and-consume.md)、[\@Consume](arkts-provide-and-consume.md)、[\@ObjectLink](arkts-observed-and-objectlink.md)、[\@StorageLink](arkts-appstorage.md#storagelink)、[\@StorageProp](arkts-appstorage.md#storageprop)、[\@LocalStorageLink](arkts-localstorage.md#localstoragelink)和[\@LocalStorageProp](arkts-localstorage.md#localstorageprop)装饰的变量，初始化子组件的\@State。 |
+| 从父组件初始化     | 可以从父组件或本地初始化。<br/>从父组件初始化，传入的值非undefined时，将会覆盖本地初始化；传入的值为undefined时，则初始值为@State装饰变量的本地初始值。<br/>支持父组件中常规变量（常规变量对@State赋值，只是数值的初始化，常规变量的变化不会触发UI刷新，只有状态变量才能触发UI刷新）、\@State、[\@Link](arkts-link.md)、[\@Prop](arkts-prop.md)、[\@Provide](arkts-provide-and-consume.md)、[\@Consume](arkts-provide-and-consume.md)、[\@ObjectLink](arkts-observed-and-objectlink.md)、[\@StorageLink](arkts-appstorage.md#storagelink)、[\@StorageProp](arkts-appstorage.md#storageprop)、[\@LocalStorageLink](arkts-localstorage.md#localstoragelink)和[\@LocalStorageProp](arkts-localstorage.md#localstorageprop)装饰的变量，初始化子组件的\@State。 |
 | 用于初始化子组件   | \@State装饰的变量支持初始化子组件的常规变量、\@State、\@Link、\@Prop、\@Provide。 |
 | 是否支持组件外访问 | 不支持，只能在组件内访问。                                   |
 
-  **图1** 初始化规则图示  
+  **图1** 初始化规则图示
 
 ![zh-cn_image_0000001502091796](figures/zh-cn_image_0000001502091796.png)
-
 
 ## 观察变化和行为表现
 
 并不是状态变量的所有更改都会引起UI的刷新，只有可以被框架观察到的修改才会引起UI刷新。本小节将介绍什么样的修改才能被观察到，以及观察到变化后，框架是怎么引起UI刷新的，即框架的行为表现是什么。
-
 
 ### 观察变化
 
@@ -64,7 +58,7 @@
   this.count = 1;
   ```
 
-- 当装饰的数据类型为class或者Object时，可以观察到自身的赋值的变化，和其属性赋值的变化，即Object.keys(observedObject)返回的所有属性。例子如下。
+- 当装饰的数据类型为class或Object时，可以观察到自身的赋值和属性赋值的变化，即Object.keys(observedObject)返回的所有属性。示例如下：
   
   声明Person和Model类。
 
@@ -168,7 +162,7 @@
   this.title[0].value = 6;
   ```
 
-- 当装饰的对象是Date时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。
+- 当装饰的对象是Date时，可以观察到Date的赋值，以及通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds`更新Date的属性。
 
   ```ts
   @Entry
@@ -208,18 +202,15 @@
   }
   ```
 
-- 当装饰的变量是Map时，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
+- 当装饰的变量是Map时，可以观察到Map整体的赋值，以及通过调用Map的接口`set`, `clear`, `delete`更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
 
-- 当装饰的变量是Set时，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。详见[装饰Set类型变量](#装饰set类型变量)。
+- 当装饰的变量是Set时，可以观察到Set整体的赋值，以及通过调用Set的接口`add`, `clear`, `delete`更新Set的值。详见[装饰Set类型变量](#装饰set类型变量)。
 
 ### 框架行为
 
-- 当状态变量被改变时，查询依赖该状态变量的组件；
+- 当状态变量改变时，查询依赖该状态变量的组件。
 
-- 执行依赖该状态变量的组件的更新方法，组件更新渲染；
-
-- 和该状态变量不相关的组件或者UI描述不会发生重新渲染，从而实现页面渲染的按需更新。
-
+- 执行依赖该状态变量的组件更新方法，实现组件更新渲染。
 
 ## 限制条件
 
@@ -235,18 +226,15 @@
 
 2. \@State不支持装饰Function类型的变量，框架会抛出运行时错误。
 
-
 ## 使用场景
-
 
 ### 装饰简单类型的变量
 
 以下示例为\@State装饰的简单类型，count被\@State装饰成为状态变量，count的改变引起Button组件的刷新：
 
-- 当状态变量count改变时，查询到只有Button组件关联了它；
+- 当状态变量count改变时，只能查询到Button组件与之关联。
 
 - 执行Button组件的更新方法，实现按需刷新。
-
 
 ```ts
 @Entry
@@ -326,7 +314,6 @@ struct MyComponent {
 
 从该示例中，我们可以了解到\@State变量的初始化机制：
 
-
 1. 没有外部传入的情况下，使用默认的值进行本地初始化：
 
    ```ts
@@ -336,7 +323,7 @@ struct MyComponent {
    MyComponent({ title: new Model('Hello World 2'), count: 7 })
    ```
 
-2. 有外部传入的情况下，使用外部传入的值进行初始化：
+2. 在有外部传入的情况下，使用外部传入的值进行初始化：
 
    ```ts
    // count和increaseBy均有外部传入，分别使用传入的1和2进行初始化
@@ -344,7 +331,6 @@ struct MyComponent {
    // title和count均有外部传入，分别使用传入的new Model('Hello World 2')和7进行初始化
    MyComponent({ title: new Model('Hello World 2'), count: 7 })
    ```
-
 
 ### 装饰Map类型变量
 
@@ -468,7 +454,7 @@ struct MyComponent {
 
 ### 使用箭头函数改变状态变量未生效
 
-箭头函数体内的this对象，就是定义该函数时所在的作用域指向的对象，而不是使用时所在的作用域指向的对象。所以在该场景下， changeCoverUrl的this指向PlayDetailViewModel，而不是被装饰器\@State代理的状态变量。
+箭头函数体内的`this`对象，就是定义该函数时所在的作用域指向的对象，而不是使用时所在的作用域指向的对象。所以在该场景下，`changeCoverUrl`的`this`指向`PlayDetailViewModel`，而不是被装饰器\@State代理的状态变量。
 
 反例：
 
@@ -509,7 +495,7 @@ struct PlayDetailPage {
 }
 ```
 
-所以要将当前this.vm传入，调用代理状态变量的属性赋值。
+将当前this.vm传入，调用代理状态变量的属性赋值。
 
 正例：
 
@@ -555,9 +541,9 @@ struct PlayDetailPage {
 
 在状态管理中，类会被一层“代理”进行包装。当在组件中改变该类的成员变量时，会被该代理进行拦截，在更改数据源中值的同时，也会将变化通知给绑定的组件，从而实现观测变化与触发刷新。
 
-当开发者把修改success的箭头函数放在构造函数中初始化时，此时TestModel实例还未被代理封装，this指向TestModel实例本身，所以后续触发query事件无法被状态管理观测到变化。
+当在构造函数中初始化修改`success`的箭头函数时，`TestModel`实例尚未被代理封装，`this`指向`TestModel`实例本身。因此，后续触发`query`事件时，状态管理无法观测到变化。
 
-当开发者把修改success的箭头函数放在query中时，此时已完成TestModel对象初始化和代理封装。通过`this.viewModel.query()`方式调用query时，query函数中的this指向viewModel代理对象，对代理对象成员属性isSuccess的更改能够被观测到，因此触发query事件可以被状态管理观测到变化。
+当开发者将修改`success`的箭头函数放在`query`中时，已完成`TestModel`对象初始化和代理封装。通过`this.viewModel.query()`调用`query`时，`query`函数中的`this`指向`viewModel`代理对象，对代理对象成员属性`isSuccess`的更改能够被观测到，因此触发`query`事件可以被状态管理观测到变化。
 
 【反例】
 
@@ -610,7 +596,7 @@ export class Model {
 }
 ```
 
-上文示例代码将状态变量的修改放在构造函数内，界面开始时显示“failed”，点击后日志打印“this.isSuccess: true”说明修改成功，但界面依旧显示“failed”，未实现刷新。
+上述示例代码中，状态变量的修改在构造函数内。界面刚开始时显示“failed”，点击后日志打印“this.isSuccess: true”，表明修改成功，但界面仍然显示“failed”，这说明UI未刷新。
 
 【正例】
 
@@ -694,7 +680,7 @@ struct Test {
 }
 ```
 
-以上示例点击Button('change')，只会触发第二个Text组件的刷新，因为message是简单类型string，简单类型是值拷贝，所以点击按钮改变的是info中的address值，不会影响this.message的值。
+点击`Button('change')`只会触发第二个`Text`组件的刷新，因为`message`是字符串类型。字符串是值类型，点击按钮时，改变的是`info`中的`address`值，而不会影响`this.message`的值，因此第一个Text组件不会刷新。
 
 【示例2】
 
@@ -734,7 +720,7 @@ struct Test {
 }
 ```
 
-在上述示例中，由于在aboutToAppear中将info的引用赋值给了user的成员属性info，因此点击按钮改变info中的属性时，会触发第一个Text组件的刷新。而第二个Text组件因为观测能力仅有一层，无法观测到二层属性的变化，所以不会刷新。
+在`aboutToAppear`中，`info`的引用被赋值给了`user`的成员属性`info`。因此，点击按钮改变`info`中的属性时，会触发第一个`Text`组件的刷新。第二个`Text`组件由于观测能力仅有一层，无法检测到二层属性的变化，所以不会刷新。
 
 【示例3】
 
@@ -826,7 +812,7 @@ struct ConsumerChild {
 ```
 
 以上示例每次点击Button('change to self')，把相同的类常量赋值给一个Class类型的状态变量，会触发刷新并输出`this.dataObj.name change: a`日志。原因是在状态管理V1中，会给被\@Observed装饰的类对象以及使用状态变量装饰器如@State装饰的Class、Date、Map、Set、Array类型的对象添加一层代理用于观测一层属性或API调用产生的变化。  
-当再次赋值list[0]时，dataObjFromList已经是一个Proxy类型，而list[0]是Object类型，判断是不相等的，因此会触发赋值和刷新。  
+当再次赋值`list[0]`时，`dataObjFromList`已经是`Proxy`类型，而`list[0]`是`Object`类型，因此判断两者不相等，会触发赋值和刷新。 
 为了避免这种不必要的赋值和刷新，可以通过用\@Observed装饰类，或者使用[UIUtils.getTarget()](./arkts-new-getTarget.md)获取原始对象提前进行新旧值的判断，如果相同则不执行赋值。  
 方法一：增加\@Observed
 
@@ -959,7 +945,7 @@ struct Index {
 }
 ```
 
-在首次创建的过程中，Text组件被多渲染了一次，导致其最终显示为2。
+在首次创建的过程中，Text组件被多渲染了一次，最终显示为2。
 
 框架识别到在build里改变状态变量会打error日志，error日志为：
 
@@ -967,9 +953,9 @@ struct Index {
 FIX THIS APPLICATION ERROR: @Component 'Index'[4]: State variable 'count' has changed during render! It's illegal to change @Component state while build (initial render or re-render) is on-going. Application error!
 ```
 
-在上面的例子中，这个错误行为不会造成很严重的后果，只有Text组件多渲染了一次，所以很多开发者忽略了这个日志。
+在上述示例中，Text组件多渲染了一次。这个错误行为不会造成严重的后果，所以许多开发者忽略了这个日志。
 
-但这个行为是严重错误的，会随着工程的复杂度升级，隐患越来越大。见下一个例子。
+但是，此行为是严重错误的，随着工程的复杂度升级，隐患将逐渐增大。见下一个例子。
 
 ```ts
 @Entry
@@ -1000,7 +986,7 @@ struct Index {
 
 5. 系统长时间无响应，appfreeze。
 
-所以，在build里面改变状态变量的这种行为是完全错误的。当发现“FIX THIS APPLICATION ERROR: @Component ... has changed during render! It's illegal to change @Component state while build (initial render or re-render) is on-going. Application error!”日志时，即使当下没有带来严重后果，也应该警惕。应该排查应用，修改对应的错误写法，消除该错误日志。
+因此，在build方法中改变状态变量是完全错误的。当发现“FIX THIS APPLICATION ERROR: @Component ... has changed during render! It's illegal to change @Component state while build (initial render or re-render) is on-going. Application error!”日志时，即使当前没有带来严重后果，也应该警惕并修改错误写法。
 
 ### 使用a.b(this.object)形式调用，不会触发UI刷新
 
@@ -1050,7 +1036,10 @@ struct Index {
 }
 ```
 
-可以通过如下先赋值、再调用新赋值的变量的方式为this.balloon加上Proxy代理，实现UI刷新。
+可以通过以下步骤为this.balloon保留Proxy代理，以实现UI刷新。
+
+1. 先将this.balloon赋值给临时变量。
+2. 再使用临时变量完成原本的调用逻辑。
 
 【正例】
 
@@ -1081,13 +1070,13 @@ struct Index {
         .fontSize(30)
       Button(`increaseVolume`)
         .onClick(()=>{
-          // 通过赋值添加 Proxy 代理
+          // 通过赋值给临时变量保留Proxy代理
           let balloon1 = this.balloon;
           Balloon.increaseVolume(balloon1);
         })
       Button(`reduceVolume`)
         .onClick(()=>{
-          // 通过赋值添加 Proxy 代理
+          // 通过赋值给临时变量保留Proxy代理
           let balloon2 = this.balloon;
           this.reduceVolume(balloon2);
         })
@@ -1100,7 +1089,11 @@ struct Index {
 
 ### 用注册回调的方式更改状态变量需要执行解注册
 
-开发者可以在aboutToAppear中注册箭头函数，并以此来改变组件中的状态变量。但需要注意的是在aboutToDisappear中将之前注册的函数置空，否则会因为箭头函数捕获了自定义组件的this实例，导致自定义组件无法被释放，从而造成内存泄漏。
+开发者可以在aboutToAppear中注册箭头函数，以此改变组件中的状态变量。
+
+>**注意：**
+>
+> 需要在aboutToDisappear中将注册的函数置空，以避免箭头函数捕获自定义组件的this实例，导致自定义组件无法被释放，从而造成内存泄漏。
 
 ```ts
 class Model {
@@ -1150,4 +1143,4 @@ struct Test {
 }
 ```
 
-此外，也可以使用[LocalStorage](./arkts-localstorage.md#自定义组件外改变状态变量)的方式在自定义组件外改变状态变量。
+此外，也可以使用 LocalStorage在[自定义组件外改变状态变量](./arkts-localstorage.md#自定义组件外改变状态变量)。

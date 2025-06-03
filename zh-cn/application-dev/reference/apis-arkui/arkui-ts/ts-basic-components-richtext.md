@@ -33,7 +33,7 @@
 
 ## 接口
 
-RichText(content:string)
+RichText(content:string &nbsp;|&nbsp; Resource)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -41,7 +41,8 @@ RichText(content:string)
 
 | 参数名 | 类型 | 必填  | 说明 |
 | ------- | -------- | ------------- | -------- |
-| content | string | 是   | 表示HTML格式的字符串。 |
+| content | string \| [Resource](ts-types.md##resource) <sup>20+</sup>   | 是   | 表示HTML格式的字符串或者本地资源文件。 |
+
 
 
 ## 事件
@@ -143,3 +144,54 @@ struct RichTextExample {
 
  ![richText](figures/richText.png)
 
+加载本地资源文件。
+
+通过$rawfile方式加载。
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct RichtextComponent {
+
+    build() {
+      Column() {
+        // 通过$rawfile加载本地资源文件。
+        Richtext($rawfile("index.html"))
+      }
+    }
+  }
+  ```
+
+通过resources协议加载，适用Webview加载带有"#"路由的链接。
+
+使用 `resource://rawfile/` 协议前缀可以避免常规 `$rawfile` 方式在处理带有"#"路由链接时的局限性。当URL中包含"#"号时，"#"后面的内容会被视为锚点（fragment）。
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct RichtextComponent {
+
+    build() {
+      Column() {
+        // 通过resource协议加载本地资源文件。
+        Richtext("resource://rawfile/index.html#home")
+      }
+    }
+  }
+  ```
+
+在“src\main\resources\rawfile”文件夹下创建index.html：
+
+   加载的html文件。
+
+   ```html
+   <!-- index.html -->
+   <!DOCTYPE html>
+   <html>
+       <body>
+           <p>Hello World</p>
+       </body>
+   </html>
+   ```

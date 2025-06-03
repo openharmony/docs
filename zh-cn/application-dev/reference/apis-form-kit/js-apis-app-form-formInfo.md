@@ -43,9 +43,6 @@ import { formInfo } from '@kit.FormKit';
 | isDynamic<sup>10+</sup>      | boolean               | 是    | 否     | 卡片是否为动态卡片。<br/>仅ArkTS卡片区分动静态卡片，JS卡片均为动态卡片。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | transparencyEnabled<sup>11+</sup>      | boolean               | 是    | 否     | 卡片是否支持设置背景透明度。<br/>ArkTS卡片由用户配置决定是否支持，JS卡片均不支持。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | supportedShapes<sup>12+</sup>    | Array&lt;number&gt;      | 是    | 否     | 卡片支持的形状。具体可选形状参考[FormShape<sup>12+</sup>](#formshape12) <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-| <!--DelRow-->previewImages<sup>18+</sup> | Array&lt;number&gt; | 是 | 否 | 卡片预览图资源ID。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| <!--DelRow-->enableBlurBackground<sup>18+</sup>  | boolean               | 是    | 否     | 卡片是否使用模糊背板。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| <!--DelRow-->renderingMode<sup>18+</sup>|[RenderingMode](./js-apis-app-form-formInfo-sys.md#renderingmode18)|是|否|卡片渲染模式。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## FormType
 
@@ -197,3 +194,26 @@ import { formInfo } from '@kit.FormKit';
 | FORM_DEFAULT | 1   | 表示卡片创建原因为默认创建。 |
 | FORM_SHARE   | 2   | 表示卡片创建原因为共享创建。 |
 
+## OverflowInfo<sup>20+</sup>
+
+互动卡片动效信息。
+
+**系统能力：** SystemCapability.Ability.Form
+
+| 名称 | 类型 | 只读 | 可选  | 说明                                |
+|-----|-----|------|-----|-----------------------------------|
+| area     | [Rect](#rect20) | 是 | 否   | 描述溢出动效区域范围，以卡片左上角为原点，单位为vp。       |
+| duration | number | 是 | 否   | 溢出动效持续时长。取值为大于0、小于等于3500的整数，单位ms。 |
+
+## Rect<sup>20+</sup>
+
+通用矩形区域信息。可用于描述卡片位置、互动卡片动效区域等信息。
+
+**系统能力：** SystemCapability.Ability.Form
+
+| 名称 | 类型 | 只读 | 可选  | 说明 |
+|-----|-----|------|-----|-------|
+| left   | number | 是 | 否   | 描述矩形的左上角顶点的 x 坐标，单位：vp。|
+| top    | number | 是 | 否   | 描述矩形的左上角顶点的 y 坐标，单位：vp。|
+| width  | number | 是 | 否   | 描述矩形的宽度，单位：vp。|
+| height | number | 是 | 否   | 描述矩形的高度，单位：vp。|

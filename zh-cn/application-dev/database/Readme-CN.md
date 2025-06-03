@@ -5,6 +5,7 @@
   - [标准化数据定义概述](unified-data-definition-overview.md)
   - [标准化数据类型](uniform-data-type-descriptors.md)
   - [标准化数据结构](uniform-data-structure.md)
+  - [基于标准化数据结构的控件（ArkTS）](components-based-on-uniform-data-structure.md)
   - [Uniform Type Descriptor(UTD)预置类型列表](uniform-data-type-list.md)
 - 应用数据持久化<!--app-data-persistence-->
   - [应用数据持久化概述](app-data-persistence-overview.md)
@@ -15,9 +16,6 @@
   - [通过关系型数据库实现数据持久化（C/C++）](native-relational-store-guidelines.md)
   - [通过向量数据库实现数据持久化 (ArkTS)](data-persistence-by-vector-store.md)
   - [通过向量数据库实现数据持久化 (C/C++)](native-vector-store-guidelines.md)
-  <!--Del-->
-  - [通过图数据库实现数据持久化（仅对系统应用开放）](data-persistence-by-graph-store.md)
-  <!--DelEnd-->
 - 同应用跨设备数据同步（分布式）<!--distributed-data-sync-->
   - [同应用跨设备数据同步概述](sync-app-data-across-devices-overview.md)
   - [键值型数据库跨设备数据同步](data-sync-of-kv-store.md)
@@ -41,7 +39,6 @@
   <!--DelEnd-->
   - 多对多跨应用数据共享<!--many-to-many-data-share-->
     - [通过标准化数据通路实现数据共享](unified-data-channels.md)
-- 智慧化数据构建与检索<!--intelligence-data-->
-  - [智慧化数据构建与检索概述](aip-data-intelligence-overview.md)
-  - [应用数据向量化](aip-data-intelligence-embedding.md)
+- [应用数据向量化](aip-data-intelligence-embedding.md)
 - [UDMF开发指导 (C/C++)](native-unified-data-management-framework-guidelines.md)
+- [ArkData术语](data-terminology.md)

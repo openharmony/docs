@@ -3341,6 +3341,12 @@ This API is not supported on wearables.
 | enable | boolean                       | Yes  | Whether to enable the notification slot type. The value **true** means to enable the notification slot type, and **false** means the opposite.    |
 | isForceControl<sup>11+</sup> | boolean               | No  | Whether the enabled status of the notification slot is subject to the enabled status of notification. The value **false** means that the enabled status of the notification slot is subject to the enabled status of notification, and **true** means the opposite. Default value: **false**    |
 
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
@@ -4341,7 +4347,7 @@ addDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void\>
 
 Adds the Do Not Disturb profile configuration information. This API uses a promise to return the result.
 
-This API is not supported on wearables.
+This API is not supported on TVs and wearables.
 
 **System capability**: SystemCapability.Notification.Notification
 

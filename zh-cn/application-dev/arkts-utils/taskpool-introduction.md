@@ -16,7 +16,7 @@ TaskPool支持开发者在宿主线程提交任务到任务队列，系统选择
 
 - 从API version 11开始，跨并发实例传递带方法的实例对象时，该类必须使用装饰器[@Sendable装饰器](arkts-sendable.md#sendable装饰器)标注，且仅支持在.ets文件中使用。
 
-- 任务函数在TaskPool工作线程的执行耗时不能超过3分钟（不包含Promise和async/await异步调用的耗时，例如网络下载、文件读写等I/O任务的耗时）。否则，任务将被强制终止。
+- 任务函数（[LongTask](../reference/apis-arkts/js-apis-taskpool.md#longtask12)除外）在TaskPool工作线程的执行耗时不能超过3分钟（不包含Promise和async/await异步调用的耗时，例如网络下载、文件读写等I/O任务的耗时）。否则，任务将被强制终止。
 
 - 实现任务的函数入参需满足序列化支持的类型，详情请参见[线程间通信对象](interthread-communication-overview.md)。目前不支持使用[@State装饰器](../ui/state-management/arkts-state.md)、[@Prop装饰器](../ui/state-management/arkts-prop.md)、[@Link装饰器](../ui/state-management/arkts-link.md)等装饰器修饰的复杂类型。
 
@@ -51,9 +51,9 @@ TaskPool支持开发者在宿主线程提交任务到任务队列，系统选择
 
 - 序列化传输的数据量限制为16MB。
 
-- [Priority](../reference/apis-arkts/js-apis-taskpool.md#priority)的IDLE优先级是用来标记需要在后台运行的耗时任务（例如数据同步、备份），它的优先级别是最低的。这种优先级的任务只在所有线程都空闲时触发执行，并且只会占用一个线程。
+- [Priority](../reference/apis-arkts/js-apis-taskpool.md#priority)的IDLE优先级是用来标记需要在后台运行的耗时任务（例如数据同步、备份），它的优先级别是最低的。这种优先级的任务只在所有线程都空闲时触发执行，并且同一时间只会有一个IDLE优先级的任务执行。
 
-- Promise不支持跨线程传递。TaskPool返回pending或rejected状态的Promise时失败，返回fulfilled状态的Promise时TaskPool会解析返回的结果，如果结果可以跨线程传递，则返回成功。
+- Promise不支持跨线程传递。TaskPool返回pending或rejected状态的Promise时会失败，返回fulfilled状态的Promise时TaskPool会解析返回的结果，如果结果可以跨线程传递，则返回成功。
 
 - 不支持在TaskPool工作线程中使用[AppStorage](../ui/state-management/arkts-appstorage.md)。
 
@@ -139,6 +139,7 @@ struct Index {
   }
 }
 ```
+<!-- @[concurrent_taskpool_common_usage](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/generaluse.ets) -->
 
 #### 并发函数返回Promise
 
@@ -250,6 +251,7 @@ struct Index {
   }
 }
 ```
+<!-- @[concurrent_taskpool_promise_return](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/returnpromise.ets) -->
 
 #### 并发函数中使用自定义类或函数
 
@@ -331,6 +333,7 @@ struct Index {
   }
 }
 ```
+<!-- @[concurrent_taskpool_custom_class_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/customclasses.ets) -->
 
 ```ts
 // Test.ets
@@ -350,6 +353,7 @@ export class MyTestB {
   static nameStr:string = 'MyTestB';
 }
 ```
+<!-- @[concurrent_taskpool_test_resources](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/Test.ets) -->
 
 #### 并发异步函数中使用Promise
 
@@ -391,17 +395,17 @@ async function testConcurrentFunc() {
   taskpool.execute(task1).then((d: object) => {
     console.info(`task1 res is: ${d}`);
   }).catch((e: object) => {
-    console.error(`task1 catch e: ${e}`);
+    console.error(`task1 catch e: ${e}`); // task1 catch e: Error: testPromise Error
   })
   taskpool.execute(task2).then((d: object) => {
     console.info(`task2 res is: ${d}`);
   }).catch((e: object) => {
-    console.error(`task2 catch e: ${e}`);
+    console.error(`task2 catch e: ${e}`); // task2 catch e: testPromiseError1 Error msg
   })
   taskpool.execute(task3).then((d: object) => {
     console.info(`task3 res is: ${d}`);
   }).catch((e: object) => {
-    console.error(`task3 catch e: ${e}`);
+    console.error(`task3 catch e: ${e}`); // task3 catch e: testPromiseError2 Error msg
   })
 }
 
@@ -426,6 +430,7 @@ struct Index {
   }
 }
 ```
+<!-- @[concurrent_taskpool_async_promise_usage](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/asynchronousfunctions.ets) -->
 
 ## TaskPool扩缩容机制
 

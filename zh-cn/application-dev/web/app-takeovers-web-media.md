@@ -47,7 +47,7 @@ Web组件提供了应用接管网页中媒体播放的能力，用来支持应�
 
 ### 开启接管网页媒体播放
 
-需要先通过[enableNativeMediaPlayer](../reference/apis-arkweb/ts-basic-components-web.md#enablenativemediaplayer12)接口开启接管网页媒体播放的功能。
+需要先通过[enableNativeMediaPlayer](../reference/apis-arkweb/ts-basic-components-web-attributes.md#enablenativemediaplayer12)接口开启接管网页媒体播放的功能。
 
   ```ts
   // xxx.ets
@@ -69,7 +69,7 @@ Web组件提供了应用接管网页中媒体播放的能力，用来支持应�
 
 ### 创建本地播放器(NativeMediaPlayer)
 
-该功能开启后，网页中有媒体需要播放时，ArkWeb内核会触发[onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview.md#oncreatenativemediaplayer12)注册的回调函数。
+该功能开启后，网页中有媒体需要播放时，ArkWeb内核会触发[onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview-WebviewController.md#oncreatenativemediaplayer12)注册的回调函数。
 
 应用则需要调用 `onCreateNativeMediaPlayer` 来注册一个创建本地播放器的回调函数。
 
@@ -306,7 +306,7 @@ Web组件提供了应用接管网页中媒体播放的能力，用来支持应�
 
 ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：视频的宽高、播放时间、缓存时间等），因此，应用需要将本地播放器的状态信息通知给ArkWeb内核。
 
-在[onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview.md#oncreatenativemediaplayer12)接口中， ArkWeb内核传递一个[NativeMediaPlayerHandler](../reference/apis-arkweb/js-apis-webview.md#nativemediaplayerhandler12)对象给应用。应用需要通过该对象，将本地播放器的最新状态信息通知给ArkWeb内核。
+在[onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview-WebviewController.md#oncreatenativemediaplayer12)接口中， ArkWeb内核传递一个[NativeMediaPlayerHandler](../reference/apis-arkweb/js-apis-webview.md#nativemediaplayerhandler12)对象给应用。应用需要通过该对象，将本地播放器的最新状态信息通知给ArkWeb内核。
 
   ```ts
   // xxx.ets

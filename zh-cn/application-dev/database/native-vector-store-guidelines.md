@@ -13,7 +13,7 @@
 
 ## 约束限制
 
-- 系统默认日志方式是WAL（Write Ahead Log）模式，系统默认落盘方式是FULL模式。
+- 系统默认日志方式是[WAL](data-terminology.md#wal模式)（Write Ahead Log）模式，系统默认落盘方式是[FULL模式](data-terminology.md#full模式)。
 
 - 数据库中默认有4个读连接和1个写连接，线程获取到空闲读连接时，即可进行读取操作。当没有空闲读连接时，会创建新的读连接。
 
@@ -23,18 +23,22 @@
 
 - 为保证插入并读取数据成功，建议一条数据不要超过2M。超出该大小，插入成功，读取失败。
 
+## 规格限制
+
+详情见[规格限制](data-persistence-by-vector-store.md#规格限制)。
+
 ## 接口说明
 
-详细的接口说明请参考[RDB](../reference/apis-arkdata/_r_d_b.md)。
+详细的接口说明请参考[RDB](../reference/apis-arkdata/capi-rdb.md)。
 
 | 接口名称 | 描述 |
 | -------- | -------- |
 | int OH_Rdb_SetDbType(OH_Rdb_ConfigV2 *config, int dbType) | 设置数据库类型。 |
 | OH_Rdb_Store *OH_Rdb_CreateOrOpen(const OH_Rdb_ConfigV2 *config, int *errCode) | 获得一个相关的OH_Rdb_Store实例(调用OH_Rdb_SetDbType设置dbType为RDB_CAYLEY)，操作向量数据库。 |
-| int OH_Rdb_ExecuteV2(OH_Rdb_Store *store, const char *sql, const OH_Data_Values *args, OH_Data_Value **result) | 执行有返回值的SQL语句，用来执行写操作，支持参数绑定，语句中的各种表达式和操作符之间的关系操作符号(例如=、>、<)不超过1000个。。 |
+| int OH_Rdb_ExecuteV2(OH_Rdb_Store *store, const char *sql, const OH_Data_Values *args, OH_Data_Value **result) | 执行有返回值的SQL语句，用来执行写操作，支持参数绑定，语句中的各种表达式和操作符之间的关系操作符号(例如=、>、<)不超过1000个。|
 | int OH_Rdb_ExecuteByTrxId(OH_Rdb_Store *store, int64_t trxId, const char *sql) | 使用指定的事务ID执行无返回值的SQL语句，事务ID为0时不使用事务。 |
 | OH_Cursor *OH_Rdb_ExecuteQuery(OH_Rdb_Store *store, const char *sql) | 根据指定SQL语句查询数据库中的数据。 |
-| OH_Cursor *OH_Rdb_ExecuteQueryV2(OH_Rdb_Store *store, const char *sql, const OH_Data_Values *args) | 根据指定SQL语句查询数据库中的数据，支持参数绑定，语句中的各种表达式和操作符之间的关系操作符号(例如=、>、<)不超过1000个。。 |
+| OH_Cursor *OH_Rdb_ExecuteQueryV2(OH_Rdb_Store *store, const char *sql, const OH_Data_Values *args) | 根据指定SQL语句查询数据库中的数据，支持参数绑定，语句中的各种表达式和操作符之间的关系操作符号(例如=、>、<)不超过1000个。 |
 | int OH_Rdb_DeleteStoreV2(const OH_Rdb_ConfigV2 *config) | 删除数据库。 |
 | int OH_Cursor_GetFloatVectorCount(OH_Cursor *cursor, int32_t columnIndex, size_t *length) | 获取当前行中指定列的浮点数数组大小。 |
 | int OH_Cursor_GetFloatVector(OH_Cursor *cursor, int32_t columnIndex, float *val, size_t inLen, size_t *outLen) | 以浮点数数组的形式获取当前行中指定列的值，其中inLen不能小于实际的数组大小。 |
@@ -291,7 +295,26 @@ libnative_rdb_ndk.z.so
    OH_Rdb_ExecuteV2(store_, "CREATE TABLE test2(rec_time integer not null) WITH (time_col = 'rec_time', interval = '5 minute');", nullptr, nullptr);
    ```
 
-9. 删除数据库。示例代码如下：
+9. 配置数据压缩功能。该功能在建表时配置，可以压缩数据类型为text的列数据。
+
+   从API version 20开始，支持数据压缩功能。
+
+   语法如下所示：
+
+   ```sql
+   CREATE TABLE table_name(content text [, ...]) [WITH(compress_col = 'content')];
+   ```
+
+   其中，compress_col为必填参数，value是类型为text的数据列名，可以与数据老化功能同时配置。
+
+   示例代码如下：
+
+   ```ts
+   // content列配置了数据压缩，并且配置了数据老化。
+   OH_Rdb_ExecuteV2(store_, "CREATE TABLE IF NOT EXISTS test3 (time integer not null, content text) with (time_col = 'time', interval = '5 minute', compress_col = 'content');", nullptr, nullptr);
+   ```
+
+10. 删除数据库。示例代码如下：
 
    ```c
    OH_Rdb_CloseStore(store_);

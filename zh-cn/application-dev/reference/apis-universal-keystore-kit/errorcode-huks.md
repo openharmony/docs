@@ -252,3 +252,23 @@ A device password is required but not set.
 **处理步骤**
 
 设置锁屏密码，或更换密钥的使用限制。
+
+## 12000018 输入参数非法
+
+**错误信息**
+
+The input parameter is invalid.
+
+**可能原因**
+
+1. 必选参数没有传入。
+
+2. 参数类型错误（Type Error）。
+
+3. 空参数错误（Null Argument Error）。
+
+4. 参数值范围错误（Value Range Error）。
+
+**处理步骤**
+
+请检查必选参数是否传入，或者传入的参数类型是否错误。对于参数校验失败原因，请阅读参数规格约束，按照可能原因进行排查。

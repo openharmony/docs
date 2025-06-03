@@ -51,14 +51,14 @@ alloc(size: number, fill?: string | Buffer | number, encoding?: BufferEncoding):
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | size | number | 是 | 指定的Buffer对象长度，单位：字节。 |
-| fill | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;number | 否 | 填充至新缓存区的值，默认值：0。 |
+| fill | string \| [Buffer](#buffer) \| number | 否 | 填充至新缓存区的值，默认值：0。 |
 | encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式（当`fill`为string时，才有意义）。默认值：'utf8'。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 返回一个Buffer对象。 |
+| [Buffer](#buffer) | 返回一个Buffer对象。 |
 
 **错误码：**
 
@@ -71,11 +71,16 @@ alloc(size: number, fill?: string | Buffer | number, encoding?: BufferEncoding):
 **示例：**
 
 ```ts
-import { buffer } from '@kit.ArkTS';
+import { buffer, JSON } from '@kit.ArkTS';
 
 let buf1 = buffer.alloc(5);
+console.info(JSON.stringify(buf1)); // {"type":"Buffer","data":[0,0,0,0,0]}
+
 let buf2 = buffer.alloc(5, 'a');
+console.info(JSON.stringify(buf2)); // {"type":"Buffer","data":[97,97,97,97,97]}
+
 let buf3 = buffer.alloc(11, 'aGVsbG8gd29ybGQ=', 'base64');
+console.info(JSON.stringify(buf3)); // {"type":"Buffer","data":[104,101,108,108,111,32,119,111,114,108,100]}
 ```
 
 ## buffer.allocUninitializedFromPool
@@ -99,7 +104,7 @@ allocUninitializedFromPool(size: number): Buffer
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 未初始化的Buffer实例。 |
+| [Buffer](#buffer) | 未初始化的Buffer实例。 |
 
 **错误码：**
 
@@ -112,10 +117,11 @@ allocUninitializedFromPool(size: number): Buffer
 **示例：**
 
 ```ts
-import { buffer } from '@kit.ArkTS';
+import { buffer, JSON } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(10);
 buf.fill(0);
+console.info(JSON.stringify(buf)); // {"type":"Buffer","data":[0,0,0,0,0,0,0,0,0,0]}
 ```
 
 ## buffer.allocUninitialized
@@ -139,7 +145,7 @@ allocUninitialized(size: number): Buffer
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 未初始化的Buffer实例。 |
+| [Buffer](#buffer) | 未初始化的Buffer实例。 |
 
 **错误码：**
 
@@ -152,10 +158,11 @@ allocUninitialized(size: number): Buffer
 **示例：**
 
 ```ts
-import { buffer } from '@kit.ArkTS';
+import { buffer, JSON } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitialized(10);
 buf.fill(0);
+console.info(JSON.stringify(buf)); // {"type":"Buffer","data":[0,0,0,0,0,0,0,0,0,0]}
 ```
 
 ## buffer.byteLength
@@ -172,7 +179,7 @@ byteLength(string: string | Buffer | TypedArray | DataView | ArrayBuffer | Share
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| string | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;TypedArray&nbsp;\|&nbsp;DataView&nbsp;\|&nbsp;ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | 是 | 指定字符串。 |
+| string | string \| [Buffer](#buffer) \| TypedArray \| DataView \| ArrayBuffer \| SharedArrayBuffer | 是 | 指定字符串。 |
 | encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式。默认值：'utf8'。 |
 
 **返回值：**
@@ -213,8 +220,8 @@ compare(buf1: Buffer | Uint8Array, buf2: Buffer | Uint8Array): -1 | 0 | 1
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| buf1 | Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 待比较数组。 |
-| buf2 | Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 待比较数组。 |
+| buf1 | [Buffer](#buffer) \| Uint8Array | 是 | 待比较数组。 |
+| buf2 | [Buffer](#buffer) \| Uint8Array | 是 | 待比较数组。 |
 
 **返回值：**
 
@@ -264,7 +271,7 @@ concat(list: Buffer[] | Uint8Array[], totalLength?: number): Buffer
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 返回新的Buffer对象。 |
+| [Buffer](#buffer) | 返回新的Buffer对象。 |
 
 **错误码：**
 
@@ -307,7 +314,7 @@ from(array: number[]): Buffer
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 新的Buffer对象。 |
+| [Buffer](#buffer) | 新的Buffer对象。 |
 
 **错误码：**
 
@@ -349,7 +356,7 @@ from(arrayBuffer: ArrayBuffer | SharedArrayBuffer, byteOffset?: number, length?:
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 返回一个Buffer对象，该对象与入参对象`arrayBuffer`共享相同的内存区域。 |
+| [Buffer](#buffer) | 返回一个Buffer对象，该对象与入参对象`arrayBuffer`共享相同的内存区域。 |
 
 **错误码：**
 
@@ -363,10 +370,11 @@ from(arrayBuffer: ArrayBuffer | SharedArrayBuffer, byteOffset?: number, length?:
 **示例：**
 
 ```ts
-import { buffer } from '@kit.ArkTS';
+import { buffer, JSON } from '@kit.ArkTS';
 
 let ab = new ArrayBuffer(10);
 let buf = buffer.from(ab, 0, 2);
+console.info(JSON.stringify(buf)); // {"type":"Buffer","data":[0,0]}
 ```
 
 ## buffer.from
@@ -384,13 +392,13 @@ from(buffer: Buffer | Uint8Array): Buffer
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| buffer | Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 对象数据。 |
+| buffer | [Buffer](#buffer) \| Uint8Array | 是 | 对象数据。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 新的Buffer对象。 |
+| [Buffer](#buffer) | 新的Buffer对象。 |
 
 **错误码：**
 
@@ -412,8 +420,8 @@ let buf2 = buffer.from(buf1);
 // 以Uint8Array对象类型进行创建Buffer对象，保持对象间内存共享
 let uint8Array = new Uint8Array(10);
 let buf3 = buffer.from(uint8Array);
-buf3.fill(1)
-console.info("uint8Array:", uint8Array)
+buf3.fill(1);
+console.info("uint8Array:", uint8Array);
 // 输出结果：1,1,1,1,1,1,1,1,1,1
 ```
 
@@ -439,7 +447,7 @@ from(object: Object, offsetOrEncoding: number | string, length: number): Buffer
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 返回新的Buffer对象。 |
+| [Buffer](#buffer) | 返回新的Buffer对象。 |
 
 **错误码：**
 
@@ -452,9 +460,10 @@ from(object: Object, offsetOrEncoding: number | string, length: number): Buffer
 **示例：**
 
 ```ts
-import { buffer } from '@kit.ArkTS';
+import { buffer, JSON } from '@kit.ArkTS';
 
 let buf = buffer.from(new String('this is a test'), 'utf8', 14);
+console.info(JSON.stringify(buf)); // {"type":"Buffer","data":[116,104,105,115,32,105,115,32,97,32,116,101,115,116]}
 ```
 
 ## buffer.from
@@ -478,7 +487,7 @@ from(string: String, encoding?: BufferEncoding): Buffer
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 返回新的Buffer对象。 |
+| [Buffer](#buffer) | 返回新的Buffer对象。 |
 
 **错误码：**
 
@@ -598,7 +607,7 @@ transcode(source: Buffer | Uint8Array, fromEnc: string, toEnc: string): Buffer
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| source | Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 实例对象。 |
+| source | [Buffer](#buffer) \| Uint8Array | 是 | 实例对象。 |
 | fromEnc | string | 是 | 当前编码。 支持的格式范围为[BufferEncoding](#bufferencoding)。 |
 | toEnc | string | 是 | 目标编码。 支持的格式范围为[BufferEncoding](#bufferencoding)。 |
 
@@ -606,7 +615,7 @@ transcode(source: Buffer | Uint8Array, fromEnc: string, toEnc: string): Buffer
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 将当前编码转换成目标编码，并返回一个新的Buffer对象。 |
+| [Buffer](#buffer) | 将当前编码转换成目标编码，并返回一个新的Buffer对象。 |
 
 **错误码：**
 
@@ -677,7 +686,7 @@ compare(target: Buffer | Uint8Array, targetStart?: number, targetEnd?: number, s
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| target | Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要比较的实例对象。 |
+| target | [Buffer](#buffer) \| Uint8Array | 是 | 要比较的实例对象。 |
 | targetStart | number | 否 | `target`实例中开始的偏移量。默认值：0。 |
 | targetEnd | number | 否 | `target`实例中结束的偏移量（不包含结束位置）。默认值：目标对象的字节长度。 |
 | sourceStart | number | 否 | `this`实例中开始的偏移量。默认值：0。 |
@@ -728,7 +737,7 @@ copy(target: Buffer| Uint8Array, targetStart?: number, sourceStart?: number, sou
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| target | Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要复制到的Buffer或Uint8Array实例。 |
+| target | [Buffer](#buffer) \| Uint8Array | 是 | 要复制到的Buffer或Uint8Array实例。 |
 | targetStart | number | 否 | `target`实例中开始写入的偏移量。默认值：0。 |
 | sourceStart | number | 否 | `this`实例中开始复制的偏移量。默认值: 0。 |
 | sourceEnd | number | 否 | `this`实例中结束复制的偏移量（不包含结束位置）。默认值：当前对象的字节长度。 |
@@ -817,7 +826,7 @@ equals(otherBuffer: Uint8Array | Buffer): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| otherBuffer | Uint8Array&nbsp;\|&nbsp;Buffer | 是 | 比较的目标对象。 |
+| otherBuffer | Uint8Array \| [Buffer](#buffer) | 是 | 比较的目标对象。 |
 
 **返回值：**
 
@@ -862,7 +871,7 @@ fill(value: string | Buffer | Uint8Array | number, offset?: number, end?: number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array&nbsp;\|&nbsp;number | 是 | 用于填充的值。 |
+| value | string \| [Buffer](#buffer) \| Uint8Array \| number | 是 | 用于填充的值。 |
 | offset | number | 否 | 起始偏移量。默认值：0。 |
 | end | number | 否 | 结束偏移量（不包含结束位置）。 默认值：当前对象的字节长度。 |
 | encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式（`value`为string才有意义）。默认值：'utf8'。 |
@@ -871,7 +880,7 @@ fill(value: string | Buffer | Uint8Array | number, offset?: number, end?: number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 返回填充后的Buffer对象。 |
+| [Buffer](#buffer) | 返回填充后的Buffer对象。 |
 
 **错误码：**
 
@@ -907,7 +916,7 @@ includes(value: string | number | Buffer | Uint8Array, byteOffset?: number, enco
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要搜索的内容。 |
+| value | string \| number \| [Buffer](#buffer) \| Uint8Array | 是 | 要搜索的内容。 |
 | byteOffset | number | 否 | 字节偏移量。如果为负数，则从末尾开始计算偏移量。默认值：0。 |
 | encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。默认值：'utf8'。 |
 
@@ -951,7 +960,7 @@ indexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encod
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要查找的内容。 |
+| value | string \| number \| [Buffer](#buffer) \| Uint8Array | 是 | 要查找的内容。 |
 | byteOffset | number | 否 | 字节偏移量。如果为负数，则从末尾开始计算偏移量。默认值：0。 |
 | encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。默认值：'utf8'。 |
 
@@ -1031,7 +1040,7 @@ lastIndexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, e
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要搜索的内容。 |
+| value | string \| number \| [Buffer](#buffer) \| Uint8Array | 是 | 要搜索的内容。 |
 | byteOffset | number | 否 | 字节偏移量。如果为负数，则从末尾开始计算偏移量。默认值：Buffer.length。 |
 | encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。默认值：'utf8'。 |
 
@@ -2103,7 +2112,7 @@ subarray(start?: number, end?: number): Buffer
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 返回新的Buffer对象。当start < 0或end < 0时返回空Buffer。 |
+| [Buffer](#buffer) | 返回新的Buffer对象。当start < 0或end < 0时返回空Buffer。 |
 
 **示例：**
 
@@ -2135,7 +2144,7 @@ swap16(): Buffer
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 交换之后的Buffer对象。 |
+| [Buffer](#buffer) | 交换之后的Buffer对象。 |
 
 **错误码：**
 
@@ -2173,7 +2182,7 @@ swap32(): Buffer
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 交换之后的Buffer对象。 |
+| [Buffer](#buffer) | 交换之后的Buffer对象。 |
 
 **错误码：**
 
@@ -2211,7 +2220,7 @@ swap64(): Buffer
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 交换之后的Buffer对象。 |
+| [Buffer](#buffer) | 交换之后的Buffer对象。 |
 
 **错误码：**
 
@@ -2329,8 +2338,8 @@ values(): IterableIterator&lt;number&gt;
 import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from('buffer');
-let pair = buf1.values()
-let next:IteratorResult<number> = pair.next()
+let pair = buf1.values();
+let next:IteratorResult<number> = pair.next();
 while (!next.done) {
   console.info(next.value.toString());
   /*
@@ -3500,6 +3509,7 @@ import { buffer } from '@kit.ArkTS';
 let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let blob2 = blob.slice(0, 2);
 let blob3 = blob.slice(0, 2, "MIME");
+console.info("type:", blob3.type); // type: MIME
 ```
 
 ### text

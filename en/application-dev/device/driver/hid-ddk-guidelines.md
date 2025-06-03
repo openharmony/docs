@@ -28,11 +28,11 @@ A non-standard peripheral application obtains the HID device ID by using the per
 
 ## Constraints
 
-* The APIs provided by the HID DDK can be used to develop drivers of non-standard HID devices.
+- The APIs provided by the HID DDK can be used to develop drivers of non-standard HID devices.
 
-* The open APIs of HID DDK can be used only within the lifecycle of **DriverExtensionAbility**.
+- The open APIs of HID DDK can be used only within the lifecycle of **DriverExtensionAbility**.
 
-* Before using the open APIs of the HID DDK, you must declare the matching ACL permissions in **module.json5**, for example, **ohos.permission.ACCESS_DDK_HID**.
+- Before using the open APIs of the HID DDK, you must declare the matching ACL permissions in **module.json5**, for example, **ohos.permission.ACCESS_DDK_HID**.
 
 ## Available APIs
 
@@ -80,38 +80,38 @@ libhid.z.so
 
 1. Create a HID device.
 
-    Call **OH_Hid_CreateDevice** in **hid_ddk_api.h** to create a HID device. If the operation is successful, **deviceId** (a non-negative number) is returned. If the operation fails, an error code (a negative number) is returned.
+    Use **OH_Hid_CreateDevice** of **hid_ddk_api.h** to create a HID device. If the operation is successful, a device ID is returned. If the operation fails, an [error code](../../reference/apis-driverdevelopment-kit/_hid_ddk.md#hid_ddkerrcode) is returned.
 
     ```c++
-   // Construct HID device properties.
-   std::vector<Hid_DeviceProp> deviceProp = {HID_PROP_DIRECT};
-   std::string deviceName = "keyboard"
-   Hid_Device hidDevice = {
-       .deviceName = deviceName.c_str(), 
-       .vendorId = 0x6006, 
-       .productId = 0x6006, 
-       .version = 1, 
-       .bustype = 3,
-       .properties = deviceProp.data(),
-       .propLength = (uint16_t)deviceProp.size()
-   };
-   // Construct the event properties related to the HID device.
-   std::vector<Hid_EventType> eventType = {HID_EV_ABS, HID_EV_KEY, HID_EV_SYN, HID_EV_MSC};
-   Hid_EventTypeArray eventTypeArray = {.hidEventType = eventType.data(), .length = (uint16_t)eventType.size()};
-   std::vector<Hid_KeyCode> keyCode = {HID_BTN_TOOL_PEN, HID_BTN_TOOL_RUBBER, HID_BTN_TOUCH, HID_BTN_STYLUS, HID_BTN_RIGHT};
-   Hid_KeyCodeArray keyCodeArray = {.hidKeyCode = keyCode.data(), .length = (uint16_t)keyCode.size()};
-   std::vector<Hid_MscEvent> mscEvent = {HID_MSC_SCAN};
-   Hid_MscEventArray mscEventArray = {.hidMscEvent = mscEvent.data(), .length = (uint16_t)mscEvent.size()};
-   std::vector<Hid_AbsAxes> absAxes = {HID_ABS_X, HID_ABS_Y, HID_ABS_PRESSURE};
-   Hid_AbsAxesArray absAxesArray = {.hidAbsAxes = absAxes.data(), .length = (uint16_t)absAxes.size()};
-   Hid_EventProperties hidEventProp = {
-       .hidEventTypes = eventTypeArray,
-       .hidKeys = keyCodeArray,
-       .hidAbs = absAxesArray,
-       .hidMiscellaneous = mscEventArray
+    // Construct HID device properties.
+    std::vector<Hid_DeviceProp> deviceProp = {HID_PROP_DIRECT}; // The vector header file needs to be imported.
+    std::string deviceName = "keyboard";
+    Hid_Device hidDevice = {
+        .deviceName = deviceName.c_str(), 
+        .vendorId = 0x6006, 
+        .productId = 0x6006, 
+        .version = 1, 
+        .bustype = 3,
+        .properties = deviceProp.data(),
+        .propLength = (uint16_t)deviceProp.size()
     };
-    // Create a device. The device ID of the device created is returned.
-    int32_t deviceId = OH_Hid_CreateDevice(&hidDevice, &hidEventProp);
+    // Construct the event properties related to the HID device.
+    std::vector<Hid_EventType> eventType = {HID_EV_ABS, HID_EV_KEY, HID_EV_SYN, HID_EV_MSC};
+    Hid_EventTypeArray eventTypeArray = {.hidEventType = eventType.data(), .length = (uint16_t)eventType.size()};
+    std::vector<Hid_KeyCode> keyCode = {HID_BTN_TOOL_PEN, HID_BTN_TOOL_RUBBER, HID_BTN_TOUCH, HID_BTN_STYLUS, HID_BTN_RIGHT};
+    Hid_KeyCodeArray keyCodeArray = {.hidKeyCode = keyCode.data(), .length = (uint16_t)keyCode.size()};
+    std::vector<Hid_MscEvent> mscEvent = {HID_MSC_SCAN};
+    Hid_MscEventArray mscEventArray = {.hidMscEvent = mscEvent.data(), .length = (uint16_t)mscEvent.size()};
+    std::vector<Hid_AbsAxes> absAxes = {HID_ABS_X, HID_ABS_Y, HID_ABS_PRESSURE};
+    Hid_AbsAxesArray absAxesArray = {.hidAbsAxes = absAxes.data(), .length = (uint16_t)absAxes.size()};
+    Hid_EventProperties hidEventProp = {
+        .hidEventTypes = eventTypeArray,
+        .hidKeys = keyCodeArray,
+        .hidAbs = absAxesArray,
+        .hidMiscellaneous = mscEventArray
+        };
+        // Create a device. The device ID of the device created is returned.
+        int32_t deviceId = OH_Hid_CreateDevice(&hidDevice, &hidEventProp);
     ```
 
 2. Send an event to the HID device.

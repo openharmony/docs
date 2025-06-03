@@ -98,7 +98,7 @@ copyOptions(value: CopyOptions)
 
 设置组件是否支持文本内容可复制粘贴。
 
-copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选择弹框。如果通过bindSelectionMenu等方式自定义文本选择菜单，则会弹出自定义的菜单。
+copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选择菜单。如果通过bindSelectionMenu等方式自定义文本选择菜单，则会弹出自定义的菜单。
 
 设置copyOptions为CopyOptions.None时，禁用复制、剪切、翻译、搜索、帮写功能。
 
@@ -131,7 +131,7 @@ decoration:{
 }
 ```
 
-触摸点击和鼠标右键点击实体，会根据实体类型弹出对应的实体操作菜单，鼠标左键点击实体会直接响应菜单的第一个选项。
+触摸点击或鼠标右键点击实体时，会根据实体类型弹出对应的实体操作菜单，鼠标左键点击实体会直接响应菜单的第一个选项。
 
 对addBuilderSpan的节点文本，该功能不会生效。
 
@@ -284,7 +284,7 @@ enterKeyType(value: EnterKeyType)
 
 | 参数名 | 类型   | 必填 | 说明                                |
 | ------ | ------ | ---- | ----------------------------------- |
-| value  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明) | 是   | 键盘输入法回车键类型。<br/>默认为EnterKeyType.NEW_LINE。 |
+| value  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明) | 是   | 软键盘输入法回车键类型。<br/>默认为EnterKeyType.NEW_LINE。 |
 
 ### enableKeyboardOnFocus<sup>12+</sup>
 
@@ -379,7 +379,7 @@ keyboardAppearance(appearance: Optional\<KeyboardAppearance\>)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
-| appearance | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15枚举说明)\> | 是   | 键盘的外观。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
+| appearance | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15枚举说明)\> | 是   | 键盘外观。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
 
 ### stopBackPress<sup>18+</sup>
 
@@ -439,7 +439,7 @@ onSelect(callback:Callback\<[RichEditorSelection](#richeditorselection)\>)
 
 手指长按选中内容触发回调；松开手指再次触发回调。
 
-使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件不支持该回调。
+需要实时感知选中区变化的场景和使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件，请使用onSelectionChange接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -473,7 +473,7 @@ aboutToIMEInput(callback:Callback\<[RichEditorInsertValue](#richeditorinsertvalu
 
 onDidIMEInput(callback:Callback\<TextRange>)
 
-输入法完成输入内容后，触发回调。
+输入法输入完成后，触发回调。
 
 使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件不支持该回调。
 
@@ -492,7 +492,7 @@ onDidIMEInput(callback:Callback\<TextRange>)
 
 onIMEInputComplete(callback:Callback\<[RichEditorTextSpanResult](#richeditortextspanresult)\>)
 
-输入法完成输入内容后，触发回调。
+输入法输入完成后，触发回调。
 
 该接口仅支持返回一个文本span的信息，当编辑操作涉及返回多个文本span信息时，建议使用[onDidIMEInput](#ondidimeinput12)接口。
 
@@ -695,7 +695,7 @@ onCopy(callback: Callback\<CopyEvent\>)
 
 ## RichEditorDeleteValue
 
-删除操作的信息和被删除内容的信息。
+删除操作和被删除内容的信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -992,7 +992,7 @@ closeSelectionMenu(): void
 
 getTypingStyle(): RichEditorTextStyle
 
-获取用户预设的样式。
+获取用户预设的文本样式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1008,7 +1008,7 @@ getTypingStyle(): RichEditorTextStyle
 
 setTypingStyle(value: RichEditorTextStyle): void
 
-设置用户预设的样式。
+设置用户预设的文本样式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1019,6 +1019,22 @@ setTypingStyle(value: RichEditorTextStyle): void
 | 参数名   | 类型                                     | 必填   | 说明  |
 | ----- | ---------------------------------------- | ---- | ----- |
 | value | [RichEditorTextStyle](#richeditortextstyle) | 是    | 预设样式。 |
+
+### setTypingParagraphStyle<sup>20+</sup>
+
+setTypingParagraphStyle(style: RichEditorParagraphStyle): void
+
+设置用户预设的段落样式。仅在组件内容为空或组件末尾换行后，输入文本生效。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填   | 说明  |
+| ----- | ---------------------------------------- | ---- | ----- |
+| style | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | 是    | 预设段落样式。 |
 
 ### setSelection<sup>11+</sup>
 
@@ -1437,7 +1453,7 @@ controller: RichEditorStyledStringController = new RichEditorStyledStringControl
 
 getSelection(): RichEditorRange
 
-获取当前富文本当前的选中区域范围。
+获取富文本当前的选中区域范围。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1827,7 +1843,7 @@ RichEditor span信息。
 
 ## RichEditorGesture<sup>11+</sup>
 
-定义用户行为回调。
+用户手势事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1865,7 +1881,7 @@ type SubmitCallback = (enterKey: EnterKeyType, event: SubmitEvent) => void
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
 | enterKey | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明)             | 是   | 软键盘输入法回车键类型。具体类型见EnterKeyType枚举说明。 |
-| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11) | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。EnterKeyType指定为NEW_LINE时，默认保持编辑态。         |
+| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11) | 是   | 当提交的时候，提供保持组件编辑状态的方法。EnterKeyType指定为NEW_LINE时，默认保持编辑态。         |
 
 ## MenuOnAppearCallback<sup>12+</sup>
 
@@ -5241,3 +5257,96 @@ struct StyledUndo {
 }
 ```
 ![UndoStyle](figures/richEditorStyledUndo.gif)
+
+### 示例29（文本设置预设段落样式）
+可以通过setTypingParagraphStyle接口设置预设段落样式。
+
+```ts
+@Entry
+@Component
+struct RichEditorExample {
+  controller: RichEditorController = new RichEditorController()
+  options: RichEditorOptions = { controller: this.controller }
+  ssController: RichEditorStyledStringController = new RichEditorStyledStringController()
+  ssOptions: RichEditorStyledStringOptions = { controller: this.ssController }
+  contentChangedListener: StyledStringChangedListener = {
+    onWillChange: (value: StyledStringChangeValue) => {
+      let range = '[ ' + value.range.start + ' , ' + value.range.end + ' ]';
+      let replaceString = value.replacementString.getString();
+      console.info('styledString, onWillChange, range=' + range);
+      console.info('styledString, onWillChange, replaceString=' + replaceString);
+      let styles: Array<SpanStyle> = []
+      if (replaceString.length != 0) {
+        styles = value.replacementString.getStyles(0, replaceString.length, StyledStringKey.PARAGRAPH_STYLE)
+      }
+      styles.forEach((style) => {
+        let value = style.styledValue
+        let paraStyle: ParagraphStyle = value as ParagraphStyle
+        if (paraStyle != undefined) {
+          console.info('styledString, onWillChange, textAlign=' + JSON.stringify(paraStyle.textAlign)
+            + ', textIndent=' + JSON.stringify(paraStyle.textIndent)
+            + ', maxLines=' + JSON.stringify(paraStyle.maxLines)
+            + ', overflow=' + JSON.stringify(paraStyle.overflow)
+            + ', wordBreak=' + JSON.stringify(paraStyle.wordBreak)
+            + ', leadingMargin=' + JSON.stringify(paraStyle.leadingMargin)
+            + ', paragraphSpacing=' + JSON.stringify(paraStyle.paragraphSpacing)
+          );
+        }
+      })
+      return true;
+    }
+  }
+
+  build() {
+    Column() {
+      Row() {
+        Text('ParaStyle')
+        // 设置预设段落样式为居中对齐
+        Button('setStyle1').onClick(() => {
+          let paragraphStyle: RichEditorParagraphStyle = {
+            textAlign: TextAlign.Center
+          }
+          this.controller.setTypingParagraphStyle(paragraphStyle)
+          this.ssController.setTypingParagraphStyle(paragraphStyle)
+        })
+        // 设置预设段落样式为左对齐、带有缩进
+        Button('setStyle2').onClick(() => {
+          let paragraphStyle: RichEditorParagraphStyle = {
+            textAlign: TextAlign.Start,
+            leadingMargin: 80
+          }
+          this.controller.setTypingParagraphStyle(paragraphStyle)
+          this.ssController.setTypingParagraphStyle(paragraphStyle)
+        })
+        // 清除预设段落样式
+        Button('clearParaStyle').onClick(() => {
+          this.controller.setTypingParagraphStyle(undefined)
+          this.ssController.setTypingParagraphStyle(undefined)
+        })
+      }
+
+      Row() {
+        Column() {
+          RichEditor(this.options)
+            .height('25%')
+            .width('100%')
+            .border({ width: 1, color: Color.Blue })
+            .onWillChange((value: RichEditorChangeValue) => {
+              console.log('controller, onWillChange, rangeBefore=' + JSON.stringify(value.rangeBefore))
+              value.replacedSpans.forEach((item: RichEditorTextSpanResult) => {
+                console.log('controller, onWillChange, replacedTextSpans=' + JSON.stringify(item))
+              })
+              return true
+            })
+          RichEditor(this.ssOptions)
+            .height('25%')
+            .width('100%')
+            .onReady(() => {
+              this.ssController.onContentChanged(this.contentChangedListener);
+            })
+        }
+      }
+    }
+  }
+}
+```

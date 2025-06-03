@@ -6,6 +6,8 @@
 
 **库：** libohaudio.so
 
+**引用文件：** <ohaudio/native_audiocapturer.h>
+
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **起始版本：** 10

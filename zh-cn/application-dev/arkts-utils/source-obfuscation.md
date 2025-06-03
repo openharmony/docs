@@ -22,7 +22,7 @@ ArkGuard支持ArkTS、TS和JS语言，不支持C/C++、JSON、资源文件等。
 ### 混淆能力
 ArkGuard支持基础的名称混淆、代码压缩和注释删除功能，不支持控制混淆、数据混淆等高级混淆功能。
 
-名称混淆主要提供**名称重命名**和**配置保留白名单**的能力。  
+名称混淆主要提供**名称重命名**和**配置保留白名单**的能力。
   
 ### 混淆能力局限性
 
@@ -174,6 +174,15 @@ test(a2);
     ```
     let person = {"exampleName": "abc"};
     person["exampleAge"] = 22;
+    ```
+
+* 注解成员名不会被混淆。例如下面例子中的`authorName`和`revision`不会被混淆。
+
+    ```
+    @interface MyAnnotation {
+      authorName: string;
+      revision: number = 1;
+    }
     ```
 
 ### -enable-string-property-obfuscation
@@ -680,6 +689,25 @@ namespace MyNameSpace {
 // 保留被标记的变量名，myVal不会被混淆。
 // @KeepSymbol
 const myVal = 1;
+```
+
+#### 注解
+
+当前仅支持标记并保留注解声明。标记注解成员无效，注解成员本身不会被混淆。
+
+从API version 20开始，支持标记注解声明。
+
+**示例**
+
+```typescript
+// 保留被标记的注解声明，MyAnnotation不会被混淆。
+// @KeepSymbol
+@interface MyAnnotation {
+  // 标记注解成员无效，authorName不会被收集到白名单。
+  // @KeepSymbol
+  authorName: string;
+  revision: number = 1;
+}
 ```
 
 #### 白名单添加规则

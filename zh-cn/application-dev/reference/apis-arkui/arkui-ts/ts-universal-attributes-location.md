@@ -40,7 +40,7 @@ align(alignment: Alignment | LocalizedAlignment)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                         |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| alignment  | [Alignment](ts-appendix-enums.md#alignment) \| [LocalizedAlignment](ts-appendix-enums.md#localizedalignment20) | 是   | 设置容器元素绘制区域内的子元素的对齐方式，增加支持镜像的能力。<br/>LocalizedAlignment只在[Stack](ts-container-stack.md)、[Shape](ts-drawing-components-shape.md)、[ListItem](ts-container-listitem.md)、[Button](ts-basic-components-button.md)、[GridItem](ts-container-griditem.md)、[FlowItem](ts-container-flowitem.md)、[ImageAnimator](ts-basic-components-imageanimator.md)、[LoadingProgress](ts-basic-components-loadingprogress.md)、[PatternLock](ts-basic-components-patternlock.md)、[Progress](ts-basic-components-progress.md)、[QRCode](ts-basic-components-qrcode.md)、[TextClock](ts-basic-components-textclock.md)、[TextTimer](ts-basic-components-texttimer.md)、[StepperItem](ts-basic-components-stepperitem.md)、[MenuItem](ts-basic-components-menuitem.md)、[Toggle](ts-basic-components-toggle.md)、[Checkbox](ts-basic-components-checkbox.md)、[RichEditor](ts-basic-components-richeditor.md)中生效。<br/>默认值：Alignment.Center、LocalizedAlignment.CENTER<br/>**说明：** <br/>Alignment类型不支持镜像能力；LocalizedAlignment类型支持镜像能力，选择LocalizedAlignment中的泛化方向词，根据direction或系统语言方向的改变实现镜像切换。其中direction的优先级高于系统语言方向，当设置direction且不为auto时，LocalizedAlignment的镜像按照direction进行布局；当设置direction为auto或未设置时，LocalizedAlignment的镜像按照系统语言方向进行布局。<br/>align取undefined或null时按默认值处理，效果为居中显示。 |
+| alignment  | [Alignment](ts-appendix-enums.md#alignment) \| [LocalizedAlignment](ts-appendix-enums.md#localizedalignment20) | 是   | 设置容器元素绘制区域内的子元素的对齐方式，增加支持镜像的能力。<br/>LocalizedAlignment只在[Shape](ts-drawing-components-shape.md)、[Button](ts-basic-components-button.md)、[GridItem](ts-container-griditem.md)、[FlowItem](ts-container-flowitem.md)、[ImageAnimator](ts-basic-components-imageanimator.md)、[LoadingProgress](ts-basic-components-loadingprogress.md)、[PatternLock](ts-basic-components-patternlock.md)、[Progress](ts-basic-components-progress.md)、[QRCode](ts-basic-components-qrcode.md)、[TextClock](ts-basic-components-textclock.md)、[TextTimer](ts-basic-components-texttimer.md)、[StepperItem](ts-basic-components-stepperitem.md)、[MenuItem](ts-basic-components-menuitem.md)、[Toggle](ts-basic-components-toggle.md)、[Checkbox](ts-basic-components-checkbox.md)、[ListItem](ts-container-listitem.md)中有效果。<br/>其中，除[ListItem](ts-container-listitem.md)与Alignment的效果保持一致以外，其他组件镜像切换均生效；其他设置LocalizedAlignment无效果的组件按其默认效果显示。<br/>默认值：Alignment.Center、LocalizedAlignment.CENTER<br/>**说明：** <br/>Alignment类型不支持镜像能力；LocalizedAlignment类型支持镜像能力，选择LocalizedAlignment中的枚举值，根据direction或系统语言方向的改变实现镜像切换。其中direction的优先级高于系统语言方向，当设置direction且不为auto时，LocalizedAlignment的镜像按照direction进行布局；当设置direction为auto或未设置时，LocalizedAlignment的镜像按照系统语言方向进行布局。<br/>align属性入参为undefined或null时按默认值处理，效果为居中显示。 |
 
 ## direction
 
@@ -149,6 +149,30 @@ alignRules(alignRule: LocalizedAlignRuleOptions)
 | 参数名 | 类型                                        | 必填 | 说明                     |
 | ------ | ------------------------------------------- | ---- | ------------------------ |
 | alignRule  | [LocalizedAlignRuleOptions](#localizedalignruleoptions12对象说明) | 是   | 指定设置在相对容器中子组件的对齐规则。 |
+
+## layoutGravity<sup>20+</sup>
+
+layoutGravity(alignment: LocalizedAlignment): T
+
+单独设置Stack容器中子组件的对齐规则，仅当父容器为Stack时生效。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                        | 必填 | 说明                     |
+| ------ | ------------------------------------------- | ---- | ------------------------ |
+| alignment  | [LocalizedAlignment](ts-appendix-enums.md#localizedalignment20) | 是   | 指定设置在Stack容器中子组件的对齐规则。<br/>默认值：LocalizedAlignment.CENTER 。说明：当传入异常值时，按默认值处理。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## AlignRuleOption对象说明
 
@@ -627,3 +651,64 @@ struct buttonTestDemo {
 }
 ```
 ![position.png](figures/position4.png)
+
+### 示例6（layoutGravity属性单独设置Stack容器中子组件的对齐规则）
+
+更改Stack中Text的位置。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index5 {
+  private layoutGravityArr: LocalizedAlignment[] = [
+    LocalizedAlignment.TOP_START, LocalizedAlignment.TOP, LocalizedAlignment.TOP_END,
+    LocalizedAlignment.START, LocalizedAlignment.CENTER, LocalizedAlignment.END,
+    LocalizedAlignment.BOTTOM_START, LocalizedAlignment.BOTTOM, LocalizedAlignment.BOTTOM_END];
+  @State layoutGravityIndex: number = 0;
+  private directionArr: Direction[] = [Direction.Ltr, Direction.Rtl, Direction.Auto];
+  @State directionIndex: number = 0;
+
+  build() {
+    Row() {
+      Column() {
+        Stack({
+          alignContent: Alignment.TopStart
+        }) {
+          Text('StackChildAlign_TopStart').fontSize(15)
+          Text('Child Text')
+            .width(150)
+            .height(150)
+            .backgroundColor(Color.Yellow)
+            .fontSize(15)
+            .layoutGravity(this.layoutGravityArr[this.layoutGravityIndex])
+        }
+        .width('100%')
+        .height(400)
+        .backgroundColor(Color.Grey)
+        .margin({ top: 10, bottom: 10 })
+        .direction(this.directionArr[this.directionIndex])
+
+        Button("LayoutGravity: " + this.layoutGravityArr[this.layoutGravityIndex])
+          .width(300)
+          .fontSize(16)
+          .onClick(() => {
+            this.layoutGravityIndex = ++this.layoutGravityIndex % this.layoutGravityArr.length;
+          })
+          .margin({ bottom: 10 })
+
+        Button("Direction: " + this.directionArr[this.directionIndex])
+          .width(150)
+          .fontSize(16)
+          .onClick(() => {
+            this.directionIndex = ++this.directionIndex % this.directionArr.length;
+          })
+          .margin({ bottom: 10 })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+![layoutGravity.gif](figures/layoutGravity.gif)

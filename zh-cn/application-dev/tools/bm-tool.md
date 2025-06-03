@@ -106,7 +106,7 @@ bm uninstall -n com.ohos.app -k
 ## 查询应用信息命令（dump）
 
 ```bash
-bm dump [-h] [-a] [-g] [-n bundleName] [-s shortcutInfo] [-d deviceId]
+bm dump [-h] [-a] [-g] [-n bundleName] [-s shortcutInfo] [-d deviceId] [-l label]
 ```
 
   **查询命令参数列表**
@@ -119,6 +119,7 @@ bm dump [-h] [-a] [-g] [-n bundleName] [-s shortcutInfo] [-d deviceId]
 | -n | 可选参数，查询指定Bundle名称的详细信息。 |
 | -s | 可选参数，查询指定Bundle名称下的快捷方式信息。 |
 | -d | 可选参数，查询指定设备中的包信息。默认查询当前设备。 |
+| -l | 可选参数，查询指定Bundle名称的label值（应用的名称）。 |
 
 
 示例：
@@ -134,6 +135,10 @@ bm dump -n com.ohos.app
 bm dump -s -n com.ohos.app
 # 查询跨设备应用信息
 bm dump -n com.ohos.app -d xxxxx
+# 查询该应用的label值（应用的名称）
+bm dump -n com.ohos.app -l
+# 显示所有已安装应用的bundle名称和label值（应用的名称）
+bm dump -a -l
 ```
 
 ## 清理命令（clean）
@@ -453,6 +458,8 @@ bm install-plugin -n com.ohos.app -p /data/plugin.hsp
 > **说明：**
 >
 > 在同一个应用中安装同一个插件，则视作插件版本更新，插件不支持降级安装；插件版本更新后，需要重启应用插件才能生效。
+> 
+> 不推荐安装与宿主应用模块同名的插件，目前运行态暂不支持。
 
 
 ## 卸载插件命令（uninstall-plugin）
@@ -960,7 +967,7 @@ error: signature verification failed due to not trusted app source.
       //UDID获取命令
       hdc shell bm get -u
     ```
-    
+
     2. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
 
     ```
@@ -1082,6 +1089,24 @@ error: install failed due to singleton not same.
 
 方案2：更新包调整singleton配置，与已安装包配置一致，重新打包，再更新应用包。<!--DelEnd-->
 
+<!--Del-->
+### 9568294 应用类别不一致导致的安装失败
+**错误信息**
+
+error: install failed due to apptype not same.
+
+**错误描述**
+
+应用安装时，应用已安装HAP包和待安装HAP包的签名文件中[app-feature](../security/app-provision-structure.md)配置不一致，导致安装失败。
+
+**可能原因**
+
+应用已安装HAP包和待安装HAP包包名一致，但签名文件中app-feature配置不一致。
+
+**处理步骤**
+  
+* 方案1：卸载已安装的HAP包，再安装新的HAP包。
+* 方案2：修改待安装HAP包的签名文件中的app-feature字段，确保与已安装包配置一致，重新打包、签名[应用/元服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)，再重试安装。<!--DelEnd-->
 
 ### 9568297 由于设备sdk版本较低导致安装失败
 **错误信息**
@@ -2132,7 +2157,7 @@ error: installd set selinux label failed.
 ### 9568398 非企业设备禁止安装企业应用
 **错误信息**
 
-error: Failed to install the HAP because an enterprise normal/MDM bundle can not be installed on non-enterprise device.
+error: Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device.
 
 **错误描述**
 
@@ -2236,7 +2261,7 @@ HAP包中native软件包目录下不存在module.json5中配置的native软件�
 ### 9568410 安装失败，设备受管控
 **错误信息**
 
-error: Failed to install the HAP because the device has been controlled.
+error: failed to install because the device be controlled.
 
 **错误描述**
 
@@ -2272,7 +2297,7 @@ error: check syscap filed and device type is not supported.
 ### 9568415 禁止安装签名证书为debug或者配置文件debug为true的加密应用
 **错误信息**
 
-error: Debug encrypted bundle is not allowed to install.
+error: debug encrypted bundle is not allowed to install.
 
 **错误描述**
 
@@ -2290,7 +2315,7 @@ error: Debug encrypted bundle is not allowed to install.
 ### 9568416 加密应用不允许安装
 **错误信息**
 
-error: Encrypted bundle can not be installed.
+error: Encrypted bundle cannot be installed.
 
 **错误描述**
 
@@ -2342,7 +2367,7 @@ error: Failed to uninstall the app because the app is locked.
 ### 9568420 禁止通过bm安装release的预装应用
 **错误信息**
 
-os_integration bundle is not allowed to install for shell.
+error: os_integration Bundle is not allowed to install for shell.
 
 **错误描述**
 
@@ -2490,7 +2515,7 @@ error: Install failed due to hap moduleName is empty.
 
 检查[module.json5](../quick-start/module-configuration-file.md)的name字段是否为空。
 
-### 9568331 签名信息不一致 
+### 9568331 签名信息不一致
 **错误信息**
 
 error: Install incompatible signature info.
@@ -2807,3 +2832,40 @@ error: The plugin name is same as host bundle name.
 **处理步骤**
 
 重新配置插件的包名。
+
+### 9568441 应用不能变更U1Enabled
+**错误信息**
+
+error: install failed due to U1Enabled can not change.
+
+**错误描述**
+
+签名信息中U1Enabled变更导致安装失败。
+
+**可能原因**
+
+应用[Profile签名文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugprofile-0000001914423102)中allowed-acls字段的U1Enabled配置发生变更，例如：
+1. 已安装应用在allowed-acls中配置了U1Enabled，待安装应用在allowed-acls中没有配置U1Enabled。
+2. 已安装应用在allowed-acls中没有配置U1Enabled，待安装应用在allowed-acls中配置了U1Enabled。
+
+**处理步骤**
+
+方案一：重新签名，签名过程中，请参考[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section9786111152213)的支持ACL权限、或者[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section157591551175916)的使用ACL的签名配置指导进行配置，确保待安装应用与已安装应用配置一致。<br>
+方案二：先卸载设备上已安装的应用，再尝试安装待安装应用。
+
+### 9568442 U1Enable配置不一致
+**错误信息**
+
+error: Install failed due to the U1Enabled is not same in all haps.
+
+**错误描述**
+
+签名信息中U1Enabled配置不一致，导致安装失败。
+
+**可能原因**
+
+多HAP包签名时使用的[Profile签名文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugprofile-0000001914423102)不一致导致签名信息中allowed-acls的U1Enabled配置不一致。
+
+**处理步骤**
+
+重新签名，签名过程中，请参考[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section9786111152213)的支持ACL权限、或者[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section157591551175916)的使用ACL的签名配置指导进行配置，使多个HAP包签名信息中allowed-acls的U1Enabled信息一致。

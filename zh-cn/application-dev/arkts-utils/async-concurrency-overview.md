@@ -9,7 +9,7 @@ Promise和async/await提供异步并发能力，是标准的JS异步语法。异
 
 - 逻辑依赖清晰​​：任务有明确的顺序或并行关系。
 
-异步语法是一种编程语言的特性，允许程序在执行某些操作时不必等待其完成，可以继续执行其他操作。
+异步并发是一种编程语言的特性，允许程序在执行某些操作时不必等待其完成，可以继续执行其他操作。
 
 ## Promise
 
@@ -31,6 +31,7 @@ const promise: Promise<number> = new Promise((resolve: Function, reject: Functio
   }, 1000);
 })
 ```
+<!-- @[promise_async_operation](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
 
 在上述代码中，setTimeout函数模拟了一个异步操作，1秒后生成一个随机数。如果随机数大于0.5，调用resolve回调函数并传递该随机数；否则调用reject回调函数并传递一个错误对象。
 
@@ -54,18 +55,19 @@ promise.then((result: number) => {
   console.error(error.message); // 失败时执行
 });
 ```
+<!-- @[promise_then_catch_handling](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
 
 在上述代码中，then方法的回调函数接收Promise对象的成功结果作为参数，并输出到控制台。如果Promise对象进入rejected状态，catch方法的回调函数接收错误对象作为参数，并输出到控制台。
 
 > **说明：**
 >
-> 当Promise被reject且未通过catch方法处理时，会触发unhandledrejection事件。可使用[errorManager.on('error')](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror)接口监听该事件，以全局捕获未处理的Promise reject。
+> 当Promise被reject且未通过catch方法处理时，会触发unhandledrejection事件。可使用[errorManager.on('unhandledrejection')](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageroffunhandledrejection12)接口监听该事件，以全局捕获未处理的Promise reject。
 
 ## async/await
 
 async/await是一种用于处理异步操作的Promise语法糖，使得编写异步代码变得更加简单和易读。通过使用async关键字声明一个函数为异步函数，并使用await关键字等待Promise的解析（完成或拒绝），以同步的方式编写异步操作的代码。
 
-async函数通过返回Promise对象实现异步操作，其内部通过await关键字暂停执行直至关联的Promise完成状态转换（fulfilled/rejected）。若函数执行过程中抛出异常，该异常将直接触发返回的Promise进入rejected状态，错误对象可通过.catch()方法或then的第二个回调参数捕获。
+async函数通过返回Promise对象实现异步操作，其内部可以包含零个或者多个await关键字，通过await暂停执行直至关联的Promise完成状态转换（fulfilled/rejected）。若函数执行过程中抛出异常，该异常将直接触发返回的Promise进入rejected状态，错误对象可通过.catch()方法或then的第二个回调参数捕获。
 
 下面是一个使用async/await的例子，其中模拟了一个以同步方式执行异步操作的场景，该操作会在3秒钟后返回一个字符串。
 
@@ -101,6 +103,7 @@ struct Index {
   }
 }
 ```
+<!-- @[async_await_sync_operation](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
 
 在上述示例代码中，使用了await关键字来等待Promise对象的解析，并将其解析值存储在result变量中。
 
@@ -119,3 +122,4 @@ async function myAsyncFunction(): Promise<void> {
 
 myAsyncFunction();
 ```
+<!-- @[async_operation_error_handling_with_try_catch](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->

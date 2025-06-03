@@ -48,7 +48,7 @@
 
 - 当装饰的数据类型为class或者Object时，可以观察到赋值和属性赋值的变化，即`Object.keys(observedObject)`返回的所有属性，示例请参考[简单类型和类对象类型的@Link](#简单类型和类对象类型的link)。
 
-- 当装饰的对象是数组时，可以观察到数组添加、删除、更新数组单元的变化，示例请参考[数组类型的@Link](#数组类型的link)。
+- 当装饰的对象是Array时，可以观察到数组添加、删除、更新数组单元的变化，示例请参考[数组类型的@Link](#数组类型的link)。
 
 - 当装饰的对象是Date时，可以观察到Date的整体赋值，以及通过调用`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds`方法更新其属性。
 
@@ -74,7 +74,6 @@ struct DateComponent {
         selected: this.selectedDate
       })
     }
-
   }
 }
 
@@ -120,9 +119,9 @@ struct ParentComponent {
    1. 指定父组件中的\@State变量用于初始化子组件的\@Link变量。子组件的\@Link变量值与其父组件的数据源变量保持双向数据同步。
    2. 父组件的\@State状态变量包装类通过构造函数传给子组件，子组件的\@Link包装类拿到父组件的\@State的状态变量后，将当前\@Link包装类实例注册给父组件的\@State变量。
 
-2. \@Link的数据源的更新：父组件中状态变量更新时，会触发相关子组件的\@Link更新。处理步骤：
-   1. 初始渲染时，子组件\@Link包装类把当前this指针注册给父组件。父组件\@State变量变更后，会遍历更新所有依赖它的系统组件和状态变量（比如\@Link包装类）。
-   2. 通知\@Link包装类更新后，子组件中所有依赖\@Link状态变量的系统组件都会被更新。从而实现父组件对子组件的状态数据同步。
+2. \@Link的数据源的更新：即父组件中状态变量更新，引起相关子组件的\@Link的更新。处理步骤：
+   1. 通过初始渲染的步骤可知，子组件\@Link包装类把当前this指针注册给父组件。父组件\@State变量变更后，会遍历更新所有依赖它的系统组件和状态变量（例如：\@Link包装类）。
+   2. 通知\@Link包装类更新后，子组件中所有依赖\@Link状态变量的系统组件都会被通知更新。以此实现父组件对子组件的状态数据同步。
 
 3. \@Link的更新：当子组件中\@Link更新后，处理步骤如下（以父组件为\@State为例）：
    1. \@Link更新后，调用父组件的\@State包装类的set方法，将数值同步回父组件。
@@ -211,7 +210,7 @@ struct ParentComponent {
   }
   ```
 
-4. \@Link装饰的变量仅能使用状态变量初始化，不能使用常量初始化，否则编译期会发生告警，并在运行时抛出`source variable in parent/ancestor @Componment must be defined.`错误。
+4. \@Link装饰的变量仅能被状态变量初始化，不能使用常量初始化，否则编译期会给出告警，并在运行时崩溃。
 
   【反例】
 
@@ -552,7 +551,7 @@ struct SetSample {
 
 通过[\@Watch](./arkts-watch.md)可以在双向同步时更改本地变量。
 
-在\@Link的\@Watch中修改\@State装饰的变量`memberMessage`，可以实现父子组件间的变量同步。并且在本地修改\@State装饰的变量`memberMessage`不会影响父组件中的变量。
+以下示例中，在\@Link的\@Watch里面修改了一个\@State装饰的变量memberMessage，实现父子组件间的变量同步。但是\@State装饰的变量memberMessage在本地修改不会影响到父组件中的变量改变。
 
 ```ts
 @Entry

@@ -150,7 +150,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 允许应用访问公共目录下Desktop目录及子目录。
 
 <!--RP15-->
-当前仅2in1设备应用可申请此权限。
+当前仅2in1设备和平板上的应用可申请此权限。
 <!--RP15End-->
 
 **权限级别**：system_basic
@@ -473,13 +473,11 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **授权方式**：系统授权（system_grant）
 
-**起始版本**：16
+**起始版本**：18
 
 ### ohos.permission.MANAGE_APN_SETTING
 
 允许应用读取或设置APN信息。
-
-当应用需要使用专网APN信息时可申请此权限。
 
 <!--RP38--><!--RP38End-->
 
@@ -488,6 +486,20 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **授权方式**：系统授权（system_grant）
 
 **起始版本**：16
+
+### ohos.permission.GET_WIFI_LOCAL_MAC
+
+允许应用获取本机的Wi-Fi设备的MAC地址。
+
+<!--RP43--><!--RP43End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：8
+
+**变更信息**：API 8-15该权限仅向系统应用开放；从API 16开始，在PC/2in1设备上面向普通应用开放，在其余设备上仍仅面向系统应用开放。
 
 ### ohos.permission.kernel.ALLOW_USE_JITFORT_INTERFACE
 
@@ -559,8 +571,6 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
-
 **起始版本**：20
 
 ### ohos.permission.CUSTOMIZE_SAVE_BUTTON
@@ -573,7 +583,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **授权方式**：系统授权（system_grant）
 
-**支持设备**: Phone | PC/2in1 | Tablet
+**支持设备**：Phone | PC/2in1 | Tablet
 
 **起始版本**：20
 

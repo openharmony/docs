@@ -74,7 +74,7 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<v
 | 201      | Permission denied. |
 | 202      | Not system application. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 18500002 | The specified quick fix is invalid. It may not exist or inaccessible. |
+| 18500002 | Invalid patch package. |
 | 18500008 | Internal error. |
 
 > 说明：调用applyQuickFix接口时，补丁文件所在路径为应用沙箱路径。沙箱路径的获取参考[获取应用的沙箱路径](js-apis-bundle-BundleInstaller-sys.md#获取应用的沙箱路径)，映射到设备上的路径为/proc/&lt;应用进程Id&gt;/root/沙箱路径。
@@ -133,7 +133,7 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
 | 201      | Permission denied. |
 | 202      | Not system application. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 18500002 | The specified quick fix is invalid. It may not exist or inaccessible. |
+| 18500002 | Invalid patch package. |
 | 18500008 | Internal error. |
 
 **示例：**

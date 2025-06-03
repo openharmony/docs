@@ -16,18 +16,22 @@ WebviewController还没有和具体的Web组件关联，无法进行相应的操
 
 **处理步骤**
 
-请检查WebviewController对象是否已与Web组件关联，可以通过[onControllerAttached()](ts-basic-components-web.md#oncontrollerattached10)接口进行检查。
+请检查WebviewController对象是否已与Web组件关联，可以通过[onControllerAttached()](./ts-basic-components-web-events.md#oncontrollerattached10)接口进行检查。
 
 
 ## 17100002 Url格式错误
 
 **错误信息**
 
-URL error.Possible causes: 1. No valid cookie found for the specified URL. 2. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048.
+URL error. Possible causes: 1. No valid cookie found for the specified URL. 2. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048.
 
 **错误描述**
 
-Url格式错误。
+URL错误，可能原因：
+
+1. 未找到指定URL的有效Cookie。
+
+2. 该URL对应的网页无效，或URL长度超过2048。
 
 **处理步骤**
 
@@ -339,3 +343,21 @@ WebHttpBodyStream数据初始化失败。
 **处理步骤**
 
 检查发起的POST等类型的请求中，携带的数据是否合法。
+
+## 17100023 使用了不被允许的端口号
+
+**错误信息**
+
+The port number is not within the allowed range.
+
+**错误描述**
+
+使用的端口号不在允许的取值范围内。
+
+**可能原因**
+
+由于部分端口号（例如小于1024的端口号）作为熟知或系统端口，在操作系统上需要特权才能开启，因此禁止应用使用这些端口号。
+
+**处理步骤**
+
+检查使用的端口号是否在允许的取值范围内。
