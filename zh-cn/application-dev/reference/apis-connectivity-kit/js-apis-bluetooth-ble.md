@@ -4013,18 +4013,16 @@ GATT服务结构定义，可包含多个特征值[BLECharacteristic](#blecharact
 
 GATT特征值结构定义，是服务[GattService](#gattservice)的核心数据单元。
 
-**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                  | 类型                                     | 只读 | 可选   | 说明                                 |
 | ------------------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| serviceUuid         | string                                   | 否 | 否    | 特征值所属的服务UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
-| characteristicUuid  | string                  | 否 | 否    | 特征值UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
-| characteristicValue | ArrayBuffer                              | 否 | 否    | 特征值的数据内容。                      |
-| descriptors         | Array&lt;[BLEDescriptor](#bledescriptor)&gt; | 否 | 否    | 特征值包含的描述符列表。                |
-| properties  | [GattProperties](#gattproperties) | 否 | 是     | 特征值支持的属性。     |
-| characteristicValueHandle<sup>18+</sup> | number                           | 否    | 是    | 特征值的唯一标识句柄。当server端BLE蓝牙设备提供了多个相同UUID特征值时，可以通过此句柄区分不同的特征值。                      |
+| serviceUuid         | string                                   | 否 | 否    | 特征值所属的服务UUID。例如：00001888-0000-1000-8000-00805f9b34fb。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| characteristicUuid  | string                  | 否 | 否    | 特征值UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| characteristicValue | ArrayBuffer                              | 否 | 否    | 特征值的数据内容。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                      |
+| descriptors         | Array&lt;[BLEDescriptor](#bledescriptor)&gt; | 否 | 否    | 特征值包含的描述符列表。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                |
+| properties  | [GattProperties](#gattproperties) | 否 | 是     | 特征值支持的属性。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。     |
+| characteristicValueHandle<sup>18+</sup> | number                           | 否    | 是    | 特征值的唯一标识句柄。当server端BLE蓝牙设备提供了多个相同UUID特征值时，可以通过此句柄区分不同的特征值。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。                      |
 
 
 
@@ -4032,17 +4030,15 @@ GATT特征值结构定义，是服务[GattService](#gattservice)的核心数据�
 
 GATT描述符结构定义，是特征值[BLECharacteristic](#blecharacteristic)的数据单元，用于描述特征值的附加信息和属性。
 
-**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                 | 类型        | 只读 | 可选   | 说明                                       |
 | ------------------ | ----------- | ---- | ---- | ---------------------------------------- |
-| serviceUuid        | string      | 否 | 否    | 特征值所属的服务UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
-| characteristicUuid | string      | 否 | 否    | 描述符所属的特征值UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
-| descriptorUuid     | string      | 否 | 否    | 描述符UUID。例如：00002902-0000-1000-8000-00805f9b34fb。 |
-| descriptorValue    | ArrayBuffer | 否 | 否    | 描述符的数据内容。                              |
-| descriptorHandle<sup>18+</sup> | number        | 否    | 是    | 描述符的唯一标识句柄。当server端BLE蓝牙设备提供了多个相同UUID描述符时，可以通过此句柄区分不同的描述符。                      |
+| serviceUuid        | string      | 否 | 否    | 特征值所属的服务UUID。例如：00001888-0000-1000-8000-00805f9b34fb。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| characteristicUuid | string      | 否 | 否    | 描述符所属的特征值UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| descriptorUuid     | string      | 否 | 否    | 描述符UUID。例如：00002902-0000-1000-8000-00805f9b34fb。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| descriptorValue    | ArrayBuffer | 否 | 否    | 描述符的数据内容。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                              |
+| descriptorHandle<sup>18+</sup> | number        | 否    | 是    | 描述符的唯一标识句柄。当server端BLE蓝牙设备提供了多个相同UUID描述符时，可以通过此句柄区分不同的描述符。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。                      |
 
 
 ## NotifyCharacteristic
@@ -4204,17 +4200,15 @@ GATT描述符结构定义，是特征值[BLECharacteristic](#blecharacteristic)�
 
 描述BLE广播报文数据内容，也可以用作回复扫描请求的广播报文数据内容。当前只支持传统广播，因此报文最大长度为31个字节。若超出最大长度（31个字节）限制，会导致启动广播失败。若携带了所有参数，尤其是携带了蓝牙设备名称，需要注意广播报文长度。
 
-**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称              | 类型                                     | 只读 | 可选   | 说明                          |
 | --------------- | ---------------------------------------- | ---- | ---- | --------------------------- |
-| serviceUuids    | Array&lt;string&gt;                      | 否 | 否    | 要携带的服务UUID。 |
-| manufactureData | Array&lt;[ManufactureData](#manufacturedata)&gt; | 否 | 否    | 要携带的制造商数据内容。           |
-| serviceData     | Array&lt;[ServiceData](#servicedata)&gt; | 否 | 否    | 要携带的服务数据内容。               |
-| includeDeviceName | boolean     | 否 | 是    | 是否携带蓝牙设备名称。true表示携带，false表示不携带，默认值为false。        |
-| includeTxPower<sup>18+</sup> | boolean     | 否    | 是    | 是否携带广播发送功率。<br>true表示携带广播发送功率，false表示不携带广播发送功率，默认值为false。<br>携带该值后，广播报文长度将多占用3个字节。      |
+| serviceUuids    | Array&lt;string&gt;                      | 否 | 否    | 要携带的服务UUID。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| manufactureData | Array&lt;[ManufactureData](#manufacturedata)&gt; | 否 | 否    | 要携带的制造商数据内容。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。           |
+| serviceData     | Array&lt;[ServiceData](#servicedata)&gt; | 否 | 否    | 要携带的服务数据内容。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。               |
+| includeDeviceName | boolean     | 否 | 是    | 是否携带蓝牙设备名称。true表示携带，false表示不携带，默认值为false。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。        |
+| includeTxPower<sup>18+</sup> | boolean     | 否    | 是    | 是否携带广播发送功率。<br>true表示携带广播发送功率，false表示不携带广播发送功率，默认值为false。<br>携带该值后，广播报文长度将多占用3个字节。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。      |
 
 
 ## AdvertisingParams<sup>11+</sup>
@@ -4443,12 +4437,10 @@ BLE扫描的配置参数。
 
 枚举，扫描结果上报模式。
 
-**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称      | 值    | 说明                           |
 | --------  | ---- | ------------------------------ |
-| NORMAL  | 1    | 常规扫描上报模式，扫描到符合过滤条件的BLE广播报文后就会立刻上报。       |
-| FENCE_SENSITIVITY_LOW<sup>18+</sup>  | 10    | 低灵敏度围栏上报模式。首次扫描到或扫描不到BLE广播报文时，触发上报。对广播信号强度、短时间内广播报文的发送次数要求高。    |
-| FENCE_SENSITIVITY_HIGH<sup>18+</sup>  | 11    | 高灵敏度围栏上报模式。首次扫描到或扫描不到BLE广播报文时，触发上报。对广播信号强度、短时间内广播报文的发送次数要求低。    |
+| NORMAL  | 1    | 常规扫描上报模式，扫描到符合过滤条件的BLE广播报文后就会立刻上报。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。       |
+| FENCE_SENSITIVITY_LOW<sup>18+</sup>  | 10    | 低灵敏度围栏上报模式。<br>- 围栏模式表示只在广播进入或离开围栏时上报。<br>- 扫描到的广播信号强度高且广播数量多时，可进入低灵敏度围栏。<br>- 首次扫描到广播即进入围栏，触发一次上报。<br>- 一段时间内扫描不到广播即离开围栏，触发一次上报。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。    |
+| FENCE_SENSITIVITY_HIGH<sup>18+</sup>  | 11    | 高灵敏度围栏上报模式。<br>- 围栏模式表示只在广播进入或离开围栏时上报。<br>- 扫描到的广播信号强度低且广播数量少时，可进入高灵敏度围栏。<br>- 首次扫描到广播即进入围栏，触发一次上报。<br>- 一段时间内扫描不到广播即离开围栏，触发一次上报。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。    |
