@@ -1141,9 +1141,13 @@ postInputEvent(event: InputEventType): boolean
 
 将事件分发到目标节点。
 
+offsetA为builderNode相对于父组件的偏移，offsetB为命中位置相对于builderNode的偏移，offsetC为offsetA+offsetB，最终输入给postInputEvent中的window信息。
+
+![接口坐标换算示例图](figures/postInputEvent-point.png)
+
 > **说明：**
 >
-> 传入的坐标值需要转换为px。
+> 传入的坐标值需要转换为px，坐标转换示例可以参考下面示例代码。
 >
 > 鼠标左键点击事件会转换成触摸事件，转发时需注意不要在外层同时绑定触摸事件和鼠标事件，规格可查看[onTouch](arkui-ts/ts-universal-events-touch.md#ontouch)。
 >
@@ -1151,9 +1155,11 @@ postInputEvent(event: InputEventType): boolean
 >
 > 转发的事件会在被分发到的目标组件所在的子树里做touchtest，并触发对应手势，原始事件也会触发当前组件所在组件树中的手势。不保证两类手势的竞争结果。
 >
-> 针对同一个事件，在事件分发流程中不可以转发多次。
+> 如果是开发者构造的事件，必填字段必须赋值，比如触摸事件的touches字段，轴事件的scrollStep字段。要保证事件的完整，比如触摸事件的[TouchType](arkui-ts/ts-appendix-enums.md#touchtype)DOWN和UP都要有，防止出现未定义行为。
 >
 > [Webview](../apis-arkweb/js-apis-webview.md)已经处理过坐标系变换，可以将事件直接下发。
+>
+> postTouchEvent接口需要提供手势坐标相对于post事件对端内的局部坐标，postInputEvent接口需要提供手势坐标相对于post事件对端内的窗口坐标。
 >
 > 不建议同一个事件转发多次。<!--Del-->不支持[UIExtensionComponent](arkui-ts/ts-container-ui-extension-component-sys.md)。<!--DelEnd-->
 
