@@ -13,6 +13,53 @@
 import audioHaptic from '@ohos.multimedia.audioHaptic';
 ```
 
+## audioHaptic.test
+
+getAudioHapticManager(): AudioHapticManager
+
+获取音振管理器。
+
+**系统能力：** SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型                          | 说明         |
+| ----------------------------- | ------------ |
+| AudioHapticManager| 音振管理器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见媒体服务错误码
+
+| 错误码ID | 错误信息                              |
+| ------- |-----------------------------------|
+| 6800101 | 测试测试.            |
+
+
+## audioHaptic.test.liteWearable
+
+getAudioHapticManager(): AudioHapticManager
+
+获取音振管理器。
+
+**系统能力：** SystemCapability.Communication.NFC.CardEmulation
+
+**返回值：**
+
+| 类型                          | 说明         |
+| ----------------------------- | ------------ |
+| AudioHapticManager| 音振管理器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见媒体服务错误码
+
+| 错误码ID | 错误信息                              |
+| ------- |-----------------------------------|
+| 6800102 | 测试测试.            |
+
+
+
 ## audioHaptic.getAudioHapticManager
 
 getAudioHapticManager(): AudioHapticManager
@@ -42,6 +89,7 @@ let audioHapticManagerInstance: audioHaptic.AudioHapticManager = audioHaptic.get
 | ------------------------------- | ------ | -------------------------------------------- |
 | AUDIO_LATENCY_MODE_NORMAL       | 0      | 普通时延模式。                                |
 | AUDIO_LATENCY_MODE_FAST         | 1      | 低时延模式。该模式适用于比较短的音频文件，音频文件过长时可能被截断，该特性与SoundPool一致。 |
+
 
 ## AudioHapticPlayerOptions
 
