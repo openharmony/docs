@@ -591,7 +591,7 @@ int OH_Data_Asset_SetUri (Data_Asset * asset, const char * uri )
 | 名称 | 描述 |
 | -------- | -------- |
 | asset | 表示指向[Data_Asset](#data_asset)实例的指针。 |
-| name | 表示要设置的URI。 |
+| uri | 表示要设置的URI。 |
 
 **返回：**
 
