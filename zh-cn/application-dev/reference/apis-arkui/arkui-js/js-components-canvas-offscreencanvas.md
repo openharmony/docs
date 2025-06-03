@@ -20,7 +20,7 @@
 
 ### getContext
 
-getContext(type: string, options?: CanvasRenderingContext2DSettings): OffscreenCanvasRenderingContext2D
+getContext(contextId: string, options?: CanvasRenderingContext2DSettings): OffscreenCanvasRenderingContext2D
 
 获取offscreen canvas绘图上下文，返回值为2D绘制对象。
 
