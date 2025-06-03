@@ -1379,13 +1379,13 @@ getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurren
 
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
-| cameras | Array\<[CameraDevice](#cameradevice)\>  | 是   | 一组CameraDevice对象，并得到与这一组CamraDevice对应的并发信息，作为入参应当默认为由[getCameraDevice](#getcameradevice18)获取的一前一后两个用于并发的相机。 |
+| cameras | Array\<[CameraDevice](#cameradevice)\>  | 是   | 一组CameraDevice相机设备，并得到与这一组CamraDevice对应的并发信息，作为入参应当默认为由[getCameraDevice](#getcameradevice18)获取的前置与后置两个用于并发的相机。 |
 
 **返回值：**
 
 | 类型             | 说明                     |
 | -----------------| ------------------------ |
-|  Array\<[CameraConcurrentInfo](#cameraconcurrentinfo18)\>    |  一组CameraDevice对象对应的并发信息，与CameraDevice一一对应。      |
+|  Array\<[CameraConcurrentInfo](#cameraconcurrentinfo18)\>    |  一组CameraDevice相机设备对象对应的并发信息，与CameraDevice相机设备一一对应。      |
 
 **错误码：**
 
