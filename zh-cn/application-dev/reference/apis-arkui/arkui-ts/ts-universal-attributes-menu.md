@@ -19,6 +19,7 @@
 >    1. 仅支持使用[Menu组件](ts-basic-components-menu.md)且子组件包含[MenuItem](ts-basic-components-menuitem.md)或[MenuItemGroup](ts-basic-components-menuitemgroup.md)的场景。
 >
 >    2. 仅支持[MenuPreviewMode](#menupreviewmode11)设置为NONE的菜单。
+>  - 菜单最大宽度受设备所占栅格限制，即使设置宽度100%，也不会占满屏幕。
 
 
 ## bindMenu
