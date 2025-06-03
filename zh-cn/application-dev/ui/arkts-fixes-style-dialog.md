@@ -95,7 +95,7 @@ try {
 ### 生命周期
 
 弹窗提供了生命周期函数，用于通知用户该弹窗的生命周期。
-生命周期的触发顺序可看各组件API参考。
+生命周期的触发顺序可参考各组件API。
 
 | 名称            |类型| 说明                       |
 | ----------------- | ------ | ---------------------------- |
@@ -158,7 +158,7 @@ struct CalendarPickerDialogExample {
 
 日期滑动选择器弹窗通过UIContext中的[showDatePickerDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showdatepickerdialog)接口实现。
 
-弹窗中配置lunarSwitch、showTime为true时，展示切换农历的开关以及时间，当checkbox被选中时，显示农历。当按下确定按钮时，弹窗会通过onDateAccept返回目前所选中的日期。如需弹窗再次弹出时显示选中的是上一次确定的日期，就要在回调中重新给selectTime进行赋值。
+弹窗中配置lunarSwitch、showTime为true时，会展示切换农历的开关和时间，当checkbox被选中时，会显示农历。当按下确定按钮时，弹窗会通过onDateAccept返回目前所选中的日期。如需弹窗再次弹出时显示选中的是上一次确定的日期，就要在回调中重新给selectTime进行赋值。
 
 ```ts
 @Entry
@@ -284,7 +284,7 @@ struct TimePickerDialogExample {
 
 文本滑动选择器弹窗通过UIContext中的[showTextPickerDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showtextpickerdialog)接口实现。
 
-该示例通过设置range的参数类型为TextCascadePickerRangeContent[]类型实现3列文本选择器弹窗。当按下确定按钮时，弹窗会通过onAccept返回目前所选中文本和索引值。如需弹窗再次弹出时显示选中的是上一次确定的文本，就要在回调中重新给select进行赋值。
+该示例通过设置range的参数类型为TextCascadePickerRangeContent[]，实现3列文本选择器弹窗。当按下确定按钮时，弹窗会通过onAccept返回目前所选中文本和索引值。如需弹窗再次弹出时显示选中的是上一次确定的文本，就要在回调中重新给select进行赋值。
 
 ```ts
 @Entry
@@ -334,7 +334,7 @@ struct TextPickerDialogExample {
 
 列表选择器弹窗通过UIContext中的[showActionSheet](../reference/apis-arkui/js-apis-arkui-UIContext.md#showactionsheet)接口实现。
 
-该示例通过配置width、height、transition等接口定义了弹窗的样式以及弹出动效。
+该示例通过配置width、height、transition等接口，定义了弹窗的样式以及弹出动效。
 
 ```ts
 @Entry
@@ -397,14 +397,14 @@ struct showActionSheetExample {
 
 ## 警告弹窗 (AlertDialog)
 
-需要向用户提问或得到用户的许可时，可使用警告弹窗。
+向用户提问或得到用户的许可时，使用警告弹窗。
 
 * 警告弹窗用来提示重要信息，但会中断当前任务，尽量提供必要的信息和有用的操作。
 * 避免仅使用警告弹窗提供信息，用户不喜欢被信息丰富但不可操作的警告打断。
 
 警告弹窗通过UIContext中的[showAlertDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showalertdialog)接口实现。
 
-该示例通过配置width、height、transition等接口定义了多个按钮弹窗的样式以及弹出动效。
+该示例通过配置width、height、transition等接口，定义了多个按钮弹窗的样式以及弹出动效。
 
 ```ts
 @Entry
