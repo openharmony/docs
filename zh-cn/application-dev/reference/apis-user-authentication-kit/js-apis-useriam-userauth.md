@@ -243,7 +243,7 @@ try {
   console.info('get userAuth instance success');
   // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onResult获取到认证结果。
   userAuthInstance.on('result', {
-    onResult:: (result) => {
+    onResult: (result: userAuth.UserAuthResult) => {
       console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
     }
   });
@@ -325,7 +325,7 @@ try {
   console.info('get userAuth instance success');
   // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onResult获取到认证结果。
   userAuthInstance.on('result', {
-    onResult: (result) => {
+    onResult: (result: userAuth.UserAuthResult) => {
       console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
     }
   });
@@ -407,7 +407,7 @@ try {
   console.info('get userAuth instance success');
   // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onResult获取到认证结果。
   userAuthInstance.on('result', {
-    onResult: (result) => {
+    onResult: (result: userAuth.UserAuthResult) => {
       console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
     }
   });
