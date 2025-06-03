@@ -135,12 +135,12 @@ try {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称        | 类型                    | 可读   | 可写   | 说明                                     |
+| 名称        | 类型                    | 只读   | 可选   | 说明                                     |
 | ------------------- | ----------------------- | ---- | ---- | -------------------------------------- |
-| codecType           | [CodecType](#codectype11)      | 是    | 是    | 表示编码器类型，默认值为CODEC_TYPE_SBC。 |
-| codecBitsPerSample  | [CodecBitsPerSample](#codecbitspersample11)  | 是    | 是    | 表示每个采样点的位数，默认值为SCAN_MODE_LOW_POWER。 |
-| codecChannelMode    | [CodecChannelMode](#codecchannelmode11) | 是    | 是    | 表示编码器的声道模式，默认值为CODEC_CHANNEL_MODE_NONE。 |
-| codecSampleRate     | [CodecSampleRate](#codecsamplerate11) | 是    | 是    | 表示编码器的采样率，默认值为CODEC_BITS_PER_SAMPLE_NONE。 |
+| codecType           | [CodecType](#codectype11)      | 否    | 否    | 表示编码器类型，默认值为CODEC_TYPE_SBC。 |
+| codecBitsPerSample  | [CodecBitsPerSample](#codecbitspersample11)  | 否    | 否    | 表示每个采样点的位数，默认值为CODEC_BITS_PER_SAMPLE_NONE。 |
+| codecChannelMode    | [CodecChannelMode](#codecchannelmode11) | 否    | 否    | 表示编码器的声道模式，默认值为CODEC_CHANNEL_MODE_NONE。 |
+| codecSampleRate     | [CodecSampleRate](#codecsamplerate11) | 否    | 否    | 表示编码器的采样率，默认值为CODEC_SAMPLE_RATE_NONE。 |
 
 
 ## CodecType<sup>11+</sup>
