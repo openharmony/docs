@@ -20,13 +20,9 @@
 
 允许应用下发文件管控策略。
 
-企业应用下发文件管控策略。
-
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
-
-**支持设备**：PC/2in1
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -261,6 +257,8 @@
 ## ohos.permission.GET_NET_FIREWALL
 
 允许系统应用查询防火墙规则和查询防火墙拦截记录。
+
+当前仅2in1设备应用可申请此权限。
 
 **权限级别**：system_basic
 
