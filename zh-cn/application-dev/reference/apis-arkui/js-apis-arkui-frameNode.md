@@ -5984,3 +5984,93 @@ struct CreateAnimationExample {
 ```
 
 ![cancelAnimation](./figures/frameNode_cancelAnimation.gif)
+
+## 滚动事件示例
+
+```ts
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  public rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    this.rootNode.commonAttribute.width(100)
+    return this.rootNode;
+  }
+
+  addCommonEvent(frameNode: FrameNode) {
+    let gridEvent: UIGridEvent | undefined = typeNode.getEvent(frameNode, "Grid");
+    gridEvent?.setOnWillScroll((scrollOffset: number, scrollState: ScrollState, scrollSource: ScrollSource)=>{
+      console.log(`onWillScroll scrollOffset = ${scrollOffset}, scrollState = ${scrollState}, scrollSource = ${scrollSource}`)
+    })
+    gridEvent?.setOnDidScroll((scrollOffset: number, scrollState: ScrollState)=>{
+      console.log(`onDidScroll scrollOffset = ${scrollOffset}, scrollState = ${scrollState}`)
+    })
+    gridEvent?.setOnReachStart(()=>{
+      console.log(`onReachStart`)
+    })
+    gridEvent?.setOnReachEnd(()=>{
+      console.log(`onReachEnd`)
+    })
+    gridEvent?.setOnScrollStart(()=>{
+      console.log(`onScrollStart`)
+    })
+    gridEvent?.setOnScrollStop(()=>{
+      console.log(`onScrollStop`)
+    })
+    gridEvent?.setOnScrollFrameBegin((offset: number, state: ScrollState) => {
+      console.log(`onScrollFrameBegin offset = ${offset}, state = ${state}`)
+      return undefined;
+    })
+    gridEvent?.setOnScrollIndex((first: number, last: number)=>{
+      console.log(`onScrollIndex start = ${first}, end = ${last}`)
+    })
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State index: number = 0;
+  private myNodeController: MyNodeController = new MyNodeController();
+  @State numbers: string[] = []
+
+  aboutToAppear() {
+    for (let i = 0; i < 5; i++) {
+      for (let j = 0; j < 5; j++) {
+        this.numbers.push(j.toString());
+      }
+    }
+  }
+
+  build() {
+    Column() {
+      Button("add CommonEvent to Grid")
+        .onClick(() => {
+          this.myNodeController!.addCommonEvent(this.myNodeController!.rootNode!.getParent()!.getPreviousSibling() !)
+        })
+      Grid() {
+        ForEach(this.numbers, (day: string, index: number) => {
+          GridItem() {
+            Text(day)
+              .fontSize(16)
+              .backgroundColor(0xF9CF93)
+              .width('100%')
+              .height(80)
+              .textAlign(TextAlign.Center)
+          }
+        }, (day: string, index: number) => index.toString() + day)
+      }
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(10)
+      .enableScrollInteraction(true)
+      .width('90%')
+      .backgroundColor(0xFAEEE0)
+      .height(300)
+      NodeContainer(this.myNodeController)
+    }.width("100%")
+  }
+}
+```
