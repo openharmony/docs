@@ -45,8 +45,6 @@
 
 **授权方式**：系统授权（system_grant）
 
-**支持设备**：PC/2in1
-
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
@@ -58,20 +56,16 @@
 
 允许应用跨系统本地帐号交互。
 
-当前支持企业应用申请该权限。
-
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
-
-**支持设备**：General
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：7
 
-**变更信息**：API 7-13，该权限仅向系统应用开放；从API 14开始，开放范围从系统应用变更为企业普通应用。
+**变更信息**：API 7-13该权限仅向系统应用开放；从API 14开始，开放范围从系统应用变更为企业普通应用。
 
 ## ohos.permission.GET_RUNNING_INFO
 
@@ -82,8 +76,6 @@
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
-
-**支持设备**：General
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -96,13 +88,9 @@
 
 允许应用监听应用状态。
 
-获取该权限后，可注册应用状态监听器。
-
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
-
-**支持设备**：General
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -121,8 +109,6 @@
 
 **授权方式**：系统授权（system_grant）
 
-**支持设备**：General
-
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
@@ -140,14 +126,12 @@
 
 **授权方式**：系统授权（system_grant）
 
-**支持设备**：PC/2in1
-
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：8
 
-**变更信息**：API 8-14该权限仅向系统应用开放；从API 15开始，开放范围变更为企业普通应用。
+**变更信息**：API 8-14该权限仅向系统应用开放；从API 15开始，开放范围从系统应用变更为企业普通应用。
 
 ## ohos.permission.SET_WIFI_CONFIG
 
@@ -158,8 +142,6 @@
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
-
-**支持设备**：PC/2in1
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -176,8 +158,6 @@
 
 **授权方式**：系统授权（system_grant）
 
-**支持设备**：Phone | PC2in1 | Tablet
-
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
@@ -193,14 +173,12 @@
 
 **授权方式**：系统授权（system_grant）
 
-**支持设备**：PC/2in1
-
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：12
 
-**变更信息**：API 12-13，该权限仅面向MDM应用开放；从API 14开始，开放范围从MDM应用变为更为企业普通应用。
+**变更信息**：API 12-13该权限仅面向MDM应用开放；从API 14开始，开放范围从MDM应用变为更为企业普通应用。
 
 ## ohos.permission.KILL_APP_PROCESSES
 
@@ -212,8 +190,6 @@
 
 **授权方式**：系统授权（system_grant）
 
-**支持设备**：General
-
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
@@ -223,15 +199,11 @@
 
 ### ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
 
-允许运营商应用添加eSIM配置文件。
-
-eSIM 配置文件是包含设备连接特定移动网络所需的所有信息的数字配置文件，包括运营商信息、认证凭证和服务设置。
+允许系统应用和运营商应用设置eSIM昵称和激活eSIM。
 
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
-
-**支持设备**：Wearable | Phone
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -250,8 +222,6 @@ eSIM 配置文件是包含设备连接特定移动网络所需的所有信息的
 
 **授权方式**：系统授权（system_grant）
 
-**设备类型**：General
-
 **ACL使能**：true
 
 **起始版本**：15
@@ -265,8 +235,6 @@ eSIM 配置文件是包含设备连接特定移动网络所需的所有信息的
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
-
-**支持设备**：Tablet | Phone
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -283,8 +251,6 @@ eSIM 配置文件是包含设备连接特定移动网络所需的所有信息的
 
 **授权方式**：系统授权（system_grant）
 
-**支持设备**：PC/2in1
-
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
@@ -296,13 +262,9 @@ eSIM 配置文件是包含设备连接特定移动网络所需的所有信息的
 
 允许系统应用查询防火墙规则和查询防火墙拦截记录。
 
-当前仅2in1设备应用可申请此权限。
-
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
-
-**支持设备**：PC/2in1
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -319,8 +281,6 @@ eSIM 配置文件是包含设备连接特定移动网络所需的所有信息的
 
 **授权方式**：系统授权（system_grant）
 
-**支持设备**：Phone | PC/2in1 | tablet
-
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
@@ -333,8 +293,6 @@ eSIM 配置文件是包含设备连接特定移动网络所需的所有信息的
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
-
-**支持设备**：Phone | PC/2in1 | Tablet
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -349,8 +307,6 @@ eSIM 配置文件是包含设备连接特定移动网络所需的所有信息的
 
 **授权方式**：系统授权（system_grant）
 
-**支持设备**：Phone | PC/2in1 | Tablet
-
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
@@ -364,8 +320,6 @@ eSIM 配置文件是包含设备连接特定移动网络所需的所有信息的
 
 **授权方式**：系统授权（system_grant）
 
-**支持设备**：General | Phone | Tv | Router | Wearable | PC/2in1
-
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
@@ -378,8 +332,6 @@ eSIM 配置文件是包含设备连接特定移动网络所需的所有信息的
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
-
-**支持设备**：General
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
