@@ -547,7 +547,7 @@ struct Focus {
       Button().accessibilityLevel("yes").accessibilityText("accessibility无text 读accessibility")
       Button("无accessibility有text 读text").accessibilityLevel("yes")
       Button()
-      Button('btnl23').accessibilityText("有accessibility有text btn123").accessibilityLevel("yes")
+      Button('btn123').accessibilityText("有accessibility有text btn123").accessibilityLevel("yes")
       Button('btn123').accessibilityLevel("yes")
     }
     .accessibilityGroup(true, { accessibilityPreferred: true })
