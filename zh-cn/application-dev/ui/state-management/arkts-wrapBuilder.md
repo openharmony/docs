@@ -32,12 +32,12 @@ function testBuilder() {
 wrapBuilder是一个模板函数，返回一个`WrappedBuilder`对象。
 
 ```ts
-declare function wrapBuilder< Args extends Object[]>(builder: (...args: Args) => void): WrappedBuilder;
+declare function wrapBuilder<Args extends Object[]>(builder: (...args: Args) => void): WrappedBuilder<Args>;
 ```
 同时 `WrappedBuilder`对象也是一个模板类。
 
 ```ts
-declare class WrappedBuilder< Args extends Object[]> {
+declare class WrappedBuilder<Args extends Object[]> {
   builder: (...args: Args) => void;
 
   constructor(builder: (...args: Args) => void);
