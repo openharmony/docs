@@ -170,8 +170,6 @@
 
 ## ohos.permission.GET_DOMAIN_ACCOUNTS
 
-允许应用查询域帐号信息。
-
 允许应用查询域账号信息。
 
 **权限级别**：system_basic
