@@ -4,6 +4,8 @@
 
 提供文本全局信息的相关接口，比如设置文本渲染高对比度模式等。
 
+**引用文件：** <native_drawing/drawing_text_global.h>
+
 **库：** libnative_drawing.so
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing

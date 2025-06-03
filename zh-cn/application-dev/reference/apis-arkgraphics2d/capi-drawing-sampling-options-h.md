@@ -4,7 +4,7 @@
 
 文件中定义了与采样相关的功能函数。用于图片或者纹理等图像的采样。
 
-**引用文件：** drawing_sampling_options.h
+**引用文件：** <native_drawing/drawing_sampling_options.h>
 
 **库：** libnative_drawing.so
 

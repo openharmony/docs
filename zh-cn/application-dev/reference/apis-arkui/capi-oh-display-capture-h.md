@@ -4,7 +4,7 @@
 
 提供屏幕截屏的能力。
 
-**引用文件：** oh_display_capture.h
+**引用文件：** <window_manager/oh_display_capture.h>
 
 **库：** libnative_display_manager.so
 

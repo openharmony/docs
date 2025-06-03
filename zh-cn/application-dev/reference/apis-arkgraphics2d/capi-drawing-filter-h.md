@@ -4,7 +4,7 @@
 
 声明与绘图模块中的滤波器对象相关的函数。
 
-**引用文件：** drawing_filter.h
+**引用文件：** <native_drawing/drawing_filter.h>
 
 **库：** libnative_drawing.so
 

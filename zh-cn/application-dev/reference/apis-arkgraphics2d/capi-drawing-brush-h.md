@@ -4,7 +4,7 @@
 
 文件中定义了与画刷相关的功能函数。
 
-**引用文件：** drawing_brush.h
+**引用文件：** <native_drawing/drawing_brush.h>
 
 **库：** libnative_drawing.so
 

@@ -4,7 +4,7 @@
 
 文件中定义了用于绘制2d图形的数据类型，包括画布、画笔、画刷、位图和路径。
 
-**引用文件：** drawing_types.h
+**引用文件：** <native_drawing/drawing_types.h>
 
 **库：** libnative_drawing.so
 

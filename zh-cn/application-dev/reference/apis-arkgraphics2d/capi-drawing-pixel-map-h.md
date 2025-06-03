@@ -4,7 +4,7 @@
 
 声明与绘图模块中的像素图对象相关的函数。
 
-**引用文件：** drawing_pixel_map.h
+**引用文件：** <native_drawing/drawing_pixel_map.h>
 
 **库：** libnative_drawing.so
 

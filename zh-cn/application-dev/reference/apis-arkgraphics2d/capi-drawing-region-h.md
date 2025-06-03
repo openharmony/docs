@@ -4,6 +4,10 @@
 
 定义了与区域相关的功能函数，包括区域的创建，边界设置和销毁等。
 
+**引用文件：** <native_drawing/drawing_region.h>
+
+**库：** libnative_drawing.so
+
 **起始版本：** 12
 
 **相关模块：** [Drawing](capi-drawing.md)

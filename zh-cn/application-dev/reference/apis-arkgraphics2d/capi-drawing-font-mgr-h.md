@@ -4,7 +4,7 @@
 
 文件中定义了与字体管理相关的功能函数，用于加载和匹配系统中可用的字体。
 
-**引用文件：** drawing_font_mgr.h
+**引用文件：** <native_drawing/drawing_font_mgr.h>
 
 **库：** libnative_drawing.so
 

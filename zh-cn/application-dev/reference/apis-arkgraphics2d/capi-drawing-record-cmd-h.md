@@ -4,7 +4,7 @@
 
 文件中定义了与录制指令对象相关的功能函数。
 
-**引用文件：** drawing_record_cmd.h
+**引用文件：** <native_drawing/drawing_record_cmd.h>
 
 **库：** libnative_drawing.so
 

@@ -4,7 +4,7 @@
 
 定义获取和使用NativeBuffer的相关函数。
 
-**引用文件：** native_buffer.h
+**引用文件：** <native_buffer/native_buffer.h>
 
 **库：** libnative_buffer.so
 

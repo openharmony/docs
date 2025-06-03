@@ -4,7 +4,7 @@
 
 定义了字体信息的相关接口，比如获取字体信息，查找指定字体等。
 
-**引用文件：** drawing_text_font_descriptor.h
+**引用文件：** <native_drawing/drawing_text_font_descriptor.h>
 
 **库：** libnative_drawing.so
 

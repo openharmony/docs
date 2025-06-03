@@ -4,7 +4,7 @@
 
 定义绘制模块中与字体集合相关的函数。
 
-**引用文件：** drawing_font_collection.h
+**引用文件：** <native_drawing/drawing_font_collection.h>
 
 **库：** libnative_drawing.so
 

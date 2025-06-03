@@ -4,7 +4,7 @@
 
 文件中定义了与自定义路径相关的功能函数。
 
-**引用文件：** drawing_path.h
+**引用文件：** <native_drawing/drawing_path.h>
 
 **库：** libnative_drawing.so
 
