@@ -253,6 +253,15 @@ static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
 
     // 进行初始化操作。
     int32_t retInit = OH_AVScreenCapture_Init(capture, config);
+
+    // 可选，可以根据需要设置区域坐标和大小，设置想要捕获的区域，如下方创建了一个从（0，0）为起点的长100，宽100的矩形区域；
+    OH_Rect* region = new OH_Rect;
+    region->x = 0;
+    region->y = 0;
+    region->width = 100;
+    region->height = 100;
+    uint64_t regionDisplayId = 0; // 传入矩形区域所在的屏幕Id。
+    OH_AVScreenCapture_SetCaptureArea(capture, regionDisplayId, region);
     
     // 开始录屏。
     int32_t retStart = OH_AVScreenCapture_StartScreenRecording(capture);
