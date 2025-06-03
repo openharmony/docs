@@ -24,11 +24,13 @@
 3. 用户点击等其他主动交互方式。
 
 具体流程如下图。
+
 ![live-form-judge.PNG](figures/live-form-judge.PNG)
 
 ## 实现原理
 
 开发者可以通过 formProvider.requestOverflow 接口触发互动卡片动效，例如在用户点击时触发，典型时序图如下。
+
 ![live-form-click-timeline.png](figures/live-form-click-timeline.png)
 
 在卡片定时定点刷新场景下，典型时序图如下。

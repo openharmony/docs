@@ -49,7 +49,7 @@
 ```
 
 ### 卡片状态切换
-针对系统应用，支持通过接口控制卡片状态切换，不对激活态保持时间做强限制，卡片进入/退出激活态操作由 [formProvider.activateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md/activatesceneanimation20) 和 [formProvider.deactivateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md/deactivatesceneanimation20) 接口控制。
+针对系统应用，支持通过接口控制卡片状态切换，不对激活态保持时间做强限制，卡片进入/退出激活态操作由 [formProvider.activateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#activatesceneanimation20) 和 [formProvider.deactivateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#deactivatesceneanimation20) 接口控制。
 特别地，卡片处于长时激活状态时候，卡片动效渲染区域和卡片自身渲染区域等大，不支持在激活态下调用 [formProvider.requestOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20)。
 
 **代码样例：entry/src/main/ets/entryformability/EntryFormAbility.ets**
