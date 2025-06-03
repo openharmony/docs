@@ -263,9 +263,9 @@ deviceTypes示例：
     * 若使用[startOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md)的supportWindowModes属性，需要配置FULL_SCREEN选项，此时使用metadata标签配置主窗最大化启动生效，否则不生效。
     * 若使用[module.json5](#abilities标签)的supportWindowMode属性，需要配置fullscreen选项，此时使用metadata标签配置主窗最大化启动生效，否则不生效。
     * 主窗显示设置优先级排序为：全屏显示 > 使用[startOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md)接口指定大小和位置 > 使用[setWindowRectAutoSave()](../reference/apis-arkui/js-apis-window.md#setwindowrectautosave14)方法开启窗口尺寸记忆 > 使用metadata标签配置最大化 > 使用metadata标签配置大小和位置。全屏显示配置方法包括如下三种：
-        1. 使用[startOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md)的windowMode属性设置为WINDOW_MODE_FULLSCREEN。
-        2. 使用[startOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md)的supportWindowModes属性只配置FULL_SCREEN选项。
-        3. 使用[module.json5](#abilities标签)的supportWindowMode属性只配置fullscreen选项。
+        1. 使用[startOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md)的windowMode属性并将其配置为WINDOW_MODE_FULLSCREEN。
+        2. 使用[startOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md)的supportWindowModes属性，且只配置FULL_SCREEN选项。
+        3. 使用[module.json5](#abilities标签)的supportWindowMode属性，且只配置fullscreen选项。
 
 ```json
 {
