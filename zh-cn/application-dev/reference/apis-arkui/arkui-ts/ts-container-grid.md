@@ -1931,29 +1931,29 @@ class MyNodeController extends NodeController {
 
   addCommonEvent(frameNode: FrameNode) {
     let gridEvent: UIGridEvent | undefined = typeNode.getEvent(frameNode, "Grid");
-    gridEvent?.setOnWillScroll((scrollOffset: number, scrollState: ScrollState, scrollSource: ScrollSource)=>{
+    gridEvent?.setOnWillScroll((scrollOffset: number, scrollState: ScrollState, scrollSource: ScrollSource) => {
       console.log(`onWillScroll scrollOffset = ${scrollOffset}, scrollState = ${scrollState}, scrollSource = ${scrollSource}`)
     })
-    gridEvent?.setOnDidScroll((scrollOffset: number, scrollState: ScrollState)=>{
+    gridEvent?.setOnDidScroll((scrollOffset: number, scrollState: ScrollState) => {
       console.log(`onDidScroll scrollOffset = ${scrollOffset}, scrollState = ${scrollState}`)
     })
-    gridEvent?.setOnReachStart(()=>{
+    gridEvent?.setOnReachStart(() => {
       console.log(`onReachStart`)
     })
-    gridEvent?.setOnReachEnd(()=>{
+    gridEvent?.setOnReachEnd(() => {
       console.log(`onReachEnd`)
     })
-    gridEvent?.setOnScrollStart(()=>{
+    gridEvent?.setOnScrollStart(() => {
       console.log(`onScrollStart`)
     })
-    gridEvent?.setOnScrollStop(()=>{
+    gridEvent?.setOnScrollStop(() => {
       console.log(`onScrollStop`)
     })
     gridEvent?.setOnScrollFrameBegin((offset: number, state: ScrollState) => {
       console.log(`onScrollFrameBegin offset = ${offset}, state = ${state}`)
       return undefined;
     })
-    gridEvent?.setOnScrollIndex((first: number, last: number)=>{
+    gridEvent?.setOnScrollIndex((first: number, last: number) => {
       console.log(`onScrollIndex start = ${first}, end = ${last}`)
     })
   }
