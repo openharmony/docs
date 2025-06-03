@@ -18,6 +18,8 @@
 
 ## ohos.permission.SET_FILE_GUARD_POLICY
 
+允许应用下发文件管控策略。
+
 企业应用下发文件管控策略。
 
 **权限级别**：system_basic
@@ -34,6 +36,8 @@
 **变更信息**：API 10-14时，其权限级别为system_core，仅面向MDM应用开放；从API 14开始，权限级别变更为system_basic，开发范围变更为企业普通应用。
 
 ## ohos.permission.FILE_GUARD_MANAGER
+
+允许应用进行公共目录扫描及设置文件扩展属性。
 
 当前扩展属性包括文件密级、文件标签。
 
@@ -52,6 +56,8 @@
 
 ## ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
+允许应用跨系统本地帐号交互。
+
 当前支持企业应用申请该权限。
 
 **权限级别**：system_basic
@@ -68,6 +74,8 @@
 **变更信息**：API 7-13，该权限仅向系统应用开放；从API 14开始，开放范围从系统应用变更为企业普通应用。
 
 ## ohos.permission.GET_RUNNING_INFO
+
+允许应用获取运行态信息。
 
 可获取其他应用的运行态信息，包括Ability、Extension、Application的信息。
 
@@ -86,6 +94,8 @@
 
 ## ohos.permission.RUNNING_STATE_OBSERVER
 
+允许应用监听应用状态。
+
 获取该权限后，可注册应用状态监听器。
 
 **权限级别**：system_basic
@@ -102,6 +112,8 @@
 **变更信息**：API 7-13该权限仅向系统应用开放；从API 14开始，开放范围从系统应用变更为企业普通应用。
 
 ## ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+允许查询应用的基本信息和其他敏感信息。
 
 允许查询应用的基本信息和其他敏感信息，如应用包名，版本等信息。
 
@@ -120,6 +132,8 @@
 
 ## ohos.permission.GET_WIFI_CONFIG
 
+允许应用获取Wi-Fi的配置信息。
+
 该权限允许应用获取SSID、PSK、加密方式等Wi-Fi配置的相关信息。
 
 **权限级别**：system_basic
@@ -137,6 +151,8 @@
 
 ## ohos.permission.SET_WIFI_CONFIG
 
+允许应用配置Wi-Fi信息。
+
 该权限允许应用添加、删除Wi-Fi，以及修改Wi-Fi的配置信息。
 
 **权限级别**：system_basic
@@ -153,6 +169,8 @@
 **变更信息**：API 8-14该权限仅向系统应用开放；从API 15开始，开放范围变更为企业普通应用。
 
 ## ohos.permission.GET_DOMAIN_ACCOUNTS
+
+允许应用查询域帐号信息。
 
 允许应用查询域账号信息。
 
@@ -188,6 +206,8 @@
 
 ## ohos.permission.KILL_APP_PROCESSES
 
+允许系统应用结束其他应用进程。
+
 获取权限后，可终止其他正在运行中的应用，允许它在必要时对系统中的进程进行管理和控制。
 
 **权限级别**：system_basic
@@ -204,6 +224,8 @@
 **变更信息**：API 7-13该权限仅向系统应用开放；从API 14开始，开放范围从系统应用变更为企业普通应用。
 
 ### ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
+
+允许运营商应用添加eSIM配置文件。
 
 eSIM 配置文件是包含设备连接特定移动网络所需的所有信息的数字配置文件，包括运营商信息、认证凭证和服务设置。
 
@@ -222,6 +244,8 @@ eSIM 配置文件是包含设备连接特定移动网络所需的所有信息的
 
 ## ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
 
+允许应用管理Wi-Fi的连接。
+
 获取该权限后，可执行开启/关闭、连接、断开Wi-Fi等操作。
 
 **权限级别**：system_basic
@@ -235,6 +259,8 @@ eSIM 配置文件是包含设备连接特定移动网络所需的所有信息的
 **起始版本**：15
 
 ## ohos.permission.ACCESS_ENTERPRISE_USER_TRUSTED_CERT
+
+允许应用管理企业设备的用户CA证书。
 
 在企业设备上企业应用使用私有的CA证书认证企业服务器时，该权限用于允许企业应用把私有CA证书安装到企业设备上，并对安装的CA证书进行管理操作。
 
@@ -250,6 +276,8 @@ eSIM 配置文件是包含设备连接特定移动网络所需的所有信息的
 **起始版本**：18
 
 ## ohos.permission.MANAGE_NET_FIREWALL
+
+允许系统应用配置防火墙规则。
 
 当前仅2in1设备应用可申请此权限。
 
@@ -268,7 +296,9 @@ eSIM 配置文件是包含设备连接特定移动网络所需的所有信息的
 
 ## ohos.permission.GET_NET_FIREWALL
 
-API 12-14该权限仅向系统应用开放；从API 15开始，开放范围从系统应用变更为企业普通应用。
+允许系统应用查询防火墙规则和查询防火墙拦截记录。
+
+当前仅2in1设备应用可申请此权限。
 
 **权限级别**：system_basic
 
@@ -359,6 +389,8 @@ API 12-14该权限仅向系统应用开放；从API 15开始，开放范围从�
 **起始版本**：18
 
 ## ohos.permission.SUPPORT_APP_SERVICE_EXTENSION
+
+允许应用作为AppServiceExtension被拉起。
 
 获取此权限后，应用可作为AppServiceExtension被同应用或同在"appidentifierAllowList"配置中的应用拉起或连接。
 
