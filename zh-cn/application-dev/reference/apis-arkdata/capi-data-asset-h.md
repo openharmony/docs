@@ -122,7 +122,7 @@ int OH_Data_Asset_SetUri(Data_Asset *asset, const char *uri)
 | 参数项 | 描述 |
 | -- | -- |
 | [Data_Asset](capi-data-asset.md) *asset | 表示指向[Data_Asset](capi-data-asset.md)实例的指针。 |
-| name |  表示要设置的URI。 |
+| uri |  表示要设置的URI。 |
 
 **返回：**
 
