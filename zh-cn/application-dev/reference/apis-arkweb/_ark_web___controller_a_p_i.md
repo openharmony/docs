@@ -139,6 +139,9 @@ void(* ArkWeb_ControllerAPI::refresh) (const char *webTag)
 
 刷新当前网页。
 
+> **说明：**
+>
+> refresh刷新当前网页的同时会清理页面栈，导致当前页面无法前进后退，谨慎使用。
 
 ### registerAsyncJavaScriptProxy
 
