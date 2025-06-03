@@ -192,7 +192,7 @@ contentModifier(modifier: Optional<ContentModifier\<RatingConfiguration>>)
 
 onChange(callback:(value:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
-当评分条的评星发生改变时，将触发该回调。
+当评分条的评星变化时触发该回调。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -210,7 +210,7 @@ onChange(callback:(value:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 onChange(callback:Optional\<OnRatingChangeCallback>)
 
-当评分条的评星发生改变时，将触发该回调。与[onChange](#onchange)相比，callback:参数新增了对undefined类型的支持。
+当评分条的评星变化时触发该回调。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -222,13 +222,13 @@ onChange(callback:Optional\<OnRatingChangeCallback>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnRatingChangeCallback](#onratingchangecallback18)> | 是   | 操作评分条的评星发生改变时触发该回调。<br/>当callback的值为undefined时，不使用回调函数。 |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnRatingChangeCallback](#onratingchangecallback18)> | 是   | 操作评分条的评星变化时触发该回调。<br/>当callback的值为undefined时，不使用回调函数。 |
 
 ## OnRatingChangeCallback<sup>18+</sup>
 
 type OnRatingChangeCallback = (rating: number) => void
 
-操作评分条的评星发生改变时触发该回调。
+操作评分条的评星变化时触发该回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 

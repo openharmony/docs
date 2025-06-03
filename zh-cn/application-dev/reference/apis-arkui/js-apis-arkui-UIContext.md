@@ -227,7 +227,7 @@ setOverlayManagerOptions(options: OverlayManagerOptions): boolean
 
 | 类型    | 说明           |
 | ------- | -------------- |
-| boolean | 是否设置成功。<br/>返回true时，设置成功。返回false时，设置失败。 |
+| boolean | 是否设置成功。<br/>返回true表示设置成功。返回false表示设置失败。 |
 
 **示例：**
 
@@ -1934,7 +1934,7 @@ openBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheetOp
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -2065,7 +2065,7 @@ updateBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheet
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -2191,7 +2191,7 @@ closeBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>): Promi
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -4251,7 +4251,7 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -4405,7 +4405,7 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -4573,7 +4573,7 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -4719,7 +4719,7 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -4879,7 +4879,7 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -5032,7 +5032,7 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Pro
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -5199,7 +5199,7 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -5346,7 +5346,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -5786,7 +5786,7 @@ router.getParams();
 
 type CustomBuilderWithId = (id: number)&nbsp;=&gt;&nbsp;void
 
-组件属性方法参数可使用CustomBuilderWithId类型来自定义UI描述，并且可以指定组件ID生成用户自定义组件。
+组件属性、方法参数可使用CustomBuilderWithId类型来自定义UI描述，并且可以指定组件ID生成用户自定义组件。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -6029,7 +6029,7 @@ try {
 
 showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.ShowDialogSuccessResponse&gt;
 
-创建并显示对话框，对话框响应后同步返回结果，通过Promise获取对话框响应结果。
+创建并显示对话框，通过Promise获取对话框响应结果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -6281,7 +6281,7 @@ openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -6373,7 +6373,7 @@ openCustomDialogWithController\<T extends Object>(dialogContent: ComponentConten
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -6469,7 +6469,7 @@ closeCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>): Promi
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -6565,7 +6565,7 @@ updateCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, optio
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -6645,7 +6645,7 @@ struct Index {
 
 openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
 
-创建并弹出自定义弹窗。使用Promise异步回调，返回供closeCustomDialog使用的对话框id。暂不支持isModal = true与showInSubWindow = true同时使用。
+创建并弹出自定义弹窗。通过Promise异步回调返回供closeCustomDialog使用的对话框id。暂不支持isModal = true与showInSubWindow = true同时使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6676,7 +6676,7 @@ openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
 
 presentCustomDialog(builder: CustomBuilder \| CustomBuilderWithId, controller?: promptAction.DialogController, options?: promptAction.DialogOptions): Promise\<number>
 
-创建并弹出自定义弹窗。使用Promise异步回调，返回供closeCustomDialog使用的对话框id。
+创建并弹出自定义弹窗。通过Promise异步回调返回供closeCustomDialog使用的对话框id。
 
 支持在自定义弹窗内容中持有弹窗ID进行对应操作。支持传入弹窗控制器与自定义弹窗绑定，后续可以通过控制器控制自定义弹窗。
 
@@ -6890,7 +6890,7 @@ getTopOrder(): LevelOrder
 
 **示例：**
 
-该示例通过调用getTopOrder接口，展示了获取最顶层显示的弹窗的顺序的功能。
+该示例通过调用getTopOrder接口，展示了获取最顶层显示弹窗顺序的功能。
 
 ```ts
 import { ComponentContent, PromptAction, LevelOrder, promptAction, UIContext } from '@kit.ArkUI';
@@ -6970,7 +6970,7 @@ getBottomOrder(): LevelOrder
 
 **示例：**
 
-该示例通过调用getBottomOrder接口，展示了获取最底层显示的弹窗的顺序的功能。
+该示例通过调用getBottomOrder接口，展示了获取最底层显示弹窗顺序的功能。
 
 ```ts
 import { ComponentContent, PromptAction, LevelOrder, promptAction, UIContext } from '@kit.ArkUI';
@@ -7060,7 +7060,7 @@ openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, 
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -7185,7 +7185,7 @@ updatePopup\<T extends Object>(content: ComponentContent\<T>, options: PopupComm
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -7221,7 +7221,7 @@ closePopup\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -7267,7 +7267,7 @@ openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, o
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -7359,7 +7359,7 @@ updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOption
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -7447,7 +7447,7 @@ closeMenu\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -8078,7 +8078,7 @@ addComponentContent(content: ComponentContent, index?: number): void
 | 参数名     | 类型                                       | 必填   | 说明          |
 | ------- | ---------------------------------------- | ---- | ----------- |
 | content | [ComponentContent](js-apis-arkui-ComponentContent.md) | 是    | 在OverlayManager上新增指定节点上添加此content。 <br>**说明：** <br/> 新增的节点默认处于页面居中，按层级堆叠。|
-| index | number | 否    | 新增节点在OverlayManager上的层级位置。<br>**说明：** <br/> 当index ≥ 0时，若index的值越大，则ComponentContent的层级越高；当多个ComponentContent的index相同时，若ComponentContent添加的时间越晚，则层级越高。<br/> 当index < 0、index = null或index = undefined时，ComponentContent默认添加至最高层。<br/>当同一个ComponentContent被添加多次时，只保留最后一次添加的ComponentContent。<br/>
+| index | number | 否    | 新增节点在OverlayManager上的层级位置。<br>**说明：** <br/> 当index ≥ 0时，越大，ComponentContent的层级越高；若多个ComponentContent的index相同，ComponentContent添加的时间越晚层级越高。<br/> 当index < 0、index = null或index = undefined时，ComponentContent默认添加至最高层。<br/>当同一个ComponentContent被添加多次时，只保留最后一次添加的ComponentContent。
 
 **示例：**
 
@@ -8184,7 +8184,7 @@ struct OverlayExample {
 
 addComponentContentWithOrder(content: ComponentContent, levelOrder?: LevelOrder): void
 
-指定显示顺序创建浮层节点。
+创建浮层节点时，指定显示顺序。
 
 支持在浮层节点创建时指定显示的顺序。
 
@@ -8201,7 +8201,7 @@ addComponentContentWithOrder(content: ComponentContent, levelOrder?: LevelOrder)
 
 **示例：**
 
-该示例通过调用addComponentContentWithOrder接口，展示了指定显示顺序创建浮层节点的功能。
+该示例通过调用addComponentContentWithOrder接口，实现了按照指定显示顺序创建浮层节点的功能。
 
 ```ts
 import { ComponentContent, PromptAction, LevelOrder, UIContext, OverlayManager } from '@kit.ArkUI';
@@ -8284,7 +8284,7 @@ struct Index {
 
 removeComponentContent(content: ComponentContent): void
 
-在overlay上删除指定节点。
+删除overlay上的指定节点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -8324,7 +8324,7 @@ showComponentContent(content: ComponentContent): void
 
 hideComponentContent(content: ComponentContent): void
 
-在OverlayManager上隐藏指定节点。
+隐藏OverlayManager上的指定节点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
