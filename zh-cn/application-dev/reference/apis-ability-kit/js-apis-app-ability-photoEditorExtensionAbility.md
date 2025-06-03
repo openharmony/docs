@@ -46,6 +46,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 }
 
 ```
+
 ### onStartContentEditing
 
 onStartContentEditing(uri: string, want: Want, session: UIExtensionContentSession): void
@@ -78,6 +79,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 }
 
 ```
+
 ### onForeground
 
 onForeground(): void
@@ -102,6 +104,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 }
 
 ```
+
 ### onBackground
 
 onBackground(): void
@@ -126,6 +129,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 }
 
 ```
+
 ### onDestroy
 
 onDestroy(): void | Promise\<void>
