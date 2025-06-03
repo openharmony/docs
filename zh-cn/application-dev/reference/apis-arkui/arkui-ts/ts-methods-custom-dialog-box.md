@@ -1,6 +1,6 @@
 # 自定义弹窗 (CustomDialog)
 
-通过CustomDialogController类显示自定义弹窗。使用弹窗组件时，可优先考虑自定义弹窗，便于自定义弹窗的样式与内容。
+通过CustomDialogController类显示自定义弹窗。使用弹窗组件时，优先考虑自定义弹窗，便于弹窗样式与内容的自定义。
 
 > **说明：**
 >
@@ -99,7 +99,7 @@ dialogController : CustomDialogController | null = new CustomDialogController(Cu
 ```
 > **说明：** 
 >
-> - CustomDialogController仅在作为@CustomDialog和@Component struct的成员变量，且在@Component struct内部定义时赋值才有效，具体用法可看下方示例。
+> - CustomDialogController仅在作为@CustomDialog和@Component struct成员变量，且在@Component struct内部定义时赋值才有效，具体用法可参考下方示例。
 >
 > - 若尝试在CustomDialog中传入多个其他的Controller，以实现在CustomDialog中打开另一个或另一些CustomDialog，那么此处需要将指向自己的controller放在所有controller的后面。详细用法可参考[示例1弹出嵌套弹窗](#示例1弹出嵌套弹窗)。
 
@@ -381,7 +381,7 @@ struct CustomDialogUser {
 ![zh-cn_image_custom-showinsubwindow](figures/zh-cn_image_custom-showinsubwindow.jpg)
 
 ### 示例3（设置弹窗的样式）
-该示例定义了CustomDialog的样式，如宽度、高度、背景色、阴影等等。
+该示例定义了CustomDialog的样式，包括宽度、高度、背景色、阴影等。
 ```ts
 // xxx.ets
 @CustomDialog
