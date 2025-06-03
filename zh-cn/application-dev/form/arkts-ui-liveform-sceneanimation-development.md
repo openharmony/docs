@@ -359,9 +359,13 @@ export class Utils {
 
 在用户点击时触发，典型时序图如下，对应在卡片 [onFormEvent](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonformevent) 生命周期回调处理。
 
+图1 点击触发互动卡片动效时序图
+
 ![live-form-click-timeline.png](figures/live-form-click-timeline.png)
 
 在卡片定时定点刷新场景下，典型时序图如下，对应在卡片 [onUpdateForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonupdateform) 生命周期回调处理。
+
+图2 定时定点触发互动卡片动效时序图
 
 ![live-form-update-timeline.png](figures/live-form-update-timeline.png)
 

@@ -1,6 +1,6 @@
 # 场景动效类型互动卡片概述
 
-本文档针对场景动效类型互动卡片的基本概念、原理以及约束进行阐述。
+场景动效类型互动卡片，当前支持卡片在特定场景下触发互动卡片特有动效，本文档针对场景其基本概念、原理以及约束进行阐述。
 
 ## 基本概念
 
@@ -14,7 +14,7 @@
 
 即互动卡片动效渲染状态，在此状态下，卡片 UI 由卡片提供方所开发的 LiveFormExtensionAbility 对应 page 页面完成渲染。详细可参考[场景动效类型互动卡片开发指导](arkts-ui-liveform-sceneanimation-development.md)。
 
-卡片 UI 切换关系示意如下图。
+图1 互动卡片状态切换说明
 
 ![live-form-status-change.png](figures/live-form-status-change.png)
 
@@ -23,7 +23,7 @@
 2. 卡片数据定时定点刷新。
 3. 用户点击等其他主动交互方式。
 
-具体流程如下图。
+图2 互动卡片动效触发流程
 
 ![live-form-judge.PNG](figures/live-form-judge.PNG)
 
@@ -31,9 +31,13 @@
 
 开发者可以通过 formProvider.requestOverflow 接口触发互动卡片动效，例如在用户点击时触发，典型时序图如下。
 
+图3 点击触发互动卡片动效时序图
+
 ![live-form-click-timeline.png](figures/live-form-click-timeline.png)
 
 在卡片定时定点刷新场景下，典型时序图如下。
+
+图4 定时定点触发互动卡片动效时序图
 
 ![live-form-update-timeline.png](figures/live-form-update-timeline.png)
 
@@ -56,6 +60,8 @@
 | 4 * 4 | 不超过 AD 边长的 125% | 不超过 AB 边长的 125% |
 | 6 * 4 | 不超过 AD 边长的 125% | 不超过 AB 边长的 110% |
 
+图5 互动卡片动效区域申请规则说明
+
 ![live-form-overflow-rule.png](figures/live-form-overflow-rule.png)
 
 卡片加桌过程时，[onUpdateForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonupdateform) 生命周期回调中，通过 wantParams 中返回卡片实际尺寸，并以此计算动效申请范围，坐标计算时，以 A 点为（0,0）点，计算矩形 EFGH 对应参数，单位为 vp。
@@ -76,8 +82,8 @@
 5. 系统应用可以通过禁用手势配置项方式禁用用户在桌面的某些操作，可参考[场景类型互动卡片开发指导（系统应用）](arkts-ui-liveform-sceneanimation-development-system.md)。
 <!--DelEnd-->
 
-### 能力使用注意事项
-互动卡片能力作为卡片功能的增强，因此卡片本身业务逻辑不能强依赖该动效能力。避免在部分没有适配互动卡片能力的平台，卡片基础交互或功能异常，引发用户体验问题。。
+## 能力说明
+互动卡片作为卡片功能的增强，卡片自身业务不能强依赖互动卡片动效能力。
 
 ## 开发指导
 
