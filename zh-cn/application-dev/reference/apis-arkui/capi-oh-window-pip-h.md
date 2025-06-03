@@ -4,7 +4,7 @@
 
 定义画中画功能的相关接口，包含创建、删除画中画控制器，以及启动、停止画中画等。主要用于视频播放、直播、视频通话或视频会议场景下，以小窗（画中画）模式呈现内容。
 
-**引用文件：** oh_window_pip.h
+**引用文件：** <window_manager/oh_window_pip.h>
 
 **库：** libnative_window_manager.so
 

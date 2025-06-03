@@ -4,7 +4,7 @@
 
 定义窗口管理的相关接口，主要用于设置和获取指定窗口的属性，以及设置指定窗口的状态栏样式、导航栏样式。
 
-**引用文件：** oh_window.h
+**引用文件：** <window_manager/oh_window.h>
 
 **库：** libnative_window_manager.so
 

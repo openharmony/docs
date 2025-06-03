@@ -4,7 +4,7 @@
 
 提供屏幕的公共枚举、公共定义等。
 
-**引用文件：** oh_display_info.h
+**引用文件：** <window_manager/oh_display_info.h>
 
 **库：** libnative_display_manager.so
 
@@ -37,6 +37,7 @@
 | [NativeDisplayManager_ErrorCode](#nativedisplaymanager_errorcode) | NativeDisplayManager_ErrorCode | 屏幕管理接口返回状态码枚举。 |
 | [NativeDisplayManager_FoldDisplayMode](#nativedisplaymanager_folddisplaymode) | NativeDisplayManager_FoldDisplayMode | 可折叠设备的显示模式枚举。 |
 | [NativeDisplayManager_DisplayState](#nativedisplaymanager_displaystate) | NativeDisplayManager_DisplayState | 显示设备的状态枚举。 |
+| [NativeDisplayManager_SourceMode](#nativedisplaymanager_sourcemode) | NativeDisplayManager_SourceMode | 设备的显示模式枚举。 |
 
 ## 枚举类型说明
 
@@ -107,6 +108,7 @@ enum NativeDisplayManager_ErrorCode
 | DISPLAY_MANAGER_ERROR_INVALID_SCREEN = 1400001 | 操作的显示设备无效。 |
 | DISPLAY_MANAGER_ERROR_INVALID_CALL = 1400002 | 当前操作对象无操作权限。 |
 | DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL = 1400003 | 系统服务工作异常。 |
+| DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM = 1400004 |  非法参数。<br>**起始版本：** 20 |
 
 ### NativeDisplayManager_FoldDisplayMode
 
@@ -152,4 +154,23 @@ enum NativeDisplayManager_DisplayState
 | DISPLAY_MANAGER_DISPLAY_STATE_VR = 5 | 表示显示设备为VR模式。 |
 | DISPLAY_MANAGER_DISPLAY_STATE_ON_SUSPEND = 6 | d表示显示设备为开启状态，CPU为挂起状态。 |
 
+### NativeDisplayManager_SourceMode
+
+```
+enum NativeDisplayManager_SourceMode
+```
+
+**描述**
+
+设备的显示模式枚举。
+
+**起始版本：** 20
+
+| 枚举项 | 描述 |
+| -- | -- |
+| DISPLAY_SOURCE_MODE_NONE = 0 | 表示设备当前未使用。 |
+| DISPLAY_SOURCE_MODE_MAIN = 1 | 表示设备当前为主屏。 |
+| DISPLAY_SOURCE_MODE_MIRROR = 2 | 表示设备当前为镜像显示模式。 |
+| DISPLAY_SOURCE_MODE_EXTEND = 3 | 表示设备当前为扩展显示模式。 |
+| DISPLAY_SOURCE_MODE_ALONE = 4 | 表示设备当前为异源显示模式。 |
 
