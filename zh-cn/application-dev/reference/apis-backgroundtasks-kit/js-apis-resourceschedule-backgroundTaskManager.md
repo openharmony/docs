@@ -46,7 +46,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 | --------- | ------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9900001 | Caller information verification failed for a transient task. |
@@ -97,7 +97,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 | --------- | ------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9900001 | Caller information verification failed for a transient task. |
@@ -148,7 +148,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 | --------- | ------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9900001 | Caller information verification failed for a transient task. |
@@ -190,7 +190,7 @@ cancelSuspendDelay(requestId: number): void
 | --------- | ------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9900001 | Caller information verification failed for a transient task. |
@@ -281,7 +281,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | 202 | Not System App. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
@@ -375,7 +375,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | 202 | Not System App. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
@@ -454,7 +454,7 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
@@ -517,7 +517,7 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
@@ -581,7 +581,7 @@ startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
@@ -712,7 +712,7 @@ updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;Continu
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
@@ -1210,7 +1210,7 @@ export default class EntryAbility extends UIAbility {
 | --------------- | ------ | ---- | ---------------------------------------- |
 | continuousTaskId | number | 是    | 被暂停的长时任务 Id。|
 | suspendState | boolean | 是    | 长时任务状态，false表示激活，true表示暂停。|
-| reason | [ContinuousTaskSuspendReason](#continuoustasksuspendreason20) | 是    | 长时任务暂停原因。|
+| suspendReason | [ContinuousTaskSuspendReason](#continuoustasksuspendreason20) | 是    | 长时任务暂停原因。|
 
 ## ContinuousTaskSuspendReason<sup>20+</sup>
 

@@ -523,7 +523,7 @@ let data = new Uint8Array(buffer);
 let flag = 1;
 while (flag) {
   try {
-    buffer = socket.sppReadAsync(this.clientNumber).then(outBuffer => {
+    socket.sppReadAsync(clientNumber).then(outBuffer => {
       buffer = outBuffer;
     });
     if (buffer != null) {

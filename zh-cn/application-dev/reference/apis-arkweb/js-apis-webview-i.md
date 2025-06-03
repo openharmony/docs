@@ -166,3 +166,14 @@ createPdf函数输入参数。
 | ---- | ---- | ---- | ---- |---- |
 | type | [WebHitTestType](./js-apis-webview-e.md#webhittesttype) | 否 | 否 | 当前被点击区域的元素类型。|
 | extra | string        | 否 | 否 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
+
+## ControllerAttachState<sup>20+</sup>
+
+WebViewController与Web组件的绑定状态。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+| ------------------------------- | - | ---------- |
+| UNATTACHED | 0 | 未绑定状态。 |
+| ATTACHED   | 1 | 已绑定状态。 |

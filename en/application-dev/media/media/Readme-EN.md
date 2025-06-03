@@ -1,9 +1,6 @@
 # Media Kit
 
 - [Introduction to Media Kit](media-kit-intro.md)
-<!--Del-->
-- [Media Kit Development Overview](media-kit-quick-overview.md)
-<!--DelEnd-->
 - Media Development (ArkTS)<!--media-kit-dev--arkts-->
   - Playback<!--media-playback-arkts-->
     - [Using AVPlayer to Play Audio (ArkTS)](using-avplayer-for-playback.md)

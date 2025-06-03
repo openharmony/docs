@@ -1028,25 +1028,28 @@ setTextSelection选中文字时的配置。
 
 ## LayoutPolicy<sup>15+</sup>
 
-用于设置线性布局的布局策略。
+用于设置布局策略。
 
-**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 类型   | 只读 | 可选 | 说明 |
 | --------- | ------ | ---- | ---- |---------- |
-| matchParent | LayoutPolicy | 是 | 否 |适应父组件布局。 |
+| matchParent | [LayoutPolicy](ts-types.md#layoutpolicy15) | 是 | 否   | 当前组件适应父组件布局，其大小与父组件内容区相等。<br>**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。 <br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| wrapContent<sup>20+</sup> | [LayoutPolicy](ts-types.md#layoutpolicy15) | 是 | 否   | 当前组件适应子组件布局，其大小与子组件相等且不能超过父组件内容区大小。<br>**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。 <br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| fixAtIdealSize<sup>20+</sup> | [LayoutPolicy](ts-types.md#layoutpolicy15) | 是 | 否   | 当前组件适应子组件布局，其大小与子组件相等但可以超过父组件内容区大小。<br>**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。 <br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 >  **说明：**
 >
->  - 当线性布局组件的父容器设定了长度，组件将以父容器的尺寸为基准，自动调整以适应父组件的布局。若父容器未设定长度，线性布局组件则会等待所有子组件完成布局后，再进行自身调整以适应父组件布局。
+> - 当设置了matchParent组件，其父容器设定了长度时，该组件将以父容器的尺寸为基准，自动调整以适应父组件的布局。若父容器未设定长度，该组件则会等待其父组件所有子组件完成布局后，再进行自身调整以适应父组件布局。
 > 
->  - 若同一父组件下有多个设置matchParent的子组件，则多个子组件均会被设置为父组件大小，也即会产生溢出现象。
+> - 若同一父组件下有多个设置matchParent的子组件，则多个子组件均会被设置为父组件大小，也即在特定组件（[Flex](./ts-container-flex.md)、[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[RelativeContainer](./ts-container-relativecontainer.md)）上子组件会被绘制出容器外。
 > 
->  - matchParent会强制将自身大小设置成父组件大小，因此其设置的其他约束大小的属性将会失效。
+> - matchParent会强制将自身大小设置成父组件大小，因此其设置的其他除宽高比外约束大小的属性将会失效。
+>
+> - matchParent的生效优先级为宽高比 > matchParent > [constraintSize](ts-universal-attributes-size.md#constraintsize) ，wrapContent的生效优先级为宽高比 > [constraintSize](ts-universal-attributes-size.md#constraintsize) > wrapContent，fixAtIdealSize的生效优先级为宽高比 > [constraintSize](ts-universal-attributes-size.md#constraintsize) > fixAtIdealSize。
+>
+> - 设置了matchParent的组件会将其大小设置为其父组件不包含padding、border以及safeAreaPadding后的大小，即与父组件内容区大小相等。
 
 ## TextContentControllerOptions<sup>15+</sup>
 

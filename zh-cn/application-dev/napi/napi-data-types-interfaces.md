@@ -60,7 +60,7 @@ napi_value是一个C的结构体指针，表示一个JavaScript对象的引用�
 
 - napi_env与JS线程绑定，JS线程退出后，napi_env将失效。
 
-- 禁止缓存napi_env，禁止在不同Worker中传递napi_env。
+- 禁止缓存napi_env，禁止在不同线程中传递napi_env。
 
 ### napi_threadsafe_function
 
@@ -167,7 +167,7 @@ typedef napi_value (*napi_callback)(napi_env, napi_callback_info);
 
 **napi_finalize**
 
-函数指针，用于传入napi_create_threadsafe_function和napi_set_instance_data接口。napi_finalize在对象被回收时会被调用。
+函数指针，用于传入napi_create_threadsafe_function和napi_set_instance_data等接口。napi_finalize在对象被回收时会被调用。
 
 **napi_async_execute_callback**
 
@@ -201,10 +201,10 @@ QoS决定了线程调度的优先级，等级定义如下：
 
 ```c
 typedef enum {
-  napi_qos_background = 0,
-  napi_qos_utility = 1,
-  napi_qos_default = 2,
-  napi_qos_user_initiated = 3,
+    napi_qos_background = 0,
+    napi_qos_utility = 1,
+    napi_qos_default = 2,
+    napi_qos_user_initiated = 3,
 } napi_qos_t;
 ```
 
@@ -548,7 +548,7 @@ napi_status napi_queue_async_work_with_qos(napi_env env,
                                            napi_qos_t qos);
 ```
 
-用法同napi_queue_async_work，但可以指定QoS等级。napi_queue_async_work_with_qos使用方法可参考指定异步任务调度优先级。QoS详细介绍可参考[QoS 开发指导](qos-guidelines.md)
+用法同napi_queue_async_work，但可以指定QoS等级。napi_queue_async_work_with_qos使用方法可参考指定异步任务调度优先级。QoS详细介绍可参考[QoS 开发指导](qos-guidelines.md)。
 
 #### napi_run_script_path
 
@@ -601,7 +601,7 @@ napi_status napi_coerce_to_native_binding_object(napi_env env,
 ```c
 napi_status napi_create_ark_runtime(napi_env *env);
 ```
-[使用napi_create_ark_runtime、napi_destroy_ark_runtime接口创建ArkTS运行时环境](use-napi-ark-runtime.md)
+[使用napi_create_ark_runtime、napi_destroy_ark_runtime接口创建ArkTS运行时环境](use-napi-ark-runtime.md)。
 
 #### napi_destroy_ark_runtime
 

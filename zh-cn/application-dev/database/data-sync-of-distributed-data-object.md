@@ -99,14 +99,20 @@ dataObject['parents']['mon'] = "amy"; // 不支持的修改
 
 ### 资产同步机制
 
-在分布式对象中，可以使用[资产类型](../reference/apis-arkdata/js-apis-data-commonType.md#asset)来描述本地实体资产文件，分布式对象跨设备同步时，该文件会和数据一起同步到其他设备上。当前只支持资产类型，不支持[资产类型数组](../reference/apis-arkdata/js-apis-data-commonType.md#assets)。如需同步多个资产，可将每个资产作为分布式对象的一个根属性实现。
+在分布式对象中，可以使用[资产类型](../reference/apis-arkdata/js-apis-data-commonType.md#asset)来描述本地实体资产文件，分布式对象跨设备同步时，该文件会和数据一起同步到其他设备上。
+
+在API version 20之前版本，仅支持资产类型，不支持[资产类型数组](../reference/apis-arkdata/js-apis-data-commonType.md#assets)。如需同步多个资产，可将每个资产作为分布式对象的一个根属性实现。
+
+从API version 20开始，支持[资产类型数组](../reference/apis-arkdata/js-apis-data-commonType.md#assets)的同步。
 
 ## 约束限制
+<!--RP5-->
+- 目前分布式数据对象只能在[跨端迁移](../application-models/hop-cross-device-migration.md)和[通过跨设备Call调用实现的多端协同](../application-models/hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)场景中使用。<!--RP2End-->
 
-- 目前<!--RP2-->分布式数据对象只能在[跨端迁移](../application-models/hop-cross-device-migration.md)和[通过跨设备Call调用实现的多端协同](../application-models/hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)场景中使用。<!--RP2End-->
-
-- 不同设备间只有相同bundleName的应用才能直接同步。
-
+- 当前跨设备接续能力支持以下两种场景的 ​​Ability 跨端迁移​​
+  - [支持同应用中不同Ability跨端迁移](../application-models/hop-cross-device-migration.md#支持同应用中不同ability跨端迁移)
+  - [支持同应用不同BundleName的Ability跨端迁移](../application-models/hop-cross-device-migration.md#支持同应用不同bundlename的ability跨端迁移)
+<!--RP5End-->
 - 分布式数据对象的数据同步发生在同一个应用程序下，且同sessionID之间。
 
 - 不建议创建过多的分布式数据对象，每个分布式数据对象将占用100-150KB内存。
@@ -142,6 +148,12 @@ dataObject['parents']['mon'] = "amy"; // 不支持的修改
 | save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void | 保存分布式数据对象。 |
 | revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void | 撤回保存的分布式数据对象。 |
 | bindAssetStore(assetKey: string, bindInfo: BindInfo, callback: AsyncCallback&lt;void&gt;): void | 绑定融合资产。 |
+| setAsset(assetKey: string, uri: string): void | 设置单个资产。 |
+| setAssets(assetKey: string, uris: Array&lt;string&gt;): void | 设置资产数组。 |
+| on(type: 'change', callback: DataObserver&lt;void&gt;): void; | 监听分布式对象的数据变更。 |
+| off(type: 'change', callback?: DataObserver&lt;void&gt;): void |  删除分布式对象数据变更监听的回调实例。 |
+| on(type: 'status', callback: StatusObserver&lt;void&gt;): void; | 监听分布式对象的状态变更。 |
+| off(type: 'status', callback?: StatusObserver&lt;void&gt;): void | 删除分布式对象状态变更监听的回调实例。 |
 
 
 ## 开发步骤
@@ -166,7 +178,8 @@ dataObject['parents']['mon'] = "amy"; // 不支持的修改
 
 > **说明：**
 >
-> - 跨端迁移时，在迁移发起端调用setSessionId接口设置同步的sessionId后，必须再调用save接口保存数据到接收端。
+> - 跨端迁移时，在迁移发起端调用setsessionId接口设置同步的sessionId后，必须再调用save接口保存数据到接收端。
+> - 在应用迁移启动时，无论是冷启动还是热启动，都会在执行完onCreate()/onNewWant()后，触发[onWindowStageRestore()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagerestore)生命周期函数，不执行[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期函数。开发者如果在`onWindowStageCreate()`中进行了一些应用启动时必要的初始化，那么迁移后需要在`onWindowStageRestore()`中执行同样的初始化操作，避免应用异常
 >
 <!--RP1-->
 > - 跨端迁移需要配置`continuable`标签，详见[跨端迁移开发步骤](../application-models/hop-cross-device-migration.md#开发步骤)。<!--RP1End-->
@@ -190,40 +203,108 @@ import { fileIo, fileUri } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 业务数据定义
-class Data {
-  title: string | undefined;
-  text: string | undefined;
-  attachment: commonType.Asset; // 可以使用资产类型记录分布式目录下的文件，迁移资产数据时，对应的文件会一起迁移到接收端。（不迁移文件时不需要此字段，下方代码中的createAttachment、createEmptyAttachment方法也都不需要。）
-  // attachment2: commonType.Asset; // 暂不支持资产类型数组，如果要迁移多个文件，在业务数据中定义多条资产数据来记录
+export class ContentInfo {
+  mainTitle: string | undefined;
+  textContent: string | undefined;
+  imageUriArray: Array<ImageInfo> | undefined;
+  isShowLocalInfo: boolean | undefined;
+  isAddLocalInfo: boolean | undefined;
+  selectLocalInfo: string | undefined;
+  attachments?: commonType.Assets | undefined;
 
-  constructor(title: string | undefined, text: string | undefined, attachment: commonType.Asset) {
-    this.title = title;
-    this.text = text;
-    this.attachment = attachment;
+  constructor(
+    mainTitle: string | undefined,
+    textContent: string | undefined,
+    imageUriArray: Array<ImageInfo>| undefined,
+    isShowLocalInfo: boolean | undefined,
+    isAddLocalInfo: boolean | undefined,
+    selectLocalInfo: string | undefined,
+    attachments?: commonType.Assets | undefined
+  ) {
+    this.mainTitle = mainTitle;
+    this.textContent = textContent;
+    this.imageUriArray = imageUriArray;
+    this.isShowLocalInfo = isShowLocalInfo;
+    this.isAddLocalInfo = isAddLocalInfo;
+    this.selectLocalInfo = selectLocalInfo;
+    this.attachments = attachments;
   }
+
+  flatAssets(): object {
+    let obj: object = this;
+    if (!this.attachments) {
+      return obj;
+    }
+    for (let i = 0; i < this.attachments.length; i++) {
+      obj[`attachments${i}`] = this.attachments[i];
+    }
+    return obj;
+  }
+}
+
+export interface ImageInfo {
+  /**
+   * image PixelMap.
+   */
+  imagePixelMap: PixelMap;
+
+  /**
+   * Image name.
+   */
+  imageName: string;
 }
 
 const TAG = '[DistributedDataObject]';
 let dataObject: distributedDataObject.DataObject;
 
 export default class EntryAbility extends UIAbility {
+  private imageUriArray: Array<ImageInfo> = [];
+  private distributedObject: distributedDataObject.DataObject | undefined = undefined;
   // 1. 迁移发起端在onContinue接口中创建分布式数据对象并保存数据到接收端
-  onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult | Promise<AbilityConstant.OnContinueResult> {
-    // 1.1 调用create接口创建并得到一个分布式数据对象实例
-    let attachment = this.createAttachment();
-    let data = new Data('The title', 'The text', attachment);
-    dataObject = distributedDataObject.create(this.context, data);
+  async onContinue(wantParam: Record<string, Object | undefined>): Promise<AbilityConstant.OnContinueResult> {
+    // 1.1 获取需要设置的分布式对象的资产关键uri
+    try {
+      let sessionId: string = distributedDataObject.genSessionId();
+      wantParam.distributedSessionId = sessionId;
 
-    // 1.2 调用genSessionId接口创建一个sessionId，调用setSessionId接口设置同步的sessionId，并将这个sessionId放入wantParam
-    let sessionId = distributedDataObject.genSessionId();
-    console.log(TAG + `gen sessionId: ${sessionId}`);
-    dataObject.setSessionId(sessionId);
-    wantParam.distributedSessionId = sessionId;
+      let distrUriArray: Array<string> = [];
+      let assetUriArray = AppStorage.get<Array<string>>('assetUriArray');
+        if (assetUriArray) {
+          distrUriArray = assetUriArray;
+        }
+      // 1.2 创建分布式数据对象
+      let contentInfo: ContentInfo = new ContentInfo(
+        AppStorage.get('mainTitle'),
+        AppStorage.get('textContent'),
+        AppStorage.get('imageUriArray'),
+        AppStorage.get('isShowLocalInfo'),
+        AppStorage.get('isAddLocalInfo'),
+        AppStorage.get('selectLocalInfo'),
+      );
+      let source = contentInfo.flatAssets();
+      this.distributedObject = distributedDataObject.create(this.context, source);
 
-    // 1.3 从wantParam获取接收端设备networkId，使用这个networkId调用save接口保存数据到接收端
-    let deviceId = wantParam.targetDevice as string;
-    console.log(TAG + `get deviceId: ${deviceId}`);
-    dataObject.save(deviceId);
+      // 1.3 将需要设置的分布式对象的资产或资产数组填充完成
+      if (assetUriArray?.length == 1) {
+        this.distributedObject?.setAsset('attachments', distrUriArray[0]). then(() => {
+          console.info('OnContinue setAsset');
+        })
+      } else {
+        this.distributedObject?.setAssets('attachments', distrUriArray). then(() => {
+          console.info('OnContinue setAssets');
+        })
+      }
+      // 1.4 将设置的资产或资产数组保存至迁移发起端
+      this.distributedObject?.setSessionId(sessionId);
+      this.distributedObject?.save(wantParam.targetDevice as string).catch((err: BusinessError) => {
+        console.error('OnContinue failed to save. code: ', err.code);
+        console.error('OnContinue failed to save. message: ', err.message);
+      });
+    } catch (error) {
+      console.error('OnContinue faild code: ', error.code);
+      console.error('OnContinue faild message: ', error.message);
+    }
+    console.info("OnContinue success!");
     return AbilityConstant.OnContinueResult.AGREE;
   }
 
@@ -231,7 +312,7 @@ export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
       if (want.parameters && want.parameters.distributedSessionId) {
-        this.restoreDistributedDataObject(want);
+        this.restoreDistributedObject(want);
       }
     }
   }
@@ -240,26 +321,34 @@ export default class EntryAbility extends UIAbility {
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
       if (want.parameters && want.parameters.distributedSessionId) {
-        this.restoreDistributedDataObject(want);
+        this.restoreDistributedObject(want);
       }
     }
   }
 
-  restoreDistributedDataObject(want: Want) {
+  async restoreDistributedObject(want: Want): Promise<void> {
     if (!want.parameters || !want.parameters.distributedSessionId) {
       console.error(TAG + 'missing sessionId');
       return;
     }
 
     // 2.1 调用create接口创建并得到一个分布式数据对象实例
-    let attachment = this.createEmptyAttachment(); // 接收端需要将资产数据的各个属性设置为空字符串，才能恢复发起端保存的资产数据
-    let data = new Data(undefined, undefined, attachment);
-    dataObject = distributedDataObject.create(this.context, data);
+    let mailInfo: ContentInfo = new ContentInfo(undefined, undefined, [], undefined, undefined, undefined, undefined);
+    dataObject = distributedDataObject.create(this.context, mailInfo);
 
     // 2.2 注册恢复状态监听。收到状态为'restored'的回调通知时，表示接收端分布式数据对象已恢复发起端保存过来的数据（有资产数据时，对应的文件也迁移过来了）
     dataObject.on('status', (sessionId: string, networkId: string, status: string) => {
+      console.log(TAG + `status change, sessionId:  ${sessionId}`);
+      console.log(TAG + `status change, networkId:  ${networkId}`);
       if (status == 'restored') { // 收到'restored'的状态通知表示已恢复发起端保存的数据
         console.log(TAG + `title: ${dataObject['title']}, text: ${dataObject['text']}`);
+        AppStorage.setOrCreate('mainTitle', dataObject['mainTitle']);
+        AppStorage.setOrCreate('textContent', dataObject['textContent']);
+        AppStorage.setOrCreate('imageUriArray', dataObject['imageUriArray']);
+        AppStorage.setOrCreate('isShowLocalInfo', dataObject['isShowLocalInfo']);
+        AppStorage.setOrCreate('isAddLocalInfo', dataObject['isAddLocalInfo']);
+        AppStorage.setOrCreate('selectLocalInfo', dataObject['selectLocalInfo']);
+        AppStorage.setOrCreate<Array<ImageInfo>>('imageUriArray', this.imageUriArray);
       }
     });
 
@@ -267,47 +356,6 @@ export default class EntryAbility extends UIAbility {
     let sessionId = want.parameters.distributedSessionId as string;
     console.log(TAG + `get sessionId: ${sessionId}`);
     dataObject.setSessionId(sessionId);
-  }
-
-  // 在分布式文件目录下创建一个文件并使用资产类型记录（也可以记录分布式文件目录下已有文件，非分布式文件目录下的文件可以复制或移动到分布式文件目录下再进行记录）
-  createAttachment() {
-    let attachment = this.createEmptyAttachment();
-    try {
-      let distributedDir: string = this.context.distributedFilesDir; // 分布式文件目录
-      let fileName: string = 'text_attachment.txt'; // 文件名
-      let filePath: string = distributedDir + '/' + fileName; // 文件路径
-      let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-      fileIo.writeSync(file.fd, 'The text in attachment');
-      fileIo.closeSync(file.fd);
-      let uri: string = fileUri.getUriFromPath(filePath); // 获取文件URI
-      let stat = fileIo.statSync(filePath); // 获取文件详细属性信息
-
-      // 写入资产数据
-      attachment = {
-        name: fileName,
-        uri: uri,
-        path: filePath,
-        createTime: stat.ctime.toString(),
-        modifyTime: stat.mtime.toString(),
-        size: stat.size.toString()
-      }
-    } catch (e) {
-      let err = e as BusinessError;
-      console.error(TAG + `file error, error code: ${err.code}, error message: ${err.message}`);
-    }
-    return attachment;
-  }
-
-  createEmptyAttachment() {
-    let attachment: commonType.Asset = {
-      name: '',
-      uri: '',
-      path: '',
-      createTime: '',
-      modifyTime: '',
-      size: ''
-    }
-    return attachment;
   }
 }
 ```
@@ -352,11 +400,10 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 import { AbilityConstant, Caller, common, UIAbility, Want } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { window } from '@kit.ArkUI';
 import { distributedDataObject } from '@kit.ArkData';
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { JSON } from '@kit.ArkTS';
 
 // 业务数据定义
 class Data {
@@ -374,6 +421,9 @@ const TAG = '[DistributedDataObject]';
 let sessionId: string;
 let caller: Caller;
 let dataObject: distributedDataObject.DataObject;
+const changeCallBack: distributedDataObject.DataObserver = (sessionId: string, fields: Array<string>) => {
+  console.info(`change, sessionId: ${sessionId}, fields: ${JSON.stringify(fields)}`);
+}
 
 export default class EntryAbility extends UIAbility {
   // 1. 调用端调用startAbilityByCall接口拉起对端Ability
@@ -433,11 +483,7 @@ export default class EntryAbility extends UIAbility {
     dataObject = distributedDataObject.create(this.context, data);
 
     // 2.2 注册数据变更监听
-    dataObject.on('change', (sessionId: string, fields: Array<string>) => {
-      fields.forEach((field) => {
-        console.log(TAG + `${field}: ${dataObject[field]}`);
-      });
-    });
+    dataObject.on('change', changeCallBack);
     // 2.3 设置同步sessionId加入组网
     dataObject.setSessionId(sessionId);
   }
@@ -450,11 +496,7 @@ export default class EntryAbility extends UIAbility {
       dataObject = distributedDataObject.create(this.context, data);
 
       // 3.2 注册数据变更监听
-      dataObject.on('change', (sessionId: string, fields: Array<string>) => {
-        fields.forEach((field) => {
-          console.log(TAG + `${field}: ${dataObject[field]}`);
-        });
-      });
+      dataObject.on('change', changeCallBack);
       // 3.3 从want中获取源端放入的sessionId，使用这个sessionId加入组网
       let sessionId = want.parameters.distributedSessionId as string;
       console.log(TAG + `onCreate get sessionId: ${sessionId}`);
