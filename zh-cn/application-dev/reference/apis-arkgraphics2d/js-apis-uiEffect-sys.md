@@ -222,6 +222,204 @@ radiusGradientBlur(value: number, options: LinearGradientBlurOptions): Filter
 filter.radiusGradientBlur(20, {fractionStops: [[0, 0], [0.5, 0.2], [1.0, 1.0]], direction: GradientDirection.Bottom})
 ```
 
+### bezierWarp<sup>20+</sup>
+bezierWarp(controlPoints: Array<common2D.Point>): Filter
+
+将贝塞尔曲线变形的效果添加至组件上。该效果通过在图层边界上创建封闭的贝塞尔曲线，实现对图像的精准扭曲和形状调整。贝塞尔曲线共有四段，首尾顺次相连，每段包含一个顶点和两个切点。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名         | 类型                  | 必填 | 说明                       |
+| ------------- | --------------------- | ---- | ------------------------- |
+| controlPoints  | Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>| 是   | 12个贝塞尔形变控制点，更改控制点的位置可改变形成边缘的曲线的形状，从而扭曲图像。控制点坐标为0-1坐标系，且坐标值可大于1或小于0。|
+
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | --------------------------------- |
+| [Filter](#filter) | 返回挂载了贝塞尔曲线变形效果的Filter。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import uiEffect from '@ohos.graphics.uiEffect'
+import {common2D} from '@kit.ArkGraphics2D'
+@Entry
+@Component
+struct BezierWarpExample {
+  @State valueBezier: Array<common2D.Point> = [
+    {x: 0, y: 0}, {x: 1/3, y: 0}, {x: 2/3, y: 0},     // top edge
+    {x: 0.5, y: 0}, {x: 0.5, y: 1/3}, {x: 1, y: 2/3}, // right edge
+    {x: 1, y: 1}, {x: 2/3, y: 1}, {x: 1/3, y: 1},     // bottom edge
+    {x: 0, y: 1}, {x: 0, y: 2/3}, {x: 0, y: 1/3}]     // left edge
+
+  build() {
+    Column() {
+      Image('test.jpg')
+        .foregroundFilter(uiEffect.createFilter().bezierWarp(this.valueBezier))
+    }
+  }
+}
+```
+
+### colorGradient<sup>20+</sup>
+colorGradient(colors: Array\<Color>, positions: Array\<common2D.Point>, strengths: Array\<number>, alphaMask?: Mask): Filter
+
+为组件内容添加颜色渐变效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名         | 类型                  | 必填 | 说明                       |
+| ------------- | --------------------- | ---- | ------------------------- |
+| colors  | Array\<[Color](#color20)>         | 是   | 颜色数组，多个颜色的渐变。数组长度取值范围[0, 12], 每一个颜色值取值范围为大于等于0。数组长度等于0或大于12时无效果，colors、positions和strengths的数组长度不相等时无效果。|
+| positions  | Array\<[common2D.Point](js-apis-graphics-common2D.md#point12)>         | 是   | 位置数组，颜色对应的分布位置。数组长度取值范围[0, 12]。数组长度等于0或大于12时无效果，colors、positions和strengths的数组长度不相等时无效果。|
+| strengths  | Array\<number>         | 是   | 强度数组，颜色对应的扩散强度。数组长度取值范围[0, 12], 每一个强度值取值范围为大于等于0。数组长度等于0或大于12时无效果，colors、positions和strengths的数组长度不相等时无效果。|
+| alphaMask  | [Mask](#mask20)         | 否   | 遮罩alpha，颜色对应的alpha显示遮罩。设置为null或者不设置时，默认图片全部都有颜色渐变效果。|
+
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | --------------------------------- |
+| [Filter](#filter) | 返回挂载了颜色渐变效果的Filter。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+filter.colorGradient([{red: 1.0, green: 0.8, blue: 0.5, alpha: 0.8}, {red: 1.0, green: 1.5, blue: 0.5, alpha: 1.0}], [{x: 0.2, y: 0.2}, {x: 0.8, y: 0.6}], [0.3, 0.3], uiEffect.Mask.createRippleMask({x: 0.5, y: 0.5}, 0.5, 0.5, 0.5))
+```
+
+### edgeLight<sup>20+</sup>
+edgeLight(alpha: number, color?: Color, mask?: Mask, bloom?: boolean): Filter
+
+为组件内容检测边缘，并添加边缘高亮效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名         | 类型                  | 必填 | 说明                       |
+| ------------- | --------------------- | ---- | ------------------------- |
+| alpha  | number         | 是   | 指定描边高光透明度，越大描边越明显。取值范围为[0, 1]。设置为0时无描边；设置小于0的值时，按值为0处理；设置大于1的值时，按值为1处理。|
+| color  | [Color](#color20) | 否   | 指定描边高光颜色，设置为null或者不设置时，默认使用原图颜色。如果有值，使用指定颜色。设置不为null时，Color中的alpha不发挥作用，仅使用rgb。|
+| mask  | [Mask](#mask20) | 否   | 指定描边高光强度。设置为null或者不设置时，默认图片全部都有描边高光效果。|
+| bloom  | boolean | 否   | 指定描边是否发光。设置为true时，有描边和发光效果；设置为false时，只有描边效果无发光效果；不设置时，默认为true。小于16*16的图片默认只有描边效果，无发光效果，此参数失去作用。 |
+
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | --------------------------------- |
+| [Filter](#filter) | 返回挂载了描边高光效果的Filter。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+uiEffect.createFilter().edgeLight(1.0, {red: 1.0, green: 0.78, blue: 0.57, alpha: 1.0}, null)
+```
+
+### displacementDistort<sup>20+</sup>
+displacementDistort(displacementMap: Mask, factor?: [number, number]): Filter
+
+为组件内容添加扭曲效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名         | 类型                  | 必填 | 说明                       |
+| ------------- | --------------------- | ---- | ------------------------- |
+| mask  | [Mask](#mask20) | 是   | 指定扭曲程度。与factor相乘后共同决定扭曲程度。|
+| factor  | [number, number] | 否   | 指定水平、竖直方向扭曲程度系数，越大扭曲程度越明显，取值范围为[0.0, 10.0]。设置为null或者不设置时，默认值为1.0。设置为0时无扭曲；设置小于0的值时按0处理；设置大于10的值时，按值为10处理。与mask相乘后共同决定扭曲程度。 |
+
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | --------------------------------- |
+| [Filter](#filter) | 返回挂载了扭曲效果的Filter。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+uiEffect.createFilter().displacementDistort(uiEffect.Mask.createRippleMask({x: 0.5, y: 1.0}, 1.2, 0.3, 0.0), [1.0, 1.0])
+```
+
+### maskDispersion<sup>20+</sup>
+maskDispersion(dispersionMask: Mask, alpha: number, rFactor?: [number, number], gFactor?: [number, number], bFactor?: [number, number]): Filter
+
+为组件内容添加由置换贴图控制的色散效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名         | 类型                  | 必填 | 说明                       |
+| ------------- | --------------------- | ---- | ------------------------- |
+| dispersionMask  | [Mask](#mask20)         | 是   | 置换贴图，用于控制色散的强度、方向和透明度。当前仅支持PixelMapMask类型的置换贴图。|
+| alpha  | number         | 是   | 色散整体透明度，透明度越小效果越透明。取值范围为[0, 1.0]。透明度设置为0时色散效果不生效；透明度设置小于0的值时，按值为0处理；设置大于1.0的值时，按值为1.0处理。|
+| rFactor  | [number, number]         | 否   | X/Y方向上R通道的色散基础偏移，偏移越大红色色散效果越明显。每个方向上的取值范围为[-1.0, 1.0]。偏移设置小于-1.0的值时，按值为-1.0处理；设置大于1.0的值时，按值为1.0处理。|
+| gFactor  | [number, number]         | 否   | X/Y方向上G通道的色散基础偏移，偏移越大绿色色散效果越明显。取值范围同rFactor。|
+| bFactor  | [number, number]         | 否   | X/Y方向上B通道的色散基础偏移，偏移越大蓝色色散效果越明显。取值范围同rFactor。|
+
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | --------------------------------- |
+| [Filter](#filter) | 返回挂载了由置换贴图控制的色散效果的Filter。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+filter.maskDispersion(mask, 0.5, [0.15, -0.15], [0.0, 0.0], [-0.15, 0.15])
+```
+
 ## TileMode
 像素填充模式枚举。
 
@@ -325,6 +523,128 @@ type Blender = BrightnessBlender
 | positiveCoefficient | [number, number, number]   | 否   | 否   | 基于基准饱和度的RGB正向调整参数。<br/>每个number的取值范围[-20, 20]。 |
 | negativeCoefficient | [number, number, number]   | 否   | 否   | 基于基准饱和度的RGB负向调整参数。<br/>每个number的取值范围[-20, 20]。 |
 | fraction            | number                     | 否   | 否   | 提亮效果的混合比例。<br/>取值范围[0, 1]，超出边界会在实现时自动截断。  |
+
+## Color<sup>20+</sup>
+
+RGBA格式的颜色描述。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称  | 类型   | 只读 | 可选 | 说明                                     |
+| ----- | ------ | ---- | ---- | ---------------------------------------- |
+| red   | number | 是   | 是   | 颜色的R分量（红色）。值大于等于0，当值小于0时无效。 |
+| green | number | 是   | 是   | 颜色的G分量（绿色）。值大于等于0，当值小于0时无效。|
+| blue  | number | 是   | 是   | 颜色的B分量（蓝色）。值大于等于0，当值小于0时无效。 |
+| alpha | number | 是   | 是   | 颜色的A分量（透明度）。值大于等于0，当值小于0时无效。 |
+
+## Mask<sup>20+</sup>
+Mask效果类，作为[Filter](#filter)以及[VisualEffect](#visualeffect)的输入使用。
+
+### createRippleMask<sup>20+</sup>
+static createRippleMask(center: common2D.Point, radius: number, width: number, offset?: number): Mask
+
+通过输入波环圆心的位置、半径和宽度创建波环遮罩效果Mask实例，具体的效果由输入的参数决定。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名  | 类型                                      | 必填 | 说明                       |
+| ------- | ---------------------------------------- | ---- | ------------------------- |
+| center | [common2D.Point](js-apis-graphics-common2D.md#point12) | 是 | 设置波环圆心在屏幕上的位置，[0, 0]为屏幕左上角，[1, 1]为屏幕的右下角。<br/>取值范围[-10, 10]，超出边界会在实现时自动截断。 |
+| radius | number | 是 | 设置波环的半径，半径为1等于屏幕的高度。<br/>取值范围[0, 10]，超出边界会在实现时自动截断。 |
+| width | number | 是 | 设置波环的宽度。<br/>取值范围[0, 10]，超出边界会在实现时自动截断。 |
+| offset | number | 否 | 设置波峰位置的偏移。<br/>默认值为0，表示波峰在波环的正中心；<br/>-1.0表示波峰在波环的最内侧；<br/>1.0表示波峰在波环的最外侧。<br/>取值范围[-1, 1]，超出边界会在实现时自动截断。 |
+
+**返回值：**
+
+| 类型                          | 说明                                               |
+| ----------------------------- | ------------------------------------------------- |
+| [Mask](#mask20) | 返回具有波环遮罩效果的Mask。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+  let mask = uiEffect.Mask.createRippleMask({x:0.5, y:1.0}, 0.5, 0.3, 0.0);
+```
+
+### createPixelMapMask<sup>20+</sup>
+static createPixelMapMask(pixelMap: image.PixelMap, srcRect: common2D.Rect, dstRect: common2D.Rect, fillColor?: Color): Mask
+
+通过输入的[pixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)pixelMap的待绘制区域、挂载节点的绘制区域和绘制区域外填充的颜色创建具有缩放效果的Mask实例，具体的效果由输入的参数决定。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名  | 类型                                      | 必填 | 说明                       |
+| ------- | ---------------------------------------- | ---- | ------------------------- |
+| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | image模块创建的PixelMap实例。可通过图片解码或直接创建获得，具体可见[图片开发指导](../../media/image/image-overview.md)。   |
+| srcRect | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | pixelMap的待绘制区域，各元素取值范围为[0, 1]，小于0的转为0，大于1的转为1。图片最左侧和最上侧对应位置0，最右侧和最下侧对应位置1。right需大于left，bottom需大于top。 |
+| dstRect | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | pixelMap在mask挂载的节点上的绘制区域，各元素取值范围为[0, 1]，小于0的转为0，大于1的转为1。节点最左侧和最上侧对应位置0，最右侧和最下侧对应位置1。right需大于left，bottom需大于top。 |
+| fillColor | [Color](#color20) | 否   |  节点上在pixelMap绘制区域之外的区域填充的颜色，各元素取值范围为[0, 1]，默认透明色，小于0的转为0，大于1的转为1。 |
+
+**返回值：**
+
+| 类型                          | 说明                                               |
+| ----------------------------- | ------------------------------------------------- |
+| [Mask](#mask20) | 返回具有pixelMap缩放效果的Mask。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { image } from "@kit.ImageKit";
+import { uiEffect, common2D } from "@kit.ArkGraphics2D";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+}
+image.createPixelMap(color, opts).then((pixelMap) => {
+  let srcRect : common2D.Rect = {
+    left: 0,
+    top: 0,
+    right: 1,
+    bottom: 1
+  }
+  let dstRect : common2D.Rect = {
+    left: 0,
+    top: 0,
+    right: 1,
+    bottom: 1
+  }
+  let fillColor : uiEffect.Color = {
+    red: 0,
+    green: 0,
+    blue: 0,
+    alpha: 1
+  }
+  let mask = uiEffect.Mask.createPixelMapMask(pixelMap, srcRect, dstRect, fillColor);
+})
+```
 
 ## BrightnessBlenderParam
 BrightnessBlender参数列表。
