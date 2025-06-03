@@ -4008,14 +4008,6 @@ static createFromImage(pixelmap: image.PixelMap, srcRect?: common2D.Rect | null,
 | --------------------- | -------------- |
 | [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[图形绘制与显示错误码](../apis-arkgraphics2d/errorcode-drawing.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 25900001 | Parameter error.Possible causes: Incorrect parameter range. |
-
 **示例：**
 
 ```ts
@@ -4056,6 +4048,14 @@ static createBlendImageFilter(mode: BlendMode, background: ImageFilter, foregrou
 | 类型                  | 说明            |
 | --------------------- | -------------- |
 | [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[图形绘制与显示错误码](../apis-arkgraphics2d/errorcode-drawing.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 25900001 | Parameter error.Possible causes: Incorrect parameter range. |
 
 **示例：**
 
