@@ -13,6 +13,8 @@ NativeFence是提供**同步管理fenceFd**的模块。开发者可以通过`Nat
 | OH_NativeFence_WaitForever (int fenceFd) | 永久阻塞传入的fenceFd。 |
 | OH_NativeFence_Close (int fenceFd) | 关闭fenceFd。 |
 
+详细的接口说明请参考[NativeFence](../reference/apis-arkgraphics2d/capi-nativefence.md)。
+
 ## 开发步骤
 
 以下步骤描述了如何使用`NativeFence`提供的Native API接口。
