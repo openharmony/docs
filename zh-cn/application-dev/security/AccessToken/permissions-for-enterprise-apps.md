@@ -160,7 +160,7 @@
 
 **授权方式**：系统授权（system_grant）
 
-**支持设备**：phone | PC2in1 | tablet
+**支持设备**：Phone | PC2in1 | Tablet
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -290,6 +290,8 @@ API 12-14该权限仅向系统应用开放；从API 15开始，开放范围从�
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
+
+**支持设备**：Phone | PC/2in1 | tablet
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
