@@ -4,7 +4,7 @@
 
 声明与绘图模块中的阴影层对象相关的函数。
 
-**引用文件：** drawing_shadow_layer.h
+**引用文件：** <native_drawing/drawing_shadow_layer.h>
 
 **库：** libnative_drawing.so
 

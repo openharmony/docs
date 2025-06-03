@@ -4,6 +4,8 @@
 
 提供NativeBuffer模块的公共类型定义。<br>从API version 12开始，部分类型定义从native_buffer.h移动至此头文件统一呈现，对于此类类型，API version 12之前即支持使用，各版本均可正常使用。
 
+**引用文件：** <native_buffer/buffer_common.h>
+
 **库：** libnative_buffer.so
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeBuffer

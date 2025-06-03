@@ -4,7 +4,7 @@
 
 提供排版行相关的接口，比如获取指定位置处开始可以排版的字符个数等函数。
 
-**引用文件：** drawing_text_lineTypography.h
+**引用文件：** <native_drawing/drawing_text_lineTypography.h>
 
 **库：** libnative_drawing.so
 

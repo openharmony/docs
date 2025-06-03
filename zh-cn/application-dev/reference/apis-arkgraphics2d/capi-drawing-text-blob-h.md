@@ -4,7 +4,7 @@
 
 文件中定义了与文字相关的功能函数。
 
-**引用文件：** drawing_text_blob.h
+**引用文件：** <native_drawing/drawing_text_blob.h>
 
 **库：** libnative_drawing.so
 
