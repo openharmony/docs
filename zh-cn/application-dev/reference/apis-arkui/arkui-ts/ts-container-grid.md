@@ -1978,7 +1978,7 @@ struct Index {
     Column() {
       Button("add CommonEvent to Grid")
         .onClick(() => {
-          this.myNodeController!.addCommonEvent(this.myNodeController!.rootNode!.getParent()!.getPreviousSibling() !)
+          this.myNodeController!.addCommonEvent(this.myNodeController!.rootNode!.getParent()!.getPreviousSibling()!)
         })
       Grid() {
         ForEach(this.numbers, (day: string, index: number) => {
