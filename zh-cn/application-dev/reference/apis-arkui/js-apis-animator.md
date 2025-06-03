@@ -646,7 +646,7 @@ class DateT {
 > 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[createAnimator](js-apis-arkui-UIContext.md#createanimator)接口明确UI上下文。
 
 ```ts
-import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+import { AnimatorResult } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -658,8 +658,8 @@ struct AnimatorTest {
   @State hei: number = 100
 
   create() {
-    this.backAnimator = animator.create({
-      // 建议使用 this.getUIContext.createAnimator()接口
+    this.backAnimator = this.getUIContext().createAnimator({
+      // 建议使用 this.getUIContext().createAnimator()接口
       duration: 2000,
       easing: "ease",
       delay: 0,
