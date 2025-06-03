@@ -50,7 +50,7 @@ import { window } from '@kit.ArkUI';
 | parentId   | number                     | 否 | 父窗口id。不设置，则默认为-1，该参数应为整数。                                                           |
 | decorEnabled<sup>12+</sup> | boolean | 否 | 是否显示窗口装饰，仅在windowType为TYPE_DIALOG时生效。true表示显示，false表示不显示。此参数默认值为false。<br>**系统能力：** SystemCapability.Window.SessionManager |
 | title<sup>12+</sup> | string| 否 | `decorEnabled`属性设置为true时，窗口的标题内容。标题显示区域最右端不超过系统三键区域最左端，超过部分以省略号表示。不设置，则默认为空字符串。 <br>**系统能力：** SystemCapability.Window.SessionManager |
-| defaultDensityEnabled<sup>20+</sup> | boolean| 否 | 是否使用系统默认density。true表示创建出的窗口不随系统density变化，false或者不指定本字段表示跟随系统density变化，默认为false。<br>**系统能力：** SystemCapability.Window.SessionManager |
+| defaultDensityEnabled<sup>20+</sup> | boolean| 否 | 是否使用系统默认density。true表示固定使用系统默认density，即创建出的系统窗口的内容显示大小不会随系统及主窗口的density变化而变化；false或者不指定本字段表示新建系统窗口的density不固定，即创建出的系统窗口的内容显示大小会随系统及主窗口的density变化而变化。默认为false。<br>**系统能力：** SystemCapability.Window.SessionManager |
 
 ## AvoidAreaType<sup>7+</sup>
 
@@ -1340,7 +1340,7 @@ getGlobalWindowMode(displayId?: number): Promise&lt;number&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                                                        |
 | ------ | ---------- |----|---------------------------------------------------------------------------|
-| displayId   | number| 否  | 可选的屏幕ID，用于获取对应屏幕上的窗口模式信息，该参数应为大于等于0的整数，小于0时会返回错误码1300016，不传则代表查询所有屏幕，如果指定的屏幕不存在，返回值为0，默认查询所有屏幕。|
+| displayId   | number| 否  | 可选的屏幕ID，用于获取对应屏幕上的窗口模式信息。该参数应为大于等于0的整数，小于0时会返回错误码1300016，不传或传值为null以及undefined则代表查询所有屏幕。如果指定的屏幕不存在，返回值为0。默认不传值。|
 
 **返回值：**
 
@@ -13772,7 +13772,7 @@ export default class EntryAbility extends UIAbility {
 
 setDefaultDensityEnabled(enabled: boolean): void
 
-设置应用是否使用系统默认Density，子窗会跟随主窗生效。调用此接口前，需先调用[WindowStage.loadContent()](#loadcontent9-2)初始化布局，确保接口调用时序正确。
+设置应用主窗口是否使用系统默认Density，子窗会跟随主窗生效。调用此接口前，需先调用[WindowStage.loadContent()](#loadcontent9-2)初始化布局，确保接口调用时序正确。
 
 不调用此接口进行设置，则表示不使用系统默认Density，即窗口会跟随系统显示大小变化重新布局。
 
