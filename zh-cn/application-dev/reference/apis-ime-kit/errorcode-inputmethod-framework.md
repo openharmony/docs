@@ -336,7 +336,7 @@ The input method is not found.
 开发者可以通过接口[getAllInputMethods](js-apis-inputmethod.md#getallinputmethods11)查询所有已经安装的输入法。
 
 <!--Del-->
-## 12800019 系统配置的默认输入法不支持停用
+## 12800019 系统配置的默认输入法不支持此操作
 
 **错误信息**
 
