@@ -28,7 +28,7 @@ import {
 
 isAvailable(): boolean
 
-判断UIContext对象对应的UI实例是否有效。
+判断UIContext对象对应的UI实例是否有效。使用getUIContext方法创建UIContext对象。后端UI实例存在时，该UI实例有效。通过new UIContext()创建的UIContext对应的UI实例无效；多次loadContent后，旧的UI实例以及多窗口应用关闭对应窗口后，该窗口的UI实例无效。即后端UI实例不存在时，UI实例无效。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -43,8 +43,63 @@ isAvailable(): boolean
 **示例：**
 
 ```ts
-uiContext.isAvailable();
+import { UIContext } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct UIContextCompare {
+  @State result1: string = ""
+  @State result2: string = ""
+
+  build() {
+    Column() {
+      Text("getUIContext() 结果: " + this.result1)
+        .fontSize(20)
+        .margin(10)
+
+      Text("new UIContext() 结果: " + this.result2)
+        .fontSize(20)
+        .margin(10)
+
+      Divider().margin(20)
+
+      Button("getUIContext()")
+        .width("70%")
+        .height(50)
+        .margin(10)
+        .onClick(() => {
+          try {
+            const ctx: UIContext = this.getUIContext();
+            const available: boolean = ctx.isAvailable();
+            this.result1 = `可用状态: ${available} UI实例有效 `;
+            console.log("getUIContext测试:", available);
+          } catch (e) {
+            this.result1 = "错误: " + (e instanceof Error ? e.message : String(e));
+          }
+        })
+
+      Button("new UIContext()")
+        .width("70%")
+        .height(50)
+        .margin(10)
+        .onClick(() => {
+          try {
+            const ctx: UIContext = new UIContext();
+            const available: boolean = ctx.isAvailable();
+            this.result2 = `可用状态: ${available} UI实例无效`;
+            console.log("new UIContext测试:", available);
+          } catch (e) {
+            this.result2 = "错误: " + (e instanceof Error ? e.message : String(e));
+          }
+        })
+    }
+    .width("100%")
+    .height("100%")
+    .padding(20)
+  }
+}
 ```
+![example](figures/uicontext_isavailable.gif)
 ### getFont
 
 getFont(): Font
