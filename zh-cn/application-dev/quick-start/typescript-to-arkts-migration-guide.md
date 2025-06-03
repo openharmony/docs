@@ -216,8 +216,8 @@ greeter(t); // 是否允许？
 ```typescript
 var x = { 'name': 'x', 2: '3' };
 
-console.log(x['name']);
-console.log(x[2]);
+console.log(x['name']); // x
+console.log(x[2]); // 3
 ```
 
 **ArkTS**
@@ -227,17 +227,17 @@ class X {
   public name: string = ''
 }
 let x: X = { name: 'x' };
-console.log(x.name);
+console.log(x.name); // x
 
 let y = ['a', 'b', 'c'];
-console.log(y[2]);
+console.log(y[2]); // c
 
 // 在需要通过非标识符（即不同类型的key）获取数据的场景中，使用Map<Object, some_type>。
 let z = new Map<Object, string>();
 z.set('name', '1');
 z.set(2, '2');
-console.log(z.get('name'));
-console.log(z.get(2));
+console.log(z.get('name'));  // 1
+console.log(z.get(2)); // 2
 
 enum Test {
   A = 'aaa',
@@ -791,7 +791,7 @@ class Point {
   y: string = ''
 }
 let p: Point = {x: '1', y: '2'};
-console.log(p['x']);
+console.log(p['x']); // 1
 
 class Person {
   name: string = ''
@@ -815,7 +815,7 @@ class Point {
   y: string = ''
 }
 let p: Point = {x: '1', y: '2'};
-console.log(p.x);
+console.log(p.x); // 1
 
 class Person {
   name: string
@@ -874,10 +874,10 @@ class Y { // Y等价于X
 let x = new X();
 let y = new Y();
 
-console.log('Assign X to Y');
+// 将X对象赋值给Y对象
 y = x;
 
-console.log('Assign Y to X');
+// 将Y对象赋值给X对象
 x = y;
 
 function foo(x: X) {
