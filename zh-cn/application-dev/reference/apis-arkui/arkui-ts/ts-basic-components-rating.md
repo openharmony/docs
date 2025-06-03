@@ -118,7 +118,7 @@ contentModifier(modifier: ContentModifier\<RatingConfiguration>)
 
 onChange(callback:(value:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
-当评分条的评星发生改变时，将触发该回调。
+当评分条的评星变化时触发该回调。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
