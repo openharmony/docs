@@ -75,7 +75,7 @@ struct Index {
             sessionId = currentAVSession.sessionId;
             console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
             }).catch((err: BusinessError) => {
-            console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+            console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
             });
           })
       }
@@ -190,7 +190,7 @@ type AVSessionType = 'audio' | 'video' | 'voice_call' | 'video_call'
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-| 名称      | 类型   | 可读 | 可写 | 说明                          |
+| 名称      | 类型   | 只读 | 可选 | 说明                          |
 | :-------- | :----- | :--- | :--- | :---------------------------- |
 | sessionId | string | 是   | 否   | AVSession对象唯一的会话标识。 |
 | sessionType| [AVSessionType](#avsessiontype10) | 是   | 否   | AVSession会话类型。 |
@@ -5807,7 +5807,7 @@ AVSessionController控制器可查看会话ID，并可完成对会话发送命�
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-| 名称      | 类型   | 可读 | 可写 | 说明                                    |
+| 名称      | 类型   | 只读 | 可选 | 说明                                    |
 | :-------- | :----- | :--- | :--- | :-------------------------------------- |
 | sessionId | string | 是   | 否   | AVSessionController对象唯一的会话标识。 |
 
@@ -6882,7 +6882,7 @@ avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSe
   controller = await currentAVSession.getController();
   console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
 }).catch((err: BusinessError) => {
-  console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
 });
 let commandName = "my_command";
 if (controller !== undefined) {
@@ -6942,7 +6942,7 @@ avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSe
   controller = await currentAVSession.getController();
   console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
 }).catch((err: BusinessError) => {
-  console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
 });
 let commandName = "my_command";
 if (controller !== undefined) {
@@ -6998,7 +6998,7 @@ avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSe
   controller = await currentAVSession.getController();
   console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
 }).catch((err: BusinessError) => {
-  console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
 });
 if (controller !== undefined) {
   (controller as avSession.AVSessionController).getExtras().then((extras) => {
@@ -7052,7 +7052,7 @@ avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSe
   controller = await currentAVSession.getController();
   console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
 }).catch((err: BusinessError) => {
-  console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
 });
 if (controller !== undefined) {
   (controller as avSession.AVSessionController).getExtras((err, extras) => {
@@ -7109,19 +7109,19 @@ if (controller !== undefined) {
   controller.getExtrasWithEvent(COMMON_COMMAND_STRING_1).then(() => {
     console.info(`${[COMMON_COMMAND_STRING_1]}`);
   }).catch((err: BusinessError) => {
-    console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
+    console.error(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
   })
 
   controller.getExtrasWithEvent(COMMON_COMMAND_STRING_2).then(() => {
     console.info(`${[COMMON_COMMAND_STRING_2]}`);
   }).catch((err: BusinessError) => {
-    console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
+    console.error(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
   })
 
   controller.getExtrasWithEvent(COMMON_COMMAND_STRING_3).then(() => {
     console.info(`${[COMMON_COMMAND_STRING_3]}`);
   }).catch((err: BusinessError) => {
-    console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
+    console.error(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
   })
 }
 ```
@@ -7734,7 +7734,7 @@ avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSe
   controller = await currentAVSession.getController();
   console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
 }).catch((err: BusinessError) => {
-  console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
 });
 if (controller !== undefined) {
   (controller as avSession.AVSessionController).on('sessionEvent', (sessionEvent, args) => {
@@ -7954,7 +7954,7 @@ avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSe
   controller = await currentAVSession.getController();
   console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
 }).catch((err: BusinessError) => {
-  console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
 });
 if (controller !== undefined) {
   (controller as avSession.AVSessionController).on('extrasChange', (extras) => {
@@ -8031,7 +8031,7 @@ try {
   let playbackState: avSession.AVPlaybackState = avsessionController.getAVPlaybackStateSync();
 } catch (err) {
   let error = err as BusinessError;
-  console.info(`getAVPlaybackStateSync error, error code: ${error.code}, error message: ${error.message}`);
+  console.error(`getAVPlaybackStateSync error, error code: ${error.code}, error message: ${error.message}`);
 }
 ```
 
@@ -8069,7 +8069,7 @@ try {
   let metaData: avSession.AVMetadata = avsessionController.getAVMetadataSync();
 } catch (err) {
   let error = err as BusinessError;
-  console.info(`getAVMetadataSync error, error code: ${error.code}, error message: ${error.message}`);
+  console.error(`getAVMetadataSync error, error code: ${error.code}, error message: ${error.message}`);
 }
 ```
 
