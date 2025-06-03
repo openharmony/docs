@@ -85,7 +85,7 @@ onDestroy(): void
 
 onRequest(want: Want, startId: number): void
 
-使用[startAppServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartappserviceextensionability20)拉起AppServiceExtensionAbility实例时，系统会触发该回调。
+使用[startAppServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20)拉起AppServiceExtensionAbility实例时，系统会触发该回调。
 
 - 如果该实例已创建，则会直接回调该接口。
 - 如果该实例此前未被创建，则会先创建实例并触发[onCreate()](#appserviceextensionabilityoncreate)回调，再回调该接口。
@@ -118,7 +118,7 @@ onRequest(want: Want, startId: number): void
 
 onConnect(want: Want): rpc.RemoteObject
 
-调用方使用[connectAppServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectappserviceextensionability20)连接AppServiceExtensionAbility实例时，系统会触发该回调。
+调用方使用[connectAppServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20)连接AppServiceExtensionAbility实例时，系统会触发该回调。
 
 - 如果该实例已创建，则会直接回调该接口。
 - 如果该实例此前未被创建，则会先创建实例并触发[onCreate()](#appserviceextensionabilityoncreate)回调，再回调该接口。
