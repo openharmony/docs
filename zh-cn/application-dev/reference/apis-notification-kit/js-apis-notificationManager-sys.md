@@ -756,7 +756,7 @@ displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<voi
 
 设定指定应用的角标使能状态。使用callback异步回调。
 
-该接口不支持tv和wearable设备。
+该接口不支持wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -811,7 +811,7 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 设定指定应用的角标使能状态。使用Promise异步回调。
 
-该接口不支持tv和wearable设备。
+该接口不支持wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 

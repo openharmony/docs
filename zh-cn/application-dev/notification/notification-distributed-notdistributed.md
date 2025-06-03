@@ -11,7 +11,7 @@
 
 | **接口名**  | **描述** | **说明** |
 | -------- | -------- |-------- |
-| [publish](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerpublish-1)(request: [NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest-sys.md)): Promise\<void\>       | 发布通知。  | 具体使用方法见入参对象[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest-sys.md)中**notDistributed**与**forceDistributed**字段说明。|
+| [publish](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerpublish-1)(request: NotificationRequest): Promise\<void\>       | 发布通知。  | 具体使用方法见入参对象[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest-sys.md)中**notDistributed**与**forceDistributed**字段说明。|
 
 
 ## 开发步骤
@@ -42,12 +42,12 @@
       content: {
         notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
-          title: "test_title",
-          text: "test_text",
-          additionalText: "test_additionalText"
+          title: 'test_title',
+          text: 'test_text',
+          additionalText: 'test_additionalText'
           }
         },
-        // 指定通知消息不跨设备协同。
+        // 配置应用通知消息仅在当前设备上发布。
         notDistributed: true
     };
     notificationManager.publish(notificationRequest, publishCallback);
@@ -70,12 +70,12 @@
       content: {
         notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
-          title: "test_title",
-          text: "test_text",
-          additionalText: "test_additionalText"
+          title: 'test_title',
+          text: 'test_text',
+          additionalText: 'test_additionalText'
           }
         },
-        // 指定通知消息按照管控名单跨设备协同发布。
+        // 配置应用通知消息根据管控名单跨设备协同发布。
         notDistributed: false,
         forceDistributed: true
     };
