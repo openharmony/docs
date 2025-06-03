@@ -14,13 +14,13 @@
 
 ### 暂停态
 
-在此状态下，卡片 UI 由 提供方开发 widgetCard.ets 中的内容所承载。同时系统在卡片上默认渲染“继续游戏”和“停止游戏”按钮。
+在此状态下，卡片 UI 由卡片提供方 widgetCard.ets 中的内容所承载。同时系统在卡片上默认渲染“继续游戏”和“停止游戏”按钮。
 
 ![live-form-pause-game.jpg](figures/live-form-pause-game.jpg)
 
 ### 非激活态
 
-即普通卡片状态，在此状态下，卡片与普通卡片行为无异，遵循既有的卡片开发规范，卡片 UI 由 提供方开发 widgetCard.ets 中的内容所承载。
+即普通卡片状态，在此状态下，卡片与普通卡片行为无异，遵循既有的卡片开发规范，卡片 UI 由卡片提供方 widgetCard.ets 中的内容所承载。
 
 ![live-form-stop-game.jpg](figures/live-form-stop-game.jpg)
 
