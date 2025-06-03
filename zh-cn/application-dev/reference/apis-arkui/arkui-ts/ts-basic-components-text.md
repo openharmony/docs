@@ -664,7 +664,7 @@ fontFeature(value: string)
 | ------ | ------ | ---- | -------------- |
 | value  | string | 是   | 文字特性效果。 |
 
-fontFeature属性列表<br/>
+fontFeature属性列表：
 ![alt text](figures/arkts-fontfeature.png)
 
 设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
@@ -1066,7 +1066,7 @@ enableAutoSpacing(enable: Optional\<boolean>)
 
 onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
-长按文本内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。目前文本复制仅支持文本。
+长按文本内部区域弹出剪贴板后，点击剪贴板复制按钮，触发该回调。目前文本复制仅支持文本。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1430,7 +1430,7 @@ struct TextExample2 {
   }
 }
 ```
-![textExp1](figures/textExp2.gif)
+![textExp2](figures/textExp2.gif)
 
 ### 示例3（设置文本超长省略）
 

@@ -263,7 +263,7 @@ showCounter(value: boolean, options?: InputCounterOptions)
 
 设置当通过InputCounterOptions输入的字符数超过阈值时显示计数器。
 
-参数value为true时，才能设置options，文本框开启计数下标功能，需要配合maxLength（设置最大字符限制）一起使用。字符计数器显示的效果是当前输入字符数/最大可输入字符数。
+参数value为true时，才能设置options，文本框开启计数器功能，需要配合maxLength（设置最大字符限制）一起使用。字符计数器显示的效果是当前输入字符数/最大可输入字符数。
 
 当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。用户同时设置参数value为true和InputCounterOptions，当thresholdPercentage数值在有效区间内，且输入字符数超过最大字符数时，边框和计数器下标将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色边框。内联模式下字符计数器不显示。
 
@@ -276,7 +276,7 @@ showCounter(value: boolean, options?: InputCounterOptions)
 | 参数名                | 类型                                                         | 必填 | 说明             |
 | --------------------- | ------------------------------------------------------------ | ---- | ---------------- |
 | value                 | boolean                                                      | 是   | 是否显示计数器。 |
-| options<sup>11+</sup> | [InputCounterOptions](ts-types.md#inputcounteroptions11对象说明) | 否   | 计数器的百分比。 |
+| options<sup>11+</sup> | [InputCounterOptions](ts-types.md#inputcounteroptions11对象说明) | 否   | 计数器的配置项。 |
 
 ### style<sup>10+</sup>
 
@@ -364,7 +364,7 @@ maxLines(value: number)
 
 maxLines(value: number, options?: MaxLinesOptions)
 
-配置[textOverflow](ts-basic-components-textarea.md#textoverflow12)一起使用时，maxlines为可显示行数，超出可配置为截断或滚动。未配置[textOverflow](ts-basic-components-textarea.md#textoverflow12)时，内联模式获焦状态下内容超出maxlines时，文本可滚动显示。内联模式非获焦状态下不生效maxlines。
+配置[textOverflow](ts-basic-components-textarea.md#textoverflow12)一起使用时，maxLines为可显示行数，超出可配置为截断或滚动。未配置[textOverflow](ts-basic-components-textarea.md#textoverflow12)时，内联模式获焦状态下内容超出maxLines时，文本可滚动显示。内联模式非获焦状态下，maxLines不生效。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -401,7 +401,7 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 
 当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。
 
-自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。
+自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度则使用系统默认值。
 
 自定义键盘采用覆盖原始界面的方式呈现，当没有开启避让模式或者输入框不需要避让的场景，不会对应用原始界面产生压缩或者上提。
 
