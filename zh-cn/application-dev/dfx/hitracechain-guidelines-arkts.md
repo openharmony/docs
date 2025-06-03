@@ -1,4 +1,4 @@
-# 使用HiTraceChain打点（ArkTS/JS）
+# 使用HiTraceChain打点（ArkTS）
 
 ## 简介
 
