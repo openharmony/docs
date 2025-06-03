@@ -37,10 +37,10 @@ try {
     if (err == undefined) {
         console.log("get system capabilities:" + data)
     } else {
-        console.log(" get system capabilities err:" + err)
+        console.error(" get system capabilities err:" + err)
     }});
 }catch(e){
-    console.log("get unexpected error: " + e);
+    console.error("get unexpected error: " + e);
 }
 ```
 
@@ -66,10 +66,10 @@ try {
     systemcapability.querySystemCapabilities().then((value:string) => {
         console.log("get system capabilities: " + value);
     }).catch((err:Error) => {
-        console.log("get system capabilities error: " + err);
+        console.error("get system capabilities error: " + err);
     });
 }catch(e){
-    console.log("get unexpected error: " + e);
+    console.error("get unexpected error: " + e);
 }
 ```
 
