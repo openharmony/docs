@@ -19,6 +19,7 @@ import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
 |  context | [PhotoEditorExtensionContext](./js-apis-app-ability-photoEditorExtensionContext.md)  | 否  | 是  | 上下文  |
 
 ### onCreate
+
 onCreate(): void
 
 PhotoEditorExtensionAbility创建时回调，执行初始化业务逻辑操作。
@@ -42,6 +43,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 ```
 ### onStartContentEditing
+
 onStartContentEditing(uri: string, want: Want, session: UIExtensionContentSession): void
 
 当PhotoEditorExtensionAbility界面内容对象创建后调用，可以执行读取原始图片、加载页面等操作。
@@ -73,6 +75,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 ```
 ### onForeground
+
 onForeground(): void
 
 PhotoEditorExtensionAbility生命周期回调，当PhotoEditorExtensionAbility从后台转到前台时触发。
@@ -96,6 +99,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 ```
 ### onBackground
+
 onBackground(): void
 
 PhotoEditorExtensionAbility生命周期回调，当PhotoEditorExtensionAbility从前台转到后台时触发。
@@ -119,6 +123,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 ```
 ### onDestroy
+
 onDestroy(): void | Promise\<void>
 
 PhotoEditorExtensionAbility生命周期回调，在销毁时回调，执行资源清理等操作。 
