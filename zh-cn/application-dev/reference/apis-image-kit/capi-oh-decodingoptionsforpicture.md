@@ -2,7 +2,7 @@
 
 ## 概述
 
-Picture解码参数结构体。[OH_DecodingOptionsForPicture_Create](capi-image-source-native-h.md#oh_decodingoptionsforpicture_create).
+Picture解码参数结构体。通过[OH_DecodingOptionsForPicture_Create](capi-image-source-native-h.md#oh_decodingoptionsforpicture_create)获取。
 
 **起始版本：** 13
 

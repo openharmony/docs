@@ -16,9 +16,9 @@ Pixelmap使用的HDR元数据值，和OH_Pixelmap_HdrMetadataKey关键字相对�
 
 | 名称 | 描述 |
 | -- | -- |
-| OH_Pixelmap_HdrMetadataType type | HDR_METADATA_TYPE关键字对应的具体值。 |
-| OH_Pixelmap_HdrStaticMetadata staticMetadata | HDR_STATIC_METADATA关键字对应的具体值。 |
-| OH_Pixelmap_HdrDynamicMetadata dynamicMetadata | HDR_DYNAMIC_METADATA关键字对应的具体值。 |
-| OH_Pixelmap_HdrGainmapMetadata gainmapMetadata | HDR_GAINMAP_METADATA关键字对应的具体值。 |
+| [OH_Pixelmap_HdrMetadataType](capi-pixelmap-native-h.md#oh_pixelmap_hdrmetadatatype) type | HDR_METADATA_TYPE关键字对应的具体值。 |
+| [OH_Pixelmap_HdrStaticMetadata](capi-oh-pixelmap-hdrstaticmetadata.md) | HDR_STATIC_METADATA关键字对应的具体值。 |
+| [OH_Pixelmap_HdrDynamicMetadata](capi-oh-pixelmap-hdrdynamicmetadata.md) dynamicMetadata | HDR_DYNAMIC_METADATA关键字对应的具体值。 |
+| [OH_Pixelmap_HdrGainmapMetadata](capi-oh-pixelmap-hdrgainmapmetadata.md) gainmapMetadata | HDR_GAINMAP_METADATA关键字对应的具体值。 |
 
 

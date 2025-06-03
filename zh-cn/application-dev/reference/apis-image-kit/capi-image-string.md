@@ -16,7 +16,7 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| char* data = nullptr | 字符类型数据。 |
+| char *data = nullptr | 字符类型数据。 |
 | size_t size = 0 | 数据长度。 |
 
 

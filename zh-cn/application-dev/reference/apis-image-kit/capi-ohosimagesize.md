@@ -6,7 +6,7 @@
 
 **起始版本：** 10
 
-**相关模块：** [image](capi-image.md)
+**相关模块：** [Image](capi-image.md)
 
 **所在头文件：** [image_mdk_common.h](capi-image-mdk-common-h.md)
 

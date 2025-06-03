@@ -24,7 +24,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) | Image_AuxiliaryPictureType | 辅助图类型 |
+| [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) | Image_AuxiliaryPictureType | 辅助图类型。 |
 
 ### 函数
 
@@ -40,7 +40,7 @@
 | [Image_ErrorCode OH_PictureNative_SetMetadata(OH_PictureNative *picture, Image_MetadataType metadataType,OH_PictureMetadata *metadata)](#oh_picturenative_setmetadata) | 设置主图的元数据。 |
 | [Image_ErrorCode OH_PictureNative_Release(OH_PictureNative *picture)](#oh_picturenative_release) | 释放OH_PictureNative指针。 |
 | [Image_ErrorCode OH_AuxiliaryPictureNative_Create(uint8_t *data, size_t dataLength, Image_Size *size,Image_AuxiliaryPictureType type, OH_AuxiliaryPictureNative **auxiliaryPicture)](#oh_auxiliarypicturenative_create) | 创建OH_AuxiliaryPictureNative指针。 |
-| [Image_ErrorCode OH_AuxiliaryPictureNative_WritePixels(OH_AuxiliaryPictureNative *auxiliaryPicture, uint8_t *source,size_t bufferSize)](#oh_auxiliarypicturenative_writepixels) | 读取缓冲区的图像像素数据，并将结果写入为辅助图中。 |
+| [Image_ErrorCode OH_AuxiliaryPictureNative_WritePixels(OH_AuxiliaryPictureNative *auxiliaryPicture, uint8_t *source,size_t bufferSize)](#oh_auxiliarypicturenative_writepixels) | 读取缓冲区的图像像素数据，并将结果写入辅助图中。 |
 | [Image_ErrorCode OH_AuxiliaryPictureNative_ReadPixels(OH_AuxiliaryPictureNative *auxiliaryPicture, uint8_t *destination,size_t *bufferSize)](#oh_auxiliarypicturenative_readpixels) | 读取辅助图的像素数据，结果写入缓冲区。 |
 | [Image_ErrorCode OH_AuxiliaryPictureNative_GetType(OH_AuxiliaryPictureNative *auxiliaryPicture,Image_AuxiliaryPictureType *type)](#oh_auxiliarypicturenative_gettype) | 获取辅助图类型。 |
 | [Image_ErrorCode OH_AuxiliaryPictureNative_GetInfo(OH_AuxiliaryPictureNative *auxiliaryPicture,OH_AuxiliaryPictureInfo **info)](#oh_auxiliarypicturenative_getinfo) | 获取辅助图信息。 |
@@ -101,14 +101,14 @@ Image_ErrorCode OH_PictureNative_CreatePicture(OH_PixelmapNative *mainPixelmap, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_PixelmapNative *mainPixelmap | 主图的OH_PixelmapNative指针。 |
+| [OH_PictureNative](capi-oh-picturenative.md) *mainPixelmap | 主图的OH_PixelmapNative指针。 |
 | [OH_PictureNative](capi-oh-picturenative.md) **picture | 被创建的OH_PictureNative指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 具体请参考 [Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。 |
 
 ### OH_PictureNative_GetMainPixelmap()
 
@@ -128,13 +128,13 @@ Image_ErrorCode OH_PictureNative_GetMainPixelmap(OH_PictureNative *picture, OH_P
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_PictureNative](capi-oh-picturenative.md) *picture | 被操作的OH_PictureNative指针。 |
-| OH_PixelmapNative **mainPixelmap | 获取的OH_PixelmapNative指针。 |
+| [OH_PictureNative](capi-oh-picturenative.md) **mainPixelmap | 获取的OH_PixelmapNative指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 具体请参考 [Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。 |
 
 ### OH_PictureNative_GetHdrComposedPixelmap()
 
@@ -154,13 +154,13 @@ Image_ErrorCode OH_PictureNative_GetHdrComposedPixelmap(OH_PictureNative *pictur
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_PictureNative](capi-oh-picturenative.md) *picture | 被操作的OH_PictureNative指针。 |
-| OH_PixelmapNative **hdrPixelmap | 获取的hdr图OH_PixelmapNative指针。 |
+| [OH_PictureNative](capi-oh-picturenative.md) **hdrPixelmap | 获取的hdr图OH_PixelmapNative指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 如果是不支持的操作，例如picture对象中不包含增益图返回 IMAGE_UNSUPPORTED_OPERATION，<br> 具体请参考 [Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。<br> IMAGE_UNSUPPORTED_OPERATION：操作不支持，例如picture对象中不包含增益图。 |
 
 ### OH_PictureNative_GetGainmapPixelmap()
 
@@ -180,13 +180,13 @@ Image_ErrorCode OH_PictureNative_GetGainmapPixelmap(OH_PictureNative *picture, O
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_PictureNative](capi-oh-picturenative.md) *picture | 被操作的OH_PictureNative指针。 |
-| OH_PixelmapNative **gainmapPixelmap | 获取的增益图OH_PixelmapNative指针。 |
+| [OH_PictureNative](capi-oh-picturenative.md) **gainmapPixelmap | 获取的增益图OH_PixelmapNative指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 具体请参考 [Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。 |
 
 ### OH_PictureNative_SetAuxiliaryPicture()
 
@@ -213,7 +213,7 @@ Image_ErrorCode OH_PictureNative_SetAuxiliaryPicture(OH_PictureNative *picture, 
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 具体请参考 [Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。 |
 
 ### OH_PictureNative_GetAuxiliaryPicture()
 
@@ -240,7 +240,7 @@ Image_ErrorCode OH_PictureNative_GetAuxiliaryPicture(OH_PictureNative *picture, 
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 具体请参考 [Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。 |
 
 ### OH_PictureNative_GetMetadata()
 
@@ -267,7 +267,7 @@ Image_ErrorCode OH_PictureNative_GetMetadata(OH_PictureNative *picture, Image_Me
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 如果是不支持的元数据类型返回 IMAGE_UNSUPPORTED_METADATA，<br> 具体请参考 [Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。<br> IMAGE_UNSUPPORTED_METADATA：不支持的元数据类型。 |
 
 ### OH_PictureNative_SetMetadata()
 
@@ -294,7 +294,7 @@ Image_ErrorCode OH_PictureNative_SetMetadata(OH_PictureNative *picture, Image_Me
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 如果是不支持的元数据类型返回 IMAGE_UNSUPPORTED_METADATA，<br> 具体请参考 [Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。<br> IMAGE_UNSUPPORTED_METADATA：不支持的元数据类型。 |
 
 ### OH_PictureNative_Release()
 
@@ -319,7 +319,7 @@ Image_ErrorCode OH_PictureNative_Release(OH_PictureNative *picture)
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 具体请参考 [Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。 |
 
 ### OH_AuxiliaryPictureNative_Create()
 
@@ -348,7 +348,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_Create(uint8_t *data, size_t dataLengt
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 具体请参考 [Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。 |
 
 ### OH_AuxiliaryPictureNative_WritePixels()
 
@@ -358,7 +358,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_WritePixels(OH_AuxiliaryPictureNative 
 
 **描述**
 
-读取缓冲区的图像像素数据，并将结果写入为辅助图中。
+读取缓冲区的图像像素数据，并将结果写入辅助图中。
 
 **起始版本：** 13
 
@@ -375,7 +375,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_WritePixels(OH_AuxiliaryPictureNative 
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 如果内存分配失败返回 IMAGE_ALLOC_FAILED，如果内存拷贝失败返回 IMAGE_COPY_FAILED，<br> 具体请参考 [Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。<br> IMAGE_ALLOC_FAILED：内存分配失败。<br> IMAGE_COPY_FAILED：内存拷贝失败。 |
 
 ### OH_AuxiliaryPictureNative_ReadPixels()
 
@@ -402,7 +402,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_ReadPixels(OH_AuxiliaryPictureNative *
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 如果内存分配失败返回 IMAGE_ALLOC_FAILED，如果内存拷贝失败返回 IMAGE_COPY_FAILED，<br> 具体请参考 [Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。<br> IMAGE_ALLOC_FAILED：内存分配失败。<br> IMAGE_COPY_FAILED：内存拷贝失败。 |
 
 ### OH_AuxiliaryPictureNative_GetType()
 
@@ -428,7 +428,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_GetType(OH_AuxiliaryPictureNative *aux
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 具体请参考 [Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。 |
 
 ### OH_AuxiliaryPictureNative_GetInfo()
 
@@ -448,13 +448,13 @@ Image_ErrorCode OH_AuxiliaryPictureNative_GetInfo(OH_AuxiliaryPictureNative *aux
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AuxiliaryPictureNative](capi-oh-auxiliarypicturenative.md) *auxiliaryPicture | 被操作的OH_AuxiliaryPictureNative指针。 |
-| [OH_AuxiliaryPictureInfo](capi-oh-auxiliarypictureinfo.md) **info | 辅助图信息 |
+| [OH_AuxiliaryPictureInfo](capi-oh-auxiliarypictureinfo.md) **info | 辅助图信息。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 具体请参考 [Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。 |
 
 ### OH_AuxiliaryPictureNative_SetInfo()
 
@@ -480,7 +480,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_SetInfo(OH_AuxiliaryPictureNative *aux
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 具体释义参考[Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。 |
 
 ### OH_AuxiliaryPictureNative_GetMetadata()
 
@@ -507,7 +507,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_GetMetadata(OH_AuxiliaryPictureNative 
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 如果是不支持的元数据类型，或者元数据类型与辅助图片类型不匹配返回 IMAGE_UNSUPPORTED_METADATA，<br> 具体释义参考[Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。<br> IMAGE_UNSUPPORTED_METADATA：不支持的元数据类型，或者元数据类型与辅助图片类型不匹配。 |
 
 ### OH_AuxiliaryPictureNative_SetMetadata()
 
@@ -534,7 +534,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_SetMetadata(OH_AuxiliaryPictureNative 
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 如果是不支持的元数据类型，或者元数据类型与辅助图片类型不匹配返回 IMAGE_UNSUPPORTED_METADATA，<br> 具体释义参考[Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。<br> IMAGE_UNSUPPORTED_METADATA：不支持的元数据类型，或者元数据类型与辅助图片类型不匹配。 |
 
 ### OH_AuxiliaryPictureNative_Release()
 
@@ -559,7 +559,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_Release(OH_AuxiliaryPictureNative *pic
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 具体释义参考[Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。 |
 
 ### OH_AuxiliaryPictureInfo_Create()
 
@@ -584,7 +584,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_Create(OH_AuxiliaryPictureInfo **info)
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 具体释义参考[Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。 |
 
 ### OH_AuxiliaryPictureInfo_GetType()
 
@@ -610,7 +610,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_GetType(OH_AuxiliaryPictureInfo *info, I
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 具体释义参考[Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。 |
 
 ### OH_AuxiliaryPictureInfo_SetType()
 
@@ -636,7 +636,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_SetType(OH_AuxiliaryPictureInfo *info, I
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 具体释义参考[Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。 |
 
 ### OH_AuxiliaryPictureInfo_GetSize()
 
@@ -662,7 +662,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_GetSize(OH_AuxiliaryPictureInfo *info, I
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 具体释义参考[Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。 |
 
 ### OH_AuxiliaryPictureInfo_SetSize()
 
@@ -688,7 +688,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_SetSize(OH_AuxiliaryPictureInfo *info, I
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 具体释义参考[Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。 |
 
 ### OH_AuxiliaryPictureInfo_GetRowStride()
 
@@ -714,7 +714,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_GetRowStride(OH_AuxiliaryPictureInfo *in
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 具体释义参考[Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。 |
 
 ### OH_AuxiliaryPictureInfo_SetRowStride()
 
@@ -740,7 +740,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_SetRowStride(OH_AuxiliaryPictureInfo *in
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 具体释义参考[Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。 |
 
 ### OH_AuxiliaryPictureInfo_GetPixelFormat()
 
@@ -760,13 +760,13 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_GetPixelFormat(OH_AuxiliaryPictureInfo *
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AuxiliaryPictureInfo](capi-oh-auxiliarypictureinfo.md) *info | 将操作的OH_AuxiliaryPictureInfo指针。 |
-| PIXEL_FORMAT *pixelFormat | 获取的像素格式。 |
+| [PIXEL_FORMAT](capi-pixelmap-native-h.md#pixel_format) *pixelFormat | 获取的像素格式。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 具体释义参考[Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。 |
 
 ### OH_AuxiliaryPictureInfo_SetPixelFormat()
 
@@ -786,13 +786,13 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_SetPixelFormat(OH_AuxiliaryPictureInfo *
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AuxiliaryPictureInfo](capi-oh-auxiliarypictureinfo.md) *info | 将操作的OH_AuxiliaryPictureInfo指针。 |
-| PIXEL_FORMAT pixelFormat | 将要设置的像素格式。 |
+| [PIXEL_FORMAT](capi-pixelmap-native-h.md#pixel_format) pixelFormat | 将要设置的像素格式。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 具体释义参考[Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。 |
 
 ### OH_AuxiliaryPictureInfo_Release()
 
@@ -817,6 +817,6 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_Release(OH_AuxiliaryPictureInfo *info)
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，<br> 具体释义参考[Image_ErrorCode](capi-image-common-h.md#image_errorcode)。 |
+| [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>IMAGE_BAD_PARAMETER：参数错误。 |
 
 

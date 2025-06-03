@@ -34,9 +34,9 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| const int32_t IMAGE_PROCESSING_TYPE_COLOR_SPACE_CONVERSION | 用于创建色彩空间转换的图片处理实例。色彩空间转换包括单层HDR图片转换SDR图片，SDR图片之间的转换，以及SDR图片转换单层HDR图片，部分能力由厂商支持。使用{@link OH_ImageProcessing_IsColorSpaceConversionSuported}查询某种转换是否支持在单层图片之间进行。<br>**起始版本：** 13<br>**系统能力：** SystemCapability.Multimedia.VideoProcessingEngine |
-| const int32_t IMAGE_PROCESSING_TYPE_COMPOSITION | 用于创建双层HDR图片转换单层HDR图片的图片处理实例。包括从双层HDR图片转换为单层HDR图片的能力。部分能力由厂商支持。使用{@link OH_ImageProcessing_IsCompositionSupported}查询是否支持从双层HDR图片到单层HDR图片的转换。<br>**起始版本：** 13 |
-| const int32_t IMAGE_PROCESSING_TYPE_DECOMPOSITION | 用于创建单层HDR图片转换双层HDR图片的图片处理实例。包括从单层HDR图片转换为双层HDR图片的能力。部分能力由厂商支持。使用{@link OH_ImageProcessing_IsDecompositionSupported}查询是否支持从单层HDR图片到双层HDR图片的转换。<br>**起始版本：** 13 |
+| const int32_t IMAGE_PROCESSING_TYPE_COLOR_SPACE_CONVERSION | 用于创建色彩空间转换的图片处理实例。<br>色彩空间转换包括单层HDR图片转换SDR图片，SDR图片之间的转换，以及SDR图片转换单层HDR图片，部分能力由厂商支持。使用[OH_ImageProcessing_IsColorSpaceConversionSuported](capi-image-processing-h.md#oh_imageprocessing_iscolorspaceconversionsupported)查询某种转换是否支持在单层图片之间进行。<br>**起始版本：** 13<br>**参考：**[OH_ImageProcessing_Create](capi-image-processing-h.md#oh_imageprocessing_create) |
+| const int32_t IMAGE_PROCESSING_TYPE_COMPOSITION | 用于创建双层HDR图片转换单层HDR图片的图片处理实例。<br>包括从双层HDR图片转换为单层HDR图片的能力。部分能力由厂商支持。使用[OH_ImageProcessing_IsCompositionSupported](capi-image-processing-h.md#oh_imageprocessing_iscompositionsupported)查询是否支持从双层HDR图片到单层HDR图片的转换。<br>**起始版本：** 13<br>**参考：**[OH_ImageProcessing_Create](capi-image-processing-h.md#oh_imageprocessing_create) |
+| const int32_t IMAGE_PROCESSING_TYPE_DECOMPOSITION | 用于创建单层HDR图片转换双层HDR图片的图片处理实例。<br>包括从单层HDR图片转换为双层HDR图片的能力。部分能力由厂商支持。使用[OH_ImageProcessing_IsDecompositionSupported](capi-image-processing-h.md#oh_imageprocessing_isdecompositionsupported)查询是否支持从单层HDR图片到双层HDR图片的转换。<br>**起始版本：** 13 |
 | const int32_t IMAGE_PROCESSING_TYPE_METADATA_GENERATION | 用于创建元数据生成的图片处理实例。生成单层HDR图片的HDR Vivid元数据。该能力由厂商支持。如果不支持该能力，{@link OH_ImageProcessing_Create}将返回[IMAGE_PROCESSING_ERROR_UNSUPPORTED_PROCESSING](capi-image-processing-types-h.md#imageprocessing_errorcode)。<br>**起始版本：** 13 |
 | const int32_t IMAGE_PROCESSING_TYPE_DETAIL_ENHANCER | 用于创建细节增强的图片处理实例。按指定图像质量缩放或调整图片大小，或仅增强图像细节以在不更改分辨率的情况下渲染图片。<br>**起始版本：** 13 |
 | const char * IMAGE_DETAIL_ENHANCER_PARAMETER_KEY_QUALITY_LEVEL | 用于设定图像细节增强的质量级别。使用[ImageDetailEnhancer_QualityLevel](capi-image-processing-types-h.md#imagedetailenhancer_qualitylevel)获取其值。使用{@link OH_ImageProcessing_SetParameter}设置质量级别。使用{@link OH_ImageProcessing_GetParameter}获取当前质量级别。<br>**起始版本：** 13 |

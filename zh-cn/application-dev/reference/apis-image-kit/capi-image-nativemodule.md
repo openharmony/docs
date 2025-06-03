@@ -2,9 +2,22 @@
 
 ## 概述
 
-提供图片编解码能力。
+提供图片处理的相关能力，包括图片编解码、从Native层获取图片数据等。
+
+使用该模块的接口，无需通过JS接口导入，可直接使用NDK完成功能开发。
+
+开发者可根据实际的开发需求，参考对应的开发指南及样例：
+
+- [使用Image_NativeModule完成图片解码](../../media/image/image-source-c.md)
+- [使用Image_NativeModule完成多图对象解码](../../media/image/image-source-picture-c.md)
+- [使用Image_NativeModule完成图片接收](../../media/image/image-receiver-c.md)
+- [使用Image_NativeModule完成位图操作](../../media/image/pixelmap-c.md)
+- [使用Image_NativeModule处理图像信息](../../media/image/image-info-c.md)
+- [使用Image_NativeModule完成图片编码](../../media/image/image-packer-c.md)
+- [使用Image_NativeModule完成多图对象编码](../../media/image/image-packer-picture-c.md)
 
 **起始版本：** 12
+
 ## 文件汇总
 
 | 名称 | 描述 |

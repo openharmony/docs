@@ -10,7 +10,7 @@
 
 **起始版本：** 10
 
-**相关模块：** [image](capi-image.md)
+**相关模块：** [Image](capi-image.md)
 
 ## 汇总
 

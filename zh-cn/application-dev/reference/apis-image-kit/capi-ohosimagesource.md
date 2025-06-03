@@ -8,7 +8,7 @@
 
 **废弃版本：** 11
 
-**相关模块：** [image](capi-image.md)
+**相关模块：** [Image](capi-image.md)
 
 **所在头文件：** [image_source_mdk.h](capi-image-source-mdk-h.md)
 
