@@ -391,7 +391,7 @@ struct Second {
 
         Button("点击向UIExtensionAbility发送数据").onClick(() => {
           if (this.proxy != undefined) {
-            this.proxy.send({data: "你好1"})
+            this.proxy.send({data: "你好1"});
 
             try {
               let re = this.proxy.sendSync({data: "你好2"});
