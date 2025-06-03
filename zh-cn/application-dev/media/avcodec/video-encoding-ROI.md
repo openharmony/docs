@@ -47,31 +47,10 @@ ROI编码接口支持开发者通过字符串形式下发配置参数，参数�
 
 ### Surface模式
 
-1. 编码器配置阶段，调用 **OH_VideoEncoder_RegisterParameterCallback()** 在Configure接口之前注册随帧通路回调
-
     ```cpp
-    int32_t VideoEncoderAPI11::SetCallback(uintptr_t *const sampleContext)
+    // 1 编码输入参数回调OH_VideoEncoder_OnNeedInputParameter实现。
+    static void OnNeedInputParameter(OH_AVCodec *codec, uint32_t index, OH_AVFormat *parameter, void *userData)
     {
-        CHECK_AND_RETURN_RET_LOG(codec_ != nullptr, AVCODEC_SAMPLE_ERR_ERROR, "Encoder is null");
-    
-        int32_t ret = OH_VideoEncoder_RegisterCallback(codec_.get(), AVCodecCallback, sampleContext);
-        CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Set callback failed, ret: %{public}d", ret);
-    
-        SampleContext *context = reinterpret_cast<SampleContext *>(sampleContext);
-        if (context != nullptr && context->sampleInfo->codecRunMode == API11_SURFACE) {
-            ret = OH_VideoEncoder_RegisterParameterCallback(codec_.get(), CodecCallback::OnNeedInputParameter, sampleContext);
-            CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Set parameter callback failed, ret: %{public}    d", ret);
-        }
-        return AVCODEC_SAMPLE_ERR_OK;
-    }
-    ```
-
-2. 在回调函数中的随帧ROI信息可以通过userData结构体从外部传入，这里仅展示如何下发给编码器
-
-    ```cpp
-    void CodecCallback::OnNeedInputParameter(OH_AVCodec *codec, uint32_t index, OH_AVFormat *parameter, void *userData)
-    {
-        SampleContext *context = static_cast<SampleContext *>(userData);
         /**
         * 配置两个ROI区域，并指定对应的deltaQp；
         * ROI1左上角坐标(0,0)，右下角坐标(64,128)，调节QP-4
@@ -80,27 +59,31 @@ ROI编码接口支持开发者通过字符串形式下发配置参数，参数�
         const char *roiInfo = "0,0-128,64=-4;100,200-300,400=3";
         OH_AVFormat_SetStringValue(parameter, OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS, roiInfo);
         OH_VideoEncoder_PushInputParameter(codec, index);
+
+        // 输入帧的数据parameter和对应的index送入inQueue队列。
+        inQueue.Enqueue(std::make_shared<CodecBufferInfo>(index, parameter));
     }
+    // 2 注册随帧参数回调。
+    OH_VideoEncoder_OnNeedInputParameter inParaCb = OnNeedInputParameter;
+    OH_VideoEncoder_RegisterParameterCallback(videoEnc, inParaCb, nullptr); // nullptr:用户特定数据userData为空。
     ```
 
 ### Buffer模式
 
-```cpp
-void CodecCallback::OnNeedInputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVFormat *buffer, voi    *userData)
-{
-    SampleContext *context = static_cast<SampleContext *>(userData);
-    /**
-    * 配置两个ROI区域，并指定对应的deltaQp；
-    * ROI1左上角坐标(0,0)，右下角坐标(64,128)，调节QP-4
-    * ROI2左上角坐标(200,100)，右下角坐标(400,300)，调节QP+3
-    **/
-    const char *roiInfo = "0,0-128,64=-4;100,200-300,400=3";
-    OH_AVFormat *parameter = OH_AVBuffer_GetParameter(buffer);
-    OH_AVFormat_SetStringValue(parameter, OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS, roiInfo);
-    OH_AVBuffer_SetParameter(buffer, parameter) == AV_ERR_OK ? (0) : (errCount++);
-    OH_AVFormat_Destroy(parameter);
+    ```cpp
+    void OnNeedInputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
+    {
+        /**
+        * 配置两个ROI区域，并指定对应的deltaQp；
+        * ROI1左上角坐标(0,0)，右下角坐标(64,128)，调节QP-4
+        * ROI2左上角坐标(200,100)，右下角坐标(400,300)，调节QP+3
+        **/
+        const char *roiInfo = "0,0-128,64=-4;100,200-300,400=3";
+        OH_AVFormat *parameter = OH_AVBuffer_GetParameter(buffer);
+        OH_AVFormat_SetStringValue(parameter, OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS, roiInfo);
+        OH_AVBuffer_SetParameter(buffer, parameter);
+        OH_AVFormat_Destroy(parameter);
 
-    CodecBufferInfo bufferInfo = CodecBufferInfo(index, buffer);
-    context->inputBufferQueue.QueueBuffer(bufferInfo);
-}
-```
+        inQueue.Enqueue(std::make_shared<CodecBufferInfo>(index, buffer));
+    }
+    ```
