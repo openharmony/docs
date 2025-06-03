@@ -532,6 +532,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 ### 应用日志
 
 进程维度管控，打印到LOG_APP buffer里面的应用日志适配了pid超限机制，超限提示日志示例如下：
+
 <!--RP1-->
 
 ```
@@ -546,6 +547,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 ### 系统日志
 
 domainID维度管控，打印到LOG_CORE buffer里面的系统日志适配了domain超限机制，超限提示日志示例如下：
+
 <!--RP2-->
 
 ```
@@ -602,14 +604,13 @@ LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局�
    - 通过hilog -g命令查询buffer大小（hilog buffer大小默认是256KB）。
 
    - 通过hilog -G命令扩大hilog buffer大小。如下命令表示将buffer大小修改为16MB（当前允许的最大规格为16MB）。
-
-             hilog -G 16M
+     ```
+     hilog -G 16M
+     ```
 
    - 同时查看是否后台有领域频繁打印日志。若发现某个领域日志频繁打印，影响正常日志读取，可参考“"write socket failed”的规避方式，通过命令关闭其领域的日志打印。
 
-
 **write socket failed**
-
 
 含义：日志写入socket失败，出现丢包问题。提示日志示例如下：
 
@@ -632,19 +633,22 @@ LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局�
 处理方式：关闭其他领域的日志打印，只打印本模块的日志。
 
    - 关闭其他领域日志：
-
-             hilog -b X
+     ```
+     hilog -b X
+     ```
 
    - 打开本模块的日志打印：
 
-             LOG_APP类型：
+     LOG_APP类型：
+     ```
+     hilog -b I -D 0x3200 （将03200 domain能够打印出来的日志级别设为INFO）
     
-                hilog -b I -D 0x3200 （将03200 domain能够打印出来的日志级别设为INFO）
+     hilog -b I -D 0x3201（将03201 domain能够打印出来的日志级别设为INFO）
+     ```
     
-                hilog -b I -D 0x3201（将03201 domain能够打印出来的日志级别设为INFO）
+     LOG_CORE类型：
+     ```
+     hilog -b I -D d003200 （将03200 domain能够打印出来的日志级别设为INFO）
     
-             LOG_CORE类型：
-    
-                hilog -b I -D d003200 （将03200 domain能够打印出来的日志级别设为INFO）
-    
-                hilog -b I -D d003201（将03201 domain能够打印出来的日志级别设为INFO）
+     hilog -b I -D d003201（将03201 domain能够打印出来的日志级别设为INFO）
+     ```
