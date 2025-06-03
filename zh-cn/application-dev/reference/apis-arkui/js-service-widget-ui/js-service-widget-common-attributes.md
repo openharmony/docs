@@ -14,7 +14,7 @@
 | style | string | - | 否 | 组件的样式声明。 |
 | class | string | - | 否 | 组件的样式类，用于引用样式表。 |
 | ref | string | - | 否 | 用来指定指向子元素或子组件的引用信息，该引用将注册到父组件的$refs&nbsp;属性对象上。 |
-| disabled | boolean | false | 否 | 当前组件是否被禁用，在禁用场景下，组件将无法响应用户交互。 |
+| disabled | boolean | false | 否 | 当前组件是否被禁用，在禁用场景下，组件将无法响应用户交互。true表示组件被禁用，false表示组件未被禁用。 |
 | dir | string | auto | 否 | 设置元素布局模式，支持设置rtl、ltr和auto三种属性值：<br/>-&nbsp;"rtl"：使用从右往左布局模式。<br/>-&nbsp;"ltr"：使用从左往右布局模式。<br/>-&nbsp;"auto"：跟随系统语言环境。 |
 
 
