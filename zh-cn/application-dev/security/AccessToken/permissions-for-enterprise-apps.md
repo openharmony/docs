@@ -50,7 +50,7 @@
 
 ## ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
-允许应用跨系统本地帐号交互。
+允许应用跨系统本地账号交互。
 
 **权限级别**：system_basic
 
@@ -116,11 +116,11 @@
 
 允许应用获取Wi-Fi的配置信息。
 
-该权限允许应用获取SSID、PSK、加密方式等Wi-Fi配置的相关信息。
-
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
+
+**支持设备**：PC/2in1
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
