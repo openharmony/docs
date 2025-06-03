@@ -52,19 +52,19 @@ TimePicker(options?: TimePickerOptions)
 >
 >  | 参数名   | 类型   | 必填 | 说明   |
 >  | ------- | ------ | ---- | ------ |
->  | value   | number&nbsp;\|&nbsp;string  | 是 | 设置日期格式。<br/> number：毫秒，自1970年1月1日 00:00:00以来的毫秒数。<br/> string：时间格式的字符串，如 ‘2025-02-20 08:00:00’ 或 ‘2025-02-20T08:00:00’。|
+>  | value   | number&nbsp;\|&nbsp;string  | 是 | 设置日期格式。<br/>number：毫秒，自1970年1月1日 00:00:00以来的毫秒数。<br/>string：时间格式的字符串，如‘2025-02-20 08:00:00’或‘2025-02-20T08:00:00’。|
 >
 >  **方式3：** new Date(year: number, monthIndex: number, date?: number, hours?: number, minutes?: number, seconds?: number, ms?: number)
 >
 >  | 参数名   | 类型   | 必填 | 说明   |
 >  | --------| ------ | ---- | ------ |
->  | year        | number | 是   | 设置年份，例如：2025。|
->  | monthIndex  | number | 是   | 设置月份索引，例如：2，代表3月份。|
->  | date        | number | 否   | 设置日期，例如：10。（如果设置hours，则date不能省略）|
->  | hours       | number | 否   | 设置小时，例如：15。（如果设置minutes，则hours不能省略）|
->  | minutes     | number | 否   | 设置分钟，例如：20。（如果设置seconds，则minutes不能省略）|
->  | seconds     | number | 否   | 设置秒，例如：20。（如果设置ms，则seconds不能省略）|
->  | ms          | number | 否   | 设置毫秒，例如：10。|
+>  | year        | number | 是   | 设置年份，例如2025。|
+>  | monthIndex  | number | 是   | 设置月份索引，例如2，代表3月份。|
+>  | date        | number | 否   | 设置日期，例如10。（如果设置hours，则date不能省略）|
+>  | hours       | number | 否   | 设置小时，例如15。（如果设置minutes，则hours不能省略）|
+>  | minutes     | number | 否   | 设置分钟，例如20。（如果设置seconds，则minutes不能省略）|
+>  | seconds     | number | 否   | 设置秒，例如20。（如果设置ms，则seconds不能省略）|
+>  | ms          | number | 否   | 设置毫秒，例如10。|
 
 ## TimePickerFormat<sup>11+</sup>枚举说明
 
@@ -74,7 +74,7 @@ TimePicker(options?: TimePickerOptions)
 
 | 名称               | 说明                     |
 | ------------------ | ------------------------ |
-| HOUR_MINUTE        | 按照小时和分显示。       |
+| HOUR_MINUTE        | 按照小时和分钟显示。       |
 | HOUR_MINUTE_SECOND | 按照小时、分钟和秒显示。 |
 
 **异常情形说明：**
@@ -106,7 +106,7 @@ useMilitaryTime(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | boolean | 是   | 展示时间是否为24小时制。<br/>默认值：false，false表示展示时间为12小时制，true表示展示时间为24小时制。 |
+| value  | boolean | 是   | 展示时间是否为24小时制。<br/>默认值：false，false表示展示时间为12小时制，true表示展示时间为24小时制。|
 
 ### useMilitaryTime<sup>18+</sup>
 
@@ -122,7 +122,7 @@ useMilitaryTime(isMilitaryTime: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| isMilitaryTime | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 展示时间是否为24小时制。<br/>当isMilitaryTime的值为undefined时，默认值：false，false表示展示时间为12小时制，true表示展示时间为24小时制。 |
+| isMilitaryTime | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 展示时间是否为24小时制。<br/>当isMilitaryTime的值为undefined时，默认值：false，表示展示时间为12小时制。|
 
 ### disappearTextStyle<sup>10+</sup>
 
@@ -138,7 +138,7 @@ disappearTextStyle(value: PickerTextStyle)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 是   | 所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| value  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 是   | 所有选项中最上和最下两个选项的文本颜色、字号和字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
 ### disappearTextStyle<sup>18+</sup>
 
@@ -198,7 +198,7 @@ selectedTextStyle(value: PickerTextStyle)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -208,7 +208,7 @@ selectedTextStyle(value: PickerTextStyle)
 
 selectedTextStyle(style: Optional\<PickerTextStyle>)
 
-设置选中项的文本颜色、字号、字体粗细。与[selectedTextStyle](#selectedtextstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
+设置选中项的文本颜色、字号及字体粗细。与[selectedTextStyle](#selectedtextstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -230,11 +230,11 @@ loop(value: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 是否启用循环模式。<br/>默认值：true，true表示启用循环模式，false表示不启用循环模式。 |
+| value  | boolean | 是   | 是否启用循环模式。<br/>默认值：true，表示启用循环模式。 |
 
 ### loop<sup>18+</sup>
 
@@ -250,7 +250,7 @@ loop(isLoop: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isLoop  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否启用循环模式。<br/>当isLoop的值为undefined时，默认值：true，true表示启用循环模式，false表示不启用循环模式。 |
+| isLoop  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否启用循环模式。<br/>当isLoop的值为undefined时，默认值：true，表示启用循环模式。 |
 
 ### dateTimeOptions<sup>12+</sup>
 
@@ -335,7 +335,7 @@ enableCascade(enable: boolean)
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| enable  | boolean | 是   | 在12小时制时，设置上午和下午的标识是否会根据小时数自动切换。<br/>默认值：false，false表示不开启自动切换，true表示开启自动切换。<br/>设置为true后，仅当loop参数同时为true时生效。<br/> |
+| enable  | boolean | 是   | 在12小时制时，设置上午和下午的标识是否会根据小时数自动切换。<br/>默认值：false，表示不开启自动切换。<br/>设置为true时，仅在loop参数同时为true时生效。<br/> |
 
 ### digitalCrownSensitivity<sup>18+</sup>
 digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
@@ -348,11 +348,11 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 | 参数名   | 参数类型                                     | 必填   | 参数描述                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
-| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | 是    | 表冠响应灵敏度。<br/>默认值：CrownSensitivity.MEDIUM，响应速度适中。                    |
+| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | 是    | 表冠响应灵敏度。<br/>默认值：CrownSensitivity.MEDIUM，表示响应速度适中。                    |
 
 >  **说明：**
 >
->  用于穿戴设备圆形屏幕使用。组件响应[表冠事件](ts-universal-events-crown.md)，需要先获取焦点。
+>  用于圆形屏幕的穿戴设备。组件响应[表冠事件](ts-universal-events-crown.md)，需要先获取焦点。
 
 ## 事件
 
@@ -428,7 +428,7 @@ type OnTimePickerChangeCallback = (value: TimePickerResult) => void
 
 ## TimePickerResult对象说明
 
-返回值为24小时制时间。
+返回24小时制时间。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -444,7 +444,7 @@ type OnTimePickerChangeCallback = (value: TimePickerResult) => void
 
 ### 示例1（设置文本样式）
 
-该示例通过配置disappearTextStyle、textStyle、selectedTextStyle实现文本选择器中的文本样式。
+该示例通过配置disappearTextStyle、textStyle和selectedTextStyle实现文本选择器中的文本样式。
 
 ```ts
 // xxx.ets
@@ -514,7 +514,7 @@ struct TimePickerExample {
 
 ### 示例3（设置时间格式）
 
-该示例使用format、dateTimeOptions设置TimePicker时间格式。
+该示例使用format和dateTimeOptions设置TimePicker时间格式。
 
 ```ts
 // xxx.ets
@@ -545,7 +545,7 @@ struct TimePickerExample {
 
 ### 示例4（设置循环滚动）
 
-该示例使用loop设置TimePicker是否循环滚动。
+该示例通过配置loop设置TimePicker是否循环滚动。
 
 ```ts
 // xxx.ets
