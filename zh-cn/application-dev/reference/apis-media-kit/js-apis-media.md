@@ -369,11 +369,11 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 
 media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`Failed to createSoundPool`)
+    console.error(`Failed to createSoundPool`);
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`Succeeded in createSoundPool`)
+    console.info(`Succeeded in createSoundPool`);
   }
 });
 ```
@@ -1644,7 +1644,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avPlayer.prepare().then(() => {
   console.info('Succeeded in preparing')
   let playbackPosition: number = avPlayer.getPlaybackPosition()
-  console.info(`AVPlayer getPlaybackPosition== ${playbackPosition}`)
+  console.info(`AVPlayer getPlaybackPosition== ${playbackPosition}`);
 }, (err: BusinessError) => {
   console.error('Failed to prepare,error message is :' + err.message)
 })
@@ -2601,7 +2601,7 @@ on(type: 'audioOutputDeviceChangeWithInfo', callback: Callback\<audio.AudioStrea
 
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChangeWithInfo'。 |
+| type     | string                     | 是   | 事件回调类型，支持的事件为：'audioOutputDeviceChangeWithInfo'。 |
 | callback | Callback\<[audio.AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | 是   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
 
 **错误码：**
@@ -2634,7 +2634,7 @@ off(type: 'audioOutputDeviceChangeWithInfo', callback?: Callback\<audio.AudioStr
 
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChange'。 |
+| type     | string                     | 是   | 事件回调类型，支持的事件为：'audioOutputDeviceChangeWithInfo'。 |
 | callback | Callback\<[audio.AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | 否   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
 
 **错误码：**
