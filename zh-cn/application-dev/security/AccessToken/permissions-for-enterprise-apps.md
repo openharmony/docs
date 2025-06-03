@@ -24,6 +24,8 @@
 
 **授权方式**：系统授权（system_grant）
 
+**支持设备**：PC/2in1
+
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
@@ -38,6 +40,8 @@
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
+
+**支持设备**：PC/2in1
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -54,12 +58,14 @@
 
 **授权方式**：系统授权（system_grant）
 
+**支持设备**：General
+
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：7
 
-**变更信息**：API 7-13该权限仅向系统应用开放；从API 14开始，开放范围变更为企业普通应用。
+**变更信息**：API 7-13，该权限仅向系统应用开放；从API 14开始，开放范围从系统应用变更为企业普通应用。
 
 ## ohos.permission.GET_RUNNING_INFO
 
@@ -68,6 +74,8 @@
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
+
+**支持设备**：General
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -84,6 +92,8 @@
 
 **授权方式**：系统授权（system_grant）
 
+**支持设备**：General
+
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
@@ -98,6 +108,8 @@
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
+
+**支持设备**：General
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -116,6 +128,8 @@
 
 **授权方式**：系统授权（system_grant）
 
+**支持设备**：PC/2in1
+
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
@@ -130,6 +144,8 @@
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
+
+**支持设备**：PC/2in1
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -146,6 +162,8 @@
 
 **授权方式**：系统授权（system_grant）
 
+**支持设备**：phone | PC2in1 | tablet
+
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
@@ -161,12 +179,14 @@
 
 **授权方式**：系统授权（system_grant）
 
+**支持设备**：PC/2in1
+
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：12
 
-**变更信息**：API 12-13该权限仅面向MDM应用开放；从API 14开始，开放范围变更为企业普通应用。
+**变更信息**：API 12-13，该权限仅面向MDM应用开放；从API 14开始，开放范围从MDM应用变为更为企业普通应用。
 
 ## ohos.permission.KILL_APP_PROCESSES
 
@@ -175,6 +195,8 @@
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
+
+**支持设备**：General
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -191,12 +213,14 @@
 
 **授权方式**：系统授权（system_grant）
 
+**支持设备**：Wearable | Phone
+
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：14
 
-**变更信息**：从API 14开始，权限级别变更为system_basic，开发范围从所有应用变更为企业普通应用。
+**变更信息**：在API 13，权限等级为normal；从API 14开始，权限等级变更为system_basic。
 
 ## ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
 
