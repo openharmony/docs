@@ -6,7 +6,7 @@ PhotoEditorExtensionAbility继承自[ExtensionAbility](js-apis-app-ability-exten
 > 
 > 本模块接口仅可在Stage模型下使用。
 ## PhotoEditorExtensionAbility
-### 导入模块
+## 导入模块
 ```ts
 import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
 ```
