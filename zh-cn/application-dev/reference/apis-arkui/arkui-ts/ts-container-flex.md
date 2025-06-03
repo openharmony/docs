@@ -230,7 +230,7 @@ struct FlexExample3 {
 ![zh-cn_image_0000001174582854](figures/zh-cn_image_0000001174582854.PNG)
 
 ### 示例4（子组件在交叉轴上的对齐方式）
-该示例通过设置alignItems实现子组件在主轴上的不同的对齐效果。
+该示例通过设置alignItems实现子组件在交叉轴上的不同的对齐效果。
 ```ts
 // xxx.ets
 @Component
