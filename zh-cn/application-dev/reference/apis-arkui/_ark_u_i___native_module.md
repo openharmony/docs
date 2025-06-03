@@ -17615,7 +17615,7 @@ int32_t OH_ArkUI_PostIdleCallback(ArkUI_ContextHandle uiContext, void* userData,
 ```
 **描述：**
 
-注册一个回调函数，以便在下一帧渲染完成时执行。如果当前没有下一帧，将自动请求下一帧。
+注册一个回调函数，在下一帧渲染结束后如果距离下一个Vsync信号到来剩余时间大于1ms时，该回调函数将被执行；如果剩余时间小于1ms时，回调函数将被顺延至当某个下一帧的剩余时间大于1ms时再执行。如果当前没有下一帧，将自动请求下一帧。
 
 **起始版本：** 20
 
@@ -17624,17 +17624,17 @@ int32_t OH_ArkUI_PostIdleCallback(ArkUI_ContextHandle uiContext, void* userData,
 | 名称 | 描述 | 
 | -------- | -------- |
 | uiContext | uiContext对象，用以绑定实例。| 
-| userData | 自定义事件参数，当事件触发时在回调参数中携带回来。| 
-| callback | 自定义回调函数，会在下一帧事件结束后回调。| 
-| nanoTimeLeft | 帧渲染后的剩余时间。| 
+| userData | 自定义事件参数，当自定义回调函数触发时在回调参数中携带回来。| 
+| callback | 自定义回调函数，会在下一帧事件结束后剩余时间大于1ms时回调执行。| 
+| nanoTimeLeft | 下一帧渲染后的剩余时间。| 
 | frameCount | 帧号。| 
 
 **返回：**
 
-ARKUI_ERROR_CODE_NO_ERROR 成功。
-ARKUI_ERROR_CODE_CAPI_INIT_ERROR CAPI初始化错误。
-ARKUI_ERROR_CODE_UI_CONTEXT_INVALID uiContext对象无效。
-ARKUI_ERROR_CODE_CALLBACK_INVALID 回调函数无效。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
+[ARKUI_ERROR_CODE_CAPI_INIT_ERROR](_ark_u_i___native_module.md#arkui_errorcode) CAPI初始化错误。</br >
+[ARKUI_ERROR_CODE_UI_CONTEXT_INVALID](_ark_u_i___native_module.md#arkui_errorcode) UIContext对象无效。</br >
+[ARKUI_ERROR_CODE_CALLBACK_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 回调函数无效。</br >
 
 
 ### OH_ArkUI_RegisterLayoutCallbackOnNodeHandle()
