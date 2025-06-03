@@ -18,7 +18,7 @@
 
 ## ohos.permission.SET_FILE_GUARD_POLICY
 
-允许应用下发文件管控策略。
+企业应用下发文件管控策略。
 
 **权限级别**：system_basic
 
@@ -35,7 +35,7 @@
 
 ## ohos.permission.FILE_GUARD_MANAGER
 
-允许应用进行公共目录扫描及设置文件扩展属性。
+当前扩展属性包括文件密级、文件标签。
 
 **权限级别**：system_basic
 
@@ -52,7 +52,7 @@
 
 ## ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
-允许应用跨系统本地账号交互。
+当前支持企业应用申请该权限。
 
 **权限级别**：system_basic
 
@@ -69,7 +69,7 @@
 
 ## ohos.permission.GET_RUNNING_INFO
 
-允许应用获取运行态信息。
+可获取其他应用的运行态信息，包括Ability、Extension、Application的信息。
 
 **权限级别**：system_basic
 
@@ -86,7 +86,7 @@
 
 ## ohos.permission.RUNNING_STATE_OBSERVER
 
-允许应用监听应用状态。
+获取该权限后，可注册应用状态监听器。
 
 **权限级别**：system_basic
 
@@ -103,7 +103,7 @@
 
 ## ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-允许查询应用的基本信息和其他敏感信息。
+允许查询应用的基本信息和其他敏感信息，如应用包名，版本等信息。
 
 **权限级别**：system_basic
 
@@ -120,9 +120,7 @@
 
 ## ohos.permission.GET_WIFI_CONFIG
 
-允许应用获取Wi-Fi的配置信息。
-
-当前仅PC/2in1设备应用可申请此权限。
+该权限允许应用获取SSID、PSK、加密方式等Wi-Fi配置的相关信息。
 
 **权限级别**：system_basic
 
@@ -139,7 +137,7 @@
 
 ## ohos.permission.SET_WIFI_CONFIG
 
-允许应用配置Wi-Fi信息。
+该权限允许应用添加、删除Wi-Fi，以及修改Wi-Fi的配置信息。
 
 **权限级别**：system_basic
 
@@ -173,7 +171,7 @@
 
 ## ohos.permission.QUERY_AUDIT_EVENT
 
-允许应用查询安全审计事件。
+允许企业安全类应用查询安全审计事件。
 
 **权限级别**：system_basic
 
@@ -190,7 +188,7 @@
 
 ## ohos.permission.KILL_APP_PROCESSES
 
-允许系统应用杀掉其他应用。
+获取权限后，可终止其他正在运行中的应用，允许它在必要时对系统中的进程进行管理和控制。
 
 **权限级别**：system_basic
 
@@ -207,7 +205,7 @@
 
 ### ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
 
-允许系统应用和运营商应用设置eSIM昵称和激活eSIM。
+eSIM 配置文件是包含设备连接特定移动网络所需的所有信息的数字配置文件，包括运营商信息、认证凭证和服务设置。
 
 **权限级别**：system_basic
 
@@ -224,7 +222,7 @@
 
 ## ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
 
-允许应用管理Wi-Fi的连接。
+获取该权限后，可执行开启/关闭、连接、断开Wi-Fi等操作。
 
 **权限级别**：system_basic
 
@@ -253,8 +251,6 @@
 
 ## ohos.permission.MANAGE_NET_FIREWALL
 
-允许系统应用配置防火墙规则。
-
 当前仅2in1设备应用可申请此权限。
 
 **权限级别**：system_basic
@@ -272,7 +268,7 @@
 
 ## ohos.permission.GET_NET_FIREWALL
 
-当前仅2in1设备应用可申请此权限。
+API 12-14该权限仅向系统应用开放；从API 15开始，开放范围从系统应用变更为企业普通应用。
 
 **权限级别**：system_basic
 
