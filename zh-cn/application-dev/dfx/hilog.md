@@ -531,7 +531,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ### 应用日志
 
-进程维度管控，打印到LOG_APP buffer里面的应用日志适配了pid超限机制，超限提示日志示例如下：
+进程维度管控，打印到LOG_APP buffer里面的应用日志适配了pid超限机制，当某进程打印的LOG_APP类型日志量在一秒内超过阈值时会触发管控，超限提示日志示例如下：
 
 <!--RP1-->
 
@@ -546,7 +546,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ### 系统日志
 
-domainID维度管控，打印到LOG_CORE buffer里面的系统日志适配了domain超限机制，超限提示日志示例如下：
+domainID维度管控，打印到LOG_CORE buffer里面的系统日志适配了domain超限机制，当某domainID打印的LOG_CORE类型日志量在一秒内超过阈值时触发管控，超限提示日志示例如下：
 
 <!--RP2-->
 
@@ -568,7 +568,13 @@ domainID维度管控，打印到LOG_CORE buffer里面的系统日志适配了dom
 
 LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局的日志丢失；write socket failed是进程对应的日志丢失。
 
-**LOGLIMIT**
+> 说明：
+>
+> 当出现这些打印时，说明日志已经丢失，无法恢复找回。
+>
+> 如果是在线运维场景出现，需要参考下方处理方式并且本地复现，然后查看完整日志。
+
+### LOGLIMIT
 
 含义：日志打印超限，该进程或者domainID被管控。属于领域日志量超出hilog规格后的主动管控，需要领域对日志进行精简和整改。提示日志示例如下：
 
@@ -582,7 +588,7 @@ LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局�
 处理方式：可参考[hilog超限机制介绍](#hilog超限机制介绍)，关闭对应管控机制。
 
 
-**Slow reader missed**
+### Slow reader missed
 
 
 含义：打印时间点前后日志量太大，hilog buffer中的日志还未落盘已经被循环覆盖了。提示日志示例如下：
@@ -610,7 +616,7 @@ LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局�
 
    - 同时查看是否后台有领域频繁打印日志。若发现某个领域日志频繁打印，影响正常日志读取，可参考“"write socket failed”的规避方式，通过命令关闭其领域的日志打印。
 
-**write socket failed**
+### write socket failed
 
 含义：日志写入socket失败，出现丢包问题。提示日志示例如下：
 
