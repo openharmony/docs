@@ -114,9 +114,9 @@ ArkWeb提供灵活控制Web组件深色模式的能力，支持独立于系统�
 | 深色模式 | 强制深色模式 | color-scheme | 预期结果 |
 | - | - | - | - |
 | 关闭 | 无影响 | - | 网页采用color-scheme支持的配色方案。 |
-| 开启 | 关闭 | - | 网页采用color-scheme支持的配色方案，并应用@media(prefers-color-scheme: dark)中定义的样式 |
-| 开启 | 开启 | 支持深色 | 网页采用深色配色方案，并应用@media(prefers-color-scheme: dark)中定义的样式 |
-| 开启 | 开启 | 不支持深色 | 根据算法转换网页高亮元素色值。若网页在@media(prefers-color-scheme: dark)中定义了样式，则会在该样式色值上进行转换 |
+| 开启 | 关闭 | - | 网页采用color-scheme支持的配色方案，并应用@media(prefers-color-scheme: dark)中定义的样式。 |
+| 开启 | 开启 | 支持深色 | 网页采用深色配色方案，并应用@media(prefers-color-scheme: dark)中定义的样式。 |
+| 开启 | 开启 | 不支持深色 | 根据算法转换网页高亮元素色值。若网页在@media(prefers-color-scheme: dark)中定义了样式，则会在该样式色值上进行转换。 |
 
 [forceDarkAccess()](../reference/apis-arkweb/ts-basic-components-web-attributes.md#forcedarkaccess9)接口仅在Web深色模式开启时生效。在下面的示例中，应用设置Web深色模式跟随系统。系统开启深色模式时，Web进入强制深色模式。
 
@@ -198,3 +198,13 @@ index.html页面在深色模式关闭、深色模式开启及强制深色模式�
 **解决措施**
 
 强制深色模式下，Web使用Chromium原生色值转换算法自动调整元素颜色样式。不同网页的布局和样式写法各异，算法无法确保所有转换均符合预期。建议网页开发者自定义深色样式。
+
+### 未开启深色模式，但Web网页背景变深
+
+**问题现象**
+
+Web组件未开启深色模式，但Web网页背景变深。
+
+**解决措施**
+
+出现该问题时，可排查Web组件是否设置了深色背景。Web网页未设置背景颜色，或者设置背景颜色为透明时，背景会呈现Web组件的背景颜色。
