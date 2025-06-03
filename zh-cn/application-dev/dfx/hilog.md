@@ -531,7 +531,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ### 应用日志
 
-进程维度管控，打印到LOG_APP buffer里面的应用日志适配了pid超限机制，超过阈值后会被丢弃，并且有超限提示日志打印；
+进程维度管控，打印到LOG_APP buffer里面的应用日志适配了pid超限机制，超限提示日志示例如下：
 <!--RP1-->
 
 ```
@@ -545,7 +545,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ### 系统日志
 
-domainID维度管控，打印到LOG_CORE buffer里面的系统日志适配了domain超限机制，超过阈值后会被丢弃，并且有超限提示日志打印；
+domainID维度管控，打印到LOG_CORE buffer里面的系统日志适配了domain超限机制，超限提示日志示例如下：
 <!--RP2-->
 
 ```
@@ -565,7 +565,6 @@ domainID维度管控，打印到LOG_CORE buffer里面的系统日志适配了dom
 可以使用正则表达式来搜索包含这些关键字的日志行：LOGLIMIT|Slow reader missed|write socket failed。
 
 LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局的日志丢失；write socket failed是进程对应的日志丢失。
-
 
 **LOGLIMIT**
 
@@ -600,9 +599,9 @@ LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局�
 
 处理方式：
 
-   - 通过hilog -g命令查询buffer大小（hilog buffer大小默认是256K）。
+   - 通过hilog -g命令查询buffer大小（hilog buffer大小默认是256KB）。
 
-   - 通过hilog -G命令扩大hilog buffer大小。如下命令表示将buffer大小修改为16M（当前允许的最大规格为16M）。
+   - 通过hilog -G命令扩大hilog buffer大小。如下命令表示将buffer大小修改为16MB（当前允许的最大规格为16MB）。
 
              hilog -G 16M
 
