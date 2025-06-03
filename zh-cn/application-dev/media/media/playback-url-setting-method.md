@@ -91,12 +91,12 @@
   // 创建avPlayer实例对象。
   let avPlayer: media.AVPlayer = await media.createAVPlayer();
 
+  // 获取context实例。
+  let mgr = this.context.resourceManager;
   // 设置本地m3u8文件名。
   let m3u8FileName : string = "xxx.m3u8";
-  // 设置本地m3u8沙箱路径，需要对应文件在沙箱路径下存在。
-  let context = getContext(this) as common.UIAbilityContext;
-  let pathDir = context.filesDir;
-  let filePath = `${pathDir}/${m3u8FileName}`;
+  // 设置本地m3u8沙箱路径。
+  let filePath = "/data/storage/el1/bundle/${m3u8FileName}";
 
   // 通过fs.openSync获取文件句柄。
   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
@@ -131,10 +131,8 @@
   let avPlayer: media.AVPlayer = await media.createAVPlayer();
   let fdPath = 'fd://';
   // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例。
-  let context = getContext(this) as common.UIAbilityContext;
-  let pathDir = context.filesDir;
-  // 沙箱路径下需要对应文件存在。
-  let path = pathDir + '/01.mp3';
+  let pathDir = this.context.filesDir;
+  let path = '/data/storage/el1/bundle/01.mp3';
   // 打开相应的资源文件地址获取fd，并为url赋值触发initialized状态机上报。
   let file = await fs.open(path);
   fdPath = fdPath + '' + file.fd;
