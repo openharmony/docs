@@ -38,7 +38,6 @@ isSupported(type: RunningLockType): boolean
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
 
 **示例：**
@@ -295,7 +294,6 @@ hold(timeout: number): void
 
 | 错误码ID   | 错误信息     |
 |---------|----------|
-| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 201     | If the permission is denied.|
 
@@ -346,7 +344,6 @@ unhold(): void
 
 | 错误码ID   | 错误信息     |
 |---------|----------|
-| 4900101 | Failed to connect to the service. |
 | 201     | If the permission is denied.|
 
 
@@ -360,7 +357,7 @@ class RunningLockTest {
     public static unholdRunningLock(): void {
         if (RunningLockTest.recordLock) {
             RunningLockTest.recordLock.unhold();
-            console.info('hold running lock success');
+            console.info('unhold running lock success');
         } else {
             runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error, lock: runningLock.RunningLock) => {
                 if (typeof err === 'undefined') {
@@ -395,14 +392,6 @@ isHolding(): boolean
 | ------- | ------------------------------------------------------------ |
 | boolean | 返回true表示当前RunningLock是持有状态，返回false表示当前RunningLock是释放状态。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[RunningLock锁错误码](errorcode-runninglock.md)。
-
-| 错误码ID   | 错误信息    |
-|---------|---------|
-| 4900101 | Failed to connect to the service. |
-
 **示例：**
 
 ```ts
@@ -419,12 +408,8 @@ class RunningLockTest {
                 if (typeof err === 'undefined') {
                     console.info('create running lock: ' + lock);
                     RunningLockTest.recordLock = lock;
-                    try {
-                        let isHolding = lock.isHolding();
-                        console.info('check running lock holding status: ' + isHolding);
-                    } catch(err) {
-                        console.error('check running lock holding status failed, err: ' + err);
-                    }
+                    let isHolding = lock.isHolding();
+                    console.info('check running lock holding status: ' + isHolding);
                 } else {
                     console.error('create running lock failed, err: ' + err);
                 }
