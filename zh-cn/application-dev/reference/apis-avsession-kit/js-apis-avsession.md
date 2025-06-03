@@ -7951,7 +7951,7 @@ try {
   let playbackState: avSession.AVPlaybackState = avsessionController.getAVPlaybackStateSync();
 } catch (err) {
   let error = err as BusinessError;
-  console.info(`getAVPlaybackStateSync error, error code: ${error.code}, error message: ${error.message}`);
+  console.error(`getAVPlaybackStateSync error, error code: ${error.code}, error message: ${error.message}`);
 }
 ```
 
