@@ -535,7 +535,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 <!--RP1-->
 
-```
+```text
 04-19 17:02:34.219  5394  5394 W A00032/LOGLIMIT: ==com.example.myapplication LOGS OVER PROC QUOTA, 3091 DROPPED==
 ```
 <!--RP1End-->
@@ -550,7 +550,7 @@ domainID维度管控，打印到LOG_CORE buffer里面的系统日志适配了dom
 
 <!--RP2-->
 
-```
+```text
 04-19 17:02:34.219  5394  5394 W C02C02/LOGLIMIT: 108 line(s) dropped in a second!
 ```
 <!--RP2End-->
@@ -573,7 +573,7 @@ LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局�
 含义：日志打印超限，该进程或者domainID被管控。属于领域日志量超出hilog规格后的主动管控，需要领域对日志进行精简和整改。提示日志示例如下：
 
 <!--RP3-->
-```
+```text
 04-19 17:02:34.219  5394  5394 W A00032/LOGLIMIT: ==com.example.myapplication LOGS OVER PROC QUOTA, 3091 DROPPED==
 ```
 <!--RP3End-->
@@ -587,7 +587,7 @@ LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局�
 
 含义：打印时间点前后日志量太大，hilog buffer中的日志还未落盘已经被循环覆盖了。提示日志示例如下：
 
-```
+```text
 04-19 17:02:34.219     0     0 I C00000/HiLog: ========Slow reader missed log lines: 137
 ```
 
@@ -604,7 +604,7 @@ LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局�
    - 通过hilog -g命令查询buffer大小（hilog buffer大小默认是256KB）。
 
    - 通过hilog -G命令扩大hilog buffer大小。如下命令表示将buffer大小修改为16MB（当前允许的最大规格为16MB）。
-     ```
+     ```shell
      hilog -G 16M
      ```
 
@@ -615,7 +615,7 @@ LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局�
 含义：日志写入socket失败，出现丢包问题。提示日志示例如下：
 
 <!--RP4-->
-```
+```text
 04-19 17:02:34.219  5394  5394 W A00032/HiLog: write socket failed, 8 line(s) dropped!
 ```
 <!--RP4-->
@@ -633,22 +633,22 @@ LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局�
 处理方式：关闭其他领域的日志打印，只打印本模块的日志。
 
    - 关闭其他领域日志：
-     ```
+     ```shell
      hilog -b X
      ```
 
    - 打开本模块的日志打印：
 
      LOG_APP类型：
-     ```
-     hilog -b I -D 0x3200 （将03200 domain能够打印出来的日志级别设为INFO）
+     ```shell
+     hilog -b I -D 0x3200（将03200 domain能够打印出来的日志级别设为INFO）
     
      hilog -b I -D 0x3201（将03201 domain能够打印出来的日志级别设为INFO）
      ```
     
      LOG_CORE类型：
-     ```
-     hilog -b I -D d003200 （将03200 domain能够打印出来的日志级别设为INFO）
+     ```shell
+     hilog -b I -D d003200（将03200 domain能够打印出来的日志级别设为INFO）
     
      hilog -b I -D d003201（将03201 domain能够打印出来的日志级别设为INFO）
      ```
