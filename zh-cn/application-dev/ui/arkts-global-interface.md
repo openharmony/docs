@@ -51,7 +51,7 @@ UI上下文不明确是指调用ArkUI全局接口时，调用点无法明确指�
 
 <!--deprecated_code_no_check-->
 ```ts
-import { promptAction } from '@kit.ArkUI'
+import { PromptAction } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -60,6 +60,7 @@ struct Index {
     Row() {
       Button()
         .onClick(() => {
+          let promptAction: PromptAction = this.getUIContext().getPromptAction();
           promptAction.showToast({            
             message: 'Message Info',
             duration: 2000 
@@ -73,7 +74,7 @@ struct Index {
 
 <!--deprecated_code_no_check-->
 ```ts
-import { promptAction } from '@kit.ArkUI'
+import { PromptAction } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -83,6 +84,7 @@ struct Index {
       Button()
         .onClick(() => {
           bridge.callNative("xxxx", ()=> {
+            let promptAction: PromptAction = this.getUIContext().getPromptAction();
             promptAction.showToast({            
               message: 'Message Info',
               duration: 2000 
@@ -128,7 +130,7 @@ struct Index {
 <!--deprecated_code_no_check-->
 ```ts
 // 执行绑定实例的闭包
-import { promptAction } from '@kit.ArkUI'
+import { PromptAction } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -138,6 +140,7 @@ struct Index {
       Button()
         .onClick(() => {
           let uiContext = this.getUIContext();
+          let promptAction: PromptAction = uiContext.getPromptAction();
           uiContext.runScopedTask(() => {
             promptAction.showToast({            
               message: 'Message Info',
