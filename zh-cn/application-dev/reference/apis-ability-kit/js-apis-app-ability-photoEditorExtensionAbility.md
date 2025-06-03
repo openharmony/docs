@@ -11,6 +11,7 @@ PhotoEditorExtensionAbility继承自[ExtensionAbility](js-apis-app-ability-exten
 ```ts
 import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
 ```
+
 ## PhotoEditorExtensionAbility
 
 ### 属性
