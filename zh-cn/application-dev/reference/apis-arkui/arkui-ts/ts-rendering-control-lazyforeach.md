@@ -171,7 +171,7 @@ onDataDeleted(index: number): void
 
 onDataChanged(index: number): void
 
-通知组件index的位置有数据有变化。改变数据完成后调用。
+通知组件index的位置有数据变化。改变数据完成后调用。
 
 > 从API 8开始，建议使用[onDataChange](#ondatachange8)。
 
