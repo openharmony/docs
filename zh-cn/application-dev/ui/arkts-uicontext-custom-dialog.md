@@ -1,6 +1,6 @@
 # 不依赖UI组件的全局自定义弹出框 (openCustomDialog)（推荐）
 
-由于[CustomDialogController](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontroller)在使用上存在诸多限制，不支持动态创建也不支持动态刷新，在相对较复杂的应用场景中推荐使用UIContext中获取到的PromptAction对象提供的[openCustomDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12)接口来实现自定义弹出框。
+由于[CustomDialogController](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontroller)在使用上存在诸多限制，不支持动态创建和动态刷新，在相对较复杂的应用场景中推荐使用UIContext中获取到的PromptAction对象提供的[openCustomDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12)接口来实现自定义弹出框。
 
 > **说明：**
 > 
@@ -38,7 +38,7 @@
    ```
 2. 打开自定义弹出框。
    
-   通过调用openCustomDialog接口打开的弹出框默认为customStyle为true的弹出框，即弹出框的内容样式完全按照contentNode自定义样式显示。
+   调用openCustomDialog接口打开的弹出框默认customStyle为true，即弹出框的内容样式完全按照contentNode自定义样式显示。
    
    ```ts
    PromptActionClass.ctx.getPromptAction().openCustomDialog(PromptActionClass.contentNode, PromptActionClass.options)
