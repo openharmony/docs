@@ -29,11 +29,11 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 |  |  | off | 关闭读取kernel日志。 | 
 | -s | --statistics | - | 查询统计信息，需配合-t或-D使用。 | 
 | -S | - | - | 清除统计信息，需配合-t或-D使用。 | 
-| -Q | - | &lt;control-type&gt; | 流控缺省配额开关控制。 | 
-|  |  | pidon | 进程流控开关打开。 | 
-|  |  | pidoff | 进程流控开关关闭。 | 
-|  |  | domainon | domain流控开关打开。 | 
-|  |  | domainoff | domain流控开关关闭。 | 
+| -Q | - | &lt;control-type&gt; | 超限缺省配额开关控制。 | 
+|  |  | pidon | 进程超限管控开关打开。 | 
+|  |  | pidoff | 进程超限管控开关关闭。 | 
+|  |  | domainon | domain超限管控开关打开。 | 
+|  |  | domainoff | domain超限管控开关关闭。 | 
 | -L | --level | &lt;level&gt; | 指定级别的日志，示例：-L D/I/W/E/F。 | 
 | -t | --type | &lt;type&gt; | 指定类型的日志，示例：-t app/core/init/only_prerelease。app为应用日志，core为系统日志，init为启动日志，only_prerelease为仅在系统release版本前打印的日志，应用开发者无需关注。| 
 | -D | --domain | &lt;domain&gt; | 指定domain。 | 
@@ -221,7 +221,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    Statistic info clear successfully
    ```
 
-### 进程流控开关
+### 进程超限开关
 
    ```
    hilog -Q pidon/pidoff
@@ -229,15 +229,20 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
    **使用样例：**
 
+   开启进程超限管控：
+
    ```
    $ hilog -Q pidon
    Set flow control by process to enabled successfully
-   $
+   ```
+
+   关闭进程超限管控：
+   ```
    $ hilog -Q pidoff
    Set flow control by process to disabled successfully
    ```
 
-### domain流控开关
+### domain超限开关
 
    ```
    hilog -Q domainon/domainoff
@@ -245,10 +250,14 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
    **使用样例：**
 
+   开启domain超限管控：
    ```
    $ hilog -Q domainon
    Set flow control by domain to enabled successfully
-   $
+   ```
+
+   关闭domain超限管控：
+   ```
    $ hilog -Q domainoff
    Set flow control by domain to disabled successfully
    ```
@@ -542,7 +551,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 本条日志表示进程com.example.myapplication在17:02:34时存在日志打印超限，在17:02:34.219的前一秒内，有3091行日志由于超限管控丢弃，未打印出来。
 
-**处理方式**：关闭pid超限命令：hilog -Q pidoff。
+**处理方式**：可参考[进程超限开关](#进程超限开关)，关闭对应管控机制。
 
 ### 系统日志
 
@@ -557,7 +566,7 @@ domainID维度管控，打印到LOG_CORE buffer里面的系统日志适配了dom
 
 本条日志表示domainID为02C02的日志在17:02:34时存在日志打印超限，在17:02:34.219的前一秒内，有108行日志由于超限管控丢弃，未打印出来。
 
-**处理方式**：关闭domainID超限命令：hilog -Q domainoff。
+**处理方式**：可参考[domain超限开关](#domain超限开关)，关闭对应管控机制。
 
 
 ## 日志丢失处理方法
