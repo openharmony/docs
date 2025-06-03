@@ -230,19 +230,21 @@
 
 **授权方式**：系统授权（system_grant）
 
+**设备类型**：General
+
 **ACL使能**：true
 
 **起始版本**：15
 
 ## ohos.permission.ACCESS_ENTERPRISE_USER_TRUSTED_CERT
 
-允许应用管理企业设备的用户CA证书。
-
 在企业设备上企业应用使用私有的CA证书认证企业服务器时，该权限用于允许企业应用把私有CA证书安装到企业设备上，并对安装的CA证书进行管理操作。
 
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
+
+**支持设备**：Tablet | Phone
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -259,6 +261,8 @@
 
 **授权方式**：系统授权（system_grant）
 
+**支持设备**：PC/2in1
+
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
@@ -268,13 +272,13 @@
 
 ## ohos.permission.GET_NET_FIREWALL
 
-允许系统应用查询防火墙规则和查询防火墙拦截记录。
-
 当前仅2in1设备应用可申请此权限。
 
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
+
+**支持设备**：PC/2in1
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -304,6 +308,8 @@
 
 **授权方式**：系统授权（system_grant）
 
+**支持设备**：Phone | PC/2in1 | Tablet
+
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
@@ -316,6 +322,8 @@
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
+
+**支持设备**：Phone | PC/2in1 | Tablet
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -330,6 +338,8 @@
 
 **授权方式**：系统授权（system_grant）
 
+**支持设备**：General | Phone | Tv | Router | Wearable | PC/2in1
+
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
@@ -341,7 +351,9 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
+
+**支持设备**：General
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -349,8 +361,6 @@
 **起始版本**：18
 
 ## ohos.permission.SUPPORT_APP_SERVICE_EXTENSION
-
-允许应用的AppServiceExtension组件被拉起。
 
 获取此权限后，应用可作为AppServiceExtension被同应用或同在"appidentifierAllowList"配置中的应用拉起或连接。
 
