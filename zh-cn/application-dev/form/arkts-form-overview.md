@@ -1,10 +1,10 @@
 # ArkTS卡片概述
-以下内容介绍基于声明式范式ArkTS UI卡片开发指南。
+以下内容介绍基于声明式范式ArkTS UI卡片开发。
 
 ## 亮点/特征
 - 统一开发范式，提升开发体验和开发效率。
 
-  提供ArkTS卡片能力后，统一了卡片和页面的开发范式，页面的布局可以直接复用到卡片布局中，提升开发体验和开发效率。
+  提供ArkTS卡片能力后，统一了卡片和页面的开发范式，应用页面的布局可以直接复用到卡片布局中，提升开发体验和开发效率。
 
 **图1** 卡片工程结构对比 
 
@@ -40,7 +40,7 @@
 
 ## ArkTS卡片类型
 ArkTS卡片分为动态卡片与静态卡片两种类型。
-- 动态卡片。ArkTS卡片中提供了[postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction)接口用于卡片内部和提供方应用间的交互，当前支持router、message和call三种类型的事件，仅在卡片中可以调用。
+- 动态卡片。ArkTS卡片中提供了[postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction)接口用于卡片内部和提供方应用间的交互，当前支持router、message和call三种类型的事件，仅在卡片控件的点击事件中可以调用。
 - 静态卡片。ArkTS卡片提供了[FormLink](../reference/apis-arkui/arkui-ts/ts-container-formlink.md)用于卡片内部和提供方应用间的交互。
 
 ### 动态卡片
@@ -48,9 +48,9 @@ ArkTS卡片分为动态卡片与静态卡片两种类型。
 ![WidgetPostCardAction](figures/WidgetPostCardAction.png)
 
 动态卡片事件的主要使用场景如下：
-- router事件：可以使用router事件跳转到指定UIAbility，并通过router事件刷新卡片内容。
-- call事件：可以使用call事件拉起指定UIAbility到后台，并通过call事件刷新卡片内容。
-- message事件：可以使用message拉起FormExtensionAbility，并通过FormExtensionAbility刷新卡片内容。
+- router事件：可以使用router事件跳转到指定UIAbility，以完成点击卡片跳转应用内页面的交互功能。对于非系统应用仅支持跳转到自己应用内的UIAbility。
+- call事件：可以使用call事件拉起指定UIAbility到后台，再通过UIAbility申请对应后台长时任务完成音乐播放等功能。
+- message事件：可以使用message拉起FormExtensionAbility，通过onFormEvent接口回调通知，以完成卡片内控件点击消息传递，从而更新卡片内容。
 
 #### 与静态卡片差异
 
