@@ -66,3 +66,11 @@ MindSpore
 | [OH_AI_DeviceInfoSetPriority--_mind_spore.md#oh_ai_deviceinfosetpriority) ([OH_AI_DeviceInfoHandle--_mind_spore.md#oh_ai_deviceinfohandle) device_info, [OH_AI_Priority--_mind_spore.md#oh_ai_priority) priority) | 设置NNRT任务优先级，仅NNRT设备可用。 |
 | [OH_AI_DeviceInfoGetPriority--_mind_spore.md#oh_ai_deviceinfogetpriority) (const [OH_AI_DeviceInfoHandle--_mind_spore.md#oh_ai_deviceinfohandle) device_info) | 获取NNRT任务优先级，仅NNRT设备可用。 |
 | [OH_AI_DeviceInfoAddExtension--_mind_spore.md#oh_ai_deviceinfoaddextension) ([OH_AI_DeviceInfoHandle--_mind_spore.md#oh_ai_deviceinfohandle) device_info, const char \*name, const char \*value, size_t value_size) | 向设备信息中添加键/值对形式的扩展配置。只对NNRT设备信息有效。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见媒体服务错误码
+
+| 错误码ID | 错误信息                              |
+| ------- |-----------------------------------|
+| 890001 | 测试测试.            |
