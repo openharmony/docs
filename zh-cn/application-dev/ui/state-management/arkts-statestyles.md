@@ -127,7 +127,9 @@ struct CompWithInlineStateStyles {
 
   build() {
     Column() {
-      Button('clickMe').height(100).width(100)
+      Button('clickMe')
+        .height(100)
+        .width(100)
         .stateStyles({
           normal: {
             .backgroundColor(this.normalColor)

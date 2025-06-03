@@ -411,7 +411,8 @@ struct ReaderComp {
     Row() {
       Text(` ${this.book ? this.book.title : "Book is undefined"}`).fontColor('#e6000000')
       Text(` has ${this.book ? this.book.pages : "Book is undefined"} pages!`).fontColor('#e6000000')
-      Text(` ${this.book ? this.book.readIt ? "I have read" : 'I have not read it' : "Book is undefined"}`).fontColor('#e6000000')
+      Text(` ${this.book ? this.book.readIt ? "I have read" : 'I have not read it' : "Book is undefined"}`)
+        .fontColor('#e6000000')
         .onClick(() => this.book.readIt = true)
     }
   }
@@ -472,7 +473,7 @@ struct Library {
         .margin(12)
         .fontColor('#FFFFFF 90%')
         .onClick(() => {
-          if (this.allBooks.length > 0){
+          if (this.allBooks.length > 0) {
             this.allBooks.shift();
           } else {
             console.log("length <= 0");

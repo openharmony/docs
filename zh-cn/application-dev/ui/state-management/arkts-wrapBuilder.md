@@ -116,7 +116,8 @@ const builderArr: WrappedBuilder<[string, number]>[] = [wrapBuilder(MyBuilder), 
 @Entry
 @Component
 struct Index {
-  @Builder testBuilder() {
+  @Builder
+  testBuilder() {
     ForEach(builderArr, (item: WrappedBuilder<[string, number]>) => {
       item.builder('Hello World', 30)
     }
@@ -145,8 +146,9 @@ class Tmp {
   paramA2: string = 'hello';
 }
 
-@Builder function overBuilder(param: Tmp) {
-  Column(){
+@Builder
+function overBuilder(param: Tmp) {
+  Column() {
     Text(`wrapBuildervalue:${param.paramA2}`)
   }
 }
@@ -155,11 +157,12 @@ const wBuilder: WrappedBuilder<[Tmp]> = wrapBuilder(overBuilder);
 
 @Entry
 @Component
-struct Parent{
+struct Parent {
   @State label: Tmp = new Tmp();
-  build(){
-    Column(){
-      wBuilder.builder({paramA2: this.label.paramA2})
+
+  build() {
+    Column() {
+      wBuilder.builder({ paramA2: this.label.paramA2 })
       Button('Click me').onClick(() => {
         this.label.paramA2 = 'ArkUI';
       })
@@ -201,7 +204,7 @@ struct Index {
     setTimeout(() => {
       // wrapBuilder(MyBuilderSecond) 不会生效
       this.builderObj.globalBuilder = wrapBuilder(MyBuilderSecond);
-    },1000)
+    }, 1000);
   }
 
   build() {
