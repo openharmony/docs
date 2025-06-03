@@ -273,7 +273,7 @@ totalCount表示期望加载的数据长度，默认为原数组长度，可以�
 >
 > 当totalCount > arr.length时，在父组件容器滚动过程中，应用需要保证在列表即将滑动到数据源末尾时请求后续数据。开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动过程中会出现滚动效果异常。解决方案见[totalCount值大于数据源长度](../../../ui/state-management/arkts-new-rendering-control-repeat.md#totalcount值大于数据源长度)。
 
-### onLazyLoading：数据精准懒加载
+### onLazyLoading<sup>19+</sup>：数据精准懒加载
 
 onLazyLoading从API version 19开始支持，需在懒加载场景下使用。开发者可设置自定义方法，用于向指定的数据源index中写入数据。以下为onLazyLoading的处理规则：
 
@@ -289,7 +289,7 @@ onLazyLoading从API version 19开始支持，需在懒加载场景下使用。�
 > - onLazyLoading方法中应避免高耗时操作。若数据加载耗时较长，建议先在onLazyLoading方法中为此数据创建占位符，再创建异步任务加载数据。
 > - 当使用onLazyLoading，并设置onTotalCount为`arr.length + 1`时，可实现数据的无限加载。需要注意，在此场景下，开发者需要提供首屏显示所需的初始数据，并建议设置父容器组件`cachedCount > 0`，否则将会导致渲染异常。若与Swiper-Loop模式同时使用，停留在`index = 0`处时将导致onLazyLoading方法被持续触发，建议避免与Swiper-Loop模式同时使用。此外，开发者需要关注内存消耗情况，避免因数据持续加载而导致内存过量消耗。
 
-### onTotalCount：计算期望的数据长度
+### onTotalCount<sup>19+</sup>：计算期望的数据长度
 
 onTotalCount从API version 19开始支持，需在懒加载场景下使用。开发者可设置自定义方法，用于计算期望的数组长度。其返回值应当为自然数，可以不等于实际数据源长度arr.length。以下为onTotalCount的处理规则：
 
