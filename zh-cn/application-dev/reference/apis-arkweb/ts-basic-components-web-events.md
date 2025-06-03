@@ -1264,6 +1264,10 @@ onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceRespon
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+> **说明：**
+>
+> - onInterceptRequest可以拦截所有跳转，需要根据具体业务去做判断。
+
 **参数：**
 
 | 参数名    | 类型   | 必填   | 说明                  |
