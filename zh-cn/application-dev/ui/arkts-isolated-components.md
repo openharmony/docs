@@ -138,7 +138,7 @@ struct Extension {
 
 ```ts
 import { worker } from '@kit.ArkTS';
-import { bundleManager } from '@kit.AbilityKit';
+import { bundleManager, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 对Abc文件进行校验，并拷贝到指定沙箱路径下
