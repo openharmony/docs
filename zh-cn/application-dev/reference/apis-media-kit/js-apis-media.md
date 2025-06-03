@@ -364,11 +364,11 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 
 media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`Failed to createSoundPool`)
+    console.error(`Failed to createSoundPool`);
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`Succeeded in createSoundPool`)
+    console.info(`Succeeded in createSoundPool`);
   }
 });
 ```
@@ -2459,7 +2459,7 @@ on(type: 'audioOutputDeviceChangeWithInfo', callback: Callback\<audio.AudioStrea
 
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChangeWithInfo'。 |
+| type     | string                     | 是   | 事件回调类型，支持的事件为：'audioOutputDeviceChangeWithInfo'。 |
 | callback | Callback\<[audio.AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | 是   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
 
 **错误码：**
@@ -2492,7 +2492,7 @@ off(type: 'audioOutputDeviceChangeWithInfo', callback?: Callback\<audio.AudioStr
 
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChange'。 |
+| type     | string                     | 是   | 事件回调类型，支持的事件为：'audioOutputDeviceChangeWithInfo'。 |
 | callback | Callback\<[audio.AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | 否   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
 
 **错误码：**
@@ -5092,7 +5092,7 @@ fetchMetadata(): Promise\<AVMetadata>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 avMetadataExtractor.fetchMetadata().then((metadata: media.AVMetadata) => {
-  console.info(`Succeeded in fetching Metadata, genre: ${metadata.genre}`)
+  console.info(`Succeeded in fetching Metadata, genre: ${metadata.genre}`);
 }).catch((error: BusinessError) => {
   console.error(`Failed to fetch Metadata, error message:${error.message}`);
 });
@@ -7349,7 +7349,7 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
     console.info(`Succeeded in creating AVImageGenerator`);
     avImageGenerator.fetchFrameByTime(timeUs, queryOption, param, (error: BusinessError, pixelMap) => {
       if (error) {
-        console.error(`Failed to fetch FrameByTime, err = ${JSON.stringify(error)}`)
+        console.error(`Failed to fetch FrameByTime, err = ${JSON.stringify(error)}`);
         return
       }
       pixel_map = pixelMap;
