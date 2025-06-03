@@ -27,8 +27,8 @@ UIExtension提供的一种跨进程的应用共享能力，在使用方应用（
 
 ![uiextension-process-model](figures/uiextension-process-model.png)
 
-- 使用方应用向提供方应用发送消息：使用方可以通过[UIExtensionProxy.send](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md#send)和提供方应用进行消息的通信，提供方应用中可以使用[UIExtensionContentSession.setReceiveDataCallback](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession-sys.md#uiextensioncontentsessionsetreceivedatacallback)获取使用方应用发送的数据信息。
-- 提供方应用向使用方应用发送消息：提供方可以使用 [UIExtensionContentSession.sendData](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession-sys.md#uiextensioncontentsessionsenddata)向使用方应用发送数据，使用方使用 [UIExtensionProxy.onReceive](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md#onreceive)接收消息。
+- 使用方应用向提供方应用发送消息：使用方可以通过[UIExtensionProxy.send](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md#send)和提供方应用进行消息的通信，提供方应用中可以使用[UIExtensionContentSession.setReceiveDataCallback](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession-sys.md#setreceivedatacallback)获取使用方应用发送的数据信息。
+- 提供方应用向使用方应用发送消息：提供方可以使用 [UIExtensionContentSession.sendData](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession-sys.md#senddata)向使用方应用发送数据，使用方使用 [UIExtensionProxy.onReceive](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md#onreceive)接收消息。
 
 ## 能力范围
 
