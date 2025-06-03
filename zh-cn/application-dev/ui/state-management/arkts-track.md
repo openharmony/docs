@@ -15,6 +15,76 @@
 
 \@Track是class对象的属性装饰器。当一个class对象是状态变量时，\@Track装饰的属性发生变化，只会触发该属性关联的UI更新；如果class类中使用了\@Track装饰器，则未被\@Track装饰器装饰的属性不能在UI中使用，如果使用，会发生运行时报错。
 
+## class属性级更新说明
+
+状态管理V1中\@State等装饰器默认支持观察第一层属性的变化，第一层属性的变化虽然可以触发更新，但无法做到类属性级的观察，如下面例子展示了这一限制：
+
+```ts
+class Info {
+  name: string = 'Jack';
+  age: number = 12;
+}
+
+@Entry
+@Component
+struct Index {
+  @State info: Info = new Info();
+
+  // 借助getFontSize的日志打印，可以分辨哪个组件触发了渲染
+  getFontSize(id: number): number {
+    console.info(`Component ${id} render`);
+    return 30;
+  }
+
+  build() {
+    Column() {
+      Text(`name: ${this.info.name}`)
+        .fontSize(this.getFontSize(1))
+      Text(`age: ${this.info.age}`)
+        .fontSize(this.getFontSize(2))
+
+      // 点击当前Button，可以发现当前虽然仅改变了name属性
+      // 但是依旧会触发两个Text的刷新
+      // Text(`age: ${this.info.age}`)是冗余刷新
+      Button('change name').onClick(() => {
+        this.info.name = 'Jane';
+      })
+
+      // 点击当前Button，可以发现当前虽然仅改变了age属性
+      // 但是依旧会触发两个Text的刷新
+      // Text(`name: ${this.info.name}`)是冗余刷新
+      Button('change age').onClick(() => {
+        this.info.age++;
+      })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+> **说明：**
+>
+> 当UI刷新时，会执行组件的属性设置方法，利用这一机制可以通过观察`getFontSize`方法是否被调用来判断当前组件是否刷新。
+
+- UI首次渲染完成，观察到输出如下日志：
+```
+Component 1 render
+Component 2 render
+```
+- 当点击`Button('change name')`时，即使只修改了`info.name`，观察日志发现两个Text组件仍会重新渲染。组件```Text(age: ${this.info.age})```并未使用`name`属性，但仍因为`info.name`改变刷新，因此这次刷新是冗余的。日志输出如下：
+```
+Component 1 render
+Component 2 render
+```
+-  同理，点击`Button('change age')`，也会触发```Text(`name: ${this.info.name}`)```的刷新。日志输出如下：
+```
+Component 1 render
+Component 2 render
+```
+
+造成上述冗余刷新的根本原因是：状态管理V1中\@State等装饰器无法精准观察类属性的访问与变更。为了实现类对象属性的精准观察，引入\@Track装饰器。
+
 
 ## 装饰器说明
 
