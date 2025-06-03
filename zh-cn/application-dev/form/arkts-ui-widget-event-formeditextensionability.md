@@ -3,7 +3,7 @@
 桌面提供统一的卡片编辑页，卡片提供方使用卡片框架提供的[FormEditExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formEditExtensionAbility.md)开发卡片编辑功能。
 
 ## 开发步骤
-1. 在工程的entry模块中，新建名为EntryFormEditAbility的代码文件。在EntryFormEditAbility文件中，实现[startSecondPage](../reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md#startsecondpage)方法，在[onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate)回调方法中，加载一级卡片编辑页，并将startSecondPage方法的实现传递给一级卡片编辑页。
+1. 在工程的entry模块中，新建名为EntryFormEditAbility的代码文件。在EntryFormEditAbility文件中，实现[startSecondPage](../reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md#startsecondpage)方法，在[onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate)回调方法中，加载一级卡片编辑页，并将startSecondPage方法的实现传递给一级卡片编辑页。
 
 ```ts
 // src/main/ets/entryformeditability/EntryFormEditAbility.ets
