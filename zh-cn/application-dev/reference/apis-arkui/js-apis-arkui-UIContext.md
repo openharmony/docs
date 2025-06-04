@@ -8844,8 +8844,8 @@ SwiperDynamicSyncScene继承自[DynamicSyncScene](#dynamicsyncscene12)，对应S
 
 | 名称     | 值   | 说明                   |
 | -------- | ---- | ---------------------- |
-| GESTURE | 0   | 手势操作场景 |
-| ANIMATION | 1   | 动画过渡场景 |
+| GESTURE | 0   | 手势操作场景。 |
+| ANIMATION | 1   | 动画过渡场景。 |
 
 ## MarqueeDynamicSyncScene<sup>14+</sup>
 
