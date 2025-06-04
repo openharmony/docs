@@ -49,6 +49,23 @@ import media from '@ohos.multimedia.media';
 let state: media.AVPlayerState = systemRingtonePlayer.state;
 ```
 
+### Test
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Security.Huks.Core
+
+| 名称  | 类型                        | 可读 | 可写 | 说明               |
+| ----- | -------------------------- | ---- | ---- | ------------------ |
+| state | media.AVPlayerState | 是   | 否   | 音频渲染器的状态。 |
+
+**示例：**
+
+```ts
+import media from '@ohos.multimedia.media';
+let state: media.AVPlayerState = systemRingtonePlayer.state;
+```
+
 ### getTitle
 
 getTitle(callback: AsyncCallback&lt;string&gt;): void
