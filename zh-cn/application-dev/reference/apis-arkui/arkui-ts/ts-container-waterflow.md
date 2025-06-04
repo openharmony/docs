@@ -644,7 +644,7 @@ export class WaterFlowDataSource implements IDataSource {
     let len = this.dataArray.length;
     for (let i = 0; i < count; i++) {
       this.dataArray.push(this.dataArray[len - 1] + i + 1);
-      this.notifyDataAdd(this.dataArray.length);
+      this.notifyDataAdd(this.dataArray.length - 1);
     }
   }
 
