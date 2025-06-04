@@ -150,7 +150,7 @@ stringify(value: Object, replacer?: (number | string)[] | null, space?: string |
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | Object | 是 | ArkTS对象或数组。支持线性容器转换，非线性容器不支持。|
+| value | Object | 是 | ArkTS对象或数组。支持线性容器的转换，不支持非线性容器。|
 | replacer | number[] \| string[] \| null | 否 | 当参数是数组时，只有包含在这个数组中的属性名才会被序列化到最终的JSON字符串中；当参数为null或者未提供时，则对象所有的属性都会被序列化。默认值是undefined。|
 | space | string \| number | 否 | 指定缩进用的空格或字符串，用于美化输出。当参数是数字时表示缩进空格数；当参数是字符串时表示缩进字符；无参数则无缩进。默认值是空字符串。|
 
@@ -216,7 +216,7 @@ console.info(rstStrStar);
 
 stringify(value: Object, replacer?: Transformer, space?: string | number): string
 
-该方法将一个ArkTS对象或数组转换为JSON字符串，对于容器支持线性容器转换，非线性的容器不支持。
+该方法将一个ArkTS对象或数组转换为JSON字符串，支持线性容器的转换，不支持非线性容器。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -226,7 +226,7 @@ stringify(value: Object, replacer?: Transformer, space?: string | number): strin
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | Object | 是 | ArkTS对象或数组，对于容器支持线性容器转换，非线性的容器不支持。|
+| value | Object | 是 | ArkTS对象或数组，支持线性容器的转换，不支持非线性容器。|
 | replacer | [Transformer](#transformer) | 否 | 在序列化过程中，被序列化的值的每个属性都会经过该函数的转换和处理。默认值是undefined。|
 | space | string \| number | 否 | 指定缩进用的空格或字符串或空字符串，用于美化输出。当参数是数字时表示有多少个空格；当参数是字符串时，该字符串被当作空格；当参数没有提供时，将没有空格。默认值是空字符串。|
 
@@ -291,6 +291,37 @@ console.info(rstStrSymbol);
 */
 ```
 
+```ts
+import { JSON } from '@kit.ArkTS';
+
+/*
+ * 序列化BigInt对象场景
+ * */
+let bigIntObject = BigInt(112233445566778899)
+
+/*
+ * 场景1：不使用自定义转换函数，直接序列化BigInt对象。
+ * */
+console.info(JSON.stringify(bigIntObject)); // 112233445566778896
+
+/*
+ * 场景2：使用自定义转换函数，需预处理BigInt对象进行序列化操作。
+ * 2.1 自定义函数中直接返回BigInt对象会抛JSCrash
+ * 2.2 使用自定义转换函数，将BigInt对象预处理为string对象进行处理。
+ * */
+
+// 2.1 错误序列化用法：自定义函数中直接返回BigInt对象
+// JSON.stringify(bigIntObject, (key: string, value: Object): Object =>{ return value; });
+
+// 2.2 正确序列化用法：自定义函数中将BigInt对象预处理为string对象
+let result: string = JSON.stringify(bigIntObject, (key: string, value: Object): Object => {
+  if (typeof value === 'bigint') {
+    return value.toString();
+  }
+  return value;
+});
+console.info("result:", result); // result: "112233445566778896"
+```
 
 ## JSON.has
 
