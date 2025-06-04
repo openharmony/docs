@@ -1,4 +1,4 @@
-# @ohos.app.ability.AbilityStage (AbilityStage)
+# @ohos.app.ability.AbilityStage (AbilityStage组件容器)
 
 AbilityStage是HAP的运行时类。
 
