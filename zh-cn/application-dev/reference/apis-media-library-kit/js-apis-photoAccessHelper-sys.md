@@ -1316,9 +1316,9 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 }
 ```
 
-### createAssetsForApp<sup>12+</sup>
+### createAssetsForApp<sup>19+</sup>
 
-createAssetsForApp(bundleName: string, appName: string, appId: string, photoCreationConfigs: Array&lt;PhotoCreationConfig&gt;): Promise&lt;Array&lt;string&gt;&gt;
+createAssetsForApp(bundleName: string, appName: string, tokenId: number, photoCreationConfigs: Array&lt;PhotoCreationConfig&gt;): Promise&lt;Array&lt;string&gt;&gt;
 
 调用接口代替应用创建媒体库uri列表。Uri已对appId对应的应用授权，支持应用使用uri写入图片/视频。
 
@@ -1365,7 +1365,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     let bundleName: string = 'testBundleName';
     let appName: string = 'testAppName';
-    let appId: string = 'testAppId';
+    let tokenId: number = 537197950;
     let photoCreationConfigs: Array<photoAccessHelper.PhotoCreationConfig> = [
       {
         title: 'test',
@@ -1374,7 +1374,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
         subtype: photoAccessHelper.PhotoSubtype.DEFAULT,
       }
     ];
-    let desFileUris: Array<string> = await phAccessHelper.createAssetsForApp(bundleName, appName, appId, photoCreationConfigs);
+    let desFileUris: Array<string> = await phAccessHelper.createAssetsForApp(bundleName, appName, tokenId, photoCreationConfigs);
     console.info('createAssetsForApp success, data is ' + desFileUris);
   } catch (err) {
     console.error(`createAssetsForApp failed with error: ${err.code}, ${err.message}`);
@@ -4969,27 +4969,20 @@ static deleteLocalAssetsPermanently(context: Context, assets: Array\<PhotoAsset>
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
 
-struct Index {
-  // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-  public context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  public phAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
-
-  async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
-    console.info('deleteAssetsPermanentlyDemo');
-    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOptions: photoAccessHelper.FetchOptions = {
-      fetchColumns: [],
-      predicates: predicates
-    };
-    try {
-      let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await this.phAccessHelper.getAssets(fetchOptions);
-      let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
-      await photoAccessHelper.MediaAssetChangeRequest.deleteLocalAssetsPermanently(this.context, photoAssetList);
-    } catch (err) {
-      console.error(`deleteAssetsPermanentlyDemo failed with error: ${err.code}, ${err.message}`);
-    }
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
+  console.info('deleteAssetsPermanentlyDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
+    await photoAccessHelper.MediaAssetChangeRequest.deleteLocalAssetsPermanently(context, photoAssetList);
+  } catch (err) {
+    console.error(`deleteAssetsPermanentlyDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -6284,7 +6277,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     fetchColumns: [],
     predicates: predicates
   };
-  let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(
+  let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(
     photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, fetchOption);
   let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
   let highlightAlbum: photoAccessHelper.HighlightAlbum = new photoAccessHelper.HighlightAlbum(album);
@@ -6340,8 +6333,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
       fetchColumns: [],
       predicates: new dataSharePredicates.DataSharePredicates()
     }
-    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(
-    photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, fetchOption);
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(
+      photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, fetchOptions);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     if (album != undefined) {
       let highlightAlbum: photoAccessHelper.HighlightAlbum = new photoAccessHelper.HighlightAlbum(album);
@@ -6349,7 +6342,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
         photoAccessHelper.HighlightAlbumInfoType.COVER_INFO);
       console.info('get cover info result: ' + JSON.stringify(coverInfo));
     }
-    
+
     albumFetchResult.close();
   } catch (err) {
     console.error(`getHighlightAlbumInfoDemofailed with error: ${err.code}, ${err.message}`);
@@ -6404,8 +6397,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
       fetchColumns: [],
       predicates: new dataSharePredicates.DataSharePredicates()
     }
-    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(
-    photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, fetchOption);
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(
+      photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, fetchOptions);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     if (album != undefined) {
       let highlightAlbum: photoAccessHelper.HighlightAlbum = new photoAccessHelper.HighlightAlbum(album);
@@ -6467,8 +6460,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
       fetchColumns: [],
       predicates: new dataSharePredicates.DataSharePredicates()
     }
-    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(
-    photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, fetchOption);
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(
+      photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, fetchOptions);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     if (album != undefined) {
       let highlightAlbum: photoAccessHelper.HighlightAlbum = new photoAccessHelper.HighlightAlbum(album);
@@ -7901,7 +7894,7 @@ async function example(context: Context) {
 **示例：**
 
 ```ts
-  private photoPicker() {
+  async function photoPicker() {
     let picker = new photoAccessHelper.PhotoViewPicker();
     let option = new photoAccessHelper.PhotoSelectOptions();
     option.userId = 101;
