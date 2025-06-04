@@ -276,7 +276,7 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 | iconId            | int                       | 标识ability图标资源ID。            | NA                              |
 | icon              | String                    | 标识ability图标。            | NA                              |
 | iconPath          | String                    | 标识ability图标路径。      | NA                              |
-| labelId           | int                       | 标识ability对用户显示的名称资源ID。       | NA                              |
+| labelId           | int                       | 标识ability对用户显示的名称ID。       | NA                              |
 | label             | String                    | 标识ability对用户显示的名称。       | NA                              |
 | labelRes          | String                    | 标识ability对用户显示的名称资源。      | NA                    |
 | type              | String                    | 标识ability类型。      | Stage模型下该值直接赋予page类型。 |
