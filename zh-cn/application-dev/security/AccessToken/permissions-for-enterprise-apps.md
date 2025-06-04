@@ -352,3 +352,18 @@
 **支持设备**：PC/2in1
 
 **起始版本**：20
+
+## ohos.permission.ENTERPRISE_MANAGE_EAP
+
+获取此权限后, 允许企业网络安全软件获取802.1x报文并新增信息， 完成定制化认证需求。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
