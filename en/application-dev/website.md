@@ -237,9 +237,7 @@
         <!--DelEnd-->
         - Many-to-Many Data Sharing<!--many-to-many-data-share-->
           - [Sharing Data via Unified Data Channels](database/unified-data-channels.md)
-      - Intelligent Data Construction and Retrieval<!--intelligence-data-->
-        - [AIP Overview](database/aip-data-intelligence-overview.md)
-        - [Application Data Vectorization](database/aip-data-intelligence-embedding.md)
+      - [Application Data Vectorization](database/aip-data-intelligence-embedding.md)
       - [RelationalStore Development (C/C++)](database/native-relational-store-guidelines.md)
       - [UDMF Development (C/C++)](database/native-unified-data-management-framework-guidelines.md)
     - ArkTS<!--arkts-->
@@ -351,10 +349,11 @@
             - [Page and Custom Component Lifecycle](ui/state-management/arkts-page-custom-components-lifecycle.md)
             - [Custom Component Layout](ui/state-management/arkts-page-custom-components-layout.md)
             - [Constraints on Access Modifiers of Custom Component Member Variables](ui/state-management/arkts-custom-components-access-restrictions.md)
-          - [\@Builder Decorator: Custom Builder Function](ui/state-management/arkts-builder.md)
-          - [\@LocalBuilder Decorator: Maintaining the Parent-Child Relationship Between Component and State Management](ui/state-management/arkts-localBuilder.md)
-          - [\@BuilderParam Decorator: @Builder Function Reference](ui/state-management/arkts-builderparam.md)
-          - [wrapBuilder: Encapsulating Global @Builder](ui/state-management/arkts-wrapBuilder.md)
+          - Component Extension<!--arkts-extend-components-->
+            - [\@Builder Decorator: Custom Builder Function](ui/state-management/arkts-builder.md)
+            - [\@LocalBuilder Decorator: Maintaining the Parent-Child Relationship Between Component and State Management](ui/state-management/arkts-localBuilder.md)
+            - [\@BuilderParam Decorator: @Builder Function Reference](ui/state-management/arkts-builderparam.md)
+            - [wrapBuilder: Encapsulating Global @Builder](ui/state-management/arkts-wrapBuilder.md)
           - [\@Styles Decorator: Definition of Reusable Styles](ui/state-management/arkts-style.md)
           - [\@Extend Decorator: Extension of Built-in Components](ui/state-management/arkts-extend.md)
           - [stateStyles: Polymorphic Style](ui/state-management/arkts-statestyles.md)
@@ -534,12 +533,11 @@
             - [Attribute Modifier (AttributeModifier)](ui/arkts-user-defined-extension-attributeModifier.md)
             - [Attribute Updater (AttributeUpdater)](ui/arkts-user-defined-extension-attributeUpdater.md)
         - [Using the Mirroring Capability](ui/arkts-mirroring-display.md)
-        - [Supporting Aging-Friendly Design](ui/arkui-support-for-aging-adaptation.md)
+          - [Supporting Aging-Friendly Design](ui/arkui-support-for-aging-adaptation.md)
         - Theme Settings<!--arkts-theme-->
           - [Dark and Light Mode Adaptation](ui/ui-dark-light-color-adaptation.md)
           - [Configuring In-Application Theme Skinning](ui/theme_skinning.md)
         - [Using the UI Context API for UI Operations (UIContext)](ui/arkts-global-interface.md)
-        - Launching Pages Across Processes<!--arkts-ui-cross-process-->
           - [Atomic Service Full Screen Launch Component (FullScreenLaunchComponent)](ui/arkts-FullScreenComponent.md)
           <!--Del-->
            - [Cross-Process Application Capability Extension (UIExtension, for System Applications Only)](ui/arkts-ui-extension-components.md)
@@ -1105,8 +1103,10 @@
         - [Introduction to Connectivity Kit](connectivity/connectivity-kit-intro.md)
         - Bluetooth<!--bluetooth-->
           - [Bluetooth Overview](connectivity/bluetooth/bluetooth-overview.md)
+          - [Bluetooth Setting Development](connectivity/bluetooth/br-development-guide.md)
           - Classic Bluetooth<!--bluetooth-br-->
-            - [Bluetooth Setting Development](connectivity/bluetooth/br-development-guide.md)
+            - [BLE Advertising and Scanning Development](connectivity/bluetooth/br-discovery-development-guide.md)
+            - [Device Pairing](connectivity/bluetooth/br-pair-device-development-guide.md)
             - [SPP-based Data Transmission Development](connectivity/bluetooth/spp-development-guide.md)
           - BLE<!--bluetooth-ble-->
             - [BLE Advertising and Scanning Development](connectivity/bluetooth/ble-development-guide.md)
@@ -1118,6 +1118,7 @@
         - WLAN<!--wlan-->
           - [WLAN Service Development Overview](connectivity/wlan/wlan-overview.md)
           - [P2P Development Guide](connectivity/wlan/p2p-development-guide.md)
+        - [Terminology](connectivity/terminology.md)
       - Distributed Service Kit<!--distributed-service-kit-->
         - [Introduction to Distributed Service Kit](distributedservice/distributedservice-kit-intro.md)
         - [Distributed Device Management Development](distributedservice/devicemanager-guidelines.md)
@@ -1310,11 +1311,11 @@
           - [Event Reporting](dfx/hiappevent-event-reporting.md)
         <!--DelEnd-->
         - HiTraceMeter<!--hitracemeter-->
-          - [Using HiTraceMeter (ArkTS/JS)](dfx/hitracemeter-guidelines-arkts.md)
+          - [Using HiTraceMeter (ArkTS)](dfx/hitracemeter-guidelines-arkts.md)
           - [Using HiTraceMeter (C/C++)](dfx/hitracemeter-guidelines-ndk.md)
           - [Viewing HiTraceMeter Logs](dfx/hitracemeter-view.md)
         - HiTraceChain<!--hitracechain-->
-          - [Using HiTraceChain (ArkTS/JS)](dfx/hitracechain-guidelines-arkts.md)
+          - [Using HiTraceChain (ArkTS)](dfx/hitracechain-guidelines-arkts.md)
           - [Using HiTraceChain (C/C++)](dfx/hitracechain-guidelines-ndk.md)
         - HiChecker<!--hichecker-->
           - [Using HiChecker (ArkTS/JS)](dfx/hichecker-guidelines-arkts.md)
@@ -2928,9 +2929,14 @@
           - [Sheet Error Codes](reference/apis-arkui/errorcode-bindSheet.md)
           - [Scrollable Component Error Codes](reference/apis-arkui/errorcode-scroll.md)
           - [Snapshot Error Codes](reference/apis-arkui/errorcode-snapshot.md)
+          - [UI Context Error Codes](reference/apis-arkui/errorcode-uicontext.md)
+          <!--Del-->
+          - [UI Appearance Error Codes](reference/apis-arkui/errorcode-uiappearance.md)
+          <!--DelEnd-->
         - Graphics<!--arkui-graphics-images-arkts-errcode-->
           - [Display Error Codes](reference/apis-arkui/errorcode-display.md)
           - [Window Error Codes](reference/apis-arkui/errorcode-window.md)
+        - UI Compilation<!--arkui-compile-arkts-errcode-->
     - ArkWeb<!--arkweb-api-->
       - ArkTS APIs<!--arkweb-arkts-->
         - [@ohos.web.webview (Webview)](reference/apis-arkweb/js-apis-webview.md)
@@ -3001,7 +3007,9 @@
           - [TransientTask_DelaySuspendInfo](reference/apis-backgroundtasks-kit/_transient_task___delay_suspend_info.md)
       - Error Codes<!--background-tasks-arkts-errcode-->
         - [BackgroundTaskManager Error Codes](reference/apis-backgroundtasks-kit/errorcode-backgroundTaskMgr.md)
+        <!--Del-->
         - [DeviceUsageStatistics Error Codes](reference/apis-backgroundtasks-kit/errorcode-DeviceUsageStatistics.md)
+        <!--DelEnd-->
         - [reminderAgentManager Error Codes](reference/apis-backgroundtasks-kit/errorcode-reminderAgentManager.md)
         - [workScheduler Error Codes](reference/apis-backgroundtasks-kit/errorcode-workScheduler.md)
     - Core File Kit<!--core-file-api-->
@@ -3312,7 +3320,7 @@
           - [@ohos.bluetooth.constant (Bluetooth Constant Module) (Recommended) (System API)](reference/apis-connectivity-kit/js-apis-bluetooth-constant-sys.md)
           - [@ohos.bluetooth.hfp (Bluetooth HFP Module) (Recommended) (System API)](reference/apis-connectivity-kit/js-apis-bluetooth-hfp-sys.md)
           - [@ohos.bluetooth.hid (Bluetooth HID Module) (Recommended) (System API)](reference/apis-connectivity-kit/js-apis-bluetooth-hid-sys.md)
-          - [@ohos.bluetooth.hid (Bluetooth HID Module) (Recommended) (System API)](reference/apis-connectivity-kit/js-apis-bluetooth-hid-sys.md)
+          - [@ohos.bluetooth.opp (Bluetooth OPP Module) (System API)](reference/apis-connectivity-kit/js-apis-bluetooth-opp-sys.md)
           - [@ohos.bluetooth.pan (Bluetooth PAN Module) (Recommended) (System API)](reference/apis-connectivity-kit/js-apis-bluetooth-pan-sys.md)
           - [@ohos.bluetooth.pbap (Bluetooth PBAP Module) (Recommended) (System API)](reference/apis-connectivity-kit/js-apis-bluetooth-pbap-sys.md)
           - [@ohos.bluetooth.map (Bluetooth MAP module) (Recommended) (System API)](reference/apis-connectivity-kit/js-apis-bluetooth-map-sys.md)
@@ -3653,11 +3661,11 @@
           - [@ohos.multimodalInput.pointer (Mouse Pointer)](reference/apis-input-kit/js-apis-pointer.md)
           - [@ohos.multimodalInput.touchEvent (Touch Event)](reference/apis-input-kit/js-apis-touchevent.md)
           - [@ohos.multimodalInput.infraredEmitter (IR Management)](reference/apis-input-kit/js-apis-infraredemitter.md)
-          - [@ohos.multimodalInput.inputConsumer (Input Consumer)](reference/apis-input-kit/js-apis-inputconsumer.md)
+          - [@ohos.multimodalInput.inputConsumer (Global Shortcut Keys)](reference/apis-input-kit/js-apis-inputconsumer.md)
           <!--Del-->
           - [@ohos.multimodalInput.pointer (Mouse Pointer) (System API)](reference/apis-input-kit/js-apis-pointer-sys.md)
-          - [@ohos.multimodalInput.shortKey (Shortcut Key) (System API)](reference/apis-input-kit/js-apis-shortKey-sys.md)
-          - [@ohos.multimodalInput.inputConsumer (Input Consumer) (System API)](reference/apis-input-kit/js-apis-inputconsumer-sys.md)
+          - [@ohos.multimodalInput.shortKey (Preset Global Shortcut Keys) (System API)](reference/apis-input-kit/js-apis-shortKey-sys.md)
+          - [@ohos.multimodalInput.inputConsumer (Global Shortcut Keys) (System API)](reference/apis-input-kit/js-apis-inputconsumer-sys.md)
           - [@ohos.multimodalInput.inputDevice (Input Device) (System API)](reference/apis-input-kit/js-apis-inputdevice-sys.md)
           - [@ohos.multimodalInput.inputEventClient (Input Event Injection) (System API)](reference/apis-input-kit/js-apis-inputeventclient-sys.md)
           - [@ohos.multimodalInput.inputMonitor (Input Monitor) (System API)](reference/apis-input-kit/js-apis-inputmonitor-sys.md)
@@ -3676,10 +3684,13 @@
             - [Input_DeviceListener](reference/apis-input-kit/_input___device_listener.md)
             - [Input_InterceptorEventCallback](reference/apis-input-kit/_input___interceptor_event_callback.md)
         - Error Codes<!--input-arkts-errcode-->
-          - [Screen Hopping Error Codes](reference/apis-input-kit/errorcode-multimodalinput.md)
+          <!--Del-->
+          - [Screen Hopping Error Codes](reference/apis-input-kit/errorcode-cooperator.md)
+          - [Input Monitor Error Codes](reference/apis-input-kit/errorcode-inputmonitor.md)
+          <!--DelEnd-->
           - [Input Consumer Error Codes](reference/apis-input-kit/errorcode-inputconsumer.md)
-          - [Input Key Monitor Error Codes](reference/apis-input-kit/errorcode-inputkeymonitor.md)
           - [Input Device Error Codes](reference/apis-input-kit/errorcode-inputdevice.md)
+          - [Mouse Pointer Error Codes](reference/apis-input-kit/errorcode-pointer.md)
       - MDM Kit<!--mdm-api-->
         - ArkTS APIs<!--mdm-arkts-->
           - [@ohos.enterprise.accountManager (Account Management)](reference/apis-mdm-kit/js-apis-enterprise-accountManager.md)
