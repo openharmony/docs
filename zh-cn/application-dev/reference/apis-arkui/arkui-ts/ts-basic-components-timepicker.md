@@ -104,7 +104,7 @@ textStyle(value: PickerTextStyle)
 
 selectedTextStyle(value: PickerTextStyle)
 
-设置选中项的文本颜色、字号和字体粗细。
+设置选中项的文本颜色、字号和字体粗细。Wearable设备不支持设置该属性。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
