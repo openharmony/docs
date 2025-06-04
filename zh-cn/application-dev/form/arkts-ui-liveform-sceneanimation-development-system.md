@@ -1,18 +1,25 @@
 # 场景动效类型互动卡片开发指导（系统应用）
 
-本文档提供了场景动效类型互动卡片（系统应用）的开发指导，包括：卡片非激活态和激活态 UI 界面开发，卡片配置文件开发。
+场景动效类型互动卡片基础开发指导，可以参考文档[场景动效类型互动卡片开发指导](arkts-ui-liveform-sceneanimation-development.md)。针对系统应用，场景动效类型互动卡片提供了**禁用手势配置**和**卡片长时激活**两个扩展能力。
 
-## 开发接入指导
-场景动效类型互动卡片基础开发指导，可以参考文档[互动卡片开发指导](arkts-ui-liveform-sceneanimation-development.md)。针对系统应用，支持以下扩展能力。
+## 接口说明
 
-### 禁用手势配置
-在 form_config.json 中，可选配置项 sceneAnimationParams 新增针对系统应用的可选字段 disabledDesktopBehaviors，应用可以控制在激活态下卡片不响应特定桌面操作例如：
+**表1** 主要接口
+
+| 接口名                                                                      | 描述                                                                                                                  |
+|--------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
+| formProvider.activateSceneAnimation(formId: string): Promise&lt;void&gt; | 互动卡片请求状态切换到激活态，只针对[场景动效类型互动卡片](../../form/arkts-ui-widget-configuration.md#sceneanimationparams标签)生效，使用Promise异步回调。 |
+| formProvider.deactivateSceneAnimation(formId: string): Promise&lt;void&gt; | 互动卡片请求切换到非激活态，只针对[场景动效类型互动卡片](../../form/arkts-ui-widget-configuration.md#sceneanimationparams标签)生效，使用Promise异步回调。 |
+
+## 禁用手势配置
+
+在form_config.json中，配置项sceneAnimationParams新增针对系统应用的可选字段disabledDesktopBehaviors，应用可以控制在激活态下卡片不响应特定用户在桌面的有效手势操作。例如：
 1. 长按：LONG_CLICK。
 2. 拖拽卡片：DRAG。
 3. 下拉进入全搜：PULL_DOWN_SEARCH。
 4. 滑动翻页：SWIPE_PAGE。
 
-配置可参考下面样例, 不配置时，默认不禁用任何桌面操作。
+不配置时，默认不禁用任何用户在桌面的有效手势操作。
 
 **代码样例：entry/src/main/resources/base/profile/form_config.json**
 
@@ -48,149 +55,54 @@
 }
 ```
 
-### 卡片状态切换
-针对系统应用，支持通过接口控制卡片状态切换，不对激活态保持时间做强限制，卡片进入/退出激活态操作由 [formProvider.activateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#activatesceneanimation20) 和 [formProvider.deactivateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#deactivatesceneanimation20) 接口控制。
-特别地，卡片处于长时激活状态时候，卡片动效渲染区域和卡片自身渲染区域等大，不支持在激活态下调用 [formProvider.requestOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20)。
+## 卡片长时激活
 
-**代码样例：entry/src/main/ets/entryformability/EntryFormAbility.ets**
+针对系统应用，支持通过接口控制卡片状态切换，不对激活态保持时间做强限制，即卡片可以长时间保持激活态。卡片进入/退出激活态操作由[formProvider.activateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#activatesceneanimation20)和[formProvider.deactivateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#deactivatesceneanimation20)接口控制。
+特别地，卡片处于长时激活状态时候，卡片动效渲染区域和卡片自身渲染区域等大，不支持在激活态下调用[formProvider.requestOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20)。
+
+1. 导入模块
 
 ```ts
-import {
-  formBindingData,
-  formInfo,
-  formProvider,
-  FormExtensionAbility,
-} from '@kit.FormKit';
+import { formProvider } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { Want } from '@kit.AbilityKit';
-import { Constants } from '../common/Constants';
-import { Utils } from '../common/Utils';
-import { preferences } from '@kit.ArkData';
-
-const DB_NAME: string = 'myStore'
-
-export default class EntryFormAbility extends FormExtensionAbility {
-  onAddForm(want: Want) {
-    // Called to return a FormBindingData object.
-    const formData = '';
-    return formBindingData.createFormBindingData(formData);
-  }
-
-  onCastToNormalForm(formId: string) {
-    // Called when the form provider is notified that a temporary form is successfully
-    // converted to a normal form.
-  }
-
-  async onUpdateForm(formId: string, wantParams?: Record<string, Object>) {
-    // Called to notify the form provider to update a specified form.
-    if (wantParams) {
-      this.saveFormSize(formId, wantParams);
-    }
-  }
-
-  private saveFormSize(formId: string, wantParams: Record<string, Object>) {
-    let width = 0;
-    let height = 0;
-    width = wantParams[formInfo.FormParam.FORM_WIDTH_VP_KEY] as number;
-    height = wantParams[formInfo.FormParam.FORM_HEIGHT_VP_KEY] as number;
-    console.log(`onUpdateForm, formId: ${formId}, size:[${width}, ${height}]`);
-    let promise: Promise<preferences.Preferences> = preferences.getPreferences(this.context, DB_NAME);
-    Utils.writeFormSize(promise, formId, width, height);
-  }
-
-  private async getFormSize(formId: string): Promise<number[]> {
-    let storeDB: preferences.Preferences =  await preferences.getPreferences(this.context, DB_NAME);
-    let formCardInfo: string[] = await Utils.readFormSize(formId, storeDB);
-    return [Number.parseFloat(formCardInfo[0]), Number.parseFloat(formCardInfo[1])];
-  }
-
-  async onFormEvent(formId: string, message: string) {
-    // Called when a specified message event defined by the form provider is triggered.
-    let shortMessage: string = JSON.parse(message)['message'];
-    if (shortMessage === 'activateSceneAnimation') {
-      this.activateSceneAnimation(formId);
-    }
-  }
-
-  private activateSceneAnimation(formId: string): void {
-    try {
-      formProvider.activateSceneAnimation(formId).then(() => {
-        console.log('onFormEvent activateSceneAnimation succeed');
-      }).catch((error: BusinessError) => {
-        console.log(`onFormEvent activateSceneAnimation catch error` + `, code: ${error.code}, message: ${error.message}`);
-      })
-    } catch(e) {
-      console.log(`onFormEvent call activateSceneAnimation, catch error` + `, code: ${e.code}, message: ${e.message}`);
-    }
-  }
-
-  onRemoveForm(formId: string) {
-    // Called to notify the form provider that a specified form has been destroyed.
-  }
-
-  onAcquireFormState(want: Want) {
-    // Called to return a {@link FormState} object.
-    return formInfo.FormState.READY;
-  }
-}
 ```
 
-**代码样例：entry/src/main/ets/systemwidget/pages/SystemWidgetCard.ets**
+2. 调用formProvider.activateSceneAnimation，触发卡片长时激活
 
 ```ts
-@Entry
-@Component
-struct SystemWidgetCard {
-  /*
-   * The title.
-   */
-  readonly title: string = '系统应用，点击切换卡片状态';
-  /*
-   * The action type.
-   */
-  readonly actionType: string = 'message';
-  /*
-   * The ability name.
-   */
-  readonly abilityName: string = 'EntryFormAbility';
-  /*
-   * The message.
-   */
-  readonly message: string = 'activateSceneAnimation';
-  /*
-   * The width percentage setting.
-   */
-  readonly fullWidthPercent: string = '100%';
-  /*
-   * The height percentage setting.
-   */
-  readonly fullHeightPercent: string = '100%';
 
-  build() {
-    Row() {
-      Column() {
-        Text(this.title)
-          .fontSize($r('app.float.font_size'))
-          .fontWeight(FontWeight.Medium)
-          .fontColor($r('sys.color.font_primary'))
-      }
-      .width(this.fullWidthPercent)
-    }
-    .height(this.fullHeightPercent)
-    .onClick(() => {
-      postCardAction(this, {
-        action: this.actionType,
-        abilityName: this.abilityName,
-        params: {
-          message: this.message
-        }
-      });
-    })
-  }
+let formId: string = '12400633174999288';
+
+try {
+  formProvider.activateSceneAnimation(formId).then(() => {
+    console.info('activateSceneAnimation succeed.');
+  }).catch((error: BusinessError) => {
+    console.error(`promise error, code: ${error.code}, message: ${error.message})`);
+  });
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
 
-为了卡片提供方更加精细控制卡片状态切换，卡片提供方需在激活态页面准备就绪时，通过 session 发送信息告知卡片使用方，卡片使用方在收到信息后开始加载卡片激活态 UI。
+3. 调用formProvider.deactivateSceneAnimation，取消长时激活，卡片切换为非激活态
+
+```ts
+let formId: string = '12400633174999288';
+
+try {
+  formProvider.deactivateSceneAnimation(formId).then(() => {
+    console.info('deactivateSceneAnimation succeed.');
+  }).catch((error: BusinessError) => {
+    console.error(`promise error, code: ${error.code}, message: ${error.message})`);
+  });
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
+}
+```
+
+4. LiveFormExtensionAbility适配
+
+为了卡片提供方更加精细控制卡片状态切换，卡片提供方需在激活态页面准备就绪时，通过session发送信息告知卡片使用方，卡片使用方在收到信息后开始加载卡片激活态UI。
 
 **代码样例：entry/src/main/ets/mysystemliveformextensionability/MySystemLiveFormExtensionAbility.ets**
 
@@ -222,60 +134,3 @@ export default class MySystemLiveFormExtensionAbility extends LiveFormExtensionA
   }
 }
 ```
-
-在 module.json 中，在 extensionAbilities 配置项中增加 MySystemLiveFormExtensionAbility 配置。其中 type 字段为 liveForm。
-
-**代码样例：entry/src/main/module.json**
-
-```ts
-    "extensionAbilities": [
-      {
-        "name": "MySystemLiveFormExtensionAbility",
-        "srcEntry": "./ets/mysystemliveformextensionability/MySystemLiveFormExtensionAbility.ets",
-        "description": "$string:MySystemLiveFormExtensionAbility_desc",
-        "label": "$string:MySystemLiveFormExtensionAbility_label",
-        "type": "liveForm"
-      }
-    ]
-```
-
-**代码样例：entry/src/main/ets/mysystemliveformextensionability/pages/MySystemLiveFormPage.ets**
-
-```ts
-import { formProvider } from '@kit.FormKit';
-import { UIExtensionContentSession } from '@kit.AbilityKit';
-
-let storageForMySystemLiveFormPage = LocalStorage.getShared();
-
-@Entry(storageForMySystemLiveFormPage)
-@Component
-struct MySystemLiveFormPage {
-  @State message: string = '卡片激活态';
-  private session: UIExtensionContentSession | undefined =
-    storageForMySystemLiveFormPage?.get<UIExtensionContentSession>('session');
-  private formId: string | undefined = storageForMySystemLiveFormPage?.get<string>('formId');
-
-  build() {
-    Stack() {
-      Column({space: 10}) {
-        Text(this.message)
-          .fontColor(Color.White)
-          .fontSize(20)
-          .fontWeight(FontWeight.Bold)
-
-        Button('切换卡片到非激活态')
-          .backgroundColor(Color.Grey)
-          .onClick(() => {
-            console.log('MyLiveFormPage cancel overflow animation');
-            formProvider.deactivateSceneAnimation(this.formId);
-          })
-      }
-    }
-    .width('100%')
-    .height('100%')
-  }
-}
-```
-
-## demo 效果
-![live-form-base-systemdemo.gif](figures/live-form-base-systemdemo.gif)
