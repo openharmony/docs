@@ -2869,3 +2869,21 @@ error: Install failed due to the U1Enabled is not same in all haps.
 **处理步骤**
 
 重新签名，签名过程中，请参考[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section9786111152213)的支持ACL权限、或者[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section157591551175916)的使用ACL的签名配置指导进行配置，使多个HAP包签名信息中allowed-acls的U1Enabled信息一致。
+
+<!--Del-->
+## 常见问题
+
+### 1. 预置系统应用已经卸载，重新安装应用时在特定场景下会报错：降级安装或者签名信息不一致
+
+**问题描述**
+
+应用已经卸载了，重新安装时报错降级安装或者签名信息不一致，但桌面上会出现对应的应用图标，能正常拉起。
+
+**可能原因**
+
+针对已卸载的预置系统应用增强了安全管控能力，安装一个相同bundleName的应用时，系统侧会先恢复预置镜像版本中的应用，然后再继续安装传入的应用。
+
+**处理步骤**
+
+根据报错信息和错误码进行处理。
+<!--DelEnd-->
