@@ -3290,6 +3290,7 @@
         - [@ohos.app.form.formInfo (FormInfo)](reference/apis-form-kit/js-apis-app-form-formInfo.md)
         - [@ohos.app.form.formProvider (FormProvider)](reference/apis-form-kit/js-apis-app-form-formProvider.md)
         - [@ohos.app.form.FormEditExtensionAbility (FormEditExtensionAbility)](reference/apis-form-kit/js-apis-app-form-formEditExtensionAbility.md)
+        - [@ohos.app.form.LiveFormExtensionAbility (LiveFormExtensionAbility)](reference/apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md)
         <!--Del-->
         - [@ohos.app.form.formAgent (FormAgent)(系统接口)](reference/apis-form-kit/js-apis-app-form-formAgent-sys.md)
         - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)(系统接口)](reference/apis-form-kit/js-apis-app-form-formExtensionAbility-sys.md)
@@ -3301,6 +3302,7 @@
         - application<!--form-arkts-application-->
           - [FormExtensionContext](reference/apis-form-kit/js-apis-inner-application-formExtensionContext.md)
           - [FormEditExtensionContext](reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md)
+          - [LiveFormExtensionContext](reference/apis-form-kit/js-apis-application-LiveFormExtensionContext.md)
           <!--Del-->
           - [FormExtensionContext(系统接口)](reference/apis-form-kit/js-apis-inner-application-formExtensionContext-sys.md)
           <!--DelEnd-->
