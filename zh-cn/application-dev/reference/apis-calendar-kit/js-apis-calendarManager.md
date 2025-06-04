@@ -1628,7 +1628,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 | --------- | ------ | ---- |----| ------------------------ |
 | location  | string | 否   | 是  | 地点位置。长度限制为5000字符，不填时，默认为空字符串。 |
 | longitude | number | 否   | 是  | 地点经度。取值范围[-180, 180]，默认为0。    |
-| latitude  | number | 否   | 是  | 地点纬度。取值范围[-180, 180]，默认为0。    |
+| latitude  | number | 否   | 是  | 地点纬度。取值范围[-90, 90]，默认为0。    |
 
 ## EventFilter
 
