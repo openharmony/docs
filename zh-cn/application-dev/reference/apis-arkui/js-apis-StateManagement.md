@@ -66,7 +66,7 @@ static&nbsp;connect\<T extends object\>( </br >
 
 | 类型                                   | 说明                                                         |
 | -------------------------------------- | ------------------------------------------------------------ |
-| T | 创建或获取AppStorageV2数据成功时，返回数据；否则返回undefined。 |
+| T \| undefined | 创建或获取AppStorageV2数据成功时，返回数据；否则返回undefined。 |
 
 **示例：**
 
