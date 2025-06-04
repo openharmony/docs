@@ -146,6 +146,7 @@ createDepthDataOutput(profile: DepthProfile): DepthDataOutput
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 202               |  Not System Application.               |
 | 7400101                |  Parameter missing or parameter type incorrect.               |
 | 7400201                |  Camera service fatal error.               |
 
@@ -183,6 +184,14 @@ isCameraMuteSupported(): boolean
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | boolean    | 返回true表示相机可以被禁用，返回false表示相机不能被禁用。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202               |  Not System Application.               |
 
 **示例：**
 
@@ -237,6 +246,15 @@ muteCameraPersistent(mute: boolean, type: PolicyType): void
 | -------- |-----------------------------| ---- |--------------------------------------------|
 | mute     | boolean                     |  是  | 禁用相机。true为禁用；false为解除禁用。                   |
 | type     | [PolicyType](#policytype12) |  是  | 策略类型。请使用[PolicyType](#policytype12)里面支持的类型 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 201               |Permission denied                       |
+| 202               |  Not System Application.               |
 
 **示例：**
 
@@ -426,6 +444,14 @@ prelaunch(): void
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202 | Not System Application. |
 
 **示例：**
 
@@ -1158,6 +1184,7 @@ addDeferredSurface(surfaceId: string): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 202                    | Not System Application.                        |
 | 7400101                |  Parameter missing or parameter type incorrect.        |
 
 **示例：**
@@ -7882,6 +7909,7 @@ enableLcdFlash(enabled: boolean): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 202                    | Not System Application. |
 | 7400103                |  Session not config.                                   |
 
 **示例：**
