@@ -62,9 +62,14 @@ text.setTextHighContrast(text.TextHighContrast.TEXT_APP_DISABLE_HIGH_CONTRAST)
 
 setTextUndefinedDisplay(undefinedGlyphDisplay: TextUndefinedGlyphDisplay): void
 
-用于设置无法塑性字符的显示方式，只会影响调用此接口之后排版的文本。
+设置字符映射到 .notdef（未定义）字形时要使用的字形类型。
 
-该接口设置后整个进程都会生效，进程内所有页面共用相同模式。
+影响此调用后呈现的所有文本。
+
+此配置会影响显示字体中未定义的字符的方式：
+
+- 默认行为遵循字体的内部 .notdef 字形设计
+- 豆腐块明确将缺失的字符显示为可见方块
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -303,8 +308,8 @@ struct Index {
 
 | 名称           | 值   | 说明                                 |
 | -------------- | ---- | ------------------------------------ |
-| USE_DEFAULT    | 0    | 使用系统默认.notdef字形或者指定字体文件的.notdef字形。|
-| USE_TOFU       | 1    | 强制使用豆腐块。|
+| USE_DEFAULT    | 0    | 使用字体的内置 .notdef 字形。遵循字体的内部 .notdef 字形设计，可以是空框、空格或自定义符号。|
+| USE_TOFU       | 1    | 总是用显式的豆腐块替换未定义的字形，覆盖字体的默认行为。用于调试缺失字符或强制一致的缺失符号显示。|
 
 ## TextAlign
 
@@ -763,7 +768,15 @@ struct RenderTest {
 ### unloadFontSync<sup>20+</sup>
 unloadFontSync(name: string): void
 
-使用指定的别名取消注册对应字体。
+同步卸载自定义字体。此API同步返回结果。
+
+通过此API卸载字体别名对应自定义字体后，对应的自定义字体将不再可用。
+
+所有使用该字体别名的排版对象都应该被销毁重建。
+
+- 卸载不存在的字体别名不会产生任何效果且不会抛出错误。
+- 此操作仅影响后续字体使用。
+- 卸载正在使用的字体可能导致文本渲染异常（如乱码或字形缺失）。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -822,7 +835,15 @@ struct UnloadFontSyncTest {
 ### unloadFont<sup>20+</sup>
 unloadFont(name: string): Promise\<void>
 
-使用指定的别名取消注册对应字体，使用Promise异步回调。
+异步卸载自定义字体。此API通过Promise异步返回。
+
+通过此API卸载字体别名对应自定义字体后，对应的自定义字体将不再可用。
+
+所有使用该字体别名的排版对象都应该被销毁重建。
+
+- 卸载不存在的字体别名不会产生任何效果且不会抛出错误。
+- 此操作仅影响后续字体使用。
+- 卸载正在使用的字体可能导致文本渲染异常（如乱码或字形缺失）。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
