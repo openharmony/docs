@@ -6,7 +6,7 @@ Web components are migrated between different windows based on the [Custom Node]
 
 In the following example, a **Web** component is created using a command when the main window Ability is started. You can use the functions and classes provided in **common.ets** to attach and detach the **Web** component. In addition, **Index.ets** provides an implementation method for attaching and detaching **Web** components. In this way, you can attach and detach **Web** components in different windows, in other words, migrate **Web** components between different windows. The following figure shows the migration process.
 
-![Example of Migrating Web Components](./figures/web-component-migrate_en.png)
+![Example of Migrating Web Components](./figures/web-component-migrate.png)
 
 > **NOTE**
 >

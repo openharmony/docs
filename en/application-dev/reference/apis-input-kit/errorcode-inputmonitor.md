@@ -1,8 +1,9 @@
-# Input Key Monitor Error Codes
+# Input Monitor Error Codes
 
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 
 ## 4100001 Event Listening Not Supported for the Key
 
@@ -10,11 +11,11 @@
 
 Event listening not supported for the key.
 
-**Symptom**
+**Description**
 
 This error code is reported if event listening is not supported for this key.
 
-**Possible Cause**
+**Possible Causes**
 
 The current API does not support the key for which event listening is to be enabled.
 
