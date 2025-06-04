@@ -300,8 +300,7 @@ let curve = curves.customCurve(interpolate) // 创建一个用户自定义插值
 
 ## ICurve<sup>9+</sup>
 
-曲线对象。
-
+曲线对象，支持通过本模块中的[curves.cubicBezierCurve](#curvescubicbeziercurve9)、[curves.interpolatingSpring](#curvesinterpolatingspring10)等方法创建不同类型的曲线对象，并可通过曲线对象调用其[interpolate](#interpolate9)的成员方法。
 
 ### interpolate<sup>9+</sup>
 
