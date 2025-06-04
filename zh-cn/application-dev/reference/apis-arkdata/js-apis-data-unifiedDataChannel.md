@@ -39,13 +39,13 @@ type GetDelayData = (type: string) => UnifiedData
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 作为延迟封装的标识。 |
+| type | string | 是 | 作为延迟数据类型的标识。 |
 
 **返回值：**
 
 | 类型                                     | 说明                      |
 | ---------------------------------------- |-------------------------|
-| [UnifiedData](#unifieddata) | 当延迟封装触发时，返回一个UnifiedData对象。 |
+| [UnifiedData](#unifieddata) | 当延迟回调触发时，返回一个UnifiedData对象。 |
 
 **示例：**
 
