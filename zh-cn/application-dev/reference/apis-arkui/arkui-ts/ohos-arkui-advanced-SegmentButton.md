@@ -1,10 +1,10 @@
 # SegmentButton
 
-分段按钮组件，包含页签类分段按钮、单选类分段按钮、多选类分段按钮。
+分段按钮组件，包含页签类分段按钮、胶囊类单选分段按钮、胶囊类多选分段按钮。
 
 >**说明：**
 >
->该组件及其子组件从 API Version 11 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>该组件从 API Version 11 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 >该组件不支持在Wearable设备上使用。
 
@@ -35,7 +35,7 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[], onItem
 
 >**说明：** 
 >
->分段按钮组件不支持通用属性。分段按钮组件使用当前区域可使用的最大宽度做为组件宽度，并且根据按钮个数平均分配每个按钮宽度；分段按钮组件高度根据按钮内容（文本及图片）自动适应，其最小高度为28vp。
+>分段按钮组件不支持通用属性。分段按钮组件使用当前区域可使用的最大宽度作为组件宽度，并且根据按钮个数平均分配每个按钮宽度；分段按钮组件高度根据按钮内容（文本及图片）自动适应，其最小高度为28vp。
 
 ## SegmentButtonOptions
 
@@ -83,7 +83,7 @@ constructor(options: TabSegmentButtonOptions | CapsuleSegmentButtonOptions)
 
 | 名称    | 类型                                                     | 必填 | 说明                 |
 | ------- | ------------------------------------------------------------ | ---- | -------------------- |
-| options | [TabSegmentButtonOptions](#tabsegmentbuttonoptions) \|   [CapsuleSegmentButtonOptions](#capsulesegmentbuttonoptions) | 是 | 页签类或者单选类/多选类分段按钮信息。 |
+| options | [TabSegmentButtonOptions](#tabsegmentbuttonoptions) \|   [CapsuleSegmentButtonOptions](#capsulesegmentbuttonoptions) | 是 | 页签类或者胶囊类分段按钮信息。 |
 
 ### tab
 
@@ -110,7 +110,7 @@ static tab(options: TabSegmentButtonConstructionOptions): SegmentButtonOptions
 
 static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonOptions
 
-创建单选类/多选类的SegmentButtonOptions。
+创建胶囊类的SegmentButtonOptions。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -119,7 +119,7 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 
 | 名称    | 类型                                                         | 必填 | 说明                        |
 | ------- | ------------------------------------------------------------ | ---- | --------------------------- |
-| options | [CapsuleSegmentButtonConstructionOptions](#capsulesegmentbuttonconstructionoptions) | 是   | 单选类/多选类分段按钮信息。 |
+| options | [CapsuleSegmentButtonConstructionOptions](#capsulesegmentbuttonconstructionoptions) | 是   | 胶囊类分段按钮信息。 |
 
 **返回值：**
 
@@ -139,10 +139,10 @@ type DimensionNoPercentage = PX | VP | FP | LPX | Resource
 
 | 类型                             | 说明                                          |
 | -------------------------------- | --------------------------------------------- |
-| [PX](ts-types.md#px10)           | 长度类型，用于描述以px像素单位为单位的长度。  |
-| [VP](ts-types.md#vp10)           | 长度类型，用于描述以vp像素单位为单位的长度。  |
-| [FP](ts-types.md#fp10)           | 长度类型，用于描述以fp像素单位为单位的长度。  |
-| [LPX](ts-types.md#lpx10)         | 长度类型，用于描述以lpx像素单位为单位的长度。 |
+| [PX](ts-types.md#px10)           | 长度类型，用于描述以px为单位的长度。  |
+| [VP](ts-types.md#vp10)           | 长度类型，用于描述以vp为单位的长度。  |
+| [FP](ts-types.md#fp10)           | 长度类型，用于描述以fp为单位的长度。  |
+| [LPX](ts-types.md#lpx10)         | 长度类型，用于描述以lpx为单位的长度。 |
 | [Resource](ts-types.md#resource) | 资源引用类型，用于设置组件属性的值。          |
 
 ## CommonSegmentButtonOptions
@@ -191,7 +191,7 @@ type DimensionNoPercentage = PX | VP | FP | LPX | Resource
 
 ## CapsuleSegmentButtonConstructionOptions
 
-用于构建单选类/多选类的SegmentButtonOptions对象。
+用于构建胶囊类的SegmentButtonOptions对象。
 
 继承[CommonSegmentButtonOptions](#commonsegmentbuttonoptions)。
 
@@ -443,7 +443,7 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 ## CapsuleSegmentButtonOptions
 
-单选类/多选类分段按钮选项。继承自[CapsuleSegmentButtonConstructionOptions](#capsulesegmentbuttonconstructionoptions)。
+胶囊类分段按钮选项。继承自[CapsuleSegmentButtonConstructionOptions](#capsulesegmentbuttonconstructionoptions)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -451,7 +451,7 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 | 名称 | 类型      | 必填 | 说明                        |
 | ---- | --------- | ---- | ----------------------------- |
-| type | 'capsule' | 是   | 类型为单选类/多选类分段按钮。 |
+| type | 'capsule' | 是   | 类型为胶囊类分段按钮。 |
 
 ## SegmentButtonTextItem
 
@@ -482,7 +482,7 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 >**说明：**
 >
->未选中态图标`icon`与选中态图标`selectedIcon`都需要被设置，单独设置不生效。
+>未选中态图标`icon`与选中态图标`selectedIcon`都需要设置，单独设置不生效。
 
 ## SegmentButtonIconTextItem
 
@@ -504,7 +504,7 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 >**说明：**
 >
->未选中态图标`icon`与选中态图标`selectedIcon`都需要被设置，单独设置不生效。
+>未选中态图标`icon`与选中态图标`selectedIcon`都需要设置，单独设置不生效。
 
 ## SegmentButtonItemOptions
 
@@ -541,7 +541,7 @@ constructor(options: SegmentButtonItemOptionsConstructorOptions)
 
 | 参数名  | 类型                                                         | 必填 | 说明               |
 | ------- | ------------------------------------------------------------ | ---- | ------------------ |
-| options | [SegmentButtonItemOptionsConstructorOptions](#segmentbuttonitemoptionsconstructoroptions) | 是   | 分段按钮按钮选项。 |
+| options | [SegmentButtonItemOptionsConstructorOptions](#segmentbuttonitemoptionsconstructoroptions) | 是   | 单个分段按钮的配置选项，包含图标、文本、无障碍属性等配置信息。 |
 
 ## SegmentButtonItemOptionsConstructorOptions
 
