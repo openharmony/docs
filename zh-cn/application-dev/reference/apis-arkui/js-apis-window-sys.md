@@ -3358,7 +3358,7 @@ setImageForRecent(imgResourceId: number, value: ImageFit): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { AbilityConstant, ConfigurationConstant, UIAbility, want } from '@kit.AbilityKit';
+import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
