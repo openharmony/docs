@@ -3031,7 +3031,7 @@ startAppServiceExtensionAbility(want: Want): Promise\<void>
 | 801 | Capability not support. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -3040,7 +3040,7 @@ startAppServiceExtensionAbility(want: Want): Promise\<void>
 | 16000013 | The application is controlled by EDM.       |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
-| 16000200 | The caller not in target app identifier allow list. |
+| 16000200 | The caller is not in the appIdentifierAllowList of the target application. |
 
 **示例：**
 
@@ -3110,12 +3110,12 @@ stopAppServiceExtensionAbility(want: Want): Promise\<void>
 | 801 | Capability not support. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-| 16000200 | The caller not in target app identifier allow list. |
+| 16000200 | The caller is not in the appIdentifierAllowList of the target application. |
 
 **示例：**
 
@@ -3186,13 +3186,13 @@ connectAppServiceExtensionAbility(want: Want, options: ConnectOptions): number
 | 801 | Capability not support. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
-| 16000201 | The target has not been started yet. |
+| 16000201 | The target service has not been started yet. |
 
 **示例：**
 
