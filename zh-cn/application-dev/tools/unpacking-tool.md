@@ -220,7 +220,7 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 | debug                          | boolean | 标识应用是否可调试。true表示可调试，false表示不可调试。     | NA          |
 | iconId                         | int     | 标识应用的图标资源ID。 | NA          |
 | labelId                        | int     | 标识应用的label资源ID。  | NA          |
-| icon                           | String  | 标识应用的图标路径。 | NA          |
+| icon                           | String  | 标识应用的图标。 | NA          |
 | label                          | String  | 标识应用的label。  | NA          |
 | description                    | String  | 标识应用的描述信息。    | stage模型新增。   |
 | minCompatibleVersionCode       | int     | 标识应用能够兼容的最低版本号。  | NA          |
