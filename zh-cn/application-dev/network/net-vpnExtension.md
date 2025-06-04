@@ -30,7 +30,7 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。当前提供
 如果想使您的应用支持VPN能力，首先您需要创建一个继承于VpnExtensionAbility的extensionAbilities。
 
 ```ts
-// 举例：在应用的module.json5中定义MyVpnExtAbility
+// 举例：在应用的module.json5中定义MyVpnExtAbility。
 "extensionAbilities": [
   {
     "name": "MyVpnExtAbility",
@@ -53,6 +53,7 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。当前提供
 - 通过VpnConnection.[create](../reference/apis-network-kit/js-apis-net-vpnExtension.md#create)建立VPN网络连接；
 - 处理虚拟网卡的数据，如：读写操作。
 
+## 开发步骤
 
 ### 启动VPN Extension Ability
 
@@ -187,7 +188,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 import { vpnExtension} from '@kit.NetworkKit';
 
 let vpnConfig: vpnExtension.VpnConfig = {
-  // 配置VPN虚拟网卡的IP地址
+  // 配置VPN虚拟网卡的IP地址。
   addresses: [{
     address: {
       address:'192.x.x.5',
@@ -195,9 +196,9 @@ let vpnConfig: vpnExtension.VpnConfig = {
     },
     prefixLength:24
   }],
-  // 配置路由参数
+  // 配置路由参数。
   routes: [{
-    // VPN虚拟网卡接口名固定为“vpn-tun”
+    // VPN虚拟网卡接口名固定为“vpn-tun”。
     interface: 'vpn-tun',
     destination: {
       address: {
@@ -215,13 +216,13 @@ let vpnConfig: vpnExtension.VpnConfig = {
     hasGateway: false,
     isDefaultRoute: false,
   }],
-  // 配置最大传输单元值
+  // 配置最大传输单元值。
   mtu: 1400,
-  // 配置VPN使用的DNS服务器，
+  // 配置VPN使用的DNS服务器。
   dnsAddresses: ['223.x.x.5', '223.x.x.6'],
-  // VPN生效白名单的应用
+  // VPN生效白名单的应用。
   trustedApplications: ['com.test.browser'],
-  // 不生效VPN黑名单的应用
+  // 不生效VPN黑名单的应用。
   blockedApplications: ['com.test.games'],
 }
 let context: vpnExtension.VpnExtensionContext;

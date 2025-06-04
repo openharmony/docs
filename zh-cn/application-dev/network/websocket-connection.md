@@ -39,7 +39,7 @@ let ws = webSocket.createWebSocket();
 ```js
 ws.on('open', (err: BusinessError, value: Object) => {
   console.log("on open, status:" + JSON.stringify(value));
-  // 当收到on('open')事件时，可以通过send()方法与服务器进行通信
+  // 当收到on('open')事件时，可以通过send()方法与服务器进行通信。
   ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("Message send successfully");
@@ -50,7 +50,7 @@ ws.on('open', (err: BusinessError, value: Object) => {
 });
 ws.on('message', (err: BusinessError, value: string | ArrayBuffer) => {
   console.log("on message, message:" + value);
-  // 当收到服务器的`bye`消息时（此消息字段仅为示意，具体字段需要与服务器协商），主动断开连接
+  // 当收到服务器的`bye`消息时（此消息字段仅为示意，具体字段需要与服务器协商），主动断开连接。
   if (value === 'bye') {
     ws.close((err: BusinessError, value: boolean) => {
       if (!err) {
@@ -141,7 +141,7 @@ localServer.on('connect', async (connection: webSocket.WebSocketConnection) => {
 localServer.on('messageReceive', (message: webSocket.WebSocketMessage) => {
   try{
     console.info(`on message received, client: ${message.clientConnection}, data: ${message.data}`);
-    // 当收到客户端的"bye"消息时（此消息字段仅为示意，具体字段需要与客户端协商），主动断开连接
+    // 当收到客户端的"bye"消息时（此消息字段仅为示意，具体字段需要与客户端协商），主动断开连接。
     if (message.data === 'bye') {
       localServer.close(message.clientConnection).then((success: boolean) => {
         if (success) {
@@ -172,7 +172,8 @@ localServer.on('error', (error: BusinessError) => {
 
 ```js
 let config: webSocket.WebSocketServerConfig = {
-  serverPort: 8080, // 监听端口
+  // 监听端口。
+  serverPort: 8080,
   maxConcurrentClientsNumber: 10,
   maxConnectionsForOneClient: 10,
 }
@@ -192,7 +193,7 @@ localServer.start(config).then((success: boolean) => {
 通过WebSocketServer收发消息、监听事件等。
 
 ```js
-// 当收到on('connect')事件时，可以通过send()方法与客户端进行通信
+// 当收到on('connect')事件时，可以通过send()方法与客户端进行通信。
 localServer.send("Hello, I'm server!", connection).then((success: boolean) => {
     if (success) {
       console.info('message send successfully');
@@ -209,7 +210,7 @@ localServer.send("Hello, I'm server!", connection).then((success: boolean) => {
 使用完WebSocketServer端服务器后，通过stop()停止服务
 
 ```js
-// 当收到on('close')事件时，可以通过stop()停止服务
+// 当收到on('close')事件时，可以通过stop()停止服务。
 localServer.stop().then((success: boolean) => {
     if (success) {
       console.info('server stop service successfully');
@@ -231,7 +232,7 @@ let defaultIpAddress = "ws://";
 let ws = webSocket.createWebSocket();
 ws.on('open', (err: BusinessError, value: Object) => {
   console.log("on open, status:" + JSON.stringify(value));
-  // 当收到on('open')事件时，可以通过send()方法与服务器进行通信
+  // 当收到on('open')事件时，可以通过send()方法与服务器进行通信。
   ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("Message send successfully");
@@ -242,7 +243,7 @@ ws.on('open', (err: BusinessError, value: Object) => {
 });
 ws.on('message', (err: BusinessError, value: string | ArrayBuffer) => {
   console.log("on message, message:" + value);
-  // 当收到服务器的`bye`消息时（此消息字段仅为示意，具体字段需要与服务器协商），主动断开连接
+  // 当收到服务器的`bye`消息时（此消息字段仅为示意，具体字段需要与服务器协商），主动断开连接。
   if (value === 'bye') {
     ws.close((err: BusinessError, value: boolean) => {
       if (!err) {
@@ -291,7 +292,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let connections: webSocket.WebSocketConnection[] = [];
 let localServer: webSocket.WebSocketServer;
 let config: webSocket.WebSocketServerConfig = {
-  serverPort: 8080, // 监听端口
+  // 监听端口。
+  serverPort: 8080,
   maxConcurrentClientsNumber: 10,
   maxConnectionsForOneClient: 10,
 }
@@ -300,7 +302,7 @@ localServer = webSocket.createWebSocketServer();
 
 localServer.on('connect', async (connection: webSocket.WebSocketConnection) => {
   console.info(`New client connected! Client ip: ${connection.clientIP}, Client port: ${connection.clientPort}`);
-  // 当收到on('connect')事件时，可以通过send()方法与客户端进行通信
+  // 当收到on('connect')事件时，可以通过send()方法与客户端进行通信。
   localServer.send("Hello, I'm server!", connection).then((success: boolean) => {
     if (success) {
       console.info('message send successfully');
@@ -326,7 +328,7 @@ localServer.on('connect', async (connection: webSocket.WebSocketConnection) => {
 localServer.on('messageReceive', (message: webSocket.WebSocketMessage) => {
   try{
     console.info(`on message received, client: ${message.clientConnection}, data: ${message.data}`);
-    // 当收到客户端的"bye"消息时（此消息字段仅为示意，具体字段需要与客户端协商），主动断开连接
+    // 当收到客户端的"bye"消息时（此消息字段仅为示意，具体字段需要与客户端协商），主动断开连接。
     if (message.data === 'bye') {
       localServer.close(message.clientConnection).then((success: boolean) => {
         if (success) {

@@ -16,11 +16,6 @@
 - 网络优选：处理多网络共存时选择最优网络。在网络状态、网络信息及评分发生变化时被触发。
 - 默认网络：默认路由所在的网络。
 
-## 约束
-
-- 开发语言：JS
-- 该模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
 ## 场景介绍
 
 网络连接管理的典型场景如下所示。
@@ -39,21 +34,15 @@
 
 2. 从@kit.NetworkKit中导入connection命名空间。
 
-3. 调用[createNetConnection](../reference/apis-network-kit/js-apis-net-connection.md#connectioncreatenetconnection)方法，指定网络能力、网络类型和超时时间(可选，如不传入代表默认网络；创建不同于默认网络时可通过指定这些参数完成)，创建一个NetConnection对象。
-
-4. 调用该对象的[on()](../reference/apis-network-kit/js-apis-net-connection.md#onnetavailable)方法，传入type和callback，订阅关心的事件。
-
-5. 调用该对象的[register()](../reference/apis-network-kit/js-apis-net-connection.md#register)方法，订阅指定网络状态变化的通知。
-
-6. 当网络可用时，会收到netAvailable事件的回调；当网络不可用时，会收到netUnavailable事件的回调。
-
-7. 当不使用该网络时，可以调用该对象的[unregister()](../reference/apis-network-kit/js-apis-net-connection.md#unregister)方法，取消订阅。
-
 ```ts
 // 引入包名。
 import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+```
 
+3. 调用[createNetConnection](../reference/apis-network-kit/js-apis-net-connection.md#connectioncreatenetconnection)方法，指定网络能力、网络类型和超时时间(可选，如不传入代表默认网络；创建不同于默认网络时可通过指定这些参数完成)，创建一个NetConnection对象。
+
+```ts
 let netSpecifier: connection.NetSpecifier = {
   netCapabilities: {
     // 假设当前默认网络是WiFi，需要创建蜂窝网络连接，可指定网络类型为蜂窝网。
@@ -68,12 +57,11 @@ let timeout = 10 * 1000;
 
 // 创建NetConnection对象。
 let conn = connection.createNetConnection(netSpecifier, timeout);
+```
 
-// 订阅指定网络状态变化的通知。
-conn.register((err: BusinessError, data: void) => {
-  console.log(JSON.stringify(err));
-});
+4. 调用该对象的[on()](../reference/apis-network-kit/js-apis-net-connection.md#onnetavailable)方法，传入type和callback，订阅关心的事件。
 
+```ts
 // 订阅事件，如果当前指定网络可用，通过on_netAvailable通知用户。
 conn.on('netAvailable', ((data: connection.NetHandle) => {
   console.log("net is available, netId is " + data.netId);
@@ -83,7 +71,20 @@ conn.on('netAvailable', ((data: connection.NetHandle) => {
 conn.on('netUnavailable', ((data: void) => {
   console.log("net is unavailable, data is " + JSON.stringify(data));
 }));
+```
 
+5. 调用该对象的[register()](../reference/apis-network-kit/js-apis-net-connection.md#register)方法，订阅指定网络状态变化的通知。当网络可用时，会收到netAvailable事件的回调；当网络不可用时，会收到netUnavailable事件的回调。
+
+```ts
+// 订阅指定网络状态变化的通知。
+conn.register((err: BusinessError, data: void) => {
+  console.log(JSON.stringify(err));
+});
+```
+
+6. 当不使用该网络时，可以调用该对象的[unregister()](../reference/apis-network-kit/js-apis-net-connection.md#unregister)方法，取消订阅。
+
+```ts
 // 当不使用该网络时，可以调用该对象的unregister()方法，取消订阅。
 conn.unregister((err: BusinessError, data: void) => {
 });
@@ -132,7 +133,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let session = rcp.createSession();
 
 async function useRcp() {
-  /* 建立rcp请求。 */
+  // 建立rcp请求。
   try {
     const request = await session.get('https://www.example.com');
     console.info(request.statusCode.toString());
@@ -144,7 +145,7 @@ async function useRcp() {
 async function rcpTest() {
   const netConnection = connection.createNetConnection();
   netConnection.on('netAvailable', async (netHandle: connection.NetHandle) => {
-    /* 发生默认网络切换，重新建立session。 */
+    // 发生默认网络切换，重新建立session。
     session.close();
     session = rcp.createSession();
     useRcp();
@@ -225,13 +226,15 @@ async function socketTest() {
 
 2. 从@kit.NetworkKit中导入connection命名空间。
 
-3. 调用[getAllNets](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetallnets)方法，获取所有处于连接状态的网络列表。
-
 ```ts
 // 引入包名。
 import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+```
 
+3. 调用[getAllNets](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetallnets)方法，获取所有处于连接状态的网络列表。
+
+```ts
 // 构造单例对象。
 export class GlobalContext {
   public netList: connection.NetHandle[] = [];
@@ -271,16 +274,14 @@ connection.getAllNets().then((data: connection.NetHandle[]) => {
 
 2. 从@kit.NetworkKit中导入connection命名空间。
 
-3. 通过调用[getDefaultNet](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetdefaultnet)方法，获取默认的数据网络(NetHandle)；或者通过调用[getAllNets](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetallnets)方法，获取所有处于连接状态的网络列表(Array\<NetHandle>)。
-
-4. 调用[getNetCapabilities](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetnetcapabilities)方法，获取NetHandle对应网络的能力信息。能力信息包含了网络类型(蜂窝网络、Wi-Fi网络、以太网网络等)、网络具体能力等网络信息。
-
-5. 调用[getConnectionProperties](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetconnectionproperties)方法，获取NetHandle对应网络的连接信息。
-
 ```ts
 import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+```
 
+3. 通过调用[getDefaultNet](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetdefaultnet)方法，获取默认的数据网络(NetHandle)；调用[getNetCapabilities](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetnetcapabilities)方法，获取该NetHandle对应网络的能力信息。能力信息包含了网络类型(蜂窝网络、Wi-Fi网络、以太网网络等)、网络具体能力等网络信息。也可以调用[getConnectionProperties](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetconnectionproperties)方法，获取该NetHandle对应网络的连接信息。
+
+```ts
 // 构造单例对象。
 export class GlobalContext {
   public netList: connection.NetHandle[] = [];
@@ -363,7 +364,11 @@ connection.getDefaultNet().then((data:connection.NetHandle) => {
 connection.getConnectionProperties(GlobalContext.getContext().netHandle).then((data: connection.ConnectionProperties) => {
   console.info("getConnectionProperties get data: " + JSON.stringify(data));
 })
+```
 
+4. 或者通过调用[getAllNets](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetallnets)方法，获取所有处于连接状态的网络列表(Array\<NetHandle>)。然后遍历获取到的NetHandle数组，分别调用[getNetCapabilities](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetnetcapabilities)方法，获取该NetHandle对应网络的能力信息，能力信息包含了网络类型(蜂窝网络、Wi-Fi网络、以太网网络等)、网络具体能力等网络信息。也可以调用[getConnectionProperties](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetconnectionproperties)方法，获取该NetHandle对应网络的连接信息。
+
+```ts
 // 调用getAllNets,获取所有处于连接状态的网络列表(Array<NetHandle>)。
 connection.getAllNets().then((data: connection.NetHandle[]) => {
   console.info("getAllNets get data: " + JSON.stringify(data));
@@ -396,17 +401,15 @@ connection.getAllNets().then((data: connection.NetHandle[]) => {
 
 2. 从@kit.NetworkKit中导入connection命名空间。
 
-3. 调用[getDefaultNetSync](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetdefaultnetsync9)方法，获取当前默认网络的netHandle。
-
-4. 调用[getNetCapabilitiesSync](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetnetcapabilitiessync10)方法，获取NetHandle对应网络的能力信息。
-   
-5. 根据返回结果，判断networkCap数组中的值是否存在，如果有，则表示网络可用。
-
 ```ts
 // 引入包名。
 import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+```
 
+3. 调用[getDefaultNetSync](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetdefaultnetsync9)方法，获取当前默认网络的netHandle，netHandle有效的情况下，调用[getNetCapabilitiesSync](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetnetcapabilitiessync10)方法，获取NetHandle对应网络的能力信息，根据获取到的能力信息，判断networkCap数组中的值是否存在，如果有，则表示网络可用。
+
+```ts
 judgeHasNet(): boolean {
   try {
     let netHandle = connection.getDefaultNetSync();
@@ -427,8 +430,6 @@ judgeHasNet(): boolean {
   }
   return fasle;
 }
-
-
 ```
 
 ## 使用对应网络解析域名，获取所有IP
@@ -436,15 +437,17 @@ judgeHasNet(): boolean {
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO
 此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
-1. 从@kit.NetworkKit中导入connection命名空间。
-
-2. 调用[getAddressesByName](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetaddressesbyname)方法，使用默认网络解析主机名以获取所有IP地址。
+2. 从@kit.NetworkKit中导入connection命名空间。
 
 ```ts
 // 引入包名。
 import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+```
 
+3. 调用[getAddressesByName](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetaddressesbyname)方法，使用默认网络解析主机名以获取所有IP地址。
+
+```ts
 // 使用默认网络解析主机名以获取所有IP地址。
 connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
   console.info("Succeeded to get data: " + JSON.stringify(data));

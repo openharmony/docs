@@ -10,10 +10,6 @@
 > **说明：**
 > 为了保证应用的运行效率，所有API调用都是异步的，对于异步调用的API均提供了Promise的方式，以下示例均采用Promise方式，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-netfirewall.md)。
 
-## 约束
-
-- 开发语言：JS
-
 ## 场景介绍
 
 防火墙的典型场景有：
@@ -38,14 +34,16 @@
 
 1. 设备通过硬件接口，插入网线。
 2. 从@kit.NetworkKit中导入netfirewall命名空间。
-3. 用户调用setNetFirewallPolicy方法，打开防火墙。
-4. 用户通过addNetFirewallRule方法，添加防火墙规则。
 
 ```ts
-// 从@kit.NetworkKit中导入netFirewall命名空间
+// 从@kit.NetworkKit中导入netFirewall命名空间。
 import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+```
 
+3. 用户调用setNetFirewallPolicy方法，打开防火墙。
+
+```ts
 interface IpType{
       family:number;
       type:number;
@@ -59,20 +57,24 @@ interface IpPort{
     endPort:number;
 }
 
-// 定义防火墙策略：打开，入站阻止，出站允许
+// 定义防火墙策略：打开，入站阻止，出站允许。
 let policy: netFirewall.NetFirewallPolicy = {
   isOpen: true,
   inAction: netFirewall.FirewallRuleAction.RULE_DENY,
   outAction: netFirewall.FirewallRuleAction.RULE_ALLOW
 };
-// 给用户100设置防火墙策略
+// 给用户100设置防火墙策略。
 netFirewall.setNetFirewallPolicy(100, policy).then(() => {
   console.info("set firewall policy success.");
 }).catch((error : BusinessError) => {
   console.error("set firewall policy failed: " + JSON.stringify(error));
 });
+```
 
-// 初始化具体的防火墙ip类型规则
+4. 用户通过addNetFirewallRule方法，添加防火墙规则。
+
+```ts
+// 初始化具体的防火墙ip类型规则。
 let ipRule: netFirewall.NetFirewallRule = {
   name: "rule1",
   description: "rule1 description",
@@ -121,7 +123,7 @@ let ipRule: netFirewall.NetFirewallRule = {
     }] as IpPort[],
   userId: 100
 };
-// 添加防火墙规则
+// 添加防火墙规则。
 netFirewall.addNetFirewallRule(ipRule).then((result: number) => {
   console.info('rule Id: ', result);
 }, (reason: BusinessError) => {
@@ -133,20 +135,22 @@ netFirewall.addNetFirewallRule(ipRule).then((result: number) => {
 
 1. 设备通过硬件接口，插入网线。
 2. 从@kit.NetworkKit中导入netFirewall命名空间。
-3. 用户态调用setNetFirewallPolicy方法，打开防火墙。
-4. 用户态通过addNetFirewallRule方法，添加防火墙规则。
 
 ```ts
-// 从@kit.NetworkKit中导入netFirewall命名空间
+// 从@kit.NetworkKit中导入netFirewall命名空间。
 import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+```
 
+3. 用户态调用setNetFirewallPolicy方法，打开防火墙。
+
+```ts
 interface domain{
     isWildcard: boolean;
     domain: string;
 }
 
-// 定义防火墙策略：打开，入站阻止，出站允许
+// 定义防火墙策略：打开，入站阻止，出站允许。
 let policy: netFirewall.NetFirewallPolicy = {
   isOpen: true,
   inAction: netFirewall.FirewallRuleAction.RULE_DENY,
@@ -158,8 +162,12 @@ netFirewall.setNetFirewallPolicy(100, policy).then(() => {
 }).catch((error : BusinessError) => {
   console.error("set firewall policy failed: " + JSON.stringify(error));
 });
+```
 
-// 初始化具体的防火墙域名类型规则
+4. 用户态通过addNetFirewallRule方法，添加防火墙规则。
+
+```ts
+// 初始化具体的防火墙域名类型规则。
 let domainRule: netFirewall.NetFirewallRule = {
   name: "rule2",
   description: "rule2 description",
@@ -178,7 +186,8 @@ let domainRule: netFirewall.NetFirewallRule = {
     }] as domain[],
   userId: 100
 };
-// 添加防火墙规则
+
+// 添加防火墙规则。
 netFirewall.addNetFirewallRule(domainRule).then((result: number) => {
   console.info('rule Id: ', result);
 }, (reason: BusinessError) => {
@@ -191,14 +200,17 @@ netFirewall.addNetFirewallRule(domainRule).then((result: number) => {
 
 1. 设备通过硬件接口，插入网线。
 2. 从@kit.NetworkKit中导入netfirewall命名空间。
+
+```ts
+// 从@kit.NetworkKit中导入netFirewall命名空间。
+import { netFirewall } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+```
+
 3. 用户态通过getInterceptRecords方法查询拦截记录。
 
 ```ts
-// 从@kit.NetworkKit中导入netFirewall命名空间
-import { netFirewall } from '@kit.NetworkKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-// 通过getInterceptedRecords方法分页查询拦截记录
+// 通过getInterceptedRecords方法分页查询拦截记录。
 let interceptRecordParam: netFirewall.RequestParam = {
   page: 1,
   pageSize: 10,

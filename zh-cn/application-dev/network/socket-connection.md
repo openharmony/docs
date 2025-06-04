@@ -29,34 +29,36 @@ Socket连接主要是通过Socket进行数据传输，支持TCP/UDP/Multicast/TL
 - 数据加密传输时，客户端侧通过TLS Socket进行加密数据传输
 - 数据加密传输时，服务器侧通过TLS Socket Server进行加密数据传输
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ## 应用TCP/UDP协议进行通信
 
 UDP与TCP流程大体类似，下面以TCP为例：
 
 1. 导入所需的socket模块。
 
-2. 创建一个TCPSocket连接，返回一个TCPSocket对象。
-
-3. （可选）订阅TCPSocket相关的订阅事件。
-
-4. 绑定IP地址和端口，端口可以指定或由系统随机分配。
-
-5. 连接到指定的IP地址和端口。
-
-6. 发送数据。
-
-7. Socket连接使用完毕后，主动关闭。
-
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+```
 
+2. 创建一个TCPSocket连接，返回一个TCPSocket对象。
+
+```ts
+// 创建一个TCPSocket连接，返回一个TCPSocket对象。
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+```
+
+3. （可选）订阅TCPSocket相关的订阅事件。
+
+```ts
 class SocketInfo {
   message: ArrayBuffer = new ArrayBuffer(1);
   remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
 }
-// 创建一个TCPSocket连接，返回一个TCPSocket对象。
-let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+
 tcp.on('message', (value: SocketInfo) => {
   console.log("on message");
   let buffer = value.message;
@@ -73,7 +75,11 @@ tcp.on('connect', () => {
 tcp.on('close', () => {
   console.log("on close");
 });
+```
 
+4. 绑定IP地址和端口，端口可以指定或由系统随机分配，绑定成功后可以连接到指定的IP地址和端口，连接成功后可以发送数据。
+
+```ts
 // 绑定本地IP地址和端口。
 let ipAddress : socket.NetAddress = {} as socket.NetAddress;
 ipAddress.address = "192.168.xxx.xxx";
@@ -85,7 +91,7 @@ tcp.bind(ipAddress, (err: BusinessError) => {
   }
   console.log('bind success');
 
-  // 连接到指定的IP地址和端口。
+  // bind成功后，连接到指定的IP地址和端口。
   ipAddress.address = "192.168.xxx.xxx";
   ipAddress.port = 5678;
 
@@ -98,6 +104,7 @@ tcp.bind(ipAddress, (err: BusinessError) => {
     let tcpSendOptions: socket.TCPSendOptions = {
       data: 'Hello, server!'
     }
+    // 连接成功之后，发送数据。
     tcp.send(tcpSendOptions).then(() => {
       console.log('send success');
     }).catch((err: BusinessError) => {
@@ -107,7 +114,11 @@ tcp.bind(ipAddress, (err: BusinessError) => {
     console.log('connect fail');
   });
 });
+```
 
+5. Socket连接使用完毕后，主动关闭。
+
+```ts
 // 连接使用完毕后，主动关闭。取消相关事件的订阅。
 setTimeout(() => {
   tcp.close().then(() => {
@@ -126,22 +137,23 @@ setTimeout(() => {
 服务端TCP Socket流程：
 
 1. 导入所需的socket模块。
-2. 创建一个TCPSocketServer连接，返回一个TCPSocketServer对象。
-3. 绑定本地IP地址和端口，监听并接受与此套接字建立的客户端TCPSocket连接。
-4. 订阅TCPSocketServer的connect事件，用于监听客户端的连接状态。
-5. 客户端与服务端建立连接后，返回一个TCPSocketConnection对象，用于与客户端通信。
-6. 订阅TCPSocketConnection相关的事件，通过TCPSocketConnection向客户端发送数据。
-7. 主动关闭与客户端的连接。
-8. 取消TCPSocketConnection和TCPSocketServer相关事件的订阅。
 
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+```
 
+2. 创建一个TCPSocketServer连接，返回一个TCPSocketServer对象。
+
+```ts
 // 创建一个TCPSocketServer连接，返回一个TCPSocketServer对象。
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
-// 绑定本地IP地址和端口，进行监听
+```
 
+3. 绑定本地IP地址和端口，监听并接受与此套接字建立的客户端TCPSocket连接。
+
+```ts
+// 绑定本地IP地址和端口，进行监听。
 let ipAddress : socket.NetAddress = {} as socket.NetAddress;
 ipAddress.address = "192.168.xxx.xxx";
 ipAddress.port = 4651;
@@ -150,14 +162,19 @@ tcpServer.listen(ipAddress).then(() => {
 }).catch((err: BusinessError) => {
   console.log('listen fail');
 });
+```
 
+4. 订阅TCPSocketServer的connect事件，用于监听客户端的连接状态。客户端与服务端建立连接后，会返回一个TCPSocketConnection对象，用于与客户端通信，通过该对象可以订阅与客户端的连接关闭、客户端数据接收事件，也可以进行向客户端发送数据、关闭与客户端的连接、取消订阅TCPSocketConnection相关事件的动作。
+   
+
+```ts
 class SocketInfo {
   message: ArrayBuffer = new ArrayBuffer(1);
   remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
 }
-// 订阅TCPSocketServer的connect事件
+// 订阅TCPSocketServer的connect事件，客户端与服务端建立连接后，返回一个TCPSocketConnection对象，用于与客户端通信。
 tcpServer.on("connect", (client: socket.TCPSocketConnection) => {
-  // 订阅TCPSocketConnection相关的事件
+  // client即为建立连接后获取到的连接对象，可以通过该对象订阅TCPSocketConnection相关的事件。
   client.on("close", () => {
     console.log("on close success");
   });
@@ -175,7 +192,7 @@ tcpServer.on("connect", (client: socket.TCPSocketConnection) => {
     console.log("received size--:" + value.remoteInfo.size);
   });
 
-  // 向客户端发送数据
+  // 向客户端发送数据。
   let tcpSendOptions : socket.TCPSendOptions = {} as socket.TCPSendOptions;
   tcpSendOptions.data = 'Hello, client!';
   client.send(tcpSendOptions).then(() => {
@@ -184,21 +201,25 @@ tcpServer.on("connect", (client: socket.TCPSocketConnection) => {
     console.error('send fail: ' + JSON.stringify(err));
   });
 
-  // 关闭与客户端的连接
+  // 关闭与客户端的连接。
   client.close().then(() => {
     console.log('close success');
   }).catch((err: BusinessError) => {
     console.log('close fail');
   });
 
-  // 取消TCPSocketConnection相关的事件订阅
+  // 取消TCPSocketConnection相关的事件订阅。
   setTimeout(() => {
     client.off("message");
     client.off("close");
   }, 10 * 1000);
 });
+```
 
-// 取消TCPSocketServer相关的事件订阅
+5. 取消TCPSocketServer相关事件的订阅。
+
+```ts
+// 取消TCPSocketServer相关的事件订阅。
 setTimeout(() => {
   tcpServer.off("connect");
 }, 30 * 1000);
@@ -208,38 +229,38 @@ setTimeout(() => {
 
 1. 导入所需的socket模块。
 
+```ts
+import { socket } from '@kit.NetworkKit';
+```
+
 2. 创建multicastSocket多播对象。
+
+```ts
+// 创建Multicast对象。
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+```
 
 3. 指定多播IP与端口，加入多播组。
 
-4. 开启消息message监听。
-
-5. 发送数据，数据以广播的形式传输，同一多播组中已经开启消息message监听的多播对象都会接收到数据。
-
-6. 关闭message消息的监听。
-
-7. 退出多播组。
-
 ```ts
-import { socket } from '@kit.NetworkKit';
-
-// 创建Multicast对象
-let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
-
 let addr : socket.NetAddress = {
   address: '239.255.0.1',
   port: 32123,
   family: 1
 }
 
-// 加入多播组
+// 加入多播组。
 multicast.addMembership(addr).then(() => {
   console.log('addMembership success');
 }).catch((err: Object) => {
   console.log('addMembership fail');
 });
+```
 
-// 开启监听消息数据，将接收到的ArrayBuffer类型数据转换为String
+4. 开启消息message监听。
+
+```ts
+// 开启监听消息数据，将接收到的ArrayBuffer类型数据转换为String。
 class SocketInfo {
   message: ArrayBuffer = new ArrayBuffer(1);
   remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
@@ -253,18 +274,30 @@ multicast.on('message', (data: SocketInfo) => {
   }
   console.info(str)
 })
+```
 
-// 发送数据
+5. 发送数据，数据以广播的形式传输，同一多播组中已经开启消息message监听的多播对象都会接收到数据。
+
+```ts
+// 发送数据。
 multicast.send({ data:'Hello12345', address: addr }).then(() => {
   console.log('send success');
 }).catch((err: Object) => {
   console.log('send fail, ' + JSON.stringify(err));
 });
+```
 
-// 关闭消息的监听
+6. 关闭message消息的监听。
+
+```ts
+// 关闭消息的监听。
 multicast.off('message')
+```
 
-// 退出多播组
+7. 退出多播组。
+
+```ts
+// 退出多播组。
 multicast.dropMembership(addr).then(() => {
   console.log('drop membership success');
 }).catch((err: Object) => {
@@ -276,26 +309,21 @@ multicast.dropMembership(addr).then(() => {
 
 1. 导入所需的socket模块。
 
-2. 使用constructLocalSocketInstance接口，创建一个LocalSocket客户端对象。
-
-3. 注册LocalSocket的消息(message)事件，以及一些其它事件(可选)。
-
-4. 连接到指定的本地套接字文件路径。
-
-5. 发送数据。
-
-6. Socket连接使用完毕后，取消事件的注册，并关闭套接字。
-
->**说明：** 
->
->在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
+```
 
+2. 使用constructLocalSocketInstance接口，创建一个LocalSocket客户端对象。
+
+```ts
 // 创建一个LocalSocket连接，返回一个LocalSocket对象。
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+```
+
+3. 注册LocalSocket的消息(message)事件，以及一些其它事件(可选)。
+
+```ts
 client.on('message', (value: socket.LocalSocketMessageInfo) => {
   const uintArray = new Uint8Array(value.message)
   let messageView = '';
@@ -311,7 +339,11 @@ client.on('connect', () => {
 client.on('close', () => {
   console.log("on close");
 });
+```
 
+4. 连接到指定的本地套接字文件路径，连接成功之后可以发送数据。
+
+```ts
 // 传入指定的本地套接字路径，连接服务端。
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let sandboxPath: string = context.filesDir + '/testSocket';
@@ -327,6 +359,7 @@ let sendOpt: socket.LocalSendOptions = {
 }
 client.connect(connectOpt).then(() => {
   console.log('connect success')
+  // 发送数据。
   client.send(sendOpt).then(() => {
   console.log('send success')
   }).catch((err: Object) => {
@@ -335,8 +368,12 @@ client.connect(connectOpt).then(() => {
 }).catch((err: Object) => {
   console.log('connect fail: ' + JSON.stringify(err));
 });
+```
 
-// 当不需要再连接服务端，需要断开且取消事件的监听时
+5. Socket连接使用完毕后，取消事件的注册，并关闭套接字。
+
+```ts
+// 当不需要再连接服务端，需要断开且取消事件的监听时。
 client.off('message');
 client.off('connect');
 client.off('close');
@@ -353,33 +390,22 @@ client.close().then(() => {
 
 1. 导入所需的socket模块。
 
-2. 使用constructLocalSocketServerInstance接口，创建一个 LocalSocketServer 服务端对象。
-
-3. 启动服务，绑定本地套接字路径，创建出本地套接字文件，监听客户端的连接请求。
-
-4. 注册LocalSocket的客户端连接事件，以及一些其它事件(可选)。
-
-5. 在客户端连接上来时，通过连接事件的回调函数，获取连接会话对象。
-
-6. 给会话对象LocalSocketConnection注册消息(message)事件，以及一些其它事件(可选)。
-
-7. 通过会话对象主动向客户端发送消息。
-
-8. 结束与客户端的通信，主动断开与客户端的连接。
-
-9. 取消 LocalSocketConnection 和 LocalSocketServer 相关事件的订阅。
-
->**说明：** 
->
->在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
+```
 
+2. 使用constructLocalSocketServerInstance接口，创建一个 LocalSocketServer 服务端对象。
+
+```ts
 // 创建一个LocalSocketServer连接，返回一个LocalSocketServer对象。
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-// 创建并绑定本地套接字文件testSocket，进行监听
+```
+
+3. 启动服务，绑定本地套接字路径，创建出本地套接字文件，监听客户端的连接请求。
+
+```ts
+// 创建并绑定本地套接字文件testSocket，进行监听。
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.LocalAddress = {
@@ -390,10 +416,14 @@ server.listen(listenAddr).then(() => {
 }).catch((err: Object) => {
   console.log("listen fail: " + JSON.stringify(err));
 });
+```
 
-// 订阅LocalSocketServer的connect事件
+4. 注册LocalSocket的客户端连接事件，以及一些其它事件(可选)，在客户端连接成功时，可以获取到客户端连接会话对象LocalSocketConnection，通过该会话对象可以订阅客户端收到消息(message)事件，以及一些其它事件(可选)，通过该会话对象也可发起主动向客户端发送数据，主动关闭与客户端的连接的动作，订阅事件不再需要时，可以取消LocalSocketConnection相关的事件订阅。
+
+```ts
+// 订阅LocalSocketServer的connect事件。
 server.on('connect', (connection: socket.LocalSocketConnection) => {
-  // 订阅LocalSocketConnection相关的事件
+  // 订阅LocalSocketConnection相关的事件。
   connection.on('error', (err: Object) => {
     console.log("on error success");
   });
@@ -411,7 +441,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
     console.log("err:" + JSON.stringify(err));
   })
 
-  // 向客户端发送数据
+  // 向客户端发送数据。
   let sendOpt : socket.LocalSendOptions = {
     data: 'Hello world!'
   };
@@ -421,52 +451,54 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
     console.log('send failed: ' + JSON.stringify(err));
   })
 
-  // 关闭与客户端的连接
+  // 关闭与客户端的连接。
   connection.close().then(() => {
     console.log('close success');
   }).catch((err: Object) => {
     console.log('close failed: ' + JSON.stringify(err));
   });
 
-  // 取消LocalSocketConnection相关的事件订阅
+  // 取消LocalSocketConnection相关的事件订阅。
   connection.off('message');
   connection.off('error');
 });
+```
 
-// 取消LocalSocketServer相关的事件订阅
+5.  取消LocalSocketServer相关事件的订阅。
+
+```ts
+// 取消LocalSocketServer相关的事件订阅。
 server.off('connect');
 server.off('error');
 ```
 
 ## 应用通过TLS Socket进行加密数据传输
 
-客户端TLS Socket流程包括：
+客户端TLS Socket流程（双向认证）包括：
 
 1. 导入所需的socket模块。
-
-2. 绑定服务器IP地址和端口。
-
-3. 双向认证上传客户端CA证书及数字证书；单向认证上传客户端CA证书。
-
-4. 创建一个TLSSocket连接，返回一个TLSSocket对象。
-
-5. （可选）订阅TLSSocket相关的订阅事件。
-
-6. 发送数据。
-
-7. TLSSocket连接使用完毕后，主动关闭。
 
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+```
 
+2. 创建一个双向认证TLSSocket连接，返回一个TLSSocket对象。
+
+```ts
+// 创建一个（双向认证）TLS Socket连接，返回一个TLS Socket对象。
+let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance();
+```
+
+3. （可选）订阅TLSSocket相关的订阅事件。
+
+```ts
 class SocketInfo {
   message: ArrayBuffer = new ArrayBuffer(1);
   remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
 }
-// 创建一个（双向认证）TLS Socket连接，返回一个TLS Socket对象。
-let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance();
-// 订阅TLS Socket相关的订阅事件
+
+// 订阅TLS Socket相关的订阅事件。
 tlsTwoWay.on('message', (value: SocketInfo) => {
   console.log("on message");
   let buffer = value.message;
@@ -483,7 +515,11 @@ tlsTwoWay.on('connect', () => {
 tlsTwoWay.on('close', () => {
   console.log("on close");
 });
+```
 
+4. 绑定服务器IP地址和端口。
+
+```ts
 // 绑定本地IP地址和端口。
 let ipAddress : socket.NetAddress = {} as socket.NetAddress;
 ipAddress.address = "192.168.xxx.xxx";
@@ -495,7 +531,11 @@ tlsTwoWay.bind(ipAddress, (err: BusinessError) => {
   }
   console.log('bind success');
 });
+```
 
+5. 双向认证上传客户端CA证书及数字证书，并建立连接，连接建立成功后可以发送数据。
+
+```ts
 ipAddress.address = "192.168.xxx.xxx";
 ipAddress.port = 1234;
 
@@ -515,14 +555,24 @@ tlsTwoWayConnectOption.address = ipAddress;
 tlsTwoWayConnectOption.secureOptions = tlsSecureOption;
 tlsTwoWayConnectOption.ALPNProtocols = ["spdy/1", "http/1.1"];
 
-// 建立连接
+// 建立连接，连接建立成功后，可以发送数据。
 tlsTwoWay.connect(tlsTwoWayConnectOption).then(() => {
   console.log("connect successfully");
+  // 发送数据。
+  tlsTwoWay.send("xxxx").then(() => {
+    console.log("send successfully");
+  }).catch((err: BusinessError) => {
+    console.log("send failed " + JSON.stringify(err));
+  });
 }).catch((err: BusinessError) => {
   console.log("connect failed " + JSON.stringify(err));
 });
+```
 
-// 连接使用完毕后，主动关闭。取消相关事件的订阅。
+6. TLSSocket连接使用完毕后，主动关闭。
+
+```ts
+// 连接使用完毕后，主动关闭，并取消相关事件的订阅。
 tlsTwoWay.close((err: BusinessError) => {
   if (err) {
     console.log("close callback error = " + err);
@@ -533,11 +583,28 @@ tlsTwoWay.close((err: BusinessError) => {
   tlsTwoWay.off('connect');
   tlsTwoWay.off('close');
 });
+```
 
+客户端TLS Socket流程（单向认证）包括：
+
+1. 导入所需的socket模块。
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+```
+
+2. 创建一个单向认证TLSSocket连接，返回一个TLSSocket对象。
+
+```ts
 // 创建一个（单向认证）TLS Socket连接，返回一个TLS Socket对象。
 let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
+```
 
-// 订阅TLS Socket相关的订阅事件
+3. （可选）订阅TLSSocket相关的订阅事件。
+
+```ts
+// 订阅TLS Socket相关的订阅事件。
 tlsTwoWay.on('message', (value: SocketInfo) => {
   console.log("on message");
   let buffer = value.message;
@@ -554,7 +621,11 @@ tlsTwoWay.on('connect', () => {
 tlsTwoWay.on('close', () => {
   console.log("on close");
 });
+```
 
+4. 绑定服务器IP地址和端口。
+
+```ts
 // 绑定本地IP地址和端口。
 ipAddress.address = "192.168.xxx.xxx";
 ipAddress.port = 5445;
@@ -565,7 +636,11 @@ tlsOneWay.bind(ipAddress, (err:BusinessError) => {
   }
   console.log('bind success');
 });
+```
 
+5. 单向认证上传客户端CA证书，并建立连接。
+
+```ts
 ipAddress.address = "192.168.xxx.xxx";
 ipAddress.port = 8789;
 let tlsOneWaySecureOption : socket.TLSSecureOptions = {} as socket.TLSSecureOptions;
@@ -576,14 +651,24 @@ let tlsOneWayConnectOptions: socket.TLSConnectOptions = {} as socket.TLSConnectO
 tlsOneWayConnectOptions.address = ipAddress;
 tlsOneWayConnectOptions.secureOptions = tlsOneWaySecureOption;
 
-// 建立连接
+// 建立连接，连接建立成功后，可以发送数据。
 tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
   console.log("connect successfully");
+  // 发送数据。
+  tlsOneWay.send("xxxx").then(() => {
+    console.log("send successfully");
+  }).catch((err: BusinessError) => {
+    console.log("send failed " + JSON.stringify(err));
+  });
 }).catch((err: BusinessError) => {
   console.log("connect failed " + JSON.stringify(err));
 });
+```
 
-// 连接使用完毕后，主动关闭。取消相关事件的订阅。
+6. TLSSocket连接使用完毕后，主动关闭。
+
+```ts
+// 连接使用完毕后，主动关闭，并取消相关事件的订阅。
 tlsTwoWay.close((err: BusinessError) => {
   if (err) {
     console.log("close callback error = " + err);
@@ -598,33 +683,30 @@ tlsTwoWay.close((err: BusinessError) => {
 
 ## 应用通过将TCP Socket升级为TLS Socket进行加密数据传输
 
-客户端TCP Socket升级为 TLS Socket 流程：
+客户端TCP Socket升级为TLS Socket流程，以TLS Socket双向认证为例：
 
 1. 导入所需的socket模块。
-
-2. 参考[应用 TCP/UDP 协议进行通信](#应用tcpudp协议进行通信)，创建一个TCPSocket连接。
-
-3. 确保TCPSocket已连接后，使用该TCPSocket对象创建TLSSocket连接，返回一个TLSSocket对象。
-
-4. 双向认证上传客户端 CA 证书及数字证书；单向认证上传客户端 CA 证书。
-
-5. （可选）订阅TLSSocket相关的订阅事件。
-
-6. 发送数据。
-
-7. TLSSocket连接使用完毕后，主动关闭。
 
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+```
 
+2. 参考[应用 TCP/UDP 协议进行通信](#应用tcpudp协议进行通信)，创建一个TCPSocket连接。
+
+```ts
+// 创建一个TCPSocket连接，返回一个TCPSocket对象。
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+```
+
+3. （可选）订阅TCPSocket相关的订阅事件。
+
+```ts
 class SocketInfo {
   message: ArrayBuffer = new ArrayBuffer(1);
   remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
 }
 
-// 创建一个TCPSocket连接，返回一个TCPSocket对象。
-let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 tcp.on('message', (value: SocketInfo) => {
   console.log("on message");
   let buffer = value.message;
@@ -635,10 +717,14 @@ tcp.on('message', (value: SocketInfo) => {
   }
   console.log("on connect received:" + str);
 });
-tcp.on('connect', () => {
-  console.log("on connect");
+  tcp.on('connect', () => {
+    console.log("on connect");
 });
+```
 
+4. 绑定本地IP地址和端口，绑定成功后，连接到服务器端IP地址和端口，连接成功后使用该TCPSocket对象创建TLSSocket，配置双向认证上传客户端 CA 证书及数字证书，可以建立TLSSocket连接，连接使用完毕后，主动关闭并取消相关事件的订阅。。
+
+```ts
 // 绑定本地IP地址和端口。
 let ipAddress: socket.NetAddress = {} as socket.NetAddress;
 ipAddress.address = "192.168.xxx.xxx";
@@ -650,7 +736,7 @@ tcp.bind(ipAddress, (err: BusinessError) => {
   }
   console.log('bind success');
 
-  // 连接到指定的IP地址和端口。
+  // 连接到服务器端指定的IP地址和端口。
   ipAddress.address = "192.168.xxx.xxx";
   ipAddress.port = 443;
 
@@ -705,7 +791,7 @@ tcp.bind(ipAddress, (err: BusinessError) => {
     tlsTwoWayConnectOption.secureOptions = tlsSecureOption;
     tlsTwoWayConnectOption.ALPNProtocols = ["spdy/1", "http/1.1"];
 
-    // 建立TLSSocket连接
+    // 建立TLSSocket连接。
     tlsTwoWay.connect(tlsTwoWayConnectOption, () => {
       console.log("tls connect success");
 
@@ -731,26 +817,20 @@ tcp.bind(ipAddress, (err: BusinessError) => {
 
 1. 导入所需的socket模块。
 
-2. 启动服务，绑定 IP 和端口号，监听客户端连接，创建并初始化TLS会话，加载证书密钥并验证。
-
-3. 订阅TLSSocketServer的连接事件。
-
-4. 收到客户端连接，通过回调得到TLSSocketConnection对象。
-
-5. 订阅TLSSocketConnection相关的事件。
-
-6. 发送数据。
-
-7. TLSSocketConnection连接使用完毕后，断开连接。
-
-8. 取消订阅TLSSocketConnection以及TLSSocketServer的相关事件。
-
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+```
 
+2. 创建一个TLSSocketServer连接，返回一个TLSSocketServer对象。
+
+```ts
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+```
 
+3. 启动服务，绑定 IP 和端口号，监听客户端连接，创建并初始化TLS会话，加载证书密钥并验证。
+
+```ts
 let netAddress: socket.NetAddress = {
   address: '192.168.xx.xxx',
   port: 8080
@@ -778,7 +858,11 @@ tlsServer.listen(tlsConnectOptions).then(() => {
 }).catch((err: BusinessError) => {
   console.log("failed" + err);
 });
+```
 
+4. 订阅TLSSocketServer的连接事件，收到客户端连接，通过回调得到TLSSocketConnection对象，通过该对象可以实现订阅TLSSocketConnection相关的事件、向客户端发送数的动作，TLSSocketConnection连接使用完毕后，需要主动断开连接，进行取消订阅回调的动作。
+
+```ts
 class SocketInfo {
   message: ArrayBuffer = new ArrayBuffer(1);
   remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
@@ -797,14 +881,14 @@ let callback = (value: SocketInfo) => {
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.on('message', callback);
 
-  // 发送数据
+  // 发送数据。
   client.send('Hello, client!').then(() => {
     console.log('send success');
   }).catch((err: BusinessError) => {
     console.log('send fail');
   });
 
-  // 断开连接
+  // 断开连接。
   client.close().then(() => {
     console.log('close success');
   }).catch((err: BusinessError) => {
@@ -815,7 +899,11 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.off('message', callback);
   client.off('message');
 });
+```
 
+5. 取消订阅TLSSocketServer的相关事件。
+
+```ts
 // 取消订阅tlsServer的相关事件
 tlsServer.off('connect');
 ```

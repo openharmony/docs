@@ -15,24 +15,25 @@ MDNS管理的典型场景有：
 
 以下分别介绍具体开发方式。
 
-## 管理本地服务
-
-1. 设备连接WiFi。
-2. 从@kit.NetworkKit里导入mdns的命名空间。
-3. 调用addLocalService方法，添加本地服务。
-4. 通过resolveLocalService方法，解析本地网络的IP地址（非必要，根据需求使用）。
-5. 通过removeLocalService方法，移除本地服务。
-
 >**说明：** 
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+## 管理本地服务
+
+1. 设备连接WiFi。
+2. 从@kit.NetworkKit里导入mdns、错误码、featureAbility以及common命名空间。
+
 ```ts
-// 从@kit.NetworkKit中导入mdns命名空间
+// 从@kit.NetworkKit中导入mdns命名空间。
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { featureAbility, common } from '@kit.AbilityKit';
+```
 
+3. 调用addLocalService方法，添加本地服务。
+
+```ts
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 class ServiceAttribute {
@@ -40,7 +41,7 @@ class ServiceAttribute {
   value: Array<number> = [1]
 }
 
-// 建立LocalService对象
+// 建立LocalService对象。
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
   serviceName: "servicename",
@@ -51,17 +52,25 @@ let localServiceInfo: mdns.LocalServiceInfo = {
   serviceAttribute: [{key: "111", value: [1]}]
 }
 
-// addLocalService添加本地服务
+// addLocalService添加本地服务。
 mdns.addLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
+```
 
-// resolveLocalService解析本地服务对象（非必要，根据需求使用）
+1. 通过resolveLocalService方法，解析本地网络的IP地址（非必要，根据需求使用）。
+   
+ ```ts
+// resolveLocalService解析本地服务对象（非必要，根据需求使用）。
 mdns.resolveLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
+```
 
-// removeLocalService移除本地服务
+5. 通过removeLocalService方法，移除本地服务。
+   
+```ts
+// removeLocalService移除本地服务。
 mdns.removeLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
@@ -71,20 +80,19 @@ mdns.removeLocalService(context, localServiceInfo).then((data: mdns.LocalService
 
 1. 设备连接WiFi。
 2. 从@kit.NetworkKit里导入mdns的命名空间。
-3. 创建DiscoveryService对象，用于发现指定服务类型的MDNS服务。
-4. 订阅MDNS服务发现相关状态变化。
-5. 启动搜索局域网内的MDNS服务。
-6. 停止搜索局域网内的MDNS服务。
-7. 取消订阅的MDNS服务。
 
 ```ts
-// 从@kit.NetworkKit中导入mdns命名空间
+// 从@kit.NetworkKit中导入mdns命名空间。
 import { common, featureAbility, UIAbility } from '@kit.AbilityKit';
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
+```
 
-// 构造单例对象
+3. 创建DiscoveryService对象，用于发现指定服务类型的MDNS服务。
+
+```ts
+// 构造单例对象。
 export class GlobalContext {
   private constructor() {}
   private static instance: GlobalContext;
@@ -106,7 +114,7 @@ export class GlobalContext {
   }
 }
 
-// Stage模型获取context
+// Stage模型获取context。
 class EntryAbility extends UIAbility {
   value:number = 0;
   onWindowStageCreate(windowStage: window.WindowStage): void{
@@ -116,11 +124,15 @@ class EntryAbility extends UIAbility {
 
 let context = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 
-// 创建DiscoveryService对象，用于发现指定服务类型的MDNS服务
+// 创建DiscoveryService对象，用于发现指定服务类型的MDNS服务。
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
+```
+  
+4. 订阅MDNS服务发现相关状态变化。
 
-// 订阅MDNS服务发现相关状态变化
+```ts
+// 订阅MDNS服务发现相关状态变化。
 discoveryService.on('discoveryStart', (data: mdns.DiscoveryEventInfo) => {
   console.log(JSON.stringify(data));
 });
@@ -133,14 +145,26 @@ discoveryService.on('serviceFound', (data: mdns.LocalServiceInfo) => {
 discoveryService.on('serviceLost', (data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
+```
 
-// 启动搜索局域网内的MDNS服务
+5. 启动搜索局域网内的MDNS服务。
+
+```ts
+// 启动搜索局域网内的MDNS服务。
 discoveryService.startSearchingMDNS();
+```
 
-// 停止搜索局域网内的MDNS服务
+6. 停止搜索局域网内的MDNS服务。
+
+```ts
+// 停止搜索局域网内的MDNS服务。
 discoveryService.stopSearchingMDNS();
+```
 
-// 取消订阅的MDNS服务
+7. 取消订阅的MDNS服务。
+
+```ts
+// 取消订阅的MDNS服务。
 discoveryService.off('discoveryStart', (data: mdns.DiscoveryEventInfo) => {
   console.log(JSON.stringify(data));
 });
