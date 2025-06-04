@@ -590,7 +590,7 @@ id(description: string): T
 
 **参数：**
 
-| 名称   | 类型      | 必填 | 说明                       |
+| 参数名   | 类型      | 必填 | 说明                       |
 | ------ | -------- | -----|---------------------- |
 | description | string   |  是  | 组件的唯一标识，唯一性由使用者保证。<br>默认值：''。<br/> |
 
@@ -816,11 +816,12 @@ enabled(respond: boolean): T
 不同的按钮类型将影响属性[borderRadius（边框圆角半径）](ts-securitycomponent-attributes.md#borderradius)的设置效果。影响如下：
 
 - 当按钮类型为Capsule时，borderRadius设置不生效，按钮圆角半径始终为宽、高中较小值的一半。
-- 当按钮类型为Circle时：
-  - 若同时设置了宽和高，则borderRadius不生效，且按钮半径为宽高中较小值的一半；
-  - 若只设置宽、高中的一个，则borderRadius不生效，且按钮半径为所设宽或所设高值的一半；
-  - 若不设置宽高或者borderRadius的值为负，borderRadius不生效，按钮半径根据具体布局确定。
-- 在不设置borderRadius时，圆角矩形按钮的圆角半径大小保持默认值20vp不变，不随按钮高度变化而变化。
+- 当按钮类型为Circle时，borderRadius设置不生效：
+  - 若同时设置了宽和高，按钮圆角半径为宽高中较小值的一半；
+  - 若只设置宽、高中的一个，按钮圆角半径为所设宽或所设高值的一半；
+  - 若不设置宽高或者borderRadius的值为负，按钮圆角半径根据具体布局确定。
+- 当按钮类型为Normal时，按钮圆角半径可通过borderRadius设置，圆角大小受组件尺寸限制，最小值为0，最大值为组件宽高中较小值的一半。
+- 当按钮类型为ROUNDED_RECTANGLE时，若不设置borderRadius，圆角矩形按钮的圆角半径大小保持默认值20vp不变，不随按钮高度变化而变化。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -840,7 +841,7 @@ enabled(respond: boolean): T
 
 ### 示例1
 
-设置SecurityComponent基础属性，生成一个保存控件
+设置SecurityComponent基础属性，生成一个保存控件。
 
 ```ts
 @Entry
@@ -849,7 +850,7 @@ struct Index {
   build() {
     Row() {
       Column({ space: 5 }) {
-        // 生成一个保存按钮，并设置它的SecurityComponent属性。
+        // 生成一个保存控件，并设置它的SecurityComponent属性。
         SaveButton()
           .fontSize(35)
           .fontColor(Color.White)
@@ -892,7 +893,7 @@ struct Index {
 
 ### 示例2
 
-以容器和容器内组件作为锚点进行布局
+以容器和容器内组件作为锚点进行布局。
 
 ```ts
 @Entry
