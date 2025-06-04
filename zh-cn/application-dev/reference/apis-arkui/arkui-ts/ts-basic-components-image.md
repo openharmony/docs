@@ -261,7 +261,7 @@ matchTextDirection(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                         |
 | ------ | ------- | ---- | -------------------------------------------- |
-| value  | boolean | 是   | 图片是否跟随系统语言方向。<br/>默认值：false，false表示图片不跟随系统语言方向，true表示图片跟随系统语言方向。 |
+| value  | boolean | 是   | 图片是否跟随系统语言方向。<br/>默认值：false，false表示图片不跟随系统语言方向，true表示图片跟随系统语言方向，在RTL语言环境下显示镜像翻转显示效果。 |
 
 ### fitOriginalSize
 
@@ -409,12 +409,12 @@ colorFilter(value: ColorFilter | DrawingColorFilter)
 
 | 参数名 | 类型                                    | 必填 | 说明                                                         |
 | ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](#drawingcolorfilter12) | 是   | 1. 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br/>当矩阵对角线值为1，其余值为0时，保持图片原有色彩。<br/> **计算规则：**<br/>如果输入的滤镜矩阵如下（其中矩阵值的范围[0, 1]）：<br/>![image-matrix-1](figures/image_matrix_1.png) <br/>像素点为[R, G, B, A]，色值的范围[0, 255]<br/>则过滤后的颜色为 [R’, G’, B’, A’]<br/>![image-matrix-2](figures/image_matrix_2.png)<br/>2. 从API version12开始支持@ohos.graphics.drawing的ColorFilter类型作为入参。<br/>**说明：** <br/>API version 11及之前，svg类型图源不支持该属性。<br/>从API version 12开始，该接口中的DrawingColorfilter类型支持在原子化服务中使用。其中，svg类型的图源只对stroke属性生效。|
+| value  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](#drawingcolorfilter12) | 是   | 1. 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br/>当矩阵对角线值为1，其余值为0时，保持图片原有色彩。<br/> **计算规则：**<br/>如果输入的滤镜矩阵如下（其中矩阵值的范围[0, 1]）：<br/>![image-matrix-1](figures/image_matrix_1.png) <br/>像素点为[R, G, B, A]，色值的范围[0, 255]<br/>则过滤后的颜色为 [R’, G’, B’, A’]<br/>![image-matrix-2](figures/image_matrix_2.png)<br/>2. 从API version12开始支持@ohos.graphics.drawing的ColorFilter类型作为入参。<br/>**说明：** <br/>API version 11及之前，svg类型图源不支持该属性。<br/>从API version 12开始，该接口中的DrawingColorfilter类型支持在原子化服务中使用。其中，svg类型的图源只有设置了stroke属性（无论是否有值）才会生效。|
 ### draggable<sup>9+</sup>
 
 draggable(value: boolean)
 
-设置组件默认拖拽效果。不能和[onDragStart](ts-universal-events-drag-drop.md#ondragstart)事件同时使用。
+设置组件默认拖拽效果。不能和[onDragStart](ts-universal-events-drag-drop.md#ondragstart)事件、[bindPopup](ts-universal-attributes-popup.md)同时使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1747,3 +1747,34 @@ struct Index {
   }
 }
 ```
+
+### 示例19（设置图片是否跟随系统语言方向）
+
+该示例通过[matchTextDirection](#matchtextdirection)接口，设置手机语言为维语时图片是否显示镜像翻转显示效果。
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
+        Row() {
+          // 图片不跟随系统语言方向
+          Image($r('app.media.ocean'))
+            .width(110).height(110).margin(15)
+            .matchTextDirection(false)
+        }
+        Row() {
+          // 图片跟随系统语言方向
+          Image($r('app.media.ocean'))
+            .width(110).height(110).margin(15)
+            .matchTextDirection(true)
+        }
+      }
+    }.height(320).width(360).padding({ right: 10, top: 10 })
+  }
+}
+```
+
+![matchTextDirection](figures/matchTextDirection.png)
