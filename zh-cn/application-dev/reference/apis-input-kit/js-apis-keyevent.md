@@ -34,7 +34,7 @@ import { Action, Key, KeyEvent } from '@kit.InputKit';
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-| 名称        | 类型 | 可读 | 可写 | 说明           |
+| 名称        | 类型 | 可读 | 可选 | 说明           |
 | ----------- | -------- | ---- | ---- | -------------- |
 | code        | [KeyCode](js-apis-keycode.md#keycode)  | 是   | 否   | 按键码。         |
 | pressedTime | number   | 是   | 否   | 按键按下时间，单位为微秒（μs）。 |
@@ -48,7 +48,7 @@ import { Action, Key, KeyEvent } from '@kit.InputKit';
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-| 名称        | 类型 | 可读 | 可写 | 说明                           |
+| 名称        | 类型 | 可读 | 可选 | 说明                           |
 | ----------- | -------- | ---- | ---- | ------------------------------ |
 | action      | [Action](#action)   | 是   | 否   | 按键动作。                       |
 | key         | [Key](#key)      | 是   | 否   | 当前上报的按键。             |

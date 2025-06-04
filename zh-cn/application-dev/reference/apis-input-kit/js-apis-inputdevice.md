@@ -770,7 +770,7 @@ getIntervalSinceLastInput(): Promise&lt;number&gt;
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称        | 类型   | 可读   | 可写   | 说明      |
+| 名称        | 类型   | 可读   | 可选   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
 | type     | [ChangedType](#changedtype9)| 是 | 否 | 输入设备插入或者移除。|
 | deviceId | number                      | 是 | 否 | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。 |
@@ -781,7 +781,7 @@ getIntervalSinceLastInput(): Promise&lt;number&gt;
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称        | 类型   | 可读   | 可写   | 说明      |
+| 名称        | 类型   | 可读   | 可选   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
 | id                   | number                                 | 是 | 否 | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
 | name                 | string                                 | 是 | 否 | 输入设备的名称。                                             |
@@ -820,7 +820,7 @@ type AxisType = 'touchmajor' | 'touchminor' | 'orientation' | 'x' | 'y' | 'press
 
 **系统能力**： SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称        | 类型   | 可读   | 可写   | 说明      |
+| 名称        | 类型   | 可读   | 可选   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
 | source                  | [SourceType](#sourcetype9) | 是 | 否 | 轴的输入能力。 |
 | axis                    | [AxisType](#axistype9)    | 是 | 否 | 轴的类型。    |

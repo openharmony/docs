@@ -73,7 +73,7 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-| 名称          | 类型   | 可读   | 可写   | 说明                                  |
+| 名称          | 类型   | 可读   | 可选   | 说明                                  |
 | ----------- | ------ | ---- | ---- | ----------------------------------- |
 | id          | number | 是    | 否    | 触摸事件标识。                                |
 | pressedTime | number | 是    | 否    | 按下时间戳，单位：μs。                           |
@@ -102,7 +102,7 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-| 名称         | 类型       | 可读   | 可写   | 说明        |
+| 名称         | 类型       | 可读   | 可选   | 说明        |
 | ---------- | ---------- | ---- | ---- | --------- |
 | action     | [Action](#action)     | 是    | 否    | 触屏事件类型。     |
 | touch      | [Touch](#touch)      | 是    | 否    | 当前触摸点信息。   |

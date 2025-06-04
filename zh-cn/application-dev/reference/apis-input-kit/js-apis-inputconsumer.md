@@ -22,7 +22,7 @@ import { inputConsumer, KeyEvent } from '@kit.InputKit';
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
-| 名称        | 类型   | 可读   | 可写   | 说明      |
+| 名称        | 类型   | 可读   | 可选   | 说明      |
 | --------- | ------ | ------- | ------- | ------- |
 | preKeys   | Array&lt;number&gt; | 是      | 否      | 修饰键（包括 Ctrl、Shift 和 Alt）集合，数量范围[1, 2]，无顺序要求。<br>例如，Ctrl+Shift+Esc中，Ctrl+Shift称为修饰键。 |
 | finalKey  | number  | 是      | 否      | 被修饰键，除修饰键和Meta键以外的按键，详细按键介绍请参见[键值](js-apis-keycode.md)。<br>例如，Ctrl+Shift+Esc中，Esc称为被修饰键。 |
@@ -34,7 +34,7 @@ import { inputConsumer, KeyEvent } from '@kit.InputKit';
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
-| 名称        | 类型   | 可读   | 可写   | 说明      |
+| 名称        | 类型   | 可读   | 可选   | 说明      |
 | --------- | ------ | ------- | ------- | ------- |
 | key       | number  | 是      | 否      | 按键键值。<br>当前仅支持[KEYCODE_VOLUME_UP](js-apis-keycode.md#keycode)键和[KEYCODE_VOLUME_DOWN](js-apis-keycode.md#keycode)键。 |
 | action    | number  | 是      | 否      | 按键事件类型。当前仅支持取值为1，表示按键按下。 |
