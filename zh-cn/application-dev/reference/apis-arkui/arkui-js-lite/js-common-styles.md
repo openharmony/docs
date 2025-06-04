@@ -35,6 +35,10 @@
 > - 枚举格式：black，white等，详见 **表1** 当前支持的颜色枚举。Script脚本中不支持枚举格式。
 
 
+## Test
+
+**系统能力：** SystemCapability.Security.Huks.Core
+
   **表1** 当前支持的颜色枚举
 
 | 枚举名称                 | 对应颜色     | 颜色                                       |
