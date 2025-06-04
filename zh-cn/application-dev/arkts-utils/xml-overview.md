@@ -19,8 +19,11 @@ XML还可以通过使用XML Schema或DTD（文档类型定义）来定义文档�
 
 XML还支持命名空间、实体引用、注释、处理指令等特性，使其能够灵活地适应各种数据需求。
 
-
-语言基础类库提供了XML相关的基础能力，包括：[XML的生成](xml-generation.md)、[XML的解析](xml-parsing.md)和[XML的转换](xml-conversion.md)。
+> **说明：**
+>
+> 针对**ArkTS1.1**版本：语言基础类库提供了XML相关的基础能力，包括：[XML的生成](xml-generation.md)、[XML的解析](xml-parsing.md)和[XML的转换](xml-conversion.md)。
+>
+> 针对**ArkTS1.2**版本：语言基础类库提供了XML相关的基础能力，包括：[XML的生成](xml-generation.md)和[XML的解析](xml-parsing.md)。
 
 以下是一个简单的XML样例及对应说明，更多XML的接口和具体使用，请见[@ohos.xml](../reference/apis-arkts/js-apis-xml.md)。
 
