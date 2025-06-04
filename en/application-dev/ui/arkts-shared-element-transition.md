@@ -161,7 +161,7 @@ export default struct  Post {
 
 ## Creating a Container and Migrating Components Across Containers
 
-Use [NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md) and [custom placeholder nodes](arkts-user-defined-place-hoder.md) with [NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md) for migrating components across different nodes. Then combine the migration with the property animations to achieve shared element transition. This method can be integrated with various transition styles, including navigation transitions ([Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)) and sheet transitions ([bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)).
+Use [NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md) and [custom placeholder nodes](arkts-user-defined-place-holder.md) with [NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md) for migrating components across different nodes. Then combine the migration with the property animations to achieve shared element transition. This method can be integrated with various transition styles, including navigation transitions ([Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)) and sheet transitions ([bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)).
 
 ### Using with Stack
 
@@ -532,7 +532,7 @@ export const deleteNode = (id: string) => {
 
 ### Using with Navigation
 
-You can use the [customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11) (see [Example 3](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#example-3)) capability of [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) to implement shared element transition, during which, the component is migrated from the disappearing page to the appearing page.
+You can use the [customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11) (see [Example 3](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#example-3-setting-an-interactive-transition-animation)) capability of [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) to implement shared element transition, during which, the component is migrated from the disappearing page to the appearing page.
 
 The following is the procedure for implementing the expanding and collapsing of a thumbnail:
 

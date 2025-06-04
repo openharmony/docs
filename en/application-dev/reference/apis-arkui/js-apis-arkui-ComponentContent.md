@@ -32,7 +32,7 @@ A constructor used to create a **ComponentContent** object.
 | Name   | Type                                     | Mandatory| Description                              |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
 | uiContext | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating the node.|
-| builder  | [WrappedBuilder\<[]>](../../quick-start/arkts-wrapBuilder.md) | Yes  |   **WrappedBuilder** object that encapsulates a builder function that has no parameters.|
+| builder  | [WrappedBuilder\<[]>](../../ui/state-management/arkts-wrapBuilder.md) | Yes  |   **WrappedBuilder** object that encapsulates a builder function that has no parameters.|
 
 ### constructor
 
@@ -49,7 +49,7 @@ A constructor used to create a **ComponentContent** object.
 | Name   | Type                                     | Mandatory| Description                              |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
 | uiContext | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating the node.|
-| builder  | [WrappedBuilder\<[T]>](../../quick-start/arkts-wrapBuilder.md) | Yes  |   **WrappedBuilder** object that encapsulates a builder function that has parameters.|
+| builder  | [WrappedBuilder\<[T]>](../../ui/state-management/arkts-wrapBuilder.md) | Yes  |   **WrappedBuilder** object that encapsulates a builder function that has parameters.|
 | args     |     T     |   Yes  |   Parameters of the builder function encapsulated in the **WrappedBuilder** object.|
 
 ### constructor
@@ -67,13 +67,13 @@ A constructor used to create a **ComponentContent** object.
 | Name   | Type                                     | Mandatory| Description                              |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
 | uiContext | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating the node.|
-| builder  | [WrappedBuilder\<[T]>](../../quick-start/arkts-wrapBuilder.md) | Yes  |   **WrappedBuilder** object that encapsulates a builder function that has parameters.|
+| builder  | [WrappedBuilder\<[T]>](../../ui/state-management/arkts-wrapBuilder.md) | Yes  |   **WrappedBuilder** object that encapsulates a builder function that has parameters.|
 | args     |     T     |   Yes  |   Parameters of the builder function encapsulated in the **WrappedBuilder** object.|
 | options | [BuildOptions](./js-apis-arkui-builderNode.md#buildoptions12)                                                    | Yes  |  Build options, which determine whether to support the behavior of nesting **@Builder** within **@Builder**.                                        |
 
 **Example**
 ``` ts
-import { ComponentContent, NodeContent, typeNode } from "@kit.ArkUI"
+import { ComponentContent, NodeContent, typeNode } from "@kit.ArkUI";
 
 interface ParamsInterface {
   text: string;
@@ -102,7 +102,7 @@ function buildText(params: ParamsInterface) {
 @Entry
 @Component
 struct Index {
-  @State message: string = "HELLO"
+  @State message: string = "HELLO";
   private content: NodeContent = new NodeContent();
 
   build() {
@@ -117,7 +117,7 @@ struct Index {
                 text: this.message, func: () => {
                   return "FUNCTION"
                 }
-              }, { nestingBuilderSupported: true }))
+              }, { nestingBuilderSupported: true }));
             this.content.addFrameNode(column);
           })
         ContentSlot(this.content)
@@ -154,7 +154,7 @@ Updates the parameters of the builder function encapsulated in the **WrappedBuil
 import { ComponentContent } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -173,7 +173,7 @@ function buildText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -228,7 +228,7 @@ Passes the recycle event to the custom component in this **ComponentContent** ob
 import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -265,7 +265,7 @@ struct ReusableChildComponent2 {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -308,7 +308,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -320,14 +320,14 @@ function buildText(params: Params) {
     Text(params.text)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
-      .margin({bottom: 36})
+      .margin({ bottom: 36 })
   }.backgroundColor('#FFF0F0F0')
 }
 
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -342,7 +342,7 @@ struct Index {
                 setTimeout(() => {
                   promptAction.closeCustomDialog(contentNode)
                     .then(() => {
-                      console.info('customdialog closed.')
+                      console.info('customdialog closed.');
                       if (contentNode !== null) {
                         contentNode.dispose();   // Dispose of the contentNode object.
                       }
@@ -379,17 +379,20 @@ Updates the configuration of the entire node by passing in a [system environment
 
 **Example**
 ```ts
-import { NodeController, FrameNode, ComponentContent, typeNode } from '@kit.ArkUI';
-import { AbilityConstant, Configuration, EnvironmentCallback } from '@kit.AbilityKit';
+import { NodeController, FrameNode, ComponentContent } from '@kit.ArkUI';
+import { AbilityConstant, Configuration, EnvironmentCallback, ConfigurationConstant } from '@kit.AbilityKit';
 
 @Builder
 function buildText() {
   Column() {
-    Text('hello')
-      .width(50)
-      .height(50)
-      .fontColor($r(`app.color.text_color`))
-  }.backgroundColor($r(`app.color.start_window_background`))
+    Text('Hello')
+      .fontSize(36)
+      .fontWeight(FontWeight.Bold)
+  }
+  .backgroundColor($r('sys.color.ohos_id_color_background'))
+  .width('100%')
+  .alignItems(HorizontalAlign.Center)
+  .padding(16)
 }
 
 const componentContentMap: Array<ComponentContent<[Object]>> = new Array();
@@ -438,6 +441,9 @@ struct FrameNodeTypeTest {
     }
     // Register a callback.
     this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback);
+    // Set the application color mode to follow the system settings.
+    this.getUIContext()
+      .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
     this.myNodeController.createNode(this.getUIContext());
   }
 
@@ -447,8 +453,18 @@ struct FrameNodeTypeTest {
   }
 
   build() {
-    Row() {
+    Column({ space: 16 }) {
       NodeContainer(this.myNodeController);
+      Button('Switch to Dark Mode')
+        .onClick(() => {
+          this.getUIContext()
+            .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
+        })
+      Button('Switch to Light Mode')
+        .onClick(() => {
+          this.getUIContext()
+            .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT);
+        })
     }
   }
 }

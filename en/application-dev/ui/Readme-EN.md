@@ -97,7 +97,7 @@
     - [Customization Capability Overview](arkts-user-defined.md)
     - Custom Nodes<!--arkts-nodes-->
       - [Custom Node Overview](arkts-user-defined-node.md)
-      - [Custom Placeholder Nodes](arkts-user-defined-place-hoder.md)
+      - [Custom Placeholder Nodes](arkts-user-defined-place-holder.md)
       - [Custom Component Node (FrameNode)](arkts-user-defined-arktsNode-frameNode.md)
       - [Custom RenderNode (RenderNode)](arkts-user-defined-arktsNode-renderNode.md)
       - [Custom Declarative Node (BuilderNode)](arkts-user-defined-arktsNode-builderNode.md)

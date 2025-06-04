@@ -93,14 +93,14 @@ This example demonstrates how to control the mounting and unmounting of a compon
 
 ```ts
 // xxx.ets
-import { promptAction } from '@kit.ArkUI'
+import { promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct AppearExample {
-  @State isShow: boolean = true
+  @State isShow: boolean = true;
   @State changeAppear: string = 'Show/Hide'
-  private myText: string = 'Text for onAppear'
+  private myText: string = 'Text for onAppear';
 
   build() {
     Column() {
@@ -111,15 +111,15 @@ struct AppearExample {
       if (this.isShow) {
         Text(this.myText).fontSize(26).fontWeight(FontWeight.Bold)
           .onAttach(() => {
-            promptAction.showToast({
-              message: 'Text shown.',
+            this.getUIContext().getPromptAction().showToast({
+              message: 'The text is shown',
               duration: 2000,
               bottom: 500
             })
           })
           .onDetach(() => {
-            promptAction.showToast({
-              message: 'Text hidden.',
+            this.getUIContext().getPromptAction().showToast({
+              message: 'The text is hidden',
               duration: 2000,
               bottom: 500
             })

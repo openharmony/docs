@@ -12,6 +12,8 @@ clickEffect(value: ClickEffect | null)
 
 Click effect of the component.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -22,12 +24,16 @@ Click effect of the component.
 
 ## ClickEffect
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name | Type                                                   | Mandatory| Description                                                        |
 | ----- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | level | [ClickEffectLevel](ts-appendix-enums.md#clickeffectlevel10) | Yes  | Click effect of the component.<br>**NOTE**<br>If **level** is set to **undefined** or **null**, the click effect corresponding to **ClickEffectLevel.LIGHT** will be used. For details about the zoom ratio, see the description of **scale**.|
 | scale | number                                                      | No  | Zoom ratio. This parameter works based on the setting of **ClickEffectLevel**.<br>**NOTE**<br>The default value of this parameter varies by the value of **level**.<br>If **level** is set to **ClickEffectLevel.LIGHT**, the default value is **0.90**.<br>If **level** is set to **ClickEffectLevel.MIDDLE** or **ClickEffectLevel.HEAVY**, the default value is **0.95**.<br>If **level** is set to **undefined** or **null** (both of which evaluate to **ClickEffectLevel.LIGHT**), the default value is **0.90**.<br>If **scale** is set to **undefined** or **null**, the default zoom ratio for the set level will be used.<br>|
 
 ## Example
+
+This example demonstrates the click effects on different types of components.
 
 ```ts
 // xxx.ets
@@ -43,7 +49,7 @@ struct ToggleExample {
           .selectedColor('#007DFF')
           .switchPointColor('#FFFFFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
 
         Toggle({ type: ToggleType.Switch, isOn: true })
@@ -51,7 +57,7 @@ struct ToggleExample {
           .selectedColor('#007DFF')
           .switchPointColor('#FFFFFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
       }
 
@@ -62,7 +68,7 @@ struct ToggleExample {
           .size({ width: 20, height: 20 })
           .selectedColor('#007DFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
 
         Toggle({ type: ToggleType.Checkbox, isOn: true })
@@ -70,7 +76,7 @@ struct ToggleExample {
           .size({ width: 20, height: 20 })
           .selectedColor('#007DFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
       }
 
@@ -82,7 +88,7 @@ struct ToggleExample {
         .clickEffect({level:ClickEffectLevel.HEAVY})
         .selectedColor('rgba(0,125,255,0.20)')
         .onChange((isOn: boolean) => {
-          console.info('Component status:' + isOn)
+          console.info('Component status:' + isOn);
         })
 
         Toggle({ type: ToggleType.Button, isOn: true }) {
@@ -91,7 +97,7 @@ struct ToggleExample {
         .clickEffect({level:ClickEffectLevel.HEAVY, scale: 0.5})
         .selectedColor('rgba(0,125,255,0.20)')
         .onChange((isOn: boolean) => {
-          console.info('Component status:' + isOn)
+          console.info('Component status:' + isOn);
         })
       }
     }.width('100%').padding(24)

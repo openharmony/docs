@@ -424,13 +424,13 @@ The [universal events](ts-component-general-events.md) are not supported.
 Main package:
 ```ts
 // Index.ets
-import { NavPushPathHelper } from '@kit.ArkUI'
+import { NavPushPathHelper } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct NavigationExample {
-  pageInfo: NavPathStack = new NavPathStack()
-  helper: NavPushPathHelper = new NavPushPathHelper(this.pageInfo)
+  pageInfo: NavPathStack = new NavPathStack();
+  helper: NavPushPathHelper = new NavPushPathHelper(this.pageInfo);
 
   build() {
     Navigation(this.pageInfo) {
@@ -444,7 +444,7 @@ struct NavigationExample {
               .catch((error: BusinessError) => {
               console.error(`[pushPath]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.error('[pushPath]success.');
+              console.error(`[pushPath]success.`);
             }); // Push the NavDestination page specified by name to the navigation stack.
           })
       }
@@ -455,28 +455,28 @@ struct NavigationExample {
 Subpackage **hsptest1**:
 ```ts
 // PageOne.ets
-import { NavPushPathHelper } from '@kit.ArkUI'
+import { NavPushPathHelper } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class TmpClass {
-  count: number = 10
+  count: number = 10;
 }
 
 class ParamWithOp {
-  operation: number = 1
-  count: number = 10
+  operation: number = 1;
+  count: number = 10;
 }
 
 @Builder
 export function PageOneBuilder(name: string, param: Object) {
-  PageOne()
+  PageOne();
 }
 
 @Component
 export struct PageOne {
   pageInfo: NavPathStack = new NavPathStack();
-  helper: NavPushPathHelper = new NavPushPathHelper(this.pageInfo)
-  @State message: string = 'Hello World'
+  helper: NavPushPathHelper = new NavPushPathHelper(this.pageInfo);
+  @State message: string = 'Hello World';
 
   build() {
     NavDestination() {
@@ -496,7 +496,7 @@ export struct PageOne {
             }}).catch((error: BusinessError) => {
               console.error(`[pushPath]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log('[pushPath]success.');
+              console.log(`[pushPath]success.`);
             });
           })
 
@@ -510,7 +510,7 @@ export struct PageOne {
             }}, {launchMode:0, animated:true}).catch((error: BusinessError) => {
               console.error(`[pushPath with NavigationOptions]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log('[pushPath with NavigationOptions]success.');
+              console.log(`[pushPath with NavigationOptions]success.`);
             });
           })
 
@@ -519,13 +519,13 @@ export struct PageOne {
           .height(35)
           .margin(10)
           .onClick(() => {
-            let tmp = new TmpClass()
+            let tmp = new TmpClass();
             this.helper.pushPathByName('hsptest2', 'pageTwo', tmp, (popInfo) => {
               this.message = '[pushPathByName]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
             }).catch((error: BusinessError) => {
               console.error(`[pushPathByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log('[pushPathByName]success.');
+              console.log(`[pushPathByName]success.`);
             });
           })
 
@@ -534,12 +534,12 @@ export struct PageOne {
           .height(35)
           .margin(10)
           .onClick(() => {
-            let tmp = new TmpClass()
+            let tmp = new TmpClass();
             this.helper.pushPathByName('hsptest2', 'pageTwo', tmp, true)
             .catch((error: BusinessError) => {
               console.error(`[pushPathByNameWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log('[pushPathByNameWithoutOnPop]success.');
+              console.log(`[pushPathByNameWithoutOnPop]success.`);
             });
           })
 
@@ -554,7 +554,7 @@ export struct PageOne {
             }}).catch((error: BusinessError) => {
               console.error(`[pushDestination]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.error('[pushDestination]success.');
+              console.error(`[pushDestination]success.`);
             });
           })
 
@@ -563,13 +563,13 @@ export struct PageOne {
           .height(35)
           .margin(10)
           .onClick(() => {
-            let tmp = new TmpClass()
+            let tmp = new TmpClass();
             this.helper.pushDestination('hsptest2', { name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
               this.message = '[pushDestination with NavigationOptions]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
             }}, {launchMode:0, animated:true}).catch((error: BusinessError) => {
               console.error(`[pushDestination with NavigationOptions]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.error('[pushDestination with NavigationOptions]success.');
+              console.error(`[pushDestination with NavigationOptions]success.`);
             });
           })
 
@@ -584,7 +584,7 @@ export struct PageOne {
             }).catch((error: BusinessError) => {
               console.error(`[pushDestinationByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.error('[pushDestinationByName]success.');
+              console.error(`[pushDestinationByName]success.`);
             });
           })
 
@@ -598,7 +598,7 @@ export struct PageOne {
               .catch((error: BusinessError) => {
                 console.error(`[pushDestinationByNameWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
               }).then(() => {
-              console.error('[pushDestinationByNameWithoutOnPop]success.');
+              console.error(`[pushDestinationByNameWithoutOnPop]success.`);
             });
           })
 
@@ -612,7 +612,7 @@ export struct PageOne {
             }}).catch((error: BusinessError) => {
               console.error(`[replacePath]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log('[replacePath]success.');
+              console.log(`[replacePath]success.`);
             });
           })
 
@@ -626,7 +626,7 @@ export struct PageOne {
             }}, {launchMode:0, animated:true}).catch((error: BusinessError) => {
               console.error(`[replacePath with NavigationOptions]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log('[replacePath with NavigationOptions]success.');
+              console.log(`[replacePath with NavigationOptions]success.`);
             });
           })
 
@@ -635,12 +635,12 @@ export struct PageOne {
           .height(35)
           .margin(10)
           .onClick(() => {
-            let tmp = new TmpClass()
+            let tmp = new TmpClass();
             this.helper.replacePathByName('hsptest2', 'pageTwo', tmp)
               .catch((error: BusinessError) => {
               console.error(`[replacePathByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log('[replacePathByName]success.');
+              console.log(`[replacePathByName]success.`);
             });
           })
 
@@ -648,7 +648,7 @@ export struct PageOne {
     }.title('pageOne')
     .onBackPressed(() => {
       this.pageInfo.pop({ number: 1 }) // Pop the top element out of the navigation stack.
-      return true
+      return true;
     }).onReady((context: NavDestinationContext) => {
       this.pageInfo = context.pathStack;
       this.helper = new NavPushPathHelper(this.pageInfo);

@@ -166,7 +166,7 @@ You need a custom class to implement the **ContentModifier** API.
 
 | Name     | Type   | Mandatory| Description                                                        |
 | --------- | ------- | ---- | ------------------------------------------------------------ |
-| rating    | number  | Yes  | Value to rate.<br>Default value: **0**<br>Value range: [0, stars]<br>Values less than 0 are treated as **0**, and values greater than the value of **stars** are treated as the value of **stars**.<br>This parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| rating    | number  | Yes  | Value to rate.<br>Default value: **0**<br>Value range: [0, stars]<br>Values less than 0 are treated as **0**, and values greater than the value of **stars** are treated as the value of **stars**.<br>This parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).|
 | indicator | boolean | No  | Whether the component is used only as an indicator.<br>Default value: **false**<br>**NOTE**<br>When **indicator** is set to **true**, the default component height is 12.0 vp, and the component width is calculated as follows: Height x Value of **stars**.<br>When **indicator** is set to **false**, the default component height is 28.0 vp, and the component width is calculated as follows: Height x Value of **stars**.|
 
 ## StarStyleOptions<sup>13+</sup>

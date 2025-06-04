@@ -34,7 +34,7 @@ Creates a time picker, which is in 24-hour format by default.
 
 | Name                | Type                                           | Mandatory| Description                                                        |
 | -------------------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| selected             | Date                                            | No  | Time of the selected item.<br>Default value: current system time<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| selected             | Date                                            | No  | Time of the selected item.<br>Default value: current system time<br>Since API version 10, this parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | format<sup>11+</sup> | [TimePickerFormat](#timepickerformat11)| No  | Time format.<br>Default value: **TimePickerFormat.HOUR_MINUTE**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## TimePickerFormat<sup>11+</sup>
@@ -66,7 +66,7 @@ Sets whether to display time in 24-hour format. When the display time is in 12-h
 
 | Name| Type   | Mandatory| Description                                      |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | boolean | Yes  | Whether the display time is in 24-hour format.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether the display time is in 24-hour format.<br>Default value: **false**.<br>**true**: The display time is in 24-hour format.<br>**false**: The display time is in 12-hour format.|
 
 ### disappearTextStyle<sup>10+</sup>
 
@@ -130,7 +130,7 @@ Sets whether to enable the loop mode.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to enable the loop mode.<br>Default value: **true**<br>The value **true** means to enable  loop mode, and **false** means the opposite.|
+| value  | boolean | Yes  | Whether to enable the loop mode.<br>Default value: **true**.<br>The value **true** means to enable  loop mode, and **false** means the opposite.|
 
 ### dateTimeOptions<sup>12+</sup>
 
@@ -146,7 +146,7 @@ Sets whether to display a leading zero for the hours, minutes, and seconds.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [DateTimeOptions](../../apis-localization-kit/js-apis-intl.md#datetimeoptions) | Yes  | Whether to display a leading zero for the hours, minutes, and seconds. Currently only the configuration of the **hour**, **minute**, and **second** parameters is supported.<br>Default value:<br>**hour**: In the 24-hour format, it defaults to **2-digit**, which means a leading zero is used; In the 12-hour format, it defaults to **numeric**, which means no leading zero is used.<br>**minute**: defaults to **2-digit**, which means a leading zero is used.<br>**second**: defaults to **2-digit**, which means a leading zero is used.<br>|
+| value  | [DateTimeOptions](../../apis-localization-kit/js-apis-intl.md#datetimeoptions) | Yes  | Whether to display a leading zero for the hours, minutes, and seconds. Currently only the configuration of the **hour**, **minute**, and **second** parameters is supported.<br>Default value:<br>**hour**: In the 24-hour format, it defaults to **"2-digit"**, which means a leading zero is used. In the 12-hour format, it defaults to **"numeric"**, which means no leading zero is used.<br>**minute**: defaults to **"2-digit"**, which means a leading zero is used.|
 
 ### enableHapticFeedback<sup>12+</sup>
 
@@ -173,7 +173,7 @@ enableHapticFeedback(enable: boolean)
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onChange
 
@@ -214,15 +214,15 @@ This example implements a time picker that allows users to switch between 12-hou
 @Entry
 @Component
 struct TimePickerExample {
-  @State isMilitaryTime: boolean = false
-  private selectedTime: Date = new Date('2022-07-22T08:00:00')
+  @State isMilitaryTime: boolean = false;
+  private selectedTime: Date = new Date('2022-07-22T08:00:00');
 
   build() {
     Column() {
       Button('Switch Time Format')
         .margin(30)
         .onClick(() => {
-          this.isMilitaryTime = !this.isMilitaryTime
+          this.isMilitaryTime = !this.isMilitaryTime;
         })
       TimePicker({
         selected: this.selectedTime,
@@ -230,8 +230,8 @@ struct TimePickerExample {
         .useMilitaryTime(this.isMilitaryTime)
         .onChange((value: TimePickerResult) => {
           if(value.hour >= 0) {
-            this.selectedTime.setHours(value.hour, value.minute)
-            console.info('select current date is: ' + JSON.stringify(value))
+            this.selectedTime.setHours(value.hour, value.minute);
+            console.info('select current date is: ' + JSON.stringify(value));
           }
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})

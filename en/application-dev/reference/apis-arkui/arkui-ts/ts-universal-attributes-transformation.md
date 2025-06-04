@@ -103,9 +103,9 @@ Sets the transformation matrix of the component.
 
 | Name| Type                      | Mandatory| Description           |
 | ---- | -------------------------- | ---- | --------------- |
-| x    | number \| string | No  | Translation distance along the x-axis.|
-| y    | number \| string | No  | Translation distance along the y-axis.|
-| z    | number \| string | No  | Translation distance along the z-axis.|
+| x    | number \| string | No  | Translation distance along the x-axis.<br>For the number type, the unit is vp, and the value range is (-¡Þ, +¡Þ).<br>For the string type, the value follows the format of [Length](ts-types.md#length) string type.|
+| y    | number \| string | No  | Translation distance along the y-axis.<br>For the number type, the unit is vp, and the value range is (-¡Þ, +¡Þ).<br>For the string type, the value follows the format of [Length](ts-types.md#length) string type.|
+| z    | number \| string | No  | Translation distance along the z-axis.<br>For the number type, the unit is vp, and the value range is (-¡Þ, +¡Þ).<br>For the string type, the value follows the format of [Length](ts-types.md#length) string type.|
 
 ## ScaleOptions
 
@@ -125,7 +125,7 @@ Sets the transformation matrix of the component.
 
 > **NOTE**
 >
-> If the **rotate** and **scale** attributes are both set for a component, the values of **centerX** and **centerY** conflict. In this case, the one that is set later in time prevails.
+> If the **rotate** and **scale** attributes are both set for a component, the values of **centerX** and **centerY** conflict. In this case, the one that is set later in time is used.
 
 ## Example
 
@@ -151,12 +151,12 @@ struct TransformExample {
           centerX: '50%',
           centerY: '50%',
           angle: 300
-        }) // The component rotates around the center point of the rotation axis (0,0,1) clockwise by 300 degrees.
+        })// The component rotates around the center point of the rotation axis (0, 0, 1) clockwise by 300 degrees.
         .width(100).height(100).backgroundColor(0xAFEEEE)
 
       Text('translate').width('90%').fontColor(0xCCCCCC).padding(10).fontSize(14)
       Row()
-        .translate({ x: 100, y: 10 }) // The component translates by 100 along the x-axis and by 10 along the y-axis.
+        .translate({ x: 100, y: 10 })// The component translates by 100 along the x-axis and by 10 along the y-axis.
         .width(100)
         .height(100)
         .backgroundColor(0xAFEEEE)
@@ -164,7 +164,7 @@ struct TransformExample {
 
       Text('scale').width('90%').fontColor(0xCCCCCC).padding(15).fontSize(14)
       Row()
-        .scale({ x: 2, y: 0.5}) // The height and width are doubled. The z-axis has no effect in 2D mode.
+        .scale({ x: 2, y: 0.5 })// The height and width are doubled. The z-axis has no effect in 2D mode.
         .width(100).height(100).backgroundColor(0xAFEEEE)
 
       Text('Matrix4').width('90%').fontColor(0xCCCCCC).padding(15).fontSize(14)
@@ -211,7 +211,7 @@ struct Index {
               iterations: 1,
               playMode: PlayMode.Normal,
               onFinish: () => {
-                console.info('play end')
+                console.info('play end');
               }
             }, () => {
               this.prep = 500 // Change the component's perspective from 10 to 500.
@@ -232,7 +232,7 @@ struct Index {
 This example shows how to achieve the same rotation effect by setting different parameters for** rotate** and **transform**.
 
 ```ts
-import { matrix4 } from '@kit.ArkUI'
+import { matrix4 } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -265,9 +265,9 @@ struct MatrixExample {
         .borderWidth(1)
         .transform(matrix4.identity()
           .rotate({
-          // The component's anchor (centerX, centerY) is (50%, 50%) by default, which is (50 vp, 30 vp).
-          // Set (centerX, centerY) of rotate in transform to (50 vp, 30 vp), which is an additional offset from the component's own anchor.
-          // This transformation is equivalent to rotating around (100 vp, 60 vp), achieving the same rotation effect as "Hello2."
+            // The component's anchor (centerX, centerY) is (50%, 50%) by default, which is (50 vp, 30 vp).
+            // Set (centerX, centerY) of rotate in transform to (50 vp, 30 vp), which is an additional offset from the component's own anchor.
+            // This transformation is equivalent to rotating around (100 vp, 60 vp), achieving the same rotation effect as "Hello2."
             z: 1,
             angle: 90,
             centerX: vp2px(50),
@@ -286,8 +286,8 @@ struct MatrixExample {
           y: 1,
           centerX: 100,
           centerY: 60
-        })// centerX and centerY are not specified for rotate in transform. As such, the rotation center is not offset from the component's own anchor.
-          // The component rotates around (100 vp, 60 vp) through the anchor set by scale, achieving the same rotation effect as "Hello2."
+        })// If centerX and centerY are not specified, the rotation uses the component's own anchor as the center.
+          // Here, the component rotates around (100 vp, 60 vp) through the anchor set by scale, achieving the same rotation effect as "Hello2."
         .transform(matrix4.identity().rotate({ z: 1, angle: 90 }))
     }.width('100%')
     .height('100%')

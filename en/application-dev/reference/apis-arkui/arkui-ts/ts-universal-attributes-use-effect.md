@@ -67,6 +67,7 @@ Effect Template
 
 This example shows how to combine the drawing of special effects, including background blur.
 
+<!--code_no_check-->
 ```ts
 //Index.ets
 @Entry

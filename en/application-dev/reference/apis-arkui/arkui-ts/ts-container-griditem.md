@@ -155,7 +155,7 @@ This attribute must be used before the [style for the selected state](./ts-unive
 
 selected(value: boolean)
 
-Sets whether the grid item is selected. This attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
+Sets whether the grid item is selected. This attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).
 
 This attribute must be used before the [style for the selected state](./ts-universal-attributes-polymorphic-style.md#statestyles) is set.
 

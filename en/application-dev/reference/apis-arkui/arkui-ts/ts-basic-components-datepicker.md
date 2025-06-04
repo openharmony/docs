@@ -38,7 +38,7 @@ Creates a date picker in the given date range.
 | -------- | ---- | ---- | ------------------------------------------------------------ |
 | start    | Date | No  | Start date of the picker.<br>Default value: **Date('1970-1-1')**         |
 | end      | Date | No  | End date of the picker.<br>Default value: **Date('2100-12-31')**       |
-| selected | Date | No  | Date of the selected item.<br>Default value: current system date<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| selected | Date | No  | Date of the selected item.<br>Default value: current system date<br>Since API version 10, this parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).|
 
 **Handling in the case of exceptions**
 

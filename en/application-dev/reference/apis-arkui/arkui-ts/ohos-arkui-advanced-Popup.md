@@ -10,7 +10,7 @@ The popup component is used to display popups in a specific style.
 
 ## Modules to Import
 
-```
+```ts
 import { Popup, PopupOptions, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@kit.ArkUI';
 ```
 
@@ -20,7 +20,7 @@ Not supported
 
 ## Popup
 
-Popup(options: PopupOptions)
+Popup(options: PopupOptions): void
 
 **Decorator**: @Builder
 
@@ -84,7 +84,7 @@ Defines the button attributes and events.
 
 ##  PopupIconOptions
 
-Defines the attributes of the icon (in the upper right corner).
+Defines the attributes of the icon (in the upper left corner).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -98,7 +98,11 @@ Defines the attributes of the icon (in the upper right corner).
 | fillColor    | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Icon fill color.                |
 | borderRadius | [Length](ts-types.md#length) \| [BorderRadiuses](ts-types.md#borderradiuses9) | No  | Rounded corner of the icon.<br>Default value: **$r('sys.float.ohos_id_corner_radius_default_s')** |
 
-## Example  
+## Example
+
+### Example 1: Setting the Popup Style
+
+This example demonstrates how to customize the style of a popup by configuring **PopupIconOptions**, **PopupTextOptions**, and **PopupButtonOptions**.
 
 ```ts
 // xxx.ets
@@ -107,7 +111,6 @@ import { Popup, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@
 @Entry
 @Component
 struct PopupExample {
-
   build() {
     Row() {
       // Define a popup.
@@ -115,9 +118,9 @@ struct PopupExample {
         // Set the icon through PopupIconOptions.
         icon: {
           image: $r('app.media.icon'),
-          width:32,
-          height:32,
-          fillColor:Color.White,
+          width: 32,
+          height: 32,
+          fillColor: Color.White,
           borderRadius: 16
         } as PopupIconOptions,
         // Set the text through PopupTextOptions.
@@ -135,13 +138,13 @@ struct PopupExample {
         } as PopupTextOptions,
         showClose: false,
         onClose: () => {
-          console.info('close Button click')
+          console.info('close Button click');
         },
         // Set the button through PopupButtonOptions.
         buttons: [{
           text: 'confirm',
           action: () => {
-            console.info('confirm button click')
+            console.info('confirm button click');
           },
           fontSize: 15,
           fontColor: Color.Black,
@@ -149,7 +152,7 @@ struct PopupExample {
           {
             text: 'cancel',
             action: () => {
-              console.info('cancel button click')
+              console.info('cancel button click');
             },
             fontSize: 15,
             fontColor: Color.Black
@@ -171,12 +174,12 @@ This example shows a mirrored layout of the popup.
 
 ```ts
 // xxx.ets
-import { Popup, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@kit.ArkUI'
+import { Popup, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct PopupPage {
-  @State currentDirection: Direction = Direction.Rtl
+  @State currentDirection: Direction = Direction.Rtl;
 
   build() {
     Column() {
@@ -207,13 +210,13 @@ struct PopupPage {
         } as PopupTextOptions,
         showClose: true,
         onClose: () => {
-          console.info('close Button click')
+          console.info('close Button click');
         },
         // Set the button through PopupButtonOptions.
         buttons: [{
           text: 'confirm',
           action: () => {
-            console.info('confirm button click')
+            console.info('confirm button click');
           },
           fontSize: 15,
           fontColor: Color.Black,
@@ -222,7 +225,7 @@ struct PopupPage {
           {
             text: 'cancel',
             action: () => {
-              console.info('cancel button click')
+              console.info('cancel button click');
             },
             fontSize: 15,
             fontColor: Color.Black,

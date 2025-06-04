@@ -12,8 +12,6 @@ A context menu – a vertical list of items – can be bound to a component and 
 >
 >  - When the window size changes, the menu is automatically hidden.
 >
->  - The menu animation uses a spring curve. Due to the rebound and oscillation of the spring curve during the exit of the animation, there is a prolonged tail effect, which prevents the menu from responding to other events after it disappears.
->
 >  - If a component is a draggable node and **bindContextMenu** is used without a preview specified, the menu will display a floating drag preview, and the menu options will not avoid the preview. To address this issue, you can set a preview or configure the target node to be non-draggable, based on the use case.
 >
 >  - Since API version 12, menus allow users to display a submenu with a 500 ms long press, with the pressed state following the movement of the finger.
@@ -54,7 +52,7 @@ Binds a menu to this component, which is displayed when the user clicks the comp
 
 | Name              | Type                                                        | Mandatory| Description                                                        |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| isShow<sup>11+</sup> | boolean                                                      | Yes  | Whether to show the menu. The default value is **false**. The menu can be displayed only after the entire page is fully constructed. Therefore, to avoid incorrect display positions and shapes, do not set this parameter to **true** while the page is still being constructed.|
+| isShow<sup>11+</sup> | boolean                                                      | Yes  | Whether to show the menu. The default value is **false**. The menu can be displayed only after the entire page is fully constructed. Therefore, to avoid incorrect display positions and shapes, do not set this parameter to **true** while the page is still being constructed. Since API version 13, this parameter supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).|
 | content              | Array<[MenuElement](#menuelement)&gt; \| [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Array of menu item icons and text, or custom component.                |
 | options              | [MenuOptions](#menuoptions10)                                | No  | Parameters of the context menu.                                        |
 
@@ -95,7 +93,7 @@ The position of the context menu is subject to the **placement** settings, rathe
 
 | Name      | Type                                              | Mandatory| Description                                        |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| isShown | boolean | Yes  | Whether to show the context menu. The value **true** means to show the context menu, and **false** (default) means the opposite. The menu can be displayed properly only when the related page has been constructed. If this parameter is set to **true** before the construction is complete, display issues, such as misplacement, distortion, or failure to pop up, may occur. To trigger dragging by long presses is not supported. This parameter supports two-way binding through the [!! syntax](../../../quick-start/arkts-new-binding.md).|
+| isShown | boolean | Yes  | Whether to show the context menu. The value **true** means to show the context menu, and **false** (default) means the opposite. The menu can be displayed properly only when the related page has been constructed. If this parameter is set to **true** before the construction is complete, display issues, such as misplacement, distortion, or failure to pop up, may occur. To trigger dragging by long presses is not supported. Since API version 13, this parameter supports two-way binding through the [!! syntax](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).|
 | content      | [CustomBuilder](ts-types.md#custombuilder8)        | Yes  | Builder of the custom menu content.|
 | options      | [ContextMenuOptions](#contextmenuoptions10)                      | No  | Parameters of the context menu.                        |
 
@@ -105,7 +103,7 @@ The position of the context menu is subject to the **placement** settings, rathe
 | --------------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | value                 | [ResourceStr](ts-types.md#resourcestr) | Yes  | Menu item text.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                |
 | icon<sup>10+</sup>    | [ResourceStr](ts-types.md#resourcestr) | No  | Menu item icon.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                |
-| enabled<sup>11+</sup> | boolean                                | No  | Whether to enable interactions with the menu item.<br>Default value: **true**, indicating that interactions with the menu item are enabled.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| enabled<sup>11+</sup> | boolean                                | No  | Whether to enable interactions with the menu item.<br>Default value: **true**<br>**true**: Enable interactions with the menu item.<br>**false**: Disable interactions with the menu item.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | action                | () =&gt; void                | Yes  | Action triggered when a menu item is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                      |
 | symbolIcon<sup>12+</sup>                | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)                | No  | Icon of a menu item. When this parameter is set, the original icon is not displayed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                      |
 
@@ -132,9 +130,9 @@ Inherits from [ContextMenuOptions](#contextmenuoptions10).
 | onDisappear           | () =&gt; void                                      | No  | Callback triggered when the menu is hidden.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                      |
 | aboutToAppear              | () =&gt; void                                      | No  | Callback triggered when the menu is about to appear.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                      |
 | aboutToDisappear           | () =&gt; void                                      | No  | Callback triggered when the menu is about to disappear.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                      |
-| backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | No| Backplane color of the dialog box.<br>Default value: **Color.Transparent**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | No| Background blur style of the dialog box.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10)| No  | Transition effect for the entrance and exit of the menu.<br>**NOTE**<br>During the exit animation of the menu, if there is a switch between landscape and portrait modes, the menu will make way. Level-2 menus do not inherit custom animations. The level-2 menu can be clicked during the pop-up process, but not during the execution of the exit animation.<br>For details, see [TransitionEffect](ts-transition-animation-component.md#transitioneffect10).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | No| Background color of the menu.<br>Default value: **Color.Transparent**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | No| Background blur style of the menu.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10)| No  | Transition effect for the entrance and exit of the menu.<br>**NOTE**<br>During the exit animation of the menu, if there is a switch between landscape and portrait modes, the menu will make way. Level-2 menus do not inherit custom animations. The level-2 menu can be clicked during the pop-up process, but not during the execution of the exit animation.<br>For details, see [TransitionEffect](ts-transition-animation-component.md#transitioneffect10).<br>The menu animation uses a spring curve. Due to the rebound and oscillation of the spring curve during the exit of the animation, there is a prolonged tail effect, which prevents the menu from responding to other events after it disappears.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | borderRadius<sup>12+</sup>  | [Length](ts-types.md#length) \| [BorderRadiuses](ts-types.md#borderradiuses9) \| [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | No  | Border radius of the menu.<br>Default value: **8vp** for 2-in-1 devices and **20vp** for other devices<br>**NOTE**<br> The value can be in percentage.<br>If the sum of the two maximum corner radii in the horizontal direction exceeds the menu's width, or if the sum of the two maximum corner radii in the vertical direction exceeds the menu's height, the default corner radius of the menu will be used.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | layoutRegionMargin<sup>13+</sup>  | [Margin](ts-types.md#margin) | No  | Minimum margin between the preview and menu layout for top, bottom, left, and right edges.<br>**NOTE**<br> Only vp, px, fp, lpx, and percentage units are supported.<br> Any abnormal or negative values will be treated as the default values.<br> If **preview** is set to **CustomBuilder**, setting **margin.left** or **margin.right** will remove the maximum grid width restriction for the preview.<br> Be cautious not to set excessively large margins that are too large, which could reduce the layout area and affect the proper layout of the preview and menu.<br>If the sum of horizontal margins exceeds the maximum layout width, **margin.left** and **margin.right** will be ignored and default values will be applied.<br> If the sum of vertical margins exceeds the maximum layout width, **margin.top** and **margin.bottom** will be ignored and default values will be applied.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 
@@ -144,22 +142,26 @@ Inherits from [ContextMenuOptions](#contextmenuoptions10).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Description                                  |
-| ----- | -------------------------------------- |
-| NONE  | No preview is displayed.                      |
-| IMAGE | The preview is a screenshot of the component on which a long-press triggers the context menu.|
+| Name | Value| Description                                  |
+| ----- | - | -------------------------------------- |
+| NONE  | 0 | No preview is displayed.                      |
+| IMAGE | 1 | The preview is a screenshot of the component on which a long-press triggers the context menu.|
 
 ## ContextMenuAnimationOptions<sup>11+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name | Type                                      | Mandatory| Description                                |
 | ----- | ------------------------------------------ | ---- | ------------------------------------ |
-| scale | [AnimationRange](#animationrange11)\<number> | No  | Relative scale ratio at the start and end of the animation compared to the original preview image.<br>**NOTE**<br>The scale ratio must be set based on the specific use case. It is recommended that it be less than the width of the preview image or the maximum constraint of the layout.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| scale | [AnimationRange](#animationrange11)\<number> | No  | Relative scale ratio at the start and end of the animation compared to the original preview image.<br>**NOTE**<br>The scale ratio must be set based on the specific use case. It is recommended that it be less than the width of the preview image or the maximum constraint of the layout.|
 | transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10)| No  | Transition effect for the entrance and exit of the menu.<br>**NOTE**<br>During the exit animation of the menu, if there is a switch between landscape and portrait modes, the menu will make way. Level-2 menus do not inherit custom animations. The level-2 menu can be clicked during the pop-up process, but not during the execution of the exit animation.<br>For details, see [TransitionEffect](ts-transition-animation-component.md#transitioneffect10).|
 | hoverScale<sup>12+</sup> | [AnimationRange](#animationrange11)\<number> | No  | Sets the scale ratio of the original component snapshot to the preview image at the beginning and end of the scale animation in a custom long press scenario. There is a transition animation for the switch with the preview image.<br>**NOTE**<br> If the value is less than or equal to 0, this API does not take effect.<br>This API does not take effect in [bindContextMenu<sup>12+</sup>](#bindcontextmenu12) scenarios.<br> This API does not take effect when **transition** is set.<br> If this API and the **scale** API are used at the same time, the start value of the **scale** API does not take effect.<br> To ensure the optimal experience, it is not recommended that the final preview image size be smaller than the size of the original component snapshot. The width and height of the preview animation are affected by the component snapshot and the custom preview size. Verify the display effect based on the actual use case.|
 
 ## AnimationRange<sup>11+</sup>
+
+type AnimationRange\<T>=[from: T, to: T]
 
 Describes the scale ratio relative to the preview image at the beginning and end of the scale animation.
 
@@ -478,7 +480,7 @@ struct Index {
             .bindContextMenu(this.isShown, this.MyMenu,
               {
                 preview: this.MyPreview,
-                onDisappear: ()=>{
+                aboutToDisappear: ()=>{
                     this.isShown = false;
                 }
               })
@@ -492,6 +494,8 @@ struct Index {
   }
 }
 ```
+
+![preview-builder](figures/preview-builder.png)
 
 ### Example 8: Using Custom Menu and Preview Animations
 

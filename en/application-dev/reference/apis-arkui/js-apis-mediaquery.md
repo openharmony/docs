@@ -8,7 +8,7 @@ The **mediaquery** module provides different styles for different media types.
 >
 > This module cannot be used in the file declaration of the [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md). In other words, the APIs of this module can be used only after a component instance is created; they cannot be called in the lifecycle of the UIAbility.
 >
-> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](js-apis-arkui-UIContext.md#uicontext).
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where [the UI context is unclear](../../ui/arkts-global-interface.md). For details, see [UIContext](js-apis-arkui-UIContext.md#uicontext).
 >
 > Since API version 10, you can use the [getMediaQuery](js-apis-arkui-UIContext.md#getmediaquery) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [MediaQuery](js-apis-arkui-UIContext.md#mediaquery) object associated with the current UI context.
 
@@ -49,7 +49,7 @@ Sets the media query condition. This API returns the corresponding media query l
 ```ts
 import { mediaquery } from '@kit.ArkUI';
 
-let listener:mediaquery.MediaQueryListener = this.getUIContext().getMediaQuery().matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
+let listener: mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
 ```
 
 
@@ -115,10 +115,11 @@ Deregisters a media query listener, so that no callback is triggered when the me
 
 **Example**
 
-  ```ts
+<!--code_no_check-->
+```ts
 import { mediaquery } from '@kit.ArkUI';
 
-let listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
+let listener: mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
 function onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
   if (mediaQueryResult.matches) {
     // do something here
@@ -141,11 +142,11 @@ Provides the media query result.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 
-### Attributes
+### Properties
 
 | Name   | Type   | Readable| Writable| Description                |
 | ------- | ------- | ---- | ---- | -------------------- |
-| matches | boolean | Yes  | No  | Whether the media query condition is met.  |
+| matches | boolean | Yes  | No  | Whether the media query condition is met. The value **true** means that the query conditions are met, and **false** means the opposite. |
 | media   | string  | Yes  | No  | Media query condition.|
 
 
@@ -155,6 +156,7 @@ Provides the media query result.
 >
 > You are advised to use the [getMediaQuery](js-apis-arkui-UIContext.md#getmediaquery) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [MediaQuery](js-apis-arkui-UIContext.md#mediaquery) object associated with the current UI context.
 
+<!--code_no_check-->
 ```ts
 import { mediaquery } from '@kit.ArkUI';
 
@@ -163,7 +165,7 @@ import { mediaquery } from '@kit.ArkUI';
 struct MediaQueryExample {
   @State color: string = '#DB7093'
   @State text: string = 'Portrait'
-  listener = mediaquery.matchMediaSync('(orientation: landscape)') // You are advised to use this.getUIContext().getMediaQuery().matchMediaSync().
+  listener: mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)') // You are advised to use this.getUIContext().getMediaQuery().matchMediaSync().
 
   onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
     if (mediaQueryResult.matches) {
@@ -194,3 +196,4 @@ struct MediaQueryExample {
   }
 }
 ```
+![media_query](figures/media_query.png)

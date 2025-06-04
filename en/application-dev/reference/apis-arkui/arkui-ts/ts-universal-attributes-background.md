@@ -153,7 +153,7 @@ Defines the blur style to apply between the background and content of a componen
 
 backdropBlur(value: number, options?: BlurOptions)
 
-Applies a background blur effect to the component.
+Applies a background blur effect to the component. You can customize the blur radius and grayscale parameters.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 

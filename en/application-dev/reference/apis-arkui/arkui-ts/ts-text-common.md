@@ -26,8 +26,8 @@ Implements a **LayoutManager** object.
 
 ### Objects to Import
 The following uses the **Text** component as an example.
-```
-controller: TextController = new TextController()
+```ts
+controller: TextController = new TextController();
 let layoutManager: LayoutManager = this.controller.getLayoutManager();
 ```
 
@@ -762,3 +762,27 @@ Provides detailed information of text changes, including preview text.
 | previewText  | [PreviewText](#previewtext12) | No  | Preview text.|
 | options  | [TextChangeOptions](#textchangeoptions15) | No  | Information about the text change.|
 
+## TextMenuShowMode<sup>16+</sup>
+
+Enumerates the display modes for context menus on selection.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Value| Description|
+| ------- | ---- | ------------------- |
+| DEFAULT | 0 | The menu is displayed in the current window.<br>|
+| PREFER_WINDOW | 1 | The menu is preferentially displayed in a separate window. If a separate window is not supported, the menu is displayed in the current window.<br>**NOTE**<br>The context menu on selection cannot be displayed in a separate window under the following scenarios:<br>Windows other than the main application window, application subwindows, system modal windows, and system home screen windows<br>DevEco Studio Previewer<br>UIExtension<br>Text component that is already displayed in a child window (for example, **Popup**, **Dialog**, **Toast**, and **Menu**)<br>**TextInput** or **TextArea** components that support **AutoFill**<br>|
+
+## TextMenuOptions<sup>16+</sup>
+
+Provides the options for customizing the context menu on selection.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Type                                                   | Mandatory| Description                                                   |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| showMode  | [TextMenuShowMode](#textmenushowmode16) | No  | Menu display mode.<br>Default value: **TextMenuShowMode.DEFAULT**|

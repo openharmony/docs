@@ -1,10 +1,12 @@
 # BuilderNode
 
-The **BuilderNode** module provides APIs for a BuilderNode – a custom node that can be used to mount native components. A BuilderNode can be used only as a leaf node. For details, see [BuilderNode Development](../../ui/arkts-user-defined-arktsNode-builderNode.md).
+The **BuilderNode** module provides APIs for a BuilderNode – a custom node that can be used to mount built-in components. A BuilderNode can be used only as a leaf node. For details, see [BuilderNode Development](../../ui/arkts-user-defined-arktsNode-builderNode.md).
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> 
+> If you encounter display issues when reusing a BuilderNode across pages, see [Cross-Page Reuse Considerations](../../ui/arkts-user-defined-arktsNode-builderNode.md#cross-page-reuse-considerations) for guidance.
 > 
 > **BuilderNode** is not available in DevEco Studio Previewer.
 
@@ -31,7 +33,7 @@ Enumerates the node rendering types.
 >
 > Currently, the **RENDER_TYPE_TEXTURE** type takes effect only for the [XComponentNode](./js-apis-arkui-xcomponentNode.md) and the [BuilderNode](#buildernode-1) holding a component tree whose root node is a custom component.
 >
-> In the case of [BuilderNode](#buildernode-1), the following custom components that function as the root node support texture export: Badge, Blank, Button, CanvasGradient, CanvasPattern, CanvasRenderingContext2D, Canvas, CheckboxGroup, Checkbox, Circle, ColumnSplit, Column, ContainerSpan, Counter, DataPanel, Divider, Ellipse, Flex, Gauge, Hyperlink, ImageBitmap, ImageData, Image, Line, LoadingProgress, Marquee, Matrix2D, OffscreenCanvasRenderingContext2D, OffscreenCanvas, Path2D, Path, PatternLock, Polygon, Polyline, Progress, QRCode, Radio, Rating, Rect, RelativeContainer, RowSplit, Row, Shape, Slider, Span, Stack, TextArea, TextClock, TextInput, TextTimer, Text, Toggle, Video (not supporting the native full-screen mode), Web, XComponent
+> In the case of [BuilderNode](#buildernode-1), the following custom components that function as the root node support texture export: Badge, Blank, Button, CanvasGradient, CanvasPattern, CanvasRenderingContext2D, Canvas, CheckboxGroup, Checkbox, Circle, ColumnSplit, Column, ContainerSpan, Counter, DataPanel, Divider, Ellipse, Flex, Gauge, Hyperlink, ImageBitmap, ImageData, Image, Line, LoadingProgress, Marquee, Matrix2D, OffscreenCanvasRenderingContext2D, OffscreenCanvas, Path2D, Path, PatternLock, Polygon, Polyline, Progress, QRCode, Radio, Rating, Rect, RelativeContainer, RowSplit, Row, Shape, Slider, Span, Stack, TextArea, TextClock, TextInput, TextTimer, Text, Toggle, Video (without support for full-screen playback), Web, XComponent
 >
 > The following components support texture export since API version 12: DatePicker, ForEach, Grid, IfElse, LazyForEach, List, Scroll, Swiper, TimePicker, @Component decorated custom components, NodeContainer, and FrameNode and RenderNode mounted to a NodeContainer.
 >
@@ -55,7 +57,7 @@ Provides optional parameters for creating a BuilderNode.
 
 class BuilderNode\<Args extends Object[]>
 
-Implements a BuilderNode, which can create a component tree through the stateless UI method [@Builder](../../quick-start/arkts-builder.md) and hold the root node of the component tree. A BuilderNode cannot be defined as a state variable. The FrameNode held in the BuilderNode is only used to mount the BuilderNode to other FrameNodes as a child node. Undefined behavior may occur if you set attributes or perform operations on subnodes of the FrameNode held by the BuilderNode. Therefore, after you have obtained a [RenderNode](js-apis-arkui-renderNode.md#rendernode) through the [getFrameNode](#getframenode) method of the BuilderNode and the [getRenderNode](js-apis-arkui-frameNode.md#getrendernode) method of the [FrameNode](js-apis-arkui-frameNode.md#framenode), avoid setting the attributes or operating the subnodes through APIs of the [RenderNode](js-apis-arkui-renderNode.md#rendernode).
+Implements a BuilderNode, which can create a component tree through the stateless UI method [@Builder](../../ui/state-management/arkts-builder.md) and hold the root node of the component tree. A BuilderNode cannot be defined as a state variable. The FrameNode held in the BuilderNode is only used to mount the BuilderNode to other FrameNodes as a child node. Undefined behavior may occur if you set attributes or perform operations on subnodes of the FrameNode held by the BuilderNode. Therefore, after you have obtained a [RenderNode](js-apis-arkui-renderNode.md#rendernode) through the [getFrameNode](#getframenode) method of the BuilderNode and the [getRenderNode](js-apis-arkui-frameNode.md#getrendernode) method of the [FrameNode](js-apis-arkui-frameNode.md#framenode), avoid setting the attributes or operating the subnodes through APIs of the [RenderNode](js-apis-arkui-renderNode.md#rendernode).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -83,8 +85,9 @@ Constructor for creating a BuilderNode. When the content generated by the Builde
 
 build(builder: WrappedBuilder\<Args>, arg?: Object): void
 
-Creates a component tree based on the passed object and holds the root node of the component tree. The stateless UI method [@Builder](../../quick-start/arkts-builder.md) has at most one root node.
-Custom components are allowed. Yet, the custom components cannot use decorators, such as [@Reusable](../../quick-start/arkts-create-custom-components.md#basic-structure-of-a-custom-component), @Link, @Provide, and @Consume, for state synchronization with the page to which the BuilderNode is mounted.
+Creates a component tree based on the passed object and holds the root node of the component tree. The stateless UI method [@Builder](../../ui/state-management/arkts-builder.md) has at most one root node.
+Custom components are allowed. Yet, the custom components cannot use decorators, such as [@Reusable](../../ui/state-management/arkts-create-custom-components.md#basic-structure-of-a-custom-component), [@Link](../../ui/state-management/arkts-link.md), [@Provide](../../ui/state-management/arkts-provide-and-consume.md), and [@Consume](../../ui/state-management/arkts-provide-and-consume.md), for state synchronization with the page to which the BuilderNode is mounted.
+Since API version 12, custom components can receive [LocalStorage](../../ui/state-management/arkts-localstorage.md) instances. You can use LocalStorage related decorators such as [@LocalStorageProp](../../ui/state-management/arkts-localstorage.md#localstorageprop) and [@LocalStorageLink](../../ui/state-management/arkts-localstorage.md#localstoragelink) by [passing LocalStorage instances](../../ui/state-management/arkts-localstorage.md#example-of-providing-a-custom-component-with-access-to-a-localstorage-instance).
 
 > **NOTE**
 > 
@@ -102,7 +105,7 @@ Custom components are allowed. Yet, the custom components cannot use decorators,
 
 | Name | Type                                                           | Mandatory| Description                                                                                  |
 | ------- | --------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| builder | [WrappedBuilder\<Args>](../../quick-start/arkts-wrapBuilder.md) | Yes  | Stateless UI method [@Builder](../../quick-start/arkts-builder.md) required for creating a component tree.|
+| builder | [WrappedBuilder\<Args>](../../ui/state-management/arkts-wrapBuilder.md) | Yes  | Stateless UI method [@Builder](../../ui/state-management/arkts-builder.md) required for creating a component tree.|
 | arg     | Object                                                          | No  | Argument of the builder. Only one input argument is supported, and the type of the input argument must be consistent with the type defined by @Builder.                                         |
 
 
@@ -122,12 +125,13 @@ Defines the optional build options.
 
 build(builder: WrappedBuilder\<Args>, arg: Object, options: [BuildOptions](#buildoptions12)): void
 
-Creates a component tree based on the passed object and holds the root node of the component tree. The stateless UI method [@Builder](../../quick-start/arkts-builder.md) has at most one root node.
-Custom components are allowed. Yet, the custom components cannot use decorators, such as [@Reusable](../../quick-start/arkts-create-custom-components.md#basic-structure-of-a-custom-component), @Link, @Provide, and @Consume, for state synchronization with the owning page.
+Creates a component tree based on the passed object and holds the root node of the component tree. The stateless UI method [@Builder](../../ui/state-management/arkts-builder.md) has at most one root node.
+Custom components are allowed. Yet, the custom components cannot use decorators, such as [@Reusable](../../ui/state-management/arkts-create-custom-components.md#basic-structure-of-a-custom-component), [@Link](../../ui/state-management/arkts-link.md), [@Provide](../../ui/state-management/arkts-provide-and-consume.md), and [@Consume](../../ui/state-management/arkts-provide-and-consume.md), for state synchronization with the current page.
+Since API version 12, custom components can receive [LocalStorage](../../ui/state-management/arkts-localstorage.md) instances. You can use LocalStorage related decorators such as [@LocalStorageProp](../../ui/state-management/arkts-localstorage.md#localstorageprop) and [@LocalStorageLink](../../ui/state-management/arkts-localstorage.md#localstoragelink) by [passing LocalStorage instances](../../ui/state-management/arkts-localstorage.md#example-of-providing-a-custom-component-with-access-to-a-localstorage-instance).
 
 > **NOTE**
 > 
-> For details about the creation and update using @Builder, see [@Builder](../../quick-start/arkts-builder.md).
+> For details about the creation and update using @Builder, see [@Builder](../../ui/state-management/arkts-builder.md).
 > 
 > The outermost @Builder supports only one input argument.
 
@@ -139,7 +143,7 @@ Custom components are allowed. Yet, the custom components cannot use decorators,
 
 | Name | Type                                                           | Mandatory| Description                                                                                   |
 | ------- | --------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| builder | [WrappedBuilder\<Args>](../../quick-start/arkts-wrapBuilder.md) | Yes  | Stateless UI method [@Builder](../../quick-start/arkts-builder.md) required for creating a component tree.  |
+| builder | [WrappedBuilder\<Args>](../../ui/state-management/arkts-wrapBuilder.md) | Yes  | Stateless UI method [@Builder](../../ui/state-management/arkts-builder.md) required for creating a component tree.  |
 | arg     | Object                                                          | Yes  | Argument of the builder. Only one input argument is supported, and the type of the input argument must be consistent with the type defined by @Builder.                                                           |
 | options | BuildOptions                                                    | Yes  | Build options, which determine whether to support nesting **@Builder** within **@Builder**.                                        |
 
@@ -175,7 +179,7 @@ function buildText(params: ParamsInterface) {
 @Entry
 @Component
 struct Index {
-  @State message: string = "HELLO"
+  @State message: string = "HELLO";
   private content: NodeContent = new NodeContent();
 
   build() {
@@ -186,7 +190,7 @@ struct Index {
             let buildNode = new BuilderNode<[ParamsInterface]>(this.getUIContext());
             buildNode.build(wrapBuilder<[ParamsInterface]>(buildText), {
               text: this.message, func: () => {
-                return "FUNCTION"
+                return "FUNCTION";
               }
             }, { nestingBuilderSupported: true });
             this.content.addFrameNode(buildNode.getFrameNode());
@@ -228,7 +232,7 @@ In this example, the BuilderNode is returned as the root node of the **NodeConta
 import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -255,7 +259,7 @@ class TextNodeController extends NodeController {
 
   makeNode(context: UIContext): FrameNode | null {
     this.textNode = new BuilderNode(context);
-    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message))
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
 
     return this.textNode.getFrameNode();
   }
@@ -264,7 +268,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -290,7 +294,7 @@ This example shows how to mount a FrameNode within a BuilderNode to another Fram
 import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -332,7 +336,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -358,7 +362,7 @@ This example shows how to mount a BuilderNode's RenderNode under another RenderN
 import { NodeController, BuilderNode, FrameNode, UIContext, RenderNode } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -406,7 +410,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -445,7 +449,7 @@ Updates this BuilderNode based on the provided parameter, which is of the same t
 import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -486,13 +490,13 @@ class TextNodeController extends NodeController {
   private message: string = "";
 
   constructor(message: string) {
-    super()
-    this.message = message
+    super();
+    this.message = message;
   }
 
   makeNode(context: UIContext): FrameNode | null {
     this.textNode = new BuilderNode(context);
-    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message))
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
     return this.textNode.getFrameNode();
   }
 
@@ -506,7 +510,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
   private textNodeController: TextNodeController = new TextNodeController(this.message);
   private count = 0;
 
@@ -577,7 +581,7 @@ Posts a raw touch event to the FrameNode created by this BuilderNode.
 import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 
 class Params {
-  text: string = "this is a text"
+  text: string = "this is a text";
 }
 
 @Builder
@@ -606,7 +610,7 @@ class MyNodeController extends NodeController {
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new BuilderNode(uiContext);
-    this.rootNode.build(this.wrapBuilder, { text: "this is a string" })
+    this.rootNode.build(this.wrapBuilder, { text: "this is a string" });
     return this.rootNode.getFrameNode();
   }
 
@@ -618,7 +622,7 @@ class MyNodeController extends NodeController {
     let node: FrameNode | null = this.rootNode.getFrameNode();
     let offsetX: number | null | undefined = node?.getPositionToParent().x;
     let offsetY: number | null | undefined = node?.getPositionToParent().y;
-    ;
+    
     let changedTouchLen = event.changedTouches.length;
     for (let i = 0; i < changedTouchLen; i++) {
       if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
@@ -662,6 +666,12 @@ struct MyComponent {
 dispose(): void
 
 Releases this BuilderNode immediately. Calling **dispose** on a **BuilderNode** object breaks its reference to the backend entity node, and also simultaneously severs the references of its contained FrameNode and RenderNode to their respective entity nodes.
+
+> **NOTE**
+>
+> Calling **dispose** on a **BuilderNode** object breaks its reference to the backend entity node, and also simultaneously severs the references of its contained FrameNode and RenderNode to their respective entity nodes.
+>
+> If the frontend object BuilderNode cannot be released, memory leaks may occur. To avoid this, be sure to call **dispose** on the BuilderNode when you no longer need it. This reduces the complexity of reference relationships and lowers the risk of memory leaks.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -779,7 +789,7 @@ import { FrameNode,NodeController,BuilderNode,UIContext } from "@kit.ArkUI";
 
 class MyDataSource {
   private dataArray: string[] = [];
-  private listener: DataChangeListener | null = null
+  private listener: DataChangeListener | null = null;
 
   public totalCount(): number {
     return this.dataArray.length;
@@ -909,7 +919,7 @@ struct Index {
 
 ### updateConfiguration<sup>12+</sup>
 
-updateConfiguration(): void  
+updateConfiguration(): void
 
 Updates the configuration of the entire node by passing in a [system environment change](../apis-ability-kit/js-apis-app-ability-configuration.md) event.
 
@@ -924,10 +934,10 @@ Updates the configuration of the entire node by passing in a [system environment
 **Example**
 ```ts
 import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
-import { AbilityConstant, Configuration, EnvironmentCallback } from '@kit.AbilityKit';
+import { AbilityConstant, Configuration, ConfigurationConstant, EnvironmentCallback } from '@kit.AbilityKit';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -947,8 +957,6 @@ struct TextBuilder {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .margin({ bottom: 36 })
-          .fontColor($r(`app.color.text_color`))
-          .backgroundColor($r(`app.color.start_window_background`))
       }
     }
   }
@@ -961,9 +969,8 @@ function buildText(params: Params) {
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
       .margin({ bottom: 36 })
-      .fontColor($r(`app.color.text_color`))
     TextBuilder({ message: params.text }) // Custom component
-  }.backgroundColor($r(`app.color.start_window_background`))
+  }.backgroundColor($r('sys.color.ohos_id_color_background'))
 }
 
 class TextNodeController extends NodeController {
@@ -971,7 +978,7 @@ class TextNodeController extends NodeController {
   private message: string = "";
 
   constructor(message: string) {
-    super()
+    super();
     this.message = message;
   }
 
@@ -1011,7 +1018,7 @@ function updateColorMode() {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
   private textNodeController: TextNodeController = new TextNodeController(this.message);
   private count = 0;
 
@@ -1024,9 +1031,12 @@ struct Index {
         console.log('onConfigurationUpdated ' + JSON.stringify(config));
         updateColorMode();
       }
-    }
+    };
     // Register a callback.
     this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback);
+    // Set the application color mode to follow the system settings.
+    this.getUIContext()
+      .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
     // Create a custom node and add it to the map.
     this.textNodeController.createNode(this.getUIContext());
   }
@@ -1048,6 +1058,16 @@ struct Index {
             this.count += 1;
             const message = "Update " + this.count.toString();
             this.textNodeController.update(message);
+          })
+        Button('Switch to Dark Mode')
+          .onClick(() => {
+            this.getUIContext()
+              .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
+          })
+        Button('Switch to Light Mode')
+          .onClick(() => {
+            this.getUIContext()
+              .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT);
           })
       }
       .width('100%')

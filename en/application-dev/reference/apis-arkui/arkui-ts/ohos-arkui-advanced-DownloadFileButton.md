@@ -9,8 +9,8 @@
 
 ##  Modules to Import
 
-```
-import { DownloadFileButton } from '@kit.ArkUI'
+```ts
+import { DownloadFileButton } from '@kit.ArkUI';
 ```
 
 ## Child Components

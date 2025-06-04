@@ -22,8 +22,8 @@ Returns the width and height of the component. The default unit is vp, but APIs 
 
 | Name  | Type  | Readable| Writable| Description                  |
 | ------ | ------ | ---- | ---- | ---------------------- |
-| width  | number | Yes  | Yes  | Width of the component.<br>Unit: vp|
-| height | number | Yes  | Yes  | Height of the component.<br>Unit: vp|
+| width  | number | Yes  | Yes  | Width of the component.<br>Unit: vp.<br>Value range: [0, +∞).|
+| height | number | Yes  | Yes  | Height of the component.<br>Unit: vp.<br>Value range: [0, +∞).|
 
 ## Position
 
@@ -37,7 +37,7 @@ Sets or returns the position of the component.
 
 | Type               | Description                               |
 | ------------------- | ----------------------------------- |
-| [Vector2](#vector2) | A vector that contains two values: x and y.<br>Unit: vp|
+| [Vector2](#vector2) | A vector that contains two values: x and y.<br>Unit: vp.|
 
 ## PositionT<sup>12+</sup>
 
@@ -51,7 +51,7 @@ Sets or returns the position of the component.
 
 | Type                        | Description                               |
 | ---------------------------- | ----------------------------------- |
-| [Vector2T\<T>](#vector2tt12) | A vector that contains two values: x and y.<br>Unit: vp|
+| [Vector2T\<T>](#vector2tt12) | A vector that contains two values: x and y.<br>Unit: vp.|
 
 ## Frame
 
@@ -63,10 +63,10 @@ Sets or returns the layout size and position of the component.
 
 | Name  | Type  | Read Only| Optional| Description                       |
 | ------ | ------ | ---- | ---- | --------------------------- |
-| x      | number | Yes  | Yes  | Horizontal position.<br>Unit: vp|
-| y      | number | Yes  | Yes  | Vertical position.<br>Unit: vp|
-| width  | number | Yes  | Yes  | Component width.<br>Unit: vp  |
-| height | number | Yes  | Yes  | Component height.<br>Unit: vp  |
+| x      | number | Yes  | Yes  | Horizontal position.<br>Unit: vp.<br>Value range: (-∞, +∞).|
+| y      | number | Yes  | Yes  | Vertical position.<br>Unit: vp.<br>Value range: (-∞, +∞).|
+| width  | number | Yes  | Yes  | Component width.<br>Unit: vp.<br>Value range: [0, +∞).  |
+| height | number | Yes  | Yes  | Component height.<br>Unit: vp.<br>Value range: [0, +∞).  |
 
 ## Pivot
 
@@ -122,7 +122,7 @@ Sets the rotation angle of the component.
 
 | Type               | Description                                  |
 | ------------------- | -------------------------------------- |
-| [Vector3](#vector3) | Rotation angle along the x- and y-axis.<br>Unit: vp|
+| [Vector3](#vector3) | Rotation angle along the x- and y-axis.<br>Unit: degree|
 
 ## Offset
 
@@ -136,7 +136,7 @@ Sets the offset of the component or effect.
 
 | Type               | Description                             |
 | ------------------- | --------------------------------- |
-| [Vector2](#vector2) | Offset along the x- and y-axis.<br>Unit: vp|
+| [Vector2](#vector2) | Offset along the x- and y-axis.<br>Unit: vp.|
 
 ## Matrix4
 
@@ -150,7 +150,7 @@ Sets a 4x4 matrix.
 
 | Type                                                        | Description                                |
 | ------------------------------------------------------------ | ------------------------------------ |
-| [number,number,number,number,<br>number,number,number,number,<br>number,number,number,number,<br>number,number,number,number] | A 16-element array representing a 4x4 matrix.|
+| [number,number,number,number,<br>number,number,number,number,<br>number,number,number,number,<br>number,number,number,number] | A 16-element array representing a 4x4 matrix.<br>Value range of each number: (-∞, +∞)|
 
 The **Matrix4** type is used to set transformation information for components. The following is an example:
 ```ts
@@ -162,10 +162,6 @@ const transform: Matrix4 = [
 ]
 ```
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
 ## Vector2
 
 Defines a vector that contains the x and y coordinate values.
@@ -176,8 +172,8 @@ Defines a vector that contains the x and y coordinate values.
 
 | Name| Type  | Read Only| Optional| Description             |
 | ---- | ------ | ---- | ---- | ----------------- |
-| x    | number | No  | No  | X coordinate value of the vector.|
-| y    | number | No  | No  | Y coordinate value of the vector.|
+| x    | number | No  | No  | X coordinate value of the vector.<br>Value range: (-∞, +∞).|
+| y    | number | No  | No  | Y coordinate value of the vector.<br>Value range: (-∞, +∞).|
 
 ## Vector3
 
@@ -189,9 +185,9 @@ Represents a vector including three values: x, y, and z.
 
 | Name| Type  | Read Only| Optional| Description               |
 | ---- | ------ | ---- | ---- | ------------------- |
-| x    | number | No  | No  | Rotation angle along the x-axis.|
-| y    | number | No  | No  | Rotation angle along the y-axis.|
-| z    | number | No  | No  | Rotation angle along the z-axis.|
+| x    | number | No  | No  | Rotation angle along the x-axis.<br>Value range: (-∞, +∞).|
+| y    | number | No  | No  | Rotation angle along the y-axis.<br>Value range: (-∞, +∞).|
+| z    | number | No  | No  | Rotation angle along the z-axis.<br>Value range: (-∞, +∞).|
 
 ## Vector2T\<T><sup>12+</sup>
 
@@ -330,11 +326,11 @@ Enumerates length units.
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| [PX](arkui-ts/ts-types.md#px10) | 0 | Length in px.|
-| [VP](arkui-ts/ts-types.md#vp10) | 1 | Length in vp.|
-| [FP](arkui-ts/ts-types.md#fp10) | 2 | Length in fp.|
-| [PERCENT](arkui-ts/ts-types.md#percentage10) | 3 | Length in percentage.|
-| [LPX](arkui-ts/ts-types.md#lpx10) | 4 | Length in lpx.|
+| PX | 0 | Length in px.|
+| VP | 1 | Length in vp.|
+| FP | 2 | Length in fp.|
+| PERCENT | 3 | Length in percentage.|
+| LPX | 4 | Length in lpx.|
 
 ## SizeT\<T><sup>12+</sup>
 
@@ -364,7 +360,7 @@ Enumerates length units.
 
 ## LengthMetrics<sup>12+</sup>
 
-Sets the metrics of length. When the length unit is [PERCENT](arkui-ts/ts-types.md#percentage10), the value **1** indicates 100%.
+Defines the length properties. When the length unit is PERCENT, the value **1** indicates 100%.
 
 ### Properties
 
@@ -374,14 +370,14 @@ Sets the metrics of length. When the length unit is [PERCENT](arkui-ts/ts-types.
 
 | Name  | Type| Readable| Writable| Description            |
 | ------------ | ---------------------------------------- | ---- | ---- | ------ |
-| value       | number | Yes  | Yes  | Value of the length attribute.  |
-| unit | [LengthUnit](#lengthunit12)                                   | Yes  | Yes  | Unit of the length attribute. The default value is vp.|
+| value       | number | Yes  | Yes  | Value of the length property.  |
+| unit | [LengthUnit](#lengthunit12)                                   | Yes  | Yes  | Unit of the length property. The default value is VP.|
 
 ### constructor<sup>12+</sup>
 
 constructor(value: number, unit?: LengthUnit)
 
-A constructor used to create a **LengthMetrics** instance. If the **unit** parameter is not set or is set to **undefined**, the default unit VP is used. If the **unit** parameter is set to a value that is not of the LengthUnit type, the default value 0 VP is used.
+A constructor used to create a **LengthMetrics** instance. If the **unit** parameter is omitted or explicitly set to **undefined**, the default unit VP is used. If it is set to a value that is not of the LengthUnit type, the default value 0 VP is used.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -391,14 +387,14 @@ A constructor used to create a **LengthMetrics** instance. If the **unit** param
 
 | Name| Type         | Mandatory| Description        |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | Yes  | Value of the length attribute.|
-| unit   | [LengthUnit](#lengthunit12) | No  | Unit of the length attribute.|
+| value   | number | Yes  | Value of the length property.<br>Value range: [0, +∞).|
+| unit   | [LengthUnit](#lengthunit12) | No  | Unit of the length property.|
 
 ### px<sup>12+</sup>
 
 static px(value: number): LengthMetrics
 
-Creates a length attribute in px.
+Creates a length property in px.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -408,7 +404,7 @@ Creates a length attribute in px.
 
 | Name| Type         | Mandatory| Description        |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | Yes  | Value of the length attribute.|
+| value   | number | Yes  | Value of the length property.<br>Value range: (-∞, +∞).|
 
 **Return value**
 
@@ -420,7 +416,7 @@ Creates a length attribute in px.
 
 static vp(value: number): LengthMetrics
 
-Creates a length attribute in vp.
+Creates a length property in vp.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -430,7 +426,7 @@ Creates a length attribute in vp.
 
 | Name| Type         | Mandatory| Description        |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | Yes  | Value of the length attribute.|
+| value   | number | Yes  | Value of the length property.<br>Value range: (-∞, +∞).|
 
 **Return value**
 
@@ -442,7 +438,7 @@ Creates a length attribute in vp.
 
 static fp(value: number): LengthMetrics
 
-Creates a length attribute in fp.
+Creates a length property in fp.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -452,7 +448,7 @@ Creates a length attribute in fp.
 
 | Name| Type         | Mandatory| Description        |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | Yes  | Value of the length attribute.|
+| value   | number | Yes  | Value of the length property.<br>Value range: (-∞, +∞).|
 
 **Return value**
 
@@ -464,7 +460,7 @@ Creates a length attribute in fp.
 
 static percent(value: number): LengthMetrics
 
-Creates a length attribute in percentage.
+Creates a length property in percent. The value **1** indicates 100%.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -474,7 +470,7 @@ Creates a length attribute in percentage.
 
 | Name| Type         | Mandatory| Description        |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | Yes  | Value of the length attribute.|
+| value   | number | Yes  | Value of the length property.<br>Value range: [0, 1].|
 
 **Return value**
 
@@ -486,7 +482,7 @@ Creates a length attribute in percentage.
 
 static lpx(value: number): LengthMetrics
 
-Creates a length attribute in lpx.
+Creates a length property in lpx.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -496,7 +492,7 @@ Creates a length attribute in lpx.
 
 | Name| Type         | Mandatory| Description        |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | Yes  | Value of the length attribute.|
+| value   | number | Yes  | Value of the length property.<br>Value range: (-∞, +∞).|
 
 **Return value**
 
@@ -518,7 +514,7 @@ Represents the length of a resource of the Resource type.
 
 | Name| Type         | Mandatory| Description        |
 | ------ | ------------- | ---- | ------------ |
-| value   | Resource | Yes  | Value of the length attribute.|
+| value   | Resource | Yes  | Value of the length property.|
 
 **Return value**
 
@@ -545,7 +541,7 @@ Used to mix colors.
 
 static numeric(value: number): ColorMetrics
 
-Instantiates the **ColorMetrics** class using colors in HEX format.
+Instantiates the **ColorMetrics** class using a color in HEX format.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -555,7 +551,7 @@ Instantiates the **ColorMetrics** class using colors in HEX format.
 
 | Name| Type         | Mandatory| Description        |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | Yes  | Color in hexadecimal notation. RGB and ARGB are supported.|
+| value   | number | Yes  | Color in HEX format.<br>RGB and ARGB color values are supported.|
 
 **Return value**
 
@@ -580,7 +576,7 @@ Instantiates the **ColorMetrics** class using colors in RGB or RGBA format.
 | red   | number | Yes  | Red component of the color. The value is an integer ranging from 0 to 255.|
 | green | number | Yes  | Green component of the color. The value is an integer ranging from 0 to 255.|
 | blue  | number | Yes  | Blue component of the color. The value is an integer ranging from 0 to 255.|
-| alpha | number | No  | Alpha component of the color. The value is a floating point number ranging from 0 to 1.0.|
+| alpha | number | No  | Alpha component of the color. The value is a floating point number ranging from 0.0 to 1.0. The default value is **1.0** (fully opaque).|
 
 **Return value**
 
@@ -592,7 +588,7 @@ Instantiates the **ColorMetrics** class using colors in RGB or RGBA format.
 
 static resourceColor(color: ResourceColor): ColorMetrics
 
-Instantiates the **ColorMetrics** class using a resource format color.
+Instantiates the **ColorMetrics** class using a color in resource reference format.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -602,7 +598,7 @@ Instantiates the **ColorMetrics** class using a resource format color.
 
 | Name| Type         | Mandatory| Description        |
 | ------ | ------------- | ---- | ------------ |
-| color | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | Yes| Resource format color.|
+| color | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | Yes| Color in resource reference format.|
 
 **Return value**
 
@@ -847,7 +843,7 @@ Describes a circle.
 | ------- | ------ | ---- | ---- | ------------------------- |
 | centerX | number | Yes  | Yes  | X coordinate of the center of the circle, in px.|
 | centerY | number | Yes  | Yes  | Y coordinate of the center of the circle, in px.|
-| radius  | number | Yes  | Yes  | Radius of the circle, in px.   |
+| radius  | number | Yes  | Yes  | Radius of the circle, in px.<br> Value range: [0, +∞).  |
 
 ## CommandPath<sup>12+</sup>
 
@@ -1727,7 +1723,7 @@ Generates an **edgeColors** object with the specified edge color for all edges.
 
 | Name| Type  | Mandatory| Description                |
 | ------ | ------ | ---- | -------------------- |
-| all    | number | Yes  | Edge color, in ARGB format.|
+| all    | number | Yes  | Edge color, in ARGB format, for example, **0xffff00ff**.<br>Value range: [0, 0xffffffff]|
 
 **Return value**
 
@@ -1789,7 +1785,7 @@ Generates an **edgeWidths** object with the specified edge width for all edges.
 
 | Name| Type  | Mandatory| Description                |
 | ------ | ------ | ---- | -------------------- |
-| all    | number | Yes  | Edge width, in vp.|
+| all    | number | Yes  | Edge width, in vp.<br>Value range: [0, +∞).|
 
 **Return value**
 
@@ -1914,7 +1910,7 @@ Generates a **borderRadiuses** object with the specified radius for all border c
 
 | Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
-| all    | number | Yes  | Radius of border corners.|
+| all    | number | Yes  | Radius of border corners.<br>Unit: vp.<br>Value range: [0, +∞).|
 
 **Return value**
 
