@@ -368,7 +368,7 @@ try {
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
 
-| 名称        | 类型   | 可读   | 可选   | 说明      |
+| 名称        | 类型   | 只读   | 可选   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
 | isPressed       | boolean | 是    |  否 | 按键是否按下。<br>true表示按键按下，false表示按键抬起。   |
 | keyCode         | number  | 是    |  否 | 按键键码值。当前仅支持返回键/KEYCODE_BACK键。 |
@@ -391,7 +391,7 @@ try {
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
 
-| 名称        | 类型   | 可读   | 可选   | 说明      |
+| 名称        | 类型   | 只读   | 可选   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
 | mouseEvent | [MouseEvent](js-apis-mouseevent.md#mouseevent) | 是    |  否 | 鼠标注入描述信息。   |
 
@@ -401,6 +401,6 @@ try {
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
 
-| 名称        | 类型   | 可读   | 可选   | 说明      |
+| 名称        | 类型   | 只读   | 可选   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
 | touchEvent | [TouchEvent](js-apis-touchevent.md#touchevent) | 是    |  否 | 触摸屏注入描述信息。   |

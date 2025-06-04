@@ -66,7 +66,7 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@kit.InputKit';
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-| 名称    | 类型   | 可读   | 可选   | 说明   |
+| 名称    | 类型   | 只读   | 可选   | 说明   |
 | ----- | ------ | ---- | ---- | ---- |
 | axis  | [Axis](#axis)   | 是    | 否    | 轴类型。  |
 | value | number | 是    | 否    | 轴的值。  |
@@ -90,7 +90,7 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@kit.InputKit';
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-| 名称             | 类型        | 可读   | 可选   | 说明                                       |
+| 名称             | 类型        | 只读   | 可选   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
 | action         | [Action](#action)      | 是    | 否    | 鼠标事件动作。                                   |
 | screenX        | number      | 是    | 否    | 鼠标光标在屏幕中的横坐标。                             |
