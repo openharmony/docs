@@ -27,4 +27,11 @@
   
   <!--DelEnd-->
   - [连接增强错误码](errorcode_linkEnhance.md)
+  - C API<!--distributed-service-c-->
+    - 模块<!--distributed-service-moudle-->
+      - [DeviceManager](capi-devicemanager.md)
+    - 头文件<!--distributed-service-headerfile-->
+      - [oh_device_manager.h](capi-oh-device-manager-h.md)
+      - [oh_device_manager_err_code.h](capi-oh-device-manager-err-code-h.md)
+    
 
