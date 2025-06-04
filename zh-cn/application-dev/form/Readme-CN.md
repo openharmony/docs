@@ -40,9 +40,8 @@
     - 互动卡片开发
       - [互动卡片概述](arkts-ui-liveform-overview.md)
       - 趣味交互类型互动卡片
-        - [趣味交互类型互动卡片概述](arkts-ui-liveform-funinteraction-overview.md)
-        - [趣味交互类型互动卡片开发指导](arkts-ui-liveform-funinteraction-development.md) 
-      - 场景动效动效互动卡片
+        - [趣味交互类型互动卡片概述和开发指导](arkts-ui-liveform-funinteraction-overview.md)
+      - 场景动效类型互动卡片
         - [场景动效类型互动卡片概述](arkts-ui-liveform-sceneanimation-overview.md)
         - [场景动效类型互动卡片开发指导](arkts-ui-liveform-sceneanimation-development.md)
         <!--Del-->
