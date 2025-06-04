@@ -255,6 +255,7 @@ muteCameraPersistent(mute: boolean, type: PolicyType): void
 | --------------- | --------------- |
 | 201               |Permission denied                       |
 | 202               |  Not System Application.               |
+| 7400101           |  Parameter missing or parameter type incorrect.  |
 
 **示例：**
 
