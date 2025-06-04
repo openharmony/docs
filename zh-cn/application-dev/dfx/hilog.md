@@ -223,7 +223,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ### 进程超限开关
 
-   ```
+   ```shell
    hilog -Q pidon/pidoff
    ```
 
@@ -231,33 +231,33 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
    开启进程超限管控：
 
-   ```
+   ```shell
    $ hilog -Q pidon
    Set flow control by process to enabled successfully
    ```
 
    关闭进程超限管控：
-   ```
+   ```shell
    $ hilog -Q pidoff
    Set flow control by process to disabled successfully
    ```
 
 ### domain超限开关
 
-   ```
+   ```shell
    hilog -Q domainon/domainoff
    ```
 
    **使用样例：**
 
    开启domain超限管控：
-   ```
+   ```shell
    $ hilog -Q domainon
    Set flow control by domain to enabled successfully
    ```
 
    关闭domain超限管控：
-   ```
+   ```shell
    $ hilog -Q domainoff
    Set flow control by domain to disabled successfully
    ```
@@ -577,7 +577,7 @@ domainID维度管控，打印到LOG_CORE buffer里面的系统日志适配了dom
 
 LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局的日志丢失；write socket failed是进程对应的日志丢失。
 
-> 说明：
+> **说明：**
 >
 > 当出现这些打印时，说明日志已经丢失，无法恢复找回。
 >
