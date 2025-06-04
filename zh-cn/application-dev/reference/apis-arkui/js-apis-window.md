@@ -50,7 +50,7 @@ import { window } from '@kit.ArkUI';
 | parentId   | number                     | 否 | 父窗口id。不设置，则默认为-1，该参数应为整数。                                                           |
 | decorEnabled<sup>12+</sup> | boolean | 否 | 是否显示窗口装饰，仅在windowType为TYPE_DIALOG时生效。true表示显示，false表示不显示。此参数默认值为false。<br>**系统能力：** SystemCapability.Window.SessionManager |
 | title<sup>12+</sup> | string| 否 | `decorEnabled`属性设置为true时，窗口的标题内容。标题显示区域最右端不超过系统三键区域最左端，超过部分以省略号表示。不设置，则默认为空字符串。 <br>**系统能力：** SystemCapability.Window.SessionManager |
-| defaultDensityEnabled<sup>20+</sup> | boolean| 否 | 是否使用系统默认density。true表示固定使用系统默认density，即创建出的系统窗口的内容显示大小不会随系统及主窗口的density变化而变化；false或者不指定本字段表示新建系统窗口的density不固定，即创建出的系统窗口的内容显示大小会随系统及主窗口的density变化而变化。默认为false。<br>**系统能力：** SystemCapability.Window.SessionManager |
+| defaultDensityEnabled<sup>20+</sup> | boolean| 否 | 是否使用系统默认Density，使用系统默认Density之后，窗口不会跟随系统显示大小变化重新布局。<br>当创建子窗口或系统窗口设置此参数为true时，表示当前窗口使用系统默认Density，且不受设置的主窗口的相关影响。<br>当创建子窗口或系统窗口设置此参数为false时，表示当前窗口不使用Density，且会受到设置的主窗口的相关影响。<br>默认为false。<br>**系统能力：** SystemCapability.Window.SessionManager |
 
 ## AvoidAreaType<sup>7+</sup>
 
@@ -13772,7 +13772,7 @@ export default class EntryAbility extends UIAbility {
 
 setDefaultDensityEnabled(enabled: boolean): void
 
-设置应用主窗口是否使用系统默认Density，子窗会跟随主窗生效。调用此接口前，需先调用[WindowStage.loadContent()](#loadcontent9-2)初始化布局，确保接口调用时序正确。
+设置应用主窗口是否使用系统默认Density，子窗和系统窗口会跟随主窗生效。调用此接口前，需先调用[WindowStage.loadContent()](#loadcontent9-2)初始化布局，确保接口调用时序正确。
 
 不调用此接口进行设置，则表示不使用系统默认Density，即窗口会跟随系统显示大小变化重新布局。
 
@@ -13833,7 +13833,7 @@ export default class EntryAbility extends UIAbility {
 
 setCustomDensity(density: number): void
 
-支持应用主窗口自定义其显示大小缩放系数，子窗会跟随主窗生效。当存在同时使用该接口和[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时，以最后调用的设置效果为准。
+支持应用主窗口自定义其显示大小缩放系数，子窗和系统窗口会跟随主窗生效。当存在同时使用该接口和[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时，以最后调用的设置效果为准。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
