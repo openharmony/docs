@@ -30,7 +30,7 @@ export default class MyLiveFormExtensionAbility extends LiveFormExtensionAbility
     let storage: LocalStorage = new LocalStorage();
     storage.setOrCreate('session', session);
 
-    // 获取参卡片 ID 与激活态渲染区域
+    // 获取卡片ID
     let formId: string = liveFormInfo.formId as string;
     storage.setOrCreate('formId', formId);
     console.log(`MyLiveFormExtensionAbility onSessionCreate formId: ${formId}`);
@@ -100,7 +100,6 @@ struct MyLiveFormPage {
 
   build() {
     Stack() {
-      // 动效
       Stack()
         .width(ANIMATION_RECT_SIZE)
         .height(ANIMATION_RECT_SIZE)
