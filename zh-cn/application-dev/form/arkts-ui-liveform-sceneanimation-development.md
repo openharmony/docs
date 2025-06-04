@@ -65,7 +65,7 @@ struct WidgetCard {
 ```
 
 ### 卡片激活态 UI 开发
-卡片激活态由 LiveFormExtensionAbility 进程承载。LiveFormExtensionAbility 是专供 3D 互动卡片，用于卡片激活态开发的特殊类型 UIExtensionAbility 。其特点在于：开发者可以在通过 LiveFormExtensionAbility **在卡片区域嵌入应用提供的自定义 UI**。 LiveFormExtensionAbility 会在独立于 UIAbility 的进程中运行，完成其页面的布局和渲染。
+卡片激活态由 LiveFormExtensionAbility 进程承载。LiveFormExtensionAbility 是专供互动卡片，用于卡片激活态开发的特殊类型 UIExtensionAbility 。其特点在于：开发者可以在通过 LiveFormExtensionAbility **在卡片区域嵌入应用提供的自定义 UI**。 LiveFormExtensionAbility 会在独立于 UIAbility 的进程中运行，完成其页面的布局和渲染。
 
 关于 LiveFormExtensionAbility 生命周期管理等详细信息，可参考 [LiveFormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md)。
 
@@ -351,7 +351,7 @@ export class Utils {
 }
 ```
 
-### 动效申请与业务编排
+### 动效触发
 
 卡片加桌过程时，[onUpdateForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonupdateform) 生命周期回调中，通过 wantParams 中返回卡片实际尺寸，并以此计算动效申请范围。
 
