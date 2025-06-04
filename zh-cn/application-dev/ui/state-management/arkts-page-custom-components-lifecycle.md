@@ -224,7 +224,7 @@ struct Page {
 
 以上示例中，Index页面包含两个自定义组件，一个是被\@Entry装饰的MyComponent，也是页面的入口组件，即页面的根节点；一个是Child，是MyComponent的子组件。只有\@Entry装饰的节点才可以使页面级别的生命周期方法生效，因此在MyComponent中声明当前Index页面的页面生命周期函数（onPageShow / onPageHide / onBackPress）。MyComponent及其子组件Child分别声明了各自的组件级别生命周期函数（aboutToAppear / onDidBuild / aboutToDisappear）。
 
-- 应用冷启动的初始化流程为：MyComponent aboutToAppear --&gt; MyComponent build --&gt; MyComponent onDidBuild --&gt; Child aboutToAppear --&gt; Child build --&gt; Child onDidBuild --&gt; Index onPageShow。此时日志输出信息如下：
+- 应用冷启动的初始化流程为：MyComponent aboutToAppear --&gt; MyComponent build --&gt; MyComponent onDidBuild --&gt; Child aboutToAppear --&gt; Child build --&gt; Child onDidBuild --&gt; Index onPageShow。此处体现了自定义组件懒展开特性，即MyComponent执行完onDidBuild之后才会执行Child组件的aboutToAppear。日志输出信息如下：
 
 ```ts
 MyComponent aboutToAppear

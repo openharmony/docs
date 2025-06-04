@@ -12,7 +12,7 @@ Want是对象间信息传递的载体，可以用于应用组件间的信息传�
 import { Want } from '@kit.AbilityKit';
 ```
 
-## 属性
+## Want
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 

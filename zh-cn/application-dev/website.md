@@ -217,9 +217,6 @@
         - [通过关系型数据库实现数据持久化](database/data-persistence-by-rdb-store.md)
         - [通过向量数据库实现数据持久化 (ArkTS)](database/data-persistence-by-vector-store.md)
         - [通过向量数据库实现数据持久化 (C/C++)](database/native-vector-store-guidelines.md)
-        <!--Del-->
-        - [通过图数据库实现数据持久化（仅对系统应用开放）](database/data-persistence-by-graph-store.md)
-        <!--DelEnd-->
       - 同应用跨设备数据同步（分布式）<!--distributed-data-sync-->
         - [同应用跨设备数据同步概述](database/sync-app-data-across-devices-overview.md)
         - [键值型数据库跨设备数据同步](database/data-sync-of-kv-store.md)
@@ -1346,11 +1343,11 @@
           - [事件上报](dfx/hiappevent-event-reporting.md)
         <!--DelEnd-->
         - HiTraceMeter使用指导<!--hitracemeter-->
-          - [使用HiTraceMeter跟踪性能（ArkTS/JS）](dfx/hitracemeter-guidelines-arkts.md)
+          - [使用HiTraceMeter跟踪性能（ArkTS）](dfx/hitracemeter-guidelines-arkts.md)
           - [使用HiTraceMeter跟踪性能（C/C++）](dfx/hitracemeter-guidelines-ndk.md)
           - [查看HiTraceMeter日志](dfx/hitracemeter-view.md)
         - HiTraceChain使用指导<!--hitracechain-->
-          - [使用HiTraceChain打点（ArkTS/JS）](dfx/hitracechain-guidelines-arkts.md)
+          - [使用HiTraceChain打点（ArkTS）](dfx/hitracechain-guidelines-arkts.md)
           - [使用HiTraceChain打点（C/C++）](dfx/hitracechain-guidelines-ndk.md)
         - HiChecker使用指导<!--hichecker-->
           - [使用HiChecker检测问题（ArkTS/JS）](dfx/hichecker-guidelines-arkts.md)
@@ -1673,6 +1670,7 @@
       - [NativeImage开发指导 (C/C++)](graphics/native-image-guidelines.md)
       - [NativeVSync开发指导 (C/C++)](graphics/native-vsync-guidelines.md)
       - [NativeWindow开发指导 (C/C++)](graphics/native-window-guidelines.md)
+      - [GPU/CPU内存访问同步操作开发指南 (C/C++)](graphics/native-fence-guidelines.md)
       - [图形开发术语](graphics/graphic-term.md)
     - ArkGraphics 3D（方舟3D图形）<!--arkgraphics-3d-->
       - [ArkGraphics 3D简介](graphics3d/arkgraphics3D-overview.md)
@@ -2301,7 +2299,6 @@
         - [@ohos.data.dataSharePredicates (数据共享谓词)(系统接口)](reference/apis-arkdata/js-apis-data-dataSharePredicates-sys.md)
         - [@ohos.data.dataShareResultSet (数据共享结果集)(系统接口)](reference/apis-arkdata/js-apis-data-DataShareResultSet-sys.md)
         - [@ohos.data.distributedKVStore (分布式键值数据库)(系统接口)](reference/apis-arkdata/js-apis-distributedKVStore-sys.md)
-        - [@ohos.data.graphStore (图数据库)(系统接口)](reference/apis-arkdata/js-apis-data-graphStore-sys.md)
         - [@ohos.data.relationalStore (关系型数据库)(系统接口)](reference/apis-arkdata/js-apis-data-relationalStore-sys.md)
         <!--DelEnd-->
         - 已停止维护的接口<!--arkdata-arkts-dep-->
@@ -2386,9 +2383,6 @@
           - [OH_UdsArrayBuffer](reference/apis-arkdata/capi-oh-udsarraybuffer.md)
           - [OH_UdsContentForm](reference/apis-arkdata/capi-oh-udscontentform.md)
       - 错误码<!--arkdata-arkts-errcode-->
-        <!--Del-->
-        - [图数据库错误码](reference/apis-arkdata/errorcode-data-gdb.md)
-        <!--DelEnd-->
         - [关系型数据库错误码](reference/apis-arkdata/errorcode-data-rdb.md)
         - [数据共享错误码](reference/apis-arkdata/errorcode-datashare.md)
         - [分布式数据对象错误码](reference/apis-arkdata/errorcode-distributed-dataObject.md)
@@ -3298,6 +3292,7 @@
         - [@ohos.app.form.formInfo (FormInfo)](reference/apis-form-kit/js-apis-app-form-formInfo.md)
         - [@ohos.app.form.formProvider (FormProvider)](reference/apis-form-kit/js-apis-app-form-formProvider.md)
         - [@ohos.app.form.FormEditExtensionAbility (FormEditExtensionAbility)](reference/apis-form-kit/js-apis-app-form-formEditExtensionAbility.md)
+        - [@ohos.app.form.LiveFormExtensionAbility (LiveFormExtensionAbility)](reference/apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md)
         <!--Del-->
         - [@ohos.app.form.formAgent (FormAgent)(系统接口)](reference/apis-form-kit/js-apis-app-form-formAgent-sys.md)
         - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)(系统接口)](reference/apis-form-kit/js-apis-app-form-formExtensionAbility-sys.md)
@@ -3309,6 +3304,7 @@
         - application<!--form-arkts-application-->
           - [FormExtensionContext](reference/apis-form-kit/js-apis-inner-application-formExtensionContext.md)
           - [FormEditExtensionContext](reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md)
+          - [LiveFormExtensionContext](reference/apis-form-kit/js-apis-application-LiveFormExtensionContext.md)
           <!--Del-->
           - [FormExtensionContext(系统接口)](reference/apis-form-kit/js-apis-inner-application-formExtensionContext-sys.md)
           <!--DelEnd-->
@@ -3638,6 +3634,12 @@
           <!--Del-->
           - [键鼠穿越管理错误码](reference/apis-distributedservice-kit/errorcode-devicestatus.md)
           <!--DelEnd-->
+        - C API<!--distributed-service-c-->
+          - 模块<!--distributed-service-moudle-->
+            - [DeviceManager](reference/apis-distributedservice-kit/capi-devicemanager.md)
+          - 头文件<!--distributed-service-headerfile-->
+            - [oh_device_manager.h](reference/apis-distributedservice-kit/capi-oh-device-manager-h.md)
+            - [oh_device_manager_err_code.h](reference/apis-distributedservice-kit/capi-oh-device-manager-err-code-h.md)
       - Network Kit（网络服务）<!--network-api-->
         - ArkTS API<!--network-api-arkts-->
           - [@ohos.net.connection (网络连接管理)](reference/apis-network-kit/js-apis-net-connection.md)
@@ -4560,6 +4562,7 @@
           - [OH_NativeImage](reference/apis-arkgraphics2d/capi-oh-nativeimage.md)
           - [NativeVsync](reference/apis-arkgraphics2d/capi-nativevsync.md)
           - [NativeWindow](reference/apis-arkgraphics2d/capi-nativewindow.md)
+          - [NativeFence](reference/apis-arkgraphics2d/capi-nativefence.md)
         - 头文件<!--arkgraphics-headerfile-->
           - [buffer_common.h](reference/apis-arkgraphics2d/capi-buffer-common-h.md)
           - [native_buffer.h](reference/apis-arkgraphics2d/capi-native-buffer-h.md)
@@ -4613,6 +4616,7 @@
           - [buffer_handle.h](reference/apis-arkgraphics2d/capi-buffer-handle-h.md)
           - [external_window.h](reference/apis-arkgraphics2d/capi-external-window-h.md)
           - [graphic_error_code.h](reference/apis-arkgraphics2d/capi-graphic-error-code-h.md)
+          - [native_fence.h](reference/apis-arkgraphics2d/capi-native-fence-h.md)
         - 结构体<!--arkgraphics-struct-->
           - [OH_NativeBuffer_ColorXY](reference/apis-arkgraphics2d/capi-oh-nativebuffer-colorxy.md)
           - [OH_NativeBuffer_Smpte2086](reference/apis-arkgraphics2d/capi-oh-nativebuffer-smpte2086.md)
@@ -4724,7 +4728,7 @@
           - [SceneType](reference/apis-arkgraphics3d/js-apis-inner-scene-types.md)
           - [SceneResources](reference/apis-arkgraphics3d/js-apis-inner-scene-resources.md)
           - [ScenePostProcessSettings](reference/apis-arkgraphics3d/js-apis-inner-scene-post-process-settings.md)
-    - 应用服务<!--application-service-reference-->
+  - 应用服务<!--application-service-reference-->
     <!--Del-->
     - Ads Kit（广告服务）<!--ads-api-->
       - ArkTS API<!--ads-arkts-->
@@ -4882,6 +4886,7 @@
     - [libuv](reference/native-lib/libuv.md)
     - [OpenSL ES](reference/native-lib/opensles.md)
     - [OpenGL ES](reference/native-lib/opengles.md)
+    - [OpenGL](reference/native-lib/opengles.md)
     - [EGL](reference/native-lib/egl.md)
     - [ICU4C](reference/native-lib/icu4c.md)
     - [Zlib](reference/native-lib/zlib.md)
@@ -4904,3 +4909,4 @@
       - [Native api中导出的EGL符号列表](reference/native-lib/egl-symbol.md)
       - [Native api中导出的ICU4C符号列表](reference/native-lib/icu4c-symbol.md)
       - [Native api中导出的OpenGL ES 3.2符号列表](reference/native-lib/openglesv3-symbol.md)
+      - [Native api中导出的OpenGL 3.0符号列表](reference/native-lib/opengl-symbol.md)

@@ -5,13 +5,9 @@
 
 触摸事件中触摸点的信息。
 
-**起始版本：**
+**起始版本：** 8
 
-8
-
-**相关模块：**
-
-[Native XComponent](_o_h___native_x_component.md)
+**相关模块：**[Native XComponent](_o_h___native_x_component.md)
 
 **所在头文件：** [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
 

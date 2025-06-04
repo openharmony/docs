@@ -4,20 +4,21 @@
 
 在应用开发中，UI的更新需要随着数据状态的变化进行实时同步，而这种同步往往决定了应用程序的性能和用户体验。为了解决数据与UI同步的复杂性，ArkUI采用了Model-View-ViewModel（MVVM）架构模式。MVVM将应用分为Model、View和ViewModel三个核心部分，实现数据、视图与逻辑的分离。通过这种模式，UI可以随着状态的变化自动更新，无需手动处理，从而更加高效地管理数据和视图的绑定与更新。
 
-- Model：负责存储和管理应用的数据以及业务逻辑，不直接与用户界面交互。通常从后端接口获取数据，是应用程序的数据基础，确保数据的一致性和完整性。
+- Model：存储和管理应用数据及业务逻辑，不直接与用户界面交互。通常从后端接口获取数据，是应用程序的数据基础，确保数据的一致性和完整性。
 - View：负责用户界面展示数据并与用户交互，不包含任何业务逻辑。它通过绑定ViewModel层提供的数据来动态更新UI。
 - ViewModel：负责管理UI状态和交互逻辑。作为连接Model和View的桥梁，ViewModel监控Model数据的变化，通知View更新UI，同时处理用户交互事件并转换为数据操作。
 
-
 ## 通过状态管理V2版本实现ViewModel
 
-在MVVM模式中，ViewModel扮演着至关重要的角色，负责管理数据状态，并在数据发生变化时自动更新视图。ArkUI的状态管理V2版本提供了丰富的装饰器和工具，帮助开发者在自定义组件之间共享数据，确保数据变化自动同步到UI。常用的状态管理装饰器包括\@Local、\@Param、\@Event、\@ObservedV2、\@Trace等等。除此之外，V2还提供了AppStorageV2和PersistenceV2作为全局状态存储工具，用于应用间的状态共享和持久化存储。
+在MVVM模式中，ViewModel负责管理数据状态，并在数据变化时自动更新视图。ArkUI的状态管理V2版本提供了丰富的装饰器和工具，帮助开发者在自定义组件之间共享数据，确保数据变化自动同步到UI。常用的状态管理装饰器包括\@Local、\@Param、\@Event、\@ObservedV2、\@Trace等等。此外，V2还提供了AppStorageV2和PersistenceV2作为全局状态存储工具，用于应用间的状态共享和持久化存储。
 
 本节将通过一个简单的todolist示例，逐步引入和使用状态管理V2的装饰器及工具，从基础的静态任务列表开始，逐步扩展功能。每个步骤都基于上一步扩展，帮助开发者循序渐进地理解并掌握各个装饰器的使用方法。
 
 ### 基础示例
 
-首先，从最基础的静态待办事项列表开始。在这个例子中，任务是静态的，没有状态变化和动态交互。
+首先，从静态待办事项列表开始。在示例1中，任务是静态的，没有状态变化和动态交互。
+
+**示例1**
 
 ```ts
 // src/main/ets/pages/1-Basic.ets
@@ -42,7 +43,9 @@ struct TodoList {
 
 完成静态待办列表展示后，为了让用户能够更改任务的完成状态，需要使待办事项能够响应交互并动态更新显示。为此，引入\@Local装饰器管理组件内部的状态。被\@Local装饰的变量发生变化时，会触发绑定的UI组件刷新。
 
-在这个例子中，新增了一个被\@Local装饰的isFinish属性代表任务是否完成。准备了两个图标：finished.png和unfinished.png，用于展示任务完成或未完成的状态。点击待办事项时，isFinish状态切换，从而更新图标和文本删除线的效果。
+在示例2中，新增@Local装饰的isFinish属性代表任务是否完成。两个图标finished.png和unfinished.png用于展示任务完成或未完成的状态。点击待办事项时，isFinish状态切换，从而更新图标和文本删除线的效果。
+
+**示例2**
 
 ```ts 
 // src/main/ets/pages/2-Local.ets
@@ -72,9 +75,11 @@ struct TodoList {
 ```
 
 ### 添加\@Param，实现组件接受外部输入
-实现了任务本地状态切换后，为了增强待办事项列表的灵活性，需要能够动态设置每个任务的名称，而不是固定在代码中。引入\@Param装饰器后，子组件被修饰的变量能够接收父组件传入的值，实现从父到子的单向数据同步。默认情况下，\@Param是只读的。如需在子组件中对传入的值进行本地更新，可使用\@Param \@Once进行配置。
+实现任务本地状态切换后，为增强待办事项列表的灵活性，需要能够动态设置每个任务的名称，而不是固定在代码中。引入\@Param装饰器后，子组件被装饰的变量可以接收父组件传入的值，实现单向数据同步。\@Param默认只读，使用\@Param \@Once可在子组件中对传入的值进行本地更新。
 
-在这个例子中，每个待办事项被抽象为TaskItem组件。被\@Param修饰的taskName属性从父组件TodoList传入任务名称，使TaskItem组件灵活且可复用，能接收并渲染不同的任务名称。被\@Param \@Once装饰的isFinish属性在接收初始值后，可以在子组件内更新。
+在示例3中，每个待办事项抽象为TaskItem组件。\@Param修饰的taskName属性从父组件TodoList传入任务名称，使TaskItem组件灵活且可复用，能够接收并渲染不同的任务名称。\@Param \@Once装饰的isFinish属性接收初始值后，可在子组件内更新。
+
+**示例3**
 
 ```ts
 // src/main/ets/pages/3-Param.ets
@@ -115,9 +120,11 @@ struct TodoList {
 
 ### 添加\@Event，实现组件对外输出
 
-在实现任务名称动态设置后，任务列表内容依然是固定的，需要增加任务项的添加和删除功能，以实现任务列表的动态扩展。为此，引入\@Event装饰器，用于实现子组件向父组件输出数据。
+实现任务名称动态设置后，任务列表内容固定。为了实现任务列表的动态扩展，需要增加任务项的添加和删除功能。为此，引入\@Event装饰器，用于子组件向父组件输出数据。
 
-在这个例子中，每个TaskItem增加了删除按钮，同时任务列表底部增加了添加新任务的功能。点击子组件TaskItem的“删除”按钮时，deleteTask事件会被触发并传递给父组件TodoList，父组件响应并将该任务从列表中移除。通过使用\@Param和\@Event，子组件不仅能接收父组件的数据，还能够将事件传递回父组件，实现数据的双向同步。
+在示例4中，每个TaskItem增加了删除按钮，同时任务列表底部增加了添加新任务的功能。点击子组件TaskItem的“删除”按钮时，deleteTask事件会被触发并传递给父组件TodoList，父组件响应并移除任务。通过使用\@Param和\@Event，子组件不仅能接收父组件的数据，还能够将事件传递回父组件，实现数据的双向同步。
+
+**示例4**
 
 ```ts
 // src/main/ets/pages/4-Event.ets
@@ -177,13 +184,15 @@ struct TodoList {
 
 ### 添加Repeat，实现子组件复用
 
-添加任务增删功能后，随着任务列表项的增加，需要一种方法可以高效渲染多个结构相同的子组件，来提高界面的性能表现。为此，引入了Repeat方法，用于优化任务列表的渲染过程。
+添加任务增删功能后，任务列表项增加，需要高效渲染多个结构相同的子组件，提高界面性能。引入Repeat方法，优化任务列表渲染。
 
 Repeat支持两种场景：懒加载场景和非懒加载场景。
 - 懒加载场景适用于大量数据的场景，在滚动类容器中按需加载组件，极大节省内存和提升渲染效率。
 - 非懒加载场景适用于数据量较小的场景，一次性渲染所有组件，并在数据变化时仅更新需要变化的部分，避免整体重新渲染。
 
-在本例中，由于任务量较少，使用Repeat非懒加载场景。新建一个任务数组tasks，并使用Repeat方法迭代数组中的每一项，动态生成并复用TaskItem组件。在任务增删时，这种方式能高效复用已有组件，避免重复渲染，从而提高界面响应速度和性能。这种机制有效地提高了代码的复用性和渲染效率。
+在示例5中，由于任务量较少，使用Repeat非懒加载场景。新建一个任务数组tasks，并使用Repeat方法迭代数组中的每一项，动态生成并复用TaskItem组件。在任务增删时，这种方式能高效复用已有组件，避免重复渲染，从而提高界面响应速度和性能。这种机制有效地提高了代码的复用性和渲染效率。
+
+**示例5**
 
 ```ts
 // src/main/ets/pages/5-Repeat.ets
@@ -244,9 +253,11 @@ struct TodoList {
 
 ### 添加\@ObservedV2，\@Trace，实现类属性观测变化
 
-实现了多个功能之后，任务列表的管理逐渐变得复杂。为了更好地处理任务数据的变化，特别在多层嵌套结构中，需要确保属性的变化可以被深度观测并自动更新UI。为此，引入了\@ObservedV2和\@Trace装饰器。相比于\@Local只能观测对象本身及其第一层的变化，\@ObservedV2和\@Trace更适用于处理多层嵌套、继承等复杂结构场景。在\@ObservedV2装饰的类中，被\@Trace装饰的属性发生变化时，会触发其绑定的UI组件刷新。
+实现多个功能后，任务列表管理变得复杂。为了有效处理任务数据的变化，特别是在多层嵌套结构中，需要确保属性变化能够被深度观测并自动更新UI。为此，引入了\@ObservedV2和\@Trace装饰器。与仅能观测对象及其第一层变化的\@Local不同，\@ObservedV2和\@Trace适用于多层嵌套和继承等复杂场景。在\@ObservedV2装饰的类中，\@Trace装饰的属性变化时，会触发绑定的UI组件刷新。
 
-在这个例子中，任务（Task）被抽象为一个类，并用\@ObservedV2标记该类，用\@Trace标记isFinish属性。TodoList组件嵌套了TaskItem，TaskItem又嵌套了Task。在最外层的TodoList中，添加了"全部完成"和"全部未完成"的按钮，每次点击这些按钮都会直接更新最内层Task类的isFinish属性。\@ObservedV2和\@Trace确保可以观察到对应isFinish UI组件的刷新，从而实现了对嵌套类属性的深度观测。
+在示例6中，任务（Task）被抽象为一个类，并用\@ObservedV2标记该类，用\@Trace标记isFinish属性。TodoList组件嵌套了TaskItem，TaskItem又嵌套了Task。在最外层的TodoList中，添加了"全部完成"和"全部未完成"的按钮，每次点击这些按钮都会直接更新最内层Task类的isFinish属性。\@ObservedV2和\@Trace确保可以观察到对应isFinish UI组件的刷新，从而实现了对嵌套类属性的深度观测。
+
+**示例6**
 
 ```ts
 // src/main/ets/pages/6-ObservedV2Trace.ets
@@ -335,7 +346,9 @@ struct TodoList {
 
 在当前任务列表功能基础上，为了提升体验，可以增加一些额外的功能，如任务状态变化的监听和未完成任务数量的动态计算。为此，引入\@Monitor和\@Computed装饰器。\@Monitor用于深度监听状态变量，在属性变化时触发自定义回调方法。\@Computed用于装饰getter方法，检测被计算的属性变化。在被计算的值变化时，仅会计算一次，减少重复计算开销。
 
-在这个例子中，使用\@Monitor深度监听TaskItem中task的isFinish属性。当任务完成状态变化时会触发onTasksFinished回调，输出日志记录任务完成状态的变化。此外，新增了对todolist中未完成任务的数量的记录。用\@Computed装饰tasksUnfinished，每当任务状态变化时自动重新计算。通过这两个装饰器，实现了对状态变量的深度监听和高效的计算属性。
+在示例6中，使用\@Monitor装饰器深度监听TaskItem中task的isFinish属性。当任务完成状态变化时，触发onTasksFinished回调，记录任务完成状态的变化。同时，新增对todolist中未完成任务数量的记录。使用\@Computed装饰器定义tasksUnfinished，每当任务状态变化时自动重新计算。通过这两个装饰器，实现了状态变量的深度监听和高效的计算属性。
+
+**示例7**
 
 ```ts
 // src/main/ets/pages/7-MonitorComputed.ets
@@ -432,9 +445,11 @@ struct TodoList {
 
 ### 添加AppStorageV2，实现应用全局UI状态存储
 
-随着待办事项功能的不断增强，应用可能涉及到多个页面或功能模块，此时常常需要在这些页面之间共享全局状态。例如，在待办事项应用中，可以新增一个设置页面与主界面联动。为实现跨页面的状态共享，引入AppStorageV2，用于在多个UIAbility实例之间存储和共享应用的全局状态。
+随着待办事项功能的增强，应用可能涉及多个页面或功能模块，此时需要在这些页面之间共享全局状态。例如：在待办事项应用中，新增一个设置页面与主界面联动。为实现跨页面的状态共享，引入AppStorageV2，用于在多个UIAbility实例之间存储和共享应用的全局状态。
 
-在这个例子中，新增了一个Ability，SettingAbility，用于加载设置页SettingPage。SettingPage包含了一个Setting类，其中的showCompletedTask属性用于控制是否显示已完成的任务，用户通过一个开关可以切换该选项。两个Ability通过AppStorageV2共享设置数据，键为"Setting"，对应的数据为Setting类。第一次通过connect连接Setting时，若不存在储存的数据，会新建一个默认showCompletedTask为trueSetting实例。后续用户在设置页面修改设置后，主页面会根据这一设置更新任务列表的显示。通过AppStorageV2，实现了跨Ability、跨页面的数据共享。
+在这个示例中，新增了一个Ability，SettingAbility，用于加载设置页面SettingPage。SettingPage包含了一个Setting类，其中的showCompletedTask属性用于控制是否显示已完成的任务。用户可以通过一个开关切换该选项。两个Ability通过AppStorageV2共享设置数据，键为 "Setting"，对应的数据为Setting类。第一次通过connect连接Setting时，如果不存在存储的数据，会创建一个默认showCompletedTask为trueSetting实例。后续用户在设置页面修改设置后，主页面会根据这一设置更新任务列表的显示。通过AppStorageV2，实现了跨Ability、跨页面的数据共享。
+
+**示例8**
 
 ```ts
 // src/main/ets/pages/8-AppStorageV2.ets
@@ -585,7 +600,9 @@ struct SettingPage {
 
 为了保证用户在重新打开应用时仍然能够看到之前的任务状态，可以引入持久化存储方案。使用PersistenceV2能够将数据持久化保存在设备磁盘上。与AppStorageV2的运行时内存不同，PersistenceV2能确保即使应用关闭后再启动，数据依然保持不变。
 
-在这个例子中，创建了一个TaskList类，用于通过PersistenceV2持久化存储所有任务信息，键为"TaskList"，数据对应TaskList类。第一次通过connect连接TaskList时，如果没有数据，会创建一个默认tasks数组为空的新TaskList实例。在aboutToAppear生命周期函数中，连接到PersistenceV2的TaskList，若无存储任务数据，会从本地文件defaultTasks.json中加载任务并存储到PersistenceV2中。此后，每个任务的完成状态都会同步到PersistenceV2中。这样，即使应用关闭后再次打开，所有任务数据依旧保持不变，实现了持久化的应用状态存储功能。
+在示例9中，创建了一个TaskList类，用于通过PersistenceV2持久化存储所有任务信息，键为"TaskList"，数据对应TaskList类。第一次通过connect连接TaskList时，如果没有数据，会创建一个默认tasks数组为空的新TaskList实例。在aboutToAppear生命周期函数中，连接到PersistenceV2的TaskList，若无存储任务数据，会从本地文件defaultTasks.json中加载任务并存储到PersistenceV2中。此后，每个任务的完成状态都会同步到PersistenceV2中。这样，即使应用关闭后再次打开，所有任务数据依旧保持不变，实现了持久化的应用状态存储功能。
+
+**示例9**
 
 ```ts
 // src/main/ets/pages/9-PersistenceV2.ets
@@ -736,7 +753,9 @@ JSON文件存放在src/main/resources/rawfile/defaultTasks.json路径下。
 
 随着应用功能逐步扩展，代码中的某些UI元素开始重复，这不仅增加了代码量，也让维护变得复杂。为了解决这一问题，可以使用\@Builder装饰器，将重复的UI组件抽象成独立的构建方法，便于复用和代码的模块化。
 
-在这个例子中，使用\@Builder定义了ActionButton方法，统一管理各类按钮的文字、样式和点击事件，使代码更简洁、结构更清晰，提升了代码的可维护性。在此基础上，调整了待办事项界面的布局和样式，例如组件的间距、颜色和大小，使UI更美观，最终呈现一个功能完善、界面简洁的待办事项应用。
+在示例10中，使用\@Builder定义了ActionButton方法，统一管理按钮的文字、样式和点击事件，使代码更简洁、结构更清晰，提升了代码的可维护性。在此基础上，调整了待办事项界面的布局和样式，例如组件的间距、颜色和大小，使UI界面更美观，最终呈现一个功能完善、界面简洁的待办事项应用。
+
+**示例10**
 
 ```ts
 // src/main/ets/pages/10-Builder.ets
@@ -890,7 +909,7 @@ struct TodoList {
 
 ## 重构代码以符合MVVM架构
 
-前面的例子通过使用一系列的状态管理装饰器，实现了todolist中的数据同步与UI更新。然而，随着应用功能的复杂化，代码的结构变得难以维护，Model、View和ViewModel的职责并没有完全分离，仍然存在一定的耦合。为了更好地组织代码和提升可维护性，使用MVVM模式重构代码，进一步将数据层（Model）、逻辑层（ViewModel）和展示层（View）分离。
+前面的例子通过使用一系列的状态管理装饰器，实现了todolist中的数据同步与UI更新。然而，随着应用功能的复杂化，代码的结构变得难以维护，Model、View和ViewModel的职责没有完全分离，存在耦合。为了更好地组织代码和提升可维护性，使用MVVM模式重构代码，进一步将数据层（Model）、逻辑层（ViewModel）和展示层（View）分离。
 
 ### 重构后的代码结构
 ```
@@ -963,7 +982,7 @@ export default class TaskListModel {
 
 ### ViewModel层
 
-ViewModel层负责管理UI状态和业务逻辑，扮演Model和View之间的桥梁角色。在ViewModel中，负责监控Model数据的变化，处理应用的逻辑，并将数据同步到View层，从而实现UI的自动更新。ViewModel的使用实现了数据与视图的解耦，提高了代码的可读性和可维护性。
+ViewModel层管理UI状态和业务逻辑，连接Model和View。通过监控Model数据变化，处理应用逻辑，将数据同步到View层，从而实现UI的自动更新。使用ViewModel实现数据与视图解耦，提高代码可读性和可维护性。
 
 - TaskViewModel：封装单个任务的数据和状态变更逻辑，通过状态装饰器监控数据的变化。
 
@@ -1250,7 +1269,7 @@ struct SettingPage {
 
 ## 总结
 
-本教程通过一个简单的待办事项应用示例，逐步引入了状态管理V2装饰器，并通过代码重构实现了MVVM架构。最终，将数据、逻辑和视图分层，使得代码结构更加清晰、易于维护。合理地使用Model、View和ViewModel，可以帮助开发者实现高效的数据与UI同步，简化开发流程并降低复杂性。希望通过这个示例，开发者能够更好地理解MVVM模式，并能将其灵活应用到自己项目的开发中，从而提高开发效率和代码质量。
+本教程通过待办事项应用示例，引入状态管理V2装饰器，通过代码重构实现MVVM架构。最终，将数据、逻辑和视图分层，使得代码结构更加清晰、易于维护。合理地使用Model、View和ViewModel，可以帮助开发者更好地理解MVVM模式，并能将其灵活应用到自己项目的开发中，从而提高开发效率和代码质量，实现高效的数据与UI同步，简化开发流程。
 
 ## 代码示例
 [完整源码](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/StateMgmtV2MVVM/entry)

@@ -10,8 +10,7 @@
 >
 > 从API version 18开始，支持自定义组件冻结功能的混用场景冻结。
 >
-> 和@Component的组件冻结不同， @ComponentV2装饰的自定义组件不支持LazyForEach场景下的缓存节点组件冻结。
-
+> 与@Component的组件冻结不同，@ComponentV2装饰的自定义组件不支持在LazyForEach场景下缓存节点组件冻结。
 
 ## 当前支持的场景
 
@@ -87,18 +86,17 @@ struct Page2 {
 
 在上面的示例中：
 
-1.点击页面1中的Button “changeBookName”，bookTest变量的name属性改变，@Monitor中注册的方法onMessageChange会被调用。
+1. 点击页面1中的Button “changeBookName”，bookTest变量的name属性改变，@Monitor中注册的方法onMessageChange会被调用。
 
-2.点击页面1中的Button “go to next page”，跳转到页面2，然后延迟1s更新状态变量“bookTest”。在更新“bookTest”的时候，已经跳转到页面2，页面1处于inactive状态，状态变量`@Local bookTest`将不响应更新，其@Monitor不会调用，状态变量关联的节点不会刷新。
+2. 点击页面1中的Button “go to next page”，跳转到页面2，然后延迟1s更新状态变量“bookTest”。在更新“bookTest”的时候，已经跳转到页面2，页面1处于inactive状态，状态变量`@Local bookTest`将不响应更新，其@Monitor不会调用，状态变量关联的节点不会刷新。
+
 Trace如下：
 
 ![Example Image](./figures/freeze1.png)
 
-
-3.点击“back”，页面2被销毁，页面1的状态由inactive变为active。状态变量“bookTest”的更新被观察到，@Monitor中注册的方法onMessageChange被调用，对应的Text显示内容改变。
+3. 点击“back”，页面2被销毁，页面1的状态由inactive变为active。状态变量“bookTest”的更新被观察到，@Monitor中注册的方法onMessageChange被调用，对应的Text显示内容改变。
 
 ![freezeV2Page](./figures/freezeV2page.gif)
-
 
 ### TabContent
 
@@ -108,7 +106,6 @@ Trace如下：
 
 图示如下：
 ![freezeWithTab](./figures/freezewithTabs.png)
-
 
 ```ts
 @Entry

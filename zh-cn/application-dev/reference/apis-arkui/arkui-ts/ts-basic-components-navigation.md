@@ -664,6 +664,8 @@ Navigation路由栈，从API version 12开始，NavPathStack允许被继承。�
 > 例如：在Page1页面先pop再push一个Page1，系统会认为操作前和操作后的结果一致而不进行任何操作，如果需要强行push一个Page1实例，可以使用NEW_INSTANCE模式。
 >
 > 2.不建议开发者通过监听生命周期的方式管理自己的页面栈。
+>
+> 3.在应用处于后台状态下，调用NavPathStack的栈操作方法，会在应用再次回到前台状态时触发刷新。
 
 ### constructor
 

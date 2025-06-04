@@ -32,12 +32,12 @@ function testBuilder() {
 wrapBuilder是一个模板函数，返回一个`WrappedBuilder`对象。
 
 ```ts
-declare function wrapBuilder< Args extends Object[]>(builder: (...args: Args) => void): WrappedBuilder;
+declare function wrapBuilder<Args extends Object[]>(builder: (...args: Args) => void): WrappedBuilder<Args>;
 ```
 同时 `WrappedBuilder`对象也是一个模板类。
 
 ```ts
-declare class WrappedBuilder< Args extends Object[]> {
+declare class WrappedBuilder<Args extends Object[]> {
   builder: (...args: Args) => void;
 
   constructor(builder: (...args: Args) => void);
@@ -58,9 +58,9 @@ let builderArr: WrappedBuilder<[string, number]>[] = [wrapBuilder(MyBuilder)]; /
 
 ## 限制条件
 
-wrapBuilder方法只能传入[全局\@Builder](arkts-builder.md#全局自定义构建函数)方法。
+1. wrapBuilder方法只能传入[全局\@Builder](arkts-builder.md#全局自定义构建函数)方法。
 
-wrapBuilder方法返回的WrappedBuilder对象的builder属性方法只能在struct内部使用。
+2. wrapBuilder方法返回的WrappedBuilder对象的builder属性方法只能在struct内部使用。
 
 ## @Builder方法赋值给变量
 

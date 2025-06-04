@@ -2554,7 +2554,7 @@ enum ArkUI_ErrorCode
 | ARKUI_ERROR_CODE_PARAM_INVALID  | 参数错误。  |
 | ARKUI_ERROR_CODE_CAPI_INIT_ERROR  | 接口初始化错误。<br/>起始版本：18  |
 | ARKUI_ERROR_CODE_INTERNAL_ERROR  | 出现内部错误，例如内部环境错误导致失败，或者由于内部执行失败导致操作失败。<br/>起始版本：15  |
-| ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID  | 当前XComponent状态异常，方法调用失败。<br/>**起始版本：** 18  |
+| ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID  | 当前XComponent状态异常，方法调用失败。<br/>起始版本：19  |
 | ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED  | 组件不支持特定的属性或者事件。  |
 | ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED  | 对应的操作不支持ArkTS创建的节点。  |
 | ARKUI_ERROR_CODE_ADAPTER_NOT_BOUND  | 懒加载适配器未绑定到组件上。  |
@@ -3655,7 +3655,7 @@ enum ArkUI_NodeAttributeType
 | NODE_TEXT_AREA_ENABLE_PREVIEW_TEXT  | 设置输入框开启字符预上屏，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 是否开启字符预上屏。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 是否开启字符预上屏。 |
 | NODE_TEXT_AREA_HALF_LEADING  | 设置文本将行间距平分至行的顶部与底部。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 文本是否将行间距平分至行的顶部与底部，默认值false。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 文本是否将行间距平分至行的顶部与底部。 |
 | NODE_TEXT_AREA_KEYBOARD_APPEARANCE  | 设置输入框拉起的键盘样式。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 设置对应的键盘样式，类型为[ArkUI_KeyboardAppearance](#arkui_keyboardappearance)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 对应的键盘样式，类型为[ArkUI_KeyboardAppearance](#arkui_keyboardappearance)。<br/>起始版本：<br/>15 |
-| NODE_TEXT_AREA_MAX_LINES  | 设置输入框内联模式编辑态时文本可显示的最大行数，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：内联输入风格编辑态时文本可显示的最大行数。默认值是3，非内联模式下，默认值是+∞，不限制最大行数。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：最大行数的数字。<br/>**说明：**<br/>设置为undefined时，最大行数设置为5。<br/>**起始版本：** 20 |
+| NODE_TEXT_AREA_MAX_LINES  | 设置输入框内联模式编辑态时文本可显示的最大行数，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：内联输入风格编辑态时文本可显示的最大行数。内联模式下，默认值是3，非内联模式下，默认值是+∞，不限制最大行数。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：最大行数的数字。<br/>**说明：**<br/>设置为undefined时，最大行数设置为5。<br/>**起始版本：** 20 |
 | NODE_TEXT_AREA_LINE_SPACING  | 设置输入框文本的行间距，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：文本的行间距的数字。默认值是0。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：文本的行间距的数字。<br/>**说明：**<br/>设置为undefined时，行间距设置为5。<br/>**起始版本：** 20 |
 | NODE_TEXT_AREA_MIN_LINES   | 设置节点的最小行数，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：最小行数的数字。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：最小行数的数字。<br/>**起始版本：** 20 |
 | NODE_TEXT_AREA_MAX_LINES_WITH_SCROLL  | 设置支持滚动时节点的最大行数，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：支持滚动时的最大行数的数字。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：支持滚动时的最大行数的数字。<br/>**起始版本：** 20 |
@@ -3823,8 +3823,8 @@ enum ArkUI_NodeAttributeType
 | NODE_REFRESH_PULL_TO_REFRESH  | 设置当下拉距离超过refreshOffset时是否触发刷新，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32：是否触发刷新，true为触发刷新，false为不触发刷新。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否触发刷新，1为触发刷新，0为不触发刷新。 |
 | NODE_REFRESH_MAX_PULL_DOWN_DISTANCE | 设置刷新的最大下拉距离，此属性可以根据需要通过api进行属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)的参数格式：<br/>.value[0].f32：最大下拉距离，单位：vp。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)的格式：<br/>.value[0].f32：最大下拉距离，单位：vp。 <br/>**起始版本：** 20 | 
 | NODE_WATER_FLOW_LAYOUT_DIRECTION  | 定义瀑布流组件布局主轴方向，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32 主轴方向，参数类型{\@Link ArkUI_FlexDirection}。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 主轴方向，参数类型{\@Link ArkUI_FlexDirection}。 |
-| NODE_WATER_FLOW_COLUMN_TEMPLATE  | 设置当前瀑布流组件布局列的数量，不设置时默认1列，支持属性设置、重置和获取。 例如，'1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。 可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数， 其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、或有效数字，默认单位为vp。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 布局列的数量.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 布局列的数量. |
-| NODE_WATER_FLOW_ROW_TEMPLATE  | 设置当前瀑布流组件布局行的数量，不设置时默认1行，支持属性设置、重置和获取。 例如，'1fr 1fr 2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。 可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数， 其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、或有效数字，默认单位为vp。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 布局行的数量.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 布局行的数量. |
+| NODE_WATER_FLOW_COLUMN_TEMPLATE  | 设置当前瀑布流组件布局列的数量，不设置时默认1列，支持属性设置、重置和获取。 例如，'1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第1列占1份，第2列占1份，第3列占2份。 可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数， 其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、或有效数字，默认单位为vp。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 布局列的数量.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 布局列的数量. |
+| NODE_WATER_FLOW_ROW_TEMPLATE  | 设置当前瀑布流组件布局行的数量，不设置时默认1行，支持属性设置、重置和获取。 例如，'1fr 1fr 2fr'是将父组件分3行，将父组件允许的高分为4等份，第1行占1份，第2行占1份，第3行占2份。 可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数， 其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、或有效数字，默认单位为vp。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 布局行的数量.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 布局行的数量. |
 | NODE_WATER_FLOW_COLUMN_GAP  | 设置列与列的间距，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].f32: 列与列的间距, 单位vp.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 列与列的间距, 单位vp. |
 | NODE_WATER_FLOW_ROW_GAP  | 设置行与行的间距，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].f32: 行与行的间距, 单位vp.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 行与行的间距, 单位vp. |
 | NODE_WATER_FLOW_SECTION_OPTION  | 设置FlowItem分组配置信息，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32: 从0开始计算的索引，会转换为整数，表示要开始改变分组的位置.<br/>.object: 参数格式为{\@ArkUI_WaterFlowSectionOption}.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: 返回值格式为{\@ArkUI_WaterFlowSectionOption}. |
@@ -3836,8 +3836,8 @@ enum ArkUI_NodeAttributeType
 | NODE_WATER_FLOW_LAYOUT_MODE  | 定义瀑布流组件布局模式，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].f32: 布局模式，参数类型[ArkUI_WaterFlowLayoutMode](_ark_u_i___native_module.md#arkui_waterflowlayoutmode)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 布局模式，参数类型[ArkUI_WaterFlowLayoutMode](_ark_u_i___native_module.md#arkui_waterflowlayoutmode)。 |
 | NODE_RELATIVE_CONTAINER_GUIDE_LINE  | 设置RelativeContaine容器内的辅助线，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContaine容器内的辅助线：<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContaine容器内的辅助线： |
 | NODE_RELATIVE_CONTAINER_BARRIER  | 设置RelativeContaine容器内的屏障，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContaine容器内的辅助线：<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContaine容器内的屏障： |
-| NODE_GRID_COLUMN_TEMPLATE  | 设置当前瀑布流组件布局列的数量，不设置时默认1列，支持属性设置、重置和获取。 例如，'1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。 可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数， 其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、或有效数字，默认单位为vp。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 布局列的数量.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 布局列的数量. |
-| NODE_GRID_ROW_TEMPLATE  | 设置当前网格布局行的数量或最小行高值，不设置时默认1行，支持属性设置、重置和获取。 例如，'1fr 1fr 2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。 可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数， 其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、或有效数字，默认单位为vp。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 布局行的数量.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 布局行的数量. |
+| NODE_GRID_COLUMN_TEMPLATE  | 设置当前瀑布流组件布局列的数量，不设置时默认1列，支持属性设置、重置和获取。 例如，'1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第1列占1份，第2列占1份，第3列占2份。 可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数， 其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、或有效数字，默认单位为vp。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 布局列的数量.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 布局列的数量. |
+| NODE_GRID_ROW_TEMPLATE  | 设置当前网格布局行的数量或最小行高值，不设置时默认1行，支持属性设置、重置和获取。 例如，'1fr 1fr 2fr'是将父组件分3行，将父组件允许的高分为4等份，第1行占1份，第2行占1份，第3行占2份。 可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数， 其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、或有效数字，默认单位为vp。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 布局行的数量.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 布局行的数量. |
 | NODE_GRID_COLUMN_GAP  | 设置列与列的间距，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].f32: 列与列的间距, 单位vp.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 列与列的间距, 单位vp. |
 | NODE_GRID_ROW_GAP  | 设置行与行的间距，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].f32: 行与行的间距, 单位vp.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 行与行的间距, 单位vp. |
 | NODE_GRID_NODE_ADAPTER  | grid组件适配器，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object：使用**ArkUI_NodeAdapter**对象作为适配器。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: 返回值格式为**ArkUI_NodeAdapter**. |
@@ -17615,7 +17615,7 @@ int32_t OH_ArkUI_PostIdleCallback(ArkUI_ContextHandle uiContext, void* userData,
 ```
 **描述：**
 
-注册一个回调函数，以便在下一帧渲染完成时执行。如果当前没有下一帧，将自动请求下一帧。
+注册一个回调函数，在下一帧渲染结束后如果距离下一个Vsync信号到来剩余时间大于1ms时，该回调函数将被执行；如果剩余时间小于1ms时，回调函数将被顺延至当某个下一帧的剩余时间大于1ms时再执行。如果当前没有下一帧，将自动请求下一帧。
 
 **起始版本：** 20
 
@@ -17624,17 +17624,17 @@ int32_t OH_ArkUI_PostIdleCallback(ArkUI_ContextHandle uiContext, void* userData,
 | 名称 | 描述 | 
 | -------- | -------- |
 | uiContext | uiContext对象，用以绑定实例。| 
-| userData | 自定义事件参数，当事件触发时在回调参数中携带回来。| 
-| callback | 自定义回调函数，会在下一帧事件结束后回调。| 
-| nanoTimeLeft | 帧渲染后的剩余时间。| 
+| userData | 自定义事件参数，当自定义回调函数触发时在回调参数中携带回来。| 
+| callback | 自定义回调函数，会在下一帧事件结束后剩余时间大于1ms时回调执行。| 
+| nanoTimeLeft | 下一帧渲染后的剩余时间。| 
 | frameCount | 帧号。| 
 
 **返回：**
 
-ARKUI_ERROR_CODE_NO_ERROR 成功。
-ARKUI_ERROR_CODE_CAPI_INIT_ERROR CAPI初始化错误。
-ARKUI_ERROR_CODE_UI_CONTEXT_INVALID uiContext对象无效。
-ARKUI_ERROR_CODE_CALLBACK_INVALID 回调函数无效。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
+[ARKUI_ERROR_CODE_CAPI_INIT_ERROR](_ark_u_i___native_module.md#arkui_errorcode) CAPI初始化错误。</br >
+[ARKUI_ERROR_CODE_UI_CONTEXT_INVALID](_ark_u_i___native_module.md#arkui_errorcode) UIContext对象无效。</br >
+[ARKUI_ERROR_CODE_CALLBACK_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 回调函数无效。</br >
 
 
 ### OH_ArkUI_RegisterLayoutCallbackOnNodeHandle()

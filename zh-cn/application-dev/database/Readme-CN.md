@@ -18,9 +18,6 @@
   - [通过关系型数据库实现数据持久化（C/C++）](native-relational-store-guidelines.md)
   - [通过向量数据库实现数据持久化 (ArkTS)](data-persistence-by-vector-store.md)
   - [通过向量数据库实现数据持久化 (C/C++)](native-vector-store-guidelines.md)
-  <!--Del-->
-  - [通过图数据库实现数据持久化（仅对系统应用开放）](data-persistence-by-graph-store.md)
-  <!--DelEnd-->
 - 同应用跨设备数据同步（分布式）<!--distributed-data-sync-->
   - [同应用跨设备数据同步概述](sync-app-data-across-devices-overview.md)
   - [键值型数据库跨设备数据同步](data-sync-of-kv-store.md)
@@ -47,3 +44,4 @@
     - [通过标准化数据通路实现数据共享 (C/C++)](unified-data-channels-c.md)
 - [应用数据向量化](aip-data-intelligence-embedding.md)
 - [ArkData术语](data-terminology.md)
+- [sqlite调试工具](sqlite-database-debug-tool.md)

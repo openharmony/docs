@@ -4,7 +4,7 @@
 
 定义绘制模块中排版相关的函数。
 
-**引用文件：** drawing_text_typography.h
+**引用文件：** <native_drawing/drawing_text_typography.h>
 
 **库：** libnative_drawing.so
 

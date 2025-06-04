@@ -171,7 +171,7 @@ struct VideoPlayer {
           console.info("Video prepared.");
         })
         .onError(() => { // 失败事件回调
-          console.info("Video error.");
+          console.error("Video error.");
         })
         .onStop(() => { // 停止事件回调
           console.info("Video stopped.");
