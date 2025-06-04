@@ -4900,11 +4900,11 @@ import { common } from '@kit.AbilityKit';
 
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let resoutceManager = context.resourceManager;
-if (resoutceManager == null) {
+let resourceMgr = context.resourceManager;
+if (resourceMgr == null) {
   return;
 }
-let fd = resoutceManager.getRawFdSync("example.jpg");
+let fd = resourceMgr.getRawFdSync("example.jpg");
 
 const imageSourceApi = image.createImageSource(fd);
 console.info("getImagePropertySync");
