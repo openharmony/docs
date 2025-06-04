@@ -1661,6 +1661,42 @@ class MyAbility extends UIAbility {
 }
 ```
 
+## notificationManager.getNotificationSetting<sup>20+</sup>
+
+getNotificationSetting(): Promise\<NotificationSetting\>
+
+获取应用程序的通知设置。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**返回值：**
+
+| 类型               | 说明            |
+| ------------------ | --------------- |
+| Promise\<[NotificationSetting](#notificationsetting20)\> | Promise对象，返回此应用程序的通知设置。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通知错误码](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+notificationManager.getNotificationSetting().then((data: notificationManager.NotificationSetting) => {
+    console.info("getNotificationSetting success, data: " + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+    console.error(`getNotificationSetting failed, code is ${err.code}, message is ${err.message}`);
+});
+```
+
 ## ContentType
 
 通知内容类型。
@@ -1927,38 +1963,3 @@ type NotificationProgress = _NotificationProgress
 | ------- | ------------------------------------ | ---- | ---------------------- |
 | vibrationEnabled | boolean | 是 | 表示是否开启振动。true表示开启，false表示关闭。 |
 | soundEnabled | boolean | 是 | 表示是否开启响铃。true表示开启，false表示关闭。 |
-
-## notificationManager.getNotificationSetting<sup>20+</sup>
-
-getNotificationSetting(): Promise\<NotificationSetting\>
-
-获取应用程序的通知设置。使用Promise异步回调。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**返回值：**
-
-| 类型               | 说明            |
-| ------------------ | --------------- |
-| Promise\<[_NotificationSetting](#notificationsetting20)\> | Promise对象，返回此应用程序的通知设置。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通知错误码](./errorcode-notification.md)。
-
-| 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
-| 1600001  | Internal error.                     |
-| 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect to the service.          |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-notificationManager.getNotificationSetting().then((data: notificationManager.NotificationSetting) => {
-    console.info("getNotificationSetting success, data: " + JSON.stringify(data));
-}).catch((err: BusinessError) => {
-    console.error(`getNotificationSetting failed, code is ${err.code}, message is ${err.message}`);
-});
