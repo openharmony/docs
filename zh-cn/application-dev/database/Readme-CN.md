@@ -42,3 +42,4 @@
 - [应用数据向量化](aip-data-intelligence-embedding.md)
 - [UDMF开发指导 (C/C++)](native-unified-data-management-framework-guidelines.md)
 - [ArkData术语](data-terminology.md)
+- [sqlite调试工具](sqlite-database-debug-tool.md)
