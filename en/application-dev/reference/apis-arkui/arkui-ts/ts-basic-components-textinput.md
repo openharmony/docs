@@ -35,7 +35,7 @@ TextInput(value?: TextInputOptions)
 | Name| Type | Mandatory  | Description|
 | ---- | ----- | ---- | ---- |
 | placeholder             | [ResourceStr](ts-types.md#resourcestr)   | No   | Text displayed when there is no input.                            |
-| text                    | [ResourceStr](ts-types.md#resourcestr)   | No   | Current text input.<br>You are advised to bind the state variable to the text in real time through the **onChange** event,<br>so as to prevent display errors when the component is updated.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| text                    | [ResourceStr](ts-types.md#resourcestr)   | No   | Current text input.<br>You are advised to bind the state variable to the text in real time through the **onChange** event,<br>so as to prevent display errors when the component is updated.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).|
 | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | No   | Text input controller.                         |
 
 ## Attributes
@@ -58,6 +58,8 @@ type(value: InputType)
 
 Sets the text box type.
 
+When the text box type is set to **Password**, setting the placeholder color has no effect.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -73,6 +75,8 @@ Sets the text box type.
 placeholderColor(value: ResourceColor)
 
 Sets the placeholder text color.
+
+When the text box type is set to **Password**, setting the placeholder color has no effect.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -445,7 +449,7 @@ enableKeyboardOnFocus(value: boolean)
 
 Sets whether to enable the input method when the **TextInput** component obtains focus in a way other than clicking.
 
- 
+Since API version 10, the **TextInput** component brings up the keyboard by default when it obtains focus.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -637,7 +641,7 @@ Sets the content type for autofill.
 
 | Name| Type                                 | Mandatory| Description          |
 | ------ | ------------------------------------- | ---- | -------------- |
-| value  | [ContentType](#contenttype12) | Yes  | Content type for autofill.|
+| value  | [ContentType](#contenttype12-1) | Yes  | Content type for autofill.|
 
 ### underlineColor<sup>12+</sup>
 
@@ -657,7 +661,7 @@ Sets the color of the underline when it is shown.
 
 lineHeight(value: number | string | Resource)
 
-Sets the text line height. If the value is less than or equal to **0**, the line height is not limited and the font size is adaptive. If the value is of the number type, the unit fp is used.
+Sets the text line height. If the value is less than or equal to **0**, the line height is not limited and the font size is adaptive. If the value is of the number type, the unit fp is used. For the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -689,7 +693,7 @@ Sets the color, type, and style of the text decorative line. This attribute does
 
 letterSpacing(value: number | string | Resource)
 
-Sets the letter spacing for a text style. If the value specified is a percentage or 0, the default value is used.
+Sets the letter spacing for a text style. If the value specified is a percentage or 0, the default value is used. For the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported.
 
 If the value specified is a negative value, the text is compressed. A negative value too small may result in the text being compressed to 0 and no content being displayed.
 
@@ -701,7 +705,7 @@ If the value specified is a negative value, the text is compressed. A negative v
 
 | Name| Type                      | Mandatory| Description          |
 | ------ | -------------------------- | ---- | -------------- |
-| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Letter spacing.|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Letter spacing.<br>Unit: fp|
 
 ### fontFeature<sup>12+</sup>
 
@@ -799,7 +803,7 @@ Sets the indent of the first line text.
 
 minFontSize(value: number | string | Resource)
 
-Sets the minimum font size.
+Sets the minimum font size. For the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported.
 
 For the setting to take effect, this attribute must be used together with [maxFontSize](#maxfontsize12) and [maxLines](#maxlines10) (when the component is in editing state in the inline input style), or layout constraint settings.
 
@@ -813,13 +817,13 @@ When the adaptive font size is used, the **fontSize** settings do not take effec
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Minimum font size.|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Minimum font size.<br>Unit: fp|
 
 ### maxFontSize<sup>12+</sup>
 
 maxFontSize(value: number | string | Resource)
 
-Sets the maximum font size.
+Sets the maximum font size. For the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported.
 
 For the setting to take effect, this attribute must be used together with [minFontSize](#minfontsize12) and [maxLines](#maxlines10) (when the component is in editing state in the inline input style), or layout constraint settings.
 
@@ -833,7 +837,7 @@ When the adaptive font size is used, the **fontSize** settings do not take effec
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Maximum font size.|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Maximum font size.<br>Unit: fp|
 
 ### heightAdaptivePolicy<sup>12+</sup>
 
@@ -869,9 +873,9 @@ showPassword(visible: boolean)
 
 Sets whether to show the password.
 
-This attribute takes effect only in password input mode.
+This API has effect only when the [input type](#inputtype) is set to **Password**, **NEWPASSWORD**, or **NUMBERPASSWORD** mode. It does not work in other modes.
 
-In password input mode, the icon at the end of the text box serves as a toggle for password visibility. As such, you are advised to implement status synchronization with [onSecurityStateChange](#onsecuritystatechange12) to ensure that the password visibility status is accurately reflected.
+When in password mode, there may be inconsistency between the backend state of the text box and the frontend application's state management variables. This can cause issues with the icon at the end of the password text box. To avoid such issues, use the [onSecurityStateChange](#onsecuritystatechange12) callback to sync the states. For details, see [Example 1](#example-1-setting-and-obtaining-the-cursor-position).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -933,18 +937,6 @@ Preview text is in a temporary state and does not support text interception. As 
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | boolean | Yes  | Whether to enable preview text.<br>Default value: **true**|
 
->  **NOTE**
->
->  This API is disabled by default in C API scenarios. To enable preview text in such scenarios, set [metadata](../../../../application-dev/quick-start/module-structure.md#internal-structure-of-the-metadata-attribute) in the **module.json5** file of the project as follows:
-> ```json
-> "metadata": [
->  {
->     "name": "can_preview_text",
->     "value": "true",
->  }
-> ]
-> ```
-
 ### enableHapticFeedback<sup>13+</sup>
 
 enableHapticFeedback(isEnabled: boolean)
@@ -972,22 +964,54 @@ Specifies whether to enable haptic feedback.
 > ]
 > ```
 
+### keyboardAppearance<sup>15+</sup>
+
+keyboardAppearance(appearance: Optional\<KeyboardAppearance>)
+
+Sets the appearance of the keyboard when the text box is focused.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
+| appearance | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15)> | Yes  | Appearance of the keyboard.<br>Default value: **KeyboardAppearance.NONE_IMMERSIVE**|
+
+### stopBackPress<sup>15+</sup>
+
+stopBackPress(isStopped: Optional\<boolean>)
+
+Sets whether to prevent the back button press from being propagated to other components or applications.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                               | Mandatory| Description                                     |
+| ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
+| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes  | Whether to stop the back button press.<br>Default value: **true**|
+
 ## InputType
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name                         | Description                                                    |
-| ----------------------------- | ------------------------------------------------------------ |
-| Normal                        | Normal input mode. In this mode, there is no special restriction on the input characters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| Password                      | Password input mode.<br>An eye icon is used to show or hide the password. By default, the entered characters are temporarily shown before being obscured by dots; they are directly obscured by dots since API version 12 on certain devices. The password input mode does not support underlines. If Password Vault is enabled, autofill is available for the username and password.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| Email                         | Email address input mode.<br>This mode accepts only digits, letters, underscores (_), dots (.), and the following special characters: ! # $ % & ' * + - / = ? ^ ` \{ \| \} ~ @ (which can only appear once)<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| Number                        | Digit input mode.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| PhoneNumber<sup>9+</sup>      | Phone number input mode.<br>In this mode, the following are allowed: digits, spaces, plus signs (+), hyphens (-), asterisks (*), and number signs (#); the length is not limited.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| USER_NAME<sup>11+</sup>       | Username input mode.<br>If Password Vault is enabled, autofill is available for the username and password.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| NEW_PASSWORD<sup>11+</sup>    | New password input mode.<br>An eye icon is used to show or hide the password. By default, the entered characters are temporarily shown before being obscured by dots; they are directly obscured by dots since API version 12 on certain devices. If Password Vault is enabled, a new password can be automatically generated.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| NUMBER_PASSWORD<sup>11+</sup> | Numeric password input mode.<br>An eye icon is used to show or hide the password. By default, the entered characters are temporarily shown before being obscured by dots; they are directly obscured by dots since API version 12 on certain devices. The password input mode does not support underlines.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| NUMBER_DECIMAL<sup>11+</sup>  | Number input mode with a decimal point.<br>The value can contain digits and one decimal point.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| URL<sup>12+</sup>  | URL input mode.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| Name                         | Value                                               | Description                                                    |
+| ----------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Normal                        | - | Normal input mode. In this mode, there is no special restriction on the input characters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Password                      | - | Password input mode.<br>An eye icon is used to show or hide the password. By default, the entered characters are temporarily shown before being obscured by dots; they are directly obscured by dots since API version 12 on certain devices. The password input mode does not support underlines. If Password Vault is enabled, autofill is available for the username and password.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Email                         | - | Email address input mode.<br>This mode accepts only digits, letters, underscores (_), dots (.), and the following special characters: ! # $ % & ' * + - / = ? ^ ` \{ \| \} ~ @ (which can only appear once)<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Number                        | - | Digit input mode.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| PhoneNumber<sup>9+</sup>      | - | Phone number input mode.<br>In this mode, the following are allowed: digits, spaces, plus signs (+), hyphens (-), asterisks (*), and number signs (#); the length is not limited.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| NUMBER_PASSWORD<sup>11+</sup> | 8 | Numeric password input mode.<br>An eye icon is used to show or hide the password. By default, the entered characters are temporarily shown before being obscured by dots; they are directly obscured by dots since API version 12 on certain devices. The password input mode does not support underlines.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| USER_NAME<sup>11+</sup>       | 10 | Username input mode.<br>If Password Vault is enabled, autofill is available for the username and password.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| NEW_PASSWORD<sup>11+</sup>    | 11 | New password input mode.<br>An eye icon is used to show or hide the password. By default, the entered characters are temporarily shown before being obscured by dots; they are directly obscured by dots since API version 12 on certain devices. If Password Vault is enabled, a new password can be automatically generated.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| NUMBER_DECIMAL<sup>11+</sup>  | 12 | Number input mode with a decimal point.<br>The value can contain digits and one decimal point.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| URL<sup>12+</sup>  | 13 | URL input mode.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## ContentType<sup>12+</sup>
 
@@ -1040,8 +1064,8 @@ Enumerates the content types for autofill.
 
 | Name| Type | Mandatory  | Description|
 | ---- | ----- | ---- | ---- |
-| onIconSrc  | string \| [Resource](ts-types.md#resource) | No   | Icon that can be used to hide the password in password input mode.|
-| offIconSrc | string \| [Resource](ts-types.md#resource) | No   | Icon that can be used to show the password in password input mode.|
+| onIconSrc  | string \| [Resource](ts-types.md#resource) | No   | Icon that can be used to hide the password in password input mode.<br>The string type can be used to load network images and local images.|
+| offIconSrc | string \| [Resource](ts-types.md#resource) | No   | Icon that can be used to show the password in password input mode.<br>The string type can be used to load network images and local images.|
 
 ## EnterKeyType
 
@@ -1049,20 +1073,20 @@ Enumerates the Enter key types.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name                  | Description              |
-| ---------------------- | ------------------ |
-| Go                     | The Enter key is labeled "Go."<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
-| Search                 | The Enter key is labeled "Search."<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| Send                   | The Enter key is labeled "Send."<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| Next                   | The Enter key is labeled "Next."<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| Done                   | The Enter key is labeled "Done."<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| PREVIOUS<sup>11+</sup> | The Enter key is labeled "Previous."<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| NEW_LINE<sup>11+</sup> | The Enter key is labeled "New Line."<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
+| Name                  | Value| Description              |
+| ---------------------- | --- | ------------------ |
+| Go                     | 2 | The Enter key is labeled "Go."<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| Search                 | 3 | The Enter key is labeled "Search."<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| Send                   | 4 | The Enter key is labeled "Send."<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| Next                   | 5 | The Enter key is labeled "Next."<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Done                   | 6 | The Enter key is labeled "Done."<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| PREVIOUS<sup>11+</sup> | 7 | The Enter key is labeled "Previous."<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| NEW_LINE<sup>11+</sup> | 8 | The Enter key is labeled "New Line."<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onChange
 
@@ -1293,6 +1317,24 @@ Triggered when text is deleted.
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12)> | Yes  | Callback triggered when text is deleted.<br>It is available only for system input methods.|
 
+### onWillChange<sup>15+</sup>
+
+onWillChange(callback: Callback\<EditableTextChangeValue, boolean>)
+
+Called when the text content is about to change.
+
+This callback is triggered after **onWillInsert** and **onWillDelete**, but before **onDidInsert** and **onDidDelete**.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description              |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[EditableTextChangeValue](ts-text-common.md#editabletextchangevalue15), boolean> | Yes  | Callback triggered when the text content is about to change.<br>Returning **true** allows the change to proceed, while returning **false** cancels the change.|
+
 ## TextInputController<sup>8+</sup>
 
 Inherits from [TextContentControllerBase](ts-types.md#textcontentcontrollerbase10).
@@ -1320,7 +1362,7 @@ A constructor used to create a **TextInputController** object.
 
 caretPosition(value: number): void
 
-Sets the position of the caret.
+Sets the position of the caret. If the value is less than 0, the value **0** is used. If the value exceeds the text length, the caret is placed at the end of the text.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1388,7 +1430,7 @@ Defines the user submission event.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1419,10 +1461,10 @@ This example demonstrates how to use the controller to set and obtain the cursor
 @Entry
 @Component
 struct TextInputExample {
-  @State text: string = ''
-  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 }
-  @State passwordState: boolean = false
-  controller: TextInputController = new TextInputController()
+  @State text: string = '';
+  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 };
+  @State passwordState: boolean = false;
+  controller: TextInputController = new TextInputController();
 
   build() {
     Column() {
@@ -1436,22 +1478,22 @@ struct TextInputExample {
         .fontSize(14)
         .fontColor(Color.Black)
         .inputFilter('[a-z]', (e) => {
-          console.log(JSON.stringify(e))
+          console.log(JSON.stringify(e));
         })
         .onChange((value: string) => {
-          this.text = value
+          this.text = value;
         })
       Text(this.text)
       Button('Set caretPosition 1')
         .margin(15)
         .onClick(() => {
           // Move the caret to after the first entered character.
-          this.controller.caretPosition(1)
+          this.controller.caretPosition(1);
         })
       Button('Get CaretOffset')
         .margin(15)
         .onClick(() => {
-          this.positionInfo = this.controller.getCaretOffset()
+          this.positionInfo = this.controller.getCaretOffset();
         })
       // Password text box.
       TextInput({ placeholder: 'input your password...' })
@@ -1464,8 +1506,8 @@ struct TextInputExample {
         .showPassword(this.passwordState)
         .onSecurityStateChange(((isShowPassword: boolean) => {
           // Update the password visibility.
-          console.info('isShowPassword',isShowPassword)
-          this.passwordState = isShowPassword
+          console.info('isShowPassword', isShowPassword);
+          this.passwordState = isShowPassword;
         }))
       // Email address autofill.
       TextInput({ placeholder: 'input your email...' })
@@ -1493,16 +1535,18 @@ struct TextInputExample {
 This example showcases the effects of underlines in different scenarios using the **showUnderline**, **showError**, **showUnit**, and **passwordIcon** attributes.
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
-  @State passWordSrc1: Resource = $r('app.media.ImageOne')
-  @State passWordSrc2: Resource = $r('app.media.ImageTwo')
-  @State textError: string = ''
-  @State text: string = ''
-  @State nameText: string = 'test'
+  @State passWordSrc1: Resource = $r('app.media.ImageOne');
+  @State passWordSrc2: Resource = $r('app.media.ImageTwo');
+  @State textError: string = '';
+  @State text: string = '';
+  @State nameText: string = 'test';
 
-  @Builder itemEnd() {
+  @Builder
+  itemEnd() {
     Select([{ value: 'KB' },
       { value: 'MB' },
       { value: 'GB' },
@@ -1517,9 +1561,14 @@ struct TextInputExample {
       .selectedOptionFont({ size: 20, weight: 400 })
       .optionFont({ size: 20, weight: 400 })
       .backgroundColor(Color.Transparent)
-      .responseRegion({ height: "40vp", width: "80%", x: '10%', y: '6vp' })
+      .responseRegion({
+        height: "40vp",
+        width: "80%",
+        x: '10%',
+        y: '6vp'
+      })
       .onSelect((index: number) => {
-        console.info('Select:' + index)
+        console.info('Select:' + index);
       })
   }
 
@@ -1551,12 +1600,12 @@ struct TextInputExample {
         .onSubmit((enterKey: EnterKeyType, event: SubmitEvent) => {
           // If the entered user name is incorrect, clear the text box and display an error message.
           if (this.text == this.nameText) {
-            this.textError = ''
+            this.textError = '';
           } else {
-            this.textError = 'Incorrect user name.'
-            this.text = ''
+            this.textError = 'Incorrect user name.';
+            this.text = '';
             // Call keepEditableState to maintain the editable state of the text box.
-            event.keepEditableState()
+            event.keepEditableState();
           }
         })
       // Set the color of the underline.
@@ -1590,22 +1639,23 @@ This example demonstrates how to implement a custom keyboard using the **customK
 @Entry
 @Component
 struct TextInputExample {
-  controller: TextInputController = new TextInputController()
-  @State inputValue: string = ""
+  controller: TextInputController = new TextInputController();
+  @State inputValue: string = "";
 
   // Create a custom keyboard component.
-  @Builder CustomKeyboardBuilder() {
+  @Builder
+  CustomKeyboardBuilder() {
     Column() {
       Button('x').onClick(() => {
         // Disable the custom keyboard.
-        this.controller.stopEditing()
+        this.controller.stopEditing();
       })
       Grid() {
-        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item:number|string) => {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
           GridItem() {
             Button(item + "")
               .width(110).onClick(() => {
-              this.inputValue += item
+              this.inputValue += item;
             })
           }
         })
@@ -1615,8 +1665,7 @@ struct TextInputExample {
 
   build() {
     Column() {
-      TextInput({ controller: this.controller, text: this.inputValue })
-        // Bind the custom keyboard.
+      TextInput({ controller: this.controller, text: this.inputValue })// Bind the custom keyboard.
         .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 }).height('48vp')
     }
   }
@@ -1634,8 +1683,8 @@ This example demonstrates how to use the **cancelButton** attribute to customize
 @Entry
 @Component
 struct TextInputExample {
-  @State text: string = ''
-  controller: TextInputController = new TextInputController()
+  @State text: string = '';
+  controller: TextInputController = new TextInputController();
 
   build() {
     Column() {
@@ -1646,12 +1695,12 @@ struct TextInputExample {
           style: CancelButtonStyle.CONSTANT,
           icon: {
             size: 45,
-            src: $r('app.media.icon'),
+            src: $r('app.media.app_icon'),
             color: Color.Blue
           }
         })
         .onChange((value: string) => {
-          this.text = value
+          this.text = value;
         })
     }
   }
@@ -1669,8 +1718,8 @@ This example showcases the implementation of a counter feature using the **maxLe
 @Entry
 @Component
 struct TextInputExample {
-  @State text: string = ''
-  controller: TextInputController = new TextInputController()
+  @State text: string = '';
+  controller: TextInputController = new TextInputController();
 
   build() {
     Column() {
@@ -1685,7 +1734,7 @@ struct TextInputExample {
         // The character counter is displayed when the number of characters that have been entered is greater than the maximum number of characters multiplied by 50% (threshold percentage).
         // When highlightBorder is set to false, the text box border turns red when the number of entered characters reaches the maximum. The default value is true.
         .onChange((value: string) => {
-          this.text = value
+          this.text = value;
         })
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
@@ -1700,33 +1749,34 @@ struct TextInputExample {
 This example illustrates how to format phone numbers using the **onChange callback** API.
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
-  @State submitValue: string = ''
-  @State text: string = ''
-  public readonly NUM_TEXT_MAXSIZE_LENGTH = 13
-  @State teleNumberNoSpace: string = ""
-  @State nextCaret: number = -1 // Used to record the position for the next caret setting
-  @State actualCh: number = -1 // Used to record the insertion or deletion position relative to the i-th digit of the caret
-  @State lastCaretPosition: number = 0
-  @State lastCaretPositionEnd: number = 0
-  controller: TextInputController = new TextInputController()
+  @State submitValue: string = '';
+  @State text: string = '';
+  public readonly NUM_TEXT_MAXSIZE_LENGTH = 13;
+  @State teleNumberNoSpace: string = "";
+  @State nextCaret: number = -1; // Used to record the position for the next caret setting
+  @State actualCh: number = -1; // Used to record the insertion or deletion position relative to the i-th digit of the caret
+  @State lastCaretPosition: number = 0;
+  @State lastCaretPositionEnd: number = 0;
+  controller: TextInputController = new TextInputController();
 
   isEmpty(str?: string): boolean {
-    return str == 'undefined' || !str || !new RegExp("[^\\s]").test(str)
+    return str == 'undefined' || !str || !new RegExp("[^\\s]").test(str);
   }
 
   checkNeedNumberSpace(numText: string) {
-    let isSpace: RegExp = new RegExp('[\\+;,#\\*]', 'g')
-    let isRule: RegExp = new RegExp('^\\+.*')
+    let isSpace: RegExp = new RegExp('[\\+;,#\\*]', 'g');
+    let isRule: RegExp = new RegExp('^\\+.*');
 
     if (isSpace.test(numText)) {
       // If the phone number contains special characters, no space is added.
       if (isRule.test(numText)) {
-        return true
+        return true;
       } else {
-        return false
+        return false;
       }
     }
     return true;
@@ -1734,61 +1784,61 @@ struct TextInputExample {
 
   removeSpace(str: string): string {
     if (this.isEmpty(str)) {
-      return ''
+      return '';
     }
-    return str.replace(new RegExp("[\\s]", "g"), '')
+    return str.replace(new RegExp("[\\s]", "g"), '');
   }
 
   setCaret() {
     if (this.nextCaret != -1) {
-      console.log("to keep caret position right, change caret to", this.nextCaret)
-      this.controller.caretPosition(this.nextCaret)
-      this.nextCaret = -1
+      console.log("to keep caret position right, change caret to", this.nextCaret);
+      this.controller.caretPosition(this.nextCaret);
+      this.nextCaret = -1;
     }
   }
 
   calcCaretPosition(nextText: string) {
-    let befNumberNoSpace: string = this.removeSpace(this.text)
-    this.actualCh = 0
+    let befNumberNoSpace: string = this.removeSpace(this.text);
+    this.actualCh = 0;
     if (befNumberNoSpace.length < this.teleNumberNoSpace.length) { // Insertion scenario
       for (let i = 0; i < this.lastCaretPosition; i++) {
         if (this.text[i] != ' ') {
-          this.actualCh += 1
+          this.actualCh += 1;
         }
       }
-      this.actualCh += this.teleNumberNoSpace.length - befNumberNoSpace.length
-      console.log("actualCh: " + this.actualCh)
+      this.actualCh += this.teleNumberNoSpace.length - befNumberNoSpace.length;
+      console.log("actualCh: " + this.actualCh);
       for (let i = 0; i < nextText.length; i++) {
         if (nextText[i] != ' ') {
-          this.actualCh -= 1
+          this.actualCh -= 1;
           if (this.actualCh <= 0) {
-            this.nextCaret = i + 1
+            this.nextCaret = i + 1;
             break;
           }
         }
       }
     } else if (befNumberNoSpace.length > this.teleNumberNoSpace.length) { // Deletion scenario
       if (this.lastCaretPosition === this.text.length) {
-        console.log("Caret at last, no need to change")
+        console.log("Caret at last, no need to change");
       } else if (this.lastCaretPosition === this.lastCaretPositionEnd) {
         // Scenario where the backspace key on the keyboard is used to delete characters one by one
         for (let i = this.lastCaretPosition; i < this.text.length; i++) {
           if (this.text[i] != ' ') {
-            this.actualCh += 1
+            this.actualCh += 1;
           }
         }
         for (let i = nextText.length - 1; i >= 0; i--) {
           if (nextText[i] != ' ') {
-            this.actualCh -= 1
+            this.actualCh -= 1;
             if (this.actualCh <= 0) {
-              this.nextCaret = i
+              this.nextCaret = i;
               break;
             }
           }
         }
       } else {
         // When cutting or selecting text with a handle to delete multiple characters at once
-        this.nextCaret = this.lastCaretPosition // Maintain the caret position.
+        this.nextCaret = this.lastCaretPosition; // Maintain the caret position.
       }
     }
   }
@@ -1797,41 +1847,41 @@ struct TextInputExample {
     Column() {
       Row() {
         TextInput({ text: `${this.text}`, controller: this.controller }).type(InputType.PhoneNumber).height('48vp')
-          .onChange((number: string) => {
-            this.teleNumberNoSpace = this.removeSpace(number);
-            let nextText: string = ""
+          .onChange((value: string) => {
+            this.teleNumberNoSpace = this.removeSpace(value);
+            let nextText: string = "";
             if (this.teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
-              nextText = this.teleNumberNoSpace
-            } else if (this.checkNeedNumberSpace(number)) {
+              nextText = this.teleNumberNoSpace;
+            } else if (this.checkNeedNumberSpace(value)) {
               if (this.teleNumberNoSpace.length <= 3) {
-                nextText = this.teleNumberNoSpace
+                nextText = this.teleNumberNoSpace;
               } else {
-                let split1: string = this.teleNumberNoSpace.substring(0, 3)
-                let split2: string = this.teleNumberNoSpace.substring(3)
-                nextText = split1 + ' ' + split2
+                let split1: string = this.teleNumberNoSpace.substring(0, 3);
+                let split2: string = this.teleNumberNoSpace.substring(3);
+                nextText = split1 + ' ' + split2;
                 if (this.teleNumberNoSpace.length > 7) {
-                  split2 = this.teleNumberNoSpace.substring(3, 7)
-                  let split3: string = this.teleNumberNoSpace.substring(7)
-                  nextText = split1 + ' ' + split2 + ' ' + split3
+                  split2 = this.teleNumberNoSpace.substring(3, 7);
+                  let split3: string = this.teleNumberNoSpace.substring(7);
+                  nextText = split1 + ' ' + split2 + ' ' + split3;
                 }
               }
             } else {
-              nextText = number
+              nextText = value;
             }
-            console.log("onChange Triggered:" + this.text + "|" + nextText + "|" + number)
-            if (this.text === nextText && nextText === number) {
+            console.log("onChange Triggered:" + this.text + "|" + nextText + "|" + value);
+            if (this.text === nextText && nextText === value) {
               // The number has been formatted. Changing the caret position at this time will not reset the number.
-              this.setCaret()
+              this.setCaret();
             } else {
-              this.calcCaretPosition(nextText)
+              this.calcCaretPosition(nextText);
             }
-            this.text = nextText
+            this.text = nextText;
           })
           .onTextSelectionChange((selectionStart, selectionEnd) => {
             // Record the caret position.
-            console.log("selection change: ", selectionStart, selectionEnd)
-            this.lastCaretPosition = selectionStart
-            this.lastCaretPositionEnd = selectionEnd
+            console.log("selection change: ", selectionStart, selectionEnd);
+            this.lastCaretPosition = selectionStart;
+            this.lastCaretPositionEnd = selectionEnd;
           })
       }
     }
@@ -1851,50 +1901,62 @@ This example demonstrates the effects of different text wrapping rules using the
 @Entry
 @Component
 struct TextInputExample {
+  @State textStrEn: string =
+    'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.';
+  @State textStrZn: string =
+    'The TextArea component provides multi-line text input and automatically wraps text to ensure that no line extends beyond the component's width.\nWhen the height is not set, the component has no default height and adapts to the content height. When the width is not set, it defaults to the maximum width.';';
+
   build() {
-    Column() {
-      Text("WordBreakType as NORMAL in the inline input style:").fontSize(16).fontColor(0xFF0000)
-      TextInput({
-        text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
-      })
-        .fontSize(16)
-        .style(TextInputStyle.Inline) // Inline input style
-        .wordBreak(WordBreak.NORMAL) // This attribute does not take effect for the non-inline input style.
+    Row() {
+      Column() {
+        Text("WordBreakType as NORMAL in the inline input style:").fontSize(16).fontColor(0xCCCCCC)
+        TextInput({
+          text: this.textStrEn
+        })
+          .margin(10)
+          .fontSize(16)
+          .style(TextInputStyle.Inline)// Inline input style
+          .wordBreak(WordBreak.NORMAL) // This attribute does not take effect for the non-inline input style.
 
-      Text("WordBreakType as BREAK_ALL in the inline input style:").fontSize(16).fontColor(0xFF0000)
-      TextInput({
-        text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
-      })
-        .fontSize(16)
-        .style(TextInputStyle.Inline)
-        .wordBreak(WordBreak.BREAK_ALL)
+        Text("WordBreakType as BREAK_ALL in the inline input style:"").fontSize(16).fontColor(0xCCCCCC)
+        TextInput({
+          text: this.textStrEn
+        })
+          .margin(10)
+          .fontSize(16)
+          .style(TextInputStyle.Inline)
+          .wordBreak(WordBreak.BREAK_ALL)
 
-      Text("WordBreakType as BREAK_ALL in the inline input style:").fontSize(16).fontColor(0xFF0000)
-      TextInput({
-        text: 'In a multi-line text input component, when the text content entered exceeds the width of the component, it will automatically wrap to display.\nIf the height is not set, the component has no default height and will adapt to the height of the content. If the width is not set, it auto-fills the maximum width available.'
-      })
-        .fontSize(16)
-        .style(TextInputStyle.Inline)
-        .wordBreak(WordBreak.BREAK_ALL)
+        Text("WordBreakType as BREAK_ALL in the inline input style:").fontSize(16).fontColor(0xCCCCCC)
+        TextInput({
+          text: this.textStrZn
+        })
+          .margin(10)
+          .fontSize(16)
+          .style(TextInputStyle.Inline)
+          .wordBreak(WordBreak.BREAK_ALL)
 
-      Text("WordBreakType as BREAK_WORD in the inline input style:").fontSize(16).fontColor(0xFF0000)
-      TextInput({
-        text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
-      })
-        .fontSize(16)
-        .style(TextInputStyle.Inline)
-        .wordBreak(WordBreak.BREAK_WORD)
-    }
+        Text("WordBreakType as BREAK_WORD in the inline input style:").fontSize(16).fontColor(0xCCCCCC)
+        TextInput({
+          text: this.textStrEn
+        })
+          .margin(10)
+          .fontSize(16)
+          .style(TextInputStyle.Inline)
+          .wordBreak(WordBreak.BREAK_WORD)
+      }.width('100%')
+    }.height('100%').margin(10)
   }
 }
 ```
-![TextInputWordBreak](figures/TextInputWordBreak.jpeg)
+![TextInputWordBreak](figures/TextInputWordBreak.png)
 
 ### Example 8: Setting the Text Style
 
 This example showcases various text styles by using the **lineHeight**, **letterSpacing**, and **decoration** attributes.
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
@@ -1902,31 +1964,31 @@ struct TextInputExample {
     Row() {
       Column() {
         Text('lineHeight').fontSize(9).fontColor(0xCCCCCC)
-        TextInput({text: 'lineHeight unset'})
+        TextInput({ text: 'lineHeight unset' })
           .border({ width: 1 }).padding(10).margin(5)
-        TextInput({text: 'lineHeight 15'})
+        TextInput({ text: 'lineHeight 15' })
           .border({ width: 1 }).padding(10).margin(5).lineHeight(15)
-        TextInput({text: 'lineHeight 30'})
+        TextInput({ text: 'lineHeight 30' })
           .border({ width: 1 }).padding(10).margin(5).lineHeight(30)
 
         Text('letterSpacing').fontSize(9).fontColor(0xCCCCCC)
-        TextInput({text: 'letterSpacing 0'})
+        TextInput({ text: 'letterSpacing 0' })
           .border({ width: 1 }).padding(5).margin(5).letterSpacing(0)
-        TextInput({text: 'letterSpacing 3'})
+        TextInput({ text: 'letterSpacing 3' })
           .border({ width: 1 }).padding(5).margin(5).letterSpacing(3)
-        TextInput({text: 'letterSpacing -1'})
+        TextInput({ text: 'letterSpacing -1' })
           .border({ width: 1 }).padding(5).margin(5).letterSpacing(-1)
 
         Text('decoration').fontSize(9).fontColor(0xCCCCCC)
-        TextInput({text: 'LineThrough, Red'})
+        TextInput({ text: 'LineThrough, Red' })
           .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.LineThrough, color: Color.Red})
-        TextInput({text: 'Overline, Red, DASHED'})
+          .decoration({ type: TextDecorationType.LineThrough, color: Color.Red })
+        TextInput({ text: 'Overline, Red, DASHED' })
           .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DASHED})
-        TextInput({text: 'Underline, Red, WAVY'})
+          .decoration({ type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DASHED })
+        TextInput({ text: 'Underline, Red, WAVY' })
           .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY})
+          .decoration({ type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY })
       }.height('90%')
     }
     .width('90%')
@@ -1942,11 +2004,12 @@ struct TextInputExample {
 This example demonstrates how to use the **fontFeature** attribute to display text with various typographic features.
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
-  @State text1: string = 'This is ss01 on : 0123456789'
-  @State text2: string = 'This is ss01 off: 0123456789'
+  @State text1: string = 'This is ss01 on : 0123456789';
+  @State text2: string = 'This is ss01 off: 0123456789';
 
   build() {
     Column() {
@@ -1972,13 +2035,14 @@ struct TextInputExample {
 This example illustrates the implementation of a custom keyboard that automatically adjusts its position to avoid covering the text box.
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
-  controller: TextInputController = new TextInputController()
-  @State inputValue: string = ""
-  @State height1: string | number = '80%'
-  @State supportAvoidance: boolean = true
+  controller: TextInputController = new TextInputController();
+  @State inputValue: string = "";
+  @State height1: string | number = '80%';
+  @State supportAvoidance: boolean = true;
 
   // Create a custom keyboard component.
   @Builder
@@ -1987,7 +2051,7 @@ struct TextInputExample {
       Row() {
         Button('x').onClick(() => {
           // Disable the custom keyboard.
-          this.controller.stopEditing()
+          this.controller.stopEditing();
         }).margin(10)
       }
 
@@ -1996,7 +2060,7 @@ struct TextInputExample {
           GridItem() {
             Button(item + "")
               .width(110).onClick(() => {
-              this.inputValue += item
+              this.inputValue += item;
             })
           }
         })
@@ -2010,13 +2074,13 @@ struct TextInputExample {
         Button("20%")
           .fontSize(24)
           .onClick(() => {
-            this.height1 = "20%"
+            this.height1 = "20%";
           })
         Button("80%")
           .fontSize(24)
           .margin({ left: 20 })
           .onClick(() => {
-            this.height1 = "80%"
+            this.height1 = "80%";
           })
       }
       .justifyContent(FlexAlign.Center)
@@ -2042,6 +2106,7 @@ struct TextInputExample {
 This example showcases the implementation of text auto-adaptation features using the **minFontSize**, **maxFontSize**, and **heightAdaptivePolicy** attributes.
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
@@ -2093,16 +2158,18 @@ struct TextInputExample {
 This example demonstrates the effects of different line break rules using the **wordBreak** attribute.
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
   @State message1: string =
     "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
       "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
-      "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented."
-  @State lineBreakStrategyIndex: number = 0
-  @State lineBreakStrategy: LineBreakStrategy[] = [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED]
-  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED']
+      "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
+  @State lineBreakStrategyIndex: number = 0;
+  @State lineBreakStrategy: LineBreakStrategy[] =
+    [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED];
+  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
@@ -2117,9 +2184,9 @@ struct TextInputExample {
         .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
       Row() {
         Button('Toggle lineBreakStrategy Value: ' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
-          this.lineBreakStrategyIndex++
-          if(this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
-            this.lineBreakStrategyIndex = 0
+          this.lineBreakStrategyIndex++;
+          if (this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
+            this.lineBreakStrategyIndex = 0;
           }
         })
       }
@@ -2137,11 +2204,11 @@ This example showcases the implementation of insert and delete operations using 
 @Entry
 @Component
 struct TextInputExample {
-  @State insertValue: string = ""
-  @State deleteValue: string = ""
-  @State insertOffset: number = 0
-  @State deleteOffset: number = 0
-  @State deleteDirection: number = 0
+  @State insertValue: string = "";
+  @State deleteValue: string = "";
+  @State insertOffset: number = 0;
+  @State deleteOffset: number = 0;
+  @State deleteDirection: number = 0;
 
   build() {
     Row() {
@@ -2149,11 +2216,11 @@ struct TextInputExample {
         TextInput({ text: "Insert callbacks" })
           .height(60)
           .onWillInsert((info: InsertValue) => {
-            this.insertValue = info.insertValue
+            this.insertValue = info.insertValue;
             return true;
           })
           .onDidInsert((info: InsertValue) => {
-            this.insertOffset = info.insertOffset
+            this.insertOffset = info.insertOffset;
           })
 
         Text("insertValue:" + this.insertValue + "  insertOffset:" + this.insertOffset).height(30)
@@ -2161,13 +2228,13 @@ struct TextInputExample {
         TextInput({ text: "Delete callbacks" })
           .height(60)
           .onWillDelete((info: DeleteValue) => {
-            this.deleteValue = info.deleteValue
-            info.direction
+            this.deleteValue = info.deleteValue;
+            info.direction;
             return true;
           })
           .onDidDelete((info: DeleteValue) => {
-            this.deleteOffset = info.deleteOffset
-            this.deleteDirection = info.direction
+            this.deleteOffset = info.deleteOffset;
+            this.deleteDirection = info.direction;
           })
 
         Text("deleteValue:" + this.deleteValue + "  deleteOffset:" + this.deleteOffset).height(30)
@@ -2191,40 +2258,40 @@ This example demonstrates how to use the **editMenuOptions** API to create custo
 @Entry
 @Component
 struct TextInputExample {
-  @State text: string = 'TextInput editMenuOptions'
+  @State text: string = 'TextInput editMenuOptions';
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'Custom 1',
       icon: $r('app.media.startIcon'),
       id: TextMenuItemId.of('Custom 1'),
-    }
+    };
     let item2: TextMenuItem = {
       content: 'Custom 2',
       id: TextMenuItemId.of('Custom 2'),
       icon: $r('app.media.startIcon'),
-    }
-    menuItems.push(item1)
-    menuItems.unshift(item2)
-    return menuItems
+    };
+    menuItems.push(item1);
+    menuItems.unshift(item2);
+    return menuItems;
   }
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
     if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-      console.log("Intercept id: custom2 start:" + textRange.start + "; end:" + textRange.end)
-      return true
+      console.log("Intercept id: custom2 start:" + textRange.start + "; end:" + textRange.end);
+      return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
-      console.log("Intercept COPY start:" + textRange.start + "; end:" + textRange.end)
-      return true
+      console.log("Intercept COPY start:" + textRange.start + "; end:" + textRange.end);
+      return true;
     }
     if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-      console.log("Do not intercept SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
-      return false
+      console.log("Do not intercept SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
+      return false;
     }
-    return false
+    return false;
   }
   @State editMenuOptions: EditMenuOptions = {
     onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
-  }
+  };
 
   build() {
     Column() {
@@ -2241,3 +2308,111 @@ struct TextInputExample {
 ```
 
 ![textInputEditMenuOptions](figures/textInputEditMenuOptions.gif)
+### Example 15: Implementing Callbacks for Input Status Changes, Copy, Cut, Paste, and Content Scrolling
+
+This example demonstrates how to monitor input status changes, copy, cut, paste, and text content scrolling events using the **onEditChange**, **onCopy**, **onCut**, **onPaste**, and **onContentScroll** APIs.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextInputExample {
+  @State editStatus: boolean = false;
+  @State copyValue: string = "";
+  @State cutValue: string = "";
+  @State pasteValue: string = "";
+  @State totalOffsetX: number = 0;
+  @State totalOffsetY: number = 0;
+
+  build() {
+    Row() {
+      Column() {
+        TextInput({ text: "TextInput supports the callback on input status changes" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .fontFamily("HarmonyOS Sans")
+          .copyOption(CopyOptions.LocalDevice)
+          .textAlign(TextAlign.Center)
+          .selectedBackgroundColor(Color.Blue)
+          .caretStyle({ width: '4vp' })
+          .caretPosition(10)// Set the caret position in the TextInput component.
+          .selectionMenuHidden(true)// Hide the system text selection menu.
+          .onEditChange((status: boolean) => {
+            this.editStatus = status;
+          })
+          .defaultFocus (true)// Set the TextInput component as the default focus.
+          .enableKeyboardOnFocus (false)// Prevent the keyboard from appearing when the TextArea component obtains focus in a way other than clicking.
+          .selectAll(false)
+
+        Text("editStatus:" + this.editStatus).height(30)
+
+        TextInput({ text: "TextInput supports the callback on copy operations" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .fontFamily("HarmonyOS Sans")
+          .copyOption(CopyOptions.LocalDevice)
+          .textAlign(TextAlign.Center)
+          .selectedBackgroundColor(Color.Blue)
+          .caretStyle({ width: '4vp' })
+          .onCopy((copyValue: string) => {
+            this.copyValue = copyValue;
+          })
+
+        Text("copyValue:" + this.copyValue).height(30)
+
+        TextInput({ text: "TextInput supports the callback on cut operations" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .fontFamily("HarmonyOS Sans")
+          .copyOption(CopyOptions.LocalDevice)
+          .textAlign(TextAlign.Center)
+          .selectedBackgroundColor(Color.Blue)
+          .caretStyle({ width: '4vp' })
+          .onCut((cutValue: string) => {
+            this.cutValue = cutValue;
+          })
+
+        Text("cutValue:" + this.cutValue).height(30)
+
+        TextInput({ text: "TextInput supports the callback on paste operations" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .fontFamily("HarmonyOS Sans")
+          .copyOption(CopyOptions.LocalDevice)
+          .textAlign(TextAlign.Center)
+          .selectedBackgroundColor(Color.Blue)
+          .caretStyle({ width: '4vp' })
+          .onPaste((pasteValue: string) => {
+            this.pasteValue = pasteValue;
+          })
+
+        Text("pasteValue:" + this.pasteValue).height(30)
+
+        TextInput({ text: "TextInput supports the callback on content scrolling: Scroll the text to see offset changes when the text width exceeds the text box width" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .fontFamily("HarmonyOS Sans")
+          .copyOption(CopyOptions.LocalDevice)
+          .textAlign(TextAlign.Center)
+          .selectedBackgroundColor(Color.Blue)
+          .caretStyle({ width: '4vp' })
+          .onContentScroll((totalOffsetX: number, totalOffsetY: number) => {
+            this.totalOffsetX = totalOffsetX;
+            this.totalOffsetY = totalOffsetY;
+          })
+
+        Text("totalOffsetX:" + this.totalOffsetX + "  totalOffsetY:" + this.totalOffsetY).height(30)
+
+      }.width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+

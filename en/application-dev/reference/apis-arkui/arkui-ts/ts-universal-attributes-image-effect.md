@@ -4,11 +4,11 @@ Image effects include blur, shadow, spherical effect, and much more.
 
 >  **NOTE**
 >
->  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  The feature is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## blur
 
-blur(value: number, options?: BlurOptions)
+blur(value: number, options?: BlurOptions): T
 
 Applies a foreground blur effect to the component.
 
@@ -25,17 +25,15 @@ Applies a foreground blur effect to the component.
 | value                 | number                                                       | Yes  | Foreground blur effect to apply to the component. The input parameter is the blur radius. The larger the radius is, the more blurred the content is. If the value is **0**, the content is not blurred.|
 | options<sup>11+</sup> | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | No  | Grayscale parameters.                                                |
 
+**Return value**
 
-
-
-
-
-
-
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
 
 ## shadow
 
-shadow(value: ShadowOptions | ShadowStyle)
+shadow(value: ShadowOptions | ShadowStyle): T
 
 Applies a shadow effect to the component.
 
@@ -51,17 +49,15 @@ Applies a shadow effect to the component.
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [ShadowOptions](#shadowoptions) \| [ShadowStyle](#shadowstyle10)<sup>10+</sup> | Yes  | Shadow of the component.<br>When the value type is **ShadowOptions**, the blur radius, shadow color, and offset along the x-axis and y-axis can be specified.<br>When the value type is **ShadowStyle**, the shadow style can be specified.|
 
+**Return value**
 
-
-
-
-
-
-
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
 
 ## grayscale
 
-grayscale(value: number)
+grayscale(value: number): T
 
 Applies a grayscale effect to the component.
 
@@ -77,17 +73,15 @@ Applies a grayscale effect to the component.
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | number | Yes  | Grayscale conversion ratio of the component. If the value is **1.0**, the component is completely converted to grayscale. If the value is **0.0**, the component remains unchanged. Between **0** and **1**, the value applies a linear multiplier on the grayscale effect. The unit is percentage.<br>Default value: **0.0**<br>Value range: [0.0, 1.0]<br>**NOTE**<br>A value less than **0.0** evaluates to the value **0.0**. A value greater than **1.0** evaluates to the value **1.0**.|
 
+**Return value**
 
-
-
-
-
-
-
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
 
 ## brightness
 
-brightness(value: number)
+brightness(value: number): T
 
 Applies a brightness effect to the component.
 
@@ -103,17 +97,15 @@ Applies a brightness effect to the component.
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | number | Yes  | Brightness of the component. The value **1** indicates no effects. The value **0** indicates the complete darkness. If the value is less than **1**, the brightness decreases. If the value is greater than **1**, the brightness increases. A larger value indicates a higher brightness. A brightness of 2 turns the component completely white.<br>Default value: **1.0**<br>Recommended value range: [0, 2]<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
 
+**Return value**
 
-
-
-
-
-
-
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
 
 ## saturate
 
-saturate(value: number)
+saturate(value: number): T
 
 Applies a saturation effect to the component.
 
@@ -129,17 +121,15 @@ Applies a saturation effect to the component.
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | number | Yes  | Saturation of the component. The saturation is the ratio of the chromatic component to the achromatic component (gray) in a color. If the value is **1**, the original image is displayed. If the value is greater than **1**, a higher percentage of the chromatic component indicates a higher saturation. If the value is less than **1**, a higher percentage of the achromatic component indicates a lower saturation. The unit is percentage.<br>Default value: **1.0**<br>Recommended value range: [0, 50)<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.|
 
+**Return value**
 
-
-
-
-
-
-
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
 
 ## contrast
 
-contrast(value: number)
+contrast(value: number): T
 
 Applies a contrast effect to the component.
 
@@ -155,17 +145,15 @@ Applies a contrast effect to the component.
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | number | Yes  | Contrast of the component. The input parameter is a contrast value. If the value is **1**, the source image is displayed. If the value is greater than 1, a larger value indicates a higher contrast and a clearer image. If the value is less than 1, a smaller value indicates a lower contrast is. If the value is **0**, the image becomes all gray. The unit is percentage.<br>Default value: **1.0**<br>Recommended value range: [0, 10)<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.|
 
+**Return value**
 
-
-
-
-
-
-
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
 
 ## invert
 
-invert(value: number | InvertOptions)
+invert(value: number | InvertOptions): T
 
 Inverts the image.
 
@@ -179,21 +167,19 @@ Inverts the image.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | number \| [InvertOptions](#invertoptions11)<sup>11+</sup> | Yes  | How the image is inverted.<br>If the value is of the number type, it indicates the inversion ratio. If the value is **1**, the image is completely inverted. If the value is **0**, the image remains unchanged. The unit is percentage.<br>Value range: [0, 1]<br>A value less than 0 evaluates to the value **0**.<br>If the value is of the InvertOptions type, the grayscale value of the background color is compared with the threshold range. If the grayscale value is greater than the upper bound of the threshold range, the **high** value is used. If the grayscale value is less than the lower bound of the threshold range, the **low** value is used. If the grayscale value is within the threshold range, the background color changes linearly from high to low.|
+| value  | number \| [InvertOptions](#invertoptions11)<sup>11+</sup> | Yes  | How the image is inverted.<br>If the value is of the number type, it indicates the inversion ratio. If the value is **1**, the image is completely inverted. If the value is **0**, the image remains unchanged. The unit is percentage.<br>Value range: [0, 1].<br>A value less than 0 evaluates to the value **0**. A value larger than 1 is treated as **1**.<br>If the value is of the InvertOptions type, the grayscale value of the background color is compared with the threshold range. If the grayscale value is greater than the upper bound of the threshold range, the **high** value is used. If the grayscale value is less than the lower bound of the threshold range, the **low** value is used. If the grayscale value is within the threshold range, the background color changes linearly from high to low.|
 
+**Return value**
 
-
-
-
-
-
-
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
 
 ## sepia
 
-sepia(value: number)
+sepia(value: number): T
 
-Sepia conversion ratio of the component.
+Converts the image to a sepia tone, reducing color intensity to create a warm, vintage image style.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -205,19 +191,17 @@ Sepia conversion ratio of the component.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Sepia conversion ratio of the component. If the value is **1**, the image is completely sepia. If the value is **0**, the component remains unchanged. The unit is percentage.<br> Value range: [0, +∞)|
+| value  | number | Yes  | Intensity of the sepia filter. A value of 1 results in a completely sepia image, values less than or equal to 0 leave the image unchanged, and values greater than 1 increase the color shift, making the image brighter and more yellow or red, though this is not a standard sepia effect. The unit is percentage.<br>Value range: [0, +∞). Recommended value range: (0, 1].|
 
+**Return value**
 
-
-
-
-
-
-
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
 
 ## hueRotate
 
-hueRotate(value: number | string)
+hueRotate(value: number | string): T
 
 Rotates the hue of the component.
 
@@ -233,17 +217,15 @@ Rotates the hue of the component.
 | ------ | -------------------------- | ---- | ------------------------------------------------------------ |
 | value  | number \| string | Yes  | Hue rotation angle of the component.<br>Default value: **'0deg'**<br>Value range: (-∞, +∞)<br>**NOTE**<br>A rotation of 360 degrees leaves the color unchanged. A rotation of 180 degrees and then -180 degrees also leaves the color unchanged. When the data type is number, the value **90** is equivalent to **'90deg'**.|
 
+**Return value**
 
-
-
-
-
-
-
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
 
 ## colorBlend<sup>7+</sup>
 
-colorBlend(value: Color | string | Resource)
+colorBlend(value: Color | string | Resource): T
 
 Applies a color blend effect to the component.
 
@@ -259,17 +241,15 @@ Applies a color blend effect to the component.
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
 | value  | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource) | Yes  | Color to blend with the component.|
 
+**Return value**
 
-
-
-
-
-
-
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
 
 ## linearGradientBlur<sup>12+</sup> 
 
-linearGradientBlur(value: number, options: LinearGradientBlurOptions)
+linearGradientBlur(value: number, options: LinearGradientBlurOptions): T
 
 Applies a linear gradient foreground blur effect to the component.
 
@@ -284,16 +264,15 @@ Applies a linear gradient foreground blur effect to the component.
 | value   | number                                                       | Yes  | Blur radius. A larger value indicates a higher blur degree. If the value is 0, the content is not blurred.<br>Value range: [0, 1000]<br>Linear gradient blur consists of two parts: **fractionStops** and **direction**.|
 | options | [LinearGradientBlurOptions](#lineargradientbluroptions12) | Yes  | Linear gradient blur effect.                                      |
 
+**Return value**
 
-
-
-
-
-
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
 
 ## renderGroup<sup>10+</sup>
 
-renderGroup(value: boolean)
+renderGroup(value: boolean): T
 
 Sets whether the component and its child components are rendered off the screen as a whole before being blended with its parent.
 
@@ -307,16 +286,15 @@ Sets whether the component and its child components are rendered off the screen 
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | Yes  | Whether the component and its child components are rendered off the screen as a whole before being blended with its parent. If the opacity of the component is not 1, the drawing effect may vary depending on the value.<br>Default value: **false**<br> The value **true** means the component and its child components are rendered off the screen as a whole, and **false** means the opposite.|
 
+**Return value**
 
-
-
-
-
-
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
 
 ## blendMode<sup>11+</sup> 
 
-blendMode(value: BlendMode, type?: BlendApplyType)
+blendMode(value: BlendMode, type?: BlendApplyType): T
 
 Defines how the component's content (including the content of it child components) is blended with the existing content on the canvas (possibly offscreen canvas) below.
 
@@ -329,17 +307,15 @@ Defines how the component's content (including the content of it child component
 **Parameters**
 
 | Name| Type                               | Mandatory| Description                                                        |
-
-
-
-
-
-
-
-
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [BlendMode](#blendmode11) Yes  | Blend mode.<br>Default value: **BlendMode.NONE**<br>If **mode** is **undefined**, the component reverts to its original effect of not enabling offscreen rendering as a whole before blending with the parent component.<br>**NOTE**<br>When **BlendMode.NONE** is used, the blend effect is **BlendMode.SRC_OVER** by default, and **BlendApplyType** does not take effect.|
 | type   | [BlendApplyType](#blendapplytype11)  |    No   | Whether the blend mode is implemented offscreen.<br>Default value: **BlendApplyType.FAST**<br>**NOTE**<br>1. **BlendApplyType.FAST**: The blend mode is not implemented offscreen.<br>2. **BlendApplyType.OFFSCREEN**: An offscreen canvas of the size of the current component is created. The content of the current component (including child components) is then drawn onto the offscreen canvas, and blended with the existing content on the canvas below using the specified blend mode. This approach may cause issues with screen capture for APIs such as [linearGradientBlur<sup>12+</sup>](#lineargradientblur12), [backgroundEffect](ts-universal-attributes-background.md#backgroundeffect11), and [brightness](#brightness).|
+
+**Return value**
+
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
 
 ## BlendApplyType<sup>11+</sup>
 
@@ -358,7 +334,7 @@ Defines how to apply the specified blend mode to the content of a view.
 
 ## useShadowBatching<sup>11+</sup> 
 
-useShadowBatching(value: boolean)
+useShadowBatching(value: boolean): T
 
 Sets whether to draw shadows of child nodes in the component at the same layer, so that the shadows of elements at the same layer overlap.
 
@@ -374,17 +350,15 @@ Sets whether to draw shadows of child nodes in the component at the same layer, 
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | Yes  | Whether to draw shadows of child nodes in the component at the same layer, so that the shadows of elements at the same layer overlap.<br>Default value: **false**<br>**NOTE**<br>1. When this feature is disabled (default), if the shadow radius of a child node is large, the shadows of the child nodes may overlap. This overlap issue does not occur when the feature is enabled.<br>2. Avoid nesting **useShadowBatching**. When used in nested mode, **useShadowBatching** takes effect for the current child node only and cannot be recursively used.|
 
+**Return value**
 
-
-
-
-
-
-
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
 
 ## sphericalEffect<sup>12+</sup>
 
-sphericalEffect(value: number)
+sphericalEffect(value: number): T
 
 Applies a spherical effect to the component.
 
@@ -398,16 +372,15 @@ Applies a spherical effect to the component.
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | number | Yes  | Spherical degree of the component.<br>The value ranges from 0 to 1.<br>**NOTE**<br>1. If the value is **0**, the component remains unchanged. If the value is 1, the component is completely spherical. Between **0** and **1**, a larger value indicates a higher spherical degree.<br>A value less than 0 is handled as the value **0**. A value greater than 1 is handled as the value **1**.<br>2. The component's shadow and outer stroke do not support spherical effects.<br>3. If the value is greater than 0, the component is frozen and not updated, and its content is drawn to the transparent offscreen buffer. To update the component attributes, set the value to **0**.|
 
+**Return value**
 
-
-
-
-
-
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
 
 ## lightUpEffect<sup>12+</sup> 
 
-lightUpEffect(value: number)
+lightUpEffect(value: number): T
 
 Applies a light up effect to the component.
 
@@ -421,16 +394,15 @@ Applies a light up effect to the component.
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | number | Yes  | Light up degree of the component.<br>The value ranges from 0 to 1.<br>If the value is **0**, the component is dark. If the value is **1**, the component is fully illuminated. Between **0** and **1**, a larger value indicates higher luminance. A value less than 0 is handled as the value **0**. A value greater than 1 is handled as the value **1**.|
 
+**Return value**
 
-
-
-
-
-
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
 
 ## pixelStretchEffect<sup>12+</sup> 
 
-pixelStretchEffect(options: PixelStretchEffectOptions)
+pixelStretchEffect(options: PixelStretchEffectOptions): T
 
 Applies a pixel stretch effect to the component.
 
@@ -441,15 +413,14 @@ Applies a pixel stretch effect to the component.
 **Parameters**
 
 | Name | Type                                                     | Mandatory| Description                                                        |
-
-
-
-
-
-
-
-| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| ------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | options | [PixelStretchEffectOptions](#pixelstretcheffectoptions10) | Yes  | Pixel stretch effect options.<br>The value includes the length by which a pixel is stretched toward the four edges.<br>**NOTE**<br>1. If the length is a positive value, the original image is stretched, and the image size increases. The edge pixels grow by the set length toward the top, bottom, left, and right edges.<br>2. If the length is a negative value, the original image shrinks as follows, but the image size remains unchanged:<br>Shrinking mode:<br>(1) The image shrinks from the four edges by the absolute value of length set through **options**.<br>(2) The image is stretched back to the original size with edge pixels.<br>3. Constraints on **options**:<br>(1) The length values for the four edges must be all positive or all negative. That is, the four edges are stretched or shrink at the same time in the same direction.<br>(2) The length values must all be a percentage or a specific value. Combined use of the percentage and specific value is not allowed.<br>(3) If the input value is invalid, the image is displayed as {0, 0, 0, 0}, that is, the image is the same as the original image.|
+
+**Return value**
+
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
 
 ## PixelStretchEffectOptions<sup>10+</sup>
 
@@ -468,13 +439,19 @@ Describes the pixel stretch effect options.
 
 ## systemBarEffect<sup>12+</sup>
 
-systemBarEffect()
+systemBarEffect(): T
 
 Applies a system bar effect to the component, which means to invert colors based on the background and add a blur.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
 
 ## ShadowType<sup>10+<sup>
 
@@ -601,14 +578,9 @@ Describes the options for inverting the foreground color.
 | threshold      | number | Yes   | Grayscale threshold.<br>Value range: [0, 1]                             |
 | thresholdRange | number | Yes   | Threshold value range.<br>Value range: [0, 1]<br>**NOTE**<br>This range defines the upper and lower bounds of the grayscale threshold. The grayscale value changes linearly from high to low within the range.|
 
-
-
-
-
-
 ## freeze<sup>12+</sup>
 
-freeze(value: boolean)
+freeze(value: boolean): T
 
 Sets whether to freeze the component. When frozen, the component and its children are cached for repeated drawing after offscreen rendering, without updating internal attributes.
 
@@ -622,7 +594,11 @@ Sets whether to freeze the component. When frozen, the component and its childre
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | Yes  | Whether to freeze the component. When frozen, the component and its children are cached for repeated drawing after offscreen rendering, without updating internal attributes. If the opacity of the component is not 1, the drawing effect may vary depending on the value.<br>Default value: **false**<br> **true**: Freeze the component.<br>**false**: Do not freeze the component.|
 
+**Return value**
 
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
 
 
 

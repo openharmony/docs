@@ -132,7 +132,7 @@ To understand the value initialization and update mechanism of the \@Link decora
 
 ## Constraints
 
-1. The @Link decorator cannot be used in custom components decorated by [\@Entry](https://gitee.com/openharmony/docs/blob/master/en/application-dev/quick-start/arkts-create-custom-components.md#basic-structure-of-a-custom-component).
+1. The @Link decorator cannot be used in custom components decorated by [\@Entry](./arkts-create-custom-components.md#basic-structure-of-a-custom-component).
 
 2. Do not initialize variables decorated by \@Link locally. Otherwise, an error will be reported during compilation.
 

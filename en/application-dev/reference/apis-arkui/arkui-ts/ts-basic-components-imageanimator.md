@@ -25,7 +25,7 @@ ImageAnimator()
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### images
 
@@ -43,7 +43,7 @@ Sets the image frame information. Dynamic update is not supported.
 
 | Name | Type                                                  | Mandatory | Description                                                        |
 | ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | Array&lt;[ImageFrameInfo](#imageframeinfo)&gt;  | Yes  | Image frame information. The information of each frame includes the image path, image size, image position, and image playback duration. For details, see **ImageFrameInfo**.<br>Default value: **[]** |
+| value  | Array&lt;[ImageFrameInfo](#imageframeinfo)&gt; | Yes  | Image frame information. The information of each frame includes the image path, image size, image position, and image playback duration. For details, see **ImageFrameInfo**.<br>Default value: **[]**<br> **NOTE**<br>If the input array is too large, memory usage may increase. Therefore, as the controller of memory usage, be sure to assess potential memory consumption before passing in the data to avoid issues such as insufficient memory.|
 
 ### state
 
@@ -167,6 +167,22 @@ Sets the number of times that the animation is played.
 | ------ | ------ | ---- | ------------------------------------------------------ |
 | value  | number | Yes  | Number of times that the animation is played. By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times.<br>Default value: **1** |
 
+### monitorInvisibleArea<sup>17+</sup>
+
+monitorInvisibleArea(monitorInvisibleArea: boolean)
+
+Sets whether the component should automatically pause or resume based on its visibility, using the system's [onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange) event.
+
+**Atomic service API**: This API can be used in atomic services since API version 17.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                  |
+| ------ | ------ | ---- | ------------------------------------------------------ |
+| monitorInvisibleArea  | boolean | Yes| Whether the component should automatically pause or resume based on its visibility, using the system's [onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange) event.<br> With the value **true**, when the component's [AnimationStatus](ts-appendix-enums.md#animationstatus) is Running, the component automatically pauses once it becomes invisible and resumes playback if it becomes visible again, based on the **onVisibleAreaChange** event.<br>Default value: **false**<br> **NOTE**<br>When this parameter is dynamically changed from **true** to **false**,<br> the component will resume from its last paused state based on the current **AnimationStatus**.<br>Changes to this property do not affect the custom [state](./ts-basic-components-imageanimator.md#state) value.|
+
 ## ImageFrameInfo
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -176,15 +192,15 @@ Sets the number of times that the animation is played.
 | Name  | Type  | Mandatory| Description|
 | -------- | -------------- | -------- | -------- |
 | src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)<sup>12+</sup> | Yes   | Image path. The image format can be .jpg, .jpeg, .svg, .png, .bmp, .webp, .ico, or .heif. The [Resource](ts-types.md#resource) type is supported since API version 9, and the [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) type is supported since API version 12.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.|
-| width    | number \| string | No | Image width.<br>Default value: **0**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.      |
-| height   | number \| string | No | Image height.<br>Default value: **0**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.       |
-| top      | number \| string | No | Vertical coordinate of the image relative to the upper left corner of the widget<br>Default value: **0**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10. |
-| left     | number \| string | No | Horizontal coordinate of the image relative to the upper left corner of the widget<br>Default value: **0**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.  |
+| width    | number \| string | No | Image width. For the string type, numeric string values with optional units, for example, **"2"** or **"2px"**, are supported.<br>Default value: **0**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.      |
+| height   | number \| string | No | Image height. For the string type, numeric string values with optional units, for example, **"2"** or **"2px"**, are supported.<br>Default value: **0**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.       |
+| top      | number \| string | No | Vertical coordinate of the image relative to the upper left corner of the widget For the string type, numeric string values with optional units, for example, **"2"** or **"2px"**, are supported.<br>Default value: **0**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10. |
+| left     | number \| string | No | Horizontal coordinate of the image relative to the upper left corner of the widget For the string type, numeric string values with optional units, for example, **"2"** or **"2px"**, are supported.<br>Default value: **0**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.  |
 | duration | number          | No    | Playback duration of each image frame, in milliseconds.<br>Default value: **0**        |
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onStart
 
@@ -256,9 +272,9 @@ This example demonstrates how to play an animation using the **ImageAnimator** c
 @Entry
 @Component
 struct ImageAnimatorExample {
-  @State state: AnimationStatus = AnimationStatus.Initial
-  @State reverse: boolean = false
-  @State iterations: number = 1
+  @State state: AnimationStatus = AnimationStatus.Initial;
+  @State reverse: boolean = false;
+  @State iterations: number = 1;
 
   build() {
     Column({ space: 10 }) {
@@ -278,8 +294,12 @@ struct ImageAnimatorExample {
           }
         ])
         .duration(2000)
-        .state(this.state).reverse(this.reverse)
-        .fillMode(FillMode.None).iterations(this.iterations).width(340).height(240)
+        .state(this.state)
+        .reverse(this.reverse)
+        .fillMode(FillMode.None)
+        .iterations(this.iterations)
+        .width(340)
+        .height(240)
         .margin({ top: 100 })
         .onStart(() => {
           console.info('Start')
@@ -302,10 +322,10 @@ struct ImageAnimatorExample {
           this.state = AnimationStatus.Running
         }).margin(5)
         Button('pause').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Paused     // Display the image of the current frame.
+          this.state = AnimationStatus.Paused // Display the image of the current frame.
         }).margin(5)
         Button('stop').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Stopped    // Display the image of the initial frame.
+          this.state = AnimationStatus.Stopped // Display the image of the initial frame.
         }).margin(5)
       }
 
@@ -331,64 +351,71 @@ This example demonstrates how to play an animation using the **ImageAnimator** c
 
 ```ts
 // xxx.ets
-import { image } from '@kit.ImageKit'
+import { image } from '@kit.ImageKit';
 
 @Entry
 @Component
 struct ImageAnimatorExample {
-  imagePixelMap: Array<PixelMap> = []
-  @State state: AnimationStatus = AnimationStatus.Initial
-  @State reverse: boolean = false
-  @State iterations: number = 1
-  @State images:Array<ImageFrameInfo> = []
+  imagePixelMap: Array<PixelMap> = [];
+  @State state: AnimationStatus = AnimationStatus.Initial;
+  @State reverse: boolean = false;
+  @State iterations: number = 1;
+  @State images: Array<ImageFrameInfo> = [];
+
   async aboutToAppear() {
-    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.icon')))
-    this.images.push({src:this.imagePixelMap[0]})
+    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.icon')));
+    this.images.push({ src: this.imagePixelMap[0] });
   }
+
   build() {
     Column({ space: 10 }) {
       ImageAnimator()
         .images(this.images)
         .duration(2000)
-        .state(this.state).reverse(this.reverse)
-        .fillMode(FillMode.None).iterations(this.iterations).width(340).height(240)
+        .state(this.state)
+        .reverse(this.reverse)
+        .fillMode(FillMode.None)
+        .iterations(this.iterations)
+        .width(340)
+        .height(240)
         .margin({ top: 100 })
         .onStart(() => {
-          console.info('Start')
+          console.info('Start');
         })
         .onPause(() => {
-          console.info('Pause')
+          console.info('Pause');
         })
         .onRepeat(() => {
-          console.info('Repeat')
+          console.info('Repeat');
         })
         .onCancel(() => {
-          console.info('Cancel')
+          console.info('Cancel');
         })
         .onFinish(() => {
-          console.info('Finish')
-          this.state = AnimationStatus.Stopped
+          console.info('Finish');
+          this.state = AnimationStatus.Stopped;
         })
       Row() {
         Button('start').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Running
+          this.state = AnimationStatus.Running;
         }).margin(5)
         Button('pause').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Paused     // Display the image of the current frame.
+          this.state = AnimationStatus.Paused;    // Display the image of the current frame.
         }).margin(5)
         Button('stop').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Stopped    // Display the image of the initial frame.
+          this.state = AnimationStatus.Stopped;   // Display the image of the initial frame.
         }).margin(5)
       }
+
       Row() {
         Button('reverse').width(100).padding(5).onClick(() => {
-          this.reverse = !this.reverse
+          this.reverse = !this.reverse;
         }).margin(5)
         Button('once').width(100).padding(5).onClick(() => {
-          this.iterations = 1
+          this.iterations = 1;
         }).margin(5)
         Button('infinite').width(100).padding(5).onClick(() => {
-          this.iterations = -1 // The animation is played for an unlimited number of times.
+          this.iterations = -1; // The animation is played for an unlimited number of times.
         }).margin(5)
       }
     }.width('100%').height('100%')
@@ -400,14 +427,113 @@ struct ImageAnimatorExample {
       moduleName: resource.moduleName,
       id: resource.id
     })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-    })
-    await imageSource.release()
-    return createPixelMap
+    });
+    await imageSource.release();
+    return createPixelMap;
   }
 }
 ```
 
 ![imageAnimator](figures/imageAnimator.gif)
+
+### Example 3: Enabling Automatic Pause on Invisibility
+
+This example demonstrates how to use [monitorInvisibleArea](#monitorinvisiblearea17) to automatically pause the **ImageAnimator** component when it becomes invisible and resume playback when it becomes visible again. This behavior is controlled based on the component's [state](#state) being set to **AnimationStatus.Running**.
+
+```ts
+@Entry
+@Component
+struct ImageAnimatorAutoPauseTest {
+  scroller: Scroller = new Scroller()
+  @State state: AnimationStatus = AnimationStatus.Running
+  @State reverse: boolean = false
+  @State iterations: number = 100
+  @State preCallBack: string = 'Null'
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+  build() {
+    Stack({ alignContent: Alignment.TopStart }) {
+      Scroll(this.scroller) {
+        Column() {
+          ImageAnimator()
+            .images([
+              {
+                src: $r('app.media.Clouds')
+              },
+              {
+                src: $r('app.media.landscape')
+              },
+              {
+                src: $r('app.media.sky')
+              },
+              {
+                src: $r('app.media.mountain')
+              }
+            ])
+            .borderRadius(10)
+            .monitorInvisibleArea(true)
+            .clip(true)
+            .duration(4000)
+            .state(this.state)
+            .reverse(this.reverse)
+            .fillMode(FillMode.Forwards)
+            .iterations(this.iterations)
+            .width(340)
+            .height(240)
+            .margin({ top: 100 })
+            .onStart(() => {
+              this.preCallBack = "Start"
+              console.info('ImageAnimator Start')
+            })
+            .onPause(() => {
+              this.preCallBack = "Pause"
+              console.info('ImageAnimator Pause')
+            })
+            .onRepeat(() => {
+              console.info('ImageAnimator Repeat')
+            })
+            .onCancel(() => {
+              console.info('ImageAnimator Cancel')
+            })
+            .onFinish(() => {
+              console.info('ImageAnimator Finish')
+            })
+          ForEach(this.arr, (item: number) => {
+            Text(item.toString())
+              .width('90%')
+              .height(150)
+              .backgroundColor(0xFFFFFF)
+              .borderRadius(15)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .margin({ top: 10 })
+          }, (item: string) => item)
+        }.width('100%')
+      }
+      .scrollable(ScrollDirection.Vertical) // The scrollbar scrolls in the vertical direction.
+      .scrollBar(BarState.On) // The scrollbar is always displayed.
+      .scrollBarColor(Color.Gray) // The scrollbar color is gray.
+      .scrollBarWidth(10) // The scrollbar width is 10.
+      .friction(0.6)
+      .edgeEffect(EdgeEffect.None)
+      .onWillScroll((xOffset: number, yOffset: number, scrollState: ScrollState) => {
+        console.info(xOffset + ' ' + yOffset)
+      })
+      .onScrollEdge((side: Edge) => {
+        console.info('To the edge')
+      })
+      .onScrollStop(() => {
+        console.info('Scroll Stop')
+      })
+
+      Text("Last triggered callback (Pause/Start): " + this.preCallBack)
+        .margin({ top: 60, left: 20 })
+    }.width('100%').height('100%').backgroundColor(0xDCDCDC)
+  }
+}
+```
+
+

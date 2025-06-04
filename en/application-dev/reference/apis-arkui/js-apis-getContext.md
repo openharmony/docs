@@ -6,6 +6,7 @@ The **getContext** API enables you to obtain the context of the ability (either 
 > - This API is supported since API version 9.
 > - This API applies only to the stage model.
 
+## getContext
 getContext(component?: Object):Context
 
 Obtains the **Context** object associated with an ability on the page.
@@ -32,7 +33,7 @@ Load a page by calling **windowStage.loadContent** in the UIAbility.
 
 > **NOTE**
 > 
-> To avoid confusion with instances, it is recommended that you obtain a **UIContext** instance using the [getUIContext](js-apis-arkui-UIContext.md#uicontext) API, and then call **getContext** bound to the context through the [getHostContext](js-apis-arkui-UIContext.md#gethostcontext12) API.
+> Directly using **getContext** can lead to [ambiguous instance issues](../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using [getUIContext](js-apis-arkui-UIContext.md#uicontext), and then obtain the associated **Context** object using [getHostContext](js-apis-arkui-UIContext.md#gethostcontext12).
 
 ```ts
 // EntryAbility.ets
@@ -91,8 +92,8 @@ struct Index {
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
             // You are advised to use this.getUIContext().getHostContext().
-            let context : Context = getContext(this) as Context
-            console.info("CacheDir:" + context.cacheDir)
+            let context: Context = getContext(this) as Context;
+            console.info("CacheDir:" + context.cacheDir);
           })
       }
       .width('100%')

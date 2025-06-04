@@ -48,7 +48,7 @@ Sets whether the component is draggable.
 
 | Name| Type   | Mandatory| Description                                          |
 | ------ | ------- | ---- | ---------------------------------------------- |
-| value  | boolean | Yes  | Whether the component is draggable.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether the component is draggable. <br>**true**: The component is draggable.<br>**false**: The component is not draggable.<br>Default value: **false**|
 
 ## dragPreview<sup>11+</sup>
 
@@ -488,7 +488,6 @@ The **ohos.permission.INTERNET** permission is required for using online images.
 import { uniformTypeDescriptor, unifiedDataChannel } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 import { request } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { buffer } from '@kit.ArkTS';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -499,8 +498,8 @@ struct ImageDrag {
   @State targetImage1: string | PixelMap | null = null;
   @State targetImage2: string | PixelMap | null = null;
   @State targetImage3: string | PixelMap | null = null;
-  context = getContext(this) as common.UIAbilityContext;
-  filesDir = this.context.filesDir;
+  context: Context | undefined = this.getUIContext().getHostContext();
+  filesDir = this.context?.filesDir;
 
   public async createPixelMap(pixelMap: unifiedDataChannel.SystemDefinedPixelMap): Promise<image.PixelMap | null> {
     let mWidth: number = (pixelMap.details?.width ?? -1) as number;
@@ -532,33 +531,57 @@ struct ImageDrag {
         Column() {
           Text('Online Image').fontSize(14)
           Image('https://www.example.com/xxx.png') // Enter a specific online image URL.
-            .objectFit(ImageFit.Contain).draggable(true)
-            .onDragStart(() => {})
-            .width(100).height(100)
+            .objectFit(ImageFit.Contain)
+            .draggable(true)
+            .onDragStart(() => {
+            })
+            .width(100)
+            .height(100)
         }
-        .border({ width: 2, color: Color.Gray, radius: 5, style: BorderStyle.Dotted })
+        .border({
+          width: 2,
+          color: Color.Gray,
+          radius: 5,
+          style: BorderStyle.Dotted
+        })
         .alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
 
         // Drag a local image.
         Column() {
           Text('Local Image').fontSize(14)
           Image($r('app.media.example'))
-            .objectFit(ImageFit.Contain).draggable(true)
-            .onDragStart(() => {})
-            .width(100).height(100)
+            .objectFit(ImageFit.Contain)
+            .draggable(true)
+            .onDragStart(() => {
+            })
+            .width(100)
+            .height(100)
         }
-        .border({ width: 2, color: Color.Gray, radius: 5, style: BorderStyle.Dotted })
+        .border({
+          width: 2,
+          color: Color.Gray,
+          radius: 5,
+          style: BorderStyle.Dotted
+        })
         .alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
 
         // Drag a PixelMap object.
         Column() {
           Text('PixelMap').fontSize(14)
-          Image(this.context.resourceManager.getDrawableDescriptor($r('app.media.example').id).getPixelMap())
-            .objectFit(ImageFit.Contain).draggable(true)
-            .onDragStart(() => {})
-            .width(100).height(100)
+          Image(this.context?.resourceManager.getDrawableDescriptor($r('app.media.example').id).getPixelMap())
+            .objectFit(ImageFit.Contain)
+            .draggable(true)
+            .onDragStart(() => {
+            })
+            .width(100)
+            .height(100)
         }
-        .border({ width: 2, color: Color.Gray, radius: 5, style: BorderStyle.Dotted })
+        .border({
+          width: 2,
+          color: Color.Gray,
+          radius: 5,
+          style: BorderStyle.Dotted
+        })
         .alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
       }
 
@@ -567,7 +590,8 @@ struct ImageDrag {
       Column() {
         Image(this.targetImage1)
           .objectFit(ImageFit.Contain)
-          .width('70%').height('70%')
+          .width('70%')
+          .height('70%')
           .allowDrop([uniformTypeDescriptor.UniformDataType.IMAGE])
           .onDrop((event: DragEvent, extraParams: string) => {
             // Obtain the image through extraParams.
@@ -588,64 +612,89 @@ struct ImageDrag {
                   console.info(`The content of file: ${buf.toString()}`);
                   fileIo.closeSync(file);
                 })
-              } catch (error) {}
+              } catch (error) {
+              }
             }
           })
       }
-      .width('70%').height('25%')
-      .border({ width: 2, color: Color.Gray, radius: 5, style: BorderStyle.Dotted })
-      .alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
+      .width('70%')
+      .height('25%')
+      .border({
+        width: 2,
+        color: Color.Gray,
+        radius: 5,
+        style: BorderStyle.Dotted
+      })
+      .alignItems(HorizontalAlign.Center)
+      .justifyContent(FlexAlign.Center)
 
       Column() {
         Image(this.targetImage2)
           .objectFit(ImageFit.Contain)
-          .width('70%').height('70%')
+          .width('70%')
+          .height('70%')
           .allowDrop([uniformTypeDescriptor.UniformDataType.IMAGE])
           .onDrop((event: DragEvent, extraParams: string) => {
             // Obtain the image through uniformTypeDescriptor.
             let data: UnifiedData = event.getData();
             let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
-            if (records[0].getType() ===uniformTypeDescriptor.UniformDataType.IMAGE) {
+            if (records[0].getType() === uniformTypeDescriptor.UniformDataType.IMAGE) {
               let image: unifiedDataChannel.Image = records[0] as unifiedDataChannel.Image;
               this.targetImage2 = image.imageUri;
             }
           })
       }
-      .width('70%').height('25%')
-      .border({ width: 2, color: Color.Gray, radius: 5, style: BorderStyle.Dotted })
-      .alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
+      .width('70%')
+      .height('25%')
+      .border({
+        width: 2,
+        color: Color.Gray,
+        radius: 5,
+        style: BorderStyle.Dotted
+      })
+      .alignItems(HorizontalAlign.Center)
+      .justifyContent(FlexAlign.Center)
 
       // Set the drop data type to PixelMap.
       Text('Data type is PixelMap').fontSize(14).margin({ top: 10 })
       Column() {
         Image(this.targetImage3)
           .objectFit(ImageFit.Contain)
-          .width('70%').height('70%')
+          .width('70%')
+          .height('70%')
           .allowDrop([uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP])
           .onDrop(async (event: DragEvent, extraParams: string) => {
             // Obtain the image through uniformTypeDescriptor.
             let data: UnifiedData = event.getData();
             let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
-            if (records[0].getType() ===uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP) {
-              let record: unifiedDataChannel.SystemDefinedPixelMap = records[0] as unifiedDataChannel.SystemDefinedPixelMap;
+            if (records[0].getType() === uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP) {
+              let record: unifiedDataChannel.SystemDefinedPixelMap =
+                records[0] as unifiedDataChannel.SystemDefinedPixelMap;
               this.targetImage3 = await this.createPixelMap(record);
 
               // Save data to local storage.
               const imagePackerApi = image.createImagePacker();
-              let packOpts : image.PackingOption = { format: "image/jpeg", quality:98 };
-              const path : string = this.context.cacheDir + "/pixel_map.jpg";
+              let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
+              const path: string = this.context?.cacheDir + "/pixel_map.jpg";
               let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
               imagePackerApi.packToFile(this.targetImage3, file.fd, packOpts).then(() => {
                 // Pack the image into the file.
-              }).catch((error : BusinessError) => {
+              }).catch((error: BusinessError) => {
                 console.error('Failed to pack the image. And the error is: ' + error);
               })
             }
           })
       }
-      .width('70%').height('25%')
-      .border({ width: 2, color: Color.Gray, radius: 5, style: BorderStyle.Dotted })
-      .alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
+      .width('70%')
+      .height('25%')
+      .border({
+        width: 2,
+        color: Color.Gray,
+        radius: 5,
+        style: BorderStyle.Dotted
+      })
+      .alignItems(HorizontalAlign.Center)
+      .justifyContent(FlexAlign.Center)
 
     }.width('100%').height('100%')
   }

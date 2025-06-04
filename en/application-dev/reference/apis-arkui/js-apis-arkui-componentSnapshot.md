@@ -1,6 +1,8 @@
 # @ohos.arkui.componentSnapshot (Component Snapshot)
 
-The **componentSnapshot** module provides APIs for obtaining component snapshots, including snapshots of components that have been loaded and snapshots of components that have not been loaded yet. Note that a component snapshot does not contain content drawn outside the area of the owning component or the parent component. If sibling nodes are stacked in the component area, they are not displayed in the screenshot.
+The **componentSnapshot** module provides APIs for obtaining component snapshots, including snapshots of components that have been loaded and snapshots of components that have not been loaded yet. Snapshots are strictly limited to the component's layout bounds. Content drawn outside the area of the owning component or the parent component is not visible in the snapshots. In addition, sibling components stacked in the component's area are not displayed in the snapshot.
+
+Transformation properties such as scaling, translation, and rotation only apply to the child components of the target component. Applying these transformation properties directly to the target component itself has no effect; the snapshot will still display the component as it appears before any transformations are applied.
 
 > **NOTE**
 >
@@ -54,7 +56,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 > **NOTE**
 > 
-> To avoid confusion with **componentSnapshot** instances, it is recommended that you obtain a **UIContext** instance using the [getUIContext](js-apis-arkui-UIContext.md#uicontext) API, and then obtain the **componentSnapshot** instance bound to the context through the [getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12) API.
+> Directly using **componentSnapshot** can lead to [ambiguous instance issues](../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using [getUIContext](js-apis-arkui-UIContext.md#uicontext), and then obtain the associated **componentSnapshot** object using [getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12).
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
@@ -132,7 +134,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 > **NOTE**
 > 
-> To avoid confusion with **componentSnapshot** instances, it is recommended that you obtain a **UIContext** instance using the [getUIContext](js-apis-arkui-UIContext.md#uicontext) API, and then obtain the **componentSnapshot** instance bound to the context through the [getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12) API.
+> Directly using **componentSnapshot** can lead to [ambiguous instance issues](../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using [getUIContext](js-apis-arkui-UIContext.md#uicontext), and then obtain the associated **componentSnapshot** object using [getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12).
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
@@ -193,7 +195,7 @@ Renders a custom component in the application background and outputs its snapsho
 | -------- | ---------------------------------------- | ---- | ---------- |
 | builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | Yes   | Builder of the custom component.<br>**NOTE**<br>The global builder is not supported.|
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;      | Yes   | Callback used to return the result. The coordinates and size of the offscreen component's drawing area can be obtained through the callback.|
-| delay<sup>12+</sup>   | number | No   | Delay time for triggering the screenshot command. When the layout includes an image component, it is necessary to set a delay time to allow the system to decode the image resources. The decoding time is subject to the resource size. In light of this, whenever possible, use pixel map resources that do not require decoding.<br> When pixel map resources are used or when **syncload** to **true** for the **Image** component, you can set **delay** to **0** to forcibly capture snapshots without waiting. This delay time does not refer to the time from the API call to the return: As the system needs to temporarily construct the passed-in **builder** offscreen, the return time is usually longer than this delay.<br>**NOTE**<br>In the **builder** passed in, state variables should not be used to control the construction of child components. If they are used, they should not change when the API is called, so as to avoid unexpected snapshot results.<br> Default value: **300**<br> Unit: ms|
+| delay<sup>12+</sup>   | number | No   | Delay time for triggering the screenshot command. When the layout includes an image component, it is necessary to set a delay time to allow the system to decode the image resources. The decoding time is subject to the resource size. In light of this, whenever possible, use pixel map resources that do not require decoding.<br> When pixel map resources are used or when **syncload** to **true** for the **Image** component, you can set **delay** to **0** to forcibly capture snapshots without waiting. This delay time does not refer to the time from the API call to the return: As the system needs to temporarily construct the passed-in **builder** offscreen, the return time is usually longer than this delay.<br>**NOTE**<br>In the **builder** passed in, state variables should not be used to control the construction of child components. If they are used, they should not change when the API is called, so as to avoid unexpected snapshot results.<br> Default value: **300**<br> Unit: ms<br> Value range: [0, +¡Þ). If the value is less than 0, the default value is used.|
 | checkImageStatus<sup>12+</sup>  | boolean | No   | Whether to check the image decoding status before taking a snapshot. If the value is **true**, the system checks whether all **Image** components have been decoded before taking the snapshot. If the check is not completed, the system aborts the snapshot and returns an exception.<br>Default value: **false**|
 | options<sup>12+</sup>       | [SnapshotOptions](#snapshotoptions12)           | No   | Custom settings of the snapshot.|
 
@@ -211,7 +213,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 > **NOTE**
 > 
-> To avoid confusion with **componentSnapshot** instances, it is recommended that you obtain a **UIContext** instance using the [getUIContext](js-apis-arkui-UIContext.md#uicontext) API, and then obtain the **componentSnapshot** instance bound to the context through the [getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12) API.
+> Directly using **componentSnapshot** can lead to [ambiguous instance issues](../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using [getUIContext](js-apis-arkui-UIContext.md#uicontext), and then obtain the associated **componentSnapshot** object using [getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12).
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
@@ -318,7 +320,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 > **NOTE**
 > 
-> To avoid confusion with **componentSnapshot** instances, it is recommended that you obtain a **UIContext** instance using the [getUIContext](js-apis-arkui-UIContext.md#uicontext) API, and then obtain the **componentSnapshot** instance bound to the context through the [getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12) API.
+> Directly using **componentSnapshot** can lead to [ambiguous instance issues](../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using [getUIContext](js-apis-arkui-UIContext.md#uicontext), and then obtain the associated **componentSnapshot** object using [getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12).
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI'
@@ -418,7 +420,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 > **NOTE**
 > 
-> To avoid confusion with **componentSnapshot** instances, it is recommended that you obtain a **UIContext** instance using the [getUIContext](js-apis-arkui-UIContext.md#uicontext) API, and then obtain the **componentSnapshot** instance bound to the context through the [getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12) API.
+> Directly using **componentSnapshot** can lead to [ambiguous instance issues](../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using [getUIContext](js-apis-arkui-UIContext.md#uicontext), and then obtain the associated **componentSnapshot** object using [getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12).
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
@@ -459,13 +461,11 @@ struct SnapshotExample {
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 | Name          | Type            | Mandatory          | Description                        |
 | ---------------|------------     | -----------------------------| -----------------------------|
-| scale           | number | No| Scale ratio for rendering pixel maps during a snapshot. Note that a high scale ratio may increase the time taken for the snapshot or even result in a snapshot failure.<br> Default value: **1**<br>**NOTE**<br>Avoid capturing images that are excessively large, ideally not larger than the screen size. If the size of the image to capture exceeds device-specific underlying limits, the capture will fail.   |
-| waitUntilRenderFinished    | boolean | No| Whether to force the system to wait for all rendering commands to complete before taking the snapshot. This option ensures the snapshot reflects the most up-to-date content and should be enabled whenever possible. Note that enabling this option may increase the time required for the snapshot to complete, which depends on the size of the area that needs to be redrawn at the time.<br>Default value: **false**        |
-| region<sup>15+</sup> | [SnapshotRegionType](#snapshotregiontype15) | No| Rectangular region for the snapshot. The default region is the entire component.|
+| scale           | number | No| Scale ratio for rendering pixel maps during a snapshot. Note that a high scale ratio may increase the time taken for the snapshot or even result in a snapshot failure.<br>Value range: [0, +¡Þ). If the value is less than or equal to 0, the default value is used.<br> Default value: **1**<br>**NOTE**<br>Avoid capturing images that are excessively large, ideally not larger than the screen size. If the size of the image to capture exceeds device-specific underlying limits, the capture will fail.<br>**Atomic service API**: This API can be used in atomic services since API version 12.   |
+| waitUntilRenderFinished    | boolean | No| Whether to force the system to wait for all rendering commands to complete before taking the snapshot. The value **true** means to force the system to wait for all rendering commands to complete before taking the snapshot, and **false** means the opposite. This option ensures the snapshot reflects the most up-to-date content and should be enabled whenever possible. Note that enabling this option may increase the time required for the snapshot to complete, which depends on the size of the area that needs to be redrawn at the time.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| region<sup>15+</sup> | [SnapshotRegionType](#snapshotregiontype15) | No| Rectangular region for the snapshot. The default region is the entire component.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ## SnapshotRegionType<sup>15+</sup>
 

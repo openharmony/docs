@@ -117,7 +117,7 @@ CommonModifier, ColumnModifier, ColumnSplitModifier, RowModifier, RowSplitModifi
 2. Updating the attribute value of a custom modifier changes the corresponding attribute of the component to which the modifier is applied. The custom modifier is a base class, and the constructed object is a child class object. When using the object, use **as** to assert the type as a child class. 
 3. With a custom modifier applied to two components, updating the attribute value of the custom modifier changes the corresponding attributes of both components. 
 4. If attributes A and B are set through a custom modifier, and then attributes C and D are set through other means, all the four attributes take effect on the component. 
-5. The custom modifier does not support change observation for @State decorated variables. For details, see Example 2. 
+5. The custom modifier does not support change observation for @State decorated variables. For details, see [Example 3](#example-3-understanding-custom-modifiers-do-not-support-state-data-changes). 
 6. If you use **attributeModifier** to set attributes multiple times, all the set attributes take effect, and those attributes that are set multiple times take effect based on the configuration sequence.  
 
 ## Example
@@ -128,13 +128,13 @@ This example demonstrates how to switch the background color of a **Button** com
 ```ts
 // xxx.ets
 class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
-  isDark: boolean = false
+  public isDark: boolean = false;
 
   applyNormalAttribute(instance: ButtonAttribute): void {
     if (this.isDark) {
-      instance.backgroundColor(Color.Black)
+      instance.backgroundColor(Color.Black);
     } else {
-      instance.backgroundColor(Color.Red)
+      instance.backgroundColor(Color.Red);
     }
   }
 }
@@ -142,7 +142,7 @@ class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
 @Entry
 @Component
 struct attributeDemo {
-  @State modifier: MyButtonModifier = new MyButtonModifier()
+  @State modifier: MyButtonModifier = new MyButtonModifier();
 
   build() {
     Row() {
@@ -150,7 +150,7 @@ struct attributeDemo {
         Button("Button")
           .attributeModifier(this.modifier)
           .onClick(() => {
-            this.modifier.isDark = !this.modifier.isDark
+            this.modifier.isDark = !this.modifier.isDark;
           })
       }
       .width('100%')
@@ -163,24 +163,24 @@ struct attributeDemo {
 
 ### Example 2: Implementing the Pressed State Effect with a Modifier
 
-This example demonstrates how to implement a pressed state effect for a **Button** component by binding it to a modifier. For details about how to use the attribute modifier with state management V2, see [Modifier and makeObserved](../../../quick-start/arkts-v1-v2-migration.md#modifier).
+This example demonstrates how to implement a pressed state effect for a **Button** component by binding it to a modifier. For details about how to use the attribute modifier with state management V2, see [Modifier and makeObserved](../../../ui/state-management/arkts-v1-v2-migration.md#modifier).
 
 ```ts
 // xxx.ets
 class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
   applyNormalAttribute(instance: ButtonAttribute): void {
-    instance.backgroundColor(Color.Black)
+    instance.backgroundColor(Color.Black);
   }
 
   applyPressedAttribute(instance: ButtonAttribute): void {
-    instance.backgroundColor(Color.Red)
+    instance.backgroundColor(Color.Red);
   }
 }
 
 @Entry
 @Component
 struct attributePressedDemo {
-  @State modifier: MyButtonModifier = new MyButtonModifier()
+  @State modifier: MyButtonModifier = new MyButtonModifier();
 
   build() {
     Row() {
@@ -201,7 +201,7 @@ struct attributePressedDemo {
 This example shows how to set the width of a custom modifier using state data. Custom modifiers do not support observing changes in data decorated with the @State decorator. Therefore, the width does not change when the button is clicked.
 
 ```ts
-import { CommonModifier } from "@kit.ArkUI"
+import { CommonModifier } from "@kit.ArkUI";
 
 const TEST_TAG : string = "AttributeModifier";
 class MyModifier extends CommonModifier {
@@ -212,7 +212,7 @@ class MyModifier extends CommonModifier {
 
 @Component
 struct MyImage1 {
-  @Link modifier: CommonModifier
+  @Link modifier: CommonModifier;
 
   build() {
     Image($r("app.media.startIcon")).attributeModifier(this.modifier as MyModifier)
@@ -225,21 +225,21 @@ struct Index {
   index: number = 0;
   @State width1: number = 100;
   @State height1: number = 100;
-  @State myModifier: CommonModifier = new MyModifier().width(this.width1).height(this.height1).margin(10)
+  @State myModifier: CommonModifier = new MyModifier().width(this.width1).height(this.height1).margin(10);
 
   build() {
     Column() {
       Button($r("app.string.EntryAbility_label"))
         .margin(10)
         .onClick(() => {
-          console.log(TEST_TAG, "onClick")
+          console.log(TEST_TAG, "onClick");
           this.index++;
           if (this.index % 2 === 1) {
             this.width1 = 10;
-            console.log(TEST_TAG, "setGroup1")
+            console.log(TEST_TAG, "setGroup1");
           } else {
             this.width1 = 10;
-            console.log(TEST_TAG, "setGroup2")
+            console.log(TEST_TAG, "setGroup2");
           }
         })
       MyImage1({ modifier: this.myModifier })
@@ -255,7 +255,7 @@ struct Index {
 In this example, the custom modifier sets the **width** and **height** attributes, and the **borderStyle** and **borderWidth** attributes are set through a button click. In this case, all the four attributes take effect when the button is clicked.
 
 ```ts
-import { CommonModifier } from "@kit.ArkUI"
+import { CommonModifier } from "@kit.ArkUI";
 
 const TEST_TAG: string = "AttributeModifier";
 
@@ -265,19 +265,19 @@ class MyModifier extends CommonModifier {
   }
 
   public setGroup1(): void {
-    this.borderStyle(BorderStyle.Dotted)
-    this.borderWidth(8)
+    this.borderStyle(BorderStyle.Dotted);
+    this.borderWidth(8);
   }
 
   public setGroup2(): void {
-    this.borderStyle(BorderStyle.Dashed)
-    this.borderWidth(8)
+    this.borderStyle(BorderStyle.Dashed);
+    this.borderWidth(8);
   }
 }
 
 @Component
 struct MyImage1 {
-  @Link modifier: CommonModifier
+  @Link modifier: CommonModifier;
 
   build() {
     Image($r("app.media.startIcon")).attributeModifier(this.modifier as MyModifier)
@@ -287,7 +287,7 @@ struct MyImage1 {
 @Entry
 @Component
 struct Index {
-  @State myModifier: CommonModifier = new MyModifier().width(100).height(100).margin(10)
+  @State myModifier: CommonModifier = new MyModifier().width(100).height(100).margin(10);
   index: number = 0;
 
   build() {
@@ -295,14 +295,14 @@ struct Index {
       Button($r("app.string.EntryAbility_label"))
         .margin(10)
         .onClick(() => {
-          console.log(TEST_TAG, "onClick")
+          console.log(TEST_TAG, "onClick");
           this.index++;
           if (this.index % 2 === 1) {
-            (this.myModifier as MyModifier).setGroup1()
-            console.log(TEST_TAG, "setGroup1")
+            (this.myModifier as MyModifier).setGroup1();
+            console.log(TEST_TAG, "setGroup1");
           } else {
-            (this.myModifier as MyModifier).setGroup2()
-            console.log(TEST_TAG, "setGroup2")
+            (this.myModifier as MyModifier).setGroup2();
+            console.log(TEST_TAG, "setGroup2");
           }
         })
       MyImage1({ modifier: this.myModifier })

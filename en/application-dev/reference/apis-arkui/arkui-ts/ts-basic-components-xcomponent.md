@@ -144,13 +144,11 @@ Since API version 12, the [universal events](ts-universal-events-click.md) are s
 >
 > When the **libraryname** parameter is set, [click events](ts-universal-events-click.md), [touch events](ts-universal-events-touch.md), [show/hide events](ts-universal-events-show-hide.md), [key events](ts-universal-events-key.md), [focus events](ts-universal-focus-event.md), and [mouse events](ts-universal-mouse-key.md) only respond to event APIs on the C-API side.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 The following events are effective only when **type** is set to **SURFACE** or **TEXTURE**.
 
 ### onLoad
 
-onLoad(callback: (event?: object) => void )
+onLoad(callback: (event?: object) => void)
 
 Triggered when the plug-in is loaded.
 
@@ -166,19 +164,13 @@ Triggered when the plug-in is loaded.
 
 ### onDestroy
 
-onDestroy(event: VoidCallback )
+onDestroy(event: () => void)
 
 Triggered when the plug-in is destroyed.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name  | Type  | Mandatory  | Description                                      |
-| ----- | ------ | ---- | ---------------------------------------- |
-| event | [VoidCallback](ts-types.md#voidcallback12) | Yes   | Callback after the **XComponent** is destroyed.|
 
 ## XComponentController
 
@@ -190,17 +182,15 @@ Defines the controller of the **XComponent**. You can bind the controller to the
 
 ### Creating an Object
 
-```
-xcomponentController: XComponentController = new XComponentController()
-```
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 ### constructor
 
 constructor()
 
 A constructor used to create a **XComponentController** instance.
+
+```ts
+xcomponentController: XComponentController = new XComponentController();
+```
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -530,51 +520,25 @@ struct XComponentExample {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT],
     aiController: this.aiController
   };
-  @State xcWidth: string = "320px";
-  @State xcHeight: string = "480px";
+  @State xcWidth: string = "720px";
+  @State xcHeight: string = "720px";
   @State currentStatus: string = "index";
 
   build() {
     Column({ space: 5 }) {
-      Button("change size")
-        .onClick(() => {
-          this.xcWidth = "640px";
-          this.xcHeight = "720px";
-        })
-      Button('start AI analyze')
-        .onClick(() => {
-          this.xComponentController.startImageAnalyzer(this.config)
-            .then(() => {
-              console.log("analysis complete");
-            })
-            .catch((error: BusinessError) => {
-              console.log("error code: " + error.code);
-            })
-        })
-      Button('stop AI analyze')
-        .onClick(() => {
-          this.xComponentController.stopImageAnalyzer();
-        })
-      Button('get analyzer types')
-        .onClick(() => {
-          this.aiController.getImageAnalyzerSupportTypes();
-        })
-      Button('Draw Star')
-        .fontSize('16fp')
-        .fontWeight(500)
-        .margin({ bottom: 24 })
-        .onClick(() => {
-          let surfaceId = this.xComponentController.getXComponentSurfaceId();
-          this.xComponentController.getXComponentSurfaceRect();
-          nativeRender.DrawPattern(BigInt(surfaceId));
-          let hasDraw: boolean = false;
-          if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
-            hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
-          }
-          if (hasDraw) {
-            this.currentStatus = "draw star";
-          }
-        })
+      Row() {
+        Text('Native XComponent Sample')
+          .fontSize('24fp')
+          .fontWeight(500)
+          .margin({
+            left: 24,
+            top: 12
+          })
+      }
+      .margin({ top: 24 })
+      .width('100%')
+      .height(56)
+
       XComponent({
         type: XComponentType.SURFACE,
         controller: this.xComponentController,
@@ -583,15 +547,66 @@ struct XComponentExample {
         .width(this.xcWidth)
         .height(this.xcHeight)
         .enableAnalyzer(true)
+        .onClick(() => {
+          let surfaceId = this.xComponentController.getXComponentSurfaceId();
+          nativeRender.ChangeColor(BigInt(surfaceId));
+          let hasChangeColor: boolean = false;
+          if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
+            hasChangeColor = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasChangeColor;
+          }
+          if (hasChangeColor) {
+            this.currentStatus = "change color";
+          }
+        })
       Text(this.currentStatus)
         .fontSize('24fp')
         .fontWeight(500)
+      Column() {
+        Button('Start AI Analysis')
+          .onClick(() => {
+            this.xComponentController.startImageAnalyzer(this.config)
+              .then(() => {
+                console.log("analysis complete");
+              })
+              .catch((error: BusinessError) => {
+                console.log("error code: " + error.code);
+              })
+          })
+          .margin(2)
+        Button('Stop AI Analysis')
+          .onClick(() => {
+            this.xComponentController.stopImageAnalyzer();
+          })
+          .margin(2)
+        Button('Get Analyzer Types')
+          .onClick(() => {
+            this.aiController.getImageAnalyzerSupportTypes();
+          })
+          .margin(2)
+        Button('Draw Star')
+          .fontSize('16fp')
+          .fontWeight(500)
+          .margin({ bottom: 24 })
+          .onClick(() => {
+            let surfaceId = this.xComponentController.getXComponentSurfaceId();
+            this.xComponentController.getXComponentSurfaceRect();
+            nativeRender.DrawPattern(BigInt(surfaceId));
+            let hasDraw: boolean = false;
+            if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
+              hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
+            }
+            if (hasDraw) {
+              this.currentStatus = "draw star";
+            }
+          })
+          .margin(2)
+      }.justifyContent(FlexAlign.Center)
     }
     .width("100%")
   }
 }
 ```
-<!--RP1--><!--RP1End-->
+![AI Image Analyzer](./figures/AIXComponent.gif)
 
 ### Example 2: Locking the Surface Orientation During Screen Rotation
 
@@ -599,33 +614,54 @@ This example shows how to use **setXComponentSurfaceRotation** to lock the surfa
 
 ```ts
 // xxx.ets
+import nativeRender from 'libnativerender.so';
+
+class MyXComponentController extends XComponentController {
+  onSurfaceCreated(surfaceId: string): void {
+    console.log(`onSurfaceCreated surfaceId: ${surfaceId}`);
+    nativeRender.SetSurfaceId(BigInt(surfaceId));
+  }
+
+  onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {
+    console.log(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}}`);
+    nativeRender.ChangeSurface(BigInt(surfaceId), rect.surfaceWidth, rect.surfaceHeight);
+  }
+
+  onSurfaceDestroyed(surfaceId: string): void {
+    console.log(`onSurfaceDestroyed surfaceId: ${surfaceId}`);
+    nativeRender.DestroySurface(BigInt(surfaceId));
+  }
+}
+
 @Entry
 @Component
-struct Index{
+struct Index {
   @State isLock: boolean = true;
   @State xc_width: number = 500;
   @State xc_height: number = 700;
-  myXComponentController: XComponentController = new XComponentController();
+  myXComponentController: XComponentController = new MyXComponentController();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
       XComponent({
-        id: 'xComponentId',
+        id: "XComponent",
         type: XComponentType.SURFACE,
-        libraryname: 'nativerender',
         controller: this.myXComponentController
       })
-      .width(this.xc_width)
-      .height(this.xc_height)
-      .onLoad(() => {
-        let surfaceRotation: SurfaceRotationOptions = { lock: this.isLock };
-        this.myXComponentController.setXComponentSurfaceRotation(surfaceRotation);
-        console.log("Surface getXComponentSurfaceRotation lock = " +
+        .onLoad(() => {
+          let surfaceRotation: SurfaceRotationOptions = { lock: this.isLock };
+          this.myXComponentController.setXComponentSurfaceRotation(surfaceRotation);
+          console.log("Surface getXComponentSurfaceRotation lock = " +
           this.myXComponentController.getXComponentSurfaceRotation().lock);
-      })
+        })
+        .width(this.xc_width)
+        .height(this.xc_height)
+      Button("Draw")
+        .onClick(() => {
+          let surfaceId = this.myXComponentController.getXComponentSurfaceId();
+          nativeRender.DrawPattern(BigInt(surfaceId));
+        })
     }
-    .width('100%')
-    .height('100%')
   }
 }
 ```

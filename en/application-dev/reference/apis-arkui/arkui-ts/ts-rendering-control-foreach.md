@@ -4,7 +4,7 @@
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-For details about the development, see [ForEach: Rendering Repeated Content](../../../quick-start/arkts-rendering-control-foreach.md).
+For details about the development, see [ForEach: Rendering Repeated Content](../../../ui/state-management/arkts-rendering-control-foreach.md).
 
 **ForEach** enables rendering of repeated content based on array type data. It must be used in a container component, and the component it returns must be one allowed inside the container component. For example, for rendering of list items, **ForEach** must be used in the [List](../../../reference/apis-arkui/arkui-ts/ts-container-list.md) component.
 

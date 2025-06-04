@@ -64,7 +64,7 @@ Video(value: VideoOptions)
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### muted
 
@@ -80,7 +80,7 @@ Specifies whether to mute the video.
 
 | Name| Type   | Mandatory| Description                        |
 | ------ | ------- | ---- | ---------------------------- |
-| value  | boolean | Yes  | Whether to mute the video.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to mute the video.<br>**true**: Mute the video.<br>**false**: Unmute the video.<br>Default value: **false**|
 
 ### autoPlay
 
@@ -96,7 +96,7 @@ Specifies whether to enable autoplay.
 
 | Name| Type   | Mandatory| Description                            |
 | ------ | ------- | ---- | -------------------------------- |
-| value  | boolean | Yes  | Whether to enable auto play.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to enable autoplay.<br>**true**: Enable autoplay.<br>**false**: Disable autoplay.<br>Default value: **false**|
 
 ### controls
 
@@ -112,7 +112,7 @@ Specifies whether to display the video playback control bar.
 
 | Name| Type   | Mandatory| Description                                           |
 | ------ | ------- | ---- | ----------------------------------------------- |
-| value  | boolean | Yes  | Whether to display the video playback control bar.<br>Default value: **true**|
+| value  | boolean | Yes  | Whether to display the video playback control bar.<br>**true**: Display the video playback control bar.<br>**false**: Do not display the video playback control bar.<br>Default value: **true**|
 
 ### objectFit
 
@@ -144,7 +144,7 @@ Specifies whether to repeat the video.
 
 | Name| Type   | Mandatory| Description                                    |
 | ------ | ------- | ---- | ---------------------------------------- |
-| value  | boolean | Yes  | Whether to repeat the video.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to repeat the video.<br>**true**: Repeat the video.<br>**false**: Do not repeat the video.<br>Default value: **false**|
 
 ### enableAnalyzer<sup>12+</sup>
 
@@ -163,7 +163,7 @@ Note that if this attribute and the [overlay](ts-universal-attributes-overlay.md
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| enable | boolean | Yes| Whether to enable the AI analyzer.|
+| enable | boolean | Yes| Whether to enable the AI analyzer.<br>**true**: Enable the AI analyzer.<br>**false**: Disable the AI analyzer.<br>Default value: **false**|
 
 > **NOTE**
 >
@@ -184,6 +184,22 @@ Provides AI analyzer configuration.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig) | Yes| AI analysis type.|
+
+### enableShortcutKey<sup>15+</sup>
+
+enableShortcutKey(enabled: boolean)
+
+Sets whether the component responds to keyboard shortcuts when it has focus.
+
+Currently, the component can respond to the following keys when it is in focus: spacebar for playing or pausing the video, up or down arrow key for adjusting the video volume, and left or right arrow key for fast forwarding or rewinding the video.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Type   | Mandatory| Description                                  |
+| ------- | ------- | ---- | -------------------------------------- |
+| enabled | boolean | Yes  | Whether to enable the shortcut key response.<br>**true**: Enable the shortcut key response.<br>**false**: Disable the shortcut key response.<br>Default value: **false**|
 
 ## Events
 
@@ -318,7 +334,6 @@ Triggered when the playback is switched between full-screen mode and non-full-sc
 | Name    | Type   | Mandatory| Description                                                 |
 | ---------- | ------- | ---- | ----------------------------------------------------- |
 | fullscreen | boolean | Yes  | The value **true** means that the playback is in full-screen mode, and **false** means the opposite.|
-
 
 ## VideoController
 
@@ -467,13 +482,13 @@ This example covers the basic aspects of video playback, including how to manage
 @Entry
 @Component
 struct VideoCreateComponent {
-  @State videoSrc: Resource = $rawfile('video1.mp4')
-  @State previewUri: Resource = $r('app.media.poster1')
-  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
-  @State isAutoPlay: boolean = false
-  @State showControls: boolean = true
-  @State isShortcutKeyEnabled: boolean = false
-  controller: VideoController = new VideoController()
+  @State videoSrc: Resource = $rawfile('video1.mp4');
+  @State previewUri: Resource = $r('app.media.poster1');
+  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
+  @State isAutoPlay: boolean = false;
+  @State showControls: boolean = true;
+  @State isShortcutKeyEnabled: boolean = false;
+  controller: VideoController = new VideoController();
 
   build() {
     Column() {
@@ -596,10 +611,10 @@ This example shows how to use the **enableAnalyzer** attribute to enable AI imag
 @Entry
 @Component
 struct ImageAnalyzerExample {
-  @State videoSrc: Resource = $rawfile('video1.mp4')
-  @State previewUri: Resource = $r('app.media.poster1')
-  @State showControls: boolean = true
-  controller: VideoController = new VideoController()
+  @State videoSrc: Resource = $rawfile('video1.mp4');
+  @State previewUri: Resource = $r('app.media.poster1');
+  @State showControls: boolean = true;
+  controller: VideoController = new VideoController();
   config: ImageAnalyzerConfig = {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
   }
@@ -640,6 +655,46 @@ struct ImageAnalyzerExample {
             this.aiController.getImageAnalyzerSupportTypes()
         }).margin(5)
       }
+    }
+  }
+}
+```
+
+### Example 3: Playing a Dragged-in Video
+
+This example demonstrates how to enable the **Video** component to play a video that is dragged into it.
+
+```ts
+// xxx.ets
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+
+@Entry
+@Component
+struct Index {
+  @State videoSrc: Resource | string = $rawfile('video1.mp4');
+  private controller: VideoController = new VideoController();
+
+  build() {
+    Column() {
+      Video({
+        src: this.videoSrc,
+        controller: this.controller
+      })
+        .width('100%')
+        .height(600)
+        .onPrepared(() => {
+          // Start playing the video when it is prepared.
+          this.controller.start();
+        })
+        .onDrop((e: DragEvent) => {
+          // Handle the drop event when a video is dragged into the component.
+          // The DragEvent contains the information about the dragged-in video source. After the information is obtained, assign a value to the state variable videoSrc to change the video source of the video.
+          let record = e.getData().getRecords()[0];
+          if (record.getType() == uniformTypeDescriptor.UniformDataType.VIDEO) {
+            let videoInfo = record as unifiedDataChannel.Video;
+            this.videoSrc = videoInfo.videoUri;
+          }
+        })
     }
   }
 }

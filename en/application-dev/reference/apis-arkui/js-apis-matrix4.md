@@ -656,11 +656,11 @@ struct Index {
 
 | Name | Type  | Mandatory | Description                                                       |
 | ---- | ------ | ---- | ----------------------------------------------------------- |
-| src    |  Array<[Point](#point12)> | Yes  | Coordinates of the source point. |
-| srcIndex    | number | No  | Start index of the source point coordinates.<br>Default value: **0**|
-| dst    |  Array<[Point](#point12)>  | Yes  | Coordinates of the destination point. |
-| dstIndex    | number | No  |  Start index of the destination point coordinates.<br>Default value: **0** |
-| pointCount    | number | No  | Number of used points.<br>Default value: **src.length/2**|
+| src    |  Array<[Point](#point12)> | Yes  | Coordinates of the source point.|
+| srcIndex    | number | No  | Start index of the source point coordinates.<br>Default value: **0**.<br> Value range: [0, +∞).|
+| dst    |  Array<[Point](#point12)>  | Yes  | Coordinates of the destination point.|
+| dstIndex    | number | No  |  Start index of the destination point coordinates.<br>Default value: **0**.<br> Value range: [0, +∞).|
+| pointCount    | number | No  | Number of used points.<br>Default value: **src.length/2**.<br> Value range: [0, +∞).|
 
 ## Point<sup>12+</sup>
 

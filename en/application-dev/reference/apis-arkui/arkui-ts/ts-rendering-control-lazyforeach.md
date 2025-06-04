@@ -4,7 +4,7 @@
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-For details about the development, see [LazyForEach: Lazy Data Loading](../../../quick-start/arkts-rendering-control-lazyforeach.md).
+For details about the development, see [LazyForEach: Lazy Data Loading](../../../ui/state-management/arkts-rendering-control-lazyforeach.md).
 
 **LazyForEach** iterates over provided data sources and creates corresponding components during each iteration. When **LazyForEach** is used in a scrolling container, the framework creates components as required within the visible area of the scrolling container. When a component is out of the visible area, the framework destroys and reclaims the component to reduce memory usage.
 

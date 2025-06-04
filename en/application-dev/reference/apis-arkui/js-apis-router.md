@@ -10,7 +10,7 @@ For routing management, it is recommended that you use the [Navigation](../../ui
 >
 > - Page routing APIs can be invoked only after page rendering is complete. Do not call these APIs in **onInit** and **onReady** when the page is still in the rendering phase.
 >
-> - The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
+> - The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where [the UI context is unclear](../../ui/arkts-global-interface.md). For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
 >
 > - Since API version 10, you can use the [getRouter](./js-apis-arkui-UIContext.md#getrouter) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](./js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 >
@@ -64,31 +64,33 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: new routerParams('message', [123, 456, 789])
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: new routerParams('message', [123, 456, 789])
+})
+  .then(() => {
+    console.error(`pushUrl finish`);
   })
-} catch (err) {
-  console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+  .catch((err: ESObject) => {
+    console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 ## router.pushUrl<sup>9+</sup>
@@ -126,20 +128,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -197,31 +199,33 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: new routerParams('message', [123, 456, 789])
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: new routerParams('message', [123, 456, 789])
+}, router.RouterMode.Standard)
+  .then(() => {
+    console.error(`pushUrl finish`);
+  })
+  .catch((err: ESObject) => {
+    console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 ## router.pushUrl<sup>9+</sup>
@@ -260,20 +264,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -330,21 +334,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: new routerParams('message')
+router.replaceUrl({
+  url: 'pages/detail',
+  params: new routerParams('message')
+})
+  .then(() => {
+    console.error(`replaceUrl finish`);
   })
-} catch (err) {
-  console.error(`replaceUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+  .catch((err: ESObject) => {
+    console.error(`replaceUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -381,10 +387,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -443,21 +449,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1:string
+  data1:string;
 
   constructor(str:string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: new routerParams('message')
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`replaceUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+router.replaceUrl({
+  url: 'pages/detail',
+  params: new routerParams('message')
+}, router.RouterMode.Standard)
+  .then(() => {
+    console.error(`replaceUrl finish`);
+  })
+  .catch((err: ESObject) => {
+    console.error(`replaceUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -495,10 +503,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -556,31 +564,33 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
-try {
-  router.pushNamedRoute({
-    name: 'myPage',
-    params: new routerParams('message', [123, 456, 789])
+router.pushNamedRoute({
+  name: 'myPage',
+  params: new routerParams('message', [123, 456, 789])
+})
+  .then(() => {
+    console.error(`pushNamedRoute finish`);
   })
-} catch (err) {
-  console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+  .catch((err: ESObject) => {
+    console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 For details, see [UI Development-Named Route](../../ui/arkts-routing.md#named-route).
@@ -620,20 +630,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -691,16 +701,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
     this.data1 = str
@@ -708,14 +718,16 @@ class routerParams {
   }
 }
 
-try {
-  router.pushNamedRoute({
-    name: 'myPage',
-    params: new routerParams('message', [123, 456, 789])
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+router.pushNamedRoute({
+  name: 'myPage',
+  params: new routerParams('message', [123, 456, 789])
+}, router.RouterMode.Standard)
+  .then(() => {
+    console.error(`pushNamedRoute finish`);
+  })
+  .catch((err: ESObject) => {
+    console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 ## router.pushNamedRoute<sup>10+</sup>
@@ -754,20 +766,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -824,21 +836,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
-try {
-  router.replaceNamedRoute({
-    name: 'myPage',
-    params: new routerParams('message')
+router.replaceNamedRoute({
+  name: 'myPage',
+  params: new routerParams('message')
+})
+  .then(() => {
+    console.error(`replaceNamedRoute finish`);
   })
-} catch (err) {
-  console.error(`replaceNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+  .catch((err: ESObject) => {
+    console.error(`replaceNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 ## router.replaceNamedRoute<sup>10+</sup>
@@ -875,10 +889,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -937,21 +951,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
-try {
-  router.replaceNamedRoute({
-    name: 'myPage',
-    params: new routerParams('message')
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`replaceNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+router.replaceNamedRoute({
+  name: 'myPage',
+  params: new routerParams('message')
+}, router.RouterMode.Standard)
+  .then(() => {
+    console.error(`replaceNamedRoute finish`);
+  })
+  .catch((err: ESObject) => {
+    console.error(`replaceNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 ## router.replaceNamedRoute<sup>10+</sup>
@@ -989,10 +1005,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -1367,24 +1383,24 @@ export default {
 ```ts
 // Navigate to the target page through router.pushUrl with the params parameter carried.
 import { router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Define the class for passing parameters.
 class innerParams {
-  array: number[]
+  array: number[];
 
   constructor(tuple: number[]) {
-    this.array = tuple
+    this.array = tuple;
   }
 }
 
 class routerParams {
-  text: string
-  data: innerParams
+  text: string;
+  data: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.text = str
-    this.data = new innerParams(tuple)
+    this.text = str;
+    this.data = new innerParams(tuple);
   }
 }
 
@@ -1396,13 +1412,15 @@ struct Index {
       url: 'pages/second',
       params: new routerParams('This is the value on the first page', [12, 45, 78])
     }
-    try {
-      // You are advised to use this.getUIContext().getRouter().pushUrl().
-      await router.pushUrl(options)
-    } catch (err) {
-      console.info(` fail callback, code: ${(err as BusinessError).code}, msg: ${(err as BusinessError).message}`)
+    // You are advised to use this.getUIContext().getRouter().pushUrl().
+    router.pushUrl(options)
+      .then(() => {
+        console.error(`pushUrl finish`);
+      })
+      .catch((err: ESObject) => {
+        console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+      })
     }
-  }
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1431,31 +1449,31 @@ struct Index {
 import { router } from '@kit.ArkUI';
 
 class innerParams {
-  array: number[]
+  array: number[];
 
   constructor(tuple: number[]) {
-    this.array = tuple
+    this.array = tuple;
   }
 }
 
 class routerParams {
-  text: string
-  data: innerParams
+  text: string;
+  data: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.text = str
-    this.data = new innerParams(tuple)
+    this.text = str;
+    this.data = new innerParams(tuple);
   }
 }
 
 @Entry
 @Component
 struct Second {
-  private content: string = "This is the second page."
+  private content: string = "This is the second page.";
   // You are advised to use this.getUIContext().getRouter().getParams().
-  @State text: string = (router.getParams() as routerParams).text
-  @State data: object = (router.getParams() as routerParams).data
-  @State secondData: string = ''
+  @State text: string = (this.getUIContext().getRouter().getParams() as routerParams).text;
+  @State data: object = (this.getUIContext().getRouter().getParams() as routerParams).data;
+  @State secondData: string = '';
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1465,7 +1483,7 @@ struct Second {
       Text(this.text)
         .fontSize(30)
         .onClick(() => {
-          this.secondData = (this.data['array'][1]).toString()
+          this.secondData = (this.data['array'][1]).toString();
         })
         .margin({ top: 20 })
       Text(`This is the data passed from the first page: ${this.secondData}`)
@@ -1500,20 +1518,20 @@ This API is deprecated since API version 9. You are advised to use [pushUrl<sup>
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 

@@ -22,7 +22,7 @@ Binds a sheet to the component, which is displayed when the component is touched
 
 | Name | Type                                       | Mandatory| Description                                                        |
 | ------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isShow  | Optional\<boolean\>                          | Yes  | Whether to display the sheet.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| isShow  | Optional\<boolean\>                          | Yes  | Whether to display the sheet.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).|
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Content of the sheet.                                        |
 | options | [SheetOptions](#sheetoptions)               | No  | Optional attributes of the sheet.                                  |
 
@@ -30,7 +30,7 @@ Binds a sheet to the component, which is displayed when the component is touched
 >
 > 1. When no two-way binding is set up for the **isShow** parameter, closing the sheet by dragging does not change the parameter value.
 >
-> 2. To synchronize the value of the **isShow** parameter with the sheet UI state, set up a two-way binding for **isShow** through [$$](../../../quick-start/arkts-two-way-sync.md).
+> 2. To synchronize the value of the **isShow** parameter with the sheet UI state, set up a two-way binding for **isShow** through [$$](../../../ui/state-management/arkts-two-way-sync.md).
 >
 > 3. In scenarios where a sheet with a single detent is dragged upwards or a sheet with multiple detents is shifted to another detent by swiping up, the display area is updated after the drag ends or the shift is completed.
 >
@@ -47,7 +47,7 @@ Inherits from [BindOptions](#bindoptions).
 | --------------- | ---------------------------------------- | ---- | --------------- |
 | height          | [SheetSize](#sheetsize) \| [Length](ts-types.md#length) | No   | Height of the sheet.<br>Default value: **LARGE**<br>**NOTE**<br>In versions earlier than API version 12, this attribute is ineffective for a bottom sheet in landscape mode; the height is fixed at 8 vp from the top of the screen.<br>Since API version 12, this attribute takes effect for a bottom sheet in landscape mode; the maximum height is 8 vp from the top of the screen.<br>Since API version 14, for a bottom sheet in landscape mode, the maximum height is 8 vp from the top of the screen if there is no status bar, and 8 vp from the status bar if there is one.<br>When a bottom sheet has **detents** set, this attribute is ineffective.<br>For a bottom sheet in portrait mode, the maximum height is 8 vp from the status bar.<br>For center and popup sheets set to **SheetSize.LARGE** or **SheetSize.MEDIUM**, this attribute is ineffective, with the default height being 560 vp. For center and popup sheets, the minimum height is 320 vp, and the maximum height is 90% of the shorter edge of the window. If the height specified by **Length** and the height adaptively set with **SheetSize.FIT_CONTENT** exceed the maximum height, the maximum height is used instead. If they are less than the minimum height, the minimum height is used instead.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | detents<sup>11+</sup> | [([SheetSize](#sheetsize) \| [Length](ts-types.md#length)), ( [SheetSize](#sheetsize) \| [Length](ts-types.md#length))?, ([SheetSize](#sheetsize) \| [Length](ts-types.md#length))?] | No| Array of heights where the sheet can rest.<br>**NOTE**<br>Since API version 12, this attribute takes effect for a bottom sheet in landscape mode.<br>In earlier versions, this attribute takes effect only for the bottom sheet in portrait mode. The first height in the tuple is the initial height.<br>The sheet can switch between heights by dragging. After the sheet is dragged and released, it switches to the target height or remains at the current height, depending on the velocity and distance.<br> If the velocity exceeds the threshold, the sheet switches to the target height in the same direction as the velocity. If the velocity is less than the threshold, the displacement distance is used for judgement. If the displacement distance is greater than 1/2 of the distance between the current and target positions, the sheet switches to the target height in the same direction as the velocity; otherwise, the sheet remains at the current height.<br> Velocity threshold: 1000; Distance threshold: 50%.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| preferType<sup>11+</sup> | [SheetType](#sheettype11)| No| Type of the sheet.<br>**NOTE**<br>The types supported by the sheet vary by window.<br>1. Width < 600 vp: bottom<br>2. 600 vp <= Width: bottom, center, and popup (default)<br>3. Width >= 840 vp: bottom, center, and popup (default)<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| preferType<sup>11+</sup> | [SheetType](#sheettype11)| No| Type of the sheet.<br>**NOTE**<br>The types supported by the sheet vary by window.<br>1. Width < 600 vp: bottom<br>2. 600 vp <= Width < 840 vp: bottom, center, and popup (default)<br>3. Width >= 840 vp: bottom, center, and popup (default)<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | showClose<sup>11+</sup> | boolean \| [Resource](ts-types.md#resource) | No| Whether to display the close icon. By default, the icon is displayed.<br> On 2-in-1 devices, the icon does not have a background by default.<br>**NOTE**<br>The value of **Resource** must be of the Boolean type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | dragBar         | boolean                                  | No   | Whether to display the drag bar.<br>**NOTE**<br>By default, the drag bar is displayed only when the sheet's **detents** attribute is set to multiple heights and the settings take effect.  <br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | blurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | No| Background blur of the sheet. By default, there is no background blur.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -188,7 +188,7 @@ This example demonstrates how to set different heights for sheets using the **he
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow: boolean = false
+  @State isShow: boolean = false;
   @State sheetHeight: number = 300;
 
   @Builder
@@ -223,7 +223,7 @@ struct SheetTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -231,16 +231,16 @@ struct SheetTransitionExample {
           height: this.sheetHeight,
           backgroundColor: Color.Green,
           onWillAppear: () => {
-            console.log("BindSheet onWillAppear.")
+            console.log("BindSheet onWillAppear.");
           },
           onAppear: () => {
-            console.log("BindSheet onAppear.")
+            console.log("BindSheet onAppear.");
           },
           onWillDisappear: () => {
-            console.log("BindSheet onWillDisappear.")
+            console.log("BindSheet onWillDisappear.");
           },
           onDisappear: () => {
-            console.log("BindSheet onDisappear.")
+            console.log("BindSheet onDisappear.");
           }
         })
     }
@@ -265,7 +265,7 @@ This example demonstrates how to use the **detents** property of **bindSheet** t
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow: boolean = false
+  @State isShow: boolean = false;
 
   @Builder
   myBuilder() {
@@ -285,13 +285,12 @@ struct SheetTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
         .bindSheet($$this.isShow, this.myBuilder(), {
           detents: [SheetSize.MEDIUM, SheetSize.LARGE, 200],
-          backgroundColor: Color.Gray,
           blurStyle: BlurStyle.Thick,
           showClose: true,
           title: { title: "title", subtitle: "subtitle" },
@@ -312,12 +311,12 @@ This example demonstrates how to use the **borderWidth** and **borderColor** pro
 
 ```ts
 // xxx.ets
-import { LengthMetrics } from '@kit.ArkUI'
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow: boolean = false
+  @State isShow: boolean = false;
 
   @Builder
   myBuilder() {
@@ -337,7 +336,7 @@ struct SheetTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -380,9 +379,9 @@ struct bindSheetExample {
   @Builder
   myBuilder() {
     Column() {
-      Button() {
-        Text("CONTEXT")
-      }.height(50)
+      Button("CONTEXT")
+        .margin(10)
+        .fontSize(20)
     }
   }
 
@@ -390,7 +389,7 @@ struct bindSheetExample {
     Column() {
       Button("NoRegisterSpringback")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -401,7 +400,6 @@ struct bindSheetExample {
           title: { title: "title", subtitle: "subtitle" },
           preferType: SheetType.CENTER,
 
-
           onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
             if (DismissSheetAction.reason == DismissReason.SLIDE_DOWN) {
               DismissSheetAction.dismiss() // Register the dismiss behavior.
@@ -410,7 +408,7 @@ struct bindSheetExample {
 
           onWillSpringBackWhenDismiss: ((SpringBackAction: SpringBackAction) => {
             // If springBack is not registered, the sheet will not exhibit a spring back effect when pulled down.
-            //SpringBackAction.springBack()
+            //SpringBackAction.springBack();
           }),
         })
     }
@@ -569,7 +567,7 @@ struct ListenKeyboardHeightChange {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -602,7 +600,7 @@ import { LengthMetrics } from '@kit.ArkUI';
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow: boolean = false
+  @State isShow: boolean = false;
 
   @Builder
   myBuilder() {
@@ -622,7 +620,7 @@ struct SheetTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)

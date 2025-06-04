@@ -6,14 +6,14 @@ The **font** module provides APIs for registering custom fonts.
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where [the UI context is unclear](../../ui/arkts-global-interface.md). For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
 >
 > Since API version 10, you can use the [getFont](./js-apis-arkui-UIContext.md#getfont) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](./js-apis-arkui-UIContext.md#font) object associated with the current UI context.
 
 ## Modules to Import
 
 ```ts
-import { font } from '@kit.ArkUI'
+import { font } from '@kit.ArkUI';
 ```
 
 ## font.registerFont
@@ -132,7 +132,7 @@ Obtains the system font list.
 
 >  **NOTE**
 >
->  This API takes effect only on 2-in-1 devices.
+>  This API takes effect only on 2-in-1 devices.<br>To obtain the latest list of fonts supported by the system, use the [getSystemFontFullNamesByType](../apis-arkgraphics2d/js-apis-graphics-text.md#textgetsystemfontfullnamesbytype14) API.
 
 **Example**
 
@@ -155,7 +155,7 @@ struct FontExample {
         .width('60%')
         .height('6%')
         .onClick(() => {
-          this.fontList = font.getSystemFontList() // You are advised to use the this.getUIContext().getFont().getSystemFontList() API.
+          this.fontList = font.getSystemFontList(); // You are advised to use the this.getUIContext().getFont().getSystemFontList() API.
         })
     }.width('100%')
   }
@@ -197,11 +197,11 @@ Obtains information about a system font based on the font name.
 | fullName       | string  | Yes| Name of the system font.          |
 | family         | string  | Yes| Family of the system font.      |
 | subfamily      | string  | Yes| Subfamily of the system font.     |
-| weight         | number  | Yes| Weight of the system font, in px.       |
-| width          | number  | Yes| Width of the system font, in px.   |
-| italic         | boolean | Yes| Whether the system font is italic.         |
-| monoSpace      | boolean | Yes| Whether the system font is monospaced.        |
-| symbolic       | boolean | Yes| Whether the system font supports symbols. |
+| weight         | number  | Yes| Weight of the system font.<br>Value range: [0, 8], with intervals of 1, corresponding to the values in the [FontWeight](../apis-arkgraphics2d/js-apis-graphics-text.md#fontweight) enum<br>Default value: **0**       |
+| width          | number  | Yes| Width of the system font.<br>Value range: [1, 9], with intervals of 1, corresponding to the values in the [FontWidth](../apis-arkgraphics2d/js-apis-graphics-text.md#fontwidth) enum   |
+| italic         | boolean | Yes| Whether the system font is italic.<br>Default value: **false**<br>**true**: The system font is italic.<br>**false**: The system font is not italic.         |
+| monoSpace      | boolean | Yes| Whether the system font is monospaced.<br>Default value: **false**<br>**true**: The system font is monospaced.<br>**false**: The system font is not monospaced.        |
+| symbolic       | boolean | Yes| Whether the system font supports symbols.<br>Default value: **false**<br>**true**: The system font supports symbols.<br>**false**: The system font does not support symbols. |
 
 **Example**
 
@@ -224,17 +224,17 @@ struct FontExample {
       Button("getFontByName")
         .onClick(() => {
           this.fontInfo =
-            font.getFontByName('HarmonyOS Sans Italic') // You are advised to use this.getUIContext().getFont().getFontByName().
-          console.log("getFontByName(): path = " + this.fontInfo.path)
-          console.log("getFontByName(): postScriptName = " + this.fontInfo.postScriptName)
-          console.log("getFontByName(): fullName = " + this.fontInfo.fullName)
-          console.log("getFontByName(): Family = " + this.fontInfo.family)
-          console.log("getFontByName(): Subfamily = " + this.fontInfo.subfamily)
-          console.log("getFontByName(): weight = " + this.fontInfo.weight)
-          console.log("getFontByName(): width = " + this.fontInfo.width)
-          console.log("getFontByName(): italic = " + this.fontInfo.italic)
-          console.log("getFontByName(): monoSpace = " + this.fontInfo.monoSpace)
-          console.log("getFontByName(): symbolic = " + this.fontInfo.symbolic)
+            font.getFontByName('HarmonyOS Sans Italic'); // You are advised to use this.getUIContext().getFont().getFontByName().
+          console.log("getFontByName(): path = " + this.fontInfo.path);
+          console.log("getFontByName(): postScriptName = " + this.fontInfo.postScriptName);
+          console.log("getFontByName(): fullName = " + this.fontInfo.fullName);
+          console.log("getFontByName(): Family = " + this.fontInfo.family);
+          console.log("getFontByName(): Subfamily = " + this.fontInfo.subfamily);
+          console.log("getFontByName(): weight = " + this.fontInfo.weight);
+          console.log("getFontByName(): width = " + this.fontInfo.width);
+          console.log("getFontByName(): italic = " + this.fontInfo.italic);
+          console.log("getFontByName(): monoSpace = " + this.fontInfo.monoSpace);
+          console.log("getFontByName(): symbolic = " + this.fontInfo.symbolic);
         })
     }.width('100%')
   }
@@ -295,7 +295,7 @@ Obtains the UI font configuration of the system.
 | Name           | Type   | Mandatory | Description                      |
 | -------------- | ------- | ------------------------- | ------------------------- |
 | name          | string  | Yes| Alias name.     |
-| weight        | number  | Yes| Weight of the fonts included in the font family. If the value is greater than 0, the font family contains only the fonts with the specified weight. If the value is 0, the font family contains all fonts.|
+| weight        | number  | Yes| Weight of the fonts included in the font family. If the value is greater than 0, the font family contains only the fonts with the specified weight. If the value is 0, the font family contains all fonts.<br>Valid values are **0**, **100**, **400**, **700**, and **900**.|
 
 ## UIFontAdjustInfo<sup>11+</sup>
 
@@ -304,8 +304,8 @@ Obtains the UI font configuration of the system.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 | Name           | Type   | Mandatory | Description                      |
 | -------------- | ------- | ------------------------- | ------------------------- |
-| weight        | number  | Yes| Original weight of the font.     |
-| to            | number  | Yes| Weight of the font displayed in the application.|
+| weight        | number  | Yes| Original weight of the font.<br>Valid values are **50**, **80**, **100**, and **200**.     |
+| to            | number  | Yes| Weight of the font displayed in the application.<br>Valid values are **100**, **400**, **700**, and **900**.|
 
 ## UIFontFallbackInfo<sup>11+</sup>
 
@@ -361,3 +361,5 @@ struct FontExample {
   }
 }
 ```
+
+<!--no_check-->

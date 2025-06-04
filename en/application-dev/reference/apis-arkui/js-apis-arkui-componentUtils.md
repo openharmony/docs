@@ -6,7 +6,7 @@ The **componentUtils** module provides API for obtaining the coordinates and siz
 >
 > The APIs of this module are supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
 >
-> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where [the UI context is unclear](../../ui/arkts-global-interface.md). For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
 >
 > Since API version 10, you can use the [getComponentUtils](./js-apis-arkui-UIContext.md#getcomponentutils) API in **UIContext** to obtain the **ComponentUtils** object associated with the current UI context. For this API to work correctly, call it after the notification indicating completion of component layout is received through [@ohos.arkui.inspector (layout callback)](js-apis-arkui-inspector.md).
 
@@ -142,7 +142,7 @@ type Matrix4Result = [number,number,number,number,number,number,number,number,nu
 
 | Type| Description                              |
 | --------| -----------------------------------|
-| [number,number,number,number,<br>number,number,number,number,<br>number,number,number,number,<br>number,number,number,number] | A number array whose length is 16 (4 x 4). The unit is px. For details, see **4 x 4 matrix description**. |
+| [number,number,number,number,<br>number,number,number,number,<br>number,number,number,number,<br>number,number,number,number] | A number array whose length is 16 (4 x 4). For details, see **4 x 4 matrix description**.<br>Unit: px |
 
 **4 x 4 matrix description**
 
@@ -202,7 +202,7 @@ struct Utils {
         .key("image_01")
       Button('getRectangleById')
       .onClick(() => {
-        this.value = JSON.stringify(componentUtils.getRectangleById("image_01")) // You are advised to use this.getUIContext().getComponentUtils().
+        this.value = JSON.stringify(this.getUIContext().getComponentUtils().getRectangleById("image_01")) // You are advised to use this.getUIContext().getComponentUtils().
       }).margin(10).id('onClick')
       Text(this.value)
         .margin(20)

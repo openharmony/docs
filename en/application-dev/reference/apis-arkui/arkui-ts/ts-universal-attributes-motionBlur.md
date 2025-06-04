@@ -4,7 +4,7 @@ You can apply a motion blur effect to a component being scaled or moved. This ef
 
 >  **NOTE**
 >
->  The initial APIs of this module are supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+>  This feature is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## motionBlur
@@ -25,6 +25,10 @@ Apply a motion blur effect to the component being scaled or moved.
 
 6. To avoid unexpected results, set the blur radius to a value less than 1.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name | Type                                                        | Mandatory| Description                                                        |
@@ -33,12 +37,20 @@ Apply a motion blur effect to the component being scaled or moved.
 
 ## MotionBlurOptions
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name         | Type                                                       | Mandatory | Description                                                        |
 | ------------- | ----------------------------------------------------------- | ----- | ------------------------------------------------------------ |
 | radius | number      | Yes   | Blur radius. The value range is [0.0, ∞). You are advised to set it to a value less than 1.0.|
 | anchor | [MotionBlurAnchor](#motionbluranchor) | Yes   | Coordinates of the motion blur anchor point. They must be the same as those of the animation scaling anchor point.|
 
 ## MotionBlurAnchor
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name         | Type                                                       | Mandatory | Description                                                        |
 | ------------- | ----------------------------------------------------------- | ----- | ------------------------------------------------------------ |
@@ -50,17 +62,17 @@ Apply a motion blur effect to the component being scaled or moved.
 This example demonstrates how to apply a motion blur effect.
 ```ts
 // xxx.ets
-import curves from '@ohos.curves';
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct motionBlurTest {
-  @State widthSize: number = 400
-  @State heightSize: number = 320
-  @State flag: boolean = true
-  @State radius: number = 0
-  @State x: number = 0
-  @State y: number = 0
+  @State widthSize: number = 400;
+  @State heightSize: number = 320;
+  @State flag: boolean = true;
+  @State radius: number = 0;
+  @State x: number = 0;
+  @State y: number = 0;
 
   build() {
     Column() {

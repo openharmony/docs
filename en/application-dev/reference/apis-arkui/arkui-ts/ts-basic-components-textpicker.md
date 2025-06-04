@@ -37,8 +37,8 @@ Creates a text picker based on the selection range specified by **range**.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | range | string[] \| string[] []<sup>10+</sup> \| [Resource](ts-types.md#resource) \|<br>[TextPickerRangeContent](#textpickerrangecontent10)[]<sup>10+</sup> \| [TextCascadePickerRangeContent](#textcascadepickerrangecontent10)[]<sup>10+</sup> | Yes| Data selection range of the picker. This parameter cannot be set to an empty array. If set to an empty array, it will not be displayed. If it is dynamically changed to an empty array, the current value remains displayed.<br>**NOTE**<br>For a single-column picker, use a value of the string[], Resource, or TextPickerRangeContent[] type.<br>For a multi-column picker, use a value of the string[] type.<br>For a multi-column linked picker, use a value of the TextCascadePickerRangeContent[] type.<br>The Resource type supports only [strarray.json](../../../quick-start/resource-categories-and-access.md#resource-group-directories).<br>The type and number of columns in the range cannot be dynamically modified.|
-| selected | number \| number[]<sup>10+</sup> | No| Index of the default item in the range.<br>Default value: **0**<br>**NOTE**<br>For a single-column picker, use a value of the number type.<br>For a multi-column (linked) picker, use a value of the number[] type.<br>Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
-| value | string \| string[]<sup>10+</sup> | No| Value of the default item in the range. The priority of this parameter is lower than that of **selected**.<br>Default value: value of the first item<br>**NOTE**<br>This parameter works only when the picker contains text only.  <br>For a single-column picker, use a value of the string type.<br>For a multi-column (linked) picker, use a value of the string[] type.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| selected | number \| number[]<sup>10+</sup> | No| Index of the default selected item in the array. The index is zero-based.<br>Default value: **0**<br>**NOTE**<br>For a single-column picker, use a value of the number type.<br>For a multi-column (linked) picker, use a value of the number[] type.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).|
+| value | string \| string[]<sup>10+</sup> | No| Value of the default item in the range. The priority of this parameter is lower than that of **selected**.<br>Default value: value of the first item<br>**NOTE**<br>This parameter works only when the picker contains text only.  <br>For a single-column picker, use a value of the string type.<br>For a multi-column (linked) picker, use a value of the string[] type.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).|
 
 ## TextPickerRangeContent<sup>10+</sup>
 
@@ -46,10 +46,10 @@ Creates a text picker based on the selection range specified by **range**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type                                                | Mandatory| Description  |
-| ------ | -------------------------------------------------------- | ---- | ---------- |
-| icon   | string \| [Resource](ts-types.md#resource) | Yes  | Image resource.|
-| text   | string \| [Resource](ts-types.md#resource) | No  | Text information.|
+| Name| Type                                                | Mandatory| Description      |
+| ---- | ---------------------------------------------------- | ---- | ---------- |
+| icon | string \| [Resource](ts-types.md#resource) | Yes  | Image resource. If the value is a string, such as **"/common/hello.png"**, it represents the path to the image.|
+| text | string \| [Resource](ts-types.md#resource) | No  | Text information.<br>An empty character string is used by default.<br>**NOTE**<br>If the text is longer than the column width, it will be truncated.|
 
 ## TextCascadePickerRangeContent<sup>10+</sup>
 
@@ -59,7 +59,7 @@ Creates a text picker based on the selection range specified by **range**.
 
 | Name| Type                                                | Mandatory| Description  |
 | ------ | -------------------------------------------------------- | ---- | ---------- |
-| text   | string \| [Resource](ts-types.md#resource) | Yes  | Text information.|
+| text   | string \| [Resource](ts-types.md#resource) | Yes  | Text information.<br>**NOTE**<br>If the text is longer than the column width, it will be truncated.|
 | children   | [TextCascadePickerRangeContent](#textcascadepickerrangecontent10)[] | No  | Linkage data.|
 ## DividerOptions<sup>12+</sup>
 
@@ -67,12 +67,12 @@ Creates a text picker based on the selection range specified by **range**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name     | Type     | Mandatory| Description                                                      |
-| ----------- | ------------- | ---- | -------------------------------------------------------------- |
-| strokeWidth | [Dimension](ts-types.md#dimension10)     | No  | Stroke width of the divider. The unit is vp by default. You can also specify it as px. The percentage type is not supported.|
-| startMargin | [Dimension](ts-types.md#dimension10)      | No  | Distance between the divider and the start edge of the picker. The unit is vp by default. You can also specify it as px. The percentage type is not supported.|
-| endMargin   | [Dimension](ts-types.md#dimension10)     | No  | Distance between the divider and the end edge of the picker. The unit is vp by default. You can also specify it as px. The percentage type is not supported.|
-| color       | [ResourceColor](ts-types.md#resourcecolor)  | No  | Color of the divider.
+| Name       | Type                                | Mandatory| Description                                                        |
+| ----------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| strokeWidth | [Dimension](ts-types.md#dimension10) | No  | Stroke width of the divider. The unit is vp by default. You can also specify it as px. The percentage type is not supported.<br>If the value is less than 0, the default value is used. The maximum value allowed is half the height of the column.<br>Default value: **2.0px**|
+| startMargin | [Dimension](ts-types.md#dimension10) | No  | Distance between the divider and the start edge of the picker. The unit is vp by default. You can also specify it as px. The percentage type is not supported.<br>Values less than 0 are invalid. The maximum value allowed is the width of the column.<br>Default value: **0**|
+| endMargin   | [Dimension](ts-types.md#dimension10) | No  | Distance between the divider and the end edge of the picker. The unit is vp by default. You can also specify it as px. The percentage type is not supported.<br>Values less than 0 are invalid. The maximum value allowed is the width of the column.<br>Default value: **0**|
+| color       | [ResourceColor](ts-types.md#resourcecolor)  | No  | Color of the divider.<br>Default value: **'#33000000'**
 
 ## Attributes
 
@@ -156,7 +156,7 @@ Sets the index of the default selected item in the array. Its priority is higher
 
 | Name| Type                        | Mandatory| Description                        |
 | ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | number \| number[] | Yes  | Index of the default selected item in the array.<br>Default value: **0**<br>|
+| value  | number \| number[] | Yes  | Index of the default selected item in the array. The index is zero-based.<br>Default value: **0**<br>If the value of **value** is **undefined**, the default value is the same as the value of **selected** in [options](#textpickeroptions). If the value of **selected** in [options](#textpickeroptions) is also **undefined**, the default value is **0**.<br>|
 
 ### canLoop<sup>10+</sup>
 
@@ -205,7 +205,7 @@ Sets the height for the fade effect. If this attribute is not set, the default f
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | [Dimension](ts-types.md#dimension10) | Yes  | Height of the gradient effect at the top and bottom edges of the content area. It can be set in percentage, with 100% (the maximum value) being half the height of the picker. Setting it to **0** will result in no gradient effect, while negative numbers or other invalid values will display the default gradient effect. Default value: **36vp**|
+| value  | [Dimension](ts-types.md#dimension10) | Yes  | Height of the fade effect at the top and bottom edges of the content area. It can be set in percentage, with 100% (the maximum value) being half the height of the picker. Setting it to **0** results in no fade effect, while negative numbers or other invalid values display the default fade effect. Default value: **36vp**|
 
 ### disableTextStyleAnimation<sup>15+</sup>
 
@@ -262,7 +262,7 @@ This API is deprecated since API version 10.
 | Name| Type  | Mandatory| Description                |
 | ------ | ------ | ---- | -------------------- |
 | value  | string | Yes  | Text of the selected item.  |
-| index  | number | Yes  | Index of the selected item.|
+| index  | number | Yes  | Index of the selected item. The index is zero-based.|
 
 ### onCancel<sup>(deprecated) </sup>
 
@@ -353,17 +353,17 @@ This example demonstrates how to set **range** to implement single-column or mul
 ```ts
 // xxx.ets
 class bottom {
-  bottom:number = 50
+  bottom:number = 50;
 }
-let bott:bottom = new bottom()
+let bott:bottom = new bottom();
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private apfruits: string[] = ['apple1', 'apple2', 'apple3', 'apple4']
-  private orfruits: string[] = ['orange1', 'orange2', 'orange3', 'orange4']
-  private pefruits: string[] = ['peach1', 'peach2', 'peach3', 'peach4']
-  private multi: string[][] = [this.apfruits, this.orfruits, this.pefruits]
+  private select: number = 1;
+  private apfruits: string[] = ['apple1', 'apple2', 'apple3', 'apple4'];
+  private orfruits: string[] = ['orange1', 'orange2', 'orange3', 'orange4'];
+  private pefruits: string[] = ['peach1', 'peach2', 'peach3', 'peach4'];
+  private multi: string[][] = [this.apfruits, this.orfruits, this.pefruits];
   private cascade: TextCascadePickerRangeContent[] = [
     {
       text: 'Asia',
@@ -387,26 +387,26 @@ struct TextPickerExample {
 
       TextPicker({ range: this.apfruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         }).margin(bott)
 
       TextPicker({ range: this.multi })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('TextPicker multi-column: onChange' + JSON.stringify(value) + ',' + 'index:' + JSON.stringify(index))
+          console.info('TextPicker multi-column: onChange' + JSON.stringify(value) + ',' + 'index:' + JSON.stringify(index));
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('TextPicker multi-column: onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+          console.info('TextPicker multi-column: onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index));
         }).margin(bott)
 
       TextPicker({ range: this.cascade })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('TextPicker multi-column linkage: onChange' + JSON.stringify(value) + ',' + 'index:' + JSON.stringify(index))
+          console.info('TextPicker multi-column linkage: onChange' + JSON.stringify(value) + ',' + 'index:' + JSON.stringify(index));
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('TextPicker multi-column linkage: onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+          console.info('TextPicker multi-column linkage: onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index));
         })
     }
   }
@@ -424,17 +424,17 @@ This example demonstrates how to configure **disappearTextStyle**, **textStyle**
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  private select: number = 1;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
@@ -455,17 +455,17 @@ This example demonstrates how to configure a text picker with no divider by sett
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  private select: number = 1;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
@@ -477,7 +477,7 @@ struct TextPickerExample {
 ```
 ![textpicker](figures/textpicker2.gif)
 
-### Example 3: Using the Divider Style
+### Example 4: Using the Divider Style
 
 This example demonstrates how to configure a text picker with a custom divider style by setting **divider** with **DividerOptions**.
 
@@ -486,17 +486,17 @@ This example demonstrates how to configure a text picker with a custom divider s
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  private select: number = 1;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
@@ -522,17 +522,17 @@ This example demonstrates how to customize the height of the fade effect in a te
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  private select: number = 1;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
@@ -544,7 +544,7 @@ struct TextPickerExample {
 ```
 
 ![textpicker](figures/textpicker4.gif)
-### Example 5: Disabling the Text Style Animation and Setting the Corresponding Text Style
+### Example 6: Disabling the Text Style Animation and Setting the Corresponding Text Style
 
 This example demonstrates how to disable the text style animation and set the corresponding text style using **disableTextStyleAnimation** and **defaultTextStyle**.
 
@@ -553,8 +553,8 @@ This example demonstrates how to disable the text style animation and set the co
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private fruits: string[] = ['AAAAA', 'BBBBBBBBBBBBB', 'CCCC', 'DDDDDDDD', 'EEE']
+  private select: number = 1;
+  private fruits: string[] = ['AAAAA', 'BBBBBBBBBBBBB', 'CCCC', 'DDDDDDDD', 'EEE'];
 
   build() {
     Column() {
