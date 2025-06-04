@@ -21,9 +21,8 @@
 
 不配置时，默认不禁用任何用户在桌面的有效手势操作。
 
-**代码样例：entry/src/main/resources/base/profile/form_config.json**
-
 ```ts
+// entry/src/main/resources/base/profile/form_config.json
 {
   "forms": [
     {
@@ -59,6 +58,8 @@
 
 针对系统应用，支持通过接口控制卡片状态切换，不对激活态保持时间做强限制，即卡片可以长时间保持激活态。卡片进入/退出激活态操作由[formProvider.activateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#activatesceneanimation20)和[formProvider.deactivateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#deactivatesceneanimation20)接口控制。
 特别地，卡片处于长时激活状态时候，卡片动效渲染区域和卡片自身渲染区域等大，不支持在激活态下调用[formProvider.requestOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20)。
+
+### 开发流程
 
 1. 导入模块
 
@@ -104,9 +105,8 @@ try {
 
 为了卡片提供方更加精细控制卡片状态切换，卡片提供方需在激活态页面准备就绪时，通过session发送信息告知卡片使用方，卡片使用方在收到信息后开始加载卡片激活态UI。
 
-**代码样例：entry/src/main/ets/mysystemliveformextensionability/MySystemLiveFormExtensionAbility.ets**
-
 ```ts
+// entry/src/main/ets/mysystemliveformextensionability/MySystemLiveFormExtensionAbility.ets
 import { LiveFormInfo } from '@kit.FormKit';
 import { LiveFormExtensionAbility } from '@kit.FormKit';
 import { UIExtensionContentSession } from '@kit.AbilityKit';

@@ -1,6 +1,6 @@
 # 场景动效类型互动卡片开发指导
 
-本文档提供了场景类型互动卡片的开发指导，包括：卡片非激活态和激活态UI界面开发，卡片配置文件开发，根据此文档，可以实现一个场景动效类型互动卡片动效demo。
+本文档提供了场景类型互动卡片的开发指导，包括卡片非激活态和激活态 UI 界面开发、卡片配置文件开发。
 
 ## 接口说明
 
@@ -11,7 +11,7 @@
 | formProvider.requestOverflow(formId: string, overflowInfo: formInfo.OverflowInfo): Promise&lt;void&gt; | 卡片提供方发起互动卡片动效请求，只针对[场景动效类型互动卡片](arkts-ui-widget-configuration.md#sceneanimationparams标签)生效，使用Promise异步回调。|
 | formProvider.cancelOverflow(formId: string): Promise&lt;void&gt;                                       | 卡片提供方发起取消互动卡片动效请求，只针对[场景动效类型互动卡片](arkts-ui-widget-configuration.md#sceneanimationparams标签)生效，使用Promise异步回调。|
 
-## 开发步骤
+## 开发流程
 
 ### 1. 卡片激活态UI开发
 
@@ -19,9 +19,8 @@
 
 **1.1 LiveFormExtensionAbility的开发**
 
-代码样例：entry/src/main/ets/myliveformextensionability/MyLiveFormExtensionAbility.ets
-
 ```ts
+// entry/src/main/ets/myliveformextensionability/MyLiveFormExtensionAbility.ets
 import { LiveFormInfo } from '@kit.FormKit';
 import { LiveFormExtensionAbility } from '@kit.FormKit';
 import { UIExtensionContentSession } from '@kit.AbilityKit';
@@ -49,9 +48,9 @@ export default class MyLiveFormExtensionAbility extends LiveFormExtensionAbility
 
 **1.2 LiveFormExtensionAbility对应配置项**
 
-代码样例：entry/src/main/module.json5
-
 ```ts
+// entry/src/main/module.json5
+    ...
     "extensionAbilities": [
       {
         "name": "MyLiveFormExtensionAbility",
@@ -61,13 +60,13 @@ export default class MyLiveFormExtensionAbility extends LiveFormExtensionAbility
         "type": "liveForm"
       }
     ]
+    ...
 ```
 
 **1.3 LiveFormExtensionAbility对应page页面的开发**
 
-代码样例：entry/src/main/ets/myliveformextensionability/pages/MyLiveFormPage.ets
-
 ```ts
+// entry/src/main/ets/myliveformextensionability/pages/MyLiveFormPage.ets
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 import { formProvider } from '@kit.FormKit';
 import { Constants } from '../../common/Constants';
@@ -137,9 +136,8 @@ struct MyLiveFormPage {
 
 非激活态卡片UI开发同普通卡片开发流程完全一致，在widgetCard.ets中完成。
 
-代码样例：entry/src/main/ets/widget/pages/WidgetCard.ets
-
 ```ts
+// entry/src/main/ets/widget/pages/WidgetCard.ets
 @Entry
 @Component
 struct WidgetCard {
@@ -172,9 +170,8 @@ struct WidgetCard {
 
 在form_config.json配置文件中，在对应卡片widget中新增sceneAnimationParams配置项，完成普通卡片widget和互动卡片LiveFormExtensionAbility的匹配。
 
-代码样例：entry/src/main/resources/base/profile/form_config.json
-
 ```ts
+// entry/src/main/resources/base/profile/form_config.json
 {
   "forms": [
     {
@@ -215,9 +212,8 @@ struct WidgetCard {
 
 在卡片加桌时，在[onUpdateForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonupdateform)生命周期回调中，通过wantParams中返回卡片实际尺寸，后续以此计算动效申请范围。
 
-**代码示例：entry/src/main/ets/entryformability/EntryFormAbility.ets**
-
 ```ts
+// entry/src/main/ets/entryformability/EntryFormAbility.ets
 import {
   formInfo,
   formProvider,
@@ -301,9 +297,8 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
 **3.2 动效相关常量的开发**
 
-**代码样例：entry/src/main/ets/common/Constants.ets**
-
 ```ts
+// entry/src/main/ets/common/Constants.ets
 export class Constants {
   // 互动卡片动效超范围，左侧偏移百分比 = 偏移值/卡片宽度
   public static readonly OVERFLOW_LEFT_RATIO: number = 0.1;
@@ -324,9 +319,8 @@ export class Constants {
 
 **3.3 动效相关工具函数的开发**
 
-**代码样例：entry/src/main/ets/common/Utils.ets**
-
 ```ts
+// entry/src/main/ets/common/Utils.ets
 import { preferences } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 

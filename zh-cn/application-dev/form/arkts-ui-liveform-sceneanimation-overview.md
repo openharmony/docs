@@ -35,7 +35,7 @@
 ## 约束和限制
 
 ### 请求参数约束
-1. 最大合法动效时长： 3500ms <!--Del-->（系统应用不做限制）<!--DelEnd-->。
+1. 最大合法动效时长： 3500ms，仅三方应用生效，系统应用不作限制。
 2. 由卡片定时定点刷新触发的互动卡片动效，一天内单张卡片最多触发 50 次。
 3. 最大可申请动效区域：如下图，矩形 ABCD 是卡片自身大小，矩形 IJKL 是卡片最大可申请动效区域。两个矩形中心对齐。尺寸满足以下表格描述。
 
@@ -55,7 +55,7 @@
 
 调用 formProvider.requestOverflow 接口时，[overflowInfo](../reference/apis-form-kit/js-apis-app-form-formInfo.md#overflowinfo20) 中描述的互动卡片动效渲染区域（矩形 EFGH）需要满足：
 1. 完整包含了卡片（矩形 ABCD）。
-2. 不超过矩形 IJKL（矩形 IJKL 完整包含矩形 EFGH）<!--Del-->（系统应用不做该限制）<!--DelEnd-->。
+2. 不超过矩形 IJKL（矩形 IJKL 完整包含矩形 EFGH），仅三方应用生效，系统应用不作限制。
 
 具体可参考[场景动效类型互动卡片开发指导](arkts-ui-liveform-sceneanimation-development.md#动效申请与业务编排)。
 
