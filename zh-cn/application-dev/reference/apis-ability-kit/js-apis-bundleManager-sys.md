@@ -4775,7 +4775,9 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
     bundleManager.getAllPreinstalledApplicationInfo().then((data)=>{
         hilog.info(0x0000, 'testTag', 'getAllPreinstalledApplicationInfo success, Data: %{public}s', JSON.stringify(data));
-    })
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getAllPreinstalledApplicationInfo failed. Cause: %{public}s', err.message);
+    });
 } catch (err) {
     let message = (err as BusinessError).message;
     hilog.error(0x0000, 'testTag', 'getAllPreinstalledApplicationInfo failed: %{public}s', message);
@@ -5575,7 +5577,7 @@ getSandboxDataDir(bundleName: string, appIndex: number): string
 
 | 参数名     | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------|
-| bundleName | string |  是  |   表示要查询的应用包名。   |
+| bundleName | string |  是  |   表示要查询的应用包名。当前用户下有此应用或者分身才可查询，否则返回错误码17700001。   |
 | appIndex | number |  是  |   表示分身索引。取值范围0~5，取值为0表示主应用。当查询的应用是元服务时，该参数无效。   |
 
 **返回值：**
@@ -5592,6 +5594,7 @@ getSandboxDataDir(bundleName: string, appIndex: number): string
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
+| 17700001 | The specified bundleName is not found. |
 | 17700061 | The appIndex is invalid. |
 
 **示例：**

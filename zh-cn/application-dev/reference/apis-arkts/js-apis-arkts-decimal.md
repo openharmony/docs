@@ -1947,8 +1947,8 @@ toExponential(decimalPlaces: number): string
 let data: Decimal = new Decimal(45.6);
 let data1: string = data.toExponential(0);
 console.info("test Decimal toExponential:" + data1); // 'test Decimal toExponential:5e+1'
-data1 = data.toExponential(1) // data1：'4.6e+1'
-data1 = data.toExponential(3) // data1：'4.560e+1'
+data1 = data.toExponential(1); // data1：'4.6e+1'
+data1 = data.toExponential(3); // data1：'4.560e+1'
 ```
 
 ### toExponential
@@ -1986,7 +1986,7 @@ toExponential(decimalPlaces: number, rounding: Rounding): string
 
 ```ts
 let data: Decimal = new Decimal(45.6);
-let data1 = data.toExponential(1, Decimal.ROUND_DOWN)
+let data1 = data.toExponential(1, Decimal.ROUND_DOWN);
 console.info("test Decimal toExponential:" + data1); // 'test Decimal toExponential:4.5e+1'
 ```
 
@@ -2152,13 +2152,13 @@ toFraction(max_denominator: Value): Decimal[]
 **示例：**
 
 ```ts
-let pi: Decimal = new Decimal('3.14159265358')
-let data1 = pi.toFraction() // data1：'157079632679,50000000000'
-data1 = pi.toFraction(100000) // data1：'312689, 99532'
-data1 = pi.toFraction(10000) // data1：'355, 113'
-data1 = pi.toFraction(100) // data1：'311, 99'
-data1 = pi.toFraction(10) // data1：'22, 7'
-data1 = pi.toFraction(1) // data1：'3, 1'
+let pi: Decimal = new Decimal('3.14159265358');
+let data1 = pi.toFraction(); // data1：'157079632679,50000000000'
+data1 = pi.toFraction(100000); // data1：'312689, 99532'
+data1 = pi.toFraction(10000); // data1：'355, 113'
+data1 = pi.toFraction(100); // data1：'311, 99'
+data1 = pi.toFraction(10); // data1：'22, 7'
+data1 = pi.toFraction(1); // data1：'3, 1'
 ```
 
 ### toNearest
@@ -2233,9 +2233,9 @@ toNearest(n: Value, rounding: Rounding): Decimal
 **示例：**
 
 ```ts
-let data: Decimal = new Decimal(9.499)
-let data1 = data.toNearest(0.5, Decimal.ROUND_UP) // data1：'9.5'
-data1 = data.toNearest(0.5, Decimal.ROUND_DOWN) // data1：'9'
+let data: Decimal = new Decimal(9.499);
+let data1 = data.toNearest(0.5, Decimal.ROUND_UP); // data1：'9.5'
+data1 = data.toNearest(0.5, Decimal.ROUND_DOWN); // data1：'9'
 ```
 
 ### toPrecision
@@ -2340,8 +2340,8 @@ toPrecision(significantDigits: number, rounding: Rounding): string
 
 ```ts
 let data: Decimal = new Decimal(45.6);
-let data1: string = data.toPrecision(2, Decimal.ROUND_UP) // data1：'46'
-data1 = data.toPrecision(2, Decimal.ROUND_DOWN) // data1：'45'
+let data1: string = data.toPrecision(2, Decimal.ROUND_UP); // data1：'46'
+data1 = data.toPrecision(2, Decimal.ROUND_DOWN); // data1：'45'
 ```
 
 ### toSignificantDigits
@@ -2496,14 +2496,14 @@ let data: Decimal = new Decimal(750000);
 let data1: string = data.toString();
 console.info("test Decimal toString:" + data1); // 'test Decimal toString:750000'
 
-Decimal.set({ toExpPos: 5 })
-data1 = data.toString() // data1:'7.5e+5'
+Decimal.set({ toExpPos: 5 });
+data1 = data.toString(); // data1:'7.5e+5'
 
-let data2: Decimal = new Decimal(0.000000123)
+let data2: Decimal = new Decimal(0.000000123);
 console.info("test Decimal toString:" + data2.toString()); // 'test Decimal toString:1.23e-7'
 
-Decimal.set({ toExpNeg: -7 })
-data1 = data2.toString() // data1:'1.23e-7'
+Decimal.set({ toExpNeg: -7 });
+data1 = data2.toString(); // data1:'1.23e-7'
 ```
 
 ### valueOf
@@ -2592,7 +2592,7 @@ precision(includeZeros: boolean | number): number
 
 | 参数名       | 类型    | 必填 | 说明                                                         |
 | ------------ | ------- | ---- | ------------------------------------------------------------ |
-| includeZeros | boolean | 是   | 是否计算整数部分尾随零。true表示计算整数部分尾随零，false表示不计算整数部分尾随零。 |
+| includeZeros | boolean \| number | 是   | 是否计算整数部分尾随零。true或1表示计算整数部分尾随零，false或0表示不计算整数部分尾随零。 |
 
 **返回值：**
 
@@ -2614,7 +2614,7 @@ precision(includeZeros: boolean | number): number
 let data: Decimal = new Decimal(987000);
 let data1: number = data.precision();
 console.info("test Decimal precision:" + data1); // 'test Decimal precision:3'
-data1 = data.precision(true) // data1:'6'
+data1 = data.precision(true); // data1:'6'
 ```
 
 ### abs
@@ -4172,46 +4172,46 @@ Decimal.set({
     minE: -9e15,
     modulo: 1,
     crypto: false
-})
+});
 let data1 : Decimal = data.add(0.5);
 console.info("test Decimal set:" + data1.toString()); // "test Decimal set:1.7346"
 // 将配置属性全部设置为默认值
-Decimal.set({ defaults: true })
+Decimal.set({ defaults: true });
 let data2 : Decimal = data.add(0.5);
 console.info("test Decimal set:" + data2.toString()); // "test Decimal set:1.7345678901234567"
 // 最大有效位数设置为10，其余配置属性设置为默认值
-Decimal.set({ precision: 10, defaults: true })
+Decimal.set({ precision: 10, defaults: true });
 let data3 : Decimal = data.add(0.5);
 console.info("test Decimal set:" + data3.toString()); // "test Decimal set:1.73456789"
 
 // toExpNeg和toExpPos的用法
-Decimal.set({ toExpNeg: -7 })
-let x0 : Decimal = new Decimal(0.00000123) // x0:'0.00000123'
-let x1 : Decimal = new Decimal(0.000000123) // x1:'1.23e-7'
+Decimal.set({ toExpNeg: -7 });
+let x0 : Decimal = new Decimal(0.00000123); // x0:'0.00000123'
+let x1 : Decimal = new Decimal(0.000000123); // x1:'1.23e-7'
 
-Decimal.set({ toExpPos: 2 })
-let y0 : Decimal = new Decimal(12.3) // y0:'12.3'
-let y1 : Decimal = new Decimal(123) // y1:'1.23e+2'
+Decimal.set({ toExpPos: 2 });
+let y0 : Decimal = new Decimal(12.3); // y0:'12.3'
+let y1 : Decimal = new Decimal(123); // y1:'1.23e+2'
 
 // 所有数据均使用科学计数法表示
-Decimal.set({ toExpPos: 0 })
+Decimal.set({ toExpPos: 0 });
 
 // minE和maxE的用法
-Decimal.set({ minE: -500 })
-let a0 : Decimal = new Decimal('1e-500') // a0:'1e-500'
-let a1 : Decimal = new Decimal('9.9e-501') // a1:'0e0'
+Decimal.set({ minE: -500 });
+let a0 : Decimal = new Decimal('1e-500'); // a0:'1e-500'
+let a1 : Decimal = new Decimal('9.9e-501'); // a1:'0e0'
 
-Decimal.set({ minE: -3 })
-let b0 : Decimal = new Decimal(0.001) // b0:'0.001'
-let b1 : Decimal = new Decimal(0.0001) // b1:'0e0'
+Decimal.set({ minE: -3 });
+let b0 : Decimal = new Decimal(0.001); // b0:'0.001'
+let b1 : Decimal = new Decimal(0.0001); // b1:'0e0'
 
-Decimal.set({ maxE: 500 })
-let c0 : Decimal = new Decimal('9.999e500') // c0:'9.999e+500'
-let c1 : Decimal = new Decimal('1e501') // c1:'Infinity'
+Decimal.set({ maxE: 500 });
+let c0 : Decimal = new Decimal('9.999e500'); // c0:'9.999e+500'
+let c1 : Decimal = new Decimal('1e501'); // c1:'Infinity'
 
-Decimal.set({ maxE: 4 })
-let d0 : Decimal = new Decimal(99999) // d0:'9.9999e+4'
-let d1 : Decimal = new Decimal(100000) // d1:'Infinity'
+Decimal.set({ maxE: 4 });
+let d0 : Decimal = new Decimal(99999); // d0:'9.9999e+4'
+let d1 : Decimal = new Decimal(100000); // d1:'Infinity'
 ```
 
 **示例2：**
@@ -4229,7 +4229,7 @@ export function test(){
     minE: -9e15,
     modulo: 1,
     crypto: false
-  })
+  });
   let data1 : Decimal = data.add(0.5);
   console.info("test Decimal set:" + data1.toString()); // 'test Decimal set:1.7346'
 }
@@ -4237,7 +4237,7 @@ export function test(){
 <!--code_no_check-->
 ```ts
 // /entry/src/main/ets/pages/Index.ets
-import {test} from './test'
+import {test} from './test';
 
 let data : Decimal = new Decimal(1.2345678901234567);
 Decimal.set({
@@ -4249,7 +4249,7 @@ Decimal.set({
   minE: -9e15,
   modulo: 1,
   crypto: false
-})
+});
 let data1 : Decimal = data.add(0.5);
 console.info("test Decimal set:" + data1.toString()); // 'test Decimal set:1.73456'
 test();

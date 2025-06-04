@@ -29,7 +29,7 @@ notEqualTo(field: string, value: ValueType): DataSharePredicates
 
 该接口用于配置谓词以匹配值不等于指定值的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -61,7 +61,7 @@ beginWrap(): DataSharePredicates
 
 该接口用于向谓词添加左括号，相当于sql语句的“(”，必须和右括号一起使用。
 
-目前仅RDB支持该谓词。
+目前仅关系型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -91,7 +91,7 @@ endWrap(): DataSharePredicates
 
 该接口用于向谓词添加右括号。
 
-目前仅RDB支持该谓词。
+目前仅关系型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -121,7 +121,7 @@ or(): DataSharePredicates
 
 该接口用于将或条件添加到谓词中。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -148,7 +148,7 @@ contains(field: string, value: string): DataSharePredicates
 
 该接口用于配置谓词以匹配值包含指定字段的字段。
 
-目前仅RDB支持该谓词。
+目前仅关系型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -180,7 +180,7 @@ beginsWith(field: string, value: string): DataSharePredicates
 
 该接口用于配置谓词以匹配值以指定字符串起始的字段。
 
-目前仅RDB支持该谓词。
+目前仅关系型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -212,7 +212,7 @@ endsWith(field: string, value: string): DataSharePredicates
 
 该接口用于配置谓词以匹配值以指定字符串结尾的字段。
 
-目前仅RDB支持该谓词。
+目前仅关系型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -244,7 +244,7 @@ isNull(field: string): DataSharePredicates
 
 该接口用于配置谓词以匹配值为null的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -275,7 +275,7 @@ isNotNull(field: string): DataSharePredicates
 
 该接口用于配置谓词以匹配值不为null的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -306,7 +306,7 @@ like(field: string, value: string): DataSharePredicates
 
 该接口用于配置谓词以匹配指定通配符表达式的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -338,7 +338,7 @@ unlike(field: string, value: string): DataSharePredicates
 
 该接口用于配置谓词以匹配不类似指定通配符表达式的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -370,7 +370,7 @@ glob(field: string, value: string): DataSharePredicates
 
 该接口用于配置谓词以匹配指定通配符表达式的字段。
 
-目前仅RDB支持该谓词。
+目前仅关系型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -402,7 +402,7 @@ between(field: string, low: ValueType, high: ValueType): DataSharePredicates
 
 该接口用于配置谓词以匹配值在指定范围内的字段。包含两端边界值，为左闭右闭区间，该字段的数据类型必须为int类型。
 
-目前仅RDB支持该谓词。
+目前仅关系型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -435,7 +435,7 @@ notBetween(field: string, low: ValueType, high: ValueType): DataSharePredicates
 
 该接口用于配置谓词以匹配值超出指定范围的字段。不包含两端边界值，为左开右开区间，该字段的数据类型必须为int类型。
 
-目前仅RDB支持该谓词。
+目前仅关系型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -468,7 +468,7 @@ greaterThan(field: string, value: ValueType): DataSharePredicates
 
 该接口用于配置谓词以匹配值大于指定值的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -500,7 +500,7 @@ lessThan(field: string, value: ValueType): DataSharePredicates
 
 该接口用于配置谓词以匹配值小于指定值的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -532,7 +532,7 @@ greaterThanOrEqualTo(field: string, value: ValueType): DataSharePredicates
 
 该接口用于配置谓词以匹配值大于或等于指定值的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -564,7 +564,7 @@ lessThanOrEqualTo(field: string, value: ValueType): DataSharePredicates
 
 该接口用于配置谓词以匹配值小于或等于指定值的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -596,7 +596,7 @@ distinct(): DataSharePredicates
 
 该接口用于配置谓词以过滤重复记录并仅保留其中一个。
 
-目前仅RDB支持该谓词。
+目前仅关系型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -621,7 +621,7 @@ groupBy(fields: Array&lt;string&gt;): DataSharePredicates
 
 该接口用于配置谓词按指定列分组查询结果。
 
-目前仅RDB支持该谓词。
+目前仅关系型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -652,7 +652,7 @@ indexedBy(field: string): DataSharePredicates
 
 该接口用于配置谓词按指定索引列查询结果。使用该方法前，需要设置索引列。
 
-目前仅RDB支持该谓词。
+目前仅关系型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -683,7 +683,7 @@ notIn(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 
 该接口用于配置谓词以匹配值不在指定范围内的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 

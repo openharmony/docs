@@ -2,7 +2,6 @@
 
 为了实现序列化类时不丢失属性的复杂类型，开发者可以使用\@Type装饰器装饰类属性。
 
-
 \@Type的目的是标记类属性，配合PersistenceV2使用，防止序列化时类丢失。在阅读本文档前，建议提前阅读：[PersistenceV2](./arkts-new-persistencev2.md)。
 
 >**说明：**
@@ -10,11 +9,9 @@
 >\@Type从API version 12开始支持。
 >
 
-
 ## 概述
 
 \@Type标记类属性，使得类属性序列化时不丢失类型信息，便于类的反序列化。
-
 
 ## 装饰器说明
 
@@ -22,7 +19,6 @@
 | ------------------- | ------------------------------------------------------------ |
 | 装饰器参数 | type：类型。 |
 | 可装饰的类型 | Object class以及Array、Date、Map、Set等内嵌类型。 |
-
 
 ## 使用限制
 
@@ -53,9 +49,9 @@
 
 2. 不支持collections.Set、collections.Map等类型。
 
-3. 不支持非buildin类型，如PixelMap、NativePointer、ArrayList等Native类型。
+3. 不支持非buildin类型。如PixelMap、NativePointer、ArrayList等Native类型。
 
-4. 不支持简单类型，如string、number、boolean等。
+4. 不支持简单类型。如string、number、boolean等。
 
 5. 不支持构造函数含参的类。
 

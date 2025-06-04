@@ -101,18 +101,23 @@ sweepGradient(options: Optional\<SweepGradientOptions>)
 
 角度渐变参数。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                                       | 类型                                                         | 必填 | 说明                                                         |
-| ------------------------------------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| center                                     | [[Length](./ts-types.md#length), Length]                     | 是   | 为角度渐变的中心点，即相对于当前组件左上角的坐标。           |
-| start                                      | number&nbsp;\|&nbsp;string                                   | 否   | 角度渐变的起点。&nbsp;默认值：0。                            |
-| end                                        | number&nbsp;\|&nbsp;string                                   | 否   | 角度渐变的终点。&nbsp;默认值：0。                            |
-| rotation                                   | number&nbsp;\|&nbsp;string                                   | 否   | 角度渐变的旋转角度。默认值：0。                              |
-| [colors](#radialgradientoptions18对象说明) | Array&lt;[[ResourceColor](ts-types.md#resourcecolor),&nbsp;number] | 是   | 指定渐变色颜色和其对应的百分比位置的数组，设置非法颜色直接跳过。 |
-| repeating                                  | boolean                                                      | 否   | 为渐变的颜色重复着色。<br>默认值：false。<br>true：允许为渐变的颜色重复着色。<br>false：不允许为渐变的颜色重复着色。                       |
+| ------------------------------------------ | ------------------------------------------------------------ | ---- |------------------------------------------------------------- |
+| center                                    | [[Length](./ts-types.md#length), Length]                     | 是   | 为角度渐变的中心点，即相对于当前组件左上角的坐标。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。           |
+| start                                     | number&nbsp;\|&nbsp;string                                   | 否   | 角度渐变的起点。&nbsp;默认值：0。<br/>角度为字符串时仅支持类型deg，grad，rad，turn。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                            |
+| end                                       | number&nbsp;\|&nbsp;string                                   | 否   | 角度渐变的终点。&nbsp;默认值：0。<br/>角度为字符串时仅支持类型deg，grad，rad，turn。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                            |
+| rotation                                   | number&nbsp;\|&nbsp;string                                   | 否   | 角度渐变的旋转角度。默认值：0。<br/>角度为字符串时仅支持类型deg，grad，rad，turn。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                              |
+| colors | Array&lt;[[ResourceColor](ts-types.md#resourcecolor),&nbsp;number] | 是   | 指定渐变色颜色和其对应的百分比位置的数组，设置非法颜色直接跳过。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| metricsColors<sup>20+</sup> | Array&lt;[[ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12),&nbsp;number] | 否   | 指定渐变色颜色和其对应的百分比位置的数组，设置非法颜色直接跳过。设置metricsColors时colors失效。每个渐变ColorMetrics的色域属性应当统一，设置不同色域属性则认为非法。默认值为透明色。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| repeating                                 | boolean                                                      | 否   | 为渐变的颜色重复着色。<br>默认值：false <br>true：允许为渐变的颜色重复着色。<br>false：不允许为渐变的颜色重复着色。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                       |
+
+>  **说明：** 
+>
+>  metricsColors参数的约束：
+>
+>  [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)表示填充的颜色，可以使用[colorWithSpace](../js-apis-arkui-graphics.md#colorwithspace20)方法构造指定色域属性的颜色。number表示指定颜色所处的位置，取值范围为[0, 1.0]，0表示需要设置渐变色的容器开始处，1.0表示容器的结束处。为了实现多个颜色渐变效果，多个数组中的number类型参数应递增设置。如果后一个数组中的number类型参数小于前一个数组的number类型参数，将按照等于前一个数组number值处理。
 
 ## radialGradient
 
@@ -217,9 +222,15 @@ struct ColorGradientExample {
 该示例通过sweepGradient来实现组件颜色旋转角度渐变。
 
 ```ts
+import { ColorMetrics } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct ColorGradientExample {
+  @State p3Red: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.DISPLAY_P3, 1, 0, 0, 1);
+  @State p3Green: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.DISPLAY_P3, 0, 1, 0, 1);
+  @State p3Blue: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.DISPLAY_P3, 0, 0, 1, 1);
+
   build() {
     Column({ space: 5 }) {
       Text('sweepGradient').fontSize(12).width('90%').fontColor(0xCCCCCC)
@@ -245,6 +256,20 @@ struct ColorGradientExample {
           repeating: true, // 渐变颜色是否重复
           colors: [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 0.5]] // 数组末尾元素占比小于1时满足重复着色效果
         })
+
+      Text('sweepGradient with metricsColors').fontSize(12).width('90%').fontColor(0xCCCCCC)
+      Row()
+        .width(100)
+        .height(100)
+        .sweepGradient({
+          center: [50, 50],
+          start: 0,
+          end: 359,
+          rotation: 45,
+          repeating: true,
+          colors: [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 0.5]], // 数组末尾元素占比小于1时满足重复着色效果
+          metricsColors: [[this.p3Red, 0.0], [this.p3Green, 0.5], [this.p3Blue, 1.0]]  // 设置metricsColors时colors设置的颜色失效，metricsColors的颜色生效
+        })
     }
     .width('100%')
     .padding({ top: 5 })
@@ -252,7 +277,7 @@ struct ColorGradientExample {
 }
 ```
 
-![zh-cn_image_0000001219864149](figures/gradientColor2.png)
+![zh-cn_image_0000001219864149](figures/gradientColor2_1.png)
 
 ### 示例3（颜色按径向渐变）
 

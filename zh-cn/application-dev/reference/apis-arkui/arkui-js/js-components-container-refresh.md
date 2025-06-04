@@ -22,9 +22,9 @@
 | 名称 | 类型 | 默认值 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
 | offset | &lt;length&gt; | - | 否 | 刷新组件静止时距离父组件顶部的距离。 |
-| refreshing | boolean | false | 否 | 标识刷新组件当前是否正在刷新。 |
+| refreshing | boolean | false | 否 | 标识刷新组件当前是否正在刷新。<br/>-&nbsp;true：刷新组件当前处于刷新状态。<br/>-&nbsp;false：刷新组件当前未处于刷新状态。 |
 | type | string | auto | 否 | 设置组件刷新时的动效。两个可选值，不支持动态修改。<br/>-&nbsp;auto:&nbsp;默认效果，列表界面拉到顶后，列表不移动，下拉后有转圈弹出。<br/>-&nbsp;pulldown:&nbsp;列表界面拉到顶后，可以继续往下滑动一段距离触发刷新，刷新完成后有回弹效果（如果子组件含有list，防止下拉效果冲突，需将list的scrolleffect设置为no）。 |
-| lasttime | boolean | false | 否 | 设置是否显示上次更新时间，字符串格式为：“上次更新时间：XXXX&nbsp;”，XXXX&nbsp;按照时间日期显示规范显示，不可动态修改（建议type为pulldown时使用，固定距离位于内容下拉区域底部，使用时注意offset属性设置，防止出现重叠）。 |
+| lasttime | boolean | false | 否 | 设置是否显示上次更新时间，字符串格式为：“上次更新时间：XXXX&nbsp;”，XXXX&nbsp;按照时间日期显示规范显示，不可动态修改（建议type为pulldown时使用，固定距离位于内容下拉区域底部，使用时注意offset属性设置，防止出现重叠）。<br/>-&nbsp;true：显示上次更新时间。<br/>-&nbsp;false：不显示上次更新时间。 |
 | timeoffset<sup>6+</sup> | &lt;length&gt; | - | 否 | 设置更新时间距离父组件顶部的距离。 |
 | friction | number | 42 | 否 | 下拉摩擦系数，取值范围：0-100，数值越大refresh组件跟手性高，数值越小refresh跟手性低。 |
 

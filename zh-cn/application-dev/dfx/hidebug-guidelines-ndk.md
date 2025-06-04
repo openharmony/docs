@@ -24,7 +24,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 ## 开发步骤
 
-### 使用HiDebug获取系统CPU使用率。
+### 使用HiDebug获取系统CPU使用率
 下文将展示如何在应用内增加一个按钮，并单击该按钮以调用HiDebug Ndk接口获取系统CPU使用率。
 
 1. 新建Native C++工程，目录结构如下：
@@ -125,7 +125,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    09-10 09:40:26.755 17221-17221/com.example.myapplication I A00000/testTag: GetSystemCpuUsage: 0.083904
    ```
 
-### 使用HiDebug对应用主线程进行栈回溯。
+### 使用HiDebug对应用主线程进行栈回溯
 1. 新建Native C++工程，并新增文件“test_backtrace.cpp”与“test_backtrace.h”，目录结构如下：
 
    ```yml

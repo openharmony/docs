@@ -57,6 +57,6 @@ struct Index {
 ```
 
 效果图如下：
-radius表示模糊半径，数值越大越模糊。
+radius表示模糊半径，数值越大，效果越模糊。
 
 ![foregroundColor_circle](figures/foregroundEffect.jpg)

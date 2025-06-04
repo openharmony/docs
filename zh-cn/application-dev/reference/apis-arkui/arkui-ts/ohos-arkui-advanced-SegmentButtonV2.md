@@ -272,7 +272,7 @@ constructor(items: SegmentButtonV2ItemOptions[])
 
 **参数：** 
 
-| 名称  | 类型                                                              | 必填 | 说明                       |
+| 参数名  | 类型                                                              | 必填 | 说明                       |
 | ----- | ----------------------------------------------------------------- | ---- | -------------------------- |
 | items | Array\<[SegmentButtonV2ItemOptions](#segmentbuttonv2itemoptions)> | 是   | 分段按钮选项配置参数集合。 |
 
@@ -311,7 +311,7 @@ get hasHybrid():boolean
 | text                     | [ResourceStr](ts-types.md#resourcestr)                               | 否 | @Trace   | 分段按钮选项文本。<br>默认值：undefined                              |
 | icon                     | [ResourceStr](ts-types.md#resourcestr)                               | 否 | @Trace   | 分段按钮选项图片类型图标。<br>默认值：undefined                      |
 | symbol                   | [Resource](ts-types.md#resource)                                     | 否 | @Trace   | 分段按钮选项 HM Symbol 类型图标。<br>默认值：undefined               |
-| enabled                  | boolean                                                              | 否 | @Trace   | 分段按钮选项是否可用。<br>默认值：true。<br>true：分段按钮选项可用；false：分段按钮选项不可用。                          |
+| enabled                  | boolean                                                              | 是 | @Trace   | 分段按钮选项是否可用。<br>默认值：true。<br>true：分段按钮选项可用；false：分段按钮选项不可用。                          |
 | textModifier             | [TextModifier](ts-universal-attributes-attribute-modifier.md)        | 否 | @Trace   | 分段按钮选项文本属性样式修改器。<br>默认值：undefined                |
 | iconModifier             | [ImageModifier](ts-universal-attributes-attribute-modifier.md)       | 否 | @Trace   | 分段按钮选项图片类型图标属性样式修改器。<br>默认值：undefined        |
 | symbolModifier           | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | @Trace   | 分段按钮选项 HM Symbol 类型图标属性样式修改器。<br>默认值：undefined |

@@ -205,6 +205,7 @@
         - [标准化数据定义概述](database/unified-data-definition-overview.md)
         - [标准化数据类型](database/uniform-data-type-descriptors.md)
         - [标准化数据结构](database/uniform-data-structure.md)
+        - [基于标准化数据结构的控件（ArkTS）](database/components-based-on-uniform-data-structure.md)
         - [Uniform Type Descriptor(UTD)预置类型列表](database/uniform-data-type-list.md)
       - 应用数据持久化<!--app-data-persistence-->
         - [应用数据持久化概述](database/app-data-persistence-overview.md)
@@ -214,9 +215,6 @@
         - [通过关系型数据库实现数据持久化](database/data-persistence-by-rdb-store.md)
         - [通过向量数据库实现数据持久化 (ArkTS)](database/data-persistence-by-vector-store.md)
         - [通过向量数据库实现数据持久化 (C/C++)](database/native-vector-store-guidelines.md)
-        <!--Del-->
-        - [通过图数据库实现数据持久化（仅对系统应用开放）](database/data-persistence-by-graph-store.md)
-        <!--DelEnd-->
       - 同应用跨设备数据同步（分布式）<!--distributed-data-sync-->
         - [同应用跨设备数据同步概述](database/sync-app-data-across-devices-overview.md)
         - [键值型数据库跨设备数据同步](database/data-sync-of-kv-store.md)
@@ -237,11 +235,10 @@
         <!--DelEnd-->
         - 多对多跨应用数据共享<!--many-to-many-data-share-->
           - [通过标准化数据通路实现数据共享](database/unified-data-channels.md)
-      - 智慧化数据构建与检索<!--intelligence-data-->
-        - [智慧化数据构建与检索概述](database/aip-data-intelligence-overview.md)
-        - [应用数据向量化](database/aip-data-intelligence-embedding.md)
+      - [应用数据向量化](database/aip-data-intelligence-embedding.md)
       - [RelationalStore开发指导 (C/C++)](database/native-relational-store-guidelines.md)
       - [UDMF开发指导 (C/C++)](database/native-unified-data-management-framework-guidelines.md)
+      - [ArkData术语](database/data-terminology.md)
     - ArkTS（方舟编程语言）<!--arkts-->
       - [ArkTS简介](arkts-utils/arkts-overview.md)
       - ArkTS基础类库<!--arkts-utils-->
@@ -314,6 +311,7 @@
             - [多线程取消TaskPool任务场景](arkts-utils/multi-thread-cancel-task.md)
             - [ArkTS多线程间操作Native对象场景](arkts-utils/napi-coerce-to-native-binding-object.md)
             - [Worker常驻线程通过TaskPool进行多任务并发处理](arkts-utils/worker-and-taskpool.md)
+        - [并发常见问题](arkts-utils/concurrency-faq.md)
       - [ArkTS跨语言交互](arkts-utils/arkts-cross-language-interaction.md)
       - ArkTS运行时<!--arkts-runtime-->
         - [ArkTS运行时概述](arkts-utils/arkts-runtime-overview.md)
@@ -347,7 +345,7 @@
       - UI开发 (ArkTS声明式开发范式)<!--arkts-ui-development-->
         - [UI开发（ArkTS声明式开发范式）概述](ui/arkts-ui-development-overview.md)
         - 学习UI范式基本语法<!--arkts-ui-paradigm-basic-syntax-->
-          - [基本语法概述](ui/state-management/arkts-basic-syntax-overview.md) 
+          - [基本语法概述](ui/state-management/arkts-basic-syntax-overview.md)
           - [声明式UI描述](ui/state-management/arkts-declarative-ui-description.md)
           - 自定义组件<!--arkts-custom-components-->
             - [创建自定义组件](ui/state-management/arkts-create-custom-components.md)
@@ -473,7 +471,7 @@
              - [不依赖UI组件的全局菜单 (openMenu)](ui/arkts-popup-and-menu-components-uicontext-menu.md)
            - 气泡提示<!--arkts-use-popup-->
              - [气泡提示概述](ui/arkts-popup-overview.md)
-             - [气泡提示 (Popup)](ui/arkts-popup-and-menu-components-popup.md)            
+             - [气泡提示 (Popup)](ui/arkts-popup-and-menu-components-popup.md)
              - [不依赖UI组件的全局气泡提示 (openPopup)](ui/arkts-popup-and-menu-components-uicontext-popup.md)
           - 绑定模态页面<!--arkts-bind-modal-->
             - [绑定模态页面概述](ui/arkts-modal-overview.md)
@@ -726,8 +724,7 @@
     - Background Tasks Kit（后台任务开发服务）<!--background-task-kit-->
       <!--Del-->
       - 后台任务管理 <!--background-task-management--><!--DelEnd-->
-
-        - [后台任务总体概述](task-management/background-task-overview.md)
+        - [Background Tasks Kit简介](task-management/background-task-overview.md)
         - [短时任务(ArkTS)](task-management/transient-task.md)
         - [短时任务(C/C++)](task-management/native-transient-task.md)
         - [长时任务(ArkTS)](task-management/continuous-task.md)
@@ -814,6 +811,8 @@
           - ArkTS卡片页面编辑<!--arkts-ui-widget-edit-->
             - [ArkTS卡片页面编辑交互概述](form/arkts-ui-widget-event-formeditextensionability-overview.md)
             - [编辑刷新卡片页面内容](form/arkts-ui-widget-event-formeditextensionability.md)
+          - 应用内请求卡片加桌<!--arkts-ui-widget-add-->
+            - [应用内拉起卡片管理加桌](form/arkts-ui-widget-open-formmanager.md)
           <!--Del-->
           - [卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
           <!--DelEnd-->
@@ -856,6 +855,7 @@
               - [创建索引](internationalization/i18n-sorting-index.md)
           - [字符处理](internationalization/i18n-character-processing.md)
           - 本地化名称<!--i18n-name-localization-->
+              - [概述](internationalization/i18n-display-overview.md)
               - [本地化语言与地区名称](internationalization/i18n-language-region-display.md)
               - [本地化时区名称](internationalization/i18n-time-zone-display.md)
       - 应用本地化<!--i10n-->
@@ -962,7 +962,7 @@
             - [使用AES对称密钥（ECB模式）加解密(C/C++)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-ecb-ndk.md)
             - [使用AES对称密钥（GCM模式）分段加解密(ArkTS)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md)
             - [使用AES对称密钥（GCM模式）分段加解密(C/C++)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-by-segment-ndk.md)
-            - [使用DES对称密钥（ECB模式）加解密(ArkTS)](security/CryptoArchitectureKit/crypto-des-sym-encrypt-decrypt-ecb.md) 
+            - [使用DES对称密钥（ECB模式）加解密(ArkTS)](security/CryptoArchitectureKit/crypto-des-sym-encrypt-decrypt-ecb.md)
             - [使用DES对称密钥（ECB模式）加解密(C/C++)](security/CryptoArchitectureKit/crypto-des-sym-encrypt-decrypt-ecb-ndk.md)
             - [使用3DES对称密钥（ECB模式）加解密(ArkTS)](security/CryptoArchitectureKit/crypto-3des-sym-encrypt-decrypt-ecb.md)
             - [使用3DES对称密钥（ECB模式）加解密(C/C++)](security/CryptoArchitectureKit/crypto-3des-sym-encrypt-decrypt-ecb-ndk.md)
@@ -994,7 +994,7 @@
             - [使用ECDSA密钥对验签(C/C++)](security/CryptoArchitectureKit/crypto-ecdsa-sign-sig-verify-ndk.md)
             - [使用SM2密钥对签名验签(ArkTS)](security/CryptoArchitectureKit/crypto-sm2-sign-sig-verify-pkcs1.md)
             - [使用SM2密钥对验签(C/C++)](security/CryptoArchitectureKit/crypto-sm2-sign-sig-verify-pkcs1-ndk.md)
-            - [SM2签名数据格式转换(ArkTS)](security/CryptoArchitectureKit/crypto-sm2-sign-data-format-conversion.md) 
+            - [SM2签名数据格式转换(ArkTS)](security/CryptoArchitectureKit/crypto-sm2-sign-data-format-conversion.md)
         - 密钥协商<!--crypto-key-agreement-->
           - [密钥协商介绍及算法规格](security/CryptoArchitectureKit/crypto-key-agreement-overview.md)
           - 密钥协商开发指导<!--crypto-key-agreement-dev-->
@@ -1341,11 +1341,11 @@
           - [事件上报](dfx/hiappevent-event-reporting.md)
         <!--DelEnd-->
         - HiTraceMeter使用指导<!--hitracemeter-->
-          - [使用HiTraceMeter跟踪性能（ArkTS/JS）](dfx/hitracemeter-guidelines-arkts.md)
+          - [使用HiTraceMeter跟踪性能（ArkTS）](dfx/hitracemeter-guidelines-arkts.md)
           - [使用HiTraceMeter跟踪性能（C/C++）](dfx/hitracemeter-guidelines-ndk.md)
           - [查看HiTraceMeter日志](dfx/hitracemeter-view.md)
         - HiTraceChain使用指导<!--hitracechain-->
-          - [使用HiTraceChain打点（ArkTS/JS）](dfx/hitracechain-guidelines-arkts.md)
+          - [使用HiTraceChain打点（ArkTS）](dfx/hitracechain-guidelines-arkts.md)
           - [使用HiTraceChain打点（C/C++）](dfx/hitracechain-guidelines-ndk.md)
         - HiChecker使用指导<!--hichecker-->
           - [使用HiChecker检测问题（ArkTS/JS）](dfx/hichecker-guidelines-arkts.md)
@@ -1439,7 +1439,7 @@
         - [音频录制流管理](media/audio/audio-recording-stream-management.md)
         - [管理全局音频输入设备](media/audio/audio-input-device-management.md)
         - [共享音频输入](media/audio/audio-recording-concurrency.md)
-        - [实现音频耳返](media/audio/audio-ear-monitor.md) 
+        - [实现音频耳返](media/audio/audio-ear-monitor.md)
       - 音频通话<!--audio-call-->
         - [音频通话开发概述](media/audio/audio-call-overview.md)
         - [开发音频通话功能](media/audio/audio-call-development.md)
@@ -1668,6 +1668,7 @@
       - [NativeImage开发指导 (C/C++)](graphics/native-image-guidelines.md)
       - [NativeVSync开发指导 (C/C++)](graphics/native-vsync-guidelines.md)
       - [NativeWindow开发指导 (C/C++)](graphics/native-window-guidelines.md)
+      - [GPU/CPU内存访问同步操作开发指南 (C/C++)](graphics/native-fence-guidelines.md)
       - [图形开发术语](graphics/graphic-term.md)
     - ArkGraphics 3D（方舟3D图形）<!--arkgraphics-3d-->
       - [ArkGraphics 3D简介](graphics3d/arkgraphics3D-overview.md)
@@ -1808,6 +1809,7 @@
           - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](napi/use-napi-event-loop.md)
           - [使用Node-API接口进行模块加载](napi/use-napi-load-module-with-info.md)
           - [使用Node-API接口从异步线程向ArkTS线程投递指定优先级和入队方式的的任务](napi/use-call-threadsafe-function-with-priority.md)
+          - [使用Node-API接口创建、切换和销毁上下文环境](napi/use-napi-about-context.md)
           - [使用Node-API接口产生的异常日志/崩溃分析](napi/use-napi-about-crash.md)
           - [使用Node-API调用返回值为promise的ArkTS方法](napi/use-napi-method-promise.md)
         - [Node-API常见问题](napi/use-napi-faqs.md)
@@ -1987,6 +1989,7 @@
           - [@ohos.app.ability.insightIntent (insightIntent)](reference/apis-ability-kit/js-apis-app-ability-insightIntent.md)
           - [@ohos.app.ability.InsightIntentContext (意图调用执行上下文)](reference/apis-ability-kit/js-apis-app-ability-insightIntentContext.md)
           - [@ohos.app.ability.InsightIntentDecorator (意图装饰器定义)](reference/apis-ability-kit/js-apis-app-ability-InsightIntentDecorator.md)
+          - [@ohos.app.ability.InsightIntentEntryExecutor (@InsightIntentEntry的意图调用执行基类)](reference/apis-ability-kit/js-apis-app-ability-InsightIntentEntryExecutor.md)
           - [@ohos.app.ability.InsightIntentExecutor (意图调用执行基类)](reference/apis-ability-kit/js-apis-app-ability-insightIntentExecutor.md)
           - [@ohos.app.ability.PhotoEditorExtensionAbility (图片编辑能力)](reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)
           - [@ohos.app.ability.OpenLinkOptions (OpenLinkOptions)](reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md)
@@ -2158,6 +2161,7 @@
             - [metadata](reference/apis-ability-kit/js-apis-bundleManager-metadata.md)
             - [OverlayModuleInfo](reference/apis-ability-kit/js-apis-bundleManager-overlayModuleInfo.md)
             - [Skill](reference/apis-ability-kit/js-apis-bundleManager-skill.md)
+            - [shortcutInfo](reference/apis-ability-kit/js-apis-bundleManager-shortcutInfo.md)
             <!--Del-->
             - [ApplicationInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-ApplicationInfo-sys.md)
             - [AppProvisionInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-AppProvisionInfo-sys.md)
@@ -2171,7 +2175,6 @@
             - [recoverableApplicationInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-recoverableApplicationInfo-sys.md)
             - [remoteAbilityInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-remoteAbilityInfo-sys.md)
             - [SharedBundleInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-sharedBundleInfo-sys.md)
-            - [shortcutInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-shortcutInfo-sys.md)
             <!--DelEnd-->
           - continuation<!--continuation-->
             - [continuationExtraParams](reference/apis-ability-kit/js-apis-continuation-continuationExtraParams.md)
@@ -2294,7 +2297,6 @@
         - [@ohos.data.dataSharePredicates (数据共享谓词)(系统接口)](reference/apis-arkdata/js-apis-data-dataSharePredicates-sys.md)
         - [@ohos.data.dataShareResultSet (数据共享结果集)(系统接口)](reference/apis-arkdata/js-apis-data-DataShareResultSet-sys.md)
         - [@ohos.data.distributedKVStore (分布式键值数据库)(系统接口)](reference/apis-arkdata/js-apis-distributedKVStore-sys.md)
-        - [@ohos.data.graphStore (图数据库)(系统接口)](reference/apis-arkdata/js-apis-data-graphStore-sys.md)
         - [@ohos.data.relationalStore (关系型数据库)(系统接口)](reference/apis-arkdata/js-apis-data-relationalStore-sys.md)
         <!--DelEnd-->
         - 已停止维护的接口<!--arkdata-arkts-dep-->
@@ -2304,55 +2306,81 @@
           - [@system.storage数据存储](reference/apis-arkdata/js-apis-system-storage.md)
           - data/rdb<!--data-rdb-->
             - [resultSet结果集](reference/apis-arkdata/js-apis-data-resultset.md)
+      - ArkTS组件<!--arkdata-comp-->
+        - [@ohos.data.UdmfComponents (内容卡片)](reference/apis-arkdata/js-apis-data-UdmfComponents.md)
       - C API<!--arkdata-c-->
         - 模块<!--arkdata-module-->
-          - [Data](reference/apis-arkdata/_data.md)
-          - [RDB](reference/apis-arkdata/_r_d_b.md)
-          - [UDMF](reference/apis-arkdata/_u_d_m_f.md)
-          - [Preferences](reference/apis-arkdata/_preferences.md)
+          - [Preferences](reference/apis-arkdata/capi-preferences.md)
+          - [RDB](reference/apis-arkdata/capi-rdb.md)
+          - [UDMF](reference/apis-arkdata/capi-udmf.md)
         - 头文件<!--arkdata-headerfile-->
-          - [data_asset.h](reference/apis-arkdata/data__asset_8h.md)
-          - [oh_cursor.h](reference/apis-arkdata/oh__cursor_8h.md)
-          - [oh_data_value.h](reference/apis-arkdata/oh__data__value_8h.md)
-          - [oh_data_values.h](reference/apis-arkdata/oh__data__values_8h.md)
-          - [oh_data_values_buckets.h](reference/apis-arkdata/oh__data__values__buckets_8h.md)
-          - [oh_predicates.h](reference/apis-arkdata/oh__predicates_8h.md)
-          - [oh_rdb_transaction.h](reference/apis-arkdata/oh__rdb__transaction_8h.md)
-          - [oh_rdb_types.h](reference/apis-arkdata/oh__rdb__types_8h.md)
-          - [oh_value_object.h](reference/apis-arkdata/oh__value__object_8h.md)
-          - [oh_values_bucket.h](reference/apis-arkdata/oh__values__bucket_8h.md)
-          - [relational_store_error_code.h](reference/apis-arkdata/relational__store__error__code_8h.md)
-          - [relational_store.h](reference/apis-arkdata/relational__store_8h.md)
-          - [udmf.h](reference/apis-arkdata/udmf_8h.md)
-          - [udmf_err_code.h](reference/apis-arkdata/udmf__err__code_8h.md)
-          - [udmf_meta.h](reference/apis-arkdata/udmf__meta_8h.md)
-          - [uds.h](reference/apis-arkdata/uds_8h.md)
-          - [utd.h](reference/apis-arkdata/utd_8h.md)
-          - [oh_preferences.h](reference/apis-arkdata/oh__preferences_8h.md)
-          - [oh_preferences_err_code.h](reference/apis-arkdata/oh__preferences__err__code_8h.md)
-          - [oh_preferences_option.h](reference/apis-arkdata/oh__preferences__option_8h.md)
-          - [oh_preferences_value.h](reference/apis-arkdata/oh__preferences__value_8h.md)
+          - [oh_preferences.h](reference/apis-arkdata/capi-oh-preferences-h.md)
+          - [oh_preferences_err_code.h](reference/apis-arkdata/capi-oh-preferences-err-code-h.md)
+          - [oh_preferences_option.h](reference/apis-arkdata/capi-oh-preferences-option-h.md)
+          - [oh_preferences_value.h](reference/apis-arkdata/capi-oh-preferences-value-h.md)
+          - [data_asset.h](reference/apis-arkdata/capi-data-asset-h.md)
+          - [oh_cursor.h](reference/apis-arkdata/capi-oh-cursor-h.md)
+          - [oh_data_value.h](reference/apis-arkdata/capi-oh-data-value-h.md)
+          - [oh_data_values.h](reference/apis-arkdata/capi-oh-data-values-h.md)
+          - [oh_data_values_buckets.h](reference/apis-arkdata/capi-oh-data-values-buckets-h.md)
+          - [oh_predicates.h](reference/apis-arkdata/capi-oh-predicates-h.md)
+          - [oh_rdb_crypto_param.h](reference/apis-arkdata/capi-oh-rdb-crypto-param-h.md)
+          - [oh_rdb_transaction.h](reference/apis-arkdata/capi-oh-rdb-transaction-h.md)
+          - [oh_rdb_types.h](reference/apis-arkdata/capi-oh-rdb-types-h.md)
+          - [oh_value_object.h](reference/apis-arkdata/capi-oh-value-object-h.md)
+          - [oh_values_bucket.h](reference/apis-arkdata/capi-oh-values-bucket-h.md)
+          - [relational_store.h](reference/apis-arkdata/capi-relational-store-h.md)
+          - [relational_store_error_code.h](reference/apis-arkdata/capi-relational-store-error-code-h.md)
+          - [udmf.h](reference/apis-arkdata/capi-udmf-h.md)
+          - [udmf_err_code.h](reference/apis-arkdata/capi-udmf-err-code-h.md)
+          - [udmf_meta.h](reference/apis-arkdata/capi-udmf-meta-h.md)
+          - [uds.h](reference/apis-arkdata/capi-uds-h.md)
+          - [utd.h](reference/apis-arkdata/capi-utd-h.md)
         - 结构体<!--arkdata-struct-->
-          - [OH_Cursor](reference/apis-arkdata/_o_h___cursor.md)
-          - [OH_Predicates](reference/apis-arkdata/_o_h___predicates.md)
-          - [OH_Rdb_Config](reference/apis-arkdata/_o_h___rdb___config.md)
-          - [OH_Rdb_Store](reference/apis-arkdata/_o_h___rdb___store.md)
-          - [OH_VBucket](reference/apis-arkdata/_o_h___v_bucket.md)
-          - [OH_VObject](reference/apis-arkdata/_o_h___v_object.md)
-          - [Rdb_ChangeInfo](reference/apis-arkdata/_rdb___change_info.md)
-          - [Rdb_DataObserver](reference/apis-arkdata/_rdb___data_observer.md)
-          - [Rdb_DistributedConfig](reference/apis-arkdata/_rdb___distributed_config.md)
-          - [Rdb_KeyInfo](reference/apis-arkdata/_rdb___key_info.md)
-          - [Rdb_KeyInfo::Rdb_KeyData](reference/apis-arkdata/union_rdb___key_info_1_1_rdb___key_data.md)
-          - [Rdb_ProgressDetails](reference/apis-arkdata/_rdb___progress_details.md)
-          - [Rdb_ProgressObserver](reference/apis-arkdata/_rdb___progress_observer.md)
-          - [Rdb_Statistic](reference/apis-arkdata/_rdb___statistic.md)
-          - [Rdb_SubscribeCallback](reference/apis-arkdata/union_rdb___subscribe_callback.md)
-          - [Rdb_TableDetails](reference/apis-arkdata/_rdb___table_details.md)
+          - [OH_Cursor](reference/apis-arkdata/capi-oh-cursor.md)
+          - [OH_Predicates](reference/apis-arkdata/capi-oh-predicates.md)
+          - [OH_VObject](reference/apis-arkdata/capi-oh-vobject.md)
+          - [OH_VBucket](reference/apis-arkdata/capi-oh-vbucket.md)
+          - [OH_Rdb_Config](reference/apis-arkdata/capi-oh-rdb-config.md)
+          - [OH_Rdb_Store](reference/apis-arkdata/capi-oh-rdb-store.md)
+          - [Rdb_DistributedConfig](reference/apis-arkdata/capi-rdb-distributedconfig.md)
+          - [Rdb_KeyInfo](reference/apis-arkdata/capi-rdb-keyinfo.md)
+          - [Rdb_KeyData](reference/apis-arkdata/capi-rdb-keydata.md)
+          - [Rdb_ChangeInfo](reference/apis-arkdata/capi-rdb-changeinfo.md)
+          - [Rdb_SubscribeCallback](reference/apis-arkdata/capi-rdb-subscribecallback.md)
+          - [Rdb_DataObserver](reference/apis-arkdata/capi-rdb-dataobserver.md)
+          - [Rdb_Statistic](reference/apis-arkdata/capi-rdb-statistic.md)
+          - [Rdb_TableDetails](reference/apis-arkdata/capi-rdb-tabledetails.md)
+          - [Rdb_ProgressDetails](reference/apis-arkdata/capi-rdb-progressdetails.md)
+          - [Rdb_ProgressObserver](reference/apis-arkdata/capi-rdb-progressobserver.md)
+          - [OH_Preferences](reference/apis-arkdata/capi-oh-preferences.md)
+          - [OH_PreferencesOption](reference/apis-arkdata/capi-oh-preferencesoption.md)
+          - [OH_PreferencesPair](reference/apis-arkdata/capi-oh-preferencespair.md)
+          - [OH_PreferencesValue](reference/apis-arkdata/capi-oh-preferencesvalue.md)
+          - [Data_Asset](reference/apis-arkdata/capi-data-asset.md)
+          - [OH_Data_Value](reference/apis-arkdata/capi-oh-data-value.md)
+          - [OH_Data_Values](reference/apis-arkdata/capi-oh-data-values.md)
+          - [OH_Data_VBuckets](reference/apis-arkdata/capi-oh-data-vbuckets.md)
+          - [OH_Rdb_CryptoParam](reference/apis-arkdata/capi-oh-rdb-cryptoparam.md)
+          - [OH_RDB_TransOptions](reference/apis-arkdata/capi-oh-rdb-transoptions.md)
+          - [OH_Rdb_Transaction](reference/apis-arkdata/capi-oh-rdb-transaction.md)
+          - [OH_Rdb_ConfigV2](reference/apis-arkdata/capi-oh-rdb-configv2.md)
+          - [OH_UdmfData](reference/apis-arkdata/capi-oh-udmfdata.md)
+          - [OH_UdmfRecord](reference/apis-arkdata/capi-oh-udmfrecord.md)
+          - [OH_UdmfRecordProvider](reference/apis-arkdata/capi-oh-udmfrecordprovider.md)
+          - [OH_UdmfProperty](reference/apis-arkdata/capi-oh-udmfproperty.md)
+          - [OH_Udmf_ProgressInfo](reference/apis-arkdata/capi-oh-udmf-progressinfo.md)
+          - [OH_UdmfGetDataParams](reference/apis-arkdata/capi-oh-udmfgetdataparams.md)
+          - [OH_UdmfOptions](reference/apis-arkdata/capi-oh-udmfoptions.md)
+          - [OH_UdsPlainText](reference/apis-arkdata/capi-oh-udsplaintext.md)
+          - [OH_UdsHyperlink](reference/apis-arkdata/capi-oh-udshyperlink.md)
+          - [OH_UdsHtml](reference/apis-arkdata/capi-oh-udshtml.md)
+          - [OH_UdsAppItem](reference/apis-arkdata/capi-oh-udsappitem.md)
+          - [OH_UdsFileUri](reference/apis-arkdata/capi-oh-udsfileuri.md)
+          - [OH_UdsPixelMap](reference/apis-arkdata/capi-oh-udspixelmap.md)
+          - [OH_UdsArrayBuffer](reference/apis-arkdata/capi-oh-udsarraybuffer.md)
+          - [OH_UdsContentForm](reference/apis-arkdata/capi-oh-udscontentform.md)
       - 错误码<!--arkdata-arkts-errcode-->
-        <!--Del-->
-        - [图数据库错误码](reference/apis-arkdata/errorcode-data-gdb.md)
-        <!--DelEnd-->
         - [关系型数据库错误码](reference/apis-arkdata/errorcode-data-rdb.md)
         - [数据共享错误码](reference/apis-arkdata/errorcode-datashare.md)
         - [分布式数据对象错误码](reference/apis-arkdata/errorcode-distributed-dataObject.md)
@@ -3114,9 +3142,24 @@
     - ArkWeb（方舟Web）<!--arkweb-api-->
       - ArkTS API<!--arkweb-arkts-->
         - [@ohos.web.webview (Webview)](reference/apis-arkweb/js-apis-webview.md)
+          - [Class (WebviewController)](reference/apis-arkweb/js-apis-webview-WebviewController.md)
+          - [Class (GeolocationPermissions)](reference/apis-arkweb/js-apis-webview-GeolocationPermissions.md)
+          - [Class (WebCookieManager)](reference/apis-arkweb/js-apis-webview-WebCookieManager.md)
+          - [Class (WebDataBase)](reference/apis-arkweb/js-apis-webview-WebDataBase.md)
+          - [Class (WebMessageExt)](reference/apis-arkweb/js-apis-webview-WebMessageExt.md)
+          - [Interfaces (WebMessagePort)](reference/apis-arkweb/js-apis-webview-WebMessagePort.md)
+          - [Class (WebStorage)](reference/apis-arkweb/js-apis-webview-WebStorage.md)
+          - [Interfaces（其他）](reference/apis-arkweb/js-apis-webview-i.md)
+          - [Enums](reference/apis-arkweb/js-apis-webview-e.md)
+          - [Types](reference/apis-arkweb/js-apis-webview-t.md)
         - [@ohos.web.netErrorList](reference/apis-arkweb/js-apis-netErrorList.md)
       - ArkTS 组件<!--arkweb-comp-->
         - [Web](reference/apis-arkweb/ts-basic-components-web.md)
+          - [属性](reference/apis-arkweb/ts-basic-components-web-attributes.md)
+          - [事件](reference/apis-arkweb/ts-basic-components-web-events.md)
+          - [Interfaces（其他）](reference/apis-arkweb/ts-basic-components-web-i.md)
+          - [Enums](reference/apis-arkweb/ts-basic-components-web-e.md)
+          - [Types](reference/apis-arkweb/ts-basic-components-web-t.md)
       - C API<!--arkweb-c-->
         - 模块<!--arkweb-module-->
           - [Web](reference/apis-arkweb/_web.md)
@@ -3179,9 +3222,12 @@
           - [background_process_manager.h](reference/apis-backgroundtasks-kit/background__process__manager_8h.md)
         - 结构体<!--background-tasks-struct-->
           - [TransientTask_DelaySuspendInfo](reference/apis-backgroundtasks-kit/_transient_task___delay_suspend_info.md)
+          - [TransientTask_TransientTaskInfo](reference/apis-backgroundtasks-kit/_transient_task___transient_task_info.md)
       - 错误码<!--background-tasks-arkts-errcode-->
         - [backgroundTaskManager错误码](reference/apis-backgroundtasks-kit/errorcode-backgroundTaskMgr.md)
+        <!--Del-->
         - [DeviceUsageStatistics错误码](reference/apis-backgroundtasks-kit/errorcode-DeviceUsageStatistics.md)
+        <!--DelEnd-->
         - [reminderAgentManager错误码](reference/apis-backgroundtasks-kit/errorcode-reminderAgentManager.md)
         - [workScheduler错误码](reference/apis-backgroundtasks-kit/errorcode-workScheduler.md)
     - Core File Kit（文件基础服务）<!--core-file-api-->
@@ -3244,6 +3290,7 @@
         - [@ohos.app.form.formInfo (FormInfo)](reference/apis-form-kit/js-apis-app-form-formInfo.md)
         - [@ohos.app.form.formProvider (FormProvider)](reference/apis-form-kit/js-apis-app-form-formProvider.md)
         - [@ohos.app.form.FormEditExtensionAbility (FormEditExtensionAbility)](reference/apis-form-kit/js-apis-app-form-formEditExtensionAbility.md)
+        - [@ohos.app.form.LiveFormExtensionAbility (LiveFormExtensionAbility)](reference/apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md)
         <!--Del-->
         - [@ohos.app.form.formAgent (FormAgent)(系统接口)](reference/apis-form-kit/js-apis-app-form-formAgent-sys.md)
         - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)(系统接口)](reference/apis-form-kit/js-apis-app-form-formExtensionAbility-sys.md)
@@ -3255,6 +3302,7 @@
         - application<!--form-arkts-application-->
           - [FormExtensionContext](reference/apis-form-kit/js-apis-inner-application-formExtensionContext.md)
           - [FormEditExtensionContext](reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md)
+          - [LiveFormExtensionContext](reference/apis-form-kit/js-apis-application-LiveFormExtensionContext.md)
           <!--Del-->
           - [FormExtensionContext(系统接口)](reference/apis-form-kit/js-apis-inner-application-formExtensionContext-sys.md)
           <!--DelEnd-->
@@ -3584,6 +3632,12 @@
           <!--Del-->
           - [键鼠穿越管理错误码](reference/apis-distributedservice-kit/errorcode-devicestatus.md)
           <!--DelEnd-->
+        - C API<!--distributed-service-c-->
+          - 模块<!--distributed-service-moudle-->
+            - [DeviceManager](reference/apis-distributedservice-kit/capi-devicemanager.md)
+          - 头文件<!--distributed-service-headerfile-->
+            - [oh_device_manager.h](reference/apis-distributedservice-kit/capi-oh-device-manager-h.md)
+            - [oh_device_manager_err_code.h](reference/apis-distributedservice-kit/capi-oh-device-manager-err-code-h.md)
       - Network Kit（网络服务）<!--network-api-->
         - ArkTS API<!--network-api-arkts-->
           - [@ohos.net.connection (网络连接管理)](reference/apis-network-kit/js-apis-net-connection.md)
@@ -3979,8 +4033,8 @@
             - [scsi_peripheral_types.h](reference/apis-driverdevelopment-kit/scsi__peripheral__types_8h.md)
             - [usb_ddk_api.h](reference/apis-driverdevelopment-kit/usb__ddk__api_8h.md)
             - [usb_ddk_types.h](reference/apis-driverdevelopment-kit/usb__ddk__types_8h.md)
-            - [usb_serial_api.h](reference/apis-driverdevelopment-kit/usb__serial__ddk__api_8h.md) 
-            - [usb_serial_types.h](reference/apis-driverdevelopment-kit/usb__serial__ddk__types_8h.md) 
+            - [usb_serial_api.h](reference/apis-driverdevelopment-kit/usb__serial__ddk__api_8h.md)
+            - [usb_serial_types.h](reference/apis-driverdevelopment-kit/usb__serial__ddk__types_8h.md)
           - 结构体<!--driver-development-struct-->
             - [DDK_Ashmem](reference/apis-driverdevelopment-kit/_ddk_ashmem.md)
             - [Hid_AbsAxesArray](reference/apis-driverdevelopment-kit/_hid___abs_axes_array.md)
@@ -4393,50 +4447,59 @@
           <!--DelEnd-->
       - C API<!--media-c-->
         - 模块<!--media-module-->
-          - [AVImageGenerator](reference/apis-media-kit/_a_v_image_generator.md)
-          - [AVMetadataExtractor](reference/apis-media-kit/_a_v_metadata_extractor.md)
+          - [AVImageGenerator](reference/apis-media-kit/capi-avimagegenerator.md)
+          - [AVMetadataExtractor](reference/apis-media-kit/capi-avmetadataextractor.md)
           - [AVPlayer](reference/apis-media-kit/capi-avplayer.md)
-          - [AVRecorder](reference/apis-media-kit/_a_v_recorder.md)
-          - [AVScreenCapture](reference/apis-media-kit/_a_v_screen_capture.md)
-          - [VideoProcessing](reference/apis-media-kit/_video_processing.md)
+          - [AVRecorder](reference/apis-media-kit/capi-avrecorder.md)
+          - [AVScreenCapture](reference/apis-media-kit/capi-avscreencapture.md)
+          - [VideoProcessing](reference/apis-media-kit/capi-videoprocessing.md)
         - 头文件<!--media-headerfile-->
-          - [avimage_generator.h](reference/apis-media-kit/avimage__generator_8h.md)
-          - [avimage_generator_base.h](reference/apis-media-kit/avimage__generator__base_8h.md)
-          - [avmetadata_extractor_base.h](reference/apis-media-kit/avmetadata__extractor__base_8h.md)
-          - [avmetadata_extractor.h](reference/apis-media-kit/avmetadata__extractor_8h.md)
+          - [avimage_generator.h](reference/apis-media-kit/capi-avimage-generator-h.md)
+          - [avimage_generator_base.h](reference/apis-media-kit/capi-avimage-generator-base-h.md)
+          - [avmetadata_extractor.h](reference/apis-media-kit/capi-avmetadata-extractor-h.md)
+          - [avmetadata_extractor_base.h](reference/apis-media-kit/capi-avmetadata-extractor-base-h.md)
           - [avplayer.h](reference/apis-media-kit/capi-avplayer-h.md)
           - [avplayer_base.h](reference/apis-media-kit/capi-avplayer-base-h.md)
-          - [avrecorder.h](reference/apis-media-kit/avrecorder_8h.md)
-          - [avrecorder_base.h](reference/apis-media-kit/avrecorder__base_8h.md)
-          - [native_avscreen_capture.h](reference/apis-media-kit/native__avscreen__capture_8h.md)
-          - [native_avscreen_capture_base.h](reference/apis-media-kit/native__avscreen__capture__base_8h.md)
-          - [native_avscreen_capture_errors.h](reference/apis-media-kit/native__avscreen__capture__errors_8h.md)
-          - [video_processing.h](reference/apis-media-kit/video__processing_8h.md)
-          - [video_processing_types.h](reference/apis-media-kit/video__processing__types_8h.md)
+          - [avrecorder.h](reference/apis-media-kit/capi-avrecorder-h.md)
+          - [avrecorder_base.h](reference/apis-media-kit/capi-avrecorder-base-h.md)
+          - [native_avscreen_capture.h](reference/apis-media-kit/capi-native-avscreen-capture-h.md)
+          - [native_avscreen_capture_base.h](reference/apis-media-kit/capi-native-avscreen-capture-base-h.md)
+          - [native_avscreen_capture_errors.h](reference/apis-media-kit/capi-native-avscreen-capture-errors-h.md)
+          - [video_processing.h](reference/apis-media-kit/capi-video-processing-h.md)
+          - [video_processing_types.h](reference/apis-media-kit/capi-video-processing-types-h.md)
         - 结构体<!--media-struct-->
           - [MediaKeySession](reference/apis-media-kit/capi-mediakeysession.md)
           - [DRM_MediaKeySystemInfo](reference/apis-media-kit/capi-drm-mediakeysysteminfo.md)
           - [AVPlayerCallback](reference/apis-media-kit/capi-avplayercallback.md)
           - [OH_AVPlayer](reference/apis-media-kit/capi-oh-avplayer.md)
-          - [OH_AVRecorder_Config](reference/apis-media-kit/_o_h___a_v_recorder___config.md)
-          - [OH_AVRecorder_EncoderInfo](reference/apis-media-kit/_o_h___a_v_recorder___encoder_info.md)
-          - [OH_AVRecorder_Location](reference/apis-media-kit/_o_h___a_v_recorder___location.md)
-          - [OH_AVRecorder_Metadata](reference/apis-media-kit/_o_h___a_v_recorder___metadata.md)
-          - [OH_AVRecorder_MetadataTemplate](reference/apis-media-kit/_o_h___a_v_recorder___metadata_template.md)
-          - [OH_AVRecorder_Profile](reference/apis-media-kit/_o_h___a_v_recorder___profile.md)
-          - [OH_AVRecorder_Range](reference/apis-media-kit/_o_h___a_v_recorder___range.md)
-          - [OH_AudioBuffer](reference/apis-media-kit/_o_h___audio_buffer.md)
-          - [OH_AudioCaptureInfo](reference/apis-media-kit/_o_h___audio_capture_info.md)
-          - [OH_AudioEncInfo](reference/apis-media-kit/_o_h___audio_enc_info.md)
-          - [OH_AudioInfo](reference/apis-media-kit/_o_h___audio_info.md)
-          - [OH_AVScreenCaptureCallback](reference/apis-media-kit/_o_h___a_v_screen_capture_callback.md)
-          - [OH_AVScreenCaptureConfig](reference/apis-media-kit/_o_h___a_v_screen_capture_config.md)
-          - [OH_RecorderInfo](reference/apis-media-kit/_o_h___recorder_info.md)
-          - [OH_Rect](reference/apis-media-kit/_o_h___rect.md)
-          - [OH_VideoCaptureInfo](reference/apis-media-kit/_o_h___video_capture_info.md)
-          - [OH_VideoEncInfo](reference/apis-media-kit/_o_h___video_enc_info.md)
-          - [OH_VideoInfo](reference/apis-media-kit/_o_h___video_info.md)
-          - [VideoProcessing_ColorSpaceInfo](reference/apis-media-kit/_video_processing___color_space_info.md)
+          - [OH_AVImageGenerator](reference/apis-media-kit/capi-oh-avimagegenerator.md)
+          - [OH_AVMetadataExtractor](reference/apis-media-kit/capi-oh-avmetadataextractor.md)
+          - [OH_AVRecorder_Profile](reference/apis-media-kit/capi-oh-avrecorder-profile.md)
+          - [OH_AVRecorder](reference/apis-media-kit/capi-oh-avrecorder.md)
+          - [OH_AVRecorder_Location](reference/apis-media-kit/capi-oh-avrecorder-location.md)
+          - [OH_AVRecorder_MetadataTemplate](reference/apis-media-kit/capi-oh-avrecorder-metadatatemplate.md)
+          - [OH_AVRecorder_Metadata](reference/apis-media-kit/capi-oh-avrecorder-metadata.md)
+          - [OH_AVRecorder_Config](reference/apis-media-kit/capi-oh-avrecorder-config.md)
+          - [OH_AVRecorder_Range](reference/apis-media-kit/capi-oh-avrecorder-range.md)
+          - [OH_AVRecorder_EncoderInfo](reference/apis-media-kit/capi-oh-avrecorder-encoderinfo.md)
+          - [OH_AudioCaptureInfo](reference/apis-media-kit/capi-oh-audiocaptureinfo.md)
+          - [OH_NativeBuffer](reference/apis-media-kit/capi-oh-nativebuffer.md)
+          - [OH_AVScreenCapture](reference/apis-media-kit/capi-oh-avscreencapture.md)
+          - [OH_AVScreenCapture_ContentFilter](reference/apis-media-kit/capi-oh-avscreencapture-contentfilter.md)
+          - [OH_AVScreenCapture_CaptureStrategy](reference/apis-media-kit/capi-oh-avscreencapture-capturestrategy.md)
+          - [OH_AudioEncInfo](reference/apis-media-kit/capi-oh-audioencinfo.md)
+          - [OH_AudioInfo](reference/apis-media-kit/capi-oh-audioinfo.md)
+          - [OH_VideoCaptureInfo](reference/apis-media-kit/capi-oh-videocaptureinfo.md)
+          - [OH_VideoEncInfo](reference/apis-media-kit/capi-oh-videoencinfo.md)
+          - [OH_VideoInfo](reference/apis-media-kit/capi-oh-videoinfo.md)
+          - [OH_RecorderInfo](reference/apis-media-kit/capi-oh-recorderinfo.md)
+          - [OH_AVScreenCaptureConfig](reference/apis-media-kit/capi-oh-avscreencaptureconfig.md)
+          - [OH_AVScreenCaptureCallback](reference/apis-media-kit/capi-oh-avscreencapturecallback.md)
+          - [OH_Rect](reference/apis-media-kit/capi-oh-rect.md)
+          - [OH_AudioBuffer](reference/apis-media-kit/capi-oh-audiobuffer.md)
+          - [VideoProcessing_ColorSpaceInfo](reference/apis-media-kit/capi-videoprocessing-colorspaceinfo.md)
+          - [OH_VideoProcessing](reference/apis-media-kit/capi-oh-videoprocessing.md)
+          - [VideoProcessing_Callback](reference/apis-media-kit/capi-videoprocessing-callback.md)
       - 错误码<!--media-arkts-errcode-->
         - [Media错误码](reference/apis-media-kit/errorcode-media.md)
     - Media Library Kit（媒体文件管理服务）<!--media-library-api-->
@@ -4497,6 +4560,7 @@
           - [OH_NativeImage](reference/apis-arkgraphics2d/capi-oh-nativeimage.md)
           - [NativeVsync](reference/apis-arkgraphics2d/capi-nativevsync.md)
           - [NativeWindow](reference/apis-arkgraphics2d/capi-nativewindow.md)
+          - [NativeFence](reference/apis-arkgraphics2d/capi-nativefence.md)
         - 头文件<!--arkgraphics-headerfile-->
           - [buffer_common.h](reference/apis-arkgraphics2d/capi-buffer-common-h.md)
           - [native_buffer.h](reference/apis-arkgraphics2d/capi-native-buffer-h.md)
@@ -4550,6 +4614,7 @@
           - [buffer_handle.h](reference/apis-arkgraphics2d/capi-buffer-handle-h.md)
           - [external_window.h](reference/apis-arkgraphics2d/capi-external-window-h.md)
           - [graphic_error_code.h](reference/apis-arkgraphics2d/capi-graphic-error-code-h.md)
+          - [native_fence.h](reference/apis-arkgraphics2d/capi-native-fence-h.md)
         - 结构体<!--arkgraphics-struct-->
           - [OH_NativeBuffer_ColorXY](reference/apis-arkgraphics2d/capi-oh-nativebuffer-colorxy.md)
           - [OH_NativeBuffer_Smpte2086](reference/apis-arkgraphics2d/capi-oh-nativebuffer-smpte2086.md)
@@ -4651,6 +4716,7 @@
           - [OHIPCParcel](reference/apis-arkgraphics2d/capi-ohipcparcel.md)
       - 错误码<!--arkgraphics-arkts-errcode-->
         - [色彩管理错误码](reference/apis-arkgraphics2d/errorcode-colorspace-manager.md)
+        - [图形绘制与显示错误码](reference/apis-arkgraphics2d/errorcode-drawing.md)
     - ArkGraphics 3D（方舟3D图形）<!--arkgraphics-3d-api-->
       - ArkTS API<!--arkgraphics-3d-arkts-->
         - [@ohos.graphics.scene (ArkGraphics 3D模块)](reference/apis-arkgraphics3d/js-apis-scene.md)
@@ -4660,7 +4726,7 @@
           - [SceneType](reference/apis-arkgraphics3d/js-apis-inner-scene-types.md)
           - [SceneResources](reference/apis-arkgraphics3d/js-apis-inner-scene-resources.md)
           - [ScenePostProcessSettings](reference/apis-arkgraphics3d/js-apis-inner-scene-post-process-settings.md)
-    - 应用服务<!--application-service-reference-->
+  - 应用服务<!--application-service-reference-->
     <!--Del-->
     - Ads Kit（广告服务）<!--ads-api-->
       - ArkTS API<!--ads-arkts-->
@@ -4818,6 +4884,7 @@
     - [libuv](reference/native-lib/libuv.md)
     - [OpenSL ES](reference/native-lib/opensles.md)
     - [OpenGL ES](reference/native-lib/opengles.md)
+    - [OpenGL](reference/native-lib/opengles.md)
     - [EGL](reference/native-lib/egl.md)
     - [ICU4C](reference/native-lib/icu4c.md)
     - [Zlib](reference/native-lib/zlib.md)
@@ -4840,3 +4907,4 @@
       - [Native api中导出的EGL符号列表](reference/native-lib/egl-symbol.md)
       - [Native api中导出的ICU4C符号列表](reference/native-lib/icu4c-symbol.md)
       - [Native api中导出的OpenGL ES 3.2符号列表](reference/native-lib/openglesv3-symbol.md)
+      - [Native api中导出的OpenGL 3.0符号列表](reference/native-lib/opengl-symbol.md)

@@ -25,6 +25,7 @@
 | [Asset_Attr](capi-asset-attr.md) | Asset_Attr | 关键资产属性。 |
 | [Asset_Result](capi-asset-result.md) | Asset_Result | 关键资产查询结果，用于定义一条关键资产。 |
 | [Asset_ResultSet](capi-asset-resultset.md) | Asset_ResultSet | 关键资产查询结果集合，用于定义多条关键资产。 |
+| [Asset_SyncResult](capi-asset-syncresult.md) | Asset_SyncResult | 关键资产同步结果。 |
 
 ### 枚举
 
@@ -90,7 +91,7 @@ enum Asset_Tag
 | ASSET_TAG_AUTH_CHALLENGE = ASSET_TYPE_BYTES \| 0x07 | 表示认证时防重放用的挑战值，其值为bytes类型。 |
 | ASSET_TAG_AUTH_TOKEN = ASSET_TYPE_BYTES \| 0x08 | 表示用户认证后获取到的认证令牌，其值为bytes类型。 |
 | ASSET_TAG_SYNC_TYPE = ASSET_TYPE_NUMBER \| 0x10 | 表示关键资产的同步类型，其值为uint32_t类型。 |
-| ASSET_TAG_IS_PERSISTENT = ASSET_TYPE_BOOL \| 0x11 | 表示关键资产是否需持久化存储，其值为bool类型。<br>在调用OH_Asset_Add函数时传入该属性需要校验权限ohos.permission.STORE_PERSISTENT_DATA。  |
+| ASSET_TAG_IS_PERSISTENT = ASSET_TYPE_BOOL \| 0x11 | 表示关键资产是否需持久化存储，其值为bool类型。<br>在调用OH_Asset_Add函数时传入该属性需要校验权限ohos.permission.STORE_PERSISTENT_DATA。 |
 | ASSET_TAG_DATA_LABEL_CRITICAL_1 = ASSET_TYPE_BYTES \| 0x20 | 表示一个用户可自定义传入的字段，该字段不可被更新，其值为bytes类型。 |
 | ASSET_TAG_DATA_LABEL_CRITICAL_2 = ASSET_TYPE_BYTES \| 0x21 | 表示一个用户可自定义传入的字段，该字段不可被更新，其值为bytes类型。 |
 | ASSET_TAG_DATA_LABEL_CRITICAL_3 = ASSET_TYPE_BYTES \| 0x22 | 表示一个用户可自定义传入的字段，该字段不可被更新，其值为bytes类型。 |
@@ -148,6 +149,7 @@ enum Asset_ResultCode
 | ASSET_GET_SYSTEM_TIME_ERROR = 24000015 | 表示获取系统时间失败。 |
 | ASSET_LIMIT_EXCEEDED = 24000016 | 表示缓存数量超限。 |
 | ASSET_UNSUPPORTED = 24000017 | 表示该子功能不支持。 |
+| ASSET_PARAM_VERIFICATION_FAILED = 24000018 | 表示参数校验失败。<br>**起始版本：** 20 |
 
 ### Asset_Accessibility
 

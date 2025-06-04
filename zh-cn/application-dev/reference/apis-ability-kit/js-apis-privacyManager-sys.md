@@ -313,7 +313,7 @@ getPermissionUsedRecordToggleStatus(): Promise&lt;boolean&gt;
 
 | 类型          | 说明                                    |
 | ------------- | --------------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回当前用户的开关状态值。|
+| Promise&lt;boolean&gt; | Promise对象，返回当前用户的开关状态值。true表示开启，false表示关闭。|
 
 **错误码：**
 
@@ -894,7 +894,7 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 | 名称       | 类型             | 必填   | 说明                                       |
 | -------- | -------------- | ---- | ---------------------------------------- |
 | tokenId  | number         | 否    | 目标应用的身份标识。<br/> 默认查询所有应用。         |
-| isRemote | boolean         | 否    | 指定是否查询远端设备。<br/> 默认值false，默认查询本端设备。 |
+| isRemote | boolean         | 否    | 指定是否查询远端设备。<br/> 默认值false，表示查询本端设备，true表示查询远端设备。 |
 | deviceId  | string         | 否    | 目标应用所在设备的ID。<br/> 默认设备ID为本端设备ID。   |
 | bundleName | string         | 否    | 目标应用的包名。<br/> 默认查询所有应用。 |
 | permissionNames  | Array&lt;Permissions&gt;         | 否    | 需要查询的权限集合。<br/> 默认查询所有权限的使用记录。               |
@@ -923,7 +923,7 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 | 名称       | 类型             | 可读 | 可写 | 说明                                       |
 | -------- | -------------- | ---- | ---- | ---------------------------------------- |
 | tokenId  | number         | 是    | 否    | 目标应用的身份标识。                                 |
-| isRemote | boolean         | 是    | 否    | 是否是分布式设备。默认值为false，表示不是分布式设备。 |
+| isRemote | boolean         | 是    | 否    | 是否是分布式设备。默认值为false，表示不是分布式设备，true表示是分布式设备。 |
 | deviceId  | string         | 是    | 否    | 目标应用所在设备的ID。                                 |
 | bundleName | string         | 是    | 否    | 目标应用的包名。 |
 | permissionRecords  | Array&lt;[PermissionUsedRecord](#permissionusedrecord)&gt;         | 是    | 否    | 每个应用的权限使用记录集合。                                 |

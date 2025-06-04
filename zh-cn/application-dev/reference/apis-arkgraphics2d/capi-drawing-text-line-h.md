@@ -4,7 +4,7 @@
 
 提供获取文本行内的字符位置、获取渲染单元信息和按行截断等功能。
 
-**引用文件：** drawing_text_line.h
+**引用文件：** <native_drawing/drawing_text_line.h>
 
 **库：** libnative_drawing.so
 

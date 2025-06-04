@@ -4806,3 +4806,19 @@ Allows an application to publish common events related to NFC notifications.
 **Supported devices**: Phone
 
 **Valid since**：20
+
+## ohos.permission.kernel.ALLOW_APP_CODE_DECRYPT
+
+Allows a system application or system service to call kernel APIs for code decryption.
+
+With this permission, the application can access kernel APIs across processes to request decryption of encrypted code. This helps prevent unauthorized access and further safeguards application code assets.
+
+**Permission level**：system_core
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: General
+
+**Valid since**：20

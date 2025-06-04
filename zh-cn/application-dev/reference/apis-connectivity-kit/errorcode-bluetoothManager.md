@@ -160,8 +160,8 @@ The operation is busy. The last operation is not complete.
 
 **可能原因**
 
-上一个执行的操作还未完成即执行本次操作，例如[readCharacteristicValue](js-apis-bluetooth-ble.md#readCharacteristicValue)未结束即进行下一次操作。
-其他涉及的接口有[writeCharacteristicValue](js-apis-bluetooth-ble.md#writeCharacteristicValue)、[readDescriptorValue](js-apis-bluetooth-ble.md#readDescriptorValue)、[writeDescriptorValue](js-apis-bluetooth-ble.md#writeDescriptorValue)、[getRssiValue](js-apis-bluetooth-ble.md#getRssiValue)、[setCharacteristicChangeNotification](js-apis-bluetooth-ble.md#setCharacteristicChangeNotification)、[setCharacteristicChangeIndication](js-apis-bluetooth-ble.md#setCharacteristicChangeIndication)，如调用未完成均可能阻塞下一次操作。
+上一个执行的操作还未完成即执行本次操作，例如[readCharacteristicValue](js-apis-bluetooth-ble.md#readcharacteristicvalue)未结束即进行下一次操作。
+其他涉及的接口有[writeCharacteristicValue](js-apis-bluetooth-ble.md#writecharacteristicvalue)、[readDescriptorValue](js-apis-bluetooth-ble.md#readdescriptorvalue)、[writeDescriptorValue](js-apis-bluetooth-ble.md#writedescriptorvalue)、[getRssiValue](js-apis-bluetooth-ble.md#getrssivalue)、[setCharacteristicChangeNotification](js-apis-bluetooth-ble.md#setcharacteristicchangenotification)、[setCharacteristicChangeIndication](js-apis-bluetooth-ble.md#setcharacteristicchangeindication)，如调用未完成均可能阻塞下一次操作。
 
 **处理步骤**
 
@@ -251,7 +251,7 @@ GATT未连接。
 
 **可能原因**
 
-GATT处于未连接的状态下执行操作，例如调用[getServices](js-apis-bluetooth-ble.md#getServices)和[readCharacteristicValue](js-apis-bluetooth-ble.md#readCharacteristicValue)。
+GATT处于未连接的状态下执行操作，例如调用[getServices](js-apis-bluetooth-ble.md#getservices)和[readCharacteristicValue](js-apis-bluetooth-ble.md#readcharacteristicvalue)。
 
 **处理步骤**
 
@@ -269,7 +269,7 @@ GATT处于拥塞状态。
 
 **可能原因**
 
-读写特征值或描述符过于频繁，导致底层数据传输拥塞，例如入参[GattWriteType](js-apis-bluetooth-ble.md#GattWriteType)为WRITE_NO_RESPONSE的[writeCharacteristicValue](js-apis-bluetooth-ble.md#writeCharacteristicValue)接口调用过于频繁可能导致拥塞。
+读写特征值或描述符过于频繁，导致底层数据传输拥塞，例如入参[GattWriteType](js-apis-bluetooth-ble.md#gattwritetype)为WRITE_NO_RESPONSE的[writeCharacteristicValue](js-apis-bluetooth-ble.md#writecharacteristicvalue)接口调用过于频繁可能导致拥塞。
 
 **处理步骤**
 

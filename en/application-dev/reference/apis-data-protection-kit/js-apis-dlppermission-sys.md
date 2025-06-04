@@ -27,15 +27,15 @@ Obtains the DLP sandbox gathering policy. This API uses a promise to return the 
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;[GatheringPolicyType](#gatheringpolicytype)&gt; | Promise used to return the DLP sandbox aggregation policy obtained. |
+| Promise&lt;[GatheringPolicyType](#gatheringpolicytype)&gt; | Promise used to return the DLP sandbox gathering policy obtained.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -52,7 +52,7 @@ try {
   let res: Promise<dlpPermission.GatheringPolicyType> = dlpPermission.getDLPGatheringPolicy(); // Obtain the sandbox gathering policy.
   console.info('res', JSON.stringify(res));
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Throw an error if the operation fails.
 }
 ```
 
@@ -70,15 +70,15 @@ Obtains the DLP sandbox gathering policy. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[GatheringPolicyType](#gatheringpolicytype)&gt; | Yes | Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;[GatheringPolicyType](#gatheringpolicytype)&gt; | Yes| Callback invoked to return the result.<br> If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -119,24 +119,24 @@ Installs a DLP sandbox application for an application. This API uses a promise t
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes | Bundle name of the application. |
-| access | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | Yes | Permission on the DLP file. |
-| userId | number | Yes | Current user ID, which is the system account ID obtained by the account subsystem. The default super user ID is **100**. |
-| uri | string | Yes | URI of the DLP file. |
+| bundleName | string | Yes| Bundle name of the application. The value contains 7 to 128 bytes.|
+| access | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | Yes| Permission on the DLP file.|
+| userId | number | Yes| Current user ID, which is the system account ID obtained by the account subsystem. The default super user ID is **100**.|
+| uri | string | Yes| URI of the DLP file. The value contains up to 4095 bytes.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;[DLPSandboxInfo](#dlpsandboxinfo)&gt; | Promise used to return the information about the sandbox application installed. |
+| Promise&lt;[DLPSandboxInfo](#dlpsandboxinfo)&gt; | Promise used to return the information about the sandbox application installed.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -155,7 +155,7 @@ try {
   let res: Promise<dlpPermission.DLPSandboxInfo> = dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri); // Install a DLP sandbox application.
   console.info('res', JSON.stringify(res));
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Throw an error if the operation fails.
 }
 ```
 
@@ -173,19 +173,19 @@ Installs a DLP sandbox application for an application. This API uses an asynchro
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes | Bundle name of the application. |
-| access | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | Yes | Permission on the DLP file. |
-| userId | number | Yes | Current user ID, which is the system account ID obtained by the account subsystem. The default super user ID is **100**. |
-| uri | string | Yes | URI of the DLP file. |
-| callback | AsyncCallback&lt;[DLPSandboxInfo](#dlpsandboxinfo)&gt; | Yes | Callback invoked to return the information about the sandbox application installed. |
+| bundleName | string | Yes| Bundle name of the application. The value contains 7 to 128 bytes.|
+| access | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | Yes| Permission on the DLP file.|
+| userId | number | Yes| Current user ID, which is the system account ID obtained by the account subsystem. The default super user ID is **100**.|
+| uri | string | Yes| URI of the DLP file. The value contains up to 4095 bytes.|
+| callback | AsyncCallback&lt;[DLPSandboxInfo](#dlpsandboxinfo)&gt; | Yes| Callback invoked to return the information about the sandbox application installed.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -227,23 +227,23 @@ Uninstalls a DLP sandbox application for an application. This API uses a promise
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes | Bundle name of the application. |
-| userId | number | Yes | Current user ID, which is the system account ID obtained by the account subsystem. The default super user ID is **100**. |
-| appIndex | number | Yes | DLP sandbox index. |
+| bundleName | string | Yes| Bundle name of the application. The value contains 7 to 128 bytes.|
+| userId | number | Yes| Current user ID, which is the system account ID obtained by the account subsystem. The default super user ID is **100**.|
+| appIndex | number | Yes| DLP sandbox index.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -264,7 +264,7 @@ try {
     dlpPermission.uninstallDLPSandbox('com.ohos.note', 100, res.appIndex); // Uninstall a DLP sandbox application.
   }); // Install a DLP sandbox application.
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Throw an error if the operation fails.
 }
 ```
 
@@ -282,18 +282,18 @@ Uninstalls a DLP sandbox application for an application. This API uses an asynch
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes | Bundle name of the application. |
-| userId | number | Yes | Current user ID, which is the system account ID obtained by the account subsystem. The default super user ID is **100**. |
-| appIndex | number | Yes | DLP sandbox application index, which is the value returned after **installDLPSandbox** is successfully called. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback invoked to return the uninstallation result. |
+| bundleName | string | Yes| Bundle name of the application. The value contains 7 to 128 bytes.|
+| userId | number | Yes| Current user ID, which is the system account ID obtained by the account subsystem. The default super user ID is **100**.|
+| appIndex | number | Yes| DLP sandbox index, which is the value returned after **installDLPSandbox** is successfully called.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the uninstallation result.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -337,16 +337,16 @@ Subscribes to a DLP sandbox uninstall event.
 **System capability**: SystemCapability.Security.DataLossPrevention
 
 **Parameters**
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | 'uninstallDLPSandbox' | Yes | Event type. It has a fixed value of **uninstallDLPSandbox**, which indicates the DLP sandbox application uninstall event. |
-| listener | Callback&lt;[DLPSandboxState](#dlpsandboxstate)&gt; | Yes | Callback invoked when a sandbox application is uninstalled. |
+| type | 'uninstallDLPSandbox' | Yes| Event type. It has a fixed value of **uninstallDLPSandbox**, which indicates the DLP sandbox application uninstall event.|
+| listener | Callback&lt;[DLPSandboxState](#dlpsandboxstate)&gt; | Yes| Callback invoked when a sandbox application is uninstalled.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -363,9 +363,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   dlpPermission.on('uninstallDLPSandbox', (info: dlpPermission.DLPSandboxState) => {
     console.info('uninstallDLPSandbox event', info.appIndex, info.bundleName)
-  // Subscribe to the DLP sandbox application uninstall event.
+  }); // Subscribe to the DLP sandbox application uninstall event.
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Throw an error if the operation fails.
 }
 ```
 
@@ -382,16 +382,16 @@ Unsubscribes from the DLP sandbox uninstall event.
 **System capability**: SystemCapability.Security.DataLossPrevention
 
 **Parameters**
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | 'uninstallDLPSandbox' | Yes | Event type. It has a fixed value of **uninstallDLPSandbox**, which indicates the DLP sandbox application uninstall event. |
-| listener | Callback&lt;[DLPSandboxState](#dlpsandboxstate)&gt; | No | Callback for the sandbox uninstall event. By default, this parameter is left blank, which unregisters all callbacks for the sandbox uninstall event. |
+| type | 'uninstallDLPSandbox' | Yes| Event type. It has a fixed value of **uninstallDLPSandbox**, which indicates the DLP sandbox application uninstall event.|
+| listener | Callback&lt;[DLPSandboxState](#dlpsandboxstate)&gt; | No| Callback invoked when a sandbox application is uninstalled. By default, this parameter is left blank, which unregisters all callbacks for the sandbox uninstall event.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -408,9 +408,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   dlpPermission.off('uninstallDLPSandbox', (info: dlpPermission.DLPSandboxState) => {
     console.info('uninstallDLPSandbox event', info.appIndex, info.bundleName)
-  // Unsubscribe from the DLP sandbox uninstall events.
+  }); // Unsubscribe from the DLP sandbox application uninstall event.
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Throw an error if the operation fails.
 }
 ```
 
@@ -424,9 +424,9 @@ Provides APIs for managing DLP files. A **DLPFile** instance indicates a DLP fil
 
 **System capability**: SystemCapability.Security.DataLossPrevention
 
-| Name | Type | Read Only | Mandatory | Description |
+| Name| Type| Read Only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| dlpProperty | [DLPProperty](#dlpproperty) | No | Yes | Authorized user information. |
+| dlpProperty | [DLPProperty](#dlpproperty) | No| Yes| Authorized user information.|
 
 ### addDLPLinkFile
 
@@ -442,21 +442,21 @@ Adds a link file to the Filesystem in Userspace (FUSE). The link file is a virtu
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | Yes | Name of the link file to add. |
+| linkFileName | string | Yes| Name of the link file. The value contains up to 255 bytes.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -498,7 +498,7 @@ try {
     dlpFile.closeDLPFile(); // Close the DLPFile instance.
   }); // Open a DLP file.
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Throw an error if the operation fails.
 }
 fileIo.closeSync(file);
 ```
@@ -517,16 +517,16 @@ Adds a link file to the FUSE. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | Yes | Name of the link file to add. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback invoked to return the result. |
+| linkFileName | string | Yes| Name of the link file. The value contains up to 255 bytes.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -592,15 +592,15 @@ Stops the read and write on the FUSE. This API uses a promise to return the resu
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -642,7 +642,7 @@ try {
     dlpFile.closeDLPFile(); // Close the DLPFile instance.
   }); // Open a DLP file.
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Throw an error if the operation fails.
 }
 fileIo.closeSync(file);
 ```
@@ -661,15 +661,15 @@ Stops the read and write on the FUSE. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback invoked to return the result. |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -736,15 +736,15 @@ Resumes the read and write on the FUSE. This API uses a promise to return the re
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -787,7 +787,7 @@ try {
     dlpFile.closeDLPFile(); // Close the DLPFile instance.
   }); // Open a DLP file.
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Throw an error if the operation fails.
 }
 fileIo.closeSync(file);
 ```
@@ -806,15 +806,15 @@ Resumes the read and write on the FUSE. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback invoked to return the result. |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -882,21 +882,21 @@ Replaces a link file. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | Yes| Name of the link file to replace.|
+| linkFileName | string | Yes| Name of the link file. The value contains up to 255 bytes.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -941,7 +941,7 @@ try {
     dlpFile.closeDLPFile(); // Close the DLPFile instance.
   }); // Open a DLP file.
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Throw an error if the operation fails.
 }
 fileIo.closeSync(file);
 ```
@@ -960,16 +960,16 @@ Replaces a link file. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | Yes| Name of the link file to replace.|
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback invoked to return the result. |
+| linkFileName | string | Yes| Name of the link file. The value contains up to 255 bytes.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -1038,21 +1038,21 @@ Deletes a link file from the FUSE. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | Yes| Name of the link file to delete.|
+| linkFileName | string | Yes| Name of the link file. The value contains up to 255 bytes.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -1095,7 +1095,7 @@ try {
     dlpFile.closeDLPFile(); // Close the DLPFile instance.
   }); // Open a DLP file.
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Throw an error if the operation fails.
 }
 fileIo.closeSync(file);
 ```
@@ -1114,16 +1114,16 @@ Deletes a link file. This API uses an asynchronous callback to return the result
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | Yes| Name of the link file to delete.|
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback invoked to return the result. |
+| linkFileName | string | Yes| Name of the link file. The value contains up to 255 bytes.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -1190,21 +1190,21 @@ Recovers the plaintext of a DLP file. This API uses a promise to return the resu
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| plaintextFd | number | Yes | FD of the target plaintext file. |
+| plaintextFd | number | Yes| FD of the target plaintext file.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -1249,11 +1249,11 @@ try{
 let destFile = fileIo.openSync("destUri");
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.recoverDLPFile(destFile.fd); // Recover the plain text from the DLP file.
+    dlpFile.recoverDLPFile(destFile.fd); // Recover the plaintext of a DLP file.
     dlpFile.closeDLPFile(); // Close the DLPFile instance.
   }); // Open a DLP file.
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Throw an error if the operation fails.
 }
 fileIo.closeSync(file);
 fileIo.closeSync(destFile);
@@ -1273,16 +1273,16 @@ Recovers the plaintext of a DLP file. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| plaintextFd | number | Yes | FD of the target plaintext file. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback invoked to return the result. |
+| plaintextFd | number | Yes| FD of the target plaintext file.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -1359,15 +1359,15 @@ Closes this **DLPFile** instance. This API uses a promise to return the result.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -1407,7 +1407,7 @@ try {
     dlpFile.closeDLPFile(); // Close the DLPFile instance.
   }); // Open a DLP file.
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Throw an error if the operation fails.
 }
 fileIo.closeSync(file);
 ```
@@ -1430,15 +1430,15 @@ Closes this **DLPFile** instance. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback invoked to return the result. |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -1505,23 +1505,23 @@ Generates a DLP file, which is an encrypted file that can be accessed only by au
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| plaintextFd | number | Yes | FD of the plaintext file to be encrypted. |
-| ciphertextFd | number | Yes | FD of the encrypted file. |
-| property | [DLPProperty](#dlpproperty) | Yes | Authorization information, which includes the authorized user list, owner account, and contact account information. |
+| plaintextFd | number | Yes| FD of the plaintext file to be encrypted.|
+| ciphertextFd | number | Yes| FD of the encrypted file.|
+| property | [DLPProperty](#dlpproperty) | Yes| Authorization information, which includes the authorized user list, owner account, and contact account information.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;[DLPFile](#dlpfile)&gt; | Promise used to return the result. If the operation is successful, a **DLPFile** instance is returned. Otherwise, **null** is returned. |
+| Promise&lt;[DLPFile](#dlpfile)&gt; | Promise If the operation is successful, a **DLPFile** instance is returned. Otherwise, **null** is returned.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -1559,7 +1559,7 @@ try {
     dlpFile.closeDLPFile(); // Close the DLPFile instance.
   }); // Generate a DLP file.
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Throw an error if the operation fails.
 }
 fileIo.closeSync(file);
 fileIo.closeSync(dlp);
@@ -1579,18 +1579,18 @@ Generates a DLP file, which is an encrypted file that can be accessed only by au
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| plaintextFd | number | Yes | FD of the plaintext file to be encrypted. |
-| ciphertextFd | number | Yes | FD of the encrypted file. |
-| property | [DLPProperty](#dlpproperty) | Yes | Authorization information, which includes the authorized user list, owner account, and contact account information. |
-| callback | AsyncCallback&lt;[DLPFile](#dlpfile)&gt; | Yes | Callback invoked to return the **DLPFile** instance created. |
+| plaintextFd | number | Yes| FD of the plaintext file to be encrypted.|
+| ciphertextFd | number | Yes| FD of the encrypted file.|
+| property | [DLPProperty](#dlpproperty) | Yes| Authorization information, which includes the authorized user list, owner account, and contact account information.|
+| callback | AsyncCallback&lt;[DLPFile](#dlpfile)&gt; | Yes| Callback invoked to return the **DLPFile** instance created.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -1651,22 +1651,22 @@ Opens a DLP file. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| ciphertextFd | number | Yes | FD of the encrypted file. |
-| appId | string | Yes | ID of the caller. |
+| ciphertextFd | number | Yes| FD of the encrypted file.|
+| appId | string | Yes| ID of the caller. The value contains 8 to 1024 bytes.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;[DLPFile](#dlpfile)&gt; | Promise used to return the result. If the operation is successful, a **DLPFile** instance is returned. Otherwise, **null** is returned. |
+| Promise&lt;[DLPFile](#dlpfile)&gt; | Promise If the operation is successful, a **DLPFile** instance is returned. Otherwise, **null** is returned.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -1715,7 +1715,7 @@ try {
     dlpFile.closeDLPFile(); // Close the DLPFile instance.
   }); // Open a DLP file.
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Throw an error if the operation fails.
 }
 fileIo.closeSync(file);
 ```
@@ -1734,17 +1734,17 @@ Opens a DLP file. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| ciphertextFd | number | Yes | FD of the encrypted file. |
-| appId | string | Yes | ID of the caller. |
-| callback | AsyncCallback&lt;[DLPFile](#dlpfile)&gt; | Yes| Callback invoked to return the **DLPFile** instance opened.|
+| ciphertextFd | number | Yes| FD of the encrypted file.|
+| appId | string | Yes| ID of the caller. The value contains 8 to 1024 bytes.|
+| callback | AsyncCallback&lt;[DLPFile](#dlpfile)&gt; | Yes| Callback invoked to return the **DLPFile** instance created.|
 
 **Error codes**
 
 For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
@@ -1802,6 +1802,212 @@ try {
 }
 ```
 
+## dlpPermission.generateDlpFileForEnterprise<sup>20+</sup>
+
+generateDLPFileForEnterprise(plaintextFd: number, dlpFd: number, property: DLPProperty, customProperty: CustomProperty): Promise&lt;void&gt;
+
+Obtains a **DLPFile** instance using a promise.
+>**NOTE**
+>
+> This API generates a DLP file, which is an encrypted file that can be accessed only by users with full control permissions.
+
+**System API**: This is a system API.
+
+**Required permissions:** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+
+**System capability**: SystemCapability.Security.DataLossPrevention
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| plaintextFd | number | Yes| FD of the plaintext file.|
+| dlpFd | number | Yes| FD of the encrypted file.|
+| property | [DLPProperty](#dlpproperty) | Yes| General properties of the DLP file.|
+| customProperty | [CustomProperty](#customproperty20) | Yes| Custom properties.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DLP Error Codes](errorcode-dlp.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 19100001 | Invalid parameter value. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
+| 19100003 | Credential task time out. |
+| 19100004 | Credential service error. |
+| 19100005 | Credential authentication server error. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | The system ability works abnormally. |
+
+**Example**
+
+```ts
+import { dlpPermission } from '@kit.DataProtectionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function(plainFilePath: string, dlpFilePath: string) {
+  let plaintextFd = fileIo.openSync(plainFilePath, fileIo.OpenMode.READ_ONLY).fd;
+  let dlpFd = fileIo.openSync(dlpFilePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE).fd;
+  let dlpProperty: dlpPermission.DLPProperty = {
+    ownerAccount: 'zhangsan',
+    ownerAccountType: dlpPermission.AccountType.DOMAIN_ACCOUNT,
+    authUserList: [],
+    contactAccount: 'zhangsan',
+    offlineAccess: true,
+    ownerAccountID: 'xxxxxxx',
+    everyoneAccessList: []
+  };
+  let customProperty: dlpPermission.CustomProperty = {
+    enterprise: "customProperty"
+  };
+  try {
+    dlpPermission.generateDlpFileForEnterprise(plaintextFd, dlpFd, dlpProperty, customProperty).then(() => {
+      console.info('Successfully generate DLP file for enterprise.');
+      fileIo.closeSync(plaintextFd);
+      fileIo.closeSync(dlpFd);
+    });
+  } catch(err) {
+    console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
+    fileIo.closeSync(plaintextFd);
+    fileIo.closeSync(dlpFd);
+  }
+}
+```
+
+## dlpPermission.decryptDlpFile<sup>20+</sup>
+
+decryptDlpFile(dlpFd: number, plaintextFd: number): Promise&lt;void&gt;
+
+Decrypts a DLP file to generate a plaintext file. This API uses a promise to return the result.
+>**NOTE**
+>
+> This API can decrypt DLP files only by users with full control permissions.
+
+**System API**: This is a system API.
+
+**Required permissions:** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+
+**System capability**: SystemCapability.Security.DataLossPrevention
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| dlpFd | number | Yes| FD of the file to be decrypted.|
+| plaintextFd | number | Yes| FD of the decrypted file.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DLP Error Codes](errorcode-dlp.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 19100001 | Invalid parameter value. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
+| 19100003 | Credential task time out. |
+| 19100004 | Credential service error. |
+| 19100005 | Credential authentication server error. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | The system ability works abnormally. |
+
+**Example**
+
+```ts
+import { dlpPermission } from '@kit.DataProtectionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function(plainFilePath: string, dlpFilePath: string) {
+  let plaintextFd = fileIo.openSync(plainFilePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE).fd;
+  let dlpFd = fileIo.openSync(dlpFilePath, fileIo.OpenMode.READ_ONLY).fd;
+  try {
+    dlpPermission.decryptDlpFile(dlpFd, plaintextFd).then(() => {
+      console.info('Successfully decrypt DLP file.');
+      fileIo.closeSync(plaintextFd);
+      fileIo.closeSync(dlpFd);
+    });
+  } catch(err) {
+    console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
+    fileIo.closeSync(plaintextFd);
+    fileIo.closeSync(dlpFd);
+  }
+}
+```
+
+## dlpPermission.queryDlpPolicy<sup>20+</sup>
+
+queryDlpPolicy(dlpFd: number): Promise&lt;string&gt;
+
+Parses the file header in a DLP file to obtain the DLP plaintext policy. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions:** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+
+**System capability**: SystemCapability.Security.DataLossPrevention
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| dlpFd | number | Yes| FD of the file to be decrypted.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;string&gt; | Promise used to return the JSON string of the DLP policy.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DLP Error Codes](errorcode-dlp.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 19100001 | Invalid parameter value. |
+| 19100011 | The system ability works abnormally. |
+
+**Example**
+
+```ts
+import { dlpPermission } from '@kit.DataProtectionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function(dlpFilePath: string) {
+  let dlpFd = fileIo.openSync(dlpFilePath, fileIo.OpenMode.READ_ONLY).fd;
+  try {
+    dlpPermission.queryDlpPolicy(dlpFd).then((policy: string) => {
+      console.info('DLP policy:' + policy);
+      fileIo.closeSync(dlpFd);
+    });
+  } catch(err) {
+    console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
+    fileIo.closeSync(dlpFd);
+  }
+}
+```
+
 ## DLPSandboxInfo
 
 Represents the DLP sandbox information.
@@ -1810,23 +2016,23 @@ Represents the DLP sandbox information.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
 
-| Name | Type | Readable | Writable | Description |
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| appIndex | number | Yes | No | Index of the DLP sandbox application. |
-| tokenID | number | Yes | No | Token ID of the DLP sandbox application. |
+| appIndex | number | Yes| No| Index of the DLP sandbox application.|
+| tokenID | number | Yes| No| Token ID of the DLP sandbox application.|
 
 ## DLPSandboxState
 
-Represents the DLP sandbox identity information.
+DLP sandbox identity.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
 
-| Name | Type | Readable | Writable | Description |
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes | No | Bundle name of the application. |
-| appIndex | number | Yes | No | Index of the DLP sandbox application. |
+| bundleName | string | Yes| No| Bundle name of the application. The value contains 7 to 128 bytes.|
+| appIndex | number | Yes| No| Index of the DLP sandbox application.|
 
 ## AccountType
 
@@ -1836,10 +2042,23 @@ Enumerates the types of authorized accounts.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
 
-| Name | Value | Description |
+| Name| Value| Description|
 | -------- | -------- | -------- |
-| CLOUD_ACCOUNT | 1 | Cloud account. |
-| DOMAIN_ACCOUNT | 2 | Domain account. |
+| CLOUD_ACCOUNT | 1 | Cloud account.|
+| DOMAIN_ACCOUNT | 2 | Domain account.|
+
+## ActionType<sup>20+</sup>
+
+Specifies the action to be performed when the file's permission expiration time is reached. The default value is **NOT_OPEN**.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Security.DataLossPrevention
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| NOT_OPEN | 0 | Users are not allowed to open the DLP file when the file's permission expiration time is reached.|
+| OPEN | 1 | Logged-in users are allowed to edit the DLP file when the file's permission expiration time is reached.|
 
 ## AuthUser
 
@@ -1849,12 +2068,24 @@ Represents the user authorization information.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
 
-| Name | Type | Read Only | Mandatory | Description |
+| Name| Type| Read Only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| authAccount | string | No | Yes | Account of the user who can access the DLP file. |
-| authAccountType | [AccountType](#accounttype) | No | Yes | Type of the account. |
-| dlpFileAccess | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | No | Yes | Permission granted to the user. |
-| permExpiryTime | number | No | Yes | Time when the authorization expires. |
+| authAccount | string | No| Yes| Account of the user who can access the DLP file. The value contains up to 255 bytes.|
+| authAccountType | [AccountType](#accounttype) | No| Yes| Type of the account.|
+| dlpFileAccess | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | No| Yes| Permission granted to the user.|
+| permExpiryTime | number | No| Yes| Time when the authorization expires.|
+
+## CustomProperty<sup>20+</sup>
+
+Indicates custom properties.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Security.DataLossPrevention
+
+| Name| Type| Read Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| enterprise | string | No| No| JSON string of enterprise custom properties. The length cannot exceed 4 MB.|
 
 ## DLPProperty
 
@@ -1864,16 +2095,17 @@ Represents the authorization information.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
 
-| Name | Type | Read Only | Mandatory | Description |
+| Name| Type| Read Only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| ownerAccount | string | No | Yes | Account of the owner who can set the permission. |
-| ownerAccountID | string | No | Yes | Account ID of the owner. |
-| ownerAccountType | [AccountType](#accounttype) | No | Yes | Account type of the owner. |
-| authUserList | Array&lt;[AuthUser](#authuser)&gt; | No | No | List of users who are authorized to access the DLP file. By default, this parameter is left blank. |
-| contactAccount | string | No| Yes| Account of the contact.|
-| offlineAccess | boolean | No | Yes | Whether the file can be accessed offline. |
-| everyoneAccessList | Array&lt;[DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess)&gt; | No | No | Permission granted to everyone. This parameter is left blank by default. |
-| expireTime<sup>11+</sup> | number | No | No | Timestamp when the file permission has expired. This parameter is left blank by default. |
+| ownerAccount | string | No| Yes| Account of the owner who can set the permission. The value contains up to 255 bytes.|
+| ownerAccountID | string | No| Yes| Account ID of the owner. The value contains up to 255 bytes.|
+| ownerAccountType | [AccountType](#accounttype) | No| Yes| Account type of the owner.|
+| authUserList | Array&lt;[AuthUser](#authuser)&gt; | No| No| List of users who are authorized to access the DLP file. By default, this parameter is left blank.|
+| contactAccount | string | No| Yes| Indicates the account of a contact. The value contains up to 255 bytes.|
+| offlineAccess | boolean | No| Yes| Whether the file can be accessed offline. **true**: yes; **false**: no.|
+| everyoneAccessList | Array&lt;[DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess)&gt; | No| No| Permission granted to everyone. This parameter is left blank by default.|
+| expireTime<sup>11+</sup> | number | No| No| Timestamp when the file permission has expired. This parameter is left blank by default.|
+| actionUponExpiry<sup>20+</sup> | [ActionType](#actiontype20) | No| No| Whether the file can be opened after the permission expires (with the editing permission). This parameter is valid only when **expireTime** is not empty.|
 
 ## GatheringPolicyType
 
@@ -1885,7 +2117,7 @@ Enumerates the DLP sandbox gathering policy types. **GATHERING** allows the DLP 
 
 **Parameters**
 
-| Name | Value | Description |
+| Name| Value| Description|
 | -------- | -------- | -------- |
-| GATHERING | 1 | Allows the DLP files of the same permission type to be opened in a sandbox. For example, the files of the same permission type can be opened in tab pages of a window. |
-| NON_GATHERING | 2 | Allows the DLP files of different permission types to be opened in different sandboxes. |
+| GATHERING | 1 | Allows the DLP files of the same permission type to be opened in a sandbox. For example, the files of the same permission type can be opened in tab pages of a window.|
+| NON_GATHERING | 2 | Allows the DLP files of different permission types to be opened in different sandboxes.|

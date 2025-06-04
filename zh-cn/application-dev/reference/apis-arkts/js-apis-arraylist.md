@@ -890,7 +890,7 @@ arrayList.add(5);
 arrayList.add(4);
 
 // 使用方法一：
-let numbers: Array<number> = arrayList.convertToArray()
+let numbers: Array<number> = arrayList.convertToArray();
 for (let item of numbers) {
   console.log(`value : ${item}`);
 }

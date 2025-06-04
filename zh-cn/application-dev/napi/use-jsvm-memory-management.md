@@ -63,6 +63,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 ```c++
 const char *srcCallNative = R"JS(adjustExternalMemory())JS";
 ```
+<!-- @[oh_jsvm_adjust_external_memory](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/adjustexternalmemory/src/main/cpp/hello.cpp) -->
 输出结果
 在LOG中输出下面的信息：
 JSVM OH_JSVM_AdjustExternalMemory: success
@@ -108,6 +109,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 ```c++
 const char *srcCallNative = R"JS(memoryPressureNotification())JS";
 ```
+<!-- @[oh_jsvm_memory_pressure_notification](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/memorypressurenotification/src/main/cpp/hello.cpp) -->
 输出结果
 在LOG中输出下面的信息：
 JSVM OH_JSVM_MemoryPressureNotification: success

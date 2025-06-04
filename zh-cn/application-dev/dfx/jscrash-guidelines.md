@@ -58,10 +58,10 @@ at onPageShow (entry|har1|1.0.0|src/main/ets/pages/Index.ts:7:13);
 
 2. 执行方法名：onPageShow表示触发异常的调用方法名称。
 
-3. 源码路径结构:
+3. 源码路径结构：
 
-  - 源码路径：详见[异常堆栈解析原理 sourcemap结构：key字段介绍](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-exception-stack-parsing-principle#section1145914292713)。
-  - 文件类型：文件扩展名多为.ts。
+   - 源码路径：详见[异常堆栈解析原理 sourcemap结构：key字段介绍](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-exception-stack-parsing-principle#section1145914292713)。
+   - 文件类型：文件扩展名多为.ts。
 
 4. 行列号：以“:”为分隔符分隔行号列号。
 
@@ -83,11 +83,11 @@ at onPageShow har1 (har1/src/main/ets/pages/Index.ets:7:13);
 
 2. 执行方法名：onPageShow表示触发异常的调用方法名称。
 
-3. 源码路径结构:
+3. 源码路径结构：
 
-  - 所属模块名：路径源码路径所属模块名（如示例中的har1）。
-  - 源码路径：基于工程目录的源码文件路径。
-  - 文件类型：文件扩展名多为.ets。
+   - 所属模块名：路径源码路径所属模块名（如示例中的har1）。
+   - 源码路径：基于工程目录的源码文件路径。
+   - 文件类型：文件扩展名多为.ets。
 
 4. 行列号：以“:”为分隔符分隔行号列号。
 

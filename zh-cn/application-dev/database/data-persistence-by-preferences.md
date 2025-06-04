@@ -3,7 +3,7 @@
 
 ## 场景介绍
 
-用户首选项(Preferences)为应用提供Key-Value键值型的数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。当用户有轻量级的键值型数据需要存储时，可以采用Preferences来进行存储。Preferences会将该数据缓存在内存中，当用户读取时，能够快速从内存中获取数据，当需要持久化时可以使用flush接口将内存中的数据写入持久化文件中。Preferences不适合存储大量数据，一般适用于保存用户的个性化设置，例如字体大小、是否开启夜间模式等。
+用户首选项(Preferences)为应用提供Key-Value键值型的数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。当用户有轻量级的键值型数据需要存储时，可以采用Preferences来进行存储。一般适用于保存用户的个性化设置，例如字体大小、是否开启夜间模式等。
 
 
 ## 运作机制
@@ -20,7 +20,7 @@
 用户首选项默认使用XML格式进行存储，从API version 18开始，可选择GSKV存储模式。
 
 ### XML存储
-XML存储指的是数据会以XML的形式存储到文件中，该模式的优点是通用性强，支持跨平台。当选择该模式时，首选项对数据的操作主要发生在内存中，开发者可以在需要的时候再调用flush接口进行数据持久化。针对单进程、小数据量场景，推荐使用该存储模式。
+XML存储指的是数据会以XML的形式存储到文件中，该模式的优点是通用性强，支持跨平台。当选择该模式时，首选项对数据的操作主要发生在内存中，开发者可以在需要的时候再调用[flush](../reference/apis-arkdata/js-apis-data-preferences.md#flush)接口进行数据持久化。针对单进程、小数据量场景，推荐使用该存储模式。
 
 ### GSKV存储
 GSKV是从API version 18起提供的一种存储模式，该模式的优点是支持多进程并发读写。当选择该模式时，首选项对数据的操作会实时落盘。针对多进程并发场景，推荐使用该存储模式。
@@ -33,9 +33,7 @@ GSKV是从API version 18起提供的一种存储模式，该模式的优点是�
 
 - 如果Value值为string类型，请使用UTF-8编码格式，可以为空，不为空时长度不超过16MB。
 
-- 当存储的数据中包含非UTF-8格式的字符串时，请使用Uint8Array类型存储，否则会造成持久化文件出现格式错误造成文件损坏。
-
-- 当调用removePreferencesFromCache或者deletePreferences后，订阅的数据变更会主动取消订阅，重新getPreferences后需要重新订阅数据变更。
+- 当调用[removePreferencesFromCache](../reference/apis-arkdata/js-apis-data-preferences.md#preferencesremovepreferencesfromcache)或者[deletePreferences](../reference/apis-arkdata/js-apis-data-preferences.md#preferencesdeletepreferences)后，订阅的数据变更会主动取消订阅，重新[getPreferences](../reference/apis-arkdata/js-apis-data-preferences.md#preferencesgetpreferences)后需要重新订阅数据变更。
 
 - 不允许deletePreferences与其他接口多线程、多进程并发调用，否则可能会发生不可预期行为。
 
@@ -45,12 +43,13 @@ GSKV是从API version 18起提供的一种存储模式，该模式的优点是�
 
 - XML模式（首选项的默认模式）无法保证进程并发安全，会有文件损坏和数据丢失的风险，不支持在多进程场景下使用。
 
+- 当存储的数据中包含非UTF-8格式的字符串时，请使用Uint8Array类型存储，否则会造成持久化文件出现格式错误造成文件损坏。
+
 - 内存会随着存储数据量的增大而增大，所以存储的数据量应该是轻量级的，建议存储的数据不超过50MB。数据量较大时，在使用同步接口创建Preferences对象和持久化数据时会成为耗时操作，不建议在主线程中使用，否则可能会出现appfreeze问题。
 
 ### GSKV模式约束限制
 
-- GSKV模式不支持跨平台，使用该模式前需调用isStorageTypeSupported接口判断当前平台是否支持该模式。
-- 在OpenHarmony中，用户组（Group）是具有相同特征用户的逻辑集合，这些用户共享一定的权限。用户组的概念主要是为了方便系统管理和控制用户的访问权限。 多进程使用GSKV模式首选项时，若涉及group权限，需确保不同进程属于同一group权限。
+- GSKV模式不支持跨平台，使用该模式前需调用[isStorageTypeSupported](../reference/apis-arkdata/js-apis-data-preferences.md#preferencesisstoragetypesupported18)接口判断当前平台是否支持该模式。
 
 
 
@@ -95,7 +94,7 @@ GSKV是从API version 18起提供的一种存储模式，该模式的优点是�
 
 3. 获取Preferences实例。
 
-   使用默认的XML存储模式获取Preferences实例。
+   针对默认的XML存储模式，使用getPreferencesSync()方法获取Preferences实例。
 
    <!--Del-->Stage模型示例：<!--DelEnd-->
 
@@ -127,7 +126,7 @@ GSKV是从API version 18起提供的一种存储模式，该模式的优点是�
    ```
    <!--DelEnd-->
 
-   使用GSKV存储模式获取Preferences实例。
+   针对GSKV存储模式，使用getPreferencesSync()方法获取Preferences实例。
 
     若希望使用GSKV存储模式且当前平台支持该模式，可以通过以下方式获取GSKV存储模式的Preferences实例。需要注意的是，当选择某一存储模式后，不允许再对存储模式进行切换。
    <!--Del-->Stage模型示例：<!--DelEnd-->

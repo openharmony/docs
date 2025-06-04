@@ -38,7 +38,7 @@ initCurve(curve?: Curve): ICurve
 
 ## Curve
 
-插值曲线，动效请参考<!--RP1-->[贝塞尔曲线](../../../design/ux-design/animation-attributes.md)<!--RP1End-->。
+插值曲线和动效请参考<!--RP1-->[贝塞尔曲线](../../../design/ux-design/animation-attributes.md)<!--RP1End-->。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -68,7 +68,7 @@ curves.initCurve(Curve.EaseIn) // 创建一个默认先慢后快插值曲线
 ```
 
 
-##  curves.stepsCurve<sup>9+</sup>
+## curves.stepsCurve<sup>9+</sup>
 
 stepsCurve(count: number, end: boolean): ICurve
 
@@ -133,7 +133,7 @@ curves.cubicBezierCurve(0.1, 0.0, 0.1, 1.0) // 创建一个三阶贝塞尔曲线
 ```
 
 
-##  curves.springCurve<sup>9+</sup>
+## curves.springCurve<sup>9+</sup>
 
 springCurve(velocity: number, mass: number, stiffness: number, damping: number): ICurve
 
@@ -167,7 +167,7 @@ curves.springCurve(10, 1, 228, 30) // 创建一个弹簧插值曲线
 ```
 
 
-##  curves.springMotion<sup>9+</sup>
+## curves.springMotion<sup>9+</sup>
 
 springMotion(response?: number, dampingFraction?: number, overlapDuration?: number): ICurve
 
@@ -203,7 +203,7 @@ curves.springMotion(0.5, 0.6, 0) // 创建三个参数均自定义的弹性动�
 ```
 
 
-##  curves.responsiveSpringMotion<sup>9+</sup>
+## curves.responsiveSpringMotion<sup>9+</sup>
 
 responsiveSpringMotion(response?: number, dampingFraction?: number, overlapDuration?: number): ICurve
 
