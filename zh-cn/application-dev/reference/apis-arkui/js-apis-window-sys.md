@@ -3334,7 +3334,7 @@ setImageForRecent(imgResourceId: number, value: ImageFit): Promise&lt;void&gt;
 
 | 参数名      | 类型    | 必填 | 说明                                                         |
 | ----------- | ------- | ---- | ------------------------------------------------------------ |
-| imgResourceId | number | 是   | 应用自定义图片的资源id，获取方式：`$r("imagePath").id`，imagePath为图片所在路径，如`$r("app.media.cat").id`。|
+| imgResourceId | number | 是   | 应用自定义图片的资源id，图片需放在resources/base/media目录下，通过如下方式获取对应资源id：`$r("app.media.cat").id`。|
 | value | [ImageFit](arkui-ts/ts-appendix-enums.md#imagefit) | 是 | 应用自定义图片的填充方式。 |
 
 **返回值：**
@@ -3358,14 +3358,17 @@ setImageForRecent(imgResourceId: number, value: ImageFit): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { UIAbility } from '@kit.AbilityKit';
+import { AbilityConstant, ConfigurationConstant, UIAbility, want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
+    let imgResourceId = $r("app.media.cat").id
     try {
-      let promise = windowStage.setImageForRecent(11, ImageFit.FILL);
+      let promise = windowStage.setImageForRecent(imgResourceId, ImageFit.Fill);
       promise.then(() => {
         console.info(`Succeeded in setting image for recent`);
       }).catch((err: BusinessError) => {
