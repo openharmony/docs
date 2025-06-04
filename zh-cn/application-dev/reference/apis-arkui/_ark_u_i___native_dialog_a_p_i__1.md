@@ -435,7 +435,7 @@ int32_t(* ArkUI_NativeDialogAPI_1::setModalMode) (ArkUI_NativeDialogHandle handl
 | 名称 | 描述 | 
 | -------- | -------- |
 | handle | 指向自定义弹窗控制器的指针。  | 
-| isModal | 设置是否开启模态窗口，模态窗口有蒙层，非模态窗口无蒙层，为true时开启模态窗口。  | 
+| isModal | 设置是否开启模态窗口，模态窗口有蒙层，非模态窗口无蒙层。为true时开启模态窗口，为false时不开启模态窗口。  | 
 
 **注解：**
 
@@ -460,7 +460,7 @@ int32_t(* ArkUI_NativeDialogAPI_1::show) (ArkUI_NativeDialogHandle handle, bool 
 | 名称 | 描述 | 
 | -------- | -------- |
 | handle | 指向自定义弹窗控制器的指针。  | 
-| showInSubWindow | 是否在子窗口显示弹窗。  | 
+| showInSubWindow | 是否在子窗口显示弹窗。true表示在子窗显示弹窗。false表示不在子窗显示弹窗。  | 
 
 **返回：**
 
