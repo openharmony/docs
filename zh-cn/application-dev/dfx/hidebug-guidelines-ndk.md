@@ -43,7 +43,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 2. 编辑"CMakeLists.txt"文件，添加库依赖：
 
    ```cmake
-   # 新增动态库依赖libhiappevent_ndk.z.so和libhilog_ndk.z.so(日志输出)
+   # 新增动态库依赖libohhidebug.so和libhilog_ndk.z.so（日志输出）
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libohhidebug.so)
    ```
 

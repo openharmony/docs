@@ -33,7 +33,7 @@ import { contextConstant } from '@kit.AbilityKit';
 
 进程模式。该功能仅在2in1和tablet设备上生效。
 
-ProcessMode作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属性，仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1)中生效，用来指定目标Ability的进程模式。
+ProcessMode作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属性，仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#startability-1)中生效，用来指定目标Ability的进程模式。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -85,7 +85,7 @@ ProcessMode作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属
 
 Ability启动后的可见性。该功能仅在2in1和tablet设备上生效。
 
-StartupVisibility作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属性，仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1)中生效，用来指定目标Ability启动后的可见性。
+StartupVisibility作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属性，仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#startability-1)中生效，用来指定目标Ability启动后的可见性。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

@@ -2,7 +2,7 @@
 
 UIAbility是包含UI界面的应用组件，继承自[Ability](js-apis-app-ability-ability.md)，提供组件创建、销毁、前后台切换等生命周期回调，同时也具备组件协同的能力，组件协同主要提供如下常用功能：
 
-- [Caller](#caller)：由[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口返回，CallerAbility(调用者)可使用Caller与CalleeAbility(被调用者)进行通信。
+- [Caller](#caller)：由[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口返回，CallerAbility(调用者)可使用Caller与CalleeAbility(被调用者)进行通信。
 - [Callee](#callee)：UIAbility的内部对象，CalleeAbility(被调用者)可以通过Callee与Caller进行通信。
 
 各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
@@ -19,7 +19,11 @@ UIAbility是包含UI界面的应用组件，继承自[Ability](js-apis-app-abili
 import { UIAbility } from '@kit.AbilityKit';
 ```
 
-## 属性
+## UIAbility
+
+表示包含UI界面的应用组件，提供组件创建、销毁、前后台切换等生命周期回调，同时也具备组件协同的能力。
+
+### 属性
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -30,7 +34,7 @@ import { UIAbility } from '@kit.AbilityKit';
 | lastRequestWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | UIAbility最后请求时的参数。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
 | callee | [Callee](#callee) | 否 | 否 | 调用Stub（桩）服务对象。|
 
-## UIAbility.onCreate
+### onCreate
 
 onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
@@ -49,18 +53,21 @@ UIAbility实例处于完全关闭状态下被创建完成后进入该生命周�
 
 **示例：**
 
+
 ```ts
 import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log(`onCreate, want: ${want.abilityName}`);
+    // 执行异步任务
+    hilog.info(0x0000, 'testTag', `onCreate, want: ${want.abilityName}`);
   }
 }
 ```
 
 
-## UIAbility.onWindowStageCreate
+### onWindowStageCreate
 
 onWindowStageCreate(windowStage: window.WindowStage): void
 
@@ -80,17 +87,25 @@ onWindowStageCreate(windowStage: window.WindowStage): void
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
-class MyUIAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+export default class MyUIAbility extends UIAbility {
+  // 主窗口已创建，为该UIAbility设置主页面
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', `Failed to load the content. Cause: ${JSON.stringify(err)}`);
+        return;
+      }
+      hilog.info(0x0000, 'testTag', `Succeeded in loading the content. Data: ${JSON.stringify(data)}`);
+    });
   }
 }
 ```
 
 
-## UIAbility.onWindowStageWillDestroy<sup>12+</sup>
+### onWindowStageWillDestroy<sup>12+</sup>
 
 onWindowStageWillDestroy(windowStage: window.WindowStage): void
 
@@ -110,17 +125,18 @@ onWindowStageWillDestroy(windowStage: window.WindowStage): void
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onWindowStageWillDestroy(windowStage: window.WindowStage) {
-    console.log('onWindowStageWillDestroy');
+    hilog.info(0x0000, 'testTag', `onWindowStageWillDestroy`);
   }
 }
 ```
 
 
-## UIAbility.onWindowStageDestroy
+### onWindowStageDestroy
 
 onWindowStageDestroy(): void
 
@@ -134,16 +150,18 @@ onWindowStageDestroy(): void
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onWindowStageDestroy() {
-    console.log('onWindowStageDestroy');
+    // 主窗口已销毁，释放UI相关资源
+    hilog.info(0x0000, 'testTag', `onWindowStageDestroy`);
   }
 }
 ```
 
 
-## UIAbility.onWindowStageRestore
+### onWindowStageRestore
 
 onWindowStageRestore(windowStage: window.WindowStage): void
 
@@ -163,17 +181,18 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onWindowStageRestore(windowStage: window.WindowStage) {
-    console.log('onWindowStageRestore');
+    hilog.info(0x0000, 'testTag', `onWindowStageRestore`);
   }
 }
 ```
 
 
-## UIAbility.onDestroy
+### onDestroy
 
 onDestroy(): void | Promise&lt;void&gt;
 
@@ -193,10 +212,11 @@ UIAbility生命周期回调，在销毁时回调，执行资源清理等操作�
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onDestroy() {
-    console.log('onDestroy');
+    hilog.info(0x0000, 'testTag', `onDestroy`);
   }
 }
 ```
@@ -214,7 +234,7 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
-## UIAbility.onForeground
+### onForeground
 
 onForeground(): void
 
@@ -226,18 +246,21 @@ UIAbility生命周期回调，当应用从后台转到前台时触发。同步�
 
 **示例：**
 
+
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onForeground() {
-    console.log('onForeground');
+    // 执行异步任务
+    hilog.info(0x0000, 'testTag', `onForeground`);
   }
 }
 ```
 
 
-## UIAbility.onBackground
+### onBackground
 
 onBackground(): void
 
@@ -251,16 +274,18 @@ UIAbility生命周期回调，当应用从前台转到后台时触发。同步�
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onBackground() {
-    console.log('onBackground');
+    // UIAbility回到后台
+    hilog.info(0x0000, 'testTag', `onBackground`);
   }
 }
 ```
 
 
-## UIAbility.onContinue
+### onContinue
 
 onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueResult | Promise&lt;AbilityConstant.OnContinueResult&gt;
 
@@ -324,7 +349,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
   ```
 
 
-## UIAbility.onNewWant
+### onNewWant
 
 onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
@@ -354,7 +379,7 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
-## UIAbility.onDump
+### onDump
 
 onDump(params: Array\<string>): Array\<string>
 
@@ -390,7 +415,7 @@ class MyUIAbility extends UIAbility {
 ```
 
 
-## UIAbility.onSaveState
+### onSaveState
 
 onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnSaveResult
 
@@ -427,7 +452,7 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
-## UIAbility.onShare<sup>10+</sup>
+### onShare<sup>10+</sup>
 
 onShare(wantParam: Record&lt;string, Object&gt;): void
 
@@ -456,17 +481,17 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
-## UIAbility.onPrepareToTerminate<sup>10+</sup>
+### onPrepareToTerminate<sup>10+</sup>
 
 onPrepareToTerminate(): boolean
 
-UIAbility生命周期回调，在UIAbility关闭时触发，用于在UIAbility正式关闭前执行其他操作。例如，询问用户是否确认关闭UIAbility。如果用户确认关闭UIAbility，可配合[terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)接口关闭。
+UIAbility生命周期回调，在UIAbility关闭时触发，用于在UIAbility正式关闭前执行其他操作。例如，询问用户是否确认关闭UIAbility。如果用户确认关闭UIAbility，可配合[terminateSelf](js-apis-inner-application-uiAbilityContext.md#terminateself)接口关闭。
 
 当前仅在2in1设备上生效。
 
 > **说明：**
 >
-> - 从API version 15开始，当[UIAbility.onPrepareToTerminateAsync](#uiabilityonpreparetoterminateasync15)实现时，本回调函数将不执行。当[AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#abilitystageonprepareterminationasync15)或[AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15)实现时，在dock栏或系统托盘处右键点击关闭，本回调函数将不执行。
+> - 从API version 15开始，当[UIAbility.onPrepareToTerminateAsync](#onpreparetoterminateasync15)实现时，本回调函数将不执行。当[AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#abilitystageonprepareterminationasync15)或[AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15)实现时，在dock栏或系统托盘处右键点击关闭，本回调函数将不执行。
 
 **需要权限**：ohos.permission.PREPARE_APP_TERMINATE
 
@@ -513,11 +538,11 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbility.onPrepareToTerminateAsync<sup>15+</sup>
+### onPrepareToTerminateAsync<sup>15+</sup>
 
 onPrepareToTerminateAsync(): Promise\<boolean>
 
-UIAbility生命周期异步回调，在UIAbility关闭时触发，通过使用Promise异步回调的方式，在UIAbility正式关闭前执行操作。例如，询问用户是否确认关闭UIAbility。如果用户确认关闭UIAbility，可配合[terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)接口关闭。
+UIAbility生命周期异步回调，在UIAbility关闭时触发，通过使用Promise异步回调的方式，在UIAbility正式关闭前执行操作。例如，询问用户是否确认关闭UIAbility。如果用户确认关闭UIAbility，可配合[terminateSelf](js-apis-inner-application-uiAbilityContext.md#terminateself)接口关闭。
 
 当前仅在2in1设备上生效。
 
@@ -554,7 +579,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbility.onBackPressed<sup>10+</sup>
+### onBackPressed<sup>10+</sup>
 
 onBackPressed(): boolean
 
@@ -585,7 +610,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbility.onCollaborate<sup>18+</sup>
+### onCollaborate<sup>18+</sup>
 
 onCollaborate(wantParam: Record&lt;string, Object&gt;): AbilityConstant.CollaborateResult
 
@@ -594,7 +619,7 @@ UIAbility生命周期回调，在多设备协同场景下，协同方应用在�
  **说明：**
 - 该生命周期回调不支持specified启动模式。
 - 通过startAbility()等方法拉起协同方应用时，需要在Want对象中设置协同标记[Flags](js-apis-ability-wantConstant.md#flags)为FLAG_ABILITY_ON_COLLABORATE。
-- 冷启动时，该回调在[onForeground](#uiabilityonforeground)前或[onBackground](#uiabilityonbackground)后调用；热启动时，该回调在[onNewWant](#uiabilityonnewwant)前调用。
+- 冷启动时，该回调在[onForeground](#onforeground)前或[onBackground](#onbackground)后调用；热启动时，该回调在[onNewWant](#onnewwant)前调用。
 
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
@@ -627,7 +652,7 @@ class MyAbility extends UIAbility {
 
 通用组件Caller通信客户端调用接口, 用来向通用组件服务端发送约定数据。
 
-### Caller.call
+### call
 
 call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;
 
@@ -715,7 +740,7 @@ export default class MainUIAbility extends UIAbility {
 ```
 
 
-### Caller.callWithResult
+### callWithResult
 
 callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;
 
@@ -805,7 +830,7 @@ export default class MainUIAbility extends UIAbility {
 ```
 
 
-### Caller.release
+### release
 
 release(): void
 
@@ -851,7 +876,7 @@ export default class MainUIAbility extends UIAbility {
 }
 ```
 
-### Caller.onRelease
+### onRelease
 
  onRelease(callback: OnReleaseCallback): void
 
@@ -905,7 +930,7 @@ export default class MainUIAbility extends UIAbility {
 }
 ```
 
-### Caller.onRemoteStateChange<sup>10+</sup>
+### onRemoteStateChange<sup>10+</sup>
 
 onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 
@@ -960,7 +985,7 @@ export default class MainAbility extends UIAbility {
 }
 ```
 
-### Caller.on('release')
+### on('release')
 
 on(type: 'release', callback: OnReleaseCallback): void
 
@@ -1015,7 +1040,7 @@ export default class MainUIAbility extends UIAbility {
 }
 ```
 
-### Caller.off('release')
+### off('release')
 
 off(type: 'release', callback: OnReleaseCallback): void
 
@@ -1071,7 +1096,7 @@ export default class MainUIAbility extends UIAbility {
 }
 ```
 
-### Caller.off('release')
+### off('release')
 
 off(type: 'release'): void
 
@@ -1130,7 +1155,7 @@ export default class MainUIAbility extends UIAbility {
 
 通用组件服务端注册和解除客户端caller通知送信的callback接口。
 
-### Callee.on
+### on
 
 on(method: string, callback: CalleeCallback): void
 
@@ -1202,7 +1227,7 @@ export default class MainUIAbility extends UIAbility {
 }
 ```
 
-### Callee.off
+### off
 
 off(method: string): void
 

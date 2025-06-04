@@ -1399,7 +1399,7 @@ requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<vo
 
 应用请求通知使能模态弹窗。使用callback异步回调。
 
-仅当应用界面加载完成后（即调用[loadContent](../apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionloadcontent)成功），方可使用该接口。
+仅当应用界面加载完成后（即调用[loadContent](../apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#loadcontent)成功），方可使用该接口。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -1461,7 +1461,7 @@ requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 
 应用请求通知使能模态弹窗。使用Promise异步回调。
 
-仅当应用界面加载完成后（即调用[loadContent](../apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionloadcontent)成功），方可使用该接口。
+仅当应用界面加载完成后（即调用[loadContent](../apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#loadcontent)成功），方可使用该接口。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 

@@ -47,6 +47,8 @@
       - [从TypeScript到ArkTS的适配规则](quick-start/typescript-to-arkts-migration-guide.md)
       - [适配指导案例](quick-start/arkts-more-cases.md)
     - [ArkTS高性能编程实践](quick-start/arkts-high-performance-programming.md)
+    - 面向其他语言的的ArkTS迁移教程<!--arkts-for-other-languages-->
+      - [从Java到ArkTS的迁移教程](quick-start/getting-started-with-arkts-for-java-programmers.md)
 - 开发<!--application-develop-->
   - 应用框架<!--app-framework-->
     - Ability Kit（程序框架服务）<!--ability-kit-->
@@ -238,9 +240,7 @@
         <!--DelEnd-->
         - 多对多跨应用数据共享<!--many-to-many-data-share-->
           - [通过标准化数据通路实现数据共享](database/unified-data-channels.md)
-      - 智慧化数据构建与检索<!--intelligence-data-->
-        - [智慧化数据构建与检索概述](database/aip-data-intelligence-overview.md)
-        - [应用数据向量化](database/aip-data-intelligence-embedding.md)
+      - [应用数据向量化](database/aip-data-intelligence-embedding.md)
       - [RelationalStore开发指导 (C/C++)](database/native-relational-store-guidelines.md)
       - [UDMF开发指导 (C/C++)](database/native-unified-data-management-framework-guidelines.md)
       - [ArkData术语](database/data-terminology.md)
@@ -1133,9 +1133,11 @@
         - [Connectivity Kit简介](connectivity/connectivity-kit-intro.md)
         - 蓝牙<!--bluetooth-->
           - [蓝牙服务开发概述](connectivity/bluetooth/bluetooth-overview.md)
+          - [蓝牙设置](connectivity/bluetooth/br-development-guide.md)
           - 传统蓝牙<!--bluetooth-br-->
-            - [蓝牙设置](connectivity/bluetooth/br-development-guide.md)
-            - [传输数据](connectivity/bluetooth/spp-development-guide.md)
+            - [查找设备](connectivity/bluetooth/br-discovery-development-guide.md)
+            - [配对连接设备](connectivity/bluetooth/br-pair-device-development-guide.md)
+            - [连接和传输数据](connectivity/bluetooth/spp-development-guide.md)
           - 低功耗蓝牙<!--bluetooth-ble-->
             - [查找设备](connectivity/bluetooth/ble-development-guide.md)
             - [连接和传输数据](connectivity/bluetooth/gatt-development-guide.md)
@@ -1343,11 +1345,11 @@
           - [事件上报](dfx/hiappevent-event-reporting.md)
         <!--DelEnd-->
         - HiTraceMeter使用指导<!--hitracemeter-->
-          - [使用HiTraceMeter跟踪性能（ArkTS/JS）](dfx/hitracemeter-guidelines-arkts.md)
+          - [使用HiTraceMeter跟踪性能（ArkTS）](dfx/hitracemeter-guidelines-arkts.md)
           - [使用HiTraceMeter跟踪性能（C/C++）](dfx/hitracemeter-guidelines-ndk.md)
           - [查看HiTraceMeter日志](dfx/hitracemeter-view.md)
         - HiTraceChain使用指导<!--hitracechain-->
-          - [使用HiTraceChain打点（ArkTS/JS）](dfx/hitracechain-guidelines-arkts.md)
+          - [使用HiTraceChain打点（ArkTS）](dfx/hitracechain-guidelines-arkts.md)
           - [使用HiTraceChain打点（C/C++）](dfx/hitracechain-guidelines-ndk.md)
         - HiChecker使用指导<!--hichecker-->
           - [使用HiChecker检测问题（ArkTS/JS）](dfx/hichecker-guidelines-arkts.md)
@@ -3099,9 +3101,24 @@
     - ArkWeb（方舟Web）<!--arkweb-api-->
       - ArkTS API<!--arkweb-arkts-->
         - [@ohos.web.webview (Webview)](reference/apis-arkweb/js-apis-webview.md)
+          - [Class (WebviewController)](reference/apis-arkweb/js-apis-webview-WebviewController.md)
+          - [Class (GeolocationPermissions)](reference/apis-arkweb/js-apis-webview-GeolocationPermissions.md)
+          - [Class (WebCookieManager)](reference/apis-arkweb/js-apis-webview-WebCookieManager.md)
+          - [Class (WebDataBase)](reference/apis-arkweb/js-apis-webview-WebDataBase.md)
+          - [Class (WebMessageExt)](reference/apis-arkweb/js-apis-webview-WebMessageExt.md)
+          - [Interfaces (WebMessagePort)](reference/apis-arkweb/js-apis-webview-WebMessagePort.md)
+          - [Class (WebStorage)](reference/apis-arkweb/js-apis-webview-WebStorage.md)
+          - [Interfaces（其他）](reference/apis-arkweb/js-apis-webview-i.md)
+          - [Enums](reference/apis-arkweb/js-apis-webview-e.md)
+          - [Types](reference/apis-arkweb/js-apis-webview-t.md)
         - [@ohos.web.netErrorList](reference/apis-arkweb/js-apis-netErrorList.md)
       - ArkTS 组件<!--arkweb-comp-->
         - [Web](reference/apis-arkweb/ts-basic-components-web.md)
+          - [属性](reference/apis-arkweb/ts-basic-components-web-attributes.md)
+          - [事件](reference/apis-arkweb/ts-basic-components-web-events.md)
+          - [Interfaces（其他）](reference/apis-arkweb/ts-basic-components-web-i.md)
+          - [Enums](reference/apis-arkweb/ts-basic-components-web-e.md)
+          - [Types](reference/apis-arkweb/ts-basic-components-web-t.md)
       - C API<!--arkweb-c-->
         - 模块<!--arkweb-module-->
           - [Web](reference/apis-arkweb/_web.md)
@@ -4358,7 +4375,7 @@
           - [AVPlayer](reference/apis-media-kit/capi-avplayer.md)
           - [AVRecorder](reference/apis-media-kit/capi-avrecorder.md)
           - [AVScreenCapture](reference/apis-media-kit/capi-avscreencapture.md)
-          - [VideoProcessing](reference/apis-media-kit/_video_processing.md)
+          - [VideoProcessing](reference/apis-media-kit/capi-videoprocessing.md)
         - 头文件<!--media-headerfile-->
           - [avimage_generator.h](reference/apis-media-kit/capi-avimage-generator-h.md)
           - [avimage_generator_base.h](reference/apis-media-kit/capi-avimage-generator-base-h.md)
@@ -4371,8 +4388,8 @@
           - [native_avscreen_capture.h](reference/apis-media-kit/capi-native-avscreen-capture-h.md)
           - [native_avscreen_capture_base.h](reference/apis-media-kit/capi-native-avscreen-capture-base-h.md)
           - [native_avscreen_capture_errors.h](reference/apis-media-kit/capi-native-avscreen-capture-errors-h.md)
-          - [video_processing.h](reference/apis-media-kit/video__processing_8h.md)
-          - [video_processing_types.h](reference/apis-media-kit/video__processing__types_8h.md)
+          - [video_processing.h](reference/apis-media-kit/capi-video-processing-h.md)
+          - [video_processing_types.h](reference/apis-media-kit/capi-video-processing-types-h.md)
         - 结构体<!--media-struct-->
           - [MediaKeySession](reference/apis-media-kit/capi-mediakeysession.md)
           - [DRM_MediaKeySystemInfo](reference/apis-media-kit/capi-drm-mediakeysysteminfo.md)
@@ -4402,7 +4419,9 @@
           - [OH_AVScreenCaptureCallback](reference/apis-media-kit/capi-oh-avscreencapturecallback.md)
           - [OH_Rect](reference/apis-media-kit/capi-oh-rect.md)
           - [OH_AudioBuffer](reference/apis-media-kit/capi-oh-audiobuffer.md)
-          - [VideoProcessing_ColorSpaceInfo](reference/apis-media-kit/_video_processing___color_space_info.md)
+          - [VideoProcessing_ColorSpaceInfo](reference/apis-media-kit/capi-videoprocessing-colorspaceinfo.md)
+          - [OH_VideoProcessing](reference/apis-media-kit/capi-oh-videoprocessing.md)
+          - [VideoProcessing_Callback](reference/apis-media-kit/capi-videoprocessing-callback.md)
       - 错误码<!--media-arkts-errcode-->
         - [Media错误码](reference/apis-media-kit/errorcode-media.md)
     - Media Library Kit（媒体文件管理服务）<!--media-library-api-->
