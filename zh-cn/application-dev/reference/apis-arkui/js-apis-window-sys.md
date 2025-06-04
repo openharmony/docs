@@ -3334,7 +3334,7 @@ setImageForRecent(imgResourceId: number, value: ImageFit): Promise&lt;void&gt;
 
 | 参数名      | 类型    | 必填 | 说明                                                         |
 | ----------- | ------- | ---- | ------------------------------------------------------------ |
-| imgResourceId | number | 是   | 应用自定义图片的资源id，图片需放在resources/base/media目录下，通过如下方式获取对应资源id：`$r("app.media.cat").id`。|
+| imgResourceId | number | 是   | 应用自定义图片的资源id：图片需放在resources/base/media目录下，通过如下方式获取对应资源id：`$r("app.media.startIcon").id`。|
 | value | [ImageFit](arkui-ts/ts-appendix-enums.md#imagefit) | 是 | 应用自定义图片的填充方式。 |
 
 **返回值：**
