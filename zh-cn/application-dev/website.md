@@ -3632,6 +3632,12 @@
           <!--Del-->
           - [键鼠穿越管理错误码](reference/apis-distributedservice-kit/errorcode-devicestatus.md)
           <!--DelEnd-->
+        - C API<!--distributed-service-c-->
+          - 模块<!--distributed-service-moudle-->
+            - [DeviceManager](reference/apis-distributedservice-kit/capi-devicemanager.md)
+          - 头文件<!--distributed-service-headerfile-->
+            - [oh_device_manager.h](reference/apis-distributedservice-kit/capi-oh-device-manager-h.md)
+            - [oh_device_manager_err_code.h](reference/apis-distributedservice-kit/capi-oh-device-manager-err-code-h.md)
       - Network Kit（网络服务）<!--network-api-->
         - ArkTS API<!--network-api-arkts-->
           - [@ohos.net.connection (网络连接管理)](reference/apis-network-kit/js-apis-net-connection.md)
