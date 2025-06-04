@@ -197,7 +197,7 @@ interface ImageParticleParameters {
 
 | 名称   | 类型   | 必填 | 说明 |
 | -------- | -------------- | -------- | -------- |
-| src      | [ResourceStr](ts-types.md#resourcestr) | 是    | 图片路径。暂不支持svg图片类型。 |
+| src      | [ResourceStr](ts-types.md#resourcestr) | 是    | 图片路径。暂不支持svg图片类型。<br>src未发生变化时，会优先使用缓存的资源，无法动态切换资源。如需动态切换资源建议切换为不同的src。 |
 | size     | [ParticleTuple](#particletuple18)<[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)> | 是    | 图像尺寸。 |
 | objectFit| [ImageFit](ts-appendix-enums.md#imagefit)| 否    | 图片显示模式。 |
 
