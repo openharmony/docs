@@ -6,7 +6,7 @@
 场景动效类型互动卡片基础开发指导，可以参考文档[互动卡片开发指导](arkts-ui-liveform-sceneanimation-development.md)。针对系统应用，支持以下扩展能力。
 
 ### 禁用手势配置
-在 form_config.json 中，可选配置项 sceneAnimationParams 新增针对系统应用的可选字段 disableBehaviors，应用可以控制在激活态下卡片不响应特定桌面操作例如：
+在 form_config.json 中，可选配置项 sceneAnimationParams 新增针对系统应用的可选字段 disabledDesktopBehaviors，应用可以控制在激活态下卡片不响应特定桌面操作例如：
 1. 长按：LONG_CLICK。
 2. 拖拽卡片：DRAG。
 3. 下拉进入全搜：PULL_DOWN_SEARCH。
