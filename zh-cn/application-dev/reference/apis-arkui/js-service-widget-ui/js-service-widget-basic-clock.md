@@ -11,6 +11,8 @@
 
 不支持。
 
+**系统能力：** SystemCapability.Security.Huks.Core
+
 
 ## 属性
 
