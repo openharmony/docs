@@ -378,11 +378,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_MATRIX_COEFFICIENTS, matrix);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, iFrameInterval);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, profile);
-    //只有当OH_BitrateMode = BITRATE_MODE_CQ 时，才需要配置OH_MD_KEY_QUALITY。
+    //只有当OH_BitrateMode = BITRATE_MODE_CQ时，才需要配置OH_MD_KEY_QUALITY。
     if (rateMode == static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_CQ)) {
         OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality);
     } else if (rateMode == static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_SQR)) {
-        // 只有当OH_BitrateMode = BITRATE_MODE_SQR 时，才需要配置OH_MD_KEY_MAX_BITRATE和OH_MD_KEY_SQR_FACTOR。
+        // 只有当OH_BitrateMode = BITRATE_MODE_SQR时，才需要配置OH_MD_KEY_MAX_BITRATE和OH_MD_KEY_SQR_FACTOR。
         OH_AVFormat_SetLongValue(format, OH_MD_KEY_MAX_BITRATE, maxBitRate);
         OH_AVFormat_SetIntValue(format, OH_MD_KEY_SQR_FACTOR, sqrFactor);
     } else if (rateMode == static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_CBR) ||
