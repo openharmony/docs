@@ -584,6 +584,32 @@ static rgba(red: number, green: number, blue: number, alpha?: number): ColorMetr
 | ------------- | ---------------- |
 | [ColorMetrics](#colormetrics12) | ColorMetrics 类的实例。 |
 
+### colorWithSpace<sup>20+</sup>
+
+static colorWithSpace(colorSpace: ColorSpace, red: number, green: number, blue: number, alpha?: number): ColorMetrics
+
+使用[ColorSpace](./arkui-ts/ts-appendix-enums.md#colorspace20)和rgba格式颜色实例化ColorMetrics类。仅部分属性支持在display-p3色彩空间中设置颜色。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| colorSpace   | [ColorSpace](./arkui-ts/ts-appendix-enums.md#colorspace20) | 是   | 颜色空间，用于指定颜色的色彩空间。 |
+| red   | number | 是   | 颜色的R分量（红色），值是0~1的浮动数值。 |
+| green | number | 是   | 颜色的G分量（绿色），值是0~1的浮动数值。 |
+| blue  | number | 是   | 颜色的B分量（蓝色），值是0~1的浮动数值。 |
+| alpha | number | 否   | 颜色的A分量（透明度），值是0.0~1.0的浮点数，默认值为1.0，不透明。|
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [ColorMetrics](#colormetrics12) | ColorMetrics类的实例。|
+
 ### resourceColor<sup>12+</sup>
 
 static resourceColor(color: ResourceColor): ColorMetrics
