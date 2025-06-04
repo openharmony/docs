@@ -51,7 +51,6 @@ struct AnimateToDemo {
       .height(100)
       .borderRadius(30)
       .onClick(() => {
-        // 第三步：调用keyframeAnimateTo接口
         this.getUIContext()?.animateTo({ curve: curves.springMotion() }, () => {
           this.animate = !this.animate;
           // 第三步：闭包内通过状态变量改变UI界面
