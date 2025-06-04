@@ -34,7 +34,7 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 
 订阅触控操作手感知事件。
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION
+**需要权限**：ohos.permission.ACTIVITY_MOTION 或 ohos.permission.DETECT_GESTURE
 
 **系统能力**：SystemCapability.MultimodalAwareness.Motion
 
@@ -83,7 +83,7 @@ off(type: 'operatingHandChanged', callback?: Callback&lt;OperatingHandStatus&gt;
 
 取消订阅触控操作手感知事件。
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION
+**需要权限**：ohos.permission.ACTIVITY_MOTION 或 ohos.permission.DETECT_GESTURE
 
 **系统能力**：SystemCapability.MultimodalAwareness.Motion
 
@@ -128,7 +128,7 @@ getRecentOperatingHandStatus(): OperatingHandStatus;
 
 获取最新触控操作手状态。
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION
+**需要权限**：ohos.permission.ACTIVITY_MOTION 或 ohos.permission.DETECT_GESTURE
 
 **系统能力**：SystemCapability.MultimodalAwareness.Motion
 
