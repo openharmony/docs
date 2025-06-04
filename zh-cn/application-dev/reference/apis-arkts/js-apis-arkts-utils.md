@@ -295,7 +295,7 @@ let p1 = lock.lockAsync<void>(() => {
 
 lockAsync\<T, U>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode, options: AsyncLockOptions\<U>): Promise\<T | U>
 
-在获取的锁下执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用[lockAsync](#lockasync)的同一线程中以异步方式执行。在[AsyncLockOptions](#asynclockoptions)中可以提供一个可选的超时值。在这种情况下，如果超时前未能获取锁，lockAsync将拒绝返回的Promise并带上一个BusinessError实例。这种情况下，错误信息将包含持有的锁和等待的锁的信息以及可能的死锁警告。
+在获取的锁下执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用[lockAsync](#lockasync)的同一线程中以异步方式执行。在[AsyncLockOptions](#asynclockoptions)中可以提供一个可选的超时值。在这种情况下，如果超时前未能获取锁，lockAsync将返回被拒绝的Promise并带上一个BusinessError实例。这种情况下，错误信息将包含持有的锁和等待的锁的信息以及可能的死锁警告。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -424,7 +424,7 @@ options.signal = s;
 | 名称        | 类型                                  | 可读 | 可写 | 说明                                                                                                                      |
 | ----------- | ------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------------------------- |
 | isAvailable | boolean                               | 是   | 是   | 当前锁是否可用。取值为true，则只有在尚未持有锁定请求时才会授予该锁定请求；为false则表示将等待当前锁被释放。默认为 false。 |
-| signal      | [AbortSignal\<T>](#abortsignal)\|null | 是   | 是   | 用于中止异步操作的对象。当signal.aborted为true时，锁请求将被丢弃；当signal.aborted为false时，请求会继续等待获取锁；当signal为null时，请求正常排队运行。默认为 null。               |
+| signal      | [AbortSignal\<T>](#abortsignal)\|null | 是   | 是   | 用于终止异步操作的对象。当signal.aborted为true时，锁请求将被丢弃；当signal.aborted为false时，请求会继续等待获取锁；当signal为null时，请求正常排队运行。默认为 null。               |
 | timeout     | number                                | 是   | 是   | 锁操作的超时时间，单位为毫秒。若该值大于零，且操作运行时间超过该时间，[lockAsync](#lockasync)将返回被拒绝的Promise。默认为 0。      |
 
 ### AsyncLockState
@@ -460,7 +460,7 @@ options.signal = s;
 
 ### AbortSignal
 
-用于中止异步操作的对象。该类的实例必须在其创建的同一线程中访问。从其他线程访问此类的字段会导致未定义的行为。
+用于终止异步操作的对象。该类的实例必须在其创建的同一线程中访问。从其他线程访问此类的字段会导致未定义的行为。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -470,12 +470,12 @@ options.signal = s;
 
 | 名称    | 类型    | 可读 | 可写 | 说明                                                             |
 | ------- | ------- | ---- | ---- | ---------------------------------------------------------------- |
-| aborted | boolean | 是   | 是   | 是否终止异步操作。为true时表示中止异步操作，为false时表示异步操作未被中止。     |
-| reason  | \<T>    | 是   | 是   | 中止的原因。此值将用于拒绝[lockAsync](#lockasync)返回的Promise。 |
+| aborted | boolean | 是   | 是   | 是否终止异步操作。为true时表示终止异步操作，为false时表示异步操作未被终止。     |
+| reason  | \<T>    | 是   | 是   | 此值将用于[lockAsync](#lockasync)返回被拒绝的Promise。 |
 
 ## ArkTSUtils.ASON
 
-为支持将JSON字符串解析为共享数据，即[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)，ArkTS语言基础库新增了ASON工具。ASON工具支持解析JSON字符串并生成共享数据，用于跨并发域传输，同时也支持将共享数据转换为JSON字符串。
+为支持将JSON字符串解析为共享数据，即[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)，ArkTS语言基础库新增了ASON工具。ASON工具支持解析JSON字符串并生成共享数据，用于跨并发实例引用传递，同时也支持将共享数据转换为JSON字符串。
 
 ### ISendable
 
@@ -619,7 +619,7 @@ console.info("largeNumber is " + (map as collections.Map<string,bigint>).get("la
 
 stringify(value: ISendable | null | undefined): string
 
-该方法将ISendable数据转换为JSON字符串。
+该方法将Sendable数据转换为JSON字符串。
 
 能力扩展：该方法支持将Map、Set、[collections.Map](./js-apis-arkts-collections.md#collectionsmap)、[collections.Set](./js-apis-arkts-collections.md#collectionsset)、[HashMap](./js-apis-hashmap.md#hashmap)、[HashSet](./js-apis-hashset.md#hashset)转换为JSON字符串。
 
@@ -631,7 +631,7 @@ stringify(value: ISendable | null | undefined): string
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | [ISendable](#isendable) \| null \| undefined  | 是 | ISendable数据。|
+| value | [ISendable](#isendable) \| null \| undefined  | 是 | Sendable数据。|
 
 **返回值：**
 
