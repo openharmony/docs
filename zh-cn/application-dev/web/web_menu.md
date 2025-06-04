@@ -334,6 +334,198 @@ struct WebComponent {
 </html>
 ```
 ![bindSelectionMenu](./figures/bindSelectionMenu.gif)
+
+自API version 20起，支持绑定长按超链接菜单。可以为图片和链接绑定不同的自定义菜单。
+
+以下示例中，PreviewBuilder定义了超链接对应菜单的弹出内容，用Web组件加载了超链接内容，使用[Progress组件](../ui/arkts-common-components-progress-indicator.md)展示了加载进度。
+
+```ts
+import { webview } from '@kit.ArkWeb';
+import { pasteboard } from '@kit.BasicServicesKit';
+
+interface PreviewBuilderParam {
+  width: number;
+  height: number;
+  url:Resource | string | undefined;
+}
+
+interface PreviewBuilderParamForImage {
+  previewImage: Resource | string | undefined;
+  width: number;
+  height: number;
+}
+
+
+@Builder function PreviewBuilderGlobalForImage($$: PreviewBuilderParamForImage) {
+  Column() {
+    Image($$.previewImage)
+      .objectFit(ImageFit.Fill)
+      .autoResize(true)
+  }.width($$.width).height($$.height)
+}
+
+@Entry
+@Component
+struct SelectionMenuLongPress {
+  controller: webview.WebviewController = new webview.WebviewController();
+  previewController: webview.WebviewController = new webview.WebviewController();
+  @Builder PreviewBuilder($$: PreviewBuilderParam){
+    Column() {
+      Stack(){
+        Text("") // 可选择是否展示url
+          .padding(5)
+          .width('100%')
+          .textAlign(TextAlign.Start)
+          .backgroundColor(Color.White)
+          .copyOption(CopyOptions.LocalDevice)
+          .maxLines(1)
+          .textOverflow({overflow:TextOverflow.Ellipsis})
+        Progress({ value: this.progressValue, total: 100, type: ProgressType.Linear }) // 展示进度条
+          .style({ strokeWidth: 3, enableSmoothEffect: true })
+          .backgroundColor(Color.White)
+          .opacity(this.progressVisible?1:0)
+          .backgroundColor(Color.White)
+      }.alignContent(Alignment.Bottom)
+      Web({src:$$.url,controller: new webview.WebviewController()})
+        .javaScriptAccess(true)
+        .fileAccess(true)
+        .onlineImageAccess(true)
+        .imageAccess(true)
+        .domStorageAccess(true)
+        .onPageBegin(()=>{
+          this.progressValue = 0;
+          this.progressVisible = true;
+        })
+        .onProgressChange((event)=>{
+          this.progressValue = event.newProgress;
+        })
+        .onPageEnd(()=>{
+          this.progressVisible = false;
+        })
+        .hitTestBehavior(HitTestMode.None) // 使预览Web不响应手势
+    }.width($$.width).height($$.height) // 设置预览宽高
+  }
+
+  private result: WebContextMenuResult | undefined = undefined;
+  @State previewImage: Resource | string | undefined = undefined;
+  @State previewWidth: number = 1;
+  @State previewHeight: number = 1;
+  @State previewWidthImage: number = 1;
+  @State previewHeightImage: number = 1;
+  @State linkURL:string = "";
+  @State progressValue:number = 0;
+  @State progressVisible:boolean = true;
+
+  @Builder
+  LinkMenuBuilder() {
+    Menu() {
+      MenuItem({ content: '复制链接', })
+        .onClick(() => {
+          const pasteboardData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, this.linkURL);
+          const systemPasteboard = pasteboard.getSystemPasteboard();
+          systemPasteboard.setData(pasteboardData);
+        })
+      MenuItem({content:'打开链接'})
+        .onClick(()=>{
+          this.controller.loadUrl(this.linkURL);
+        })
+    }
+  }
+  @Builder
+  ImageMenuBuilder() {
+    Menu() {
+      MenuItem({ content: '复制图片', })
+        .onClick(() => {
+          this.result?.copyImage();
+          this.result?.closeContextMenu();
+        })
+    }
+  }
+  build() {
+    Column() {
+      Web({ src: $rawfile("index.html"), controller: this.controller })
+        .javaScriptAccess(true)
+        .fileAccess(true)
+        .onlineImageAccess(true)
+        .imageAccess(true)
+        .domStorageAccess(true)
+        .bindSelectionMenu(WebElementType.LINK, this.LinkMenuBuilder, WebResponseType.LONG_PRESS,
+          {
+            onAppear: () => {},
+            onDisappear: () => {
+              this.result?.closeContextMenu();
+            },
+            preview: this.PreviewBuilder({
+              width: 500,
+              height: 400,
+              url:this.linkURL
+            }),
+            menuType: MenuType.PREVIEW_MENU,
+          })
+        .bindSelectionMenu(WebElementType.IMAGE, this.ImageMenuBuilder, WebResponseType.LONG_PRESS,
+          {
+            onAppear: () => {},
+            onDisappear: () => {
+              this.result?.closeContextMenu();
+            },
+            preview: PreviewBuilderGlobalForImage({
+              previewImage: this.previewImage,
+              width: this.previewWidthImage,
+              height: this.previewHeightImage,
+            }),
+            menuType: MenuType.PREVIEW_MENU,
+          })
+        .zoomAccess(true)
+        .onContextMenuShow((event) => {
+          if (event) {
+            this.result = event.result;
+            this.previewWidthImage = px2vp(event.param.getPreviewWidth());
+            this.previewHeightImage = px2vp(event.param.getPreviewHeight());
+            if (event.param.getSourceUrl().indexOf("resource://rawfile/") == 0) {
+              this.previewImage = $rawfile(event.param.getSourceUrl().substr(19));
+            } else {
+              this.previewImage = event.param.getSourceUrl();
+            }
+            this.linkURL = event.param.getLinkUrl()
+            return true;
+          }
+          return false;
+        })
+    }
+
+  }
+  // 侧滑返回
+  onBackPress(): boolean | void {
+    if (this.controller.accessStep(-1)) {
+      this.controller.backward();
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+```
+html示例
+```html
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>综合信息页面</title>
+</head>
+<body>
+    <div>
+        <section>
+            <a href="https://www.example1.com/">EMAPLE1</a>
+            <a href="https://www.example.com">EXAMPLE</a>
+        </section>
+    </div>
+    <footer>
+        <p>请注意，以上提供的所有网址仅供演示之用。</p>
+    </footer>
+</body></html>
+```
+![bindSelectionMenu_link](./figures/web-menu-bindselectionmenu-link.gif)
+
 ## Web菜单保存图片
 1. 创建MenuBuilder组件作为菜单弹窗，使用[SaveButton](../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md)组件实现图片保存，通过bindContextMenu将MenuBuilder与Web绑定。
 2. 在onContextMenuShow中获取图片url，通过copyLocalPicToDir或copyUrlPicToDir将图片保存至应用沙箱。
