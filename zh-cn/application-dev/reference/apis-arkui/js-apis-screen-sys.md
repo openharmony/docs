@@ -159,11 +159,15 @@ screen.off('connect', callback);
 screen.off('connect');
 ```
 
-## screen.makeExpand
+## screen.makeExpand<sup>(deprecated)</sup>
 
 makeExpand(options:Array&lt;ExpandOption&gt;, callback: AsyncCallback&lt;number&gt;): void
 
 将屏幕设置为扩展模式，使用callback异步回调。
+
+> **说明：**
+> 
+> 从API version 9开始支持，从API version 20开始废弃。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -209,11 +213,15 @@ screen.makeExpand(expandOptionArray, (err: BusinessError, data: number) => {
 });
 ```
 
-## screen.makeExpand
+## screen.makeExpand<sup>(deprecated)</sup>
 
 makeExpand(options:Array&lt;ExpandOption&gt;): Promise&lt;number&gt;
 
 将屏幕设置为扩展模式，使用Promise异步回调。
+
+> **说明：**
+> 
+> 从API version 9开始支持，从API version 20开始废弃。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -260,11 +268,15 @@ screen.makeExpand(expandOptionArray).then((
 });
 ```
 
-## screen.stopExpand<sup>10+</sup>
+## screen.stopExpand<sup>(deprecated)</sup>
 
 stopExpand(expandScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 停止屏幕的扩展模式，使用callback异步回调。
+
+> **说明：**
+> 
+> 从API version 10开始支持，从API version 20开始废弃。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -301,11 +313,15 @@ screen.stopExpand(expandScreenIds, (err: BusinessError) => {
 });
 ```
 
-## screen.stopExpand<sup>10+</sup>
+## screen.stopExpand<sup>(deprecated)</sup>
 
 stopExpand(expandScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 
 停止屏幕的扩展模式，使用Promise异步回调。
+
+> **说明：**
+> 
+> 从API version 10开始支持，从API version 20开始废弃。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
