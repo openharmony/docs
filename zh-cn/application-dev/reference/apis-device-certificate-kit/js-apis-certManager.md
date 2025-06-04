@@ -253,7 +253,7 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.     |
 | 17500003 | The keystore is in an invalid format or the keystore password is incorrect. |
-| 17500004<sup>12+</sup> | The number of certificates or credentials reaches the maximum allowed. |
+| 17500004 | The number of certificates or credentials reaches the maximum allowed. |
 
 **示例**：
 ```ts
@@ -312,7 +312,7 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.     |
 | 17500003 | The keystore is in an invalid format or the keystore password is incorrect. |
-| 17500004<sup>12+</sup> | The number of certificates or credentials reaches the maximum allowed. |
+| 17500004 | The number of certificates or credentials reaches the maximum allowed. |
 
 **示例**：
 
@@ -372,7 +372,7 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 | 401                    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 17500001               | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.                                              |
 | 17500003               | The keystore is in an invalid format or the keystore password is incorrect. |
-| 17500004<sup>12+</sup> | The number of certificates or credentials reaches the maximum allowed. |
+| 17500004               | The number of certificates or credentials reaches the maximum allowed. |
 
 **示例：**
 
@@ -634,8 +634,8 @@ installUserTrustedCertificateSync(cert: Uint8Array, certScope: CertScope) : CMRe
 | 401                    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 17500001               | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.                                                                                                                                 |
 | 17500003               | Indicates that the certificate is in an invalid format.                                                                                         |
-| 17500004<sup>12+</sup> | Indicates that the number of certificates reaches the maximum allowed.                                                                          |
-| 17500007<sup>18+</sup> | Indicates that the device enters advanced security mode. In this mode, the user CA certificate cannot be installed.                             |
+| 17500004               | Indicates that the number of certificates reaches the maximum allowed.                                                                          |
+| 17500007               | Indicates that the device enters advanced security mode. In this mode, the user CA certificate cannot be installed.                             |
 
 **示例**：
 
