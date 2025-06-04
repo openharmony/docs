@@ -22,7 +22,7 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 
 ## onDragStart
 
-onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | DragItemInfo)
+onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | DragItemInfo): T
 
 第一次拖拽此事件绑定的组件时，长按时间 >= 500ms，然后手指移动距离 >= 10vp，触发回调。
 
@@ -42,17 +42,17 @@ onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | D
 
 | 参数名      | 类型                            | 必填 | 说明               |
 | ----------- | ------------------------------- | ---- | ------------------ |
-| event    | (event: [DragEvent](#dragevent7), extraParams?: string) => [CustomBuilder](ts-types.md#custombuilder8) &nbsp;\|&nbsp; [DragItemInfo](#dragiteminfo说明)  | 是   | 回调函数。<br/> **说明：**<br/> event为拖拽事件信息。<br/> extraParams为拖拽事件额外信息。需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
+| event    | (event: [DragEvent](#dragevent7), extraParams?: string) => [CustomBuilder](ts-types.md#custombuilder8) &nbsp;\|&nbsp; [DragItemInfo](#dragiteminfo说明)  | 是   | 回调函数。<br/> **说明：**<br/> event为拖拽事件信息。<br/> extraParams为拖拽事件额外信息。需要解析为Json格式，参考[extraParams](#extraparams说明)说明。<br/> CustomBuilder为拖拽过程中显示的组件信息，不支持全局builder。|
 
 **返回值：**
 
-| 类型                                                         | 说明                     |
-| ------------------------------------------------------------ | ------------------------ |
-| [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[DragItemInfo](#dragiteminfo说明) | 拖拽过程中显示的组件信息。<br/>**说明：** 不支持全局builder。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## onDragEnter
 
-onDragEnter(event: (event: DragEvent, extraParams?: string) => void)
+onDragEnter(event: (event: DragEvent, extraParams?: string) => void): T
 
 拖拽进入组件范围内时，触发回调，当监听了[onDrop](#ondrop)事件时，此事件才有效。
 
@@ -66,9 +66,15 @@ onDragEnter(event: (event: DragEvent, extraParams?: string) => void)
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event    | (event: [DragEvent](#dragevent7), extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## onDragMove
 
-onDragMove(event: (event: DragEvent, extraParams?: string) => void)
+onDragMove(event: (event: DragEvent, extraParams?: string) => void): T
 
 拖拽在组件范围内移动时，触发回调，当监听了[onDrop](#ondrop)事件时，此事件才有效。
 
@@ -82,9 +88,15 @@ onDragMove(event: (event: DragEvent, extraParams?: string) => void)
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event    | (event: [DragEvent](#dragevent7), extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## onDragLeave
 
-onDragLeave(event: (event: DragEvent, extraParams?: string) => void)
+onDragLeave(event: (event: DragEvent, extraParams?: string) => void): T
 
 拖拽离开组件范围内时，触发回调，当监听了[onDrop](#ondrop)事件时，此事件才有效。
 
@@ -98,9 +110,15 @@ onDragLeave(event: (event: DragEvent, extraParams?: string) => void)
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event    | (event: [DragEvent](#dragevent7), extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## onDrop
 
-onDrop(event: (event: DragEvent, extraParams?: string) => void)
+onDrop(event: (event: DragEvent, extraParams?: string) => void): T
 
 绑定此事件的组件可作为释放目标。当在本组件范围内停止拖放行为时，将触发回调。如果开发者未在onDrop中主动调用event.setResult()来设置拖拽接收的结果，对于系统支持的默认可拖入组件，处理结果将依据系统实际处理的数据。对于其他组件，系统将默认视为数据接收成功。
 
@@ -114,9 +132,15 @@ onDrop(event: (event: DragEvent, extraParams?: string) => void)
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event    | (event: [DragEvent](#dragevent7), extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## onDrop<sup>15+</sup>
 
-onDrop(eventCallback: OnDragEventCallback, dropOptions?: DropOptions)
+onDrop(eventCallback: OnDragEventCallback, dropOptions?: DropOptions): T
 
 绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。如果开发者没有在onDrop中主动调用event.setResult()设置拖拽接收的结果，若拖拽组件为系统支持默认拖入的组件，以系统实际处理数据结果为准，其它组件则系统按照数据接收成功处理。
 
@@ -128,12 +152,18 @@ onDrop(eventCallback: OnDragEventCallback, dropOptions?: DropOptions)
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| eventCallback  | (event: DragEvent, extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
-| dropOptions  | bool   | 否   | 设置拖拽是否提前获取数据。<br/>**说明：**<br/> 当使用startDataLoading获取数据时需设置该参数为true，防止拖拽提前获取数据。 |
+| eventCallback  | [OnDragEventCallback](#ondrageventcallback15)   | 是   | 回调函数。|
+| dropOptions  | [DropOptions](#dropoptions15)   | 否   | 落入过程的参数。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## onDragEnd<sup>10+</sup>
 
-onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
+onDragEnd(event: (event: DragEvent, extraParams?: string) => void): T
 
 绑定此事件的组件触发的拖拽结束后，触发回调。
 
@@ -147,9 +177,15 @@ onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event    | (event: [DragEvent](#dragevent7), extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，不包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## onPreDrag<sup>12+</sup>
 
-onPreDrag(event: (preDragStatus: PreDragStatus) => void)
+onPreDrag(callback: Callback\<PreDragStatus>)
 
 绑定此事件的组件，当处于拖拽发起前的不同阶段时，触发回调。
 
@@ -161,7 +197,7 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| callback    | Callback<(preDragStatus: [PreDragStatus](#predragstatus12枚举说明)> ) => void     | 是   | 回调函数。|
+| callback    | Callback<[PreDragStatus](#predragstatus12枚举说明)>     | 是   | 回调函数。|
 
 ## DragItemInfo说明
 
@@ -233,7 +269,7 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 | getWindowY()<sup>10+</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | getDisplayX()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的x轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | getDisplayY()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\|'Alt'\|'Shift'。 <br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
+| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => boolean | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\|'Alt'\|'Shift'。 <br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
 | startDataLoading(options: [DataSyncOptions](#datasyncoptions15))<sup>15+</sup> | string | 异步获取拖拽数据，并通知开发者当前数据同步进度，仅支持在onDrop阶段使用。数据传输过程中可使用[cancelDataLoading](../js-apis-arkui-UIContext.md#canceldataloading15)接口取消。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | getX()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。<br>从API version 10开始不再维护，建议使用getWindowX()代替。 |
 | getY()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br>从API version 10开始不再维护，建议使用getWindowY()代替。 |
@@ -319,6 +355,33 @@ type DataSyncOptions = GetDataParams
 | 类型 | 说明 |
 | ----- | ----------------- |
 | [GetDataParams](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#getdataparams15) | 表示从UDMF获取数据时的参数，包含目标路径、文件冲突选项、进度条类型等。|
+
+## OnDragEventCallback<sup>15+</sup>
+
+type OnDragEventCallback = (event: DragEvent, extraParams?: string) => void
+
+拖拽事件的回调函数。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型 |必填 |说明 |
+| ----- | ----------------- | ----- | ----- |
+| event | [DragEvent](#dragevent7)| 是 |  event为拖拽事件信息，包括拖拽点坐标。|
+| extraParams| string |否 | extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
+
+## DropOptions<sup>15+</sup>
+
+设置落入过程的参数。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名     | 类型  | 只读 | 可选 | 描述             |
+| ------ | ------ | ---------------- | ------ | ------ |
+| disableDataPrefetch | bool  | 否  | 否  | 设置拖拽是否提前获取数据。<br/>**说明：**<br/> 当使用startDataLoading获取数据时需设置该参数为true，防止拖拽提前获取数据。 |
 
 ## 示例
 

@@ -6237,7 +6237,7 @@ start(): Promise<void\>
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise对象，成功表示启动音频渲染器成功，异常将返回error对象：<br>错误码6800301：表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
+| Promise\<void> | Promise对象，成功表示启动音频渲染器成功。异常将返回error对象：<br>错误码6800301：表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
 
 **示例：**
 
@@ -7931,7 +7931,7 @@ let markReachCallback = (position: number) => {
   }
 };
 
-audioRenderer.on('markReach', markReachCallback);
+audioRenderer.on('markReach', 1000, markReachCallback);
 
 audioRenderer.off('markReach', markReachCallback);
 ```
@@ -8661,7 +8661,7 @@ start(): Promise<void\>
 
 | 类型           | 说明                          |
 | :------------- | :---------------------------- |
-| Promise<void\> | Promise对象，成功表示启动音频采集器成功，异常将返回error对象：<br>错误码6800301：表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
+| Promise<void\> | Promise对象，成功表示启动音频采集器成功。异常将返回error对象：<br>错误码6800301：表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
 
 **示例：**
 
@@ -9429,7 +9429,7 @@ let markReachCallback = (position: number) => {
   }
 };
 
-audioCapturer.on('markReach', markReachCallback);
+audioCapturer.on('markReach', 1000, markReachCallback);
 
 audioCapturer.off('markReach', markReachCallback);
 ```

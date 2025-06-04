@@ -87,8 +87,8 @@ onResult(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#call
 
 | 参数名                       | 类型   | 说明                                                         |
 | ---------------------------- | ------ | ------------------------------------------------------------ |
-| code                        | number | 收到来自对端Ability的处理結果code。                          |
-| want                        | Want | 收到来自对端Ability的处理結果[Want](../../apis-ability-kit/js-apis-app-ability-want.md)。 |
+| code                        | number | 收到来自对端Ability的处理结果code。                          |
+| want                        | Want | 收到来自对端Ability的处理结果[Want](../../apis-ability-kit/js-apis-app-ability-want.md)。 |
 
 ### onRelease<sup>(deprecated)</sup>
 
@@ -391,7 +391,7 @@ struct Second {
 
         Button("点击向UIExtensionAbility发送数据").onClick(() => {
           if (this.proxy != undefined) {
-            this.proxy.send({data: "你好1"})
+            this.proxy.send({data: "你好1"});
 
             try {
               let re = this.proxy.sendSync({data: "你好2"});

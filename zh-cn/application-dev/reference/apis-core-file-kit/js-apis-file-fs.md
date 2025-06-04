@@ -4222,6 +4222,7 @@ getBaseFile(): File
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
@@ -4264,6 +4265,7 @@ openRead(): ReadStream
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
@@ -4292,7 +4294,7 @@ try {
     },1000);
   })
 } catch (err) {
-  hilog.error(0x0000, 'AtomicFile', 'failed! , Cause: %{public}s', JSON.stringify(err) ?? '');
+  hilog.error(0x0000, 'AtomicFile', 'failed!, err : %{public}s', err.message);
 }
 ```
 
@@ -4316,6 +4318,7 @@ readFully(): ArrayBuffer
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
@@ -4340,7 +4343,7 @@ try {
     },1000);
   })
 } catch (err) {
-  hilog.error(0x0000, 'AtomicFile', 'failed!, Cause: %{public}s', JSON.stringify(err) ?? '');
+  hilog.error(0x0000, 'AtomicFile', 'failed!, err : %{public}s', err.message);
 }
 ```
 
@@ -4368,6 +4371,7 @@ startWrite(): WriteStream
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
@@ -4380,7 +4384,7 @@ let pathDir = context.filesDir;
 try {
   let file = new fs.AtomicFile(`${pathDir}/write.txt`);
   let writeSream = file.startWrite();
-  hilog.error(0x0000, 'AtomicFile', 'startWrite end');
+  hilog.info(0x0000, 'AtomicFile', 'startWrite end');
   writeSream.write("xxxxxxxx","utf-8",()=> {
     hilog.info(0x0000, 'AtomicFile', 'write end');
   })
@@ -4403,6 +4407,7 @@ finishWrite(): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
@@ -4419,7 +4424,7 @@ try {
     file.finishWrite();
   })
 } catch (err) {
-  hilog.error(0x0000, 'AtomicFile', 'failed! , Cause: %{public}s', JSON.stringify(err) ?? '');
+  hilog.error(0x0000, 'AtomicFile', 'failed!, err : %{public}s', err.message);
 }
 ```
 
@@ -4437,6 +4442,7 @@ failWrite(): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
@@ -4456,7 +4462,7 @@ try {
   })
 } catch (err) {
   file.failWrite();
-  hilog.error(0x0000, 'AtomicFile', 'failed! , Cause: %{public}s', JSON.stringify(err) ?? '');
+  hilog.error(0x0000, 'AtomicFile', 'failed!, err : %{public}s', err.message);
 }
 ```
 
@@ -4474,6 +4480,7 @@ delete(): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs} from '@kit.CoreFileKit';
@@ -4498,7 +4505,7 @@ try {
     },1000);
   })
 } catch (err) {
-  hilog.error(0x0000, 'AtomicFile', 'failed!, Cause: %{public}s', JSON.stringify(err) ?? '');
+  hilog.error(0x0000, 'AtomicFile', 'failed!, err : %{public}s', err.message);
 }
 ```
 
@@ -4530,8 +4537,11 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 
 **示例：**
 
+<!--code_no_check-->
   ```ts
+  import { common } from '@kit.AbilityKit';
   import { fileIo as fs, WatchEvent } from '@kit.CoreFileKit';
+
   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let pathDir = context.filesDir;
@@ -4609,6 +4619,7 @@ cancel(): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
@@ -4628,23 +4639,24 @@ let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
   console.info(`progressSize: ${progress.processedSize}, totalSize: ${progress.totalSize}`);
   if (progress.processedSize / progress.totalSize > 0.5) {
     copySignal.cancel();
+    console.info("copy cancel.");
   }
 };
 let options: fs.CopyOptions = {
   "progressListener" : progressListener,
-  "copySignal" : new fs.TaskSignal,
+  "copySignal" : copySignal,
 }
-console.info("copyFileWithCancel success.");
+
 try {
-  fs.copy(srcDirPathLocal, dstDirUriLocal, options, (err: BusinessError) => {
+  fs.copy(srcDirUriLocal, dstDirUriLocal, options, (err: BusinessError) => {
     if (err) {
-      console.info("copyFileWithCancel fail.");
+      console.error("copy fail, err: ", err.message);
       return;
     }
-    console.info("copyFileWithCancel success.");
+    console.info("copy success.");
   })
 } catch (err) {
-  console.error("copyFileWithCancel failed with invalid param.");
+  console.error("copyFileWithCancel failed, err: ", err.message);
 }
 
 ```

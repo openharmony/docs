@@ -49,13 +49,13 @@ getOneCfgFile(relPath: string, callback: AsyncCallback&lt;string&gt;)
       if (error == null) {
         console.log('value is ' + value);
       } else {
-        console.log('error occurs ' + error);
+        console.error('error: ' + error.code + ', ' + error.message);
       }
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -97,12 +97,12 @@ getOneCfgFile(relPath: string): Promise&lt;string&gt;
     configPolicy.getOneCfgFile(relpath).then((value: string) => {
       console.log('value is ' + value);
     }).catch((error: BusinessError) => {
-      console.log('getOneCfgFile promise ' + error);
+      console.error('getOneCfgFile promise error: ' + error.code + ', ' + error.message);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -140,13 +140,13 @@ getCfgFiles(relPath: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
       if (error == null) {
         console.log('value is ' + value);
       } else {
-        console.log('error occurs ' + error);
+        console.error('error: ' + error.code + ', ' + error.message);
       }
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -188,12 +188,12 @@ getCfgFiles(relPath: string): Promise&lt;Array&lt;string&gt;&gt;
     configPolicy.getCfgFiles(relpath).then((value: Array<string>) => {
       console.log('value is ' + value);
     }).catch((error: BusinessError) => {
-      console.log('getCfgFiles promise ' + error);
+      console.error('getCfgFiles promise error: ' + error.code + ', ' + error.message);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -229,13 +229,13 @@ getCfgDirList(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
       if (error == null) {
         console.log('value is ' + value);
       } else {
-        console.log('error occurs ' + error);
+        console.error('error: ' + error.code + ', ' + error.message);
       }
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -262,12 +262,12 @@ getCfgDirList(): Promise&lt;Array&lt;string&gt;&gt;
     configPolicy.getCfgDirList().then((value: Array<string>) => {
       console.log('value is ' + value);
     }).catch((error: BusinessError) => {
-      console.log('getCfgDirList promise ' + error);
+      console.error('getCfgDirList promise error: ' + error.code + ', ' + error.message);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -308,13 +308,13 @@ getOneCfgFile(relPath: string, followMode: FollowXMode, callback: AsyncCallback&
       if (error == null) {
         console.log('value is ' + value);
       } else {
-        console.log('error occurs ' + error);
+        console.error('error: ' + error.code + ', ' + error.message);
       }
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -357,13 +357,13 @@ getOneCfgFile(relPath: string, followMode: FollowXMode, extra: string, callback:
       if (error == null) {
         console.log('value is ' + value);
       } else {
-        console.log('error occurs ' + error);
+        console.error('error: ' + error.code + ', ' + error.message);
       }
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -408,12 +408,12 @@ getOneCfgFile(relPath: string, followMode: FollowXMode, extra?: string): Promise
     configPolicy.getOneCfgFile(relpath, configPolicy.FollowXMode.SIM_DEFAULT, extra).then((value: string) => {
       console.log('value is ' + value);
     }).catch((error: BusinessError) => {
-      console.log('getOneCfgFile promise ' + error);
+      console.error('getOneCfgFile promise error: ' + error.code + ', ' + error.message);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -461,7 +461,7 @@ getOneCfgFileSync(relPath: string, followMode?: FollowXMode, extra?: string): st
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -502,13 +502,13 @@ getCfgFiles(relPath: string, followMode: FollowXMode, callback: AsyncCallback&lt
       if (error == null) {
         console.log('value is ' + value);
       } else {
-        console.log('error occurs ' + error);
+        console.error('error: ' + error.code + ', ' + error.message);
       }
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -551,13 +551,13 @@ getCfgFiles(relPath: string, followMode: FollowXMode, extra: string, callback: A
       if (error == null) {
         console.log('value is ' + value);
       } else {
-        console.log('error occurs ' + error);
+        console.error('error: ' + error.code + ', ' + error.message);
       }
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -602,12 +602,12 @@ getCfgFiles(relPath: string, followMode: FollowXMode, extra?: string): Promise&l
     configPolicy.getCfgFiles(relpath, configPolicy.FollowXMode.SIM_DEFAULT, extra).then((value: Array<string>) => {
       console.log('value is ' + value);
     }).catch((error: BusinessError) => {
-      console.log('getCfgFiles promise ' + error);
+      console.error('getCfgFiles promise error: ' + error.code + ', ' + error.message);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -655,7 +655,7 @@ getCfgFilesSync(relPath: string, followMode?: FollowXMode, extra?: string): Arra
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 
@@ -685,7 +685,7 @@ getCfgDirListSync(): Array&lt;string&gt;
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.log('error:' + code + ',' + message);
+    console.error('error:' + code + ', ' + message);
   }
   ```
 

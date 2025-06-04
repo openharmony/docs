@@ -113,7 +113,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
        .nm_register_func = Init,
        .nm_modname = "entry",
        .nm_priv = ((void*)0),
-       .reserved = { 0 },
+       .reserved = { 0 }
    };
 
    extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
@@ -125,7 +125,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 6. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，新增按钮触发踩内存事件：
 
    ```ts
-   import testNapi from 'libentry.so'
+   import testNapi from 'libentry.so';
 
    @Entry
    @Component

@@ -1515,7 +1515,7 @@ Preferences.flush()保存并刷新文件内容。
 + 二维码解析功能在QRCodeParser中
     + 拍照获取图片：使用(
       cameraService.imageReceiver.on)[reference/apis-image-kit/js-apis-image.md#on9]接收图片时注册回调，然后调用readNextImage获取处理图片的操作，然后使用getComponent方法根据图像的组件类型从图像中获取组件缓存，然后将获取到的ArrayBuffer写入指定文件中，返回文件uri，然后通过[ImageBitmap](reference/apis-arkui/arkui-ts/ts-components-canvas-imagebitmap.md)将uri转化为ImageBitMap格式，具体文件写入方式参考[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)。
-    + 打开相册选取图片：首先需要使用[startAbilityForResult](reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult)启动相册，将选到的图片通过ImageBitmap转化为ImageBitmap格式。
+    + 打开相册选取图片：首先需要使用[startAbilityForResult](reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilityforresult)启动相册，将选到的图片通过ImageBitmap转化为ImageBitmap格式。
     + 图片解析：使用[CanvasRenderingContext2D](reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md)的getImageData方法创建ImageData对象将相册中获取到的图片转化为util8格式的图片，然后调用jsQR库解析图片中的二维码。
 
 ##### 约束与限制
@@ -4473,7 +4473,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 * 在跨端迁移随手记应用里，迁移设置的功能在Setting.ets和entryability中的onContinue()实现：
 
-  * 通过[UIAbilityContext](reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)的[setMissionContinueState](reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10)可以设置当前应用任务流转的状态，控制当前应用是否具有迁移能力。
+  * 通过[UIAbilityContext](reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)的[setMissionContinueState](reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#setmissioncontinuestate10)可以设置当前应用任务流转的状态，控制当前应用是否具有迁移能力。
 
   * 通过设置wantConstant.Params.SUPPORT_CONTINUE_PAGE_STACK_KEY和wantConstant.Params.SUPPORT_CONTINUE_SOURCE_EXIT_KEY的值可以控制当前应用是否迁移页面栈以及迁移后源端是否退出。
 
