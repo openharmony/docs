@@ -126,7 +126,9 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     ```
 
 ## PC/2in1设备录屏窗口选择界面规格说明
-基于录屏取码流接口提供了PC/2in1设备录屏窗口选择界面，按照以下表格中的配置弹出相应的弹窗。PC/2in1设备弹出Picker选择弹窗并根据传入的窗口Id选中对应窗口。最终录屏内容以Picker弹出后，用户在弹窗上的选择为准。设置OH_AVScreenCapture_SetCaptureArea接口后，区域录屏功能生效，弹出隐私允许/不允许弹窗。
+基于录屏取码流接口提供了PC/2in1设备录屏窗口选择界面，按照以下表格中的配置弹出相应的弹窗。PC/2in1设备弹出Picker选择弹窗并根据传入的窗口Id选中对应窗口。最终录屏内容以Picker弹出后，用户在弹窗上的选择为准。
+
+API 20开始，支持通过OH_AVScreenCapture_SetCaptureArea接口，设置区域录屏功能生效，弹出隐私允许/不允许弹窗。
 
 | 屏幕模式类型                                          | 传入窗口Id数量     | 弹窗类型            |
 | ----------------------------------------------------- | ------------------ | ------------------- |
@@ -600,7 +602,7 @@ static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
                                        .videoInfo = videoinfo};
     OH_AVScreenCapture_Init(capture, config);
 
-    // 可选，可以根据需要设置区域坐标和大小，设置想要捕获的区域，如下方创建了一个从（0，0）为起点的长100，宽100的矩形区域；此接口也可以在开始录屏以后设置；
+    // 可选（API 20开始支持）：可以根据需要设置区域坐标和大小，设置想要捕获的区域，如下方创建了一个从（0，0）为起点的长100，宽100的矩形区域。此接口也可以在开始录屏以后设置。
     OH_Rect* region = new OH_Rect;
     region->x = 0;
     region->y = 0;
