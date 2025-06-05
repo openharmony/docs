@@ -5241,7 +5241,7 @@ avTranscoder.release().then(() => {
 
 on(type: 'progressUpdate', callback: Callback\<number>): void
 
-注册转码进度更新事件，并通过注册的回调方法通知用户。用户只能注册一个进度更新事件的回调方法，当用户重复注册时，以最后一次注册的回调接口为准。
+注册转码进度更新事件，并通过注册的回调方法通知开发者。开发者只能注册一个进度更新事件的回调方法，当开发者重复注册时，以最后一次注册的回调接口为准。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
@@ -5272,7 +5272,7 @@ off(type:'progressUpdate', callback?: Callback\<number>): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 进度更新事件回调类型，支持的事件：'progressUpdate'，用户操作和系统都会触发此事件。 |
+| type   | string | 是   | 进度更新事件回调类型，支持的事件：'progressUpdate'，开发者操作和系统都会触发此事件。 |
 | callback | [Callback\<number>](../apis-basic-services-kit/js-apis-base.md#callback) | 否   | 已注册的进度更新事件回调。由于当前回调注册时，仅会保留最后一次注册的回调，建议此参数缺省。 |
 
 **示例：**
@@ -5285,9 +5285,9 @@ avTranscoder.off('progressUpdate');
 
 on(type: 'error', callback: ErrorCallback): void
 
-注册AVtranscoder的错误事件，该事件仅用于错误提示。如果AVTranscoder上报error事件，用户需要通过[release()](#release12)退出转码操作。
+注册AVtranscoder的错误事件，该事件仅用于错误提示。如果AVTranscoder上报error事件，开发者需要通过[release()](#release12)退出转码操作。
 
-用户只能订阅一个错误事件的回调方法，当用户重复订阅时，以最后一次订阅的回调接口为准。
+开发者只能订阅一个错误事件的回调方法，当开发者重复订阅时，以最后一次订阅的回调接口为准。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
@@ -5348,9 +5348,9 @@ avTranscoder.off('error');
 
 on(type: 'complete', callback: Callback\<void>): void
 
-注册转码完成事件，并通过注册的回调方法通知用户。用户只能注册一个进度更新事件的回调方法，当用户重复注册时，以最后一次注册的回调接口为准。
+注册转码完成事件，并通过注册的回调方法通知开发者。开发者只能注册一个进度更新事件的回调方法，当开发者重复注册时，以最后一次注册的回调接口为准。
 
-当AVTranscoder上报complete事件时，当前转码操作已完成，用户需要通过[release()](#release12)退出转码操作。
+当AVTranscoder上报complete事件时，当前转码操作已完成，开发者需要通过[release()](#release12)退出转码操作。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
@@ -5366,7 +5366,7 @@ on(type: 'complete', callback: Callback\<void>): void
 ```ts
 avTranscoder.on('complete', async () => {
   console.info('avTranscoder complete');
-  // 用户须在此监听转码完成事件
+  // 开发者须在此监听转码完成事件
   // 须等待avTranscoder.release()完成之后，再对转码后的文件进行转发、上传、转存等处理
   await avTranscoder.release();
   avTranscoder = undefined;
@@ -5385,7 +5385,7 @@ off(type:'complete', callback?: Callback\<void>): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 转码完成事件回调类型，支持的事件：'complete'，用户操作和系统都会触发此事件。 |
+| type   | string | 是   | 转码完成事件回调类型，支持的事件：'complete'，开发者操作和系统都会触发此事件。 |
 | callback | [Callback\<void>](../apis-basic-services-kit/js-apis-base.md#callback) | 否   | 完成事件回调方法。 |
 
 **示例：**
