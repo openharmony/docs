@@ -14,211 +14,188 @@ websocket支持心跳检测机制，在客户端和服务端建立WebSocket连�
 
 ## client端开发步骤
 
-### 导入所需模块
+1. 导入webSocket以及错误码模块。
 
-导入webSocket以及错误码模块。
+    ```js
+    import { webSocket } from '@kit.NetworkKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    ```
 
-```js
-import { webSocket } from '@kit.NetworkKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-```
+2. 创建WebSocket连接，返回一个WebSocket对象。
 
-### 创建WebSocket连接
+    ```js
+    let defaultIpAddress = "ws://";
+    let ws = webSocket.createWebSocket();
+    ```
 
-创建一个WebSocket连接，返回一个WebSocket对象。
+3. 订阅WebSocket的打开、消息接收、关闭、Error事件（可选）。
 
-```js
-let defaultIpAddress = "ws://";
-let ws = webSocket.createWebSocket();
-```
-
-### 订阅WebSocket的回调事件（可选）
-
-（可选）订阅WebSocket的打开、消息接收、关闭、Error事件。
-
-```js
-ws.on('open', (err: BusinessError, value: Object) => {
-  console.log("on open, status:" + JSON.stringify(value));
-  // 当收到on('open')事件时，可以通过send()方法与服务器进行通信。
-  ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
-    if (!err) {
-      console.log("Message send successfully");
-    } else {
-      console.log("Failed to send the message. Err:" + JSON.stringify(err));
-    }
-  });
-});
-ws.on('message', (err: BusinessError, value: string | ArrayBuffer) => {
-  console.log("on message, message:" + value);
-  // 当收到服务器的`bye`消息时（此消息字段仅为示意，具体字段需要与服务器协商），主动断开连接。
-  if (value === 'bye') {
-    ws.close((err: BusinessError, value: boolean) => {
-      if (!err) {
-        console.log("Connection closed successfully");
-      } else {
-        console.log("Failed to close the connection. Err: " + JSON.stringify(err));
+    ```js
+    ws.on('open', (err: BusinessError, value: Object) => {
+      console.log("on open, status:" + JSON.stringify(value));
+      // 当收到on('open')事件时，可以通过send()方法与服务器进行通信。
+      ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
+        if (!err) {
+          console.log("Message send successfully");
+        } else {
+          console.log("Failed to send the message. Err:" + JSON.stringify(err));
+        }
+      });
+    });
+    ws.on('message', (err: BusinessError, value: string | ArrayBuffer) => {
+      console.log("on message, message:" + value);
+      // 当收到服务器的`bye`消息时（此消息字段仅为示意，具体字段需要与服务器协商），主动断开连接。
+      if (value === 'bye') {
+        ws.close((err: BusinessError, value: boolean) => {
+          if (!err) {
+            console.log("Connection closed successfully");
+          } else {
+            console.log("Failed to close the connection. Err: " + JSON.stringify(err));
+          }
+        });
       }
     });
-  }
-});
-ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
-  console.log("on close, code is " + value.code + ", reason is " + value.reason);
-});
-ws.on('error', (err: BusinessError) => {
-  console.log("on error, error:" + JSON.stringify(err));
-});
-```
+    ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
+      console.log("on close, code is " + value.code + ", reason is " + value.reason);
+    });
+    ws.on('error', (err: BusinessError) => {
+      console.log("on error, error:" + JSON.stringify(err));
+    });
+    ```
 
-### 发起WebSocket连接
+4. 根据URL地址，发起WebSocket连接。
 
-根据URL地址，发起WebSocket连接。
+    ```js
+    ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
+      if (!err) {
+        console.log("Connected successfully");
+      } else {
+        console.log("Connection failed. Err:" + JSON.stringify(err));
+      }
+    });
+    ```
+5. 使用完WebSocket连接之后，主动断开连接。
 
-```js
-ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
-  if (!err) {
-    console.log("Connected successfully");
-  } else {
-    console.log("Connection failed. Err:" + JSON.stringify(err));
-  }
-});
-```
-### 主动断开连接
-
-使用完WebSocket连接之后，主动断开连接。
-
-```js
-ws.close((err: BusinessError, value: boolean) => {
-  if (!err) {
-    console.log("close successfully");
-  } else {
-    console.log("close failed. Err:" + JSON.stringify(err));
-  }
-});
-```
+    ```js
+    ws.close((err: BusinessError, value: boolean) => {
+      if (!err) {
+        console.log("close successfully");
+      } else {
+        console.log("close failed. Err:" + JSON.stringify(err));
+      }
+    });
+    ```
 
 ## server端开发步骤
 
-### 导入所需模块
+1. 导入webSocket以及错误码模块。
 
-导入webSocket以及错误码模块。
+    ```js
+    import { webSocket } from '@kit.NetworkKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    ```
 
-```js
-import { webSocket } from '@kit.NetworkKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-```
+2. 创建WebSocketServer对象。
 
-### 创建WebSocketServer对象
+    ```js
+    let localServer: webSocket.WebSocketServer;
+    localServer = webSocket.createWebSocketServer();
+    ```
 
-创建一个WebSocketServer对象。
+3. 订阅WebSocketServer的客户端连接事件、消息接收事件、关闭事件、Error事件（可选）。
 
-```js
-let localServer: webSocket.WebSocketServer;
-localServer = webSocket.createWebSocketServer();
-```
+    ```js
+    let connections: webSocket.WebSocketConnection[] = [];
 
-### 订阅WebSocketServer的回调事件（可选）
+    localServer.on('connect', async (connection: webSocket.WebSocketConnection) => {
+      console.info(`New client connected! Client ip: ${connection.clientIP}, Client port: ${connection.clientPort}`);
 
-（可选）订阅WebSocketServer的客户端连接事件、消息接收事件、关闭事件、Error事件。
-
-```js
-let connections: webSocket.WebSocketConnection[] = [];
-
-localServer.on('connect', async (connection: webSocket.WebSocketConnection) => {
-  console.info(`New client connected! Client ip: ${connection.clientIP}, Client port: ${connection.clientPort}`);
-
-  try {
-    connections = await localServer.listAllConnections();
-    if (connections.length === 0) {
-      console.info('client list is empty');
-    } else {
-      console.info(`client list cnt: ${connections.length}, client connections list is: ${connections}`);
-    }
-  } catch (error) {
-    console.error(`Failed to listAllConnections. Code: ${error.code}, message: ${error.message}`);
-  }
-});
-
-localServer.on('messageReceive', (message: webSocket.WebSocketMessage) => {
-  try{
-    console.info(`on message received, client: ${message.clientConnection}, data: ${message.data}`);
-    // 当收到客户端的"bye"消息时（此消息字段仅为示意，具体字段需要与客户端协商），主动断开连接。
-    if (message.data === 'bye') {
-      localServer.close(message.clientConnection).then((success: boolean) => {
-        if (success) {
-          console.info('close client successfully');
+      try {
+        connections = await localServer.listAllConnections();
+        if (connections.length === 0) {
+          console.info('client list is empty');
         } else {
-          console.info('close client failed');
+          console.info(`client list cnt: ${connections.length}, client connections list is: ${connections}`);
         }
-      });
+      } catch (error) {
+        console.error(`Failed to listAllConnections. Code: ${error.code}, message: ${error.message}`);
+      }
+    });
+
+    localServer.on('messageReceive', (message: webSocket.WebSocketMessage) => {
+      try{
+        console.info(`on message received, client: ${message.clientConnection}, data: ${message.data}`);
+        // 当收到客户端的"bye"消息时（此消息字段仅为示意，具体字段需要与客户端协商），主动断开连接。
+        if (message.data === 'bye') {
+          localServer.close(message.clientConnection).then((success: boolean) => {
+            if (success) {
+              console.info('close client successfully');
+            } else {
+              console.info('close client failed');
+            }
+          });
+        }
+      } catch (error) {
+        console.error(`on messageReceive failed. Code: ${error.code}, message: ${error.message}`);
+      }
+    });
+
+    localServer.on('close', (clientConnection: webSocket.WebSocketConnection, closeReason: webSocket.CloseResult) => {
+      console.info(`client close, client: ${clientConnection}, closeReason: Code: ${closeReason.code}, reason: ${closeReason.reason}`);
+    });
+
+    localServer.on('error', (error: BusinessError) => {
+      console.info(`error. Code: ${error.code}, message: ${error.message}`);
+    });
+    ```
+
+4. 配置config参数启动server端服务。
+
+    ```js
+    let config: webSocket.WebSocketServerConfig = {
+      // 监听端口。
+      serverPort: 8080,
+      maxConcurrentClientsNumber: 10,
+      maxConnectionsForOneClient: 10,
     }
-  } catch (error) {
-    console.error(`on messageReceive failed. Code: ${error.code}, message: ${error.message}`);
-  }
-});
+    localServer.start(config).then((success: boolean) => {
+      if (success) {
+        console.info('webSocket server start success');
+      } else {
+        console.info('websocket server start failed');
+      }
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to start. Code: ${error.code}, message: ${error.message}`);
+    });
+    ```
 
-localServer.on('close', (clientConnection: webSocket.WebSocketConnection, closeReason: webSocket.CloseResult) => {
-  console.info(`client close, client: ${clientConnection}, closeReason: Code: ${closeReason.code}, reason: ${closeReason.reason}`);
-  
-});
+5. 通过WebSocketServer收发消息、监听事件。
 
-localServer.on('error', (error: BusinessError) => {
-  console.info(`error. Code: ${error.code}, message: ${error.message}`);
-});
-```
+    ```js
+    // 当收到on('connect')事件时，可以通过send()方法与客户端进行通信。
+    localServer.send("Hello, I'm server!", connection).then((success: boolean) => {
+      if (success) {
+        console.info('message send successfully');
+      } else {
+        console.info('message send failed');
+      }
+    }).catch((error: BusinessError) => {
+        console.error(`message send failed, Code: ${error.code}, message: ${error.message}`);
+    });
+    ```
 
-### 配置config参数启动server端服务
+6. 使用完WebSocketServer端服务器后，通过stop()停止服务。
 
-配置config参数，通过start()启动server端服务。
-
-```js
-let config: webSocket.WebSocketServerConfig = {
-  // 监听端口。
-  serverPort: 8080,
-  maxConcurrentClientsNumber: 10,
-  maxConnectionsForOneClient: 10,
-}
-localServer.start(config).then((success: boolean) => {
-  if (success) {
-    console.info('webSocket server start success');
-  } else {
-    console.info('websocket server start failed');
-  }
-}).catch((error: BusinessError) => {
-  console.error(`Failed to start. Code: ${error.code}, message: ${error.message}`);
-});
-```
-
-### 通过WebSocketServer收发消息、监听事件
-
-通过WebSocketServer收发消息、监听事件等。
-
-```js
-// 当收到on('connect')事件时，可以通过send()方法与客户端进行通信。
-localServer.send("Hello, I'm server!", connection).then((success: boolean) => {
-    if (success) {
-      console.info('message send successfully');
-    } else {
-      console.info('message send failed');
-    }
-  }).catch((error: BusinessError) => {
-    console.error(`message send failed, Code: ${error.code}, message: ${error.message}`);
-  });
-```
-
-### WebSocketServer停止服务
-
-使用完WebSocketServer端服务器后，通过stop()停止服务
-
-```js
-// 当收到on('close')事件时，可以通过stop()停止服务。
-localServer.stop().then((success: boolean) => {
-    if (success) {
-      console.info('server stop service successfully');
-    } else {
-      console.info('server stop service failed');
-    }
-  });
-```
+    ```js
+    // 当收到on('close')事件时，可以通过stop()停止服务。
+    localServer.stop().then((success: boolean) => {
+      if (success) {
+        console.info('server stop service successfully');
+      } else {
+        console.info('server stop service failed');
+      }
+    });
+    ```
 
 ## 客户端完整示例
 
