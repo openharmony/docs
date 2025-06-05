@@ -1,9 +1,8 @@
 # Scene
-The Scene module is the basic module of ArkGraphics 3D and provides common data types such as **SceneResourceParamters** and **SceneNodeParamters**. It also provides basic methods such as glTF model loading, scene creation, and resource creation.
+The Scene module is the basic module of ArkGraphics 3D and provides common data types such as **SceneResourceParameters** and **SceneNodeParameters**. It also provides basic methods such as glTF model loading, scene creation, and resource creation.
 
 > **NOTE**
->
-> The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 ```ts
@@ -11,7 +10,7 @@ import { SceneResourceParameters, SceneNodeParameters, SceneResourceFactory, Sce
 ```
 
 ## SceneResourceParameters
-Describes the scene resource parameters, which are **name** and **uri**. The parameters describe the name of the scene resource and the path of the resource file required in the 3D scene.
+Describes the scene resource parameters (**name** and **uri**), which are used to provide the name of a scene resource and the path of the resource file required in the 3D scene.
 
 **System capability**: SystemCapability.ArkUi.Graphics3D
 | Name| Type| Read Only| Optional| Description|
@@ -329,8 +328,17 @@ function createEnvironmentPromise() : Promise<Environment> {
 }
 ```
 
+## RenderParameters<sup>15+</sup>
+An object for rendering control parameters, which determine whether the scene should keep rendering continuously.
+
+**System capability**: SystemCapability.ArkUi.Graphics3D
+| Name| Type| Read Only| Optional| Description|
+| ---- | ---- | ---- | ---- | ---- |
+| alwaysRender | boolean | No| Yes | Control flag. The value **true** means that the scene keeps rendering frames continuously. The value **false** or **undefined** (default) means that the scene renders just a single frame. |
+
+
 ## Scene
-Used to set a scene.
+Describes a scene.
 
 ### Properties
 
@@ -339,7 +347,7 @@ Used to set a scene.
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | ---- | ---- | ---- |
 | environment | [Environment](js-apis-inner-scene-resources.md#environment) | No| No| Environment object.|
-| animations | [Animation](js-apis-inner-scene-resources.md#animation)[] | Yes| No| Animation array used to hold the animation objects in the 3D scene.|
+| animations | [Animation](js-apis-inner-scene-resources.md#animation)[] | Yes| No| Animation objects in the 3D scene.|
 | root | [Node](js-apis-inner-scene-nodes.md#node) \| null | Yes| No| Root node in the 3D scene tree.|
 
 ### load
@@ -428,6 +436,40 @@ function getFactory() : void {
     if (result) {
          // Obtain a SceneResourceFactory object.
         let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+    }
+  });
+}
+```
+
+### renderFrame<sup>15+</sup>
+renderFrame(params?: RenderParameters): boolean
+
+Renders a new frame and allows you to specify whether to keep rendering continuously.
+
+**System capability**: SystemCapability.ArkUi.Graphics3D
+
+**Parameters**
+| Name| Type| Mandatory| Description|
+| ---- | ---- | ---- | ---- |
+| params | [RenderParameters](#renderparameters15) | No| Parameters to control rendering, including whether to keep rendering continuously. The default value is undefined.|
+
+**Return value**
+| Type| Description|
+| ---- | ---- |
+| boolean | Rendering and parameter setting result. The value **true** is returned if the operation is successful; returns **false** otherwise.|
+
+**Example**
+```ts
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderParameters } from '@kit.ArkGraphics3D';
+
+function renderFrame() : void {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
+    if (result) {
+         // Perform rendering and keep rendering continuously.
+        let renderParameters: RenderParameters = { alwaysRender: true };
+        let controlResult: boolean = result.renderFrame(renderParameters);
     }
   });
 }

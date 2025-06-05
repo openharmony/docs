@@ -96,7 +96,7 @@ Material resource, which inherits from [SceneResource](#sceneresource).
 
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | ---- | ---- | ---- |
-| materialType | [MaterialType](#materialtype) | Yes| No| Material type.|
+| materialType | [MaterialType](#materialtype) | Yes| No| Type of the material.|
 
 ## ShaderMaterial
 Shader material, which inherits from [Material](#material).
@@ -185,6 +185,8 @@ Called when the animation starts to play. The start operation is triggered by ca
 | Name| Type| Mandatory| Description|
 | ---- | ---- | ---- | ---- |
 | callback | Callback\<void> | Yes| Callback function. The return value is null.|
+
+ 
 
 **System capability**: SystemCapability.ArkUi.Graphics3D
 
