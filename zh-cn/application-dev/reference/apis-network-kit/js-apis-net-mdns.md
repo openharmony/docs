@@ -51,6 +51,7 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: Async
 
 Stage模型示例：
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -70,7 +71,7 @@ let localServiceInfo: mdns.LocalServiceInfo = {
 }
 
 mdns.addLocalService(context, localServiceInfo, (error:BusinessError, data:mdns.LocalServiceInfo) =>  {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -120,6 +121,7 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Local
 
 Stage模型示例：
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -183,6 +185,7 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 
 Stage模型示例：
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -202,7 +205,7 @@ let localServiceInfo: mdns.LocalServiceInfo = {
 }
 
 mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -252,6 +255,7 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Lo
 
 Stage模型示例：
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -311,6 +315,7 @@ createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 
 Stage模型示例：
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -363,6 +368,7 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: A
 
 Stage模型示例：
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -382,7 +388,7 @@ let localServiceInfo: mdns.LocalServiceInfo = {
 }
 
 mdns.resolveLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -432,6 +438,7 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<L
 
 Stage模型示例：
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -476,6 +483,7 @@ startSearchingMDNS(): void
 
 Stage模型示例：
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -506,6 +514,7 @@ stopSearchingMDNS(): void
 
 Stage模型示例：
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -541,6 +550,7 @@ on(type: 'discoveryStart', callback: Callback\<DiscoveryEventInfo\>): void
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -582,6 +592,7 @@ off(type: 'discoveryStart', callback?: Callback\<DiscoveryEventInfo\>): void
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -627,6 +638,7 @@ on(type: 'discoveryStop', callback: Callback\<DiscoveryEventInfo\>): void
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -668,6 +680,7 @@ off(type: 'discoveryStop', callback?: Callback\<DiscoveryEventInfo\>): void
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -713,6 +726,7 @@ on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -757,6 +771,7 @@ off(type: 'serviceFound', callback?: Callback\<LocalServiceInfo>): void
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -805,6 +820,7 @@ on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -846,6 +862,7 @@ off(type: 'serviceLost', callback?: Callback\<LocalServiceInfo>): void
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
