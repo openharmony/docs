@@ -1135,6 +1135,23 @@ struct Index {
   }
 }
 ```
+
+### isDisposed<sup>20+</sup>
+
+isDisposed(): boolean
+
+查询当前BuilderNode对象是否已解除与后端实体节点的引用关系。前端节点均绑定有相应的后端实体节点，当节点调用dispose接口解除绑定后，再次调用接口可能会出现crash、返回默认值的情况。由于业务需求，可能存在节点在dispose后仍被调用接口的情况。为此，提供此接口以供开发者在操作节点前检查其有效性，避免潜在风险。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型    | 说明               |
+| ------- | ------------------ |
+| boolean | 后端实体节点是否解除引用。true为节点已与后端实体节点解除引用，false为节点未与后端实体节点解除引用。
+
 ### postInputEvent<sup>20+</sup>
 
 postInputEvent(event: InputEventType): boolean
@@ -1466,24 +1483,9 @@ struct MyComponent {
 
 ![onAxisEvent](figures/onAxisEvent.gif)
 
-### isDisposed<sup>20+</sup>
+### 示例4（使用isDisposed()检验命令式节点是否有效）
 
-isDisposed(): boolean
-
-查询当前BuilderNode对象是否已解除与后端实体节点的引用关系。前端节点均绑定有相应的后端实体节点，当节点调用dispose接口解除绑定后，再次调用接口可能会出现crash、返回默认值的情况。由于业务需求，可能存在节点在dispose后仍被调用接口的情况。为此，提供此接口以供开发者在操作节点前检查其有效性，避免潜在风险。
-
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型    | 说明               |
-| ------- | ------------------ |
-| boolean | 后端实体节点是否解除引用。true为节点已与后端实体节点解除引用，false为节点未与后端实体节点解除引用。
-
-**示例：**
+该示例演示了释放节点前后分别使用isDisposed接口验证节点的状态，释放节点前节点调用isDisposed接口返回true，释放节点后节点调用isDisposed接口返回false
 
 ```ts
 import {
@@ -1574,7 +1576,7 @@ struct Index {
           this.promptAction.openCustomDialog(this.contentNode);
         })
         .width('100%')
-      Button('DisposeTest')
+      Button('DisposeTest')S
         .onClick(() => {
           this.myNodeController.disposeTest();
           this.promptAction?.closeCustomDialog(this.contentNode);
@@ -1587,5 +1589,4 @@ struct Index {
   }
 }
 ```
-
-![](figures/isDisposed.gif)
+![isDisposed](figures/isDisposed.gif)
