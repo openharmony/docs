@@ -41,7 +41,7 @@ let audioRendererOptions: audio.AudioRendererOptions = {
 };
 let path = getContext().cacheDir;
 // 确保该沙箱路径下存在该资源。
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let writeDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {
@@ -184,7 +184,7 @@ let audioCapturerOptions: audio.AudioCapturerOptions = {
   capturerInfo: audioCapturerInfo
 };
 let path = getContext().cacheDir;
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
 let readDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {

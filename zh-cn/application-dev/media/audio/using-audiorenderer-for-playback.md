@@ -14,7 +14,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 
 ![AudioRenderer status change](figures/audiorenderer-status-change.png)
 
-在进行应用开发的过程中，建议开发者通过[on('stateChange')](../../reference/apis-audio-kit/js-apis-audio.md#onstatechange-8)方法订阅AudioRenderer的状态变更。因为针对AudioRenderer的某些操作，仅在音频播放器在固定状态时才能执行。如果应用在音频播放器处于错误状态时执行操作，系统可能会抛出异常或生成其他未定义的行为。
+在进行应用开发的过程中，建议开发者通过[on('stateChange')](../../reference/apis-audio-kit/js-apis-audio.md#onstatechange8)方法订阅AudioRenderer的状态变更。因为针对AudioRenderer的某些操作，仅在音频播放器在固定状态时才能执行。如果应用在音频播放器处于错误状态时执行操作，系统可能会抛出异常或生成其他未定义的行为。
 
 - prepared状态： 通过调用[createAudioRenderer()](../../reference/apis-audio-kit/js-apis-audio.md#audiocreateaudiorenderer8)方法进入到该状态。
 
@@ -86,7 +86,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
      let bufferSize: number = 0;
      let path = getContext().cacheDir;
      // 确保该沙箱路径下存在该资源。
-     let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+     let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 
      let writeDataCallback = (buffer: ArrayBuffer) => {
@@ -134,7 +134,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
      let bufferSize: number = 0;
      let path = getContext().cacheDir;
      // 确保该沙箱路径下存在该资源。
-     let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+     let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
      let writeDataCallback = (buffer: ArrayBuffer) => {
        // 如果开发者不希望播放某段buffer，可在此处添加判断并对buffer进行置空处理。
@@ -236,7 +236,7 @@ let audioRendererOptions: audio.AudioRendererOptions = {
 };
 let path = getContext().cacheDir;
 // 确保该沙箱路径下存在该资源。
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let writeDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {
