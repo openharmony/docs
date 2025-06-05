@@ -89,7 +89,7 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 | url      | [ResourceStr](ts-types.md#resourcestr) | 否   | GridObjectSortComponentType类型为IMAGE_TEXT时，需要传入图片地址。 |
 | order    | number                                 | 是   | 顺序序号。<br />取值范围：大于等于0。<br />默认值：0               |
 
-##  事件
+## 事件
 
 不支持[通用事件](ts-component-general-events.md)。
 
