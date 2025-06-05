@@ -73,6 +73,7 @@ create(config: PiPConfiguration): Promise&lt;PiPController&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 class Params {
   text: string = '';
@@ -127,10 +128,10 @@ let contentHeight: number = 600; // 假设当前内容高度600px。
 let para: Record<string, number> = { 'PropA': 47 };
 let localStorage: LocalStorage = new LocalStorage(para);
 let res: boolean = localStorage.setOrCreate('PropB', 121);
-let ctx: UIContext = AppStorage.get('UIContext') as UIContext; //开发者通过窗口或自定义组件中getUIContext()方法获取并缓存UIContext实例
+let ctx = this.getUIContext().getHostContext() as common.UIAbilityContext; //请在组件内获取context，确保this.getUIContext().getHostContext()返回的结果为UIAbilityContext
 let defaultWindowSizeType: number = 1; //指定画中画第一次拉起窗口为小窗口
 let config: PiPWindow.PiPConfiguration = {
-  context: ctx.getHostContext() as Context,
+  context: ctx,
   componentController: mXComponentController,
   navigationId: navId,
   templateType: PiPWindow.PiPTemplateType.VIDEO_PLAY,
@@ -189,10 +190,11 @@ create(config: PiPConfiguration, contentNode: typeNode.XComponent): Promise&lt;P
 import { BusinessError } from '@kit.BasicServicesKit';
 import { PiPWindow, UIContext } from '@kit.ArkUI';
 import { typeNode } from '@ohos.arkui.node';
+import { common } from '@kit.AbilityKit';
 
 let pipController: PiPWindow.PiPController | undefined = undefined;
 let xComponentController: XComponentController = new XComponentController();
-let ctx: UIContext = AppStorage.get('UIContext') as UIContext; //开发者通过窗口或自定义组件中getUIContext()方法获取并缓存UIContext实例
+let ctx = this.getUIContext().getHostContext() as common.UIAbilityContext; //请在组件内获取context，确保this.getUIContext().getHostContext()返回的结果为UIAbilityContext
 let options: XComponentOptions = {
   type: XComponentType.SURFACE,
   controller: xComponentController
@@ -201,7 +203,7 @@ let xComponent = typeNode.createNode(ctx, 'XComponent', options);
 let contentWidth: number = 800; // 假设当前内容宽度800px。
 let contentHeight: number = 600; // 假设当前内容高度600px。
 let config: PiPWindow.PiPConfiguration = {
-  context: ctx.getHostContext() as Context,
+  context: ctx,
   componentController: xComponentController,
   templateType: PiPWindow.PiPTemplateType.VIDEO_PLAY,
   contentWidth: contentWidth,
