@@ -29,7 +29,7 @@ arkXtest is divided into two parts: unit test framework and UI test framework.<b
 
 ### Setting Up the Environment
 
-[Download DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio#download) and set it up as instructed on the official website.
+[Download DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio) and set it up as instructed on the official website.
 
 ### Creating and Compiling a Test Script
 
