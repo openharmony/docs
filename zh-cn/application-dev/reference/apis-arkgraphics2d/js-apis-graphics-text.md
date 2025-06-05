@@ -58,18 +58,18 @@ setTextHighContrast(action: TextHighContrast): void
 text.setTextHighContrast(text.TextHighContrast.TEXT_APP_DISABLE_HIGH_CONTRAST)
 ```
 
-## text.setTextUndefinedDisplay<sup>20+</sup>
+## text.setTextUndefinedGlyphDisplay<sup>20+</sup>
 
-setTextUndefinedDisplay(undefinedGlyphDisplay: TextUndefinedGlyphDisplay): void
+setTextUndefinedGlyphDisplay(undefinedGlyphDisplay: TextUndefinedGlyphDisplay): void
 
-设置字符映射到 .notdef（未定义）字形时要使用的字形类型。
+设置字符映射到.notdef（未定义）字形时要使用的字形类型。
 
 影响此调用后呈现的所有文本。
 
-此配置会影响显示字体中未定义的字符的方式：
+此配置会影响显示字体中未定义字符的方式：
 
-- 默认行为遵循字体的内部 .notdef 字形设计
-- 豆腐块明确将缺失的字符显示为可见方块
+- 默认行为遵循字体的内部.notdef字形设计。
+- 豆腐块明确将缺失的字符显示为可见方块。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -79,18 +79,10 @@ setTextUndefinedDisplay(undefinedGlyphDisplay: TextUndefinedGlyphDisplay): void
 | ----- | ------------------ | ---- | ------------------------------------------------------------------------------- |
 | undefinedGlyphDisplay | [TextUndefinedGlyphDisplay](#textundefinedglyphdisplay20) | 是   | 无法塑性字符的显示方式。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3. Parameter verification failed. |
-
 **示例：**
 
 ```ts
-text.setTextUndefinedDisplay(text.TextUndefinedGlyphDisplay.USE_TOFU)
+text.setTextUndefinedGlyphDisplay(text.TextUndefinedGlyphDisplay.USE_TOFU)
 ```
 
 ## text.matchFontDescriptors<sup>18+</sup>
@@ -308,7 +300,7 @@ struct Index {
 
 | 名称           | 值   | 说明                                 |
 | -------------- | ---- | ------------------------------------ |
-| USE_DEFAULT    | 0    | 使用字体的内置 .notdef 字形。遵循字体的内部 .notdef 字形设计，可以是空框、空格或自定义符号。|
+| USE_DEFAULT    | 0    | 使用字体的内置.notdef字形。遵循字体的内部.notdef字形设计，可以是空框、空格或自定义符号。|
 | USE_TOFU       | 1    | 总是用显式的豆腐块替换未定义的字形，覆盖字体的默认行为。用于调试缺失字符或强制一致的缺失符号显示。|
 
 ## TextAlign
@@ -786,20 +778,6 @@ unloadFontSync(name: string): void
 |   -----  | ------------------ | ---- | --------------------------------------------------------------------------------- |
 |   name   | string             | 是   | 需要取消注册的字体别名，与加载字体时使用的别名相同。 |
 
-**返回值：**
-
-| 类型           | 说明                          |
-| -------------- | ----------------------------- |
-| void | 无返回值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types. |
-
 **示例：**
 
 ``` ts
@@ -835,9 +813,9 @@ struct UnloadFontSyncTest {
 ### unloadFont<sup>20+</sup>
 unloadFont(name: string): Promise\<void>
 
-异步卸载自定义字体。此API通过Promise异步返回。
+异步卸载自定义字体。使用Promise异步回调。
 
-通过此API卸载字体别名对应自定义字体后，对应的自定义字体将不再可用。
+通过此API卸载字体别名所对应的自定义字体后，对应的自定义字体将不再可用。
 
 所有使用该字体别名的排版对象都应该被销毁重建。
 
@@ -858,14 +836,6 @@ unloadFont(name: string): Promise\<void>
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
 | Promise\<void> | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types. |
 
 **示例：**
 
