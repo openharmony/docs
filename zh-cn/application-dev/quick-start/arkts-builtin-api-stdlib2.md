@@ -810,7 +810,7 @@
 
 **示例：**  
   ```typescript
-  let b:IteratorYieldReslut<string>;
+  let b:IteratorYieldResult<string>;
   ```
 
 **ArkTS1.2版本签名：**   
@@ -840,7 +840,7 @@
 
 **示例：**  
   ```typescript
-  let b:IteratorReturnReslut<string>;
+  let b:IteratorReturnResult<string>;
   ```
 
 **ArkTS1.2版本签名：**   

@@ -643,7 +643,7 @@ replacer返回值说明：
   const object1: obj = {
     a: "somestring",
   };
-  console.info(Object.entries(object1)[0].toUpperCase());
+  console.info(Object.values(object1)[0].toUpperCase());
   ```
 
 **ArkTS1.2版本签名：**  

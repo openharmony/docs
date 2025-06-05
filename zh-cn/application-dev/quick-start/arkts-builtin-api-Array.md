@@ -38,7 +38,7 @@
 
 **示例：**  
   ```typescript
-  let a = new Array<number>(100)；
+  let a = new Array<number>(100);
   ```
 
 **ArkTS1.2版本签名：**  
@@ -57,7 +57,7 @@
 
 **示例：**  
   ```typescript
-  let a = Array.create<number>(100, 0)；
+  let a = Array.create<number>(100, 0);
   ```
 
 - 适配建议：
@@ -1076,8 +1076,8 @@ predicate函数返回值说明：
   function createArray(ctor: ArrayConstructor) {
       return ctor<number>(1, 2, 3);
   }
-  const number = createArray(Array)
-  console.info("Array :"+ JSON.stringify(number)) // "Array :[1,2,3]" 
+  const num = createArray(Array)
+  console.info("Array :"+ JSON.stringify(num)) // "Array :[1,2,3]" 
   ```
 
 **ArkTS1.2版本签名：**  
@@ -1098,8 +1098,8 @@ predicate函数返回值说明：
   function createArrayDirect() {
       return Array<number>(1, 2, 3)
   }
-  const number = createArrayDirect()
-  console.info("Array :"+ JSON.stringify(number)) // "Array :[1,2,3]" 
+  const num = createArrayDirect()
+  console.info("Array :"+ JSON.stringify(num)) // "Array :[1,2,3]" 
   ```
 
 - 适配建议：
