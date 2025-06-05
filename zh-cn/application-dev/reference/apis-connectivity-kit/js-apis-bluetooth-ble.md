@@ -1453,7 +1453,7 @@ characteristics[0] = characteristic;
 let gattService: ble.GattService = {serviceUuid:'00001810-0000-1000-8000-00805F9B34FB', isPrimary: true, characteristics:characteristics, includeServices:[]};
 
 try {
-    let gattServer: ble.GattServer = ble.createGattServer(); 
+    let gattServer: ble.GattServer = ble.createGattServer();
     gattServer.addService(gattService);
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -4607,6 +4607,7 @@ BLE扫描的配置参数。
 | --------  | ---- | ------------------------------ |
 | ON_FOUND  | 1    | 扫描到符合过滤条件的BLE广播报文时，触发上报，可搭配常规和围栏上报模式使用。       |
 | ON_LOST | 2    | 当不再扫描到符合过滤条件的BLE广播报文时，触发上报，只搭配围栏上报模式使用。    |
+| ON_BATCH | 3    | 扫描到符合过滤条件的BLE广播报文时，以[ScanOptions](#scanoptions)中的interval字段为周期触发上报。    |
 
 ## ScanReportMode<sup>15+</sup>
 
@@ -4617,5 +4618,6 @@ BLE扫描的配置参数。
 | 名称      | 值    | 说明                           |
 | --------  | ---- | ------------------------------ |
 | NORMAL  | 1    | 常规扫描上报模式，扫描到符合过滤条件的BLE广播报文后就会立刻上报。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。       |
+| BATCH  | 2    | 批量扫描上报模式。<br>- 批量扫描上报模式的设计目标是通过降低蓝牙芯片上报扫描结果的频率，使系统可以更长时间保持在休眠状态，从而降低整机功耗。<br>- 在批量扫描上报模式下，扫描到符合过滤条件的BLE广播报文后不会立刻上报，而是缓存一定时间（[ScanOptions](#scanoptions)中的interval字段）后一次上报。<br>- 在批量扫描上报模式下，[ScanOptions](#scanoptions)中的interval字段的取值应当不小于5000毫秒；若小于5000毫秒，将被设置为5000毫秒。 <br>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。       |
 | FENCE_SENSITIVITY_LOW<sup>18+</sup>  | 10    | 低灵敏度围栏上报模式。<br>- 围栏模式表示只在广播进入或离开围栏时上报。<br>- 扫描到的广播信号强度高且广播数量多时，可进入低灵敏度围栏。<br>- 首次扫描到广播即进入围栏，触发一次上报。<br>- 一段时间内扫描不到广播即离开围栏，触发一次上报。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。    |
 | FENCE_SENSITIVITY_HIGH<sup>18+</sup>  | 11    | 高灵敏度围栏上报模式。<br>- 围栏模式表示只在广播进入或离开围栏时上报。<br>- 扫描到的广播信号强度低且广播数量少时，可进入高灵敏度围栏。<br>- 首次扫描到广播即进入围栏，触发一次上报。<br>- 一段时间内扫描不到广播即离开围栏，触发一次上报。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。    |
