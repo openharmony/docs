@@ -20,7 +20,10 @@ hdc shell ime [选项] [参数]
     # 输入: hdc命令启用输入法
     # 处理: 检查为shell调用后，将接到启用输入法的接口
     # 输出: 效果等同于启用API调用
-    hdc shell ime -e bundle -b/-f
+    #基础模式
+    hdc shell ime -e com.xxx.yyy 
+    #全量模式
+    hdc shell ime -e com.xxx.yyy -f
    ```
 
 2. 禁用输入法，支持停用三方输入法应用
@@ -29,16 +32,16 @@ hdc shell ime [选项] [参数]
     # 输入: hdc命令禁用输入法
     # 处理: 检查为shell调用后，将接到禁用输入法的接口
     # 输出: 效果等同于禁用API调用
-    hdc shell ime -d bundle
+    hdc shell ime -d com.xxx.yyy
    ```
 
 3. 切换到指定输入法
 示例：
    ```shell
-    # 输入: hdc命令切换输入法扩展
+    # 输入: hdc命令切换输入法
     # 处理: 检查为shell调用后，将接到切换输入法接口
-    # 输出: 效果等同于切换输入法扩展API调用
-    hdc shell ime -s bundle
+    # 输出: 效果等同于切换输入法API调用
+    hdc shell ime -s com.xxx.yyy
    ```
 
 4. 获取当前输入法
