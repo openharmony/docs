@@ -18,8 +18,6 @@
 
 **组内权限统一授权：** 否
 
-位置权限组内的子权限不会被统一授权，当申请位置权限组的权限时，效果如下：
-
   - 当应用只申请了权限ohos.permission.APPROXIMATELY_LOCATION（属于位置权限组）时，应用用户将收到一个请求位置的弹窗，包含单个权限的申请。
   - 当应用同时申请权限ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION（均属于位置权限组）时，应用用户将收到一个请求位置的弹窗，包含两个权限的申请。
 
@@ -28,6 +26,8 @@
 - [ohos.permission.CAMERA](permissions-for-all-user.md#ohospermissioncamera)
 
 **组内权限统一授权：** 是
+
+- 当应用同时申请权限ohos.permission.APPROXIMATELY_LOCATION（属于位置信息权限组）和ohos.permission.CAMERA（属于相机权限组）时，应用用户将收到请求位置信息、请求使用相机的两个弹窗。
 
 ## 麦克风
 
@@ -43,6 +43,9 @@
 
 **组内权限统一授权：** 否
 
+  - 当应用只申请了权限ohos.permission.READ_CONTACTS时，应用用户将收到一个读通讯录的弹窗，包含单个权限的申请。
+  - 当应用只申请了权限ohos.permission.WRITE_CONTACTS时，应用用户将收到一个写通讯录的弹窗，包含单个权限的申请。
+
 ## 日历
 
 - [ohos.permission.READ_CALENDAR](permissions-for-all-user.md#ohospermissionread_calendar)
@@ -57,6 +60,8 @@
 <!--DelEnd-->
 
 **组内权限统一授权：** 否
+
+  - 当申请日历权限组的权限时，效果同通讯录。
 
 <!--RP1-->
 ## 健身运动
