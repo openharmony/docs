@@ -460,3 +460,5 @@ During service collaboration, DMS keeps listening for the collaboration lifecycl
 **Solution**
 
 [Apply for a continuous task](../task-management/continuous-task.md).
+
+<!--no_check-->
