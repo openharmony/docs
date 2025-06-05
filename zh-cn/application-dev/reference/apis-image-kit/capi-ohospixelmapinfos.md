@@ -2,7 +2,7 @@
 
 ## 概述
 
-用于定义 pixel map 的相关信息。
+用于定义PixelMap的相关信息。
 
 **起始版本：** 10
 
@@ -16,9 +16,9 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| uint32_t width | 图片的宽, 用pixels表示 |
-| uint32_t height | 图片的高, 用pixels表示 |
-| uint32_t rowSize | 每行的bytes数 |
-| int32_t pixelFormat | Pixel 的格式 |
+| uint32_t width | 图片的宽，用pixels表示。 |
+| uint32_t height | 图片的高，用pixels表示。 |
+| uint32_t rowSize | 图片在内存中，每行所占的字节数。<br>DMA内存为图片的宽 * 每个像素字节数 + 每行末尾填充字节数；其他内存为图片的宽 * 每个像素字节数。|
+| int32_t pixelFormat | Pixel的格式。 |
 
 

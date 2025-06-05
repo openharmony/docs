@@ -104,7 +104,7 @@ int32_t OH_Image_Receiver_GetReceivingSurfaceId(const ImageReceiverNative* nativ
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 如果操作成功则返回 IMAGE_RESULT_SUCCESS [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果参数错误则返回 IMAGE_RESULT_BAD_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果JNI环境异常则返回 IMAGE_RESULT_JNI_ENV_ABNORMAL [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果参数无效则返回 IMAGE_RESULT_INVALID_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果从surface获取参数失败返回 IMAGE_RESULT_INVALID_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果获取surface失败则返回 IMAGE_RESULT_GET_SURFACE_FAILED [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果图像类型不支持失败则返回 IMAGE_RESULT_DATA_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果媒体类型不支持失败则返回 IMAGE_RESULT_MEDIA_DATA_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)。 |
+| int32_t | [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)：<br>IMAGE_RESULT_SUCCESS：操作成功。<br> IMAGE_RESULT_BAD_PARAMETER：参数错误。<br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。<br> IMAGE_RESULT_INVALID_PARAMETER：参数无效。<br> 如果从surface获取参数失败返回 IMAGE_RESULT_INVALID_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果获取surface失败则返回 IMAGE_RESULT_GET_SURFACE_FAILED [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果图像类型不支持失败则返回 IMAGE_RESULT_DATA_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果媒体类型不支持失败则返回 IMAGE_RESULT_MEDIA_DATA_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)。 |
 
 **参考：**
 
@@ -134,7 +134,7 @@ int32_t OH_Image_Receiver_ReadLatestImage(const ImageReceiverNative* native, nap
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 如果操作成功则返回 IMAGE_RESULT_SUCCESS [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果参数错误则返回 IMAGE_RESULT_BAD_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果JNI环境异常则返回 IMAGE_RESULT_JNI_ENV_ABNORMAL [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果参数无效则返回 IMAGE_RESULT_INVALID_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果从surface获取参数失败返回 IMAGE_RESULT_INVALID_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果创建surface失败则返回 IMAGE_RESULT_CREATE_SURFACE_FAILED [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果surface分配内存失败则返回 IMAGE_RESULT_SURFACE_GRALLOC_BUFFER_FAILED [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果获取surface失败则返回 IMAGE_RESULT_GET_SURFACE_FAILED [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果媒体rtsp surface不支持则返回 IMAGE_RESULT_MEDIA_RTSP_SURFACE_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果图像类型不支持失败则返回 IMAGE_RESULT_DATA_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果媒体类型不支持失败则返回 IMAGE_RESULT_MEDIA_DATA_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)。 |
+| int32_t | [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)：<br>IMAGE_RESULT_SUCCESS：操作成功。<br> IMAGE_RESULT_BAD_PARAMETER：参数错误。<br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。<br> IMAGE_RESULT_INVALID_PARAMETER：参数无效。<br> 如果从surface获取参数失败返回 IMAGE_RESULT_INVALID_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果创建surface失败则返回 IMAGE_RESULT_CREATE_SURFACE_FAILED [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果surface分配内存失败则返回 IMAGE_RESULT_SURFACE_GRALLOC_BUFFER_FAILED [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果获取surface失败则返回 IMAGE_RESULT_GET_SURFACE_FAILED [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果媒体rtsp surface不支持则返回 IMAGE_RESULT_MEDIA_RTSP_SURFACE_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果图像类型不支持失败则返回 IMAGE_RESULT_DATA_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果媒体类型不支持失败则返回 IMAGE_RESULT_MEDIA_DATA_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)。 |
 
 **参考：**
 
@@ -164,7 +164,7 @@ int32_t OH_Image_Receiver_ReadNextImage(const ImageReceiverNative* native, napi_
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 如果操作成功则返回 IMAGE_RESULT_SUCCESS [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果参数错误则返回 IMAGE_RESULT_BAD_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果JNI环境异常则返回 IMAGE_RESULT_JNI_ENV_ABNORMAL [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果参数无效则返回 IMAGE_RESULT_INVALID_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果从surface获取参数失败返回 IMAGE_RESULT_INVALID_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果创建surface失败则返回 IMAGE_RESULT_CREATE_SURFACE_FAILED [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果surface分配内存失败则返回 IMAGE_RESULT_SURFACE_GRALLOC_BUFFER_FAILED [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果获取surface失败则返回 IMAGE_RESULT_GET_SURFACE_FAILED [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果媒体rtsp surface不支持则返回 IMAGE_RESULT_MEDIA_RTSP_SURFACE_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果图像类型不支持失败则返回 IMAGE_RESULT_DATA_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果媒体类型不支持失败则返回 IMAGE_RESULT_MEDIA_DATA_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)。 |
+| int32_t | [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)：<br>IMAGE_RESULT_SUCCESS：操作成功。<br> IMAGE_RESULT_BAD_PARAMETER：参数错误。<br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。<br> IMAGE_RESULT_INVALID_PARAMETER：参数无效。<br> 如果从surface获取参数失败返回 IMAGE_RESULT_INVALID_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果创建surface失败则返回 IMAGE_RESULT_CREATE_SURFACE_FAILED [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果surface分配内存失败则返回 IMAGE_RESULT_SURFACE_GRALLOC_BUFFER_FAILED [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果获取surface失败则返回 IMAGE_RESULT_GET_SURFACE_FAILED [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果媒体rtsp surface不支持则返回 IMAGE_RESULT_MEDIA_RTSP_SURFACE_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果图像类型不支持失败则返回 IMAGE_RESULT_DATA_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果媒体类型不支持失败则返回 IMAGE_RESULT_MEDIA_DATA_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)。 |
 
 **参考：**
 
@@ -194,7 +194,7 @@ int32_t OH_Image_Receiver_On(const ImageReceiverNative* native, OH_Image_Receive
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 如果操作成功则返回 IMAGE_RESULT_SUCCESS [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果参数错误则返回 IMAGE_RESULT_BAD_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果JNI环境异常则返回 IMAGE_RESULT_JNI_ENV_ABNORMAL [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果参数无效则返回 IMAGE_RESULT_INVALID_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果从surface获取参数失败返回 IMAGE_RESULT_INVALID_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果获取surface失败则返回 IMAGE_RESULT_GET_SURFACE_FAILED [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果图像类型不支持失败则返回 IMAGE_RESULT_DATA_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果媒体类型不支持失败则返回 IMAGE_RESULT_MEDIA_DATA_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)。 |
+| int32_t | [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)：<br>IMAGE_RESULT_SUCCESS：操作成功。<br> IMAGE_RESULT_BAD_PARAMETER：参数错误。<br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。<br> IMAGE_RESULT_INVALID_PARAMETER：参数无效。<br> 如果从surface获取参数失败返回 IMAGE_RESULT_INVALID_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果获取surface失败则返回 IMAGE_RESULT_GET_SURFACE_FAILED [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果图像类型不支持失败则返回 IMAGE_RESULT_DATA_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果媒体类型不支持失败则返回 IMAGE_RESULT_MEDIA_DATA_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)。 |
 
 **参考：**
 
@@ -224,7 +224,7 @@ int32_t OH_Image_Receiver_GetCapacity(const ImageReceiverNative* native, int32_t
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 如果操作成功则返回 IMAGE_RESULT_SUCCESS [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果参数错误则返回 IMAGE_RESULT_BAD_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果JNI环境异常则返回 IMAGE_RESULT_JNI_ENV_ABNORMAL [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果参数无效则返回 IMAGE_RESULT_INVALID_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果图像类型不支持失败则返回 IMAGE_RESULT_DATA_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)。 |
+| int32_t | [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)：<br>IMAGE_RESULT_SUCCESS：操作成功。<br> IMAGE_RESULT_BAD_PARAMETER：参数错误。<br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。<br> IMAGE_RESULT_INVALID_PARAMETER：参数无效。<br> 如果图像类型不支持失败则返回 IMAGE_RESULT_DATA_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)。 |
 
 **参考：**
 
@@ -254,7 +254,7 @@ int32_t OH_Image_Receiver_GetFormat(const ImageReceiverNative* native, int32_t* 
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 如果操作成功则返回 IMAGE_RESULT_SUCCESS [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果参数错误则返回 IMAGE_RESULT_BAD_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果JNI环境异常则返回 IMAGE_RESULT_JNI_ENV_ABNORMAL [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果参数无效则返回 IMAGE_RESULT_INVALID_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果图像类型不支持失败则返回 IMAGE_RESULT_DATA_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)。 |
+| int32_t | [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)：<br>IMAGE_RESULT_SUCCESS：操作成功。<br> IMAGE_RESULT_BAD_PARAMETER：参数错误。<br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。<br> IMAGE_RESULT_INVALID_PARAMETER：参数无效。<br> 如果图像类型不支持失败则返回 IMAGE_RESULT_DATA_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)。 |
 
 **参考：**
 
@@ -283,7 +283,7 @@ int32_t OH_Image_Receiver_Release(ImageReceiverNative* native)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 如果操作成功则返回 IMAGE_RESULT_SUCCESS [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果参数错误则返回 IMAGE_RESULT_BAD_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果参数无效则返回 IMAGE_RESULT_INVALID_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果图像类型不支持失败则返回 IMAGE_RESULT_DATA_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)。 |
+| int32_t | [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)：<br>IMAGE_RESULT_SUCCESS：操作成功。<br> IMAGE_RESULT_BAD_PARAMETER：参数错误。<br> IMAGE_RESULT_INVALID_PARAMETER：参数无效。<br> 如果图像类型不支持失败则返回 IMAGE_RESULT_DATA_UNSUPPORT [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)。 |
 
 **参考：**
 

@@ -2,7 +2,7 @@
 
 ## 概述
 
-定义native层pixelmap数据类型名称。
+定义native层PixelMap数据类型名称。
 
 **起始版本：** 10
 

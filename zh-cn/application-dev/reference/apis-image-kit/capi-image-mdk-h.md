@@ -26,20 +26,23 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| [anonymous enum](#anonymous enum) | 图像格式枚举值。 |
-| [anonymous enum](#anonymous enum) | 图像组成类型枚举值。 |
+| [图像格式](#图像格式) | 图像格式枚举值。 |
+| [图像颜色通道类型](#图像颜色通道类型) | 图像颜色通道类型枚举值。 |
 
 ### 函数
 
 | 名称 | 描述 |
 | -- | -- |
-| [ImageNative* OH_Image_InitImageNative(napi_env env, napi_value source)](#oh_image_initimagenative) | 从输入的JavaScript Native API <b>图像</b> 对象中解析 native {@link ImageNative} 对象。 |
-| [int32_t OH_Image_Format(const ImageNative* native, int32_t* format)](#oh_image_format) | 获取native {@link ImageNative} 对象的图像格式。 |
-| [int32_t OH_Image_Release(ImageNative* native)](#oh_image_release) | 释放 {@link ImageNative} native对象。Note: 这个方法无法释放 JavaScript Native API <b>Image</b> 对象，而是释放被 [OH_Image_InitImageNative](capi-image-mdk-h.md#oh_image_initimagenative) 解析的 {@link ImageNative} native 对象。 |
+| [ImageNative* OH_Image_InitImageNative(napi_env env, napi_value source)](#oh_image_initimagenative) | 从输入的JavaScript Native API图像对象中解析native ImageNative对象。 |
+| [int32_t OH_Image_ClipRect(const ImageNative* native, struct OhosImageRect* rect)](#oh_image_cliprect) | 获取native ImageNative对象OhosImageRect信息。|
+| [int32_t OH_Image_Size(const ImageNative* native, struct OhosImageSize* size)](#oh_image_size) | 获取native ImageNative对象的OhosImageSize信息。|
+| [int32_t OH_Image_Format(const ImageNative* native, int32_t* format)](#oh_image_format) | 获取native ImageNative对象的图像格式。 |
+| [int32_t OH_Image_GetComponent(const ImageNative* native, int32_t componentType, struct OhosImageComponent* componentNative)](#oh_image_getcomponent) |  从native ImageNative对象中获取OhosImageComponent。 |
+| [int32_t OH_Image_Release(ImageNative* native)](#oh_image_release) | 释放ImageNative native对象。<br>这个方法无法释放JavaScript Native API Image对象，而是释放被[OH_Image_InitImageNative](capi-image-mdk-h.md#oh_image_initimagenative)解析的ImageNative native对象。 |
 
 ## 枚举类型说明
 
-### anonymous enum
+### 图像格式
 
 ```
 enum anonymous enum
@@ -53,10 +56,10 @@ enum anonymous enum
 
 | 枚举项 | 描述 |
 | -- | -- |
-| OHOS_IMAGE_FORMAT_YCBCR_422_SP = 1000 | YCBCR422 semi-planar 格式 |
-| OHOS_IMAGE_FORMAT_JPEG = 2000 | JPEG 编码格式 |
+| OHOS_IMAGE_FORMAT_YCBCR_422_SP = 1000 | YCBCR422 semi-planar格式。 |
+| OHOS_IMAGE_FORMAT_JPEG = 2000 | JPEG编码格式。 |
 
-### anonymous enum
+### 图像颜色通道类型
 
 ```
 enum anonymous enum
@@ -64,16 +67,16 @@ enum anonymous enum
 
 **描述**
 
-图像组成类型枚举值。
+图像颜色通道类型枚举值。
 
 **起始版本：** 10
 
 | 枚举项 | 描述 |
 | -- | -- |
-| OHOS_IMAGE_COMPONENT_FORMAT_YUV_Y = 1 | 亮度信息 |
-| OHOS_IMAGE_COMPONENT_FORMAT_YUV_U = 2 | 色度信息 |
-| OHOS_IMAGE_COMPONENT_FORMAT_YUV_V = 3 | 色差值信息 |
-| OHOS_IMAGE_COMPONENT_FORMAT_JPEG = 4 | Jpeg 格式 |
+| OHOS_IMAGE_COMPONENT_FORMAT_YUV_Y = 1 | 亮度信息。 |
+| OHOS_IMAGE_COMPONENT_FORMAT_YUV_U = 2 | 色度信息。 |
+| OHOS_IMAGE_COMPONENT_FORMAT_YUV_V = 3 | 色差值信息。 |
+| OHOS_IMAGE_COMPONENT_FORMAT_JPEG = 4 | Jpeg格式。 |
 
 
 ## 函数说明
@@ -86,7 +89,7 @@ ImageNative* OH_Image_InitImageNative(napi_env env, napi_value source)
 
 **描述**
 
-从输入的JavaScript Native API <b>图像</b> 对象中解析 native {@link ImageNative} 对象。
+从输入的JavaScript Native API图像对象中解析native ImageNative对象。
 
 **起始版本：** 10
 
@@ -95,18 +98,74 @@ ImageNative* OH_Image_InitImageNative(napi_env env, napi_value source)
 
 | 参数项 | 描述 |
 | -- | -- |
-| napi_env env | 表示指向 JNI 环境的指针。 |
-| napi_value source | 表示 JavaScript Native API <b>图像</b> 对象。 |
+| napi_env env | 表示指向JNI环境的指针。 |
+| napi_value source | 表示JavaScript Native API图像对象。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| ImageNative* | 如果操作成果返回 {@link ImageNative} 指针对象，如果操作失败返回空指针。 |
+| [ImageNative](capi-imagenative-.md)* | 如果操作成功返回ImageNative指针对象，如果操作失败返回空指针。 |
 
 **参考：**
 
-ImageNative, OH_Image_Release
+[OH_Image_Release](#oh_image_release)
+
+### OH_Image_ClipRect()
+
+```
+int32_t OH_Image_ClipRect(const ImageNative* native, struct OhosImageRect* rect)
+```
+
+**描述**
+
+获取native ImageNative对象OhosImageRect信息。
+
+**起始版本：** 10
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const [ImageNative](capi-imagenative-.md)* native | 表示指向ImageNative native层对象的指针。 |
+| struct [OhosImageRect](capi-ohosimagerect.md)* rect | 表示作为转换结果的OhosImageRect对象指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)：<br>IMAGE_RESULT_SUCCESS：操作成功。<br> IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。<br> IMAGE_RESULT_INVALID_PARAMETER：参数无效。<br>IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED：从surface获取参数失败。<br> IMAGE_RESULT_BAD_PARAMETER：参数错误。 |
+
+### OH_Image_Size()
+
+```
+int32_t OH_Image_Size(const ImageNative* native, struct OhosImageSize* size)
+```
+
+**描述**
+
+获取native ImageNative对象的OhosImageSize信息。
+
+如果ImageNative对象所存储的是相机预览流数据，即YUV图像数据，那么获取到的OhosImageSize中的宽高分别对应YUV图像的宽高；如果ImageNative对象所存储的是相机拍照流数据，即JPEG图像，由于已经是编码后的数据，OhosImageSize中的宽等于JPEG数据大小，高等于1。
+
+ImageNative对象所存储的数据是预览流还是拍照流，取决于应用将receiver中的surfaceId传给相机的previewOutput还是captureOutput。相机预览与拍照最佳实践请参考[预览流二次处理(C/C++)](../../media/camera/native-camera-preview-imageReceiver.md)与[拍照(C/C++)](../../media/camera/native-camera-shooting.md)。
+
+**起始版本：** 10
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const [ImageNative](capi-imagenative-.md)* native | 表示ImageNative native对象的指针。 |
+| struct [OhosImageSize](capi-ohosimagesize.md)* size | 表示作为转换结果的OhosImageSize对象的指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)：<br>IMAGE_RESULT_SUCCESS：操作成功。<br> IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。<br> IMAGE_RESULT_INVALID_PARAMETER：参数无效。<br>IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED：从surface获取参数失败。<br> IMAGE_RESULT_BAD_PARAMETER：参数错误。 |
 
 ### OH_Image_Format()
 
@@ -116,7 +175,7 @@ int32_t OH_Image_Format(const ImageNative* native, int32_t* format)
 
 **描述**
 
-获取native {@link ImageNative} 对象的图像格式。
+获取native ImageNative对象的图像格式。
 
 **起始版本：** 10
 
@@ -125,18 +184,41 @@ int32_t OH_Image_Format(const ImageNative* native, int32_t* format)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const ImageNative* native | 表示 {@link ImageNative} native对象的指针。 |
+| const [ImageNative](capi-imagenative-.md)* native | 表示ImageNative native对象的指针。 |
 | int32_t* format | 表示作为转换结果的图像格式对象的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 如果操作成功返回 IMAGE_RESULT_SUCCESS [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果JNI环境异常返回 IMAGE_RESULT_JNI_ENV_ABNORMAL [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果参数无效返回 IMAGE_RESULT_INVALID_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果从surface获取参数失败返回 IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果参数错误返回 IMAGE_RESULT_BAD_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)。 |
+| int32_t | [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)：<br>IMAGE_RESULT_SUCCESS：操作成功。<br> IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。<br> IMAGE_RESULT_INVALID_PARAMETER：参数无效。<br>IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED：从surface获取参数失败。<br> IMAGE_RESULT_BAD_PARAMETER：参数错误。 |
 
-**参考：**
+### OH_Image_GetComponent()
 
-ImageNative
+```
+int32_t OH_Image_GetComponent(const ImageNative* native, int32_t componentType, struct OhosImageComponent* componentNative)
+```
+
+**描述**
+
+从native ImageNative对象中获取OhosImageComponent。
+
+**起始版本：** 10
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const [ImageNative](capi-imagenative-.md)* native | 表示ImageNative native对象的指针。 |
+| int32_t componentType | 表示所需组件的组件类型。 |
+| struct [OhosImageComponent](capi-ohosimagecomponent.md)* componentNative | 表示转换结果的OhosImageComponent对象的指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)：<br>IMAGE_RESULT_SUCCESS：操作成功。<br> IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。<br> IMAGE_RESULT_INVALID_PARAMETER：参数无效。<br>IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED：从surface获取参数失败。<br> IMAGE_RESULT_BAD_PARAMETER：参数错误。 |
 
 ### OH_Image_Release()
 
@@ -146,7 +228,9 @@ int32_t OH_Image_Release(ImageNative* native)
 
 **描述**
 
-释放 {@link ImageNative} native对象。Note: 这个方法无法释放 JavaScript Native API <b>Image</b> 对象，而是释放被 [OH_Image_InitImageNative](capi-image-mdk-h.md#oh_image_initimagenative) 解析的 {@link ImageNative} native 对象。
+释放ImageNative native对象。
+
+这个方法无法释放JavaScript Native API Image对象，而是释放被[OH_Image_InitImageNative](capi-image-mdk-h.md#oh_image_initimagenative)解析的ImageNative native对象。
 
 **起始版本：** 10
 
@@ -155,16 +239,16 @@ int32_t OH_Image_Release(ImageNative* native)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [ImageNative](capi-imagenative-.md)* native | 表示 {@link ImageNative} native对象的指针。 |
+| [ImageNative](capi-imagenative-.md)* native | 表示ImageNative native对象的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 如果操作成功返回 IMAGE_RESULT_SUCCESS [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果JNI环境异常返回 IMAGE_RESULT_JNI_ENV_ABNORMAL [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果参数无效返回 IMAGE_RESULT_INVALID_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)；<br> 如果参数错误返回 IMAGE_RESULT_BAD_PARAMETER [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)。 |
+| int32_t | [IRNdkErrCode](capi-image-mdk-common-h.md#irndkerrcode)：<br>IMAGE_RESULT_SUCCESS：操作成功。<br> IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。<br> IMAGE_RESULT_INVALID_PARAMETER：参数无效。<br> IMAGE_RESULT_BAD_PARAMETER：参数错误。 |
 
 **参考：**
 
-ImageNative, OH_Image_InitImageNative
+[OH_Image_InitImageNative](#oh_image_initimagenative)
 
 

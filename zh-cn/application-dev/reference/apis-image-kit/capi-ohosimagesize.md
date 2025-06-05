@@ -2,7 +2,7 @@
 
 ## 概述
 
-定义图像大小。
+定义图像大小。是[OhosImageDecodingOps](capi-ohosimagedecodingops.md)的成员变量。
 
 **起始版本：** 10
 
@@ -16,7 +16,7 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| int32_t width | 像素中的图像宽度，用pixels表示 |
-| int32_t height | 像素中的图像高度，用pixels表示 |
+| int32_t width | 像素中的图像宽度，用pixels表示。 |
+| int32_t height | 像素中的图像高度，用pixels表示。 |
 
 

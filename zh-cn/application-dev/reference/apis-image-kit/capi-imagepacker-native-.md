@@ -9,4 +9,3 @@
 **相关模块：** [Image](capi-image.md)
 
 **所在头文件：** [image_packer_mdk.h](capi-image-packer-mdk-h.md)
-
