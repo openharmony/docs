@@ -475,8 +475,8 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 | isIPv6Accepted      | boolean                                                        | 否   | 是否支持IPV6。true表示支持，false表示不支持, 默认值为false。 |
 | isInternal          | boolean                                                        | 否   | 是否支持内置VPN。true表示支持，false表示不支持, 默认值为false。 |
 | isBlocking          | boolean                                                        | 否   | 是否阻塞模式。true表示阻塞模式，false表示非阻塞模式, 默认值为false。       |
-| trustedApplications | Array\<string\>                                                | 否   | 受信任的应用信息列表，string 类型表示的包名。                         |
-| blockedApplications | Array\<string\>                                                | 否   | 被阻止的应用信息列表，string 类型表示的包名。                         |
+| trustedApplications | Array\<string\>                                                | 否   | 受信任的应用信息列表，string类型表示的包名。                         |
+| blockedApplications | Array\<string\>                                                | 否   | 被阻止的应用信息列表，string类型表示的包名。                         |
 
 **示例：**
 
