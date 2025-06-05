@@ -185,7 +185,7 @@ export default class MyAbilityStage extends AbilityStage {
 
 onDestroy(): void
 
-在对应Module的最后一个Abiliyt实例退出后会触发该回调。此方法将在正常的调度生命周期中调用，当应用程序异常退出或被终止时，将不会调用此方法。同步接口，不支持异步回调。
+在对应Module的最后一个Ability实例退出后会触发该回调。此方法将在正常的调度生命周期中调用，当应用程序异常退出或被终止时，将不会调用此方法。同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
