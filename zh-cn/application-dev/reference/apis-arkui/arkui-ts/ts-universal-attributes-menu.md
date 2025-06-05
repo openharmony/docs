@@ -867,3 +867,47 @@ struct Index {
 ```
 
 ![hoverScaleInterruption](figures/hoverScaleInterruption.gif)
+
+### 示例14（设置预览图边框圆角半径）
+
+该示例为bindContextMenu通过配置responseType.LongPress、preview的MenuPreviewMode类型弹出菜单预览样式、previewBorderRadius设置预览图边框圆角半径。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  private iconStr: ResourceStr = $r("app.media.startIcon");
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+    }
+  }
+
+  build() {
+    Column({ space: 50 }) {
+      Column() {
+        Column() {
+          Text('preview-image')
+            .width(200)
+            .height(100)
+            .textAlign(TextAlign.Center)
+            .margin(100)
+            .fontSize(30)
+            .bindContextMenu(this.MyMenu, ResponseType.LongPress,
+              { preview: MenuPreviewMode.IMAGE,
+                previewBorderRadius:50
+              })
+            .backgroundColor("#ff7fcdff")
+        }
+      }.width('100%')
+    }
+  }
+}
+```
+
+![hoverScaleInterruption](figures/menuPreviewBorderRadius.jpg)
