@@ -1142,9 +1142,9 @@ localServer.on('connect', (connection: webSocket.WebSocketConnection) => {
   console.info(`New client connected! Client ip: ${connection.clientIP}, Client port: ${connection.clientPort}`);
   localServer.close(connection).then((success: boolean) => {
     if (success) {
-      console.log('close client successfully');
+      console.info('close client successfully');
     } else {
-      console.log('close client failed');
+      console.info('close client failed');
     }
   });
 });
