@@ -471,14 +471,14 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称 | 类型 | 只读 | 说明 |
-| -------- | -------- | -------- |-------------------------------|
-| additions<sup>7+</sup> | {[key:string]:object} | 否 | 设置其他附加属性数据。不支持动态追加属性，只能通过重新赋值的方式修改附加值，具体见相关示例setProperty。 |
-| mimeTypes<sup>7+</sup> | Array&lt;string&gt; | 是 | 剪贴板内容条目的数据类型，非重复的类型列表。 |
-| tag<sup>7+</sup> | string | 否 | 用户自定义标签。 |
-| timestamp<sup>7+</sup> | number | 是 | 剪贴板数据的写入时间戳（单位：ms）。 |
-| localOnly<sup>7+</sup> | boolean | 否 | 配置剪贴板内容是否为“仅在本地”，默认值为false。其值会被shareOption属性覆盖，推荐使用[ShareOption](#shareoption9)属性。 |
-| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 否 | 指示剪贴板数据可以粘贴到的范围。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- |-------------------------------|
+| additions<sup>7+</sup> | {[key:string]:object} | 否 | 否 | 设置其他附加属性数据。不支持动态追加属性，只能通过重新赋值的方式修改附加值，具体见相关示例setProperty。 |
+| mimeTypes<sup>7+</sup> | Array&lt;string&gt; | 是 | 否 | 剪贴板内容条目的数据类型，非重复的类型列表。 |
+| tag<sup>7+</sup> | string | 否 | 否 | 用户自定义标签。 |
+| timestamp<sup>7+</sup> | number | 是 | 否 | 剪贴板数据的写入时间戳（单位：ms）。 |
+| localOnly<sup>7+</sup> | boolean | 否 | 否 | 配置剪贴板内容是否为“仅在本地”，默认值为false。其值会被shareOption属性覆盖，推荐使用[ShareOption](#shareoption9)属性。 |
+| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 否 | 否 | 指示剪贴板数据可以粘贴到的范围。 |
 
 ## FileConflictOptions<sup>15+</sup>
 
@@ -514,9 +514,9 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称     | 类型   | 只读 | 说明                                                       |
-| -------- | ------ | ---- | ---------------------------------------------------------- |
-| progress | number | 否 | 不使用系统提供的进度条时，系统上报拷贝粘贴任务进度百分比。 |
+| 名称     | 类型   | 只读 | 可选 | 说明                                                       |
+| -------- | ------ | ---- | ---- | ---------------------------------------------------------- |
+| progress | number | 是   | 否   | 不使用系统提供的进度条时，系统上报拷贝粘贴任务进度百分比。 |
 
 ## ProgressListener<sup>15+</sup>
 
@@ -615,15 +615,15 @@ struct PasteboardTest {
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称 | 类型 | 只读 | 说明 |
-| -------- | -------- | -------- | -------- |
-| htmlText<sup>7+</sup> | string | 否 | HTML内容。 |
-| want<sup>7+</sup> | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 否 | Want内容。 |
-| mimeType<sup>7+</sup> | string | 否 | 默认数据类型。 |
-| plainText<sup>7+</sup> | string | 否 | 纯文本内容。 |
-| uri<sup>7+</sup> | string | 否 | URI内容。 |
-| pixelMap<sup>9+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否 | PixelMap内容。 |
-| data<sup>9+</sup> | {[mimeType:&nbsp;string]:&nbsp;ArrayBuffer} | 否 | 自定义数据内容。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| htmlText<sup>7+</sup> | string | 是 | 否 | HTML内容。 |
+| want<sup>7+</sup> | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 否 | Want内容。 |
+| mimeType<sup>7+</sup> | string | 是 | 否 | 默认数据类型。 |
+| plainText<sup>7+</sup> | string | 是 | 否 | 纯文本内容。 |
+| uri<sup>7+</sup> | string | 是 | 否 | URI内容。 |
+| pixelMap<sup>9+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 否 | PixelMap内容。 |
+| data<sup>9+</sup> | {[mimeType:&nbsp;string]:&nbsp;ArrayBuffer} | 是 | 否 | 自定义数据内容。 |
 
 ### toPlainText<sup>9+</sup>
 
