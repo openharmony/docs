@@ -1,6 +1,6 @@
 # ArkUI Data Updates
 
-When data, regardless of whether it is downloaded from the Internet or generated locally, needs to be sent to the UI thread for display, the annotations and the [\@Sendable decorator](../arkts-utils/arkts-sendable.md#sendable-decorator) in ArkUI cannot simultaneously decorate variables and objects. Therefore, for such scenarios, it is necessary to use [makeObserved](../quick-start/arkts-new-makeObserved.md) to import observable Sendable data into ArkUI.
+When data, regardless of whether it is downloaded from the Internet or generated locally, needs to be sent to the UI thread for display, the annotations and the [\@Sendable decorator](../arkts-utils/arkts-sendable.md#sendable-decorator) in ArkUI cannot simultaneously decorate variables and objects. Therefore, for such scenarios, it is necessary to use [makeObserved](../ui/state-management/arkts-new-makeObserved.md) to import observable Sendable data into ArkUI.
 
 This example describes the following scenarios:
 - When **makeObserved** is used with @Sendable data, it enables observability of changes that can trigger UI refreshes.
