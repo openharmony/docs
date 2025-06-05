@@ -369,3 +369,20 @@
 **支持设备**：PC/2in1
 
 **起始版本**：20
+
+## ohos.permission.SUPPORT_INSTALL_ON_U1
+
+允许应用安装在1用户。
+
+1用户是支持三方应用单例运行的用户。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
