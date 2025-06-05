@@ -48,18 +48,16 @@ import { avSession } from '@kit.AVSessionKit';
 struct Index {
   @State message: string = 'hello world';
 
-  build() { 
+  build() {
     Column() {
-        Text(this.message)
-          .onClick(()=>{
-            // 创建session。
-            let context = this.getUIContext().getHostContext() as Context;
-            async function createSession() {
-            let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
-            console.info(`session create done : sessionId : ${session.sessionId}`);
-            }
-          })
-      }
+      Text(this.message)
+        .onClick(async () => {
+          // 创建session。
+          let context = this.getUIContext().getHostContext() as Context;
+          let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
+          console.info(`session create done : sessionId : ${session.sessionId}`);
+        })
+    }
     .width('100%')
     .height('100%')
   }
