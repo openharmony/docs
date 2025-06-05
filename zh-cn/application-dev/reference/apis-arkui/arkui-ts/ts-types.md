@@ -857,6 +857,12 @@ addText(text: string, textOperationOptions?: TextContentControllerOptions): numb
 | text | string | 是    | 插入的文本内容。 |
 | textOperationOptions   | [TextContentControllerOptions](#textcontentcontrolleroptions15) | 否    | 插入文本的配置选项，不设置时默认插入文本至末尾。 |
 
+**返回值：**
+
+| 类型  | 说明       |
+| ----- | -------- |
+| number| 插入文本后光标的位置。 |
+
 ### deleteText<sup>15+</sup>
 
 deleteText(range?: TextRange): void
