@@ -384,8 +384,8 @@ resolvedOptions(): DateTimeOptions
 | second          | string  | 否     | 秒钟的显示格式，取值包括：<br>"numeric",&nbsp;"2-digit"。  |
 | timeZoneName    | string  | 否     | 时区名称的本地化表示，取值包括：<br>"long",&nbsp;"short",&nbsp;"auto"。<br>不同取值的显示效果请参考[时间日期国际化表8](../../internationalization/i18n-time-date.md)。   |
 | dayPeriod       | string  | 否     | 时段的显示格式，取值包括：<br>"long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。<br>不同取值的显示效果请参考[时间日期国际化表10](../../internationalization/i18n-time-date.md)。 |
-| localeMatcher   | string  | 否     | 要使用的区域匹配算法，取值包括：<br>"lookup"：精确匹配；<br>"best&nbsp;fit"：最佳匹配。 |
-| formatMatcher   | string  | 否     | 要使用的格式匹配算法，取值包括：<br>"basic"：精确匹配；<br>"best&nbsp;fit"：最佳匹配。 |
+| localeMatcher   | string  | 否     | 要使用的区域匹配算法，取值包括：<br>"lookup"：精确匹配。<br>"best&nbsp;fit"：最佳匹配。 |
+| formatMatcher   | string  | 否     | 要使用的格式匹配算法，取值包括：<br>"basic"：精确匹配。<br>"best&nbsp;fit"：最佳匹配。 |
 
 ## NumberFormat
 
@@ -552,7 +552,7 @@ resolvedOptions(): NumberOptions
 | maximumSignificantDigits | number  | 否    | 表示要使用的最大有效位数，取值范围：1~21。<br>默认值：21。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                  |
 | roundingPriority<sup>18+</sup>   | string  | 否    | 最大分数位数和最大有效位数同时设置时的舍入优先级，取值包括："auto"，"morePrecision"&nbsp;取最大分数位数，"lessPrecision"&nbsp;取最大有效位数。<br>默认值：auto。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。                  |
 | roundingIncrement<sup>18+</sup>  | number  | 否    | 表示舍入增量，取值范围：1，2，5，10，20，25，50，100，200，250，500，1000，2000，2500，5000。<br>默认值：1。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。                  |
-| roundingMode<sup>18+</sup>       | string  | 否    | 表示舍入模式，取值包括：<br>"ceil"：向上取整；<br>"floor"：向下取整；<br>"expand"：远离零取整；<br>"trunc"：向零取整；<br>"halfCeil"：半向上取整，大于等于增量的一半时向上取整，小于增量的一半时向下取整；<br>"halfFloor"：半向下取整，大于增量的一半时向上取整，小于等于增量的一半时向下取整；<br>"halfExpand"：半远离零取整，大于等于增量的一半时远离零取整，小于增量的一半时向零取整；<br>"halfTrunc"：半向零取整，大于增量的一半时远离零取整，小于等于增量的一半时向零取整；<br>"halfEven"：半向偶数取整，大于增量的一半时 远离零取整，小于增量的一半时向零取整，等于增量的一半时向最近的偶数位舍入。<br>默认值：halfExpand。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| roundingMode<sup>18+</sup>       | string  | 否    | 表示舍入模式，取值包括：<br>"ceil"：向上取整。<br>"floor"：向下取整。<br>"expand"：远离零取整。<br>"trunc"：向零取整。<br>"halfCeil"：半向上取整，大于等于增量的一半时向上取整，小于增量的一半时向下取整。<br>"halfFloor"：半向下取整，大于增量的一半时向上取整，小于等于增量的一半时向下取整。<br>"halfExpand"：半远离零取整，大于等于增量的一半时远离零取整，小于增量的一半时向零取整。<br>"halfTrunc"：半向零取整，大于增量的一半时远离零取整，小于等于增量的一半时向零取整。<br>"halfEven"：半向偶数取整，大于增量的一半时 远离零取整，小于增量的一半时向零取整，等于增量的一半时向最近的偶数位舍入。<br>默认值：halfExpand。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 
 >  **说明：**
 >
@@ -622,7 +622,7 @@ compare(first: string, second: string): number
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 比较结果。<br>- number为负数时，表示first排序在second之前；<br>- number为0时，表示first与second排序相同；<br>- number为正数，表示first排序在second之后。 |
+| number | 比较结果。<br>- number为负数时，表示first排序在second之前。<br>- number为0时，表示first与second排序相同。<br>- number为正数，表示first排序在second之后。 |
 
 **示例：**
   ```ts
