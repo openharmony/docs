@@ -1,6 +1,6 @@
 # @ohos.notificationManager (NotificationManager模块)
 
-本模块提供通知管理的能力，包括发布、更新、取消通知，创建、获取、移除通知渠道，获取通知的使能状态，获取通知的相关信息等。
+本模块提供通知管理的能力，包括发布、更新、取消通知，创建、获取、移除通知渠道，获取发布通知应用的使能状态，获取通知的相关信息等。
 
 > **说明：**
 >
@@ -476,7 +476,7 @@ let getSlotCallback = (err: BusinessError, data: notificationManager.Notificatio
   if (err) {
     console.error(`Failed to get slot. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info(`Succeeded in getting slot, data is ` + JSON.stringify(data));
+    console.info(`Succeeded in getting slot, data is ${JSON.stringify(data)}`);
   }
 }
 let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
@@ -521,7 +521,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
 notificationManager.getSlot(slotType).then((data: notificationManager.NotificationSlot) => {
-  console.info(`Succeeded in getting slot, data is ` + JSON.stringify(data));
+  console.info(`Succeeded in getting slot, data is ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to get slot. Code is ${err.code}, message is ${err.message}`);
 });
@@ -563,7 +563,7 @@ let getSlotsCallback = (err: BusinessError, data: Array<notificationManager.Noti
   if (err) {
     console.error(`Failed to get slots. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info(`Succeeded in getting slots, data is ` + JSON.stringify(data));
+    console.info(`Succeeded in getting slots, data is ${JSON.stringify(data)}`);
   }
 }
 notificationManager.getSlots(getSlotsCallback);
@@ -599,7 +599,7 @@ getSlots(): Promise\<Array\<NotificationSlot>>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getSlots().then((data: Array<notificationManager.NotificationSlot>) => {
-  console.info(`Succeeded in getting slots, data is ` + JSON.stringify(data));
+  console.info(`Succeeded in getting slots, data is ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to get slots. Code is ${err.code}, message is ${err.message}`);
 });
@@ -780,7 +780,7 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                     |
 | -------- | --------------------- | ---- | ------------------------ |
-| callback | AsyncCallback\<boolean\> | 是   | 回调函数。返回true，表示允许发布通知；返回false，表示禁止发布通知。 |
+| callback | AsyncCallback\<boolean\> | 是   | 回调函数。返回true，表示允许发布通知；返回false，表示禁止发布通知；调用失败返回错误对象。 |
 
 **错误码：**
 
@@ -843,7 +843,7 @@ isNotificationEnabled(): Promise\<boolean\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.isNotificationEnabled().then((data: boolean) => {
-  console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
+  console.info(`isNotificationEnabled success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -1006,7 +1006,7 @@ let getActiveNotificationCountCallback = (err: BusinessError, data: number): voi
   if (err) {
     console.error(`Failed to get active notification count. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info(`Succeeded in getting active notification count, data is ` + JSON.stringify(data));
+    console.info(`Succeeded in getting active notification count, data is ${JSON.stringify(data)}`);
   }
 }
 
@@ -1043,7 +1043,7 @@ getActiveNotificationCount(): Promise\<number\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getActiveNotificationCount().then((data: number) => {
-  console.info(`Succeeded in getting active notification count, data is ` + JSON.stringify(data));
+  console.info(`Succeeded in getting active notification count, data is ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to get active notification count. Code is ${err.code}, message is ${err.message}`);
 });
@@ -1083,7 +1083,7 @@ let getActiveNotificationsCallback = (err: BusinessError, data: Array<notificati
   if (err) {
     console.error(`Failed to get active notifications. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info(`Succeeded in getting active notifications, data is ` + JSON.stringify(data));
+    console.info(`Succeeded in getting active notifications, data is ${JSON.stringify(data)}`);
   }
 }
 notificationManager.getActiveNotifications(getActiveNotificationsCallback);
@@ -1119,7 +1119,7 @@ getActiveNotifications(): Promise\<Array\<NotificationRequest\>\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getActiveNotifications().then((data: Array<notificationManager.NotificationRequest>) => {
-  console.info(`Succeeded in getting active notifications, data is ` + JSON.stringify(data));
+  console.info(`Succeeded in getting active notifications, data is ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to get active notifications. Code is ${err.code}, message is ${err.message}`);
 });
@@ -1215,7 +1215,7 @@ notificationManager.cancelGroup(groupName).then(() => {
 
 isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): void
 
-在使用[通知模板](js-apis-inner-notification-notificationTemplate.md)发布通知前，可以通过该接口查询是否支持对应的通知模板。使用callback异步回调。
+在使用[通知模板](js-apis-inner-notification-notificationTemplate.md)发布通知前，可以通过该接口查询是否支持对应的通知模板。使用callback异步回调；调用失败返回错误对象。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1247,7 +1247,7 @@ let isSupportTemplateCallback = (err: BusinessError, data: boolean): void => {
   if (err) {
     console.error(`isSupportTemplate failed, code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("isSupportTemplate success, data: " + JSON.stringify(data));
+    console.info(`isSupportTemplate success, data: ${JSON.stringify(data)}`);
   }
 }
 notificationManager.isSupportTemplate(templateName, isSupportTemplateCallback);
@@ -1291,7 +1291,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let templateName: string = 'downloadTemplate';
 notificationManager.isSupportTemplate(templateName).then((data: boolean) => {
-  console.info("isSupportTemplate success, data: " + JSON.stringify(data));
+  console.info(`isSupportTemplate success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`isSupportTemplate failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -1342,7 +1342,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class MyAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-  hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -1521,7 +1521,7 @@ notificationManager.requestEnableNotification().then(() => {
 
 isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 
-查询设备是否支持分布式通知。使用callback异步回调。
+查询设备是否支持跨设备协同通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1529,7 +1529,7 @@ isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<boolean\> | 是   | 回调函数。返回true表示支持分布式通知；返回false表示不支持分布式通知。 |
+| callback | AsyncCallback\<boolean\> | 是   | 回调函数。返回true表示支持跨设备协同通知；返回false表示不支持跨设备协同通知；调用失败返回错误对象。 |
 
 **错误码：**
 
@@ -1552,7 +1552,7 @@ let isDistributedEnabledCallback = (err: BusinessError, data: boolean): void => 
   if (err) {
     console.error(`isDistributedEnabled failed, code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("isDistributedEnabled success " + JSON.stringify(data));
+    console.info(`isDistributedEnabled success ${JSON.stringify(data)}`);
   }
 };
 notificationManager.isDistributedEnabled(isDistributedEnabledCallback);
@@ -1562,7 +1562,7 @@ notificationManager.isDistributedEnabled(isDistributedEnabledCallback);
 
 isDistributedEnabled(): Promise\<boolean>
 
-查询设备是否支持分布式通知。使用Promise异步回调。
+查询设备是否支持跨设备协同通知。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1570,7 +1570,7 @@ isDistributedEnabled(): Promise\<boolean>
 
 | 类型               | 说明                                          |
 | ------------------ | --------------------------------------------- |
-| Promise\<boolean\> | Promise对象。返回true表示支持分布式通知；返回false表示不支持分布式通知。 |
+| Promise\<boolean\> | Promise对象。返回true表示支持跨设备协同通知；返回false表示不支持跨设备协同通知。 |
 
 **错误码：**
 
@@ -1589,7 +1589,7 @@ isDistributedEnabled(): Promise\<boolean>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.isDistributedEnabled().then((data: boolean) => {
-  console.info("isDistributedEnabled success, data: " + JSON.stringify(data));
+  console.info(`isDistributedEnabled success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`isDistributedEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
