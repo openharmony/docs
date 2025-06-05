@@ -5385,7 +5385,7 @@ off(type:'complete', callback?: Callback\<void>): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 转码完成事件回调类型，支持的事件：'complete'，用户操作和系统都会触发此事件。 |
+| type   | string | 是   | 转码完成事件回调类型，支持的事件：'complete'，开发者操作和系统都会触发此事件。 |
 | callback | [Callback\<void>](../apis-basic-services-kit/js-apis-base.md#callback) | 否   | 完成事件回调方法。 |
 
 **示例：**
