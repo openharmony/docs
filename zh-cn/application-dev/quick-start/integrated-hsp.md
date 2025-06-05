@@ -55,7 +55,7 @@
 
 3. 创建方-集成态HSP-打包配置（tgz包）。
 
-    (1) 配置项目签名信息，详情请参见[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)。
+    (1) 配置项目签名信息，详情请参见[应用/元服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)。
 
     (2) 配置release模式。
 
@@ -96,4 +96,4 @@
     }
     ```
     > **说明：** 
-    > 安装和运行应用前，必须配置项目签名信息，详见[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)。
+    > 安装和运行应用前，必须配置项目签名信息，详见[应用/元服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)。
