@@ -58,7 +58,7 @@ Repeat<string>(this.arr)
 
 ### each
 
-each(itemGenerator: (repeatItem: RepeatItem\<T\>) => void): RepeatAttribute\<T\>
+each(itemGenerator: (repeatItem: RepeatItem\<T\>) => void)
 
 组件生成函数。当所有`.template()`的type和`.templateId()`返回值不匹配时，将使用`.each()`处理数据项。
 
@@ -88,7 +88,7 @@ Repeat<string>(this.arr)
 
 ### key
 
-key(keyGenerator: (item: T, index: number) => string): RepeatAttribute\<T\>
+key(keyGenerator: (item: T, index: number) => string)
 
 键值生成函数。
 
@@ -116,7 +116,7 @@ Repeat<string>(this.arr)
 
 ### virtualScroll
 
-virtualScroll(virtualScrollOptions?: VirtualScrollOptions): RepeatAttribute\<T\>
+virtualScroll(virtualScrollOptions?: VirtualScrollOptions)
 
 `Repeat`开启虚拟滚动。
 
@@ -143,7 +143,7 @@ List() {
 
 ### template
 
-template(type: string, itemBuilder: RepeatItemBuilder\<T\>, templateOptions?: TemplateOptions): RepeatAttribute\<T\>
+template(type: string, itemBuilder: RepeatItemBuilder\<T\>, templateOptions?: TemplateOptions)
 
 由template type渲染对应的template子组件。
 
@@ -174,7 +174,7 @@ List() {
 
 ### templateId
 
-templateId(typedFunc: TemplateTypedFunc\<T\>): RepeatAttribute\<T\>
+templateId(typedFunc: TemplateTypedFunc\<T\>)
 
 为当前数据项分配template type。
 
@@ -348,7 +348,7 @@ type RepeatItemBuilder\<T\> = (repeatItem: RepeatItem\<T\>) => void
 
 | 名称      | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| cachedCount | number | 否   | 当前template的缓存池中可缓存子组件节点的最大数量。取值范围是[0, +∞)。|
+| cachedCount | number | 否   | 当前template的缓存池中可缓存子组件节点的最大数量。取值范围是[0, +∞)。默认值为屏上节点与预加载节点的个数之和。当屏上节点与预加载节点的个数之和增多时，cachedCount也会对应增长。需要注意cachedCount数量不会减少。|
 
 当cachedCount值被设置为当前template在屏上显示的最大节点数量时，Repeat会做到最大程度的复用。然而当屏上没有当前template的节点时，缓存池不会释放的同时应用内存增大。需要开发者根据具体情况自行把控。
 
