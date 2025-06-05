@@ -334,59 +334,7 @@ struct WebComponent {
 </html>
 ```
 ![bindSelectionMenu](./figures/bindSelectionMenu.gif)
-## 常见问题
-### 如何禁用长按选择时弹出菜单
-可通过[editMenuOptions](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#editmenuoptions12)接口将系统默认菜单全部过滤，此时无菜单项，则不会显示菜单。
-  ```ts
-// xxx.ets
-import { webview } from '@kit.ArkWeb';
-@Entry
-@Component
-struct WebComponent {
-  controller: webview.WebviewController = new webview.WebviewController();
-
-  onCreateMenu(menuItems: Array<TextMenuItem>): Array<TextMenuItem> {
-    let items = menuItems.filter((menuItem) => {
-      // 过滤用户需要的系统按键
-      return false;
-    });
-    return items;
-  }
-
-  onMenuItemClick(menuItem: TextMenuItem, textRange: TextRange): boolean {
-    return false;// 返回默认值false
-  }
-
-  @State EditMenuOptions: EditMenuOptions = { onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick }
-
-  build() {
-    Column() {
-      Web({ src: $rawfile("index.html"), controller: this.controller })
-        .editMenuOptions(this.EditMenuOptions)
-    }
-  }
-}
-  ```
-  ```html
-<!--index.html-->
-<!DOCTYPE html>
-<html>
-  <head>
-      <title>测试网页</title>
-  </head>
-  <body>
-    <h1>editMenuOptions Demo</h1>
-    <span>edit menu options</span>
-  </body>
-</html>
-  ```
-![emptyEditMenuOption](./figures/emptyEditMenuOption.gif)
-
-### 出现选区时手柄菜单不显示
-可排查是否通过JS的[selection-api](https://www.w3.org/TR/selection-api/)对选区进行了操作，目前通过这种方式改变选区会导致手柄菜单不显示。
-
-### Web菜单如何实现保存图片
-
+## Web菜单保存图片
 1. 创建MenuBuilder组件作为菜单弹窗，使用[SaveButton](../../application-dev/reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md)组件实现图片保存功能，通过bindContextMenu将MenuBuilder与Web绑定。
 2. 在onContextMenuShow中获取图片url，通过copyLocalPicToDir或copyUrlPicToDir将图片保存至应用沙箱。
 3. 通过photoAccessHelper将应用沙箱中的图片保存至图库。
@@ -522,3 +470,53 @@ struct WebComponent {
 </html>
   ```
 ![emptyEditMenuOption](./figures/web-menu-savePic.gif)
+## 常见问题
+### 如何禁用长按选择时弹出菜单
+可通过[editMenuOptions](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#editmenuoptions12)接口将系统默认菜单全部过滤，此时无菜单项，则不会显示菜单。
+  ```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  onCreateMenu(menuItems: Array<TextMenuItem>): Array<TextMenuItem> {
+    let items = menuItems.filter((menuItem) => {
+      // 过滤用户需要的系统按键
+      return false;
+    });
+    return items;
+  }
+
+  onMenuItemClick(menuItem: TextMenuItem, textRange: TextRange): boolean {
+    return false;// 返回默认值false
+  }
+
+  @State EditMenuOptions: EditMenuOptions = { onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick }
+
+  build() {
+    Column() {
+      Web({ src: $rawfile("index.html"), controller: this.controller })
+        .editMenuOptions(this.EditMenuOptions)
+    }
+  }
+}
+  ```
+  ```html
+<!--index.html-->
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>测试网页</title>
+  </head>
+  <body>
+    <h1>editMenuOptions Demo</h1>
+    <span>edit menu options</span>
+  </body>
+</html>
+  ```
+![emptyEditMenuOption](./figures/emptyEditMenuOption.gif)
+
+### 出现选区时手柄菜单不显示
+可排查是否通过JS的[selection-api](https://www.w3.org/TR/selection-api/)对选区进行了操作，目前通过这种方式改变选区会导致手柄菜单不显示。
