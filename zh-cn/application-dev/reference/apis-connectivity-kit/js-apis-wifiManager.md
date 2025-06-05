@@ -2401,6 +2401,7 @@ stopDiscoverDevices(): void
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
+
 ## wifiManager.getMultiLinkedInfo<sup>18+</sup>
 
 getMultiLinkedInfo(): &nbsp;Array&lt;WifiLinkedInfo&gt;
