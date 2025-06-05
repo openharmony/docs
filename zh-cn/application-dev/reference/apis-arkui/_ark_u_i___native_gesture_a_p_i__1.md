@@ -59,7 +59,7 @@ int32_t(* ArkUI_NativeGestureAPI_1::addChildGesture) (ArkUI_GestureRecognizer *g
 
 **返回：**
 
-0 - 成功。 401 - 参数错误。比如添加手势到非手势组对象内。
+0 - 成功。 401 - 参数错误，比如添加手势到非手势组对象内。
 
 
 ### addGestureToNode
@@ -226,8 +226,8 @@ ArkUI_GestureRecognizer*(* ArkUI_NativeGestureAPI_1::createTapGesture) (int32_t 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| countNum | 识别的连续点击次数。当设置的值小于1或不设置时，会被转化为默认值 1。  | 
-| fingersNum | 触发点击的手指数，最小为1指， 最大为10指。当设置小于1的值或不设置时，会被转化为默认值 1。  | 
+| countNum | 识别的连续点击次数。当设置的值小于1或不设置时，会被转化为默认值1。| 
+| fingersNum | 触发点击的手指数，最小为1指， 最大为10指。当设置小于1的值或不设置时，会被转化为默认值1。| 
 
 **返回：**
 
