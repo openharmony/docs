@@ -93,7 +93,7 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
   if (!err) {
     console.log("connect success");
   } else {
-    console.log("connect fail, err:" + JSON.stringify(err));
+    console.error("connect fail, err:" + JSON.stringify(err));
   }
 });
 ```
@@ -159,7 +159,7 @@ ws.connect(url, options, (err: BusinessError, value: Object) => {
   if (!err) {
     console.log("connect success");
   } else {
-    console.log("connect fail, err:" + JSON.stringify(err))
+    console.error("connect fail, err:" + JSON.stringify(err))
   }
 });
 ```
@@ -220,7 +220,7 @@ let promise = ws.connect(url);
 promise.then((value: boolean) => {
   console.log("connect success");
 }).catch((err:string) => {
-  console.log("connect fail, error:" + JSON.stringify(err));
+  console.error("connect fail, error:" + JSON.stringify(err));
 });
 ```
 
@@ -266,7 +266,7 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("connect success");
     } else {
-      console.log("connect fail, err:" + JSON.stringify(err))
+      console.error("connect fail, err:" + JSON.stringify(err))
     }
 });
 ws.on('open', (err: BusinessError, value: Object) => {
@@ -275,7 +275,7 @@ ws.on('open', (err: BusinessError, value: Object) => {
     if (!err) {
       console.log("send success");
     } else {
-      console.log("send fail, err:" + JSON.stringify(err))
+      console.error("send fail, err:" + JSON.stringify(err))
     }
   });
 });
@@ -332,7 +332,7 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("connect success");
     } else {
-      console.log("connect fail, err:" + JSON.stringify(err))
+      console.error("connect fail, err:" + JSON.stringify(err))
     }
 });
 
@@ -342,7 +342,7 @@ ws.on('open', (err: BusinessError, value: Object) => {
   promise.then((value: boolean) => {
     console.log("send success")
   }).catch((err:string) => {
-    console.log("send fail, error:" + JSON.stringify(err))
+    console.error("send fail, error:" + JSON.stringify(err))
   });
 });
 ```
@@ -387,7 +387,7 @@ ws.close((err: BusinessError) => {
   if (!err) {
     console.log("close success")
   } else {
-    console.log("close fail, err is " + JSON.stringify(err))
+    console.error("close fail, err is " + JSON.stringify(err))
   }
 });
 ```
@@ -435,7 +435,7 @@ ws.close(options, (err: BusinessError) => {
     if (!err) {
         console.log("close success")
     } else {
-        console.log("close fail, err is " + JSON.stringify(err))
+        console.error("close fail, err is " + JSON.stringify(err))
     }
 });
 ```
@@ -486,7 +486,7 @@ let promise = ws.close();
 promise.then((value: boolean) => {
     console.log("close success")
 }).catch((err:string) => {
-    console.log("close fail, err is " + JSON.stringify(err))
+    console.error("close fail, err is " + JSON.stringify(err))
 });
 ```
 
@@ -707,7 +707,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('error', (err: BusinessError) => {
-  console.log("on error, error:" + JSON.stringify(err))
+  console.error("on error, error:" + JSON.stringify(err))
 });
 ```
 
@@ -930,7 +930,7 @@ localServer.start(config).then((success: boolean) => {
   if (success) {
     console.info('webSocket server start success');
   } else {
-    console.info('websocket server start failed');
+    console.error('websocket server start failed');
   }
 }).catch((error: BusinessError) => {
   console.error(`Failed to start. Code: ${error.code}, message: ${error.message}`);
@@ -991,7 +991,7 @@ localServer.start(config).then((success: boolean) => {
   if (success) {
     console.info('webSocket server start success');
   } else {
-    console.info('websocket server start failed');
+    console.error('websocket server start failed');
   }
 }).catch((error: BusinessError) => {
   console.error(`Failed to start. Code: ${error.code}, message: ${error.message}`);
@@ -1004,7 +1004,7 @@ localServer.on('connect', async (connection: webSocket.WebSocketConnection) => {
     if (success) {
       console.info('message send successfully');
     } else {
-      console.info('message send failed');
+      console.error('message send failed');
     }
   }).catch((error: BusinessError) => {
     console.error(`message send failed, Code: ${error.code}, message: ${error.message}`);
@@ -1053,7 +1053,7 @@ localServer.start(config).then((success: boolean) => {
   if (success) {
     console.info('webSocket server start success');
   } else {
-    console.info('websocket server start failed');
+    console.error('websocket server start failed');
   }
 }).catch((error: BusinessError) => {
   console.error(`Failed to start. Code: ${error.code}, message: ${error.message}`);
@@ -1124,7 +1124,7 @@ localServer.start(config).then((success: boolean) => {
   if (success) {
     console.info('webSocket server start success');
   } else {
-    console.info('websocket server start failed');
+    console.error('websocket server start failed');
   }
 }).catch((error: BusinessError) => {
   console.error(`Failed to start. Code: ${error.code}, message: ${error.message}`);
@@ -1136,7 +1136,7 @@ localServer.on('connect', (connection: webSocket.WebSocketConnection) => {
     if (success) {
       console.log('close client successfully');
     } else {
-      console.log('close client failed');
+      console.error('close client failed');
     }
   });
 });
@@ -1184,7 +1184,7 @@ localServer.start(config).then((success: boolean) => {
   if (success) {
     console.info('webSocket server start success');
   } else {
-    console.info('websocket server start failed');
+    console.error('websocket server start failed');
   }
 }).catch((error: BusinessError) => {
   console.error(`Failed to start. Code: ${error.code}, message: ${error.message}`);
@@ -1194,7 +1194,7 @@ localServer.stop().then((success: boolean) => {
   if (success) {
     console.info('server stop service successfully');
   } else {
-    console.info('server stop service failed');
+    console.error('server stop service failed');
   }
 });
 ```
@@ -1390,7 +1390,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let localServer = webSocket.createWebSocketServer();
 localServer.on('error', (err: BusinessError) => {
-  console.info(`error. Code: ${error.code}, message: ${error.message}`);
+  console.error(`error. Code: ${error.code}, message: ${error.message}`);
 });
 ```
 
