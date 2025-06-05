@@ -4,7 +4,7 @@
 
 ## 接口说明
 
-场景动效类型互动卡片开发关键接口如下表所示。具体API说明详见API参考。
+场景动效类型互动卡片开发关键接口如下表所示。
 
 **表1** 主要接口
 
@@ -81,10 +81,10 @@ try {
 
 4. LiveFormExtensionAbility适配
 
-为卡片提供方更精准控制卡片状态切换，避免由于加载复杂界面UI时，耗时较长造成页面页面切换不流畅。提供方需在切换至激活态时，通过session发送信息通知卡片使用方，卡片使用方收到信息后开始加载卡片激活态界面。
+为卡片提供方更精准控制卡片状态切换，避免由于加载复杂界面UI时，耗时较长造成页面页面切换不流畅。卡片提供方需在切换至激活态时，通过session发送信息通知卡片使用方，卡片使用方收到信息后开始加载卡片激活态界面。
 
 ```ts
-// entry/src/main/ets/mysystemliveformextensionability/MySystemLiveFormExtensionAbility.ets
+// entry/src/main/ets/mysystemliveformextensionability/MySystemLiveFormExtensionAbility.ets 
 import { LiveFormInfo } from '@kit.FormKit';
 import { LiveFormExtensionAbility } from '@kit.FormKit';
 import { UIExtensionContentSession } from '@kit.AbilityKit';
