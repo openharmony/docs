@@ -484,7 +484,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
    ```
    // 全局日志级别默认为Info，查询全局日志级别
-   param get param get hilog.loggable.global
+   param get hilog.loggable.global
 
    // 设置全局日志级别
    hilog -b D/I/W/E/F
