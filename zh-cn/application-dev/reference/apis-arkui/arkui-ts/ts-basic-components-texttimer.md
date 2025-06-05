@@ -52,6 +52,8 @@ format(value: string)
 
 设置自定义格式，需至少包含一个HH、mm、ss、SS中的关键字。如使用yy、MM、dd等日期格式，则使用默认值。
 
+计时器更新频率按format最小单位处理，例如：format设置为'HH:mm'时，更新频率为一分钟。
+
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
