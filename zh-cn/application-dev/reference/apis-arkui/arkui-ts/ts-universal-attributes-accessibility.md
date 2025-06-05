@@ -640,3 +640,111 @@ struct Index {
   }
 }
 ```
+
+### 示例5（设置无障碍屏幕朗读滚动）
+
+该示例主要演示accessibilityScrollTriggerable设置无障碍节点是否支持屏幕朗读滚动和accessibilityUseSamePage设置UIExtensionComponent的accessibilityUseSamePage属性。
+
+```ts
+// xxx.ets
+import { ComponentContent } from '@kit.ArkUI';
+
+class Params {
+}
+@Builder
+function LoadingBuilder(params: Params) {
+  Column() {
+    LoadingProgress()
+      .color('#4A90E2')
+  }
+}
+@Entry
+@Component
+struct Index {
+  private contentNode = new ComponentContent(this.getUIContext(), wrapBuilder(LoadingBuilder), new Params);
+
+  build() {
+    Row() {
+      List() {
+        ListItem() {
+          Column() {
+            Stack() {
+              Column() {
+                Text('文本1')
+                  .fontSize(18)
+                  .fontColor('#2D2D2D')
+                  .fontWeight(FontWeight.Medium)
+                Text('文本1')
+                  .fontSize(18)
+                  .fontColor('#2D2D2D')
+                  .fontWeight(FontWeight.Medium)
+              }
+              .padding({ top: 8, bottom: 8 })
+              Column() {
+                Text('文本2')
+                  .fontSize(18)
+                  .fontColor('#FFFFFF')
+                  .fontWeight(FontWeight.Medium)
+                Text('文本2')
+                  .fontSize(18)
+                  .fontColor('#FFFFFF')
+                  .fontWeight(FontWeight.Medium)
+              }
+              .backgroundColor('#4A90E2')
+              .padding({ left: 12, right: 12, top: 10, bottom: 10 })
+              .borderRadius(6)
+            }
+            .width('100%')
+            .margin({ top: 10, bottom: 10 })
+            Column() {
+              UIExtensionComponent({
+                bundleName: 'com.example.provide',
+                abilityName: 'EmptyUIExtensionAbility',
+                parameters: {
+                  'ability.want.params.uiExtensionType': 'sys/commonUI'
+                }
+              },
+                {
+                  placeholder: this.contentNode,
+                  dpiFollowStrategy: DpiFollowStrategy.FOLLOW_UI_EXTENSION_ABILITY_DPI
+                })
+                .onReceive((err) => {
+                  console.error('onReceive' + JSON.stringify(err));
+                })
+                .onError((err) => {
+                  console.error('onError code :' + err.code + ', name: ' + err.name + ', msg: ' + err.message);
+                  console.error('onError' + JSON.stringify(err));
+                })
+                .accessibilityUseSamePage(AccessibilitySamePageMode.FULL_SILENT)
+                .width('50%')
+                .height('50%')
+                .backgroundColor('#F0F0F0')
+                .borderRadius(8)
+                .borderWidth(1)
+                .borderColor('#D9D9D9')
+            }
+            .width('100%')
+            .height('100%')
+            .margin({ top: 50 })
+            .accessibilityText($r('app.string.app_name'))
+            .accessibilityDescription($r('app.string.module_desc'))
+            Column() {
+              Text('文本4')
+                .fontSize(18)
+                .fontWeight(FontWeight.Medium)
+            }
+            .margin({ top: 15 })
+          }
+          .width('100%')
+        }
+      }
+      .accessibilityScrollTriggerable(false)
+      .width('100%')
+    }
+    .height('100%')
+    .backgroundColor('#F7F9FC')
+  }
+}
+```
+
+![accessibilityUseSamePage](figures/accessibilityUseSamePage.png)
