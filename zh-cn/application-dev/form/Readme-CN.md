@@ -44,7 +44,7 @@
         - [场景动效类型互动卡片概述](arkts-ui-liveform-sceneanimation-overview.md)
         - [场景动效类型互动卡片开发指导](arkts-ui-liveform-sceneanimation-development.md)
         <!--Del-->
-        - [场景动效类型互动卡片开发指导（系统应用）](arkts-ui-liveform-sceneanimation-development-sys)
+        - [场景动效类型互动卡片开发指导（系统应用）](arkts-ui-liveform-sceneanimation-development-sys.md)
         <!--DelEnd-->
   - [开发基于JS UI的卡片](js-ui-widget-development.md)
 - [服务卡片开发指导（FA模型）](widget-development-fa.md)
