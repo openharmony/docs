@@ -25,8 +25,7 @@
 
 ```ts
 // entry/src/main/ets/myliveformextensionability/MyLiveFormExtensionAbility.ets
-import { LiveFormInfo } from '@kit.FormKit';
-import { LiveFormExtensionAbility } from '@kit.FormKit';
+import { LiveFormInfo, LiveFormExtensionAbility } from '@kit.FormKit';
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
 export default class MyLiveFormExtensionAbility extends LiveFormExtensionAbility {
@@ -215,7 +214,7 @@ struct WidgetCard {
 
 1. 触发互动卡片动效
 
-卡片加桌时，在[onUpdateForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonupdateform)生命周期回调中，通过wantParams中返回卡片实际尺寸、计算动效申请范围，并发起互动卡片动效申请。
+互动卡片在加桌时，会主动触发一次[onUpdateForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonupdateform)生命周期回调，在回调中通过wantParams中返回卡片实际尺寸、计算动效申请范围，并发起互动卡片动效申请。
 
 ```ts
 // entry/src/main/ets/entryformability/EntryFormAbility.ets
