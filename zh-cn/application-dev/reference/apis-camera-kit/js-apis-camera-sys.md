@@ -142,11 +142,11 @@ createDepthDataOutput(profile: DepthProfile): DepthDataOutput
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)和[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 202               |  Not System Application.               |
+| 202                    |  Not System Application.               |
 | 7400101                |  Parameter missing or parameter type incorrect.               |
 | 7400201                |  Camera service fatal error.               |
 
@@ -187,11 +187,11 @@ isCameraMuteSupported(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 202               |  Not System Application.               |
+| 202             |  Permission verification failed. A non-system application calls a system API.    |
 
 **示例：**
 
@@ -249,12 +249,12 @@ muteCameraPersistent(mute: boolean, type: PolicyType): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)和[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 201               |Permission denied                       |
-| 202               |  Not System Application.               |
+| 201               |  Permission denied.                     |
+| 202               |  Not System Application.                |
 | 7400101           |  Parameter missing or parameter type incorrect.  |
 
 **示例：**
@@ -448,7 +448,7 @@ prelaunch(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -8279,7 +8279,7 @@ enableLcdFlash(enabled: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)和[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
