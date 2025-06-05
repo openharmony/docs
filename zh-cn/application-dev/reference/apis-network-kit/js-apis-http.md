@@ -871,7 +871,7 @@ on(type: "dataReceive", callback: Callback\<ArrayBuffer\>): void
 | 参数名   | 类型                    | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | 是   | 订阅的事件类型，'dataReceive'。 |
-| callback | AsyncCallback\<ArrayBuffer\> | 是   | 回调函数。当订阅成功时，error为undefined，data为获取到的ArrayBuffer x；否则为错误对象。 |
+| callback | AsyncCallback\<ArrayBuffer\> | 是   | 回调函数。当订阅成功时，error为undefined，data为获取到的HTTP流式数据接收数据，类型为ArrayBuffer；否则为错误对象。 |
 
 **示例：**
 
