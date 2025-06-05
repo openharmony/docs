@@ -60,7 +60,7 @@ text.setTextHighContrast(text.TextHighContrast.TEXT_APP_DISABLE_HIGH_CONTRAST)
 
 ## text.setTextUndefinedGlyphDisplay<sup>20+</sup>
 
-setTextUndefinedGlyphDisplay(undefinedGlyphDisplay: TextUndefinedGlyphDisplay): void
+setTextUndefinedGlyphDisplay(noGlyphShow: TextUndefinedGlyphDisplay): void
 
 设置字符映射到.notdef（未定义）字形时要使用的字形类型。
 
@@ -77,7 +77,7 @@ setTextUndefinedGlyphDisplay(undefinedGlyphDisplay: TextUndefinedGlyphDisplay): 
 
 | 参数名 | 类型               | 必填 | 说明                              |
 | ----- | ------------------ | ---- | ------------------------------------------------------------------------------- |
-| undefinedGlyphDisplay | [TextUndefinedGlyphDisplay](#textundefinedglyphdisplay20) | 是   | 无法塑性字符的显示方式。 |
+| noGlyphShow | [TextUndefinedGlyphDisplay](#textundefinedglyphdisplay20) | 是   | 无法塑性字符的显示方式。 |
 
 **示例：**
 
