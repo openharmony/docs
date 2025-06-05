@@ -17,105 +17,104 @@
 
 ## 开发步骤
 
-1. 导入所需模块
+1. 导入statistics、socket以及错误码模块。
 
-导入statistics、socket以及错误码模块。
-
-```ts
-import { statistics, socket } from '@kit.NetworkKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-```
+    ```ts
+    import { statistics, socket } from '@kit.NetworkKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    ```
 
 2. 获取指定网卡实时流量数据
 
-调用getIfaceRxBytes接口传入网卡名获取实时下行流量数据。
+    调用getIfaceRxBytes接口传入网卡名获取实时下行流量数据。
 
-```ts
-// wlan0为主WiFi网卡名，获取主WiFi实时下行流量数据。
-statistics.getIfaceRxBytes("wlan0").then((stats: number) => {
-  console.log(JSON.stringify(stats));
-});
+    ```ts
+    // wlan0为主WiFi网卡名，获取主WiFi实时下行流量数据。
+    statistics.getIfaceRxBytes("wlan0").then((stats: number) => {
+      console.log(JSON.stringify(stats));
+    });
 
-// wlan0为主WiFi网卡名，获取主WiFi实时上行流量数据。
-statistics.getIfaceTxBytes("wlan0").then((stats: number) => {
-  console.log(JSON.stringify(stats));
-});
-```
+    // wlan0为主WiFi网卡名，获取主WiFi实时上行流量数据。
+    statistics.getIfaceTxBytes("wlan0").then((stats: number) => {
+      console.log(JSON.stringify(stats));
+    });
+    ```
 
 3. 获取蜂窝实时流量数据
 
-调用getCellularRxBytes接口获取蜂窝实时上下行流量数据。
+    调用getCellularRxBytes接口获取蜂窝实时上下行流量数据。
 
-```ts
-// 获取蜂窝实时下行流量数据。
-statistics.getCellularRxBytes().then((stats: number) => {
-  console.log(JSON.stringify(stats));
-});
+    ```ts
+    // 获取蜂窝实时下行流量数据。
+    statistics.getCellularRxBytes().then((stats: number) => {
+      console.log(JSON.stringify(stats));
+    });
 
-// 获取蜂窝实时上行流量数据。
-statistics.getCellularTxBytes().then((stats: number) => {
-  console.log(JSON.stringify(stats));
-});
-```
+    // 获取蜂窝实时上行流量数据。
+    statistics.getCellularTxBytes().then((stats: number) => {
+      console.log(JSON.stringify(stats));
+    });
+    ```
 
 4. 获取所有网卡实时流量数据
 
-调用getAllRxBytes接口获取所有网卡实时上下行流量数据。
+    调用getAllRxBytes接口获取所有网卡实时上下行流量数据。
 
-```ts
-// 获取所有网卡实时下行流量数据。
-statistics.getAllRxBytes().then((stats: number) => {
-  console.log(JSON.stringify(stats));
-});
+    ```ts
+    // 获取所有网卡实时下行流量数据。
+    statistics.getAllRxBytes().then((stats: number) => {
+      console.log(JSON.stringify(stats));
+    });
 
-// 获取所有网卡实时上行流量数据。
-statistics.getAllTxBytes().then((stats: number) => {
-  console.log(JSON.stringify(stats));
-});
-```
+    // 获取所有网卡实时上行流量数据。
+    statistics.getAllTxBytes().then((stats: number) => {
+      console.log(JSON.stringify(stats));
+    });
+    ```
 
 5. 获取指定应用实时流量数据
 
-调用getUidRxBytes接口，传入UID获取指定应用实时上下行流量数据。
+    调用getUidRxBytes接口，传入UID获取指定应用实时上下行流量数据。
 
-```ts
-// 获取指定应用实时下行流量数据。
-let uid = 20010038;
-statistics.getUidRxBytes(uid).then((stats: number) => {
-  console.log(JSON.stringify(stats));
-});
+    ```ts
+    // 获取指定应用实时下行流量数据。
+    let uid = 20010038;
+    statistics.getUidRxBytes(uid).then((stats: number) => {
+      console.log(JSON.stringify(stats));
+    });
 
-// 获取指定应用实时上行流量数据。
-let uids = 20010038;
-statistics.getUidTxBytes(uids).then((stats: number) => {
-  console.log(JSON.stringify(stats));
-});
-```
+    // 获取指定应用实时上行流量数据。
+    let uids = 20010038;
+    statistics.getUidTxBytes(uids).then((stats: number) => {
+      console.log(JSON.stringify(stats));
+    });
+    ```
 
 6. 获取指定socket实时流量数据
 
-调用getSockfdRxBytes接口，传入指定的sockFd获取指定socket实时上下行流量数据。
+    调用getSockfdRxBytes接口，传入指定的sockFd获取指定socket实时上下行流量数据。
 
-```ts
-// 获取指定socket实时下行流量数据。
-let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-tcp.getSocketFd().then((sockfd: number) => {
-  statistics.getSockfdRxBytes(sockfd).then((stats: number) => {
-    console.log(JSON.stringify(stats));
-  }).catch((err: BusinessError) => {
-    console.error(JSON.stringify(err));
-  });
-});
+    ```ts
+    // 获取指定socket实时下行流量数据。
+    let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+    tcp.getSocketFd().then((sockfd: number) => {
+      statistics.getSockfdRxBytes(sockfd).then((stats: number) => {
+        console.log(JSON.stringify(stats));
+      }).catch((err: BusinessError) => {
+        console.error(JSON.stringify(err));
+      });
+    });
 
-// 获取指定socket实时上行流量数据。
-tcp.getSocketFd().then((sockfd: number) => {
-  statistics.getSockfdTxBytes(sockfd).then((stats: number) => {
-    console.log(JSON.stringify(stats));
-  }).catch((err: BusinessError) => {
-    console.error(JSON.stringify(err));
-  });
-});
-```
+    // 获取指定socket实时上行流量数据。
+    tcp.getSocketFd().then((sockfd: number) => {
+      statistics.getSockfdTxBytes(sockfd).then((stats: number) => {
+        console.log(JSON.stringify(stats));
+      }).catch((err: BusinessError) => {
+        console.error(JSON.stringify(err));
+      });
+    });
+    ```
+
 <!--Del-->
 ## 获取网卡/UID 的历史流量统计数据
 
