@@ -35,7 +35,7 @@
 
 ## 卡片长时激活
 
-针对系统应用，支持通过接口控制卡片状态切换，不对激活态保持时间做强限制，即卡片可以长时间保持激活态。卡片进入/退出激活态操作由[formProvider.activateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#activatesceneanimation20)和[formProvider.deactivateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#deactivatesceneanimation20)接口控制。
+针对系统应用，支持卡片提供方通过接口控制卡片状态切换，不对激活态保持时间做强限制，即卡片可以长时间保持激活态。卡片进入/退出激活态操作由[formProvider.activateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#activatesceneanimation20)和[formProvider.deactivateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#deactivatesceneanimation20)接口控制。
 此外，卡片通过formProvider.activateSceneAnimation进入激活态后，卡片动效渲染区域和卡片自身渲染区域等大，且不支持调用[formProvider.requestOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20)接口请求动效。
 
 ### 开发流程
