@@ -178,7 +178,6 @@
 | [Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state)](#oh_input_getfunctionkeystate) | - | 获取功能键状态。 |
 | [int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent)](#oh_input_injecttouchevent) | - | 注入触摸事件。 |
 | [int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent)](#oh_input_injectmouseevent) | - | 注入鼠标事件。 |
-| [int32_t OH_Input_InjectKeyEvent(const struct Input_KeyEvent* keyEvent)](#oh_input_injecttouchevent) | - | 注入按键事件。 |
 | [int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventdisplayid) | - | 获取鼠标事件的屏幕Id。 |
 
 ## 枚举类型说明
@@ -3670,33 +3669,6 @@ int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent)
 | 参数项 | 描述 |
 | -- | -- |
 | const struct [Input_MouseEvent](capi-input-mouseevent.md)* mouseEvent |  要注入的鼠标事件。 | 
-
-**返回：**
-
-| 类型 | 说明 |
-| -- | -- |
-| int32_t | OH_Input_InjectTouchEvent的执行结果。<br>         [INPUT_SUCCESS](#input_result) 表示注入成功。<br>         [INPUT_PARAMETER_ERROR](#input_result) 表示参数错误。<br>         [INPUT_PERMISSION_DENIED](#input_result) 表示缺少权限。 |
-
-### OH_Input_InjectKeyEvent()
-
-```
-int32_t OH_Input_InjectKeyEvent(const struct Input_KeyEvent* keyEvent)
-```
-
-**描述**
-
-注入按键事件。
-
-**系统能力：** SystemCapability.MultimodalInput.Input.Core
-
-**起始版本：** 12
-
-
-**参数：**
-
-| 参数项 | 描述 |
-| -- | -- |
-| const struct [Input_KeyEvent](capi-input-keyevent.md)* keyEvent | 要注入的按键事件。 | 
 
 **返回：**
 
