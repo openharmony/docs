@@ -75,7 +75,7 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
   | -S | 可选参数，调试时是否进入应用沙箱。携带该参数代表进入，不携带代表不进入。 |
   | -D | 可选参数，调试模式。        |
   | -p | 可选参数，调优命令。命令由调用方自定义。        |
-  | -W | 可选参数，从API version 20开始支持，仅当显式启动UIAbility，该参数生效。统计UIAbility从启动到切换至前台状态耗时。<br>**输出信息：**<br> StartMode：UIAbility启动模式，值：Cold（冷启动）/Hot（热启动）。<br> BundleName：目标应用bundleName。<br>AbilityName：目标应用abilityName。<br>ModuleName：目标应用moduleName。<br>**说明：**<br>  命令中带有"-m"参数时会打印moduleName，否则不打印。<br> TotalTime：<br>  - 冷启动场景下，系统侧接收到aa启动UIAbility请求到该UIAbility完成首帧绘制的耗时，单位毫秒（ms）。<br>  - 热启动场景下，系统侧接收到aa启动UIAbility请求到该UIAbility状态切换至[前台](../application-models/uiability-lifecycle.md#foreground和background状态)的耗时，单位毫秒（ms）。<br>WaitTime：命令启动到命令执行结束的耗时，单位毫秒（ms）。      |
+  | -W | 可选参数，从API version 20开始支持，仅当显式启动UIAbility，该参数生效。可用于测量UIAbility从启动到切换至前台状态耗时。<br>**输出信息如下：**<br> StartMode：UIAbility启动模式，值：Cold（冷启动）/Hot（热启动）。<br> BundleName：目标应用bundleName。<br>AbilityName：目标应用abilityName。<br>ModuleName：目标应用moduleName。<br>**说明：**<br>  命令中带有"-m"参数时会打印moduleName，否则不打印。<br> TotalTime：<br>  - 冷启动场景下，系统侧接收到aa启动UIAbility请求到该UIAbility完成首帧绘制的耗时，单位毫秒（ms）。<br>  - 热启动场景下，系统侧接收到aa启动UIAbility请求到该UIAbility状态切换至[前台](../application-models/uiability-lifecycle.md#foreground和background状态)的耗时，单位毫秒（ms）。<br>WaitTime：命令启动到命令执行结束的耗时，单位毫秒（ms）。      |
 
   **返回值**：
 
