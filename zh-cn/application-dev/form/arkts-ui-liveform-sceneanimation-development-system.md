@@ -4,20 +4,18 @@
 
 ## 接口说明
 
+场景动效类型互动卡片开发关键接口如下表所示。具体API说明详见API参考。
+
 **表1** 主要接口
 
-| 接口名                                                                      | 描述                                                                                                                  |
-|--------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
-| formProvider.activateSceneAnimation(formId: string): Promise&lt;void&gt; | 互动卡片请求状态切换到激活态，只针对[场景动效类型互动卡片](../../form/arkts-ui-widget-configuration.md#sceneanimationparams标签)生效，使用Promise异步回调。 |
-| formProvider.deactivateSceneAnimation(formId: string): Promise&lt;void&gt; | 互动卡片请求切换到非激活态，只针对[场景动效类型互动卡片](../../form/arkts-ui-widget-configuration.md#sceneanimationparams标签)生效，使用Promise异步回调。 |
+| 接口名                                                                                                                                                                       | 描述                                                                                                                  |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
+| [formProvider.activateSceneAnimation(formId: string): Promise&lt;void&gt;](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#activatesceneanimation20)     | 互动卡片请求状态切换到激活态。 |
+| [formProvider.deactivateSceneAnimation(formId: string): Promise&lt;void&gt;](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#deactivatesceneanimation20) | 互动卡片请求切换到非激活态。 |
+
 
 ## 手势禁用配置
-[场景动效类型互动卡片概述](arkts-ui-liveform-sceneanimation-overview.md)中提到，用户在桌面的其他有效操作（点击应用、卡片等，滑动翻页，下拉进入全搜、双中心、拖动卡片、长按卡片等）均会打断当前动效，卡片重新变成非激活态。在form_config.json中，配置项sceneAnimationParams新增针对系统应用的可选字段disabledDesktopBehaviors。该字段配置之后，即使用户在激活态卡片交互热区（和卡片自身渲染区域等大）内做以下操作时，不打断当前卡片动效。例如：
-1. 长按：LONG_CLICK。
-2. 拖拽卡片：DRAG。
-3. 下拉进入全搜：PULL_DOWN_SEARCH。
-4. 左右滑动翻页：SWIPE_PAGE。
-
+针对[场景动效类型互动卡片](arkts-ui-liveform-sceneanimation-overview.md)，若用户在桌面的长按、拖拽等操作会打断当前动效，卡片重新变成非激活态。系统应用可通过form_config.json中[disabledDesktopBehaviors](arkts-ui-widget-configuration.md#sceneanimationparams标签)字段进行配置取消该限制，确保用户在激活态卡片交互热区内操作时，不打断当前卡片动效。
 不配置时，默认不拦截任何用户在桌面的有效手势操作。手势操作拦截后，对应手势事件由LiveFormExtensionAbility响应。
 
 ```ts
@@ -25,25 +23,7 @@
 {
   "forms": [
     {
-      "name": "systemWidget",
-      "displayName": "$string:systemWidget_display_name",
-      "description": "$string:systemWidget_desc",
-      "src": "./ets/systemwidget/pages/SystemWidgetCard.ets",
-      "uiSyntax": "arkts",
-      "window": {
-        "designWidth": 720,
-        "autoDesignWidth": true
-      },
-      "colorMode": "auto",
-      "isDynamic": true,
-      "isDefault": false,
-      "updateEnabled": false,
-      "scheduledUpdateTime": "10:30",
-      "updateDuration": 1,
-      "defaultDimension": "2*2",
-      "supportDimensions": [
-        "2*2"
-      ],
+      // ...
       "sceneAnimationParams": {
         "abilityName": "MySystemLiveFormExtensionAbility",
         "disabledDesktopBehaviors": "LONG_CLICK|DRAG|SWIPE_DESKTOP|PULL_DOWN_SEARCH"
@@ -55,7 +35,8 @@
 
 ## 卡片长时激活
 
-针对系统应用，支持通过接口控制卡片状态切换，不对激活态保持时间做强限制，即卡片可以长时间保持激活态。卡片进入/退出激活态操作由[formProvider.activateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#activatesceneanimation20)和[formProvider.deactivateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#deactivatesceneanimation20)接口控制。特别地，卡片处于长时激活状态时候，卡片动效渲染区域和卡片自身渲染区域等大，不支持在激活态下调用[formProvider.requestOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20)。
+针对系统应用，支持通过接口控制卡片状态切换，不对激活态保持时间做强限制，即卡片可以长时间保持激活态。卡片进入/退出激活态操作由[formProvider.activateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#activatesceneanimation20)和[formProvider.deactivateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#deactivatesceneanimation20)接口控制。
+此外，卡片通过formProvider.activateSceneAnimation进入激活态后，卡片动效渲染区域和卡片自身渲染区域等大，且不支持调用[formProvider.requestOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20)接口请求动效。
 
 ### 开发流程
 
@@ -66,10 +47,9 @@ import { formProvider } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 ```
 
-2. 调用formProvider.activateSceneAnimation，触发卡片长时激活
+2. 触发卡片长时激活
 
 ```ts
-
 let formId: string = '12400633174999288';
 
 try {
@@ -83,7 +63,7 @@ try {
 }
 ```
 
-3. 调用formProvider.deactivateSceneAnimation，取消长时激活，卡片切换为非激活态
+3. 卡片退出激活态
 
 ```ts
 let formId: string = '12400633174999288';
@@ -101,7 +81,7 @@ try {
 
 4. LiveFormExtensionAbility适配
 
-为了卡片提供方更加精细控制卡片状态切换，卡片提供方需在激活态页面准备就绪时，通过session发送信息告知卡片使用方，卡片使用方在收到信息后开始加载卡片激活态UI。
+为卡片提供方更精准控制卡片状态切换，避免由于加载复杂界面UI时，耗时较长造成页面页面切换不流畅。提供方需在切换至激活态时，通过session发送信息通知卡片使用方，卡片使用方收到信息后开始加载卡片激活态界面。
 
 ```ts
 // entry/src/main/ets/mysystemliveformextensionability/MySystemLiveFormExtensionAbility.ets

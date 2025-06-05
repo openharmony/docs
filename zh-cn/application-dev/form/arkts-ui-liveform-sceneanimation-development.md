@@ -4,20 +4,24 @@
 
 ## 接口说明
 
+场景动效类型互动卡片关键接口如下表所示。具体API说明详见API参考。
+
 **表1** 主要接口
 
-| 接口名                                                                                                    | 描述                                                                                                           |
-|--------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| formProvider.requestOverflow(formId: string, overflowInfo: formInfo.OverflowInfo): Promise&lt;void&gt; | 卡片提供方发起互动卡片动效请求，只针对[场景动效类型互动卡片](arkts-ui-widget-configuration.md#sceneanimationparams标签)生效，使用Promise异步回调。|
-| formProvider.cancelOverflow(formId: string): Promise&lt;void&gt;                                       | 卡片提供方发起取消互动卡片动效请求，只针对[场景动效类型互动卡片](arkts-ui-widget-configuration.md#sceneanimationparams标签)生效，使用Promise异步回调。|
+| 接口名                                                                                                                                                                                                 | 描述                 |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|
+| [onLiveFormCreate(liveFormInfo: LiveFormInfo, session: UIExtensionContentSession): void](../reference/apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md#onliveformcreate)                  | 互动卡片界面对象创建的回调函数。   |
+| [onLiveFormDestroy(liveFormInfo: LiveFormInfo): void](../reference/apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md#onliveformdestroy)                                                    | 互动卡片界面对象销毁、资源清理的回调函数。  |
+| [formProvider.requestOverflow(formId: string, overflowInfo: formInfo.OverflowInfo): Promise&lt;void&gt;](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20) | 卡片提供方发起互动卡片动效请求。   |
+| [formProvider.cancelOverflow(formId: string): Promise&lt;void&gt;](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovidercanceloverflow20)                                        | 卡片提供方发起取消互动卡片动效请求。 |
 
 ## 开发流程
 
-### 1. 卡片激活态UI开发
+### 卡片激活态UI开发
 
-卡片激活态UI，需完成[LiveFormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md)以及对应page页面的开发。
+1. 创建互动卡片
 
-**1.1 LiveFormExtensionAbility的开发**
+通过[LiveFormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md)创建互动卡片，创建时加载互动卡片页面。
 
 ```ts
 // entry/src/main/ets/myliveformextensionability/MyLiveFormExtensionAbility.ets
@@ -35,7 +39,7 @@ export default class MyLiveFormExtensionAbility extends LiveFormExtensionAbility
     storage.setOrCreate('formId', formId);
     console.log(`MyLiveFormExtensionAbility onSessionCreate formId: ${formId}`);
 
-    // 加载提供方页面
+    // 加载互动页面
     session.loadContent('myliveformextensionability/pages/MyLiveFormPage', storage);
     this.context.setBackgroundImage($r('app.media.background'));
   }
@@ -46,24 +50,7 @@ export default class MyLiveFormExtensionAbility extends LiveFormExtensionAbility
 };
 ```
 
-**1.2 LiveFormExtensionAbility对应配置项**
-
-```ts
-// entry/src/main/module.json5
-    ...
-    "extensionAbilities": [
-      {
-        "name": "MyLiveFormExtensionAbility",
-        "srcEntry": "./ets/myliveformextensionability/MyLiveFormExtensionAbility.ets",
-        "description": "$string:MyLiveFormExtensionAbility_desc",
-        "label": "$string:MyLiveFormExtensionAbility_label",
-        "type": "liveForm"
-      }
-    ]
-    ...
-```
-
-**1.3 LiveFormExtensionAbility对应page页面的开发**
+2. 互动卡片页面实现
 
 ```ts
 // entry/src/main/ets/myliveformextensionability/pages/MyLiveFormPage.ets
@@ -71,7 +58,6 @@ import { UIExtensionContentSession } from '@kit.AbilityKit';
 import { formProvider } from '@kit.FormKit';
 import { Constants } from '../../common/Constants';
 
-// 互动卡片动效相关常数
 const ANIMATION_RECT_SIZE: number = 100;
 const END_SCALE: number = 1.5;
 const END_TRANSLATE: number = -300;
@@ -112,7 +98,7 @@ struct MyLiveFormPage {
           y: this.columnTranslate
         })
         .onAppear(() => {
-          // 在页面出现时即执行动效
+          // 在页面出现时执行动效
           this.runAnimation();
         })
 
@@ -129,11 +115,31 @@ struct MyLiveFormPage {
 }
 ```
 
-### 2. 卡片非激活态UI开发
+3. 互动卡片LiveFormExtensionAbility配置
 
-**2.1 普通卡片widgetCard的开发**
+在[module.json5配置文件extensionAbilities标签](../quick-start/module-configuration-file.md#extensionabilities标签)下配置LiveFormExtensionAbility。
 
-非激活态卡片UI开发同普通卡片开发流程完全一致，在widgetCard.ets中完成。
+```ts
+// entry/src/main/module.json5
+    ...
+    "extensionAbilities": [
+      {
+        "name": "MyLiveFormExtensionAbility",
+        "srcEntry": "./ets/myliveformextensionability/MyLiveFormExtensionAbility.ets",
+        "description": "$string:MyLiveFormExtensionAbility_desc",
+        "label": "$string:MyLiveFormExtensionAbility_label",
+        "type": "liveForm"
+      }
+    ]
+    ...
+```
+
+
+### 卡片非激活态UI开发
+
+1. 非激活态卡片页面实现
+
+非激活态卡片页面开发同普通卡片开发流程完全一致，在widgetCard.ets中完成。在非激活态卡片页面实现，点击卡片时，请求卡片动效。
 
 ```ts
 // entry/src/main/ets/widget/pages/WidgetCard.ets
@@ -152,7 +158,7 @@ struct WidgetCard {
     }
     .height('100%')
     .onClick(() => {
-      // 点击卡片时，选择向 EntryFormAbility 发送消息，并随后在其 onFormEvent 回调中调用 formProvider.requestOverflow
+      // 点击卡片时，选择向EntryFormAbility发送消息，并在其onFormEvent回调中调用formProvider.requestOverflow，请求卡片动效
       postCardAction(this, {
         action: 'message',
         abilityName: 'EntryFormAbility',
@@ -165,9 +171,9 @@ struct WidgetCard {
 }
 ```
 
-**2.2 form_config.json的配置**
+2. form_config.json配置
 
-在form_config.json配置文件中，在对应卡片widget中新增sceneAnimationParams配置项，完成普通卡片widget和互动卡片LiveFormExtensionAbility的匹配。
+在form_config.json配置文件中，新增sceneAnimationParams配置项。
 
 ```ts
 // entry/src/main/resources/base/profile/form_config.json
@@ -205,11 +211,11 @@ struct WidgetCard {
 }
 ```
 
-### 3. 互动卡片动效触发
+### 互动卡片动效实现
 
-**3.1 EntryFormAbility的开发**
+1. 触发互动卡片动效
 
-在卡片加桌时，在[onUpdateForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonupdateform)生命周期回调中，通过wantParams中返回卡片实际尺寸，后续以此计算动效申请范围。
+卡片加桌时，在[onUpdateForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonupdateform)生命周期回调中，通过wantParams中返回卡片实际尺寸、计算动效申请范围，并发起互动卡片动效申请。
 
 ```ts
 // entry/src/main/ets/entryformability/EntryFormAbility.ets
@@ -294,29 +300,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
 }
 ```
 
-**3.2 动效相关常量的开发**
-
-```ts
-// entry/src/main/ets/common/Constants.ets
-export class Constants {
-  // 互动卡片动效超范围，左侧偏移百分比 = 偏移值/卡片宽度
-  public static readonly OVERFLOW_LEFT_RATIO: number = 0.1;
-
-  // 互动卡片动效超范围，上侧偏移百分比 = 偏移值/卡片高度
-  public static readonly OVERFLOW_TOP_RATIO: number = 0.15;
-
-  // 互动卡片动效超范围，宽度放大百分比
-  public static readonly OVERFLOW_WIDTH_RATIO: number = 1.2;
-
-  // 互动卡片动效超范围，高度放大百分比
-  public static readonly OVERFLOW_HEIGHT_RATIO: number = 1.3;
-
-  // 互动卡片动效超范围，动效时长
-  public static readonly OVERFLOW_DURATION: number = 3500;
-}
-```
-
-**3.3 动效相关工具函数的开发**
+2. 互动卡片动效工具函数实现
 
 ```ts
 // entry/src/main/ets/common/Utils.ets
@@ -352,5 +336,26 @@ export class Utils {
 }
 ```
 
-## demo效果
+```ts
+// entry/src/main/ets/common/Constants.ets
+// 动效相关常量的开发
+export class Constants {
+  // 互动卡片动效超范围，左侧偏移百分比 = 偏移值/卡片宽度
+  public static readonly OVERFLOW_LEFT_RATIO: number = 0.1;
+
+  // 互动卡片动效超范围，上侧偏移百分比 = 偏移值/卡片高度
+  public static readonly OVERFLOW_TOP_RATIO: number = 0.15;
+
+  // 互动卡片动效超范围，宽度放大百分比
+  public static readonly OVERFLOW_WIDTH_RATIO: number = 1.2;
+
+  // 互动卡片动效超范围，高度放大百分比
+  public static readonly OVERFLOW_HEIGHT_RATIO: number = 1.3;
+
+  // 互动卡片动效超范围，动效时长
+  public static readonly OVERFLOW_DURATION: number = 3500;
+}
+```
+
+## 实现效果
 ![live-form-base-demo.gif](figures/live-form-base-demo.gif)
