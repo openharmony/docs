@@ -215,4 +215,8 @@ struct Index {
 
    开发者可以通过配置applinking.json以关联多个应用。如果每个应用的module.json5的uris字段配置的都是一样的，那么系统将弹出列表框供用户选择要拉起的目标应用。
    为了更好的体验，开发者也可以通过链接的path去区分拉起的目标应用，如链接`https://www.example.com/path1`拉起目标应用1，链接`https://www.example.com/path2`拉起目标应用2。
+
+6. 主动加载地址会触发applink吗？
+
+   主动加载地址不会触发applink。
   
