@@ -207,7 +207,7 @@ animator.play();
 
 finish(): void
 
-结束动画。
+结束动画，会触发[onFinish](#onfinish12)回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -239,7 +239,7 @@ animator.pause();
 
 cancel(): void
 
-取消动画。
+取消动画，会触发[onCancel](#oncancel12)回调。此接口和[finish](#finish)接口功能上没有区别，仅触发的回调不同，建议使用finish接口结束动画。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
