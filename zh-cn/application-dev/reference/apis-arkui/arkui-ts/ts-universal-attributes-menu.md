@@ -248,7 +248,7 @@ struct MenuExample {
 
 ### 示例2（弹出自定义菜单）
 
-该示例为bindMenu通过配置CustomBuilder弹出自定义菜单。
+该示例为bindMenu通过配置CustomBuilder弹出自定义菜单。同时，通过配置hapticFeedbackMode实现弹出时的振动效果。
 
 ```ts
 @Entry
@@ -285,7 +285,7 @@ struct MenuExample {
       Text('click for menu')
         .fontSize(20)
         .margin({ top: 20 })
-        .bindMenu(this.MenuBuilder)
+        .bindMenu(this.MenuBuilder, { hapticFeedbackMode: HapticFeedbackMode.ENABLED })
     }
     .height('100%')
     .width('100%')
@@ -336,7 +336,7 @@ struct ContextMenuExample {
 
 ### 示例4（右键弹出指向型菜单）
 
-该示例为bindContextMenu通过配置responseType.RightClick、enableArrow弹出指向型菜单。
+该示例为bindContextMenu通过配置responseType.RightClick、enableArrow弹出指向型菜单。同时，通过配置hapticFeedbackMode实现弹出时的振动效果。
 
 ```ts
 // xxx.ets
@@ -365,7 +365,8 @@ struct DirectiveMenuExample {
           .textAlign(TextAlign.Center)
           .bindContextMenu(this.MenuBuilder, ResponseType.RightClick, {
             enableArrow: true,
-            placement: Placement.Bottom
+            placement: Placement.Bottom,
+            hapticFeedbackMode: HapticFeedbackMode.ENABLED
           })
       }
     }
