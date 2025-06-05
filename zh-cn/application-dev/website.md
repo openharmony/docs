@@ -325,7 +325,7 @@
           - [方舟字节码函数命名规则](arkts-utils/arkts-bytecode-function-name.md)
           - [编译期自定义修改方舟字节码](arkts-utils/customize-bytecode-during-compilation.md)
         - [Disassembler反汇编工具](arkts-utils/tool-disassembler.md)
-        - ArkGuard源码混淆<!--arkts-arkguard-->
+        - ArkGuard源码混淆工具<!--arkts-arkguard-->
           - [ArkGuard混淆概述](arkts-utils/source-obfuscation-overview.md)
           - [ArkGuard混淆原理及功能](arkts-utils/source-obfuscation.md)
           - [ArkGuard混淆开启指南](arkts-utils/source-obfuscation-guide.md)
@@ -1111,26 +1111,26 @@
       - Network Kit（网络服务）<!--network-kit-->
         - [Network Kit简介](network/net-mgmt-overview.md)
         - Network Kit数据传输能力<!--network-kit-data-transmission-->
-            - [HTTP数据请求](network/http-request.md)
-            - [WebSocket连接](network/websocket-connection.md)
-            - [WebSocket连接(C/C++)](network/native-websocket-guidelines.md)
-            - [Socket连接](network/socket-connection.md)
-            - [MDNS](network/net-mdns.md)
+          - [HTTP数据请求](network/http-request.md)
+          - [WebSocket连接](network/websocket-connection.md)
+          - [WebSocket连接(C/C++)](network/native-websocket-guidelines.md)
+          - [Socket连接](network/socket-connection.md)
+          - [MDNS](network/net-mdns.md)
         - Network Kit网络管理能力<!--network-kit-network-management-->
-            - [网络连接管理](network/net-connection-manager.md)
-            - [NetConnection开发指导(C/C++)](network/native-netmanager-guidelines.md)
-            - [流量管理](network/net-statistics.md)
-            - [VPN应用开发指南](network/net-vpnExtension.md)
-            - [网络防火墙](network/net-netfirewall.md)
+          - [网络连接管理](network/net-connection-manager.md)
+          - [NetConnection开发指导(C/C++)](network/native-netmanager-guidelines.md)
+          - [流量管理](network/net-statistics.md)
+          - [VPN应用开发指南](network/net-vpnExtension.md)
+          - [网络防火墙](network/net-netfirewall.md)
           <!--Del-->
-            - [网络共享（仅对系统应用开放）](network/net-sharing.md)
-            - [以太网连接管理（仅对系统应用开放）](network/net-ethernet.md)   
-            - [VPN管理（仅对系统应用开放）](network/net-vpn.md)
-            <!--DelEnd-->
-        - Telephony Kit（蜂窝通信服务）<!--telephony-kit-->
-          - [Telephony Kit简介](telephony/telephony-overview.md)
-          - [拨打电话](telephony/telephony-call.md)
-          - [短信服务](telephony/telephony-sms.md)
+          - [网络共享（仅对系统应用开放）](network/net-sharing.md)
+          - [以太网连接管理（仅对系统应用开放）](network/net-ethernet.md)  
+          - [VPN管理（仅对系统应用开放）](network/net-vpn.md)
+          <!--DelEnd-->
+      - Telephony Kit（蜂窝通信服务）<!--telephony-kit-->
+        - [Telephony Kit简介](telephony/telephony-overview.md)
+        - [拨打电话](telephony/telephony-call.md)
+        - [短信服务](telephony/telephony-sms.md)
     - 基础功能<!--system-basicfun-->
       - Basic Services Kit（基础服务）<!--basic-services-kit-->
         - [Basic Services Kit简介](basic-services/basic-services-kit-overview.md)
@@ -2633,6 +2633,7 @@
           - [自定义组件内置方法](reference/apis-arkui/arkui-ts/ts-custom-component-api.md)
         - 状态管理与渲染控制<!--state-management-and-rendering-control-->
           - [应用级变量的状态管理](reference/apis-arkui/arkui-ts/ts-state-management.md)
+          - [状态变量变化监听](reference/apis-arkui/arkui-ts/ts-state-management-watch-monitor.md)
           - [ForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)
           - [LazyForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)
           - [Repeat](reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
@@ -3534,13 +3535,11 @@
             - [@ohos.settings (设置数据项名称)](reference/apis-basic-services-kit/js-apis-settings.md)
             - [@ohos.wallpaper (壁纸)](reference/apis-basic-services-kit/js-apis-wallpaper.md)
             - [@ohos.resourceschedule.systemload (性能功耗热融合档位)](reference/apis-basic-services-kit/js-apis-resourceschedule-systemload.md)
+            - [@ohos.systemDateTime (系统时间、时区)](reference/apis-basic-services-kit/js-apis-date-time.md)
             <!--Del-->
             - [@ohos.configPolicy (配置策略)(系统接口)](reference/apis-basic-services-kit/js-apis-configPolicy-sys.md)
             - [@ohos.settings (设置数据项名称)(系统接口)](reference/apis-basic-services-kit/js-apis-settings-sys.md)
             - [@ohos.systemDateTime (系统时间、时区)(系统接口)](reference/apis-basic-services-kit/js-apis-system-date-time-sys.md)
-            <!--DelEnd-->
-            - [@ohos.systemDateTime (系统时间、时区)](reference/apis-basic-services-kit/js-apis-date-time.md)
-            <!--Del-->
             - [@ohos.wallpaper (壁纸)(系统接口)](reference/apis-basic-services-kit/js-apis-wallpaper-sys.md)
             - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)(系统接口)](reference/apis-basic-services-kit/js-apis-WallpaperExtensionAbility-sys.md)
             - [@ohos.systemTimer (系统定时器)(系统接口)](reference/apis-basic-services-kit/js-apis-system-timer-sys.md)
@@ -4266,6 +4265,7 @@
           - [OH_Drawing_RunBuffer](reference/apis-arkgraphics2d/_o_h___drawing___run_buffer.md) 
           - [OH_Drawing_String](reference/apis-arkgraphics2d/_o_h___drawing___string.md)
           - [OH_Drawing_StrutStyle](reference/apis-arkgraphics2d/_o_h___drawing___strut_style.md)
+          - [OH_Filter](reference/apis-arkgraphics2d/_o_h___filter.md)
           - [OH_Filter_ColorMatrix](reference/apis-arkgraphics2d/_o_h___filter___color_matrix.md)
           - [OH_NativeBuffer_ColorXY](reference/apis-arkgraphics2d/_o_h___native_buffer___color_x_y.md)
           - [OH_NativeBuffer_Config](reference/apis-arkgraphics2d/_o_h___native_buffer___config.md)
@@ -4315,7 +4315,7 @@
     - Calendar Kit（日历服务）<!--calendar-api-->
       - ArkTS API<!--calendar-arkts-->
         - [@ohos.calendarManager（日程管理）](reference/apis-calendar-kit/js-apis-calendarManager.md)
-    - Contacts Kit（联系人服务）<!--contacts-->
+    - Contacts Kit（联系人服务）<!--contacts-api-->
       - ArkTS API<!--contacts-arkts-->
         - [@ohos.contact (联系人)](reference/apis-contacts-kit/js-apis-contact.md)
       - 错误码<!--contacts-arkts-errcode-->
@@ -4323,13 +4323,11 @@
     - Location Kit（位置服务）<!--location-api-->
       - ArkTS API<!--location-arkts-->
         - [@ohos.geoLocationManager (位置服务)](reference/apis-location-kit/js-apis-geoLocationManager.md)
-        <!--Del-->
-        - [@ohos.geoLocationManager (位置服务)(系统接口)](reference/apis-location-kit/js-apis-geoLocationManager-sys.md)
-        <!--DelEnd-->
         - [@ohos.app.ability.FenceExtensionAbility (FenceExtensionAbility)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md)
         - [@ohos.app.ability.FenceExtensionContext (FenceExtensionContext)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionContext.md)
         <!--Del-->
-        - [@ohos.app.ability.FenceExtensionContext (FenceExtensionContext系统接口)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionContext-sys.md)
+        - [@ohos.app.ability.FenceExtensionContext (FenceExtensionContext)(系统接口)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionContext-sys.md)
+        - [@ohos.geoLocationManager (位置服务)(系统接口)](reference/apis-location-kit/js-apis-geoLocationManager-sys.md)
         <!--DelEnd-->
         - 已停止维护的接口<!--location-arkts-dep-->
           - [@ohos.geolocation (位置服务)](reference/apis-location-kit/js-apis-geolocation.md)
