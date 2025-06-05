@@ -167,6 +167,7 @@ Form is not trust.
 
 检查卡片代码的死循环、内存泄漏等问题。
 
+<!--Del-->
 ## 16501008 等待卡片加桌超时
 
 **错误信息**
@@ -184,6 +185,7 @@ Waiting for the form addition to the desktop timed out.
 **处理步骤**
 
 服务繁忙，请稍后重试。
+<!--DelEnd-->
 
 ## 2293761 内部服务错误
 
@@ -204,7 +206,7 @@ Some internal server error occurs.
 1. 重启系统后重试。
 2. 重启后仍旧失败，请提[在线工单](http://developer.huawei.com/consumer/cn/support/feedback/#)获取帮助。
 
-## 2293766 包管理获取获取请求的应用包名不存在
+## 2293766 包管理获取请求的应用包名不存在
 
 **错误信息**
 
