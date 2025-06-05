@@ -129,7 +129,7 @@ let para: Record<string, number> = { 'PropA': 47 };
 let localStorage: LocalStorage = new LocalStorage(para);
 let res: boolean = localStorage.setOrCreate('PropB', 121);
 let ctx = this.getUIContext().getHostContext() as common.UIAbilityContext; //请在组件内获取context，确保this.getUIContext().getHostContext()返回的结果为UIAbilityContext
-let defaultWindowSizeType: number = 1; //指定画中画第一次拉起窗口为小窗口
+let defaultWindowSize: number = 1; //指定画中画第一次拉起窗口为小窗口
 let config: PiPWindow.PiPConfiguration = {
   context: ctx,
   componentController: mXComponentController,
@@ -140,7 +140,7 @@ let config: PiPWindow.PiPConfiguration = {
   controlGroups: [PiPWindow.VideoPlayControlGroup.VIDEO_PREVIOUS_NEXT],
   customUIController: nodeController, // 可选，如果需要在画中画显示内容上方展示自定义UI，可设置该参数。
   localStorage: localStorage, // 可选，如果需要跟踪主窗实例，可设置此参数。
-  defaultWindowSizeType //可选， 如果需要配置默认启动窗口档位，可设置此参数。
+  defaultWindowSizeType: defaultWindowSize //可选， 如果需要配置默认启动窗口档位，可设置此参数。
 };
 
 let promise: Promise<PiPWindow.PiPController> = PiPWindow.create(config);
@@ -188,8 +188,7 @@ create(config: PiPConfiguration, contentNode: typeNode.XComponent): Promise&lt;P
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { PiPWindow, UIContext } from '@kit.ArkUI';
-import { typeNode } from '@ohos.arkui.node';
+import { PiPWindow, typeNode, UIContext } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 
 let pipController: PiPWindow.PiPController | undefined = undefined;
@@ -199,7 +198,7 @@ let options: XComponentOptions = {
   type: XComponentType.SURFACE,
   controller: xComponentController
 }
-let xComponent = typeNode.createNode(ctx, 'XComponent', options);
+let xComponent = typeNode.createNode(this.getUIContext(), 'XComponent', options);
 let contentWidth: number = 800; // 假设当前内容宽度800px。
 let contentHeight: number = 600; // 假设当前内容高度600px。
 let config: PiPWindow.PiPConfiguration = {
