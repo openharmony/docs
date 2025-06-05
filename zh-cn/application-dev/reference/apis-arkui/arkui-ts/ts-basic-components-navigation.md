@@ -1401,7 +1401,7 @@ setPathStack(pathStack: Array\<NavPathInfo\>, animated?: boolean): void
 
 | 参数名    | 类型     | 必填   | 说明                     |
 | ---- | ---- | --- | ---|
-|pathStack| Array\<[NavPathInfo](#navpathinfo10)\>| 是 | 设置当前路由栈中的路由页面信息数组。|
+|pathStack| Array\<[NavPathInfo](#navpathinfo10)\>| 是 | 设置当前路由栈中的路由页面信息数组。<br/>**说明**：<br/>数组长度无限制。|
 |animated| boolean | 否 | 是否开启转场动画。 <br /> 默认值：true。<br/>true：开启转场动画。<br/>false：不开启转场动画。|
 
 >  **说明：**
