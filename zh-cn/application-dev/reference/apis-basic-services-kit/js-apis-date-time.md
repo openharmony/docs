@@ -58,14 +58,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   systemDateTime.getCurrentTime(true, (error: BusinessError, time: number) => {
     if (error) {
-      console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
+      console.error(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
       return;
     }
     console.info(`Succeeded in getting currentTime : ${time}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -103,14 +103,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   systemDateTime.getCurrentTime((error: BusinessError, time: number) => {
     if (error) {
-      console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
+      console.error(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
       return;
     }
     console.info(`Succeeded in getting currentTime : ${time}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -155,11 +155,11 @@ try {
   systemDateTime.getCurrentTime().then((time: number) => {
     console.info(`Succeeded in getting currentTime : ${time}`);
   }).catch((error: BusinessError) => {
-    console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
+    console.error(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -198,14 +198,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   systemDateTime.getRealActiveTime(true, (error: BusinessError, time: number) => {
     if (error) {
-      console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
+      console.error(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
       return;
     }
     console.info(`Succeeded in getting real active time : ${time}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -243,14 +243,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   systemDateTime.getRealActiveTime((error: BusinessError, time: number) => {
     if (error) {
-      console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
+      console.error(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
       return;
     }
     console.info(`Succeeded in getting real active time : ${time}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -295,11 +295,11 @@ try {
   systemDateTime.getRealActiveTime().then((time: number) => {
     console.info(`Succeeded in getting real active time : ${time}`);
   }).catch((error: BusinessError) => {
-    console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
+    console.error(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -338,14 +338,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   systemDateTime.getRealTime(true, (error: BusinessError, time: number) => {
     if (error) {
-      console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
+      console.error(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
       return;
     }
     console.info(`Succeeded in getting real time : ${time}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -383,14 +383,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   systemDateTime.getRealTime((error: BusinessError, time: number) => {
     if (error) {
-      console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
+      console.error(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
       return;
     }
     console.info(`Succeeded in getting real time : ${time}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -435,11 +435,11 @@ try {
   systemDateTime.getRealTime().then((time: number) => {
     console.info(`Succeeded in getting real time : ${time}`);
   }).catch((error: BusinessError) => {
-    console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
+    console.error(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -472,7 +472,7 @@ try {
   let time = systemDateTime.getTime(true)
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to get time. message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to get time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -514,7 +514,7 @@ try {
   let time = systemDateTime.getUptime(systemDateTime.TimeType.ACTIVE, false);
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to get uptime. message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to get uptime. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -552,14 +552,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   systemDateTime.getDate((error: BusinessError, date: Date) => {
     if (error) {
-      console.info(`Failed to get date. message: ${error.message}, code: ${error.code}`);
+      console.error(`Failed to get date. message: ${error.message}, code: ${error.code}`);
       return;
     }
     console.info(`Succeeded in getting date : ${date}`);;
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to get date. message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to get date. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -598,11 +598,11 @@ try {
   systemDateTime.getDate().then((date: Date) => {
     console.info(`Succeeded in getting date : ${date}`);
   }).catch((error: BusinessError) => {
-    console.info(`Failed to get date. message: ${error.message}, code: ${error.code}`);
+    console.error(`Failed to get date. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to get date. message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to get date. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -628,14 +628,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   systemDateTime.getTimezone((error: BusinessError, data: string) => {
     if (error) {
-      console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
+      console.error(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
       return;
     }
     console.info(`Succeeded in get timezone : ${data}`);;
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -662,11 +662,11 @@ try {
   systemDateTime.getTimezone().then((data: string) => {
     console.info(`Succeeded in getting timezone: ${data}`);
   }).catch((error: BusinessError) => {
-    console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
+    console.error(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -693,7 +693,7 @@ try {
   let timezone = systemDateTime.getTimezoneSync();
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
