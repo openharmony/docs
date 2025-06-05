@@ -43,136 +43,134 @@
 
 1. 导入HTTP一般数据请求所需模块
 
-导入http、common以及错误码模块。
-
-```ts
-import { http } from '@kit.NetworkKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
-```
+    ```ts
+    import { http } from '@kit.NetworkKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { common } from '@kit.AbilityKit';
+    ```
   
 2. 创建HttpRequest对象
 
-调用createHttp()方法，创建HttpRequest对象。
+    调用createHttp()方法，创建HttpRequest对象。
 
-```ts
-let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-// 每一个httpRequest对应一个HTTP请求任务，不可复用。
-let httpRequest = http.createHttp();
-```
+    ```ts
+    let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    // 每一个httpRequest对应一个HTTP请求任务，不可复用。
+    let httpRequest = http.createHttp();
+    ```
 
 3. 订阅HTTP响应头事件
 
-调用该对象的on()方法，订阅HTTP响应头事件，此接口会比request请求先返回。可以根据业务需要订阅此消息。
+    调用该对象的on()方法，订阅HTTP响应头事件，此接口会比request请求先返回。可以根据业务需要订阅此消息。
 
-```ts
-// 用于订阅HTTP响应头，此接口会比request请求先返回。可以根据业务需要订阅此消息。
-// 从API 8开始，使用on('headersReceive', Callback)替代on('headerReceive', AsyncCallback)。
-httpRequest.on('headersReceive', (header) => {
-  console.info('header: ' + JSON.stringify(header));
-});
-```
+    ```ts
+    // 用于订阅HTTP响应头，此接口会比request请求先返回。可以根据业务需要订阅此消息。
+    // 从API 8开始，使用on('headersReceive', Callback)替代on('headerReceive', AsyncCallback)。
+    httpRequest.on('headersReceive', (header) => {
+      console.info('header: ' + JSON.stringify(header));
+    });
+    ```
 
 4. 发起HTTP请求，解析服务器响应事件
 
-调用该对象的request()方法，传入HTTP请求的url地址和可选参数，发起网络请求，按照实际业务需要，解析返回结果。
+    调用该对象的request()方法，传入HTTP请求的url地址和可选参数，发起网络请求，按照实际业务需要，解析返回结果。
 
-```ts
-httpRequest.request(
-  // 填写HTTP请求的URL地址，可以带参数或不带参数。URL地址由开发者自定义。请求的参数可以在extraData中指定。
-  "EXAMPLE_URL",
-  {
-    method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET，用于从服务器获取数据，而POST方法用于向服务器上传数据。
-    // 开发者根据自身业务需要添加header字段。
-    header: {
-      'Content-Type': 'application/json'
-    },
-    // 当使用POST请求时此字段用于传递请求体内容，具体格式与服务端协商确定。
-    extraData: "data to send",
-    expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型。
-    usingCache: true, // 可选，默认为true。
-    priority: 1, // 可选，默认为1。
-    connectTimeout: 60000, // 可选，默认为60000ms。
-    readTimeout: 60000, // 可选，默认为60000ms。
-    usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定。
-    usingProxy: false, // 可选，默认不使用网络代理，自API 10开始支持该属性。
-    caPath:'/path/to/cacert.pem', // 可选，默认使用系统预制证书，自API 10开始支持该属性。
-    clientCert: { // 可选，默认不使用客户端证书，自API 11开始支持该属性。
-      certPath: '/path/to/client.pem', // 默认不使用客户端证书，自API 11开始支持该属性。
-      keyPath: '/path/to/client.key', // 若证书包含Key信息，传入空字符串，自API 11开始支持该属性。
-      certType: http.CertType.PEM, // 可选，默认使用PEM，自API 11开始支持该属性。
-      keyPassword: "passwordToKey" // 可选，输入key文件的密码，自API 11开始支持该属性。
-    },
-    multiFormDataList: [ // 可选，仅当Header中，'content-Type'为'multipart/form-data'时生效，自API 11开始支持该属性，该属性用于支持向服务器上传二进制数据，根据上传的具体数据类型进行选择。
+    ```ts
+    httpRequest.request(
+      // 填写HTTP请求的URL地址，可以带参数或不带参数。URL地址由开发者自定义。请求的参数可以在extraData中指定。
+      "EXAMPLE_URL",
       {
-        name: "Part1", // 数据名，自API 11开始支持该属性。
-        contentType: 'text/plain', // 数据类型，自API 11开始支持该属性，上传的数据类型为普通文本文件。
-        data: 'Example data', // 可选，数据内容，自API 11开始支持该属性。
-        remoteFileName: 'example.txt' // 可选，自API 11开始支持该属性。
-      }, {
-        name: "Part2", // 数据名，自API 11开始支持该属性。
-        contentType: 'text/plain', // 数据类型，自API 11开始支持该属性，上传的数据类型为普通文本文件。
-        // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.txt。
-        filePath: `${context.filesDir}/fileName.txt`, // 可选，传入文件路径，自API 11开始支持该属性。
-        remoteFileName: 'fileName.txt' // 可选，自API 11开始支持该属性。
-      }, {
-        name: "Part3", // 数据名，自API 11开始支持该属性。
-        contentType: 'image/png', // 数据类型，自API 11开始支持该属性，上传的数据类型为png格式的图片。
-        // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.png。
-        filePath: `${context.filesDir}/fileName.png`, // 可选，传入文件路径，自API 11开始支持该属性。
-        remoteFileName: 'fileName.png' // 可选，自API 11开始支持该属性。
-      }, {
-        name: "Part4", // 数据名，自API 11开始支持该属性。
-        contentType: 'audio/mpeg', // 数据类型，自API 11开始支持该属性，上传的数据类型为mpeg格式的音频。
-        // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.mpeg。
-        filePath: `${context.filesDir}/fileName.mpeg`, // 可选，传入文件路径，自API 11开始支持该属性。
-        remoteFileName: 'fileName.mpeg' // 可选，自API 11开始支持该属性。
-      }, {
-        name: "Part5", // 数据名，自API 11开始支持该属性。
-        contentType: 'video/mp4', // 数据类型，自API 11开始支持该属性，上传的数据类型为mp4格式的视频。
-        // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.mp4。
-        filePath: `${context.filesDir}/fileName.mp4`, // 可选，传入文件路径，自API 11开始支持该属性。
-        remoteFileName: 'fileName.mp4' // 可选，自API 11开始支持该属性。
+        method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET，用于从服务器获取数据，而POST方法用于向服务器上传数据。
+        // 开发者根据自身业务需要添加header字段。
+        header: {
+          'Content-Type': 'application/json'
+        },
+        // 当使用POST请求时此字段用于传递请求体内容，具体格式与服务端协商确定。
+        extraData: "data to send",
+        expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型。
+        usingCache: true, // 可选，默认为true。
+        priority: 1, // 可选，默认为1。
+        connectTimeout: 60000, // 可选，默认为60000ms。
+        readTimeout: 60000, // 可选，默认为60000ms。
+        usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定。
+        usingProxy: false, // 可选，默认不使用网络代理，自API 10开始支持该属性。
+        caPath:'/path/to/cacert.pem', // 可选，默认使用系统预制证书，自API 10开始支持该属性。
+        clientCert: { // 可选，默认不使用客户端证书，自API 11开始支持该属性。
+          certPath: '/path/to/client.pem', // 默认不使用客户端证书，自API 11开始支持该属性。
+          keyPath: '/path/to/client.key', // 若证书包含Key信息，传入空字符串，自API 11开始支持该属性。
+          certType: http.CertType.PEM, // 可选，默认使用PEM，自API 11开始支持该属性。
+          keyPassword: "passwordToKey" // 可选，输入key文件的密码，自API 11开始支持该属性。
+        },
+        multiFormDataList: [ // 可选，仅当Header中，'content-Type'为'multipart/form-data'时生效，自API 11开始支持该属性，该属性用于支持向服务器上传二进制数据，根据上传的具体数据类型进行选择。
+          {
+            name: "Part1", // 数据名，自API 11开始支持该属性。
+            contentType: 'text/plain', // 数据类型，自API 11开始支持该属性，上传的数据类型为普通文本文件。
+            data: 'Example data', // 可选，数据内容，自API 11开始支持该属性。
+            remoteFileName: 'example.txt' // 可选，自API 11开始支持该属性。
+          }, {
+            name: "Part2", // 数据名，自API 11开始支持该属性。
+            contentType: 'text/plain', // 数据类型，自API 11开始支持该属性，上传的数据类型为普通文本文件。
+            // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.txt。
+            filePath: `${context.filesDir}/fileName.txt`, // 可选，传入文件路径，自API 11开始支持该属性。
+            remoteFileName: 'fileName.txt' // 可选，自API 11开始支持该属性。
+          }, {
+            name: "Part3", // 数据名，自API 11开始支持该属性。
+            contentType: 'image/png', // 数据类型，自API 11开始支持该属性，上传的数据类型为png格式的图片。
+            // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.png。
+            filePath: `${context.filesDir}/fileName.png`, // 可选，传入文件路径，自API 11开始支持该属性。
+            remoteFileName: 'fileName.png' // 可选，自API 11开始支持该属性。
+          }, {
+            name: "Part4", // 数据名，自API 11开始支持该属性。
+            contentType: 'audio/mpeg', // 数据类型，自API 11开始支持该属性，上传的数据类型为mpeg格式的音频。
+            // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.mpeg。
+            filePath: `${context.filesDir}/fileName.mpeg`, // 可选，传入文件路径，自API 11开始支持该属性。
+            remoteFileName: 'fileName.mpeg' // 可选，自API 11开始支持该属性。
+          }, {
+            name: "Part5", // 数据名，自API 11开始支持该属性。
+            contentType: 'video/mp4', // 数据类型，自API 11开始支持该属性，上传的数据类型为mp4格式的视频。
+            // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.mp4。
+            filePath: `${context.filesDir}/fileName.mp4`, // 可选，传入文件路径，自API 11开始支持该属性。
+            remoteFileName: 'fileName.mp4' // 可选，自API 11开始支持该属性。
+          }
+        ]
+      }, (err: BusinessError, data: http.HttpResponse) => {
+        if (!err) {
+          // data.result为HTTP响应内容，可根据业务需要进行解析。
+          console.info('Result:' + JSON.stringify(data.result));
+          console.info('code:' + JSON.stringify(data.responseCode));
+          // data.header为HTTP响应头，可根据业务需要进行解析。
+          console.info('header:' + JSON.stringify(data.header));
+          console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
+          // 当该请求使用完毕时，调用destroy方法主动销毁。
+          httpRequest.destroy();
+        } else {
+          console.error('error:' + JSON.stringify(err));
+          // 取消订阅HTTP响应头事件。
+          httpRequest.off('headersReceive');
+          // 当该请求使用完毕时，调用destroy方法主动销毁。
+          httpRequest.destroy();
+        }
       }
-    ]
-  }, (err: BusinessError, data: http.HttpResponse) => {
-    if (!err) {
-      // data.result为HTTP响应内容，可根据业务需要进行解析。
-      console.info('Result:' + JSON.stringify(data.result));
-      console.info('code:' + JSON.stringify(data.responseCode));
-      // data.header为HTTP响应头，可根据业务需要进行解析。
-      console.info('header:' + JSON.stringify(data.header));
-      console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
-      // 当该请求使用完毕时，调用destroy方法主动销毁。
-      httpRequest.destroy();
-    } else {
-      console.error('error:' + JSON.stringify(err));
-      // 取消订阅HTTP响应头事件。
-      httpRequest.off('headersReceive');
-      // 当该请求使用完毕时，调用destroy方法主动销毁。
-      httpRequest.destroy();
-    }
-  }
-);
-```
+    );
+    ```
 
 5. 取消订阅HTTP响应头事件
 
-  调用该对象的off()方法，取消订阅HTTP响应头事件。
+    调用该对象的off()方法，取消订阅HTTP响应头事件。
 
-  ```ts
-  // 在不需要该回调信息时，需要取消订阅HTTP响应头事件。
-  httpRequest.off('headersReceive');
-  ```
+    ```ts
+    // 在不需要该回调信息时，需要取消订阅HTTP响应头事件。
+    httpRequest.off('headersReceive');
+    ```
 
 6. 调用destroy()方法销毁
 
-当该请求使用完毕时，调用destroy()方法销毁。
+    当该请求使用完毕时，调用destroy()方法销毁。
 
-```ts
-// 当该请求使用完毕时，调用destroy方法主动销毁，该方法调用的时机，可以参考步骤4中的示例代码。
-httpRequest.destroy();
-```
+    ```ts
+    // 当该请求使用完毕时，调用destroy方法主动销毁，该方法调用的时机，可以参考步骤4中的示例代码。
+    httpRequest.destroy();
+    ```
 
 ## 发起HTTP流式传输请求
 
@@ -180,151 +178,149 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
 
 1. 导入HTTP流式传输所需模块
 
-导入http、common以及错误码模块。
-
-```ts
-import { http } from '@kit.NetworkKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
-```
+    ```ts
+    import { http } from '@kit.NetworkKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { common } from '@kit.AbilityKit';
+    ```
 
 2. 创建HTTP流式传输HttpRequest对象
 
-调用createHttp()方法，创建HttpRequest对象。
+    调用createHttp()方法，创建HttpRequest对象。
 
-```ts
-let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-// 每一个httpRequest对应一个HTTP请求任务，不可复用。
-let httpRequest = http.createHttp();
-```
+    ```ts
+    let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    // 每一个httpRequest对应一个HTTP请求任务，不可复用。
+    let httpRequest = http.createHttp();
+    ```
 
 3. 订阅HTTP流式响应头事件
 
-调用该对象的on()方法，订阅HTTP响应头事件，此接口会比request请求先返回。可以根据业务需要订阅此消息。
+    调用该对象的on()方法，订阅HTTP响应头事件，此接口会比request请求先返回。可以根据业务需要订阅此消息。
 
-```ts
-// 用于订阅HTTP响应头，此接口会比request请求先返回。可以根据业务需要订阅此消息。
-// 从API 8开始，使用on('headersReceive', Callback)替代on('headerReceive', AsyncCallback)。
-httpRequest.on('headersReceive', (header) => {
-  console.info('header: ' + JSON.stringify(header));
-});
-```
+    ```ts
+    // 用于订阅HTTP响应头，此接口会比request请求先返回。可以根据业务需要订阅此消息。
+    // 从API 8开始，使用on('headersReceive', Callback)替代on('headerReceive', AsyncCallback)。
+    httpRequest.on('headersReceive', (header) => {
+      console.info('header: ' + JSON.stringify(header));
+    });
+    ```
 
 4. 发起HTTP流式请求，解析服务器响应事件
 
-```ts
-// 用于订阅HTTP流式响应数据接收事件。
-let res = new ArrayBuffer(0);
-httpRequest.on('dataReceive', (data: ArrayBuffer) => {
-   const newRes = new ArrayBuffer(res.byteLength + data.byteLength);
-   const resView = new Uint8Array(newRes);
-   resView.set(new Uint8Array(res));
-   resView.set(new Uint8Array(data), res.byteLength);
-   res = newRes;
-   console.info('res length: ' + res.byteLength);
-});
-// 用于订阅HTTP流式响应数据接收完毕事件。
-httpRequest.on('dataEnd', () => {
-  console.info('No more data in response, data receive end');
-});
-// 订阅HTTP流式响应数据接收进度事件，下载服务器的数据时，可以通过该回调获取数据下载进度。
-httpRequest.on('dataReceiveProgress', (data: http.DataReceiveProgressInfo) => {
-  console.log("dataReceiveProgress receiveSize:" + data.receiveSize + ", totalSize:" + data.totalSize);
-});
+    ```ts
+    // 用于订阅HTTP流式响应数据接收事件。
+    let res = new ArrayBuffer(0);
+    httpRequest.on('dataReceive', (data: ArrayBuffer) => {
+       const newRes = new ArrayBuffer(res.byteLength + data.byteLength);
+       const resView = new Uint8Array(newRes);
+       resView.set(new Uint8Array(res));
+       resView.set(new Uint8Array(data), res.byteLength);
+       res = newRes;
+       console.info('res length: ' + res.byteLength);
+    });
+    // 用于订阅HTTP流式响应数据接收完毕事件。
+    httpRequest.on('dataEnd', () => {
+      console.info('No more data in response, data receive end');
+    });
+    // 订阅HTTP流式响应数据接收进度事件，下载服务器的数据时，可以通过该回调获取数据下载进度。
+    httpRequest.on('dataReceiveProgress', (data: http.DataReceiveProgressInfo) => {
+      console.log("dataReceiveProgress receiveSize:" + data.receiveSize + ", totalSize:" + data.totalSize);
+    });
 
-// 订阅HTTP流式响应数据发送进度事件，向服务器上传数据时，可以通过该回调获取数据上传进度。
-httpRequest.on('dataSendProgress', (data: http.DataSendProgressInfo) => {
-  console.log("dataSendProgress receiveSize:" + data.sendSize + ", totalSize:" + data.totalSize);
-});
+    // 订阅HTTP流式响应数据发送进度事件，向服务器上传数据时，可以通过该回调获取数据上传进度。
+    httpRequest.on('dataSendProgress', (data: http.DataSendProgressInfo) => {
+      console.log("dataSendProgress receiveSize:" + data.sendSize + ", totalSize:" + data.totalSize);
+    });
 
-let streamInfo: http.HttpRequestOptions = {
-  method: http.RequestMethod.POST,  // 可选，默认为http.RequestMethod.GET，用于向服务器获取数据，而POST方法用于向服务器上传数据。
-  // 开发者根据自身业务需要添加header字段。
-  header: {
-    'Content-Type': 'application/json'
-  },
-  // 当使用POST请求时此字段用于传递请求体内容，具体格式与服务端协商确定。
-  extraData: "data to send",
-  expectDataType:  http.HttpDataType.STRING,// 可选，指定返回数据的类型。
-  usingCache: true, // 可选，默认为true。
-  priority: 1, // 可选，默认为1。
-  connectTimeout: 60000, // 可选，默认为60000ms。
-  readTimeout: 60000, // 可选，默认为60000ms。若传输的数据较大，需要较长的时间，建议增大该参数以保证数据传输正常终止。
-  usingProtocol: http.HttpProtocol.HTTP1_1 // 可选，协议类型默认值由系统自动指定。
-  multiFormDataList: [ // 可选，仅当Header中，'content-Type'为'multipart/form-data'时生效，自API 11开始支持该属性，该属性用于支持向服务器上传二进制数据，根据上传的具体数据类型进行选择。
-    {
-      name: "Part1", // 数据名，自API 11开始支持该属性。
-      contentType: 'text/plain', // 数据类型，自API 11开始支持该属性，上传的数据类型为普通文本文件。
-      data: 'Example data', // 可选，数据内容，自API 11开始支持该属性。
-      remoteFileName: 'example.txt' // 可选，自API 11开始支持该属性。
-    }, {
-      name: "Part2", // 数据名，自API 11开始支持该属性。
-      contentType: 'text/plain', // 数据类型，自API 11开始支持该属性，上传的数据类型为普通文本文件。
-      // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.txt。
-      filePath: `${context.filesDir}/fileName.txt`, // 可选，传入文件路径，自API 11开始支持该属性。
-      remoteFileName: 'fileName.txt' // 可选，自API 11开始支持该属性。
-    }, {
-      name: "Part3", // 数据名，自API 11开始支持该属性。
-      contentType: 'image/png', // 数据类型，自API 11开始支持该属性，上传的数据类型为png格式的图片。
-      // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.png。
-      filePath: `${context.filesDir}/fileName.png`, // 可选，传入文件路径，自API 11开始支持该属性。
-      remoteFileName: 'fileName.png' // 可选，自API 11开始支持该属性。
-    }, {
-      name: "Part4", // 数据名，自API 11开始支持该属性。
-      contentType: 'audio/mpeg', // 数据类型，自API 11开始支持该属性，上传的数据类型为mpeg格式的音频。
-      // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.mpeg。
-      filePath: `${context.filesDir}/fileName.mpeg`, // 可选，传入文件路径，自API 11开始支持该属性。
-      remoteFileName: 'fileName.mpeg' // 可选，自API 11开始支持该属性。
-    }, {
-      name: "Part5", // 数据名，自API 11开始支持该属性。
-      contentType: 'video/mp4', // 数据类型，自API 11开始支持该属性，上传的数据类型为mp4格式的视频。
-      // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.mp4。
-      filePath: `${context.filesDir}/fileName.mp4`, // 可选，传入文件路径，自API 11开始支持该属性。
-      remoteFileName: 'fileName.mp4' // 可选，自API 11开始支持该属性。
+    let streamInfo: http.HttpRequestOptions = {
+      method: http.RequestMethod.POST,  // 可选，默认为http.RequestMethod.GET，用于向服务器获取数据，而POST方法用于向服务器上传数据。
+      // 开发者根据自身业务需要添加header字段。
+      header: {
+        'Content-Type': 'application/json'
+      },
+      // 当使用POST请求时此字段用于传递请求体内容，具体格式与服务端协商确定。
+      extraData: "data to send",
+      expectDataType:  http.HttpDataType.STRING,// 可选，指定返回数据的类型。
+      usingCache: true, // 可选，默认为true。
+      priority: 1, // 可选，默认为1。
+      connectTimeout: 60000, // 可选，默认为60000ms。
+      readTimeout: 60000, // 可选，默认为60000ms。若传输的数据较大，需要较长的时间，建议增大该参数以保证数据传输正常终止。
+      usingProtocol: http.HttpProtocol.HTTP1_1 // 可选，协议类型默认值由系统自动指定。
+      multiFormDataList: [ // 可选，仅当Header中，'content-Type'为'multipart/form-data'时生效，自API 11开始支持该属性，该属性用于支持向服务器上传二进制数据，根据上传的具体数据类型进行选择。
+        {
+          name: "Part1", // 数据名，自API 11开始支持该属性。
+          contentType: 'text/plain', // 数据类型，自API 11开始支持该属性，上传的数据类型为普通文本文件。
+          data: 'Example data', // 可选，数据内容，自API 11开始支持该属性。
+          remoteFileName: 'example.txt' // 可选，自API 11开始支持该属性。
+        }, {
+          name: "Part2", // 数据名，自API 11开始支持该属性。
+          contentType: 'text/plain', // 数据类型，自API 11开始支持该属性，上传的数据类型为普通文本文件。
+          // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.txt。
+          filePath: `${context.filesDir}/fileName.txt`, // 可选，传入文件路径，自API 11开始支持该属性。
+          remoteFileName: 'fileName.txt' // 可选，自API 11开始支持该属性。
+        }, {
+          name: "Part3", // 数据名，自API 11开始支持该属性。
+          contentType: 'image/png', // 数据类型，自API 11开始支持该属性，上传的数据类型为png格式的图片。
+          // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.png。
+          filePath: `${context.filesDir}/fileName.png`, // 可选，传入文件路径，自API 11开始支持该属性。
+          remoteFileName: 'fileName.png' // 可选，自API 11开始支持该属性。
+        }, {
+          name: "Part4", // 数据名，自API 11开始支持该属性。
+          contentType: 'audio/mpeg', // 数据类型，自API 11开始支持该属性，上传的数据类型为mpeg格式的音频。
+          // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.mpeg。
+          filePath: `${context.filesDir}/fileName.mpeg`, // 可选，传入文件路径，自API 11开始支持该属性。
+          remoteFileName: 'fileName.mpeg' // 可选，自API 11开始支持该属性。
+        }, {
+          name: "Part5", // 数据名，自API 11开始支持该属性。
+          contentType: 'video/mp4', // 数据类型，自API 11开始支持该属性，上传的数据类型为mp4格式的视频。
+          // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.mp4。
+          filePath: `${context.filesDir}/fileName.mp4`, // 可选，传入文件路径，自API 11开始支持该属性。
+          remoteFileName: 'fileName.mp4' // 可选，自API 11开始支持该属性。
+        }
+      ]
     }
-  ]
-}
 
-// 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定。
-httpRequest.requestInStream("EXAMPLE_URL", streamInfo).then((data: number) => {
-  console.info("requestInStream OK!");
-  console.info('ResponseCode :' + JSON.stringify(data));
-  // 取消订阅HTTP响应头事件。
-  httpRequest.off('headersReceive');
-  // 取消订阅HTTP流式响应数据接收事件。
-  httpRequest.off('dataReceive');
-  // 取消订阅HTTP流式响应数据接收进度事件。
-  httpRequest.off('dataReceiveProgress');
-  // 取消订阅HTTP流式响应数据接收完毕事件。
-  httpRequest.off('dataEnd');
-  // 当该请求使用完毕时，调用destroy方法主动销毁。
-  httpRequest.destroy();
-}).catch((err: Error) => {
-  console.info("requestInStream ERROR : err = " + JSON.stringify(err));
-});
-```
+    // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定。
+    httpRequest.requestInStream("EXAMPLE_URL", streamInfo).then((data: number) => {
+      console.info("requestInStream OK!");
+      console.info('ResponseCode :' + JSON.stringify(data));
+      // 取消订阅HTTP响应头事件。
+      httpRequest.off('headersReceive');
+      // 取消订阅HTTP流式响应数据接收事件。
+      httpRequest.off('dataReceive');
+      // 取消订阅HTTP流式响应数据接收进度事件。
+      httpRequest.off('dataReceiveProgress');
+      // 取消订阅HTTP流式响应数据接收完毕事件。
+      httpRequest.off('dataEnd');
+      // 当该请求使用完毕时，调用destroy方法主动销毁。
+      httpRequest.destroy();
+    }).catch((err: Error) => {
+      console.info("requestInStream ERROR : err = " + JSON.stringify(err));
+    });
+    ```
 
 5. 取消订阅HTTP流式响应头事件
 
-调用该对象的off()方法，取消订阅HTTP响应头事件。
+    调用该对象的off()方法，取消订阅HTTP响应头事件。
 
-```ts
-// 取消订阅HTTP响应头事件。
-httpRequest.off('headersReceive');
-```
+    ```ts
+    // 取消订阅HTTP响应头事件。
+    httpRequest.off('headersReceive');
+    ```
 
 6. 调用destroy()方法销毁流式HTTP请求
 
-当该请求使用完毕时，调用destroy()方法销毁。
+    当该请求使用完毕时，调用destroy()方法销毁。
 
-```ts
-// 当该请求使用完毕时，调用destroy方法主动销毁，该方法调用的时机，可以参考步骤4中的示例代码。
-httpRequest.destroy();
-```
+    ```ts
+    // 当该请求使用完毕时，调用destroy方法主动销毁，该方法调用的时机，可以参考步骤4中的示例代码。
+    httpRequest.destroy();
+    ```
 
-## 证书校验配置
+## 配置证书校验
 
-当应用使用HTTPS协议时，涉及证书相关的配置，面向互联网用户提供服务的应用，通常只需信任系统预置的CA证书即可，当前HTTP模块已默认信任系统预置的CA证书，不需要特别设置。如果应用需要锁定证书，只信任开发者特别指定的证书，或者需要跳过证书校验，可以参考下面的说明进行配置。
+当应用使用HTTPS协议时，涉及证书相关配置。面向互联网用户提供服务的应用仅需信任系统预置的CA证书。当前HTTP模块已默认信任系统预置的CA证书，无需特别设置。如果应用需要锁定证书，只信任开发者特别指定的证书，或者需要跳过证书校验，可以参考以下说明进行配置。
 
 ### 证书锁定
 
