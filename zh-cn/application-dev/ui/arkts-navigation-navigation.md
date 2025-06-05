@@ -429,7 +429,27 @@ this.pageStack.moveIndexToTop(1);
 
 ### 参数获取
 
-NavPathStack通过Get相关接口去获取页面的一些参数。
+NavDestination子页第一次创建时会触发[onReady](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md#onready11)回调，可以获取此页面对应的参数。
+
+```ts
+@Component
+struct Page01 {
+  pathStack: NavPathStack | undefined = undefined;
+  pageParam: string = '';
+
+  build() {
+    NavDestination() {
+...
+    }.title('Page01')
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack;
+      this.pageParam = context.pathInfo.param as string;
+    })
+  }
+}
+```
+
+其他业务场景，可以通过主动调用NavPathStack的Get相关接口去获取指定页面的参数。
 
 ```ts
 // 获取栈中所有页面name集合
