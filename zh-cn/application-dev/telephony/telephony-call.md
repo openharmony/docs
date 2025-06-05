@@ -33,7 +33,7 @@
 
 |                                  接口名                                             | 描述                                                         |
 | ----------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| hasVoiceCapability(): boolean;                                                      | 判断是否具有语音功能。                                        |
+| hasVoiceCapability(): boolean;                                                      | 判断是否具有语音功能，默认为false。<br/>-true：是<br/>-false：否                                        |
 |<!--DelRow--> dialCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void;                 | 拨号。该接口为系统接口。                                      |
 | makeCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void;                 | 转到拨号屏幕，显示被叫号码。                                  |
 
