@@ -12,7 +12,7 @@
 | formProvider.deactivateSceneAnimation(formId: string): Promise&lt;void&gt; | 互动卡片请求切换到非激活态，只针对[场景动效类型互动卡片](../../form/arkts-ui-widget-configuration.md#sceneanimationparams标签)生效，使用Promise异步回调。 |
 
 ## 手势拦截配置
-[场景动效类型互动卡片概述](arkts-ui-liveform-sceneanimation-overview.md)中提到，用户在桌面的其他有效操作（点击应用、卡片等，滑动翻页，下拉进入全搜、双中心、拖动卡片、长按卡片等）均会打断当前动效，卡片重新变成非激活态。在form_config.json中，配置项sceneAnimationParams新增针对系统应用的可选字段disabledDesktopBehaviors。该字段配置之后，即使用户在激活态卡片交互热区（和卡片自身渲染区域等大）内做以下操作时，卡片也不会强制切换为非激活态。例如：
+[场景动效类型互动卡片概述](arkts-ui-liveform-sceneanimation-overview.md)中提到，用户在桌面的其他有效操作（点击应用、卡片等，滑动翻页，下拉进入全搜、双中心、拖动卡片、长按卡片等）均会打断当前动效，卡片重新变成非激活态。在form_config.json中，配置项sceneAnimationParams新增针对系统应用的可选字段disabledDesktopBehaviors。该字段配置之后，即使用户在激活态卡片交互热区（和卡片自身渲染区域等大）内做以下操作时，不打断当前卡片动效。例如：
 1. 长按：LONG_CLICK。
 2. 拖拽卡片：DRAG。
 3. 下拉进入全搜：PULL_DOWN_SEARCH。
