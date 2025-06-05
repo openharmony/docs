@@ -1,4 +1,5 @@
 # SceneNode
+
 The SceneNode module provides the types and operation methods of scene nodes in 3D graphics.
 
 > **NOTE**
@@ -6,12 +7,14 @@ The SceneNode module provides the types and operation methods of scene nodes in 
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
+
 ```ts
 import { LayerMask, NodeType, Container, Node, Geometry, LightType, Light, SpotLight, DirectionalLight,
   Camera } from '@kit.ArkGraphics3D';
 ```
+
 ## LayerMask
-Layer mask of a node.
+Layer mask of the node.
 
 ### getEnabled
 getEnabled(index: number): boolean
@@ -28,7 +31,7 @@ Checks whether the mask is enabled for a layer of a given index.
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| boolean | **true**: The layer mask is enabled.<br>**false**: The layer mask is disabled.|
+| boolean | Check result. The value **true** means that the layer mask is enabled, and **false** means the opposite.|
 
 **Example**
 ```ts
@@ -124,7 +127,6 @@ function append() : void {
   });
 }
 ```
-
 
 ### insertAfter
 insertAfter(item: T, sibling: T | null): void
@@ -253,7 +255,7 @@ Obtains the number of nodes in the container.
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| number | Number of nodes in the container.|
+| number | Number of nodes in the container. The value is a non-negative integer.|
 
 **Example**
 ```ts
@@ -328,7 +330,7 @@ function getNode() : void {
 ```
 
 ## Geometry
-Geometry node, which inherits from [Node](#node).
+Geometric node type, which inherits from [Node](#node).
 
 ### Properties
 
