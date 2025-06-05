@@ -10,14 +10,6 @@
 
 **起始版本：** 10
 
-**废弃版本：** 18
-
-**替代接口：**
-
-请分别使用以下回调类型替代：
-
-[OH_AudioRenderer_OnWriteDataCallback](capi-native-audiostream-base-h.md#oh_audiorenderer_onwritedatacallback)、 [OH_AudioRenderer_OutputDeviceChangeCallback](capi-native-audiostream-base-h.md#oh_audiorenderer_outputdevicechangecallback)、 [OH_AudioRenderer_OnInterruptCallback](capi-native-audiorenderer-h.md#oh_audiorenderer_oninterruptcallback) 以及 [OH_AudioRenderer_OnErrorCallback](capi-native-audiorenderer-h.md#oh_audiorenderer_onerrorcallback)。
-
 **相关模块：** [OHAudio](capi-ohaudio.md)
 
 **所在头文件：** [native_audiostream_base.h](capi-native-audiostream-base-h.md)
@@ -54,10 +46,6 @@ int32_t (*OH_AudioRenderer_OnWriteData)(OH_AudioRenderer* renderer, void* userDa
 
 **起始版本：** 10
 
-**废弃版本：** 18
-
-**替代接口：** [OH_AudioRenderer_OnWriteDataCallback](capi-native-audiostream-base-h.md#oh_audiorenderer_onwritedatacallback)
-
 **参数：**
 
 | 参数项 | 描述 |
@@ -79,9 +67,6 @@ int32_t (*OH_AudioRenderer_OnStreamEvent)(OH_AudioRenderer* renderer, void* user
 
 **起始版本：** 10
 
-**废弃版本：** 18
-
-**替代接口：** [OH_AudioRenderer_OutputDeviceChangeCallback](capi-native-audiostream-base-h.md#oh_audiorenderer_outputdevicechangecallback)
 **参数：**
 
 | 参数项 | 描述 |
@@ -101,10 +86,6 @@ int32_t (*OH_AudioRenderer_OnInterruptEvent)(OH_AudioRenderer* renderer, void* u
 该函数指针将指向用于处理音频播放中断事件的回调函数。
 
 **起始版本：** 10
-
-**废弃版本：** 18
-
-**替代接口：** [OH_AudioRenderer_OnInterruptCallback](capi-native-audiorenderer-h.md#oh_audiorenderer_oninterruptcallback)
 
 **参数：**
 
@@ -127,10 +108,6 @@ int32_t (*OH_AudioRenderer_OnError)(OH_AudioRenderer* renderer, void* userData, 
 该函数指针将指向用于处理音频播放错误结果的回调函数。
 
 **起始版本：** 10
-
-**废弃版本：** 18
-
-**替代接口：** [OH_AudioRenderer_OnErrorCallback](capi-native-audiorenderer-h.md#oh_audiorenderer_onerrorcallback)
 
 **参数：**
 

@@ -278,11 +278,9 @@ enum OH_AudioStream_Event
 
 **起始版本：** 10
 
-**废弃版本：** 18
-
 | 枚举项 | 描述 |
 | -- | -- |
-| AUDIOSTREAM_EVENT_ROUTING_CHANGED = 0 | 音频的路由已更改。<br/>**起始版本：** 10<br/>**废弃版本：** 18<br/>**替代接口：** [OH_AudioRenderer_OutputDeviceChangeCallback](#oh_audiorenderer_outputdevicechangecallback) |
+| AUDIOSTREAM_EVENT_ROUTING_CHANGED = 0 | 音频的路由已更改。 |
 
 ### OH_AudioInterrupt_ForceType
 

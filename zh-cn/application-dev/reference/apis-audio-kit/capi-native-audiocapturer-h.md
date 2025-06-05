@@ -37,10 +37,6 @@
 | [OH_AudioStream_Result OH_AudioCapturer_GetTimestamp(OH_AudioCapturer* capturer, clockid_t clockId,int64_t* framePosition, int64_t* timestamp)](#oh_audiocapturer_gettimestamp) | - | 获取输入音频流时间戳和位置信息。<br>该接口可以获取到音频通道实际录制位置（framePosition）以及录制到该位置时候的时间戳（timestamp），时间戳单位为纳秒。 |
 | [OH_AudioStream_Result OH_AudioCapturer_GetFramesRead(OH_AudioCapturer* capturer, int64_t* frames)](#oh_audiocapturer_getframesread) | - | 查询自创建流以来已读取的帧数。 |
 | [OH_AudioStream_Result OH_AudioCapturer_GetOverflowCount(OH_AudioCapturer* capturer, uint32_t* count)](#oh_audiocapturer_getoverflowcount) | - | 查询当前录制音频流过载数。 |
-| [typedef void (\*OH_AudioCapturer_OnReadDataCallback)(OH_AudioCapturer* capturer, void* userData, void* audioData,int32_t audioDataSize)](#oh_audiocapturer_onreaddatacallback) | OH_AudioCapturer_OnReadDataCallback | 读取音频数据的回调函数。 |
-| [typedef void (\*OH_AudioCapturer_OnDeviceChangeCallback)(OH_AudioCapturer* capturer, void* userData,OH_AudioDeviceDescriptorArray* deviceArray)](#oh_audiocapturer_ondevicechangecallback) | OH_AudioCapturer_OnDeviceChangeCallback | 音频录制流的设备变化事件回调函数。 |
-| [typedef void (\*OH_AudioCapturer_OnInterruptCallback)(OH_AudioCapturer* capturer, void* userData,OH_AudioInterrupt_ForceType type, OH_AudioInterrupt_Hint hint)](#oh_audiocapturer_oninterruptcallback) | OH_AudioCapturer_OnInterruptCallback | 音频录制流的中断事件回调函数。 |
-| [typedef void (\*OH_AudioCapturer_OnErrorCallback)(OH_AudioCapturer* renderer, void* userData,OH_AudioStream_Result error)](#oh_audiocapturer_onerrorcallback) | OH_AudioCapturer_OnErrorCallback | 音频录制流的错误事件回调函数。 |
 
 ## 函数说明
 
@@ -475,87 +471,3 @@ OH_AudioStream_Result OH_AudioCapturer_GetOverflowCount(OH_AudioCapturer* captur
 | 类型 | 说明 |
 | -- | -- |
 | [OH_AudioStream_Result](capi-native-audiostream-base-h.md#oh_audiostream_result) | AUDIOSTREAM_SUCCESS：函数执行成功。<br>AUDIOSTREAM_ERROR_INVALID_PARAM：参数capturer为nullptr。 |
-
-### OH_AudioCapturer_OnReadDataCallback()
-
-```
-typedef void (*OH_AudioCapturer_OnReadDataCallback)(OH_AudioCapturer* capturer, void* userData, void* audioData,int32_t audioDataSize)
-```
-
-**描述**
-
-读取音频数据的回调函数。
-
-**起始版本：** 18
-
-**参数：**
-
-| 参数项 | 描述 |
-| -- | -- |
-| [OH_AudioCapturer](capi-oh-audiocapturerstruct.md)* capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 |
-|  void* userData | 指向应用自定义的数据存储区域。 |
-|  void* audioData | 指向录制数据存储区域，用于应用填充录制数据。 |
-| int32_t audioDataSize | 录制数据的长度。 |
-
-### OH_AudioCapturer_OnDeviceChangeCallback()
-
-```
-typedef void (*OH_AudioCapturer_OnDeviceChangeCallback)(OH_AudioCapturer* capturer, void* userData,OH_AudioDeviceDescriptorArray* deviceArray)
-```
-
-**描述**
-
-音频录制流的设备变化事件回调函数。
-
-**起始版本：** 18
-
-
-**参数：**
-
-| 参数项 | 描述 |
-| -- | -- |
-| [OH_AudioCapturer](capi-oh-audiocapturerstruct.md)* capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 |
-|  void* userData | 指向应用自定义的数据存储区域。 |
-| [OH_AudioDeviceDescriptorArray](capi-oh-audiodevicedescriptorarray.md)* deviceArray | 音频设备描述符数组。 |
-
-### OH_AudioCapturer_OnInterruptCallback()
-
-```
-typedef void (*OH_AudioCapturer_OnInterruptCallback)(OH_AudioCapturer* capturer, void* userData,OH_AudioInterrupt_ForceType type, OH_AudioInterrupt_Hint hint)
-```
-
-**描述**
-
-音频录制流的中断事件回调函数。
-
-**起始版本：** 18
-
-**参数：**
-
-| 参数项 | 描述 |
-| -- | -- |
-| [OH_AudioCapturer](capi-oh-audiocapturerstruct.md)* capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 |
-|  void* userData | 指向应用自定义的数据存储区域。 |
-| [OH_AudioInterrupt_ForceType](capi-native-audiostream-base-h.md#oh_audiointerrupt_forcetype) type | 音频流中断类型。 |
-|  [OH_AudioInterrupt_Hint](capi-native-audiostream-base-h.md#oh_audiointerrupt_hint) hint | 音频流中断提示类型。 |
-
-
-### OH_AudioCapturer_OnErrorCallback()
-
-```
-typedef void (*OH_AudioCapturer_OnErrorCallback)(OH_AudioCapturer* renderer, void* userData,OH_AudioStream_Result error)
-```
-
-**描述**
-
-音频录制流的错误事件回调函数。
-
-**起始版本：** 18
-
-**参数：**
-
-| 参数项 | 描述 |
-| -- | -- |
-| [OH_AudioCapturer](capi-oh-audiocapturerstruct.md)* renderer | 指向[OH_AudioStreamBuilder_GenerateCapturer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 |
-| 指向应用自定义的数据存储区域。 |  |
-| [OH_AudioStream_Result](capi-native-audiostream-base-h.md#oh_audiostream_result) error | 音频流录制错误结果。 |
