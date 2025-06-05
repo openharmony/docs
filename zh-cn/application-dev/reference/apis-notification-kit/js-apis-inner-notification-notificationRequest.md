@@ -52,12 +52,12 @@
 
 ## DistributedOptions<sup>8+</sup>
 
-描述分布式选项。预留能力，暂未支持。
+描述跨设备协同选项。预留能力，暂未支持。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 | 名称                   | 类型            | 只读 | 可选 | 说明                               |
 | -----------------------| -------------- | ---- | ---- | --------------------------------- |
-| isDistributed          | boolean        | 否   | 是   | 是否为分布式通知。                  |
+| isDistributed          | boolean        | 否   | 是   | 是否为跨设备协同通知。<br/> - true：支持跨设备协同的通知。<br/> - false：不支持跨设备协同的通知。                  |
 | supportDisplayDevices  | Array\<string> | 否   | 是   | 可以同步通知到的设备列表。           |
 | supportOperateDevices  | Array\<string> | 否   | 是   | 可以打开通知的设备列表。             |
