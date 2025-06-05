@@ -84,7 +84,7 @@ try {
 
 getDeviceInfo(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): void
 
-Obtains the information about the input device with the specified ID. This API uses an asynchronous callback to return the result.
+Obtains information about the specified input device. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -93,7 +93,7 @@ Obtains the information about the input device with the specified ID. This API u
 | Name    | Type                                                    | Mandatory| Description                                   |
 | -------- | -------------------------------------------------------- | ---- | --------------------------------------- |
 | deviceId | number                                                   | Yes  | ID of the input device.                 |
-| callback | AsyncCallback&lt;[InputDeviceData](#inputdevicedata)&gt; | Yes  | Callback used to return the information about the input device.|
+| callback | AsyncCallback&lt;[InputDeviceData](#inputdevicedata)&gt; | Yes  | Callback used to return information about the input device, including device ID, name, supported source, physical address, version information, and product information.|
 
 **Error codes**
 
@@ -261,7 +261,7 @@ Disables listening for device hot swap events. This API is called before the app
 | Name      | Type                                      | Mandatory  | Description         |
 | -------- | ---------------------------------------- | ---- | ----------- |
 | type     | string                                   | Yes   | Event type. This field has a fixed value of **change**. |
-| listener | Callback&lt;[DeviceListener](#devicelistener9)&gt; | No   | Listener for events of the input device.|
+| listener | Callback&lt;[DeviceListener](#devicelistener9)&gt; | No   | Callback to unregister. If this parameter is left unspecified, listening for hot swap events of all input devices will be canceled.|
 
 **Error codes**
 
@@ -536,7 +536,7 @@ try {
 
 getKeyboardType(deviceId: number, callback: AsyncCallback&lt;KeyboardType&gt;): void
 
-Obtains the keyboard type of an input device. This API uses an asynchronous callback to return the result.
+Obtains the keyboard type of the input device, such as full keyboard and numeric keypad. This API uses an asynchronous callback to return the result. The keyboard type of the input device is subject to the result returned by the API.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -544,7 +544,7 @@ Obtains the keyboard type of an input device. This API uses an asynchronous call
 
 | Name    | Type                                               | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| deviceId | number                                              | Yes  | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
+| deviceId | number                                              | Yes  | Unique ID of the input device. If the same physical device is repeatedly reinstalled or restarted, its ID may change.|
 | callback | AsyncCallback&lt;[KeyboardType](#keyboardtype9)&gt; | Yes  | Callback used to return the result.                                |
 
 **Error codes**
@@ -584,7 +584,7 @@ Obtains the keyboard type of an input device. This API uses a promise to return 
 
 | Name   | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| deviceId | number | Yes  | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
+| deviceId | number | Yes  | Unique ID of the input device. If the same physical device is repeatedly reinstalled or restarted, its ID may change.|
 
 **Return value**
 
@@ -625,7 +625,7 @@ Obtains the keyboard type of the input device.
 
 | Name    | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| deviceId | number | Yes  | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
+| deviceId | number | Yes  | Unique ID of the input device. If the same physical device is repeatedly reinstalled or restarted, its ID may change.|
 
 **Return value**
 
@@ -657,7 +657,7 @@ try {
 
 isFunctionKeyEnabled(functionKey: FunctionKey): Promise&lt;boolean&gt;
 
-Checks whether the function key is enabled. This API uses a promise to return the result.
+Checks whether the specified function key (for example, **CapsLock**) is enabled. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -700,7 +700,7 @@ try {
 
 setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;void&gt;
 
-Sets the status of the function key . This API uses a promise to return the result.
+Specifies whether to enable a function key (for example, **CapsLock**). This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INPUT_KEYBOARD_CONTROLLER
 
@@ -746,7 +746,7 @@ try {
 
 getIntervalSinceLastInput(): Promise&lt;number&gt;
 
-Obtains the interval since the last system input event. This API uses a promise to return the result.
+Obtains the interval (including the device sleep time) elapsed since the last system input event. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -773,7 +773,7 @@ Provides hot swap information about an input device.
 | Name       | Type  | Readable  | Writable  | Description     |
 | --------- | ------ | ---- | ---- | ------- |
 | type     | [ChangedType](#changedtype9)| Yes| No| Device change type, which indicates whether an input device is inserted or removed.|
-| deviceId | number                      | Yes| No| Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
+| deviceId | number                      | Yes| No| Unique ID of the input device. If a physical device is repeatedly reinstalled or restarted, its ID may change.|
 
 ## InputDeviceData
 
@@ -783,9 +783,9 @@ Provides information about an input device.
 
 | Name       | Type  | Readable  | Writable  | Description     |
 | --------- | ------ | ---- | ---- | ------- |
-| id                   | number                                 | Yes| No| Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
+| id                   | number                                 | Yes| No| Unique ID of the input device. If the same physical device is repeatedly reinstalled or restarted, its ID may change.|
 | name                 | string                                 | Yes| No| Name of the input device.                                            |
-| sources              | Array&lt;[SourceType](#sourcetype9)&gt; | Yes| No| Source type of the input device. For example, if a keyboard is attached with a touchpad, the device has two input sources: keyboard and touchpad.|
+| sources              | Array&lt;[SourceType](#sourcetype9)&gt; | Yes| No| Input sources supported by the input device. An input device can have multiple input sources. For example, if a keyboard is equipped with a touchpad, the input device supports both keyboard and touchpad input capabilities.|
 | axisRanges           | Array&lt;[AxisRange](#axisrange)&gt;  | Yes| No| Axis information of the input device.                                          |
 | bus<sup>9+</sup>     | number                                 | Yes| No| Bus type of the input device. By default, the bus type reported by the input device prevails.            |
 | product<sup>9+</sup> | number                                 | Yes| No| Product information of the input device.                                        |
@@ -822,7 +822,7 @@ Defines the axis range of an input device.
 
 | Name       | Type  | Readable  | Writable  | Description     |
 | --------- | ------ | ---- | ---- | ------- |
-| source                  | [SourceType](#sourcetype9) | Yes| No| Input source type of the axis.|
+| source                  | [SourceType](#sourcetype9) | Yes| No| Input source of the axis.|
 | axis                    | [AxisType](#axistype9)    | Yes| No| Axis type.   |
 | max                     | number                    | Yes| No| Maximum value of the axis.  |
 | min                     | number                    | Yes| No| Minimum value of the axis.  |
@@ -834,7 +834,7 @@ Defines the axis range of an input device.
 
 type SourceType = 'keyboard' | 'mouse' | 'touchpad' | 'touchscreen' | 'joystick' | 'trackball'
 
-Enumerates input source types of the axis. For example, if a mouse reports an x-axis event, the input source of the x-axis is the mouse.
+Enumerates input sources of the axis. For example, if a mouse reports an x-axis event, the input source of the x-axis is the mouse.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 

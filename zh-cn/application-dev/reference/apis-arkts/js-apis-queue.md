@@ -258,7 +258,7 @@ queue.add(4);
 
 // 使用方法一：
 while(queue.length) {
-  let item = queue.pop()
+  let item = queue.pop();
   console.log("value:" + item);
 }
 

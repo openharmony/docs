@@ -4,7 +4,7 @@ When an application uses a router such as the **Navigation** component to naviga
 ## Causes
 
 When a router such as the **Navigation** component is used to navigate to a **Web** component page, the application determines whether to hide the native navigation bar on the application side based on the callback notification of the web page. If it decides to hide the native navigation bar, the layout of the **Web** component is adjusted accordingly. The layout adjustment process can be simplified into the following four phases:
-![web-router-flash-optimization.png](figures/web-router-flash-optimization_en.png)
+![web-router-flash-optimization.png](figures/web-router-flash-optimization.png)
 Description of the four phases in the figure (from left to right):
 
 1. The application is routed to the web page. The top of the page is the native navigation bar, and the bottom is the **Web** component. In this case, the web page can be loaded properly.

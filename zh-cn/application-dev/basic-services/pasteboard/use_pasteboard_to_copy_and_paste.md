@@ -26,7 +26,7 @@
 | MIMETYPE_TEXT_URI : "text/uri" | UDMF_META_GENERAL_FILE_URI : "general.file-uri" |
 | MIMETYPE_TEXT_WANT : "text/want" | NDK接口不支持该数据类型。 |
 
-ArkTS数据类型对应剪贴板类型，详见[ohos.pasteboard](../../reference/apis-basic-services-kit/js-apis-pasteboard.md)。NDK数据类型对应统一数据管理框架，详见[UDMF](../../reference/apis-arkdata/_u_d_m_f.md)。
+ArkTS数据类型对应剪贴板类型，详见[ohos.pasteboard](../../reference/apis-basic-services-kit/js-apis-pasteboard.md)。NDK数据类型对应统一数据管理框架，详见[UDMF](../../reference/apis-arkdata/capi-udmf.md)。
 
 ### 接口说明
 

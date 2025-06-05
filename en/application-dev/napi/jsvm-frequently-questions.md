@@ -73,9 +73,9 @@ If an unexpected behavior occurs during the running of the application, locate t
 4. Q: The application crashes when a JS data type instance is created (for example, **OH_JSVM_CreateDouble**) in a JSVM instance. The call stack is as follows:
 
    ```
-   #00 pc 0000000001d209e4/system/1ib64/ndk/libjsvm.so(v8::base::0S::Abort()+28)
+   #00 pc 0000000001d209e4/system/lib64/ndk/libjsvm.so(v8::base::0S::Abort()+28)
    #01 pc 0000000001408480/system/lib64/ndk/libjsvm.so(v8::Utils::ReportApiFailure(char const*,char const*)+124)
-   #02 pc 00000000015c99b8/system/lib64/ndk/libjsvm.so(v8::internal::Handlescope::Extend(v8::internal::Isolate*+200)
+   #02 pc 00000000015c99b8/system/lib64/ndk/libjsvm.so(v8::internal::HandleScope::Extend(v8::internal::Isolate*+200)
    ```
 
    A: Check whether **HandleScope** is correctly used. For details, see [Lifecycle Management](jsvm-guidelines.md#lifecycle-management).

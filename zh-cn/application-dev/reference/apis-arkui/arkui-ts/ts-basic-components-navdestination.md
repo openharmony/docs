@@ -13,6 +13,8 @@
 > - 如果页面栈中间页面的生命周期发生变化，跳转之前的栈顶Destination的生命周期(onWillShow, onShown, onHidden, onWillDisappear)与跳转之后的栈顶Destination的生命周期(onWillShow, onShown, onHidden, onWillDisappear)均在最后触发。
 >
 > - NavDestination未设置主副标题并且没有返回键时，不显示标题栏。
+>
+> - 不要在NavDestination上添加[zIndex](ts-universal-attributes-z-order.md#zindex)属性，会覆盖掉系统设置的层级，可能导致出现显示异常。
 
 ## 子组件
 

@@ -2376,7 +2376,7 @@ isRemoteData(): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **示例：**
 
@@ -2412,7 +2412,7 @@ getDataSource(): string
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **示例：**
 
@@ -2455,7 +2455,7 @@ hasDataType(mimeType: string): boolean
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **示例：**
 
@@ -2485,7 +2485,7 @@ clearDataSync(): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **示例：**
 
@@ -2523,7 +2523,7 @@ getDataSync(): PasteData
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 
 **示例：**
@@ -2561,7 +2561,7 @@ setDataSync(data: PasteData): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **示例：**
 
@@ -2598,7 +2598,7 @@ hasDataSync(): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **示例：**
 
@@ -2684,7 +2684,7 @@ getUnifiedDataSync(): unifiedDataChannel.UnifiedData
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **示例：**
 
@@ -2778,7 +2778,7 @@ setUnifiedDataSync(data: unifiedDataChannel.UnifiedData): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **示例：**
 
@@ -2827,7 +2827,7 @@ setAppShareOptions(shareOptions: ShareOption): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 12900006 | Settings already exist. |
 
 **示例：**
@@ -2915,7 +2915,7 @@ detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3002,10 +3002,10 @@ getDataWithProgress(params: GetDataParams): Promise&lt;PasteData&gt;
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error.                                             |
 | 12900003 | Another copy or paste operation is in progress.              |
-| 12900007 | Copy file failed.                                            |
+| 12900007 | Invalid destUri or file system error.                        |
 | 12900008 | Failed to start progress.                                    |
 | 12900009 | Progress exits abnormally.                                   |
-| 12900010 | Get pasteData error.                                         |
+| 12900010 | System error occurred during paste execution.                |
 
 **示例：**
 

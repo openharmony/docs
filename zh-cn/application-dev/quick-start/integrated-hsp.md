@@ -36,7 +36,7 @@
       }
     }
     ```
-2. 创建方-集成态HSP-模块配置：修改模块级构建配置文件build-profile.json5，将integratedHsp配置项设置为true，指定构建的HSP模块为集成态HSP。
+2. 创建方-集成态HSP-模块配置：修改模块级构建配置文件[build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile)，将integratedHsp配置项设置为true，指定构建的HSP模块为集成态HSP。
 
     ```json
     // created_party_project/library/build-profile.json5

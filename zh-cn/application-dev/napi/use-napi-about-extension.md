@@ -755,7 +755,7 @@ hilog.info(0x0000, 'testTag', ' Node-API aboutSerialize: %{public}d', testNapi.a
 | napi_wrap_sendable | 包裹一个native实例到ArkTS对象中。|
 | napi_wrap_sendable_with_size | 包裹一个native实例到ArkTS对象中并指定大小。|
 | napi_unwrap_sendable | 获取ArkTS对象包裹的native实例。|
-| napi_remove_wrap_sendable | 移除并获取ArkTS对象包裹的native实例。|
+| napi_remove_wrap_sendable | 移除并获取ArkTS对象包裹的native实例，移除后回调将不再触发，需手动delete释放内存。|
 
 ### 使用示例
 
@@ -1207,7 +1207,7 @@ testNapi.unwrapSendable();
 
 #### napi_remove_wrap_sendable
 
-移除并获取ArkTS对象包裹的native实例。
+移除并获取ArkTS对象包裹的native实例，移除后回调将不再触发，需手动delete释放内存。
 
 cpp部分代码
 
@@ -1315,3 +1315,17 @@ import testNapi from 'libentry.so';
 
 testNapi.testNapiWrapEnhance();
 ```
+
+## napi提供多上下文环境能力
+
+### 接口描述
+
+| 接口 | 描述 |
+| -------- | -------- |
+| napi_create_ark_context | 创建基础运行时上下文环境。 |
+| napi_destroy_ark_context | 销毁基础运行时上下文环境。 |
+### 使用示例
+
+#### napi_create_ark_context、napi_destroy_ark_context
+
+[使用扩展的Node-API接口创建、切换和销毁上下文环境](use-napi-about-context.md)

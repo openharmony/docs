@@ -43,7 +43,7 @@ getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<BundleInstaller> | 是   | 回调函数，获取BundleInstaller对象，err为null，data为获取到的BundleInstaller对象；否则为错误对象。 |
+| callback | AsyncCallback\<BundleInstaller> | 是   | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，获取BundleInstaller对象，err为null，data为获取到的BundleInstaller对象；否则为错误对象。 |
 
 **错误码：**
 
@@ -181,7 +181,7 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | 是   | 存储应用程序包的路径。路径应该是当前应用程序中存放HAP的数据目录。当传入的路径是一个目录时， 该目录下只能放同一个应用的HAP，且这些HAP的签名需要保持一致。 |
 | installParam           | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                                     |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，安装应用成功，err为null，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，安装应用成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -275,7 +275,7 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 | 参数名           | 类型                                                 | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | 是   | 存储应用程序包的路径。路径应该是当前应用程序中存放HAP的数据目录。当传入的路径是一个目录时， 该目录下只能放同一个应用的HAP，且这些HAP的签名需要保持一致。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，安装应用成功，err为null，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，安装应用成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -456,7 +456,7 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | 是   | 待卸载应用的包名。                                           |
 | installParam      | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                       |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，卸载应用成功，err为null，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，卸载应用成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -524,7 +524,7 @@ uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 | 参数名      | 类型                                                 | 必填 | 说明                                           |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | 是   | 待卸载应用的包名。                                           |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，卸载应用成功，err为null，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，卸载应用成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -658,7 +658,7 @@ recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | 是   | 待恢复应用的包名。                                           |
 | installParam      | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                       |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，回滚应用成功，err为null，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，回滚应用成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -723,7 +723,7 @@ recover(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 | 参数名      | 类型                                                 | 必填 | 说明                                           |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | 是   | 待恢复应用的包名。                               |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，回滚应用成功，err为null，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，回滚应用成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -849,7 +849,7 @@ uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void\>) : vo
 | 参数名         | 类型                                | 必填 | 说明                                                     |
 | -------------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | uninstallParam | [UninstallParam](#uninstallparam10) | 是   | 共享包卸载需指定的参数信息。                             |
-| callback       | AsyncCallback&lt;void&gt;           | 是   | 回调函数，卸载应用成功，err为null，否则为错误对象。 |
+| callback       | AsyncCallback&lt;void&gt;           | 是   | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，卸载应用成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -1099,7 +1099,7 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, installParam: InstallParam, c
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | 是   | 存储应用程序包的路径。路径应该是当前应用程序中存放HAP的数据目录。当传入的路径是一个目录时， 该目录下只能放同一个应用的HAP，且这些HAP的签名需要保持一致。 |
 | installParam           | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                                     |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，安装应用成功，err为null，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，安装应用成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -1177,7 +1177,7 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, callback: AsyncCallback\<void
 | 参数名           | 类型                                                 | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | 是   | 存储应用程序包的路径。路径应该是当前应用程序中存放HAP的数据目录。当传入的路径是一个目录时， 该目录下只能放同一个应用的HAP，且这些HAP的签名需要保持一致。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，安装应用成功，err为null，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，安装应用成功，err为null，否则为错误对象。 |
 
 **错误码：**
 

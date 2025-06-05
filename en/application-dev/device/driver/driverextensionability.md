@@ -35,7 +35,7 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
     const REQUEST_CODE = 99; // Negotiate the request code with the peripheral client.
     ```
 
-5. Open the **DriverExtAbility.ets** file, import the [RPC module](../../reference/apis-ipc-kit/js-apis-rpc.md), and overload the **onRemoteMessageRequest()** method to receive messages from the application and return the processing result to the application. **REQUEST_VALUE** is used to verify the service request code sent by the application.
+5. Open the **DriverExtAbility.ets** file, import the [RPC module](../../reference/apis-ipc-kit/js-apis-rpc.md), and overload the **onRemoteMessageRequest()** method to receive messages from the application and return the processing result to the application. **REQUEST_CODE** is used to verify the service request code sent by the application.
 
     ```ts
     class StubTest extends rpc.RemoteObject {

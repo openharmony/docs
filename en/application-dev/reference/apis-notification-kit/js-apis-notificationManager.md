@@ -454,7 +454,7 @@ Obtains a notification slot of a specified type. This API uses an asynchronous c
 
 | Name    | Type                             | Mandatory| Description                                                       |
 | -------- | --------------------------------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype)                          | Yes  | Type of a notification slot, including social communication, service notification, and content consultation.|
+| slotType | [SlotType](#slottype)                          | Yes  | Type of a notification slot, such as social communication, service notification, content consultation, and so on.|
 | callback | AsyncCallback\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the obtained **NotificationSlot**; otherwise, **err** is an error object.                                       |
 
 **Error codes**
@@ -497,7 +497,7 @@ Obtains a notification slot of a specified type. This API uses a promise to retu
 
 | Name    | Type    | Mandatory| Description                                                       |
 | -------- | -------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype) | Yes  | Type of a notification slot, including social communication, service notification, and content consultation.|
+| slotType | [SlotType](#slottype) | Yes  | Type of a notification slot, such as social communication, service notification, content consultation, and so on.|
 
 **Return value**
 
@@ -619,7 +619,7 @@ Removes a notification slot of a specified type for this application. This API u
 
 | Name    | Type                 | Mandatory| Description                                                       |
 | -------- | --------------------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype)              | Yes  | Type of a notification slot, including social communication, service notification, and content consultation.|
+| slotType | [SlotType](#slottype)              | Yes  | Type of a notification slot, such as social communication, service notification, content consultation, and so on.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                                       |
 
 **Error codes**
@@ -662,7 +662,7 @@ Removes a notification slot of a specified type for this application. This API u
 
 | Name    | Type    | Mandatory| Description                                                       |
 | -------- | -------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype) | Yes  | Type of a notification slot, including social communication, service notification, and content consultation.|
+| slotType | [SlotType](#slottype) | Yes  | Type of a notification slot, such as social communication, service notification, content consultation, and so on.|
 
 **Return value**
 
@@ -1065,7 +1065,7 @@ Obtains the active notifications of this application. This API uses an asynchron
 
 | Name    | Type                                                        | Mandatory| Description                          |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and data is the obtained **NotificationRequest** array ; otherwise, **err** is an error object.|
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and data is the obtained **NotificationRequest** array; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1708,7 +1708,7 @@ Enumerates the notification slot types.
 | SOCIAL_COMMUNICATION | 1 | Notification slot for social communication. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_HIGH**.|
 | SERVICE_INFORMATION  | 2 | Notification slot for service information. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_HIGH**.|
 | CONTENT_INFORMATION  | 3 | Notification slot for content consultation. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_MIN**.|
-| LIVE_VIEW<sup>11+</sup>            | 4 | Live view. A third-party application cannot directly create a notification of this slot type. After the system proxy creates a system live view, the third-party application releases a notification with the same ID to update the specified content. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_DEFAULT**.|
+| LIVE_VIEW<sup>11+</sup>            | 4 | Live view. A third-party application cannot directly create a notification of this slot type. After the system proxy creates a system live view, the third-party application publishes a notification with the same ID to update the specified content. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_DEFAULT**.|
 | CUSTOMER_SERVICE<sup>11+</sup>     | 5 | Customer service message. This type is used for messages between users and customer service providers. The messages must be initiated by users. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_DEFAULT**. |
 | OTHER_TYPES          | 0xFFFF | Notification slot for other purposes. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_MIN**.|
 
@@ -1915,3 +1915,50 @@ Describes the notification progress.
 | Type| Description|
 | --- | --- |
 | [_NotificationProgress](js-apis-inner-notification-notificationContent.md#notificationprogress11) | Notification progress.|
+
+## NotificationSetting<sup>20+</sup>
+
+Describes notification settings, including whether to enable vibration and ringtone.
+
+**System capability**: SystemCapability.Notification.Notification
+
+
+| Name   | Type                                 | Mandatory| Description                  |
+| ------- | ------------------------------------ | ---- | ---------------------- |
+| vibrationEnabled | boolean | Yes| Whether to enable vibration. The value **true** means to enable vibration, and **false** means the opposite.|
+| soundEnabled | boolean | Yes| Whether to enable ringtone. The value **true** means to enable ringtone, and **false** means the opposite.|
+
+## notificationManager.getNotificationSetting<sup>20+</sup>
+
+getNotificationSetting(): Promise\<NotificationSetting\>
+
+Obtains the notification settings of an application. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Return value**
+
+| Type              | Description           |
+| ------------------ | --------------- |
+| Promise\<[_NotificationSetting](#notificationsetting20)\> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+notificationManager.getNotificationSetting().then((data: notificationManager.NotificationSetting) => {
+    console.info("getNotificationSetting success, data: " + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+    console.error(`getNotificationSetting failed, code is ${err.code}, message is ${err.message}`);
+});

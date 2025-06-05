@@ -1,6 +1,6 @@
 # @ohos.app.ability.AtomicServiceOptions (AtomicServiceOptions)
 
-AtomicServiceOptions可以作为[openAtomicService()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenatomicservice12)的入参，用于携带参数。继承于[StartOptions](js-apis-app-ability-startOptions.md)。
+AtomicServiceOptions可以作为[openAtomicService()](js-apis-inner-application-uiAbilityContext.md#openatomicservice12)的入参，用于携带参数。继承于[StartOptions](js-apis-app-ability-startOptions.md)。
 
 > **说明：**
 >
@@ -14,7 +14,7 @@ AtomicServiceOptions可以作为[openAtomicService()](js-apis-inner-application-
 import { AtomicServiceOptions } from '@kit.AbilityKit';
 ```
 
-## 属性
+## AtomicServiceOptions
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 

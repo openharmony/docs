@@ -58,8 +58,21 @@ For the complete list of APIs and example code, see [Network Firewall](../refere
 
 ```ts
 // Import the netFirewall namespace from @kit.NetworkKit.
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
+interface IpType{
+      family:number;
+      type:number;
+      address?:string;
+      mask?:number;
+      startIp?:string;
+      endIp?:string;
+}
+interface IpPort{
+    startPort:number;
+    endPort:number;
+}
 
 // Define the firewall policy to enable the firewall and deny inbound traffic while allowing outbound traffic.
 let policy: netFirewall.NetFirewallPolicy = {
@@ -94,7 +107,7 @@ let ipRule: netFirewall.NetFirewallRule = {
       type: 2,
       startIp: "10.20.1.1",
       endIp: "10.20.1.10"
-    }],
+    }] as IpType[],
   remoteIps:[
     {
       family: 1,
@@ -106,7 +119,7 @@ let ipRule: netFirewall.NetFirewallRule = {
       type: 2,
       startIp: "20.20.1.1",
       endIp: "20.20.1.10"
-    }],
+    }] as IpType[],
   protocol: 6,
   localPorts: [
     {
@@ -115,12 +128,12 @@ let ipRule: netFirewall.NetFirewallRule = {
     },{
       startPort: 2000,
       endPort: 2001
-    }],
+    }] as IpPort[],
   remotePorts: [
     {
       startPort: 443,
       endPort: 443
-    }],
+    }] as IpPort[],
   userId: 100
 };
 // Add firewall rules.
@@ -140,8 +153,13 @@ netFirewall.addNetFirewallRule(ipRule).then((result: number) => {
 
 ```ts
 // Import the netFirewall namespace from @kit.NetworkKit.
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
+interface domain{
+    isWildcard: boolean;
+    domain: string;
+}
 
 // Define the firewall policy to enable the firewall and deny inbound traffic while allowing outbound traffic.
 let policy: netFirewall.NetFirewallPolicy = {
@@ -172,7 +190,7 @@ let domainRule: netFirewall.NetFirewallRule = {
     },{
       isWildcard: true,
       domain: "*.openharmony.cn"
-    }],
+    }] as domain[],
   userId: 100
 };
 // Add firewall rules.
@@ -192,7 +210,7 @@ netFirewall.addNetFirewallRule(domainRule).then((result: number) => {
 
 ```ts
 // Import the netFirewall namespace from @kit.NetworkKit.
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // Call getInterceptedRecords to perform pagination query on firewall interception records.

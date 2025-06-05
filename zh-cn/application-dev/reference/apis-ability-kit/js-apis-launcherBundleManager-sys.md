@@ -1,6 +1,6 @@
 # @ohos.bundle.launcherBundleManager (launcherBundleManager模块)(系统接口)
 
-本模块支持launcher应用所需的查询能力，支持[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)、[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)信息的查询。
+本模块支持launcher应用所需的查询能力，支持[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)、[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)信息的查询。
 
 > **说明：**
 >
@@ -238,9 +238,9 @@ try {
 
 ## launcherBundleManager.getShortcutInfo<sup>9+</sup>
 
-getShortcutInfo(bundleName :string, callback: AsyncCallback\<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)\>\>) : void
+getShortcutInfo(bundleName :string, callback: AsyncCallback\<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)\>\>) : void
 
-查询当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)。
+查询当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -253,7 +253,7 @@ getShortcutInfo(bundleName :string, callback: AsyncCallback\<Array\<[ShortcutInf
 | 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | 是   | 应用Bundle名称。 |
-| callback | AsyncCallback\<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)\>\> | 是 | callback形式返回当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)。 |
+| callback | AsyncCallback\<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)\>\> | 是 | callback形式返回当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。 |
 
 **错误码：**
 
@@ -291,9 +291,9 @@ try {
 
 ## launcherBundleManager.getShortcutInfo<sup>9+</sup>
 
-getShortcutInfo(bundleName : string) : Promise\<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)\>\>
+getShortcutInfo(bundleName : string) : Promise\<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)\>\>
 
-查询当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)。
+查询当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -311,7 +311,7 @@ getShortcutInfo(bundleName : string) : Promise\<Array\<[ShortcutInfo](js-apis-bu
 
 | 类型                   | 说明                                            |
 | ---------------------- | ----------------------------------------------- |
-| Promise\<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)\>\> | Promise形式返回当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)。 |
+| Promise\<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)\>\> | Promise形式返回当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。 |
 
 **错误码：**
 
@@ -347,9 +347,9 @@ try {
 
 ## launcherBundleManager.getShortcutInfoSync<sup>10+</sup>
 
-getShortcutInfoSync(bundleName : string) : Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)\>
+getShortcutInfoSync(bundleName : string) : Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)\>
 
-查询当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)。
+查询当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -367,7 +367,7 @@ getShortcutInfoSync(bundleName : string) : Array\<[ShortcutInfo](js-apis-bundleM
 
 | 类型                   | 说明                                            |
 | ---------------------- | ----------------------------------------------- |
-| Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)\> | Array形式返回当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)。 |
+| Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)\> | Array形式返回当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。 |
 
 **错误码：**
 
@@ -399,9 +399,9 @@ try {
 
 ## launcherBundleManager.getShortcutInfoSync<sup>13+</sup>
 
-getShortcutInfoSync(bundleName: string, userId: number) : Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)\>
+getShortcutInfoSync(bundleName: string, userId: number) : Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)\>
 
-查询指定用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)。
+查询指定用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -420,7 +420,7 @@ getShortcutInfoSync(bundleName: string, userId: number) : Array\<[ShortcutInfo](
 
 | 类型                   | 说明                                            |
 | ---------------------- | ----------------------------------------------- |
-| Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)\> | Array形式返回指定用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)。 |
+| Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)\> | Array形式返回指定用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。 |
 
 **错误码：**
 
@@ -455,7 +455,7 @@ try {
 
 startShortcut(shortcutInfo: ShortcutInfo, options?: StartOptions): Promise\<void\>;
 
-拉起指定[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)中的ability。
+拉起指定[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)中的ability。
 
 **需要权限：** ohos.permission.START_SHORTCUT
 
@@ -467,7 +467,7 @@ startShortcut(shortcutInfo: ShortcutInfo, options?: StartOptions): Promise\<void
 
 | 参数名        | 类型   | 必填 | 说明         |
 | ------------ | ------ | ---- | -------------- |
-| shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) | 是   | 应用的快捷方式信息。 |
+| shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo.md) | 是   | 应用的快捷方式信息。 |
 | options      | [StartOptions](js-apis-app-ability-startOptions-sys.md)   | 否   | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
 
 **返回值：**

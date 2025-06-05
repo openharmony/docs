@@ -595,7 +595,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmGetLastErrorInfo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 // Call the C++ code from JS.
-const char *srcCallNative = R"JS(jsVmGetLastErrorInfo();)JS";}
+const char *srcCallNative = R"JS(jsVmGetLastErrorInfo();)JS";
 ```
 
 **Expected output**

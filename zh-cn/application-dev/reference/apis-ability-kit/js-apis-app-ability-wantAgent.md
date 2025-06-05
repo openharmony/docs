@@ -1270,7 +1270,7 @@ try {
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | info           | WantAgent                       | 否 | 否   | 触发的wantAgent。       |
-| want           | [Want](js-apis-app-ability-want.md#属性)                            | 否 | 否   | 存在的被触发的want。     |
+| want           | [Want](js-apis-app-ability-want.md)                            | 否 | 否   | 存在的被触发的want。     |
 | finalCode      | number                          | 否 | 否   | 触发wantAgent的请求代码。 |
 | finalData      | string                          | 否 | 否   | 公共事件收集的最终数据。  |
 | extraInfo      | Record\<string, Object>            | 否 |是   | 额外数据。               |

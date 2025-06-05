@@ -47,7 +47,7 @@ Incorrect ability type.
 **处理步骤**
 
 1. 检查want中的bundleName、moduleName和abilityName是否正确。
-2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用<!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability)方法启动或<!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)方法连接。
+2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用<!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#startserviceextensionability)方法启动或<!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability)方法连接。
 
 ## 16000003 指定的ID不存在
 
@@ -276,9 +276,13 @@ Redirection to a third-party application is not allowed in API version 11 or lat
 
 当应用API版本大于11的时候，不允许显式跳转到其他三方应用。
 
+**可能原因**
+
+应用使用的API版本大于11并且显式跳转到其他三方应用。
+
 **处理步骤**
 
-使用隐式启动方式或通过[openLink](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)跳转其他应用。
+使用隐式启动方式或通过[openLink](js-apis-inner-application-uiAbilityContext.md#openlink12)跳转其他应用。
 
 ## 16000019 隐式启动未查找到匹配应用
 
@@ -845,6 +849,42 @@ An error occurred during the interaction between the ability and window.
 
 系统错误，尝试重新调用。
 
+## 16000086 传入的context不是UIAbilityContext
+
+**错误信息**
+
+The context is not UIAbilityContext.
+
+**错误描述**
+
+传入的context不是UIAbilityContext。
+
+**可能原因**
+
+传入的Context对象既不是UIAbilityContext、也没有继承自UIAbilityContext。
+
+**处理步骤**
+
+使用UIAbilityContext对象或者继承了UIAbilityContext类的对象作为入参。
+
+## 16000090 调用方不是原子化服务
+
+**错误信息**
+
+The Caller is not an atomic service.
+
+**错误描述**
+
+调用方不是原子化服务。
+
+**可能原因**
+
+接口调用方不是原子化服务。
+
+**处理步骤**
+
+当前应用不支持调用该接口。
+
 ## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
 
 **错误信息**
@@ -1364,3 +1404,23 @@ Running startup tasks timeout.
 **处理步骤**
 
 根据需要调整超时时间。超时时间的设置可参见[设置启动参数](../../application-models/app-startup.md#设置启动参数)。
+
+<!--Del-->
+## 16400001 目标应用类型不是系统级HSP
+
+**错误信息**
+
+The input bundleName is not a system HSP.
+
+**错误描述**
+
+通过[createSystemHspModuleResourceManager](js-apis-inner-application-context-sys.md#contextcreatesystemhspmoduleresourcemanager12)接口创建[ResourceManager](../apis-localization-kit/js-apis-resource-manager.md#resourcemanager)时，如果传入的bundleName不属于[系统级HSP](../../quick-start/application-package-glossary.md#系统级hsp)的模块，将返回该错误码。
+
+**可能原因**
+
+调用createSystemHspModuleResourceManager传入的bundleName，不是OEM预置到系统中的HSP的bundleName。
+
+**处理步骤**
+
+检查bundleName是否正确。
+<!--DelEnd-->

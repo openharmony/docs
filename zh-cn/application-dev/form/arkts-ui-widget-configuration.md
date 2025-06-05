@@ -65,6 +65,8 @@
    |renderingMode|表示卡片的渲染模式，取值范围如下：<br/>-&nbsp;autoColor：自动模式，锁屏卡片中心与桌面卡片中心/卡片管理内都可以显示的卡片。<br/>-&nbsp;fullColor：全色模式，桌面卡片中心/卡片管理内可以显示的卡片。<br/>-&nbsp;singleColor：单色模式，锁屏卡片中心内可以显示的卡片。	|字符串|可缺省，缺省值为“fullColor”。|
    |multiScheduledUpdateTime|表示卡片的多定点刷新的时刻，作为单点刷新的一个附加参数，采用24小时制，精确到分钟，多个时间用英文逗号分隔，最多写24个时间。<br/>**说明：**<br/>multiScheduledUpdateTime需要配合scheduledUpdateTime使用。|字符串|可缺省，缺省时不进行多定点刷新。|
    |conditionUpdate|表示卡片的支持的条件刷新（仅对系统应用的ArkTS卡片生效）。取值范围如下：<br/>-&nbsp;network：表示支持网络刷新。|字符串|可缺省，缺省值为空字符串。|
+   |[funInteractionParams](#funinteractionparams标签)| 趣味交互类型互动卡片扩展字段。| 对象 | 可缺省，缺省为空。funInteractionParams 和 sceneAnimationParams 同时配置时识别为趣味交互类型互动卡片。|
+   |[sceneAnimationParams](#sceneanimationparams标签)| 场景动效类型互动卡片扩展字段。| 对象 | 可缺省，缺省为空。funInteractionParams 和 sceneAnimationParams 同时配置时识别为趣味交互类型互动卡片。|
 
 ## isDynamic标签
 
@@ -84,7 +86,43 @@
    | designWidth | 标识页面设计基准宽度。以此为基准，根据实际设备宽度来缩放元素大小。 | 数值 | 可缺省，缺省值为720px。 |
    | autoDesignWidth | 标识页面设计基准宽度是否自动计算。当配置为true时，designWidth将会被忽略，设计基准宽度由设备宽度与屏幕密度计算得出。 | 布尔值 | 可缺省，缺省值为false。 |
 
-   配置示例如下：
+## funInteractionParams标签
+
+此标签标识趣味交互类型互动卡片配置。funInteractionParams 和 sceneAnimationParams 同时配置时识别为趣味交互类型互动卡片。
+
+| 名称                | 类型  | 必填 | 说明                                                                  |
+|-------------------|-----|----|---------------------------------------------------------------------|
+| abilityName       | 字符串 | 否 | 趣味交互场景 extensionAbility 名称，默认为空。                                  |
+| targetBundleName  | string | 是  |  趣味交互场景[主包包名](https://developer.huawei.com/consumer/cn/doc/quickApp-Guides/quickgame-independent-subpackage-0000002076341729)。|
+| subBundleName     | string | 是  |  趣味交互场景[独立分包名](https://developer.huawei.com/consumer/cn/doc/quickApp-Guides/quickgame-independent-subpackage-0000002076341729)。|
+| keepStateDuration | 数值  | 否  | 趣味交互场景无交互时，激活态保持时长。默认值为10000，单位ms。取值为[0,10000]的整数，超过取值范围则取默认值10000。 |
+
+## sceneAnimationParams标签
+
+此标签标识场景动效类型互动卡片配置。funInteractionParams 和 sceneAnimationParams 同时配置时识别为趣味交互类型互动卡片。
+
+| 名称                                     | 类型     | 必填 | 说明 |
+|----------------------------------------|--------|----|----------------------------|
+| abilityName                            | 字符串 | 是  | 场景动效 extensionAbility 名称。|
+| <!--DelRow--> disabledDesktopBehaviors | 字符串数组 | 否  | 支持的取值包括SWIPE_DESKTOP（滑动桌面）、PULL_DOWN_SEARCH（下拉全搜）、LONG_CLICK（长按）、DRAG（拖动）。可以取值一个或多个，不同行为通过 \| 拼接，例如SWIPE_DESKTOP\|PULL_DOWN_SEARCH。缺省表示不禁用任何行为。 |
+
+<!--RP2-->
+   ```json
+   {
+     "forms": [
+       {
+          // ...
+         "sceneAnimationParams": {
+            "abilityName": "MyLiveFormExtensionAbility",
+            "disabledDesktopBehaviors": "LONG_CLICK|DRAG|SWIPE_DESKTOP|PULL_DOWN_SEARCH"
+         }          
+       }
+     ]
+   }
+   ```
+<!--RP2End-->
+
+配置示例如下：
 
 <!--RP1-->
    ```json
@@ -114,7 +152,10 @@
          "dataProxyEnabled": false,
          "isDynamic": true,
          "transparencyEnabled": false,
-         "metadata": []
+         "metadata": [],
+         "funInteractionParams": {
+            "targetBundleName": "com.example.funInteraction"
+         }
        }
      ]
    }

@@ -68,7 +68,7 @@ startVpnExtensionAbility(want: Want): Promise\<void>
 
 **错误码：**
 
-| 错误码 ID | 错误信息                               |
+| 错误码ID | 错误信息                               |
 | --------- | -------------------------------------- |
 | 401       | If the input parameter is not valid parameter.|
 | 16000001  | The specified ability does not exist.  |
@@ -137,7 +137,7 @@ stopVpnExtensionAbility(want: Want): Promise\<void>
 
 **错误码：**
 
-| 错误码 ID | 错误信息                               |
+| 错误码ID | 错误信息                               |
 | --------- | -------------------------------------- |
 | 401       | If the input parameter is not valid parameter.|
 | 16000001  | The specified ability does not exist.  |
@@ -214,7 +214,7 @@ createVpnConnection(context: VpnExtensionContext): VpnConnection
 
 **错误码：**
 
-| 错误码 ID | 错误信息         |
+| 错误码ID | 错误信息         |
 | --------- | ---------------- |
 | 401       | Parameter error. |
 
@@ -260,7 +260,7 @@ create(config: VpnConfig): Promise\<number\>
 
 **错误码：**
 
-| 错误码 ID | 错误信息                                         |
+| 错误码ID | 错误信息                                         |
 | --------- | ------------------------------------------------ |
 | 401       | Parameter error.                                 |
 | 2200001   | Invalid parameter value.                         |
@@ -363,7 +363,7 @@ protect(socketFd: number): Promise\<void\>
 
 **错误码：**
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
@@ -419,7 +419,7 @@ destroy(): Promise\<void\>
 
 **错误码：**
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2200002   | Operation failed. Cannot connect to service. |

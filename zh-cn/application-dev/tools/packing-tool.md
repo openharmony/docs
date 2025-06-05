@@ -91,7 +91,7 @@ java -jar app_packing_tool.jar --mode hsp --json-path <path> [--resources-path <
 
 开发者可以使用打包工具的jar包对应用进行打包，通过传入打包选项、文件路径，生成所需的App包。App包用于上架应用市场。
 
-**App打包时HAP合法性校验：** 在对工程内的HAP包打包生成App包时，需要保证被打包的每个HAP在json文件中配置的bundleName、versionCode、minCompatibleVersionCode、debug、minAPIVersion、targetAPIVersion相同，moduleName唯一。对于FA模型，还需要保证json文件中配置的package唯一。HAP模块之间需要保证apiReleaseType相同，HSP模块不校验apiReleaseType。
+**App打包时HAP/HSP合法性校验：** 在对工程内的HAP/HSP包打包生成App包时，需要保证被打包的每个HAP/HSP在module.json文件中配置的bundleName、versionCode、debug、minAPIVersion相同，moduleName唯一。对于FA模型，还需要保证config.json文件中配置的package唯一。此外从API version 20开始，HAP模块之间需要保证minCompatibleVersionCode、targetAPIVersion、apiReleaseType相同，HSP模块之间不做校验。HAP模块targetAPIVersion、minCompatibleVersionCode需大于等于HSP模块targetAPIVersion、minCompatibleVersionCode。
 
 **打包App时的压缩规则：** 打包App时，对release模式的HAP、HSP包会进行压缩，对debug模式的HAP、HSP包不会压缩。
 
@@ -127,7 +127,7 @@ java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>
 
 多工程打包适用于多个团队开发同一个应用，但不方便共享代码的情况。开发者通过传入已经打好的HAP、HSP和App包，将多个包打成一个最终的App包，并上架应用市场。
 
-**多工程打包HAP合法性校验：** 需要保证被打包的每个HAP在json文件中配置的bundleName、versionCode、minCompatibleVersionCode、debug属性相同，minAPIVersion、targetAPIVersion、compileSdkVersion、compileSdkType相同，moduleName唯一，同一设备entry唯一。对于FA模型，还需要保证json文件中配置的package唯一。HAP模块之间需要保证apiReleaseType相同，HSP模块不校验apiReleaseType。
+**多工程打包HAP/HSP合法性校验：** 需要保证被打包的每个HAP/HSP在module.json文件中配置的bundleName、versionCode、debug属性相同，minAPIVersion、compileSdkVersion、compileSdkType相同，moduleName唯一，同一设备entry唯一。对于FA模型，还需要保证config.json文件中配置的package唯一。此外从API version 20开始，HAP模块之间需要保证minCompatibleVersionCode、targetAPIVersion、apiReleaseType相同，HSP模块之间不做校验。HAP模块targetAPIVersion、minCompatibleVersionCode需大于等于HSP模块targetAPIVersion、minCompatibleVersionCode。
 
 >**说明：**
 >
@@ -201,7 +201,7 @@ java -jar app_packing_tool.jar --mode appqf --hqf-list <path> --out-path <path> 
 
 示例：
 ```
-java -jar path\app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2.hsp --version-code 1000001 --version-name 1.0.1 --out-path path\out\
+java -jar app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2.hsp --version-code 1000001 --version-name 1.0.1 --out-path out\
 ```
 
 **表7** versionNormalize指令参数说明
@@ -220,7 +220,7 @@ java -jar path\app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2
 
 示例：
 ```
-java -jar path\app_packing_tool.jar --mode packageNormalize --hsp-list path\1.hsp,path\2.hsp --bundle-name com.example.myapplication --version-code 1000001 --out-path path\out\
+java -jar app_packing_tool.jar --mode packageNormalize --hsp-list 1.hsp,2.hsp --bundle-name com.example.myapplication --version-code 1000001 --out-path out\
 ```
 
 **表8**  参数含义及规范
@@ -232,6 +232,40 @@ java -jar path\app_packing_tool.jar --mode packageNormalize --hsp-list path\1.hs
 | --bundle-name  | 是     | 包名            | 指定的包名，HSP的包名会被修改为指定的包名。                             |
 | --version-code | 是     | 版本号           | 指定的版本号，HSP的版本号会被修改为该版本号。需要为整数，且大于0。                 |
 | --out-path     | 是     | NA            | 目标文件路径，需要为一个目录。                                     |
+
+## 通用归一指令（generalNormalize）
+
+此命令可以修改传入的HAP/HSP的 deviceType/bundleName/versionName/versionCode/minCompatibleVersionCode/minAPIVersion/targetAPIVersion/<br/>
+apiReleaseType/bundleTypes/installationFree/deliveryWithInstall参数，并在指定目录生成修改后的同名HAP/HSP，以及一个general_record.json文件，用于记录所有HAP、HSP原有的参数名称和moduleName。上述设置的参数应符合正确打包规范，否则会在指定目录生成HAP/HSP失败，指定目录不会有文件生成。
+
+>**说明：**
+>
+>从API version 20开始支持通用归一化指令。
+
+示例：
+
+```
+java -jar app_packing_tool.jar --mode generalNormalize --input-list 1.hsp,2.hsp --bundle-name com.example.myapplication --version-code 1000001 --version-name 1.0.1 --min-compatible-version-code 14 --min-api-version 14 --target-api-version 14 --api-release-type Release1 --bundle-type app --installation-free false --delivery-with-install true --device-types default,tablet --out-path out\
+```
+
+**表11**  参数含义及规范
+
+| 指令                          | 是否必选项 | 选项                                               | 描述                                                         |
+| ----------------------------- | ---------- | -------------------------------------------------- | ------------------------------------------------------------ |
+| --mode                        | 是         | generalNormalize                                   | 指令类型，表示通用归一化指令。                               |
+| --input-list                  | 是         | HAP或HSP的路径                                     | 1. HAP或HSP包文件路径，文件名必须以.hap或.hsp为后缀。多个HAP或HSP包文件路径之间使用“,”分隔。<br/>2. 传入目录时，会读取目录下所有的HAP和HSP文件。 |
+| --bundle-name                 | 否         | 包名                                               | 指定的Bundle名称，传入的包的Bundle名称会被修改为该Bundle名称。指定的值不能为空，该字段的详细定义和规格请参考[app.json5](../quick-start/app-configuration-file.md#配置文件标签)中的bundleName字段。 |
+| --version-code                | 否         | 版本号                                             | 指定的版本号，传入的包的版本号会被修改为该版本号。取值范围为0~2147483647的整数，指定的值不能为空值，该字段的详细定义和规格请参考[app.json5](../quick-start/app-configuration-file.md#配置文件标签)中的versionCode字段。 |
+| --version-name                | 否         | 版本名称                                           | 指定的版本名称，传入的包的版本名称会被修改为该版本名称。指定的值不能为空，该字段的详细定义和规格请参考[app.json5](../quick-start/app-configuration-file.md#配置文件标签)中的versionName字段。 |
+| --min-compatible-version-code | 否         | 能够兼容的最低历史版本号                           | 指定的最低历史版本号，传入的包的最低历史版本号会被修改为该版本号。取值范围为0~2147483647的整数，指定的值不能为空值，该字段的详细定义和规格请参考[app.json5](../quick-start/app-configuration-file.md#配置文件标签)中的minCompatibleVersionCode字段。 |
+| --min-api-version             | 否         | SDK的API最小版本                                   | 指定的SDK的API最小版本，传入的包的SDK的API最小版本会被修改为该版本。取值范围为0~2147483647的整数，指定的值不能为空值，该字段的详细定义和规格请参考[app.json5](../quick-start/app-configuration-file.md#配置文件标签)中的minAPIVersion字段。 |
+| --target-api-version          | 否         | API目标版本                                        | 指定的API目标版本，传入的包的API目标版本会被修改为该版本。取值范围为0~2147483647的整数，指定的值不能为空值，该字段的详细定义和规格请参考[app.json5](../quick-start/app-configuration-file.md#配置文件标签)中的targetAPIVersion字段。 |
+| --api-release-type            | 否         | API目标版本的类型                                  | 指定的API目标版本的类型，传入的包的API目标版本的类型会被修改为该类型。指定的值不能为空，该字段的详细定义和规格请参考[app.json5](../quick-start/app-configuration-file.md#配置文件标签)中的apiReleaseType字段。 |
+| --bundle-type                 | 否         | Bundle类型                                         | 指定的Bundle类型，传入的包的Bundle类型会被修改为该类型。指定的值不能为空，该字段的详细定义和规格请参考[app.json5](../quick-start/app-configuration-file.md#配置文件标签)中的bundleType字段。 |
+| --installation-free           | 否         | 是否支持免安装特性                                 | 指定的免安装特性，传入的包的免安装特性会被修改为该类型。指定的值不能为空，该字段的详细定义和规格请参考Stage模型[module.json5](../quick-start/module-configuration-file.md#配置文件标签)/Fa模型[config.json](../quick-start/application-configuration-file-overview-fa.md)中的installationFree字段。 |
+| --delivery-with-install       | 否         | 当前HAP是否在用户主动安装HAP所在应用的时候一起安装 | 指定的HAP是否需要一起安装，传入的包的deliveryWithInstall会被修改为该类型。指定的值不能为空，该字段的详细定义和规格参考Stage模型[module.json5](../quick-start/module-configuration-file.md#配置文件标签)/Fa模型[config.json](../quick-start/application-configuration-file-overview-fa.md)中的deliveryWithInstall字段。 |
+| --device-types                | 否         | 允许Ability运行的设备类型                          | 指定的设备类型，传入的包的设备类型会被修改为该类型。指定的值不能为空，该字段的详细定义和规格请参考Stage模型[module.json5](../quick-start/module-configuration-file.md#配置文件标签)/Fa模型[config.json](../quick-start/application-configuration-file-overview-fa.md)中的deviceTypes字段，传入值的形式为字符串格式，多个设备类型之间使用“,”分隔。 |
+| --out-path                    | 是         | NA                                                 | 目标文件路径，需要为一个有读写权限的目录。                   |
 
 ## res模式打包指令
 
@@ -257,7 +291,7 @@ java -jar app_packing_tool.jar --mode res --entrycard-path <path> --pack-info-pa
 
 开发者可以使用打包工具的jar包对应用进行打包，通过传入打包选项、HAP、HSP包文件目录路径，生成所需的App包。App包用于上架应用市场。
 
-**App打包时HAP合法性校验：** 在对工程内的HAP包打包生成App包时，需要保证被打包的每个HAP在json文件中配置的bundleName、versionCode、minCompatibleVersionCode、debug、minAPIVersion、targetAPIVersion相同，moduleName唯一。HAP模块之间需要保证apiReleaseType相同，HSP模块不校验apiReleaseType。
+**App打包时HAP/HSP合法性校验：** 在对工程内的HAP/HSP包打包生成App包时，需要保证被打包的每个HAP/HSP在module.json文件中配置的bundleName、versionCode、debug、minAPIVersion相同，moduleName唯一。此外从API version 20开始，HAP模块之间需要保证minCompatibleVersionCode、targetAPIVersion、apiReleaseType相同，HSP模块之间不做校验。HAP模块targetAPIVersion、minCompatibleVersionCode需大于等于HSP模块targetAPIVersion、minCompatibleVersionCode。
 
 **打包App时的压缩规则：** 打包App时，对release模式的HAP、HSP包会进行压缩，对debug模式的HAP、HSP包不会压缩。
 
@@ -823,3 +857,23 @@ Entry类型模块分发策略配置存在错误。
 **处理步骤**
 
 检查Entry模块分发策略是否正确配置，例如`policy`的值应为`exclude`或`include`，详细请参考[distributionFilter标签](../quick-start/module-configuration-file.md#distributionfilter标签)。
+
+### 10011021 通用归一化命令失败
+
+**错误信息**
+
+Parse and check args invalid in generalNormalize mode.
+
+**错误描述**
+
+通用归一化命令失败。
+
+**可能原因**
+
+1. 传入的参数类型错误。
+2. 传入参数范围错误。
+3. 传入HAP/HSP包不完整，缺少json文件（json文件配置请参考Stage模型[module.json5](../quick-start/module-configuration-file.md#配置文件标签)/FA模型[config.json](../quick-start/application-configuration-file-overview-fa.md)）。
+
+**处理步骤**
+
+检查并传入正确的命令参数和有效的包文件。

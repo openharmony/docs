@@ -94,7 +94,7 @@
         }
     })
     this.screenCapture.on('error', (err) => {
-        console.info("处理异常情况");
+        console.error("处理异常情况");
     })
     ```
 
@@ -251,7 +251,7 @@ export class AVScreenCaptureDemo {
       }
     })
     this.screenCapture?.on('error', (err) => {
-      console.info("处理异常情况");
+      console.error("处理异常情况");
     })
     await this.screenCapture?.init(this.captureConfig);
 

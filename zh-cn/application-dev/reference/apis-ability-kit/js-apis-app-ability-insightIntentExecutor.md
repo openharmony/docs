@@ -14,7 +14,11 @@
 import { InsightIntentExecutor } from '@kit.AbilityKit';
 ```
 
-## 属性
+## InsightIntentExecutor
+
+表示意图调用执行基类。
+
+### 属性
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -26,7 +30,7 @@ import { InsightIntentExecutor } from '@kit.AbilityKit';
 | -------- | -------- | -------- | -------- | -------- |
 | context | [InsightIntentContext](js-apis-app-ability-insightIntentContext.md) | 否 | 否 | 意图调用执行上下文。 |
 
-## InsightIntentExecutor.onExecuteInUIAbilityForegroundMode
+### onExecuteInUIAbilityForegroundMode
 
 onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, pageLoader: window.WindowStage):
   insightIntent.ExecuteResult | Promise<insightIntent.ExecuteResult>
@@ -136,7 +140,7 @@ onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, 
   }
   ```
 
-## InsightIntentExecutor.onExecuteInUIAbilityBackgroundMode
+### onExecuteInUIAbilityBackgroundMode
 
 onExecuteInUIAbilityBackgroundMode(name: string, param: Record<string, Object>):
     insightIntent.ExecuteResult | Promise<insightIntent.ExecuteResult>
@@ -206,7 +210,7 @@ onExecuteInUIAbilityBackgroundMode(name: string, param: Record<string, Object>):
   }
   ```
 
-## InsightIntentExecutor.onExecuteInUIExtensionAbility
+### onExecuteInUIExtensionAbility
 
 onExecuteInUIExtensionAbility(name: string, param: Record<string, Object>, pageLoader: UIExtensionContentSession):
   insightIntent.ExecuteResult | Promise<insightIntent.ExecuteResult>
@@ -306,7 +310,7 @@ onExecuteInUIExtensionAbility(name: string, param: Record<string, Object>, pageL
   }
   ```
 
-## InsightIntentExecutor.onExecuteInServiceExtensionAbility
+### onExecuteInServiceExtensionAbility
 
 onExecuteInServiceExtensionAbility(name: string, param: Record<string, Object>):
     insightIntent.ExecuteResult | Promise<insightIntent.ExecuteResult>

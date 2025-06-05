@@ -1,6 +1,6 @@
 # OverlayModuleInfo
 
-OverlayModuleInfo信息，三方应用可以通过[overlay.getOverlayModuleInfo](js-apis-overlay.md#overlaygetoverlaymoduleinfo)获取当前应用中overlay特征module的OverlayModuleInfo信息。
+OverlayModuleInfo信息，可以通过[overlay.getOverlayModuleInfo](js-apis-overlay.md#overlaygetoverlaymoduleinfo)获取当前应用中overlay特征module的OverlayModuleInfo信息。
 
 > **说明：**
 > 本模块首批接口从API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
