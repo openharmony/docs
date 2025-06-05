@@ -30,7 +30,7 @@ Describes the tone mapping settings.
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | ---- | ---- | ---- |
 | type | [ToneMappingType](#tonemappingtype) | No| Yes| Tone mapping type. The default value is undefined.|
-| exposure | number | No| Yes| Exposure. The value is greater than 0. The default value is undefined.|
+| exposure | number | No| Yes| Exposure. The value must be greater than 0. The default value is undefined.|
 
 ## PostProcessSettings
 Describes the post-processing settings.
