@@ -67,7 +67,7 @@ on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void
 | 参数名                       | 类型     | 必填 | 说明               |
 | ---------------------------- | -------- | ---- | ------------------ |
 | type| [BundleChangedEvent](js-apis-bundleMonitor-sys.md#bundlechangedevent)| 是   | 注册监听的事件类型。 |
-| callback | callback\<BundleChangedInfo>| 是   | 注册监听的回调函数。 |
+| callback | callback\<BundleChangedInfo>| 是   | 注册监听的[回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)。 |
 
 **错误码：**
 
@@ -92,7 +92,7 @@ try {
 } catch (errData) {
     let message = (errData as BusinessError).message;
     let errCode = (errData as BusinessError).code;
-    console.log(`errData is errCode:${errCode}  message:${message}`);
+    console.error(`errData is errCode:${errCode}  message:${message}`);
 }
 ```
 
@@ -113,7 +113,7 @@ off(type: BundleChangedEvent, callback?: Callback\<BundleChangedInfo>): void
 | 参数名                       | 类型     | 必填 | 说明                                                       |
 | ---------------------------- | -------- | ---- | ---------------------------------------------------------- |
 | type| [BundleChangedEvent](js-apis-bundleMonitor-sys.md#bundlechangedevent)| 是   | 注销监听的事件类型。                                         |
-| callback | callback\<BundleChangedInfo>| 否   | 注销监听的回调函数，默认值：注销当前事件的所有callback。 |
+| callback | callback\<BundleChangedInfo>| 否   | 注销监听的[回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，默认值：注销当前事件的所有callback。 |
 
 **错误码：**
 
@@ -136,6 +136,6 @@ try {
 } catch (errData) {
     let message = (errData as BusinessError).message;
     let errCode = (errData as BusinessError).code;
-    console.log(`errData is errCode:${errCode}  message:${message}`);
+    console.error(`errData is errCode:${errCode}  message:${message}`);
 }
 ```

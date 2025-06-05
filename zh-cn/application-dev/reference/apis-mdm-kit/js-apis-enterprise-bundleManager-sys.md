@@ -22,7 +22,7 @@ import { bundleManager } from '@kit.MDMKit';
 
 addAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
-指定设备管理应用添加应用至包安装白名单，添加至白名单的应用允许在当前用户下安装，否则不允许安装，使用callback异步回调。
+添加应用至当前用户的应用程序包安装白名单，添加至白名单的应用允许在当前用户下安装，否则不允许安装，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -33,7 +33,7 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCal
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
@@ -53,6 +53,7 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCal
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -72,7 +73,7 @@ bundleManager.addAllowedInstallBundles(wantTemp, appIds, (err) => {
 
 addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
-指定设备管理应用添加应用至包安装白名单，添加至白名单的应用允许在指定用户（通过userId指定）下安装，否则不允许安装，使用callback异步回调。
+添加应用至应用程序包安装白名单，添加至白名单的应用允许在指定用户（通过userId指定）下安装，否则不允许安装，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -83,7 +84,7 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, ca
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 是    | 用户ID，指定具体用户。取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
@@ -104,6 +105,7 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, ca
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -123,7 +125,7 @@ bundleManager.addAllowedInstallBundles(wantTemp, appIds, 100, (err) => {
 
 addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
-指定设备管理应用添加应用至包安装白名单，添加至白名单的应用允许在当前/指定用户下安装，否则不允许安装。使用promise异步回调。
+添加应用至应用程序包安装白名单，添加至白名单的应用允许在当前/指定用户下安装，否则不允许安装。使用promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -134,7 +136,7 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): 
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 否    |用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
@@ -142,7 +144,7 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): 
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。当指定设备管理应用添加包安装白名单失败时，会抛出错误对象。  |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当添加应用程序包安装白名单失败时，会抛出错误对象。  |
 
 **错误码**：
 
@@ -161,6 +163,7 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): 
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -178,7 +181,7 @@ bundleManager.addAllowedInstallBundles(wantTemp, appIds, 100).then(() => {
 
 removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
-指定设备管理应用在包安装白名单中移除应用，在白名单存在的情况下，不在包安装白名单中的应用不允许在当前用户下安装，使用callback异步回调。
+移除当前用户的应用程序包安装白名单中的指定应用。安装白名单存在时，不在白名单中的应用不允许在当前用户下安装，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -189,7 +192,7 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: Async
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
@@ -209,6 +212,7 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: Async
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -228,7 +232,7 @@ bundleManager.removeAllowedInstallBundles(wantTemp, appIds, (err) => {
 
 removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
-指定设备管理应用在包安装白名单中移除应用，在白名单存在的情况下，不在包安装白名单中的应用不允许在指定用户（通过userId指定）下安装，使用callback异步回调。
+移除在应用程序包安装白名单中的应用，在白名单存在的情况下，不在白名单中的应用不允许在指定用户（通过userId指定）下安装，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -239,7 +243,7 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number,
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 是    | 用户ID，指定具体用户。取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
@@ -260,6 +264,7 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number,
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -279,7 +284,7 @@ bundleManager.removeAllowedInstallBundles(wantTemp, appIds, 100, (err) => {
 
 removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
-指定设备管理应用在包安装白名单中移除应用，在白名单存在的情况下，不在包安装白名单中的应用不允许在当前/指定用户下安装。使用promise异步回调。
+移除在应用程序包安装白名单中的应用，在白名单存在的情况下，不在白名单中的应用不允许在当前/指定用户下安装。使用promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -290,7 +295,7 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | appIds    | Array&lt;string&gt;         | 是    | 应用ID数组。                  |
 | userId     | number                             | 否    | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
@@ -298,7 +303,7 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。当指定设备管理应用移除包安装白名单失败时，会抛出错误对象。  |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当移除应用程序包安装白名单失败时，会抛出错误对象。  |
 
 **错误码**：
 
@@ -317,6 +322,7 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -334,7 +340,7 @@ bundleManager.removeAllowedInstallBundles(wantTemp, appIds, 100).then(() => {
 
 getAllowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-指定设备管理应用获取当前用户下的包安装白名单，使用callback异步回调。
+获取当前用户下的应用程序包安装白名单，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -345,7 +351,7 @@ getAllowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。       |
 
 **错误码**：
@@ -364,6 +370,7 @@ getAllowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -382,7 +389,7 @@ bundleManager.getAllowedInstallBundles(wantTemp, (err, result) => {
 
 getAllowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-指定设备管理应用获取指定用户（通过userId指定）下的包安装白名单，使用callback异步回调。
+获取指定用户（通过userId指定）下的应用程序包安装白名单，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -393,7 +400,7 @@ getAllowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback&lt
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | userId     | number                             | 是    | 用户ID，指定具体用户。取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。       |
 
@@ -413,6 +420,7 @@ getAllowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback&lt
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -431,7 +439,7 @@ bundleManager.getAllowedInstallBundles(wantTemp, 100, (err, result) => {
 
 getAllowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;
 
-指定设备管理应用获取当前/指定用户下的包安装白名单，使用promise异步回调。
+获取当前/指定用户下的应用程序包安装白名单，使用promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -442,14 +450,14 @@ getAllowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;stri
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | userId     | number                             | 否    | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回当前用户下的包安装白名单。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回当前/指定用户下的应用程序包安装白名单。 |
 
 **错误码**：
 
@@ -468,6 +476,7 @@ getAllowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;stri
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -484,7 +493,7 @@ bundleManager.getAllowedInstallBundles(wantTemp, 100).then((result) => {
 
 addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
-指定设备管理应用添加应用至包安装黑名单，添加至黑名单的应用不允许在当前用户下安装，使用callback异步回调。
+添加应用至应用程序包安装黑名单，添加至黑名单的应用不允许在当前用户下安装，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -495,7 +504,7 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: Async
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
@@ -515,6 +524,7 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: Async
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -534,7 +544,7 @@ bundleManager.addDisallowedInstallBundles(wantTemp, appIds, (err) => {
 
 addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
-指定设备管理应用添加应用至包安装黑名单，添加至黑名单的应用不允许在指定用户（通过userId指定）下安装。使用callback异步回调。
+添加应用至应用程序包安装黑名单，添加至黑名单的应用不允许在指定用户（通过userId指定）下安装。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -545,7 +555,7 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number,
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 是    | 用户ID，指定具体用户。取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
@@ -566,6 +576,7 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number,
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -585,7 +596,7 @@ bundleManager.addDisallowedInstallBundles(wantTemp, appIds, 100, (err) => {
 
 addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
-指定设备管理应用添加应用至包安装黑名单，添加至黑名单的应用不允许在当前/指定用户下安装。使用promise异步回调。
+添加应用至应用程序包安装黑名单，添加至黑名单的应用不允许在当前/指定用户下安装。使用promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -596,7 +607,7 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 否    | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
@@ -604,7 +615,7 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。当指定设备管理应用添加包安装黑名单失败时，会抛出错误对象。  |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当添加应用程序包安装黑名单失败时，会抛出错误对象。  |
 
 **错误码**：
 
@@ -623,6 +634,7 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -640,7 +652,7 @@ bundleManager.addDisallowedInstallBundles(wantTemp, appIds, 100).then(() => {
 
 removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
-指定设备管理应用在包安装黑名单中移除应用，在黑名单存在的情况下，在包安装黑名单中的应用不允许在当前用户下安装。使用callback异步回调。
+移除在应用程序包安装黑名单中的应用，在黑名单存在的情况下，在黑名单中的应用不允许在当前用户下安装。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -651,7 +663,7 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: As
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
@@ -671,6 +683,7 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: As
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -690,7 +703,7 @@ bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, (err) => {
 
 removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
-指定设备管理应用在包安装黑名单中移除应用，在黑名单存在的情况下，在包安装黑名单中的应用不允许在指定用户（通过userId指定）下安装，使用callback异步回调。
+移除在应用程序包安装黑名单中的应用，在黑名单存在的情况下，在黑名单中的应用不允许在指定用户（通过userId指定）下安装，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -701,7 +714,7 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: numb
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 是    | 用户ID，指定具体用户。取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
@@ -722,6 +735,7 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: numb
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -741,7 +755,7 @@ bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, 100, (err) => {
 
 removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
-指定设备管理应用在包安装黑名单中移除应用，在黑名单存在的情况下，在包安装黑名单中的应用不允许在当前/指定用户下安装。使用promise异步回调。
+移除在应用程序包安装黑名单中的应用，在黑名单存在的情况下，在黑名单中的应用不允许在当前/指定用户下安装。使用promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -752,7 +766,7 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: num
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | appIds    | Array&lt;string&gt;        | 是    | 应用ID数组。                  |
 | userId     | number                             | 否    | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
@@ -760,7 +774,7 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: num
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。当指定设备管理应用移除包安装黑名单失败时，会抛出错误对象。  |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当移除应用程序包安装黑名单失败时，会抛出错误对象。  |
 
 **错误码**：
 
@@ -779,6 +793,7 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: num
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -796,7 +811,7 @@ bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, 100).then(() => {
 
 getDisallowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-指定设备管理应用获取当前用户下的包安装黑名单，使用callback异步回调。
+获取当前用户下的应用程序包安装黑名单，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -807,7 +822,7 @@ getDisallowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;str
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。       |
 
 **错误码**：
@@ -826,6 +841,7 @@ getDisallowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;str
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -844,7 +860,7 @@ bundleManager.getDisallowedInstallBundles(wantTemp, (err, result) => {
 
 getDisallowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-指定设备管理应用获取指定用户（通过userId指定）下的包安装黑名单，使用callback异步回调。
+获取指定用户（通过userId指定）下的应用程序包安装黑名单，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -855,7 +871,7 @@ getDisallowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | userId     | number                             | 是    | 用户ID，指定具体用户。取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。       |
 
@@ -875,6 +891,7 @@ getDisallowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -893,7 +910,7 @@ bundleManager.getDisallowedInstallBundles(wantTemp, 100, (err, result) => {
 
 getDisallowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;
 
-指定设备管理应用获取当前/指定用户下的包安装黑名单，使用promise异步回调。
+获取当前/指定用户下的应用程序包安装黑名单，使用promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -904,14 +921,14 @@ getDisallowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;s
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | userId     | number                             | 否    | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回当前用户下的包安装黑名单。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回当前/指定用户下的应用程序包安装黑名单。 |
 
 **错误码**：
 
@@ -930,6 +947,7 @@ getDisallowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;s
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -946,7 +964,7 @@ bundleManager.getDisallowedInstallBundles(wantTemp, 100).then((result) => {
 
 addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
-指定设备管理应用添加应用至包卸载黑名单，添加至黑名单的应用不允许在当前用户下卸载，使用callback异步回调。
+添加应用至应用程序包卸载黑名单，添加至黑名单的应用不允许在当前用户下卸载，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -957,7 +975,7 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, callback: Asy
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
@@ -977,6 +995,7 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, callback: Asy
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -996,7 +1015,7 @@ bundleManager.addDisallowedUninstallBundles(wantTemp, appIds, (err) => {
 
 addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
-指定设备管理应用添加应用至包卸载黑名单，添加至黑名单的应用不允许在指定用户（通过userId指定）下卸载。使用callback异步回调。
+添加应用至应用程序包卸载黑名单，添加至黑名单的应用不允许在指定用户（通过userId指定）下卸载。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -1007,7 +1026,7 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId: numbe
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 是    | 用户ID，指定具体用户。取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
@@ -1028,6 +1047,7 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId: numbe
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1047,7 +1067,7 @@ bundleManager.addDisallowedUninstallBundles(wantTemp, appIds, 100, (err) => {
 
 addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
-指定设备管理应用添加应用至包卸载黑名单，添加至黑名单的应用不允许在当前/指定用户下卸载。使用promise异步回调。
+添加应用至应用程序包卸载黑名单，添加至黑名单的应用不允许在当前/指定用户下卸载。使用promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -1058,7 +1078,7 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId?: numb
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 否    | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
@@ -1066,7 +1086,7 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId?: numb
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。当指定设备管理应用添加包卸载黑名单失败时，会抛出错误对象。  |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当添加应用程序包卸载黑名单失败时，会抛出错误对象。  |
 
 **错误码**：
 
@@ -1085,6 +1105,7 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId?: numb
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1102,7 +1123,7 @@ bundleManager.addDisallowedUninstallBundles(wantTemp, appIds, 100).then(() => {
 
 removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
-指定设备管理应用在包卸载黑名单中移除应用，在黑名单存在的情况下，在包卸载黑名单中的应用不允许在当前用户下卸载，使用callback异步回调。
+移除在应用程序包卸载黑名单中的应用，在黑名单存在的情况下，在黑名单中的应用不允许在当前用户下卸载，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -1113,7 +1134,7 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, callback: 
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
@@ -1133,6 +1154,7 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, callback: 
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1152,7 +1174,7 @@ bundleManager.removeDisallowedUninstallBundles(wantTemp, appIds, (err) => {
 
 removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
-指定设备管理应用在包卸载黑名单中移除应用，在黑名单存在的情况下，在包卸载黑名单中的应用不允许在指定用户（通过userId指定）下卸载。使用callback异步回调。
+移除在应用程序包卸载黑名单中的应用，在黑名单存在的情况下，在黑名单中的应用不允许在指定用户（通过userId指定）下卸载。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -1163,7 +1185,7 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId: nu
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 是    | 用户ID，指定具体用户。取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
@@ -1184,6 +1206,7 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId: nu
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1203,7 +1226,7 @@ bundleManager.removeDisallowedUninstallBundles(wantTemp, appIds, 100, (err) => {
 
 removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
-指定设备管理应用在包卸载黑名单中移除应用。在黑名单存在的情况下，在包卸载黑名单中的应用不允许在当前/指定用户下卸载。使用promise异步回调。
+移除在应用程序包卸载黑名单中的应用。在黑名单存在的情况下，在黑名单中的应用不允许在当前/指定用户下卸载。使用promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -1214,7 +1237,7 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId?: n
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | appIds    | Array&lt;string&gt;        | 是    | 应用ID数组。                  |
 | userId     | number                             | 否    | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
@@ -1222,7 +1245,7 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId?: n
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。当指定设备管理应用移除包卸载黑名单失败时会抛出错误对象。  |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当移除应用程序包卸载黑名单失败时会抛出错误对象。  |
 
 **错误码**：
 
@@ -1241,6 +1264,7 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId?: n
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1258,7 +1282,7 @@ bundleManager.removeDisallowedUninstallBundles(wantTemp, appIds, 100).then(() =>
 
 getDisallowedUninstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-指定设备管理应用获取当前用户下的包卸载黑名单，使用callback异步回调。
+获取当前用户下的应用程序包卸载黑名单，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -1269,7 +1293,7 @@ getDisallowedUninstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;s
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。       |
 
 **错误码**：
@@ -1288,6 +1312,7 @@ getDisallowedUninstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;s
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1306,7 +1331,7 @@ bundleManager.getDisallowedUninstallBundles(wantTemp, (err, result) => {
 
 getDisallowedUninstallBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-指定设备管理应用获取指定用户（通过userId指定）下的包卸载黑名单，使用callback异步回调。
+获取指定用户（通过userId指定）下的应用程序包卸载黑名单，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -1317,7 +1342,7 @@ getDisallowedUninstallBundles(admin: Want, userId: number, callback: AsyncCallba
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | userId     | number                             | 是    | 用户ID，指定具体用户。取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。       |
 
@@ -1337,6 +1362,7 @@ getDisallowedUninstallBundles(admin: Want, userId: number, callback: AsyncCallba
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1355,7 +1381,7 @@ bundleManager.getDisallowedUninstallBundles(wantTemp, 100, (err, result) => {
 
 getDisallowedUninstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;
 
-指定设备管理应用获取当前/指定用户下包卸载黑名单接口，使用promise异步回调。
+获取当前/指定用户下应用程序包卸载黑名单接口，使用promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -1366,14 +1392,14 @@ getDisallowedUninstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | userId     | number                             | 否    | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回当前用户下的包卸载黑名单。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回当前/指定用户下的应用程序包卸载黑名单。 |
 
 **错误码**：
 
@@ -1392,6 +1418,7 @@ getDisallowedUninstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1408,7 +1435,7 @@ bundleManager.getDisallowedUninstallBundles(wantTemp, 100).then((result) => {
 
 uninstall(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
-指定设备管理应用卸载当前用户下的指定包，且不保留包数据。使用callback异步回调。
+卸载当前用户下的指定应用程序包，且不保留应用程序包数据。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
@@ -1419,7 +1446,7 @@ uninstall(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&gt;):
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | bundleName     | string                             | 是    | 包名。 |
 | callback | AsyncCallback&lt;void&gt;       | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。       |
 
@@ -1439,6 +1466,7 @@ uninstall(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&gt;):
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1457,7 +1485,7 @@ bundleManager.uninstall(wantTemp, 'bundleName', (err) => {
 
 uninstall(admin: Want, bundleName: string, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
-指定设备管理应用卸载指定用户下（由参数userId指定）的指定包，且不保留包数据。使用callback异步回调。
+卸载指定用户下（由参数userId指定）的指定应用程序包，且不保留应用程序包数据。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
@@ -1468,7 +1496,7 @@ uninstall(admin: Want, bundleName: string, userId: number, callback: AsyncCallba
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | bundleName     | string                             | 是    | 包名。 |
 | userId     | number                             | 是    | 用户ID，指定具体用户。取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;       | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。       |
@@ -1489,6 +1517,7 @@ uninstall(admin: Want, bundleName: string, userId: number, callback: AsyncCallba
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1507,7 +1536,7 @@ bundleManager.uninstall(wantTemp, 'bundleName', 100, (err) => {
 
 uninstall(admin: Want, bundleName: string, isKeepData: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-指定设备管理应用卸载当前用户下的指定包，选择是否保留包数据（由isKeepData指定）。使用callback异步回调。
+卸载当前用户下的指定应用程序包，选择是否保留应用程序包数据（由isKeepData指定）。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
@@ -1518,7 +1547,7 @@ uninstall(admin: Want, bundleName: string, isKeepData: boolean, callback: AsyncC
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | bundleName     | string                             | 是    | 包名。 |
 | isKeepData     | boolean                             | 是    | 是否保留包数据，true表示保留，false表示不保留。 |
 | callback | AsyncCallback&lt;void&gt;       | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。       |
@@ -1539,6 +1568,7 @@ uninstall(admin: Want, bundleName: string, isKeepData: boolean, callback: AsyncC
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1557,7 +1587,7 @@ bundleManager.uninstall(wantTemp, 'bundleName', true, (err) => {
 
 uninstall(admin: Want, bundleName: string, userId: number, isKeepData: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-指定设备管理应用卸载指定用户下（由参数userId指定）的指定包接口，选择是否保留包数据（由isKeepData指定）。使用callback异步回调。
+卸载指定用户下（由参数userId指定）的指定应用程序包接口，选择是否保留应用程序包数据（由isKeepData指定）。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
@@ -1568,7 +1598,7 @@ uninstall(admin: Want, bundleName: string, userId: number, isKeepData: boolean, 
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | bundleName     | string                             | 是    | 包名。 |
 | userId     | number                             | 是    | 用户ID，指定具体用户。取值范围：大于等于0。 |
 | isKeepData     | boolean                             | 是    | 是否保留包数据，true表示保留，false表示不保留。 |
@@ -1590,6 +1620,7 @@ uninstall(admin: Want, bundleName: string, userId: number, isKeepData: boolean, 
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1608,7 +1639,7 @@ bundleManager.uninstall(wantTemp, 'bundleName', 100, true, (err) => {
 
 install(admin: Want, hapFilePaths: Array\<string>, callback: AsyncCallback\<void>): void
 
-指定设备管理应用安装指定路径下的应用包。使用callback异步回调。
+安装指定路径下的应用包。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
@@ -1619,7 +1650,7 @@ install(admin: Want, hapFilePaths: Array\<string>, callback: AsyncCallback\<void
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | hapFilePaths     | Array\<string>                           | 是    | 待安装应用包路径数组。 |
 | callback | AsyncCallback&lt;void&gt;       | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。       |
 
@@ -1640,6 +1671,7 @@ install(admin: Want, hapFilePaths: Array\<string>, callback: AsyncCallback\<void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1659,7 +1691,7 @@ bundleManager.install(wantTemp, hapFilePaths, (err) => {
 
 install(admin: Want, hapFilePaths: Array\<string>, installParam: InstallParam, callback: AsyncCallback\<void>): void
 
-指定设备管理应用安装指定路径下的指定安装参数的应用包,。使用callback异步回调。
+安装指定路径下的指定安装参数的应用包,。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
@@ -1670,7 +1702,7 @@ install(admin: Want, hapFilePaths: Array\<string>, installParam: InstallParam, c
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | hapFilePaths     | Array\<string>                       | 是    | 待安装应用包路径数组。 |
 | installParam     | [InstallParam](js-apis-enterprise-bundleManager.md#installparam) | 是    | 应用包安装参数。 |
 | callback | AsyncCallback&lt;void&gt;       | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。       |
@@ -1692,6 +1724,7 @@ install(admin: Want, hapFilePaths: Array\<string>, installParam: InstallParam, c
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

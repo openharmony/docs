@@ -100,7 +100,8 @@ try {
 
 capture(options?: CaptureOption): Promise&lt;image.PixelMap&gt;
 
-获取屏幕全屏截图，此接口仅支持在平板和2in1设备上使用。与[pick](#screenshotpick)接口不同之处是可以通过设置不同的displayId截取不同屏幕的截图。
+获取屏幕全屏截图，此接口仅支持在平板和2in1设备上使用。
+此接口可以通过设置不同的displayId截取不同屏幕的截图，且只能截取全屏；[pick](#screenshotpick)接口可实现区域截屏。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 

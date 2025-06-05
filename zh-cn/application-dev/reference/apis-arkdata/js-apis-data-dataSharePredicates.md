@@ -2,13 +2,15 @@
 
 **谓词(DataSharePredicates)** 是开发者通过DataShare查询数据库中的数据所使用的筛选条件，经常被应用在更新数据、删除数据和查询数据中。
 
-谓词的接口函数与数据库的筛选条件一一对应，开发者在使用前需了解数据库相关知识。
+谓词的接口函数与数据库的筛选条件一一对应，开发者在使用前需了解数据库相关知识。当前支持[关系型数据库](js-apis-data-relationalStore.md)和[键值型数据库](js-apis-distributedKVStore.md)。
 
 > **说明：** 
 >
 > - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > - 本模块接口仅可在Stage模型下使用。
+>
+> - 当前主要用于在媒体文件管理服务作为检索条件使用，参考[相册管理模块检索条件](../apis-media-library-kit/js-apis-photoAccessHelper.md#fetchoptions)。
 
 
 
@@ -27,7 +29,7 @@ equalTo(field: string, value: ValueType): DataSharePredicates
 
 该接口用于配置谓词以匹配值等于指定值的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -37,8 +39,8 @@ equalTo(field: string, value: ValueType): DataSharePredicates
 
 | 参数名 | 类型                                                | 必填 | 说明                   |
 | ------ | --------------------------------------------------- | ---- | ---------------------- |
-| field  | string                                              | 是   | 数据库表中的列名。     |
-| value  | [ValueType](js-apis-data-valuesBucket.md#valuetype) | 是   | 指示要与谓词匹配的值。 |
+| field  | string                                              | 是   | 数据库表中的列名。</br>field为undefined或者null时，此次调用接口配置的谓词无效。     |
+| value  | [ValueType](js-apis-data-valuesBucket.md#valuetype) | 是   | 指示要与谓词匹配的值。</br>value为undefined或者null时，此次调用接口配置的谓词无效。  |
 
 **返回值：**
 
@@ -60,7 +62,7 @@ and(): DataSharePredicates
 
 该接口用于将和条件添加到谓词中。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -87,7 +89,7 @@ orderByAsc(field: string): DataSharePredicates
 
 该接口用于配置谓词以匹配其值按升序排序的列。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -97,7 +99,7 @@ orderByAsc(field: string): DataSharePredicates
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| field  | string | 是   | 数据库表中的列名。 |
+| field  | string | 是   | 数据库表中的列名。 </br>field为undefined或者null时，此次调用接口配置的谓词无效。 |
 
 **返回值：**
 
@@ -118,7 +120,7 @@ orderByDesc(field: string): DataSharePredicates
 
 该接口用于配置谓词以匹配其值按降序排序的列。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -128,7 +130,7 @@ orderByDesc(field: string): DataSharePredicates
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| field  | string | 是   | 数据库表中的列名。 |
+| field  | string | 是   | 数据库表中的列名。</br>field为undefined或者null时，此次调用接口配置的谓词无效。  |
 
 **返回值：**
 
@@ -149,7 +151,7 @@ limit(total: number, offset: number): DataSharePredicates
 
 该接口用于配置谓词以指定结果数和起始位置。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -159,8 +161,8 @@ limit(total: number, offset: number): DataSharePredicates
 
 | 参数名   | 类型   | 必填 | 说明           |
 | -------- | ------ | ---- | -------------- |
-| total    | number | 是   | 表示最大数据记录数，取值为正整数。传入值小于0时，不会限制记录数量。传入值等于0时，KVDB(schema)会限制记录数为0，而RDB则在传入值等于0时不会限制记录数量。|
-| offset | number | 是   | 指定查询结果的起始位置，默认初始位置为结果集的最前端。当offset为负数时，起始位置为结果集的最前端。当offset超出结果集最后位置时，查询结果为空。|
+| total    | number | 是   | 最大数据记录数。</br>当使用键值型数据库且total为undefined或null时，会限制最大记录数为0。</br>当使用关系型数据库且total为undefined或null时，不会限制最大记录数。</br>当使用键值型数据库时，取值范围参考[键值型数据库limit接口](./js-apis-distributedKVStore.md#limit)中的total参数说明。</br>当使用关系型数据库时，取值范围参考[关系型数据库limitAs接口](./js-apis-data-relationalStore.md#limitas)中的value参数说明。|
+| offset | number | 是   | 指定查询结果的起始位置。</br>当offset为undefined或null时，起始位置为结果集的最前端。</br>当使用键值型数据库时，取值范围参考[键值型数据库limit接口](./js-apis-distributedKVStore.md#limit)中的offset参数说明。</br>当使用关系型数据库时，取值范围参考[关系型数据库offsetAs接口](./js-apis-data-relationalStore.md#offsetas)中的rowOffset参数说明。|
 
 **返回值：**
 
@@ -181,7 +183,7 @@ in(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 
 该接口用于配置谓词以匹配值在指定范围内的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -191,7 +193,7 @@ in(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 
 | 参数名  | 类型             | 必填 | 说明                                    |
 | ------- | ---------------- | ---- | --------------------------------------- |
-| field   | string           | 是 | 数据库表中的列名。                      |
+| field   | string           | 是 | 数据库表中的列名。</br>field为undefined或者null时，此次调用接口配置的谓词无效。                   |
 | value | Array&lt;[ValueType](js-apis-data-valuesBucket.md#valuetype)&gt; | 是   | 以ValueType型数组形式指定的要匹配的值。 |
 
 **返回值：**

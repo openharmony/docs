@@ -34,15 +34,17 @@
 
 [DataShareExtensionAbility](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)提供以下API，根据需要重写对应回调方法。
 
-- **onCreate**：DataShare客户端连接DataShareExtensionAbility服务端时，服务端需要在此回调中实现初始化业务逻辑，该方法可以选择性重写。
-- **insert**：业务函数，客户端请求插入数据时回调此接口，服务端需要在此回调中实现插入数据功能，该方法可以选择性重写。
-- **update**：业务函数，客户端请求更新数据时回调此接口，服务端需要在此回调中实现更新数据功能，该方法可以选择性重写。
-- **batchUpdate**：业务函数，客户端请求批量更新数据时回调此接口，服务端需要在此回调中实现批量更新数据功能，该方法可以选择性重写。
-- **delete**：业务函数，客户端请求删除数据时回调此接口，服务端需要在此回调中实现删除数据功能，该方法可以选择性重写。
-- **query**：业务函数，客户端请求查询数据时回调此接口，服务端需要在此回调中实现查询数据功能，该方法可以选择性重写。
-- **batchInsert**：业务函数，客户端请求批量插入数据时回调此接口，服务端需要在此回调中实现批量插入数据的功能，该方法可以选择性重写。
-- **normalizeUri**：业务函数，客户端给定的URI转换为服务端使用的URI时回调此接口，该方法可以选择性重写。
-- **denormalizeUri**：业务函数，服务端使用的URI转换为客户端传入的初始URI时服务端回调此接口，该方法可以选择性重写。
+| 接口名称                                     | 描述                   |
+| ---------------------------------------- | -------------------- |
+| onCreate(want: Want, callback: AsyncCallback&lt;void&gt;): void | DataShare客户端连接DataShareExtensionAbility服务端时，服务端需要在此回调中实现初始化业务逻辑，该方法可以选择性重写。         |
+| insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void | 客户端请求插入数据时回调此接口，服务端需要在此回调中实现插入数据功能，该方法可以选择性重写。         |
+| update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void | 客户端请求更新数据时回调此接口，服务端需要在此回调中实现更新数据功能，该方法可以选择性重写。         |
+| batchUpdate(operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt;): Promise&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt; | 客户端请求批量更新数据时回调此接口，服务端需要在此回调中实现批量更新数据功能，该方法可以选择性重写。    |
+| delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;): void | 客户端请求删除数据时回调此接口，服务端需要在此回调中实现删除数据功能，该方法可以选择性重写。    |
+| query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;DataShareResultSet&gt;): void | 客户端请求查询数据时回调此接口，服务端需要在此回调中实现查询数据功能，该方法可以选择性重写。           |
+| batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;): void | 客户端请求批量插入数据时回调此接口，服务端需要在此回调中实现批量插入数据的功能，该方法可以选择性重写。    |
+| normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void | 客户端给定的URI转换为服务端使用的URI时回调此接口，该方法可以选择性重写。    |
+| denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void | 服务端使用的URI转换为客户端传入的初始URI时服务端回调此接口，该方法可以选择性重写。    |
 
 开发者在实现一个数据共享服务时，需要在DevEco Studio工程中手动新建一个DataShareExtensionAbility，具体步骤如下。
 
@@ -258,7 +260,7 @@
    let dseUri = ('datashare:///com.ohos.settingsdata.DataAbility');
    ```
 
-3. 创建工具接口类对象。
+3. 使用createDataShareHelper()方法传入URI创建DataShareHelper对象。
    
    ```ts
    let dsHelper: dataShare.DataShareHelper | undefined = undefined;
@@ -274,7 +276,7 @@
    }
    ```
 
-4. 获取到接口类对象后，便可利用其提供的接口访问提供方提供的服务，如进行数据的增删改查等。
+4. 获取到DataShareHelper对象后，便可利用其提供的接口访问提供方提供的服务，如使用insert()、delete()、update()或query()接口进行数据的增、删、改、查等。
    
    ```ts
    // 构建一条数据

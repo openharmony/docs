@@ -3350,7 +3350,7 @@ deflateTune(strm: ZStream, goodLength: number, maxLazy: number, niceLength: numb
 | ---------- | ------- | ---- | ------------------------------- |
 | strm       | ZStream | 是   | 参考[ZStream定义](#zstream12)。 |
 | goodLength | number  | 是   | 匹配的长度阈值。                |
-| maxLazy    | number  | 是   | 最大延迟匹配时间。              |
+| maxLazy    | number  | 是   | 压缩算法在构建哈夫曼树时的延迟匹配策略，取值范围为0到4的整数。1到4，值越大，算法越‘懒’，匹配过程越慢，但可能生成更优的压缩结果。0：禁用懒惰匹配，算法会尽快构建哈夫曼树，压缩速度快，但压缩率低。  |
 | niceLength | number  | 是   | 适合的延迟长度阈值。              |
 | maxChain   | number  | 是   | 最大链条长度。                    |
 
@@ -3787,7 +3787,13 @@ async function demo() {
 | PARALLEL_STRATEGY_SEQUENTIAL             | 0    | 默认值，串行压缩/解压策略。|
 | PARALLEL_STRATEGY_PARALLEL_DECOMPRESSION | 1    | 并行解压策略。            |
 
-## ErrorCode
+## ErrorCode<sup>(deprecated)<sup>
+
+> **说明：**
+> 
+> 本模块首批接口从API version 7 开始支持。
+> 
+> 从API Version 9开始，该模块不再维护。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 

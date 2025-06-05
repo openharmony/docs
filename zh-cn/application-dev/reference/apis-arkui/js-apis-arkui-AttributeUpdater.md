@@ -27,7 +27,7 @@ import { AttributeUpdater } from '@kit.ArkUI';
 >  4. 开发者需要自行保障AttributeUpdater中T和C的类型匹配。比如T为ImageAttribute，C要对应为ImageInterface，否则可能导致
 >  使用updateConstructorParams时功能异常。
 >  
->  5. updateConstructorParams当前只支持Button，Image，Text和Span组件。
+>  5. updateConstructorParams当前只支持Button，Image，Text，Span，SymbolSpan和ImageSpan组件。
 >  
 >  6. AttributeUpdater不支持深浅色切换等状态管理相关的操作。
 

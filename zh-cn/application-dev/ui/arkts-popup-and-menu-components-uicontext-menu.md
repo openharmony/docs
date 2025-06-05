@@ -14,7 +14,7 @@
        console.info('openMenu success');
      })
      .catch((err: BusinessError) => {
-       console.info('openMenu error: ' + err.code + ' ' + err.message);
+       console.error('openMenu error: ' + err.code + ' ' + err.message);
      })
    ```
 
@@ -106,7 +106,7 @@
        console.info('updateMenu success');
      })
      .catch((err: BusinessError) => {
-       console.info('updateMenu error: ' + err.code + ' ' + err.message);
+       console.error('updateMenu error: ' + err.code + ' ' + err.message);
      })
    ```
 
@@ -120,7 +120,7 @@
        console.info('openMenu success');
      })
     .catch((err: BusinessError) => {
-      console.info('openMenu error: ' + err.code + ' ' + err.message);
+      console.error('openMenu error: ' + err.code + ' ' + err.message);
     })
    ```
 

@@ -17,7 +17,7 @@ import { distributedDataObject } from '@kit.ArkData';
 
 create(context: Context, source: object): DataObject
 
-创建一个分布式数据对象。
+创建一个分布式数据对象。对象属性支持基本类型（数字类型、布尔类型和字符串类型）以及复杂类型（数组、基本类型嵌套）。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
@@ -152,6 +152,33 @@ let sessionId: string = distributedDataObject.genSessionId();
   | primaryKey | [commonType.ValuesBucket](js-apis-data-commonType.md#valuesbucket) | 否   | 否   | 待绑定资产在所属的数据库中的主键。   |
   | field      | string                                                             | 否   | 否   | 待绑定资产在所属的数据库中的列名。   |
   | assetName  | string                                                             | 否   | 否   | 待绑定资产在所属的数据库中的资产名。 |
+
+## DataObserver<sup>20+</sup>
+
+type DataObserver = (sessionId: string, fields: Array) => void
+
+定义获取分布式对象数据变更的监听回调函数。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+| 参数名     | 类型                                              | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| sessionId | string                           | 是   |   标识变更对象的sessionId。长度需小于128字节，且只能包含字母、数字或下划线_。                                          |
+| fields    | Array&lt;string&gt;                   | 是   | 标识对象变更的属性名。属性名可自定义，要求字符串非空且长度不超过128字节。                                     |
+
+## StatusObserver<sup>20+</sup>
+
+type StatusObserver = (sessionId: string, networkId: string, status: string) => void
+
+定义获取分布式对象状态变更的监听回调函数。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| sessionId | string | 是 | 标识变更对象的sessionId。长度不大于128字节，且只能包含字母、数字或下划线_。 |
+| networkId | string | 是 | 对端设备的网络标识。要求字符串非空且长度不超过255字节。 |
+| status    | string | 是 | 标识分布式对象的状态，可能的取值有'online'（上线）、'offline'（下线）和'restore'（恢复）。 |
 
 ## DataObject
 
@@ -789,6 +816,337 @@ class EntryAbility extends UIAbility {
       console.info('bindAssetStore success.');
     }).catch((err: BusinessError) => {
       console.error("bindAssetStore failed, error code = " + err.code);
+    });
+  }
+}
+```
+
+### on('change')<sup>20+</sup>
+
+on(type: 'change', callback: DataObserver): void
+
+监听分布式对象的数据变更。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 事件类型，固定为'change'，表示数据变更。 |
+| callback | [DataObserver](#dataobserver20) | 是 | 表示分布式对象数据变更的回调实例。 |
+
+**示例：**
+
+```ts
+function changeCallback1(sessionId: string, fields: Array<string>) {
+  console.info("change callback1 " + sessionId);
+  if (fields != null && fields != undefined) {
+      for (let index: number = 0; index < fields.length; index++) {
+          console.info("change !" + fields[index]);
+      }
+  }
+}
+try {
+  g_object.on("change", changeCallback1);
+} catch (error) {
+  console.error("Execute failed, error code =  " + error.code);
+}
+```
+
+### off('change')<sup>20+</sup>
+
+off(type: 'change', callback?: DataObserver): void
+
+当不再进行数据变更监听时，使用此接口删除分布式对象数据变更监听的回调实例。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 事件类型，固定为'change'，表示数据变更。 |
+| callback | [DataObserver](#dataobserver20) | 否 | 需要删除的数据变更回调实例，若不设置则删除该对象所有的数据变更回调实例。 |
+
+**示例：**
+
+```ts
+function changeCallback1(sessionId: string, fields: Array<string>) {
+  console.info("change callback1 " + sessionId);
+  if (fields != null && fields != undefined) {
+      for (let index: number = 0; index < fields.length; index++) {
+          console.info("change !" + fields[index]);
+      }
+  }
+}
+
+function changeCallback2(sessionId: string, fields: Array<string>) {
+  console.info("change callback2 " + sessionId);
+  if (fields != null && fields != undefined) {
+      for (let index: number = 0; index < fields.length; index++) {
+          console.info("change !" + fields[index]);
+      }
+  }
+}
+
+try {
+  // 删除单个数据变更回调函数
+  g_object.on("change", changeCallback1);
+  g_object.off("change", changeCallback1);
+
+  // 删除所有数据变更回调函数
+  g_object.on("change", changeCallback1);
+  g_object.on("change", changeCallback2);
+  g_object.off("change");
+} catch (error) {
+  console.error("Execute failed, error code =  " + error.code);
+}
+```
+
+### on('status')<sup>20+</sup>
+
+on(type: 'status', callback: StatusObserver): void
+
+监听分布式对象的状态变更。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 事件类型，固定为'status'，表示分布式对象状态变更事件。 |
+| callback | [StatusObserver](#statusobserver20) | 是 | 表示分布式对象状态变更的回调实例。 |
+
+**示例：**
+
+```ts
+function statusCallback1(sessionId: string, networkId: string, status: string) {
+  console.info("status callback " + sessionId);
+}
+try {
+  g_object.on("status", statusCallback1);
+} catch (error) {
+  console.error("Execute failed, error code =  " + error.code);
+}
+```
+
+### off('status')<sup>20+</sup>
+
+off(type: 'status', callback?: StatusObserver): void
+
+当不再进行分布式对象状态变更监听时，使用此接口删除分布式对象状态变更的回调实例。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 事件类型，固定为'status'，表示数据对象状态变更事件。 |
+| callback | [StatusObserver](#statusobserver20) | 否 | 需要删除状态变更的回调实例，若不设置则删除该对象所有的状态变更回调实例。 |
+
+**示例：**
+
+```ts
+function statusCallback1(sessionId: string, networkId: string, status: string) {
+  console.info("status callback1" + sessionId);
+
+}
+function statusCallback2(sessionId: string, networkId: string, status: string) {
+  console.info("status callback1" + sessionId);
+}
+try {
+  // 删除单个状态变更回调函数
+  g_object.on("status", statusCallback1);
+  g_object.off("status", statusCallback1);
+
+  // 删除所有状态变更回调函数
+  g_object.on("status", statusCallback1);
+  g_object.on("status", statusCallback2);
+  g_object.off("status");
+} catch (error) {
+  console.error("Execute failed, error code =  " + error.code);
+}
+```
+
+### setAsset<sup>20+</sup>
+
+setAsset(assetKey: string, uri: string): Promise&lt;void&gt;
+
+设置分布式对象中的单个资产的属性信息，该接口必须在[setSessionId](#setsessionid9-2)接口调用前使用。使用Promise异步回调。
+
+> **注意：**
+>
+> 在设置资产时必须保证assetKey存在且对应文件为资产类型文件，否则无法保证对端能接收到此次设置的资产。
+>
+> 在设置资产时必须保证uri为正确且真实存在的分布式路径，否则无法保证对端能接收到此次设置的资产。
+
+有以下几种异常场景:
+
+  | 触发条件  | 操作结果 |
+  | -------- | -------- |
+  | 调用[setSessionId](#setsessionid9-2)接口设置sessionId后再调用[setAsset](#setasset20)接口设置资产。   | 设置资产失败，抛出15400003异常。 |
+  | assetKey为无效值，例如：null（不存在）、undefined（未定义）或''（空字符串）。            | 设置资产失败，抛出15400002异常。 |
+  | assetKey存在、对应文件为非资产类型。 | 系统会强制修改该字段对应的文件类型为资产类型且设置资产字段，可能出现真实资产无法同步至对端设备。 |
+  | uri为无效值，例如：null（不存在）、undefined（未定义）或''（空字符串）。                  | 设置资产失败，抛出15400002异常。 |
+
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数：**
+
+  | 参数名   | 类型                    | 必填 | 说明                                                                               |
+  | -------- | ----------------------- | ---- | ---------------------------------------------------------------------------------- |
+  | assetKey | string                  | 是   | 分布式对象中资产类型数据对应的属性名。<br/>**使用约束：** <br/>（1）提供的assetKey对应的文件必须已存在且类型为资产[Asset](js-apis-data-commonType.md#asset)，才可进行正确的设置资产。若assetKey对应文件不存在或文件存在但类型不是资产类型，可能会出现资产设置错误。<br/>（2）在协同或接续场景下需要双端满足assetKey对应的文件存在且为资产类型，才可将设置的资产同步到对端设备。                                             |
+  | uri      | string                  | 是   | 待设置的新资产的uri，表示该资产的存放的分布式路径。必须为真实存在的资产对应的分布式路径。 |
+
+**返回值：**
+
+  | 类型                | 说明          |
+  | ------------------- | ------------- |
+  | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+  以下错误码的详细介绍请参见[分布式数据对象错误码](errorcode-distributed-dataObject.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 15400002 | Parameter error. Possible causes: 1. The assetKey is invalid, such as ""; 2. The uri is invalid, such as "". |
+  | 15400003 | The sessionId of the distributed object has been set. |
+
+**示例:**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { commonType, distributedDataObject } from '@kit.ArkData';
+
+class Note {
+  title: string | undefined
+  text: string | undefined
+  attachment: commonType.Asset | undefined
+
+  constructor(title: string | undefined, text: string | undefined, attachment: commonType.Asset | undefined) {
+    this.title = title;
+    this.text = text;
+    this.attachment = attachment;
+  }
+}
+
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let attachment: commonType.Asset = {
+      name: 'test_img.jpg',
+      uri: 'file://com.example.myapplication/data/storage/el2/distributedfiles/dir/test_img.jpg',
+      path: '/dir/test_img.jpg',
+      createTime: '2024-01-02 10:00:00',
+      modifyTime: '2024-01-02 10:00:00',
+      size: '5',
+      status: commonType.AssetStatus.ASSET_NORMAL
+    }
+    let note: Note = new Note('test', 'test', attachment);
+    let g_object: distributedDataObject.DataObject = distributedDataObject.create(this.context, note);
+
+    let uri = "file://test/test.img";
+    g_object.setAsset("attachment", uri).then(() => {
+      console.info('setAsset success.');
+    }).catch((err: BusinessError) => {
+      console.error("setAsset failed, error code = " + err.code);
+    });
+  }
+}
+```
+
+### setAssets<sup>20+</sup>
+
+setAssets(assetsKey: string, uris: Array&lt;string&gt;): Promise&lt;void&gt;
+
+设置分布式对象中的多个资产的属性信息，该接口必须在[setSessionId](#setsessionid9-2)接口调用前使用。uris数组的数量范围为1-50。使用Promise异步回调。
+
+> **注意：**
+>
+> 在设置资产时必须保证assetsKey存在且对应文件为资产类型文件，否则无法保证对端能接收到此次设置的资产。
+>
+> 在设置资产时必须保证uris数组内uri均为正确且真实存在的分布式路径，否则无法保证对端能接收到此次设置的资产。
+
+有以下几种异常场景:
+
+  | 触发条件  | 操作结果 |
+  | -------- | -------- |
+  | 调用[setSessionId](#setsessionid9-2)接口设置sessionId后再调用[setAssets](#setassets20)接口设置资产。   | 设置资产失败，抛出15400003异常。 |
+  | assetsKey为无效值，例如：null（不存在）、undefined（未定义）或''（空字符串）。            | 设置资产失败，抛出15400002异常。 |
+  | assetsKey存在、对应文件为非资产类型。 | 系统会强制修改该字段对应的文件类型为资产类型且设置资产字段，可能出现真实资产无法同步至对端设备。 |
+  | assetsKey存在、且对应文件为资产类型。 | 设置资产成功、更新uri信息。 |
+  | uris数组uri元素数量为0或超过50（不包含50）个字符。     | 设置资产失败，抛出15400002异常。 |
+  | uris数组uri元素数量为1-50之间，存在单个或多个uri无效，例如：null（不存在）、undefined（未定义）或''（空字符串）。| 设置资产失败，抛出15400002异常。 |
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数：**
+
+  | 参数名   | 类型                    | 必填 | 说明                                                                               |
+  | -------- | ----------------------- | ---- | ---------------------------------------------------------------------------------- |
+  | assetsKey | string                 | 是   | 分布式对象中资产数组类型数据对应的属性名。<br/>**使用约束：** <br/>（1）提供的assetsKey对应的文件已存在且类型必须为资产[Asset](js-apis-data-commonType.md#asset)，才可进行正确的设置资产。若assetsKey对应文件不存在或文件存在但类型不是资产类型，可能会出现资产设置错误。<br/>（2）在协同或接续场景下需要双端满足assetsKey对应的文件存在且为资产类型，才可将设置的资产数组同步到对端设备。                                             |
+  | uris      | Array&lt;string&gt;    | 是   | 待设置的新资产数组的uri集合，表示资产数组内每个资产的存放的分布式路径。数组元素有效范围为1-50，元素uri必须为真实存在的资产对应的分布式路径。 |
+
+**返回值：**
+
+  | 类型                | 说明          |
+  | ------------------- | ------------- |
+  | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+  以下错误码的详细介绍请参见[分布式数据对象错误码](errorcode-distributed-dataObject.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 15400002 | Parameter error. Possible causes:1. The assetsKey is invalid, such as ""; 2. The uris is invalid, such as the length of uris is more than 50. |
+  | 15400003 | The sessionId of the distributed object has been set. |
+
+**示例:**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { commonType, distributedDataObject } from '@kit.ArkData';
+
+class Note {
+  title: string | undefined
+  text: string | undefined
+  attachment: commonType.Asset | undefined
+
+  constructor(title: string | undefined, text: string | undefined, attachment: commonType.Asset | undefined) {
+    this.title = title;
+    this.text = text;
+    this.attachment = attachment;
+  }
+}
+
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let attachment: commonType.Asset = {
+      name: 'test_img.jpg',
+      uri: 'file://com.example.myapplication/data/storage/el2/distributedfiles/dir/test_img.jpg',
+      path: '/dir/test_img.jpg',
+      createTime: '2024-01-02 10:00:00',
+      modifyTime: '2024-01-02 10:00:00',
+      size: '5',
+      status: commonType.AssetStatus.ASSET_NORMAL
+    }
+    let note: Note = new Note('test', 'test', attachment);
+    let g_object: distributedDataObject.DataObject = distributedDataObject.create(this.context, note);
+
+    let uris: Array<string> = ["file://test/test_1.txt", "file://test/test_2.txt"];
+    g_object.setAssets("attachment", uris).then(() => {
+      console.info('setAssets success.');
+    }).catch((err: BusinessError) => {
+      console.error("setAssets failed, error code = " + err.code);
     });
   }
 }

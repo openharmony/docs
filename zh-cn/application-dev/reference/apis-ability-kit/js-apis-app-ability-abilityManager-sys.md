@@ -955,7 +955,7 @@ setResidentProcessEnabled(bundleName: string, enable: boolean): Promise\<void>
 | 202 | Not a system application. |
 | 401 | Parameter error. Possible cause: 1.Non empty package name needs to be provided, 2.The second parameter needs to provide a Boolean type setting value |
 | 16000050 | Internal error. |
-| 16200006 | The caller application can only set the resident status of the configured process |
+| 16200006 | The caller application can only set the resident status of the configured process. |
 
 **示例：**
 

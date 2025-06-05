@@ -1,9 +1,6 @@
 # Media Kit（媒体服务）
 
 - [Media Kit简介](media-kit-intro.md)
-<!--Del-->
-- [Media Kit开发速览](media-kit-quick-overview.md)
-<!--DelEnd-->
 - 媒体开发指导(ArkTS)<!--media-kit-dev--arkts-->
   - 播放<!--media-playback-arkts-->
     - [使用AVPlayer播放音频(ArkTS)](using-avplayer-for-playback.md)

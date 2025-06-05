@@ -85,6 +85,7 @@ napi_queue_async_work接口底层使用了uv_queue_work能力，并对回调中�
 
        napi_delete_async_work(env, callbackData->asyncWork);
        delete callbackData;
+       callbackData = nullptr;
    }
    ```
 
@@ -109,7 +110,7 @@ napi_queue_async_work接口底层使用了uv_queue_work能力，并对回调中�
    // ArkTS侧调用接口
    nativeModule.asyncWork(1024).then((result) => {
        hilog.info(0x0000, 'XXX', 'result is %{public}d', result);
-     });
+   });
    ```
    运行结果：result is 1024
 
@@ -124,10 +125,10 @@ napi_queue_async_work接口底层使用了uv_queue_work能力，并对回调中�
 
    // 调用方提供的data context，该数据会传递给execute和complete函数
    struct CallbackData {
-     napi_async_work asyncWork = nullptr;
-     napi_ref callbackRef = nullptr;
-     double args[2] = {0};
-     double result = 0;
+       napi_async_work asyncWork = nullptr;
+       napi_ref callbackRef = nullptr;
+       double args[2] = {0};
+       double result = 0;
    };
 
    napi_value AsyncWork(napi_env env, napi_callback_info info)
@@ -181,6 +182,7 @@ napi_queue_async_work接口底层使用了uv_queue_work能力，并对回调中�
        napi_delete_reference(env, callbackData->callbackRef);
        napi_delete_async_work(env, callbackData->asyncWork);
        delete callbackData;
+       callbackData = nullptr;
    }
    ```
 
@@ -206,9 +208,10 @@ napi_queue_async_work接口底层使用了uv_queue_work能力，并对回调中�
    let num1: number = 123;
    let num2: number = 456;
    nativeModule.asyncWork(num1, num2, (result) => {
-     hilog.info(0x0000, 'XXX', 'result is %{public}d', result);
+       hilog.info(0x0000, 'XXX', 'result is %{public}d', result);
    });
    ```
+   运行结果：result is 579
 
 ## 注意事项
 - 调用napi_cancel_async_work接口，无论底层uv是否失败都会返回napi_ok。若因为底层uv导致取消任务失败，complete callback中的status会传入对应错误值，请在complete callback中对status进行处理。

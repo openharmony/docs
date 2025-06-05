@@ -61,7 +61,7 @@ try {
     '   <title>Hello\r\nWorld</title>' +
     '   <todo><![CDATA[Work\r\n]]></todo>' +
     '</note>';
-  let conv = new convertxml.ConvertXML()
+  let conv = new convertxml.ConvertXML();
   let options: convertxml.ConvertOptions = {
     trim: false, declarationKey: "_declaration",
     instructionKey: "_instruction", attributesKey: "_attributes",
@@ -125,7 +125,7 @@ try {
       '    <todo>Work</todo>' +
       '    <todo>Play</todo>' +
       '</note>';
-  let conv = new convertxml.ConvertXML()
+  let conv = new convertxml.ConvertXML();
   let options: convertxml.ConvertOptions = {
     trim: false, declarationKey: "_declaration",
     instructionKey: "_instruction", attributesKey: "_attributes",

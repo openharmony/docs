@@ -18,4 +18,4 @@
 | labelId         | number                                                      | 是   | 否   | launcher ability的标签ID。             |
 | iconId          | number                                                      | 是   | 否   | launcher ability的图标ID。             |
 | userId          | number                                                      | 是   | 否   | launcher ability的用户ID。             |
-| installTime     | number                                                      | 是   | 否   | launcher ability的安装时间。           |
+| installTime     | number                                                      | 是   | 否   | launcher ability的安装时间戳，单位毫秒。 |

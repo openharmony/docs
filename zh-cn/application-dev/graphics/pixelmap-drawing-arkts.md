@@ -18,8 +18,8 @@
    let width = 600;
    let height = 400;
    // 字节长度，RGBA_8888每个像素占4字节
-   let bytelength = width * height * 4;
-   const color: ArrayBuffer = new ArrayBuffer(bytelength);
+   let byteLength = width * height * 4;
+   const color: ArrayBuffer = new ArrayBuffer(byteLength);
    let bufferArr = new Uint8Array(color);
    for (let i = 0; i < bufferArr.length; i += 4) {
      // 遍历并编辑每个像素，从而形成红绿蓝相间的条纹
@@ -48,32 +48,32 @@
 
    ```ts
    // 设置编辑区域的宽高
-   let inner_width = 400;
-   let inner_height = 200;
+   let innerWidth = 400;
+   let innerHeight = 200;
    // 编辑区域的字节长度，RGBA_8888每个像素占4字节
-   let inner_bytelength = inner_width * inner_height * 4;
-   const inner_color: ArrayBuffer = new ArrayBuffer(inner_bytelength);
-   let inner_bufferArr = new Uint8Array(inner_color);
-   for (let i = 0; i < inner_bufferArr.length; i += 4) {
+   let innerByteLength = innerWidth * innerHeight * 4;
+   const innerColor: ArrayBuffer = new ArrayBuffer(innerByteLength);
+   let innerBufferArr = new Uint8Array(innerColor);
+   for (let i = 0; i < innerBufferArr.length; i += 4) {
      // 编辑区域的像素都设置为黑白相间条纹
      let n = Math.floor(i / 80) % 2;
      if (n == 0) {
-       inner_bufferArr[i] = 0x00;
-       inner_bufferArr[i+1] = 0x00;
-       inner_bufferArr[i+2] = 0x00;
+       innerBufferArr[i] = 0x00;
+       innerBufferArr[i+1] = 0x00;
+       innerBufferArr[i+2] = 0x00;
      } else {
-       inner_bufferArr[i] = 0xFF;
-       inner_bufferArr[i+1] = 0xFF;
-       inner_bufferArr[i+2] = 0xFF;
+       innerBufferArr[i] = 0xFF;
+       innerBufferArr[i+1] = 0xFF;
+       innerBufferArr[i+2] = 0xFF;
      }
-     inner_bufferArr[i+3] = 0xFF;
+     innerBufferArr[i+3] = 0xFF;
    }
    // 设置编辑区域的像素、宽高、偏移量等
    const area: image.PositionArea = {
-     pixels: inner_color,
+     pixels: innerColor,
      offset: 0,
-     stride: inner_width * 4,
-     region: { size: { height: inner_height, width: inner_width }, x: 100, y: 100 }
+     stride: innerWidth * 4,
+     region: { size: { height: innerHeight, width: innerWidth }, x: 100, y: 100 }
    };
    // 编辑位图，形成中间的黑白相间条纹
    pixelMap.writePixelsSync(area);

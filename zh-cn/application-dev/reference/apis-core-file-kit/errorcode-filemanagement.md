@@ -962,7 +962,7 @@ server端返回值检查。
 
 **错误信息**
 
-Failed to register Notify
+Failed to register notify
 
 **可能原因**
 
@@ -978,7 +978,7 @@ Failed to register Notify
 
 **错误信息**
 
-Failed to unregister Notify
+Failed to unregister notify
 
 **可能原因**
 
@@ -994,7 +994,7 @@ Failed to unregister Notify
 
 **错误信息**
 
-Failed to initialize the Notify agent
+Failed to initialize the notify agent
 
 **可能原因**
 

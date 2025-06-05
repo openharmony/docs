@@ -72,7 +72,7 @@ SoundPool当前支持播放解码后1MB以下的音频资源，解码后大小�
 
     ```ts
     soundPool.on('error', (error: BusinessError) => {
-      console.info('error happened,message is :' + error.message);
+      console.error('error happened,message is :' + error.message);
     });
     ```
 
@@ -116,7 +116,7 @@ SoundPool当前支持播放解码后1MB以下的音频资源，解码后大小�
       };
     soundPool.play(soundID, playParameters, (error: BusinessError, streamId: number) => {
       if (error) {
-        console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
+        console.error(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
         streamID = streamId;
         console.info('play success soundid:' + streamId);
@@ -282,14 +282,14 @@ function finishPlayCallback() {
 //设置错误类型监听。
 function setErrorCallback() {
   soundPool.on('error', (error: BusinessError) => {
-    console.info('error happened,message is :' + error.message);
+    console.error('error happened,message is :' + error.message);
   })
 }
 async function PlaySoundPool() {
   // 开始播放，这边play也可带播放播放的参数PlayParameters，请在音频资源加载完毕，即收到loadComplete回调之后再执行play操作。
   soundPool.play(soundId, playParameters, (error, streamID: number) => {
     if (error) {
-      console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
+      console.error(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
     } else {
       streamId = streamID;
       console.info('play success soundid:' + streamId);

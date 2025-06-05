@@ -201,7 +201,6 @@ setPowerMode(mode: DevicePowerMode, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 202     | Permission verification failed. A non-system application calls a system API.  |
@@ -248,7 +247,6 @@ setPowerMode(mode: DevicePowerMode): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 202     | Permission verification failed. A non-system application calls a system API.  |

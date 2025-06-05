@@ -56,7 +56,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 16000001 | The specified ability does not exist.                        |
 | 16000002 | Incorrect ability type.                                      |
-| 16000004 | Can not start invisible component.                           |
+| 16000004 | Cannot start an invisible component.                           |
 | 16000005 | The specified process does not have the permission.          |
 | 16000006 | Cross-user operations are not allowed.                       |
 | 16000008 | The crowdtesting application expires.                        |
@@ -66,7 +66,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 16000053 | The ability is not on the top of the UI.                     |
 | 16000055 | Installation-free timed out.                                 |
 | 16200001 | The caller has been released.                                |
-| 16300003 | The target application is not self application.              |
+| 16300003 | The target application is not the current application.       |
 
 以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -142,7 +142,7 @@ startAbility(want: Want): Promise&lt;void&gt;;
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 16000001 | The specified ability does not exist.                        |
 | 16000002 | Incorrect ability type.                                      |
-| 16000004 | Can not start invisible component.                           |
+| 16000004 | Cannot start an invisible component.                           |
 | 16000005 | The specified process does not have the permission.          |
 | 16000006 | Cross-user operations are not allowed.                       |
 | 16000008 | The crowdtesting application expires.                        |
@@ -152,7 +152,7 @@ startAbility(want: Want): Promise&lt;void&gt;;
 | 16000053 | The ability is not on the top of the UI.                     |
 | 16000055 | Installation-free timed out.                                 |
 | 16200001 | The caller has been released.                                |
-| 16300003 | The target application is not self application.              |
+| 16300003 | The target application is not the current application.       |
 
 以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 

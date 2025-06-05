@@ -13,7 +13,11 @@ Context模块继承自[BaseContext](js-apis-inner-application-baseContext.md)，
 import { common } from '@kit.AbilityKit';
 ```
 
-## 属性
+## Context
+
+Context提供了ability或application的上下文的能力，包括访问特定应用程序的资源等。
+
+### 属性
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -34,7 +38,7 @@ import { common } from '@kit.AbilityKit';
 | area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | 否    | 否    | 文件分区信息。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | processName<sup>18+</sup> | string | 否   | 否 | 当前应用的进程名。<br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 
-## Context.createModuleContext<sup>(deprecated)</sup>
+### createModuleContext<sup>(deprecated)</sup>
 
 createModuleContext(moduleName: string): Context
 
@@ -89,7 +93,7 @@ export default class EntryAbility extends UIAbility {
 
 > 说明：仅支持获取本应用中其他Module的Context和应用内HSP的Context，不支持获取其他应用的Context。
 
-## Context.getApplicationContext
+### getApplicationContext
 
 getApplicationContext(): ApplicationContext
 
@@ -132,7 +136,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## Context.getGroupDir<sup>10+</sup>
+### getGroupDir<sup>10+</sup>
 
 getGroupDir(dataGroupID: string): Promise\<string>
 
@@ -185,7 +189,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## Context.getGroupDir<sup>10+</sup>
+### getGroupDir<sup>10+</sup>
 
 getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void
 
@@ -233,7 +237,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## Context.createAreaModeContext<sup>18+</sup>
+### createAreaModeContext<sup>18+</sup>
 
 createAreaModeContext(areaMode: contextConstant.AreaMode): Context
 
@@ -255,14 +259,6 @@ createAreaModeContext(areaMode: contextConstant.AreaMode): Context
 | ------- | ---------------------- |
 | Context | 指定数据加密等级的上下文。 |
 
-**错误码**：
-
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-
 **示例：**
 
 ```ts
@@ -283,7 +279,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## Context.createDisplayContext<sup>15+</sup>
+### createDisplayContext<sup>15+</sup>
 
 createDisplayContext(displayId: number): Context
 

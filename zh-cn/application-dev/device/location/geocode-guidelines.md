@@ -16,7 +16,7 @@
 
 | 接口名 | 功能描述 | 
 | -------- | -------- |
-| [isGeocoderAvailable(): boolean;](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanagerisgeocoderavailable) | 判断地理编码与逆地理编码服务是否可用。 | 
+| [isGeocoderAvailable(): boolean](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanagerisgeocoderavailable) | 判断地理编码与逆地理编码服务是否可用。 | 
 | [getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanagergetaddressesfromlocation) | 调用逆地理编码服务，将坐标转换为地理描述，使用callback回调异步返回结果。 | 
 | [getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanagergetaddressesfromlocationname) | 调用地理编码服务，将地理描述转换为具体坐标，使用callback回调异步返回结果。 | 
 

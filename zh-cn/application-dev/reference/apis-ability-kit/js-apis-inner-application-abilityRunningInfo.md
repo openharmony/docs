@@ -27,7 +27,7 @@ import { abilityManager } from '@kit.AbilityKit';
 | uid | number | 是 | 否 | 用户ID。  |
 | processName | string | 是 | 否 | 进程名称。  |
 | startTime | number | 是 | 否 | Ability启动时间。  |
-| abilityState | [abilityManager.AbilityState](js-apis-app-ability-abilityManager.md#abilitystate) | 是 | 否 | Ability状态。  |
+| abilityState | [abilityManager.AbilityState](js-apis-app-ability-abilityManager.md#abilitystate14) | 是 | 否 | Ability状态。  |
 
 **示例：**
 

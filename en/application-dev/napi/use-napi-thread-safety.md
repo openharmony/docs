@@ -69,6 +69,9 @@
 
 3. Execute the asynchronous callback in a JS thread.
    ```c++
+   static constexpr int INT_NUM_2 = 2;   // Integer 2
+   static constexpr int INT_BUF_32 = 32; // The length of the integer string is 32.
+
    static napi_value ResolvedCallback(napi_env env, napi_callback_info info)
    {
        void *data = nullptr;
@@ -79,7 +82,7 @@
        }
        size_t result = 0;
        char buf[32] = {0};
-       napi_get_value_string_utf8(env, argv[0], buf, 32, &result);
+       napi_get_value_string_utf8(env, argv[0], buf, INT_BUF_32, &result);
        reinterpret_cast<std::promise<std::string> *>(data)->set_value(std::string(buf));
        return nullptr;
    }
@@ -115,7 +118,7 @@
        napi_create_function(env, "rejectedCallback", NAPI_AUTO_LENGTH, RejectedCallback, data,
    					     &rejectedCallback);
        napi_value argv[2] = {resolvedCallback, rejectedCallback};
-       napi_call_function(env, promise, thenFunc, 2, argv, nullptr);
+       napi_call_function(env, promise, thenFunc, INT_NUM_2, argv, nullptr);
    }
    ```
 

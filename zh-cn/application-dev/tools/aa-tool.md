@@ -89,7 +89,7 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
   | 10104001 | The specified ability does not exist. |
   | 10105001 | Failed to connect to the ability service. |
   | 10105002 | Failed to obtain ability information. |
-  | 10106002 | The target application does not support debug mode. |
+  | 10106002 | The aa start command's window option or the aa test command does not support app with release signature. |
   | 10100101 | Failed to obtain application information. |
   | 10100102 | The aa start command cannot be used to launch a UIExtensionAbility. |
   | 10103101 | Failed to find a matching application for implicit launch. |
@@ -340,7 +340,7 @@ aa test -b <bundleName> [-m <module-name>] [-p <package-name>] [-s class <test-c
   | ------- | -------- |
   | 10104002 | Failed to retrieve specified package information. |
   | 10105001 | Failed to connect to the ability service. |
-  | 10106002 | The target application does not support debug mode. |
+  | 10106002 | The aa start command's window option or the aa test command does not support app with release signature. |
   | 10108501 | An internal error occurs during the execution of the aa test command. |
 
   **示例**：
@@ -378,7 +378,7 @@ aa attach -b <bundleName>
   | ------- | -------- |
   | 10105001 | Failed to connect to the ability service. |
   | 10106001 | The current device is not in developer mode. |
-  | 10106002 | The target application does not support debug mode. |
+  | 10106002 | The aa start command's window option or the aa test command does not support app with release signature. |
   | 10103601 | The specified bundleName does not exist. |
   | 10108601 | An internal error occurs while attempting to enter/exit debug mode. |
 
@@ -413,7 +413,7 @@ aa detach -b <bundleName>
   | ------- | -------- |
   | 10105001 | Failed to connect to the ability service.|
   | 10106001 | The current device is not in developer mode. |
-  | 10106002 | The target application does not support debug mode. |
+  | 10106002 | The aa start command's window option or the aa test command does not support app with release signature. |
   | 10103601 | The specified bundleName does not exist. |
   | 10108601 | An internal error occurs while attempting to enter/exit debug mode. |
 
@@ -501,7 +501,7 @@ aa process -b <bundleName> -a <abilityName> [-m <moduleName>] [-p <perf-cmd>] [-
   | ------- | -------- |
   | 10105002 | Failed to obtain ability information. |
   | 10105003 | Failed to connect to the app service. |
-  | 10106002 | The target application does not support debug mode. |
+  | 10106002 | The aa start command's window option or the aa test command does not support app with release signature. |
 
   **示例**：
 
@@ -512,6 +512,39 @@ aa process -b <bundleName> -a <abilityName> [-m <moduleName>] [-p <perf-cmd>] [-
   # 调优应用
   aa process -b com.example.myapplication -a EntryAbility -p perf-cmd [-S]
   ```
+
+## onMemoryLevel回调命令（send-memory-level）
+
+从API version 20开始，开发者可以通过该命令来调试应用的[onMemoryLevel](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonmemorylevel)生命周期。通过在参数中指定进程的pid和内存使用级别来触发该进程的onMemoryLevel生命周期回调。
+
+```bash
+# 触发onMemoryLevel回调
+aa send-memory-level -p <processId> -l <memoryLevel>
+```
+
+**参数列表**
+
+| 参数 | 参数说明 |
+| -------- | -------- |
+| -h/--help | 帮助信息。 |
+| -p | 必选参数，进程pid。 |
+| -l | 必选参数，内存使用级别，具体值参考[AbilityConstant.MemoryLevel](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#memorylevel)。 |
+
+**返回值**：
+
+当执行成功时，返回"send memory level successfully."；当执行失败时，返回"error: failed to send memory level."；当给定参数值缺失时，返回"fail: unknow option."并打印帮助信息。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 10104003 | The specified pid does not exist. |
+| 10104004 | The specified level does not exist. |
+
+**示例**：
+
+```bash
+# 触发进程号为6066应用的onMemoryLevel回调，此时回调的level为0
+aa send-memory-level -p 6066 -l 0
+```
 
 ## aa工具错误码
 
@@ -557,6 +590,42 @@ The specified ability does not exist.
     ```
     hdc shell bm dump -n 包名
     ```
+
+### 10104003 指定的pid不存在
+
+**错误信息**
+
+The specified pid does not exist.
+
+**错误描述**
+ 
+当指定的pid不存在时，aa工具将返回该错误码。
+
+**可能原因**
+
+指定的pid不存在。
+
+**处理步骤**
+
+检查-p参数指定的进程号在设备上是否存在。
+
+### 10104004 指定的内存使用级别不存在
+
+**错误信息**
+
+The specified level does not exist.
+
+**错误描述**
+ 
+当指定的内存使用级别不存在时，aa工具将返回该错误码。
+
+**可能原因**
+
+指定的内存使用级别不存在。
+
+**处理步骤**
+
+检查-l参数指定的内存使用级别是否为[0, 2]区间内的整数值。
 
 ### 10105001 Ability服务连接失败
 
@@ -634,19 +703,19 @@ The current device is not in developer mode.
 
 在设置中打开开发者模式。
 
-### 10106002 目标应用不支持Debug模式
+### 10106002 不支持release签名的应用程序
 
 **错误信息**
 
-The target application does not support debug mode.
+The aa start command's window option or the aa test command does not support app with release signature.
 
 **错误描述**
 
-目标应用不支持Debug模式。
+aa start命令的参数wl、wt、wh、ww或aa test命令不支持release签名的应用程序。
 
 **可能原因**
 
-目标应用当前使用签名工具中“type”参数不为“debug”。
+目标应用为release签名。
 
 **处理步骤**
 

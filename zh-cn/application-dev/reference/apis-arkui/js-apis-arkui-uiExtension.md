@@ -21,7 +21,7 @@ import { uiExtension } from '@kit.ArkUI';
 
 | 名称                                 | 类型                  | 只读 | 可选 | 说明                                                                                                     |
 | ------------------------------------| -------------------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------ |
-| properties<sup>14+</sup>            | [WindowProxyProperties](#windowproxyproperties14) |  否  |  否  | 组件（EmbeddedComponent或UIExtensionComponent）的信息。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。<br/>**约束：** 由于架构约束，不建议在[onSessionCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate)阶段同步获取该值，建议在收到[on('windowSizeChange')](../apis-arkui/js-apis-arkui-uiExtension.md#onwindowsizechange)回调之后获取。                                                                            |
+| properties<sup>14+</sup>            | [WindowProxyProperties](#windowproxyproperties14) |  否  |  否  | 组件（EmbeddedComponent或UIExtensionComponent）的信息。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。<br/>**约束：** 由于架构约束，不建议在[onSessionCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate)阶段同步获取该值，建议在收到[on('windowSizeChange')](../apis-arkui/js-apis-arkui-uiExtension.md#onwindowsizechange)回调之后获取。                                                                            |
 
 ### getWindowAvoidArea
 
@@ -346,7 +346,6 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
-| 1300005 | This window proxy is abnormal. |
 
 **示例：**
 
@@ -440,7 +439,12 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
     // 占用事件
     setTimeout(() => {
       try {
-        extensionWindow.occupyEvents(uiExtension.EventFlag.EVENT_CLICK | uiExtension.EventFlag.EVENT_LONG_PRESS);
+        let promise = extensionWindow.occupyEvents(uiExtension.EventFlag.EVENT_CLICK | uiExtension.EventFlag.EVENT_LONG_PRESS);
+        promise.then(() => {
+          console.info(`Successed in occupy events`);
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to occupy events. Cause code: ${err.code}, message: ${err.message}`);
+        });
       } catch (e) {
         console.error(`Occupy events got exception code: ${e.code}, message: ${e.message}`);
       }
@@ -512,10 +516,10 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
-| 名称       | 类型      | 可读 | 可写 | 说明               |
+| 名称       | 类型      | 只读 | 可选 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
-| rect   | [window.Rect](js-apis-window.md#rect7) | 是   | 是   | 组件矩形变化后的值。 |
-| reason    | [RectChangeReason](#rectchangereason14) | 是   | 是   | 组件矩形变化的原因。 |
+| rect   | [window.Rect](js-apis-window.md#rect7) | 否   | 否   | 组件矩形变化后的值。 |
+| reason    | [RectChangeReason](#rectchangereason14) | 否   | 否   | 组件矩形变化的原因。 |
 
 ## 完整示例
 

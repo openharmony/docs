@@ -37,40 +37,48 @@ cpp部分代码
 
 static int g_aa = 0;
 
-#define CHECK_RET(theCall)                                                                                             \
-    do {                                                                                                               \
-        JSVM_Status cond = theCall;                                                                                    \
-        if ((cond) != JSVM_OK) {                                                                                       \
-            const JSVM_ExtendedErrorInfo *info;                                                                        \
-            OH_JSVM_GetLastErrorInfo(env, &info);                                                                      \
-            OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d message = %{public}s", \
-                         __FILE__, __LINE__, cond, info != nullptr ? info->errorMessage : "");                         \
-            return -1;                                                                                                 \
-        }                                                                                                              \
+#define CHECK_RET(theCall)                                                                           \
+    do {                                                                                             \
+        JSVM_Status cond = theCall;                                                                  \
+        if ((cond) != JSVM_OK) {                                                                     \
+            const JSVM_ExtendedErrorInfo *info;                                                      \
+            OH_JSVM_GetLastErrorInfo(env, &info);                                                    \
+            OH_LOG_ERROR(LOG_APP,                                                                    \
+                "jsvm fail file: %{public}s line: %{public}d ret = %{public}d message = %{public}s", \
+                __FILE__,                                                                            \
+                __LINE__,                                                                            \
+                cond,                                                                                \
+                info != nullptr ? info->errorMessage : "");                                          \
+            return -1;                                                                               \
+        }                                                                                            \
     } while (0)
 
-#define CHECK(theCall)                                                                                                 \
-    do {                                                                                                               \
-        JSVM_Status cond = theCall;                                                                                    \
-        if ((cond) != JSVM_OK) {                                                                                       \
-            OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d", __FILE__, __LINE__,  \
-                         cond);                                                                                        \
-            return -1;                                                                                                 \
-        }                                                                                                              \
+#define CHECK(theCall)                                                                                              \
+    do {                                                                                                            \
+        JSVM_Status cond = theCall;                                                                                 \
+        if ((cond) != JSVM_OK) {                                                                                    \
+            OH_LOG_ERROR(                                                                                           \
+                LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d", __FILE__, __LINE__, cond); \
+            return -1;                                                                                              \
+        }                                                                                                           \
     } while (0)
 
 // 用于调用theCall并检查其返回值是否为JSVM_OK。
 // 如果不是，则调用GET_AND_THROW_LAST_ERROR处理错误并返回retVal。
-#define JSVM_CALL_BASE(env, theCall, retVal)                                                                           \
-    do {                                                                                                               \
-        JSVM_Status cond = theCall;                                                                                    \
-        if (cond != JSVM_OK) {                                                                                         \
-            const JSVM_ExtendedErrorInfo *info;                                                                        \
-            OH_JSVM_GetLastErrorInfo(env, &info);                                                                      \
-            OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d message = %{public}s", \
-                         __FILE__, __LINE__, cond, info != nullptr ? info->errorMessage : "");                         \
-            return retVal;                                                                                             \
-        }                                                                                                              \
+#define JSVM_CALL_BASE(env, theCall, retVal)                                                         \
+    do {                                                                                             \
+        JSVM_Status cond = theCall;                                                                  \
+        if (cond != JSVM_OK) {                                                                       \
+            const JSVM_ExtendedErrorInfo *info;                                                      \
+            OH_JSVM_GetLastErrorInfo(env, &info);                                                    \
+            OH_LOG_ERROR(LOG_APP,                                                                    \
+                "jsvm fail file: %{public}s line: %{public}d ret = %{public}d message = %{public}s", \
+                __FILE__,                                                                            \
+                __LINE__,                                                                            \
+                cond,                                                                                \
+                info != nullptr ? info->errorMessage : "");                                          \
+            return retVal;                                                                           \
+        }                                                                                            \
     } while (0)
 
 // JSVM_CALL_BASE的简化版本，返回nullptr
@@ -78,7 +86,8 @@ static int g_aa = 0;
 
 static const int MAX_BUFFER_SIZE = 128;
 // CreateHelloString()函数需绑定到JSVM虚拟机, 用于OH_JSVM_CreateSnapshot虚拟机快照的正常创建
-static JSVM_Value CreateHelloString(JSVM_Env env, JSVM_CallbackInfo info) {
+static JSVM_Value CreateHelloString(JSVM_Env env, JSVM_CallbackInfo info)
+{
     JSVM_Value outPut;
     OH_JSVM_CreateStringUtf8(env, "Hello world!", JSVM_AUTO_LENGTH, &outPut);
     return outPut;
@@ -91,7 +100,8 @@ static intptr_t externals[] = {
     0,
 };
 
-static JSVM_Value RunVMScript(JSVM_Env env, std::string &src) {
+static JSVM_Value RunVMScript(JSVM_Env env, std::string &src)
+{
     // 打开handleScope作用域
     JSVM_HandleScope handleScope;
     OH_JSVM_OpenHandleScope(env, &handleScope);
@@ -108,7 +118,8 @@ static JSVM_Value RunVMScript(JSVM_Env env, std::string &src) {
     return result;
 }
 // OH_JSVM_CreateSnapshot的样例方法
-static void CreateVMSnapshot() {
+static void CreateVMSnapshot()
+{
     // 创建JavaScript虚拟机实例,打开虚拟机作用域
     JSVM_VM vm;
     JSVM_CreateVMOptions vmOptions;
@@ -135,8 +146,8 @@ static void CreateVMSnapshot() {
     // 将snapshot保存到文件中
     // 保存快照数据，/data/storage/el2/base/files/test_blob.bin为沙箱路径
     // 以包名为com.example.jsvm为例，实际文件会保存到/data/app/el2/100/base/com.example.jsvm/files/test_blob.bin
-    std::ofstream file("/data/storage/el2/base/files/test_blob.bin",
-                       std::ios::out | std::ios::binary | std::ios::trunc);
+    std::ofstream file(
+        "/data/storage/el2/base/files/test_blob.bin", std::ios::out | std::ios::binary | std::ios::trunc);
     file.write(blobData, blobSize);
     file.close();
     // 关闭并销毁环境和虚拟机
@@ -146,7 +157,8 @@ static void CreateVMSnapshot() {
     OH_JSVM_DestroyVM(vm);
 }
 
-static void RunVMSnapshot() {
+static void RunVMSnapshot()
+{
     // blobData的生命周期不能短于vm的生命周期
     // 从文件中读取snapshot
     std::vector<char> blobData;
@@ -177,8 +189,8 @@ static void RunVMSnapshot() {
     // 环境关闭前检查脚本运行结果
     char str[MAX_BUFFER_SIZE];
     OH_JSVM_GetValueStringUtf8(env, result, str, MAX_BUFFER_SIZE, nullptr);
-    if (strcmp(str, "Hello world!") !=0) {
-        OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d", __FILE__, __LINE__);   
+    if (strcmp(str, "Hello world!") != 0) {
+        OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d", __FILE__, __LINE__);
     }
     // 关闭并销毁环境和虚拟机
     OH_JSVM_CloseEnvScope(env, envScope);
@@ -188,7 +200,8 @@ static void RunVMSnapshot() {
     return;
 }
 
-static JSVM_Value AdjustExternalMemory(JSVM_Env env, JSVM_CallbackInfo info) {
+static JSVM_Value AdjustExternalMemory(JSVM_Env env, JSVM_CallbackInfo info)
+{
     // 在创建虚拟机快照时，如果存在对外部的依赖，需要在OH_JSVM_Init时，将外部依赖注册到initOptions.externalReferences中
     // 创建虚拟机快照并将快照保存到文件中
     CreateVMSnapshot();
@@ -211,7 +224,8 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试JS
 const char *srcCallNative = R"JS(adjustExternalMemory();)JS";
 
-static int32_t TestJSVM() {
+static int32_t TestJSVM()
+{
     JSVM_InitOptions initOptions = {0};
     JSVM_VM vm;
     JSVM_Env env = nullptr;
@@ -223,11 +237,11 @@ static int32_t TestJSVM() {
     if (g_aa == 0) {
         g_aa++;
         initOptions.externalReferences = externals;
-      int argc = 0;
-      char **argv = nullptr;
-      initOptions.argc = &argc;
-      initOptions.argv = argv;
-      CHECK(OH_JSVM_Init(&initOptions));
+        int argc = 0;
+        char **argv = nullptr;
+        initOptions.argc = &argc;
+        initOptions.argv = argv;
+        CHECK(OH_JSVM_Init(&initOptions));
     }
     // 创建JSVM环境
     CHECK(OH_JSVM_CreateVM(nullptr, &vm));
@@ -259,11 +273,13 @@ static napi_value RunTest(napi_env env, napi_callback_info info)
 }
 
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) {
+static napi_value Init(napi_env env, napi_value exports)
+{
     OH_LOG_INFO(LOG_APP, "JSVM Init");
-    napi_property_descriptor desc[] = {{"runTest", nullptr, RunTest, nullptr, nullptr, nullptr, napi_default, nullptr},
+    napi_property_descriptor desc[] = {
+        {"runTest", nullptr, RunTest, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
-                                       
+
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
@@ -281,6 +297,7 @@ static napi_module demoModule = {
 
 extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
 ```
+<!-- @[oh_jsvm_create_snapshot_and_create_env_from_snapshot](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/createsnapshot/src/main/cpp/hello.cpp) -->
 
 ArkTS侧示例代码
 

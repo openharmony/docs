@@ -17,7 +17,7 @@
 
 ## 接口说明
 
-文本测量中常用接口如下表所示，详细接口说明参考[drawing_text_typography.h](../reference/apis-arkgraphics2d/drawing__text__typography_8h.md)。
+文本测量中常用接口如下表所示，详细接口说明参考[drawing_text_typography.h](../reference/apis-arkgraphics2d/capi-drawing-text-typography-h.md)。
 
 | 接口名 | 描述 | 
 | -------- | -------- |
