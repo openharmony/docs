@@ -22,7 +22,7 @@ When creating a Worker, the thread that initiates it is referred to as the host 
 - When using the Worker module, register the **onerror** callback in the host thread. Otherwise, JS crash occurs when the Worker thread is abnormal.
 - Worker thread files cannot be used across HAPs.
 - Before referencing a HAR or HSP, configure the dependency on the HAR or HSP. For details, see [Referencing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-har-import-V5).
-- [AppStorage](../quick-start/arkts-appstorage.md) cannot be used in Worker threads.
+- [AppStorage](../ui/state-management/arkts-appstorage.md) cannot be used in Worker threads.
 
 ### Precautions for Creating a Worker
 
