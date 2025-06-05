@@ -4329,3 +4329,119 @@ export class CustomTransition {
 }
 ```
 ![navigationCustomTransition.gif](figures/navigationCustomTransition.gif)
+
+### 示例14（Navigation双栏模式占位页）
+
+该示例主要展示Navigation在双栏模式下，右侧显示默认占位页。
+
+```ts
+import { ComponentContent } from '@kit.ArkUI';
+
+@Builder function PlaceholderPage() {
+  Column() {
+    Text("分栏模式占位页")
+      .fontSize(28)
+      .fontWeight(700)
+      .margin({ top: 200 })
+  }.width("100%")
+  .height("100%")
+}
+
+@Entry
+@Component
+struct NavigationExample {
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  @State currentIndex: number = 0;
+  placeholder = new ComponentContent(this.getUIContext(), wrapBuilder(PlaceholderPage))
+
+  @Builder
+  NavigationTitle() {
+    Column() {
+      Text('Title')
+        .fontColor('#182431')
+        .fontSize(30)
+        .lineHeight(41)
+        .fontWeight(700)
+      Text('subtitle')
+        .fontColor('#182431')
+        .fontSize(14)
+        .lineHeight(19)
+        .opacity(0.4)
+        .margin({ top: 2, bottom: 20 })
+    }.alignItems(HorizontalAlign.Start)
+  }
+
+  @Builder
+  NavigationMenus() {
+    Row() {
+      Image('resources/base/media/ic_public_add.svg')
+        .width(24)
+        .height(24)
+      Image('resources/base/media/ic_public_add.svg')
+        .width(24)
+        .height(24)
+        .margin({ left: 24 })
+      Image('common/ic_public_more.svg')
+        .width(24)
+        .height(24)
+        .margin({ left: 24 })
+    }
+  }
+
+  build() {
+    Column() {
+      Navigation() {
+        TextInput({ placeholder: 'search...' })
+          .width('90%')
+          .height(40)
+          .backgroundColor('#FFFFFF')
+          .margin({ top: 8 })
+
+        List({ space: 12, initialIndex: 0 }) {
+          ForEach(this.arr, (item: number) => {
+            ListItem() {
+              Text('' + item)
+                .width('90%')
+                .height(72)
+                .backgroundColor('#FFFFFF')
+                .borderRadius(24)
+                .fontSize(16)
+                .fontWeight(500)
+                .textAlign(TextAlign.Center)
+            }
+          }, (item: number) => item.toString())
+        }
+        .height(324)
+        .width('100%')
+        .margin({ top: 12, left: '10%' })
+      }
+      .title(this.NavigationTitle)
+      .menus(this.NavigationMenus)
+      .titleMode(NavigationTitleMode.Full)
+      .toolbarConfiguration([
+        {
+          value: $r("app.string.navigation_toolbar_add"),
+          icon: $r("app.media.startIcon")
+        },
+        {
+          value: $r("app.string.navigation_toolbar_app"),
+          icon: $r("app.media.startIcon")
+        },
+        {
+          value: $r("app.string.navigation_toolbar_collect"),
+          icon: $r("app.media.startIcon")
+        }
+      ])
+      .mode(NavigationMode.Split)
+      .hideTitleBar(false)
+      .hideToolBar(false)
+      .onTitleModeChange((titleModel: NavigationTitleMode) => {
+        console.info('titleMode' + titleModel)
+      })
+      .splitPlaceholder(this.placeholder)
+    }.width('100%').height('100%').backgroundColor('#F1F3F5')
+  }
+}
+```
+
+![zh-cn_image_navigation_splitPlaceholder](figures/zh-cn_image_navigation_splitPlaceholder.png)
