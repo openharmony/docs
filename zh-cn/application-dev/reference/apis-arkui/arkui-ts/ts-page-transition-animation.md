@@ -1,6 +1,6 @@
 # 页面间转场 (pageTransition)
 
-当路由进行切换时，可以通过在pageTransition函数中自定义页面入场和页面退场的转场动效。详细指导请参考[页面转场动画](../../../ui/arkts-page-transition-animation.md)。
+当路由([router](../js-apis-router.md))进行切换时，可以通过在pageTransition函数中自定义页面入场和页面退场的转场动效。详细指导请参考[页面转场动画](../../../ui/arkts-page-transition-animation.md)。
 
 > **说明：**
 >
@@ -339,16 +339,17 @@ struct Page1 {
 自定义方式2：配置了当前页面的入场动画为从左侧滑入，退场为平移加透明度变化。
 
 ```ts
-// index.ets 
+// Index.ets 
 @Entry
 @Component
-struct PageTransitionExample {
+struct Index {
   build() {
     Column() {
-      Navigator({ target: 'pages/page1', type: NavigationType.Push }) {
-        Image($r('app.media.bg1')).width('100%').height('100%') // 图片存放在media文件夹下
-      }
+      Image($r('app.media.bg1')).width('100%').height('100%') // 图片存放在media文件夹下
     }
+    .onClick(() => {
+      this.getUIContext().getRouter().pushUrl({ url: 'pages/Page1' });
+    })
   }
 
   // 自定义方式2：使用系统提供的多种默认效果(平移、缩放、透明度等)
@@ -365,16 +366,16 @@ struct PageTransitionExample {
 ```
 
 ```ts
-// page1.ets
 @Entry
 @Component
-struct PageTransitionExample1 {
+struct Page1 {
   build() {
     Column() {
-      Navigator({ target: 'pages/index', type: NavigationType.Push }) {
-        Image($r('app.media.bg2')).width('100%').height('100%') // 图片存放在media文件夹下
-      }
+      Image($r('app.media.bg2')).width('100%').height('100%') // 图片存放在media文件夹下
     }
+    .onClick(() => {
+      this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
+    })
   }
 
   // 自定义方式2：使用系统提供的多种默认效果(平移、缩放、透明度等)
