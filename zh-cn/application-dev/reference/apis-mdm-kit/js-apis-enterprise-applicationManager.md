@@ -481,3 +481,54 @@ try {
   console.error(`Failed to get keep alive apps. Code is ${err.code}, message is ${err.message}`);
 }
 ```
+
+## applicationManager.clearUpApplicationData<sup>20+</sup>
+
+clearUpApplicationData(admin: Want, bundleName: string, appIndex: number, accountId: number): void
+
+清除应用产生的所有数据。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名     | 类型                                                    | 必填 | 说明                                                         |
+| ---------  | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
+| bundleName | string                                                  | 是   | 应用包名，指定需要清除数据的应用包名。 |
+| appIndex | number                                                    | 是   | 应用分身索引，取值范围：大于等于0的整数。<br> appIndex可以通过@ohos.bundle.bundleManager中的[getAppCloneIdentity](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetappcloneidentity14)等接口来获取。|
+| accountId | number                                                   | 是   | 用户ID，取值范围：大于等于0的整数。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201  | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { applicationManager } from '@kit.MDMKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let bundleName: string = 'com.example.exampleapplication'；
+
+try {
+  applicationManager.clearUpApplicationData(wantTemp, bundleName, 0, 100);
+  console.info('Succeeded in clear up application data.');
+} catch (err) {
+  console.error(`Failed to clear up application data. Code is ${err.code}, message is ${err.message}`);
+}
+```
