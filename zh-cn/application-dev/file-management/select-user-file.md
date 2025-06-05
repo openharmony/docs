@@ -8,7 +8,7 @@
 
 - [DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker)：适用于文件类型文件的选择与保存。DocumentViewPicker对接的选择资源来自于FilePicker，负责文件类型的资源管理，文件类型不区分后缀，比如浏览器下载的图片、文档等，都属于文件类型。
 
-- [AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)：适用于音频类型文件的选择与保存。AudioViewPicker目前对接的选择资源来自于FilePicker。
+- [AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)：适用于音频类型文件的选择与保存。AudioViewPicker目前对接的选择资源来自于AudioPicker。
 
 ## 选择图片或视频类文件
 
@@ -33,7 +33,7 @@
    documentSelectOptions.maxSelectNumber = 5;
    // 指定选择的文件或者目录路径（可选）。
    documentSelectOptions.defaultFilePathUri = "file://docs/storage/Users/currentUser/test";
-   // 选择文件的后缀类型['后缀类型描述|后缀类型']（可选，不传该参数，默认不过滤，即显示所有文件），若选择项存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔（可选），后缀类型名不能超过100。此外2in1设备支持通过通配符方式['所有文件(*.*)|.*']，表示为显示所有文件，手机暂不支持该配置。
+   // 选择文件的后缀类型['后缀类型描述|后缀类型']（可选，不传该参数，默认不过滤，即显示所有文件），若选择项存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔（可选），后缀类型名不能超过100。此外2in1设备支持通配符方式['所有文件(*.*)|.*']（说明：从API version 17开始，手机支持该配置），表示为显示所有文件。
     documentSelectOptions.fileSuffixFilters = ['图片(.png, .jpg)|.png,.jpg', '文档|.txt', '视频|.mp4', '.pdf']; 
    //选择是否对指定文件或目录授权，true为授权，当为true时，defaultFilePathUri为必选参数，拉起文管授权界面；false为非授权(默认为false)，拉起常规文管界面（可选）仅支持2in1设备。
    documentSelectOptions.authMode = false;
@@ -111,7 +111,7 @@
    const audioSelectOptions = new picker.AudioSelectOptions();
    ```
 
-3. 创建[音频选择器AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-5)接口拉起FilePicker应用界面进行文件选择。
+3. 创建[音频选择器AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-5)接口拉起AudioPicker应用界面进行文件选择。
 
    ```ts
    let uris: string = '';
@@ -133,7 +133,7 @@
    > **2**、如果想要获取持久化权限，请参考[文件持久化授权访问](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)。<br>
    > **3**、开发者可以根据结果集中的URI做读取文件数据操作。建议定义一个全局变量保存URI。例如通过[基础文件API](../reference/apis-core-file-kit/js-apis-file-fs.md)根据URI拿到音频资源的文件描述符（fd），再配合媒体服务实现音频播放的开发，具体请参考[音频播放开发指导](../media/audio/audio-playback-overview.md)。
 
-4. 待界面从FilePicker返回后，可以使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口通过URI打开这个文件得到文件描述符（fd）。
+4. 待界面从AudioPicker返回后，可以使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口通过URI打开这个文件得到文件描述符（fd）。
 
    ```ts
    let uri: string = '';

@@ -1546,13 +1546,11 @@ cancel(bundleName: string): number
   import { BusinessError } from '@ohos.base';
   import backup from '@ohos.file.backup';
 
-  sessionBackup?: backup.SessionBackup;
-
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
         // 文件fd传输失败，调用取消接口，取消此应用的备份任务
-        let result = this.sessionBackup.cancel("com.example.myapplication");
+        let result = sessionBackup.cancel(err.name);
         console.info('cancel result:' + result);
         console.error('onFileReady failed with err: ' + JSON.stringify(err));
         return;
@@ -1591,7 +1589,9 @@ cancel(bundleName: string): number
       console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
-  this.sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
+  let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
+  let backupBundles: Array<string> = ["com.example.helloWorld"];
+  sessionBackup.appendBundles(backupBundles);
   ```
 
 ## SessionRestore
@@ -2632,13 +2632,11 @@ cancel(bundleName: string): number
   import { BusinessError } from '@ohos.base';
   import backup from '@ohos.file.backup';
 
-  sessionRestore?: backup.SessionRestore;
-
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
         // 文件fd传输失败，调用取消接口，取消此应用的恢复任务
-        let result = this.sessionRestore.cancel("com.example.myapplication");
+        let result = sessionRestore.cancel(err.name);
         console.info('cancel result:' + result);
         console.error('onFileReady failed with err: ' + JSON.stringify(err));
         return;
@@ -2677,7 +2675,13 @@ cancel(bundleName: string): number
       console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
-  this.sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
+  let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
+  let fileData: backup.FileData = {
+    fd: -1
+  }
+  fileData = await backup.getLocalCapabilities(); //备份恢复框架提供的getLocalCapabilities接口获取能力集文件。
+  let backupBundles: Array<string> = ["com.example.helloWorld"];
+  sessionRestore.appendBundles(fileData.fd, backupBundles);
   ```
 
 ## IncrementalBackupSession<sup>12+</sup>
@@ -3421,13 +3425,11 @@ cancel(bundleName: string): number
   import { BusinessError } from '@ohos.base';
   import backup from '@ohos.file.backup';
 
-  incrementalBackupSession?: backup.IncrementalBackupSession;
-
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
         // 文件fd传输失败，调用取消接口，取消此应用的增量备份任务
-        let result = this.incrementalBackupSession.cancel("com.example.myapplication");
+        let result = incrementalBackupSession.cancel(err.name);
         console.info('cancel result:' + result);
         console.error('onFileReady failed with err: ' + JSON.stringify(err));
         return;
@@ -3466,5 +3468,14 @@ cancel(bundleName: string): number
       console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
-  this.incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程
+  let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程
+  let backupBundles: Array<backup.IncrementalBackupData> = [];
+  let bundleData: backup.IncrementalBackupData = {
+    bundleName: "com.example.helloWorld",
+    lastIncrementalTime: 1700107870, //调用者传递上一次备份的时间戳
+    manifestFd: 1 // 调用者传递上一次备份的manifest文件句柄
+  }
+  backupBundles.push(bundleData);
+  incrementalBackupSession.appendBundles(backupBundles);
+
   ```
