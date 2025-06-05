@@ -407,7 +407,7 @@ startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[AI分析类库错误码](../errorcode-image-analyzer.md)。
+以下错误码的详细介绍请参见[AI分析类库错误码](errorcode-image-analyzer.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | -------------------------------------------- |

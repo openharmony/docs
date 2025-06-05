@@ -3071,7 +3071,7 @@
           - [弹窗错误码](reference/apis-arkui/errorcode-promptAction.md)
           - [页面路由错误码](reference/apis-arkui/errorcode-router.md)
           - [拖拽事件错误码](reference/apis-arkui/errorcode-drag-event.md)
-          - [图像AI分析错误码](reference/apis-arkui/errorcode-image-analyzer.md)
+          - [图像AI分析错误码](reference/apis-arkui/arkui-ts/errorcode-image-analyzer.md)
           - [焦点错误码](reference/apis-arkui/errorcode-focus.md)
           - [系统资源错误码](reference/apis-arkui/errorcode-system-resource.md)
           - [半模态错误码](reference/apis-arkui/errorcode-bindSheet.md)
