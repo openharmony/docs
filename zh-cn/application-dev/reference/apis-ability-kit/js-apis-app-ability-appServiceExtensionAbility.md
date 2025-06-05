@@ -26,10 +26,10 @@ AppServiceExtensionAbility提供了[onCreate()](#oncreate)、[onRequest()](#onre
   在AppServiceExtensionAbility实例销毁时，系统会触发该回调。
 
 - **onRequest**
-  调用方使用[startAppServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartappserviceextensionability20)拉起AppServiceExtensionAbility实例时，系统会触发该回调。
+  调用方使用[startAppServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20)拉起AppServiceExtensionAbility实例时，系统会触发该回调。
 
 - **onConnect**
-  调用方使用[connectAppServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectappserviceextensionability20)连接AppServiceExtensionAbility实例时，系统会触发该回调。
+  调用方使用[connectAppServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20)连接AppServiceExtensionAbility实例时，系统会触发该回调。
 
 - **onDisconnect**
   当所有连接方断开与AppServiceExtensionAbility实例的连接时，系统会触发该回调。
@@ -73,18 +73,18 @@ onCreate(want: Want): void
 
 **示例：**
 
-    ```ts
-    import { AppServiceExtensionAbility, Want } from '@kit.AbilityKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
+  ```ts
+  import { AppServiceExtensionAbility, Want } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-    const TAG: string = '[AppServiceExtAbility]';
+  const TAG: string = '[AppServiceExtAbility]';
 
-    class AppServiceExtAbility extends AppServiceExtensionAbility {
-      onCreate(want: Want) {
-        hilog.info(0x0000, TAG, `onCreate, want: ${want.abilityName}`);
-      }
+  class AppServiceExtAbility extends AppServiceExtensionAbility {
+    onCreate(want: Want) {
+      hilog.info(0x0000, TAG, `onCreate, want: ${want.abilityName}`);
     }
-    ```
+  }
+  ```
 
 ### onDestroy
 
@@ -96,18 +96,18 @@ onDestroy(): void
 
 **示例：**
 
-    ```ts
-    import { AppServiceExtensionAbility } from '@kit.AbilityKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
+  ```ts
+  import { AppServiceExtensionAbility } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-    const TAG: string = '[AppServiceExtAbility]';
+  const TAG: string = '[AppServiceExtAbility]';
 
-    class AppServiceExtAbility extends AppServiceExtensionAbility {
-      onDestroy() {
-        hilog.info(0x0000, TAG, `onDestroy`);
-      }
+  class AppServiceExtAbility extends AppServiceExtensionAbility {
+    onDestroy() {
+      hilog.info(0x0000, TAG, `onDestroy`);
     }
-    ```
+  }
+  ```
 
 ### onRequest
 
@@ -129,18 +129,18 @@ onRequest(want: Want, startId: number): void
 
 **示例：**
 
-    ```ts
-    import { AppServiceExtensionAbility, Want } from '@kit.AbilityKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
+  ```ts
+  import { AppServiceExtensionAbility, Want } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-    const TAG: string = '[AppServiceExtAbility]';
+  const TAG: string = '[AppServiceExtAbility]';
 
-    class AppServiceExtAbility extends AppServiceExtensionAbility {
-      onRequest(want: Want, startId: number) {
-        hilog.info(0x0000, TAG, `onRequest, want: ${want.abilityName}, startId: ${startId}`);
-      }
+  class AppServiceExtAbility extends AppServiceExtensionAbility {
+    onRequest(want: Want, startId: number) {
+      hilog.info(0x0000, TAG, `onRequest, want: ${want.abilityName}, startId: ${startId}`);
     }
-    ```
+  }
+  ```
 
 ### onConnect
 
@@ -169,29 +169,29 @@ onConnect(want: Want): rpc.RemoteObject
 
 **示例：**
 
-    ```ts
-    import { AppServiceExtensionAbility, Want } from '@kit.AbilityKit';
-    import { rpc } from '@kit.IPCKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
+  ```ts
+  import { AppServiceExtensionAbility, Want } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-    const TAG: string = '[AppServiceExtAbility]';
+  const TAG: string = '[AppServiceExtAbility]';
 
-    class StubTest extends rpc.RemoteObject {
-      constructor(des: string) {
-        super(des);
-      }
-
-      onConnect(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption) {
-      }
+  class StubTest extends rpc.RemoteObject {
+    constructor(des: string) {
+      super(des);
     }
 
-    class AppServiceExtAbility extends AppServiceExtensionAbility {
-      onConnect(want: Want) {
-        hilog.info(0x0000, TAG, `onConnect, want: ${want.abilityName}`);
-        return new StubTest('test');
-      }
+    onConnect(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption) {
     }
-    ```
+  }
+
+  class AppServiceExtAbility extends AppServiceExtensionAbility {
+    onConnect(want: Want) {
+      hilog.info(0x0000, TAG, `onConnect, want: ${want.abilityName}`);
+      return new StubTest('test');
+    }
+  }
+  ```
 
 ### onDisconnect
 
@@ -209,15 +209,15 @@ onDisconnect(want: Want): void
 
 **示例：**
 
-    ```ts
-    import { AppServiceExtensionAbility, Want } from '@kit.AbilityKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
+  ```ts
+  import { AppServiceExtensionAbility, Want } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-    const TAG: string = '[AppServiceExtAbility]';
+  const TAG: string = '[AppServiceExtAbility]';
 
-    class AppServiceExtAbility extends AppServiceExtensionAbility {
-      onDisconnect(want: Want) {
-        hilog.info(0x0000, TAG, `onDisconnect, want: ${want.abilityName}`);
-      }
+  class AppServiceExtAbility extends AppServiceExtensionAbility {
+    onDisconnect(want: Want) {
+      hilog.info(0x0000, TAG, `onDisconnect, want: ${want.abilityName}`);
     }
-    ```
+  }
+  ```

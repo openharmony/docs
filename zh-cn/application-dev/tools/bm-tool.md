@@ -119,7 +119,7 @@ bm dump [-h] [-a] [-g] [-n bundleName] [-s shortcutInfo] [-d deviceId] [-l label
 | -n | 可选参数，查询指定Bundle名称的详细信息。 |
 | -s | 可选参数，查询指定Bundle名称下的快捷方式信息。 |
 | -d | 可选参数，查询指定设备中的包信息。默认查询当前设备。 |
-| -l | 可选参数，查询指定Bundle名称的label值（应用的名称）。 |
+| -l | 可选参数，查询指定Bundle名称的label值（应用的名称），需要与-n或者-a参数组合使用。 |
 
 
 示例：
@@ -458,7 +458,7 @@ bm install-plugin -n com.ohos.app -p /data/plugin.hsp
 > **说明：**
 >
 > 在同一个应用中安装同一个插件，则视作插件版本更新，插件不支持降级安装；插件版本更新后，需要重启应用插件才能生效。
-> 
+>
 > 不推荐安装与宿主应用模块同名的插件，目前运行态暂不支持。
 
 
@@ -1104,7 +1104,7 @@ error: install failed due to apptype not same.
 应用已安装HAP包和待安装HAP包包名一致，但签名文件中app-feature配置不一致。
 
 **处理步骤**
-  
+
 * 方案1：卸载已安装的HAP包，再安装新的HAP包。
 * 方案2：修改待安装HAP包的签名文件中的app-feature字段，确保与已安装包配置一致，重新打包、签名[应用/元服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)，再重试安装。<!--DelEnd-->
 

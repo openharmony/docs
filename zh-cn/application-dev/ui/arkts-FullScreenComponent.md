@@ -19,7 +19,7 @@ FullScreenLaunchComponent允许开发者以全屏方式拉起原子化服务，�
 
 FullScreenLaunchComponent提供的一种全屏启动原子化服务的能力。需要拉起原子化服务时，拉起方向AMS查询拉起方是否授权使用方可以嵌入式运行原子化服务。已授权时，使用方全屏嵌入式运行原子化服务；未授权时，使用方跳出式拉起原子化服务。
 
-全屏嵌入式运行原子化服务是指，通过[UIExtension](./arkts-ui-extension-components.md)封装的组件方式嵌入到使用方的组件树中，拉起EmbeddableUIAbility，展示提供方的应用内容，以实现组件式的交互体验。
+<!--Del-->全屏嵌入式运行原子化服务是指，通过[UIExtension](./arkts-ui-extension-components.md)封装的组件方式嵌入到使用方的组件树中，拉起EmbeddableUIAbility，展示提供方的应用内容，以实现组件式的交互体验。<!--DelEnd-->
 
 跳出式运行原子化服务是指，非组件化的方式拉起EmbeddableUIAbility，交互体验接近独立窗口。
 

@@ -4822,3 +4822,17 @@ With this permission, the application can access kernel APIs across processes to
 **Supported devices**: General
 
 **Valid since**：20
+
+## ohos.permission.GRANT_URI_PERMISSION_AS_CALLER
+
+Allow an application to grant URI access permissions to the target application as the caller.
+
+**Permission level**：system_core
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: General
+
+**Valid since**：20

@@ -10,8 +10,8 @@
 
 | 拉起方式 | 接口名 | 说明 |
 | -------- | -------- | -------- |
-| 启动 | [startAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartappserviceextensionability20) | UIAbility启动AppServiceExtensionAbility后，两者为弱关联。UIAbility退出后，AppServiceExtensionAbility可以继续存在。|
-| 连接 | [connectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectappserviceextensionability20) | UIAbility连接AppServiceExtensionAbility后，两者为强关联。UIAbility退出后，AppServiceExtensionAbility也将一起退出。 |
+| 启动 | [startAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20) | UIAbility启动AppServiceExtensionAbility后，两者为弱关联。UIAbility退出后，AppServiceExtensionAbility可以继续存在。|
+| 连接 | [connectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20) | UIAbility连接AppServiceExtensionAbility后，两者为强关联。UIAbility退出后，AppServiceExtensionAbility也将一起退出。 |
 
 ## 约束限制
 
@@ -27,11 +27,11 @@
 
 - 本文将被启动的AppServiceExtensionAbility为服务端，将启动AppServiceExtensionAbility的组件为客户端。
 
-- 若AppServiceExtensionAbility只通过connect的方式被拉起，那么该AppServiceExtensionAbility的生命周期将受客户端控制，当客户端调用一次[connectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectappserviceextensionability20)方法，将建立一个连接，当客户端退出或者调用[disconnectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectappserviceextensionability20)方法，该连接将断开。当所有连接都断开后，AppServiceExtensionAbility将自动退出。
+- 若AppServiceExtensionAbility只通过connect的方式被拉起，那么该AppServiceExtensionAbility的生命周期将受客户端控制，当客户端调用一次[connectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20)方法，将建立一个连接，当客户端退出或者调用[disconnectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectappserviceextensionability20)方法，该连接将断开。当所有连接都断开后，AppServiceExtensionAbility将自动退出。
 
-- AppServiceExtensionAbility一旦通过start的方式被拉起，将不会自动退出，应用可以调用[stopAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstopappserviceextensionability20)方法将AppServiceExtensionAbility退出。
+- AppServiceExtensionAbility一旦通过start的方式被拉起，将不会自动退出，应用可以调用[stopAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#stopappserviceextensionability20)方法将AppServiceExtensionAbility退出。
 
-- AppServiceExtensionAbility以start方式启动，并且没有连接的时候，AppServiceExtension进程可能被挂起（请参考[Background Tasks Kit简介](../task-management/background-task-overview.md)）。
+- AppServiceExtensionAbility以start方式启动，并且没有连接的时候，AppServiceExtensionAbility进程可能被挂起（请参考[Background Tasks Kit简介](../task-management/background-task-overview.md)）。
 
 ## 实现一个后台服务
 
@@ -113,7 +113,7 @@
 
 ### 启动一个后台服务
 
-应用通过[startAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartappserviceextensionability20)方法启动一个后台服务，服务的[onRequest()](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md#onrequest)回调就会被调用，并在该回调方法中接收到调用者传递过来的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象。后台服务启动后，其生命周期独立于客户端，即使客户端已经销毁，该后台服务仍可继续运行。因此，后台服务需要在其工作完成时通过调用[AppServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-appServiceExte.nsionContext.md)的[terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-appServiceExtensionContext.md#appserviceextensioncontextterminateself)来自行停止，或者由另一个组件调用[stopAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstopappserviceextensionability20)来将其停止。
+应用通过[startAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20)方法启动一个后台服务，服务的[onRequest()](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md#onrequest)回调就会被调用，并在该回调方法中接收到调用者传递过来的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象。后台服务启动后，其生命周期独立于客户端，即使客户端已经销毁，该后台服务仍可继续运行。因此，后台服务需要在其工作完成时通过调用[AppServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-appServiceExte.nsionContext.md)的[terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-appServiceExtensionContext.md#appserviceextensioncontextterminateself)来自行停止，或者由另一个组件调用[stopAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#stopappserviceextensionability20)来将其停止。
 
 
 - 在应用中启动一个新的[AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
@@ -242,11 +242,11 @@
 
 ### 连接一个后台服务
 
-客户端可以通过[connectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectappserviceextensionability20)连接服务端（在Want对象中指定启动的目标服务），服务端的[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md#onconnect)就会被调用，并在该回调方法中接收到客户端传递过来的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象，从而建立长连接。
+客户端可以通过[connectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20)连接服务端（在Want对象中指定启动的目标服务），服务端的[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md#onconnect)就会被调用，并在该回调方法中接收到客户端传递过来的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象，从而建立长连接。
 
-服务端的AppServiceExtensionAbility组件会在onConnect()中返回[IRemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#iremoteobject)对象给作客户端[ConnectOptions](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md)的[onConnect()](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md#onconnect)方法的入参。开发者通过该IRemoteObject定义通信接口，实现客户端与服务端进行RPC交互。多个客户端可以同时连接到同一个后台服务，客户端完成与服务端的交互后，客户端需要通过调用[disconnectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectappserviceextensionability20)来断开连接。如果所有连接到某个后台服务的客户端均已断开连接，则系统会销毁该服务。
+服务端的AppServiceExtensionAbility组件会在onConnect()中返回[IRemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#iremoteobject)对象给作客户端[ConnectOptions](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md)的[onConnect()](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md#onconnect)方法的入参。开发者通过该IRemoteObject定义通信接口，实现客户端与服务端进行RPC交互。多个客户端可以同时连接到同一个后台服务，客户端完成与服务端的交互后，客户端需要通过调用[disconnectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectappserviceextensionability20)来断开连接。如果所有连接到某个后台服务的客户端均已断开连接，则系统会销毁该服务。
 
-- 使用[connectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectappserviceextensionability20)建立与后台服务的连接。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
+- 使用[connectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectappserviceextensionability20)建立与后台服务的连接。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
   
   ```ts
   import { common, Want } from '@kit.AbilityKit';
@@ -314,7 +314,7 @@
   }
   ```
 
-- 使用[disconnectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectappserviceextensionability20)断开与后台服务的连接。
+- 使用[disconnectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20)断开与后台服务的连接。
   
   ```ts
   import { common } from '@kit.AbilityKit';

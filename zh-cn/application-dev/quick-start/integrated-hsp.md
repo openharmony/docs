@@ -2,7 +2,10 @@
 
 集成态HSP是应用内HSP的中间编译产物，用于解决使用方的bundleName和签名之间的强耦合问题。
 > **说明：** 
+>
 > HSP只能给bundleName一样的工程使用，集成态HSP可以给不同的bundleName的工程集成使用。
+>
+> 使用方使用集成态HSP时，需要采用使用方的签名文件对集成态HSP重新签名，且需要优先安装重新签名后的集成态HSP。
 
 ## 使用场景
 集团内部有多个应用，多个应用中都有一个相同的动态共享包。为了节约开发成本并实现代码和资源的共享，多个应用可以共用一个基建HSP（集成态HSP）。
@@ -52,7 +55,7 @@
 
 3. 创建方-集成态HSP-打包配置（tgz包）。
 
-    (1) 配置项目签名信息，详情请参见[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)。
+    (1) 配置项目签名信息，详情请参见[应用/元服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)。
 
     (2) 配置release模式。
 
@@ -93,4 +96,4 @@
     }
     ```
     > **说明：** 
-    > 安装和运行应用前，必须配置项目签名信息，详见[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)。
+    > 安装和运行应用前，必须配置项目签名信息，详见[应用/元服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)。

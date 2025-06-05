@@ -1390,7 +1390,7 @@ InputMethod_ErrorCode OH_InputMethodProxy_SendPrivateCommand (InputMethod_InputM
 | -------- | -------- |
 | inputMethodProxy | 表示指向[InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy)实例的指针。 inputMethodProxy由调用[OH_InputMethodController_Attach](#oh_inputmethodcontroller_attach)获取。 | 
 | privateCommand | 私有命令, 定义在[InputMethod_PrivateCommand](#inputmethod_privatecommand)，最大大小为32KB。 | 
-| size | 私有命令的大小。最大大小为5。 | 
+| size | 私有命令的大小，最大大小为5。 | 
 
 **返回：**
 

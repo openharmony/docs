@@ -578,20 +578,6 @@ struct buttonTestDemo {
   build() {
     Row() {
       Column() {
-        Row() {
-          Button('TOP_START')
-            .onClick(() => {
-              this.isLocalizedAlignmentIndex = 0
-            })
-          Button('TOP')
-            .onClick(() => {
-              this.isLocalizedAlignmentIndex = 1
-            })
-          Button('TOP_END')
-            .onClick(() => {
-              this.isLocalizedAlignmentIndex = 2
-            })
-        }
 
         Row() {
           Button('START')
@@ -606,22 +592,7 @@ struct buttonTestDemo {
             .onClick(() => {
               this.isLocalizedAlignmentIndex = 5
             })
-        }
-
-        Row() {
-          Button('BOTTOM_START')
-            .onClick(() => {
-              this.isLocalizedAlignmentIndex = 6
-            })
-          Button('BOTTOM')
-            .onClick(() => {
-              this.isLocalizedAlignmentIndex = 7
-            })
-          Button('BOTTOM_END')
-            .onClick(() => {
-              this.isLocalizedAlignmentIndex = 8
-            })
-        }
+        }.margin(20)
 
         Row() {
           Button('Ltr')
@@ -636,13 +607,15 @@ struct buttonTestDemo {
             .onClick(() => {
               this.isDirectionIndex = 2
             })
-        }
-        Button('OK', { type: ButtonType.Capsule, stateEffect: true })
-          .backgroundColor(0x317aff)
-          .width(210)
-          .height(100)
-          .direction(this.isDirection[this.isDirectionIndex])
-          .align(this.isLocalizedAlignment[this.isLocalizedAlignmentIndex])
+        }.margin(20)
+        Row() {
+          Button('OK', { type: ButtonType.Capsule, stateEffect: true })
+            .backgroundColor(0x317aff)
+            .width(200)
+            .height(100)
+            .direction(this.isDirection[this.isDirectionIndex])
+            .align(this.isLocalizedAlignment[this.isLocalizedAlignmentIndex])
+        }.margin(20)
       }
       .width('100%')
     }

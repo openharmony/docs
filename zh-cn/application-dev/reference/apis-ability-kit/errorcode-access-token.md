@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Invalid Parameter. Error message: ${messageInfo}.
+Invalid Parameter. Error message: messageInfo.
 
 **可能原因**
 
@@ -21,14 +21,14 @@ Invalid Parameter. Error message: ${messageInfo}.
 6. 请求的权限不属于同一个权限组。
 7. 请求的权限中存在应用未声明的权限。
 8. 请求的全局开关类型非法。
-9. 指定的权限名不是user_grant权限。
+9. 指定的权限名不是[user_grant权限](../../security/AccessToken/permissions-for-all-user.md)。
 10. 指定的数组成员个数超过1024或成员均为无效值。
 11. 请求查看权限使用记录的起始结束时间不合法。
 12. 指定的权限名未在应用中声明。
 
 **处理步骤**
 
-检查入参，修正参数值为有效值，有效值请参考[权限列表](../../security/AccessToken/app-permissions.md)。
+检查入参，修正参数值为有效值，有效值请参考各[接口参数说明](js-apis-abilityAccessCtrl.md)。
 
 <!--Del-->
 ## 12100002 tokenId不存在
@@ -44,8 +44,7 @@ TokenId does not exist.
 
 **处理步骤**
 
-检查入参，修正参数值为有效值，有效值请参考[权限列表](../../security/AccessToken/app-permissions.md)。
-<!--DelEnd-->
+检查入参，确认tokenId值是否为目标应用的身份标识。
 
 <!--Del-->
 ## 12100003 权限名不存在
