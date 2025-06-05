@@ -97,7 +97,7 @@ Position of an object in 3D space. The value is of the [Vec3](#vec3) type.
 ## Rotation3
 type Rotation3 = Vec3
 
-Rotation of an object in 3D space. It is of the [Vec3](#vec3) type.
+Rotation of an object in 3D space. The value is of the [Vec3](#vec3) type.
 
 **System capability**: SystemCapability.ArkUi.Graphics3D
 
