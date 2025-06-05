@@ -4,10 +4,9 @@
 ## 亮点/特征
 1. 统一开发范式
 
-  ArkTS卡片，统一了卡片和应用页面的开发范式，应用页面的布局可以直接复用到卡片布局中，提升开发体验和开发效率。具体请参考图1 卡片工程结构对比。
+- ArkTS卡片统一了卡片和应用页面的开发范式，应用页面的布局可以直接复用到卡片布局中，提升开发体验和开发效率。具体请参考图1 卡片工程结构对比。
 
-**图1** 卡片工程结构对比 
-
+**图1** 卡片工程结构对比   
 ![WidgetProject](figures/WidgetProject.png)
 
 2. 卡片能力增强
@@ -17,11 +16,6 @@
 - 允许卡片中运行逻辑代码：开放逻辑代码运行后很多业务逻辑可以在卡片内部自闭环，拓宽了卡片的业务适用场景。
 
 ## 实现原理
-与JS卡片相比，ArkTS卡片支持在卡片中运行逻辑代码，为确保ArkTS卡片发生问题后不影响卡片使用方应用的使用，ArkTS卡片新增了卡片渲染服务用于运行卡片页面代码widgets.abc，卡片渲染服务由卡片管理服务管理。卡片使用方的每个卡片组件都对应了卡片渲染服务里的一个渲染实例，同一应用提供方的渲染实例运行在同一个ArkTS虚拟机运行环境中，不同应用提供方的渲染实例运行在不同的ArkTS虚拟机运行环境中，通过ArkTS虚拟机运行环境隔离不同应用提供方卡片之间的资源与状态。开发过程中需要注意的是globalThis对象的使用，相同应用提供方的卡片globalThis对象是同一个，不同应用提供方的卡片globalThis对象是不同的。
-
-**图2** ArkTS卡片实现原理
-
-![WidgetPrinciple](figures/WidgetPrinciple.png)
 
 - 卡片使用方：显示卡片内容的宿主应用，控制卡片在宿主中展示的位置，当前仅系统应用可以作为卡片使用方。
 
@@ -31,9 +25,13 @@
 
 - 卡片渲染服务：用于管理卡片渲染实例，渲染实例与卡片使用方的<!--Del-->[<!--DelEnd-->卡片组件<!--Del-->](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)<!--DelEnd-->一一绑定。卡片渲染服务根据form_config.json配置的卡片信息运行widgets.abc文件的卡片页面代码进行渲染，并将渲染后的数据发送至卡片使用方对应的<!--Del-->[<!--DelEnd-->卡片组件<!--Del-->](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)<!--DelEnd-->。
 
-**图3** ArkTS卡片渲染服务运行原理
+**图2** ArkTS卡片实现原理  
+![WidgetPrinciple](figures/WidgetPrinciple.png)
 
+**图3** ArkTS卡片渲染服务运行原理  
 ![WidgetRender](figures/WidgetRender.png)
+
+与JS卡片相比，ArkTS卡片支持在卡片中运行逻辑代码，为确保ArkTS卡片发生问题后不影响卡片使用方应用的使用，ArkTS卡片新增了卡片渲染服务用于运行卡片页面代码widgets.abc，卡片渲染服务由卡片管理服务管理。卡片使用方的每个卡片组件都对应了卡片渲染服务里的一个渲染实例，同一应用提供方的渲染实例运行在同一个ArkTS虚拟机运行环境中，不同应用提供方的渲染实例运行在不同的ArkTS虚拟机运行环境中，通过ArkTS虚拟机运行环境隔离不同应用提供方卡片之间的资源与状态。开发过程中需要注意的是globalThis对象的使用，相同应用提供方的卡片globalThis对象是同一个，不同应用提供方的卡片globalThis对象是不同的。
 
 ## ArkTS卡片类型
 ArkTS卡片分为动态卡片与静态卡片两种类型。
@@ -46,10 +44,9 @@ ArkTS卡片分为动态卡片与静态卡片两种类型。
 | 动态卡片 | 除了支持UI组件和布局能力，还支持通用事件能力和自定义动效能力。 | 用于有复杂业务逻辑和交互的场景。例如：卡片页面图片的刷新、卡片内容的刷新等。| 功能丰富但内存开销较大。|
 
 ### 动态卡片
-ArkTS卡片中提供了[postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction)接口用于卡片内部和提供方应用间的交互，当前支持router、message和call三种类型的事件，仅在卡片控件的点击事件中可以调用。
+ArkTS卡片中提供了[postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction)接口用于动态卡片内部和提供方应用间的交互，当前支持router、message和call三种类型的事件，仅在卡片控件的点击事件中可以调用。
 
-**图4** 动态卡片事件实现原理
-
+**图4** 动态卡片事件实现原理  
 ![WidgetPostCardAction](figures/WidgetPostCardAction.png)
 
 动态卡片事件的主要使用场景如下：
