@@ -1,6 +1,6 @@
 # 页面间转场 (pageTransition)
 
-当路由进行切换时，可以通过在pageTransition函数中自定义页面入场和页面退场的转场动效。详细指导请参考[页面转场动画](../../../ui/arkts-page-transition-animation.md)。
+当路由([router](../js-apis-router.md))进行切换时，可以通过在pageTransition函数中自定义页面入场和页面退场的转场动效。详细指导请参考[页面转场动画](../../../ui/arkts-page-transition-animation.md)。
 
 > **说明：**
 >
