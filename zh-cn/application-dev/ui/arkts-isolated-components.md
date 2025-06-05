@@ -87,7 +87,7 @@ workerPort.onmessage = (e: MessageEvents) => {}
 workerPort.onmessageerror = (e: MessageEvents) => {}
 workerPort.onerror = (e: ErrorEvent) => {}
 ```
-
+<!--deprecated_code_no_check-->
 ```ts
 IsolatedComponent({
   want: {
