@@ -73,6 +73,7 @@ create(config: PiPConfiguration): Promise&lt;PiPController&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 class Params {
   text: string = '';
@@ -187,6 +188,7 @@ create(config: PiPConfiguration, contentNode: typeNode.XComponent): Promise&lt;P
 import { BusinessError } from '@kit.BasicServicesKit';
 import { PiPWindow, UIContext } from '@kit.ArkUI';
 import { typeNode } from '@ohos.arkui.node';
+import { common } from '@kit.AbilityKit';
 
 let pipController: PiPWindow.PiPController | undefined = undefined;
 let xComponentController: XComponentController = new XComponentController();
