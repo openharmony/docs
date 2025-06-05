@@ -48,7 +48,7 @@ import { sharing } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.isSharingSupported((error: BusinessError, data: boolean) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -93,7 +93,7 @@ sharing
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -132,7 +132,7 @@ import { sharing } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.isSharing((error: BusinessError, data: boolean) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -177,7 +177,7 @@ sharing
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -224,7 +224,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing.startSharing(SHARING_WIFI, (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -281,7 +281,7 @@ sharing
     console.log('start wifi sharing successful');
   })
   .catch((error: BusinessError) => {
-    console.log('start wifi sharing failed');
+    console.error('start wifi sharing failed');
   });
 ```
 
@@ -327,7 +327,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing.stopSharing(SHARING_WIFI, (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -383,7 +383,7 @@ sharing
     console.log('stop wifi sharing successful');
   })
   .catch((error: BusinessError) => {
-    console.log('stop wifi sharing failed');
+    console.error('stop wifi sharing failed');
   });
 ```
 
@@ -422,7 +422,7 @@ import { sharing } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.getStatsRxBytes((error: BusinessError, data: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -467,7 +467,7 @@ sharing
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -506,7 +506,7 @@ import { sharing } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.getStatsTxBytes((error: BusinessError, data: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -551,7 +551,7 @@ sharing
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -590,7 +590,7 @@ import { sharing } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.getStatsTotalBytes((error: BusinessError, data: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -635,7 +635,7 @@ sharing
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -677,7 +677,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_BLUETOOTH = 2;
 sharing.getSharingIfaces(SHARING_BLUETOOTH, (error: BusinessError, data: string[]) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -730,7 +730,7 @@ sharing
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -772,7 +772,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing.getSharingState(SHARING_WIFI, (error: BusinessError, data: sharing.SharingIfaceState) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -825,7 +825,7 @@ sharing
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -867,7 +867,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing.getSharableRegexes(SHARING_WIFI, (error: BusinessError, data: string[]) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -920,7 +920,7 @@ sharing
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
