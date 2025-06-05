@@ -917,7 +917,7 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
 添加网络配置，使用Promise异步回调。
 
-**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG(仅系统应用可申请)
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -971,7 +971,7 @@ addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;)
 
 添加网络配置，使用callback异步回调。
 
-**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG(仅系统应用可申请)
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -1019,7 +1019,7 @@ getDeviceConfigs(): &nbsp;Array&lt;WifiDeviceConfig&gt;
 
 获取网络配置。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG
+**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG(仅系统应用可申请)
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -1151,7 +1151,9 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 。 
 
-当macType是1 - 设备MAC地址时，获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限（该权限仅系统应用可申请），无该权限时，macAddress 返回随机MAC地址。
+> **说明：**
+> - 当macType是1（设备MAC地址），获取macAddress还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限（该权限仅系统应用可申请），无该权限时，macAddress返回为空。
+> - 如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限（该权限仅系统应用可申请），则返回结果中的bssid为真实BSSID地址，否则为随机设备地址。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1237,8 +1239,6 @@ getLinkedInfoSync(): WifiLinkedInfo;
 > - 当macType是1（设备MAC地址），获取macAddress还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限（该权限仅系统应用可申请），无该权限时，macAddress返回为空。
 > - 如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限（该权限仅系统应用可申请），则返回结果中的bssid为真实BSSID地址，否则为随机设备地址。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
@@ -1290,7 +1290,7 @@ getLinkedInfoSync(): WifiLinkedInfo;
 | isRestricted | boolean | 是 | 否 | WLAN接入点是否限制数据量，true: 限制，false:不限制。 |
 | macType | number | 是 | 否 | MAC地址类型。0 - 随机MAC地址，1 - 设备MAC地址。 |
 | macAddress | string | 是 | 否 | 设备的MAC地址。 |
-| ipAddress | number | 是 | 否 | WLAN连接的IP地址(wifi连接信息和关于本机里的状态信息可以查看)。|
+| ipAddress | number | 是 | 否 | WLAN连接的IP地址。<br>1、IP地址在WiFi连接信息和"设置 > 关于本机 > 状态信息"中可以查看。<br>2、ipAddress值为number类型，需要转换为IP常用格式，具体请参考[IP格式转换](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs/faqs-connectivity-4)。|
 | connState | [ConnState](#connstate9) | 是 | 否 | WLAN连接状态。 |
 | channelWidth<sup>10+</sup> | [WifiChannelWidth](#wifichannelwidth9) | 是 | 否 | 当前连接热点的信道带宽。 |
 | wifiStandard<sup>10+</sup> | [WifiStandard](#wifistandard10) | 是 | 否 | 当前连接热点的Wi-Fi标准。 |
@@ -1436,7 +1436,7 @@ isFeatureSupported(featureId: number): boolean
 | 0x0040 | Wi-Fi&nbsp;AWare组网特性。 |
 | 0x8000 | AP&nbsp;STA共存特性。 |
 | 0x8000000 | WPA3-Personal&nbsp;SAE特性。 |
-| 0x10000000 | WPA3-Enterprise&nbsp;Suite-B。 |
+| 0x10000000 | WPA3-Enterprise&nbsp;Suite-B |
 | 0x20000000 | 增强开放特性。 | 
 
 **返回值：**
@@ -1517,7 +1517,7 @@ IPV4信息。
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| ipAddress | number | 是 | 否 | IP地址。 |
+| ipAddress | number | 是 | 否 | IP地址。(ipAddress值为number类型，需要转换为IP常用格式，具体请参考[IP格式转换](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs/faqs-connectivity-4)。|
 | gateway | number | 是 | 否 | 网关。 |
 | netmask | number | 是 | 否 | 掩码。 |
 | primaryDns | number | 是 | 否 | 主DNS服务器IP地址。 |
@@ -1834,7 +1834,7 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | connectState | [P2pConnectState](#p2pconnectstate9) | 是 | 否 | P2P连接状态。 |
-| isGroupOwner | boolean | 是 | 否 | true:是群主，false:不是群主。|
+| isGroupOwner | boolean | 是 | 否 | true:是GO，false:不是GO。|
 | groupOwnerAddr | string | 是 | 否 | 群组IP地址。| 
 
 
@@ -2401,12 +2401,11 @@ stopDiscoverDevices(): void
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
-
 ## wifiManager.getMultiLinkedInfo<sup>18+</sup>
 
 getMultiLinkedInfo(): &nbsp;Array&lt;WifiLinkedInfo&gt;
 
-获取MLO(Multi-Link Operation，多链路操作) Wi-Fi连接信息。
+获取MLO（Multi-Link Operation，多链路操作）Wi-Fi连接信息。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2444,7 +2443,6 @@ import { wifiManager } from '@kit.ConnectivityKit';
     console.error("failed:" + JSON.stringify(error));
   }
 ```
-
 ## WifiP2pGroupInfo<sup>9+</sup>
 
 表示P2P群组相关信息。
