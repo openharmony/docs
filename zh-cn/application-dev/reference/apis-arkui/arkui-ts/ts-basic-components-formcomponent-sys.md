@@ -164,7 +164,7 @@ visibility(value: Visibility)
 
 onAcquired(callback:&nbsp;Callback[\<FormCallbackInfo>](#formcallbackinfo12))&nbsp;
 
-获取到卡片后触发，返回卡片的id。
+获取到卡片后触发的回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -174,7 +174,7 @@ onAcquired(callback:&nbsp;Callback[\<FormCallbackInfo>](#formcallbackinfo12))&nb
 
 | 参数名 | 类型                                | 必填 | 说明       |
 | ------ | ----------------------------------- | ---- | ---------- |
-| callback | [FormCallbackInfo](#formcallbackinfo12) | 是   | 卡片的id。 |
+| callback | Callback<[FormCallbackInfo](#formcallbackinfo12)> | 是   | 回调函数，获得FormCallbackInfo对象。 |
 
 ### onError
 
@@ -212,7 +212,7 @@ onRouter(callback:&nbsp;(info:&nbsp;any)&nbsp;=&gt;&nbsp;void)
 
 onUninstall(callback:&nbsp;Callback[\<FormCallbackInfo>](#formcallbackinfo12))&nbsp;
 
-组件卸载回调，返回卸载卡片的id。
+卡片卸载回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -220,9 +220,9 @@ onUninstall(callback:&nbsp;Callback[\<FormCallbackInfo>](#formcallbackinfo12))&n
 
 **参数：** 
 
-| 参数名 | 类型                                | 必填 | 说明       |
-| ------ | ----------------------------------- | ---- | ---------- |
-| callback   | [FormCallbackInfo](#formcallbackinfo12) | 是   | 卡片的id。 |
+| 参数名      | 类型                                | 必填 | 说明       |
+|----------| ----------------------------------- | ---- | ---------- |
+| callback | Callback<[FormCallbackInfo](#formcallbackinfo12)> | 是   | 回调函数，获得FormCallbackInfo对象。 |
 
 
 ## 示例
