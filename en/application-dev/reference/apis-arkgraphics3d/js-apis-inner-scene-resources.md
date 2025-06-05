@@ -25,6 +25,7 @@ Enumerates the scene resource types, which are used to classify resources in a s
 | ANIMATION | 5 | Animation resource.|
 | SHADER | 6 | Shader resource.|
 | IMAGE | 7 | Image resource.|
+| MESH_RESOURCE<sup>18+</sup> | 8 | Mesh resource.|
 
 ## SceneResource
 Describes a resource in a scene.
@@ -96,7 +97,7 @@ Material resource, which inherits from [SceneResource](#sceneresource).
 
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | ---- | ---- | ---- |
-| materialType | [MaterialType](#materialtype) | Yes| No| Material type.|
+| materialType | [MaterialType](#materialtype) | Yes| No| Type of the material.|
 
 ## ShaderMaterial
 Shader material, which inherits from [Material](#material).
@@ -131,6 +132,11 @@ Mesh resource, which inherits from [SceneResource](#sceneresource).
 | subMeshes | [SubMesh](#submesh)[] | Yes| No| Array of sub-meshes.|
 | aabb | [Aabb](js-apis-inner-scene-types.md#aabb) | Yes| No| Axis aligned bounding box.|
 | materialOverride | [Material](#material) | No| Yes| Material. The default value is undefined.|
+
+## MeshResource<sup>18+</sup>
+Mesh resource, which inherits from [SceneResource](#sceneresource).
+
+**System capability**: SystemCapability.ArkUi.Graphics3D
 
 ## Animation
 Animation resource, which inherits from [SceneResource](#sceneresource).
@@ -185,6 +191,8 @@ Called when the animation starts to play. The start operation is triggered by ca
 | Name| Type| Mandatory| Description|
 | ---- | ---- | ---- | ---- |
 | callback | Callback\<void> | Yes| Callback function. The return value is null.|
+
+ 
 
 **System capability**: SystemCapability.ArkUi.Graphics3D
 
