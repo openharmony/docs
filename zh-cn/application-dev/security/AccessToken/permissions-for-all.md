@@ -474,3 +474,15 @@
 **授权方式**：系统授权（system_grant）
 
 **起始版本**：17
+
+## ohos.permission.ACCESS_FIDO2_ONLINEAUTH
+
+允许应用使用通行密钥服务的NDK。
+
+可申请此权限的特殊场景与功能：应用需要通过通行密钥服务完成网页免密认证。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：20
