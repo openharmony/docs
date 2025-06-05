@@ -44,7 +44,7 @@
 
 2. 设置图片资源，并添加保存控件。
    
-   保存控件是一种类似于按钮的安全控件，由图标、文本和背景组成。其中，背景是必选的，图标和文本至少选择一个。图标和文本可以从已有的选项中选择，也可以通过[setIcon](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md#seticon20)和[setText](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md#settext20)自定义。在声明安全控件的接口时，有传参和不传参两种方式。不传参将默认创建一个包含图标、文字和背景的按钮；传参则根据参数创建，不包含未配置的元素。
+   保存控件是由图标、文本和背景组成的类似按钮的安全控件。其中，背景是必选的，图标和文本至少选择一个。图标和文本可以从已有的选项中选择，也可以通过[setIcon](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md#seticon20)和[setText](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md#settext20)自定义。在声明安全控件的接口时，有传参和不传参两种方式。不传参将默认创建一个包含图标、文字和背景的按钮；传参则根据参数创建，不包含未配置的元素。
 
    当前示例使用默认参数。具体请参见[SaveButton控件](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md)。此外，所有安全控件都继承[安全控件通用属性](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md)，可用于定制样式。
    
@@ -99,7 +99,7 @@
                  // 免去权限申请和权限请求等环节，获得临时授权，保存对应图片。
                  savePhotoToGallery(context);
                } else {
-                 promptAction.openToast({ message: '设置权限失败！' })
+                 promptAction.openToast({ message: '设置权限失败！' });
                }
              })
          }

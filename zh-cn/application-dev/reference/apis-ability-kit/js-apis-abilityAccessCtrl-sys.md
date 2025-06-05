@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import { abilityAccessCtrl } from '@kit.AbilityKit'
+import { abilityAccessCtrl } from '@kit.AbilityKit';
 ```
 
 ## AtManager

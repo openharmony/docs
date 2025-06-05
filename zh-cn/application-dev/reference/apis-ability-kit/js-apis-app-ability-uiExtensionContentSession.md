@@ -1,6 +1,6 @@
 # @ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)
 
-UIExtensionContentSession是[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)加载界面内容时创建的实例对象，当UIExtensionComponent控件拉起指定的UIExtensionAbility时，UIExtensionAbility会创建UIExtensionContentSession对象，并通过[onSessionCreate](js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate)回调传递给开发者。一个UIExtensionComponent控件对应一个UIExtensionContentSession对象，提供界面加载，结果通知等方法。每个UIExtensionAbility的UIExtensionContentSession之间互不影响，可以各自进行操作。
+UIExtensionContentSession是[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)加载界面内容时创建的实例对象，当UIExtensionComponent控件拉起指定的UIExtensionAbility时，UIExtensionAbility会创建UIExtensionContentSession对象，并通过[onSessionCreate](js-apis-app-ability-uiExtensionAbility.md#onsessioncreate)回调传递给开发者。一个UIExtensionComponent控件对应一个UIExtensionContentSession对象，提供界面加载，结果通知等方法。每个UIExtensionAbility的UIExtensionContentSession之间互不影响，可以各自进行操作。
 
 > **说明：**
 >
@@ -14,7 +14,9 @@ UIExtensionContentSession是[UIExtensionAbility](js-apis-app-ability-uiExtension
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 ```
 
-## UIExtensionContentSession.loadContent
+## UIExtensionContentSession
+
+### loadContent
 
 loadContent(path: string, storage?: LocalStorage): void
 
@@ -56,11 +58,11 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.loadContentByName<sup>18+</sup>
+### loadContentByName<sup>18+</sup>
 
 loadContentByName(name: string, storage?: LocalStorage): void
 
-为[UIExtensionAbility](./js-apis-app-ability-uiExtensionAbility.md)加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，支持通过[LocalStorage](../../ui/state-management/arkts-localstorage.md)传递状态属性给被加载的页面。该接口用于开发者在UIExtensionAbility的[onSessionCreate](./js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate)生命周期加载命名路由页面。
+为[UIExtensionAbility](./js-apis-app-ability-uiExtensionAbility.md)加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，支持通过[LocalStorage](../../ui/state-management/arkts-localstorage.md)传递状态属性给被加载的页面。该接口用于开发者在UIExtensionAbility的[onSessionCreate](./js-apis-app-ability-uiExtensionAbility.md#onsessioncreate)生命周期加载命名路由页面。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -73,11 +75,10 @@ loadContentByName(name: string, storage?: LocalStorage): void
 
 **错误码：**
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------ | ------ |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
 
 **示例：**
@@ -135,7 +136,7 @@ struct UIExtensionPage {
 }
 ```
 
-## UIExtensionContentSession.terminateSelf
+### terminateSelf
 
 terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
@@ -191,7 +192,7 @@ struct Index {
 }
 ```
 
-## UIExtensionContentSession.terminateSelf
+### terminateSelf
 
 terminateSelf(): Promise&lt;void&gt;
 
@@ -239,7 +240,7 @@ struct Index {
 }
 ```
 
-## UIExtensionContentSession.terminateSelfWithResult
+### terminateSelfWithResult
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void
 
@@ -306,7 +307,7 @@ struct Index {
 }
 ```
 
-## UIExtensionContentSession.terminateSelfWithResult
+### terminateSelfWithResult
 
 terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
@@ -378,7 +379,7 @@ struct Index {
 }
 ```
 
-## UIExtensionContentSession.setWindowPrivacyMode
+### setWindowPrivacyMode
 
 setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
@@ -439,7 +440,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.setWindowPrivacyMode
+### setWindowPrivacyMode
 
 setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -495,7 +496,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
+### startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>): void
@@ -557,7 +558,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
+### startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback): Promise\<void>
@@ -624,7 +625,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.getUIExtensionWindowProxy<sup>12+</sup>
+### getUIExtensionWindowProxy<sup>12+</sup>
 
 getUIExtensionWindowProxy(): uiExtension.WindowProxy
 

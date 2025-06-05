@@ -467,7 +467,7 @@ int32_t (*enableHoverMode)(ArkUI_NativeDialogHandle handle, bool enableHoverMode
 | 名称 | 描述 | 
 | -------- | -------- |
 | handle | 指向自定义弹窗控制器的指针。  | 
-| enableHoverMode | 是否相应悬停态，默认false。  |
+| enableHoverMode | 是否相应悬停态，默认false。true表示响应悬停态，false表示不响应悬停态。  |
 
 **注解：**
 
@@ -523,7 +523,7 @@ int32_t (*setFocusable)(ArkUI_NativeDialogHandle handle, bool focusable)
 | 名称 | 描述 | 
 | -------- | -------- |
 | handle | 指向自定义弹窗控制器的指针。  | 
-| focusable | 自定义弹窗是否获取焦点。<br />默认值：true  | 
+| focusable | 自定义弹窗是否获取焦点。true表示自动获取焦点，false表示不自动获取焦点。<br />默认值：true  | 
 
 **注解：**
 

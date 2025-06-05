@@ -30,6 +30,12 @@ generateKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions
 | keyAlias | string                      | 是   | 密钥别名。密钥别名的最大长度为128字节，建议不包含个人信息等敏感词汇。               |
 | huksOptions  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于存放生成key所需的[属性标签](native__huks__type_8h.md#枚举)。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 
+**返回值：**
+
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
@@ -122,6 +128,12 @@ deleteKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) 
 | userId   | number                      | 是   | 用户ID。                 |
 | keyAlias | string                      | 是   | 密钥别名，应为生成key时传入的别名。 |
 | huksOptions  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](js-apis-huks.md#huksauthstoragelevel11)指定需删除密钥的安全级别，可传空，传空时默认DE。            |
+
+**返回值：**
+
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -226,6 +238,12 @@ importKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) 
 | userId   | number                      | 是   | 用户ID。                 |
 | keyAlias | string                      | 是   | 密钥别名。密钥别名的最大长度为128字节，建议不包含个人信息等敏感词汇。                          |
 | huksOptions  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于导入时所需TAG和需要导入的密钥。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
+
+**返回值：**
+
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -631,6 +649,12 @@ importWrappedKeyItemAsUser(userId: number, keyAlias: string, wrappingKeyAlias: s
 | keyAlias         | string                      | 是   | 密钥别名，存放待导入密钥的别名。              |
 | wrappingKeyAlias | string                      | 是   | 密钥别名，对应密钥用于解密加密的密钥数据。    |
 | huksOptions          | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于导入时所需TAG和需要导入的加密的密钥数据。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
+
+**返回值：**
+
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 

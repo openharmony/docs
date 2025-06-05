@@ -277,7 +277,9 @@ SheetType.POPUP
 
 **适配指导**
 
-默认行为变更，开发者无需适配。若API version 18前希望实现的效果为位于弹出节点底部并且同弹出节点左对齐或者右对齐，可以通过设置placement值为BottomLeft或BottomRight来实现对应显示效果。
+默认行为变更，开发者无需适配。若API version 18前，希望实现的效果为位于弹出节点底部并且同弹出节点左对齐或者右对齐，那么在API version 18及以后，可以通过设置字段placement的值为BottomLeft或BottomRight，来实现对应显示效果。
+
+
 ## cl.arkui. 6当使用自定义组件名和系统组件属性重名时编译报错变更
 
 **访问级别**

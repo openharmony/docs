@@ -62,9 +62,9 @@ static JSVM_Value TriggerOOMError(JSVM_Env env, JSVM_CallbackInfo info)
         }
     }
     if (oomHandlerFinished) {
-      OH_LOG_INFO(LOG_APP, "JSVM Trigger OOM-Error: success");
+        OH_LOG_INFO(LOG_APP, "JSVM Trigger OOM-Error: success");
     } else {
-      OH_LOG_ERROR(LOG_APP, "JSVM Trigger OOM-Error: failed");
+        OH_LOG_ERROR(LOG_APP, "JSVM Trigger OOM-Error: failed");
     }
     // 取消对OOM Error处理函数的设置
     JSVM_CALL(OH_JSVM_SetHandlerForOOMError(vm, NULL));
@@ -127,9 +127,9 @@ static JSVM_Value TriggerFatalError(JSVM_Env env, JSVM_CallbackInfo info)
         }
     }
     if (fatalHandlerFinished) {
-      OH_LOG_INFO(LOG_APP, "JSVM Trigger Fatal-Error: success");
+        OH_LOG_INFO(LOG_APP, "JSVM Trigger Fatal-Error: success");
     } else {
-      OH_LOG_ERROR(LOG_APP, "JSVM Trigger Fatal-Error: failed");
+        OH_LOG_ERROR(LOG_APP, "JSVM Trigger Fatal-Error: failed");
     }
     // 取消对Fatal Error处理函数的设置
     JSVM_CALL(OH_JSVM_SetHandlerForFatalError(vm, NULL));
@@ -178,7 +178,7 @@ void OnPromiseReject(JSVM_Env env, JSVM_PromiseRejectEvent rejectEvent, JSVM_Val
     OH_JSVM_GetProperty(env, rejectInfo, key2, &value);
     JSVM_Value js_number;
     OH_JSVM_CoerceToNumber(env, value, &js_number);
-    double res;
+    double res = 0;
     OH_JSVM_GetValueDouble(env, js_number, &res);
     if (res == 42 && isPromise) {
         promiseRejectHandlerFinished = true;
@@ -199,11 +199,11 @@ static JSVM_Value TriggerPromiseReject(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_CompileScript(env, strVal, nullptr, 0, false, nullptr, &script);
     JSVM_Value result;
     JSVM_Status status = OH_JSVM_RunScript(env, script, &result);
-    
+
     if (promiseRejectHandlerFinished) {
-      OH_LOG_INFO(LOG_APP, "JSVM Trigger PromiseReject: success");
+        OH_LOG_INFO(LOG_APP, "JSVM Trigger PromiseReject: success");
     } else {
-      OH_LOG_ERROR(LOG_APP, "JSVM Trigger PromiseReject: failed");
+        OH_LOG_ERROR(LOG_APP, "JSVM Trigger PromiseReject: failed");
     }
     // 取消对Promise Reject处理函数的设置
     JSVM_CALL(OH_JSVM_SetHandlerForPromiseReject(vm, NULL));

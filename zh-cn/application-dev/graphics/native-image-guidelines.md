@@ -20,7 +20,7 @@ NativeImage是提供**Surface关联OpenGL外部纹理**的模块，表示图形�
 | OH_NativeImage_GetTransformMatrix (OH_NativeImage \*image, float matrix[16]) | 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变化矩阵。 |
 | OH_NativeImage_Destroy (OH_NativeImage \*\*image)            | 销毁通过OH_NativeImage_Create创建的OH_NativeImage实例，销毁后该OH_NativeImage指针会被赋值为空。 |
 
-详细的接口说明请参考[native_image](../reference/apis-arkgraphics2d/_o_h___native_image.md)。
+详细的接口说明请参考[native_image](../reference/apis-arkgraphics2d/capi-oh-nativeimage.md)。
 
 ## 开发步骤
 

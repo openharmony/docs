@@ -88,11 +88,11 @@ export default class EntryAbility extends UIAbility {
 
 ## 拉起方应用实现应用跳转
 
-下面通过三个案例，分别介绍如何使用[openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)与[startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口实现应用跳转，以及如何在[Web组件](../reference/apis-arkweb/ts-basic-components-web.md)中实现应用跳转。
+下面通过三个案例，分别介绍如何使用[openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#openlink12)与[startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability)接口实现应用跳转，以及如何在[Web组件](../reference/apis-arkweb/ts-basic-components-web.md)中实现应用跳转。
 
 ### 使用openLink实现应用跳转
 
-在[openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)接口的link字段中传入目标应用的URL信息，并将options字段中的`appLinkingOnly`配置为`false`。
+在[openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#openlink12)接口的link字段中传入目标应用的URL信息，并将options字段中的`appLinkingOnly`配置为`false`。
 
 
 示例代码如下：
@@ -137,7 +137,7 @@ struct Index {
 
 ### 使用startAbility实现应用跳转
 
-[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口是将应用链接放入want中，通过调用[隐式want匹配](explicit-implicit-want-mappings.md#隐式want匹配原理)的方法触发应用跳转。通过[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口启动时，还需要调用方传入待匹配的action和entity。
+[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability)接口是将应用链接放入want中，通过调用[隐式want匹配](explicit-implicit-want-mappings.md#隐式want匹配原理)的方法触发应用跳转。通过[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability)接口启动时，还需要调用方传入待匹配的action和entity。
 
 
 示例代码如下：
@@ -180,7 +180,7 @@ struct Index {
 
 ### 使用Web组件实现应用跳转
 
-Web组件需要跳转DeepLink链接应用时，可通过拦截回调[onLoadIntercept](../reference/apis-arkweb/ts-basic-components-web.md#onloadintercept10)中对定义的事件进行处理，实现应用跳转。
+Web组件需要跳转DeepLink链接应用时，可通过拦截回调[onLoadIntercept](../reference/apis-arkweb/ts-basic-components-web-events.md#onloadintercept10)中对定义的事件进行处理，实现应用跳转。
 
 示例代码如下：
 

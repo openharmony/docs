@@ -50,8 +50,7 @@ this.objLink= ...
 >
 > - \@Prop装饰的变量和数据源的关系是是单向同步，\@Prop装饰的变量在本地拷贝了数据源，所以它允许本地更改，如果父组件中的数据源有更新，\@Prop装饰的变量本地的修改将被覆盖。
 >
-> - \@ObjectLink装饰的变量和数据源的关系是双向同步，\@ObjectLink装饰的变量相当于指向数据源的指针。禁止对\@ObjectLink装饰的变量赋值，如果一旦发生\@ObjectLink装饰的变量的赋值，则同步链将被打断。因为\@ObjectLink装饰的变量通过数据源（Object）引用来初始化。对于实现双向数据同步的@ObjectLink，赋值相当于更新父组件中的数组项或者class的属性，TypeScript/JavaScript不能实现，会发生运行时报错。
-
+> - \@ObjectLink装饰的变量和数据源的关系是双向同步，\@ObjectLink装饰的变量相当于指向数据源的指针。禁止对\@ObjectLink装饰的变量赋值，如果发生\@ObjectLink装饰的变量的赋值，则同步链将被打断。
 
 ## 变量的传递/访问规则说明
 
@@ -189,7 +188,7 @@ struct Parent {
 
    a. \@Observed装饰的class的实例会被不透明的代理对象包装，代理了class上的属性的setter和getter方法。
 
-   b. 子组件中\@ObjectLink装饰的从父组件初始化，接收被\@Observed装饰的class的实例，\@ObjectLink的包装类会将自己注册给\@Observed class。
+   b. 子组件中\@ObjectLink装饰的变量从父组件初始化，接收被\@Observed装饰的class的实例，\@ObjectLink的包装类会将自己注册给\@Observed class。这里的注册行为指的是，\@ObjectLink包装类会向\@Observed实例提供自身的引用，让\@Observed实例将其添加到依赖列表中，以便属性变化时能通知到它。
 
 2. 属性更新：当\@Observed装饰的class属性改变时，会执行到代理的setter和getter，然后遍历依赖它的\@ObjectLink包装类，通知数据更新。
 
@@ -1444,11 +1443,11 @@ struct ParentComp {
 
 对于Text('Parent: incr counter[0].counter')的onClick事件，this.counter[0].incrSubCounter(10)调用incrSubCounter方法使SubCounter的counter值增加10，UI同步刷新。
 
-但是，在Text('Parent: set.counter to 10')的onClick中调用this.counter[0].setSubCounter(10)，SubCounter的counter值却无法重置为10。
+然而，在Text('Parent: set.counter to 10')的onClick中调用this.counter[0].setSubCounter(10)时，SubCounter的counter值无法重置为10。
 
 incrSubCounter和setSubCounter都是同一个SubCounter的函数。在第一个点击处理时调用incrSubCounter可以正确更新UI，而第二个点击处理调用setSubCounter时却没有更新UI。实际上incrSubCounter和setSubCounter两个函数都不能触发Text('${this.value.subCounter.counter}')的更新，因为\@ObjectLink value : ParentCounter仅能观察其代理ParentCounter的属性，对于this.value.subCounter.counter是SubCounter的属性，无法观察到嵌套类的属性。
 
-但是，第一个click事件调用this.counter[0].incrCounter()将CounterComp自定义组件中\@ObjectLink value: ParentCounter标记为已更改。此时触发Text('${this.value.subCounter.counter}')的更新。 如果在第一个点击事件中删除this.counter[0].incrCounter()，也无法更新UI。
+另外，第一个click事件调用this.counter[0].incrCounter()将CounterComp自定义组件中的\@ObjectLink value: ParentCounter标记为已更改，会触发Text('${this.value.subCounter.counter}')的更新。如果在第一个点击事件中删除this.counter[0].incrCounter()，则无法更新UI。
 
 【正例】
 
@@ -1700,6 +1699,7 @@ struct ParentComp {
 ```ts
 @Component
 struct CounterComp {
+  // @Prop对对象进行本地拷贝，导致与父组件对象不共享
   @Prop value: ParentCounter = new ParentCounter(0);
   @Prop subValue: SubCounter = new SubCounter(0);
   build() {
@@ -1707,11 +1707,13 @@ struct CounterComp {
       Text(`this.subValue.counter: ${this.subValue.counter}`)
         .fontSize(20)
         .onClick(() => {
+          // 修改本地拷贝对象，UI刷新
           this.subValue.counter += 7;
         })
       Text(`this.value.counter：increase 7 `)
         .fontSize(20)
         .onClick(() => {
+          // 由于经过拷贝，修改无法触发UI刷新
           this.value.incrSubCounter(7);
         })
       Divider().height(2)

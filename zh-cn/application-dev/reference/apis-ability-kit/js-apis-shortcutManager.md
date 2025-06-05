@@ -39,7 +39,7 @@ setShortcutVisibleForSelf(id: string, visible: boolean) : Promise\<void>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17700070 | The specified shortcut id is not exist. |
+| 17700070 | The specified shortcut id is illegal. |
 
 **示例：**
 
@@ -54,4 +54,32 @@ shortcutManager.setShortcutVisibleForSelf("shortcut_id", false)
   }).catch((err: BusinessError) => {
   console.error(`setShortcutVisibleForSelf errData is errCode:${err.code}  message:${err.message}`);
 });
+```
+
+## shortcutManager.getAllShortcutInfoForSelf
+
+getAllShortcutInfoForSelf(): Promise\<Array\<ShortcutInfo>>
+
+查询当前应用[配置文件](../../quick-start/module-configuration-file.md#shortcuts标签)中定义的所有快捷方式信息，使用Promise异步回调。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
+
+**返回值：**
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Promise<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>> | Promise对象，返回应用配置文件中定义的所有快捷方式信息。 |
+
+**示例：**
+
+```ts
+import { shortcutManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+shortcutManager.getAllShortcutInfoForSelf()
+  .then((data: shortcutManager.ShortcutInfo[]) => {
+    console.log("shortcut data is" + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error(`getAllShortcutInfoForSelf errData is errCode:${err.code}  message:${err.message}`);
+  });
 ```

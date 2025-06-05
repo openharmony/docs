@@ -12,13 +12,13 @@
 
 ## 接口
 
-### XComponent<sup>18+</sup>
+### XComponent<sup>19+</sup>
 
 XComponent(params: NativeXComponentParameters)
 
 在native侧获取XComponent节点实例、注册XComponent持有的Surface的生命周期回调和触摸、鼠标、按键等组件事件回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -26,7 +26,7 @@ XComponent(params: NativeXComponentParameters)
 
 | 参数名  | 类型                                | 必填 | 说明                           |
 | ------- | --------------------------------------- | ---- | ------------------------------ |
-| params | [NativeXComponentParameters](#nativexcomponentparameters18) | 是   | 定义XComponent的具体配置参数。 |
+| params | [NativeXComponentParameters](#nativexcomponentparameters19) | 是   | 定义XComponent的具体配置参数。 |
 
 ### XComponent<sup>12+</sup>
 
@@ -98,11 +98,11 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 | controller | [XComponentController](#xcomponentcontroller) | 是 | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
 | imageAIOptions | [ImageAIOptions](ts-image-common.md#imageaioptions) | 否 | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
 
-## NativeXComponentParameters<sup>18+</sup>
+## NativeXComponentParameters<sup>19+</sup>
 
 定义XComponent的具体配置参数。这种方式创建的XComponent可以对应的[FrameNode](../js-apis-arkui-frameNode.md)可以传递到native侧使用NDK接口构建UI的方式[监听组件事件](../../../ui/ndk-listen-to-component-events.md)以及进行surface生命周期相关的设置。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -547,7 +547,9 @@ lockCanvas(): Canvas | null
 >
 > 只支持TEXTURE和SURFACE模式。
 >
-> 此接口不影响NDK侧的绘制流程，但是画布对象的绘制内容和NDK侧的绘制内容共享XComponent的同一显示区域，同时使用可能导致绘制内容重叠或者显示异常，建议谨慎混用。
+> 使用此接口后，同时在NDK侧获取NativeWindow并调用相关接口进行绘制，可能出现缓冲区竞争和上下文冲突而发生绘制画面错误等异常，因此不允许使用。
+>
+> 此接口需要和[unlockCanvasAndPost](#unlockcanvasandpost20)接口配对使用，具体参考[示例3使用画布对象在XComponent上绘制内容](#示例3使用画布对象在xcomponent上绘制内容)。
 
 ### unlockCanvasAndPost<sup>20+</sup>
 
@@ -570,7 +572,9 @@ unlockCanvasAndPost(canvas: Canvas): void
 >
 > 2. 只支持TEXTURE和SURFACE模式。
 >
-> 3. 此接口不影响NDK侧的绘制流程，但是画布对象的绘制内容和NDK侧的绘制内容共享XComponent的同一显示区域，同时使用可能导致绘制内容重叠或者显示异常，建议谨慎混用。
+> 3. 使用此接口后，同时在NDK侧获取NativeWindow并调用相关接口进行绘制，可能出现缓冲区竞争和上下文冲突而发生绘制画面错误等异常，因此不允许使用。
+>
+> 4. 此接口需要和[lockCanvas](#lockcanvas20)接口配对使用，具体参考[示例3使用画布对象在XComponent上绘制内容](#示例3使用画布对象在xcomponent上绘制内容)。
 
 ## SurfaceRotationOptions<sup>12+</sup>对象说明
 
@@ -747,42 +751,67 @@ struct XComponentExample {
 
 通过setXComponentSurfaceRotation设置surface在屏幕旋转过程中锁定方向，不跟随屏幕进行旋转。
 
+> **说明：**
+>
+> 本示例画图逻辑具体实现（和nativeRender相关的函数实现）可以参考<!--RP2-->[ArkTSXComponent示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)<!--RP2End-->
+
 ```ts
 // xxx.ets
+import nativeRender from 'libnativerender.so';
+
+class MyXComponentController extends XComponentController {
+  onSurfaceCreated(surfaceId: string): void {
+    console.log(`onSurfaceCreated surfaceId: ${surfaceId}`);
+    nativeRender.SetSurfaceId(BigInt(surfaceId));
+  }
+
+  onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {
+    console.log(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}}`);
+    nativeRender.ChangeSurface(BigInt(surfaceId), rect.surfaceWidth, rect.surfaceHeight);
+  }
+
+  onSurfaceDestroyed(surfaceId: string): void {
+    console.log(`onSurfaceDestroyed surfaceId: ${surfaceId}`);
+    nativeRender.DestroySurface(BigInt(surfaceId));
+  }
+}
+
 @Entry
 @Component
 struct Index {
   @State isLock: boolean = true;
   @State xc_width: number = 500;
   @State xc_height: number = 700;
-  myXComponentController: XComponentController = new XComponentController();
+  myXComponentController: XComponentController = new MyXComponentController();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
       XComponent({
-        id: 'xComponentId',
+        id: "XComponent",
         type: XComponentType.SURFACE,
-        libraryname: 'nativerender',
         controller: this.myXComponentController
       })
-      .width(this.xc_width)
-      .height(this.xc_height)
-      .onLoad(() => {
-        let surfaceRotation: SurfaceRotationOptions = { lock: this.isLock };
-        this.myXComponentController.setXComponentSurfaceRotation(surfaceRotation);
-        console.log("Surface getXComponentSurfaceRotation lock = " +
+        .onLoad(() => {
+          let surfaceRotation: SurfaceRotationOptions = { lock: this.isLock };
+          this.myXComponentController.setXComponentSurfaceRotation(surfaceRotation);
+          console.log("Surface getXComponentSurfaceRotation lock = " +
           this.myXComponentController.getXComponentSurfaceRotation().lock);
-      })
+        })
+        .width(this.xc_width)
+        .height(this.xc_height)
+      Button("Draw")
+        .onClick(() => {
+          let surfaceId = this.myXComponentController.getXComponentSurfaceId();
+          nativeRender.DrawPattern(BigInt(surfaceId));
+        })
     }
-    .width('100%')
-    .height('100%')
   }
 }
 ```
 
 ### 示例3（使用画布对象在XComponent上绘制内容）
 
-通过lockCanvas返回的画布对象调用对应的绘制接口，结合unlockCanvasAndPost在XComponent上绘制内容。
+应用调用lockCanvas返回画布对象，然后通过画布对象调用对应的绘制接口，最后调用unlockCanvasAndPost在XComponent上绘制内容。
 
 ```ts
 // xxx.ets
@@ -803,21 +832,21 @@ struct Index {
           this.mCanvas = this.xcController.lockCanvas();
           if (this.mCanvas) {
             this.mCanvas.drawColor(255, 240, 250, 255); // 每次绘制前必须完全重绘整个XComponent区域,可以调用此方法实现
-            const brush = new drawing.Brush();
-            brush.setColor({
+            const brush = new drawing.Brush(); // 创建画刷对象
+            brush.setColor({ // 设置画刷的颜色
               alpha: 255,
               red: 39,
               green: 135,
               blue: 217
             });
-            this.mCanvas.attachBrush(brush);
-            this.mCanvas.drawRect({
+            this.mCanvas.attachBrush(brush); // 绑定画刷到画布上
+            this.mCanvas.drawRect({ // 绘制一个矩形
               left: 300,
               right: 800,
               top: 100,
               bottom: 800
             });
-            this.mCanvas.detachBrush();
+            this.mCanvas.detachBrush(); // 将画刷与画布解绑
             this.xcController.unlockCanvasAndPost(this.mCanvas);
           }
         })

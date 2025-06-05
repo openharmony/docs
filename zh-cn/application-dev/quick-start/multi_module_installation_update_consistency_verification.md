@@ -24,9 +24,9 @@
 |versionName|标识向用户展示的应用版本号，以entry为主，不影响应用运行。该字段来源[app.json5配置文件](./app-configuration-file.md)。|否|否|
 |minCompatibleVersionCode|标识应用能够兼容的最低历史版本号，多模块安装更新时，保留最大值。该字段来源[app.json5配置文件](./app-configuration-file.md)中versionName字段。|否|否|
 |targetAPIVersion|标识应用运行需要的API目标版本，多模块安装更新时，保留最大值。该字段来源[app.json5配置文件](./app-configuration-file.md)中targetAPIVersion字段。|否|否|
-|apiReleaseType|标识编译HAP的SDK发布类型。增量安装时，未区分HAP和HSP，均未拦截。该字段来源[app.json5配置文件](./app-configuration-file.md)中apiReleaseType字段。|否|是|
+|apiReleaseType|标识编译HAP的SDK发布类型。增量安装时，未检验一致性。该字段来源[app.json5配置文件](./app-configuration-file.md)中apiReleaseType字段。|否|是|
 |compatibleVersion|标识应用运行需要最小的SDK版本，多模块安装更新时，保留最大值。|否|否|
-|<!--DelRow--> singleton|标识应用是否安装在共有用户下。|不涉及|是|
+|<!--DelRow--> singleton|标识应用是否安装在共有用户下。|否|是|
 |<!--DelRow--> appType|标识应用的类型，分为SYSTEM_APP、THIRD_SYSTEM_APP、THIRD_PARTY_APP。|是|是|
 |<!--DelRow--> isStage|标识应用是否为Stage模型。|是，FA和stage同版本不允许变更|是|
 |targetBundleName|标识当前包所指定的目标应用，配置该字段的应用为具有overlay特征的应用。该字段来源[app.json5配置文件](./app-configuration-file.md)中targetBundleName字段。|是|是|
@@ -34,5 +34,5 @@
 |bundleType|标识应用的类型。该字段来源[app.json5配置文件](./app-configuration-file.md)中bundleType字段。|是|是|
 |installationFree|标识是否支持免安装。该字段来源[module.json5配置文件](./module-configuration-file.md)中installationFree字段。|是|是|
 |debug|标识是否可调式（IDE断点调测）。该字段来源[app.json5配置文件](./app-configuration-file.md)中debug字段。|是|否|
-|moduleType|标识应用包的类型，应用中单个模块只允许配置一个。该字段来源[module.json5配置文件](./module-configuration-file.md)中type字段。|是，同版本entry类型的moduleName不能修改，AGC拦截|是|
+|moduleType|标识应用包的类型，应用中单个模块只允许配置一个。该字段来源[module.json5配置文件](./module-configuration-file.md)中type字段。|是，同版本entry类型的moduleName不能修改|是|
 |nativeLibraryPath|如果不是所有的module都更新，需要HAP中包含SO的文件夹路径一致（都存在SO时），模拟器还是会强校验SO类型。|否|否|

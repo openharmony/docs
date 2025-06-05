@@ -18,7 +18,7 @@ Before getting started, you need to understand the following basic concepts:
 
 ## Available APIs
 
-APIs involved in MindSpore Lite model inference are categorized into context APIs, model APIs, and tensor APIs.
+APIs involved in MindSpore Lite model inference are categorized into context APIs, model APIs, and tensor APIs. For details about the APIs, see [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md).
 
 ### Context APIs
 
@@ -292,3 +292,9 @@ The development process consists of the following main steps:
     output data is:
     0.000018 0.000012 0.000026 0.000194 0.000156 0.001501 0.000240 0.000825 0.000016 0.000006 0.000007 0.000004 0.000004 0.000004 0.000015 0.000099 0.000011 0.000013 0.000005 0.000023 0.000004 0.000008 0.000003 0.000003 0.000008 0.000014 0.000012 0.000006 0.000019 0.000006 0.000018 0.000024 0.000010 0.000002 0.000028 0.000372 0.000010 0.000017 0.000008 0.000004 0.000007 0.000010 0.000007 0.000012 0.000005 0.000015 0.000007 0.000040 0.000004 0.000085 0.000023 
     ```
+
+## Samples
+
+The following sample is provided to help you better understand how to use MindSpore Lite:
+
+- [Simple MindSpore Lite Tutorial](https://gitee.com/openharmony/third_party_mindspore/tree/OpenHarmony-3.2-Release/mindspore/lite/examples/quick_start_c)

@@ -136,7 +136,7 @@ canvas.drawTextBlob(textBlob, 200, 300);
 
 ## 单字绘制
 
-相比字块绘制，单字绘制的优势在于能够利用字体退化机制，在当前字体无法显示某字符时，自动退化到使用系统字体绘制字符，从而提升对特殊字符的兼容性，避免字符缺失，增强用户体验。
+相比字块绘制，单字绘制的优势在于能够利用字体退化机制，在当前字体无法显示某字符时，自动退化到使用系统字体绘制字符，从而提升对特殊字符的兼容性，避免字符缺失，增强用户体验。详细API说明请见[drawing.Canvas](../reference/apis-arkgraphics2d/js-apis-graphics-drawing.md#drawsinglecharacter12)。
 
 单字绘制的示例代码和效果图如下：
 

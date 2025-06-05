@@ -54,6 +54,7 @@ setUsbPolicy(admin: Want, usbPolicy: UsbPolicy, callback: AsyncCallback\<void>):
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -110,6 +111,7 @@ setUsbPolicy(admin: Want, usbPolicy: UsbPolicy): Promise\<void>
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -160,6 +162,7 @@ disableUsb(admin: Want, disable: boolean): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -212,6 +215,7 @@ isUsbDisabled(admin: Want): boolean
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

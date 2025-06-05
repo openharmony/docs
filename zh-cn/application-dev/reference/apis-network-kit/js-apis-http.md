@@ -1540,11 +1540,11 @@ http协议版本。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称 | 说明       |
-| --- | ---------- |
-| PEM | 证书类型PEM。 |
-| DER | 证书类型DER。 |
-| P12 | 证书类型P12。 |
+| 名称 |   值   | 说明       |
+| --- | ------ | ---------- |
+| PEM | PEM | 证书类型PEM。 |
+| DER | DER | 证书类型DER。 |
+| P12 | P12 | 证书类型P12。 |
 
 ## CertificatePinning<sup>12+</sup>
 
@@ -1577,11 +1577,11 @@ type HttpProxy = connection.HttpProxy
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-|       名称       |            说明             |
-| ---------------- | --------------------------- |
-| DEFAULT | 设置此选项后，系统将自行选择目标域名的IPv4地址或IPv6地址。     |
-| ONLY_V4 | 设置此选项后，系统将仅解析目标域名的IPv4地址，忽略IPv6地址。     |
-| ONLY_V6 | 设置此选项后，系统将仅解析目标域名的IPv6地址，忽略IPv4地址。     |
+|       名称       |     值     |            说明             |
+| ---------------- | --------------- | --------------------------- |
+| DEFAULT | CURL_IPRESOLVE_WHATEVER | 设置此选项后，系统将自行选择目标域名的IPv4地址或IPv6地址。     |
+| ONLY_V4 | CURL_IPRESOLVE_V4 | 设置此选项后，系统仅解析目标域名的IPv4地址，忽略IPv6地址。     |
+| ONLY_V6 | CURL_IPRESOLVE_V6 | 设置此选项后，系统仅解析目标域名的IPv6地址，忽略IPv4地址。     |
 
 ## RemoteValidation<sup>18+</sup>
 

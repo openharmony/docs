@@ -64,7 +64,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 callback(data:motion.OperatingHandStatus) {
     console.info('callback success' + data);
-}
+};
 
 try {
     motion.on('operatingHandChanged', this.callback);  

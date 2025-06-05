@@ -34,6 +34,7 @@ After an **AVScreenCaptureRecorder** instance is created, different APIs can be 
 
     ```javascript
     import media from '@ohos.multimedia.media';
+    import fs from '@ohos.file.fs';
     ```
 
 2. Create the member variable **screenCapture** of the **AVScreenCaptureRecorder** type.
@@ -93,7 +94,7 @@ After an **AVScreenCaptureRecorder** instance is created, different APIs can be 
         }
     })
     this.screenCapture.on('error', (err) => {
-        console.info("Handle exceptions.");
+        console.error("Handle exceptions.");
     })
     ```
 
@@ -103,15 +104,23 @@ After an **AVScreenCaptureRecorder** instance is created, different APIs can be 
 
     ​Parameters **videoBitrate**, **audioSampleRate**, **audioChannelCount**, **audioBitrate**, **preset**, and **displayId** are optional, with default values provided in the code snippet below. The audio streams of the microphone and system sound share a set of audio parameters: **audioSampleRate**, **audioChannelCount**, and **audioBitrate**.
 
+    You can create, read, and write a file descriptor by referring to the sample code in [Accessing Application Files](../../file-management/app-file-access.md) to obtain the value of the **fd** parameter. The **getFileFd()** API provided in the example below is for reference only.
+
     If **displayId** is set to the extended display ID of a 2-in-1 device, a dialog box for screen capture selection can be opened. Users can select the screen to capture in the dialog box, and the recorded content will match the user's choices.
 
     ```javascript
+    public getFileFd(): number {
+      let filesDir = '/data/storage/el2/base/haps';
+      let file = fs.openSync(filesDir + '/screenCapture.mp4', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+      return file.fd;
+    }
+
     captureConfig: media.AVScreenCaptureRecordConfig = {
         // Set the width and height as required.
         frameWidth: 768,
         frameHeight: 1280,
-        // Create, read, and write a file descriptor by referring to the sample code in Application File Access and Management.
-        fd: 0,
+        // Create, read, and write a file descriptor by referring to the sample code in Accessing Application Files.
+        fd: this.getFileFd(),
         // Optional parameters and their default values
         videoBitrate: 10000000,
         audioSampleRate: 48000,
@@ -157,12 +166,13 @@ After an **AVScreenCaptureRecorder** instance is created, different APIs can be 
     await this.screenCapture.release();
     ```
 
-## Sample Code
+## Development Example
 
 Refer to the sample code below to implement captured file storage using **AVScreenCaptureRecorder**.
 
 ```javascript
 import media from '@ohos.multimedia.media';
+import fs from '@ohos.file.fs';
 
 export class AVScreenCaptureDemo {
   private screenCapture?: media.AVScreenCaptureRecorder;
@@ -170,8 +180,8 @@ export class AVScreenCaptureDemo {
     // Set the width and height as required.
     frameWidth: 768,
     frameHeight: 1280,
-    // Create, read, and write a file descriptor by referring to the sample code in Application File Access and Management.
-    fd: 0,
+    // Create, read, and write a file descriptor by referring to the sample code in Accessing Application Files.
+    fd: this.getFileFd(),
     // Optional parameters and their default values
     videoBitrate: 10000000,
     audioSampleRate: 48000,
@@ -180,6 +190,12 @@ export class AVScreenCaptureDemo {
     displayId: 0,
     preset: media.AVScreenCaptureRecordPreset.SCREEN_RECORD_PRESET_H264_AAC_MP4
   };
+
+  public getFileFd(): number {
+    let filesDir = '/data/storage/el2/base/haps';
+    let file = fs.openSync(filesDir + '/screenCapture.mp4', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    return file.fd;
+  }
 
   // Call startRecording to start screen capture. To stop screen capture, click the stop button in the screen capture capsule.
   public async startRecording() {
@@ -235,7 +251,7 @@ export class AVScreenCaptureDemo {
       }
     })
     this.screenCapture?.on('error', (err) => {
-      console.info("Handle exceptions.");
+      console.error("Handle exceptions.");
     })
     await this.screenCapture?.init(this.captureConfig);
 

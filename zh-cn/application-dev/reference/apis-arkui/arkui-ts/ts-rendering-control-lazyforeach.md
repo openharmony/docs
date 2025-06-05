@@ -171,7 +171,7 @@ onDataDeleted(index: number): void
 
 onDataChanged(index: number): void
 
-通知组件index的位置有数据有变化。改变数据完成后调用。
+通知组件index的位置有数据变化。改变数据完成后调用。
 
 > 从API 8开始，建议使用[onDataChange](#ondatachange8)。
 
@@ -410,7 +410,7 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 ### DataReloadOperation
 
-重载所有数据操作。当onDatasetChange含有DataOperationType.RELOAD操作时，其余操作全部失效，框架会自己调用keygenerator进行键值比对。
+重载所有数据操作。当onDatasetChange含有DataOperationType.RELOAD操作时，其余操作全部失效，框架会自己调用keyGenerator进行键值比对。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

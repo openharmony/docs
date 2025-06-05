@@ -19,7 +19,7 @@ import { logLibrary } from '@kit.PerformanceAnalysisKit';
 
 **系统能力：** SystemCapability.HiviewDFX.Hiview.LogLibrary
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | name | string | 是 | 否 | 文件名称。 |
 | mtime | number | 是 | 否  | 上次修改该文件的时间，表示距1970年1月1日0时0分0秒的秒数。 |

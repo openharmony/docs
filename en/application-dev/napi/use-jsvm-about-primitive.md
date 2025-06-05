@@ -147,7 +147,7 @@ static JSVM_Value CoerceToObject(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return obj;
 }
-// Register the CoerceToObjec callback.
+// Register the CoerceToObject callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CoerceToObject},
 };
@@ -259,8 +259,8 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"getBoolean", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 // Call C++ code from JS.
-const char *srcCallNative1 = R"JS(getBoolean(1, 2))JS";
-const char *srcCallNative2 = R"JS(getBoolean(1, 1))JS";
+const char *srcCallNative = R"JS(getBoolean(1, 2);
+                                 getBoolean(1, 1))JS";
 ```
 
 Expected result:
@@ -310,9 +310,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"getValueBool", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 // Call C++ code from JS.
-const char *srcCallNative = R"JS(getValueBool("abc"))JS";
-const char *srcCallNative = R"JS(getValueBool(true))JS";
-const char *srcCallNative = R"JS(getValueBool(false))JS";
+const char *srcCallNative = R"JS(getValueBool("abc");
+                                getValueBool(true);
+                                getValueBool(false);)JS";
 ```
 
 Expected result:
@@ -421,7 +421,7 @@ CPP code:
 // Define OH_JSVM_GetUndefined.
 static JSVM_Value GetUndefined(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // Obtain and parse the input parameters.
+    //Obtain and parse the input parameters.
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);

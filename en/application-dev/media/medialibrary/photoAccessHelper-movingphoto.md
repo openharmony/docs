@@ -24,7 +24,7 @@ For details, see [SaveButton](../../reference/apis-arkui/arkui-ts/ts-security-co
 1. Set the properties of the **SaveButton** security component.
 2. Create a button with **SaveButton**.
 3. Call [MediaAssetChangeRequest.createAssetRequest](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createassetrequest11) to create an asset change request with **PhotoSubtype** set to **MOVING_PHOTO**.
-4. Call [MediaAssetChangeRequest.addResource](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11) to set the image and video of the moving photo.
+4. Call [MediaAssetChangeRequest.addResource](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11) to set the image and video of the moving photo. The video duration of the moving photo cannot exceed 10s.
    
    In the following example, the image and video of the moving photo are specified by **fileUri** of the [application file](../../file-management/app-file-access.md) in the application sandbox.
    

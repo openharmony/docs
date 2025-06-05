@@ -53,7 +53,7 @@ try {
     let info: string = systemParameterEnhance.getSync("const.ohos.apiversion");
     console.log(JSON.stringify(info));
 } catch(e) {
-    console.log("getSync unexpected error: " + e);
+    console.error("getSync unexpected error: " + e);
 }
 ```
 
@@ -93,10 +93,10 @@ try {
     if (err == undefined) {
         console.log("get test.parameter.key value success:" + data)
     } else {
-        console.log(" get test.parameter.key value err:" + err.code)
+        console.error(" get test.parameter.key value err:" + err.code)
     }});
 } catch(e) {
-    console.log("get unexpected error: " + e);
+    console.error("get unexpected error: " + e);
 }
 ```
 
@@ -137,11 +137,11 @@ try {
         if (err == undefined) {
             console.log("get test.parameter.key value success:" + data)
         } else {
-            console.log(" get test.parameter.key value err:" + err.code)
+            console.error(" get test.parameter.key value err:" + err.code)
         }
     });
 } catch(e) {
-    console.log("get unexpected error:" + e)
+    console.error("get unexpected error:" + e)
 }
 ```
 
@@ -187,10 +187,10 @@ try {
     p.then((value: string) => {
         console.log("get test.parameter.key success: " + value);
     }).catch((err: BusinessError) => {
-        console.log("get test.parameter.key error: " + err.code);
+        console.error("get test.parameter.key error: " + err.code);
     });
 } catch(e) {
-    console.log("get unexpected error: " + e);
+    console.error("get unexpected error: " + e);
 }
 ```
 
@@ -228,7 +228,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
     systemParameterEnhance.setSync("test.parameter.key", "default");
 } catch(e) {
-    console.log("set unexpected error: " + e);
+    console.error("set unexpected error: " + e);
 }
 ```
 
@@ -269,10 +269,10 @@ try {
     if (err == undefined) {
         console.log("set test.parameter.key value success :" + data)
     } else {
-        console.log("set test.parameter.key value err:" + err.code)
+        console.error("set test.parameter.key value err:" + err.code)
     }});
 } catch(e) {
-    console.log("set unexpected error: " + e);
+    console.error("set unexpected error: " + e);
 }
 ```
 
@@ -318,9 +318,9 @@ try {
     p.then((value: void) => {
         console.log("set test.parameter.key success: " + value);
     }).catch((err: BusinessError) => {
-        console.log(" set test.parameter.key error: " + err.code);
+        console.error(" set test.parameter.key error: " + err.code);
     });
 } catch(e) {
-    console.log("set unexpected error: " + e);
+    console.error("set unexpected error: " + e);
 }
 ```

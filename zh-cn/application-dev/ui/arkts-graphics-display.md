@@ -1,7 +1,7 @@
 # 显示图片 (Image)
 
 
-开发者经常需要在应用中显示一些图片，例如：按钮中的icon、网络图片、本地图片等。在应用中显示图片需要使用Image组件实现，Image支持多种图片格式，包括png、jpg、bmp、svg、gif和heif，具体用法请参考[Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)组件。
+开发者经常需要在应用中显示一些图片，例如：按钮中的icon、网络图片、本地图片等。在应用中显示图片需要使用Image组件实现，Image支持多种图片格式，包括png、jpg、bmp、svg、gif和heif，不支持apng和svga格式，具体用法请参考[Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)组件。
 
 
 Image通过调用接口来创建，接口调用形式如下：
@@ -365,7 +365,7 @@ DrawableDescriptor是ArkUI提供的一种高级图片抽象机制，它通过将
 
 Image组件可显示矢量图（svg格式的图片），svg标签文档请参考[svg说明](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-svg.md)。
 
-如果SVG图片没有原始大小，需要给Image组件设置宽高，否则不显示。如果SVG图片通过image标签引用本地其他图片，被引用的图片不支持svg格式和gif格式。
+如果SVG图片没有原始大小，需要给Image组件设置宽高，否则不显示。SVG图片不支持通过image标签引用svg格式和gif格式的本地其他图片。
 
 svg格式的图片可以使用fillColor属性改变图片的绘制颜色。
 

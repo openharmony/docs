@@ -261,7 +261,7 @@ freezeUINode(uniqueId: number, isFrozen: boolean): void
 | 参数名     | 类型    | 必填   | 说明      |
 | --- | --- | --- | --- |
 | uniqueId | number | 是 | 组件的number。|
-| isFrozen | boolean | 是 | 是否设置冻结，默认值为false。|
+| isFrozen | boolean | 是 | 是否设置冻结。<br/>true表示设置冻结，false表示设置不冻结。<br/>默认值为false。|
 
 **错误码：**
 

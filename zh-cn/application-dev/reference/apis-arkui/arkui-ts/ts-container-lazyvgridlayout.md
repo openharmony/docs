@@ -92,6 +92,7 @@ rowsGap(value: Length)
 
 该示例通过WaterFlow和LazyVGridLayout实现懒加载网格布局。
 
+<!--code_no_check-->
 ```ts
 import { LengthMetrics } from '@kit.ArkUI'
 import { MyDataSource } from './MyDataSource'
@@ -130,6 +131,7 @@ struct LazyVGridLayoutSample1 {
 }
 ```
 
+<!--code_no_check-->
 ```ts
 // MyDataSource.ets
 export class BasicDataSource<T> implements IDataSource {

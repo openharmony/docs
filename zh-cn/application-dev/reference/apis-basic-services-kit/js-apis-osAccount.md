@@ -1179,10 +1179,13 @@ getActivatedOsAccountLocalIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.getActivatedOsAccountLocalIds((err: BusinessError, idArray: number[])=>{
-      console.log('getActivatedOsAccountLocalIds err:' + JSON.stringify(err));
-      console.log('getActivatedOsAccountLocalIds idArray length:' + idArray.length);
-      for(let i=0;i<idArray.length;i++) {
-        console.info('activated os account id: ' + idArray[i]);
+      if (err) {
+        console.error('getActivatedOsAccountLocalIds err:' + JSON.stringify(err));
+      } else {
+        console.log('getActivatedOsAccountLocalIds idArray length:' + idArray.length);
+        for(let i=0;i<idArray.length;i++) {
+          console.info('activated os account id: ' + idArray[i]);
+        }
       }
     });
   } catch (e) {
@@ -1261,8 +1264,11 @@ getCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.getCurrentOsAccount((err: BusinessError, curAccountInfo: osAccount.OsAccountInfo)=>{
-      console.log('getCurrentOsAccount err:' + JSON.stringify(err));
-      console.log('getCurrentOsAccount curAccountInfo:' + JSON.stringify(curAccountInfo));
+      if (err) {
+        console.error('getCurrentOsAccount err:' + JSON.stringify(err));
+      } else {
+        console.log('getCurrentOsAccount curAccountInfo:' + JSON.stringify(curAccountInfo));
+      }
     });
   } catch (e) {
     console.error('getCurrentOsAccount exception: ' + JSON.stringify(e));
@@ -1340,8 +1346,11 @@ getOsAccountType(callback: AsyncCallback&lt;OsAccountType&gt;): void
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.getOsAccountType((err: BusinessError, accountType: osAccount.OsAccountType) => {
-      console.log('getOsAccountType err: ' + JSON.stringify(err));
-      console.log('getOsAccountType accountType: ' + accountType);
+      if (err) {
+        console.error('getOsAccountType err: ' + JSON.stringify(err));
+      } else {
+        console.log('getOsAccountType accountType: ' + accountType);
+      }
     });
   } catch (e) {
     console.error('getOsAccountType exception: ' + JSON.stringify(e));
@@ -1415,8 +1424,11 @@ queryDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.queryDistributedVirtualDeviceId((err: BusinessError, virtualID: string) => {
-      console.log('queryDistributedVirtualDeviceId err: ' + JSON.stringify(err));
-      console.log('queryDistributedVirtualDeviceId virtualID: ' + virtualID);
+      if (err) {
+        console.error('queryDistributedVirtualDeviceId err: ' + JSON.stringify(err));
+      } else {
+        console.log('queryDistributedVirtualDeviceId virtualID: ' + virtualID);
+      }
     });
   } catch (e) {
     console.error('queryDistributedVirtualDeviceId exception: ' + JSON.stringify(e));
@@ -1494,8 +1506,11 @@ getOsAccountLocalIdForSerialNumber(serialNumber: number, callback: AsyncCallback
   let serialNumber: number = 12345;
   try {
     accountManager.getOsAccountLocalIdForSerialNumber(serialNumber, (err: BusinessError, localId: number)=>{
-      console.log('ger localId err:' + JSON.stringify(err));
-      console.log('get localId:' + localId + ' by serialNumber: ' + serialNumber);
+      if (err) {
+        console.error('ger localId err:' + JSON.stringify(err));
+      } else {
+        console.log('get localId:' + localId + ' by serialNumber: ' + serialNumber);
+      }
     });
   } catch (e) {
     console.error('ger localId exception: ' + JSON.stringify(e));
@@ -1580,8 +1595,11 @@ getSerialNumberForOsAccountLocalId(localId: number, callback: AsyncCallback&lt;n
   let localId: number = 100;
   try {
     accountManager.getSerialNumberForOsAccountLocalId(localId, (err: BusinessError, serialNumber: number)=>{
-      console.log('ger serialNumber err:' + JSON.stringify(err));
-      console.log('get serialNumber:' + serialNumber + ' by localId: ' + localId);
+      if (err) {
+        console.error('ger serialNumber err:' + JSON.stringify(err));
+      } else {
+        console.log('get serialNumber:' + serialNumber + ' by localId: ' + localId);
+      }
     });
   } catch (e) {
     console.error('ger serialNumber exception: ' + JSON.stringify(e));
@@ -2113,7 +2131,7 @@ getOsAccountLocalIdFromProcess(callback: AsyncCallback&lt;number&gt;): void
     if (err) {
       console.error('getOsAccountLocalIdFromProcess failed, error: ' + JSON.stringify(err));
     } else {
-      console.log('getOsAccountLocalIdFromProcess failed, error: ' + localId);
+      console.log('getOsAccountLocalIdFromProcess id:: ' + localId);
     }
   });
   ```
@@ -2322,8 +2340,11 @@ getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   accountManager.getOsAccountAllConstraints(localId, (err: BusinessError, constraints: string[])=>{
-    console.log('getOsAccountAllConstraints err:' + JSON.stringify(err));
-    console.log('getOsAccountAllConstraints:' + JSON.stringify(constraints));
+    if (err) {
+      console.error('getOsAccountAllConstraints err:' + JSON.stringify(err));
+    } else {
+      console.log('getOsAccountAllConstraints:' + JSON.stringify(constraints));
+    }
   });
   ```
 
@@ -2390,11 +2411,14 @@ queryActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): 
   import { BusinessError } from '@kit.BasicServicesKit';
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   accountManager.queryActivatedOsAccountIds((err: BusinessError, idArray: number[])=>{
-    console.log('queryActivatedOsAccountIds err:' + JSON.stringify(err));
-    console.log('queryActivatedOsAccountIds idArray length:' + idArray.length);
-    for(let i=0;i<idArray.length;i++) {
-      console.info('activated os account id: ' + idArray[i]);
-    }
+      if (err) {
+        console.error('queryActivatedOsAccountIds err:' + JSON.stringify(err));
+      } else {
+        console.log('queryActivatedOsAccountIds idArray length:' + idArray.length);
+        for(let i=0;i<idArray.length;i++) {
+          console.info('activated os account id: ' + idArray[i]);
+        }
+      }
   });
   ```
 
@@ -2454,8 +2478,11 @@ queryCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   accountManager.queryCurrentOsAccount((err: BusinessError, curAccountInfo: osAccount.OsAccountInfo)=>{
-    console.log('queryCurrentOsAccount err:' + JSON.stringify(err));
-    console.log('queryCurrentOsAccount curAccountInfo:' + JSON.stringify(curAccountInfo));
+    if (err) {
+      console.error('queryCurrentOsAccount err:' + JSON.stringify(err));
+    } else {
+      console.log('queryCurrentOsAccount curAccountInfo:' + JSON.stringify(curAccountInfo));
+    }
   });
   ```
 
@@ -2515,8 +2542,11 @@ getOsAccountTypeFromProcess(callback: AsyncCallback&lt;OsAccountType&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   accountManager.getOsAccountTypeFromProcess((err: BusinessError, accountType: osAccount.OsAccountType) => {
-    console.log('getOsAccountTypeFromProcess err: ' + JSON.stringify(err));
-    console.log('getOsAccountTypeFromProcess accountType: ' + accountType);
+    if (err) {
+      console.error('getOsAccountTypeFromProcess err: ' + JSON.stringify(err));
+    } else {
+      console.log('getOsAccountTypeFromProcess accountType: ' + accountType);
+    }
   });
   ```
 
@@ -2576,8 +2606,11 @@ getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   accountManager.getDistributedVirtualDeviceId((err: BusinessError, virtualID: string) => {
-    console.log('getDistributedVirtualDeviceId err: ' + JSON.stringify(err));
-    console.log('getDistributedVirtualDeviceId virtualID: ' + virtualID);
+    if (err) {
+      console.error('getDistributedVirtualDeviceId err: ' + JSON.stringify(err));
+    } else {
+      console.log('getDistributedVirtualDeviceId virtualID: ' + virtualID);
+    }
   });
   ```
 
@@ -2639,8 +2672,11 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallback&
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let serialNumber: number = 12345;
   accountManager.getOsAccountLocalIdBySerialNumber(serialNumber, (err: BusinessError, localId: number)=>{
-    console.log('ger localId err:' + JSON.stringify(err));
-    console.log('get localId:' + localId + ' by serialNumber: ' + serialNumber);
+    if (err) {
+      console.error('ger localId err:' + JSON.stringify(err));
+    } else {
+      console.log('get localId:' + localId + ' by serialNumber: ' + serialNumber);
+    }
   });
   ```
 
@@ -2707,8 +2743,11 @@ getSerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback&lt;nu
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   accountManager.getSerialNumberByOsAccountLocalId(localId, (err: BusinessError, serialNumber: number)=>{
-    console.log('ger serialNumber err:' + JSON.stringify(err));
-    console.log('get serialNumber:' + serialNumber + ' by localId: ' + localId);
+    if (err) {
+      console.error('ger serialNumber err:' + JSON.stringify(err));
+    } else {
+      console.log('get serialNumber:' + serialNumber + ' by localId: ' + localId);
+    }
   });
   ```
 
@@ -2829,6 +2868,12 @@ getOsAccountDomainInfo(localId: number): Promise&lt;DomainAccountInfo&gt;;
 **需要权限：** ohos.permission.GET_DOMAIN_ACCOUNTS 和 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限允许系统应用和企业应用进行申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明          |
+| ------- | ------ | ---- | ----------- |
+| localId | number | 是   | 系统账号ID。 |
 
 **返回值：**
 

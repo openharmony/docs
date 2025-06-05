@@ -56,7 +56,9 @@
            .fontWeight(FontWeight.Bold)
            .onClick(async () => {
              let task = new taskpool.Task(delayed);
-             taskpool.executeDelayed(2000, task);
+             taskpool.executeDelayed(2000, task).catch((e: BusinessError) => {
+               console.error(`taskpool execute error, message is: ${e.message}`); // taskpool execute error, message is: taskpool:: task has been canceled
+             });
              let send = new SendableTest(task.taskId);
              taskpool.execute(cancel, send);
            })

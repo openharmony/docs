@@ -62,7 +62,7 @@ CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件�
 
 弹出框可用于数据交互，完成用户一系列响应操作。
 
-1. 在\@CustomDialog装饰器内添加按钮，同时添加数据函数。
+1. 在\@CustomDialog装饰器内添加按钮和数据函数。
    
    ```ts
    @CustomDialog
@@ -319,7 +319,7 @@ struct CustomDialogUser {
 
 ## 弹出框的样式
 
-弹出框通过定义宽度、高度、背景色、阴影等参数来控制样式。
+通过定义弹出框的宽度、高度、背景色、阴影等参数，控制其样式。
 
 ```ts
 @CustomDialog
@@ -547,7 +547,7 @@ struct InterceptCustomDialog {
     }),
     onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
       console.log('dialog onWillDismiss reason: ' + dismissDialogAction.reason);
-      // 1、PRESS_BACK    点击三键back、左滑/右滑、键盘ESC。
+      // 1、PRESS_BACK    点击三键back、侧滑（左滑/右滑）、键盘ESC。
       // 2、TOUCH_OUTSIDE    点击遮障层时
       // 3、CLOSE_BUTTON    点击关闭按钮
       if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
