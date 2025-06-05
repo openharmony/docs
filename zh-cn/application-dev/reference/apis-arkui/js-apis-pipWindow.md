@@ -138,7 +138,7 @@ let config: PiPWindow.PiPConfiguration = {
   contentHeight: contentHeight,
   controlGroups: [PiPWindow.VideoPlayControlGroup.VIDEO_PREVIOUS_NEXT],
   customUIController: nodeController, // 可选，如果需要在画中画显示内容上方展示自定义UI，可设置该参数。
-  localStorage: localStorage, // 可选，如果需要跟踪主窗实例，可设置此参数。
+  localStorage: localStorage // 可选，如果需要跟踪主窗实例，可设置此参数。
 };
 
 let promise: Promise<PiPWindow.PiPController> = PiPWindow.create(config);
@@ -186,8 +186,7 @@ create(config: PiPConfiguration, contentNode: typeNode.XComponent): Promise&lt;P
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { PiPWindow, UIContext } from '@kit.ArkUI';
-import { typeNode } from '@ohos.arkui.node';
+import { PiPWindow, typeNode, UIContext } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 
 let pipController: PiPWindow.PiPController | undefined = undefined;
@@ -197,7 +196,7 @@ let options: XComponentOptions = {
   type: XComponentType.SURFACE,
   controller: xComponentController
 }
-let xComponent = typeNode.createNode(ctx, 'XComponent', options);
+let xComponent = typeNode.createNode(this.getUIContext(), 'XComponent', options);
 let contentWidth: number = 800; // 假设当前内容宽度800px。
 let contentHeight: number = 600; // 假设当前内容高度600px。
 let config: PiPWindow.PiPConfiguration = {
