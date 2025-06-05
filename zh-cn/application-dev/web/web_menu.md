@@ -387,7 +387,7 @@ struct WebComponent {
 
 ### Web菜单如何实现保存图片
 
-1. 创建MenuBuilder组件作为菜单弹窗，使用[SaveButton](../../application-dev/reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md)组件实现图片保存功能，通过bindPopup将MenuBuilder与Web绑定。
+1. 创建MenuBuilder组件作为菜单弹窗，使用[SaveButton](../../application-dev/reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md)组件实现图片保存功能，通过bindContextMenu将MenuBuilder与Web绑定。
 2. 在onContextMenuShow中获取图片url，通过copyLocalPicToDir或copyUrlPicToDir将图片保存至应用沙箱。
 3. 通过photoAccessHelper将应用沙箱中的图片保存至图库。
 
@@ -495,19 +495,7 @@ struct WebComponent {
           this.showMenu = true
           return true;
         })
-        .bindPopup(this.showMenu.valueOf(),
-          {
-            builder: this.MenuBuilder(),
-            enableArrow: false,
-            placement: Placement.LeftTop,
-            mask: false,
-            onStateChange: (e) => {
-              if (!e.isVisible) {
-                this.showMenu = false
-              }
-            }
-          }
-        )
+        .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
         .fileAccess(true)
         .javaScriptAccess(true)
         .domStorageAccess(true)
