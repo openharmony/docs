@@ -20,8 +20,8 @@ c:/users/zzz>hdc shell
 # mkdir temp
 # cd temp
 # SQLite3
-SQLiteversion 3.40.1 2022-12-28 14:03:47
-Enter ".help" for usage hinte.
+SQLite version 3.40.1 2022-12-28 14:03:47
+Enter ".help" for usage hints.
 Connected to a transient in-memory database.
 Use ".open FILENAME" to reopen on a persistent database.
 ```
