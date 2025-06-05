@@ -128,7 +128,6 @@ let para: Record<string, number> = { 'PropA': 47 };
 let localStorage: LocalStorage = new LocalStorage(para);
 let res: boolean = localStorage.setOrCreate('PropB', 121);
 let ctx: UIContext = AppStorage.get('UIContext') as UIContext; //开发者通过窗口或自定义组件中getUIContext()方法获取并缓存UIContext实例
-let defaultWindowSizeType: number = 1; //指定画中画第一次拉起窗口为小窗口
 let config: PiPWindow.PiPConfiguration = {
   context: ctx.getHostContext() as Context,
   componentController: mXComponentController,
