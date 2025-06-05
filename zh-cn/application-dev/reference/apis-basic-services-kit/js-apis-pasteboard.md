@@ -471,14 +471,14 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称 | 类型 | 可读 | 可写 | 说明                                                                                                                                                                                                                                       |
+| 名称 | 类型 | 只读 | 可选 | 说明                                                                                                                                                                                                                                       |
 | -------- | -------- | -------- | -------- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| additions<sup>7+</sup> | {[key:string]:object} | 是 | 是 | 设置其他附加属性数据。不支持动态追加属性，只能通过重新赋值的方式修改附加值，具体见相关示例setProperty。                                                                                                                                                                                                                              |
+| additions<sup>7+</sup> | {[key:string]:object} | 否 | 否 | 设置其他附加属性数据。不支持动态追加属性，只能通过重新赋值的方式修改附加值，具体见相关示例setProperty。                                                                                                                                                                                                                              |
 | mimeTypes<sup>7+</sup> | Array&lt;string&gt; | 是 | 否 | 剪贴板内容条目的数据类型，非重复的类型列表。                                                                                                                                                                                                                   |
-| tag<sup>7+</sup> | string | 是 | 是 | 用户自定义标签。                                                                                                                                                                                                                                 |
+| tag<sup>7+</sup> | string | 否 | 否 | 用户自定义标签。                                                                                                                                                                                                                                 |
 | timestamp<sup>7+</sup> | number | 是 | 否 | 剪贴板数据的写入时间戳（单位：ms）。                                                                                                                                                                                                                      |
-| localOnly<sup>7+</sup> | boolean | 是 | 是 | 配置剪贴板内容是否为“仅在本地”，默认值为false。其值会被shareOption属性覆盖，推荐使用shareOption属性。ShareOption.INAPP、ShareOption.LOCALDEVICE会将localOnly设置为true，ShareOption.CROSSDEVICE会将localOnly设置为false。<br/>- 配置为true时，表示内容仅在本地，不会在设备之间传递。<br/>- 配置为false时，表示内容将在设备间传递。 |
-| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 是 | 是 | 指示剪贴板数据可以粘贴到的范围，如果未设置或设置不正确，则默认值为CROSSDEVICE。                                                                                                                                                                                            |
+| localOnly<sup>7+</sup> | boolean | 否 | 否 | 配置剪贴板内容是否为“仅在本地”，默认值为false。其值会被shareOption属性覆盖，推荐使用shareOption属性。ShareOption.INAPP、ShareOption.LOCALDEVICE会将localOnly设置为true，ShareOption.CROSSDEVICE会将localOnly设置为false。<br/>- 配置为true时，表示内容仅在本地，不会在设备之间传递。<br/>- 配置为false时，表示内容将在设备间传递。 |
+| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 否 | 否 | 指示剪贴板数据可以粘贴到的范围，如果未设置或设置不正确，则默认值为CROSSDEVICE。                                                                                                                                                                                            |
 
 ## FileConflictOptions<sup>15+</sup>
 
@@ -514,7 +514,7 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称     | 类型   | 可读 | 可写 | 说明                                                       |
+| 名称     | 类型   | 只读 | 可选 | 说明                                                       |
 | -------- | ------ | ---- | ---- | ---------------------------------------------------------- |
 | progress | number | 是   | 否   | 不使用系统提供的进度条时，系统上报拷贝粘贴任务进度百分比。 |
 
@@ -615,7 +615,7 @@ struct PasteboardTest {
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | htmlText<sup>7+</sup> | string | 是 | 否 | HTML内容。 |
 | want<sup>7+</sup> | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 否 | Want内容。 |
@@ -1697,7 +1697,7 @@ let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboa
 
 ### on('update')<sup>7+</sup>
 
-on(type:  'update', callback: () =&gt;void ): void
+on(type: 'update', callback: () =&gt;void): void
 
 订阅系统剪贴板内容变化事件，当系统剪贴板中内容变化时触发用户程序的回调。
 
@@ -1730,7 +1730,7 @@ systemPasteboard.on('update', listener);
 
 ### off('update')<sup>7+</sup>
 
-off(type:  'update', callback?: () =&gt;void ): void
+off(type: 'update', callback?: () =&gt;void): void
 
 取消订阅系统剪贴板内容变化事件。
 
@@ -1916,7 +1916,7 @@ systemPasteboard.setData(pasteData).then((data: void) => {
 
 ### getData<sup>9+</sup>
 
-getData( callback: AsyncCallback&lt;PasteData&gt;): void
+getData(callback: AsyncCallback&lt;PasteData&gt;): void
 
 读取系统剪贴板内容，使用callback异步回调。
 
@@ -2135,7 +2135,7 @@ systemPasteboard.clear().then((data) => {
 
 ### getPasteData<sup>(deprecated)</sup>
 
-getPasteData( callback: AsyncCallback&lt;PasteData&gt;): void
+getPasteData(callback: AsyncCallback&lt;PasteData&gt;): void
 
 读取系统剪贴板内容，使用callback异步回调。
 > **说明：**
