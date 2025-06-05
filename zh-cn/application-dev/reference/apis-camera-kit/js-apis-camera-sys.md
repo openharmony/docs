@@ -1185,7 +1185,7 @@ addDeferredSurface(surfaceId: string): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 202                    | Not System Application.                        |
+| 202                    |  Permission verification failed. A non-system application calls a system API.     |
 | 7400101                |  Parameter missing or parameter type incorrect.        |
 
 **示例：**
