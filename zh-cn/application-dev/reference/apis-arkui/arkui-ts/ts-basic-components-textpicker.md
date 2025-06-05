@@ -70,8 +70,8 @@ TextPicker(options?: TextPickerOptions)
 | 名称        | 类型                                 | 必填 | 说明                                                         |
 | ----------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | strokeWidth | [Dimension](ts-types.md#dimension10) | 否   | 分割线的线宽（默认单位vp），也可指定单位为px，不支持"百分比"类型。<br/>取值范围：strokeWidth小于0取默认值，最大不得超过列高的一半。<br/>默认值：2.0px |
-| startMargin | [Dimension](ts-types.md#dimension10) | 否   | 分割线与TextPicker侧边起始端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。<br/>取值范围：startMargin小于0无效，最大不得超过TextPicker列宽。<br/>默认值：0 |
-| endMargin   | [Dimension](ts-types.md#dimension10) | 否   | 分割线与TextPicker侧边结束端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。<br/>取值范围：endMargin小于0无效，最大不得超过TextPicker列宽。<br/>默认值：0 |
+| startMargin | [Dimension](ts-types.md#dimension10) | 否   | 分割线与TextPicker侧边起始端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。<br/>取值范围：startMargin小于0时无效，最大值不得超过TextPicker列宽。<br/>默认值：0 |
+| endMargin   | [Dimension](ts-types.md#dimension10) | 否   | 分割线与TextPicker侧边结束端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。<br/>取值范围：endMargin小于0时无效，最大值不得超过TextPicker列宽。<br/>默认值：0 |
 | color       | [ResourceColor](ts-types.md#resourcecolor)  | 否   | 分割线的颜色。<br/>默认值：'#33000000'
 
 ## 属性
@@ -98,7 +98,7 @@ defaultPickerItemHeight(value: number | string)
 
 disappearTextStyle(value: PickerTextStyle)
 
-设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。
+设置所有选项中最上和最下两个选项的文本颜色、字号和字体粗细。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
