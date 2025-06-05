@@ -7,7 +7,7 @@
 
 在使用AudioRenderer的接口之前，需先通过[createAudioRenderer](#audiocreateaudiorenderer8)获取AudioRenderer实例。
 
-### 属性
+## 属性
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -23,7 +23,7 @@ import { audio } from '@kit.AudioKit';
 let state: audio.AudioState = audioRenderer.state;
 ```
 
-### getRendererInfo<sup>8+</sup>
+## getRendererInfo<sup>8+</sup>
 
 getRendererInfo(callback: AsyncCallback<AudioRendererInfo\>): void
 
@@ -50,7 +50,7 @@ audioRenderer.getRendererInfo((err: BusinessError, rendererInfo: audio.AudioRend
 });
 ```
 
-### getRendererInfo<sup>8+</sup>
+## getRendererInfo<sup>8+</sup>
 
 getRendererInfo(): Promise<AudioRendererInfo\>
 
@@ -79,7 +79,7 @@ audioRenderer.getRendererInfo().then((rendererInfo: audio.AudioRendererInfo) => 
 });
 ```
 
-### getRendererInfoSync<sup>10+</sup>
+## getRendererInfoSync<sup>10+</sup>
 
 getRendererInfoSync(): AudioRendererInfo
 
@@ -109,7 +109,7 @@ try {
 }
 ```
 
-### getStreamInfo<sup>8+</sup>
+## getStreamInfo<sup>8+</sup>
 
 getStreamInfo(callback: AsyncCallback<AudioStreamInfo\>): void
 
@@ -137,7 +137,7 @@ audioRenderer.getStreamInfo((err: BusinessError, streamInfo: audio.AudioStreamIn
 });
 ```
 
-### getStreamInfo<sup>8+</sup>
+## getStreamInfo<sup>8+</sup>
 
 getStreamInfo(): Promise<AudioStreamInfo\>
 
@@ -167,7 +167,7 @@ audioRenderer.getStreamInfo().then((streamInfo: audio.AudioStreamInfo) => {
 });
 ```
 
-### getStreamInfoSync<sup>10+</sup>
+## getStreamInfoSync<sup>10+</sup>
 
 getStreamInfoSync(): AudioStreamInfo
 
@@ -198,7 +198,7 @@ try {
 }
 ```
 
-### getAudioStreamId<sup>9+</sup>
+## getAudioStreamId<sup>9+</sup>
 
 getAudioStreamId(callback: AsyncCallback<number\>): void
 
@@ -222,7 +222,7 @@ audioRenderer.getAudioStreamId((err: BusinessError, streamId: number) => {
 });
 ```
 
-### getAudioStreamId<sup>9+</sup>
+## getAudioStreamId<sup>9+</sup>
 
 getAudioStreamId(): Promise<number\>
 
@@ -248,7 +248,7 @@ audioRenderer.getAudioStreamId().then((streamId: number) => {
 });
 ```
 
-### getAudioStreamIdSync<sup>10+</sup>
+## getAudioStreamIdSync<sup>10+</sup>
 
 getAudioStreamIdSync(): number
 
@@ -276,7 +276,7 @@ try {
 }
 ```
 
-### setAudioEffectMode<sup>10+</sup>
+## setAudioEffectMode<sup>10+</sup>
 
 setAudioEffectMode(mode: AudioEffectMode, callback: AsyncCallback\<void>): void
 
@@ -314,7 +314,7 @@ audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT, (err: Bus
 });
 ```
 
-### setAudioEffectMode<sup>10+</sup>
+## setAudioEffectMode<sup>10+</sup>
 
 setAudioEffectMode(mode: AudioEffectMode): Promise\<void>
 
@@ -355,7 +355,7 @@ audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT).then(() =
 });
 ```
 
-### getAudioEffectMode<sup>10+</sup>
+## getAudioEffectMode<sup>10+</sup>
 
 getAudioEffectMode(callback: AsyncCallback\<AudioEffectMode>): void
 
@@ -383,7 +383,7 @@ audioRenderer.getAudioEffectMode((err: BusinessError, effectMode: audio.AudioEff
 });
 ```
 
-### getAudioEffectMode<sup>10+</sup>
+## getAudioEffectMode<sup>10+</sup>
 
 getAudioEffectMode(): Promise\<AudioEffectMode>
 
@@ -409,7 +409,7 @@ audioRenderer.getAudioEffectMode().then((effectMode: audio.AudioEffectMode) => {
 });
 ```
 
-### start<sup>8+</sup>
+## start<sup>8+</sup>
 
 start(callback: AsyncCallback<void\>): void
 
@@ -437,7 +437,7 @@ audioRenderer.start((err: BusinessError) => {
 });
 ```
 
-### start<sup>8+</sup>
+## start<sup>8+</sup>
 
 start(): Promise<void\>
 
@@ -463,7 +463,7 @@ audioRenderer.start().then(() => {
 });
 ```
 
-### pause<sup>8+</sup>
+## pause<sup>8+</sup>
 
 pause(callback: AsyncCallback\<void>): void
 
@@ -491,7 +491,7 @@ audioRenderer.pause((err: BusinessError) => {
 });
 ```
 
-### pause<sup>8+</sup>
+## pause<sup>8+</sup>
 
 pause(): Promise\<void>
 
@@ -517,7 +517,7 @@ audioRenderer.pause().then(() => {
 });
 ```
 
-### drain<sup>8+</sup>
+## drain<sup>8+</sup>
 
 drain(callback: AsyncCallback\<void>): void
 
@@ -545,7 +545,7 @@ audioRenderer.drain((err: BusinessError) => {
 });
 ```
 
-### drain<sup>8+</sup>
+## drain<sup>8+</sup>
 
 drain(): Promise\<void>
 
@@ -571,7 +571,7 @@ audioRenderer.drain().then(() => {
 });
 ```
 
-### flush<sup>11+</sup>
+## flush<sup>11+</sup>
 
 flush(): Promise\<void>
 
@@ -605,7 +605,7 @@ audioRenderer.flush().then(() => {
 });
 ```
 
-### stop<sup>8+</sup>
+## stop<sup>8+</sup>
 
 stop(callback: AsyncCallback\<void>): void
 
@@ -633,7 +633,7 @@ audioRenderer.stop((err: BusinessError) => {
 });
 ```
 
-### stop<sup>8+</sup>
+## stop<sup>8+</sup>
 
 stop(): Promise\<void>
 
@@ -659,7 +659,7 @@ audioRenderer.stop().then(() => {
 });
 ```
 
-### release<sup>8+</sup>
+## release<sup>8+</sup>
 
 release(callback: AsyncCallback\<void>): void
 
@@ -687,7 +687,7 @@ audioRenderer.release((err: BusinessError) => {
 });
 ```
 
-### release<sup>8+</sup>
+## release<sup>8+</sup>
 
 release(): Promise\<void>
 
@@ -713,7 +713,7 @@ audioRenderer.release().then(() => {
 });
 ```
 
-### getAudioTime<sup>8+</sup>
+## getAudioTime<sup>8+</sup>
 
 getAudioTime(callback: AsyncCallback\<number>): void
 
@@ -737,7 +737,7 @@ audioRenderer.getAudioTime((err: BusinessError, timestamp: number) => {
 });
 ```
 
-### getAudioTime<sup>8+</sup>
+## getAudioTime<sup>8+</sup>
 
 getAudioTime(): Promise\<number>
 
@@ -763,7 +763,7 @@ audioRenderer.getAudioTime().then((timestamp: number) => {
 });
 ```
 
-### getAudioTimeSync<sup>10+</sup>
+## getAudioTimeSync<sup>10+</sup>
 
 getAudioTimeSync(): number
 
@@ -791,7 +791,7 @@ try {
 }
 ```
 
-### getBufferSize<sup>8+</sup>
+## getBufferSize<sup>8+</sup>
 
 getBufferSize(callback: AsyncCallback\<number>): void
 
@@ -822,7 +822,7 @@ audioRenderer.getBufferSize((err: BusinessError, data: number) => {
 });
 ```
 
-### getBufferSize<sup>8+</sup>
+## getBufferSize<sup>8+</sup>
 
 getBufferSize(): Promise\<number>
 
@@ -851,7 +851,7 @@ audioRenderer.getBufferSize().then((data: number) => {
 });
 ```
 
-### getBufferSizeSync<sup>10+</sup>
+## getBufferSizeSync<sup>10+</sup>
 
 getBufferSizeSync(): number
 
@@ -881,7 +881,7 @@ try {
 }
 ```
 
-### setSpeed<sup>11+</sup>
+## setSpeed<sup>11+</sup>
 
 setSpeed(speed: number): void
 
@@ -910,7 +910,7 @@ setSpeed(speed: number): void
 audioRenderer.setSpeed(1.5);
 ```
 
-### getSpeed<sup>11+</sup>
+## getSpeed<sup>11+</sup>
 
 getSpeed(): number
 
@@ -930,7 +930,7 @@ getSpeed(): number
 let speed = audioRenderer.getSpeed();
 ```
 
-### setInterruptMode<sup>9+</sup>
+## setInterruptMode<sup>9+</sup>
 
 setInterruptMode(mode: InterruptMode): Promise&lt;void&gt;
 
@@ -963,7 +963,7 @@ audioRenderer.setInterruptMode(mode).then(() => {
   console.error(`setInterruptMode Fail: ${err}`);
 });
 ```
-### setInterruptMode<sup>9+</sup>
+## setInterruptMode<sup>9+</sup>
 
 setInterruptMode(mode: InterruptMode, callback: AsyncCallback\<void>): void
 
@@ -993,7 +993,7 @@ audioRenderer.setInterruptMode(mode, (err: BusinessError) => {
 });
 ```
 
-### setInterruptModeSync<sup>10+</sup>
+## setInterruptModeSync<sup>10+</sup>
 
 setInterruptModeSync(mode: InterruptMode): void
 
@@ -1030,7 +1030,7 @@ try {
 }
 ```
 
-### setVolume<sup>9+</sup>
+## setVolume<sup>9+</sup>
 
 setVolume(volume: number): Promise&lt;void&gt;
 
@@ -1061,7 +1061,7 @@ audioRenderer.setVolume(0.5).then(() => {
   console.error(`setVolume Fail: ${err}`);
 });
 ```
-### setVolume<sup>9+</sup>
+## setVolume<sup>9+</sup>
 
 setVolume(volume: number, callback: AsyncCallback\<void>): void
 
@@ -1089,7 +1089,7 @@ audioRenderer.setVolume(0.5, (err: BusinessError) => {
   console.info('setVolume Success!');
 });
 ```
-### getVolume<sup>12+</sup>
+## getVolume<sup>12+</sup>
 
 getVolume(): number
 
@@ -1117,7 +1117,7 @@ try {
 }
 ```
 
-### getMinStreamVolume<sup>10+</sup>
+## getMinStreamVolume<sup>10+</sup>
 
 getMinStreamVolume(callback: AsyncCallback&lt;number&gt;): void
 
@@ -1144,7 +1144,7 @@ audioRenderer.getMinStreamVolume((err: BusinessError, minVolume: number) => {
   }
 });
 ```
-### getMinStreamVolume<sup>10+</sup>
+## getMinStreamVolume<sup>10+</sup>
 
 getMinStreamVolume(): Promise&lt;number&gt;
 
@@ -1170,7 +1170,7 @@ audioRenderer.getMinStreamVolume().then((value: number) => {
 });
 ```
 
-### getMinStreamVolumeSync<sup>10+</sup>
+## getMinStreamVolumeSync<sup>10+</sup>
 
 getMinStreamVolumeSync(): number
 
@@ -1198,7 +1198,7 @@ try {
 }
 ```
 
-### getMaxStreamVolume<sup>10+</sup>
+## getMaxStreamVolume<sup>10+</sup>
 
 getMaxStreamVolume(callback: AsyncCallback&lt;number&gt;): void
 
@@ -1225,7 +1225,7 @@ audioRenderer.getMaxStreamVolume((err: BusinessError, maxVolume: number) => {
   }
 });
 ```
-### getMaxStreamVolume<sup>10+</sup>
+## getMaxStreamVolume<sup>10+</sup>
 
 getMaxStreamVolume(): Promise&lt;number&gt;
 
@@ -1251,7 +1251,7 @@ audioRenderer.getMaxStreamVolume().then((value: number) => {
 });
 ```
 
-### getMaxStreamVolumeSync<sup>10+</sup>
+## getMaxStreamVolumeSync<sup>10+</sup>
 
 getMaxStreamVolumeSync(): number
 
@@ -1279,7 +1279,7 @@ try {
 }
 ```
 
-### getUnderflowCount<sup>10+</sup>
+## getUnderflowCount<sup>10+</sup>
 
 getUnderflowCount(callback: AsyncCallback&lt;number&gt;): void
 
@@ -1306,7 +1306,7 @@ audioRenderer.getUnderflowCount((err: BusinessError, underflowCount: number) => 
   }
 });
 ```
-### getUnderflowCount<sup>10+</sup>
+## getUnderflowCount<sup>10+</sup>
 
 getUnderflowCount(): Promise&lt;number&gt;
 
@@ -1332,7 +1332,7 @@ audioRenderer.getUnderflowCount().then((value: number) => {
 });
 ```
 
-### getUnderflowCountSync<sup>10+</sup>
+## getUnderflowCountSync<sup>10+</sup>
 
 getUnderflowCountSync(): number
 
@@ -1360,7 +1360,7 @@ try {
 }
 ```
 
-### getCurrentOutputDevices<sup>10+</sup>
+## getCurrentOutputDevices<sup>10+</sup>
 
 getCurrentOutputDevices(callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
 
@@ -1396,7 +1396,7 @@ audioRenderer.getCurrentOutputDevices((err: BusinessError, deviceInfo: audio.Aud
   }
 });
 ```
-### getCurrentOutputDevices<sup>10+</sup>
+## getCurrentOutputDevices<sup>10+</sup>
 
 getCurrentOutputDevices(): Promise&lt;AudioDeviceDescriptors&gt;
 
@@ -1431,7 +1431,7 @@ audioRenderer.getCurrentOutputDevices().then((deviceInfo: audio.AudioDeviceDescr
 });
 ```
 
-### getCurrentOutputDevicesSync<sup>10+</sup>
+## getCurrentOutputDevicesSync<sup>10+</sup>
 
 getCurrentOutputDevicesSync(): AudioDeviceDescriptors
 
@@ -1467,7 +1467,7 @@ try {
   console.error(`Get current output devices Fail: ${error}`);
 }
 ```
-### setChannelBlendMode<sup>11+</sup>
+## setChannelBlendMode<sup>11+</sup>
 
 setChannelBlendMode(mode: ChannelBlendMode): void
 
@@ -1499,7 +1499,7 @@ let mode = audio.ChannelBlendMode.MODE_DEFAULT;
 audioRenderer.setChannelBlendMode(mode);
 console.info(`BlendMode: ${mode}`);
 ```
-### setVolumeWithRamp<sup>11+</sup>
+## setVolumeWithRamp<sup>11+</sup>
 
 setVolumeWithRamp(volume: number, duration: number): void
 
@@ -1533,7 +1533,7 @@ audioRenderer.setVolumeWithRamp(volume, duration);
 console.info(`setVolumeWithRamp: ${volume}`);
 ```
 
-### setSilentModeAndMixWithOthers<sup>12+</sup>
+## setSilentModeAndMixWithOthers<sup>12+</sup>
 
 setSilentModeAndMixWithOthers(on: boolean): void
 
@@ -1555,7 +1555,7 @@ setSilentModeAndMixWithOthers(on: boolean): void
 audioRenderer.setSilentModeAndMixWithOthers(true);
 ```
 
-### getSilentModeAndMixWithOthers<sup>12+</sup>
+## getSilentModeAndMixWithOthers<sup>12+</sup>
 
 getSilentModeAndMixWithOthers(): boolean
 
@@ -1575,7 +1575,7 @@ getSilentModeAndMixWithOthers(): boolean
 let on = audioRenderer.getSilentModeAndMixWithOthers();
 ```
 
-### setDefaultOutputDevice<sup>12+</sup>
+## setDefaultOutputDevice<sup>12+</sup>
 
 setDefaultOutputDevice(deviceType: DeviceType): Promise&lt;void&gt;
 
@@ -1628,7 +1628,7 @@ audioRenderer.setDefaultOutputDevice(audio.DeviceType.SPEAKER).then(() => {
 });
 ```
 
-### on('audioInterrupt')<sup>9+</sup>
+## on('audioInterrupt')<sup>9+</sup>
 
 on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
@@ -1716,7 +1716,7 @@ async function onAudioInterrupt(){
 }
 ```
 
-### off('audioInterrupt')<sup>18+</sup>
+## off('audioInterrupt')<sup>18+</sup>
 
 off(type: 'audioInterrupt', callback?: Callback&lt;InterruptEvent&gt;): void
 
@@ -1802,7 +1802,7 @@ audioRenderer.on('audioInterrupt', audioInterruptCallback);
 audioRenderer.off('audioInterrupt', audioInterruptCallback);
 ```
 
-### on('markReach')<sup>8+</sup>
+## on('markReach')<sup>8+</sup>
 
 on(type: 'markReach', frame: number, callback: Callback&lt;number&gt;): void
 
@@ -1831,7 +1831,7 @@ audioRenderer.on('markReach', 1000, (position: number) => {
 ```
 
 
-### off('markReach')<sup>8+</sup>
+## off('markReach')<sup>8+</sup>
 
 off(type: 'markReach', callback?: Callback&lt;number&gt;): void
 
@@ -1864,7 +1864,7 @@ audioRenderer.on('markReach', markReachCallback);
 audioRenderer.off('markReach', markReachCallback);
 ```
 
-### on('periodReach')<sup>8+</sup>
+## on('periodReach')<sup>8+</sup>
 
 on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
@@ -1892,7 +1892,7 @@ audioRenderer.on('periodReach', 1000, (position: number) => {
 });
 ```
 
-### off('periodReach')<sup>8+</sup>
+## off('periodReach')<sup>8+</sup>
 
 off(type: 'periodReach', callback?: Callback&lt;number&gt;): void
 
@@ -1925,7 +1925,7 @@ audioRenderer.on('periodReach', periodReachCallback);
 audioRenderer.off('periodReach', periodReachCallback);
 ```
 
-### on('stateChange')<sup>8+</sup>
+## on('stateChange')<sup>8+</sup>
 
 on(type: 'stateChange', callback: Callback<AudioState\>): void
 
@@ -1953,7 +1953,7 @@ audioRenderer.on('stateChange', (state: audio.AudioState) => {
 });
 ```
 
-### off('stateChange')<sup>18+</sup>
+## off('stateChange')<sup>18+</sup>
 
 off(type: 'stateChange', callback?: Callback&lt;AudioState&gt;): void
 
@@ -1997,7 +1997,7 @@ audioRenderer.on('stateChange', stateChangeCallback);
 audioRenderer.off('stateChange', stateChangeCallback);
 ```
 
-### on('outputDeviceChange')<sup>10+</sup>
+## on('outputDeviceChange')<sup>10+</sup>
 
 on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
@@ -2031,7 +2031,7 @@ audioRenderer.on('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptors
 });
 ```
 
-### off('outputDeviceChange')<sup>10+</sup>
+## off('outputDeviceChange')<sup>10+</sup>
 
 off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): void
 
@@ -2073,7 +2073,7 @@ audioRenderer.on('outputDeviceChange', outputDeviceChangeCallback);
 audioRenderer.off('outputDeviceChange', outputDeviceChangeCallback);
 ```
 
-### on('outputDeviceChangeWithInfo')<sup>11+</sup>
+## on('outputDeviceChangeWithInfo')<sup>11+</sup>
 
 on(type: 'outputDeviceChangeWithInfo', callback: Callback\<AudioStreamDeviceChangeInfo>): void
 
@@ -2108,7 +2108,7 @@ audioRenderer.on('outputDeviceChangeWithInfo', (deviceChangeInfo: audio.AudioStr
 });
 ```
 
-### off('outputDeviceChangeWithInfo')<sup>11+</sup>
+## off('outputDeviceChangeWithInfo')<sup>11+</sup>
 
 off(type: 'outputDeviceChangeWithInfo', callback?: Callback\<AudioStreamDeviceChangeInfo>): void
 
@@ -2151,7 +2151,7 @@ audioRenderer.on('outputDeviceChangeWithInfo', outputDeviceChangeWithInfoCallbac
 audioRenderer.off('outputDeviceChangeWithInfo', outputDeviceChangeWithInfoCallback);
 ```
 
-### on('writeData')<sup>11+</sup>
+## on('writeData')<sup>11+</sup>
 
 on(type: 'writeData', callback: AudioRendererWriteDataCallback): void
 
@@ -2222,7 +2222,7 @@ audioRenderer.start().then(() => {
 });
 ```
 
-### off('writeData')<sup>11+</sup>
+## off('writeData')<sup>11+</sup>
 
 off(type: 'writeData', callback?: AudioRendererWriteDataCallback): void
 
@@ -2261,7 +2261,7 @@ audioRenderer.on('writeData', writeDataCallback);
 
 audioRenderer.off('writeData', writeDataCallback);
 ```
-### write<sup>8+(deprecated)</sup>
+## write<sup>8+(deprecated)</sup>
 
 write(buffer: ArrayBuffer, callback: AsyncCallback\<number>): void
 
@@ -2325,7 +2325,7 @@ audioRenderer.getBufferSize().then((data: number)=> {
 });
 ```
 
-### write<sup>8+(deprecated)</sup>
+## write<sup>8+(deprecated)</sup>
 
 write(buffer: ArrayBuffer): Promise\<number>
 
@@ -2391,7 +2391,7 @@ audioRenderer.getBufferSize().then((data: number) => {
 });
 ```
 
-### setRenderRate<sup>8+(deprecated)</sup>
+## setRenderRate<sup>8+(deprecated)</sup>
 
 setRenderRate(rate: AudioRendererRate, callback: AsyncCallback\<void>): void
 
@@ -2423,7 +2423,7 @@ audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL, (err: Bu
 });
 ```
 
-### setRenderRate<sup>8+(deprecated)</sup>
+## setRenderRate<sup>8+(deprecated)</sup>
 
 setRenderRate(rate: AudioRendererRate): Promise\<void>
 
@@ -2458,7 +2458,7 @@ audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL).then(() 
 });
 ```
 
-### getRenderRate<sup>8+(deprecated)</sup>
+## getRenderRate<sup>8+(deprecated)</sup>
 
 getRenderRate(callback: AsyncCallback\<AudioRendererRate>): void
 
@@ -2485,7 +2485,7 @@ audioRenderer.getRenderRate((err: BusinessError, renderRate: audio.AudioRenderer
 });
 ```
 
-### getRenderRate<sup>8+(deprecated)</sup>
+## getRenderRate<sup>8+(deprecated)</sup>
 
 getRenderRate(): Promise\<AudioRendererRate>
 
@@ -2514,7 +2514,7 @@ audioRenderer.getRenderRate().then((renderRate: audio.AudioRendererRate) => {
 });
 ```
 
-### getRenderRateSync<sup>10+(deprecated)</sup>
+## getRenderRateSync<sup>10+(deprecated)</sup>
 
 getRenderRateSync(): AudioRendererRate
 
