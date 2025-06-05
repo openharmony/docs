@@ -127,9 +127,9 @@ let contentHeight: number = 600; // 假设当前内容高度600px。
 let para: Record<string, number> = { 'PropA': 47 };
 let localStorage: LocalStorage = new LocalStorage(para);
 let res: boolean = localStorage.setOrCreate('PropB', 121);
-let ctx: UIContext = AppStorage.get('UIContext') as UIContext; //开发者通过窗口或自定义组件中getUIContext()方法获取并缓存UIContext实例
+let ctx = this.getUIContext().getHostContext() as common.UIAbilityContext; //请在组件内获取context，确保this.getUIContext().getHostContext()返回的结果为UIAbilityContext
 let config: PiPWindow.PiPConfiguration = {
-  context: ctx.getHostContext() as Context,
+  context: ctx,
   componentController: mXComponentController,
   navigationId: navId,
   templateType: PiPWindow.PiPTemplateType.VIDEO_PLAY,
@@ -190,7 +190,7 @@ import { typeNode } from '@ohos.arkui.node';
 
 let pipController: PiPWindow.PiPController | undefined = undefined;
 let xComponentController: XComponentController = new XComponentController();
-let ctx: UIContext = AppStorage.get('UIContext') as UIContext; //开发者通过窗口或自定义组件中getUIContext()方法获取并缓存UIContext实例
+let ctx = this.getUIContext().getHostContext() as common.UIAbilityContext; //请在组件内获取context，确保this.getUIContext().getHostContext()返回的结果为UIAbilityContextgetUIContext()方法获取并缓存UIContext实例
 let options: XComponentOptions = {
   type: XComponentType.SURFACE,
   controller: xComponentController
@@ -199,7 +199,7 @@ let xComponent = typeNode.createNode(ctx, 'XComponent', options);
 let contentWidth: number = 800; // 假设当前内容宽度800px。
 let contentHeight: number = 600; // 假设当前内容高度600px。
 let config: PiPWindow.PiPConfiguration = {
-  context: ctx.getHostContext() as Context,
+  context: ctx,
   componentController: xComponentController,
   templateType: PiPWindow.PiPTemplateType.VIDEO_PLAY,
   contentWidth: contentWidth,
