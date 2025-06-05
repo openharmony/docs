@@ -25,7 +25,7 @@
 
 ```ts
 // entry/src/main/ets/myliveformextensionability/MyLiveFormExtensionAbility.ets
-import { LiveFormInfo, LiveFormExtensionAbility } from '@kit.FormKit';
+import { formInfo, LiveFormInfo, LiveFormExtensionAbility } from '@kit.FormKit';
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
 export default class MyLiveFormExtensionAbility extends LiveFormExtensionAbility {
@@ -33,14 +33,18 @@ export default class MyLiveFormExtensionAbility extends LiveFormExtensionAbility
     let storage: LocalStorage = new LocalStorage();
     storage.setOrCreate('session', session);
 
-    // 获取卡片ID
-    let formId: string = liveFormInfo.formId as string;
+    // 获取卡片信息
+    let formId: string = liveFormInfo.formId;
     storage.setOrCreate('formId', formId);
-    console.log(`MyLiveFormExtensionAbility onSessionCreate formId: ${formId}`);
+    let formRect: formInfo.Rect = liveFormInfo.rect;
+    storage.setOrCreate('formRect', formRect);
+    let borderRadius: number = liveFormInfo.borderRadius;
+    storage.setOrCreate('borderRadius', borderRadius);
+    console.log(`MyLiveFormExtensionAbility onSessionCreate formId: ${formId}, borderRadius: ${borderRadius}` +
+      `, formRect: ${formRect}`);
 
     // 加载互动页面
     session.loadContent('myliveformextensionability/pages/MyLiveFormPage', storage);
-    this.context.setBackgroundImage($r('app.media.background'));
   }
 
   onLiveFormDestroy(liveFormInfo: LiveFormInfo) {
@@ -54,7 +58,7 @@ export default class MyLiveFormExtensionAbility extends LiveFormExtensionAbility
 ```ts
 // entry/src/main/ets/myliveformextensionability/pages/MyLiveFormPage.ets
 import { UIExtensionContentSession } from '@kit.AbilityKit';
-import { formProvider } from '@kit.FormKit';
+import { formInfo, formProvider } from '@kit.FormKit';
 import { Constants } from '../../common/Constants';
 
 const ANIMATION_RECT_SIZE: number = 100;
@@ -71,6 +75,8 @@ struct MyLiveFormPage {
   private session: UIExtensionContentSession | undefined =
     storageForMyLiveFormPage?.get<UIExtensionContentSession>('session');
   private formId: string | undefined = storageForMyLiveFormPage?.get<string>('formId');
+  private formRect: formInfo.Rect | undefined = storageForMyLiveFormPage?.get<formInfo.Rect>('formRect');
+  private formBorderRadius: number | undefined = storageForMyLiveFormPage?.get<number>('borderRadius');
 
   // 执行动效
   private runAnimation(): void {
@@ -80,11 +86,17 @@ struct MyLiveFormPage {
     }, () => {
       this.columnScale = END_SCALE;
       this.columnTranslate = END_TRANSLATE;
-    })
+    });
   }
 
   build() {
     Stack() {
+      // 背景组件，和普通卡片等大
+      Image($r('app.media.background'))
+        .width(this.formRect? this.formRect.width : 0)
+        .height(this.formRect? this.formRect.height : 0)
+        .borderRadius(this.formBorderRadius ? this.formBorderRadius : 0)
+
       Stack()
         .width(ANIMATION_RECT_SIZE)
         .height(ANIMATION_RECT_SIZE)

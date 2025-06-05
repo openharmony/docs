@@ -84,7 +84,7 @@ try {
 
 ```ts
 // entry/src/main/ets/mysystemliveformextensionability/MySystemLiveFormExtensionAbility.ets 
-import { LiveFormInfo, LiveFormExtensionAbility } from '@kit.FormKit';
+import { formInfo, LiveFormInfo, LiveFormExtensionAbility } from '@kit.FormKit';
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
 export default class MySystemLiveFormExtensionAbility extends LiveFormExtensionAbility {
@@ -92,17 +92,21 @@ export default class MySystemLiveFormExtensionAbility extends LiveFormExtensionA
     let storage: LocalStorage = new LocalStorage();
     storage.setOrCreate('session', session);
 
-    // 获取卡片ID
+    // 获取参卡片信息
     let formId: string = liveFormInfo.formId as string;
     storage.setOrCreate('formId', formId);
-    console.log(`MySystemLiveFormExtensionAbility onSessionCreate formId: ${formId}`);
+    let formRect: formInfo.Rect = liveFormInfo.rect;
+    storage.setOrCreate('formRect', formRect);
+    let borderRadius: number = liveFormInfo.borderRadius;
+    storage.setOrCreate('borderRadius', borderRadius);
+    console.log(`MySystemLiveFormExtensionAbility onSessionCreate formId: ${formId}, borderRadius: ${borderRadius}` +
+      `, formRect: ${formRect}`);
 
     // 加载提供方页面
     session.loadContent('mysystemliveformextensionability/pages/MySystemLiveFormPage', storage);
 
     // 卡片提供方需在激活态页面准备就绪时，通过 session 发送信息告知卡片使用方
     session.sendData({['isFormReady']: true});
-    this.context.setBackgroundImage($r('app.media.background'));
   }
 
   onLiveFormDestroy(liveFormInfo: LiveFormInfo) {
