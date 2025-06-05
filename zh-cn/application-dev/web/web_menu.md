@@ -1,4 +1,4 @@
-# Web组件的菜单功能
+# 使用Web组件菜单处理网页内容
 菜单作为用户交互的关键组件，其作用是构建清晰的导航体系，通过结构化布局展示功能入口，使用户能够迅速找到目标内容或执行操作。作为人机交互的重要枢纽，它显著提升了Web组件的可访问性和用户体验，是应用设计中必不可少的部分。Web组件菜单类型包括[文本选中菜单](./web_menu.md#文本选中菜单)、[上下文菜单](./web_menu.md#上下文菜单)和[自定义菜单](./web_menu.md#自定义菜单)，应用可根据具体需求灵活选择。
 |菜单类型|目标元素|响应类型|是否支持自定义|
 |----|----|----|----|
@@ -334,6 +334,142 @@ struct WebComponent {
 </html>
 ```
 ![bindSelectionMenu](./figures/bindSelectionMenu.gif)
+## Web菜单保存图片
+1. 创建MenuBuilder组件作为菜单弹窗，使用[SaveButton](../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md)组件实现图片保存，通过bindContextMenu将MenuBuilder与Web绑定。
+2. 在onContextMenuShow中获取图片url，通过copyLocalPicToDir或copyUrlPicToDir将图片保存至应用沙箱。
+3. 通过photoAccessHelper将应用沙箱中的图片保存至图库。
+
+  ```ts
+import { webview } from '@kit.ArkWeb';
+import { common } from '@kit.AbilityKit';
+import { fileIo as fs, ReadOptions, WriteOptions } from '@kit.CoreFileKit';
+import { systemDateTime } from '@kit.BasicServicesKit';
+import { http } from '@kit.NetworkKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+
+const Tag = 'web-savePic';
+const context = getContext(this) as common.UIAbilityContext;
+
+function copyLocalPicToDir(rawfilePath: string, newFileName: string): string {
+  let srcFileDes = context.resourceManager.getRawFdSync(rawfilePath)
+  let dstPath = context.filesDir + "/" +newFileName
+  let dest: fs.File = fs.openSync(dstPath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE)
+  let bufsize = 4096
+  let buf = new ArrayBuffer(bufsize)
+  let off = 0, len = 0, readedLen = 0
+  while (len = fs.readSync(srcFileDes.fd, buf, { offset: srcFileDes.offset + off, length: bufsize })) {
+    readedLen += len
+    fs.writeSync(dest.fd, buf, { offset: off, length: len })
+    off = off + len
+    if ((srcFileDes.length - readedLen) < bufsize) {
+      bufsize = srcFileDes.length - readedLen
+    }
+  }
+  fs.close(dest.fd)
+  return dest.path
+}
+
+async function copyUrlPicToDir(picUrl: string, newFileName: string): Promise<string> {
+  let uri = ''
+  let httpRequest = http.createHttp();
+  let data: http.HttpResponse = await(httpRequest.request(picUrl) as Promise<http.HttpResponse>)
+  if (data?.responseCode == http.ResponseCode.OK) {
+    let dstPath = context.filesDir + "/" + newFileName;
+    let dest: fs.File = fs.openSync(dstPath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE)
+    let writeLen: number = fs.writeSync(dest.fd, data.result as ArrayBuffer)
+    uri = dest.path
+  }
+  return uri
+}
+
+@Entry
+@Component
+struct WebComponent {
+  saveButtonOptions: SaveButtonOptions = {
+    icon: SaveIconStyle.FULL_FILLED,
+    text: SaveDescription.SAVE_IMAGE,
+    buttonType: ButtonType.Capsule
+  }
+  controller: webview.WebviewController = new webview.WebviewController()
+  private result: WebContextMenuResult | undefined = undefined
+  @State showMenu: boolean = false
+  @State imgUrl: string = ''
+
+  @Builder
+  MenuBuilder() {
+    Column() {
+      Row() {
+        SaveButton(this.saveButtonOptions)
+          .onClick(async (event, result: SaveButtonOnClickResult) => {
+            if (result == SaveButtonOnClickResult.SUCCESS) {
+              try {
+                let context = getContext();
+                let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+                let uri = '';
+                if (this.imgUrl?.includes('rawfile')) {
+                  let rawFileName: string = this.imgUrl.substring(this.imgUrl.lastIndexOf('/') + 1)
+                  uri = copyLocalPicToDir(rawFileName, 'copyFile.png')
+                } else if (this.imgUrl?.includes('http') || this.imgUrl?.includes('https')) {
+                  uri = await copyUrlPicToDir(this.imgUrl, `onlinePic${systemDateTime.getTime()}.png`)
+                }
+                let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createImageAssetRequest(context, uri)
+                await phAccessHelper.applyChanges(assetChangeRequest)
+              }
+              catch (err) {
+                console.error(`create asset failed with error: ${err.code}}, ${err.message}}`)
+              }
+            } else {
+              console.error(`SaveButtonOnClickResult create asset failed`)
+            }
+            this.showMenu = false
+        })
+      }
+      .margin({ top: 20, bottom: 20 })
+      .justifyContent(FlexAlign.Center)
+    }
+    .width('80')
+    .backgroundColor(Color.White)
+    .borderRadius(10)
+  }
+
+  build() {
+    Column() {
+      Web({src: $rawfile("index.html"), controller: this.controller})
+        .onContextMenuShow((event) => {
+          if (event) {
+            let hitValue = this.controller.getHitTestValue()
+            this.imgUrl = hitValue.extra
+          }
+          this.showMenu = true
+          return true;
+        })
+        .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
+        .fileAccess(true)
+        .javaScriptAccess(true)
+        .domStorageAccess(true)
+    }
+  }
+}
+  ```
+  ```html
+<!--index.html-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SavePicture</title>
+</head>
+<body>
+<h1>SavePicture</h1>
+<br>
+<br>
+<br>
+<br>
+<br>
+<img src="./startIcon.png">
+</body>
+</html>
+  ```
+![emptyEditMenuOption](./figures/web-menu-savePic.gif)
 ## 常见问题
 ### 如何禁用长按选择时弹出菜单
 可通过[editMenuOptions](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#editmenuoptions12)接口将系统默认菜单全部过滤，此时无菜单项，则不会显示菜单。
