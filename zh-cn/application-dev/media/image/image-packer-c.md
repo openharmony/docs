@@ -9,7 +9,7 @@
 在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加libimage_packer.so 以及日志依赖libhilog_ndk.z.so。
 
 ```txt
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
+target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so  libpixelmap.so)
 ```
 
 ### Native接口调用
@@ -25,11 +25,10 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
 > **说明：**
 > 根据MIME标准，标准编码格式为image/jpeg。当使用image编码时，编码参数中的编码格式image_MimeType设置为image/jpeg，image编码后的文件扩展名可设为.jpg或.jpeg，可在支持image/jpeg解码的平台上使用。
 
-   ```c++
-
+      ```c++
       #include <linux/kd.h>
       #include <string>
-
+      #include <set>
       #include <hilog/log.h>
       #include <multimedia/image_framework/image/image_common.h>
       #include <multimedia/image_framework/image/image_packer_native.h>
@@ -118,7 +117,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
           return IMAGE_SUCCESS;
       }
 
-      Image_ErrorCode packToFileFromPixelmapTest(uint8_t *buffer, size_t buffSize, int fd)
+      Image_ErrorCode packToFileFromPixelmapTest(uint8_t *buffer, size_t bufferSize, int fd)
       {
           //创建ImagePacker实例。
           OH_ImagePackerNative *testPacker = nullptr;
@@ -172,4 +171,4 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
 
           return IMAGE_SUCCESS;
       }
-   ```
+      ```
