@@ -83,7 +83,7 @@ stride（步幅）描述了图片在内存中每一行像素数据的存储宽�
 
 - stride 值需为 硬件平台要求字节数的整数倍。
 - 如果通过上面的计算公式得到的 stride 不满足对齐要求时，系统会自动补齐填充数据（padding）。
-stride的值可以通过[PixelMap::GetImageInfo()](../../reference/apis-image-kit/js-apis-image.md#getimageinfo-1) 接口获取。
+stride的值可以通过[GetImageInfo()](../../reference/apis-image-kit/js-apis-image.md#getimageinfo-1) 接口获取。
 
 1. 调用[GetImageInfo()](../../reference/apis-image-kit/js-apis-image.md#getimageinfo-1)方法，获取ImageInfo对象。
 2. 从ImageInfo对象中访问stride值：info.stride。

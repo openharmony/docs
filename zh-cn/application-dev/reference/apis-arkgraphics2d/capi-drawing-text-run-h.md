@@ -4,7 +4,7 @@
 
 提供字体渲染单元的相关接口，比如绘制功能、获取排版边界功能等。
 
-**引用文件：** drawing_text_run.h
+**引用文件：** <native_drawing/drawing_text_run.h>
 
 **库：** libnative_drawing.so
 

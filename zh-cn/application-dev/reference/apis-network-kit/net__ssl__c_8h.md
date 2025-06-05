@@ -25,3 +25,5 @@
 | [OH_NetStack_GetPinSetForHostName](netstack.md#oh_netstack_getpinsetforhostname)(const char \*hostname, [NetStack_CertificatePinning](_net_stack___certificate_pinning.md) \*pin) | 获取证书锁定信息。 |
 | [OH_NetStack_GetCertificatesForHostName](netstack.md#oh_netstack_getcertificatesforhostname)(const char \*hostname, [NetStack_Certificates](_net_stack___certificates.md) \*certs) | 获取证书信息。 |
 | [OH_Netstack_DestroyCertificatesContent](netstack.md#oh_netstack_destroycertificatescontent)([NetStack_Certificates](_net_stack___certificates.md) \*certs) | 释放证书内容。 |
+| [OH_Netstack_IsCleartextPermitted](netstack.md#oh_netstack_iscleartextpermitted)(bool \*isCleartextPermitted) | 整体明文HTTP是否允许。 |
+| [OH_Netstack_IsCleartextPermittedByHostName](netstack.md#oh_netstack_iscleartextpermittedbyhostname)(const char \*hostname, bool \*isCleartextPermitted) | 按域名明文HTTP是否允许。 |

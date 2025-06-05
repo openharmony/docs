@@ -4,7 +4,7 @@
 
 定义获取和使用NativeDisplaySoloist的相关函数。
 
-**引用文件：** native_display_soloist.h
+**引用文件：** <native_display_soloist/native_display_soloist.h>
 
 **库：** libnative_display_soloist.so
 

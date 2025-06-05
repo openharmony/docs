@@ -4,7 +4,7 @@
 
 声明与绘图模块中的错误码相关的函数。
 
-**引用文件：** native_drawing/drawing_error_code.h
+**引用文件：** <native_drawing/drawing_error_code.h>
 
 **库：** libnative_drawing.so
 

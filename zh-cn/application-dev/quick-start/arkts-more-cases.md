@@ -47,7 +47,7 @@ function printObj(obj: any) {
   console.log(obj);
 }
 
-printObj('abc');
+printObj('abc'); // abc
 ```
 
 **建议改法**
@@ -57,7 +57,7 @@ function printObj(obj: string) {
   console.log(obj);
 }
 
-printObj('abc');
+printObj('abc'); // abc
 ```
 
 ### 标注JSON.parse返回值类型
@@ -441,7 +441,7 @@ let regexp: RegExp = new RegExp('\\s*','g');
 **应用代码**
 
 ```typescript
-const area = {
+const area = { // 没有写明类型 不方便维护
   pixels: new ArrayBuffer(8),
   offset: 0,
   stride: 8,
@@ -454,7 +454,7 @@ const area = {
 ```typescript
 import { image } from '@kit.ImageKit';
 
-const area: image.PositionArea = {
+const area: image.PositionArea = { // 写明具体类型
   pixels: new ArrayBuffer(8),
   offset: 0,
   stride: 8,
@@ -469,7 +469,7 @@ const area: image.PositionArea = {
 ```typescript
 class Test {
   value: number = 1
-
+  // 有构造函数
   constructor(value: number) {
     this.value = value;
   }
@@ -872,7 +872,7 @@ c1.add = sub;
 **应用代码**
 
 ```typescript
-let a = +'5';
+let a = +'5'; // 使用操作符隐式转换
 let b = -'5';
 let c = ~'5';
 let d = +'string';
@@ -881,7 +881,7 @@ let d = +'string';
 **建议改法**
 
 ```typescript
-let a = Number.parseInt('5');
+let a = Number.parseInt('5'); // 使用Number.parseInt显示转换
 let b = -Number.parseInt('5');
 let c = ~Number.parseInt('5');
 let d = new Number('string');

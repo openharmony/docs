@@ -28,7 +28,7 @@ import {
 
 isAvailable(): boolean
 
-判断UIContext对象对应的UI实例是否有效。
+判断UIContext对象对应的UI实例是否有效。使用getUIContext方法创建UIContext对象。后端UI实例存在时，该UI实例有效。通过new UIContext()创建的UIContext对应的UI实例无效；多次loadContent后，旧的UI实例以及多窗口应用关闭对应窗口后，该窗口的UI实例无效。即后端UI实例不存在时，UI实例无效。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -43,8 +43,63 @@ isAvailable(): boolean
 **示例：**
 
 ```ts
-uiContext.isAvailable();
+import { UIContext } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct UIContextCompare {
+  @State result1: string = ""
+  @State result2: string = ""
+
+  build() {
+    Column() {
+      Text("getUIContext() 结果: " + this.result1)
+        .fontSize(20)
+        .margin(10)
+
+      Text("new UIContext() 结果: " + this.result2)
+        .fontSize(20)
+        .margin(10)
+
+      Divider().margin(20)
+
+      Button("getUIContext()")
+        .width("70%")
+        .height(50)
+        .margin(10)
+        .onClick(() => {
+          try {
+            const ctx: UIContext = this.getUIContext();
+            const available: boolean = ctx.isAvailable();
+            this.result1 = `可用状态: ${available} UI实例有效 `;
+            console.log("getUIContext测试:", available);
+          } catch (e) {
+            this.result1 = "错误: " + (e instanceof Error ? e.message : String(e));
+          }
+        })
+
+      Button("new UIContext()")
+        .width("70%")
+        .height(50)
+        .margin(10)
+        .onClick(() => {
+          try {
+            const ctx: UIContext = new UIContext();
+            const available: boolean = ctx.isAvailable();
+            this.result2 = `可用状态: ${available} UI实例无效`;
+            console.log("new UIContext测试:", available);
+          } catch (e) {
+            this.result2 = "错误: " + (e instanceof Error ? e.message : String(e));
+          }
+        })
+    }
+    .width("100%")
+    .height("100%")
+    .padding(20)
+  }
+}
 ```
+![example](figures/uicontext_isavailable.gif)
 ### getFont
 
 getFont(): Font
@@ -1297,7 +1352,7 @@ getFilteredInspectorTree(filters?: Array\<string\>): string
 
 | 参数名  | 类型            | 必填 | 说明                                                         |
 | ------- | --------------- | ---- | ------------------------------------------------------------ |
-| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段：<br/>"id"：组件唯一标识。<br/>"src"：资源来源。 <br/>"content"：元素、组件或对象所包含的信息或数据。<br/>"editable"：是否可编辑。<br/>"scrollable"：是否可滚动。<br/>"selectable"：是否可选择。<br/>"focusable"：是否可聚焦。<br/>"focused"：是否已聚焦。<br/>从API version 20开始，支持该过滤字段：<br/>"isLayoutInspector"：是否显示自定义组件的属性。<br/>其余字段仅供测试场景使用。 |
+| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段：<br/>"id"：组件唯一标识。<br/>"src"：资源来源。 <br/>"content"：元素、组件或对象所包含的信息或数据。<br/>"editable"：是否可编辑。<br/>"scrollable"：是否可滚动。<br/>"selectable"：是否可选择。<br/>"focusable"：是否可聚焦。<br/>"focused"：是否已聚焦。<br/>如果在filters参数中包含以上一个或者多个字段，则未包含的字段会在组件属性查询结果中被过滤掉。如果用户未传入filters参数或者filters参数为空数组，则以上字段全部不会在组件属性查询结果中被过滤掉。<br/>从API version 20开始，支持该过滤字段：<br/>"isLayoutInspector"：是否显示自定义组件的属性。<br/>其余字段仅供测试场景使用。 |
 
 **返回值：** 
 
@@ -3181,9 +3236,9 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 
 参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate11-1)示例。
 
-### on('navDestinationUpdate')<sup>20+</sup>
+### on('navDestinationUpdateByUniqueId')<sup>20+</sup>
 
-on(type: 'navDestinationUpdate', navigationUniqueId: number, callback: Callback\<observer.NavDestinationInfo\>): void
+on(type: 'navDestinationUpdateByUniqueId', navigationUniqueId: number, callback: Callback\<observer.NavDestinationInfo\>): void
 
 通过Navigation的uniqueId监听NavDestination组件的状态变化，uniqueId可通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。
 
@@ -3195,7 +3250,7 @@ on(type: 'navDestinationUpdate', navigationUniqueId: number, callback: Callback\
 
 | 参数名   | 类型                                                                 | 必填 | 说明                                                                     |
 | -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
-| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdateByUniqueId'，即NavDestination组件的状态变化。 |
 | navigationUniqueId  | number | 是   | 指定监听的Navigation的uniqueId，可以通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。                                               |
 | callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>                | 是   | 回调函数。返回当前的NavDestination组件状态。                             |
 
@@ -3205,8 +3260,8 @@ on(type: 'navDestinationUpdate', navigationUniqueId: number, callback: Callback\
 
 ```ts
 // Index.ets
-// 演示 on('navDestinationUpdate', navigationUniqueId, callback)
-// off('navDestinationUpdate', navigationUniqueId, callback)
+// 演示 on('navDestinationUpdateByUniqueId', navigationUniqueId, callback)
+// off('navDestinationUpdateByUniqueId', navigationUniqueId, callback)
 @Component
 struct PageOne {
   private text = '';
@@ -3217,12 +3272,12 @@ struct PageOne {
       this.uniqueid = navigationuniqueid.valueOf();
     }
     this.text = JSON.stringify(this.uniqueid);
-    this.getUIContext().getUIObserver().on('navDestinationUpdate', this.uniqueid, (info) => {
+    this.getUIContext().getUIObserver().on('navDestinationUpdateByUniqueId', this.uniqueid, (info) => {
       console.info('NavDestination state update navigationId', JSON.stringify(info));
     });
   }
   aboutToDisappear() {
-    this.getUIContext().getUIObserver().off('navDestinationUpdate', this.uniqueid);
+    this.getUIContext().getUIObserver().off('navDestinationUpdateByUniqueId', this.uniqueid);
   }
   build() {
     NavDestination() {
@@ -3263,9 +3318,9 @@ struct Index {
 }
 ```
 
-### off('navDestinationUpdate')<sup>20+</sup>
+### off('navDestinationUpdateByUniqueId')<sup>20+</sup>
 
-off(type: 'navDestinationUpdate', navigationUniqueId: number, callback?: Callback\<observer.NavDestinationInfo\>): void
+off(type: 'navDestinationUpdateByUniqueId', navigationUniqueId: number, callback?: Callback\<observer.NavDestinationInfo\>): void
 
 取消通过navigationUniqueId监听NavDestination组件的变化。
 
@@ -3277,13 +3332,13 @@ off(type: 'navDestinationUpdate', navigationUniqueId: number, callback?: Callbac
 
 | 参数名   | 类型                                                                 | 必填 | 说明                                                                     |
 | -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
-| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdateByUniqueId'，即NavDestination组件的状态变化。 |
 | navigationUniqueId  | number | 是   | 指定监听的Navigation的uniqueId，可以通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。                                               |
 | callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>                | 否   | 需要取消的监听回调，不传参数时，取消该Navigation上所有的监听回调。                             |
 
 **示例：**
 
-参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate20)示例。
+参考[uiObserver.on('navDestinationUpdateByUniqueId')](#onnavdestinationupdatebyuniqueid20)示例。
 
 ### on('scrollEvent')<sup>12+</sup>
 
@@ -9957,7 +10012,7 @@ measureText(options: MeasureOptions): number
 
 | 类型          | 说明       |
 | ------------  | --------- |
-| number        | 文本宽度。<br/>**说明:**<br/>单位px。 |
+| number        | 文本宽度。<br/>**说明:**<br/>浮点数会向上取整。<br/>单位：px |
 
 
 **示例：**
@@ -10008,11 +10063,11 @@ measureTextSize(options: MeasureOptions): SizeOptions
 
 | 类型          | 说明       |
 | ------------  | --------- |
-| [SizeOption](arkui-ts/ts-types.md#sizeoptions)   | 返回文本所占布局宽度和高度。<br/>**说明:**<br/> 文本宽度以及高度返回值单位均为px。 |
+| [SizeOptions](arkui-ts/ts-types.md#sizeoptions)   | 返回文本所占布局宽度和高度。<br/>**说明:**<br/>没有传参constraintWidth的情况下，文本宽度返回值浮点数会向上取整。<br/>文本宽度以及高度返回值单位均为px。 |
 
 
 **示例：**
-通过MeasureUtils的measureTextSize方法获取"Hello World"文字的宽度和高度
+通过MeasureUtils的measureTextSize方法获取"Hello World"文字的宽度和高度。
 
 ```ts
 import { MeasureUtils } from '@kit.ArkUI';

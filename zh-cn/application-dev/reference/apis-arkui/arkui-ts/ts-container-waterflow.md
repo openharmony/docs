@@ -238,7 +238,7 @@ columnsTemplate(value: string)
 
 设置当前瀑布流组件布局列的数量，不设置时默认1列。
 
-例如，'1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。
+例如，'1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第1列占1份，第2列占1份，第3列占2份。
 
 可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数，其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、%或有效数字，默认单位为vp，使用方法参见示例2。
 
@@ -258,7 +258,7 @@ rowsTemplate(value: string)
 
 设置当前瀑布流组件布局行的数量，不设置时默认1行。
 
-例如，'1fr 1fr 2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。
+例如，'1fr 1fr 2fr'是将父组件分3行，将父组件允许的高分为4等份，第1行占1份，第2行占1份，第3行占2份。
 
 可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数，其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、%或有效数字，默认单位为vp。
 
@@ -709,6 +709,25 @@ export class WaterFlowDataSource implements IDataSource {
   public reload(): void {
     this.dataArray.splice(1, 1);
     this.dataArray.splice(3, 2);
+    this.notifyDataReload();
+  }
+
+  // 在数据尾部增加count个元素
+  public addNewItems(count: number): void {
+    let len = this.dataArray.length;
+    for (let i = 0; i < count; i++) {
+      this.dataArray.push(this.dataArray[len - 1] + i + 1);
+      this.notifyDataAdd(this.dataArray.length - 1);
+    }
+  }
+
+  // 刷新所有元素
+  public refreshItems(): void {
+    let newDataArray: number[] = [];
+    for (let i = 0; i < 100; i++) {
+      newDataArray.push(this.dataArray[0] + i + 1000);
+    }
+    this.dataArray = newDataArray;
     this.notifyDataReload();
   }
 }
@@ -1530,3 +1549,87 @@ struct Index {
 ```
 
 ![waterFlow_footerContent](figures/waterFlow_footerContent.gif)
+
+### 示例8（WaterFlow组件实现下拉刷新）
+
+该示例通过Refresh组件和WaterFlow组件，实现了下拉刷新瀑布流组件数据源。
+
+<!--code_no_check-->
+```ts
+// Index.ets
+import { WaterFlowDataSource } from './WaterFlowDataSource';
+
+@Entry
+@Component
+struct WaterFlowDemo {
+  @State minSize: number = 80;
+  @State maxSize: number = 180;
+  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
+  @State isRefreshing: boolean = false;
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource();
+  scroller: Scroller = new Scroller();
+  private itemWidthArray: number[] = [];
+  private itemHeightArray: number[] = [];
+
+  // 计算FlowItem宽/高
+  getSize() {
+    let ret = Math.floor(Math.random() * this.maxSize);
+    return (ret > this.minSize ? ret : this.minSize);
+  }
+
+  // 设置FlowItem宽/高数组
+  setItemSizeArray() {
+    for (let i = 0; i < 100; i++) {
+      this.itemWidthArray.push(this.getSize());
+      this.itemHeightArray.push(this.getSize());
+    }
+  }
+
+  aboutToAppear() {
+    this.setItemSizeArray();
+  }
+
+  build() {
+    Column({ space: 2 }) {
+      Refresh({ refreshing: $$this.isRefreshing }) {
+        WaterFlow({ scroller: this.scroller }) {
+          LazyForEach(this.dataSource, (item: number) => {
+            FlowItem() {
+              Column() {
+                Text('N' + item).fontSize(12).height('16')
+              }
+            }
+            .width('100%')
+            .height(this.itemHeightArray[item % 100])
+            .backgroundColor(this.colors[item % 5])
+          }, (item: string) => item)
+        }
+        .columnsTemplate('repeat(auto-fill,80)')
+        .columnsGap(10)
+        .rowsGap(5)
+        .height('90%')
+        .edgeEffect(EdgeEffect.Spring, { alwaysEnabled: true })
+        .onReachEnd(() => {
+          // 触底加载数据
+          setTimeout(() => {
+            this.dataSource.addNewItems(100);
+          }, 1000)
+        })
+      }
+      .onStateChange((refreshStatus: RefreshStatus) => {
+        // 下拉刷新数据
+        if (refreshStatus === RefreshStatus.Done) {
+          this.dataSource.refreshItems();
+        }
+      })
+      .onRefreshing(() => {
+        setTimeout(() => {
+          this.isRefreshing = false;
+        }, 1000)
+      })
+    }
+  }
+}
+```
+
+![waterFlow_refresh](figures/waterFlow_refresh.gif)

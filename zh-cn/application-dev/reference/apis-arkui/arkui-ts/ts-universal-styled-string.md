@@ -84,7 +84,7 @@ equals(other: StyledString): boolean
 
 ### subStyledString
 
-subStyledString(start: number , length?: number): StyledString
+subStyledString(start: number, length?: number): StyledString
 
 获取属性字符串的子字符串。
 
@@ -150,6 +150,23 @@ getStyles(start: number , length: number , styledKey?: StyledStringKey): Array\<
 static fromHtml(html: string): Promise\<StyledString>
 
 将HTML格式字符串转换成属性字符串，当前支持转换的HTML标签范围：\<p>、\<span>、\<img>、\<br>、\<strong>、\<b>、\<a>、\<i>、\<em>、\<s>、\<u>、\<del>、\<sup>、\<sub>。支持将标签中的style属性样式转换成对应的属性字符串样式。
+
+| 标签名称 | 说明                   |
+|-------------|----------------------------|
+| \<p\>       | 段落，分隔文本段落         |
+| \<span\>    | 行内文本，支持样式设置     |
+| \<img\>     | 插入图片                   |
+| \<strong\>  | 加粗文本                   |
+| \<br\><sup>20+</sup>      | 换行                       |
+| \<b\><sup>20+</sup>       | 加粗文本                   |
+| \<a\><sup>20+</sup>       | 超链接                     |
+| \<i\><sup>20+</sup>       | 斜体文本                   |
+| \<em\><sup>20+</sup>      | 斜体文本                   |
+| \<s\><sup>20+</sup>       | 删除线（中划线）           |
+| \<u\><sup>20+</sup>       | 下划线                     |
+| \<del\><sup>20+</sup>     | 删除线（中划线）           |
+| \<sup\><sup>20+</sup>     | 上标文本                   |
+| \<sub\><sup>20+</sup>     | 下标文本                   |
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -997,7 +1014,7 @@ abstract onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
 | context | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | 是   | 图形绘制上下文。<br/>**说明：** <br/>DrawContext的canvas方法获取的画布是Text组件的画布，绘制时不会超出Text组件的范围。 |
 | drawInfo | [CustomSpanDrawInfo](#customspandrawinfo对象说明) | 是   | 自定义绘制Span的绘制信息。 |
 
-### invalidate<sup>13+<sup>
+### invalidate<sup>13+</sup>
 
 invalidate(): void
 

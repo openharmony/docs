@@ -965,7 +965,7 @@ class DateT {
 
 <!--deprecated_code_no_check-->
 ```ts
-import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+import { AnimatorResult } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -977,8 +977,8 @@ struct AnimatorTest {
   @State hei: number = 100
 
   create() {
-    this.backAnimator = animator.create({
-      // 建议使用 this.getUIContext.createAnimator()接口
+    this.backAnimator = this.getUIContext().createAnimator({
+      // 建议使用 this.getUIContext().createAnimator()接口
       duration: 2000,
       easing: "ease",
       delay: 0,

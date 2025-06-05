@@ -203,8 +203,10 @@
       - [ArkData简介](database/data-mgmt-overview.md)
       - 标准化数据定义<!--uniform-data-definition-->
         - [标准化数据定义概述](database/unified-data-definition-overview.md)
-        - [标准化数据类型](database/uniform-data-type-descriptors.md)
-        - [标准化数据结构](database/uniform-data-structure.md)
+        - [标准化数据类型 (ArkTS)](database/uniform-data-type-descriptors.md)
+        - [标准化数据类型 (C/C++)](database/uniform-data-type-descriptors-c.md)
+        - [标准化数据结构 (ArkTS)](database/uniform-data-structure.md)
+        - [标准化数据结构 (C/C++)](database/uniform-data-structure-c.md)
         - [基于标准化数据结构的控件（ArkTS）](database/components-based-on-uniform-data-structure.md)
         - [Uniform Type Descriptor(UTD)预置类型列表](database/uniform-data-type-list.md)
       - 应用数据持久化<!--app-data-persistence-->
@@ -234,10 +236,10 @@
           - [通过数据管理服务实现数据共享静默访问](database/share-data-by-silent-access.md)
         <!--DelEnd-->
         - 多对多跨应用数据共享<!--many-to-many-data-share-->
-          - [通过标准化数据通路实现数据共享](database/unified-data-channels.md)
-      - [应用数据向量化](database/aip-data-intelligence-embedding.md)
+          - [通过标准化数据通路实现数据共享 (ArkTS)](database/unified-data-channels.md)
+          - [通过标准化数据通路实现数据共享 (C/C++)](database/unified-data-channels-c.md)
+      - [应用数据向量化](database/aip-data-intelligence-embedding.md) 
       - [RelationalStore开发指导 (C/C++)](database/native-relational-store-guidelines.md)
-      - [UDMF开发指导 (C/C++)](database/native-unified-data-management-framework-guidelines.md)
       - [ArkData术语](database/data-terminology.md)
     - ArkTS（方舟编程语言）<!--arkts-->
       - [ArkTS简介](arkts-utils/arkts-overview.md)
@@ -1341,11 +1343,11 @@
           - [事件上报](dfx/hiappevent-event-reporting.md)
         <!--DelEnd-->
         - HiTraceMeter使用指导<!--hitracemeter-->
-          - [使用HiTraceMeter跟踪性能（ArkTS/JS）](dfx/hitracemeter-guidelines-arkts.md)
+          - [使用HiTraceMeter跟踪性能（ArkTS）](dfx/hitracemeter-guidelines-arkts.md)
           - [使用HiTraceMeter跟踪性能（C/C++）](dfx/hitracemeter-guidelines-ndk.md)
           - [查看HiTraceMeter日志](dfx/hitracemeter-view.md)
         - HiTraceChain使用指导<!--hitracechain-->
-          - [使用HiTraceChain打点（ArkTS/JS）](dfx/hitracechain-guidelines-arkts.md)
+          - [使用HiTraceChain打点（ArkTS）](dfx/hitracechain-guidelines-arkts.md)
           - [使用HiTraceChain打点（C/C++）](dfx/hitracechain-guidelines-ndk.md)
         - HiChecker使用指导<!--hichecker-->
           - [使用HiChecker检测问题（ArkTS/JS）](dfx/hichecker-guidelines-arkts.md)
@@ -1668,6 +1670,7 @@
       - [NativeImage开发指导 (C/C++)](graphics/native-image-guidelines.md)
       - [NativeVSync开发指导 (C/C++)](graphics/native-vsync-guidelines.md)
       - [NativeWindow开发指导 (C/C++)](graphics/native-window-guidelines.md)
+      - [GPU/CPU内存访问同步操作开发指南 (C/C++)](graphics/native-fence-guidelines.md)
       - [图形开发术语](graphics/graphic-term.md)
     - ArkGraphics 3D（方舟3D图形）<!--arkgraphics-3d-->
       - [ArkGraphics 3D简介](graphics3d/arkgraphics3D-overview.md)
@@ -1965,44 +1968,44 @@
       - ArkTS API<!--ability-arkts-->
         - Stage模型能力的接口<!--stage-model-->
           - [@ohos.app.ability.Ability (Ability基类)](reference/apis-ability-kit/js-apis-app-ability-ability.md)
-          - [@ohos.app.ability.AbilityConstant (AbilityConstant)](reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md)
-          - [@ohos.app.ability.abilityLifecycleCallback (AbilityLifecycleCallback)](reference/apis-ability-kit/js-apis-app-ability-abilityLifecycleCallback.md)
-          - [@ohos.app.ability.AbilityStage (AbilityStage)](reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)
+          - [@ohos.app.ability.AbilityConstant (Ability相关常量)](reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md)
+          - [@ohos.app.ability.abilityLifecycleCallback (UIAbility生命周期回调监听器)](reference/apis-ability-kit/js-apis-app-ability-abilityLifecycleCallback.md)
+          - [@ohos.app.ability.AbilityStage (AbilityStage组件容器)](reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)
           - [@ohos.app.ability.ActionExtensionAbility (自定义服务扩展能力)](reference/apis-ability-kit/js-apis-app-ability-actionExtensionAbility.md)
-          - [@ohos.app.ability.application (Application)](reference/apis-ability-kit/js-apis-app-ability-application.md)
-          - [@ohos.app.ability.ApplicationStateChangeCallback (ApplicationStateChangeCallback)](reference/apis-ability-kit/js-apis-app-ability-applicationStateChangeCallback.md)
+          - [@ohos.app.ability.application (应用基础能力)](reference/apis-ability-kit/js-apis-app-ability-application.md)
+          - [@ohos.app.ability.ApplicationStateChangeCallback (应用前后台状态变化监听器)](reference/apis-ability-kit/js-apis-app-ability-applicationStateChangeCallback.md)
           - [@ohos.app.ability.AppServiceExtensionAbility (应用后台服务扩展组件)](reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)
           - [@ohos.app.ability.AtomicServiceOptions (EmbeddableUIAbility启动可选参数)](reference/apis-ability-kit/js-apis-app-ability-atomicServiceOptions.md)
-          - [@ohos.app.ability.autoFillManager (autoFillManager)](reference/apis-ability-kit/js-apis-app-ability-autoFillManager.md)
-          - [@ohos.app.ability.ChildProcess](reference/apis-ability-kit/js-apis-app-ability-childProcess.md)
-          - [@ohos.app.ability.childProcessManager (childProcessManager)](reference/apis-ability-kit/js-apis-app-ability-childProcessManager.md)
-          - [@ohos.app.ability.ChildProcessArgs (ChildProcessArgs)](reference/apis-ability-kit/js-apis-app-ability-childProcessArgs.md)
-          - [@ohos.app.ability.ChildProcessOptions (ChildProcessOptions)](reference/apis-ability-kit/js-apis-app-ability-childProcessOptions.md)
+          - [@ohos.app.ability.autoFillManager (自动填充框架)](reference/apis-ability-kit/js-apis-app-ability-autoFillManager.md)
+          - [@ohos.app.ability.ChildProcess (子进程基类)](reference/apis-ability-kit/js-apis-app-ability-childProcess.md)
+          - [@ohos.app.ability.childProcessManager (子进程管理)](reference/apis-ability-kit/js-apis-app-ability-childProcessManager.md)
+          - [@ohos.app.ability.ChildProcessArgs (子进程参数)](reference/apis-ability-kit/js-apis-app-ability-childProcessArgs.md)
+          - [@ohos.app.ability.ChildProcessOptions (子进程启动选项)](reference/apis-ability-kit/js-apis-app-ability-childProcessOptions.md)
           - [@ohos.app.ability.common (应用上下文Context)](reference/apis-ability-kit/js-apis-app-ability-common.md)
           - [@ohos.app.ability.CompletionHandler (拉端结果操作类)](reference/apis-ability-kit/js-apis-app-ability-completionHandler.md)
-          - [@ohos.app.ability.contextConstant (ContextConstant)](reference/apis-ability-kit/js-apis-app-ability-contextConstant.md)
+          - [@ohos.app.ability.contextConstant (Context相关常量)](reference/apis-ability-kit/js-apis-app-ability-contextConstant.md)
           - [@ohos.app.ability.EmbeddableUIAbility (可嵌入式UIAbility)](reference/apis-ability-kit/js-apis-app-ability-embeddableUIAbility.md)
           - [@ohos.app.ability.EmbeddedUIExtensionAbility (跨进程界面嵌入扩展能力)](reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md)
-          - [@ohos.app.ability.EnvironmentCallback (EnvironmentCallback)](reference/apis-ability-kit/js-apis-app-ability-environmentCallback.md)
+          - [@ohos.app.ability.EnvironmentCallback (系统环境变化监听器)](reference/apis-ability-kit/js-apis-app-ability-environmentCallback.md)
           - [@ohos.app.ability.ExtensionAbility (扩展能力基类)](reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)
-          - [@ohos.app.ability.insightIntent (insightIntent)](reference/apis-ability-kit/js-apis-app-ability-insightIntent.md)
+          - [@ohos.app.ability.insightIntent (意图调用基础能力)](reference/apis-ability-kit/js-apis-app-ability-insightIntent.md)
           - [@ohos.app.ability.InsightIntentContext (意图调用执行上下文)](reference/apis-ability-kit/js-apis-app-ability-insightIntentContext.md)
           - [@ohos.app.ability.InsightIntentDecorator (意图装饰器定义)](reference/apis-ability-kit/js-apis-app-ability-InsightIntentDecorator.md)
           - [@ohos.app.ability.InsightIntentEntryExecutor (@InsightIntentEntry的意图调用执行基类)](reference/apis-ability-kit/js-apis-app-ability-InsightIntentEntryExecutor.md)
           - [@ohos.app.ability.InsightIntentExecutor (意图调用执行基类)](reference/apis-ability-kit/js-apis-app-ability-insightIntentExecutor.md)
           - [@ohos.app.ability.PhotoEditorExtensionAbility (图片编辑能力)](reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)
-          - [@ohos.app.ability.OpenLinkOptions (OpenLinkOptions)](reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md)
+          - [@ohos.app.ability.OpenLinkOptions (openLink的可选参数)](reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md)
           - [@ohos.app.ability.ShareExtensionAbility (分享模板服务扩展能力)](reference/apis-ability-kit/js-apis-app-ability-shareExtensionAbility.md)
-          - [@ohos.app.ability.StartOptions (StartOptions)](reference/apis-ability-kit/js-apis-app-ability-startOptions.md)
-          - [@ohos.app.ability.UIAbility (UIAbility)](reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)
+          - [@ohos.app.ability.StartOptions (startAbility的可选参数)](reference/apis-ability-kit/js-apis-app-ability-startOptions.md)
+          - [@ohos.app.ability.UIAbility (带界面的应用组件)](reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)
           - [@ohos.app.ability.UIExtensionAbility (带界面扩展能力基类)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)
           - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md)
-          - [@ohos.app.ability.sendableContextManager](reference/apis-ability-kit/js-apis-app-ability-sendableContextManager.md)
-          - [@ohos.app.appstartup.StartupConfig](reference/apis-ability-kit/js-apis-app-appstartup-startupConfig.md)
-          - [@ohos.app.appstartup.StartupConfigEntry](reference/apis-ability-kit/js-apis-app-appstartup-startupConfigEntry.md)
-          - [@ohos.app.appstartup.StartupListener](reference/apis-ability-kit/js-apis-app-appstartup-startupListener.md)
-          - [@ohos.app.appstartup.startupManager](reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md)
-          - [@ohos.app.appstartup.StartupTask](reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)
+          - [@ohos.app.ability.sendableContextManager (sendable上下文管理)](reference/apis-ability-kit/js-apis-app-ability-sendableContextManager.md)
+          - [@ohos.app.appstartup.StartupConfig (启动框架配置信息)](reference/apis-ability-kit/js-apis-app-appstartup-startupConfig.md)
+          - [@ohos.app.appstartup.StartupConfigEntry (启动框架配置)](reference/apis-ability-kit/js-apis-app-appstartup-startupConfigEntry.md)
+          - [@ohos.app.appstartup.StartupListener (启动框架任务监听器)](reference/apis-ability-kit/js-apis-app-appstartup-startupListener.md)
+          - [@ohos.app.appstartup.startupManager (启动框架管理能力)](reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md)
+          - [@ohos.app.appstartup.StartupTask (启动框架任务)](reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)
           <!--Del-->
           - [@ohos.app.ability.AbilityConstant (AbilityConstant)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-abilityConstant-sys.md)
           - [@ohos.app.ability.application (Application)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-application-sys.md)
@@ -2019,25 +2022,25 @@
           - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession-sys.md)
           <!--DelEnd-->
         - FA模型能力的接口<!--fa-model-->
-          - [@ohos.ability.ability (Ability)](reference/apis-ability-kit/js-apis-ability-ability.md)
+          - [@ohos.ability.ability (Ability模块)](reference/apis-ability-kit/js-apis-ability-ability.md)
           - [@ohos.ability.featureAbility (FeatureAbility模块)](reference/apis-ability-kit/js-apis-ability-featureAbility.md)
           - [@ohos.ability.particleAbility (ParticleAbility模块)](reference/apis-ability-kit/js-apis-ability-particleAbility.md)
         - 通用能力的接口(推荐)<!--both-models-->
           - [@ohos.abilityAccessCtrl (程序访问控制管理)](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)
           - [@ohos.ability.screenLockFileManager (锁屏敏感数据管理)](reference/apis-ability-kit/js-apis-screenLockFileManager.md)
-          - [@ohos.app.ability.abilityManager (AbilityManager)](reference/apis-ability-kit/js-apis-app-ability-abilityManager.md)
-          - [@ohos.app.ability.appManager (appManager)](reference/apis-ability-kit/js-apis-app-ability-appManager.md)
-          - [@ohos.app.ability.appRecovery (appRecovery)](reference/apis-ability-kit/js-apis-app-ability-appRecovery.md)
-          - [@ohos.app.ability.Configuration (Configuration)](reference/apis-ability-kit/js-apis-app-ability-configuration.md)
-          - [@ohos.app.ability.ConfigurationConstant (ConfigurationConstant)](reference/apis-ability-kit/js-apis-app-ability-configurationConstant.md)
-          - [@ohos.app.ability.continueManager (continueManager)](reference/apis-ability-kit/js-apis-app-ability-continueManager.md)
+          - [@ohos.app.ability.abilityManager (Ability信息管理)](reference/apis-ability-kit/js-apis-app-ability-abilityManager.md)
+          - [@ohos.app.ability.appManager (应用管理)](reference/apis-ability-kit/js-apis-app-ability-appManager.md)
+          - [@ohos.app.ability.appRecovery (应用故障恢复)](reference/apis-ability-kit/js-apis-app-ability-appRecovery.md)
+          - [@ohos.app.ability.Configuration (系统环境信息)](reference/apis-ability-kit/js-apis-app-ability-configuration.md)
+          - [@ohos.app.ability.ConfigurationConstant (系统环境信息常量)](reference/apis-ability-kit/js-apis-app-ability-configurationConstant.md)
+          - [@ohos.app.ability.continueManager (跨端迁移)](reference/apis-ability-kit/js-apis-app-ability-continueManager.md)
           - [@ohos.app.ability.dataUriUtils (DataUriUtils模块)](reference/apis-ability-kit/js-apis-app-ability-dataUriUtils.md)
           - [@ohos.app.ability.dialogRequest (dialogRequest模块)](reference/apis-ability-kit/js-apis-app-ability-dialogRequest.md)
-          - [@ohos.app.ability.errorManager (ErrorManager)](reference/apis-ability-kit/js-apis-app-ability-errorManager.md)
+          - [@ohos.app.ability.errorManager (错误观测管理)](reference/apis-ability-kit/js-apis-app-ability-errorManager.md)
           - [@ohos.app.ability.Want (Want)](reference/apis-ability-kit/js-apis-app-ability-want.md)
           - [@ohos.app.ability.wantAgent (WantAgent模块)](reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)
-          - [@ohos.app.ability.wantConstant (wantConstant)](reference/apis-ability-kit/js-apis-app-ability-wantConstant.md)
-          - [@ohos.continuation.continuationManager (continuationManager)](reference/apis-ability-kit/js-apis-continuation-continuationManager.md)
+          - [@ohos.app.ability.wantConstant (Want常量)](reference/apis-ability-kit/js-apis-app-ability-wantConstant.md)
+          - [@ohos.continuation.continuationManager (流转/协同管理)](reference/apis-ability-kit/js-apis-continuation-continuationManager.md)
           <!--Del-->
           - [@ohos.abilityAccessCtrl (程序访问控制管理)(系统接口)](reference/apis-ability-kit/js-apis-abilityAccessCtrl-sys.md)
           - [@ohos.ability.screenLockFileManager (锁屏敏感数据管理)(系统接口)](reference/apis-ability-kit/js-apis-screenLockFileManager-sys.md)
@@ -3289,6 +3292,7 @@
         - [@ohos.app.form.formInfo (FormInfo)](reference/apis-form-kit/js-apis-app-form-formInfo.md)
         - [@ohos.app.form.formProvider (FormProvider)](reference/apis-form-kit/js-apis-app-form-formProvider.md)
         - [@ohos.app.form.FormEditExtensionAbility (FormEditExtensionAbility)](reference/apis-form-kit/js-apis-app-form-formEditExtensionAbility.md)
+        - [@ohos.app.form.LiveFormExtensionAbility (LiveFormExtensionAbility)](reference/apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md)
         <!--Del-->
         - [@ohos.app.form.formAgent (FormAgent)(系统接口)](reference/apis-form-kit/js-apis-app-form-formAgent-sys.md)
         - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)(系统接口)](reference/apis-form-kit/js-apis-app-form-formExtensionAbility-sys.md)
@@ -3300,6 +3304,7 @@
         - application<!--form-arkts-application-->
           - [FormExtensionContext](reference/apis-form-kit/js-apis-inner-application-formExtensionContext.md)
           - [FormEditExtensionContext](reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md)
+          - [LiveFormExtensionContext](reference/apis-form-kit/js-apis-application-LiveFormExtensionContext.md)
           <!--Del-->
           - [FormExtensionContext(系统接口)](reference/apis-form-kit/js-apis-inner-application-formExtensionContext-sys.md)
           <!--DelEnd-->
@@ -3629,6 +3634,12 @@
           <!--Del-->
           - [键鼠穿越管理错误码](reference/apis-distributedservice-kit/errorcode-devicestatus.md)
           <!--DelEnd-->
+        - C API<!--distributed-service-c-->
+          - 模块<!--distributed-service-moudle-->
+            - [DeviceManager](reference/apis-distributedservice-kit/capi-devicemanager.md)
+          - 头文件<!--distributed-service-headerfile-->
+            - [oh_device_manager.h](reference/apis-distributedservice-kit/capi-oh-device-manager-h.md)
+            - [oh_device_manager_err_code.h](reference/apis-distributedservice-kit/capi-oh-device-manager-err-code-h.md)
       - Network Kit（网络服务）<!--network-api-->
         - ArkTS API<!--network-api-arkts-->
           - [@ohos.net.connection (网络连接管理)](reference/apis-network-kit/js-apis-net-connection.md)
@@ -4551,6 +4562,7 @@
           - [OH_NativeImage](reference/apis-arkgraphics2d/capi-oh-nativeimage.md)
           - [NativeVsync](reference/apis-arkgraphics2d/capi-nativevsync.md)
           - [NativeWindow](reference/apis-arkgraphics2d/capi-nativewindow.md)
+          - [NativeFence](reference/apis-arkgraphics2d/capi-nativefence.md)
         - 头文件<!--arkgraphics-headerfile-->
           - [buffer_common.h](reference/apis-arkgraphics2d/capi-buffer-common-h.md)
           - [native_buffer.h](reference/apis-arkgraphics2d/capi-native-buffer-h.md)
@@ -4604,6 +4616,7 @@
           - [buffer_handle.h](reference/apis-arkgraphics2d/capi-buffer-handle-h.md)
           - [external_window.h](reference/apis-arkgraphics2d/capi-external-window-h.md)
           - [graphic_error_code.h](reference/apis-arkgraphics2d/capi-graphic-error-code-h.md)
+          - [native_fence.h](reference/apis-arkgraphics2d/capi-native-fence-h.md)
         - 结构体<!--arkgraphics-struct-->
           - [OH_NativeBuffer_ColorXY](reference/apis-arkgraphics2d/capi-oh-nativebuffer-colorxy.md)
           - [OH_NativeBuffer_Smpte2086](reference/apis-arkgraphics2d/capi-oh-nativebuffer-smpte2086.md)
@@ -4715,7 +4728,7 @@
           - [SceneType](reference/apis-arkgraphics3d/js-apis-inner-scene-types.md)
           - [SceneResources](reference/apis-arkgraphics3d/js-apis-inner-scene-resources.md)
           - [ScenePostProcessSettings](reference/apis-arkgraphics3d/js-apis-inner-scene-post-process-settings.md)
-    - 应用服务<!--application-service-reference-->
+  - 应用服务<!--application-service-reference-->
     <!--Del-->
     - Ads Kit（广告服务）<!--ads-api-->
       - ArkTS API<!--ads-arkts-->
@@ -4873,6 +4886,7 @@
     - [libuv](reference/native-lib/libuv.md)
     - [OpenSL ES](reference/native-lib/opensles.md)
     - [OpenGL ES](reference/native-lib/opengles.md)
+    - [OpenGL](reference/native-lib/opengles.md)
     - [EGL](reference/native-lib/egl.md)
     - [ICU4C](reference/native-lib/icu4c.md)
     - [Zlib](reference/native-lib/zlib.md)
@@ -4895,3 +4909,4 @@
       - [Native api中导出的EGL符号列表](reference/native-lib/egl-symbol.md)
       - [Native api中导出的ICU4C符号列表](reference/native-lib/icu4c-symbol.md)
       - [Native api中导出的OpenGL ES 3.2符号列表](reference/native-lib/openglesv3-symbol.md)
+      - [Native api中导出的OpenGL 3.0符号列表](reference/native-lib/opengl-symbol.md)
