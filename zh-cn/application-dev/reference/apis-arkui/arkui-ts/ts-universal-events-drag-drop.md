@@ -303,7 +303,7 @@ onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configura
 | 401       | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 | 190001    | Data not found.|
 | 190002    | Data error. |
-| 190003    | Operation on allowed for current pharse. |
+| 190003    | Operation not allowed for current pharse. |
 
 ## DragResult<sup>10+</sup>枚举说明
 
