@@ -1,4 +1,4 @@
-## Class (AudioSessionManager)(arkts-apis-audio-AudioSessionManager.md)
+# Class (AudioSessionManager)(arkts-apis-audio-AudioSessionManager.md)
 
 > **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -7,7 +7,7 @@
 
 在使用AudioSessionManager的接口之前，需先通过[getSessionManager](#getsessionmanager12)获取AudioSessionManager实例。
 
-### activateAudioSession<sup>12+</sup>
+## activateAudioSession<sup>12+</sup>
 
 activateAudioSession(strategy: AudioSessionStrategy): Promise\<void>
 
@@ -53,7 +53,7 @@ audioSessionManager.activateAudioSession(strategy).then(() => {
 });
 ```
 
-### deactivateAudioSession<sup>12+</sup>
+## deactivateAudioSession<sup>12+</sup>
 
 deactivateAudioSession(): Promise\<void>
 
@@ -87,7 +87,7 @@ audioSessionManager.deactivateAudioSession().then(() => {
 });
 ```
 
-### isAudioSessionActivated<sup>12+</sup>
+## isAudioSessionActivated<sup>12+</sup>
 
 isAudioSessionActivated(): boolean
 
@@ -107,7 +107,7 @@ isAudioSessionActivated(): boolean
 let isActivated = audioSessionManager.isAudioSessionActivated();
 ```
 
-### on('audioSessionDeactivated')<sup>12+</sup>
+## on('audioSessionDeactivated')<sup>12+</sup>
 
 on(type: 'audioSessionDeactivated', callback: Callback\<AudioSessionDeactivatedEvent>): void
 
@@ -139,7 +139,7 @@ audioSessionManager.on('audioSessionDeactivated', (audioSessionDeactivatedEvent:
 });
 ```
 
-### off('audioSessionDeactivated')<sup>12+</sup>
+## off('audioSessionDeactivated')<sup>12+</sup>
 
 off(type: 'audioSessionDeactivated', callback?: Callback\<AudioSessionDeactivatedEvent>): void
 
