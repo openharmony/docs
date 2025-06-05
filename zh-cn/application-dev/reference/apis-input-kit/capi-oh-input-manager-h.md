@@ -75,26 +75,42 @@
 | [void OH_Input_SetKeyEventWindowId(struct Input_KeyEvent* keyEvent, int32_t windowId)](#oh_input_setkeyeventwindowid) | - | 设置按键事件的窗口Id。 |
 | [int32_t OH_Input_GetKeyEventWindowId(const struct Input_KeyEvent* keyEvent)](#oh_input_getkeyeventwindowid) | - | 获取按键事件的窗口Id。 |
 | [void OH_Input_SetKeyEventDisplayId(struct Input_KeyEvent* keyEvent, int32_t displayId)](#oh_input_setkeyeventdisplayid) | - | 设置按键事件的屏幕Id。 |
+| [int32_t OH_Input_GetKeyEventDisplayId(const struct Input_KeyEvent* keyEvent)](#oh_input_getkeyeventdisplayid) | - | 获取按键事件的屏幕Id。 |
 | [struct Input_MouseEvent* OH_Input_CreateMouseEvent()](#oh_input_createmouseevent) | - | 创建鼠标事件对象。 |
 | [void OH_Input_DestroyMouseEvent(struct Input_MouseEvent** mouseEvent)](#oh_input_destroymouseevent) | - | 销毁鼠标事件对象。 |
 | [void OH_Input_SetMouseEventAction(struct Input_MouseEvent* mouseEvent, int32_t action)](#oh_input_setmouseeventaction) | - | 设置鼠标事件的动作。 |
+| [int32_t OH_Input_GetMouseEventAction(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventaction) | - | 获取鼠标事件的动作。 |
 | [void OH_Input_SetMouseEventDisplayX(struct Input_MouseEvent* mouseEvent, int32_t displayX)](#oh_input_setmouseeventdisplayx) | - | 设置鼠标事件的屏幕X坐标。 |
+| [int32_t OH_Input_GetMouseEventDisplayX(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventdisplayx) | - | 获取鼠标事件的屏幕X坐标。 |
 | [void OH_Input_SetMouseEventDisplayY(struct Input_MouseEvent* mouseEvent, int32_t displayY)](#oh_input_setmouseeventdisplayy) | - | 设置鼠标事件的屏幕Y坐标。 |
+| [int32_t OH_Input_GetMouseEventDisplayY(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventdisplayy) | - | 获取鼠标事件的屏幕Y坐标。 |
 | [void OH_Input_SetMouseEventButton(struct Input_MouseEvent* mouseEvent, int32_t button)](#oh_input_setmouseeventbutton) | - | 设置鼠标事件的按键。 |
+| [int32_t OH_Input_GetMouseEventButton(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventbutton) | - | 获取鼠标事件的按键。 |
 | [void OH_Input_SetMouseEventAxisType(struct Input_MouseEvent* mouseEvent, int32_t axisType)](#oh_input_setmouseeventaxistype) | - | 设置鼠标轴事件的类型。 |
+| [int32_t OH_Input_GetMouseEventAxisType(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventaxistype) | - | 获取鼠标轴事件的类型。 |
 | [void OH_Input_SetMouseEventAxisValue(struct Input_MouseEvent* mouseEvent, float axisValue)](#oh_input_setmouseeventaxisvalue) | - | 设置鼠标轴事件的值。 |
+| [float OH_Input_GetMouseEventAxisValue(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventaxisvalue) | - | 获取鼠标轴事件的值。 |
 | [void OH_Input_SetMouseEventActionTime(struct Input_MouseEvent* mouseEvent, int64_t actionTime)](#oh_input_setmouseeventactiontime) | - | 设置鼠标事件发生的时间。 |
+| [int64_t OH_Input_GetMouseEventActionTime(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventactiontime) | - | 获取鼠标事件发生的时间。 |
 | [void OH_Input_SetMouseEventWindowId(struct Input_MouseEvent* mouseEvent, int32_t windowId)](#oh_input_setmouseeventwindowid) | - | 设置鼠标事件的窗口Id。 |
+| [int32_t OH_Input_GetMouseEventWindowId(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventwindowid) | - | 获取鼠标事件的窗口Id。 |
 | [void OH_Input_SetMouseEventDisplayId(struct Input_MouseEvent* mouseEvent, int32_t displayId)](#oh_input_setmouseeventdisplayid) | - | 设置鼠标事件的屏幕Id。 |
 | [struct Input_TouchEvent* OH_Input_CreateTouchEvent()](#oh_input_createtouchevent) | - | 创建触屏事件对象。 |
 | [void OH_Input_DestroyTouchEvent(struct Input_TouchEvent** touchEvent)](#oh_input_destroytouchevent) | - | 销毁触屏事件对象。 |
 | [void OH_Input_SetTouchEventAction(struct Input_TouchEvent* touchEvent, int32_t action)](#oh_input_settoucheventaction) | - | 设置触屏事件的动作。 |
+| [int32_t OH_Input_GetTouchEventAction(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventaction) | - | 获取触屏事件的动作。 |
 | [void OH_Input_SetTouchEventFingerId(struct Input_TouchEvent* touchEvent, int32_t id)](#oh_input_settoucheventfingerid) | - | 设置触屏事件的手指ID。 |
+| [int32_t OH_Input_GetTouchEventFingerId(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventfingerid) | - | 获取触屏事件的手指ID。 |
 | [void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t displayX)](#oh_input_settoucheventdisplayx) | - | 设置触屏事件的屏幕X坐标。 |
+| [int32_t OH_Input_GetTouchEventDisplayX(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventdisplayx) | - | 获取触屏事件的屏幕X坐标。 |
 | [void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t displayY)](#oh_input_settoucheventdisplayy) | - | 设置触屏事件的屏幕Y坐标。 |
+| [int32_t OH_Input_GetTouchEventDisplayY(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventdisplayy) | - | 获取触屏事件的屏幕Y坐标。 |
 | [void OH_Input_SetTouchEventActionTime(struct Input_TouchEvent* touchEvent, int64_t actionTime)](#oh_input_settoucheventactiontime) | - | 设置触摸事件发生的时间。 |
+| [int64_t OH_Input_GetTouchEventActionTime(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventactiontime) | - | 获取触摸事件发生的时间。 |
 | [void OH_Input_SetTouchEventWindowId(struct Input_TouchEvent* touchEvent, int32_t windowId)](#oh_input_settoucheventwindowid) | - | 设置触屏事件的窗口Id。 |
+| [int32_t OH_Input_GetTouchEventWindowId(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventwindowid) | - | 获取触屏事件的窗口Id。 |
 | [void OH_Input_SetTouchEventDisplayId(struct Input_TouchEvent* touchEvent, int32_t displayId)](#oh_input_settoucheventdisplayid) | - | 设置触屏事件的屏幕Id。 |
+| [int32_t OH_Input_GetTouchEventDisplayId(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventdisplayid) | - | 获取触屏事件的屏幕Id。 |
 | [void OH_Input_CancelInjection()](#oh_input_cancelinjection) | - | 取消事件注入并撤销授权。 |
 | [Input_AxisEvent* OH_Input_CreateAxisEvent(void)](#oh_input_createaxisevent) | - | 创建轴事件对象实例。 |
 | [Input_Result OH_Input_DestroyAxisEvent(Input_AxisEvent** axisEvent)](#oh_input_destroyaxisevent) | - | 销毁轴事件对象实例。 |
@@ -983,6 +999,33 @@ int32_t OH_Input_GetKeyEventWindowId(const struct Input_KeyEvent* keyEvent)
 | -- | -- |
 | int32_t | 按键事件的窗口Id。 |
 
+### OH_Input_GetKeyEventDisplayId()
+
+```
+int32_t OH_Input_GetKeyEventDisplayId(const struct Input_KeyEvent* keyEvent)
+```
+
+**描述**
+
+获取按键事件的屏幕Id。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 15
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_KeyEvent](capi-input-keyevent.md)* keyEvent | 按键事件对象。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 按键事件的屏幕Id。 |
+
 ### OH_Input_SetKeyEventDisplayId()
 
 ```
@@ -1068,6 +1111,33 @@ void OH_Input_SetMouseEventAction(struct Input_MouseEvent* mouseEvent, int32_t a
 | struct [Input_MouseEvent](capi-input-mouseevent.md)* mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。 |
 | int32_t action | 鼠标的动作。相关取值可参考[Input_MouseEventAction](#input_mouseeventaction)。 |
 
+### OH_Input_GetMouseEventAction()
+
+```
+int32_t OH_Input_GetMouseEventAction(const struct Input_MouseEvent* mouseEvent)
+```
+
+**描述**
+
+获取鼠标事件的动作。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_MouseEvent](capi-input-mouseevent.md)* mouseEvent | 鼠标事件对象。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 鼠标的动作。 |
+
 ### OH_Input_SetMouseEventDisplayX()
 
 ```
@@ -1089,6 +1159,33 @@ void OH_Input_SetMouseEventDisplayX(struct Input_MouseEvent* mouseEvent, int32_t
 | -- | -- |
 | struct [Input_MouseEvent](capi-input-mouseevent.md)* mouseEvent | 鼠标事件对象。 |
 | int32_t displayX | 屏幕X坐标。 |
+
+### OH_Input_GetMouseEventDisplayX()
+
+```
+int32_t OH_Input_GetMouseEventDisplayX(const struct Input_MouseEvent* mouseEvent)
+```
+
+**描述**
+
+获取鼠标事件的屏幕X坐标。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_MouseEvent](capi-input-mouseevent.md)* mouseEvent | 鼠标事件对象。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 屏幕X坐标。 |
 
 ### OH_Input_SetMouseEventDisplayY()
 
@@ -1112,6 +1209,33 @@ void OH_Input_SetMouseEventDisplayY(struct Input_MouseEvent* mouseEvent, int32_t
 | struct [Input_MouseEvent](capi-input-mouseevent.md)* mouseEvent | 鼠标事件对象。 |
 | int32_t displayY | 屏幕Y坐标。 |
 
+### OH_Input_GetMouseEventDisplayY()
+
+```
+int32_t OH_Input_GetMouseEventDisplayY(const struct Input_MouseEvent* mouseEvent)
+```
+
+**描述**
+
+获取鼠标事件的屏幕Y坐标。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_MouseEvent](capi-input-mouseevent.md)* mouseEvent | 鼠标事件对象。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 屏幕Y坐标。 |
+
 ### OH_Input_SetMouseEventButton()
 
 ```
@@ -1133,6 +1257,33 @@ void OH_Input_SetMouseEventButton(struct Input_MouseEvent* mouseEvent, int32_t b
 | -- | -- |
 | struct [Input_MouseEvent](capi-input-mouseevent.md)* mouseEvent | 鼠标事件对象。 |
 | int32_t button | 鼠标按键。 |
+
+### OH_Input_GetMouseEventButton()
+
+```
+int32_t OH_Input_GetMouseEventButton(const struct Input_MouseEvent* mouseEvent)
+```
+
+**描述**
+
+获取鼠标事件的按键。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_MouseEvent](capi-input-mouseevent.md)* mouseEvent | 鼠标事件对象。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 鼠标按键。 |
 
 ### OH_Input_SetMouseEventAxisType()
 
@@ -1156,6 +1307,33 @@ void OH_Input_SetMouseEventAxisType(struct Input_MouseEvent* mouseEvent, int32_t
 | struct [Input_MouseEvent](capi-input-mouseevent.md)* mouseEvent | 鼠标事件对象。 |
 | int32_t axisType | 轴类型，比如垂直轴、水平轴。 |
 
+### OH_Input_GetMouseEventAxisType()
+
+```
+int32_t OH_Input_GetMouseEventAxisType(const struct Input_MouseEvent* mouseEvent)
+```
+
+**描述**
+
+获取鼠标轴事件的类型。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_MouseEvent](capi-input-mouseevent.md)* mouseEvent | 鼠标事件对象。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 轴类型。 |
+
 ### OH_Input_SetMouseEventAxisValue()
 
 ```
@@ -1177,6 +1355,33 @@ void OH_Input_SetMouseEventAxisValue(struct Input_MouseEvent* mouseEvent, float 
 | -- | -- |
 | struct [Input_MouseEvent](capi-input-mouseevent.md)* mouseEvent | 鼠标事件对象。 |
 | float axisValue | 轴事件的值，正数向前滚动，负数向后滚动。 |
+
+### OH_Input_GetMouseEventAxisValue()
+
+```
+float OH_Input_GetMouseEventAxisValue(const struct Input_MouseEvent* mouseEvent)
+```
+
+**描述**
+
+获取鼠标轴事件的值。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_MouseEvent](capi-input-mouseevent.md)* mouseEvent | 鼠标事件对象。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| float | 轴事件的值。 |
 
 ### OH_Input_SetMouseEventActionTime()
 
@@ -1200,6 +1405,33 @@ void OH_Input_SetMouseEventActionTime(struct Input_MouseEvent* mouseEvent, int64
 | struct [Input_MouseEvent](capi-input-mouseevent.md)* mouseEvent | 鼠标事件对象。 |
 | int64_t actionTime | 鼠标事件发生的时间。 |
 
+### OH_Input_GetMouseEventActionTime()
+
+```
+int64_t OH_Input_GetMouseEventActionTime(const struct Input_MouseEvent* mouseEvent)
+```
+
+**描述**
+
+获取鼠标事件发生的时间。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| keyEvent | 鼠标事件对象。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int64_t | 返回鼠标事件发生的时间。 |
+
 ### OH_Input_SetMouseEventWindowId()
 
 ```
@@ -1221,6 +1453,33 @@ void OH_Input_SetMouseEventWindowId(struct Input_MouseEvent* mouseEvent, int32_t
 | -- | -- |
 | struct [Input_MouseEvent](capi-input-mouseevent.md)* mouseEvent | 鼠标事件对象。 |
 | int32_t windowId | 鼠标事件的窗口Id。 |
+
+### OH_Input_GetMouseEventWindowId()
+
+```
+int32_t OH_Input_GetMouseEventWindowId(const struct Input_MouseEvent* mouseEvent)
+```
+
+**描述**
+
+获取鼠标事件的窗口Id。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 15
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_MouseEvent](capi-input-mouseevent.md)* mouseEvent | 鼠标事件对象。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 鼠标事件的窗口Id。 |
 
 ### OH_Input_SetMouseEventDisplayId()
 
@@ -1307,6 +1566,33 @@ void OH_Input_SetTouchEventAction(struct Input_TouchEvent* touchEvent, int32_t a
 | struct [Input_TouchEvent](capi-input-touchevent.md)* touchEvent | 触屏事件对象。 |
 | int32_t action | 触屏的动作。 |
 
+### OH_Input_GetTouchEventAction()
+
+```
+int32_t OH_Input_GetTouchEventAction(const struct Input_TouchEvent* touchEvent)
+```
+
+**描述**
+
+获取触屏事件的动作。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_TouchEvent](capi-input-touchevent.md)* touchEvent | 触屏事件对象。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 触屏的动作。 |
+
 ### OH_Input_SetTouchEventFingerId()
 
 ```
@@ -1328,6 +1614,33 @@ void OH_Input_SetTouchEventFingerId(struct Input_TouchEvent* touchEvent, int32_t
 | -- | -- |
 | struct [Input_TouchEvent](capi-input-touchevent.md)* touchEvent | 触屏事件对象。 |
 | int32_t id | 触屏的手指ID。 |
+
+### OH_Input_GetTouchEventFingerId()
+
+```
+int32_t OH_Input_GetTouchEventFingerId(const struct Input_TouchEvent* touchEvent)
+```
+
+**描述**
+
+获取触屏事件的手指ID。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_TouchEvent](capi-input-touchevent.md)* touchEvent | 触屏事件对象。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 触屏的手指ID。 |
 
 ### OH_Input_SetTouchEventDisplayX()
 
@@ -1351,6 +1664,33 @@ void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t
 | struct [Input_TouchEvent](capi-input-touchevent.md)* touchEvent | 触屏事件对象。 |
 | int32_t displayX | 触屏的屏幕X坐标。 |
 
+### OH_Input_GetTouchEventDisplayX()
+
+```
+int32_t OH_Input_GetTouchEventDisplayX(const struct Input_TouchEvent* touchEvent)
+```
+
+**描述**
+
+获取触屏事件的屏幕X坐标。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_TouchEvent](capi-input-touchevent.md)* touchEvent | 触屏事件对象。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 触屏的屏幕X坐标。 |
+
 ### OH_Input_SetTouchEventDisplayY()
 
 ```
@@ -1372,6 +1712,33 @@ void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t
 | -- | -- |
 | struct [Input_TouchEvent](capi-input-touchevent.md)* touchEvent | 触屏事件对象。 |
 | int32_t displayY | 触屏的屏幕Y坐标。 |
+
+### OH_Input_GetTouchEventDisplayY()
+
+```
+int32_t OH_Input_GetTouchEventDisplayY(const struct Input_TouchEvent* touchEvent)
+```
+
+**描述**
+
+获取触屏事件的屏幕Y坐标。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_TouchEvent](capi-input-touchevent.md)* touchEvent | 触屏事件对象。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 触屏的屏幕Y坐标。 |
 
 ### OH_Input_SetTouchEventActionTime()
 
@@ -1395,6 +1762,33 @@ void OH_Input_SetTouchEventActionTime(struct Input_TouchEvent* touchEvent, int64
 | keyEvent | 触屏事件对象。 |
 | int64_t actionTime | 触摸事件发生的时间。 |
 
+### OH_Input_GetTouchEventActionTime()
+
+```
+int64_t OH_Input_GetTouchEventActionTime(const struct Input_TouchEvent* touchEvent)
+```
+
+**描述**
+
+获取触摸事件发生的时间。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| keyEvent | 触屏事件对象。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int64_t | 返回触摸事件发生的时间。 |
+
 ### OH_Input_SetTouchEventWindowId()
 
 ```
@@ -1417,6 +1811,33 @@ void OH_Input_SetTouchEventWindowId(struct Input_TouchEvent* touchEvent, int32_t
 | struct [Input_TouchEvent](capi-input-touchevent.md)* touchEvent | 触屏幕事件对象。 |
 | int32_t windowId | 触屏事件的窗口Id。 |
 
+### OH_Input_GetTouchEventWindowId()
+
+```
+int32_t OH_Input_GetTouchEventWindowId(const struct Input_TouchEvent* touchEvent)
+```
+
+**描述**
+
+获取触屏事件的窗口Id。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 15
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_TouchEvent](capi-input-touchevent.md)* touchEvent | 触屏事件对象。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 触屏事件的窗口Id。 |
+
 ### OH_Input_SetTouchEventDisplayId()
 
 ```
@@ -1438,6 +1859,33 @@ void OH_Input_SetTouchEventDisplayId(struct Input_TouchEvent* touchEvent, int32_
 | -- | -- |
 | struct [Input_TouchEvent](capi-input-touchevent.md)* touchEvent | 触屏事件对象。 |
 | int32_t displayId | 触屏事件的屏幕Id。 |
+
+### OH_Input_GetTouchEventDisplayId()
+
+```
+int32_t OH_Input_GetTouchEventDisplayId(const struct Input_TouchEvent* touchEvent)
+```
+
+**描述**
+
+获取触屏事件的屏幕Id。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 15
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_TouchEvent](capi-input-touchevent.md)* touchEvent | 触屏事件对象。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 触屏事件的屏幕Id。 |
 
 ### OH_Input_CancelInjection()
 
