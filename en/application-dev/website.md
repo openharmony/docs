@@ -228,9 +228,7 @@
         <!--DelEnd-->
         - Many-to-Many Data Sharing<!--many-to-many-data-share-->
           - [Sharing Data via Unified Data Channels](database/unified-data-channels.md)
-      - Intelligent Data Construction and Retrieval<!--intelligence-data-->
-        - [AIP Overview](database/aip-data-intelligence-overview.md)
-        - [Application Data Vectorization](database/aip-data-intelligence-embedding.md)
+      - [Application Data Vectorization](database/aip-data-intelligence-embedding.md)
       - [RelationalStore Development (C/C++)](database/native-relational-store-guidelines.md)
       - [UDMF Development (C/C++)](database/native-unified-data-management-framework-guidelines.md)
     - ArkTS<!--arkts-->
@@ -338,10 +336,11 @@
             - [Page and Custom Component Lifecycle](ui/state-management/arkts-page-custom-components-lifecycle.md)
             - [Custom Component Layout](ui/state-management/arkts-page-custom-components-layout.md)
             - [Constraints on Access Modifiers of Custom Component Member Variables](ui/state-management/arkts-custom-components-access-restrictions.md)
-          - [\@Builder Decorator: Custom Builder Function](ui/state-management/arkts-builder.md)
-          - [\@LocalBuilder Decorator: Maintaining the Parent-Child Relationship Between Component and State Management](ui/state-management/arkts-localBuilder.md)
-          - [\@BuilderParam Decorator: @Builder Function Reference](ui/state-management/arkts-builderparam.md)
-          - [wrapBuilder: Encapsulating Global @Builder](ui/state-management/arkts-wrapBuilder.md)
+          - Component Extensions<!--arkts-extend-components-->
+            - [\@Builder Decorator: Custom Builder Function](ui/state-management/arkts-builder.md)
+            - [\@LocalBuilder Decorator: Maintaining the Parent-Child Relationship Between Component and State Management](ui/state-management/arkts-localBuilder.md)
+            - [\@BuilderParam Decorator: @Builder Function Reference](ui/state-management/arkts-builderparam.md)
+            - [wrapBuilder: Encapsulating Global @Builder](ui/state-management/arkts-wrapBuilder.md)
           - [\@Styles Decorator: Definition of Reusable Styles](ui/state-management/arkts-style.md)
           - [\@Extend Decorator: Extension of Built-in Components](ui/state-management/arkts-extend.md)
           - [stateStyles: Polymorphic Style](ui/state-management/arkts-statestyles.md)
@@ -514,8 +513,11 @@
           - [Dark and Light Mode Adaptation](ui/ui-dark-light-color-adaptation.md)
           - [Configuring In-Application Theme Skinning](ui/theme_skinning.md)
         - [Using the UI Context API for UI Operations (UIContext)](ui/arkts-global-interface.md)
+        - Embedded Components<!--arkts-ui-cross-process-->
           - [Atomic Service Full Screen Launch Component (FullScreenLaunchComponent)](ui/arkts-FullScreenComponent.md)
+          <!--Del-->
           - [Cross-Process Application Capability Extension (UIExtension, for System Applications Only)](ui/arkts-ui-extension-components.md)
+          <!--DelEnd-->
         - Using NDK APIs to Build UIs<!--arkts-use-ndk-->
           - [NDK API Overview](ui/ndk-build-ui-overview.md)
           - [Integrating with ArkTS Pages](ui/ndk-access-the-arkts-page.md)
@@ -1064,6 +1066,7 @@
         - [Introduction to Connectivity Kit](connectivity/connectivity-kit-intro.md)
         - Bluetooth<!--bluetooth-->
           - [Bluetooth Overview](connectivity/bluetooth/bluetooth-overview.md)
+          - [Bluetooth Setting Development](connectivity/bluetooth/br-development-guide.md)
           - Classic Bluetooth<!--bluetooth-br-->
             - [Bluetooth Setting Development](connectivity/bluetooth/br-development-guide.md)
             - [SPP-based Data Transmission Development](connectivity/bluetooth/spp-development-guide.md)
@@ -1077,6 +1080,7 @@
         - WLAN<!--wlan-->
           - [WLAN Service Development Overview](connectivity/wlan/wlan-overview.md)
           - [P2P Development Guide](connectivity/wlan/p2p-development-guide.md)
+        - [Terminology](connectivity/terminology.md)
       - Distributed Service Kit<!--distributed-service-kit-->
         - [Introduction to Distributed Service Kit](distributedservice/distributedservice-kit-intro.md)
         - [Distributed Device Management Development](distributedservice/devicemanager-guidelines.md)
@@ -1590,6 +1594,7 @@
         - [Using the MindSpore Lite Engine for On-Device Training (C/C++)](ai/mindspore/mindspore-lite-train-guidelines.md)
       - [Using MindSpore Lite for Image Classification (ArkTS)](ai/mindspore/mindspore-guidelines-based-js.md)
       - [Using MindSpore Lite for Image Classification (C/C++)](ai/mindspore/mindspore-guidelines-based-native.md)
+      - [Using MindSpore Lite for Speech Recognition (C/C++)](ai/mindspore/mindspore-asr-based-native.md)
     - Neural Network Runtime Kit<!--neural-network-runtime-kit-->
       - [Introduction to Neural Network Runtime Kit](ai/nnrt/Neural-Network-Runtime-Kit-Introduction.md)
       - [Connecting the Neural Network Runtime to an AI Inference Framework](ai/nnrt/neural-network-runtime-guidelines.md)
@@ -2775,13 +2780,15 @@
           - [Animator Error Codes](reference/apis-arkui/errorcode-animator.md)
           - [promptAction Error Codes](reference/apis-arkui/errorcode-promptAction.md)
           - [Router Error Codes](reference/apis-arkui/errorcode-router.md)
-          - [UI Appearance Error Codes](reference/apis-arkui/errorcode-uiappearance.md)
           - [Drag Event Error Codes](reference/apis-arkui/errorcode-drag-event.md)
           - [AI Image Analyzer Error Codes](reference/apis-arkui/errorcode-image-analyzer.md)
           - [Focus Error Codes](reference/apis-arkui/errorcode-focus.md)
           - [System Resource Error Codes](reference/apis-arkui/errorcode-system-resource.md)
           - [Sheet Error Codes](reference/apis-arkui/errorcode-bindSheet.md)
           - [Scrollable Component Error Codes](reference/apis-arkui/errorcode-scroll.md)
+          <!--Del-->
+          - [UI Appearance Error Codes](reference/apis-arkui/errorcode-uiappearance.md)
+          <!--DelEnd-->
         - Graphics<!--arkui-graphics-images-arkts-errcode-->
           - [Display Error Codes](reference/apis-arkui/errorcode-display.md)
           - [Window Error Codes](reference/apis-arkui/errorcode-window.md)
@@ -2847,12 +2854,14 @@
         - Header Files<!--background-tasks-headerfile-->
           - [transient_task_api.h](reference/apis-backgroundtasks-kit/transient__task__api_8h.md)
           - [transient_task_type.h](reference/apis-backgroundtasks-kit/transient__task__type_8h.md)
+          - [background_process_manager.h](reference/apis-backgroundtasks-kit/background__process__manager_8h.md)
         - Structs<!--background-tasks-struct-->
           - [TransientTask_DelaySuspendInfo](reference/apis-backgroundtasks-kit/_transient_task___delay_suspend_info.md)
-          - [background_process_manager.h](reference/apis-backgroundtasks-kit/background__process__manager_8h.md)
       - Error Codes<!--background-tasks-arkts-errcode-->
         - [BackgroundTaskManager Error Codes](reference/apis-backgroundtasks-kit/errorcode-backgroundTaskMgr.md)
+        <!--Del-->
         - [DeviceUsageStatistics Error Codes](reference/apis-backgroundtasks-kit/errorcode-DeviceUsageStatistics.md)
+        <!--DelEnd-->
         - [reminderAgentManager Error Codes](reference/apis-backgroundtasks-kit/errorcode-reminderAgentManager.md)
         - [workScheduler Error Codes](reference/apis-backgroundtasks-kit/errorcode-workScheduler.md)
     - Core File Kit<!--core-file-api-->
@@ -3516,10 +3525,13 @@
             - [Input_DeviceListener](reference/apis-input-kit/_input___device_listener.md)
             - [Input_InterceptorEventCallback](reference/apis-input-kit/_input___interceptor_event_callback.md)
         - Error Codes<!--input-arkts-errcode-->
-          - [Screen Hopping Error Codes](reference/apis-input-kit/errorcode-multimodalinput.md)
+          <!--Del-->
+          - [Screen Hopping Error Codes (To Be Deprecated)](reference/apis-input-kit/errorcode-cooperator.md)
+          - [Input Monitor Error Codes](reference/apis-input-kit/errorcode-inputmonitor.md)
+          <!--DelEnd-->
           - [Input Consumer Error Codes](reference/apis-input-kit/errorcode-inputconsumer.md)
-          - [Input Key Monitor Error Codes](reference/apis-input-kit/errorcode-inputkeymonitor.md)
           - [Input Device Error Codes](reference/apis-input-kit/errorcode-inputdevice.md)
+          - [Mouse Pointer Error Codes](reference/apis-input-kit/errorcode-pointer.md)
       - MDM Kit<!--mdm-api-->
         - ArkTS APIs<!--mdm-arkts-->
           - [@ohos.enterprise.accountManager (Account Management)](reference/apis-mdm-kit/js-apis-enterprise-accountManager.md)
@@ -4107,7 +4119,6 @@
           - [OH_Drawing_RunBuffer](reference/apis-arkgraphics2d/_o_h___drawing___run_buffer.md)
           - [OH_Drawing_String](reference/apis-arkgraphics2d/_o_h___drawing___string.md)
           - [OH_Drawing_StrutStyle](reference/apis-arkgraphics2d/_o_h___drawing___strut_style.md)
-          - [OH_Filter](reference/apis-arkgraphics2d/_o_h___filter.md)
           - [OH_Filter_ColorMatrix](reference/apis-arkgraphics2d/_o_h___filter___color_matrix.md)
           - [OH_NativeBuffer_ColorXY](reference/apis-arkgraphics2d/_o_h___native_buffer___color_x_y.md)
           - [OH_NativeBuffer_Config](reference/apis-arkgraphics2d/_o_h___native_buffer___config.md)
@@ -4157,8 +4168,6 @@
     - Calendar Kit<!--calendar-api-->
       - ArkTS APIs<!--calendar-arkts-->
         - [@ohos.calendarManager (Calendar Manager)](reference/apis-calendar-kit/js-apis-calendarManager.md)
-      - Error Codes<!--calendar-arkts-errcode-->
-        - [CalendarManager Error Codes](reference/apis-calendar-kit/errorcode-calendarManager.md)
     - Contacts Kit<!--contacts-->
       - ArkTS APIs<!--contacts-arkts-->
         - [@ohos.contact (Contacts)](reference/apis-contacts-kit/js-apis-contact.md)
