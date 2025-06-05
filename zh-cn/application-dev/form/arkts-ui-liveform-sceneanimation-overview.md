@@ -57,7 +57,7 @@
 1. 完整包含了卡片（矩形ABCD）。
 2. 不超过矩形IJKL（矩形IJKL完整包含矩形EFGH）。<!--Del-->仅三方应用生效，系统应用不作限制。<!--DelEnd-->
 
-具体可参考[场景动效类型互动卡片开发指导](arkts-ui-liveform-sceneanimation-development.md#3-互动卡片动效触发)。
+具体可参考[场景动效类型互动卡片开发指导](arkts-ui-liveform-sceneanimation-development.md)。
 
 ### 动效请求约束
 1. 同一时刻，全局只有一个卡片执行场景动效。
