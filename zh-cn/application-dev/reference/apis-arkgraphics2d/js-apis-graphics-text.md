@@ -2849,6 +2849,55 @@ getTypographicBounds(): TypographicBounds
 let typographicBounds = runs[0].getTypographicBounds();
 ```
 
+### getTextDirection<sup>20+</sup>
+
+getTextDirection(): TextDirection
+
+获取该排版单元的文本方向，默认为LTR。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                   | 说明           |
+| ---------------------- | -------------- |
+|   [TextDirection](#textdirection)  | 该排版单元的文本方向。|
+
+**示例：**
+
+```ts
+let textDirection = runs[0].getTextDirection();
+```
+
+### getAdvances<sup>20+</sup>
+
+getAdvances(range: Range): Array<common2D.Point>
+
+获取该排版单元指定范围内每个字形的字形宽度数组。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                       |
+| -------- | ------- | ---- | -------------------------- |
+| range    | [Range](#range)   | 是   | 要获取的字形位置范围，range.start表示范围开始的位置，range.end表示范围的长度，如果长度是0表示从范围range.start开始获取到渲染块结束。当range.end、range.start为负数，或者传入null、undefined时，该方法将返回undefined。|
+
+**返回值：**
+
+| 类型                   | 说明                                   |
+| ---------------------- | ------------------------------------- |
+| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | 该排版单元中每个字形相对于水平方向和垂直方向的字形宽度。 |
+
+**示例：**
+
+```ts
+let advancesRange = runs[0].getAdvances({start:1, end:2}); // 获取渲染块从起始位置1开始, 长度为2范围内的字形宽度
+advancesRange = runs[0].getAdvances({start:-1, end:2}); // -1是非法参数，将返回undefined
+advancesRange = runs[0].getAdvances({start:0, end:-10}); // -10是非法参数，将返回undefined
+let advancesNull = runs[0].getAdvances(null); // null是非法参数，将返回undefined
+```
+
 ## TextTab<sup>18+</sup>
 
 段落风格的文本制表符，储存了对齐方式和位置。
