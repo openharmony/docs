@@ -133,7 +133,7 @@ struct Index {
               },
               alignment:DialogAlignment.Bottom,
               keyboardAvoidMode: KeyboardAvoidMode.DEFAULT, // 软键盘弹出时，弹出框自动避让
-              keyboardAvoidDistance: LengthMetrics.vp(0) // 软键盘弹出时与弹出框的距离为200vp
+              keyboardAvoidDistance: LengthMetrics.vp(0) // 软键盘弹出时与弹出框的距离为0vp
             }).catch((error: BusinessError) => {
                 console.error(`openCustomDialog error code is ${error.code}, message is ${error.message}`)
               })
