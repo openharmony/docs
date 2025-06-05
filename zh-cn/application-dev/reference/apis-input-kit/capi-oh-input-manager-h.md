@@ -58,14 +58,22 @@
 | [struct Input_KeyState* OH_Input_CreateKeyState()](#oh_input_createkeystate) | - | 创建按键状态的枚举对象。 |
 | [void OH_Input_DestroyKeyState(struct Input_KeyState** keyState)](#oh_input_destroykeystate) | - | 销毁按键状态的枚举对象。 |
 | [void OH_Input_SetKeyCode(struct Input_KeyState* keyState, int32_t keyCode)](#oh_input_setkeycode) | - | 设置按键状态对象的键值。 |
+| [int32_t OH_Input_GetKeyCode(const struct Input_KeyState* keyState)](#oh_input_getkeycode) | - | 获取按键状态对象的键值。 |
 | [void OH_Input_SetKeyPressed(struct Input_KeyState* keyState, int32_t keyAction)](#oh_input_setkeypressed) | - | 设置按键状态对象的按键是否按下。 |
+| [int32_t OH_Input_GetKeyPressed(const struct Input_KeyState* keyState)](#oh_input_getkeypressed) | - | 获取按键状态对象的按键是否按下。 |
 | [void OH_Input_SetKeySwitch(struct Input_KeyState* keyState, int32_t keySwitch)](#oh_input_setkeyswitch) | - | 设置按键状态对象的按键开关。 |
+| [int32_t OH_Input_GetKeySwitch(const struct Input_KeyState* keyState)](#oh_input_getkeyswitch) | - | 获取按键状态对象的按键开关。 |
+| [int32_t OH_Input_InjectKeyEvent(const struct Input_KeyEvent* keyEvent)](#oh_input_injectkeyevent) | - | 注入按键事件。 |
 | [struct Input_KeyEvent* OH_Input_CreateKeyEvent()](#oh_input_createkeyevent) | - | 创建按键事件对象。 |
 | [void OH_Input_DestroyKeyEvent(struct Input_KeyEvent** keyEvent)](#oh_input_destroykeyevent) | - | 销毁按键事件对象。 |
 | [void OH_Input_SetKeyEventAction(struct Input_KeyEvent* keyEvent, int32_t action)](#oh_input_setkeyeventaction) | - | 设置按键事件类型。 |
+| [int32_t OH_Input_GetKeyEventAction(const struct Input_KeyEvent* keyEvent)](#oh_input_getkeyeventaction) | - | 获取按键事件类型。 |
 | [void OH_Input_SetKeyEventKeyCode(struct Input_KeyEvent* keyEvent, int32_t keyCode)](#oh_input_setkeyeventkeycode) | - | 设置按键事件的键值。 |
+| [int32_t OH_Input_GetKeyEventKeyCode(const struct Input_KeyEvent* keyEvent)](#oh_input_getkeyeventkeycode) | - | 获取按键事件的键值。 |
 | [void OH_Input_SetKeyEventActionTime(struct Input_KeyEvent* keyEvent, int64_t actionTime)](#oh_input_setkeyeventactiontime) | - | 设置按键事件发生的时间。 |
+| [int64_t OH_Input_GetKeyEventActionTime(const struct Input_KeyEvent* keyEvent)](#oh_input_getkeyeventactiontime) | - | 获取按键事件发生的时间。 |
 | [void OH_Input_SetKeyEventWindowId(struct Input_KeyEvent* keyEvent, int32_t windowId)](#oh_input_setkeyeventwindowid) | - | 设置按键事件的窗口Id。 |
+| [int32_t OH_Input_GetKeyEventWindowId(const struct Input_KeyEvent* keyEvent)](#oh_input_getkeyeventwindowid) | - | 获取按键事件的窗口Id。 |
 | [void OH_Input_SetKeyEventDisplayId(struct Input_KeyEvent* keyEvent, int32_t displayId)](#oh_input_setkeyeventdisplayid) | - | 设置按键事件的屏幕Id。 |
 | [struct Input_MouseEvent* OH_Input_CreateMouseEvent()](#oh_input_createmouseevent) | - | 创建鼠标事件对象。 |
 | [void OH_Input_DestroyMouseEvent(struct Input_MouseEvent** mouseEvent)](#oh_input_destroymouseevent) | - | 销毁鼠标事件对象。 |
@@ -559,6 +567,33 @@ void OH_Input_SetKeyCode(struct Input_KeyState* keyState, int32_t keyCode)
 | struct [Input_KeyState](capi-input-keystate.md)* keyState | 按键状态的枚举对象，具体请参考[Input_KeyStateAction](#input_keystateaction)。 |
 | int32_t keyCode | 按键键值。 |
 
+### OH_Input_GetKeyCode()
+
+```
+int32_t OH_Input_GetKeyCode(const struct Input_KeyState* keyState)
+```
+
+**描述**
+
+获取按键状态对象的键值。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_KeyState](capi-input-keystate.md)* keyState | 按键状态的枚举对象，具体请参考[Input_KeyStateAction](capi-oh-input-manager-h.md#input_keystateaction)。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 返回按键状态对象的键值。 |
+
 ### OH_Input_SetKeyPressed()
 
 ```
@@ -581,6 +616,33 @@ void OH_Input_SetKeyPressed(struct Input_KeyState* keyState, int32_t keyAction)
 | struct [Input_KeyState](capi-input-keystate.md)* keyState | 按键状态的枚举对象，具体请参考[Input_KeyStateAction](#input_keystateaction)。 |
 | int32_t keyAction | 按键是否按下，具体请参考[Input_KeyEventAction](#input_keyeventaction)。 |
 
+### OH_Input_GetKeyPressed()
+
+```
+int32_t OH_Input_GetKeyPressed(const struct Input_KeyState* keyState)
+```
+
+**描述**
+
+获取按键状态对象的按键是否按下。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_KeyState](capi-input-keystate.md)* keyState | 按键状态的枚举对象，具体请参考[Input_KeyStateAction](capi-oh-input-manager-h.md#input_keystateaction)。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 返回按键状态对象的按键按下状态。 |
+
 ### OH_Input_SetKeySwitch()
 
 ```
@@ -602,6 +664,60 @@ void OH_Input_SetKeySwitch(struct Input_KeyState* keyState, int32_t keySwitch)
 | -- | -- |
 | struct [Input_KeyState](capi-input-keystate.md)* keyState | 按键状态的枚举对象，具体请参考[Input_KeyStateAction](#input_keystateaction)。 |
 | int32_t keySwitch | 按键开关。 |
+
+### OH_Input_GetKeySwitch()
+
+```
+int32_t OH_Input_GetKeySwitch(const struct Input_KeyState* keyState)
+```
+
+**描述**
+
+获取按键状态对象的按键开关。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_KeyState](capi-input-keystate.md)* keyState | 按键状态的枚举对象，具体请参考[Input_KeyStateAction](capi-oh-input-manager-h.md#input_keystateaction)。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 返回按键状态对象的按键开关。 |
+
+### OH_Input_InjectKeyEvent()
+
+```
+int32_t OH_Input_InjectKeyEvent(const struct Input_KeyEvent* keyEvent)
+```
+
+**描述**
+
+注入按键事件。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_KeyEvent](capi-input-keyevent.md)* keyEvent | 要注入的按键事件。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | OH_Input_InjectKeyEvent 函数错误码。<br>         若注入成功，返回[INPUT_SUCCESS](capi-oh-input-manager-h.md#input_result)；<br>         若缺少权限，返回[INPUT_PERMISSION_DENIED](capi-oh-input-manager-h.md#input_result)；<br>         若参数错误，返回[INPUT_PARAMETER_ERROR](capi-oh-input-manager-h.md#input_result)。 |
 
 ### OH_Input_CreateKeyEvent()
 
@@ -666,6 +782,33 @@ void OH_Input_SetKeyEventAction(struct Input_KeyEvent* keyEvent, int32_t action)
 | struct [Input_KeyEvent](capi-input-keyevent.md)* keyEvent | 按键事件对象。 |
 | int32_t action | 按键事件类型。 |
 
+### OH_Input_GetKeyEventAction()
+
+```
+int32_t OH_Input_GetKeyEventAction(const struct Input_KeyEvent* keyEvent)
+```
+
+**描述**
+
+获取按键事件类型。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_KeyEvent](capi-input-keyevent.md)* keyEvent | 按键事件对象。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 返回按键事件类型。 |
+
 ### OH_Input_SetKeyEventKeyCode()
 
 ```
@@ -687,6 +830,33 @@ void OH_Input_SetKeyEventKeyCode(struct Input_KeyEvent* keyEvent, int32_t keyCod
 | -- | -- |
 | struct [Input_KeyEvent](capi-input-keyevent.md)* keyEvent | 按键事件对象。 |
 | int32_t keyCode | 按键的键值。 |
+
+### OH_Input_GetKeyEventKeyCode()
+
+```
+int32_t OH_Input_GetKeyEventKeyCode(const struct Input_KeyEvent* keyEvent)
+```
+
+**描述**
+
+获取按键事件的键值。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_KeyEvent](capi-input-keyevent.md)* keyEvent | 按键事件对象。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | Key code. |
 
 ### OH_Input_SetKeyEventActionTime()
 
@@ -710,6 +880,33 @@ void OH_Input_SetKeyEventActionTime(struct Input_KeyEvent* keyEvent, int64_t act
 | struct [Input_KeyEvent](capi-input-keyevent.md)* keyEvent | 按键事件对象。 |
 | int64_t actionTime | 按键事件发生的时间。 |
 
+### OH_Input_GetKeyEventActionTime()
+
+```
+int64_t OH_Input_GetKeyEventActionTime(const struct Input_KeyEvent* keyEvent)
+```
+
+**描述**
+
+获取按键事件发生的时间。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_KeyEvent](capi-input-keyevent.md)* keyEvent | 按键事件对象。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int64_t | 返回按键事件发生的时间。 |
+
 ### OH_Input_SetKeyEventWindowId()
 
 ```
@@ -731,6 +928,60 @@ void OH_Input_SetKeyEventWindowId(struct Input_KeyEvent* keyEvent, int32_t windo
 | -- | -- |
 | struct [Input_KeyEvent](capi-input-keyevent.md)* keyEvent | 按键事件对象。 |
 | int32_t windowId | 按键事件对应的窗口Id。 |
+
+### OH_Input_GetKeyEventWindowId()
+
+```
+int32_t OH_Input_GetKeyEventWindowId(const struct Input_KeyEvent* keyEvent)
+```
+
+**描述**
+
+获取按键事件的窗口Id。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 15
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_KeyEvent](capi-input-keyevent.md)* keyEvent | 按键事件对象。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 按键事件的窗口Id。 |
+
+### OH_Input_GetKeyEventWindowId()
+
+```
+int32_t OH_Input_GetKeyEventWindowId(const struct Input_KeyEvent* keyEvent)
+```
+
+**描述**
+
+获取按键事件的窗口Id。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 15
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_KeyEvent](capi-input-keyevent.md)* keyEvent | 按键事件对象。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 按键事件的窗口Id。 |
 
 ### OH_Input_SetKeyEventDisplayId()
 
