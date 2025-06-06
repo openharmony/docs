@@ -5,7 +5,7 @@
 
 音频会话管理。
 
-在使用AudioSessionManager的接口之前，需先通过[getSessionManager](#getsessionmanager12)获取AudioSessionManager实例。
+在使用AudioSessionManager的接口之前，需先通过[getSessionManager](arkts-apis-audio-AudioManager.md#getsessionmanager12)获取AudioSessionManager实例。
 
 ## activateAudioSession<sup>12+</sup>
 
@@ -19,7 +19,7 @@ activateAudioSession(strategy: AudioSessionStrategy): Promise\<void>
 
 | 参数名 | 类型                                              | 必填 | 说明         |
 | ------ |-------------------------------------------------| ---- | ------------ |
-| strategy | [AudioSessionStrategy](#audiosessionstrategy12) | 是   | 音频会话策略。 |
+| strategy | [AudioSessionStrategy](arkts-apis-audio-i.md#audiosessionstrategy12) | 是   | 音频会话策略。 |
 
 **返回值：**
 
@@ -120,7 +120,7 @@ on(type: 'audioSessionDeactivated', callback: Callback\<AudioSessionDeactivatedE
 | 参数名   | 类型                                                                        | 必填 | 说明                                                         |
 | -------- |---------------------------------------------------------------------------| ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 事件回调类型，支持的事件为'audioSessionDeactivated'，当音频会话停用时，触发该事件。 |
-| callback | Callback<[AudioSessionDeactivatedEvent](#audiosessiondeactivatedevent12)> | 是   | 回调函数，返回音频会话停用原因。 |
+| callback | Callback<[AudioSessionDeactivatedEvent](arkts-apis-audio-i.md#audiosessiondeactivatedevent12)> | 是   | 回调函数，返回音频会话停用原因。 |
 
 **错误码：**
 
@@ -152,7 +152,7 @@ off(type: 'audioSessionDeactivated', callback?: Callback\<AudioSessionDeactivate
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 事件回调类型，支持的事件为'audioSessionDeactivated'，当取消监听音频会话停用事件时，触发该事件。 |
-| callback |Callback<[AudioSessionDeactivatedEvent](#audiosessiondeactivatedevent12)> | 否   | 回调函数，返回音频会话停用原因。 |
+| callback |Callback<[AudioSessionDeactivatedEvent](arkts-apis-audio-i.md#audiosessiondeactivatedevent12)> | 否   | 回调函数，返回音频会话停用原因。 |
 
 **错误码：**
 
