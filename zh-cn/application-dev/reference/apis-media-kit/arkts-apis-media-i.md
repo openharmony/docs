@@ -1,5 +1,8 @@
 # Interfaces
 
+> **说明：**
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
 ## AVMetadata<sup>11+</sup>
 
 音视频元数据，包含各个元数据字段。在[AVRecorderConfig](#avrecorderconfig9)中使用时未声明为当前版本只读的参数可以作为使用[AVRecorder](#avrecorder9)录制时的入参。
