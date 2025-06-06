@@ -21,7 +21,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[Input_InterceptorEventCallback](_input___interceptor_event_callback.md) | 拦截回调事件结构体，拦截鼠标事件、触摸事件和轴事件。  | 
+| struct&nbsp;&nbsp;[Input_InterceptorEventCallback](_input___interceptor_event_callback.md) | 拦截回调事件结构体，拦截鼠标事件、触屏事件和轴事件。  | 
 | struct&nbsp;&nbsp;[Input_DeviceListener](_input___device_listener.md) | 定义一个结构体用于监听设备热插拔。  | 
 
 
@@ -34,23 +34,23 @@
 | typedef enum [Input_MouseEventAction](input.md#input_mouseeventaction) [Input_MouseEventAction](input.md#input_mouseeventaction) | 鼠标动作的枚举值。  | 
 | typedef enum [InputEvent_MouseAxis](input.md#inputevent_mouseaxis) [InputEvent_MouseAxis](input.md#inputevent_mouseaxis) | 鼠标轴事件类型。  | 
 | typedef enum [Input_MouseEventButton](input.md#input_mouseeventbutton) [Input_MouseEventButton](input.md#input_mouseeventbutton) | 鼠标按键的枚举值。  | 
-| typedef enum [Input_TouchEventAction](input.md#input_toucheventaction) [Input_TouchEventAction](input.md#input_toucheventaction) | 触摸动作的枚举值。  | 
+| typedef enum [Input_TouchEventAction](input.md#input_toucheventaction) [Input_TouchEventAction](input.md#input_toucheventaction) | 触屏动作的枚举值。  | 
 | typedef enum [InputEvent_SourceType](input.md#inputevent_sourcetype) [InputEvent_SourceType](input.md#inputevent_sourcetype) | 输入事件源类型。  | 
 | typedef enum [Input_KeyboardType](input.md#input_keyboardtype) [Input_KeyboardType](input.md#input_keyboardtype) | 输入设备的键盘类型。  | 
 | typedef struct [Input_KeyState](input.md#input_keystate) [Input_KeyState](input.md#input_keystate) | 定义按键信息，用于标识按键行为。例如，“Ctrl”按键信息包含键值和键类型。  | 
 | typedef struct [Input_KeyEvent](input.md#input_keyevent) [Input_KeyEvent](input.md#input_keyevent) | 要注入的按键事件。  | 
 | typedef struct [Input_MouseEvent](input.md#input_mouseevent) [Input_MouseEvent](input.md#input_mouseevent) | 要注入的鼠标事件。  | 
-| typedef struct [Input_TouchEvent](input.md#input_touchevent) [Input_TouchEvent](input.md#input_touchevent) | 要注入的触摸事件。  | 
+| typedef struct [Input_TouchEvent](input.md#input_touchevent) [Input_TouchEvent](input.md#input_touchevent) | 要注入的触屏事件。  | 
 | typedef struct [Input_AxisEvent](input.md#input_axisevent) [Input_AxisEvent](input.md#input_axisevent) | 轴事件。  | 
 | typedef enum [Input_Result](input.md#input_result) [Input_Result](input.md#input_result) | 错误码枚举值。  | 
 | typedef void(\* [Input_KeyEventCallback](input.md#input_keyeventcallback)) (const [Input_KeyEvent](input.md#input_keyevent) \*keyEvent) | 按键事件的回调函数，keyEvent的生命周期为回调函数内。  | 
 | typedef void(\* [Input_MouseEventCallback](input.md#input_mouseeventcallback)) (const [Input_MouseEvent](input.md#input_mouseevent) \*mouseEvent) | 鼠标事件的回调函数，mouseEvent的生命周期为回调函数内。  | 
-| typedef void(\* [Input_TouchEventCallback](input.md#input_toucheventcallback)) (const [Input_TouchEvent](input.md#input_touchevent) \*touchEvent) | 触摸事件的回调函数，touchEvent的生命周期为回调函数内。  | 
+| typedef void(\* [Input_TouchEventCallback](input.md#input_toucheventcallback)) (const [Input_TouchEvent](input.md#input_touchevent) \*touchEvent) | 触屏事件的回调函数，touchEvent的生命周期为回调函数内。  | 
 | typedef void(\* [Input_AxisEventCallback](input.md#input_axiseventcallback)) (const [Input_AxisEvent](input.md#input_axisevent) \*axisEvent) | 轴事件的回调函数，axisEvent的生命周期为回调函数内。  | 
 | typedef void(\* [Input_HotkeyCallback](input.md#input_hotkeycallback)) ([Input_Hotkey](input.md#input_hotkey) \*hotkey) | 回调函数，用于回调快捷键事件。  |
 | typedef void(\* [Input_DeviceAddedCallback](input.md#input_deviceaddedcallback)) (int32_t deviceId) | 回调函数，用于回调输入设备的热插事件。  | 
 | typedef void(\* [Input_DeviceRemovedCallback](input.md#input_deviceremovedcallback)) (int32_t deviceId) | 回调函数，用于回调输入设备的热拔事件。  | 
-| typedef struct [Input_InterceptorEventCallback](_input___interceptor_event_callback.md) [Input_InterceptorEventCallback](input.md#input_interceptoreventcallback) | 拦截回调事件结构体，拦截鼠标事件、触摸事件和轴事件。  | 
+| typedef struct [Input_InterceptorEventCallback](_input___interceptor_event_callback.md) [Input_InterceptorEventCallback](input.md#input_interceptoreventcallback) | 拦截回调事件结构体，拦截鼠标事件、触屏事件和轴事件。  | 
 | typedef struct [Input_DeviceListener](_input___device_listener.md) [Input_DeviceListener](input.md#input_devicelistener) | 定义一个结构体用于监听设备热插拔。  | 
 | typedef struct [Input_InterceptorOptions](input.md#input_interceptoroptions) [Input_InterceptorOptions](input.md#input_interceptoroptions) | 事件拦截选项。  | 
 | typedef struct [Input_Hotkey](input.md#input_hotkey) [Input_Hotkey](input.md#input_hotkey) | 定义快捷键结构体。  | 
@@ -66,7 +66,7 @@
 | [Input_MouseEventAction](input.md#input_mouseeventaction) {<br/>MOUSE_ACTION_CANCEL = 0, MOUSE_ACTION_MOVE = 1, MOUSE_ACTION_BUTTON_DOWN = 2, MOUSE_ACTION_BUTTON_UP = 3,<br/>MOUSE_ACTION_AXIS_BEGIN = 4, MOUSE_ACTION_AXIS_UPDATE = 5, MOUSE_ACTION_AXIS_END = 6<br/>} | 鼠标动作的枚举值。  | 
 | [InputEvent_MouseAxis](input.md#inputevent_mouseaxis) { MOUSE_AXIS_SCROLL_VERTICAL = 0, MOUSE_AXIS_SCROLL_HORIZONTAL = 1 } | 鼠标轴事件类型。  | 
 | [Input_MouseEventButton](input.md#input_mouseeventbutton) {<br/>MOUSE_BUTTON_NONE = -1, MOUSE_BUTTON_LEFT = 0, MOUSE_BUTTON_MIDDLE = 1, MOUSE_BUTTON_RIGHT = 2,<br/>MOUSE_BUTTON_FORWARD = 3, MOUSE_BUTTON_BACK = 4<br/>} | 鼠标按键的枚举值。  | 
-| [Input_TouchEventAction](input.md#input_toucheventaction) { TOUCH_ACTION_CANCEL = 0, TOUCH_ACTION_DOWN = 1, TOUCH_ACTION_MOVE = 2, TOUCH_ACTION_UP = 3 } | 触摸动作的枚举值。  | 
+| [Input_TouchEventAction](input.md#input_toucheventaction) { TOUCH_ACTION_CANCEL = 0, TOUCH_ACTION_DOWN = 1, TOUCH_ACTION_MOVE = 2, TOUCH_ACTION_UP = 3 } | 触屏动作的枚举值。  | 
 | [InputEvent_SourceType](input.md#inputevent_sourcetype) { SOURCE_TYPE_MOUSE = 1, SOURCE_TYPE_TOUCHSCREEN = 2, SOURCE_TYPE_TOUCHPAD = 3 } | 输入事件源类型。  | 
 | [Input_KeyboardType](input.md#input_keyboardtype) {<br/>KEYBOARD_TYPE_NONE = 0, KEYBOARD_TYPE_UNKNOWN = 1, KEYBOARD_TYPE_ALPHABETIC = 2, KEYBOARD_TYPE_DIGITAL = 3,<br/>KEYBOARD_TYPE_STYLUS = 4, KEYBOARD_TYPE_REMOTE_CONTROL = 5<br/>} | 输入设备的键盘类型。  | 
 | [Input_Result](input.md#input_result) {<br/>INPUT_SUCCESS = 0, INPUT_PERMISSION_DENIED = 201, INPUT_NOT_SYSTEM_APPLICATION = 202, INPUT_PARAMETER_ERROR = 401, INPUT_DEVICE_NOT_SUPPORTED = 801, INPUT_SERVICE_EXCEPTION = 3800001, INPUT_KEYBOARD_DEVICE_NOT_EXIST = 3900002, INPUT_REPEAT_INTERCEPTOR = 4200001, INPUT_OCCUPIED_BY_SYSTEM = 4200002, INPUT_OCCUPIED_BY_OTHER = 4200003<br/>} | 错误码枚举值。  | 
@@ -119,7 +119,7 @@
 | int32_t [OH_Input_GetMouseEventWindowId](input.md#oh_input_getmouseeventwindowid) (const struct [Input_MouseEvent](input.md#input_mouseevent) \*mouseEvent) | 获取鼠标事件的窗口Id。  | 
 | void [OH_Input_SetMouseEventDisplayId](input.md#oh_input_setmouseeventdisplayid) (struct [Input_MouseEvent](input.md#input_mouseevent) \*mouseEvent, int32_t displayId) | 设置鼠标事件的屏幕Id。  | 
 | int32_t [OH_Input_GetMouseEventDisplayId](input.md#oh_input_getmouseeventdisplayid) (const struct [Input_MouseEvent](input.md#input_mouseevent) \*mouseEvent) | 获取鼠标事件的屏幕Id。  | 
-| int32_t [OH_Input_InjectTouchEvent](input.md#oh_input_injecttouchevent) (const struct [Input_TouchEvent](input.md#input_touchevent) \*touchEvent) | 注入触摸事件。  | 
+| int32_t [OH_Input_InjectTouchEvent](input.md#oh_input_injecttouchevent) (const struct [Input_TouchEvent](input.md#input_touchevent) \*touchEvent) | 注入触屏事件。  | 
 | struct [Input_TouchEvent](input.md#input_touchevent) \* [OH_Input_CreateTouchEvent](input.md#oh_input_createtouchevent) () | 创建触屏事件对象。  | 
 | void [OH_Input_DestroyTouchEvent](input.md#oh_input_destroytouchevent) (struct [Input_TouchEvent](input.md#input_touchevent) \*\*touchEvent) | 销毁触屏事件对象。  | 
 | void [OH_Input_SetTouchEventAction](input.md#oh_input_settoucheventaction) (struct [Input_TouchEvent](input.md#input_touchevent) \*touchEvent, int32_t action) | 设置触屏事件的动作。  | 
@@ -130,8 +130,8 @@
 | int32_t [OH_Input_GetTouchEventDisplayX](input.md#oh_input_gettoucheventdisplayx) (const struct [Input_TouchEvent](input.md#input_touchevent) \*touchEvent) | 获取触屏事件的屏幕X坐标。  | 
 | void [OH_Input_SetTouchEventDisplayY](input.md#oh_input_settoucheventdisplayy) (struct [Input_TouchEvent](input.md#input_touchevent) \*touchEvent, int32_t displayY) | 设置触屏事件的屏幕Y坐标。  | 
 | int32_t [OH_Input_GetTouchEventDisplayY](input.md#oh_input_gettoucheventdisplayy) (const struct [Input_TouchEvent](input.md#input_touchevent) \*touchEvent) | 获取触屏事件的屏幕Y坐标。  | 
-| void [OH_Input_SetTouchEventActionTime](input.md#oh_input_settoucheventactiontime) (struct [Input_TouchEvent](input.md#input_touchevent) \*touchEvent, int64_t actionTime) | 设置触摸事件发生的时间。  | 
-| int64_t [OH_Input_GetTouchEventActionTime](input.md#oh_input_gettoucheventactiontime) (const struct [Input_TouchEvent](input.md#input_touchevent) \*touchEvent) | 获取触摸事件发生的时间。  | 
+| void [OH_Input_SetTouchEventActionTime](input.md#oh_input_settoucheventactiontime) (struct [Input_TouchEvent](input.md#input_touchevent) \*touchEvent, int64_t actionTime) | 设置触屏事件发生的时间。  | 
+| int64_t [OH_Input_GetTouchEventActionTime](input.md#oh_input_gettoucheventactiontime) (const struct [Input_TouchEvent](input.md#input_touchevent) \*touchEvent) | 获取触屏事件发生的时间。  | 
 | void [OH_Input_SetTouchEventWindowId](input.md#oh_input_settoucheventwindowid) (struct [Input_TouchEvent](input.md#input_touchevent) \*touchEvent, int32_t windowId) | 设置触屏事件的窗口Id。  | 
 | int32_t [OH_Input_GetTouchEventWindowId](input.md#oh_input_gettoucheventwindowid) (const struct [Input_TouchEvent](input.md#input_touchevent) \*touchEvent) | 获取触屏事件的窗口Id。  | 
 | void [OH_Input_SetTouchEventDisplayId](input.md#oh_input_settoucheventdisplayid) (struct [Input_TouchEvent](input.md#input_touchevent) \*touchEvent, int32_t displayId) | 设置触屏事件的屏幕Id。  | 
@@ -159,18 +159,18 @@
 | [Input_Result](input.md#input_result) [OH_Input_GetAxisEventDisplayId](input.md#oh_input_getaxiseventdisplayid) (const [Input_AxisEvent](input.md#input_axisevent) \*axisEvent, int32_t \*displayId) | 获取轴事件的屏幕Id。  | 
 | [Input_Result](input.md#input_result) [OH_Input_AddKeyEventMonitor](input.md#oh_input_addkeyeventmonitor) ([Input_KeyEventCallback](input.md#input_keyeventcallback) callback) | 添加按键事件监听。  | 
 | [Input_Result](input.md#input_result) [OH_Input_AddMouseEventMonitor](input.md#oh_input_addmouseeventmonitor) ([Input_MouseEventCallback](input.md#input_mouseeventcallback) callback) | 添加鼠标事件监听,包含鼠标点击，移动，不包含滚轮事件，滚轮事件归属于轴事件。  | 
-| [Input_Result](input.md#input_result) [OH_Input_AddTouchEventMonitor](input.md#oh_input_addtoucheventmonitor) ([Input_TouchEventCallback](input.md#input_toucheventcallback) callback) | 添加触摸事件监听。  | 
+| [Input_Result](input.md#input_result) [OH_Input_AddTouchEventMonitor](input.md#oh_input_addtoucheventmonitor) ([Input_TouchEventCallback](input.md#input_toucheventcallback) callback) | 添加触屏事件监听。  | 
 | [Input_Result](input.md#input_result) [OH_Input_AddAxisEventMonitorForAll](input.md#oh_input_addaxiseventmonitorforall) ([Input_AxisEventCallback](input.md#input_axiseventcallback) callback) | 添加所有类型轴事件监听，轴事件类型定义在[InputEvent_AxisEventType](input.md#inputevent_axiseventtype)中。  | 
 | [Input_Result](input.md#input_result) [OH_Input_AddAxisEventMonitor](input.md#oh_input_addaxiseventmonitor) ([InputEvent_AxisEventType](input.md#inputevent_axiseventtype) axisEventType, [Input_AxisEventCallback](input.md#input_axiseventcallback) callback) | 添加指定类型的轴事件监听，轴事件类型定义在[InputEvent_AxisEventType](input.md#inputevent_axiseventtype)中。  | 
 | [Input_Result](input.md#input_result) [OH_Input_RemoveKeyEventMonitor](input.md#oh_input_removekeyeventmonitor) ([Input_KeyEventCallback](input.md#input_keyeventcallback) callback) | 移除按键事件监听。  | 
 | [Input_Result](input.md#input_result) [OH_Input_RemoveMouseEventMonitor](input.md#oh_input_removemouseeventmonitor) ([Input_MouseEventCallback](input.md#input_mouseeventcallback) callback) | 移除鼠标事件监听。  | 
-| [Input_Result](input.md#input_result) [OH_Input_RemoveTouchEventMonitor](input.md#oh_input_removetoucheventmonitor) ([Input_TouchEventCallback](input.md#input_toucheventcallback) callback) | 移除触摸事件监听。  | 
+| [Input_Result](input.md#input_result) [OH_Input_RemoveTouchEventMonitor](input.md#oh_input_removetoucheventmonitor) ([Input_TouchEventCallback](input.md#input_toucheventcallback) callback) | 移除触屏事件监听。  | 
 | [Input_Result](input.md#input_result) [OH_Input_RemoveAxisEventMonitorForAll](input.md#oh_input_removeaxiseventmonitorforall) ([Input_AxisEventCallback](input.md#input_axiseventcallback) callback) | 移除所有类型轴事件监听。  | 
 | [Input_Result](input.md#input_result) [OH_Input_RemoveAxisEventMonitor](input.md#oh_input_removeaxiseventmonitor) ([InputEvent_AxisEventType](input.md#inputevent_axiseventtype) axisEventType, [Input_AxisEventCallback](input.md#input_axiseventcallback) callback) | 移除指定类型轴事件监听，轴事件类型定义在[InputEvent_AxisEventType](input.md#inputevent_axiseventtype)中。  | 
 | [Input_Result](input.md#input_result) [OH_Input_AddKeyEventInterceptor](input.md#oh_input_addkeyeventinterceptor) ([Input_KeyEventCallback](input.md#input_keyeventcallback) callback, [Input_InterceptorOptions](input.md#input_interceptoroptions) \*option) | 添加按键事件的拦截，重复添加只有第一次生效。仅在应用获焦时拦截按键事件。  | 
-| [Input_Result](input.md#input_result) [OH_Input_AddInputEventInterceptor](input.md#oh_input_addinputeventinterceptor) ([Input_InterceptorEventCallback](_input___interceptor_event_callback.md) \*callback, [Input_InterceptorOptions](input.md#input_interceptoroptions) \*option) | 添加输入事件拦截，包括鼠标、触摸和轴事件，重复添加只有第一次生效。仅命中应用窗口时拦截输入事件。  | 
+| [Input_Result](input.md#input_result) [OH_Input_AddInputEventInterceptor](input.md#oh_input_addinputeventinterceptor) ([Input_InterceptorEventCallback](_input___interceptor_event_callback.md) \*callback, [Input_InterceptorOptions](input.md#input_interceptoroptions) \*option) | 添加输入事件拦截，包括鼠标、触屏和轴事件，重复添加只有第一次生效。仅命中应用窗口时拦截输入事件。  | 
 | [Input_Result](input.md#input_result) [OH_Input_RemoveKeyEventInterceptor](input.md#oh_input_removekeyeventinterceptor) (void) | 移除按键事件拦截。  | 
-| [Input_Result](input.md#input_result) [OH_Input_RemoveInputEventInterceptor](input.md#oh_input_removeinputeventinterceptor) (void) | 移除输入事件拦截，包括鼠标、触摸和轴事件。  | 
+| [Input_Result](input.md#input_result) [OH_Input_RemoveInputEventInterceptor](input.md#oh_input_removeinputeventinterceptor) (void) | 移除输入事件拦截，包括鼠标、触屏和轴事件。  | 
 | [Input_Result](input.md#input_result)  [OH_Input_GetIntervalSinceLastInput](input.md#oh_input_getintervalsincelastinput) (int64_t \*timeInterval) | 获取距离上次系统输入事件的时间间隔。  | 
 | [Input_Hotkey](input.md#input_hotkey) \* [OH_Input_CreateHotkey](input.md#oh_input_createhotkey) (void) | 创建快捷键对象的实例。  | 
 | void [OH_Input_DestroyHotkey](input.md#oh_input_destroyhotkey) ([Input_Hotkey](input.md#input_hotkey) \*\*hotkey) | 销毁快捷键对象的实例。  | 
