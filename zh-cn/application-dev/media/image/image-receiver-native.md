@@ -47,9 +47,9 @@ EXTERN_C_END
 2. 打开src\main\ets\pages\index.ets，导入"libentry.so（根据工程名生成）"，调用Native接口，传入JS的资源对象。示例如下：
 
     ```js
-    import testNapi from 'libentry.so'
+    import testNapi from 'libentry.so';
     import { image } from '@kit.ImageKit';
-    import { abilityAccessCtrl } from '@kit.AbilityKit';
+    import { common, abilityAccessCtrl } from '@kit.AbilityKit';
     import { camera } from '@kit.CameraKit';
 
     @Entry
@@ -57,7 +57,7 @@ EXTERN_C_END
     struct Index {
       private receiver: image.ImageReceiver | undefined = undefined;
       func (){
-         let context = getContext()
+         let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
          abilityAccessCtrl.createAtManager().requestPermissionsFromUser(context,['ohos.permission.CAMERA']).then(async () => {
             let cameraManager = await camera.getCameraManager(context);
             // 获取支持的相机设备对象。
@@ -117,7 +117,7 @@ EXTERN_C_END
          }
          .height('100%')
       }
-   }
+    }
     ```
 
 ### Native接口调用
@@ -128,8 +128,7 @@ EXTERN_C_END
 
 **添加引用文件**
 
-   ```c++
-
+      ```c++
       #include <multimedia/image_framework/image_mdk.h>
       #include <multimedia/image_framework/image_receiver_mdk.h>
       #include <malloc.h>
@@ -182,4 +181,4 @@ EXTERN_C_END
          ret = OH_Image_Receiver_Release(imgReceiver_c);
          return nextImage;
       }
-   ```
+      ```

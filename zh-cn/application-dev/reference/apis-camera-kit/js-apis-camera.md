@@ -1519,10 +1519,10 @@ function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDev
 
 | 名称   | 类型    | 只读 | 可选  | 说明         |
 | ------ | ------ | ---- |-----| ------------ |
-| device              | [CameraDevice](#cameradevice)   | 否   | 否   | 相机并发设备。 |
-| type                | [CameraConcurrentType](#cameraconcurrenttype18)  | 否   | 否   | 镜头并发类型。 |
-| modes               | Array\<[SceneMode](#scenemode11) \>              | 否   | 否   | 相机支持的模式。 |
-| outputCapabilities  | Array\<[CameraOutputCapability](#cameraoutputcapability) \> | 否   | 否   | 相机对应模式的输出能力集。 |
+| device              | [CameraDevice](#cameradevice)   | 是   | 否   | 相机并发设备。 |
+| type                | [CameraConcurrentType](#cameraconcurrenttype18)  | 是   | 否   | 镜头并发类型。 |
+| modes               | Array\<[SceneMode](#scenemode11) \>              | 是   | 否   | 相机支持的模式。 |
+| outputCapabilities  | Array\<[CameraOutputCapability](#cameraoutputcapability) \> | 是   | 否   | 相机对应模式的输出能力集。 |
 
 ## CameraInput
 

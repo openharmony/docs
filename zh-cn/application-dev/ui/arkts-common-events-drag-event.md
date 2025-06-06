@@ -847,7 +847,7 @@ struct DropAnimationExample {
 
 3. 拖拽数据提前准备。
 
-   在onPreDrag中可以提前接收到准备发起拖拽的信号，若数据量较大，此时可以事先准备数据。
+   在onPreDrag中可以提前接收到准备发起拖拽的信号。若数据量较大，此时可以事先准备数据。
 
     ```ts
     .onPreDrag((status: PreDragStatus) => {

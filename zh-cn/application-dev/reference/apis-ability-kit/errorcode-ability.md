@@ -871,7 +871,7 @@ The context is not UIAbilityContext.
 
 **错误信息**
 
-The Caller is not an atomic service.
+The caller is not an atomic service.
 
 **错误描述**
 
