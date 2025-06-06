@@ -69,7 +69,7 @@ setTextUndefinedGlyphDisplay(noGlyphShow: TextUndefinedGlyphDisplay): void
 此配置会影响显示字体中未定义字符的方式：
 
 - 默认行为遵循字体的内部.notdef字形设计。
-- 豆腐块强制将缺失的字符显示为可见方块。
+- 开启后将强制使缺失字形的字符以豆腐块形式显示。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -294,7 +294,7 @@ struct Index {
 
 ## TextUndefinedGlyphDisplay<sup>20+</sup>
 
-文本未定义字形的显示方式枚举。
+文本未定义字形时的显示方式枚举。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -829,7 +829,7 @@ unloadFont(name: string): Promise\<void>
 
 | 参数名 | 类型               | 必填 | 说明                              |
 | -----  | ------------------ | ---- | --------------------------------- |
-| name   | string             | 是   | 需要取消注册的字体别名，与加载字体时使用的别名相同。 |
+| name   | string             | 是   | 需要卸载的字体的别名，与加载字体时使用的别名相同。 |
 
 **返回值：**
 
