@@ -114,13 +114,11 @@ Deque支持增、删、改、查操作，常用API如下：
 | 增加元素 | insertEnd(element: T) | 在尾部增加一个元素。 |
 | 访问元素 | getFirst() | 获取第一个元素，不进行出队操作。 |
 | 访问元素 | getLast() | 获取最后一个元素，不进行出队操作。 |
-| 访问元素 | popFirst() | 获取第一个元素，并进行出队操作。 |
-| 访问元素 | popLast() | 获取最后一个元素，并进行出队操作。 |
 | 访问元素 | forEach(callbackFn:(value: T, index?: number, deque?: Deque&lt;T&gt;) =&gt; void, thisArg?: Object) | 遍历访问整个Deque容器的元素。 |
 | 访问元素 | \[Symbol.iterator]():IterableIterator&lt;T&gt; | 创建迭代器以进行数据访问。 |
 | 修改元素 | forEach(callbackFn:(value: T, index?: number, deque?: Deque&lt;T&gt;)=&gt; void, thisArg?: Object) | 通过遍历修改整个Deque容器的元素。 |
-| 删除元素 | popFirst() | 对队首元素进行出队操作并删除。 |
-| 删除元素 | popLast() | 对队尾元素进行出队操作并删除。 |
+| 删除元素 | popFirst() | 将队首元素作为返回值进行返回，并将其出队。 |
+| 删除元素 | popLast() | 将队尾元素作为返回值进行返回，并将其出队。 |
 
 ## Queue
 
@@ -140,11 +138,10 @@ Queue支持增、删、改、查操作，常用API如下：
 | --------- | ------- | ------- |
 | 增加元素 | add(element: T) | 在尾部增加一个元素。 |
 | 访问元素 | getFirst() | 获取队首元素，不进行出队操作。 |
-| 访问元素 | pop() | 获取队首元素，并进行出队操作。 |
 | 访问元素 | forEach(callbackFn: (value: T, index?: number, queue?: Queue&lt;T&gt;) =&gt; void,thisArg?: Object) | 遍历访问整个Queue容器的元素。 |
 | 访问元素 | \[Symbol.iterator]():IterableIterator&lt;T&gt; | 创建迭代器以进行数据访问。 |
 | 修改元素 | forEach(callbackFn: (value: T, index?: number, queue?: Queue&lt;T&gt;) =&gt; void,thisArg?: Object) | 通过遍历修改整个Queue容器的元素。 |
-| 删除元素 | pop() | 对队首元素进行出队操作并删除。|
+| 删除元素 | pop() | 将队首元素作为返回值进行返回，并将其出队。|
 
 ## Stack
 
@@ -162,12 +159,11 @@ Stack支持增、删、改、查操作，常用API如下：
 | --------- | ------- | ------- |
 | 增加元素 | push(item: T) | 在栈顶增加一个元素。 |
 | 访问元素 | peek() | 获取栈顶元素，不进行出队操作。 |
-| 访问元素 | pop() | 获取栈顶元素，并进行出队操作。 |
 | 访问元素 | locate(element: T) | 获取元素对应的位置。 |
 | 访问元素 | forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void, thisArg?: Object) | 遍历访问整个Stack容器的元素。 |
 | 访问元素 | \[Symbol.iterator]():IterableIterator&lt;T&gt; | 创建迭代器以进行数据访问。 |
 | 修改元素 | forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void, thisArg?: Object) | 通过遍历修改整个Stack容器的元素。 |
-| 删除元素 | pop() | 对栈顶元素进行出队操作并删除。|
+| 删除元素 | pop() | 将栈顶元素作为返回值进行返回，并将其出队。|
 
 ## Vector
 
