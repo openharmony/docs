@@ -3143,7 +3143,11 @@ const char* OH_MD_KEY_MAX_BITRATE
 const char* OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS
 ```
 **描述**
-指定ROI编码参数，包括ROI区域和deltaQp，随帧下发且实时生效。
+用于视频编码中，使能ROI编码并下发ROI参数，随帧设置且实时生效。
+
+参数需满足"Top1,Left1-Bottom1,Right1=Offset1;Top2,Left2-Bottom2,Right2=Offset2;"的格式，多个ROI参数之间使用";"连接。
+
+Top、Left、Bottom、Right指定一个ROI区域的上、左、下、右边界，Offset指定deltaQP，“=Offset”可以省略，省略时使用默认值(-3)。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
