@@ -49,7 +49,7 @@ ForEach接口基于数组类型数据来进行循环渲染，需要与容器组�
 
 onMove(handler: Optional\<OnMoveHandler\>)
 
-拖拽排序数据移动回调。只有在List组件中使用，并且ForEach每次迭代都生成一个ListItem组件时才生效拖拽排序。
+拖拽排序数据移动回调。拖拽排序只有在List组件中使用，并且ForEach每次迭代都生成一个ListItem组件时才生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
