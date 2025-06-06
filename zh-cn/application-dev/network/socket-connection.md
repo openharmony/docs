@@ -144,7 +144,7 @@ ipAddress.address = "192.168.xxx.xxx";
 ipAddress.port = 1234;
 tcp.bind(ipAddress, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -165,10 +165,10 @@ tcp.bind(ipAddress, (err: BusinessError) => {
     tcp.send(tcpSendOptions).then(() => {
       console.log('send success');
     }).catch((err: BusinessError) => {
-      console.log('send fail');
+      console.error('send fail');
     });
   }).catch((err: BusinessError) => {
-    console.log('connect fail');
+    console.error('connect fail');
   });
 });
 
@@ -177,7 +177,7 @@ setTimeout(() => {
   tcp.close().then(() => {
     console.log('close success');
   }).catch((err: BusinessError) => {
-    console.log('close fail');
+    console.error('close fail');
   });
   tcp.off('message');
   tcp.off('connect');
@@ -212,7 +212,7 @@ ipAddress.port = 4651;
 tcpServer.listen(ipAddress).then(() => {
   console.log('listen success');
 }).catch((err: BusinessError) => {
-  console.log('listen fail');
+  console.error('listen fail');
 });
 
 class SocketInfo {
@@ -252,7 +252,7 @@ tcpServer.on("connect", (client: socket.TCPSocketConnection) => {
   client.close().then(() => {
     console.log('close success');
   }).catch((err: BusinessError) => {
-    console.log('close fail');
+    console.error('close fail');
   });
 
   // 取消TCPSocketConnection相关的事件订阅
@@ -300,7 +300,7 @@ let addr : socket.NetAddress = {
 multicast.addMembership(addr).then(() => {
   console.log('addMembership success');
 }).catch((err: Object) => {
-  console.log('addMembership fail');
+  console.error('addMembership fail');
 });
 
 // 开启监听消息数据，将接收到的ArrayBuffer类型数据转换为String
@@ -322,7 +322,7 @@ multicast.on('message', (data: SocketInfo) => {
 multicast.send({ data:'Hello12345', address: addr }).then(() => {
   console.log('send success');
 }).catch((err: Object) => {
-  console.log('send fail, ' + JSON.stringify(err));
+  console.error('send fail, ' + JSON.stringify(err));
 });
 
 // 关闭消息的监听
@@ -332,7 +332,7 @@ multicast.off('message')
 multicast.dropMembership(addr).then(() => {
   console.log('drop membership success');
 }).catch((err: Object) => {
-  console.log('drop membership fail');
+  console.error('drop membership fail');
 });
 ```
 
@@ -354,6 +354,7 @@ multicast.dropMembership(addr).then(() => {
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -394,10 +395,10 @@ client.connect(connectOpt).then(() => {
   client.send(sendOpt).then(() => {
   console.log('send success')
   }).catch((err: Object) => {
-    console.log('send failed: ' + JSON.stringify(err))
+    console.error('send failed: ' + JSON.stringify(err))
   })
 }).catch((err: Object) => {
-  console.log('connect fail: ' + JSON.stringify(err));
+  console.error('connect fail: ' + JSON.stringify(err));
 });
 
 // 当不需要再连接服务端，需要断开且取消事件的监听时
@@ -407,7 +408,7 @@ client.off('close');
 client.close().then(() => {
   console.log('close client success')
 }).catch((err: Object) => {
-  console.log('close client err: ' + JSON.stringify(err))
+  console.error('close client err: ' + JSON.stringify(err))
 })
 ```
 
@@ -437,6 +438,7 @@ client.close().then(() => {
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -452,7 +454,7 @@ let listenAddr: socket.LocalAddress = {
 server.listen(listenAddr).then(() => {
   console.log("listen success");
 }).catch((err: Object) => {
-  console.log("listen fail: " + JSON.stringify(err));
+  console.error("listen fail: " + JSON.stringify(err));
 });
 
 // 订阅LocalSocketServer的connect事件
@@ -472,7 +474,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
   });
 
   connection.on('error', (err: Object) => {
-    console.log("err:" + JSON.stringify(err));
+    console.error("err:" + JSON.stringify(err));
   })
 
   // 向客户端发送数据
@@ -482,14 +484,14 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
   connection.send(sendOpt).then(() => {
     console.log('send success');
   }).catch((err: Object) => {
-    console.log('send failed: ' + JSON.stringify(err));
+    console.error('send failed: ' + JSON.stringify(err));
   })
 
   // 关闭与客户端的连接
   connection.close().then(() => {
     console.log('close success');
   }).catch((err: Object) => {
-    console.log('close failed: ' + JSON.stringify(err));
+    console.error('close failed: ' + JSON.stringify(err));
   });
 
   // 取消LocalSocketConnection相关的事件订阅
@@ -554,7 +556,7 @@ ipAddress.address = "192.168.xxx.xxx";
 ipAddress.port = 4512;
 tlsTwoWay.bind(ipAddress, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -583,13 +585,13 @@ tlsTwoWayConnectOption.ALPNProtocols = ["spdy/1", "http/1.1"];
 tlsTwoWay.connect(tlsTwoWayConnectOption).then(() => {
   console.log("connect successfully");
 }).catch((err: BusinessError) => {
-  console.log("connect failed " + JSON.stringify(err));
+  console.error("connect failed " + JSON.stringify(err));
 });
 
 // 连接使用完毕后，主动关闭。取消相关事件的订阅。
 tlsTwoWay.close((err: BusinessError) => {
   if (err) {
-    console.log("close callback error = " + err);
+    console.error("close callback error = " + err);
   } else {
     console.log("close success");
   }
@@ -624,7 +626,7 @@ ipAddress.address = "192.168.xxx.xxx";
 ipAddress.port = 5445;
 tlsOneWay.bind(ipAddress, (err:BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -644,13 +646,13 @@ tlsOneWayConnectOptions.secureOptions = tlsOneWaySecureOption;
 tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
   console.log("connect successfully");
 }).catch((err: BusinessError) => {
-  console.log("connect failed " + JSON.stringify(err));
+  console.error("connect failed " + JSON.stringify(err));
 });
 
 // 连接使用完毕后，主动关闭。取消相关事件的订阅。
 tlsTwoWay.close((err: BusinessError) => {
   if (err) {
-    console.log("close callback error = " + err);
+    console.error("close callback error = " + err);
   } else {
     console.log("close success");
   }
@@ -709,7 +711,7 @@ ipAddress.address = "192.168.xxx.xxx";
 ipAddress.port = 1234;
 tcp.bind(ipAddress, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -724,7 +726,7 @@ tcp.bind(ipAddress, (err: BusinessError) => {
 
   tcp.connect(tcpConnect, (err: BusinessError) => {
     if (err) {
-      console.log('connect fail');
+      console.error('connect fail');
       return;
     }
     console.log('connect success');
@@ -776,7 +778,7 @@ tcp.bind(ipAddress, (err: BusinessError) => {
       // 连接使用完毕后，主动关闭。取消相关事件的订阅。
       tlsTwoWay.close((err: BusinessError) => {
         if (err) {
-          console.log("tls close callback error = " + err);
+          console.error("tls close callback error = " + err);
         } else {
           console.log("tls close success");
         }
@@ -840,7 +842,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 class SocketInfo {
@@ -865,14 +867,14 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.send('Hello, client!').then(() => {
     console.log('send success');
   }).catch((err: BusinessError) => {
-    console.log('send fail');
+    console.error('send fail');
   });
 
   // 断开连接
   client.close().then(() => {
     console.log('close success');
   }).catch((err: BusinessError) => {
-    console.log('close fail');
+    console.error('close fail');
   });
 
   // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
