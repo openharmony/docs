@@ -1605,9 +1605,6 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
 async function example(context: Context) {
   console.info('startAssetAnalysisDemo');
   try {
@@ -1739,9 +1736,6 @@ import { common }  from '@kit.AbilityKit';
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
 async function example(context: Context) {
   try{
     console.info('getKeyFrameThumbnail demo');
@@ -1804,10 +1798,6 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 import {photoAccessHelper} from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
-
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('saveGalleryFormInfoDemo');
@@ -1878,10 +1868,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import {photoAccessHelper} from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('updateGalleryFormInfoDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -1951,10 +1937,6 @@ removeGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import {photoAccessHelper} from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
-
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('removeGalleryFormInfoDemo');
@@ -3861,10 +3843,6 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getThumbnailDataDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4901,10 +4879,6 @@ setSupportedWatermarkType(watermarkType: WatermarkType): void
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { common } from '@kit.AbilityKit';
-
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setSupportedWatermarkTypeDemo');
@@ -6515,9 +6489,6 @@ setSubTitle(title: string): void
 import { dataSharePredicates } from '@kit.ArkData';
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
 async function example(context: Context) {
   try {
     console.info('setSubTitle');
@@ -6586,9 +6557,6 @@ import { dataSharePredicates } from '@kit.ArkData';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
 async function example(context: Context) {
   try {
     console.info('deleteHighlightAlbums');
@@ -6650,9 +6618,6 @@ constructor(album: Album)
 import { dataSharePredicates } from '@kit.ArkData';
 import { common } from '@kit.AbilityKit';s
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
 async function example(context: Context) {
   console.info('MediaAnalysisAlbumChangeRequest constructorDemo');
   let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -6708,9 +6673,6 @@ setOrderPosition(assets: Array&lt;PhotoAsset&gt;, position: Array&lt;number&gt;)
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { common } from '@kit.AbilityKit';
-
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 async function example(context: Context) {
   try {
@@ -6788,9 +6750,6 @@ constructor(album: Album)
 import { dataSharePredicates } from '@kit.ArkData';
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
 async function example(context: Context) {
   console.info('AnalysisAlbum constructorDemo');
   let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -6850,9 +6809,6 @@ getOrderPosition(assets: Array&lt;PhotoAsset&gt;): Promise&lt;Array&lt;number&gt
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { common } from '@kit.AbilityKit';
-
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 async function example(context: Context) {
   try {
@@ -6932,9 +6888,6 @@ static getCloudEnhancementInstance(context: Context): CloudEnhancement
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { common } from '@kit.AbilityKit';
-
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 async function example(context: Context) {
   console.info('getCloudEnhancementInstanceDemo');
@@ -7617,9 +7570,6 @@ static getCloudMediaAssetManagerInstance(context: Context): CloudMediaAssetManag
 ```ts
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
 async function example(context: Context) {
   console.info('getCloudMediaAssetManagerInstanceDemo');
   try {
@@ -7670,9 +7620,6 @@ startDownloadCloudMedia(downloadType: CloudMediaDownloadType): Promise&lt;void&g
 ```ts
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
 async function example(context: Context) {
   console.info('startDownloadCloudMediaDemo');
   try {
@@ -7716,9 +7663,6 @@ pauseDownloadCloudMedia(): Promise&lt;void&gt;
 ```ts
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
 async function example(context: Context) {
   console.info('pauseDownloadCloudMediaDemo');
   try {
@@ -7761,9 +7705,6 @@ cancelDownloadCloudMedia(): Promise&lt;void&gt;
 
 ```ts
 import { common } from '@kit.AbilityKit';
-
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 async function example(context: Context) {
   console.info('cancelDownloadCloudMediaDemo');
@@ -7815,9 +7756,6 @@ retainCloudMediaAsset(retainType: CloudMediaRetainType): Promise&lt;void&gt;
 ```ts
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
 async function example(context: Context) {
   console.info('retainCloudMediaAssetDemo');
   try {
@@ -7860,9 +7798,6 @@ getCloudMediaAssetStatus(): Promise&lt;CloudMediaAssetStatus&gt;
 
 ```ts
 import { common } from '@kit.AbilityKit';
-
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 async function example(context: Context) {
   console.info('getCloudMediaAssetStatusDemo');
