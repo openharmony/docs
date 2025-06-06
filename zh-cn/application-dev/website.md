@@ -1557,6 +1557,8 @@
         - 图片接收<!--image-receiving-c-->
           - [使用Image_NativeModule完成图片接收](media/image/image-receiver-c.md)
           - [使用Image_NativeModule处理图像信息](media/image/image-info-c.md)
+      - Image Kit常见问题<!--image-faqs-->
+        - [如何处理HEIF图片](media/image/image-faqs/heif-adapter-faq.md)
       - 不再推荐使用<!--imagekit-not-recommended-->
         - 图片开发指导(依赖JS对象)(C/C++)<!--image-native-js-objects-->
           - [图片解码](media/image/image-decoding-native.md)
