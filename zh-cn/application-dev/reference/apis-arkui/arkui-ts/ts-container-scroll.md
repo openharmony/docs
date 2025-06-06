@@ -1502,42 +1502,24 @@ import { curves, LengthMetrics } from '@kit.ArkUI';
 @Component
 struct StickyNestedScroll {
   scroller: Scroller = new Scroller;
-  listScroll: Scroller = new Scroller;
-  @State arr: number[] = []
-
-  aboutToAppear() {
-    for (let i = 0; i < 30; i++) {
-      this.arr.push(i)
-    }
-  }
-
-  @Styles
-  listCard() {
-    .backgroundColor(Color.White)
-    .height(72)
-    .width("100%")
-    .borderRadius(12)
-  }
 
   build() {
     Column() {
       Row() {
-        Button("有动画scrollTo").onClick(() => {
+        Button('有动画scrollTo').onClick(() => {
           let curve = curves.interpolatingSpring(0.5, 5, 10, 15) //创建一个阶梯曲线
           const yOffset: number = this.scroller.currentOffset().yOffset;
-          const xOffset: number = this.scroller.currentOffset().xOffset;
           this.scroller.scrollTo({
-            xOffset: xOffset - 100,
+            xOffset: 0,
             yOffset: yOffset - 100,
             animation: { duration: 1000, curve: curve, canOverScroll: true },
             canOverScroll: true
           })
         }).margin({ top: 10 })
-        Button("无动画scrollTo").onClick(() => {
+        Button('无动画scrollTo').onClick(() => {
           const yOffset: number = this.scroller.currentOffset().yOffset;
-          const xOffset: number = this.scroller.currentOffset().xOffset;
           this.scroller.scrollTo({
-            xOffset: xOffset - 100,
+            xOffset: 0,
             yOffset: yOffset - 100,
             animation: false,
             canOverScroll: true
@@ -1547,34 +1529,14 @@ struct StickyNestedScroll {
 
       Scroll(this.scroller) {
         Column() {
-          Text("Scroll Area")
-            .width("100%")
-            .height("40%")
+          Text('Scroll Area')
+            .width('100%')
+            .height('100%')
             .backgroundColor('#0080DC')
-            .textAlign(TextAlign.Start)
-          Tabs({ barPosition: BarPosition.Start }) {
-            TabContent() {
-              List({ space: 10, scroller: this.listScroll }) {
-                ForEach(this.arr, (item: number) => {
-                  ListItem() {
-                    Text("item" + item)
-                      .fontSize(16)
-                  }.listCard()
-                }, (item: string) => item)
-              }.width("100%")
-              .edgeEffect(EdgeEffect.Spring)
-              .nestedScroll({
-                scrollForward: NestedScrollMode.PARENT_FIRST,
-                scrollBackward: NestedScrollMode.SELF_FIRST
-              })
-            }.tabBar("Tab1")
-
-            TabContent() {
-            }.tabBar("Tab2")
-          }
-          .vertical(false)
-          .height("100%")
-        }.width("100%")
+            .textAlign(TextAlign.Center)
+        }
+        .width('100%')
+        .height('100%')
       }
       .scrollable(ScrollDirection.Vertical)
       .edgeEffect(EdgeEffect.Spring) //设置边缘效果
