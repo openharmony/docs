@@ -4295,7 +4295,7 @@
         - [媒体会话管理错误码](reference/apis-avsession-kit/errorcode-avsession.md)
     - Camera Kit（相机服务）<!--camera-api-->
       - ArkTS API<!--camera-arkts-->
-        - [@ohos.multimedia.camera (相机管理)](reference/apis-camera-kit/arkts-apis-camera.md)
+        - [@ohos.multimedia.camera (相机管理)](reference/apis-camera-kit/js-apis-camera.md)
         - [@ohos.multimedia.cameraPicker (相机选择器)](reference/apis-camera-kit/js-apis-cameraPicker.md)
         <!--Del-->
         - [@ohos.multimedia.camera (相机管理)(系统接口)](reference/apis-camera-kit/js-apis-camera-sys.md)

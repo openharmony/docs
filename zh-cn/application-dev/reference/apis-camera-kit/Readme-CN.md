@@ -1,7 +1,7 @@
 # Camera Kit（相机服务）
 
 - ArkTS API<!--camera-arkts-->
-  - [@ohos.multimedia.camera (相机管理)](arkts-apis-camera.md)
+  - [@ohos.multimedia.camera (相机管理)](js-apis-camera.md)
   - [@ohos.multimedia.cameraPicker (相机选择器)](js-apis-cameraPicker.md)
   <!--Del-->
   - [@ohos.multimedia.camera (相机管理)(系统接口)](js-apis-camera-sys.md)
