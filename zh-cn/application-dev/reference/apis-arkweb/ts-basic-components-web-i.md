@@ -6,6 +6,20 @@
 >
 > - 示例效果请以真机运行为准，当前IDE预览器不支持。
 
+## WebOptions
+
+通过[接口](./ts-basic-components-web.md#接口)定义Web选项。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称        | 类型                                     | 必填   | 说明                                     |
+| ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| src        | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件(文件支持html和txt类型)，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](./js-apis-webview-WebviewController.md#loadurl)重新加载。 |
+| controller | [WebController](./ts-basic-components-web-WebController.md#class-webcontroller-deprecated) \| [WebviewController<sup>9+</sup>](./ts-basic-components-web-t.md#webviewcontroller9)  | 是    | 控制器，通过controller可以控制Web组件各种行为（包括页面导航、声明周期状态、JavaScript交互等行为）。从API version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| renderMode<sup>12+</sup> | [RenderMode](./ts-basic-components-web-e.md#rendermode12)| 否   | 表示当前Web组件的渲染方式，`RenderMode.ASYNC_RENDER`表示Web组件自渲染，`RenderMode.SYNC_RENDER`表示支持Web组件统一渲染能力，默认值`RenderMode.ASYNC_RENDER`，该模式不支持动态调整。 |
+| incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview，false表示创建正常模式的webview。<br> 默认值：false。 |
+| sharedRenderProcessToken<sup>12+</sup> | string | 否 | 表示当前Web组件指定共享渲染进程的token，多渲染进程模式下，相同token的Web组件会优先尝试复用与token相绑定的渲染进程。token与渲染进程的绑定发生在渲染进程的初始化阶段。当渲染进程没有关联的Web组件时，其与token绑定关系将被移除。<br> 默认值： ""。  |
+
 ## WebMediaOptions<sup>10+</sup>
 
 Web媒体策略的配置。
@@ -120,7 +134,7 @@ Web同层渲染的配置。
 | -------------- | ---- | ---- | ---------------------------------------- |
 | url | string | 是 | 当前显示弹窗所在网页的URL。                       |
 | message | string | 是 | 弹窗中显示的信息。                       |
-| result | [JsResult](./ts-basic-components-web.md#jsresult) | 是 | 通知Web组件用户操作行为。                       |
+| result | [JsResult](./ts-basic-components-web-JsResult.md#class-jsresult) | 是 | 通知Web组件用户操作行为。                       |
 
 ## OnBeforeUnloadEvent<sup>12+</sup>
 
@@ -132,7 +146,7 @@ Web同层渲染的配置。
 | -------------- | ---- | ---- | ---------------------------------------- |
 | url | string | 是 | 当前显示弹窗所在网页的URL。                       |
 | message | string | 是 | 弹窗中显示的信息。                       |
-| result | [JsResult](./ts-basic-components-web.md#jsresult) | 是 | 通知Web组件用户操作行为。                       |
+| result | [JsResult](./ts-basic-components-web-JsResult.md#class-jsresult) | 是 | 通知Web组件用户操作行为。                       |
 
 ## OnConfirmEvent<sup>12+</sup>
 
@@ -144,7 +158,7 @@ Web同层渲染的配置。
 | -------------- | ---- | ---- | ---------------------------------------- |
 | url | string | 是 | 当前显示弹窗所在网页的URL。                       |
 | message | string | 是 | 弹窗中显示的信息。                       |
-| result | [JsResult](./ts-basic-components-web.md#jsresult) | 是 | 通知Web组件用户操作行为。                       |
+| result | [JsResult](./ts-basic-components-web-JsResult.md#class-jsresult) | 是 | 通知Web组件用户操作行为。                       |
 
 ## OnPromptEvent<sup>12+</sup>
 
@@ -157,7 +171,7 @@ Web同层渲染的配置。
 | url | string | 是 | 当前显示弹窗所在网页的URL。                       |
 | message | string | 是 | 弹窗中显示的信息。                       |
 | value | string | 是 | 提示对话框的信息。                       |
-| result | [JsResult](./ts-basic-components-web.md#jsresult) | 是 | 通知Web组件用户操作行为。                       |
+| result | [JsResult](./ts-basic-components-web-JsResult.md#class-jsresult) | 是 | 通知Web组件用户操作行为。                       |
 
 ## OnConsoleEvent<sup>12+</sup>
 
@@ -167,7 +181,7 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| message | [ConsoleMessage](./ts-basic-components-web.md#consolemessage) | 是 | 触发的控制台信息。                       |
+| message | [ConsoleMessage](./ts-basic-components-web-ConsoleMessage.md#class-consolemessage) | 是 | 触发的控制台信息。                       |
 
 ## OnErrorReceiveEvent<sup>12+</sup>
 
@@ -177,8 +191,8 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| request | [WebResourceRequest](./ts-basic-components-web.md#webresourcerequest) | 是 | 网页请求的封装信息。      |
-| error   | [WebResourceError](./ts-basic-components-web.md#webresourceerror)    | 是 | 网页加载资源错误的封装信息 。 |
+| request | [WebResourceRequest](./ts-basic-components-web-WebResourceRequest.md#class-webresourcerequest) | 是 | 网页请求的封装信息。      |
+| error   | [WebResourceError](./ts-basic-components-web-WebResourceError.md#class-webresourceerror)    | 是 | 网页加载资源错误的封装信息 。 |
 
 ## OnHttpErrorReceiveEvent<sup>12+</sup>
 
@@ -188,8 +202,8 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| request | [WebResourceRequest](./ts-basic-components-web.md#webresourcerequest) | 是 | 网页请求的封装信息。      |
-| response   | [WebResourceResponse](./ts-basic-components-web.md#webresourceresponse)    | 是 | 资源响应的封装信息。 |
+| request | [WebResourceRequest](./ts-basic-components-web-WebResourceRequest.md#class-webresourcerequest) | 是 | 网页请求的封装信息。      |
+| response   | [WebResourceResponse](./ts-basic-components-web-WebResourceResponse.md#class-webresourceresponse)    | 是 | 资源响应的封装信息。 |
 
 ## OnDownloadStartEvent<sup>12+</sup>
 
@@ -234,8 +248,8 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| result       | [FileSelectorResult](./ts-basic-components-web.md#fileselectorresult9) | 是 | 用于通知Web组件文件选择的结果。 |
-| fileSelector | [FileSelectorParam](./ts-basic-components-web.md#fileselectorparam9) | 是 | 文件选择器的相关信息。       |
+| result       | [FileSelectorResult](./ts-basic-components-web-FileSelectorResult.md#class-fileselectorresult) | 是 | 用于通知Web组件文件选择的结果。 |
+| fileSelector | [FileSelectorParam](./ts-basic-components-web-FileSelectorParam.md#class-fileselectorparam) | 是 | 文件选择器的相关信息。       |
 
 ## OnResourceLoadEvent<sup>12+</sup>
 
@@ -266,7 +280,7 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| handler | [HttpAuthHandler](./ts-basic-components-web.md#httpauthhandler9) | 是 | 通知Web组件用户操作行为。   |
+| handler | [HttpAuthHandler](./ts-basic-components-web-HttpAuthHandler.md#class-httpauthhandler) | 是 | 通知Web组件用户操作行为。   |
 | host    | string                               | 是 | HTTP身份验证凭据应用的主机。 |
 | realm   | string                               | 是 | HTTP身份验证凭据应用的域。  |
 
@@ -278,7 +292,7 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| request | [WebResourceRequest](./ts-basic-components-web.md#webresourcerequest) | 是 | url请求的相关信息。 |
+| request | [WebResourceRequest](./ts-basic-components-web-WebResourceRequest.md#class-webresourcerequest) | 是 | url请求的相关信息。 |
 
 ## OnPermissionRequestEvent<sup>12+</sup>
 
@@ -288,7 +302,7 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| request | [PermissionRequest](./ts-basic-components-web.md#permissionrequest9) | 是 | 通知Web组件用户操作行为。 |
+| request | [PermissionRequest](./ts-basic-components-web-PermissionRequest.md#class-permissionrequest) | 是 | 通知Web组件用户操作行为。 |
 
 ## OnScreenCaptureRequestEvent<sup>12+</sup>
 
@@ -298,7 +312,7 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| handler | [ScreenCaptureHandler](./ts-basic-components-web.md#screencapturehandler10) | 是 | 通知Web组件用户操作行为。 |
+| handler | [ScreenCaptureHandler](./ts-basic-components-web-ScreenCaptureHandler.md#class-screencapturehandler) | 是 | 通知Web组件用户操作行为。 |
 
 ## OnContextMenuShowEvent<sup>12+</sup>
 
@@ -308,8 +322,8 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| param  | [WebContextMenuParam](./ts-basic-components-web.md#webcontextmenuparam9) | 是 | 菜单相关参数。     |
-| result | [WebContextMenuResult](./ts-basic-components-web.md#webcontextmenuresult9) | 是 | 菜单相应事件传入内核。 |
+| param  | [WebContextMenuParam](./ts-basic-components-web-WebContextMenuParam.md#class-webcontextmenuparam) | 是 | 菜单相关参数。     |
+| result | [WebContextMenuResult](./ts-basic-components-web-WebContextMenuResult.md#class-webcontextmenuresult) | 是 | 菜单相应事件传入内核。 |
 
 ## OnSearchResultReceiveEvent<sup>12+</sup>
 
@@ -342,7 +356,7 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| handler | [SslErrorHandler](./ts-basic-components-web.md#sslerrorhandler9) | 是 | 通知Web组件用户操作行为。 |
+| handler | [SslErrorHandler](./ts-basic-components-web-SslErrorHandler.md#class-sslerrorhandler) | 是 | 通知Web组件用户操作行为。 |
 | error   | [SslError](./ts-basic-components-web-e.md#sslerror9)           | 是 | 错误码。           |
 | certChainData<sup>15+</sup>   | Array<Uint8Array\>           | 否 | 证书链数据。           |
 
@@ -354,7 +368,7 @@ Web同层渲染的配置。
 
 | 名称     | 类型                                 | 必填   | 说明           |
 | ------- | ------------------------------------ | ---- | -------------- |
-| handler | [SslErrorHandler](./ts-basic-components-web.md#sslerrorhandler9) | 是    | 通知Web组件用户操作行为。 |
+| handler | [SslErrorHandler](./ts-basic-components-web-SslErrorHandler.md#class-sslerrorhandler) | 是    | 通知Web组件用户操作行为。 |
 | error   | [SslError](./ts-basic-components-web-e.md#sslerror9)        | 是    | 错误码。           |
 | url   | string                                 | 是    | url地址。           |
 | originalUrl   | string                         | 是    | 请求的原始url地址。           |
@@ -370,7 +384,7 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| handler  | [ClientAuthenticationHandler](./ts-basic-components-web.md#clientauthenticationhandler9) | 是 | 通知Web组件用户操作行为。  |
+| handler  | [ClientAuthenticationHandler](./ts-basic-components-web-ClientAuthenticationHandler.md#class-clientauthenticationhandler) | 是 | 通知Web组件用户操作行为。  |
 | host     | string                                   | 是 | 请求证书服务器的主机名。    |
 | port     | number                                   | 是 | 请求证书服务器的端口号。    |
 | keyTypes | Array<string\>                           | 是 | 可接受的非对称秘钥类型。    |
@@ -387,7 +401,7 @@ Web同层渲染的配置。
 | isAlert       | boolean                                  | 是 | true代表请求创建对话框，false代表新标签页。    |
 | isUserTrigger | boolean                                  | 是 | true代表用户触发，false代表非用户触发。      |
 | targetUrl     | string                                   | 是 | 目标url。                        |
-| handler       | [ControllerHandler](./ts-basic-components-web.md#controllerhandler9) | 是 | 用于设置新建窗口的WebviewController实例。 |
+| handler       | [ControllerHandler](./ts-basic-components-web-ControllerHandler.md#class-controllerhandler) | 是 | 用于设置新建窗口的WebviewController实例。 |
 
 ## OnTouchIconUrlReceivedEvent<sup>12+</sup>
 
@@ -428,7 +442,7 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| handler | [DataResubmissionHandler](./ts-basic-components-web.md#dataresubmissionhandler9) | 是 | 表单数据重新提交句柄。 |
+| handler | [DataResubmissionHandler](./ts-basic-components-web-DataResubmissionHandler.md#class-dataresubmissionhandler) | 是 | 表单数据重新提交句柄。 |
 
 ## OnAudioStateChangedEvent<sup>12+</sup>
 
@@ -459,7 +473,7 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| data | [WebResourceRequest](./ts-basic-components-web.md#webresourcerequest) | 是 | url请求的相关信息。 |
+| data | [WebResourceRequest](./ts-basic-components-web-WebResourceRequest.md#class-webresourcerequest) | 是 | url请求的相关信息。 |
 
 ## OnOverScrollEvent<sup>12+</sup>
 
@@ -483,7 +497,7 @@ Web同层渲染的配置。
 | object     | object                                   | 是    | 参与注册的对象。只能声明方法，不能声明属性。                   |
 | name       | string                                   | 是    | 注册对象的名称，与window中调用的对象名一致。                |
 | methodList | Array\<string\>                          | 是    | 参与注册的应用侧JavaScript对象的同步方法。                 |
-| controller | [WebController](./ts-basic-components-web.md#webcontroller) \| [WebviewController<sup>9+</sup>](./ts-basic-components-web.md#webviewcontroller9) | 是    | -    | 控制器。从API version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| controller | [WebController](./ts-basic-components-web-WebController.md#class-webcontroller-deprecated) \| [WebviewController<sup>9+</sup>](./js-apis-webview-WebviewController.md#class-webviewcontroller) | 是    | -    | 控制器。从API version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | asyncMethodList<sup>12+</sup>  | Array\<string\>      | 否    | 参与注册的应用侧JavaScript对象的异步方法。异步方法无法获取返回值。   |
 | permission<sup>12+</sup>  | string  | 否    | json字符串，默认为空，通过该字符串配置JSBridge的权限管控，可以定义object、method一级的url白名单。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。 |
 
@@ -536,7 +550,7 @@ Web同层渲染的配置。
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | origin | string | 是 | 指定源的字符串索引。                       |
-| geolocation | [JsGeolocation](./ts-basic-components-web.md#jsgeolocation) | 是 | 通知Web组件用户操作行为。                       |
+| geolocation | [JsGeolocation](./ts-basic-components-web-JsGeolocation.md#class-jsgeolocation) | 是 | 通知Web组件用户操作行为。                       |
 
 ## NativeEmbedVisibilityInfo<sup>12+</sup>
 
@@ -569,7 +583,7 @@ Web组件进入全屏回调事件的详情。
 
 | 名称             | 类型                                  | 必填   | 说明                    |
 | -----------     | ------------------------------------ | ---- | --------------------- |
-| handler     | [FullScreenExitHandler](./ts-basic-components-web.md#fullscreenexithandler9) | 是    | 用于退出全屏模式的函数句柄。 |
+| handler     | [FullScreenExitHandler](./ts-basic-components-web-FullScreenExitHandler.md#class-fullscreenexithandler) | 是    | 用于退出全屏模式的函数句柄。 |
 | videoWidth  | number | 否    | 视频的宽度，单位：px。如果进入全屏的是 `<video>` 元素，表示其宽度；如果进入全屏的子元素中包含 `<video>` 元素，表示第一个子视频元素的宽度；其他情况下，为0。 |
 | videoHeight  | number | 否    | 视频的高度，单位：px。如果进入全屏的是 `<video>` 元素，表示其高度；如果进入全屏的子元素中包含 `<video>` 元素，表示第一个子视频元素的高度；其他情况下，为0。 |
 
@@ -618,13 +632,13 @@ Web组件进入全屏回调事件的详情。
 
 ## WebKeyboardCallbackInfo<sup>12+</sup>
 
-拦截网页可编辑元素拉起软键盘的回调入参，其中包括[WebKeyboardController](./ts-basic-components-web.md#webkeyboardcontroller12)、可编辑元素的属性。
+拦截网页可编辑元素拉起软键盘的回调入参，其中包括[WebKeyboardController](./ts-basic-components-web-WebKeyboardController.md#class-webkeyboardcontroller)、可编辑元素的属性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ------- | ---- | ---------------------------------------- |
-| controller | [WebKeyboardController](./ts-basic-components-web.md#webkeyboardcontroller12)  | 是    | 提供控制自定义键盘的输入、删除、关闭等操作。 |
+| controller | [WebKeyboardController](./ts-basic-components-web-WebKeyboardController.md#class-webkeyboardcontroller)  | 是    | 提供控制自定义键盘的输入、删除、关闭等操作。 |
 | attributes | Record<string, string> | 是    | 触发本次软键盘弹出的网页元素属性。
 
 ## WebKeyboardOptions<sup>12+</sup>
@@ -689,7 +703,7 @@ Web组件进入全屏回调事件的详情。
 | -----------     | ------------------------------------ | ---- | --------------------- |
 | embedId     | string   | 否    | 同层标签的唯一id。 |
 | touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent对象说明)  | 否    | 手指触摸动作信息。 |
-| result<sup>12+</sup>     | [EventResult](./ts-basic-components-web.md#eventresult12)   | 否    | 通知Web组件手势事件的消费结果。 |
+| result<sup>12+</sup>     | [EventResult](./ts-basic-components-web-EventResult.md#class-eventresult)   | 否    | 通知Web组件手势事件的消费结果。 |
 
 ## OnLoadStartedEvent<sup>20+</sup>
 
@@ -710,3 +724,24 @@ Web组件进入全屏回调事件的详情。
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | url | string | 是 | 页面的URL地址。                       |
+
+## Header
+
+Web组件返回的请求/响应头对象。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称          | 类型     | 必填   | 说明            |
+| ----------- | ------ | ---- | ------------- |
+| headerKey   | string | 是    | 请求/响应头的key。   |
+| headerValue | string | 是    | 请求/响应头的value。 |
+
+## ScreenCaptureConfig<sup>10+</sup>
+
+Web屏幕捕获的配置。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称          | 类型                                      | 必填   | 说明         |
+| ----------- | --------------------------------------- | ---- | ---------- |
+| captureMode | [WebCaptureMode](./ts-basic-components-web-e.md#webcapturemode10) | 是    | Web屏幕捕获模式。 |

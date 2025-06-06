@@ -6,6 +6,18 @@
 >
 > - 示例效果请以真机运行为准，当前IDE预览器不支持。
 
+## WebviewController<sup>9+</sup>
+
+type WebviewController = WebviewController
+
+提供Web控制器的方法。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 类型     | 说明       |
+| ------ | ---------- |
+| [WebviewController](./js-apis-webview-WebviewController.md#class-webviewcontroller)  | 通过WebviewController可以控制Web组件各种行为。一个WebviewController对象只能控制一个Web组件，且必须在Web组件和WebviewController绑定后，才能调用WebviewController上的方法（静态方法除外）。 |
+
 ## OnAdsBlockedCallback<sup>12+</sup>
 
 type OnAdsBlockedCallback = (details: AdsBlockedDetails) => void
@@ -189,7 +201,7 @@ onOverrideUrlLoading的回调。
 
 | 参数名              | 类型    | 必填   |  说明 |
 | ------------------ | ------- | ---- | ------------- |
-| webResourceRequest   |   [WebResourceRequest](./ts-basic-components-web.md#webresourcerequest)   | 是   | url请求的相关信息。|
+| webResourceRequest   |   [WebResourceRequest](./ts-basic-components-web-WebResourceRequest.md#class-webresourcerequest)   | 是   | url请求的相关信息。|
 
 **返回值：**
 
@@ -223,7 +235,7 @@ type WebKeyboardCallback = (keyboardCallbackInfo: WebKeyboardCallbackInfo) => We
 
 | 参数名           | 类型   | 必填   | 说明               |
 | ------------- | ------ | ---- | ------------------ |
-| keyboardCallbackInfo    | [WebKeyboardCallbackInfo](./ts-basic-components-web-i.md#webkeyboardcallbackinfo12) | 是    | 拦截网页拉起软键盘回调通知的入参，其中包括[WebKeyboardController](./ts-basic-components-web.md#webkeyboardcontroller12)、可编辑元素的属性。  |
+| keyboardCallbackInfo    | [WebKeyboardCallbackInfo](./ts-basic-components-web-i.md#webkeyboardcallbackinfo12) | 是    | 拦截网页拉起软键盘回调通知的入参，其中包括[WebKeyboardController](./ts-basic-components-web-WebKeyboardController.md#class-webkeyboardcontroller)、可编辑元素的属性。  |
 
 **返回值：**
 
