@@ -9,7 +9,7 @@
 在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加libimage_packer.so 以及日志依赖libhilog_ndk.z.so。
 
 ```txt
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
+target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libimage_packer.so)
 ```
 
 ### Native接口调用
@@ -25,16 +25,19 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
 > **说明：**
 > 根据MIME标准，标准编码格式为image/jpeg。当使用image编码时，编码参数中的编码格式image_MimeType设置为image/jpeg，image编码后的文件扩展名可设为.jpg或.jpeg，可在支持image/jpeg解码的平台上使用。
 
-   ```c++
-
-    #include "imagepicture_native.h"
-    #include "common/log_common.h"
+    ```c++
+    #include <hilog/log.h>
     #include <bits/alltypes.h>
     #include <unistd.h>
     #include <sys/types.h>
     #include <sys/stat.h>
     #include <fcntl.h>
     #include <sstream>
+    #include <multimedia/image_framework/image/image_native.h>
+    #include <multimedia/image_framework/image/image_packer_native.h>
+    #include <multimedia/image_framework/image/image_source_native.h>
+    #include <multimedia/image_framework/image/picture_native.h>
+    #include <multimedia/image_framework/image/pixelmap_native.h>
 
     #define AUTO 0
     #define SDR 1
@@ -177,4 +180,4 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
 
         return getJsResult(env, thisPicture->errorCode);
     }
-   ```
+    ```
