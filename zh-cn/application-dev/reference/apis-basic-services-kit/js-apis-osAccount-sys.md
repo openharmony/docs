@@ -5183,6 +5183,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | enrollmentProgress<sup>10+</sup> | string   | 是    | 是   | 指示录入进度，默认为空。 |
 | sensorInfo<sup>10+</sup> | string           | 是    | 是   | 指示传感器信息，默认为空。 |
 | nextPhaseFreezingTime<sup>12+</sup> | number | 是    | 是   | 指示下次冻结时间，默认为undefined。 |
+| credentialLength<sup>20+</sup> | number | 是    | 是   | 指示凭据长度，默认为undefined。查询生物信息等无定长属性的凭据时返回undefined。 |
 
 ## AuthResult<sup>8+</sup>
 
@@ -5262,6 +5263,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | ENROLLMENT_PROGRESS<sup>10+</sup> | 4      | 录入进度。   |
 | SENSOR_INFO<sup>10+</sup> | 5      | 传感器信息。   |
 | NEXT_PHASE_FREEZING_TIME<sup>12+</sup> | 6 | 下次冻结时间。 |
+| CREDENTIAL_LENGTH<sup>20+</sup> | 7 | 凭据长度。 |
 
 ## SetPropertyType<sup>8+</sup>
 
