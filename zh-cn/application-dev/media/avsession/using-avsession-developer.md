@@ -37,32 +37,30 @@
 
 1. 通过AVSessionManager的方法创建并激活媒体会话。
      
-```ts
-import { avSession as AVSessionManager } from '@kit.AVSessionKit';
-
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
-
-  build() {
-    Column() {
-      Text(this.message)
-        .onClick(async () => {
-          // 开始创建并激活媒体会话。
-          // 创建session。
-          let context = this.getUIContext().getHostContext() as Context;
-          let type: AVSessionManager.AVSessionType = 'audio';
-          let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-          await session.activate();
-          console.info(`session create done : sessionId : ${session.sessionId}`);
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
-}
-```
+      ```ts
+      import { avSession as AVSessionManager } from '@kit.AVSessionKit';  
+      @Entry
+      @Component
+      struct Index {
+          @State message: string = 'hello world';  
+          build() {
+          Column() {
+              Text(this.message)
+              .onClick(async () => {
+                  // 开始创建并激活媒体会话。
+                  // 创建session。
+                  let context = this.getUIContext().getHostContext() as Context;
+                  let type: AVSessionManager.AVSessionType = 'audio';
+                  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+                  await session.activate();
+                  console.info(`session create done : sessionId : ${session.sessionId}`);
+              })
+          }
+          .width('100%')
+          .height('100%')
+          }
+      }
+      ```
 
 2. 跟随媒体信息的变化，及时设置媒体会话信息。需要设置的媒体会话信息主要包括：
    - 媒体会话元数据AVMetadata。
@@ -70,135 +68,135 @@ struct Index {
 
    音视频应用设置的媒体会话信息，会被媒体会话控制方通过AVSessionController相关方法获取后进行显示或处理。
      
-```ts
-import { avSession as AVSessionManager } from '@kit.AVSessionKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
-
-  build() {
-    Column() {
-      Text(this.message)
-        .onClick(async () => {
-          let context = this.getUIContext().getHostContext() as Context;
-          // 假设已经创建了一个session，如何创建session可以参考之前的案例。
-          let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
-          // 播放器逻辑··· 引发媒体信息与播放状态的变更。
-          // 设置必要的媒体信息
-          let metadata: AVSessionManager.AVMetadata = {
-            assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体。
-            title: 'TITLE',
-            mediaImage: 'IMAGE',
-            artist: 'ARTIST'
-          };
-          session.setAVMetadata(metadata).then(() => {
-            console.info(`SetAVMetadata successfully`);
-          }).catch((err: BusinessError) => {
-            console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
-          });
-          // 简单设置一个播放状态 - 暂停 未收藏。
-          let playbackState: AVSessionManager.AVPlaybackState = {
-            state: AVSessionManager.PlaybackState.PLAYBACK_STATE_PAUSE,
-            isFavorite: false
-          };
-          session.setAVPlaybackState(playbackState, (err) => {
-            if (err) {
-              console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
-            } else {
-              console.info(`SetAVPlaybackState successfully`);
-            }
-          });
-          // 设置一个播放列表。
-          let queueItemDescription_1: AVSessionManager.AVMediaDescription = {
-            assetId: '001',
-            title: 'music_name',
-            subtitle: 'music_sub_name',
-            description: 'music_description',
-            mediaImage: "PIXELMAP_OBJECT",
-            extras: { 'extras': 'any' }
-          };
-          let queueItem_1: AVSessionManager.AVQueueItem = {
-            itemId: 1,
-            description: queueItemDescription_1
-          };
-          let queueItemDescription_2: AVSessionManager.AVMediaDescription = {
-            assetId: '002',
-            title: 'music_name',
-            subtitle: 'music_sub_name',
-            description: 'music_description',
-            mediaImage: "PIXELMAP_OBJECT",
-            extras: { 'extras': 'any' }
-          };
-          let queueItem_2: AVSessionManager.AVQueueItem = {
-            itemId: 2,
-            description: queueItemDescription_2
-          };
-          let queueItemsArray = [queueItem_1, queueItem_2];
-          session.setAVQueueItems(queueItemsArray).then(() => {
-            console.info(`SetAVQueueItems successfully`);
-          }).catch((err: BusinessError) => {
-            console.error(`Failed to set AVQueueItem, error code: ${err.code}, error message: ${err.message}`);
-          });
-          // 设置媒体播放列表名称。
-          let queueTitle = 'QUEUE_TITLE';
-          session.setAVQueueTitle(queueTitle).then(() => {
-            console.info(`SetAVQueueTitle successfully`);
-          }).catch((err: BusinessError) => {
-            console.error(`Failed to set AVQueueTitle, error code: ${err.code}, error message: ${err.message}`);
-          });
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
-}
-```
+      ```ts
+      import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+      import { BusinessError } from '@kit.BasicServicesKit';
+      
+      @Entry
+      @Component
+      struct Index {
+        @State message: string = 'hello world';
+      
+        build() {
+          Column() {
+            Text(this.message)
+              .onClick(async () => {
+                let context = this.getUIContext().getHostContext() as Context;
+                // 假设已经创建了一个session，如何创建session可以参考之前的案例。
+                let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
+                // 播放器逻辑··· 引发媒体信息与播放状态的变更。
+                // 设置必要的媒体信息
+                let metadata: AVSessionManager.AVMetadata = {
+                  assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体。
+                  title: 'TITLE',
+                  mediaImage: 'IMAGE',
+                  artist: 'ARTIST'
+                };
+                session.setAVMetadata(metadata).then(() => {
+                  console.info(`SetAVMetadata successfully`);
+                }).catch((err: BusinessError) => {
+                  console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+                });
+                // 简单设置一个播放状态 - 暂停 未收藏。
+                let playbackState: AVSessionManager.AVPlaybackState = {
+                  state: AVSessionManager.PlaybackState.PLAYBACK_STATE_PAUSE,
+                  isFavorite: false
+                };
+                session.setAVPlaybackState(playbackState, (err) => {
+                  if (err) {
+                    console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
+                  } else {
+                    console.info(`SetAVPlaybackState successfully`);
+                  }
+                });
+                // 设置一个播放列表。
+                let queueItemDescription_1: AVSessionManager.AVMediaDescription = {
+                  assetId: '001',
+                  title: 'music_name',
+                  subtitle: 'music_sub_name',
+                  description: 'music_description',
+                  mediaImage: "PIXELMAP_OBJECT",
+                  extras: { 'extras': 'any' }
+                };
+                let queueItem_1: AVSessionManager.AVQueueItem = {
+                  itemId: 1,
+                  description: queueItemDescription_1
+                };
+                let queueItemDescription_2: AVSessionManager.AVMediaDescription = {
+                  assetId: '002',
+                  title: 'music_name',
+                  subtitle: 'music_sub_name',
+                  description: 'music_description',
+                  mediaImage: "PIXELMAP_OBJECT",
+                  extras: { 'extras': 'any' }
+                };
+                let queueItem_2: AVSessionManager.AVQueueItem = {
+                  itemId: 2,
+                  description: queueItemDescription_2
+                };
+                let queueItemsArray = [queueItem_1, queueItem_2];
+                session.setAVQueueItems(queueItemsArray).then(() => {
+                  console.info(`SetAVQueueItems successfully`);
+                }).catch((err: BusinessError) => {
+                  console.error(`Failed to set AVQueueItem, error code: ${err.code}, error message: ${err.message}`);
+                });
+                // 设置媒体播放列表名称。
+                let queueTitle = 'QUEUE_TITLE';
+                session.setAVQueueTitle(queueTitle).then(() => {
+                  console.info(`SetAVQueueTitle successfully`);
+                }).catch((err: BusinessError) => {
+                  console.error(`Failed to set AVQueueTitle, error code: ${err.code}, error message: ${err.message}`);
+                });
+              })
+          }
+          .width('100%')
+          .height('100%')
+        }
+      }
+      ```
 
 3. 设置用于被媒体会话控制方拉起的UIAbility。当用户操作媒体会话控制方的界面时，例如点击播控中心的卡片，可以拉起此处配置的UIAbility。
    设置UIAbility时通过WantAgent接口实现，更多关于WantAgent的信息请参考[WantAgent](../../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)。
 
-```ts
-import { avSession as AVSessionManager } from '@kit.AVSessionKit';
-import { wantAgent } from '@kit.AbilityKit';
+      ```ts
+      import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+      import { wantAgent } from '@kit.AbilityKit';
 
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
+      @Entry
+      @Component
+      struct Index {
+      @State message: string = 'hello world';
 
-  build() {
-    Column() {
-      Text(this.message)
-        .onClick(async () => {
-          let context = this.getUIContext().getHostContext() as Context;
-          let type: AVSessionManager.AVSessionType = 'audio';
-          // 假设已经创建了一个session，如何创建session可以参考之前的案例。
-          let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-          let wantAgentInfo: wantAgent.WantAgentInfo = {
-            wants: [
-              {
-                bundleName: 'com.example.musicdemo',
-                abilityName: 'MainAbility'
+      build() {
+          Column() {
+          Text(this.message)
+              .onClick(async () => {
+              let context = this.getUIContext().getHostContext() as Context;
+              let type: AVSessionManager.AVSessionType = 'audio';
+              // 假设已经创建了一个session，如何创建session可以参考之前的案例。
+              let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+              let wantAgentInfo: wantAgent.WantAgentInfo = {
+                  wants: [
+                  {
+                      bundleName: 'com.example.musicdemo',
+                      abilityName: 'MainAbility'
+                  }
+                  ],
+                  // OperationType.START_ABILITIES
+                  operationType: 2,
+                  requestCode: 0,
+                  wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
               }
-            ],
-            // OperationType.START_ABILITIES
-            operationType: 2,
-            requestCode: 0,
-            wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+              wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
+                  session.setLaunchAbility(agent);
+              })
+              })
           }
-          wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
-            session.setLaunchAbility(agent);
-          })
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
-}
-```
+          .width('100%')
+          .height('100%')
+      }
+      }
+      ```
     
 4. 设置一个即时的自定义会话事件，以供媒体控制方接收到事件后进行相应的操作。
 
@@ -415,114 +413,114 @@ struct Index {
 
 7. 获取当前媒体会话自身的控制器，与媒体会话对应进行通信交互。
      
-```ts
-import { avSession as AVSessionManager } from '@kit.AVSessionKit';
-
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
-
-  build() {
-    Column() {
-      Text(this.message)
-        .onClick(async () => {
-          let context = this.getUIContext().getHostContext() as Context;
-          // 假设已经创建了一个session，如何创建session可以参考之前的案例。
-          let type: AVSessionManager.AVSessionType = 'audio';
-          let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-
-          // 通过已有session获取一个controller对象。
-          let controller = await session.getController();
-
-          // controller可以与原session对象进行基本的通信交互，比如下发播放命令。
-          let avCommand: AVSessionManager.AVControlCommand = { command: 'play' };
-          controller.sendControlCommand(avCommand);
-
-          // 或者做状态变更监听。
-          controller.on('playbackStateChange', 'all', (state) => {
-
-            // do some things.
-          });
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
-}
-```
+      ```ts
+      import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+      
+      @Entry
+      @Component
+      struct Index {
+        @State message: string = 'hello world';
+      
+        build() {
+          Column() {
+            Text(this.message)
+              .onClick(async () => {
+                let context = this.getUIContext().getHostContext() as Context;
+                // 假设已经创建了一个session，如何创建session可以参考之前的案例。
+                let type: AVSessionManager.AVSessionType = 'audio';
+                let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+      
+                // 通过已有session获取一个controller对象。
+                let controller = await session.getController();
+      
+                // controller可以与原session对象进行基本的通信交互，比如下发播放命令。
+                let avCommand: AVSessionManager.AVControlCommand = { command: 'play' };
+                controller.sendControlCommand(avCommand);
+      
+                // 或者做状态变更监听。
+                controller.on('playbackStateChange', 'all', (state) => {
+      
+                  // do some things.
+                });
+              })
+          }
+          .width('100%')
+          .height('100%')
+        }
+      }
+      ```
 
 8. 音视频应用在退出，并且不需要继续播放时，及时取消监听以及销毁媒体会话释放资源。
    取消播控命令监听的示例代码如下所示 ：
 
-```ts
-import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+      ```ts
+      import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+      
+      @Entry
+      @Component
+      struct Index {
+        @State message: string = 'hello world';
+      
+        build() {
+          Column() {
+            Text(this.message)
+              .onClick(async () => {
+                let context = this.getUIContext().getHostContext() as Context;
+                // 假设已经创建了一个session，如何创建session可以参考之前的案例。
+                let type: AVSessionManager.AVSessionType = 'audio';
+                let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+      
+                // 取消指定session下的相关监听。
+                session.off('play');
+                session.off('pause');
+                session.off('stop');
+                session.off('playNext');
+                session.off('playPrevious');
+                session.off('skipToQueueItem');
+                session.off('handleKeyEvent');
+                session.off('outputDeviceChange');
+                session.off('commonCommand');
+              })
+          }
+          .width('100%')
+          .height('100%')
+        }
+      }
+      ```
 
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
-
-  build() {
-    Column() {
-      Text(this.message)
-        .onClick(async () => {
-          let context = this.getUIContext().getHostContext() as Context;
-          // 假设已经创建了一个session，如何创建session可以参考之前的案例。
-          let type: AVSessionManager.AVSessionType = 'audio';
-          let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-
-          // 取消指定session下的相关监听。
-          session.off('play');
-          session.off('pause');
-          session.off('stop');
-          session.off('playNext');
-          session.off('playPrevious');
-          session.off('skipToQueueItem');
-          session.off('handleKeyEvent');
-          session.off('outputDeviceChange');
-          session.off('commonCommand');
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
-}
-```
-
-销毁媒体会话示例代码如下所示：
+      销毁媒体会话示例代码如下所示：
      
-```ts
-import { avSession as AVSessionManager } from '@kit.AVSessionKit';
-
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
-
-  build() {
-    Column() {
-      Text(this.message)
-        .onClick(async () => {
-          let context = this.getUIContext().getHostContext() as Context;
-          // 假设已经创建了一个session，如何创建session可以参考之前的案例。
-          let type: AVSessionManager.AVSessionType = 'audio';
-          let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-          // 主动销毁已创建的session。
-          session.destroy((err) => {
-            if (err) {
-              console.error(`Failed to destroy session. Code: ${err.code}, message: ${err.message}`);
-            } else {
-              console.info(`Destroy : SUCCESS `);
-            }
-          });
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
-}
-```
+      ```ts
+      import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+      
+      @Entry
+      @Component
+      struct Index {
+        @State message: string = 'hello world';
+      
+        build() {
+          Column() {
+            Text(this.message)
+              .onClick(async () => {
+                let context = this.getUIContext().getHostContext() as Context;
+                // 假设已经创建了一个session，如何创建session可以参考之前的案例。
+                let type: AVSessionManager.AVSessionType = 'audio';
+                let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+                // 主动销毁已创建的session。
+                session.destroy((err) => {
+                  if (err) {
+                    console.error(`Failed to destroy session. Code: ${err.code}, message: ${err.message}`);
+                  } else {
+                    console.info(`Destroy : SUCCESS `);
+                  }
+                });
+              })
+          }
+          .width('100%')
+          .height('100%')
+        }
+      }
+      ```
 
 ## 相关实例
 
