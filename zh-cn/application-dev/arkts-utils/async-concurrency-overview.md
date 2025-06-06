@@ -13,9 +13,9 @@ Promise和async/await提供异步并发能力，是标准的JS异步语法。异
 
 ## Promise
 
-Promise是一种用于处理异步操作的对象，可以将异步操作转换为类似于同步操作的风格，以方便代码编写和维护。Promise提供了一个状态机制来管理异步操作的不同阶段，并提供了一些方法来注册回调函数以处理异步操作的成功或失败的结果。
+Promise是一种用于处理异步操作的对象，可以将异步操作转换为类似于同步操作的风格，以方便代码编写和维护。Promise提供了一种状态机制来管理异步操作的不同阶段，Promise有三种状态：pending（进行中）、fulfilled（已完成，也叫resolved）和rejected（已拒绝）。其创建后处于pending状态，异步操作完成后转换为fulfilled或rejected状态。
 
-Promise有三种状态：pending（进行中）、fulfilled（已完成，也叫resolved）和rejected（已拒绝）。创建后处于pending状态，异步操作完成后转换为fulfilled或rejected。
+Promise提供了then/catch方法来注册回调函数以处理异步操作的成功或失败的结果，Promise状态改变会触发回调函数加入微任务队列等待执行，依赖事件循环机制在宏任务执行完成后优先执行微任务，保证回调函数的异步调度。
 
 最基本的用法是通过构造函数实例化一个Promise对象，同时传入一个带有两个参数的函数，通常称为executor函数。executor函数接收两个参数：resolve和reject，分别表示异步操作成功和失败时的回调函数。例如，以下代码创建了一个Promise对象并模拟了一个异步操作：
 
