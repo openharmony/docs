@@ -923,7 +923,7 @@ enum InputEvent_AxisEventType
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | AXIS_EVENT_TYPE_PINCH  | 双指捏合事件，包含[AXIS_TYPE_PINCH](#inputevent_axistype)和[AXIS_TYPE_ROTATE](#inputevent_axistype)两种轴类型。 | 
-| AXIS_EVENT_TYPE_SCROLL  | 滚轴事件，包含[AXIS_TYPE_SCROLL_VERTICAL](#inputevent_axistype)和[AXIS_TYPE_SCROLL_HORIZONTAL](#inputevent_axistype)两种轴类型， <br>其中鼠标滚轮事件仅包含[AXIS_TYPE_SCROLL_VERTICAL](#inputevent_axistype)一种轴类型。| 
+| AXIS_EVENT_TYPE_SCROLL  | 滚轴事件，包含[AXIS_TYPE_SCROLL_VERTICAL](#inputevent_axistype)和[AXIS_TYPE_SCROLL_HORIZONTAL](#inputevent_axistype)两种轴类型。<br>其中鼠标滚轮事件仅包含[AXIS_TYPE_SCROLL_VERTICAL](#inputevent_axistype)一种轴类型。| 
 
 
 ### InputEvent_AxisType
@@ -2956,6 +2956,7 @@ ohos.permission.INPUT_MONITORING
 Input_Result OH_Input_RemoveHotkeyMonitor (const Input_Hotkey * hotkey, Input_HotkeyCallback callback )
 ```
 **描述**
+
 取消订阅快捷键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
