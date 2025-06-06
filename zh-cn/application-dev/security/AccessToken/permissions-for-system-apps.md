@@ -4821,8 +4821,6 @@
 
 **起始版本**：20
 
-**起始版本**：20
-
 ## ohos.permission.VIRUS_PROTECTION_SERVICE
 
 允许应用启动病毒查杀任务。
