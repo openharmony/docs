@@ -78,38 +78,6 @@ function getSupportedSceneModes(cameraManager: camera.CameraManager, camera: cam
 }
 ```
 
-## getSupportedOutputCapability<sup>(deprecated)</sup>
-
-getSupportedOutputCapability(camera: CameraDevice): CameraOutputCapability
-
-查询相机设备支持的输出能力，同步返回结果。
-
-> **说明：**
-> 从 API version 10开始支持，从API version 11开始废弃。建议使用[getSupportedOutputCapability](#getsupportedoutputcapability11)替代。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名         | 类型                                                            | 必填 | 说明                      |
-| ------------ |--------------------------------------------------------------- | -- | -------------------------- |
-| camera | [CameraDevice](arkts-apis-camera-i.md#cameradevice)                              | 是 | 相机设备，通过 [getSupportedCameras](#getsupportedcameras) 接口获取。传参异常时，会返回错误码。      |
-
-**返回值：**
-
-| 类型                                             | 说明                           |
-| ----------------------------------------------- | ---------------------------- |
-| [CameraOutputCapability](arkts-apis-camera-i.md#cameraoutputcapability)            | 相机输出能力。                   |
-
-**示例：**
-
-```ts
-function getSupportedOutputCapability(camera: camera.CameraDevice, cameraManager: camera.CameraManager): camera.CameraOutputCapability {
-  let cameraOutputCapability: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(camera);
-  return cameraOutputCapability;
-}
-```
-
 ## getSupportedOutputCapability<sup>11+</sup>
 
 getSupportedOutputCapability(camera: CameraDevice, mode: SceneMode): CameraOutputCapability
@@ -378,55 +346,6 @@ function createPreviewOutput(cameraManager: camera.CameraManager, surfaceId: str
 }
 ```
 
-## createPhotoOutput<sup>(deprecated)</sup>
-
-createPhotoOutput(profile: Profile, surfaceId: string): PhotoOutput
-
-创建拍照输出对象，同步返回结果。
-
-> **说明：**
-> 从 API version 10开始支持，从API version 11开始废弃。建议使用[createPhotoOutput](#createphotooutput11)替代。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名     | 类型                                         | 必填 | 说明                                  |
-| -------- | ------------------------------------------- | ---- | ----------------------------------- |
-| profile  | [Profile](arkts-apis-camera-i.md#profile)                         | 是   | 支持的拍照配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。|
-| surfaceId| string            | 是   | 从[ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9)获取的surfaceId。|
-
-**返回值：**
-
-| 类型        | 说明                          |
-| ---------- | ----------------------------- |
-| [PhotoOutput](arkts-apis-camera-PhotoOutput.md)   | PhotoOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400101                |  Parameter missing or parameter type incorrect.               |
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function createPhotoOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager, surfaceId: string): camera.PhotoOutput | undefined {
-  let profile: camera.Profile = cameraOutputCapability.photoProfiles[0];
-  let photoOutput: camera.PhotoOutput | undefined = undefined;
-  try {
-    photoOutput = cameraManager.createPhotoOutput(profile, surfaceId);
-  } catch (error) {
-    // 失败返回错误码error.code并处理。
-    let err = error as BusinessError;
-    console.error(`The createPhotoOutput call failed. error code: ${err.code}`);
-  }
-  return photoOutput;
-}
-```
-
 ## createPhotoOutput<sup>11+</sup>
 
 createPhotoOutput(profile?: Profile): PhotoOutput
@@ -623,49 +542,6 @@ function createMetadataOutput(cameraManager: camera.CameraManager, cameraOutputC
     let err = error as BusinessError;
     console.error(`createMetadataOutput error. error code: ${err.code}`);
   }
-}
-```
-
-## createCaptureSession<sup>(deprecated)</sup>
-
-createCaptureSession(): CaptureSession
-
-创建CaptureSession实例，同步返回结果。
-
-> **说明：**
->从 API version 10开始支持，从API version 11开始废弃。建议使用[createSession](#createsession11)替代。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型        | 说明                          |
-| ---------- | ----------------------------- |
-| [CaptureSession](arkts-apis-camera-CaptureSession.md)   | CaptureSession实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400201                |  Camera service fatal error.               |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function createCaptureSession(cameraManager: camera.CameraManager): camera.CaptureSession | undefined {
-  let captureSession: camera.CaptureSession | undefined = undefined;
-  try {
-    captureSession = cameraManager.createCaptureSession();
-  } catch (error) {
-    // 失败返回错误码error.code并处理。
-    let err = error as BusinessError;
-    console.error(`createCaptureSession error. error code: ${err.code}`);
-  }
-  return captureSession;
 }
 ```
 
@@ -1127,5 +1003,129 @@ function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDev
     let err = error as BusinessError;
     console.error(`The getCameraConcurrentInfos call failed. error code: ${err.code}`);
   }
+}
+```
+
+## getSupportedOutputCapability<sup>(deprecated)</sup>
+
+getSupportedOutputCapability(camera: CameraDevice): CameraOutputCapability
+
+查询相机设备支持的输出能力，同步返回结果。
+
+> **说明：**
+> 从 API version 10开始支持，从API version 11开始废弃。建议使用[getSupportedOutputCapability](#getsupportedoutputcapability11)替代。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名         | 类型                                                            | 必填 | 说明                      |
+| ------------ |--------------------------------------------------------------- | -- | -------------------------- |
+| camera | [CameraDevice](arkts-apis-camera-i.md#cameradevice)                              | 是 | 相机设备，通过 [getSupportedCameras](#getsupportedcameras) 接口获取。传参异常时，会返回错误码。      |
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| [CameraOutputCapability](arkts-apis-camera-i.md#cameraoutputcapability)            | 相机输出能力。                   |
+
+**示例：**
+
+```ts
+function getSupportedOutputCapability(camera: camera.CameraDevice, cameraManager: camera.CameraManager): camera.CameraOutputCapability {
+  let cameraOutputCapability: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(camera);
+  return cameraOutputCapability;
+}
+```
+
+## createPhotoOutput<sup>(deprecated)</sup>
+
+createPhotoOutput(profile: Profile, surfaceId: string): PhotoOutput
+
+创建拍照输出对象，同步返回结果。
+
+> **说明：**
+> 从 API version 10开始支持，从API version 11开始废弃。建议使用[createPhotoOutput](#createphotooutput11)替代。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                         | 必填 | 说明                                  |
+| -------- | ------------------------------------------- | ---- | ----------------------------------- |
+| profile  | [Profile](arkts-apis-camera-i.md#profile)                         | 是   | 支持的拍照配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。|
+| surfaceId| string            | 是   | 从[ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9)获取的surfaceId。|
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| [PhotoOutput](arkts-apis-camera-PhotoOutput.md)   | PhotoOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect.               |
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function createPhotoOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager, surfaceId: string): camera.PhotoOutput | undefined {
+  let profile: camera.Profile = cameraOutputCapability.photoProfiles[0];
+  let photoOutput: camera.PhotoOutput | undefined = undefined;
+  try {
+    photoOutput = cameraManager.createPhotoOutput(profile, surfaceId);
+  } catch (error) {
+    // 失败返回错误码error.code并处理。
+    let err = error as BusinessError;
+    console.error(`The createPhotoOutput call failed. error code: ${err.code}`);
+  }
+  return photoOutput;
+}
+```
+
+## createCaptureSession<sup>(deprecated)</sup>
+
+createCaptureSession(): CaptureSession
+
+创建CaptureSession实例，同步返回结果。
+
+> **说明：**
+>从 API version 10开始支持，从API version 11开始废弃。建议使用[createSession](#createsession11)替代。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| [CaptureSession](arkts-apis-camera-CaptureSession.md)   | CaptureSession实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.               |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function createCaptureSession(cameraManager: camera.CameraManager): camera.CaptureSession | undefined {
+  let captureSession: camera.CaptureSession | undefined = undefined;
+  try {
+    captureSession = cameraManager.createCaptureSession();
+  } catch (error) {
+    // 失败返回错误码error.code并处理。
+    let err = error as BusinessError;
+    console.error(`createCaptureSession error. error code: ${err.code}`);
+  }
+  return captureSession;
 }
 ```

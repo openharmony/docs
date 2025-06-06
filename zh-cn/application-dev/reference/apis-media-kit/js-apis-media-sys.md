@@ -371,7 +371,7 @@ avMetadataExtractor.getFrameIndexByTime(0).then((index: number) => {
 
 > **说明：**
 >
-> 使用相机进行视频录制时，需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis-camera-kit/js-apis-camera.md)。
+> 使用相机进行视频录制时，需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis-camera-kit/arkts-apis-camera.md)。
 
 ### isWatermarkSupported<sup>13+</sup>
 

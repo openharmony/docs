@@ -76,9 +76,10 @@
    ```
 
 2. initCamera函数完成一个相机生命周期初始化的过程。
-- 首先通过[getCameraManager](../reference/apis-camera-kit/js-apis-camera.md#cameragetcameramanager)来获取CameraMananger相机管理器类。
-- 调用[getSupportedCameras](../reference/apis-camera-kit/js-apis-camera.md#getsupportedcameras)和[getSupportedOutputCapability](../reference/apis-camera-kit/js-apis-camera.md#getsupportedoutputcapability11)方法来获取支持的camera设备以及设备能力集。
-- 调用[createPreviewOutput](../reference/apis-camera-kit/js-apis-camera.md#createpreviewoutput)和[createPhotoOutput](../reference/apis-camera-kit/js-apis-camera.md#createphotooutput11)方法来创建预览输出和拍照输出对象。
+
+- 首先通过[getCameraManager](../reference/apis-camera-kit/arkts-apis-camera-f.md#cameragetcameramanager)来获取CameraMananger相机管理器类。
+- 调用[getSupportedCameras](../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedcameras)和[getSupportedOutputCapability](../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedoutputcapability11)方法来获取支持的camera设备以及设备能力集。
+- 调用[createPreviewOutput](../reference/apis-camera-kit/arkts-apis-camera-CameraManager.m#createpreviewoutput)和[createPhotoOutput](../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11)方法来创建预览输出和拍照输出对象。
 - 使用CameraInput的open方法来打开相机输入，通过onCameraStatusChange函数来创建CameraManager注册回调。
 - 最后调用sessionFlowFn函数创建并开启Session。具体代码如下所示：
 
@@ -161,7 +162,7 @@
    }
    ```
 
-3. 确定拍照输出流。通过cameraManager.createPhotoOutput方法创建拍照输出流，参数为[CameraOutputCapability](../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability)类中的photoProfiles属性。
+3. 确定拍照输出流。通过cameraManager.createPhotoOutput方法创建拍照输出流，参数为[CameraOutputCapability](../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)类中的photoProfiles属性。
 
    ```typescript
    createPhotoOutputFn(cameraManager: camera.CameraManager,
@@ -178,7 +179,7 @@
    }
    ```
 
-4. 触发拍照。通过photoOutput类的[capture](../reference/apis-camera-kit/js-apis-camera.md#capture)方法，执行拍照任务。该方法有两个参数，第一个参数为拍照设置参数的setting，setting中可以设置照片的质量和旋转角度，第二参数为回调函数。具体代码如下所示：
+4. 触发拍照。通过photoOutput类的[capture](../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#capture)方法，执行拍照任务。该方法有两个参数，第一个参数为拍照设置参数的setting，setting中可以设置照片的质量和旋转角度，第二参数为回调函数。具体代码如下所示：
 
    ```typescript
    async takePicture(): Promise<void> {
@@ -193,7 +194,7 @@
    }
    ```
 
-5. 设置拍照[photoAvailable](../reference/apis-camera-kit/js-apis-camera.md#onphotoavailable11)的回调来获取Photo对象，点击拍照按钮，触发此回调函数，调用getComponent方法根据图像的组件类型从图像中获取组件缓存ArrayBuffer，使用createImageSource方法来创建图片源实例，最后通过createPixelMap获取PixelMap对象。注意:如果已经注册了photoAssetAvailable回调，并且在Session开始之后又注册了photoAvailable回调，会导致流被重启。不建议开发者同时注册photoAvailable和photoAssetAvailable。
+5. 设置拍照[photoAvailable](../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#onphotoavailable11)的回调来获取Photo对象，点击拍照按钮，触发此回调函数，调用getComponent方法根据图像的组件类型从图像中获取组件缓存ArrayBuffer，使用createImageSource方法来创建图片源实例，最后通过createPixelMap获取PixelMap对象。注意:如果已经注册了photoAssetAvailable回调，并且在Session开始之后又注册了photoAvailable回调，会导致流被重启。不建议开发者同时注册photoAvailable和photoAssetAvailable。
 
    ```typescript
    photoOutput.on('photoAvailable', (err: BusinessError, photo: camera.Photo) => {
@@ -254,7 +255,7 @@
 
 由于分段是拍照和单段式拍照步骤1-步骤4相同，就不再进行赘述。
 
-5. 设置拍照[photoAssetAvailable](../reference/apis-camera-kit/js-apis-camera.md#onphotoassetavailable12)的回调来获取photoAsset，点击拍照按钮，触发此回调函数，然后执行handlePhotoAssetCb函数来完成photoAsset全局的存储并跳转到预览页面。注意:如果已经注册了photoAssetAvailable回调，并且在Session开始之后又注册了photoAvailable回调，会导致流被重启。不建议开发者同时注册photoAvailable和photoAssetAvailable。
+5. 设置拍照[photoAssetAvailable](../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#onphotoassetavailable12)的回调来获取photoAsset，点击拍照按钮，触发此回调函数，然后执行handlePhotoAssetCb函数来完成photoAsset全局的存储并跳转到预览页面。注意:如果已经注册了photoAssetAvailable回调，并且在Session开始之后又注册了photoAvailable回调，会导致流被重启。不建议开发者同时注册photoAvailable和photoAssetAvailable。
 
    ```typescript
    photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset) => {
