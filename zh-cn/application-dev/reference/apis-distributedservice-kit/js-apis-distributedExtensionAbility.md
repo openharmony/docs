@@ -79,7 +79,7 @@ import { AbilityConstant } from '@kit.AbilityKit';
 
 export default class DistributedExtension extends DistributedExtensionAbility {
   onCollaborate(wantParam: Record<string, Object>) {
-    console.info(t`DisributedExterntion onCollabRequest Accept to the result of Ability collaborate`);
+    console.info(`DistributedExtension onCollabRequest Accept to the result of Ability collaborate`);
     let sessionId = -1;
     const collaborationValues = wantParam["CollaborationValues"] as abilityConnectionManager.CollaborationValues;
     if (collaborationValues == undefined) {

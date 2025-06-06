@@ -108,6 +108,37 @@ radio.getRadioTech(slotId).then((data: radio.NetworkRadioTech) => {
 ```
 
 
+## radio.getRadioTechSync<sup>18+</sup>
+
+getRadioTechSync\(slotId: number\): [NetworkRadioTech](#networkradiotech11)
+
+获取当前接入的CS域和PS域无线接入技术。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                                            |
+| ------------------------------------------------------------ | ----------------------------------------------- |
+| [NetworkRadioTech](#networkradiotech11) | 返回当前接入的CS域和PS域技术。 |
+
+**示例：**
+
+```ts
+let slotId: number = 0;
+let networkRadioTech: radio.NetworkRadioTech = radio.getRadioTechSync(slotId);
+console.info(`getRadioTechSync success, NetworkRadioTech->${JSON.stringify(networkRadioTech)}`);
+```
+
+
 ## radio.getNetworkState
 
 getNetworkState\(callback: AsyncCallback\<NetworkState\>\): void

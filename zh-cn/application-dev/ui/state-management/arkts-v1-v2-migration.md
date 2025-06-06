@@ -218,7 +218,7 @@ struct Parent {
 }
 ```
 
-V2迁移策略：使用@Param和@Event
+V2迁移策略：使用@Param和@Event。
 
 ```ts
 @ComponentV2
@@ -287,7 +287,7 @@ struct Parent {
 }
 ```
 
-V2迁移策略：直接替换
+V2迁移策略：直接替换。
 
 ```ts
 @ComponentV2
@@ -354,7 +354,7 @@ struct Parent {
 }
 ```
 
-V2迁移策略：使用深拷贝
+V2迁移策略：使用深拷贝。
 
 ```ts
 @ObservedV2
@@ -438,7 +438,7 @@ struct Parent {
 }
 ```
 
-V2迁移策略：使用@Param和@Once
+V2迁移策略：使用@Param和@Once。
 
 ```ts
 @ComponentV2
@@ -623,7 +623,7 @@ struct UserProfile {
 }
 ```
 
-V2迁移策略：使用@ObservedV2和@Trace
+V2迁移策略：使用@ObservedV2和@Trace。
 
 ```ts
 @ObservedV2
@@ -700,7 +700,7 @@ struct UserProfile {
 }
 ```
 
-V2迁移策略：使用@ObservedV2和@Trace
+V2迁移策略：使用@ObservedV2和@Trace。
 
 ```ts
 @ObservedV2
@@ -775,7 +775,7 @@ struct Parent {
 }
 ```
 
-V2迁移策略：确保alias一致，没有指定alias的情况下，依赖属性名进行匹配
+V2迁移策略：确保alias一致，没有指定alias的情况下，依赖属性名进行匹配。
 
 ```ts
 @ComponentV2
@@ -831,7 +831,7 @@ struct Parent {
 }
 ```
 
-V2迁移策略：@Consumer可以本地初始化
+V2迁移策略：@Consumer可以本地初始化。
 
 ```ts
 @ComponentV2
@@ -884,7 +884,7 @@ struct Child {
 }
 ```
 
-V2迁移策略：使用@Param接受初始值，再赋值给@Provider
+V2迁移策略：使用@Param接受初始值，再赋值给@Provider。
 
 ```ts
 @Entry
@@ -947,7 +947,7 @@ struct Child {
 }
 ```
 
-V2迁移策略：去掉allowOverride
+V2迁移策略：去掉allowOverride。
 
 ```ts
 @Entry
@@ -1013,7 +1013,7 @@ struct watchExample {
 }
 ```
 
-V2迁移策略：直接替换
+V2迁移策略：直接替换。
 
 ```ts
 @Entry
@@ -1074,7 +1074,7 @@ struct watchExample {
 }
 ```
 
-V2迁移策略：同时监听多个变量，以及获取变化前的值
+V2迁移策略：同时监听多个变量，以及获取变化前的值。
 
 ```ts
 @Entry
@@ -1168,7 +1168,7 @@ LocalStorage的目的是为了实现页面间的状态变量共享。之所以�
 **基本场景**
 
 V1:
-通过windowStage.[loadContent](../../reference/apis-arkui/js-apis-window.md#loadcontent9)和[getShared](../../reference/apis-arkui/arkui-ts/ts-state-management.md#getshareddeprecated)接口实现页面间的状态变量共享。
+通过windowStage.[loadContent](../../reference/apis-arkui/js-apis-window.md#loadcontent9)和this.getUIContext().[getSharedLocalStorage](../../reference/apis-arkui/js-apis-arkui-UIContext.md#getsharedlocalstorage12)接口实现页面间的状态变量共享。
 ```
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
@@ -1187,8 +1187,8 @@ export default class EntryAbility extends UIAbility {
 
 ```
 // Page1.ets
-// 通过getShared接口获取stage共享的LocalStorage实例
-@Entry(LocalStorage.getShared())
+// 预览器上不支持获取页面共享的LocalStorage实例。
+@Entry({ useSharedStorage: true })
 @Component
 struct Page1 {
   @LocalStorageLink('count') count: number = 0;
@@ -1223,6 +1223,7 @@ export function Page2Builder() {
 struct Page2 {
   @LocalStorageLink('count') count: number = 0;
   pathStack: NavPathStack = new NavPathStack();
+
   build() {
     NavDestination() {
       Column() {
@@ -1230,6 +1231,14 @@ struct Page2 {
           .fontSize(50)
           .onClick(() => {
             this.count++;
+          })
+        Button('change')
+          .fontSize(50)
+          .onClick(() => {
+            const storage = this.getUIContext().getSharedLocalStorage();
+            if (storage) {
+              storage.set('count', 20);
+            }
           })
       }
     }
@@ -1345,7 +1354,7 @@ struct Page2 {
 }
 ```
 
-如果开发者需要实现类似于\@LocalStorageProp的效果，希望本地的修改不要同步回LocalStorage中，如以下示例:
+如果开发者需要实现类似于\@LocalStorageProp的效果，希望本地的修改不要同步回LocalStorage中，如以下示例：
 - 在`Page1`中改变`count`值，因为count是\@LocalStorageProp装饰的，所以其改变只会在本地生效，并不会同步回LocalStorage。
 - 点击`push to Page2`，跳转到`Page2`中。因为在`Page1`中改变`count`值并不会同步会LocalStorage，所以在`Page2`中Text组件依旧显示原本的值47。
 - 点击`change Storage Count`，调用LocalStorage的setOrCreate，改变`count`对应的值，并通知所有绑定该key的变量。
@@ -2130,7 +2139,7 @@ struct Index1 {
 
 ### Environment->调用Ability接口直接获取系统环境变量
 V1中，开发者可以通过Environment来获取环境变量，但Environment获取的结果无法直接使用，需要配合AppStorage才能得到对应环境变量的值。
-在切换V2的过程中，开发者无需再通过Environment来获取环境变量，可以直接通过[UIAbilityContext的config属性](../../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#属性)获取系统环境变量。
+在切换V2的过程中，开发者无需再通过Environment来获取环境变量，可以直接通过[UIAbilityContext的config属性](../../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontext-1)获取系统环境变量。
 V1:
 以`languageCode`为例。
 ```ts
@@ -2156,7 +2165,7 @@ V2:
 封装Env类型来传递多个系统环境变量。
 
 ```
-// Env.ts
+// Env.ets
 import { ConfigurationConstant } from '@kit.AbilityKit';
 
 export class Env {

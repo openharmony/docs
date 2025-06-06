@@ -98,7 +98,7 @@ copyOptions(value: CopyOptions)
 
 设置组件是否支持文本内容可复制粘贴。
 
-copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选择弹框。如果通过bindSelectionMenu等方式自定义文本选择菜单，则会弹出自定义的菜单。
+copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选择菜单。如果通过bindSelectionMenu等方式自定义文本选择菜单，则会弹出自定义的菜单。
 
 设置copyOptions为CopyOptions.None时，禁用复制、剪切、翻译、搜索、帮写功能。
 
@@ -131,11 +131,15 @@ decoration:{
 }
 ```
 
-触摸点击和鼠标右键点击实体，会根据实体类型弹出对应的实体操作菜单，鼠标左键点击实体会直接响应菜单的第一个选项。
+触摸点击或鼠标右键点击实体时，会根据实体类型弹出对应的实体操作菜单，鼠标左键点击实体会直接响应菜单的第一个选项。
 
 对addBuilderSpan的节点文本，该功能不会生效。
 
 当copyOptions设置为CopyOptions.None时，点击实体弹出的菜单没有选择文本和复制功能。
+
+从API 20开始支持AI菜单。当enableDataDetector设置为true，并且[copyOptions](#copyoptions)设置为CopyOptions.LocalDevice时，AI菜单生效，菜单选项包括[TextMenuItemId](ts-text-common.md#textmenuitemid12)中的url、email、phoneNumber、address、dateTime。
+
+AI菜单生效时，需要非编辑态选中单个AI实体，才能展示AI菜单。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -280,7 +284,7 @@ enterKeyType(value: EnterKeyType)
 
 | 参数名 | 类型   | 必填 | 说明                                |
 | ------ | ------ | ---- | ----------------------------------- |
-| value  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明) | 是   | 键盘输入法回车键类型。<br/>默认为EnterKeyType.NEW_LINE。 |
+| value  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明) | 是   | 软键盘输入法回车键类型。<br/>默认为EnterKeyType.NEW_LINE。 |
 
 ### enableKeyboardOnFocus<sup>12+</sup>
 
@@ -375,7 +379,7 @@ keyboardAppearance(appearance: Optional\<KeyboardAppearance\>)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
-| appearance | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15枚举说明)\> | 是   | 键盘的外观。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
+| appearance | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15枚举说明)\> | 是   | 键盘外观。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
 
 ### stopBackPress<sup>18+</sup>
 
@@ -435,7 +439,7 @@ onSelect(callback:Callback\<[RichEditorSelection](#richeditorselection)\>)
 
 手指长按选中内容触发回调；松开手指再次触发回调。
 
-使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件不支持该回调。
+需要实时感知选中区变化的场景和使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件，请使用onSelectionChange接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -469,7 +473,7 @@ aboutToIMEInput(callback:Callback\<[RichEditorInsertValue](#richeditorinsertvalu
 
 onDidIMEInput(callback:Callback\<TextRange>)
 
-输入法完成输入内容后，触发回调。
+输入法输入完成后，触发回调。
 
 使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件不支持该回调。
 
@@ -488,7 +492,7 @@ onDidIMEInput(callback:Callback\<TextRange>)
 
 onIMEInputComplete(callback:Callback\<[RichEditorTextSpanResult](#richeditortextspanresult)\>)
 
-输入法完成输入内容后，触发回调。
+输入法输入完成后，触发回调。
 
 该接口仅支持返回一个文本span的信息，当编辑操作涉及返回多个文本span信息时，建议使用[onDidIMEInput](#ondidimeinput12)接口。
 
@@ -644,7 +648,9 @@ onDidChange(callback: OnDidChangeCallback)
 
 onCut(callback: Callback\<CutEvent\>)
 
-剪切时触发回调。系统的默认剪切行为，只支持纯文本的剪切。开发者可以通过该方法，覆盖系统默认行为，实现图文的剪切。
+剪切时触发回调。开发者可以通过该方法，覆盖系统默认行为，实现图文的剪切。
+
+使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件，默认支持图文的剪切。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -660,7 +666,9 @@ onCut(callback: Callback\<CutEvent\>)
 
 onCopy(callback: Callback\<CopyEvent\>)
 
-复制时触发回调。系统的默认复制行为，只支持纯文本的复制。开发者可以通过该方法，覆盖系统默认行为，实现图文的复制。
+复制时触发回调。开发者可以通过该方法，覆盖系统默认行为，实现图文的复制。
+
+使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件，默认支持图文的复制。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -687,7 +695,7 @@ onCopy(callback: Callback\<CopyEvent\>)
 
 ## RichEditorDeleteValue
 
-删除操作的信息和被删除内容的信息。
+删除操作和被删除内容的信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -801,7 +809,7 @@ Span类型信息。
 | fontWeight | number                                   | 是    | 字体粗细。        <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | fontFamily | string                                   | 是    | 字体列表。        <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | decoration | [DecorationStyleResult](ts-text-common.md#decorationstyleresult12) | 是    | 文本装饰线样式信息。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| textShadow<sup>12+</sup> | &nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 否    | 文字阴影效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| textShadow<sup>12+</sup> | &nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 否    | 文字阴影效果。<br/>**说明：**<br/>仅支持查询阴影模糊半径、颜色和偏移量。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | lineHeight<sup>12+</sup> | number       | 否    | 文本行高，默认单位为fp。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | letterSpacing<sup>12+</sup>| number       | 否    | 文本字符间距，默认单位为fp。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | fontFeature<sup>12+</sup> | string | 否 | 文字特性效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
@@ -984,7 +992,7 @@ closeSelectionMenu(): void
 
 getTypingStyle(): RichEditorTextStyle
 
-获取用户预设的样式。
+获取用户预设的文本样式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1000,7 +1008,7 @@ getTypingStyle(): RichEditorTextStyle
 
 setTypingStyle(value: RichEditorTextStyle): void
 
-设置用户预设的样式。
+设置用户预设的文本样式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1011,6 +1019,22 @@ setTypingStyle(value: RichEditorTextStyle): void
 | 参数名   | 类型                                     | 必填   | 说明  |
 | ----- | ---------------------------------------- | ---- | ----- |
 | value | [RichEditorTextStyle](#richeditortextstyle) | 是    | 预设样式。 |
+
+### setTypingParagraphStyle<sup>20+</sup>
+
+setTypingParagraphStyle(style: RichEditorParagraphStyle): void
+
+设置用户预设的段落样式。仅在组件内容为空或组件末尾换行后，输入文本生效。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填   | 说明  |
+| ----- | ---------------------------------------- | ---- | ----- |
+| style | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | 是    | 预设段落样式。 |
 
 ### setSelection<sup>11+</sup>
 
@@ -1429,7 +1453,7 @@ controller: RichEditorStyledStringController = new RichEditorStyledStringControl
 
 getSelection(): RichEditorRange
 
-获取当前富文本当前的选中区域范围。
+获取富文本当前的选中区域范围。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1652,7 +1676,7 @@ SymbolSpan样式选项。
 | fontWeight               | number \|  [FontWeight](ts-appendix-enums.md#fontweight) \| string | 否    | 字体粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | fontFamily               | [ResourceStr](ts-types.md#resourcestr) | 否    | 设置字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。 <br/>默认字体:'HarmonyOS Sans'。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | decoration               | [DecorationStyleInterface](ts-universal-styled-string.md#decorationstyleinterface) | 否    | 设置文本装饰线的样式、颜色和粗细。<br/>type默认值：TextDecorationType.None <br/>color默认值：跟随字体颜色。<br/>style默认值：TextDecorationStyle.SOLID <br/>thicknessScale默认值：1.0 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| textShadow<sup>11+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 否    | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>仅支持设置阴影模糊半径、阴影的颜色和阴影的偏移量。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| textShadow<sup>11+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 否    | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>仅支持设置阴影模糊半径、颜色和偏移量，不支持智能取色。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | lineHeight<sup>12+</sup>    | number \| string \| [Resource](ts-types.md#resource) | 否     |设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小。number类型时单位为fp，不支持设置百分比字符串。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | letterSpacing<sup>12+</sup> | number \| string             | 否     | 设置文本字符间距，当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示，number类型时单位为fp，不支持设置百分比字符串。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | fontFeature<sup>12+</sup> | string | 否 | 设置文字特性效果，比如数字等宽的特性。如果未设置，默认为变宽数字。设置无效字符保持默认。<br/>格式为：normal \| \<feature-tag-value\><br/>\<feature-tag-value\>的格式为：\<string\> \[ \<integer\> \| on \| off ]<br/>\<feature-tag-value\>的个数可以有多个，中间用','隔开。<br/>例如，使用等宽时钟数字的输入格式为："ss01" on。<br/>Font Feature当前支持的属性见 [fontFeature属性列表](ts-basic-components-text.md#fontfeature12)。<br/>设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。<br/>更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
@@ -1819,7 +1843,7 @@ RichEditor span信息。
 
 ## RichEditorGesture<sup>11+</sup>
 
-定义用户行为回调。
+用户手势事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1857,7 +1881,7 @@ type SubmitCallback = (enterKey: EnterKeyType, event: SubmitEvent) => void
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
 | enterKey | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明)             | 是   | 软键盘输入法回车键类型。具体类型见EnterKeyType枚举说明。 |
-| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11) | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。EnterKeyType指定为NEW_LINE时，默认保持编辑态。         |
+| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11) | 是   | 当提交的时候，提供保持组件编辑状态的方法。EnterKeyType指定为NEW_LINE时，默认保持编辑态。         |
 
 ## MenuOnAppearCallback<sup>12+</sup>
 
@@ -1958,7 +1982,7 @@ type OnHoverCallback = (status: boolean, event: HoverEvent) => void
 
 Url信息。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2195,6 +2219,8 @@ struct RichEditorExample {
 
 ### 示例3（绑定自定义菜单）
 通过[bindSelectionMenu](#bindselectionmenu)给组件绑定自定义菜单。
+
+示例中的粘贴菜单项涉及读取剪贴板数据，因此需按规范[申请访问剪贴板权限](../../../basic-services/pasteboard/get-pastedata-permission-guidelines.md)。
 
 ```ts
 // xxx.ets
@@ -5233,3 +5259,96 @@ struct StyledUndo {
 }
 ```
 ![UndoStyle](figures/richEditorStyledUndo.gif)
+
+### 示例29（文本设置预设段落样式）
+可以通过setTypingParagraphStyle接口设置预设段落样式。
+
+```ts
+@Entry
+@Component
+struct RichEditorExample {
+  controller: RichEditorController = new RichEditorController()
+  options: RichEditorOptions = { controller: this.controller }
+  ssController: RichEditorStyledStringController = new RichEditorStyledStringController()
+  ssOptions: RichEditorStyledStringOptions = { controller: this.ssController }
+  contentChangedListener: StyledStringChangedListener = {
+    onWillChange: (value: StyledStringChangeValue) => {
+      let range = '[ ' + value.range.start + ' , ' + value.range.end + ' ]';
+      let replaceString = value.replacementString.getString();
+      console.info('styledString, onWillChange, range=' + range);
+      console.info('styledString, onWillChange, replaceString=' + replaceString);
+      let styles: Array<SpanStyle> = []
+      if (replaceString.length != 0) {
+        styles = value.replacementString.getStyles(0, replaceString.length, StyledStringKey.PARAGRAPH_STYLE)
+      }
+      styles.forEach((style) => {
+        let value = style.styledValue
+        let paraStyle: ParagraphStyle = value as ParagraphStyle
+        if (paraStyle != undefined) {
+          console.info('styledString, onWillChange, textAlign=' + JSON.stringify(paraStyle.textAlign)
+            + ', textIndent=' + JSON.stringify(paraStyle.textIndent)
+            + ', maxLines=' + JSON.stringify(paraStyle.maxLines)
+            + ', overflow=' + JSON.stringify(paraStyle.overflow)
+            + ', wordBreak=' + JSON.stringify(paraStyle.wordBreak)
+            + ', leadingMargin=' + JSON.stringify(paraStyle.leadingMargin)
+            + ', paragraphSpacing=' + JSON.stringify(paraStyle.paragraphSpacing)
+          );
+        }
+      })
+      return true;
+    }
+  }
+
+  build() {
+    Column() {
+      Row() {
+        Text('ParaStyle')
+        // 设置预设段落样式为居中对齐
+        Button('setStyle1').onClick(() => {
+          let paragraphStyle: RichEditorParagraphStyle = {
+            textAlign: TextAlign.Center
+          }
+          this.controller.setTypingParagraphStyle(paragraphStyle)
+          this.ssController.setTypingParagraphStyle(paragraphStyle)
+        })
+        // 设置预设段落样式为左对齐、带有缩进
+        Button('setStyle2').onClick(() => {
+          let paragraphStyle: RichEditorParagraphStyle = {
+            textAlign: TextAlign.Start,
+            leadingMargin: 80
+          }
+          this.controller.setTypingParagraphStyle(paragraphStyle)
+          this.ssController.setTypingParagraphStyle(paragraphStyle)
+        })
+        // 清除预设段落样式
+        Button('clearParaStyle').onClick(() => {
+          this.controller.setTypingParagraphStyle(undefined)
+          this.ssController.setTypingParagraphStyle(undefined)
+        })
+      }
+
+      Row() {
+        Column() {
+          RichEditor(this.options)
+            .height('25%')
+            .width('100%')
+            .border({ width: 1, color: Color.Blue })
+            .onWillChange((value: RichEditorChangeValue) => {
+              console.log('controller, onWillChange, rangeBefore=' + JSON.stringify(value.rangeBefore))
+              value.replacedSpans.forEach((item: RichEditorTextSpanResult) => {
+                console.log('controller, onWillChange, replacedTextSpans=' + JSON.stringify(item))
+              })
+              return true
+            })
+          RichEditor(this.ssOptions)
+            .height('25%')
+            .width('100%')
+            .onReady(() => {
+              this.ssController.onContentChanged(this.contentChangedListener);
+            })
+        }
+      }
+    }
+  }
+}
+```

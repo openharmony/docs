@@ -2,11 +2,11 @@
 
 The **Web** component can be attached to and detached from the component trees in different windows, which enables the same **Web** component to be migrated between different windows. For example, you can drag a tab page to an independent window or drag it to another window.
 
-Web components are migrated between different windows based on the [Custom Node](../ui/arkts-user-defined-node.md) capability. You can use [BuilderNode](../ui/arkts-user-defined-arktsNode-builderNode.md) to create offline nodes for **Web** components and use [Custom Placeholder Node](../ui/arkts-user-defined-place-hoder.md) to attach and detach web nodes. The **Web** component is migrated between windows by detaching the web node from one window and attaching it to another window.
+Web components are migrated between different windows based on the [Custom Node](../ui/arkts-user-defined-node.md) capability. You can use [BuilderNode](../ui/arkts-user-defined-arktsNode-builderNode.md) to create offline nodes for **Web** components and use [Custom Placeholder Node](../ui/arkts-user-defined-place-holder.md) to attach and detach web nodes. The **Web** component is migrated between windows by detaching the web node from one window and attaching it to another window.
 
 In the following example, a **Web** component is created using a command when the main window Ability is started. You can use the functions and classes provided in **common.ets** to attach and detach the **Web** component. In addition, **Index.ets** provides an implementation method for attaching and detaching **Web** components. In this way, you can attach and detach **Web** components in different windows, in other words, migrate **Web** components between different windows. The following figure shows the migration process.
 
-![Example of Migrating Web Components](./figures/web-component-migrate_en.png)
+![Example of Migrating Web Components](./figures/web-component-migrate.png)
 
 > **NOTE**
 >

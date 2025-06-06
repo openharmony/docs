@@ -135,7 +135,7 @@ This section assumes that an application has two [UIAbility](../reference/apis-a
             // ...
             Button()
               .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+                let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
                 // context is the UIAbilityContext of the initiator UIAbility.
                 let want: Want = {
                   deviceId: '', // An empty deviceId indicates the local device.
@@ -157,7 +157,7 @@ This section assumes that an application has two [UIAbility](../reference/apis-a
             // ...
             Button()
               .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+                let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
                 // context is the UIAbilityContext of the initiator UIAbility.
                 let want: Want = {
                   deviceId: '', // An empty deviceId indicates the local device.

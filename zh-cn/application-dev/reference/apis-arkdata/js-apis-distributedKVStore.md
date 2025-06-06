@@ -126,8 +126,8 @@ import { distributedKVStore } from '@kit.ArkData';
 
 | 名称                 | 值 | 说明                                                         |
 | -------------------- | - | ------------------------------------------------------------ |
-| DEVICE_COLLABORATION | 0 | 表示多设备协同数据库。<br> **数据库特点：** 数据以设备的维度管理，不存在冲突；支持按照设备的维度查询数据。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
-| SINGLE_VERSION       | 1 | 表示单版本数据库。<br> **数据库特点：** 数据不分设备，设备之间修改相同的Key会覆盖。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| DEVICE_COLLABORATION | 0 | 表示多设备协同数据库。<br>**数据库特点：** 数据以设备的维度管理，不存在冲突；支持按照设备的维度查询数据。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
+| SINGLE_VERSION       | 1 | 表示单版本数据库。<br>**数据库特点：** 数据不分设备，设备之间修改相同的Key会覆盖。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 
 ## SecurityLevel
 
@@ -168,12 +168,12 @@ import { distributedKVStore } from '@kit.ArkData';
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-| 名称    | 类型                    | 可读 | 可写 | 说明                       |
+| 名称    | 类型                    | 只读 | 可选 | 说明                       |
 | ------- | ----------------------- | ---- | ---- | -------------------------- |
-| root    | [FieldNode](#fieldnode) | 是   | 是   | 存放了Value中所有字段的定义。 |
-| indexes | Array\<string>          | 是   | 是   | 索引字段定义，只有通过此字段指定的FieldNode才会创建索引，如果不需要创建任何索引，则此indexes字段可以不定义。格式为：`'$.field1'`, `'$.field2'`。|
-| mode    | number                  | 是   | 是   | Schema的模式，可以取值0或1，0表示COMPATIBLE模式，1表示STRICT模式。|
-| skip    | number                  | 是   | 是   | 支持在检查Value时，跳过skip指定的字节数，且取值范围为[0, 4 * 1024 * 1024 - 2]字节。|
+| root    | [FieldNode](#fieldnode) | 否  | 否  | 存放了Value中所有字段的定义。 |
+| indexes | Array\<string>          | 否  | 否  | 索引字段定义，只有通过此字段指定的FieldNode才会创建索引，格式为：`'$.field1'`, `'$.field2'`。|
+| mode    | number                  | 否  | 否  | Schema的模式，可以取值0或1，0表示COMPATIBLE模式，1表示STRICT模式。|
+| skip    | number                  | 否  | 否  | 支持在检查Value时，跳过skip指定的字节数，且取值范围为[0, 4 * 1024 * 1024 - 2]字节。|
 
 STRICT：STRICT模式要求用户插入的值必须与Schema定义严格匹配，字段数量和格式都不能有差异。如果不匹配，数据库将在插入数据时返回错误。
 
@@ -214,11 +214,11 @@ schema.skip = 0;
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-| 名称     | 类型    | 可读 | 可写 | 说明                           |
-| -------- | ------- | ---- | ---- | ------------------------------ |
-| nullable | boolean | 是   | 是   | 表示数据库字段是否可以为空。true表示此节点数据可以为空，false表示此节点数据不能为空。|
-| default  | string  | 是   | 是   | 表示FieldNode的默认值。        |
-| type     | number  | 是   | 是   | 表示指定节点对应的数据类型，取值为[ValueType](#valuetype)对应的枚举值。暂不支持BYTE_ARRAY，使用此类型会导致[getKVStore](#getkvstore)失败。|
+| 名称     | 类型    | 只读 | 可选 | 说明                                                         |
+| -------- | ------- | ---- | ---- | ------------------------------------------------------------ |
+| nullable | boolean | 否   | 否   | 表示数据库字段是否可以为空。true表示此节点数据可以为空，false表示此节点数据不能为空。 |
+| default  | string  | 否   | 否   | 表示FieldNode的默认值。                                      |
+| type     | number  | 否   | 否   | 表示指定节点对应的数据类型，取值为[ValueType](#valuetype)对应的枚举值。暂不支持BYTE_ARRAY，使用此类型会导致[getKVStore](#getkvstore)失败。 |
 
 ### constructor
 
@@ -2230,8 +2230,8 @@ limit(total: number, offset: number): Query
 
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ------------------ |
-| total  | number   | 是   | 表示最大数据记录数，取值应为非负整数，传入值小于0时，不会限制记录数量。 |
-| offset | number   | 是   | 指定查询结果的起始位置，默认初始位置为结果集的最前端。当offset为负数时，起始位置为结果集的最前端。当offset超出结果集最后位置时，查询结果为空。|
+| total  | number   | 是   | 表示最大数据记录数，取值应为非负整数。<br/>当total为负数时，表示查询整个结果集。|
+| offset | number   | 是   | 指定查询结果的起始位置，取值应为非负整数。<br/>当offset为负数时，表示查询整个结果集。<br/>当offset超出结果集最后位置时，查询结果为空。|
 
 **返回值：**
 

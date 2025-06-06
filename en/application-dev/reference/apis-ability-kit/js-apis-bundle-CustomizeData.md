@@ -1,14 +1,16 @@
 # CustomizeData
 
-The **CustomizeData** module provides custom metadata.
+The CustomizeData module provides custom metadata.
 
 > **NOTE**
->
+> 
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> 
+> The APIs of this module are deprecated since API version 9. You are advised to use [Metadata](js-apis-bundleManager-metadata.md) instead.
 
 ## CustomizeData<sup>(deprecated)</sup>
 
-> This API is deprecated since API version 9. You are advised to use [Metadata](js-apis-bundleManager-metadata.md) instead.
+This API is deprecated since API version 9. You are advised to use [Metadata](js-apis-bundleManager-metadata.md#metadata-1) instead.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 

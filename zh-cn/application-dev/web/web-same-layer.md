@@ -71,27 +71,27 @@ display，position，z-index，visibility，opacity, background-color，backgrou
  除上面支持的css属性范围，其他的css属性均不保证符合预期，比如transform属性中的rotate，skew等。
 
 **同层标签的生命周期管理：** 
-当同层标签生命周期变化时触发[onNativeEmbedLifecycleChange()](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedlifecyclechange11)回调。
+当同层标签生命周期变化时触发[onNativeEmbedLifecycleChange()](../reference/apis-arkweb/ts-basic-components-web-events.md#onnativeembedlifecyclechange11)回调。
 
 - 支持创建、销毁、位置宽高变化。
 
 - 支持同层组件所在Web页面进入前进后退缓存。
 
 **同层标签的输入事件分发处理：**
-- 支持触摸事件TouchEvent的DOWN/UP/MOVE/CANCEL。支持[配置触摸事件消费结果](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedgestureevent11)，默认为应用侧消费。
+- 支持触摸事件TouchEvent的DOWN/UP/MOVE/CANCEL。支持[配置触摸事件消费结果](../reference/apis-arkweb/ts-basic-components-web-events.md#onnativeembedgestureevent11)，默认为应用侧消费。
 
-- 不支持同层标签所在的应用页面缩放和[initialScale](../reference/apis-arkweb/ts-basic-components-web.md#initialscale9)、[zoom](../reference/apis-arkweb/js-apis-webview.md#zoom)、[zoomIn](../reference/apis-arkweb/js-apis-webview.md#zoomin)、[zoomOut](../reference/apis-arkweb/js-apis-webview.md#zoomout)等缩放接口。
+- 不支持同层标签所在的应用页面缩放和[initialScale](../reference/apis-arkweb/ts-basic-components-web-attributes.md#initialscale9)、[zoom](../reference/apis-arkweb/js-apis-webview-WebviewController.md#zoom)、[zoomIn](../reference/apis-arkweb/js-apis-webview-WebviewController.md#zoomin)、[zoomOut](../reference/apis-arkweb/js-apis-webview-WebviewController.md#zoomout)等缩放接口。
 
 - 暂不支持鼠标、键盘、触摸板事件上报。
 
 - 支持默认将鼠标和触摸板左键事件（MousePress/MouseRelease/MouseMOVE）转换为触摸事件（TouchDOWN/TouchUP/TouchMOVE）上报。
 
 **同层标签的可见状态变化：**
-当同层标签可见状态变化时触发[onNativeEmbedVisibilityChange](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedvisibilitychange12)回调。
+当同层标签可见状态变化时触发[onNativeEmbedVisibilityChange](../reference/apis-arkweb/ts-basic-components-web-events.md#onnativeembedvisibilitychange12)回调。
 
 - 支持同层标签相对于视口的可见状态上报。
 
-- 不支持由于CSS样式或同层标签大小变化导致的同层标签可见状态变化上报，比如display、opacity或visibility属性等。
+- 默认不支持由于同层标签CSS样式或尺寸变化导致的可见状态变化上报，具体规格参考[onNativeEmbedVisibilityChange](../reference/apis-arkweb/ts-basic-components-web-events.md#onnativeembedvisibilitychange12)。
 
 **约束限制：**
 
@@ -99,11 +99,11 @@ display，position，z-index，visibility，opacity, background-color，backgrou
 
 - 受GPU限制，同层标签最大高度不超过8000px，最大纹理大小为8000px。
 
-- 开启同层渲染后，Web组件打开的所有Web页面将不支持同步渲染模式[RenderMode](../reference/apis-arkweb/ts-basic-components-web.md#rendermode12枚举说明)。
+- 开启同层渲染后，Web组件打开的所有Web页面将不支持同步渲染模式[RenderMode](../reference/apis-arkweb/ts-basic-components-web-e.md#rendermode12)。
 
 - Video组件：在非全屏Video变为全屏时，Video组件变为非纹理导出模式，视频播放状态保持延续；恢复为非全屏时，变为纹理导出模式，视频播放状态保持延续。
 
-- Web组件：仅支持一层同层渲染嵌套，不支持多层同层渲染嵌套。输入事件只支持滑动、点击、缩放、长按 ，不支持拖拽、旋转。
+- Web组件：仅支持一层同层渲染嵌套，不支持多层同层渲染嵌套。输入事件只支持滑动、点击、长按，不支持拖拽、旋转、缩放。
 
 - 涉及界面交互的ArkUI组件（如TextInput等）：建议在页面布局中使用Stack包裹同层组件容器与BuilderNode，并使两者位置一致，NodeContainer要与&lt;embed&gt;/&lt;object&gt;标签对齐，以保障组件正常交互。如两者位置不一致，可能出现的问题有：TextInput/TextArea等附属的文本选择框位置错位（如下图）、LoadingProgress/Marquee等组件的动画启停与组件可见状态不匹配。
 
@@ -187,7 +187,7 @@ display，position，z-index，visibility，opacity, background-color，backgrou
 
 2. 在应用侧开启同层渲染功能。
 
-   同层渲染功能默认不开启，如果要使用同层渲染的功能，可通过[enableNativeEmbedMode](../reference/apis-arkweb/ts-basic-components-web.md#enablenativeembedmode11)来开启。
+   同层渲染功能默认不开启，如果要使用同层渲染的功能，可通过[enableNativeEmbedMode](../reference/apis-arkweb/ts-basic-components-web-attributes.md#enablenativeembedmode11)来开启。
 
    ```ts
    // xxx.ets
@@ -310,9 +310,9 @@ display，position，z-index，visibility，opacity, background-color，backgrou
 
 5. 监听同层渲染的生命周期变化。
 
-   开启该功能后，当网页中存在同层渲染支持的标签时，ArkWeb内核会触发由[onNativeEmbedLifecycleChange](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedlifecyclechange11)注册的回调函数。
+   开启该功能后，当网页中存在同层渲染支持的标签时，ArkWeb内核会触发由[onNativeEmbedLifecycleChange](../reference/apis-arkweb/ts-basic-components-web-events.md#onnativeembedlifecyclechange11)注册的回调函数。
 
-   开发者则需要调用[onNativeEmbedLifecycleChange](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedlifecyclechange11)来监听同层渲染标签的生命周期变化。
+   开发者则需要调用[onNativeEmbedLifecycleChange](../reference/apis-arkweb/ts-basic-components-web-events.md#onnativeembedlifecyclechange11)来监听同层渲染标签的生命周期变化。
 
     ```ts
     build() {
@@ -385,9 +385,9 @@ display，position，z-index，visibility，opacity, background-color，backgrou
 
 6. 同层渲染手势事件。
 
-   开启该功能后，每当在同层渲染的区域进行触摸操作时，ArkWeb内核会触发[onNativeEmbedGestureEvent](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedgestureevent11)注册的回调函数。
+   开启该功能后，每当在同层渲染的区域进行触摸操作时，ArkWeb内核会触发[onNativeEmbedGestureEvent](../reference/apis-arkweb/ts-basic-components-web-events.md#onnativeembedgestureevent11)注册的回调函数。
 
-   开发者则需要调用[onNativeEmbedGestureEvent](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedgestureevent11)来监听同层渲染区域的手势事件。
+   开发者则需要调用[onNativeEmbedGestureEvent](../reference/apis-arkweb/ts-basic-components-web-events.md#onnativeembedgestureevent11)来监听同层渲染区域的手势事件。
 
     ```ts
     build() {
@@ -1023,7 +1023,7 @@ display，position，z-index，visibility，opacity, background-color，backgrou
 
 ### 同层渲染页面显示该插件不支持该如何解决？
 
-- 同层渲染开关[enableNativeEmbedMode](../reference/apis-arkweb/ts-basic-components-web.md#enablenativeembedmode11)未开启
+- 同层渲染开关[enableNativeEmbedMode](../reference/apis-arkweb/ts-basic-components-web-attributes.md#enablenativeembedmode11)未开启
 
   使用同层渲染技术需要显式开启同层渲染开关
   ```ts

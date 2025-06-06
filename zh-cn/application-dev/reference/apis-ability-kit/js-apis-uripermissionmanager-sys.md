@@ -200,7 +200,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
   | 16000058 | Invalid URI flag. |
   | 16000059 | Invalid URI type. |
   | 16000060 | A sandbox application cannot grant URI permission. |
-  | 16000081 | Get target application info failed. |
+  | 16000081 | Failed to obtain the target application information. |
 
 **示例：**
 
@@ -397,7 +397,7 @@ revokeUriPermission(uri: string, targetBundleName: string, appCloneIndex: number
   | 801 | Capability not supported. |
   | 16000050 | Internal error. |
   | 16000059 | Invalid URI type. |
-  | 16000081 | Get target application info failed. |
+  | 16000081 | Failed to obtain the target application information. |
 
 **示例：**
 

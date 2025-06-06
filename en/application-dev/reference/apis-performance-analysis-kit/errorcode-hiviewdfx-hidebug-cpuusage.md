@@ -1,4 +1,4 @@
-# Hidebug CpuUsage Error Codes
+# HiDebug CpuUsage Error Codes
 
 > **NOTE**
 >
@@ -16,8 +16,8 @@ The current CPU usage is abnormal.
 
 **Possible Causes**
 
-The hiview service process is not started properly.
+The HiView service process is not started properly.
 
 **Solution**
 
-Check the running status of the hiview process and restart the hiview service or the system.
+Check the running status of the HiView process and restart the HiView service or system.

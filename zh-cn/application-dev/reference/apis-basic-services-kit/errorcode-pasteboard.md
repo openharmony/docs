@@ -87,7 +87,7 @@ Replication is prohibited.
 
 **错误信息**
 
-Request timed out.
+Excessive processing time for internal data.
 
 **错误描述**
 
@@ -123,7 +123,7 @@ Settings already exist.
 
 **错误信息**
 
-Copy file failed.
+Invalid destUri or file system error.
 
 **错误描述**
 
@@ -178,7 +178,7 @@ Progress exits abnormally.
 
 **错误信息**
 
-Get Data failed.
+System error occurred during paste execution.
 
 **错误描述**
 

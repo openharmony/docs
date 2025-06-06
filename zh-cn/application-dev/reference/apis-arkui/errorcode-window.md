@@ -214,6 +214,70 @@ Repeated PiP operation.
 **处理步骤**<br>
 不要重复启动/停止画中画。<br>
 
+## 1300016 参数校验错误
+
+**错误信息**
+
+Parameter validation error.
+
+**错误描述**
+
+参数错误，如值超出允许的范围、字符串/数组的长度不符合要求、参数格式不正确等。
+
+**可能原因**
+
+1.参数的值超出允许的范围。
+
+2.参数的长度超出允许的长度。
+
+3.参数的格式不正确。
+
+**处理步骤**
+
+检查参数是否符合规范。
+
+## 1300017 filter控制器调用错误
+
+**错误信息**
+
+Incorrect filter calling.
+
+**错误描述**
+
+filter控制器无效调用，比如调用时序不对。
+
+**可能原因**
+
+setBackgroundFilter在animateBackgroungFilter之后使用。
+
+**处理步骤**
+
+检查使用时的步骤时序，保证在animateBackgroungFilter之前使用setBackgroundFilter。
+
+## 1300018 API调用超时
+
+**错误信息**
+
+API call timed out.
+
+**错误描述**
+
+接口调用超时。
+
+**可能原因**
+
+同步接口调用等待时间超出了限制范围。
+
+**处理步骤**
+
+需根据具体业务场景而定，常见的几种处理方式：
+
+1.API接口在有限次数内进行重新调用。
+
+2.降级处理，使用缓存或执行其他业务逻辑。
+
+3.中断本次逻辑处理。
+
 ## 1001 窗口空指针异常<sup>(deprecated)</sup>
 **错误信息**<br>
 A window null pointer occurs.

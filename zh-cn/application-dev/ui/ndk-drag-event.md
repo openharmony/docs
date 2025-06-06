@@ -123,7 +123,7 @@ ArkUI提供了使用C和C++开发拖拽功能的能力，开发者可调用C API
 
 4. 处理NODE_ON_DRAG_START事件。
 
-   在NODE_ON_DRAG_START事件中，应用可以执行起拖阶段所需的操作，通常涉及处理起拖过程的数据。例如，创建UdmfRecord，将用于拖拽图片所需的数据 imageUri以fileUri类型添加到[UdmfRecord](../reference/apis-arkdata/_u_d_m_f.md#oh_udmfrecord)中，接着将UdmfRecord设置到[udmfData](../reference/apis-arkdata/_u_d_m_f.md#oh_udmfdata)中，最后将UdmfData设置到[DragEvent](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_dragevent)中。
+   在NODE_ON_DRAG_START事件中，应用可以执行起拖阶段所需的操作，通常涉及处理起拖过程的数据。例如，创建UdmfRecord，将用于拖拽图片所需的数据 imageUri以fileUri类型添加到[UdmfRecord](../reference/apis-arkdata/capi-oh-udmfrecord.md)中，接着将UdmfRecord设置到[udmfData](../reference/apis-arkdata/capi-oh-udmfdata.md)中，最后将UdmfData设置到[DragEvent](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_dragevent)中。
 
     ```cpp
     case NODE_ON_DRAG_START: {
@@ -143,7 +143,7 @@ ArkUI提供了使用C和C++开发拖拽功能的能力，开发者可调用C API
 
 5. 处理NODE_ON_DROP事件。
 
-   在NODE_ON_DROP事件中，应用可以执行与落入阶段相关的操作，通常需要获取拖拽过程中传递的数据。例如，获取[udmfData](../reference/apis-arkdata/_u_d_m_f.md#oh_udmfdata)，判断是否存在所需的数据类型，从[UdmfRecord](../reference/apis-arkdata/_u_d_m_f.md#oh_udmfrecord)中提取相应的数据，最后销毁指针。
+   在NODE_ON_DROP事件中，应用可以执行与落入阶段相关的操作，通常需要获取拖拽过程中传递的数据。例如，获取[udmfData](../reference/apis-arkdata/capi-oh-udmfdata.md)，判断是否存在所需的数据类型，从[UdmfRecord](../reference/apis-arkdata/capi-oh-udmfrecord.md)中提取相应的数据，最后销毁指针。
 
     ```cpp
     case NODE_ON_DROP: {

@@ -71,6 +71,46 @@
 >inputmode优化移动设备键盘输入体验，不影响基本行为或验证。
 
 
+## 软键盘自动弹出
+为提升用户体验，可以在页面完成加载后，输入框自动获焦并弹出软键盘。通过调用[showTextInput()](../reference/apis-ime-kit/js-apis-inputmethod.md#showtextinput10)设置软键盘自动弹出功能。
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>测试网页</title>
+  </head>
+  <body>
+    <h1>DEMO</h1>
+    <input type="text" id="input_a">
+  </body>
+</html>
+```
+
+```ts
+//Index.ets
+import { webview } from '@kit.ArkWeb';
+import { inputMethod } from '@kit.IMEKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+  build() {
+    Column() {
+      Web({ src: $rawfile("index.html"), controller: this.controller})
+        .onPageEnd(() => {
+          this.controller.runJavaScript(`document.getElementById('input_a').focus()`).then(() => {
+            setTimeout(() => {
+              inputMethod.getController().showTextInput();
+            }, 10);
+          });
+        });
+    }
+  }
+}
+```
 
 ## 设置软键盘避让模式
 
@@ -146,7 +186,7 @@ ArkWeb组件将跟随ArkUI重新布局，效果如图1和图2所示。
 
 ![arkui-keyboardavoid](figures/arkui-keyboardavoid.png)
 
-2.在UIContext的键盘避让模式为Offset模式时，应用可通过[WebKeyboardAvoidMode()](../reference/apis-arkweb/ts-basic-components-web.md#webkeyboardavoidmode12)设置ArkWeb组件的键盘避让模式。Web组件的[WebKeyboardAvoidMode()](../reference/apis-arkweb/ts-basic-components-web.md#webkeyboardavoidmode12)接口优先级高于W3C侧virtualKeyboard.overlayContens。
+2.在UIContext的键盘避让模式为Offset模式时，应用可通过[WebKeyboardAvoidMode()](../reference/apis-arkweb/ts-basic-components-web-e.md#webkeyboardavoidmode12)设置ArkWeb组件的键盘避让模式。Web组件的[WebKeyboardAvoidMode()](../reference/apis-arkweb/ts-basic-components-web-e.md#webkeyboardavoidmode12)接口优先级高于W3C侧virtualKeyboard.overlayContens。
 
 - RESIZE_VISUAL：仅调整可视视口的大小，而不调整布局视口的大小。
 - RESIZE_CONTENT：调整视觉视口和布局视口的大小。
@@ -221,7 +261,7 @@ ArkWeb组件根据避让模式进行避让，效果见图3。
 
 ## 拦截系统软键盘与自定义软键盘输入
 
-应用可以通过调用[onInterceptKeyboardAttach](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptkeyboardattach12)来拦截系统软键盘的弹出。当可编辑元素如input标签即将触发软键盘显示时，[onInterceptKeyboardAttach](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptkeyboardattach12)被回调。应用可以使用此接口控制软键盘的显示，包括系统默认软键盘、带有特定Enter键的软键盘，或完全自定义软键盘。借助这一功能，开发者能够实现对软键盘的灵活管理。
+应用可以通过调用[onInterceptKeyboardAttach](../reference/apis-arkweb/ts-basic-components-web-events.md#oninterceptkeyboardattach12)标签即将触发软键盘显示时，[onInterceptKeyboardAttach](../reference/apis-arkweb/ts-basic-components-web-events.md#oninterceptkeyboardattach12)被回调。应用可以使用此接口控制软键盘的显示，包括系统默认软键盘、带有特定Enter键的软键盘，或完全自定义软键盘。借助这一功能，开发者能够实现对软键盘的灵活管理。
 
 - 使用系统默认软键盘
 - 使用带有定制Enter键的系统软键盘

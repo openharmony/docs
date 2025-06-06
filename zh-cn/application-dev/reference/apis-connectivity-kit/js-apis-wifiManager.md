@@ -911,6 +911,63 @@ connectToCandidateConfig(networkId: number): void
 	
 ```
 
+## wifiManager.connectToCandidateConfigWithUserAction<sup>20+</sup>
+
+connectToCandidateConfigWithUserAction(networkId: number): Promise&lt;void&gt;
+
+应用使用该接口连接到自己添加的候选网络时，会提示用户是否信任并建立连接，使用Promise异步回调用户响应结果。
+
+> **说明：**
+> 调用[wifiManager.connectToCandidateConfig](#wifimanagerconnecttocandidateconfig9)连接候选网络时，不会返回用户响应结果。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | networkId | number | 是 | 候选网络配置的ID，ID不能小于0。 |
+
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled.|
+| 2501005  | The user does not respond.|
+| 2501006  | The user refused the action.|
+| 2501007  | Parameter validation failed.|
+
+**示例：**
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+	
+	try {
+		let networkId = 0; // 候选网络ID，在添加候选网络时生成
+		wifiManager.connectToCandidateConfigWithUserAction(networkId).then(result => {
+			console.info("result:" + JSON.stringify(result));
+		}).catch((err:number) => {
+			console.error("failed:" + JSON.stringify(err));
+		});
+	}catch(error){  
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
 ## wifiManager.addDeviceConfig<sup>15+</sup>
 
 addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;

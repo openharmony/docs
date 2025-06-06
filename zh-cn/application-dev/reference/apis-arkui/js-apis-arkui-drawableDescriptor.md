@@ -16,7 +16,7 @@ import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
 
 ## DrawableDescriptor
 
-支持传入png，jpg，bmp，svg，gif，webp，astc，sut格式的资源类型。
+支持传入png、jpg、bmp、svg、gif、webp、astc、sut格式的资源类型。
 
 ### getPixelMap
 
@@ -196,10 +196,40 @@ getForeground(): DrawableDescriptor
 **示例：**
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
-let resManager = this.getUIContext().getHostContext()?.resourceManager;
-let drawable: LayeredDrawableDescriptor = (resManager?.getDrawableDescriptor($r('app.media.drawable')
-    .id)) as LayeredDrawableDescriptor;
-let drawableNew: object = drawable.getForeground();
+
+@Entry
+@Component
+struct Index {
+  @State drawableDescriptor: DrawableDescriptor | undefined = undefined;
+
+  private getForeground(): DrawableDescriptor | undefined {
+    let resManager = this.getUIContext().getHostContext()?.resourceManager;
+    let drawable: DrawableDescriptor | undefined = resManager?.getDrawableDescriptor($r('app.media.drawable').id);
+    if (!drawable) {
+      return undefined;
+    }
+    let layeredDrawableDescriptor = (drawable as LayeredDrawableDescriptor).getForeground();
+    return layeredDrawableDescriptor;
+  }
+
+  aboutToAppear(): void {
+    this.drawableDescriptor = this.getForeground();
+  }
+
+  build() {
+    RelativeContainer() {
+      if (this.drawableDescriptor) {
+        Image(this.drawableDescriptor)
+          .width(100)
+          .height(100)
+          .borderWidth(1)
+          .backgroundColor(Color.Green);
+      }
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
   ```
 
 ### getBackground
@@ -221,10 +251,38 @@ getBackground(): DrawableDescriptor
 **示例：**
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
-let resManager = this.getUIContext().getHostContext()?.resourceManager;
-let drawable: LayeredDrawableDescriptor = (resManager?.getDrawableDescriptor($r('app.media.drawable')
-    .id)) as LayeredDrawableDescriptor;
-let drawableNew: object = drawable.getBackground();
+
+@Entry
+@Component
+struct Index {
+  @State drawableDescriptor: DrawableDescriptor | undefined = undefined;
+
+  private getBackground(): DrawableDescriptor | undefined {
+    let resManager = this.getUIContext().getHostContext()?.resourceManager;
+    let drawable: DrawableDescriptor | undefined = resManager?.getDrawableDescriptor($r('app.media.drawable').id);
+    if (!drawable) {
+      return undefined;
+    }
+    let layeredDrawableDescriptor = (drawable as LayeredDrawableDescriptor).getBackground();
+    return layeredDrawableDescriptor;
+  }
+
+  aboutToAppear(): void {
+    this.drawableDescriptor = this.getBackground();
+  }
+
+  build() {
+    RelativeContainer() {
+      if (this.drawableDescriptor) {
+        Image(this.drawableDescriptor)
+          .width(100)
+          .height(100)
+      }
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
   ```
 
 ### getMask
@@ -246,10 +304,38 @@ getMask(): DrawableDescriptor
 **示例：**
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
-let resManager = this.getUIContext().getHostContext()?.resourceManager;
-let drawable: LayeredDrawableDescriptor = (resManager?.getDrawableDescriptor($r('app.media.drawable')
-    .id)) as LayeredDrawableDescriptor;
-let drawableNew: object = drawable.getMask();
+
+@Entry
+@Component
+struct Index {
+  @State drawableDescriptor: DrawableDescriptor | undefined = undefined;
+
+  private getMask(): DrawableDescriptor | undefined {
+    let resManager = this.getUIContext().getHostContext()?.resourceManager;
+    let drawable: DrawableDescriptor | undefined = resManager?.getDrawableDescriptor($r('app.media.drawable').id);
+    if (!drawable) {
+      return undefined;
+    }
+    let layeredDrawableDescriptor = (drawable as LayeredDrawableDescriptor).getMask();
+    return layeredDrawableDescriptor;
+  }
+
+  aboutToAppear(): void {
+    this.drawableDescriptor = this.getMask();
+  }
+
+  build() {
+    RelativeContainer() {
+      if (this.drawableDescriptor) {
+        Image(this.drawableDescriptor)
+          .width(100)
+          .height(100)
+      }
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
   ```
 ### getMaskClipPath
 

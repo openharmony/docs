@@ -28,11 +28,7 @@ To enable Emitter's capabilities mentioned above, perform the following steps:
 1. Import the Emitter module.
    
    ```ts
-   import { emitter } from '@kit.BasicServicesKit';
-   import { hilog } from '@kit.PerformanceAnalysisKit';
-
-   const TAG: string = 'ProcessModel';
-   const DOMAIN_NUMBER: number = 0xFF00;
+   import { emitter, Callback } from '@kit.BasicServicesKit';
    ```
 
 2. Subscribe to an event.
@@ -43,19 +39,19 @@ To enable Emitter's capabilities mentioned above, perform the following steps:
     let event: emitter.InnerEvent = {
       eventId: 1
     };
-    
-    // Use on() to subscribe to the event. After the event whose eventId is 1 is received, the callback function is executed.
-    emitter.on(event, () => {
-      hilog.info(DOMAIN_NUMBER, TAG, 'on callback');
-    });
+    // Define a callback for an event.
+    let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
+      console.info(`eventData: ${JSON.stringify(eventData)}`);
+    }
+
+    // Execute the callback after receiving the event whose eventId is 1.
+    emitter.on(innerEvent, callback);
    ```
 
    ```ts
-   // Execute the callback after receiving the event whose eventId is 1.
-   // Note that the event is received only once using once(), while the event is received until the subscription is canceled using on().
-   emitter.once(event, () => {
-     hilog.info(DOMAIN_NUMBER, TAG, 'once callback');
-   });
+    // Execute the callback after receiving the event whose eventId is 1.
+    // Note that the event is received only once using once(), while the event is received until the subscription is canceled using on().
+    emitter.once(innerEvent, callback);
    ```
 
 3. Emit the event.
@@ -68,12 +64,11 @@ To enable Emitter's capabilities mentioned above, perform the following steps:
      priority: emitter.EventPriority.LOW
    };
 
+   let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
+     console.info(`eventData: ${JSON.stringify(eventData)}`);
+   }
    // Subscribes to the event and receive eventData.
-   emitter.once(event, (eventData : emitter.EventData) => {
-     hilog.info(DOMAIN_NUMBER, TAG, 'enter callback, eventData-content:' + eventData?.data?.content);
-     hilog.info(DOMAIN_NUMBER, TAG, 'enter callback, eventData-id:' + eventData?.data?.id);
-     hilog.info(DOMAIN_NUMBER, TAG, 'enter callback, eventData-isEmpty:' + eventData?.data?.isEmpty);
-   });
+   emitter.once(event, callback);
 
    let eventData: emitter.EventData = {
      data: {
@@ -90,9 +85,8 @@ To enable Emitter's capabilities mentioned above, perform the following steps:
 4. Unsubscribe from the event.
     > **NOTE**
     >
-    > If an event does not need to be subscribed to, cancel the subscription in a timely manner to prevent memory leakage.
-
-    Use **off()** to unsubscribe from the event and set the corresponding event ID.
+    > - If an event does not need to be subscribed to, cancel the subscription in a timely manner to prevent memory leakage.
+    > - After the [off](../../reference/apis-basic-services-kit/js-apis-emitter.md#emitteroff) API is used to unsubscribe from an event, the event that has been published through the [emit](../../reference/apis-basic-services-kit/js-apis-emitter.md#emitteremit) API but has not been executed will be unsubscribed.
    ```ts
    // Unsubscribe from the event with eventId 1.
    emitter.off(1);

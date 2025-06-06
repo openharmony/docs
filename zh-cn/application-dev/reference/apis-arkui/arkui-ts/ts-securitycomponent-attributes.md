@@ -438,7 +438,7 @@ textIconSpace(value: Dimension): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [Dimension](ts-types.md#dimension10) |是 |安全控件中图标和文字的间距。从API 14开始，若设置值为负值，则使用默认值。<br/>默认值：4vp。|
+| value | [Dimension](ts-types.md#dimension10) |是 |安全控件中图标和文字的间距。不支持设置百分比字符串。从API 14开始，若设置值为负值，则使用默认值。<br/>默认值：4vp。|
 
 **返回值：**
 
@@ -590,7 +590,7 @@ id(description: string): T
 
 **参数：**
 
-| 名称   | 类型      | 必填 | 说明                       |
+| 参数名   | 类型      | 必填 | 说明                       |
 | ------ | -------- | -----|---------------------- |
 | description | string   |  是  | 组件的唯一标识，唯一性由使用者保证。<br>默认值：''。<br/> |
 
@@ -684,7 +684,7 @@ minFontSize(minSize: number | string | Resource): T
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。 |
+| minSize  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。 |
 
 **返回值：**
 
@@ -708,7 +708,7 @@ maxFontSize(maxSize: number | string | Resource): T
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
+| maxSize  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
 
 **返回值：**
 
@@ -730,7 +730,7 @@ maxLines(line: number): T
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| value  | number | 是   | 文本的最大行数。<br/>取值范围：[1, +∞)。<br/>**说明：** <br/>设置的值小于1时，按默认值100000处理。 |
+| line  | number | 是   | 文本的最大行数。<br/>取值范围：[1, +∞)。<br/>**说明：** <br/>设置的值小于1时，按默认值100000处理。 |
 
 **返回值：**
 
@@ -766,7 +766,7 @@ heightAdaptivePolicy(policy: TextHeightAdaptivePolicy): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 是   | 文本自适应高度的方式。<br/>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST。 |
+| policy  | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 是   | 文本自适应高度的方式。<br/>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST。 |
 
 **返回值：**
 
@@ -788,7 +788,7 @@ enabled(respond: boolean): T
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 值为true表示组件可交互，响应点击等操作。<br/>值为false表示组件不可交互，不响应点击等操作。<br/>默认值：true。 |
+| respond  | boolean | 是   | 值为true表示组件可交互，响应点击等操作。<br/>值为false表示组件不可交互，不响应点击等操作。<br/>默认值：true。 |
 
 **返回值：**
 
@@ -816,11 +816,12 @@ enabled(respond: boolean): T
 不同的按钮类型将影响属性[borderRadius（边框圆角半径）](ts-securitycomponent-attributes.md#borderradius)的设置效果。影响如下：
 
 - 当按钮类型为Capsule时，borderRadius设置不生效，按钮圆角半径始终为宽、高中较小值的一半。
-- 当按钮类型为Circle时：
-  - 若同时设置了宽和高，则borderRadius不生效，且按钮半径为宽高中较小值的一半；
-  - 若只设置宽、高中的一个，则borderRadius不生效，且按钮半径为所设宽或所设高值的一半；
-  - 若不设置宽高或者borderRadius的值为负，borderRadius不生效，按钮半径根据具体布局确定。
-- 在不设置borderRadius时，圆角矩形按钮的圆角半径大小保持默认值20vp不变，不随按钮高度变化而变化。
+- 当按钮类型为Circle时，borderRadius设置不生效：
+  - 若同时设置了宽和高，按钮圆角半径为宽高中较小值的一半；
+  - 若只设置宽、高中的一个，按钮圆角半径为所设宽或所设高值的一半；
+  - 若不设置宽高或者borderRadius的值为负，按钮圆角半径根据具体布局确定。
+- 当按钮类型为Normal时，按钮圆角半径可通过borderRadius设置，圆角大小受组件尺寸限制，最小值为0，最大值为组件宽高中较小值的一半。
+- 当按钮类型为ROUNDED_RECTANGLE时，若不设置borderRadius，圆角矩形按钮的圆角半径大小保持默认值20vp不变，不随按钮高度变化而变化。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -840,7 +841,7 @@ enabled(respond: boolean): T
 
 ### 示例1
 
-设置SecurityComponent基础属性，生成一个保存控件
+设置SecurityComponent基础属性，生成一个保存控件。
 
 ```ts
 @Entry
@@ -849,7 +850,7 @@ struct Index {
   build() {
     Row() {
       Column({ space: 5 }) {
-        // 生成一个保存按钮，并设置它的SecurityComponent属性。
+        // 生成一个保存控件，并设置它的SecurityComponent属性。
         SaveButton()
           .fontSize(35)
           .fontColor(Color.White)
@@ -892,7 +893,7 @@ struct Index {
 
 ### 示例2
 
-以容器和容器内组件作为锚点进行布局
+以容器和容器内组件作为锚点进行布局。
 
 ```ts
 @Entry

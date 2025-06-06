@@ -19,7 +19,7 @@ import { shortcutManager } from '@kit.AbilityKit';
 
 addDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md), userId: number) : Promise\<void>
 
-Adds [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) for a given user.
+Adds a shortcut for the given user.
 
 **Required permissions**: ohos.permission.MANAGE_SHORTCUTS
 
@@ -33,6 +33,12 @@ Adds [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) for a given user.
 | ---------- | ------ | ---- | -------------- |
 | shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) | Yes  | Shortcut information.|
 | userId     | number | Yes  | User ID.|
+
+**Return value**
+
+| Type                                      | Description     |
+| ---------------------------------------- | ------- |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -98,7 +104,7 @@ struct ShortcutExample {
 
 deleteDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md), userId: number) : Promise\<void>
 
-Deletes [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) for a given user.
+Deletes a shortcut for the given user.
 
 **Required permissions**: ohos.permission.MANAGE_SHORTCUTS
 
@@ -112,6 +118,12 @@ Deletes [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) for a given us
 | ---------- | ------ | ---- | -------------- |
 | shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) | Yes  | Shortcut information.|
 | userId     | number | Yes  | User ID.|
+
+**Return value**
+
+| Type                                      | Description     |
+| ---------------------------------------- | ------- |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -173,7 +185,7 @@ struct ShortcutExample {
 
 getAllDesktopShortcutInfo(userId: number) : Promise<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)>>
 
-Obtains all [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) records of a given user.
+Obtains the information about all shortcuts of the given user.
 
 **Required permissions**: ohos.permission.MANAGE_SHORTCUTS
 
@@ -191,7 +203,7 @@ Obtains all [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) records of
 
 | Type                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)> | Array that holds the [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) objects.|
+| Promise<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)>> | Promise that returns the shortcut information defined in the application configuration file.|
 
 **Error codes**
 

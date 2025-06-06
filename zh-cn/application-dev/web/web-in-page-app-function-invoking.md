@@ -4,13 +4,12 @@
 
 ## 如何建立应用侧与H5侧的交互通道
 
-注册应用侧代码有两种方式，一种在Web组件初始化调用，使用[javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy)接口。另外一种在Web组件初始化完成后调用，使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)接口。两种方式都需要和[deleteJavaScriptRegister](../reference/apis-arkweb/js-apis-webview.md#deletejavascriptregister)接口配合使用，防止内存泄漏。
-
+注册应用侧代码有两种方式，一种在Web组件初始化调用，使用[javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web-attributes.md#javascriptproxy)接口。另外一种在Web组件初始化完成后调用，使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#registerjavascriptproxy)接口。两种方式都需要和[deleteJavaScriptRegister](../reference/apis-arkweb/js-apis-webview-WebviewController.md#deletejavascriptregister)接口配合使用，防止内存泄漏。
 
 在下面的示例中，将test()方法注册在前端页面中， 该函数可以在前端页面触发运行。
 
 
-- [javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy)接口使用示例如下。
+- [javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web-attributes.md#javascriptproxy)接口使用示例如下。
 
   ```ts
   // xxx.ets
@@ -63,9 +62,7 @@
     }
   }
   ```
-
-
-- 应用侧使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)接口注册示例如下。
+- 应用侧使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#registerjavascriptproxy)接口注册示例如下。
 
   ```ts
   // xxx.ets
@@ -134,7 +131,7 @@
 
   > **说明：**
   >
-  > - 使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)方法注册时，注册后需调用[refresh()](../reference/apis-arkweb/js-apis-webview.md#refresh)方法生效。
+  > - 使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#registerjavascriptproxy)方法注册时，注册后需调用[refresh()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#refresh)方法生效。
 
 - 可选参数permission是一个json字符串，示例如下：
   ```json
@@ -214,7 +211,10 @@
   </html>
   ```
 ## 复杂类型使用方法
-- 应用侧和前端页面之间传递Array。
+
+### 应用侧和前端页面之间传递Array
+
+ Array可以作为注册对象方法的参数或返回值，在应用侧和前端页面之间传递。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -286,7 +286,10 @@
   </body>
   </html>
   ```
-- 应用侧和前端页面之间传递基础类型，非Function等复杂类型。
+
+### 非Function等复杂类型使用
+
+  非Function等复杂类型作为注册对象方法的参数或返回值，在应用侧和前端页面之间传递。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -365,8 +368,9 @@
   </body>
   </html>
   ```
+### 应用侧调用前端页面的Callback
 
-- 应用侧调用前端页面的Callback。
+  Callback可以作为注册对象方法的参数或返回值，在应用侧和前端页面之间传递。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -438,8 +442,9 @@
   </body>
   </html>
   ```
+### 应用侧调用前端页面Object里的Function
 
-- 应用侧调用前端页面Object里的Function。
+  前端页面Object里的Function可以作为注册对象方法的参数或返回值，在应用侧和前端页面之间传递。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -536,7 +541,9 @@
   </html>
   ```
 
-- 前端页面调用应用侧Object里的Function。
+### 前端页面调用应用侧Object里的Function
+
+  应用侧Object里的Function可以作为注册对象方法的参数或返回值，在应用侧和前端页面之间传递。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -624,8 +631,9 @@
   </html>
   ```
 
-- Promise场景。<br>
-  第一种使用方法，在应用侧new Promise。
+### Promise场景
+
+  第一种使用方法，在应用侧new Promise，将Promise作为对象方法的参数或返回值，向前端页面传递。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -703,7 +711,7 @@
   </body>
   </html>
   ```
-  第二种使用方法，在前端页面new Promise。
+  第二种使用方法，在前端页面new Promise，将Promise作为对象方法的参数或返回值，向应用侧传递。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';

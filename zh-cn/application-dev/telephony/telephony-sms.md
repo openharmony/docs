@@ -105,7 +105,7 @@ export class Contact {
 @Entry
 @Component
 struct JumpMessage {
-    private context = getContext(this) as common.UIAbilityContext;
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     startMMSAbilityExplicit() {
         // 这里完善联系人和号码；姓名主要是通过手机号来查询实际联系人名称，因此这种方式还是以手机号码为主。
@@ -178,7 +178,7 @@ sms:106XXXXXXXXXX?body=发送短信内容
 
 #### 从应用拉起
 
-保证sms字符串传入uri参数即可，在应用中page页面可通过 getContext(this) 获取context，在ability中可通过this.context获取context。
+保证sms字符串传入uri参数即可，在应用中page页面可通过 this.getUIContext().getHostContext() 获取context，在ability中可通过this.context获取context。
 
 ```ts
 @Entry

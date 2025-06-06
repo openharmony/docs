@@ -955,7 +955,7 @@ setResidentProcessEnabled(bundleName: string, enable: boolean): Promise\<void>
 | 202 | Not a system application. |
 | 401 | Parameter error. Possible cause: 1.Non empty package name needs to be provided, 2.The second parameter needs to provide a Boolean type setting value |
 | 16000050 | Internal error. |
-| 16200006 | The caller application can only set the resident status of the configured process |
+| 16200006 | The caller application can only set the resident status of the configured process. |
 
 **示例：**
 
@@ -990,8 +990,8 @@ try {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | ---------| ---- | ---- | --------- |
-| isOpenAllowed | boolean   | 是   | 否   | 是否允许拉起原子化服务。 |
-| isEmbeddedAllowed | boolean   | 是   | 否  | 是否允许嵌入式拉起原子化服务。          |
+| isOpenAllowed | boolean   | 是   | 否   | 是否允许拉起原子化服务。true表示允许拉起原子化服务，false表示不允许拉起原子化服务。 |
+| isEmbeddedAllowed | boolean   | 是   | 否  | 是否允许嵌入式拉起原子化服务。true表示允许嵌入式拉起原子化服务，false表示不允许嵌入式拉起原子化服务。 |
 
 ## abilityManager.queryAtomicServiceStartupRule<sup>18+</sup>
 

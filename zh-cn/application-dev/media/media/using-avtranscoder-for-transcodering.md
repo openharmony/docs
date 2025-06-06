@@ -85,11 +85,12 @@
    import { common } from '@kit.AbilityKit';
 
    private context: Context | undefined;
-    constructor(context: Context) {
+    constructor(context: Context | undefined) {
       if (context != undefined) {
         this.context = context; // this.getUIContext().getHostContext();
       }
    }
+   // 获取输入文件fd，H264_AAC.mp4为rawfile目录下的预置资源，需要开发者根据实际情况进行替换。
    let fileDescriptor = await this.context.resourceManager.getRawFd('H264_AAC.mp4');
    // 设置转码的源文件属性fdSrc。
    this.avTranscoder.fdSrc = fileDescriptor;
@@ -183,7 +184,7 @@ import fs from '@ohos.file.fs';
 export class AVTranscoderDemo {
   private avTranscoder: media.AVTranscoder | undefined = undefined;
   private context: Context | undefined;
-  constructor(context: Context) {
+  constructor(context: Context | undefined) {
     if (context != undefined) {
       this.context = context;
     }
@@ -225,8 +226,13 @@ export class AVTranscoderDemo {
       this.setAVTranscoderCallback();
       // 2.获取转码源文件fd和目标文件fd赋予avTranscoder；参考FilePicker文档。
       if (this.context != undefined) {
-        let fileDescriptor = await this.context.resourceManager.getRawFd('H264_AAC.mp4');
-        this.avTranscoder.fdSrc = fileDescriptor;
+        try {
+          // 获取输入文件fd，H264_AAC.mp4为rawfile目录下的预置资源，需要开发者根据实际情况进行替换。
+          let fileDescriptor = await this.context.resourceManager.getRawFd('H264_AAC.mp4');
+          this.avTranscoder.fdSrc = fileDescriptor;
+        } catch (error) {
+          console.error('Failed to get the file descriptor, please check the resource and path.');
+        }
         let outputFilePath = this.context.filesDir + "/output.mp4";
         let file = fs.openSync(outputFilePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
         this.avTranscoder.fdDst = file.fd;

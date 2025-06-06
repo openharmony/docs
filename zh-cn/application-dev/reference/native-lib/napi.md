@@ -710,8 +710,10 @@ libace_napi.z.so
 |FUNC|napi_wrap_sendable | 包裹一个native实例到ArkTS对象中。|12|
 |FUNC|napi_wrap_sendable_with_size | 包裹一个native实例到ArkTS对象中并指定大小。|12|
 |FUNC|napi_unwrap_sendable | 获取ArkTS对象包裹的native实例。|12|
-|FUNC|napi_remove_wrap_sendable | 移除并获取ArkTS对象包裹的native实例。|12|
+|FUNC|napi_remove_wrap_sendable | 移除并获取ArkTS对象包裹的native实例，移除后回调将不再触发，需手动delete释放内存。|12|
 |FUNC|napi_wrap_enhance | 在ArkTS对象上绑定一个Node-API模块对象实例并指定实例大小，开发者可以指定绑定的回调函数是否异步执行（若异步则需线程安全）。|18|
+|FUNC|napi_create_ark_context|创建一个新的运行时上下文环境。|20|
+|FUNC|napi_destroy_ark_context|销毁通过接口napi_create_ark_context创建的一个上下文环境。|20|
 
 > 说明：
 >
@@ -1392,7 +1394,7 @@ napi_status napi_remove_wrap_sendable(napi_env env, napi_value js_object, void**
 
 **描述：**
 
-移除并获取ArkTS对象包装的native实例。
+移除并获取ArkTS对象包装的native实例，移除后回调将不再触发，需手动delete释放内存。
 
 **参数：**
 

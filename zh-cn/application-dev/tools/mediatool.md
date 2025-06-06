@@ -74,32 +74,53 @@ uri, display_name, data
 ### mediatool recv
 
 ```shell
-mediatool recv <resource-uri> <dest-path>
+mediatool recv <media-target> <dest-path>
 ```
 
-该命令能够将`<resource-uri>`指定uri对应的媒体库资源的源文件内容导出到`<dest-path>`指定的设备路径下。
+该命令能够将`<media-target>`指定的媒体库资源的源文件内容导出到`<dest-path>`指定的设备路径下。
 
-`<dest-path>`可以指定为待创建文件路径或者文件夹路径，若为文件夹路径则会导出到该文件夹下，文件保留媒体库中的名字。
+`<media-target>`可以为以下两种形式：
+* 系统媒体目录下的文件路径。（可通过[mediatool ls -l](#mediatool-ls--l)获取。不支持指定文件夹路径。）
+* 媒体库uri。（参考[媒体库uri介绍/获取方式](#媒体库uri介绍获取方式)）
 
-当`<dest-path>`指定待创建文件路径时，不能是已经存在文件的路径。
-<!--Del-->
-`<dest-path>`需要指定有权限访问的路径。
-<!--DelEnd-->
+如果`<media-target>`指定文件路径，只支持以下几种路径，以下几种路径存在映射关系，访问的目录相同，均访问当前用户的系统媒体目录：
+* /storage/media/local/files/Photo 及以下的文件路径。
+* /storage/media/\<uid\>/local/files/Photo 及以下的文件路径。\<uid\>必须为当前用户的id，否则报错路径不合法。
+
+`<dest-path>`为待创建文件路径或者文件夹路径。若为文件夹路径则会导出到该文件夹下，文件保留媒体库中的名字。当`<dest-path>`指定待创建文件路径时，不能是已经存在文件的路径。<!--Del-->`<dest-path>`需要指定有权限访问的路径。<!--DelEnd--><!--RP1--><!--RP1End-->
+
 文件导出成功后会打印导出文件的路径。
 
-媒体库资源uri获取可参考[媒体库uri介绍/获取方式](#媒体库uri介绍获取方式)。
-
-将`<resource-uri>`指定为`all`则能够将所有媒体库资源的源文件导出。当`<resource-uri>`为`all`时，`<dest-path>`必须为文件夹路径。
+将`<media-target>`指定为`all`则能够将所有媒体库资源的源文件导出。当`<media-target>`为`all`时，`<dest-path>`必须为文件夹路径。
 
 该命令无法导出隐藏相册内的媒体资产。
-<!--RP1--><!--RP1End-->
 
 **使用示例：**
 
 ```shell
+# 使用uri将对应媒体资源导出
 > mediatool recv file://media/Photo/3 /data/local/tmp/out.jpg
 Table Name: Photos
 /data/local/tmp/out.jpg
+
+# 使用路径将对应媒体资源导出
+> mediatool recv /storage/media/local/files/Photo/16/IMG_1748435796_000.jpg /data/local/tmp/out.jpg
+Table Name: Photos
+/data/local/tmp/out.jpg
+
+# 导出所有媒体资源文件
+> mkdir /data/local/tmp/outmedia
+> mediatool recv all /data/local/tmp/outmedia
+Table Name: Photos
+/data/local/tmp/outmedia/IMG_20250528_203454.jpg
+/data/local/tmp/outmedia/IMG_20250528_221028.jpg
+/data/local/tmp/outmedia/IMG_20250528_221851.jpg
+/data/local/tmp/outmedia/IMG_20250528_221930.jpg
+/data/local/tmp/outmedia/IMG_20250528_221944.jpg
+...
+
+Table Name: Audios
+
 ```
 
 ### mediatool delete
@@ -129,7 +150,7 @@ mediatool delete <resource-uri>
 mediatool query <display-name> [-p] [-u]
 ```
 
-该命令能够查询出所有名字为`<display-name>`的媒体库资源，返回资源源文件真实路径或媒体资源uri。默认返回源文件真实路径。
+该命令能够查询出所有图库中显示名字为`<display-name>`的媒体库资源，返回资源源文件真实路径或媒体资源uri。默认返回源文件真实路径。
 
 该命令无法查询出隐藏相册内的媒体资产。
 
@@ -169,13 +190,46 @@ uri
 "file://media/Photo/2/IMG_1721381297_001/MyImage.jpg"
 ```
 
+### mediatool ls -l
+
+```shell
+mediatool ls -l <media-path>
+```
+
+列举出`<media-path>`所指定的系统媒体路径下的所有文件。效果类似文件系统`ls -l`。
+
+`<media-path>`只支持以下几种路径，以下几种路径存在映射关系，访问的目录相同，均访问当前用户的系统媒体目录：
+
+* /storage/media/local/files/Photo 及以下的路径。
+* /storage/media/\<uid\>/local/files/Photo 及以下的路径。\<uid\>必须为当前用户的id，否则报错路径不合法。
+
+`-l`为强制选项。不指定`-l`选项命令会报错。
+
+该命令不可见用户隐藏相册内的媒体资产。
+
+**使用示例：**
+
+```shell
+> mediatool ls -l /storage/media/local/files/Photo
+drwxrwx--x 2 user_data_rw user_data_rw 3440 2025-05-29 05:45 16
+drwxrwx--x 2 user_data_rw user_data_rw 0 2025-05-29 05:45 1
+drwxrwx--x 2 user_data_rw user_data_rw 0 2025-05-29 11:15 2
+drwxrwx--x 2 user_data_rw user_data_rw 0 2025-05-29 05:56 3
+drwxrwx--x 2 user_data_rw user_data_rw 0 2025-05-29 05:56 4
+drwxrwx--x 2 user_data_rw user_data_rw 0 2025-05-29 11:21 5
+drwxrwx--x 2 user_data_rw user_data_rw 0 2025-05-29 11:59 6
+drwxrwx--x 2 user_data_rw user_data_rw 0 2025-05-29 05:57 7
+drwxrwx--x 2 user_data_rw user_data_rw 0 2025-05-29 05:59 8
+drwxrwx--x 2 user_data_rw user_data_rw 0 2025-05-29 06:00 9
+```
+
 ## 使用指导
 
 以下使用指导说明了一些常见的mediatool使用场景。
 
 ### 导出特定媒体库资产
 
-示例导出图库中名字叫MyImage的jpg图片。
+示例导出图库中名字叫MyImage的jpg图片：
 
 ```shell
 > hdc shell mediatool query -u MyImage.jpg
@@ -191,9 +245,37 @@ Table Name: Photos
 FileTransfer finish, Size:10015455, File count = 1, time:679ms rate:14750.30kB/s
 ```
 
+示例根据媒体文件路径导出媒体库资产：
+
+```shell
+> hdc shell mediatool ls -l /storage/media/local/files/Photo
+drwxrwx--x 2 user_data_rw user_data_rw 3440 2025-05-29 05:45 16
+drwxrwx--x 2 user_data_rw user_data_rw 0 2025-05-29 05:45 1
+drwxrwx--x 2 user_data_rw user_data_rw 0 2025-05-29 11:15 2
+drwxrwx--x 2 user_data_rw user_data_rw 0 2025-05-29 05:56 3
+drwxrwx--x 2 user_data_rw user_data_rw 0 2025-05-29 05:56 4
+drwxrwx--x 2 user_data_rw user_data_rw 0 2025-05-29 11:21 5
+
+> hdc shell mediatool ls -l /storage/media/local/files/Photo/16
+-rw-rw---- 1 user_data_rw user_data_rw 6107481 2025-05-28 20:34 IMG_1748435794_000.jpg
+-rw-rw---- 1 user_data_rw user_data_rw 839323 2025-05-28 23:06 IMG_1748444892_016.jpg
+-rw-rw---- 1 user_data_rw user_data_rw 9614937 2025-05-28 23:41 IMG_1748446677_032.jpg
+-rw-rw---- 1 user_data_rw user_data_rw 3004885 2025-05-29 00:43 IMG_1748450699_048.jpg
+-rw-rw---- 1 user_data_rw user_data_rw 1915961 2025-05-29 01:18 IMG_1748452814_064.jpg
+-rw-rw---- 1 user_data_rw user_data_rw 13078 2025-05-29 02:41 IMG_1748457806_080.jpeg
+
+> hdc shell mediatool recv /storage/media/local/files/Photo/16/IMG_1748435794_000.jpg /data/local/tmp/out.jpg
+Table Name: Photos
+/data/local/tmp/out.jpg
+
+> hdc file recv /data/local/tmp/out.jpg .
+FileTransfer finish, Size:10015455, File count = 1, time:679ms rate:14750.30kB/s
+```
+
 ### 导出所有媒体库资产
 
 ```shell
+> hdc shell mkdir /data/local/tmp/media
 > hdc shell mediatool recv all /data/local/tmp/media
 Table Name: Photos
 /data/local/tmp/media/MyImage.jpg
@@ -210,7 +292,7 @@ FileTransfer finish, Size:10017280, File count = 1, time:664ms rate:15086.27kB/s
 
 ### 删除特定媒体库资产
 
-示例删除图库中名字叫MyImage的jpg图片。
+示例删除图库中名字叫MyImage的jpg图片：
 
 ```shell
 > hdc shell mediatool query -u MyImage.jpg

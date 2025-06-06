@@ -29,7 +29,7 @@ setBackgroundAllowed(isAllowed: boolean, callback: AsyncCallback\<void>): void
 
 | 参数名    | 类型                 | 必填 | 说明                                                         |
 | --------- | -------------------- | ---- | ------------------------------------------------------------ |
-| isAllowed | boolean              | 是   | 是否允许应用后台使用数据。                                     |
+| isAllowed | boolean              | 是   | 是否允许应用后台使用数据。true：允许应用后台使用数据；false：不允许应用后台使用数据。                                     |
 | callback  | AsyncCallback\<void> | 是   | 回调函数，成功时，err 为 undefined，失败返回错误码错误信息。 |
 
 **错误码：**
@@ -69,7 +69,7 @@ setBackgroundAllowed(isAllowed: boolean): Promise\<void>
 
 | 参数名    | 类型    | 必填 | 说明                     |
 | --------- | ------- | ---- | ------------------------ |
-| isAllowed | boolean | 是   | 是否允许应用后台使用数据。 |
+| isAllowed | boolean | 是   | 是否允许应用后台使用数据。true：允许应用后台使用数据；false：不允许应用后台使用数据。 |
 
 **错误码：**
 
@@ -684,7 +684,7 @@ isUidNetAllowed(uid: number, isMetered: boolean, callback: AsyncCallback\<boolea
 | 参数名    | 类型                    | 必填 | 说明                                                      |
 | --------- | ----------------------- | ---- | --------------------------------------------------------- |
 | uid       | number                  | 是   | app 唯一标识符。                                            |
-| isMetered | boolean                 | 是   | 是否为计量网络。                                            |
+| isMetered | boolean                 | 是   | 是否为计量网络。true：是计量网络；false：不是计量网络。                                            |
 | callback  | AsyncCallback\<boolean> | 是   | 回调函数。返回 true 表示这个 uid 可以访问对应的计量网络。 |
 
 **错误码：**
@@ -726,7 +726,7 @@ isUidNetAllowed(uid: number, isMetered: boolean): Promise\<boolean>
 | 参数名    | 类型    | 必填 | 说明           |
 | --------- | ------- | ---- | -------------- |
 | uid       | number  | 是   | app 唯一标识符。 |
-| isMetered | boolean | 是   | 是否为计量网络。 |
+| isMetered | boolean | 是   | 是否为计量网络。true：是计量网络；false：不是计量网络。 |
 
 **返回值：**
 
@@ -870,7 +870,7 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean, callback: Async
 | 参数名    | 类型                           | 必填 | 说明                                           |
 | --------- | ------------------------------ | ---- | ---------------------------------------------- |
 | uids      | Array\<number>                 | 是   | app 唯一标识符。                                 |
-| isAllowed | boolean                        | 是   | 是否加入白名单。                                 |
+| isAllowed | boolean                        | 是   | 是否加入白名单。true：加入白名单；false：没有加入白名单。                                 |
 | callback  | callback: AsyncCallback\<void> | 是   | 回调函数。成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
@@ -911,7 +911,7 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>
 | 参数名    | 类型           | 必填 | 说明           |
 | --------- | -------------- | ---- | -------------- |
 | uids      | Array\<number> | 是   | app 唯一标识符。 |
-| isAllowed | boolean        | 是   | 是否加入白名单。 |
+| isAllowed | boolean        | 是   | 是否加入白名单。true：加入白名单；false：没有加入白名单。 |
 
 **返回值：**
 
@@ -1331,7 +1331,7 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean, callback: AsyncC
 | 参数名    | 类型                           | 必填 | 说明                                           |
 | --------- | ------------------------------ | ---- | ---------------------------------------------- |
 | uids      | Array\<number>                 | 是   | app 唯一标识符。                                |
-| isAllowed | boolean                        | 是   | 是否加入白名单。                                 |
+| isAllowed | boolean                        | 是   | 是否加入白名单。true：加入白名单；false：没有加入白名单。                                 |
 | callback  | callback: AsyncCallback\<void> | 是   | 回调函数。成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
@@ -1372,7 +1372,7 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>
 | 参数名    | 类型           | 必填 | 说明           |
 | --------- | -------------- | ---- | -------------- |
 | uids      | Array\<number> | 是   | app 唯一标识符。 |
-| isAllowed | boolean        | 是   | 是否加入白名单。 |
+| isAllowed | boolean        | 是   | 是否加入白名单。true：加入白名单；false：没有加入白名单。 |
 
 **返回值：**
 
@@ -1674,7 +1674,7 @@ on(type: "netUidPolicyChange", callback: Callback\<NetUidPolicyInfo\>): void
 
 | 参数名   | 类型                                                                | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                                              | 是   | policy 发生改变的类型。                  |
+| type     | string                                                              | 是   | 订阅的事件类型。'netUidPolicyChange'：注册policy发生改变事件。                  |
 | callback | Callback\<[NetUidPolicyInfo](#netuidpolicyinfo11)> | 是   | 回调函数。注册 policy 发生改变时调用。 |
 
 **错误码：**
@@ -1723,7 +1723,7 @@ off(type: "netUidPolicyChange", callback?: Callback\<NetUidPolicyInfo\>): void
 
 | 参数名   | 类型                                                                | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                                              | 是   | policy 发生改变的类型。                 |
+| type     | string                                                              | 是   | 注销的事件类型。'netUidPolicyChange'：注销policy发生改变事件。               |
 | callback | Callback\<[NetUidPolicyInfo](#netuidpolicyinfo11)> | 否   | 回调函数。注销 policy 发生改变时调用。 |
 
 **错误码：**
@@ -1780,7 +1780,7 @@ on(type: "netUidRuleChange", callback: Callback\<NetUidRuleInfo\>): void
 
 | 参数名   | 类型                                                          | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                                        | 是   | rule 发生改变的类型。                    |
+| type     | string                                                        | 是   | 订阅的事件类型。'netUidRuleChange'：注册rule发生改变事件。                    |
 | callback | Callback\<[NetUidRuleInfo](#netuidruleinfo11)> | 是   | 回调函数。注册 rule 发生改变时的调用。 |
 
 **错误码：**
@@ -1829,7 +1829,7 @@ off(type: "netUidRuleChange", callback?: Callback\<NetUidRuleInfo\>): void
 
 | 参数名   | 类型                                                          | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                                        | 是   | rule 发生改变的类型。                    |
+| type     | string                                                        | 是   | 注销的事件类型。'netUidRuleChange'：注销rule发生改变事件。                    |
 | callback | Callback\<[NetUidRuleInfo](#netuidruleinfo11)> | 否   | 回调函数。注销 rule 发生改变时的调用。 |
 
 **错误码：**
@@ -1886,7 +1886,7 @@ on(type: "netMeteredIfacesChange", callback: Callback\<Array\<string>>): void
 
 | 参数名   | 类型                      | 必填 | 说明                                      |
 | -------- | ------------------------- | ---- | ----------------------------------------- |
-| type     | string                    | 是   | 计量 iface 发生改变的类型。                 |
+| type     | string                    | 是   | 订阅的事件类型。'netMeteredIfacesChange'：注册计量iface发生改变事件。                 |
 | callback | Callback\<Array\<string>> | 是   | 回调函数。注册计量 iface 发生改变时调用。 |
 
 **错误码：**
@@ -1930,7 +1930,7 @@ off(type: "netMeteredIfacesChange", callback?: Callback\<Array\<string>>): void
 
 | 参数名   | 类型                      | 必填 | 说明                                      |
 | -------- | ------------------------- | ---- | ----------------------------------------- |
-| type     | string                    | 是   | 计量 iface 发生改变的类型。                 |
+| type     | string                    | 是   | 注销的事件类型。'netMeteredIfacesChange'：注销计量iface发生改变事件。                 |
 | callback | Callback\<Array\<string>> | 否   | 回调函数。注册计量 iface 发生改变时调用。 |
 
 **错误码：**
@@ -1982,7 +1982,7 @@ on(type: "netQuotaPolicyChange", callback: Callback\<Array\<NetQuotaPolicy>>): v
 
 | 参数名   | 类型                                                   | 必填 | 说明                                       |
 | -------- | ------------------------------------------------------ | ---- | ------------------------------------------ |
-| type     | string                                                 | 是   | 计量网络策略发生改变的类型。                 |
+| type     | string                                                 | 是   | 订阅的事件类型。'netQuotaPolicyChange'：注册计量网络策略发生改变事件。                 |
 | callback | Callback\<Array\<[NetQuotaPolicy](#netquotapolicy10)>> | 是   | 回调函数。注册计量网络策略发生改变时调用。 |
 
 **错误码：**
@@ -2031,7 +2031,7 @@ off(type: "netQuotaPolicyChange", callback?: Callback\<Array\<NetQuotaPolicy>>):
 
 | 参数名   | 类型                                                   | 必填 | 说明                                       |
 | -------- | ------------------------------------------------------ | ---- | ------------------------------------------ |
-| type     | string                                                 | 是   | 计量网络策略发生改变的类型。                 |
+| type     | string                                                 | 是   | 注销的事件类型。'netQuotaPolicyChange'：注销计量网络策略发生改变事件。                 |
 | callback | Callback\<Array\<[NetQuotaPolicy](#netquotapolicy10)>> | 否   | 回调函数。注册计量网络策略发生改变时调用。 |
 
 **错误码：**
@@ -2083,7 +2083,7 @@ on(type: "netBackgroundPolicyChange", callback: Callback\<boolean>): void
 
 | 参数名   | 类型               | 必填 | 说明                                       |
 | -------- | ------------------ | ---- | ------------------------------------------ |
-| type     | string             | 是   | 后台网络策略发生改变的类型。                 |
+| type     | string             | 是   | 订阅的事件类型。'netBackgroundPolicyChange'：注册后台网络策略发生改变事件。                 |
 | callback | Callback\<boolean> | 是   | 回调函数。注册后台网络策略发生改变时调用。 |
 
 **错误码：**
@@ -2127,7 +2127,7 @@ off(type: "netBackgroundPolicyChange", callback?: Callback\<boolean>): void
 
 | 参数名   | 类型               | 必填 | 说明                                       |
 | -------- | ------------------ | ---- | ------------------------------------------ |
-| type     | string             | 是   | 后台网络策略发生改变的类型。                 |
+| type     | string             | 是   | 注销的事件类型。'netBackgroundPolicyChange'：注销后台网络策略发生改变事件。                 |
 | callback | Callback\<boolean> | 否   | 回调函数。注册后台网络策略发生改变时调用。 |
 
 **错误码：**
@@ -2218,7 +2218,7 @@ try {
 | periodDuration    | string                        | 是   | 流量限制计量周期。D1，M1，Y1 分别代表 1 天，1 个月，1 年内流量限制，超出时间则不受限制。 |
 | warningBytes      | number                        | 是   | 发出警告的流量阈值。                                          |
 | limitBytes        | number                        | 是   | 流量设置的配额。                                            |
-| metered           | boolean                       | 是   | 是否为计量网络。                                            |
+| metered           | boolean                       | 是   | 是否为计量网络。true：是计量网络；false：不是计量网络。                                            |
 | limitAction       | [LimitAction](#limitaction10) | 是   | 到达流量限制后的动作。                                         |
 | lastWarningRemind | number                        | 否   | 最新一次发出警告的时间。默认值：-1                                  |
 | lastLimitRemind   | number                        | 否   | 最新一次配额耗尽的时间。默认值：-1                                        |
@@ -2317,8 +2317,8 @@ try {
 
 | 名称              | 类型       | 必填 | 说明                          |
 | ----------------- | --------- | ---- | ----------------------------- |
-| allowWiFi         | boolean   | 是   | 能否允许访问wifi网络。 |
-| allowCellular     | boolean   | 是   | 能否允许访问蜂窝网络。 |
+| allowWiFi         | boolean   | 是   | 能否允许访问wifi网络。true：允许访问wifi网络；false：不允许访问wifi网络。 |
+| allowCellular     | boolean   | 是   | 能否允许访问蜂窝网络。true：允许访问蜂窝网络；false：不允许访问蜂窝网络。 |
 
 ## UidNetworkAccessPolicy<sup>12+</sup>
 

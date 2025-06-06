@@ -638,4 +638,4 @@ The size of the authorization list reaches the upper limit.
 
 **处理步骤**
 
-1. 请取消设置操作，或者撤销已存在的访问/开放授权后再设置。
+请取消设置操作，或者撤销已存在的访问/开放授权后再设置。

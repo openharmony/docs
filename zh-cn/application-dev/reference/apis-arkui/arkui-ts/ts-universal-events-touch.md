@@ -40,7 +40,15 @@ onTouch(event: (event: TouchEvent) => void): T
 | touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部屏幕触点（多指）的信息，每个元素代表一个触点。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 | changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 发生变化而产生事件的手指信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | stopPropagation      | () => void | 阻塞事件冒泡。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| preventDefault<sup>12+</sup>      | () => void |  阻止默认事件。<br/> **说明：**&nbsp;该接口仅支持部分组件使用，当前支持组件：Hyperlink。暂不支持异步调用和提供Modifier接口。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| preventDefault<sup>12+</sup>      | () => void |  阻止默认事件。<br/> **说明：**&nbsp;该接口仅支持部分组件使用，当前支持组件：Hyperlink，不支持的组件使用时会抛出异常。暂不支持异步调用和提供Modifier接口。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[交互事件错误码](../errorcode-event.md)。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 100017       | Component does not support prevent function. |
 
 ### getHistoricalPoints<sup>10+</sup>
 

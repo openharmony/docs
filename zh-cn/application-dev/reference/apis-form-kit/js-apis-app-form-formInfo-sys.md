@@ -13,6 +13,18 @@ formInfo模块提供了卡片信息和状态等相关类型和枚举。
 import { formInfo } from '@kit.FormKit';
 ```
 
+## FormInfo
+
+卡片配置信息。
+
+**系统能力：** SystemCapability.Ability.Form
+
+| 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
+| ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
+| previewImages<sup>18+</sup> | Array&lt;number&gt; | 是 | 否 | 卡片预览图资源ID。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| enableBlurBackground<sup>18+</sup>  | boolean               | 是    | 否     | 卡片是否使用模糊背板。 |
+| renderingMode<sup>18+</sup>|[RenderingMode](./js-apis-app-form-formInfo-sys.md#renderingmode18)|是|否|卡片渲染模式。|
+
 
 ##  FormParam
 
@@ -71,11 +83,11 @@ import { formInfo } from '@kit.FormKit';
 
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
-| bundleName  | string               | 是    | 否     | 提供方卡片所属包的Bundle名称。  |
-| formName    | string               | 是    | 否     | 卡片名称。                     |
-| moduleName  | string               | 是    | 否     | 卡片所属模块的模块名称。        |
-| abilityName | string               | 是    | 否     | 卡片所属的Ability名称。        |
-| isUnusedIncluded<sup>11+</sup> | boolean               | 是    | 否     | 是否包含未使用的卡片。        |
+| bundleName  | string               | 是    | 是     | 提供方卡片所属包的Bundle名称。  |
+| formName    | string               | 是    | 是     | 卡片名称。                     |
+| moduleName  | string               | 是    | 是     | 卡片所属模块的模块名称。        |
+| abilityName | string               | 是    | 是     | 卡片所属的Ability名称。        |
+| isUnusedIncluded<sup>11+</sup> | boolean               | 是    | 是     | 是否包含未使用的卡片。<br/>-&nbsp;true：包含未使用的卡片。<br/>-&nbsp;false：不包含未使用的卡片。<br/>默认值：false。        |
 
 
 ## FormInfoFilter
@@ -147,3 +159,58 @@ import { formInfo } from '@kit.FormKit';
 | AUTO_COLOR    | 0    | 表示自动模式。   |
 | FULL_COLOR     | 1   | 表示全色模式。   |
 | SINGLE_COLOR      | 2   | 表示单色模式。   |
+
+## OverflowRequest<sup>20+</sup>
+
+互动卡片动效请求信息。
+
+**系统能力：** SystemCapability.Ability.Form
+
+**系统接口：** 此接口为系统接口。
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+|-----|-----|----|----|-----|
+| formId       | string  | 是  | 否  | 卡片id。|
+| isOverflow   | boolean | 是  | 否  | 动效请求类型标记，true 表示互动卡片请求触发动效，false 表示互动卡片请求取消动效。|
+| overflowInfo | [formInfo.OverflowInfo](js-apis-app-form-formInfo.md#overflowinfo20) | 是 | 是 | 动效请求参数信息，包括溢出动效时长（单位：ms）和溢出动效区域（溢出动效区域范围以卡片左上角为原点，单位为vp），默认值为空。 |
+
+## ChangeSceneAnimationStateRequest<sup>20+</sup>
+
+互动卡片状态切换请求信息。互动卡片状态分为激活态和非激活态，非激活态下，互动卡片同普通卡片一致；激活态下，互动卡片支持拉起卡片提供方所开发的LiveFormExtensionAbility进程，实现互动卡片动效。
+
+**系统能力：** SystemCapability.Ability.Form
+
+**系统接口：** 此接口为系统接口。
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+|-----|-----|-----|-----|----------------------------------------|
+| formId | string | 是 | 否 | 卡片id。                                  |
+| state  | number | 是 | 否 | 状态切换请求类型标记：1 表示请求切换为激活态，0 表示请求切换为非激活态。 |
+
+## FunInteractionParams<sup>20+</sup>
+
+趣味交互卡片配置参数。
+
+**系统能力：** SystemCapability.Ability.Form
+
+**系统接口：** 此接口为系统接口。
+
+| 名称 | 类型 | 只读 | 可选 | 说明                                                                                                                                   |
+|-----|-----|----|-----|--------------------------------------------------------------------------------------------------------------------------------------|
+| abilityName | string | 是  | 是   | 趣味交互场景 extensionAbility 名称，默认为空。 |
+| targetBundleName  | string | 是  | 否   | 趣味交互场景[主包包名](https://developer.huawei.com/consumer/cn/doc/quickApp-Guides/quickgame-independent-subpackage-0000002076341729)。        |
+| subBundleName  | string | 是  | 否   | 趣味交互场景趣味交互场景[独立分包名](https://developer.huawei.com/consumer/cn/doc/quickApp-Guides/quickgame-independent-subpackage-0000002076341729)。 |
+| keepStateDuration  | number | 是  | 是   | 趣味交互场景无交互时，激活态保持时长。默认值为10000，单位ms。取值为[0,10000]的整数，超过取值范围则取默认值10000。 |
+
+## SceneAnimationParams<sup>20+</sup>
+
+场景动效卡片配置参数。
+
+**系统能力：** SystemCapability.Ability.Form
+
+**系统接口：** 此接口为系统接口。
+
+| 名称 | 类型 | 只读 | 可选 | 说明                                                                                                                                              |
+|-----|-----|------|----|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| abilityName | string | 是 | 否  | 场景动效 extensionAbility 名称，如卡片提供方LiveFormExtensionAbility名称。                                     |
+| disabledDesktopBehaviors | string | 是 | 是  | 支持的取值包括SWIPE_DESKTOP（滑动桌面）、PULL_DOWN_SEARCH（下拉全搜）、LONG_CLICK（长按）、DRAG（拖动）。可以取值一个或多个，不同行为通过 \| 拼接，例如SWIPE_DESKTOP\|PULL_DOWN_SEARCH。缺省表示不禁用任何行为。 |

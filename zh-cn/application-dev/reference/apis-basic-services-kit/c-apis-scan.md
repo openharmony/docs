@@ -272,7 +272,7 @@ Scan_ScannerOptions* OH_Scan_GetScannerParameter(const char* scannerId, int32_t*
 
 **描述**
 
-这个接口用于获取扫描仪设置选项，返回的结构体指针在{@link OH_Scan_Exit}时自动释放内存，每个型号的扫描仪在内存中只存储一个副本。
+这个接口用于获取扫描仪设置选项，返回的结构体指针在[OH_Scan_Exit](#oh_scan_exit)时自动释放内存，每个型号的扫描仪在内存中只存储一个副本。
 
 **系统能力：** ohos.permission.PRINT
 
@@ -303,7 +303,7 @@ int32_t OH_Scan_SetScannerParameter(const char* scannerId, const int32_t option,
 
 **描述**
 
-这个接口用于设置扫描仪的选项参数，选项值的返回通过{@link OH_Scan_GetScannerParameter}接口获得。
+这个接口用于设置扫描仪的选项参数，选项值的返回通过[OH_Scan_GetScannerParameter](#oh_scan_getscannerparameter)接口获得。
 
 **系统能力：** ohos.permission.PRINT
 

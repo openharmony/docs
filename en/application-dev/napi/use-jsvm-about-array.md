@@ -86,6 +86,10 @@ const char *srcCallNative = R"JS(
   testCreateArray();
 )JS";
 ```
+Expected result:
+```
+JSVM CreateArray success
+```
 ### OH_JSVM_CreateArrayWithLength
 
 Use **OH_JSVM_CreateArrayWithLength** to create a JS array object of the specified length.
@@ -141,7 +145,10 @@ function testCreateArrayWithLength(num){
 testCreateArrayWithLength(num);
 )JS";
 ```
-
+Expected result:
+```
+JSVM CreateArrayWithLength success
+```
 ### OH_JSVM_CreateTypedarray
 
 Use **OH_JSVM_CreateTypedarray** to create a JS **TypedArray** object based on an **ArrayBuffer**. The **TypedArray** object provides an array-like view over an underlying data buffer, where each element has the same underlying binary scalar data type.
@@ -240,7 +247,11 @@ createTypedArray(type.INT8_ARRAY);
 createTypedArray(type.INT32_ARRAY);
 )JS";
 ```
-
+Expected result:
+```
+JSVM CreateTypedArray success
+JSVM CreateTypedArray success
+```
 ### OH_JSVM_CreateDataview
 
 Use **OH_JSVM_CreateDataview** to create a JS **DataView** object based on an **ArrayBuffer**. The **DataView** object provides an array-like view over an underlying data buffer.
@@ -341,7 +352,12 @@ const char *srcCallNative = R"JS(
  createDataView(new ArrayBuffer(16), BYTE_OFFSET);
 )JS";
 ```
-
+Expected result:
+```
+CreateDataView success, returnLength: 12
+JSVM CreateDataView success, isArraybuffer: 1
+JSVM CreateDataView success, returnOffset: 4
+```
 ### OH_JSVM_GetArrayLength
 
 Use **OH_JSVM_GetArrayLength** to obtain the length of an array.
@@ -359,7 +375,8 @@ static JSVM_Value GetArrayLength(JSVM_Env env, JSVM_CallbackInfo info)
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     JSVM_Value result = nullptr;
-    uint32_t length;
+    // Initialize length.
+    uint32_t length = 0;
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
     // Check whether the parameter is an array.
     bool isArray = false;
@@ -368,10 +385,17 @@ static JSVM_Value GetArrayLength(JSVM_Env env, JSVM_CallbackInfo info)
         OH_LOG_INFO(LOG_APP, "JSVM Argument must be an array");
         return nullptr;
     }
-    OH_JSVM_GetArrayLength(env, args[0], &length);
-    // Create a return value.
-    OH_JSVM_CreateInt32(env, length, &result);
-    OH_LOG_INFO(LOG_APP, "JSVM length: %{public}d", length);
+    /*
+     * If the array length is successfully obtained, length is assigned to the actual JSArray length, and the API returns the JSVM_OK status code.
+     * If args[0] is not of the JSArray type, for example, args[0] is a proxy object, the length cannot be obtained.
+     * In this case, length remains unchanged, and the JSVM_ARRAY_EXPECTED status code is returned.
+     */
+    JSVM_Status status = OH_JSVM_GetArrayLength(env, args[0], &length);
+    if (status == JSVM_OK) {
+        // Create a return value.
+        OH_JSVM_CreateInt32(env, length, &result);
+        OH_LOG_INFO(LOG_APP, "JSVM length: %{public}d", length);
+    }
     return result;
 }
 // Register the GetArrayLength callback.
@@ -389,7 +413,10 @@ let data = [0, 1, 2, 3, 4, 5];
 getArrayLength(data);
 )JS";
 ```
-
+Expected result:
+```
+JSVM length: 6
+```
 ### OH_JSVM_GetTypedarrayInfo
 
 Use **OH_JSVM_GetTypedarrayInfo** to obtain information about a **TypedArray** object.
@@ -495,7 +522,13 @@ getTypedArrayInfo(new Int8Array(5), 2);
 getTypedArrayInfo(new Int8Array(1), 3);
 )JS";
 ```
-
+Expected result:
+```
+JSVM GetTypedArrayInfo success, JSVM_INT8_ARRAY: 1
+JSVM GetTypedArrayInfo success, length: 5
+JSVM GetTypedArrayInfo success, isArrayBuffer: 1
+JSVM GetTypedArrayInfo success, byteOffset: 0
+```
 ### OH_JSVM_GetDataviewInfo
 
 Use **OH_JSVM_GetDataviewInfo** to obtain information about a **DataView** object.
@@ -594,7 +627,13 @@ isarraybuffer = 2;
 getDataViewInfo(data, isarraybuffer);
 )JS";
 ```
-
+Expected result:
+```
+JSVM GetDataViewInfo success, byteLength: 2
+JSVM GetDataViewInfo fail
+JSVM GetDataViewInfo success, isArrayBuffer: 1
+JSVM GetDataViewInfo success, byteOffset: 0
+```
 ### OH_JSVM_IsArray
 
 Use **OH_JSVM_IsArray** to check whether a JS object is an array.
@@ -638,7 +677,10 @@ let data = [1, 2, 3, 4, 5];
 isArray(data);
 )JS";
 ```
-
+Expected result:
+```
+JSVM IsArray success, IsArray: 1
+```
 ### OH_JSVM_SetElement
 
 Use **OH_JSVM_SetElement** to set an element at the specified index for a JS object.
@@ -680,7 +722,10 @@ const char *srcCallNative = R"JS(
 setElement(3);
 )JS";
 ```
-
+Expected result:
+```
+JSVM SetElement success
+```
 ### OH_JSVM_GetElement
 
 Use **OH_JSVM_GetElement** to obtain the element at the specified index of a JS object.
@@ -726,7 +771,10 @@ let arr = [10, 'hello', null, true];
 getElement(arr, 3);
 )JS";
 ```
-
+Expected result:
+```
+JSVM GetElement success
+```
 ### OH_JSVM_HasElement
 
 Use **OH_JSVM_HasElement** to check whether a JS object has an element at the specified index.
@@ -777,7 +825,11 @@ hasElement(arr, 0);
 hasElement(arr, 4);
 )JS";
 ```
-
+Expected result:
+```
+JSVM hasElement: 1
+JSVM hasElement: 0
+```
 ### OH_JSVM_DeleteElement
 
 Use **OH_JSVM_DeleteElement** to delete the element at the specified index from a JS object.
@@ -826,7 +878,10 @@ let arr = [10, 'hello', null, true];
 deleteElement(arr, 0);
 )JS";
 ```
-
+Expected result:
+```
+JSVM DeleteElement: 1
+```
 ### OH_JSVM_IsDataview
 
 Use **OH_JSVM_IsDataview** to check whether a JS object is a **DataView** object.
@@ -871,7 +926,10 @@ let dataView = new DataView(buffer);
 isDataView(dataView);
 )JS";
 ```
-
+Expected result:
+```
+JSVM IsDataView: 1
+```
 ### OH_JSVM_IsTypedarray
 
 Use **OH_JSVM_IsTypedarray** to check whether a JS object is a **TypedArray** object.
@@ -912,4 +970,8 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(
 isTypedarray(new Uint16Array([1, 2, 3, 4]));
 )JS";
+```
+Expected result:
+```
+JSVM IsTypedarray: 1
 ```

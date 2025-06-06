@@ -94,7 +94,7 @@
 | [Image_CropAndScaleStrategy](#image_cropandscalestrategy) {<br/>IMAGE_CROP_AND_SCALE_STRATEGY_SCALE_FIRST = 1,<br/>IMAGE_CROP_AND_SCALE_STRATEGY_CROP_FIRST = 2 } | 在同时指定desiredSize和desiredRegion时执行裁剪和缩放的策略。 | 
 | [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) {<br/>AUXILIARY_PICTURE_TYPE_GAINMAP = 1, AUXILIARY_PICTURE_TYPE_DEPTH_MAP = 2, AUXILIARY_PICTURE_TYPE_UNREFOCUS_MAP = 3, AUXILIARY_PICTURE_TYPE_LINEAR_MAP = 4,<br/>AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP = 5<br/>} | 辅助图类型。  | 
 | [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type) {<br/>PIXELMAP_ALPHA_TYPE_UNKNOWN = 0,<br/>PIXELMAP_ALPHA_TYPE_OPAQUE = 1,<br/>PIXELMAP_ALPHA_TYPE_PREMULTIPLIED = 2, <br/>PIXELMAP_ALPHA_TYPE_UNPREMULTIPLIED = 3 } | Pixelmap透明度类型。 | 
-| [PIXEL_FORMAT](#pixel_format) {<br/>PIXEL_FORMAT_UNKNOWN = 0, PIXEL_FORMAT_ARGB_8888 = 1, <br/>PIXEL_FORMAT_RGB_565 = 2, PIXEL_FORMAT_RGBA_8888 = 3, <br/>PIXEL_FORMAT_BGRA_8888 = 4, PIXEL_FORMAT_RGB_888 = 5, <br/>PIXEL_FORMAT_ALPHA_8 = 6, PIXEL_FORMAT_RGBA_F16 = 7, <br/>PIXEL_FORMAT_NV21 = 8, PIXEL_FORMAT_NV12 = 9,  <br/>PIXEL_FORMAT_RGBA_1010102 = 10, PIXEL_FORMAT_YCBCR_P010 = 11, <br/>PIXEL_FORMAT_YCRCB_P010 = 12<br/>} | 图片像素格式。 | 
+| [PIXEL_FORMAT](#pixel_format) {<br/>PIXEL_FORMAT_UNKNOWN = 0, <br/>PIXEL_FORMAT_RGB_565 = 2, PIXEL_FORMAT_RGBA_8888 = 3, <br/>PIXEL_FORMAT_BGRA_8888 = 4, PIXEL_FORMAT_RGB_888 = 5, <br/>PIXEL_FORMAT_ALPHA_8 = 6, PIXEL_FORMAT_RGBA_F16 = 7, <br/>PIXEL_FORMAT_NV21 = 8, PIXEL_FORMAT_NV12 = 9,  <br/>PIXEL_FORMAT_RGBA_1010102 = 10, PIXEL_FORMAT_YCBCR_P010 = 11, <br/>PIXEL_FORMAT_YCRCB_P010 = 12<br/>} | 图片像素格式。 | 
 | [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) { <br/>OH_PixelmapNative_AntiAliasing_NONE = 0, <br/>OH_PixelmapNative_AntiAliasing_LOW = 1, <br/>OH_PixelmapNative_AntiAliasing_MEDIUM = 2, <br/>OH_PixelmapNative_AntiAliasing_HIGH = 3 <br/>} | Pixelmap缩放时采用的缩放算法。  | 
 | [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) { <br/>HDR_METADATA_TYPE = 0, <br/>HDR_STATIC_METADATA = 1, <br/>HDR_DYNAMIC_METADATA = 2, <br/>HDR_GAINMAP_METADATA = 3 } | Pixelmap使用的HDR相关元数据信息的关键字，用于[OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata)及[OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata)。  | 
 | [OH_Pixelmap_HdrMetadataType](#oh_pixelmap_hdrmetadatatype) { <br/>HDR_METADATA_TYPE_NONE = 0, <br/>HDR_METADATA_TYPE_BASE = 1, <br/>HDR_METADATA_TYPE_GAINMAP = 2, <br/>HDR_METADATA_TYPE_ALTERNATE = 3 } | HDR_METADATA_TYPE关键字对应的值。  | 
@@ -1069,7 +1069,6 @@ enum PIXEL_FORMAT
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | PIXEL_FORMAT_UNKNOWN | 未知格式 | 
-| PIXEL_FORMAT_ARGB_8888 | ARGB_8888格式<br>**起始版本：** 18 | 
 | PIXEL_FORMAT_RGB_565 | RGB_565格式 | 
 | PIXEL_FORMAT_RGBA_8888 | RGBA_8888格式 | 
 | PIXEL_FORMAT_BGRA_8888 | BGRA_8888格式 | 

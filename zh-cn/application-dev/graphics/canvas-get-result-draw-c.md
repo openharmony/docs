@@ -12,7 +12,7 @@ Canvas是图形绘制的核心，本章中提到的所有绘制操作（包括�
 
 ## 接口说明
 
-创建Canvas常用接口如下表所示，详细的使用和参数说明请见[drawing_canvas.h](../reference/apis-arkgraphics2d/drawing__canvas_8h.md)。
+创建Canvas常用接口如下表所示，详细的使用和参数说明请见[drawing_canvas.h](../reference/apis-arkgraphics2d/capi-drawing-canvas-h.md)。
 
 | 接口 | 描述 |
 | -------- | -------- |
@@ -25,7 +25,7 @@ Canvas是图形绘制的核心，本章中提到的所有绘制操作（包括�
 
 通过XComponent获取可直接显示的Canvas画布。
 
-1. 从XComponent对应的NativeWindow中获取BufferHandle对象。NativeWindow相关的API请参考[_native_window](../reference/apis-arkgraphics2d/_native_window.md)。
+1. 从XComponent对应的NativeWindow中获取BufferHandle对象。NativeWindow相关的API请参考[_native_window](../reference/apis-arkgraphics2d/capi-nativewindow.md)。
 
    ```c++
    uint64_t width, height;
@@ -78,9 +78,10 @@ Canvas是图形绘制的核心，本章中提到的所有绘制操作（包括�
 
 ### CPU后端Canvas的创建与显示
 
-目前C/C++接口的绘制需要依赖于NativeWindow，CPU后端Canvas需要先离屏绘制，生成位图（Bitmap），再借助XComponent将位图上屏。
+目前C/C++接口的绘制需要依赖于NativeWindow，CPU后端Canvas需要先离屏绘制，生成位图或像素图（从API Version 20开始支持），再借助XComponent上屏。
 
 
+方式一：通过绑定位图（Bitmap）的方式创建Canvas。
 1. 导入依赖的相关头文件。
 
    ```c++
@@ -115,6 +116,70 @@ Canvas是图形绘制的核心，本章中提到的所有绘制操作（包括�
 
    ```c++
    OH_Drawing_CanvasDrawBitmap(screenCanvas, bitmap, 0, 0);
+   ```
+
+
+方式二：通过像素图（PixelMap）创建Canvas。从API Version 20开始，支持使用此种方式创建Canvas。
+像素图是系统中用来表示图片的统一的数据结构，相比于drawing模块中提供的位图，像素图具备通用性，并且能够更好地发挥系统的能力。
+
+1. 添加链接库。
+
+   在Native工程的src/main/cpp/CMakeLists.txt，添加如下链接库：
+
+   ```c++
+   target_link_libraries(entry PUBLIC libhilog_ndk.z.so libpixelmap.so)
+   ```
+
+2. 导入依赖的相关头文件。
+
+   ```c++
+   #include <multimedia/image_framework/image/pixelmap_native.h>
+   #include <native_drawing/drawing_pixel_map.h>
+   ```
+
+3. 需要通过OH_Drawing_PixelMapGetFromOhPixelMapNative()接口创建一个像素图对象（具体可参考[图片绘制](pixelmap-drawing-c.md)），并通过OH_Drawing_CanvasCreateWithPixelMap()接口借助像素图对象创建Canvas。
+
+   ```c++
+   // 图片宽高
+   uint32_t width = 600;
+   uint32_t height = 400;
+   // 设置位图格式（长、宽、颜色类型、透明度类型）
+   OH_Pixelmap_InitializationOptions *createOps = nullptr;
+   OH_PixelmapInitializationOptions_Create(&createOps);
+   OH_PixelmapInitializationOptions_SetWidth(createOps, width);
+   OH_PixelmapInitializationOptions_SetHeight(createOps, height);
+   OH_PixelmapInitializationOptions_SetPixelFormat(createOps, PIXEL_FORMAT_RGBA_8888);
+   OH_PixelmapInitializationOptions_SetAlphaType(createOps, PIXELMAP_ALPHA_TYPE_UNKNOWN);
+   // 字节长度，RGBA_8888每个像素占4字节
+   size_t bufferSize = width * height * 4;
+   void *buffer = malloc(bufferSize);
+   // 创建OH_PixelmapNative对象
+   OH_PixelmapNative *pixelMapNative = nullptr;
+   OH_PixelmapNative_CreatePixelmap(static_cast<uint8_t *>(buffer), bufferSize, createOps, &pixelMapNative);
+   // 创建Pixelmap对象
+   OH_Drawing_PixelMap *pixelMap = OH_Drawing_PixelMapGetFromOhPixelMapNative(pixelMapNative);
+   // 创建Canvas对象
+   OH_Drawing_Canvas* pixelmapCanvas = OH_Drawing_CanvasCreateWithPixelMap(pixelMap);
+   ```
+
+   如果需要将背景设置为白色，需要执行以下步骤：
+
+   ```c++
+   OH_Drawing_CanvasClear(pixelmapCanvas, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0xFF, 0xFF));
+   ```
+
+4. 将上一步中创建的像素图绘制到[窗口画布](#获取可直接显示的canvas画布)上。
+
+   ```c++
+   // PixelMap中像素的截取区域
+   OH_Drawing_Rect *src = OH_Drawing_RectCreate(0, 0, width, height);
+   // 画布中显示的区域
+   OH_Drawing_Rect *dst = OH_Drawing_RectCreate(0, 0, width, height);
+   // 采样选项对象
+   OH_Drawing_SamplingOptions* samplingOptions = OH_Drawing_SamplingOptionsCreate(
+       OH_Drawing_FilterMode::FILTER_MODE_LINEAR, OH_Drawing_MipmapMode::MIPMAP_MODE_LINEAR);
+   // 绘制PixelMap
+   OH_Drawing_CanvasDrawPixelMapRect(screenCanvas, pixelMap, src, dst, samplingOptions);
    ```
 
 
@@ -209,7 +274,7 @@ GPU后端Canvas指画布是基于GPU进行绘制的，GPU的并行计算能力�
    }
    ```
 
-4. 创建GPU后端Canvas。GPU后端Canvas需要借助Surface对象来获取，需先创建surface，surface的API请参考[drawing_surface.h](../reference/apis-arkgraphics2d/drawing__surface_8h.md)。通过OH_Drawing_GpuContextCreateFromGL接口创建绘图上下文，再将这个上下文作为参数创建surface，最后通过OH_Drawing_SurfaceGetCanvas接口从surface中获取到canvas。
+4. 创建GPU后端Canvas。GPU后端Canvas需要借助Surface对象来获取，需先创建surface，surface的API请参考[drawing_surface.h](../reference/apis-arkgraphics2d/capi-drawing-surface-h.md)。通过OH_Drawing_GpuContextCreateFromGL接口创建绘图上下文，再将这个上下文作为参数创建surface，最后通过OH_Drawing_SurfaceGetCanvas接口从surface中获取到canvas。
 
    ```c++
    // 设置宽高（按需设定）

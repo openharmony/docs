@@ -5781,6 +5781,7 @@ getEncoded() : Promise\<EncodingBlob>
 | 类型                                    | 说明                             |
 | --------------------------------------- | -------------------------------- |
 | Promise\<[EncodingBlob](#encodingblob)> | 表示X509证书吊销列表的序列化数据。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。

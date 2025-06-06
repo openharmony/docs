@@ -25,7 +25,7 @@ import { DataShareResultSet } from '@kit.ArkData';
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { DataShareResultSet, dataShare, dataSharePredicates } from '@kit.ArkData';
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {

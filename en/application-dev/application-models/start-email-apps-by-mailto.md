@@ -50,23 +50,23 @@ Replace the email address with the actual one, and configure the email content a
 
 ### Within Applications
 
-Pass the mailto string to the **uri** parameter. In the application, the context can be obtained through **getContext (this)** for a page and through **this.context** for an ability.
+Pass the mailto string to the **uri** parameter. In the application, the context can be obtained through **getHostContext()** for a page and through **this.context** for an ability.
 
 ```ts
+import { common } from '@kit.AbilityKit';
+
 @Entry
 @Component
 struct Index {
-
   build() {
     Column() {
       Button('Feedback')
         .onClick(() => {
-          let ctx = getContext(this) as common.UIAbilityContext;
+          let ctx = this.getUIContext().getHostContext() as common.UIAbilityContext;
           ctx.startAbility({
             action: 'ohos.want.action.sendToData',
             uri: 'mailto:feedback@example.com?subject=App Feedback&body=Please describe your feedback here...'
           })
-        
         })
     }
   }

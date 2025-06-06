@@ -26,5 +26,5 @@ import ability from '@ohos.ability.ability';
 | valueBackReferences   | [rdb.ValuesBucket](../apis-arkdata/js-apis-data-relationalStore.md#valuesbucket) | 否  | 是    | 指示包含一组键值对的valuesBucket对象。  |
 | predicates   | [dataAbility.DataAbilityPredicates](../apis-arkdata/js-apis-data-ability.md#dataabilitypredicates) | 否  | 是   | 指示要设置的筛选条件。如果此参数为空，则操作所有数据记录。  |
 | predicatesBackReferences   | Map\<number, number> | 否  | 是    | 指示用作谓词中筛选条件的反向引用。  |
-| interrupted   | boolean | 否  | 是    | 指示是否可以中断批处理操作。  |
+| interrupted   | boolean | 否  | 是    | 指示是否可以中断批处理操作。true表示可以中断批处理操作，false表示不可中断批处理操作。 |
 | expectedCount   | number | 否  | 是    | 指示要更新或删除的预期行数。  |
