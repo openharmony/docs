@@ -7207,7 +7207,7 @@ async function example(context: Context) {
   try {
     let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
       = photoAccessHelper.CloudEnhancement.getCloudEnhancementInstance(context);
-    await cloudEnhancementInstance.cancelCloudEnhancementTasks();
+    await cloudEnhancementInstance.cancelAllCloudEnhancementTasks();
   } catch (err) {
     console.error(`cancelAllCloudEnhancementTasksDemo failed with error: ${err.code}, ${err.message}`);
   }
