@@ -85,7 +85,7 @@
                 // 假设已经创建了一个session，如何创建session可以参考之前的案例。
                 let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
                 // 播放器逻辑··· 引发媒体信息与播放状态的变更。
-                // 设置必要的媒体信息
+                // 设置必要的媒体信息。
                 let metadata: AVSessionManager.AVMetadata = {
                   assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体。
                   title: 'TITLE',
