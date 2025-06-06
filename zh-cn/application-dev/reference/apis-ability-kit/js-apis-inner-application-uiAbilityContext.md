@@ -919,7 +919,7 @@ export default class EntryAbility extends UIAbility {
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
-将当前UIAbility连接到一个[ServiceExtensionAbility](../../application-models/serviceextensionability.md)，通过返回的proxy与ServiceExtensionAbility进行通信，以使用ServiceExtensionAbility对外提供的能力。仅支持在主线程调用。
+将当前UIAbility连接到一个[ServiceExtensionAbility](../../application-models/extensionability-overview.md)，通过返回的proxy与ServiceExtensionAbility进行通信，以使用ServiceExtensionAbility对外提供的能力。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1004,7 +1004,7 @@ export default class EntryAbility extends UIAbility {
 
 disconnectServiceExtensionAbility(connection: number): Promise\<void>
 
-断开与[ServiceExtensionAbility](../../application-models/serviceextensionability.md)的连接，断开连接之后开发者需要将连接成功时返回的remote对象置空。使用Promise异步回调。仅支持在主线程调用。
+断开与[ServiceExtensionAbility](../../application-models/extensionability-overview.md)的连接，断开连接之后开发者需要将连接成功时返回的remote对象置空。使用Promise异步回调。仅支持在主线程调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1067,7 +1067,7 @@ export default class EntryAbility extends UIAbility {
 
 disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<void>): void
 
-断开与[ServiceExtensionAbility](../../application-models/serviceextensionability.md)的连接，断开连接之后开发者需要将连接成功时返回的remote对象置空。使用callback异步回调。仅支持在主线程调用。
+断开与[ServiceExtensionAbility](../../application-models/extensionability-overview.md)的连接，断开连接之后开发者需要将连接成功时返回的remote对象置空。使用callback异步回调。仅支持在主线程调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
