@@ -25,7 +25,7 @@ let defaultIpAddress = "ws://";
 let ws = webSocket.createWebSocket();
 ws.on('open', (err:BusinessError, value: Object) => {
   if (err != undefined) {
-    console.log(JSON.stringify(err));
+    console.error(JSON.stringify(err));
     return;
   }
   // 当收到on('open')事件时，可以通过send()方法与服务器进行通信
@@ -33,7 +33,7 @@ ws.on('open', (err:BusinessError, value: Object) => {
     if (!err) {
       console.log("send success");
     } else {
-      console.log("send fail, err:" + JSON.stringify(err));
+      console.error("send fail, err:" + JSON.stringify(err));
     }
   });
 });
@@ -45,7 +45,7 @@ ws.on('message',(error: BusinessError, value: string | ArrayBuffer) => {
       if (!err) {
         console.log("close success");
       } else {
-        console.log("close fail, err is " + JSON.stringify(err));
+        console.error("close fail, err is " + JSON.stringify(err));
       }
     });
   }
@@ -54,7 +54,7 @@ ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
   console.log("on close, code is " + value.code + ", reason is " + value.reason);
 });
 ws.on('error', (err: BusinessError) => {
-  console.log("on error, error:" + JSON.stringify(err));
+  console.error("on error, error:" + JSON.stringify(err));
 });
 ws.connect(defaultIpAddress, {
   header:{
@@ -72,13 +72,13 @@ ws.connect(defaultIpAddress, {
   if (!err) {
     console.log("connect success");
   } else {
-    console.log("connect fail, err:" + JSON.stringify(err));
+    console.error("connect fail, err:" + JSON.stringify(err));
   }
   ws.close((err: BusinessError) => {
     if (!err) {
       console.log("close success");
     } else {
-      console.log("close fail, err is " + JSON.stringify(err));
+      console.error("close fail, err is " + JSON.stringify(err));
     }
   });
 });
@@ -161,7 +161,7 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
   if (!err) {
     console.log("connect success");
   } else {
-    console.log("connect fail, err:" + JSON.stringify(err));
+    console.error("connect fail, err:" + JSON.stringify(err));
   }
 });
 ```
@@ -227,7 +227,7 @@ ws.connect(url, options, (err: BusinessError, value: Object) => {
   if (!err) {
     console.log("connect success");
   } else {
-    console.log("connect fail, err:" + JSON.stringify(err))
+    console.error("connect fail, err:" + JSON.stringify(err))
   }
 });
 ```
@@ -288,7 +288,7 @@ let promise = ws.connect(url);
 promise.then((value: boolean) => {
   console.log("connect success");
 }).catch((err:string) => {
-  console.log("connect fail, error:" + JSON.stringify(err));
+  console.error("connect fail, error:" + JSON.stringify(err));
 });
 ```
 
@@ -334,7 +334,7 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("connect success");
     } else {
-      console.log("connect fail, err:" + JSON.stringify(err))
+      console.error("connect fail, err:" + JSON.stringify(err))
     }
 });
 ws.on('open', (err: BusinessError, value: Object) => {
@@ -343,7 +343,7 @@ ws.on('open', (err: BusinessError, value: Object) => {
     if (!err) {
       console.log("send success");
     } else {
-      console.log("send fail, err:" + JSON.stringify(err))
+      console.error("send fail, err:" + JSON.stringify(err))
     }
   });
 });
@@ -400,7 +400,7 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("connect success");
     } else {
-      console.log("connect fail, err:" + JSON.stringify(err))
+      console.error("connect fail, err:" + JSON.stringify(err))
     }
 });
 
@@ -410,7 +410,7 @@ ws.on('open', (err: BusinessError, value: Object) => {
   promise.then((value: boolean) => {
     console.log("send success")
   }).catch((err:string) => {
-    console.log("send fail, error:" + JSON.stringify(err))
+    console.error("send fail, error:" + JSON.stringify(err))
   });
 });
 ```
@@ -455,7 +455,7 @@ ws.close((err: BusinessError) => {
   if (!err) {
     console.log("close success")
   } else {
-    console.log("close fail, err is " + JSON.stringify(err))
+    console.error("close fail, err is " + JSON.stringify(err))
   }
 });
 ```
@@ -503,7 +503,7 @@ ws.close(options, (err: BusinessError) => {
     if (!err) {
         console.log("close success")
     } else {
-        console.log("close fail, err is " + JSON.stringify(err))
+        console.error("close fail, err is " + JSON.stringify(err))
     }
 });
 ```
@@ -554,7 +554,7 @@ let promise = ws.close();
 promise.then((value: boolean) => {
     console.log("close success")
 }).catch((err:string) => {
-    console.log("close fail, err is " + JSON.stringify(err))
+    console.error("close fail, err is " + JSON.stringify(err))
 });
 ```
 
@@ -775,7 +775,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('error', (err: BusinessError) => {
-  console.log("on error, error:" + JSON.stringify(err))
+  console.error("on error, error:" + JSON.stringify(err))
 });
 ```
 
