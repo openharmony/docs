@@ -881,10 +881,10 @@ enum Input_TouchEventAction
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| TOUCH_ACTION_CANCEL  | 触摸取消。 | 
-| TOUCH_ACTION_DOWN  | 触摸按下。 | 
-| TOUCH_ACTION_MOVE  | 触摸移动。 | 
-| TOUCH_ACTION_UP  | 触摸抬起。 | 
+| TOUCH_ACTION_CANCEL  | 触屏取消。 | 
+| TOUCH_ACTION_DOWN  | 触屏按下。 | 
+| TOUCH_ACTION_MOVE  | 触屏移动。 | 
+| TOUCH_ACTION_UP  | 触屏抬起。 | 
 
 
 ### InputEvent_AxisAction
@@ -974,8 +974,8 @@ enum InputEvent_SourceType
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | SOURCE_TYPE_MOUSE  | 表示输入源生成鼠标光标移动、按钮按下和释放以及滚轮滚动的事件。| 
-| SOURCE_TYPE_TOUCHSCREEN  | 表示输入源产生触摸屏多点触摸事件。 | 
-| SOURCE_TYPE_TOUCHPAD  | 表示输入源产生触摸板多点触摸事件。| 
+| SOURCE_TYPE_TOUCHSCREEN  | 表示输入源产生触摸屏多点触屏事件。 | 
+| SOURCE_TYPE_TOUCHPAD  | 表示输入源产生触摸板多点触屏事件。| 
 
 
 ## 函数说明
@@ -1078,7 +1078,7 @@ Input_Result OH_Input_AddInputEventInterceptor (Input_InterceptorEventCallback *
 ```
 **描述**
 
-添加输入事件拦截，包括鼠标、触摸和轴事件，重复添加只有第一次生效。仅命中应用窗口时拦截输入事件。
+添加输入事件拦截，包括鼠标、触屏和轴事件，重复添加只有第一次生效。仅命中应用窗口时拦截输入事件。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1220,7 +1220,7 @@ Input_Result OH_Input_AddTouchEventMonitor (Input_TouchEventCallback callback)
 ```
 **描述**
 
-添加触摸事件监听。
+添加触屏事件监听。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1230,7 +1230,7 @@ Input_Result OH_Input_AddTouchEventMonitor (Input_TouchEventCallback callback)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| callback | 回调函数，用于接收触摸事件。  | 
+| callback | 回调函数，用于接收触屏事件。  | 
 
 **Permission：**
 
@@ -1238,7 +1238,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若添加触摸事件监听成功，则返回[INPUT_SUCCESS](#input_result)；若权限校验失败，则返回[INPUT_PERMISSION_DENIED](#input_result)；若callback为空，则返回[INPUT_PARAMETER_ERROR](#input_result)；若服务异常，则返回[INPUT_SERVICE_EXCEPTION](#input_result)。
+若添加触屏事件监听成功，则返回[INPUT_SUCCESS](#input_result)；若权限校验失败，则返回[INPUT_PERMISSION_DENIED](#input_result)；若callback为空，则返回[INPUT_PARAMETER_ERROR](#input_result)；若服务异常，则返回[INPUT_SERVICE_EXCEPTION](#input_result)。
 
 
 ### OH_Input_CancelInjection()
@@ -2409,7 +2409,7 @@ int64_t OH_Input_GetMouseEventActionTime (const struct Input_MouseEvent * mouseE
 
 **返回：**
 
-返回鼠标事件发生的时间。
+返回鼠标事件发生的时间，表示从1970.1.1 00:00:00 GMT逝去的微秒数。
 
 
 ### OH_Input_GetMouseEventAxisType()
@@ -2660,7 +2660,7 @@ int64_t OH_Input_GetTouchEventActionTime (const struct Input_TouchEvent * touchE
 ```
 **描述**
 
-获取触摸事件发生的时间。
+获取触屏事件发生的时间。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2674,7 +2674,7 @@ int64_t OH_Input_GetTouchEventActionTime (const struct Input_TouchEvent * touchE
 
 **返回：**
 
-返回触摸事件发生的时间。
+返回触屏事件发生的时间。
 
 
 ### OH_Input_GetTouchEventDisplayId()
@@ -2848,7 +2848,7 @@ int32_t OH_Input_InjectTouchEvent (const struct Input_TouchEvent * touchEvent)
 ```
 **描述**
 
-注入触摸事件。
+注入触屏事件。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2979,7 +2979,7 @@ Input_Result OH_Input_RemoveInputEventInterceptor (void)
 ```
 **描述**
 
-移除输入事件拦截，包括鼠标、触摸和轴事件。
+移除输入事件拦截，包括鼠标、触屏和轴事件。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -3079,7 +3079,7 @@ Input_Result OH_Input_RemoveTouchEventMonitor (Input_TouchEventCallback callback
 ```
 **描述**
 
-移除触摸事件监听。
+移除触屏事件监听。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -3089,7 +3089,7 @@ Input_Result OH_Input_RemoveTouchEventMonitor (Input_TouchEventCallback callback
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| callback | 指定要被移除的用于触摸事件监听的回调函数。  | 
+| callback | 指定要被移除的用于触屏事件监听的回调函数。  | 
 
 **Permission：**
 
@@ -3097,7 +3097,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若移除触摸事件监听成功，则返回[INPUT_SUCCESS](#input_result)；若权限校验失败，则返回[INPUT_PERMISSION_DENIED](#input_result)；若callback为空或者没有被添加监听，则返回[INPUT_PARAMETER_ERROR](#input_result)；若服务异常，则返回[INPUT_SERVICE_EXCEPTION](#input_result)。
+若移除触屏事件监听成功，则返回[INPUT_SUCCESS](#input_result)；若权限校验失败，则返回[INPUT_PERMISSION_DENIED](#input_result)；若callback为空或者没有被添加监听，则返回[INPUT_PARAMETER_ERROR](#input_result)；若服务异常，则返回[INPUT_SERVICE_EXCEPTION](#input_result)。
 
 
 ### OH_Input_SetAxisEventAction()
@@ -3774,7 +3774,7 @@ void OH_Input_SetTouchEventActionTime (struct Input_TouchEvent * touchEvent, int
 ```
 **描述**
 
-设置触摸事件发生的时间。
+设置触屏事件发生的时间。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -3785,7 +3785,7 @@ void OH_Input_SetTouchEventActionTime (struct Input_TouchEvent * touchEvent, int
 | 名称 | 描述 | 
 | -------- | -------- |
 | touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象，<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 | 
-| actionTime | 触摸事件发生的时间，表示从1970.1.1 00:00:00 GMT逝去的微秒数。  | 
+| actionTime | 触屏事件发生的时间，表示从1970.1.1 00:00:00 GMT逝去的微秒数。  | 
 
 
 ### OH_Input_SetTouchEventDisplayId()
