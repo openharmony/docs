@@ -178,6 +178,20 @@ import { window } from '@kit.ArkUI';
 | y    | number   | 否   | 是  | Y轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
 | z    | number   | 否   | 是  | Z轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
 
+
+## StartAnimationSystemOption<sup>20+</sup>
+
+系统应用启动动画配置。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称     | 类型                                                      | 必填 | 说明                                                         |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type    | [AnimationType](#animationtype20)           | 是   | 窗口动画类型。                                               |
+| animationConifg    | [WindowAnimationConfig](#windowanimationconfig20) | 否   | 窗口动画参数配置。                 |
+
 ## window.minimizeAll<sup>9+</sup>
 minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
 
