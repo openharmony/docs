@@ -4423,9 +4423,6 @@ on(type: 'beforePanStart', callback: PanListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { uiObserver } from '@kit.ArkUI';
-import router from '@ohos.router';
-
 let TEST_TAG: string = 'node';
 
 function callbackFunc() {
