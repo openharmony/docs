@@ -632,7 +632,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.setAppNet(netHandle).then(() => {
     console.log("success");
   }).catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   })
 });
 ```
@@ -1104,7 +1104,7 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.isDefaultNetMetered((error: BusinessError, data: boolean) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log('data: ' + data);
 });
 ```
@@ -1213,7 +1213,7 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.hasDefaultNet((error: BusinessError, data: boolean) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log('data: ' + data);
 });
 ```
@@ -1326,7 +1326,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.reportNetConnected(netHandle, (error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 });
 ```
@@ -1738,7 +1738,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 connection.removeCustomDnsRule("xxxx").then(() => {
     console.log("success");
 }).catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
 })
 ```
 
@@ -1821,7 +1821,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 connection.clearCustomDnsRules().then(() => {
     console.log("success");
 }).catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
 })
 ```
 
@@ -1943,7 +1943,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let netCon: connection.NetConnection = connection.createNetConnection();
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -1982,7 +1982,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let netCon: connection.NetConnection = connection.createNetConnection();
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2014,7 +2014,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // 订阅网络可用事件。调用register后，才能接收到此事件通知
@@ -2024,7 +2024,7 @@ netCon.on('netAvailable', (data: connection.NetHandle) => {
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2054,7 +2054,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // 订阅网络阻塞状态事件。调用register后，才能接收到此事件通知
@@ -2064,7 +2064,7 @@ netCon.on('netBlockStatusChange', (data: connection.NetBlockStatusInfo) => {
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2096,7 +2096,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // 订阅网络能力变化事件。调用register后，才能接收到此事件通知
@@ -2106,7 +2106,7 @@ netCon.on('netCapabilitiesChange', (data: connection.NetCapabilityInfo) => {
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2136,7 +2136,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // 订阅网络连接信息变化事件。调用register后，才能接收到此事件通知
@@ -2146,7 +2146,7 @@ netCon.on('netConnectionPropertiesChange', (data: connection.NetConnectionProper
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2178,7 +2178,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // 订阅网络丢失事件。调用register后，才能接收到此事件通知
@@ -2188,7 +2188,7 @@ netCon.on('netLost', (data: connection.NetHandle) => {
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2220,7 +2220,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // 订阅网络不可用事件。调用register后，才能接收到此事件通知
@@ -2230,7 +2230,7 @@ netCon.on('netUnavailable', () => {
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2297,7 +2297,7 @@ interface Data {
               port:8080,
               family:1} as socket.NetAddress, (error: Error) => {
       if (error) {
-        console.log('bind fail');
+        console.error('bind fail');
         return;
       }
       netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
@@ -2391,7 +2391,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
               port:8080,
               family:1} as socket.NetAddress, (error: Error) => {
       if (error) {
-        console.log('bind fail');
+        console.error('bind fail');
         return;
       }
       netHandle.bindSocket(tcp).then(() => {
@@ -2710,7 +2710,7 @@ wifiManager.addCandidateConfig(config,(error,networkId) => {
    bearerPrivateIdentifier: `${networkId}`
  });
  netConnectionWlan.register((error: BusinessError) => {
-   console.log(JSON.stringify(error));
+   console.error(JSON.stringify(error));
  });
 });
 ```
