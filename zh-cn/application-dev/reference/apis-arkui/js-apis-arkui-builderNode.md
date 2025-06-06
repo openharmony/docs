@@ -1483,9 +1483,9 @@ struct MyComponent {
 
 ![onAxisEvent](figures/onAxisEvent.gif)
 
-### 示例4（使用isDisposed()检验命令式节点是否有效）
+### 示例4（检验命令式节点是否有效）
 
-该示例演示了释放节点前后分别使用isDisposed接口验证节点的状态，释放节点前节点调用isDisposed接口返回true，释放节点后节点调用isDisposed接口返回false
+该示例演示了释放节点前后分别使用isDisposed接口验证节点的状态，释放节点前节点调用isDisposed接口返回true，释放节点后节点调用isDisposed接口返回false。
 
 ```ts
 import {
@@ -1589,4 +1589,5 @@ struct Index {
   }
 }
 ```
+
 ![isDisposed](figures/isDisposed.gif)
