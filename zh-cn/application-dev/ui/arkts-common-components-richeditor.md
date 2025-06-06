@@ -356,7 +356,6 @@ RichEditor(this.options)
         fontSize: 10
       }
     })
-    return true;
   })
   .width(300)
   .height(50)

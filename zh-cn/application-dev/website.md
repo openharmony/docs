@@ -819,6 +819,15 @@
           <!--Del-->
           - [卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
           <!--DelEnd-->
+        - 互动卡片开发
+          - [互动卡片概述](form/arkts-ui-liveform-overview.md)
+          - [趣味交互类型互动卡片开发指导](form/arkts-ui-liveform-funinteraction-development.md)
+          - 场景动效类型互动卡片
+            - [场景动效类型互动卡片概述](form/arkts-ui-liveform-sceneanimation-overview.md)
+            - [场景动效类型互动卡片开发指导](form/arkts-ui-liveform-sceneanimation-development.md)
+            <!--Del-->
+            - [场景动效类型互动卡片开发指导（系统应用）](form/arkts-ui-liveform-sceneanimation-development-sys.md)
+            <!--DelEnd-->
         - [开发基于JS UI的卡片](form/js-ui-widget-development.md)
       - [JS卡片开发指导（FA模型）](form/widget-development-fa.md)
     - IME Kit（输入法开发服务）<!--ime-kit-->
@@ -1564,6 +1573,8 @@
         - 图片接收<!--image-receiving-c-->
           - [使用Image_NativeModule完成图片接收](media/image/image-receiver-c.md)
           - [使用Image_NativeModule处理图像信息](media/image/image-info-c.md)
+      - Image Kit常见问题<!--image-faqs-->
+        - [如何处理HEIF图片](media/image/image-faqs/heif-adapter-faq.md)
       - 不再推荐使用<!--imagekit-not-recommended-->
         - 图片开发指导(依赖JS对象)(C/C++)<!--image-native-js-objects-->
           - [图片解码](media/image/image-decoding-native.md)

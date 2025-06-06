@@ -241,7 +241,7 @@
 
 5. 实现模糊消失动效。
 
-   模糊消失动效：由新模式预览流首帧回调[on('frameStart')](../../reference/apis-camera-kit/js-apis-camera.md#onframestart)触发，截图组件模糊到清晰，显示新预览流。
+   模糊消失动效：由新模式预览流首帧回调[on('frameStart')](../../reference/apis-camera-kit/arkts-apis-camera-PreviewOutput.md#onframestart)触发，截图组件模糊到清晰，显示新预览流。
 
    ```ts
    hideBlurAnim(): void {
@@ -426,7 +426,7 @@
    }
    ```
 
-   模糊消失动效触发：监听预览流首帧回调[on('frameStart')](../../reference/apis-camera-kit/js-apis-camera.md#onframestart)，更新StorageLink绑定frameStart的值，触发onFrameStart方法，开始动效。
+   模糊消失动效触发：监听预览流首帧回调[on('frameStart')](../../reference/apis-camera-kit/arkts-apis-camera-PreviewOutput.md#onframestart)，更新StorageLink绑定frameStart的值，触发onFrameStart方法，开始动效。
 
    ```ts
    onFrameStart(): void {
