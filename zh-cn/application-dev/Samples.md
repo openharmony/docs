@@ -4317,7 +4317,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 ##### 介绍
 
-本示例使用[@ohos.data.relationalStore](reference/apis-arkdata/js-apis-data-relationalStore.md) 接口和[@ohos.distributedHardware.deviceManager](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md) 接口展示了在eTS中分布式关系型数据库的使用，在增、删、改、查的基本操作外，还包括分布式数据库的数据同步同能。
+本示例使用[@ohos.data.relationalStore](reference/apis-arkdata/arkts-apis-data-relationalStore.md) 接口和[@ohos.distributedHardware.deviceManager](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md) 接口展示了在eTS中分布式关系型数据库的使用，在增、删、改、查的基本操作外，还包括分布式数据库的数据同步同能。
 
 ##### 使用
 
@@ -4330,7 +4330,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 ##### 基本原理
 
 + 数据库的增、删、改、查操作都在RdbModel中，:
-    + 数据库操作：使用[@ohos.data.relationalStore](reference/apis-arkdata/js-apis-data-relationalStore.md) 接口的getRdbStore获得一个相关的操作型关系数据库RdbStore，通过这个RdbStore调用相关接口进行增删改查，RdbStore.insert数据插入,RdbStore.delete数据删除，RdbStore.update更新数据，RdbStore.query根据条件查询数据;
+    + 数据库操作：使用[@ohos.data.relationalStore](reference/apis-arkdata/arkts-apis-data-relationalStore.md) 接口的getRdbStore获得一个相关的操作型关系数据库RdbStore，通过这个RdbStore调用相关接口进行增删改查，RdbStore.insert数据插入,RdbStore.delete数据删除，RdbStore.update更新数据，RdbStore.query根据条件查询数据;
     + 数据同步：RdbStore.on注册数据库观察者，使用RdbStore.obtainDistributedTableName根据本地表名获取指定远程设备的分布式表名，数据发生变动时通过RdbStore.sync同步数据，不需要用时删除指定观察者使用RdbStore.off。
 + 连接设备管理在RemoteDeviceModel中:
     + 设备同步：设备同步数据需要[ohos.permission.DISTRIBUTED_DATASYNC](security/AccessToken/permissions-for-all-user.md#ohospermissiondistributed_datasync) 权限，在页面渲染前申请权限,使用[@ohos.distributedDeviceManager](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md) 接口，首先通过createDeviceManager创建设备管理器实例，然后通过getTrustedDeviceListSync同步获取所有可信设备列表；
@@ -5172,7 +5172,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例使用[@ohos.bundle.launcherBundleManager](reference/apis-ability-kit/js-apis-launcherBundleManager-sys.md)模块接口，获取所有应用信息和给定包名获取应用信息，实现桌面展示所有安装的应用。使用[@ohos.bundle](reference/apis-ability-kit/js-apis-Bundle-sys.md)的getBundleInstaller接口获取到，调用uninstall接口实现应用卸载功能。使用[@ohos.app.form.formHost](reference/apis-form-kit/js-apis-app-form-formHost-sys.md)接口，获取应用卡片信息，使用FormComponent组件展示卡片内容，从而实现添加卡片到桌面的功能。使用关系型数据库[@ohos.data.relationalStore](reference/apis-arkdata/js-apis-data-relationalStore.md)接口，实现桌面数据持久化存储，存储应用的位置信息，卡片信息。使用[@ohos.application.missionManager](reference/apis-ability-kit/js-apis-application-missionManager-sys.md)接口，获取最近任务信息，并实现加锁、解锁、清理后台任务的功能。使用[@ohos.app.ability.ServiceExtensionAbility](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.ServiceExtensionAbility.d.ts)的startRecentAbility接口，拉起最近任务至前台显示，若应用Ability未启动时，则拉起新创建的应用Ability显示到前台。实现了一个简单桌面应用，概括为以下几点：
+本示例使用[@ohos.bundle.launcherBundleManager](reference/apis-ability-kit/js-apis-launcherBundleManager-sys.md)模块接口，获取所有应用信息和给定包名获取应用信息，实现桌面展示所有安装的应用。使用[@ohos.bundle](reference/apis-ability-kit/js-apis-Bundle-sys.md)的getBundleInstaller接口获取到，调用uninstall接口实现应用卸载功能。使用[@ohos.app.form.formHost](reference/apis-form-kit/js-apis-app-form-formHost-sys.md)接口，获取应用卡片信息，使用FormComponent组件展示卡片内容，从而实现添加卡片到桌面的功能。使用关系型数据库[@ohos.data.relationalStore](reference/apis-arkdata/arkts-apis-data-relationalStore.md)接口，实现桌面数据持久化存储，存储应用的位置信息，卡片信息。使用[@ohos.application.missionManager](reference/apis-ability-kit/js-apis-application-missionManager-sys.md)接口，获取最近任务信息，并实现加锁、解锁、清理后台任务的功能。使用[@ohos.app.ability.ServiceExtensionAbility](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.ServiceExtensionAbility.d.ts)的startRecentAbility接口，拉起最近任务至前台显示，若应用Ability未启动时，则拉起新创建的应用Ability显示到前台。实现了一个简单桌面应用，概括为以下几点：
 
 1.展示了系统安装的应用，实现点击启动、应用上滑弹出卡片、卡片添加到桌面、卡片移除功能。
 
@@ -5214,7 +5214,7 @@ return formInfo.FormState.READY }。
 
 * 桌面数据持久化存储功能模块
   * 使用关系型数据库rdb接口（系统能力：SystemCapability.DistributedDataManager.RelationalStore.Core），实现桌面数据持久化存储，存储应用的位置信息，卡片信息。
-  * 接口参考：[@ohos.data.relationalStore](reference/apis-arkdata/js-apis-data-relationalStore.md)
+  * 接口参考：[@ohos.data.relationalStore](reference/apis-arkdata/arkts-apis-data-relationalStore.md)
 
 * 加锁、解锁、清理后台任务功能模块
   * 使用missionManager模块接口（系统能力：SystemCapability.Ability.AbilityRuntime.Mission），获取最近任务信息，并实现加锁、解锁、清理后台任务的功能。

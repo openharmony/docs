@@ -43,7 +43,7 @@
 
 ## 接口说明
 
-以下是关系型数据库持久化功能的相关接口，大部分为异步接口。异步接口均有callback和Promise两种返回形式，下表均以callback形式为例，更多接口及使用方式请见[关系型数据库](../reference/apis-arkdata/js-apis-data-relationalStore.md)。
+以下是关系型数据库持久化功能的相关接口，大部分为异步接口。异步接口均有callback和Promise两种返回形式，下表均以callback形式为例，更多接口及使用方式请见[关系型数据库](../reference/apis-arkdata/arkts-apis-data-relationalStore.md)。
 
 | 接口名称 | 描述 | 
 | -------- | -------- |
@@ -389,7 +389,7 @@
    调用createTransaction方法创建事务对象并执行相应操作。
    支持配置的事务类型有DEFERRED、IMMEDIATE和EXCLUSIVE，默认为DEFERRED。
 
-   具体信息请参见[关系型数据库](../reference/apis-arkdata/js-apis-data-relationalStore.md#createtransaction14)。
+   具体信息请参见[关系型数据库](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#createtransaction14)。
 
    ```ts
    if (store != undefined) {
@@ -489,7 +489,7 @@
 
 7. 从备份数据库中恢复数据。关系型数据库支持两种方式：恢复手动备份数据和恢复自动备份数据（仅系统应用可用），具体可见[关系型数据库数据恢复](data-backup-and-restore.md#关系型数据库数据恢复)。
 
-   此处以调用[restore](../reference/apis-arkdata/js-apis-data-relationalStore.md#restore)接口恢复手动备份数据为例：
+   此处以调用[restore](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#restore)接口恢复手动备份数据为例：
 
    ```ts
    if (store !== undefined) {
