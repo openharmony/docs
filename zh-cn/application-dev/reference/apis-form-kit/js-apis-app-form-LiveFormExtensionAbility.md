@@ -104,4 +104,4 @@ export default class LiveFormExtAbility extends LiveFormExtensionAbility {
 | ------ | ------ | ---- | ---- | -------- |
 | formId | string | 否 | 否 | 卡片id。 |
 | rect | [formInfo.Rect](js-apis-app-form-formInfo.md#rect20) | 否 | 否 | 卡片位置和大小信息。 |
-| borderRadius | number | 否 | 否 | 卡片圆角半径信息。 |
+| borderRadius | number | 否 | 否 | 卡片圆角半径信息。取值大于0，单位vp。 |
