@@ -22,7 +22,7 @@
 |vendor|标识对应用开发厂商的描述。多个模块安装更新时，校验entry模块的一致性。该字段来源[app.json5配置文件](./app-configuration-file.md)中vendor字段。|否|否|
 |versionCode|标识应用的版本号，取值为小于2^31次方的正整数。此数字仅用于确定某个版本是否比另一个版本更新，数值越大表示版本越高。开发者可以将该值设置为任何正整数，但是必须确保应用的新版本都使用比旧版本更大的值。该字段来源[app.json5配置文件](./app-configuration-file.md)中versionCode字段。|是|是|
 |versionName|标识向用户展示的应用版本号，以entry为主，不影响应用运行。该字段来源[app.json5配置文件](./app-configuration-file.md)。|否|否|
-|minCompatibleVersionCode|标识应用能够兼容的最低历史版本号，多模块安装更新时，保留最大值。该字段来源[app.json5配置文件](./app-configuration-file.md)中versionName字段。|否|否|
+|minCompatibleVersionCode|标识应用能够兼容的最低历史版本号，多模块安装更新时，保留最大值。该字段来源[app.json5配置文件](./app-configuration-file.md)中minCompatibleVersionCode字段。|否|否|
 |targetAPIVersion|标识应用运行需要的API目标版本，多模块安装更新时，保留最大值。该字段来源[app.json5配置文件](./app-configuration-file.md)中targetAPIVersion字段。|否|否|
 |apiReleaseType|标识编译HAP的SDK发布类型。增量安装时，未检验一致性。该字段来源[app.json5配置文件](./app-configuration-file.md)中apiReleaseType字段。|否|是|
 |compatibleVersion|标识应用运行需要最小的SDK版本，多模块安装更新时，保留最大值。|否|否|
@@ -35,4 +35,4 @@
 |installationFree|标识是否支持免安装。该字段来源[module.json5配置文件](./module-configuration-file.md)中installationFree字段。|是|是|
 |debug|标识是否可调式（IDE断点调测）。该字段来源[app.json5配置文件](./app-configuration-file.md)中debug字段。|是|否|
 |moduleType|标识应用包的类型，应用中单个模块只允许配置一个。该字段来源[module.json5配置文件](./module-configuration-file.md)中type字段。|是，同版本entry类型的moduleName不能修改|是|
-|nativeLibraryPath|如果不是所有的module都更新，需要HAP中包含SO的文件夹路径一致（都存在SO时），模拟器还是会强校验SO类型。|否|否|
+|nativeLibraryPath|标识SO所在的目录名称。如果不是所有的module都更新，需要HAP中包含SO的文件夹路径一致（都存在SO时），模拟器会强校验SO的目录名称。|否|否|

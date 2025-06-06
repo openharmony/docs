@@ -160,7 +160,7 @@
     }
     ```
 
-5. 最后，需要在EntryAbility.ets文件中的[onNewWant()函数](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)中调用步骤4的goToSpecifyPage()方法，并将want作为参数传入。
+5. 最后，需要在EntryAbility.ets文件中的[onNewWant()函数](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onnewwant)中调用步骤4的goToSpecifyPage()方法，并将want作为参数传入。
 
     ```ts
     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
