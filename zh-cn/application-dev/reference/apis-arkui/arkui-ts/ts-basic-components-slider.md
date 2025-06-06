@@ -1152,7 +1152,7 @@ struct SliderExample {
 ![slider_4](figures/slider_crown.gif)
 
 
-### 示例4（滑动条设置前后缀内容）
+### 示例5（滑动条设置前后缀内容）
 
 该示例实现了Slider组件通过prefix、suffix属性设置滑动条的前后缀内容，定制其内容区以及无障碍属性。设置无障碍属性后，屏幕阅读器将以设置的无障碍内容进行朗读。
 
@@ -1192,6 +1192,10 @@ struct SliderExample {
   private sufNode3: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.suf));
   private preNode4: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.pre));
   private sufNode4: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.suf));
+  private preNode5: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.pre));
+  private sufNode5: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.suf));
+  private preNode6: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.pre));
+  private sufNode6: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.suf));
 
   build() {
     Column({ space: 8 }) {
@@ -1204,18 +1208,8 @@ struct SliderExample {
           style: SliderStyle.OutSet
         })
           .showTips(true)
-          .prefix(this.preNode1, {
-            accessibilityText: 'prefixText',
-            accessibilityDescription: 'prefixDescription',
-            accessibilityLevel: 'auto',
-            accessibilityGroup: true
-          })
-          .suffix(this.sufNode1, {
-            accessibilityText: 'suffixText',
-            accessibilityDescription: 'suffixDescription',
-            accessibilityLevel: 'auto',
-            accessibilityGroup: true
-          })
+          .prefix(this.preNode1)
+          .suffix(this.sufNode1)
       }
       .width('80%')
 
@@ -1256,18 +1250,8 @@ struct SliderExample {
           .selectedColor('#4169E1')
           .showTips(true)
           .trackThickness(36)
-          .prefix(this.preNode2, {
-            accessibilityText: 'prefixText',
-            accessibilityDescription: 'prefixDescription',
-            accessibilityLevel: 'auto',
-            accessibilityGroup: true
-          })
-          .suffix(this.sufNode2, {
-            accessibilityText: 'suffixText',
-            accessibilityDescription: 'suffixDescription',
-            accessibilityLevel: 'auto',
-            accessibilityGroup: true
-          })
+          .prefix(this.preNode2)
+          .suffix(this.sufNode2)
       }
       .width('80%')
 
@@ -1286,7 +1270,7 @@ struct SliderExample {
           .prefix(this.preNode4)
       }
       .width('80%')
-      
+
       Row() {
         Slider({
           value: 50,
@@ -1302,9 +1286,85 @@ struct SliderExample {
           .suffix(this.sufNode4)
       }
       .width('80%')
+
+      Text('slider Show Step').fontSize(9).fontColor(0xCCCCCC).width('90%').margin(15)
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          step:10,
+          style: SliderStyle.InSet
+        })
+          .blockColor('#191970')
+          .trackColor('#ADD8E6')
+          .selectedColor('#4169E1')
+          .showTips(true)
+          .trackThickness(36)
+          .showSteps(true)
+          .prefix(this.preNode5, {
+            accessibilityText: 'prefixText',
+            accessibilityDescription: 'prefixDescription',
+            accessibilityLevel: 'auto',
+            accessibilityGroup: true
+          })
+          .suffix(this.sufNode5, {
+            accessibilityText: 'suffixText',
+            accessibilityDescription: 'suffixDescription',
+            accessibilityLevel: 'auto',
+            accessibilityGroup: true
+          })
+      }
+      .width('80%')
+
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          step:10,
+          style: SliderStyle.InSet
+        })
+          .blockColor('#191970')
+          .trackColor('#ADD8E6')
+          .selectedColor('#4169E1')
+          .showTips(true)
+          .trackThickness(36)
+          .showSteps(true)
+          .prefix(this.preNode6, {
+            accessibilityText: 'prefixText',
+            accessibilityDescription: 'prefixDescription',
+            accessibilityLevel: 'auto',
+            accessibilityGroup: true
+          })
+      }
+      .width('80%')
+      
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          step:10,
+          style: SliderStyle.InSet
+        })
+          .blockColor('#191970')
+          .trackColor('#ADD8E6')
+          .selectedColor('#4169E1')
+          .showTips(true)
+          .trackThickness(36)
+          .showSteps(true)
+          .suffix(this.sufNode6, {
+            accessibilityText: 'suffixText',
+            accessibilityDescription: 'suffixDescription',
+            accessibilityLevel: 'auto',
+            accessibilityGroup: true
+          })
+      }
+      .width('80%')
     }.width('100%')
   }
 }
 ```
 
-![slider_4](figures/slider_4.jpeg)
+![slider_5](figures/slider_5.jpeg)
