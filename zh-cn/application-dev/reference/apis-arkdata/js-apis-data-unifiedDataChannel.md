@@ -1374,7 +1374,7 @@ type DataProgressListener = (progressInfo: ProgressInfo, data: UnifiedData | nul
 | 名称                   | 类型                                              | 必填 | 说明                                                                                                                                                 |
 |----------------------|-------------------------------------------------| ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
 | types    | Set<string>       | 否 | 表示数据类型集合。                                                                                                                         |
-| recordCount | [DataProgressListener](#dataprogresslistener15) | 是 | 表示期望或可提供的最大数据记录数。                              |
+| recordCount | number | 否 | 表示期望或可提供的最大数据记录数。                              |
 
 ## DataLoadHandler<sup>20+</sup>
 
@@ -1404,7 +1404,7 @@ type DataLoadHandler = (acceptableInfo?: DataLoadInfo) => UnifiedData | null
 
 | 名称                   | 类型                                              | 必填 | 说明                                                                                                                                                 |
 |----------------------|-------------------------------------------------| ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
-| loadHandler    | [DataLoadHandler](#dataloadhandler20)       | 否 | 表示用于延迟加载数据的处理函数。             |
+| loadHandler    | [DataLoadHandler](#dataloadhandler20)       | 是 | 表示用于延迟加载数据的处理函数。             |
 | dataLoadInfo | [DataLoadInfo](#dataloadinfo20) | 是 | 用于描述当前发送方可生成的数据类型及数量信息。              |
 
 ## unifiedDataChannel.insertData
