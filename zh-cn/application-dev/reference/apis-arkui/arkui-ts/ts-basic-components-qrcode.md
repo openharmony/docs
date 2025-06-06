@@ -94,6 +94,8 @@ contentOpacity(value: number | Resource)
 
 ## 示例
 
+### 示例1（设置颜色、背景颜色、不透明度）
+
 该示例展示了QRCode组件的基本使用方法，通过color属性设置二维码颜色、backgroundColor属性设置二维码背景颜色、contentOpacity属性设置二维码不透明度。
 
 ```ts
@@ -125,3 +127,28 @@ struct QRCodeExample {
 ```
 
 ![qrcode](figures/qrcode.png)
+
+### 示例2（设置背景颜色为透明）
+
+该示例通过backgroundColor属性设置二维码背景颜色为透明，从而实现二维码内容与背景融合。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct QRCodeExample {
+  private value: string = 'hello world';
+
+  build() {
+    Column({ space: 5 }) {
+      RelativeContainer() {
+        Image($r('app.media.ocean'))
+        // 设置二维码背景色为透明
+        QRCode(this.value).width(200).height(200).backgroundColor("#00ffffff")
+      }.width(200).height(200)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![qrcode_transparent](figures/qrcode_transparent.png)
