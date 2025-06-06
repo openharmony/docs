@@ -251,6 +251,11 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 |
 | -------- | -------- |
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode)[OH_Drawing_CanvasDrawRecordCmdNesting](#oh_drawing_canvasdrawrecordcmdnesting) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, [OH_Drawing_RecordCmd](#oh_drawing_recordcmd) \*recordCmd) | 用于绘制录制指令对象，支持嵌套。<br/>本接口支持[OH_Drawing_RecordCmdUtilsBeginRecording](#oh_drawing_recordcmdutilsbeginrecording)接口生成的画布对象作为入参，嵌套调用。不建议多层嵌套，会影响性能。 | 
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode)[OH_Drawing_FontGetSpacing](#oh_drawing_fontgetspacing) (const [OH_Drawing_Font](#oh_drawing_font) \*font, float \*spacing) | 用于获取推荐的字型行间距。  | 
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode)[OH_Drawing_FontGetPos](#oh_drawing_fontgetpos) (const [OH_Drawing_Font](#oh_drawing_font) \*font, const uint16_t \*glyphs, int count, const [OH_Drawing_Point](#oh_drawing_point) \*origin, [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*points) | 用于从指定的原点开始，获取每个字形的相对位置。  | 
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode)[OH_Drawing_FontGetWidthsBounds](#oh_drawing_fontgetwidthsbounds) (const [OH_Drawing_Font](#oh_drawing_font) \*font, const uint16_t \*glyphs, int count, const [OH_Drawing_Brush](#oh_drawing_brush) \*brush, const [OH_Drawing_Pen](#oh_drawing_pen) \*pen, float \*widths, [OH_Drawing_Array](#oh_drawing_array) \*bounds) | 用于获取字形数组中每个字形的宽度和边界框。  | 
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode)[OH_Drawing_FontMeasureTextWithBrushOrPen](#oh_drawing_fontmeasuretextwithbrushorpen) (const [OH_Drawing_Font](#oh_drawing_font) \*font, const void \*text, size_t byteLength, [OH_Drawing_TextEncoding](#oh_drawing_textencoding) encoding, const [OH_Drawing_Brush](#oh_drawing_brush) \*brush, const [OH_Drawing_Pen](#oh_drawing_pen) \*pen, [OH_Drawing_Rect](#oh_drawing_rect) \*bounds, float \*textWidth) | 使用画刷或画笔获取文本的宽度和边界框。  | 
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_PathGetSegment](#oh_drawing_pathgetsegment) ([OH_Drawing_Path](#oh_drawing_path) \*path, bool forceClosed, float start, float stop, bool startWithMoveTo, [OH_Drawing_Path](#oh_drawing_path) \*dst, bool \*result) | 截取路径的片段并追加到目标路径上。  | 
 | [OH_Drawing_PathEffect](#oh_drawing_patheffect) \* [OH_Drawing_CreateSumPathEffect](#oh_drawing_createsumpatheffect) ([OH_Drawing_PathEffect](#oh_drawing_patheffect) \*firstPathEffect, [OH_Drawing_PathEffect](#oh_drawing_patheffect) \*secondPathEffect) | 创建一个使用两种路径效果分别生效后叠加的路径效果对象。  |
 | [OH_Drawing_PathEffect](#oh_drawing_patheffect) \* [OH_Drawing_CreatePathDashEffect](#oh_drawing_createpathdasheffect) (const [OH_Drawing_Path](#oh_drawing_path) \*path, float advance, float phase, [OH_Drawing_PathDashStyle](#oh_drawing_pathdashstyle) type) | 创建一个虚线效果的路径效果对象。  |
@@ -3188,6 +3193,171 @@ enum OH_Drawing_WordBreakType
 
 
 ## 函数说明
+
+### OH_Drawing_CanvasDrawRecordCmdNesting()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_CanvasDrawRecordCmdNesting (OH_Drawing_Canvas* canvas, OH_Drawing_RecordCmd* recordCmd )
+```
+
+**描述**
+
+用于绘制录制指令对象，支持嵌套。
+
+本接口支持[OH_Drawing_RecordCmdUtilsBeginRecording](#oh_drawing_recordcmdutilsbeginrecording)接口生成的画布对象作为入参，嵌套调用。不建议多层嵌套，会影响性能。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 19
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| canvas | 指向画布对象[OH_Drawing_Canvas](#oh_drawing_canvas)的指针，仅支持录制类型画布。  | 
+| recordCmd | 指向录制指令对象[OH_Drawing_RecordCmd](#oh_drawing_recordcmd)的指针。  | 
+
+**返回：**
+
+函数返回执行操作码。
+
+返回OH_DRAWING_SUCCESS，表示执行成功。
+
+返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数canvas或者recordCmd为空。
+
+
+### OH_Drawing_FontGetSpacing()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontGetSpacing (const OH_Drawing_Font* font, float* spacing )
+```
+
+**描述**
+
+用于获取推荐的字型行间距。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 19
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。  | 
+| spacing | 推荐的字型行间距，作为返回值返回给调用者。  | 
+
+**返回：**
+
+函数返回执行操作码。
+
+返回OH_DRAWING_SUCCESS，表示执行成功。
+
+返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数font、spacing至少有一个为空。
+
+
+### OH_Drawing_FontGetPos()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontGetPos (const OH_Drawing_Font* font, const uint16_t* glyphs, int count, const OH_Drawing_Point* origin, OH_Drawing_Point2D* points )
+```
+
+**描述**
+
+用于从指定的原点开始，获取每个字形的相对位置。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 19
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。  | 
+| glyphs | 字形索引存储首地址。  | 
+| count | 字形索引的数量，大小与glyphs数组大小保持一致。  | 
+| origin | 指向第一个字形的位置，可以为NULL，为NULL默认从(0, 0)开始。  | 
+| points | 字形相对位置存储首地址，用于存储得到的字形相对位置，作为返回值返回给调用者。  | 
+
+**返回：**
+
+函数返回执行操作码。
+
+返回OH_DRAWING_SUCCESS，表示执行成功。
+
+返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数font、glyphs、points至少有一个为空，或者count不大于0。
+
+
+### OH_Drawing_FontGetWidthsBounds()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontGetWidthsBounds (const OH_Drawing_Font* font, const uint16_t* glyphs, int count, const OH_Drawing_Brush* brush, const OH_Drawing_Pen* pen, float* widths, OH_Drawing_Array* bounds )
+```
+
+**描述**
+
+用于获取字形数组中每个字形的宽度和边界框。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 19
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。  | 
+| glyphs | 字形索引存储首地址。  | 
+| count | 字形索引的数量，大小与glyphs数组大小保持一致。  | 
+| brush | 指向画刷对象[OH_Drawing_Brush](#oh_drawing_brush)的指针。  | 
+| pen | 指向画笔对象[OH_Drawing_Pen](#oh_drawing_pen)的指针。  | 
+| widths | 字形宽度存储首地址，用于存储得到的字形宽度，作为返回值返回给调用者。  | 
+| bounds | 字形边界框存储首地址，用于存储得到的字形边界框。  | 
+
+**返回：**
+
+函数返回执行操作码。
+
+返回OH_DRAWING_SUCCESS，表示执行成功。
+
+返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数font、glyphs至少有一个为空，或者count不大于0，或者brush和pen同时存在，或者widths和bounds同时为空。
+
+
+### OH_Drawing_FontMeasureTextWithBrushOrPen()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontMeasureTextWithBrushOrPen (const OH_Drawing_Font* font, const void* text, size_t byteLength, OH_Drawing_TextEncoding encoding, const OH_Drawing_Brush* brush, const OH_Drawing_Pen* pen, OH_Drawing_Rect* bounds, float* textWidth )
+```
+
+**描述**
+
+使用画刷或画笔获取文本的宽度和边界框。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 19
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。  | 
+| text | 指向文本的指针。  | 
+| byteLength | 表示以字节为单位的文本长度。  | 
+| encoding | 文本编码类型。  | 
+| brush | 指向画刷对象[OH_Drawing_Brush](#oh_drawing_brush)的指针。  | 
+| pen | 指向画笔对象[OH_Drawing_Pen](#oh_drawing_pen)的指针。  | 
+| bounds | 用于承载获取的边界框，可以为NULL。  | 
+| textWidth | 表示文本宽度。  | 
+
+**返回：**
+
+函数返回执行操作码。
+
+返回OH_DRAWING_SUCCESS，表示执行成功。
+
+返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数font、text、textWidth至少有一个为空，或者byteLength为0，或者brush和pen同时存在。
 
 ### OH_Drawing_PathGetSegment()
 
