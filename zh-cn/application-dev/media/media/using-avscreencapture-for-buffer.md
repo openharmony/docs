@@ -100,7 +100,17 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_SetCaptureContentChangedCallback(capture, OnCaptureContentChanged, userData);
     ```
 
-7. 调用StartScreenCapture()方法开始进行屏幕录制。
+7. 设置屏幕录制隐私窗口屏蔽模式。（可选）
+
+    value值设为0，表示全屏屏蔽模式。value值设为1，表示窗口屏蔽模式。默认为全屏屏蔽模式。
+
+    ```c++
+    int value = 0;
+    OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
+    OH_AVScreenCapture_StrategyForPrivacyMaskMode(strategy, value);
+    OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
+
+8. 调用StartScreenCapture()方法开始进行屏幕录制。
 
     ```c++
     bool IsCaptureStreamRunning = true;
@@ -113,13 +123,13 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_StartScreenCaptureWithSurface(capture, window);
     ```
 
-8. 调用StopScreenCapture()方法停止录制，具体设计可参考[详细说明](#详细说明)。
+9. 调用StopScreenCapture()方法停止录制，具体设计可参考[详细说明](#详细说明)。
 
     ```c++
     OH_AVScreenCapture_StopScreenCapture(capture);
     ```
 
-9. 调用Release()方法销毁实例，释放资源。
+10. 调用Release()方法销毁实例，释放资源。
 
     ```c++
     OH_AVScreenCapture_Release(capture);
@@ -563,6 +573,12 @@ static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
     // 可选，设置录屏内容变化回调。
     OH_Rect* area = nullptr;
     OH_AVScreenCapture_SetCaptureContentChangedCallback(capture, OnCaptureContentChanged, area);
+
+    // 可选，设置隐私窗口屏蔽模式。
+    int value = 0;
+    OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
+    OH_AVScreenCapture_StrategyForPrivacyMaskMode(strategy, value);
+    OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
 
     // 可选 设置光标显示开关，开始录屏前后均可调用。
     OH_AVScreenCapture_ShowCursor(capture, false);
