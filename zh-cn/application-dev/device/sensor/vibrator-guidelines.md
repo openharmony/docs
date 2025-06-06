@@ -180,8 +180,7 @@ Json文件共包含3个属性。
 
   try {
     const vibratorParam: vibrator.VibratorInfoParam = {
-      deviceId: 1,
-      vibratorId: 2
+      deviceId: 1    // deviceid 需要是查询出来真实存在的设备
     }
     const vibratorInfoList: vibrator.VibratorInfo[] = vibrator.getVibratorInfoSync(vibratorParam);
     console.log(`vibratorInfoList: ${JSON.stringify(vibratorInfoList)}`);
@@ -382,6 +381,29 @@ Json文件共包含3个属性。
      console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
    }
    ```
+
+   **方式三** 停止指定设备的振动：
+
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+  
+   const vibratorInfoParam: vibrator.VibratorInfoParam = {
+     deviceId: 1   // deviceid 需要是查询出来真实存在的设备
+   }
+   try {
+     vibrator.stopVibration(vibratorInfoParam).then(() => {
+       console.info('Succeed in stopping vibration');
+     }, (error: BusinessError) => {
+       console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+     });
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
+
+
 5. 动态马达状态变化监听
 
    注册监听

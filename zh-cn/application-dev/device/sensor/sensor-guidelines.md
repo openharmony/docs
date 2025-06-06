@@ -70,17 +70,33 @@
 
    通过on()接口，实现对传感器的持续监听，传感器上报周期interval设置为100000000纳秒。
 
-   ```ts    
-   sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
-        console.info("Succeeded in obtaining data. x: " + data.x + " y: " + data.y + " z: " + data.z);
-   }, { interval: 100000000 });
+   ```ts
+   import { sensor } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
+   try { 
+     sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
+          console.info("Succeeded in obtaining data. x: " + data.x + " y: " + data.y + " z: " + data.z);
+     }, { interval: 100000000 });
+   } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error(`Failed to get sensorList. Code: ${e.code}, message: ${e.message}`);
+   }
    ```
 
    第三个参数还可以传入SensorInfoParam，传递deviceId、sensorIndex
-   ```ts    
-   sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
-        console.info("Succeeded in obtaining data. x: " + data.x + " y: " + data.y + " z: " + data.z);
-   }, { interval: 100000000, sensorInfoParam: { deviceId: 1, sensorIndex: 3 } });
+   ```ts 
+   import { sensor } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+    
+   try {
+     sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
+          console.info("Succeeded in obtaining data. x: " + data.x + " y: " + data.y + " z: " + data.z);
+     }, { interval: 100000000, sensorInfoParam: { deviceId: 1, sensorIndex: 3 } });
+   } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error(`Failed to get sensorList. Code: ${e.code}, message: ${e.message}`);
+   }
    ```
 
     ![输入图片说明](figures/002.png)
@@ -107,7 +123,7 @@
     sensor.off(sensor.SensorId.ACCELEROMETER, { deviceId: 1, sensorIndex: 3 });
     ```
 
-6. 传感器状态的监听
+6. 动态传感器状态的监听
 
     注册监听, SensorStatusEvent 会返回事件时间戳、传感器ID、传感器索引、是否在线、设备id、设备名称等值。
     ```ts
@@ -120,5 +136,6 @@
 
     取消监听
     ```ts
+    // 请在订阅后在使用此接口取消订阅
     sensor.off('sensorStatusChange');
     ```
