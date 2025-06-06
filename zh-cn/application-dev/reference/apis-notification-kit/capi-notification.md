@@ -1,9 +1,17 @@
 # Notification
 
 
-## 概述
+## 定义
 
 Notification向应用提供通知服务的能力。
+
+## 功能
+
+该模块向应用提供通知服务的capi接口。
+
+## 使用场景
+
+查询当前应用通知使能状态等。
 
 **系统能力：** SystemCapability.Notification.Notification
 
