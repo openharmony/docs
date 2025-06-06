@@ -1780,3 +1780,88 @@ struct Index {
 ```
 
 ![matchTextDirection](figures/matchTextDirection.png)
+
+### 示例20（设置图像内容的显示方向）
+
+该示例通过[orientation](#orientation14)属性，设置图像内容的显示方向。
+
+```ts
+@Entry
+@Component
+struct OrientationExample {
+  build() {
+    Column() {
+      Row({ space: 25 }) {
+        Column() {
+          Text('AUTO')
+          Image($r('app.media.hello'))
+            .width(125).height(125)
+            .orientation(ImageRotateOrientation.AUTO)
+        }
+
+        Column() {
+          Text('UP')
+          Image($r('app.media.hello'))
+            .width(125).height(125)
+            .orientation(ImageRotateOrientation.UP)
+        }
+
+        Column() {
+          Text('RIGHT')
+          Image($r('app.media.hello'))
+            .width(125).height(125)
+            .orientation(ImageRotateOrientation.RIGHT)
+        }
+      }
+
+      Row({ space: 25 }) {
+        Column() {
+          Text('DOWN')
+          Image($r('app.media.hello'))
+            .width(125).height(125)
+            .orientation(ImageRotateOrientation.DOWN)
+        }
+
+        Column() {
+          Text('LEFT')
+          Image($r('app.media.hello'))
+            .width(125).height(125)
+            .orientation(ImageRotateOrientation.LEFT)
+        }
+
+        Column() {
+          Text('UP_MIRRORED')
+          Image($r('app.media.hello'))
+            .width(125).height(125)
+            .orientation(ImageRotateOrientation.UP_MIRRORED)
+        }
+      }
+
+      Row({ space: 15 }) {
+        Column() {
+          Text('RIGHT_MIRRORED')
+          Image($r('app.media.hello'))
+            .width(125).height(125)
+            .orientation(ImageRotateOrientation.RIGHT_MIRRORED)
+        }
+
+        Column() {
+          Text('DOWN_MIRRORED')
+          Image($r('app.media.hello'))
+            .width(125).height(125)
+            .orientation(ImageRotateOrientation.DOWN_MIRRORED)
+        }
+
+        Column() {
+          Text('LEFT_MIRRORED')
+          Image($r('app.media.hello'))
+            .width(125).height(125)
+            .orientation(ImageRotateOrientation.LEFT_MIRRORED)
+        }
+      }
+    }
+  }
+}
+```
+
+![matchTextDirection](figures/orientation.png)
