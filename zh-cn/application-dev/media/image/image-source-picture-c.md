@@ -22,16 +22,19 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
 
 在创建ImageSource实例后，进行指定属性值的获取和修改，通过解码参数创建PixelMap对象，获取图像帧数等操作。
 
-   ```c++
-
-    #include "imagepicture_native.h"
-    #include "common/log_common.h"
+    ```c++
+    #include <hilog/log.h>
     #include <bits/alltypes.h>
     #include <unistd.h>
     #include <sys/types.h>
     #include <sys/stat.h>
     #include <fcntl.h>
     #include <sstream>
+    #include <multimedia/image_framework/image/image_native.h>
+    #include <multimedia/image_framework/image/image_packer_native.h>
+    #include <multimedia/image_framework/image/image_source_native.h>
+    #include <multimedia/image_framework/image/picture_native.h>
+    #include <multimedia/image_framework/image/pixelmap_native.h>
 
     #define AUTO 0
     #define SDR 1
@@ -183,4 +186,4 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
 
         return result;
     }
-   ```
+    ```

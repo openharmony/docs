@@ -1,6 +1,6 @@
 # 图片解码
 
-图片解码指将所支持格式的图片文件解码成统一的[PixelMap](image-overview.md)，以便在应用或系统中进行图片显示或[图片处理](image-transformation.md)。当前支持的图片文件格式包括JPEG、PNG、GIF、WebP、BMP、SVG、ICO、DNG、HEIF（不同硬件设备支持情况不同）。
+将所支持格式的图片文件解码成PixelMap，以便在应用或系统中进行图片显示或[图片处理](image-transformation.md)。当前支持的图片文件格式包括JPEG、PNG、GIF、WebP、BMP、SVG、ICO、DNG、HEIF（不同硬件设备支持情况不同）。
 
 ## 开发步骤
 
@@ -49,16 +49,18 @@ EXTERN_C_END
 3. 打开src\main\ets\pages\index.ets，导入"libentry.so（根据工程名生成）"，调用Native接口，传入JS的资源对象。示例如下：
 
     ```js
-    import testNapi from 'libentry.so'
+    import testNapi from 'libentry.so';
     import { image } from '@kit.ImageKit';
-
+    import { common } from '@kit.AbilityKit';
     @Entry
     @Component
     struct Index {
       @State pixelMap : PixelMap | undefined = undefined;
       aboutToAppear() {
+         // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+         let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
          // 调用自定义的getSyncPixelMap接口，获取pixelMap。
-         this.pixelMap = testNapi.getSyncPixelMap(getContext(this).resourceManager, "example.jpg")
+         this.pixelMap = testNapi.getSyncPixelMap(context.resourceManager, "example.jpg");
       }
 
       build() {
@@ -72,7 +74,7 @@ EXTERN_C_END
          }
          .height('100%')
       }
-   }
+    }
     ```
 
 ### Native接口调用
@@ -83,7 +85,7 @@ EXTERN_C_END
 
 **添加引用文件**
 
-   ```c++
+      ```c++
       // 引入图片框架、raw文件、raw文件管理和日志打印头文件。
       #include <cstdlib>
       #include <cstring>
@@ -169,11 +171,11 @@ EXTERN_C_END
          OH_ResourceManager_ReleaseNativeResourceManager(mNativeResMgr);
          return nullptr;
       }
-   ```
+      ```
 
 图片框架支持增量式解码，使用方法如下：
 
-   ```c++
+      ```c++
       // 引入图片框架、raw文件、raw文件管理和日志打印头文件。
       #include <cstdlib>
       #include <cstring>
@@ -283,4 +285,4 @@ EXTERN_C_END
          OH_ResourceManager_ReleaseNativeResourceManager(mNativeResMgr);
          return nullptr;
       }
-   ```
+      ```
