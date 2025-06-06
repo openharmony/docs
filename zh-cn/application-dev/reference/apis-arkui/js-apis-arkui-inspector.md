@@ -83,7 +83,7 @@ off(type: 'layout', callback?: () => void): void
 | 参数名   | 类型   | 必填 | 说明 |
 | -------- | ------ | ---- | -------------------------------------------- |
 | type     | string | 是   | 必须填写字符串'layout'、'draw'或'drawChildren'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。<br>drawChildren: 子组件绘制送显完成。|
-| callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。|
+| callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和[on](#on)方法中的callback为相同对象时才能取消回调成功。|
 
 ### on
 
@@ -117,13 +117,13 @@ off(type: 'draw', callback?: () => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 必须填写字符串'layout'、'draw'或'drawChildren'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。<br>drawChildren: 子组件绘制送显完成。|
-| callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和on方法中的callback为相同对象时才能取消回调成功。 |
+| callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和[on](#on-1)方法中的callback为相同对象时才能取消回调成功。 |
 
 ### on<sup>20<sup>
 
 on(type: 'drawChildren',  callback: Callback): void
 
-通过句柄向对应的查询条件注册回调，当组件绘制送显完成时会触发该回调。
+通过句柄向对应的查询条件注册回调，当组件绘制送显完成时会触发该回调。如果组件树包含多个[ComponentObserver](#componentobserver)句柄，只有在最顶层的句柄注册drawChildren事件，回调函数才能生效。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -151,7 +151,7 @@ off(type: 'drawChildren', callback: Callback): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 必须填写字符串'layout'、'draw'或'drawChildren'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。<br>drawChildren: 子组件绘制送显完成。|
-| callback | Callback   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和on方法中的callback为相同对象时才能取消回调成功。 |
+| callback | Callback   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和[on](#on20)方法中的callback为相同对象时才能取消回调成功。 |
 
 **示例：**
 

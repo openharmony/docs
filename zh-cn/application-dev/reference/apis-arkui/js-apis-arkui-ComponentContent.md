@@ -1,6 +1,6 @@
 # ComponentContent
 
-ComponentContent表示组件内容的实体封装，其对象支持在非UI组件中创建与传递，便于开发者对弹窗类组件进行解耦封装。ComponentContent底层使用了BuilderNode，相关使用规格参考[BuilderNode](js-apis-arkui-builderNode.md)。
+ComponentContent表示组件内容的实体封装，其对象支持在非UI组件中创建与传递，便于开发者对弹窗类组件进行解耦封装。其底层使用了BuilderNode，具体使用规格参考[BuilderNode](js-apis-arkui-builderNode.md)。
 
 > **说明：**
 >
@@ -31,7 +31,7 @@ ComponentContent的构造函数。
 
 | 参数名    | 类型                                      | 必填 | 说明                               |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
-| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需要的UI上下文。 |
 | builder  | [WrappedBuilder\<[]>](../../ui/state-management/arkts-wrapBuilder.md) | 是   |   封装不带参builder函数的WrappedBuilder对象。 |
 
 ### constructor
@@ -480,7 +480,7 @@ updateConfiguration(): void
 
 > **说明：**
 >
-> updateConfiguration接口功能为通知对象更新，更新所使用的系统环境由当前的系统环境变化。
+> updateConfiguration接口用于通知对象更新当前的系统环境变化。
 
 **示例：**
 ```ts

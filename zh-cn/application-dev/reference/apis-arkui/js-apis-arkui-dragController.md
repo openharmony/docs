@@ -439,6 +439,12 @@ startDrag(): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
 | 错误码ID | 错误信息      |
@@ -953,3 +959,90 @@ struct DragControllerPage {
 | -------- | -- | ------------------------------------------------------------ |
 | WAITING   | 0 | 应用准备数据中，无法发起拖拽。 |
 | READY | 1 | 应用数据准备完成，可以发起拖拽。 |
+
+## DragSpringLoadingState<sup>20+</sup>
+
+定义拖拽的悬停检测状态的枚举类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+
+| 名称 | 说明                                                          |
+| ------ | ------------------------------------------------------------ |
+| BEGIN  | 拖拽进入组件范围静止一段时间，被识别被悬停状态。                  |
+| UPDATE | 拖拽已处于悬停状态，如果继续静止会定期触发UPDATE通知，以检查悬停状态。 |
+| END    | 如果最后一次UPDATE通知后拖拽继续静止会进入END，整个悬停检测结束。进入END后拖拽需要移出组件范围后再次进入组件或移入组件内子组件才会重新开始悬停检测。 |
+| CANCEL | 拖拽进入BEGIN后，在手指/鼠标抬起、切换窗口、息屏、移出组件范围、移入组件内子组件或组件内移动超过检测阈值等场景会触发CANCEL通知，悬停检测中断。 |
+
+## DragSpringLoadingConfiguration<sup>20+</sup>
+
+定义拖拽悬停检测的配置参数的接口。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                 | 类型   | 必填 | 说明                                   |
+| :--------------------- | ------ | ---- | ---------------------------------------------------- |
+| stillTimeLimit         | number | 否   | 进入悬停检测BEGIN状态前保持静止的时间，取值范围为自然数，默认值500ms，输入负整数取默认值。 |
+| updateInterval         | number | 否   | 进入悬停检测状态后，更新通知的间隔，取值范围为自然数，默认值100ms，输入负整数取默认值。    |
+| updateNotifyCount      | number | 否   | 处于悬停检测状态，最大更新通知次数，取值范围为自然数，默认值3次，输入负整数取默认值。      |
+| updateToFinishInterval | number | 否   | 从UPDATE状态到END状态最大等待时间，取值范围为自然数，默认值100ms，输入负整数取默认值。     |
+
+## SpringLoadingDragInfos<sup>20+</sup>
+
+定义触发悬停检测时拖拽事件信息的接口。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 类型       | 必填 | 说明                      |
+| :-------- | ------- | ---- |--------------------------------------------- |
+| dataSummary | [unifiedDataChannel.Summary](../apis-arkdata/js-apis-data-unifiedDataChannel.md#summary) |否   | 拖拽数据的摘要，默认为null。 |
+| extraInfos  | string    |否   | 拖拽事件额外信息，默认为空字符串。   |
+
+## SpringLoadingContext<sup>20+</sup>
+
+定义回调上下文信息的类，用于在悬停检测回调中传递给应用程序，使其能访问拖拽状态。
+
+### 属性
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称        | 类型          | 只读   |可选    | 说明                         |
+| :----- | -------- | ---- | ---- | ---------------------------------------- |
+| state                 | [DragSpringLoadingState](#dragspringloadingstate20)    |否     |否   | 当前悬停检测的状态。         |
+| currentNotifySequence | number  |否      |否   |在一次悬停检测流转中的回调通知次数，从0开始。 |
+| dragInfos             | [SpringLoadingDragInfos](#springloadingdraginfos20)  |否    |是   | 拖拽信息，为undefined时取[SpringLoadingDragInfos](#springloadingdraginfos20)默认值。      |
+| currentConfig         | [DragSpringLoadingConfiguration](#dragspringloadingconfiguration20)   |否    |是   | 当前回调中的配置信息，为undefined时取[DragSpringLoadingConfiguration](#dragspringloadingconfiguration20)默认值。    |
+
+### abort<sup>20+</sup>
+
+abort(): void
+
+终止后续的悬停检测。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### updateConfiguration<sup>20+</sup>
+
+updateConfiguration(config: DragSpringLoadingConfiguration): void
+
+更新后续的悬停检测配置。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型          | 必填      | 说明                         |
+| :----- | -------- | ---- | --------------------------------------------- |
+| config | [DragSpringLoadingConfiguration](#dragspringloadingconfiguration20)         |是   | 悬停检测配置。   |

@@ -194,3 +194,68 @@ checkPathPermission(tokenID: number, policies: Array&lt;PathPolicyInfo&gt;, poli
     }
   }
   ```
+
+## fileShare.grantUriPermission<sup>20+</sup>
+
+grantUriPermission(policies: Array&lt;PolicyInfo&gt;, targetBundleName: string, appCloneIndex: number): Promise&lt;void&gt;
+
+给应用授予目标文件临时权限，使用Promise异步回调。
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
+
+**参数：**
+
+| 参数名 | 类型| 必填 | 说明|
+| -------- |-------| -------- |----------|
+| policies| Array&lt;[PathPolicyInfo](js-apis-fileShare.md#pathpolicyinfo15)> | 是 | 需要授权路径的策略信息，policies数组大小上限为500。|
+| targetBundleName| string | 是 | 被授权应用的应用包名。 |
+| appCloneIndex| number | 是 | 被授权应用的分身索引，取值为0时表示主应用。 |
+
+**返回值：**
+
+|类型|说明|
+| ------ | ------ |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID    | 错误信息       |
+|----------| --------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | The caller is not a system application.|
+| 801      | Capability not supported. |
+| 13900001      | Operation not permitted. |
+| 13900011      | Out of memory. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileShare } from '@kit.CoreFileKit';
+  
+  async function grantUriPermissionExample() {
+    try {
+      let uri = "file://docs/storage/Users/currentUser/Documents/1.txt";
+      let policyInfo: fileShare.PolicyInfo = {
+        uri: uri,
+        operationMode: fileShare.OperationMode.CREATE_MODE | fileShare.OperationMode.READ_MODE,
+      };
+      let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+
+      fileShare.grantUriPermission(policies, "com.example.myapplicationtest", 0).then(() => {
+      }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
+        console.error("grantUriPermission failed. Code: " +
+        err.code + ", message: " + err.message);
+      });
+    }
+    catch (error) {
+      console.info('grantUriPermission error, Code: ' + error.code + ', message: ' + error.message);
+    }
+  }
+  ```

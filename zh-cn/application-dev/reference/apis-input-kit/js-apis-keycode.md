@@ -365,3 +365,6 @@ import { KeyCode } from '@kit.InputKit';
 | KEYCODE_BTN_7                    |  3107 | 按键7。                         |
 | KEYCODE_BTN_8                    |  3108 | 按键8。                         |
 | KEYCODE_BTN_9                    |  3109 | 按键9。                         |
+| KEYCODE_DAGGER_CLICK<sup>18+</sup> | 3211 | 智能手表dagger单击键。 |
+| KEYCODE_DAGGER_DOUBLE_CLICK<sup>18+</sup> | 3212 | 智能手表dagger双击键。 |
+| KEYCODE_DAGGER_LONG_PRESS<sup>18+</sup> | 3213 | 智能手表dagger长按键。 |

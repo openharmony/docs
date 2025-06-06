@@ -139,5 +139,5 @@ struct Index {
 <!--Del-->
 > **说明：**
 >
-> 示例中的Native层编译输出动态库参考自[OpenGL三棱椎（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkOpenGL)，生成完整示例需下载该工程后将cpp目录下所有文件拷贝至本工程cpp目录下。
+> 示例中的Native层编译输出动态库参考自[OpenGL三棱锥（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkOpenGL)，生成完整示例需下载该工程后将cpp目录下所有文件拷贝至本工程cpp目录下。
 <!--DelEnd-->

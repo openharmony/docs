@@ -1200,18 +1200,6 @@
 
 **起始版本**：10
 
-## ohos.permission.GET_WIFI_LOCAL_MAC
-
-允许应用获取本机的Wi-Fi设备的MAC地址。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：8
-
 ## ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO
 
 允许应用获取风险详细数据。
@@ -4357,6 +4345,8 @@
 
 **ACL使能**：true
 
+**携带额外数据**：是，配置方法请见[Driver Development Kit开发指导](../../device/driver/externaldevice-guidelines.md#应用签名)。
+
 **起始版本**：18
 
 ## ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
@@ -4820,6 +4810,20 @@
 允许系统应用或系统服务调用内核接口进行代码解密。
 
 应用或服务拥有此权限后，可跨进程访问内核接口，针对已加密的代码内容请求解密，可避免非法访问，进一步保护应用代码资产。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：General
+
+**起始版本**：20
+
+## ohos.permission.GRANT_URI_PERMISSION_AS_CALLER
+
+允许应用以调用方的身份将URI访问权限授权给目标应用。
 
 **权限级别**：system_core
 

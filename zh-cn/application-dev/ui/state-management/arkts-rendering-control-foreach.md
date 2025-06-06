@@ -777,3 +777,59 @@ struct ArticleCard {
 ```
 **图13** 数据变化不渲染  
 ![ForEach-StateVarNoRender](figures/ForEach-StateVarNoRender.PNG)
+
+### 非必要内存消耗
+如果开发者没有定义`keyGenerator`函数，则ArkUI框架会使用默认的键值生成函数，即`(item: Object, index: number) => { return index + '__' + JSON.stringify(item); }`。当`item`是复杂对象时，将其JSON序列化会得到长字符串，占用更多的内存。
+
+```ts
+class Data {
+  longStr: string;
+  key: string;
+
+  constructor(longStr: string, key: string) {
+    this.longStr = longStr;
+    this.key = key;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State simpleList: Array<Data> = [];
+
+  aboutToAppear(): void {
+    let longStr = '';
+    for (let i = 0; i < 2000; i++) {
+      longStr += i.toString();
+    }
+    for (let index = 0; index < 3000; index++) {
+      let data: Data = new Data(longStr, 'a' + index.toString());
+      this.simpleList.push(data);
+    }
+  }
+
+  build() {
+    List() {
+      ForEach(this.simpleList, (item: Data) => {
+        ListItem() {
+          Text(item.key)
+        }
+      }
+        // 如果不定义下面的`keyGenerator`函数，则ArkUI框架会使用默认的键值生成函数
+        , (item: Data) => {
+          return item.key;
+        }
+      )
+    }.height('100%')
+    .width('100%')
+  }
+}
+```
+
+对比自定义`keyGenerator`函数和使用默认键值生成函数两种情况下的内存占用。自定义`keyGenerator`函数，这个示例代码的内存占用降低了约70MB。  
+
+**图14** 使用默认键值生成函数下的内存占用  
+![ForEach-StateVarNoRender](figures/ForEach-default-keyGenerator.PNG)
+  
+**图15** 自定义键值生成函数下的内存占用  
+![ForEach-StateVarNoRender](figures/ForEach-defined-keyGenerator.PNG)

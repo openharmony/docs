@@ -64,7 +64,7 @@ dragPreview(value: CustomBuilder | DragItemInfo | string)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo说明) \| string<sup>12+</sup> | 是   | 设置组件拖拽过程中的预览图，仅在onDragStart拖拽方式中有效。<br/>当组件支持拖拽并同时设置[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)的预览图时，则长按浮起的预览图以[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)设置的预览图为准。开发者在[onDragStart](ts-universal-events-drag-drop.md#onDragStart)中返回的背板图优先级低于[dragPreview](ts-universal-attributes-drag-drop.md#dragPreview11)设置的预览图，当设置了[dragPreview](ts-universal-attributes-drag-drop.md#dragPreview11)预览图时，拖拽过程中的背板图使用[dragPreview](ts-universal-attributes-drag-drop.md#dragPreview11)预览图。由于[CustomBuilder](ts-types.md#custombuilder8)需要离线渲染之后才能使用，因此存在一定的性能开销和时延，推荐优先使用 [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo说明)中的[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)方式。<br/> 当传入类型为string的id时，则将id对应组件的截图作为预览图。如果id对应的组件无法查找到，或者id对应的组件Visibility属性设置成none/hidden，则对组件自身进行截图作为拖拽预览图。目前截图不含有亮度、阴影、模糊和旋转等视觉效果。<br/>默认值：空<br/> |
+| value  | [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo说明) \| string<sup>12+</sup> | 是   | 设置组件拖拽过程中的预览图，仅在onDragStart拖拽方式中有效。<br/>当组件支持拖拽并同时设置[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)的预览图时，则长按浮起的预览图以[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)设置的预览图为准。开发者在[onDragStart](ts-universal-events-drag-drop.md#onDragStart)中返回的背板图优先级低于[dragPreview](ts-universal-attributes-drag-drop.md#dragPreview11)设置的预览图，当设置了[dragPreview](ts-universal-attributes-drag-drop.md#dragPreview11)预览图时，拖拽过程中的背板图使用[dragPreview](ts-universal-attributes-drag-drop.md#dragPreview11)预览图。由于[CustomBuilder](ts-types.md#custombuilder8)需要离线渲染之后才能使用，因此存在一定的性能开销和时延，推荐优先使用 [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo说明)中的[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)方式。<br/> 当传入类型为string的id时，则将id对应组件的截图作为预览图。如果id对应的组件无法查找到，或者id对应的组件Visibility属性设置成None/Hidden，则对组件自身进行截图作为拖拽预览图。目前截图不含有亮度、阴影、模糊和旋转等视觉效果。<br/>默认值：空<br/> |
 
 ## dragPreview<sup>15+</sup>
 
@@ -144,7 +144,7 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 | -------- | -------- | -------- | -------- |
 | isMultiSelectionEnabled | boolean | 否 | 表示拖拽过程中背板图是否支持多选聚拢效果。true表示支持多选聚拢效果，false表示不支持多选聚拢效果。该参数只在[Grid](ts-container-grid.md)和[List](ts-container-list.md)组件中的[GridItem](ts-container-griditem.md)组件和[ListItem](ts-container-listitem.md)组件生效。<br/>当一个item组件设置为多选拖拽时，该组件的子组件不可拖拽。聚拢组件预览图设置的优先级为[dragPreview](#dragpreview11)中的string，dragPreview中的PixelMap，组件自截图，不支持dragPreview中的Builder形式。<br/>不支持组件绑定[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12)中参数存在isShown的模式。<br/>默认值：false<br/>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
 | defaultAnimationBeforeLifting | boolean | 否 | 表示是否启用长按浮起阶段组件自身的默认点按效果（缩小）。true表示启用默认点按效果，false表示不启用默认点按效果。<br/>默认值：false <br/>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
-| isLiftingDisabled<sup>15+</sup> | boolean | 否 | 表示长按拖拽时，是否禁用浮起效果。true表示禁用浮起效果，false表示不禁用浮起效果。<br/>如果设置为true，当组件支持拖拽并同时设置[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)时，仅弹出配置的自定义菜单预览。 <br/>默认值：false<br/>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。 |
+| isLiftingDisabled<sup>15+</sup> | boolean | 否 | 表示长按拖拽时，是否禁用浮起效果。true表示禁用浮起效果，false表示不禁用浮起效果。<br/>如果设置为true，当组件支持拖拽并同时设置[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)时，仅弹出配置的自定义菜单预览。 <br/>默认值：false<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | enableEdgeAutoScroll<sup>18+</sup> | boolean | 否 | 设置在拖拽至可滚动组件边缘时是否触发自动滚屏。true表示触发自动滚屏，false表示不触发自动滚屏。<br />默认值：true<br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 | enableHapticFeedback<sup>18+</sup> | boolean | 否 | 表示拖拽时是否启用震动。true表示启用震动，false表示不启用震动。仅在存在蒙层的预览（通过[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12)）场景生效。<br/>**注意：** 仅当应用具备 ohos.permission.VIBRATE 权限，且用户启用了触感反馈时才会生效。<br/>默认值：false<br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 
@@ -508,7 +508,6 @@ struct dragPreviewOptionsDemo{
 import { uniformTypeDescriptor, unifiedDataChannel } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 import { request } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { buffer } from '@kit.ArkTS';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -519,7 +518,7 @@ struct ImageDrag {
   @State targetImage1: string | PixelMap | null = null;
   @State targetImage2: string | PixelMap | null = null;
   @State targetImage3: string | PixelMap | null = null;
-  context: Context|undefined = this.getUIContext().getHostContext();
+  context: Context | undefined = this.getUIContext().getHostContext();
   filesDir = this.context?.filesDir;
 
   public async createPixelMap(pixelMap: unifiedDataChannel.SystemDefinedPixelMap): Promise<image.PixelMap | null> {
@@ -551,34 +550,58 @@ struct ImageDrag {
         // 在线图片资源拖出
         Column() {
           Text('Online Image').fontSize(14)
-          Image('https://www.example.com/xxx.png') // 请填写一个具体的网络图片地址
-            .objectFit(ImageFit.Contain).draggable(true)
-            .onDragStart(() => {})
-            .width(100).height(100)
+          Image('https://www.example.com/xxx.png')// 请填写一个具体的网络图片地址
+            .objectFit(ImageFit.Contain)
+            .draggable(true)
+            .onDragStart(() => {
+            })
+            .width(100)
+            .height(100)
         }
-        .border({ width: 2, color: Color.Gray, radius: 5, style: BorderStyle.Dotted })
+        .border({
+          width: 2,
+          color: Color.Gray,
+          radius: 5,
+          style: BorderStyle.Dotted
+        })
         .alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
 
         // 本地图片资源拖出
         Column() {
           Text('Local Image').fontSize(14)
           Image($r('app.media.example'))
-            .objectFit(ImageFit.Contain).draggable(true)
-            .onDragStart(() => {})
-            .width(100).height(100)
+            .objectFit(ImageFit.Contain)
+            .draggable(true)
+            .onDragStart(() => {
+            })
+            .width(100)
+            .height(100)
         }
-        .border({ width: 2, color: Color.Gray, radius: 5, style: BorderStyle.Dotted })
+        .border({
+          width: 2,
+          color: Color.Gray,
+          radius: 5,
+          style: BorderStyle.Dotted
+        })
         .alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
 
         // PixelMap拖出
         Column() {
           Text('PixelMap').fontSize(14)
           Image(this.context?.resourceManager.getDrawableDescriptor($r('app.media.example').id).getPixelMap())
-            .objectFit(ImageFit.Contain).draggable(true)
-            .onDragStart(() => {})
-            .width(100).height(100)
+            .objectFit(ImageFit.Contain)
+            .draggable(true)
+            .onDragStart(() => {
+            })
+            .width(100)
+            .height(100)
         }
-        .border({ width: 2, color: Color.Gray, radius: 5, style: BorderStyle.Dotted })
+        .border({
+          width: 2,
+          color: Color.Gray,
+          radius: 5,
+          style: BorderStyle.Dotted
+        })
         .alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
       }
 
@@ -587,7 +610,8 @@ struct ImageDrag {
       Column() {
         Image(this.targetImage1)
           .objectFit(ImageFit.Contain)
-          .width('70%').height('70%')
+          .width('70%')
+          .height('70%')
           .allowDrop([uniformTypeDescriptor.UniformDataType.IMAGE])
           .onDrop((event: DragEvent, extraParams: string) => {
             // 通过extraParams获取图片
@@ -608,64 +632,89 @@ struct ImageDrag {
                   console.info(`The content of file: ${buf.toString()}`);
                   fileIo.closeSync(file);
                 })
-              } catch (error) {}
+              } catch (error) {
+              }
             }
           })
       }
-      .width('70%').height('25%')
-      .border({ width: 2, color: Color.Gray, radius: 5, style: BorderStyle.Dotted })
-      .alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
+      .width('70%')
+      .height('25%')
+      .border({
+        width: 2,
+        color: Color.Gray,
+        radius: 5,
+        style: BorderStyle.Dotted
+      })
+      .alignItems(HorizontalAlign.Center)
+      .justifyContent(FlexAlign.Center)
 
       Column() {
         Image(this.targetImage2)
           .objectFit(ImageFit.Contain)
-          .width('70%').height('70%')
+          .width('70%')
+          .height('70%')
           .allowDrop([uniformTypeDescriptor.UniformDataType.IMAGE])
           .onDrop((event: DragEvent, extraParams: string) => {
             // 通过uniformTypeDescriptor获取图片
             let data: UnifiedData = event.getData();
             let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
-            if (records[0].getType() ===uniformTypeDescriptor.UniformDataType.IMAGE) {
+            if (records[0].getType() === uniformTypeDescriptor.UniformDataType.IMAGE) {
               let image: unifiedDataChannel.Image = records[0] as unifiedDataChannel.Image;
               this.targetImage2 = image.imageUri;
             }
           })
       }
-      .width('70%').height('25%')
-      .border({ width: 2, color: Color.Gray, radius: 5, style: BorderStyle.Dotted })
-      .alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
+      .width('70%')
+      .height('25%')
+      .border({
+        width: 2,
+        color: Color.Gray,
+        radius: 5,
+        style: BorderStyle.Dotted
+      })
+      .alignItems(HorizontalAlign.Center)
+      .justifyContent(FlexAlign.Center)
 
       // 落入数据类型为PixelMap
       Text('Data type is PixelMap').fontSize(14).margin({ top: 10 })
       Column() {
         Image(this.targetImage3)
           .objectFit(ImageFit.Contain)
-          .width('70%').height('70%')
+          .width('70%')
+          .height('70%')
           .allowDrop([uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP])
           .onDrop(async (event: DragEvent, extraParams: string) => {
             // 通过uniformTypeDescriptor获取图片
             let data: UnifiedData = event.getData();
             let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
-            if (records[0].getType() ===uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP) {
-              let record: unifiedDataChannel.SystemDefinedPixelMap = records[0] as unifiedDataChannel.SystemDefinedPixelMap;
+            if (records[0].getType() === uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP) {
+              let record: unifiedDataChannel.SystemDefinedPixelMap =
+                records[0] as unifiedDataChannel.SystemDefinedPixelMap;
               this.targetImage3 = await this.createPixelMap(record);
 
               // 落盘到本地
               const imagePackerApi = image.createImagePacker();
-              let packOpts : image.PackingOption = { format: "image/jpeg", quality:98 };
-              const path : string = this.context?.cacheDir + "/pixel_map.jpg";
+              let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
+              const path: string = this.context?.cacheDir + "/pixel_map.jpg";
               let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
               imagePackerApi.packToFile(this.targetImage3, file.fd, packOpts).then(() => {
                 // 直接打包进文件
-              }).catch((error : BusinessError) => {
+              }).catch((error: BusinessError) => {
                 console.error('Failed to pack the image. And the error is: ' + error);
               })
             }
           })
       }
-      .width('70%').height('25%')
-      .border({ width: 2, color: Color.Gray, radius: 5, style: BorderStyle.Dotted })
-      .alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
+      .width('70%')
+      .height('25%')
+      .border({
+        width: 2,
+        color: Color.Gray,
+        radius: 5,
+        style: BorderStyle.Dotted
+      })
+      .alignItems(HorizontalAlign.Center)
+      .justifyContent(FlexAlign.Center)
 
     }.width('100%').height('100%')
   }

@@ -123,7 +123,7 @@ CSP与Actor之间的主要区别：
          // 下载完成之后执行解压操作
          zlib.decompressFile(inFilePath, filesDir, options, (errData: BusinessError) => {
            if (errData !== null) {
-             ...
+             // ...
              // 异常处理
            }
            let videoPath: string = `${filesDir}/${fileName}/${fileName}.mp4`;
@@ -131,11 +131,11 @@ CSP与Actor之间的主要区别：
          })
        });
        downloadTask.on('fail', () => {
-         ...
+         // ...
          // 异常处理
        });
      }).catch((err) => {
-       ...
+       // ...
        // 异常处理
      });
    };
@@ -213,10 +213,10 @@ TaskPool的适用场景主要分为如下三类：
 2. new一个task对象，其中传入被调用的方法和参数。
    
    ```typescript
-   ... 
+   // ... 
    // 创建task任务项，参数1.任务执行需要传入函数 参数2.任务执行传入函数的参数 （本示例中此参数为被调用的网络地址字符串）
    let task: taskpool.Task = new taskpool.Task(getWebData, jsonUrl);
-   ...
+   // ...
    
    // 获取网络数据
    @Concurrent
@@ -234,15 +234,15 @@ TaskPool的适用场景主要分为如下三类：
          let jsonObj: Array<FriendMoment> = await JSON.parse(webData.result).FriendMoment;
          let friendMomentBuckets: Array<FriendMoment> = new Array<FriendMoment>();
          // 下方源码省略，主要为数据解析和耗时操作处理
-         ...
+         // ...
          return friendMomentBuckets;
        } else {
          // 异常处理
-         ...
+         // ...
        }
      } catch (err) {
        // 异常处理
-       ...
+       // ...
      }
    }
    ```

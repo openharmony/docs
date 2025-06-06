@@ -4,7 +4,7 @@
 
 文件中定义了与字体相关的功能函数。
 
-**引用文件：** drawing_font.h
+**引用文件：** <native_drawing/drawing_font.h>
 
 **库：** libnative_drawing.so
 

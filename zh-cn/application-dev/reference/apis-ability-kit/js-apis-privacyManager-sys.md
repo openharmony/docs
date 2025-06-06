@@ -33,7 +33,7 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 | permissionName | Permissions | 是   | 应用权限名称。 |
 | successCount | number | 是   | 访问成功的次数。 |
 | failCount | number | 是   | 访问失败的次数。 |
-| options<sup>12+</sup> | [AddPermissionUsedRecordOptions](#addpermissionusedrecordoptions12) | 否   | 添加权限使用记录可选参数，从API version 12开始支持。 |
+| options<sup>12+</sup> | [AddPermissionUsedRecordOptions](#addpermissionusedrecordoptions12) | 否   | 添加权限使用记录可选参数，默认值NORMAL_TYPE，从API version 12开始支持。 |
 
 **返回值：**
 
@@ -50,7 +50,7 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 | 201 | Permission denied. Interface caller does not have permission "ohos.permission.PERMISSION_USED_STATS". |
 | 202 | Not system app. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, the count value is invalid, or usedType in AddPermissionUsedRecordOptions is invalid. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, the count value is invalid, or usedType in [AddPermissionUsedRecordOptions](#addpermissionusedrecordoptions12) is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100007 | The service is abnormal. |
@@ -313,7 +313,7 @@ getPermissionUsedRecordToggleStatus(): Promise&lt;boolean&gt;
 
 | 类型          | 说明                                    |
 | ------------- | --------------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回当前用户的开关状态值。|
+| Promise&lt;boolean&gt; | Promise对象，返回当前用户的开关状态值。true表示开启，false表示关闭。|
 
 **错误码：**
 
@@ -894,7 +894,7 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 | 名称       | 类型             | 必填   | 说明                                       |
 | -------- | -------------- | ---- | ---------------------------------------- |
 | tokenId  | number         | 否    | 目标应用的身份标识。<br/> 默认查询所有应用。         |
-| isRemote | boolean         | 否    | 指定是否查询远端设备。<br/> 默认值false，默认查询本端设备。 |
+| isRemote | boolean         | 否    | 指定是否查询远端设备。<br/> 默认值false，表示查询本端设备，true表示查询远端设备。 |
 | deviceId  | string         | 否    | 目标应用所在设备的ID。<br/> 默认设备ID为本端设备ID。   |
 | bundleName | string         | 否    | 目标应用的包名。<br/> 默认查询所有应用。 |
 | permissionNames  | Array&lt;Permissions&gt;         | 否    | 需要查询的权限集合。<br/> 默认查询所有权限的使用记录。               |
@@ -923,7 +923,7 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 | 名称       | 类型             | 可读 | 可写 | 说明                                       |
 | -------- | -------------- | ---- | ---- | ---------------------------------------- |
 | tokenId  | number         | 是    | 否    | 目标应用的身份标识。                                 |
-| isRemote | boolean         | 是    | 否    | 是否是分布式设备。默认值为false，表示不是分布式设备。 |
+| isRemote | boolean         | 是    | 否    | 是否是分布式设备。默认值为false，表示不是分布式设备，true表示是分布式设备。 |
 | deviceId  | string         | 是    | 否    | 目标应用所在设备的ID。                                 |
 | bundleName | string         | 是    | 否    | 目标应用的包名。 |
 | permissionRecords  | Array&lt;[PermissionUsedRecord](#permissionusedrecord)&gt;         | 是    | 否    | 每个应用的权限使用记录集合。                                 |

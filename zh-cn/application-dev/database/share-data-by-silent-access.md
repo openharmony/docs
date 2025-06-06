@@ -16,7 +16,7 @@
 
 ## 运作机制
 
-可以通过数据管理服务进行代理访问的数据分为以下三种：
+可以通过数据管理服务进行代理访问的数据分为以下两种：
 
 - 持久化数据：归属于数据提供方的数据库，这类数据存储于数据提供方的沙箱，可以在数据提供方中通过声明的方式进行共享，按表为粒度配置为可以被其他应用访问的数据表。
 
@@ -24,15 +24,11 @@
 - 过程数据：托管在数据管理服务上的过程数据，这类数据存储于数据管理服务的沙箱，格式为json或byte数据，无人订阅10天后自动删除。
 
 
-- 动态数据：托管在设备上的动态数据，这类数据存储于内存中，设备重启之后自动删除。只限于调用enableSilentProxy和disableSilentProxy接口设置的数据。
-
 
 | 数据类型  | 存储位置      | 数据格式        | 有效期          | 适用场景                              |
 | ----- | --------- | ----------- | ------------ | --------------------------------- |
 | 持久化数据 | 数据提供方的沙箱  | 数据库中的数据表    | 永久存储         | 适用于数据格式类似关系型数据库的相关场景，如日程，会议等。      |
 | 过程数据  | 数据管理服务的沙箱 | json或byte数据 | 无人订阅10天后自动删除 | 适用于数据有时效性且数据格式较简单的相关场景，如步数，天气，心率等。 |
-| 动态数据  | 数据管理服务的内存 | key-value数据 | 设备重启之后自动删除 | 适用于动态关闭/打开静默访问通道的场景。例如：升级过程中为了保证数据正确性可以动态关闭静默访问，升级结束后再调用相关接口打开静默访问。调用接口生成的开启关闭状态，设备重启之后会清除。只限于调用enableSilentProxy和disableSilentProxy接口设置的数据。 |
-
 
 
 图1 静默数据访问视图
@@ -95,14 +91,14 @@
 | publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, callback: AsyncCallback&lt;Array&lt;OperationResult&gt;&gt;): void | 发布数据，将数据托管至数据管理服务。 |
 | on(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string, callback: AsyncCallback&lt;PublishedDataChangeNode&gt;): Array&lt;OperationResult&gt; | 订阅已发布数据的数据变更通知。    |
 
-### 动态数据
+### 静默访问开关
+
+适用于动态关闭/打开静默访问通道的场景。例如：升级过程中为了保证数据正确性可以动态关闭静默访问，升级结束后再调用相关接口打开静默访问。调用接口生成的开启关闭状态，设备重启之后会清除。只限于调用enableSilentProxy和disableSilentProxy接口设置的状态。
 
 | 接口名称                                     | 描述                 |
 | ---------------------------------------- | ------------------ |
 | enableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt; | 数据提供方动态开启静默访问。<br />当访问方通过静默访问调用DataShare相关接口的时候，校验静默访问的开关状态。<br />如果静默访问的是开启的，DataShare相关接口会执行原逻辑。 |
 | disableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt; | 数据提供方来动态关闭静默访问。<br />当访问方通过静默访问调用DataShare相关接口的时候，校验静默访问的开关状态。<br />如果静默访问的是关闭的，DataShare相关接口接口将会直接返回。 |
-
-
 
 ## 持久化数据实现说明
 
@@ -181,7 +177,7 @@
    let dseUri = ('datashareproxy://com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_SECURE');
    ```
 
-3. 创建工具接口类对象。
+3. 使用createDataShareHelper()方法传入URI创建DataShareHelper对象。
 
    ```ts
    let dsHelper: dataShare.DataShareHelper | undefined = undefined;
@@ -199,7 +195,7 @@
    }
    ```
 
-4. 获取到接口类对象后，便可利用其提供的接口访问提供方提供的服务，如进行数据的增、删、改、查等。
+4. 获取到DataShareHelper对象后，便可利用其提供的接口访问提供方提供的服务，如使用insert()、delete()、update()或query()接口进行数据的增、删、改、查等。
 
    ```ts
    // 构建一条数据
@@ -368,9 +364,9 @@
    }
    ```
 
-## 动态数据实现说明
+## 动态开关静默访问实现说明
 
-动态数据实现静默访问只针对数据提供方。以动态开启静默访问为例，说明开发步骤。
+动态开关静默访问只针对数据提供方。以动态开启静默访问为例，说明开发步骤。
 
 ### 数据提供方应用的开发
 
@@ -411,4 +407,3 @@
    ```
 
    
-

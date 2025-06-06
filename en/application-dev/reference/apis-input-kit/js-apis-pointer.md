@@ -130,7 +130,7 @@ try {
 
 isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks the visible status of the mouse pointer. This API uses an asynchronous callback to return the result.
+Obtains the visible status of the mouse pointer. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -168,7 +168,7 @@ try {
 
 isPointerVisible(): Promise&lt;boolean&gt;
 
-Checks the visible status of the mouse pointer. This API uses a promise to return the result.
+Obtains the visible status of the mouse pointer. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -227,7 +227,7 @@ Obtains the mouse pointer style. This API uses an asynchronous callback to retur
 
 | Name      | Type                                      | Mandatory  | Description            |
 | -------- | ---------------------------------------- | ---- | -------------- |
-| windowId | number                                   | Yes   | Window ID.   |
+| windowId | number                                   | Yes   | Window ID. The value is an integer greater than or equal to **-1**. The value **-1** indicates the global window.   |
 | callback | AsyncCallback&lt;[PointerStyle](#pointerstyle)&gt; | Yes   | Callback used to return the mouse pointer style.|
 
 **Error codes**
@@ -698,7 +698,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message            |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Abnormal windowId parameter passed in. 2. Abnormal pixelMap parameter passed in; 3. Abnormal focusX parameter passed in.4. Abnormal focusY parameter passed in. |
-| 26500001 | Invalid windowId. Possible causes: The window id does not belong to the current process. |
+| 26500001 | Invalid windowId. |
 
 **Example**
 

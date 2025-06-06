@@ -2,6 +2,9 @@
 
 图像接收类，用于获取组件surface id、接收最新的图片和读取下一张图片、释放ImageReceiver实例。结合camera API实现的相机预览示例代码可参考[C/C++预览流二次处理示例](../camera/native-camera-preview-imageReceiver.md)。
 
+> **说明：**
+> ImageReceiver只作为图片的接收方、消费者，在ImageReceiver设置的size、format等属性实际上并不会生效。图片属性需要在发送方、生产者进行设置，可参考[预览(C/C++)](../camera/native-camera-preview.md)设置previewProfiles。
+
 ## 开发步骤
 
 ### 添加依赖

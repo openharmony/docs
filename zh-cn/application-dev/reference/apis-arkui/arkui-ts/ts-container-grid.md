@@ -52,6 +52,8 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 Grid布局选项。其中，irregularIndexes和onGetIrregularSizeByIndex可对仅设置rowsTemplate或columnsTemplate的Grid使用，可以指定一个index数组，并为其中的index对应的GridItem设置其占据的行数与列数，使用方法参见[示例3](#示例3可滚动grid设置跨行跨列节点)；onGetRectByIndex可对同时设置rowsTemplate和columnsTemplate的Grid使用，为指定的index对应的GridItem设置位置和大小，使用方法参见[示例1](#示例1固定行列grid)。
 
+为提高Grid在跳转、列数变化等场景的性能，应该尽量使用GridLayoutOptions。即使Grid中没有任何特殊的跨行跨列节点，也可以通过使用'Grid(this.scroller, {regularSize: [1, 1]})'的方式提高跳转性能。参考<!--RP1-->[使用GridLayoutOptions提升Grid性能](../../../performance/grid_optimization.md#使用gridlayoutoptions提升grid性能)<!--RP1End-->。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 类型      | 必填   | 说明                    |
@@ -64,6 +66,9 @@ Grid布局选项。其中，irregularIndexes和onGetIrregularSizeByIndex可对�
 ## 属性
 
 除支持[通用属性](ts-component-general-attributes.md)和[滚动组件通用属性](ts-container-scrollable-common.md#属性)外，还支持以下属性：
+> **说明：** 
+>
+> Grid组件使用通用属性[clip<sup>12+</sup>](ts-universal-attributes-sharp-clipping.md#clip12)和通用属性[clip<sup>18+</sup>](ts-universal-attributes-sharp-clipping.md#clip18)时默认值都为true。
 
 ### columnsTemplate
 
@@ -71,7 +76,7 @@ columnsTemplate(value: string)
 
 设置当前网格布局列的数量、固定列宽或最小列宽值，不设置时默认1列。
 
-例如，&nbsp;'1fr&nbsp;1fr&nbsp;2fr'&nbsp;是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。
+例如，&nbsp;'1fr&nbsp;1fr&nbsp;2fr'&nbsp;是将父组件分3列，将父组件允许的宽分为4等份，第1列占1份，第2列占1份，第3列占2份。
 
 columnsTemplate('repeat(auto-fit, track-size)')是设置最小列宽值为track-size，自动计算列数和实际列宽。
 
@@ -102,7 +107,7 @@ rowsTemplate(value: string)
 
 设置当前网格布局行的数量、固定行高或最小行高值，不设置时默认1行。
 
-例如，&nbsp;'1fr&nbsp;1fr&nbsp;2fr'是将父组件分3行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。
+例如，&nbsp;'1fr&nbsp;1fr&nbsp;2fr'是将父组件分3行，将父组件允许的高分为4等份，第1行占1份，第2行占1份，第3行占2份。
 
 rowsTemplate('repeat(auto-fit, track-size)')是设置最小行高值为track-size，自动计算行数和实际行高。
 
@@ -375,7 +380,7 @@ cellLength(value: number)
 
 multiSelectable(value: boolean)
 
-设置是否开启鼠标框选。开启框选后，可以配合Griditem的selected属性和onSelect事件获取GridItem的选中状态，还可以设置[选中态样式](./ts-universal-attributes-polymorphic-style.md)（无默认选中样式）。
+设置是否开启鼠标框选。开启框选后，可以配合GridItem的selected属性和onSelect事件获取GridItem的选中状态，还可以设置[选中态样式](./ts-universal-attributes-polymorphic-style.md)（无默认选中样式）。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -535,10 +540,6 @@ GridItem的对齐方式枚举。
 | Column |  1  | 主轴布局方向沿垂直方向布局，即自上往下先填满一列，再去填下一列。 |
 | RowReverse    |  2  | 主轴布局方向沿水平方向反向布局，即自右往左先填满一行，再去填下一行。 |
 | ColumnReverse   |  3  | 主轴布局方向沿垂直方向反向布局，即自下往上先填满一列，再去填下一列。 |
-
-> **说明：** 
->
-> Grid组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。
 
 ## 事件
 
@@ -1915,3 +1916,93 @@ struct GridExample {
 ```
 
 ![edgeEffect_grid](figures/gridFocus.gif)
+
+### 示例13（滚动事件）
+
+```ts
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  public rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    this.rootNode.commonAttribute.width(100)
+    return this.rootNode;
+  }
+
+  addCommonEvent(frameNode: FrameNode) {
+    let gridEvent: UIGridEvent | undefined = typeNode.getEvent(frameNode, "Grid");
+    gridEvent?.setOnWillScroll((scrollOffset: number, scrollState: ScrollState, scrollSource: ScrollSource) => {
+      console.log(`onWillScroll scrollOffset = ${scrollOffset}, scrollState = ${scrollState}, scrollSource = ${scrollSource}`)
+    })
+    gridEvent?.setOnDidScroll((scrollOffset: number, scrollState: ScrollState) => {
+      console.log(`onDidScroll scrollOffset = ${scrollOffset}, scrollState = ${scrollState}`)
+    })
+    gridEvent?.setOnReachStart(() => {
+      console.log(`onReachStart`)
+    })
+    gridEvent?.setOnReachEnd(() => {
+      console.log(`onReachEnd`)
+    })
+    gridEvent?.setOnScrollStart(() => {
+      console.log(`onScrollStart`)
+    })
+    gridEvent?.setOnScrollStop(() => {
+      console.log(`onScrollStop`)
+    })
+    gridEvent?.setOnScrollFrameBegin((offset: number, state: ScrollState) => {
+      console.log(`onScrollFrameBegin offset = ${offset}, state = ${state}`)
+      return undefined;
+    })
+    gridEvent?.setOnScrollIndex((first: number, last: number) => {
+      console.log(`onScrollIndex start = ${first}, end = ${last}`)
+    })
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State index: number = 0;
+  private myNodeController: MyNodeController = new MyNodeController();
+  @State numbers: string[] = []
+
+  aboutToAppear() {
+    for (let i = 0; i < 5; i++) {
+      for (let j = 0; j < 5; j++) {
+        this.numbers.push(j.toString());
+      }
+    }
+  }
+
+  build() {
+    Column() {
+      Button("add CommonEvent to Grid")
+        .onClick(() => {
+          this.myNodeController!.addCommonEvent(this.myNodeController!.rootNode!.getParent()!.getPreviousSibling()!)
+        })
+      Grid() {
+        ForEach(this.numbers, (day: string, index: number) => {
+          GridItem() {
+            Text(day)
+              .fontSize(16)
+              .backgroundColor(0xF9CF93)
+              .width('100%')
+              .height(80)
+              .textAlign(TextAlign.Center)
+          }
+        }, (day: string, index: number) => index.toString() + day)
+      }
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(10)
+      .enableScrollInteraction(true)
+      .width('90%')
+      .backgroundColor(0xFAEEE0)
+      .height(300)
+      NodeContainer(this.myNodeController)
+    }.width("100%")
+  }
+}
+```
