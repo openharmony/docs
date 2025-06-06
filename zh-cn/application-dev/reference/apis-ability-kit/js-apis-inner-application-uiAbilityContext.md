@@ -24,7 +24,7 @@ import { common } from '@kit.AbilityKit';
 | abilityInfo | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是 | 否 | UIAbility的相关信息。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | 是 | 否 | 当前HAP的信息。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | config | [Configuration](js-apis-app-ability-configuration.md) | 是 | 否 | 与UIAbility相关的配置信息，如语言、颜色模式等。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| windowStage<sup>12+</sup> | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | 否 | 当前WindowStage对象。仅支持在主线程调用。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。|
+| windowStage<sup>12+</sup> | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9) | 是 | 否 | 当前WindowStage对象。仅支持在主线程调用。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。|
 
 > **关于示例代码的说明：**
 >
@@ -2887,7 +2887,7 @@ revokeDelegator() : Promise&lt;void&gt;
 
 > **说明**：
 >
-> 当接口调用成功后，DelegatorAbility中的[Window](../apis-arkui/js-apis-window.md)方法会失效。
+> 当接口调用成功后，DelegatorAbility中的[Window](../apis-arkui/arkts-apis-window.md)方法会失效。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

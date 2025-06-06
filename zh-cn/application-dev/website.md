@@ -2479,7 +2479,13 @@
             - [NodeContent](reference/apis-arkui/js-apis-arkui-NodeContent.md)
         - 窗口管理<!--window-manager-api-->
           - [@ohos.PiPWindow (画中画窗口)](reference/apis-arkui/js-apis-pipWindow.md)
-          - [@ohos.window (窗口)](reference/apis-arkui/js-apis-window.md)
+          - [@ohos.window (窗口)](reference/apis-arkui/arkts-apis-window.md)
+            - [Functions](reference/apis-arkui/arkts-apis-window-f.md)
+            - [Interface (Window)](reference/apis-arkui/arkts-apis-window-Window.md)
+            - [Interface (WindowStage)](reference/apis-arkui/arkts-apis-window-WindowStage.md)
+            - [Interfaces (其他)](reference/apis-arkui/arkts-apis-window-i.md)
+            - [Enums](reference/apis-arkui/arkts-apis-window-e.md)
+            - [Types](reference/apis-arkui/arkts-apis-window-t.md)
           <!--Del-->
           - [@ohos.animation.windowAnimationManager (窗口动画管理)(系统接口)](reference/apis-arkui/js-apis-windowAnimationManager-sys.md)
           - [@ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)](reference/apis-arkui/js-apis-application-windowExtensionAbility-sys.md)

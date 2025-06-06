@@ -47,7 +47,7 @@ Node将自定义节点的二级模块API组织在一起，方便开发者进行�
 
 
 ## UIContext获取方法
-1.使用ohos.window中的[getUIContext()](./js-apis-window.md#getuicontext10)方法获取UIContext实例。
+1.使用ohos.window中的[getUIContext()](arkts-apis-window-Window.md#getuicontext10)方法获取UIContext实例。
 
 2.可以通过自定义组件内置方法[getUIContext()](arkui-ts/ts-custom-component-api.md#getuicontext)获取。
 

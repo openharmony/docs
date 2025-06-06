@@ -446,7 +446,7 @@ systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
 
 >  **使用说明：**
 >
-> 1. 不建议混合使用systemBarStyle属性和window设置状态栏样式的相关接口，例如：[setWindowSystemBarProperties](../js-apis-window.md#setwindowsystembarproperties9)。
+> 1. 不建议混合使用systemBarStyle属性和window设置状态栏样式的相关接口，例如：[setWindowSystemBarProperties](../arkts-apis-window-Window.md#setwindowsystembarproperties9)。
 > 2. 初次设置Navigation/NavDestination的systemBarStyle属性时，会备份当前状态栏样式用于后续的恢复场景。
 > 3. Navigation总是以首页（页面栈内没有NavDestination时）或者栈顶NavDestination设置的状态栏样式为准。
 > 4. Navigation首页或者任何栈顶NavDestination页面，如果设置了有效的systemBarStyle，则会使用设置的样式，反之如果之前已经备份了样式，则使用备份的样式，否则不做任何处理。
@@ -1844,7 +1844,7 @@ type SystemBarStyle = SystemBarStyle
 
 | 类型     | 说明               |
 | -------- | ------------------ |
-| [SystemBarStyle](../js-apis-window.md#systembarstyle12)   | 状态栏文字颜色。默认值：`'#0xE5FFFFFF'`。|
+| [SystemBarStyle](../arkts-apis-window-i.md#systembarstyle12)   | 状态栏文字颜色。默认值：`'#0xE5FFFFFF'`。|
 
 ## 示例
 
