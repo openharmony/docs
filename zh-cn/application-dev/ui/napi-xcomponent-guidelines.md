@@ -17,7 +17,7 @@ XComponent持有一个Surface，开发者能通过调用[NativeWindow](../graphi
 >
 > 当开发者传输的绘制内容包含透明元素时，Surface区域的显示效果会与下方内容进行合成展示。例如，若传输的内容完全透明，且XComponent的背景色被设置为黑色，同时Surface保持默认的大小与位置，则最终显示的将是一片黑色区域。
 
-## 使用XComponentController管理Surface生命周期场景
+## 使用XComponentController管理Surface生命周期
 
 本场景通过在ArkTS侧获取SurfaceId，布局信息、生命周期回调、触摸、鼠标、按键等事件回调等均在ArkTS侧触发，按需传递到Native侧进行处理。主要开发场景如下：
 - 基于ArkTS侧获取的SurfaceId，在Native侧调用OH_NativeWindow_CreateNativeWindowFromSurfaceId接口创建出NativeWindow实例。
@@ -32,6 +32,32 @@ XComponent持有一个Surface，开发者能通过调用[NativeWindow](../graphi
 )接口进行缓冲区尺寸设置。
 > 
 > 3. 多个XComponent开发时，缓存Native侧资源需要保证key是唯一的，key推荐使用id+随机数或者surfaceId。
+
+**生命周期**：
+
+- OnSurfaceCreated回调    	
+
+  触发时刻：XComponent准备好Surface后触发。
+
+  ArkTS侧OnSurfaceCreated的时序如下图：
+
+  ![OnSurfaceCreated](./figures/onSurfaceCreated1.png)
+
+- OnSurfaceChanged回调
+
+  触发时刻：Surface大小变化触发重新布局之后触发。
+
+  ArkTS侧OnSurfaceChanged的时序如下图：
+
+  ![OnSurfaceChanged](./figures/onSurfaceChanged1.png)
+
+- OnSurfaceDestroyed回调
+
+  触发时刻：XComponent组件被销毁时触发，与一般ArkUI的组件销毁时机一致。
+
+  ArkTS侧OnSurfaceDestroyed的时序图：
+
+  ![OnSurfaceDestroyed](./figures/onSurfaceDestroyed1.png)
 
 **接口说明**
 
@@ -482,38 +508,40 @@ Native侧
         ${EGL-lib} ${GLES-lib} ${hilog-lib} ${libace-lib} ${libnapi-lib} ${libuv-lib} libnative_window.so)
     ```
 
-### 生命周期说明
-
-**OnSurfaceCreated回调**    	
-
-触发时刻：XComponent准备好Surface后触发。
-
-ArkTS侧OnSurfaceCreated的时序如下图：
-
-![OnSurfaceCreated](./figures/onSurfaceCreated1.png)
-
-**OnSurfaceChanged回调**
-
-触发时刻：Surface大小变化触发重新布局之后触发。
-
-ArkTS侧OnSurfaceChanged的时序如下图：
-
-![OnSurfaceChanged](./figures/onSurfaceChanged1.png)
-
-**OnSurfaceDestroyed回调**
-
-触发时刻：XComponent组件被销毁时触发，与一般ArkUI的组件销毁时机一致。
-
-ArkTS侧OnSurfaceDestroyed的时序图：
-
-![OnSurfaceDestroyed](./figures/onSurfaceDestroyed1.png)
-
-## 使用OH_ArkUI_SurfaceHolder管理Surface生命周期场景
+## 使用OH_ArkUI_SurfaceHolder管理Surface生命周期
 
 与使用XComponentController管理Surface生命周期场景不同，本场景允许应用根据XComponent组件对应的ArkUI_NodeHandle中创建OH_ArkUI_SurfaceHolder，并通过OH_ArkUI_SurfaceHolder上的相关接口注册Surface生命周期，XComponent组件相关的无障碍、可变帧率等能力也可根据ArkUI_NodeHandle通过相关接口来实现。同时，XCompoennt组件上的基础/手势事件也可通过ArkUI_NodeHandle对象使用ArkUI NDK接口来监听（具体可参考：[监听组件事件](./ndk-listen-to-component-events.md)）。主要开发场景如下：
 - 在ArkTS侧创建的XComponent组件可将其对应的FrameNode节点传递至Native侧获取ArkUI_NodeHandle/在Native侧直接创建XComponent组件对应的ArkUI_NodeHandle，然后调用OH_ArkUI_SurfaceHolder_Create接口创建OH_ArkUI_SurfaceHolder实例。
 - 基于OH_ArkUI_SurfaceHolder实例注册相应的生命周期回调、事件回调，获取NativeWindow实例。
 - 利用NativeWindow和EGL接口开发自定义绘制内容以及申请和提交Buffer到图形队列。
+
+**生命周期**：
+
+- OnSurfaceCreated回调    	
+
+  触发时刻：XComponent准备好Surface后达成以下两个条件中的一个触发。
+  1. 组件上树且autoInitialize = true。
+  2. 调用OH_ArkUI_XComponent_Initialize。
+
+  Native侧OnSurfaceCreated的时序如下图：
+
+  ![OnSurfaceCreated](./figures/onSurfaceCreated2.png)
+- OnSurfaceChanged回调
+  
+  触发时刻：OnSurfaceCreated回调成功触发且Surface大小变化触发重新布局之后触发。
+
+  Native侧OnSurfaceChanged的时序如下图：
+
+  ![OnSurfaceChanged](./figures/onSurfaceChanged2.png)
+
+- OnSurfaceDestroyed回调
+
+  触发时刻：组件下树且autoInitialize=true 或者调用 OH_ArkUI_XComponent_Finalize后触发。
+
+  Native侧OnSurfaceDestroyed的时序图：
+
+  ![OnSurfaceDestroyed](./figures/onSurfaceDestroyed2.png)
+
 
 **接口说明**
 
@@ -1412,35 +1440,9 @@ ArkTS侧OnSurfaceDestroyed的时序图：
     target_link_libraries(nativerender PUBLIC ${EGL-lib} ${GLES-lib} ${hilog-lib} ${libace-lib} ${libnapi-lib} ${libuv-lib} libnative_window.so)
     ```
 
-### 生命周期说明
+![示意图](./figures/drawStar.jpeg)
 
-**OnSurfaceCreated回调**    	
-
-触发时刻：XComponent准备好Surface后达成以下两个条件中的一个触发。
-1. 组件上树且autoInitialize = true。
-2. 调用OH_ArkUI_XComponent_Initialize。
-
-Native侧OnSurfaceCreated的时序如下图：
-
-![OnSurfaceCreated](./figures/onSurfaceCreated2.png)
-
-**OnSurfaceChanged回调**
-
-触发时刻：OnSurfaceCreated回调成功触发且Surface大小变化触发重新布局之后触发。
-
-Native侧OnSurfaceChanged的时序如下图：
-
-![OnSurfaceChanged](./figures/onSurfaceChanged2.png)
-
-**OnSurfaceDestroyed回调**
-
-触发时刻：组件下树且autoInitialize=true 或者调用 OH_ArkUI_XComponent_Finalize后触发。
-
-Native侧OnSurfaceDestroyed的时序图：
-
-![OnSurfaceDestroyed](./figures/onSurfaceDestroyed2.png)
-
-## 使用NativeXComponent管理Surface生命周期场景
+## 使用NativeXComponent管理Surface生命周期
 
 与上述两种场景不同，本场景在Native侧使用ArkUI NDK 接口创建XComponent组件进行自定义绘制。具体步骤包括：创建组件，获取NativeXComponent实例，注册XComponent的生命周期回调及触摸、鼠标、按键等事件回调，通过回调获取NativeWindow，使用OpenGL ES/EGL接口在XComponent组件上进行图形绘制，最后在ArkTS层使用ContentSlot占位组件进行挂载显示。针对Native侧创建XComponent的主要开发场景如下：
 
@@ -1457,6 +1459,32 @@ Native侧OnSurfaceDestroyed的时序图：
 > 1. Native侧的OH_NativeXComponent缓存在字典中，其key需要保证其唯一性，当对应的XComponent销毁后，需要及时从字典里将其删除。
 >
 > 2. 多个XComponent开发时，缓存Native侧资源需要保证key是唯一的，key推荐使用id+随机数或者surfaceId。
+
+**生命周期**：
+
+- OnSurfaceCreated回调    	
+
+  触发时刻：XComponent准备好Surface后触发。
+
+  Native侧OnSurfaceCreated的时序如下图：
+
+  ![OnSurfaceCreated](./figures/onSurfaceCreated.png)
+
+- OnSurfaceChanged回调
+
+  触发时刻：Surface大小变化触发重新布局后触发。
+
+  Native侧OnSurfaceChanged的时序如下图：
+
+  ![OnSurfaceChanged](./figures/onSurfaceChanged.png)
+
+- OnSurfaceDestroyed回调
+
+  触发时刻：XComponent组件被销毁时触发，与一般ArkUI的组件销毁时机一致。
+
+  Native侧OnSurfaceDestroyed的时序图：
+
+  ![OnSurfaceDestroyed](./figures/onSurfaceDestroyed.png)
 
 **接口说明**
 
@@ -2337,32 +2365,6 @@ Native侧OnSurfaceDestroyed的时序图：
     target_link_libraries(nativerender PUBLIC
         ${EGL-lib} ${GLES-lib} ${hilog-lib} ${libace-lib} ${libnapi-lib} ${libuv-lib})
     ```
-
-### 生命周期说明
-
-**OnSurfaceCreated回调**    	
-
-触发时刻：XComponent准备好Surface后触发。
-
-Native侧OnSurfaceCreated的时序如下图：
-
-![OnSurfaceCreated](./figures/onSurfaceCreated.png)
-
-**OnSurfaceChanged回调**
-
-触发时刻：Surface大小变化触发重新布局后触发。
-
-Native侧OnSurfaceChanged的时序如下图：
-
-![OnSurfaceChanged](./figures/onSurfaceChanged.png)
-
-**OnSurfaceDestroyed回调**
-
-触发时刻：XComponent组件被销毁时触发，与一般ArkUI的组件销毁时机一致。
-
-Native侧OnSurfaceDestroyed的时序图：
-
-![OnSurfaceDestroyed](./figures/onSurfaceDestroyed.png)
 
 ## 相关实例
 
