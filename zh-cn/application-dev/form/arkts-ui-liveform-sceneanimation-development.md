@@ -227,7 +227,7 @@ struct WidgetCard {
 
 1. 触发互动卡片动效
 
-互动卡片在加桌时，会主动触发一次[onUpdateForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonupdateform)生命周期回调，在回调中通过wantParams中返回卡片实际尺寸、计算动效申请范围，并发起互动卡片动效申请。
+在加桌时，互动卡片可以通过[onUpdateForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonupdateform)生命周期回调中的wantParams参数获取卡片实际尺寸。卡片提供方以此计算动效申请范围，坐标计算时，以上图A点为（0,0）点，计算矩形EFGH对应参数，单位为vp。
 
 ```ts
 // entry/src/main/ets/entryformability/EntryFormAbility.ets
