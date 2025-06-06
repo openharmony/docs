@@ -92,9 +92,9 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-  | 13400002 | bad file path |
+  | 201 | The permissions check fails. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 13400002 | File path not supported or invalid. |
 
 **示例：**
 
@@ -152,9 +152,9 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-  | 13400002 | bad file path |
+  | 201 | The permissions check fails. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 13400002 | File path not supported or invalid. |
 
 **示例：**
 
@@ -223,7 +223,7 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -273,7 +273,7 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -303,7 +303,7 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
 ### on('progress')
 
-on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; void): void
+on(type: 'progress', callback: (uploadedSize: number, totalSize: number) =&gt; void): void
 
 订阅上传任务进度事件，使用callback异步回调。
 
@@ -333,7 +333,7 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -373,7 +373,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -388,7 +388,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
 ### on('complete' | 'fail')<sup>9+</sup>
 
- on(type:'complete' | 'fail', callback: Callback&lt;Array&lt;TaskState&gt;&gt;): void
+ on(type: 'complete' | 'fail', callback: Callback&lt;Array&lt;TaskState&gt;&gt;): void
 
 订阅上传任务完成或失败事件，使用callback异步回调。
 
@@ -408,7 +408,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -458,7 +458,7 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -506,7 +506,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -528,7 +528,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
 ### off('complete' | 'fail')<sup>9+</sup>
 
- off(type:'complete' | 'fail', callback?: Callback&lt;Array&lt;TaskState&gt;&gt;): void
+ off(type: 'complete' | 'fail', callback?: Callback&lt;Array&lt;TaskState&gt;&gt;): void
 
 取消订阅上传任务的完成或失败事件。
 
@@ -547,7 +547,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -613,7 +613,7 @@ delete(): Promise&lt;boolean&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -653,7 +653,7 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -699,7 +699,7 @@ remove(): Promise&lt;boolean&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -738,7 +738,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -853,11 +853,11 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-  | 13400001 | file operation error. |
-  | 13400002 | bad file path. |
-  | 13400003 | task service ability error. |
+  | 201 | The permissions check fails. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 13400001 | Invalid file or file system error. |
+  | 13400002 | File path not supported or invalid. |
+  | 13400003 | Task service ability error. |
 
 **示例：**
 
@@ -908,11 +908,11 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-  | 13400001 | file operation error. |
-  | 13400002 | bad file path. |
-  | 13400003 | task service ability error. |
+  | 201 | The permissions check fails. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 13400001 | Invalid file or file system error. |
+  | 13400002 | File path not supported or invalid. |
+  | 13400003 | Task service ability error. |
 
 **示例：**
 
@@ -977,7 +977,7 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -1021,7 +1021,7 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 
 | 错误码ID | 错误信息 |
   | -------- | -------- |
-| 201 | the permissions check fails |
+| 201 | The permissions check fails. |
 
 **示例：**
 
@@ -1045,7 +1045,7 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 
 ### on('progress')
 
-on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; void): void
+on(type: 'progress', callback: (receivedSize: number, totalSize: number) =&gt; void): void
 
 订阅下载任务进度事件，使用callback异步回调。
 
@@ -1075,7 +1075,7 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1131,7 +1131,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1168,7 +1168,7 @@ try {
 
 ### on('complete'|'pause'|'remove')<sup>7+</sup>
 
-on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
+on(type: 'complete'|'pause'|'remove', callback: () =&gt; void): void
 
 订阅下载任务相关的事件，使用callback异步回调。
 
@@ -1187,7 +1187,7 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1245,7 +1245,7 @@ off(type: 'complete'|'pause'|'remove', callback?: () =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1334,7 +1334,7 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1388,7 +1388,7 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1444,7 +1444,7 @@ delete(): Promise&lt;boolean&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -1498,7 +1498,7 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -1554,7 +1554,7 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -1608,7 +1608,7 @@ getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -1664,7 +1664,7 @@ getTaskMimeType(): Promise&lt;string&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -1718,7 +1718,7 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -1774,7 +1774,7 @@ suspend(): Promise&lt;boolean&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -1828,7 +1828,7 @@ suspend(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -1884,7 +1884,7 @@ restore(): Promise&lt;boolean&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -1938,7 +1938,7 @@ restore(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -1998,7 +1998,7 @@ remove(): Promise&lt;boolean&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -2037,7 +2037,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -2078,7 +2078,7 @@ query(): Promise&lt;DownloadInfo&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -2117,7 +2117,7 @@ query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -2158,7 +2158,7 @@ queryMimeType(): Promise&lt;string&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -2197,7 +2197,7 @@ queryMimeType(callback: AsyncCallback&lt;string&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -2238,7 +2238,7 @@ pause(): Promise&lt;void&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -2277,7 +2277,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -2318,7 +2318,7 @@ resume(): Promise&lt;void&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -2357,7 +2357,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -3284,7 +3284,7 @@ off(event: 'progress', callback?: (progress: [Progress](#progress10)) =&gt; void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'progress'，表示任务进度。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 
@@ -3377,7 +3377,7 @@ off(event: 'completed', callback?: (progress: [Progress](#progress10)) =&gt; voi
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'completed'，表示任务完成。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 
@@ -3470,7 +3470,7 @@ off(event: 'failed', callback?: (progress: [Progress](#progress10)) =&gt; void):
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'failed'，表示任务失败。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 
@@ -3560,7 +3560,7 @@ off(event: 'pause', callback?: (progress: [Progress](#progress10)) =&gt; void): 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'pause'，表示任务暂停。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 
@@ -3650,7 +3650,7 @@ off(event: 'resume', callback?: (progress: [Progress](#progress10)) =&gt; void):
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'resume'，表示任务恢复。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 
@@ -3740,7 +3740,7 @@ off(event: 'remove', callback?: (progress: [Progress](#progress10)) =&gt; void):
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'remove'，表示任务被移除。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 
@@ -3931,8 +3931,8 @@ start(callback: AsyncCallback&lt;void&gt;): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 201 | Permission denied. |
-  | 13400003 | task service ability error. |
-  | 21900007 | task state error. |
+  | 13400003 | Task service ability error. |
+  | 21900007 | Operation with wrong task state. |
 
 **示例：**
 
@@ -4010,8 +4010,8 @@ start(): Promise&lt;void&gt;
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 201 | Permission denied. |
-  | 13400003 | task service ability error. |
-  | 21900007 | task state error. |
+  | 13400003 | Task service ability error. |
+  | 21900007 | Operation with wrong task state. |
 
 **示例：**
 
@@ -4079,8 +4079,8 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900007 | task state error. |
+  | 13400003 | Task service ability error. |
+  | 21900007 | Operation with wrong task state. |
 
 **示例：**
 
@@ -4148,8 +4148,8 @@ pause(): Promise&lt;void&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900007 | task state error. |
+  | 13400003 | Task service ability error. |
+  | 21900007 | Operation with wrong task state. |
 
 **示例：**
 
@@ -4218,8 +4218,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 201 | Permission denied. |
-  | 13400003 | task service ability error. |
-  | 21900007 | task state error. |
+  | 13400003 | Task service ability error. |
+  | 21900007 | Operation with wrong task state. |
 
 **示例：**
 
@@ -4292,8 +4292,8 @@ resume(): Promise&lt;void&gt;
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 201 | Permission denied. |
-  | 13400003 | task service ability error. |
-  | 21900007 | task state error. |
+  | 13400003 | Task service ability error. |
+  | 21900007 | Operation with wrong task state. |
 
 **示例：**
 
@@ -4363,8 +4363,8 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900007 | task state error. |
+  | 13400003 | Task service ability error. |
+  | 21900007 | Operation with wrong task state. |
 
 **示例：**
 
@@ -4435,8 +4435,8 @@ stop(): Promise&lt;void&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900007 | task state error. |
+  | 13400003 | Task service ability error. |
+  | 21900007 | Operation with wrong task state. |
 
 **示例：**
 
@@ -4506,10 +4506,10 @@ setMaxSpeed(speed: number): Promise\<void\>
 
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
-| 错误码ID    | 错误信息                                                                                                                           |
-|----------|--------------------------------------------------------------------------------------------------------------------------------|
-| 401      | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed.. |
-| 13400003 | task service ability error.                                                                                                    |
+| 错误码ID    | 错误信息                 |
+|----------|------------------------------------------------------------------------------------------------------|
+| 401      | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+| 13400003 | Task service ability error.     |
 
 **示例：**
 
@@ -4563,12 +4563,12 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | permission denied. |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-  | 13400001 | file operation error. |
-  | 13400003 | task service ability error. |
-  | 21900004 | the application task queue is full. |
-  | 21900005 | task mode error. |
+  | 201 | Permission denied. |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 13400001 | Invalid file or file system error. |
+  | 13400003 | Task service ability error.    |
+  | 21900004 | The application task queue is full. |
+  | 21900005 | Operation with wrong task mode. |
 
 **示例：**
 
@@ -4655,12 +4655,12 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | permission denied. |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-  | 13400001 | file operation error. |
-  | 13400003 | task service ability error. |
-  | 21900004 | the application task queue is full. |
-  | 21900005 | task mode error. |
+  | 201 | Permission denied. |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 13400001 | Invalid file or file system error. |
+  | 13400003 | Task service ability error. |
+  | 21900004 | The application task queue is full. |
+  | 21900005 | Operation with wrong task mode. |
 
 **示例：**
 
@@ -4741,9 +4741,9 @@ getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found. |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 13400003 | Task service ability error. |
+  | 21900006 | Task removed or not found. |
 
 **示例：**
 
@@ -4783,9 +4783,9 @@ remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found. |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
+  | 13400003 | Task service ability error. |
+  | 21900006 | Task removed or not found. |
 
 **示例：**
 
@@ -4830,9 +4830,9 @@ remove(id: string): Promise&lt;void&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found. |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
+  | 13400003 | Task service ability error. |
+  | 21900006 | Task removed or not found. |
 
 **示例：**
 
@@ -4868,9 +4868,9 @@ show(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found. |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
+  | 13400003 | Task service ability error. |
+  | 21900006 | Task removed or not found. |
 
 **示例：**
 
@@ -4913,9 +4913,9 @@ show(id: string): Promise&lt;TaskInfo&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found. |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
+  | 13400003 | Task service ability error. |
+  | 21900006 | Task removed or not found. |
 
 **示例：**
 
@@ -4952,9 +4952,9 @@ touch(id: string, token: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found. |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 13400003 | Task service ability error. |
+  | 21900006 | Task removed or not found.  |
 
 **示例：**
 
@@ -4998,9 +4998,9 @@ touch(id: string, token: string): Promise&lt;TaskInfo&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found. |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 13400003 | Task service ability error. |
+  | 21900006 | Task removed or not found. |
 
 **示例：**
 
@@ -5034,8 +5034,8 @@ search(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Incorrect parameter type. 2. Parameter verification failed. |
-  | 13400003 | task service ability error. |
+  | 401 | Parameter error. Possible causes: 1. Incorrect parameter type. 2. Parameter verification failed. |
+  | 13400003 | Task service ability error. |
 
 **示例：**
 
@@ -5072,8 +5072,8 @@ search(filter: Filter, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Incorrect parameter type. 2. Parameter verification failed. |
-  | 13400003 | task service ability error. |
+  | 401 | Parameter error. Possible causes: 1. Incorrect parameter type. 2. Parameter verification failed. |
+  | 13400003 | Task service ability error. |
 
 **示例：**
 
@@ -5120,8 +5120,8 @@ search(filter?: Filter): Promise&lt;Array&lt;string&gt;&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Incorrect parameter type. 2. Parameter verification failed. |
-  | 13400003 | task service ability error. |
+  | 401 | Parameter error. Possible causes: 1. Incorrect parameter type. 2. Parameter verification failed. |
+  | 13400003 | Task service ability error. |
 
 **示例：**
 
@@ -5165,8 +5165,8 @@ createGroup(config: GroupConfig): Promise\<string\>
 
 | 错误码ID    | 错误信息                                                                                           |
 |----------|------------------------------------------------------------------------------------------------|
-| 401      | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-| 13400003 | task service ability error.             |
+| 401      | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+| 13400003 | Task service ability error.             |
 
 **示例：**
 
@@ -5214,12 +5214,12 @@ attachGroup(gid: string, tids: string[]): Promise\<void\>
 
 | 错误码ID    | 错误信息                                                                                           |
 |----------|------------------------------------------------------------------------------------------------|
-| 401      | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-| 13400003 | task service ability error                 |
-| 21900005 | task mode error                     |
-| 21900006 | task not found                   |
-| 21900007 | task state error                 |
-| 21900008 | group deleted or not found                          |
+| 401      | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+| 13400003 | Task service ability error.               |
+| 21900005 | Operation with wrong task mode.           |
+| 21900006 | Task removed or not found.                |
+| 21900007 | Operation with wrong task state.          |
+| 21900008 | Group deleted or not found.               |
 
 **示例：**
 
@@ -5265,9 +5265,9 @@ deleteGroup(gid: string): Promise\<void\>
 
 | 错误码ID    | 错误信息                                                                                           |
 |----------|------------------------------------------------------------------------------------------------|
-| 401      | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-| 13400003 | task service ability error           |
-| 21900008 | group deleted or not found           |
+| 401      | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+| 13400003 | Task service ability error.           |
+| 21900008 | Group deleted or not found.           |
 
 **示例：**
 
