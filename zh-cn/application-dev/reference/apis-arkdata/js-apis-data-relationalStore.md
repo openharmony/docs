@@ -60,7 +60,7 @@ getRdbStore目前不支持多线程并发操作。
 
 | **错误码ID** | **错误信息**   |
 |-----------|---------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error.     |
 | 14800010  | Failed to open or delete the database by an invalid database path.   |
 | 14800011  | Failed to open the database because it is corrupted.    |
@@ -171,7 +171,7 @@ getRdbStore目前不支持多线程并发操作。
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800010  | Failed to open or delete the database by an invalid database path. |
 | 14800011  | Failed to open the database because it is corrupted.  |

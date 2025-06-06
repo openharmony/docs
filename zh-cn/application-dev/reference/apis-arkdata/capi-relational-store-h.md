@@ -2017,7 +2017,7 @@ int OH_Rdb_Attach(OH_Rdb_Store *store, const OH_Rdb_ConfigV2 *config, const char
 | [OH_Rdb_Store](capi-oh-rdb-store.md) *store | 表示指向[OH_Rdb_Store](capi-oh-rdb-store.md)实例的指针。 |
 | const [OH_Rdb_ConfigV2](capi-oh-rdb-configv2.md) *config | 表示指向与此RDB存储相关的数据库配置[OH_Rdb_ConfigV2](capi-oh-rdb-configv2.md)的指针。 |
 | const char *attachName | 表示数据库的别名。 |
-| int64_t waitTime | 表示附加数据库的最大允许时间，范围为1到300。 |
+| int64_t waitTime | 表示附加数据库的最大允许时间，范围为1到300，单位为秒。 |
 | size_t *attachedNumber | 表示已附加的数据库数量，作为输出参数。 |
 
 **返回：**
@@ -2045,7 +2045,7 @@ int OH_Rdb_Detach(OH_Rdb_Store *store, const char *attachName, int64_t waitTime,
 | -- | -- |
 | [OH_Rdb_Store](capi-oh-rdb-store.md) *store | 表示指向[OH_Rdb_Store](capi-oh-rdb-store.md)实例的指针。 |
 | const char *attachName | 表示数据库的别名。 |
-| int64_t waitTime | 表示分离数据库的最大允许时间，范围为1到300。 |
+| int64_t waitTime | 表示分离数据库的最大允许时间，范围为1到300，单位为秒。 |
 | size_t *attachedNumber | 表示已附加的数据库数量，作为输出参数。 |
 
 **返回：**
