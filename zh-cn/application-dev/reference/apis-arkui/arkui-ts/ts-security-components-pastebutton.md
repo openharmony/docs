@@ -153,8 +153,8 @@ struct Index {
       if (result == PasteButtonOnClickResult.SUCCESS) {
         console.info("success");
       } else {
-        console.info("errCode: " + error.code);
-        console.info("errMessage: " + error.message);
+        console.error("errCode: " + error.code);
+        console.error("errMessage: " + error.message);
       }
     };
 

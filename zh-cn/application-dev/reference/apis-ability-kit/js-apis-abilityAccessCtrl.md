@@ -237,9 +237,9 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力**: SystemCapability.Security.AccessToken
+**系统能力：** SystemCapability.Security.AccessToken
 
 **参数：**
 
@@ -295,9 +295,9 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力**: SystemCapability.Security.AccessToken
+**系统能力：** SystemCapability.Security.AccessToken
 
 **参数：**
 
@@ -356,9 +356,9 @@ requestPermissionOnSetting(context: Context, permissionList: Array&lt;Permission
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力**: SystemCapability.Security.AccessToken
+**系统能力：** SystemCapability.Security.AccessToken
 
 **参数：**
 
@@ -415,9 +415,9 @@ requestGlobalSwitch(context: Context, type: SwitchType): Promise&lt;boolean&gt;
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力**: SystemCapability.Security.AccessToken
+**系统能力：** SystemCapability.Security.AccessToken
 
 **参数：**
 
@@ -647,7 +647,7 @@ type PermissionRequestResult = _PermissionRequestResult
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -663,7 +663,7 @@ type Context = _Context
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
