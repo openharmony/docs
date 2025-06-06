@@ -1,9 +1,9 @@
 # 废弃的Interfaces (AudioPlayer，deprecated)
 
 > **说明：**
-> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer](#avplayer9)替代。
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer](arkts-apis-media-t.md#avplayer9)替代。
 
-音频播放管理类，用于管理和播放音频媒体。在调用AudioPlayer的方法前，需要先通过[createAudioPlayer()](#mediacreateaudioplayerdeprecated)构建一个AudioPlayer实例。
+音频播放管理类，用于管理和播放音频媒体。在调用AudioPlayer的方法前，需要先通过[createAudioPlayer()](arkts-apis-media-f.md#mediacreateaudioplayerdeprecated)构建一个AudioPlayer实例。
 
 ## 属性<sup>(deprecated)</sup>
 
@@ -12,12 +12,12 @@
 | 名称                            | 类型                                                   | 只读 | 可选 | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | src                             | string                                                 | 否   | 否   | 音频媒体URI，支持当前主流的音频格式(m4a、aac、mp3、ogg、wav、amr)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http\://xx<br/>3. https网络播放: https\://xx<br/>4. hls网络播放路径：http\://xx或者https\://xx <br/>**需要权限：** ohos.permission.READ_MEDIA 或 ohos.permission.INTERNET。 |
-| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | 否   | 否   | 音频媒体文件描述，使用场景：应用中的音频资源被连续存储在同一个文件中。<br/>**使用示例**：<br/>假设一个连续存储的音乐文件: <br/>音乐1(地址偏移:0，字节长度:100)<br/>音乐2(地址偏移:101，字节长度:50)<br/>音乐3(地址偏移:151，字节长度:150)<br/>1. 播放音乐1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }<br/>2. 播放音乐2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }<br/>3. 播放音乐3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }<br/>假设是一个独立的音乐文件: 请使用src=fd://xx <br/> |
+| fdSrc<sup>9+</sup>              | [AVFileDescriptor](arkts-apis-media-i.md#avfiledescriptor9)                 | 否   | 否   | 音频媒体文件描述，使用场景：应用中的音频资源被连续存储在同一个文件中。<br/>**使用示例**：<br/>假设一个连续存储的音乐文件: <br/>音乐1(地址偏移:0，字节长度:100)<br/>音乐2(地址偏移:101，字节长度:50)<br/>音乐3(地址偏移:151，字节长度:150)<br/>1. 播放音乐1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }<br/>2. 播放音乐2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }<br/>3. 播放音乐3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }<br/>假设是一个独立的音乐文件: 请使用src=fd://xx <br/> |
 | loop                            | boolean                                                | 否   | 否  | 音频循环播放属性，设置为'true'表示循环播放。                 |
 | audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9) | 是   | 是   | 音频焦点模型。                                               |
 | currentTime                     | number                                                 | 是   | 否   | 音频的当前播放位置，单位为毫秒（ms）。                       |
 | duration                        | number                                                 | 是   | 否   | 音频时长，单位为毫秒（ms）。                                 |
-| state                           | [AudioState](#audiostatedeprecated)                              | 是   | 否   | 可以查询音频播放的状态，该状态不可作为调用play/pause/stop等状态切换的触发条件。 |
+| state                           | [AudioState](arkts-apis-media-t.md#audiostatedeprecated)                              | 是   | 否   | 可以查询音频播放的状态，该状态不可作为调用play/pause/stop等状态切换的触发条件。 |
 
 ## play<sup>(deprecated)</sup>
 
@@ -26,7 +26,7 @@ play(): void
 开始播放音频资源，需在'dataLoad'事件成功触发后，才能调用。
 
 > **说明：**
-> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.play](#play9)替代。
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.play](arkts-apis-media-AVPlayer.md#play9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -46,7 +46,7 @@ pause(): void
 暂停播放音频资源。
 
 > **说明：**
-> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.pause](#pause9)替代。
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.pause](arkts-apis-media-AVPlayer.md#pause9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -66,7 +66,7 @@ stop(): void
 停止播放音频资源。
 
 > **说明：**
-> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.stop](#stop9)替代。
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.stop](arkts-apis-media-AVPlayer.md#stop9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -86,7 +86,7 @@ reset(): void
 重置播放音频资源。
 
 > **说明：**
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[AVPlayer.reset](#reset9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[AVPlayer.reset](arkts-apis-media-AVPlayer.md#reset9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -106,7 +106,7 @@ seek(timeMs: number): void
 跳转到指定播放位置。
 
 > **说明：**
-> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.seek](#seek9)替代。
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.seek](arkts-apis-media-AVPlayer.md#seek9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -136,7 +136,7 @@ setVolume(vol: number): void
 设置音量。
 
 > **说明：**
-> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.setVolume](#setvolume9)替代。
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.setVolume](arkts-apis-media-AVPlayer.md#setvolume9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -162,7 +162,7 @@ release(): void
 释放音频资源。
 
 > **说明：**
-> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.release](#release9)替代。
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.release](arkts-apis-media-AVPlayer.md#release9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -180,7 +180,7 @@ getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 获取音频轨道信息。需在'dataLoad'事件成功触发后，才能调用。通过回调函数获取返回值。
 
 > **说明：**
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.getTrackDescription](#gettrackdescription9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.getTrackDescription](arkts-apis-media-AVPlayer.md#gettrackdescription9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -188,7 +188,7 @@ getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                       |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<Array\<[MediaDescription](#mediadescription8)>> | 是   | 回调函数。获取音频轨道信息成功时，err为undefined，data为获取到的MediaDescription数组，否则为错误对象。 |
+| callback | AsyncCallback\<Array\<[MediaDescription](arkts-apis-media-i.md#mediadescription8)>> | 是   | 回调函数。获取音频轨道信息成功时，err为undefined，data为获取到的MediaDescription数组，否则为错误对象。 |
 
 **示例：**
 
@@ -211,7 +211,7 @@ getTrackDescription(): Promise\<Array\<MediaDescription>>
 获取音频轨道信息。需在'dataLoad'事件成功触发后，才能调用。通过Promise获取返回值。
 
 > **说明：**
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.getTrackDescription](#gettrackdescription9-1)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.getTrackDescription](arkts-apis-media-AVPlayer.md#gettrackdescription9-1)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -219,7 +219,7 @@ getTrackDescription(): Promise\<Array\<MediaDescription>>
 
 | 类型                                                   | 说明                                            |
 | ------------------------------------------------------ | ----------------------------------------------- |
-| Promise<Array<[MediaDescription](#mediadescription8)>> | 音频轨道信息MediaDescription数组Promise返回值。 |
+| Promise<Array<[MediaDescription](arkts-apis-media-i.md#mediadescription8)>> | 音频轨道信息MediaDescription数组Promise返回值。 |
 
 **示例：**
 
@@ -240,7 +240,7 @@ on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: numbe
 开始订阅音频缓存更新事件。仅网络播放支持该订阅事件。
 
 > **说明：**
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('bufferingUpdate')](#onbufferingupdate9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('bufferingUpdate')](arkts-apis-media-AVPlayer.md#onbufferingupdate9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -249,7 +249,7 @@ on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: numbe
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 音频缓存事件回调类型，支持的事件：'bufferingUpdate'。        |
-| callback | function | 是   | 音频缓存事件回调方法。<br>[BufferingInfoType](#bufferinginfotype8)value值固定为0。 |
+| callback | function | 是   | 音频缓存事件回调方法。<br>[BufferingInfoType](arkts-apis-media-e.md#bufferinginfotype8)value值固定为0。 |
 
 **示例：**
 
@@ -267,7 +267,7 @@ on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeCh
 开始订阅音频播放事件。
 
 > **说明：**
-> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('stateChange')](#onstatechange9)替代。
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('stateChange')](arkts-apis-media-AVPlayer.md#onstatechange9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -344,7 +344,7 @@ on(type: 'timeUpdate', callback: Callback\<number>): void
 开始订阅音频播放时间更新事件。处于播放状态时，每隔1s上报一次该事件。
 
 > **说明：**
-> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('timeUpdate')](#ontimeupdate9)替代。
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('timeUpdate')](arkts-apis-media-AVPlayer.md#ontimeupdate9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -375,7 +375,7 @@ on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
 监听音频焦点变化事件，参考[audio.InterruptEvent](../apis-audio-kit/js-apis-audio.md#interruptevent9)。
 
 > **说明：**
-> 从API version 9开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('audioInterrupt')](#onaudiointerrupt9)替代。
+> 从API version 9开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('audioInterrupt')](arkts-apis-media-AVPlayer.md#onaudiointerrupt9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -403,7 +403,7 @@ on(type: 'error', callback: ErrorCallback): void
 开始订阅音频播放错误事件，当上报error错误事件后，用户需处理error事件，退出播放操作。
 
 > **说明：**
-> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('error')](#onerror9)替代。
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('error')](arkts-apis-media-AVPlayer.md#onerror9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
