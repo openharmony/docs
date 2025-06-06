@@ -1356,7 +1356,7 @@ type DataProgressListener = (progressInfo: ProgressInfo, data: UnifiedData | nul
 | dataProgressListener | [DataProgressListener](#dataprogresslistener15) | 是 | 表示获取统一数据时的进度和数据监听器。                                                                                                                                |
 | destUri              | string                                          | 否 | 拷贝文件的目标路径。若不支持文件处理，则不需要设置此参数,默认为空；若支持文件处理，须设置一个已经存在的目录。若应用涉及复杂文件处理策略或需要区分文件多路径存储，建议不设置此参数，由应用自行完成文件copy处理。不填写时获取到到的uri为源端路径URI，填写后获取到的uri为目标路径uri。|
 | fileConflictOptions  | [FileConflictOptions](#fileconflictoptions15)   | 否   | 定义文件拷贝冲突时的选项，默认为OVERWRITE。                                                                                                                         |
-| acceptableInfo  | [DataLoadInfo](#dataloadinfo20)   | 否   | 定义接收方对数据类型和数据记录数量的接受能力。延迟拖拽场景下，发送方可根据此信息生成并返回更合适的数据内容。    |
+| acceptableInfo<sup>20+</sup>  | [DataLoadInfo](#dataloadinfo20)   | 否   | 定义接收方对数据类型和数据记录数量的接受能力。延迟拖拽场景下，发送方可根据此信息生成并返回更合适的数据内容。    |
 
 ## DataLoadInfo<sup>20+</sup>
 
