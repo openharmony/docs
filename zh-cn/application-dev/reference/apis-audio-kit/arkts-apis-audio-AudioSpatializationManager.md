@@ -5,7 +5,7 @@
 
 空间音频管理。
 
-在使用AudioSpatializationManager的接口之前，需先通过[getSpatializationManager](#getspatializationmanager18)获取AudioSpatializationManager实例。
+在使用AudioSpatializationManager的接口之前，需先通过[getSpatializationManager](arkts-apis-audio-AudioManager.md#getspatializationmanager18)获取AudioSpatializationManager实例。
 
 ## isSpatializationEnabledForCurrentDevice<sup>18+</sup>
 
