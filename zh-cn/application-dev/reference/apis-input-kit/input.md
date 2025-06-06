@@ -2954,6 +2954,7 @@ ohos.permission.INPUT_MONITORING
 Input_Result OH_Input_RemoveHotkeyMonitor (const Input_Hotkey * hotkey, Input_HotkeyCallback callback )
 ```
 **描述**
+
 取消订阅快捷键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2969,8 +2970,7 @@ Input_Result OH_Input_RemoveHotkeyMonitor (const Input_Hotkey * hotkey, Input_Ho
 
 **返回：**
 
-OH_Input_RemoveHotkeyMonitor 函数错误码。 [INPUT_SUCCESS](#input_result) 表示取消订阅组合按键成功。
-[INPUT_PARAMETER_ERROR](#input_result) 表示参数检查失败。
+OH_Input_RemoveHotkeyMonitor 函数错误码。 [INPUT_SUCCESS](#input_result) 表示取消订阅组合按键成功。<br>[INPUT_PARAMETER_ERROR](#input_result) 表示参数检查失败。
 
 
 ### OH_Input_RemoveInputEventInterceptor()
