@@ -96,10 +96,10 @@ constructor(options: ProgressButtonV2ColorOptions);
 
 | 名称              | 类型           | 必填 | 说明                        |
 |-----------------|--------------|----|---------------------------|
-| progressColor   | ColorMetrics | 否  | 进度条颜色。<br/>默认值：undefined  |
-| borderColor     | ColorMetrics | 否  | 按钮描边颜色。<br/>默认值：undefined |
-| textColor       | ColorMetrics | 否  | 按钮文本颜色。<br/>默认值：undefined |
-| backgroundColor | ColorMetrics | 否  | 按钮背景颜色。<br/>默认值：undefined |
+| progressColor   | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)| 否  | 进度条颜色。<br/>默认值：undefined  |
+| borderColor     | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)| 否  | 按钮描边颜色。<br/>默认值：undefined |
+| textColor       | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)| 否  | 按钮文本颜色。<br/>默认值：undefined |
+| backgroundColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)| 否  | 按钮背景颜色。<br/>默认值：undefined |
 
 ## 事件
 不支持[通用事件](ts-component-general-events.md)。
