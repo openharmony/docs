@@ -728,6 +728,7 @@
       - Web调试维测<!--web-debugging-->
         - [使用DevTools工具调试前端页面](web/web-debugging-with-devtools.md)
         - [使用crashpad收集Web组件崩溃信息](web/web-crashpad.md)
+        - [定位与解决Web白屏问题](web/web-white-screen.md)
     - Background Tasks Kit（后台任务开发服务）<!--background-task-kit-->
       <!--Del-->
       - 后台任务管理 <!--background-task-management--><!--DelEnd-->
