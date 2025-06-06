@@ -920,7 +920,7 @@ enum InputEvent_AxisEventType
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | AXIS_EVENT_TYPE_PINCH  | 双指捏合事件，包含[AXIS_TYPE_PINCH](#inputevent_axistype)和[AXIS_TYPE_ROTATE](#inputevent_axistype)两种轴类型。 | 
-| AXIS_EVENT_TYPE_SCROLL  | 滚轴事件，包含[AXIS_TYPE_SCROLL_VERTICAL](#inputevent_axistype)和[AXIS_TYPE_SCROLL_HORIZONTAL](#inputevent_axistype)两种轴类型， <br>其中鼠标滚轮事件仅包含[AXIS_TYPE_SCROLL_VERTICAL](#inputevent_axistype)一种轴类型。| 
+| AXIS_EVENT_TYPE_SCROLL  | 滚轴事件，包含[AXIS_TYPE_SCROLL_VERTICAL](#inputevent_axistype)和[AXIS_TYPE_SCROLL_HORIZONTAL](#inputevent_axistype)两种轴类型。<br>其中鼠标滚轮事件仅包含[AXIS_TYPE_SCROLL_VERTICAL](#inputevent_axistype)一种轴类型。| 
 
 
 ### InputEvent_AxisType
@@ -2970,7 +2970,6 @@ Input_Result OH_Input_RemoveHotkeyMonitor (const Input_Hotkey * hotkey, Input_Ho
 **返回：**
 
 OH_Input_RemoveHotkeyMonitor 函数错误码。 [INPUT_SUCCESS](#input_result) 表示取消订阅组合按键成功。
-
 [INPUT_PARAMETER_ERROR](#input_result) 表示参数检查失败。
 
 
