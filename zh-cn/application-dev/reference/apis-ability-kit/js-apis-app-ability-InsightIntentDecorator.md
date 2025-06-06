@@ -36,6 +36,10 @@ import { InsightIntentLink, InsightIntentPage, InsightIntentFunctionMethod, Insi
 
 使用该装饰器装饰当前应用的uri链接，可以将该uri链接定义为意图，便于AI入口通过定义的意图快速跳转到当前应用。该装饰器支持的参数参见[LinkIntentDecoratorInfo](#linkintentdecoratorinfo)。
 
+> **说明**
+>
+> uri链接格式需要符合[应用链接说明](../../application-models/app-uri-config.md)说明中的要求。
+
 **模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -205,6 +209,10 @@ LinkIntentParamMapping是[@InsightIntentLink](#insightintentlink)装饰器的意
 
 使用该装饰器装饰当前应用的页面，可以将页面定义为意图，便于AI入口通过意图快速跳转到指定页面。该装饰器支持的参数参见[PageIntentDecoratorInfo](#pageintentdecoratorinfo)。
 
+> **说明**
+>
+> 该装饰器仅支持装饰struct页面。
+
 **模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -265,7 +273,7 @@ PageIntentDecoratorInfo继承自[IntentDecoratorInfo](#intentdecoratorinfo)，�
 | 名称               | 类型         | 只读       | 可选 | 说明                                                         |
 | ------------------ | -------------| --------- | ---- | ------------------------------------------------------------ |
 | uiAbility          | string       | 否           | 是   | 表示与意图绑定的UIAbility名称。                                  |
-| pagePath           | string        | 否          | 否   | 表示与意图绑定的页面路径。                                   |
+| pagePath           | string        | 否          | 否   | 表示与意图绑定的页面路径，该页面需要是一个实际存在的文件。 |
 | navigationId       | string        | 否        | 是   | 表示与意图绑定的[Navigation组件](../apis-arkui/arkui-ts/ts-basic-components-navigation.md#属性)的id属性。 |
 | navDestinationName | string         | 否       | 是   | 表示与意图绑定[NavDestination组件](../apis-arkui/arkui-ts/ts-basic-components-navigation.md#navdestination10)的名称。 |
 
@@ -286,6 +294,12 @@ PageIntentDecoratorInfo继承自[IntentDecoratorInfo](#intentdecoratorinfo)，�
 该装饰器与[@InsightIntentFunction](#insightintentfunction)装饰器必须组合使用。
 
 使用该装饰器来装饰类中的静态函数，同时使用[@InsightIntentFunction](#insightintentfunction)装饰器来装饰静态函数所属的类，可以将对应的静态函数定义为意图，便于AI入口能够快速执行此函数。
+
+> **说明**
+>
+> 静态方法所在的类需要通过export导出。
+>
+> 函数的参数名称、参数类型需要与意图定义的参数名称、参数类型保持一致。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -344,6 +358,12 @@ export class ClassForFuncDemo {
 ## @InsightIntentEntry
 
 使用该装饰器装饰一个继承自[InsightIntentEntryExecutor](./js-apis-app-ability-InsightIntentEntryExecutor.md)的类，并配置拉起Ability时支持的执行模式，便于AI入口拉起绑定的Ability组件时，执行对应的意图操作。该装饰器支持的参数参见[EntryIntentDecoratorInfo](#entryintentdecoratorinfo)。
+
+> **说明**
+>
+> - 如果使用该装饰器接入标注意图，必须实现标准意图Json Schema中定义的所有必选参数且类型匹配。
+> - 如果创建自定义意图，必须实现parameters字段中定义的所有必选参数且类型匹配。
+> - 被装饰的类需要使用export default导出。类的属性仅支持基础类型或意图实体，返回值仅支持意图实体。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -432,6 +452,10 @@ EntryIntentDecoratorInfo继承自[IntentDecoratorInfo](#intentdecoratorinfo)，�
 ## @InsightIntentForm
 
 使用该装饰器装饰[FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md)并配置FormExtensionAbility绑定的卡片名称，通过意图调用可以将对应的卡片添加到AI入口。该装饰器支持的参数参见[FormIntentDecoratorInfo](#formintentdecoratorinfo)。
+
+> **说明**
+>
+> 卡片名称定义的要求参见[卡片配置](../../form/arkts-ui-widget-configuration.md#卡片配置)。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -565,7 +589,7 @@ export class ArtistClassDef implements insightIntent.IntentEntity {
 }
 ```
 
-## IntentEntityDecoratorInfo 
+## IntentEntityDecoratorInfo
 
 用于描述[@InsightIntentEntity](#insightintententity)装饰器支持的参数。
 
