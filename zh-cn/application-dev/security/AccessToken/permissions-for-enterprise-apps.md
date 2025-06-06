@@ -35,6 +35,8 @@
 
 允许应用进行公共目录扫描及设置文件扩展属性。
 
+当前扩展属性包括文件密级、文件标签。
+
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
@@ -59,11 +61,13 @@
 
 **起始版本**：7
 
-**变更信息**：API 7-13该权限仅向系统应用开放；从API 14开始，开放范围变更为企业普通应用。
+**变更信息**：API 7-13该权限仅向系统应用开放；从API 14开始，开放范围从系统应用变更为企业普通应用。
 
 ## ohos.permission.GET_RUNNING_INFO
 
 允许应用获取运行态信息。
+
+可获取其他应用的运行态信息，包括Ability、Extension、Application的信息。
 
 **权限级别**：system_basic
 
@@ -95,6 +99,8 @@
 
 允许查询应用的基本信息和其他敏感信息。
 
+如应用包名，版本等信息。
+
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
@@ -110,22 +116,24 @@
 
 允许应用获取Wi-Fi的配置信息。
 
-当前仅PC/2in1设备应用可申请此权限。
-
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
+
+**支持设备**：PC/2in1
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：8
 
-**变更信息**：API 8-14该权限仅向系统应用开放；从API 15开始，开放范围变更为企业普通应用。
+**变更信息**：API 8-14该权限仅向系统应用开放；从API 15开始，开放范围从系统应用变更为企业普通应用。
 
 ## ohos.permission.SET_WIFI_CONFIG
 
 允许应用配置Wi-Fi信息。
+
+该权限允许应用添加、删除Wi-Fi，以及修改Wi-Fi的配置信息。
 
 **权限级别**：system_basic
 
@@ -155,7 +163,7 @@
 
 ## ohos.permission.QUERY_AUDIT_EVENT
 
-允许应用查询安全审计事件。
+允许企业安全类应用查询安全审计事件。
 
 **权限级别**：system_basic
 
@@ -166,11 +174,13 @@
 
 **起始版本**：12
 
-**变更信息**：API 12-13该权限仅面向MDM应用开放；从API 14开始，开放范围变更为企业普通应用。
+**变更信息**：API 12-13该权限仅面向MDM应用开放；从API 14开始，开放范围从MDM应用变为更为企业普通应用。
 
 ## ohos.permission.KILL_APP_PROCESSES
 
-允许系统应用杀掉其他应用。
+允许系统应用结束其他应用进程。
+
+获取权限后，可终止其他正在运行中的应用，允许它在必要时对系统中的进程进行管理和控制。
 
 **权限级别**：system_basic
 
@@ -196,11 +206,13 @@
 
 **起始版本**：14
 
-**变更信息**：从API 14开始，权限级别变更为system_basic，开发范围从所有应用变更为企业普通应用。
+**变更信息**：在API 13，权限等级为normal；从API 14开始，权限等级变更为system_basic。
 
 ## ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
 
 允许应用管理Wi-Fi的连接。
+
+获取该权限后，可执行开启/关闭、连接、断开Wi-Fi等操作。
 
 **权限级别**：system_basic
 
@@ -317,7 +329,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -326,9 +338,26 @@
 
 ## ohos.permission.SUPPORT_APP_SERVICE_EXTENSION
 
-允许应用的AppServiceExtension组件被拉起。
+允许应用作为AppServiceExtension被拉起。
 
 获取此权限后，应用可作为AppServiceExtension被同应用或同在"appidentifierAllowList"配置中的应用拉起或连接。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
+## ohos.permission.ENTERPRISE_MANAGE_EAP
+
+允许企业网络安全软件在EAP报文中新增私有信息。
+
+获取此权限后，允许企业网络安全软件获取802.1x报文并新增信息，完成定制化认证需求。
 
 **权限级别**：system_basic
 

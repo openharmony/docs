@@ -552,7 +552,9 @@ struct Index {
 
 在设备上，点击photo按钮，选择相册中的一张图片，点击确定。在图片下方显示此图片占比前4的分类信息。
 
-<img src="figures/stepc1.png"  width="20%"/>     <img src="figures/step2.png" width="20%"/>     <img src="figures/step3.png" width="20%"/>     <img src="figures/stepc4.png" width="20%"/>
+![stepc1](figures/stepc1.png)           ![step2](figures/step2.png)
+
+![step3](figures/step3.png)         ![stepc4](figures/stepc4.png) 
 
 ## 相关实例
 

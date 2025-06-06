@@ -3,8 +3,10 @@
 - [ArkData简介](data-mgmt-overview.md)
 - 标准化数据定义<!--uniform-data-definition-->
   - [标准化数据定义概述](unified-data-definition-overview.md)
-  - [标准化数据类型](uniform-data-type-descriptors.md)
-  - [标准化数据结构](uniform-data-structure.md)
+  - [标准化数据类型 (ArkTS)](uniform-data-type-descriptors.md)
+  - [标准化数据类型 (C/C++)](uniform-data-type-descriptors-c.md)
+  - [标准化数据结构 (ArkTS)](uniform-data-structure.md)
+  - [标准化数据结构 (C/C++)](uniform-data-structure-c.md)
   - [基于标准化数据结构的控件（ArkTS）](components-based-on-uniform-data-structure.md)
   - [Uniform Type Descriptor(UTD)预置类型列表](uniform-data-type-list.md)
 - 应用数据持久化<!--app-data-persistence-->
@@ -38,7 +40,8 @@
     - [通过数据管理服务实现数据共享静默访问](share-data-by-silent-access.md)
   <!--DelEnd-->
   - 多对多跨应用数据共享<!--many-to-many-data-share-->
-    - [通过标准化数据通路实现数据共享](unified-data-channels.md)
+    - [通过标准化数据通路实现数据共享 (ArkTS)](unified-data-channels.md)
+    - [通过标准化数据通路实现数据共享 (C/C++)](unified-data-channels-c.md)
 - [应用数据向量化](aip-data-intelligence-embedding.md)
-- [UDMF开发指导 (C/C++)](native-unified-data-management-framework-guidelines.md)
 - [ArkData术语](data-terminology.md)
+- [sqlite调试工具](sqlite-database-debug-tool.md)

@@ -261,7 +261,7 @@ matchTextDirection(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                         |
 | ------ | ------- | ---- | -------------------------------------------- |
-| value  | boolean | 是   | 图片是否跟随系统语言方向。<br/>默认值：false，false表示图片不跟随系统语言方向，true表示图片跟随系统语言方向。 |
+| value  | boolean | 是   | 图片是否跟随系统语言方向。<br/>默认值：false，false表示图片不跟随系统语言方向，true表示图片跟随系统语言方向，在RTL语言环境下显示镜像翻转显示效果。 |
 
 ### fitOriginalSize
 
@@ -409,12 +409,12 @@ colorFilter(value: ColorFilter | DrawingColorFilter)
 
 | 参数名 | 类型                                    | 必填 | 说明                                                         |
 | ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](#drawingcolorfilter12) | 是   | 1. 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br/>当矩阵对角线值为1，其余值为0时，保持图片原有色彩。<br/> **计算规则：**<br/>如果输入的滤镜矩阵如下（其中矩阵值的范围[0, 1]）：<br/>![image-matrix-1](figures/image_matrix_1.png) <br/>像素点为[R, G, B, A]，色值的范围[0, 255]<br/>则过滤后的颜色为 [R’, G’, B’, A’]<br/>![image-matrix-2](figures/image_matrix_2.png)<br/>2. 从API version12开始支持@ohos.graphics.drawing的ColorFilter类型作为入参。<br/>**说明：** <br/>API version 11及之前，svg类型图源不支持该属性。<br/>从API version 12开始，该接口中的DrawingColorfilter类型支持在原子化服务中使用。其中，svg类型的图源只对stroke属性生效。|
+| value  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](#drawingcolorfilter12) | 是   | 1. 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br/>当矩阵对角线值为1，其余值为0时，保持图片原有色彩。<br/> **计算规则：**<br/>如果输入的滤镜矩阵如下（其中矩阵值的范围[0, 1]）：<br/>![image-matrix-1](figures/image_matrix_1.png) <br/>像素点为[R, G, B, A]，色值的范围[0, 255]<br/>则过滤后的颜色为 [R’, G’, B’, A’]<br/>![image-matrix-2](figures/image_matrix_2.png)<br/>2. 从API version12开始支持@ohos.graphics.drawing的ColorFilter类型作为入参。<br/>**说明：** <br/>API version 11及之前，svg类型图源不支持该属性。<br/>从API version 12开始，该接口中的DrawingColorfilter类型支持在原子化服务中使用。其中，svg类型的图源只有设置了stroke属性（无论是否有值）才会生效。|
 ### draggable<sup>9+</sup>
 
 draggable(value: boolean)
 
-设置组件默认拖拽效果。不能和[onDragStart](ts-universal-events-drag-drop.md#ondragstart)事件同时使用。
+设置组件默认拖拽效果。不能和[onDragStart](ts-universal-events-drag-drop.md#ondragstart)事件、[bindPopup](ts-universal-attributes-popup.md)同时使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -644,11 +644,15 @@ svg类型图源不支持该属性。
 
 | 名称     | 值    | 说明                    |
 | ------ | -------------------------- | -------------------------- |
-| AUTO   | 0  | 读取图片携带的EXIF元数据作为显示方向，支持旋转和镜像。              |
-| UP | 1 | 默认按照当前图片进行显示，不做任何EXIF处理。          |
-| RIGHT | 2 | 将当前图片向右旋转90度后显示。         |
-| DOWN | 3| 将当前图片旋转180度后显示。         |
-| LEFT | 4 | 将当前图片向左旋转90度后显示。         |
+| AUTO | 0 | 读取图片携带的EXIF元数据作为显示方向，支持旋转和镜像。 |
+| UP | 1 | 默认按照当前图片的像素数据进行显示，不做任何处理。 |
+| RIGHT | 2 | 将当前图片顺时针旋转90度后显示。 |
+| DOWN | 3 | 将当前图片顺时针旋转180度后显示。 |
+| LEFT | 4 | 将当前图片顺时针旋转270度后显示。 |
+| UP_MIRRORED<sup>20+</sup> | 5 | 将当前图片水平翻转后显示。 |
+| RIGHT_MIRRORED<sup>20+</sup> | 6 | 将当前图片水平翻转再顺时针旋转90度后显示。 |
+| DOWN_MIRRORED<sup>20+</sup> | 7 | 将当前图片垂直翻转后显示。 |
+| LEFT_MIRRORED<sup>20+</sup> | 8 | 将当前图片水平翻转再顺时针旋转270度后显示。 |
 
 ## ImageSourceSize<sup>18+</sup>对象说明
 
@@ -832,36 +836,6 @@ type ImageErrorCallback = (error: ImageError) => void
 | message<sup>10+</sup>         | string | 是   | 报错信息。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | error<sup>20+</sup>         | [BusinessError\<void>](#businesserror20) | 否   | 图片加载异常返回的报错信息，其中code为错误码，message为错误信息。报错信息请参考以下错误信息的详细介绍。<br/>默认值：{ code : -1, message : "" }<br/>**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
-
-
-以下是错误信息的详细介绍。
-
-| 错误码ID  | 错误信息                       | 错误信息发生阶段 | 图片加载类型 |
-| --------  | ----------------------------   | --------- | ------- |
-| 101000    | unknown source type.           | 数据加载 | 未知类型 |
-| 102010    | sync http task of uri cancelled. | 数据加载 | 网络文件 |
-| 102011    | sync http task of uri failed.  | 数据加载 | 网络文件 |
-| 102012    | async http task of uri cancelled. | 数据加载 | 网络文件 |
-| 102013    | async http task of uri failed. | 数据加载 | 网络文件 |
-| 102030    | wrong code format.             | 数据加载 | base64字符串 |
-| 102031    | decode base64 image failed.    | 数据加载 | base64字符串 |
-| 102050    | path is too long.              | 数据加载 | base64字符串 |
-| 102051    | read data failed.              | 数据加载 | 沙箱文件 |
-| 102070    | get image data by name failed. | 数据加载 | 沙箱文件 |
-| 102071    | get image data by id failed.   | 数据加载 | 资源文件 |
-| 102072    | uri is invalid.                | 数据加载 | 资源文件 |
-| 102090    | uri is invalid.                | 数据加载 | 包内文件 |
-| 102091    | get asset failed.              | 数据加载 | 包内文件 |
-| 102110    | open file failed.              | 数据加载 | 媒体库文件 |
-| 102111    | get file stat failed.          | 数据加载 | 媒体库文件 |
-| 102112    | read file failed.              | 数据加载 | 媒体库文件 |
-| 102130    | decoded data is empty.         | 数据加载 | 媒体库缩略图文件 |
-| 102131    | load shared memory image data timeout. | 数据加载 | 共享内存 |
-| 103100    | make svg dom failed.           | 数据加载 | 矢量图 |
-| 103200    | image data size is invalid.    | 数据加载 | 位图 |
-| 111000    | image source create failed.    | 数据解码 | 位图 |
-| 111001    | pixelmap create failed.        | 数据解码 | 位图 |
-
 ## BusinessError<sup>20+</sup>
 
 type BusinessError\<T> = BusinessError\<T>
@@ -877,6 +851,34 @@ type BusinessError\<T> = BusinessError\<T>
 | 类型  | 说明   |
 | ---- | ------ |
 | [BusinessError\<T>](../../apis-basic-services-kit/js-apis-base.md#businesserror) | 图片加载异常返回的错误信息。 |
+
+以下是错误信息的详细介绍：ImageError的error属性为错误信息对象，其中code为错误码，message为错误信息。
+
+| 错误码ID  | 错误信息                       | 错误信息发生阶段 | 图片加载类型 |
+| --------  | ----------------------------   | --------- | ------- |
+| 101000    | unknown source type.           | 数据加载 | 未知类型 |
+| 102010    | sync http task of uri cancelled. | 数据加载 | 网络文件 |
+| 102011    | sync http task of uri failed.  | 数据加载 | 网络文件 |
+| 102012    | async http task of uri cancelled. | 数据加载 | 网络文件 |
+| 102013    | async http task of uri failed. | 数据加载 | 网络文件 |
+| 102030    | wrong code format.             | 数据加载 | base64字符串文件 |
+| 102031    | decode base64 image failed.    | 数据加载 | base64字符串文件 |
+| 102050    | path is too long.              | 数据加载 | base64字符串文件 |
+| 102051    | read data failed.              | 数据加载 | 沙箱文件 |
+| 102070    | get image data by name failed. | 数据加载 | 沙箱文件 |
+| 102071    | get image data by id failed.   | 数据加载 | 资源文件 |
+| 102072    | uri is invalid.                | 数据加载 | 资源文件 |
+| 102090    | uri is invalid.                | 数据加载 | 包内文件 |
+| 102091    | get asset failed.              | 数据加载 | 包内文件 |
+| 102110    | open file failed.              | 数据加载 | 媒体库文件 |
+| 102111    | get file stat failed.          | 数据加载 | 媒体库文件 |
+| 102112    | read file failed.              | 数据加载 | 媒体库文件 |
+| 102130    | decoded data is empty.         | 数据加载 | 媒体库缩略图文件 |
+| 102131    | load shared memory image data timeout. | 数据加载 | 共享内存文件 |
+| 103100    | make svg dom failed.           | 数据加载 | 矢量图文件 |
+| 103200    | image data size is invalid.    | 数据加载 | 位图文件 |
+| 111000    | image source create failed.    | 数据解码 | 位图文件 |
+| 111001    | pixelmap create failed.        | 数据解码 | 位图文件 |
 
 ## 示例
 
@@ -1734,7 +1736,7 @@ struct Index {
         .height('auto')
         .margin({top:160})
         .hdrBrightness(this.bright) // 设置图片的HDR亮度，值由bright状态控制
-      Button("图片动态提亮 0->1")  
+      Button("图片动态提亮 0->1")
         .onClick(() => {
           // 动画过渡，切换亮度值
           this.getUIContext()?.animateTo({}, () => {
@@ -1747,3 +1749,119 @@ struct Index {
   }
 }
 ```
+
+### 示例19（设置图片是否跟随系统语言方向）
+
+该示例通过[matchTextDirection](#matchtextdirection)接口，设置手机语言为维语时图片是否显示镜像翻转显示效果。
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
+        Row() {
+          // 图片不跟随系统语言方向
+          Image($r('app.media.ocean'))
+            .width(110).height(110).margin(15)
+            .matchTextDirection(false)
+        }
+        Row() {
+          // 图片跟随系统语言方向
+          Image($r('app.media.ocean'))
+            .width(110).height(110).margin(15)
+            .matchTextDirection(true)
+        }
+      }
+    }.height(320).width(360).padding({ right: 10, top: 10 })
+  }
+}
+```
+
+![matchTextDirection](figures/matchTextDirection.png)
+
+### 示例20（设置图像内容的显示方向）
+
+该示例通过[orientation](#orientation14)属性，设置图像内容的显示方向。
+
+```ts
+@Entry
+@Component
+struct OrientationExample {
+  build() {
+    Column() {
+      Row({ space: 25 }) {
+        Column() {
+          Text('AUTO')
+          Image($r('app.media.hello'))
+            .width(125).height(125)
+            .orientation(ImageRotateOrientation.AUTO)
+        }
+
+        Column() {
+          Text('UP')
+          Image($r('app.media.hello'))
+            .width(125).height(125)
+            .orientation(ImageRotateOrientation.UP)
+        }
+
+        Column() {
+          Text('RIGHT')
+          Image($r('app.media.hello'))
+            .width(125).height(125)
+            .orientation(ImageRotateOrientation.RIGHT)
+        }
+      }
+
+      Row({ space: 25 }) {
+        Column() {
+          Text('DOWN')
+          Image($r('app.media.hello'))
+            .width(125).height(125)
+            .orientation(ImageRotateOrientation.DOWN)
+        }
+
+        Column() {
+          Text('LEFT')
+          Image($r('app.media.hello'))
+            .width(125).height(125)
+            .orientation(ImageRotateOrientation.LEFT)
+        }
+
+        Column() {
+          Text('UP_MIRRORED')
+          Image($r('app.media.hello'))
+            .width(125).height(125)
+            .orientation(ImageRotateOrientation.UP_MIRRORED)
+        }
+      }
+
+      Row({ space: 15 }) {
+        Column() {
+          Text('RIGHT_MIRRORED')
+          Image($r('app.media.hello'))
+            .width(125).height(125)
+            .orientation(ImageRotateOrientation.RIGHT_MIRRORED)
+        }
+
+        Column() {
+          Text('DOWN_MIRRORED')
+          Image($r('app.media.hello'))
+            .width(125).height(125)
+            .orientation(ImageRotateOrientation.DOWN_MIRRORED)
+        }
+
+        Column() {
+          Text('LEFT_MIRRORED')
+          Image($r('app.media.hello'))
+            .width(125).height(125)
+            .orientation(ImageRotateOrientation.LEFT_MIRRORED)
+        }
+      }
+    }
+  }
+}
+```
+
+![matchTextDirection](figures/orientation.png)

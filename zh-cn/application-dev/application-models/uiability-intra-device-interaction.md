@@ -379,7 +379,7 @@ struct Page_UIAbilityComponentsInteractive {
 
 ### 目标UIAbility冷启动
 
-目标[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)冷启动时，在目标UIAbility的[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate)生命周期回调中，接收调用方传过来的参数。然后在目标UIAbility的[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate)生命周期回调中，解析调用方传递过来的[want](../reference/apis-ability-kit/js-apis-app-ability-want.md)参数，获取到需要加载的页面信息url，传入[windowStage.loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9)方法。
+目标[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)冷启动时，在目标UIAbility的[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate)生命周期回调中，接收调用方传过来的参数。然后在目标UIAbility的[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate)生命周期回调中，解析调用方传递过来的[want](../reference/apis-ability-kit/js-apis-app-ability-want.md)参数，获取到需要加载的页面信息url，传入[windowStage.loadContent()](../reference/apis-arkui/arkts-apis-window-Window.md#loadcontent9)方法。
 
 
 ```ts
@@ -431,7 +431,7 @@ export default class EntryAbility extends UIAbility {
 
 开发步骤如下所示。
 
-1. 冷启动短信应用的UIAbility实例时，在[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate)生命周期回调中，通过调用[getUIContext()](../reference/apis-arkui/js-apis-window.md#getuicontext10)接口获取UI上下文实例[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md)对象。
+1. 冷启动短信应用的UIAbility实例时，在[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate)生命周期回调中，通过调用[getUIContext()](../reference/apis-arkui/arkts-apis-window-Window.md#getuicontext10)接口获取UI上下文实例[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md)对象。
 
     ```ts
     import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -623,9 +623,9 @@ Call调用示意图如下所示。
 **图1** Call调用示意图
 ![call](figures/call.png)
 
-- CallerAbility调用[startAbilityByCall()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口获取[Caller](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#caller)，并使用Caller对象的[call](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callercall)方法向CalleeAbility发送数据。
+- CallerAbility调用[startAbilityByCall()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口获取[Caller](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#caller)，并使用Caller对象的[call](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#call)方法向CalleeAbility发送数据。
 
-- CalleeAbility持有一个[Callee](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callee)对象，通过Callee的[on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeon)方法注册回调函数，当接收到Caller发送的数据时将会调用对应的回调函数。
+- CalleeAbility持有一个[Callee](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callee)对象，通过Callee的[on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#on)方法注册回调函数，当接收到Caller发送的数据时将会调用对应的回调函数。
 
 > **说明：**
 > 1. 当前仅支持系统应用使用Call调用。
@@ -660,7 +660,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
 
 ### 开发步骤（创建Callee被调用端）
 
-在[Callee](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callee)被调用端，需要实现指定方法的数据接收回调函数、数据的序列化及反序列化方法。在需要接收数据期间，通过[on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeon)接口注册监听，无需接收数据时通过[off](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeoff)接口解除监听。
+在[Callee](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callee)被调用端，需要实现指定方法的数据接收回调函数、数据的序列化及反序列化方法。在需要接收数据期间，通过[on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#on)接口注册监听，无需接收数据时通过[off](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#off)接口解除监听。
 
 1. 配置[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的启动模式。
 
@@ -707,7 +707,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
     }
     ```
 
-4. 实现[Callee.on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeon)监听及[Callee.off](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeoff)解除监听。
+4. 实现[Callee.on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#on)监听及[Callee.off](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#off)解除监听。
 
    被调用端[Callee](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callee)的监听函数注册时机，取决于应用开发者。注册监听之前的数据不会被处理，取消监听之后的数据不会被处理。如下示例在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的[onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate)注册'MSG_SEND_METHOD'监听，在[onDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#ondestroy)取消监听，收到序列化数据后作相应处理并返回，应用开发者根据实际需要做相应处理。具体示例代码如下：
 
@@ -808,7 +808,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
 
 2. 获取[Caller](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#caller)通信接口。
 
-   [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)属性实现了[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall)方法，用于获取指定通用组件的Caller通信接口。如下示例通过this.context获取UIAbility实例的context属性，使用startAbilityByCall拉起[Callee](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callee)被调用端并获取Caller通信接口，注册Caller的[onRelease](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleronrelease)监听。应用开发者根据实际需要做相应处理。
+   [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)属性实现了[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall)方法，用于获取指定通用组件的Caller通信接口。如下示例通过this.context获取UIAbility实例的context属性，使用startAbilityByCall拉起[Callee](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callee)被调用端并获取Caller通信接口，注册Caller的[onRelease](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onrelease)监听。应用开发者根据实际需要做相应处理。
 
 
     ```ts

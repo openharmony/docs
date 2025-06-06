@@ -189,9 +189,9 @@ Tab键走焦：按照子节点的挂载顺序循环走焦。
 投影走焦算法基于当前获焦组件在走焦方向上的投影，结合子组件与投影的重叠面积和中心点距离进行胜出判定。该算法特别适用于子组件大小不一的容器，目前仅有配置了wrap属性的Flex组件。运行规则如下：
 
 
-- 方向键走焦时，判断投影与子组件区域的重叠面积，在所有面积不为0的子组件中，计算它们与当前获焦组件的中心点直线距离，距离最短的胜出，若存在多个备选，则节点树上更靠前的胜出。若无任何子组件与投影由重叠，说明该容器已经无法处理该方向键的走焦请求。
-- Tab键走焦时，先使用规格1，按照方向键右进行判定，若找到则成功退出，若无法找到，则将当前获焦子组件的位置模拟往下移动该获焦子组件的高度，然后再按照方向键左进行投影判定，有投影重叠且中心点直线距离最远的子组件胜出，若无投影重叠的子组件，则表示该容器无法处理本次Tab键走焦请求。
-- Shift+Tab键走焦时，先使用规格1，按照方向键左进行判定，找到则成功退出。若无法找到，则将当前获焦子组件的位置模拟向上移动该获焦子组件的高度，然后再按照方向键右进行投影判定，有投影重叠且中心点直线距离最远的子组件胜出，若无投影重叠的子组件，则表示该容器无法处理本次的Shift+Tab键走焦请求。
+- 方向键走焦时，判断投影与子组件区域的重叠面积，在所有面积不为0的子组件中，计算它们与当前获焦组件的中心点直线距离，距离最短的胜出，若存在多个备选，则节点树上更靠前的胜出。若无任何子组件与投影有重叠，说明该容器已经无法处理该方向键的走焦请求。
+- Tab键走焦时，先使用规格1，按照方向键右进行判定，若找到则成功退出，若无法找到，则将当前获焦子组件的位置模拟往下移动该获焦子组件的高度，然后再按照方向键左进行投影判定，有投影重叠且中心点直线距离最近的子组件胜出，若无投影重叠的子组件，则表示该容器无法处理本次Tab键走焦请求。
+- Shift+Tab键走焦时，先使用规格1，按照方向键左进行判定，找到则成功退出。若无法找到，则将当前获焦子组件的位置模拟向上移动该获焦子组件的高度，然后再按照方向键右进行投影判定，有投影重叠且中心点直线距离最近的子组件胜出，若无投影重叠的子组件，则表示该容器无法处理本次的Shift+Tab键走焦请求。
 
 ```ts
 @Entry
@@ -429,13 +429,11 @@ enabled(value: boolean)
 
 设置组件可交互性属性[enabled](../reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled)为`false`，则组件不可交互，无法获焦。
 
-
 ```ts
 visibility(value: Visibility)
 ```
 
 设置组件可见性属性[visibility](../reference/apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility)为`Visibility.None`或`Visibility.Hidden`，则组件不可见，无法获焦。
-
 
 ```ts
 focusOnTouch(value: boolean)
@@ -443,11 +441,9 @@ focusOnTouch(value: boolean)
 
 设置当前组件是否支持点击获焦能力。
 
-
 > **说明：**
 >
 >当某组件处于获焦状态时，将其的focusable属性或enabled属性设置为false，会自动使该组件失焦，然后焦点按照[走焦规范](#走焦规范)将焦点转移给其他组件。
-
 
 ```ts
 // xxx.ets
@@ -541,7 +537,6 @@ struct FocusableExample {
 
 上述示例包含以下3步：
 
-
 - 第一个Text组件没有设置focusable(true)属性，该Text组件无法获焦。
 - 点击第二个Text组件，由于设置了focusOnTouch(true)，第二个组件获焦。按下Tab键，触发走焦，仍然是第二个Text组件获焦。按键盘F键，触发onKeyEvent，focusable置为false，第二个Text组件变成不可获焦，焦点自动转移，会自动从Text组件寻找下一个可获焦组件，焦点转移到第三个Text组件上。
 - 按键盘G键，触发onKeyEvent，enabled置为false，第三个Text组件变成不可获焦，焦点自动转移，使焦点转移到Row容器上，容器中使用的是默认配置，会转移到Button1上。
@@ -597,6 +592,7 @@ struct ScopeFocusExample {
 ![Scope_Focus_1.gif](figures/Scope_Focus_1.gif)
 
 上述示例包含以下2步：
+
 - Column配置onClick事件并设置focusable为true后，Tab键走焦，Column容器可以绘制焦点框。
 - 点击Button1，将Column的focusable属性设置为false，Column容器无法获焦和绘制焦点框。
 
@@ -635,6 +631,7 @@ struct TabStopExample {
 ![TabStop_Focus_1.gif](figures/TabStop_Focus_1.gif)
 
 上述示例包含以下2步：
+
 - Column配置tabStop后，Tab键走焦，焦点在Button1和Column容器之间切换，Column容器可以绘制焦点框。
 - 走焦至Column容器后，按Enter键，焦点转移到容器中的第一个可获焦节点上。Tab键走焦，走焦至容器中其他可获焦节点。
 
@@ -932,7 +929,7 @@ tabIndex(index: number)
 
 若存在配置了tabIndex大于0的组件，则Tab键走焦只会在tabIndex大于0的组件内，按照tabIndex的值从小到大并循环依次走焦。若没有配置tabIndex大于0的组件，则tabIndex等于0的组件按照组件预设的走焦规则走焦。
 
->  **说明：**
+> **说明：**
 >
 > 不能同时设置tabIndex与focusScopeId属性。
 > 不建议在页面中通过单独设置组件的tabIndex属性为负数来控制获焦能力，可以使用focusable属性代替。

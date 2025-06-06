@@ -151,7 +151,7 @@ data.getCellularDataFlowType().then((contextData: data.DataFlowType) => {
 
 getCellularDataState(callback: AsyncCallback\<DataConnectState\>): void
 
-获取分组交换域(PS域)的连接状态，使用callback方式作为异步方法。
+获取蜂窝数据业务的连接状态，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Telephony.CellularData
 
@@ -180,7 +180,7 @@ data.getCellularDataState((err: BusinessError, contextData: data.DataConnectStat
 
 getCellularDataState(): Promise\<DataConnectState\>
 
-获取分组交换域(PS域)的连接状态，使用Promise方式作为异步方法。
+获取蜂窝数据业务的连接状态，使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Telephony.CellularData
 

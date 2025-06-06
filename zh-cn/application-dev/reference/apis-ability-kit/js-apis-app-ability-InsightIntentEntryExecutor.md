@@ -26,7 +26,7 @@ import { InsightIntentEntryExecutor } from '@kit.AbilityKit';
 | ------------------ | ----------------| ---------- | ---- | ------------------------------------------------------------ |
 | executeMode        | [insightIntent.ExecuteMode](./js-apis-app-ability-insightIntent.md#executemode) | 否       | 否   | 表示意图调用执行模式。即拉起绑定的Ability时支持的执行模式。|
 | context            | [InsightIntentContext](./js-apis-app-ability-insightIntentContext.md)          | 否       | 否  | 表示意图调用执行上下文。 |
-| windowStage        | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9)       | 否       | 是   | 表示展示意图的窗口管理器。仅当execuMode字段取值为UI_ABILITY_FOREGROUND（即意图调用需要将UIAbility显示在前台时），该属性生效。    |
+| windowStage        | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9)       | 否       | 是   | 表示展示意图的窗口管理器。仅当execuMode字段取值为UI_ABILITY_FOREGROUND（即意图调用需要将UIAbility显示在前台时），该属性生效。    |
 | uiExtensionSession     | [UIExtensionContentSession](./js-apis-app-ability-uiExtensionContentSession.md)       | 否       | 是   | 表示[UIExtensionAbility](./js-apis-app-ability-uiExtensionAbility.md)加载界面内容时创建的实例对象。仅当executeMode字段取值为UI_EXTENSION_ABILITY（即意图调用需要拉起UIExtensionAbility时），该属性生效。    |
 
 ## InsightIntentEntryExecutor.onExecute

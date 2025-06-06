@@ -93,7 +93,6 @@ zh-cn/application-dev/database/unified-data-definition.md @ge-yafang  @logic42 @
 zh-cn/application-dev/database/unified-data-channels.md @ge-yafang  @logic42 @junathuawei @lyf2021 @yuchaozhng
 zh-cn/application-dev/database/native-relation-store-guidelines.md @ge-yafang @logic42 @widecode
 
-
 [API参考-ArkData]
 zh-cn/application-dev/reference/apis-arkdata @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
 zh-cn/application-dev/reference/apis-arkdata/js-apis-data-commonType.md @ge-yafang @lvcong-oh @logic4
@@ -306,7 +305,7 @@ zh-cn/application-dev/calendarmanager/calendarmanager-guidelines.md @liuqian677 
 
 
 [开发-Connectivity Kit]
-zh-cn/application-dev/communication/bluetooth/  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/communication/bluetooth/  @zhang_yixin13 @xujiang1981 @enjoy_sunshine
 zh-cn/application-dev/communication/nfc/ @knpingan @zhang_yixin13 @projectmanagement-zhang @heli_bbd
 zh-cn/application-dev/communication/wlan/ @zhang_yixin13 @legendtau
 
@@ -685,7 +684,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-progress
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-qrcode.md	@ileft201	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-radio.md		@houguobiao @li-xinlei007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-rating.md		@liyi0309	@li-xinlei007	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md		@vviinnoo24	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md		@holtens	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-richtext.md	@yp99ustc @HelloCrease @patrickrubystar @GHiker
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md	@rongshao-Z	@yeyinglong_admin	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-search.md		@jyj-0306 @fredyuan0912	@HelloCrease
@@ -944,11 +943,11 @@ zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-power-sys.md @li
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-usbManager-sys.md @li-yan339 @Kevin-Lau @liuhonggang123
 
 [API参考-Basic Services Kit-数据文件处理]
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request-sys.md @zhang_yixin13 @xue-lei3 @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md @zhang_yixin13 @xue-lei3 @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-request.md @zhang_yixin13 @xue-lei3 @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request-sys.md @zhang_yixin13  @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md @zhang_yixin13  @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-request.md @zhang_yixin13  @murphy1984
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-update-sys.md @hughes802 @zhang_yixin13 @zhangzhengxue @mamba-ting
-zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-request.md @zhang_yixin13 @xue-lei3 @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-request.md @zhang_yixin13 @murphy1984
 zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-update.md @hughes802 @zhang_yixin13 @zhangzhengxue @mamba-ting
 
 [API参考-Basic Services Kit-时间时区、公共回调、系统设置]
@@ -980,32 +979,32 @@ zh-cn/application-dev/reference/apis-calendar-kit/ @liuqian677 @jt_123456 @edoll
 
 
 [API参考-Connectivity Kit-bluetooth]
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-a2dp.md  @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-access.md  @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-baseProfile.md  @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-ble.md  @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection.md  @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-constant.md  @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hfp.md  @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hid.md  @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-map.md  @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pan.md  @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pbap.md  @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-socket.md  @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetoothManager.md  @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-a2dp-sys.md @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-access-sys.md @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-baseProfile-sys.md @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection-sys.md @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-constant-sys.md @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hfp-sys.md @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hid-sys.md @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pan-sys.md @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pbap-sys.md @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-map-sys.md @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-wearDetection-sys.md @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetoothManager-sys.md @zhang_yixin13 @xujiang1981 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/errorcode-bluetoothManager.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-a2dp.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-access.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-baseProfile.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-ble.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-constant.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hfp.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hid.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-map.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pan.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pbap.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-socket.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetoothManager.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-a2dp-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-access-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-baseProfile-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-constant-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hfp-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hid-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pan-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pbap-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-map-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-wearDetection-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetoothManager-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/errorcode-bluetoothManager.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
 
 [API参考-Connectivity Kit-wifi]
 zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifi.md @legendtau @zhang_yixin13  @xiangkejin123

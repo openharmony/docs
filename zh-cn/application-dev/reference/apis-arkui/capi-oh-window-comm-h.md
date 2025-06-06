@@ -4,7 +4,7 @@
 
 提供窗口的公共枚举、公共定义等。
 
-**引用文件：** oh_window_comm.h
+**引用文件：** <window_manager/oh_window_comm.h>
 
 **库：** libnative_window_manager.so
 

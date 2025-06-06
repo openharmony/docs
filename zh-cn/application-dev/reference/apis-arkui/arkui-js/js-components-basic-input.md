@@ -22,20 +22,20 @@
 | 名称                               | 类型                      | 默认值       | 必填   | 描述                                       |
 | -------------------------------- | ----------------------- | --------- | ---- | ---------------------------------------- |
 | type                             | string                  | text<br/> | 否    | input组件类型，可选值为text，email，date，time，number，password，button，checkbox，radio。<br/>其中text，email，date，time，number，password这六种类型之间支持动态切换修改。<br/>button，checkbox，radio不支持动态修改。可选值定义如下：<br/>-&nbsp;button：定义可点击的按钮；<br/>-&nbsp;checkbox：定义多选框；<br/>-&nbsp;radio：定义单选按钮，允许在多个拥有相同name值的选项中选中其中一个；<br/>-&nbsp;text：定义一个单行的文本字段；<br/>-&nbsp;email：定义用于e-mail地址的字段；<br/>-&nbsp;date：定义&nbsp;date&nbsp;控件（包括年、月、日，不包括时间）；<br/>-&nbsp;time：定义用于输入时间的控件（不带时区）；<br/>-&nbsp;number：定义用于输入数字的字段；<br/>-&nbsp;password：定义密码字段（字段中的字符会被遮蔽）。 |
-| checked                          | boolean                 | false     | 否    | 当前组件是否选中，仅type为checkbox和radio生效。         |
+| checked                          | boolean                 | false     | 否    | 当前组件是否选中，仅type为checkbox和radio生效。<br/>true表示选中，false表示未选中。         |
 | name                             | string                  | -         | 否    | input组件的名称。<br>type为radio时，name为必填。      |
 | value                            | string                  | -         | 否    | input组件的value值，当类型为radio时必填且相同name值的选项该值唯一。 |
 | placeholder                      | string                  | -         | 否    | 设置提示文本的内容，仅在type为text\|email\|date\|time\|number\|password时生效。 |
 | maxlength                        | number                  | -         | 否    | 输入框可输入的最多字符数量，不填表示不限制输入框中字符数量。           |
 | enterkeytype                     | string                  | default   | 否    | 不支持动态修改。<br/>设置软键盘Enter按钮的类型，可选值为：<br/>-&nbsp;default：默认<br/>-&nbsp;next：下一项<br/>-&nbsp;go：前往<br/>-&nbsp;done：完成<br/>-&nbsp;send：发送<br/>-&nbsp;search：搜索<br/>除“next”外，点击后会自动收起软键盘。 |
 | headericon                       | string                  | -         | 否    | 在文本输入前的图标资源路径，该图标不支持点击事件（button，checkbox和radio不生效），图标格式为jpg，png和svg。 |
-| showcounter<sup>5+</sup>         | boolean                 | false     | 否    | 文本输入框是否显示计数下标，需要配合maxlength一起使用。         |
+| showcounter<sup>5+</sup>         | boolean                 | false     | 否    | 文本输入框是否显示计数下标，需要配合maxlength一起使用。<br/>true表示显示，false表示不显示。         |
 | menuoptions<sup>5+</sup>         | Array&lt;MenuOption&gt; | -         | 否    | 设置文本选择弹框点击更多按钮之后显示的菜单项。                  |
-| autofocus<sup>6+</sup>           | boolean                 | false     | 否    | 是否自动获焦。<br/>应用首页中设置不生效，可在onActive中延迟（100-500ms左右）调用focus方法实现输入框在首页中自动获焦。 |
+| autofocus<sup>6+</sup>           | boolean                 | false     | 否    | 是否自动获焦。<br/>应用首页中设置不生效，可在onActive中延迟（100-500ms左右）调用focus方法实现输入框在首页中自动获焦。<br/>true表示文本框自动获焦，false表示文本框不自动获焦。 |
 | selectedstart<sup>6+</sup>       | number                  | -1        | 否    | 开始选择文本时初始选择位置。                           |
 | selectedend<sup>6+</sup>         | number                  | -1        | 否    | 开始选择文本时结尾选择位置。                           |
-| softkeyboardenabled<sup>6+</sup> | boolean                 | true      | 否    | 编辑时是否弹出系统软键盘。                            |
-| showpasswordicon<sup>6+</sup>    | boolean                 | true      | 否    | 是否显示密码框末尾的图标（仅type为password时生效）。         |
+| softkeyboardenabled<sup>6+</sup> | boolean                 | true      | 否    | 编辑时是否弹出系统软键盘。<br/>true表示会弹出系统软键盘，false表示不会弹出。                            |
+| showpasswordicon<sup>6+</sup>    | boolean                 | true      | 否    | 是否显示密码框末尾的图标（仅type为password时生效）。<br/>true表示显示密码框末尾的图标，false表示不显示。         |
 
 **表1** MenuOption<sup>5+</sup>
 

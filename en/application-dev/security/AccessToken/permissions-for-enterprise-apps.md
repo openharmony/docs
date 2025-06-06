@@ -334,3 +334,20 @@ With this permission, the application can be launched or connected as an AppServ
 **Supported Devices**：PC/2in1
 
 **Valid since**：20
+
+## ohos.permission.ENTERPRISE_MANAGE_EAP
+
+Allows enterprise network security software to add private information to EAP packets.
+
+With this permission, the software can obtain 802.1x packets and add information to complete customized authentication.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported Devices**：PC/2in1
+
+**Valid since**：20

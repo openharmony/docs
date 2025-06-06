@@ -133,8 +133,8 @@ export class MyRenderNode extends RenderNode {
 
 @Concurrent
 async function CreatePixelMapAsync() {
-  const color : ArrayBuffer = new ArrayBuffer(40000);  // 40000为需要创建的像素buffer大小，取值为：height * width *4
-  let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 100, width: 100 } };
+  const color : ArrayBuffer = new ArrayBuffer(4000000);  // 4000000为需要创建的像素buffer大小，取值为：height * width *4
+  let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 1000, width: 1000 } };
   const pixel = await image.createPixelMap(color, opts);
   return pixel;
 }

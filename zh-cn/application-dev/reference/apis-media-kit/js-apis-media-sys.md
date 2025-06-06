@@ -117,6 +117,12 @@ reportAVScreenCaptureUserChoice(sessionId: number, choice: string): Promise\<voi
 | sessionId | number | 是   | AVScreenCapture服务会话Id，会由AVScreenCapture拉起隐私弹窗时传给应用。 |
 | choice    | string | 是   | 用户的选择内容，包含是否同意录屏、选择的屏幕Id和窗口Id。可见示例中JsonData样例。|
 
+**返回值：**
+
+| 类型             | 说明                             |
+| ---------------- | -------------------------------- |
+| Promise\<void> | 异步返回函数执行结果。 |
+
 **错误码：**
 
 | 错误码ID | 错误信息                                    |
@@ -365,7 +371,7 @@ avMetadataExtractor.getFrameIndexByTime(0).then((index: number) => {
 
 > **说明：**
 >
-> 使用相机进行视频录制时，需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis-camera-kit/js-apis-camera.md)。
+> 使用相机进行视频录制时，需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis-camera-kit/arkts-apis-camera.md)。
 
 ### isWatermarkSupported<sup>13+</sup>
 
