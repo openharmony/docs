@@ -48,7 +48,7 @@ this.objLink= ...
 >
 > \@ObjectLink装饰的变量不能被赋值，如果要使用赋值操作，请使用[@Prop](arkts-prop.md)。
 >
-> - \@Prop装饰的变量和数据源的关系是是单向同步，\@Prop装饰的变量在本地拷贝了数据源，所以它允许本地更改，如果父组件中的数据源有更新，\@Prop装饰的变量本地的修改将被覆盖。
+> - \@Prop装饰的变量和数据源的关系是单向同步，\@Prop装饰的变量在本地拷贝了数据源，所以它允许本地更改，如果父组件中的数据源有更新，\@Prop装饰的变量本地的修改将被覆盖。
 >
 > - \@ObjectLink装饰的变量和数据源的关系是双向同步，\@ObjectLink装饰的变量相当于指向数据源的指针。禁止对\@ObjectLink装饰的变量赋值，如果发生\@ObjectLink装饰的变量的赋值，则同步链将被打断。
 
@@ -201,7 +201,7 @@ struct Parent {
 
 3. \@ObjectLink装饰的类型必须是复杂类型，否则会有编译期报错。
 
-4. API version 19前，\@ObjectLink装饰的变量类型必须是显式地由@Observed装饰的类。如果未指定类型，或不是\@Observed装饰的class，编译期会报错。
+4. API version 19前，\@ObjectLink装饰的变量类型必须是显式地由\@Observed装饰的类。如果未指定类型，或不是\@Observed装饰的class，编译期会报错。
 API version 19及以后，\@ObjectLink也可以被[makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19)的返回值初始化，否则会有运行时告警日志。
 
   ```ts
@@ -939,7 +939,7 @@ struct SetSampleNestedChild {
 
 ## ObjectLink支持联合类型
 
-@ObjectLink支持@Observed装饰类和undefined或null组成的联合类型，在下面的示例中，count类型为Source | Data | undefined，点击父组件Parent中的Button改变count的属性或者类型，Child中也会对应刷新。
+\@ObjectLink支持\@Observed装饰类和undefined或null组成的联合类型，在下面的示例中，count类型为Source | Data | undefined，点击父组件Parent中的Button改变count的属性或者类型，Child中也会对应刷新。
 
 ```ts
 @Observed
@@ -1028,9 +1028,9 @@ struct Child {
 
 ## 常见问题
 
-### 在子组件中给@ObjectLink装饰的变量赋值
+### 在子组件中给\@ObjectLink装饰的变量赋值
 
-在子组件中给@ObjectLink装饰的变量赋值是不允许的。
+在子组件中给\@ObjectLink装饰的变量赋值是不允许的。
 
 【反例】
 
@@ -1845,9 +1845,9 @@ struct ParentComp {
 
 ![zh-cn_image_0000001653949465](figures/zh-cn_image_0000001653949465.png)
 
-### 在@Observed装饰类的构造函数中延时更改成员变量
+### 在\@Observed装饰类的构造函数中延时更改成员变量
 
-在状态管理中，使用@Observed装饰类后，会给该类使用一层“代理”进行包装。当在组件中改变该类的成员变量时，会被该代理进行拦截，在更改数据源中值的同时，也会将变化通知给绑定的组件，从而实现观测变化与触发刷新。
+在状态管理中，使用\@Observed装饰类后，会给该类使用一层“代理”进行包装。当在组件中改变该类的成员变量时，会被该代理进行拦截，在更改数据源中值的同时，也会将变化通知给绑定的组件，从而实现观测变化与触发刷新。
 
 当开发者在类的构造函数中对成员变量进行赋值或者修改时，此修改不会经过代理（因为是直接对数据源中的值进行修改），也就无法被观测到。所以，如果开发者在类的构造函数中使用定时器修改类中的成员变量，即使该修改成功执行了，也不会触发UI的刷新。
 
@@ -1939,7 +1939,7 @@ struct Index {
 
 上文的示例代码将定时器修改移入到组件内，此时界面显示时会先显示“renderClass的值为：false”。待定时器触发时，renderClass的值改变，触发[@Watch](./arkts-watch.md)回调，此时界面刷新显示“renderClass的值为：true”，日志输出“renderClass的值被更改为：true”。
 
-因此，更推荐开发者在组件中对@Observed装饰的类成员变量进行修改实现刷新。
+因此，更推荐开发者在组件中对\@Observed装饰的类成员变量进行修改实现刷新。
 
 ### \@ObjectLink数据源更新时机
 
@@ -2030,7 +2030,7 @@ struct Child {
 
 - 日志5：下一次vsync信号触发Child更新，@ObjectLink @Watch('onChange02') per: Person被更新，触发其\@Watch方法，此时@ObjectLink @Watch('onChange02') per: Person为新值Jack。
 
-\@Prop父子同步原理同\@ObjectLink一致。
+\@Prop父子同步原理与\@ObjectLink一致。
 
 当clickEvent中更改this.info.person.name时，修改会立刻生效，此时日志4打印的值是Jack。
 
@@ -2048,7 +2048,7 @@ Child({
 
 ### 使用a.b(this.object)形式调用，不会触发UI刷新
 
-在build方法内，当@Observed与@ObjectLink联合装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原始对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法或者使用this调用组件内部方法，修改组件中的this.weather.temperature时，UI不会刷新。
+在build方法内，当\@Observed与\@ObjectLink联合装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原始对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法或者使用this调用组件内部方法，修改组件中的this.weather.temperature时，UI不会刷新。
 
 【反例】
 
