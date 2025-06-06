@@ -2362,7 +2362,7 @@ aVCastController.off('videoSizeChange');
 
 | 名称          | 类型              | 只读 | 可选 | 说明  |
 | --------------| ---------------- | ---------------- | ---------------- |------|
-| sessionId    | string    | 否 | 是  | 会话ID      |
+| sessionId    | string    | 否 | 是  | 会话ID。      |
 | type         | [AVSessionType](js-apis-avsession.md#avsessiontype10)   | 否 | 是 | 会话类型。    |
 | sessionTag   | string             | 否 | 是 | 会话的自定义名称。    |
 | elementName  | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md)  | 否 | 是 | 会话所属应用的信息（包含bundleName、abilityName等）。 |
