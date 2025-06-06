@@ -92,10 +92,11 @@ struct MyLiveFormPage {
   build() {
     Stack() {
       // 背景组件，和普通卡片等大
-      Image($r('app.media.background'))
-        .width(this.formRect? this.formRect.width : 0)
-        .height(this.formRect? this.formRect.height : 0)
+      Column()
+        .width(this.formRect ? this.formRect.width : 0)
+        .height(this.formRect ? this.formRect.height : 0)
         .borderRadius(this.formBorderRadius ? this.formBorderRadius : 0)
+        .backgroundColor('#2875F5')
 
       Stack()
         .width(ANIMATION_RECT_SIZE)
