@@ -4711,9 +4711,6 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 **示例：**
 
 ```ts
-import { router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
-
 class RouterTmp {
   Standard: router.RouterMode = router.RouterMode.Standard;
 }
