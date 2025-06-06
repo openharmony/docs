@@ -78,28 +78,6 @@
 | IS_DOWNLOADING           | 'is_downloading'       | 表示下载状态，1表示在下载状态，0表示非下载状态（下载完成），其对应键值类型为number。|
 | BUFFER_DURATION          | 'buffer_duration'      | 表示缓存数据的可播放时长，其对应键值类型为number，单位为秒（s）。|
 
-## MediaErrorCode<sup>(deprecated)</sup>
-
-媒体服务错误类型枚举。
-
-> **说明：**
-> 从API version 8开始支持，从API version 11开始废弃，建议使用[媒体错误码](#averrorcode9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Media.Core
-
-| 名称                       | 值   | 说明                                   |
-| -------------------------- | ---- | -------------------------------------- |
-| MSERR_OK                   | 0    | 表示操作成功。                         |
-| MSERR_NO_MEMORY            | 1    | 表示申请内存失败，系统可能无可用内存。 |
-| MSERR_OPERATION_NOT_PERMIT | 2    | 表示无权限执行此操作。                 |
-| MSERR_INVALID_VAL          | 3    | 表示传入入参无效。                     |
-| MSERR_IO                   | 4    | 表示发生IO错误。                       |
-| MSERR_TIMEOUT              | 5    | 表示操作超时。                         |
-| MSERR_UNKNOWN              | 6    | 表示未知错误。                         |
-| MSERR_SERVICE_DIED         | 7    | 表示服务端失效。                       |
-| MSERR_INVALID_STATE        | 8    | 表示在当前状态下，不允许执行此操作。   |
-| MSERR_UNSUPPORTED          | 9    | 表示在当前版本下，不支持此操作。       |
-
 ## BufferingInfoType<sup>8+</sup>
 
 缓存事件类型枚举。
@@ -357,6 +335,17 @@ Codec MIME类型枚举。
 | SCREENCAPTURE_STATE_EXIT_PRIVATE_SCENE   | 9    | 录屏退出隐私页面。       |
 | SCREENCAPTURE_STATE_STOPPED_BY_USER_SWITCHES   | 10    | 系统用户切换，录屏中断。       |
 
+## HdrType<sup>12+</sup>
+
+表示视频HDR类型的枚举。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+| 名称                      | 值   | 说明                   |
+| ------------------------- | ---- | ---------------------- |
+| AV_HDR_TYPE_NONE          | 0    | 表示无HDR类型。 |
+| AV_HDR_TYPE_VIVID         | 1    | 表示为HDR VIVID类型。 |
+
 ## AudioEncoder<sup>(deprecated)</sup>
 
 > **说明：**
@@ -390,3 +379,25 @@ Codec MIME类型枚举。
 | AMR_NB   | 3    | 封装为AMR_NB格式。<br/>仅做接口定义，暂不支持使用。          |
 | AMR_WB   | 4    | 封装为AMR_WB格式。<br/>仅做接口定义，暂不支持使用。          |
 | AAC_ADTS | 6    | 封装为ADTS（Audio&nbsp;Data&nbsp;Transport&nbsp;Stream）格式，是AAC音频的传输流格式。 |
+
+## MediaErrorCode<sup>(deprecated)</sup>
+
+媒体服务错误类型枚举。
+
+> **说明：**
+> 从API version 8开始支持，从API version 11开始废弃，建议使用[媒体错误码](#averrorcode9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+| 名称                       | 值   | 说明                                   |
+| -------------------------- | ---- | -------------------------------------- |
+| MSERR_OK                   | 0    | 表示操作成功。                         |
+| MSERR_NO_MEMORY            | 1    | 表示申请内存失败，系统可能无可用内存。 |
+| MSERR_OPERATION_NOT_PERMIT | 2    | 表示无权限执行此操作。                 |
+| MSERR_INVALID_VAL          | 3    | 表示传入入参无效。                     |
+| MSERR_IO                   | 4    | 表示发生IO错误。                       |
+| MSERR_TIMEOUT              | 5    | 表示操作超时。                         |
+| MSERR_UNKNOWN              | 6    | 表示未知错误。                         |
+| MSERR_SERVICE_DIED         | 7    | 表示服务端失效。                       |
+| MSERR_INVALID_STATE        | 8    | 表示在当前状态下，不允许执行此操作。   |
+| MSERR_UNSUPPORTED          | 9    | 表示在当前版本下，不支持此操作。       |

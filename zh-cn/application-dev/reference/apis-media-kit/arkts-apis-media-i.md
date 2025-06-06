@@ -165,27 +165,6 @@ SEI信息内容，描述SEI信息的负载类型和数据。
 | latitude  | number | 是   | 地理位置的纬度，取值范围为[-90, 90]。 |
 | longitude | number | 是   | 地理位置的经度，取值范围为[-180, 180]。 |
 
-## AudioRecorderConfig<sup>(deprecated)</sup>
-
-> **说明：**
-> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorderConfig](#avrecorderconfig9)替代。
-
-表示音频的录音配置。
-
-**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
-
-| 名称                                | 类型                                         | 必填 | 说明                                                         |
-| ----------------------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioEncoder                        | [AudioEncoder](#audioencoderdeprecated)                | 否   | 音频编码格式，默认设置为AAC_LC。<br/>**说明：** 从API version 8开始废弃，建议使用audioEncoderMime替代。 |
-| audioEncodeBitRate                  | number                                       | 否   | 音频编码比特率，默认值为48000。                              |
-| audioSampleRate                     | number                                       | 否   | 音频采集采样率，默认值为48000。<br>可变比特率模式，码率仅作参考。                              |
-| numberOfChannels                    | number                                       | 否   | 音频采集声道数，默认值为2。                                  |
-| format                              | [AudioOutputFormat](#audiooutputformatdeprecated)      | 否   | 音频输出封装格式，默认设置为MPEG_4。<br/>**说明：** 从API version 8开始废弃，建议使用fileFormat替代。 |
-| location                            | [Location](#location)                        | 否   | 音频采集的地理位置。                                         |
-| uri                                 | string                                       | 是   | 音频输出URI：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
-| audioEncoderMime<sup>8+</sup>       | [CodecMimeType](#codecmimetype8)             | 否   | 容器编码格式。                                               |
-| fileFormat<sup>8+</sup>             | [ContainerFormatType](#containerformattype8) | 否   | 音频编码格式。                                               |
-
 ## EncoderInfo<sup>11+</sup>
 
 编码器和规格参数
@@ -202,17 +181,6 @@ SEI信息内容，描述SEI信息的负载类型和数据。
 | height     | [Range](#range11)                | 是   | 否   | 视频帧的高度，包含高度的最大和最小值，仅视频编码器拥有。       |
 | channels   | [Range](#range11)                | 是   | 否   | 音频采集声道数，包含声道数的最大和最小值，仅音频编码器拥有。   |
 | sampleRate | Array\<number>                    | 是   | 否   | 音频采样率，包含所有可以使用的音频采样率值数组，具体数值依赖编码器类型，仅音频编码器拥有。 |
-
-## Range<sup>11+</sup>
-
-表示一个类型的范围
-
-系统能力：SystemCapability.Multimedia.Media.AVRecorder
-
-| 名称 | 类型   | 可读 | 可写 | 说明         |
-| ---- | ------ | ---- | ---- | ------------ |
-| min  | number | 是   | 否   | 范围的最小值。 |
-| max  | number | 是   | 否   | 范围的最大值。 |
 
 ## AVRecorderProfile<sup>9+</sup>
 
@@ -245,6 +213,33 @@ SEI信息内容，描述SEI信息的负载类型和数据。
 | videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，推荐范围[1 - 60]。             |
 | isHdr<sup>11+</sup>            | boolean                        | 否   | HDR编码，选择视频录制时选填，isHdr默认为false，对应编码格式没有要求，isHdr为true时，对应的编码格式必须为video/hevc。|
 | enableTemporalScale<sup>12+</sup>            | boolean                        | 否   | 视频录制是否支持时域分层编码功能，选择视频录制时选填，enableTemporalScale默认为false。设置为true时，编码输出的码流中部分帧可以支持跳过不编码。|
+
+## Range<sup>11+</sup>
+
+表示一个类型的范围
+
+系统能力：SystemCapability.Multimedia.Media.AVRecorder
+
+| 名称 | 类型   | 可读 | 可写 | 说明         |
+| ---- | ------ | ---- | ---- | ------------ |
+| min  | number | 是   | 否   | 范围的最小值。 |
+| max  | number | 是   | 否   | 范围的最大值。 |
+
+## AVTranscoderConfig<sup>12+</sup>
+
+表示视频转码的参数设置。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
+
+| 名称            | 类型                                    | 只读 | 可选 | 说明                                                         |
+| --------------- | ---------------------------------------- |---- | ---- | ------------------------------------------------------------ |
+| audioBitrate | number     | 否 | 是 | 输出音频的码率，单位为比特率（bps），支持范围[1-500000]。默认设置为48Kbps。|
+| audioCodec | [CodecMimeType](#codecmimetype8)     | 否 | 是  | 输出音频的编码格式，当前仅支持AAC。默认设置为AAC。                   |
+| fileFormat         | [ContainerFormatType](#containerformattype8) | 否 | 否   | 输出视频文件的封装格式，当前视频文件仅支持MP4。|
+| videoBitrate         | number | 否 |  是  | 输出视频的码率，单位为比特率（bps）。默认码率按输出视频的分辨率设置，[240p，480P]默认码率值为1Mbps，(480P,720P]默认码率值为2Mbps，(720P,1080P]默认码率值为4Mbps，1080P及以上默认值为8Mbps。|
+| videoCodec        | [CodecMimeType](#codecmimetype8) | 否 | 是   | 输出视频的编码格式，当前仅支持AVC和HEVC。若源视频编码格式为HEVC，则默认设置为HEVC，否则默认设置为AVC。|
+| videoFrameWidth        | number | 否 |  是   | 输出视频帧的宽，单位为像素（px），支持范围[240-3840]。默认设置为源视频帧的宽。|
+| videoFrameHeight        | number | 否 |  是   | 输出视频帧的高，单位为像素（px），支持范围[240-2160]。默认设置为源视频帧的高。|
 
 ## AVRecorderConfig<sup>9+</sup>
 
@@ -318,3 +313,35 @@ SEI信息内容，描述SEI信息的负载类型和数据。
 | displayId<sup>15+</sup>            | number | 否   | 指定录屏使用的屏幕，默认主屏幕。 |
 | fillMode<sup>18+</sup>            | [AVScreenCaptureFillMode](#avscreencapturefillmode18)| 否   | 录屏时视频流的填充模式。 |
 | strategy<sup>20+</sup>            | [AVScreenCaptureStrategy](#avscreencapturestrategy20)| 否   | 录屏策略。 |
+
+## OutputSize<sup>20+</sup>
+
+用于获取视频缩略图时，来定义输出图像大小。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
+
+| 名称   | 类型   | 只读 | 可选 | 说明                                                         |
+| ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| width  | number | 否   | 是   | 输出的缩略图宽度。<br/>- 如果该值小于0，宽度是视频的原始宽度。<br/>- 如果值为0或未分配任何值，缩放比例同高度比例。 |
+| height | number | 否   | 是   | 输出的缩略图高度。<br/>- 如果该值小于0，高度是视频的原始高度。<br/>- 如果值为0或未分配任何值，缩放比例同宽度比例。 |
+
+## AudioRecorderConfig<sup>(deprecated)</sup>
+
+> **说明：**
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorderConfig](#avrecorderconfig9)替代。
+
+表示音频的录音配置。
+
+**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
+
+| 名称                                | 类型                                         | 必填 | 说明                                                         |
+| ----------------------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| audioEncoder                        | [AudioEncoder](#audioencoderdeprecated)                | 否   | 音频编码格式，默认设置为AAC_LC。<br/>**说明：** 从API version 8开始废弃，建议使用audioEncoderMime替代。 |
+| audioEncodeBitRate                  | number                                       | 否   | 音频编码比特率，默认值为48000。                              |
+| audioSampleRate                     | number                                       | 否   | 音频采集采样率，默认值为48000。<br>可变比特率模式，码率仅作参考。                              |
+| numberOfChannels                    | number                                       | 否   | 音频采集声道数，默认值为2。                                  |
+| format                              | [AudioOutputFormat](#audiooutputformatdeprecated)      | 否   | 音频输出封装格式，默认设置为MPEG_4。<br/>**说明：** 从API version 8开始废弃，建议使用fileFormat替代。 |
+| location                            | [Location](#location)                        | 否   | 音频采集的地理位置。                                         |
+| uri                                 | string                                       | 是   | 音频输出URI：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
+| audioEncoderMime<sup>8+</sup>       | [CodecMimeType](#codecmimetype8)             | 否   | 容器编码格式。                                               |
+| fileFormat<sup>8+</sup>             | [ContainerFormatType](#containerformattype8) | 否   | 音频编码格式。                                               |

@@ -449,121 +449,6 @@ media.createAVScreenCaptureRecorder().then((captureRecorder: media.AVScreenCaptu
 });
 ```
 
-## media.createAudioPlayer<sup>(deprecated)</sup>
-
-createAudioPlayer(): AudioPlayer
-
-同步方式创建音频播放实例。
-
-> **说明：**
-> 从API version 6开始支持，从API version 9开始废弃，建议使用[createAVPlayer](#mediacreateavplayer9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
-
-**返回值：**
-
-| 类型                        | 说明                                                         |
-| --------------------------- | ------------------------------------------------------------ |
-| [AudioPlayer](#audioplayerdeprecated) | 返回AudioPlayer类实例，失败时返回null。可用于音频播放、暂停、停止等操作。 |
-
-**示例：**
-
-```ts
-let audioPlayer: media.AudioPlayer = media.createAudioPlayer();
-```
-
-## media.createVideoPlayer<sup>(deprecated)</sup>
-
-createVideoPlayer(callback: AsyncCallback\<VideoPlayer>): void
-
-异步方式创建视频播放实例，通过注册回调函数获取返回值。
-
-> **说明：**
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[createAVPlayer](#mediacreateavplayer9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
-
-**参数：**
-
-| 参数名   | 类型                                       | 必填 | 说明                                                         |
-| -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[VideoPlayer](#videoplayerdeprecated)> | 是   | 回调函数。创建VideoPlayer实例成功时，err为undefined，data为获取到的VideoPlayer实例，否则为错误对象。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let videoPlayer: media.VideoPlayer;
-media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
-  if (video != null) {
-    videoPlayer = video;
-    console.info('Succeeded in creating VideoPlayer');
-  } else {
-    console.error(`Failed to create VideoPlayer, error:${error}`);
-  }
-});
-```
-
-## media.createVideoPlayer<sup>(deprecated)</sup>
-
-createVideoPlayer(): Promise\<VideoPlayer>
-
-异步方式创建视频播放实例，通过Promise获取返回值。
-
-> **说明：**
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[createAVPlayer](#mediacreateavplayer9-1)替代。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
-
-**返回值：**
-
-| 类型                                 | 说明                                                         |
-| ------------------------------------ | ------------------------------------------------------------ |
-| Promise<[VideoPlayer](#videoplayerdeprecated)> | Promise对象。异步返回VideoPlayer实例，失败时返回null。可用于管理和播放视频媒体。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let videoPlayer: media.VideoPlayer;
-media.createVideoPlayer().then((video: media.VideoPlayer) => {
-  if (video != null) {
-    videoPlayer = video;
-    console.info('Succeeded in creating VideoPlayer');
-  } else {
-    console.error('Failed to create VideoPlayer');
-  }
-}).catch((error: BusinessError) => {
-  console.error(`Failed to create VideoPlayer, error:${error}`);
-});
-```
-
-## media.createAudioRecorder<sup>(deprecated)</sup>
-
-createAudioRecorder(): AudioRecorder
-
-创建音频录制的实例来控制音频的录制。
-一台设备只允许创建一个录制实例。
-
-> **说明：**
-> 从API version 6开始支持，从API version 9开始废弃，建议使用[createAVRecorder](#mediacreateavrecorder9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
-
-**返回值:**
-
-| 类型                            | 说明                                                         |
-| ------------------------------- | ------------------------------------------------------------ |
-| [AudioRecorder](#audiorecorderdeprecated) | 返回AudioRecorder类实例，失败时返回null。可用于录制音频媒体。 |
-
-**示例：**
-
-```ts
-let audioRecorder: media.AudioRecorder = media.createAudioRecorder();
-```
-
 ## media.createAVImageGenerator<sup>12+</sup>
 
 createAVImageGenerator(callback: AsyncCallback\<AVImageGenerator>): void
@@ -738,4 +623,118 @@ streams.push({url: "http:/xxx/1080p.flv", width: 1280, height: 720, bitrate: 200
 let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(streams);
 ```
 
+## media.createAudioPlayer<sup>(deprecated)</sup>
+
+createAudioPlayer(): AudioPlayer
+
+同步方式创建音频播放实例。
+
+> **说明：**
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[createAVPlayer](#mediacreateavplayer9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
+
+**返回值：**
+
+| 类型                        | 说明                                                         |
+| --------------------------- | ------------------------------------------------------------ |
+| [AudioPlayer](#audioplayerdeprecated) | 返回AudioPlayer类实例，失败时返回null。可用于音频播放、暂停、停止等操作。 |
+
+**示例：**
+
+```ts
+let audioPlayer: media.AudioPlayer = media.createAudioPlayer();
+```
+
+## media.createVideoPlayer<sup>(deprecated)</sup>
+
+createVideoPlayer(callback: AsyncCallback\<VideoPlayer>): void
+
+异步方式创建视频播放实例，通过注册回调函数获取返回值。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[createAVPlayer](#mediacreateavplayer9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                         |
+| -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback<[VideoPlayer](#videoplayerdeprecated)> | 是   | 回调函数。创建VideoPlayer实例成功时，err为undefined，data为获取到的VideoPlayer实例，否则为错误对象。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let videoPlayer: media.VideoPlayer;
+media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
+  if (video != null) {
+    videoPlayer = video;
+    console.info('Succeeded in creating VideoPlayer');
+  } else {
+    console.error(`Failed to create VideoPlayer, error:${error}`);
+  }
+});
+```
+
+## media.createVideoPlayer<sup>(deprecated)</sup>
+
+createVideoPlayer(): Promise\<VideoPlayer>
+
+异步方式创建视频播放实例，通过Promise获取返回值。
+
+> **说明：**
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[createAVPlayer](#mediacreateavplayer9-1)替代。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
+
+**返回值：**
+
+| 类型                                 | 说明                                                         |
+| ------------------------------------ | ------------------------------------------------------------ |
+| Promise<[VideoPlayer](#videoplayerdeprecated)> | Promise对象。异步返回VideoPlayer实例，失败时返回null。可用于管理和播放视频媒体。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let videoPlayer: media.VideoPlayer;
+media.createVideoPlayer().then((video: media.VideoPlayer) => {
+  if (video != null) {
+    videoPlayer = video;
+    console.info('Succeeded in creating VideoPlayer');
+  } else {
+    console.error('Failed to create VideoPlayer');
+  }
+}).catch((error: BusinessError) => {
+  console.error(`Failed to create VideoPlayer, error:${error}`);
+});
+```
+
+## media.createAudioRecorder<sup>(deprecated)</sup>
+
+createAudioRecorder(): AudioRecorder
+
+创建音频录制的实例来控制音频的录制。
+一台设备只允许创建一个录制实例。
+
+> **说明：**
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[createAVRecorder](#mediacreateavrecorder9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
+
+**返回值:**
+
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| [AudioRecorder](#audiorecorderdeprecated) | 返回AudioRecorder类实例，失败时返回null。可用于录制音频媒体。 |
+
+**示例：**
+
+```ts
+let audioRecorder: media.AudioRecorder = media.createAudioRecorder();
+```
 
