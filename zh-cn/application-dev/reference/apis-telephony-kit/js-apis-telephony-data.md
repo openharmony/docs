@@ -599,7 +599,7 @@ setPreferredApn(apnId: number): Promise\<boolean\>
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| apnId | number | 是   | 要设置的apnId，可以通过[queryApnIds](#data.queryApnIds)查询。 |
+| apnId | number | 是   | 要设置的apnId，可以通过[queryApnIds](#dataqueryapnids16)查询。 |
 
 **返回值：**
 
