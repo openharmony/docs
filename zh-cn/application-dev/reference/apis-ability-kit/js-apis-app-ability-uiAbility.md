@@ -166,6 +166,8 @@ onWindowStageDestroy(): void
 
 当WindowStage销毁后，系统触发该回调。该回调用于通知开发者WindowStage对象已被销毁，不能再继续使用。
 
+仅当UIAbility正常退出时会触发该回调，异常退出场景（例如低内存查杀）不会触发该回调。
+
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
@@ -228,6 +230,8 @@ onDestroy(): void | Promise&lt;void&gt;
 当UIAbility被销毁（例如使用[terminateSelf](js-apis-inner-application-uiAbilityContext.md#terminateself)接口停止UIAbility）时，系统触发该回调。开发者可以在该生命周期中执行资源清理、数据保存等相关操作。使用同步回调或Promise异步回调。
 
 在执行完onDestroy生命周期回调后，应用可能会退出，从而可能导致onDestroy中的异步函数未能正确执行，比如异步写入数据库。推荐使用Promise异步回调，避免因应用退出导致onDestroy中的异步函数（比如异步写入数据库）未能正确执行。
+
+仅当UIAbility正常退出时会触发该回调，异常退出场景（例如低内存查杀）不会触发该回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -537,6 +541,7 @@ onPrepareToTerminate(): boolean
 > - 回调时机：当用户通过点击应用窗口右上角的关闭按钮、或者通过Dock栏/托盘右键退出应用时，可以使用该回调。
 >
 > - 从API version 15开始，当[UIAbility.onPrepareToTerminateAsync](#onpreparetoterminateasync15)实现时，本回调函数将不执行。当[AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#abilitystageonprepareterminationasync15)或[AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15)实现时，在dock栏或系统托盘处右键点击关闭，本回调函数将不执行。
+> - 如果应用本身或者所使用的三方框架注册了[window.WindowStage.on('windowStageClose')](../apis-arkui/js-apis-window.md#onwindowstageclose14)监听，本回调函数将不执行。
 
 **需要权限**：ohos.permission.PREPARE_APP_TERMINATE
 
@@ -599,6 +604,7 @@ onPrepareToTerminateAsync(): Promise\<boolean>
 > - 回调时机：当用户通过点击应用窗口右上角的关闭按钮、或者通过Dock栏/托盘右键退出应用时，可以使用该回调。
 >
 > - 当[AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#abilitystageonprepareterminationasync15)或[AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15)实现时，在dock栏或系统托盘处右键点击关闭，本回调函数将不执行。
+> - 如果应用本身或者所使用的三方框架注册了[window.WindowStage.on('windowStageClose')](../apis-arkui/js-apis-window.md#onwindowstageclose14)监听，本回调函数将不执行。
 >
 > - 若异步回调内发生crash，按超时处理，执行等待超过10秒未响应，UIAbility将被强制关闭。
 

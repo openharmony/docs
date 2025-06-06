@@ -151,7 +151,7 @@ data.getCellularDataFlowType().then((contextData: data.DataFlowType) => {
 
 getCellularDataState(callback: AsyncCallback\<DataConnectState\>): void
 
-获取分组交换域(PS域)的连接状态，使用callback方式作为异步方法。
+获取蜂窝数据业务的连接状态，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Telephony.CellularData
 
@@ -180,7 +180,7 @@ data.getCellularDataState((err: BusinessError, contextData: data.DataConnectStat
 
 getCellularDataState(): Promise\<DataConnectState\>
 
-获取分组交换域(PS域)的连接状态，使用Promise方式作为异步方法。
+获取蜂窝数据业务的连接状态，使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Telephony.CellularData
 
@@ -498,9 +498,9 @@ console.log("Result: "+ data.getDefaultCellularDataSimId());
 
 queryAllApns(): Promise\<Array\<ApnInfo\>\>
 
-获取默认移动数据的SIM卡的APN（access point name，接入点名称）信息。
+异步获取默认移动数据的SIM卡的APN（access point name，接入点名称）信息。
 
-**需要权限**：ohos.permission.MANAGE_APN_SETTING
+**需要权限**：ohos.permission.MANAGE_APN_SETTING（该权限是受限开放权限，仅需要连接移动数据专网进行办公室可以申请该权限，权限介绍参见[权限定义](../../security/AccessToken/restricted-permissions.md#ohospermissionmanage_apn_setting)）
 
 **系统能力**：SystemCapability.Telephony.CellularData
 
@@ -508,7 +508,7 @@ queryAllApns(): Promise\<Array\<ApnInfo\>\>
 
 | 类型              | 说明                                         |
 | ------ |--------------------------------------------|
-| Promise\<Array\<ApnInfo\>\> | 获取默认移动数据的SIM卡的APN信息列表。 |
+| Promise\<Array\<[ApnInfo](#apninfo16)\>\> | Promise对象，返回默认移动数据的SIM卡的APN信息列表。 |
 
 **错误码：**
 
@@ -534,17 +534,24 @@ data.queryAllApns().then((data: Array<data.ApnInfo>) => {
 
 queryApnIds(apnInfo: ApnInfo): Promise\<Array\<number\>\>
 
-获取传入的ApnInfo对应的ApnId信息。
+异步获取传入的ApnInfo对应的ApnId信息。
 
-**需要权限**：ohos.permission.MANAGE_APN_SETTING
+**需要权限**：ohos.permission.MANAGE_APN_SETTING（该权限是受限开放权限，仅需要连接移动数据专网进行办公室可以申请该权限，权限介绍参见[权限定义](../../security/AccessToken/restricted-permissions.md#ohospermissionmanage_apn_setting)）
 
 **系统能力**：SystemCapability.Telephony.CellularData
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                     |
+| ------ | ------ | ---- | ---------------------------------------- |
+| apnInfo | [ApnInfo](#apninfo16) | 是   | 要查询的APN参数。 |
+
 
 **返回值：**
 
 | 类型              | 说明                          |
 | ------ |-----------------------------|
-| Promise\<Array\<number\>\> | 获取到的传入的ApnInfo对应的ApnId信息列表。 |
+| Promise\<Array\<number\>\> | Promise对象，返回传入的ApnInfo对应的ApnId信息列表。 |
 
 **错误码：**
 
@@ -578,21 +585,27 @@ data.queryApnIds(apnInfo).then((data: Array<number>) => {
 
 setPreferredApn(apnId: number): Promise\<boolean\>
 
-设置apnId对应的APN为首选APN。
+异步设置apnId对应的APN为首选APN。
 
 > 注意:
 >
 > 如果传入的apnId为无效的apnId，切回运营商默认配置的优选Apn。
 
-**需要权限**：ohos.permission.MANAGE_APN_SETTING
+**需要权限**：ohos.permission.MANAGE_APN_SETTING（该权限是受限开放权限，仅需要连接移动数据专网进行办公室可以申请该权限，权限介绍参见[权限定义](../../security/AccessToken/restricted-permissions.md#ohospermissionmanage_apn_setting)）
 
 **系统能力**：SystemCapability.Telephony.CellularData
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                     |
+| ------ | ------ | ---- | ---------------------------------------- |
+| apnId | number | 是   | 要设置的apnId，可以通过[queryApnIds](#dataqueryapnids16)查询。 |
 
 **返回值：**
 
 | 类型              | 说明                     |
 | ------ |------------------------|
-| Promise\<boolean\> | 设置的返回结果，在未插卡时会返回fasle。 |
+| Promise\<boolean\> | Promise对象，返回设置的结果，在未插卡时会返回fasle。 |
 
 **错误码：**
 

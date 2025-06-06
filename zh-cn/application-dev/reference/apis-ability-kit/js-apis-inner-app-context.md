@@ -1,12 +1,12 @@
-# Context
+# Context（FA模型的上下文基类）
 <!--deprecated_code_no_check-->
 
-Context模块提供了ability或application的上下文的能力，包括允许访问特定于应用程序的资源、请求和验证权限等。
+Context模块提供了Ability或Application的上下文的基础能力，包括允许访问特定于应用程序的资源、请求和验证权限等。
 
 > **说明：**
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 
+>
 > 本模块接口仅可在FA模型下使用。
 
 ## 导入模块

@@ -10,7 +10,9 @@
 > 
 > 本文介绍通过入参形式为ComponentContent创建自定义弹出框，传builder形式的弹出框使用方法可参考[openCustomDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12-1)。
 
-弹出框（openCustomDialog）可以通过配置[isModal](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12)来实现模态和非模态弹窗。isModal为true时，弹出框为模态弹窗。isModal为false时，弹出框为非模态弹窗。
+弹出框（openCustomDialog）默认为模态弹窗且有蒙层，不可与蒙层下方控件进行交互（不支持点击和手势等向下透传）。可以通过配置[isModal](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12)来实现模态和非模态弹窗，详细说明可参考[弹窗的种类](arkts-dialog-overview.md#弹窗的种类)。
+
+当isModal为true时，弹出框为模态弹窗，且弹窗周围的蒙层区不支持透传。isModal为false时，弹出框为非模态弹窗，且弹窗周围的蒙层区可以透传。因此如果需要同时允许弹出框的交互和弹出框外页面的交互行为，需要将弹出框设置为非模态。
 
 ## 生命周期
 
@@ -208,7 +210,7 @@ struct Index {
               },
               alignment:DialogAlignment.Bottom,
               keyboardAvoidMode: KeyboardAvoidMode.DEFAULT, // 软键盘弹出时，弹出框自动避让
-              keyboardAvoidDistance: LengthMetrics.vp(0) // 软键盘弹出时与弹出框的距离为200vp
+              keyboardAvoidDistance: LengthMetrics.vp(0) // 软键盘弹出时与弹出框的距离为0vp
             }).catch((error: BusinessError) => {
                 console.error(`openCustomDialog error code is ${error.code}, message is ${error.message}`)
               })

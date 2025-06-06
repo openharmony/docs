@@ -473,6 +473,7 @@
             - [固定样式弹出框](ui/arkts-fixes-style-dialog.md)
             - [页面级弹出框](ui/arkts-embedded-dialog.md)
             - [弹出框层级管理](ui/arkts-dialog-levelorder.md)
+            - [弹出框控制器](ui/arkts-dialog-controller.md)
           - 菜单<!--arkts-use-menu-->
             - [菜单概述](ui/arkts-menu-overview.md)
             - [菜单控制 (Menu)](ui/arkts-popup-and-menu-components-menu.md)
@@ -786,10 +787,11 @@
       - [Form Kit简介](form/formkit-overview.md)
       - 服务卡片开发指导（Stage模型）<!--arkts-ui-widget-stage-->
         - 开发基于ArkTS UI的卡片<!--arkts-ui-widget-->
+          - [ArkTS卡片概述](form/arkts-form-overview.md)
           - [ArkTS卡片运行机制](form/arkts-ui-widget-working-principles.md)
           - [ArkTS卡片相关模块](form/arkts-ui-widget-modules.md)
           - ArkTS卡片开发指导<!--arkts-ui-widget-dev-->
-            - [创建一个ArkTS卡片](form/arkts-ui-widget-creation.md)
+            - [创建ArkTS卡片](form/arkts-ui-widget-creation.md)
             - [配置卡片的配置文件](form/arkts-ui-widget-configuration.md)
             - [卡片生命周期管理](form/arkts-ui-widget-lifecycle.md)
             - 开发卡片页面<!--arkts-ui-widget-page-->
@@ -822,7 +824,7 @@
           - [卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
           <!--DelEnd-->
         - [开发基于JS UI的卡片](form/js-ui-widget-development.md)
-      - [服务卡片开发指导（FA模型）](form/widget-development-fa.md)
+      - [JS卡片开发指导（FA模型）](form/widget-development-fa.md)
     - IME Kit（输入法开发服务）<!--ime-kit-->
       - [IME Kit简介](inputmethod/ime-kit-intro.md)
       - [实现一个输入法应用](inputmethod/inputmethod-application-guide.md)
@@ -1557,6 +1559,8 @@
         - 图片接收<!--image-receiving-c-->
           - [使用Image_NativeModule完成图片接收](media/image/image-receiver-c.md)
           - [使用Image_NativeModule处理图像信息](media/image/image-info-c.md)
+      - Image Kit常见问题<!--image-faqs-->
+        - [如何处理HEIF图片](media/image/image-faqs/heif-adapter-faq.md)
       - 不再推荐使用<!--imagekit-not-recommended-->
         - 图片开发指导(依赖JS对象)(C/C++)<!--image-native-js-objects-->
           - [图片解码](media/image/image-decoding-native.md)

@@ -18,6 +18,7 @@
 | [操作菜单 (showActionMenu)](arkts-fixes-style-dialog.md#操作菜单-showactionmenu) | 固定样式，当用户需要处理操作菜单响应后的异步返回结果时调用。 |
 | [页面级弹出框](arkts-embedded-dialog.md) | 页面级弹出框，当用户期望弹出框跟随导航页面切换时使用。 |
 | [弹出框层级管理](arkts-dialog-levelorder.md) | 从API version 18开始，可以通过设置[levelOrder](../reference/apis-arkui/js-apis-promptAction.md#basedialogoptions11)参数来管理弹出框的显示顺序。 |
+| [弹出框控制器](arkts-dialog-controller.md) | 从API version 18开始，可以通过设置[controller](../reference/apis-arkui/js-apis-promptAction.md#dialogcontroller18)参数来绑定控制器，通过控制器可以对弹出框进行操作。 |
 
 ## 规格约束
 
