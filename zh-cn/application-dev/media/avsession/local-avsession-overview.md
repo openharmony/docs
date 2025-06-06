@@ -43,6 +43,8 @@ import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { avSession } from '@kit.AVSessionKit';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+
 @Entry
 @Component
 struct Index {
