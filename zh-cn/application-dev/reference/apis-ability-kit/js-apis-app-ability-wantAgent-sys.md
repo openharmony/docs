@@ -326,11 +326,11 @@ triggerAsync(agent: WantAgent, triggerInfo: TriggerInfo, context: Context): Prom
 
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 202       | Not system app. Interface caller is not a system app. |
+| 202       | The application is not system-app, can not use system-api. |
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000020   | The context is not ability context. |
 | 16000151   | Invalid wantAgent object.|
-| 16000153   | The wantAgent object has been canceled.|
+| 16000153   | The WantAgent has been canceled.|
 
 **示例：**
 
