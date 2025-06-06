@@ -2997,7 +2997,7 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startAppServiceExtensionAbility<sup>20+</sup>
+### startAppServiceExtensionAbility<sup>20+</sup>
 
 startAppServiceExtensionAbility(want: Want): Promise\<void>
 
@@ -3076,7 +3076,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.stopAppServiceExtensionAbility<sup>20+</sup>
+### stopAppServiceExtensionAbility<sup>20+</sup>
 
 stopAppServiceExtensionAbility(want: Want): Promise\<void>
 
@@ -3151,7 +3151,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.connectAppServiceExtensionAbility<sup>20+</sup>
+### connectAppServiceExtensionAbility<sup>20+</sup>
 
 connectAppServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
@@ -3175,7 +3175,7 @@ connectAppServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回连接id，[disconnectAppServiceExtensionAbility](#uiabilitycontextdisconnectappserviceextensionability20)根据该连接id断开连接。 |
+| number | 返回连接id，[disconnectAppServiceExtensionAbility](#disconnectappserviceextensionability20)根据该连接id断开连接。 |
 
 **错误码：**
 
@@ -3235,7 +3235,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.disconnectAppServiceExtensionAbility<sup>20+</sup>
+### disconnectAppServiceExtensionAbility<sup>20+</sup>
 
 disconnectAppServiceExtensionAbility(connection: number): Promise\<void>
 
@@ -3253,7 +3253,7 @@ disconnectAppServiceExtensionAbility(connection: number): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| connection | number | 是 | 在[connectAppServiceExtensionAbility](#uiabilitycontextconnectappserviceextensionability20)返回的连接id。 |
+| connection | number | 是 | 在[connectAppServiceExtensionAbility](#connectappserviceextensionability20)返回的连接id。 |
 
 **返回值：**
 
