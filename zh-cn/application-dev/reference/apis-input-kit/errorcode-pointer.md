@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Invalid windowId.
+Invalid windowId. Possible causes: The window id does not belong to the current process.
 
 **错误描述**
 

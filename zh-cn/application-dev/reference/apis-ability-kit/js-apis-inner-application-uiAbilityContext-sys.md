@@ -18,7 +18,9 @@ import { common } from '@kit.AbilityKit';
 >
 > 在本文档的示例中，通过`this.context`来获取`UIAbilityContext`，其中`this`代表继承自`UIAbility`的`UIAbility`实例。如需要在页面中使用`UIAbilityContext`提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
-## UIAbilityContext.startAbilityForResultWithAccount
+## UIAbilityContext
+
+### startAbilityForResultWithAccount
 
 startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback\<AbilityResult>): void
 
@@ -111,7 +113,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## UIAbilityContext.startAbilityForResultWithAccount
+### startAbilityForResultWithAccount
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void
 
@@ -208,7 +210,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## UIAbilityContext.startAbilityForResultWithAccount
+### startAbilityForResultWithAccount
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<AbilityResult\>
 
@@ -308,7 +310,7 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-## UIAbilityContext.startServiceExtensionAbility
+### startServiceExtensionAbility
 
 startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
@@ -379,7 +381,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startServiceExtensionAbility
+### startServiceExtensionAbility
 
 startServiceExtensionAbility(want: Want): Promise\<void>
 
@@ -449,7 +451,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startServiceExtensionAbilityWithAccount
+### startServiceExtensionAbilityWithAccount
 
 startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void
 
@@ -529,7 +531,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startServiceExtensionAbilityWithAccount
+### startServiceExtensionAbilityWithAccount
 
 startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>
 
@@ -607,7 +609,7 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-## UIAbilityContext.stopServiceExtensionAbility
+### stopServiceExtensionAbility
 
 stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
@@ -676,7 +678,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.stopServiceExtensionAbility
+### stopServiceExtensionAbility
 
 stopServiceExtensionAbility(want: Want): Promise\<void>
 
@@ -742,7 +744,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.stopServiceExtensionAbilityWithAccount
+### stopServiceExtensionAbilityWithAccount
 
 stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void
 
@@ -817,7 +819,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.stopServiceExtensionAbilityWithAccount
+### stopServiceExtensionAbilityWithAccount
 
 stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>
 
@@ -891,7 +893,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.connectServiceExtensionAbilityWithAccount
+### connectServiceExtensionAbilityWithAccount
 
 connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number
 
@@ -984,7 +986,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startAbilityWithAccount
+### startAbilityWithAccount
 
 startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void\>): void
 
@@ -1077,7 +1079,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## UIAbilityContext.startAbilityWithAccount
+### startAbilityWithAccount
 
 startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void
 
@@ -1174,7 +1176,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## UIAbilityContext.startAbilityWithAccount
+### startAbilityWithAccount
 
 startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void\>
 
@@ -1269,7 +1271,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.setMissionIcon
+### setMissionIcon
 
 setMissionIcon(icon: image.PixelMap, callback: AsyncCallback\<void>): void
 
@@ -1325,7 +1327,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## UIAbilityContext.setMissionIcon
+### setMissionIcon
 
 setMissionIcon(icon: image.PixelMap): Promise\<void>
 
@@ -1389,7 +1391,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startRecentAbility
+### startRecentAbility
 
 startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1466,7 +1468,7 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-## UIAbilityContext.startRecentAbility
+### startRecentAbility
 
 startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1548,7 +1550,7 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-## UIAbilityContext.startRecentAbility
+### startRecentAbility
 
 startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
@@ -1629,7 +1631,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startAbilityByCallWithAccount<sup>10+</sup>
+### startAbilityByCallWithAccount<sup>10+</sup>
 
 startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;
 
@@ -1729,7 +1731,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startAbilityAsCaller<sup>10+<sup>
+### startAbilityAsCaller<sup>10+<sup>
 
 startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
@@ -1806,7 +1808,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startAbilityAsCaller<sup>10+<sup>
+### startAbilityAsCaller<sup>10+<sup>
 
 startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void
 
@@ -1885,7 +1887,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startAbilityAsCaller<sup>10+<sup>
+### startAbilityAsCaller<sup>10+<sup>
 
 startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 
@@ -1972,7 +1974,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.requestModalUIExtension<sup>11+<sup>
+### requestModalUIExtension<sup>11+<sup>
 
 requestModalUIExtension(pickerWant: Want): Promise\<void>
 
@@ -2050,7 +2052,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.requestModalUIExtension<sup>11+<sup>
+### requestModalUIExtension<sup>11+<sup>
 requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
 请求在指定的前台应用上拉起对应类型的UIExtensionAbility。使用callback异步回调。仅支持在主线程调用。

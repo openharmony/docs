@@ -4,7 +4,7 @@
 
 文件中定义与surface相关的功能函数，包括surface的创建、销毁和使用等。
 
-**引用文件：** drawing_surface.h
+**引用文件：** <native_drawing/drawing_surface.h>
 
 **库：** libnative_drawing.so
 

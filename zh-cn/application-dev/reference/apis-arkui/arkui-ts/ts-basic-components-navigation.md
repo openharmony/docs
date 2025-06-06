@@ -306,7 +306,7 @@ backButtonIcon(value: string | PixelMap | Resource | SymbolGlyphModifier)
 
 ### backButtonIcon<sup>19+</sup>
 
-backButtonIcon(icon: ResourceStr | PixelMap | SymbolGlyphModifier, accessibilityText?: ResourceStr)
+backButtonIcon(icon: string | PixelMap | Resource | SymbolGlyphModifier, accessibilityText?: ResourceStr)
 
 > **说明：**
 >
@@ -323,7 +323,7 @@ backButtonIcon(icon: ResourceStr | PixelMap | SymbolGlyphModifier, accessibility
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| icon  | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)  | 是   | 标题栏中返回键图标。 |
+| icon  | string&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|&nbsp;[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)  | 是   | 标题栏中返回键图标。 |
 | accessibilityText | [ResourceStr](ts-types.md#resourcestr) | 否 | 返回键无障碍播报内容。</br>默认值：系统语言是中文时为“返回”，系统语言是英文时为“back”。 |
 
 ### hideNavBar<sup>9+</sup>
@@ -664,6 +664,8 @@ Navigation路由栈，从API version 12开始，NavPathStack允许被继承。�
 > 例如：在Page1页面先pop再push一个Page1，系统会认为操作前和操作后的结果一致而不进行任何操作，如果需要强行push一个Page1实例，可以使用NEW_INSTANCE模式。
 >
 > 2.不建议开发者通过监听生命周期的方式管理自己的页面栈。
+>
+> 3.在应用处于后台状态下，调用NavPathStack的栈操作方法，会在应用再次回到前台状态时触发刷新。
 
 ### constructor
 
@@ -865,7 +867,7 @@ pushDestinationByName(name: string, param: Object, onPop: Callback\<PopInfo>, an
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | 开发者设置的NavDestination页面详细参数。 |
-| onPop | Callback\<[PopInfo](#popinfo11)> | 是    | Callback回调，用于页面出栈时处理返回结果。仅[pop]#pop11中设置result参数后触发。 |
+| onPop | Callback\<[PopInfo](#popinfo11)> | 是    | Callback回调，用于页面出栈时处理返回结果。仅[pop](#pop11)、[popToName](#poptoname11)、[popToIndex](#poptoindex11)中设置result参数后触发。 |
 | animated | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 **返回值：**
@@ -1399,7 +1401,7 @@ setPathStack(pathStack: Array\<NavPathInfo\>, animated?: boolean): void
 
 | 参数名    | 类型     | 必填   | 说明                     |
 | ---- | ---- | --- | ---|
-|pathStack| Array\<[NavPathInfo](#navpathinfo10)\>| 是 | 设置当前路由栈中的路由页面信息数组。|
+|pathStack| Array\<[NavPathInfo](#navpathinfo10)\>| 是 | 设置当前路由栈中的路由页面信息数组。<br/>**说明**：<br/>数组长度无限制。|
 |animated| boolean | 否 | 是否开启转场动画。 <br /> 默认值：true。<br/>true：开启转场动画。<br/>false：不开启转场动画。|
 
 >  **说明：**
@@ -1772,7 +1774,7 @@ Navigation自定义标题。
 | backgroundBlurStyle   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)        | 否    | 工具栏背景模糊样式，不设置时关闭背景模糊效果。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | backgroundBlurStyleOptions<sup>19+</sup>   | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明)        | 否    | 工具栏背景模糊选项。<br/>**说明：** <br/>只在设置了backgroundBlurStyle时生效。<br/>不建议与backgroundEffect同时使用。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 | backgroundEffect<sup>19+</sup>   | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11)        | 否    | 设置工具栏背景属性包括：模糊半径，亮度，饱和度，颜色等。<br/>**说明：** <br/>不建议与backgroundBlurStyleOptions同时使用。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
-| barStyle<sup>14+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 设置工具栏布局方式。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| barStyle<sup>14+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 设置工具栏布局方式。<br/>默认值：BarStyle.STANDARD。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 | hideItemValue<sup>19+</sup>   | boolean | 否    | 设置是否隐藏工具栏的文本，默认显示文本。<br/>默认值：false。<br/>true：隐藏工具栏的文本。<br/>false：不隐藏工具栏的文本。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 | moreButtonOptions<sup>19+</sup>   | [MoreButtonOptions](#morebuttonoptions19)        | 否    | 工具栏更多图标的菜单选项。 |
 
@@ -4327,3 +4329,119 @@ export class CustomTransition {
 }
 ```
 ![navigationCustomTransition.gif](figures/navigationCustomTransition.gif)
+
+### 示例14（Navigation双栏模式占位页）
+
+该示例主要展示Navigation在双栏模式下，右侧显示默认占位页。
+
+```ts
+import { ComponentContent } from '@kit.ArkUI';
+
+@Builder function PlaceholderPage() {
+  Column() {
+    Text("分栏模式占位页")
+      .fontSize(28)
+      .fontWeight(700)
+      .margin({ top: 200 })
+  }.width("100%")
+  .height("100%")
+}
+
+@Entry
+@Component
+struct NavigationExample {
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  @State currentIndex: number = 0;
+  placeholder = new ComponentContent(this.getUIContext(), wrapBuilder(PlaceholderPage))
+
+  @Builder
+  NavigationTitle() {
+    Column() {
+      Text('Title')
+        .fontColor('#182431')
+        .fontSize(30)
+        .lineHeight(41)
+        .fontWeight(700)
+      Text('subtitle')
+        .fontColor('#182431')
+        .fontSize(14)
+        .lineHeight(19)
+        .opacity(0.4)
+        .margin({ top: 2, bottom: 20 })
+    }.alignItems(HorizontalAlign.Start)
+  }
+
+  @Builder
+  NavigationMenus() {
+    Row() {
+      Image('resources/base/media/ic_public_add.svg')
+        .width(24)
+        .height(24)
+      Image('resources/base/media/ic_public_add.svg')
+        .width(24)
+        .height(24)
+        .margin({ left: 24 })
+      Image('common/ic_public_more.svg')
+        .width(24)
+        .height(24)
+        .margin({ left: 24 })
+    }
+  }
+
+  build() {
+    Column() {
+      Navigation() {
+        TextInput({ placeholder: 'search...' })
+          .width('90%')
+          .height(40)
+          .backgroundColor('#FFFFFF')
+          .margin({ top: 8 })
+
+        List({ space: 12, initialIndex: 0 }) {
+          ForEach(this.arr, (item: number) => {
+            ListItem() {
+              Text('' + item)
+                .width('90%')
+                .height(72)
+                .backgroundColor('#FFFFFF')
+                .borderRadius(24)
+                .fontSize(16)
+                .fontWeight(500)
+                .textAlign(TextAlign.Center)
+            }
+          }, (item: number) => item.toString())
+        }
+        .height(324)
+        .width('100%')
+        .margin({ top: 12, left: '10%' })
+      }
+      .title(this.NavigationTitle)
+      .menus(this.NavigationMenus)
+      .titleMode(NavigationTitleMode.Full)
+      .toolbarConfiguration([
+        {
+          value: $r("app.string.navigation_toolbar_add"),
+          icon: $r("app.media.startIcon")
+        },
+        {
+          value: $r("app.string.navigation_toolbar_app"),
+          icon: $r("app.media.startIcon")
+        },
+        {
+          value: $r("app.string.navigation_toolbar_collect"),
+          icon: $r("app.media.startIcon")
+        }
+      ])
+      .mode(NavigationMode.Split)
+      .hideTitleBar(false)
+      .hideToolBar(false)
+      .onTitleModeChange((titleModel: NavigationTitleMode) => {
+        console.info('titleMode' + titleModel)
+      })
+      .splitPlaceholder(this.placeholder)
+    }.width('100%').height('100%').backgroundColor('#F1F3F5')
+  }
+}
+```
+
+![zh-cn_image_navigation_splitPlaceholder](figures/zh-cn_image_navigation_splitPlaceholder.png)

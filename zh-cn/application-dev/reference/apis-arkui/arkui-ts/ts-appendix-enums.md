@@ -80,16 +80,18 @@
 
 ## TouchType
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 说明              |
-| ------ | --------------- |
-| Down   | 手指按下时触发。        |
-| Up     | 手指抬起时触发。        |
-| Move   | 手指按压态在屏幕上移动时触发。 |
-| Cancel | 触摸事件取消时触发。      |
+| 名称    | 值   | 说明                               |
+| ------- | ---- | ---------------------------------- |
+| Down   | -    | 手指按下时触发。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
+| Up     | -    | 手指抬起时触发。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
+| Move   | -    | 手指按压态在屏幕上移动时触发。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
+| Cancel | -    | 触摸事件取消时触发。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
+| HOVER_ENTER<sup>20+</sup> | 9    | 无障碍模式下，手指按下时触发。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。        |
+| HOVER_MOVE<sup>20+</sup>   | 10    | 无障碍模式下，触摸移动时触发。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。        |
+| HOVER_EXIT<sup>20+</sup> | 11    | 无障碍模式下，抬手触发。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。        |
+| HOVER_CANCEL<sup>20+</sup> | 12    | 无障碍模式下，打断取消当前触发的事件。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。        |
 
 ## MouseButton<sup>8+</sup>
 
@@ -519,7 +521,7 @@
 | ----------- | --------------------------- |
 | NoWrap      | Flex容器的元素单行/列布局，子元素尽可能约束在容器内。当子元素有最小尺寸约束等设置时，Flex容器不会对其强制弹性压缩。  |
 | Wrap        | Flex容器的元素多行/列排布，子项允许超出容器。   |
-| WrapReverse | Flex容器的元素反向多行/列排布，子项允许超出容器。 |
+| WrapReverse | Flex容器的元素反向多行/列排布，子项允许超出容器。WrapReverse反向排布组件在行内的方向。 |
 
 ## VerticalAlign
 
@@ -1291,6 +1293,19 @@ type Nullable\<T> = T | undefined
 > - 建议在出现[像素取整常见问题](./ts-universal-attributes-pixelRound.md#常见问题)时，尝试采用PIXEL_ROUND_AFTER_MEASURE模式解决。
 > - 在PIXEL_ROUND_AFTER_MEASURE模式下，组件会在测量大小结束时进行一次取整，即最终大小相比于PIXEL_ROUND_ON_LAYOUT_FINISH模式可能扩大1px。
 
+## TipsAnchorType<sup>20+</sup>
+
+指定Tips跟随类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    |  说明                   |
+| ------  | -------------------- |
+| TARGET | Tips跟随目标物。 |
+| CURSOR | Tips跟随鼠标。 |
+
 ## AnimationPropertyType<sup>20+</sup>
 
 用于动画的属性类型。
@@ -1305,6 +1320,20 @@ type Nullable\<T> = T | undefined
 | TRANSLATION | 1 | x、y方向的平移属性。该属性对应参数个数为2，属性的单位为px。 |
 | SCALE | 2 | x、y方向的缩放属性。该属性对应参数个数为2。 |
 | OPACITY | 3 | 透明度属性。该属性对应参数个数为1，属性的取值范围为[0,1]。 |
+
+## ColorSpace<sup>20+</sup>
+
+定义了颜色空间的类型，用于指定颜色显示的模式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    |  值   | 说明                   |
+| ------  | ---- | -------------------- |
+| SRGB | 0 | SRGB颜色空间，适用于大多数显示设备。 |
+| DISPLAY_P3 | 1 | Display-P3颜色空间，具有更广的色域，适用于高端显示设备。 |
+
 ## FocusWrapMode<sup>20+</sup>
 
 交叉轴方向键走焦模式枚举。

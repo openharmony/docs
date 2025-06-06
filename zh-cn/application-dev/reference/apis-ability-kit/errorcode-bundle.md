@@ -937,7 +937,7 @@ It is not allowed to install the enterprise bundle.
 因策略管制，不允许通过特定的接口，安装企业应用。
 
 **处理步骤**<br/>
-请更换[install接口](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall)。
+请更换[install接口](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall)。<!--DelEnd-->
 
 
 ## 17700072 Launch Want不存在
@@ -953,6 +953,7 @@ Launch Want不存在。
 **处理步骤**<br/>
 应用需要有entities配置为entity.system.home并且actions配置为action.system.home的Ability。
 
+<!--Del-->
 ## 17700073 由于设备上存在具有相同包名称但不同签名信息的应用程序，导致安装失败
 **错误信息**<br/>
 Failed to install the HAP because an application with the same bundle name but different signature information exists on the device.

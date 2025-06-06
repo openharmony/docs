@@ -150,7 +150,7 @@ if (status != napi_ok) {
 **正确示例**：
 
 ```cpp
-void callbackTest(CallbackContext* context)
+void CallbackTest(CallbackContext* context)
 {
     uv_loop_s* loop = nullptr;
     napi_get_uv_event_loop(context->env, &loop);
@@ -359,6 +359,40 @@ static napi_module nativeModule = {
 };
 
 extern "C" __attribute__((constructor)) void RegisterNativeRenderModule()
+{
+    napi_module_register(&nativeModule);
+}
+```
+
+## dlopen与模块注册
+
+**【规则】**
+如果注册的模块事先有被dlopen，需使用以下方式注册模块。
+
+模块需对外导出固定名称为napi_onLoad的函数，在该函数内调用注册函数。napi_onLoad函数只会在ArkTS代码的import语句中被主动调用，从而避免dlopen时提前触发模块的注册。
+
+**示例**
+
+```cpp
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports)
+{
+    // ...
+    return exports;
+}
+EXTERN_C_END
+
+static napi_module nativeModule = {
+    .nm_version = 1,
+    .nm_flags = 0,
+    .nm_filename = nullptr,
+    .nm_register_func = Init,
+    .nm_modname = "nativerender",
+    .nm_priv = nullptr,
+    .reserved = { 0 },
+};
+
+extern "C" void napi_onLoad()
 {
     napi_module_register(&nativeModule);
 }

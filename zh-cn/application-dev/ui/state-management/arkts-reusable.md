@@ -1,5 +1,7 @@
 # \@Reusable装饰器：组件复用
 
+\@Reusable装饰器标记的自定义组件支持视图节点、组件实例和状态上下文的复用，避免重复创建和销毁，提升性能。
+
 ## 概述
 
 使用\@Reusable装饰器时，表示该自定义组件可以复用。与\@Component结合使用，标记为\@Reusable的自定义组件在从组件树中移除时，组件及其对应的JS对象将被放入复用缓存中。后续创建新自定义组件节点时，将复用缓存中的节点，从而节约组件重新创建的时间。
@@ -298,9 +300,9 @@ struct Child {
 
 ### 列表滚动配合LazyForEach使用
 
-当应用展示大量数据的列表并进行滚动操作时，频繁创建和销毁列表项视图可能导致卡顿和性能问题。使用列表组件的组件复用机制可以重用已创建的列表项视图，提高滚动流畅度。
+- 当应用展示大量数据的列表并进行滚动操作时，频繁创建和销毁列表项视图可能导致卡顿和性能问题。使用列表组件的组件复用机制可以重用已创建的列表项视图，提高滚动流畅度。
 
-以下示例代码将CardView自定义组件标记为复用组件，List上下滑动，触发CardView复用。
+- 以下示例代码将CardView自定义组件标记为复用组件，List上下滑动，触发CardView复用。
 
 ```ts
 class MyDataSource implements IDataSource {
@@ -379,7 +381,7 @@ export struct CardView {
 }
 ```
 
-### if使用场景
+### 列表滚动-if使用场景
 
 以下示例代码将OneMoment自定义组件标记为复用组件。当List上下滑动时，会触发OneMoment的复用。设置reuseId可为复用组件分配复用组，相同reuseId的组件将在同一复用组中复用。单个复用组件无需设置reuseId。使用reuseId标识复用组件，可避免重复执行if语句的删除和重新创建逻辑，提高复用效率和性能。
 
@@ -508,7 +510,7 @@ export class MyDataSource<T> extends BasicDataSource<T> {
 }
 ```
 
-### Foreach使用场景
+### 列表滚动-Foreach使用场景
 
 使用Foreach创建可复用的自定义组件，由于Foreach渲染控制语法的全展开属性，导致复用组件无法复用。示例中点击update，数据刷新成功，但滑动列表时，ListItemView无法复用。点击clear，再次点击update，ListItemView复用成功，因为一帧内重复创建多个已被销毁的自定义组件。
 
@@ -1023,7 +1025,7 @@ export class MyDataSource<T> extends BasicDataSource<T> {
 }
 ```
 
-### ListItemGroup使用场景
+### 列表滚动-ListItemGroup使用场景
 
 - 可以视作特殊List滑动场景，将ListItem需要移除重建的子组件封装成自定义组件，并使用\@Reusable装饰器修饰，使其具备组件复用能力。
 
@@ -1272,6 +1274,7 @@ struct Index {
         LazyForEach(this.data, (item: number) => {
           ListItem() {
             ReusableComponent({ item: item })
+              // 设置两种有限变化的reuseId
               .reuseId(item % 2 === 0 ? 'ReusableComponentOne' : 'ReusableComponentTwo')
           }
           .backgroundColor(Color.Orange)
@@ -1294,6 +1297,7 @@ struct ReusableComponent {
 
   build() {
     Column() {
+      // 组件内部根据类型差异渲染
       if (this.item % 2 === 0) {
         Text(`Item ${this.item} ReusableComponentOne`)
           .fontSize(20)

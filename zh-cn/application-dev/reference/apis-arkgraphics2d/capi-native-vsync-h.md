@@ -6,6 +6,8 @@
 <!--RP1-->
 **相关示例：** [NDKNativeImage](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkNativeImage)<!--RP1End-->
 
+**引用文件：** <native_vsync/native_vsync.h>
+
 **库：** libnative_vsync.so
 
 **起始版本：** 9

@@ -47,7 +47,7 @@ Incorrect ability type.
 **处理步骤**
 
 1. 检查want中的bundleName、moduleName和abilityName是否正确。
-2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用<!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability)方法启动或<!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)方法连接。
+2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用<!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#startserviceextensionability)方法启动或<!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability)方法连接。
 
 ## 16000003 指定的ID不存在
 
@@ -282,7 +282,7 @@ Redirection to a third-party application is not allowed in API version 11 or lat
 
 **处理步骤**
 
-使用隐式启动方式或通过[openLink](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)跳转其他应用。
+使用隐式启动方式或通过[openLink](js-apis-inner-application-uiAbilityContext.md#openlink12)跳转其他应用。
 
 ## 16000019 隐式启动未查找到匹配应用
 
@@ -303,6 +303,26 @@ No matching ability is found.
 
 1. 确保隐式启动的参数配置正确。
 2. 确保对应的HAP包已安装。
+
+<!--Del-->
+## 16000020 传入的Context对象不是Ability级别Context
+
+**错误信息**
+
+The context is not ability context.
+
+**错误描述**
+
+传入的Context对象不是Ability级别Context。
+
+**可能原因**
+
+传入的Context对象既不是UIAbilityContext或ExtensionContext，也没有继承自UIAbilityContext或ExtensionContext。
+
+**处理步骤**
+
+使用UIAbilityContext或ExtensionContext对象作为入参，或者使用继承了UIAbilityContext或ExtensionContext类的对象作为入参。
+<!--DelEnd-->
 
 ## 16000050 内部错误
 
@@ -849,6 +869,42 @@ An error occurred during the interaction between the ability and window.
 
 系统错误，尝试重新调用。
 
+## 16000086 传入的context不是UIAbilityContext
+
+**错误信息**
+
+The context is not UIAbilityContext.
+
+**错误描述**
+
+传入的context不是UIAbilityContext。
+
+**可能原因**
+
+传入的Context对象既不是UIAbilityContext、也没有继承自UIAbilityContext。
+
+**处理步骤**
+
+使用UIAbilityContext对象或者继承了UIAbilityContext类的对象作为入参。
+
+## 16000090 调用方不是原子化服务
+
+**错误信息**
+
+The caller is not an atomic service.
+
+**错误描述**
+
+调用方不是原子化服务。
+
+**可能原因**
+
+接口调用方不是原子化服务。
+
+**处理步骤**
+
+当前应用不支持调用该接口。
+
 ## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
 
 **错误信息**
@@ -913,6 +969,63 @@ Invalid wantAgent object.
 
 1. 检查传入接口的wantAgent对象是否存在。
 2. 检查调用方是否为三方应用。不支持三方应用设置其他应用的Ability。
+
+<!--Del-->
+## 16000153 wantAgent对象已被取消
+
+**错误信息**
+
+The wantAgent object has been canceled.
+
+**错误描述**
+
+当传入接口的wantAgent对象已被取消时，方法将返回该错误码。
+
+**可能原因**
+
+传入接口的wantAgent对象已被取消。
+
+**处理步骤**
+
+使用未被取消的wantAgent对象。
+<!--DelEnd-->
+
+## 16000200 不允许该调用方启动应用后台服务
+
+**错误信息**
+
+The caller is not in the appIdentifierAllowList of the target application.
+
+**错误描述**
+
+调用方不在目标应用的[appIdentifierAllowList](../../quick-start/module-configuration-file.md#extensionabilities标签)中时，返回该错误码。
+
+**可能原因**
+
+[startAppServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20)、[stopAppServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#stopappserviceextensionability20)接口调用方的app-identifier不在目标[AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md)的[appIdentifierAllowList](../../quick-start/module-configuration-file.md#extensionabilities标签)中。
+
+**处理步骤**
+
+将接口调用方的app-identifier配置在目标[AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md)的[appIdentifierAllowList](../../quick-start/module-configuration-file.md#extensionabilities标签)中。
+
+## 16000201 目标服务还未启动
+
+**错误信息**
+
+The target service has not been started yet.
+
+**错误描述**
+
+目标服务还未启动时，返回该错误码。
+
+**可能原因**
+
+使用[connectAppServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20)接口时服务端还未启动且当前应用无权限拉起目标服务。
+
+**处理步骤**
+
+1. 等待服务端启动后重新连接。
+2. 由当前应用拉起目标服务时，需要将接口调用方的app-identifier配置在目标[AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md)的[appIdentifierAllowList](../../quick-start/module-configuration-file.md#extensionabilities标签)中。
 
 ## 16200001 通用组件客户端(Caller)已回收
 

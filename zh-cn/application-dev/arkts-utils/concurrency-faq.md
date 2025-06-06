@@ -118,3 +118,149 @@ taskpool第一次执行任务慢，间隔几百毫秒，原因是子线程反序
 **解决方案**
 
 1.可拆分@Concurrent方法到单独的ets文件，减少模块初始化时间；2.使用延迟加载（lazy import）。
+
+## Taskpool序列化失败问题定位指导
+
+**问题现象**
+
+1. JS异常
+
+   ```ts
+   Error message:An exception occurred during serialization, taskpool: failed to serialize arguments.
+   ```
+
+2. Hilog错误日志
+
+   ```ts
+   [ecmascript] Unsupport serialize object type: 
+   [ecmascript] ValueSerialize: serialize data is incomplete
+   ```
+
+**问题原因**
+
+Taskpool实现任务的函数（Concurrent函数）入参需满足线程间通信支持的类型，详情请查看[线程间通信对象](../reference/apis-arkts/js-apis-taskpool.md#序列化支持类型)。在Concurrent函数中传入不支持的通信对象时，会出现上述现象。应用可以结合Hilog日志中打印的对象类型进一步排查入参是否符合要求。
+
+**场景示例**
+
+1. 应用在启动Taskpool任务时，在Concurrent函数中传入线程间通信不支持的对象类型，导致抛出序列化失败异常。  
+**解决方案**：应用需要查看[线程间通信对象](../reference/apis-arkts/js-apis-taskpool.md#序列化支持类型)排查Concurrent函数入参。
+
+2. 应用在启动Taskpool任务时，抛出序列化失败异常，同时Hilog打印错误日志Unsupport serialize object type: Proxy。基于错误日志可知应用在Concurrent函数中传入代理对象，排查代码发现入参使用了@State装饰器，导致原对象实际上变为Proxy代理对象，代理对象不属于线程间通信支持的对象类型。  
+**解决方案**：Taskpool不支持@State、@Prop等装饰器修饰的复杂类型，具体内容可见[Taskpool注意事项](taskpool-introduction.md#taskpool注意事项)。应用需要去掉@State装饰器。
+
+## Sendable类A的实例对象a传递到子线程后，使用a instanceof A判断返回false
+
+应用在子线程使用instanceof接口时，需要在导出Sendable类A的ets文件使用"use shared"指令标记该模块为[共享模块](../arkts-utils/arkts-sendable-module.md#共享模块)。
+
+**代码示例**
+
+```ts
+// pages/index.ets
+import { worker, ErrorEvent } from '@kit.ArkTS'
+import { A } from './sendable'
+const workerInstance = new worker.ThreadWorker('../workers/Worker.ets');
+function testInstanceof() {
+  let a = new A();
+  if (a instanceof A) {
+    // 打印test instanceof in main thread success
+    console.log("test instanceof in main thread success");
+  } else {
+    console.log("test instanceof in main thread fail");
+  }
+  workerInstance.postMessageWithSharedSendable(a);
+  workerInstance.onerror = (err: ErrorEvent) => {
+    console.log("worker err :" + err.message)
+  }
+}
+
+testInstanceof()
+```
+```ts
+// pages/sendable.ets
+"use shared"
+@Sendable
+export class A {
+    name: string = "name";
+    printName(): string {
+        return this.name;
+    }
+}
+```
+```ts
+// workers/Worker.ets
+import { A } from '../pages/sendable'
+import { worker, ThreadWorkerGlobalScope, MessageEvents } from '@kit.ArkTS'
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+workerPort.onmessage = (e: MessageEvents) => {
+    let a : A = e.data as A;
+    if (a instanceof A) {
+        // 打印test instanceof in worker thread success
+        console.log("test instanceof in worker thread success");
+    } else {
+        console.log("test instanceof in worker thread fail");
+    }
+}
+```
+
+## 使用Sendable特性抛JS异常排查指导
+
+由于Sendable特性存在固定布局、Sendable无法持有非Sendable等规格限制，开发者在进行Sendable改造时可能触发相关约束，导致抛出相应的JS异常。应用可参考以下内容进行代码排查。
+
+### 属性类型不一致异常
+
+**问题现象**
+
+```ts
+JS异常：TypeError: Cannot set sendable property with mismatched type
+```
+
+**问题原因与解决方案**
+
+由于ArkTS运行时在属性赋值时会严格进行类型一致性校验，如果定义的属性类型与传入的对象类型不一致，会抛出上述JS异常。应用需要基于JS异常栈定位到对应的ts文件代码行，排查相应的业务逻辑。
+
+**场景示例**
+
+1. 应用在向子线程传递Sendable类A的实例对象时，抛出类型不一致异常。基于JS栈定位到问题发生在创建类A的实例对象时，排查后发现应用当前模块与其他模块联调时，其他模块未使用Sendable类B封装数据集。   
+**解决方案** ： 应用当前模块将其他模块传递的数据使用Sendable类重新封装。
+
+   ```ts
+   @Sendable
+   export class B {
+     constructor() {}
+   }
+
+   @Sendable
+   export class A {
+     constructor(b: B) {
+       this.b = b;
+     }
+     public b: B | undefined = undefined;
+   }
+   ```
+
+2. 应用查看JS异常栈发现运行this.g = g赋值语句时，抛出类型不一致异常。排查代码后发现属性g使用了@State装饰器，导致原对象变为Proxy代理对象，造成定义类型与传入类型不一致。  
+**解决方案**：去掉@State装饰器
+
+### 新增属性异常
+
+**问题现象**
+
+```ts
+JS异常：TypeError: Cannot add property in prevent extensions
+```
+
+**问题原因与解决方案**
+
+由于Sendable类的布局固定，不允许增删属性，对Sendable对象新增属性时会抛出上述JS异常。应用需要基于JS异常栈定位到对应的ts文件代码行，排查相应的业务逻辑。
+
+**异常场景示例**
+
+1. 应用基于业务需要在同一个ets文件定义了同名的Sendable类和namespace，抛出新增属性异常。由于ts会合并同名的class和namespace，将namespace中的导出的内容附加到同名类上，实际上是对Sendable类新增属性，导致抛出上述异常。  
+**解决方案**：规格限制，暂不支持合并同名Sendable class和namespace。
+
+2. 应用在HAR中使用Sendable特性时，抛出新增属性异常。查看JS异常栈，发现异常代码行定位在js文件，而Sendable特性不支持在js文件中使用，导致抛出非预期的异常。  
+**解决方案**：在HAR中使用Sendable特性时，[配置tsHAR](../quick-start/har-package.md#编译生成ts文件)。
+
+3. 应用在Local Test单元测试或预览器中使用Sendable特性时，抛出新增属性异常。由于Sendable特性暂不支持在Local Test和预览器中使用，导致抛出非预期的异常。  
+**解决方案**：规格限制，暂不支持。

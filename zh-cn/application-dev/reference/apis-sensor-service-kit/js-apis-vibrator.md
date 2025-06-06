@@ -21,7 +21,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 **需要权限**：ohos.permission.VIBRATE
 
-**元服务API**：从API Version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -53,8 +53,8 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
    import { BusinessError } from '@kit.BasicServicesKit';
 
    try {
-     // 查询是否支持'haptic.clock.timer'
-     vibrator.isSupportEffect('haptic.clock.timer', (err: BusinessError, state: boolean) => {
+     // 查询是否支持'haptic.notice.success'
+     vibrator.isSupportEffect('haptic.notice.success', (err: BusinessError, state: boolean) => {
        if (err) {
          console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
          return;
@@ -64,10 +64,10 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
          try {
            vibrator.startVibration({
              type: 'preset',
-             effectId: 'haptic.clock.timer',
+             effectId: 'haptic.notice.success',
              count: 1,
            }, {
-             usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+             usage: 'notification' // 根据实际选择类型归属不同的开关管控
            }, (error: BusinessError) => {
              if (error) {
                console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
@@ -172,7 +172,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 
 **需要权限**：ohos.permission.VIBRATE
 
-**元服务API**：从API Version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -209,8 +209,8 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
    import { BusinessError } from '@kit.BasicServicesKit';
 
    try {
-     // 查询是否支持'haptic.clock.timer'
-     vibrator.isSupportEffect('haptic.clock.timer', (err: BusinessError, state: boolean) => {
+     // 查询是否支持'haptic.notice.success'
+     vibrator.isSupportEffect('haptic.notice.success', (err: BusinessError, state: boolean) => {
        if (err) {
          console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
          return;
@@ -220,10 +220,10 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
          try {
            vibrator.startVibration({
              type: 'preset',
-             effectId: 'haptic.clock.timer',
+             effectId: 'haptic.notice.success',
              count: 1,
            }, {
-             usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+             usage: 'notification' // 根据实际选择类型归属不同的开关管控
            }, (error: BusinessError) => {
              if (error) {
                console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
@@ -397,11 +397,11 @@ stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): 
      // 按照预置效果振动
      vibrator.startVibration({
        type: 'preset',
-       effectId: 'haptic.clock.timer',
+       effectId: 'haptic.notice.success',
        count: 1,
      }, {
        id: 0,
-       usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+       usage: 'notification' // 根据实际选择类型归属不同的开关管控
      }, (error: BusinessError) => {
        if (error) {
          console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
@@ -509,11 +509,11 @@ stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
      // 按照预置效果振动
      vibrator.startVibration({
        type: 'preset',
-       effectId: 'haptic.clock.timer',
+       effectId: 'haptic.notice.success',
        count: 1,
      }, {
        id: 0,
-       usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+       usage: 'notification' // 根据实际选择类型归属不同的开关管控
      }).then(() => {
        console.info('Succeed in starting vibration');
      }, (error: BusinessError) => {
@@ -545,7 +545,7 @@ stopVibration(callback: AsyncCallback&lt;void&gt;): void
 
 **需要权限**：ohos.permission.VIBRATE
 
-**元服务API**：从API Version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -592,7 +592,7 @@ stopVibration(): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.VIBRATE
 
-**元服务API**：从API Version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -637,7 +637,7 @@ stopVibrationSync(): void
 
 **需要权限**：ohos.permission.VIBRATE
 
-**元服务API**：从API Version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API Version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -697,8 +697,8 @@ isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
    import { BusinessError } from '@kit.BasicServicesKit';
   
    try {
-     // 查询是否支持'haptic.clock.timer'
-     vibrator.isSupportEffect('haptic.clock.timer', (err: BusinessError, state: boolean) => {
+     // 查询是否支持'haptic.notice.success'
+     vibrator.isSupportEffect('haptic.notice.success', (err: BusinessError, state: boolean) => {
        if (err) {
          console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
          return;
@@ -709,7 +709,7 @@ isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
            // 使用startVibration需要添加ohos.permission.VIBRATE权限
            vibrator.startVibration({
              type: 'preset',
-             effectId: 'haptic.clock.timer',
+             effectId: 'haptic.notice.success',
              count: 1,
            }, {
              usage: 'unknown' // 根据实际选择类型归属不同的开关管控
@@ -768,14 +768,14 @@ isSupportEffect(effectId: string): Promise&lt;boolean&gt;
    import { BusinessError } from '@kit.BasicServicesKit';
 
    try {
-     // 查询是否支持'haptic.clock.timer'
-     vibrator.isSupportEffect('haptic.clock.timer').then((state: boolean) => {
+     // 查询是否支持'haptic.notice.success'
+     vibrator.isSupportEffect('haptic.notice.success').then((state: boolean) => {
        console.info(`The query result is ${state}`);
        if (state) {
          try {
            vibrator.startVibration({
              type: 'preset',
-             effectId: 'haptic.clock.timer',
+             effectId: 'haptic.notice.success',
              count: 1,
            }, {
              usage: 'unknown' // 根据实际选择类型归属不同的开关管控
@@ -834,8 +834,8 @@ isSupportEffectSync(effectId: string): boolean
    import { BusinessError } from '@kit.BasicServicesKit';
 
    try {
-     // 查询是否支持预设'haptic.clock.timer'
-     let ret = vibrator.isSupportEffectSync('haptic.clock.timer');
+     // 查询是否支持预设'haptic.notice.success'
+     let ret = vibrator.isSupportEffectSync('haptic.notice.success');
      console.info(`The query result is ${ret}`);
    } catch (error) {
      let e: BusinessError = error as BusinessError;
@@ -911,7 +911,7 @@ addContinuousEvent(time: number, duration: number, options?: ContinuousParam): V
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
-| 401      | Parameter error. |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
 
 **示例**：
 
@@ -975,7 +975,7 @@ addTransientEvent(time: number, options?: TransientParam): VibratorPatternBuilde
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
-| 401      | Parameter error. |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
 
 **示例**：
 
@@ -1053,7 +1053,7 @@ build(): VibratorPattern;
 
 ## EffectId
 
-预置的振动效果。在调用[vibrator.startVibration9+](#vibratorstartvibration9)或[vibrator.stopVibration9+](#vibratorstopvibration9-1)接口下发[VibratePreset](#vibratepreset9)形式振动的时候需要使用此参数类型。此参数值种类多样，'haptic.effect.soft'为其中一种。
+预置的振动效果。在调用[vibrator.startVibration9+](#vibratorstartvibration9)或[vibrator.stopVibration9+](#vibratorstopvibration9-1)接口下发[VibratePreset](#vibratepreset9)形式振动的时候需要使用此参数类型。此参数值种类多样，'haptic.clock.timer'为其中一种。
 
 > **说明：**
 > 
@@ -1063,7 +1063,7 @@ build(): VibratorPattern;
 
 | 名称        | 值                   | 说明                         |
 | ----------- | -------------------- | ---------------------------- |
-| EFFECT_SOFT | 'haptic.effect.soft' | 较松散的振动效果，频率偏低。 |
+| EFFECT_CLOCK_TIMER | 'haptic.clock.timer' | 描述用户调整计时器时的振动效果。 |
 
 ## HapticFeedback<sup>12+</sup>
 
@@ -1099,7 +1099,7 @@ build(): VibratorPattern;
 
 | 类型                                  | 说明                                                         |
 | ------------------------------------- | ------------------------------------------------------------ |
-| [VibrateTime](#vibratetime9)          | 按照指定时长触发马达振动。<br/>**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。 |
+| [VibrateTime](#vibratetime9)          | 按照指定时长触发马达振动。<br/>**原子化服务API：** 从API Version 11开始，该接口支持在原子化服务中使用。 |
 | [VibratePreset](#vibratepreset9)      | 按照预置振动类型触发马达振动。                               |
 | [VibrateFromFile](#vibratefromfile10) | 按照自定义振动配置文件触发马达振动。                         |
 | VibrateFromPattern<sup>18+</sup>      | 按照自定义振动效果触发马达振动。                             |
@@ -1108,7 +1108,7 @@ build(): VibratorPattern;
 
 指定时长振动类型。
 
-**元服务API**：从API Version 11开始，该接口在支持元服务中使用。
+**原子化服务API**：从API Version 11开始，该接口在支持原子化服务中使用。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -1189,7 +1189,7 @@ build(): VibratorPattern;
 | duration  | number                          | 否   | 可选参数，表示振动持续时间，取值范围（0,5000]区间所有整数，短振默认值为48，长振默认值为1000 |
 | intensity | number                          | 否   | 可选参数，表示振动强度，取值范围[0,100]区间所有整数，省略时默认值为100。 |
 | frequency | number                          | 否   | 可选参数，表示振动频率，取值范围[0,100]区间内所有整数，省略时默认值为50。 |
-| index     | number                          | 否   | 可选参数，表示通道编号，取值范围[0,2]区间内所有整数，        |
+| index     | number                          | 否   | 可选参数，表示通道编号，取值范围[0,2]区间内所有整数，省略时默认值为0。        |
 | points    | Array&lt;[VibratorCurvePoint](#vibratorcurvepoint18)&gt; | 否   | 可选参数，表示振动调节曲线数组。                             |
 
 ## VibratorPattern<sup>18+</sup>
@@ -1209,12 +1209,12 @@ build(): VibratorPattern;
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称      | 类型                                                     | 必填 | 说明                                                         |
-| --------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| intensity | number                                                   | 否   | 可选参数，表示振动强度，取值范围[0,100]内所有整数，省略时默认值为100。 |
-| frequency | number                                                   | 否   | 可选参数，表示振动频率，取值范围[0,100]内所有整数，省略时默认值为50。 |
-| points    | Array&lt;[VibratorCurvePoint](#vibratorcurvepoint18)&gt; | 否   | 可选参数，表示振动调节曲线数组。                             |
-| index     | number                                                   | 否   | 可选参数，表示通道编号，省略时默认值为0。                    |
+| 名称      | 类型                 | 必填 | 说明                                                         |
+| --------- | -------------------- | ---- | ------------------------------------------------------------ |
+| intensity | number               | 否   | 可选参数，表示振动强度，取值范围[0,100]内所有整数，省略时默认值为100。 |
+| frequency | number               | 否   | 可选参数，表示振动频率，取值范围[0,100]内所有整数，省略时默认值为50。 |
+| points    | [VibratorCurvePoint](#vibratorcurvepoint18)[] | 否   | 可选参数，表示振动调节曲线数组。                             |
+| index     | number               | 否   | 可选参数，表示通道编号，取值范围[0,2]区间内所有整数，省略时默认值为0。                    |
 
 ## TransientParam<sup>18+</sup>
 
@@ -1226,7 +1226,7 @@ build(): VibratorPattern;
 | --------- | ------ | ---- | ------------------------------------------------------------ |
 | intensity | number | 否   | 可选参数，表示振动强度，取值范围[0,100]内所有整数，省略时默认值为100。 |
 | frequency | number | 否   | 可选参数，表示振动频率，取值范围[0,100]内所有整数，省略时默认值为50。 |
-| index     | number | 否   | 可选参数，表示通道编号，省略时默认值为0。                    |
+| index     | number | 否   | 可选参数，表示通道编号，取值范围[0,2]区间内所有整数，省略时默认值为0。                    |
 
 ## VibrateFromPattern<sup>18+</sup>
 
@@ -1243,7 +1243,7 @@ build(): VibratorPattern;
 
 马达振动属性。
 
-**元服务API**：从API Version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -1258,7 +1258,7 @@ type Usage = 'unknown' | 'alarm' | 'ring' | 'notification' | 'communication' | '
 
 振动使用场景。
 
-**元服务API**：从API Version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 <!--RP1-->

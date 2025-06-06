@@ -167,7 +167,7 @@ struct Index {
 该示例主要演示EditableTitleBar设置背景模糊、头像；取消右侧保存图标及自定义标题栏外边距的效果。
 
 ```ts
-import { EditableLeftIconType, EditableTitleBar, LengthMetrics, Prompt, router } from '@kit.ArkUI';
+import { EditableLeftIconType, EditableTitleBar, LengthMetrics, Prompt } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -271,7 +271,7 @@ struct Index {
 该示例通过设置标题栏的右侧自定义按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
 ```ts
 
-import { Prompt, router, EditableLeftIconType, EditableTitleBar } from '@kit.ArkUI';
+import { Prompt, EditableLeftIconType, EditableTitleBar } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -360,7 +360,7 @@ struct Index {
 该示例通过设置标题栏右侧图标属性defaultFocus使右侧图标默认获焦。
 ```ts
 
-import { Prompt, EditableLeftIconType, EditableTitleBar, router } from '@kit.ArkUI';
+import { Prompt, EditableLeftIconType, EditableTitleBar } from '@kit.ArkUI';
 
 @Entry
 @Component

@@ -850,7 +850,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | ----------------------------------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | streamInfo                          | [AudioStreamInfo](#audiostreaminfo8)                      | 是   | 音频流信息。 <br/>**系统能力：** SystemCapability.Multimedia.Audio.Capturer   |
 | capturerInfo                        | [AudioCapturerInfo](#audiocapturerinfo8)                   | 是   | 音频采集器信息。 <br/>**系统能力：** SystemCapability.Multimedia.Audio.Capturer        |
-| playbackCaptureConfig<sup>(deprecated)</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfigdeprecated) | 否   | 音频内录的配置信息。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture。<br/> 从API version 10开始支持，从API version 12开始废弃，建议使用[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)替代。  |
+| playbackCaptureConfig<sup>(deprecated)</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfigdeprecated) | 否   | 音频内录的配置信息。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture。<br/> 从API version 10开始支持，从API version 12开始废弃，建议使用[录屏接口AVScreenCapture](../apis-media-kit/capi-avscreencapture.md)替代。  |
 
 ## AudioCapturerInfo<sup>8+</sup>
 
@@ -872,7 +872,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | SOURCE_TYPE_INVALID                          | -1     | 无效的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
 | SOURCE_TYPE_MIC                              | 0      | Mic音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | 语音识别源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
-| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>(deprecated)</sup>   | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture。<br/> 从API version 10开始支持，从API version 12开始废弃，建议使用[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)替代。  |
+| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>(deprecated)</sup>   | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture。<br/> 从API version 10开始支持，从API version 12开始废弃，建议使用[录屏接口AVScreenCapture](../apis-media-kit/capi-avscreencapture.md)替代。  |
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup>      | 10     | 短语音消息的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_CAMCORDER<sup>13+</sup>          | 13     | 录像的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
@@ -884,7 +884,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 音频内录的配置信息。
 
 > **说明：**
-> 从API version 10开始支持，从API version 12开始废弃，建议使用[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)替代。
+> 从API version 10开始支持，从API version 12开始废弃，建议使用[录屏接口AVScreenCapture](../apis-media-kit/capi-avscreencapture.md)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture
 
@@ -897,7 +897,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 待录制的播放音频流的筛选信息。
 
 > **说明：**
-> 从API version 10开始支持，从API version 12开始废弃，建议使用[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)替代。
+> 从API version 10开始支持，从API version 12开始废弃，建议使用[录屏接口AVScreenCapture](../apis-media-kit/capi-avscreencapture.md)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture
 
@@ -1188,6 +1188,60 @@ try {
   let error = err as BusinessError;
   console.error(`Failed to obtain the audio scene mode ${error}`);
 }
+```
+
+### on('audioSceneChange')<sup>20+</sup>
+
+on(type: 'audioSceneChange', callback: Callback\<AudioScene\>): void
+
+监听音频场景变化事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Communication
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                        |
+| :------- | :------------------------- | :--- | :------------------------------------------ |
+| type     | string                     | 是   | 事件回调类型，支持的事件为'audioSceneChange'，当音频场景模式发生变化时，触发该事件。 |
+| callback | Callback\<[AudioScene](#audioscene8)> | 是   | 回调函数，返回当前音频场景模式。 |
+
+**示例：**
+
+```ts
+audioManager.on('audioSceneChange', (audioScene: audio.AudioScene) => {
+  console.info(`audio scene : ${audioScene}.`);
+});
+```
+
+### off('audioSceneChange')<sup>20+</sup>
+
+off(type: 'audioSceneChange', callback?: Callback\<AudioScene\>): void
+
+取消监听音频场景变化事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Communication
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                        |
+| :------- | :------------------------- | :--- | :------------------------------------------ |
+| type     | string                     | 是   | 事件回调类型，支持的事件为'audioSceneChange'，当取消监听当前音频场景变化事件时，触发该事件。 |
+| callback | Callback\<[AudioScene](#audioscene8)> | 是   | 回调函数，返回当前音频场景模式。 |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听。
+audioManager.off('audioSceneChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let audioSceneChangeCallback = (audioScene: audio.AudioScene) => {
+  console.info(`audio scene : ${audioScene}.`);
+};
+
+audioManager.on('audioSceneChange', audioSceneChangeCallback);
+
+audioManager.off('audioSceneChange', audioSceneChangeCallback);
 ```
 
 ### getVolumeManager<sup>9+</sup>
@@ -2484,7 +2538,7 @@ try {
 }
 ```
 
-### getAppVolumePercentage<sup>18+</sup>
+### getAppVolumePercentage<sup>19+</sup>
 
 getAppVolumePercentage(): Promise<number\>
 
@@ -2508,7 +2562,7 @@ audioVolumeManager.getAppVolumePercentage().then((value: number) => {
 });
 ```
 
-### setAppVolumePercentage<sup>18+</sup>
+### setAppVolumePercentage<sup>19+</sup>
 
 setAppVolumePercentage(volume: number\): Promise<void\>
 
@@ -2623,7 +2677,7 @@ audioVolumeManager.on('volumeChange', volumeChangeCallback);
 audioVolumeManager.off('volumeChange', volumeChangeCallback);
 ```
 
-### on('appVolumeChange')<sup>18+</sup>
+### on('appVolumeChange')<sup>19+</sup>
 
 on(type: 'appVolumeChange', callback: Callback\<VolumeEvent>): void
 
@@ -2656,7 +2710,7 @@ audioVolumeManager.on('appVolumeChange', (volumeEvent: audio.VolumeEvent) => {
 });
 ```
 
-### off('appVolumeChange')<sup>18+</sup>
+### off('appVolumeChange')<sup>19+</sup>
 
 off(type: 'appVolumeChange', callback?: Callback\<VolumeEvent>): void
 
@@ -2695,6 +2749,78 @@ let appVolumeChangeCallback = (volumeEvent: audio.VolumeEvent) => {
 audioVolumeManager.on('appVolumeChange', appVolumeChangeCallback);
 
 audioVolumeManager.off('appVolumeChange', appVolumeChangeCallback);
+```
+
+### on('activeVolumeTypeChange')<sup>20+</sup>
+
+on(type: 'activeVolumeTypeChange', callback: Callback\<AudioVolumeType>): void
+
+监听当前活跃流变化事件（当活跃流发生变化时触发）。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为'activeVolumeTypeChange'，当活跃流发生变化时，触发该事件。 |
+| callback | Callback\<[AudioVolumeType](#audiovolumetype)> | 是   | 回调函数，返回变化后的活跃流类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Not system App. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+audioVolumeManager.on('activeVolumeTypeChange', (volumeType: audio.AudioVolumeType) => {
+  console.info(`VolumeType of stream: ${volumeType} `);
+});
+```
+
+### off('activeVolumeTypeChange')<sup>20+</sup>
+
+off(type: 'activeVolumeTypeChange', callback?: Callback\<AudioVolumeType>): void
+
+取消监听当前活跃流变化事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为'activeVolumeTypeChange'，当取消监听当前活跃流变化事件时，触发该事件。 |
+| callback | Callback\<[AudioVolumeType](#audiovolumetype)> | 否   | 回调函数，返回变化后的活跃流类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Not system App. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听。
+audioVolumeManager.off('activeVolumeTypeChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let activeVolumeTypeChangeCallback = (volumeType: audio.AudioVolumeType) => {
+  console.info(`VolumeType of stream: ${volumeType} `);
+};
+
+audioVolumeManager.on('activeVolumeTypeChange', activeVolumeTypeChangeCallback);
+
+audioVolumeManager.off('activeVolumeTypeChange', activeVolumeTypeChangeCallback);
 ```
 
 ## AudioVolumeGroupManager<sup>9+</sup>
@@ -5984,6 +6110,17 @@ type AudioRendererWriteDataCallback = (data: ArrayBuffer) => AudioDataCallbackRe
 |--------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
 | [AudioDataCallbackResult](#audiodatacallbackresult12) \| void | 如果返回 void 或 AudioDataCallbackResult.VALID：表示数据有效，将播放音频数据；如果返回 AudioDataCallbackResult.INVALID：表示数据无效，且音频数据不播放。 |
 
+## AudioTimestampInfo<sup>19+</sup>
+
+音频流时间戳和当前数据帧位置信息。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称 | 类型 | 只读 | 可选 | 说明                                |
+| ---------| ------ | ---- | ---- |-----------------------------------|
+| framePos | number | 是   | 否   | 当前播放或者录制的数据帧位置。                   |
+| timestamp | number | 是   | 否   | 播放或者录制到当前数据帧位置时对应的时间戳。 |
+
 ## AudioRenderer<sup>8+</sup>
 
 提供音频渲染的相关接口。
@@ -6404,7 +6541,7 @@ start(callback: AsyncCallback<void\>): void
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当启动音频采集器成功，err为undefined，否则为错误对象。异常将返回error对象：<br>错误码6800301：表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当启动音频渲染器成功，err为undefined，否则为错误对象。异常将返回error对象：<br>错误码6800301：表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
 
 **示例：**
 
@@ -6432,7 +6569,7 @@ start(): Promise<void\>
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise对象，成功表示启动音频采集器成功，异常将返回error对象：<br>错误码6800301：表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
+| Promise\<void> | Promise对象，成功表示启动音频渲染器成功。异常将返回error对象：<br>错误码6800301：表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
 
 **示例：**
 
@@ -6898,6 +7035,76 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let timestamp: number = audioRenderer.getAudioTimeSync();
   console.info(`Current timestamp: ${timestamp}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
+### getAudioTimestampInfo<sup>19+</sup>
+
+getAudioTimestampInfo(): Promise\<AudioTimestampInfo>
+
+获取音频流时间戳和当前数据帧位置信息。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型                                                    | 描述                    |
+|-------------------------------------------------------| ----------------------- |
+| Promise\<[AudioTimestampInfo](#audiotimestampinfo19)> | Promise对象，返回音频流时间戳和当前数据帧位置信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800103 | Operation not permit at current state. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioRenderer.getAudioTimestampInfo().then((audioTimestampInfo: audio.AudioTimestampInfo) => {
+  console.info(`Current timestamp: ${audioTimestampInfo.timestamp}`);
+}).catch((err: BusinessError) => {
+  console.error(`ERROR: ${err}`);
+});
+```
+
+### getAudioTimestampInfoSync<sup>19+</sup>
+
+getAudioTimestampInfoSync(): AudioTimestampInfo
+
+获取音频流时间戳和当前数据帧位置信息。同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型             | 描述                    |
+| ---------------- | ----------------------- |
+| [AudioTimestampInfo](#audiotimestampinfo19) | 返回音频流时间戳和当前数据帧位置信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800103 | Operation not permit at current state. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let audioTimestampInfo: audio.AudioTimestampInfo = audioRenderer.getAudioTimestampInfoSync();
+  console.info(`Current timestamp: ${audioTimestampInfo.timestamp}`);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`ERROR: ${error}`);
@@ -8126,7 +8333,7 @@ let markReachCallback = (position: number) => {
   }
 };
 
-audioRenderer.on('markReach', markReachCallback);
+audioRenderer.on('markReach', 1000, markReachCallback);
 
 audioRenderer.off('markReach', markReachCallback);
 ```
@@ -8856,7 +9063,7 @@ start(): Promise<void\>
 
 | 类型           | 说明                          |
 | :------------- | :---------------------------- |
-| Promise<void\> | Promise对象，成功表示启动音频采集器成功，异常将返回error对象：<br>错误码6800301：表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
+| Promise<void\> | Promise对象，成功表示启动音频采集器成功。异常将返回error对象：<br>错误码6800301：表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
 
 **示例：**
 
@@ -9153,6 +9360,76 @@ try {
 } catch (err) {
   let error = err as BusinessError;
   console.error(`AudioFrameworkRecLog: AudioCapturer getAudioTimeSync : ERROR : ${error}`);
+}
+```
+
+### getAudioTimestampInfo<sup>19+</sup>
+
+getAudioTimestampInfo(): Promise\<AudioTimestampInfo>
+
+获取音频流时间戳和当前数据帧位置信息。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型                                                    | 描述                    |
+|-------------------------------------------------------| ----------------------- |
+| Promise\<[AudioTimestampInfo](#audiotimestampinfo19)> | Promise对象，返回音频流时间戳和当前数据帧位置信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800103 | Operation not permit at current state. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioCapturer.getAudioTimestampInfo().then((audioTimestampInfo: audio.AudioTimestampInfo) => {
+  console.info(`Current timestamp: ${audioTimestampInfo.timestamp}`);
+}).catch((err: BusinessError) => {
+  console.error(`ERROR: ${err}`);
+});
+```
+
+### getAudioTimestampInfoSync<sup>19+</sup>
+
+getAudioTimestampInfoSync(): AudioTimestampInfo
+
+获取音频流时间戳和当前数据帧位置信息。同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型             | 描述                    |
+| ---------------- | ----------------------- |
+| [AudioTimestampInfo](#audiotimestampinfo19) | 返回音频流时间戳和当前数据帧位置信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800103 | Operation not permit at current state. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let audioTimestampInfo: audio.AudioTimestampInfo = audioCapturer.getAudioTimestampInfoSync();
+  console.info(`Current timestamp: ${audioTimestampInfo.timestamp}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
 }
 ```
 
@@ -9624,7 +9901,7 @@ let markReachCallback = (position: number) => {
   }
 };
 
-audioCapturer.on('markReach', markReachCallback);
+audioCapturer.on('markReach', 1000, markReachCallback);
 
 audioCapturer.off('markReach', markReachCallback);
 ```
@@ -9919,6 +10196,46 @@ try {
   let error = err as BusinessError;
   console.error(`Get overflow count Fail: ${error}`);
 }
+```
+
+### setWillMuteWhenInterrupted<sup>20+</sup>
+
+setWillMuteWhenInterrupted(muteWhenInterrupted: boolean): Promise&lt;void&gt;
+
+设置当前录制音频流是否启用静音打断模式。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名     | 类型             | 必填   | 说明                                                      |
+| ---------- |---------------- | ------ |---------------------------------------------------------|
+| muteWhenInterrupted | boolean  | 是  | 设置当前录制音频流是否启用静音打断模式, true表示启用，false表示不启用，保持为默认打断模式。 |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt;| Promise对象。无返回结果的Promise对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800103 | Operation not permit at current state.    |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioRenderer.setWillMuteWhenInterrupted(true).then(() => {
+  console.info('setWillMuteWhenInterrupted Success!');
+}).catch((err: BusinessError) => {
+  console.error(`setWillMuteWhenInterrupted Fail: ${err}`);
+});
 ```
 
 ## ActiveDeviceType<sup>(deprecated)</sup>

@@ -4,7 +4,7 @@
 
 文件中定义了与图片相关的功能函数。
 
-**引用文件：** drawing_image.h
+**引用文件：** <native_drawing/drawing_image.h>
 
 **库：** libnative_drawing.so
 

@@ -76,8 +76,9 @@ import { bundleManager } from '@kit.AbilityKit';
 | FORM_EDIT<sup>18+</sup> | 27 | [FormEditExtensionAbility](../apis-form-kit/js-apis-app-form-formEditExtensionAbility.md)：为开发者提供卡片编辑的能力，继承自UIExtensionAbility。 |
 | DISTRIBUTED<sup>18+</sup> | 28 | [DistributedExtensionAbility](../apis-distributedservice-kit/js-apis-distributedExtensionAbility.md)：提供分布式相关扩展能力，提供分布式创建、销毁、连接的生命周期回调。 |
 | APP_SERVICE<sup>20+</sup> | 29 | [AppServiceExtensionAbility](../apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)：为企业普通应用提供后台服务能力。 |
+| LIVEFORM<sup>20+</sup> | 30 | [LiveFormExtensionAbility](../apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md)：互动卡片相关扩展能力，提供互动卡片创建、销毁的生命周期回调。 |
 | UNSPECIFIED      | 255 | 不指定类型<!--Del-->，配合[queryExtensionAbilityInfo接口](js-apis-bundleManager-sys.md#bundlemanagerqueryextensionabilityinfo)可以查询所有类型的ExtensionAbility<!--DelEnd-->。 |
-
+<!--RP2--><!--RP2End-->
 
 ## PermissionGrantState
 
@@ -359,7 +360,6 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                            |
 | 17700029 | The specified ability is disabled.                            |
 
 **示例：**
@@ -423,7 +423,6 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                            |
 | 17700029 | The specified ability is disabled.                            |
 
 **示例：**
@@ -507,7 +506,6 @@ getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: 
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                            |
 | 17700029 | The specified ability is disabled.                            |
 
 **示例：**
@@ -580,7 +578,6 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                            |
 
 **示例：**
 
@@ -643,7 +640,6 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                            |
 
 **示例：**
 
@@ -715,7 +711,6 @@ getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: strin
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                            |
 
 **示例：**
 

@@ -22,7 +22,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libpixelmap.so)
 
 在初始化参数后创建Pixelmap实例，进行图片像素数据的读写，对图片进行缩放、位置变换、反转、旋转、裁剪等操作。
 
-   ```c++
+      ```c++
 
       #include <linux/kd.h>
       #include <string>
@@ -148,4 +148,4 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libpixelmap.so)
           OH_PixelmapInitializationOptions_Release(createOpts);
           return IMAGE_SUCCESS;
       }
-   ```
+      ```

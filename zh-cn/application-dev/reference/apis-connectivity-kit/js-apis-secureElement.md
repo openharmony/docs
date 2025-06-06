@@ -1,6 +1,6 @@
 # @ohos.secureElement (安全单元的通道管理)
 
-本模块主要用于操作及管理安全单元（SecureElement，简称SE），电子设备上可能存在的安全单元有eSE(Embedded SE)和SIM卡。文档中出现的SE服务为SEService实例，参见[createService]((#omapicreateservice12)。
+本模块主要用于操作及管理安全单元（SecureElement，简称SE），电子设备上可能存在的安全单元有eSE（Embedded SE）和SIM卡。文档中出现的SE服务为SEService实例，参见[createService](#omapicreateservice12)。
 
 对于文档中出现以下类型说明：
 
@@ -151,7 +151,7 @@ on(type: 'stateChanged', callback: Callback\<ServiceState>): void;
 
 | **参数名** | **类型**                                             | **必填** | **说明**             |
 | ---------- | ---------------------------------------------------- | ------ | -------------------- |
-| type       | string                                               | 是      | 订阅监听的事件类型，固定填'serviceState' 。      |
+| type       | string                                               | 是      | 订阅监听的事件类型，固定填'stateChanged' 。      |
 | callback   | Callback<[ServiceState](#servicestate)> | 是      | 返回SE服务状态的回调 。|
 
 **错误码：**

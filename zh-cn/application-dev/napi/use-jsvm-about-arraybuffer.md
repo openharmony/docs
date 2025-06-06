@@ -208,8 +208,8 @@ static JSVM_Value CreateArraybuffer(JSVM_Env env, JSVM_CallbackInfo info)
     JSVM_Value result = nullptr;
     // 解析传递的参数
     OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
-    int32_t value;
-    size_t length;
+    int32_t value = 0;
+    size_t length = 0;
     OH_JSVM_GetValueInt32(env, argv[0], &value);
     length = size_t(value);
     void *data;
