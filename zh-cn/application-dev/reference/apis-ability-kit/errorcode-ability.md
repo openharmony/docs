@@ -975,7 +975,7 @@ Invalid wantAgent object.
 
 **错误信息**
 
-The wantAgent object has been canceled.
+The WantAgent has been canceled.
 
 **错误描述**
 
