@@ -3,7 +3,7 @@
 > **说明：**
 > 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-屏幕录制管理类，用于进行屏幕录制。在调用AVScreenCaptureRecorder的方法前，需要先通过[createAVScreenCaptureRecorder()](#mediacreateavscreencapturerecorder12)创建一个AVScreenCaptureRecorder实例。
+屏幕录制管理类，用于进行屏幕录制。在调用AVScreenCaptureRecorder的方法前，需要先通过[createAVScreenCaptureRecorder()](arkts-apis-media-f.md#mediacreateavscreencapturerecorder12)创建一个AVScreenCaptureRecorder实例。
 
 ## init<sup>12+</sup>
 
@@ -17,7 +17,7 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 
 | 参数名 | 类型                                                         | 必填 | 说明                     |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
-| config | [AVScreenCaptureRecordConfig](#avscreencapturerecordconfig12) | 是   | 配置屏幕录制的相关参数。 |
+| config | [AVScreenCaptureRecordConfig](arkts-apis-media-i.md#avscreencapturerecordconfig12) | 是   | 配置屏幕录制的相关参数。 |
 
 **返回值：**
 
@@ -244,7 +244,7 @@ on(type: 'stateChange', callback: Callback\<AVScreenCaptureStateCode>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 状态切换事件回调类型，支持的事件：'stateChange'。            |
-| callback | function | 是   | 状态切换事件回调方法，[AVScreenCaptureStateCode](#avscreencapturestatecode12)表示切换到的状态。 |
+| callback | function | 是   | 状态切换事件回调方法，[AVScreenCaptureStateCode](arkts-apis-media-e.md#avscreencapturestatecode12)表示切换到的状态。 |
 
 **示例：**
 
@@ -298,7 +298,7 @@ avScreenCaptureRecorder.on('error', (err: BusinessError) => {
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 状态切换事件回调类型，支持的事件：'stateChange'。            |
-| callback | function | 否   | 状态切换事件回调方法，[AVScreenCaptureStateCode](#avscreencapturestatecode12)表示切换到的状态，不填此参数则会取消最后一次订阅事件。 |
+| callback | function | 否   | 状态切换事件回调方法，[AVScreenCaptureStateCode](arkts-apis-media-e.md#avscreencapturestatecode12)表示切换到的状态，不填此参数则会取消最后一次订阅事件。 |
 
 **示例：**
 
