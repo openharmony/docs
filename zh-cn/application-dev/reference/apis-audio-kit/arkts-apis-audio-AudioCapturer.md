@@ -5,7 +5,7 @@
 
 提供音频采集的相关接口。
 
-在使用AudioCapturer的接口之前，需先通过[createAudioCapturer](#audiocreateaudiocapturer8)获取AudioCapturer实例。
+在使用AudioCapturer的接口之前，需先通过[createAudioCapturer](arkts-apis-audio-f.md#audiocreateaudiocapturer8)获取AudioCapturer实例。
 
 ## 属性
 
@@ -13,7 +13,7 @@
 
 | 名称  | 类型                     | 可读 | 可写 | 说明             |
 | :---- | :------------------------- | :--- | :--- | :--------------- |
-| state<sup>8+</sup>  | [AudioState](#audiostate8) | 是 | 否   | 音频采集器状态。 |
+| state<sup>8+</sup>  | [AudioState](arkts-apis-audio-e.md#audiostate8) | 是 | 否   | 音频采集器状态。 |
 
 **示例：**
 
@@ -35,7 +35,7 @@ getCapturerInfo(callback: AsyncCallback<AudioCapturerInfo\>): void
 
 | 参数名   | 类型                              | 必填 | 说明                                 |
 | :------- | :-------------------------------- | :--- | :----------------------------------- |
-| callback | AsyncCallback<[AudioCapturerInfo](#audiocapturerinfo8)\> | 是   | 回调函数。当获取音频采集器信息成功，err为undefined，data为获取到的音频采集器信息；否则为错误对象。 |
+| callback | AsyncCallback<[AudioCapturerInfo](arkts-apis-audio-i.md#audiocapturerinfo8)\> | 是   | 回调函数。当获取音频采集器信息成功，err为undefined，data为获取到的音频采集器信息；否则为错误对象。 |
 
 **示例：**
 
@@ -66,7 +66,7 @@ getCapturerInfo(): Promise<AudioCapturerInfo\>
 
 | 类型                                              | 说明                                |
 | :------------------------------------------------ | :---------------------------------- |
-| Promise<[AudioCapturerInfo](#audiocapturerinfo8)\> | Promise对象，返回音频采集器信息。 |
+| Promise<[AudioCapturerInfo](arkts-apis-audio-i.md#audiocapturerinfo8)\> | Promise对象，返回音频采集器信息。 |
 
 **示例：**
 
@@ -99,7 +99,7 @@ getCapturerInfoSync(): AudioCapturerInfo
 
 | 类型                                              | 说明                                |
 | :------------------------------------------------ | :---------------------------------- |
-| [AudioCapturerInfo](#audiocapturerinfo8) | 返回音频采集器信息。 |
+| [AudioCapturerInfo](arkts-apis-audio-i.md#audiocapturerinfo8) | 返回音频采集器信息。 |
 
 **示例：**
 
@@ -128,7 +128,7 @@ getStreamInfo(callback: AsyncCallback<AudioStreamInfo\>): void
 
 | 参数名   | 类型                                                 | 必填 | 说明                             |
 | :------- | :--------------------------------------------------- | :--- | :------------------------------- |
-| callback | AsyncCallback<[AudioStreamInfo](#audiostreaminfo8)\> | 是   | 回调函数。当获取音频采集器流信息成功，err为undefined，data为获取到的音频采集器流信息；否则为错误对象。 |
+| callback | AsyncCallback<[AudioStreamInfo](arkts-apis-audio-i.md#audiostreaminfo8)\> | 是   | 回调函数。当获取音频采集器流信息成功，err为undefined，data为获取到的音频采集器流信息；否则为错误对象。 |
 
 **示例：**
 
@@ -160,7 +160,7 @@ getStreamInfo(): Promise<AudioStreamInfo\>
 
 | 类型                                           | 说明                            |
 | :--------------------------------------------- | :------------------------------ |
-| Promise<[AudioStreamInfo](#audiostreaminfo8)\> | Promise对象，返回音频流信息。 |
+| Promise<[AudioStreamInfo](arkts-apis-audio-i.md#audiostreaminfo8)\> | Promise对象，返回音频流信息。 |
 
 **示例：**
 
@@ -190,7 +190,7 @@ getStreamInfoSync(): AudioStreamInfo
 
 | 类型                                           | 说明                            |
 | :--------------------------------------------- | :------------------------------ |
-| [AudioStreamInfo](#audiostreaminfo8) | 返回音频流信息。 |
+| [AudioStreamInfo](arkts-apis-audio-i.md#audiostreaminfo8) | 返回音频流信息。 |
 
 **示例：**
 
@@ -555,7 +555,7 @@ getAudioTimestampInfo(): Promise\<AudioTimestampInfo>
 
 | 类型                                                    | 描述                    |
 |-------------------------------------------------------| ----------------------- |
-| Promise\<[AudioTimestampInfo](#audiotimestampinfo19)> | Promise对象，返回音频流时间戳和当前数据帧位置信息。 |
+| Promise\<[AudioTimestampInfo](arkts-apis-audio-i.md#audiotimestampinfo19)> | Promise对象，返回音频流时间戳和当前数据帧位置信息。 |
 
 **错误码：**
 
@@ -589,7 +589,7 @@ getAudioTimestampInfoSync(): AudioTimestampInfo
 
 | 类型             | 描述                    |
 | ---------------- | ----------------------- |
-| [AudioTimestampInfo](#audiotimestampinfo19) | 返回音频流时间戳和当前数据帧位置信息。 |
+| [AudioTimestampInfo](arkts-apis-audio-i.md#audiotimestampinfo19) | 返回音频流时间戳和当前数据帧位置信息。 |
 
 **错误码：**
 
@@ -715,7 +715,7 @@ getCurrentInputDevices(): AudioDeviceDescriptors
 
 | 类型                   | 说明                                                   |
 | ---------------------- | ------------------------------------------------------ |
-| [AudioDeviceDescriptors](#audiodevicedescriptors)            | 同步接口，返回设备属性数组类型数据。 |
+| [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)             | 同步接口，返回设备属性数组类型数据。 |
 
 **示例：**
 
@@ -746,7 +746,7 @@ getCurrentAudioCapturerChangeInfo(): AudioCapturerChangeInfo
 
 | 类型             | 说明                                |
 | :--------------- | :---------------------------------- |
-| [AudioCapturerChangeInfo](#audiocapturerchangeinfo9) | 同步接口，返回描述音频采集器更改信息。 |
+| [AudioCapturerChangeInfo](arkts-apis-audio-i.md#audiocapturerchangeinfo9) | 同步接口，返回描述音频采集器更改信息。 |
 
 **示例：**
 
@@ -776,7 +776,7 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 AudioCapturer对象在start事件时获取焦点，在pause、stop等事件时释放焦点，无需开发者主动申请。
 
-调用此方法后，如果AudioCapturer对象获取焦点失败或发生中断事件（如被其他音频打断等），会收到[InterruptEvent](#interruptevent9)。建议应用根据InterruptEvent的信息进行进一步处理。更多信息请参阅文档[音频焦点和音频会话介绍](../../media/audio/audio-playback-concurrency.md)。
+调用此方法后，如果AudioCapturer对象获取焦点失败或发生中断事件（如被其他音频打断等），会收到[InterruptEvent](arkts-apis-audio-i.md#interruptevent9)。建议应用根据InterruptEvent的信息进行进一步处理。更多信息请参阅文档[音频焦点和音频会话介绍](../../media/audio/audio-playback-concurrency.md)。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
@@ -785,7 +785,7 @@ AudioCapturer对象在start事件时获取焦点，在pause、stop等事件时�
 | 参数名   | 类型                                         | 必填 | 说明                                                         |
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                       | 是   | 事件回调类型，支持的事件为'audioInterrupt'，当音频焦点状态发生变化时，触发该事件。 |
-| callback | Callback\<[InterruptEvent](#interruptevent9)\> | 是   | 回调函数，返回中断事件信息。 |
+| callback | Callback\<[InterruptEvent](arkts-apis-audio-i.md#interruptevent9)\> | 是   | 回调函数，返回中断事件信息。 |
 
 **错误码：**
 
@@ -887,7 +887,7 @@ on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | 是   | 事件回调类型，支持的事件为'inputDeviceChange'，当音频输入设备发生变化时，触发该事件。 |
-| callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 是   | 回调函数，返回监听的音频输入设备变化(返回数据为切换后的设备信息)。 |
+| callback | Callback\<[AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors) > | 是   | 回调函数，返回监听的音频输入设备变化(返回数据为切换后的设备信息)。 |
 
 **错误码：**
 
@@ -920,7 +920,7 @@ off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): vo
 | 参数名   | 类型                       | 必填 | 说明                                       |
 | :------- | :------------------------- | :--- |:-----------------------------------------|
 | type     | string                     | 是   | 事件回调类型，支持的事件为'inputDeviceChange'，当取消监听音频输入设备更改事件时，触发该事件。 |
-| callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 否   | 回调函数，返回监听的音频输入设备信息。 |
+| callback | Callback\<[AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors) > | 否   | 回调函数，返回监听的音频输入设备信息。 |
 
 **错误码：**
 
@@ -962,7 +962,7 @@ on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): v
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | 是   | 事件回调类型，支持的事件为'audioCapturerChange'，当音频录制流状态变化、设备变化时，触发该事件。 |
-| callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 是   | 回调函数，录音流配置或状态变化时返回监听的录音流当前配置和状态信息。 |
+| callback | Callback\<[AudioCapturerChangeInfo](arkts-apis-audio-i.md#audiocapturerchangeinfo9)> | 是   | 回调函数，录音流配置或状态变化时返回监听的录音流当前配置和状态信息。 |
 
 **错误码：**
 
@@ -996,7 +996,7 @@ off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>):
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | 是   | 事件回调类型，支持的事件为'audioCapturerChange'，当取消监听录音流配置变化事件时，触发该事件。 |
-| callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 否   | 回调函数，返回取消监听的录音流配置或状态变化。 |
+| callback | Callback\<[AudioCapturerChangeInfo](arkts-apis-audio-i.md#audiocapturerchangeinfo9)> | 否   | 回调函数，返回取消监听的录音流配置或状态变化。 |
 
 **错误码：**
 
@@ -1160,7 +1160,7 @@ on(type: 'stateChange', callback: Callback<AudioState\>): void
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | 是   | 事件回调类型，支持的事件为'stateChange'，当AudioCapturer状态发生变化时，触发该事件。 |
-| callback | Callback\<[AudioState](#audiostate8)> | 是   | 回调函数，返回当前音频的状态。 |
+| callback | Callback\<[AudioState](arkts-apis-audio-e.md#audiostate8)> | 是   | 回调函数，返回当前音频的状态。 |
 
 **示例：**
 
@@ -1188,7 +1188,7 @@ off(type: 'stateChange', callback?: Callback&lt;AudioState&gt;): void
 | 参数名 | 类型   | 必填 | 说明                                                |
 | :----- | :----- | :--- | :-------------------------------------------------- |
 | type   | string | 是   | 事件回调类型，支持的事件为'stateChange'，当取消监听到达标记事件时，触发该事件。 |
-| callback | Callback\<[AudioState](#audiostate8)> | 否 | 回调函数，返回当前音频的状态。 |
+| callback | Callback\<[AudioState](arkts-apis-audio-e.md#audiostate8)> | 否 | 回调函数，返回当前音频的状态。 |
 
 **错误码：**
 
@@ -1470,7 +1470,7 @@ audioCapturer.read(bufferSize, true).then((buffer: ArrayBuffer) => {
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[CommunicationDeviceType](#communicationdevicetype9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[CommunicationDeviceType](arkts-apis-audio-e.md#communicationdevicetype9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -1506,8 +1506,8 @@ audioCapturer.read(bufferSize, true).then((buffer: ArrayBuffer) => {
 
 | 名称            | 类型                        | 必填 | 说明                                                         |
 | --------------- | --------------------------- | ----| ------------------------------------------------------------ |
-| streamUsage     | [StreamUsage](#streamusage) | 是  | 音频流使用类型。                                             |
-| contentType     | [ContentType](#contenttypedeprecated) | 是  | 音频打断媒体类型。                                           |
+| streamUsage     | [StreamUsage](arkts-apis-audio-e.md#streamusage) | 是  | 音频流使用类型。                                             |
+| contentType     | [ContentType](arkts-apis-audio-e.md#contenttypedeprecated) | 是  | 音频打断媒体类型。                                           |
 | pauseWhenDucked | boolean                     | 是  | 音频打断时是否可以暂停音频播放。true表示音频播放可以在音频打断期间暂停，false表示音频播放不可以在音频打断期间暂停。 |
 
 ## InterruptAction<sup>(deprecated)</sup>
@@ -1516,13 +1516,13 @@ audioCapturer.read(bufferSize, true).then((buffer: ArrayBuffer) => {
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[InterruptEvent](#interruptevent9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[InterruptEvent](arkts-apis-audio-i.md#interruptevent9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 | 名称       | 类型                                        | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | actionType | [InterruptActionType](#interruptactiontypedeprecated) | 是   | 事件返回类型。TYPE_ACTIVATED为焦点触发事件，TYPE_INTERRUPT为音频打断事件。 |
-| type       | [InterruptType](#interrupttype)             | 否   | 打断事件类型。                                               |
-| hint       | [InterruptHint](#interrupthint)             | 否   | 打断事件提示。                                               |
+| type       | [InterruptType](arkts-apis-audio-e.md#interrupttype)             | 否   | 打断事件类型。                                               |
+| hint       | [InterruptHint](arkts-apis-audio-e.md#interrupthint)             | 否   | 打断事件提示。                                               |
 | activated  | boolean                                     | 否   | 焦点获取/释放是否成功。true表示焦点获取/释放成功，false表示焦点获得/释放失败。 |
