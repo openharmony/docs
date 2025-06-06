@@ -586,7 +586,7 @@ stopVibration(callback: AsyncCallback&lt;void&gt;): void
 
 ## vibrator.stopVibration<sup>10+</sup>
 
-stopVibration(): Promise&lt;void&gt;
+stopVibration(param?: VibratorInfoParam): Promise&lt;void&gt;
 
 停止所有模式的马达振动。使用promise异步回调。
 
@@ -595,6 +595,12 @@ stopVibration(): Promise&lt;void&gt;
 **原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
+
+**参数**：
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| param     | [VibratorInfoParam](#vibratorinfoparam)                       | 否   | 指出需要控制的设备和振动器信息              |
 
 **返回值**：
 
@@ -609,6 +615,7 @@ stopVibration(): Promise&lt;void&gt;
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
+| 14600101 | Device operation failed. |
 
 **示例**：
 
@@ -619,6 +626,22 @@ stopVibration(): Promise&lt;void&gt;
    try {
      // 停止所有模式的马达振动
      vibrator.stopVibration().then(() => {
+       console.info('Succeed in stopping vibration');
+     }, (error: BusinessError) => {
+       console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+     });
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
+
+  ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+  
+   try {
+     vibrator.stopVibration({ deviceId: 1, vibratorId: 3 }).then(() => {
        console.info('Succeed in stopping vibration');
      }, (error: BusinessError) => {
        console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
@@ -842,6 +865,242 @@ isSupportEffectSync(effectId: string): boolean
      console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
    }
    ```
+
+## vibrator.getEffectInfoSync<sup>19+</sup>
+
+getEffectInfoSync(effectId: string, param?: VibratorInfoParam): EffectInfo;
+
+通过设备ID和可控马达ID获取效果信息。
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
+**参数**：
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| effectId | string | 是   | 待确认的预置振动效果。 |
+| param     | [VibratorInfoParam](#vibratorinfoparam)                       | 否   | 指出需要控制的设备和振动器信息              |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+
+| 错误码ID | 错误信息                 |
+| -------- | ------------------------ |
+| 14600101 | Device operation failed. |
+
+**返回值**：
+
+| 类型    | 说明                                                      |
+| ------- | --------------------------------------------------------- |
+| [EffectInfo](#effectinfo) | 该信息包括指示是否支持该效果。 |
+
+
+**示例**：
+
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
+   try {
+     const effectInfo: vibrator.EffectInfo = vibrator.getEffectInfoSync('haptic.clock.timer', { deviceId: 1, vibratorId: 3});
+     console.log(`isEffectSupported: ${effectInfo.isEffectSupported}`);
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
+
+
+## vibrator.getVibratorInfoSync<sup>19+</sup>
+
+getVibratorInfoSync(param?: VibratorInfoParam): Array&lt;VibratorInfo&gt;;
+
+检索有关一个或所有设备的马达信息列表。
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
+**参数**：
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| param     | [VibratorInfoParam](#vibratorinfoparam)                       | 否   | 指出需要控制的设备和振动器信息              |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+
+| 错误码ID | 错误信息                 |
+| -------- | ------------------------ |
+| 14600101 | Device operation failed. |
+
+**返回值**：
+
+| 类型    | 说明                                                      |
+| ------- | --------------------------------------------------------- |
+| [VibratorInfo](#vibratorinfo) | 振动器设备的信息。 |
+
+
+**示例**：
+
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
+   try {
+     const vibratorInfoList: vibrator.VibratorInfo[] = vibrator.getVibratorInfoSync({ deviceId: 1, vibratorId: 3 });
+     console.log(`vibratorInfoList: ${JSON.stringify(vibratorInfoList)}`);
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
+
+
+## vibrator.on<sup>19+</sup>
+
+on(type: 'vibratorStateChange', callback: Callback&lt;VibratorStatusEvent&gt;): void
+
+注册一个回调函数，以便在发生马达插入或拔出事件时调用。
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
+**参数**：
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| type     | 'vibratorStateChange'                       | 是   | 监听类型，该值固定为vibratorStateChange。              |
+| callback | Callback&lt;[VibratorStatusEvent](#vibratorstatusevent)&gt; | 是   | 回调函数，回调参数数据为VibratorStatusEvent。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+
+| 错误码ID | 错误信息                 |
+| -------- | ------------------------ |
+| 14600101 | Device operation failed. |
+
+
+**示例**：
+
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
+   // 回调函数 
+   const vibratorStateChangeCallback = (data: vibrator.VibratorStatusEvent) => {
+     console.log('vibrator state callback info:', JSON.stringify(data));
+   }
+
+   try {
+     // 订阅 vibratorStateChange事件
+     vibrator.on('vibratorStateChange', vibratorStateChangeCallback);
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
+
+
+## vibrator.off<sup>19+</sup>
+
+off(type: 'vibratorStateChange', callback?: Callback&lt;VibratorStatusEvent&gt;): void
+
+注销可控马达插入或拔出事件的回调函数。
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
+**参数**：
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| type     | 'vibratorStateChange'                       | 是   | 监听类型，该值固定为vibratorStateChange。              |
+| callback | Callback&lt;[VibratorStatusEvent](#VibratorStatusEvent)&gt; | 否   | 回调函数，回调参数数据为VibratorStatusEvent，不填此参数则为注销所有callback |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+
+| 错误码ID | 错误信息                 |
+| -------- | ------------------------ |
+| 14600101 | Device operation failed. |
+
+
+**示例**：
+
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
+   // 回调函数 
+   const vibratorStateChangeCallback = (data: vibrator.VibratorStatusEvent) => {
+     console.log('vibrator state callback info:', JSON.stringify(data));
+   }
+   try {
+     // 取消订阅 vibratorStateChange事件
+     vibrator.off('vibratorStateChange', vibratorStateChangeCallback);
+     // 取消订阅所有 vibratorStateChange事件
+     // vibrator.off('vibratorStateChange');
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
+
+
+## VibratorStatusEvent
+
+震动设备上下线事件信息
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
+
+| 名称 | 类型    | 说明                                                       |
+| ---- | ------ | ---------------------------------------------------------- |
+| timestamp    | number  | 报告事件的时间戳。 |
+| deviceId    | number   | 设备的ID。 |
+| vibratorCount    | number   | 设备上的振动器数量。 |
+| isVibratorOnline    | boolean  | 指示设备的联机和脱机状态，true表示在线，false表示脱机。 |
+
+
+## VibratorInfoParam
+
+设备上振动器的参数。默认情况下，VibratorInfoParam可能默认为查询或控制本地默认可控马达
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
+
+| 名称 | 类型   | 只读 | 可选 | 说明                                                       |
+| ---- | ------ | ---- | ---- | ---------------------------------------------------------- |
+| deviceId    | number | 否   | 是   | 设备的ID。 |
+| vibratorId    | number | 否   | 是   | 振动器ID。 |
+
+
+
+## EffectInfo
+
+是否支持预制效果信息的结果
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
+
+| 名称 | 类型    | 说明                                                       |
+| ---- | ------  | ---------------------------------------------------------- |
+| isEffectSupported   | boolean | 预制效果是否支持。 |
+
+
+## VibratorInfo
+
+表示系统中振动器设备的信息。
+
+| 名称 | 类型    | 说明                                                       |
+| ---- | ------ |  ---------------------------------------------------------- |
+| deviceId    | number | 设备ID。 |
+| vibratorId    | number | 振动器ID。 |
+| deviceName    | string | 设备名称。 |
+| isHdHapticSupported    | boolean | 是否支持高清振动。 |
+| isLocalVibrator    | boolean | 是否为本地设备。 |
+
 
 ## vibrator.isHdHapticSupported<sup>12+</sup>
 
@@ -1250,7 +1509,9 @@ build(): VibratorPattern;
 | 名称  | 类型             | 必填 | 说明                                                         |
 | ----- | ---------------- | ---- | ------------------------------------------------------------ |
 | id    | number           | 否   | 振动器ID， 默认值为0。                                       |
+| deviceId    | number           | 否   | 设备ID。                                       | 
 | usage | [Usage](#usage9) | 是   | 马达振动的使用场景。默认值为'unknown'，取值范围只允许在[Usage](#usage9)提供的类型中选取。 |
+| systemUsage     | boolean        | 否   | 是否绕过系统。                                       |
 
 ## Usage<sup>9+</sup>
 

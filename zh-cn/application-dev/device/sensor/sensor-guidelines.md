@@ -12,9 +12,11 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| sensor.on(sensorId, callback:AsyncCallback&lt;Response&gt;): void | 持续监听传感器数据变化。 |
+| sensor.on(sensorId, callback:AsyncCallback&lt;Response&gt;, options?: Options): void | 持续监听传感器数据变化。 |
+| sensor.on(type: 'sensorStatusChange', callback: Callback&lt;SensorStatusEvent&gt;): void | 监听传感器状态变化，callback返回传感器状态事件数据。 |
 | sensor.once(sensorId, callback:AsyncCallback&lt;Response&gt;): void | 获取一次传感器数据变化。 |
-| sensor.off(sensorId, callback?:AsyncCallback&lt;void&gt;): void | 注销传感器数据的监听。 |
+| sensor.off(sensorId, sensorInfoParam?: SensorInfoParam, callback?:AsyncCallback&lt;void&gt;): void | 注销传感器数据的监听。 |
+| sensor.off(type: 'sensorStatusChange', callback?: Callback&lt;SensorStatusEvent&gt;): void | 注销传感器状态变化的监听。 |
 | sensor.getSensorList(callback: AsyncCallback\<Array\<Sensor>>): void| 获取设备上的所有传感器信息。 |
 
 
@@ -48,6 +50,20 @@
 
     该传感器支持的最小采样周期为5000000纳秒，最大采样周期是200000000纳秒。不同传感器支持的采样周期范围也不同，interval应该设置在传感器支持范围内，大于最大值时以最大值上报数据，小于最小值时以最小值上报数据。设置数值越小数据上报越频繁，其功耗越大。
 
+    根据设备Id查询传感器
+    ```ts
+    try {
+      const deviceId = 1;
+      // 第一个参数deviceId 非必填
+      const sensorList: sensor.Sensor[] = sensor.getSensorListByDeviceSync(deviceId);
+      console.log(`sensorList length: ${sensorList.length}`);
+      console.log(`sensorList: ${JSON.stringify(sensorList)}`);
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error(`Failed to get sensorList. Code: ${e.code}, message: ${e.message}`);
+    }
+    ```
+
 3. 检查是否已经配置相应权限，具体配置方式请参考[声明权限](../../security/AccessToken/declare-permissions.md)。
 
 4. 注册监听。可以通过on()和once()两种接口监听传感器的调用结果。
@@ -58,6 +74,13 @@
    sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
         console.info("Succeeded in obtaining data. x: " + data.x + " y: " + data.y + " z: " + data.z);
    }, { interval: 100000000 });
+   ```
+
+   第三个参数还可以传入SensorInfoParam，传递deviceId、sensorIndex
+   ```ts    
+   sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
+        console.info("Succeeded in obtaining data. x: " + data.x + " y: " + data.y + " z: " + data.z);
+   }, { interval: 100000000, sensorInfoParam: { deviceId: 1, sensorIndex: 3 } });
    ```
 
     ![输入图片说明](figures/002.png)
@@ -74,6 +97,28 @@
 
 5. 取消持续监听。
 
+    取消所有监听
     ```ts
     sensor.off(sensor.SensorId.ACCELEROMETER);
+    ```
+
+    根据SensorInfoParam取消监听
+    ```ts
+    sensor.off(sensor.SensorId.ACCELEROMETER, { deviceId: 1, sensorIndex: 3 });
+    ```
+
+6. 传感器状态的监听
+
+    注册监听, SensorStatusEvent 会返回事件时间戳、传感器ID、传感器索引、是否在线、设备id、设备名称等值。
+    ```ts
+    sensor.on('sensorStatusChange', (data: sensor.SensorStatusEvent) => {
+          console.log(`timestamp: ${data.timestamp},
+            deviceId: ${data.deviceId} deviceName: ${data.deviceName}
+            sensorId: ${data.sensorId} sensorIndex:${data.sensorIndex} isSensorOnline: ${data.isSensorOnline}`)
+    });
+    ```
+
+    取消监听
+    ```ts
+    sensor.off('sensorStatusChange');
     ```
