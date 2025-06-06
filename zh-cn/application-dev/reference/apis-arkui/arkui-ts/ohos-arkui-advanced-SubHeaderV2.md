@@ -234,7 +234,7 @@ type SubHeaderV2OperationItemType = ResourceStr | SymbolGlyphModifier
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明                                                  |
 | -------- | -------- | -------- | -------- |-----------------------------------------------------|
 | content |  [SubHeaderV2OperationItemType](#subheaderv2operationitemtype)  | 是 | @Trace | 操作区元素内容。                                            |
-| action | SubHeaderV2OperationItemAction | 否 | @Trace | 操作区事件。默认值：() => void。                                |
+| action | [SubHeaderV2OperationItemAction](#subheaderv2operationitemaction)| 否 | @Trace | 操作区事件。默认值：() => void。                                |
 | accessibilityText |[ResourceStr](ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍描述。 <br />默认值：undefined                     |
 | accessibilityLevel |[string](ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍重要性。<br>默认值: “yes”。                   | 
 | accessibilityDescription|[ResourceStr](ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍说明，用于为用户进一步说明当前组件。<br>默认值：“单指双击即可执行”。 |
