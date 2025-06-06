@@ -54,7 +54,7 @@ import { UIAbility } from '@kit.AbilityKit';
 | launchWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | UIAbility冷启动时接收到的Want参数，取值为[onCreate](#oncreate)接收到的Want参数。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | lastRequestWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | 最近一次拉起UIAbility请求的Want参数。<br>- 首次拉起UIAbility时，取值为[onCreate](#oncreate)接收到的Want参数。<br>- 重复拉起UIAbility时，取值为[onNewWant](#onnewwant)最近一次接收到的Want参数。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
 | callee | [Callee](#callee) | 否 | 否 | 系统为UIAbility创建的后台通信对象，Callee UIAbility（被调用方），可以通过Callee对象接收Caller对象发送的数据进。 |
- 
+
 
 ### onCreate
 
@@ -63,7 +63,7 @@ onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
 当UIAbility实例完成创建时，系统会触发该回调，开发者可在该回调中执行初始化逻辑（如定义变量、加载资源等）。该回调仅会在UIAbility[冷启动](../../application-models/uiability-intra-device-interaction.md#目标uiability冷启动)时触发。
 
 同步接口，不支持异步回调。
- 
+
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
@@ -167,6 +167,8 @@ onWindowStageDestroy(): void
 
 当WindowStage销毁后，系统触发该回调。该回调用于通知开发者WindowStage对象已被销毁，不能再继续使用。
 
+仅当UIAbility正常退出时会触发该回调，异常退出场景（例如低内存查杀）不会触发该回调。
+
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
@@ -229,6 +231,8 @@ onDestroy(): void | Promise&lt;void&gt;
 当UIAbility被销毁（例如使用[terminateSelf](js-apis-inner-application-uiAbilityContext.md#terminateself)接口停止UIAbility）时，系统触发该回调。开发者可以在该生命周期中执行资源清理、数据保存等相关操作。使用同步回调或Promise异步回调。
 
 在执行完onDestroy生命周期回调后，应用可能会退出，从而可能导致onDestroy中的异步函数未能正确执行，比如异步写入数据库。推荐使用Promise异步回调，避免因应用退出导致onDestroy中的异步函数（比如异步写入数据库）未能正确执行。
+
+仅当UIAbility正常退出时会触发该回调，异常退出场景（例如低内存查杀）不会触发该回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -522,7 +526,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 当Ability准备迁移时触发，保存数据。
 
 > **说明：**
-> 
+>
 > 从API version 12 开始，UIAbility.onContinue生命周期新增支持返回值为Promise\<[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#oncontinueresult)\>形式。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
@@ -1569,7 +1573,7 @@ export default class MainUIAbility extends UIAbility {
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | ----- | --- | -------- |
-| msg | string | 是 | 用于传递释放消息。 | 
+| msg | string | 是 | 用于传递释放消息。 |
 
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
@@ -1585,7 +1589,7 @@ export default class MainUIAbility extends UIAbility {
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | ----- | --- | -------- |
-| msg | string | 是 | 用于传递释放消息。 | 
+| msg | string | 是 | 用于传递释放消息。 |
 
 ## CalleeCallback
 
