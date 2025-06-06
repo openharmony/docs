@@ -50,7 +50,7 @@ Subscription failed. Possible causes: 1. Callback registration failure; 2. Faile
 
 **错误信息**
 
-Unsubscription failed. Possible causes: 1. Callback removal failure; 2. N-API invocation exception, invalid N-API status; 3. IPC request exception.
+Unsubscription failed. Possible causes: 1. Callback failure; 2. N-API invocation exception, invalid N-API status; 3. IPC request exception.
 
 **错误描述**
 
