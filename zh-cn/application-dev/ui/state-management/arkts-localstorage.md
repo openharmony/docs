@@ -197,7 +197,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 
 3. LocalStorage创建后，命名属性的类型不可更改。后续调用Set时必须使用相同类型的值。
 
-4. LocalStorage是页面级存储，[getSharedLocalStorage](../../reference/apis-arkui/js-apis-arkui-UIContext.md#getsharedlocalstorage12)接口仅能获取当前Stage通过[windowStage.loadContent](../../reference/apis-arkui/js-apis-window.md#loadcontent9)传入的LocalStorage实例，否则返回undefined。例子可见[将LocalStorage实例从UIAbility共享到一个或多个页面](#将localstorage实例从uiability共享到一个或多个页面)。
+4. LocalStorage是页面级存储，[getSharedLocalStorage](../../reference/apis-arkui/js-apis-arkui-UIContext.md#getsharedlocalstorage12)接口仅能获取当前Stage通过[windowStage.loadContent](../../reference/apis-arkui/arkts-apis-window-Window.md#loadcontent9)传入的LocalStorage实例，否则返回undefined。例子可见[将LocalStorage实例从UIAbility共享到一个或多个页面](#将localstorage实例从uiability共享到一个或多个页面)。
 
 
 ## 使用场景
@@ -457,7 +457,7 @@ struct Parent {
 
 ### 将LocalStorage实例从UIAbility共享到一个或多个页面
 
-上面的实例中，LocalStorage的实例仅仅在一个\@Entry装饰的组件和其所属的子组件（一个页面）中共享，如果希望其在多个页面中共享，可以在所属UIAbility中创建LocalStorage实例，并调用windowStage.[loadContent](../../reference/apis-arkui/js-apis-window.md#loadcontent9)。
+上面的实例中，LocalStorage的实例仅仅在一个\@Entry装饰的组件和其所属的子组件（一个页面）中共享，如果希望其在多个页面中共享，可以在所属UIAbility中创建LocalStorage实例，并调用windowStage.[loadContent](../../reference/apis-arkui/arkts-apis-window-Window.md#loadcontent9)。
 
 
 ```ts
