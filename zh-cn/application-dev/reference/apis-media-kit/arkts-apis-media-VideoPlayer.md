@@ -1,4 +1,4 @@
-# 废弃的Class (VideoPlayer，deprecated) (arkts-apis-media-VideoPlayer.md)
+# 废弃的Class (VideoPlayer，deprecated)
 
 > **说明：**
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer](#avplayer9)替代。

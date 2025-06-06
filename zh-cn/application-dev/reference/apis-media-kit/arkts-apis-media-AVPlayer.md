@@ -1,4 +1,4 @@
-# Class (AVPlayer) (arkts-apis-media-AVPlayer.md )
+# Class (AVPlayer) 
 
 播放管理类，用于管理和播放媒体资源。在调用AVPlayer的方法前，需要先通过[createAVPlayer()](#mediacreateavplayer9)构建一个AVPlayer实例。
 

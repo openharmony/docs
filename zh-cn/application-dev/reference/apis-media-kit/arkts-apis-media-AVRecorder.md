@@ -1,4 +1,4 @@
-# Class (AVRecorder) (arkts-apis-media-AVRecorder.md)
+# Class (AVRecorder)
 
 音视频录制管理类，用于音视频媒体录制。在调用AVRecorder的方法前，需要先通过[createAVRecorder()](#mediacreateavrecorder9)构建一个AVRecorder实例。
 

@@ -1,4 +1,4 @@
-# 废弃的Class (AudioRecorder，deprecated) (arkts-apis-media-AudioRecorder.md )
+# 废弃的Class (AudioRecorder，deprecated)
 
 > **说明：**
 > 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder](#avrecorder9)替代。
