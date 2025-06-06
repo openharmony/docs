@@ -331,3 +331,19 @@ audio.getAudioManager().getRoutingManager().getDevices(audio.DeviceFlag.OUTPUT_D
 | ------------- | --------------------------------------------- | ---- | -------------------------------- |
 | filterOptions | [CaptureFilterOptions](#capturefilteroptionsdeprecated) | 是   | 需要录制的播放音频流的筛选信息。 |
 
+## InterruptAction<sup>(deprecated)</sup>
+
+音频打断/获取焦点事件的回调方法。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[InterruptEvent](#interruptevent9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+| 名称       | 类型                                        | 必填 | 说明                                                         |
+| ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| actionType | [InterruptActionType](#interruptactiontypedeprecated) | 是   | 事件返回类型。TYPE_ACTIVATED为焦点触发事件，TYPE_INTERRUPT为音频打断事件。 |
+| type       | [InterruptType](#interrupttype)             | 否   | 打断事件类型。                                               |
+| hint       | [InterruptHint](#interrupthint)             | 否   | 打断事件提示。                                               |
+| activated  | boolean                                     | 否   | 焦点获取/释放是否成功。true表示焦点获取/释放成功，false表示焦点获得/释放失败。 |
