@@ -5,7 +5,7 @@
 
 音频路由管理。
 
-在使用AudioRoutingManager的接口之前，需先通过[getRoutingManager](#getroutingmanager9)获取AudioRoutingManager实例。
+在使用AudioRoutingManager的接口之前，需先通过[getRoutingManager](arkts-apis-audio-AudioManager.md#getroutingmanager9)获取AudioRoutingManager实例。
 
 ## getDevices<sup>9+</sup>
 
@@ -19,8 +19,8 @@ getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescrip
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| deviceFlag | [DeviceFlag](#deviceflag)                                    | 是   | 音频设备类型。     |
-| callback   | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | 是   | 回调函数。当获取音频设备列表成功，err为undefined，data为获取到的音频设备列表；否则为错误对象。 |
+| deviceFlag | [DeviceFlag](arkts-apis-audio-e.md#deviceflag)                                    | 是   | 音频设备类型。     |
+| callback   | AsyncCallback&lt;[AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)&gt; | 是   | 回调函数。当获取音频设备列表成功，err为undefined，data为获取到的音频设备列表；否则为错误对象。 |
 
 **示例：**
 
@@ -48,13 +48,13 @@ getDevices(deviceFlag: DeviceFlag): Promise&lt;AudioDeviceDescriptors&gt;
 
 | 参数名     | 类型                      | 必填 | 说明             |
 | ---------- | ------------------------- | ---- | ---------------- |
-| deviceFlag | [DeviceFlag](#deviceflag) | 是   | 音频设备类型。 |
+| deviceFlag | [DeviceFlag](arkts-apis-audio-e.md#deviceflag) | 是   | 音频设备类型。 |
 
 **返回值：**
 
 | 类型                                                         | 说明                      |
 | ------------------------------------------------------------ | ------------------------- |
-| Promise&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | Promise对象，返回设备列表。 |
+| Promise&lt;[AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)&gt; | Promise对象，返回设备列表。 |
 
 **示例：**
 
@@ -76,13 +76,13 @@ getDevicesSync(deviceFlag: DeviceFlag): AudioDeviceDescriptors
 
 | 参数名     | 类型                      | 必填 | 说明             |
 | ---------- | ------------------------- | ---- | ---------------- |
-| deviceFlag | [DeviceFlag](#deviceflag) | 是   | 音频设备类型。 |
+| deviceFlag | [DeviceFlag](arkts-apis-audio-e.md#deviceflag) | 是   | 音频设备类型。 |
 
 **返回值：**
 
 | 类型                                                         | 说明                      |
 | ------------------------------------------------------------ | ------------------------- |
-| [AudioDeviceDescriptors](#audiodevicedescriptors) | 返回设备列表。 |
+| [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors) | 返回设备列表。 |
 
 **错误码：**
 
@@ -144,7 +144,7 @@ on(type: 'micBlockStatusChanged', callback: Callback<DeviceBlockStatusInfo\>): v
 | 参数名   | 类型                                                 | 必填 | 说明                                       |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
 | type     | string                                               | 是   | 事件回调类型，支持的事件为'micBlockStatusChanged'，当麦克风堵塞状态发生变化时，触发该事件。 |
-| callback | Callback<[DeviceBlockStatusInfo](#deviceblockstatusinfo13)\> | 是   | 回调函数，返回麦克风被堵塞状态和设备信息。 |
+| callback | Callback<[DeviceBlockStatusInfo](arkts-apis-audio-i.md#deviceblockstatusinfo13)\> | 是   | 回调函数，返回麦克风被堵塞状态和设备信息。 |
 
 **错误码：**
 
@@ -182,7 +182,7 @@ off(type: 'micBlockStatusChanged', callback?: Callback<DeviceBlockStatusInfo\>):
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                              | 是   | 事件回调类型，支持的事件为'micBlockStatusChanged'，当取消监听音频麦克风是否被堵塞变化事件时，触发该事件。 |
-| callback | Callback<[DeviceBlockStatusInfo](#deviceblockstatusinfo13)\> | 否   | 回调函数，返回麦克风被堵塞状态和设备信息。|
+| callback | Callback<[DeviceBlockStatusInfo](arkts-apis-audio-i.md#deviceblockstatusinfo13)\> | 否   | 回调函数，返回麦克风被堵塞状态和设备信息。|
 
 **错误码：**
 
@@ -222,8 +222,8 @@ on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChange
 | 参数名   | 类型                                                 | 必填 | 说明                      |
 | :------- | :--------------------------------------------------- | :--- |:------------------------|
 | type     | string                                               | 是   | 事件回调类型，支持的事件为'deviceChange'，当音频设备连接状态发生变化时，触发该事件。 |
-| deviceFlag | [DeviceFlag](#deviceflag)                                    | 是   | 音频设备类型。              |
-| callback | Callback<[DeviceChangeAction](#devicechangeaction)\> | 是   | 回调函数，返回设备更新详情。          |
+| deviceFlag | [DeviceFlag](arkts-apis-audio-e.md#deviceflag)                                    | 是   | 音频设备类型。              |
+| callback | Callback<[DeviceChangeAction](arkts-apis-audio-i.md#devicechangeaction)\> | 是   | 回调函数，返回设备更新详情。          |
 
 **错误码：**
 
@@ -258,7 +258,7 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                              | 是   | 事件回调类型，支持的事件为'deviceChange'，当取消监听音频设备连接变化事件时，触发该事件。 |
-| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | 否   | 回调函数，返回设备更新详情。 |
+| callback | Callback<[DeviceChangeAction](arkts-apis-audio-i.md#devicechangeaction)> | 否   | 回调函数，返回设备更新详情。 |
 
 **错误码：**
 
@@ -304,7 +304,7 @@ setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean, cal
 
 | 参数名     | 类型                                  | 必填 | 说明                      |
 | ---------- | ------------------------------------- | ---- |-------------------------|
-| deviceType | [CommunicationDeviceType](#communicationdevicetype9) | 是   | 音频设备类型。                 |
+| deviceType | [CommunicationDeviceType](arkts-apis-audio-e.md#communicationdevicetype9) | 是   | 音频设备类型。                 |
 | active     | boolean                               | 是   | 是否设置设备为激活状态。true表示激活，false表示未激活。 |
 | callback   | AsyncCallback&lt;void&gt;             | 是   | 回调函数。当设置通信设备激活状态成功，err为undefined，否则为错误对象。 |
 
@@ -334,7 +334,7 @@ getAvailableDevices(deviceUsage: DeviceUsage): AudioDeviceDescriptors
 
 | 参数名     | 类型                      | 必填 | 说明             |
 | ---------- | ------------------------- | ---- | ---------------- |
-| deviceUsage| [DeviceUsage](#deviceusage12) | 是   | 音频设备类型（根据用途分类）。 |
+| deviceUsage| [DeviceUsage](arkts-apis-audio-e.md#deviceusage12) | 是   | 音频设备类型（根据用途分类）。 |
 
 **返回值：**
 
@@ -378,7 +378,7 @@ on(type: 'availableDeviceChange', deviceUsage: DeviceUsage, callback: Callback<D
 | 参数名   | 类型                                                 | 必填 | 说明                                       |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
 | type     | string                                               | 是   | 事件回调类型，支持的事件为'availableDeviceChange'，当音频可选设备连接状态发生变化时，触发该事件。 |
-| deviceUsage | [DeviceUsage](#deviceusage12)                       | 是   | 音频设备类型（根据用途分类）。     |
+| deviceUsage | [DeviceUsage](arkts-apis-audio-e.md#deviceusage12)                       | 是   | 音频设备类型（根据用途分类）。     |
 | callback | Callback<[DeviceChangeAction](js-apis-audio.md#devicechangeaction)\> | 是   | 回调函数，返回设备更新详情。 |
 
 **错误码：**
@@ -460,7 +460,7 @@ setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean): Pr
 
 | 参数名     | 类型                                                   | 必填 | 说明               |
 | ---------- | ----------------------------------------------------- | ---- | ------------------ |
-| deviceType | [CommunicationDeviceType](#communicationdevicetype9)  | 是   | 活跃音频设备类型。 |
+| deviceType | [CommunicationDeviceType](arkts-apis-audio-e.md#communicationdevicetype9)  | 是   | 活跃音频设备类型。 |
 | active     | boolean                                               | 是   | 是否设置设备为激活状态。true表示激活，false表示未激活。     |
 
 **返回值：**
@@ -489,7 +489,7 @@ isCommunicationDeviceActive(deviceType: CommunicationDeviceType, callback: Async
 
 | 参数名     | 类型                                                  | 必填 | 说明                     |
 | ---------- | ---------------------------------------------------- | ---- | ------------------------ |
-| deviceType | [CommunicationDeviceType](#communicationdevicetype9) | 是   | 活跃音频设备类型。       |
+| deviceType | [CommunicationDeviceType](arkts-apis-audio-e.md#communicationdevicetype9) | 是   | 活跃音频设备类型。       |
 | callback   | AsyncCallback&lt;boolean&gt;                         | 是   | 回调函数。当获取指定通信设备的激活状态成功，err为undefined，data为true表示激活，false表示未激活；否则为错误对象。 |
 
 **示例：**
@@ -518,7 +518,7 @@ isCommunicationDeviceActive(deviceType: CommunicationDeviceType): Promise&lt;boo
 
 | 参数名     | 类型                                                  | 必填 | 说明               |
 | ---------- | ---------------------------------------------------- | ---- | ------------------ |
-| deviceType | [CommunicationDeviceType](#communicationdevicetype9) | 是   | 活跃音频设备类型。 |
+| deviceType | [CommunicationDeviceType](arkts-apis-audio-e.md#communicationdevicetype9) | 是   | 活跃音频设备类型。 |
 
 **返回值：**
 
@@ -546,7 +546,7 @@ isCommunicationDeviceActiveSync(deviceType: CommunicationDeviceType): boolean
 
 | 参数名     | 类型                                                  | 必填 | 说明               |
 | ---------- | ---------------------------------------------------- | ---- | ------------------ |
-| deviceType | [CommunicationDeviceType](#communicationdevicetype9) | 是   | 活跃音频设备类型。 |
+| deviceType | [CommunicationDeviceType](arkts-apis-audio-e.md#communicationdevicetype9) | 是   | 活跃音频设备类型。 |
 
 **返回值：**
 
@@ -589,8 +589,8 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: 
 
 | 参数名                       | 类型                                                         | 必填 | 说明                      |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| rendererInfo                | [AudioRendererInfo](#audiorendererinfo8)                     | 是   | 音频渲染器信息。             |
-| callback                    | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;  | 是   | 回调函数。当获取优先级最高的输出设备成功，err为undefined，data为获取到的优先级最高的输出设备信息；否则为错误对象。 |
+| rendererInfo                | [AudioRendererInfo](arkts-apis-audio-i.md#audiorendererinfo8)                     | 是   | 音频渲染器信息。             |
+| callback                    | AsyncCallback&lt;[AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)&gt;  | 是   | 回调函数。当获取优先级最高的输出设备成功，err为undefined，data为获取到的优先级最高的输出设备信息；否则为错误对象。 |
 
 **错误码：**
 
@@ -634,13 +634,13 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&l
 
 | 参数名                 | 类型                                                         | 必填 | 说明                      |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| rendererInfo          | [AudioRendererInfo](#audiorendererinfo8)                     | 是   | 音频渲染器信息。            |
+| rendererInfo          | [AudioRendererInfo](arkts-apis-audio-i.md#audiorendererinfo8)                     | 是   | 音频渲染器信息。            |
 
 **返回值：**
 
 | 类型                  | 说明                         |
 | --------------------- | --------------------------- |
-| Promise&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;   | Promise对象，返回优先级最高的输出设备信息。 |
+| Promise&lt;[AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)&gt;   | Promise对象，返回优先级最高的输出设备信息。 |
 
 **错误码：**
 
@@ -683,13 +683,13 @@ getPreferredOutputDeviceForRendererInfoSync(rendererInfo: AudioRendererInfo): Au
 
 | 参数名                 | 类型                                                         | 必填 | 说明                      |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| rendererInfo          | [AudioRendererInfo](#audiorendererinfo8)                     | 是   | 音频渲染器信息。            |
+| rendererInfo          | [AudioRendererInfo](arkts-apis-audio-i.md#audiorendererinfo8)                     | 是   | 音频渲染器信息。            |
 
 **返回值：**
 
 | 类型                  | 说明                         |
 | --------------------- | --------------------------- |
-| [AudioDeviceDescriptors](#audiodevicedescriptors)   | 返回优先级最高的输出设备信息。 |
+| [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)   | 返回优先级最高的输出设备信息。 |
 
 **错误码：**
 
@@ -733,8 +733,8 @@ on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererI
 | 参数名   | 类型                                                 | 必填 | 说明                                                      |
 | :------- | :--------------------------------------------------- | :--- |:--------------------------------------------------------|
 | type     | string | 是   | 事件回调类型，支持的事件为'preferOutputDeviceChangeForRendererInfo'，当最高优先级输出设备发生变化时，触发该事件。|
-| rendererInfo  | [AudioRendererInfo](#audiorendererinfo8)        | 是   | 音频渲染器信息。                                                |
-| callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)\> | 是   | 回调函数，返回优先级最高的输出设备信息。 |
+| rendererInfo  | [AudioRendererInfo](arkts-apis-audio-i.md#audiorendererinfo8)        | 是   | 音频渲染器信息。                                                |
+| callback | Callback<[AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)\> | 是   | 回调函数，返回优先级最高的输出设备信息。 |
 
 **错误码：**
 
@@ -773,7 +773,7 @@ off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDe
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string | 是   | 事件回调类型，支持的事件为'preferOutputDeviceChangeForRendererInfo'，当取消监听最高优先级输出音频设备变化事件时，触发该事件。 |
-| callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 否   | 回调函数，返回优先级最高的输出设备信息。 |
+| callback | Callback<[AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)> | 否   | 回调函数，返回优先级最高的输出设备信息。 |
 
 **错误码：**
 
@@ -816,8 +816,8 @@ getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo, callback
 
 | 参数名                       | 类型                                                         | 必填 | 说明                      |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| capturerInfo                | [AudioCapturerInfo](#audiocapturerinfo8)                     | 是   | 音频采集器信息。             |
-| callback                    | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;  | 是   | 回调函数。当获取优先级最高的输入设备成功，err为undefined，data为获取到的优先级最高的输入设备信息；否则为错误对象。 |
+| capturerInfo                | [AudioCapturerInfo](arkts-apis-audio-i.md#audiocapturerinfo8)                     | 是   | 音频采集器信息。             |
+| callback                    | AsyncCallback&lt;[AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)&gt;  | 是   | 回调函数。当获取优先级最高的输入设备成功，err为undefined，data为获取到的优先级最高的输入设备信息；否则为错误对象。 |
 
 **错误码：**
 
@@ -860,13 +860,13 @@ getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo): Promise
 
 | 参数名                 | 类型                                                         | 必填 | 说明                      |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| capturerInfo          | [AudioCapturerInfo](#audiocapturerinfo8)                     | 是   | 音频采集器信息。            |
+| capturerInfo          | [AudioCapturerInfo](arkts-apis-audio-i.md#audiocapturerinfo8)                     | 是   | 音频采集器信息。            |
 
 **返回值：**
 
 | 类型                  | 说明                         |
 | --------------------- | --------------------------- |
-| Promise&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;   | Promise对象，返回优先级最高的输入设备信息。 |
+| Promise&lt;[AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)&gt;   | Promise对象，返回优先级最高的输入设备信息。 |
 
 **错误码：**
 
@@ -908,13 +908,13 @@ getPreferredInputDeviceForCapturerInfoSync(capturerInfo: AudioCapturerInfo): Aud
 
 | 参数名                 | 类型                                                         | 必填 | 说明                      |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| capturerInfo          | [AudioCapturerInfo](#audiocapturerinfo8)                     | 是   | 音频采集器信息。            |
+| capturerInfo          | [AudioCapturerInfo](arkts-apis-audio-i.md#audiocapturerinfo8)                     | 是   | 音频采集器信息。            |
 
 **返回值：**
 
 | 类型                  | 说明                         |
 | --------------------- | --------------------------- |
-| [AudioDeviceDescriptors](#audiodevicedescriptors)   | 返回优先级最高的输入设备信息。 |
+| [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)   | 返回优先级最高的输入设备信息。 |
 
 **错误码：**
 
@@ -958,8 +958,8 @@ on(type: 'preferredInputDeviceChangeForCapturerInfo', capturerInfo: AudioCapture
 | 参数名   | 类型                                                 | 必填 | 说明                                       |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
 | type     | string | 是   | 事件回调类型，支持的事件为'preferredInputDeviceChangeForCapturerInfo'，当最高优先级输入设备发生变化时，触发该事件。 |
-| capturerInfo  | [AudioCapturerInfo](#audiocapturerinfo8)        | 是   | 音频采集器信息。              |
-| callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)\> | 是   | 回调函数，返回优先级最高的输入设备信息。 |
+| capturerInfo  | [AudioCapturerInfo](arkts-apis-audio-i.md#audiocapturerinfo8)        | 是   | 音频采集器信息。              |
+| callback | Callback<[AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)\> | 是   | 回调函数，返回优先级最高的输入设备信息。 |
 
 **错误码：**
 
@@ -998,7 +998,7 @@ off(type: 'preferredInputDeviceChangeForCapturerInfo', callback?: Callback<Audio
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string | 是   | 事件回调类型，支持的事件为'preferredInputDeviceChangeForCapturerInfo'，当取消监听最高优先级输入音频设备变化事件时，触发该事件。 |
-| callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 否   | 回调函数，返回优先级最高的输入设备信息。 |
+| callback | Callback<[AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)> | 否   | 回调函数，返回优先级最高的输入设备信息。 |
 
 **错误码：**
 
