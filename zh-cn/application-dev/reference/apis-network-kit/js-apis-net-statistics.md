@@ -47,7 +47,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getIfaceRxBytes("wlan0", (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
@@ -129,7 +129,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getIfaceTxBytes("wlan0", (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
@@ -209,7 +209,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getCellularRxBytes((error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
@@ -282,7 +282,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getCellularTxBytes((error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
@@ -354,7 +354,7 @@ import { statistics } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 statistics.getAllRxBytes((error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
@@ -425,7 +425,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getAllTxBytes((error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
@@ -498,7 +498,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getUidRxBytes(20010038, (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
@@ -578,7 +578,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getUidTxBytes(20010038, (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
@@ -659,7 +659,7 @@ import { statistics } from '@kit.NetworkKit';
 
 let sockfd = 50; // 实际开发中需要先根据自己创建的socket获取到
 statistics.getSockfdRxBytes(sockfd, (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
@@ -743,7 +743,7 @@ import { statistics } from '@kit.NetworkKit';
 
 let sockfd = 50; // 实际开发中需要先根据自己创建的socket获取到
 statistics.getSockfdTxBytes(sockfd, (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
