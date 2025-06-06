@@ -946,6 +946,7 @@ getCameraDevice(position:CameraPosition, type: CameraType): CameraDevice
 
 ```ts
 import { camera } from '@kit.CameraKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getCameraDevice(cameraManager: camera.CameraManager, position: camera.CameraPosition, type: camera.CameraType): void {
   try {
@@ -993,11 +994,12 @@ getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurren
 
 ```ts
 import { camera } from '@kit.CameraKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDeviceArray: Array<camera.CameraDevice>): void {
   try {
-    let cameraconcurrentinfos: Array<camera.CameraConcurrentInfo> = [];
-    cameraconcurrentinfos = cameraManager.getCameraConcurrentInfos(cameraDeviceArray);
+    let cameraConcurrentInfos: Array<camera.CameraConcurrentInfo> = [];
+    cameraConcurrentInfos = cameraManager.getCameraConcurrentInfos(cameraDeviceArray);
   } catch (error) {
     // 失败返回错误码并处理。
     let err = error as BusinessError;
