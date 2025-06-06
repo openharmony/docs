@@ -14,7 +14,9 @@
       - [HAP](hap-package.md)
       - [HAR](har-package.md)
       - [HSP](in-app-hsp.md)
-    - [应用程序包安装卸载与更新](application-package-install-uninstall.md)
+    - 应用程序包安装卸载与更新<!--application-package-install-->
+      - [应用安装卸载与更新开发指导](application-package-install-uninstall.md)
+      - [应用安装与更新一致性校验](multi_module_installation_update_consistency_verification.md)
   - 应用配置文件（Stage模型）<!--application-configuration-file-stage-->
     - [应用配置文件概述（Stage模型）](application-configuration-file-overview-stage.md)
     - [app.json5配置文件](app-configuration-file.md)
@@ -31,7 +33,7 @@
     - [创建应用静态快捷方式](typical-scenario-configuration.md)
     - [创建应用分身](app-clone.md)
     - [创建应用多实例](multiInstance.md)
-    - [配置分层图标](layered-image.md)
+    - [配置应用图标](layered-image.md)
   - [应用程序包术语](application-package-glossary.md)
 - [资源分类与访问](resource-categories-and-access.md)
 - 学习ArkTS语言<!--learning-arkts-->
