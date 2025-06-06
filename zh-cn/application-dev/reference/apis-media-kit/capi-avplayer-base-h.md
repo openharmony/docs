@@ -20,7 +20,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [AVPlayerCallback](capi-avplayercallback.md) | AVPlayerCallback | 包含了OH_AVPlayerOnInfo和OH_AVPlayerOnInfo回调函数指针的集合。应用需注册此实例结构体到OH_AVPlayer实例中，并对回调上报的信息进行处理，保证AVPlayer的正常运行。 |
+| [AVPlayerCallback](capi-avplayercallback.md) | AVPlayerCallback | 包含了OH_AVPlayerOnInfo和OH_AVPlayerOnInfo回调函数指针的集合。应用需注册此结构体到OH_AVPlayer实例中，并处理回调上报的信息，保证AVPlayer的正常运行。 |
 | [OH_AVPlayer](capi-oh-avplayer.md) | OH_AVPlayer | 初始化AVPlayer。 |
 
 ### 枚举
@@ -55,7 +55,7 @@
 | const char * OH_PLAYER_AUDIO_INTERRUPT_HINT | 获取音频打断HINT类型的关键字，对应值类型是int32_t。<br>**起始版本：** 12 |
 | const char * OH_PLAYER_AUDIO_DEVICE_CHANGE_REASON | 获取音频设备变更原因的关键字，对应值类型是int32_t。<br>**起始版本：** 12 |
 | const char * OH_PLAYER_BUFFERING_TYPE | 获取缓冲更新消息类型的关键字，对应值类型是[AVPlayerBufferingType](capi-avplayer-base-h.md#avplayerbufferingtype)。<br>通过该关键字获取信息时，需要先使用int32_t类型变量保存结果，再转换为类型AVPlayerBufferingType。<br>**起始版本：** 12 |
-| const char * OH_PLAYER_BUFFERING_VALUE | 获取缓冲更新消息具体数值的关键字，对应值类型是int32_t，参见[AVPlayerBufferingType](capi-avplayer-base-h.md#avplayerbufferingtype)。<br>当缓冲更新消息类型是AVPLAYER_BUFFERING_PERCENT、AVPLAYER_BUFFERING_CACHED_DURATION时有效。<br>**起始版本：** 12 |
+| const char * OH_PLAYER_BUFFERING_VALUE | 获取缓冲更新消息数值的关键字，对应值类型是int32_t，参见[AVPlayerBufferingType](capi-avplayer-base-h.md#avplayerbufferingtype)。<br>当缓冲更新消息类型是AVPLAYER_BUFFERING_PERCENT、AVPLAYER_BUFFERING_CACHED_DURATION时有效。<br>**起始版本：** 12 |
 | const char * OH_PLAYER_SEEK_POSITION | 获取Seek后播放进度的关键字，对应值类型是int32_t。<br>**起始版本：** 12 |
 | const char * OH_PLAYER_PLAYBACK_SPEED | 获取播放倍速信息的关键字, 对应值类型是[AVPlaybackSpeed](capi-avplayer-base-h.md#avplaybackspeed)。<br>通过该关键字获取信息时，需要先使用int32_t类型变量保存结果，再转换为类型AVPlaybackSpeed。<br>**起始版本：** 12 |
 | const char * OH_PLAYER_PLAYBACK_RATE | 获取有效播放速率的关键字，对应值类型是浮点数。<br>**起始版本：** 20 |
@@ -216,17 +216,17 @@ typedef void (*OH_AVPlayerOnInfo)(OH_AVPlayer *player, AVPlayerOnInfoType type, 
 
 | 信息类型（type） | 对应的extra描述 |
 | -------- | -------- |
-| AV_INFO_TYPE_SEEKDONE | 跳转到对应播放位置时返回消息，extra表示seek到的位置。 |
+| AV_INFO_TYPE_SEEKDONE | 跳转到对应播放位置时返回消息，extra表示跳转到的位置。 |
 | AV_INFO_TYPE_SPEEDDONE | 播放倍速设置完成时返回消息，extra表示播放倍速信息，具体请参考[AVPlaybackSpeed](#avplaybackspeed)。 |
 | AV_INFO_TYPE_BITRATEDONE | 比特率设置完成时返回消息，extra表示比特率信息。 |
 | AV_INFO_TYPE_EOS | 播放完成时返回消息。|
 | AV_INFO_TYPE_STATE_CHANGE | 状态改变时返回消息，extra表示当前播放状态，具体请参见[AVPlayerState](#avplayerstate)。 |
 | AV_INFO_TYPE_POSITION_UPDATE | 返回当前播放位置，extra表示当前位置。 |
 | AV_INFO_TYPE_MESSAGE | 视频开始渲染时返回消息，extra表示视频首帧渲染。 |
-| AV_INFO_TYPE_VOLUME_CHANGE | 音量改变时返回消息，此场景extra未定义。 |
-| AV_INFO_TYPE_RESOLUTION_CHANGE | 首次获取视频大小或视频大小更新时返回消息，此场景extra未定义。 |
+| AV_INFO_TYPE_VOLUME_CHANGE | 音量改变时返回消息，此场景下extra未定义。 |
+| AV_INFO_TYPE_RESOLUTION_CHANGE | 首次获取视频大小或视频大小更新时返回消息，此场景下extra未定义。 |
 | AV_INFO_TYPE_BUFFERING_UPDATE | 返回多队列缓冲时间，extra表示视频时长。 |
-| AV_INFO_TYPE_BITRATE_COLLECT  | 上报HLS视频比特率列表消息。上报时每个比特率已经被转为uint8_t字节数组，使用者需要将uint8_t字节数组强制转换为uint32_t整型数组。   |
+| AV_INFO_TYPE_BITRATE_COLLECT  | 上报HLS视频比特率列表消息。上报时每个比特率已经转化为uint8_t字节数组，使用者需要将uint8_t字节数组强制转换为uint32_t整型数组。   |
 | AV_INFO_TYPE_INTERRUPT_EVENT | 音频焦点改变时返回消息，extra表示音频打断提示，具体请参见[OH_AudioInterrupt_Hint](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiointerrupt_hint)，应用可决定是否根据打断提示作进一步处理。 |
 | AV_INFO_TYPE_DURATION_UPDATE | 返回播放时长，extra表示视频时长。 |
 | AV_INFO_TYPE_IS_LIVE_STREAM | 播放为直播流时返回消息，extra表示是否为直播流，0表示非直播流，1表示直播流。 |
@@ -311,7 +311,7 @@ typedef void (*OH_AVPlayerOnErrorCallback)(OH_AVPlayer *player, int32_t errorCod
 
 **描述**
 
-发生错误时被调用。如果应用成功设置该回调，则不会回调OH_AVPlayerOnError函数。
+发生错误时被调用。如果应用成功设置该回调，则不会调用OH_AVPlayerOnError函数。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 

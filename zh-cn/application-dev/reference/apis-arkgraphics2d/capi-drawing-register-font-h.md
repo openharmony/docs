@@ -4,7 +4,7 @@
 
 定义绘制模块中字体管理器相关的函数。
 
-**引用文件：** drawing_register_font.h
+**引用文件：** <native_drawing/drawing_register_font.h>
 
 **库：** libnative_drawing.so
 

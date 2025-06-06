@@ -343,6 +343,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
 
 4. 连接到指定的本地套接字文件路径，连接成功之后可以发送数据。
 
+    <!--code_no_check-->
     ```ts
     // 传入指定的本地套接字路径，连接服务端。
     let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -404,6 +405,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
 
 3. 启动服务，绑定本地套接字路径，创建出本地套接字文件，监听客户端的连接请求。
 
+    <!--code_no_check-->
     ```ts
     // 创建并绑定本地套接字文件testSocket，进行监听。
     let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;

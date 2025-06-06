@@ -4,7 +4,7 @@
 
 声明滤镜效果的接口。
 
-**引用文件：** effect_filter.h
+**引用文件：** <native_effect/effect_filter.h>
 
 **库：** libnative_effect.so
 

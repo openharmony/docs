@@ -33,6 +33,7 @@ MDNS管理的典型场景有：
 
 3. 调用addLocalService方法，添加本地服务。
 
+    <!--code_no_check-->
     ```ts
     let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
@@ -91,6 +92,7 @@ MDNS管理的典型场景有：
 
 3. 创建DiscoveryService对象，用于发现指定服务类型的MDNS服务。
 
+    <!--code_no_check-->
     ```ts
     // 构造单例对象。
     export class GlobalContext {

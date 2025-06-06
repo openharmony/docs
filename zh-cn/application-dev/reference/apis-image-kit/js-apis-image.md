@@ -79,7 +79,7 @@ async function CreatePicture(context: Context) {
   if (pictureObj != null) {
     console.info('Create picture succeeded');
   } else {
-    console.info('Create picture failed');
+    console.error('Create picture failed');
   }
 }
 ```
@@ -131,7 +131,7 @@ class MySequence implements rpc.Parcelable {
       console.info('Marshalling success !');
       return true;
     } else {
-      console.info('Marshalling failed !');
+      console.error('Marshalling failed !');
       return false;
     }
   }
@@ -164,7 +164,7 @@ async function Marshalling_UnMarshalling(context: Context) {
     // unmarshalling.
     data.readParcelable(ret);
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
@@ -995,7 +995,7 @@ async function GetMainPixelmap() {
       });
     }
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
@@ -1043,7 +1043,7 @@ async function GetHdrComposedPixelmap() {
       });
     }
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
@@ -1077,7 +1077,7 @@ async function GetGainmapPixelmap() {
         if (imageInfo != null) {
           console.info('GetGainmapPixelmap information height:' + imageInfo.size.height + ' width:' + imageInfo.size.width);
         } else {
-          console.info('GainPixelmap is null');
+          console.error('GainPixelmap is null');
         }
       }).catch((error: BusinessError) => {
         console.error(funcName, 'Failed error.code: ${error.code} ,error.message: ${error.message}');
@@ -1086,7 +1086,7 @@ async function GetGainmapPixelmap() {
       console.info('GainPixelmap is null');
     }
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
@@ -1131,7 +1131,7 @@ async function SetAuxiliaryPicture(context: Context) {
   if (auxPicture != null) {
     console.info('Create picture succeeded');
   } else {
-    console.info('Create picture failed');
+    console.error('Create picture failed');
   }
 
   if (pictureObj != null) {
@@ -1233,7 +1233,7 @@ async function SetPictureObjMetadata(exifContext: Context) {
   if (exifPictureObj != null) {
     console.info('Create picture succeeded');
   } else {
-    console.info('Create picture failed');
+    console.error('Create picture failed');
   }
 
   if (pictureObj != null) {
@@ -1245,7 +1245,7 @@ async function SetPictureObjMetadata(exifContext: Context) {
       console.error('Failed to set metadata. error.code: ' +JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
     });
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
@@ -1291,10 +1291,10 @@ async function GetPictureObjMetadataProperties() {
     if (pictureObjMetaData != null) {
       console.info('get picture metadata success');
     } else {
-      console.info('get picture metadata is failed');
+      console.error('get picture metadata is failed');
     }
   } else {
-    console.info(" pictureObj is null");
+    console.error(" pictureObj is null");
   }
 }
 ```
@@ -1340,7 +1340,7 @@ class MySequence implements rpc.Parcelable {
       console.info('Marshalling success !');
       return true;
     } else {
-      console.info('Marshalling failed !');
+      console.error('Marshalling failed !');
       return false;
     }
   }
@@ -1365,7 +1365,7 @@ async function Marshalling_UnMarshalling() {
     // unmarshalling.
     data.readParcelable(ret);
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
@@ -1390,10 +1390,10 @@ async function Release() {
     if (pictureObj.getMainPixelmap() == null) {
       console.info(funcName, 'Success !');
     } else {
-      console.info(funcName, 'Failed !');
+      console.error(funcName, 'Failed !');
     }
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
@@ -3586,7 +3586,7 @@ import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'hdr.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 let img = context.resourceManager.getMediaContentSync($r('app.media.hdr'));
@@ -3604,7 +3604,7 @@ if (pixelmap != undefined) {
     console.error(`Failed to set sdr. code is ${err.code}, message is ${err.message}`);
   });
 } else {
-  console.info('Failed to create pixelMap.');
+  console.error('Failed to create pixelMap.');
 }
 ```
 
@@ -3646,8 +3646,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import image from '@ohos.multimedia.image';
 
-
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 'app.media.test'需要替换为本地hdr图片。
 let img = context.resourceManager.getMediaContentSync($r('app.media.test'));
@@ -3662,10 +3661,10 @@ if (pixelmap != undefined) {
     let staticMetadata = pixelmap.getMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA);
     console.info("getmetadata:" + JSON.stringify(staticMetadata));
   } catch (e) {
-    console.info('pixelmap create failed' + e);
+    console.error('pixelmap create failed' + e);
   }
 } else {
-  console.info('Failed to create pixelMap.');
+  console.error('Failed to create pixelMap.');
 }
 ```
 
@@ -4164,7 +4163,7 @@ createImageSource(uri: string): ImageSource
 ```ts
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'test.jpg'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
 const path: string = context.filesDir + "/test.jpg";
@@ -4202,7 +4201,7 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 import { common } from '@kit.AbilityKit';
 
 let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'test.png'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
 const path: string = context.filesDir + "/test.png";
@@ -4237,7 +4236,7 @@ createImageSource(fd: number): ImageSource
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
@@ -4277,7 +4276,7 @@ import { fileIo as fs } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 
 let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 const filePath: string = context.filesDir + "/test.jpg";
@@ -4379,7 +4378,7 @@ createImageSource(rawfile: resourceManager.RawFileDescriptor, options?: SourceOp
 import { resourceManager } from '@kit.LocalizationKit';
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 获取resourceManager资源管理器。
 const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
@@ -4424,7 +4423,7 @@ CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 ```ts
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')); // 获取图像资源。
 // 此处'app.media.startIcon'仅作示例，请开发者自行替换，否则imageArray创建失败会导致后续无法正常执行。
@@ -4472,7 +4471,7 @@ CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 ```ts
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')) // 获取图像资源。
 // 此处'app.media.startIcon'仅作示例，请开发者自行替换，否则imageArray创建失败会导致后续无法正常执行。
@@ -4634,7 +4633,7 @@ getImageInfoSync(index?: number): ImageInfo
 import { common } from '@kit.AbilityKit';
 import { image } from '@kit.ImageKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
@@ -4896,18 +4895,15 @@ getImagePropertySync(key:PropertyKey): string
 
 ```ts
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import fs from '@ohos.file.fs';
+import { common } from '@kit.AbilityKit';
 
-let context = getContext();
-if (context == null) {
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let resourceMgr = context.resourceManager;
+if (resourceMgr == null) {
   return;
 }
-let resoutceManager = context.resourceManager;
-if (resoutceManager == null) {
-  return;
-}
-let fd = resourceManager.getRawFdSync("example.jpg");
+let fd = resourceMgr.getRawFdSync("example.jpg");
 
 const imageSourceApi = image.createImageSource(fd);
 console.info("getImagePropertySync");
@@ -5218,7 +5214,7 @@ async function CreatePicture() {
   if (pictureObj != null) {
     console.info('Create picture succeeded');
   } else {
-    console.info('Create picture failed');
+    console.error('Create picture failed');
   }
 }
 ```
@@ -5368,7 +5364,7 @@ createPixelMapSync(options?: DecodingOptions): PixelMap
 import { common } from '@kit.AbilityKit';
 import { image } from '@kit.ImageKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
@@ -5387,7 +5383,7 @@ let pixelmap = imageSource.createPixelMapSync(decodingOptions);
 if (pixelmap != undefined) {
   console.info('Succeeded in creating pixelMap object.');
 } else {
-  console.info('Failed to create pixelMap.');
+  console.error('Failed to create pixelMap.');
 }
 ```
 
@@ -5619,7 +5615,7 @@ createPixelMapUsingAllocator(options?: DecodingOptions, allocatorType?: Allocato
 import { common } from '@kit.AbilityKit';
 import image from '@ohos.multimedia.image';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
@@ -5637,7 +5633,7 @@ let pixelmap = imageSource.createPixelMapUsingAllocator(decodingOptions, image.A
 if (pixelmap != undefined) {
   console.info('Succeeded in creating pixelMap object.');
 } else {
-  console.info('Failed to create pixelMap.');
+  console.error('Failed to create pixelMap.');
 }
 ```
 
@@ -5683,7 +5679,7 @@ createPixelMapUsingAllocatorSync(options?: DecodingOptions, allocatorType?: Allo
 import { common } from '@kit.AbilityKit';
 import image from '@ohos.multimedia.image';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
@@ -5701,7 +5697,7 @@ let pixelmap = imageSource.createPixelMapUsingAllocatorSync(decodingOptions, ima
 if (pixelmap != undefined) {
   console.info('Succeeded in creating pixelMap object.');
 } else {
-  console.info('Failed to create pixelMap.');
+  console.error('Failed to create pixelMap.');
 }
 ```
 
@@ -6080,7 +6076,7 @@ packToData(source: ImageSource, options: PackingOption): Promise\<ArrayBuffer>
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
@@ -6259,7 +6255,7 @@ import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import image from "@ohos.multimedia.image";
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const resourceMgr = context.resourceManager;
 // 此处'moving_test.gif'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
@@ -6310,7 +6306,7 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
@@ -6359,7 +6355,7 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
@@ -6572,7 +6568,7 @@ import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'test.png'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
 const path: string = context.filesDir + "/test.png";
@@ -6635,7 +6631,7 @@ import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'test.png'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
 const path: string = context.filesDir + "/test.png";
@@ -6696,7 +6692,7 @@ import { fileIo as fs } from '@kit.CoreFileKit';
 
 const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
 let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.filesDir + "/pixel_map.jpg";
 image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
@@ -6763,7 +6759,7 @@ import { fileIo as fs } from '@kit.CoreFileKit';
 
 const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
 let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.filesDir + "/pixel_map.jpg";
 image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
@@ -6887,7 +6883,7 @@ import { BusinessError } from '@ohos.base';
 import fs from '@ohos.file.fs';
 import image from "@ohos.multimedia.image";
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const resourceMgr = context.resourceManager;
 // 此处'moving_test.gif'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
@@ -7129,7 +7125,7 @@ async function GetAuxiliaryPictureType() {
     let type: image.AuxiliaryPictureType = auxPictureObj.getType();
     console.info('Success get auxiliary picture type ' +  JSON.stringify(type));
   } else {
-    console.info('Failed get auxiliary picture type ');
+    console.error('Failed get auxiliary picture type ');
   }
 }
 ```
@@ -7182,7 +7178,7 @@ async function SetAuxPictureObjMetadata(exifContext: Context) {
   if (exifPictureObj != null) {
     console.info('Create picture succeeded');
   } else {
-    console.info('Create picture failed');
+    console.error('Create picture failed');
   }
 
   if (auxPictureObj != null) {
@@ -7194,7 +7190,7 @@ async function SetAuxPictureObjMetadata(exifContext: Context) {
       console.error('Set metadata failed.error.code: ${error.code}, error.message: ${error.message}');
     });
   } else {
-    console.info('AuxPictureObjMetaData is null');
+    console.error('AuxPictureObjMetaData is null');
   }
 }
 ```
@@ -7240,10 +7236,10 @@ async function GetAuxPictureObjMetadata() {
     if (auxPictureObjMetaData != null) {
       console.info('Get auxpictureobj Metadata success' );
     } else {
-      console.info('Get auxpictureobj Metadata failed');
+      console.error('Get auxpictureobj Metadata failed');
     }
   } else {
-    console.info('Get auxpictureobj is null.');
+    console.error('Get auxpictureobj is null.');
   }
 }
 ```
@@ -7275,7 +7271,7 @@ async function GetAuxiliaryPictureInfo() {
       ' rowStride: ' +  auxinfo.rowStride +  ' pixelFormat: ' + auxinfo.pixelFormat +
       ' colorSpace: ' +  auxinfo.colorSpace);
   } else {
-    console.info('Get auxiliary picture information failed');
+    console.error('Get auxiliary picture information failed');
   }
 }
 ```
@@ -7343,10 +7339,10 @@ async function Release() {
     if (auxPictureObj.getType() == null) {
       console.info(funcName, 'Success !');
     } else {
-      console.info(funcName, 'Failed !');
+      console.error(funcName, 'Failed !');
     }
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
@@ -7409,10 +7405,10 @@ async function GetProperties(context: Context) {
     await metaData.getProperties(["ImageWidth", "ImageLength"]).then((data2) => {
       console.info('Get properties ',JSON.stringify(data2));
     }).catch((error: BusinessError) => {
-      console.info('Get properties failed error.code: ' +JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
+      console.error('Get properties failed error.code: ' +JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
     });
   } else {
-    console.info('Metadata is null.');
+    console.error('Metadata is null.');
   }
 }
 ```
@@ -7474,7 +7470,7 @@ async function SetProperties(context: Context) {
       console.error('Failed to set metadata Properties. code is ${error.code}, message is ${error.message}');
     })
   } else {
-    console.info('AuxPictureObj metadata is null. ');
+    console.error('AuxPictureObj metadata is null. ');
   }
 }
 ```
@@ -7519,7 +7515,7 @@ async function GetAllProperties(context: Context) {
       console.error('Get metadata all properties failed error.code: ' +JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
     });
   } else {
-    console.info('Metadata is null.');
+    console.error('Metadata is null.');
   }
 }
 ```
@@ -7572,7 +7568,7 @@ async function clone(context: Context) {
       console.error('Clone new_metadata failed.', JSON.stringify(err));
     });
   } else {
-    console.info('Metadata is null.');
+    console.error('Metadata is null.');
   }
 }
 ```
@@ -7581,7 +7577,7 @@ async function clone(context: Context) {
 
 createImageReceiver(size: Size, format: ImageFormat, capacity: number): ImageReceiver
 
-通过图片大小、图片格式、容量创建ImageReceiver实例。
+通过图片大小、图片格式、容量创建ImageReceiver实例。ImageReceiver做为图片的接收方、消费者，它的参数属性实际上不会对接收到的图片产生影响。图片属性的配置应在发送方、生产者进行，如相机预览流[createPreviewOutput](../apis-camera-kit/js-apis-camera.md#createpreviewoutput)。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -7589,7 +7585,7 @@ createImageReceiver(size: Size, format: ImageFormat, capacity: number): ImageRec
 
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
-| size    | [Size](#size)  | 是   | 图像的默认大小。       |
+| size    | [Size](#size)  | 是   | 图像的默认大小。该参数不会影响接收到的图片大小，实际返回大小由生产者决定，如相机。       |
 | format   | [ImageFormat](#imageformat9) | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG，实际返回格式由生产者决定，如相机）。             |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
@@ -7621,7 +7617,7 @@ let receiver: image.ImageReceiver = image.createImageReceiver(size, image.ImageF
 
 createImageReceiver(width: number, height: number, format: number, capacity: number): ImageReceiver
 
-通过宽、高、图片格式、容量创建ImageReceiver实例。
+通过宽、高、图片格式、容量创建ImageReceiver实例。ImageReceiver做为图片的接收方、消费者，它的参数属性实际上不会对接收到的图片产生影响。图片属性的配置应在发送方、生产者进行，如相机预览流[createPreviewOutput](../apis-camera-kit/js-apis-camera.md#createpreviewoutput)。
 
 > **说明：**
 >
@@ -7633,8 +7629,8 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
-| width    | number | 是   | 图像的默认宽度。单位：像素。       |
-| height   | number | 是   | 图像的默认高度。单位：像素。       |
+| width    | number | 是   | 图像的默认宽度。单位：像素。该参数不会影响接收到的图片宽度，实际宽度由生产者决定，如相机。       |
+| height   | number | 是   | 图像的默认高度。单位：像素。该参数不会影响接收到的图片高度，实际高度由生产者决定，如相机。       |
 | format   | number | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG，实际返回格式由生产者决定，如相机）。  |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
@@ -7652,7 +7648,7 @@ let receiver: image.ImageReceiver = image.createImageReceiver(8192, 8, image.Ima
 
 ## ImageReceiver<sup>9+</sup>
 
-图像接收类，用于获取组件surface id，接收最新的图片和读取下一张图片，以及释放ImageReceiver实例。
+图像接收类，用于获取组件surface id，接收最新的图片和读取下一张图片，以及释放ImageReceiver实例。ImageReceiver做为图片的接收方、消费者，它的参数属性实际上不会对接收到的图片产生影响。图片属性的配置应在发送方、生产者进行，如相机预览流[createPreviewOutput](../apis-camera-kit/js-apis-camera.md#createpreviewoutput)。
 
 在调用以下方法前需要先创建ImageReceiver实例。
 
@@ -7662,9 +7658,9 @@ let receiver: image.ImageReceiver = image.createImageReceiver(8192, 8, image.Ima
 
 | 名称     | 类型                         | 可读 | 可写 | 说明               |
 | -------- | ---------------------------- | ---- | ---- | ------------------ |
-| size     | [Size](#size)                | 是   | 否   | 图片大小。         |
+| size     | [Size](#size)                | 是   | 否   | 图片大小。该参数不会影响接收到的图片大小，实际返回大小由生产者决定，如相机。         |
 | capacity | number                       | 是   | 否   | 同时访问的图像数。 |
-| format   | [ImageFormat](#imageformat9) | 是   | 否   | 图像格式。         |
+| format   | [ImageFormat](#imageformat9) | 是   | 否   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG，实际返回格式由生产者决定，如相机）        |
 
 ### getReceivingSurfaceId<sup>9+</sup>
 
@@ -8338,7 +8334,7 @@ getComponent(componentType: ComponentType): Promise\<Component>
 
 | 参数名        | 类型                             | 必填 | 说明             |
 | ------------- | -------------------------------- | ---- | ---------------- |
-| componentType | [ComponentType](#componenttype9) | 是   | 图像的组件类型。（目前仅支持 ComponentType:JPEG，实际返回格式由生产者决定，如相机） |
+| componentType | [ComponentType](#componenttype9) | 是   | 图像的组件类型。（目前仅支持 ComponentType:JPEG，实际返回格式由生产者决定，如相机）。 |
 
 **返回值：**
 

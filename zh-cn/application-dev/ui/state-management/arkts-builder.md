@@ -25,7 +25,7 @@ ArkUI提供轻量的UI元素复用机制\@Builder，其内部UI结构固定，�
 
 ### 私有自定义构建函数
 
-定义语法：
+示例：
 
 ```ts
 @Entry
@@ -67,7 +67,7 @@ struct BuilderDemo {
 
 ### 全局自定义构建函数
 
-定义语法：
+示例：
 
 ```ts
 @Builder
@@ -98,7 +98,7 @@ struct BuilderDemo {
 
 - 参数的类型必须与参数声明的类型一致，不允许undefined、null和返回undefined、null的表达式。
 
-- 在@Builder装饰的函数内部，不允许改变参数值。
+- 在\@Builder装饰的函数内部，不允许改变参数值。
 
 - \@Builder内UI语法遵循[UI语法规则](arkts-create-custom-components.md#build函数)。
 
@@ -135,15 +135,18 @@ class Tmp {
   paramA1: string = '';
 }
 
-@Builder function overBuilder(params: Tmp) {
+@Builder
+function overBuilder(params: Tmp) {
   Row() {
     Text(`UseStateVarByReference: ${params.paramA1} `)
   }
 }
+
 @Entry
 @Component
 struct Parent {
   @State label: string = 'Hello';
+
   build() {
     Column() {
       // 在父组件中调用overBuilder组件时，
@@ -164,11 +167,11 @@ struct Parent {
 
 2. \@Builder按引用传递且仅传入一个参数时，才会触发动态渲染UI。请参考[按引用传递参数](#按引用传递参数)。
 
-3. 如果\@Builder传入的参数是两个或两个以上，不会触发动态渲染UI。请参考[@Builder存在两个或者两个以上参数](#builder存在两个或者两个以上参数)。
+3. 如果\@Builder传入的参数是两个或两个以上，不会触发动态渲染UI，请参考[@Builder存在两个或者两个以上参数](#builder存在两个或者两个以上参数)。
 
-4. \@Builder传入的参数中同时包含按值传递和按引用传递，不会触发动态渲染UI。请参考[@Builder存在两个或者两个以上参数](#builder存在两个或者两个以上参数)。
+4. \@Builder传入的参数中同时包含按值传递和按引用传递，不会触发动态渲染UI，请参考[@Builder存在两个或者两个以上参数](#builder存在两个或者两个以上参数)。
 
-5. \@Builder的参数必须按照对象字面量的形式，把所需属性一一传入，才会触发动态渲染UI。请参考[@Builder存在两个或者两个以上参数](#builder存在两个或者两个以上参数)。
+5. \@Builder的参数必须按照对象字面量的形式，把所需属性一一传入，才会触发动态渲染UI，请参考[@Builder存在两个或者两个以上参数](#builder存在两个或者两个以上参数)。
 
 
 ## 使用场景

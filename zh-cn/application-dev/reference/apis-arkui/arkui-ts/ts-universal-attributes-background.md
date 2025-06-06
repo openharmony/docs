@@ -79,6 +79,24 @@ backgroundColor(color: Optional\<ResourceColor>): T
 >
 >  当通过[backgroundBlurStyle](#backgroundblurstyle9)中的inactiveColor指定背景色时，不建议再通过backgroundColor设置背景色。
 
+## backgroundColor<sup>20+</sup>
+
+backgroundColor(color: Optional<ResourceColor | ColorMetrics>)
+
+设置组件背景色。与[backgroundColor](#backgroundcolor18)相比，color参数新增了对[ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)类型的支持。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                  | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| color  | Optional\<[ResourceColor](ts-types.md#resourcecolor) \| [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)> | 是   | 设置组件的背景色。<br/>当color的值为undefined时，恢复为默认透明的背景色。 |
+
 ## backgroundImage
 
 backgroundImage(src: ResourceStr&nbsp;|&nbsp;PixelMap, repeat?: ImageRepeat)
@@ -917,3 +935,29 @@ struct BackGroundBlur {
 ```
 
 ![backgroundBlur](figures/backgroundBlur.png)
+
+### 示例8（设置P3色域背景效果）
+
+该示例通过backgroundColor设置P3色域背景效果。
+
+```ts
+// xxx.ets
+import { ColorMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct P3BackgroundDemo {
+  @State p3Color: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.DISPLAY_P3, 0, 0.3, 0.8, 1);
+
+  build() {
+    Column({ space: 5 }) {
+      Text('background color with colorMetrics').fontSize(9).width('90%').fontColor(0xCCCCCC)
+      Row().width('90%').height(50).backgroundColor(this.p3Color)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![zh-cn_background_p3](figures/zh-cn_background_p3.png)

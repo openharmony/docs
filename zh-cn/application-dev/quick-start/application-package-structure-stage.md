@@ -51,4 +51,5 @@
 > - 在[应用签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)、云端分发、端侧安装时，都是以HAP/HSP为单位进行签名、分发和安装的。
 
 **图3** 编译发布与上架部署流程图
+
 ![hap-release](figures/hap-release.png)

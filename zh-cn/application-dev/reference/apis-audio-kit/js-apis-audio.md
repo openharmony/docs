@@ -1190,6 +1190,60 @@ try {
 }
 ```
 
+### on('audioSceneChange')<sup>20+</sup>
+
+on(type: 'audioSceneChange', callback: Callback\<AudioScene\>): void
+
+监听音频场景变化事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Communication
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                        |
+| :------- | :------------------------- | :--- | :------------------------------------------ |
+| type     | string                     | 是   | 事件回调类型，支持的事件为'audioSceneChange'，当音频场景模式发生变化时，触发该事件。 |
+| callback | Callback\<[AudioScene](#audioscene8)> | 是   | 回调函数，返回当前音频场景模式。 |
+
+**示例：**
+
+```ts
+audioManager.on('audioSceneChange', (audioScene: audio.AudioScene) => {
+  console.info(`audio scene : ${audioScene}.`);
+});
+```
+
+### off('audioSceneChange')<sup>20+</sup>
+
+off(type: 'audioSceneChange', callback?: Callback\<AudioScene\>): void
+
+取消监听音频场景变化事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Communication
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                        |
+| :------- | :------------------------- | :--- | :------------------------------------------ |
+| type     | string                     | 是   | 事件回调类型，支持的事件为'audioSceneChange'，当取消监听当前音频场景变化事件时，触发该事件。 |
+| callback | Callback\<[AudioScene](#audioscene8)> | 是   | 回调函数，返回当前音频场景模式。 |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听。
+audioManager.off('audioSceneChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let audioSceneChangeCallback = (audioScene: audio.AudioScene) => {
+  console.info(`audio scene : ${audioScene}.`);
+};
+
+audioManager.on('audioSceneChange', audioSceneChangeCallback);
+
+audioManager.off('audioSceneChange', audioSceneChangeCallback);
+```
+
 ### getVolumeManager<sup>9+</sup>
 
 getVolumeManager(): AudioVolumeManager
@@ -2695,6 +2749,78 @@ let appVolumeChangeCallback = (volumeEvent: audio.VolumeEvent) => {
 audioVolumeManager.on('appVolumeChange', appVolumeChangeCallback);
 
 audioVolumeManager.off('appVolumeChange', appVolumeChangeCallback);
+```
+
+### on('activeVolumeTypeChange')<sup>20+</sup>
+
+on(type: 'activeVolumeTypeChange', callback: Callback\<AudioVolumeType>): void
+
+监听当前活跃流变化事件（当活跃流发生变化时触发）。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为'activeVolumeTypeChange'，当活跃流发生变化时，触发该事件。 |
+| callback | Callback\<[AudioVolumeType](#audiovolumetype)> | 是   | 回调函数，返回变化后的活跃流类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Not system App. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+audioVolumeManager.on('activeVolumeTypeChange', (volumeType: audio.AudioVolumeType) => {
+  console.info(`VolumeType of stream: ${volumeType} `);
+});
+```
+
+### off('activeVolumeTypeChange')<sup>20+</sup>
+
+off(type: 'activeVolumeTypeChange', callback?: Callback\<AudioVolumeType>): void
+
+取消监听当前活跃流变化事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为'activeVolumeTypeChange'，当取消监听当前活跃流变化事件时，触发该事件。 |
+| callback | Callback\<[AudioVolumeType](#audiovolumetype)> | 否   | 回调函数，返回变化后的活跃流类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Not system App. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听。
+audioVolumeManager.off('activeVolumeTypeChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let activeVolumeTypeChangeCallback = (volumeType: audio.AudioVolumeType) => {
+  console.info(`VolumeType of stream: ${volumeType} `);
+};
+
+audioVolumeManager.on('activeVolumeTypeChange', activeVolumeTypeChangeCallback);
+
+audioVolumeManager.off('activeVolumeTypeChange', activeVolumeTypeChangeCallback);
 ```
 
 ## AudioVolumeGroupManager<sup>9+</sup>
@@ -10070,6 +10196,46 @@ try {
   let error = err as BusinessError;
   console.error(`Get overflow count Fail: ${error}`);
 }
+```
+
+### setWillMuteWhenInterrupted<sup>20+</sup>
+
+setWillMuteWhenInterrupted(muteWhenInterrupted: boolean): Promise&lt;void&gt;
+
+设置当前录制音频流是否启用静音打断模式。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名     | 类型             | 必填   | 说明                                                      |
+| ---------- |---------------- | ------ |---------------------------------------------------------|
+| muteWhenInterrupted | boolean  | 是  | 设置当前录制音频流是否启用静音打断模式, true表示启用，false表示不启用，保持为默认打断模式。 |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt;| Promise对象。无返回结果的Promise对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800103 | Operation not permit at current state.    |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioRenderer.setWillMuteWhenInterrupted(true).then(() => {
+  console.info('setWillMuteWhenInterrupted Success!');
+}).catch((err: BusinessError) => {
+  console.error(`setWillMuteWhenInterrupted Fail: ${err}`);
+});
 ```
 
 ## ActiveDeviceType<sup>(deprecated)</sup>

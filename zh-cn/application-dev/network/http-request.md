@@ -53,6 +53,7 @@
 
     调用createHttp()方法，创建HttpRequest对象。
 
+    <!--code_no_check-->
     ```ts
     let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
     // 每一个httpRequest对应一个HTTP请求任务，不可复用。
@@ -188,6 +189,7 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
 
     调用createHttp()方法，创建HttpRequest对象。
 
+    <!--code_no_check-->
     ```ts
     let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
     // 每一个httpRequest对应一个HTTP请求任务，不可复用。

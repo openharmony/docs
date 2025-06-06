@@ -270,6 +270,17 @@ type NullableObject = Object | null;
 | `<`      | 如果左操作数小于右操作数，则返回true。    |
 | `<=`     | 如果左操作数小于或等于右操作数，则返回true。 |
 
+`===`与`==`的区别：
+```typescript
+    let a:Object=1;
+    let b:Object='1';
+    // == 只比较值相等
+    console.log(a == b); // true
+    // === 比较值和类型都相等
+    console.log(a === b); // false
+```
+
+
 #### 算术运算符
 
 一元运算符包括：`-`、`+`、`--`、`++`。
@@ -385,6 +396,19 @@ condition ? expression1 : expression2
 
 ```typescript
 let message = Math.random() > 0.5 ? 'Valid' : 'Failed';
+```
+
+`condition`如果是非bool值则会进行隐式转换。
+
+示例：
+
+```typescript
+    console.log('a' ? 'true' : 'false'); // true
+    console.log('' ? 'true' : 'false'); // false
+    console.log(1 ? 'true' : 'false'); // true
+    console.log(0 ? 'true' : 'false'); // false
+    console.log(null ? 'true' : 'false'); // false
+    console.log(undefined ? 'true' : 'false'); // false
 ```
 
 #### `For`语句
