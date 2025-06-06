@@ -107,7 +107,7 @@ finishLoading(uuid: number, state: LoadingRequestError): void
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
 | uuid | number | 是  | 	资源句柄的标识。 |
-| state  | [LoadingRequestError](#loadingrequesterror18) | 是  | 请求的状态。 |
+| state  | [LoadingRequestError](arkts-apis-media-e.md#loadingrequesterror18) | 是  | 请求的状态。 |
 
 **示例：**
 
