@@ -260,7 +260,7 @@ enum ArkUI_ModifierKeyName
 | ARKUI_MODIFIER_KEY_CTRL  | Ctrl.  | 
 | ARKUI_MODIFIER_KEY_SHIFT  | Shift.  | 
 | ARKUI_MODIFIER_KEY_ALT  | Alt.  | 
-| ARKUI_MODIFIER_KEY_FN  | Fn（仅调试使用，通常不上报Fn状态）。  | 
+| ARKUI_MODIFIER_KEY_FN  | Fn（仅调试使用，通常不上报Fn状态）.  | 
 
 
 ### ArkUI_UIInputEvent_Type
