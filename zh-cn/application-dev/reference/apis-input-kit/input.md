@@ -919,8 +919,8 @@ enum InputEvent_AxisEventType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| AXIS_EVENT_TYPE_PINCH  | 双指捏合事件，包含AXIS_TYPE_PINCH和AXIS_TYPE_ROTATE两种轴类型。 | 
-| AXIS_EVENT_TYPE_SCROLL  | 滚轴事件，包含AXIS_TYPE_SCROLL_VERTICAL和AXIS_TYPE_SCROLL_HORIZONTAL两种轴类型， 其中鼠标滚轮事件仅包含AXIS_TYPE_SCROLL_VERTICAL一种轴类型。| 
+| AXIS_EVENT_TYPE_PINCH  | 双指捏合事件，包含[AXIS_TYPE_PINCH](#inputevent_axistype)和[AXIS_TYPE_ROTATE](#inputevent_axistype)两种轴类型。 | 
+| AXIS_EVENT_TYPE_SCROLL  | 滚轴事件，包含[AXIS_TYPE_SCROLL_VERTICAL](#inputevent_axistype)和[AXIS_TYPE_SCROLL_HORIZONTAL](#inputevent_axistype)两种轴类型， <br>其中鼠标滚轮事件仅包含[AXIS_TYPE_SCROLL_VERTICAL](#inputevent_axistype)一种轴类型。| 
 
 
 ### InputEvent_AxisType
@@ -1007,7 +1007,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若添加轴事件监听成功，则返回**INPUT_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若添加轴事件监听成功，则返回[INPUT_SUCCESS](#input_result)；若权限校验失败，则返回[[INPUT_PERMISSION_DENIED](#input_result)](#input_result)；若callback为空，则返回[INPUT_PARAMETER_ERROR](#input_result)；若服务异常，则返回[INPUT_SERVICE_EXCEPTION](#input_result)。
 
 
 ### OH_Input_AddAxisEventMonitorForAll()
@@ -1035,7 +1035,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若添加轴事件监听成功，则返回**INPUT_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若添加轴事件监听成功，则返回[INPUT_SUCCESS](#input_result)；若权限校验失败，则返回[INPUT_PERMISSION_DENIED](#input_result)；若callback为空，则返回[INPUT_PARAMETER_ERROR](#input_result)；若服务异常，则返回[INPUT_SERVICE_EXCEPTION](#input_result)。
 
 
 ### OH_Input_AddHotkeyMonitor()
@@ -1061,15 +1061,15 @@ Input_Result OH_Input_AddHotkeyMonitor (const Input_Hotkey * hotkey, Input_Hotke
 
 OH_Input_AddHotkeyMonitor 函数错误码。 
 
-INPUT_SUCCESS 表示订阅组合按键成功。
+[INPUT_SUCCESS](#input_result) 表示订阅组合按键成功。
 
-INPUT_PARAMETER_ERROR 表示参数检查失败。
+[INPUT_PARAMETER_ERROR](#input_result) 表示参数检查失败。
 
-INPUT_OCCUPIED_BY_SYSTEM 该快捷键已被系统占用，可以通过接口[OH_Input_GetAllSystemHotkeys](#oh_input_getallsystemhotkeys)查询所有的系统快捷键。
+[INPUT_OCCUPIED_BY_SYSTEM](#input_result) 该快捷键已被系统占用，可以通过接口[OH_Input_GetAllSystemHotkeys](#oh_input_getallsystemhotkeys)查询所有的系统快捷键。
 
-INPUT_OCCUPIED_BY_OTHER 已被抢占订阅。
+[INPUT_OCCUPIED_BY_OTHER](#input_result) 已被抢占订阅。
 
-INPUT_DEVICE_NOT_SUPPORTED 表示功能不受支持。
+[INPUT_DEVICE_NOT_SUPPORTED](#input_result) 表示功能不受支持。
 
 ### OH_Input_AddInputEventInterceptor()
 
@@ -1097,15 +1097,15 @@ ohos.permission.INTERCEPT_INPUT_EVENT
 
 **返回：**
 
-若添加输入事件的拦截成功，则返回**INPUT_SUCCESS**；
+若添加输入事件的拦截成功，则返回[INPUT_SUCCESS](#input_result)；
 
-若权限校验失败，则返回INPUT_PERMISSION_DENIED；
+若权限校验失败，则返回[INPUT_PERMISSION_DENIED](#input_result)；
 
-若callback为空，则返回INPUT_PARAMETER_ERROR；
+若callback为空，则返回[INPUT_PARAMETER_ERROR](#input_result)；
 
-若重复添加拦截器，则返回INPUT_REPEAT_INTERCEPTOR；
+若重复添加拦截器，则返回[INPUT_REPEAT_INTERCEPTOR](#input_result)；
  
-若服务异常；则返回INPUT_SERVICE_EXCEPTION。
+若服务异常；则返回[INPUT_SERVICE_EXCEPTION](#input_result)。
 
 
 ### OH_Input_AddKeyEventInterceptor()
@@ -1134,15 +1134,15 @@ ohos.permission.INTERCEPT_INPUT_EVENT
 
 **返回：**
 
-若添加按键事件的拦截成功，则返回**INPUT_SUCCESS**；
+若添加按键事件的拦截成功，则返回[INPUT_SUCCESS](#input_result)；
 
-若权限校验失败，则返回INPUT_PERMISSION_DENIED； 
+若权限校验失败，则返回[INPUT_PERMISSION_DENIED](#input_result)； 
 
-若callback为空，则返回INPUT_PARAMETER_ERROR；
+若callback为空，则返回[INPUT_PARAMETER_ERROR](#input_result)；
 
-若重复添加拦截器，则返回INPUT_REPEAT_INTERCEPTOR； 
+若重复添加拦截器，则返回[INPUT_REPEAT_INTERCEPTOR](#input_result)； 
 
-若服务异常；则返回INPUT_SERVICE_EXCEPTION。
+若服务异常；则返回[INPUT_SERVICE_EXCEPTION](#input_result)。
 
 
 ### OH_Input_AddKeyEventMonitor()
@@ -1170,13 +1170,13 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若添加按键事件监听成功，则返回**INPUT_SUCCESS**；
+若添加按键事件监听成功，则返回[INPUT_SUCCESS](#input_result)；
 
-若权限校验失败，则返回INPUT_PERMISSION_DENIED； 
+若权限校验失败，则返回[INPUT_PERMISSION_DENIED](#input_result)； 
 
-若callback为空，则返回INPUT_PARAMETER_ERROR；
+若callback为空，则返回[INPUT_PARAMETER_ERROR](#input_result)；
 
-若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若服务异常，则返回[INPUT_SERVICE_EXCEPTION](#input_result)。
 
 
 ### OH_Input_AddMouseEventMonitor()
@@ -1204,13 +1204,13 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若添加鼠标事件监听成功，则返回**INPUT_SUCCESS**；
+若添加鼠标事件监听成功，则返回[INPUT_SUCCESS](#input_result)；
 
-若权限校验失败，则返回INPUT_PERMISSION_DENIED； 
+若权限校验失败，则返回[INPUT_PERMISSION_DENIED](#input_result)； 
 
-若callback为空，则返回INPUT_PARAMETER_ERROR；
+若callback为空，则返回[INPUT_PARAMETER_ERROR](#input_result)；
 
-若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若服务异常，则返回[INPUT_SERVICE_EXCEPTION](#input_result)。
 
 
 ### OH_Input_AddTouchEventMonitor()
@@ -1238,7 +1238,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若添加触摸事件监听成功，则返回**INPUT_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若添加触摸事件监听成功，则返回[INPUT_SUCCESS](#input_result)；若权限校验失败，则返回[INPUT_PERMISSION_DENIED](#input_result)；若callback为空，则返回[INPUT_PARAMETER_ERROR](#input_result)；若服务异常，则返回[INPUT_SERVICE_EXCEPTION](#input_result)。
 
 
 ### OH_Input_CancelInjection()
@@ -1276,7 +1276,7 @@ Input_Hotkey** OH_Input_CreateAllSystemHotkeys (int32_t count)
 
 **返回：**
 
-OH_Input_CreateAllSystemHotkey 函数错误码。 INPUT_SUCCESS 表示创建实例数组的双指针成功。
+OH_Input_CreateAllSystemHotkey 函数错误码。 [INPUT_SUCCESS](#input_result) 表示创建实例数组的双指针成功。
 
 
 ### OH_Input_CreateAxisEvent()
@@ -1447,7 +1447,7 @@ Input_Result OH_Input_DestroyAxisEvent (Input_AxisEvent ** axisEvent)
 
 **返回：**
 
-若销毁成功，则返回INPUT_SUCCESS；若axisEvent为NULL或者\*axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
+若销毁成功，则返回[INPUT_SUCCESS](#input_result)；若axisEvent为NULL或者\*axisEvent为NULL，则返回[INPUT_PARAMETER_ERROR](#input_result)。
 
 
 ### OH_Input_DestroyDeviceInfo()
@@ -1594,7 +1594,7 @@ Input_Result OH_Input_GetAllSystemHotkeys (Input_Hotkey ** hotkey, int32_t * cou
 
 OH_Input_GetAllSystemHotkeys 函数错误码。 
 
-若获取成功，返回INPUT_SUCCESS；若获取失败，返回INPUT_PARAMETER_ERROR。
+若获取成功，返回[INPUT_SUCCESS](#input_result)；若获取失败，返回[INPUT_PARAMETER_ERROR](#input_result)。
 
 
 ### OH_Input_GetAxisEventAction()
@@ -1619,7 +1619,7 @@ Input_Result OH_Input_GetAxisEventAction (const Input_AxisEvent * axisEvent, Inp
 
 **返回：**
 
-若获取轴事件的动作成功，则返回**INPUT_SUCCESS**；若axisEvent或者action为NULL，则返回INPUT_PARAMETER_ERROR。
+若获取轴事件的动作成功，则返回[INPUT_SUCCESS](#input_result)；若axisEvent或者action为NULL，则返回[INPUT_PARAMETER_ERROR](#input_result)。
 
 ### OH_Input_GetAxisEventActionTime()
 
@@ -1643,7 +1643,7 @@ Input_Result OH_Input_GetAxisEventActionTime (const Input_AxisEvent * axisEvent,
 
 **返回：**
 
-若获取轴事件发生的时间成功，则返回**INPUT_SUCCESS**；若axisEvent或者actionTime为NULL，则返回INPUT_PARAMETER_ERROR。
+若获取轴事件发生的时间成功，则返回[INPUT_SUCCESS](#input_result)；若axisEvent或者actionTime为NULL，则返回[INPUT_PARAMETER_ERROR](#input_result)。
 
 
 ### OH_Input_GetAxisEventAxisValue()
@@ -1669,7 +1669,7 @@ Input_Result OH_Input_GetAxisEventAxisValue (const Input_AxisEvent * axisEvent, 
 
 **返回：**
 
-若获取轴事件指定轴类型的轴值成功，则返回**INPUT_SUCCESS**；若axisEvent或者axisValue为NULL，则返回INPUT_PARAMETER_ERROR。
+若获取轴事件指定轴类型的轴值成功，则返回[INPUT_SUCCESS](#input_result)；若axisEvent或者axisValue为NULL，则返回[INPUT_PARAMETER_ERROR](#input_result)。
 
 
 ### OH_Input_GetAxisEventDisplayId()
@@ -1694,7 +1694,7 @@ Input_Result OH_Input_GetAxisEventDisplayId (const Input_AxisEvent * axisEvent, 
 
 **返回：**
 
-若获取轴事件的屏幕Id成功，则返回**INPUT_SUCCESS**；若axisEvent或者displayId为NULL，则返回INPUT_PARAMETER_ERROR。
+若获取轴事件的屏幕Id成功，则返回[INPUT_SUCCESS](#input_result)；若axisEvent或者displayId为NULL，则返回[INPUT_PARAMETER_ERROR](#input_result)。
 
 
 ### OH_Input_GetAxisEventDisplayX()
@@ -1719,7 +1719,7 @@ Input_Result OH_Input_GetAxisEventDisplayX (const Input_AxisEvent * axisEvent, f
 
 **返回：**
 
-若获取轴事件的X坐标成功，则返回**INPUT_SUCCESS**；若axisEvent或者displayX为NULL，则返回INPUT_PARAMETER_ERROR。
+若获取轴事件的X坐标成功，则返回[INPUT_SUCCESS](#input_result)；若axisEvent或者displayX为NULL，则返回[INPUT_PARAMETER_ERROR](#input_result)。
 
 
 ### OH_Input_GetAxisEventDisplayY()
@@ -1744,7 +1744,7 @@ Input_Result OH_Input_GetAxisEventDisplayY (const Input_AxisEvent * axisEvent, f
 
 **返回：**
 
-若获取轴事件的Y坐标成功，则返回**INPUT_SUCCESS**；若axisEvent或者displayY为NULL，则返回INPUT_PARAMETER_ERROR。
+若获取轴事件的Y坐标成功，则返回[INPUT_SUCCESS](#input_result)；若axisEvent或者displayY为NULL，则返回[INPUT_PARAMETER_ERROR](#input_result)。
 
 
 ### OH_Input_GetAxisEventSourceType()
@@ -1769,7 +1769,7 @@ Input_Result OH_Input_GetAxisEventSourceType (const Input_AxisEvent * axisEvent,
 
 **返回：**
 
-若获取轴事件源类型成功，则返回**INPUT_SUCCESS**；若axisEvent或者sourceType为NULL，则返回INPUT_PARAMETER_ERROR。
+若获取轴事件源类型成功，则返回[INPUT_SUCCESS](#input_result)；若axisEvent或者sourceType为NULL，则返回[INPUT_PARAMETER_ERROR](#input_result)。
 
 
 ### OH_Input_GetAxisEventType()
@@ -1794,7 +1794,7 @@ Input_Result OH_Input_GetAxisEventType (const Input_AxisEvent * axisEvent, Input
 
 **返回：**
 
-若获取轴事件类型成功，则返回**INPUT_SUCCESS**；若axisEvent或者axisEventType为NULL，则返回INPUT_PARAMETER_ERROR。
+若获取轴事件类型成功，则返回[INPUT_SUCCESS](#input_result)；若axisEvent或者axisEventType为NULL，则返回[INPUT_PARAMETER_ERROR](#input_result)。
 
 
 ### OH_Input_GetAxisEventWindowId()
@@ -1819,7 +1819,7 @@ Input_Result OH_Input_GetAxisEventWindowId (const Input_AxisEvent * axisEvent, i
 
 **返回：**
 
-若获取轴事件的窗口Id成功，则返回**INPUT_SUCCESS**；若axisEvent或者windowId为NULL，则返回INPUT_PARAMETER_ERROR。
+若获取轴事件的窗口Id成功，则返回[INPUT_SUCCESS](#input_result)；若axisEvent或者windowId为NULL，则返回[INPUT_PARAMETER_ERROR](#input_result)。
 
 
 ### OH_Input_GetCapabilities()
@@ -1844,7 +1844,7 @@ Input_Result OH_Input_GetCapabilities (Input_DeviceInfo * deviceInfo, int32_t * 
 
 **返回：**
 
-INPUT_SUCCESS 表示操作成功。 INPUT_PARAMETER_ERROR 表示deviceInfo或者capabilities是空指针。
+[INPUT_SUCCESS](#input_result) 表示操作成功。 [INPUT_PARAMETER_ERROR](#input_result) 表示deviceInfo或者capabilities是空指针。
 
 
 ### OH_Input_GetDevice()
@@ -1869,9 +1869,9 @@ Input_Result OH_Input_GetDevice (int32_t deviceId, Input_DeviceInfo ** deviceInf
 
 **返回：**
 
-INPUT_SUCCESS 表示操作成功。 
+[INPUT_SUCCESS](#input_result) 表示操作成功。 
 
-INPUT_PARAMETER_ERROR 表示deviceInfo为空指针或deviceId无效，可以通过 [OH_Input_GetDeviceIds](#oh_input_getdeviceids) 表示接口查询系统支持的设备ID。
+[INPUT_PARAMETER_ERROR](#input_result) 表示deviceInfo为空指针或deviceId无效，可以通过 [OH_Input_GetDeviceIds](#oh_input_getdeviceids) 表示接口查询系统支持的设备ID。
 
 
 ### OH_Input_GetDeviceAddress()
@@ -1896,7 +1896,7 @@ Input_Result OH_Input_GetDeviceAddress (Input_DeviceInfo * deviceInfo, char ** a
 
 **返回：**
 
-INPUT_SUCCESS 表示操作成功。 INPUT_PARAMETER_ERROR 表示deviceInfo或者address是空指针。
+[INPUT_SUCCESS](#input_result) 表示操作成功。 [INPUT_PARAMETER_ERROR](#input_result) 表示deviceInfo或者address是空指针。
 
 
 ### OH_Input_GetDeviceId()
@@ -1921,7 +1921,7 @@ Input_Result OH_Input_GetDeviceId (Input_DeviceInfo * deviceInfo, int32_t * id )
 
 **返回：**
 
-INPUT_SUCCESS 表示操作成功。 INPUT_PARAMETER_ERROR 表示deviceInfo或者id是空指针。
+[INPUT_SUCCESS](#input_result) 表示操作成功。 [INPUT_PARAMETER_ERROR](#input_result) 表示deviceInfo或者id是空指针。
 
 
 ### OH_Input_GetDeviceIds()
@@ -1947,7 +1947,7 @@ Input_Result OH_Input_GetDeviceIds (int32_t * deviceIds, int32_t inSize, int32_t
 
 **返回：**
 
-INPUT_SUCCESS 表示操作成功。 INPUT_PARAMETER_ERROR 表示deviceIds或outSize为空指针或inSize小于0。
+[INPUT_SUCCESS](#input_result) 表示操作成功。 [INPUT_PARAMETER_ERROR](#input_result) 表示deviceIds或outSize为空指针或inSize小于0。
 
 
 ### OH_Input_GetDeviceName()
@@ -1972,7 +1972,7 @@ Input_Result OH_Input_GetDeviceName (Input_DeviceInfo * deviceInfo, char ** name
 
 **返回：**
 
-INPUT_SUCCESS 表示操作成功。 INPUT_PARAMETER_ERROR 表示deviceInfo或者name是空指针。
+[INPUT_SUCCESS](#input_result) 表示操作成功。 [INPUT_PARAMETER_ERROR](#input_result) 表示deviceInfo或者name是空指针。
 
 
 ### OH_Input_GetDeviceProduct()
@@ -1997,7 +1997,7 @@ Input_Result OH_Input_GetDeviceProduct (Input_DeviceInfo * deviceInfo, int32_t *
 
 **返回：**
 
-INPUT_SUCCESS 表示操作成功。 INPUT_PARAMETER_ERROR 表示deviceInfo或者product是空指针。
+[INPUT_SUCCESS](#input_result) 表示操作成功。 [INPUT_PARAMETER_ERROR](#input_result) 表示deviceInfo或者product是空指针。
 
 
 ### OH_Input_GetDeviceVendor()
@@ -2022,7 +2022,7 @@ Input_Result OH_Input_GetDeviceVendor (Input_DeviceInfo * deviceInfo, int32_t * 
 
 **返回：**
 
-INPUT_SUCCESS 表示操作成功。 INPUT_PARAMETER_ERROR 表示deviceInfo或者vendor是空指针。
+[INPUT_SUCCESS](#input_result) 表示操作成功。 [INPUT_PARAMETER_ERROR](#input_result) 表示deviceInfo或者vendor是空指针。
 
 
 ### OH_Input_GetDeviceVersion()
@@ -2047,7 +2047,7 @@ Input_Result OH_Input_GetDeviceVersion (Input_DeviceInfo * deviceInfo, int32_t *
 
 **返回：**
 
-INPUT_SUCCESS 表示操作成功。 INPUT_PARAMETER_ERROR 表示deviceInfo或者version是空指针。
+[INPUT_SUCCESS](#input_result) 表示操作成功。 [INPUT_PARAMETER_ERROR](#input_result) 表示deviceInfo或者version是空指针。
 
 
 ### OH_Input_GetFinalKey()
@@ -2072,9 +2072,9 @@ Input_Result OH_Input_GetFinalKey (const Input_Hotkey * hotkey, int32_t * finalK
 
 **返回：**
 
-OH_Input_GetfinalKey 函数错误码。 若获取成功，返回INPUT_SUCCESS；
+OH_Input_GetfinalKey 函数错误码。 若获取成功，返回[INPUT_SUCCESS](#input_result)；
 
-若获取失败，返回INPUT_PARAMETER_ERROR。
+若获取失败，返回[INPUT_PARAMETER_ERROR](#input_result)。
 ### OH_Input_GetFunctionKeyState()
 
 ```
@@ -2096,7 +2096,7 @@ Input_Result OH_Input_GetFunctionKeyState (int32_t keyCode, int32_t * state )
 **返回：**
 
 OH_Input_GetFunctionKeyState的执行结果。
-INPUT_SUCCESS 表示获取状态成功。 INPUT_PARAMETER_ERROR 表示参数错误。 INPUT_KEYBOARD_DEVICE_NOT_EXIST 表示键盘设备不存在。
+[INPUT_SUCCESS](#input_result) 表示获取状态成功。 [INPUT_PARAMETER_ERROR](#input_result) 表示参数错误。 [INPUT_KEYBOARD_DEVICE_NOT_EXIST](#input_result) 表示键盘设备不存在。
 
 
 ### OH_Input_GetIntervalSinceLastInput()
@@ -2122,7 +2122,7 @@ Input_Result OH_Input_GetIntervalSinceLastInput (int64_t * timeInterval)
 
 OH_Input_GetIntervalSinceLastInput 函数错误码。 
 
-若获取时间间隔成功，则返回INPUT_SUCCESS； 若获取失败，返回INPUT_SERVICE_EXCEPTION。
+若获取时间间隔成功，则返回[INPUT_SUCCESS](#input_result)； 若获取失败，返回[INPUT_SERVICE_EXCEPTION](#input_result)。
 
 
 ### OH_Input_GetKeyboardType()
@@ -2147,7 +2147,7 @@ Input_Result OH_Input_GetKeyboardType (int32_t deviceId, int32_t * keyboardType 
 
 **返回：**
 
-INPUT_SUCCESS 表示操作成功。 INPUT_PARAMETER_ERROR 表示设备ID为无效值或者keyboardType是空指针。
+[INPUT_SUCCESS](#input_result) 表示操作成功。 [INPUT_PARAMETER_ERROR](#input_result) 表示设备ID为无效值或者keyboardType是空指针。
 
 
 ### OH_Input_GetKeyCode()
@@ -2337,7 +2337,7 @@ Input_Result OH_Input_GetKeyState (struct Input_KeyState * keyState)
 
 **返回：**
 
-如果操作成功，返回Input_Result#INPUT_SUCCESS；否则返回[Input_Result](#input_result)中定义的其他错误代码。
+如果操作成功，返回Input_Result#[INPUT_SUCCESS](#input_result)；否则返回[Input_Result](#input_result)中定义的其他错误代码。
 
 
 ### OH_Input_GetKeySwitch()
@@ -2599,9 +2599,9 @@ Input_Result OH_Input_GetPreKeys (const Input_Hotkey * hotkey, int32_t ** preKey
 
 **返回：**
 
-OH_Input_GetpressedKeys 函数错误码。 若获取成功，返回INPUT_SUCCESS；
+OH_Input_GetpressedKeys 函数错误码。 若获取成功，返回[INPUT_SUCCESS](#input_result)；
 
-若获取失败，返回INPUT_PARAMETER_ERROR。
+若获取失败，返回[INPUT_PARAMETER_ERROR](#input_result)。
 
 ### OH_Input_GetRepeat()
 
@@ -2625,9 +2625,9 @@ Input_Result OH_Input_GetRepeat (const Input_Hotkey * hotkey, bool * isRepeat )
 
 **返回：**
 
-OH_Input_GetIsRepeat 函数错误码。 若获取成功，返回INPUT_SUCCESS；
+OH_Input_GetIsRepeat 函数错误码。 若获取成功，返回[INPUT_SUCCESS](#input_result)；
 
-若获取失败，返回INPUT_PARAMETER_ERROR。
+若获取失败，返回[INPUT_PARAMETER_ERROR](#input_result)。
 
 ### OH_Input_GetTouchEventAction()
 
@@ -2887,7 +2887,7 @@ Input_Result OH_Input_RegisterDeviceListener (Input_DeviceListener * listener)
 
 OH_Input_RegisterDeviceListener 的返回值。 
 
-INPUT_SUCCESS 表示注册成功，INPUT_PARAMETER_ERROR 表示listener 为NULL。
+[INPUT_SUCCESS](#input_result) 表示注册成功，[INPUT_PARAMETER_ERROR](#input_result) 表示listener 为NULL。
 
 ### OH_Input_RemoveAxisEventMonitor()
 
@@ -2915,7 +2915,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若移除轴事件监听成功，则返回**INPUT_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若移除轴事件监听成功，则返回[INPUT_SUCCESS](#input_result)；若权限校验失败，则返回[INPUT_PERMISSION_DENIED](#input_result)；若callback为空或者没有被添加监听，则返回[INPUT_PARAMETER_ERROR](#input_result)；若服务异常，则返回[INPUT_SERVICE_EXCEPTION](#input_result)。
 
 
 ### OH_Input_RemoveAxisEventMonitorForAll()
@@ -2943,7 +2943,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若移除轴事件监听成功，则返回**INPUT_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若移除轴事件监听成功，则返回[INPUT_SUCCESS](#input_result)；若权限校验失败，则返回[INPUT_PERMISSION_DENIED](#input_result)；若callback为空或者没有被添加监听，则返回[INPUT_PARAMETER_ERROR](#input_result)；若服务异常，则返回[INPUT_SERVICE_EXCEPTION](#input_result)。
 
 
 ### OH_Input_RemoveHotkeyMonitor()
@@ -2967,9 +2967,9 @@ Input_Result OH_Input_RemoveHotkeyMonitor (const Input_Hotkey * hotkey, Input_Ho
 
 **返回：**
 
-OH_Input_RemoveHotkeyMonitor 函数错误码。 INPUT_SUCCESS 表示取消订阅组合按键成功。
+OH_Input_RemoveHotkeyMonitor 函数错误码。 [INPUT_SUCCESS](#input_result) 表示取消订阅组合按键成功。
 
-INPUT_PARAMETER_ERROR 表示参数检查失败。
+[INPUT_PARAMETER_ERROR](#input_result) 表示参数检查失败。
 
 
 ### OH_Input_RemoveInputEventInterceptor()
@@ -2991,7 +2991,7 @@ ohos.permission.INTERCEPT_INPUT_EVENT
 
 **返回：**
 
-若移除输入事件拦截成功，则返回**INPUT_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若移除输入事件拦截成功，则返回[INPUT_SUCCESS](#input_result)；若权限校验失败，则返回[INPUT_PERMISSION_DENIED](#input_result)；若服务异常，则返回[INPUT_SERVICE_EXCEPTION](#input_result)。
 
 
 ### OH_Input_RemoveKeyEventInterceptor()
@@ -3013,7 +3013,7 @@ ohos.permission.INTERCEPT_INPUT_EVENT
 
 **返回：**
 
-若移除按键事件拦截成功，则返回**INPUT_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若移除按键事件拦截成功，则返回[INPUT_SUCCESS](#input_result)；若权限校验失败，则返回[INPUT_PERMISSION_DENIED](#input_result)；若服务异常，则返回[INPUT_SERVICE_EXCEPTION](#input_result)。
 
 
 ### OH_Input_RemoveKeyEventMonitor()
@@ -3041,7 +3041,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若移除按键事件监听成功，则返回**INPUT_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若移除按键事件监听成功，则返回[INPUT_SUCCESS](#input_result)；若权限校验失败，则返回[INPUT_PERMISSION_DENIED](#input_result)；若callback为空或者没有被添加监听，则返回[INPUT_PARAMETER_ERROR](#input_result)；若服务异常，则返回[INPUT_SERVICE_EXCEPTION](#input_result)。
 
 
 ### OH_Input_RemoveMouseEventMonitor()
@@ -3069,7 +3069,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若移除鼠标事件监听成功，则返回**INPUT_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若移除鼠标事件监听成功，则返回[INPUT_SUCCESS](#input_result)；若权限校验失败，则返回[INPUT_PERMISSION_DENIED](#input_result)；若callback为空或者没有被添加监听，则返回[INPUT_PARAMETER_ERROR](#input_result)；若服务异常，则返回[INPUT_SERVICE_EXCEPTION](#input_result)。
 
 
 ### OH_Input_RemoveTouchEventMonitor()
@@ -3097,7 +3097,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若移除触摸事件监听成功，则返回**INPUT_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若移除触摸事件监听成功，则返回[INPUT_SUCCESS](#input_result)；若权限校验失败，则返回[INPUT_PERMISSION_DENIED](#input_result)；若callback为空或者没有被添加监听，则返回[INPUT_PARAMETER_ERROR](#input_result)；若服务异常，则返回[INPUT_SERVICE_EXCEPTION](#input_result)。
 
 
 ### OH_Input_SetAxisEventAction()
@@ -3122,7 +3122,7 @@ Input_Result OH_Input_SetAxisEventAction (Input_AxisEvent * axisEvent, InputEven
 
 **返回：**
 
-若设置轴事件的动作成功，则返回**INPUT_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
+若设置轴事件的动作成功，则返回[INPUT_SUCCESS](#input_result)；若axisEvent为NULL，则返回[INPUT_PARAMETER_ERROR](#input_result)。
 
 ### OH_Input_SetAxisEventActionTime()
 
@@ -3146,7 +3146,7 @@ Input_Result OH_Input_SetAxisEventActionTime (Input_AxisEvent * axisEvent, int64
 
 **返回：**
 
-若设置轴事件发生的时间成功，则返回**INPUT_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
+若设置轴事件发生的时间成功，则返回[INPUT_SUCCESS](#input_result)；若axisEvent为NULL，则返回[INPUT_PARAMETER_ERROR](#input_result)。
 
 
 ### OH_Input_SetAxisEventAxisValue()
@@ -3172,7 +3172,7 @@ Input_Result OH_Input_SetAxisEventAxisValue (Input_AxisEvent * axisEvent, InputE
 
 **返回：**
 
-若设置轴事件指定轴类型的轴值成功，则返回**INPUT_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
+若设置轴事件指定轴类型的轴值成功，则返回[INPUT_SUCCESS](#input_result)；若axisEvent为NULL，则返回[INPUT_PARAMETER_ERROR](#input_result)。
 
 
 ### OH_Input_SetAxisEventDisplayId()
@@ -3197,7 +3197,7 @@ Input_Result OH_Input_SetAxisEventDisplayId (Input_AxisEvent * axisEvent, int32_
 
 **返回：**
 
-若设置轴事件的屏幕Id成功，则返回**INPUT_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
+若设置轴事件的屏幕Id成功，则返回[INPUT_SUCCESS](#input_result)；若axisEvent为NULL，则返回[INPUT_PARAMETER_ERROR](#input_result)。
 
 
 ### OH_Input_SetAxisEventDisplayX()
@@ -3222,7 +3222,7 @@ Input_Result OH_Input_SetAxisEventDisplayX (Input_AxisEvent * axisEvent, float d
 
 **返回：**
 
-若设置轴事件的X坐标成功，则返回**INPUT_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
+若设置轴事件的X坐标成功，则返回[INPUT_SUCCESS](#input_result)；若axisEvent为NULL，则返回[INPUT_PARAMETER_ERROR](#input_result)。
 
 
 ### OH_Input_SetAxisEventDisplayY()
@@ -3247,7 +3247,7 @@ Input_Result OH_Input_SetAxisEventDisplayY (Input_AxisEvent * axisEvent, float d
 
 **返回：**
 
-若设置轴事件的Y坐标成功，则返回**INPUT_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
+若设置轴事件的Y坐标成功，则返回[INPUT_SUCCESS](#input_result)；若axisEvent为NULL，则返回[INPUT_PARAMETER_ERROR](#input_result)。
 
 
 ### OH_Input_SetAxisEventSourceType()
@@ -3272,7 +3272,7 @@ Input_Result OH_Input_SetAxisEventSourceType (Input_AxisEvent * axisEvent, Input
 
 **返回：**
 
-若设置轴事件源类型成功，则返回**INPUT_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
+若设置轴事件源类型成功，则返回[INPUT_SUCCESS](#input_result)；若axisEvent为NULL，则返回[INPUT_PARAMETER_ERROR](#input_result)。
 
 
 ### OH_Input_SetAxisEventType()
@@ -3297,7 +3297,7 @@ Input_Result OH_Input_SetAxisEventType (Input_AxisEvent * axisEvent, InputEvent_
 
 **返回：**
 
-若设置轴事件类型成功，则返回**INPUT_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
+若设置轴事件类型成功，则返回[INPUT_SUCCESS](#input_result)；若axisEvent为NULL，则返回[INPUT_PARAMETER_ERROR](#input_result)。
 
 
 ### OH_Input_SetAxisEventWindowId()
@@ -3322,7 +3322,7 @@ Input_Result OH_Input_SetAxisEventWindowId (Input_AxisEvent * axisEvent, int32_t
 
 **返回：**
 
-若设置轴事件的窗口Id成功，则返回**INPUT_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
+若设置轴事件的窗口Id成功，则返回[INPUT_SUCCESS](#input_result)；若axisEvent为NULL，则返回[INPUT_PARAMETER_ERROR](#input_result)。
 
 
 ### OH_Input_SetFinalKey()
@@ -3916,11 +3916,11 @@ Input_Result OH_Input_UnregisterDeviceListener (Input_DeviceListener * listener)
 
 OH_Input_UnregisterDeviceListener 的返回值。
 
-INPUT_SUCCESS 表示取消注册成功。
+[INPUT_SUCCESS](#input_result) 表示取消注册成功。
 
-INPUT_PARAMETER_ERROR 表示listener 为 NULL 或者 listener 未被注册。
+[INPUT_PARAMETER_ERROR](#input_result) 表示listener 为 NULL 或者 listener 未被注册。
 
-INPUT_SERVICE_EXCEPTION 表示由于服务异常调用失败。
+[INPUT_SERVICE_EXCEPTION](#input_result) 表示由于服务异常调用失败。
 
 
 ### OH_Input_UnregisterDeviceListeners()
@@ -3940,4 +3940,4 @@ Input_Result OH_Input_UnregisterDeviceListeners ()
 
 OH_Input_UnregisterDeviceListener 的返回值。 
 
-INPUT_SUCCESS 表示调用成功，INPUT_SERVICE_EXCEPTION 表示由于服务异常调用失败。
+[INPUT_SUCCESS](#input_result) 表示调用成功，[INPUT_SERVICE_EXCEPTION](#input_result) 表示由于服务异常调用失败。
