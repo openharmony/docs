@@ -1075,7 +1075,7 @@ isFocusModeSupported(afMode: FocusMode): boolean
 查询对焦模式是否支持。
 
 > **说明：**
->从 API version 10开始支持，从API version 11开始废弃。建议使用[Focus.isFocusModeSupported](arkts-apis-camera-AutoExposure.md#isfocusmodesupported11)替代。
+>从 API version 10开始支持，从API version 11开始废弃。建议使用[Focus.isFocusModeSupported](arkts-apis-camera-FocusQuery.md#isfocusmodesupported11)替代。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 

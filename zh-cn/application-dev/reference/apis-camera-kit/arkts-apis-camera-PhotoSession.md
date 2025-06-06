@@ -241,7 +241,7 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 | 参数名     | 类型                   | 必填 | 说明                       |
 | -------- | ----------------------- | ---- | ------------------------ |
 | type     | string                  | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
 
 **示例：**
 

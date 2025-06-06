@@ -14,7 +14,7 @@ setFocusMode(afMode: FocusMode): void
 
 设置对焦模式。
 
-进行设置之前，需要先检查设备是否支持指定的焦距模式，可使用方法[isFocusModeSupported](arkts-apis-camera-Focus.md#isfocusmodesupported11)。
+进行设置之前，需要先检查设备是否支持指定的焦距模式，可使用方法[isFocusModeSupported](arkts-apis-camera-FocusQuery.md#isfocusmodesupported11)。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
