@@ -818,6 +818,15 @@
           <!--Del-->
           - [卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
           <!--DelEnd-->
+        - 互动卡片开发
+          - [互动卡片概述](form/arkts-ui-liveform-overview.md)
+          - [趣味交互类型互动卡片开发指导](form/arkts-ui-liveform-funinteraction-development.md)
+          - 场景动效类型互动卡片
+            - [场景动效类型互动卡片概述](form/arkts-ui-liveform-sceneanimation-overview.md)
+            - [场景动效类型互动卡片开发指导](form/arkts-ui-liveform-sceneanimation-development.md)
+            <!--Del-->
+            - [场景动效类型互动卡片开发指导（系统应用）](form/arkts-ui-liveform-sceneanimation-development-sys.md)
+            <!--DelEnd-->
         - [开发基于JS UI的卡片](form/js-ui-widget-development.md)
       - [服务卡片开发指导（FA模型）](form/widget-development-fa.md)
     - IME Kit（输入法开发服务）<!--ime-kit-->
