@@ -1,4 +1,4 @@
-# Enums (arkts-apis-media-e.md)
+# Enums
 
 ## StateChangeReason<sup>9+</sup>
 
