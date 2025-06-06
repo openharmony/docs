@@ -21,9 +21,9 @@ import { LiveFormExtensionAbility } from '@kit.FormKit';
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Ability.Form
-  | 名称 | 类型    | 只读 | 可选  |说明|
-  | ------ | ------ | ---- | ---- | ---- |
-  | context |  [LiveFormExtensionContext](./js-apis-application-LiveFormExtensionContext.md) | 否   | 否 |LiveFormExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。|
+| 名称 | 类型    | 只读 | 可选  |说明|
+| ------ | ------ | ---- | ---- | ---- |
+| context |  [LiveFormExtensionContext](./js-apis-application-LiveFormExtensionContext.md) | 否   | 否 |LiveFormExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。|
 
 ### onLiveFormCreate
 
@@ -48,8 +48,7 @@ LiveFormExtensionAbility界面内容对象创建后调用。
 
 ```ts
 import { UIExtensionContentSession } from '@kit.AbilityKit';
-import { LiveFormExtensionAbility } from '@kit.FormKit';
-import { LiveFormInfo } from '@ohos.app.form.LiveFormExtensionAbility';
+import { LiveFormExtensionAbility, LiveFormInfo } from '@kit.FormKit';
 
 const TAG: string = '[testTag] LiveFormExtAbility';
 
@@ -81,8 +80,7 @@ LiveFormExtensionAbility生命周期回调，在销毁时回调，执行资源�
 **示例：**
 
 ```ts
-import { LiveFormExtensionAbility } from '@kit.FormKit';
-import { LiveFormInfo } from '@ohos.app.form.LiveFormExtensionAbility';
+import { LiveFormExtensionAbility, LiveFormInfo } from '@kit.FormKit';
 
 const TAG: string = '[testTag] LiveFormExtAbility';
 
@@ -106,3 +104,4 @@ export default class LiveFormExtAbility extends LiveFormExtensionAbility {
 | ------ | ------ | ---- | ---- | -------- |
 | formId | string | 否 | 否 | 卡片id。 |
 | rect | [formInfo.Rect](js-apis-app-form-formInfo.md#rect20) | 否 | 否 | 卡片位置和大小信息。 |
+| borderRadius | number | 否 | 否 | 卡片圆角。 |

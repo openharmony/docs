@@ -100,7 +100,7 @@ export default class MySystemLiveFormExtensionAbility extends LiveFormExtensionA
     let borderRadius: number = liveFormInfo.borderRadius;
     storage.setOrCreate('borderRadius', borderRadius);
     console.log(`MySystemLiveFormExtensionAbility onSessionCreate formId: ${formId}, borderRadius: ${borderRadius}` +
-      `, formRect: ${formRect}`);
+      `, formRect: ${JSON.stringify(formRect)}`);
 
     // 加载提供方页面
     session.loadContent('mysystemliveformextensionability/pages/MySystemLiveFormPage', storage);
