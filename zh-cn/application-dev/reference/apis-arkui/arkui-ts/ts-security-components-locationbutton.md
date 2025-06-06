@@ -162,12 +162,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct Index {
   handleLocationButtonClick: LocationButtonCallback =
-    (event: ClickEvent, result: LocationButtonOnClickResult, error: BusinessError<void>) => {
+    (event: ClickEvent, result: LocationButtonOnClickResult, error?: BusinessError<void>) => {
       if (result == LocationButtonOnClickResult.SUCCESS) {
         console.info("success");
       } else {
-        console.error("errCode: " + error.code);
-        console.error("errMessage: " + error.message);
+        console.error("errCode: " + error?.code);
+        console.error("errMessage: " + error?.message);
       }
     };
 
