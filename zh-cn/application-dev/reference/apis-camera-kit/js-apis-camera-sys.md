@@ -4158,6 +4158,8 @@ on(type: 'lightStatusChange', callback: AsyncCallback\<LightStatus\>): void
 **示例**：
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function handleLightStatusCallback(err: BusinessError, lightStatus: camera.LightStatus) : void {
   if (err !== undefined && err.code !== 0) {
     console.error(`Callback Error, errorCode: ${err.code}`);
@@ -4205,6 +4207,8 @@ off(type: 'lightStatusChange', callback?: AsyncCallback\<LightStatus\>): void
 **示例**：
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function LightStatusCallback(err: BusinessError, lightStatus: camera.LightStatus) : void {
   if (err !== undefined && err.code !== 0) {
     console.error(`Callback Error, errorCode: ${err.code}`);

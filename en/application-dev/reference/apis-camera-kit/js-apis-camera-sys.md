@@ -708,7 +708,7 @@ Releases depth data output resources.
 **Example**
 
 ```ts
-async function releaseDepthData(depthData: camera.DepthData): Promise<void> {
+function releaseDepthData(depthData: camera.DepthData): void {
   await depthData.release();
 }
 ```
@@ -1209,8 +1209,6 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 function isSketchSupported(previewOutput: camera.PreviewOutput): boolean {
   try {
     let isSupported: boolean = previewOutput.isSketchSupported();
@@ -2809,19 +2807,17 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
-import  { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function getZoomPointInfos(photoSessionForSys: camera.PhotoSessionForSys): Array<camera.ZoomPointInfo> {
-  let zoomPointInfos: Array<camera.ZoomPointInfo> = [];
   try {
-    zoomPointInfos = photoSessionForSys.getZoomPointInfos();
+    let zoomPointInfos: Array<ZoomPointInfo> = photoSessionForSys.getZoomPointInfos();
+	return zoomPointInfos;
   } catch (error) {
     // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
     console.error(`The getZoomPointInfos call failed. error code: ${err.code}`);
   }
-  return zoomPointInfos;
 }
 ```
 
@@ -4220,23 +4216,22 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-function handleLightStatusCallback(err: BusinessError, lightStatus: camera.LightStatus) : void {
-  if (err !== undefined && err.code !== 0) {
-    console.error(`Callback Error, errorCode: ${err.code}`);
-    return;
-  }
-  console.info(`lightStatus: ${lightStatus}`);
-}
-
-function handleLightStatusOn(mSession: camera.VideoSessionForSys): void {
-  console.info('handleLightStatusOn');
-  try {
-    mSession.on('lightStatusChange', handleLightStatusCallback);
-  } catch (error) {
-    let err = error as BusinessError;
-    console.error(`handleLightStatusOn err:${err}`);
-  }
-}
+    private handleLightStatusCallback: AsyncCallback<camera.LightStatus> =
+    (err, data: camera.LightStatus) => {
+      if (err) {
+        Logger.error(TAG, `handleLightStatusOff err: ${simpleStringify(err)}}`);
+        return;
+      }
+      Logger.info(TAG, `lightStatusCallback: ${data}`);
+    };
+    public handleLightStatusOn(): void {
+        Logger.info(TAG, 'handleLightStatusOn');
+        try {
+          this.mSession?.on('lightStatusChange', this.handleLightStatusCallback);
+        } catch (e) {
+          Logger.error(TAG, `handleLightStatusOn err:${e}`);
+        }
+    }
 ```
 
 ### off('lightStatusChange')<sup>18+</sup>
@@ -4267,23 +4262,22 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-function LightStatusCallback(err: BusinessError, lightStatus: camera.LightStatus) : void {
-  if (err !== undefined && err.code !== 0) {
-    console.error(`Callback Error, errorCode: ${err.code}`);
-    return;
+    private handleLightStatusCallback: AsyncCallback<camera.LightStatus> =
+    (err, data: camera.LightStatus) => {
+      if (err) {
+        Logger.error(TAG, `handleLightStatusOff err: ${simpleStringify(err)}}`);
+        return;
+      }
+      Logger.info(TAG, `lightStatusCallback: ${data}`);
+    };
+    public handleLightStatusOff(): void {
+        Logger.info(TAG, 'handleLightStatusOff');
+        try {
+          this.mSession?.off('lightStatusChange');
+        } catch (e) {
+          Logger.error(TAG, `handleLightStatusOff err:${e}`);
+        }
   }
-  console.info(`lightStatus: ${lightStatus}`);
-}
-
-function handleLightStatusOff(mSession: camera.VideoSessionForSys): void {
-  console.info('handleLightStatusOff');
-  try {
-    mSession.on('lightStatusChange', LightStatusCallback);
-  } catch (error) {
-    let err = error as BusinessError;
-    console.error(`handleLightStatusOff err:${err}`);
-  }
-}
 ```
 
 ## PortraitPhotoSession<sup>11+</sup>

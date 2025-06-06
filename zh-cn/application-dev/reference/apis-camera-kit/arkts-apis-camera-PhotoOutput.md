@@ -1031,6 +1031,8 @@ getActiveProfile(): Profile
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function testGetActiveProfile(photoOutput: camera.PhotoOutput): camera.Profile | undefined {
   let activeProfile: camera.Profile | undefined = undefined;
   try {

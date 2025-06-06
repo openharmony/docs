@@ -455,6 +455,8 @@ getActiveProfile(): VideoProfile
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function testGetActiveProfile(videoOutput: camera.VideoOutput): camera.Profile | undefined {
   let activeProfile: camera.VideoProfile | undefined = undefined;
   try {

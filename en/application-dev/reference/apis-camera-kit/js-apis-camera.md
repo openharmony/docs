@@ -1273,7 +1273,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { camera } from '@kit.CameraKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function getCameraDevice(cameraManager: camera.CameraManager, position: camera.CameraPosition, type: camera.CameraType): void {
   try {
@@ -1319,12 +1318,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { camera } from '@kit.CameraKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDeviceArray: Array<camera.CameraDevice>): void {
   try {
-    let cameraConcurrentInfos: Array<camera.CameraConcurrentInfo> = [];
-    cameraConcurrentInfos = cameraManager.getCameraConcurrentInfos(cameraDeviceArray);
+    let cameraconcurrentinfos: Array<camera.CameraConcurrentInfo> = [];
+    cameraconcurrentinfos = cameraManager.getCameraConcurrentInfos(cameraDeviceArray);
   } catch (error) {
     // If the operation fails, an error code is returned and processed.
     let err = error as BusinessError;
@@ -2267,8 +2265,6 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 function testGetActiveProfile(previewOutput: camera.PreviewOutput): camera.Profile | undefined {
   let activeProfile: camera.Profile | undefined = undefined;
   try {
@@ -2318,8 +2314,6 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 function testGetPreviewRotation(previewOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
   let previewRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
@@ -2360,8 +2354,6 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 function testSetPreviewRotation(previewOutput: camera.PreviewOutput, previewRotation : camera.ImageRotation, isDisplayLocked: boolean): void {
   try {
     previewOutput.setPreviewRotation(previewRotation, isDisplayLocked);
@@ -3495,8 +3487,6 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 function testGetActiveProfile(photoOutput: camera.PhotoOutput): camera.Profile | undefined {
   let activeProfile: camera.Profile | undefined = undefined;
   try {
@@ -4037,8 +4027,6 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 function testGetActiveProfile(videoOutput: camera.VideoOutput): camera.Profile | undefined {
   let activeProfile: camera.VideoProfile | undefined = undefined;
   try {
