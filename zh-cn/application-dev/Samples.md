@@ -3253,7 +3253,6 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.12.2
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/LaunguageBaseClassLibrary/ConcurrentModule)
 
 #### 语言基础类库
 
@@ -3346,7 +3345,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API10版本SDK，版本号：4.0.8.3
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/LanguageBaseClassLibrary/LanguageBaseClassLibrary)
 
 #### 压缩与解压
 
@@ -3374,7 +3373,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/LaunguageBaseClassLibrary/ZipLib)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/LanguageBaseClassLibrary/ZipLib)
 
 
 
