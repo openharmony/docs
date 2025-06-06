@@ -69,7 +69,7 @@ setTextUndefinedGlyphDisplay(noGlyphShow: TextUndefinedGlyphDisplay): void
 此配置会影响显示字体中未定义字符的方式：
 
 - 默认行为遵循字体的内部.notdef字形设计。
-- 豆腐块明确将缺失的字符显示为可见方块。
+- 豆腐块强制将缺失的字符显示为可见方块。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -294,7 +294,7 @@ struct Index {
 
 ## TextUndefinedGlyphDisplay<sup>20+</sup>
 
-文本未定义字符显示方式枚举。
+文本未定义字形的显示方式枚举。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -760,9 +760,9 @@ struct RenderTest {
 ### unloadFontSync<sup>20+</sup>
 unloadFontSync(name: string): void
 
-同步卸载自定义字体。此API同步返回结果。
+卸载指定的自定义字体，此接口为同步接口。
 
-通过此API卸载字体别名所对应的自定义字体后，对应的自定义字体将不再可用。
+使用此接口卸载字体别名所对应的自定义字体后，对应的自定义字体将不再可用。
 
 所有使用该字体别名的排版对象都应该被销毁重建。
 
@@ -813,9 +813,9 @@ struct UnloadFontSyncTest {
 ### unloadFont<sup>20+</sup>
 unloadFont(name: string): Promise\<void>
 
-异步卸载自定义字体。使用Promise异步回调。
+卸载指定的自定义字体。使用Promise异步回调。
 
-通过此API卸载字体别名所对应的自定义字体后，对应的自定义字体将不再可用。
+使用此接口卸载字体别名所对应的自定义字体后，对应的自定义字体将不再可用。
 
 所有使用该字体别名的排版对象都应该被销毁重建。
 
