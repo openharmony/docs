@@ -22,7 +22,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[Input_InterceptorEventCallback](_input___interceptor_event_callback.md) | 拦截回调事件结构体，拦截鼠标事件、触摸事件和轴事件。  | 
+| struct&nbsp;&nbsp;[Input_InterceptorEventCallback](_input___interceptor_event_callback.md) | 拦截回调事件结构体，拦截鼠标事件、触屏事件和轴事件。  | 
 | struct&nbsp;&nbsp;[Input_DeviceListener](_input___device_listener.md) | 定义一个结构体用于监听设备热插拔。  | 
 
 
@@ -38,23 +38,23 @@
 | typedef enum [Input_MouseEventAction](#input_mouseeventaction) [Input_MouseEventAction](#input_mouseeventaction) | 鼠标动作的枚举值。  | 
 | typedef enum [InputEvent_MouseAxis](#inputevent_mouseaxis) [InputEvent_MouseAxis](#inputevent_mouseaxis) | 鼠标轴事件类型。  | 
 | typedef enum [Input_MouseEventButton](#input_mouseeventbutton) [Input_MouseEventButton](#input_mouseeventbutton) | 鼠标按键的枚举值。  | 
-| typedef enum [Input_TouchEventAction](#input_toucheventaction) [Input_TouchEventAction](#input_toucheventaction) | 触摸动作的枚举值。  | 
+| typedef enum [Input_TouchEventAction](#input_toucheventaction) [Input_TouchEventAction](#input_toucheventaction) | 触屏动作的枚举值。  | 
 | typedef enum [InputEvent_SourceType](#inputevent_sourcetype) [InputEvent_SourceType](#inputevent_sourcetype) | 输入事件源类型。  | 
 | typedef enum [Input_KeyboardType](#input_keyboardtype) [Input_KeyboardType](#input_keyboardtype) | 输入设备的键盘类型。  | 
 | typedef struct [Input_KeyState](#input_keystate) [Input_KeyState](#input_keystate) | 定义按键信息，用于标识按键行为。例如，“Ctrl”按键信息包含键值和键类型。  | 
 | typedef struct [Input_KeyEvent](#input_keyevent) [Input_KeyEvent](#input_keyevent) | 要注入的按键事件。  | 
 | typedef struct [Input_MouseEvent](#input_mouseevent) [Input_MouseEvent](#input_mouseevent) | 要注入的鼠标事件。  | 
-| typedef struct [Input_TouchEvent](#input_touchevent) [Input_TouchEvent](#input_touchevent) | 要注入的触摸事件。  | 
+| typedef struct [Input_TouchEvent](#input_touchevent) [Input_TouchEvent](#input_touchevent) | 要注入的触屏事件。  | 
 | typedef struct [Input_AxisEvent](#input_axisevent) [Input_AxisEvent](#input_axisevent) | 轴事件。  | 
 | typedef enum [Input_Result](#input_result) [Input_Result](#input_result) | 错误码枚举值。  | 
 | typedef void(\* [Input_KeyEventCallback](#input_keyeventcallback)) (const [Input_KeyEvent](#input_keyevent) \*keyEvent) | 按键事件的回调函数，keyEvent的生命周期为回调函数内。  | 
 | typedef void(\* [Input_MouseEventCallback](#input_mouseeventcallback)) (const [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 鼠标事件的回调函数，mouseEvent的生命周期为回调函数内。  | 
-| typedef void(\* [Input_TouchEventCallback](#input_toucheventcallback)) (const [Input_TouchEvent](#input_touchevent) \*touchEvent) | 触摸事件的回调函数，touchEvent的生命周期为回调函数内。  | 
+| typedef void(\* [Input_TouchEventCallback](#input_toucheventcallback)) (const [Input_TouchEvent](#input_touchevent) \*touchEvent) | 触屏事件的回调函数，touchEvent的生命周期为回调函数内。  | 
 | typedef void(\* [Input_AxisEventCallback](#input_axiseventcallback)) (const [Input_AxisEvent](#input_axisevent) \*axisEvent) | 轴事件的回调函数，axisEvent的生命周期为回调函数内。  | 
 | typedef void(\* [Input_HotkeyCallback](#input_hotkeycallback)) ([Input_Hotkey](#input_hotkey) \*hotkey) | 回调函数，用于回调快捷键事件。  | 
 | typedef void(\* [Input_DeviceAddedCallback](#input_deviceaddedcallback)) (int32_t deviceId) | 回调函数，用于回调输入设备的热插事件。  | 
 | typedef void(\* [Input_DeviceRemovedCallback](#input_deviceremovedcallback)) (int32_t deviceId) | 回调函数，用于回调输入设备的热拔事件。  | 
-| typedef struct [Input_InterceptorEventCallback](_input___interceptor_event_callback.md) [Input_InterceptorEventCallback](#input_interceptoreventcallback) | 拦截回调事件结构体，拦截鼠标事件、触摸事件和轴事件。  | 
+| typedef struct [Input_InterceptorEventCallback](_input___interceptor_event_callback.md) [Input_InterceptorEventCallback](#input_interceptoreventcallback) | 拦截回调事件结构体，拦截鼠标事件、触屏事件和轴事件。  | 
 | typedef struct [Input_DeviceListener](_input___device_listener.md) [Input_DeviceListener](#input_devicelistener) |定义一个结构体用于监听设备热插拔。  | 
 | typedef struct [Input_InterceptorOptions](#input_interceptoroptions) [Input_InterceptorOptions](#input_interceptoroptions) | 事件拦截选项。  | 
 | typedef struct [Input_Hotkey](#input_hotkey) [Input_Hotkey](#input_hotkey) | 定义快捷键结构体。  | 
@@ -73,7 +73,7 @@
 | [Input_MouseEventAction](#input_mouseeventaction) {<br/>MOUSE_ACTION_CANCEL = 0, MOUSE_ACTION_MOVE = 1, MOUSE_ACTION_BUTTON_DOWN = 2, MOUSE_ACTION_BUTTON_UP = 3,<br/>MOUSE_ACTION_AXIS_BEGIN = 4, MOUSE_ACTION_AXIS_UPDATE = 5, MOUSE_ACTION_AXIS_END = 6<br/>} | 鼠标动作的枚举值。  | 
 | [InputEvent_MouseAxis](#inputevent_mouseaxis) { MOUSE_AXIS_SCROLL_VERTICAL = 0, MOUSE_AXIS_SCROLL_HORIZONTAL = 1 } | 鼠标轴事件类型。  | 
 | [Input_MouseEventButton](#input_mouseeventbutton) {<br/>MOUSE_BUTTON_NONE = -1, MOUSE_BUTTON_LEFT = 0, MOUSE_BUTTON_MIDDLE = 1, MOUSE_BUTTON_RIGHT = 2,<br/>MOUSE_BUTTON_FORWARD = 3, MOUSE_BUTTON_BACK = 4<br/>} | 鼠标按键的枚举值。  | 
-| [Input_TouchEventAction](#input_toucheventaction) { TOUCH_ACTION_CANCEL = 0, TOUCH_ACTION_DOWN = 1, TOUCH_ACTION_MOVE = 2, TOUCH_ACTION_UP = 3 } | 触摸动作的枚举值。  | 
+| [Input_TouchEventAction](#input_toucheventaction) { TOUCH_ACTION_CANCEL = 0, TOUCH_ACTION_DOWN = 1, TOUCH_ACTION_MOVE = 2, TOUCH_ACTION_UP = 3 } | 触屏动作的枚举值。  | 
 | [InputEvent_SourceType](#inputevent_sourcetype) { SOURCE_TYPE_MOUSE = 1, SOURCE_TYPE_TOUCHSCREEN = 2, SOURCE_TYPE_TOUCHPAD = 3 } | 输入事件源类型。  | 
 | [Input_KeyboardType](#input_keyboardtype) {<br/>KEYBOARD_TYPE_NONE = 0, KEYBOARD_TYPE_UNKNOWN = 1, KEYBOARD_TYPE_ALPHABETIC = 2, KEYBOARD_TYPE_DIGITAL = 3,<br/>KEYBOARD_TYPE_STYLUS = 4, KEYBOARD_TYPE_REMOTE_CONTROL = 5<br/>} | 输入设备的键盘类型。  | 
 | [Input_Result](#input_result) {<br/>INPUT_SUCCESS = 0, INPUT_PERMISSION_DENIED = 201, INPUT_NOT_SYSTEM_APPLICATION = 202, INPUT_PARAMETER_ERROR = 401, INPUT_DEVICE_NOT_SUPPORTED = 801,<br/>INPUT_SERVICE_EXCEPTION = 3800001, INPUT_KEYBOARD_DEVICE_NOT_EXIST = 3900002, INPUT_REPEAT_INTERCEPTOR = 4200001, <br/>INPUT_OCCUPIED_BY_SYSTEM = 4200002, INPUT_OCCUPIED_BY_OTHER = 4200003<br/>} | 错误码枚举值。  | 
@@ -127,7 +127,7 @@
 | int32_t [OH_Input_GetMouseEventWindowId](#oh_input_getmouseeventwindowid) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 获取鼠标事件的窗口Id。  | 
 | void [OH_Input_SetMouseEventDisplayId](#oh_input_setmouseeventdisplayid) (struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent, int32_t displayId) | 设置鼠标事件的屏幕Id。  | 
 | int32_t [OH_Input_GetMouseEventDisplayId](#oh_input_getmouseeventdisplayid) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 获取鼠标事件的屏幕Id。  | 
-| int32_t [OH_Input_InjectTouchEvent](#oh_input_injecttouchevent) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 注入触摸事件。  | 
+| int32_t [OH_Input_InjectTouchEvent](#oh_input_injecttouchevent) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 注入触屏事件。  | 
 | struct [Input_TouchEvent](#input_touchevent) \* [OH_Input_CreateTouchEvent](#oh_input_createtouchevent) () | 创建触屏事件对象。  | 
 | void [OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent) (struct [Input_TouchEvent](#input_touchevent) \*\*touchEvent) | 销毁触屏事件对象。  | 
 | void [OH_Input_SetTouchEventAction](#oh_input_settoucheventaction) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int32_t action) | 设置触屏事件的动作。  | 
@@ -138,8 +138,8 @@
 | int32_t [OH_Input_GetTouchEventDisplayX](#oh_input_gettoucheventdisplayx) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触屏事件的屏幕X坐标。  | 
 | void [OH_Input_SetTouchEventDisplayY](#oh_input_settoucheventdisplayy) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int32_t displayY) | 设置触屏事件的屏幕Y坐标。  | 
 | int32_t [OH_Input_GetTouchEventDisplayY](#oh_input_gettoucheventdisplayy) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触屏事件的屏幕Y坐标。  | 
-| void [OH_Input_SetTouchEventActionTime](#oh_input_settoucheventactiontime) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int64_t actionTime) | 设置触摸事件发生的时间。  | 
-| int64_t [OH_Input_GetTouchEventActionTime](#oh_input_gettoucheventactiontime) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触摸事件发生的时间。  | 
+| void [OH_Input_SetTouchEventActionTime](#oh_input_settoucheventactiontime) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int64_t actionTime) | 设置触屏事件发生的时间。  | 
+| int64_t [OH_Input_GetTouchEventActionTime](#oh_input_gettoucheventactiontime) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触屏事件发生的时间。  | 
 | void [OH_Input_SetTouchEventWindowId](#oh_input_settoucheventwindowid) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int32_t windowId) | 设置触屏事件的窗口Id。  | 
 | int32_t [OH_Input_GetTouchEventWindowId](#oh_input_gettoucheventwindowid) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触屏事件的窗口Id。  | 
 | void [OH_Input_SetTouchEventDisplayId](#oh_input_settoucheventdisplayid) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int32_t displayId) | 设置触屏事件的屏幕Id。  | 
@@ -167,18 +167,18 @@
 | [Input_Result](#input_result) [OH_Input_GetAxisEventDisplayId](#oh_input_getaxiseventdisplayid) (const [Input_AxisEvent](#input_axisevent) \*axisEvent, int32_t \*displayId) | 获取轴事件的屏幕Id。  | 
 | [Input_Result](#input_result) [OH_Input_AddKeyEventMonitor](#oh_input_addkeyeventmonitor) ([Input_KeyEventCallback](#input_keyeventcallback) callback) | 添加按键事件监听。  | 
 | [Input_Result](#input_result) [OH_Input_AddMouseEventMonitor](#oh_input_addmouseeventmonitor) ([Input_MouseEventCallback](#input_mouseeventcallback) callback) | 添加鼠标事件监听,包含鼠标点击，移动，不包含滚轮事件，滚轮事件归属于轴事件。  | 
-| [Input_Result](#input_result) [OH_Input_AddTouchEventMonitor](#oh_input_addtoucheventmonitor) ([Input_TouchEventCallback](#input_toucheventcallback) callback) | 添加触摸事件监听。  | 
+| [Input_Result](#input_result) [OH_Input_AddTouchEventMonitor](#oh_input_addtoucheventmonitor) ([Input_TouchEventCallback](#input_toucheventcallback) callback) | 添加触屏事件监听。  | 
 | [Input_Result](#input_result) [OH_Input_AddAxisEventMonitorForAll](#oh_input_addaxiseventmonitorforall) ([Input_AxisEventCallback](#input_axiseventcallback) callback) | 添加所有类型轴事件监听，轴事件类型定义在[InputEvent_AxisEventType](#inputevent_axiseventtype)中。  | 
 | [Input_Result](#input_result) [OH_Input_AddAxisEventMonitor](#oh_input_addaxiseventmonitor) ([InputEvent_AxisEventType](#inputevent_axiseventtype) axisEventType, [Input_AxisEventCallback](#input_axiseventcallback) callback) | 添加指定类型的轴事件监听，轴事件类型定义在[InputEvent_AxisEventType](#inputevent_axiseventtype)中。  | 
 | [Input_Result](#input_result) [OH_Input_RemoveKeyEventMonitor](#oh_input_removekeyeventmonitor) ([Input_KeyEventCallback](#input_keyeventcallback) callback) | 移除按键事件监听。  | 
 | [Input_Result](#input_result) [OH_Input_RemoveMouseEventMonitor](#oh_input_removemouseeventmonitor) ([Input_MouseEventCallback](#input_mouseeventcallback) callback) | 移除鼠标事件监听。  | 
-| [Input_Result](#input_result) [OH_Input_RemoveTouchEventMonitor](#oh_input_removetoucheventmonitor) ([Input_TouchEventCallback](#input_toucheventcallback) callback) | 移除触摸事件监听。  | 
+| [Input_Result](#input_result) [OH_Input_RemoveTouchEventMonitor](#oh_input_removetoucheventmonitor) ([Input_TouchEventCallback](#input_toucheventcallback) callback) | 移除触屏事件监听。  | 
 | [Input_Result](#input_result) [OH_Input_RemoveAxisEventMonitorForAll](#oh_input_removeaxiseventmonitorforall) ([Input_AxisEventCallback](#input_axiseventcallback) callback) | 移除所有类型轴事件监听。  | 
 | [Input_Result](#input_result) [OH_Input_RemoveAxisEventMonitor](#oh_input_removeaxiseventmonitor) ([InputEvent_AxisEventType](#inputevent_axiseventtype) axisEventType, [Input_AxisEventCallback](#input_axiseventcallback) callback) | 移除指定类型轴事件监听，轴事件类型定义在[InputEvent_AxisEventType](#inputevent_axiseventtype)中。  | 
 | [Input_Result](#input_result) [OH_Input_AddKeyEventInterceptor](#oh_input_addkeyeventinterceptor) ([Input_KeyEventCallback](#input_keyeventcallback) callback, [Input_InterceptorOptions](#input_interceptoroptions) \*option) | 添加按键事件的拦截，重复添加只有第一次生效。仅在应用获焦时拦截按键事件。  | 
-| [Input_Result](#input_result) [OH_Input_AddInputEventInterceptor](#oh_input_addinputeventinterceptor) ([Input_InterceptorEventCallback](_input___interceptor_event_callback.md) \*callback, [Input_InterceptorOptions](#input_interceptoroptions) \*option) | 添加输入事件拦截，包括鼠标、触摸和轴事件，重复添加只有第一次生效。仅命中应用窗口时拦截输入事件。  | 
+| [Input_Result](#input_result) [OH_Input_AddInputEventInterceptor](#oh_input_addinputeventinterceptor) ([Input_InterceptorEventCallback](_input___interceptor_event_callback.md) \*callback, [Input_InterceptorOptions](#input_interceptoroptions) \*option) | 添加输入事件拦截，包括鼠标、触屏和轴事件，重复添加只有第一次生效。仅命中应用窗口时拦截输入事件。  | 
 | [Input_Result](#input_result) [OH_Input_RemoveKeyEventInterceptor](#oh_input_removekeyeventinterceptor) (void) | 移除按键事件拦截。  | 
-| [Input_Result](#input_result) [OH_Input_RemoveInputEventInterceptor](#oh_input_removeinputeventinterceptor) (void) | 移除输入事件拦截，包括鼠标、触摸和轴事件。  | 
+| [Input_Result](#input_result) [OH_Input_RemoveInputEventInterceptor](#oh_input_removeinputeventinterceptor) (void) | 移除输入事件拦截，包括鼠标、触屏和轴事件。  | 
 | [Input_Result](#input_result) [OH_Input_GetIntervalSinceLastInput](#oh_input_getintervalsincelastinput) (int64_t \*timeInterval) | 获取距离上次系统输入事件的时间间隔。  | 
 | [Input_Hotkey](#input_hotkey) \* [OH_Input_CreateHotkey](#oh_input_createhotkey) (void) | 创建快捷键对象的实例。  | 
 | void [OH_Input_DestroyHotkey](#oh_input_destroyhotkey) ([Input_Hotkey](#input_hotkey) \*\*hotkey) | 销毁快捷键对象的实例。  | 
@@ -241,7 +241,7 @@ typedef void(* Input_AxisEventCallback) (const Input_AxisEvent *axisEvent)
 
 | 名称 | 描述    | 
 | ------ | ------ |
-| axisEvent | 轴事件对象。 |
+| axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象，<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。 |
 
 ### Input_DeviceAddedCallback
 
@@ -331,7 +331,7 @@ typedef struct Input_InterceptorEventCallbackInput_InterceptorEventCallback
 ```
 **描述**
 
-拦截回调事件结构体，拦截鼠标事件、触摸事件和轴事件。
+拦截回调事件结构体，拦截鼠标事件、触屏事件和轴事件。
 
 **起始版本：** 12
 
@@ -399,7 +399,7 @@ typedef void(* Input_KeyEventCallback) (const Input_KeyEvent *keyEvent)
 
 | 名称 |描述    | 
 | ------ | ------ |
-| keyEvent | 按键事件对象。 |
+| keyEvent | 按键事件对象，通过[OH_Input_CreateKeyEvent](#oh_input_createkeyevent)接口可以创建按键事件对象，<br>使用完需使用[OH_Input_DestroyKeyEvent](#oh_input_destroykeyevent)接口销毁按键事件对象。 |
 
 ### Input_KeyState
 
@@ -475,7 +475,7 @@ typedef void(* Input_MouseEventCallback) (const Input_MouseEvent *mouseEvent)
 
 | 名称 | 描述    |
 | ------ | ------ |
-| mouseEvent | 鼠标事件对象。 |
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。 |
 
 ### Input_Result
 
@@ -496,7 +496,7 @@ typedef struct Input_TouchEventInput_TouchEvent
 ```
 **描述**
 
-要注入的触摸事件。
+要注入的触屏事件。
 
 **起始版本：** 12
 
@@ -508,7 +508,7 @@ typedef enum Input_TouchEventActionInput_TouchEventAction
 ```
 **描述**
 
-触摸动作的枚举值。
+触屏动作的枚举值。
 
 **起始版本：** 12
 
@@ -520,7 +520,7 @@ typedef void(* Input_TouchEventCallback) (const Input_TouchEvent *touchEvent)
 ```
 **描述**
 
-触摸事件的回调函数，touchEvent的生命周期为回调函数内。
+触屏事件的回调函数，touchEvent的生命周期为回调函数内。
 
 **起始版本：** 12
 
@@ -528,7 +528,7 @@ typedef void(* Input_TouchEventCallback) (const Input_TouchEvent *touchEvent)
 
 | 名称 | 描述    |
 | ------ | ------ |
-| touchEvent | 触摸事件对象。 |
+| touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象，<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 |
 
 ### InputEvent_AxisAction
 
@@ -875,7 +875,7 @@ enum Input_TouchEventAction
 ```
 **描述**
 
-触摸动作的枚举值。
+触屏动作的枚举值。
 
 **起始版本：** 12
 
@@ -1614,7 +1614,7 @@ Input_Result OH_Input_GetAxisEventAction (const Input_AxisEvent * axisEvent, Inp
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| axisEvent | 轴事件对象。  | 
+| axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象，<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。  | 
 | action | 出参，返回轴事件动作，具体请参考在[InputEvent_AxisAction](#inputevent_axisaction)。  | 
 
 **返回：**
@@ -1638,7 +1638,7 @@ Input_Result OH_Input_GetAxisEventActionTime (const Input_AxisEvent * axisEvent,
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| axisEvent | 轴事件对象，请参考[Input_AxisEvent](#input_axisevent)。  | 
+| axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象，<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。  | 
 | actionTime | 出参，返回轴事件发生的时间。  | 
 
 **返回：**
@@ -1663,7 +1663,7 @@ Input_Result OH_Input_GetAxisEventAxisValue (const Input_AxisEvent * axisEvent, 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| axisEvent | 轴事件对象，请参考[Input_AxisEvent](#input_axisevent)。  | 
+| axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象，<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。  | 
 | axisType | 轴类型，具体请参考[InputEvent_AxisType](#inputevent_axistype)。  | 
 | axisValue | 出参，返回轴事件轴值。  | 
 
@@ -1689,7 +1689,7 @@ Input_Result OH_Input_GetAxisEventDisplayId (const Input_AxisEvent * axisEvent, 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| axisEvent | 轴事件对象。  | 
+| axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象，<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。  | 
 | displayId | 出参，返回轴事件屏幕Id。  | 
 
 **返回：**
@@ -1714,7 +1714,7 @@ Input_Result OH_Input_GetAxisEventDisplayX (const Input_AxisEvent * axisEvent, f
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| axisEvent | 轴事件对象。  | 
+| axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象，<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。  | 
 | displayX | 出参，返回轴事件X坐标。  | 
 
 **返回：**
@@ -1739,7 +1739,7 @@ Input_Result OH_Input_GetAxisEventDisplayY (const Input_AxisEvent * axisEvent, f
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| axisEvent | 轴事件对象，请参考[Input_AxisEvent](#input_axisevent)。  | 
+| axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象，<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。  | 
 | displayY | 出参，返回轴事件Y坐标。  | 
 
 **返回：**
@@ -1764,7 +1764,7 @@ Input_Result OH_Input_GetAxisEventSourceType (const Input_AxisEvent * axisEvent,
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| axisEvent | 轴事件对象。  | 
+| axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象，<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。  | 
 | sourceType | 出参，返回轴事件源类型，具体请参考[InputEvent_SourceType](#inputevent_sourcetype)。  | 
 
 **返回：**
@@ -1789,7 +1789,7 @@ Input_Result OH_Input_GetAxisEventType (const Input_AxisEvent * axisEvent, Input
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| axisEvent | 轴事件对象。  | 
+| axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象，<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。  | 
 | axisEventType | 出参，返回轴事件类型，具体请参考[InputEvent_AxisEventType](#inputevent_axiseventtype)。  | 
 
 **返回：**
@@ -1814,7 +1814,7 @@ Input_Result OH_Input_GetAxisEventWindowId (const Input_AxisEvent * axisEvent, i
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| axisEvent | 轴事件对象。  | 
+| axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象，<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。  | 
 | windowId | 出参，返回轴事件窗口Id。  | 
 
 **返回：**
@@ -2191,7 +2191,7 @@ int32_t OH_Input_GetKeyEventAction (const struct Input_KeyEvent * keyEvent)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 按键事件对象。 | 
+| keyEvent | 按键事件对象，通过[OH_Input_CreateKeyEvent](#oh_input_createkeyevent)接口可以创建按键事件对象，<br>使用完需使用[OH_Input_DestroyKeyEvent](#oh_input_destroykeyevent)接口销毁按键事件对象。 | 
 
 **返回：**
 
@@ -2215,7 +2215,7 @@ int64_t OH_Input_GetKeyEventActionTime (const struct Input_KeyEvent * keyEvent)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 按键事件对象。  | 
+| keyEvent | 按键事件对象，通过[OH_Input_CreateKeyEvent](#oh_input_createkeyevent)接口可以创建按键事件对象，<br>使用完需使用[OH_Input_DestroyKeyEvent](#oh_input_destroykeyevent)接口销毁按键事件对象。  | 
 
 **返回：**
 
@@ -2237,7 +2237,7 @@ int32_t OH_Input_GetKeyEventDisplayId (const struct Input_KeyEvent * keyEvent)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 按键事件对象。  | 
+| keyEvent | 按键事件对象，通过[OH_Input_CreateKeyEvent](#oh_input_createkeyevent)接口可以创建按键事件对象，<br>使用完需使用[OH_Input_DestroyKeyEvent](#oh_input_destroykeyevent)接口销毁按键事件对象。  | 
 
 **返回：**
 
@@ -2261,7 +2261,7 @@ int32_t OH_Input_GetKeyEventKeyCode (const struct Input_KeyEvent * keyEvent)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 按键事件对象。  | 
+| keyEvent | 按键事件对象，通过[OH_Input_CreateKeyEvent](#oh_input_createkeyevent)接口可以创建按键事件对象，<br>使用完需使用[OH_Input_DestroyKeyEvent](#oh_input_destroykeyevent)接口销毁按键事件对象。  | 
 
 **返回：**
 
@@ -2285,7 +2285,7 @@ int32_t OH_Input_GetKeyEventWindowId (const struct Input_KeyEvent * keyEvent)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 按键事件对象。  | 
+| keyEvent | 按键事件对象，通过[OH_Input_CreateKeyEvent](#oh_input_createkeyevent)接口可以创建按键事件对象，<br>使用完需使用[OH_Input_DestroyKeyEvent](#oh_input_destroykeyevent)接口销毁按键事件对象。  | 
 
 **返回：**
 
@@ -2381,7 +2381,7 @@ int32_t OH_Input_GetMouseEventAction (const struct Input_MouseEvent * mouseEvent
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 
 **返回：**
 
@@ -2405,7 +2405,7 @@ int64_t OH_Input_GetMouseEventActionTime (const struct Input_MouseEvent * mouseE
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 
 **返回：**
 
@@ -2429,11 +2429,11 @@ int32_t OH_Input_GetMouseEventAxisType (const struct Input_MouseEvent * mouseEve
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 
 **返回：**
 
-轴类型
+轴类型。相关取值可参考[InputEvent_MouseAxis](#inputevent_mouseaxis)。
 
 
 ### OH_Input_GetMouseEventAxisValue()
@@ -2453,11 +2453,11 @@ float OH_Input_GetMouseEventAxisValue (const struct Input_MouseEvent * mouseEven
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 
 **返回：**
 
-轴事件的值。
+轴事件的值，正数向前滚动（例如，1.0表示向前滚动一个单位），负数向后滚动（例如，-1.0表示向后滚动一个单位），零表示没有滚动。
 
 
 ### OH_Input_GetMouseEventButton()
@@ -2477,11 +2477,11 @@ int32_t OH_Input_GetMouseEventButton (const struct Input_MouseEvent * mouseEvent
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 
 **返回：**
 
-鼠标按键。
+鼠标按键。相关取值可参考[Input_MouseEventButton](#input_mouseeventbutton)。
 
 
 ### OH_Input_GetMouseEventDisplayId()
@@ -2501,7 +2501,7 @@ int32_t OH_Input_GetMouseEventDisplayId (const struct Input_MouseEvent * mouseEv
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 
 **返回：**
 
@@ -2523,7 +2523,7 @@ int32_t OH_Input_GetMouseEventDisplayX (const struct Input_MouseEvent * mouseEve
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 
 **返回：**
 
@@ -2547,7 +2547,7 @@ int32_t OH_Input_GetMouseEventDisplayY (const struct Input_MouseEvent * mouseEve
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 
 **返回：**
 
@@ -2569,7 +2569,7 @@ int32_t OH_Input_GetMouseEventWindowId (const struct Input_MouseEvent * mouseEve
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 
 **返回：**
 
@@ -2646,7 +2646,7 @@ int32_t OH_Input_GetTouchEventAction (const struct Input_TouchEvent * touchEvent
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | 触屏事件对象。  | 
+| touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象，<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。  | 
 
 **返回：**
 
@@ -2670,7 +2670,7 @@ int64_t OH_Input_GetTouchEventActionTime (const struct Input_TouchEvent * touchE
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 触屏事件对象。  | 
+| touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象，<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。  | 
 
 **返回：**
 
@@ -2694,7 +2694,7 @@ int32_t OH_Input_GetTouchEventDisplayId (const struct Input_TouchEvent * touchEv
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | 触屏事件对象。  | 
+| touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象，<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。  | 
 
 **返回：**
 
@@ -2716,7 +2716,7 @@ int32_t OH_Input_GetTouchEventDisplayX (const struct Input_TouchEvent * touchEve
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | 触屏事件对象。  | 
+| touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象，<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。  | 
 
 **返回：**
 
@@ -2740,7 +2740,7 @@ int32_t OH_Input_GetTouchEventDisplayY (const struct Input_TouchEvent * touchEve
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | 触屏事件对象。  | 
+| touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象，<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。  | 
 
 **返回：**
 
@@ -2764,11 +2764,11 @@ int32_t OH_Input_GetTouchEventFingerId (const struct Input_TouchEvent * touchEve
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | 触屏事件对象。  | 
+| touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象，<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。  | 
 
 **返回：**
 
-触屏的手指ID。
+触屏的手指ID。第一个手指碰到屏幕，id就是0，第二个手指碰到屏幕，id就是1，依次累加。
 
 
 ### OH_Input_GetTouchEventWindowId()
@@ -2788,7 +2788,7 @@ int32_t OH_Input_GetTouchEventWindowId (const struct Input_TouchEvent * touchEve
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | 触屏事件对象。  | 
+| touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象，<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。  | 
 
 **返回：**
 
@@ -2810,7 +2810,7 @@ int32_t OH_Input_InjectKeyEvent (const struct Input_KeyEvent * keyEvent)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 要注入的按键事件。  | 
+| keyEvent | 按键事件对象，通过[OH_Input_CreateKeyEvent](#oh_input_createkeyevent)接口可以创建按键事件对象，<br>使用完需使用[OH_Input_DestroyKeyEvent](#oh_input_destroykeyevent)接口销毁按键事件对象。  | 
 
 **返回：**
 
@@ -2834,7 +2834,7 @@ int32_t OH_Input_InjectMouseEvent (const struct Input_MouseEvent * mouseEvent)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent |  要注入的鼠标事件。  | 
+| mouseEvent |  鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 
 **返回：**
 
@@ -2858,7 +2858,7 @@ int32_t OH_Input_InjectTouchEvent (const struct Input_TouchEvent * touchEvent)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | 要注入的触摸事件。  | 
+| touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象，<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。  | 
 
 **返回：**
 
@@ -3117,7 +3117,7 @@ Input_Result OH_Input_SetAxisEventAction (Input_AxisEvent * axisEvent, InputEven
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| axisEvent | 轴事件对象。  | 
+| axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象，<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。  | 
 | action | 轴事件动作，具体请参考[InputEvent_AxisAction](#inputevent_axisaction)。  | 
 
 **返回：**
@@ -3141,8 +3141,8 @@ Input_Result OH_Input_SetAxisEventActionTime (Input_AxisEvent * axisEvent, int64
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| axisEvent | 轴事件对象，请参考[Input_AxisEvent](#input_axisevent)。  | 
-| actionTime | 轴事件发生的时间。  | 
+| axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象，<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。  | 
+| actionTime | 轴事件发生的时间，表示从1970.1.1 00:00:00 GMT逝去的微秒数。  | 
 
 **返回：**
 
@@ -3166,7 +3166,7 @@ Input_Result OH_Input_SetAxisEventAxisValue (Input_AxisEvent * axisEvent, InputE
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| axisEvent | 轴事件对象，请参考[Input_AxisEvent](#input_axisevent)。  | 
+| axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象，<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。  | 
 | axisType | 轴类型，具体请参考[InputEvent_AxisType](#inputevent_axistype)。  | 
 | axisValue | 轴事件轴值。  | 
 
@@ -3192,7 +3192,7 @@ Input_Result OH_Input_SetAxisEventDisplayId (Input_AxisEvent * axisEvent, int32_
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| axisEvent | 轴事件对象。  | 
+| axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象，<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。  | 
 | displayId | 轴事件屏幕Id。  | 
 
 **返回：**
@@ -3217,7 +3217,7 @@ Input_Result OH_Input_SetAxisEventDisplayX (Input_AxisEvent * axisEvent, float d
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| axisEvent | 轴事件对象。  | 
+| axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象，<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。  | 
 | displayX | 轴事件X坐标。  | 
 
 **返回：**
@@ -3242,7 +3242,7 @@ Input_Result OH_Input_SetAxisEventDisplayY (Input_AxisEvent * axisEvent, float d
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| axisEvent | 轴事件对象，请参考[Input_AxisEvent](#input_axisevent)。  | 
+| axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象，<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。  | 
 | displayY | 轴事件Y坐标。  | 
 
 **返回：**
@@ -3267,7 +3267,7 @@ Input_Result OH_Input_SetAxisEventSourceType (Input_AxisEvent * axisEvent, Input
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| axisEvent | 轴事件对象。  | 
+| axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象，<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。  | 
 | sourceType | 轴事件源类型,具体请参考[InputEvent_SourceType](#inputevent_sourcetype)。  | 
 
 **返回：**
@@ -3292,7 +3292,7 @@ Input_Result OH_Input_SetAxisEventType (Input_AxisEvent * axisEvent, InputEvent_
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| axisEvent | 轴事件对象，请参考[Input_AxisEvent](#input_axisevent)。  | 
+| axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象，<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。  | 
 | axisEventType | 轴事件类型，具体请参考[InputEvent_AxisEventType](#inputevent_axiseventtype)。  | 
 
 **返回：**
@@ -3317,7 +3317,7 @@ Input_Result OH_Input_SetAxisEventWindowId (Input_AxisEvent * axisEvent, int32_t
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| axisEvent | 轴事件对象。  | 
+| axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象，<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。  | 
 | windowId | 轴事件窗口Id。  | 
 
 **返回：**
@@ -3384,8 +3384,8 @@ void OH_Input_SetKeyEventAction (struct Input_KeyEvent * keyEvent, int32_t actio
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 按键事件对象。  | 
-| action | 按键事件类型。 | 
+| keyEvent | 按键事件对象，通过[OH_Input_CreateKeyEvent](#oh_input_createkeyevent)接口可以创建按键事件对象，<br>使用完需使用[OH_Input_DestroyKeyEvent](#oh_input_destroykeyevent)接口销毁按键事件对象。  | 
+| action | 按键事件类型。相关取值可参考[Input_KeyEventAction](#input_keyeventaction)。 | 
 
 
 ### OH_Input_SetKeyEventActionTime()
@@ -3405,8 +3405,8 @@ void OH_Input_SetKeyEventActionTime (struct Input_KeyEvent * keyEvent, int64_t a
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 按键事件对象。 | 
-| actionTime | 按键事件发生的时间。  | 
+| keyEvent | 按键事件对象，通过[OH_Input_CreateKeyEvent](#oh_input_createkeyevent)接口可以创建按键事件对象，<br>使用完需使用[OH_Input_DestroyKeyEvent](#oh_input_destroykeyevent)接口销毁按键事件对象。 | 
+| actionTime | 按键事件发生的时间，表示从1970.1.1 00:00:00 GMT逝去的微秒数。  | 
 
 
 ### OH_Input_SetKeyEventDisplayId()
@@ -3426,7 +3426,7 @@ void OH_Input_SetKeyEventDisplayId (struct Input_KeyEvent * keyEvent, int32_t di
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 按键事件对象。  | 
+| keyEvent | 按键事件对象，通过[OH_Input_CreateKeyEvent](#oh_input_createkeyevent)接口可以创建按键事件对象，<br>使用完需使用[OH_Input_DestroyKeyEvent](#oh_input_destroykeyevent)接口销毁按键事件对象。  | 
 | displayId | 按键事件对应的屏幕Id。  | 
 
 
@@ -3447,7 +3447,7 @@ void OH_Input_SetKeyEventKeyCode (struct Input_KeyEvent * keyEvent, int32_t keyC
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 按键事件对象。  | 
+| keyEvent | 按键事件对象，通过[OH_Input_CreateKeyEvent](#oh_input_createkeyevent)接口可以创建按键事件对象，<br>使用完需使用[OH_Input_DestroyKeyEvent](#oh_input_destroykeyevent)接口销毁按键事件对象。  | 
 | keyCode | 按键的键值。  | 
 
 
@@ -3468,7 +3468,7 @@ void OH_Input_SetKeyEventWindowId (struct Input_KeyEvent * keyEvent, int32_t win
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 按键事件对象。  | 
+| keyEvent | 按键事件对象，通过[OH_Input_CreateKeyEvent](#oh_input_createkeyevent)接口可以创建按键事件对象，<br>使用完需使用[OH_Input_DestroyKeyEvent](#oh_input_destroykeyevent)接口销毁按键事件对象。  | 
 | windowId | 按键事件对应的窗口Id。  | 
 
 
@@ -3552,8 +3552,8 @@ void OH_Input_SetMouseEventActionTime (struct Input_MouseEvent * mouseEvent, int
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
-| actionTime | 鼠标事件发生的时间。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
+| actionTime | 鼠标事件发生的时间，表示从1970.1.1 00:00:00 GMT逝去的微秒数。  | 
 
 
 ### OH_Input_SetMouseEventAxisType()
@@ -3573,8 +3573,8 @@ void OH_Input_SetMouseEventAxisType (struct Input_MouseEvent * mouseEvent, int32
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。 | 
-| axisType | 轴类型，比如垂直轴、水平轴。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。 | 
+| axisType | 轴类型，比如垂直轴、水平轴。相关取值可参考[InputEvent_MouseAxis](#inputevent_mouseaxis)。  | 
 
 
 ### OH_Input_SetMouseEventAxisValue()
@@ -3594,8 +3594,8 @@ void OH_Input_SetMouseEventAxisValue (struct Input_MouseEvent * mouseEvent, floa
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
-| axisValue | 轴事件的值，正数向前滚动，负数向后滚动。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
+| axisValue | 轴事件的值，正数向前滚动（例如，1.0表示向前滚动一个单位），负数向后滚动（例如，-1.0表示向后滚动一个单位），零表示没有滚动。  | 
 
 
 ### OH_Input_SetMouseEventButton()
@@ -3615,8 +3615,8 @@ void OH_Input_SetMouseEventButton (struct Input_MouseEvent * mouseEvent, int32_t
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
-| button | 鼠标按键。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
+| button | 鼠标按键。相关取值可参考[Input_MouseEventButton](#input_mouseeventbutton)。  | 
 
 
 ### OH_Input_SetMouseEventDisplayId()
@@ -3636,7 +3636,7 @@ void OH_Input_SetMouseEventDisplayId (struct Input_MouseEvent * mouseEvent, int3
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 | displayId | 鼠标事件的屏幕Id。  | 
 
 
@@ -3657,7 +3657,7 @@ void OH_Input_SetMouseEventDisplayX (struct Input_MouseEvent * mouseEvent, int32
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 | displayX | 屏幕X坐标。  | 
 
 
@@ -3678,7 +3678,7 @@ void OH_Input_SetMouseEventDisplayY (struct Input_MouseEvent * mouseEvent, int32
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 | displayY | 屏幕Y坐标。  | 
 
 
@@ -3699,7 +3699,7 @@ void OH_Input_SetMouseEventWindowId (struct Input_MouseEvent * mouseEvent, int32
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 | windowId | 鼠标事件的窗口Id。  | 
 
 
@@ -3763,7 +3763,7 @@ void OH_Input_SetTouchEventAction (struct Input_TouchEvent * touchEvent, int32_t
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | 触屏事件对象。  | 
+| touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象，<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。  | 
 |  action| 触屏的动作。 | 
 
 
@@ -3784,8 +3784,8 @@ void OH_Input_SetTouchEventActionTime (struct Input_TouchEvent * touchEvent, int
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 触屏事件对象。 | 
-| actionTime | 触摸事件发生的时间。  | 
+| touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象，<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 | 
+| actionTime | 触摸事件发生的时间，表示从1970.1.1 00:00:00 GMT逝去的微秒数。  | 
 
 
 ### OH_Input_SetTouchEventDisplayId()
@@ -3805,7 +3805,7 @@ void OH_Input_SetTouchEventDisplayId (struct Input_TouchEvent * touchEvent, int3
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | 触屏事件对象。  | 
+| touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象，<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。  | 
 | displayId | 触屏事件的屏幕Id。  | 
 
 
@@ -3826,7 +3826,7 @@ void OH_Input_SetTouchEventDisplayX (struct Input_TouchEvent * touchEvent, int32
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | 触屏事件对象。  | 
+| touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象，<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。  | 
 |   displayX| 触屏的屏幕X坐标。 |
 
 
@@ -3847,7 +3847,7 @@ void OH_Input_SetTouchEventDisplayY (struct Input_TouchEvent * touchEvent, int32
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | 触屏事件对象。  | 
+| touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象，<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。  | 
 |  displayY | 触屏的屏幕Y坐标。 |
 
 
@@ -3868,8 +3868,8 @@ void OH_Input_SetTouchEventFingerId (struct Input_TouchEvent * touchEvent, int32
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | 触屏事件对象。 | 
-| id | 触屏的手指ID。 | 
+| touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象，<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 | 
+| id | 触屏的手指ID。第一个手指碰到屏幕，id就是0，第二个手指碰到屏幕，id就是1，依次累加。 | 
 
 
 ### OH_Input_SetTouchEventWindowId()
@@ -3889,7 +3889,7 @@ void OH_Input_SetTouchEventWindowId (struct Input_TouchEvent * touchEvent, int32
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | 触屏幕事件对象。  | 
+| touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象，<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。  | 
 | windowId | 触屏事件的窗口Id。  | 
 
 
