@@ -28,8 +28,8 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 | 参数名   | 类型                                         | 必填 | 说明                                |
 | -------- | -------------------------------------------- | ---- | ----------------------------------- |
 | timeUs | number                   | 是   | 需要获取的缩略图在视频中的时间点，单位为微秒（μs）。 |
-| options | [AVImageQueryOptions](#avimagequeryoptions12)     | 是   | 需要获取的缩略图时间点与视频帧的对应关系。 |
-| param | [PixelMapParams](#pixelmapparams12)     | 是   | 需要获取的缩略图的格式参数。 |
+| options | [AVImageQueryOptions](arkts-apis-media-e.md#avimagequeryoptions12)     | 是   | 需要获取的缩略图时间点与视频帧的对应关系。 |
+| param | [PixelMapParams](arkts-apis-media-i.md#pixelmapparams12)     | 是   | 需要获取的缩略图的格式参数。 |
 | callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>   | 是   | 回调函数。获取缩略图成功时，err为undefined，data为PixelMap实例，否则为错误对象。 |
 
 **错误码：**
@@ -91,8 +91,8 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 | 参数名   | 类型                                         | 必填 | 说明                                |
 | -------- | -------------------------------------------- | ---- | ----------------------------------- |
 | timeUs | number                   | 是   | 需要获取的缩略图在视频中的时间点，单位为微秒（μs）。 |
-| options | [AVImageQueryOptions](#avimagequeryoptions12)     | 是   | 需要获取的缩略图时间点与视频帧的对应关系。 |
-| param | [PixelMapParams](#pixelmapparams12)    | 是   | 需要获取的缩略图的格式参数。 |
+| options | [AVImageQueryOptions](arkts-apis-media-e.md#avimagequeryoptions12)     | 是   | 需要获取的缩略图时间点与视频帧的对应关系。 |
+| param | [PixelMapParams](arkts-apis-media-i.md#pixelmapparams12)    | 是   | 需要获取的缩略图的格式参数。 |
 
 **返回值：**
 
@@ -157,8 +157,8 @@ fetchScaledFrameByTime(timeUs: number, queryMode: AVImageQueryOptions, outputSiz
 | 参数名     | 类型                                          | 必填 | 说明                                                 |
 | ---------- | --------------------------------------------- | ---- | ---------------------------------------------------- |
 | timeUs     | number                                        | 是   | 在视频中需要获取的缩略图的时间点，单位为微秒（μs）。 |
-| queryMode  | [AVImageQueryOptions](#avimagequeryoptions12) | 是   | 需要获取的缩略图时间点与视频帧的对应关系。           |
-| outputSize | [OutputSize ](#outputsize20)                  | 否   | 定义帧的输出大小。默认按原图大小显示。               |
+| queryMode  | [AVImageQueryOptions](arkts-apis-media-e.md#avimagequeryoptions12) | 是   | 需要获取的缩略图时间点与视频帧的对应关系。           |
+| outputSize | [OutputSize ](arkts-apis-media-i.md#outputsize20)                  | 否   | 定义帧的输出大小。默认按原图大小显示。               |
 
 **返回值：**
 
