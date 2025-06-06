@@ -44,7 +44,7 @@ Context提供了ability或application的上下文的能力，包括访问特定�
 | distributedFilesDir | string | 否    | 否    | 分布式文件目录，详情参考[应用沙箱目录](../../file-management/app-sandbox-directory.md)。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | cloudFileDir<sup>12+</sup>        | string | 否    | 否    | 云文件目录。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。    |
 | eventHub            | [EventHub](js-apis-inner-application-eventHub.md) | 否    | 否    | 事件中心，提供订阅、取消订阅、触发事件对象。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | 否    | 否    | 文件分区信息，按加密等级[AreaMode](js-apis-app-ability-contextConstant.md#areamode) 进行分区。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md#areamode) | 否    | 否    | 文件分区信息，按加密等级[AreaMode](js-apis-app-ability-contextConstant.md#areamode) 进行分区。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | processName<sup>18+</sup> | string | 否   | 否 | 当前应用的进程名。<br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ### createModuleContext<sup>(deprecated)</sup>

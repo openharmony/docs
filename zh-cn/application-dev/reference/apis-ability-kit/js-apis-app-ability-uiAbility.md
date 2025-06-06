@@ -2,9 +2,15 @@
 
 UIAbility是包含UI界面的应用组件，继承自[Ability](js-apis-app-ability-ability.md)，提供UIAbility组件创建、销毁、前后台切换等[生命周期]回调(#uiability生命周期)，同时也具备[后台通信能力](#后台通信能力)。
 
+> **说明：**
+>
+> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 本模块接口仅可在Stage模型下使用。
+
 各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
 
-## UIAbility生命周期
+## UIAbility生命周期状态
 
 **图1** UIAbility生命周期状态
 
@@ -27,12 +33,6 @@ UIAbility是包含UI界面的应用组件，继承自[Ability](js-apis-app-abili
 - Caller UIAbility调用[startAbilityByCall()](js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口获取[Caller](#caller)对象，并使用Caller对象的[call](#call)方法向Callee UIAbility发送数据。
 
 - Callee UIAbility持有一个[Callee](#callee)对象，通过Callee的[on](#on)方法注册回调函数，用于接收Caller对象发送的数据。
-
-> **说明：**
->
-> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
-> 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
 
