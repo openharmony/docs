@@ -4823,8 +4823,6 @@ With this permission, the application can access kernel APIs across processes to
 
 **Valid since**：20
 
-**Valid since**：20
-
 ## ohos.permission.VIRUS_PROTECTION_SERVICE
 
 Allows an application to start virus scanning tasks.
