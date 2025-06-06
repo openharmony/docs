@@ -96,7 +96,6 @@
     - [DeviceInfo](_device_info.md)
     - [OsAccount](_os_account.md)
     - [OH_BatteryInfo](oh__batteryinfo.md)
-    - [OH_Scan](c-apis-scan.md)
     - [OH_Print](_o_h___print.md)
     - [Pasteboard](_pasteboard.md)
     - [TimeService](_time_service.md)

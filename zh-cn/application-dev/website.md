@@ -3567,7 +3567,6 @@
             - [DeviceInfo](reference/apis-basic-services-kit/_device_info.md)
             - [OsAccount](reference/apis-basic-services-kit/_os_account.md)
             - [OH_BatteryInfo](reference/apis-basic-services-kit/oh__batteryinfo.md)
-            - [OH_Scan](reference/apis-basic-services-kit/c-apis-scan.md)
             - [OH_Print](reference/apis-basic-services-kit/_o_h___print.md)
             - [Pasteboard](reference/apis-basic-services-kit/_pasteboard.md)
             - [TimeService](reference/apis-basic-services-kit/_time_service.md)
