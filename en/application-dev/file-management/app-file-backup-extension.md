@@ -41,7 +41,7 @@ For details about how to use the APIs, see [BackupExtensionAbility](../reference
                // In the BackupExtension.ets file, define BackupExtensionAbility in extensionAbilities and override onBackup or onBackupEx
                // and onRestore or onRestoreEx methods. The onBackupEx and onRestoreEx methods are recommended.
                // Empty implementation can be used if there is no special requirement. In this case, the backup and restore service backs up or restores data based on the unified backup and restore rules.
-               "srcEntry": "./ets/BackupExtension/BackupExtension.ets", 
+               "srcEntry": "./ets/BackupExtension/BackupExtension.ets"
            }      
        ]
    }
@@ -86,7 +86,6 @@ For details about how to use the APIs, see [BackupExtensionAbility](../reference
       }
       //onRestore
       async onRestore (bundleVersion : BundleVersion) {
-        hilog.info(0x0000, TAG, `onRestore ok ${JSON.stringify(bundleVersion)}`);
         hilog.info(0x0000, TAG, `onRestore end`);
       }
     }
@@ -105,7 +104,7 @@ For details about how to use the APIs, see [BackupExtensionAbility](../reference
     class BackupExt extends BackupExtensionAbility {
       //onBackupEx
       async onBackupEx(backupInfo: string): Promise<string> {
-        console.log(`onBackupEx ok`);
+        console.info(`onBackupEx ok`);
         let errorInfo: ErrorInfo = {
           type: "ErrorInfo",
           errorCode: 0,
@@ -116,7 +115,7 @@ For details about how to use the APIs, see [BackupExtensionAbility](../reference
 
       // onRestoreEx
       async onRestoreEx(bundleVersion : BundleVersion, restoreInfo: string): Promise<string> {
-        console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
+        console.info(`onRestoreEx begin`);
         let errorInfo: ErrorInfo = {
           type: "ErrorInfo",
           errorCode: 0,
