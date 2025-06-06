@@ -82,7 +82,7 @@ export default class EntryAbility extends UIAbility {
             console.error("tag.getTagInfo catch error: " + error);
         }
         if (tagInfo == null || tagInfo == undefined) {
-            console.log("no TagInfo to be created, ignore it.");
+            console.error("no TagInfo to be created, ignore it.");
             return;
         }
 
@@ -650,7 +650,7 @@ function foregroundCb(err : BusinessError, tagInfo : tag.TagInfo) {
     if (!err) {
         console.log("foreground callback: tag found tagInfo = ", JSON.stringify(tagInfo));
     } else {
-        console.log("foreground callback err: " + err.message);
+        console.error("foreground callback err: " + err.message);
         return;
     }
   // taginfo的其他操作

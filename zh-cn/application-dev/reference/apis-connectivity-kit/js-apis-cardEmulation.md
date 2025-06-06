@@ -516,7 +516,7 @@ hceService.transmit(responseData).then(() => {
   // 处理 promise 的回调
   console.log("transmit Promise success.");
 }).catch((err: BusinessError) => {
-  console.log("transmit Promise error:", err);
+  console.error("transmit Promise error:", err);
 });
 ```
 
