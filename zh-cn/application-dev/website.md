@@ -49,7 +49,7 @@
     - [ArkTS高性能编程实践](quick-start/arkts-high-performance-programming.md)
     - 面向其他语言的ArkTS迁移指导<!--arkts-for-other-languages-->
       - [从Java到ArkTS的迁移指导](quick-start/getting-started-with-arkts-for-java-programmers.md)
-      - [从Swift到ArkTS的迁移指导](quick-start/getting-started-with-arkts-for-swift-programmers.md)    
+      - [从Swift到ArkTS的迁移指导](quick-start/getting-started-with-arkts-for-swift-programmers.md)
 - 开发<!--application-develop-->
   - 应用框架<!--app-framework-->
     - Ability Kit（程序框架服务）<!--ability-kit-->
@@ -126,7 +126,13 @@
           - [设置任务快照的图标和名称](application-models/mission-set-icon-name-for-task-snapshot.md)
         <!--DelEnd-->
         - [Stage模型应用配置文件](application-models/config-file-stage.md)
-        - [标准意图接入规范](application-models/insight-intent-access-specifications.md)
+        - 意图框架开发指导<!--insight-intent-->
+          - [意图框架概述](application-models/insight-intent-overview.md)
+          - 开发意图<!--insight-intent-development-->
+            - [意图开发概述](application-models/insight-intent-definition.md)
+            - [使用配置文件开发意图](application-models/insight-intent-config-development.md)
+            - [使用装饰器开发意图](application-models/insight-intent-decorator-development.md)
+          - [调试意图](application-models/insight-intent-debug.md)
       - FA模型开发指导<!--fa-model-development-->
         - [FA模型开发概述](application-models/fa-model-development-overview.md)
         - FA模型应用组件<!--fa-model-application-components-->
@@ -251,7 +257,7 @@
         - 多对多跨应用数据共享<!--many-to-many-data-share-->
           - [通过标准化数据通路实现数据共享 (ArkTS)](database/unified-data-channels.md)
           - [通过标准化数据通路实现数据共享 (C/C++)](database/unified-data-channels-c.md)
-      - [应用数据向量化 (ArkTS)](database/aip-data-intelligence-embedding.md) 
+      - [应用数据向量化 (ArkTS)](database/aip-data-intelligence-embedding.md)
       - [SQLite调试工具](database/sqlite-database-debug-tool.md)
       - [ArkData术语](database/data-terminology.md)
     - ArkTS（方舟编程语言）<!--arkts-->
@@ -846,7 +852,7 @@
             - [卡片编辑开发指导](form/arkts-ui-widget-event-formeditextensionability.md)
           - 应用内请求卡片加桌<!--arkts-ui-widget-add-->
             - [应用内拉起卡片管理加桌](form/arkts-ui-widget-open-formmanager.md)
-        <!--Del--> 
+        <!--Del-->
         - [ArkTS卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
         <!--DelEnd-->
         - 互动卡片开发<!--arkts-ui-liveform-->
@@ -1339,7 +1345,7 @@
         - [Input Kit简介](device/input/input-overview.md)
         - [输入设备开发指导](device/input/inputdevice-guidelines.md)
         - [按键拦截监听开发指导](device/input/keypressed-guidelines.md)
-        - [鼠标光标开发指导](device/input/pointerstyle-guidelines.md)       
+        - [鼠标光标开发指导](device/input/pointerstyle-guidelines.md)
         <!--Del-->
         - [输入监听开发指导](device/input/inputmonitor-guidelines.md)
         - [事件注入开发指导](device/input/inputeventclient-guidelines.md)
@@ -1560,7 +1566,7 @@
         - [媒体会话提供方](media/avsession/using-avsession-developer.md)
         - [媒体会话提供方(C/C++)](media/avsession/using-ohavsession-developer.md)
         - [应用接入AVSession场景介绍](media/avsession/avsession-access-scene.md)
-        - [后台播放](media/avsession/avsession-background-scene.md) 
+        - [后台播放](media/avsession/avsession-background-scene.md)
         <!--Del-->
         - [媒体会话控制方(仅对系统应用开放)](media/avsession/using-avsession-controller.md)
         <!--DelEnd-->
@@ -1859,7 +1865,7 @@
       - [多态组件](key-features/multi-device-app-dev/polymorphic-controls.md)
       - [资源使用](key-features/multi-device-app-dev/resource-usage.md)
     - [功能开发的一多能力介绍](key-features/multi-device-app-dev/development-intro.md)
-    - [一多开发实例（短信）](key-features/multi-device-app-dev/case.md)  
+    - [一多开发实例（短信）](key-features/multi-device-app-dev/case.md)
     - [常见问题](key-features/multi-device-app-dev/multi-faq.md)
   <!--DelEnd-->
   - NDK开发<!--ndk-development-->
@@ -3342,7 +3348,7 @@
           - [Class (WebSchemeHandler)](reference/apis-arkweb/arkts-apis-webview-WebSchemeHandler.md)
           - [Class (WebSchemeHandlerRequest)](reference/apis-arkweb/arkts-apis-webview-WebSchemeHandlerRequest.md)
           - [Class (WebSchemeHandlerResponse)](reference/apis-arkweb/arkts-apis-webview-WebSchemeHandlerResponse.md)
-          - [Class (WebStorage)](reference/apis-arkweb/arkts-apis-webview-WebStorage.md)  
+          - [Class (WebStorage)](reference/apis-arkweb/arkts-apis-webview-WebStorage.md)
           - [Interface (BackForwardList)](reference/apis-arkweb/arkts-apis-webview-BackForwardList.md)
           - [Interface (NativeMediaPlayerBridge)](reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerBridge.md)
           - [Interface (NativeMediaPlayerHandler)](reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerHandler.md)
