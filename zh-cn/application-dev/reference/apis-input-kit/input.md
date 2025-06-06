@@ -1007,7 +1007,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若添加轴事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若添加轴事件监听成功，则返回**INPUT_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_AddAxisEventMonitorForAll()
@@ -1035,7 +1035,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若添加轴事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若添加轴事件监听成功，则返回**INPUT_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_AddHotkeyMonitor()
@@ -1097,7 +1097,7 @@ ohos.permission.INTERCEPT_INPUT_EVENT
 
 **返回：**
 
-若添加输入事件的拦截成功，则返回**INTO_SUCCESS**；
+若添加输入事件的拦截成功，则返回**INPUT_SUCCESS**；
 
 若权限校验失败，则返回INPUT_PERMISSION_DENIED；
 
@@ -1134,7 +1134,7 @@ ohos.permission.INTERCEPT_INPUT_EVENT
 
 **返回：**
 
-若添加按键事件的拦截成功，则返回**INTO_SUCCESS**；
+若添加按键事件的拦截成功，则返回**INPUT_SUCCESS**；
 
 若权限校验失败，则返回INPUT_PERMISSION_DENIED； 
 
@@ -1170,7 +1170,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若添加按键事件监听成功，则返回**INTO_SUCCESS**；
+若添加按键事件监听成功，则返回**INPUT_SUCCESS**；
 
 若权限校验失败，则返回INPUT_PERMISSION_DENIED； 
 
@@ -1204,7 +1204,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若添加鼠标事件监听成功，则返回**INTO_SUCCESS**；
+若添加鼠标事件监听成功，则返回**INPUT_SUCCESS**；
 
 若权限校验失败，则返回INPUT_PERMISSION_DENIED； 
 
@@ -1238,7 +1238,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若添加触摸事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若添加触摸事件监听成功，则返回**INPUT_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_CancelInjection()
@@ -1447,7 +1447,7 @@ Input_Result OH_Input_DestroyAxisEvent (Input_AxisEvent ** axisEvent)
 
 **返回：**
 
-若销毁成功，则返回INTO_SUCCESS；若axisEvent为NULL或者\*axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
+若销毁成功，则返回INPUT_SUCCESS；若axisEvent为NULL或者\*axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
 
 
 ### OH_Input_DestroyDeviceInfo()
@@ -1619,7 +1619,7 @@ Input_Result OH_Input_GetAxisEventAction (const Input_AxisEvent * axisEvent, Inp
 
 **返回：**
 
-若获取轴事件的动作成功，则返回**INTO_SUCCESS**；若axisEvent或者action为NULL，则返回INPUT_PARAMETER_ERROR。
+若获取轴事件的动作成功，则返回**INPUT_SUCCESS**；若axisEvent或者action为NULL，则返回INPUT_PARAMETER_ERROR。
 
 ### OH_Input_GetAxisEventActionTime()
 
@@ -1643,7 +1643,7 @@ Input_Result OH_Input_GetAxisEventActionTime (const Input_AxisEvent * axisEvent,
 
 **返回：**
 
-若获取轴事件发生的时间成功，则返回**INTO_SUCCESS**；若axisEvent或者actionTime为NULL，则返回INPUT_PARAMETER_ERROR。
+若获取轴事件发生的时间成功，则返回**INPUT_SUCCESS**；若axisEvent或者actionTime为NULL，则返回INPUT_PARAMETER_ERROR。
 
 
 ### OH_Input_GetAxisEventAxisValue()
@@ -1669,7 +1669,7 @@ Input_Result OH_Input_GetAxisEventAxisValue (const Input_AxisEvent * axisEvent, 
 
 **返回：**
 
-若获取轴事件指定轴类型的轴值成功，则返回**INTO_SUCCESS**；若axisEvent或者axisValue为NULL，则返回INPUT_PARAMETER_ERROR。
+若获取轴事件指定轴类型的轴值成功，则返回**INPUT_SUCCESS**；若axisEvent或者axisValue为NULL，则返回INPUT_PARAMETER_ERROR。
 
 
 ### OH_Input_GetAxisEventDisplayId()
@@ -1694,7 +1694,7 @@ Input_Result OH_Input_GetAxisEventDisplayId (const Input_AxisEvent * axisEvent, 
 
 **返回：**
 
-若获取轴事件的屏幕Id成功，则返回**INTO_SUCCESS**；若axisEvent或者displayId为NULL，则返回INPUT_PARAMETER_ERROR。
+若获取轴事件的屏幕Id成功，则返回**INPUT_SUCCESS**；若axisEvent或者displayId为NULL，则返回INPUT_PARAMETER_ERROR。
 
 
 ### OH_Input_GetAxisEventDisplayX()
@@ -1719,7 +1719,7 @@ Input_Result OH_Input_GetAxisEventDisplayX (const Input_AxisEvent * axisEvent, f
 
 **返回：**
 
-若获取轴事件的X坐标成功，则返回**INTO_SUCCESS**；若axisEvent或者displayX为NULL，则返回INPUT_PARAMETER_ERROR。
+若获取轴事件的X坐标成功，则返回**INPUT_SUCCESS**；若axisEvent或者displayX为NULL，则返回INPUT_PARAMETER_ERROR。
 
 
 ### OH_Input_GetAxisEventDisplayY()
@@ -1744,7 +1744,7 @@ Input_Result OH_Input_GetAxisEventDisplayY (const Input_AxisEvent * axisEvent, f
 
 **返回：**
 
-若获取轴事件的Y坐标成功，则返回**INTO_SUCCESS**；若axisEvent或者displayY为NULL，则返回INPUT_PARAMETER_ERROR。
+若获取轴事件的Y坐标成功，则返回**INPUT_SUCCESS**；若axisEvent或者displayY为NULL，则返回INPUT_PARAMETER_ERROR。
 
 
 ### OH_Input_GetAxisEventSourceType()
@@ -1769,7 +1769,7 @@ Input_Result OH_Input_GetAxisEventSourceType (const Input_AxisEvent * axisEvent,
 
 **返回：**
 
-若获取轴事件源类型成功，则返回**INTO_SUCCESS**；若axisEvent或者sourceType为NULL，则返回INPUT_PARAMETER_ERROR。
+若获取轴事件源类型成功，则返回**INPUT_SUCCESS**；若axisEvent或者sourceType为NULL，则返回INPUT_PARAMETER_ERROR。
 
 
 ### OH_Input_GetAxisEventType()
@@ -1794,7 +1794,7 @@ Input_Result OH_Input_GetAxisEventType (const Input_AxisEvent * axisEvent, Input
 
 **返回：**
 
-若获取轴事件类型成功，则返回**INTO_SUCCESS**；若axisEvent或者axisEventType为NULL，则返回INPUT_PARAMETER_ERROR。
+若获取轴事件类型成功，则返回**INPUT_SUCCESS**；若axisEvent或者axisEventType为NULL，则返回INPUT_PARAMETER_ERROR。
 
 
 ### OH_Input_GetAxisEventWindowId()
@@ -1819,7 +1819,7 @@ Input_Result OH_Input_GetAxisEventWindowId (const Input_AxisEvent * axisEvent, i
 
 **返回：**
 
-若获取轴事件的窗口Id成功，则返回**INTO_SUCCESS**；若axisEvent或者windowId为NULL，则返回INPUT_PARAMETER_ERROR。
+若获取轴事件的窗口Id成功，则返回**INPUT_SUCCESS**；若axisEvent或者windowId为NULL，则返回INPUT_PARAMETER_ERROR。
 
 
 ### OH_Input_GetCapabilities()
@@ -2096,7 +2096,7 @@ Input_Result OH_Input_GetFunctionKeyState (int32_t keyCode, int32_t * state )
 **返回：**
 
 OH_Input_GetFunctionKeyState的执行结果。
-INPUT_SUCCESS 表示获取状态成功。 INPUT_PARAMETER_ERROR 表示参数错误。 INPUT_DEVICE_NOT_EXIST 表示键盘设备不存在。
+INPUT_SUCCESS 表示获取状态成功。 INPUT_PARAMETER_ERROR 表示参数错误。 INPUT_KEYBOARD_DEVICE_NOT_EXIST 表示键盘设备不存在。
 
 
 ### OH_Input_GetIntervalSinceLastInput()
@@ -2915,7 +2915,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若移除轴事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若移除轴事件监听成功，则返回**INPUT_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_RemoveAxisEventMonitorForAll()
@@ -2943,7 +2943,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若移除轴事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若移除轴事件监听成功，则返回**INPUT_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_RemoveHotkeyMonitor()
@@ -2991,7 +2991,7 @@ ohos.permission.INTERCEPT_INPUT_EVENT
 
 **返回：**
 
-若移除输入事件拦截成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若移除输入事件拦截成功，则返回**INPUT_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_RemoveKeyEventInterceptor()
@@ -3013,7 +3013,7 @@ ohos.permission.INTERCEPT_INPUT_EVENT
 
 **返回：**
 
-若移除按键事件拦截成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若移除按键事件拦截成功，则返回**INPUT_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_RemoveKeyEventMonitor()
@@ -3041,7 +3041,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若移除按键事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若移除按键事件监听成功，则返回**INPUT_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_RemoveMouseEventMonitor()
@@ -3069,7 +3069,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若移除鼠标事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若移除鼠标事件监听成功，则返回**INPUT_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_RemoveTouchEventMonitor()
@@ -3097,7 +3097,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若移除触摸事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若移除触摸事件监听成功，则返回**INPUT_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_SetAxisEventAction()
@@ -3122,7 +3122,7 @@ Input_Result OH_Input_SetAxisEventAction (Input_AxisEvent * axisEvent, InputEven
 
 **返回：**
 
-若设置轴事件的动作成功，则返回**INTO_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
+若设置轴事件的动作成功，则返回**INPUT_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
 
 ### OH_Input_SetAxisEventActionTime()
 
@@ -3146,7 +3146,7 @@ Input_Result OH_Input_SetAxisEventActionTime (Input_AxisEvent * axisEvent, int64
 
 **返回：**
 
-若设置轴事件发生的时间成功，则返回**INTO_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
+若设置轴事件发生的时间成功，则返回**INPUT_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
 
 
 ### OH_Input_SetAxisEventAxisValue()
@@ -3172,7 +3172,7 @@ Input_Result OH_Input_SetAxisEventAxisValue (Input_AxisEvent * axisEvent, InputE
 
 **返回：**
 
-若设置轴事件指定轴类型的轴值成功，则返回**INTO_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
+若设置轴事件指定轴类型的轴值成功，则返回**INPUT_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
 
 
 ### OH_Input_SetAxisEventDisplayId()
@@ -3197,7 +3197,7 @@ Input_Result OH_Input_SetAxisEventDisplayId (Input_AxisEvent * axisEvent, int32_
 
 **返回：**
 
-若设置轴事件的屏幕Id成功，则返回**INTO_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
+若设置轴事件的屏幕Id成功，则返回**INPUT_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
 
 
 ### OH_Input_SetAxisEventDisplayX()
@@ -3222,7 +3222,7 @@ Input_Result OH_Input_SetAxisEventDisplayX (Input_AxisEvent * axisEvent, float d
 
 **返回：**
 
-若设置轴事件的X坐标成功，则返回**INTO_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
+若设置轴事件的X坐标成功，则返回**INPUT_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
 
 
 ### OH_Input_SetAxisEventDisplayY()
@@ -3247,7 +3247,7 @@ Input_Result OH_Input_SetAxisEventDisplayY (Input_AxisEvent * axisEvent, float d
 
 **返回：**
 
-若设置轴事件的Y坐标成功，则返回**INTO_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
+若设置轴事件的Y坐标成功，则返回**INPUT_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
 
 
 ### OH_Input_SetAxisEventSourceType()
@@ -3272,7 +3272,7 @@ Input_Result OH_Input_SetAxisEventSourceType (Input_AxisEvent * axisEvent, Input
 
 **返回：**
 
-若设置轴事件源类型成功，则返回**INTO_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
+若设置轴事件源类型成功，则返回**INPUT_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
 
 
 ### OH_Input_SetAxisEventType()
@@ -3297,7 +3297,7 @@ Input_Result OH_Input_SetAxisEventType (Input_AxisEvent * axisEvent, InputEvent_
 
 **返回：**
 
-若设置轴事件类型成功，则返回**INTO_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
+若设置轴事件类型成功，则返回**INPUT_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
 
 
 ### OH_Input_SetAxisEventWindowId()
@@ -3322,7 +3322,7 @@ Input_Result OH_Input_SetAxisEventWindowId (Input_AxisEvent * axisEvent, int32_t
 
 **返回：**
 
-若设置轴事件的窗口Id成功，则返回**INTO_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
+若设置轴事件的窗口Id成功，则返回**INPUT_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
 
 
 ### OH_Input_SetFinalKey()
@@ -3531,8 +3531,8 @@ void OH_Input_SetMouseEventAction (struct Input_MouseEvent * mouseEvent, int32_t
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
-| action | 鼠标的动作。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
+| action | 鼠标的动作。相关取值可参考[Input_MouseEventAction](#input_mouseeventaction)。  | 
 
 
 ### OH_Input_SetMouseEventActionTime()
