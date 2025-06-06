@@ -3,7 +3,7 @@
 > **说明：**
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-音视频录制管理类，用于音视频媒体录制。在调用AVRecorder的方法前，需要先通过[createAVRecorder()](#mediacreateavrecorder9)构建一个AVRecorder实例。
+音视频录制管理类，用于音视频媒体录制。在调用AVRecorder的方法前，需要先通过[createAVRecorder()](arkts-apis-media-f.md#mediacreateavrecorder9)构建一个AVRecorder实例。
 
 音视频录制demo可参考：[音频录制开发指导](../../media/media/using-avrecorder-for-recording.md)、[视频录制开发指导](../../media/media/video-recording.md)。
 
@@ -17,7 +17,7 @@
 
 | 名称    | 类型                                 | 只读 | 可选 | 说明               |
 | ------- | ------------------------------------ | ---- | ---- | ------------------ |
-| state9+ | [AVRecorderState](#avrecorderstate9) | 是   | 否   | 音视频录制的状态。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
+| state9+ | [AVRecorderState](arkts-apis-media-t.md#avrecorderstate9) | 是   | 否   | 音视频录制的状态。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
 
 ## prepare<sup>9+</sup>
 
@@ -37,7 +37,7 @@ prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                  |
 | -------- | -------------------------------------- | ---- | ------------------------------------- |
-| config   | [AVRecorderConfig](#avrecorderconfig9) | 是   | 配置音视频录制的相关参数。            |
+| config   | [AVRecorderConfig](arkts-apis-media-i.md#avrecorderconfig9) | 是   | 配置音视频录制的相关参数。            |
 | callback | AsyncCallback\<void>                   | 是   | 回调函数。当prepare方法成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -107,7 +107,7 @@ prepare(config: AVRecorderConfig): Promise\<void>
 
 | 参数名 | 类型                                   | 必填 | 说明                       |
 | ------ | -------------------------------------- | ---- | -------------------------- |
-| config | [AVRecorderConfig](#avrecorderconfig9) | 是   | 配置音视频录制的相关参数。 |
+| config | [AVRecorderConfig](arkts-apis-media-i.md#avrecorderconfig9) | 是   | 配置音视频录制的相关参数。 |
 
 **返回值：**
 
@@ -948,7 +948,7 @@ getAvailableEncoder(callback: AsyncCallback\<Array\<EncoderInfo>>): void
 
 | 参数名   | 类型                                                  | 必填 | 说明                                 |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback\<Array\<[EncoderInfo](#encoderinfo11)>> | 是   | 回调函数。获取可用的编码器参数成功时，err为undefined，data为获取到的编码器参数，否则为错误对象。 |
+| callback | AsyncCallback\<Array\<[EncoderInfo](arkts-pais-media-i.md#encoderinfo11)>> | 是   | 回调函数。获取可用的编码器参数成功时，err为undefined，data为获取到的编码器参数，否则为错误对象。 |
 
 **错误码**：
 
@@ -986,7 +986,7 @@ getAvailableEncoder(): Promise\<Array\<EncoderInfo>>
 
 | 类型                                            | 说明                                            |
 | ----------------------------------------------- | ----------------------------------------------- |
-| Promise\<Array\<[EncoderInfo](#encoderinfo11)>> | Promise对象，返回获取的可用的编码器参数。 |
+| Promise\<Array\<[EncoderInfo](arkts-pais-media-i.md#encoderinfo11)>> | Promise对象，返回获取的可用的编码器参数。 |
 
 **错误码**：
 
@@ -1024,7 +1024,7 @@ getAVRecorderConfig(callback: AsyncCallback\<AVRecorderConfig>): void
 
 | 参数名   | 类型                   | 必填 | 说明                        |
 | -------- | ---------------------- | ---- | --------------------------- |
-| callback | AsyncCallback\<[AVRecorderConfig](#avrecorderconfig9)> | 是   | 回调函数。获取实时配置的参数成功时，err为undefined，data为获取到的配置参数，否则为错误对象。 |
+| callback | AsyncCallback\<[AVRecorderConfig](arkts-apis-media-i.md#avrecorderconfig9)> | 是   | 回调函数。获取实时配置的参数成功时，err为undefined，data为获取到的配置参数，否则为错误对象。 |
 
 **错误码：**
 
@@ -1067,7 +1067,7 @@ getAVRecorderConfig(): Promise\<AVRecorderConfig>;
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<[AVRecorderConfig](#avrecorderconfig9)> | 异步获得实时配置参数的回调方法。 |
+| Promise\<[AVRecorderConfig](arkts-apis-media-i.md#avrecorderconfig9)> | 异步获得实时配置参数的回调方法。 |
 
 **错误码：**
 
@@ -1109,7 +1109,7 @@ on(type: 'stateChange', callback: OnAVRecorderStateChangeHandler): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 状态机切换事件回调类型，支持的事件：'stateChange'，用户操作和系统都会触发此事件。 |
-| callback | [OnAVRecorderStateChangeHandler](#onavrecorderstatechangehandler12) | 是   | 状态机切换事件回调方法。 |
+| callback | [OnAVRecorderStateChangeHandler](arkts-apis-media-t.md#onavrecorderstatechangehandler12) | 是   | 状态机切换事件回调方法。 |
 
 **错误码：**
 
@@ -1132,7 +1132,7 @@ avRecorder.on('stateChange', async (state: media.AVRecorderState, reason: media.
 
 off(type: 'stateChange', callback?: OnAVRecorderStateChangeHandler): void
 
-取消订阅播放状态机[AVRecorderState](#avrecorderstate9)切换的事件。
+取消订阅播放状态机[AVRecorderState](arkts-apis-media-t.md#avrecorderstate9)切换的事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1143,7 +1143,7 @@ off(type: 'stateChange', callback?: OnAVRecorderStateChangeHandler): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 状态机切换事件回调类型，支持的事件：'stateChange'，用户操作和系统都会触发此事件。 |
-| callback | [OnAVRecorderStateChangeHandler](#onavrecorderstatechangehandler12) | 否   | 状态机切换事件回调方法。<br/>从API version 12开始支持此参数。 |
+| callback | [OnAVRecorderStateChangeHandler](arkts-apis-media-t.md#onavrecorderstatechangehandler12) | 否   | 状态机切换事件回调方法。<br/>从API version 12开始支持此参数。 |
 
 **示例：**
 
@@ -1155,7 +1155,7 @@ avRecorder.off('stateChange');
 
 on(type: 'error', callback: ErrorCallback): void
 
-订阅AVRecorder的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVRecorderState](#avrecorderstate9)也切至error状态，用户需要通过[reset()](#reset9-2)或者[release()](#release9-2)退出录制操作。
+订阅AVRecorder的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVRecorderState](arkts-apis-media-t.md#avrecorderstate9)也切至error状态，用户需要通过[reset()](#reset9-2)或者[release()](#release9-2)退出录制操作。
 
 用户只能订阅一个错误事件的回调方法，当用户重复订阅时，以最后一次订阅的回调接口为准。
 
@@ -1281,7 +1281,7 @@ avRecorder.off('audioCapturerChange');
 
 on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset>): void
 
-订阅媒体资源回调事件，当[FileGenerationMode](#filegenerationmode12)枚举设置为系统创建媒体文件时，会在[stop](#stop9-2)操作结束后把[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)对象回调给应用。
+订阅媒体资源回调事件，当[FileGenerationMode](arkts-apis-media-e.md#filegenerationmode12)枚举设置为系统创建媒体文件时，会在[stop](#stop9-2)操作结束后把[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)对象回调给应用。
 
 当用户重复订阅时，以最后一次订阅的回调接口为准。
 
