@@ -3,7 +3,7 @@
 > **说明：**
 > 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-媒体数据信息。来源自[createMediaSourceWithUrl](#mediacreatemediasourcewithurl12)。
+媒体数据信息。来源自[createMediaSourceWithUrl](arkts-apis-media-f.md#mediacreatemediasourcewithurl12)。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -21,7 +21,7 @@ setMimeType(mimeType: AVMimeTypes): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| mimeType | [AVMimeTypes](#mediasource12) | 是   | 媒体MIME类型。 |
+| mimeType | [AVMimeTypes](arkts-apis-media-e.md#mediasource12) | 是   | 媒体MIME类型。 |
 
 ## setMediaResourceLoaderDelegate<sup>18+</sup>
 
@@ -37,7 +37,7 @@ setMediaResourceLoaderDelegate(resourceLoader: MediaSourceLoader): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| resourceLoader | [MediaSourceLoader](#mediasourceloader18) | 是   | 应用实现的媒体数据获取接口，方便播放器获取数据。 |
+| resourceLoader | [MediaSourceLoader](arkts-apis-media-i.md#mediasourceloader18) | 是   | 应用实现的媒体数据获取接口，方便播放器获取数据。 |
 
 **示例：**
 
