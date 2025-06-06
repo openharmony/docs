@@ -506,6 +506,16 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 | ------- | ---- | -------------------------- |
 | DESTROY | 0    | 表示窗口销毁时的转场动画。 |
 
+## AnimationType<sup>20+</sup>
+
+窗口动画类型枚举。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称    | 值   | 说明                       |
+| ------- | ---- | -------------------------- |
+| FADE_IN_OUT | 0    | 表示窗口动画类型为淡入淡出。 |
+
 ## TransitionAnimation<sup>20+</sup>
 
 窗口转场动画配置。
@@ -518,6 +528,27 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 | ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | config  | [WindowAnimationConfig](#windowanimationconfig20) | 是   | 本次转场动画配置。                                           |
 | opacity | number                                            | 否   | 不透明度，转场动画作用的窗口属性，值为0时窗口完全透明。当动画类型为WindowTransitionType.DESTROY时，代表动画终点的不透明度。取值范围0~1，在动画结束时恢复为1。 |
+
+## StartAnimationSystemOption<sup>20+</sup>
+
+系统应用启动动画配置。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称     | 类型                                                      | 必填 | 说明                                                         |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type    | [AnimationType](#animationtype20)           | 是   | 窗口动画类型。                                               |
+| animationConifg    | [WindowAnimationConfig](#windowanimationconfig20) | 否   | 窗口动画参数配置。                 |
+
+## StartAnimationOption<sup>20+</sup>
+
+应用启动动画配置。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称     | 类型                                                      | 必填 | 说明                                                         |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type    | [AnimationType](#animationtype20)           | 是   | 窗口动画类型。                                               |
 
 ## WindowAnchor<sup>20+</sup>
 
