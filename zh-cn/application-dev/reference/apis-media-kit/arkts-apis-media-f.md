@@ -1,4 +1,4 @@
-# Functions (arkts-apis-media-f.md)
+# Functions
 
 ## media.createAVPlayer<sup>9+</sup>
 

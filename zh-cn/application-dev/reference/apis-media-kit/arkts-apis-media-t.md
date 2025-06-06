@@ -1,4 +1,4 @@
-# Types (arkts-apis-media-t.md)
+# Types
 
 ## SoundPool<sup>10+</sup>
 
