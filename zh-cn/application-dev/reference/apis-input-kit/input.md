@@ -76,8 +76,8 @@
 | [Input_TouchEventAction](#input_toucheventaction) { TOUCH_ACTION_CANCEL = 0, TOUCH_ACTION_DOWN = 1, TOUCH_ACTION_MOVE = 2, TOUCH_ACTION_UP = 3 } | 触屏动作的枚举值。  | 
 | [InputEvent_SourceType](#inputevent_sourcetype) { SOURCE_TYPE_MOUSE = 1, SOURCE_TYPE_TOUCHSCREEN = 2, SOURCE_TYPE_TOUCHPAD = 3 } | 输入事件源类型。  | 
 | [Input_KeyboardType](#input_keyboardtype) {<br/>KEYBOARD_TYPE_NONE = 0, KEYBOARD_TYPE_UNKNOWN = 1, KEYBOARD_TYPE_ALPHABETIC = 2, KEYBOARD_TYPE_DIGITAL = 3,<br/>KEYBOARD_TYPE_STYLUS = 4, KEYBOARD_TYPE_REMOTE_CONTROL = 5<br/>} | 输入设备的键盘类型。  | 
-| [Input_Result](#input_result) {<br/>INPUT_SUCCESS = 0, INPUT_PERMISSION_DENIED = 201, INPUT_NOT_SYSTEM_APPLICATION = 202, INPUT_PARAMETER_ERROR = 401, INPUT_DEVICE_NOT_SUPPORTED = 801,<br/>INPUT_SERVICE_EXCEPTION = 3800001, INPUT_KEYBOARD_DEVICE_NOT_EXIST = 3900002, INPUT_REPEAT_INTERCEPTOR = 4200001, INPUT_OCCUPIED_BY_SYSTEM = 4200002, <br/>INPUT_OCCUPIED_BY_OTHER = 4200003<br/>} | 错误码枚举值。  | 
-| [Input_KeyCode](#input_keycode) {<br/>KEYCODE_UNKNOWN = -1, KEYCODE_FN = 0, KEYCODE_VOLUME_UP = 16, KEYCODE_VOLUME_DOWN = 17,<br/>KEYCODE_POWER = 18, KEYCODE_CAMERA = 19, KEYCODE_VOLUME_MUTE = 22, KEYCODE_MUTE = 23,<br/>KEYCODE_BRIGHTNESS_UP = 40, KEYCODE_BRIGHTNESS_DOWN = 41, KEYCODE_0 = 2000, KEYCODE_1 = 2001,<br/>KEYCODE_2 = 2002, KEYCODE_3 = 2003, KEYCODE_4 = 2004, KEYCODE_5 = 2005,<br/>KEYCODE_6 = 2006, KEYCODE_7 = 2007, KEYCODE_8 = 2008, KEYCODE_9 = 2009,<br/>KEYCODE_STAR = 2010, KEYCODE_POUND = 2011, KEYCODE_DPAD_UP = 2012, KEYCODE_DPAD_DOWN = 2013,<br/>KEYCODE_DPAD_LEFT = 2014, KEYCODE_DPAD_RIGHT = 2015, KEYCODE_DPAD_CENTER = 2016, KEYCODE_A = 2017,<br/>KEYCODE_B = 2018, KEYCODE_C = 2019, KEYCODE_D = 2020, KEYCODE_E = 2021,<br/>KEYCODE_F = 2022, KEYCODE_G = 2023, KEYCODE_H = 2024, KEYCODE_I = 2025,<br/>KEYCODE_J = 2026, KEYCODE_K = 2027, KEYCODE_L = 2028, KEYCODE_M = 2029,<br/>KEYCODE_N = 2030, KEYCODE_O = 2031, KEYCODE_P = 2032, KEYCODE_Q = 2033,<br/>KEYCODE_R = 2034, KEYCODE_S = 2035, KEYCODE_T = 2036, KEYCODE_U = 2037,<br/>KEYCODE_V = 2038, KEYCODE_W = 2039, KEYCODE_X = 2040, KEYCODE_Y = 2041,<br/>KEYCODE_Z = 2042, KEYCODE_COMMA = 2043, KEYCODE_PERIOD = 2044, KEYCODE_ALT_LEFT = 2045,<br/>KEYCODE_ALT_RIGHT = 2046, KEYCODE_SHIFT_LEFT = 2047, KEYCODE_SHIFT_RIGHT = 2048, KEYCODE_TAB = 2049,<br/>KEYCODE_SPACE = 2050, KEYCODE_SYM = 2051, KEYCODE_EXPLORER = 2052, KEYCODE_ENVELOPE = 2053,<br/>KEYCODE_ENTER = 2054, KEYCODE_DEL = 2055, KEYCODE_GRAVE = 2056, KEYCODE_MINUS = 2057,<br/>KEYCODE_EQUALS = 2058, KEYCODE_LEFT_BRACKET = 2059, KEYCODE_RIGHT_BRACKET = 2060, KEYCODE_BACKSLASH = 2061,<br/>KEYCODE_SEMICOLON = 2062, KEYCODE_APOSTROPHE = 2063, KEYCODE_SLASH = 2064, KEYCODE_AT = 2065,<br/>KEYCODE_PLUS = 2066, KEYCODE_MENU = 2067, KEYCODE_PAGE_UP = 2068, KEYCODE_PAGE_DOWN = 2069,<br/>KEYCODE_ESCAPE = 2070, KEYCODE_FORWARD_DEL = 2071, KEYCODE_CTRL_LEFT = 2072, KEYCODE_CTRL_RIGHT = 2073,<br/>KEYCODE_CAPS_LOCK = 2074, KEYCODE_SCROLL_LOCK = 2075, KEYCODE_META_LEFT = 2076, KEYCODE_META_RIGHT = 2077,<br/>KEYCODE_FUNCTION = 2078, KEYCODE_SYSRQ = 2079, KEYCODE_BREAK = 2080, KEYCODE_MOVE_HOME = 2081,<br/>KEYCODE_MOVE_END = 2082, KEYCODE_INSERT = 2083, KEYCODE_FORWARD = 2084, KEYCODE_MEDIA_PLAY = 2085,<br/>KEYCODE_MEDIA_PAUSE = 2086, KEYCODE_MEDIA_CLOSE = 2087, KEYCODE_MEDIA_EJECT = 2088, KEYCODE_MEDIA_RECORD = 2089,<br/>KEYCODE_F1 = 2090, KEYCODE_F2 = 2091, KEYCODE_F3 = 2092, KEYCODE_F4 = 2093,<br/>KEYCODE_F5 = 2094, KEYCODE_F6 = 2095, KEYCODE_F7 = 2096, KEYCODE_F8 = 2097,<br/>KEYCODE_F9 = 2098, KEYCODE_F10 = 2099, KEYCODE_F11 = 2100, KEYCODE_F12 = 2101,<br/>KEYCODE_NUM_LOCK = 2102, KEYCODE_NUMPAD_0 = 2103, KEYCODE_NUMPAD_1 = 2104, KEYCODE_NUMPAD_2 = 2105,<br/>KEYCODE_NUMPAD_3 = 2106, KEYCODE_NUMPAD_4 = 2107, KEYCODE_NUMPAD_5 = 2108, KEYCODE_NUMPAD_6 = 2109,<br/>KEYCODE_NUMPAD_7 = 2110, KEYCODE_NUMPAD_8 = 2111, KEYCODE_NUMPAD_9 = 2112, KEYCODE_NUMPAD_DIVIDE = 2113,<br/>KEYCODE_NUMPAD_MULTIPLY = 2114, KEYCODE_NUMPAD_SUBTRACT = 2115, KEYCODE_NUMPAD_ADD = 2116, KEYCODE_NUMPAD_DOT = 2117,<br/>KEYCODE_NUMPAD_COMMA = 2118, KEYCODE_NUMPAD_ENTER = 2119, KEYCODE_NUMPAD_EQUALS = 2120, KEYCODE_NUMPAD_LEFT_PAREN = 2121,<br/>KEYCODE_NUMPAD_RIGHT_PAREN = 2122, KEYCODE_DAGGER_CLICK = 3211, KEYCODE_DAGGER_DOUBLE_CLICK = 3212, KEYCODE_DAGGER_LONG_PRESS = 3213<br/>} | 键码值。  | 
+| [Input_Result](#input_result) {<br/>INPUT_SUCCESS = 0, INPUT_PERMISSION_DENIED = 201, INPUT_NOT_SYSTEM_APPLICATION = 202, INPUT_PARAMETER_ERROR = 401, INPUT_DEVICE_NOT_SUPPORTED = 801,<br/>INPUT_SERVICE_EXCEPTION = 3800001, INPUT_KEYBOARD_DEVICE_NOT_EXIST = 3900002, INPUT_REPEAT_INTERCEPTOR = 4200001, <br/>INPUT_OCCUPIED_BY_SYSTEM = 4200002, INPUT_OCCUPIED_BY_OTHER = 4200003<br/>} | 错误码枚举值。  | 
+| [Input_KeyCode](#input_keycode) {<br/>KEYCODE_UNKNOWN = -1, KEYCODE_FN = 0, KEYCODE_VOLUME_UP = 16, KEYCODE_VOLUME_DOWN = 17,<br/>KEYCODE_POWER = 18, KEYCODE_CAMERA = 19, KEYCODE_VOLUME_MUTE = 22, KEYCODE_MUTE = 23,<br/>KEYCODE_BRIGHTNESS_UP = 40, KEYCODE_BRIGHTNESS_DOWN = 41, KEYCODE_0 = 2000, KEYCODE_1 = 2001,<br/>KEYCODE_2 = 2002, KEYCODE_3 = 2003, KEYCODE_4 = 2004, KEYCODE_5 = 2005,<br/>KEYCODE_6 = 2006, KEYCODE_7 = 2007, KEYCODE_8 = 2008, KEYCODE_9 = 2009,<br/>KEYCODE_STAR = 2010, KEYCODE_POUND = 2011, KEYCODE_DPAD_UP = 2012, KEYCODE_DPAD_DOWN = 2013,<br/>KEYCODE_DPAD_LEFT = 2014, KEYCODE_DPAD_RIGHT = 2015, KEYCODE_DPAD_CENTER = 2016, KEYCODE_A = 2017,<br/>KEYCODE_B = 2018, KEYCODE_C = 2019, KEYCODE_D = 2020, KEYCODE_E = 2021,<br/>KEYCODE_F = 2022, KEYCODE_G = 2023, KEYCODE_H = 2024, KEYCODE_I = 2025,<br/>KEYCODE_J = 2026, KEYCODE_K = 2027, KEYCODE_L = 2028, KEYCODE_M = 2029,<br/>KEYCODE_N = 2030, KEYCODE_O = 2031, KEYCODE_P = 2032, KEYCODE_Q = 2033,<br/>KEYCODE_R = 2034, KEYCODE_S = 2035, KEYCODE_T = 2036, KEYCODE_U = 2037,<br/>KEYCODE_V = 2038, KEYCODE_W = 2039, KEYCODE_X = 2040, KEYCODE_Y = 2041,<br/>KEYCODE_Z = 2042, KEYCODE_COMMA = 2043, KEYCODE_PERIOD = 2044, KEYCODE_ALT_LEFT = 2045,<br/>KEYCODE_ALT_RIGHT = 2046, KEYCODE_SHIFT_LEFT = 2047, KEYCODE_SHIFT_RIGHT = 2048, KEYCODE_TAB = 2049,<br/>KEYCODE_SPACE = 2050, KEYCODE_SYM = 2051, KEYCODE_EXPLORER = 2052, KEYCODE_ENVELOPE = 2053,<br/>KEYCODE_ENTER = 2054, KEYCODE_DEL = 2055, KEYCODE_GRAVE = 2056, KEYCODE_MINUS = 2057,<br/>KEYCODE_EQUALS = 2058, KEYCODE_LEFT_BRACKET = 2059, KEYCODE_RIGHT_BRACKET = 2060, KEYCODE_BACKSLASH = 2061,<br/>KEYCODE_SEMICOLON = 2062, KEYCODE_APOSTROPHE = 2063, KEYCODE_SLASH = 2064, KEYCODE_AT = 2065,<br/>KEYCODE_PLUS = 2066, KEYCODE_MENU = 2067, KEYCODE_PAGE_UP = 2068, KEYCODE_PAGE_DOWN = 2069,<br/>KEYCODE_ESCAPE = 2070, KEYCODE_FORWARD_DEL = 2071, KEYCODE_CTRL_LEFT = 2072, KEYCODE_CTRL_RIGHT = 2073,<br/>KEYCODE_CAPS_LOCK = 2074, KEYCODE_SCROLL_LOCK = 2075, KEYCODE_META_LEFT = 2076, KEYCODE_META_RIGHT = 2077,<br/>KEYCODE_FUNCTION = 2078, KEYCODE_SYSRQ = 2079, KEYCODE_BREAK = 2080, KEYCODE_MOVE_HOME = 2081,<br/>KEYCODE_MOVE_END = 2082, KEYCODE_INSERT = 2083, KEYCODE_FORWARD = 2084, KEYCODE_MEDIA_PLAY = 2085,<br/>KEYCODE_MEDIA_PAUSE = 2086, KEYCODE_MEDIA_CLOSE = 2087, KEYCODE_MEDIA_EJECT = 2088, KEYCODE_MEDIA_RECORD = 2089,<br/>KEYCODE_F1 = 2090, KEYCODE_F2 = 2091, KEYCODE_F3 = 2092, KEYCODE_F4 = 2093,<br/>KEYCODE_F5 = 2094, KEYCODE_F6 = 2095, KEYCODE_F7 = 2096, KEYCODE_F8 = 2097,<br/>KEYCODE_F9 = 2098, KEYCODE_F10 = 2099, KEYCODE_F11 = 2100, KEYCODE_F12 = 2101,<br/>KEYCODE_NUM_LOCK = 2102, KEYCODE_NUMPAD_0 = 2103, KEYCODE_NUMPAD_1 = 2104, KEYCODE_NUMPAD_2 = 2105,<br/>KEYCODE_NUMPAD_3 = 2106, KEYCODE_NUMPAD_4 = 2107, KEYCODE_NUMPAD_5 = 2108, KEYCODE_NUMPAD_6 = 2109,<br/>KEYCODE_NUMPAD_7 = 2110, KEYCODE_NUMPAD_8 = 2111, KEYCODE_NUMPAD_9 = 2112, KEYCODE_NUMPAD_DIVIDE = 2113,<br/>KEYCODE_NUMPAD_MULTIPLY = 2114, KEYCODE_NUMPAD_SUBTRACT = 2115, KEYCODE_NUMPAD_ADD = 2116, KEYCODE_NUMPAD_DOT = 2117,<br/>KEYCODE_NUMPAD_COMMA = 2118, KEYCODE_NUMPAD_ENTER = 2119, KEYCODE_NUMPAD_EQUALS = 2120, KEYCODE_NUMPAD_LEFT_PAREN = 2121,<br/>KEYCODE_NUMPAD_RIGHT_PAREN = 2122<br/>} | 键码值。  | 
 
 
 ### 函数
@@ -475,7 +475,7 @@ typedef void(* Input_MouseEventCallback) (const Input_MouseEvent *mouseEvent)
 
 | 名称 | 描述    |
 | ------ | ------ |
-| mouseEvent | 鼠标事件对象。 |
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。 |
 
 ### Input_Result
 
@@ -700,7 +700,7 @@ enum Input_KeyCode
 | KEYCODE_RIGHT_BRACKET  | 按键']'。 | 
 | KEYCODE_BACKSLASH  | 按键'\'。 | 
 | KEYCODE_SEMICOLON  | 按键';'。 | 
-| KEYCODE_APOSTROPHE  | 按键'''（单引号）。 | 
+| KEYCODE_APOSTROPHE  | 按键''' (单引号)。 | 
 | KEYCODE_SLASH  | 按键'/'。 | 
 | KEYCODE_AT  | 按键'\@'。 | 
 | KEYCODE_PLUS  | 按键'+'。 | 
@@ -760,9 +760,6 @@ enum Input_KeyCode
 | KEYCODE_NUMPAD_EQUALS  | 小键盘按键'='。 | 
 | KEYCODE_NUMPAD_LEFT_PAREN  | 小键盘按键'('。 | 
 | KEYCODE_NUMPAD_RIGHT_PAREN  | 小键盘按键')'。 | 
-| KEYCODE_DAGGER_CLICK  | 智能手表dagger单击键。<br/>起始版本： 18。 | 
-| KEYCODE_DAGGER_DOUBLE_CLICK  | 智能手表dagger双击键。<br/>起始版本： 18。 | 
-| KEYCODE_DAGGER_LONG_PRESS  | 智能手表dagger长按键。<br/>起始版本： 18。 | 
 
 
 ### Input_KeyEventAction
@@ -861,9 +858,9 @@ enum Input_Result
 | -------- | -------- |
 | INPUT_SUCCESS  | 操作成功。 | 
 | INPUT_PERMISSION_DENIED  | 权限验证失败。 | 
-| INPUT_NOT_SYSTEM_APPLICATION  | 非系统应用。 | 
-| INPUT_PARAMETER_ERROR  | 参数检查失败。 | 
+| INPUT_NOT_SYSTEM_APPLICATION  | 非系统应用。 |
 | INPUT_DEVICE_NOT_SUPPORTED | 功能不受支持，**起始版本：** 14。|
+| INPUT_PARAMETER_ERROR  | 参数检查失败。 | 
 | INPUT_SERVICE_EXCEPTION  | 服务异常。 | 
 | INPUT_REPEAT_INTERCEPTOR  | 应用创建拦截后，再次执行创建拦截的操作。 | 
 | INPUT_OCCUPIED_BY_SYSTEM  | 已经被系统应用占用，**起始版本：** 14。 | 
@@ -1010,7 +1007,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若添加轴事件监听成功，则返回[INPUT_SUCCESS](#input_result)；若权限校验失败，则返回[INPUT_PERMISSION_DENIED](#input_result)；若callback为空，则返回[INPUT_PARAMETER_ERROR](#input_result)；若服务异常，则返回[INPUT_SERVICE_EXCEPTION](#input_result)。
+若添加轴事件监听成功，则返回[INPUT_SUCCESS](#input_result)；若权限校验失败，则返回[[INPUT_PERMISSION_DENIED](#input_result)](#input_result)；若callback为空，则返回[INPUT_PARAMETER_ERROR](#input_result)；若服务异常，则返回[INPUT_SERVICE_EXCEPTION](#input_result)。
 
 
 ### OH_Input_AddAxisEventMonitorForAll()
@@ -1047,7 +1044,6 @@ ohos.permission.INPUT_MONITORING
 Input_Result OH_Input_AddHotkeyMonitor (const Input_Hotkey * hotkey, Input_HotkeyCallback callback )
 ```
 **描述**
-
 订阅快捷键事件。此接口在智能穿戴、轻量级智能穿戴设备不生效。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1190,7 +1186,7 @@ Input_Result OH_Input_AddMouseEventMonitor (Input_MouseEventCallback callback)
 ```
 **描述**
 
-添加鼠标事件监听，包含鼠标点击，移动，不包含滚轮事件，滚轮事件归属于轴事件。
+添加鼠标事件监听,包含鼠标点击，移动，不包含滚轮事件，滚轮事件归属于轴事件。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1334,7 +1330,7 @@ Input_Hotkey* OH_Input_CreateHotkey (void)
 
 **返回：**
 
-如果操作成功，则返回一个[Input_Hotkey](#input_hotkey)指针对象。否则，返回一个空指针，可能的原因是内存分配失败。
+如果操作成功，则返回一个[Input_Hotkey](#input_hotkey)指针对象。否则, 返回一个空指针，可能的原因是内存分配失败。
 
 
 ### OH_Input_CreateKeyEvent()
@@ -1643,7 +1639,7 @@ Input_Result OH_Input_GetAxisEventActionTime (const Input_AxisEvent * axisEvent,
 | 名称 | 描述 | 
 | -------- | -------- |
 | axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象，<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。  | 
-| actionTime | 出参，返回轴事件发生的时间，表示从1970.1.1 00:00:00 GMT逝去的微秒数。  | 
+| actionTime | 出参，返回轴事件发生的时间。  | 
 
 **返回：**
 
@@ -2079,8 +2075,6 @@ Input_Result OH_Input_GetFinalKey (const Input_Hotkey * hotkey, int32_t * finalK
 OH_Input_GetfinalKey 函数错误码。 若获取成功，返回[INPUT_SUCCESS](#input_result)；
 
 若获取失败，返回[INPUT_PARAMETER_ERROR](#input_result)。
-
-
 ### OH_Input_GetFunctionKeyState()
 
 ```
@@ -2102,7 +2096,7 @@ Input_Result OH_Input_GetFunctionKeyState (int32_t keyCode, int32_t * state )
 **返回：**
 
 OH_Input_GetFunctionKeyState的执行结果。
-[INPUT_SUCCESS](#input_result) 表示获取状态成功。 [INPUT_PARAMETER_ERROR](#input_result) 表示参数错误。 INPUT_DEVICE_NOT_EXIST 表示键盘设备不存在。
+[INPUT_SUCCESS](#input_result) 表示获取状态成功。 [INPUT_PARAMETER_ERROR](#input_result) 表示参数错误。 [INPUT_KEYBOARD_DEVICE_NOT_EXIST](#input_result) 表示键盘设备不存在。
 
 
 ### OH_Input_GetIntervalSinceLastInput()
@@ -2201,7 +2195,7 @@ int32_t OH_Input_GetKeyEventAction (const struct Input_KeyEvent * keyEvent)
 
 **返回：**
 
-返回按键事件类型。
+返回按键事件类型
 
 
 ### OH_Input_GetKeyEventActionTime()
@@ -2226,8 +2220,6 @@ int64_t OH_Input_GetKeyEventActionTime (const struct Input_KeyEvent * keyEvent)
 **返回：**
 
 返回按键事件发生的时间。
-
-
 ### OH_Input_GetKeyEventDisplayId()
 
 ```
@@ -2389,7 +2381,7 @@ int32_t OH_Input_GetMouseEventAction (const struct Input_MouseEvent * mouseEvent
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 
 **返回：**
 
@@ -2413,7 +2405,7 @@ int64_t OH_Input_GetMouseEventActionTime (const struct Input_MouseEvent * mouseE
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 
 **返回：**
 
@@ -2437,11 +2429,11 @@ int32_t OH_Input_GetMouseEventAxisType (const struct Input_MouseEvent * mouseEve
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 
 **返回：**
 
-轴类型。
+轴类型。相关取值可参考[InputEvent_MouseAxis](#inputevent_mouseaxis)。
 
 
 ### OH_Input_GetMouseEventAxisValue()
@@ -2461,7 +2453,7 @@ float OH_Input_GetMouseEventAxisValue (const struct Input_MouseEvent * mouseEven
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 
 **返回：**
 
@@ -2485,11 +2477,11 @@ int32_t OH_Input_GetMouseEventButton (const struct Input_MouseEvent * mouseEvent
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 
 **返回：**
 
-鼠标按键。
+鼠标按键。相关取值可参考[Input_MouseEventButton](#input_mouseeventbutton)。
 
 
 ### OH_Input_GetMouseEventDisplayId()
@@ -2509,13 +2501,11 @@ int32_t OH_Input_GetMouseEventDisplayId (const struct Input_MouseEvent * mouseEv
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 
 **返回：**
 
 鼠标事件的屏幕Id。
-
-
 ### OH_Input_GetMouseEventDisplayX()
 
 ```
@@ -2533,7 +2523,7 @@ int32_t OH_Input_GetMouseEventDisplayX (const struct Input_MouseEvent * mouseEve
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 
 **返回：**
 
@@ -2557,13 +2547,11 @@ int32_t OH_Input_GetMouseEventDisplayY (const struct Input_MouseEvent * mouseEve
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 
 **返回：**
 
 屏幕Y坐标。
-
-
 ### OH_Input_GetMouseEventWindowId()
 
 ```
@@ -2581,7 +2569,7 @@ int32_t OH_Input_GetMouseEventWindowId (const struct Input_MouseEvent * mouseEve
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 
 **返回：**
 
@@ -2711,8 +2699,6 @@ int32_t OH_Input_GetTouchEventDisplayId (const struct Input_TouchEvent * touchEv
 **返回：**
 
 触屏事件的屏幕Id。
-
-
 ### OH_Input_GetTouchEventDisplayX()
 
 ```
@@ -2807,8 +2793,6 @@ int32_t OH_Input_GetTouchEventWindowId (const struct Input_TouchEvent * touchEve
 **返回：**
 
 触屏事件的窗口Id。
-
-
 ### OH_Input_InjectKeyEvent()
 
 ```
@@ -2850,7 +2834,7 @@ int32_t OH_Input_InjectMouseEvent (const struct Input_MouseEvent * mouseEvent)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent |  要注入的鼠标事件。  | 
+| mouseEvent |  鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 
 **返回：**
 
@@ -2968,7 +2952,6 @@ ohos.permission.INPUT_MONITORING
 Input_Result OH_Input_RemoveHotkeyMonitor (const Input_Hotkey * hotkey, Input_HotkeyCallback callback )
 ```
 **描述**
-
 取消订阅快捷键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -3339,7 +3322,7 @@ Input_Result OH_Input_SetAxisEventWindowId (Input_AxisEvent * axisEvent, int32_t
 
 **返回：**
 
-若设置轴事件的窗口Id，成功，则返回[INPUT_SUCCESS](#input_result)；若axisEvent为NULL，则返回[INPUT_PARAMETER_ERROR](#input_result)。
+若设置轴事件的窗口Id成功，则返回[INPUT_SUCCESS](#input_result)；若axisEvent为NULL，则返回[INPUT_PARAMETER_ERROR](#input_result)。
 
 
 ### OH_Input_SetFinalKey()
@@ -3402,7 +3385,7 @@ void OH_Input_SetKeyEventAction (struct Input_KeyEvent * keyEvent, int32_t actio
 | 名称 | 描述 | 
 | -------- | -------- |
 | keyEvent | 按键事件对象，通过[OH_Input_CreateKeyEvent](#oh_input_createkeyevent)接口可以创建按键事件对象，<br>使用完需使用[OH_Input_DestroyKeyEvent](#oh_input_destroykeyevent)接口销毁按键事件对象。  | 
-| action | 按键事件类型。 | 
+| action | 按键事件类型。相关取值可参考[Input_KeyEventAction](#input_keyeventaction)。 | 
 
 
 ### OH_Input_SetKeyEventActionTime()
@@ -3548,7 +3531,7 @@ void OH_Input_SetMouseEventAction (struct Input_MouseEvent * mouseEvent, int32_t
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 | action | 鼠标的动作。相关取值可参考[Input_MouseEventAction](#input_mouseeventaction)。  | 
 
 
@@ -3569,7 +3552,7 @@ void OH_Input_SetMouseEventActionTime (struct Input_MouseEvent * mouseEvent, int
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 | actionTime | 鼠标事件发生的时间，表示从1970.1.1 00:00:00 GMT逝去的微秒数。  | 
 
 
@@ -3590,7 +3573,7 @@ void OH_Input_SetMouseEventAxisType (struct Input_MouseEvent * mouseEvent, int32
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。 | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。 | 
 | axisType | 轴类型，比如垂直轴、水平轴。相关取值可参考[InputEvent_MouseAxis](#inputevent_mouseaxis)。  | 
 
 
@@ -3611,7 +3594,7 @@ void OH_Input_SetMouseEventAxisValue (struct Input_MouseEvent * mouseEvent, floa
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 | axisValue | 轴事件的值，正数向前滚动（例如，1.0表示向前滚动一个单位），负数向后滚动（例如，-1.0表示向后滚动一个单位），零表示没有滚动。  | 
 
 
@@ -3632,7 +3615,7 @@ void OH_Input_SetMouseEventButton (struct Input_MouseEvent * mouseEvent, int32_t
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 | button | 鼠标按键。相关取值可参考[Input_MouseEventButton](#input_mouseeventbutton)。  | 
 
 
@@ -3653,7 +3636,7 @@ void OH_Input_SetMouseEventDisplayId (struct Input_MouseEvent * mouseEvent, int3
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 | displayId | 鼠标事件的屏幕Id。  | 
 
 
@@ -3674,7 +3657,7 @@ void OH_Input_SetMouseEventDisplayX (struct Input_MouseEvent * mouseEvent, int32
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 | displayX | 屏幕X坐标。  | 
 
 
@@ -3695,7 +3678,7 @@ void OH_Input_SetMouseEventDisplayY (struct Input_MouseEvent * mouseEvent, int32
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 | displayY | 屏幕Y坐标。  | 
 
 
@@ -3716,7 +3699,7 @@ void OH_Input_SetMouseEventWindowId (struct Input_MouseEvent * mouseEvent, int32
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象。  | 
+| mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象，<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。  | 
 | windowId | 鼠标事件的窗口Id。  | 
 
 
@@ -3958,33 +3941,3 @@ Input_Result OH_Input_UnregisterDeviceListeners ()
 OH_Input_UnregisterDeviceListener 的返回值。 
 
 [INPUT_SUCCESS](#input_result) 表示调用成功，[INPUT_SERVICE_EXCEPTION](#input_result) 表示由于服务异常调用失败。
-
-### OH_Input_GetFunctionKeyState()
-
-```
-Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state)
-```
-**描述**
-
-获取功能键状态。
-
-**系统能力：** SystemCapability.MultimodalInput.Input.Core
-
-**起始版本：** 15
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| keyCode | 功能键值。支持的功能键包含CapsLock键。  |
-| state | 功能键状态。 0表示功能键关闭，1表示功能键打开。  | 
-
-**返回：**
-
-OH_Input_GetFunctionKeyState的执行结果。
-
- [INPUT_SUCCESS](#input_result) 表示获取状态成功。
-
- [INPUT_PARAMETER_ERROR](#input_result) 表示参数错误。
-
- INPUT_DEVICE_NOT_EXIST 表示键盘设备不存在。
