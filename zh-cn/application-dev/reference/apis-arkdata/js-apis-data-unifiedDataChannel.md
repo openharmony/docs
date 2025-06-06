@@ -1356,6 +1356,56 @@ type DataProgressListener = (progressInfo: ProgressInfo, data: UnifiedData | nul
 | dataProgressListener | [DataProgressListener](#dataprogresslistener15) | 是 | 表示获取统一数据时的进度和数据监听器。                                                                                                                                |
 | destUri              | string                                          | 否 | 拷贝文件的目标路径。若不支持文件处理，则不需要设置此参数,默认为空；若支持文件处理，须设置一个已经存在的目录。若应用涉及复杂文件处理策略或需要区分文件多路径存储，建议不设置此参数，由应用自行完成文件copy处理。不填写时获取到到的uri为源端路径URI，填写后获取到的uri为目标路径uri。|
 | fileConflictOptions  | [FileConflictOptions](#fileconflictoptions15)   | 否   | 定义文件拷贝冲突时的选项，默认为OVERWRITE。                                                                                                                         |
+| acceptableInfo  | [DataLoadInfo](#dataloadinfo20)   | 否   | 定义接收方对数据类型和数据记录数量的接受能力。延迟拖拽场景下，发送方可根据此信息生成并返回更合适的数据内容。    |
+
+## DataLoadInfo<sup>20+</sup>
+
+描述数据的类型与数量要求。
+
+- 在 **数据接收方** 中使用，表示期望加载的数据类型与数量；
+- 在 **数据发送方** 中使用，表示实际可提供的数据范围。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 名称                   | 类型                                              | 必填 | 说明                                                                                                                                                 |
+|----------------------|-------------------------------------------------| ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
+| types    | Set<string>       | 否 | 表示数据类型集合。                                                                                                                         |
+| recordCount | [DataProgressListener](#dataprogresslistener15) | 是 | 表示期望或可提供的最大数据记录数。                              |
+
+## DataLoadHandler<sup>20+</sup>
+
+type DataLoadHandler = (acceptableInfo?: DataLoadInfo) => UnifiedData | null
+
+用于延迟构建数据的处理函数。支持数据发送方根据接收方传入的信息，动态生成数据，实现更灵活、精准的数据交互策略。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名      | 类型                            | 必填    | 说明           |
+|----------|-------------------------------|-------|--------------|
+| acceptableInfo | [DataLoadInfo](#dataloadinfo20) | 否     | 表示数据接收方可以接受的数据类型和数量。 |
+
+## DataLoadParams<sup>20+</sup>
+
+用于在延迟拖拽场景中描述发送方的数据加载策略。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 名称                   | 类型                                              | 必填 | 说明                                                                                                                                                 |
+|----------------------|-------------------------------------------------| ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
+| loadHandler    | [DataLoadHandler](#dataloadhandler20)       | 否 | 表示用于延迟加载数据的处理函数。             |
+| dataLoadInfo | [DataLoadInfo](#dataloadinfo20) | 是 | 用于描述当前发送方可生成的数据类型及数量信息。              |
 
 ## unifiedDataChannel.insertData
 
