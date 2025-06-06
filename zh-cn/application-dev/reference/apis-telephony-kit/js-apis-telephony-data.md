@@ -500,7 +500,7 @@ queryAllApns(): Promise\<Array\<ApnInfo\>\>
 
 异步获取默认移动数据的SIM卡的APN（access point name，接入点名称）信息。
 
-**需要权限**：ohos.permission.MANAGE_APN_SETTING（该权限是受限开放权限，仅需要连接移动数据专网进行办公室可以申请该权限，权限介绍参见[权限定义](../../security/AccessToken/restricted-permissions.md#ohospermissionmanage_apn_setting)）
+**需要权限**：ohos.permission.MANAGE_APN_SETTING
 
 **系统能力**：SystemCapability.Telephony.CellularData
 
@@ -599,7 +599,7 @@ setPreferredApn(apnId: number): Promise\<boolean\>
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| apnId | number | 是   | 要设置的apnId，可以通过[queryApnIds](#data.queryApnIds)查询。 |
+| apnId | number | 是   | 要设置的apnId，可以通过[queryApnIds](#dataqueryapnids16)查询。 |
 
 **返回值：**
 
