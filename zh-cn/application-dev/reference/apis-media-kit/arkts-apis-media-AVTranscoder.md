@@ -1,6 +1,7 @@
 # Interfaces (AVTranscoder)
 
-**说明**：本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> **说明：**
+> 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 视频转码管理类，用于视频转码。在调用AVTranscoder的方法前，需要先通过[createAVTranscoder()](#mediacreateavtranscoder12)构建一个AVTranscoder实例。
 
