@@ -133,7 +133,7 @@ visibleAreaChanged(minVisible: number, maxVisible: number): void;
 
 ## IDataSourcePrefetching
 
-继承自[IDataSource](./arkui-ts/ts-rendering-control-lazyforeach.md#idatasource10)。实现该接口，提供具备预取能力的DataSource。
+继承自[IDataSource](./arkui-ts/ts-rendering-control-lazyforeach.md#idatasource)。实现该接口，提供具备预取能力的DataSource。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
