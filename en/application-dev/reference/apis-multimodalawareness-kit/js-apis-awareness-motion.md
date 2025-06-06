@@ -34,7 +34,7 @@ Defines the status of the operating hand.
 
 Subscribes to operating hand change events.
 
-**Required permissions**: ohos.permission.ACTIVITY_MOTION
+**Required permissions**: ohos.permission.ACTIVITY_MOTION or ohos.permission.DETECT_GESTURE
 
 **System capability**: SystemCapability.MultimodalAwareness.Motion
 
@@ -83,7 +83,7 @@ off(type: 'operatingHandChanged', callback?: Callback&lt;OperatingHandStatus&gt;
 
 Unsubscribes from operating hand change events.
 
-**Required permissions**: ohos.permission.ACTIVITY_MOTION
+**Required permissions**: ohos.permission.ACTIVITY_MOTION or ohos.permission.DETECT_GESTURE
 
 **System capability**: SystemCapability.MultimodalAwareness.Motion
 
@@ -128,7 +128,7 @@ getRecentOperatingHandStatus(): OperatingHandStatus;
 
 Obtains the latest operating hand status.
 
-**Required permissions**: ohos.permission.ACTIVITY_MOTION
+**Required permissions**: ohos.permission.ACTIVITY_MOTION or ohos.permission.DETECT_GESTURE
 
 **System capability**: SystemCapability.MultimodalAwareness.Motion
 
