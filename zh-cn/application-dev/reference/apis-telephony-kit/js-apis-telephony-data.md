@@ -536,7 +536,7 @@ queryApnIds(apnInfo: ApnInfo): Promise\<Array\<number\>\>
 
 异步获取传入的ApnInfo对应的ApnId信息。
 
-**需要权限**：ohos.permission.MANAGE_APN_SETTING（该权限是受限开放权限，仅需要连接移动数据专网进行办公室可以申请该权限，权限介绍参见[权限定义](../../security/AccessToken/restricted-permissions.md#ohospermissionmanage_apn_setting)）
+**需要权限**：ohos.permission.MANAGE_APN_SETTING
 
 **系统能力**：SystemCapability.Telephony.CellularData
 
@@ -591,7 +591,7 @@ setPreferredApn(apnId: number): Promise\<boolean\>
 >
 > 如果传入的apnId为无效的apnId，切回运营商默认配置的优选Apn。
 
-**需要权限**：ohos.permission.MANAGE_APN_SETTING（该权限是受限开放权限，仅需要连接移动数据专网进行办公室可以申请该权限，权限介绍参见[权限定义](../../security/AccessToken/restricted-permissions.md#ohospermissionmanage_apn_setting)）
+**需要权限**：ohos.permission.MANAGE_APN_SETTING
 
 **系统能力**：SystemCapability.Telephony.CellularData
 
