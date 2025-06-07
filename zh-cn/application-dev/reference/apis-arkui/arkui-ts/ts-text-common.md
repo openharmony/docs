@@ -934,7 +934,7 @@ constructor(color: ResourceColor)
 
 ## TextChangeReason<sup>20+</sup>
 
-内容变化原因。
+组件内容变化原因。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
