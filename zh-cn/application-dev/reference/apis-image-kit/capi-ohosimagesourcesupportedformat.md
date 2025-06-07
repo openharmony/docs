@@ -2,7 +2,7 @@
 
 ## 概述
 
-定义图像源支持的格式字符串。此选项给[OhosImageSourceSupportedFormatList](capi-ohosimagesourcesupportedformatlist.md)和[OH_ImageSource_GetSupportedFormats](capi-image-source-mdk-h.md#oh_imagesource_getsupportedformats)这两个接口使用。
+定义图像源支持的格式字符串。此选项给[OhosImageSourceSupportedFormatList](capi-ohosimagesourcesupportedformatlist.md)和[OH_ImageSource_GetSupportedFormats](capi-image-source-mdk-h.md#oh_imagesource_getsupportedformats)接口使用。
 
 **起始版本：** 10
 
@@ -16,7 +16,7 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| char* format = nullptr | 图像源支持的格式字符串头地址 |
-| size_t size = 0 | 图像源支持的格式字符串大小 |
+| char* format = nullptr | 图像源支持的格式字符串头地址。 |
+| size_t size = 0 | 图像源支持的格式字符串大小。 |
 
 

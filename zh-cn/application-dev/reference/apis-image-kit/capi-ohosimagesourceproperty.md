@@ -2,7 +2,7 @@
 
 ## 概述
 
-定义图像源属性键值字符串。此选项给{@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}这两个接口使用。
+定义图像源属性键值字符串。此选项给[OH_ImageSource_GetImageProperty](capi-image-source-mdk-h.md#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](capi-image-source-mdk-h.md#oh_imagesource_modifyimageproperty)接口使用。
 
 **起始版本：** 10
 
@@ -16,7 +16,7 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| char* value = nullptr | 定义图像源属性键值字符串头地址 |
-| size_t size = 0 | 定义图像源属性键值字符串大小 |
+| char* value = nullptr | 定义图像源属性键值字符串头地址。 |
+| size_t size = 0 | 定义图像源属性键值字符串大小。 |
 
 

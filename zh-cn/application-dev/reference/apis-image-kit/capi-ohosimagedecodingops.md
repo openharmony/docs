@@ -2,7 +2,7 @@
 
 ## 概述
 
-定义图像源解码选项。此选项给[OH_ImageSource_CreatePixelMap](capi-image-source-mdk-h.md#oh_imagesource_createpixelmap)和[OH_ImageSource_CreatePixelMapList](capi-image-source-mdk-h.md#oh_imagesource_createpixelmaplist)这两个接口使用。
+定义图像源解码选项。此选项给[OH_ImageSource_CreatePixelMap](capi-image-source-mdk-h.md#oh_imagesource_createpixelmap)和[OH_ImageSource_CreatePixelMapList](capi-image-source-mdk-h.md#oh_imagesource_createpixelmaplist)接口使用。
 
 **起始版本：** 10
 
@@ -16,13 +16,13 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| int8_t editable | 定义输出的像素位图是否可编辑 |
-| int32_t pixelFormat | 定义输出的像素格式 |
-| int32_t fitDensity | 定义解码目标的像素密度 |
-| uint32_t index | 定义图像源解码指数 |
-| uint32_t sampleSize | 定义解码样本大小选项 |
-| uint32_t rotate | 定义解码旋转选项 |
-| struct OhosImageSize size | 定义解码目标像素宽高的大小 |
-| struct OhosImageRegion region | 定义图像源解码的像素范围 |
+| int8_t editable | 定义输出的像素位图是否可编辑。 |
+| int32_t pixelFormat | 定义输出的像素格式。 |
+| int32_t fitDensity | 定义解码目标的像素密度。 |
+| uint32_t index | 定义ImageSource解码序号。 |
+| uint32_t sampleSize | 定义解码样本大小选项。 |
+| uint32_t rotate | 定义解码旋转选项。 |
+| struct [OhosImageSize](capi-ohosimagesize.md) size | 定义解码目标像素宽高的大小。 |
+| struct [OhosImageRegion](capi-ohosimageregion.md.) region | 定义ImageSource解码的像素范围。 |
 
 

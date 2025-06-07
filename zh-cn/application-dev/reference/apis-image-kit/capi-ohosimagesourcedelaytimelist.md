@@ -16,7 +16,7 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| int32_t* delayTimeList | 图像源延迟时间列表头地址 |
-| size_t size = 0 | 图像源延迟时间列表大小 |
+| int32_t* delayTimeList | 图像源延迟时间列表头地址。 |
+| size_t size = 0 | 图像源延迟时间列表大小。 |
 
 

@@ -2,7 +2,7 @@
 
 ## 概述
 
-定义图像源解码的范围选项。[OhosImageDecodingOps](capi-ohosimagedecodingops.md), [OH_ImageSource_CreatePixelMap](capi-image-source-mdk-h.md#oh_imagesource_createpixelmap) and[OH_ImageSource_CreatePixelMapList](capi-image-source-mdk-h.md#oh_imagesource_createpixelmaplist).
+定义图像源解码的范围选项。是[OhosImageDecodingOps](capi-ohosimagedecodingops.md)的成员变量。
 
 **起始版本：** 10
 
@@ -16,9 +16,9 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| int32_t x | 起始x坐标，用pixels表示 |
-| int32_t y | 起始y坐标，用pixels表示 |
-| int32_t width | 宽度范围，用pixels表示 |
-| int32_t height | 高度范围，用pixels表示 |
+| int32_t x | 起始x坐标，用pixels表示。 |
+| int32_t y | 起始y坐标，用pixels表示。 |
+| int32_t width | 宽度范围，用pixels表示。 |
+| int32_t height | 高度范围，用pixels表示。 |
 
 

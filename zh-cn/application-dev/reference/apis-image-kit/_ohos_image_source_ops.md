@@ -3,7 +3,7 @@
 
 ## 概述
 
-定义图像源选项信息。 此选项给[OH_ImageSource_Create](image.md#oh_imagesource_create)和[OH_ImageSource_CreateIncremental](image.md#oh_imagesource_createincremental)这两个接口使用。
+定义图像源选项信息。 此选项给[OH_ImageSource_Create](image.md#oh_imagesource_create)和[OH_ImageSource_CreateIncremental](image.md#oh_imagesource_createincremental)接口使用。
 
 **系统能力：** SystemCapability.Multimedia.Image
 
