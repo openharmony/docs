@@ -10,6 +10,8 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。当前提供
 >
 > 为了保证应用的运行效率，所有API调用都是异步的，对于异步调用的API均提供了Promise的方式，以下示例均采用Promise方式，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
 
+完整的JS API说明以及示例代码请参考：[VPN扩展应用API](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
+
 ## VPN应用的显示体验
 
 借助系统提供的VPN Extension接口开发者可以构建支持不同协议的VPN服务。OpenHarmony系统提供了界面 (UI) 使用户可以了解当前VPN应用服务的启动和连接：
