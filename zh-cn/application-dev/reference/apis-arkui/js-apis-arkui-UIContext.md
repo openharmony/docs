@@ -2913,6 +2913,11 @@ Router和NavDestination等页面信息，若无对应的Router或NavDestination�
 
 以下API需先使用UIContext中的[getUIObserver()](#getuiobserver11)方法获取到UIObserver对象，再通过该对象调用对应方法。
 
+> **说明：**
+>
+> UIObserver仅能监听到本进程内的相关信息，不支持获取<!--Del-->[UIExtensionComponent](../../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)等<!--DelEnd-->跨进程场景的信息。
+>
+
 ### on('navDestinationUpdate')<sup>11+</sup>
 
 on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo\>): void
