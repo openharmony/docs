@@ -2,7 +2,7 @@
 
 通过WebController可以控制Web组件各种行为。一个WebController对象只能控制一个Web组件，且必须在Web组件和WebController绑定后，才能调用WebController上的方法。
 
-从API version 9开始不再维护，建议使用[WebviewController<sup>9+</sup>](./arkts-apis-webview-WebviewController.md#class-webviewcontroller)代替。
+从API version 9开始不再维护，建议使用[WebviewController<sup>9+</sup>](./arkts-apis-webview-WebviewController.md)代替。
 
 > **说明：**
 >
@@ -43,7 +43,7 @@ getCookieManager(): WebCookie
 
 | 类型        | 说明                                       |
 | --------- | ---------------------------------------- |
-| WebCookie | Web组件cookie管理对象，参考[WebCookie](./arkts-basic-components-web-WebCookie.md#class-webcookie)定义。 |
+| WebCookie | Web组件cookie管理对象，参考[WebCookie](./arkts-basic-components-web-WebCookie.md)定义。 |
 
 **示例：**
 

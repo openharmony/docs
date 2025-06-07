@@ -30,4 +30,4 @@ setWebController(controller: WebviewController): void
 
 | 参数名        | 类型                                     | 必填 | 说明                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| controller | [WebviewController](./arkts-apis-webview-WebviewController.md#class-webviewcontroller) | 是  | 新建Web组件的WebviewController对象，如果不需要打开新窗口请设置为null。 |
+| controller | [WebviewController](./arkts-apis-webview-WebviewController.md) | 是  | 新建Web组件的WebviewController对象，如果不需要打开新窗口请设置为null。 |

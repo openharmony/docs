@@ -358,8 +358,8 @@ Web组件返回的请求/响应头对象。
 
 | 名称      | 类型                                                                                    | 必填 | 说明              |
 |---------|---------------------------------------------------------------------------------------|----|-----------------|
-| request | [WebResourceRequest](../../apis-arkweb/arkts-basic-components-web.md#webresourcerequest) | 是  | 网页请求的封装信息。      |
-| error   | [WebResourceError](../../apis-arkweb/arkts-basic-components-web.md#webresourceerror)     | 是  | 网页加载资源错误的封装信息 。 |
+| request | [WebResourceRequest](../../apis-arkweb/arkts-basic-components-web-WebResourceRequest.md) | 是  | 网页请求的封装信息。      |
+| error   | [WebResourceError](../../apis-arkweb/arkts-basic-components-web-WebResourceError.md)     | 是  | 网页加载资源错误的封装信息 。 |
 
 ## OnHttpErrorReceiveEvent
 
@@ -371,8 +371,8 @@ Web组件返回的请求/响应头对象。
 
 | 名称       | 类型                                                                                      | 必填 | 说明         |
 |----------|-----------------------------------------------------------------------------------------|----|------------|
-| request  | [WebResourceRequest](../../apis-arkweb/arkts-basic-components-web.md#webresourcerequest)   | 是  | 网页请求的封装信息。 |
-| response | [WebResourceResponse](../../apis-arkweb/arkts-basic-components-web.md#webresourceresponse) | 是  | 资源响应的封装信息。 |
+| request  | [WebResourceRequest](../../apis-arkweb/arkts-basic-components-web-WebResourceRequest.md)   | 是  | 网页请求的封装信息。 |
+| response | [WebResourceResponse](../../apis-arkweb/arkts-basic-components-web-WebResourceResponse.md) | 是  | 资源响应的封装信息。 |
 
 ## OnPageBeginEvent
 
@@ -408,7 +408,7 @@ Web组件返回的请求/响应头对象。
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| data | [WebResourceRequest](../../apis-arkweb/arkts-basic-components-web.md#webresourcerequest) | 是 | 网页请求的封装信息。 |
+| data | [WebResourceRequest](../../apis-arkweb/arkts-basic-components-web-WebResourceRequest.md) | 是 | 网页请求的封装信息。 |
 
 ## OnProgressChangeEvent
 

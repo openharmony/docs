@@ -20,7 +20,7 @@ didReceiveResponse(response: WebSchemeHandlerResponse): void
 
 | 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
-| response      | [WebSchemeHandlerResponse](./arkts-apis-webview-WebSchemeHandlerResponse.md#class-webschemehandlerresponse)  | 是   | 该拦截请求的响应。 |
+| response      | [WebSchemeHandlerResponse](./arkts-apis-webview-WebSchemeHandlerResponse.md)  | 是   | 该拦截请求的响应。 |
 
 **错误码：**
 
@@ -94,7 +94,7 @@ didFail(code: WebNetErrorList): void
 
 | 参数名   | 类型    |  必填  | 说明                       |
 | --------| ------- | ---- | ---------------------------|
-|  code | [WebNetErrorList](js-apis-netErrorList.md#webneterrorlist) | 是   | 网络错误码。 |
+|  code | [WebNetErrorList](arkts-apis-netErrorList.md#webneterrorlist) | 是   | 网络错误码。 |
 
 **错误码：**
 

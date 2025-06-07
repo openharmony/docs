@@ -202,8 +202,8 @@ WebViewController与Web组件的绑定状态。
 |------|------|------|------|
 | embedID | string | 是 | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
 | mediaType | [MediaType](./arkts-apis-webview-e.md#mediatype12) | 是 | 媒体的类型。 |
-| mediaSrcList | [MediaSourceInfo](./arkts-apis-webview-MediaSourceInfo.md#class-mediasourceinfo)[] | 是 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
-| surfaceInfo | [NativeMediaPlayerSurfaceInfo](./arkts-apis-webview-NativeMediaPlayerSurfaceInfo.md#class-nativemediaplayersurfaceinfo) | 是 | 用于同层渲染的 surface 信息。 |
+| mediaSrcList | [MediaSourceInfo](./arkts-apis-webview-MediaSourceInfo.md)[] | 是 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
+| surfaceInfo | [NativeMediaPlayerSurfaceInfo](./arkts-apis-webview-NativeMediaPlayerSurfaceInfo.md) | 是 | 用于同层渲染的 surface 信息。 |
 | controlsShown | boolean | 是 | `<video>` 或 `<audio>` 中是否有 `controls`属性。<br>true表示有，false表示没有。 |
 | controlList | string[] | 是 | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
 | muted | boolean | 是 | 是否要求静音播放。<br>true表示静音播放，false表示未静音播放。 |

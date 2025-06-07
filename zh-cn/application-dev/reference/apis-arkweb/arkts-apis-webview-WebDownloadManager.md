@@ -20,7 +20,7 @@ static setDownloadDelegate(delegate: WebDownloadDelegate): void
 
 | 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
-| delegate      | [WebDownloadDelegate](./arkts-apis-webview-WebDownloadDelegate.md#class-webdownloaddelegate)  | 是   | 用来接收下载进回调的委托。 |
+| delegate      | [WebDownloadDelegate](./arkts-apis-webview-WebDownloadDelegate.md)  | 是   | 用来接收下载进回调的委托。 |
 
 **示例：**
 
@@ -123,7 +123,7 @@ static resumeDownload(webDownloadItem: WebDownloadItem): void
 
 | 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
-| webDownloadItem      | [WebDownloadItem](./arkts-apis-webview-WebDownloadItem.md#class-webdownloaditem)  | 是   | 待恢复的下载任务。 |
+| webDownloadItem      | [WebDownloadItem](./arkts-apis-webview-WebDownloadItem.md)  | 是   | 待恢复的下载任务。 |
 
 **错误码：**
 

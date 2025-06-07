@@ -20,7 +20,7 @@ static applyProxyOverride(proxyConfig: ProxyConfig, callback: OnProxyConfigChang
 
 | 参数名          | 类型     |  必填  | 说明           |
 | ---------------| ------- | ---- | ------------- |
-| proxyConfig     | [ProxyConfig](./arkts-apis-webview-ProxyConfig.md#class-proxyconfig)  | 是   | 对代理的配置。 |
+| proxyConfig     | [ProxyConfig](./arkts-apis-webview-ProxyConfig.md)  | 是   | 对代理的配置。 |
 | callback     | [OnProxyConfigChangeCallback](./arkts-apis-webview-t.md#onproxyconfigchangecallback15)   | 是   | 代理设置成功的回调。 |
 
 **错误码：**

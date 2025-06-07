@@ -99,7 +99,7 @@ setNetErrorCode(code: WebNetErrorList): void
 
 | 参数名   | 类型    |  必填  | 说明                       |
 | --------| ------- | ---- | ---------------------------|
-|  code | [WebNetErrorList](js-apis-netErrorList.md#webneterrorlist) | 是   | 网络错误码。 |
+|  code | [WebNetErrorList](arkts-apis-netErrorList.md#webneterrorlist) | 是   | 网络错误码。 |
 
 **错误码：**
 
@@ -276,7 +276,7 @@ getNetErrorCode(): WebNetErrorList
 
 | 类型    | 说明                                     |
 | ------- | --------------------------------------- |
-| [WebNetErrorList](js-apis-netErrorList.md#webneterrorlist) | 获取Response的网络错误码。|
+| [WebNetErrorList](arkts-apis-netErrorList.md#webneterrorlist) | 获取Response的网络错误码。|
 
 **示例：**
 

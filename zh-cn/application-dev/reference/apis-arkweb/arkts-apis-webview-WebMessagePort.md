@@ -147,7 +147,7 @@ postMessageEventExt(message: WebMessageExt): void
 
 | 参数名  | 类型   | 必填 | 说明           |
 | ------- | ------ | ---- | :------------- |
-| message | [WebMessageExt](./arkts-apis-webview-WebMessageExt.md#class-webmessageext) | 是   | 要发送的消息。 |
+| message | [WebMessageExt](./arkts-apis-webview-WebMessageExt.md) | 是   | 要发送的消息。 |
 
 **错误码：**
 
@@ -170,7 +170,7 @@ onMessageEventExt(callback: (result: WebMessageExt) => void): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | :------------------- |
-| callback | (result: [WebMessageExt](./arkts-apis-webview-WebMessageExt.md#class-webmessageext)) => void | 是   | 接收到的消息。 |
+| callback | (result: [WebMessageExt](./arkts-apis-webview-WebMessageExt.md)) => void | 是   | 接收到的消息。 |
 
 **错误码：**
 

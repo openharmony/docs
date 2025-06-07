@@ -3192,7 +3192,7 @@
           - [Interfaces（其他）](reference/apis-arkweb/arkts-apis-webview-i.md)
           - [Enums](reference/apis-arkweb/arkts-apis-webview-e.md)
           - [Types](reference/apis-arkweb/arkts-apis-webview-t.md)
-        - [@ohos.web.netErrorList](reference/apis-arkweb/js-apis-netErrorList.md)
+        - [@ohos.web.netErrorList](reference/apis-arkweb/arkts-apis-netErrorList.md)
       - ArkTS 组件<!--arkweb-comp-->
         - [Web](reference/apis-arkweb/arkts-basic-components-web.md)
           - [属性](reference/apis-arkweb/arkts-basic-components-web-attributes.md)

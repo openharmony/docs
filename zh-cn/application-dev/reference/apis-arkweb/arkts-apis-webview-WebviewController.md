@@ -1333,7 +1333,7 @@ runJavaScriptExt(script: string | ArrayBuffer, callback : AsyncCallback\<JsMessa
 | 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
 | script   | string \| ArrayBuffer<sup>12+</sup>         | 是   | JavaScript脚本。 |
-| callback | AsyncCallback\<[JsMessageExt](./arkts-apis-webview.md#jsmessageext10)\> | 是   | 回调执行JavaScript脚本结果。 |
+| callback | AsyncCallback\<[JsMessageExt](./arkts-apis-webview-JsMessageExt.md)\> | 是   | 回调执行JavaScript脚本结果。 |
 
 **错误码：**
 
@@ -1549,7 +1549,7 @@ runJavaScriptExt(script: string | ArrayBuffer): Promise\<JsMessageExt>
 
 | 类型            | 说明                                                |
 | --------------- | --------------------------------------------------- |
-| Promise\<[JsMessageExt](./arkts-apis-webview.md#jsmessageext10)> | Promise实例，返回脚本执行的结果。 |
+| Promise\<[JsMessageExt](./arkts-apis-webview-JsMessageExt.md)> | Promise实例，返回脚本执行的结果。 |
 
 **错误码：**
 
@@ -4762,7 +4762,7 @@ setDownloadDelegate(delegate: WebDownloadDelegate): void
 
 | 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
-| delegate      | [WebDownloadDelegate](./arkts-apis-webview.md#webdownloaddelegate11)  | 是   | 用来接收下载进回调的委托。 |
+| delegate      | [WebDownloadDelegate](./arkts-apis-webview-WebDownloadDelegate.md)  | 是   | 用来接收下载进回调的委托。 |
 
 **错误码：**
 
@@ -5631,7 +5631,7 @@ struct WebComponent {
 isAdsBlockEnabledForCurPage() : boolean
 
 查询当前网页是否开启广告过滤功能。
-当Web组件使能广告过滤功能后，默认所有页面都是开启广告过滤的，支持通过[addAdsBlockDisallowedList](./arkts-apis-webview.md#addadsblockdisallowedlist12)指定域名禁用广告过滤。
+当Web组件使能广告过滤功能后，默认所有页面都是开启广告过滤的，支持通过[addAdsBlockDisallowedList](./arkts-apis-webview-AdsBlockManager.md#addadsblockdisallowedlist12)指定域名禁用广告过滤。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6768,7 +6768,7 @@ struct WebComponent {
 
 setWebSchemeHandler(scheme: string, handler: WebSchemeHandler): void
 
-为当前Web组件设置[WebSchemeHandler](./arkts-apis-webview.md#webschemehandler12), [WebSchemeHandler](./arkts-apis-webview.md#webschemehandler12)类用于拦截指定scheme的请求。
+为当前Web组件设置[WebSchemeHandler](./arkts-apis-webview-WebSchemeHandler.md), [WebSchemeHandler](./arkts-apis-webview-WebSchemeHandler.md)类用于拦截指定scheme的请求。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6777,7 +6777,7 @@ setWebSchemeHandler(scheme: string, handler: WebSchemeHandler): void
 | 参数名 | 类型   | 必填 | 说明                      |
 | ------ | ------ | ---- | :------------------------ |
 | scheme    | string | 是   | 要拦截的协议。 |
-| handler    | [WebSchemeHandler](./arkts-apis-webview.md#webschemehandler12) | 是   | 拦截此协议的拦截器。 |
+| handler    | [WebSchemeHandler](./arkts-apis-webview-WebSchemeHandler.md) | 是   | 拦截此协议的拦截器。 |
 
 **错误码：**
 
@@ -6874,7 +6874,7 @@ setServiceWorkerWebSchemeHandler(scheme: string, handler: WebSchemeHandler): voi
 | 参数名 | 类型   | 必填 | 说明                      |
 | ------ | ------ | ---- | :------------------------ |
 | scheme    | string | 是   | 要拦截的协议。 |
-| handler    | [WebSchemeHandler](./arkts-apis-webview.md#webschemehandler12) | 是   | 拦截此协议的拦截器。 |
+| handler    | [WebSchemeHandler](./arkts-apis-webview-WebSchemeHandler.md) | 是   | 拦截此协议的拦截器。 |
 
 **错误码：**
 
@@ -7373,7 +7373,7 @@ onCreateNativeMediaPlayer(callback: CreateNativeMediaPlayerCallback): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| callback | [CreateNativeMediaPlayerCallback](./arkts-apis-webview.md#createnativemediaplayercallback12) | 是 | 接管网页媒体播放的回调函数。 |
+| callback | [CreateNativeMediaPlayerCallback](./arkts-apis-webview-t.md#createnativemediaplayercallback12) | 是 | 接管网页媒体播放的回调函数。 |
 
 **示例：**
 
@@ -8322,7 +8322,7 @@ static enableBackForwardCache(features: BackForwardCacheSupportedFeatures): void
 
 | 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
-| features     |  [BackForwardCacheSupportedFeatures](./arkts-apis-webview.md#backforwardcachesupportedfeatures12) | 是   | 允许使用特定的页面进入前进后退缓存中。|
+| features     |  [BackForwardCacheSupportedFeatures](./arkts-apis-webview-t.md#backforwardcachesupportedfeatures12) | 是   | 允许使用特定的页面进入前进后退缓存中。|
 
 **示例：**
 
@@ -8359,7 +8359,7 @@ setBackForwardCacheOptions(options: BackForwardCacheOptions): void
 
 | 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
-| options     |  [BackForwardCacheOptions](./arkts-apis-webview.md#backforwardcacheoptions12) | 是   | 用来控制Web组件前进后退缓存相关选项。|
+| options     |  [BackForwardCacheOptions](./arkts-apis-webview-BackForwardCacheOptions.md) | 是   | 用来控制Web组件前进后退缓存相关选项。|
 
 **错误码：**
 
@@ -8469,7 +8469,7 @@ createPdf(configuration: PdfConfiguration, callback: AsyncCallback\<PdfData\>): 
 | 参数名        | 类型                                    | 必填 | 说明                    |
 | ------------- | --------------------------------------- | ---- | ----------------------- |
 | configuration | [PdfConfiguration](./arkts-apis-webview-i.md#pdfconfiguration14) | 是   | 生成PDF所需参数。       |
-| callback      | AsyncCallback<[PdfData](./arkts-apis-webview.md#pdfdata14)>    | 是   | 回调返回网页PDF数据流。 |
+| callback      | AsyncCallback<[PdfData](./arkts-apis-webview-PdfData.md)>    | 是   | 回调返回网页PDF数据流。 |
 
 **错误码：**
 
@@ -8552,7 +8552,7 @@ createPdf(configuration: PdfConfiguration): Promise\<PdfData\>
 
 | 类型                           | 说明                          |
 | ------------------------------ | ----------------------------- |
-| Promise<[PdfData](./arkts-apis-webview.md#pdfdata14)> | Promise实例，返回网页数据流。 |
+| Promise<[PdfData](./arkts-apis-webview-PdfData.md)> | Promise实例，返回网页数据流。 |
 
 **错误码：**
 

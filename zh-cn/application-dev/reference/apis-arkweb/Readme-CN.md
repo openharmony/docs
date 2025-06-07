@@ -32,7 +32,7 @@
     - [Enums](arkts-apis-webview-e.md)
     - [Types](arkts-apis-webview-t.md)
     - [Functions](arkts-apis-webview-f.md)
-  - [@ohos.web.netErrorList](js-apis-netErrorList.md)
+  - [@ohos.web.netErrorList](arkts-apis-netErrorList.md)
 - ArkTS 组件<!--arkweb-comp-->
   - [Web](arkts-basic-components-web.md)
     - [Class (ClientAuthenticationHandler)](arkts-basic-components-web-ClientAuthenticationHandler.md)

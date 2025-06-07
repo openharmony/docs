@@ -219,7 +219,7 @@ Scroll滚动类型，用于[setScrollable](./arkts-apis-webview-WebviewControlle
 
 ## PlaybackStatus<sup>12+</sup>
 
-[handleStatusChanged](./arkts-apis-webview.md#handlestatuschanged12) 接口参数， 用于表示播放器的播放状态。
+[handleStatusChanged](./arkts-apis-webview-NativeMediaPlayerHandler.md#handlestatuschanged12) 接口参数， 用于表示播放器的播放状态。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

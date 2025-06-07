@@ -879,7 +879,7 @@ static deserialize(serializedData: Uint8Array): WebDownloadItem
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| [WebDownloadItem](#class-webdownloaditem) | 从字节数组反序列化为一个WebDownloadItem对象。 |
+| WebDownloadItem | 从字节数组反序列化为一个WebDownloadItem对象。 |
 
 **错误码：**
 

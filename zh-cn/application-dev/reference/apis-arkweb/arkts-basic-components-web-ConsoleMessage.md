@@ -12,7 +12,7 @@ Web组件获取控制台信息对象。示例代码参考[onConsole事件](./ark
 
 constructor(message: string, sourceId: string, lineNumber: number, messageLevel: MessageLevel)
 
-[ConsoleMessage](#class-consolemessage)的构造函数。
+ConsoleMessage的构造函数。
 
 > **说明：**
 >
@@ -32,7 +32,7 @@ ConsoleMessage的构造函数。
 
 getLineNumber(): number
 
-获取[ConsoleMessage](#class-consolemessage)的行数。
+获取ConsoleMessage的行数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

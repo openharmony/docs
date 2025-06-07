@@ -167,7 +167,7 @@ getProxyRules(): Array\<ProxyRule\>
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| Array\<[ProxyRule](./arkts-apis-webview-ProxyRule.md#class-proxyrule)\> | 代理规则。 |
+| Array\<[ProxyRule](./arkts-apis-webview-ProxyRule.md)\> | 代理规则。 |
 
 **示例：**
 

@@ -128,7 +128,7 @@ getHttpBodyStream(): WebHttpBodyStream | null
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| [WebHttpBodyStream](./arkts-apis-webview-WebSchemeHandler.md#class-webschemehandler) \| null | 返回资源请求中的WebHttpBodyStream，如果没有则返回null。 |
+| [WebHttpBodyStream](./arkts-apis-webview-WebSchemeHandler.md) \| null | 返回资源请求中的WebHttpBodyStream，如果没有则返回null。 |
 
 **示例：**
 
