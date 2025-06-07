@@ -908,7 +908,7 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
 **系统能力：** SystemCapability.Security.AccessToken
 
-| 名称       | 类型             | 可读 | 可写 | 说明                                       |
+| 名称       | 类型             | 只读 | 可选 | 说明                                       |
 | --------- | -------------- | ---- | ---- | ---------------------------------------- |
 | beginTime | number         | 是    | 否    | 查询记录的起始时间，单位：ms。 |
 | endTime   | number         | 是    | 否    | 查询记录的终止时间，单位：ms。 |
@@ -920,7 +920,7 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
 **系统能力：** SystemCapability.Security.AccessToken
 
-| 名称       | 类型             | 可读 | 可写 | 说明                                       |
+| 名称       | 类型             | 只读 | 可选 | 说明                                       |
 | -------- | -------------- | ---- | ---- | ---------------------------------------- |
 | tokenId  | number         | 是    | 否    | 目标应用的身份标识。                                 |
 | isRemote | boolean         | 是    | 否    | 是否是分布式设备。默认值为false，表示不是分布式设备，true表示是分布式设备。 |
@@ -934,7 +934,7 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
 **系统能力：** SystemCapability.Security.AccessToken
 
-| 名称       | 类型             | 可读 | 可写 | 说明                                       |
+| 名称       | 类型             | 只读 | 可选 | 说明                                       |
 | -------- | -------------- | ---- | ---- | ---------------------------------------- |
 | permissionName  | Permissions         | 是    | 否    | 权限名。                                 |
 | accessCount | number         | 是    | 否    | 该权限访问总次数。 |
@@ -951,7 +951,7 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
 **系统能力：** SystemCapability.Security.AccessToken
 
-| 名称       | 类型             | 可读 | 可写 | 说明                                       |
+| 名称       | 类型             | 只读 | 可选 | 说明                                       |
 | -------- | -------------- | ---- | ---- | ---------------------------------------- |
 | status  | number         | 是    | 否    | 访问状态。                                 |
 | lockScreenStatus<sup>11+</sup>  | number         | 是    | 否    | 访问时的锁屏状态。<br> - 1，表示非锁屏场景使用权限。<br> - 2，表示锁屏场景使用权限。                                 |
@@ -978,7 +978,7 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
  **系统能力:** SystemCapability.Security.AccessToken
 
-| 名称           | 类型                    | 可读 | 可写 | 说明                   |
+| 名称           | 类型                    | 只读 | 可选 | 说明                   |
 | -------------- | ---------------------- | ---- | ---- | --------------------- |
 | callingTokenId<sup>18+</sup> | number   | 是   | 否   | 接口调用方的应用身份标识，activeStatus是INACTIVE时该值无效。 |
 | tokenId        | number                 | 是   | 否   | 被订阅的应用身份标识。    |
@@ -1005,7 +1005,7 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
  **系统能力:** SystemCapability.Security.AccessToken
 
-| 名称           | 类型                    | 可读 | 可写 | 说明                   |
+| 名称           | 类型                    | 只读 | 可选 | 说明                   |
 | -------------- | ---------------------- | ---- | ---- | --------------------- |
 | tokenId        | number                 | 是   | 否   | 访问敏感权限的应用身份标识。 |
 | permissionName | Permissions            | 是   | 否   | 被访问的敏感权限名称。 |
@@ -1017,6 +1017,6 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
  **系统能力:** SystemCapability.Security.AccessToken
 
-| 名称           | 类型                    | 可读 | 可写 | 说明                   |
+| 名称           | 类型                    | 只读 | 可选 | 说明                   |
 | -------------- | ---------------------- | ---- | ---- | --------------------- |
 | usedType | [PermissionUsedType](#permissionusedtype12) | 是 | 否    | 敏感权限使用类型。 |
