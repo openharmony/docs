@@ -130,7 +130,7 @@ struct WebComponent {
 }
 ```
 
-如果能够预测到Web组件将要加载页面或者即将要跳转页面中的post请求。可以通过[prefetchResource()](../reference/apis-arkweb//arkts-apis-webview-WebviewController.md#prefetchresource12)预获取即将要加载页面的post请求。
+如果能够预测到Web组件将要加载页面或者即将要跳转页面中的post请求。可以通过[prefetchResource()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#prefetchresource12)预获取即将要加载页面的post请求。
 
   以下示例，在onPageEnd中，触发预获取一个要访问页面的post请求。
 

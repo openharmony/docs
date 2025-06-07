@@ -188,7 +188,7 @@ Web页面保活可以参考[使用离线Web组件](../web/web-offline-mode.md)�
 
 - [onFirstContentfulPaint](../reference/apis-arkweb/arkts-basic-components-web-events.md#onfirstcontentfulpaint10)事件：网页首次内容绘制的回调函数。首次绘制文本、图像、首次绘制文本、图像、非空白Canvas或SVG的时间点。
 
-- [onFirstMeaningfulPaint](../reference/apis-arkweb//arkts-basic-components-web-events.md#onfirstmeaningfulpaint12)事件：网页绘制页面主要内容的回调函数。首次绘制主要内容的时间点。
+- [onFirstMeaningfulPaint](../reference/apis-arkweb/arkts-basic-components-web-events.md#onfirstmeaningfulpaint12)事件：网页绘制页面主要内容的回调函数。首次绘制主要内容的时间点。
 
 - [onLargestContentfulPaint](../reference/apis-arkweb/arkts-basic-components-web-events.md#onlargestcontentfulpaint12)事件：网页绘制页面最大内容的回调函数。绘制可视区域内最大图片、文本块或视频的时间点。
 
