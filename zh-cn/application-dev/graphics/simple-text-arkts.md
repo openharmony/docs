@@ -203,4 +203,4 @@ struct Font08 {
 
 ## 效果展示
 
-![zh-cn_image_0000002246603717](figures/zh-cn_image_0000002246603717.png)
+![zh-cn_image_0000002246603717](figures/simpleText.PNG)
