@@ -109,6 +109,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
     OH_AVScreenCapture_StrategyForPrivacyMaskMode(strategy, value);
     OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
+    ```
 
 8. 调用StartScreenCapture()方法开始进行屏幕录制。
 
