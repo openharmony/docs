@@ -418,9 +418,13 @@ data数据必须使用base64编码或将内容中的任何#字符编码为%23。
 
 > **说明：**
 >
-> 若加载本地图片，可以给baseUrl或historyUrl任一参数赋值空格，详情请参考示例代码。
-> 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
-> 若html中的富文本中带有注入#等特殊字符，建议将baseUrl和historyUrl两个参数的值设置为"空格"。
+> - 若加载本地图片，可以给baseUrl或historyUrl任一参数赋值空格，详情请参考示例代码。
+>
+> - 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
+>
+> - 若html中的富文本中带有注入#等特殊字符，建议将baseUrl和historyUrl两个参数的值设置为"空格"。
+>
+> - 加载文字场景，需主动设置<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">避免文本字体大小不一致。
 
 **错误码：**
 
@@ -4483,11 +4487,15 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 
 > **说明：**
 >
-> 下载的页面资源，会缓存五分钟左右，超过这段时间Web组件会自动释放。
+> - 下载的页面资源，会缓存五分钟左右，超过这段时间Web组件会自动释放。
 >
-> prefetchPage对302重定向页面同样正常预取。
+> - prefetchPage对302重定向页面同样正常预取。
 >
-> 先执行prefetchPage，再加载页面时，已预取的资源将直接从缓存中加载。
+> - 先执行prefetchPage，再加载页面时，已预取的资源将直接从缓存中加载。
+>
+> - 连续prefetchPage多个url只有第一个生效。
+>
+> - prefetchPage有时间限制，500ms内不能多次预取。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
