@@ -8322,7 +8322,7 @@ static enableBackForwardCache(features: BackForwardCacheSupportedFeatures): void
 
 | 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
-| features     |  [BackForwardCacheSupportedFeatures](./arkts-apis-webview-t.md#backforwardcachesupportedfeatures12) | 是   | 允许使用特定的页面进入前进后退缓存中。|
+| features     |  [BackForwardCacheSupportedFeatures](./arkts-apis-webview-BackForwardCacheSupportedFeatures.md) | 是   | 允许使用特定的页面进入前进后退缓存中。|
 
 **示例：**
 
