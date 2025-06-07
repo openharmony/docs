@@ -1,7 +1,7 @@
 # Camera Kit（相机服务）
 
 - ArkTS API<!--camera-arkts-->
-  - @ohos.multimedia.camera (相机管理)<!--js-apis-camera.md-->
+  - @ohos.multimedia.camera (相机管理)<!--js-apis-camera-->
     - [模块描述](arkts-apis-camera.md)
     - [Functions](arkts-apis-camera-f.md)
     - [Interfaces (AutoDeviceSwitch)](arkts-apis-camera-AutoDeviceSwitch.md)
