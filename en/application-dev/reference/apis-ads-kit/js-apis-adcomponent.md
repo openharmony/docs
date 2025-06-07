@@ -3,7 +3,7 @@
 The AdComponent module provides the capability of displaying non-full-screen ads.
 
 > **NOTE**
-> The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -17,17 +17,19 @@ AdComponent(ads: advertising.Advertisement[], displayOptions: advertising.AdDisp
 
 Component that displays a non-full-screen ad.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Advertising.Ads
 
 **Parameters**
 
-| Name                        | Type                                                                               | Mandatory| Description                                                      | 
-|-----------------------------|-----------------------------------------------------------------------------------|----|----------------------------------------------------------|
-| ads                         | advertising.[Advertisement](js-apis-advertising.md#advertisement)[]               | Yes | Array of ad objects.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  | 
-| displayOptions              | advertising.[AdDisplayOptions](js-apis-advertising.md#addisplayoptions)           | Yes | Ad display parameters.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  | 
-| interactionListener         | advertising.[AdInteractionListener](js-apis-advertising.md#adinteractionlistener) | Yes | Ad status change callback.<br>**Atomic service API**: This API can be used in atomic services since API version 12.| 
-| adRenderer<sup>12+</sup>    | () => void                                                                        | No | Ad self-rendering.                                              | 
-| rollPlayState<sup>15+</sup> | number                                                                            | No | Roll ad state. The value **1** means that the roll ad is played, and the value **2** means that the roll ad is paused. Other values are invalid and the previous playback state is not changed.          | 
+| Name                     | Type                                                                             | Mandatory| Description                                                                                             |
+|-----------------------------|-----------------------------------------------------------------------------------|-----|-------------------------------------------------------------------------------------------------|
+| ads                         | advertising.[Advertisement](js-apis-advertising.md#advertisement)[]               | Yes  | Array of ad objects.<br>**Atomic service API**: This API can be used in atomic services since API version 12.               |
+| displayOptions              | advertising.[AdDisplayOptions](js-apis-advertising.md#addisplayoptions)           | Yes  | Ad display parameters.<br>**Atomic service API**: This API can be used in atomic services since API version 12.               |
+| interactionListener         | advertising.[AdInteractionListener](js-apis-advertising.md#adinteractionlistener) | Yes  | Ad status change callback.<br>**Atomic service API**: This API can be used in atomic services since API version 12.           |
+| adRenderer<sup>12+</sup>    | () => void                                                                        | No  | Ad self-rendering.                                                                              |
+| rollPlayState<sup>15+</sup> | number                                                                            | No  | Roll ad state. The value **1** means that the roll ad is played, and the value **2** means that the roll ad is paused. Other values are invalid and the previous playback state is not changed. If this parameter is left empty, the default value is **2**.|
 
 **Example**
 
@@ -77,3 +79,13 @@ struct Index {
   }
 }
 ```
+
+## build
+
+build(): void
+
+A constructor used to create an **AdComponent** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Advertising.Ads
