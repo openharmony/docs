@@ -58,11 +58,11 @@
    avImageGenerator.release();
    ```
 
-## 完整示例
+## 运行示例工程
 
 参考以下示例，获取一个视频指定时间的缩略图。
 
-1. 新建工程，下载[示例工程](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVImageGenerator/AVImageGeneratorArkTS)，并将示例工程的资源复制到对应目录。
+1. 新建工程，下载[完整示例工程](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVImageGenerator/AVImageGeneratorArkTS)，并将示例工程的资源复制到对应目录。
     ```
     AVImageGeneratorArkTS
     entry/src/main/ets/
