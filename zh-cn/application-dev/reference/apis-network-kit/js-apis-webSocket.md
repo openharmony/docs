@@ -340,11 +340,11 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
 
 ws.on('open', (err: BusinessError, value: Object) => {
   console.info("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message)
-  let promise = ws.send("Hello, server!")
+  let promise = ws.send("Hello, server!");
   promise.then((value: boolean) => {
     console.info("send success")
   }).catch((err:string) => {
-    console.error(`send fail. Code: ${err.code}, message: ${err.message}`)
+    console.error(`send fail, error:" + JSON.stringify(err))
   });
 });
 ```
@@ -494,7 +494,7 @@ let promise = ws.close();
 promise.then((value: boolean) => {
     console.info("close success")
 }).catch((err:string) => {
-    console.error(`close fail. Code: ${err.code}, message: ${err.message}`)
+    console.error(`close fail, error:" + JSON.stringify(err))
 });
 ```
 
