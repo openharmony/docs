@@ -24,7 +24,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | struct&nbsp;&nbsp;[ArkUI_ContextCallback](_ark_u_i___context_callback.md) | 事件回调类型。  | 
-| union&nbsp;&nbsp;[ArkUI_NumberValue](union_ark_u_i___number_value.md) | ArkUI在native侧的数字类型定义。  | 
+| union&nbsp;&nbsp;[ArkUI_NumberValue](union_ark_u_i___number_value.md) | ArkUI在Native侧的数字类型定义。  | 
 | struct&nbsp;&nbsp;[ARKUI_TextPickerRangeContent](_a_r_k_u_i___text_picker_range_content.md) | 定义单列滑动数据选择器支持图片资源的输入结构体。  | 
 | struct&nbsp;&nbsp;[ARKUI_TextPickerCascadeRangeContent](_a_r_k_u_i___text_picker_cascade_range_content.md) | 定义多列带联动能力的滑动数据选择器的输入结构体。  | 
 | struct&nbsp;&nbsp;[ArkUI_ColorStop](_ark_u_i___color_stop.md) | 定义渐变色结构。  | 

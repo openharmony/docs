@@ -4,7 +4,7 @@
 
 文件中定义了与字形相关的功能函数。<br>不同的平台有自己的默认字形，也可以从ttf文件解析出三方指定字形，如宋体、黑体字形等。
 
-**引用文件：** drawing_typeface.h
+**引用文件：** <native_drawing/drawing_typeface.h>
 
 **库：** libnative_drawing.so
 

@@ -648,7 +648,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 异常处理。
     }
 
-    std::shared_ptr<CodecBufferInfo> bufferInfo = outQueue.Dequeue();
+    std::shared_ptr<CodecBufferInfo> bufferInfo = inQueue.Dequeue();
     if (bufferInfo == nullptr || !bufferInfo->isValid) {
         // 异常处理。
     }

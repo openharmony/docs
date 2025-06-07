@@ -98,3 +98,40 @@ The accessibility element does not support the target operation.
 **Solution**
 
 Make sure the operation is included in the list of operations supported by the accessibility element.
+
+## 9300006 Failed to Connect the Target Application and Accessibility Services
+
+**Error Message**
+
+The connection between the target application and accessibility services failed.
+
+**Description**
+
+This error code is reported when the connection handle between the target application and the accessibility framework does not exist.
+
+**Possible Causes**
+
+The target application has not registered the connection with the accessibility framework service.
+
+**Solution**
+
+Call this method later.
+
+## 9300007 Failed to Trigger Amplification
+
+**Error Message**
+
+Failed to trigger amplification.
+
+**Description**
+
+This error code is reported when the amplification feature fails to be triggered.
+
+**Possible Causes**
+
+1. The amplification feature is not enabled in Settings.
+2. The amplification mode is not configured.
+
+**Solution**
+
+Enable the amplification feature and configure the amplification mode.

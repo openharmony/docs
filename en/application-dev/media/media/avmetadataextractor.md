@@ -27,7 +27,7 @@ Read [AVMetadataExtractor](../../reference/apis-media-kit/js-apis-media.md#avmet
 
 5. Call **release()** to release the AVMetadataExtractor instance.
 
-## Sample Code
+## Development Example
 
 Refer to the sample code below to set the file descriptor and obtain the metadata and album cover of an audio asset.
 

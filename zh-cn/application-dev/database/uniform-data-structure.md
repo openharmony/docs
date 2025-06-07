@@ -1,4 +1,4 @@
-# 标准化数据结构
+# 标准化数据结构 (ArkTS)
 
 
 ## 场景介绍
@@ -22,6 +22,8 @@ UDMF针对部分标准化数据类型定义的标准化数据结构如下所示�
 ## 开发步骤
 
 以使用标准化数据结构定义数据内容（包含超链接、纯文本两条数据记录）为例，提供基本的开发步骤。
+
+数据提供方可通过UMDF提供的addRecord()接口添加数据记录，使用getRecords()接口获取当前数据对象内的所有数据记录。
 
   ```ts
   // 1. 导入unifiedDataChannel和uniformTypeDescriptor模块。
@@ -90,9 +92,3 @@ UDMF针对部分标准化数据类型定义的标准化数据结构如下所示�
     }
   }
   ```
-
-## 相关实例
-
-针对标准化数据定义的开发，有以下相关实例可供参考：
-
-- [标准化数据定义与描述（ArkTS）（API11）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DataManagement/UDMF/UniformTypeDescriptor/UTDType)

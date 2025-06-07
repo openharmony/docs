@@ -4,7 +4,7 @@
 
 文件中定义了与画布相关的功能函数。<br>画布自带一个黑色，开启抗锯齿，不具备其他任何样式的默认画刷，当且仅当画布中主动设置的画刷和画笔都不存在时生效。
 
-**引用文件：** drawing_canvas.h
+**引用文件：** <native_drawing/drawing_canvas.h>
 
 **库：** libnative_drawing.so
 
@@ -86,6 +86,7 @@
 | [OH_Drawing_ErrorCode OH_Drawing_CanvasIsClipEmpty(OH_Drawing_Canvas* canvas, bool* isClipEmpty)](#oh_drawing_canvasisclipempty) | 用于判断裁剪后可绘制区域是否为空。<br> |
 | [OH_Drawing_ErrorCode OH_Drawing_CanvasGetImageInfo(OH_Drawing_Canvas* canvas, OH_Drawing_Image_Info* imageInfo)](#oh_drawing_canvasgetimageinfo) | 用于获取画布的图像信息。<br> |
 | [OH_Drawing_ErrorCode OH_Drawing_CanvasDrawRecordCmd(OH_Drawing_Canvas* canvas, OH_Drawing_RecordCmd* recordCmd)](#oh_drawing_canvasdrawrecordcmd) | 用于绘制录制指令对象。<br> |
+| [OH_Drawing_ErrorCode OH_Drawing_CanvasDrawRecordCmdNesting(OH_Drawing_Canvas* canvas, OH_Drawing_RecordCmd* recordCmd)](#oh_drawing_canvasdrawrecordcmdnesting) | 用于绘制录制指令对象，支持嵌套。<br> 本接口支持[OH_Drawing_RecordCmdUtilsBeginRecording](capi-drawing-record-cmd-h.md#oh_drawing_recordcmdutilsbeginrecording)接口生成的画布对象作为入参，嵌套调用。不建议多层嵌套，会影响性能。 |
 | [OH_Drawing_ErrorCode OH_Drawing_CanvasQuickRejectPath(OH_Drawing_Canvas* canvas, const OH_Drawing_Path* path,bool* quickReject)](#oh_drawing_canvasquickrejectpath) | 判断路径与画布区域是否不相交。画布区域包含边界。<br> |
 | [OH_Drawing_ErrorCode OH_Drawing_CanvasQuickRejectRect(OH_Drawing_Canvas* canvas, const OH_Drawing_Rect* rect,bool* quickReject)](#oh_drawing_canvasquickrejectrect) | 判断矩形和画布区域是否不相交。画布区域包含边界。<br> |
 
@@ -182,6 +183,36 @@ enum OH_Drawing_VertexMode
 
 
 ## 函数说明
+
+### OH_Drawing_CanvasDrawRecordCmdNesting()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_CanvasDrawRecordCmdNesting(OH_Drawing_Canvas* canvas, OH_Drawing_RecordCmd* recordCmd)
+```
+
+**描述**
+
+用于绘制录制指令对象，支持嵌套。
+
+本接口支持[OH_Drawing_RecordCmdUtilsBeginRecording](capi-drawing-record-cmd-h.md#oh_drawing_recordcmdutilsbeginrecording)接口生成的画布对象作为入参，嵌套调用。不建议多层嵌套，会影响性能。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 19
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| OH_Drawing_Canvas* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针，仅支持录制类型画布。 |
+| OH_Drawing_RecordCmd* recordCmd | 指向录制指令对象[OH_Drawing_RecordCmd](capi-oh-drawing-recordcmd.md)的指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数返回执行操作码。<br> 返回OH_DRAWING_SUCCESS，表示执行成功。<br> 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数canvas或者recordCmd为空。 |
 
 ### OH_Drawing_CanvasCreate()
 

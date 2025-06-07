@@ -85,7 +85,7 @@ struct Index {
 ## 常见问题
 
 ### 如何禁用缩放手势
-Web组件提供了接口[zoomAccess](../reference/apis-arkweb/ts-basic-components-web.md#zoomaccess)，控制是否可以缩放。网页上有user-scalable属性也会影响缩放。
+Web组件提供了接口[zoomAccess](../reference/apis-arkweb/ts-basic-components-web-attributes.md#zoomaccess)，控制是否可以缩放。网页上有user-scalable属性也会影响缩放。
 ### Web组件中如何通过手势滑动返回上一个Web页面
 
 **解决措施**

@@ -1,6 +1,6 @@
 # PasteButton
 
-安全控件的粘贴按钮，用户通过点击该粘贴按钮，可以临时获取读取剪贴板权限。
+安全控件的粘贴控件。用户点击粘贴控件，应用可以临时获取读取剪贴板权限。
 
 > **说明：**
 >
@@ -16,7 +16,7 @@
 
 PasteButton()
 
-默认创建带有图标、文本、背景的粘贴按钮。
+默认创建带有图标、文本、背景的粘贴控件。
 
 为避免控件样式不合法导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
 
@@ -28,7 +28,7 @@ PasteButton()
 
 PasteButton(options: PasteButtonOptions)
 
-创建包含指定元素的粘贴按钮。
+创建包含指定元素的粘贴控件。
 
 为避免控件样式不合法导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
 
@@ -40,11 +40,11 @@ PasteButton(options: PasteButtonOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [PasteButtonOptions](#pastebuttonoptions) | 是 | 创建包含指定元素的粘贴按钮。<br/>默认值：<br/>{<br/>icon: PasteIconStyle.LINES,<br/>text: PasteDescription.PASTE,<br/>buttonType: ButtonType.Capsule <br/>} |
+| options | [PasteButtonOptions](#pastebuttonoptions) | 是 | 创建包含指定元素的粘贴控件。<br/>默认值：<br/>{<br/>icon: PasteIconStyle.LINES,<br/>text: PasteDescription.PASTE,<br/>buttonType: ButtonType.Capsule <br/>} |
 
 ## PasteButtonOptions
 
-用于指定粘贴按钮的图标、文本等指定元素。
+用于指定粘贴控件的图标、文本等指定元素。
 
 > **说明：**
 >
@@ -64,9 +64,9 @@ PasteButton(options: PasteButtonOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| icon | [PasteIconStyle](#pasteiconstyle枚举说明) | 否 | 设置粘贴按钮的图标风格。<br/>不传入该参数表示没有图标。 |
-| text | [PasteDescription](#pastedescription枚举说明) | 否 | 设置粘贴按钮的文本描述。<br/>不传入该参数表示没有文字描述。 |
-| buttonType | [ButtonType](ts-securitycomponent-attributes.md#buttontype枚举说明) | 否 | 设置粘贴按钮的背景样式。<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
+| icon | [PasteIconStyle](#pasteiconstyle枚举说明) | 否 | 设置粘贴控件的图标风格。<br/>不传入该参数表示没有图标。 |
+| text | [PasteDescription](#pastedescription枚举说明) | 否 | 设置粘贴控件的文本描述。<br/>不传入该参数表示没有文字描述。 |
+| buttonType | [ButtonType](ts-securitycomponent-attributes.md#buttontype枚举说明) | 否 | 设置粘贴控件的背景样式。<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
 
 ## 属性
 
@@ -80,7 +80,7 @@ PasteButton(options: PasteButtonOptions)
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| LINES | 0 | 粘贴按钮展示线条样式图标。 |
+| LINES | 0 | 粘贴控件展示线条样式图标。 |
 
 ## PasteDescription枚举说明
 
@@ -90,7 +90,7 @@ PasteButton(options: PasteButtonOptions)
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| PASTE | 0 | 粘贴按钮的文字描述为“粘贴”。 |
+| PASTE | 0 | 粘贴控件的文字描述为“粘贴”。 |
 
 ## PasteButtonOnClickResult枚举说明
 
@@ -100,14 +100,14 @@ PasteButton(options: PasteButtonOptions)
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| SUCCESS | 0 | 粘贴按钮点击成功。 |
-| TEMPORARY_AUTHORIZATION_FAILED | 1 | 粘贴按钮点击后权限授权失败。 |
+| SUCCESS | 0 | 粘贴控件点击后权限授权成功。 |
+| TEMPORARY_AUTHORIZATION_FAILED | 1 | 粘贴控件点击后权限授权失败。 |
 
 ## PasteButtonCallback<sup>18+</sup>
 
 type PasteButtonCallback = (event: ClickEvent, result: PasteButtonOnClickResult, error?: BusinessError&lt;void&gt;) =&gt; void
 
-点击粘贴按钮触发该回调。
+点击粘贴控件触发该回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -117,7 +117,7 @@ type PasteButtonCallback = (event: ClickEvent, result: PasteButtonOnClickResult,
 |------------|------|-------|---------|
 | event | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) |是 |见ClickEvent对象说明。|
 | result | [PasteButtononClickResult](#pastebuttononclickresult枚举说明)| 是 | 剪贴板权限的授权结果，授权后可以读取当前剪贴板内容。|
-| error | [BusinessError&lt;void&gt;](../../apis-basic-services-kit/js-apis-base.md#businesserror) | 否 | 点击按钮时的错误码和错误信息。<br>错误码0表示点击粘贴按钮授权成功。<br>错误码1表示系统内部错误。<br>错误码2表示属性设置错误，包括但不限于：<br>1. 字体或图标设置过小。<br>2. 字体或图标与背托颜色相近。<br>3. 字体或图标颜色过于透明。<br>4. padding为负值。<br>5. 按钮被其他组件或窗口遮挡。<br>6. 文本超出背托范围。<br>7. 按钮超出窗口或屏幕。<br>8. 按钮整体尺寸过大。<br>9. 按钮文本被截断，显示不全。<br>10. 相关属性设置影响安全控件显示。|
+| error | [BusinessError&lt;void&gt;](../../apis-basic-services-kit/js-apis-base.md#businesserror) | 否 | 点击按钮时的错误码和错误信息。<br>错误码0表示点击粘贴控件授权成功。<br>错误码1表示系统内部错误。<br>错误码2表示属性设置错误，包括但不限于：<br>1. 字体或图标设置过小。<br>2. 字体或图标与背托颜色相近。<br>3. 字体或图标颜色过于透明。<br>4. padding为负值。<br>5. 按钮被其他组件或窗口遮挡。<br>6. 文本超出背托范围。<br>7. 按钮超出窗口或屏幕。<br>8. 按钮整体尺寸过大。<br>9. 按钮文本被截断，显示不全。<br>10. 相关属性设置影响安全控件显示。|
 
 ## 事件
 
@@ -149,12 +149,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct Index {
   handlePasteButtonClick: PasteButtonCallback =
-    (event: ClickEvent, result: PasteButtonOnClickResult, error: BusinessError<void>) => {
+    (event: ClickEvent, result: PasteButtonOnClickResult, error?: BusinessError<void>) => {
       if (result == PasteButtonOnClickResult.SUCCESS) {
         console.info("success");
       } else {
-        console.info("errCode: " + error.code);
-        console.info("errMessage: " + error.message);
+        console.error("errCode: " + error?.code);
+        console.error("errMessage: " + error?.message);
       }
     };
 

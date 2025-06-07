@@ -5,13 +5,11 @@
 
 Defines the enum variables and structs used in the Base DDK.
 
-**Since**
+**System capability**: SystemCapability.Driver.DDK.Extension
 
-12
+**Since**: 12
 
-**Related Modules**
-
-[Base DDK](_base_ddk.md)
+**Related module**: [Base DDK](_base_ddk.md)
 
 
 ## Summary

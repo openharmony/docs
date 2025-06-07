@@ -44,6 +44,11 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -144,6 +149,11 @@ addContact(context: Context, contact: Contact): Promise<number&gt;
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -238,6 +248,11 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -320,6 +335,11 @@ deleteContact(context: Context,  key: string): Promise&lt;void&gt;
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -400,6 +420,11 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -494,6 +519,11 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -598,6 +628,11 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -701,6 +736,11 @@ isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -785,6 +825,11 @@ isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -867,6 +912,11 @@ isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;):
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -951,6 +1001,11 @@ isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -1032,6 +1087,11 @@ queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -1110,6 +1170,11 @@ queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -1198,6 +1263,11 @@ queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -1499,6 +1569,11 @@ queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -1579,6 +1654,11 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -1668,6 +1748,11 @@ queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -1754,6 +1839,11 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -1854,6 +1944,11 @@ queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAtt
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -1949,6 +2044,11 @@ queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -2027,6 +2127,11 @@ queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Arra
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -2114,6 +2219,11 @@ queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallba
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -2198,6 +2308,11 @@ queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callb
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -2296,6 +2411,11 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -2391,6 +2511,11 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: Asy
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -2471,6 +2596,11 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -2560,6 +2690,11 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: Contac
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -2646,6 +2781,11 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -2746,6 +2886,11 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -2842,6 +2987,11 @@ queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&l
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -2922,6 +3072,11 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, callback:
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3011,6 +3166,11 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3097,6 +3257,11 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3197,6 +3362,11 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3290,6 +3460,11 @@ queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3368,6 +3543,11 @@ queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3460,6 +3640,11 @@ queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&g
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3549,6 +3734,11 @@ queryHolders(context: Context, callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3631,6 +3821,11 @@ queryHolders(context: Context): Promise&lt;Array&lt;Holder&gt;&gt;
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3707,6 +3902,11 @@ queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): 
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3787,6 +3987,11 @@ queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3881,6 +4086,11 @@ queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3980,8 +4190,12 @@ addContactViaUI(context: Context, contact: Contact): Promise&lt;number&gt;
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+<!--code_no_check-->
 ```js
-import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 // 获取context。
@@ -4035,8 +4249,12 @@ saveToExistingContactViaUI(context: Context, contact: Contact): Promise&lt;numbe
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+<!--code_no_check-->
 ```js
-import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 // 获取context。
@@ -4063,9 +4281,9 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 |                名称               |                  类型                 | 只读  | 可选  |        说明      |
 | --------------------------------- | ------------------------------------- | ---- | ---- | ---------------- |
-| isMultiSelect<sup>10+</sup>         | boolean | 否   | 是   | 是否为多选。默认值为false。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。     |
+| isMultiSelect<sup>10+</sup>         | boolean | 否   | 是   | 是否为多选，true:多选，false:单选。默认值为false。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。     |
 | maxSelectable<sup>15+</sup>         | number | 否   | 是   | 联系人选择数量上限。默认值为10000。**原子化服务API**：从API version 15 开始，该接口支持在原子化服务中使用。     | 
-| isDisplayedByName<sup>15+</sup>         | boolean | 否   | 是   | 是否按联系人姓名维度展示。默认值为false。**原子化服务API**：从API version 15 开始，该接口支持在原子化服务中使用。     |
+| isDisplayedByName<sup>15+</sup>         | boolean | 否   | 是   | 是否按联系人姓名维度展示，true:按联系人姓名维度展示，false:按联系人号码维度展示。默认值为false。**原子化服务API**：从API version 15 开始，该接口支持在原子化服务中使用。     |
 | filter<sup>15+</sup>         | [ContactSelectionFilter](#contactselectionfilter15) | 否   | 是   | 联系人查询过滤器。**原子化服务API**：从API version 15 开始，该接口支持在原子化服务中使用。     |
 
 ## ContactSelectionFilter<sup>15+</sup>

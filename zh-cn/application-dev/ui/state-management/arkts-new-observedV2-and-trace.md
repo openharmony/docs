@@ -67,7 +67,7 @@ struct Index {
 }
 ```
 
-上述代码中，点击Text组件增加age的值时，不会触发UI刷新。因为在现有的状态管理框架下，无法观测到嵌套类中属性age的值变化。V1版本的解决方案是使用[\@ObjectLink装饰器](arkts-observed-and-objectlink.md)与自定义组件的方式实现观测。
+在上述代码中，点击Text组件增加age的值时，不会触发UI刷新。原因在于现有的状态管理框架无法观测到嵌套类中属性age的值变化。V1版本的解决方案是使用[\@ObjectLink装饰器](arkts-observed-and-objectlink.md)与自定义组件来实现观测。
 
 ```ts
 @Observed

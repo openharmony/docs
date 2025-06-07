@@ -12,7 +12,7 @@
 
 ## 导入模块
 
-    import { TipsDialogV2, SelectDialogV2, ConfirmDialogV2, AlertDialogV2, LoadingDialogV2, CustomContentDialogV2，PopoverDialogV2 } from '@kit.ArkUI';
+    import { TipsDialogV2, SelectDialogV2, ConfirmDialogV2, AlertDialogV2, LoadingDialogV2, CustomContentDialogV2, PopoverDialogV2 } from '@kit.ArkUI';
 
 ## 子组件
 
@@ -154,7 +154,7 @@ CustomContentDialogV2({contentBuilder: () => void, primaryTitle?: ResourceStr, s
 | primaryTitle       | [ResourceStr](ts-types.md#resourcestr)               | 否  | @Param        | 弹出框标题。<br />默认不显示。<br/>**说明：** 标题超过两行会显示“...”。             |
 | secondaryTitle     | [ResourceStr](ts-types.md#resourcestr)               | 否  | @Param        | 弹出框辅助文本。<br />默认不显示。<br/> **说明：** 辅助文本超过两行会显示“...”。          |
 | contentAreaPadding | [LocalizedPadding](ts-types.md#localizedpadding12)     | 否  | @Param        | 弹出框内容区内边距。<br />默认不显示。         |
-| buttons            | [AdvacnedDialogV2Button](#advanceddialogv2button)\[] | 否  | @Param        | 弹出框操作区按钮，最多支持4个按钮。<br />默认不显示。 |
+| buttons            | [AdvancedDialogV2Button](#advanceddialogv2button)\[] | 否  | @Param        | 弹出框操作区按钮，最多支持4个按钮。<br />默认不显示。 |
 
 ## PopoverDialogV2OnVisibleChange
 

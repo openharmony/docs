@@ -55,6 +55,7 @@ getAllNetworkInterfacesSync(admin: Want): Array&lt;string&gt;
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -107,6 +108,7 @@ getIpAddressSync(admin: Want, networkInterface: string): string
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -159,6 +161,7 @@ getMacSync(admin: Want, networkInterface: string): string
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -211,6 +214,7 @@ isNetworkInterfaceDisabledSync(admin: Want, networkInterface: string): boolean
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -259,6 +263,7 @@ setNetworkInterfaceDisabledSync(admin: Want, networkInterface: string, isDisable
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -306,6 +311,7 @@ setGlobalProxySync(admin: Want, httpProxy: connection.HttpProxy): void
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { connection } from '@kit.NetworkKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -361,6 +367,7 @@ setGlobalProxyForAccount(admin: Want, httpProxy: connection.HttpProxy, accountId
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { connection } from '@kit.NetworkKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -418,6 +425,7 @@ getGlobalProxySync(admin: Want): connection.HttpProxy
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { connection } from '@kit.NetworkKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -471,6 +479,7 @@ getGlobalProxyForAccount(admin: Want, accountId: number): connection.HttpProxy
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { connection } from '@kit.NetworkKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

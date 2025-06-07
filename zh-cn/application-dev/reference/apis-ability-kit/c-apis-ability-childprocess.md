@@ -27,9 +27,11 @@
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
 | typedef enum Ability_NativeChildProcess_ErrCode [Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)                        | 定义Native子进程模块错误码。 |
 | typedef void(\* [OH_Ability_OnNativeChildProcessStarted](#oh_ability_onnativechildprocessstarted)) (int errCode, OHIPCRemoteProxy \*remoteProxy) | 定义通知子进程启动结果的回调函数。 |
-| typedef struct [NativeChildProcess_Fd](#nativechildprocess_fdlist) | 定义子进程文件描述符记录。 |
+| typedef struct [NativeChildProcess_Fd](#nativechildprocess_fd) | 定义子进程文件描述符记录。 |
 | typedef struct [NativeChildProcess_FdList](#nativechildprocess_fdlist) | 定义子进程文件描述符记录链表。 |
 | typedef struct [NativeChildProcess_Args](#nativechildprocess_args) | 定义启动子进程入参。 |
+| typedef struct [NativeChildProcess_Options](#nativechildprocess_options) | 定义启动子进程的配置选项。 |
+| typedef struct [Ability_ChildProcessConfigs](#ability_childprocessconfigs) | 定义启动子进程的配置信息。 |
 | typedef void(\* [OH_Ability_OnNativeChildProcessExit](#oh_ability_onnativechildprocessexit)) (int32_t pid, int32_t signal) | 定义感知Native子进程退出的回调函数。 |
 
 ### 枚举
@@ -44,6 +46,13 @@
 | 名称                                                                                                                                                                                                         | 描述                                                                                    |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | int [OH_Ability_CreateNativeChildProcess](#oh_ability_createnativechildprocess) (const char \*libName, [OH_Ability_OnNativeChildProcessStarted](#oh_ability_onnativechildprocessstarted) onProcessStarted) | 创建子进程并加载参数中指定的动态链接库文件，进程启动结果通过回调参数异步通知，需注意回调通知为独立线程，回调函数实现需要注意线程同步，且不能执行高耗时操作避免长时间阻塞。 |
+| [Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode) [OH_Ability_StartNativeChildProcess](#oh_ability_startnativechildprocess) (const char\* entry, [NativeChildProcess_Args](#nativechildprocess_args) args, [NativeChildProcess_Options](#nativechildprocess_options) options, int32_t *pid) | 启动一个子进程，并加载指定的库文件。 |
+| [Ability_ChildProcessConfigs](#ability_childprocessconfigs)* [OH_Ability_CreateChildProcessConfigs](#oh_ability_createchildprocessconfigs) () | 创建一个子进程配置信息对象。 |
+| [Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode) [OH_Ability_DestroyChildProcessConfigs](#oh_ability_destroychildprocessconfigs) ([Ability_ChildProcessConfigs](#ability_childprocessconfigs)\* configs) | 销毁一个子进程配置信息对象，并释放其内存。 |
+| [Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode) [OH_Ability_ChildProcessConfigs_SetIsolationMode](#oh_ability_childprocessconfigs_setisolationmode) ([Ability_ChildProcessConfigs](#ability_childprocessconfigs)\* configs, [NativeChildProcess_IsolationMode](#nativechildprocess_isolationmode) isolationMode) | 设置子进程配置信息对象的数据沙箱与网络环境的共享模式。该设置仅当调用[OH_Ability_StartNativeChildProcessWithConfigs](#oh_ability_startnativechildprocesswithconfigs)接口时生效。|
+| [Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode) [OH_Ability_ChildProcessConfigs_SetProcessName](#oh_ability_childprocessconfigs_setprocessname) ([Ability_ChildProcessConfigs](#ability_childprocessconfigs)\* configs, const char\* processName) | 设置子进程配置信息对象中的进程名称。 |
+| [Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode) [OH_Ability_CreateNativeChildProcessWithConfigs](#oh_ability_createnativechildprocesswithconfigs) (const char\* libName, [Ability_ChildProcessConfigs](#ability_childprocessconfigs)\* configs, [OH_Ability_OnNativeChildProcessStarted](#oh_ability_onnativechildprocessstarted) onProcessStarted) | 根据传入的子进程配置信息创建子进程，并加载参数中指定的动态链接库文件。子进程的启动结果通过回调参数异步通知调用方。该回调在独立线程中执行，需要确保线程同步，且不能执行高耗时操作避免长时间阻塞。|
+| [Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode) [OH_Ability_StartNativeChildProcessWithConfigs](#oh_ability_startnativechildprocesswithconfigs) (const char\* entry, [NativeChildProcess_Args](#nativechildprocess_args) args, [Ability_ChildProcessConfigs](#ability_childprocessconfigs)\* configs, int32_t\* pid) | 根据传入的子进程配置信息启动一个子进程，并加载指定的库文件。 |
 
 > **说明：**
 >
@@ -189,6 +198,14 @@ typedef struct NativeChildProcess_Options {
 | isolationMode     | 进程独立模式，详见[NativeChildProcess_IsolationMode](#nativechildprocess_isolationmode)定义。 |
 | reserved | 保留字段。|
 
+### Ability_ChildProcessConfigs
+
+**描述**
+
+启动子进程的配置信息，包括子进程的进程名、以及数据沙箱与网络环境的共享模式。
+
+**起始版本**：20
+
 ## 枚举类型说明
 
 ### Ability_NativeChildProcess_ErrCode
@@ -227,14 +244,14 @@ enum NativeChildProcess_IsolationMode
 
 **描述**
 
-定义Native子进程独立模式。
+定义Native子进程数据沙箱和网络环境的共享模式。
 
 **起始版本**：13
 
 | 枚举值                                 | 描述                                              |
 | ----------------------------------- | ----------------------------------------------- |
-| NCP_ISOLATION_MODE_NORMAL | 普通进程独立模式，与主进程共享数据沙箱和网络环境。|
-| NCP_ISOLATION_MODE_ISOLATED | 独立沙箱进程模式，与主进程不共享数据沙箱和网络环境。 |
+| NCP_ISOLATION_MODE_NORMAL | 子进程与主进程共享数据沙箱和网络环境。|
+| NCP_ISOLATION_MODE_ISOLATED | 子进程与主进程不共享数据沙箱和网络环境。 |
 
 ## 函数说明
 
@@ -283,7 +300,7 @@ int OH_Ability_CreateNativeChildProcess (const char *libName, OH_Ability_OnNativ
 | 名称                       | 描述                                                                                                              |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------- |
 | libName                  | 子进程中加载的动态库文件名称，不能为nullptr。                                                                                      |
-| onProcessStartedCallback | 通知子进程启动结果的回调函数指针，不能为nullptr，详见[OH_Ability_OnNativeChildProcessStarted](#oh_ability_onnativechildprocessstarted) |
+| onProcessStarted | 通知子进程启动结果的回调函数指针，不能为nullptr，详见[OH_Ability_OnNativeChildProcessStarted](#oh_ability_onnativechildprocessstarted)。 |
 
 
 **返回**：
@@ -365,7 +382,6 @@ Ability_NativeChildProcess_ErrCode OH_Ability_RegisterNativeChildProcessExitCall
 | ---------------------- | ---------------- |
 | onProcessExit                  | 子进程退出时的回调函数地址。不能为nullptr。 |
 
-
 **返回**：
 
 执行成功返回NCP_NO_ERROR，失败返回错误码，详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。
@@ -395,3 +411,222 @@ Ability_NativeChildProcess_ErrCode OH_Ability_UnregisterNativeChildProcessExitCa
 **返回**：
 
 执行成功返回NCP_NO_ERROR，失败返回错误码，详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。
+
+### OH_Ability_CreateChildProcessConfigs
+
+```
+Ability_ChildProcessConfigs* OH_Ability_CreateChildProcessConfigs();
+```
+
+**描述：**
+
+创建一个子进程配置信息对象。创建对象成功后需要通过调用[OH_Ability_DestroyChildProcessConfigs](#oh_ability_destroychildprocessconfigs)来销毁对象从而避免内存泄漏。
+
+**起始版本**：20
+
+**返回**：
+
+返回一个指向[Ability_ChildProcessConfigs](#ability_childprocessconfigs)对象的指针 - 子进程配置信息对象创建成功。  
+返回nullptr - 发生内部错误或者内存分配失败。
+
+### OH_Ability_DestroyChildProcessConfigs
+
+```
+Ability_NativeChildProcess_ErrCode OH_Ability_DestroyChildProcessConfigs(Ability_ChildProcessConfigs* configs);
+```
+
+**描述**
+
+销毁一个子进程配置信息对象，并释放其内存，在调用该接口后，要避免继续使用已销毁的configs对象。
+
+**起始版本**：20
+
+**参数**：
+
+| 名称                       | 描述 |
+| ---------------------- | ---------------- |
+| configs | 子进程的配置信息对象指针，详见[Ability_ChildProcessConfigs](#ability_childprocessconfigs)定义。在调用该接口后，对象指针将失效，避免继续使用该指针。允许传入空指针，空指针不会触发任何操作。|
+
+**返回**：
+
+NCP_NO_ERROR - 对象销毁成功。 
+
+NCP_ERR_INVALID_PARAM - 传入参数为nullptr。 
+
+错误码详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。
+
+
+### OH_Ability_ChildProcessConfigs_SetIsolationMode
+
+```
+Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetIsolationMode(
+    Ability_ChildProcessConfigs* configs, NativeChildProcess_IsolationMode isolationMode);
+```
+
+**描述**
+
+设置子进程配置信息对象的数据沙箱与网络环境的共享模式。该设置仅当调用[OH_Ability_StartNativeChildProcessWithConfigs](#oh_ability_startnativechildprocesswithconfigs)接口时生效。
+
+**起始版本**：20
+
+**参数**：
+
+| 名称                       | 描述 |
+| ---------------------- | ---------------- |
+| configs | 子进程的配置信息对象指针，详见[Ability_ChildProcessConfigs](#ability_childprocessconfigs)定义。 |
+| isolationMode | 要设置的数据沙箱与网络环境的共享模式， 详见[NativeChildProcess_IsolationMode](#nativechildprocess_isolationmode)定义。|
+
+**返回**：
+
+NCP_NO_ERROR - 执行成功。 
+
+NCP_ERR_INVALID_PARAM - 传入参数configs为nullptr。 
+
+错误码详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。
+
+### OH_Ability_ChildProcessConfigs_SetProcessName
+
+```
+Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetProcessName(Ability_ChildProcessConfigs* configs, const char* processName);
+```
+
+**描述**
+
+设置子进程配置信息对象中的进程名称。
+
+**起始版本**：20
+
+**参数**：
+
+| 名称                       | 描述 |
+| ---------------------- | ---------------- |
+| configs | 子进程的配置信息对象指针，详见[Ability_ChildProcessConfigs](#ability_childprocessconfigs)定义。不能为空指针。 |
+| processName | 设置的进程名称字符串，必须是非空字符串，并且只能由字母、数字和下划线构成，最大长度为64字符，最终的进程名是{bundleName}:{processName}。|
+
+**返回**：
+
+NCP_NO_ERROR - 执行成功。 
+
+NCP_ERR_INVALID_PARAM - 传入参数configs为nullptr，或者processName包含除字母、数字、下划线以外的字符。  
+
+错误码详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。
+
+
+### OH_Ability_CreateNativeChildProcessWithConfigs
+
+```
+ Ability_NativeChildProcess_ErrCode OH_Ability_CreateNativeChildProcessWithConfigs(const char* libName,
+    Ability_ChildProcessConfigs* configs, OH_Ability_OnNativeChildProcessStarted onProcessStarted);
+```
+
+**描述**
+
+根据传入的子进程配置信息创建子进程，并加载参数中指定的动态链接库文件。子进程的启动结果通过回调参数异步通知调用方。该回调在独立线程中执行，需要确保线程同步，且不能执行高耗时操作避免长时间阻塞。
+
+参数所指定的动态库必须实现并导出下列函数：
+
+	1. OHIPCRemoteStub* NativeChildProcess_OnConnect()
+	2. void NativeChildProcess_MainProc()
+
+处理逻辑顺序如下列伪代码所示：
+
+	主进程：
+	1. OH_Ability_CreateNativeChildProcessWithConfigs(libName, configs, onProcessStartedCallback)
+	
+	子进程 ：
+	2. dlopen(libName)
+	3. dlsym("NativeChildProcess_OnConnect")
+	4. dlsym("NativeChildProcess_MainProc")
+	5. ipcRemote = NativeChildProcess_OnConnect()
+	6. NativeChildProcess_MainProc()
+	
+	主进程 ：
+	7. onProcessStartedCallback(ipcRemote, errCode)
+	
+	子进程 ：
+	8. 在NativeChildProcess_MainProc()函数返回后子进程退出。
+
+> **说明：**
+>
+> 当前仅支持2in1、tablet设备。
+
+**起始版本**：20
+
+**参数**：
+
+| 名称                       | 描述 |
+| ---------------------- | ---------------- |
+| libName                  | 子进程中加载的动态库文件名称，不能为nullptr。|
+| configs | 子进程的配置信息参数，不能为nullptr，详见[Ability_ChildProcessConfigs](#ability_childprocessconfigs)定义。 |
+| onProcessStarted |  通知子进程启动结果的回调函数指针，不能为nullptr，详见[OH_Ability_OnNativeChildProcessStarted](#oh_ability_onnativechildprocessstarted)。 |
+
+**返回**：
+
+NCP_NO_ERROR - 执行成功。 
+
+NCP_ERR_INVALID_PARAM - 传入参数无效。 
+
+NCP_ERR_NOT_SUPPORTED - 当前设备不支持创建Native子进程。 
+
+NCP_ERR_MULTI_PROCESS_DISABLED - 当前设备已关闭多进程模式，不允许启动子进程。 
+
+NCP_ERR_ALREADY_IN_CHILD - 不允许在子进程中再次创建子进程。 
+
+NCP_ERR_MAX_CHILD_PROCESSES_REACHED - 超过最大Native子进程数量限制。 
+
+错误码详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。
+
+### OH_Ability_StartNativeChildProcessWithConfigs
+
+```
+ Ability_NativeChildProcess_ErrCode OH_Ability_StartNativeChildProcessWithConfigs(
+    const char* entry, NativeChildProcess_Args args, Ability_ChildProcessConfigs* configs, int32_t *pid);
+```
+
+**描述**：
+
+根据参数中子进程配置信息启动Native子进程，加载参数中指定的动态链接库文件并调用入口函数。支持传参到子进程。
+
+参数所指定的动态库必须实现参数为[NativeChildProcess_Args](#nativechildprocess_args)的入口函数并导出，详见[Native子进程开发指导（C/C++）- 创建支持参数传递的子进程](../../application-models/capi_nativechildprocess_development_guideline.md#创建支持参数传递的子进程)。示例如下：
+
+    1. void Main(NativeChildProcess_Args args);
+
+处理逻辑顺序如下列伪代码所示：
+
+	主进程：
+	1. OH_Ability_StartNativeChildProcessWithConfigs(entryPoint, args, configs, &pid)
+	
+	子进程：
+	2. dlopen(libName)
+	3. dlsym("Main")
+	4. Main(args)
+	5. 子进程在函数Main(args)返回后退出
+
+> **说明：**
+>
+> 当前仅支持2in1、tablet设备。
+
+**起始版本**：20
+
+**参数**：
+
+| 名称                       | 描述 |
+| ---------------------- | ---------------- |
+| entry                  | 子进程中调用动态库的符号和入口函数，中间用“:”隔开（例如“libentry.so:Main”)，不能为nullptr。 |
+| args | 传给子进程的参数，详见[NativeChildProcess_Args](#nativechildprocess_args)定义。 |
+| configs |  子进程的配置信息参数，详见[Ability_ChildProcessConfigs](#ability_childprocessconfigs)定义。 |
+| pid | 被启动的子进程号。 |
+
+**返回**：
+
+NCP_NO_ERROR - 执行成功。 
+
+NCP_ERR_INVALID_PARAM - 传入参数无效。 
+
+NCP_ERR_NOT_SUPPORTED - 当前设备不支持创建Native子进程。 
+
+NCP_ERR_ALREADY_IN_CHILD - 不允许在子进程中再次创建子进程。 
+
+NCP_ERR_MAX_CHILD_PROCESSES_REACHED - 超过最大Native子进程数量限制。 
+
+错误码详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。

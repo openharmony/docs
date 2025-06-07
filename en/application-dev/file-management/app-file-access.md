@@ -6,31 +6,31 @@ This topic describes how to enable an application to view, create, read, write, 
 
 You can use [ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) to implement access to application files. The following table describes the commonly used APIs.
 
-**Table 1** APIs for basic application file operations
+Table 1 Functions of ohos.file.fs APIs
 
-| API| Description| Category| Synchronous Programming| Asynchronous Programming| 
+| API| Description| Category| Synchronous Programming| Asynchronous Programming|
 | -------- | -------- | -------- | -------- | -------- |
-| access | Checks whether a file exists.| Method| Supported| Supported| 
-| close | Closes a file.| Method| Supported| Supported| 
-| copyFile | Copies a file.| Method| Supported| Supported| 
-| createStream | Creates a stream based on a file path.| Method| Supported| Supported| 
-| listFile | Lists all files in a directory.| Method| Supported| Supported| 
-| mkdir | Creates a directory.| Method| Supported| Supported| 
-| moveFile | Moves a file.| Method| Supported| Supported| 
-| open | Opens a file.| Method| Supported| Supported| 
-| read | Reads data from a file.| Method| Supported| Supported| 
-| rename | Renames a file or folder.| Method| Supported| Supported| 
-| rmdir | Deletes a directory.| Method| Supported| Supported| 
-| stat | Obtains detailed file information.| Method| Supported| Supported| 
-| unlink | Deletes a single file.| Method| Supported| Supported| 
-| write | Writes data to a file.| Method| Supported| Supported| 
-| Stream.close | Closes a stream.| Method| Supported| Supported| 
-| Stream.flush | Flushes all data from this stream.| Method| Supported| Supported| 
-| Stream.write | Writes data to a stream.| Method| Supported| Supported| 
-| Stream.read | Reads data from a stream.| Method| Supported| Supported| 
-| File.fd | Defines a file descriptor.| Attribute| N/A| N/A| 
-| OpenMode | Defines the mode for opening a file.| Attribute| N/A| N/A| 
-| Filter | Defines the options for filtering files.| Type| N/A| N/A| 
+| access | Checks whether a file exists.| Method| Supported| Supported|
+| close | Closes a file.| Method| Supported| Supported|
+| copyFile | Copies a file.| Method| Supported| Supported|
+| createStream | Creates a stream based on a file path.| Method| Supported| Supported|
+| listFile | Lists all files in a directory.| Method| Supported| Supported|
+| mkdir | Creates a directory.| Method| Supported| Supported|
+| moveFile | Moves a file.| Method| Supported| Supported|
+| open | Opens a file.| Method| Supported| Supported|
+| read | Reads data from a file.| Method| Supported| Supported|
+| rename | Renames a file or folder.| Method| Supported| Supported|
+| rmdir | Removes a directory.| Method| Supported| Supported|
+| stat | Obtains detailed file information.| Method| Supported| Supported|
+| unlink | Deletes a single file.| Method| Supported| Supported|
+| write | Writes data to a file.| Method| Supported| Supported|
+| Stream.close | Closes a stream.| Method| Supported| Supported|
+| Stream.flush | Flushes all data from this stream.| Method| Supported| Supported|
+| Stream.write | Writes data to a stream.| Method| Supported| Supported|
+| Stream.read | Reads data from a stream.| Method| Supported| Supported|
+| File.fd | Defines a file descriptor.| Attribute| N/A| N/A|
+| OpenMode | Defines the mode for opening a file.| Attribute| N/A| N/A|
+| Filter | Defines the options for filtering files.| Type| N/A| N/A|
 
 > **NOTE**
 >
@@ -52,11 +52,11 @@ import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 import { buffer } from '@kit.ArkTS';
 
-// Obtain the application file path.
-let context = getContext(this) as common.UIAbilityContext;
-let filesDir = context.filesDir;
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-function createFile(): void {
+function createFile(context: common.UIAbilityContext): void {
+  let filesDir = context.filesDir;
   // Create and open a file if the file does not exist. Open it if the file exists.
   let file = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   // Write data to the file.
@@ -88,12 +88,12 @@ The following example demonstrates how to read data from a file and copy it to a
 import { fileIo as fs, ReadOptions, WriteOptions } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the application file path.
-let context = getContext(this) as common.UIAbilityContext;
-let filesDir = context.filesDir;
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-function readWriteFile(): void {
-  // Open the source and destination files.
+function readWriteFile(context: common.UIAbilityContext): void {
+  let filesDir = context.filesDir;
+  // Open a file.
   let srcFile = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let destFile = fs.openSync(filesDir + '/destFile.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   // Read data from the source file and copy it to the destination file.
@@ -114,7 +114,7 @@ function readWriteFile(): void {
     readOptions.offset = readSize;
     readLen = fs.readSync(srcFile.fd, buf, readOptions);
   }
-  // Close the files.
+  // Close the file.
   fs.closeSync(srcFile);
   fs.closeSync(destFile);
 }
@@ -133,11 +133,11 @@ The following sample code shows how to use the **stream()** API to read the **te
 import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the application file path.
-let context = getContext(this) as common.UIAbilityContext;
-let filesDir = context.filesDir;
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-async function readWriteFileWithStream(): Promise<void> {
+async function readWriteFileWithStream(context: common.UIAbilityContext): Promise<void> {
+  let filesDir = context.filesDir;
   // Create and open an input file stream.
   let inputStream = fs.createStreamSync(filesDir + '/test.txt', 'r+');
   // Create and open an output file stream.
@@ -178,12 +178,11 @@ The following example demonstrates how to list files that meet the specified con
 import { fileIo as fs, Filter, ListFileOptions } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the application file path.
-let context = getContext(this) as common.UIAbilityContext;
-let filesDir = context.filesDir;
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 // List files that meet the specified conditions.
-function getListFile(): void {
+function getListFile(context: common.UIAbilityContext): void {
   let listFileOption: ListFileOptions = {
     recursion: false,
     listNum: 0,
@@ -194,6 +193,7 @@ function getListFile(): void {
       lastModifiedAfter: new Date(0).getTime()
     }
   };
+  let filesDir = context.filesDir;
   let files = fs.listFileSync(filesDir, listFileOption);
   for (let i = 0; i < files.length; i++) {
     console.info(`The name of file: ${files[i]}`);
@@ -210,11 +210,11 @@ The following example demonstrates how to use readable and writable streams.
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the application file path.
-let context = getContext(this) as common.UIAbilityContext;
-let filesDir = context.filesDir;
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-function copyFileWithReadable(): void {
+function copyFileWithReadable(context: common.UIAbilityContext): void {
+  let filesDir = context.filesDir;
   // Create a readable stream.
   const rs = fs.createReadStream(`${filesDir}/read.txt`);
   // Create a writable stream.
@@ -255,11 +255,11 @@ import { fileIo as fs } from '@kit.CoreFileKit';
 import { hash } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 
-// Obtain the application file path.
-let context = getContext(this) as common.UIAbilityContext;
-let filesDir = context.filesDir;
+// Obtain the application file path. The context should be obtained in the component.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-function hashFileWithStream() {
+function hashFileWithStream(context: common.UIAbilityContext) {
+  let filesDir = context.filesDir;
   const filePath = `${filesDir}/test.txt`;
   // Create a readable stream.
   const rs = fs.createReadStream(filePath);

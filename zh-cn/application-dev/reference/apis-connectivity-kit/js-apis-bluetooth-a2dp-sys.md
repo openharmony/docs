@@ -534,7 +534,7 @@ getCurrentCodecInfo(deviceId: string): CodecInfo
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| [CodecInfo](js-apis-bluetooth-a2dp#codecinfo11)| 当前编码器信息。 |
+| [CodecInfo](js-apis-bluetooth-a2dp.md#codecinfo11)| 当前编码器信息。 |
 
 **错误码**：
 

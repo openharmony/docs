@@ -11,7 +11,28 @@ AppServiceExtensionAbility模块提供后台服务相关扩展能力，包括后
 ## 约束限制
 
 - 当前仅支持2in1设备。
-- 当前仅适用于企业普通应用。
+- 应用集成AppServiceExtensionAbility的组件需要申请ACL权限（ohos.permission.SUPPORT_APP_SERVICE_EXTENSION）。该ACL权限当前只对企业普通应用开放申请。
+
+## 生命周期
+
+AppServiceExtensionAbility提供了[onCreate()](#oncreate)、[onRequest()](#onrequest)、[onConnect()](#onconnect)、[onDisconnect()](#ondisconnect)和[onDestroy()](#ondestroy)生命周期回调，根据需要重写对应的回调方法。下图展示了AppServiceExtensionAbility的生命周期。
+
+![AppServiceExtensionAbility-lifecycle](figures/AppServiceExtensionAbility-lifecycle.png)
+
+- **onCreate**
+  在AppServiceExtensionAbility实例创建时，系统会触发该回调。
+
+- **onDestroy**
+  在AppServiceExtensionAbility实例销毁时，系统会触发该回调。
+
+- **onRequest**
+  调用方使用[startAppServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20)拉起AppServiceExtensionAbility实例时，系统会触发该回调。
+
+- **onConnect**
+  调用方使用[connectAppServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20)连接AppServiceExtensionAbility实例时，系统会触发该回调。
+
+- **onDisconnect**
+  当所有连接方断开与AppServiceExtensionAbility实例的连接时，系统会触发该回调。
 
 ## 导入模块
 
@@ -19,8 +40,11 @@ AppServiceExtensionAbility模块提供后台服务相关扩展能力，包括后
 import { AppServiceExtensionAbility } from '@kit.AbilityKit';
 ```
 
+## AppServiceExtensionAbility
 
-## 属性
+AppServiceExtensionAbility模块提供后台服务相关扩展能力，包括后台服务的创建、销毁、连接、断开等生命周期回调。
+
+### 属性
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -29,11 +53,15 @@ import { AppServiceExtensionAbility } from '@kit.AbilityKit';
 | context | [AppServiceExtensionContext](js-apis-inner-application-appServiceExtensionContext.md)  | 是 | 否 | AppServiceExtensionAbility的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)。 |
 
 
-## AppServiceExtensionAbility.onCreate
+### onCreate
 
 onCreate(want: Want): void
 
-在AppServiceExtensionAbility实例创建时，系统会触发该回调。应用可以在该接口中执行自己的业务逻辑初始化操作。
+在AppServiceExtensionAbility实例创建时，系统会触发该回调。应用可以在该接口中执行自己的业务逻辑初始化操作，例如注册公共事件监听等。
+
+> **说明：**
+>
+> 如果AppServiceExtensionAbility实例已创建，再次启动或连接该实例时不会触发onCreate()回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -45,50 +73,50 @@ onCreate(want: Want): void
 
 **示例：**
 
-    ```ts
-    import { AppServiceExtensionAbility, Want } from '@kit.AbilityKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
+  ```ts
+  import { AppServiceExtensionAbility, Want } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-    const TAG: string = '[AppServiceExtAbility]';
+  const TAG: string = '[AppServiceExtAbility]';
 
-    class AppServiceExtAbility extends AppServiceExtensionAbility {
-      onCreate(want: Want) {
-        hilog.info(0x0000, TAG, `onCreate, want: ${want.abilityName}`);
-      }
+  class AppServiceExtAbility extends AppServiceExtensionAbility {
+    onCreate(want: Want) {
+      hilog.info(0x0000, TAG, `onCreate, want: ${want.abilityName}`);
     }
-    ```
+  }
+  ```
 
-## AppServiceExtensionAbility.onDestroy
+### onDestroy
 
 onDestroy(): void
 
-在AppServiceExtensionAbility实例销毁时，系统会触发该回调。应用可以在该接口中执行资源清理等操作。
+在AppServiceExtensionAbility实例销毁时，系统会触发该回调。应用可以在该接口中执行资源清理等操作，如注销监听等。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **示例：**
 
-    ```ts
-    import { AppServiceExtensionAbility } from '@kit.AbilityKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
+  ```ts
+  import { AppServiceExtensionAbility } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-    const TAG: string = '[AppServiceExtAbility]';
+  const TAG: string = '[AppServiceExtAbility]';
 
-    class AppServiceExtAbility extends AppServiceExtensionAbility {
-      onDestroy() {
-        hilog.info(0x0000, TAG, `onDestroy`);
-      }
+  class AppServiceExtAbility extends AppServiceExtensionAbility {
+    onDestroy() {
+      hilog.info(0x0000, TAG, `onDestroy`);
     }
-    ```
+  }
+  ```
 
-## AppServiceExtensionAbility.onRequest
+### onRequest
 
 onRequest(want: Want, startId: number): void
 
-使用[startAppServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartappserviceextensionability20)拉起AppServiceExtensionAbility实例时，系统会触发该回调。
+调用方使用[startAppServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20)拉起AppServiceExtensionAbility实例时，系统会触发该回调。
 
 - 如果该实例已创建，则会直接回调该接口。
-- 如果该实例此前未被创建，则会先创建实例并触发[onCreate()](#appserviceextensionabilityoncreate)回调，再回调该接口。
+- 如果该实例此前未被创建，则会先创建实例并触发[onCreate()](#oncreate)回调，再回调该接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -101,29 +129,29 @@ onRequest(want: Want, startId: number): void
 
 **示例：**
 
-    ```ts
-    import { AppServiceExtensionAbility, Want } from '@kit.AbilityKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
+  ```ts
+  import { AppServiceExtensionAbility, Want } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-    const TAG: string = '[AppServiceExtAbility]';
+  const TAG: string = '[AppServiceExtAbility]';
 
-    class AppServiceExtAbility extends AppServiceExtensionAbility {
-      onRequest(want: Want, startId: number) {
-        hilog.info(0x0000, TAG, `onRequest, want: ${want.abilityName}, startId: ${startId}`);
-      }
+  class AppServiceExtAbility extends AppServiceExtensionAbility {
+    onRequest(want: Want, startId: number) {
+      hilog.info(0x0000, TAG, `onRequest, want: ${want.abilityName}, startId: ${startId}`);
     }
-    ```
+  }
+  ```
 
-## AppServiceExtensionAbility.onConnect
+### onConnect
 
 onConnect(want: Want): rpc.RemoteObject
 
-调用方使用[connectAppServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectappserviceextensionability20)连接AppServiceExtensionAbility实例时，系统会触发该回调。
+调用方使用[connectAppServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20)连接AppServiceExtensionAbility实例时，系统会触发该回调。
 
 - 如果该实例已创建，则会直接回调该接口。
-- 如果该实例此前未被创建，则会先创建实例并触发[onCreate()](#appserviceextensionabilityoncreate)回调，再回调该接口。
+- 如果该实例此前未被创建，则会先创建实例并触发[onCreate()](#oncreate)回调，再回调该接口。
 
-应用需要在该接口中返回一个RemoteObject对象，用于客户端和服务端进行通信。当AppServiceExtensionAbility实例处于连接状态时，如果调用方发起新的连接，系统会返回缓存的RemoteObject对象，而不会重复回调[onConnect()](#appserviceextensionabilityonconnect)接口。
+应用需要在该接口中返回一个RemoteObject对象，用于客户端和服务端进行通信。当AppServiceExtensionAbility实例处于连接状态时，如果调用方发起新的连接，系统会返回缓存的RemoteObject对象，而不会重复回调[onConnect()](#onconnect)接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -141,31 +169,31 @@ onConnect(want: Want): rpc.RemoteObject
 
 **示例：**
 
-    ```ts
-    import { AppServiceExtensionAbility, Want } from '@kit.AbilityKit';
-    import { rpc } from '@kit.IPCKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
+  ```ts
+  import { AppServiceExtensionAbility, Want } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-    const TAG: string = '[AppServiceExtAbility]';
+  const TAG: string = '[AppServiceExtAbility]';
 
-    class StubTest extends rpc.RemoteObject {
-      constructor(des: string) {
-        super(des);
-      }
-
-      onConnect(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption) {
-      }
+  class StubTest extends rpc.RemoteObject {
+    constructor(des: string) {
+      super(des);
     }
 
-    class AppServiceExtAbility extends AppServiceExtensionAbility {
-      onConnect(want: Want) {
-        hilog.info(0x0000, TAG, `onConnect, want: ${want.abilityName}`);
-        return new StubTest('test');
-      }
+    onConnect(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption) {
     }
-    ```
+  }
 
-## AppServiceExtensionAbility.onDisconnect
+  class AppServiceExtAbility extends AppServiceExtensionAbility {
+    onConnect(want: Want) {
+      hilog.info(0x0000, TAG, `onConnect, want: ${want.abilityName}`);
+      return new StubTest('test');
+    }
+  }
+  ```
+
+### onDisconnect
 
 onDisconnect(want: Want): void
 
@@ -181,15 +209,15 @@ onDisconnect(want: Want): void
 
 **示例：**
 
-    ```ts
-    import { AppServiceExtensionAbility, Want } from '@kit.AbilityKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
+  ```ts
+  import { AppServiceExtensionAbility, Want } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-    const TAG: string = '[AppServiceExtAbility]';
+  const TAG: string = '[AppServiceExtAbility]';
 
-    class AppServiceExtAbility extends AppServiceExtensionAbility {
-      onDisconnect(want: Want) {
-        hilog.info(0x0000, TAG, `onDisconnect, want: ${want.abilityName}`);
-      }
+  class AppServiceExtAbility extends AppServiceExtensionAbility {
+    onDisconnect(want: Want) {
+      hilog.info(0x0000, TAG, `onDisconnect, want: ${want.abilityName}`);
     }
-    ```
+  }
+  ```

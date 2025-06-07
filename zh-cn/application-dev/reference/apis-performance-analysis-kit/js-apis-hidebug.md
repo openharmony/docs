@@ -228,6 +228,7 @@ getServiceDump(serviceid: number, fd: number, args: Array\<string>) : void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -235,6 +236,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let fileFd = -1;
 try {
+  // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext。
   let path: string = this.getUIContext().getHostContext()!.filesDir + "/serviceInfo.txt";
   console.info("output path: " + path);
   fileFd = fileIo.openSync(path, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE).fd;
@@ -644,6 +646,8 @@ try {
 setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 设置应用的文件描述符数量、线程数量、JS内存或Native内存资源限制。
+
+主要应用场景在于构造内存泄漏故障，参见[订阅资源泄漏事件（ArkTS）](../../dfx/hiappevent-watcher-resourceleak-events-arkts.md)、[订阅资源泄漏事件（C/C++）](../../dfx/hiappevent-watcher-resourceleak-events-ndk.md)。
 
 > **注意：**
 >
