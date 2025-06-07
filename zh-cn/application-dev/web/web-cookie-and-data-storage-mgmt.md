@@ -6,9 +6,9 @@ Cookie是服务端发送客户端的数据。客户端持有Cookie，便于服�
 
 ## Cookie管理
 
-Web组件提供[WebCookieManager](../reference/apis-arkweb/arkts-apis-webview-WebCookieManager.md#class-webcookiemanager)类来管理Cookie信息。Cookie信息存储在应用沙箱路径下/proc/{pid}/root/data/storage/el2/base/cache/web/Cookies的文件中。
+Web组件提供[WebCookieManager](../reference/apis-arkweb/arkts-apis-webview-WebCookieManager.md)类来管理Cookie信息。Cookie信息存储在应用沙箱路径下/proc/{pid}/root/data/storage/el2/base/cache/web/Cookies的文件中。
 
-下面以[configCookieSync()](../reference/apis-arkweb/arkts-apis-webview-WebCookieManager.md#configcookiesync11)接口为例，为“www\.example.com”设置单个Cookie的值“value=test”。其他Cookie的相关功能及使用，请参考[WebCookieManager()](../reference/apis-arkweb/arkts-apis-webview-WebCookieManager.md#class-webcookiemanager)接口文档。
+下面以[configCookieSync()](../reference/apis-arkweb/arkts-apis-webview-WebCookieManager.md#configcookiesync11)接口为例，为“www\.example.com”设置单个Cookie的值“value=test”。其他Cookie的相关功能及使用，请参考[WebCookieManager()](../reference/apis-arkweb/arkts-apis-webview-WebCookieManager.md)接口文档。
 
 
 ```ts
