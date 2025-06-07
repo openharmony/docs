@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **fileShare** module provides APIs for granting permissions on a user file to another application based on the file Uniform Resource Identifier (URI).
+The **FileShare** module provides APIs for granting permissions on a user file to another application based on the file Uniform Resource Identifier (URI).
 
 **Since**: 12
 
@@ -15,24 +15,24 @@ The **fileShare** module provides APIs for granting permissions on a user file t
 
 | Name| Description| 
 | -------- | -------- |
-| [oh_file_share.h](oh__file__share_8h.md) | Provides APIs for persisting permissions, activating or deactivating permissions, and obtaining permissions on files based on their URI.| 
+| [oh_file_share.h](oh__file__share_8h.md) | Provides APIs for persisting permissions, activating or deactivating persistent permissions, and checking the persistent permissions on files or directories based on their URIs.| 
 
 
 ### Structs
 
 | Name| Description| 
 | -------- | -------- |
-| struct  [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) | Defines a struct for the permission policy error information.| 
-| struct  [FileShare_PolicyInfo](_file_share___policy_info.md) | Defines a struct for the permission policy information.| 
+| struct  [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) | Represents the permission policy error result.| 
+| struct  [FileShare_PolicyInfo](_file_share___policy_info.md) | Represents the permission policy information.| 
 
 
 ### Types
 
 | Name| Description| 
 | -------- | -------- |
-| typedef enum [FileShare_OperationMode](#fileshare_operationmode-1) [FileShare_OperationMode](#fileshare_operationmode) | Defines an enum for the permissions on a URI.| 
-| typedef enum [FileShare_PolicyErrorCode](#fileshare_policyerrorcode-1) [FileShare_PolicyErrorCode](#fileshare_policyerrorcode) | Defines an enum for the permission policy error codes.| 
-| typedef struct [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) [FileShare_PolicyErrorResult](#fileshare_policyerrorresult) | Defines a struct for the permission policy error information.| 
+| typedef enum [FileShare_OperationMode](#fileshare_operationmode-1) [FileShare_OperationMode](#fileshare_operationmode) | Defines an enum for the URI operation mode.| 
+| typedef enum [FileShare_PolicyErrorCode](#fileshare_policyerrorcode-1) [FileShare_PolicyErrorCode](#fileshare_policyerrorcode) | Defines an enum for the permission policy error code.| 
+| typedef struct [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) [FileShare_PolicyErrorResult](#fileshare_policyerrorresult) | Defines a struct for the permission policy error result.| 
 | typedef struct [FileShare_PolicyInfo](_file_share___policy_info.md) [FileShare_PolicyInfo](#fileshare_policyinfo) | Defines a struct for the permission policy information.| 
 
 
@@ -40,19 +40,19 @@ The **fileShare** module provides APIs for granting permissions on a user file t
 
 | Name| Description| 
 | -------- | -------- |
-| [FileShare_OperationMode](#fileshare_operationmode) {<br>READ_MODE = 1 &lt;&lt; 0,<br>WRITE_MODE = 1 &lt;&lt; 1<br>} | Enumerates the permissions on a URI.| 
-| [FileShare_PolicyErrorCode](#fileshare_policyerrorcode) {<br>PERSISTENCE_FORBIDDEN = 1,<br>INVALID_MODE = 2,<br>INVALID_PATH = 3,<br>PERMISSION_NOT_PERSISTED = 4<br>} | Enumerates the permission policy error codes.| 
+| [FileShare_OperationMode](#fileshare_operationmode) {<br>READ_MODE = 1 &lt;&lt; 0,<br>WRITE_MODE = 1 &lt;&lt; 1<br>} | Enumerates the URI operation mode.| 
+| [FileShare_PolicyErrorCode](#fileshare_policyerrorcode) {<br>PERSISTENCE_FORBIDDEN = 1,<br>INVALID_MODE = 2,<br>INVALID_PATH = 3,<br>PERMISSION_NOT_PERSISTED = 4<br>} | Enumerates the permission policy error code.| 
 
 
 ### Functions
 
 | Name| Description| 
 | -------- | -------- |
-| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileShare_PersistPermission](#oh_fileshare_persistpermission) (const [FileShare_PolicyInfo](_file_share___policy_info.md) \*policies, unsigned int policyNum, [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) \*\*result, unsigned int \*resultNum) | Persists the permissions on files or folders.| 
-| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileShare_RevokePermission](#oh_fileshare_revokepermission) (const [FileShare_PolicyInfo](_file_share___policy_info.md) \*policies, unsigned int policyNum, [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) \*\*result, unsigned int \*resultNum) | Revokes the permissions from files or folders.| 
-| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileShare_ActivatePermission](#oh_fileshare_activatepermission) (const [FileShare_PolicyInfo](_file_share___policy_info.md) \*policies, unsigned int policyNum, [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) \*\*result, unsigned int \*resultNum) | Activates the persistent permissions on files or folders.| 
-| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileShare_DeactivatePermission](#oh_fileshare_deactivatepermission) (const [FileShare_PolicyInfo](_file_share___policy_info.md) \*policies, unsigned int policyNum, [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) \*\*result, unsigned int \*resultNum) | Deactivates the persistent permissions on files or folders.| 
-| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileShare_CheckPersistentPermission](#oh_fileshare_checkpersistentpermission) (const [FileShare_PolicyInfo](_file_share___policy_info.md) \*policies, unsigned int policyNum, bool \*\*result, unsigned int \*resultNum) | Checks the persistent permissions on files or folders.| 
+| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileShare_PersistPermission](#oh_fileshare_persistpermission) (const [FileShare_PolicyInfo](_file_share___policy_info.md) \*policies, unsigned int policyNum, [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) \*\*result, unsigned int \*resultNum) | Persists the permissions on files or directories.| 
+| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileShare_RevokePermission](#oh_fileshare_revokepermission) (const [FileShare_PolicyInfo](_file_share___policy_info.md) \*policies, unsigned int policyNum, [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) \*\*result, unsigned int \*resultNum) | Revokes the permissions from files or directories.| 
+| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileShare_ActivatePermission](#oh_fileshare_activatepermission) (const [FileShare_PolicyInfo](_file_share___policy_info.md) \*policies, unsigned int policyNum, [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) \*\*result, unsigned int \*resultNum) | Activates the persistent permissions on files or directories.| 
+| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileShare_DeactivatePermission](#oh_fileshare_deactivatepermission) (const [FileShare_PolicyInfo](_file_share___policy_info.md) \*policies, unsigned int policyNum, [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) \*\*result, unsigned int \*resultNum) | Deactivates the persistent permissions on files or directories.| 
+| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileShare_CheckPersistentPermission](#oh_fileshare_checkpersistentpermission) (const [FileShare_PolicyInfo](_file_share___policy_info.md) \*policies, unsigned int policyNum, bool \*\*result, unsigned int \*resultNum) | Checks the persistent permissions on files or directories.| 
 | void [OH_FileShare_ReleasePolicyErrorResult](#oh_fileshare_releasepolicyerrorresult) ([FileShare_PolicyErrorResult](_file_share___policy_error_result.md) \*errorResult, unsigned int resultNum) | Releases the memory used by **FileShare_PolicyErrorResult**.| 
 
 
@@ -67,7 +67,7 @@ typedef enum FileShare_OperationMode FileShare_OperationMode
 
 **Description**
 
-Defines an enum for the permissions on a URI.
+Defines an enum for the URI operation mode.
 
 **Since**: 12
 
@@ -80,7 +80,7 @@ typedef enum FileShare_PolicyErrorCode FileShare_PolicyErrorCode
 
 **Description**
 
-Defines an enum for the permission policy error codes.
+Defines an enum for the permission policy error code.
 
 **Since**: 12
 
@@ -93,7 +93,7 @@ typedef struct FileShare_PolicyErrorResult FileShare_PolicyErrorResult
 
 **Description**
 
-Defines a struct for the permission policy error information.
+Defines a struct for the permission policy error result.
 
 **Since**: 12
 
@@ -106,7 +106,7 @@ typedef struct FileShare_PolicyInfo FileShare_PolicyInfo
 
 **Description**
 
-Represents a permission policy, that is, a policy for granting or activating the permission on a file.
+Defines a struct for the permission policy information.
 
 **Since**: 12
 
@@ -122,7 +122,7 @@ enum FileShare_OperationMode
 
 **Description**
 
-Enumerates the permissions on a URI.
+Enumerates the URI operation mode.
 
 **Since**: 12
 
@@ -140,7 +140,7 @@ enum FileShare_PolicyErrorCode
 
 **Description**
 
-Enumerates the permission policy error codes.
+Enumerates the permission policy error code.
 
 **Since**: 12
 
@@ -163,7 +163,7 @@ FileManagement_ErrCode OH_FileShare_ActivatePermission (const FileShare_PolicyIn
 
 **Description**
 
-Activates the persistent permissions on files or folders.
+Activates the persistent permissions on files or directories.
 
 **Since**: 12
 
@@ -180,10 +180,20 @@ Activates the persistent permissions on files or folders.
 
 ohos.permission.FILE_ACCESS_PERSIST
 
-**Returns**
+**Return value**
 
-Returns [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1).
+[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)
+**E_PARAMS** 401 - Invalid input parameter. Possible causes:
+1. The **policies**, **result**, or **resultNum** parameter is a null pointer.
+2. The value of the **policyNum** parameter is **0** or exceeds the maximum length (500).
+3. The URI carried in the parameter **policies** is empty or the value of **length** is **0**, or the length of the URI is inconsistent with the value of the **length**.
 
+**E_DEVICE_NOT_SUPPORT** 801 - The current device type does not support this API.
+**E_PERMISSION** 201 - API permission check failed.
+**E_ENOMEM** 13900011 - Memory allocation or copy failed.
+**E_EPERM** 13900001 - Operation not permitted.
+**E_UNKNOWN_ERROR** 13900042 - Internal unknown error. This is an error returned by calling other components, apart from the errors listed above.
+**E_NO_ERROR** 0 - The API is called successfully.
 
 ### OH_FileShare_CheckPersistentPermission()
 
@@ -193,7 +203,7 @@ FileManagement_ErrCode OH_FileShare_CheckPersistentPermission (const FileShare_P
 
 **Description**
 
-Checks the persistent permissions on files or folders.
+Checks the persistent permissions on files or directories.
 
 **Since**: 12
 
@@ -210,9 +220,20 @@ Checks the persistent permissions on files or folders.
 
 ohos.permission.FILE_ACCESS_PERSIST
 
-**Returns**
+**Return value**
 
-Returns [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1).
+[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)
+**E_PARAMS** 401 - Invalid input parameter. Possible causes:
+1. The **policies**, **result**, or **resultNum** parameter is a null pointer.
+2. The value of the **policyNum** parameter is **0** or exceeds the maximum length (500).
+3. The URI carried in the parameter **policies** is empty or the value of **length** is **0**, or the length of the URI is inconsistent with the value of the **length**.
+
+**E_DEVICE_NOT_SUPPORT** 801 - The current device type does not support this API.
+**E_PERMISSION** 201 - API permission check failed.
+**E_ENOMEM** 13900011 - Memory allocation or copy failed.
+**E_EPERM** 13900001 - Operation not permitted. It is possible that are that all the URIs carried in **policies** do not comply with the specifications or the path converted from the URI does not exist.
+**E_UNKNOWN_ERROR** 13900042 - Internal unknown error. This is an error returned by calling other components, apart from the errors listed above.
+**E_NO_ERROR** 0 - The API is called successfully.
 
 
 ### OH_FileShare_DeactivatePermission()
@@ -223,7 +244,7 @@ FileManagement_ErrCode OH_FileShare_DeactivatePermission (const FileShare_Policy
 
 **Description**
 
-Deactivates the persistent permissions on files or folders.
+Deactivates the persistent permissions on files or directories.
 
 **Since**: 12
 
@@ -240,9 +261,20 @@ Deactivates the persistent permissions on files or folders.
 
 ohos.permission.FILE_ACCESS_PERSIST
 
-**Returns**
+**Return value**
 
-Returns [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1).
+[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)
+**E_PARAMS** 401 - Invalid input parameter. Possible causes:
+1. The **policies**, **result**, or **resultNum** parameter is a null pointer.
+2. The value of the **policyNum** parameter is **0** or exceeds the maximum length (500).
+3. The URI carried in the parameter **policies** is empty or the value of **length** is **0**, or the length of the URI is inconsistent with the value of the **length**.
+
+**E_DEVICE_NOT_SUPPORT** 801 - The current device type does not support this API.
+**E_PERMISSION** 201 - API permission check failed.
+**E_ENOMEM** 13900011 - Memory allocation or copy failed.
+**E_EPERM** 13900001 - Operation not permitted.
+**E_UNKNOWN_ERROR** 13900042 - Internal unknown error. This is an error returned by calling other components, apart from the errors listed above.
+**E_NO_ERROR** 0 - The API is called successfully.
 
 
 ### OH_FileShare_PersistPermission()
@@ -253,7 +285,7 @@ FileManagement_ErrCode OH_FileShare_PersistPermission (const FileShare_PolicyInf
 
 **Description**
 
-Persists the permissions on files or folders.
+Persists the permissions on files or directories.
 
 **Since**: 12
 
@@ -270,9 +302,20 @@ Persists the permissions on files or folders.
 
 ohos.permission.FILE_ACCESS_PERSIST
 
-**Returns**
+**Return value**
 
-Returns [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1).
+[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)
+**E_PARAMS** 401 - Invalid input parameter. Possible causes:
+1. The **policies**, **result**, or **resultNum** parameter is a null pointer.
+2. The value of the **policyNum** parameter is **0** or exceeds the maximum length (500).
+3. The URI carried in the parameter **policies** is empty or the value of **length** is **0**, or the length of the URI is inconsistent with the value of the **length**.
+
+**E_DEVICE_NOT_SUPPORT** 801 - The current device type does not support this API.
+**E_PERMISSION** 201 - API permission check failed.
+**E_ENOMEM** 13900011 - Memory allocation or copy failed.
+**E_EPERM** 13900001 - Operation not permitted.
+**E_UNKNOWN_ERROR** 13900042 - Internal unknown error. This is an error returned by calling other components, apart from the errors listed above.
+**E_NO_ERROR** 0 - The API is called successfully.
 
 
 ### OH_FileShare_ReleasePolicyErrorResult()
@@ -302,8 +345,7 @@ FileManagement_ErrCode OH_FileShare_RevokePermission (const FileShare_PolicyInfo
 ```
 
 **Description**
-
-Revokes the permissions from files or folders.
+Revokes the permissions from files or directories.
 
 **Since**: 12
 
@@ -320,6 +362,17 @@ Revokes the permissions from files or folders.
 
 ohos.permission.FILE_ACCESS_PERSIST
 
-**Returns**
+**Return value**
 
-Returns [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1).
+[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)
+**E_PARAMS** 401 - Invalid input parameter. Possible causes:
+1. The **policies**, **result**, or **resultNum** parameter is a null pointer.
+2. The value of the **policyNum** parameter is **0** or exceeds the maximum length (500).
+3. The URI carried in the parameter **policies** is empty or the value of **length** is **0**, or the length of the URI is inconsistent with the value of the **length**.
+
+**E_DEVICE_NOT_SUPPORT** 801 - The current device type does not support this API.
+**E_PERMISSION** 201 - API permission check failed.
+**E_ENOMEM** 13900011 - Memory allocation or copy failed.
+**E_EPERM** 13900001 - Operation not permitted.
+**E_UNKNOWN_ERROR** 13900042 - Internal unknown error. This is an error returned by calling other components, apart from the errors listed above.
+**E_NO_ERROR** 0 - The API is called successfully.
