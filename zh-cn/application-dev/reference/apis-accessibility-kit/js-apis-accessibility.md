@@ -837,9 +837,11 @@ on(type: 'touchModeChange', callback: Callback&lt;string&gt;): void
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 
-accessibility.on('touchModeChange', (data: string) => {
+let observer = (data: string): void => {
   console.info(`subscribe touch mode change, result: ${JSON.stringify(data)}`);
-});
+};
+
+accessibility.on('touchModeChange', this.observer);
 ```
 
 ## accessibility.off('accessibilityStateChange')
@@ -969,9 +971,11 @@ off(type: 'touchModeChange', callback?: Callback&lt;string&gt;): void
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 
-accessibility.off('touchModeChange', (data: string) => {
+let observer = (data: string): void => {
   console.info(`Unsubscribe touch mode change, result: ${JSON.stringify(data)}`);
-});
+};
+
+accessibility.off('touchModeChange', this.observer);
 ```
 
 ## accessibility.isOpenAccessibility<sup>(deprecated)</sup>
