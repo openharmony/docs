@@ -37,7 +37,7 @@ getRdbStore目前不支持多线程并发操作。
 
 | **错误码ID** | **错误信息**   |
 |-----------|---------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error.     |
 | 14800010  | Failed to open or delete the database by an invalid database path.   |
 | 14800011  | Failed to open the database because it is corrupted.    |
@@ -148,7 +148,7 @@ getRdbStore目前不支持多线程并发操作。
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800010  | Failed to open or delete the database by an invalid database path. |
 | 14800011  | Failed to open the database because it is corrupted.  |
@@ -223,6 +223,8 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 删除成功后，建议将数据库对象置为null。建立数据库时，若在[StoreConfig](arkts-apis-data-relationalStore-i.md#storeconfig)中配置了自定义路径，则调用此接口进行删库无效，必须使用 [deleteRdbStore](#relationalstoredeleterdbstore10) 接口进行删库。
 
+当使用向量数据库时，在调用deleteRdbStore接口前，应当确保向量数据库已打开的RdbStore和ResultSet均已成功关闭。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
@@ -295,6 +297,8 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 使用指定的数据库文件配置删除数据库，使用Promise异步回调。
 
 删除成功后，建议将数据库对象置为null。建立数据库时，若在[StoreConfig](arkts-apis-data-relationalStore-i.md#storeconfig)中配置了自定义路径，则调用此接口进行删库无效，必须使用 [deleteRdbStore](#relationalstoredeleterdbstore10-1) 接口进行删库。
+
+当使用向量数据库时，在调用deleteRdbStore接口前，应当确保向量数据库已打开的RdbStore和ResultSet均已成功关闭。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -369,6 +373,8 @@ deleteRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback\<v
 使用指定的数据库文件配置删除数据库，使用callback异步回调。
 
 删除成功后，建议将数据库对象置为null。若数据库文件处于公共沙箱目录下，则删除数据库时必须使用该接口，当存在多个进程操作同一个数据库的情况，建议向其他进程发送数据库删除通知使其感知并处理。建立数据库时，若在[StoreConfig](arkts-apis-data-relationalStore-i.md#storeconfig)中配置了自定义路径，则必须调用此接口进行删库。
+
+当使用向量数据库时，在调用deleteRdbStore接口前，应当确保向量数据库已打开的RdbStore和ResultSet均已成功关闭。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -453,6 +459,8 @@ deleteRdbStore(context: Context, config: StoreConfig): Promise\<void>
 使用指定的数据库文件配置删除数据库，使用Promise异步回调。
 
 删除成功后，建议将数据库对象置为null。若数据库文件处于公共沙箱目录下，则删除数据库时必须使用该接口，当存在多个进程操作同一个数据库的情况，建议向其他进程发送数据库删除通知使其感知并处理。建立数据库时，若在[StoreConfig](arkts-apis-data-relationalStore-i.md#storeconfig)中配置了自定义路径，则必须调用此接口进行删库。
+
+当使用向量数据库时，在调用deleteRdbStore接口前，应当确保向量数据库已打开的RdbStore和ResultSet均已成功关闭。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
