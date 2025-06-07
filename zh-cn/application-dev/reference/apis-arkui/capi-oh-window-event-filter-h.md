@@ -4,7 +4,7 @@
 
 定义窗口管理按键事件过滤的接口，当多模输入的事件经过窗口时，可以通过过滤接口拦截事件不让事件往下分发。
 
-**引用文件：** oh_window_event_filter.h
+**引用文件：** <window_manager/oh_window_event_filter.h>
 
 **库：** libnative_window_manager.so
 

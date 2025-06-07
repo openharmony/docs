@@ -20,7 +20,7 @@
 | **接口名**  | **描述** |
 | -------- | -------- |
 | [publish](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerpublish-1)(request: NotificationRequest): Promise\<void\>       | 发布通知。  |
-| [on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeon)(method: string, callback: CalleeCallback): void       | 通用组件服务端注册消息通知callback。  |
+| [on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#on)(method: string, callback: CalleeCallback): void       | 通用组件服务端注册消息通知callback。  |
 
 ## 开发步骤
 

@@ -4484,6 +4484,10 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 > **说明：**
 >
 > 下载的页面资源，会缓存五分钟左右，超过这段时间Web组件会自动释放。
+>
+> prefetchPage对302重定向页面同样正常预取。
+>
+> 先执行prefetchPage，再加载页面时，已预取的资源将直接从缓存中加载。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8732,6 +8736,203 @@ struct WebComponent {
 }
 ```
 
+### getAttachState<sup>20+</sup>
+
+getAttachState(): ControllerAttachState
+
+查询当前WebViewController是否绑定一个Web组件。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型         | 说明                 |
+| ------------ | -------------------- |
+| [ControllerAttachState](./js-apis-webview-i.md#controllerattachstate20) | WebViewController与Web组件的绑定状态。 |
+
+**示例：**
+点击Button可以获取当前WebViewController的绑定状态并输出日志。
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('getAttachState')
+        .onClick(() => {
+          try {
+            if (this.controller.getAttachState() == webview.ControllerAttachState.ATTACHED) {
+              console.log('Controller is attached.');
+              this.controller.refresh();
+            } else {
+              console.log('Controller is unattached.');
+              this.controller.refresh();
+            }
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+### on('controllerAttachStateChange')<sup>20+</sup>
+
+on(type: 'controllerAttachStateChange', callback: Callback&lt;ControllerAttachState&gt;): void
+
+注册WebViewController绑定状态事件，通过Callback方式获取WebViewController绑定状态的变化通知。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 表示注册WebViewController绑定状态事件，固定为"controllerAttachStateChange"。 |
+| callback | Callback<[ControllerAttachState](./js-apis-webview-i.md#controllerattachstate20)> | 是 | WebViewController绑定状态改变时的回调函数。 |
+
+**示例：**
+
+请参考[off](#offcontrollerattachstatechange20)。
+
+### off('controllerAttachStateChange')<sup>20+</sup>
+
+off(type: 'controllerAttachStateChange', callback?: Callback&lt;ControllerAttachState&gt;): void
+
+取消WebViewController绑定状态事件的注册，取消后将不再接收Callback通知。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 表示注册WebViewController绑定状态事件，固定为"controllerAttachStateChange"。 |
+| callback | Callback<[ControllerAttachState](./js-apis-webview-i.md#controllerattachstate20)> | 否 | WebViewController绑定状态发生改变时的回调函数，默认情况下不填写回调函数。如果填写了Callback，将仅取消注册该特定的回调。如果不填写Callback，将取消注册所有回调。 |
+
+**示例：**
+
+on可以注册多个回调，当绑定状态改变后会获取当前的绑定状态并触发这些回调。off可以取消注册某个回调，也可以取消注册所有回调。
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear() {
+    // 构建回调函数
+    const handleControllerAttachStateChange = (state: webview.ControllerAttachState) => {
+      if (state == webview.ControllerAttachState.UNATTACHED) {
+        console.log('handleControllerAttachStateChange: Controller is unattached.');
+      } else {
+        console.log('handleControllerAttachStateChange: Controller is attached.');
+      }
+    };
+    try {
+      // 注册回调以接收controller绑定状态更改通知
+      this.controller.on('controllerAttachStateChange', handleControllerAttachStateChange);
+      // 取消指定注册回调
+      this.controller.off('controllerAttachStateChange', handleControllerAttachStateChange);
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+    try {
+      // 注册回调以接收controller绑定状态更改通知
+      this.controller.on('controllerAttachStateChange', (state: webview.ControllerAttachState)=>{
+        if (state == webview.ControllerAttachState.UNATTACHED) {
+          console.log('Controller is unattached.');
+        } else {
+          console.log('Controller is attached.');
+          // 取消所有注册回调
+          this.controller.off('controllerAttachStateChange');
+        }
+      })
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+### waitForAttached<sup>20+</sup>
+
+waitForAttached(timeout: number):Promise&lt;ControllerAttachState&gt;
+
+异步等待WebViewController与Web组件绑定完成，绑定完成或超时触发回调，通过Promise方式返回当前[ControllerAttachState](./js-apis-webview-i.md#controllerattachstate20)状态。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名        | 类型                                    | 必填 | 说明              |
+| ------------- | --------------------------------------- | ---- | ----------------- |
+| timeout | number | 是   | 异步等待时长（单位ms，取值范围0-300000）。 |
+
+**返回值：**
+
+| 类型                           | 说明                          |
+| ------------------------------ | ----------------------------- |
+| Promise<[ControllerAttachState](./js-apis-webview-i.md#controllerattachstate20)> | Promise实例，返回当前[ControllerAttachState](./js-apis-webview-i.md#controllerattachstate20)状态。 |
+
+
+**示例：**
+
+在初始化阶段设置WebViewController等待绑定完成，超时时间为1000ms。若绑定完成或者超时则会触发回调。
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  async aboutToAppear() {
+    this.controller.waitForAttached(1000).then((state: webview.ControllerAttachState)=>{
+      if (state == webview.ControllerAttachState.ATTACHED) {
+        console.log('Controller is attached.');
+        this.controller.refresh();
+      }
+    })
+    try {
+      const state = await this.controller.waitForAttached(1000);
+      if (state == webview.ControllerAttachState.ATTACHED) {
+        console.log('Controller is attached.');
+        this.controller.refresh();
+      }
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ## getHitTest<sup>(deprecated)</sup>
 
 getHitTest(): WebHitTestType
@@ -8837,6 +9038,66 @@ struct WebComponent {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### setWebDebuggingAccess<sup>20+</sup>
+
+static setWebDebuggingAccess(webDebuggingAccess: boolean, port: number): void
+
+设置是否启用无线网页调试功能，默认不开启。
+
+* 当没有指定端口port时，该接口等同于[setWebDebuggingAccess](#setwebdebuggingaccess)接口，ArkWeb会启动一个本地domain socket监听。
+* 当指定了端口port时，ArkWeb会启动一个tcp socket监听。这时可以无线调试网页。详情请参考[无线调试](../../web/web-debugging-with-devtools.md#无线调试)。
+
+由于小于1024的端口号作为熟知或系统端口，在操作系统上需要特权才能开启，因此port的取值必须大于1024，否则该接口会抛出异常。
+
+安全提示：启用网页调试功能可以让用户检查修改Web页面内部状态，存在安全隐患，不建议在应用正式发布版本中启用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名              | 类型    | 必填   |  说明 |
+| ------------------ | ------- | ---- | ------------- |
+| webDebuggingAccess | boolean | 是   | 设置是否启用网页调试功能。<br/>true表示开启网页调试功能，false表示关闭网页调试功能。 |
+| port               | number  | 否   | 指定devtools服务的tcp端口号。如果没有指定port，那么该接口等同于[setWebDebuggingAccess](#setwebdebuggingaccess)接口。<br/>取值范围: (1024, 65535]<br/>如果port的值在区间[0, 1024]内，则会抛出BusinessError异常，错误码为17100023。 |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17100023 | The port number is not within the allowed range. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear(): void {
+    try {
+      webview.WebviewController.setWebDebuggingAccess(true, 8888);
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+  }
+
+  build() {
+    Column() {
       Web({ src: 'www.example.com', controller: this.controller })
     }
   }

@@ -4,7 +4,7 @@
 
 文件中定义了与内存流相关的功能函数。
 
-**引用文件：** drawing_memory_stream.h
+**引用文件：** <native_drawing/drawing_memory_stream.h>
 
 **库：** libnative_drawing.so
 

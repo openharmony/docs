@@ -938,7 +938,7 @@ localServer.start(config).then((success: boolean) => {
   if (success) {
     console.info('webSocket server start success');
   } else {
-    console.info('websocket server start failed');
+    console.error('websocket server start failed');
   }
 }).catch((error: BusinessError) => {
   console.error(`Failed to start. Code: ${error.code}, message: ${error.message}`);
@@ -999,7 +999,7 @@ localServer.start(config).then((success: boolean) => {
   if (success) {
     console.info('webSocket server start success');
   } else {
-    console.info('websocket server start failed');
+    console.error('websocket server start failed');
   }
 }).catch((error: BusinessError) => {
   console.error(`Failed to start. Code: ${error.code}, message: ${error.message}`);
@@ -1012,7 +1012,7 @@ localServer.on('connect', async (connection: webSocket.WebSocketConnection) => {
     if (success) {
       console.info('message send successfully');
     } else {
-      console.info('message send failed');
+      console.error('message send failed');
     }
   }).catch((error: BusinessError) => {
     console.error(`message send failed, Code: ${error.code}, message: ${error.message}`);
@@ -1061,7 +1061,7 @@ localServer.start(config).then((success: boolean) => {
   if (success) {
     console.info('webSocket server start success');
   } else {
-    console.info('websocket server start failed');
+    console.error('websocket server start failed');
   }
 }).catch((error: BusinessError) => {
   console.error(`Failed to start. Code: ${error.code}, message: ${error.message}`);
@@ -1132,7 +1132,7 @@ localServer.start(config).then((success: boolean) => {
   if (success) {
     console.info('webSocket server start success');
   } else {
-    console.info('websocket server start failed');
+    console.error('websocket server start failed');
   }
 }).catch((error: BusinessError) => {
   console.error(`Failed to start. Code: ${error.code}, message: ${error.message}`);
@@ -1144,7 +1144,7 @@ localServer.on('connect', (connection: webSocket.WebSocketConnection) => {
     if (success) {
       console.info('close client successfully');
     } else {
-      console.info('close client failed');
+      console.error('close client failed');
     }
   });
 });
@@ -1192,7 +1192,7 @@ localServer.start(config).then((success: boolean) => {
   if (success) {
     console.info('webSocket server start success');
   } else {
-    console.info('websocket server start failed');
+    console.error('websocket server start failed');
   }
 }).catch((error: BusinessError) => {
   console.error(`Failed to start. Code: ${error.code}, message: ${error.message}`);
@@ -1202,7 +1202,7 @@ localServer.stop().then((success: boolean) => {
   if (success) {
     console.info('server stop service successfully');
   } else {
-    console.info('server stop service failed');
+    console.error('server stop service failed');
   }
 });
 ```
@@ -1398,7 +1398,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let localServer = webSocket.createWebSocketServer();
 localServer.on('error', (err: BusinessError) => {
-  console.info(`error. Code: ${error.code}, message: ${error.message}`);
+  console.error(`error. Code: ${error.code}, message: ${error.message}`);
 });
 ```
 

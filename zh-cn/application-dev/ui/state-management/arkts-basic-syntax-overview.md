@@ -1,6 +1,8 @@
 # 基本语法概述
 
-在初步了解了ArkTS语言之后，我们以一个具体的示例来说明ArkTS的基本组成。如下图所示，当开发者点击按钮时，文本内容从“Hello World”变为“Hello ArkUI”。
+在初步了解ArkTS语言后，本指南将以具体的示例来说明ArkTS的基本组成。
+
+如下图所示，点击“按钮”时，文本内容从“Hello World”变为“Hello ArkUI”。
 
   **图1** 示例效果图  
 
@@ -22,13 +24,13 @@
 
 - [自定义组件](arkts-create-custom-components.md)：可复用的UI单元，可组合其他组件，如上述被\@Component装饰的struct Hello。
 
-- 系统组件：ArkUI框架中默认内置的基础和容器组件，可直接被开发者调用，比如示例中的Column、Text、Divider、Button。
+- 系统组件：ArkUI框架中默认内置的基础和容器组件，可以直接调用，例如示例中的Column、Text、Divider、Button。
 
 - [属性方法](../../reference/apis-arkui/arkui-ts/ts-component-general-attributes.md)：组件可以通过链式调用配置多项属性，如fontSize()、width()、height()、backgroundColor()等。
 
 - [事件方法](../../reference/apis-arkui/arkui-ts/ts-component-general-events.md)：组件可以通过链式调用设置多个事件的响应逻辑，如跟随在Button后面的onClick()。
 
-此外，ArkTS拓展了多种语法范式，使开发更加便捷：
+除此之外，ArkTS扩展了多种语法范式来使开发更加便捷：
 
 - [@Builder](arkts-builder.md)/[@BuilderParam](arkts-builderparam.md)：特殊的封装UI描述的方法，细粒度的封装和复用UI描述。
 

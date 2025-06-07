@@ -166,3 +166,61 @@ createPdf函数输入参数。
 | ---- | ---- | ---- | ---- |---- |
 | type | [WebHitTestType](./js-apis-webview-e.md#webhittesttype) | 否 | 否 | 当前被点击区域的元素类型。|
 | extra | string        | 否 | 否 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
+
+## ControllerAttachState<sup>20+</sup>
+
+WebViewController与Web组件的绑定状态。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+| ------------------------------- | - | ---------- |
+| UNATTACHED | 0 | 未绑定状态。 |
+| ATTACHED   | 1 | 已绑定状态。 |
+
+## HistoryItem
+
+页面历史记录项。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称          | 类型                                   | 只读 | 可选 | 说明                         |
+| ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
+| icon          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 否   | 历史页面图标的PixelMap对象。 |
+| historyUrl    | string                                 | 否   | 否   | 历史记录项的url地址。        |
+| historyRawUrl | string                                 | 否   | 否   | 历史记录项的原始url地址。    |
+| title         | string                                 | 否   | 否   | 历史记录项的标题。           |
+
+## MediaInfo<sup>12+<sup>
+
+[CreateNativeMediaPlayerCallback](./js-apis-webview-t.md#createnativemediaplayercallback12)回调函数的一个参数。
+包含了网页中媒体的信息。应用可以根据这些信息来创建接管网页媒体播放的播放器。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| embedID | string | 是 | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
+| mediaType | [MediaType](./js-apis-webview-e.md#mediatype12) | 是 | 媒体的类型。 |
+| mediaSrcList | [MediaSourceInfo](./js-apis-webview-MediaSourceInfo.md#class-mediasourceinfo)[] | 是 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
+| surfaceInfo | [NativeMediaPlayerSurfaceInfo](./js-apis-webview-NativeMediaPlayerSurfaceInfo.md#class-nativemediaplayersurfaceinfo) | 是 | 用于同层渲染的 surface 信息。 |
+| controlsShown | boolean | 是 | `<video>` 或 `<audio>` 中是否有 `controls`属性。<br>true表示有，false表示没有。 |
+| controlList | string[] | 是 | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
+| muted | boolean | 是 | 是否要求静音播放。<br>true表示静音播放，false表示未静音播放。 |
+| posterUrl | string | 是 | 海报的地址。 |
+| preload | [Preload](./js-apis-webview-e.md#preload12) | 是 | 是否需要预加载。 |
+| headers | Record\<string, string\> | 是 | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
+| attributes | Record\<string, string\> | 是 | `<video>` 或 `<audio>` 标签中的属性。 |
+
+## RectEvent<sup>12+<sup>
+
+矩形定义。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称           | 类型       | 只读 | 可选 | 说明                         |
+| -------------- | --------- | ---- | ---- | ---------------------------- |
+| x  | number   | 否   | 否   | 矩形区域左上角x坐标。    |
+| y  | number   | 否   | 否   | 矩形区域左上角y坐标。    |
+| width  | number   | 否   | 否   | 矩形的宽度。    |
+| height  | number   | 否   | 否   | 矩形的高度。    |

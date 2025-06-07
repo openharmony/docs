@@ -197,7 +197,7 @@ type WindowStatusType = WindowStatusType
 
 | 类型        | 说明                 |
 | ---------- | ---------------------|
-| [WindowStatusType](../js-apis-window.md#windowstatustype11)  | 窗口模式枚举。 |
+| [WindowStatusType](../arkts-apis-window-e.md#windowstatustype11)  | 窗口模式枚举。 |
 
 ## 示例
 

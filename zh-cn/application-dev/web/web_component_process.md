@@ -168,7 +168,7 @@ ArkWeb是多进程模型，分为应用进程、Web渲染进程、Web GPU进程�
    }
    ```
 
-5. [Web组件](../reference/apis-arkweb/ts-basic-components-web.md#web)创建参数涵盖了多进程模型的运用。其中，sharedRenderProcessToken标识了当前Web组件所指定的共享渲染进程的token。在多渲染进程模式下，拥有相同token的Web组件将优先尝试重用与该token绑定的渲染进程。token与渲染进程的绑定关系，在渲染进程的初始化阶段形成。一旦渲染进程不再关联任何Web组件，它与token的绑定关系将被解除。
+5. [Web组件](../reference/apis-arkweb/ts-basic-components-web.md)创建参数涵盖了多进程模型的运用。其中，sharedRenderProcessToken标识了当前Web组件所指定的共享渲染进程的token。在多渲染进程模式下，拥有相同token的Web组件将优先尝试重用与该token绑定的渲染进程。token与渲染进程的绑定关系，在渲染进程的初始化阶段形成。一旦渲染进程不再关联任何Web组件，它与token的绑定关系将被解除。
 
    ```ts
    // xxx.ets

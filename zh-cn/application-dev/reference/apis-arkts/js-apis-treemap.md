@@ -86,8 +86,13 @@ treeMap.set("cc","2");
 treeMap.set("bb","4");
 let numbers = Array.from(treeMap.keys());
 for (let item of numbers) {
-  console.log("treeMap:" + item);
+  console.info("treeMap: " + item);
 }
+// 输出结果：
+// treeMap: dd
+// treeMap: cc
+// treeMap: bb
+// treeMap: aa
 ```
 
 ```ts
@@ -104,7 +109,7 @@ for (let item of numbers) {
  }
  ts1.set(entry1, "0");
  ts1.set(entry2, "1");
- console.log("treeMap: ", ts1.length);
+ console.info(ts1.length); // 2
 
 ```
 
@@ -137,7 +142,7 @@ isEmpty(): boolean
 
 ```ts
 let treeMap : TreeMap<number, number> = new TreeMap();
-let result = treeMap.isEmpty();
+let result = treeMap.isEmpty(); // result: true
 ```
 
 
@@ -176,7 +181,7 @@ hasKey(key: K): boolean
 ```ts
 let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
-let result = treeMap.hasKey("squirrel");
+let result = treeMap.hasKey("squirrel"); // result: true
 ```
 
 
@@ -215,7 +220,7 @@ hasValue(value: V): boolean
 ```ts
 let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
-let result = treeMap.hasValue(123);
+let result = treeMap.hasValue(123); // result: true
 ```
 
 
@@ -256,6 +261,7 @@ let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.get("sparrow");
+console.info("result:", result); // result: 356
 ```
 
 
@@ -290,6 +296,7 @@ let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.getFirstKey();
+console.info("result:", result); // result: sparrow
 ```
 
 
@@ -324,6 +331,7 @@ let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.getLastKey();
+console.info("result:", result); // result: squirrel
 ```
 
 
@@ -362,8 +370,12 @@ let map : TreeMap<string, number> = new TreeMap();
 map.set("demo", 12);
 map.setAll(treeMap); // 将treeMap中的所有元素添加到map中
 map.forEach((value ?: number, key ?: string) : void => {
-  console.log("value" + value, "key" + key); // 打印结果 12 demo、356 sparrow、123 squirrel
+  console.log("value: " + value, "key: " + key); 
 })
+// 输出结果:
+// value: 12 key: demo
+// value: 356 key: sparrow
+// value: 123 key: squirrel
 ```
 
 
@@ -403,7 +415,7 @@ set(key: K, value: V): Object
 
 ```ts
 let treeMap : TreeMap<string, number> = new TreeMap();
-treeMap.set("squirrel", 123);
+treeMap.set("squirrel", 123); // 添加数据
 ```
 
 
@@ -443,7 +455,7 @@ remove(key: K): V
 let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
-let result = treeMap.remove("sparrow");
+let result = treeMap.remove("sparrow"); // 删除数据
 ```
 
 
@@ -451,7 +463,7 @@ let result = treeMap.remove("sparrow");
 
 getLowerKey(key: K): K
 
-获取容器中等于key或者比传入key排序靠前一位的key，为空时返回undefined。
+获取容器中小于对比key值的最大键，如果不存在小于对比key值的键值，则返回undefined。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -480,11 +492,13 @@ getLowerKey(key: K): K
 **示例：**
 
 ```ts
-let treeMap : TreeMap<string, number> = new TreeMap();
-treeMap.set("squirrel", 123);
-treeMap.set("sparrow", 356);
-treeMap.set("gander", 356);
-let result = treeMap.getLowerKey("sparrow");
+let treeMap : TreeMap<number, string> = new TreeMap();
+treeMap.set(1, 'one');
+treeMap.set(2, 'two');
+treeMap.set(3, 'three');
+treeMap.set(4, 'four');
+let result = treeMap.getLowerKey(3);
+console.info("result:", result); // result: 2
 ```
 
 
@@ -492,7 +506,7 @@ let result = treeMap.getLowerKey("sparrow");
 
 getHigherKey(key: K): K
 
-获取容器中等于key或者比传入key排序靠后一位的key，为空时返回undefined。
+获取容器中大于对比key值的最小键，如果不存在大于对比key值的键值，则返回undefined。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -521,11 +535,13 @@ getHigherKey(key: K): K
 **示例：**
 
 ```ts
-let treeMap : TreeMap<string, number> = new TreeMap();
-treeMap.set("squirrel", 123);
-treeMap.set("sparrow", 356);
-treeMap.set("gander", 356);
-let result = treeMap.getHigherKey("sparrow");
+let treeMap : TreeMap<number, string> = new TreeMap();
+treeMap.set(1, 'one');
+treeMap.set(2, 'two');
+treeMap.set(3, 'three');
+treeMap.set(4, 'four');
+let result = treeMap.getHigherKey(3);
+console.info("result:", result); // result: 4
 ```
 
 ### replace
@@ -565,6 +581,7 @@ replace(key: K, newValue: V): boolean
 let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("sparrow", 123);
 let result = treeMap.replace("sparrow", 357);
+console.info("sparrow:", treeMap.get("sparrow")); // sparrow: 357
 ```
 
 
@@ -593,6 +610,8 @@ let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 treeMap.clear();
+let result = treeMap.isEmpty();
+console.info("result:", result); // result: true
 ```
 
 
@@ -629,9 +648,12 @@ treeMap.set("sparrow", 356);
 let it = treeMap.keys();
 let t: IteratorResult<string> = it.next();
 while(!t.done) {
-  console.log("TreeMap " + t.value);
-  t = it.next()
+  console.info("TreeMap:", t.value);
+  t = it.next();
 }
+// 输出结果：
+// TreeMap: sparrow
+// TreeMap: squirrel
 ```
 
 
@@ -668,9 +690,12 @@ treeMap.set("sparrow", 356);
 let it = treeMap.values();
 let t: IteratorResult<number> = it.next();
 while(!t.done) {
-  console.log("TreeMap" + t.value);
-  t = it.next()
+  console.info("TreeMap:", t.value);
+  t = it.next();
 }
+// 输出结果：
+// TreeMap: 356
+// TreeMap: 123
 ```
 
 
@@ -714,8 +739,11 @@ let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("sparrow", 123);
 treeMap.set("gull", 357);
 treeMap.forEach((value ?: number, key ?: string) : void => {
-  console.log("value:" + value, "key:" + key);
+  console.info("value: " + value, "key: " + key);
 });
+// 输出结果：
+// value: 357 key: gull
+// value: 123 key: sparrow
 ```
 ```ts
  // 不建议在forEach中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
@@ -761,10 +789,14 @@ treeMap.set("sparrow", 356);
 let it = treeMap.entries();
 let t: IteratorResult<Object[]> = it.next();
 while(!t.done) {
-  console.log("TreeMap" + t.value);
+  console.info("TreeMap:", t.value);
   t = it.next()
 }
+// 输出结果：
+// TreeMap: sparrow,356
+// TreeMap: squirrel,123
 ```
+
 ```ts
  // 不建议在entries中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
  let treeMap : TreeMap<string, number> = new TreeMap();
@@ -810,19 +842,28 @@ treeMap.set("sparrow", 356);
 let it = treeMap.entries();
 let t: IteratorResult<Object[]> = it.next();
 while(!t.done) {
-  console.log("TreeMap" + t.value);
+  console.info("TreeMap:", t.value);
   t = it.next();
 }
+// 输出结果：
+// TreeMap: sparrow,356
+// TreeMap: squirrel,123
 
 // 使用方法二：
- let iter = treeMap[Symbol.iterator]();
- let temp: IteratorResult<Object[]> = iter.next();
- while(!temp.done) {
-   console.log("key:" + temp.value[0]);
-   console.log("value:" + temp.value[1]);
-   temp = iter.next();
- }
+let iter = treeMap[Symbol.iterator]();
+let temp: IteratorResult<Object[]> = iter.next();
+while(!temp.done) {
+  console.info("key:", temp.value[0]);
+  console.info("value:", temp.value[1]);
+  temp = iter.next();
+}
+// 输出结果：
+// key: sparrow
+// value: 356
+// key: squirrel
+// value: 123
 ```
+
 ```ts
  // 不建议在Symbol.iterator中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
  let treeMap : TreeMap<string, number> = new TreeMap();

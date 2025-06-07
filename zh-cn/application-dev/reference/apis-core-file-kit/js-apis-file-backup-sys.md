@@ -1546,13 +1546,11 @@ cancel(bundleName: string): number
   import { BusinessError } from '@ohos.base';
   import backup from '@ohos.file.backup';
 
-  sessionBackup?: backup.SessionBackup;
-
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
         // 文件fd传输失败，调用取消接口，取消此应用的备份任务
-        let result = this.sessionBackup.cancel("com.example.myapplication");
+        let result = sessionBackup.cancel(err.name);
         console.info('cancel result:' + result);
         console.error('onFileReady failed with err: ' + JSON.stringify(err));
         return;
@@ -1589,6 +1587,110 @@ cancel(bundleName: string): number
     },
     onProcess: (bundleName: string, process: string) => {
       console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+    }
+  };
+  let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
+  let backupBundles: Array<string> = ["com.example.helloWorld"];
+  sessionBackup.appendBundles(backupBundles);
+  ```
+
+### cleanBundleTempDir<sup>20+</sup>
+
+cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
+
+备份任务结束后，提供给工具用于清理当前应用临时目录数据（./backup目录下的backup和restore目录）的接口。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.BACKUP
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**参数：**
+
+| 参数名          | 类型     | 必填 | 说明                       |
+| --------------- | -------- | ---- | -------------------------- |
+| bundleName | string | 是   | 需要清理临时目录数据的应用名称。 |
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示清理成功；返回false表示清理失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                       |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
+
+**示例：**
+
+  ```ts
+  import { fileIo, backup} from '@kit.CoreFilekit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  sessionBackup?: backup.SessionBackup;
+
+  async cleanBundleTempDir(bundleName: string) {
+    try {
+      let res = await this.sessionBackup.cleanBundleTempDir(bundleName);
+      if (res) {
+        console.info(`cleanBundleTempDir succeeded.`);
+      } else {
+        console.info(`cleanBundleTempDir fail.`);
+      }
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`cleanBundleTempDir failed. Code: ${err.code}, message: ${err.message}`);
+    }
+  }
+
+  let generalCallbacks: backup.GeneralCallbacks = { // 定义备份/恢复过程中的通用回调
+    // 文件发送成功回调
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onFileReady succeeded.`);
+      fileIo.closeSync(file.fd);
+    },
+    // 应用备份/恢复开始回调
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onBundleBegin succeeded.`);
+    },
+    // 应用备份/恢复结束回调，在此处调用cleanBundleTempDir进行清理
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      this.cleanBundleTempDir(bundleName);
+    }
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onAllBundlesEnd success`);
+    },
+    onBackupServiceDied: () => {
+      console.info(`service died`);
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   this.sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
@@ -2632,13 +2734,11 @@ cancel(bundleName: string): number
   import { BusinessError } from '@ohos.base';
   import backup from '@ohos.file.backup';
 
-  sessionRestore?: backup.SessionRestore;
-
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
         // 文件fd传输失败，调用取消接口，取消此应用的恢复任务
-        let result = this.sessionRestore.cancel("com.example.myapplication");
+        let result = sessionRestore.cancel(err.name);
         console.info('cancel result:' + result);
         console.error('onFileReady failed with err: ' + JSON.stringify(err));
         return;
@@ -2677,7 +2777,115 @@ cancel(bundleName: string): number
       console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
-  this.sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
+  let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
+  let fileData: backup.FileData = {
+    fd: -1
+  }
+  fileData = await backup.getLocalCapabilities(); //备份恢复框架提供的getLocalCapabilities接口获取能力集文件。
+  let backupBundles: Array<string> = ["com.example.helloWorld"];
+  sessionRestore.appendBundles(fileData.fd, backupBundles);
+  ```
+
+### cleanBundleTempDir<sup>20+</sup>
+
+cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
+
+恢复任务结束后，提供给工具用于清理当前应用临时目录数据（./backup目录下的backup和restore目录）的接口。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.BACKUP
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**参数：**
+
+| 参数名          | 类型     | 必填 | 说明                       |
+| --------------- | -------- | ---- | -------------------------- |
+| bundleName | string | 是   | 需要清理临时目录数据的应用名称。 |
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示清理成功；返回false表示清理失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                       |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
+
+**示例：**
+
+  ```ts
+  import { fileIo, backup} from '@kit.CoreFilekit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  sessionRestore?: backup.SessionRestore;
+
+  async cleanBundleTempDir(bundleName: string) {
+    try {
+      let res = await this.sessionRestore.cleanBundleTempDir(bundleName);
+      if (res) {
+        console.info(`cleanBundleTempDir succeeded.`);
+      } else {
+        console.info(`cleanBundleTempDir fail.`);
+      }
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`cleanBundleTempDir failed. Code: ${err.code}, message: ${err.message}`);
+    }
+  }
+
+  let generalCallbacks: backup.GeneralCallbacks = { // 定义备份/恢复过程中的通用回调
+    // 文件发送成功回调
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onFileReady succeeded.`);
+      fileIo.closeSync(file.fd);
+    },
+    // 应用备份/恢复开始回调
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onBundleBegin succeeded.`);
+    },
+    // 应用备份/恢复结束回调，在此处调用cleanBundleTempDir进行清理
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      this.cleanBundleTempDir(bundleName);
+    }
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onAllBundlesEnd success`);
+    },
+    onBackupServiceDied: () => {
+      console.info(`service died`);
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
+    }
+  };
+  this.sessionRestore = new backup.SessionRestore(generalCallbacks); //  创建恢复流程
   ```
 
 ## IncrementalBackupSession<sup>12+</sup>
@@ -3421,13 +3629,11 @@ cancel(bundleName: string): number
   import { BusinessError } from '@ohos.base';
   import backup from '@ohos.file.backup';
 
-  incrementalBackupSession?: backup.IncrementalBackupSession;
-
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
         // 文件fd传输失败，调用取消接口，取消此应用的增量备份任务
-        let result = this.incrementalBackupSession.cancel("com.example.myapplication");
+        let result = incrementalBackupSession.cancel(err.name);
         console.info('cancel result:' + result);
         console.error('onFileReady failed with err: ' + JSON.stringify(err));
         return;
@@ -3466,5 +3672,116 @@ cancel(bundleName: string): number
       console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
-  this.incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程
+  let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程
+  let backupBundles: Array<backup.IncrementalBackupData> = [];
+  let bundleData: backup.IncrementalBackupData = {
+    bundleName: "com.example.helloWorld",
+    lastIncrementalTime: 1700107870, //调用者传递上一次备份的时间戳
+    manifestFd: 1 // 调用者传递上一次备份的manifest文件句柄
+  }
+  backupBundles.push(bundleData);
+  incrementalBackupSession.appendBundles(backupBundles);
+
+  ```
+
+### cleanBundleTempDir<sup>20+</sup>
+
+cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
+
+增量备份任务结束后，提供给工具用于清理当前应用临时目录数据（./backup目录下的backup和restore目录）的接口。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.BACKUP
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**参数：**
+
+| 参数名          | 类型     | 必填 | 说明                       |
+| --------------- | -------- | ---- | -------------------------- |
+| bundleName | string | 是   | 需要清理临时目录数据的应用名称。 |
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示清理成功；返回false表示清理失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                       |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
+
+**示例：**
+
+  ```ts
+  import { fileIo, backup} from '@kit.CoreFilekit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  incrementalBackupSession?: backup.IncrementalBackupSession;
+
+  async cleanBundleTempDir(bundleName: string) {
+    try {
+      let res = await this.incrementalBackupSession.cleanBundleTempDir(bundleName);
+      if (res) {
+        console.info(`cleanBundleTempDir succeeded.`);
+      } else {
+        console.info(`cleanBundleTempDir fail.`);
+      }
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`cleanBundleTempDir failed. Code: ${err.code}, message: ${err.message}`);
+    }
+  }
+
+  let generalCallbacks: backup.GeneralCallbacks = { // 定义备份/恢复过程中的通用回调
+    // 文件发送成功回调
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onFileReady succeeded.`);
+      fileIo.closeSync(file.fd);
+    },
+    // 应用备份/恢复开始回调
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onBundleBegin succeeded.`);
+    },
+    // 应用备份/恢复结束回调，在此处调用cleanBundleTempDir进行清理
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      this.cleanBundleTempDir(bundleName);
+    }
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onAllBundlesEnd success`);
+    },
+    onBackupServiceDied: () => {
+      console.info(`service died`);
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
+    }
+  };
+  this.incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); //  创建增量备份流程
   ```

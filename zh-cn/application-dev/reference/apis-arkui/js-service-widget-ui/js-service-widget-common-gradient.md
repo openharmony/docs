@@ -60,7 +60,7 @@ background: repeating-linear-gradient(direction/angle, color, color, ...);
 
    ```css
    /* 45度夹角，从红色渐变到绿色 */
-     background: linear-gradient(45deg, rgb(255, 0, 0),rgb(0, 255, 0));
+   background: linear-gradient(45deg, rgb(255, 0, 0),rgb(0, 255, 0));
    ```
 
       ![222](figures/222.PNG)
@@ -77,8 +77,8 @@ background: repeating-linear-gradient(direction/angle, color, color, ...);
 4. 重复渐变。
 
    ```css
-     /* 从左向右重复渐变，重复渐变区域30px（60-30）透明度0.5 */
-     background: repeating-linear-gradient(to right, rgba(255, 255, 0, 1) 30vp,rgba(0, 0, 255, .5) 60vp);
+   /* 从左向右重复渐变，重复渐变区域30px（60-30）透明度0.5 */
+   background: repeating-linear-gradient(to right, rgba(255, 255, 0, 1) 30vp,rgba(0, 0, 255, .5) 60vp);
    ```
 
    ![444](figures/444.PNG)

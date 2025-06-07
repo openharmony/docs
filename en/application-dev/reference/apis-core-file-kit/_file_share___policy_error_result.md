@@ -3,11 +3,13 @@
 
 ## Overview
 
-Defines the permission policy error information.
+Represents the permission policy error result.
 
 **Since**: 12
 
 **Related module**: [FileShare](file_share.md)
+
+**Header file**: [oh_file_share.h](oh__file__share_8h.md)
 
 
 ## Summary
@@ -19,7 +21,7 @@ Defines the permission policy error information.
 | -------- | -------- |
 | char \* [uri](#uri) | Pointer to the URI, for which the permission fails to be granted or activated. | 
 | [FileShare_PolicyErrorCode](file_share.md#fileshare_policyerrorcode) [code](#code) | Error code corresponding to the URI. | 
-| char \* [message](#message) | Pointer to the error information. | 
+| char \* [message](#message) | Pointer to the error message. | 
 
 
 ## Member Variable Description
@@ -40,7 +42,7 @@ Error code corresponding to the URI.
 char* FileShare_PolicyErrorResult::message
 ```
 **Description**
-Pointer to the error information.
+Pointer to the error message.
 
 
 ### uri

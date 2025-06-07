@@ -30,7 +30,8 @@
 struct Index {
   @State message: string = 'Hello World';
 
-  @Builder buildTest() {
+  @Builder
+  buildTest() {
     Row() {
       Text('Hello, world')
         .fontSize(30)
@@ -40,20 +41,29 @@ struct Index {
   build() {
     Row() {
       // 构造Child时需传入所有@Require对应参数，否则编译失败。
-      Child({ regular_value: this.message, state_value: this.message, provide_value: this.message, initMessage: this.message, message: this.message,
-        buildTest: this.buildTest, initBuildTest: this.buildTest })
+      Child({
+        regular_value: this.message,
+        state_value: this.message,
+        provide_value: this.message,
+        initMessage: this.message,
+        message: this.message,
+        buildTest: this.buildTest,
+        initBuildTest: this.buildTest
+      })
     }
   }
 }
 
 @Component
 struct Child {
-  @Builder buildFunction() {
+  @Builder
+  buildFunction() {
     Column() {
       Text('initBuilderParam')
         .fontSize(30)
     }
   }
+
   @Require regular_value: string = 'Hello';
   @Require @State state_value: string = "Hello";
   @Require @Provide provide_value: string = "Hello";
@@ -77,7 +87,6 @@ struct Child {
 }
 ```
 
- ![img](figures/9e2d58bc-b0e1-4613-934b-8e4237bd5c05.png) 
 
 使用\@ComponentV2修饰的自定义组件ChildPage通过父组件ParentPage进行初始化，因为有\@Require装饰\@Param，所以父组件必须进行构造赋值。
 
@@ -92,6 +101,7 @@ class Info {
 struct ChildPage {
   @Require @Param childInfo: Info = new Info();
   @Require @Param state_value: string = "Hello";
+
   build() {
     Column() {
       Text(`ChildPage childInfo name :${this.childInfo.name}`)
@@ -122,7 +132,7 @@ struct ParentPage {
         .fontWeight(FontWeight.Bold)
       // 父组件ParentPage构造子组件ChildPage时进行了构造赋值。
       // 为ChildPage中被@Require @Param装饰的childInfo和state_value属性传入了值。
-      ChildPage({ childInfo: this.info1, state_value: this.label1}) // 创建自定义组件。
+      ChildPage({ childInfo: this.info1, state_value: this.label1 }) // 创建自定义组件。
       Line()
         .width('100%')
         .height(5)
@@ -131,15 +141,15 @@ struct ParentPage {
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
       // 同上，在父组件创建子组件的过程中进行构造赋值。
-      ChildPage({ childInfo: this.info2, state_value: this.label2}) // 创建自定义组件。
+      ChildPage({ childInfo: this.info2, state_value: this.label2 }) // 创建自定义组件。
       Line()
         .width('100%')
         .height(5)
         .backgroundColor('#000000').margin(10)
       Button("change info1&info2")
         .onClick(() => {
-          this.info1 = { name: "Cat", age: 18}; // Text1不会刷新，原因是info1没有装饰器装饰，监听不到值的改变。
-          this.info2 = { name: "Cat", age: 18}; // Text2会刷新，原因是info2有装饰器装饰，能够监听到值的改变。
+          this.info1 = { name: "Cat", age: 18 }; // Text1不会刷新，原因是info1没有装饰器装饰，监听不到值的改变。
+          this.info2 = { name: "Cat", age: 18 }; // Text2会刷新，原因是info2有装饰器装饰，能够监听到值的改变。
           this.label1 = "Luck"; // 不会刷新，原因是label1没有装饰器装饰，监听不到值的改变。
           this.label2 = "Luck"; // 会刷新，原因是label2有装饰器装饰，可以监听到值的改变。
         })
@@ -155,15 +165,18 @@ struct ParentPage {
 @Component
 struct Index {
   message: string = 'Hello World';
+
   build() {
     Column() {
       Child({ message: this.message })
     }
   }
 }
+
 @Component
 struct Child {
   @Require @State message: string;
+
   build() {
     Column() {
       Text(this.message) // 从API version 18开始，可以编译通过。
@@ -182,7 +195,8 @@ struct Child {
 struct Index {
   @State message: string = 'Hello World';
 
-  @Builder buildTest() {
+  @Builder
+  buildTest() {
     Row() {
       Text('Hello, world')
         .fontSize(30)
@@ -199,12 +213,14 @@ struct Index {
 
 @Component
 struct Child {
-  @Builder buildFunction() {
+  @Builder
+  buildFunction() {
     Column() {
       Text('initBuilderParam')
         .fontSize(30)
     }
   }
+
   // 使用@Require必须构造时传参。
   @Require regular_value: string = 'Hello';
   @Require @State state_value: string = "Hello";

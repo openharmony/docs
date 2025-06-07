@@ -1019,7 +1019,7 @@ display，position，z-index，visibility，opacity, background-color，backgrou
 
 
 ### 如何将同层渲染组件捕获到的事件透传到web前端？
-同层渲染手势事件通过[setGestureEventResult()](../reference/apis-arkweb/ts-basic-components-web.md#setgestureeventresult14)设置手势事件消费结果，可以选择系统组件侧或ArkWeb侧消费手势事件。如果要实现系统组件侧和ArkWeb侧同时消费手势事件，可以在[setGestureEventResult()](../reference/apis-arkweb/ts-basic-components-web.md#setgestureeventresult14)中将stopPropagation设置为false，即系统组件侧消费的同时可以将手势事件向上冒泡给ArkWeb。
+同层渲染手势事件通过[setGestureEventResult()](../reference/apis-arkweb/ts-basic-components-web-EventResult.md#setgestureeventresult14)设置手势事件消费结果，可以选择系统组件侧或ArkWeb侧消费手势事件。如果要实现系统组件侧和ArkWeb侧同时消费手势事件，可以在[setGestureEventResult()](../reference/apis-arkweb/ts-basic-components-web-EventResult.md#setgestureeventresult14)中将stopPropagation设置为false，即系统组件侧消费的同时可以将手势事件向上冒泡给ArkWeb。
 
 ### 同层渲染页面显示该插件不支持该如何解决？
 

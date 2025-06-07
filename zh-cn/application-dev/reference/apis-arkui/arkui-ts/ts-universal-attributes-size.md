@@ -72,7 +72,7 @@ width(widthValue: Length | LayoutPolicy)
 
 | 参数名   | 类型                           | 必填   | 说明                  |
 | ----- | ---------------------------- | ---- | ------------------- |
-| widthValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp;[LayoutPolicy](ts-types.md#layoutpolicy15) | 是    | 要设置的组件宽度。<br/>单位：vp |
+| widthValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp;[LayoutPolicy](ts-types.md#layoutpolicy15) | 是    | 要设置的组件宽度。<br/>单位：vp <br/>[Flex](./ts-container-flex.md)、[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[Stack](./ts-container-stack.md)支持设置[LayoutPolicy](ts-types.md#layoutpolicy15)类型中的所有参数。 <br/> [RelativeContainer](./ts-container-relativecontainer.md)、[FolderStack](./ts-container-folderstack.md)、[Divider](./ts-basic-components-divider.md)和[Blank](./ts-basic-components-blank.md)组件支持设置[LayoutPolicy](ts-types.md#layoutpolicy15)类型中的matchParent参数。|
 
 ## height<sup>15+</sup>
 
@@ -90,11 +90,7 @@ height(heightValue: Length | LayoutPolicy)
 
 | 参数名   | 类型                           | 必填   | 说明                  |
 | ----- | ---------------------------- | ---- | ------------------- |
-| heightValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp;[LayoutPolicy](ts-types.md#layoutpolicy15) | 是    | 要设置的组件高度。<br/>单位：vp |
-
->  **说明：**
-> 
->  [Row](./ts-container-row.md)和[Column](./ts-container-column.md)组件的width和height属性支持设置[LayoutPolicy](ts-types.md#layoutpolicy15)类型参数。
+| heightValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp;[LayoutPolicy](ts-types.md#layoutpolicy15) | 是    | 要设置的组件高度。<br/>单位：vp <br/>[Flex](./ts-container-flex.md)、[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[Stack](./ts-container-stack.md)支持设置[LayoutPolicy](ts-types.md#layoutpolicy15)类型中的所有参数。 <br/> [RelativeContainer](./ts-container-relativecontainer.md)、[FolderStack](./ts-container-folderstack.md)、[Divider](./ts-basic-components-divider.md)和[Blank](./ts-basic-components-blank.md)组件支持设置[LayoutPolicy](ts-types.md#layoutpolicy15)类型中的matchParent参数。 <br/> [GridRow](./ts-container-gridrow.md)、[GridCol](./ts-container-gridcol.md)组件支持设置[LayoutPolicy](ts-types.md#layoutpolicy15)类型中的fixAtIdealSize参数。|
 
 ## size
 
@@ -158,7 +154,7 @@ margin(value: Margin | Length | LocalizedMargin)
 
 ## safeAreaPadding<sup>14+</sup>
 
-safeAreaPadding(value: Padding | LengthMetrics | LocalizedPadding)
+safeAreaPadding(paddingValue: Padding | LengthMetrics | LocalizedPadding)
 
 设置安全区边距属性。允许容器向自身添加组件级安全区域，供子组件延伸，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
@@ -443,3 +439,51 @@ struct SafeAreaPaddingExample {
 ```
 
 ![safeAreaPaddingModifierExample](figures/safeAreaPaddingModifierExample.png)
+
+### 示例5（设置布局策略）
+
+对容器大小设置布局策略。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct LayoutPolicyExample {
+  build() {
+    Column() {
+      Column() {
+        // matchParent生效时，当前组件会与其父组件内容区大小（180vp * 180vp）相等且不受自身constraintSize（150vp * 150vp）约束，因此当前组件大小为180vp * 180vp
+        Text("matchParent")
+        Flex()
+          .backgroundColor('rgb(0, 74, 175)')
+          .width(LayoutPolicy.matchParent)
+          .height(LayoutPolicy.matchParent)
+          .constraintSize({ maxWidth: 150, maxHeight: 150 })
+
+        // wrapContent生效时，当前组件会与其子组件大小（300vp * 300vp）相等，但不能超过父组件内容大小（180vp * 180vp）且会受自身constraintSize（250vp * 250vp）约束，因此当前组件大小为180vp * 180vp
+        Text("wrapContent")
+        Row() {
+          Flex().width(300).height(300)
+        }
+        .backgroundColor('rgb(39, 135, 217)')
+        .width(LayoutPolicy.wrapContent)
+        .height(LayoutPolicy.wrapContent)
+        .constraintSize({ maxWidth: 250, maxHeight: 250 })
+
+        // fixAtIdealSize生效时，当前组件会与其子组件大小（300vp * 300vp）相等，可以超过父组件内容大小（180vp * 180vp）但会受自身constraintSize（250vp * 250vp）约束，因此当前组件大小为250vp * 250vp
+        Text("fixAtIdealSize")
+
+        Row() {
+          Flex().width(300).height(300)
+        }
+        .backgroundColor('rgb(240, 250, 255)')
+        .width(LayoutPolicy.fixAtIdealSize)
+        .height(LayoutPolicy.fixAtIdealSize)
+        .constraintSize({ maxWidth: 250, maxHeight: 250 })
+      }.width(200).height(200).padding(10)
+    }.width("100%").height("100%")
+  }
+}
+```
+
+![layoutPolicyExample](figures/layoutPolicy_demo.jpg)

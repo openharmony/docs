@@ -35,7 +35,7 @@ Web组件在对接运动和方向传感器时，需配置[onPermissionRequest](.
 
 ## 开发步骤
 
-1. 应用侧代码中，Web组件配置[onPermissionRequest](../reference/apis-arkweb/ts-basic-components-web-events.md#onpermissionrequest9)接口，可通过[PermissionRequest](../reference/apis-arkweb/ts-basic-components-web.md#permissionrequest9)的[getAccessibleResource](../reference/apis-arkweb/ts-basic-components-web.md#getaccessibleresource9)接口获取请求权限的资源类型，当资源类型为TYPE_SENSOR时，进行传感器授权处理。
+1. 应用侧代码中，Web组件配置[onPermissionRequest](../reference/apis-arkweb/ts-basic-components-web-events.md#onpermissionrequest9)接口，可通过[PermissionRequest](../reference/apis-arkweb/ts-basic-components-web-PermissionRequest.md#class-permissionrequest)的[getAccessibleResource](../reference/apis-arkweb/ts-basic-components-web-PermissionRequest.md#getaccessibleresource9)接口获取请求权限的资源类型，当资源类型为TYPE_SENSOR时，进行传感器授权处理。
 
    ```ts
    import { webview } from '@kit.ArkWeb';

@@ -49,7 +49,13 @@
       - [NodeContent](js-apis-arkui-NodeContent.md)
   - 窗口管理<!--window-manager-api-->
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
-    - [@ohos.window (窗口)](js-apis-window.md)
+    - [@ohos.window (窗口)](arkts-apis-window.md)
+      - [Functions](arkts-apis-window-f.md)
+      - [Interface (Window)](arkts-apis-window-Window.md)
+      - [Interface (WindowStage)](arkts-apis-window-WindowStage.md)
+      - [Interfaces (其他)](arkts-apis-window-i.md)
+      - [Enums](arkts-apis-window-e.md)
+      - [Types](arkts-apis-window-t.md)
     <!--Del-->
     - [@ohos.animation.windowAnimationManager (窗口动画管理)(系统接口)](js-apis-windowAnimationManager-sys.md)
     - [@ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)](js-apis-application-windowExtensionAbility-sys.md)
@@ -517,7 +523,7 @@
     - [弹窗错误码](errorcode-promptAction.md)
     - [页面路由错误码](errorcode-router.md)
     - [拖拽事件错误码](errorcode-drag-event.md)
-    - [图像AI分析错误码](errorcode-image-analyzer.md)
+    - [图像AI分析错误码](arkui-ts/errorcode-image-analyzer.md)
     - [焦点错误码](errorcode-focus.md)
     - [系统资源错误码](errorcode-system-resource.md)
     - [半模态错误码](errorcode-bindSheet.md)

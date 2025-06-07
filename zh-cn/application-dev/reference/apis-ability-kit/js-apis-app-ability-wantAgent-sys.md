@@ -296,6 +296,116 @@ try {
 }
 ```
 
+## wantAgent.triggerAsync<sup>20+</sup>
+
+triggerAsync(agent: WantAgent, triggerInfo: TriggerInfo, context: Context): Promise\<CompleteData\>
+
+主动触发WantAgent实例，即按照WantAgent实例中已封装的指定操作和参数等信息执行。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名        | 类型                          | 必填 | 说明                            |
+| ----------- | ----------------------------- | ---- | ------------------------------- |
+| agent       | [WantAgent](js-apis-app-ability-wantAgent.md#WantAgent)                    | 是   | WantAgent对象。                   |
+| triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                   | 是   | TriggerInfo对象。                 |
+| context     | [Context](js-apis-inner-application-context.md) | 是   |  请求触发WantAgent的UIAbility/ExtensionAbility的Context。|
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<[CompleteData](js-apis-app-ability-wantAgent.md#completedata)\> | 以Promise形式返回主动激发WantAgent获得的数据。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 202       | The application is not system-app, can not use system-api. |
+| 16000020   | The context is not ability context. |
+| 16000151   | Invalid wantAgent object.|
+| 16000153   | The WantAgent has been canceled.|
+
+**示例：**
+
+```ts
+import { wantAgent, Want, UIAbility, AbilityConstant } from '@kit.AbilityKit';
+import type { WantAgent } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// wantAgent对象
+let wantAgentData: WantAgent;
+// triggerInfo
+let triggerInfo: wantAgent.TriggerInfo = {
+  code: 0 // 自定义结果码
+};
+// WantAgentInfo对象
+let wantAgentInfo: wantAgent.WantAgentInfo = {
+  // 自定义参数
+  wants: [
+    {
+      deviceId: 'deviceId',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility',
+      action: 'action1',
+      entities: ['entity1'],
+      type: 'MIMETYPE',
+      uri: 'key={true,true,false}',
+      parameters:
+      {
+        mykey0: 2222,
+        mykey1: [1, 2, 3],
+        mykey2: '[1, 2, 3]',
+        mykey3: 'ssssssssssssssssssssssssss',
+        mykey4: [false, true, false],
+        mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
+        mykey6: true,
+      }
+    } as Want
+  ],
+  // 指定的操作
+  actionType: wantAgent.OperationType.START_ABILITY,
+  requestCode: 0,
+  // wantagent对象类型
+  wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+};
+
+class MyAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    try {
+      // 创建wantAgent对象
+      wantAgent.getWantAgent(wantAgentInfo, (err: BusinessError, data: WantAgent) => {
+        if (err) {
+          console.info(`getWantAgent failed, code: ${err.code}, message: ${err.message}`);
+        } else {
+          wantAgentData = data;
+        }
+
+        try {
+          // 主动触发WantAgent实例
+          wantAgent.triggerAsync(wantAgentData, triggerInfo, this.context).then((data) => {
+            console.info(`trigger success, data: ${JSON.stringify(data)}`);
+          }).catch((err: BusinessError) => {
+            console.error(`triggerAsync failed! ${err.code} ${err.message}`);
+          });
+        } catch (err) {
+          console.error(`triggerAsync failed! ${err.code} ${err.message}`);
+        }
+      });
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let msg = (err as BusinessError).message;
+      console.error(`getWantAgent failed, code: ${code}, message: ${msg}.`);
+    }
+  }
+}
+```
+
 ## OperationType
 
 表示操作WantAgent类型的枚举。

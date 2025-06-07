@@ -261,7 +261,7 @@ enum ArkUI_ModifierKeyName
 | ARKUI_MODIFIER_KEY_CTRL  | Ctrl.  | 
 | ARKUI_MODIFIER_KEY_SHIFT  | Shift.  | 
 | ARKUI_MODIFIER_KEY_ALT  | Alt.  | 
-| ARKUI_MODIFIER_KEY_FN  | Fn.  | 
+| ARKUI_MODIFIER_KEY_FN  | Fn（仅调试使用，通常不上报Fn状态）.  | 
 
 
 ### ArkUI_UIInputEvent_Type
@@ -1426,9 +1426,9 @@ int32_t OH_ArkUI_UIInputEvent_GetPressedKeys (const ArkUI_UIInputEvent * event, 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| event | ArkUI_UIInputEvent事件指针。  | 
-| pressedKeyCodes | 输出参数，表示所有按下键的数组，指向的内存空间需要调用者申请。  | 
-| length | 作为输入参数表示传入的pressedKeyCodes数组长度，作为输出参数表示实际按下按键的个数。  | 
+| event | ArkUI_UIInputEvent事件指针。| 
+| pressedKeyCodes | 输出参数，表示所有按下键的数组，指向的内存空间需要调用者申请。| 
+| length | 作为输入参数表示传入的pressedKeyCodes数组长度，作为输出参数表示实际按下按键的个数。| 
 
 **返回：**
 

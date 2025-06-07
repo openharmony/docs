@@ -350,7 +350,7 @@ libnative_rdb_ndk.z.so
 
     如需配置fts（Full-Text Search，即全文搜索引擎）动态库，可使用OH_Rdb_SetPlugins接口进行配置。
     
-    使用约束详见[StoreConfig](../reference/apis-arkdata/js-apis-data-relationalStore.md#storeconfig)中pluginLibs配置项。
+    使用约束详见[StoreConfig](../reference/apis-arkdata/arkts-apis-data-relationalStore-i.md#storeconfig)中pluginLibs配置项。
 
     ```c
     const char *plugins[] = {

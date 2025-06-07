@@ -49,7 +49,7 @@
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
 | 32500001 | Service exception. |
-| 32500002 | Subscribe Failed. |
+| 32500002 | Subscription failed. |
 
 **示例**：
 
@@ -87,7 +87,7 @@ off(type: 'steadyStandingDetect', callback?: Callback&lt;SteadyStandingStatus&gt
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
 | 32500001 | Service exception. |
-| 32500003 | Unsubscribe Failed. |
+| 32500003 | Unsubscription failed. |
 
 **示例**：
 

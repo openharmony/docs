@@ -22,7 +22,7 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 
 ## onDragStart
 
-onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | DragItemInfo)
+onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | DragItemInfo): T
 
 第一次拖拽此事件绑定的组件时，长按时间 >= 500ms，然后手指移动距离 >= 10vp，触发回调。
 
@@ -42,17 +42,17 @@ onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | D
 
 | 参数名      | 类型                            | 必填 | 说明               |
 | ----------- | ------------------------------- | ---- | ------------------ |
-| event    | (event: [DragEvent](#dragevent7), extraParams?: string) => [CustomBuilder](ts-types.md#custombuilder8) &nbsp;\|&nbsp; [DragItemInfo](#dragiteminfo说明)  | 是   | 回调函数。<br/> **说明：**<br/> event为拖拽事件信息。<br/> extraParams为拖拽事件额外信息。需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
+| event    | (event: [DragEvent](#dragevent7), extraParams?: string) => [CustomBuilder](ts-types.md#custombuilder8) &nbsp;\|&nbsp; [DragItemInfo](#dragiteminfo说明)  | 是   | 回调函数。<br/> **说明：**<br/> event为拖拽事件信息。<br/> extraParams为拖拽事件额外信息。需要解析为Json格式，参考[extraParams](#extraparams说明)说明。<br/> CustomBuilder为拖拽过程中显示的组件信息，不支持全局builder。|
 
 **返回值：**
 
-| 类型                                                         | 说明                     |
-| ------------------------------------------------------------ | ------------------------ |
-| [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[DragItemInfo](#dragiteminfo说明) | 拖拽过程中显示的组件信息。<br/>**说明：** 不支持全局builder。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## onDragEnter
 
-onDragEnter(event: (event: DragEvent, extraParams?: string) => void)
+onDragEnter(event: (event: DragEvent, extraParams?: string) => void): T
 
 拖拽进入组件范围内时，触发回调，当监听了[onDrop](#ondrop)事件时，此事件才有效。
 
@@ -66,9 +66,15 @@ onDragEnter(event: (event: DragEvent, extraParams?: string) => void)
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event    | (event: [DragEvent](#dragevent7), extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## onDragMove
 
-onDragMove(event: (event: DragEvent, extraParams?: string) => void)
+onDragMove(event: (event: DragEvent, extraParams?: string) => void): T
 
 拖拽在组件范围内移动时，触发回调，当监听了[onDrop](#ondrop)事件时，此事件才有效。
 
@@ -82,9 +88,15 @@ onDragMove(event: (event: DragEvent, extraParams?: string) => void)
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event    | (event: [DragEvent](#dragevent7), extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## onDragLeave
 
-onDragLeave(event: (event: DragEvent, extraParams?: string) => void)
+onDragLeave(event: (event: DragEvent, extraParams?: string) => void): T
 
 拖拽离开组件范围内时，触发回调，当监听了[onDrop](#ondrop)事件时，此事件才有效。
 
@@ -98,9 +110,15 @@ onDragLeave(event: (event: DragEvent, extraParams?: string) => void)
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event    | (event: [DragEvent](#dragevent7), extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## onDrop
 
-onDrop(event: (event: DragEvent, extraParams?: string) => void)
+onDrop(event: (event: DragEvent, extraParams?: string) => void): T
 
 绑定此事件的组件可作为释放目标。当在本组件范围内停止拖放行为时，将触发回调。如果开发者未在onDrop中主动调用event.setResult()来设置拖拽接收的结果，对于系统支持的默认可拖入组件，处理结果将依据系统实际处理的数据。对于其他组件，系统将默认视为数据接收成功。
 
@@ -114,9 +132,15 @@ onDrop(event: (event: DragEvent, extraParams?: string) => void)
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event    | (event: [DragEvent](#dragevent7), extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## onDrop<sup>15+</sup>
 
-onDrop(eventCallback: OnDragEventCallback, dropOptions?: DropOptions)
+onDrop(eventCallback: OnDragEventCallback, dropOptions?: DropOptions): T
 
 绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。如果开发者没有在onDrop中主动调用event.setResult()设置拖拽接收的结果，若拖拽组件为系统支持默认拖入的组件，以系统实际处理数据结果为准，其它组件则系统按照数据接收成功处理。
 
@@ -128,12 +152,18 @@ onDrop(eventCallback: OnDragEventCallback, dropOptions?: DropOptions)
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| eventCallback  | (event: DragEvent, extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
-| dropOptions  | bool   | 否   | 设置拖拽是否提前获取数据。<br/>**说明：**<br/> 当使用startDataLoading获取数据时需设置该参数为true，防止拖拽提前获取数据。 |
+| eventCallback  | [OnDragEventCallback](#ondrageventcallback15)   | 是   | 回调函数。|
+| dropOptions  | [DropOptions](#dropoptions15)   | 否   | 落入过程的参数。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## onDragEnd<sup>10+</sup>
 
-onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
+onDragEnd(event: (event: DragEvent, extraParams?: string) => void): T
 
 绑定此事件的组件触发的拖拽结束后，触发回调。
 
@@ -147,9 +177,15 @@ onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event    | (event: [DragEvent](#dragevent7), extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，不包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## onPreDrag<sup>12+</sup>
 
-onPreDrag(event: (preDragStatus: PreDragStatus) => void)
+onPreDrag(callback: Callback\<PreDragStatus>)
 
 绑定此事件的组件，当处于拖拽发起前的不同阶段时，触发回调。
 
@@ -161,7 +197,24 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| callback    | Callback<(preDragStatus: [PreDragStatus](#predragstatus12枚举说明)> ) => void     | 是   | 回调函数。|
+| callback    | Callback<[PreDragStatus](#predragstatus12枚举说明)>     | 是   | 回调函数。|
+
+## onDragSpringLoading<sup>20+</sup>
+
+onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configuration?: DragSpringLoadingConfiguration)
+
+绑定此事件的组件可作为具有悬停检测功能的拖拽目标。当拖拽对象对象悬停在目标上时，触发回调通知。此时只有一个目标可以成为响应方，并且子组件始终具有更高的优先级。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名        | 类型                                      | 必填 | 说明                                           |
+| :------------ | ----------------------------------------- | ---- | ---------------------------------------------- |
+| callback          | Callback\<[SpringLoadingContext](../js-apis-arkui-dragController.md#springloadingcontext20)\> \| null    | 是   | 悬停检测回调函数，为null时取消监听。 |
+| configuration | [DragSpringLoadingConfiguration](../js-apis-arkui-dragController.md#dragspringloadingconfiguration20) | 否   | 悬停检测配置信息，为undefined时取[DragSpringLoadingConfiguration](../js-apis-arkui-dragController.md#dragspringloadingconfiguration20)默认值。  |
 
 ## DragItemInfo说明
 
@@ -233,7 +286,7 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 | getWindowY()<sup>10+</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | getDisplayX()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的x轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | getDisplayY()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\|'Alt'\|'Shift'。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
+| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => boolean | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\|'Alt'\|'Shift'。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
 | startDataLoading(options: [DataSyncOptions](#datasyncoptions15))<sup>15+</sup> | string | 异步获取拖拽数据，并通知开发者当前数据同步进度，仅支持在onDrop阶段使用。数据传输过程中可使用[cancelDataLoading](../js-apis-arkui-UIContext.md#canceldataloading15)接口取消。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | getX()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。<br>从API version 10开始不再维护，建议使用getWindowX()代替。 |
 | getY()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br>从API version 10开始不再维护，建议使用getWindowY()代替。 |
@@ -250,7 +303,7 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 | 401       | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 | 190001    | Data not found.|
 | 190002    | Data error. |
-| 190003    | Operation on allowed for current pharse. |
+| 190003    | Operation not allowed for current pharse. |
 
 ## DragResult<sup>10+</sup>枚举说明
 
@@ -321,6 +374,33 @@ type DataSyncOptions = GetDataParams
 | 类型 | 说明 |
 | ----- | ----------------- |
 | [GetDataParams](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#getdataparams15) | 表示从UDMF获取数据时的参数，包含目标路径、文件冲突选项、进度条类型等。|
+
+## OnDragEventCallback<sup>15+</sup>
+
+type OnDragEventCallback = (event: DragEvent, extraParams?: string) => void
+
+拖拽事件的回调函数。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型 |必填 |说明 |
+| ----- | ----------------- | ----- | ----- |
+| event | [DragEvent](#dragevent7)| 是 |  event为拖拽事件信息，包括拖拽点坐标。|
+| extraParams| string |否 | extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
+
+## DropOptions<sup>15+</sup>
+
+设置落入过程的参数。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名     | 类型  | 只读 | 可选 | 描述             |
+| ------ | ------ | ---------------- | ------ | ------ |
+| disableDataPrefetch | bool  | 否  | 否  | 设置拖拽是否提前获取数据。true表示不提前获取数据，false表示提前获取数据，默认值为false。<br/>**说明：**<br/> 当使用startDataLoading获取数据时需设置该参数为true，防止拖拽提前获取数据。 |
 
 ## 示例
 
@@ -817,9 +897,9 @@ struct Index {
 
           .onDragEnd((event) => {
             if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-              promptAction.showToast({ duration: 100, message: 'Drag Success' });
+              this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Drag Success' });
             } else if (event.getResult() === DragResult.DRAG_FAILED) {
-              promptAction.showToast({ duration: 100, message: 'Drag failed' });
+              this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Drag failed' });
             }
           })
 
@@ -983,3 +1063,86 @@ struct Index {
 }
 ```
 ![dragSourceAndIsRemote](figures/dragSourceAndIsRemote.png)
+
+### 示例6（拖拽支持悬停检测）
+
+通过onDragSpringLoading接口注册回调，并调用SpringLoadingContext接口获取上下文（当前状态、通知序列）。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State targetText: string = 'Drag Text';
+  @State state: number = 0;
+  @State currentNotifySequence: number = 0;
+  @State config: DragSpringLoadingConfiguration = {
+    stillTimeLimit: 200,
+    updateInterval: 300,
+    updateNotifyCount: 4,
+    updateToFinishInterval: 300
+  };
+
+  build() {
+    Row() {
+      Column() {
+        Text('start Drag')
+          .fontSize(18)
+          .width('100%')
+          .height(40)
+          .margin(10)
+          .backgroundColor('#008888')
+        Image($r('app.media.startIcon'))
+          .id("ori_image")
+          .width(100)
+          .height(100)
+          .draggable(true)
+          .margin({ left: 15 })
+        Text('当前状态是： ' + this.state)
+          .fontSize(18)
+          .width('100%')
+          .height(40)
+          .margin(10)
+        Text('当前通知序列是： ' + this.currentNotifySequence)
+          .fontSize(18)
+          .width('100%')
+          .height(40)
+          .margin(10)
+      }
+      .width('45%')
+      .height('100%')
+
+      Column() {
+        Text('Drag Target Area')
+          .fontSize(20)
+          .width('100%')
+          .height(40)
+          .margin(10)
+          .backgroundColor('#008888')
+          .id("text")
+        Image("")
+          .width(100)
+          .height(100)
+          .draggable(true)
+          .margin({ left: 15 })
+          .border({ color: Color.Black, width: 2 })
+          .onDragSpringLoading((context: SpringLoadingContext) => {
+            this.state = context.state;
+            this.currentNotifySequence = context.currentNotifySequence;
+          }, this.config)
+      }
+      .width('45%')
+      .height('100%')
+      .margin({ left: '5%' })
+      .onDragSpringLoading((context: SpringLoadingContext) => {
+        this.state = context.state;
+        this.currentNotifySequence = context.currentNotifySequence;
+      }, this.config)
+      .id("column")
+      .backgroundColor(Color.Grey)
+    }
+    .height('100%')
+  }
+}
+```
+![DragEvent_getDisplayId](figures/DragSpringLoading.gif)

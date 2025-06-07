@@ -5,7 +5,9 @@ CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件�
 > 
 > 当前，ArkUI弹出框默认为非页面级弹出框，在页面路由跳转时，如果开发者未调用close方法将其关闭，弹出框将不会自动关闭。若需实现在跳转页面时覆盖弹出框的场景，可以使用[组件导航子页面显示类型的弹窗类型](arkts-navigation-navigation.md#页面显示类型)或者[页面级弹出框](arkts-embedded-dialog.md)。
 
-弹出框（CustomDialog）可以通过配置[isModal](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontrolleroptions对象说明)来实现模态和非模态弹窗。isModal为true的时候，弹出框为模态弹窗。isModal为false时，弹出框为非模态弹窗。
+默认为模态弹窗且有蒙层，不可与蒙层下方控件进行交互（不支持点击和手势等向下透传）。可以通过配置[isModal](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontrolleroptions对象说明)来实现模态和非模态弹窗，详细说明可参考[弹窗的种类](arkts-dialog-overview.md#弹窗的种类)。
+
+当isModal为true时，弹出框为模态弹窗，且弹窗周围的蒙层区不支持透传。isModal为false时，弹出框为非模态弹窗，且弹窗周围的蒙层区可以透传。因此如果需要同时允许弹出框的交互和弹出框外页面的交互行为，需要将弹出框设置为非模态。
 
 ## 创建自定义弹出框
 
@@ -62,7 +64,7 @@ CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件�
 
 弹出框可用于数据交互，完成用户一系列响应操作。
 
-1. 在\@CustomDialog装饰器内添加按钮，同时添加数据函数。
+1. 在\@CustomDialog装饰器内添加按钮和数据函数。
    
    ```ts
    @CustomDialog
@@ -319,7 +321,7 @@ struct CustomDialogUser {
 
 ## 弹出框的样式
 
-弹出框通过定义宽度、高度、背景色、阴影等参数来控制样式。
+通过定义弹出框的宽度、高度、背景色、阴影等参数，控制其样式。
 
 ```ts
 @CustomDialog

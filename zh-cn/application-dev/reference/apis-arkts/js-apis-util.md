@@ -180,7 +180,7 @@ console.info("result = " + result);
 
 callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 
-对异步函数进行回调化处理，回调中第一个参数将是拒绝原因（如果Promise已解决，则为null），第二个参数是已解决的值。
+对异步函数进行回调化处理，回调中第一个参数是拒绝原因（如果Promise已解决，则为null），第二个参数是已解决的值。
 
 > **说明：**
 >
