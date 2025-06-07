@@ -706,6 +706,18 @@ Web组件进入全屏回调事件的详情。
 | touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent对象说明)  | 否    | 手指触摸动作信息。 |
 | result<sup>12+</sup>     | [EventResult](./arkts-basic-components-web-EventResult.md)   | 否    | 通知Web组件手势事件的消费结果。 |
 
+## NativeEmbedMouseInfo<sup>20+</sup>
+
+提供鼠标/触摸板在同层标签上点击或长按的详细信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称             | 类型                                  | 必填   | 说明                    |
+| -----------     | ------------------------------------ | ---- | --------------------- |
+| embedId     | string   | 否    | 同层标签的唯一id。 |
+| mouseEvent  | [MouseEvent](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#mouseevent对象说明)  | 否    | 鼠标/触摸板点击/长按信息。 |
+| result     | [EventResult](./arkts-basic-components-web-EventResult.md)   | 否    | 通知Web组件鼠标事件的消费结果。 |
+
 ## OnLoadStartedEvent<sup>20+</sup>
 
 定义网页加载开始时触发的函数。
