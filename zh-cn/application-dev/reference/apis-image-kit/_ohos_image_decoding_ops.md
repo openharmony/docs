@@ -3,7 +3,7 @@
 
 ## 概述
 
-定义ImageSource解码选项。此结构体给[OH_ImageSource_CreatePixelMap](image.md#oh_imagesource_createpixelmap)和[OH_ImageSource_CreatePixelMapList](image.md#oh_imagesource_createpixelmaplist)这两个接口使用。
+定义ImageSource解码选项。此结构体给[OH_ImageSource_CreatePixelMap](image.md#oh_imagesource_createpixelmap)和[OH_ImageSource_CreatePixelMapList](image.md#oh_imagesource_createpixelmaplist)接口使用。
 
 **系统能力：** SystemCapability.Multimedia.Image
 

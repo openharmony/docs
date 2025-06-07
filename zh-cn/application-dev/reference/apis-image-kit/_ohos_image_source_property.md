@@ -3,7 +3,7 @@
 
 ## 概述
 
-定义图像源属性键值字符串。 此选项给[OH_ImageSource_GetImageProperty](image.md#oh_imagesource_getimageproperty) and [OH_ImageSource_ModifyImageProperty](image.md#oh_imagesource_modifyimageproperty)这两个接口使用。
+定义图像源属性键值字符串。 此选项给[OH_ImageSource_GetImageProperty](image.md#oh_imagesource_getimageproperty) and [OH_ImageSource_ModifyImageProperty](image.md#oh_imagesource_modifyimageproperty)接口使用。
 
 **系统能力：** SystemCapability.Multimedia.Image
 
