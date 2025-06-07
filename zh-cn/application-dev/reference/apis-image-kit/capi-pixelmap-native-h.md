@@ -23,8 +23,8 @@
 | [OH_Pixelmap_HdrDynamicMetadata](capi-oh-pixelmap-hdrdynamicmetadata.md) | OH_Pixelmap_HdrDynamicMetadata | DR_DYNAMIC_METADATA关键字对应的动态元数据值。 |
 | [OH_Pixelmap_HdrGainmapMetadata](capi-oh-pixelmap-hdrgainmapmetadata.md) | OH_Pixelmap_HdrGainmapMetadata | HDR_GAINMAP_METADATA关键字对应的gainmap相关元数据值，参考ISO 21496-1。 |
 | [OH_Pixelmap_HdrMetadataValue](capi-oh-pixelmap-hdrmetadatavalue.md) | OH_Pixelmap_HdrMetadataValue | Pixelmap使用的HDR元数据值，和OH_Pixelmap_HdrMetadataKey关键字相对应。 |
-| [OH_Pixelmap_InitializationOptions](oh-pixelmap-initializationoptions.md) | OH_Pixelmap_InitializationOptions | OH_Pixelmap_InitializationOptions是native层封装的初始化参数结构体，用于设置Pixelmap的初始化参数。 |
-| [OH_Pixelmap_ImageInfo](oh-pixelmap-imageinfo.md) | OH_Pixelmap_ImageInfo | OH_Pixelmap_ImageInfo是native层封装的图像像素信息结构体，保存图像像素的宽高、行跨距、像素格式、是否是HDR。 |
+| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) | OH_Pixelmap_InitializationOptions | OH_Pixelmap_InitializationOptions是native层封装的初始化参数结构体，用于设置Pixelmap的初始化参数。 |
+| [OH_Pixelmap_ImageInfo](capi-oh-pixelmap-imageinfo.md) | OH_Pixelmap_ImageInfo | OH_Pixelmap_ImageInfo是native层封装的图像像素信息结构体，保存图像像素的宽高、行跨距、像素格式、是否是HDR。 |
 
 ### 枚举
 
@@ -221,7 +221,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_Create(OH_Pixelmap_Initializati
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](oh-pixelmap-initializationoptions.md) **options | 被创建的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) **options | 被创建的OH_Pixelmap_InitializationOptions指针。 |
 
 **返回：**
 
@@ -246,7 +246,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetWidth(OH_Pixelmap_Initializa
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | uint32_t *width | 图片的宽，单位：像素。 |
 
 **返回：**
@@ -272,7 +272,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetWidth(OH_Pixelmap_Initializa
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | uint32_t width | 图片的宽，单位：像素。 |
 
 **返回：**
@@ -298,7 +298,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetHeight(OH_Pixelmap_Initializ
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | uint32_t *height | 图片的高，单位：像素。 |
 
 **返回：**
@@ -324,7 +324,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetHeight(OH_Pixelmap_Initializ
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | uint32_t height | 图片的高，单位：像素。 |
 
 **返回：**
@@ -350,7 +350,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetPixelFormat(OH_Pixelmap_Init
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | int32_t *pixelFormat | 像素格式[PIXEL_FORMAT](#pixel_format)。 |
 
 **返回：**
@@ -376,7 +376,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetPixelFormat(OH_Pixelmap_Init
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | int32_t pixelFormat | 像素格式[PIXEL_FORMAT](#pixel_format)。 |
 
 **返回：**
@@ -402,7 +402,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetSrcPixelFormat(OH_Pixelmap_I
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | int32_t *srcpixelFormat | 像素格式[PIXEL_FORMAT](#pixel_format)。 |
 
 **返回：**
@@ -428,7 +428,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetSrcPixelFormat(OH_Pixelmap_I
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | int32_t srcpixelFormat | 源像素格式[PIXEL_FORMAT](#pixel_format)。 |
 
 **返回：**
@@ -456,7 +456,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetRowStride(OH_Pixelmap_Initia
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | int32_t *rowStride | 跨距，单位：字节。 |
 
 **返回：**
@@ -484,7 +484,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetRowStride(OH_Pixelmap_Initia
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | int32_t rowStride | 跨距，单位：字节。 |
 
 **返回：**
@@ -510,7 +510,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetAlphaType(OH_Pixelmap_Initia
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | int32_t *alphaType | 透明度类型[PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type)。 |
 
 **返回：**
@@ -536,7 +536,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetAlphaType(OH_Pixelmap_Initia
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | int32_t alphaType | 透明度类型[PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type)。 |
 
 **返回：**
@@ -562,7 +562,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetEditable(OH_Pixelmap_Initial
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | bool *editable | 可编辑标志。 |
 
 **返回：**
@@ -588,7 +588,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetEditable(OH_Pixelmap_Initial
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被操作的OH_Pixelmap_InitializationOptions指针。 |
 | bool editable | 可编辑标志。 |
 
 **返回：**
@@ -614,7 +614,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_Release(OH_Pixelmap_Initializat
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](oh-pixelmap-initializationoptions.md) *options | 被释放的OH_Pixelmap_InitializationOptions指针。 |
+| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 被释放的OH_Pixelmap_InitializationOptions指针。 |
 
 **返回：**
 
@@ -639,7 +639,7 @@ Image_ErrorCode OH_PixelmapImageInfo_Create(OH_Pixelmap_ImageInfo **info)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_ImageInfo](oh-pixelmap-imageinfo.md) **info | 被创建的OH_Pixelmap_ImageInfo指针。 |
+| [OH_Pixelmap_ImageInfo](capi-oh-pixelmap-imageinfo.md) **info | 被创建的OH_Pixelmap_ImageInfo指针。 |
 
 **返回：**
 
@@ -664,7 +664,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetWidth(OH_Pixelmap_ImageInfo *info, uint3
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_ImageInfo](oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
+| [OH_Pixelmap_ImageInfo](capi-oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
 | uint32_t *width | 图片宽，单位：像素。 |
 
 **返回：**
@@ -690,7 +690,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetHeight(OH_Pixelmap_ImageInfo *info, uint
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_ImageInfo](oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
+| [OH_Pixelmap_ImageInfo](capi-oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
 | uint32_t *height | 图片高，单位：像素。 |
 
 **返回：**
@@ -716,7 +716,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetRowStride(OH_Pixelmap_ImageInfo *info, u
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_ImageInfo](oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
+| [OH_Pixelmap_ImageInfo](capi-oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
 | uint32_t *rowStride | 跨距，内存中每行像素所占的空间。 |
 
 **返回：**
@@ -742,7 +742,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetPixelFormat(OH_Pixelmap_ImageInfo *info,
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_ImageInfo](oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
+| [OH_Pixelmap_ImageInfo](capi-oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
 | int32_t *pixelFormat | 像素格式。 |
 
 **返回：**
@@ -768,7 +768,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetAlphaType(OH_Pixelmap_ImageInfo *info, i
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_ImageInfo](oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
+| [OH_Pixelmap_ImageInfo](capi-oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
 | int32_t *alphaType | 透明度类型[PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type)。 |
 
 **返回：**
@@ -794,7 +794,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetDynamicRange(OH_Pixelmap_ImageInfo *info
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_ImageInfo](oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
+| [OH_Pixelmap_ImageInfo](capi-oh-pixelmap-imageinfo.md) *info | 被操作的OH_Pixelmap_ImageInfo指针。 |
 | bool *isHdr | 是否为hdr的布尔值。 |
 
 **返回：**
@@ -820,7 +820,7 @@ Image_ErrorCode OH_PixelmapImageInfo_Release(OH_Pixelmap_ImageInfo *info)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_ImageInfo](oh-pixelmap-imageinfo.md) *info | 被释放的OH_Pixelmap_ImageInfo指针。 |
+| [OH_Pixelmap_ImageInfo](capi-oh-pixelmap-imageinfo.md) *info | 被释放的OH_Pixelmap_ImageInfo指针。 |
 
 **返回：**
 
@@ -847,7 +847,7 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmap(uint8_t *data, size_t dataLengt
 | -- | -- |
 | uint8_t *data | BGRA_8888格式的颜色数组。 |
 | size_t dataLength | 数组长度。 |
-| [OH_Pixelmap_InitializationOptions](oh-pixelmap-initializationoptions.md) *options | 创建像素的属性。 |
+| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 创建像素的属性。 |
 | [OH_PixelmapNative](capi-oh-pixelmapnative.md) **pixelmap | 被创建的OH_PixelmapNative对象指针。 |
 
 **返回：**
@@ -1034,7 +1034,7 @@ Image_ErrorCode OH_PixelmapNative_GetImageInfo(OH_PixelmapNative *pixelmap, OH_P
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 被操作的OH_PixelmapNative指针。 |
-| [OH_Pixelmap_ImageInfo](oh-pixelmap-imageinfo.md) *imageInfo | 图像像素信息。 |
+| [OH_Pixelmap_ImageInfo](capi-oh-pixelmap-imageinfo.md) *imageInfo | 图像像素信息。 |
 
 **返回：**
 
@@ -1380,7 +1380,7 @@ Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmap(OH_Pixelmap_Initialization
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pixelmap_InitializationOptions](oh-pixelmap-initializationoptions.md) *options | 创建像素的属性。 |
+| [OH_Pixelmap_InitializationOptions](capi-oh-pixelmap-initializationoptions.md) *options | 创建像素的属性。 |
 | [OH_PixelmapNative](capi-oh-pixelmapnative.md) **pixelmap | 被创建的OH_PixelmapNative对象指针。 |
 
 **返回：**

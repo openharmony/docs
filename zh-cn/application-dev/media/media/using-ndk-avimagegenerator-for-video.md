@@ -10,7 +10,7 @@
 target_link_libraries(entry PUBLIC libavimage_generator.so libace_napi.z.so)
 ```
 
-使用[OH_PixelmapNative_ConvertPixelmapNativeToNapi()](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_convertpixelmapnativetonapi)接口将nativePixelMap对象转换为PixelMapnapi对象、[OH_PixelmapNative_Release()](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_release)接口释放OH_PixelmapNative对象资源，需引入如下头文件。
+使用[OH_PixelmapNative_ConvertPixelmapNativeToNapi()](../../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_convertpixelmapnativetonapi)接口将nativePixelMap对象转换为PixelMapnapi对象、[OH_PixelmapNative_Release()](../../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_release)接口释放OH_PixelmapNative对象资源，需引入如下头文件。
 ```
 #include <multimedia/image_framework/image/pixelmap_native.h>
 ```
@@ -122,7 +122,7 @@ target_link_libraries(entry PUBLIC libavmetadata_extractor.so libnative_media_co
     ```
 
 3. 获取指定时间的视频帧：调用[OH_AVImageGenerator_FetchFrameByTime()](../../reference/apis-media-kit/capi-avimage-generator-h.md#oh_avimagegenerator_fetchframebytime)，可以获取到一个OH_PixelmapNative对象，该对象可用于图片显示。
-   > - 使用完成需要调用OH_PixelmapNative_Release释放OH_PixelmapNative对象资源，详细使用方法请参阅[Image_NativeModule](../../reference/apis-image-kit/_image___native_module.md)。
+   > - 使用完成需要调用OH_PixelmapNative_Release释放OH_PixelmapNative对象资源，详细使用方法请参阅[Image_NativeModule](../../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_release)。
     ```c
     #include "napi/native_api.h"
     #include <multimedia/image_framework/image/pixelmap_native.h>
