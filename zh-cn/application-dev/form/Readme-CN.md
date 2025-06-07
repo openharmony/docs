@@ -19,13 +19,12 @@
         - [拉起卡片提供方的UIAbility到后台(call事件)](arkts-ui-widget-event-call.md)
         - [通过message事件刷新卡片内容](arkts-ui-widget-event-formextensionability.md)
         - [通过router或call事件刷新卡片内容](arkts-ui-widget-event-uiability.md)
-      - 卡片数据交互<!--arkts-ui-widget-interaction-->
-        - [卡片内容更新](arkts-ui-widget-interaction-overview.md)
-        - [卡片定时刷新](arkts-ui-widget-update-by-time.md)
-        - [卡片定点刷新](arkts-ui-widget-update-by-time-point.md)
+      - ArkTS卡片页面刷新<!--arkts-ui-widget-interaction-->
+        - [ArkTS卡片页面刷新概述](arkts-ui-widget-interaction-overview.md)
+        - [ArkTS卡片主动刷新](arkts-ui-widget-active-refresh.md)
+        - [ArkTS卡片被动刷新](arkts-ui-widget-passive-refresh.md)
         <!--Del-->
         - [卡片代理刷新](arkts-ui-widget-update-by-proxy.md)
-        - [卡片使用方主动请求刷新卡片内容（仅对系统应用开放）](arkts-ui-widget-content-update.md)
         <!--DelEnd-->
         - [刷新本地图片和网络图片](arkts-ui-widget-image-update.md)
         - [根据卡片状态刷新不同内容](arkts-ui-widget-update-by-status.md)
