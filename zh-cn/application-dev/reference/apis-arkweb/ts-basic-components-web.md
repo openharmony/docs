@@ -5156,7 +5156,15 @@ onContextMenuHide(callback: OnContextMenuHideCallback)
 
 onScroll(callback: Callback\<OnScrollEvent\>)
 
-通知网页滚动条滚动位置。
+通知网页全局滚动位置。
+
+> **说明：**
+>
+> 通知的是页面全局滚动位置，局部滚动位置的变化是无法触发此回调。
+>
+> 判断页面是否是全局滚动，在滚动前后打印window.pagYOffset或者window.pagXOffset。
+>
+> 如果是全局滚动，window.pagYOffset或者window.pagXOffset的值在滚动前后会有变化，反之没有变化。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
