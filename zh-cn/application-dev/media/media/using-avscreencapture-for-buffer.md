@@ -98,6 +98,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, userData);
     OH_AVScreenCapture_SetDisplayCallback(capture, OnDisplaySelected, userData);
     OH_AVScreenCapture_SetCaptureContentChangedCallback(capture, OnCaptureContentChanged, userData);
+    OH_AVScreenCapture_SetSelectionCallback(capture, OnUserSelected, userData);
     ```
 
 7. 调用StartScreenCapture()方法开始进行屏幕录制。
@@ -358,6 +359,17 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
         (void)area;
         (void)userData;
     }
+
+    // 手工确认页面用户选择结果的回调函数OnUserSelected()。
+    void OnUserSelected(OH_AVScreenCapture* capture, OH_AVScreenCapture_UserSelectionInfo* selections, void *userData) {
+        (void)capture;
+        (void)userData;
+        int* selectType = new int;
+        uint64_t* displayId = new uint64_t;
+        // 通过获取接口，拿到对应的选择类型和屏幕Id。OH_AVScreenCapture_UserSelectionInfo* selections仅在OnUserSelected回调中有效。
+        OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetCaptureTypeSelected(selections, selectType);
+        OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetDisplayIdSelected(selections, displayId);
+    }
     ```
 
 3. 停止录屏服务并释放资源。
@@ -530,6 +542,17 @@ void OnCaptureContentChanged(struct OH_AVScreenCapture *capture, OH_AVScreenCapt
     (void)userData;
 }
 
+// 手工确认页面用户选择结果的回调函数OnUserSelected()。
+void OnUserSelected(OH_AVScreenCapture* capture, OH_AVScreenCapture_UserSelectionInfo* selections, void *userData) {
+    (void)capture;
+    (void)userData;
+    int* selectType = new int;
+    uint64_t* displayId = new uint64_t;
+    // 通过获取接口，拿到对应的选择类型和屏幕Id。OH_AVScreenCapture_UserSelectionInfo* selections仅在OnUserSelected回调中有效。
+    OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetCaptureTypeSelected(selections, selectType);
+    OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetDisplayIdSelected(selections, displayId);
+}
+
 struct OH_AVScreenCapture *capture;
 // 开始录屏时调用StartScreenCapture。
 static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
@@ -559,6 +582,8 @@ static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
     OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, nullptr);
     // 可选 设置录屏屏幕Id回调，必须在开始录屏前调用。
     OH_AVScreenCapture_SetDisplayCallback(capture, OnDisplaySelected, nullptr);
+    // 可选 设置手工确认页面用户选择结果的回调，必须在开始录屏前调用。
+    OH_AVScreenCapture_SetSelectionCallback(capture, OnUserSelected, nullptr);
 
     // 可选，设置录屏内容变化回调。
     OH_Rect* area = nullptr;
