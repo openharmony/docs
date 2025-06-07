@@ -6,7 +6,7 @@ EXIF（Exchangeable image file format）是专门为数码相机的照片设定�
 
 在图库等应用中，需要查看或修改数码照片的EXIF信息。由于摄像机的手动镜头参数无法自动写入到EXIF信息中或者因为相机断电等原因会导致拍摄时间出错，这时需要手动修改错误的EXIF数据，即可使用本功能。
 
-OpenHarmony目前仅支持对部分EXIF信息的查看和修改，具体支持的范围请参见：[OHOS_IMAGE_PROPERTY_XXX](../../reference/apis-image-kit/_image___native_module.md#变量)。
+OpenHarmony目前仅支持对部分EXIF信息的查看和修改，具体支持的范围请参见：[OHOS_IMAGE_PROPERTY_XXX](../../reference/apis-image-kit/capi-image-common-h.md#变量)。
 
 ## 开发步骤
 
@@ -20,7 +20,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
 
 ### Native接口调用
 
-EXIF信息的读取与编辑相关C API接口的详细介绍请参见[OH_ImageSource_GetImageProperty](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_getimageproperty) 和 [OH_ImageSource_ModifyImageProperty](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_modifyimageproperty)。
+EXIF信息的读取与编辑相关C API接口的详细介绍请参见[OH_ImageSource_GetImageProperty](../../reference/apis-image-kit/capi-image-source-native-h.md#oh_imagesourcenative_getimageproperty) 和 [OH_ImageSource_ModifyImageProperty](../../reference/apis-image-kit/capi-image-source-native-h.md#oh_imagesourcenative_modifyimageproperty)。
 
 在Deveco Studio新建Native C++应用，默认生成的项目中包含index.ets文件，在entry\src\main\cpp目录下会自动生成一个cpp文件（hello.cpp或napi_init.cpp，本示例以hello.cpp文件名为例）。在hello.cpp中实现C API接口调用逻辑，示例代码如下：
 

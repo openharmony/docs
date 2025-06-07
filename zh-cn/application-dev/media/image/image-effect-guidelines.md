@@ -11,7 +11,7 @@ ImageEffect提供了一系列接口用于图像的编辑。开发者可以通过
 
 ## 接口说明
 
-详细的接口说明请参考[ImageEffect](../../reference/apis-image-kit/_image_effect.md)。
+详细的接口说明请参考[ImageEffect](../../reference/apis-image-kit/capi-imageeffect.md)。
 
 ## 开发步骤
 

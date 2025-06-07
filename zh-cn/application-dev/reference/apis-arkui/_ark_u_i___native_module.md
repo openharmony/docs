@@ -18870,7 +18870,7 @@ int32_t OH_ArkUI_GetNodeSnapshot(ArkUI_NodeHandle node, ArkUI_SnapshotOptions* s
 
 **注意：**
 
-当返回的Pixelmap不再使用时，应通过 [OH_PixelmapNative_Release](../apis-image-kit/_image___native_module.md#oh_pixelmapnative_release) 释放它。
+当返回的Pixelmap不再使用时，应通过 [OH_PixelmapNative_Release](../apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_release) 释放它。
 
 **起始版本：** 15
 
