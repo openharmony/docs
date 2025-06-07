@@ -10,7 +10,7 @@
 
 type WebMessage = ArrayBuffer | string
 
-用于描述[WebMessagePort](./arkts-apis-webview-WebMessagePort.md#interfaces-webmessageport)所支持的数据类型。
+用于描述[WebMessagePort](./arkts-apis-webview-WebMessagePort.md)所支持的数据类型。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -44,14 +44,14 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| handler | [NativeMediaPlayerHandler](./arkts-apis-webview-NativeMediaPlayerHandler.md#interfaces-nativemediaplayerhandler) | 是 | 通过该对象，将播放器的状态报告给 ArkWeb 内核。 |
+| handler | [NativeMediaPlayerHandler](./arkts-apis-webview-NativeMediaPlayerHandler.md) | 是 | 通过该对象，将播放器的状态报告给 ArkWeb 内核。 |
 | mediaInfo | [MediaInfo](./arkts-apis-webview-i.md#mediainfo12) | 是 | 网页媒体的信息。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 |------|------|
-| [NativeMediaPlayerBridge](./arkts-apis-webview-NativeMediaPlayerBridge.md#interfaces-nativemediaplayerbridge) | 接管网页媒体的播放器和 ArkWeb 内核之间的一个接口类。<br/>应用需要实现该接口类。<br/> ArkWeb 内核通过该接口类的对象来控制应用创建的用来接管网页媒体的播放器。<br/>如果应用返回了 null ， 则表示应用不接管这个媒体，由 ArkWeb 内核来播放该媒体。 |
+| [NativeMediaPlayerBridge](./arkts-apis-webview-NativeMediaPlayerBridge.md) | 接管网页媒体的播放器和 ArkWeb 内核之间的一个接口类。<br/>应用需要实现该接口类。<br/> ArkWeb 内核通过该接口类的对象来控制应用创建的用来接管网页媒体的播放器。<br/>如果应用返回了 null ， 则表示应用不接管这个媒体，由 ArkWeb 内核来播放该媒体。 |
 
 **示例：**
 

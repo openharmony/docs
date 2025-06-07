@@ -1,6 +1,6 @@
 # Class (WebMessageExt)
 
-[WebMessagePort](./arkts-apis-webview-WebMessagePort.md#interfaces-webmessageport)接口接收、发送的数据对象。
+[WebMessagePort](./arkts-apis-webview-WebMessagePort.md)接口接收、发送的数据对象。
 
 > **说明：**
 >
@@ -20,7 +20,7 @@ getType(): WebMessageType
 
 | 类型           | 说明                                                      |
 | --------------| --------------------------------------------------------- |
-| [WebMessageType](./arkts-apis-webview-e.md#webmessagetype10) | [webMessagePort](./arkts-apis-webview-WebMessagePort.md#interfaces-webmessageport)接口所支持的数据类型。 |
+| [WebMessageType](./arkts-apis-webview-e.md#webmessagetype10) | [webMessagePort](./arkts-apis-webview-WebMessagePort.md)接口所支持的数据类型。 |
 
 ## getString<sup>10+</sup>
 
@@ -166,7 +166,7 @@ setType(type: WebMessageType): void
 
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
-| type  | [WebMessageType](./arkts-apis-webview-e.md#webmessagetype10) | 是   | [webMessagePort](./arkts-apis-webview-WebMessagePort.md#interfaces-webmessageport)接口所支持的数据类型。 |
+| type  | [WebMessageType](./arkts-apis-webview-e.md#webmessagetype10) | 是   | [webMessagePort](./arkts-apis-webview-WebMessagePort.md)接口所支持的数据类型。 |
 
 **错误码：**
 
