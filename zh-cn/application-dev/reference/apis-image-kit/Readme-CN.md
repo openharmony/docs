@@ -27,9 +27,9 @@
     - [image_pixel_map_napi.h](capi-image-pixel-map-napi-h.md)
     - [image_receiver_mdk.h](capi-image-receiver-mdk-h.md)
     - [image_source_mdk.h](capi-image-source-mdk-h.md)
-    - [image_effect.h](image__effect_8h.md)
-    - [image_effect_errors.h](image__effect__errors_8h.md)
-    - [image_effect_filter.h](image__effect__filter_8h.md)
+    - [image_effect.h](capi-image-effect-h.md)
+    - [image_effect_errors.h](capi-image-effect-errors-h.md)
+    - [image_effect_filter.h](capi-image-effect-filter-h.md)
     - [image_processing.h](capi-image-processing-h.md)
     - [image_processing_types.h](capi-image-processing-types-h.md)
   - 结构体<!--image-struct-->
