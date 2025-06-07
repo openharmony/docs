@@ -6,29 +6,9 @@
 >
 > 本模块首批接口从API version 9开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
+> 在自定义组件内实现onMeasureSize, onPlaceChildren任一方法即视为实现自定义布局，推荐同时实现两种方法，具体参数说明可见对应接口参数说明。
+>
 > 从API version 20开始，在自定义布局的自定义组件中，子组件若设置了[LayoutPolicy](ts-types.md#layoutpolicy15)对象的fixAtIdealSize属性，表示尺寸将不受父组件约束，完全按照开发者自定义的尺寸范围布局。
-
-## onPlaceChildren<sup>10+</sup>
-
-onPlaceChildren?(selfLayoutInfo: GeometryInfo, children: Array&lt;Layoutable&gt;, constraint: ConstraintSizeOptions):void
-
-ArkUI框架会在自定义组件确定位置时，将该自定义组件的子节点自身的尺寸范围通过onPlaceChildren传递给该自定义组件。不允许在onPlaceChildren函数中改变状态变量。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名            | 类型                                                         |必填| 说明               |
-|----------------|------------------------------------------------------------|---|------------------|
-| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            |是 |测量后的自身布局信息。         |
-| children       | Array&lt;[Layoutable](#layoutable10)&gt;                   |是 |测量后的子组件布局信息。         |
-| constraint     | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) |是 |父组件constraint信息。 |
-
-**示例：**
-
-示例请参考[自定义布局代码示例](#onmeasuresize10)。
 
 ## onMeasureSize<sup>10+</sup>
 
@@ -53,6 +33,28 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 | 类型                        | 说明           |
 | --------------------------- | -------------- |
 | [SizeResult](#sizeresult10) | 组件尺寸信息。 |
+
+## onPlaceChildren<sup>10+</sup>
+
+onPlaceChildren?(selfLayoutInfo: GeometryInfo, children: Array&lt;Layoutable&gt;, constraint: ConstraintSizeOptions):void
+
+ArkUI框架会在自定义组件确定位置时，将该自定义组件的子节点自身的尺寸范围通过onPlaceChildren传递给该自定义组件。不允许在onPlaceChildren函数中改变状态变量。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名            | 类型                                                         |必填| 说明               |
+|----------------|------------------------------------------------------------|---|------------------|
+| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            |是 |测量后的自身布局信息。         |
+| children       | Array&lt;[Layoutable](#layoutable10)&gt;                   |是 |测量后的子组件布局信息。         |
+| constraint     | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) |是 |父组件constraint信息。 |
+
+**示例：**
+
+示例请参考[自定义布局代码示例](#示例)。
 
 ## GeometryInfo<sup>10+</sup>
 
