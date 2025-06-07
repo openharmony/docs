@@ -1,4 +1,4 @@
-# Interfaces (CameraManager)
+# Interface (CameraManager)
 
 > **说明：**
 >

@@ -1,4 +1,4 @@
-# Interfaces (Focus)
+# Interface (Focus)
 
 > **说明：**
 >

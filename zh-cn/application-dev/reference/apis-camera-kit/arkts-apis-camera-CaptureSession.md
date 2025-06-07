@@ -1,4 +1,4 @@
-# 废弃的Interfaces (CaptureSession, deprecated)
+# 废弃的Interface (CaptureSession, deprecated)
 
 > **说明：**
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[PhotoSession](arkts-apis-camera-PhotoSession.md)、[VideoSession](arkts-apis-camera-VideoSession.md)替代。

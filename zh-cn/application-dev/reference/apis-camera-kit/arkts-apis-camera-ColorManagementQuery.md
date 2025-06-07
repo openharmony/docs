@@ -1,4 +1,4 @@
-# Interfaces (ColorManagementQuery)
+# Interface (ColorManagementQuery)
 
 > **说明：**
 >
