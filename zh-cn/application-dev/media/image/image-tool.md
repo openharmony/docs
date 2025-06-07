@@ -26,7 +26,7 @@ EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../../r
     // 读取EXIF信息，BitsPerSample为每个像素比特数。
     let options : image.ImagePropertyOptions = { index: 0, defaultValue: 'This key has no value!' };
     imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options).then((data : string) => {
-        console.log('Succeeded in getting the value of the specified attribute key of the image.');
+        console.info('Succeeded in getting the value of the specified attribute key of the image.');
     }).catch((error : BusinessError) => {
         console.error('Failed to get the value of the specified attribute key of the image.');
     })
