@@ -377,57 +377,6 @@ import { common } from '@kit.AbilityKit';
 // 获取context。
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-let serviceType = "_print._tcp";
-let discoveryService : Object = mdns.createDiscoveryService(context, serviceType);
-```
-
-## mdns.resolveLocalService
-
-resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void
-
-解析一个MDNS服务，使用callback方式作为异步方法。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力**： SystemCapability.Communication.NetManager.MDNS
-
-**参数：**
-
-| 参数名        | 类型                             | 必填 | 说明                                     |
-|-------------|----------------------------------|-----------|-------------------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md)。 |
-| serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   MDNS服务的信息。      |
-| callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | 是        |   回调函数。成功移除error为undefined，data为解析的MDNS服务信息。      |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[MDNS错误码](errorcode-net-mdns.md)和[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID      | 错误信息 |
-|---------|----------------------------------------------|
-| 401     | Parameter error.                             |
-| 2100002 | Failed to connect to the service.            |
-| 2100003 | System internal error.                       |
-| 2204003 | Callback duplicated.                         |
-| 2204006 | Request timeout.                |
-| 2204010 | Failed to send the message.                  |
-
-**示例：**
-
->**说明：** 
->
->在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
-Stage模型示例：
-
-```ts
-import { mdns } from '@kit.NetworkKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
-
-// 获取context。
-let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
   serviceName: "servicename",
