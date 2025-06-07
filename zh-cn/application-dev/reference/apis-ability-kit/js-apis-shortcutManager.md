@@ -52,7 +52,7 @@ shortcutManager.setShortcutVisibleForSelf("shortcut_id", false)
   .then(() => {
     console.log("setShortcutVisibleForSelf success");
   }).catch((err: BusinessError) => {
-  console.error(`setShortcutVisibleForSelf errData is errCode:${err.code}  message:${err.message}`);
+  console.error("setShortcutVisibleForSelf errData is errCode:${err.code}  message:${err.message}");
 });
 ```
 
@@ -78,8 +78,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 shortcutManager.getAllShortcutInfoForSelf()
   .then((data: shortcutManager.ShortcutInfo[]) => {
-    console.log("shortcut data is" + JSON.stringify(data));
+    console.log("getAllShortcutInfoForSelf shortcut data is" + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.error(`getAllShortcutInfoForSelf errData is errCode:${err.code}  message:${err.message}`);
+    console.error("getAllShortcutInfoForSelf errData is errCode:${err.code}  message:${err.message}");
   });
 ```
