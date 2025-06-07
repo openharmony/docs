@@ -78,7 +78,7 @@ static void ImageReceiverNativeCTest()
     imgSize.width = IMAGE_WIDTH;
     imgSize.height = IMAGE_HEIGHT;
 
-    // 设置 OH_ImageReceiverOptions 的 size 属性。
+    // 设置 OH_ImageReceiverOptions 的 size 属性。该属性仅为必要入参，实际上不会生效，图片属性由生产者决定，如相机。
     errCode = OH_ImageReceiverOptions_SetSize(options, imgSize);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest set image receiver options size failed, errCode: %{public}d.", errCode);
@@ -94,7 +94,7 @@ static void ImageReceiverNativeCTest()
         return;
     }
 
-    // 读取 OH_ImageReceiverOptions 的 size 属性。
+    // 读取 OH_ImageReceiverOptions 的 size 属性。该属性实际上不会生效，图片属性由生产者决定，如相机。
     Image_Size imgSizeRead;
     errCode = OH_ImageReceiverOptions_GetSize(options, &imgSizeRead);
     if (errCode != IMAGE_SUCCESS) {
@@ -103,7 +103,7 @@ static void ImageReceiverNativeCTest()
         return;
     }
 
-    // 检查读取到的 size 值是否为设定值。
+    // 检查读取到的 size 值是否为设定值。该值实际上不会生效，图片宽高由生产者决定，如相机。
     if (imgSizeRead.width != IMAGE_WIDTH || imgSizeRead.height != IMAGE_HEIGHT) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest get image receiver options size failed, width: %{public}d, height: %{public}d.", imgSizeRead.width, imgSizeRead.height);
         OH_ImageReceiverOptions_Release(options);
@@ -111,7 +111,7 @@ static void ImageReceiverNativeCTest()
     }
 
     // 读取 OH_ImageReceiverOptions 的 capacity 属性。
-    int32_t capacity = 0；
+    int32_t capacity = 0;
     errCode = OH_ImageReceiverOptions_GetCapacity(options, &capacity);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest get image receiver options capacity failed, errCode: %{public}d.", errCode);
@@ -197,5 +197,4 @@ static void ImaggReceiverRelease()
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest release image receiver failed, errCode: %{public}d.", errCode);
     }
 }
-
 ```
