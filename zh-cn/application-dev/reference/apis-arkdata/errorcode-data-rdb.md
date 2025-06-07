@@ -159,7 +159,7 @@ The database does not respond.
 **处理步骤**
 
 1. 重新尝试。
-2. 如果是[attach](./js-apis-data-relationalStore.md#attach12)或[detach](./js-apis-data-relationalStore.md#detach12)接口，增加waitTime值来增加等待时长。
+2. 如果是[attach](arkts-apis-data-relationalStore-RdbStore.md#attach12)或[detach](arkts-apis-data-relationalStore-RdbStore.md#detach12)接口，增加waitTime值来增加等待时长。
 
 ## 14800016 数据库别名已被使用
 
@@ -632,7 +632,7 @@ The type of the distributed table does not match.
 
 **可能原因**
 
-对同一数据库表设置的分布式表类型前后不一致，分布式表类型可见[DistributedType](js-apis-data-relationalStore.md#distributedtype10)。
+对同一数据库表设置的分布式表类型前后不一致，分布式表类型可见[DistributedType](arkts-apis-data-relationalStore-e.md#distributedtype10)。
 
 **处理步骤**
 

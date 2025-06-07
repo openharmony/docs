@@ -119,7 +119,7 @@ SQL语句中的函数，如下所示：
 
 ## 接口说明
 
-以下是向量数据库持久化功能的相关接口，更多接口及使用方式请见[关系型数据库](../reference/apis-arkdata/js-apis-data-relationalStore.md)。
+以下是向量数据库持久化功能的相关接口，更多接口及使用方式请见[关系型数据库](../reference/apis-arkdata/arkts-apis-data-relationalStore.md)。
 
 | 接口名称 | 描述 |
 | -------- | -------- |
