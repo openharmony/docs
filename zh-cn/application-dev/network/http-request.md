@@ -160,7 +160,7 @@
     调用该对象的off()方法，取消订阅HTTP响应头事件。
 
     ```ts
-    // 在不需要该回调信息时，需要取消订阅HTTP响应头事件。
+    // 在不需要该回调信息时，需要取消订阅HTTP响应头事件，该方法调用的时机，可以参考步骤4中的示例代码。
     httpRequest.off('headersReceive');
     ```
 
@@ -248,7 +248,7 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
       priority: 1, // 可选，默认为1。
       connectTimeout: 60000, // 可选，默认为60000ms。
       readTimeout: 60000, // 可选，默认为60000ms。若传输的数据较大，需要较长的时间，建议增大该参数以保证数据传输正常终止。
-      usingProtocol: http.HttpProtocol.HTTP1_1 // 可选，协议类型默认值由系统自动指定。
+      usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定。
       multiFormDataList: [ // 可选，仅当Header中，'content-Type'为'multipart/form-data'时生效，自API 11开始支持该属性，该属性用于支持向服务器上传二进制数据，根据上传的具体数据类型进行选择。
         {
           name: "Part1", // 数据名，自API 11开始支持该属性。
@@ -304,7 +304,7 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
 
 5. 取消订阅HTTP流式响应头事件
 
-    调用该对象的off()方法，取消订阅HTTP响应头事件。
+    调用该对象的off()方法，取消订阅HTTP响应头事件，该方法调用的时机，可以参考步骤4中的示例代码。
 
     ```ts
     // 取消订阅HTTP响应头事件。
