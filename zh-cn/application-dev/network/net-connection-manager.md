@@ -59,7 +59,16 @@
     let conn = connection.createNetConnection(netSpecifier, timeout);
     ```
 
-4. 调用该对象的[on()](../reference/apis-network-kit/js-apis-net-connection.md#onnetavailable)方法，传入type和callback，订阅关心的事件。
+4. 调用该对象的[register()](../reference/apis-network-kit/js-apis-net-connection.md#register)方法，订阅指定网络状态变化的通知。当网络可用时，会收到netAvailable事件的回调；当网络不可用时，会收到netUnavailable事件的回调。
+
+    ```ts
+    // 订阅指定网络状态变化的通知。
+    conn.register((err: BusinessError, data: void) => {
+      console.log(JSON.stringify(err));
+    });
+    ```
+
+5. 调用该对象的[on()](../reference/apis-network-kit/js-apis-net-connection.md#onnetavailable)方法，传入type和callback，订阅关心的事件。
 
     ```ts
     // 订阅事件，如果当前指定网络可用，通过on_netAvailable通知用户。
@@ -72,16 +81,6 @@
       console.log("net is unavailable, data is " + JSON.stringify(data));
     }));
     ```
-
-5. 调用该对象的[register()](../reference/apis-network-kit/js-apis-net-connection.md#register)方法，订阅指定网络状态变化的通知。当网络可用时，会收到netAvailable事件的回调；当网络不可用时，会收到netUnavailable事件的回调。
-
-    ```ts
-    // 订阅指定网络状态变化的通知。
-    conn.register((err: BusinessError, data: void) => {
-      console.log(JSON.stringify(err));
-    });
-    ```
-
 6. 当不使用该网络时，可以调用该对象的[unregister()](../reference/apis-network-kit/js-apis-net-connection.md#unregister)方法，取消订阅。
 
     ```ts
@@ -414,7 +413,7 @@ async function socketTest() {
       try {
         let netHandle = connection.getDefaultNetSync();
         if (!netHandle || netHandle.netId === 0) {
-          return fasle;
+          return false;
         }
         let netCapabilities = connection.getNetCapabilitiesSync(netHandle);
         let cap = netCapabilities.networkCap || [];
@@ -422,13 +421,13 @@ async function socketTest() {
           // connection.NetCap.NET_CAPABILITY_CHECKING_CONNECTIVITY表示没有在进行连通性判断的过程，connection.NetCap.NET_CAPABILITY_VALIDATED表示网络连通性校验通过
           return true;
         } else {
-          return fasle;
+          return false;
         }
       } catch (e) {
         let err = e as BusinessError;
-        console.error("judgeHasNet" + JSON.stringify(data));
+        console.error("judgeHasNet error" + JSON.stringify(err));
       }
-      return fasle;
+      return false;
     }
     ```
 
