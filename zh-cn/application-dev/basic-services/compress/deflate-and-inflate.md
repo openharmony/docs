@@ -23,8 +23,8 @@
 在应用沙箱目录下创建一个测试文件data.txt，并写入测试数据。示例代码如下。
 
    ```ts
-   import { fileIo as fs} from '@kit.CoreFileKit'
-   import { BusinessError, zlib } from '@kit.BasicServicesKit'
+   import { fileIo as fs} from '@kit.CoreFileKit';
+   import { BusinessError, zlib } from '@kit.BasicServicesKit';
 
    @Entry
    @Component
@@ -36,7 +36,7 @@
          Column() {
            // 在应用沙箱目录下创建文件data.txt，并写入测试数据
            Button('创建测试文件data.txt').onClick(() => {
-             let path = getContext(this).filesDir;
+             let path = this.getUIContext()?.getHostContext()?.filesDir;
              // 创建文件data.txt
              let inFile = fs.openSync(path + '/data.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
              // 写入测试数据
@@ -63,8 +63,8 @@
 采用接口[zlib.compressFile()](../../reference/apis-basic-services-kit/js-apis-zlib.md#zlibcompressfile9-1)将文件data.txt压缩并归档到data.zip中，采用接口[zlib.decompressFile()](../../reference/apis-basic-services-kit/js-apis-zlib.md#zlibdecompressfile9-1)将data.zip解压到应用沙箱目录下，示例代码如下。
 
    ```ts
-   import { fileIo as fs} from '@kit.CoreFileKit'
-   import { BusinessError, zlib } from '@kit.BasicServicesKit'
+   import { fileIo as fs} from '@kit.CoreFileKit';
+   import { BusinessError, zlib } from '@kit.BasicServicesKit';
 
    @Entry
    @Component
@@ -73,7 +73,7 @@
        Row() {
          // 示例一：将测试文件data.txt压缩并归档到data.zip中。
          Button('compressFile').onClick(() => {
-           let path = getContext(this).filesDir;
+           let path = this.getUIContext()?.getHostContext()?.filesDir;
            let inFile = path + '/data.txt';
            let outFile = path + '/data.zip';
            let options: zlib.Options = {};
@@ -86,7 +86,7 @@
 
          // 示例二：将data.zip文件解压到应用沙箱目录下。
          Button('decompressFile').onClick(() => {
-           let path = getContext(this).filesDir;
+           let path = this.getUIContext()?.getHostContext()?.filesDir;
            let inFile = path + '/data.zip';
            let outFile = path;
            let options: zlib.Options = {};
@@ -108,8 +108,8 @@
 针对一个已知大小的缓冲区中的数据，使用接口[compress()](../../reference/apis-basic-services-kit/js-apis-zlib.md#compress12)将其压缩到一个目的缓冲区中，使用接口[compressBound()](../../reference/apis-basic-services-kit/js-apis-zlib.md#compressbound12)计算压缩目的缓冲区大小的上限值，使用接口[uncompress()](../../reference/apis-basic-services-kit/js-apis-zlib.md#uncompress12)对存储压缩数据的缓冲区进行解压。由于解压时无法获取解压后原始数据的大小，为了确认解压后目的缓冲区的大小，需要在压缩前获取原始数据的大小并保存，示例代码如下。
 
    ```ts
-   import { fileIo as fs} from '@kit.CoreFileKit'
-   import { BusinessError, zlib } from '@kit.BasicServicesKit'
+   import { fileIo as fs} from '@kit.CoreFileKit';
+   import { BusinessError, zlib } from '@kit.BasicServicesKit';
 
    @Entry
    @Component
@@ -120,7 +120,7 @@
        Row() {
          // 示例一：读取data.txt文件内容并存入一个缓冲区，调用compress接口压缩缓冲区中的数据到目标缓冲区，并将目标缓冲区的内容写入文件data.bin
          Button('compress buffer').onClick(() => {
-           let path = getContext(this).filesDir;
+           let path = this.getUIContext()?.getHostContext()?.filesDir;
            let inFile = fs.openSync(path + '/data.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
            let outFile = fs.openSync(path + '/data.bin', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
            // 读取data.txt文件的内容，并存入缓冲区inBuf
@@ -156,7 +156,7 @@
 
          // 示例二：读取data.bin文件中的压缩数据并存入一个缓冲区，调用uncompress接口将缓冲区中的数据解压到目标缓冲区，并将目标缓冲区的内容写入文件data.txt
          Button('uncompress buffer').onClick(() => {
-           let path = getContext(this).filesDir;
+           let path = this.getUIContext()?.getHostContext()?.filesDir;
            let inFile = fs.openSync(path + '/data.bin', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
            let outFile = fs.openSync(path + '/data.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
            // 读取data.bin文件中的压缩数据，并存入缓冲区inBuf
@@ -194,8 +194,8 @@
 针对一个未知大小的缓冲区中的数据，使用接口[deflate()](../../reference/apis-basic-services-kit/js-apis-zlib.md#deflate12)将从一个原始输入流中读取的数据进行压缩，使用接口[inflate()](../../reference/apis-basic-services-kit/js-apis-zlib.md#inflate12)将从一个压缩输入流中读取的数据进行解压，示例代码如下。
 
    ```ts
-   import { fileIo as fs} from '@kit.CoreFileKit'
-   import { BusinessError, zlib } from '@kit.BasicServicesKit'
+   import { fileIo as fs} from '@kit.CoreFileKit';
+   import { BusinessError, zlib } from '@kit.BasicServicesKit';
 
    @Entry
    @Component
@@ -204,7 +204,7 @@
        Row() {
          // 示例一：从文件中不断读取数据进行压缩
          Button('deflateFile').onClick(() => {
-           let path = getContext(this).filesDir;
+           let path = this.getUIContext()?.getHostContext()?.filesDir;
            let inFile = fs.openSync(path + '/data.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
            let outFile = fs.openSync(path + '/data.bin', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
            deflateFile(inFile, outFile).then(() => {
@@ -216,7 +216,7 @@
 
          // 示例二：从文件中不断读取压缩数据进行解压
          Button('inflateFile').onClick(() => {
-           let path = getContext(this).filesDir;
+           let path = this.getUIContext()?.getHostContext()?.filesDir;
            let inFile = fs.openSync(path + '/data.bin', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
            let outFile = fs.openSync(path + '/data.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
            inflateFile(inFile, outFile).then(() => {
@@ -343,8 +343,8 @@
 采用gzip格式，针对一个未知大小的缓冲区中的数据，使用接口[deflate()](../../reference/apis-basic-services-kit/js-apis-zlib.md#deflate12)将从一个原始输入流中读取的数据进行压缩，使用接口[inflate()](../../reference/apis-basic-services-kit/js-apis-zlib.md#inflate12)将从一个压缩输入流中读取的数据进行解压，示例代码如下。
 
    ```ts
-   import { fileIo as fs} from '@kit.CoreFileKit'
-   import { BusinessError, zlib } from '@kit.BasicServicesKit'
+   import { fileIo as fs} from '@kit.CoreFileKit';
+   import { BusinessError, zlib } from '@kit.BasicServicesKit';
 
    @Entry
    @Component
@@ -353,7 +353,7 @@
        Row() {
          // 示例一：从文件中不断读取数据进行压缩
          Button('deflateGzipFile').onClick(() => {
-           let path = getContext(this).filesDir;
+           let path = this.getUIContext()?.getHostContext()?.filesDir;
            let inFile = fs.openSync(path + '/data.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
            let outFile = fs.openSync(path + '/data.gz', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
            deflateGzipFile(inFile, outFile).then(() => {
@@ -365,7 +365,7 @@
 
          // 示例二：从文件中不断读取压缩数据进行解压
          Button('inflateGzipFile').onClick(() => {
-           let path = getContext(this).filesDir;
+           let path = this.getUIContext()?.getHostContext()?.filesDir;
            let inFile = fs.openSync(path + '/data.gz', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
            let outFile = fs.openSync(path + '/data.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
            inflateGzipFile(inFile, outFile).then(() => {

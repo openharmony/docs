@@ -74,7 +74,7 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<v
 | 201      | Permission denied. |
 | 202      | Not system application. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 18500002 | The specified quick fix is invalid. It may not exist or inaccessible. |
+| 18500002 | Invalid patch package. |
 | 18500008 | Internal error. |
 
 > 说明：调用applyQuickFix接口时，补丁文件所在路径为应用沙箱路径。沙箱路径的获取参考[获取应用的沙箱路径](js-apis-bundle-BundleInstaller-sys.md#获取应用的沙箱路径)，映射到设备上的路径为/proc/&lt;应用进程Id&gt;/root/沙箱路径。
@@ -90,7 +90,7 @@ try {
     if (error) {
       console.error( `applyQuickFix failed with error: ${error}`);
     } else {
-      console.info( 'applyQuickFix success');
+      console.info(`applyQuickFix success`);
     }
   });
 } catch (paramError) {
@@ -133,7 +133,7 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
 | 201      | Permission denied. |
 | 202      | Not system application. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 18500002 | The specified quick fix is invalid. It may not exist or inaccessible. |
+| 18500002 | Invalid patch package. |
 | 18500008 | Internal error. |
 
 **示例：**
@@ -146,7 +146,7 @@ let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
 
 try {
   quickFixManager.applyQuickFix(hapModuleQuickFixFiles).then(() => {
-    console.info('applyQuickFix success');
+    console.info(`applyQuickFix success`);
   }).catch((error: BusinessError) => {
     console.error(`applyQuickFix err: ${error}`);
   });
@@ -298,10 +298,12 @@ revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
 ```ts
 import { quickFixManager } from '@kit.AbilityKit';
 
-let bundleName = "com.example.myapplication";
+let bundleName = 'com.example.myapplication';
 
 quickFixManager.revokeQuickFix(bundleName, (err) => {
-  console.info("revokeQuickFix " + bundleName + " " + JSON.stringify(err));
+  if (err.code) {
+    console.error(`revokeQuickFix ${bundleName} failed, err code: ${err.code}, err msg: ${err.message}.`);
+  }
 });
 ```
 
@@ -349,11 +351,11 @@ revokeQuickFix(bundleName: string): Promise\<void>;
 import { quickFixManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let bundleName = "com.example.myapplication";
+let bundleName = 'com.example.myapplication';
 
 quickFixManager.revokeQuickFix(bundleName).then(() => {
-  console.info("revokeQuickFix " + bundleName +" ok");
+  console.info(`revokeQuickFix ${bundleName} success.`);
 }).catch((err: BusinessError) => {
-  console.info("revokeQuickFix " + bundleName +" failed, error code is ", JSON.stringify((err)));
+  console.error(`revokeQuickFix ${bundleName} failed, err code: ${err.code}, err msg: ${err.message}.`);
 });
 ```

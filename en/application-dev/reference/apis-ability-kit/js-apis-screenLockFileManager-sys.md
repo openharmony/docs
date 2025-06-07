@@ -60,7 +60,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202      | Permission verification failed, application which is not a system application uses system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801 | The specified SystemCapability name was not found. |
-| 29300001 | Invalid parameter. |
+| 29300001 | Invalid DataType. |
 | 29300002 | The system ability work abnormally. |
 | 29300003 | The application is not enabled the data protection under lock screen. |
 | 29300004 | File access is denied. |
@@ -118,7 +118,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202      | Permission verification failed, application which is not a system application uses system API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801      | The specified SystemCapability name was not found.           |
-| 29300001 | Invalid parameter.                                           |
+| 29300001 | Invalid DataType.                                           |
 | 29300002 | The system ability work abnormally.                          |
 | 29300003 | The application is not enabled the data protection under lock screen. |
 | 29300005 | File access was not acquired.                                |
@@ -176,7 +176,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202      | Permission verification failed, application which is not a system application uses system API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801      | The specified SystemCapability name was not found.           |
-| 29300001 | Invalid parameter.                                           |
+| 29300001 | Invalid DataType.                                           |
 | 29300002 | The system ability work abnormally.                          |
 
 **Example**

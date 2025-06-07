@@ -13,7 +13,7 @@ Before implementing cross-device sync of KV stores, understand the following con
 
 ### Single KV Store
 
-In a single KV store, data is saved in the unit of a single entry. When data is modified locally, the data entry is updated no matter whether it has been synced. Only one copy of data is retained globally for multiple devices. The data of the latest time is kept for the same entry (with the same primary code) of multiple devices. The data in single KV stores is not differentiated by device. If the data modified on multiple devices has the same key, the value will be overwritten. For the data written or modified locally, the data with the latest time is synced to other devices. Single KV stores are used to store information, such as the Contacts and weather application data.
+In a single KV store, data is stored locally as individual entries. When data is modified, the change is applied directly to the entry. After sync, only one global copy of the data is retained across multiple devices. If multiple devices have the same record (with the same primary key), the latest version is preserved irrespective of the device. If data with the same key is modified on multiple devices, the latest change will overwrite the previous ones. For the data written or modified locally, the data with the latest time is synced to other devices. Single KV stores are used to store information, such as the contacts and weather application data.
 
 ![singleKVStore](figures/singleKVStore.jpg)
 
@@ -72,9 +72,9 @@ When data is added, deleted, or modified, a notification is sent to the subscrib
 
 - The KV stores do not support custom conflict resolution policies for applications.
 
-- A maximum of 16 KV stores can be opened simultaneously for an application.
+- An application can open a maximum of 16 distributed KV stores at a time.
 
-- Each KV store supports a maximum of eight callbacks for subscription of data change notifications.
+- A single KV store supports a maximum of eight listener callbacks for data changes.
 
 
 ## Available APIs

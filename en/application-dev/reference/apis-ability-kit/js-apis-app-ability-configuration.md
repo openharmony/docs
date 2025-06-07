@@ -23,12 +23,13 @@ import { Configuration } from '@kit.AbilityKit';
 | direction | [ConfigurationConstant.Direction](js-apis-app-ability-configurationConstant.md#direction) | No| Yes| Screen orientation. The options are as follows:<br>- **DIRECTION_NOT_SET**: The screen orientation is not set.<br>- **DIRECTION_HORIZONTAL**: horizontal direction.<br>- **DIRECTION_VERTICAL**: vertical direction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | screenDensity  | [ConfigurationConstant.ScreenDensity](js-apis-app-ability-configurationConstant.md#screendensity) | No| Yes| Pixel density of the screen. The options are as follows:<br>- **SCREEN_DENSITY_NOT_SET**: The pixel density is not set.<br>- **SCREEN_DENSITY_SDPI**: 120.<br>- **SCREEN_DENSITY_MDPI**: 160.<br>- **SCREEN_DENSITY_LDPI**: 240.<br>- **SCREEN_DENSITY_XLDPI**: 320.<br>- **SCREEN_DENSITY_XXLDPI**: 480.<br>- **SCREEN_DENSITY_XXXLDPI**: 640.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | displayId  | number | No| Yes| ID of the display where the application is located.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| hasPointerDevice  | boolean | No| Yes| Whether a pointer device, such as a keyboard, mouse, or touchpad, is connected.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| hasPointerDevice  | boolean | No| Yes| Whether a pointer device, such as a keyboard, mouse, or touchpad, is connected. The value **true** means that the pointer device is connected, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | fontId<sup>14+<sup> | string | No| Yes| Unique ID of the current system font.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | fontSizeScale<sup>12+<sup> | number | No| Yes| Font size scale ratio. The value is a non-negative number. The default value is **1**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | fontWeightScale<sup>12+<sup> | number | No| Yes| Font weight scale ratio. The value is a non-negative number. The default value is **1**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | mcc<sup>12+<sup> | string | No | Yes| Mobile network code (MNC).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | mnc<sup>12+<sup> | string | No | Yes| Mobile country code (MCC).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| locale<sup>20+<sup> | [Intl.Locale](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale) | No | Yes| Locale. The application automatically adjusts its behavior based on the current locale to meet the localization requirements of users. This property can be set by configuring the system language, system region, and application preferred language.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
 
 **Example**
 
@@ -52,6 +53,7 @@ export default class EntryAbility extends UIAbility {
         let fontWeightScale = config.fontWeightScale;
         let mcc = config.mcc;
         let mnc = config.mnc;
+        let locale = config.locale;
       },
       onMemoryLevel(level) {
         console.log(`onMemoryLevel level: ${level}`);

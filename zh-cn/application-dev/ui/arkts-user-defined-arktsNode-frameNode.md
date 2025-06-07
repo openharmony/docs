@@ -6,7 +6,7 @@
 
 ![zh-cn_image_frame-node01](figures/frame-node01.png)
 
-上述转换过程需要依赖额外的数据驱动，绑定至[Builder](../quick-start/arkts-builder.md)中，较为复杂且性能欠佳。这类框架通常依赖于ArkUI的布局、事件处理、基础的节点操作和自定义能力。大部分组件通过自定义实现，但需结合使用部分系统组件以实现混合显示，如下图示例既使用了FrameNode的自定义方法进行绘制，又使用了系统组件Column及其子组件Text，通过BuilderNode的方式将其挂载到根节点的FrameNode上混合显示。
+上述转换过程需要依赖额外的数据驱动，绑定至[Builder](../ui/state-management/arkts-builder.md)中，较为复杂且性能欠佳。这类框架通常依赖于ArkUI的布局、事件处理、基础的节点操作和自定义能力。大部分组件通过自定义实现，但需结合使用部分系统组件以实现混合显示，如下图示例既使用了FrameNode的自定义方法进行绘制，又使用了系统组件Column及其子组件Text，通过BuilderNode的方式将其挂载到根节点的FrameNode上混合显示。
 
 ![zh-cn_image_frame-node02](figures/frame-node02.png)
 
@@ -48,7 +48,7 @@ FrameNode提供了节点的增、删、查、改的能力，能够修改非代�
 >
 > 对节点进行增、删、改操作的时候，会对非法操作抛出异常信息。
 >
-> 通过查询获得的原生组件的代理节点，仅具备查询节点信息的作用，不具备修改节点属性的功能。代理节点不持有组件的实体节点，即不影响对应的节点的生命周期。
+> 通过查询获得的系统组件的代理节点，仅具备查询节点信息的作用，不具备修改节点属性的功能。代理节点不持有组件的实体节点，即不影响对应的节点的生命周期。
 >
 > 查询节点仅查询获得UI相关的节点，不返回语法节点。
 >
@@ -221,7 +221,7 @@ struct Index {
                 // 对BuilderNode代理节点进行增、删、改操作，捕获异常信息。
                 this.myNodeController.operationFrameNodeWithFrameNode(this.myNodeController?.buttonNode?.getFrameNode());
               })
-            Button("对原生组件中的代理节点进行操作")
+            Button("对系统组件中的代理节点进行操作")
               .fontSize(16)
               .width(400)
               .onClick(() => {
@@ -242,7 +242,7 @@ struct Index {
                 buttonNode.build(wrapBuilder<[Params]>(buttonBuilder), { text: "BUTTON" })
                 this.myNodeController.checkAppendChild(this.myNodeController?.frameNode, buttonNode?.getFrameNode());
               })
-            Button("新增原生组件代理节点")
+            Button("新增系统组件代理节点")
               .fontSize(16)
               .width(400)
               .onClick(() => {
@@ -281,7 +281,7 @@ struct Index {
                 this.result =
                   this.myNodeController.testInterfaceAboutSearch(this.myNodeController?.buttonNode?.getFrameNode());
               })
-            Button("对原生组件中的代理节点进行操作")
+            Button("对系统组件中的代理节点进行操作")
               .fontSize(16)
               .width(400)
               .onClick(() => {
@@ -332,7 +332,7 @@ FrameNode提供了[commonAttribute](../reference/apis-arkui/js-apis-arkui-frameN
 > 
 > - 由于代理节点的属性不可修改，因此通过代理节点的commonAttribute修改节点的基础属性不生效。
 > 
-> - 设置的基础事件与原生组件定义的事件平行，参与事件竞争。设置的基础事件不覆盖原生组件事件。同时设置两个事件回调的时候，优先回调原生组件事件。
+> - 设置的基础事件与系统组件定义的事件平行，参与事件竞争。设置的基础事件不覆盖系统组件事件。同时设置两个事件回调的时候，优先回调系统组件事件。
 
 ```ts
 import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI'
@@ -469,7 +469,7 @@ struct Index {
         Button("add click event to FrameNode get by BuilderNode")
           .onClick(() => {
             // 获取到的是当前页面中的BuilderNode的根节点，该类节点可增加点击事件。
-            // 点击的时候优先回调通过原生组件接口设置的click事件回调，然后回调通过commonEvent增加的click监听。
+            // 点击的时候优先回调通过系统组件接口设置的click事件回调，然后回调通过commonEvent增加的click监听。
             console.log("Check the weather the node can be modified " +
             this.myNodeController?.buttonNode?.getFrameNode()
             ?.isModifiable());
@@ -554,9 +554,15 @@ class MyFrameNode extends FrameNode {
   public width: number = 100;
   public offsetY: number = 0;
   private space: number = 1;
+  uiContext: UIContext;
+
+  constructor(uiContext: UIContext) {
+    super(uiContext);
+    this.uiContext = uiContext;
+  }
 
   onMeasure(constraint: LayoutConstraint): void {
-    let sizeRes: Size = { width: vp2px(100), height: vp2px(100) };
+    let sizeRes: Size = { width: this.uiContext.vp2px(100), height: this.uiContext.vp2px(100) };
     for (let i = 0; i < this.getChildrenCount(); i++) {
       let child = this.getChild(i);
       if (child) {
@@ -575,8 +581,8 @@ class MyFrameNode extends FrameNode {
       let child = this.getChild(i);
       if (child) {
         child.layout({
-          x: vp2px(100),
-          y: vp2px(this.offsetY)
+          x: this.uiContext.vp2px(100),
+          y: this.uiContext.vp2px(this.offsetY)
         });
         let layoutPosition = child.getLayoutPosition();
         console.log("child position:" + JSON.stringify(layoutPosition));

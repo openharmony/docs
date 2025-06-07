@@ -35,13 +35,14 @@
    import { certificateManagerDialog } from '@kit.DeviceCertificateKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    import { common } from '@kit.AbilityKit';
+   import { UIContext } from '@kit.ArkUI';
    ```
 
 3. 拉起证书管理界面。
 
    ```ts
    /* context为应用的上下文信息，由调用方自行获取，此处仅为示例。 */
-   let context: common.Context = getContext(this);
+   let context: common.Context = new UIContext().getHostContext() as common.Context;
    async function certificateManagerDialogSample() {
      /* pageType为页面类型，此处赋值PAGE_MAIN，即拉起证书管理主界面。 */
      let pageType: certificateManagerDialog.CertificateDialogPageType = certificateManagerDialog.CertificateDialogPageType.PAGE_MAIN;
@@ -60,7 +61,7 @@
 
    ```ts
    /* context为应用的上下文信息，由调用方自行获取，此处仅为示例。 */
-   let context: common.Context = getContext(this);
+   let context: common.Context = new UIContext().getHostContext() as common.Context;
    async function userCADialogSample() {
      let certUri: string = '';
      let certType = certificateManagerDialog.CertificateType.CA_CERT;

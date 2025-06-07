@@ -232,31 +232,48 @@ The following requirements must be met:
    
    const fileName: string = 'xxx.json';
    
-   // Obtain the file descriptor of the vibration configuration file.
-   let rawFd: resourceManager.RawFileDescriptor = getContext().resourceManager.getRawFdSync(fileName);
+   @Entry
+   @Component
+   struct Index {
+     uiContext = this.getUIContext();
    
-   // Start vibration.
-   try {
-     vibrator.startVibration({
-       type: "file",
-       hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
-     }, {
-       id: 0,
-       usage: 'alarm'
-     }, (error: BusinessError) => {
-       if (error) {
-         console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-         return;
+     build() {
+       Row() {
+         Column() {
+           Button('alarm-file')
+             .onClick(() => {
+               // Obtain the file descriptor of the vibration configuration file.
+               let rawFd: resourceManager.RawFileDescriptor | undefined = this.uiContext.getHostContext()?.resourceManager.getRawFdSync(fileName);
+               if (rawFd != undefined) {
+                 // Start vibration.
+                 try {
+                   vibrator.startVibration({
+                     type: "file",
+                     hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
+                   }, {
+                     id: 0,
+                     usage: 'alarm' // The switch control is subject to the selected type.
+                   }, (error: BusinessError) => {
+                     if (error) {
+                       console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+                       return;
+                     }
+                     console.info('Succeed in starting vibration');
+                   });
+                 } catch (err) {
+                   let e: BusinessError = err as BusinessError;
+                   console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+                 }
+               }
+               // Close the file descriptor of the vibration configuration file.
+               this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
+             })
+         }
+         .width('100%')
        }
-       console.info('Succeed in starting vibration');
-     });
-   } catch (err) {
-     let e: BusinessError = err as BusinessError;
-     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+       .height('100%')
+     }
    }
-   
-   // Close the file descriptor of the vibration configuration file.
-   getContext().resourceManager.closeRawFdSync(fileName);
    ```
 
 3. Stop vibration.

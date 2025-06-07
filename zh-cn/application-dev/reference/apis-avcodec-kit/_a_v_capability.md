@@ -76,7 +76,7 @@ AVCapability模块提供用于编解码能力查询的函数。
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetSupportedLevelsForProfile](#oh_avcapability_getsupportedlevelsforprofile) (OH_AVCapability \*capability, int32_t profile, const int32_t \*\*levels, uint32_t \*levelNum) | 获取特定档次支持的编解码器级别。  | 
 | bool [OH_AVCapability_AreProfileAndLevelSupported](#oh_avcapability_areprofileandlevelsupported) (OH_AVCapability \*capability, int32_t profile, int32_t level) | 检查编解码器是否支持档次和级别的特定组合。  | 
 | bool [OH_AVCapability_IsFeatureSupported](#oh_avcapability_isfeaturesupported) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](#oh_avcapabilityfeature) feature) | 检查编解码器是否支持指定特性。  | 
-| [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVCapability_GetFeatureProperties](#oh_avcapability_getfeatureproperties) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](#oh_avcapabilityfeature) feature) | 获取指定特性的属性。 需要注意的是，返回值指向的OH_AVFormat实例的生命周期需要调用者手动释放。  | 
+| [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVCapability_GetFeatureProperties](#oh_avcapability_getfeatureproperties) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](#oh_avcapabilityfeature) feature) | 获取指定特性的属性。 需要注意的是，返回值指向的OH_AVFormat实例的生命周期需要开发者手动释放。  | 
 
 
 ## 类型定义说明
@@ -351,7 +351,7 @@ OH_AVErrCode OH_AVCapability_GetEncoderQualityRange (OH_AVCapability *capability
 OH_AVFormat* OH_AVCapability_GetFeatureProperties (OH_AVCapability *capability, OH_AVCapabilityFeature feature)
 ```
 **描述**
-获取指定特性的属性。 需要注意的是，返回值指向的OH_AVFormat实例的生命周期需要调用者手动释放。
+获取指定特性的属性。 需要注意的是，返回值指向的OH_AVFormat实例的生命周期需要开发者手动释放。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 

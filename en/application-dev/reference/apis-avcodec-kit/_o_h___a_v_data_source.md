@@ -11,6 +11,8 @@ The OH_AVDataSource struct describes a user-defined data source.
 
 **Related module**: [CodecBase](_codec_base.md)
 
+**Header file**: [native_avcodec_base.h](native__avcodec__base_8h.md)
+
 
 ## Summary
 

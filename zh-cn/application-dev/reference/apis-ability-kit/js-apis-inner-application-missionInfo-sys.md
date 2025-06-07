@@ -23,14 +23,14 @@ import { missionManager } from '@kit.AbilityKit';
 | -------- | -------- | -------- | -------- | -------- |
 | missionId | number | 是 | 是 | 表示任务ID。|
 | runningState | number | 是 | 是 | 表示运行状态。 |
-| lockedState | boolean | 是 | 是 | 表示锁定状态。 |
+| lockedState | boolean | 是 | 是 | 表示锁定状态。返回true表示锁定状态，返回false表示未锁定状态。 |
 | timestamp | string | 是 | 是 | 表示任务的最近创建或更新时间。 |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 是 | 表示任务的Want信息。 |
 | label | string | 是 | 是 | 表示任务的标签。 |
 | iconPath | string | 是 | 是 | 表示任务的图标路径。 |
-| continuable | boolean | 是 | 是 | 表示任务是否可以迁移。 |
+| continuable | boolean | 是 | 是 | 表示任务是否可以迁移。返回true表示可以迁移，返回false表示不可迁移。 |
 | abilityState<sup>10+</sup> | number | 是 | 是 | 表示此任务的能力状态。 |
-| unclearable<sup>10+</sup> | boolean | 是 | 是 | 表示任务是否可以被用户手动删除。 |
+| unclearable<sup>10+</sup> | boolean | 是 | 是 | 表示任务是否可以被用户手动删除。返回true表示可以被用户手动删除，返回false表示不可被用户手动删除。 |
 
 **示例：**
 ```ts

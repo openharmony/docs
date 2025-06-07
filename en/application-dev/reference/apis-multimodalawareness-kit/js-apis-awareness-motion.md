@@ -1,6 +1,6 @@
-# @ohos.multimodalawareness.motion (Motion Sensing)
+# @ohos.multimodalawareness.motion (Motion Awareness)
 
-The **motion** module provides the capability of sensing user motions, including user gestures and actions.
+The **motion** module provides the user motion awareness capabilities, including user gestures and actions.
 
 > **NOTE**
 >
@@ -17,7 +17,7 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 
 Defines the status of the operating hand.
 
-**System capability**: SystemCapability.MultimodalAwarness.Motion
+**System capability**: SystemCapability.MultimodalAwareness.Motion
 
 | Name               | Value  | Description                  |
 | ------------------- | ---- | ---------------------- |
@@ -36,7 +36,7 @@ Subscribes to operating hand change events.
 
 **Required permissions**: ohos.permission.ACTIVITY_MOTION
 
-**System capability**: SystemCapability.MultimodalAwarness.Motion
+**System capability**: SystemCapability.MultimodalAwareness.Motion
 
 **Parameters**
 
@@ -47,15 +47,15 @@ Subscribes to operating hand change events.
 
 **Error codes**
 
-For details about the error codes, see [Motion Sensing Error Codes](errorcode-motion.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Motion Awareness Error Codes](errorcode-motion.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied. An attempt was made to subscribe operatingHandChanged event forbidden by permission: ohos.permission.ACTIVITY_MOTION. |
 | 401      | Parameter error. Parameter verification failed. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
-| 31500001 | Service exception. |
-| 31500002 | Subscribe Failed. |
+| 31500001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception; 2. N-API invocation exception, invalid N-API status. |
+| 31500002 | Subscription failed. Possible causes: 1. Callback registration failure; 2. Failed to bind native object to js wrapper; 3. N-API invocation exception, invalid N-API status; 4. IPC request exception. |
 
 **Example**
 
@@ -64,7 +64,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 callback(data:motion.OperatingHandStatus) {
     console.info('callback success' + data);
-})
+}
 
 try {
     motion.on('operatingHandChanged', this.callback);  
@@ -85,7 +85,7 @@ Unsubscribes from operating hand change events.
 
 **Required permissions**: ohos.permission.ACTIVITY_MOTION
 
-**System capability**: SystemCapability.MultimodalAwarness.Motion
+**System capability**: SystemCapability.MultimodalAwareness.Motion
 
 **Parameters**
 
@@ -96,15 +96,15 @@ Unsubscribes from operating hand change events.
 
 **Error codes**
 
-For details about the error codes, see [Motion Sensing Error Codes](errorcode-motion.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Motion Awareness Error Codes](errorcode-motion.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied. An attempt was made to unsubscribe operatingHandChanged event forbidden by permission: ohos.permission.ACTIVITY_MOTION. |
 | 401      | Parameter error. Parameter verification failed. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
-| 31500001 | Service exception. |
-| 31500003 | Unsubscribe Failed. |
+| 31500001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception; 2. N-API invocation exception, invalid N-API status. |
+| 31500003 | Unsubscription failed. Possible causes: 1. Callback failure; 2. N-API invocation exception, invalid N-API status; 3. IPC request exception. |
 
 **Example**
 
@@ -130,7 +130,7 @@ Obtains the latest operating hand status.
 
 **Required permissions**: ohos.permission.ACTIVITY_MOTION
 
-**System capability**: SystemCapability.MultimodalAwarness.Motion
+**System capability**: SystemCapability.MultimodalAwareness.Motion
 
 **Return value**
 
@@ -140,13 +140,13 @@ Obtains the latest operating hand status.
 
 **Error codes**
 
-For details about the error codes, see [Motion Sensing Error Codes](errorcode-motion.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Motion Awareness Error Codes](errorcode-motion.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied. An attempt was made to get the recent operating hand status forbidden by permission: ohos.permission.ACTIVITY_MOTION. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
-| 31500001 | Service exception. |
+| 31500001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception; 2. N-API invocation exception, invalid N-API status. |
 
 **Example**
 

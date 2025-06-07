@@ -19,7 +19,7 @@ shouldBuiltInRecognizerParallelWith(callback: ShouldBuiltInRecognizerParallelWit
 **参数：**
 | 参数名        | 参数类型                    | 必填  | 参数描述                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| callback      | [ShouldBuiltInRecognizerParallelWithCallback](#shouldbuiltinrecognizerparallelwithcallback) | 是   |  提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件，当该组件做触摸碰撞测试时，会触发用户定义的回调来形成手势并行关系。 |
+| callback      | [ShouldBuiltInRecognizerParallelWithCallback](#shouldbuiltinrecognizerparallelwithcallback) | 是   |  提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件，当该组件进行触摸碰撞测试时，会触发用户定义的回调来形成手势并行关系。 |
 
 **返回值：**
 
@@ -49,6 +49,40 @@ type ShouldBuiltInRecognizerParallelWithCallback = (current: GestureRecognizer, 
 | 类型     | 说明        |
 | ------ | --------- |
 | [GestureRecognizer](#gesturerecognizer) | 与current识别器绑定并行关系的某个手势识别器。 |
+
+## TouchRecognizer<sup>20+</sup> 
+
+触摸识别器对象。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### getEventTargetInfo<sup>20+</sup>
+
+getEventTargetInfo(): EventTargetInfo
+
+返回组件的事件目标信息。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| [EventTargetInfo](#eventtargetinfo) | 组件的事件目标信息。 |
+
+### cancelTouch<sup>20+</sup>
+
+cancelTouch(): void
+
+向识别器发送触摸取消事件。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## GestureRecognizer
 
@@ -182,6 +216,38 @@ isValid(): boolean;
 | ------ | --------- |
 | boolean | 当前手势识别器是否有效。当该识别器绑定的组件被析构或者该识别器不在响应链上时返回false。 |
 
+### getFingerCount<sup>18+</sup>
+
+getFingerCount(): number
+
+返回预设手指识别数阈值。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| number | 预设手指识别数阈值。<br/>取值范围：[1, 10], 整数。 |
+
+### isFingerCountLimit<sup>18+</sup>
+
+isFingerCountLimit(): boolean
+
+返回预设手势是否会检测触摸屏幕上手指识别数量。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| boolean | 预设手势是否会检测触摸屏幕上手指识别数量。当绑定手势事件且会检测触摸屏幕上手指的数量时，返回true。当绑定手势事件且不会检测触摸屏幕上手指的数量时，返回false。 |
+
 ## GestureRecognizerState
 
 定义手势识别器状态。
@@ -255,38 +321,6 @@ isEnd(): boolean
 | ------ | --------- |
 | boolean | 当前滚动类容器组件是否在底部。true表示组件在底部，false表示组件不在底部。 |
 
-### getFingerCount<sup>18+</sup>
-
-getFingerCount(): number
-
-返回预设手指识别数阈值。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型     | 说明        |
-| ------ | --------- |
-| number | 预设手指识别数阈值。<br/>取值范围：[1, 10], 整数。 |
-
-### isFingerCountLimit<sup>18+</sup>
-
-isFingerCountLimit(): boolean
-
-返回预设手势是否会检测触摸屏幕上手指识别数量。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型     | 说明        |
-| ------ | --------- |
-| boolean | 预设手势是否会检测触摸屏幕上手指识别数量。当绑定手势事件且会检测触摸屏幕上手指的数量时，返回true。当绑定手势事件且不会检测触摸屏幕上手指的数量时，返回false。 |
-
 ## PanRecognizer
 
 拖动手势识别器对象，继承于[GestureRecognizer](#gesturerecognizer)。
@@ -306,6 +340,54 @@ getPanGestureOptions(): PanGestureOptions
 | 类型     | 说明        |
 | ------ | --------- |
 | [PanGestureOptions](./ts-basic-gestures-pangesture.md#pangestureoptions) | 当前拖动手势识别器的属性。 |
+
+### getDirection<sup>19+</sup>
+
+getDirection(): PanDirection
+
+返回当前拖动手势识别器的方向。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| [PanDirection](./ts-basic-gestures-pangesture.md#pandirection枚举说明) | 当前拖动手势识别器的方向。 |
+
+### getDistance<sup>19+</sup>
+
+getDistance(): number
+
+返回当前拖动手势识别器触发的最小滑动距离。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| number | 当前拖动手势识别器触发的最小滑动距离。 |
+
+### getDistanceMap<sup>19+</sup>
+
+getDistanceMap(): Map\<SourceTool, number\>
+
+返回不同输入源的拖动手势识别器触发的最小滑动距离。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| Map<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9), number> | 不同输入源的拖动手势识别器触发的最小滑动距离。 |
 
 ## TapRecognizer<sup>18+</sup>
 
@@ -361,7 +443,7 @@ getDuration(): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 预设长按手势识别器触发长按最短时间阈值，单位为ms。<br/>取值范围：[0, +∞) |
+| number | 返回预设长按手势识别器触发长按最短时间阈值，单位为ms。<br/>取值范围：[0, +∞) |
 
 ## SwipeRecognizer<sup>18+</sup>
 
@@ -387,7 +469,7 @@ getVelocityThreshold(): number
 
 getDirection(): SwipeDirection
 
-返回预设滑动手势识别器触发滑动手势滑动方向阈值。
+返回预设滑动手势识别器触发滑动手势滑动方向。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -397,7 +479,7 @@ getDirection(): SwipeDirection
 
 | 类型     | 说明        |
 | ------ | --------- |
-| [SwipeDirection](./ts-basic-gestures-swipegesture.md#swipedirection枚举说明) | 预设滑动手势识别器触发滑动手势滑动方向阈值。 |
+| [SwipeDirection](./ts-basic-gestures-swipegesture.md#swipedirection枚举说明) | 预设滑动手势识别器触发滑动手势滑动方向。 |
 
 ## PinchRecognizer<sup>18+</sup>
 
@@ -445,7 +527,7 @@ onGestureRecognizerJudgeBegin(callback: GestureRecognizerJudgeBeginCallback, exp
 
 给组件绑定自定义手势识别器判定回调。
 
-新增exposeInnerGesture参数作为是否将回调暴露给ArkUI系统组合组件的内置组件的标识，当该标识置为true时，将回调暴露给ArkUI系统组合组件的内置组件。<br>
+新增exposeInnerGesture参数作为是否将回调暴露给ArkUI系统组合组件的内置组件的标识。当该标识置为true时，将回调暴露给ArkUI系统组合组件的内置组件。<br>
 对于不需要将回调暴露给ArkUI系统组合组件内置组件的场景，建议采用原有[onGestureRecognizerJudgeBegin](#ongesturerecognizerjudgebegin)接口。若要求将回调暴露给ArkUI系统组合组件的内置组件，建议使用该接口并将exposeInnerGesture设置为true。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
@@ -481,11 +563,9 @@ onGestureRecognizerJudgeBegin(callback: GestureRecognizerJudgeBeginCallback): T
 
 ## GestureRecognizerJudgeBeginCallback
 
-type GestureRecognizerJudgeBeginCallback = (event: BaseGestureEvent, current: GestureRecognizer, recognizers: Array\<GestureRecognizer\>) => GestureJudgeResult
+type GestureRecognizerJudgeBeginCallback = (event: BaseGestureEvent, current: GestureRecognizer, recognizers: Array\<GestureRecognizer\>, touchRecognizers?: Array\<TouchRecognizer\>) => GestureJudgeResult
 
 自定义手势识别器判定回调类型。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -493,10 +573,10 @@ type GestureRecognizerJudgeBeginCallback = (event: BaseGestureEvent, current: Ge
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| event | [BaseGestureEvent](./ts-gesture-customize-judge.md#basegestureevent对象说明) | 是   | 当前基础手势事件信息。 |
-| current | [GestureRecognizer](#gesturerecognizer) | 是   | 当前即将要响应的识别器对象。 |
-| others | Array\<[GestureRecognizer](#gesturerecognizer)\> | 是   | 响应链上的其他手势识别器对象。 |
-
+| event | [BaseGestureEvent](./ts-gesture-customize-judge.md#basegestureevent对象说明) | 是   | 当前基础手势事件信息。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| current | [GestureRecognizer](#gesturerecognizer) | 是   | 当前即将要响应的识别器对象。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| others | Array\<[GestureRecognizer](#gesturerecognizer)\> | 是   | 响应链上的其他手势识别器对象。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| touchRecognizers<sup>20+</sup> | Array\<[TouchRecognizer](#touchrecognizer20)\> | 否   | 响应链上的Touch识别器对象。 默认值为null，表示在当前手势绑定组件及其子孙组件没有可响应的Touch识别器。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 **返回值：**
 
 | 类型     | 说明        |
@@ -514,12 +594,12 @@ type GestureRecognizerJudgeBeginCallback = (event: BaseGestureEvent, current: Ge
 @Entry
 @Component
 struct FatherControlChild {
-  scroller: Scroller = new Scroller()
+  scroller: Scroller = new Scroller();
   scroller2: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  private childRecognizer: GestureRecognizer = new GestureRecognizer()
-  private currentRecognizer: GestureRecognizer = new GestureRecognizer()
-  private lastOffset: number = 0
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  private childRecognizer: GestureRecognizer = new GestureRecognizer();
+  private currentRecognizer: GestureRecognizer = new GestureRecognizer();
+  private lastOffset: number = 0;
 
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
@@ -573,7 +653,8 @@ struct FatherControlChild {
         for (let i = 0; i < others.length; i++) {
           let target = others[i].getEventTargetInfo();
           if (target) {
-            if (target.getId() == "inner" && others[i].isBuiltIn() && others[i].getType() == GestureControl.GestureType.PAN_GESTURE) { // 找到将要组成并行手势的识别器
+            if (target.getId() == "inner" && others[i].isBuiltIn() &&
+              others[i].getType() == GestureControl.GestureType.PAN_GESTURE) { // 找到将要组成并行手势的识别器
               this.currentRecognizer = current; // 保存当前组件的识别器
               this.childRecognizer = others[i]; // 保存将要组成并行手势的识别器
               return others[i]; // 返回将要组成并行手势的识别器
@@ -582,11 +663,13 @@ struct FatherControlChild {
         }
         return undefined;
       })
-      .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer, others: Array<GestureRecognizer>) => { // 在识别器即将要成功时，根据当前组件状态，设置识别器使能状态
+      .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
+        others: Array<GestureRecognizer>) => { // 在识别器即将要成功时，根据当前组件状态，设置识别器使能状态
         if (current) {
           let target = current.getEventTargetInfo();
           if (target) {
-            if (target.getId() == "outer" && current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
+            if (target.getId() == "outer" && current.isBuiltIn() &&
+              current.getType() == GestureControl.GestureType.PAN_GESTURE) {
               if (others) {
                 for (let i = 0; i < others.length; i++) {
                   let target = others[i].getEventTargetInfo() as ScrollableTargetInfo;
@@ -622,8 +705,9 @@ struct FatherControlChild {
       })
       .parallelGesture( // 绑定一个Pan手势作为动态控制器
         PanGesture()
-          .onActionUpdate((event: GestureEvent)=>{
-            if (this.childRecognizer.getState() != GestureRecognizerState.SUCCESSFUL || this.currentRecognizer.getState() != GestureRecognizerState.SUCCESSFUL) { // 如果识别器状态不是SUCCESSFUL，则不做控制
+          .onActionUpdate((event: GestureEvent) => {
+            if (this.childRecognizer.getState() != GestureRecognizerState.SUCCESSFUL ||
+              this.currentRecognizer.getState() != GestureRecognizerState.SUCCESSFUL) { // 如果识别器状态不是SUCCESSFUL，则不做控制
               return;
             }
             let target = this.childRecognizer.getEventTargetInfo() as ScrollableTargetInfo;
@@ -676,12 +760,13 @@ struct FatherControlChild {
 @Entry
 @Component
 struct Index {
-  @State currentIndex: number = 0
-  @State selectedIndex: number = 0
-  @State fontColor: string = '#182431'
-  @State selectedFontColor: string = '#007DFF'
-  innerSelectedIndex: number = 0 // 记录内层Tabs的索引
+  @State currentIndex: number = 0;
+  @State selectedIndex: number = 0;
+  @State fontColor: string = '#182431';
+  @State selectedFontColor: string = '#007DFF';
+  innerSelectedIndex: number = 0; // 记录内层Tabs的索引
   controller?: TabsController = new TabsController();
+
   @Builder
   tabBuilder(index: number, name: string) {
     Column() {
@@ -697,17 +782,20 @@ struct Index {
         .opacity(this.selectedIndex === index ? 1 : 0)
     }.width('100%')
   }
+
   build() {
     Column() {
       Tabs({ barPosition: BarPosition.Start, index: this.currentIndex, controller: this.controller }) {
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Green)
         }.tabBar(this.tabBuilder(0, 'green'))
+
         TabContent() {
           Tabs() {
             TabContent() {
               Column().width('100%').height('100%').backgroundColor(Color.Blue)
             }.tabBar(new SubTabBarStyle('blue'))
+
             TabContent() {
               Column().width('100%').height('100%').backgroundColor(Color.Pink)
             }.tabBar(new SubTabBarStyle('pink'))
@@ -737,6 +825,7 @@ struct Index {
             return GestureJudgeResult.CONTINUE;
           }, true)
         }.tabBar(this.tabBuilder(1, 'blue and pink'))
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Brown)
         }.tabBar(this.tabBuilder(2, 'brown'))
@@ -832,3 +921,219 @@ struct Index {
 ```
 
  ![example](figures/gesture_recognizer_obtain_attributes.gif)
+
+ ### 示例4（手势触发成功时取消子组件上的Touch事件）
+
+该示例通过配置onGestureRecognizerJudgeBegin判定手势，在父容器手势触发成功时，调用cancelTouch()强制取消子组件上的Touch事件，实现父子组件手势控制的精准切换。
+
+ ```ts
+ // xxx.ets
+@Entry
+@Component
+struct FatherControlChild {
+  scroller: Scroller = new Scroller();
+  scroller2: Scroller = new Scroller()
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  private childRecognizer: GestureRecognizer = new GestureRecognizer();
+  private currentRecognizer: GestureRecognizer = new GestureRecognizer();
+  private lastOffset: number = 0;
+  @State innerState: string = "IDLE"; // 内部滚动容器状态
+  @State stateHistory: string[] = ["状态历史:"]; // 状态变化历史记录
+
+  updateState(newState: string) {
+    this.innerState = newState;
+    this.stateHistory.push(` ${newState}`);
+
+    if (this.stateHistory.length > 10) {
+      this.stateHistory = this.stateHistory.slice(this.stateHistory.length - 10);
+    }
+  }
+
+  build() {
+    Stack({ alignContent: Alignment.TopStart }) {
+      // 主内容区域
+      Scroll(this.scroller) {
+        Column() {
+          Text("Scroll Area")
+            .width('90%')
+            .height(150)
+            .backgroundColor(0xFFFFFF)
+            .borderRadius(15)
+            .fontSize(16)
+            .textAlign(TextAlign.Center)
+            .margin({ top: 10 })
+
+          Scroll(this.scroller2) {
+            Column() {
+              Text("Scroll Area2")
+                .width('90%')
+                .height(150)
+                .backgroundColor(0xFFFFFF)
+                .borderRadius(15)
+                .fontSize(16)
+                .textAlign(TextAlign.Center)
+                .margin({ top: 10 })
+
+              Column() {
+                ForEach(this.arr, (item: number) => {
+                  Text(item.toString())
+                    .width('90%')
+                    .height(150)
+                    .backgroundColor(0xFFFFFF)
+                    .borderRadius(15)
+                    .fontSize(16)
+                    .textAlign(TextAlign.Center)
+                    .margin({ top: 10 })
+                }, (item: string) => item)
+              }.width('100%')
+            }
+          }
+          .id("inner")
+          .width('100%')
+          .height(800)
+          .onTouch((event) => {
+            if (event.type === TouchType.Down) {
+              this.updateState("TOUCHING");
+            } else if (event.type === TouchType.Up || event.type === TouchType.Cancel) {
+              this.updateState("IDLE");
+            }
+          })
+        }.width('100%')
+      }
+      .id("outer")
+      .height('100%')
+      .scrollable(ScrollDirection.Vertical)
+      .scrollBar(BarState.On)
+      .scrollBarColor(Color.Gray)
+      .scrollBarWidth(10)
+      .edgeEffect(EdgeEffect.None)
+      .shouldBuiltInRecognizerParallelWith((current: GestureRecognizer, others: Array<GestureRecognizer>) => {
+        for (let i = 0; i < others.length; i++) {
+          let target = others[i].getEventTargetInfo();
+          if (target) {
+            if (target.getId() == "inner" && others[i].isBuiltIn() &&
+              others[i].getType() == GestureControl.GestureType.PAN_GESTURE) {
+              this.currentRecognizer = current;
+              this.childRecognizer = others[i];
+              return others[i];
+            }
+          }
+        }
+        return undefined;
+      })
+      .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
+        others: Array<GestureRecognizer>,
+        touchRecognizers?: Array<TouchRecognizer>) => {
+        if (current && touchRecognizers) {
+          let target = current.getEventTargetInfo();
+          if (target) {
+            if (target.getId() == "outer" && current.isBuiltIn() &&
+              current.getType() == GestureControl.GestureType.PAN_GESTURE) {
+              return GestureJudgeResult.CONTINUE
+            }
+            for (let index = 0; index < touchRecognizers.length; index++) {
+              const element = touchRecognizers![index];
+              let touchTarget = element.getEventTargetInfo()
+              if (touchTarget && touchTarget.getId() == "inner") {
+                this.updateState("CANCELLED");
+                element.cancelTouch()
+              }
+            }
+          }
+        }
+        return GestureJudgeResult.CONTINUE;
+      })
+      .onTouch((event) => {
+        if (event.type === TouchType.Down) {
+          this.updateState("OUTER_TOUCHING");
+        }
+      })
+      .parallelGesture(
+        PanGesture()
+          .onActionUpdate((event: GestureEvent) => {
+            if (this.childRecognizer.getState() != GestureRecognizerState.SUCCESSFUL ||
+              this.currentRecognizer.getState() != GestureRecognizerState.SUCCESSFUL) {
+              return;
+            }
+            let target = this.childRecognizer.getEventTargetInfo() as ScrollableTargetInfo;
+            let currentTarget = this.currentRecognizer.getEventTargetInfo() as ScrollableTargetInfo;
+            if (target instanceof ScrollableTargetInfo && currentTarget instanceof ScrollableTargetInfo) {
+              if (target.isEnd()) {
+                if ((event.offsetY - this.lastOffset) < 0) {
+                  this.childRecognizer.setEnabled(false)
+                  if (currentTarget.isEnd()) {
+                    this.currentRecognizer.setEnabled(false)
+                  } else {
+                    this.currentRecognizer.setEnabled(true)
+                  }
+                } else {
+                  this.childRecognizer.setEnabled(true)
+                  this.currentRecognizer.setEnabled(false)
+                }
+              } else if (target.isBegin()) {
+                if ((event.offsetY - this.lastOffset) > 0) {
+                  this.childRecognizer.setEnabled(false)
+                  if (currentTarget.isBegin()) {
+                    this.currentRecognizer.setEnabled(false)
+                  } else {
+                    this.currentRecognizer.setEnabled(true)
+                  }
+                } else {
+                  this.childRecognizer.setEnabled(true)
+                  this.currentRecognizer.setEnabled(false)
+                }
+              } else {
+                this.childRecognizer.setEnabled(true)
+                this.currentRecognizer.setEnabled(false)
+              }
+            }
+            this.lastOffset = event.offsetY
+          })
+      )
+
+      // 状态显示区域
+      Column() {
+        // 当前状态显示
+        Text(`当前状态: ${this.innerState}`)
+          .fontSize(20)
+          .fontColor(this.getStateColor(this.innerState))
+          .margin({ bottom: 10 })
+
+        // 状态历史记录
+        ForEach(this.stateHistory, (item: string) => {
+          Text(item)
+            .fontSize(20)
+            .textAlign(TextAlign.Start)
+            .margin({ left: 10, top: 4 })
+        }, (item: string) => item)
+      }
+      .width('90%')
+      .height(240)
+      .backgroundColor(Color.White)
+      .border({ width: 1, color: Color.Gray })
+      .position({ x: '5%', y: '75%' })
+      .margin({ top: -160 })
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor(0xDCDCDC)
+  }
+
+  // 根据状态返回不同颜色
+  private getStateColor(state: string): Color {
+    switch (state) {
+      case "IDLE":
+        return Color.Gray;
+      case "TOUCHING":
+        return Color.Blue;
+      case "CANCELLED":
+        return Color.Red;
+      case "OUTER_TOUCHING":
+        return Color.Green;
+      default:
+        return Color.Black;
+    }
+  }
+}
+```
+![example](figures/canceltouch.gif)

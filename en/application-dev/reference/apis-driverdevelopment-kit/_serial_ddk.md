@@ -19,7 +19,7 @@ Serial port communication is often used in industrial scenarios and some legacy 
 | Name| Description| 
 | -------- | -------- |
 | [usb_serial_ddk_api.h](usb__serial__ddk__api_8h.md) | Declares the USB Serial DDK APIs used by the host to access the serial port device.<br>**File to include**: &lt;serial/usb_serial_ddk_api.h&gt;<br>**Library**: libusb_serial.z.so| 
-| [usb_serial_ddk_types.h](usb__serial__ddk__types_8h.md) | Provides the enum variables, structures, and macros used in USB Serial DDK APIs.<br>**File to include**: &lt;serial/usb_serial_ddk_types.h&gt;<br>**Library**: libusb_serial.z.so| 
+| [usb_serial_types.h](usb__serial__ddk__types_8h.md) | Provides the enum variables, structures, and macros used in USB Serial DDK APIs.<br>**File to include**: &lt;serial/usb_serial_types.h&gt;<br>**Library**: libusb_serial.z.so| 
 
 
 ### Structs
@@ -664,8 +664,6 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 - USB_SERIAL_DDK_INIT_ERROR: DDK initialization error.
 
 - USB_SERIAL_DDK_SERVICE_ERROR: DDK service communication error.
-
-- USB_SERIAL_DDK_MEMORY_ERROR: Invalid buffer address.
 
 - USB_SERIAL_DDK_IO_ERROR: DDK I/O error.
 

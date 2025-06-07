@@ -103,7 +103,7 @@ wakeup(detail: string): void
 
 **需要权限：** ohos.permission.POWER_MANAGER
 
-API version 9-17，使用该接口无需权限；从API version 18开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+API version 9-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
@@ -144,7 +144,7 @@ suspend(isImmediate?: boolean): void
 
 **需要权限：** ohos.permission.POWER_MANAGER
 
-API version 9-17，使用该接口无需权限；从API version 18开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+API version 9-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
@@ -201,7 +201,6 @@ setPowerMode(mode: DevicePowerMode, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 202     | Permission verification failed. A non-system application calls a system API.  |
@@ -248,7 +247,6 @@ setPowerMode(mode: DevicePowerMode): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 202     | Permission verification failed. A non-system application calls a system API.  |
@@ -275,7 +273,7 @@ setScreenOffTime(timeout: number): void
 
 **需要权限：** ohos.permission.POWER_MANAGER
 
-API version 12-17，使用该接口无需权限；从API version 18开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+API version 12-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
@@ -316,7 +314,7 @@ hibernate(clearMemory: boolean): void
 
 **需要权限：** ohos.permission.POWER_MANAGER
 
-API version 12-17，使用该接口无需权限；从API version 18开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+API version 12-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 

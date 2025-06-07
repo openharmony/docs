@@ -133,7 +133,7 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
 
 | 类型 | 说明 |
 | -------- | -------- |
-| rpc.RemoteObject | 一个RemoteObject对象，用于客户端和服务端进行通信。 |
+| [rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject) \| Promise\<[rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)> | 返回RemoteObject对象或带有RemoteObject对象的Promise对象，用于客户端和服务端进行通信。 |
 
 **示例：**
 
@@ -197,6 +197,12 @@ Extension的生命周期回调，客户端执行断开连接服务时回调。
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -295,6 +301,12 @@ onDump(params: Array\<string>): Array\<string>;
 | -------- | -------- | -------- | -------- |
 | params | Array\<string> | 是 | 表示命令形式的参数。|
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Array\<string> | 表示转存客户端信息数组。 |
+
 **示例：**
     
 ```ts
@@ -307,4 +319,3 @@ class ServiceExt extends ServiceExtensionAbility {
   }
 }
 ```
-

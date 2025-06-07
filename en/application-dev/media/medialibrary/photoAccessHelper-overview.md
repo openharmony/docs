@@ -19,10 +19,11 @@ The following capabilities are opened to all applications:
 The following capabilities are restrictedly opened to third-party applications:
 
 > **NOTE**
+>
 > To use the restricted open capabilities, the application must have the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions). <!--RP1-->The following permissions are opened to third-party applications with certain restrictions.<!--RP1End-->
 
 - [Media asset management](photoAccessHelper-resource-guidelines.md), including:
-  - Obtaining media assets (images and videos)
+  - Obtaining media assets
   - Obtaining image and video thumbnails
   - Renaming a media asset
 - [User album management](photoAccessHelper-userAlbum-guidelines.md), including:

@@ -35,10 +35,10 @@ The local time of different countries and regions varies according to their long
    // Actual offset of the time zone (fixed offset + DST)
    let offset: number = timezone.getOffset(1234567890); // offset = -10800000
 
-   // List of time zone IDs supported by the system
+   // List of time zone IDs supported by the system.
    let availableIDs: Array<string> = i18n.TimeZone.getAvailableIDs(); // availableIDs = ['America/Adak', 'Asia/Hovd', ...]
 
-   // List of time zone city IDs supported by the system
+   // List of time zone city IDs supported by the system.
    let cityIDs: Array<string> = i18n.TimeZone.getAvailableZoneCityIDs(); // cityIDs = ['Auckland', 'Magadan', ...]
 
    // Traverse the list of time zone city IDs.

@@ -27,7 +27,7 @@ getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[Launche
 | 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | 是   | 应用Bundle名称。 |
-| userId     | number | 是   | 被查询的用户id。 |
+| userId     | number | 是   | 被查询的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。 |
 
 **返回值：**
 
@@ -41,7 +41,7 @@ getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[Launche
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 801 | Capability not support. |
 | 17700001 | The specified bundle name is not found.  |
 | 17700004 | The specified user ID is not found.       |
@@ -61,3 +61,15 @@ try {
     console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
+
+## LauncherAbilityInfo<sup>18+</sup>
+
+type LauncherAbilityInfo = _LauncherAbilityInfo
+
+LauncherAbilityInfo信息。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md) | 桌面应用的Ability信息。 |

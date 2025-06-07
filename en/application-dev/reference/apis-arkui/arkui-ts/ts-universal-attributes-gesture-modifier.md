@@ -12,6 +12,10 @@ gestureModifier(modifier: GestureModifier)
 
 Creates a gesture modifier.
 
+>  **NOTE**
+>
+>  **gestureModifier** does not support custom components.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -83,6 +87,11 @@ struct Index {
           .width(500)
           .height(500)
           .backgroundColor(Color.Blue)
+        Button('changeGesture')
+          .onClick(() => {
+            this.modifier.supportDoubleTap = !this.modifier.supportDoubleTap;
+          })
+          .margin({top: 10})
       }
       .width('100%')
     }

@@ -243,7 +243,7 @@ mWorker.onmessage = (e: MessageEvents) => {
 }
 
 // 触发方式的注册已省略
-mWorker.postMessage({action: 'tsfn-demo'})
+mWorker.postMessage({action: 'tsfn-demo'});
 
 ```
 

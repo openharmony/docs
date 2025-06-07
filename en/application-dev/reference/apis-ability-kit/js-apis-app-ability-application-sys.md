@@ -19,7 +19,9 @@ Creates the context for a module.
 
 > **NOTE**
 >
-> Since API version 18, the context can obtain the [process name](js-apis-inner-application-context.md#properties) of the current application. The **processName** property in the context created by **createModuleContext** is the same as the **processName** property in the input parameter **Context**. The values of other properties are obtained based on the input parameters **Context**, **bundleName**, and **moduleName**.
+> - Since API version 18, the context can obtain the [process name](js-apis-inner-application-context.md#properties) of the current application. The **processName** property in the context created by **createModuleContext** is the same as the **processName** property in the input parameter **Context**. The values of other properties are obtained based on the input parameters **Context**, **bundleName**, and **moduleName**.
+>
+> - This API requires multiple bundle information queries and loads all resources of the specified module, which can be quite slow. To optimize performance, you are advised to cache the created context during the first use to prevent repeated calls for context creation.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

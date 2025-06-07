@@ -34,7 +34,7 @@ const myCurves: MyCurve[] = [
 
 @Entry
 @Component
-export struct CurveDemo {
+struct CurveDemo {
   @State dRotate: number = 0; // 旋转角度
 
   build() {

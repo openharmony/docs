@@ -1,8 +1,8 @@
 # TaskPool任务与宿主线程通信
 
-如果一个Task，不仅需要返回最后的执行结果，而且需要定时通知宿主线程状态、数据的变化，或者需要分段返回数量级较大的数据（比如从数据库中读取大量数据），可以通过下面这种方式实现。
+如果一个Task不仅需要返回最终的执行结果，还需要定时通知宿主线程状态和数据的变化，或者需要分段返回大量数据（例如，从数据库中读取大量数据），可以通过以下方式实现。
 
-下面以多个图片加载任务结果实时返回为例进行说明。
+下面以多个图片加载任务结果实时返回为例说明。
 
 1. 首先，实现一个方法，用来接收Task发送的消息。
 
@@ -13,7 +13,7 @@
    }
    ```
 
-2. 然后，在Task需要执行的任务中，添加sendData()接口将消息发送给宿主线程。
+2. 然后，在需要执行的Task中，添加sendData()接口将消息发送给宿主线程。
 
    ```ts
    // IconItemSource.ets
@@ -72,10 +72,10 @@
              .fontWeight(FontWeight.Bold)
              .onClick(() => {
                let iconItemSourceList: IconItemSource[];
-               let lodePictureTask: taskpool.Task = new taskpool.Task(loadPictureSendData, 30);
+               let loadPictureTask: taskpool.Task = new taskpool.Task(loadPictureSendData, 30);
                // 设置notice方法接收Task发送的消息
-               lodePictureTask.onReceiveData(notice);
-               taskpool.execute(lodePictureTask).then((res: object) => {
+               loadPictureTask.onReceiveData(notice);
+               taskpool.execute(loadPictureTask).then((res: object) => {
                  iconItemSourceList = res as IconItemSource[];
                })
              })

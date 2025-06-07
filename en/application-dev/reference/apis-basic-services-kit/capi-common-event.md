@@ -259,10 +259,11 @@ Enumerates the error codes.
 | COMMONEVENT_ERR_OK = 0 |The operation is successful.|
 | COMMONEVENT_ERR_PERMISSION_ERROR = 201 |Permission denied.|
 | COMMONEVENT_ERR_INVALID_PARAMETER = 401 |Invalid parameter.|
+| COMMONEVENT_ERR_NOT_SYSTEM_SERVICE = 1500004 |The application fails to send system common events.|
 | COMMONEVENT_ERR_SENDING_REQUEST_FAILED = 1500007 |Failed to send an IPC request.|
 | COMMONEVENT_ERR_INIT_UNDONE = 1500008|The service is not initialized.|
 | COMMONEVENT_ERR_SUBSCRIBER_NUM_EXCEEDED = 1500010|The number of subscribers exceeds 200.|
-| COMMONEVENT_ERR_ALLOC_MEMORY_FAILED = 1500011|The system failed to allocate memory.|
+| COMMONEVENT_ERR_ALLOC_MEMORY_FAILED = 1500011|The system fails to allocate memory.|
 
 ## Constant Description
 
@@ -1148,7 +1149,9 @@ Sets the subscriber permission.
 
 **Returns**
 
-Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if **info** is a null pointer.
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.
+
+Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if **info** is a null pointer.
 
 ### OH_CommonEvent_SetPublisherBundleName
 
@@ -1171,7 +1174,9 @@ Sets a bundle name of the subscriber.
 
 **Returns**
 
-Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if **info** is a null pointer.
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.
+
+Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if **info** is a null pointer.
 
 ### OH_CommonEvent_DestroySubscribeInfo
 
@@ -1252,7 +1257,17 @@ Subscribes to a common event.
 
 **Returns**
 
-Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the **subscriber** is a null parameter.<br>Returns **COMMONEVENT_ERR_SENDING_REQUEST_FAILED** if the IPC fails to be sent.<br>Returns **COMMONEVENT_ERR_INIT_UNDONE** if the common event service is not initialized.<br>Returns **COMMONEVENT_ERR_SUBSCRIBER_NUM_EXCEEDED** if the number of subscribers in the current process exceeds 200.<br>Returns **COMMONEVENT_ERR_ALLOC_MEMORY_FAILED** if the system fails to allocate memory.
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.
+
+Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if **subscriber** is a null parameter.
+
+Returns **COMMONEVENT_ERR_SENDING_REQUEST_FAILED** if the IPC fails to be sent.
+
+Returns **COMMONEVENT_ERR_INIT_UNDONE** if the common event service is not initialized.
+
+Returns **COMMONEVENT_ERR_SUBSCRIBER_NUM_EXCEEDED** if the number of subscribers in the current process exceeds 200.
+
+Returns **COMMONEVENT_ERR_ALLOC_MEMORY_FAILED** if the system fails to allocate memory.
 
 ### OH_CommonEvent_UnSubscribe
 
@@ -1274,7 +1289,13 @@ Unsubscribes from a common event.
 
 **Returns**
 
-Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the **subscriber** is a null parameter.<br>Returns **COMMONEVENT_ERR_SENDING_REQUEST_FAILED** if the IPC fails to be sent.<br>Returns **COMMONEVENT_ERR_INIT_UNDONE** if the common event service is not initialized.
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.
+
+Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if **subscriber** is a null parameter.
+
+Returns **COMMONEVENT_ERR_SENDING_REQUEST_FAILED** if the IPC fails to be sent.
+
+Returns **COMMONEVENT_ERR_INIT_UNDONE** if the common event service is not initialized.
 
 ### OH_CommonEvent_GetEventFromRcvData
 
@@ -1693,7 +1714,9 @@ Sets the additional information of a common event. The value is the content of t
 
 **Returns**
 
-Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.
+
+Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameters are invalid.
 
 ### OH_CommonEvent_SetIntArrayToParameters
 
@@ -1718,7 +1741,11 @@ Sets the additional information of a common event. The value is the content of t
 
 **Returns**
 
-Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.<br>Returns **COMMONEVENT_ERR_ALLOC_MEMORY_FAILED** if memory allocation fails.
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.
+
+Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameters are invalid.
+
+Returns **COMMONEVENT_ERR_ALLOC_MEMORY_FAILED** if memory allocation fails.
 
 ### OH_CommonEvent_SetLongToParameters
 
@@ -1742,7 +1769,9 @@ Sets the additional information of a common event. The value is the content of t
 
 **Returns**
 
-Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.
+
+Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameters are invalid.
 
 ### OH_CommonEvent_SetLongArrayToParameters
 
@@ -1767,7 +1796,11 @@ Sets the additional information of a common event. The value is the content of t
 
 **Returns**
 
-Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.<br>Returns **COMMONEVENT_ERR_ALLOC_MEMORY_FAILED** if memory allocation fails.
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.
+
+Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameters are invalid.
+
+Returns **COMMONEVENT_ERR_ALLOC_MEMORY_FAILED** if memory allocation fails.
 
 ### OH_CommonEvent_SetDoubleToParameters
 
@@ -1791,7 +1824,9 @@ Sets the additional information of a common event. The value is the content of t
 
 **Returns**
 
-Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.
+
+Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameters are invalid.
 
 ### OH_CommonEvent_SetDoubleArrayToParameters
 
@@ -1816,7 +1851,11 @@ Sets the additional information of a common event. The value is the content of t
 
 **Returns**
 
-Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.<br>Returns **COMMONEVENT_ERR_ALLOC_MEMORY_FAILED** if memory allocation fails.
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.
+
+Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameters are invalid.
+
+Returns **COMMONEVENT_ERR_ALLOC_MEMORY_FAILED** if memory allocation fails.
 
 ### OH_CommonEvent_SetBoolToParameters
 
@@ -1840,7 +1879,9 @@ Sets the additional information of a common event. The value is the content of t
 
 **Returns**
 
-Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.
+
+Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameters are invalid.
 
 ### OH_CommonEvent_SetBoolArrayToParameters
 
@@ -1865,7 +1906,11 @@ Sets the additional information of a common event. The value is the content of t
 
 **Returns**
 
-Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.<br>Returns **COMMONEVENT_ERR_ALLOC_MEMORY_FAILED** if memory allocation fails.
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.
+
+Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameters are invalid.
+
+Returns **COMMONEVENT_ERR_ALLOC_MEMORY_FAILED** if memory allocation fails.
 
 ### OH_CommonEvent_SetCharToParameters
 
@@ -1889,7 +1934,9 @@ Sets the additional information of a common event. The value is the content of t
 
 **Returns**
 
-Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.
+
+Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameters are invalid.
 
 ### OH_CommonEvent_SetCharArrayToParameters
 
@@ -1914,7 +1961,11 @@ Sets the additional information of a common event. The value is the content of t
 
 **Returns**
 
-Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.<br>Returns **COMMONEVENT_ERR_ALLOC_MEMORY_FAILED** if memory allocation fails.
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.
+
+Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameters are invalid.
+
+Returns **COMMONEVENT_ERR_ALLOC_MEMORY_FAILED** if memory allocation fails.
 
 ### OH_CommonEvent_CreatePublishInfo
 
@@ -1981,7 +2032,9 @@ Sets the bundle name of a common event.
 
 **Returns**
 
-Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.
+
+Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameters are invalid.
 
 ### OH_CommonEvent_SetPublishInfoPermissions
 
@@ -2005,7 +2058,9 @@ Sets the common event permissions.
 
 **Returns**
 
-Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.
+
+Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameters are invalid.
 
 ### OH_CommonEvent_SetPublishInfoCode
 
@@ -2028,7 +2083,9 @@ Sets the result code of a common event.
 
 **Returns**
 
-Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.
+
+Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameters are invalid.
 
 ### OH_CommonEvent_SetPublishInfoData
 
@@ -2052,7 +2109,9 @@ Sets the result data for the publishing information of a common event.
 
 **Returns**
 
-Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.
+
+Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameters are invalid.
 
 ### OH_CommonEvent_SetPublishInfoParameters
 
@@ -2075,7 +2134,9 @@ Sets the additional information of a common event.
 
 **Returns**
 
-Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.
+
+Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameters are invalid.
 
 ### OH_CommonEvent_Publish
 
@@ -2097,7 +2158,13 @@ Publishes a custom common event.
 
 **Returns**
 
-Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.<br>Returns **COMMONEVENT_ERR_SENDING_REQUEST_FAILED** if the IPC fails to be sent.<br>Returns **COMMONEVENT_ERR_INIT_UNDONE** if the common event service is not initialized.
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.
+
+Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameters are invalid.
+
+Returns **COMMONEVENT_ERR_SENDING_REQUEST_FAILED** if the IPC fails to be sent.
+
+Returns **COMMONEVENT_ERR_INIT_UNDONE** if the common event service is not initialized.
 
 ### OH_CommonEvent_PublishWithInfo
 
@@ -2120,7 +2187,13 @@ Publishes a custom common event with specified attributes.
 
 **Returns**
 
-Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.<br>Returns **COMMONEVENT_ERR_SENDING_REQUEST_FAILED** if the IPC fails to be sent.<br>Returns **COMMONEVENT_ERR_INIT_UNDONE** if the common event service is not initialized.
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.
+
+Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameters are invalid.
+
+Returns **COMMONEVENT_ERR_SENDING_REQUEST_FAILED** if the IPC fails to be sent.
+
+Returns **COMMONEVENT_ERR_INIT_UNDONE** if the common event service is not initialized.
 
 ### OH_CommonEvent_IsOrderedCommonEvent
 
@@ -2142,7 +2215,9 @@ Checks whether a common event is an ordered common event.
 
 **Returns**
 
-Returns **true** if the common event is an ordered one; returns **false** otherwise.
+Returns **true** if the common event is ordered.
+
+Returns **false** if the common event is unordered.
 
 ### OH_CommonEvent_FinishCommonEvent
 

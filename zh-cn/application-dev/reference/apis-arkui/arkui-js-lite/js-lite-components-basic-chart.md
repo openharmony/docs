@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 该组件从从API version 4 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 4 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -40,7 +40,7 @@
 | strokeColor                 | &lt;color&gt;       | \#ff6384 | 否    | 线条颜色。仅线形图支持。         |
 | fillColor                   | &lt;color&gt;       | \#ff6384 | 否    | 填充颜色。线形图表示填充的渐变颜色。   |
 | data                        | Array&lt;number&gt; | -        | 是    | 设置绘制线或柱中的点集。         |
-| gradient                    | boolean             | false    | 否    | 设置是否显示填充渐变颜色。仅线形图支持。 |
+| gradient                    | boolean             | false    | 否    | 设置是否显示填充渐变颜色。仅线形图支持。<br/>默认值：false，表示不填充渐变颜色。 |
 
   **表3** ChartAxis
 
@@ -48,8 +48,8 @@
 | -------- | ------------- | -------- | ---- | ---------------------------------------- |
 | min      | number        | 0        | 否    | 轴的最小值。<br/>不支持负数。仅线形图支持。                 |
 | max      | number        | 100      | 否    | 轴的最大值。<br/>不支持负数。仅线形图支持。                 |
-| axisTick | number        | 10       | 否    | 轴显示的刻度数量。<br/>**说明：**<br/>仅支持1~20，且具体显示的效果与如下计算值有关（图的宽度所占的像素/（max-min））。<br/>因轻量级智能穿戴为整型运行，在除不尽的情况下会有误差产生，具体的表现形式是x轴末尾可能会空出一段。<br/>在柱状图中，每组数据显示的柱子数量与刻度数量一致，且柱子显示在刻度处。 |
-| display  | boolean       | false    | 否    | 是否显示轴。                                   |
+| axisTick | number        | 10       | 否    | 轴显示的刻度数量。<br/>**说明：**<br/>仅支持1~20，且具体显示的效果与如下计算值有关（图的宽度所占的像素/（max-min））。<br/>由于轻量级智能穿戴设备采用整数运算，在除法运算无法整除时会产生误差，具体表现为x轴末尾可能出现空白区域。<br/>在柱状图中，每组数据显示的柱子数量与刻度数量一致，且柱子显示在刻度处。 |
+| display  | boolean       | false    | 否    | 是否显示轴。<br/>默认值：false，表示不显示轴。                                   |
 | color    | &lt;color&gt; | \#c0c0c0 | 否    | 轴颜色。                                     |
 
   **表4** ChartSeries
@@ -67,7 +67,7 @@
 | 名称     | 类型             | 默认值   | 必填   | 描述    |
 | ------ | -------------- | ----- | ---- | ----- |
 | width  | &lt;length&gt; | 1px   | 否    | 线宽设置。 |
-| smooth | boolean        | false | 否    | 是否平滑。 |
+| smooth | boolean        | false | 否    | 是否平滑。<br/>默认值：false，表示不做平滑处理。 |
 
   **表6** PointStyle
 
@@ -78,7 +78,7 @@
 | strokeWidth | &lt;length&gt; | 1px      | 否    | 边框宽度                               |
 | strokeColor | &lt;color&gt;  | \#ff0000 | 否    | 边框颜色。                              |
 | fillColor   | &lt;color&gt;  | \#ff0000 | 否    | 填充颜色。                              |
-| display     | boolean        | true     | 否    | 是否高亮显示。                            |
+| display     | boolean        | true     | 否    | 是否高亮显示。<br/>默认值：true，表示高亮显示。                           |
 
   **表7** ChartLoop
 

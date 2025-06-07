@@ -22,7 +22,7 @@ import { i18n } from '@kit.LocalizationKit';
 
 static setSystemLanguage(language: string): void
 
-Sets the system language. Currently, this API does not support real-time updating of the system language.
+Sets the system language.
 
 To listen for system language changes, enable listening for [COMMON_EVENT_LOCALE_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed).
 
@@ -142,7 +142,7 @@ To listen for system locale changes, enable listening for [COMMON_EVENT_LOCALE_C
 
 | Name   | Type    | Mandatory  | Description             |
 | ------ | ------ | ---- | --------------- |
-| locale | string | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.|
+| locale | string | Yes   | [System locale](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.|
 
 **Error codes**
 
@@ -159,7 +159,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    i18n.System.setSystemLocale('zh-CN'); // Set the current system locale to zh-CN.
+    i18n.System.setSystemLocale('zh-CN'); // Set the system locale to zh-CN.
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setSystemLocale failed, error code: ${err.code}, message: ${err.message}.`);
@@ -171,7 +171,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 static set24HourClock(option: boolean): void
 
-Sets the system time to the 24-hour clock.
+Sets whether to use the 24-hour clock.
 
 **System API**: This is a system API.
 
@@ -183,7 +183,7 @@ Sets the system time to the 24-hour clock.
 
 | Name   | Type     | Mandatory  | Description                                      |
 | ------ | ------- | ---- | ---------------------------------------- |
-| option | boolean | Yes   | Whether to enable the 24-hour clock. The value **true** means to enable the 24-hour clock, and the value **false** means the opposite.|
+| option | boolean | Yes   | Whether to use the 24-hour clock. The value **true** means to use the 24-hour clock, the the value **false** means the opposite.|
 
 **Error codes**
 
@@ -256,7 +256,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 static removePreferredLanguage(index: number): void
 
-Deletes a preferred language from the specified position on the preferred language list.
+Removes a preferred language from the specified position on the preferred language list.
 
 **System API**: This is a system API.
 
@@ -339,7 +339,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 static setTemperatureType(type: TemperatureType): void
 
-Sets the preferred temperature unit for users.
+Sets the temperature unit of the system.
 
 **System API**: This is a system API.
 
@@ -361,7 +361,6 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | ------ | ---------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 > **NOTE**
@@ -384,7 +383,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 static setFirstDayOfWeek(type: WeekDay): void
 
-Sets the preferred start day of a week for users.
+Sets the first day of a week.
 
 **System API**: This is a system API.
 
@@ -406,7 +405,6 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | ------ | ---------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 > **NOTE**
@@ -448,7 +446,7 @@ Creates a **SystemLocaleManager** object.
 
 getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Array&lt;LocaleItem&gt;
 
-Obtains the language sorting array.
+Obtains the list of languages after sorting.
 
 **System API**: This is a system API.
 
@@ -499,7 +497,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&lt;LocaleItem&gt;
 
-Obtains the country/region sorting array.
+Obtains the IDs of the countries or regions after sorting.
 
 **System API**: This is a system API.
 
@@ -510,13 +508,13 @@ Obtains the country/region sorting array.
 |   Name |      Type     | Mandatory|     Description     |
 | --------- | ------------- | ---- | ------------- |
 | regions   | Array&lt;string&gt; | Yes  | Valid IDs of the countries or regions to be sorted.|
-| options   | [SortOptions](#sortoptions10)   | No  | Country/region sorting option.<br>The default value of **locale** is the system locale, the default value of **isUseLocalName** is **false**, and the default value of **isSuggestedFirst** is **true**.|
+| options   | [SortOptions](#sortoptions10)   | No  | Country/region sorting option.<br>By default, **locale** is the current system locale, **isUseLocalName** is **false**, and **isSuggestedFirst** is **true**.|
 
 **Return value**
 
 |       Type       |         Description         |
 | ----------------- | -------------------- |
-| Array&lt;[LocaleItem](#localeitem10)&gt; | Country/region list after sorting.|
+| Array&lt;[LocaleItem](#localeitem10)&gt; | IDs of the countries or regions after sorting.|
 
 **Error codes**
 
@@ -549,7 +547,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 
-Obtains the array of time zone city items after sorting.
+Obtains list of time zone city items after sorting.
 
 **System API**: This is a system API.
 
@@ -559,7 +557,7 @@ Obtains the array of time zone city items after sorting.
 
 |       Type       |         Description         |
 | ----------------- | -------------------- |
-| Array&lt;[TimeZoneCityItem](#timezonecityitem10)&gt; | Array of time zone city items.|
+| Array&lt;[TimeZoneCityItem](#timezonecityitem10)&gt; | List of time zone city items after sorting.|
 
 **Error codes**
 
@@ -587,7 +585,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 ## LocaleItem<sup>10+</sup>
 
-Represents the list of languages or countries/regions sorted by **SystemLocaleManager**.
+Represents the locale information, which consists of the language, script, and country/region.
 
 **System API**: This is a system API.
 
@@ -597,12 +595,12 @@ Represents the list of languages or countries/regions sorted by **SystemLocaleMa
 | --------------- | --------------- | ------ | --------------------------------------- |
 | id              | string          |   Yes  | Language code or country/region code, for example, **zh** or **CN**.   |
 | suggestionType  | [SuggestionType](#suggestiontype10)  |   Yes | Language or country/region suggestion type.                 |
-| displayName     | string          |  Yes  | Displayed name of ID in the locale of **SystemLocaleManager**.|
+| displayName     | string          |  Yes  | Representation of ID in the specified locale in **SystemLocaleManager**.|
 | localName       | string          |  No  | Local name of the ID.                          |
 
 ## TimeZoneCityItem<sup>10+</sup>
 
-Represents the time zone and city combination information.
+Represents a time zone and city combination item.
 
 **System API**: This is a system API.
 
@@ -611,10 +609,10 @@ Represents the time zone and city combination information.
 | Name           | Type            |  Mandatory  |  Description                                  |
 | --------------- | --------------- | ------  | --------------------------------------- |
 | zoneId          | string          |   Yes   | Time zone ID, for example, **Asia/Shanghai**.             |
-| cityId          | string          |   Yes   | City ID, for example, **Shanghai**.                  |
-| cityDisplayName | string          |   Yes   | Displayed name of the city ID in the system locale.         |
+| cityId          | string          |   Yes   | City ID, for example, Shanghai.                  |
+| cityDisplayName | string          |   Yes   | City display name in the system locale.         |
 | offset          | int             |   Yes   | Offset of the time zone ID.                        |
-| zoneDisplayName | string          |   Yes   | Displayed name of the time zone ID in the system locale.         |
+| zoneDisplayName | string          |   Yes   | Time zone display name in the system locale.         |
 | rawOffset       | int             |   No   | Fixed offset of the time zone ID.                      |
 
 
@@ -643,6 +641,6 @@ Represents the language or country/region sorting option.
 
 | Name           | Type           |  Mandatory|   Description                                |
 | --------------- | --------------- | ---- | --------------------------------------- |
-| locale          | string          |  No | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region, for example, **zh-Hans-CN**.<br>The default value of **locale** is the system locale.   |
+| locale          | string          |  No | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region, for example, **zh-Hans-CN**.<br>The default value is the current system locale.   |
 | isUseLocalName  | boolean         |  No | Whether to use the local name for sorting. The value **true** means to use the local name for sorting, and the value **false** means the opposite.<br>If **getLanguageInfoArray** is called, the default value of **isUseLocalName** is **true**.<br>If **getRegionInfoArray** is called, the default value of **isUseLocalName** is **false**.               |
-| isSuggestedFirst | boolean        |  No | Whether to move the recommended language or country/region to the top in the sorting result. The value **true** means to move the recommended language or country/region to the top, and the value **false** means the opposite.<br>The default value of **isSuggestedFirst** is **true**. |
+| isSuggestedFirst | boolean        |  No | Whether to move the recommended language or country/region to the top in the sorting result. The value **true** means to move the recommended language or country/region to the top, and the value **false** means the opposite.<br>The default value is **true**. |

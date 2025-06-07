@@ -119,7 +119,6 @@ completelyDelete(uri: string): void
   trash.completelyDelete(uri);
   ```
 
-
 ## FileInfo
 
 最近删除（回收站）内文件的FileInfo对象。
@@ -134,6 +133,6 @@ completelyDelete(uri: string): void
 | srcPath | string | 是 | 否 | 文件/目录删除前原路径。 |
 | fileName | string | 是 | 否 | 文件/目录文件名。 |
 | mode | number | 是 | 否 | 文件/目录权限信息。 |
-| size | number | 是 | 否 |  文件/目录的大小。 |
-| mtime | number | 是 | 否 |  文件/目录的修改时间。 |
-| ctime | string | 是 | 否 |  文件/目录的创建时间。 |
+| size | number | 是 | 否 |  文件/目录的大小，单位为Byte。 |
+| mtime | number | 是 | 否 |  文件/目录的修改时间。自1970年1月1日起至目标时间的毫秒数。|
+| ctime | number | 是 | 否 |  文件/目录的创建时间。自1970年1月1日起至目标时间的秒数。|

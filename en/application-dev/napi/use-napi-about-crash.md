@@ -1,6 +1,6 @@
 # Analyzing Error Logs and Crashes Triggered by Using Node-API
 
-The maintenance and debugging measures mentioned in this topic rely on the Ark runtime multi-thread check. Therefore, you are advised to enable this feature before debugging. For details about how to enable Ark runtime multi-thread check, see [Analyzing CPP Crash](../dfx/cppcrash-guidelines.md#tool-2-ark-multi-thread-check).
+The maintenance and debugging measures mentioned in this topic rely on the Ark runtime multi-thread check. Therefore, you are advised to enable this feature before debugging. For details about how to enable Ark runtime multi-thread check, see [Analyzing CPP Crash](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-multi-thread-check).
 
 Unless otherwise specified, the maintenance and debugging measures used in this topic will interrupt the process once the Ark runtime multi-thread check is enabled.
 
@@ -22,11 +22,11 @@ The inconsistency in **napi_env** occurs in the following scenarios:
    >
    > - For the methods other than thread-safe functions, the log information is as follows:
    >
-   >      owner env has been destroyed, owner id: &lt;owner id&gt; , current    env id: &lt;current id&gt;.
+   >    owner env has been destroyed, owner id: &lt;owner id&gt; , current    env id: &lt;current id&gt;.
    >
    > - For thread-safe functions, the log information is as follows:
    >
-   >      current tsfn was created by dead env, owner id: &lt;owner id&gt;, current env id: &lt;current id&gt;.
+   >    current tsfn was created by dead env, owner id: &lt;owner id&gt;, current env id: &lt;current id&gt;
 
 The following APIs may trigger this error:
 

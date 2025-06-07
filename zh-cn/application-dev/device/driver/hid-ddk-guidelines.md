@@ -12,7 +12,7 @@ HID DDK（HID Driver Develop Kit）是为开发者提供的HID设备驱动程序
 
 - **HID**
 
-  HID（Human Interface Device），中文意思是“人机接口设备”。它是一类用于实现人与计算机或其他电子设备交互的硬件设备。HID 设备的主要功能是将用户的输入（如按键、点击、移动等）转换为数据信号，并将这些信号发送给主机设备（如计算机、平板电脑、游戏机等），从而实现用户对设备的控制和操作。
+  HID（Human Interface Device），中文意思是“人机接口设备”。它是一类用于实现人与计算机或其他电子设备交互的硬件设备。HID 设备的主要功能是将用户的输入（如按键、点击、移动等）转换为数据信号，并将这些信号发送给主机设备（如计算机、平板、游戏机等），从而实现用户对设备的控制和操作。
 
 - **DDK**
 
@@ -28,11 +28,11 @@ HID DDK（HID Driver Develop Kit）是为开发者提供的HID设备驱动程序
 
 ## 约束与限制
 
-* HID DDK开放API支持非标HID类外设扩展驱动开发场景。
+- HID DDK开放API支持非标HID类外设扩展驱动开发场景。
 
-* HID DDK开放API仅允许DriverExtensionAbilit生命周期内使用。
+- HID DDK开放API仅允许DriverExtensionAbility生命周期内使用。
 
-* 使用HID DDK开放API需要在module.json5中声明匹配的ACL权限，例如ohos.permission.ACCESS_DDK_HID。
+- 使用HID DDK开放API需要在module.json5中声明匹配的ACL权限，例如ohos.permission.ACCESS_DDK_HID。
 
 ## 接口说明
 

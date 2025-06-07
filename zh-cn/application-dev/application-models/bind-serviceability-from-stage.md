@@ -12,7 +12,6 @@
 ```ts
 import { common, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { promptAction } from '@kit.ArkUI';
 
 const TAG: string = '[Page_StartFAModel]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -20,7 +19,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 @Entry
 @Component
 struct Page_StartFAModel {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Column() {
@@ -38,20 +37,20 @@ struct Page_StartFAModel {
             };
             let options: common.ConnectOptions = {
               onConnect: (elementName, proxy) => {
-                hilog.info(DOMAIN_NUMBER, TAG, 'onConnect called.');
-                promptAction.showToast({
+                hilog.info(DOMAIN_NUMBER, TAG, `onConnect called.`);
+                this.getUIContext().getPromptAction().showToast({
                   message: 'ConnectFAServiceAbility'
                 });
               },
               onDisconnect: (elementName) => {
-                hilog.info(DOMAIN_NUMBER, TAG, 'onDisconnect called.');
+                hilog.info(DOMAIN_NUMBER, TAG, `onDisconnect called.`);
               },
               onFailed: (code) => {
-                hilog.info(DOMAIN_NUMBER, TAG, 'onFailed code is: ' + code);
+                hilog.error(DOMAIN_NUMBER, TAG, `onFailed code is: ${code}.`);
               }
             };
             let connectionId = this.context.connectServiceExtensionAbility(want, options);
-            hilog.info(DOMAIN_NUMBER, TAG, 'connectionId is ' + JSON.stringify(connectionId));
+            hilog.info(DOMAIN_NUMBER, TAG, `connectionId is: ${JSON.stringify(connectionId)}.`);
           })
         }
         // ...
@@ -72,7 +71,6 @@ struct Page_StartFAModel {
 ```ts
 import { common, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { promptAction } from '@kit.ArkUI';
 
 const TAG: string = '[Page_StartFAModel]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -80,7 +78,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 @Entry
 @Component
 struct Page_StartFAModel {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Column() {
@@ -98,20 +96,20 @@ struct Page_StartFAModel {
             };
             let options: common.ConnectOptions = {
               onConnect: (elementName, proxy) => {
-                hilog.info(DOMAIN_NUMBER, TAG, 'onConnect called.');
-                promptAction.showToast({
+                hilog.info(DOMAIN_NUMBER, TAG, `onConnect called.`);
+                this.getUIContext().getPromptAction().showToast({
                   message: 'ConnectFAServiceAbility'
                 });
               },
               onDisconnect: (elementName) => {
-                hilog.info(DOMAIN_NUMBER, TAG, 'onDisconnect called.');
+                hilog.info(DOMAIN_NUMBER, TAG, `onDisconnect called.`);
               },
               onFailed: (code) => {
-                hilog.info(DOMAIN_NUMBER, TAG, 'onFailed code is: ' + code);
+                hilog.error(DOMAIN_NUMBER, TAG, `onFailed code is: ${code}.`);
               }
             };
             let connectionId = this.context.connectServiceExtensionAbility(want, options);
-            hilog.info(DOMAIN_NUMBER, TAG, 'connectionId is ' + JSON.stringify(connectionId));
+            hilog.info(DOMAIN_NUMBER, TAG, `connectionId is：${JSON.stringify(connectionId)}.`);
           })
         }
         // ...

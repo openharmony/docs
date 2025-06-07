@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 18开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 19开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -14,7 +14,7 @@ import { serialManager } from '@kit.BasicServicesKit';
 
 ## serialManager.getPortList
 
-getPortList(): Readonly&lt;serialport&gt;[];
+getPortList(): Readonly&lt;[SerialPort](serialport)&gt;[]
 
 查询串口设备清单，包括设备名称和对应的端口号。
 
@@ -28,6 +28,11 @@ getPortList(): Readonly&lt;serialport&gt;[];
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用getPortList接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -44,7 +49,7 @@ let portId: number = portList[0].portId;
 
 ## serialManager.hasSerialRight
 
-hasSerialRight(portId: number): boolean;
+hasSerialRight(portId: number): boolean
 
 检查应用程序是否具有访问串口设备的权限。应用退出后再拉起时，需要重新申请授权。
 
@@ -71,10 +76,15 @@ hasSerialRight(portId: number): boolean;
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14400005 | Database operation exception. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用hasSerialRight接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -125,10 +135,15 @@ requestSerialRight(portId: number): Promise&lt;boolean&gt;
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14400005 | Database operation exception. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用requestSerialRight接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -158,7 +173,7 @@ if (!serialManager.hasSerialRight(portId)) {
 
 ## serialManager.open
 
-open(portId: number): void;
+open(portId: number): void
 
 打开串口设备。
 
@@ -179,11 +194,16 @@ open(portId: number): void;
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
 | 31400002 | Access denied. Call requestSerialRight to request user authorization first. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400004 | The serial port device is occupied. |
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用open接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -221,7 +241,7 @@ try {
 
 ## serialManager.getAttribute
 
-getAttribute(portId: number): Readonly&lt;[SerialAttribute](#serialattribute)&gt;;
+getAttribute(portId: number): Readonly&lt;[SerialAttribute](#serialattribute)&gt;
 
 获取指定串口的配置参数。
 
@@ -247,11 +267,16 @@ getAttribute(portId: number): Readonly&lt;[SerialAttribute](#serialattribute)&gt
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用getAttribute接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -301,7 +326,7 @@ try {
 
 ## serialManager.setAttribute
 
-setAttribute(portId: number, attribute: [SerialAttribute](#serialattribute)): void;
+setAttribute(portId: number, attribute: [SerialAttribute](#serialattribute)): void
 
 设置串口的配置参数。如果未调用该方法，使用默认配置参数（波特率：9600bps；据位：8；校验位：0；停止位：1）。
 
@@ -322,11 +347,16 @@ setAttribute(portId: number, attribute: [SerialAttribute](#serialattribute)): vo
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用setAttribute接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -378,7 +408,7 @@ try {
 
 ## serialManager.read
 
-read(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;;
+read(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;
 
 从串口设备异步读取数据。
 
@@ -390,7 +420,7 @@ read(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt
 |---------|------------|----|------------------|
 | portId  | number     | 是  | 端口号。      |
 | buffer  | Uint8Array | 是  | 读取数据的缓冲区。 |
-| timeout | number     | 否  | 读取的超时时间（以毫秒为单位）。 |
+| timeout | number     | 否  | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择。 |
 
 **返回值：**
 
@@ -406,13 +436,18 @@ read(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 | 31400006 | Data transfer timed out. |
-| 31400007 | I/O exception. |
+| 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data than allowed. |
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用read接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -458,7 +493,7 @@ serialManager.read(portId, readBuffer, 2000).then((size: number) => {
 
 ## serialManager.readSync
 
-readSync(portId: number, buffer: Uint8Array, timeout?: number): number;
+readSync(portId: number, buffer: Uint8Array, timeout?: number): number
 
 从串口设备同步读取数据。
 
@@ -470,7 +505,7 @@ readSync(portId: number, buffer: Uint8Array, timeout?: number): number;
 |---------|------------|----|------------------|
 | portId  | number     | 是  | 端口号。|
 | buffer  | Uint8Array | 是  | 读取数据的缓冲区。 |
-| timeout | number     | 否  | 读取的超时时间（以毫秒为单位）。 |
+| timeout | number     | 否  | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择。 |
 
 **返回值：**
 
@@ -486,13 +521,18 @@ readSync(portId: number, buffer: Uint8Array, timeout?: number): number;
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 | 31400006 | Data transfer timed out. |
-| 31400007 | I/O exception. |
+| 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data than allowed. |
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用readSync接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -539,7 +579,7 @@ try {
 
 ## serialManager.write
 
-write(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;;
+write(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;
 
 向串口设备异步写入数据。
 
@@ -551,7 +591,7 @@ write(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&g
 |---------|------------|----|------------------|
 | portId  | number     | 是  | 端口号。      |
 | buffer  | Uint8Array | 是  | 写入数据的缓冲区。 |
-| timeout | number     | 否  | 写入的超时时间（以毫秒为单位）。 |
+| timeout | number     | 否  | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择。 |
 
 **返回值：**
 
@@ -567,13 +607,18 @@ write(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&g
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 | 31400006 | Data transfer timed out. |
-| 31400007 | I/O exception. |
+| 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data than allowed. |
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用addSerialRight接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -619,7 +664,7 @@ serialManager.write(portId, writeBuffer, 2000).then((size: number) => {
 
 ## serialManager.writeSync
 
-writeSync(portId: number, buffer: Uint8Array, timeout?: number): number;
+writeSync(portId: number, buffer: Uint8Array, timeout?: number): number
 
 向串口设备同步写数据。
 
@@ -631,7 +676,7 @@ writeSync(portId: number, buffer: Uint8Array, timeout?: number): number;
 |---------|------------|----|------------------|
 | portId  | number     | 是  | 端口号。     |
 | buffer  | Uint8Array | 是  | 写入目标缓冲区。 |
-| timeout | number     | 否  | 写入的超时时间（以毫秒为单位）。|
+| timeout | number     | 否  | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择。|
 
 **返回值：**
 
@@ -647,13 +692,18 @@ writeSync(portId: number, buffer: Uint8Array, timeout?: number): number;
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 | 31400006 | Data transfer timed out. |
-| 31400007 | I/O exception. |
+| 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data than allowed. |
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用writeSync接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -700,7 +750,7 @@ try {
 
 ## serialManager.close
 
-close(portId: number): void;
+close(portId: number): void
 
 关闭串口。
 
@@ -720,11 +770,16 @@ close(portId: number): void;
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用close接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -770,7 +825,7 @@ try {
 
 ## serialManager.cancelSerialRight
 
-cancelSerialRight(portId: number): void;
+cancelSerialRight(portId: number): void
 
 移除应用程序运行时访问串口设备的权限。此接口会调用close关闭已打开的串口。
 
@@ -792,10 +847,15 @@ cancelSerialRight(portId: number): void;
 | 14400005 | Database operation exception.                                |
 | 31400001 | Serial port management exception. |
 | 31400002 | Access denied. Call requestSerialRight to request user authorization first. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用cancelSerialRight接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -837,12 +897,12 @@ try {
 
 **系统能力：**  SystemCapability.USB.USBManager.Serial
 
-| 名称       | 类型     | 必填 | 说明        |
-|----------|--------|----|-----------|
-| baudrate | number | 是  | 串口波特率。  |
-| dataBits | number | 否  | 串口数据位。  |
-| parity   | number | 否  | 串口奇偶校验。 |
-| stopBits | number | 否  | 串口停止位。  |
+| 名称       |          类型        |  只读   |  可选 | 说明        |
+|----------|--------|----------|-----------|----------------------|
+| baudRate | [BaudRates](#baudrates) |   否   | 否  | 串口波特率。  |
+| dataBits | [DataBits](#databits)   |   否   | 是  | 串口数据位，默认值为8位。  |
+| parity   | [Parity](#parity)       |   否   | 是  | 串口奇偶校验，默认值为None，无奇偶校验。 |
+| stopBits | [StopBits](#stopbits)   |   否   | 是  | 串口停止位，默认值为1位。  |
 
 ## SerialPort
 
@@ -850,10 +910,10 @@ try {
 
 **系统能力：**  SystemCapability.USB.USBManager.Serial
 
-| 名称     | 类型     | 必填 | 说明    |
-|--------|--------|----|-------|
-| portId | number | 是  | 端口号。 |
-| deviceName   | string | 是  | 串口设备名称。 |
+| 名称     | 类型  |  只读 | 可选 | 说明    |
+|--------|--------|------|-------|--------|
+| portId | number | 否  |  否 | 端口号。 |
+| deviceName | string | 否  |  否 | 串口设备名称。 |
 
 ## BaudRates
 
@@ -930,5 +990,4 @@ try {
 | 名称     | 值     | 说明    |
 |-----------|-----------|-----------|
 | STOPBIT_1 | 0 | 报文的有效停止位宽为1比特 |
-| STOPBIT_1P5 | 1 | 报文的有效停止位宽为1.5比特 |
-| STOPBIT_2 | 2 | 报文的有效停止位宽为2比特 |
+| STOPBIT_2 | 1 | 报文的有效停止位宽为2比特 |

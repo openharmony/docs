@@ -12,12 +12,12 @@
 
 ## 接口说明
 
-以下是系统字体相关的常用接口和结构体，详细接口说明请参考[Drawing](../reference/apis-arkgraphics2d/_drawing.md)。
+以下是系统字体相关的常用接口和结构体，详细接口说明请参考[Drawing](../reference/apis-arkgraphics2d/capi-drawing.md)。
 
 | 接口名 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_FontConfigInfo\* OH_Drawing_GetSystemFontConfigInfo(OH_Drawing_FontConfigInfoErrorCode\*) | 获取系统字体配置信息，返回系统字体配置信息结构体OH_Drawing_FontConfigInfo。 | 
-| void OH_Drawing_DestroySystemFontConfigInfo(OH_Drawing_FontConfigInfo\*) | 释放系统字体配置信息占用的的内存。 | 
+| void OH_Drawing_DestroySystemFontConfigInfo(OH_Drawing_FontConfigInfo\*) | 释放系统字体配置信息占用的内存。 | 
 | OH_Drawing_FontCollection\* OH_Drawing_CreateSharedFontCollection(void) | 创建可共享的字体集对象OH_Drawing_FontCollection。 | 
 | OH_Drawing_TextStyle\* OH_Drawing_CreateTextStyle(void) | 创建指向OH_Drawing_TextStyle对象的指针，用于设置文本样式。 | 
 | OH_Drawing_SetTextStyleFontFamilies (OH_Drawing_TextStyle \*, int, const char \*fontFamilies[]) | 设置指定文本样式的字体家族类型。 | 
@@ -41,7 +41,7 @@
    #include <hilog/log.h>
    ```
 
-2. 获取系统字体的配置信息，可以通过返回的状态码确定获取信息是否成功，状态码的包含的具体情况和对应含义可见[OH_Drawing_FontConfigInfoErrorCode](../reference/apis-arkgraphics2d/_drawing.md#oh_drawing_fontconfiginfoerrorcode)。
+2. 获取系统字体的配置信息，可以通过返回的状态码确定获取信息是否成功，状态码的包含的具体情况和对应含义可见[OH_Drawing_FontConfigInfoErrorCode](../reference/apis-arkgraphics2d/capi-drawing-text-typography-h.md#oh_drawing_fontconfiginfoerrorcode)。
 
    ```c++
    OH_Drawing_FontConfigInfoErrorCode fontConfigInfoErrorCode;  // 用于接收错误代码
@@ -51,7 +51,7 @@
    }
    ```
 
-3. 系统字体的配置信息[OH_Drawing_FontConfigInfo](../reference/apis-arkgraphics2d/_o_h___drawing___font_config_info.md)包含以下几类信息：
+3. 系统字体的配置信息[OH_Drawing_FontConfigInfo](../reference/apis-arkgraphics2d/capi-oh-drawing-fontconfiginfo.md)包含以下几类信息：
 
    - 系统字体文件路径数量。
 
@@ -61,9 +61,9 @@
 
    - 系统字体文件路径列表。
 
-   - 通用字体集列表，具体信息可见[OH_Drawing_FontGenericInfo](../reference/apis-arkgraphics2d/_o_h___drawing___font_generic_info.md)结构体。
+   - 通用字体集列表，具体信息可见[OH_Drawing_FontGenericInfo](../reference/apis-arkgraphics2d/capi-oh-drawing-fontgenericinfo.md)结构体。
 
-   - 备用字体集列表，具体信息可见[OH_Drawing_FontFallbackGroup](../reference/apis-arkgraphics2d/_o_h___drawing___font_fallback_group.md)结构体。
+   - 备用字体集列表，具体信息可见[OH_Drawing_FontFallbackGroup](../reference/apis-arkgraphics2d/capi-oh-drawing-fontfallbackgroup.md)结构体。
 
    以下示例展示系统字体的一些具体配置信息的获取：
 
@@ -92,10 +92,10 @@
 
    ![zh-cn_image_0000002211603636](figures/zh-cn_image_0000002211603636.png)
 
-4. 如若后续不再需要系统字体的系统配置信息时，则释放其占用的的内存。
+4. 如若后续不再需要系统字体的系统配置信息时，则释放其占用的内存。
 
    ```c++
-   OH_Drawing_DestroySystemFontConfigInfo(fontConfigInfo );
+   OH_Drawing_DestroySystemFontConfigInfo(fontConfigInfo);
    ```
 
 
@@ -173,7 +173,7 @@
 >
 > 禁用系统字体后，请确保注册使用自定义字体，否则文本将无法正常显示。
 
-1. 确保已成功注册自定义字体，用于保证禁用系统字体后文本的正常显示，具体可见[自定义字体的的注册和使用](custom-font-c.md)。
+1. 确保已成功注册自定义字体，用于保证禁用系统字体后文本的正常显示，具体可见[自定义字体的注册和使用](custom-font-c.md)。
 
 2. 导入依赖的相关头文件。
 

@@ -1,8 +1,6 @@
 # Encryption and Decryption with an SM4 Symmetric Key (GCM Mode) (C/C++)
 
-
 For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-decrypt-spec.md#sm4).
-
 
 ## Adding the Dynamic Library in the CMake Script
 ```txt
@@ -10,7 +8,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
 **Encryption**
-
 
 1. Call [OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create) and [OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_generate) to generate a 128-bit SM4 symmetric key (**OH_CryptoSymKey**).
    
@@ -27,7 +24,7 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
    Currently, the amount of data to be passed in by a single **OH_CryptoSymCipher_Update()** is not limited. You can determine how to pass in data based on the data volume.
 
    - If a small amount of data is to be encrypted, you can use **OH_CryptoSymCipher_Final()** immediately after **OH_CryptoSymCipher_Init()**.
-   - If a large amount of data is to be encrypted, you can call **OH_CryptoSymCipher_Update()** multiple times to pass in the data by segment.
+   - If a large amount of data is to be encrypted, you can call **OH_CryptoSymCipher_Update()** multiple times to [pass in the data by segment](crypto-sm4-sym-encrypt-decrypt-gcm-by-segment-ndk.md).
 
 6. Call [OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final) to generate the ciphertext.
    - If data has been passed in by **OH_CryptoSymCipher_Update()**, pass in **null** in the **data** parameter of **OH_CryptoSymCipher_Final**.
@@ -36,7 +33,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 7. Call [OH_CryptoSymCipherParams_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_create) to create a **Params** instance, and call [OH_CryptoSymCipherParams_SetParam](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_setparam) to set **authTag** as the authentication information for decryption. In GCM mode, extract the last 16 bytes from the encrypted data as the authentication information for initializing the **Cipher** instance in decryption. In the example, **authTag** is of 16 bytes.
 
 8. Call [OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_destroy), [OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_destroy), and [OH_CryptoSymCipherParams_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_destroy) to destroy the instances created.
-
 
 **Decryption**
 
@@ -47,7 +43,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 3. Call [OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update) to update the data (ciphertext) to be decrypted.
 
 4. Call [OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final) to generate the plaintext.
-
 
 **Example**
 
@@ -105,7 +100,7 @@ static OH_Crypto_ErrCode doTestSm4Gcm()
         goto end;
     }
 
-    // Encrypt data.
+    // Encrypt the message.
     ret = OH_CryptoSymCipher_Create("SM4_128|GCM|PKCS7", &encCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -123,7 +118,7 @@ static OH_Crypto_ErrCode doTestSm4Gcm()
         goto end;
     }
 
-    // Decrypt data.
+    // Decrypt the message.
     ret = OH_CryptoSymCipher_Create("SM4_128|GCM|PKCS7", &decCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -141,7 +136,7 @@ static OH_Crypto_ErrCode doTestSm4Gcm()
         goto end;
     }
 
-    // Release resources.
+    // Release the resources.
 end:
     OH_CryptoSymCipherParams_Destroy(params);
     OH_CryptoSymCipher_Destroy(encCtx);

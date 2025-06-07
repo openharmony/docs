@@ -24,8 +24,7 @@ FFRT串行队列基于协程调度模型实现，提供高效的消息队列功�
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include "ffrt/queue.h"
-#include "ffrt/task.h"
+#include "ffrt/ffrt.h"
 
 typedef struct {
     FILE *logFile;          // 日志文件指针
@@ -110,7 +109,7 @@ void logger_log(logger_t *logger, const char *message)
         return;
     }
 
-    ffrt_queue_submit(logger->queue, ffrt_create_function_wrapper(write_task, NULL, messageCopy), NULL);
+    ffrt_queue_submit_f(logger->queue, write_task, messageCopy, NULL);
 }
 
 int main()
@@ -136,58 +135,20 @@ int main()
 }
 ```
 
-C风格构建FFRT任务需要一些额外的封装，封装方式为公共代码，与具体业务场景无关，使用方可以考虑用公共机制封装管理。
-
-```c
-typedef struct {
-    ffrt_function_header_t header;
-    ffrt_function_t func;
-    ffrt_function_t after_func;
-    void* arg;
-} c_function_t;
-
-static inline void ffrt_exec_function_wrapper(void* t)
-{
-    c_function_t* f = (c_function_t *)t;
-    if (f->func) {
-        f->func(f->arg);
-    }
-}
-
-static inline void ffrt_destroy_function_wrapper(void* t)
-{
-    c_function_t* f = (c_function_t *)t;
-    if (f->after_func) {
-        f->after_func(f->arg);
-    }
-}
-
-#define FFRT_STATIC_ASSERT(cond, msg) int x(int static_assertion_##msg[(cond) ? 1 : -1])
-static inline ffrt_function_header_t *ffrt_create_function_wrapper(const ffrt_function_t func,
-    const ffrt_function_t after_func, void *arg)
-{
-    FFRT_STATIC_ASSERT(sizeof(c_function_t) <= ffrt_auto_managed_function_storage_size,
-        size_of_function_must_be_less_than_ffrt_auto_managed_function_storage_size);
-
-    c_function_t* f = (c_function_t *)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_queue);
-    f->header.exec = ffrt_exec_function_wrapper;
-    f->header.destroy = ffrt_destroy_function_wrapper;
-    f->func = func;
-    f->after_func = after_func;
-    f->arg = arg;
-    return (ffrt_function_header_t *)f;
-}
-```
-
 ## 接口说明
 
 上述样例中涉及到主要的FFRT的接口包括：
 
-| 名称                                                             | 描述                           |
-| ---------------------------------------------------------------- | ------------------------------ |
-| [ffrt_queue_create](ffrt-api-guideline-c.md#ffrt_queue_create)   | 创建队列。                     |
-| [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_destroy) | 销毁队列。                     |
-| [ffrt_queue_submit](ffrt-api-guideline-c.md#ffrt_queue_submit)   | 提交一个任务到队列中调度执行。 |
+| 名称                                                               | 描述                 |
+| ------------------------------------------------------------------ | -------------------- |
+| [ffrt_queue_create](ffrt-api-guideline-c.md#ffrt_queue_create)     | 创建队列。           |
+| [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_destroy)   | 销毁队列。           |
+| [ffrt_queue_submit_f](ffrt-api-guideline-c.md#ffrt_queue_submit_f) | 向队列提交一个任务。 |
+
+> **说明：**
+>
+> - 如何使用FFRT C++ API详见：[FFRT C++接口三方库使用指导](ffrt-development-guideline.md#using-ffrt-c-api-1)。
+> - 使用FFRT C接口或C++接口时，都可以通过FFRT C++接口三方库简化头文件包含，即使用`#include "ffrt/ffrt.h"`头文件包含语句。
 
 ## 约束限制
 

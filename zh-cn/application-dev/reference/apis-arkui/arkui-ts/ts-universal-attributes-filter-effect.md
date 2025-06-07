@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## visualEffect
 
@@ -22,6 +22,12 @@ visualEffect(effect: VisualEffect): T
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
 | effect | [VisualEffect](../../apis-arkgraphics2d/js-apis-uiEffect.md#visualeffect) | 是   | 非滤镜视觉效果。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## backgroundFilter
 
 backgroundFilter(filter: Filter): T
@@ -37,6 +43,12 @@ backgroundFilter(filter: Filter): T
 | 参数名 | 类型                                                         | 必填 | 说明                                                 |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
 | filter | [Filter](../../apis-arkgraphics2d/js-apis-uiEffect.md#filter) | 是   | 背景滤镜视觉效果。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## foregroundFilter
 
@@ -54,6 +66,12 @@ foregroundFilter(filter: Filter): T
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
 | filter | [Filter](../../apis-arkgraphics2d/js-apis-uiEffect.md#filter) | 是   | 前景滤镜（内容）视觉效果。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## compositingFilter
 
 compositingFilter(filter: Filter): T
@@ -70,6 +88,11 @@ compositingFilter(filter: Filter): T
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
 | filter | [Filter](../../apis-arkgraphics2d/js-apis-uiEffect.md#filter) | 是   | 合成滤镜视觉效果。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## 示例
 
@@ -82,9 +105,9 @@ import { uiEffect } from '@kit.ArkGraphics2D';
 @Entry
 @Component
 struct FilterEffectExample {
-  @State filterTest1: uiEffect.Filter = uiEffect.createFilter().blur(10)
-  @State filterTest2: uiEffect.Filter = uiEffect.createFilter().blur(10)
-  @State filterTest3: uiEffect.Filter = uiEffect.createFilter().blur(10)
+  @State filterTest1: uiEffect.Filter = uiEffect.createFilter().blur(10);
+  @State filterTest2: uiEffect.Filter = uiEffect.createFilter().blur(10);
+  @State filterTest3: uiEffect.Filter = uiEffect.createFilter().blur(10);
 
   build() {
     Column({ space: 15 }) {

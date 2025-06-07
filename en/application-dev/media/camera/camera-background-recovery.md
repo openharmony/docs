@@ -1,4 +1,4 @@
-# Sample for Camera Recovery from the Background (ArkTS)
+# Practices for Camera Recovery from the Background (ArkTS)
 
 This sample demonstrates the complete process for transitioning a camera application from the background to the foreground, providing you with a clear understanding of the entire sequence of API calls.
 

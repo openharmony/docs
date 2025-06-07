@@ -69,7 +69,7 @@ Contacts Kit可以帮助开发者轻松实现联系人的增删改查等功能�
   import { common, abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
   import { contact } from '@kit.ContactsKit';
 
-  let context = getContext(this) as common.UIAbilityContext;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   const permissions: Array<Permissions> = ['ohos.permission.WRITE_CONTACTS'];
 
   abilityAccessCtrl.createAtManager().requestPermissionsFromUser(context, permissions).then(() => {
@@ -108,7 +108,7 @@ Contacts Kit可以帮助开发者轻松实现联系人的增删改查等功能�
   @Component
   struct Contact {
     addContactByPermissions() {
-      let context = getContext(this) as common.UIAbilityContext;
+      let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
       const permissions: Array<Permissions> = ['ohos.permission.WRITE_CONTACTS'];
       const contactInfo: contact.Contact = {
         name: { fullName: '王小明' },

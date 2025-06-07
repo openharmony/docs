@@ -11,7 +11,7 @@ Character rules vary greatly in different languages, and it is usually difficult
 
 Character attributes are used to determine the character type, for example, digit, letter, or space, and check whether a character is of the right-to-left (RTL) language or whether a character is an ideographic character (for example, Chinese, Japanese, or Korean).
 
-These functions are implemented by APIs of the **Unicode** class. For example, you can use [isDigit](../reference/apis-localization-kit/js-apis-i18n.md#isdigit9) to check whether a character is a digit. The development procedure is as follows:
+You can implement these functions by using APIs of the Unicode class. For example, you can use [isDigit](../reference/apis-localization-kit/js-apis-i18n.md#isdigit9) to check whether a character is a digit. The development procedure is as follows:
 
 1. Import the **i18n** module.
 
@@ -25,7 +25,7 @@ These functions are implemented by APIs of the **Unicode** class. For example, y
    let isDigit: boolean = i18n.Unicode.isDigit(char: string);
    ```
 
-3. Obtain the character type. The following code snippet uses the common type as an example. For details, see the **getType** API reference.
+3. Obtain the character type. The following code snippet uses the common type as an example.
 
    ```ts
    let unicodeType: string = i18n.Unicode.getType(char: string);
@@ -52,20 +52,20 @@ let unicodeType: string = i18n.Unicode.getType('a'); // unicodeType = 'U_LOWERCA
 
 ### Transliteration
 
-Transliteration means to use content with similar pronunciation in the local language to replace the original content. This function is implemented through the [transform](../reference/apis-localization-kit/js-apis-i18n.md#transform9) API of the **Transliterator** class. The development procedure is as follows:
+Transliteration refers to the process of converting text represented by one writing system or alphabet into text represented by another writing system or alphabet with the same pronunciation. It is distinct from translation. You can implement this function by using the [transform](../reference/apis-localization-kit/js-apis-i18n.md#transform9) API of the **Transliterator** class. The development procedure is as follows:
 
 > **NOTE**
-> This module supports the transliteration from Chinese characters to pinyin. However, it does not guaranteed that polyphonic characters are effectively processed based on the context.
+> This module enables the conversion of Chinese characters into pinyin. Nevertheless, when the Chinese text includes polyphonic characters, there may be instances where some of these characters fail to be converted into pinyin with the accurate pronunciation.
 
 1. Import the **i18n** module.
    ```ts
    import { i18n } from '@kit.LocalizationKit';
    ```
 
-2. Create a **Transliterator** object to obtain the transliteration list.
+2. Obtain the list of available transliterator IDs, and create a **Transliterator** object.
    ```ts
-   let ids: string[] = i18n.Transliterator.getAvailableIDs(); // Obtain the list of IDs supported by the Transliterator object.
-   let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance(id: string); // Pass in a valid ID to create a Transliterator object.
+   let ids: string[] = i18n.Transliterator.getAvailableIDs(); // Obtain the list of available transliterator IDs.
+   let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance(id: string); // Pass in a valid transliterator ID to create a Transliterator object.
    ```
 
 3. Transliterate text.
@@ -93,21 +93,21 @@ let nameTransliterator: i18n.Transliterator = i18n.Transliterator.getInstance('H
 translatedText = nameTransliterator.transform('单老师'); // translatedText = 'shàn lǎo shī'
 translatedText = nameTransliterator.transform('长孙无忌'); // translatedText = 'zhǎng sūn wú jì'
 
-// Obtain the list of IDs supported by the Transliterator object.
+// Obtain the list of available transliterator IDs.
 let ids: string[] = i18n.Transliterator.getAvailableIDs(); // ids = ['ASCII-Latin', 'Accents-Any', ...]
 ```
 
 
-### Character Normalization
+### Text Normalization
 
-Character normalization means to the standardize characters according to the specified paradigm. This function is implemented through the [normalize](../reference/apis-localization-kit/js-apis-i18n.md#normalize10) API of the **Normalizer** class. The development procedure is as follows:
+Text normalization means to the normalize text according to the specified paradigm. You can implement this function by using the [normalize](../reference/apis-localization-kit/js-apis-i18n.md#normalize10) API of the **Normalizer** class. The development procedure is as follows:
 
 1. Import the **i18n** module.
    ```ts
    import { i18n } from '@kit.LocalizationKit';
    ```
 
-2. Create a **Normalizer** object. Pass in the text normalization paradigm to create a **Normalizer** object. The text normalization paradigm can be NFC, NFD, NFKC, or NFKD. For details, see [Unicode Normalization Forms](https://www.unicode.org/reports/tr15/#Norm_Forms).
+2. Create a **Normalizer** object based on the specified text normalization mode. The text normalization mode can be NFC, NFD, NFKC, or NFKD. For details, see [Unicode Normalization Forms](https://www.unicode.org/reports/tr15/#Norm_Forms).
    ```ts
    let normalizer: i18n.Normalizer = i18n.Normalizer.getInstance(mode: NormalizerMode);
    ```
@@ -122,23 +122,22 @@ Character normalization means to the standardize characters according to the spe
 // Import the i18n module.
 import { i18n } from '@kit.LocalizationKit';
 
-// Normalize characters in the NFC form.
+// Normalize the text in NFC mode.
 let normalizer: i18n.Normalizer = i18n.Normalizer.getInstance(i18n.NormalizerMode.NFC);
 let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalizedText = 'ẛ̣'
 ```
 
 
-### Line Wrapping
+### Line Break Point Acquisition
 
-Line wrapping means to obtain the text break position based on the specified text boundary and wrap the line. It is implemented by using the APIs of the [BreakIterator](../reference/apis-localization-kit/js-apis-i18n.md#breakiterator8) class. The development procedure is as follows:
+You can use APIs of the [BreakIterator](../reference/apis-localization-kit/js-apis-i18n.md#breakiterator8) class to obtain line break points of the text for the specified locale. The development procedure is as follows:
 
 1. Import the **i18n** module.
    ```ts
    import { i18n } from '@kit.LocalizationKit';
    ```
 
-2. Create a **BreakIterator** object.
-   Pass a valid locale to create a **BreakIterator** object. This object wraps lines based on the rules specified by the locale.
+2. Create a **BreakIterator** object to obtain line break points of the text for the specified locale. The object calculates the line break points in the text according to the rules of the specified locale.
 
    ```ts
    let iterator: i18n.BreakIterator = i18n.getLineInstance(locale: string);
@@ -150,12 +149,12 @@ Line wrapping means to obtain the text break position based on the specified tex
    let breakText: string = iterator.getLineBreakText(); // View the text being processed by the BreakIterator object.
    ```
 
-4. Obtain the break positions of the text.
+4. Obtain the position of a line break point.
    ```ts
-   let currentPos: number = iterator.current(); // Obtain the position of BreakIterator in the text.
-   let firstPos: number = iterator.first(); // Set the position of BreakIterator as the first break point and return the position of the break point. The first break point is always at the beginning of the text, that is firstPos = 0.
-   let nextPos: number = iterator.next(index?: number); // Move BreakIterator by the specified number of break points. If the number is a positive number, the iterator is moved backward. If the number is a negative number, the iterator is moved forward. The default value is 1. nextPos indicates the position after moving. If BreakIterator is moved out of the text length range, -1 is returned.
-   let isBoundary: boolean = iterator.isBoundary(offset: number); // Check whether the position indicated by the specified number is a break point.
+   let currentPos: number = iterator.current(); // Obtain the position of the BreakIterator object in the text.
+   let firstPos: number = iterator.first(); // If the first line break point is specified, its position will be returned. It is always at the beginning of the text, that is, firstPos = 0.
+   let nextPos: number = iterator.next(index?: number); // Move the BreakIterator object by the specified number of line break points. If the number is a positive number, the object is moved backward. If the number is a negative number, the object is moved forward. The default value is 1. nextPos indicates the position after movement. If BreakIterator is moved out of the text length range, -1 is returned.
+   let isBoundary: boolean = iterator.isBoundary(offset: number); // Check whether the offset position is a line break point.
    ```
 
 
@@ -164,35 +163,35 @@ Line wrapping means to obtain the text break position based on the specified tex
 // Import the i18n module.
 import { i18n } from '@kit.LocalizationKit';
 
-// Create a BreakIterator object.
+// Create a BreakIterator object to obtain line break points.
 let iterator: i18n.BreakIterator  = i18n.getLineInstance('en-GB');
 
 // Set the text to be processed.
 iterator.setLineBreakText('Apple is my favorite fruit.');
 
-// Move BreakIterator to the beginning of the text.
+// Move the BreakIterator object to the beginning of the text.
 let firstPos: number = iterator.first(); // firstPos = 0
 
-// Move BreakIterator by several break points.
+// Move the BreakIterator object backward by two line break points.
 let nextPos: number = iterator.next(2); // nextPos = 9
 
-// Check whether a position is a break point.
+// Check whether a certain position is a line break point.
 let isBoundary: boolean = iterator.isBoundary(9); // isBoundary = true
 
 // Obtain the text processed by BreakIterator.
 let breakText: string = iterator.getLineBreakText(); // breakText = 'Apple is my favorite fruit.'
 ```
 
-### Performs file path mirroring.
+### File Path Mirroring
 
-File path mirroring means to localize the input file paths. This function is implemented through the [getUnicodeWrappedFilePath](../reference/apis-localization-kit/js-apis-i18n.md#getunicodewrappedfilepath18) API of the **I18NUtil** class. The development procedure is as follows:
+File path mirroring means to localize file paths for an RTL language, so as to achieve file path mirroring effect in that language. You can implement this function by using the [getUnicodeWrappedFilePath](../reference/apis-localization-kit/js-apis-i18n.md#getunicodewrappedfilepath18) API of the **I18NUtil** class. The development procedure is as follows:
 
 1. Import the **i18n** module.
    ```ts
    import { i18n, intl } from '@kit.LocalizationKit';
    ```
 
-2. Call the file path mirroring API.
+2. Perform file path mirroring.
    ```ts
    let mirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl.Locale);
    ```

@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## foregroundEffect
 
@@ -57,6 +57,6 @@ struct Index {
 ```
 
 效果图如下：
-radius表示模糊半径，数值越大越模糊。
+radius表示模糊半径，数值越大，效果越模糊。
 
 ![foregroundColor_circle](figures/foregroundEffect.jpg)

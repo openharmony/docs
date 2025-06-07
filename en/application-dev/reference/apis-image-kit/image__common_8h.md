@@ -5,6 +5,10 @@
 
 The **image_common.h** file declares the common enums and structs used by the image interface.
 
+**Library**: libimage_common.so
+
+**File to include**: &lt;multimedia/image_framework/image/image_common.h&gt;
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Since**: 12

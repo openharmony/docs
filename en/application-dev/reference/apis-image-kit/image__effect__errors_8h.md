@@ -7,6 +7,8 @@ The **image_effect_errors.h** file declares the error codes used by the image ef
 
 **Library**: libimage_effect.so
 
+**File to include**: &lt;multimedia/image_effect/image_effect_errors.h&gt;
+
 **System capability**: SystemCapability.Multimedia.ImageEffect.Core
 
 **Since**: 12

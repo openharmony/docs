@@ -1,4 +1,5 @@
 # Context
+<!--deprecated_code_no_check-->
 
 The **Context** module provides context for abilities or applications. It allows access to application-specific resources, as well as permission requests and verification.
 

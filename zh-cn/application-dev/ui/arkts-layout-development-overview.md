@@ -18,7 +18,7 @@
 
 布局通常为分层结构，一个常见的页面结构如下所示：
 
-  **图1** 常见页面结构图  
+  **图1** 常见页面结构图
 
 ![common-page-structure](figures/common-page-structure.png)
 
@@ -27,9 +27,9 @@
 
 ## 布局元素的组成
 
-布局相关的容器组件可形成对应的布局效果。例如，List组件可构成线性布局。
+布局相关的容器组件可形成对应的布局效果。
 
-  **图2** 布局元素组成图  
+  **图2** 布局元素组成图
 
 ![layout-element-omposition](figures/layout-element-omposition.png)
 

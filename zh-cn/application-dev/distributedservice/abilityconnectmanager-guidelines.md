@@ -104,13 +104,13 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| createAbilityConnectionSession(serverId:&nbsp;string,&nbsp;context:&nbsp;Context,&nbsp;peerInfo:&nbsp;peerInfo,&nbsp;connectOpt:&nbsp;ConnectOption):&nbsp;number; | 创建应用间的会话。 |
+| createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Context,&nbsp;peerInfo:&nbsp;PeerInfo,&nbsp;connectOptions:&nbsp;ConnectOptions):&nbsp;number; | 创建应用间的会话。 |
 | destroyAbilityConnectionSession(sessionId:&nbsp;number):&nbsp;void; | 销毁应用间的会话。 |
 | connect(sessionId:&nbsp;number):&nbsp;Promise&lt;ConnectResult&gt;; | source侧进行ability的连接。 |
 | acceptConnect(sessionId:&nbsp;number,&nbsp;token:&nbsp;string):&nbsp;Promise&lt;void&gt;; | sink侧进行ability的连接。 |
 | disconnect(sessionId:&nbsp;number):&nbsp;void; | 断开ability的连接。 |
-| on(type:&nbsp;'connect'&nbsp;\| &nbsp;'disconnect'&nbsp;\| &nbsp;'receiveMessage'&nbsp;\| &nbsp;'receiveData'&nbsp;\| &nbsp;'receiveImage',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void | 监听<!--Del-->connect/disconnect/receiveMessage/receiveData/receiveImage<!--DelEnd-->事件。 |
-| off(type:&nbsp;'connect'&nbsp;\| &nbsp;'disconnect'&nbsp;\| &nbsp;'receiveMessage'&nbsp;\| &nbsp;'receiveData'&nbsp;\| &nbsp;'receiveImage',&nbsp;'connect',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void | 取消<!--Del-->connect/disconnect/receiveMessage/receiveData/receiveImage<!--DelEnd-->事件的监听。 |
+| on(type:&nbsp;'connect'&nbsp;\| &nbsp;'disconnect'&nbsp;\| &nbsp;'receiveMessage'&nbsp;\| &nbsp;'receiveData',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void | 监听<!--Del-->connect/disconnect/receiveMessage/receiveData<!--DelEnd-->事件。 |
+| off(type:&nbsp;'connect'&nbsp;\| &nbsp;'disconnect'&nbsp;\| &nbsp;'receiveMessage'&nbsp;\| &nbsp;'receiveData',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void | 取消<!--Del-->connect/disconnect/receiveMessage/receiveData<!--DelEnd-->事件的监听。 |
 | sendMessage(sessionId:&nbsp;number,&nbsp;msg:&nbsp;string):&nbsp;Promise&lt;void&gt;; | 发送文本信息。 |
 |<!--DelRow--> sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;void&gt;; | 发送字节流（仅支持系统应用调用）。 |
 |<!--DelRow--> sendImage(sessionId:&nbsp;number,&nbsp;image:&nbsp;image.PixelMap):&nbsp;Promise&lt;void&gt;; | 发送图片（仅支持系统应用调用）。 |
@@ -182,7 +182,7 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
     bundleName: 'com.example.remotephotodemo',
     moduleName: 'entry',
     abilityName: 'EntryAbility',
-    serverId: 'collabTest'
+    serviceName: 'collabTest'
   };
   const myRecord: Record<string, string> = {
     "newKey1": "value1",
@@ -192,16 +192,14 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
     'ohos.collabrate.key.start.option': 'ohos.collabrate.value.foreground',
   };
   // 定义连接选项
-  const connectOption: abilityConnectionManager.ConnectOption = {
-    needSendBigData: true,
-    needSendStream: false,
-    needReceiveStream: true,
-    options: options,
+  const connectOptions: abilityConnectionManager.ConnectOptions = {
+    needSendData: true,
+    startOptions: abilityConnectionManager.StartOptionParams.START_IN_FOREGROUND,
     parameters: myRecord
   };
-  let context = getContext(this) as common.UIAbilityContext;
+  let context = this.getUIContext().getHostContext();
   try {
-    this.sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", context, peerInfo, connectOption);
+    this.sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", context, peerInfo, connectOptions);
     hilog.info(0x0000, 'testTag', 'createSession sessionId is', this.sessionId);
 
     abilityConnectionManager.connect(this.sessionId).then((ConnectResult) => {
@@ -232,7 +230,7 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
       hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     }
 
-    onCollaborate(wantParam: Record<string, Object>): AbilityConstant.OnCollaborateResult {
+    onCollaborate(wantParam: Record<string, Object>): AbilityConstant.CollaborateResult {
       hilog.info(0x0000, 'testTag', '%{public}s', 'on collaborate');
       let param = wantParam["ohos.extra.param.key.supportCollaborateIndex"] as Record<string, Object>
       this.onCollab(param);
@@ -260,7 +258,7 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
         return sessionId;
       }
  
-      const options = collabParam["ConnectOption"] as abilityConnectionManager.ConnectOption;
+      const options = collabParam["ConnectOptions"] as abilityConnectionManager.ConnectOptions;
       options.needSendBigData = true;
       options.needSendStream = true;
       options.needReceiveStream = false;

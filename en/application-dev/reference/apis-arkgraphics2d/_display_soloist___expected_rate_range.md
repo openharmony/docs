@@ -9,6 +9,7 @@ The DisplaySoloist_ExpectedRateRange struct describes the expected frame rate ra
 
 **Related module**: [NativeDisplaySoloist](_native_display_soloist.md)
 
+**Header file**: [native_display_soloist.h](native__display__soloist_8h.md)
 
 ## Summary
 

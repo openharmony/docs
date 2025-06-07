@@ -16,7 +16,7 @@ import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 onCreate(want: Want): void
 
-初始化扩展能力,会在系统首次连接打印扩展时调用。
+初始化扩展能力，会在系统首次连接打印扩展时调用。
 
 **系统能力：** SystemCapability.Print.PrintFramework
 

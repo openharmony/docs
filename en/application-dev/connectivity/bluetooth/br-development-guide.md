@@ -1,11 +1,14 @@
-# Bluetooth Setting Development
+# Bluetooth Setting
 
 ## Introduction
+
 This topic walks you through on how to implement basic Bluetooth settings, including enabling and disabling Bluetooth and obtaining Bluetooth status.
 
 ## When to Use
-You can use the APIs provided by the **access** module to enable and disable Bluetooth.
 
+You can use the APIs provided by the **access** module to:
+
+- Enable and disable Bluetooth.
 
 ## Available APIs
 
@@ -27,9 +30,10 @@ The following table describes the related APIs.
 ### Enabling and Disabling Bluetooth
 1. Import the **access** module.
 2. Check that the SystemCapability.Communication.Bluetooth.Core capability is available.
-3. Enable Bluetooth.
-4. Disable Bluetooth.
-Example:
+3. Apply for the **ohos.permission.ACCESS_BLUETOOTH** permission.
+4. Enables Bluetooth.
+5. Disables Bluetooth.
+6. Example:
 
     ```ts
     import { access } from '@kit.ConnectivityKit';
@@ -108,7 +112,6 @@ Example:
     })
     ```
 
-For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
-**Verification**
-1. Execute the code for enabling Bluetooth.<br>If "bluetooth statues: STATE_ON" is logged, Bluetooth is enabled. 
-2. Execute the code for disabling Bluetooth.<br>If "bluetooth statues: STATE_OFF" is logged, Bluetooth is disabled.
+6. For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
+7. Verification:
+Execute the code for enabling Bluetooth.<br>If "bluetooth statues: STATE_ON" is logged, Bluetooth is enabled. Execute the code for disabling Bluetooth.<br>If "bluetooth statues: STATE_OFF" is logged, Bluetooth is disabled.

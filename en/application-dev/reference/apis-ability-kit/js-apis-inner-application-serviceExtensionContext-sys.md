@@ -38,9 +38,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbility
 
-startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
+startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
-Starts an ability. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
+Starts an ability. This API can be called only by the main thread. It uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -51,7 +51,7 @@ Starts an ability. This API uses an asynchronous callback to return the result. 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability, such as the ability name and bundle name.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -84,7 +84,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -120,9 +119,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbility
 
-startAbility(want: Want, options?: StartOptions): Promise\<void>;
+startAbility(want: Want, options?: StartOptions): Promise\<void>
 
-Starts an ability. This API uses a promise to return the result. It can be called only by the main thread.
+Starts an ability. This API can be called only by the main thread. It uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -139,7 +138,7 @@ Starts an ability. This API uses a promise to return the result. It can be calle
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -172,7 +171,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -213,7 +211,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
-Starts an ability with the start options specified. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
+Starts an ability. This API can be called only by the main thread. It uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -225,7 +223,7 @@ Starts an ability with the start options specified. This API uses an asynchronou
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -258,7 +256,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -298,9 +295,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityWithAccount
 
-startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
+startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void
 
-Starts an ability with the account ID specified. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
+Starts an ability with the account ID specified. This API can be called only by the main thread. It uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -318,7 +315,7 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated).|
-| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -352,7 +349,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -390,9 +386,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityWithAccount
 
-startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void;
+startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void
 
-Starts an ability with the account ID and start options specified. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
+Starts an ability with the account ID and start options specified This API can be called only by the main thread. It uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -411,7 +407,7 @@ Starts an ability with the account ID and start options specified. This API uses
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated).|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
-| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -445,7 +441,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -487,9 +482,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityWithAccount
 
-startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void>;
+startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void>
 
-Starts an ability with the account ID specified. This API uses a promise to return the result. It can be called only by the main thread.
+Starts an ability with the account ID specified. This API can be called only by the main thread. It uses a promise to return the result.
 
 > **NOTE**
 >
@@ -513,7 +508,7 @@ Starts an ability with the account ID specified. This API uses a promise to retu
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -547,7 +542,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -588,9 +582,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startServiceExtensionAbility
 
-startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
+startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
-Starts a new ServiceExtensionAbility. This API uses an asynchronous callback to return the result.
+Starts a ServiceExtensionAbility. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -601,7 +595,7 @@ Starts a new ServiceExtensionAbility. This API uses an asynchronous callback to 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes| Callback used to return the result. If the ServiceExtensionAbility is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -659,7 +653,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startServiceExtensionAbility
 
-startServiceExtensionAbility(want: Want): Promise\<void>;
+startServiceExtensionAbility(want: Want): Promise\<void>
 
 Starts a new ServiceExtensionAbility. This API uses a promise to return the result.
 
@@ -677,7 +671,7 @@ Starts a new ServiceExtensionAbility. This API uses a promise to return the resu
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -735,9 +729,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startServiceExtensionAbilityWithAccount
 
-startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
+startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void
 
-Starts a new ServiceExtensionAbility with the account ID specified. This API uses an asynchronous callback to return the result.
+Starts a ServiceExtensionAbility with the account ID specified. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > 
@@ -756,7 +750,7 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated).|
-| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes| Callback used to return the result. If the ServiceExtensionAbility is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -815,7 +809,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startServiceExtensionAbilityWithAccount
 
-startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>;
+startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>
 
 Starts a new ServiceExtensionAbility with the account ID specified. This API uses a promise to return the result.
 
@@ -841,7 +835,7 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -900,9 +894,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityAsCaller<sup>10+<sup>
 
-startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
+startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
-Starts an ability with the caller information specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
+Starts an ability with the caller information specified. The caller information is carried in **Want** and identified at the system service layer. The ability can obtain the caller information from the **Want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **Want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API can be called only by the main thread. It uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -950,7 +944,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -980,9 +973,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityAsCaller<sup>10+<sup>
 
-startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void;
+startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void
 
-Starts an ability with the caller information and start options specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
+Starts an ability with the caller information and start options specified. The caller information is carried in **Want** and identified at the system service layer. The ability can obtain the caller information from the **Want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **Want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API can be called only by the main thread. It uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -1029,7 +1022,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -1063,9 +1055,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityAsCaller<sup>10+<sup>
 
-startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
+startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 
-Starts an ability with the caller information specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses a promise to return the result. It can be called only by the main thread.
+Starts an ability with the caller information specified. The caller information is carried in **Want** and identified at the system service layer. The ability can obtain the caller information from the **Want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **Want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API can be called only by the main thread. It uses a promise to return the result.
 
 > **NOTE**
 >
@@ -1119,7 +1111,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -1154,7 +1145,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.stopServiceExtensionAbility
 
-stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
+stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
 Stops a ServiceExtensionAbility in the same application. This API uses an asynchronous callback to return the result.
 
@@ -1167,7 +1158,7 @@ Stops a ServiceExtensionAbility in the same application. This API uses an asynch
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes| Callback used to return the result. If the ServiceExtensionAbility is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1221,7 +1212,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.stopServiceExtensionAbility
 
-stopServiceExtensionAbility(want: Want): Promise\<void>;
+stopServiceExtensionAbility(want: Want): Promise\<void>
 
 Stops a ServiceExtensionAbility in the same application. This API uses a promise to return the result.
 
@@ -1239,7 +1230,7 @@ Stops a ServiceExtensionAbility in the same application. This API uses a promise
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -1293,7 +1284,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.stopServiceExtensionAbilityWithAccount
 
-stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
+stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void
 
 Stops a ServiceExtensionAbility in the same application with the account ID specified. This API uses an asynchronous callback to return the result.
 
@@ -1313,7 +1304,7 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated).|
-| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes| Callback used to return the result. If the ServiceExtensionAbility is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1368,7 +1359,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.stopServiceExtensionAbilityWithAccount
 
-stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>;
+stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>
 
 Stops a ServiceExtensionAbility in the same application with the account ID specified. This API uses a promise to return the result.
 
@@ -1393,7 +1384,7 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -1448,9 +1439,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.terminateSelf
 
-terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
+terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
-Terminates this ability. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
+Terminates this ability. This API can be called only by the main thread. It uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1460,7 +1451,7 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is terminated, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1499,9 +1490,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.terminateSelf
 
-terminateSelf(): Promise&lt;void&gt;;
+terminateSelf(): Promise&lt;void&gt;
 
-Terminates this ability. This API uses a promise to return the result. It can be called only by the main thread.
+Terminates this ability. This API can be called only by the main thread. It uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1511,7 +1502,7 @@ Terminates this ability. This API uses a promise to return the result. It can be
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -1547,7 +1538,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.connectServiceExtensionAbility
 
-connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
+connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 Connects this ability to a ServiceExtensionAbility. It can be called only by the main thread.
 
@@ -1632,7 +1623,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.connectServiceExtensionAbilityWithAccount
 
-connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number;
+connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number
 
 Connects this ability to a ServiceExtensionAbility of a given account. It can be called only by the main thread.
 
@@ -1726,9 +1717,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.disconnectServiceExtensionAbility
 
-disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void;
+disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void
 
-Disconnects this ability from a ServiceExtensionAbility and after the successful disconnection, sets the remote object returned upon the connection to void. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
+Disconnects this ability from a ServiceExtensionAbility and after the successful disconnection, sets the remote object returned upon the connection to void. This API can be called only by the main thread. It uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1739,7 +1730,7 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | connection | number | Yes| Number returned after **connectServiceExtensionAbility** is called.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is disconnected, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1786,9 +1777,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.disconnectServiceExtensionAbility
 
-disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
+disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
-Disconnects this ability from a ServiceExtensionAbility and after the successful disconnection, sets the remote object returned upon the connection to void. This API uses a promise to return the result. It can be called only by the main thread.
+Disconnects this ability from a ServiceExtensionAbility and after the successful disconnection, sets the remote object returned upon the connection to void. This API can be called only by the main thread. It uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1804,7 +1795,7 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -1852,9 +1843,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityByCall
 
-startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
+startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
-Starts an ability in the foreground or background and obtains the caller object for communicating with the ability. It can be called only by the main thread.
+Starts an ability in the foreground or background and obtains the caller object for communicating with the ability. It can be called only by the main thread. This API uses a promise to return the result.
 
 This API cannot be used to start the UIAbility with the launch type set to [specified](../../application-models/uiability-launch-type.md#specified).
 
@@ -1975,9 +1966,9 @@ class EntryAbility extends ServiceExtensionAbility {
 ```
 ## ServiceExtensionContext.startRecentAbility
 
-startRecentAbility(want: Want, callback: AsyncCallback\<void>): void;
+startRecentAbility(want: Want, callback: AsyncCallback\<void>): void
 
-Starts an ability. If the ability has multiple instances, the latest instance is started. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
+Starts an ability. If the ability has multiple instances, the latest instance is started. This API can be called only by the main thread. It uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -1992,7 +1983,7 @@ Starts an ability. If the ability has multiple instances, the latest instance is
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2014,7 +2005,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -2051,10 +2041,11 @@ class EntryAbility extends ServiceExtensionAbility {
 ```
 ## ServiceExtensionContext.startRecentAbility
 
-startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void;
+startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void
 
-Starts an ability with the start options specified. If the ability has multiple instances, the latest instance is started. This API uses an asynchronous callback to return the result.
-You can use this API to carry start options. It can be called only by the main thread.
+Starts an ability. If the ability has multiple instances, the latest instance is started. This API can be called only by the main thread. It uses an asynchronous callback to return the result.
+
+You can use this API to carry start options.
 
 > **NOTE**
 >
@@ -2070,7 +2061,7 @@ You can use this API to carry start options. It can be called only by the main t
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2092,7 +2083,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -2133,10 +2123,9 @@ class EntryAbility extends ServiceExtensionAbility {
 ```
 ## ServiceExtensionContext.startRecentAbility
 
-startRecentAbility(want: Want, options?: StartOptions): Promise\<void>;
+startRecentAbility(want: Want, options?: StartOptions): Promise\<void>
 
-Starts an ability. If the ability has multiple instances, the latest instance is started.
-This API uses a promise to return the result. It can be called only by the main thread.
+Starts an ability. If the ability has multiple instances, the latest instance is started. This API uses a promise to return the result. It can be called only by the main thread.
 
 > **NOTE**
 >
@@ -2173,7 +2162,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -2214,9 +2202,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityByCallWithAccount<sup>10+</sup>
 
-startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;;
+startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;
 
-Starts an ability with the account ID specified and obtains the caller object for communicating with the ability. It can be called only by the main thread.
+Starts an ability with the account ID specified and obtains the caller object for communicating with the ability. This API can be called only by the main thread. It uses a promise to return the result.
 
 This API cannot be used to start the UIAbility with the launch type set to [specified](../../application-models/uiability-launch-type.md#specified).
 
@@ -2311,7 +2299,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 requestModalUIExtension(pickerWant: Want): Promise\<void>
 
-Requests the specified foreground application to start the UIExtensionAbility of the corresponding type. The foreground application is specified by **bundleName** in **want.parameters**. If **bundleName** is left unspecified, or if the application specified by **bundleName** is not running in the foreground or does not exist, the UIExtensionAbility is directly started on the system UI. The UIExtensionAbility to start is determined by the combination of the **bundleName**, **abilityName**, and **moduleName** fields in **want**, and its type is determined by the **ability.want.params.uiExtensionType** field in **want.parameters**. This API uses a promise to return the result. It can be called only by the main thread.
+Requests the specified foreground application to start the UIExtensionAbility of the corresponding type. The foreground application is specified by **bundleName** in **want.parameters**. If **bundleName** is left unspecified, or if the application specified by **bundleName** is not running in the foreground or does not exist, the UIExtensionAbility is directly started on the system UI. The UIExtensionAbility to start is determined by the combination of the **bundleName**, **abilityName**, and **moduleName** fields in **Want**, and its type is determined by the **ability.want.params.uiExtensionType** field in **want.parameters**. This API can be called only by the main thread. It uses a promise to return the result.
 
 Before starting the UIExtensionAbility, ensure that the foreground application has finished page initialization. Otherwise, the UIExtensionAbility fails to start and the error message "uiContent is nullptr" is displayed. The application can determine the time to start the UIExtensionAbility by listening for the page loading status. After the page initialization is successful, the key log information "UIContentImpl: focus again" is recorded.
 
@@ -2388,7 +2376,7 @@ class ServiceExtension extends ServiceExtensionAbility {
 
 requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
-Requests the specified foreground application to start the UIExtensionAbility of the corresponding type. The foreground application is specified by **bundleName** in **want.parameters**. If **bundleName** is left unspecified, or if the application specified by **bundleName** is not running in the foreground or does not exist, the UIExtensionAbility is directly started on the system UI. The UIExtensionAbility to start is determined by the combination of the **bundleName**, **abilityName**, and **moduleName** fields in **want**, and its type is determined by the **ability.want.params.uiExtensionType** field in **want.parameters**. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
+Requests the specified foreground application to start the UIExtensionAbility of the corresponding type. The foreground application is specified by **bundleName** in **want.parameters**. If **bundleName** is left unspecified, or if the application specified by **bundleName** is not running in the foreground or does not exist, the UIExtensionAbility is directly started on the system UI. The UIExtensionAbility to start is determined by the combination of the **bundleName**, **abilityName**, and **moduleName** fields in **Want**, and its type is determined by the **ability.want.params.uiExtensionType** field in **want.parameters**. This API can be called only by the main thread. It uses an asynchronous callback to return the result.
 
 Before starting the UIExtensionAbility, ensure that the foreground application has finished page initialization. Otherwise, the UIExtensionAbility fails to start and the error message "uiContent is nullptr" is displayed. The application can determine the time to start the UIExtensionAbility by listening for the page loading status. After the page initialization is successful, the key log information "UIContentImpl: focus again" is recorded.
 
@@ -2459,7 +2447,7 @@ class ServiceExtension extends ServiceExtensionAbility {
 ## ServiceExtensionContext.openLink<sup>12+<sup>
 openLink(link:string, options?: OpenLinkOptions): Promise&lt;void&gt;
 
-Starts a UIAbility through App Linking. This API uses a promise to return the result. It can be called only by the main thread.
+Starts a UIAbility through App Linking. This API can be called only by the main thread. It uses a promise to return the result.
 
 A URL in the standard format is passed in to the **link** field to start the target UIAbility based on the implicit Want matching rules. The target UIAbility must have the following filter characteristics to process links of App Linking:
 - The **actions** field contains **ohos.want.action.viewData**.
@@ -2511,7 +2499,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000013 | The application is controlled by EDM.       |
 | 16000019 | No matching ability is found. |
 | 16200001 | The caller has been released. |
-| 16000082 | The UIAbility is being started. |
 
 **Example**
 
@@ -2556,6 +2543,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
 ```
 
 ## ServiceExtensionContext.preStartMission<sup>12+<sup>
+
 preStartMission(bundleName:string, moduleName: string, abilitName: string, startTime: string): Promise&lt;void&gt;
 
 Starts an atomic service and pre-opens the window, with the loading box skipped. This API uses a promise to return the result.
@@ -2576,7 +2564,6 @@ If parameter verification is successful but the atomic service fails to start, y
 | moduleName | string | Yes| Module name of the atomic service.|
 | abilityName | string | Yes| Ability name of the atomic service.|
 | startTime | string | Yes| Start time to open the atomic service, in milliseconds.|
-
 
 **Return value**
 
@@ -2637,6 +2624,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
 ```
 
 ## ServiceExtensionContext.startUIServiceExtensionAbility<sup>14+<sup>
+
 startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 
 Starts a new [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md). This API uses a promise to return the result.
@@ -2652,7 +2640,7 @@ Starts a new [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionA
 **Parameters**
 | Name| Type| Read Only| Optional| Description                |
 | ------ | ---- | ---- | -------------------- | -------------------- |
-| want   | [Want](js-apis-app-ability-want.md) | Yes | No| [Want](js-apis-app-ability-want.md) used to pass the information about the ability to start, such as the ability name and bundle name.|
+| want   | [Want](js-apis-app-ability-want.md) | Yes | No| Want information about the target ability, such as the ability name and bundle name.|
 
 **Return value**
 

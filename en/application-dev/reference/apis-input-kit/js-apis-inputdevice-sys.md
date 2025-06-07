@@ -1,7 +1,7 @@
 # @ohos.multimodalInput.inputDevice (Input Device) (System API)
 
 
-The **inputDevice** module allows you to listen for hot swap events of input devices and query information about input devices.
+The **inputDevice** module implements input device management functions such as querying input device information.
 
 
 > **NOTE**
@@ -40,6 +40,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 202 | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
@@ -48,13 +49,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   inputDevice.setKeyboardRepeatDelay(350, (error: Error) => {
     if (error) {
-      console.log(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set keyboard repeat delay success`);
   });
 } catch (error) {
-  console.log(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -76,9 +77,9 @@ Sets the keyboard repeat delay. This API uses a promise to return the result.
 
 **Return value**
 
-| Parameters                 | Description              |
+| Type                 | Description              |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | A promise that returns no value.|
 
 **Error codes**
 
@@ -86,6 +87,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 202 | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
@@ -96,7 +98,7 @@ try {
     console.log(`Set keyboard repeat delay success`);
   });
 } catch (error) {
-  console.log(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -114,7 +116,7 @@ Obtains the keyboard repeat delay. This API uses an asynchronous callback to ret
 
 | Name    | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| callback   | AsyncCallback&lt;number&gt;                    | Yes   | Callback used to return the result.|
+| callback   | AsyncCallback&lt;number&gt;                    | Yes   | Callback used to return the keyboard repeat delay.|
 
 **Error codes**
 
@@ -122,7 +124,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message            |
 | ---- | --------------------- |
-| 202  | SystemAPI permission error |
+| 202  | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
@@ -131,13 +133,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   inputDevice.getKeyboardRepeatDelay((error: Error, delay: Number) => {
     if (error) {
-      console.log(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Get keyboard repeat delay success`);
   });
 } catch (error) {
-  console.log(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -153,9 +155,9 @@ Obtains the keyboard repeat delay. This API uses a promise to return the result.
 
 **Return value**
 
-| Parameters                   | Description                 |
+| Type                   | Description                 |
 | --------------------- | ------------------- |
-| Promise&lt;number&gt; | Promise used to return the result.|
+| Promise&lt;number&gt; | Promise used to return the keyboard repeat delay.|
 
 **Error codes**
 
@@ -163,7 +165,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message            |
 | ---- | --------------------- |
-| 202  | SystemAPI permission error |
+| 202  | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
@@ -174,7 +176,7 @@ try {
     console.log(`Get keyboard repeat delay success`);
   });
 } catch (error) {
-  console.log(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -201,7 +203,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message            |
 | ---- | --------------------- |
-| 202  | SystemAPI permission error |
+| 202  | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
@@ -210,13 +212,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   inputDevice.setKeyboardRepeatRate(60, (error: Error) => {
     if (error) {
-      console.log(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set keyboard repeat rate success`);
   });
 } catch (error) {
-  console.log(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -238,9 +240,9 @@ Sets the keyboard repeat rate. This API uses a promise to return the result.
 
 **Return value**
 
-| Parameters                 | Description              |
+| Type                 | Description              |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | A promise that returns no value.|
 
 **Error codes**
 
@@ -248,7 +250,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message            |
 | ---- | --------------------- |
-| 202  | SystemAPI permission error |
+| 202  | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
@@ -259,7 +261,7 @@ try {
     console.log(`Set keyboard repeat rate success`);
   });
 } catch (error) {
-  console.log(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -277,7 +279,7 @@ Obtains the keyboard repeat rate. This API uses an asynchronous callback to retu
 
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the keyboard repeat rate.|
 
 **Error codes**
 
@@ -285,7 +287,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message            |
 | ---- | --------------------- |
-| 202  | SystemAPI permission error |
+| 202  | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
@@ -294,13 +296,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   inputDevice.getKeyboardRepeatRate((error: Error, rate: Number) => {
     if (error) {
-      console.log(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Get keyboard repeat rate success`);
   });
 } catch (error) {
-  console.log(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -316,9 +318,9 @@ Obtains the keyboard repeat rate. This API uses a promise to return the result.
 
 **Return value**
 
-| Parameters                   | Description                 |
+| Type                   | Description                 |
 | --------------------- | ------------------- |
-| Promise&lt;number&gt; | Promise used to return the result.|
+| Promise&lt;number&gt; | Promise used to return the keyboard repeat rate.|
 
 **Error codes**
 
@@ -326,7 +328,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message            |
 | ---- | --------------------- |
-| 202  | SystemAPI permission error |
+| 202  | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
@@ -337,7 +339,7 @@ try {
     console.log(`Get keyboard repeat rate success`);
   });
 } catch (error) {
-  console.log(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -358,7 +360,7 @@ Sets the input switch status of an input device. Take the touchscreen as an exam
 | Name  | Type   | Mandatory| Description                     |
 | -------- | ------- | ---- | ------------------------- |
 | deviceId | number  | Yes  | Device ID.             |
-| enabled  | boolean | Yes  | Whether to enable input switch of the input device. The value true indicates that the input switch is enabled, and the value **false** indicates the opposite.|
+| enabled  | boolean | Yes  | Switch status of the input device. The value **true** indicates that the input device is enabled, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -380,6 +382,6 @@ try {
     console.info(`Set input device enable success`);
   });
 } catch (error) {
-    console.info(`Set input device enable error`);
+    console.error(`Set input device enable error`);
 }
 ```

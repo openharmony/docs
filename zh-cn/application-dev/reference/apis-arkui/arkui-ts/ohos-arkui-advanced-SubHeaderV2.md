@@ -3,19 +3,21 @@
 
 子标题，用于列表项顶部，将该组列表划分为一个区块，子标题名称用来概括该区块内容。也可以用于内容项顶部，子标题名称用来概括该区块内容。
 
-该组件基于[状态管理V2](../../../quick-start/arkts-state-management-overview.md#状态管理v2)实现，相较于[状态管理V1](../../../quick-start/arkts-state-management-overview.md#状态管理v1)，状态管理V2增强了对数据对象的深度观察与管理能力，不再局限于组件层级。借助状态管理V2，开发者可以通过该组件更灵活地控制子标题的数据和状态，实现更高效的用户界面刷新。
+该组件基于[状态管理V2](../../../ui/state-management/arkts-state-management-overview.md#状态管理v2)实现，相较于[状态管理V1](../../../ui/state-management/arkts-state-management-overview.md#状态管理v1)，状态管理V2增强了对数据对象的深度观察与管理能力，不再局限于组件层级。借助状态管理V2，开发者可以通过该组件更灵活地控制子标题的数据和状态，实现更高效的用户界面刷新。
 
 
 
 > **说明：**
 >
 > - 该组件从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 
+> - 该组件不支持在Wearable设备上使用。
 
 
 ## 导入模块
 
 ```ts
-import { SubHeader } from '@kit.ArkUI'
+import { SubHeader } from '@kit.ArkUI';
 ```
 
 
@@ -134,7 +136,7 @@ select内容以及事件。
 | -------- |------------------------------------------------------------------| -------- | -------- |---------------------------------------------------------------------------|
 | options | [SelectOption](ts-basic-components-select.md#selectoption对象说明)[] | 是 | @Trace | 下拉选项内容。                                                                   |
 | selectedIndex | number                                                           | 否 |@Trace | 设置下拉菜单初始选项的索引。<br />第一项的索引为0。<br />当不设置selected属性时，<br />默认选择值为-1，菜单项不选中。 |
-| selectedContent | string                                                           | 否 | @Trace | 设置下拉按钮本身的文本内容。默认值''                                                       |
+| selectedContent | [ResourceStr](ts-types.md#resourcestr)                         | 否 | @Trace | 设置下拉按钮本身的文本内容。默认值'' 。从API version 20开始，支持Resource类型。                             |
 | onSelect | [SubHeaderV2SelectOnSelect](#subheaderv2selectonselect)                                   | 否 | @Trace | 下拉菜单选中某一项的回调。 <br />默认值：undefined                                               |
 | defaultFocus | boolean | 否 | @Trace |下拉按钮是否为默认焦点。<br/>true：下拉按钮是默认焦点。<br/>false：下拉按钮不是默认焦点。<br />默认值：false                                  |
 
@@ -166,7 +168,7 @@ select内容以及事件构造函数。
 | -------- |------------------------------------------------------------------| -------- |---------------------------------------------------------------------------| 
 | options | [SelectOption](ts-basic-components-select.md#selectoption对象说明)[] | 是 | 下拉选项内容。                                                                   |
 | selectedIndex | number                                                           | 否 | 设置下拉菜单初始选项的索引。<br />第一项的索引为0。<br />当不设置selected属性时，<br />默认选择值为-1，菜单项不选中。 |
-| selectedContent | string                                                           | 否 | 设置下拉按钮本身的文本内容。默认值''。                                                      |
+| selectedContent | [ResourceStr](ts-types.md#resourcestr)                                                           | 否 | 设置下拉按钮本身的文本内容。默认值''。从API version 20开始，支持Resource类型。                                                      |
 | onSelect | [SubHeaderV2SelectOnSelect](#subheaderv2selectonselect)          | 否 | 下拉菜单选中某一项的回调。<br />默认值：undefined                                                |
 | defaultFocus | boolean | 否 | 下拉按钮是否为默认焦点。<br/>true：下拉按钮是默认焦点。<br/>false：下拉按钮不是默认焦点。<br />默认值：false                                  |
 
@@ -306,7 +308,7 @@ import {
   SubHeaderV2OperationItem,
   Prompt,
   TextModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -365,7 +367,7 @@ import {
   SubHeaderV2OperationItem,
   Prompt,
   TextModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -416,7 +418,7 @@ import {
   SubHeaderV2Title,
   SubHeaderV2Select,
   Prompt
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -493,7 +495,7 @@ import {
   SubHeaderV2Title,
   Prompt,
   SymbolGlyphModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -537,7 +539,7 @@ import {
   SubHeaderV2Select,
   Prompt,
   SymbolGlyphModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -620,7 +622,7 @@ import {
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
   Prompt
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -678,7 +680,7 @@ import {
   SubHeaderV2Title,
   Prompt,
   TextModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -729,7 +731,7 @@ import {
   SubHeaderV2IconType,
   SubHeaderV2Select,
   Prompt
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -825,7 +827,7 @@ import {
   SubHeaderV2OperationItem,
   Prompt,
   TextModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2

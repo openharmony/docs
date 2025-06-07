@@ -238,7 +238,7 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | [OH_Drawing_RectHeightStyle](#oh_drawing_rectheightstyle-1) {<br>RECT_HEIGHT_STYLE_TIGHT, RECT_HEIGHT_STYLE_MAX, RECT_HEIGHT_STYLE_INCLUDELINESPACEMIDDLE, RECT_HEIGHT_STYLE_INCLUDELINESPACETOP,<br>RECT_HEIGHT_STYLE_INCLUDELINESPACEBOTTOM, RECT_HEIGHT_STYLE_STRUCT<br>} | Enumerates the rectangle height styles.|
 | [OH_Drawing_RectWidthStyle](#oh_drawing_rectwidthstyle-1) { RECT_WIDTH_STYLE_TIGHT, RECT_WIDTH_STYLE_MAX } | Enumerates the rectangle width styles.|
 | [OH_Drawing_FontConfigInfoErrorCode](#oh_drawing_fontconfiginfoerrorcode) {<br>SUCCESS_FONT_CONFIG_INFO = 0, ERROR_FONT_CONFIG_INFO_UNKNOWN = 1, ERROR_FONT_CONFIG_INFO_PARSE_FILE = 2, ERROR_FONT_CONFIG_INFO_ALLOC_MEMORY = 3,<br>ERROR_FONT_CONFIG_INFO_COPY_STRING_DATA = 4<br>} | Enumerates the error codes that may be used during the obtaining of system font configurations.|
-| [OH_Drawing_FontWidth](#oh_drawing_fontwidth) {<br>ULTRA_CONDENSED_WIDTH = 1, EXTRA_CONDENSED_WIDTH = 2, CONDENSED_WIDTH = 3, SEMI_CONDENSED_WIDTH = 4,<br>NORMAL_WIDTH = 5, SEMI_EXPANDED_WIDTH = 6, EXPANDED_WIDTH = 7, EXTRA_EXPANDED_WIDTH = 8,<br>ULTRA_EXPANDED_WIDTH = 9<br>} | Enumerates the font widths.|
+| [OH_Drawing_FontWidth](#oh_drawing_fontwidth) {<br>FONT_WIDTH_ULTRA_CONDENSED = 1, FONT_WIDTH_EXTRA_CONDENSED = 2, FONT_WIDTH_CONDENSED = 3, FONT_WIDTH_SEMI_CONDENSED = 4,<br>FONT_WIDTH_NORMAL = 5, FONT_WIDTH_SEMI_EXPANDED = 6, FONT_WIDTH_EXPANDED = 7, FONT_WIDTH_EXTRA_EXPANDED = 8,<br>FONT_WIDTH_ULTRA_EXPANDED = 9<br>} | Enumerates the font widths. |
 | [OH_Drawing_TextHeightBehavior](#oh_drawing_textheightbehavior) { TEXT_HEIGHT_ALL = 0x0, TEXT_HEIGHT_DISABLE_FIRST_ASCENT = 0x1, TEXT_HEIGHT_DISABLE_LAST_ASCENT = 0x2, TEXT_HEIGHT_DISABLE_ALL = 0x1 \| 0x2 } | Enumerates the text height modifier patterns.|
 | [OH_Drawing_TextStyleType](#oh_drawing_textstyletype) {<br>TEXT_STYLE_NONE, TEXT_STYLE_ALL_ATTRIBUTES, TEXT_STYLE_FONT, TEXT_STYLE_FOREGROUND,<br>TEXT_STYLE_BACKGROUND, TEXT_STYLE_SHADOW, TEXT_STYLE_DECORATIONS, TEXT_STYLE_LETTER_SPACING,<br>TEXT_STYLE_WORD_SPACING<br>} | Enumerates the text style types.|
 | [OH_Drawing_ColorFormat](#oh_drawing_colorformat-1) {<br>COLOR_FORMAT_UNKNOWN, COLOR_FORMAT_ALPHA_8, COLOR_FORMAT_RGB_565, COLOR_FORMAT_ARGB_4444,<br>COLOR_FORMAT_RGBA_8888, COLOR_FORMAT_BGRA_8888<br>} | Enumerates the storage formats of bitmap pixels.|
@@ -663,7 +663,7 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | void [OH_Drawing_DestroyTypography](#oh_drawing_destroytypography) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | Destroys an **OH_Drawing_Typography** object and reclaims the memory occupied by the object.|
 | void [OH_Drawing_TypographyLayout](#oh_drawing_typographylayout) ([OH_Drawing_Typography](#oh_drawing_typography) \*, double) | Lays out the typography.|
 | void [OH_Drawing_TypographyPaint](#oh_drawing_typographypaint) ([OH_Drawing_Typography](#oh_drawing_typography) \*, [OH_Drawing_Canvas](#oh_drawing_canvas) \*, double, double) | Draws text from the upper left corner at a specified position. This function must be called after [OH_Drawing_TypographyLayout](#oh_drawing_typographylayout) is called and applied.|
-| void [OH_Drawing_TypographyPaintOnPath](#oh_drawing_typographypaintonpath) ([OH_Drawing_Typography](#oh_drawing_typography) \*, [OH_Drawing_Canvas](#oh_drawing_canvas) \*, [OH_Drawing_Path](#oh_drawing_path) \*, double, double) | Draws text along a path.|
+| void [OH_Drawing_TypographyPaintOnPath](#oh_drawing_typographypaintonpath) ([OH_Drawing_Typography](#oh_drawing_typography) \* typography, [OH_Drawing_Canvas](#oh_drawing_canvas) \* canvas, [OH_Drawing_Path](#oh_drawing_path) \* path, double hOffset, double vOffset) | Draws text along a path. To prevent text overlap caused by the text width exceeding the layout width, you are advised to use [OH_Drawing_SetTypographyTextMaxLines](#oh_drawing_settypographytextmaxlines) to limit the text to a single line. |
 | double [OH_Drawing_TypographyGetMaxWidth](#oh_drawing_typographygetmaxwidth) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | Obtains the typography width set by the user. This function must be called after [OH_Drawing_TypographyLayout](#oh_drawing_typographylayout) is called.|
 | double [OH_Drawing_TypographyGetHeight](#oh_drawing_typographygetheight) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | Obtains the overall height of a typography object. This function must be called after [OH_Drawing_TypographyLayout](#oh_drawing_typographylayout) is called.|
 | double [OH_Drawing_TypographyGetLongestLine](#oh_drawing_typographygetlongestline) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | Obtains the width of the longest line in a typography object. This function must be called after [OH_Drawing_TypographyLayout](#oh_drawing_typographylayout) is called. You are advised to round up the return value. If the text content is empty, **0.0** is returned.|
@@ -745,7 +745,7 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | [OH_Drawing_TextShadow](#oh_drawing_textshadow) \* [OH_Drawing_TextStyleGetShadowWithIndex](#oh_drawing_textstylegetshadowwithindex) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | Obtains a shadow with a given index in a text shadow container.|
 | void [OH_Drawing_TypographySetIndents](#oh_drawing_typographysetindents) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int, const float indents[]) | Sets indents for typography. If this function is not called, texts will have no indentation applied.|
 | float [OH_Drawing_TypographyGetIndentsWithIndex](#oh_drawing_typographygetindentswithindex) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int) | Obtains indents with a given index in a typography object. The line index starts from 0.|
-| [OH_Drawing_Range](#oh_drawing_range) \* [OH_Drawing_TypographyGetLineTextRange](#oh_drawing_typographygetlinetextrange) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int, bool) | Obtains the line bounds in a typography object. This function must be called after [OH_Drawing_TypographyLayout](#oh_drawing_typographylayout) is called. This function can only be used to obtain the bounds of existing lines. That is, the line index must start from 0, and the maximum index is [OH_Drawing_TypographyGetLineCount](#oh_drawing_typographygetlinecount) - 1.|
+| [OH_Drawing_Range](#oh_drawing_range) \* [OH_Drawing_TypographyGetLineTextRange](#oh_drawing_typographygetlinetextrange) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int, bool) | Obtains the line bounds in a typography object. This function must be called after [OH_Drawing_TypographyLayout](#oh_drawing_typographylayout) is called. This function can only be used to obtain the bounds of existing lines. That is, the line index must start from 0, and the maximum index is [OH_Drawing_TypographyGetLineCount](#oh_drawing_typographygetlinecount) - 1. If the line index is invalid, **start** and **end** in the result value are both **0**.|
 | void [OH_Drawing_DestroyTextShadows](#oh_drawing_destroytextshadows) ([OH_Drawing_TextShadow](#oh_drawing_textshadow) \*) | Reclaims the memory occupied by the vector consisting of the **OH_Drawing_TextShadow** objects.|
 | [OH_Drawing_FontConfigInfo](_o_h___drawing___font_config_info.md) \* [OH_Drawing_GetSystemFontConfigInfo](#oh_drawing_getsystemfontconfiginfo) ([OH_Drawing_FontConfigInfoErrorCode](#oh_drawing_fontconfiginfoerrorcode) \*) | Obtains the system font configuration.|
 | void [OH_Drawing_DestroySystemFontConfigInfo](#oh_drawing_destroysystemfontconfiginfo) ([OH_Drawing_FontConfigInfo](_o_h___drawing___font_config_info.md) \*) | Reclaims the memory occupied by the system font configuration.|
@@ -1573,6 +1573,8 @@ typedef struct OH_Drawing_GpuContextOptions OH_Drawing_GpuContextOptions
 Defines a struct for the options about the GPU context.
 
 **Since**: 12
+
+**Deprecated**: from API version 18
 
 
 ### OH_Drawing_Image
@@ -2726,6 +2728,17 @@ Enumerates the font widths.
 
 **Since**: 12
 
+| Value| Description|
+| -------- | -------- |
+| 1 | Ultra condensed font.|
+| 2 | Extra condensed font.|
+| 3 | Condensed font.|
+| 4 | Semi-condensed font.|
+| 5 | Normal font.|
+| 6 | Semi-expanded font.|
+| 7 | Expanded font.|
+| 8 | Extra expanded font.|
+| 9 | Ultra expanded font.|
 
 ### OH_Drawing_MipmapMode
 
@@ -4777,7 +4790,7 @@ Obtains an array of glyphs within the specified range of a run.
 | Name| Description|
 | -------- | -------- |
 | run | Pointer to an **OH_Drawing_Run** object.|
-| start | Start position of the run. If a negative number is passed, a null pointer is returned.|
+| start | Start position in the run. If a negative number is passed, a null pointer is returned.|
 | length | Length of the range in the run. If the length is 0, all character indices of the run are obtained. If the length is less than 0, a null pointer is returned.|
 
 **Returns**
@@ -5494,16 +5507,18 @@ Returns one of the following result codes:
 - **OH_DRAWING_ERROR_INVALID_PARAMETER** if at least one of the parameters **font**, **str**, or **textWidth** is NULL, or the length of **str** is **0**.
 
 
- 
+
 ### OH_Drawing_TypographyPaintOnPath()
 
 ```
-void OH_Drawing_TypographyPaintOnPath (OH_Drawing_Typography* , OH_Drawing_Canvas* , OH_Drawing_Path* , double , double  )
+void OH_Drawing_TypographyPaintOnPath (OH_Drawing_Typography* typography, OH_Drawing_Canvas* canvas, OH_Drawing_Path* path, double hOffset, double vOffset)
 ```
 
 **Description**
 
 Draws text along a path.
+
+To prevent text overlap caused by the text width exceeding the layout width, you are advised to use [OH_Drawing_SetTypographyTextMaxLines](#oh_drawing_settypographytextmaxlines) to limit the text to a single line.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5513,11 +5528,11 @@ Draws text along a path.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by calling [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
-| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object, which is obtained by calling [OH_Drawing_CanvasCreate](#oh_drawing_canvascreate).|
-| OH_Drawing_Path | Pointer to an **OH_Drawing_Path** object, which is obtained by calling [OH_Drawing_PathCreate](#oh_drawing_pathcreate).|
-| double | Horizontal offset along the path direction. A positive number indicates a position that is ahead along the path from its start point, and a negative number indicates a position that is behind from the start point.|
-| double | Vertical offset along the path direction. A positive number indicates a position on the left side of the path, and a negative number indicates a position on the right side of the path.|
+| typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by calling [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
+| canvas | Pointer to an **OH_Drawing_Canvas** object, which is obtained by calling [OH_Drawing_CanvasCreate](#oh_drawing_canvascreate).|
+| path | Pointer to an **OH_Drawing_Path** object, which is obtained by calling [OH_Drawing_PathCreate](#oh_drawing_pathcreate).|
+| hOffset | Horizontal offset of the text along the path (X axis). A positive number indicates that the text is moved forward, and a negative number indicates that the text is moved backward.|
+| vOffset | Vertical offset of the text along the path (Y axis). A positive number indicates that the text is moved downward, and a negative number indicates that the text is moved upward.|
 
 
 ### OH_Drawing_RoundRectOffset()
@@ -7699,7 +7714,6 @@ If any of **OH_Drawing_Bitmap**, **dstInfo**, and **dstPixels** is NULL, **OH_DR
 **Returns**
 
 Returns **true** if the pixels are read; returns **false** otherwise.
-
 
 ### OH_Drawing_BrushCreate()
 
@@ -11193,6 +11207,8 @@ Creates an **OH_Drawing_GpuContext** object that uses OpenGL as the backend inte
 
 **Since**: 12
 
+**Deprecated**: This function is deprecated since API version 18. Use [OH_Drawing_GpuContextCreate](#oh_drawing_gpucontextcreate) instead.
+
 **Parameters**
 
 | Name                         | Description                                                  |
@@ -13074,7 +13090,6 @@ If either **src** or **OH_Drawing_Matrix** is NULL, **OH_DRAWING_ERROR_INVALID_P
 | OH_Drawing_Matrix    | Pointer to an [OH_Drawing_Matrix](#oh_drawing_matrix) object. |
 | dst                  | Pointer to a destination path, which is an [OH_Drawing_Path](#oh_drawing_path) object. |
 | applyPerspectiveClip | Whether to apply perspective cropping to the new path. The value **true** means to apply perspective cropping, and **false** means the opposite. |
-
 
 ### OH_Drawing_PenCreate()
 
@@ -16760,10 +16775,10 @@ Checks whether the font style properties of two text styles are equal.
 
 **Parameters**
 
-| Name          | Description                        |
-| ------------- | ---------------------------------- |
-| style         | Pointer to the first text style.   |
-| comparedStyle | Pointer to the first second style. |
+| Name          | Description                       |
+| ------------- | --------------------------------- |
+| style         | Pointer to the first text style.  |
+| comparedStyle | Pointer to the second text style. |
 
 **Returns**
 
@@ -17391,7 +17406,7 @@ Obtains the line bounds in a typography object. This function must be called aft
 
 **Returns**
 
-Returns the pointer to the [OH_Drawing_Range](#oh_drawing_range) object.
+Returns the pointer to the [OH_Drawing_Range](#oh_drawing_range) object. If the line index is invalid, **start** and **end** in the result value are both **0**.
 
 
 ### OH_Drawing_TypographyGetLineWidth()
@@ -18308,7 +18323,7 @@ Obtains the font families of a text line style.
 | Name                       | Description                                                  |
 | -------------------------- | ------------------------------------------------------------ |
 | OH_Drawing_TypographyStyle | Pointer to an [OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) object, which is obtained by calling [OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle). |
-| num | Pointer to the number of font families. |
+| num                        | Pointer to the number of font families.                      |
 
 **Returns**
 

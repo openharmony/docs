@@ -1,20 +1,17 @@
 # Initiating User Authentication
 
-
 A user authentication is required before an application accesses a critical functionality or sensitive data. This topic walks you through the process.
-
 
 ## Available APIs
 
 For details about the parameters, return values, and error codes, see [User Authentication](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthgetuserauthinstance10).
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
-| getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthInstance | Obtains a **UserAuthInstance** object for user authentication. The unified [user authentication widget](#user-authentication-widget) is also supported.| 
-| on(type: 'result', callback: IAuthCallback): void | Subscribes to the user authentication result.| 
-| off(type: 'result', callback?: IAuthCallback): void | Unsubscribes from the user authentication result.| 
-| start(): void | Starts user authentication.| 
-
+| getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthInstance | Obtains a **UserAuthInstance** object for user authentication. The unified [user authentication widget](#user-authentication-widget) is also supported.|
+| on(type: 'result', callback: IAuthCallback): void | Subscribes to the user authentication result.|
+| off(type: 'result', callback?: IAuthCallback): void | Unsubscribes from the user authentication result.|
+| start(): void | Starts user authentication.|
 
 ## User Authentication Widget
 
@@ -26,15 +23,15 @@ The system provides a unified user authentication widget, which stands out with 
 
 The following figure shows the style of the user authentication widget, which can be set via the [WidgetParam](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#widgetparam10) parameter.
 
-
+<!--RP1-->
 ![](figures/user-authentication-widget.png)
-
+<!--RP1End-->
 
 - ①: Title (**WidgetParam.title**) of the user authentication page, which cannot exceed 500 characters. You can set the title based on actual requirements.
 
-- ②: Text on the navigation button (**WidgetParam.navigationButtonText**), which cannot exceed 60 characters. This parameter can be set only for a single fingerprint or facial authentication.
-   
-  If biometric authentication fails, the authentication widget button is displayed. You can click this button to apply custom authentication.
+- ②: Text on the navigation button (**WidgetParam.navigationButtonText**), which cannot exceed 60 characters. It can be configured only in single fingerprint or facial authentication scenarios in API versions 10 to 17. Since API version 18, it can also be configured in the combined fingerprint and facial authentication.
+  
+  If biometric authentication fails, a button is displayed. The user can tap the button to switch to custom authentication.
 
 <!--Del-->
 - The following shows the display modes (**WidgetParam.windowMode**) of the user authentication widget.
@@ -60,10 +57,11 @@ The user authentication widget supports the following types of authentication:
 
 - Facial + fingerprint + lock screen password authentication
 
-> **NOTE**
->
-> Currently, the text on the navigation button (**WidgetParam.navigationButtonText**) can be set only for a single fingerprint or facial authentication.
+- Facial authentication + custom navigation button
 
+- Fingerprint authentication + custom navigation button
+
+- Facial authentication + fingerprint authentication + custom navigation button<sup>18+</sup>
 
 ## How to Develop
 
@@ -71,14 +69,13 @@ The user authentication widget supports the following types of authentication:
 
 2. Set [AuthParam](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#authparam10) (including the challenge, [UserAuthType](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthtype8), and [AuthTrustLevel](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#authtrustlevel8)), configure [WidgetParam](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#widgetparam10), and use [getUserAuthInstance](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthgetuserauthinstance10) to obtain a **UserAuthInstance** instance.
 
-3. Use [UserAuthInstance.on](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#on10) to subscribe to the authentication result.
+3. Call [UserAuthInstance.on](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#on10) to subscribe to the authentication result.
 
-4. Use [UserAuthInstance.start](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#start10) to start authentication. The authentication result [UserAuthResult](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthresult10) is returned through [IAuthCallback](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#iauthcallback10).
-   If the authentication is successful, [UserAuthType](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthtype8) and token information (**AuthToken**) are returned.
+4. Call [UserAuthInstance.start](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#start10) to start authentication. The authentication result [UserAuthResult](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthresult10) is returned through [IAuthCallback](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#iauthcallback10). If the authentication is successful, [UserAuthType](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthtype8) and token information (**AuthToken**) are returned.
 
 **Example 1**
 
- Initiate facial authentication and lock screen password authentication with the authentication trust level greater than or equal to ATL3.
+Initiate facial authentication and lock screen password authentication at ATL3 or higher.
 
 ```ts
 // API version 10
@@ -121,7 +118,7 @@ try {
 ```
 **Example 2**
 
-Initiate facial authentication with the authentication trust level greater than or equal to ATL3, and enable the device unlock result to be reused for the same type of authentication within the specified time.
+Initiate facial authentication at ATL3 or higher, and enable the device unlock result to be reused for the same type of authentication within the specified time.
 
 ```ts
 // API version 10
@@ -169,7 +166,7 @@ try {
 ```
 **Example 3**
 
-Initiate facial authentication with the authentication trust level greater than or equal to ATL3, and enable the device unlock result to be reused for any type of authentication within the maximum authentication validity of any application.
+Initiate facial authentication at ATL3 or higher, and enable the device unlock result to be reused for any type of authentication within the maximum authentication validity of any application.
 
 ```ts
 // API version 14
@@ -218,10 +215,10 @@ try {
 
 **Example 4**
 
-Perform user identity authentication in modal application mode.
+Start the user authentication widget in modal application mode.
 
 ```ts
-// API version 16
+// API version 18
 import { BusinessError } from '@kit.BasicServicesKit';
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { userAuth } from '@kit.UserAuthenticationKit';

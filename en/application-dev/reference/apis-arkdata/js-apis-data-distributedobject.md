@@ -1,6 +1,6 @@
 # @ohos.data.distributedDataObject (Distributed Data Object)
 
-The **distributedDataObject** module provides basic data object management, including creating, querying, deleting, modifying, and subscribing to data objects, and distributed data object collaboration for the same application among multiple devices.
+The **distributedDataObject** module provides basic data object management, including creating, querying, deleting, modifying, and subscribing to data objects, and distributed data object collaboration for the same application among multiple devices. Although this module does not parse user data, you are advised not to transfer sensitive personal data or privacy data due to low-level security of storage path.
 
 > **NOTE**
 > 
@@ -58,9 +58,9 @@ class SourceObject {
     isVis: boolean
 
     constructor(name: string, age: number, isVis: boolean) {
-        this.name = name
-        this.age = age
-        this.isVis = isVis
+        this.name = name;
+        this.age = age;
+        this.isVis = isVis;
     }
 }
 
@@ -83,9 +83,9 @@ class SourceObject {
     isVis: boolean
 
     constructor(name: string, age: number, isVis: boolean) {
-        this.name = name
-        this.age = age
-        this.isVis = isVis
+        this.name = name;
+        this.age = age;
+        this.isVis = isVis;
     }
 }
 
@@ -145,7 +145,6 @@ Represents the information about the joint asset in the RDB store to bind. Curre
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-**Parameters**
   | Name      | Type                                                              | Read-Only| Optional| Description                                |
   | ---------- | ------------------------------------------------------------------ | ---- | ---- | ------------------------------------ |
   | storeName  | string                                                             | No  | No  | RDB store to which the target asset (asset to bind) belongs.  |
@@ -204,8 +203,6 @@ setSessionId(callback: AsyncCallback&lt;void&gt;): void
 
 Exits all sessions. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
 **Parameters**
@@ -220,7 +217,6 @@ Exits all sessions. This API uses an asynchronous callback to return the result.
 
   | ID| Error Message|
   | -------- | -------- |
-  | 201      | Permission verification failed. |
   | 401      | Parameter error. Incorrect parameter types. |
   | 15400001 | Failed to create the in-memory database. |
 
@@ -276,13 +272,13 @@ Sets a session ID. This API uses a promise to return the result. For the devices
 g_object.setSessionId(distributedDataObject.genSessionId()).then (()=>{
     console.info("join session.");
     }).catch((error: BusinessError)=>{
-        console.info("error:" + error.code + error.message);
+        console.error("error:" + error.code + error.message);
 });
 // Exit the distributed network.
 g_object.setSessionId().then (()=>{
     console.info("leave all session.");
     }).catch((error: BusinessError)=>{
-        console.info("error:" + error.code + error.message);
+        console.error("error:" + error.code + error.message);
 });
 ```
 

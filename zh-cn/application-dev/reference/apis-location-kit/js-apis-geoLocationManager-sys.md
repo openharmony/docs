@@ -137,7 +137,7 @@ WiFi扫描信息，包含扫描到的WiFi热点的ssid、bssid和rssi等信息�
 | ssid | string | 否 | 否 | WiFi热点的SSID，编码格式为UTF-8。 |
 | bssid | string | 否 | 否 | WiFi热点的BSSID。 |
 | rssi | number | 否 | 否 | WiFi热点的信号强度(dBm)。 |
-| frequency | number | 否 | 否 | WiFi热点的频率。 |
+| frequency | number | 否 | 否 | WiFi热点的频率。单位是赫兹。 |
 | timestamp | number | 否 | 否 | 时间戳。 |
 
 

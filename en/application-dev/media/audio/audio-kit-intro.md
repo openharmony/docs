@@ -26,6 +26,36 @@ Audio Kit provides scenario-specific audio playback and recording APIs to help y
 
    Provides AudioHaptic APIs to implement low-delay synchronous control of audio and haptic streams. When the audio-haptic effect is enabled, users can get rhythmic auditory and haptic feedback while typing or having incoming calls.
 
+## Audio Architecture
+
+You can use the APIs provided by Audio Kit to access the playback, recording, and audio policy management capabilities of the audio system, thereby interacting with the corresponding audio hardware. The audio architecture defines how the system encapsulates and manages audio hardware capabilities, as illustrated in the figure below:
+
+![Audio Architecture](figures/audio-architecture.png)
+
+**Application**
+
+You can use the public APIs provided by Audio Kit and the software and hardware capabilities provided by the audio system to implement playback and recording required by applications.
+
+**NAPI**
+
+NAPI, an interface introduced by Node.js for developing C++ modules, encapsulates the underlying operating system capabilities and provides ArkTS interfaces. NAPI enables mutual access between ArkTS and C/C++ code.
+
+**Native framework**
+
+At the native framework layer, the audio system implements interfaces for playing, recording, volume control, device routing, and audio effect processing, and connects to the audio service through inter-process interfaces.
+
+**Native SystemAility**
+
+The audio_server process hosts the software-implemented audio system functional components, providing rich audio policy management and data processing capabilities. The components connect to the HAL layer through HDIs to utilize audio hardware capabilities.
+
+**HAL**
+
+The HAL provides services through a set of HDIs. Different audio hardware developers implement the HDIs, enabling the audio service to play and record through various types of audio devices.
+
+**Kernel**
+
+The kernel driver interacts with the audio hardware. Depending on the scale of the operating system, multiple kernels can be chosen, such as Linux, LiteOS, and OpenHarmony kernels.
+
 ## Development Description
 
 For every functionality provided by the multimedia subsystem, you will learn multiple implementation modes, each of which corresponds to a specific usage scenario. You will also learn the sub-functionalities in these scenarios. For example, in the **Audio Playback** chapter, you will learn audio concurrency policies, volume management, and output device processing methods. All these will help you develop an application with more comprehensive features.

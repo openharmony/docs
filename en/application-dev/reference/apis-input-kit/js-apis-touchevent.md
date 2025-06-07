@@ -55,16 +55,16 @@ Enumerates touch source types.
 | TOUCH_PAD    | 2 | Touchpad. |
 
 <!--Del-->
-## FixedMode<sup>18+</sup>
+## FixedMode<sup>19+</sup>
 
-Enumerates coordinate fixing modes. This API takes effect only for mobile phones.
+Enumerates coordinate correction modes. This API takes effect only for mobile phones.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name         | Value | Description  |
 | ------------ | ------ | ---- |
 | NONE       |  0 | Normal mode.|
-| ONE_HAND     |  1 | One-handed mode.|
+| AUTO |  1 | One-handed mode.|
 <!--DelEnd-->
 
 ## Touch
@@ -93,8 +93,8 @@ Defines the touch point information.
 | rawX        | number | Yes   | No   | X coordinate of the input device.                         |
 | rawY        | number | Yes   | No   | Y coordinate of the input device.                          |
 | toolType    | [ToolType](#tooltype) | Yes   | No   | Tool type.                               |
-| <!--DelRow-->fixedDisplayX<sup>18+</sup>| number| Yes   | No   | screenX fixing value.<br> **NOTE**: This API takes effect only for mobile phones.           |
-| <!--DelRow-->fixedDisplayY<sup>18+</sup>| number| Yes   | No   | screenY fixing value.<br> This API takes effect only for mobile phones.           |
+| <!--DelRow-->fixedDisplayX<sup>19+</sup>| number| Yes   | No   | **screenX** correction value in one-hand mode.<br> **NOTE**: This API takes effect only for mobile phones.|
+| <!--DelRow-->fixedDisplayY<sup>19+</sup>| number| Yes   | No   | **screenY** correction value in one-hand mode.<br> This API takes effect only for mobile phones.   |
 
 ## TouchEvent
 
@@ -108,4 +108,4 @@ Defines a touch event.
 | touch      | [Touch](#touch)      | Yes   | No   | Current touch point.  |
 | touches    | [Touch](#touch)[]    | Yes   | No   | All touch points.    |
 | sourceType | [SourceType](#sourcetype) | Yes   | No   | Enumerates touch source types.|
-| <!--DelRow-->fixedMode<sup>18+</sup>  | [FixedMode](#fixedmode18)   | Yes   | Yes   | Coordinate fixing mode.<br> This API takes effect only for mobile phones.|
+| <!--DelRow-->fixedMode<sup>19+</sup>  | [FixedMode](#fixedmode19)   | Yes   | Yes   | Coordinate correction mode.<br> This API takes effect only for mobile phones.|

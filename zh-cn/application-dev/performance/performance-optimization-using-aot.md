@@ -16,7 +16,7 @@ ArkTS在运行期间默认情况下会通过解释器执行字节码。字节码
 
 图2 启用AOT编译示意图
 ![](./figures/AOT_2.png)
- 
+
 ## 使用AOT编译
 
 本案例基于业界编程语言Benchmarks Game中提出的模拟N体问题，编写了类木星体轨道计算程序的ArkTS实现。
@@ -31,19 +31,19 @@ ArkTS在运行期间默认情况下会通过解释器执行字节码。字节码
 
 ```ts
 export function computeNBodyByTaskPool(totalTimeSteps: number): void {
-  Logger.info(TAG, "computeNBodyByTaskPool: start executing")
+  Logger.info(TAG, "computeNBodyByTaskPool: start executing");
   let task: taskpool.Task = new taskpool.Task(computeTask, totalTimeSteps);
   try {
-    Logger.info(TAG, 'computeNBodyByTaskPool: start calculating...')
+    Logger.info(TAG, 'computeNBodyByTaskPool: start calculating...');
     // 向taskpool线程池派发子线程任务
     taskpool.execute(task, taskpool.Priority.HIGH).then((res: number) => {
-      Logger.info(TAG, 'computeNBodyByTaskPool: executed successfully, total time costed = ' + res + ' ms.')
-      AppStorage.set<String>('timeCost', 'Total time costed = ' + res + ' ms.')
+      Logger.info(TAG, 'computeNBodyByTaskPool: executed successfully, total time costed = ' + res + ' ms.');
+      AppStorage.set<String>('timeCost', 'Total time costed = ' + res + ' ms.');
     })
   } catch (err) {
-    Logger.error(TAG, 'computeNBodyByTaskPool: execute failed, ' + (err as BusinessError).toString())
+    Logger.error(TAG, 'computeNBodyByTaskPool: execute failed, ' + (err as BusinessError).toString());
   }
-  Logger.info(TAG, 'computeNBodyByTaskPool: finish executing')
+  Logger.info(TAG, 'computeNBodyByTaskPool: finish executing');
 }
 ```
 
@@ -90,11 +90,11 @@ export function computeTask(totalTimeSteps: number): number {
    可以看到，该项目核心计算函数advance的计算性能，提升了8倍左右。
 
 - 使用Worker开启子线程，计算5000万次时间推移期间，天体的运行轨道：  
-图5 未启用AOT    
-![](./figures/AOT_5.png)  
-图6 启用AOT    
-![](./figures/AOT_6.png)  
-可以看到，该项目计算性能，提升了10倍左右。
+  图5 未启用AOT    
+  ![](./figures/AOT_5.png)  
+  图6 启用AOT    
+  ![](./figures/AOT_6.png)  
+  可以看到，该项目计算性能，提升了10倍左右。
   > **说明：**
   >
   > 该案例实际所基于的开发环境基本信息如下：  
@@ -110,8 +110,8 @@ AOT预先编译在提升性能的同时，也会带来一些负向的开销，�
 1. 代码大小  
 PGO为了提高程序的执行效率，会对代码进行优化，使得代码大小增加。对于OpenHarmony应用，可以从abc(ArkCompiler Bytecode)方舟字节码文件大小和hap应用包大小两方面评代码大小。
 2. 编译时间  
-PGO需要对源代码进行静态分析，生成性能配置文件，然后将配置文件与源代码一起编译。这个过程会导致编译时间增加。  
-针对实践案例中项目N-Body问题，其开销数据如下：   
+   PGO需要对源代码进行静态分析，生成性能配置文件，然后将配置文件与源代码一起编译。这个过程会导致编译时间增加。  
+   针对实践案例中项目N-Body问题，其开销数据如下：   
 
     | AOT开启状态                      | abc大小 | hap大小              | 编译时间                                        |
     | ------------------------- | -------- | --------------------------------- | --------------------------- |

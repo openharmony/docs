@@ -38,8 +38,8 @@ let backDisplaySync: displaySync.DisplaySync = displaySync.create();
 
 | 名称             | 类型                                      | 只读 | 可选 | 说明                                       |
 | ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
-| timestamp      | number | 是   | 否   | 当前帧到达的时间（单位：纳秒）。 |
-| targetTimestamp | number| 是   | 否   | 下一帧预期到达的时间（单位：纳秒）。 |
+| timestamp      | number | 否   | 否   | 当前帧到达的时间（单位：纳秒）。 |
+| targetTimestamp | number| 否   | 否   | 下一帧预期到达的时间（单位：纳秒）。 |
 
 ## DisplaySync
 

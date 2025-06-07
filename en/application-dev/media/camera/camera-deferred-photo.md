@@ -93,7 +93,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 1. Listen for thumbnails.
 
    ```ts
-   function onPhotoOutputDeferredPhotoProxyAvailable(photoOutput: camera.PhotoOutput): void {
+   function onPhotoOutputDeferredPhotoProxyAvailable(photoOutput: camera.PhotoOutput, context: Context): void {
      photoOutput.on('deferredPhotoProxyAvailable', (err: BusinessError, proxyObj: camera.DeferredPhotoProxy): void => {
        if (err) {
          console.info(`deferredPhotoProxyAvailable error: ${JSON.stringify(err)}.`);
@@ -105,7 +105,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
          AppStorage.setOrCreate('proxyThumbnail', thumbnail);
        });
        // Call the mediaLibrary APIs to flush the thumbnail to the disk. See the code below.
-       saveDeferredPhoto(proxyObj);
+       saveDeferredPhoto(proxyObj, context);
      });
    }
    ```
@@ -117,9 +117,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
    ```ts
-   let context = getContext(this);
-   
-   async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy) {    
+   async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy, context: Context) {    
      try {
        // Create a photoAsset.
        let accessHelper = photoAccessHelper.getPhotoAccessHelper(context);

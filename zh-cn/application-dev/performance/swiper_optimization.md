@@ -6,7 +6,7 @@
 
 - 如果该页面使用了@Component 装饰的自定义组件，那么自定义组件的 build 函数会被执行并创建内部的 UI 组件；
 
-- 如果使用了[LazyForEach](../quick-start/arkts-rendering-control-lazyforeach.md)，会执行 LazyForEach 的 UI 生成函数生成 UI 组件；
+- 如果使用了[LazyForEach](../ui/state-management/arkts-rendering-control-lazyforeach.md)，会执行 LazyForEach 的 UI 生成函数生成 UI 组件；
 
 - 在 UI 组件构建完成后，会对 UI 组件进行布局测算和绘制。
 
@@ -41,7 +41,7 @@ Swiper 共 5 页，当开发者设置了 cachedCount 属性为 1 且 loop 属性
  Swiper 共 5 页，当开发者设置了 cachedCount 属性为 1 且 loop 属性为 true 时，预加载的结果如下：\
  ![loop=true](figures/swiper_loop_true.png)
 
-- Swiper 组件的子组件使用[LazyForEach](../quick-start/arkts-rendering-control-lazyforeach.md)动态加载和销毁组件。
+- Swiper 组件的子组件使用[LazyForEach](../ui/state-management/arkts-rendering-control-lazyforeach.md)动态加载和销毁组件。
 
 **示例**
 
@@ -110,7 +110,7 @@ struct SwiperExample {
   private dataSrc: MyDataSource = new MyDataSource([]);
 
   aboutToAppear(): void {
-    let list: Array<number> = []
+    let list: Array<number> = [];
     for (let i = 1; i <= 10; i++) {
       list.push(i);
     }
@@ -176,7 +176,7 @@ import { MyDataSource } from './Index';
 export struct PhotoItem { //Swiper的子组件
   myIndex: number = 0;
   private dataSource: MyDataSource = new MyDataSource([]);
-  context = getContext(this);
+  context = this.getUIContext().getHostContext();
   @State imageContent: image.PixelMap | undefined = undefined;
 
   aboutToAppear(): void {
@@ -185,15 +185,15 @@ export struct PhotoItem { //Swiper的子组件
     if (!this.imageContent) { // 先判断dataSource中该index的数据是否有数据，若无数据则先进行资源加载
       try {
         // 获取resourceManager资源管理器
-        const resourceMgr = this.context.resourceManager;
+        const resourceMgr = this.context?.resourceManager;
         // 获取rawfile文件夹下item.jpg的ArrayBuffer
         let str = "item" + (this.myIndex + 1) + ".jpg";
-        resourceMgr.getRawFileContent(str).then((value) => {
+        resourceMgr?.getRawFileContent(str).then((value) => {
           // 创建imageSource
           const imageSource = image.createImageSource(value.buffer);
           imageSource.createPixelMap().then((value) => {
-            console.info("aboutToAppear push" + this.myIndex)
-            this.dataSource.addData(this.myIndex, { description: "" + this.myIndex, image: value })
+            console.info("aboutToAppear push" + this.myIndex);
+            this.dataSource.addData(this.myIndex, { description: "" + this.myIndex, image: value });
             this.imageContent = value;
           })
         })
@@ -216,27 +216,27 @@ export struct PhotoItem { //Swiper的子组件
 Swiper 主页面的代码如下：
 ```TypeScript
 import Curves from '@ohos.curves';
-import { PhotoItem } from './PhotoItem'
+import { PhotoItem } from './PhotoItem';
 import image from '@ohos.multimedia.image';
 
 interface MyObject {
   description: string,
   image: image.PixelMap,
-};
+}
 
 export class MyDataSource implements IDataSource {
-  private list: MyObject[] = []
+  private list: MyObject[] = [];
 
   constructor(list: MyObject[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): MyObject {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -254,17 +254,17 @@ export class MyDataSource implements IDataSource {
 @Component
 struct Index {
   @State currentIndex: number = 0;
-  cacheCount: number = 1
+  cacheCount: number = 1;
   swiperController: SwiperController = new SwiperController();
   private data: MyDataSource = new MyDataSource([]);
-  context = getContext(this);
+  context = this.getUIContext().getHostContext();
 
   aboutToAppear() {
-    let list: MyObject[] = []
+    let list: MyObject[] = [];
     for (let i = 0; i < 6; i++) {
-      list.push({ description: "", image: this.data.getData(this.currentIndex)?.image })
+      list.push({ description: "", image: this.data.getData(this.currentIndex)?.image });
     }
-    this.data = new MyDataSource(list)
+    this.data = new MyDataSource(list);
   }
 
   build() {
@@ -287,18 +287,18 @@ struct Index {
       if (targetIndex !== index) {
         try {
           // 获取resourceManager资源管理器
-          const resourceMgr = this.context.resourceManager;
+          const resourceMgr = this.context?.resourceManager;
           // 获取rawfile文件夹下item.jpg的ArrayBuffer
           let str = "item" + (targetIndex + this.cacheCount + 2) + ".jpg";
-          resourceMgr.getRawFileContent(str).then((value) => {
+          resourceMgr?.getRawFileContent(str).then((value) => {
             // 创建imageSource
             const imageSource = image.createImageSource(value.buffer);
             imageSource.createPixelMap().then((value) => {
               this.data.addData(targetIndex + this.cacheCount + 1, {
                 description: "" + (targetIndex + this.cacheCount + 1),
                 image: value
-              })
-            })
+              });
+            });
           })
         } catch (err) {
           console.error("error code" + err);

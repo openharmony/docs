@@ -9,6 +9,7 @@ The **OH_Drawing_Font_Metrics** struct describes the measurement information abo
 
 **Related module**: [Drawing](_drawing.md)
 
+**Header file**: [drawing_font.h](drawing__font_8h.md)
 
 ## Summary
 
@@ -17,7 +18,7 @@ The **OH_Drawing_Font_Metrics** struct describes the measurement information abo
 
 | Name| Description| 
 | -------- | -------- |
-| uint32_t [fFlags](#fflags) | Measurement information that is valid.| 
+| uint32_t [flags](#flags) | Measurement information that is valid.| 
 | float [top](#top) | Maximum distance from the baseline to the highest coordinate of a character.| 
 | float [ascent](#ascent) | Recommended distance from the baseline to the highest coordinate of a character.| 
 | float [descent](#descent) | Recommended distance from the baseline to the lowest coordinate of a character.| 
@@ -93,10 +94,10 @@ float OH_Drawing_Font_Metrics::descent
 Recommended distance from the baseline to the lowest coordinate of a character.
 
 
-### fFlags
+### flags
 
 ```
-uint32_t OH_Drawing_Font_Metrics::fFlags
+uint32_t OH_Drawing_Font_Metrics::flags
 ```
 
 **Description**

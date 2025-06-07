@@ -11,6 +11,7 @@ The OhosImageSourceProperty struct defines the property string (in key-value for
 
 **Related module**: [Image](image.md)
 
+**Header file**: [image_source_mdk.h](image__source__mdk_8h.md)
 
 ## Summary
 

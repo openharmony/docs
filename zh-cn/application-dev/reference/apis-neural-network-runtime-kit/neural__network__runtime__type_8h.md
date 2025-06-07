@@ -9,11 +9,11 @@ Neural Network Runtime定义的结构体和枚举值。
 
 **库：** libneural_network_runtime.so
 
-**系统能力：**\@Syscap SystemCapability.Ai.NeuralNetworkRuntime
+**系统能力：** SystemCapability.Ai.NeuralNetworkRuntime
 
 **起始版本：** 9
 
-**相关模块：**[NeuralNeworkRuntime](_neural_network_runtime.md)
+**相关模块：**[NeuralNetworkRuntime](_neural_network_runtime.md)
 
 
 ## 汇总
@@ -39,17 +39,8 @@ Neural Network Runtime定义的结构体和枚举值。
 | typedef struct [NN_QuantParam](_neural_network_runtime.md#nn_quantparam)  [NN_QuantParam](_neural_network_runtime.md#nn_quantparam) | 量化参数的句柄。 | 
 | typedef struct [NN_TensorDesc](_neural_network_runtime.md#nn_tensordesc)  [NN_TensorDesc](_neural_network_runtime.md#nn_tensordesc) | Tensor描述的句柄。 | 
 | typedef struct [NN_Tensor](_neural_network_runtime.md#nn_tensor)  [NN_Tensor](_neural_network_runtime.md#nn_tensor) | Tensor句柄。 | 
-| typedef enum [OH_NN_PerformanceMode](_neural_network_runtime.md#oh_nn_performancemode)  [OH_NN_PerformanceMode](_neural_network_runtime.md#oh_nn_performancemode) | 硬件的性能模式。 | 
-| typedef enum [OH_NN_Priority](_neural_network_runtime.md#oh_nn_priority)  [OH_NN_Priority](_neural_network_runtime.md#oh_nn_priority) | 模型推理任务优先级。 | 
-| typedef enum [OH_NN_ReturnCode](_neural_network_runtime.md#oh_nn_returncode)  [OH_NN_ReturnCode](_neural_network_runtime.md#oh_nn_returncode) | Neural Network Runtime 定义的错误码类型。 | 
 | typedef void(\* [NN_OnRunDone](_neural_network_runtime.md#nn_onrundone)) (void \*userData, [OH_NN_ReturnCode](_neural_network_runtime.md#oh_nn_returncode) errCode, void \*outputTensor[], int32_t outputCount) | 异步推理结束后的回调处理函数句柄。 | 
 | typedef void(\* [NN_OnServiceDied](_neural_network_runtime.md#nn_onservicedied)) (void \*userData) | 异步推理执行期间设备驱动服务异常终止时的回调处理函数句柄。 | 
-| typedef enum [OH_NN_FuseType](_neural_network_runtime.md#oh_nn_fusetype)  [OH_NN_FuseType](_neural_network_runtime.md#oh_nn_fusetype) | Neural Network Runtime 融合算子中激活函数的类型。 | 
-| typedef enum [OH_NN_Format](_neural_network_runtime.md#oh_nn_format)  [OH_NN_Format](_neural_network_runtime.md#oh_nn_format) | 张量数据的排布类型。 | 
-| typedef enum [OH_NN_DeviceType](_neural_network_runtime.md#oh_nn_devicetype)  [OH_NN_DeviceType](_neural_network_runtime.md#oh_nn_devicetype) | Neural Network Runtime 支持的设备类型。 | 
-| typedef enum [OH_NN_DataType](_neural_network_runtime.md#oh_nn_datatype)  [OH_NN_DataType](_neural_network_runtime.md#oh_nn_datatype) | Neural Network Runtime 支持的数据类型。 | 
-| typedef enum [OH_NN_OperationType](_neural_network_runtime.md#oh_nn_operationtype)  [OH_NN_OperationType](_neural_network_runtime.md#oh_nn_operationtype) | Neural Network Runtime 支持算子的类型。 | 
-| typedef enum [OH_NN_TensorType](_neural_network_runtime.md#oh_nn_tensortype)  [OH_NN_TensorType](_neural_network_runtime.md#oh_nn_tensortype) | 张量的类型。 | 
 | typedef struct [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md)  [OH_NN_UInt32Array](_neural_network_runtime.md#oh_nn_uint32array) | 该结构体用于存储32位无符号整型数组。 | 
 | typedef struct [OH_NN_QuantParam](_o_h___n_n___quant_param.md)  [OH_NN_QuantParam](_neural_network_runtime.md#oh_nn_quantparam) | 量化信息。 | 
 | typedef struct [OH_NN_Tensor](_o_h___n_n___tensor.md)  [OH_NN_Tensor](_neural_network_runtime.md#oh_nn_tensor) | 张量结构体。 | 

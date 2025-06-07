@@ -91,9 +91,10 @@
 | [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range) {<br/>IMAGE_PACKER_DYNAMIC_RANGE_AUTO = 0,<br/>IMAGE_PACKER_DYNAMIC_RANGE_SDR = 1 } | 编码指定动态范围。 | 
 | [IMAGE_DYNAMIC_RANGE](#image_dynamic_range) {<br/>IMAGE_DYNAMIC_RANGE_AUTO = 0,<br/>IMAGE_DYNAMIC_RANGE_SDR = 1,<br/>IMAGE_DYNAMIC_RANGE_HDR = 2 } | 解码指定期望动态范围。 | 
 | [IMAGE_ALLOCATOR_TYPE](#image_allocator_type) {<br/>IMAGE_ALLOCATOR_TYPE_AUTO = 0,<br/>IMAGE_ALLOCATOR_TYPE_DMA = 1,<br/>IMAGE_ALLOCATOR_TYPE_SHARE_MEMORY = 2 } | 用于分配 PixelMap 内存的分配器类型。 | 
+| [Image_CropAndScaleStrategy](#image_cropandscalestrategy) {<br/>IMAGE_CROP_AND_SCALE_STRATEGY_SCALE_FIRST = 1,<br/>IMAGE_CROP_AND_SCALE_STRATEGY_CROP_FIRST = 2 } | 在同时指定desiredSize和desiredRegion时执行裁剪和缩放的策略。 | 
 | [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) {<br/>AUXILIARY_PICTURE_TYPE_GAINMAP = 1, AUXILIARY_PICTURE_TYPE_DEPTH_MAP = 2, AUXILIARY_PICTURE_TYPE_UNREFOCUS_MAP = 3, AUXILIARY_PICTURE_TYPE_LINEAR_MAP = 4,<br/>AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP = 5<br/>} | 辅助图类型。  | 
 | [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type) {<br/>PIXELMAP_ALPHA_TYPE_UNKNOWN = 0,<br/>PIXELMAP_ALPHA_TYPE_OPAQUE = 1,<br/>PIXELMAP_ALPHA_TYPE_PREMULTIPLIED = 2, <br/>PIXELMAP_ALPHA_TYPE_UNPREMULTIPLIED = 3 } | Pixelmap透明度类型。 | 
-| [PIXEL_FORMAT](#pixel_format) {<br/>PIXEL_FORMAT_UNKNOWN = 0, PIXEL_FORMAT_ARGB_8888 = 1, <br/>PIXEL_FORMAT_RGB_565 = 2, PIXEL_FORMAT_RGBA_8888 = 3, <br/>PIXEL_FORMAT_BGRA_8888 = 4, PIXEL_FORMAT_RGB_888 = 5, <br/>PIXEL_FORMAT_ALPHA_8 = 6, PIXEL_FORMAT_RGBA_F16 = 7, <br/>PIXEL_FORMAT_NV21 = 8, PIXEL_FORMAT_NV12 = 9,  <br/>PIXEL_FORMAT_RGBA_1010102 = 10, PIXEL_FORMAT_YCBCR_P010 = 11, <br/>PIXEL_FORMAT_YCRCB_P010 = 12<br/>} | 图片像素格式。 | 
+| [PIXEL_FORMAT](#pixel_format) {<br/>PIXEL_FORMAT_UNKNOWN = 0, <br/>PIXEL_FORMAT_RGB_565 = 2, PIXEL_FORMAT_RGBA_8888 = 3, <br/>PIXEL_FORMAT_BGRA_8888 = 4, PIXEL_FORMAT_RGB_888 = 5, <br/>PIXEL_FORMAT_ALPHA_8 = 6, PIXEL_FORMAT_RGBA_F16 = 7, <br/>PIXEL_FORMAT_NV21 = 8, PIXEL_FORMAT_NV12 = 9,  <br/>PIXEL_FORMAT_RGBA_1010102 = 10, PIXEL_FORMAT_YCBCR_P010 = 11, <br/>PIXEL_FORMAT_YCRCB_P010 = 12<br/>} | 图片像素格式。 | 
 | [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) { <br/>OH_PixelmapNative_AntiAliasing_NONE = 0, <br/>OH_PixelmapNative_AntiAliasing_LOW = 1, <br/>OH_PixelmapNative_AntiAliasing_MEDIUM = 2, <br/>OH_PixelmapNative_AntiAliasing_HIGH = 3 <br/>} | Pixelmap缩放时采用的缩放算法。  | 
 | [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) { <br/>HDR_METADATA_TYPE = 0, <br/>HDR_STATIC_METADATA = 1, <br/>HDR_DYNAMIC_METADATA = 2, <br/>HDR_GAINMAP_METADATA = 3 } | Pixelmap使用的HDR相关元数据信息的关键字，用于[OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata)及[OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata)。  | 
 | [OH_Pixelmap_HdrMetadataType](#oh_pixelmap_hdrmetadatatype) { <br/>HDR_METADATA_TYPE_NONE = 0, <br/>HDR_METADATA_TYPE_BASE = 1, <br/>HDR_METADATA_TYPE_GAINMAP = 2, <br/>HDR_METADATA_TYPE_ALTERNATE = 3 } | HDR_METADATA_TYPE关键字对应的值。  | 
@@ -151,7 +152,7 @@
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_SetCapacity](#oh_imagereceiveroptions_setcapacity) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, int32_t capacity) | 设置 [OH_ImageReceiverOptions](#oh_imagereceiveroptions) 对象的图片缓存容量的信息。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_Release](#oh_imagereceiveroptions_release) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options) | 释放 [OH_ImageReceiverOptions](#oh_imagereceiveroptions) 对象。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_Create](#oh_imagereceivernative_create) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, [OH_ImageReceiverNative](#oh_imagereceivernative) \*\*receiver) | 创建应用层 OH_ImageReceiverNative 对象。  | 
-| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, uint64_t \*surfaceId) | 通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取receiver的id。  | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, uint64_t \*surfaceId) | 通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取SurfaceId。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_ReadLatestImage](#oh_imagereceivernative_readlatestimage) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageNative](#oh_imagenative) \*\*image) | 通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取最新的一张图片。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_ReadNextImage](#oh_imagereceivernative_readnextimage) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageNative](#oh_imagenative) \*\*image) | 通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取下一张图片。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_On](#oh_imagereceivernative_on) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback) callback) | 注册一个[OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback)回调事件。  | 
@@ -177,6 +178,8 @@
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetDesiredRegion](#oh_decodingoptions_setdesiredregion) ([OH_DecodingOptions](#oh_decodingoptions) \*options, [Image_Region](_image___region.md) \*desiredRegion) | 设置解码区域。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetDesiredDynamicRange](#oh_decodingoptions_getdesireddynamicrange) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t \*desiredDynamicRange) | 获取解码时设置的期望动态范围。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetDesiredDynamicRange](#oh_decodingoptions_setdesireddynamicrange) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t desiredDynamicRange) | 设置解码时的期望动态范围。  | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetCropAndScaleStrategy](#oh_decodingoptions_setcropandscalestrategy) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t cropAndScaleStrategy) | 设置解码选项的裁剪和缩放策略。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetCropAndScaleStrategy](#oh_decodingoptions_getcropandscalestrategy) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t \*cropAndScaleStrategy) | 获取解码选项的裁剪和缩放策略。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_Release](#oh_decodingoptions_release) ([OH_DecodingOptions](#oh_decodingoptions) \*options) | 释放OH_DecodingOptions指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromUri](#oh_imagesourcenative_createfromuri) (char \*uri, size_t uriSize, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | 通过uri创建OH_ImageSourceNative指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromFd](#oh_imagesourcenative_createfromfd) (int32_t fd, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | 通过fd创建OH_ImageSourceNative指针。  | 
@@ -608,7 +611,7 @@ OH_ImageReceiverNative是native层封装的图片接收器结构体，OH_ImageRe
 OH_ImageReceiverNative结构体内容和操作方式如下：
 | 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
 | -------- | -------- | -------- | -------- | -------- |
-| uint64_t | surfaceId | 接收器的surfaceId | [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) |通过OH_ImageReceiverNative获取receiver的id。|
+| uint64_t | surfaceId | 接收器的surfaceId | [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) |通过OH_ImageReceiverNative获取SurfaceId。|
 | OH_ImageNative | image | native层的image | [OH_ImageReceiverNative_ReadLatestImage](#oh_imagereceivernative_readlatestimage) | 通过OH_ImageReceiverNative获取最新的一张图片。|
 | OH_ImageNative | image | native层的image | [OH_ImageReceiverNative_ReadNextImage](#oh_imagereceivernative_readnextimage) |通过OH_ImageReceiverNative获取下一张图片。|
 | OH_ImageReceiver_OnCallback | callback| 图片接收器回调函数 | [OH_ImageReceiverNative_On](#oh_imagereceivernative_on) |注册一个OH_ImageReceiver_OnCallback回调事件。|
@@ -743,7 +746,7 @@ typedef struct OH_PackingOptionsForSequence OH_PackingOptionsForSequence
 **描述**
 图像序列编码选项。
 
-**起始版本：** 13
+**起始版本：** 18
 
 
 ### OH_PictureMetadata
@@ -946,6 +949,24 @@ enum Image_AuxiliaryPictureType
 | AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP  | 水印裁剪图，表示在原图中被水印覆盖的区域，该图像用于修复或移除水印影响，恢复图像的完整性和可视性。   | 
 
 
+### Image_CropAndScaleStrategy
+
+```
+enum Image_CropAndScaleStrategy
+```
+
+**描述**
+
+在同时指定desiredSize和desiredRegion时执行裁剪和缩放的策略。
+
+**起始版本：** 18
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| IMAGE_CROP_AND_SCALE_STRATEGY_SCALE_FIRST | 先裁剪，后缩放。 | 
+| IMAGE_CROP_AND_SCALE_STRATEGY_CROP_FIRST | 先缩放，后裁剪。 | 
+
+
 ### IMAGE_DYNAMIC_RANGE
 
 ```
@@ -1048,7 +1069,6 @@ enum PIXEL_FORMAT
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | PIXEL_FORMAT_UNKNOWN | 未知格式 | 
-| PIXEL_FORMAT_ARGB_8888 | ARGB_8888格式<br>**起始版本：** 18 | 
 | PIXEL_FORMAT_RGB_565 | RGB_565格式 | 
 | PIXEL_FORMAT_RGBA_8888 | RGBA_8888格式 | 
 | PIXEL_FORMAT_BGRA_8888 | BGRA_8888格式 | 
@@ -1580,6 +1600,30 @@ Image_ErrorCode OH_DecodingOptions_Create(OH_DecodingOptions **options)
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
+### OH_DecodingOptions_GetCropAndScaleStrategy()
+
+```
+Image_ErrorCode OH_DecodingOptions_GetCropAndScaleStrategy(OH_DecodingOptions *options, int32_t *cropAndScaleStrategy)
+```
+
+**描述**
+
+获取解码选项的裁剪和缩放策略。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_DecodingOptions指针。 | 
+| cropAndScaleStrategy | 指向在同时指定desiredSize和desiredRegion时执行裁剪和缩放策略的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果options或者cropAndScaleStrategy为空指针返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
 ### OH_DecodingOptions_GetDesiredDynamicRange()
 
 ```
@@ -1731,6 +1775,30 @@ Image_ErrorCode OH_DecodingOptions_Release(OH_DecodingOptions *options)
 **返回：**
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_DecodingOptions_SetCropAndScaleStrategy()
+
+```
+Image_ErrorCode OH_DecodingOptions_SetCropAndScaleStrategy(OH_DecodingOptions *options, int32_t cropAndScaleStrategy)
+```
+
+**描述**
+
+设置解码选项的裁剪和缩放策略。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_DecodingOptions指针。 | 
+| cropAndScaleStrategy | 在同时指定desiredSize和desiredRegion时执行裁剪和缩放的策略。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果options空指针或者cropAndScaleStrategy取值不在Image_CropAndScaleStrategy枚举值定义之中返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
 ### OH_DecodingOptions_SetDesiredDynamicRange()
@@ -2238,7 +2306,7 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmapSequence(OH_ImagePack
 **描述**
 将Pixelmap序列编码为数据。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -2336,7 +2404,7 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmapSequence(OH_ImagePack
 **描述**
 将一个Pixelmap序列编码到文件中。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -2428,7 +2496,7 @@ Image_ErrorCode OH_ImageReceiverNative_GetCapacity(OH_ImageReceiverNative* recei
 Image_ErrorCode OH_ImageReceiverNative_GetReceivingSurfaceId(OH_ImageReceiverNative* receiver, uint64_t* surfaceId)
 ```
 **描述**
-通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取receiver的id。
+通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取SurfaceId。
 
 **起始版本：** 12
 
@@ -2970,7 +3038,7 @@ Image_ErrorCode OH_ImageSourceNative_CreatePicture(OH_ImageSourceNative *source,
 ### OH_ImageSourceNative_CreatePixelmap()
 
 ```
-Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source, OH_DecodingOptions *options, OH_PixelmapNative **pixelmap)
+Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source, OH_DecodingOptions *options, OH_PixelmapNative **resPixMap)
 ```
 **描述**
 通过图片解码参数创建OH_PixelmapNative指针。
@@ -2983,7 +3051,7 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source
 | -------- | -------- |
 | source | 被操作的OH_ImageSourceNative指针。  | 
 | options | 解码参数。  | 
-| resPixMap | 指向c++本地层创建的OH_PixelmapNative对象的指针。  | 
+| resPixMap | 指向c++本地层创建的OH_PixelmapNative对象指针的指针。  | 
 
 **返回：**
 
@@ -3382,7 +3450,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_Create(OH_PackingOptionsForSequence
 **描述**
 创建OH_PackingOptionsForSequence结构体的指针。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -3403,7 +3471,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetDelayTimeList(OH_PackingOptionsF
 **描述**
 获取编码时图片的延迟时间数组。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -3426,7 +3494,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetDisposalTypes(OH_PackingOptionsF
 **描述**
 获取编码时图片的过渡帧模式数组。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -3449,7 +3517,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetFrameCount(OH_PackingOptionsForS
 **描述**
 获取编码时指定的帧数。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -3471,7 +3539,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetLoopCount(OH_PackingOptionsForSe
 **描述**
 获取编码时图片循环播放次数。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -3493,7 +3561,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_Release(OH_PackingOptionsForSequenc
 **描述**
 释放OH_PackingOptionsForSequence指针。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -3514,14 +3582,14 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetDelayTimeList(OH_PackingOptionsF
 **描述**
 设定编码时图片的延迟时间数组。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | options | 用于操作的OH_PackingOptionsForSequence指针。  | 
-| delayTimeList | 图片延迟时间数组的指针。  | 
+| delayTimeList | 图片延迟时间数组的指针，每帧输出图像的延迟时间，取值需大于0。<br>- 单位为10毫秒。例如，取值为10时，实际单帧延迟是100毫秒。<br>- 如果长度小于frameCount，不足的部分将使用delayTimeList中的最后一个值进行填充。| 
 | delayTimeListLength | 图片延迟时间数组的长度。  | 
 
 **返回：**
@@ -3537,14 +3605,14 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetDisposalTypes(OH_PackingOptionsF
 **描述**
 设定编码时图片的过渡帧模式数组。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | options | 用于操作的OH_PackingOptionsForSequence指针。  | 
-| disposalTypes | 图片过渡帧模式数组的指针。  | 
+| disposalTypes | 图片过渡帧模式数组的指针，图片帧过渡模式的参数，如果长度小于frameCount，不足的部分将使用disposalTypes中的最后一个值进行填充，可取值如下：<br>- 0：不需要任何操作。<br>- 1：保持图形不变。<br>- 2：恢复背景色。<br>- 3：恢复到之前的状态。| 
 | disposalTypesLength | 图片过渡帧模式数组的长度。  | 
 
 **返回：**
@@ -3560,7 +3628,7 @@ mage_ErrorCode OH_PackingOptionsForSequence_SetFrameCount(OH_PackingOptionsForSe
 **描述**
 设置编码时指定的帧数。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -3580,9 +3648,9 @@ mage_ErrorCode OH_PackingOptionsForSequence_SetFrameCount(OH_PackingOptionsForSe
 Image_ErrorCode OH_PackingOptionsForSequence_SetLoopCount(OH_PackingOptionsForSequence *options, uint32_t loopCount)
 ```
 **描述**
-设定编码时图片循环播放次数。
+设定编码时图片循环播放次数，取值范围为[0，65535]，<br>0表示无限循环；若无此字段，则表示不循环播放。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 

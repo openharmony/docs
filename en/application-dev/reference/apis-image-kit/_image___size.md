@@ -9,6 +9,8 @@ The Image_Size struct describes the image size.
 
 **Related module**: [Image_NativeModule](_image___native_module.md)
 
+**Header file**: [image_common.h](image__common_8h.md)
+
 
 ## Summary
 

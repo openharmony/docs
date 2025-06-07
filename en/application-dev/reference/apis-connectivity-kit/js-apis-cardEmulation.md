@@ -347,7 +347,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ID| Error Message |
 | ------- | -------|
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
 |801 | Capability not supported.          |
 
 **Example**
@@ -538,7 +537,7 @@ Transmits an APDU to the peer card reader. This API uses an asynchronous callbac
 | Name | Type    | Mandatory| Description                   |
 | ------- | -------- | ---- | ----------------------- |
 | response | number[] | Yes  | Response APDU sent to the peer card reader. The value consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 

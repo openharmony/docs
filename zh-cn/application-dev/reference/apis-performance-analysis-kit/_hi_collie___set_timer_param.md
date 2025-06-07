@@ -18,10 +18,10 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| const char \* [name](#name) | timer任务名称，非空字符串。 | 
+| const char \* [name](#name) | timer任务名称。  | 
 | unsigned int [timeout](#timeout) | 任务超时时间阈值，单位s。  | 
-| [OH_HiCollie_Callback](_hi_collie.md#oh_hicollie_callback) [func](#func) | 超时发生时执行的回调函数 (无回调可传nullptr)。  | 
-| void \* [arg](#arg) | 回调函数的参数，无类型指针。  | 
+| [OH_HiCollie_Callback](_hi_collie.md#oh_hicollie_callback) [func](#func) | 超时发生时执行的回调函数。  | 
+| void \* [arg](#arg) | 回调函数的参数。  | 
 | [HiCollie_Flag](_hi_collie.md#hicollie_flag) [flag](#flag) | 超时发生时执行的动作，参考[HiCollie_Flag](_hi_collie.md#hicollie_flag)。  | 
 
 

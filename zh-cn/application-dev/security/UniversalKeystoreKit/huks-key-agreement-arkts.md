@@ -415,7 +415,7 @@
   /*
   *以下以 DH密钥的Promise操作使用为例
   */
-  import { huks } from '@kit.UniversalKeystoreKit'
+  import { huks } from '@kit.UniversalKeystoreKit';
 
   function StringToUint8Array(str: string) {
     let arr: number[] = []

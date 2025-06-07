@@ -69,11 +69,11 @@
 
    ```ts
    // 在段落生成器中设置文本样式
-   ParagraphGraphBuilder.pushStyle(myTextStyle);
+   paragraphBuilder.pushStyle(myTextStyle);
    // 在段落生成器中设置文本内容
-   ParagraphGraphBuilder.addText("测试自定义字体");
+   paragraphBuilder.addText("测试自定义字体");
    // 通过段落生成器生成段落
-   let paragraph = ParagraphGraphBuilder.build();
+   let paragraph = paragraphBuilder.build();
    ```
 
 ## 完整示例
@@ -111,13 +111,13 @@ class MyRenderNode extends RenderNode {
       wordBreak:text.WordBreak.NORMAL
     };
     // 创建一个段落生成器
-    let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection)
+    let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection)
     // 在段落生成器中设置文本样式
-    ParagraphGraphBuilder.pushStyle(myTextStyle);
+    paragraphBuilder.pushStyle(myTextStyle);
     // 在段落生成器中设置文本内容
-    ParagraphGraphBuilder.addText("Custom font test");
+    paragraphBuilder.addText("Custom font test");
     // 通过段落生成器生成段落
-    let paragraph = ParagraphGraphBuilder.build();
+    let paragraph = paragraphBuilder.build();
     // 布局
     paragraph.layoutSync(1000);
     paragraph.paint(canvas, 0, 800);

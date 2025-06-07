@@ -1022,7 +1022,7 @@ int32_t OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow *window, OHNativ
 
 Flushes the **OHNativeWindowBuffer** filled with the produced content to the buffer queue through an **OHNativeWindow** instance for content consumption.
 
-The system will close **fenFd**. You do not need to close it.
+The system will close **fenceFd**. You do not need to close it.
 
 This function is not thread-safe.
 
@@ -1036,8 +1036,8 @@ This function is not thread-safe.
 | -------- | -------- |
 | window | Pointer to an **OHNativeWindow** instance.| 
 | buffer | Pointer to an **OHNativeWindowBuffer** instance.| 
-| fenceFd | File descriptor handle, which is used for timing synchronization.| 
-| region | Dirty region where content is updated.| 
+| fenceFd |File descriptor handle, which is used for timing synchronization. The options are as follows:<br>- -1: The CPU rendering is complete, and no timing synchronization is required.<br>- ≥0: The handle is converted from a GPU synchronization object (for example, **eglDupNativeFenceFDANDROID** of EGL). The peer end needs to synchronize timing through fenceFd.| 
+| region | [Region](_region.md) struct, which indicates a dirty region where content is updated.| 
 
 **Returns**
 
@@ -1100,8 +1100,8 @@ This function is not thread-safe.
 | Name| Description| 
 | -------- | -------- |
 | window | Pointer to an **OHNativeWindow** instance.| 
-| buffer | Double pointer to an **OHNativeWindowBuffer** instance.| 
-| fenceFd | Pointer to a file descriptor handle.| 
+| buffer | Double pointer to an **OHNativeWindowBuffer** instance. You can obtain the [BufferHandle](_buffer_handle.md) struct by calling [OH_NativeWindow_GetBufferHandleFromNative](#oh_nativewindow_getbufferhandlefromnative) to access the buffer memory.| 
+| fenceFd |  Pointer to a file descriptor, which is used for GPU/CPU synchronization. The options are as follows:<br>- ≥0: The buffer is being used by the GPU. You need to wait until the file descriptor is ready.<br>- -1: The buffer can be used directly.| 
 
 **Returns**
 
@@ -1205,7 +1205,9 @@ Returns **0** if the operation is successful; returns an error code defined in [
 ```
 int32_t OH_NativeWindow_NativeWindowSetScalingModeV2 (OHNativeWindow* window, OHScalingModeV2 scalingMode )
 ```
+
 **Description**
+
 Sets a rendering scaling mode for an **OHNativeWindow** instance.
 
 This function is not thread-safe.

@@ -10,13 +10,13 @@
 
 ## **PermissionDef**
 
- **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
  
- **系统接口：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称           | 类型   | 只读 | 可选 | 说明           |
 | -------------- | ------ | ---- | ---- | -------------- |
 | permissionName | string | 是   | 否   | 用户权限名称。   |
-| grantMode      | number | 是   | 否   | 权限的授予模式。 |
+| grantMode      | number | 是   | 否   | [权限的授予方式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-mgmt-overview#授权方式)。0：表示用户授权，1：表示系统授权。 |
 | labelId        | number | 是   | 否   | 权限的标签ID。   |
 | descriptionId  | number | 是   | 否   | 描述权限的ID。   |

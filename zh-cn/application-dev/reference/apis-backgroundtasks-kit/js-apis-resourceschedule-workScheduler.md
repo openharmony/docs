@@ -36,7 +36,7 @@ startWork(work: WorkInfo): void
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 | 9700004 | Check on workInfo failed. |
 | 9700005 | Calling startWork failed. |
@@ -91,7 +91,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 | 9700004 | Check on workInfo failed. |
 
@@ -145,7 +145,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 | 9700004 | Check on workInfo failed. |
 
@@ -191,7 +191,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 | 9700004 | Check on workInfo failed. |
 
@@ -230,7 +230,7 @@ obtainAllWorks(callback : AsyncCallback\<void>) : Array\<WorkInfo>
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 
 ## workScheduler.obtainAllWorks<sup>10+<sup>
@@ -255,7 +255,7 @@ obtainAllWorks(callback : AsyncCallback&lt;Array&lt;WorkInfo&gt;&gt;): void
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 
 **示例**：
@@ -294,7 +294,7 @@ obtainAllWorks(): Promise\<Array\<WorkInfo>>
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 
 **示例**：
@@ -325,7 +325,7 @@ stopAndClearWorks(): void
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 
 **示例**：
@@ -366,7 +366,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 | 9700004 | Check on workInfo failed. |
 
@@ -393,7 +393,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<boolean>): void
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 | 9700004 | Check on workInfo failed. |
 
@@ -439,7 +439,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 | 9700004 | Check on workInfo failed. |
 
@@ -469,16 +469,16 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 | bundleName      | string                            | 是    | 延迟任务所在应用的包名。           |
 | abilityName     | string                            | 是    | 包内ability名称。 |
 | networkType     | [NetworkType](#networktype)       | 否    | 网络类型。             |
-| isCharging      | boolean                           | 否    | 是否充电。<br>- true表示充电触发延迟回调。<br>- false表示不充电触发延迟回调。|
+| isCharging      | boolean                           | 否    | 是否充电，默认为false。<br>- true表示充电触发延迟回调。<br>- false表示不充电触发延迟回调。|
 | chargerType     | [ChargingType](#chargingtype)     | 否    | 充电类型。             |
 | batteryLevel    | number                            | 否    | 电量。              |
 | batteryStatus   | [BatteryStatus](#batterystatus)   | 否    | 电池状态。             |
 | storageRequest  | [StorageRequest](#storagerequest) | 否    | 存储状态。             |
-| isRepeat        | boolean                           | 否    | 是否循环任务。<br>- true表示循环任务。 <br>- false表示非循环任务。 |
+| isRepeat        | boolean                           | 否    | 是否循环任务，默认为false。<br>- true表示循环任务。 <br>- false表示非循环任务。 |
 | repeatCycleTime | number                            | 否    | 循环间隔，单位为毫秒。             |
 | repeatCount     | number                            | 否    | 循环次数。             |
-| isPersisted     | boolean                           | 否    | 注册的延迟任务是否可保存在系统中。<br>- true表示可保存，即系统重启后，任务可恢复。<br>- false表示不可保存。|
-| isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态。<br>- true表示需要。<br>- false表示不需要。   |
+| isPersisted     | boolean                           | 否    | 注册的延迟任务是否可保存在系统中，默认为false。<br>- true表示可保存，即系统重启后，任务可恢复。<br>- false表示不可保存。|
+| isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态，默认为false。<br>- true表示需要。<br>- false表示不需要。   |
 | idleWaitTime    | number                            | 否    | 空闲等待时间，单位为毫秒。           |
 | parameters      | Record<string, number \| string \| boolean>  | 否    | 携带参数信息。 |
 

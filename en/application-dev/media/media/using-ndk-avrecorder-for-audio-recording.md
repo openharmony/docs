@@ -29,7 +29,36 @@ Before your development, configure the following permissions for your applicatio
 >
 > To record only audio, you do not need to set video-related parameters such as **videoFrameWidth** and **videoFrameHeight**. Similarly, to record only videos, you do not need to set audio-related parameters such as **audioBitrate** and **audioChannels**.
 
-Read [AVRecorder](../../reference/apis-media-kit/_a_v_recorder.md) for the API reference.
+
+You can use C/C++ APIs related to video recording by including the header files [avrecorder.h](../../reference/apis-media-kit/capi-avrecorder-h.md), [avrecorder_base.h](../../reference/apis-media-kit/capi-avrecorder-base-h.md), and [native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md).
+
+Read [AVRecorder](../../reference/apis-media-kit/capi-avrecorder.md) for the API reference.
+
+
+Link the dynamic library in the CMake script.
+```
+target_link_libraries(entry PUBLIC libavrecorder.so)
+```
+
+To use [OH_AVFormat](../../reference/apis-avcodec-kit/_core.md#oh_avformat) APIs, include the following header file:
+```
+#include <multimedia/player_framework/native_avformat.h>
+```
+
+In addition, link the following dynamic link library in the CMake script:
+```
+target_link_libraries(entry PUBLIC libnative_media_core.so)
+```
+
+To use system logging, include the following header file:
+```
+#include <hilog/log.h>
+```
+
+In addition, link the following dynamic link library in the CMake script:
+```
+target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+```
 
 1. Create an AVRecorder instance. The AVRecorder is in the **idle** state.
 
@@ -97,7 +126,7 @@ Read [AVRecorder](../../reference/apis-media-kit/_a_v_recorder.md) for the API r
                   errorCode, errorMsg);
    }
 
-   // Set a callback to listen for the generation of media files. (This operation is required when AUTO_CREATE is selected.)
+   // Set a callback to listen for the generation of media files. (This operation is required when AUTO_CREATE is selected for fileGenerationMode.)
    void OnUri(OH_AVRecorder *recorder, OH_MediaAsset *asset, void *userData)
    {
       (void)recorder;
@@ -135,7 +164,7 @@ Read [AVRecorder](../../reference/apis-media-kit/_a_v_recorder.md) for the API r
    >
    > - In pure video recording scenarios, set only video-related parameters in **OH_AVRecorder_Config** of **OH_AVRecorder_Prepare()**.
    >
-   > - The recording output URL (URL in **avConfig** in the sample code) must be in the format of fd://xx (where xx indicates a file descriptor). You must call the basic file operation APIs to implement access to the application file. For details, see [Accessing Application Files](../../file-management/native-fileio-guidelines.md).
+   > - The recording output URL (URL in **OH_AVRecorder_Config** in the sample code) must be in the format of fd://xx (where xx indicates a file descriptor). You must call the basic file operation APIs to implement access to the application file. For details, see [Accessing Application Files](../../file-management/native-fileio-guidelines.md).
 
    ```C++
    void SetConfig(OH_AVRecorder_Config &config)
@@ -169,7 +198,7 @@ Read [AVRecorder](../../reference/apis-media-kit/_a_v_recorder.md) for the API r
 
         SetConfig(*config);
 
-        // 1. Set the URL. (This operation is required when APP_CREATE is selected.)
+        // 1. Set the URL. (This operation is required when APP_CREATE is selected for fileGenerationMode.)
         const std::string AVREORDER_ROOT = "/data/storage/el2/base/files/";
         int32_t outputFd = open((AVREORDER_ROOT + "avrecorder01.mp3").c_str(), O_RDWR | O_CREAT, 0777); // Set the file name.
         std::string fileUrl = "fd://" + std::to_string(outputFd);
@@ -183,7 +212,7 @@ Read [AVRecorder](../../reference/apis-media-kit/_a_v_recorder.md) for the API r
         // Callback triggered when an error occurs.
         OH_AVRecorder_SetErrorCallback(g_avRecorder, OnError, nullptr);
 
-        // Callback triggered when a media file is generated. (This operation is required when AUTO_CREATE is selected.)
+        // Callback triggered when a media file is generated. (This operation is required when AUTO_CREATE is selected for fileGenerationMode.)
         OH_LOG_INFO(LOG_APP, "==NDKDemo== OH_AVRecorder_SetUriCallback in!");
         OH_AVErrCode ret = OH_AVRecorder_SetUriCallback(g_avRecorder, OnUri, nullptr);
         OH_LOG_INFO(LOG_APP, "==NDKDemo== OH_AVRecorder_SetUriCallback out!");
@@ -242,7 +271,7 @@ Read [AVRecorder](../../reference/apis-media-kit/_a_v_recorder.md) for the API r
    ```
 
 
-## Sample Code
+## Development Example
 
 Refer to the sample code below to complete the process of creating a recorder instance, preparing for, starting, pausing, resuming, and stopping recording, resetting the recording state, and releasing the recording resources.
 
@@ -305,7 +334,7 @@ Refer to the sample code below to complete the process of creating a recorder in
                   errorCode, errorMsg);
    }
 
-   // Set a callback to listen for the generation of media files. (This operation is required when AUTO_CREATE is selected.)
+   // Set a callback to listen for the generation of media files. (This operation is required when AUTO_CREATE is selected for fileGenerationMode.)
    void OnUri(OH_AVRecorder *recorder, OH_MediaAsset *asset, void *userData)
    {
       (void)recorder;
@@ -363,7 +392,7 @@ Refer to the sample code below to complete the process of creating a recorder in
 
       SetConfig(*config);
 
-      // 1.1 Set the URL. (This operation is required when APP_CREATE is selected.)
+      // 1.1 Set the URL. (This operation is required when APP_CREATE is selected for fileGenerationMode.)
       const std::string AVREORDER_ROOT = "/data/storage/el2/base/files/";
       int32_t outputFd = open((AVREORDER_ROOT + "avrecorder01.mp3").c_str(), O_RDWR | O_CREAT, 0777); // Set the file name.
       std::string fileUrl = "fd://" + std::to_string(outputFd);
@@ -377,7 +406,7 @@ Refer to the sample code below to complete the process of creating a recorder in
       // Callback triggered when an error occurs.
       OH_AVRecorder_SetErrorCallback(g_avRecorder, OnError, nullptr);
 
-      // Callback triggered when a media file is generated. (This operation is required when AUTO_CREATE is selected.)
+      // Callback triggered when a media file is generated. (This operation is required when AUTO_CREATE is selected for fileGenerationMode.)
       OH_AVErrCode ret = OH_AVRecorder_SetUriCallback(g_avRecorder, OnUri, nullptr);
       if (ret == AV_ERR_OK) {
          OH_LOG_INFO(LOG_APP, "==NDKDemo==  OH_AVRecorder_SetUriCallback succeed!");

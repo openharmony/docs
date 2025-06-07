@@ -68,7 +68,7 @@ setSurfaceId(surfaceId: string): void;
 | -------- | ------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 12700001 | Operation failed. |
+| 12700001 | The service is unavailable. |
 
 **示例：**
 

@@ -11,6 +11,8 @@ The **ImageEffect_FilterNames** struct describes the filter name information.
 
 **Related module**: [ImageEffect](_image_effect.md)
 
+**Header file**: [image_effect_filter.h](image__effect__filter_8h.md)
+
 
 ## Summary
 

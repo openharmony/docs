@@ -174,7 +174,7 @@ Sets the font weight of the text in the security component.
 
 | Name| Type                  | Mandatory| Description                  |
 |------------|------|-------|---------|
-| value | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string |Yes|Font weight of the text in the security component.<br>Default value: **FontWeight.Medium**.|
+| value | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string |Yes|Font weight of the security component. For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a heavier font weight. For the string type, only strings that represent a number, for example, **400**, and the following enumerated values of **FontWeight** are supported: **bold**, **bolder**, **lighter**, **regular**, and **medium**.<br>Default value: **FontWeight.Medium**.|
 
 **Return value**
 

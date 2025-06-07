@@ -31,7 +31,7 @@ After the session configuration is complete, the application must commit the con
        session = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to create the session instance. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to create the session instance. error: ${err}`);
      }
      return session;
    }
@@ -45,7 +45,7 @@ After the session configuration is complete, the application must commit the con
        photoSession.beginConfig();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to beginConfig. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to beginConfig. error: ${err}`);
      }
    }
    ```
@@ -58,32 +58,32 @@ After the session configuration is complete, the application must commit the con
        photoSession.addInput(cameraInput);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to addInput. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to addInput. error: ${err}`);
      }
      try {
        photoSession.addOutput(previewOutput);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to add previewOutput. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to add previewOutput. error: ${err}`);
      }
      try {
        photoSession.addOutput(photoOutput);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to add photoOutput. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to add photoOutput. error: ${err}`);
      }
      try {
        await photoSession.commitConfig();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to commitConfig. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to commitConfig. error: ${err}`);
      }
    
      try {
        await photoSession.start();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to start. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to start. error: ${err}`);
      }
    }
    ```
@@ -96,28 +96,28 @@ After the session configuration is complete, the application must commit the con
        await photoSession.stop();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to stop. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to stop. error: ${err}`);
      }
    
      try {
        photoSession.beginConfig();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to beginConfig. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to beginConfig. error: ${err}`);
      }
      // Remove the photo output stream from the session.
      try {
        photoSession.removeOutput(photoOutput);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to remove photoOutput. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to remove photoOutput. error: ${err}`);
      }
      // Add the video output stream to the session.
      try {
        photoSession.addOutput(videoOutput);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to add videoOutput. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to add videoOutput. error: ${err}`);
      }
    }
    ```

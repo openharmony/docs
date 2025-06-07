@@ -1,4 +1,5 @@
 # @ohos.wantAgent (WantAgent)
+<!--deprecated_code_no_check-->
 
 The **WantAgent** module provides APIs for creating and comparing **WantAgent** objects, and obtaining the user ID and bundle name of a **WantAgent** object.
 
@@ -16,7 +17,7 @@ import wantAgent from '@ohos.wantAgent';
 
 getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
-Creates a **WantAgent** object. This API uses an asynchronous callback to return the result. If the creation fails, a null **WantAgent** object is returned.
+Creates a **WantAgent** object. If the creation fails, a null **WantAgent** object is returned. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -76,7 +77,7 @@ wantAgent.getWantAgent({
 
 getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
-Creates a **WantAgent** object. This API uses a promise to return the result. If the creation fails, a null **WantAgent** object is returned.
+Creates a **WantAgent** object. If the creation fails, a null **WantAgent** object is returned. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -785,11 +786,11 @@ wantAgent.getWantAgent({
 | CANCEL_PRESENT_FLAG | 2 | The existing **WantAgent** object should be canceled before a new object is generated.|
 | UPDATE_PRESENT_FLAG | 3 | Extra information of the existing **WantAgent** object is replaced with that of the new object.|
 | CONSTANT_FLAG       | 4 | The **WantAgent** object is immutable.                                       |
-| REPLACE_ELEMENT     | 5 | The **element** property of the current **Want** can be replaced by the **element** property of the **Want** in **WantAgent.trigger()**.|
-| REPLACE_ACTION      | 6 | The **action** property of the current **Want** can be replaced by the **action** property of the **Want** in **WantAgent.trigger()**.|
-| REPLACE_URI         | 7 | The **uri** property of the current **Want** can be replaced by the **uri** property of the **Want** in **WantAgent.trigger()**.|
-| REPLACE_ENTITIES    | 8 | The **entities** property of the current **Want** can be replaced by the **entities** property of the **Want** in **WantAgent.trigger()**.|
-| REPLACE_BUNDLE      | 9 | The **bundleName** property of the current **Want** can be replaced by the **bundleName** property of **Want** in **WantAgent.trigger()**.|
+| REPLACE_ELEMENT     | 5 | The **element** property in the current Want can be replaced by the **element** property in the Want passed in **WantAgent.trigger()**.|
+| REPLACE_ACTION      | 6 | The **action** property in the current Want can be replaced by the **action** property in the Want passed in **WantAgent.trigger()**.|
+| REPLACE_URI         | 7 | The **uri** property in the current Want can be replaced by the **uri** property in the Want passed in **WantAgent.trigger()**.|
+| REPLACE_ENTITIES    | 8 | The **entities** property in the current Want can be replaced by the **entities** property in the Want passed in **WantAgent.trigger()**.|
+| REPLACE_BUNDLE      | 9 | The **bundleName** property in the current Want can be replaced by the **bundleName** property in the Want passed in **WantAgent.trigger()**.|
 
 ## OperationType
 
@@ -814,7 +815,7 @@ wantAgent.getWantAgent({
 | Name          | Type                          | Mandatory| Description                   |
 | -------------- | ------------------------------ | ---- | ---------------------- |
 | info           | WantAgent                       | Yes  | A triggered **WantAgent** object.      |
-| want           | Want                            | Yes  | An existing triggered **want**.    |
+| want           | Want                            | Yes  | An existing triggered Want.    |
 | finalCode      | number                          | Yes  | Request code that triggers the **WantAgent** object.|
 | finalData      | string                          | Yes  | Final data collected by the common event. |
 | extraInfo      | { [key: string]: any }            | No  | Extra information.              |

@@ -56,7 +56,7 @@ If your development scenario does not involve dynamic adjustment of the temporal
 
   The reference frame is valid only in the GOP. After an I-frame is refreshed, the DPB is cleared, so does the reference frame. In other words, the I-frame refresh location has a great impact on the reference relationship.
 
-  When temporal scalability is enabled, to temporarily request the I-frame through **OH_MD_KEY_REQUEST_I_FRAME**, you must configure the frame channel with a determined effective time to notify the framework of the I-frame refresh location, so as to avoid disorder of the reference relationship. For details, see the configuration guide of the frame channel. Do not use **OH_VideoEncoder_SetParameter**, which uses an uncertain effective time. For details, see "Step 4: Call **OH_VideoEncoder_RegisterParameterCallback()** to register the frame-specific parameter callback function" in [Video Encoding in Surface Input](video-encoding.md#surface-input).
+  When temporal scalability is enabled, to temporarily request the I-frame through **OH_MD_KEY_REQUEST_I_FRAME**, you must configure the frame channel with a determined effective time to notify the system of the I-frame refresh location, so as to avoid disorder of the reference relationship. For details, see the configuration guide of the frame channel. Do not use **OH_VideoEncoder_SetParameter**, which uses an uncertain effective time. For details, see "Step 4: Call **OH_VideoEncoder_RegisterParameterCallback()** to register the frame-specific parameter callback function" in [Video Encoding in Surface Input](video-encoding.md#surface-input).  
 
 - The callback using **OH_AVBuffer** is supported, but the callback using **OH_AVMemory** is not.
 

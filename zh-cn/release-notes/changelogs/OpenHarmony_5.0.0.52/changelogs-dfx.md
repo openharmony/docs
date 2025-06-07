@@ -1,6 +1,6 @@
 # DFX子系统Changelog
 
-## cl.dfx.1 hdc命令file recv命令不支持操作媒体库目录
+## cl.dfx.1 hdc file recv命令不支持操作媒体库目录
 
 **访问级别**
 
@@ -8,7 +8,7 @@
 
 **变更原因**
 
-由于业务演进方向不同，媒体和文档目录需要不同的权限策略，变更后禁止通过hdc命令file recv命令将媒体库目录内文件从远端设备接收至本地。
+由于业务演进方向不同，媒体和文档目录需要不同的权限策略，变更后禁止通过hdc file recv命令直接将媒体库目录内文件从远端设备接收至本地。
 
 **变更影响**
 
@@ -36,7 +36,8 @@ hdc命令行工具
 /storage/cloud/\<USERID\>/files/Photo</br>
 /storage/media/\<USERID\>/local/files/Photo</br>
 
-通过mediatool recv命令将指定uri对应的媒体库资源的源文件内容导出到指定的设备路径下，具体操作说明可阅读[mediatool参考文档](../../../application-dev/tools/mediatool.md#mediatool-recv)。
+通过如下两步操作可以将媒体库文件接收到本地：
+1. 通过mediatool recv命令将指定uri对应的媒体库资源的源文件内容导出到设备临时路径下（/data/local/tmp），具体操作说明可阅读[mediatool参考文档](../../../application-dev/tools/mediatool.md#mediatool-recv)。
 
 ```shell
 > mediatool recv file://media/Photo/3 /data/local/tmp/out.jpg
@@ -44,7 +45,7 @@ Table Name: Photos
 /data/local/tmp/out.jpg
 ```
 
-通过hdc file recv命令将媒体文件从远端设备接收至本地。
+2. 通过hdc file recv命令将媒体文件从远端设备接收至本地。
 
 ```bash
 > hdc file recv /data/local/tmp/out.jpg ./out.jpg

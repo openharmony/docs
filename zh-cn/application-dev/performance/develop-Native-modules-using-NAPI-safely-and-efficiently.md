@@ -69,8 +69,7 @@ for (int i = 0; i < 1000000; i++) {
 * 2、由开发者自己管理 constructor 对象的生命周期，不受 native 方法的 scope 限制。
 ```cpp
 // 1、开发者可以改用 napi_ref 的形式把 constructor 保存下来
-static napi_value TestDefineClass(napi_env env,
-                                  napi_callback_info info) {
+static napi_value TestDefineClass(napi_env env, napi_callback_info info) {
   napi_status status;
   napi_value result, return_value;
 
@@ -86,14 +85,7 @@ static napi_value TestDefineClass(napi_env env,
 
   NODE_API_CALL(env, napi_create_object(env, &return_value));
 
-  status = napi_define_class(NULL,
-                             "TrackedFunction",
-                             NAPI_AUTO_LENGTH,
-                             TestDefineClass,
-                             NULL,
-                             1,
-                             &property_descriptor,
-                             &result);
+  status = napi_define_class(NULL, "TrackedFunction", NAPI_AUTO_LENGTH, TestDefineClass, NULL, 1, &property_descriptor,&result);
   SaveConstructor(env, result);
   ...
 }
@@ -229,7 +221,7 @@ static napi_value addPromise(napi_env env, napi_callback_info info) {
 
 ```js
 import hilog from '@ohos.hilog';
-import testNapi from 'libentry.so'
+import testNapi from 'libentry.so';
 
 @Entry
 @Component
@@ -305,7 +297,7 @@ static napi_value Test(napi_env env, napi_callback_info info) {
 #### ArkTS 侧传入回调函数
 ```JS
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
 
   build() {
     Row() {

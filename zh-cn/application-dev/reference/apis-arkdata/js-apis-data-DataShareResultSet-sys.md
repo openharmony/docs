@@ -23,34 +23,39 @@ import { DataShareResultSet } from '@kit.ArkData';
 需要通过调用[query](js-apis-data-dataShare-sys.md#query)接口获取DataShareResultSet对象。
 
 ```ts
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { DataShareResultSet, dataShare, dataSharePredicates } from '@kit.ArkData';
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 import { UIAbility } from '@kit.AbilityKit';
 
-let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let context = getContext(UIAbility);
-dataShare.createDataShareHelper(context, uri, (err:BusinessError, data:dataShare.DataShareHelper) => {
-  if (err != undefined) {
-    console.error("createDataShareHelper fail, error message : " + err);
-  } else {
-    console.info("createDataShareHelper end, data : " + data);
-    dataShareHelper = data;
-  }
-});
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+    let uri = ("datashare:///com.samples.datasharetest.DataShare");
+    let context = this.context;
+    dataShare.createDataShareHelper(context, uri, (err:BusinessError, data:dataShare.DataShareHelper) => {
+      if (err != undefined) {
+        console.error("createDataShareHelper fail, error message : " + err);
+      } else {
+        console.info("createDataShareHelper end, data : " + data);
+        dataShareHelper = data;
+      }
+    });
 
-let columns = ["*"];
-let da = new dataSharePredicates.DataSharePredicates();
-let resultSet: DataShareResultSet | undefined = undefined;
-da.equalTo("name", "ZhangSan");
-if (dataShareHelper != undefined) {
-  (dataShareHelper as dataShare.DataShareHelper).query(uri, da, columns).then((data: DataShareResultSet) => {
-    console.info("query end, data : " + data);
-    resultSet = data;
-  }).catch((err: BusinessError) => {
-    console.error("query fail, error message : " + err);
-  });
-}
+    let columns = ["*"];
+    let da = new dataSharePredicates.DataSharePredicates();
+    let resultSet: DataShareResultSet | undefined = undefined;
+    da.equalTo("name", "ZhangSan");
+    if (dataShareHelper != undefined) {
+      (dataShareHelper as dataShare.DataShareHelper).query(uri, da, columns).then((data: DataShareResultSet) => {
+        console.info("query end, data : " + data);
+        resultSet = data;
+      }).catch((err: BusinessError) => {
+        console.error("query fail, error message : " + err);
+      });
+    }
+  };
+};
 ```
 
 ## DataShareResultSet

@@ -11,6 +11,7 @@ The OH_NativeBuffer_Planes struct describes the plane information of images in a
 
 **Related module**: [OH_NativeBuffer](_o_h___native_buffer.md)
 
+**Header file**: [native_buffer.h](native__buffer_8h.md)
 
 ## Summary
 

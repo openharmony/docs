@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```
-import { InnerFullScreenLaunchComponent, LauncherController } from '@kit.ArkUI'
+import { InnerFullScreenLaunchComponent, LauncherController } from '@kit.ArkUI';
 ```
 
 
@@ -85,12 +85,12 @@ struct Index {
       Button('start 日出日落')
         .onClick(()=>{
           let appId2: string = '5765880207854372375';
-          this.controller.launchAtomicService(appId2, {})
+          this.controller.launchAtomicService(appId2, {});
         }).height(30).width('50%').margin({top: 50})
       Button('start 充值')
         .onClick(()=>{
           let appId2: string = '5765880207853275489';
-          this.controller.launchAtomicService(appId2, {})
+          this.controller.launchAtomicService(appId2, {});
         }).height(30).width('50%').margin({top: 50})
     }.backgroundColor(Color.Pink).height('100%').width('100%')
   }

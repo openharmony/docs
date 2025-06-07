@@ -5,7 +5,7 @@
 - 在申请目标权限前，建议开发者先阅读[应用权限管控概述-权限组和子权限](app-permission-mgmt-overview.md#权限组和子权限)，了解相关概念，再合理申请对应的权限组。
 
 - 当应用请求权限时，同一个权限组的权限将会在一个弹窗内一起请求用户授权，用户同意授权后，权限组内权限将被统一授权。地理位置、通讯录、通话记录、电话、信息、日历权限组除外。
-  
+
   以位置信息和相机权限组举例说明：
 
   - 当应用只申请了权限ohos.permission.APPROXIMATELY_LOCATION（属于位置信息权限组）时，应用用户将收到一个请求位置信息的弹窗，包含单个权限的申请。
@@ -74,9 +74,11 @@
 
 - [ohos.permission.READ_AUDIO](restricted-permissions.md#ohospermissionread_audio)
 
-## <!--RP2-->广告跟踪<!--RP2End-->
+<!--RP2-->
+## 广告跟踪
 
 - [ohos.permission.APP_TRACKING_CONSENT](permissions-for-all-user.md#ohospermissionapp_tracking_consent)
+<!--RP2End-->
 
 <!--Del-->
 ## 读取已安装应用列表
@@ -129,6 +131,10 @@
 ## 剪切板
 
 - [ohos.permission.READ_PASTEBOARD](restricted-permissions.md#ohospermissionread_pasteboard)
+
+## 截屏
+
+- [ohos.permission.CUSTOM_SCREEN_CAPTURE](permissions-for-all-user.md#ohospermissioncustom_screen_capture)
 
 ## 文件夹
 

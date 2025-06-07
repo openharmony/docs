@@ -3,9 +3,7 @@
 
 ## When to Use
 
-There can be different ways of describing the same data type. For example, when describing a JPG/JPEG image, you can use **image/jpeg**, **.jpg**, **.jpeg**, or **image/picture**. When the same type of data defined in different types is passed across applications or devices, the target application or device may fail to identify the data or can process the data after lots of adaptation.
-
-Uniform Type Descriptors (UTDs) can address this issue by providing a consistent way of describing data types. It ensures that data types are represented uniformly in the system.
+Uniform Type Descriptors (UTDs) are designed to resolve the ambiguity of data type descriptions. For example, JPEG images may be described as forms such as image/jpeg, .jpg, .jepg, or image/picture. As a result, complex compatibility logic (such as extension matching and MIME type detection) is required to identify the data type during cross-system transmission, and the identification may fail due to inconsistent descriptions. With UTD, data can be parsed and processed accurately and efficiently.
 
 The UTDs can be classified into [prebuilt UTDs](#prebuilt-utds) and [custom UTDs](#custom-utds). In addition, you can convert other data types, for example, file name extensions or MIME types, into UTDs.
 
@@ -64,7 +62,7 @@ You can also customize UTDs for your application.
 
 Custom UTDs can inherit from existing UTDs. For example, a custom image type can use **com.company.x-image** as its identifier.
 
-The custom UTDs of a service can be used by other services after being registered with the system.
+The custom UTDs of a service can be used by other services after being registered with the system of the local host.
 
 ### Working Principles
 
@@ -73,6 +71,8 @@ When declaring a UTD, you need to declare the hierarchical logic of the data typ
 When an application is installed, the custom UTDs are read and verified. If the verification is successful, the custom UTDs will be installed on the device. After started, the application can read the custom UTDs installed. The custom UTDs of other applications to be used must also be added to the custom uniform data type configuration file of your application during development.
 
 ### Constraints
+
+The **utd.json5** file should be configured in the entry HAP.
 
 The fields of a custom UTD must comply with the following requirements:
 
@@ -285,4 +285,3 @@ try {
   console.error('err message:' + err.message + ', err code:' + err.code);
 }
 ```
-

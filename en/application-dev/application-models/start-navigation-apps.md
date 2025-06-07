@@ -56,42 +56,61 @@ If the **type** field in **startAbilityByType** is set to **navigation**, three 
 
 
     ```ts
-    let context = getContext(this) as common.UIAbilityContext;
-    let wantParam: Record<string, Object> = {
-      'sceneType': 1,
-      'destinationLatitude': 32.060844,
-      'destinationLongitude': 118.78315,
-      'destinationName': 'No.xx, xx Road, xx City',
-      'destinationPoiIds': {
-          1:'1111', // Key 1 indicates Petal Maps, and the value must be a POI in Petal Maps.
-          2:'2222' // Key 2 indicates AutoNavi Map, and the value must be a POI in AutoNavi Map.
-      } as Record<number, string>,
-      'originName': 'xx Park in xx City',
-      'originLatitude': 31.060844,
-      'originLongitude': 120.78315,
-      'originPoiIds': {
-          1: '3333',  // Key 1 indicates Petal Maps, and the value must be a POI in Petal Maps.
-          2: '4444'   // Key 2 indicates AutoNavi Map, and the value must be a POI in AutoNavi Map.
-      } as Record<number, string>,
-      'vehicleType': 0
-    };
-    let abilityStartCallback: common.AbilityStartCallback = {
-      onError: (code: number, name: string, message: string) => {
-        console.log(`onError code ${code} name: ${name} message: ${message}`);
-      },
-      onResult: (result)=>{
-        console.log(`onResult result: ${JSON.stringify(result)}`);
-      }
-    }
-    
-    context.startAbilityByType("navigation", wantParam, abilityStartCallback, 
-        (err) => {
-            if (err) {
-                console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-            } else {
-                console.log(`success`);
-            }
-    });
+	@Entry
+	@Component
+	struct Index {
+	@State hideAbility: string = 'hideAbility'
+
+		build() {
+			Row() {
+				Column() {
+					Text(this.hideAbility)
+						.fontSize(30)
+						.fontWeight(FontWeight.Bold)
+						.onClick(() => {
+							let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+							let wantParam: Record<string, Object> = {
+								'sceneType': 1,
+								'destinationLatitude': 32.060844,
+								'destinationLongitude': 118.78315,
+								'destinationName': 'No.xx, xx Road, xx City',
+								'destinationPoiIds': {
+									1:'1111', // Key 1 indicates Petal Maps, and the value must be a POI in Petal Maps.
+									2:'2222' // Key 2 indicates AutoNavi Map, and the value must be a POI in AutoNavi Map.
+								} as Record<number, string>,
+								'originName': 'xx Park in xx City',
+								'originLatitude': 31.060844,
+								'originLongitude': 120.78315,
+								'originPoiIds': {
+									1: '3333',  // Key 1 indicates Petal Maps, and the value must be a POI in Petal Maps.
+									2: '4444'   // Key 2 indicates AutoNavi Map, and the value must be a POI in AutoNavi Map.
+								} as Record<number, string>,
+								'vehicleType': 0
+							};
+							let abilityStartCallback: common.AbilityStartCallback = {
+								onError: (code: number, name: string, message: string) => {
+									console.log(`onError code ${code} name: ${name} message: ${message}`);
+								},
+								onResult: (result) => {
+									console.log(`onResult result: ${JSON.stringify(result)}`);
+								}
+							}
+
+							context.startAbilityByType("navigation", wantParam, abilityStartCallback,
+								(err) => {
+									if (err) {
+										console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+									} else {
+										console.log(`success`);
+									}
+								});
+						});
+				}
+				.width('100%')
+			}
+			.height('100%')
+		}
+	}
     ```
 
 **Effect**

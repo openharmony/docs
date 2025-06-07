@@ -217,7 +217,7 @@ struct SubIndex {
           .fontSize(10)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            let context = getContext(this) as common.UIServiceExtensionContext;
+            let context = this.getUIContext().getHostContext() as common.UIServiceExtensionContext;
             let startWant: Record<string, Object> = {
               'sceneType': 1,
               'email': [encodeURI('xxx@example.com'), encodeURI('xxx@example.com')], // Email address of the recipient. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
@@ -237,7 +237,7 @@ struct SubIndex {
               // Start a UIAbility or UIExtensionAbility based on the type of the target ability.
               context.startAbilityByType("mail", startWant, abilityStartCallback)
                 .then(() => {
-                  console.log(TAG + `Successed in windows starting ability`);
+                  console.log(TAG + `Succeeded in windows starting ability`);
                 }).catch((err: BusinessError) => {
                 console.log(TAG + `Failed to windows starting ability, Code is ${err.code}, message is ${err.message}`);
               })
@@ -306,7 +306,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { common, Want } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
-import { promptAction } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 // The client needs to import idl_service_ext_proxy.ts provided by the server to the local project.
 import IdlServiceExtProxy from '../IdlServiceExt/idl_service_ext_proxy';
@@ -356,11 +355,11 @@ struct Page_UIServiceExtensionAbility {
             //...
           }
           .onClick(() => {
-            let context: common.UIServiceExtensionContext = getContext(this) as common.UIServiceExtensionContext;
+            let context: common.UIServiceExtensionContext = this.getUIContext().getHostContext() as common.UIServiceExtensionContext;
             // The ID returned after the connection is set up must be saved. The ID will be used for disconnection.
             connectionId = context.connectServiceExtensionAbility(want, options);
             // The background service is connected.
-            promptAction.showToast({
+            this.getUIContext().getPromptAction().showToast({
               message: $r('app.string.SuccessfullyConnectBackendService')
             });
             // connectionId = context.connectAbility(want, options);
@@ -414,7 +413,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { common } from '@kit.AbilityKit';
-import { promptAction } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -434,12 +432,12 @@ struct Page_UIServiceExtensionAbility {
             //...
           }
           .onClick(() => {
-            let context: common.UIServiceExtensionContext = getContext(this) as common.UIServiceExtensionContext;
+            let context: common.UIServiceExtensionContext = this.getUIContext().getHostContext() as common.UIServiceExtensionContext;
             // connectionId is returned when connectServiceExtensionAbility is called and needs to be manually maintained.
             context.disconnectServiceExtensionAbility(connectionId).then(() => {
               hilog.info(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility success');
               // The background service is disconnected.
-              promptAction.showToast({
+              this.getUIContext().getPromptAction().showToast({
                 message: $r('app.string.SuccessfullyDisconnectBackendService')
               });
             }).catch((error: BusinessError) => {

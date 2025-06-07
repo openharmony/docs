@@ -334,33 +334,9 @@
    }
    ```
 
-## 验证方法
-
-1. 在应用中通过接口拉起输入法切换列表弹窗。
-
-    ```ts
-    import { inputMethod } from '@kit.IMEKit';
-    import { BusinessError } from '@kit.BasicServicesKit';
-    
-    let inputMethodSetting = inputMethod.getSetting();
-    try {
-      inputMethodSetting.showOptionalInputMethods((err: BusinessError, data: boolean) => {
-        if (err) {
-          console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
-          return;
-        }
-        console.log('Succeeded in showing optionalInputMethods.');
-      });
-    } catch (err) {
-      console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
-    }
-    ```
-
 <!--RP1-->
-2. 在弹窗上显示的输入法应用列表中，选择并点击demo应用，将demo应用切换为当前输入法。
-
-3. 点击任意编辑框，即可拉起输入法demo。
 <!--RP1End-->
+
 ## 约束与限制
 
 为了降低InputMethodExtensionAbility能力被三方应用滥用的风险，现通过基础访问模式的功能约束对输入法应用进行安全管控。

@@ -18,6 +18,14 @@ This repository stores device and application development documents provided by 
 
  - master: the latest version.
 
+ - OpenHarmony 5.1.0 Release. [Learn more](en/release-notes/OpenHarmony-v5.1.0-release.md)
+
+ - OpenHarmony 5.0.3. [Learn more](en/release-notes/OpenHarmony-v5.0.3-release.md)
+
+ - OpenHarmony 5.0.2. [Learn more](en/release-notes/OpenHarmony-v5.0.2-release.md)
+
+ - OpenHarmony 5.0.1. [Learn more](en/release-notes/OpenHarmony-v5.0.1-release.md)
+
  - OpenHarmony 5.0.0 Release. [Learn more](en/release-notes/OpenHarmony-v5.0.0-release.md)
 
  - OpenHarmony 4.1 Release. [Learn more](en/release-notes/OpenHarmony-v4.1-release.md)

@@ -1,24 +1,23 @@
 # Encoding and Decoding an RSA Private Key
 
-
 **Encoding**
 
 1. Call [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) and [AsyKeyGenerator.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-1) to generate a 1024-bit RSA asymmetric key pair (**KeyPair**) with two primes. The **KeyPair** object includes a public key (**PubKey**) and a private key (**PriKey**).
    
    In addition to the example in this topic, [RSA](crypto-asym-key-generation-conversion-spec.md#rsa) and [Randomly Generating an Asymmetric Key Pair](crypto-generate-asym-key-pair-randomly.md) may help you better understand how to generate an RSA asymmetric key pair. Note that the input parameters in the reference documents may be different from those in the example below.
 
-2. Call [prikey.getEncodedPem](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencodedpem16) with the [KeyEncodingConfig](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#keyencodingconfig16) and **PKCS1/PCKS8** parameters to generate an encoded private key string.
-
+2. Call [prikey.getEncodedPem](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencodedpem18) with the [KeyEncodingConfig](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#keyencodingconfig18) and **PKCS1/PCKS8** parameters to generate an encoded private key string.
 
 **Decoding**
 
 1. Call [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) to create an RSA asymmetric key generator (**asyKeyGenerator**) instance.
    
    For details about how to generate an RSA asymmetric key pair, see the following example and [RSA](crypto-asym-key-generation-conversion-spec.md#rsa).
+   
    **NOTE**
    The algorithm passed in for encoding must be the same as that used in encoding.
 
-2. Call [asyKeyGenerator.convertPemKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertpemkey16) or [asyKeyGenerator.convertPemKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertpemkeysync16) to pass in the encoded private key string and password. The private key string before encoding is returned.
+2. Call [asyKeyGenerator.convertPemKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertpemkey18) or [asyKeyGenerator.convertPemKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertpemkeysync18) to pass in the encoded private key string and password. The private key string before encoding is returned.
 
 - Encoding example:
   ```ts
@@ -37,7 +36,6 @@
   }
 
   ```
-
 
 - Decoding example:
   ```ts
@@ -67,9 +65,12 @@
     let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
     asyKeyGenerator.convertPemKey(null, priKeyPkcs1EncodingStr, "123456")
       .then(keyPair => {
-        console.info('convertPemKey success.');
+        let pirKey = keyPair.priKey;
+        if (priKey) {
+          console.info('convertPemKey success.');
+        }
       }).catch((error: BusinessError) => {
-      console.error("convertPemKey error.");
+      console.error("convertPemKey error, error message is " + error.message);
     });
   }
 

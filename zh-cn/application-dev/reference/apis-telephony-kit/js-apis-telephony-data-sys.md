@@ -48,7 +48,7 @@ setDefaultCellularDataSlotId(slotId: number, callback: AsyncCallback\<void\>): v
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
 | 8300004  | No SIM card found.                           |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 | 8301001  | SIM card is not activated.                   |
 
 **示例：**
@@ -103,7 +103,7 @@ setDefaultCellularDataSlotId(slotId: number): Promise\<void\>
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
 | 8300004  | No SIM card found.                           |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 | 8301001  | SIM card is not activated.                   |
 
 **示例：**
@@ -150,7 +150,7 @@ enableCellularData(callback: AsyncCallback\<void\>): void
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **示例：**
 
@@ -195,7 +195,7 @@ enableCellularData(): Promise\<void\>
 | 202      | Non-system applications use system APIs.     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **示例：**
 
@@ -240,7 +240,7 @@ disableCellularData(callback: AsyncCallback\<void\>): void
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **示例：**
 
@@ -285,7 +285,7 @@ disableCellularData(): Promise\<void\>
 | 202      | Non-system applications use system APIs.     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **示例：**
 
@@ -331,7 +331,7 @@ enableCellularDataRoaming(slotId: number, callback: AsyncCallback\<void\>): void
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **示例：**
 
@@ -384,7 +384,7 @@ enableCellularDataRoaming(slotId: number): Promise\<void\>
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **示例：**
 
@@ -430,7 +430,7 @@ disableCellularDataRoaming(slotId: number, callback: AsyncCallback\<void\>): voi
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **示例：**
 
@@ -483,7 +483,7 @@ disableCellularDataRoaming(slotId: number): Promise\<void\>
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **示例：**
 

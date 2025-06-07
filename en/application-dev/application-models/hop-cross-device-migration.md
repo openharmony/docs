@@ -94,7 +94,7 @@ The following figure shows the cross-device migration process when a migration r
     ```ts
     import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { promptAction } from '@kit.ArkUI';
+    import { PromptAction } from '@kit.ArkUI';
     
     const TAG: string = '[MigrationAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -107,8 +107,9 @@ The following figure shows the cross-device migration process when a migration r
         hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${targetVersion}, targetDevice: ${targetDevice}`);
     
         // The application can set the minimum compatible version based on the source version, which can be obtained from the versionCode field in the app.json5 file. This is to prevent incompatibility caused because the target version is too earlier.
-    	let versionThreshold: number = -1; // Use the minimum version supported by the application.
+        let versionThreshold: number = -1; // Use the minimum version supported by the application.
         // Compatibility verification
+        let promptAction: promptAction = uiContext.getPromptAction;
         if (targetVersion < versionThreshold) {
           // It is recommended that users be notified of the reason why the migration is rejected if the version compatibility check fails.
           promptAction.showToast({
@@ -228,7 +229,7 @@ To implement special scenarios, for example, where migration is required only fo
     @Entry
     @Component
     struct Page_MigrationAbilityFirst {
-      private context = getContext(this) as common.UIAbilityContext;
+      private context = this.getUIContext().getHostContext();
       build() {
         // ...
       }
@@ -248,7 +249,7 @@ To implement special scenarios, for example, where migration is required only fo
     // Page_MigrationAbilityFirst.ets
     import { AbilityConstant, common } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { promptAction } from '@kit.ArkUI';
+    import { PromptAction } from '@kit.ArkUI';
     
     const TAG: string = '[MigrationAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -256,7 +257,8 @@ To implement special scenarios, for example, where migration is required only fo
     @Entry
     @Component
     struct Page_MigrationAbilityFirst {
-      private context = getContext(this) as common.UIAbilityContext;
+      private context = this.getUIContext().getHostContext();
+      let promptAction: promptAction = uiContext.getPromptAction;
       build() {
         Column() {
           //...

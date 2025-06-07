@@ -22,8 +22,6 @@ startSecondPage(want: Want): Promise<[AbilityResult](../apis-ability-kit/js-apis
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Ability.Form
 
 **参数：**
@@ -44,7 +42,6 @@ startSecondPage(want: Want): Promise<[AbilityResult](../apis-ability-kit/js-apis
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 202      | The application is not a system application.                 |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | An IPC connection error happened.                            |
 | 16501000 | An internal functional error occurred.                       |
 | 16500100 | Failed to obtain the configuration information.                        |

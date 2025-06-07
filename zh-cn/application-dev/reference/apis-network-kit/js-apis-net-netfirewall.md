@@ -1,6 +1,6 @@
 # @ohos.net.netFirewall (网络防火墙)
 
-本模块提供网络防火墙能力，为应用程序提供查询防火墙能力。 应用程序可以对机器进行防火墙拦截记录的查询。
+本模块提供网络防火墙能力，为应用程序提供查询防火墙能力。应用程序可以对机器进行防火墙拦截记录的查询。
 
 
 > **说明：**
@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import { netfirewall } from '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 ```
 
 
@@ -53,7 +53,7 @@ getNetFirewallPolicy(userId: number): Promise\<NetFirewallPolicy>
 **示例：**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 netFirewall.getNetFirewallPolicy(100).then((result: netFirewall.NetFirewallPolicy) => {
@@ -108,7 +108,7 @@ updateNetFirewallRule(rule: NetFirewallRule): Promise\<void>
 **示例：**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let ipRuleUpd: netFirewall.NetFirewallRule = {
@@ -116,7 +116,7 @@ let ipRuleUpd: netFirewall.NetFirewallRule = {
   name: "rule1",
   description: "rule1 description update",
   direction: netFirewall.NetFirewallRuleDirection.RULE_IN,
-  action:netFirewall.NetFirewallRuleDirection.RULE_DENY,
+  action:netFirewall.FirewallRuleAction.RULE_DENY,
   type: netFirewall.NetFirewallRuleType.RULE_IP,
   isEnabled: false,
   appUid: 20001,
@@ -155,7 +155,6 @@ removeNetFirewallRule(userId: number, ruleId: number): Promise\<void>
 
 | 参数名   | 类型                             | 必填 | 说明                                         |
 | -------- | ----------------------------------- | ---- | -------------------------------------------- |
-| rule     | [NetFirewallRule](#netfirewallrule) | 是   | 防火墙规则。                                 |
 | userId   | number                              | 是   | 系统中的多用户用户ID，只能是存在的用户ID。     |
 | ruleId   | number                              | 是   | 防火墙规则ID。                               |
 
@@ -182,7 +181,7 @@ removeNetFirewallRule(userId: number, ruleId: number): Promise\<void>
 **示例：**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 netFirewall.removeNetFirewallRule(100, 1).then(() => {
@@ -231,7 +230,7 @@ getNetFirewallRules(userId: number, requestParam: RequestParam): Promise\<Firewa
 **示例：**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let ruleParam: netFirewall.RequestParam = {
@@ -240,7 +239,7 @@ let ruleParam: netFirewall.RequestParam = {
   orderField: netFirewall.NetFirewallOrderField.ORDER_BY_RULE_NAME,
   orderType: netFirewall.NetFirewallOrderType.ORDER_ASC
 };
-netFirewall.getNetFirewallRules(100, ruleParam).then((result: netfirewall.FirewallRulePage) => {
+netFirewall.getNetFirewallRules(100, ruleParam).then((result: netFirewall.FirewallRulePage) => {
   console.info("result:", JSON.stringify(result));
 }, (error: BusinessError) => {
   console.error("get firewall rules failed: " + JSON.stringify(error));
@@ -287,7 +286,7 @@ getNetFirewallRule(userId: number, ruleId: number): Promise\<NetFirewallRule>
 **示例：**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 netFirewall.getNetFirewallRule(100, 1).then((rule: netFirewall.NetFirewallRule) => {
@@ -305,7 +304,7 @@ setNetFirewallPolicy(userId: number, policy: NetFirewallPolicy): Promise\<void>
 
 **需要权限**：ohos.permission.MANAGE_NET_FIREWALL
 
-**系统能力**：SystemCapability.Communication.NetManager.netfirewall
+**系统能力**：SystemCapability.Communication.NetManager.NetFirewall
 
 **参数：**
 
@@ -336,7 +335,7 @@ setNetFirewallPolicy(userId: number, policy: NetFirewallPolicy): Promise\<void>
 **示例：**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let policy: netFirewall.NetFirewallPolicy = {
@@ -395,14 +394,14 @@ addNetFirewallRule(rule: NetFirewallRule): Promise\<number>
 **示例：**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let ipRule: netFirewall.NetFirewallRule = {
   name: "rule1",
   description: "rule1 description",
   direction: netFirewall.NetFirewallRuleDirection.RULE_IN,
-  action:netFirewall.NetFirewallRuleDirection.RULE_DENY,
+  action:netFirewall.FirewallRuleAction.RULE_DENY,
   type: netFirewall.NetFirewallRuleType.RULE_IP,
   isEnabled: true,
   appUid: 20001,
@@ -456,7 +455,7 @@ let domainRule: netFirewall.NetFirewallRule = {
   name: "rule2",
   description: "rule2 description",
   direction: netFirewall.NetFirewallRuleDirection.RULE_IN,
-  action:netFirewall.NetFirewallRuleDirection.RULE_DENY,
+  action:netFirewall.FirewallRuleAction.RULE_DENY,
   type: netFirewall.NetFirewallRuleType.RULE_DOMAIN,
   isEnabled: true,
   appUid: 20002,
@@ -480,12 +479,14 @@ let dnsRule: netFirewall.NetFirewallRule = {
   name: "rule3",
   description: "rule3 description",
   direction: netFirewall.NetFirewallRuleDirection.RULE_IN,
-  action:netFirewall.NetFirewallRuleDirection.RULE_DENY,
+  action:netFirewall.FirewallRuleAction.RULE_DENY,
   type: netFirewall.NetFirewallRuleType.RULE_DNS,
   isEnabled: true,
   appUid: 20003,
-  primaryDns: "4.4.4.4",
-  standbyDns: "8.8.8.8",
+  dns:{
+   primaryDns: "4.4.4.4",
+   standbyDns: "8.8.8.8",
+  },
   userId: 100
 };
 netFirewall.addNetFirewallRule(dnsRule).then((result: number) => {
@@ -508,7 +509,7 @@ netFirewall.addNetFirewallRule(dnsRule).then((result: number) => {
 | direction   | [NetFirewallRuleDirection](#netfirewallruledirection)       | 是 | 规则方向，入站或出站。                                         |
 | action      | [FirewallRuleAction](#firewallruleaction)                   | 是 | 行为。                                                         |
 | type        | [NetFirewallRuleType](#netfirewallruletype)                 | 是 | 规则类型。                                                     |
-| isEnabled   | boolean                                                     | 是 | 是否启用。                                                     |
+| isEnabled   | boolean                                                     | 是 | 是否启用。true:启用；false：不启用。                                                     |
 | id          | number                                                      | 否 | 规则ID。                                                       |
 | description | string                                                      | 否 | 规则描述，可选，最多256个字符。                                |
 | appUid      | number                                                      | 否 | 应用程序或服务UID。                                            |
@@ -542,9 +543,9 @@ netFirewall.addNetFirewallRule(dnsRule).then((result: number) => {
 
 | 名称       | 类型                                        | 必填 | 说明          |
 |------------|-------------------------------------------- |------|---------------|
-| page       | number                                      | 是   | 当前页码。    |
-| pageSize   | number                                      | 是   | 页大小。      |
-| totalPage  | number                                      | 是   | 总页数。      |
+| page       | number                                      | 是   | 当前页码，值范围：[1,1000]。    |
+| pageSize   | number                                      | 是   | 页大小，值范围：[1,50]。      |
+| totalPage  | number                                      | 是   | 总页数，值范围：[1,1000]。      |
 | data       | Array\<[NetFirewallRule](#netfirewallrule)> | 是   | 页面数据。    |
 
 ## NetFirewallPolicy
@@ -555,7 +556,7 @@ netFirewall.addNetFirewallRule(dnsRule).then((result: number) => {
 
 | 名称       | 类型                                       | 必填 | 说明          |
 | -----------| -------------------------------------------|------|-------------- |
-| isOpen     | boolean                                    | 是   | 防火墙开/关。 |
+| isOpen     | boolean                                    | 是   | 防火墙开/关。true:防火墙开启；false：防火墙关闭。 |
 | inAction   | [FirewallRuleAction](#firewallruleaction)  | 是   | 入站行动。    |
 | outAction  | [FirewallRuleAction](#firewallruleaction)  | 是   | 出站行动。    |
 
@@ -650,7 +651,7 @@ netFirewall.addNetFirewallRule(dnsRule).then((result: number) => {
 
 | 名称         | 类型    | 必填 | 说明                                      |
 | ------------ | --------|------|------------------------------------------ |
-| isWildcard   | boolean | 是   | 是否包含通配符。                          |
+| isWildcard   | boolean | 是   | 是否包含通配符。true:包含通配符；false：不包含通配符。                          |
 | domain       | string  | 是   | 当isWildcard为false时，需要确定的完整域。 |
 
 ## NetFirewallDnsParams

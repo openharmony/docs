@@ -1,14 +1,18 @@
 # SceneNode
-本模块提供3D图形中场景资源结点的的类型及操作方法。
+
+本模块提供3D图形中场景资源结点的类型及操作方法。
 
 > **说明：** 
-> - 本模块首批接口从API version 12开始支持，后续版本的新增接口，采用上角标标记接口的起始版本。
+>
+> 本模块首批接口从API version 12开始支持，后续版本的新增接口，采用上角标标记接口的起始版本。
 
 ## 导入模块
+
 ```ts
 import { LayerMask, NodeType, Container, Node, Geometry, LightType, Light, SpotLight, DirectionalLight,
   Camera } from '@kit.ArkGraphics3D';
 ```
+
 ## LayerMask
 用于定义结点的图层掩码。
 
@@ -123,7 +127,6 @@ function append() : void {
   });
 }
 ```
-
 
 ### insertAfter
 insertAfter(item: T, sibling: T | null): void
@@ -327,7 +330,7 @@ function getNode() : void {
 ```
 
 ## Geometry
-几何类型，继承自[Node](#node)。
+几何节点类型，用于承载可渲染的网格数据，并支持可选的形变功能，继承自[Node](#node)。
 
 ### 属性
 
@@ -336,7 +339,7 @@ function getNode() : void {
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | mesh | [Mesh](js-apis-inner-scene-resources.md#mesh) | 是 | 否 | 网格属性。 |
-
+| morpher<sup>20+</sup> | [Morpher](js-apis-inner-scene-resources.md#morpher20) | 是 | 是 | 可选的形变器，用于为几何体添加基于顶点的形变或动画效果。若未设置，则该几何体不支持形变功能。 |
 
 ## LightType
 光源类型枚举。
@@ -389,3 +392,44 @@ function getNode() : void {
 | enabled | boolean | 否 | 否 | 是否使能相机。true表示使用相机，false表示不使用相机。 |
 | postProcess | [PostProcessSettings](js-apis-inner-scene-post-process-settings.md#postprocesssettings) \| null | 否 | 否 | 后处理设置。 |
 | clearColor | [Color](js-apis-inner-scene-types.md#color) \| null | 否 | 否 | 将渲染目标（render target）清空后的特定颜色。 |
+
+### raycast<sup>20+</sup>
+raycast(viewPosition: Vec2, params: RaycastParameters): Promise<RaycastResult[]>
+
+从屏幕指定位置发射射线，检测并返回所有命中的3D物体信息。使用Promise异步回调。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | ---- |
+| viewPosition | [Vec2](js-apis-inner-scene-types.md#vec2) | 是 | 标准化设备坐标(NDC)，范围[-1, 1]。(-1, -1)为屏幕左下角，(1, 1)为屏幕右上角。|
+| params | [RaycastParameters](js-apis-inner-scene.md#raycastparameters20) | 是 | 射线检测的配置参数（如检测范围、过滤节点等）。|
+
+**返回值：**
+| 类型 | 说明 |
+| ---- | ---- |
+| Promise<[RaycastResult](js-apis-inner-scene.md#raycastresult20)[]> | 返回命中的结果数组（按距离从近到远排序），若无命中则返回空数组。 |
+
+**示例：**
+```ts
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Vec2, Vec3, RaycastParameters,
+  RaycastResult } from '@kit.ArkGraphics3D';
+
+function Raycast() : void {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
+    if (result) {
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      let sceneCameraParameter: SceneNodeParameters = { name: "camera1" };
+      // 创建相机
+      let camera: Promise<Camera> = sceneFactory.createCamera(sceneCameraParameter);
+      camera.enabled = true;
+      lookAt(this.cam, { x: 15, y: 10, z: 20 }, { x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 });
+      let viewPos: scene3d.Vec2 = { x: 0.5, y: 0.5 };
+      return camera?.raycast(viewPos, result.root);
+    }
+  });
+}
+```

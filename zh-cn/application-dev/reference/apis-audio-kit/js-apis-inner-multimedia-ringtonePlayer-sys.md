@@ -53,7 +53,7 @@ let state: media.AVPlayerState = systemRingtonePlayer.state;
 
 getTitle(callback: AsyncCallback&lt;string&gt;): void
 
-获取铃声标题，使用callback方式异步返回结果。
+获取铃声标题。使用callback异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -63,7 +63,7 @@ getTitle(callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名   | 类型                                      | 必填 | 说明                       |
 | -------- | -----------------------------------------| ---- | ------------------------- |
-| callback | AsyncCallback&lt;string&gt;              | 是   | 回调返回获取的铃声标题。     |
+| callback | AsyncCallback&lt;string&gt;              | 是   | 回调函数。当获取铃声标题成功，err为undefined，data为获取到的铃声标题；否则为错误对象。 |
 
 **示例：**
 
@@ -83,7 +83,7 @@ systemRingtonePlayer.getTitle((err: BusinessError, value: string) => {
 
 getTitle(): Promise&lt;string&gt;
 
-获取铃声标题，使用Promise方式异步返回结果。
+获取铃声标题。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -93,7 +93,7 @@ getTitle(): Promise&lt;string&gt;
 
 | 类型                  | 说明                              |
 | --------------------- | -------------------------------- |
-| Promise&lt;string&gt; | Promise回调返回获取的系统铃声标题。 |
+| Promise&lt;string&gt; | Promise对象，返回获取的系统铃声标题。 |
 
 **示例：**
 
@@ -111,7 +111,7 @@ systemRingtonePlayer.getTitle().then((value: string) => {
 
 getAudioRendererInfo(callback: AsyncCallback&lt;audio.AudioRendererInfo&gt;): void
 
-获取铃声使用的AudioRendererInfo，使用callback方式异步返回结果。
+获取铃声使用的AudioRendererInfo。使用callback异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -121,7 +121,7 @@ getAudioRendererInfo(callback: AsyncCallback&lt;audio.AudioRendererInfo&gt;): vo
 
 | 参数名   | 类型                                      | 必填 | 说明                       |
 | -------- | -----------------------------------------| ---- | ------------------------- |
-| callback | AsyncCallback&lt;[audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)&gt; | 是 | 回调返回获取的AudioRendererInfo。 |
+| callback | AsyncCallback&lt;[audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)&gt; | 是 | 回调函数。当获取音频渲染器信息成功，err为undefined，data为获取到的音频渲染器信息；否则为错误对象。 |
 
 **示例：**
 
@@ -145,7 +145,7 @@ systemRingtonePlayer.getAudioRendererInfo((err: BusinessError, value: audio.Audi
 
 getAudioRendererInfo(): Promise&lt;audio.AudioRendererInfo&gt;
 
-获取铃声使用的AudioRendererInfo，使用Promise方式异步返回结果。
+获取铃声使用的AudioRendererInfo。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -155,7 +155,7 @@ getAudioRendererInfo(): Promise&lt;audio.AudioRendererInfo&gt;
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;[audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)&gt; | Promise回调返回获取的AudioRendererInfo。 |
+| Promise&lt;[audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)&gt; | Promise对象，返回获取的音频渲染器信息。 |
 
 **示例：**
 
@@ -177,7 +177,7 @@ systemRingtonePlayer.getAudioRendererInfo().then((value: audio.AudioRendererInfo
 
 configure(options: RingtoneOptions, callback: AsyncCallback&lt;void&gt;): void
 
-配置铃声播放参数，使用callback方式异步返回结果。
+配置铃声播放参数。使用callback异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -188,7 +188,7 @@ configure(options: RingtoneOptions, callback: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                                      | 必填 | 说明                       |
 | -------- | -----------------------------------------| ---- | ------------------------- |
 | options  | [RingtoneOptions](#ringtoneoptions)      | 是   | 指定铃声参数。             |
-| callback | AsyncCallback&lt;void&gt;                | 是   | 回调返回配置参数成功或失败。 |
+| callback | AsyncCallback&lt;void&gt;                | 是   | 回调函数。当配置铃声播放参数成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -214,7 +214,7 @@ systemRingtonePlayer.configure(ringtoneOptions, (err: BusinessError) => {
 
 configure(options: RingtoneOptions): Promise&lt;void&gt;
 
-配置铃声播放参数，使用Promise方式异步返回结果。
+配置铃声播放参数。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -230,7 +230,7 @@ configure(options: RingtoneOptions): Promise&lt;void&gt;
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise回调返回配置参数成功或失败。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -254,7 +254,7 @@ systemRingtonePlayer.configure(ringtoneOptions).then(() => {
 
 start(callback: AsyncCallback&lt;void&gt;): void
 
-开始播放铃声，使用callback方式异步返回结果。
+开始播放铃声。使用callback异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -264,7 +264,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                                      | 必填 | 说明                       |
 | -------- | -----------------------------------------| ---- | ------------------------- |
-| callback | AsyncCallback&lt;void&gt;                | 是   | 回调返回开始播放成功或失败。 |
+| callback | AsyncCallback&lt;void&gt;                | 是   | 回调函数。当开始播放铃声成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -284,7 +284,7 @@ systemRingtonePlayer.start((err: BusinessError) => {
 
 start(): Promise&lt;void&gt;
 
-开始播放铃声，使用Promise方式异步返回结果。
+开始播放铃声。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -294,7 +294,7 @@ start(): Promise&lt;void&gt;
 
 | 类型                | 说明                              |
 | ------------------- | -------------------------------- |
-| Promise&lt;void&gt; | Promise回调返回开始播放成功或失败。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -312,7 +312,7 @@ systemRingtonePlayer.start().then(() => {
 
 stop(callback: AsyncCallback&lt;void&gt;): void
 
-停止播放铃声，使用callback方式异步返回结果。
+停止播放铃声。使用callback异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -322,7 +322,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                                      | 必填 | 说明                       |
 | -------- | -----------------------------------------| ---- | ------------------------- |
-| callback | AsyncCallback&lt;void&gt;                | 是   | 回调返回停止播放成功或失败。 |
+| callback | AsyncCallback&lt;void&gt;                | 是   | 回调函数。当停止播放铃声成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -342,7 +342,7 @@ systemRingtonePlayer.stop((err: BusinessError) => {
 
 stop(): Promise&lt;void&gt;
 
-停止播放铃声，使用Promise方式异步返回结果。
+停止播放铃声。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -352,7 +352,7 @@ stop(): Promise&lt;void&gt;
 
 | 类型                | 说明                              |
 | ------------------- | -------------------------------- |
-| Promise&lt;void&gt; | Promise回调返回停止播放成功或失败。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -370,7 +370,7 @@ systemRingtonePlayer.stop().then(() => {
 
 release(callback: AsyncCallback&lt;void&gt;): void
 
-释放铃声播放器，使用callback方式异步返回结果。
+释放铃声播放器。使用callback异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -380,7 +380,7 @@ release(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                                      | 必填 | 说明                       |
 | -------- | -----------------------------------------| ---- | ------------------------- |
-| callback | AsyncCallback&lt;void&gt;                | 是   | 回调返回释放成功或失败。     |
+| callback | AsyncCallback&lt;void&gt;                | 是   | 回调函数。当释放铃声播放器成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -400,7 +400,7 @@ systemRingtonePlayer.release((err: BusinessError) => {
 
 release(): Promise&lt;void&gt;
 
-释放铃声播放器，使用Promise方式异步返回结果。
+释放铃声播放器。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -410,7 +410,7 @@ release(): Promise&lt;void&gt;
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise回调返回释放成功或失败。   |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -428,7 +428,7 @@ systemRingtonePlayer.release().then(() => {
 
 on(type: 'audioInterrupt', callback: Callback&lt;audio.InterruptEvent&gt;): void
 
-监听音频中断事件（当音频焦点发生变化时触发），使用callback方式返回结果。
+监听音频中断事件（当音频焦点发生变化时触发）。使用callback异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -438,12 +438,12 @@ on(type: 'audioInterrupt', callback: Callback&lt;audio.InterruptEvent&gt;): void
 
 | 参数名   | 类型                     | 必填 | 说明                                                                       |
 | -------- | ----------------------- | ---- | -------------------------------------------------------------------------- |
-| type     | string                  | 是   | 监听事件，固定为：'audioInterrupt'。 |
-| callback | Callback&lt;[audio.InterruptEvent](../apis-audio-kit/js-apis-audio.md#interruptevent9)&gt; | 是   | 回调函数，返回播放中断时，应用接收的中断事件信息。 |
+| type     | string                  | 是   | 事件回调类型，支持的事件为'audioInterrupt'，当音频焦点状态发生变化时，触发该事件。 |
+| callback | Callback&lt;[audio.InterruptEvent](../apis-audio-kit/js-apis-audio.md#interruptevent9)&gt; | 是   | 回调函数，返回中断事件信息。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[音频错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -514,11 +514,11 @@ off(type: 'audioInterrupt'): void
 
 | 参数名 | 类型   | 必填 | 说明                                              |
 | :----- | :----- | :--- | :------------------------------------------------ |
-| type   | string | 是   | 监听事件，固定为：'audioInterrupt'。 |
+| type   | string | 是   | 事件回调类型，支持的事件为'audioInterrupt'，当取消监听音频中断事件时，触发该事件。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[音频错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|

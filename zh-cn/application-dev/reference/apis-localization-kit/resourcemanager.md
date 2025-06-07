@@ -433,7 +433,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetConfiguration (const NativeResou
 
 获取设备配置。
 
-使用此接口后，需要调用OH_ResourceManager_ReleaseConfiguration()方法来释放内存。 如果使用malloc创建ResourceManager_Configuration对象，还需要调用free()方法来释放它。
+使用此接口后，需要调用OH_ResourceManager_ReleaseConfiguration()方法来释放内存。如果使用malloc创建ResourceManager_Configuration对象，还需要调用free()方法来释放它。
 
 **起始版本：** 12
 

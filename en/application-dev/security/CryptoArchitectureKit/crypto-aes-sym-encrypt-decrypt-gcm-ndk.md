@@ -1,8 +1,6 @@
 # Encryption and Decryption with an AES Symmetric Key (GCM Mode) (C/C++)
 
-
 For details about the algorithm specifications, see [AES](crypto-sym-encrypt-decrypt-spec.md#aes).
-
 
 ## Adding the Dynamic Library in the CMake Script
 ```txt
@@ -14,7 +12,7 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 **Creating an Object**
 
 Call [OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create) and [OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_generate) to generate a 128-bit AES symmetric key (**OH_CryptoSymKey**).
-
+   
 In addition to the example in this topic, [AES](crypto-sym-key-generation-conversion-spec.md#aes) and [Randomly Generating a Symmetric Key](crypto-generate-sym-key-randomly-ndk.md) may help you better understand how to generate an AES symmetric key. Note that the input parameters in the reference documents may be different from those in the example below.
 
 **Encrypting a Message**
@@ -27,20 +25,17 @@ In addition to the example in this topic, [AES](crypto-sym-key-generation-conver
 
 4. Call [OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update) to update the data (plaintext) to be encrypted.
    
-   Currently, the amount of data to be passed in by a single **update()** is not limited. You can determine how to pass in data based on the data volume.
+   Currently, the amount of data to be passed in by a single **OH_CryptoSymCipher_Update** is not limited. You can determine how to pass in data based on the data volume.
 
    - If a small amount of data is to be encrypted, you can use **OH_CryptoSymCipher_Final()** immediately after **OH_CryptoSymCipher_Init()**.
-   - If a large amount of data is to be encrypted, you can call **OH_CryptoSymCipher_Update()** multiple times to pass in the data by segment.
+   - If a large amount of data is to be encrypted, you can call **OH_CryptoSymCipher_Update()** multiple times to [pass in the data by segment](crypto-aes-sym-encrypt-decrypt-gcm-by-segment-ndk.md).
 
 5. Call [OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final) to generate the ciphertext.
    - If data has been passed in by **OH_CryptoSymCipher_Update()**, pass in **null** in the **data** parameter of **OH_CryptoSymCipher_Final**.
    - The output of **OH_CryptoSymCipher_Final** may be **null**. To avoid exceptions, always check whether the result is **null** before accessing specific data.
-   > **NOTE**
-   >
-   > - If GCM mode is used, **authTag** returned by **OH_CryptoSymCipher_Final()** will be used to initialize the authentication information during decryption and needs to be saved.
-   >
-   > - In GCM mode, **authTag** must be of 16 bytes. It is used as the authentication information during decryption. In the following example, **authTag** is of 16 bytes.
 
+   > **NOTE**<br>
+   > If GCM mode is used, **authTag** returned by **OH_CryptoSymCipher_Final()** will be used to initialize the authentication information during decryption and needs to be saved. In GCM mode, **authTag** must be of 16 bytes. It is used as the authentication information during decryption. In the following example, **authTag** is of 16 bytes.
 
 
 **Decrypting a Message**
@@ -59,8 +54,7 @@ In addition to the example in this topic, [AES](crypto-sym-key-generation-conver
 
 Call [OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_destroy), [OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_destroy), and [OH_CryptoSymCipherParams_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_destroy) to destroy the instances created.
 
-
-**Example **
+**Example**
 
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
@@ -117,7 +111,7 @@ static OH_Crypto_ErrCode doTestAesGcm()
         goto end;
     }
 
-      // Encrypt data.
+    // Encrypt the message.
     ret = OH_CryptoSymCipher_Create("AES128|GCM|PKCS7", &encCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -135,7 +129,7 @@ static OH_Crypto_ErrCode doTestAesGcm()
         goto end;
     }
 
-    // Decrypt data.
+    // Decrypt the message.
     ret = OH_CryptoSymCipher_Create("AES128|GCM|PKCS7", &decCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;

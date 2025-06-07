@@ -2,11 +2,11 @@
 
 此处提供使用任务池[TaskPool](../reference/apis-arkts/js-apis-taskpool.md)提升[WaterFlow瀑布流](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)渲染性能的开发指导。UI线程查询数据库数据，并将数据渲染到瀑布流组件，数据过大时会导致UI线程长时间等待，影响用户体验。因此，我们可以将数据查询操作放到子线程中，并通过TaskPool的接口返回数据给UI线程。
 
-本示例将说明下面的场景：
+本示例说明以下场景：
 - 模拟子线程[读取数据库数据](batch-database-operations-guide.md)并返回给UI线程。
 - UI线程感知到数据更新，将子线程返回的数据渲染到瀑布流组件。
 
-1. 定义一个接口，用于子线程查询数据库并返回数据给UI线程。
+1. 定义一个接口，用于子线程查询数据库并将数据返回给UI线程。
 
     ```ts
     // Mock.ets
@@ -237,7 +237,7 @@
                     .onClick(()=>{
 
                     });
-                  // 为了模拟图片加载，使用Text组件显示，正常加载jpg文件时，可以直接使用Image组件，参考 Image(this.img[item % 33]).objectFit(ImageFit.Contain).width('100%').layoutWeight(1)
+                  // 为了模拟图片加载，使用Text组件显示，正常加载jpg文件时，可以直接使用Image组件，参考Image(this.img[item % 33]).objectFit(ImageFit.Contain).width('100%').layoutWeight(1)
                   if (img[item % 33] == null) {
                     Text("图片加载中...")
                       .width('100%')

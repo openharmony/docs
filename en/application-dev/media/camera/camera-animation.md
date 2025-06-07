@@ -24,6 +24,8 @@ When using the camera, transitions such as changing camera modes or switching be
 
 Use component overlay to implement the blackout effect.
 
+The sample code in the following steps is the internal method or logic of a custom component (component decorated by @Component).
+
 1. Import dependencies. Specifically, import the camera, image, and ArkUI modules.
 
    ```ts
@@ -49,8 +51,8 @@ Use component overlay to implement the blackout effect.
    if (this.isShowBlack) {
      Column()
        .key('black')
-       .width(px2vp(1080)) // The width and height must be the same as those of the XComponent of the preview stream. The layer is above the preview stream and below the snapshot component.
-       .height(px2vp(1920))
+       .width(this.getUIContext().px2vp(1080)) // The width and height must be the same as those of the XComponent of the preview stream. The layer is above the preview stream and below the snapshot component.
+       .height(this.getUIContext().px2vp(1920))
        .backgroundColor(Color.Black)
        .opacity(this.flashBlackOpacity)
    }
@@ -59,7 +61,8 @@ Use component overlay to implement the blackout effect.
 3. Implement the blackout effect.
 
    ```ts
-   function flashBlackAnim() {
+   // Internal methods of the component decorated by @Component.
+   flashBlackAnim() {
      console.info('flashBlackAnim E');
      this.flashBlackOpacity = 1; // The blackout component is opaque.
      this.isShowBlack = true; // Show the blackout component.
@@ -84,8 +87,7 @@ Use component overlay to implement the blackout effect.
    ```ts
    onCaptureClick(): void {
      console.info('onCaptureClick');
-       console.info('onCaptureClick');
-       this.flashBlackAnim();
+     this.flashBlackAnim();
    }
    ```
 
@@ -94,6 +96,8 @@ Use component overlay to implement the blackout effect.
 ## Blur Animation
 
 You can use preview stream snapshots to create a blur effect for mode switching or front/rear camera switching.
+
+The sample code in the following steps (except step 2) is the internal method or logic of a custom component (component decorated by @Component).
 
 1. Import dependencies. Specifically, import the camera, image, and ArkUI modules.
 
@@ -108,8 +112,6 @@ You can use preview stream snapshots to create a blur effect for mode switching 
    Preview stream snapshots are obtained by calling [image.createPixelMapFromSurface](../../reference/apis-image-kit/js-apis-image.md#imagecreatepixelmapfromsurface11) provided by the image module. In this API, **surfaceId** is the surface ID of the current preview stream, and **size** is the width and height of the current preview stream profile. Create a snapshot utility class (TS file), import the dependency, and export the snapshot retrieval API for the page to use. The code snippet below shows the implementation of the snapshot utility class:
 
    ```ts
-   import { image } from '@kit.ImageKit';
-   
    export class BlurAnimateUtil {
      public static surfaceShot: image.PixelMap;
    
@@ -125,18 +127,18 @@ You can use preview stream snapshots to create a blur effect for mode switching 
          return;
        }
        try {
-         if (this.surfaceShot) {
-           await this.surfaceShot.release();
+         if (BlurAnimateUtil.surfaceShot) {
+           await BlurAnimateUtil.surfaceShot.release();
          }
-         this.surfaceShot = await image.createPixelMapFromSurface(surfaceId, {
+         BlurAnimateUtil.surfaceShot = await image.createPixelMapFromSurface(surfaceId, {
            size: { width: 1920, height: 1080 }, // Obtain the width and height of the preview stream profile.
            x: 0,
            y: 0
          });
-         let imageInfo: image.ImageInfo = await this.surfaceShot.getImageInfo();
+         let imageInfo: image.ImageInfo = await BlurAnimateUtil.surfaceShot.getImageInfo();
          console.info('doSurfaceShot surfaceShot:' + JSON.stringify(imageInfo.size));
        } catch (err) {
-         console.error(JSON.stringify(err));
+         console.error(err);
        }
      }
    
@@ -145,7 +147,7 @@ You can use preview stream snapshots to create a blur effect for mode switching 
       * @returns
       */
      public static getSurfaceShot(): image.PixelMap {
-       return this.surfaceShot;
+       return BlurAnimateUtil.surfaceShot;
      }
    }
    ```
@@ -181,12 +183,12 @@ You can use preview stream snapshots to create a blur effect for mode switching 
          .opacity(this.shotImgOpacity)
          .rotate(this.shotImgRotation) // Provided by ArkUI for component rotation.
          .scale(this.shotImgScale)
-         .width(px2vp(1080)) // The width and height must be the same as those of the XComponent of the preview stream. The layer is above the preview stream.
-         .height(px2vp(1920))
+         .width(this.getUIContext().px2vp(1080)) // The width and height must be the same as those of the XComponent of the preview stream. The layer is above the preview stream.
+         .height(this.getUIContext().px2vp(1920))
          .syncLoad(true)
      }
-     .width(px2vp(1080))
-     .height(px2vp(1920))
+     .width(this.getUIContext().px2vp(1080))
+     .height(this.getUIContext().px2vp(1920))
    }
    ```
 
@@ -201,7 +203,7 @@ You can use preview stream snapshots to create a blur effect for mode switching 
    > The **image.createPixelMapFromSurface** API, which is used to extract the surface content into a PixelMap, operates differently from the rendering logic of the XComponent. As such, different rotation compensations must be applied to both the image content and the component for the front and rear cameras.
 
    ```ts
-   async function showBlurAnim() {
+   async showBlurAnim() {
      console.info('showBlurAnim E');
      // Obtain the surface snapshot.
      let shotPixel = BlurAnimateUtil.getSurfaceShot();
@@ -244,7 +246,7 @@ You can use preview stream snapshots to create a blur effect for mode switching 
    The fade-out blur animation is triggered by the event [on('frameStart')](../../reference/apis-camera-kit/js-apis-camera.md#onframestart) of the new preview stream. During this effect, the snapshot component gradually becomes clear, revealing the new preview stream.
 
    ```ts
-   function hideBlurAnim(): void {
+   hideBlurAnim(): void {
      this.isShowBlack = false;
      console.info('hideBlurAnim E');
      animateToImmediately({
@@ -275,7 +277,7 @@ You can use preview stream snapshots to create a blur effect for mode switching 
    /**
     * A 90° rotation outwards first for transition between the front and real cameras.
     */
-   async function rotateFirstAnim() {
+   async rotateFirstAnim() {
      console.info('rotateFirstAnim E');
      // Obtain the surface snapshot.
      let shotPixel = BlurAnimateUtil.getSurfaceShot();
@@ -321,7 +323,7 @@ You can use preview stream snapshots to create a blur effect for mode switching 
    /**
     * Flip inwards by 90°.
     */
-   async function rotateSecondAnim() {
+   async rotateSecondAnim() {
      console.info('rotateSecondAnim E');
      // Obtain the surface snapshot.
      let shotPixel = BlurAnimateUtil.getSurfaceShot();
@@ -360,7 +362,7 @@ You can use preview stream snapshots to create a blur effect for mode switching 
    /**
     * Flip outwards by 90°.
     */
-   function blurFirstAnim() {
+   blurFirstAnim() {
      console.info('blurFirstAnim E');
      // Initialize animation parameters.
      this.shotImgBlur = 0; // No blur.
@@ -387,7 +389,7 @@ You can use preview stream snapshots to create a blur effect for mode switching 
    /**
     * Flip inwards by 90°.
     */
-   function blurSecondAnim() {
+   blurSecondAnim() {
      console.info('blurSecondAnim E');
      animateToImmediately(
        {

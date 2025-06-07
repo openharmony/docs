@@ -38,14 +38,14 @@
     build() {
       Column() {
         Row() {
-          XComponent({ id: 'xcomponentId_30', type: 'surface', libraryname: 'entry' })
+          XComponent({ id: 'xcomponentId_30', type: XComponentType.SURFACE, libraryname: 'entry' })
             .onLoad((xComponentContext) => {
               this.xComponentContext1 = xComponentContext as XComponentContext;
             }).width('832px')
         }.height('40%')
 
         Row() {
-          XComponent({ id: 'xcomponentId_120', type: 'surface', libraryname: 'entry' })
+          XComponent({ id: 'xcomponentId_120', type: XComponentType.SURFACE, libraryname: 'entry' })
             .onLoad((xComponentContext) => {
               this.xComponentContext2 = xComponentContext as XComponentContext;
             }).width('832px') // Multiples of 64

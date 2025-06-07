@@ -27,12 +27,12 @@
 
 | 类型 | 接口 | 功能说明 |
 | ---- | ---- | ---- |
-| setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallback\<void>): void | 配置指定以太网的网络属性，iface为网口名称，ic为配置信息，调用callback ||
-| getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>): void | 获取指定以太网的网络属性，iface为网口名称，调用callback ||
-| isIfaceActive(iface: string, callback: AsyncCallback\<number>): void | 判断指定网口是否已激活，iface为网卡名称（无参为是否有激活网口），调用callback ||
-| getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void | 获取所有活动的网络接口，调用callback ||
-| on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: boolean }\>): void | 注册网络接口监听函数 ||
-| off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: boolean }\>): void | 解除注册网络接口监听函数 ||
+| setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallback\<void>): void | 配置指定以太网的网络属性，iface为网口名称，ic为配置信息，调用callback。 | 设置网络接口配置信息。 |
+| getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>): void | 获取指定以太网的网络属性，iface为网口名称，调用callback。 | 获取指定网络接口信息。 |
+| isIfaceActive(iface: string, callback: AsyncCallback\<number>): void | 判断指定网口是否已激活，iface为网卡名称（无参为是否有激活网口），调用callback。 | 判断接口是否已激活。 |
+| getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void | 获取所有活动的网络接口，调用callback。 | 获取活动的网络接口。 |
+| on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: boolean }\>): void | 注册网络接口监听函数。 | 注册网卡热插拔事件。 |
+| off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: boolean }\>): void | 解除注册网络接口监听函数。 | 注销网卡热插拔事件。 |
 
 ## 以太网连接-DHCP模式
 
@@ -54,14 +54,14 @@ ethernet.getAllActiveIfaces().then((data: string[]) => {
     console.log("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
   }
 }).catch((error:BusinessError) => {
-  console.log("getAllActiveIfaces promise error = " + JSON.stringify(error));
+  console.error("getAllActiveIfaces promise error = " + JSON.stringify(error));
 });
 
 // isIfaceActive判断指定网口是否已激活
 ethernet.isIfaceActive("eth0").then((data: number) => {
   console.log("isIfaceActive promise = " + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-  console.log("isIfaceActive promise error = " + JSON.stringify(error));
+  console.error("isIfaceActive promise error = " + JSON.stringify(error));
 });
 
 // getIfaceConfig获取指定以太网的网络属性
@@ -73,7 +73,7 @@ ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => 
   console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
   console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
 }).catch((error: BusinessError) => {
-  console.log("getIfaceConfig promise error = " + JSON.stringify(error));
+  console.error("getIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
 
@@ -100,14 +100,14 @@ ethernet.getAllActiveIfaces().then((data: string[]) => {
     console.log("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
   }
 }).catch((error:BusinessError) => {
-  console.log("getAllActiveIfaces promise error = " + JSON.stringify(error));
+  console.error("getAllActiveIfaces promise error = " + JSON.stringify(error));
 });
 
 // isIfaceActive判断指定网口是否已激活
 ethernet.isIfaceActive("eth0").then((data: number) => {
   console.log("isIfaceActive promise = " + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-  console.log("isIfaceActive promise error = " + JSON.stringify(error));
+  console.error("isIfaceActive promise error = " + JSON.stringify(error));
 });
 
 // setIfaceConfig配置指定以太网的网络属性
@@ -125,7 +125,7 @@ const setConfigPromise = ethernet.setIfaceConfig("eth0", config);
 setConfigPromise.then(() => {
   console.log("setIfaceConfig promise ok");
 }).catch((error: BusinessError)  => {
-  console.log("setIfaceConfig promise error = " + JSON.stringify(error));
+  console.error("setIfaceConfig promise error = " + JSON.stringify(error));
 });
 
 // getIfaceConfig获取指定以太网的网络属性
@@ -137,7 +137,7 @@ ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => 
   console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
   console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
 }).catch((error: BusinessError) => {
-  console.log("getIfaceConfig promise error = " + JSON.stringify(error));
+  console.error("getIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
 

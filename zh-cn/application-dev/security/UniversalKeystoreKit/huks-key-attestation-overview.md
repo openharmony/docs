@@ -2,23 +2,52 @@
 
 HUKS为密钥提供合法性证明能力，主要应用于非对称密钥的公钥的证明。
 
-基于PKI证书链技术，HUKS可以为存储在HUKS中的非对称密钥对的公钥签发证书，证明其公钥的合法性。业务可以通过系统提供的根CA证书，逐级验证HUKS签发的密钥证明证书，来确保证书中的公钥以及对应的私钥，确实来自合法的硬件设备，且存储管理在HUKS中。同时，输出的密钥证书中包含密钥属主信息，格式如下：
-| 密钥属主 | 格式 | 说明 | 
-| -------- | -------- | -------- |
-| HAP应用| {appId:"xxx", bundleName:"xxx"} | bundleName为应用包名。 | 
-| 系统服务| {processName:"xxx", APL:"system_basic \| system_core"} | APL为[系统服务等级](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。 |
+基于PKI证书链技术，HUKS可以为存储在HUKS中的非对称密钥对的公钥签发证书，证明其公钥的合法性。业务可以通过系统提供的根CA证书，逐级验证HUKS签发的密钥证明证书，来确保证书中的公钥以及对应的私钥，确实来自合法的硬件设备，且存储管理在HUKS中。
 
 > **说明：**
 > 1. 当调用方为系统服务且APL等级为normal时，暂不支持密钥证明，此种情况下，processName与APL字段将置空。
 > 2. 密钥证明功能在模拟器场景不支持。
 > 3. 轻量级设备不支持密钥证明功能。
-> 4. 支持生成密钥和导入密钥进行密钥证明，业务方在服务器侧需要通过业务证书中的密钥来源字段校验密钥来源是否符合预期。密钥来源字段的OID及其取值为：`1.3.6.1.4.1.2011.2.376.2.1.5`。   
+> 4. 支持生成密钥和导入密钥进行密钥证明，业务方在服务器侧需要通过业务证书中的密钥来源字段校验密钥来源是否符合预期。   
 
-密钥来源及对应OID字段的值如下表：
-| 密钥来源 | OID字段对应的值 |
+密钥证明扩展域段为Asn.1 DER标准编码格式，数据结构定义如下：
+```
+KeyAttestation ::= SEQUENCE {
+  version            AttestationVersion DEFAULT v1,
+  claim1             AttestationClaim,
+  claim2             AttestationClaim,
+  claim3             AttestationClaim,
+  ... ...
+}
+AttestationVersion ::= INTEGER { v1(0) }
+AttestationClaim ::= SEQUENCE {
+  securityLevel      SecurityLevel,
+  type               AttestationType,
+  value              AttestationValue
+}
+SecurityLevel ::= INTEGER
+AttestationType ::= OBJECT IDENTIFIER
+AttestationValue ::= ANY -- DEFINED BY AttestationType
+ApplicationIDType ::= SEQUENCE {
+  type               OBJECT IDENTIFIER,
+  value              OCT_STR
+}
+```
+
+常用AttestationClaim类型取值说明：
+| type（OID）取值 | value的数据类型 | securityLevel | Claim说明 |
+| -------- | -------- | -------- | -------- | 
+| 1.3.6.1.4.1.2011.2.376.2.1.4 | OCT_STR | 保留字段，暂不使用 | 应用输入的挑战值Challenge。 |
+| 1.3.6.1.4.1.2011.2.376.2.1.3 | ApplicationIDType | 保留字段，暂不使用 | 应用ID。 |
+| 1.3.6.1.4.1.2011.2.376.2.1.5 | OCT_STR | 保留字段，暂不使用 | 密钥来源，生成或者导入。 |
+| 1.3.6.1.4.1.2011.2.376.2.1.2 | OCT_STR | 保留字段，暂不使用 | 密钥别名。 |
+| 1.3.6.1.4.1.2011.2.376.2.2.4.8 | UTF8_STR | 保留字段，暂不使用 | 产品型号Model。从API 20开始支持。 |
+
+ApplicationIDType类型取值说明：
+| type（OID）取值 | value取值说明 |
 | -------- | -------- |
-| 导入 | 1 |
-| 生成 | <!--RP1-->2<!--RP1End--> | 
+| 1.3.6.1.4.1.2011.2.376.2.1.3.1 | 样例：{appId:"xxx", bundleName:"xxx", appIdentifier:"xxx", appMode:"xxx"}<br>其中appIdentifier、appMode从API 20开始支持。 |
+| 1.3.6.1.4.1.2011.2.376.2.1.3.2 | 样例：{processName:"xxx", APL:"system_basic \| system_core"} <br>APL为[系统服务等级](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。|
 
 密钥证明过程如下：
 

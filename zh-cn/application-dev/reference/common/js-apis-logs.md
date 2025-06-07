@@ -139,7 +139,6 @@ error(message: string, ...arguments: any[]): void
 | message | string | 是    | 表示要打印的错误信息。 |
 | arguments | any[] | 否    | 表示其余要打印的信息或message的替换值。 |
 
-
 **示例：**
 
 ```js
@@ -168,6 +167,14 @@ assert(value?: Object, ...arguments: Object[]): void
 | ------- | ------ | ---- | ----------- |
 | value | Object | 否    | 语句结果值。若value为假（false）或者省略，则输出以"Assertion failed"开头。如果value为真值（true），则无打印。|
 | arguments | Object | 否    | value为假（false）的后续错误消息打印。省略则不打印。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -198,6 +205,13 @@ count(label?: string): void
 | ------- | ------ | ---- | ----------- |
 | label | string | 否    | 计数器标签名。默认值为'default'。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -231,6 +245,14 @@ countReset(label?: string): void
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
 | label | string | 否    | 计数器标签名。默认值为'default'。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -452,6 +474,14 @@ time(label?: string): void
 | ------- | ------ | ---- | ----------- |
 | label | string | 否    | 计时器标识。默认值为'default'。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
 **示例：**
 
 ```js
@@ -473,6 +503,14 @@ timeEnd(label?: string): void
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
 | label | string | 否    | 计时器标识。默认值为'default'。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -498,6 +536,14 @@ timeLog(label?: string, ...arguments: Object[]): void
 | ------- | ------ | ---- | ----------- |
 | label | string | 否    | 计时器标识。默认值为'default'。 |
 | arguments | Object | 否    | 需要打印的其他日志。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 

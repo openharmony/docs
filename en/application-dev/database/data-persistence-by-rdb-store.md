@@ -31,7 +31,7 @@ Querying data from a large amount of data may take time or even cause applicatio
 
 - The default logging mode is Write Ahead Log (WAL), and the default flushing mode is **FULL** mode.
 
-- The RDB store supports a maximum of four read connections and one write connection. A thread performs the read operation when acquiring a read connection. When there is no read connection available but the write connection is idle, the write connection can be used to read data.
+- The RDB store supports four read connections and one write connection. Read connections can be dynamically expanded. If no read connection is available, a read connection is created to execute the read operation. Write connections cannot be dynamically expanded. If no write connection is available, the write operation is executed after the connection is released.
 
 - To ensure data accuracy, only one write operation is allowed at a time.
 
@@ -54,7 +54,7 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 | delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Deletes data from the RDB store based on the specified **predicates** instance.|
 | query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void | Queries data in the RDB store based on specified conditions.|
 | deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void | Deletes an RDB store.|
-| isTokenizerSupported(tokenizer: Tokenizer): boolean | Checks whether the specified tokenizer is supported.|
+| isTokenizerSupported(tokenizer: Tokenizer): boolean | Checks whether the specified tokenizer is supported. (Tokenizer is a tool for breaking down text into smaller units, which can be words, subwords, characters, or other language fragments.)|
 
 ## How to Develop
 Unless otherwise specified, the sample code without "stage model" or "FA model" applies to both models.
@@ -80,7 +80,7 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
        if (!tokenTypeSupported) {
          console.error(`ICU_TOKENIZER is not supported on this platform.`);
        }
-       const STORE_CONFIG :relationalStore.StoreConfig= {
+       const STORE_CONFIG: relationalStore.StoreConfig = {
          name: 'RdbTest.db', // Database file name.
          securityLevel: relationalStore.SecurityLevel.S3, // Database security level.
          encrypt: false, // Whether to encrypt the database. This parameter is optional. By default, the database is not encrypted.
@@ -103,23 +103,36 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
          // When the RDB store is created, the default version is 0.
          if (store.version === 0) {
            store.executeSql(SQL_CREATE_TABLE); // Create a table.
-           // Set the RDB store version, which must be an integer greater than 0.
-           store.version = 3;
+             .then(() => {
+               // Set the RDB store version, which must be an integer greater than 0.
+               store.version = 3;
+             })
+             .catch((err: BusinessError) => {
+               console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+             });
          }
 
          // If the RDB store version is not 0 and does not match the current version, upgrade or downgrade the RDB store.
          // For example, upgrade the RDB store from version 1 to version 2.
          if (store.version === 1) {
            // Upgrade the RDB store from version 1 to version 2, and change the table structure from EMPLOYEE (NAME, SALARY, CODES, ADDRESS) to EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS).
-           (store as relationalStore.RdbStore).executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER');
-           store.version = 2;
+           store.executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER')
+             .then(() => {
+               store.version = 2;
+             }).catch((err: BusinessError) => {
+               console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+             });
          }
 
          // For example, upgrade the RDB store from version 2 to version 3.
          if (store.version === 2) {
            // Upgrade the RDB store from version 2 to version 3, and change the table structure from EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) to EMPLOYEE (NAME, AGE, SALARY, CODES).
-           (store as relationalStore.RdbStore).executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT');
-           store.version = 3;
+           store.executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS')
+             .then(() => {
+               store.version = 3;
+             }).catch((err: BusinessError) => {
+               console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+             });
          }
          // Before adding, deleting, modifying, and querying data in an RDB store, obtain an RdbStore instance and create a table.
        });
@@ -136,7 +149,7 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
    
    let context = featureAbility.getContext();
 
-   const STORE_CONFIG :relationalStore.StoreConfig = {
+   const STORE_CONFIG: relationalStore.StoreConfig = {
      name: 'RdbTest.db', // Database file name.
      securityLevel: relationalStore.SecurityLevel.S3 // Database security level.
    };
@@ -154,23 +167,36 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
      // When the RDB store is created, the default version is 0.
      if (store.version === 0) {
        store.executeSql(SQL_CREATE_TABLE); // Create a table.
-       // Set the RDB store version, which must be an integer greater than 0.
-       store.version = 3;
+         .then(() => {
+           // Set the RDB store version, which must be an integer greater than 0.
+           store.version = 3;
+         })
+         .catch((err: BusinessError) => {
+           console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+         });
      }
 
      // If the RDB store version is not 0 and does not match the current version, upgrade or downgrade the RDB store.
      // For example, upgrade the RDB store from version 1 to version 2.
      if (store.version === 1) {
        // Upgrade the RDB store from version 1 to version 2, and change the table structure from EMPLOYEE (NAME, SALARY, CODES, ADDRESS) to EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS).
-       store.executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER');
-       store.version = 2;
+       store.executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER')
+         .then(() => {
+           store.version = 2;
+         }).catch((err: BusinessError) => {
+           console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+         });
      }
 
      // For example, upgrade the RDB store from version 2 to version 3.
      if (store.version === 2) {
        // Upgrade the RDB store from version 2 to version 3, and change the table structure from EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) to EMPLOYEE (NAME, AGE, SALARY, CODES).
-       store.executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT');
-       store.version = 3;
+       store.executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS')
+         .then(() => {
+           store.version = 3;
+         }).catch((err: BusinessError) => {
+           console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+         });
      }
      // Before adding, deleting, modifying, and querying data in an RDB store, obtain an RdbStore instance and create a table.
    });
@@ -418,4 +444,5 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
      console.info('Succeeded in deleting RdbStore.');
    });
    ```
+
 <!--no_check-->

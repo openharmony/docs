@@ -9,7 +9,7 @@ The **PluginComponentManager** module provides APIs for the **PluginComponent** 
 ## Modules to Import
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 ```
 
 ## PluginComponentTemplate
@@ -33,21 +33,15 @@ Implements a plugin component manager.
 
 type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
-Stores information in key-value pairs in JSON format.
+Defines a key-value pair data structure that conforms to JSON format.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-
-| Type             | Description                                    |
-| --------------------- | ---------------------------------------- |
-| [key: string]         | Keyword. The value is a string and can be an empty string.|
-| number                | Key value of the number type.                |
-| string                | Key value of the string type. The value can be an empty string.|
-| boolean               | Key value of the Boolean type.              |
-| []                    | Key value. The value can be [].                      |
-| [KVObject](#kvobject) | Key value of the KVObject type.            |
+| Name   | Type  | Mandatory| Description                       |
+| ------- | ------ | ---- | --------------------------- |
+|  [key: string]  | number \| string \| boolean \| [] \| [KVObject](#kvobject)  | Yes  | Key-value pair:<br>**number**: numeric value type.<br> **string**: string value type. The value can be an empty string.<br> **boolean**: boolean value type.<br> **[]**: empty array value.<br>**[KVObject](#kvobject)**: nested KVObject value type.           |
 
 
 ### PushParameters
@@ -103,11 +97,11 @@ Provides the result returned after the request listener is registered and the re
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Type                   | Description   |
-| --------------------- | ----- |
-| string                | Component template.|
-| [KVObject](#kvobject) | Component data.|
-| [KVObject](#kvobject) | Additional data.|
+| Name       | Type                   | Mandatory  | Description   |
+| --------- | --------------------- | ---- | ----- |
+| template  | string                | No   | Component template.|
+| data      | [KVObject](#kvobject) | No   | Component data.|
+| extraData | [KVObject](#kvobject) | No   | Additional data.|
 
 ### OnPushEventCallback
 
@@ -132,15 +126,15 @@ Registers the listener for the push event.
 **Example**
 
 ```ts
-import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI'
+import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI';
 import { Want } from '@kit.AbilityKit';
 
 function onPushListener(source: Want, template: PluginComponentTemplate, data: pluginComponentManager.KVObject, extraData: pluginComponentManager.KVObject) {
-  console.log("onPushListener template.source=" + template.source)
-  console.log("onPushListener source=" + JSON.stringify(source))
-  console.log("onPushListener template=" + JSON.stringify(template))
-  console.log("onPushListener data=" + JSON.stringify(data))
-  console.log("onPushListener extraData=" + JSON.stringify(extraData))
+  console.log("onPushListener template.source=" + template.source);
+  console.log("onPushListener source=" + JSON.stringify(source));
+  console.log("onPushListener template=" + JSON.stringify(template));
+  console.log("onPushListener data=" + JSON.stringify(data));
+  console.log("onPushListener extraData=" + JSON.stringify(extraData));
 }
 ```
 
@@ -163,10 +157,16 @@ Registers the listener for the request event.
 | name      | string                              | Yes   | Template name.            |
 | data | [KVObject](#kvobject)               | Yes   | Additional data.            |
 
+**Return value**
+
+| Type                                      | Description                                                      |
+| ---------------------------------------- | --------------------------------------------------------- |
+| [RequestEventResult](#requesteventresult) | Provides the result returned after the request listener is registered and the requested event is received.|
+
 **Example**
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 import { Want } from '@kit.AbilityKit';
 
 function onRequestListener(source: Want, name: string, data: pluginComponentManager.KVObject) {
@@ -176,7 +176,7 @@ function onRequestListener(source: Want, name: string, data: pluginComponentMana
   console.log("onRequestListener data=" + JSON.stringify(data));
   let RtnData: Record<string, string | pluginComponentManager.KVObject> = {
     'template': "ets/pages/plugin.js",
-    'data': data
+    'data': data,
   }
   return RtnData;
 }
@@ -201,7 +201,7 @@ Pushes the component and data to the component user.
 **Example**
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 pluginComponentManager.push(
   {
     want: {
@@ -211,10 +211,10 @@ pluginComponentManager.push(
     name: "plugintemplate",
     data: {
       "key_1": "plugin component test",
-      "key_2": 34234
+      "key_2": 34234,
     },
     extraData: {
-      "extra_str": "this is push event"
+      "extra_str": "this is push event",
     },
     jsonPath: "",
   },
@@ -245,7 +245,7 @@ Requests the component from the component provider.
 **Example**
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 pluginComponentManager.request(
   {
     want: {
@@ -255,15 +255,15 @@ pluginComponentManager.request(
     name: "plugintemplate",
     data: {
       "key_1": "plugin component test",
-      "key_2": 1111111
+      "key_2": 1111111,
     },
     jsonPath: "",
   },
   (err, data) => {
-    console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
-    console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
-    console.log("request_callback: data=" + JSON.stringify(data.data))
-    console.log("request_callback: extraData=" + JSON.stringify(data.extraData))
+    console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability);
+    console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source);
+    console.log("request_callback: data=" + JSON.stringify(data.data));
+    console.log("request_callback: extraData=" + JSON.stringify(data.extraData));
   }
 )
 ```
@@ -288,25 +288,25 @@ Listens for events of the request type and returns the requested data, or listen
 **Example**
 
 ```ts
-import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI'
+import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI';
 import { Want } from '@kit.AbilityKit';
 function onPushListener(source:Want, template:PluginComponentTemplate, data:pluginComponentManager.KVObject, extraData:pluginComponentManager.KVObject) {
-  console.log("onPushListener template.source=" + template.source)
-  console.log("onPushListener source=" + JSON.stringify(source))
-  console.log("onPushListener template=" + JSON.stringify(template))
-  console.log("onPushListener data=" + JSON.stringify(data))
-  console.log("onPushListener extraData=" + JSON.stringify(extraData))
+  console.log("onPushListener template.source=" + template.source);
+  console.log("onPushListener source=" + JSON.stringify(source));
+  console.log("onPushListener template=" + JSON.stringify(template));
+  console.log("onPushListener data=" + JSON.stringify(data));
+  console.log("onPushListener extraData=" + JSON.stringify(extraData));
 }
 function onRequestListener(source:Want, name:string, data:pluginComponentManager.KVObject) {
   console.error("onRequestListener");
   console.log("onRequestListener source=" + JSON.stringify(source));
   console.log("onRequestListener name=" + name);
   console.log("onRequestListener data=" + JSON.stringify(data));
-  let RtnData:Record<string,string|pluginComponentManager.KVObject> = { 'template': "ets/pages/plugin.js", 'data': data }
+  let RtnData:Record<string,string|pluginComponentManager.KVObject> = { 'template': "ets/pages/plugin.js", 'data': data };
   return RtnData;
 }
-pluginComponentManager.on("push", onPushListener)
-pluginComponentManager.on("request", onRequestListener)
+pluginComponentManager.on("push", onPushListener);
+pluginComponentManager.on("request", onRequestListener);
 ```
 
 ## About the external.json File

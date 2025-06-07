@@ -1,6 +1,5 @@
 # native_audiocapturer.h
 
-
 ## Overview
 
 The **native_audiocapturer.h** declares the functions related to an audio capturer.
@@ -15,8 +14,17 @@ The **native_audiocapturer.h** declares the functions related to an audio captur
 
 **Related module**: [OHAudio](_o_h_audio.md)
 
-
 ## Summary
+
+
+### Types
+
+| Name| Description| 
+| -------- | -------- |
+| typedef void(\* [OH_AudioCapturer_OnReadDataCallback](_o_h_audio.md#oh_audiocapturer_onreaddatacallback)) ([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, void \*userData, void \*audioData, int32_t audioDataSize) | Defines the callback used to read audio data.| 
+| typedef void(\* [OH_AudioCapturer_OnDeviceChangeCallback](_o_h_audio.md#oh_audiocapturer_ondevicechangecallback)) ([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, void \*userData, OH_AudioDeviceDescriptorArray \*deviceArray) | Defines the callback for audio capturer device change events.| 
+| typedef void(\* [OH_AudioCapturer_OnInterruptCallback](_o_h_audio.md#oh_audiocapturer_oninterruptcallback)) ([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, void \*userData, [OH_AudioInterrupt_ForceType](_o_h_audio.md#oh_audiointerrupt_forcetype) type, [OH_AudioInterrupt_Hint](_o_h_audio.md#oh_audiointerrupt_hint) hint) | Defines the callback for interruption events of an audio capturer.| 
+| typedef void(\* [OH_AudioCapturer_OnErrorCallback](_o_h_audio.md#oh_audiocapturer_onerrorcallback)) ([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*renderer, void \*userData, [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) error) | Defines the callback for error events of an audio capturer.| 
 
 
 ### Functions

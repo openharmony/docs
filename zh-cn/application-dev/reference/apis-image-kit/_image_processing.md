@@ -668,13 +668,6 @@ const char* IMAGE_DETAIL_ENHANCER_PARAMETER_KEY_QUALITY_LEVEL
 
 **起始版本：** 13
 
-**参见：**
-
-[OH_VideoProcessing_SetParameter](../apis-media-kit/_video_processing.md#oh_videoprocessing_setparameter)
-
-[OH_VideoProcessing_GetParameter](../apis-media-kit/_video_processing.md#oh_videoprocessing_getparameter)
-
-
 ### IMAGE_PROCESSING_TYPE_COLOR_SPACE_CONVERSION
 
 ```

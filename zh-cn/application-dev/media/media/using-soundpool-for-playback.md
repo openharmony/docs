@@ -4,7 +4,7 @@
 
 当应用开发时，经常需要使用一些急促简短的音效（如相机快门音效、系统通知音效等），此时建议调用SoundPool，实现一次加载，多次低时延播放。
 
-SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音频将截取1MB大小数据进行播放。
+SoundPool当前支持播放解码后1MB以下的音频资源，解码后大小超过1MB的长音频将截取前面的1MB大小数据进行播放，这相当于44.1kHz的16bit位深的立体声下约5.6秒的音频时长（在较低采样率或单声道配置下，持续时间会相应延长）。
 
 本开发指导将以SoundPool进行一次低时延播放音频的过程为例，向开发者讲解如何使用SoundPool。详细的API声明请参考[SoundPool API参考](../../reference/apis-media-kit/js-apis-inner-multimedia-soundPool.md)。
 
@@ -72,7 +72,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 
     ```ts
     soundPool.on('error', (error: BusinessError) => {
-      console.info('error happened,message is :' + error.message);
+      console.error('error happened,message is :' + error.message);
     });
     ```
 
@@ -116,7 +116,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
       };
     soundPool.play(soundID, playParameters, (error: BusinessError, streamId: number) => {
       if (error) {
-        console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
+        console.error(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
         streamID = streamId;
         console.info('play success soundid:' + streamId);
@@ -282,14 +282,14 @@ function finishPlayCallback() {
 //设置错误类型监听。
 function setErrorCallback() {
   soundPool.on('error', (error: BusinessError) => {
-    console.info('error happened,message is :' + error.message);
+    console.error('error happened,message is :' + error.message);
   })
 }
 async function PlaySoundPool() {
   // 开始播放，这边play也可带播放播放的参数PlayParameters，请在音频资源加载完毕，即收到loadComplete回调之后再执行play操作。
   soundPool.play(soundId, playParameters, (error, streamID: number) => {
     if (error) {
-      console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
+      console.error(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
     } else {
       streamId = streamID;
       console.info('play success soundid:' + streamId);

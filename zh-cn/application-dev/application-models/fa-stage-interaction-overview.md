@@ -7,7 +7,8 @@ API 8及以前的接口基于FA模型提供；从API 9开始，主推Stage模型
 由于FA模型与Stage模型不能在应用内混合开发（见下图），当一个设备（系统）内包含两种模型应用时（下图中"场景三"），可能涉及两种模型应用组件间的互通，本文将介绍相关互通指导。
 
 
-  **图1** FA模型与Stage模型应用组件共存场景  
+**图1** FA模型与Stage模型应用组件共存场景
+
 ![coexistence-of-FAandStage](figures/coexistence-of-FAandStage.png)
 
 

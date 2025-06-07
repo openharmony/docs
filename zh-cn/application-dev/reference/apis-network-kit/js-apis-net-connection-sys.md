@@ -4,7 +4,7 @@
 
 > **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.net.connection (网络连接管理)](js-apis-net-connection.md)
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.net.connection (网络连接管理)](js-apis-net-connection.md)。
 
 ## 导入模块
 
@@ -27,7 +27,7 @@ getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[HttpProxy](js-apis-net-connection.md#httpproxy10)> | 是   | 回调函数。当成功获取网络的全局代理配置信息时，error为undefined，data为网络的全局代理配置信息；否则为错误对象 |
+| callback | AsyncCallback\<[HttpProxy](js-apis-net-connection.md#httpproxy10)> | 是   | 回调函数。当成功获取网络的全局代理配置信息时，error为undefined，data为网络的全局代理配置信息；否则为错误对象。|
 
 **错误码：**
 
@@ -45,7 +45,7 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getGlobalHttpProxy((error: BusinessError, data: connection.HttpProxy) => {
-  console.info(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.info(JSON.stringify(data));
 });
 ```
@@ -83,7 +83,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 connection.getGlobalHttpProxy().then((data: connection.HttpProxy) => {
   console.info(JSON.stringify(data));
 }).catch((error: BusinessError) => {
-  console.info(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -189,7 +189,7 @@ connection.setGlobalHttpProxy({
 } as connection.HttpProxy).then(() => {
   console.info("success");
 }).catch((error: BusinessError) => {
-  console.info(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -229,7 +229,7 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.enableAirplaneMode((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -266,7 +266,7 @@ enableAirplaneMode(): Promise\<void>
 import { connection } from '@kit.NetworkKit';
 
 connection.enableAirplaneMode().then((error: void) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -305,7 +305,7 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.disableAirplaneMode((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -342,7 +342,7 @@ disableAirplaneMode(): Promise\<void>
 import { connection } from '@kit.NetworkKit';
 
 connection.disableAirplaneMode().then((error: void) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -383,6 +383,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 connection.factoryReset().then(() => {
     console.log("success");
 }).catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
 })
 ```

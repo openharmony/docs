@@ -48,7 +48,7 @@ The SCSI Peripheral DDK is a suite dedicated to SCSI device driver development a
 | [SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN](#scsiperipheral_max_cmd_desc_block_len)&nbsp;&nbsp;&nbsp;16 | Maximum length of a command descriptor block (CDB).| 
 | [SCSIPERIPHERAL_MAX_SENSE_DATA_LEN](#scsiperipheral_max_sense_data_len)&nbsp;&nbsp;&nbsp;252 | Maximum length of sense data. In the SCSI protocol, the maximum length of sense data is usually 252 bytes.| 
 | [SCSIPERIPHERAL_VENDOR_ID_LEN](#scsiperipheral_vendor_id_len)&nbsp;&nbsp;&nbsp;8 | Maximum length of the vendor ID.| 
-| [SCSIPERIPHERAL_PRODUCT_ID_LEN](#scsiperipheral_product_id_len)&nbsp;&nbsp;&nbsp;16 | Maximum length of the product ID.| 
+| [SCSIPERIPHERAL_PRODUCT_ID_LEN](#scsiperipheral_product_id_len)&nbsp;&nbsp;&nbsp;18 | Maximum length of the product ID.| 
 | [SCSIPERIPHERAL_PRODUCT_REV_LEN](#scsiperipheral_product_rev_len)&nbsp;&nbsp;&nbsp;4 | Maximum length of the product version.| 
 
 
@@ -158,7 +158,7 @@ Minimum length of the fixed format of sense data.
 ### SCSIPERIPHERAL_PRODUCT_ID_LEN
 
 ```
-#define SCSIPERIPHERAL_PRODUCT_ID_LEN   16
+#define SCSIPERIPHERAL_PRODUCT_ID_LEN   18
 ```
 
 **Description**
@@ -640,6 +640,7 @@ ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
 
 - SCSIPERIPHERAL_DDK_INVALID_OPERATION: Operation not supported.
 
+- SCSIPERIPHERAL_DDK_TIMEOUT: Transfer timeout.
 
 ### OH_ScsiPeripheral_ParseBasicSenseInfo()
 
@@ -851,7 +852,7 @@ Sends SCSI commands in command descriptor block (CDB) mode.
 
 | Name| Description| 
 | -------- | -------- |
-| dev | Device handle. For details, see [ScsiPeripheral_Device] (#scsiperipheral_device).| 
+| dev | Device handle. For details, see [ScsiPeripheral_Device](#scsiperipheral_device).| 
 | request | Request. For details, see [ScsiPeripheral_Request](_scsi_peripheral___request.md).| 
 | response | Response. For details, see [ScsiPeripheral_Response](_scsi_peripheral___response.md).| 
 
@@ -1013,5 +1014,3 @@ ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
 - SCSIPERIPHERAL_DDK_TIMEOUT: Transfer timeout.
 
 - SCSIPERIPHERAL_DDK_INVALID_OPERATION: Operation not supported.
-
-<!--no_check-->

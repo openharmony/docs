@@ -12,5 +12,5 @@ The **NotificationTemplate** module describes the notification template.
 
 | Name| Type                  | Read Only| Optional| Description      |
 | ---- | ---------------------- | ---- | ----|----------- |
-| name | string                 | No| No  | Template name. Currently, only **downloadTemplate** is supported.|
+| name | string                 | No| No  | Template name. Currently, only **downloadTemplate** is supported, indicating the progress bar template that displays download progress.|
 | data | Record<string, Object> | No| No  | Template data.<br> - **title**: title of the file. This parameter is mandatory, and the value is of the string type.<br> - **fileName**: name of the file to be downloaded. This parameter is mandatory, and the value is of the string type.<br> - **progressValue**: download progress. The value is a number.|

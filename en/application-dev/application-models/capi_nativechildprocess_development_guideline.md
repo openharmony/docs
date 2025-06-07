@@ -1,4 +1,4 @@
-# Native Child Process Development (C/C++)
+# Creating Native Child Processes (C/C++)
 
 You can create a child process in either of the following ways:
 - [Creating a Child Process That Supports IPC Callback](#creating-a-child-process-that-supports-ipc-callback): Create a child process and establish an IPC channel between the parent and child processes. This method applies to scenarios where the parent and child processes require IPC. Its usage depends on [IPC Kit](../ipc/ipc-capi-development-guideline.md).
@@ -289,7 +289,7 @@ libchild_process.so
 
 ### When to Use
 
-Since API version 16, child processes can obtain startup parameters.
+Since API version 17, child processes can obtain startup parameters.
 
 ### Available APIs
 

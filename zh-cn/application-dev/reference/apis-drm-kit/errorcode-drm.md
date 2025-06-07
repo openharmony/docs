@@ -8,68 +8,29 @@
 
 **错误信息**
 
-All unknown errors.
+Unknown error.
 
 **错误描述**
 
-调用接口时，返回未知错误。
+未知错误。
 
 **可能原因**
 
-插件层返回的未定义的错误，第三方插件自定义的错误等。
+输入参数格式、数据类型错误，导致数据获取、数据转换失败等。
 
 **处理步骤**
 
-根据插件接口文档，查询具体错误信息。
+获取异常的描述，并检查系统错误日志，根据异常描述及日志中的错误描述处理。
 
-## 24700102 分配内存失败
-
-**错误信息**
-
-Memory allocation failure.
-
-**错误描述**
-
-调用接口时，分配内存失败或者出现空指针。
-
-**可能原因**
-
-1. 系统内存压力大，没有足够的内存用来映射。
-2. 对于失效的实例，没有及时销毁释放内存。
-
-**处理步骤**
-
-1. 销毁当前实例。
-2. 重新创建实例，如果重新创建失败，则停止相关操作。
-
-## 24700103 状态不支持
+## 24700103 MediaKeySystem数量达到极限
 
 **错误信息**
 
-Unsupported state.
+Too many MediaKeySystem instances.
 
 **错误描述**
 
-当前状态不支持此操作。
-
-**可能原因**
-
-当前设备证书/许可证状态异常。
-
-**处理步骤**
-
-1. 确认当前状态是否支持当前操作。
-2. 调用设备证书/许可证申请，在正确的状态进行正确的操作。
-
-## 24700104 MediaKeySystem数量达到极限
-
-**错误信息**
-
-Too many MediaKeySystem streams.
-
-**错误描述**
-
-达到系统可支持的MediaKeySystem实例最大数量。
+MediaKeySystem实例数量超过上限（64个）。
 
 **可能原因**
 
@@ -79,15 +40,15 @@ Too many MediaKeySystem streams.
 
 释放其他不再使用的MediaKeySystem资源。
 
-## 24700105 MediaKeySession数量达到极限
+## 24700104 MediaKeySession数量达到极限
 
 **错误信息**
 
-Too many MediaKeySession streams.
+Too many MediaKeySession instances.
 
 **错误描述**
 
-达到系统可支持的MediaKeySession实例最大数量。
+MediaKeySession实例数量超过上限（64个）。
 
 **可能原因**
 
@@ -101,17 +62,19 @@ Too many MediaKeySession streams.
 
 **错误信息**
 
-Fatal service error, for example, service died.
+Service error. For example, the service crashed.
 
 **错误描述**
 
-IPC服务处理异常。
+DRM服务异常。
 
 **可能原因**
 
-系统处理异常，比如系统服务重启、跨进程调用异常等。
+1. 底层DRM解决方案插件功能执行错误。
+
+2. DRM服务挂死等。
 
 **处理步骤**
 
-系统内部通用错误，出现的情况不明确，建议尝试重新创建业务。
+获取异常的描述，并检查系统错误日志，根据异常描述及日志中的错误描述处理。
 

@@ -1,6 +1,6 @@
-# Video Recording Sample (ArkTS)
+# Video Recording Practices (ArkTS)
 
-Before developing a camera application, request permissions by following the instructions provided in [Camera Development Preparations](camera-preparation.md).
+Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
 
 This topic provides sample code that covers the complete recording process to help you understand the complete API calling sequence.
 
@@ -151,7 +151,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     videoOutput = cameraManager.createVideoOutput(videoProfile, videoSurfaceId);
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`Failed to create the videoOutput instance. error: ${JSON.stringify(err)}`);
+    console.error(`Failed to create the videoOutput instance. error: ${err}`);
   }
   if (videoOutput === undefined) {
     return;
@@ -167,7 +167,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     videoSession = cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`Failed to create the session instance. error: ${JSON.stringify(err)}`);
+    console.error(`Failed to create the session instance. error: ${err}`);
   }
   if (videoSession === undefined) {
     return;
@@ -182,7 +182,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     videoSession.beginConfig();
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`Failed to beginConfig. error: ${JSON.stringify(err)}`);
+    console.error(`Failed to beginConfig. error: ${err}`);
   }
 
   // Create a camera input stream.
@@ -191,7 +191,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     cameraInput = cameraManager.createCameraInput(cameraArray[0]);
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`Failed to createCameraInput. error: ${JSON.stringify(err)}`);
+    console.error(`Failed to createCameraInput. error: ${err}`);
   }
   if (cameraInput === undefined) {
     return;
@@ -207,7 +207,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     await cameraInput.open();
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`Failed to open cameraInput. error: ${JSON.stringify(err)}`);
+    console.error(`Failed to open cameraInput. error: ${err}`);
   }
 
   // Add the camera input stream to the session.
@@ -215,7 +215,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     videoSession.addInput(cameraInput);
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`Failed to add cameraInput. error: ${JSON.stringify(err)}`);
+    console.error(`Failed to add cameraInput. error: ${err}`);
   }
 
   // Create a preview output stream. For details about the surfaceId parameter, see the XComponent. The preview stream is the surface provided by the XComponent.
@@ -230,7 +230,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     previewOutput = cameraManager.createPreviewOutput(previewProfile, surfaceId);
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`Failed to create the PreviewOutput instance. error: ${JSON.stringify(err)}`);
+    console.error(`Failed to create the PreviewOutput instance. error: ${err}`);
   }
   if (previewOutput === undefined) {
     return;
@@ -241,7 +241,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     videoSession.addOutput(previewOutput);
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`Failed to add previewOutput. error: ${JSON.stringify(err)}`);
+    console.error(`Failed to add previewOutput. error: ${err}`);
   }
 
   // Add the video output stream to the session.
@@ -249,7 +249,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     videoSession.addOutput(videoOutput);
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`Failed to add videoOutput. error: ${JSON.stringify(err)}`);
+    console.error(`Failed to add videoOutput. error: ${err}`);
   }
 
   // Commit the session configuration.
@@ -257,7 +257,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     await videoSession.commitConfig();
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`videoSession commitConfig error: ${JSON.stringify(err)}`);
+    console.error(`videoSession commitConfig error: ${err}`);
   }
 
   // Start the session.
@@ -265,13 +265,13 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     await videoSession.start();
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`videoSession start error: ${JSON.stringify(err)}`);
+    console.error(`videoSession start error: ${err}`);
   }
 
   // Start the video output stream.
   videoOutput.start((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to start the video output. error: ${JSON.stringify(err)}`);
+      console.error(`Failed to start the video output. error: ${err}`);
       return;
     }
     console.info('Callback invoked to indicate the video output start success.');
@@ -282,13 +282,13 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     await avRecorder.start();
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`avRecorder start error: ${JSON.stringify(err)}`);
+    console.error(`avRecorder start error: ${err}`);
   }
 
   // Stop the video output stream.
   videoOutput.stop((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to stop the video output. error: ${JSON.stringify(err)}`);
+      console.error(`Failed to stop the video output. error: ${err}`);
       return;
     }
     console.info('Callback invoked to indicate the video output stop success.');
@@ -299,7 +299,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     await avRecorder.stop();
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`avRecorder stop error: ${JSON.stringify(err)}`);
+    console.error(`avRecorder stop error: ${err}`);
   }
 
   // Stop the session.

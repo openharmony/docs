@@ -28,7 +28,7 @@ import deviceManager from '@ohos.distributedHardware.deviceManager';
 
 ## deviceManager.createDeviceManager
 
-createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager&gt;): void;
+createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager&gt;): void
 
 创建一个设备管理器实例。
 
@@ -264,7 +264,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 ### release
 
-release(): void;
+release(): void
 
 设备管理实例不再使用后，通过该方法释放DeviceManager实例。
 
@@ -300,7 +300,7 @@ release(): void;
 
 ### getTrustedDeviceListSync
 
-getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;;
+getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 
 同步获取所有可信设备列表。
 
@@ -343,7 +343,7 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;;
 
 ### getTrustedDeviceListSync<sup>10+</sup>
 
-getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;;
+getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;
 
 打开软总线系统端的心跳模式，让周围处于下线状态的可信设备快速上线，同时刷新已上线的可信设备列表。
 
@@ -393,7 +393,7 @@ getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;;
 
 ### getTrustedDeviceList<sup>8+</sup>
 
-getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): void;
+getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): void
 
 获取所有可信设备列表。使用callback异步回调。
 
@@ -441,7 +441,7 @@ getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): voi
 
 ### getTrustedDeviceList<sup>8+</sup>
 
-getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;;
+getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
 
 获取所有可信设备列表。使用Promise异步回调。
 
@@ -481,7 +481,7 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;;
 
 ### getLocalDeviceInfoSync<sup>8+</sup>
 
-getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo);
+getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
 
 同步获取本地设备信息。
 
@@ -524,7 +524,7 @@ getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo);
 
 ### getLocalDeviceInfo<sup>8+</sup>
 
-getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void;
+getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 获取本地设备信息。使用callback异步回调。
 
@@ -573,7 +573,7 @@ getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void;
 
 ### getLocalDeviceInfo<sup>8+</sup>
 
-getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;;
+getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
 
 获取本地设备信息。使用Promise异步回调。
 
@@ -613,7 +613,7 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;;
 
 ### getDeviceInfo<sup>10+</sup>
 
-getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void;
+getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 通过指定设备的网络标识获取该设备的信息。使用callback异步回调。
 
@@ -664,7 +664,7 @@ getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 ### getDeviceInfo<sup>10+</sup>
 
-getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;;
+getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 
 通过指定设备的网络标识获取该设备的信息。使用Promise异步回调。
 
@@ -713,7 +713,7 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;;
 
 ### startDeviceDiscovery<sup>8+</sup>
 
-startDeviceDiscovery(subscribeInfo: SubscribeInfo): void;
+startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
 发现周边设备。发现状态持续两分钟，超过两分钟，会停止发现，最大发现数量99个。
 
@@ -778,7 +778,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void;
 
 ### startDeviceDiscovery<sup>9+</sup>
 
-startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void;
+startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
 发现周边设备。发现状态持续两分钟，超过两分钟，会停止发现，最大发现数量99个。
 
@@ -866,7 +866,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
 ### stopDeviceDiscovery
 
-stopDeviceDiscovery(subscribeId: number): void;
+stopDeviceDiscovery(subscribeId: number): void
 
 停止发现周边设备。
 
@@ -911,7 +911,7 @@ stopDeviceDiscovery(subscribeId: number): void;
 
 ### publishDeviceDiscovery<sup>9+</sup>
 
-publishDeviceDiscovery(publishInfo: PublishInfo): void;
+publishDeviceDiscovery(publishInfo: PublishInfo): void
 
 发布设备发现。发布状态持续两分钟，超过两分钟会停止发布。
 
@@ -971,7 +971,7 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void;
 
 ### unPublishDeviceDiscovery<sup>9+</sup>
 
-unPublishDeviceDiscovery(publishId: number): void;
+unPublishDeviceDiscovery(publishId: number): void
 
 停止发布设备发现。
 
@@ -1016,7 +1016,7 @@ unPublishDeviceDiscovery(publishId: number): void;
 
 ### authenticateDevice
 
-authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: AsyncCallback&lt;{deviceId: string, pinToken ?: number}&gt;): void;
+authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: AsyncCallback&lt;{deviceId: string, pinToken ?: number}&gt;): void
 
 认证设备。
 
@@ -1111,7 +1111,7 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
 
 ### unAuthenticateDevice<sup>8+</sup>
 
-unAuthenticateDevice(deviceInfo: DeviceInfo): void;
+unAuthenticateDevice(deviceInfo: DeviceInfo): void
 
 解除认证设备。
 
@@ -1170,7 +1170,7 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void;
 
 ### verifyAuthInfo
 
-verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string, level: number}&gt;): void;
+verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string, level: number}&gt;): void
 
 验证认证信息。
 
@@ -1244,7 +1244,7 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string,
 
 ### setUserOperation<sup>9+</sup>
 
-setUserOperation(operateAction: number, params: string): void;
+setUserOperation(operateAction: number, params: string): void
 
 设置用户ui操作行为。
 
@@ -1296,7 +1296,7 @@ setUserOperation(operateAction: number, params: string): void;
 
 ### requestCredentialRegisterInfo<sup>10+</sup>
 
-requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{registerInfo: string}>): void;
+requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{registerInfo: string}>): void
 
 获取凭据的注册信息。
 
@@ -1358,7 +1358,7 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
 
 ### importCredential<sup>10+</sup>
 
-importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
+importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: string}>): void
 
 导入凭据信息。
 
@@ -1453,7 +1453,7 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
 
 ### deleteCredential<sup>10+</sup>
 
-deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
+deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}>): void
 
 删除凭据信息。
 
@@ -1518,7 +1518,7 @@ deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}
 
 ### on('uiStateChange')<sup>9+</sup>
 
-on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void;
+on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void
 
 ui状态变更回调。
 
@@ -1573,7 +1573,7 @@ ui状态变更回调。
 
 ### off('uiStateChange')<sup>9+</sup>
 
-off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
+off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void
 
 取消ui状态变更回调。
 
@@ -1615,7 +1615,7 @@ off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 
 ### on('deviceStateChange')
 
-on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void;
+on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void
 
 注册设备状态回调。
 
@@ -1672,7 +1672,7 @@ on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChange
 
 ### off('deviceStateChange')
 
-off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void;
+off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void
 
 取消注册设备状态回调。
 
@@ -1729,7 +1729,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 ### on('deviceFound')
 
-on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt;): void;
+on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt;): void
 
 注册发现设备回调监听。
 
@@ -1786,7 +1786,7 @@ on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: Dev
 
 ### off('deviceFound')
 
-off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt;): void;
+off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt;): void
 
 取消注册设备发现回调。
 
@@ -1843,7 +1843,7 @@ off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: D
 
 ### on('discoverFail')
 
-on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: number }&gt;): void;
+on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: number }&gt;): void
 
 注册设备发现失败回调监听。
 
@@ -1892,7 +1892,7 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
 
 ### off('discoverFail')
 
-off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: number }&gt;): void;
+off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: number }&gt;): void
 
 取消注册设备发现失败回调。
 
@@ -1941,7 +1941,7 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
 
 ### on('publishSuccess')<sup>9+</sup>
 
-on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): void;
+on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): void
 
 注册发布设备发现回调监听。
 
@@ -1989,7 +1989,7 @@ on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): voi
 
 ### off('publishSuccess')<sup>9+</sup>
 
-off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): void;
+off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): void
 
 取消注册设备发布成功回调。
 
@@ -2037,7 +2037,7 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
 
 ### on('publishFail')<sup>9+</sup>
 
-on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void;
+on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
 注册设备发布失败回调监听。
 
@@ -2086,7 +2086,7 @@ on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: numbe
 
 ### off('publishFail')<sup>9+</sup>
 
-off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: number }&gt;): void;
+off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
 取消注册设备发布失败回调。
 
@@ -2135,7 +2135,7 @@ off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: num
 
 ### on('serviceDie')
 
-on(type: 'serviceDie', callback: () =&gt; void): void;
+on(type: 'serviceDie', callback: () =&gt; void): void
 
 注册设备管理服务死亡监听。
 
@@ -2179,7 +2179,7 @@ on(type: 'serviceDie', callback: () =&gt; void): void;
 
 ### off('serviceDie')
 
-off(type: 'serviceDie', callback?: () =&gt; void): void;
+off(type: 'serviceDie', callback?: () =&gt; void): void
 
 取消注册设备管理服务死亡监听。
 

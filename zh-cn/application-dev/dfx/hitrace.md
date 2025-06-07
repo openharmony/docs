@@ -1,11 +1,12 @@
 # hitrace
 
-HiTrace为开发者提供业务流程调用链跟踪的维测接口。通过使用该接口所提供的功能，帮助开发者迅速获取指定业务流程调用链的运行日志，定位跨设备、跨进程、跨线程的故障问题。
+HiTrace提供业务流程调用链跟踪的维测接口，帮助开发者迅速获取指定业务流程调用链的运行日志，定位跨设备、跨进程、跨线程的故障问题。
 
 ## 环境要求
 
 - 根据hdc命令行工具指导，完成[环境准备](hdc.md#环境准备)。
-- 正常连接设备。
+
+- 确保设备已正常连接，并执行hdc shell。
 
 ## 命令行说明
 
@@ -17,19 +18,19 @@ HiTrace为开发者提供业务流程调用链跟踪的维测接口。通过使�
 | --trace_finish        | 结束捕获trace。                                              |
 | --trace_dump          | 导出trace信息。                                              |
 | -b N                  | 设置用于存储和读取trace的缓冲区大小(buffer size KB)。默认的缓冲区大小为2048 KB。 |
-| -t N                  | 设置hitrace运行时长，单位为秒（默认为5秒），取决于分析所需的时间。 |
-| -o                    | 文件名指定目标文件的名称（默认为stdout）。                   |
+| -t N                  | 设置hitrace运行时长，单位为秒（默认为5秒）。                   |
+| -o                    | 指定目标文件的名称（默认为stdout）。                           |
 | -z                    | 压缩捕获的跟踪。                                             |
 | --trace_clock         | 设置向trace添加时间戳的时钟类型，可以是引导（默认）、全局、单声道、正常运行时间或性能。 |
-| --trace_finish_nodump | 停止捕获trace时不打印trace信息。                             |
-| --start_bgsrv         | 开启快照模式trace捕获。                                      |
-| --dump_bgsrv          | 触发快照模式trace输出到文件。                                |
-| --stop_bgsrv          | 关闭快照模式trace捕获。                                      |
-| --trace_level         | 设置trace输出级别阈值，输出级别可以是Debug、Info、Critical、Commercial或其对应缩写D、I、C、M。 |
+| --trace_finish_nodump | 停止捕获trace时，不打印trace信息。                            |
+| --start_bgsrv         | 开启快照模式trace捕获。                                       |
+| --dump_bgsrv          | 触发快照模式trace输出到文件。                                 |
+| --stop_bgsrv          | 关闭快照模式trace捕获。                                       |
+| --trace_level         | 设置trace输出级别阈值，输出级别可以是Debug、Info、Critical、Commercial或其对应缩写D、I、C、M。<br>**说明**：从API version 19开始，支持该命令。 |
 
 > **说明**
 >
-> 快照模式定义为固定trace标签的trace捕获，默认情况不落盘，开发者可通过 `--dump_bgsrv` 命令触发当前时刻的trace转储，trace为二进制格式，文件默认生成在 `/data/log/hitrace` 目录下，文件命名格式为`trace-YYMMDDHHmmSS@[BOOT_TIME].sys`。可通过[HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具进行可视化trace分析，工具下载链接[developtools_smartperf_host 发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
+> 快照模式定义为固定trace标签的trace捕获，默认不落盘。 `--dump_bgsrv` 命令触发当前时刻的二进制格式trace转储，文件默认生成在 `/data/log/hitrace` 目录下，命名格式为`trace-YYMMDDHHmmSS@[BOOT_TIME].sys`。可以使用[HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具进行可视化trace分析。工具下载链接：[developtools_smartperf_host官方发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
 
 ## 常用命令
 
@@ -51,7 +52,7 @@ $ hitrace -l
        animation - Animation
              app - APP Module
              ark - ARK Module
-       bluetooth - communicatio bluetooth
+       bluetooth - communication bluetooth
            cloud - Cloud subsystem tag
        cloudfile - Cloud file system
       commercial - Commercial version tag
@@ -64,7 +65,7 @@ $ hitrace -l
            dhfwk - Distributed Hardware FWK
           dinput - Distributed Input
             disk - Disk I/O
-istributeddatamgr - Distributed Data Manager
+distributeddatamgr - Distributed Data Manager
           dlpcre - Dlp Credential Service
              drm - Digital Rights Management
           dsched - Distributed Schedule
@@ -137,7 +138,7 @@ $ hitrace --trace_begin --record app
 
 ### 结束捕获trace
 
-默认将trace信息打印在命令行窗口。
+默认在命令行窗口打印trace信息。
 
 ```shell
 hitrace --trace_finish --record
@@ -150,7 +151,7 @@ $ hitrace --trace_finish --record
 2024/11/14 11:50:33 capture done, output files:
     /data/log/hitrace/record_trace_20241114115033@3010728-656499531.sys
 ```
-添加输出路径，trace信息将导出至对应的文件中。
+添加输出路径，trace信息将导出到对应文件。
 
 ```shell
 hitrace --trace_finish -o /data/local/tmp/test.ftrace
@@ -183,7 +184,7 @@ $ hitrace -b 10240 -t 10 -o /data/local/tmp/test2.ftrace app ability
 
 ### 导出trace信息
 
-默认将信息显示在命令行窗口。
+默认在命令行窗口显示信息。
 
 ```shell
 hitrace --trace_dump
@@ -206,9 +207,9 @@ $ hitrace --trace_dump
 #              | |           |       |   ||||      |         |
            <...>-21829   (  19280) [003] .... 3011033.731844: tracing_mark_write: trace_event_clock_sync: realtime_ts=1732002022239
            <...>-21829   (  19280) [003] .... 3011033.731865: tracing_mark_write: trace_event_clock_sync: parent_ts=3011033.750000
-#
+$
 ```
-添加输出路径，trace信息将导出至对应的文件中。
+添加输出路径，trace信息将导出到对应文件。
 
 ```shell
 hitrace --trace_dump -o /data/local/tmp/test3.ftrace
@@ -220,7 +221,7 @@ $ hitrace --trace_dump -o /data/local/tmp/test3.ftrace
 2024/11/14 11:54:23 start to read trace.
 2024/11/14 11:54:23 trace read done, output: /data/local/tmp/test3.ftrace
 ```
-也可根据关键词打印trace信息，使用命令`hitrace --trace_dump | grep xxx`即可。
+也可根据关键词打印trace信息，使用命令`hitrace --trace_dump | grep xxx`进行过滤显示。
 
 ### 开启快照模式trace捕获
 
@@ -237,7 +238,7 @@ $ hitrace --start_bgsrv
 
 ### 快照模式导出trace
 
-默认将trace信息保存至/data/log/hitrace/文件夹下，文件命名格式为`trace-YYMMDDHHmmSS@[BOOT_TIME].sys`，保存的是二进制trace。可通过[HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具进行可视化trace分析，工具下载链接[developtools_smartperf_host 发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
+默认将二进制格式的trace信息保存到`/data/log/hitrace/`文件夹下，文件命名格式为`trace-YYMMDDHHmmSS@[BOOT_TIME].sys`。可以使用[HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具进行可视化trace分析。工具下载链接：[developtools_smartperf_host官方发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
 
 ```shell
 hitrace --dump_bgsrv
@@ -294,7 +295,7 @@ $ hitrace --trace_clock boot -b 102400 -t 10 sched freq idle disk -o /data/local
 
 ### 结束捕获trace，取消trace信息打印在命令行窗口
 
-默认将trace信息保存至/data/log/hitrace/文件夹下。
+默认将trace信息保存到`/data/log/hitrace/`目录。
 
 ```shell
 hitrace --trace_finish_nodump
@@ -309,9 +310,9 @@ $ hitrace --trace_finish_nodump
 
 ### 查看和设置trace输出级别阈值
 
-打点级别优先级D<I<C<M，低于trace输出级别阈值的打点将不会生效。
+打点级别优先级从高到低分别为 `M`(commercial)、`C`（critical）、`I`（info）、`D`（debug），低于trace输出级别阈值的打点将不会生效。
 
-开发者可使用带trace级别的打点接口（使用参考[js-apis-hitracemeter](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md)和[_hitrace](../reference/apis-performance-analysis-kit/_hitrace.md)中的API version 18的trace打点接口），测试不同阈值下的trace输出情况是否符合预期。
+开发者可使用带trace级别的打点接口（参考[js-apis-hitracemeter](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md)和[_hitrace](../reference/apis-performance-analysis-kit/_hitrace.md)中的API version 19的trace打点接口），测试不同阈值下的trace输出是否符合预期。
 
 ```shell
 // 查看trace输出级别阈值，打印的为数值，0表示Debug，1表示Info，2表示Critical，3表示Commercial

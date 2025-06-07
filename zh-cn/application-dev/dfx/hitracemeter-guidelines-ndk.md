@@ -19,18 +19,18 @@ HiTraceMeter提供系统性能打点接口。开发者通过在关键代码位�
 
 | 方法                                                         | 接口描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| void OH_HiTrace_StartTraceEx(HiTrace_Output_Level level, const char* name, const char* customArgs) | 开启一个同步时间片跟踪事件，分级控制跟踪输出。               |
-| void OH_HiTrace_FinishTraceEx(HiTrace_Output_Level level)    | 结束一个同步时间片跟踪事件，分级控制跟踪输出。level必须与流程开始的OH_HiTrace_StartTraceEx对应参数值保持一致。 |
-| void OH_HiTrace_StartAsyncTraceEx(HiTrace_Output_Level level, const char* name, int32_t taskId, const char* customCategory, const char* customArgs) | 开启一个异步时间片跟踪事件，分级控制跟踪输出。taskId是trace中用来表示关联的ID，如果有多个name相同的任务并行执行，则开发者每次调用OH_HiTrace_StartAsyncTraceEx时传入的taskId需不同；如果具有相同name的任务是串行执行的，则taskId可以相同。 |
-| void OH_HiTrace_FinishAsyncTraceEx(HiTrace_Output_Level level, const char* name, int32_t taskId) | 结束一个异步时间片跟踪事件，分级控制跟踪输出。level、name和taskId必须与流程开始的OH_HiTrace_StartAsyncTraceEx对应参数值保持一致。 |
-| void OH_HiTrace_CountTraceEx(HiTrace_Output_Level level, const char* name, int64_t count) | 整数跟踪事件，分级控制跟踪输出。用来标记一个预跟踪的整数变量，该变量的数值会不断变化。 |
-| bool OH_HiTrace_IsTraceEnabled(void)                         | 判断当前是否开启应用trace捕获。应用trace捕获未开启时，HiTraceMeter性能跟踪打点无效。 |
+| void OH_HiTrace_StartTraceEx(HiTrace_Output_Level level, const char* name, const char* customArgs) | 开启一个同步时间片跟踪事件，分级控制跟踪输出。<br/>**说明**：从API version 19开始，支持该接口。 |
+| void OH_HiTrace_FinishTraceEx(HiTrace_Output_Level level)    | 结束一个同步时间片跟踪事件，分级控制跟踪输出。level必须与流程开始的OH_HiTrace_StartTraceEx对应参数值保持一致。<br/>**说明**：从API version 19开始，支持该接口。 |
+| void OH_HiTrace_StartAsyncTraceEx(HiTrace_Output_Level level, const char* name, int32_t taskId, const char* customCategory, const char* customArgs) | 开启一个异步时间片跟踪事件，分级控制跟踪输出。taskId是trace中用来表示关联的ID，如果有多个name相同的任务并行执行，则开发者每次调用OH_HiTrace_StartAsyncTraceEx时传入的taskId需不同；如果具有相同name的任务是串行执行的，则taskId可以相同。<br/>**说明**：从API version 19开始，支持该接口。 |
+| void OH_HiTrace_FinishAsyncTraceEx(HiTrace_Output_Level level, const char* name, int32_t taskId) | 结束一个异步时间片跟踪事件，分级控制跟踪输出。level、name和taskId必须与流程开始的OH_HiTrace_StartAsyncTraceEx对应参数值保持一致。<br/>**说明**：从API version 19开始，支持该接口。 |
+| void OH_HiTrace_CountTraceEx(HiTrace_Output_Level level, const char* name, int64_t count) | 整数跟踪事件，分级控制跟踪输出。用来标记一个预跟踪的整数变量，该变量的数值会不断变化。<br/>**说明**：从API version 19开始，支持该接口。 |
+| bool OH_HiTrace_IsTraceEnabled(void)                         | 判断当前是否开启应用trace捕获。应用trace捕获未开启时，HiTraceMeter性能跟踪打点无效。<br/>**说明**：从API version 19开始，支持该接口。 |
 
 > **注意：**
 >
 > [用户态trace格式](./hitracemeter-view.md#用户态trace格式说明)使用竖线 `|` 作为分隔符，所以通过HiTraceMeter接口传递的字符串类型参数应避免包含该字符，防止trace解析异常。
 
-HiTraceMeter打点接口按功能/行为分类，主要分三类：同步时间片跟踪接口、异步时间片跟踪接口和整数跟踪接口。无论同步时间片跟踪接口还是异步时间片跟踪接口，接口本身都是同步接口，不是异步接口。HiTraceMeter打点接口可与[HiTraceChain](./hitracechain-guidelines-ndk.md)一起使用，进行跨设备/跨进程/跨线程打点与分析。
+HiTraceMeter打点接口按功能/行为分类，主要分三类：同步时间片跟踪接口、异步时间片跟踪接口和整数跟踪接口。无论同步时间片跟踪接口还是异步时间片跟踪接口，接口本身都是同步接口，不是异步接口。HiTraceMeter打点接口可与[HiTraceChain](./hitracechain-guidelines-ndk.md)一起使用，进行跨设备/跨进程/跨线程的打点关联与分析。
 
 - 同步时间片跟踪接口用于顺序执行的打点场景。
 - 异步时间片跟踪接口用于在异步操作执行前进行开始打点，在异步操作完成后进行结束打点。异步跟踪的开始和结束由于不是顺序发生的，解析trace时需要通过name与taskId参数进行识别，name与taskId参数相同的异步跟踪开始与结束打点相匹配。

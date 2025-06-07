@@ -9,6 +9,7 @@ The WhitePointArray struct describes a white point array. Each white point indic
 
 **Related module**: [NativeColorSpaceManager](_native_color_space_manager.md)
 
+**Header file**: [native_color_space_manager.h](native__color__space__manager_8h.md)
 
 ## Summary
 

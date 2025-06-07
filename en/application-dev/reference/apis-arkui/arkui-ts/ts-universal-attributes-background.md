@@ -165,7 +165,7 @@ Sets the position of the component background image.
 
 ## SystemAdaptiveOptions<sup>18+</sup>
 
-Defines the system adaptive adjustment options.
+Provides parameters for system adaptive adjustments. By default, the system performs adaptive adjustments based on chip performance.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 

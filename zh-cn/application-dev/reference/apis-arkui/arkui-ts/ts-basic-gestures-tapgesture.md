@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 接口
@@ -49,7 +49,26 @@ TapGesture(value?: TapGestureParameters)
 | tag<sup>11+</sup>   | string  | 设置Tap手势标志，用于自定义手势判定时区分绑定的手势。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)> | 设置Tap手势支持的事件输入源。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
+## EventLocationInfo<sup>20+</sup>对象说明
+
+用于点击手势获取坐标。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| x | number | 是 | 相对于组件左上角的x坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
+| y | number | 是 | 相对于组件左上角的y坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
+| windowX | number | 是 | 相对于窗口的左上角x坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
+| windowY | number | 是 | 相对于窗口的左上角y坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
+| displayX | number | 是 | 相对于屏幕的左上角x坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
+| displayY | number | 是 | 相对于屏幕的左上角y坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
+
 ## 示例
+
+### 示例1（双击手势识别）
 
 该示例通过TapGesture实现了双击手势的识别。
 
@@ -58,7 +77,7 @@ TapGesture(value?: TapGestureParameters)
 @Entry
 @Component
 struct TapGestureExample {
-  @State value: string = ''
+  @State value: string = '';
 
   build() {
     Column() {
@@ -84,3 +103,43 @@ struct TapGestureExample {
 ```
 
 ![zh-cn_image_0000001174422900](figures/zh-cn_image_0000001174422900.gif)
+
+### 示例2（获取单击手势坐标）
+
+该示例通过TapGesture获取单击手势相关的坐标。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TapGestureExample {
+  @State value: string = ''
+
+  build() {
+    Column() {
+      Text('Click Once').fontSize(28)
+        .gesture(
+          TapGesture({ count: 1, fingers: 1 })
+            .onAction((event: GestureEvent | undefined) => {
+              if (event) {
+                console.log("x = ", JSON.stringify(event.tapLocation?.x))
+                console.log("y = ", event.tapLocation?.y)
+                console.log("windowX = ", event.tapLocation?.windowX)
+                console.log("windowY = ", event.tapLocation?.windowY)
+                console.log("displayX = ", event.tapLocation?.displayX)
+                console.log("displayY = ", event.tapLocation?.displayY)
+              }
+            })
+        )
+      Text(this.value)
+    }
+    .height(200)
+    .width(300)
+    .padding(20)
+    .border({ width: 3 })
+    .margin(30)
+  }
+}
+```
+
+

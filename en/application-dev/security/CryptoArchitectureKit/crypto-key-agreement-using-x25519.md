@@ -1,8 +1,6 @@
 # Key Agreement Using X25519
 
-
 For details about the algorithm specifications, see [X25519](crypto-key-agreement-overview.md#x25519).
-
 
 ## How to Develop
 

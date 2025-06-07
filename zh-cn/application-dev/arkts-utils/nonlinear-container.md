@@ -9,25 +9,25 @@
 | --------- | ------- |
 | HashMap | 存储具有关联关系的键值对集合，存储元素中键唯一，依据键的hash值确定存储位置。访问速度较快，但不能自定义排序。需要快速存取、插入删除键值对数据时推荐使用。 |
 | HashSet | 存储一系列值的集合，存储元素中值唯一，依据值的hash确定存储位置。允许放入null值，但不能自定义排序。需要不重复的集合或需要去重某个集合时可以使用。 |
-| TreeMap | 存储具有关联关系的键值对集合，存储元素中键唯一，允许用户自定义排序方法。一般需要按序存储键值对的场景可以使用。 |
-| TreeSet | 存储一系列值的集合，存储元素中值唯一，允许用户自定义排序方法，但不建议放入null值。一般需要按序存储集合的场景可以使用。 |
+| TreeMap | 存储具有关联关系的键值对集合，存储元素中键唯一，允许用户自定义排序方法。适用于需要按序存储键值对的场景。 |
+| TreeSet | 存储一系列值的集合，存储元素中值唯一，允许用户自定义排序方法，但不建议放入null值。适用于需要按序存储集合的场景。 |
 | LightWeightMap | 存储具有关联关系的键值对集合，存储元素中键唯一，底层采用更加轻量级的结构，空间占用小。需要存取键值对数据且内存不充足时推荐使用。 |
-| LightWeightSet |  存储一系列值的集合，存储元素中值唯一，底层采用更加轻量级的结构，空间占用小。需要不重复的集合或需要去重某个集合时推荐使用。 |
-| PlainArray | 存储具有关联关系的键值对集合，存储元素中键唯一，底层与LightWeightMap一样采用更加轻量级的结构，且键固定为number类型。需要存储键为number类型的键值对时可以使用。 |
+| LightWeightSet |  存储一系列值的集合，存储元素中值唯一，底层采用更加轻量级的结构，空间占用小。适用于不重复的集合或去重某个集合的场景。 |
+| PlainArray | 存储具有关联关系的键值对集合，存储元素中键唯一，底层与LightWeightMap一样采用更加轻量级的结构，且键固定为number类型。适用于存储键为number类型键值对的场景。 |
 
 ## HashMap
 
 [HashMap](../reference/apis-arkts/js-apis-hashmap.md)可用来存储具有关联关系的key-value键值对集合，存储元素中key是唯一的，每个key会对应一个value值。
 
-HashMap依据泛型定义，集合中通过key的hash值确定其存储位置，从而快速找到键值对。HashMap的初始容量大小为16，并支持动态扩容，每次扩容大小为原始容量的2倍。HashMap底层基于HashTable实现，冲突策略采用链地址法。
+HashMap依据泛型定义，集合中通过key的hash值确定其存储位置，从而快速找到键值对。HashMap的初始容量大小为16，并支持动态扩容，每次扩容为原始容量的2倍。HashMap底层基于HashTable实现，冲突策略采用链地址法。
 
 HashMap和[TreeMap](../reference/apis-arkts/js-apis-treemap.md)相比，HashMap依据键的hashCode存取数据，访问速度较快。而TreeMap是有序存取，效率较低。
 
-[HashSet](../reference/apis-arkts/js-apis-hashset.md)基于HashMap实现。HashMap的输入参数由key、value两个值组成。在HashSet中，只对value对象进行处理。
+[HashSet](../reference/apis-arkts/js-apis-hashset.md)基于HashMap实现。HashMap的输入参数由key、value两个值组成。在HashSet中，只处理value对象。
 
 需要快速存取、删除以及插入键值对数据时，推荐使用HashMap。
 
-HashMap进行增、删、改、查操作的常用API如下：
+HashMap支持增、删、改、查操作，常用API如下：
 
 | 操作 | 方法 | 描述 |
 | --------- | ------- | ------- |
@@ -37,7 +37,7 @@ HashMap进行增、删、改、查操作的常用API如下：
 | 访问元素 | values() | 返回一个迭代器对象，包含map中的所有value值。 |
 | 访问元素 | entries() | 返回一个迭代器对象，包含map中的所有键值对。 |
 | 访问元素 | forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object) | 遍历访问整个map的元素。 |
-| 访问元素 | \[Symbol.iterator]():IterableIterator&lt;[K,V]&gt; | 创建迭代器以进行数据访问。 |
+| 访问元素 | \[Symbol.iterator]():IterableIterator&lt;[K,V]&gt; | 创建迭代器以访问数据。 |
 | 修改元素 | replace(key: K, newValue: V) | 修改指定key对应的value值。 |
 | 修改元素 | forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object) | 通过遍历修改整个map的元素。 |
 | 删除元素 | remove(key: K) | 删除map中匹配到的键值对。 |
@@ -47,13 +47,13 @@ HashMap进行增、删、改、查操作的常用API如下：
 
 [HashSet](../reference/apis-arkts/js-apis-hashset.md)可用来存储一系列值的集合，存储元素中value是唯一的。
 
-HashSet依据泛型定义，集合中通过value的hash值确定其存储位置，从而快速找到该值。HashSet初始容量大小为16，支持动态扩容，每次扩容大小为原始容量的2倍。value的类型满足ECMA标准中要求的类型。HashSet基于[HashMap](../reference/apis-arkts/js-apis-hashmap.md)实现，只对value对象进行处理。底层数据结构与HashMap一致。
+HashSet依据泛型定义，集合中通过value的hash值确定其存储位置，从而快速找到该值。HashSet初始容量大小为16，支持动态扩容，每次扩容为原始容量的2倍。value的类型满足ECMA标准中要求的类型。HashSet基于[HashMap](../reference/apis-arkts/js-apis-hashmap.md)实现，只对value对象进行处理。底层数据结构与HashMap一致。
 
-HashSet和[TreeSet](../reference/apis-arkts/js-apis-treeset.md)相比，HashSet中的数据无序存放，即不能由用户指定排序方式，而TreeSet是有序存放，能够依照用户给定的排序函数对元素进行排序。它们集合中的元素都不允许重复，但HashSet允许放入null值，TreeSet不建议存放null值，可能会对排序结果产生影响。
+HashSet和[TreeSet](../reference/apis-arkts/js-apis-treeset.md)相比，HashSet中的数据无序存放，不支持用户指定排序方式，而TreeSet中的数据有序存放，支持用户通过排序函数对元素进行排序。它们集合中的元素都不允许重复，HashSet允许放入null值，但TreeSet不建议存放null值，可能会对排序结果产生影响。
 
 可以利用HashSet不重复的特性，当需要不重复的集合或需要去重某个集合的时候使用。
 
-HashSet进行增、删、改、查操作的常用API如下：
+HashSet支持增、删、改、查操作，常用API如下：
 
 | 操作 | 方法 | 描述 |
 | --------- | ------- | ------- |
@@ -68,15 +68,15 @@ HashSet进行增、删、改、查操作的常用API如下：
 
 ## TreeMap
 
-[TreeMap](../reference/apis-arkts/js-apis-treemap.md)可用来存储具有关联关系的key-value键值对集合，存储元素中key是唯一的，每个key会对应一个value值。
+[TreeMap](../reference/apis-arkts/js-apis-treemap.md)用于存储具有关联关系的key-value键值对集合，存储元素中key是唯一的，每个key对应一个value值。
 
-TreeMap依据泛型定义，集合中的key值是有序的，TreeMap的底层是一棵二叉树，可以通过树的二叉查找快速的找到键值对。key的类型满足ECMA标准中要求的类型。TreeMap中的键值是有序存储的。TreeMap底层基于红黑树实现，可以进行快速的插入和删除。
+TreeMap依据泛型定义，key是有序存储的。底层基于红黑树实现，支持快速的插入和删除，key的类型满足ECMA标准。
 
 TreeMap和[HashMap](../reference/apis-arkts/js-apis-hashmap.md)相比，HashMap依据键的hashCode存取数据，访问速度较快。而TreeMap是有序存取，效率较低。
 
 一般需要存储有序键值对的场景，可以使用TreeMap。
 
-TreeMap进行增、删、改、查操作的常用API如下：
+TreeMap支持增、删、改、查操作，常用API如下：
 
 | 操作 | 方法 | 描述 |
 | --------- | ------- | ------- |
@@ -98,15 +98,15 @@ TreeMap进行增、删、改、查操作的常用API如下：
 
 [TreeSet](../reference/apis-arkts/js-apis-treeset.md)可用来存储一系列值的集合，存储元素中value是唯一的。
 
-TreeSet依据泛型定义，集合中的value值是有序的，TreeSet的底层是一棵二叉树，可以通过树的二叉查找快速的找到该value值，value的类型满足ECMA标准中要求的类型。TreeSet中的值是有序存储的。TreeSet底层基于红黑树实现，可以进行快速的插入和删除。
+TreeSet依据泛型定义，值是有序存储的，底层基于红黑树实现，支持快速的插入和删除。value的类型满足ECMA标准。
 
-TreeSet基于[TreeMap](../reference/apis-arkts/js-apis-treemap.md)实现，在TreeSet中，只对value对象进行处理。TreeSet可用于存储一系列值的集合，元素中value唯一，且能够依照用户给定的排序函数对元素进行排序。
+TreeSet基于[TreeMap](../reference/apis-arkts/js-apis-treemap.md)实现，仅处理value对象。用于存储值的集合，元素中value唯一，并支持按用户定义的排序函数排序。
 
-TreeSet和[HashSet](../reference/apis-arkts/js-apis-hashset.md)相比，HashSet中的数据无序存放，而TreeSet是有序存放。它们集合中的元素都不允许重复，但HashSet允许放入null值，TreeSet不建议存放null值，可能会对排序结果产生影响。
+TreeSet和[HashSet](../reference/apis-arkts/js-apis-hashset.md)相比，HashSet中的数据无序存放，而TreeSet是有序存放。两者集合中的元素都不允许重复，HashSet允许放入null值，但TreeSet不建议存放null值，可能会对排序结果产生影响。
 
 一般需要存储有序集合的场景，可以使用TreeSet。
 
-TreeSet进行增、删、改、查操作的常用API如下：
+TreeSet支持增、删、改、查操作，常用API如下：
 
 | 操作 | 方法 | 描述 |
 | --------- | ------- | ------- |
@@ -114,7 +114,7 @@ TreeSet进行增、删、改、查操作的常用API如下：
 | 访问元素 | values() | 返回一个迭代器对象，包含set中的所有value值。 |
 | 访问元素 | entries() | 返回一个迭代器对象，包含类似键值对的数组，键值都是value。 |
 | 访问元素 | getFirstValue() | 获取set中排在首位的value值。 |
-| 访问元素 | getLastValue() | 获取set中排在未位的value值。 |
+| 访问元素 | getLastValue() | 获取set中排在末位的value值。 |
 | 访问元素 | forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object) | 遍历访问整个set的元素。 |
 | 访问元素 | \[Symbol.iterator]():IterableIterator&lt;T&gt; | 创建迭代器以进行数据访问。 |
 | 修改元素 | forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object) | 通过遍历修改整个set的元素。 |
@@ -123,15 +123,15 @@ TreeSet进行增、删、改、查操作的常用API如下：
 
 ## LightWeightMap
 
-[LightWeightMap](../reference/apis-arkts/js-apis-lightweightmap.md)可用来存储具有关联关系的key-value键值对集合，存储元素中key是唯一的，每个key会对应一个value值。LightWeightMap依据泛型定义，采用更加轻量级的结构，底层标识唯一key通过hash实现，其冲突策略为线性探测法。集合中的key值的查找依赖于hash值以及二分查找算法，通过一个数组存储hash值，然后映射到其他数组中的key值以及value值，key的类型满足ECMA标准中要求的类型。
+[LightWeightMap](../reference/apis-arkts/js-apis-lightweightmap.md)可用来存储具有关联关系的key-value键值对集合，存储元素中key是唯一的，每个key会对应一个value值。LightWeightMap依据泛型定义，采用更加轻量级的结构，底层通过hash实现唯一key，冲突策略为线性探测。集合中的key值的查找依赖于hash值以及二分查找算法，通过一个数组存储hash值，然后映射到其他数组中的key值以及value值，key的类型满足ECMA标准。
 
-初始默认容量大小为8，每次扩容大小为原始容量的2倍。
+初始默认容量为8，每次扩容为原始容量的2倍。
 
 LightWeightMap和[HashMap](../reference/apis-arkts/js-apis-hashmap.md)都是用来存储键值对的集合，LightWeightMap占用内存更小。
 
 当需要存取key-value键值对时，推荐使用占用内存更小的LightWeightMap。
 
-LightWeightMap进行增、删、改、查操作的常用API如下：
+LightWeightMap支持增、删、改、查操作，常用API如下：
 
 | 操作 | 方法 | 描述 |
 | --------- | ------- | ------- |
@@ -156,19 +156,19 @@ LightWeightMap进行增、删、改、查操作的常用API如下：
 
 [LightWeightSet](../reference/apis-arkts/js-apis-lightweightset.md)可用来存储一系列值的集合，存储元素中value是唯一的。
 
-LightWeightSet依据泛型定义，采用更加轻量级的结构，初始默认容量大小为8，每次扩容大小为原始容量的2倍。集合中的value值的查找依赖于hash以及二分查找算法，通过一个数组存储hash值，然后映射到其他数组中的value值，value的类型满足ECMA标准中要求的类型。
+LightWeightSet依据泛型定义，采用更加轻量级的结构，初始默认容量大小为8，每次扩容大小为原始容量的2倍。集合中的value值的查找依赖于hash以及二分查找算法，通过一个数组存储hash值，然后映射到其他数组中的value值，value的类型满足ECMA标准。
 
-LightWeightSet底层标识唯一value基于hash实现，其冲突策略为线性探测法，查找策略基于二分查找法。
+LightWeightSet底层通过hash实现唯一value的标识，冲突策略采用线性探测法，查找策略基于二分查找法。
 
-LightWeightSet和[HashSet](../reference/apis-arkts/js-apis-hashset.md)都是用来存储键值的集合，LightWeightSet的占用内存更小。
+LightWeightSet和[HashSet](../reference/apis-arkts/js-apis-hashset.md)都是用来存储键值的集合，LightWeightSet占用内存更小。
 
 当需要存取某个集合或是对某个集合去重时，推荐使用占用内存更小的LightWeightSet。
 
-LightWeightSet进行增、删、改、查操作的常用API如下：
+LightWeightSet支持增、删、改、查操作，常用API如下：
 
 | 操作 | 方法 | 描述 |
 | --------- | ------- | ------- |
-| 增加元素 | add(value: T) | 增加一个值。 |
+| 增加元素 | add(obj: T) | 增加一个值。 |
 | 访问元素 | getIndexOf(key: T) | 获取对应的index值。 |
 | 访问元素 | getValueAt(index: number) | 获取指定index对应的value值。 |
 | 访问元素 | values() | 返回一个迭代器对象，包含set中的所有value值。 |
@@ -186,11 +186,11 @@ LightWeightSet进行增、删、改、查操作的常用API如下：
 
 初始默认容量大小为16，每次扩容大小为原始容量的2倍。
 
-PlainArray和[LightWeightMap](../reference/apis-arkts/js-apis-lightweightmap.md)都是用来存储键值对，且均采用轻量级结构，但PlainArray的key值类型只能为number类型。
+PlainArray和[LightWeightMap](../reference/apis-arkts/js-apis-lightweightmap.md)都是用来存储键值对，且均采用轻量级结构，但PlainArray的key值类型仅限于number。
 
 当需要存储key值为number类型的键值对时，可以使用PlainArray。
 
-PlainArray进行增、删、改、查操作的常用API如下：
+PlainArray支持增、删、改、查操作，常用API如下：
 
 | 操作 | 方法 | 描述 |
 | --------- | ------- | ------- |

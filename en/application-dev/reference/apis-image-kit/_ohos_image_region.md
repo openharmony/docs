@@ -11,6 +11,8 @@ The OhosImageRegion struct defines the region of an image source to decode. It i
 
 **Related module**: [Image](image.md)
 
+**Header file**: [image_source_mdk.h](image__source__mdk_8h.md)
+
 
 ## Summary
 

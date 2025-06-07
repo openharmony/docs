@@ -102,7 +102,7 @@ struct SpecialImage {
 }
 @Component
 struct CompA {
-  @ObjectLink uiStyle: UIStyle
+  @ObjectLink uiStyle: UIStyle;
   // the following functions are used to show whether the component is called to be rendered
   private isRenderColumn() : number {
     console.info("Column is rendered");
@@ -175,7 +175,7 @@ struct CompA {
           .backgroundColor("#FF007DFF")
           .margin({ bottom: 10 })
           .onClick(() => {
-            animateTo({
+            this.getUIContext().animateTo({
               duration: 500
             },() => {
               this.uiStyle.translateY = (this.uiStyle.translateY + 180) % 250;
@@ -451,7 +451,7 @@ class UIStyle {
 @Component
 struct SpecialImage {
   @ObjectLink uiStyle : UIStyle;
-  @ObjectLink needRenderImage: NeedRenderImage // receive the new class from its parent component
+  @ObjectLink needRenderImage: NeedRenderImage; // receive the new class from its parent component
   private isRenderSpecialImage() : number { // function to show whether the component is rendered
     console.info("SpecialImage is rendered");
     return 1;
@@ -554,7 +554,7 @@ struct CompA {
           .backgroundColor("#FF007DFF")
           .margin({ bottom: 10 })
           .onClick(() => {
-            animateTo({
+            this.getUIContext().animateTo({
               duration: 500
             }, () => {
               this.needRenderTranslate.translateY = (this.needRenderTranslate.translateY + 180) % 250;
@@ -663,7 +663,7 @@ this.uiStyle.needRenderImage.imageWidth = (this.uiStyle.needRenderImage.imageWid
 this.needRenderXxx.xxx = x;
 
 //example
-this.needRenderScale.scaleX = (this.needRenderScale.scaleX + 0.6) % 1
+this.needRenderScale.scaleX = (this.needRenderScale.scaleX + 0.6) % 1;
 ```
 
 属性拆分应当重点考虑变化较为频繁的属性，来提高应用运行的性能。
@@ -683,7 +683,7 @@ class SomeClass {
 @Component
 struct Page {
   @State someClass: SomeClass = new SomeClass();
-  @State needRenderProperty: NeedRenderProperty = this.someClass.needRenderProperty
+  @State needRenderProperty: NeedRenderProperty = this.someClass.needRenderProperty;
   build() {
     Row() {
       Column() {
@@ -708,7 +708,7 @@ struct Page {
 多个组件依赖对象中的不同属性时，直接关联该对象会出现改变任一属性所有组件都刷新的现象，可以通过将类中的属性拆分组合成新类的方式精准控制组件刷新。
 
 在多个组件依赖同一个数据源并根据数据源变化刷新组件的情况下，直接关联数据源会导致每次数据源改变都刷新所有组件。为精准控制组件刷新，可以采取以下策略：
-  1. 使用 [@Watch](../quick-start/arkts-watch.md) 装饰器：在组件中使用@Watch装饰器监听数据源，当数据变化时执行业务逻辑，确保只有满足条件的组件进行刷新。
+  1. 使用 [@Watch](../ui/state-management/arkts-watch.md) 装饰器：在组件中使用@Watch装饰器监听数据源，当数据变化时执行业务逻辑，确保只有满足条件的组件进行刷新。
   2. 事件驱动更新：对于复杂组件关系或跨层级情况，使用[Emitter](../reference/apis-basic-services-kit/js-apis-emitter.md)自定义事件发布订阅机制。数据源变化时触发相应事件，订阅该事件的组件接收到通知后，根据变化的具体值判断组件是否刷新。
 
 【反例】

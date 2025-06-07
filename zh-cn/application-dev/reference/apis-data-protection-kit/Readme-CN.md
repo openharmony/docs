@@ -7,8 +7,8 @@
   <!--DelEnd-->
 - C API<!--data-protection-c-->
   - 模块<!--data-protection-module-->
-    - [DlpPermissionApi](_dlp_permission_api.md)
+    - [DlpPermissionApi](capi-dlppermissionapi.md)
   - 头文件<!--data-protection-headerfile-->
-    - [dlp_permission_api.h](dlp__permission__api_8h.md)
+    - [dlp_permission_api.h](capi-dlp-permission-api-h.md)
 - 错误码<!--data-protection-arkts-errcode-->
   - [DLP服务错误码](errorcode-dlp.md)

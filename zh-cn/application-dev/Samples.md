@@ -20,7 +20,7 @@
 
 3.若存在三级导航（如Border 边框、点击事件等），点击跳转至详情页面。
 ##### 基本原理
-示例使用 [Tabs容器组件](reference/apis-arkui/arkui-ts/ts-container-tabs.md) 搭建整体应用框架，每个 [TabContent内容视图](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) 使用 [List容器组件](reference/apis-arkui/arkui-ts/ts-container-list.md) 布局，在每个 [ListItem](reference/apis-arkui/arkui-ts/ts-container-listitem.md) 中使用 [循环渲染](quick-start/arkts-rendering-control-foreach.md) 加载此分类下分类导航数据，底部导航菜单使用 [TabContent中tabBar属性](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) 设置自定义样式 。
+示例使用 [Tabs容器组件](reference/apis-arkui/arkui-ts/ts-container-tabs.md) 搭建整体应用框架，每个 [TabContent内容视图](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) 使用 [List容器组件](reference/apis-arkui/arkui-ts/ts-container-list.md) 布局，在每个 [ListItem](reference/apis-arkui/arkui-ts/ts-container-listitem.md) 中使用 [循环渲染](ui/state-management/arkts-rendering-control-foreach.md) 加载此分类下分类导航数据，底部导航菜单使用 [TabContent中tabBar属性](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) 设置自定义样式 。
 将组件库分成四大类：  
 组件模块：  
 1、空白与分隔：使用全局组件TitleBar，CommonItemSlider，CommonItemSelect，引入全局样式搭建分隔器组件页面。  
@@ -61,7 +61,7 @@
 
 #### 状态管理
 ##### 介绍
-本示例通过使用[页面级的状态变量](quick-start/arkts-localstorage.md) 和[应用级的状态变量](quick-start/arkts-appstorage.md) 来实现应用的状态管理。展示内容包括修饰的对象类型、父子组件之间的状态同步、爷孙组件之间的状态同步以及兄弟组件之间的状态同步。
+本示例通过使用[页面级的状态变量](ui/state-management/arkts-localstorage.md) 和[应用级的状态变量](ui/state-management/arkts-appstorage.md) 来实现应用的状态管理。展示内容包括修饰的对象类型、父子组件之间的状态同步、爷孙组件之间的状态同步以及兄弟组件之间的状态同步。
 ##### 使用
 1.点击首页的切换按钮，可切换List和Grid布局。
 
@@ -1515,7 +1515,7 @@ Preferences.flush()保存并刷新文件内容。
 + 二维码解析功能在QRCodeParser中
     + 拍照获取图片：使用(
       cameraService.imageReceiver.on)[reference/apis-image-kit/js-apis-image.md#on9]接收图片时注册回调，然后调用readNextImage获取处理图片的操作，然后使用getComponent方法根据图像的组件类型从图像中获取组件缓存，然后将获取到的ArrayBuffer写入指定文件中，返回文件uri，然后通过[ImageBitmap](reference/apis-arkui/arkui-ts/ts-components-canvas-imagebitmap.md)将uri转化为ImageBitMap格式，具体文件写入方式参考[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)。
-    + 打开相册选取图片：首先需要使用[startAbilityForResult](reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult)启动相册，将选到的图片通过ImageBitmap转化为ImageBitmap格式。
+    + 打开相册选取图片：首先需要使用[startAbilityForResult](reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilityforresult)启动相册，将选到的图片通过ImageBitmap转化为ImageBitmap格式。
     + 图片解析：使用[CanvasRenderingContext2D](reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md)的getImageData方法创建ImageData对象将相册中获取到的图片转化为util8格式的图片，然后调用jsQR库解析图片中的二维码。
 
 ##### 约束与限制
@@ -1547,11 +1547,11 @@ Preferences.flush()保存并刷新文件内容。
 * 本示例分为三个模块：
     * 录音页面模块
         * 使用FileAsset提供封装文件属性的方法，createAudioPlayer同步方式创建音频播放实例实现录音，暂停录音功能
-        * 参考接口：[audio](reference/apis-audio-kit/js-apis-audio.md)，[@ohos.router](reference/apis-arkui/js-apis-router.md)，[@ohos.filemanagement.userFileManager](reference/apis-core-file-kit/js-apis-userFileManager-sys.md)，[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)，[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)，[@ohos.window](reference/apis-arkui/js-apis-window.md)，[@ohos.promptAction](reference/apis-arkui/js-apis-promptAction.md)，[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)
+        * 参考接口：[audio](reference/apis-audio-kit/js-apis-audio.md)，[@ohos.router](reference/apis-arkui/js-apis-router.md)，[@ohos.filemanagement.userFileManager](reference/apis-core-file-kit/js-apis-userFileManager-sys.md)，[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)，[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)，[@ohos.window](reference/apis-arkui/arkts-apis-window.md)，[@ohos.promptAction](reference/apis-arkui/js-apis-promptAction.md)，[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)
 
     * 录音列表模块
         * getMediaLibraryAPI访问媒体数据信息，renameCallBack，renameDialogController方法对录音进行重命名，deleteFile，deleteDialogShow方法删除某条录音。
-        * 参考接口：[@ohos.router](reference/apis-arkui/js-apis-router.md)，[@ohos.filemanagement.userFileManager](reference/apis-core-file-kit/js-apis-userFileManager-sys.md)，[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)，[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)，[@ohos.window](reference/apis-arkui/js-apis-window.md)，[@ohos.promptAction](reference/apis-arkui/js-apis-promptAction.md)，[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)
+        * 参考接口：[@ohos.router](reference/apis-arkui/js-apis-router.md)，[@ohos.filemanagement.userFileManager](reference/apis-core-file-kit/js-apis-userFileManager-sys.md)，[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)，[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)，[@ohos.window](reference/apis-arkui/arkts-apis-window.md)，[@ohos.promptAction](reference/apis-arkui/js-apis-promptAction.md)，[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)
 
     * 播放模块
         * createAudioPlayer方法创建音频播放实例，onPageShow方法播放音频，onPageHide方法暂停播放音频。
@@ -2034,7 +2034,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例中主要介绍开发者在利用[Native XComponent](reference/apis-arkui/native__interface__xcomponent_8h.md)来获取[NativeWindow](reference/apis-arkgraphics2d/_native_window.md)实例，通过数据填充改变矩形框颜色。并提供从[NativeImage](reference/apis-arkgraphics2d/_o_h___native_image.md)中获取NativeWindow进行buffer轮转的案例，通过NativeWindow生产buffer来触发NativeImage的可用帧回调。
+本示例中主要介绍开发者在利用[Native XComponent](reference/apis-arkui/native__interface__xcomponent_8h.md)来获取[NativeWindow](reference/apis-arkgraphics2d/capi-nativewindow.md)实例，通过数据填充改变矩形框颜色。并提供从[NativeImage](reference/apis-arkgraphics2d/capi-oh-nativeimage.md)中获取NativeWindow进行buffer轮转的案例，通过NativeWindow生产buffer来触发NativeImage的可用帧回调。
 
 ##### 使用
 
@@ -2959,7 +2959,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用 [SystemCapability.Telephony.CellularData系统能力](reference/apis-telephony-kit/js-apis-telephony-data.md) 获取SIM卡信息及网络信息。使用 [@Builder](quick-start/arkts-builder.md) 在一个自定义组件内快速生成多个布局内容。通过获取SIM卡相关信息，展示打开本应用时网络信息。
+本示例使用 [SystemCapability.Telephony.CellularData系统能力](reference/apis-telephony-kit/js-apis-telephony-data.md) 获取SIM卡信息及网络信息。使用 [@Builder](ui/state-management/arkts-builder.md) 在一个自定义组件内快速生成多个布局内容。通过获取SIM卡相关信息，展示打开本应用时网络信息。
 
 ##### 使用
 
@@ -3109,7 +3109,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 * 本示例分成一个模块
   * 通过button实现对游戏的基本控制，WebviewController方法控制Web组件各种行为，使用webview注入JS与执行能力。
-  * 接口参考：[@ohos.window](reference/apis-arkui/js-apis-window.md)，[@ohos.web.webview](reference/apis-arkweb/js-apis-webview.md)
+  * 接口参考：[@ohos.window](reference/apis-arkui/arkts-apis-window.md)，[@ohos.web.webview](reference/apis-arkweb/js-apis-webview.md)
 
 ##### 约束与限制
 
@@ -3125,7 +3125,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本实例使用[窗口管理](reference/apis-arkui/js-apis-window.md)，展示了在应用主窗口中创建和拉起子窗口，并对子窗口设置窗口相关属性，以及设置窗口规避区域、窗口沉浸式和小窗口等功能。
+本实例使用[窗口管理](reference/apis-arkui/arkts-apis-window.md)，展示了在应用主窗口中创建和拉起子窗口，并对子窗口设置窗口相关属性，以及设置窗口规避区域、窗口沉浸式和小窗口等功能。
 
 ##### 使用
 
@@ -3140,7 +3140,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 * 本示例主要分为三个模块
   * 首页入口模块
     * 使用WindowStage实例化一个窗口，引入WindowManger方法设置一个主窗口与子窗口
-    * 接口参考：[@ohos.window](reference/apis-arkui/js-apis-window.md)，[@ohos.events.emitter](reference/apis-basic-services-kit/js-apis-emitter.md)，[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)，[@ohos.router](reference/apis-arkui/js-apis-router.md)
+    * 接口参考：[@ohos.window](reference/apis-arkui/arkts-apis-window.md)，[@ohos.events.emitter](reference/apis-basic-services-kit/js-apis-emitter.md)，[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)，[@ohos.router](reference/apis-arkui/js-apis-router.md)
 
   * 窗口视频模块
     * 这里用到依赖window-components中WindowComponent方法来进行视频的播放
@@ -3161,7 +3161,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用[@ohos.window](reference/apis-arkui/js-apis-window.md)，主要展示了在子窗口中以悬浮窗模式拉起悬浮应用，并对新的应用设置窗口缩放比例，窗口以设置的比例进行缩放，并在界面显示窗口当前的宽度和高度。
+本示例使用[@ohos.window](reference/apis-arkui/arkts-apis-window.md)，主要展示了在子窗口中以悬浮窗模式拉起悬浮应用，并对新的应用设置窗口缩放比例，窗口以设置的比例进行缩放，并在界面显示窗口当前的宽度和高度。
 
 ##### 使用
 
@@ -3253,7 +3253,6 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.12.2
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/LaunguageBaseClassLibrary/ConcurrentModule)
 
 #### 语言基础类库
 
@@ -3346,7 +3345,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API10版本SDK，版本号：4.0.8.3
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/LanguageBaseClassLibrary/LanguageBaseClassLibrary)
 
 #### 压缩与解压
 
@@ -3374,7 +3373,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/LaunguageBaseClassLibrary/ZipLib)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/LanguageBaseClassLibrary/ZipLib)
 
 
 
@@ -3889,7 +3888,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用延迟任务回调能力接口[@ohos.WorkSchedulerExtensionAbility](reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md) 、通知管理的能力接口[@ohos.notification](reference/apis-notification-kit/js-apis-notification.md) 、HTTP数据请求能力接口[@ohos.net.http](reference/apis-network-kit/js-apis-http.md) 、媒体查询接口[@system.mediaquery](reference/apis-arkui/js-apis-system-mediaquery.md) 、管理窗口能力接口[@ohos.window](reference/apis-arkui/js-apis-window.md) 。实现在进场时加载进场动画，使用[Tabs容器](reference/apis-arkui/arkui-ts/ts-container-tabs.md) 实现通过页签进行内容视图切换。使用[自定义弹窗](reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md) 设置位置信息。使用[Swiper](reference/apis-arkui/arkui-ts/ts-container-swiper.md) 组件实现页面展示图轮播。使用[Grid](reference/apis-arkui/arkui-ts/ts-container-list.md) 容器组件设置展示的商品信息。
+本示例使用延迟任务回调能力接口[@ohos.WorkSchedulerExtensionAbility](reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md) 、通知管理的能力接口[@ohos.notification](reference/apis-notification-kit/js-apis-notification.md) 、HTTP数据请求能力接口[@ohos.net.http](reference/apis-network-kit/js-apis-http.md) 、媒体查询接口[@system.mediaquery](reference/apis-arkui/js-apis-system-mediaquery.md) 、管理窗口能力接口[@ohos.window](reference/apis-arkui/arkts-apis-window.md) 。实现在进场时加载进场动画，使用[Tabs容器](reference/apis-arkui/arkui-ts/ts-container-tabs.md) 实现通过页签进行内容视图切换。使用[自定义弹窗](reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md) 设置位置信息。使用[Swiper](reference/apis-arkui/arkui-ts/ts-container-swiper.md) 组件实现页面展示图轮播。使用[Grid](reference/apis-arkui/arkui-ts/ts-container-list.md) 容器组件设置展示的商品信息。
 
 ##### 使用
 
@@ -4473,7 +4472,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 * 在跨端迁移随手记应用里，迁移设置的功能在Setting.ets和entryability中的onContinue()实现：
 
-  * 通过[UIAbilityContext](reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)的[setMissionContinueState](reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10)可以设置当前应用任务流转的状态，控制当前应用是否具有迁移能力。
+  * 通过[UIAbilityContext](reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)的[setMissionContinueState](reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#setmissioncontinuestate10)可以设置当前应用任务流转的状态，控制当前应用是否具有迁移能力。
 
   * 通过设置wantConstant.Params.SUPPORT_CONTINUE_PAGE_STACK_KEY和wantConstant.Params.SUPPORT_CONTINUE_SOURCE_EXIT_KEY的值可以控制当前应用是否迁移页面栈以及迁移后源端是否退出。
 
@@ -5778,7 +5777,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例使用[screenshot](reference/apis-arkui/js-apis-screenshot-sys.md)模块实现屏幕截图 ，使用[window](reference/apis-arkui/js-apis-window.md#setwindowprivacymode9)模块实现隐私窗口切换，使用[display](reference/apis-arkui/js-apis-display-sys.md#displayhasprivatewindow9)模块查询当前隐私窗口。展示全屏截图和屏幕局部截图。
+本示例使用[screenshot](reference/apis-arkui/js-apis-screenshot-sys.md)模块实现屏幕截图 ，使用[window](reference/apis-arkui/arkts-apis-window-Window.md#setwindowprivacymode9)模块实现隐私窗口切换，使用[display](reference/apis-arkui/js-apis-display-sys.md#displayhasprivatewindow9)模块查询当前隐私窗口。展示全屏截图和屏幕局部截图。
 
 ##### 使用
 
@@ -5788,7 +5787,7 @@ return formInfo.FormState.READY }。
 ##### 基本原理
 
 * 本示例通过screenshot接口实现屏幕截图 ，通过window接口实现隐私窗口切换，通过display接口查询当前隐私窗口。
-* 接口参考：[@ohos.screenshot](reference/apis-arkui/js-apis-screenshot-sys.md)，[@ohos.window](reference/apis-arkui/js-apis-window.md#setwindowprivacymode9)，[@ohos.display](reference/apis-arkui/js-apis-display-sys.md#displayhasprivatewindow9)
+* 接口参考：[@ohos.screenshot](reference/apis-arkui/js-apis-screenshot-sys.md)，[@ohos.window](reference/apis-arkui/arkts-apis-window-Window.md#setwindowprivacymode9)，[@ohos.display](reference/apis-arkui/js-apis-display-sys.md#displayhasprivatewindow9)
 
 ##### 约束与限制
 

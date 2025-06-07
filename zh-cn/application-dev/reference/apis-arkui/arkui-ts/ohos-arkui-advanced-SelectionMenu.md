@@ -7,12 +7,14 @@
 > **说明：**
 >
 > 该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 该组件不支持在Wearable设备上使用。
 
 
 ## 导入模块
 
-```
-import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo, SelectionMenuOptions } from '@kit.ArkUI'
+```ts
+import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo, SelectionMenuOptions } from '@kit.ArkUI';
 ```
 
 ## 子组件
@@ -117,7 +119,7 @@ import {
   ExpandedMenuOptions,
   EditorEventInfo,
   SelectionMenuOptions
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @Component

@@ -636,12 +636,12 @@ import { curves } from '@kit.ArkUI';
 @Entry
 @Component
 struct motionBlurTest {
-  @State widthSize: number = 400
-  @State heightSize: number = 320
-  @State flag: boolean = true
-  @State radius: number = 0
-  @State x: number = 0
-  @State y: number = 0
+  @State widthSize: number = 400;
+  @State heightSize: number = 320;
+  @State flag: boolean = true;
+  @State radius: number = 0;
+  @State x: number = 0;
+  @State y: number = 0;
 
   build() {
     Column() {

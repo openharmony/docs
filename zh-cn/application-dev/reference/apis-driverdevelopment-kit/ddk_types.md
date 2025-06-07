@@ -5,13 +5,11 @@
 
 提供Base DDK中的枚举变量、结构体定义。
 
-**起始版本：**
+**系统能力：** SystemCapability.Driver.DDK.Extension
 
-12
+**起始版本：** 12
 
-**相关模块:**
-
-[Base DDK](_base_ddk.md)
+**相关模块：** [Base DDK](_base_ddk.md)
 
 
 ## 汇总

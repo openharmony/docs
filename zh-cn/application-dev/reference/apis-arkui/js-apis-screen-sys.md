@@ -105,7 +105,7 @@ on(eventType: 'connect' | 'disconnect' | 'change', callback: Callback&lt;number&
 | 参数名    | 类型                   | 必填 | 说明                                                        |
 | --------- | ---------------------- | ---- | ----------------------------------------------------------- |
 | eventType | string                 | 是   | 监听事件。<br/>-eventType为"connect"表示屏幕连接事件。<br/>-eventType为"disconnect"表示断开屏幕连接事件。<br/>-eventType为"change"表示屏幕状态改变事件。 |
-| callback  | Callback&lt;number&gt; | 是   | 回调函数。返回屏幕的id，该参数应为整数。                                    |
+| callback  | Callback&lt;number&gt; | 是   | 回调函数。返回屏幕的id，该参数为整数。                                    |
 
 **错误码：**
 
@@ -138,7 +138,7 @@ off(eventType: 'connect' | 'disconnect' | 'change', callback?: Callback&lt;numbe
 | 参数名    | 类型                   | 必填 | 说明                                                         |
 | --------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | eventType | string                 | 是   | 监听事件。<br/>-eventType为"connect"表示屏幕连接事件。<br/>-eventType为"disconnect"表示断开屏幕连接事件。<br/>-eventType为"change"表示屏幕状态改变事件。 |
-| callback  | Callback&lt;number&gt; | 否   | 回调函数。返回屏幕的id，该参数应为整数。                                     |
+| callback  | Callback&lt;number&gt; | 否   | 回调函数。返回屏幕的id，该参数为整数。                                     |
 
 **错误码：**
 
@@ -172,7 +172,7 @@ makeExpand(options:Array&lt;ExpandOption&gt;, callback: AsyncCallback&lt;number&
 | 参数名   | 类型                                       | 必填 | 说明                         |
 | -------- | ------------------------------------------ | ---- |----------------------------|
 | options  | Array&lt;[ExpandOption](#expandoption)&gt; | 是   | 设置扩展屏幕的参数集合。               |
-| callback | AsyncCallback&lt;number&gt;                     | 是   | 回调函数。返回扩展屏幕的群组id，其中id应为整数。 |
+| callback | AsyncCallback&lt;number&gt;                     | 是   | 回调函数。返回扩展屏幕的群组id，其中id为整数。 |
 
 **错误码：**
 
@@ -227,7 +227,7 @@ makeExpand(options:Array&lt;ExpandOption&gt;): Promise&lt;number&gt;
 
 | 类型                  | 说明                              |
 | --------------------- |---------------------------------|
-| Promise&lt;number&gt; | Promise对象。返回扩展屏幕的群组id，其中id应为整数。 |
+| Promise&lt;number&gt; | Promise对象。返回扩展屏幕的群组id，其中id为整数。 |
 
 **错误码：**
 
@@ -272,7 +272,7 @@ stopExpand(expandScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明                                      |
 | ------------ | --------------------------- | --- |-----------------------------------------|
-| expandScreen | Array&lt;number&gt;         | 是   | 扩展屏幕id集合，其中id应为整数。 expandScreen数组大小不应超过1000。  |
+| expandScreen | Array&lt;number&gt;         | 是   | 扩展屏幕id集合，其中id为整数。 expandScreen数组大小不应超过1000。  |
 | callback     | AsyncCallback&lt;void&gt; | 是   | 回调函数。当停止屏幕扩展模式成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -313,7 +313,7 @@ stopExpand(expandScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明                 |
 | ------------ | ------------------- | --- |--------------------|
-| expandScreen | Array&lt;number&gt; | 是   | 扩展屏幕id集合，其中id应为整数。expandScreen数组大小不应超过1000。 |
+| expandScreen | Array&lt;number&gt; | 是   | 扩展屏幕id集合，其中id为整数。expandScreen数组大小不应超过1000。 |
 
 **返回值：**
 
@@ -358,7 +358,7 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;, callback: AsyncC
 | ------------ | --------------------------- | ---- |--------------------|
 | mainScreen   | number                      | 是   | 主屏幕id，该参数仅支持整数输入。  |
 | mirrorScreen | Array&lt;number&gt;         | 是   | 镜像屏幕id集合，其中id应为整数。 |
-| callback     | AsyncCallback&lt;number&gt; | 是   | 回调函数。返回镜像屏幕的群组id，其中id应为整数。  |
+| callback     | AsyncCallback&lt;number&gt; | 是   | 回调函数。返回镜像屏幕的群组id，其中id为整数。  |
 
 **错误码：**
 
@@ -406,7 +406,7 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;): Promise&lt;numb
 
 | 类型                  | 说明                              |
 | --------------------- |---------------------------------|
-| Promise&lt;number&gt; | Promise对象。返回镜像屏幕的群组id，其中id应为整数。 |
+| Promise&lt;number&gt; | Promise对象。返回镜像屏幕的群组id，其中id为整数。 |
 
 **错误码：**
 
@@ -528,13 +528,13 @@ makeUnique(uniqueScreen: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt
 
 | 参数名    | 类型   | 必填 | 说明          |
 | --------- | ------ | ---- | ------------- |
-| uniqueScreen  | Array&lt;number&gt; | 是   | 异源屏幕id集合。其中id应为大于等于0的整数，否则返回401错误码。 |
+| uniqueScreen  | Array&lt;number&gt; | 是   | 异源屏幕id集合。其中id应为大于0的整数，否则返回401错误码。 |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise对象。返回异源屏幕的displayId集合，其中id应为大于等于0的整数。|
+| Promise&lt;Array&lt;number&gt;&gt; | Promise对象。返回异源屏幕的displayId集合，其中id为大于0的整数。|
 
 **错误码：**
 
@@ -813,59 +813,7 @@ screen.setVirtualScreenSurface(screenId, surfaceId, (err: BusinessError) => {
   console.info('Succeeded in setting the surface for the virtual screen.');
 });
 ```
-## screen.setScreenPrivacyMaskImage<sup>18+</sup>
 
-setScreenPrivacyMaskImage(screenId:number, image?: image.PixelMap): Promise&lt;void&gt;
-
-设置屏幕的隐私蒙版图片，使用Promise异步回调。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名    | 类型   | 必填 | 说明          |
-| --------- | ------ | ---- | ------------- |
-| screenId  | number | 是   | 屏幕的id，该参数仅支持正整数输入。    |
-| image | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否   | 屏幕的隐私蒙版图片，不传入时，则清除隐私蒙版图片，恢复为未传入的样式。 |
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ----------------------- |
-| 202     | Permission verification failed. A non-system application calls a system API.|
-| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1400001 | Invalid display or screen. |
-| 1400003 | This display manager service works abnormally. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
-
-const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
-let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
-  console.info('Succeeded in creating pixelmap.');
-  let screenId: number = 1;
-  screen.setScreenPrivacyMaskImage(screenId, pixelMap).then(() => {
-    console.info('Succeeded in setting the privacy mask image for the screen.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set the privacy mask image for the screen. Code:${err.code},message is ${err.message}`);
-  });
-}).catch((error: BusinessError) => {
-  console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
-})
-```
 ## screen.setVirtualScreenSurface
 
 setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
@@ -912,6 +860,60 @@ screen.setVirtualScreenSurface(screenId, surfaceId).then(() => {
 }).catch((err: BusinessError) => {
   console.error(`Failed to set the surface for the virtual screen. Code:${err.code},message is ${err.message}`);
 });
+```
+
+## screen.setScreenPrivacyMaskImage<sup>19+</sup>
+
+setScreenPrivacyMaskImage(screenId:number, image?: image.PixelMap): Promise&lt;void&gt;
+
+设置屏幕的隐私蒙版图片，使用Promise异步回调。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明          |
+| --------- | ------ | ---- | ------------- |
+| screenId  | number | 是   | 屏幕的id，该参数仅支持正整数输入。    |
+| image | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否   | 屏幕的隐私蒙版图片，不传入则使用默认隐私蒙版图片。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1400001 | Invalid display or screen. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
+
+const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
+  console.info('Succeeded in creating pixelmap.');
+  let screenId: number = 1;
+  screen.setScreenPrivacyMaskImage(screenId, pixelMap).then(() => {
+    console.info('Succeeded in setting the privacy mask image for the screen.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set the privacy mask image for the screen. Code:${err.code},message is ${err.message}`);
+  });
+}).catch((error: BusinessError) => {
+  console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
+})
 ```
 
 ## screen.isScreenRotationLocked
@@ -989,7 +991,7 @@ console.info('Succeeded in getting the screen rotation lock status. isLocked:' +
 
 setScreenRotationLocked(isLocked: boolean): Promise&lt;void&gt;
 
-设置自动转屏开关是否锁定，使用Promise异步回调。
+设置自动转屏开关是否锁定，使用Promise异步回调，不适用于2in1设备。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1031,7 +1033,7 @@ screen.setScreenRotationLocked(isLocked).then(() => {
 
 setScreenRotationLocked(isLocked: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置自动转屏开关是否锁定，使用callback异步回调。
+设置自动转屏开关是否锁定，使用callback异步回调，不适用于2in1设备。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1218,15 +1220,13 @@ screen.setMultiScreenRelativePosition(mainScreenOptions, secondaryScreenOptions)
 | density   | number   | 是   | 是   | 指定虚拟屏幕的密度，单位为px，该参数为浮点数。 |
 | surfaceId | string   | 是   | 是   | 指定虚拟屏幕的surfaceId。        |
 
-## screen.makeMirrorWithRegion<sup>15+</sup>
+## screen.makeMirrorWithRegion<sup>19+</sup>
 
 makeMirrorWithRegion(mainScreen:number, mirrorScreen:Array&lt;number&gt;, mainScreenRegion:Rect): Promise&lt;number&gt;
 
-将屏幕的某一矩形区域设置为镜像模式，使用Promise异步回调。
+将屏幕的某一矩形区域设置为镜像模式，使用Promise异步回调。调用该接口后，不建议再进行屏幕的旋转/折叠，否则可能导致镜像内容异常。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1234,13 +1234,13 @@ makeMirrorWithRegion(mainScreen:number, mirrorScreen:Array&lt;number&gt;, mainSc
 | ------------ | ------------------- | ---- |--------------------|
 | mainScreen   | number              | 是   | 主屏幕id，该参数仅支持正整数输入。  |
 | mirrorScreen | Array&lt;number&gt; | 是   | 镜像屏幕id集合。其中id应为正整数。  |
-| mainScreenRegion | [Rect](#rect15) | 是   | 主屏创建镜像的矩形区域。         |
+| mainScreenRegion | [Rect](#rect19) | 是   | 主屏创建镜像的矩形区域。         |
 
 **返回值：**
 
 | 类型                  | 说明                              |
 | --------------------- |---------------------------------|
-| Promise&lt;number&gt; | Promise对象。返回镜像屏幕的群组id，其中id应为正整数。 |
+| Promise&lt;number&gt; | Promise对象。返回镜像屏幕的群组id，其中id为正整数。 |
 
 **错误码：**
 
@@ -1249,7 +1249,6 @@ makeMirrorWithRegion(mainScreen:number, mirrorScreen:Array&lt;number&gt;, mainSc
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API.|
-| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
 
 **示例：**
@@ -1283,10 +1282,10 @@ screen.makeMirrorWithRegion(mainScreenId, mirrorScreenIds, mainScreenRegion).the
 
 | 名称              | 类型                                       | 只读 | 可选 | 说明                                                          |
 | ----------------- | ---------------------------------------------- | ---- | ---- |-------------------------------------------------------------|
-| id                | number                                         | 是   | 否   | 屏幕的id，该参数应为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                                              |
-| parent            | number                                         | 是   | 否   | 屏幕所属群组的id，该参数应为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                                          |
+| id                | number                                         | 是   | 否   | 屏幕的id，该参数为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                                              |
+| parent            | number                                         | 是   | 否   | 屏幕所属群组的id，该参数为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                                          |
 | supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                                                  |
-| activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。该参数应为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
+| activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。该参数为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
 | orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                                                       |
 | sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | 是   | 否   | 屏幕来源模式。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                                                     |
 | serialNumber<sup>15+</sup> | string        | 是   | 是   | 扩展屏幕的序列号，当前仅2in1设备支持此属性。其他设备暂不支持使用此属性。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager                        |       
@@ -1698,18 +1697,16 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 
 | 名称        | 类型 | 可读 | 可写 | 说明                                               |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |
-| id          | number   | 是   | 是   | 模式id，所支持的模式由具体设备分辨率和刷新率决定，该参数应为整数。 | 
-| width       | number   | 是   | 是   | 屏幕的宽度，单位为px，该参数应为整数。                                |
-| height      | number   | 是   | 是   | 屏幕的高度，单位为px，该参数应为整数。                                |
-| refreshRate | number   | 是   | 是   | 屏幕的刷新率，单位为hz，该参数应为整数。                                     |
+| id          | number   | 是   | 是   | 模式id，所支持的模式由具体设备分辨率和刷新率决定，该参数为整数。 | 
+| width       | number   | 是   | 是   | 屏幕的宽度，单位为px，该参数为整数。                                |
+| height      | number   | 是   | 是   | 屏幕的高度，单位为px，该参数为整数。                                |
+| refreshRate | number   | 是   | 是   | 屏幕的刷新率，单位为hz，该参数为整数。                                     |
 
-## Rect<sup>15+</sup>
+## Rect<sup>19+</sup>
 
 矩形信息。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 | 名称        | 类型 | 可读 | 可写 | 说明                                               |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |

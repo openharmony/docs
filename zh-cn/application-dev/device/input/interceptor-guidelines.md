@@ -6,7 +6,7 @@
 
 ## 接口说明
 
-创建和删除事件拦截相关接口如下表所示，接口详细介绍请参考[Input文档](../../reference/apis-input-kit/input.md)。
+创建和删除事件拦截相关接口如下表所示，接口详细介绍请参考[Input文档](../../reference/apis-input-kit/capi-input.md)。
 
 | 接口名称  | 描述 |
 | ------------------------------------------------------------ | -------------------------- |
@@ -27,7 +27,7 @@ target_link_libraries(entry PUBLIC libohinput.so)
 
 ### 申请所需权限
 
-应用需要在module.json5中添加下面权限的配置，详细的配置方法参考声明[声明权限文档](../../security/AccessToken/declare-permissions.md)。
+应用需要在module.json5中添加下面权限的配置，详细的配置方法参考[声明权限文档](../../security/AccessToken/declare-permissions.md)。
 
 ```json
 "requestPermissions": [

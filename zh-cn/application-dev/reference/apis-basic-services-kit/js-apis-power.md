@@ -1,7 +1,6 @@
 # @ohos.power (系统电源管理)
 
-该模块主要提供重启、关机、查询屏幕状态等接口。
-
+该模块主要提供重启、关机、查询屏幕状态等接口。开发者可以使用该模块的接口获取设备的活动状态、电源模式、亮灭屏状态等。
 > **说明：**
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -16,27 +15,23 @@ import {power} from '@kit.BasicServicesKit';
 
 isActive(): boolean
 
-检测当前设备是否处于活动状态。有屏的设备为亮屏状态，无屏的设备为非休眠状态。
+检测当前设备是否处于活动状态。
+- 有屏的设备亮屏时为活动状态，熄屏时为非活动状态。
+- 无屏的设备非休眠时为活动状态，休眠时为非活动状态。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
-**错误码：**
+**返回值：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
-
-| 错误码ID   | 错误信息    |
-|---------|---------|
-| 4900101 | Failed to connect to the service. |
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| boolean | 活动状态返回true，非活动状态返回false。 |
 
 **示例：**
 
 ```js
-try {
-    let isActive = power.isActive();
-    console.info('power is active: ' + isActive);
-} catch(err) {
-    console.error('check active status failed, err: ' + err);
-}
+let isActive = power.isActive();
+console.info('power is active: ' + isActive);
 ```
 
 ## power.rebootDevice<sup>(deprecated)</sup>
@@ -78,23 +73,11 @@ getPowerMode(): DevicePowerMode
 | ------------------------------------ | ---------- |
 | [DevicePowerMode](#devicepowermode9) | 电源模式。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
-
-| 错误码ID   | 错误信息    |
-|---------|---------|
-| 4900101 | Failed to connect to the service. |
-
 **示例：**
 
 ```js
-try {
-    let mode = power.getPowerMode();
-    console.info('power mode: ' + mode);
-} catch(err) {
-    console.error('get power mode failed, err: ' + err);
-}
+let mode = power.getPowerMode();
+console.info('power mode: ' + mode);
 ```
 
 ## power.isStandby<sup>10+</sup>

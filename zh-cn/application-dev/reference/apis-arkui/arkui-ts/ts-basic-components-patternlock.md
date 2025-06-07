@@ -10,7 +10,7 @@
 
 无
 
-##  接口
+## 接口
 
 PatternLock(controller?: PatternLockController)
 
@@ -32,7 +32,7 @@ PatternLock(controller?: PatternLockController)
 
 sideLength(value: Length)
 
-设置组件的宽度和高度（宽高相同）。设置为0或负数时组件不显示。
+设置组件的宽度和高度（宽高相同）。当设置为0或负数时，组件不显示。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -58,7 +58,7 @@ circleRadius(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                               |
 | ------ | ---------------------------- | ---- | ---------------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 宫格中圆点的半径。<br/>默认值：6vp<br/>取值范围：(0, sideLength/11]，设置小于等于0的值时按默认值处理，超过最大值按最大值处理。 |
+| value  | [Length](ts-types.md#length) | 是   |宫格中圆点的半径。<br/>默认值：6vp<br/>取值范围：(0, sideLength/11]。设置小于等于0的值时，按默认值处理；超过最大值时，按最大值处理。|
 
 ### backgroundColor
 backgroundColor(value: ResourceColor)
@@ -93,7 +93,7 @@ regularColor(value: ResourceColor)
 
 selectedColor(value: ResourceColor)
 
-设置宫格圆点在“选中“状态的填充颜色。
+设置宫格圆点在“选中”状态的填充色。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -125,7 +125,7 @@ activeColor(value: ResourceColor)
 
 pathColor(value: ResourceColor)
 
-设置连线的颜色。
+设置连线颜色。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -151,7 +151,7 @@ pathStrokeWidth(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                          |
 | ------ | -------------------------- | ---- | ----------------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 连线的宽度。<br/>默认值：12vp<br/>取值范围：[0, sideLength/3]，超过最大值按最大值处理。 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 连线的宽度。<br/>默认值：12vp<br/>取值范围：(0, sideLength/3]，超过最大值按最大值处理。 |
 
 ### autoReset
 
@@ -194,7 +194,7 @@ activateCircleStyle(options: Optional\<CircleStyleOptions\>)
 | ------------- | ------- | ---- | -------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否 | 背景圆环颜色。 <br/>默认值：与pathColor值相同<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | radius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 背景圆环的半径。<br/>默认值：circleRadius的11/6<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-| enableWaveEffect | boolean | 否 | 波浪效果开关。<br/>默认值：true<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| enableWaveEffect | boolean | 否 | 波浪效果开关。<br/>默认值：true，表示波浪效果开关打开，显示波浪效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 | enableForeground<sup>15+</sup> | boolean | 否 | 背景圆环是否在前景显示。<br/>默认值：false，背景圆环不在前景显示。 <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ### skipUnselectedPoint<sup>15+</sup>
@@ -231,7 +231,7 @@ onPatternComplete(callback: (input: Array\<number\>) => void)
 
 | 参数名 | 类型            | 必填 | 说明                                                         |
 | ------ | --------------- | ---- | ------------------------------------------------------------ |
-| input  | Array\<number\> | 是   | 与选中宫格圆点顺序一致的数字数组，数字为选中宫格圆点的索引值（第一行圆点从左往右依次为0、1、2，第二行圆点依次为3、4、5，第三行圆点依次为6、7、8）。 |
+| input  | Array\<number\> | 是   | 与选中宫格圆点顺序一致的数字数组，每个数字表示选中宫格圆点的索引值（第一行圆点从左往右依次为0、1、2，第二行圆点依次为3、4、5，第三行圆点依次为6、7、8）。 |
 
 ### onDotConnect<sup>11+</sup>
 
@@ -279,7 +279,7 @@ reset()
 
 setChallengeResult(result: PatternLockChallengeResult): void
 
-用于设置图案密码正确或错误状态。
+设置图案密码的正确或错误状态。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -311,9 +311,9 @@ setChallengeResult(result: PatternLockChallengeResult): void
 @Entry
 @Component
 struct PatternLockExample {
-  @State passwords: Number[] = []
-  @State message: string = 'please input password!'
-  private patternLockController: PatternLockController = new PatternLockController()
+  @State passwords: Number[] = [];
+  @State message: string = 'please input password!';
+  private patternLockController: PatternLockController = new PatternLockController();
 
   build() {
     Column() {
@@ -328,7 +328,7 @@ struct PatternLockExample {
         .backgroundColor('#F5F5F5')
         .autoReset(true)
         .onDotConnect((index: number) => {
-          console.log("onDotConnect index: " + index)
+          console.log("onDotConnect index: " + index);
         })
     }.width('100%').height('100%')
   }
@@ -347,14 +347,14 @@ struct PatternLockExample {
 
 ```ts
 // xxx.ets
-import { LengthUnit } from '@kit.ArkUI'
+import { LengthUnit } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct PatternLockExample {
-  @State passwords: Number[] = []
-  @State message: string = 'please input password!'
-  private patternLockController: PatternLockController = new PatternLockController()
+  @State passwords: Number[] = [];
+  @State message: string = 'please input password!';
+  private patternLockController: PatternLockController = new PatternLockController();
 
   build() {
     Column() {
@@ -374,36 +374,36 @@ struct PatternLockExample {
           enableWaveEffect: true
         })
         .onDotConnect((index: number) => {
-          console.log("onDotConnect index: " + index)
+          console.log("onDotConnect index: " + index);
         })
         .onPatternComplete((input: Array<number>) => {
           // 输入的密码长度小于5时，提示重新输入
           if (input.length < 5) {
-            this.message = 'The password length needs to be greater than 5, please enter again.'
-            return
+            this.message = 'The password length needs to be greater than 5, please enter again.';
+            return;
           }
           // 判断密码长度是否大于0
           if (this.passwords.length > 0) {
             // 判断两次输入的密码是否相同，相同则提示密码设置成功，否则提示重新输入
             if (this.passwords.toString() === input.toString()) {
-              this.passwords = input
-              this.message = 'Set password successfully: ' + this.passwords.toString()
-              this.patternLockController.setChallengeResult(PatternLockChallengeResult.CORRECT)
+              this.passwords = input;
+              this.message = 'Set password successfully: ' + this.passwords.toString();
+              this.patternLockController.setChallengeResult(PatternLockChallengeResult.CORRECT);
             } else {
-              this.message = 'Inconsistent passwords, please enter again.'
-              this.patternLockController.setChallengeResult(PatternLockChallengeResult.WRONG)
+              this.message = 'Inconsistent passwords, please enter again.';
+              this.patternLockController.setChallengeResult(PatternLockChallengeResult.WRONG);
             }
           } else {
             // 提示第二次输入密码
-            this.passwords = input
-            this.message = "Please enter again."
+            this.passwords = input;
+            this.message = "Please enter again.";
           }
         })
       Button('Reset PatternLock').margin(30).onClick(() => {
         // 重置密码锁
-        this.patternLockController.reset()
-        this.passwords = []
-        this.message = 'Please input password'
+        this.patternLockController.reset();
+        this.passwords = [];
+        this.message = 'Please input password';
       })
     }.width('100%').height('100%')
   }

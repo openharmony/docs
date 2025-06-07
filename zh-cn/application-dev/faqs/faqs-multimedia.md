@@ -179,7 +179,7 @@ CAMERA_STATUS_AVAILABLE 2 相机可用。
 
 CAMERA_STATUS_UNAVAILABLE 3 相机不可用。
 
-参考文档：[CameraStatus](../reference/apis-camera-kit/js-apis-camera.md#oncamerastatus)
+参考文档：[CameraStatus](../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#oncamerastatus)
 
 ## SoundPool播放的音频是否支持wmv格式？支持哪些格式？(API 10)
 **解决措施**
@@ -228,8 +228,7 @@ soundpool支持的格式与底层一致，支持的格式可以参考文档：[�
 
 **参考资料**
 
-1. [ohaudio](../reference/apis-audio-kit/_o_h_audio.md)
-2. [Audio](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/Audio)
+[OHAudio](../reference/apis-audio-kit/capi-ohaudio.md)
 
 ## 如何实现实时视频流传输？如何实现直播场景？(API 10)
 

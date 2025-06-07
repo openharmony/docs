@@ -158,7 +158,7 @@ struct Index {
   }
 ```
 
-2、在需要适配的地方通过[AppStorage能力](../../../application-dev/quick-start/arkts-appstorage.md)进行适配。
+2、在需要适配的地方通过[AppStorage能力](../../../application-dev/ui/state-management/arkts-appstorage.md)进行适配。
 
 ```ts
 import { ConfigurationConstant } from '@kit.AbilityKit';
@@ -356,6 +356,115 @@ struct Index {
     .height('100%')
     .expandSafeArea([SafeAreaType.SYSTEM],
       [SafeAreaEdge.TOP, SafeAreaEdge.END, SafeAreaEdge.BOTTOM, SafeAreaEdge.START])
+  }
+}
+```
+
+## cl.arkui.5 ListItem组件创建行为变更
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+如果ListItem组件不是通过LazyForEach和Repeat动态生成，创建ListItem时会执行两次ListItem的属性方法，需要优化为只执行一次属性方法以提升性能。
+
+**变更影响**
+
+此变更涉及应用适配，只涉及ListItem组件。
+
+变更前：如果ListItem组件不是通过LazyForEach和Repeat动态生成，创建ListItem时会执行两次ListItem的属性方法。
+
+变更后：ListItem在创建时只执行一次属性方法。
+
+如下代码运行后，变更前会打印两次“GetWidth”，变更后只会打印一次“GetWidth”。
+
+```ts
+@Entry
+@Component
+struct ListItemExample {
+  getWidth(): string {
+    console.log("GetWidth");
+    return "100%"
+  }
+  build() {
+    Column() {
+      List({ space: 20, initialIndex: 0 }) {
+        ListItem() {
+          Text('Item')
+        }
+        .width(this.getWidth())
+      }.width('90%')
+    }.width('100%').height('100%')
+  }
+}
+```
+
+**起始API Level**
+
+API 7
+
+**变更发生版本**
+从OpenHarmony SDK 6.0.1.2开始。
+
+**变更的接口/组件**
+
+ListItem组件。
+
+**适配指导**
+
+需要排查ListItem属性方法中是否有调用函数获取属性值，排查函数调用次数是否对业务有影响，如果有影响需要根据实际业务场景适配。
+
+## cl.arkui.6 FullScreenLaunchComponent嵌入式运行元服务内容区避让系统安全区行为变更
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+通过FullScreenLaunchComponent拉起嵌入式运行元服务时，元服务的windowMode为undefined, 元服务的页面内容在任何场景下都不会避让系统安全区，嵌入式运行元服务和跳出式运行元服务页面默认避让行为不一致，需要元服务的开发者针对嵌入式场景主动做避让适配。
+
+**变更影响**
+
+此变更涉及应用适配。
+
+说明：宿主是拉起方，即FullScreenLaunchComponent组件使用方，提供方是被嵌入式运行的元服务。
+
+- 变更前：提供方的windowMode不跟随宿主，默认值为undefined，所有场景下，元服务的页面内容都不会默认避让系统安全区，需要提供方开发者主动避让。
+
+- 变更后：提供方的windowMode跟随宿主保持一致，在宿主windowMode为全屏显示的场景下，并且提供方未主动设置页面为沉浸式，提供方页面会默认避让系统安全区，无需提供方开发者主动避让
+
+|                   变更前                   |                 变更后                  |
+| :----------------------------------------: | :-------------------------------------: |
+| ![](figures/fullScreenLainchComponent/earlier_than_20.jpg) | ![](figures/fullScreenLainchComponent/api20.jpg) |
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+从OpenHarmony SDK 6.0.1.2开始。
+
+**变更的接口/组件**
+
+FullScreenLaunchComponent组件及嵌入式拉起的元服务。
+
+**适配指导**
+
+- 宿主的targetsdkversion >= 20。
+  - 建议宿主应用在6.0及以上版本使用嵌入式运行元服务，5.x版本建议使用跳出式运行元服务，提供方元服务无需在嵌入式场景主动避让适配。
+  - 如果宿主应用需要在5.x使用嵌入式运行元服务，需要提供方元服务针对嵌入式场景做适配，需要判断提供方元服务的ohos.extra.atomicservice.param.key.isFollowHostWindowMode，如果ohos.extra.atomicservice.param.key.isFollowHostWindowMode为true,无需主动避让适配；否则需要主动避让适配。
+
+- 宿主的targetsdkversion < 20。
+  - 不建议宿主应用使用嵌入式运行元服务，建议使用跳出式运行元服务。
+  - 如果宿主应用需要使用嵌入式运行元服务，提供方元服务需要判断ohos.extra.atomicservice.param.key.isFollowHostWindowMode，若ohos.extra.atomicservice.param.key.isFollowHostWindowMode为true,无需主动避让适配；否则需要主动避让适配。
+```ts
+export default class AtomicServiceAbility extends EmbeddableUIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    if (want.parameters) {
+      hilog.info(0x0000, 'testTag', '%{public}s', 'followed host window mode' + want.parameters['ohos.extra.atomicservice.param.key.isFollowHostWindowMode']);
+    }
   }
 }
 ```

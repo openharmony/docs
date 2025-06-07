@@ -14,13 +14,13 @@
 import { ChildProcessOptions } from '@kit.AbilityKit';
 ```
 
-## 属性
+## ChildProcessOptions
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称        | 类型      | 必填 | 说明                                                               |
 | ----------- | --------------------   | ---- | ---------------------------------------------------- |
-| isolationMode | boolean | 否 | 子进程是否运行在独立沙箱和网络环境中。默认为false，与主进程共享沙箱和网络环境。|
+| isolationMode | boolean | 否 | 表示子进程是否运行在独立沙箱和网络环境中。true表示子进程运行在独立沙箱和网络环境中，false表示与主进程共享沙箱和网络环境。默认为false。|
 
 **示例：**
 

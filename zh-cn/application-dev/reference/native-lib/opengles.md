@@ -37,7 +37,7 @@ libEGL.so
 
 ## 相关参考
 
-针对OpenGL ES的使用和相关开发，需要同步了解NDK的开发过程，以及XComponent组件等的使用，具体可参考:
+针对OpenGL ES的使用和相关开发，需要同步了解NDK的开发过程，以及XComponent组件等的使用。具体可参考:
 
 - [NDK开发参考](../../napi/ndk-development-overview.md)
 
@@ -50,7 +50,7 @@ libEGL.so
 ## OpenGL ES扩展接口
 
 - OpenGL ES扩展接口的官方参考文档：[OpenGL ES扩展接口](https://registry.khronos.org/OpenGL/index_es.php)
-- 开发者可以调用`glGetString`查询芯片厂商支持的扩展接口，调用之前务必初始化上下文,具体示例如下：
+- 开发者可以调用`glGetString`查询芯片厂商支持的扩展接口，调用之前务必初始化上下文。具体示例如下：
 
 ```c++
 EGLDisplay display;
@@ -263,7 +263,7 @@ EGL初始化成功之后，需要确定可用渲染表面的类型和配置，�
 
     ```cpp
     // 如以上代码所示这里指定所需配置的属性为
-    EGLint attribs[] = {EGL_RENDERABLE_TYPE, EGL_OPENGL_ES3_BIT,  -// 指定了渲染类型为 OpenGL ES 3
+    EGLint attribs[] = {EGL_RENDERABLE_TYPE, EGL_OPENGL_ES3_BIT,  // 指定了渲染类型为 OpenGL ES 3
                         EGL_BLUE_SIZE, 6,   // 指定蓝色缓冲区的位数是6位
                         EGL_GREEN_SIZE, 8,  // 指定绿色缓冲区的位数是8位
                         EGL_RED_SIZE, 8,    // 指定红色缓冲区的位数是8位
@@ -811,6 +811,8 @@ EGLBoolean eglSwapBuffers(EGLDisplay dpy, // EGL显示连接
 ```
 
 eglSwapBuffers函数用于交换前后缓冲区的内容，并将渲染结果显示在屏幕上。
+
+<!--RP1--><!--RP1End-->
 
 ## 相关实例
 

@@ -46,7 +46,7 @@ int32_t(* ArkUI_NativeDialogAPI_2::setKeyboardAvoidDistance) (ArkUI_NativeDialog
 | -------- | -------- |
 | handle | 指向自定义弹窗控制器的指针。  | 
 | distance | 弹窗避让键盘后，和键盘之间的距离数值。 | 
-| ArkUI_LengthMetricUnit | 弹窗避让键盘后，和键盘之间的距离单位。  | 
+| unit | 弹窗避让键盘后，和键盘之间的距离单位。  | 
 
 **返回：**
 

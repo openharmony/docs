@@ -83,7 +83,7 @@ Creates a step curve.
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ----| ------------------------------------------------------------ |
 | count  | number  | Yes  | Number of steps. The value must be a positive integer.<br>Value range: [1, +∞)<br>**NOTE**<br>A value less than 1 evaluates to the value **1**.|
-| end    | boolean | Yes  | Whether jumping occurs when the interpolation ends.<br>- **true**: Jumping occurs when the interpolation ends.<br>- **false**: Jumping occurs when the interpolation starts.|
+| end    | boolean | Yes  | Whether the step change occurs at the start or end of each interval.<br>- **true**: The step change occurs at the end of each interval.<br>- **false**: The step change occurs at the start of each interval.|
 
 **Return value**
 
@@ -103,7 +103,7 @@ curves.stepsCurve(9, true)  // Create a step curve.
 
 cubicBezierCurve(x1: number, y1: number, x2: number, y2: number): ICurve
 
-Creates a cubic Bezier curve. The curve values must be between 0 and 1.
+Creates a cubic Bezier curve, with x-coordinates automatically normalized between 0 and 1.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -364,7 +364,7 @@ Creates a step curve. This API is deprecated since API version 9. You are advise
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ----| ------------------------------------------------------------ |
 | count  | number  | Yes  | Number of steps. The value must be a positive integer.                                  |
-| end    | boolean | Yes  | Whether jumping occurs when the interpolation ends.<br>- **true**: Jumping occurs when the interpolation ends.<br>- **false**: Jumping occurs when the interpolation starts.|
+| end    | boolean | Yes  | Whether the step change occurs at the start or end of each interval.<br>- **true**: The step change occurs at the end of each interval.<br>- **false**: The step change occurs at the start of each interval.|
 
 
 ## curves.cubicBezier<sup>(deprecated)</sup>
@@ -407,13 +407,13 @@ Creates a spring curve. This API is deprecated since API version 9. You are advi
 
 ```ts
 // xxx.ets
-import { curves } from '@kit.ArkUI'
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct ImageComponent {
-  @State widthSize: number = 200
-  @State heightSize: number = 200
+  @State widthSize: number = 200;
+  @State heightSize: number = 200;
 
   build() {
     Column() {

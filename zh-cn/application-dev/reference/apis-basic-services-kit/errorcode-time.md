@@ -20,7 +20,7 @@ Parameter check failed, permission denied, or system error.
 
 **处理步骤**
 
-系统运行异常。确认内存是否足够。
+系统运行异常。请确认内存是否充足。
 
 ## 13000001 网络或操作系统异常
 
@@ -45,16 +45,16 @@ Network connection error or OS error.
 
 **错误信息**
 
-NTP update failed.
+Location NTP time of the system is invalid.
 
 **错误描述**
 
-未更新NTP时间。
+系统本地NTP时间无效。
 
 **可能原因**
 
-未更新NTP时间。在获取NTP时间前，未能成功更新过NTP时间。
+系统本地NTP时间无效。在获取NTP时间前，未能成功更新过NTP时间或系统本地NTP时间已失效。
 
 **处理步骤**
 
-未更新NTP时间。调用updateNtpTime()更新NTP时间。
+系统本地NTP时间无效。调用updateNtpTime()更新NTP时间。

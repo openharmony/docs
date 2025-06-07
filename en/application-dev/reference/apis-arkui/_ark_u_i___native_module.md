@@ -7838,28 +7838,6 @@ Obtains the baseline offset of the custom span relative to the mounted component
 
 Returns the baseline offset. If a parameter error occurs, **0.0f** is returned. A possible cause is that mandatory parameters are left unspecified.
 
-### OH_ArkUI_NodeUtils_GetAttachedNodeHandleById()
-
-```
-int32_t OH_ArkUI_NodeUtils_GetAttachedNodeHandleById(const char* id, ArkUI_NodeHandle* node)
-```
-**Description**
-
-Obtains the target node based on the provided user ID.
-
-**Since**: 15
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| id | ID of the target node.|
-| node | Pointer to the target node.|
-
-**Returns**
-
-Returns the result code. Returns **ARKUI_ERROR_CODE_NO_ERROR** if the operation is successful; returns **ARKUI_ERROR_CODE_PARAM_INVALID** if a parameter error occurs.
-
 ### OH_ArkUI_NodeUtils_GetWindowInfo()
 
 ```
@@ -17944,7 +17922,7 @@ int32_t OH_ArkUI_DragEvent_RequestDragEndPending(ArkUI_DragEvent* event, int32_t
 
 Requests a delayed execution of the end of the drag and drop operation. When the system notifies the application of a drop event, this API can be called to explicitly inform the system that a delay is needed before the drag result can be processed. The system will defer the end of the drag and drop operation and wait for the application to return the drag result through the **OH_ArkUI_NotifyDragResult** API. This is typically used when the drag data is processed in a background thread to avoid blocking the main thread for an extended period, ensuring that the drag source receives an accurate result at the end of the drag operation. However, the system will not wait indefinitely; the maximum timeout is 2 seconds. If the **OH_ArkUI_NotifyDragResult** notification is not received within this time, the drag and drop operation will be forcibly terminated, and the drag source will be notified of the failure.
 
-**Since**: 18
+**Since**: 19
 
 **Parameters**
 
@@ -17971,7 +17949,7 @@ int32_t OH_ArkUI_NotifyDragResult(int32_t requestIdentify, ArkUI_DragResult resu
 
 Notifies the system of the drag result.
 
-**Since**: 18
+**Since**: 19
 
 **Parameters**
 
@@ -17997,7 +17975,7 @@ int32_t OH_ArkUI_NotifyDragEndPendingDone(int32_t requestIdentify)
 
 Notifies the system that the delayed drag and drop operation has been completed.
 
-**Since**: 18
+**Since**: 19
 
 **Parameters**
 

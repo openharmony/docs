@@ -8,15 +8,11 @@
 >
 > This topic describes only system APIs provided by the module. For details about its public APIs, see [XComponent](ts-basic-components-xcomponent.md).
 
-## Attributes
+## APIs
 
-### hdrBrightness<sup>14+</sup>
+### XComponentOptions<sup>12+</sup>
 
-hdrBrightness(brightness: number)
-
-Sets the brightness of HDR video playback for the component.
-
-**System API**: This attribute can be used in system APIs since API version 14.
+Defines the options of the **XComponent**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -24,7 +20,7 @@ Sets the brightness of HDR video playback for the component.
 
 | Name  | Type   | Mandatory| Description                  |
 | -------- | ------- | ---- | ---------------------- |
-| brightness | number | Yes  | Brightness of HDR video playback.<br>Value range: 0.0 to 1.0.<br>Values less than 0 are equivalent to 0, and values greater than 1 are equivalent to 1.<br>**0** indicates the brightness of the SDR video, and **1** indicates the brightness of the HDR video.|
+| screenId<sup>17+</sup> | number | No| Associated screen ID of the component. The component can display the image of the associated screen. **System API**: This is a system API.|
 
   > **NOTE**
   >
@@ -32,11 +28,31 @@ Sets the brightness of HDR video playback for the component.
   >
   > It is not supported for **XComponent** components created using the [ArkUI NDK API](../../../ui/ndk-build-ui-overview.md).
 
+## Attributes
+
 ### enableTransparentLayer<sup>18+</sup>
 
 enableTransparentLayer(enabled: boolean)
 
-Sets whether to enable an independent layer for the **XComponent** component when its background is transparent.
+Enables an independent layer for the **XComponent** component with a semi-transparent background color.
+
+Using this API does not necessarily mean that an independent layer will be set. Due to some reasons such as hardware specifications (for example, lack of hardware support for independent layer compositing) and software specifications (for example, intersection with UI elements that have blur effects), the attempt to set an independent layer may fail.
+
+To use this API effectively and avoid display issues, follow these guidelines:
+
+1. If an **XComponent** with an independent layer overlaps with another **XComponent** below it, the **XComponent** below it should also be configured with an independent layer.
+
+![Transparent layer example](figures/Transparent_Layer_Example.png)
+
+2. Do not place UI components under an **XComponent** with a transparent background and an independent layer. Otherwise, the displayed content of the UI components will disappear during composition.
+
+![Transparent layer failure](figures/Transparent_Layer_Failure.png)
+
+Ensure that **XComponent** components with independent layers are placed below all intersecting UI elements.
+
+![Transparent layer correctly set](figures/Transparent_Layer_Correct_Example.png)
+
+3. Use this API in static layout scenarios, such as non-page transition or static video subtitle display scenarios.
 
 **System API**: This attribute can be used in system APIs since API version 18.
 
@@ -46,7 +62,7 @@ Sets whether to enable an independent layer for the **XComponent** component whe
 
 | Name  | Type    | Mandatory| Description                  |
 | ------- | ------- | ---- | ---------------------- |
-| enabled | boolean | Yes  | Whether to enable an independent layer for the **XComponent** component when its background is transparent.|
+| enabled | boolean | Yes  | Whether to enable an independent layer for the **XComponent** component when its background is transparent.<br>The value **true** means to enable an independent layer, and **false** means the opposite.<br>Default value: **false**.|
 
   > **NOTE**
   >

@@ -3,17 +3,21 @@
 
 ## Overview
 
-[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md) is the context of an object in an application. It provides basic information about the application, for example, [resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md), [applicationInfo](../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md), [dir](../reference/apis-ability-kit/js-apis-inner-application-context.md#properties) (application file path), and [area](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) (encryption level). It also provides basic methods such as **createBundleContext()** and [getApplicationContext()](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextgetapplicationcontext). The [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) component and [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) derived class components have their own **Context** classes, for example, the base class **Context**, [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md), [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md), [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md), [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md), and ServiceExtensionContext.
+[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md) is the context of an object in an application. It provides basic information about the application, such as [resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md) (resource management), [applicationInfo](../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md) (application information), [dir](../reference/apis-ability-kit/js-apis-inner-application-context.md#properties) (application file path), and [area](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) (encryption level). It also provides basic methods such as <!--Del-->[createBundleContext()](../reference/apis-ability-kit/js-apis-app-ability-application-sys.md#applicationcreatebundlecontext12) and <!--DelEnd-->[getApplicationContext()](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextgetapplicationcontext). The [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) component and [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) derived class components have their own **Context** classes, for example, the base class **Context**, [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md), [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md), [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md), <!--Del-->[ServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md), <!--DelEnd-->and [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md).
 
-- The figure below illustrates the inheritance relationship of contexts. 
+> **NOTE**
+>
+> [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md) refers to the context of a UI instance, which is used to associate windows with UI pages. It is not directly related to the application context discussed in this topic and does not involve inheritance or holding relationships.
+
+- The figure below illustrates the inheritance relationship of application contexts. 
 
   ![context-inheritance](figures/context-inheritance.png)
   
-- The figure below illustrates the holding relationship of contexts. 
+- The figure below illustrates the holding relationship of application contexts. 
 
   ![context-holding](figures/context-holding.png)
   
-- The following describes the information provided by different contexts.
+- The following describes how to obtain different contexts.
   - [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md): Each [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) has the **Context** attribute, which provides APIs to operate an application component, obtain the application component configuration, and more.
     
     ```ts
@@ -26,19 +30,26 @@
       }
     }
     ```
-    
+     
      > **NOTE**
      >
      > For details about how to obtain the context of a **UIAbility** instance on the page, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
-  - Scenario-specific [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md): For example, ServiceExtensionContext, inherited from ExtensionContext, provides APIs related to background services.
+  - Scenario-specific [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md): For example, FormExtensionContext, inherited from ExtensionContext, provides APIs related to widget services.
     
     ```ts
-    import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+    import { FormExtensionAbility, formBindingData } from '@kit.FormKit';
+    import { Want } from '@kit.AbilityKit';
 
-    export default class ServiceExtAbility extends ServiceExtensionAbility {
-      onCreate(want: Want) {
-        let serviceExtensionContext = this.context;
-        //...
+    export default class MyFormExtensionAbility extends FormExtensionAbility {
+      onAddForm(want: Want) {
+        let formExtensionContext = this.context;
+        // ...
+        let dataObj1: Record<string, string> = {
+          'temperature': '11c',
+          'time': '11:00'
+        };
+        let obj1: formBindingData.FormBindingData = formBindingData.createFormBindingData(dataObj1);
+        return obj1;
       }
     }
     ```
@@ -122,7 +133,7 @@ This section uses ApplicationContext as an example to describe how to obtain the
   @Component
   struct Index {
     @State message: string = 'Hello World';
-    private context = getContext(this) as common.UIAbilityContext;
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     build() {
       Row() {
@@ -213,12 +224,11 @@ export default class EntryAbility extends UIAbility {
 ```ts
 // Index.ets
 import { contextConstant, common } from '@kit.AbilityKit';
-import { promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Page_Context {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Column() {
@@ -231,9 +241,9 @@ struct Page_Context {
           }
           .onClick(() => {
             // Before storing common information, switch the encryption level to EL1.
-            if (this.context.area === contextConstant.AreaMode.EL2) { // Obtain the area.
-              this.context.area = contextConstant.AreaMode.EL1; // Modify the area.
-              promptAction.showToast({
+            if (this.context.area === contextConstant.AreaMode.EL2) { // Obtain the encryption level.
+              this.context.area = contextConstant.AreaMode.EL1; // Change the encryption level.
+              this.getUIContext().getPromptAction().showToast({
                 message: 'SwitchToEL1'
               });
             }
@@ -247,9 +257,9 @@ struct Page_Context {
           }
           .onClick(() => {
             // Before storing sensitive information, switch the encryption level to EL2.
-            if (this.context.area === contextConstant.AreaMode.EL1) { // Obtain the area.
-              this.context.area = contextConstant.AreaMode.EL2; // Modify the area.
-              promptAction.showToast({
+            if (this.context.area === contextConstant.AreaMode.EL1) { // Obtain the encryption level.
+              this.context.area = contextConstant.AreaMode.EL2; // Change the encryption level.
+              this.getUIContext().getPromptAction().showToast({
                 message: 'SwitchToEL2'
               });
             }
@@ -272,7 +282,6 @@ Call [createModuleContext(context: Context, moduleName: string)](../reference/ap
 
   ```ts
   import { common, application } from '@kit.AbilityKit';
-  import { promptAction } from '@kit.ArkUI';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let storageEventCall = new LocalStorage();
@@ -280,7 +289,7 @@ Call [createModuleContext(context: Context, moduleName: string)](../reference/ap
   @Entry(storageEventCall)
   @Component
   struct Page_Context {
-    private context = getContext(this) as common.UIAbilityContext;
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     build() {
       Column() {
@@ -296,7 +305,7 @@ Call [createModuleContext(context: Context, moduleName: string)](../reference/ap
                 .then((data: common.Context) => {
                   console.info(`CreateModuleContext success, data: ${JSON.stringify(data)}`);
                   if (data !== null) {
-                    promptAction.showToast({
+                    this.getUIContext().getPromptAction().showToast({
                       message: ('Context obtained')
                     });
                   }

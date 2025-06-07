@@ -3,11 +3,11 @@
 
 ## 概述
 
-设备ID清单，用于存放[OH_Usb_GetDevices()](_usb_ddk.md#oh_usb_getdevices16)接口获取到的设备ID列表和设备数量。
+设备ID清单，用于存放[OH_Usb_GetDevices()](_usb_ddk.md#oh_usb_getdevices)接口获取到的设备ID列表和设备数量。
 
 **起始版本：**
 
-16
+18
 
 **相关模块:**
 

@@ -5,13 +5,9 @@
 
 触摸事件中触摸点的信息。
 
-**起始版本：**
+**起始版本：** 8
 
-8
-
-**相关模块：**
-
-[Native XComponent](_o_h___native_x_component.md)
+**相关模块：**[Native XComponent](_o_h___native_x_component.md)
 
 **所在头文件：** [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
 
@@ -31,4 +27,4 @@
 | double [size](_o_h___native_x_component.md#size-12) = 0.0 |  指垫和屏幕之间的接触面积。| 
 | float [force](_o_h___native_x_component.md#force-12) = 0.0 |  当前触摸事件的压力。| 
 | long long [timeStamp](_o_h___native_x_component.md#timestamp-12) = 0 | 当前触摸事件的时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。| 
-| bool [isPressed](_o_h___native_x_component.md#ispressed) = false |  当前点是否被按下。| 
+| bool [isPressed](_o_h___native_x_component.md#ispressed) = false |  触摸点是否被按下。true：触摸点被按下；false：触摸点未被按下。|

@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -38,7 +38,7 @@ DatePicker(options?: DatePickerOptions)
 | -------- | ---- | ---- | ------------------------------------------------------------ |
 | start    | Date | 否   | 指定选择器的起始日期。<br/>默认值：Date('1970-1-1')          |
 | end      | Date | 否   | 指定选择器的结束日期。<br/>默认值：Date('2100-12-31')        |
-| selected | Date | 否   | 设置选中项的日期。<br/>默认值：当前系统日期<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| selected | Date | 否   | 设置选中项的日期。<br/>默认值：当前系统日期<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。 |
 | mode<sup>18+</sup> | [DatePickerMode](#datepickermode18枚举说明) | 否   | 设置DatePicker显示的日期选项列。<br/>默认值：DatePickerMode.DATE，日期列显示年、月、日三列。 小数值做取整处理。<br/>在DatePickerDialog中，当showTime=true时，此参数不生效，显示默认年月日三列。 |
 
 >  **说明：**
@@ -61,7 +61,7 @@ DatePicker(options?: DatePickerOptions)
 | YEAR_AND_MONTH | 日期列显示年、月二列。|
 | MONTH_AND_DAY | 日期列显示月、日二列。<br/>此模式下，如果月份从12月变化到1月，年份不增加1年；如果月份从1月变化到12月，年份不减少1年；年份始终在当前设置的年份。|
 
-**异常情形说明:**
+**异常情形说明：**
 
 | 异常情形   | 对应结果  |
 | -------- |  ------------------------------------------------------------ |
@@ -197,7 +197,7 @@ selectedTextStyle(value: PickerTextStyle)
 
 | 参数名 | 类型                                          | 必填 | 说明                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](#pickertextstyle10类型说明) | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
+| value  | [PickerTextStyle](#pickertextstyle10类型说明) | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20fp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
 
 ### selectedTextStyle<sup>18+</sup>
 
@@ -213,7 +213,7 @@ selectedTextStyle(style: Optional\<PickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10类型说明)> | 是   | 选中项的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10类型说明)> | 是   | 选中项的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20fp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
 
 ### enableHapticFeedback<sup>18+</sup>
 
@@ -256,6 +256,22 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 >  **说明：**
 >
 >  用于穿戴设备圆形屏幕使用。组件响应[表冠事件](ts-universal-events-crown.md)，需要先获取焦点。
+
+### canLoop<sup>20+</sup>
+
+canLoop(isLoop: Optional\<boolean>)
+
+设置是否可循环滚动。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| isLoop  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否可循环滚动。<br/>true：可循环，年份随着月份的循环滚动进行联动加减，月份随着日的循环滚动进行联动加减。<br/>false：不可循环，年/月/日到达本列的顶部或底部时，无法再进行滚动，年/月/日之间也无法再联动加减。<br/>当isLoop的值为undefined时，默认值：true |
 
 ## PickerTextStyle<sup>10+</sup>类型说明
 
@@ -342,15 +358,15 @@ onDateChange(callback: Optional\<Callback\<Date>>)
 @Entry
 @Component
 struct DatePickerExample {
-  @State isLunar: boolean = false
-  private selectedDate: Date = new Date('2021-08-08')
+  @State isLunar: boolean = false;
+  private selectedDate: Date = new Date('2021-08-08');
 
   build() {
     Column() {
       Button('切换公历农历')
         .margin({ top: 30, bottom: 30 })
         .onClick(() => {
-          this.isLunar = !this.isLunar
+          this.isLunar = !this.isLunar;
         })
       DatePicker({
         start: new Date('1970-1-1'),
@@ -359,8 +375,8 @@ struct DatePickerExample {
       })
         .lunar(this.isLunar)
         .onDateChange((value: Date) => {
-          this.selectedDate = value
-          console.info('select current date is: ' + value.toString())
+          this.selectedDate = value;
+          console.info('select current date is: ' + value.toString());
         })
 
     }.width('100%')
@@ -379,7 +395,7 @@ struct DatePickerExample {
 @Entry
 @Component
 struct DatePickerExample {
-  private selectedDate: Date = new Date('2021-08-08')
+  private selectedDate: Date = new Date('2021-08-08');
 
   build() {
     Column() {
@@ -392,8 +408,8 @@ struct DatePickerExample {
         .textStyle({ color: '#ff182431', font: { size: '18fp', weight: FontWeight.Normal } })
         .selectedTextStyle({ color: '#ff0000FF', font: { size: '26fp', weight: FontWeight.Regular, family: "HarmonyOS Sans", style: FontStyle.Normal } })
         .onDateChange((value: Date) => {
-          this.selectedDate = value
-          console.info('select current date is: ' + value.toString())
+          this.selectedDate = value;
+          console.info('select current date is: ' + value.toString());
         })
 
     }.width('100%')
@@ -412,13 +428,13 @@ struct DatePickerExample {
 @Entry
 @Component
 struct DatePickerExample {
-  @State isLunar: boolean = false
-  private selectedDate: Date = new Date('2025-01-15')
+  @State isLunar: boolean = false;
+  private selectedDate: Date = new Date('2025-01-15');
   @State datePickerModeList: (DatePickerMode)[] = [
     DatePickerMode.DATE,
     DatePickerMode.YEAR_AND_MONTH,
     DatePickerMode.MONTH_AND_DAY,
-  ]
+  ];
   @State datePickerModeIndex: number = 0;
 
   build() {
@@ -426,7 +442,7 @@ struct DatePickerExample {
       Button('切换公历农历')
         .margin({ top: 30, bottom: 30 })
         .onClick(() => {
-          this.isLunar = !this.isLunar
+          this.isLunar = !this.isLunar;
         })
       DatePicker({
         start: new Date('1970-1-1'),
@@ -436,15 +452,15 @@ struct DatePickerExample {
       })
         .lunar(this.isLunar)
         .onDateChange((value: Date) => {
-          this.selectedDate = value
-          console.info('select current date is: ' + value.toString())
+          this.selectedDate = value;
+          console.info('select current date is: ' + value.toString());
         })
 
       Button('mode :' + this.datePickerModeIndex).margin({ top: 20 })
         .onClick(() => {
-          this.datePickerModeIndex++
+          this.datePickerModeIndex++;
           if(this.datePickerModeIndex >= this.datePickerModeList.length){
-            this.datePickerModeIndex = 0
+            this.datePickerModeIndex = 0;
           }
         })
     }.width('100%')
@@ -452,3 +468,40 @@ struct DatePickerExample {
 }
 ```
 ![datePicker](figures/DatePickerDemo3.gif)
+
+### 示例4（设置循环滚动）
+
+该示例使用canLoop设置DatePicker是否循环滚动。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct DatePickerExample {
+  @State isLoop: boolean = true;
+  selectedDate: Date = new Date("2010-1-1");
+
+  build() {
+    Column() {
+      DatePicker({
+        start: new Date("2000-1-1"),
+        end: new Date("2100-12-31"),
+        selected: this.selectedDate,
+      })
+        .canLoop(this.isLoop)
+        .onDateChange((value: Date) => {
+            console.info("DatePicker:onDateChange()" + value.toString());
+        })
+
+      Row() {
+        Text('循环滚动').fontSize(20)
+        Toggle({ type: ToggleType.Switch, isOn: true })
+          .onChange((isOn: boolean) => {
+            this.isLoop = isOn;
+          })
+      }.position({ x: '60%', y: '40%' })
+    }.width('100%')
+  }
+}
+```
+![datePicker](figures/DatePickerDemo4.gif)
