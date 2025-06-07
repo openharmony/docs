@@ -250,8 +250,8 @@ The secret key is corrupted or lost.
 
 **处理步骤**
 
-1.检查密钥文件权限、内容是否正常。
-2.重建或restore恢复数据库。
+1. 检查密钥文件权限、内容是否正常。
+2. 重建或restore恢复数据库。
 
 ## 14800021 SQLite：通用错误
 
