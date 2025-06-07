@@ -1,5 +1,11 @@
 # Functions
 
+> **说明：**
+>
+> - 本模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 示例效果请以真机运行为准，当前IDE预览器不支持。
+
 ## webview.once
 
 once(type: string, callback: Callback\<void\>): void
