@@ -159,12 +159,11 @@ Stack支持增、删、改、查操作，常用API如下：
 | --------- | ------- | ------- |
 | 增加元素 | push(item: T) | 在栈顶增加一个元素。 |
 | 访问元素 | peek() | 获取栈顶元素，不进行出队操作。 |
-| 访问元素 | pop() | 获取栈顶元素，并进行出队操作。 |
 | 访问元素 | locate(element: T) | 获取元素对应的位置。 |
 | 访问元素 | forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void, thisArg?: Object) | 遍历访问整个Stack容器的元素。 |
 | 访问元素 | \[Symbol.iterator]():IterableIterator&lt;T&gt; | 创建迭代器以进行数据访问。 |
 | 修改元素 | forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void, thisArg?: Object) | 通过遍历修改整个Stack容器的元素。 |
-| 删除元素 | pop() | 对栈顶元素进行出队操作并删除。|
+| 删除元素 | pop() | 将栈顶元素作为返回值进行返回，并将其出队。|
 
 ## Vector
 
