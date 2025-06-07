@@ -2799,11 +2799,15 @@ import {
   PromptAction,
   NodeAdapter,
   typeNode
-} from '@kit.ArkUI';
+} from "@kit.ArkUI";
 
 @Builder
 function buildText() {
-  Text("iSDisposed")
+  Text("IsDisposed")
+    .textAlign(TextAlign.Center)
+    .width('100%')
+    .height('100%')
+    .fontSize(30)
 }
 
 class MyNodeAdapter extends NodeAdapter {
@@ -2824,7 +2828,7 @@ class MyNodeController extends NodeController {
     const rootRenderNode = this.rootNode!.getRenderNode();
     if (rootRenderNode !== null) {
       rootRenderNode.size = { width: 200, height: 200 };
-      rootRenderNode.backgroundColor = 0xff707070;
+      rootRenderNode.backgroundColor = 0xffd5d5d5;
       rootRenderNode.appendChild(this.builderNode!.getFrameNode()!.getRenderNode());
       this.renderNode = new RenderNode();
       rootRenderNode.appendChild(this.renderNode);
@@ -2833,7 +2837,7 @@ class MyNodeController extends NodeController {
 
 
       let listNode = typeNode.createNode(uiContext, "List");
-      listNode.initialize({ space: 3 }).borderWidth(2).borderColor(Color.Black);
+      listNode.initialize({ space: 3 });
       this.rootNode.appendChild(listNode);
       this.nodeAdapter = new MyNodeAdapter();
       NodeAdapter.attachNodeAdapter(this.nodeAdapter, listNode);
@@ -2844,19 +2848,18 @@ class MyNodeController extends NodeController {
 
   disposeTest() {
     if (this.frameNode !== null && this.nodeAdapter !== null && this.builderNode !== null && this.renderNode !== null) {
-      // 依次释放各节点并验证状态
-      console.log(`before BuilderNode dispose: isDisposed=`, this.builderNode.isDisposed());
+      console.log(`jerry before BuilderNode dispose: isDisposed=`, this.builderNode.isDisposed());
       this.builderNode.dispose();
-      console.log(`after BuilderNode dispose: isDisposed=`, this.builderNode.isDisposed());
-      console.log(`before FrameNode dispose: isDisposed=`, this.frameNode.isDisposed());
+      console.log(`jerry after BuilderNode dispose: isDisposed=`, this.builderNode.isDisposed());
+      console.log(`jerry before FrameNode dispose: isDisposed=`, this.frameNode.isDisposed());
       this.frameNode.dispose();
-      console.log(`after FrameNode dispose: isDisposed=`, this.frameNode.isDisposed());
-      console.log(`before RenderNode dispose: isDisposed=`, this.renderNode.isDisposed());
+      console.log(`jerry after FrameNode dispose: isDisposed=`, this.frameNode.isDisposed());
+      console.log(`jerry before RenderNode dispose: isDisposed=`, this.renderNode.isDisposed());
       this.renderNode.dispose();
-      console.log(`after RenderNode dispose: isDisposed=`, this.renderNode.isDisposed());
-      console.log(`before NodeAdapter dispose: isDisposed=`, this.nodeAdapter.isDisposed());
+      console.log(`jerry after RenderNode dispose: isDisposed=`, this.renderNode.isDisposed());
+      console.log(`jerry before NodeAdapter dispose: isDisposed=`, this.nodeAdapter.isDisposed());
       this.nodeAdapter.dispose();
-      console.log(`after NodeAdapter dispose: isDisposed=`, this.nodeAdapter.isDisposed());
+      console.log(`jerry after NodeAdapter dispose: isDisposed=`, this.nodeAdapter.isDisposed());
     }
   }
 }
@@ -2877,17 +2880,21 @@ struct Index {
           this.contentNode = new ComponentContent(uiContext, wrapBuilder(buildText));
           this.promptAction.openCustomDialog(this.contentNode);
         })
-        .width('100%')
+        .width(120)
+        .height(40)
       Button('DisposeTest')
         .onClick(() => {
           this.myNodeController.disposeTest();
           this.promptAction?.closeCustomDialog(this.contentNode);
-          console.log(`before ComponentContent dispose: isDisposed=`, this.contentNode?.isDisposed());
+          console.log(`jerry before ComponentContent dispose: isDisposed=`, this.contentNode?.isDisposed());
           this.contentNode?.dispose();
-          console.log(`after ComponentContent dispose: isDisposed=`, this.contentNode?.isDisposed());
+          console.log(`jerry after ComponentContent dispose: isDisposed=`, this.contentNode?.isDisposed());
         })
-        .width('100%')
+        .width(120)
+        .height(40)
     }
+    .width('100%')
+    .height('100%')
   }
 }
 ```
