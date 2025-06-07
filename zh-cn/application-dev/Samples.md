@@ -3071,7 +3071,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用[@ohos.systemparameter](reference/apis-basic-services-kit/js-apis-system-parameter-sys.md)接口和[Web组件](reference/apis-arkweb/ts-basic-components-web.md)展示了一个浏览器的基本功能,展示网页，根据页面历史栈前进回退等。
+本示例使用[@ohos.systemparameter](reference/apis-basic-services-kit/js-apis-system-parameter-sys.md)接口和[Web组件](reference/apis-arkweb/arkts-basic-components-web.md)展示了一个浏览器的基本功能,展示网页，根据页面历史栈前进回退等。
 
 ##### 使用
 
@@ -3098,7 +3098,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例基于H5游戏，通过arkui的[Button](reference/apis-arkui/arkui-ts/ts-basic-components-button.md)实现对游戏实现基本控制，展示[@ohos.web.webview](reference/apis-arkweb/js-apis-webview.md)的JS注入与执行能力，及native应用与H5的通信能力。
+本示例基于H5游戏，通过arkui的[Button](reference/apis-arkui/arkui-ts/ts-basic-components-button.md)实现对游戏实现基本控制，展示[@ohos.web.webview](reference/apis-arkweb/arkts-apis-webview.md)的JS注入与执行能力，及native应用与H5的通信能力。
 
 ##### 使用
 
@@ -3109,7 +3109,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 * 本示例分成一个模块
   * 通过button实现对游戏的基本控制，WebviewController方法控制Web组件各种行为，使用webview注入JS与执行能力。
-  * 接口参考：[@ohos.window](reference/apis-arkui/arkts-apis-window.md)，[@ohos.web.webview](reference/apis-arkweb/js-apis-webview.md)
+  * 接口参考：[@ohos.window](reference/apis-arkui/arkts-apis-window.md)，[@ohos.web.webview](reference/apis-arkweb/arkts-apis-webview.md)
 
 ##### 约束与限制
 

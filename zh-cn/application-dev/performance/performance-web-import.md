@@ -199,7 +199,7 @@ struct WebComponent {
 >
 > 预渲染相比于预下载、预连接方案，会消耗更多的内存、算力，仅建议针对高频页面使用，单应用后台创建的ArkWeb组件要求小于200个。
 >
-> 在后台，预渲染的网页会持续进行渲染，为了防止发热和功耗问题，建议在预渲染完成后立即停止渲染过程。可以参考以下示例，使用 [onFirstMeaningfulPaint](../reference/apis-arkweb/ts-basic-components-web.md#onfirstmeaningfulpaint12) 来确定预渲染的停止时机，该接口适用于http和https的在线网页。
+> 在后台，预渲染的网页会持续进行渲染，为了防止发热和功耗问题，建议在预渲染完成后立即停止渲染过程。可以参考以下示例，使用 [onFirstMeaningfulPaint](../reference/apis-arkweb/arkts-basic-components-web-events.md#onfirstmeaningfulpaint12) 来确定预渲染的停止时机，该接口适用于http和https的在线网页。
 
 **实践案例**
 
