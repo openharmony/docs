@@ -1,4 +1,4 @@
-# Interfaces (VideoOutput)
+# Interface (VideoOutput)
 
 > **说明：**
 >

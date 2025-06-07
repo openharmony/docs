@@ -1,4 +1,4 @@
-# Interfaces (PreviewOutput)
+# Interface (PreviewOutput)
 
 > **说明：**
 >

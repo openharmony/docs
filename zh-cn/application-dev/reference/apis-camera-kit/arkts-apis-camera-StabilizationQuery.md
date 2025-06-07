@@ -1,4 +1,4 @@
-# Interfaces (StabilizationQuery)
+# Interface (StabilizationQuery)
 
 > **说明：**
 >

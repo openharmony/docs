@@ -1,4 +1,4 @@
-# Interfaces (ZoomQuery)
+# Interface (ZoomQuery)
 
 > **说明：**
 >

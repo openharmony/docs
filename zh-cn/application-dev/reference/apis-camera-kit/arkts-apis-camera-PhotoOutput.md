@@ -1,4 +1,4 @@
-# Interfaces (PhotoOutput)
+# Interface (PhotoOutput)
 
 > **说明：**
 >

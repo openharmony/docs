@@ -1,4 +1,4 @@
-# Interfaces (FlashQuery)
+# Interface (FlashQuery)
 
 > **说明：**
 >

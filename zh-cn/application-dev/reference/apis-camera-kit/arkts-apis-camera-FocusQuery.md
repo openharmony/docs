@@ -1,4 +1,4 @@
-# Interfaces (FocusQuery)
+# Interface (FocusQuery)
 
 > **说明：**
 >

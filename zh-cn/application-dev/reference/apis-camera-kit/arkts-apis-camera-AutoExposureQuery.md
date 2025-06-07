@@ -1,4 +1,4 @@
-# Interfaces (AutoExposureQuery)
+# Interface (AutoExposureQuery)
 
 > **说明：**
 >

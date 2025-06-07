@@ -1,4 +1,4 @@
-# Interfaces (Flash)
+# Interface (Flash)
 
 > **说明：**
 >

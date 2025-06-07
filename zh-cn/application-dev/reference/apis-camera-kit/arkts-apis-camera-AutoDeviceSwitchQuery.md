@@ -1,4 +1,4 @@
-# Interfaces (AutoDeviceSwitchQuery)
+# Interface (AutoDeviceSwitchQuery)
 
 > **说明：**
 >

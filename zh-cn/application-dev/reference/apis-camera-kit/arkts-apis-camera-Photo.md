@@ -1,4 +1,4 @@
-# Interfaces (Photo)
+# Interface (Photo)
 
 > **说明：**
 >
