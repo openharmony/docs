@@ -1047,6 +1047,8 @@ setTextSelection选中文字时的配置。
 
 >  **说明：**
 >
+> - LayoutPolicy支持设置三种布局策略：matchParent（自适应父组件布局）、wrapContent（根据内容自适应但不超过父组件尺寸的布局）和fixAtIdealSize（根据内容自适应，可能超过父组件尺寸的布局）。具体示例代码参见[设置布局策略](./ts-universal-attributes-size.md#示例5设置布局策略)。
+>
 > - 当设置了matchParent组件，其父容器设定了长度时，该组件将以父容器的尺寸为基准，自动调整以适应父组件的布局。若父容器未设定长度，该组件则会等待其父组件所有子组件完成布局后，再进行自身调整以适应父组件布局。
 > 
 > - 若同一父组件下有多个设置matchParent的子组件，则多个子组件均会被设置为父组件大小，也即在特定组件（[Flex](./ts-container-flex.md)、[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[RelativeContainer](./ts-container-relativecontainer.md)）上子组件会被绘制出容器外。
