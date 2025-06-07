@@ -43,10 +43,10 @@
 
 | 名称 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- |
-| changeReason<sup>20+</sup> | [TextChangeReason](ts-text-common.md#textchangereason20) | 是 | 内容变化原因。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| changeReason<sup>20+</sup> | [TextChangeReason](ts-text-common.md#textchangereason20) | 是 | 组件内容变化的原因。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
-### 示例1（获取内容变化原因）
-可以通过onWillChange接口返回的changeReason获取内容变化的原因。
+## 示例（获取组件内容变化原因）
+可以通过onWillChange接口返回的changeReason获取组件内容变化的原因。
 
 ```ts
 @Entry
