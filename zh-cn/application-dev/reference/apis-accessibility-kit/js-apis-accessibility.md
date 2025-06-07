@@ -809,6 +809,39 @@ accessibility.on('screenReaderStateChange', (data: boolean) => {
 });
 ```
 
+## accessibility.on('touchModeChange')<sup>20+</sup>
+
+on(type: 'touchModeChange', callback: Callback&lt;string&gt;): void
+
+监听单击/双击操作模式变化事件，使用callback异步回调。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Vision
+
+**参数：**
+
+| 参数名      | 类型                      | 必填   | 说明                                       |
+| -------- | ----------------------- | ---- | ---------------------------------------- |
+| type     | string                  | 是    | 监听的事件名，固定为‘touchModeChange’，即单击/双击操作模式变化事件。 |
+| callback | Callback&lt;string&gt; | 是    | 回调函数，在单击/双击操作模式变化时将状态通过此函数进行通知。           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+
+accessibility.on('touchModeChange', (data: string) => {
+  console.info(`subscribe touch mode change, result: ${JSON.stringify(data)}`);
+});
+```
+
 ## accessibility.off('accessibilityStateChange')
 
 off(type: 'accessibilityStateChange', callback?: Callback&lt;boolean&gt;): void
@@ -905,6 +938,39 @@ import { accessibility } from '@kit.AccessibilityKit';
 
 accessibility.off('screenReaderStateChange', (data: boolean) => {
   console.info(`Unsubscribe screen reader state change, result: ${JSON.stringify(data)}`);
+});
+```
+
+## accessibility.off('touchModeChange')<sup>20+</sup>
+
+off(type: 'touchModeChange', callback?: Callback&lt;string&gt;): void
+
+取消监听单击/双击操作模式变化事件，使用callback异步回调。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                                                         |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                  | 是   | 取消监听的事件名，固定为‘touchModeChange’，即单击/双击操作模式变化事件。 |
+| callback | Callback&lt;string&gt; | 否   | 回调函数，取消指定callback对象的事件响应。需与accessibility.on('touchModeChange')的callback一致。缺省时，表示注销所有已注册事件。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+
+accessibility.off('touchModeChange', (data: string) => {
+  console.info(`Unsubscribe touch mode change, result: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -1348,4 +1414,24 @@ accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {
   }
   console.info(`Succeeded in send event, eventInfo is ${eventInfo}`);
 });
+```
+
+## accessibility.getTouchModeSync<sup>20+</sup>
+
+getTouchModeSync(): string
+
+查询单击/双击操作模式。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**返回值：**
+
+| 类型        | 说明                                  |
+| ----------- | ------------------------------------- |
+| string | 表示当前操作模式。'singleTouchMode'表示单击操作模式，'doubleTouchMode'表示双击操作模式，'none'表示未开启触摸浏览功能。 |
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+
+let touchMode: string = accessibility.getTouchModeSync();
 ```
