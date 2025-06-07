@@ -55,9 +55,9 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
     ```c
     #include "napi/native_api.h"
     #include <multimedia/player_framework/avmetadata_extractor.h>
-    int64_t offset = 0; // 媒体源在文件描述符中的偏移量
-    int32_t fileDescribe = -1; // 媒体文件描述符
-    int32_t fileSize = 0; // 媒体文件大小
+    int64_t offset = 0; // 媒体源在文件描述符中的偏移量。
+    int32_t fileDescribe = -1; // 媒体文件描述符。
+    int32_t fileSize = 0; // 媒体文件大小。
     
     // GetInputParams为辅助函数，用于获取FetchAlbumCover、FetchMetadata的输入参数，实现见完整示例。
     if (!GetInputParams(env, info, offset, fileDescribe, fileSize)) {
@@ -125,6 +125,6 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
         │   └── media
         │
         └── rawfile
-            └── test.mp3（音频资源）
+            └── test.mp3 (音频资源)
     ```
 2. 编译新建工程并运行。

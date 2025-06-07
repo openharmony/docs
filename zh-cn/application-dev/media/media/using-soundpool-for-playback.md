@@ -34,7 +34,7 @@ SoundPool当前支持播放解码后1MB以下的音频资源，解码后大小�
    };
 
    //创建soundPool实例。
-   this.soundPool = await media.createSoundPool(14, audioRendererInfo); // 最大播放的流数为14
+   this.soundPool = await media.createSoundPool(14, audioRendererInfo); // 最大播放的流数为14。
    ```
 
 2. 调用on('loadComplete')方法，用于监听“资源加载完成”。
@@ -57,7 +57,7 @@ SoundPool当前支持播放解码后1MB以下的音频资源，解码后大小�
     ```ts
     this.soundPool!.on('playFinished', () => {
       console.info("receive play finished message");
-      // 可进行下次播放
+      // 可进行下次播放。
     });
     this.soundPool!.on('playFinishedWithStreamId', (streamId) => {
       console.info("receive play finished message, streamId: " + streamId);
@@ -84,9 +84,9 @@ SoundPool当前支持播放解码后1MB以下的音频资源，解码后大小�
     import { fileIo as fs } from '@kit.CoreFileKit';
 
     private soundId: number = 0;
-    // 获取当前组件所在Ability的Context，以通过Context获取应用文件路径
+    // 获取当前组件所在Ability的Context，以通过Context获取应用文件路径。
     let context = this.getUIContext().getHostContext();
-    // 获取输入文件fd，test.ogg为rawfile目录下的预置资源，需要开发者根据实际情况进行替换
+    // 获取输入文件fd，test.ogg为rawfile目录下的预置资源，需要开发者根据实际情况进行替换。
     let fileDescriptor = await context!.resourceManager.getRawFd('test.ogg');
     this.soundId = await this.soundPool!.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length);
     console.info(`load soundPool soundId: ${this.soundId}`)
@@ -195,6 +195,6 @@ SoundPool当前支持播放解码后1MB以下的音频资源，解码后大小�
     │   └── media
     │
     └── rawfile
-        └── test.ogg （音频资源）
+        └── test.ogg (音频资源)
     ```
 2. 编译新建工程并运行。

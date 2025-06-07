@@ -47,7 +47,7 @@ target_link_libraries(entry PUBLIC libavmetadata_extractor.so libnative_media_co
 1. 使用[OH_AVImageGenerator_Create()](../../reference/apis-media-kit/capi-avimage-generator-h.md#oh_avimagegenerator_create)创建实例。
    ```c
    #include <multimedia/player_framework/avimage_generator.h>
-   // 创建OH_AVImageGenerator实例
+   // 创建OH_AVImageGenerator实例。
    OH_AVImageGenerator* generator = OH_AVImageGenerator_Create();
    ```
 
@@ -57,11 +57,11 @@ target_link_libraries(entry PUBLIC libavmetadata_extractor.so libnative_media_co
     #include <multimedia/player_framework/avimage_generator.h>
     #include <multimedia/player_framework/native_averrors.h>
 
-    int64_t offset = 0; // 媒体源在文件描述符中的偏移量
-    int32_t fileDescribe = -1; // 媒体文件描述符
-    int32_t fileSize = 0; // 媒体文件大小
+    int64_t offset = 0; // 媒体源在文件描述符中的偏移量。
+    int32_t fileDescribe = -1; // 媒体文件描述符。
+    int32_t fileSize = 0; // 媒体文件大小。
         
-    // 设置视频资源的文件描述符
+    // 设置视频资源的文件描述符。
     OH_AVErrCode avErrCode = OH_AVImageGenerator_SetFDSource(generator, fileDescribe, offset, fileSize);
     // 异常处理。
     if (avErrCode != AV_ERR_OK) {
@@ -97,7 +97,7 @@ target_link_libraries(entry PUBLIC libavmetadata_extractor.so libnative_media_co
             return nullptr;
         }
         OH_AVFormat* avMetadata = OH_AVFormat_Create();
-        // 获取资源文件的元数据信息
+        // 获取资源文件的元数据信息。
         avErrCode = OH_AVMetadataExtractor_FetchMetadata(mainExtractor, avMetadata);
         if (avErrCode != AV_ERR_OK) {
             OH_AVFormat_Destroy(avMetadata);
@@ -106,7 +106,7 @@ target_link_libraries(entry PUBLIC libavmetadata_extractor.so libnative_media_co
             return nullptr;
         }
         int64_t out;
-        // 从元数据中获取资源文件的时长
+        // 从元数据中获取资源文件的时长。
         if (!OH_AVFormat_GetLongValue(avMetadata, OH_AVMETADATA_EXTRACTOR_DURATION, &out)) {
             OH_AVFormat_Destroy(avMetadata);
             OH_AVMetadataExtractor_Release(mainExtractor);
@@ -130,13 +130,13 @@ target_link_libraries(entry PUBLIC libavmetadata_extractor.so libnative_media_co
     #include <multimedia/player_framework/avimage_generator_base.h>
     #include <multimedia/player_framework/native_averrors.h>
 
-    // FetchFrameByTime的输入参数
+    // FetchFrameByTime的输入参数。
     struct FetchFrameParams {
-        int64_t timeUs = 0; // 指定的时间（单位us）
-        int64_t offset = 0; // 媒体源在文件描述符中的偏移量
-        int32_t fileDescribe = -1; // 媒体文件描述符
-        int32_t fileSize = 0; // 媒体文件大小
-        int32_t options = OH_AVIMAGE_GENERATOR_QUERY_CLOSEST; // OH_AVIMAGE_GENERATOR_QUERY_CLOSEST表示选取离传入时间点最近的关键帧
+        int64_t timeUs = 0; // 指定的时间（单位us）。
+        int64_t offset = 0; // 媒体源在文件描述符中的偏移量。
+        int32_t fileDescribe = -1; // 媒体文件描述符。
+        int32_t fileSize = 0; // 媒体文件大小。
+        int32_t options = OH_AVIMAGE_GENERATOR_QUERY_CLOSEST; // OH_AVIMAGE_GENERATOR_QUERY_CLOSEST表示选取离传入时间点最近的关键帧。
     };
 
     static napi_value OhAvImageGeneratorFetchFrameByTime(napi_env env, napi_callback_info info)
@@ -223,6 +223,6 @@ target_link_libraries(entry PUBLIC libavmetadata_extractor.so libnative_media_co
         │   └── media
         │
         └── rawfile
-            └── H264_AAC.mp4（视频资源）
+            └── H264_AAC.mp4 (视频资源)
     ```
 2. 编译新建工程并运行。

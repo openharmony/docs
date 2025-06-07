@@ -30,21 +30,21 @@
    ```
 
    ```ts
-   // 创建Worker对象
+   // 创建Worker对象。
    private workerInstance?: worker.ThreadWorker;
    this.workerInstance = new worker.ThreadWorker('entry/ets/workers/task.ets');
 
    // 注册onmessage回调，当宿主线程接收到来自其创建的Worker通过workerPort.postMessage接口发送的消息时被调用，在宿主线程执行。
    this.workerInstance.onmessage = (e: MessageEvents) => {
       let data: string | number = e.data;
-      if (typeof data === 'string') { // complete事件
+      if (typeof data === 'string') { // complete事件。
         console.info('workerInstance onmessage is: ', data);
         if (data === 'complete') {
           console.info('complete: ', data);
           this.workerInstance?.terminate();
         }
       } else if (typeof data === 'number') {
-        this.currentProgress = data; // 当前进度
+        this.currentProgress = data; // 当前进度。
       }
     }
 
@@ -72,7 +72,7 @@
    ```ts
    import { sendableContextManager } from '@kit.AbilityKit';
 
-   //发送的参数必须加上@Sendable标注
+   //发送的参数必须加上@Sendable标注。
    @Sendable
    export class SendableObject {
      constructor(sendableContext: sendableContextManager.SendableContext, data: string = '') {
@@ -98,8 +98,8 @@
 
    ```ts
    private context: Context | undefined;
-   // 向Worker线程发送消息
-   this.context = this.getUIContext().getHostContext(); // 获取当前组件所在Ability的Context
+   // 向Worker线程发送消息。
+   this.context = this.getUIContext().getHostContext(); // 获取当前组件所在Ability的Context。
    if (this.context != undefined) {
      const sendableContext: sendableContextManager.SendableContext = sendableContextManager.convertFromContext(
        this.context);
@@ -113,15 +113,15 @@
    worker线程接收参数：
 
    ```ts
-   //worker线程接收参数
+   //worker线程接收参数。
    const sendableObject: SendableObject = event.data;
    const sendableContext: sendableContextManager.SendableContext =
      sendableObject.getSendableContext() as sendableContextManager.SendableContext;
    const context: common.Context =
      sendableContextManager.convertToContext(sendableContext) as common.Context;
-   //执行转码逻辑
+   //执行转码逻辑。
    await doSome(context);
-   // 向主线程发送消息
+   // 向主线程发送消息。
    workerPort.postMessage('start end');
    ```
 
@@ -132,19 +132,19 @@
      console.info(`doSome in`);
      try {
        let transcoder = await media.createAVTranscoder();
-       // 转码完成回调函数
+       // 转码完成回调函数。
        transcoder.on('complete', async () => {
          console.info(`transcode complete`);
-         fs.closeSync(transcoder.fdDst); // 关闭fdDst
+         fs.closeSync(transcoder.fdDst); // 关闭fdDst。
          await transcoder?.release()
          workerPort.postMessage('complete');
        })
-       // 转码错误回调函数
+       // 转码错误回调函数。
        transcoder.on('error', async (err: BusinessError) => {
          fs.closeSync(transcoder.fdDst);
          await transcoder?.release();
        })
-       // 转码进度更新回调函数
+       // 转码进度更新回调函数。
        transcoder.on('progressUpdate', (progress: number) => {
          console.info(`AVTranscoder progressUpdate = ${progress}`);
          workerPort.postMessage(progress);
@@ -153,7 +153,7 @@
        try {
          // 获取输入文件fd，H264_AAC.mp4为rawfile目录下的预置资源，需要开发者根据实际情况进行替换。
          let fileDescriptor = await context.resourceManager.getRawFd('H264_AAC.mp4');
-         transcoder.fdSrc = fileDescriptor; // 设置fdSrc
+         transcoder.fdSrc = fileDescriptor; // 设置fdSrc。
        } catch (error) {
          console.error('Failed to get the file descriptor, please check the resource and path.');
        }
@@ -165,10 +165,10 @@
        transcoder.fdDst = file.fd;
 
        let config: media.AVTranscoderConfig = {
-         fileFormat: media.ContainerFormatType.CFT_MPEG_4, // 封装格式 
-         audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式
-         videoCodec: media.CodecMimeType.VIDEO_AVC, // 视频编码格式
-         videoBitrate: 200000, // 视频比特率
+         fileFormat: media.ContainerFormatType.CFT_MPEG_4, // 封装格式。
+         audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式。
+         videoCodec: media.CodecMimeType.VIDEO_AVC, // 视频编码格式。
+         videoBitrate: 200000, // 视频比特率。
        }
        await transcoder?.prepare(config); 
        await transcoder?.start();
@@ -181,10 +181,10 @@
 4. 监听转码的Complete回调，在转码结束的时候向主线程发送消息。
 
    ```ts
-   // 转码完成回调函数
+   // 转码完成回调函数。
    transcoder.on('complete', async () => {
      console.info(`transcode complete`);
-     fs.closeSync(transcoder.fdDst); // 关闭fdDst
+     fs.closeSync(transcoder.fdDst); // 关闭fdDst。
      await transcoder?.release()
      workerPort.postMessage('complete');
    })
@@ -215,7 +215,7 @@
 1. 新建工程，下载[示例工程](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVTranscoder/AsyncTranscoder)，并将示例工程的资源复制到对应目录。
     ```
     AsyncTranscoder
-    entry/build-profile.json5（配置字段信息将Worker线程文件打包到应用）
+    entry/build-profile.json5 (配置字段信息将Worker线程文件打包到应用)
     entry/src/main/ets/
     ├── pages
     │    └── Index.ets (转码界面)
@@ -223,7 +223,7 @@
     │    └── SendableObject.ets (Sendable对象)
     │
     └── workers
-        └── task.ets（转码任务）
+        └── task.ets (转码任务)
 
     entry/src/main/resources/
     ├── base
@@ -234,6 +234,6 @@
     │   └── media
     │
     └── rawfile
-        └── H264_AAC.mp4 （视频资源）
+        └── H264_AAC.mp4 (视频资源)
     ```
 2. 编译新建工程并运行。

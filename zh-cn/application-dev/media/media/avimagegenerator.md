@@ -36,25 +36,25 @@
    ```ts
    import { image } from '@kit.ImageKit';
 
-   // pixelMap对象声明，用于图片显示
+   // pixelMap对象声明，用于图片显示。
    @State pixelMap: image.PixelMap | undefined = undefined;
 
-   // 初始化入参
-   let timeUs = 0; // 需要获取的缩略图在视频中的时间点
-   let queryOption = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC; // AV_IMAGE_QUERY_NEXT_SYNC表示选取传入时间点或之后的关键帧
-   // 输出缩略图的格式参数
+   // 初始化入参。
+   let timeUs = 0; // 需要获取的缩略图在视频中的时间点。
+   let queryOption = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC; // AV_IMAGE_QUERY_NEXT_SYNC表示选取传入时间点或之后的关键帧。
+   // 输出缩略图的格式参数。
    let param: media.PixelMapParams = {
-     width : 300, // 输出的缩略图宽度
-     height : 300 // 输出的缩略图高度
+     width : 300, // 输出的缩略图宽度。
+     height : 300 // 输出的缩略图高度。
    };
 
-   // 获取缩略图（promise模式）
+   // 获取缩略图（promise模式）。
    this.pixelMap = await avImageGenerator.fetchFrameByTime(timeUs, queryOption, param);
    ```
 
 4. 释放资源：调用release()销毁实例，释放资源。
    ```ts
-   // 释放资源（promise模式）
+   // 释放资源（promise模式）。
    avImageGenerator.release();
    ```
 
@@ -77,6 +77,6 @@
     │   └── media
     │
     └── rawfile
-        └── H264_AAC.mp4（视频资源）
+        └── H264_AAC.mp4 (视频资源)
     ```
 2. 编译新建工程并运行。

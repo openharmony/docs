@@ -18,7 +18,7 @@
    import { BusinessError } from '@kit.BasicServicesKit';
    
    private avTranscoder: media.AVTranscoder | undefined = undefined;
-   // 创建转码实例
+   // 创建转码实例。
    this.avTranscoder = await media.createAVTranscoder();
    ```
 
@@ -51,7 +51,7 @@
      })
    }
 
-   // 获取当前进度
+   // 获取当前进度。
    getCurrentProgress(): number {
      console.info(`getCurrentProgress = ${this.currentProgress}`);
      return this.currentProgress;
@@ -77,7 +77,7 @@
    struct Index {
      // 获取当前组件所在Ability的Context，以通过Context获取应用文件路径。
      private context:Context | undefined = this.getUIContext().getHostContext();
-     // 获取转码功能管理类
+     // 获取转码功能管理类。
      @State avTranscoder: AVTranscoderDemo = new AVTranscoderDemo(this.context);
 
      build() {
@@ -89,7 +89,7 @@
                await this.avTranscoder.avTranscoderDemo();
              })
              .id('AVTranscoderButton')
-             // 获取转码进度
+             // 获取转码进度。
              Progress({ value: 0, total: 100, type: ProgressType.Linear }).value(this.avTranscoder.getCurrentProgress())
                .height(50)
                .width('80%')
@@ -112,7 +112,7 @@
    private context: Context | undefined;
    constructor(context: Context | undefined) {
      if (context != undefined) {
-       this.context = context; // this.getUIContext().getHostContext();
+       this.context = context; // this.getUIContext().getHostContext();。
      }
    }
    // 获取输入文件fd，H264_AAC.mp4为rawfile目录下的预置资源，需要开发者根据实际情况进行替换。
@@ -148,13 +148,13 @@
    import { BusinessError } from '@kit.BasicServicesKit';
    
    let avConfig: media.AVTranscoderConfig = {
-     audioBitrate: 100000, // 音频比特率
+     audioBitrate: 100000, // 音频比特率。
      audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式。
-     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // 封装格式
-     videoBitrate: 2000000, // 视频比特率
-     videoCodec: media.CodecMimeType.VIDEO_AVC, // 视频编码格式
+     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // 封装格式。
+     videoBitrate: 2000000, // 视频比特率。
+     videoCodec: media.CodecMimeType.VIDEO_AVC, // 视频编码格式。
    };
-   // 配置转码参数完成准备工作
+   // 配置转码参数完成准备工作。
    await this.avTranscoder.prepare(this.avConfig);
    ```
    <!--RP2--><!--RP2End-->
@@ -208,7 +208,7 @@
    async releaseTranscoderingProcess() {
      if (canIUse('SystemCapability.Multimedia.Media.AVTranscoder')) {
        if (this.avTranscoder != undefined) {
-         // 1.销毁实例
+         // 1.销毁实例。
          await this.avTranscoder.release();
          this.avTranscoder = undefined;
          // 关闭转码目标文件fd。
@@ -239,7 +239,7 @@
     │    └── Index.ets (转码界面)
     │
     └── transcoder
-        └── AVTranscoderManager.ets（转码功能）
+        └── AVTranscoderManager.ets (转码功能)
 
     entry/src/main/resources/
     ├── base
@@ -250,6 +250,6 @@
     │   └── media
     │
     └── rawfile
-        └── H264_AAC.mp4 （视频资源）
+        └── H264_AAC.mp4 (视频资源)
     ```
 2. 编译新建工程并运行。

@@ -37,9 +37,9 @@
 
    // 使用fs文件系统打开沙箱地址获取媒体文件地址，设置fdSrc属性。
    context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-   rootPath: string = this.context.filesDir; // 应用文件目录
+   rootPath: string = this.context.filesDir; // 应用文件目录。
    testFilename: string = '/test.mp3'; // test.mp3为应用文件目录下的预置资源，需要开发者根据实际情况进行替换。
-   avMetadataExtractor.fdSrc = fs.openSync(this.rootPath + this.testFilename); // 设置fdSrc属性
+   avMetadataExtractor.fdSrc = fs.openSync(this.rootPath + this.testFilename); // 设置fdSrc属性。
 
    // 使用fs文件系统打开沙箱地址获取媒体文件地址，设置dataSrc属性。
    // 通过UIAbilityContext获取沙箱地址filesDir（以Stage模型为例）。
@@ -65,13 +65,13 @@
        return -1;
      }
    };
-   // 设置dataSrc
+   // 设置dataSrc。
    avMetadataExtractor.dataSrc = dataSrc;
    ```
 
 3. 获取元数据：调用fetchMetadata()，可以获取到一个AVMetadata对象，通过访问该对象的各个属性，可以获取到元数据。
    ```ts
-   // 获取元数据（callback模式）
+   // 获取元数据（callback模式）。
    avMetadataExtractor.fetchMetadata((error, metadata) => {
      if (error) {
        console.error(TAG, `fetchMetadata callback failed, err = ${JSON.stringify(error)}`);
@@ -79,7 +79,7 @@
      }
    })
 
-   // 获取元数据（promise模式）
+   // 获取元数据（promise模式）。
    let metadata = await avMetadataExtractor.fetchMetadata();
    ```
 
@@ -88,7 +88,7 @@
    import { image } from '@kit.ImageKit';
    // pixelMap对象声明，用于图片显示。
    @State pixelMap: image.PixelMap | undefined = undefined;
-   //获取专辑封面（callback模式）
+   //获取专辑封面（callback模式）。
    avMetadataExtractor.fetchAlbumCover((err, pixelMap) => {
      if (err) {
        console.error(TAG, `fetchAlbumCover callback failed, err = ${JSON.stringify(err)}`);
@@ -97,13 +97,13 @@
      this.pixelMap = pixelMap;
    })
 
-   // 获取专辑封面（promise模式）
+   // 获取专辑封面（promise模式）。
    this.pixelMap = await avMetadataExtractor.fetchAlbumCover();
    ```
 
 5. 释放资源：调用release()销毁实例，释放资源。
    ```ts
-   // 释放资源（callback模式）
+   // 释放资源（callback模式）。
    avMetadataExtractor.release((error) => {
      if (error) {
        console.error(TAG, `release failed, err = ${JSON.stringify(error)}`);
@@ -112,7 +112,7 @@
      console.info(TAG, `release success.`);
    })
 
-   // 释放资源（promise模式）
+   // 释放资源（promise模式）。
    avMetadataExtractor.release();
    ```
 
@@ -135,6 +135,6 @@
     │   └── media
     │
     └── rawfile
-        └── test.mp3（音频资源）
+        └── test.mp3 (音频资源)
     ```
 2. 编译新建工程并运行。
