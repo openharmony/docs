@@ -182,6 +182,7 @@ import { window } from '@kit.ArkUI';
 ## StartAnimationSystemOption<sup>20+</sup>
 
 系统应用启动动画配置。
+仅对全屏应用生效。
 
 **系统接口：** 此接口为系统接口。
 

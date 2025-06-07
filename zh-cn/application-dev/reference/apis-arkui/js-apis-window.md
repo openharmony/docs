@@ -532,6 +532,7 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 ## StartAnimationOption<sup>20+</sup>
 
 应用启动动画配置。
+仅对同应用的不同ability间跳转生效。仅对全屏应用生效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
