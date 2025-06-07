@@ -26,9 +26,9 @@
 
    ```ts
    import { common } from '@kit.AbilityKit';
-   // 获取当前组件所在Ability的Context，并通过Context获取应用文件路径
+   // 获取当前组件所在Ability的Context，并通过Context获取应用文件路径。
    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-   // 设置fdSrc，H264_AAC.mp4为rawfile目录下的预置资源，需要开发者根据实际情况进行替换
+   // 设置fdSrc，H264_AAC.mp4为rawfile目录下的预置资源，需要开发者根据实际情况进行替换。
    avImageGenerator.fdSrc = await context.resourceManager.getRawFd('H264_AAC.mp4');
    ```
 

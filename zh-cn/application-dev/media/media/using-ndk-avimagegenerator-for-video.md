@@ -81,7 +81,7 @@ target_link_libraries(entry PUBLIC libavmetadata_extractor.so libnative_media_co
         int64_t offset = 0;
         int32_t fileDescribe = -1;
         int64_t fileSize = 0;
-        // 通过辅助函数，获取输入参数，实现见完整示例
+        // 通过辅助函数，获取输入参数，实现见完整示例。
         if (!GetGetDurationParams(env, info, offset, fileDescribe, fileSize)) {
             return nullptr;
         }
@@ -142,7 +142,7 @@ target_link_libraries(entry PUBLIC libavmetadata_extractor.so libnative_media_co
     static napi_value OhAvImageGeneratorFetchFrameByTime(napi_env env, napi_callback_info info)
     {
         FetchFrameParams fetchFrameParams;
-        // 通过辅助函数，获取输入参数，实现见完整示例
+        // 通过辅助函数，获取输入参数，实现见完整示例。
         if (!GetFetchFrameByTimeParams(env, info, fetchFrameParams)) {
             return nullptr;
         }
@@ -193,7 +193,7 @@ target_link_libraries(entry PUBLIC libavmetadata_extractor.so libnative_media_co
     ```
 4. 释放资源：调用[OH_AVImageGenerator_Release()](../../reference/apis-media-kit/capi-avimage-generator-h.md#oh_avimagegenerator_release)销毁实例，释放资源。
     ```c
-    // 释放OH_AVImageGenerator资源
+    // 释放OH_AVImageGenerator资源。
     OH_AVImageGenerator_Release(generator);
     ```
 

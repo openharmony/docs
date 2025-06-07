@@ -118,36 +118,36 @@ SoundPool当前支持播放解码后1MB以下的音频资源，解码后大小�
 7. 调用setLoop方法设置循环次数。
 
     ```ts
-      // 设置循环播放次数。
-      await this.soundPool!.setLoop(this.streamId, 2); // 播放3次。
+    // 设置循环播放次数。
+    await this.soundPool!.setLoop(this.streamId, 2); // 播放3次。
     ```
 
 8. 调用setPriority方法设置优先级。
 
     ```ts
-      // 设置对应流的优先级。
-      await this.soundPool!.setPriority(this.streamId, 1);
+    // 设置对应流的优先级。
+    await this.soundPool!.setPriority(this.streamId, 1);
     ```
 
 9. 调用setVolume方法设置音量。
 
     ```ts
-      // 设置音量。
-      await this.soundPool!.setVolume(this.streamId, 0.5, 0.5);
+    // 设置音量。
+    await this.soundPool!.setVolume(this.streamId, 0.5, 0.5);
     ```
 
 10. 调用stop方法终止指定流的播放。
 
     ```ts
-      // 终止指定流的播放。
-      await this.soundPool!.stop(this.streamId);
+    // 终止指定流的播放。
+    await this.soundPool!.stop(this.streamId);
     ```
 
 11. 调用unload方法卸载音频资源。
 
     ```ts
-      // 卸载音频资源。
-      await this.soundPool!.unload(this.soundId);
+    // 卸载音频资源。
+    await this.soundPool!.unload(this.soundId);
     ```
 
 12. 调用off('loadComplete')方法注销加载完成监听。
@@ -171,8 +171,8 @@ SoundPool当前支持播放解码后1MB以下的音频资源，解码后大小�
 15. 调用release方法释放SoundPool实例。
 
     ```ts
-      // 释放SoundPool。
-      await this.soundPool!.release();
+    // 释放SoundPool。
+    await this.soundPool!.release();
     ```
 
 ## 完整示例

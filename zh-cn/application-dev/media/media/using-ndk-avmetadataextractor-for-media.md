@@ -59,7 +59,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
     int32_t fileDescribe = -1; // 媒体文件描述符
     int32_t fileSize = 0; // 媒体文件大小
     
-    // GetInputParams为辅助函数，用于获取FetchAlbumCover、FetchMetadata的输入参数
+    // GetInputParams为辅助函数，用于获取FetchAlbumCover、FetchMetadata的输入参数，实现见完整示例。
     if (!GetInputParams(env, info, offset, fileDescribe, fileSize)) {
         return nullptr;
     }
@@ -77,8 +77,8 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
    > - 需要先调用OH_AVFormat_Create()函数创建一个OH_AVFormat对象，通过访问该对象的各个键值对，可以获取到元数据。使用完成需要调用OH_AVFormat_Destroy销毁该对象，防止产生内存泄漏，详细使用方法请参阅[OH_AVFormat](../../reference/apis-avcodec-kit/_core.md#oh_avformat)。
    ```c
    // 获取元数据。
-    avErrCode = OH_AVMetadataExtractor_FetchMetadata(mainExtractor, avMetadata);
-    ```
+   avErrCode = OH_AVMetadataExtractor_FetchMetadata(mainExtractor, avMetadata);
+   ```
 
 4. （可选）获取专辑封面：调用[OH_AVMetadataExtractor_FetchAlbumCover()](../../reference/apis-media-kit/capi-avmetadata-extractor-h.md#oh_avmetadataextractor_fetchalbumcover)，可以获取到专辑封面。
    > - 使用完成需要调用OH_PixelmapNative_Release释放OH_PixelmapNative对象资源，详细使用方法请参阅[Image_NativeModule](../../reference/apis-image-kit/_image___native_module.md)。

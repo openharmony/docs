@@ -75,7 +75,7 @@
    @Entry
    @Component
    struct Index {
-     // 获取当前组件所在Ability的Context，以通过Context获取应用文件路径
+     // 获取当前组件所在Ability的Context，以通过Context获取应用文件路径。
      private context:Context | undefined = this.getUIContext().getHostContext();
      // 获取转码功能管理类
      @State avTranscoder: AVTranscoderDemo = new AVTranscoderDemo(this.context);
@@ -115,7 +115,7 @@
        this.context = context; // this.getUIContext().getHostContext();
      }
    }
-   // 获取输入文件fd，H264_AAC.mp4为rawfile目录下的预置资源，需要开发者根据实际情况进行替换
+   // 获取输入文件fd，H264_AAC.mp4为rawfile目录下的预置资源，需要开发者根据实际情况进行替换。
    let fileDescriptor = await this.context.resourceManager.getRawFd('H264_AAC.mp4');
    // 设置转码的源文件属性fdSrc。
    this.avTranscoder.fdSrc = fileDescriptor;
@@ -128,12 +128,12 @@
    
    ```ts
    import fs from '@ohos.file.fs';
-   // 设置输出目标文件的沙箱路径
+   // 设置输出目标文件的沙箱路径。
    let outputFilePath = this.context.filesDir + "/output.mp4";
-   // 文件不存在时创建并打开文件，文件存在时打开文件
+   // 文件不存在时创建并打开文件，文件存在时打开文件。
    let file = fs.openSync(outputFilePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
    // 设置转码的目标文件属性fdDst。
-   this.avTranscoder.fdDst = file.fd; // 参考应用文件访问与管理中的开发示例获取创建的视频文件fd填入此处
+   this.avTranscoder.fdDst = file.fd; // 参考应用文件访问与管理中的开发示例获取创建的视频文件fd填入此处。
    ```
 
 5. 配置视频转码参数，调用prepare()接口。
@@ -168,14 +168,11 @@
          await this.avTranscoder.release();
          this.avTranscoder = undefined;
        }
-      // 创建转码实例
-      // 设置回调
-      // 获取转码源文件fd和目标文件fd赋予avTranscoder
-      // 调用prepare接口avTranscoder.prepare
+      // 开始转码前需要创建转码实例、设置回调、设置fd并完成prepare。
       // 开始转码。
       await this.avTranscoder.start();
     }
-  }
+   }
    ```
 
 7. 暂停转码，调用pause()接口。
@@ -197,7 +194,7 @@
    // 恢复转码。
    async resumeTranscoderingProcess() {
      if (canIUse('SystemCapability.Multimedia.Media.AVTranscoder')) {
-       if (this.avTranscoder != undefined) { // 仅在调用pause返回后调用resume为合理调用
+       if (this.avTranscoder != undefined) { // 仅在调用pause返回后调用resume为合理调用。
          await this.avTranscoder.resume();
        }
      }
@@ -221,12 +218,13 @@
    }
    ```
 10. 完整的【开始转码-暂停转码-恢复转码-转码完成】流程
+
    ```ts
-     async avTranscoderDemo() {
-       await this.startTranscoderingProcess(); // 开始转码。
-       await this.pauseTranscoderingProcess(); //暂停转码。
-       await this.resumeTranscoderingProcess(); // 恢复转码。
-     }
+   async avTranscoderDemo() {
+     await this.startTranscoderingProcess(); // 开始转码。
+     await this.pauseTranscoderingProcess(); //暂停转码。
+     await this.resumeTranscoderingProcess(); // 恢复转码。
+   }
    ```
 
 ## 完整示例
