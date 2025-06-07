@@ -1,7 +1,8 @@
 # ArkWeb（方舟Web）
 
 - ArkTS API<!--arkweb-arkts-->
-  - [@ohos.web.webview (Webview)](arkts-apis-webview.md)
+  - @ohos.web.webview (Webview)<!--js-apis-webview-->
+    - [模块描述](arkts-apis-webview.md)
     - [Class (WebviewController)](arkts-apis-webview-WebviewController.md)
     - [Class (GeolocationPermissions)](arkts-apis-webview-GeolocationPermissions.md)
     - [Class (WebCookieManager)](arkts-apis-webview-WebCookieManager.md)
@@ -26,15 +27,18 @@
     - [Class (WebSchemeHandlerRequest)](arkts-apis-webview-WebSchemeHandlerRequest.md)
     - [Class (WebSchemeHandlerResponse)](arkts-apis-webview-WebSchemeHandlerResponse.md)
     - [Interfaces（其他）](arkts-apis-webview-i.md)
-    - [Interfaces (NativeMediaPlayerBridge)](arkts-apis-webview-NativeMediaPlayerBridge.md)
-    - [Interfaces (NativeMediaPlayerHandler)](arkts-apis-webview-NativeMediaPlayerHandler.md)
-    - [Interfaces (WebMessagePort)](arkts-apis-webview-WebMessagePort.md)
+    - [Interface (NativeMediaPlayerBridge)](arkts-apis-webview-NativeMediaPlayerBridge.md)
+    - [Interface (NativeMediaPlayerHandler)](arkts-apis-webview-NativeMediaPlayerHandler.md)
+    - [Interface (WebMessagePort)](arkts-apis-webview-WebMessagePort.md)
     - [Enums](arkts-apis-webview-e.md)
     - [Types](arkts-apis-webview-t.md)
     - [Functions](arkts-apis-webview-f.md)
   - [@ohos.web.netErrorList](arkts-apis-netErrorList.md)
 - ArkTS 组件<!--arkweb-comp-->
-  - [Web](arkts-basic-components-web.md)
+  - Web<!--ts-basic-components-web-->
+    - [组件描述](arkts-basic-components-web.md)
+    - [属性](arkts-basic-components-web-attributes.md)
+    - [事件](arkts-basic-components-web-events.md)
     - [Class (ClientAuthenticationHandler)](arkts-basic-components-web-ClientAuthenticationHandler.md)
     - [Class (ConsoleMessage)](arkts-basic-components-web-ConsoleMessage.md)
     - [Class (ControllerHandler)](arkts-basic-components-web-ControllerHandler.md)
@@ -51,17 +55,15 @@
     - [Class (SslErrorHandler)](arkts-basic-components-web-SslErrorHandler.md)
     - [Class (WebContextMenuParam)](arkts-basic-components-web-WebContextMenuParam.md)
     - [Class (WebContextMenuResult)](arkts-basic-components-web-WebContextMenuResult.md)
-    - [Class (WebController)](arkts-basic-components-web-WebController.md)
     - [Class (WebCookie)](arkts-basic-components-web-WebCookie.md)
     - [Class (WebKeyboardController)](arkts-basic-components-web-WebKeyboardController.md)
     - [Class (WebResourceError)](arkts-basic-components-web-WebResourceError.md)
     - [Class (WebResourceRequest)](arkts-basic-components-web-WebResourceRequest.md)
     - [Class (WebResourceResponse)](arkts-basic-components-web-WebResourceResponse.md)
-    - [属性](arkts-basic-components-web-attributes.md)
-    - [事件](arkts-basic-components-web-events.md)
     - [Interfaces（其他）](arkts-basic-components-web-i.md)
     - [Enums](arkts-basic-components-web-e.md)
     - [Types](arkts-basic-components-web-t.md)
+    - [废弃的Class (WebController, deprecated)](arkts-basic-components-web-WebController.md)
 - C API<!--arkweb-c-->
   - 模块<!--arkweb-module-->
     - [Web](_web.md)
