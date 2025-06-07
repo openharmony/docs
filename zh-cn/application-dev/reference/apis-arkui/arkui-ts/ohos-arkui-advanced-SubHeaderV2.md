@@ -187,8 +187,8 @@ type SubHeaderV2SelectOnSelect = (selectedIndex: number, selectedContent?: strin
 
 | 类型            | 说明                                          |
 |:--------------|:--------------------------------------------|
-| selectIndex   | 下拉菜单选中某一项的回调类型。表示选中项的索引。 |
-| selectContent | 下拉菜单选中某一项的回调类型。表示选中项的值。|
+| selectedIndex   | 下拉菜单选中某一项的回调类型。表示选中项的索引。 |
+| selectedContent | 下拉菜单选中某一项的回调类型。表示选中项的值。|
 
 ## SubHeaderV2OperationType
 
