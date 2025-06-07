@@ -28,7 +28,7 @@ websocket支持心跳检测机制，在客户端和服务端建立WebSocket连�
     let ws = webSocket.createWebSocket();
     ```
 
-3. 订阅WebSocket的打开、消息接收、关闭、Error事件（可选）。
+3. 订阅WebSocket的打开、消息接收、关闭、Error事件（可选），当收到on('open')事件时，可以通过send()方法与服务器进行通信，当收到服务器的`bye`消息时（此消息字段仅为示意，具体字段需要与服务器协商），主动断开连接。。
 
     ```js
     ws.on('open', (err: BusinessError, value: Object) => {
@@ -38,7 +38,7 @@ websocket支持心跳检测机制，在客户端和服务端建立WebSocket连�
         if (!err) {
           console.log("Message send successfully");
         } else {
-          console.log("Failed to send the message. Err:" + JSON.stringify(err));
+          console.error("Failed to send the message. Err:" + JSON.stringify(err));
         }
       });
     });
@@ -50,7 +50,7 @@ websocket支持心跳检测机制，在客户端和服务端建立WebSocket连�
           if (!err) {
             console.log("Connection closed successfully");
           } else {
-            console.log("Failed to close the connection. Err: " + JSON.stringify(err));
+            console.error("Failed to close the connection. Err: " + JSON.stringify(err));
           }
         });
       }
@@ -59,7 +59,7 @@ websocket支持心跳检测机制，在客户端和服务端建立WebSocket连�
       console.log("on close, code is " + value.code + ", reason is " + value.reason);
     });
     ws.on('error', (err: BusinessError) => {
-      console.log("on error, error:" + JSON.stringify(err));
+      console.error("on error, error:" + JSON.stringify(err));
     });
     ```
 
@@ -70,18 +70,7 @@ websocket支持心跳检测机制，在客户端和服务端建立WebSocket连�
       if (!err) {
         console.log("Connected successfully");
       } else {
-        console.log("Connection failed. Err:" + JSON.stringify(err));
-      }
-    });
-    ```
-5. 使用完WebSocket连接之后，主动断开连接。
-
-    ```js
-    ws.close((err: BusinessError, value: boolean) => {
-      if (!err) {
-        console.log("close successfully");
-      } else {
-        console.log("close failed. Err:" + JSON.stringify(err));
+        console.error("Connection failed. Err:" + JSON.stringify(err));
       }
     });
     ```
@@ -102,24 +91,21 @@ websocket支持心跳检测机制，在客户端和服务端建立WebSocket连�
     localServer = webSocket.createWebSocketServer();
     ```
 
-3. 订阅WebSocketServer的客户端连接事件、消息接收事件、关闭事件、Error事件（可选）。
+3. 订阅WebSocketServer的客户端连接事件、消息接收事件、关闭事件、Error事件（可选），在收到客户端连接事件后，服务端可以通过send()方法与客户端进行通信，当收到客户端的"bye"消息时（此消息字段仅为示意，具体字段需要与客户端协商），主动断开连接。
 
     ```js
-    let connections: webSocket.WebSocketConnection[] = [];
-
     localServer.on('connect', async (connection: webSocket.WebSocketConnection) => {
       console.info(`New client connected! Client ip: ${connection.clientIP}, Client port: ${connection.clientPort}`);
-
-      try {
-        connections = await localServer.listAllConnections();
-        if (connections.length === 0) {
-          console.info('client list is empty');
+      // 当收到on('connect')事件时，可以通过send()方法与客户端进行通信。
+      localServer.send("Hello, I'm server!", connection).then((success: boolean) => {
+        if (success) {
+          console.info('message send successfully');
         } else {
-          console.info(`client list cnt: ${connections.length}, client connections list is: ${connections}`);
+          console.error('message send failed');
         }
-      } catch (error) {
-        console.error(`Failed to listAllConnections. Code: ${error.code}, message: ${error.message}`);
-      }
+      }).catch((error: BusinessError) => {
+          console.error(`message send failed, Code: ${error.code}, message: ${error.message}`);
+      });
     });
 
     localServer.on('messageReceive', (message: webSocket.WebSocketMessage) => {
@@ -131,7 +117,7 @@ websocket支持心跳检测机制，在客户端和服务端建立WebSocket连�
             if (success) {
               console.info('close client successfully');
             } else {
-              console.info('close client failed');
+              console.error('close client failed');
             }
           });
         }
@@ -145,7 +131,7 @@ websocket支持心跳检测机制，在客户端和服务端建立WebSocket连�
     });
 
     localServer.on('error', (error: BusinessError) => {
-      console.info(`error. Code: ${error.code}, message: ${error.message}`);
+      console.error(`error. Code: ${error.code}, message: ${error.message}`);
     });
     ```
 
@@ -162,37 +148,37 @@ websocket支持心跳检测机制，在客户端和服务端建立WebSocket连�
       if (success) {
         console.info('webSocket server start success');
       } else {
-        console.info('websocket server start failed');
+        console.error('websocket server start failed');
       }
     }).catch((error: BusinessError) => {
       console.error(`Failed to start. Code: ${error.code}, message: ${error.message}`);
     });
     ```
 
-5. 通过WebSocketServer收发消息、监听事件。
+5. 服务端监听所有客户端连接状态（可选）。
 
     ```js
-    // 当收到on('connect')事件时，可以通过send()方法与客户端进行通信。
-    localServer.send("Hello, I'm server!", connection).then((success: boolean) => {
-      if (success) {
-        console.info('message send successfully');
+    let connections: webSocket.WebSocketConnection[] = [];
+    try {
+      connections = await localServer.listAllConnections();
+      if (connections.length === 0) {
+        console.info('client list is empty');
       } else {
-        console.info('message send failed');
+        console.error(`client list cnt: ${connections.length}, client connections list is: ${connections}`);
       }
-    }).catch((error: BusinessError) => {
-        console.error(`message send failed, Code: ${error.code}, message: ${error.message}`);
-    });
+    } catch (error) {
+      console.error(`Failed to listAllConnections. Code: ${error.code}, message: ${error.message}`);
+    }
     ```
 
-6. 使用完WebSocketServer端服务器后，通过stop()停止服务。
+6. 需要关闭WebSocketServer端服务器时，可以通过stop()停止服务。
 
     ```js
-    // 当收到on('close')事件时，可以通过stop()停止服务。
     localServer.stop().then((success: boolean) => {
       if (success) {
         console.info('server stop service successfully');
       } else {
-        console.info('server stop service failed');
+        console.error('server stop service failed');
       }
     });
     ```
@@ -284,7 +270,7 @@ localServer.on('connect', async (connection: webSocket.WebSocketConnection) => {
     if (success) {
       console.info('message send successfully');
     } else {
-      console.info('message send failed');
+      console.error('message send failed');
     }
   }).catch((error: BusinessError) => {
     console.error(`message send failed, Code: ${error.code}, message: ${error.message}`);
@@ -311,7 +297,7 @@ localServer.on('messageReceive', (message: webSocket.WebSocketMessage) => {
         if (success) {
           console.info('close client successfully');
         } else {
-          console.info('close client failed');
+          console.error('close client failed');
         }
       });
     }
@@ -322,27 +308,28 @@ localServer.on('messageReceive', (message: webSocket.WebSocketMessage) => {
 
 localServer.on('close', (clientConnection: webSocket.WebSocketConnection, closeReason: webSocket.CloseResult) => {
   console.info(`client close, client: ${clientConnection}, closeReason: Code: ${closeReason.code}, reason: ${closeReason.reason}`);
-  localServer.stop().then((success: boolean) => {
-    if (success) {
-      console.info('server stop service successfully');
-    } else {
-      console.info('server stop service failed');
-    }
-  });
 });
 
 localServer.on('error', (error: BusinessError) => {
-  console.info(`error. Code: ${error.code}, message: ${error.message}`);
+  console.error(`error. Code: ${error.code}, message: ${error.message}`);
 });
 
 localServer.start(config).then((success: boolean) => {
   if (success) {
     console.info('webSocket server start success');
   } else {
-    console.info('websocket server start failed');
+    console.error('websocket server start failed');
   }
 }).catch((error: BusinessError) => {
   console.error(`Failed to start. Code: ${error.code}, message: ${error.message}`);
+});
+
+localServer.stop().then((success: boolean) => {
+  if (success) {
+    console.info('server stop service successfully');
+  } else {
+    console.error('server stop service failed');
+  }
 });
 ```
 
