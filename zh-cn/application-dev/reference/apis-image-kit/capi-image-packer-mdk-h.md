@@ -176,7 +176,7 @@ int32_t OH_ImagePacker_Release(ImagePacker_Native* native)
 
 此API不用于释放JavaScript原生API ImagePacker对象，它用于释放native层对象ImagePacker_Native。
 
-通过调用[OH_ImagePacker_InitNative](capi-imagepacker-opts-.md#oh_imagepacker_initnative)解析。
+通过调用[OH_ImagePacker_InitNative](#oh_imagepacker_initnative)解析。
 
 **起始版本：** 11
 

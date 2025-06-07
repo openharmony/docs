@@ -52,7 +52,7 @@
 | [ImageEffect_ErrorCode OH_EffectFilterInfo_SetSupportedFormats(OH_EffectFilterInfo *info, uint32_t size,ImageEffect_Format *formatArray)](#oh_effectfilterinfo_setsupportedformats) | - | 设置滤镜所支持的像素格式。 |
 | [ImageEffect_ErrorCode OH_EffectFilterInfo_GetSupportedFormats(OH_EffectFilterInfo *info, uint32_t *size,ImageEffect_Format **formatArray)](#oh_effectfilterinfo_getsupportedformats) | - | 获取滤镜所支持的像素格式。 |
 | [ImageEffect_ErrorCode OH_EffectFilterInfo_Release(OH_EffectFilterInfo *info)](#oh_effectfilterinfo_release) | - | 销毁OH_EffectFilterInfo实例。 |
-| [OH_EffectBufferInfo *OH_EffectBufferInfo_Create()](#oh_effectbufferinfo_create) | - | 创建OH_EffectBufferInfo实例，调用[OH_EffectBufferInfo_Release](capi-imageeffect-filterdelegate.md#oh_effectbufferinfo_release)进行资源释放。 |
+| [OH_EffectBufferInfo *OH_EffectBufferInfo_Create()](#oh_effectbufferinfo_create) | - | 创建OH_EffectBufferInfo实例，调用[OH_EffectBufferInfo_Release](#oh_effectbufferinfo_release)进行资源释放。 |
 | [ImageEffect_ErrorCode OH_EffectBufferInfo_SetAddr(OH_EffectBufferInfo *info, void *addr)](#oh_effectbufferinfo_setaddr) | - | 设置图像内存地址。 |
 | [ImageEffect_ErrorCode OH_EffectBufferInfo_GetAddr(OH_EffectBufferInfo *info, void **addr)](#oh_effectbufferinfo_getaddr) | - | 获取图像内存地址。 |
 | [ImageEffect_ErrorCode OH_EffectBufferInfo_SetWidth(OH_EffectBufferInfo *info, int32_t width)](#oh_effectbufferinfo_setwidth) | - | 设置图像宽度。 |
@@ -380,7 +380,7 @@ OH_EffectBufferInfo *OH_EffectBufferInfo_Create()
 
 **描述**
 
-创建OH_EffectBufferInfo实例，调用[OH_EffectBufferInfo_Release](capi-imageeffect-filterdelegate.md#oh_effectbufferinfo_release)进行资源释放。
+创建OH_EffectBufferInfo实例，调用[OH_EffectBufferInfo_Release](#oh_effectbufferinfo_release)进行资源释放。
 
 **系统能力：** SystemCapability.Multimedia.ImageEffect.Core
 
@@ -771,7 +771,7 @@ typedef bool (*OH_EffectFilterDelegate_Render)(OH_EffectFilter *filter, OH_Effec
 | -- | -- |
 | [OH_EffectFilter](capi-oh-effectfilter.md) *filter | 滤镜指针。 |
 | [OH_EffectBufferInfo](capi-oh-effectbufferinfo.md) *info | 图像信息OH_EffectBufferInfo指针。 |
-| [OH_EffectFilterDelegate_PushData](capi-imageeffect-filterdelegate.md#oh_effectfilterdelegate_pushdata) pushData | 自定义滤镜传递图像信息到下一级滤镜的函数指针OH_EffectFilterDelegate_PushData。 |
+| [OH_EffectFilterDelegate_PushData](#oh_effectfilterdelegate_pushdata) pushData | 自定义滤镜传递图像信息到下一级滤镜的函数指针OH_EffectFilterDelegate_PushData。 |
 
 **返回：**
 

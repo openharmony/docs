@@ -23,6 +23,6 @@
 | uint32_t sampleSize | 定义解码样本大小选项。 |
 | uint32_t rotate | 定义解码旋转选项。 |
 | struct [OhosImageSize](capi-ohosimagesize.md) size | 定义解码目标像素宽高的大小。 |
-| struct [OhosImageRegion](capi-ohosimageregion.md.) region | 定义ImageSource解码的像素范围。 |
+| struct [OhosImageRegion](capi-ohosimageregion.md) region | 定义ImageSource解码的像素范围。 |
 
 
