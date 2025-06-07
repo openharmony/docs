@@ -34,38 +34,42 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| [int32_t OH_ImageSource_CreateFromUri(napi_env env, char* uri, size_t size,struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createfromuri) | 通过给定的标识符URI 和 [OhosImageSourceOps](capi-ohosimagesourceops.md)结构体，获取JavaScript native层API ImageSource对象。 |
-| [int32_t OH_ImageSource_CreateFromFd(napi_env env, int32_t fd,struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createfromfd) | 通过给定的文件描述符 fd 和 [OhosImageSourceOps](capi-ohosimagesourceops.md)结构体，获取JavaScript native层API ImageSource对象。 |
-| [int32_t OH_ImageSource_CreateFromData(napi_env env, uint8_t* data, size_t dataSize,struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createfromdata) | 通过给定的图像源缓冲区资源 data 和 [OhosImageSourceOps](capi-ohosimagesourceops.md)结构体，获取JavaScript native层API ImageSource对象。 |
-| [int32_t OH_ImageSource_CreateFromRawFile(napi_env env, RawFileDescriptor rawFile,struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createfromrawfile) | 通过给定的资源描述符 [RawFileDescriptor](../LocalizationKit/capi-rawfiledescriptor.md) 和 [OhosImageSourceOps](capi-ohosimagesourceops.md)结构体，获取JavaScript native层API ImageSource对象。 |
-| [int32_t OH_ImageSource_CreateIncrementalFromData(napi_env env, uint8_t* data, size_t dataSize,struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createincrementalfromdata) | 通过给定的图像源缓冲区资源 data 和 [OhosImageSourceOps](capi-ohosimagesourceops.md)结构体，获取增量类型的JavaScript Native API ImageSource对象，图像数据应通过{@link-OH_ImageSource_UpdateData}更新。 |
+| [int32_t OH_ImageSource_Create(napi_env env, struct OhosImageSource* src, struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_create) | 通过给定的信息OhosImageSource和OhosImageSourceOps结构体，获取JavaScript native层API ImageSource对象。 |
+| [int32_t OH_ImageSource_CreateFromUri(napi_env env, char* uri, size_t size,struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createfromuri) | 通过给定的标识符URI和[OhosImageSourceOps](capi-ohosimagesourceops.md)结构体，获取JavaScript native层API ImageSource对象。 |
+| [int32_t OH_ImageSource_CreateFromFd(napi_env env, int32_t fd,struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createfromfd) | 通过给定的文件描述符fd和[OhosImageSourceOps](capi-ohosimagesourceops.md)结构体，获取JavaScript native层API ImageSource对象。 |
+| [int32_t OH_ImageSource_CreateFromData(napi_env env, uint8_t* data, size_t dataSize,struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createfromdata) | 通过给定的图像源缓冲区资源data和[OhosImageSourceOps](capi-ohosimagesourceops.md)结构体，获取JavaScript native层API ImageSource对象。 |
+| [int32_t OH_ImageSource_CreateFromRawFile(napi_env env, RawFileDescriptor rawFile,struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createfromrawfile) | 通过给定的资源描述符[RawFileDescriptor](../apis-localization-kit/_raw_file_descriptor.md#rawfiledescriptor)和[OhosImageSourceOps](capi-ohosimagesourceops.md)结构体，获取JavaScript native层API ImageSource对象。 |
+| [int32_t OH_ImageSource_CreateIncremental(napi_env env, struct OhosImageSource* source, struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createincremental) | 通过给定的信息[OhosImageSource](capi-ohosimagesource.md)和[OhosImageSourceOps](capi-ohosimagesourceops.md)结构，获取增量类型的JavaScript Native API ImageSource对象，图像数据应通过[OH_ImageSource_UpdateData](#oh_imagesource_updatedata)更新。|
+| [int32_t OH_ImageSource_CreateIncrementalFromData(napi_env env, uint8_t* data, size_t dataSize,struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createincrementalfromdata) | 通过给定的图像源缓冲区资源data和[OhosImageSourceOps](capi-ohosimagesourceops.md)结构体，获取增量类型的JavaScript Native API ImageSource对象，图像数据应通过[OH_ImageSource_UpdateData](#oh_imagesource_updatedata)更新。 |
 | [int32_t OH_ImageSource_GetSupportedFormats(struct OhosImageSourceSupportedFormatList* res)](#oh_imagesource_getsupportedformats) | 获取所有支持的解码格式元标记。 |
-| [ImageSourceNative* OH_ImageSource_InitNative(napi_env env, napi_value source)](#oh_imagesource_initnative) | 从输入JavaScript native层API <b>ImageSource</b> 对象中，转换成{@link ImageSourceNative}值。 |
-| [int32_t OH_ImageSource_CreatePixelMap(const ImageSourceNative* native,struct OhosImageDecodingOps* ops, napi_value *res)](#oh_imagesource_createpixelmap) | 通过一个给定的选项[OhosImageDecodingOps](capi-ohosimagedecodingops.md)结构体，从<b>ImageSource</b>中解码JavaScript native层API<b>PixelMap</b>对象 |
-| [int32_t OH_ImageSource_CreatePixelMapList(const ImageSourceNative* native,struct OhosImageDecodingOps* ops, napi_value *res)](#oh_imagesource_createpixelmaplist) | 通过一个给定的选项[OhosImageDecodingOps](capi-ohosimagedecodingops.md)结构体，从<b>ImageSource</b>中解码所有的JavaScript native层API<b>PixelMap</b>对象列表 |
-| [int32_t OH_ImageSource_GetDelayTime(const ImageSourceNative* native,struct OhosImageSourceDelayTimeList* res)](#oh_imagesource_getdelaytime) | 从一些<b>ImageSource</b>（如GIF图像源）获取延迟时间列表。 |
-| [int32_t OH_ImageSource_GetFrameCount(const ImageSourceNative* native, uint32_t *res)](#oh_imagesource_getframecount) | 从<b>ImageSource</b>中获取帧计数。 |
-| [int32_t OH_ImageSource_GetImageInfo(const ImageSourceNative* native, int32_t index,struct OhosImageSourceInfo* info)](#oh_imagesource_getimageinfo) | 通过索引从<b>ImageSource</b>获取图像源信息。 |
+| [ImageSourceNative* OH_ImageSource_InitNative(napi_env env, napi_value source)](#oh_imagesource_initnative) | 从输入JavaScript native层ImageSource对象中，转换成[ImageSourceNative](capi-imagesourcenative-.md)值。 |
+| [int32_t OH_ImageSource_CreatePixelMap(const ImageSourceNative* native,struct OhosImageDecodingOps* ops, napi_value *res)](#oh_imagesource_createpixelmap) | 通过一个给定的选项[OhosImageDecodingOps](capi-ohosimagedecodingops.md)结构体，从ImageSource中解码JavaScript native层PixelMap对象。 |
+| [int32_t OH_ImageSource_CreatePixelMapList(const ImageSourceNative* native,struct OhosImageDecodingOps* ops, napi_value *res)](#oh_imagesource_createpixelmaplist) | 通过一个给定的选项[OhosImageDecodingOps](capi-ohosimagedecodingops.md)结构体结构体，从ImageSource中解码所有的JavaScript native层PixelMap对象列表。 |
+| [int32_t OH_ImageSource_GetDelayTime(const ImageSourceNative* native,struct OhosImageSourceDelayTimeList* res)](#oh_imagesource_getdelaytime) | 从ImageSource（如GIF图像源）获取延迟时间列表。 |
+| [int32_t OH_ImageSource_GetFrameCount(const ImageSourceNative* native, uint32_t *res)](#oh_imagesource_getframecount) | 从ImageSource中获取帧计数。 |
+| [int32_t OH_ImageSource_GetImageInfo(const ImageSourceNative* native, int32_t index,struct OhosImageSourceInfo* info)](#oh_imagesource_getimageinfo) | 通过索引从ImageSource获取图像源信息。 |
+| [int32_t OH_ImageSource_GetImageProperty(const ImageSourceNative* native, struct OhosImageSourceProperty* key, struct OhosImageSourceProperty* value)](#oh_imagesource_getimageproperty) | 通过关键字从ImageSource中获取图像源属性。 |
+| [int32_t OH_ImageSource_UpdateData(const ImageSourceNative* native, struct OhosImageSourceUpdateData* data)](#oh_imagesource_updatedata) | 为了增量类型的ImageSource更新源数据。 |
 | [int32_t OH_ImageSource_Release(ImageSourceNative* native)](#oh_imagesource_release) | 释放native层图像源 <b>ImageSourceNative</b>。 |
 
 ### 变量
 
 | 名称 | 描述 |
 | -- | -- |
-| const char * OHOS_IMAGE_PROPERTY_BITS_PER_SAMPLE = "BitsPerSample" | 定义每个样本比特的图像属性关键字。<br>此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
-| const char * OHOS_IMAGE_PROPERTY_ORIENTATION = "Orientation" | 定义方向的图像属性关键字。此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
-| const char * OHOS_IMAGE_PROPERTY_IMAGE_LENGTH = "ImageLength" | 定义图像长度的图像属性关键字。此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
-| const char * OHOS_IMAGE_PROPERTY_IMAGE_WIDTH = "ImageWidth" | 定义图像宽度的图像属性关键字。此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
-| const char * OHOS_IMAGE_PROPERTY_GPS_LATITUDE = "GPSLatitude" | 定义GPS纬度的图像属性关键字。此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
-| const char * OHOS_IMAGE_PROPERTY_GPS_LONGITUDE = "GPSLongitude" | 定义GPS经度的图像属性关键字。此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
-| const char * OHOS_IMAGE_PROPERTY_GPS_LATITUDE_REF = "GPSLatitudeRef" | 定义GPS纬度参考的图像属性关键字。此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
-| const char * OHOS_IMAGE_PROPERTY_GPS_LONGITUDE_REF = "GPSLongitudeRef" | 定义GPS经度参考的图像属性关键字。此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
-| const char * OHOS_IMAGE_PROPERTY_DATE_TIME_ORIGINAL = "DateTimeOriginal" | 定义初始日期时间的图像属性关键字。此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
-| const char * OHOS_IMAGE_PROPERTY_EXPOSURE_TIME = "ExposureTime" | 定义曝光时间的图像属性关键字。此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
-| const char * OHOS_IMAGE_PROPERTY_SCENE_TYPE = "SceneType" | 定义场景类型的图像属性关键字。此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
-| const char * OHOS_IMAGE_PROPERTY_ISO_SPEED_RATINGS = "ISOSpeedRatings" | 定义ISO速度等级的图像属性关键字。此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
-| const char * OHOS_IMAGE_PROPERTY_F_NUMBER = "FNumber" | 定义FNumber的图像属性关键字。此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
-| const char * OHOS_IMAGE_PROPERTY_COMPRESSED_BITS_PER_PIXEL = "CompressedBitsPerPixel" | 定义每个像素的压缩比特的图像属性关键字。此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
+| const char* OHOS_IMAGE_PROPERTY_BITS_PER_SAMPLE = "BitsPerSample" | 定义每个样本比特的图像属性关键字。<br>此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
+| const char* OHOS_IMAGE_PROPERTY_ORIENTATION = "Orientation" | 定义方向的图像属性关键字。<br>此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
+| const char* OHOS_IMAGE_PROPERTY_IMAGE_LENGTH = "ImageLength" | 定义图像长度的图像属性关键字。<br>此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
+| const char* OHOS_IMAGE_PROPERTY_IMAGE_WIDTH = "ImageWidth" | 定义图像宽度的图像属性关键字。<br>此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
+| const char* OHOS_IMAGE_PROPERTY_GPS_LATITUDE = "GPSLatitude" | 定义GPS纬度的图像属性关键字。<br>此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
+| const char* OHOS_IMAGE_PROPERTY_GPS_LONGITUDE = "GPSLongitude" | 定义GPS经度的图像属性关键字。<br>此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
+| const char* OHOS_IMAGE_PROPERTY_GPS_LATITUDE_REF = "GPSLatitudeRef" | 定义GPS纬度参考的图像属性关键字。<br>此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
+| const char* OHOS_IMAGE_PROPERTY_GPS_LONGITUDE_REF = "GPSLongitudeRef" | 定义GPS经度参考的图像属性关键字。<br>此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
+| const char* OHOS_IMAGE_PROPERTY_DATE_TIME_ORIGINAL = "DateTimeOriginal" | 定义初始日期时间的图像属性关键字。<br>此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
+| const char* OHOS_IMAGE_PROPERTY_EXPOSURE_TIME = "ExposureTime" | 定义曝光时间的图像属性关键字。<br>此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
+| const char* OHOS_IMAGE_PROPERTY_SCENE_TYPE = "SceneType" | 定义场景类型的图像属性关键字。<br>此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
+| const char* OHOS_IMAGE_PROPERTY_ISO_SPEED_RATINGS = "ISOSpeedRatings" | 定义ISO速度等级的图像属性关键字。<br>此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
+| const char* OHOS_IMAGE_PROPERTY_F_NUMBER = "FNumber" | 定义FNumber的图像属性关键字。<br>此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
+| const char* OHOS_IMAGE_PROPERTY_COMPRESSED_BITS_PER_PIXEL = "CompressedBitsPerPixel" | 定义每个像素的压缩比特的图像属性关键字。<br>此标签给[OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty)和[OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty)接口使用。<br>**起始版本：** 10 |
 
 ## 函数说明
 
@@ -223,7 +227,7 @@ int32_t OH_ImageSource_CreateIncremental(napi_env env, struct OhosImageSource* s
 
 **描述**
 
-通过给定的信息[OhosImageSource](capi-ohosimagesource.md)和[OhosImageSourceOps](capi-ohosimagesourceops.md)结构，获取增量类型的JavaScript Native API ImageSource对象，图像数据应通过[OH_ImageSource_UpdateData](#oh_imagesource_updatadata)更新。
+通过给定的信息[OhosImageSource](capi-ohosimagesource.md)和[OhosImageSourceOps](capi-ohosimagesourceops.md)结构，获取增量类型的JavaScript Native API ImageSource对象，图像数据应通过[OH_ImageSource_UpdateData](#oh_imagesource_updatedata)更新。
 
 **起始版本：** 10
 
@@ -255,7 +259,7 @@ int32_t OH_ImageSource_CreateIncrementalFromData(napi_env env, uint8_t* data, si
 
 **描述**
 
-通过给定的图像源缓冲区资源data和[OhosImageSourceOps](capi-ohosimagesourceops.md)结构体，获取增量类型的JavaScript Native API ImageSource对象，图像数据应通过[OH_ImageSource_UpdateData](#oh_imagesource_updatadata)更新。
+通过给定的图像源缓冲区资源data和[OhosImageSourceOps](capi-ohosimagesourceops.md)结构体，获取增量类型的JavaScript Native API ImageSource对象，图像数据应通过[OH_ImageSource_UpdateData](#oh_imagesource_updatedata)更新。
 
 **起始版本：** 11
 

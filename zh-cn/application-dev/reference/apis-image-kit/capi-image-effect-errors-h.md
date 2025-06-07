@@ -2,9 +2,11 @@
 
 ## 概述
 
-声明图片效果器错误码。<br>
+声明图片效果器错误码。
 
 **库：** libimage_effect.so
+
+**引用文件：** <multimedia/image_effect/image_effect_errors.h>
 
 **系统能力：** SystemCapability.Multimedia.ImageEffect.Core
 

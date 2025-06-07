@@ -2,9 +2,15 @@
 
 ## 概述
 
-声明效果器相关接口。效果器提供了滤镜的添加、删除、查询等功能。开发者可以通过效果器提供的接口将多个滤镜组合串联，从而实现较为复杂的效果调节功能。<p>同时，效果器支持多种输入类型，如Pixelmap、URI、Surface、Picture。不同的输入类型在效果器内部都会转换为内存对象，通过滤镜的效果处理，获得处理结果。
+声明效果器相关接口。效果器提供了滤镜的添加、删除、查询等功能。
+
+开发者可以通过效果器提供的接口将多个滤镜组合串联，从而实现较为复杂的效果调节功能。
+
+同时，效果器支持多种输入类型，如Pixelmap、URI、Surface、Picture。不同的输入类型在效果器内部都会转换为内存对象，通过滤镜的效果处理，获得处理结果。
 
 **库：** libimage_effect.so
+
+**引用文件：** <multimedia/image_effect/image_effect.h>
 
 **系统能力：** SystemCapability.Multimedia.ImageEffect.Core
 
@@ -73,7 +79,7 @@ OH_ImageEffect *OH_ImageEffect_Create(const char *name)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const char *name | 效果器名，用于标识效果器，由用户自定义，不为空的字符串。 |
+| const char *name | 效果器名，用于标识效果器，由用户自定义，建议为非空的字符串。 |
 
 **返回：**
 
@@ -135,7 +141,7 @@ ImageEffect_ErrorCode OH_ImageEffect_AddFilterByFilter(OH_ImageEffect *imageEffe
 
 | 类型 | 说明 |
 | -- | -- |
-| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | [EFFECT_SUCCESS](capi-image-effect-errors-h.md#imageeffect_errorcode)如果方法调用成功。<br>         [EFFECT_ERROR_PARAM_INVALID](capi-image-effect-errors-h.md#imageeffect_errorcode)如果入参为空指针。 |
+| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | EFFECT_SUCCESS：方法调用成功。<br>         EFFECT_ERROR_PARAM_INVALID：入参为空指针。 |
 
 ### OH_ImageEffect_InsertFilter()
 
@@ -193,7 +199,7 @@ ImageEffect_ErrorCode OH_ImageEffect_InsertFilterByFilter(OH_ImageEffect *imageE
 
 | 类型 | 说明 |
 | -- | -- |
-| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | [EFFECT_SUCCESS](capi-image-effect-errors-h.md#imageeffect_errorcode)如果方法调用成功。<br>         [EFFECT_ERROR_PARAM_INVALID](capi-image-effect-errors-h.md#imageeffect_errorcode)如果入参为空指针。 |
+| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | EFFECT_SUCCESS：方法调用成功。<br>         EFFECT_ERROR_PARAM_INVALID：入参为空指针。 |
 
 ### OH_ImageEffect_RemoveFilter()
 
@@ -249,7 +255,7 @@ ImageEffect_ErrorCode OH_ImageEffect_RemoveFilterByIndex(OH_ImageEffect *imageEf
 
 | 类型 | 说明 |
 | -- | -- |
-| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | [EFFECT_SUCCESS](capi-image-effect-errors-h.md#imageeffect_errorcode)如果方法调用成功。<br>         [EFFECT_ERROR_PARAM_INVALID](capi-image-effect-errors-h.md#imageeffect_errorcode)如果入参为空指针。 |
+| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | EFFECT_SUCCESS：方法调用成功。<br>         EFFECT_ERROR_PARAM_INVALID：入参为空指针。 |
 
 ### OH_ImageEffect_ReplaceFilter()
 
@@ -306,7 +312,7 @@ ImageEffect_ErrorCode OH_ImageEffect_ReplaceFilterByFilter(OH_ImageEffect *image
 
 | 类型 | 说明 |
 | -- | -- |
-| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | [EFFECT_SUCCESS](capi-image-effect-errors-h.md#imageeffect_errorcode)如果方法调用成功。<br>         [EFFECT_ERROR_PARAM_INVALID](capi-image-effect-errors-h.md#imageeffect_errorcode)如果入参为空指针。 |
+| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | EFFECT_SUCCESS：方法调用成功。<br>         EFFECT_ERROR_PARAM_INVALID：入参为空指针。 |
 
 ### OH_ImageEffect_GetFilterCount()
 
@@ -390,7 +396,7 @@ ImageEffect_ErrorCode OH_ImageEffect_Configure(OH_ImageEffect *imageEffect, cons
 
 | 类型 | 说明 |
 | -- | -- |
-| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | [EFFECT_SUCCESS](capi-image-effect-errors-h.md#imageeffect_errorcode)如果方法调用成功。<br>         [EFFECT_ERROR_PARAM_INVALID](capi-image-effect-errors-h.md#imageeffect_errorcode)如果入参为空指针。<br>         [EFFECT_KEY_ERROR](capi-image-effect-errors-h.md#imageeffect_errorcode)如果参数无效。<br>         [EFFECT_PARAM_ERROR](capi-image-effect-errors-h.md#imageeffect_errorcode)如果参数值无效。 |
+| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | EFFECT_SUCCESS：方法调用成功。<br>         EFFECT_ERROR_PARAM_INVALID：入参为空指针。<br>         EFFECT_KEY_ERROR：参数无效。<br>         EFFECT_PARAM_ERROR：参数值无效。。 |
 
 ### OH_ImageEffect_SetOutputSurface()
 
@@ -418,7 +424,7 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputSurface(OH_ImageEffect *imageEffec
 
 | 类型 | 说明 |
 | -- | -- |
-| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | [EFFECT_SUCCESS](capi-image-effect-errors-h.md#imageeffect_errorcode)如果方法调用成功。<br>         [EFFECT_ERROR_PARAM_INVALID](capi-image-effect-errors-h.md#imageeffect_errorcode)如果入参为空指针。 |
+| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | EFFECT_SUCCESS：方法调用成功。<br>         EFFECT_ERROR_PARAM_INVALID：入参为空指针。 |
 
 ### OH_ImageEffect_GetInputSurface()
 
@@ -446,7 +452,7 @@ ImageEffect_ErrorCode OH_ImageEffect_GetInputSurface(OH_ImageEffect *imageEffect
 
 | 类型 | 说明 |
 | -- | -- |
-| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | [EFFECT_SUCCESS](capi-image-effect-errors-h.md#imageeffect_errorcode)如果方法调用成功。<br>         [EFFECT_ERROR_PARAM_INVALID](capi-image-effect-errors-h.md#imageeffect_errorcode)如果入参为空指针。 |
+| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | EFFECT_SUCCESS：方法调用成功。<br>         EFFECT_ERROR_PARAM_INVALID：入参为空指针。 |
 
 ### OH_ImageEffect_SetInputPixelmap()
 
@@ -468,13 +474,13 @@ ImageEffect_ErrorCode OH_ImageEffect_SetInputPixelmap(OH_ImageEffect *imageEffec
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
-| OH_PixelmapNative *pixelmap | 指向OH_PixelmapNative实例的指针。 |
+| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 指向OH_PixelmapNative实例的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | [EFFECT_SUCCESS](capi-image-effect-errors-h.md#imageeffect_errorcode)如果方法调用成功。<br>         [EFFECT_ERROR_PARAM_INVALID](capi-image-effect-errors-h.md#imageeffect_errorcode)如果入参为空指针。 |
+| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | EFFECT_SUCCESS：方法调用成功。<br>         EFFECT_ERROR_PARAM_INVALID：入参为空指针。 |
 
 ### OH_ImageEffect_SetOutputPixelmap()
 
@@ -496,13 +502,13 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputPixelmap(OH_ImageEffect *imageEffe
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
-| OH_PixelmapNative *pixelmap | 指向OH_PixelmapNative实例的指针。 |
+| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 指向OH_PixelmapNative实例的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | [EFFECT_SUCCESS](capi-image-effect-errors-h.md#imageeffect_errorcode)如果方法调用成功。<br>         [EFFECT_ERROR_PARAM_INVALID](capi-image-effect-errors-h.md#imageeffect_errorcode)如果入参为空指针。 |
+| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | EFFECT_SUCCESS：方法调用成功。<br>         EFFECT_ERROR_PARAM_INVALID：入参为空指针。<br> EFFECT_PARAM_ERROR：如果参数异常导致方法调用失败。 |
 
 ### OH_ImageEffect_SetInputNativeBuffer()
 
@@ -524,13 +530,13 @@ ImageEffect_ErrorCode OH_ImageEffect_SetInputNativeBuffer(OH_ImageEffect *imageE
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
-| OH_NativeBuffer *nativeBuffer | 指向OH_NativeBuffer实例的指针。 |
+| [OH_NativeBuffer](../apis-arkgraphics2d/capi-oh-nativebuffer.md) *nativeBuffer | 指向OH_NativeBuffer实例的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | [EFFECT_SUCCESS](capi-image-effect-errors-h.md#imageeffect_errorcode)如果方法调用成功。<br>         [EFFECT_ERROR_PARAM_INVALID](capi-image-effect-errors-h.md#imageeffect_errorcode)如果入参为空指针。 |
+| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | EFFECT_SUCCESS：方法调用成功。<br>         EFFECT_ERROR_PARAM_INVALID：入参为空指针。 |
 
 ### OH_ImageEffect_SetOutputNativeBuffer()
 
@@ -552,13 +558,13 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputNativeBuffer(OH_ImageEffect *image
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
-| OH_NativeBuffer *nativeBuffer | 指向OH_NativeBuffer实例的指针。 |
+| [OH_NativeBuffer](../apis-arkgraphics2d/capi-oh-nativebuffer.md) *nativeBuffer | 指向OH_NativeBuffer实例的指针，允许为空，当输入为空时渲染结果返回到输入的OH_NativeBuffer对象上。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | [EFFECT_SUCCESS](capi-image-effect-errors-h.md#imageeffect_errorcode)如果方法调用成功。<br>         [EFFECT_ERROR_PARAM_INVALID](capi-image-effect-errors-h.md#imageeffect_errorcode)如果入参为空指针。 |
+| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | EFFECT_SUCCESS：方法调用成功。<br>         EFFECT_ERROR_PARAM_INVALID：入参为空指针。<br> EFFECT_PARAM_ERROR：如果参数异常导致方法调用失败。 |
 
 ### OH_ImageEffect_SetInputUri()
 
@@ -580,13 +586,13 @@ ImageEffect_ErrorCode OH_ImageEffect_SetInputUri(OH_ImageEffect *imageEffect, co
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
-| const char *uri | 图片URI。 |
+| const char *uri | 图片URI（只支持Jpeg，Heif）。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | [EFFECT_SUCCESS](capi-image-effect-errors-h.md#imageeffect_errorcode)如果方法调用成功。<br>         [EFFECT_ERROR_PARAM_INVALID](capi-image-effect-errors-h.md#imageeffect_errorcode)如果入参为空指针。 |
+| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | EFFECT_SUCCESS：方法调用成功。<br>         EFFECT_ERROR_PARAM_INVALID：入参为空指针。 |
 
 ### OH_ImageEffect_SetOutputUri()
 
@@ -608,13 +614,13 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputUri(OH_ImageEffect *imageEffect, c
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
-| const char *uri | 图片URI。 |
+| const char *uri | 图片URI。输出URI的格式和输入保持一致，如果不支持Heif编码能力，则进行Jpeg编码。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | [EFFECT_SUCCESS](capi-image-effect-errors-h.md#imageeffect_errorcode)如果方法调用成功。<br>         [EFFECT_ERROR_PARAM_INVALID](capi-image-effect-errors-h.md#imageeffect_errorcode)如果入参为空指针。 |
+| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | EFFECT_SUCCESS：方法调用成功。<br>         EFFECT_ERROR_PARAM_INVALID：入参为空指针。 |
 
 ### OH_ImageEffect_SetInputPicture()
 
@@ -636,13 +642,13 @@ ImageEffect_ErrorCode OH_ImageEffect_SetInputPicture(OH_ImageEffect *imageEffect
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
-| OH_PictureNative *picture | 指向OH_PictureNative实例的指针。 |
+| [OH_PictureNative](capi-oh-picturenative.md) *picture | 指向OH_PictureNative实例的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | [EFFECT_SUCCESS](capi-image-effect-errors-h.md#imageeffect_errorcode)如果方法调用成功。<br>         [EFFECT_ERROR_PARAM_INVALID](capi-image-effect-errors-h.md#imageeffect_errorcode)如果入参为空指针。 |
+| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | EFFECT_SUCCESS：方法调用成功。<br>         EFFECT_ERROR_PARAM_INVALID：入参为空指针。 |
 
 ### OH_ImageEffect_SetOutputPicture()
 
@@ -664,13 +670,13 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputPicture(OH_ImageEffect *imageEffec
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
-| OH_PictureNative *picture | 指向OH_PictureNative实例的指针。 |
+| [OH_PictureNative](capi-oh-picturenative.md) *picture | 指向OH_PictureNative实例的指针，允许为空，当输入为空时渲染结果返回到输入的OH_PictureNative对象上。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | [EFFECT_SUCCESS](capi-image-effect-errors-h.md#imageeffect_errorcode)如果方法调用成功。<br>         [EFFECT_ERROR_PARAM_INVALID](capi-image-effect-errors-h.md#imageeffect_errorcode)如果入参为空指针。 |
+| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | EFFECT_SUCCESS：方法调用成功。<br>         EFFECT_ERROR_PARAM_INVALID：入参为空指针。<br> EFFECT_PARAM_ERROR：如果参数异常导致方法调用失败。 |
 
 ### OH_ImageEffect_Start()
 
@@ -697,7 +703,7 @@ ImageEffect_ErrorCode OH_ImageEffect_Start(OH_ImageEffect *imageEffect)
 
 | 类型 | 说明 |
 | -- | -- |
-| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | [EFFECT_SUCCESS](capi-image-effect-errors-h.md#imageeffect_errorcode)如果方法调用成功。<br>         [EFFECT_ERROR_PARAM_INVALID](capi-image-effect-errors-h.md#imageeffect_errorcode)如果入参为空指针。<br>         [EFFECT_INPUT_OUTPUT_NOT_SUPPORTED](capi-image-effect-errors-h.md#imageeffect_errorcode)如果待处理输入、输出图像数据类型不一致。<br>         [EFFECT_COLOR_SPACE_NOT_MATCH](capi-image-effect-errors-h.md#imageeffect_errorcode)如果输入、输出图像色彩空间不配置。<br>         [EFFECT_ALLOCATE_MEMORY_FAILED](capi-image-effect-errors-h.md#imageeffect_errorcode)如果内存申请失败。 |
+| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | EFFECT_SUCCESS：方法调用成功。<br>         EFFECT_ERROR_PARAM_INVALID：入参为空指针。<br>         EFFECT_INPUT_OUTPUT_NOT_SUPPORTED：待处理输入、输出图像数据类型不一致。<br>         EFFECT_COLOR_SPACE_NOT_MATCH：输入、输出图像色彩空间不配置。<br>         EFFECT_ALLOCATE_MEMORY_FAILED：内存申请失败。 |
 
 ### OH_ImageEffect_Stop()
 
@@ -724,7 +730,7 @@ ImageEffect_ErrorCode OH_ImageEffect_Stop(OH_ImageEffect *imageEffect)
 
 | 类型 | 说明 |
 | -- | -- |
-| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | [EFFECT_SUCCESS](capi-image-effect-errors-h.md#imageeffect_errorcode)如果方法调用成功。<br>         [EFFECT_ERROR_PARAM_INVALID](capi-image-effect-errors-h.md#imageeffect_errorcode)如果入参为空指针。 |
+| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | EFFECT_SUCCESS：方法调用成功。<br>         EFFECT_ERROR_PARAM_INVALID：入参为空指针。 |
 
 ### OH_ImageEffect_Release()
 
@@ -751,7 +757,7 @@ ImageEffect_ErrorCode OH_ImageEffect_Release(OH_ImageEffect *imageEffect)
 
 | 类型 | 说明 |
 | -- | -- |
-| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | [EFFECT_SUCCESS](capi-image-effect-errors-h.md#imageeffect_errorcode)如果方法调用成功。<br>         [EFFECT_ERROR_PARAM_INVALID](capi-image-effect-errors-h.md#imageeffect_errorcode)如果入参为空指针。 |
+| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | EFFECT_SUCCESS：方法调用成功。<br>         EFFECT_ERROR_PARAM_INVALID：入参为空指针。 |
 
 ### OH_ImageEffect_Save()
 
@@ -779,7 +785,7 @@ ImageEffect_ErrorCode OH_ImageEffect_Save(OH_ImageEffect *imageEffect, char **in
 
 | 类型 | 说明 |
 | -- | -- |
-| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | [EFFECT_SUCCESS](capi-image-effect-errors-h.md#imageeffect_errorcode)如果方法调用成功。<br>         [EFFECT_ERROR_PARAM_INVALID](capi-image-effect-errors-h.md#imageeffect_errorcode)如果入参为空指针。 |
+| [ImageEffect_ErrorCode](capi-image-effect-errors-h.md#imageeffect_errorcode) | EFFECT_SUCCESS：方法调用成功。<br>         EFFECT_ERROR_PARAM_INVALID：入参为空指针。 |
 
 ### OH_ImageEffect_Restore()
 
