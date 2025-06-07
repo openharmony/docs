@@ -36,7 +36,7 @@
     - [Interface (ZoomQuery)](arkts-apis-camera-ZoomQuery.md)
     - [Interfaces (其他)](arkts-apis-camera-i.md)
     - [Enums](arkts-apis-camera-e.md)
-    - [废弃的Interfaces (CaptureSession, deprecated)](arkts-apis-camera-CaptureSession.md)
+    - [废弃的Interface (CaptureSession, deprecated)](arkts-apis-camera-CaptureSession.md)
   - [@ohos.multimedia.cameraPicker (相机选择器)](js-apis-cameraPicker.md)
   <!--Del-->
   - [@ohos.multimedia.camera (相机管理)(系统接口)](js-apis-camera-sys.md)
