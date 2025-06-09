@@ -4821,6 +4821,76 @@
 
 **起始版本**：20
 
+## ohos.permission.VIRUS_PROTECTION_SERVICE
+
+允许应用启动病毒查杀任务。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.UPLOAD_SAMPLE_FILE
+
+允许应用上传样本文件到云侧。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.DOWNLOAD_POLICY_FILE
+
+允许应用从云侧下载策略文件。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.NOTIFY_VIRUS_PROTECTION
+
+允许应用发送通知给病毒防护。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.ACCESS_VIRUS_PROTECTION
+
+允许应用跳转到病毒防护页面。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
 ## ohos.permission.GRANT_URI_PERMISSION_AS_CALLER
 
 允许应用以调用方的身份将URI访问权限授权给目标应用。
