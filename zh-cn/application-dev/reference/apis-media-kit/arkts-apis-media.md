@@ -7,17 +7,17 @@
 
 媒体子系统包含了音视频相关媒体业务，提供以下常用功能：
 
-- 音视频播放（[AVPlayer](#avplayer9)<sup>9+</sup>）
+- 音视频播放（[AVPlayer](arkts-apis-media-AVPlayer.md#avplayer9)<sup>9+</sup>）
 
-- 音视频录制（[AVRecorder](#avrecorder9)<sup>9+</sup>）
+- 音视频录制（[AVRecorder](arkts-apis-media-AVRecorder.md#avrecorder9)<sup>9+</sup>）
 
-- 视频转码（[AVTranscoder](#avtranscoder12)<sup>12+</sup>）
+- 视频转码（[AVTranscoder](arkts-apis-media-AVTranscoder.md#avtranscoder12)<sup>12+</sup>）
 
-- 获取音视频元数据（[AVMetadataExtractor](#avmetadataextractor11)<sup>11+</sup>）
+- 获取音视频元数据（[AVMetadataExtractor](arkts-apis-media-AVMetadataExtractor.md#avmetadataextractor11)<sup>11+</sup>）
 
-- 获取视频缩略图（[AVImageGenerator](#avimagegenerator12)<sup>12+</sup>）
+- 获取视频缩略图（[AVImageGenerator](arkts-apis-media-AVImageGenerator.md#avimagegenerator12)<sup>12+</sup>）
 
-- 屏幕录制（[AVScreenCaptureRecorder](#avscreencapturerecorder12)<sup>12+</sup>）
+- 屏幕录制（[AVScreenCaptureRecorder](arkts-apis-media-AVScreenCaptureRecorder.md#avscreencapturerecorder12)<sup>12+</sup>）
 
 ## 导入模块
 
