@@ -70,12 +70,10 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-callback(data:userStatus.DetectionResult) {
-    console.info('callback success' + data);
-};
-
 try {
-    userStatus.on('ChildDetection', this.callback);  
+    userStatus.on('ChildDetection', (data: userStatus.DetectionResult) => {
+      console.info('callback success' + data);
+    });
     console.info("on succeeded");
 } catch (err) {
     let error = err as BusinessError;
