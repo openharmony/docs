@@ -512,7 +512,7 @@ enableModeChangeAnimation(isEnabled: Optional&lt;boolean&gt;)
 
 enableToolBarAdaptation(enable: Optional&lt;boolean&gt;)
 
-设置是否启用Navigation和NavDestination的工具栏自适应能力。
+设置是否启用Navigation和NavDestination的工具栏自适应能力。该接口不适配于自定义菜单，使用该接口需采用[NavigationMenuItem](#navigationmenuitem)接口来定义[菜单](#menus)。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -4445,3 +4445,71 @@ struct NavigationExample {
 ```
 
 ![zh-cn_image_navigation_splitPlaceholder](figures/zh-cn_image_navigation_splitPlaceholder.png)
+
+### 示例15（Navigation工具栏自适应）
+
+该示例主要展示Navigation工具栏的自适应能力的启用及关闭。
+
+```ts
+// 工程配置文件module.json5中配置 {"orientation": "landscape"}
+import { SymbolGlyphModifier } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct NavigationExample {
+  @Provide('navPathStack') navPathStack:NavPathStack = new NavPathStack();
+  @State enable: boolean = false
+  @State menuItems:Array<NavigationMenuItem> = [
+    {
+      value:'menuItem1',
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.card_writer')),
+    },
+    {
+      value:'menuItem2',
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus'))
+    },
+    {
+      value:'menuItem3',
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
+    },
+  ]
+
+  @State toolItems:Array<ToolbarItem>= [
+    {
+      value:'toolItem1',
+      symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
+      action:()=>{}
+    },
+    {
+      value:'toolItem2',
+      symbolIcon:new SymbolGlyphModifier($r('sys.symbol.card_migration')),
+      action:()=>{}
+    },
+    {
+      value:'toolItem3',
+      symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
+      action:()=>{}
+    }
+  ]
+
+  build() {
+    Navigation(this.navPathStack) {
+      Column() {
+        Button('启用/关闭自适应').onClick(()=> {
+          this.enable = !this.enable;
+        })
+        Text("启用自适应能力：" + this.enable)
+      }
+    }
+    .mode(NavigationMode.Stack)
+    .enableToolBarAdaptation(this.enable) //是否启用工具栏自适应能力
+    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')))
+    .titleMode(NavigationTitleMode.Mini)
+    .menus(this.menuItems)
+    .toolbarConfiguration(this.toolItems)
+    .title('一级页面')
+  }
+}
+```
+
+![zh-cn_image_navigation_toolbar_adaptation_landscape](figures/zh-cn_image_navigation_toolbar_adaptation_landscape.gif)
