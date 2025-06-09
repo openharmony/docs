@@ -65,6 +65,8 @@ bm install -p /data/app/ohos.app.hap -r
 bm install -s xxx.hsp
 # 同时安装使用方应用和其依赖的应用间共享库
 bm install -p aaa.hap -s xxx.hsp yyy.hsp
+# 同时安装HAP和应用内共享库
+bm install -p /data/app/
 # 安装一个hap,等待时间为10s
 bm install -p /data/app/ohos.app.hap -w 10
 ```
