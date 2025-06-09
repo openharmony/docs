@@ -2,8 +2,7 @@
 
 ## 场景介绍
 
-[剪贴板](../../reference/apis-basic-services-kit/js-apis-pasteboard.md)为开发者提供数据的复制粘贴能力。
-当需要使用复制粘贴等功能时，例如：复制文字内容到备忘录中粘贴，复制图库照片到文件管理粘贴，就可以通过剪贴板来完成。
+[剪贴板](../../reference/apis-basic-services-kit/js-apis-pasteboard.md)为开发者提供数据的复制粘贴能力。当需要使用复制粘贴等功能时，例如：复制文字内容到备忘录中粘贴，复制图库照片到文件管理粘贴，就可以通过剪贴板来完成。
 
 ## 约束限制
 
