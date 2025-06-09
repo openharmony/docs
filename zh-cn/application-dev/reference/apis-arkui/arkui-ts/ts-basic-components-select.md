@@ -1377,35 +1377,15 @@ import { LengthMetrics } from '@kit.ArkUI'
 @Entry
 @Component
 struct Index {
-
-  @Builder
-  MyMenu() {
-    Menu() {
-      MenuItem({ content: "Item Content" })
-      MenuItem({ content: "Item Content" })
-      MenuItem({ content: "Item Content" })
-      MenuItemGroup() {
-        MenuItem({ content: "Group Child" })
-        MenuItem({ content: "Group Child" })
-      }
-      MenuItem({ content: "Item Content" })
-    }
-    .menuItemDivider({
-      strokeWidth: LengthMetrics.vp(5),
-      color: '#d5d5d5',
-      mode: DividerMode.EMBEDDED_IN_MENU
-    })
-    .menuItemGroupDivider({
-      strokeWidth: LengthMetrics.vp(5),
-      color: '#707070',
-      mode: DividerMode.EMBEDDED_IN_MENU
-    })
-  }
-
   build() {
     RelativeContainer() {
-      Button("show menu")
-        .bindMenu(this.MyMenu())
+      Select([{ value: "SelectItem" }, { value: "SelectItem" }, { value: "SelectItem" },])
+        .value("请选择")
+        .dividerStyle({
+          strokeWidth: LengthMetrics.vp(5),
+          color: '#d5d5d5',
+          mode: DividerMode.EMBEDDED_IN_MENU
+        })
     }
     .height('100%')
     .width('100%')
@@ -1413,4 +1393,4 @@ struct Index {
 }
 ```
 
-![dividerStyleMode](figures/dividerStyleMode.png)
+![dividerStyleMode](figures/SelectdividerStyleMode.png)
