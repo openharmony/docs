@@ -2386,7 +2386,7 @@ getVolumeGroupManager(groupId: number, callback: AsyncCallback<AudioVolumeGroupM
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                        |
 | ---------- | ------------------------------------------------------------ | ---- |-----------------------------------------------------------|
-| groupId    | number                                    | 是   | 音量组id，默认使用LOCAL_VOLUME_GROUP_ID。                          |
+| groupId    | number                                    | 是   | 音量组id，默认使用DEFAULT_VOLUME_GROUP_ID。                          |
 | callback   | AsyncCallback&lt;[AudioVolumeGroupManager](#audiovolumegroupmanager9)&gt; | 是   | 回调函数。当获取音频组管理器成功，err为undefined，data为获取到的音频组管理器对象；否则为错误对象。 |
 
 **示例：**
@@ -2418,7 +2418,7 @@ getVolumeGroupManager(groupId: number\): Promise<AudioVolumeGroupManager\>
 
 | 参数名     | 类型                                      | 必填 | 说明                               |
 | ---------- | ---------------------------------------- | ---- |----------------------------------|
-| groupId    | number                                   | 是   | 音量组id，默认使用LOCAL_VOLUME_GROUP_ID。 |
+| groupId    | number                                   | 是   | 音量组id，默认使用DEFAULT_VOLUME_GROUP_ID。 |
 
 **返回值：**
 
@@ -2452,7 +2452,7 @@ getVolumeGroupManagerSync(groupId: number\): AudioVolumeGroupManager
 
 | 参数名     | 类型                                      | 必填 | 说明                               |
 | ---------- | ---------------------------------------- | ---- |----------------------------------|
-| groupId    | number                                   | 是   | 音量组id，默认使用LOCAL_VOLUME_GROUP_ID。 |
+| groupId    | number                                   | 是   | 音量组id，默认使用DEFAULT_VOLUME_GROUP_ID。 |
 
 **返回值：**
 
@@ -6701,7 +6701,7 @@ audioRenderer.getBufferSize().then((data: number)=> {
   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.cacheDir;
-  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
   let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   fs.stat(filePath).then(async (stat: fs.Stat) => {
     let buf = new ArrayBuffer(bufferSize);
@@ -6770,7 +6770,7 @@ audioRenderer.getBufferSize().then((data: number) => {
   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.cacheDir;
-  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
   let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   fs.stat(filePath).then(async (stat: fs.Stat) => {
     let buf = new ArrayBuffer(bufferSize);
@@ -8499,7 +8499,7 @@ let bufferSize: number = 0;
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let path = context.cacheDir;
 // 确保该沙箱路径下存在该资源。
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let writeDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {
