@@ -948,7 +948,7 @@ getAvailableEncoder(callback: AsyncCallback\<Array\<EncoderInfo>>): void
 
 | 参数名   | 类型                                                  | 必填 | 说明                                 |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback\<Array\<[EncoderInfo](arkts-pais-media-i.md#encoderinfo11)>> | 是   | 回调函数。获取可用的编码器参数成功时，err为undefined，data为获取到的编码器参数，否则为错误对象。 |
+| callback | AsyncCallback\<Array\<[EncoderInfo](arkts-apis-media-i.md#encoderinfo11)>> | 是   | 回调函数。获取可用的编码器参数成功时，err为undefined，data为获取到的编码器参数，否则为错误对象。 |
 
 **错误码**：
 
@@ -986,7 +986,7 @@ getAvailableEncoder(): Promise\<Array\<EncoderInfo>>
 
 | 类型                                            | 说明                                            |
 | ----------------------------------------------- | ----------------------------------------------- |
-| Promise\<Array\<[EncoderInfo](arkts-pais-media-i.md#encoderinfo11)>> | Promise对象，返回获取的可用的编码器参数。 |
+| Promise\<Array\<[EncoderInfo](arkts-apis-media-i.md#encoderinfo11)>> | Promise对象，返回获取的可用的编码器参数。 |
 
 **错误码**：
 
