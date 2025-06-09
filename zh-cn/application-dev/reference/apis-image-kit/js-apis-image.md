@@ -7617,7 +7617,7 @@ let receiver: image.ImageReceiver = image.createImageReceiver(size, image.ImageF
 
 createImageReceiver(width: number, height: number, format: number, capacity: number): ImageReceiver
 
-通过宽、高、图片格式、容量创建ImageReceiver实例。ImageReceiver做为图片的接收方、消费者，它的参数属性实际上不会对接收到的图片产生影响。图片属性的配置应在发送方、生产者进行，如相机预览流[createPreviewOutput](../apis-camera-kit/js-apis-camera.md#createpreviewoutput)。
+通过宽、高、图片格式、容量创建ImageReceiver实例。ImageReceiver做为图片的接收方、消费者，它的参数属性实际上不会对接收到的图片产生影响。图片属性的配置应在发送方、生产者进行，如相机预览流[createPreviewOutput](../apis-camera-kit/arkts-apis-camera-CameraManager.md#createpreviewoutput)。
 
 > **说明：**
 >
@@ -7648,7 +7648,7 @@ let receiver: image.ImageReceiver = image.createImageReceiver(8192, 8, image.Ima
 
 ## ImageReceiver<sup>9+</sup>
 
-图像接收类，用于获取组件surface id，接收最新的图片和读取下一张图片，以及释放ImageReceiver实例。ImageReceiver做为图片的接收方、消费者，它的参数属性实际上不会对接收到的图片产生影响。图片属性的配置应在发送方、生产者进行，如相机预览流[createPreviewOutput](../apis-camera-kit/js-apis-camera.md#createpreviewoutput)。
+图像接收类，用于获取组件surface id，接收最新的图片和读取下一张图片，以及释放ImageReceiver实例。ImageReceiver做为图片的接收方、消费者，它的参数属性实际上不会对接收到的图片产生影响。图片属性的配置应在发送方、生产者进行，如相机预览流[createPreviewOutput](../apis-camera-kit/arkts-apis-camera-CameraManager.md#createpreviewoutput)。
 
 在调用以下方法前需要先创建ImageReceiver实例。
 
