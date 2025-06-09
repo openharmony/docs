@@ -1,4 +1,4 @@
-# Interfaces (PreviewOutput)
+# Interface (PreviewOutput)
 
 > **说明：**
 >
@@ -311,6 +311,8 @@ getActiveProfile(): Profile
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function testGetActiveProfile(previewOutput: camera.PreviewOutput): camera.Profile | undefined {
   let activeProfile: camera.Profile | undefined = undefined;
   try {
@@ -362,6 +364,8 @@ getPreviewRotation(displayRotation: number): ImageRotation
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function testGetPreviewRotation(previewOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
   let previewRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
@@ -405,6 +409,8 @@ setPreviewRotation(previewRotation: ImageRotation, isDisplayLocked?: boolean): v
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function testSetPreviewRotation(previewOutput: camera.PreviewOutput, previewRotation : camera.ImageRotation, isDisplayLocked: boolean): void {
   try {
     previewOutput.setPreviewRotation(previewRotation, isDisplayLocked);

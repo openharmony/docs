@@ -1,4 +1,4 @@
-# Interfaces (Stabilization)
+# Interface (Stabilization)
 
 > **说明：**
 >

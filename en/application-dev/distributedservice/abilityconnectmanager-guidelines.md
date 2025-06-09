@@ -74,7 +74,7 @@ You have logged in to devices A and B with the same HUAWEI ID and the two device
 ### Setting Up the Environment
 
 1. Download and install DevEco Studio on the PC. For details, see [Downloading Software](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-software-download-V5) and [Installing DevEco Studio](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-software-install-V5). The DevEco Studio version must be 4.1 or later.
-2. Update the public-SDK to API 18 or later.
+2. Update the public-SDK to API 18 or later. For details about how to update the SDK, see [OpenHarmony SDK Upgrade Assistant]( ../tools/openharmony_sdk_upgrade_assistant.md).
 3. Connect device A and device B to the PC using USB cables.
 4. Enable Bluetooth on device A and device B to implement networking.
 
@@ -104,13 +104,13 @@ The following table describes the APIs for cross-device connection management. F
 
 | API| Description|
 | -------- | -------- |
-| createAbilityConnectionSession(serverId:&nbsp;string,&nbsp;context:&nbsp;Context,&nbsp;peerInfo:&nbsp;peerInfo,&nbsp;connectOpt:&nbsp;ConnectOption):&nbsp;number; | Creates a session between applications.|
+| createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Context,&nbsp;peerInfo:&nbsp;PeerInfo,&nbsp;connectOptions:&nbsp;ConnectOptions):&nbsp;number; | Creates a session between applications.|
 | destroyAbilityConnectionSession(sessionId:&nbsp;number):&nbsp;void; | Destroys a session between applications.|
 | connect(sessionId:&nbsp;number):&nbsp;Promise&lt;ConnectResult&gt;; | Connects to the ability on the source side.|
 | acceptConnect(sessionId:&nbsp;number,&nbsp;token:&nbsp;string):&nbsp;Promise&lt;void&gt;; | Connects to the ability on the sink side.|
 | disconnect(sessionId:&nbsp;number):&nbsp;void; | Disconnects the ability connection.|
-| on(type:&nbsp;'connect'&nbsp;\| &nbsp;'disconnect'&nbsp;\| &nbsp;'receiveMessage'&nbsp;\| &nbsp;'receiveData'&nbsp;\| &nbsp;'receiveImage',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void | Enable listening for <!--Del-->the **connect**, **disconnect**, **receiveMessage**, **receiveData**, and **receiveImage **<!--DelEnd-->events.|
-| off(type:&nbsp;'connect'&nbsp;\| &nbsp;'disconnect'&nbsp;\| &nbsp;'receiveMessage'&nbsp;\| &nbsp;'receiveData'&nbsp;\| &nbsp;'receiveImage',&nbsp;'connect',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void | Cancels listening for <!--Del-->the **connect**, **disconnect**, **receiveMessage**, **receiveData**, and **receiveImage **<!--DelEnd-->events.|
+| on(type:&nbsp;'connect'&nbsp;\| &nbsp;'disconnect'&nbsp;\| &nbsp;'receiveMessage'&nbsp;\| &nbsp;'receiveData',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void | Enable listening for <!--Del-->the **connect**, **disconnect**, **receiveMessage**, and **receiveData**<!--DelEnd-->events.|
+| off(type:&nbsp;'connect'&nbsp;\| &nbsp;'disconnect'&nbsp;\| &nbsp;'receiveMessage'&nbsp;\| &nbsp;'receiveData',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void | Cancels listening for <!--Del-->the **connect**, **disconnect**, **receiveMessage**, and **receiveData**<!--DelEnd-->events.|
 | sendMessage(sessionId:&nbsp;number,&nbsp;msg:&nbsp;string):&nbsp;Promise&lt;void&gt;; | Sends a text message.|
 |<!--DelRow--> sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;void&gt;; | Sends byte streams (supported only for system applications).|
 |<!--DelRow--> sendImage(sessionId:&nbsp;number,&nbsp;image:&nbsp;image.PixelMap):&nbsp;Promise&lt;void&gt;; | Sends an image (supported only for system applications).|
@@ -182,7 +182,7 @@ The application calls **createAbilityConnectionSession()** to create a session a
     bundleName: 'com.example.remotephotodemo',
     moduleName: 'entry',
     abilityName: 'EntryAbility',
-    serverId: 'collabTest'
+    serviceName: 'collabTest'
   };
   const myRecord: Record<string, string> = {
     "newKey1": "value1",
@@ -192,16 +192,14 @@ The application calls **createAbilityConnectionSession()** to create a session a
     'ohos.collabrate.key.start.option': 'ohos.collabrate.value.foreground',
   };
   // Define connection options.
-  const connectOption: abilityConnectionManager.ConnectOption = {
-    needSendBigData: true,
-    needSendStream: false,
-    needReceiveStream: true,
-    options: options,
+  const connectOptions: abilityConnectionManager.ConnectOptions = {
+    needSendData: true,
+    startOptions: abilityConnectionManager.StartOptionParams.START_IN_FOREGROUND,
     parameters: myRecord
   };
-  let context = getContext(this) as common.UIAbilityContext;
+  let context = this.getUIContext().getHostContext();
   try {
-    this.sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", context, peerInfo, connectOption);
+    this.sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", context, peerInfo, connectOptions);
     hilog.info(0x0000, 'testTag', 'createSession sessionId is', this.sessionId);
 
     abilityConnectionManager.connect(this.sessionId).then((ConnectResult) => {
@@ -232,7 +230,7 @@ After the application on device A calls **connect()**, the application on device
       hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     }
 
-    onCollaborate(wantParam: Record<string, Object>): AbilityConstant.OnCollaborateResult {
+    onCollaborate(wantParam: Record<string, Object>): AbilityConstant.CollaborateResult {
       hilog.info(0x0000, 'testTag', '%{public}s', 'on collaborate');
       let param = wantParam["ohos.extra.param.key.supportCollaborateIndex"] as Record<string, Object>
       this.onCollab(param);
@@ -260,7 +258,7 @@ After the application on device A calls **connect()**, the application on device
         return sessionId;
       }
  
-      const options = collabParam["ConnectOption"] as abilityConnectionManager.ConnectOption;
+      const options = collabParam["ConnectOptions"] as abilityConnectionManager.ConnectOptions;
       options.needSendBigData = true;
       options.needSendStream = true;
       options.needReceiveStream = false;
@@ -462,3 +460,5 @@ During service collaboration, DMS keeps listening for the collaboration lifecycl
 **Solution**
 
 [Apply for a continuous task](../task-management/continuous-task.md).
+
+<!--no_check-->

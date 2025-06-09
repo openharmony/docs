@@ -1168,7 +1168,7 @@ LocalStorage的目的是为了实现页面间的状态变量共享。之所以�
 **基本场景**
 
 V1:
-通过windowStage.[loadContent](../../reference/apis-arkui/js-apis-window.md#loadcontent9)和this.getUIContext().[getSharedLocalStorage](../../reference/apis-arkui/js-apis-arkui-UIContext.md#getsharedlocalstorage12)接口实现页面间的状态变量共享。
+通过windowStage.[loadContent](../../reference/apis-arkui/arkts-apis-window-Window.md#loadcontent9)和this.getUIContext().[getSharedLocalStorage](../../reference/apis-arkui/js-apis-arkui-UIContext.md#getsharedlocalstorage12)接口实现页面间的状态变量共享。
 ```
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
@@ -2941,7 +2941,7 @@ struct Index {
 }
 ```
 
-#### 组件Modfier
+#### 组件Modifier
 
 动态设置组件的属性类。以Text组件为例。
 

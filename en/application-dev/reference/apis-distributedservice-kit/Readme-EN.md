@@ -5,6 +5,7 @@
   - [@ohos.distributedDeviceManager (Device Management)](js-apis-distributedDeviceManager.md)
   - [@ohos.distributedsched.abilityConnectionManager (Cross-Device Connection Management)](js-apis-distributed-abilityConnectionManager.md)
   - [@ohos.application.DistributedExtensionAbility (Distributed Extension)](js-apis-distributedExtensionAbility.md)
+  - [@ohos.distributedsched.linkEnhance (Enhanced Connection)](js-apis-link-enhance.md)
   
   <!--Del-->
   
@@ -25,3 +26,11 @@
   - [Screen Hopping Error Codes](errorcode-devicestatus.md)
   
   <!--DelEnd-->
+  - [Enhanced Connection Error Codes](errorcode_linkEnhance.md)
+- C API<!--distributed-service-c-->
+  - Modules<!--distributed-service-moudle-->
+    - [DeviceManager](capi-devicemanager.md)
+  - Header Files<!-- distributed-service-headerfile -->
+    - [oh_device_manager.h](capi-oh-device-manager-h.md)
+    - [oh_device_manager_err_code.h](capi-oh-device-manager-err-code-h.md)
+    

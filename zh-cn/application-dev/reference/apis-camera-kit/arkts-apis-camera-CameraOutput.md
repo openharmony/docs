@@ -1,4 +1,4 @@
-# Interfaces (CameraOutput)
+# Interface (CameraOutput)
 
 > **说明：**
 >

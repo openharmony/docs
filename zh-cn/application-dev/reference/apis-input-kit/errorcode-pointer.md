@@ -20,4 +20,4 @@ Invalid windowId. Possible causes: The window id does not belong to the current 
 
 **处理步骤**
 
-请检查并传入当前进程的窗口id，可通过windowClass.[getWindowProperties()](../apis-arkui/js-apis-window.md#getwindowproperties9)接口获取当前窗口属性，窗口属性中含有窗口id。
+请检查并传入当前进程的窗口id，可通过windowClass.[getWindowProperties()](../apis-arkui/arkts-apis-window-Window.md#getwindowproperties9)接口获取当前窗口属性，窗口属性中含有窗口id。

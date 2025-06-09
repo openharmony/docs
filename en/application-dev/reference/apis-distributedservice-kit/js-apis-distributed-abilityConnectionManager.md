@@ -1,4 +1,4 @@
-# @ohos.abilityConnectionManager (Cross-Device Connection Management)
+# @ohos.distributedsched.abilityConnectionManager (Cross-Device Connection Management)
 
 The **abilityConnectionManager** module provides APIs for cross-device connection management. After successful networking between devices (login with the same account and enabling of Bluetooth on the devices), a system application and a third-party application can start a [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md) of the same application across these devices to establish a Bluetooth connection. This way, data (specifically, text) can be transmitted across the devices over the connection.
 
@@ -85,34 +85,39 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
      }
    }
  
-   const peerInfo: abilityConnectionManager.PeerInfo = {
-     deviceId: "sinkDeviceId",
-     bundleName: 'com.example.remotephotodemo',
-     moduleName: 'entry',
-     abilityName: 'EntryAbility',
-     serviceName: 'collabTest'
-   };
-   const myRecord: Record<string, string> = {
-     "newKey1": "value1",
-   };
+   @Entry
+   @Component
+   struct Index {
+     createSession(): void {
+       // Define peer device information.
+       const peerInfo: abilityConnectionManager.PeerInfo = {
+         deviceId: "sinkDeviceId",
+         bundleName: 'com.example.remotephotodemo',
+         moduleName: 'entry',
+         abilityName: 'EntryAbility',
+         serviceName: 'collabTest'
+       };
+       const myRecord: Record<string, string> = {
+         "newKey1": "value1",
+       };
  
-   const options: Record<string, string> = {
-     'ohos.collabrate.key.start.option': 'ohos.collabrate.value.foreground',
-   };
+       // Define connection options.
+       const connectOptions: abilityConnectionManager.ConnectOptions = {
+         needSendData: true,
+         startOptions: abilityConnectionManager.StartOptionParams.START_IN_FOREGROUND,
+         parameters: myRecord
+       };
+       let context = this.getUIContext().getHostContext();
+       try {
+         let sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", context, peerInfo, connectOptions);
+         hilog.info(0x0000, 'testTag', 'createSession sessionId is', sessionId);
+       } catch (error) {
+         hilog.error(0x0000, 'testTag', error);
+       }
+     }
  
-   const connectOptions: abilityConnectionManager.ConnectOptions = {
-     needSendBigData: true,
-     needSendStream: false,
-     needReceiveStream: true,
-     options: options,
-     parameters: myRecord
-   };
-   let context = getContext(this) as common.UIAbilityContext;
-   try {
-     this.sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", context, peerInfo, connectOptions);
-     hilog.info(0x0000, 'testTag', 'createSession sessionId is', this.sessionId);
-   } catch (error) {
-     hilog.error(0x0000, 'testTag', error);
+     build() {
+     }
    }
    ```
 
@@ -124,7 +129,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
    import { hilog } from '@kit.PerformanceAnalysisKit';
  
    export default class EntryAbility extends UIAbility {
-     onCollaborate(wantParam: Record<string, Object>): AbilityConstant.OnCollaborateResult {
+     onCollaborate(wantParam: Record<string, Object>): AbilityConstant.CollaborateResult {
        hilog.info(0x0000, 'testTag', '%{public}s', 'on collaborate');
        let param = wantParam["ohos.extra.param.key.supportCollaborateIndex"] as Record<string, Object>
        this.onCollab(param);
@@ -147,9 +152,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
        }
  
        const options = collabParam["ConnectOptions"] as abilityConnectionManager.ConnectOptions;
-       options.needSendBigData = true;
-       options.needSendStream = true;
-       options.needReceiveStream = false;
        try {
          sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", this.context, peerInfo, options);
          AppStorage.setOrCreate('sessionId', sessionId);
@@ -183,7 +185,8 @@ Destroys a collaboration session between applications.
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   hilog.info(0x0000, 'testTag', 'destroyAbilityConnectionSession called');
-  abilityConnectionManager.destroyAbilityConnectionSession(this.sessionId);
+  let sessionId = 100;
+  abilityConnectionManager.destroyAbilityConnectionSession(sessionId);
   ```
 
 ## abilityConnectionManager.getPeerInfoById
@@ -222,7 +225,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   hilog.info(0x0000, 'testTag', 'getPeerInfoById called');
-  const peerInfo = abilityConnectionManager.getPeerInfoById(this.sessionId);
+  let sessionId = 100;
+  const peerInfo = abilityConnectionManager.getPeerInfoById(sessionId);
   ```
 
 ## abilityConnectionManager.connect
@@ -261,7 +265,8 @@ After an application sets up a collaboration session and obtains the session ID 
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.connect(this.sessionId).then((ConnectResult) => {
+  let sessionId = 100;
+  abilityConnectionManager.connect(sessionId).then((ConnectResult) => {
     if (!ConnectResult.isConnected) {
       hilog.info(0x0000, 'testTag', 'connect failed');
       return;
@@ -314,7 +319,7 @@ After **createAbilityConnectionSession** is called on device A to create a colla
       hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     }
 
-    onCollaborate(wantParam: Record<string, Object>): AbilityConstant.OnCollaborateResult {
+    onCollaborate(wantParam: Record<string, Object>): AbilityConstant.CollaborateResult {
       hilog.info(0x0000, 'testTag', '%{public}s', 'on collaborate');
       let param = wantParam["ohos.extra.param.key.supportCollaborateIndex"] as Record<string, Object>
       this.onCollab(param);
@@ -331,7 +336,7 @@ After **createAbilityConnectionSession** is called on device A to create a colla
       abilityConnectionManager.acceptConnect(sessionId, collabToken).then(() => {
         hilog.info(0x0000, 'testTag', 'acceptConnect success');
       }).catch(() => {
-        hilog.error("failed");
+        hilog.error(0x0000, 'testTag', 'failed'); 
       })
     }
 
@@ -343,9 +348,6 @@ After **createAbilityConnectionSession** is called on device A to create a colla
       }
 
       const options = collabParam["ConnectOptions"] as abilityConnectionManager.ConnectOptions;
-      options.needSendBigData = true;
-      options.needSendStream = true;
-      options.needReceiveStream = false;
       try {
         sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", this.context, peerInfo, options);
         AppStorage.setOrCreate('sessionId', sessionId);
@@ -379,18 +381,15 @@ Disconnects the UIAbility connection to end the collaboration session.
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   hilog.info(0x0000, 'testTag', 'disconnectRemoteAbility begin');
-  if (this.sessionId == -1) {
-    hilog.info(0x0000, 'testTag', 'Invalid session ID.');
-  return;
-  }
-  abilityConnectionManager.disconnect(this.sessionId);
+  let sessionId = 100;
+  abilityConnectionManager.disconnect(sessionId);
   ```
 
 ## abilityConnectionManager.reject
 
 reject(token:&nbsp;string,&nbsp;reason:&nbsp;string):&nbsp;void;
 
-Rejects a connection requet in multi-device application collaboration. After a connection request sent from the peer application is rejected, a rejection reason is returned.
+Rejects a connection request in a cross-device collaboration session. After a connection request sent from the peer application is rejected, a rejection reason is returned.
 
 **System capability**: SystemCapability.DistributedSched.AppCollaboration
 
@@ -412,13 +411,22 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
+  import { AbilityConstant, UIAbility, Want} from '@kit.AbilityKit';
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  hilog.info(0x0000, 'testTag', 'reject begin');
-  const collabToken = collabParam["ohos.dms.collabToken"] as string;
-  const reason = "test";
-  abilityConnectionManager.reject(collabToken, reason);
+  export default class EntryAbility extends UIAbility {
+      onCollaborate(wantParam: Record<string, Object>): AbilityConstant.CollaborateResult {
+        hilog.info(0x0000, 'testTag', '%{public}s', 'on collaborate');
+        let collabParam = wantParam["ohos.extra.param.key.supportCollaborateIndex"] as Record<string, Object>;
+        const collabToken = collabParam["ohos.dms.collabToken"] as string;
+        const reason = "test";
+        hilog.info(0x0000, 'testTag', 'reject begin');
+        abilityConnectionManager.reject(collabToken, reason);
+        return AbilityConstant.CollaborateResult.REJECT;
+      }
+  }
+
   ```
 
 ## abilityConnectionManager.on('connect')
@@ -451,7 +459,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.on("connect", this.sessionId,(callbackInfo) => {
+  let sessionId = 100;
+  abilityConnectionManager.on("connect", sessionId,(callbackInfo) => {
     hilog.info(0x0000, 'testTag', 'session connect, sessionId is', callbackInfo.sessionId);
   });
 
@@ -459,7 +468,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ## abilityConnectionManager.off('connect')
 
-off(type:&nbsp;'connect',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+off(type:&nbsp;'connect',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
 
 Disables listening for **connect** events.
 
@@ -487,7 +496,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.off("connect", this.sessionId);
+  let sessionId = 100;
+  abilityConnectionManager.off("connect", sessionId);
 
   ```
 
@@ -521,7 +531,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.on("disconnect", this.sessionId,(callbackInfo) => {
+  let sessionId = 100;
+  abilityConnectionManager.on("disconnect", sessionId,(callbackInfo) => {
     hilog.info(0x0000, 'testTag', 'session disconnect, sessionId is', callbackInfo.sessionId);
   });
 
@@ -529,7 +540,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ## abilityConnectionManager.off('disconnect')
 
-off(type:&nbsp;'disconnect',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+off(type:&nbsp;'disconnect',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
 
 Disables listening for **disconnect** events.
 
@@ -557,7 +568,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.off("disconnect", this.sessionId);
+  let sessionId = 100;
+  abilityConnectionManager.off("disconnect", sessionId);
 
   ```
 
@@ -591,7 +603,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.on("receiveMessage", this.sessionId,(callbackInfo) => {
+  let sessionId = 100;
+  abilityConnectionManager.on("receiveMessage", sessionId,(callbackInfo) => {
     hilog.info(0x0000, 'testTag', 'receiveMessage, sessionId is', callbackInfo.sessionId);
   });
 
@@ -599,7 +612,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ## abilityConnectionManager.off('receiveMessage')
 
-off(type:&nbsp;'receiveMessage',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+off(type:&nbsp;'receiveMessage',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
 
 Disables listening for **receiveMessage** events.
 
@@ -627,7 +640,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.off("receiveMessage", this.sessionId);
+  let sessionId = 100;
+  abilityConnectionManager.off("receiveMessage", sessionId);
 
   ```
 
@@ -661,7 +675,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.on("receiveData", this.sessionId,(callbackInfo) => {
+  let sessionId = 100;
+  abilityConnectionManager.on("receiveData", sessionId,(callbackInfo) => {
     hilog.info(0x0000, 'testTag', 'receiveData, sessionId is', callbackInfo.sessionId);
   });
 
@@ -669,7 +684,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ## abilityConnectionManager.off('receiveData')
 
-off(type:&nbsp;'receiveData',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+off(type:&nbsp;'receiveData',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
 
 Disables listening for **receiveData** events.
 
@@ -697,7 +712,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.off("receiveData", this.sessionId);
+  let sessionId = 100;
+  abilityConnectionManager.off("receiveData", sessionId);
 
   ```
 
@@ -736,7 +752,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.sendMessage(this.sessionId, "message send success").then(() => {
+  let sessionId = 100;
+  abilityConnectionManager.sendMessage(sessionId, "message send success").then(() => {
     hilog.info(0x0000, 'testTag', "sendMessage success");
   }).catch(() => {
     hilog.error(0x0000, 'testTag', "connect failed");
@@ -777,11 +794,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```ts
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { util } from '@kit.ArkTS';
 
   let textEncoder = util.TextEncoder.create("utf-8");
   const arrayBuffer  = textEncoder.encodeInto("data send success");
 
-  abilityConnectionManager.sendData(this.sessionId, arrayBuffer.buffer).then(() => {
+  let sessionId = 100;
+  abilityConnectionManager.sendData(sessionId, arrayBuffer.buffer).then(() => {
     hilog.info(0x0000, 'testTag', "sendMessage success");
   }).catch(() => {
     hilog.info(0x0000, 'testTag', "sendMessage failed");
@@ -811,8 +830,6 @@ Connection options for the application.
 | Name         | Type   | Read Only  | Optional  | Description         |
 | ----------- | ------- | ---- | ---- | ----------- |
 | needSendData    | boolean  | No   | No   | Whether to send data. The value **true** indicates that data needs to be sent, and the value **false** indicates the opposite.    |
-| needSendStream    | boolean  | No   | No   | Whether to send streams. The value **true** indicates that streams need to be sent, and the value **false** indicates the opposite.   |
-| needReceiveStream    | boolean  | No   | No   | Whether to receive streams. The value **true** indicates that streams need to be received, and the value **false** indicates the opposite.    |
 | startOptions | [StartOptionParams](#startoptionparams) | No   | No   | Application startup options.|
 | parameters | Record&lt;string, string&gt;  | No   | No   | Additional configuration for the connection.   |
 
@@ -836,11 +853,10 @@ Defines the event callback information.
 
 | Name      | Type   | Readable  | Writable  | Description         |
 | -------- | ------ | ---- | ---- | ----------- |
-| sessionId | number   | Yes   | Yes   |   Collaborative session ID.|
+| sessionId | number   | Yes   | Yes   |   Collaboration session ID.|
 | reason | [DisconnectReason](#disconnectreason)     | Yes   | No   |   Disconnection reason.|
 | msg | string   | Yes   | No   |   Received message.|
 | data  | ArrayBuffer | Yes   | No   |   Received byte stream.|
-| image  | image.PixelMap | Yes   | No   |   Received image.|
 
 ## CollaborateEventInfo
 
@@ -851,7 +867,7 @@ Collaboration event information.
 | Name      | Type  | Read Only  | Optional  | Description     |
 | -------- | ------ | ---- | ---- | ------- |
 | eventType | [CollaborateEventType](#collaborateeventtype) | Yes   | Yes   | Collaboration event type.|
-| eventMsg | string | Yes   | No   | Collaboration event message.|
+| eventMsg | string | Yes   | No   | Content of a collaboration event.|
 
 ## ConnectErrorCode
 
@@ -866,6 +882,7 @@ Enumerates connection error codes.
 | LOCAL_WIFI_NOT_OPEN | 2 |Wi-Fi is disabled at the local end.|
 | PEER_WIFI_NOT_OPEN | 3 |Wi-Fi is disabled at the peer end.|
 | PEER_ABILITY_NO_ONCOLLABORATE | 4 |The **onCollaborate** callback is not implemented.|
+| SYSTEM_INTERNAL_ERROR | 5 |An internal system error occurs.|
 
 ## StartOptionParams
 
@@ -876,7 +893,6 @@ Enumerates application start options.
 | Name|  Value| Description|
 |-------|-------|-------|
 | START_IN_FOREGROUND | 0 |Start of the peer application in the foreground.|
-| START_IN_BACKGROUND | 1 |Start of the peer application in the background.|
 
 ## CollaborateEventType
 

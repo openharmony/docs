@@ -1,4 +1,4 @@
-# Interfaces (AutoDeviceSwitch)
+# Interface (AutoDeviceSwitch)
 
 > **说明：**
 >

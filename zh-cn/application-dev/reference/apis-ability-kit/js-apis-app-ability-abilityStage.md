@@ -1,4 +1,4 @@
-# @ohos.app.ability.AbilityStage (AbilityStage)
+# @ohos.app.ability.AbilityStage (AbilityStage组件容器)
 
 AbilityStage是一个[Module](../../../application-dev/quick-start/application-package-overview.md#应用的多module设计机制)级别的组件容器，应用的[HAP](../../../application-dev/quick-start/hap-package.md)/[HSP](../../../application-dev/quick-start/in-app-hsp.md)在首次加载时会创建一个AbilityStage实例，开发者可以通过该实例进行Module级别的资源预加载、线程创建等初始化操作。AbilityStage与Module一一对应，即一个Module拥有一个AbilityStage。
 

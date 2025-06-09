@@ -1,4 +1,4 @@
-# Interfaces (AutoExposure)
+# Interface (AutoExposure)
 
 > **说明：**
 >

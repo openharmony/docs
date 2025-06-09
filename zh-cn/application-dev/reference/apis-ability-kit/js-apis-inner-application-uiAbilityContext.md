@@ -27,7 +27,7 @@ import { common } from '@kit.AbilityKit';
 | abilityInfo | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是 | 否 | UIAbility的相关信息。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | 是 | 否 | 当前UIAbility所属HAP的信息。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | config | [Configuration](js-apis-app-ability-configuration.md) | 是 | 否 | 与UIAbility相关的配置信息，如语言、颜色模式等。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| windowStage<sup>12+</sup> | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | 否 | 当前WindowStage对象。仅支持在主线程调用。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。|
+| windowStage<sup>12+</sup> | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9) | 是 | 否 | 当前WindowStage对象。仅支持在主线程调用。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。|
 
 ### startAbility
 
@@ -2887,7 +2887,7 @@ revokeDelegator() : Promise&lt;void&gt;
 
 > **说明**：
 >
-> 当接口调用成功后，DelegatorAbility中的[Window](../apis-arkui/js-apis-window.md)方法会失效。
+> 当接口调用成功后，DelegatorAbility中的[Window](../apis-arkui/arkts-apis-window.md)方法会失效。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2997,7 +2997,7 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startAppServiceExtensionAbility<sup>20+</sup>
+### startAppServiceExtensionAbility<sup>20+</sup>
 
 startAppServiceExtensionAbility(want: Want): Promise\<void>
 
@@ -3076,7 +3076,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.stopAppServiceExtensionAbility<sup>20+</sup>
+### stopAppServiceExtensionAbility<sup>20+</sup>
 
 stopAppServiceExtensionAbility(want: Want): Promise\<void>
 
@@ -3151,7 +3151,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.connectAppServiceExtensionAbility<sup>20+</sup>
+### connectAppServiceExtensionAbility<sup>20+</sup>
 
 connectAppServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
@@ -3175,7 +3175,7 @@ connectAppServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回连接id，[disconnectAppServiceExtensionAbility](#uiabilitycontextdisconnectappserviceextensionability20)根据该连接id断开连接。 |
+| number | 返回连接id，[disconnectAppServiceExtensionAbility](#disconnectappserviceextensionability20)根据该连接id断开连接。 |
 
 **错误码：**
 
@@ -3235,7 +3235,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.disconnectAppServiceExtensionAbility<sup>20+</sup>
+### disconnectAppServiceExtensionAbility<sup>20+</sup>
 
 disconnectAppServiceExtensionAbility(connection: number): Promise\<void>
 
@@ -3253,7 +3253,7 @@ disconnectAppServiceExtensionAbility(connection: number): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| connection | number | 是 | 在[connectAppServiceExtensionAbility](#uiabilitycontextconnectappserviceextensionability20)返回的连接id。 |
+| connection | number | 是 | 在[connectAppServiceExtensionAbility](#connectappserviceextensionability20)返回的连接id。 |
 
 **返回值：**
 

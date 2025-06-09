@@ -2177,6 +2177,7 @@ struct TextExample {
 ```
 
 ![textEnableAutoSpacing](figures/textEnableAutoSpacing.png)
+
 ### 示例15（文本颜色按线性或径向渐变）
 
 该示例通过shaderStyle接口实现了对Text控件显示为渐变色的功能。
@@ -2228,7 +2229,38 @@ struct shaderStyle {
 ```
 ![zh-cn_image_0000001219864149](figures/gradientcolor.png)
 
-### 示例16（文本垂直对齐）
+### 示例16（配置除去行尾空格）
+
+该示例通过optimizeTrailingSpace属性展示了文本如何配置除去行尾空格的效果，一般需要与对齐功能搭配使用，实际显示需要字体引擎支持。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextExample16 {
+  build() {
+    Column() {
+      Text("Trimmed space enabled     ")
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+        .margin({ top: 20 })
+        .optimizeTrailingSpace(true)
+        .textAlign(TextAlign.Center)
+      Text("Trimmed space disabled     ")
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+        .margin({ top: 20 })
+        .optimizeTrailingSpace(false)
+        .textAlign(TextAlign.Center)
+    }
+    .width("100%")
+  }
+}
+```
+
+![textOptimizeTrailingSpace](figures/textOptimizeTrailingSpace.PNG)
+
+### 示例17（文本垂直对齐）
 
 该示例通过textVerticalAlign属性展示了文本如何设置文本垂直对齐效果。
 

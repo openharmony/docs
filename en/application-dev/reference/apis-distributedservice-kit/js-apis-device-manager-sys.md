@@ -28,7 +28,7 @@ import deviceManager from '@ohos.distributedHardware.deviceManager';
 
 ## deviceManager.createDeviceManager
 
-createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager&gt;): void;
+createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager&gt;): void
 
 Creates a **DeviceManager** instance.
 
@@ -264,7 +264,7 @@ Provides APIs to obtain information about trusted devices and local devices. Bef
 
 ### release
 
-release(): void;
+release(): void
 
 Releases this **DeviceManager** instance when it is no longer used.
 
@@ -300,7 +300,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### getTrustedDeviceListSync
 
-getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;;
+getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 
 Obtains all trusted devices synchronously.
 
@@ -343,7 +343,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### getTrustedDeviceListSync<sup>10+</sup>
 
-getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;;
+getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;
 
 Enables the DSoftBus heartbeat mode to quickly bring offline trusted devices online and updates the list of online trusted devices.
 
@@ -393,7 +393,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### getTrustedDeviceList<sup>8+</sup>
 
-getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): void;
+getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): void
 
 Obtains all trusted devices. This API uses an asynchronous callback to return the result.
 
@@ -441,7 +441,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### getTrustedDeviceList<sup>8+</sup>
 
-getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;;
+getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
 
 Obtains all trusted devices. This API uses a promise to return the result.
 
@@ -481,7 +481,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### getLocalDeviceInfoSync<sup>8+</sup>
 
-getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo);
+getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
 
 Obtains local device information synchronously.
 
@@ -524,7 +524,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### getLocalDeviceInfo<sup>8+</sup>
 
-getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void;
+getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 Obtains local device information. This API uses an asynchronous callback to return the result.
 
@@ -573,7 +573,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### getLocalDeviceInfo<sup>8+</sup>
 
-getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;;
+getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
 
 Obtains local device information. This API uses a promise to return the result.
 
@@ -613,7 +613,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### getDeviceInfo<sup>10+</sup>
 
-getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void;
+getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 Obtains the information about a specific device based on the network ID. This API uses an asynchronous callback to return the result.
 
@@ -664,7 +664,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### getDeviceInfo<sup>10+</sup>
 
-getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;;
+getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 
 Obtains the information about a specific device based on the network ID. This API uses a promise to return the result.
 
@@ -713,7 +713,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### startDeviceDiscovery<sup>8+</sup>
 
-startDeviceDiscovery(subscribeInfo: SubscribeInfo): void;
+startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
 Starts to discover peripheral devices. The discovery process lasts 2 minutes. A maximum of 99 devices can be discovered.
 
@@ -778,7 +778,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### startDeviceDiscovery<sup>9+</sup>
 
-startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void;
+startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
 Starts to discover peripheral devices. The discovery process lasts 2 minutes. A maximum of 99 devices can be discovered.
 
@@ -866,7 +866,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### stopDeviceDiscovery
 
-stopDeviceDiscovery(subscribeId: number): void;
+stopDeviceDiscovery(subscribeId: number): void
 
 Stops device discovery.
 
@@ -911,7 +911,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### publishDeviceDiscovery<sup>9+</sup>
 
-publishDeviceDiscovery(publishInfo: PublishInfo): void;
+publishDeviceDiscovery(publishInfo: PublishInfo): void
 
 Publishes device information for discovery purposes. The publish process lasts 2 minutes.
 
@@ -971,7 +971,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### unPublishDeviceDiscovery<sup>9+</sup>
 
-unPublishDeviceDiscovery(publishId: number): void;
+unPublishDeviceDiscovery(publishId: number): void
 
 Stops publishing device information.
 
@@ -1016,7 +1016,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### authenticateDevice
 
-authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: AsyncCallback&lt;{deviceId: string, pinToken ?: number}&gt;): void;
+authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: AsyncCallback&lt;{deviceId: string, pinToken ?: number}&gt;): void
 
 Authenticates a device.
 
@@ -1111,7 +1111,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### unAuthenticateDevice<sup>8+</sup>
 
-unAuthenticateDevice(deviceInfo: DeviceInfo): void;
+unAuthenticateDevice(deviceInfo: DeviceInfo): void
 
 Deauthenticates a device.
 
@@ -1170,7 +1170,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### verifyAuthInfo
 
-verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string, level: number}&gt;): void;
+verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string, level: number}&gt;): void
 
 Verifies authentication information.
 
@@ -1244,7 +1244,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### setUserOperation<sup>9+</sup>
 
-setUserOperation(operateAction: number, params: string): void;
+setUserOperation(operateAction: number, params: string): void
 
 Sets a user operation.
 
@@ -1296,7 +1296,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### requestCredentialRegisterInfo<sup>10+</sup>
 
-requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{registerInfo: string}>): void;
+requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{registerInfo: string}>): void
 
 Obtains the registration information of the credential.
 
@@ -1358,7 +1358,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### importCredential<sup>10+</sup>
 
-importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
+importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: string}>): void
 
 Imports credential information.
 
@@ -1453,7 +1453,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### deleteCredential<sup>10+</sup>
 
-deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
+deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}>): void
 
 Deletes credential information.
 
@@ -1518,7 +1518,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### on('uiStateChange')<sup>9+</sup>
 
-on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void;
+on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void
 
 Subscribes to UI status changes.
 
@@ -1573,7 +1573,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### off('uiStateChange')<sup>9+</sup>
 
-off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
+off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void
 
 Unsubscribes from UI status changes.
 
@@ -1615,7 +1615,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### on('deviceStateChange')
 
-on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void;
+on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void
 
 Subscribes to changes in the device state.
 
@@ -1672,7 +1672,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### off('deviceStateChange')
 
-off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void;
+off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void
 
 Unsubscribes from changes in the device state.
 
@@ -1729,7 +1729,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### on('deviceFound')
 
-on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt;): void;
+on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt;): void
 
 Subscribes to device discovery events.
 
@@ -1786,7 +1786,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### off('deviceFound')
 
-off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt;): void;
+off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt;): void
 
 Unsubscribes from device discovery events.
 
@@ -1843,7 +1843,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### on('discoverFail')
 
-on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: number }&gt;): void;
+on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: number }&gt;): void
 
 Subscribes to device discovery failures.
 
@@ -1892,7 +1892,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### off('discoverFail')
 
-off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: number }&gt;): void;
+off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: number }&gt;): void
 
 Unsubscribes from device discovery failures.
 
@@ -1941,7 +1941,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### on('publishSuccess')<sup>9+</sup>
 
-on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): void;
+on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): void
 
 Subscribes to device information publication success events.
 
@@ -1989,7 +1989,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### off('publishSuccess')<sup>9+</sup>
 
-off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): void;
+off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): void
 
 Unsubscribes from device information publication success events.
 
@@ -2037,7 +2037,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### on('publishFail')<sup>9+</sup>
 
-on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void;
+on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
 Subscribes to device information publication failures.
 
@@ -2086,7 +2086,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### off('publishFail')<sup>9+</sup>
 
-off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: number }&gt;): void;
+off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
 Unsubscribes from device information publication failures.
 
@@ -2135,7 +2135,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### on('serviceDie')
 
-on(type: 'serviceDie', callback: () =&gt; void): void;
+on(type: 'serviceDie', callback: () =&gt; void): void
 
 Subscribes to dead events of the **DeviceManager** service.
 
@@ -2179,7 +2179,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
 ### off('serviceDie')
 
-off(type: 'serviceDie', callback?: () =&gt; void): void;
+off(type: 'serviceDie', callback?: () =&gt; void): void
 
 Unsubscribes from dead events of the **DeviceManager** service.
 

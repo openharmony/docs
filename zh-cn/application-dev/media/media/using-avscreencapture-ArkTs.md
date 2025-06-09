@@ -137,7 +137,7 @@
     await this.screenCapture.init(this.captureConfig);
     ```
 
-6. 创建豁免隐私窗口，这里填写的是子窗口id和主窗口id，具体开发步骤可参见[窗口API](../../reference/apis-arkui/js-apis-window.md#windowproperties)。
+6. 创建豁免隐私窗口，这里填写的是子窗口id和主窗口id，具体开发步骤可参见[窗口API](../../reference/apis-arkui/arkts-apis-window-i.md#windowproperties)。
 
     ```javascript
     let windowIDs = [57, 86];

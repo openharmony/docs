@@ -2553,3 +2553,76 @@ struct HtmlSpanStringDemo {
 
 ![](figures/styledString_13.gif)
 
+### 示例14（多装饰线与加粗装饰线）
+
+该示例通过enableMultiType、thicknessScale接口，实现多装饰线显示与加粗装饰线的效果。
+
+``` ts
+// xxx.ets
+import { LengthMetrics } from '@kit.ArkUI'
+@Entry
+@Component
+struct Index {
+  @State styledString : StyledString | undefined = undefined
+  controller : TextController = new TextController
+  thickness: number = 2.0
+  mutableStyledString1: MutableStyledString = new MutableStyledString("1234567890", [
+    {
+      start: 0,
+      length: 10,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({ fontColor: Color.Orange, fontSize: LengthMetrics.vp(30) })
+    },
+    {
+      start: 0,
+      length: 4,
+      styledKey: StyledStringKey.DECORATION,
+      styledValue: new DecorationStyle({type: TextDecorationType.LineThrough, thicknessScale: this.thickness}, {enableMultiType: true})
+    },
+    {
+      start: 2,
+      length: 5,
+      styledKey: StyledStringKey.DECORATION,
+      styledValue: new DecorationStyle({type: TextDecorationType.Underline, thicknessScale: this.thickness}, {enableMultiType: true})
+    },
+    {
+      start: 0,
+      length: 4,
+      styledKey: StyledStringKey.DECORATION,
+      styledValue: new DecorationStyle({type: TextDecorationType.Overline, thicknessScale: this.thickness}, {enableMultiType: true})
+    },
+    {
+      start: 6,
+      length: 2,
+      styledKey: StyledStringKey.DECORATION,
+      styledValue: new DecorationStyle({type: TextDecorationType.LineThrough})
+    },
+    {
+      start: 7,
+      length: 2,
+      styledKey: StyledStringKey.DECORATION,
+      styledValue: new DecorationStyle({type: TextDecorationType.LineThrough, color: Color.Green}, {enableMultiType: true})
+    },
+    {
+      start: 8,
+      length: 2,
+      styledKey: StyledStringKey.DECORATION,
+      styledValue: new DecorationStyle({type: TextDecorationType.Overline, color: Color.Green}, {enableMultiType: true})
+    }
+  ]);
+  build() {
+    Column({ space:3 }) {
+      Text(undefined, { controller: this.controller })
+        .height(100)
+        .copyOption(CopyOptions.LocalDevice)
+        .onAppear(()=>{
+          this.styledString = this.mutableStyledString1
+          this.controller.setStyledString(this.mutableStyledString1)
+        })
+    }.width("100%")
+  }
+}
+```
+
+![](figures/styledString_14.png)
+

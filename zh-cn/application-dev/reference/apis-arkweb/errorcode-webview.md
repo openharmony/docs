@@ -16,7 +16,7 @@ WebviewController还没有和具体的Web组件关联，无法进行相应的操
 
 **处理步骤**
 
-请检查WebviewController对象是否已与Web组件关联，可以通过[onControllerAttached()](./ts-basic-components-web-events.md#oncontrollerattached10)接口进行检查。
+请检查WebviewController对象是否已与Web组件关联，可以通过[onControllerAttached()](./arkts-basic-components-web-events.md#oncontrollerattached10)接口进行检查。
 
 
 ## 17100002 Url格式错误

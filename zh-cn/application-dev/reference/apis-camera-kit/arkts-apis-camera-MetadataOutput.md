@@ -1,4 +1,4 @@
-# Interfaces (MetadataOutput)
+# Interface (MetadataOutput)
 
 > **说明：**
 >

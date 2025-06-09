@@ -600,3 +600,17 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **支持设备**: PC/2in1
 
 **起始版本**：20
+
+## ohos.permission.ACCESS_FIDO2_ONLINEAUTH
+
+允许应用使用通行密钥服务的NDK。
+
+<!--RP45--><!--RP45End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
