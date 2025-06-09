@@ -888,7 +888,7 @@ setBadgeNumber(badgeNumber: number): Promise\<void\>
 
 设定角标个数，在应用的桌面图标上呈现。使用Promise异步回调。
 
-该接口不支持tv和wearable设备。
+该接口不支持wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -936,7 +936,7 @@ setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
 
 设定角标个数，在应用的桌面图标上呈现。使用callback异步回调。
 
-该接口不支持tv和wearable设备。
+该接口不支持wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 
