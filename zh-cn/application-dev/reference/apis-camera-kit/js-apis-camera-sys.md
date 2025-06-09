@@ -734,7 +734,7 @@ release(): void
 **示例：**
 
 ```ts
-function releaseDepthData(depthData: camera.DepthData): void {
+async function releaseDepthData(depthData: camera.DepthData): Promise<void> {
   await depthData.release();
 }
 ```
@@ -1236,6 +1236,8 @@ isSketchSupported(): boolean
 **示例：**
 
 ```ts
+import  { camera } from '@kit.CameraKit';
+
 function isSketchSupported(previewOutput: camera.PreviewOutput): boolean {
   try {
     let isSupported: boolean = previewOutput.isSketchSupported();
@@ -2750,17 +2752,20 @@ getZoomPointInfos(): Array\<ZoomPointInfo\>
 **示例：**
 
 ```ts
+import  { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function getZoomPointInfos(photoSessionForSys: camera.PhotoSessionForSys): Array<camera.ZoomPointInfo> {
+function getZoomPointInfos(session: camera.PhotoSessionForSys): Array<camera.ZoomPointInfo> {
+  let zoomPointInfos: Array<camera.ZoomPointInfo> = [];
   try {
-    let zoomPointInfos: Array<ZoomPointInfo> = photoSessionForSys.getZoomPointInfos();
-	return zoomPointInfos;
+    zoomPointInfos = session.getZoomPointInfos();
+    return zoomPointInfos;
   } catch (error) {
-    // 失败返回错误码error.code并处理。
+    // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
     console.error(`The getZoomPointInfos call failed. error code: ${err.code}`);
   }
+  return zoomPointInfos;
 }
 ```
 
@@ -4154,22 +4159,25 @@ on(type: 'lightStatusChange', callback: AsyncCallback\<LightStatus\>): void
 **示例**：
 
 ```ts
-    private handleLightStatusCallback: AsyncCallback<camera.LightStatus> =
-    (err, data: camera.LightStatus) => {
-      if (err) {
-        Logger.error(TAG, `handleLightStatusOff err: ${simpleStringify(err)}}`);
-        return;
-      }
-      Logger.info(TAG, `lightStatusCallback: ${data}`);
-    };
-    public handleLightStatusOn(): void {
-        Logger.info(TAG, 'handleLightStatusOn');
-        try {
-          this.mSession?.on('lightStatusChange', this.handleLightStatusCallback);
-        } catch (e) {
-          Logger.error(TAG, `handleLightStatusOn err:${e}`);
-        }
-    }
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function handleLightStatusCallback(err: BusinessError, lightStatus: camera.LightStatus) : void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`lightStatus: ${lightStatus}`);
+}
+
+function handleLightStatusOn(mSession: camera.VideoSessionForSys): void {
+  console.info('handleLightStatusOn');
+  try {
+    mSession.on('lightStatusChange', handleLightStatusCallback);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`handleLightStatusOn err:${err}`);
+  }
+}
 ```
 
 ### off('lightStatusChange')<sup>18+</sup>
@@ -4200,22 +4208,25 @@ off(type: 'lightStatusChange', callback?: AsyncCallback\<LightStatus\>): void
 **示例**：
 
 ```ts
-    private handleLightStatusCallback: AsyncCallback<camera.LightStatus> =
-    (err, data: camera.LightStatus) => {
-      if (err) {
-        Logger.error(TAG, `handleLightStatusOff err: ${simpleStringify(err)}}`);
-        return;
-      }
-      Logger.info(TAG, `lightStatusCallback: ${data}`);
-    };
-    public handleLightStatusOff(): void {
-        Logger.info(TAG, 'handleLightStatusOff');
-        try {
-          this.mSession?.off('lightStatusChange');
-        } catch (e) {
-          Logger.error(TAG, `handleLightStatusOff err:${e}`);
-        }
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function LightStatusCallback(err: BusinessError, lightStatus: camera.LightStatus) : void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
   }
+  console.info(`lightStatus: ${lightStatus}`);
+}
+
+function handleLightStatusOff(mSession: camera.VideoSessionForSys): void {
+  console.info('handleLightStatusOff');
+  try {
+    mSession.on('lightStatusChange', LightStatusCallback);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`handleLightStatusOff err:${err}`);
+  }
+}
 ```
 
 ## PortraitPhotoSession<sup>11+</sup>
