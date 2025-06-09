@@ -549,7 +549,7 @@ void startSelfUIAbilityTest()
 {
     AbilityBase_Element element;
     element.abilityName = const_cast<char*>("EntryAbility");
-    element.bundleName = const_cast<char*>("com.exampl.myapplication");
+    element.bundleName = const_cast<char*>("com.example.myapplication");
     element.moduleName = const_cast<char*>("entry");
     AbilityBase_Want* want = OH_AbilityBase_CreateWant(element);
 
@@ -2207,7 +2207,7 @@ void demo()
 {
     AbilityBase_Element element;
     element.abilityName = const_cast<char*>("EntryAbility");
-    element.bundleName = const_cast<char*>("com.exampl.myapplication");
+    element.bundleName = const_cast<char*>("com.example.myapplication");
     element.moduleName = const_cast<char*>("entry");
     AbilityBase_Want* want = OH_AbilityBase_CreateWant(element);
     if (want == nullptr) {
