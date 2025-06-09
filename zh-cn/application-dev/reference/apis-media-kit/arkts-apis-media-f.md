@@ -22,7 +22,7 @@ createAVPlayer(callback: AsyncCallback\<AVPlayer>): void
 
 | 参数名   | 类型                                  | 必填 | 说明                                                         |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[AVPlayer](aekts-apis-media-AVPlayer.md#avplayer9)> | 是   | 回调函数。异步返回AVPlayer实例，失败时返回null。可用于音视频播放。 |
+| callback | AsyncCallback\<[AVPlayer](arkts-apis-media-AVPlayer.md#avplayer9)> | 是   | 回调函数。异步返回AVPlayer实例，失败时返回null。可用于音视频播放。 |
 
 **错误码：**
 
@@ -67,7 +67,7 @@ createAVPlayer(): Promise\<AVPlayer>
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise\<[AVPlayer](aekts-apis-media-AVPlayer.md#avplayer9)> | Promise对象。异步返回AVPlayer实例，失败时返回null。可用于音视频播放。 |
+| Promise\<[AVPlayer](arkts-apis-media-AVPlayer.md#avplayer9)> | Promise对象。异步返回AVPlayer实例，失败时返回null。可用于音视频播放。 |
 
 **错误码：**
 
@@ -608,7 +608,7 @@ createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 
 | 参数名  | 类型                                 | 必填 | 说明                                                  |
 | ------- | ------------------------------------ | ---- | ----------------------------------------------------- |
-| streams | Array<[MediaStream](arkts-apis-media-MediaStream.md#mediastream19)> | 是 | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
+| streams | Array<[MediaStream](arkts-apis-media-i.md#mediastream19)> | 是 | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
 
 **返回值：**
 
