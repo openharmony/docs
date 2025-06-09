@@ -38,7 +38,7 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 
 ## userStatus.on('ChildDetection')
 
- on(type: 'ChildDetection', callback: Callback&lt;DetectionStatus&gt;): void;
+ on(type: 'ChildDetection', callback: Callback&lt;DetectionResult&gt;): void;
 
 订阅未成年人检测功能。
 
@@ -51,7 +51,7 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                           | 是   | 事件类型。type为“ChildDetection”，表示未成年人检测功能。 |
-| callback | Callback&lt;[DetectionStatus](#DetectionStatus)&gt; | 是   | 回调函数，返回未成年人检测结果。|
+| callback | Callback&lt;[DetectionResult](#DetectionResult)&gt; | 是   | 回调函数，返回未成年人检测结果。|
 
 **错误码**：
 
@@ -70,7 +70,7 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-callback(data:userStatus.DetectionStatus) {
+callback(data:userStatus.DetectionResult) {
     console.info('callback success' + data);
 };
 
