@@ -1,4 +1,4 @@
-# @ohos.fastbuffer (线性容器FastBuffer)
+# @ohos.fastbuffer (FastBuffer)
 
 FastBuffer对象是更高效的Buffer容器，用于表示固定长度的字节序列，是专门存放二进制数据的缓存区。
 
@@ -1822,7 +1822,7 @@ let buf = fastbuffer.from([1, -2]);
 console.info(buf.readUInt8(0).toString());
 // 输出结果：1
 console.info(buf.readUInt8(1).toString());
-// 输出结果：0
+// 输出结果：254
 let buf1 = fastbuffer.allocUninitializedFromPool(4);
 let result = buf1.writeUInt8(0x42);
 console.info("result = " + result);
