@@ -2660,7 +2660,7 @@ void OH_NativeArkWeb_RunJavaScript (const char * webTag, const char * jsCode, Na
 ```
 **描述：**
 
-在当前显示页面的环境下，加载并执行一段JavaScript代码。
+在当前显示页面的环境下，加载并异步执行一段JavaScript代码。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
