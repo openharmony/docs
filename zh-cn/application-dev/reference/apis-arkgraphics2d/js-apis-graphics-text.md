@@ -2853,7 +2853,7 @@ let typographicBounds = runs[0].getTypographicBounds();
 
 getTextDirection(): TextDirection
 
-获取该排版单元的文本方向，默认为LTR。
+获取该排版单元的文本方向。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -2881,7 +2881,7 @@ getAdvances(range: Range): Array<common2D.Point>
 
 | 参数名    | 类型    | 必填 | 说明                       |
 | -------- | ------- | ---- | -------------------------- |
-| range    | [Range](#range)   | 是   | 要获取的字形位置范围，range.start表示范围开始的位置，range.end表示范围的长度，如果长度是0表示从range.start开始获取到渲染块结束。当range.end、range.start为负数，或者传入null、undefined时，该方法将返回undefined。|
+| range    | [Range](#range)   | 是   | 要获取的字形位置范围。range.start表示范围开始的位置，range.end表示范围的长度。如果长度是0表示从range.start开始获取到渲染块结束。当range.end、range.start为负数，或者传入null、undefined时，该方法将返回undefined。|
 
 **返回值：**
 
