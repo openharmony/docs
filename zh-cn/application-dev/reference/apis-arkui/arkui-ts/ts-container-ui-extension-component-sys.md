@@ -29,9 +29,13 @@ UIExtensionComponent用于支持在本页面内嵌入其他应用提供的UI。�
 
 UIExtensionComponent(want: Want, options?: UIExtensionOptions)
 
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名                | 参数类型                                                   | 必填 | 参数描述           |
+| 参数名                | 参数类型                                                   | 必填 | 说明           |
 | --------------------- | ---------------------------------------------------------- | ---- | ------------------ |
 | want                  | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 要加载的Ability。  |
 | options<sup>11+</sup> | [UIExtensionOptions](#uiextensionoptions11)                | 否   | 需要传递的构造项。 |
@@ -54,11 +58,15 @@ onRemoteReady(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md
 
 UIExtensionAbility连接完成时的回调，之后可使用proxy向被拉起的Ability发送数据。
 
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名                       | 类型   | 说明                                                         |
+| 参数名                       | 类型   | 必填 |说明                                                         |
 | ---------------------------- | ------ | ------------------------------------------------------------ |
-| proxy                        | UIExtensionProxy | 用于向对端Ability发送数据。                          |
+| proxy                        | UIExtensionProxy | 否 | 用于向对端Ability发送数据。                          |
 
 ### onReceive
 
@@ -66,11 +74,15 @@ onReceive(callback: ReceiveCallback)
 
 收到被拉起的Ability发送的数据时触发的回调。
 
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名                       | 类型   | 说明                                                         |
+| 参数名                       | 类型   | 必填 | 说明                                                         |
 | ---------------------------- | ------ | ------------------------------------------------------------ |
-| data                        | [ReceiveCallback](#receivecallback18) | 收到来自对端Ability的数据。                 |
+| data                        | [ReceiveCallback](#receivecallback18) | 否 | 收到来自对端Ability的数据。                 |
 
 ### onResult<sup>(deprecated)</sup>
 
@@ -115,11 +127,15 @@ onError(callback:[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#e
 
 被拉起的Ability扩展在运行过程中发生异常时触发本回调。可通过回调参数中的code、name和message获取错误信息并做处理，业务错误码详细介绍请参见[UIExtension错误码](../errorcode-uiextension.md)。
 
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名                       | 类型   | 说明                                                         |
+| 参数名                       | 类型   | 必填 | 说明                                                         |
 | ---------------------------- | ------ | ------------------------------------------------------------ |
-| err                        | [BusinessError](../../apis-basic-services-kit/js-apis-base.md#businesserror) | 报错信息。    |
+| err                        | [BusinessError](../../apis-basic-services-kit/js-apis-base.md#businesserror) | 否 | 报错信息。    |
 
 ### onTerminated<sup>12+<sup>
 
@@ -127,11 +143,15 @@ onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 
 被拉起的UIExtensionAbility通过调用`terminateSelfWithResult`或者`terminateSelf`正常退出时，触发本回调函数。
 
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名   | 类型   | 说明                                                                                     |
+| 参数名   | 类型   | 必填 | 说明                                                                                     |
 | -------  | ------ | ---------------------------------------------------------------------------------------- |
-| callback | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](#terminationinfo12)> | 回调函数，入参用于接收UIExtensionAbility的返回结果，类型为[TerminationInfo](#terminationinfo12)。 |
+| callback | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](#terminationinfo12)> | 否 | 回调函数，入参用于接收UIExtensionAbility的返回结果，类型为[TerminationInfo](#terminationinfo12)。 |
 
 > **说明：**
 >
@@ -144,11 +164,15 @@ onDrawReady(callback: Callback\<void>)
 
 被拉起的UIExtensionAbility绘制第一帧时触发本回调。
 
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名                       | 类型   | 说明                                                         |
+| 参数名                       | 类型   | 必填 | 说明                                                         |
 | ---------------------------- | ------ | ------------------------------------------------------------ |
-| callback                        | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback) \<void> | 回调函数，UIExtensionAbility绘制第一帧时触发本回调，类型为void。    |
+| callback                        | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback) \<void> | 否 | 回调函数，UIExtensionAbility绘制第一帧时触发本回调，类型为void。    |
 
 ### TerminationInfo<sup>12+<sup>
 
@@ -164,15 +188,21 @@ type ReceiveCallback = Callback\<Record\<string, Object\>\>
 
 用于封装被拉起的Ability发送的数据。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 参数名                       | 类型   | 说明                                                         |
+| 参数名                       | 类型   | 必填 | 说明                                                         |
 | ---------------------------- | ------ | ------------------------------------------------------------ |
-| data                        | Record\<string, Object\> | 收到来自对端Ability的数据。                 |
+| data                        | Record\<string, Object\> | 否 | 收到来自对端Ability的数据。                 |
 
 ## UIExtensionOptions<sup>11+</sup>
 用于在UIExtensionComponent进行构造的时传递可选的构造参数。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -186,16 +216,24 @@ type ReceiveCallback = Callback\<Record\<string, Object\>\>
 
 ## DpiFollowStrategy<sup>12+</sup>
 
-| 名称                             | 描述             |
-| -------------------------------- | --------------- |
-| FOLLOW_HOST_DPI                  | 表示DPI跟随宿主。 |
-| FOLLOW_UI_EXTENSION_ABILITY_DPI  | 表示DPI跟随UIExtensionAbility。 |
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                                     | 值  | 说明             |
+| ---------------------------------------- | ----|--------------- |
+| FOLLOW_HOST_DPI                  | 0   | 表示DPI跟随宿主。 |
+| FOLLOW_UI_EXTENSION_ABILITY_DPI  | 1   | 表示DPI跟随UIExtensionAbility。 |
 
 ## WindowModeFollowStrategy<sup>18+</sup>
 
 窗口Mode跟随策略，用于设置窗口Mode，使其能够跟随宿主或UIExtensionAbility。
 
-| 名称                                     | 值  | 描述             |
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                                     | 值  | 说明             |
 | ---------------------------------------- | ----|--------------- |
 | FOLLOW_HOST_WINDOW_MODE                  | 0   | 表示窗口Mode跟随宿主。 |
 | FOLLOW_UI_EXTENSION_ABILITY_WINDOW_MODE  | 1   | 表示窗口Mode跟随UIExtensionAbility。 |
@@ -210,11 +248,13 @@ send(data: Record\<string, Object\>): void
 
 用于在双方建立连接成功后，组件使用方向被拉起的Ability发送数据的场景，提供异步发送数据。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名  | 参数类型                                     | 必填   | 参数描述            |
+| 参数名  | 参数类型                                     | 必填   | 说明            |
 | ---- | ---------------------------------------- | ---- | --------------- |
 | data | Record\<string, Object\> | 是    | 异步发送给被拉起的扩展Ability的数据。 |
 
@@ -224,11 +264,13 @@ sendSync(data: Record\<string, Object\>): Record\<string, Object\>
 
 用于在双方建立连接成功后，组件使用方向被拉起的Ability发送数据的场景，提供同步发送数据。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名  | 参数类型                                     | 必填   | 参数描述            |
+| 参数名  | 参数类型                                     | 必填   | 说明            |
 | ---- | ---------------------------------------- | ---- | --------------- |
 | data | Record\<string, Object\> | 是    | 同步发送给被拉起的扩展Ability的数据。 |
 
@@ -252,11 +294,13 @@ on(type: 'asyncReceiverRegister', callback: Callback\<UIExtensionProxy\>): void
 
 用于在双方建立连接成功后，组件使用方订阅被拉起的Ability发生异步注册的场景。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名  | 参数类型 |必填 | 参数描述 |
+| 参数名  | 参数类型 |必填 | 说明 |
 | ------ | -------- |---- | ------- |
 | type   | string | 是 | 代表订阅扩展Ability发生异步注册回调。 |
 | callback   | Callback\<UIExtensionProxy\> | 是 | 订阅扩展Ability注册setReceiveDataCallback后触发的回调。 |
@@ -267,11 +311,13 @@ on(type: 'syncReceiverRegister', callback: Callback\<UIExtensionProxy\>): void;
 
 用于在双方建立连接成功后，组件使用方订阅被拉起的Ability发生同步注册的场景。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名  | 参数类型 |必填 | 参数描述 |
+| 参数名  | 参数类型 |必填 | 说明 |
 | ------ | -------- |---- | ------- |
 | type   | string | 是 | 订阅扩展Ability发生同步注册回调。 |
 | callback   | Callback\<UIExtensionProxy\> | 是 | 扩展Ability注册setReceiveDataForResultCallback后触发的回调。 |
@@ -282,11 +328,13 @@ off(type: 'asyncReceiverRegister', callback?: Callback\<UIExtensionProxy\>): voi
 
 用于在双方建立连接成功后，组件使用方取消订阅被拉起的Ability发生异步注册的场景。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填 | 参数描述 |
+| 参数名  | 参数类型 | 必填 | 说明 |
 | ------ | -------- | ----- | ------- |
 | type   | string | 是 | 取消订阅扩展Ability发生异步注册回调。 |
 | callback | Callback\<UIExtensionProxy\> | 否 | 为空代表取消订阅所有扩展Ability异步注册后触发回调。<br> 非空代表取消订阅异步对应回调。 |
@@ -297,11 +345,13 @@ off(type: 'syncReceiverRegister', callback?: Callback\<UIExtensionProxy\>): void
 
 用于在双方建立连接成功后，组件使用方取消订阅被拉起的Ability发生同步注册的场景。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填 | 参数描述 |
+| 参数名  | 参数类型 | 必填 | 说明 |
 | ------ | -------- | ----- | ------- |
 | type   | string | 是 | 取消订阅扩展Ability发生同步注册回调。 |
 | callback | Callback\<UIExtensionProxy\> | 否 | 为空代表取消订阅所有扩展Ability同步注册后触发回调<br> 非空代表取消订阅同步对应回调。 |
