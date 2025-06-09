@@ -188,7 +188,7 @@ getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                       |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<Array\<[MediaDescription](arkts-apis-media-i.md#mediadescription8)>> | 是   | 回调函数。获取音频轨道信息成功时，err为undefined，data为获取到的MediaDescription数组，否则为错误对象。 |
+| callback | AsyncCallback\<Array\<[MediaDescription](arkts-apis-media-e.md#mediadescription8)>> | 是   | 回调函数。获取音频轨道信息成功时，err为undefined，data为获取到的MediaDescription数组，否则为错误对象。 |
 
 **示例：**
 
@@ -219,7 +219,7 @@ getTrackDescription(): Promise\<Array\<MediaDescription>>
 
 | 类型                                                   | 说明                                            |
 | ------------------------------------------------------ | ----------------------------------------------- |
-| Promise<Array<[MediaDescription](arkts-apis-media-i.md#mediadescription8)>> | 音频轨道信息MediaDescription数组Promise返回值。 |
+| Promise<Array<[MediaDescription](arkts-apis-media-e.md#mediadescription8)>> | 音频轨道信息MediaDescription数组Promise返回值。 |
 
 **示例：**
 
