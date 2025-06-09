@@ -828,10 +828,10 @@
           <!--Del-->
           - [卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
           <!--DelEnd-->
-        - 互动卡片开发
+        - 互动卡片开发<!--arkts-ui-liveform-->
           - [互动卡片概述](form/arkts-ui-liveform-overview.md)
           - [趣味交互类型互动卡片开发指导](form/arkts-ui-liveform-funinteraction-development.md)
-          - 场景动效类型互动卡片
+          - 场景动效类型互动卡片<!--arkts-ui-liveform-sceneanimation-->
             - [场景动效类型互动卡片概述](form/arkts-ui-liveform-sceneanimation-overview.md)
             - [场景动效类型互动卡片开发指导](form/arkts-ui-liveform-sceneanimation-development.md)
             <!--Del-->
