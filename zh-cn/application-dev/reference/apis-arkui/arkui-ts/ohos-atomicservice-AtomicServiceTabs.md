@@ -93,7 +93,7 @@ constructor(icon: ResourceStr | TabBarSymbol, text: ResourceStr, unselectedColor
 
 | 名称 | 类型 | 必填 | 说明 |
 | --------------- | ------ |------ |------ |
-| icon | [ResourceStr](ts-types.md#resourcestr) \| [TabBarSymbol](ts-container-tabcontent.md#tabbarsymbol12) | 是 | 页签内的图片内容 |
+| icon | [ResourceStr](ts-types.md#resourcestr) \| [TabBarSymbol](ts-container-tabcontent.md#tabbarsymbol12对象说明) | 是 | 页签内的图片内容 |
 | text | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的文字内容。 |
 | unselectedColor | [ResourceColor](ts-types.md#resourcecolor) | 是 | 未选择时的页签颜色。 |
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 是 | 被选择时的页签颜色。 |
