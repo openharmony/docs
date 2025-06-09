@@ -40,6 +40,20 @@ import { insightIntentDriver } from '@kit.AbilityKit';
 | uris<sup>18+</sup> | Array&lt;string&gt; | 否 | 意图调用时，意图调用方给意图执行方授权的URI列表。 如果通过[@InsightIntentLink](js-apis-app-ability-InsightIntentDecorator.md#insightintentlink)装饰器定义的意图来实现应用跳转，此字段必选，仅读取数组第一个元素作为[openLink](js-apis-inner-application-uiAbilityContext.md#openlink12)的URI。 |
 | flags<sup>18+</sup> | number | 否 | 意图调用时，意图调用方给意图执行方授权的uris的[flags](js-apis-app-ability-wantConstant.md#flags)。 <br/>**说明：**<br/>该参数仅支持FLAG_AUTH_READ_URI_PERMISSION、FLAG_AUTH_WRITE_URI_PERMISSION、FLAG_AUTH_READ_URI_PERMISSION\|FLAG_AUTH_WRITE_URI_PERMISSION。|
 
+## InsightIntentType<sup>20+<sup>
+
+表示通过意图装饰器定义的意图类型，可通过[getAllInsightIntentInfo](#insightintentdrivergetallinsightintentinfo20)等方法返回的[LinkIntentInfo](#linkintentinfo20)获取。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| LINK | @InsightIntentLink | [@InsightIntentLink](./js-apis-app-ability-InsightIntentDecorator.md#insightintentlink)类型装饰器。 |
+| PAGE | @InsightIntentPage | [@InsightIntentPage](./js-apis-app-ability-InsightIntentDecorator.md#insightintentpage)类型装饰器。 |
+| ENTRY | @InsightIntentEntry | [@InsightIntentEntry](./js-apis-app-ability-InsightIntentDecorator.md#insightintententry)类型装饰器。 |
+| FUNCTION | @InsightIntentFunctionMethod | [@InsightIntentFunctionMethod](./js-apis-app-ability-InsightIntentDecorator.md#insightintentfunctionmethod)类型装饰器。 |
+| FORM | @InsightIntentForm | [@InsightIntentForm](./js-apis-app-ability-InsightIntentDecorator.md#insightintentform)类型装饰器。 |
+
 ## LinkIntentInfo<sup>20+<sup>
 
 LinkIntentInfo继承自[IntentDecoratorInfo](./js-apis-app-ability-InsightIntentDecorator.md#intentdecoratorinfo)，用于描述[@InsightIntentLink](./js-apis-app-ability-InsightIntentDecorator.md#insightintentlink)装饰器支持的参数，例如应用间跳转需要的uri信息。
@@ -104,7 +118,7 @@ PageIntentInfo继承自[IntentDecoratorInfo](./js-apis-app-ability-InsightIntent
 | icon | string | 是 | 否 | 表示意图图标。 |
 | llmDescription | string | 是 | 否 | 表示意图的功能，用于大型语言模型理解该意图。 |
 | keywords | Array&lt;string&gt; | 是 | 否 | 表示意图的搜索关键字。 |
-| intentType | string | 是 | 否 | 表示通过意图装饰器定义的意图类型。 |
+| intentType | [InsightIntentType](#insightintenttype20) | 是 | 否 | 表示通过意图装饰器定义的意图类型。 |
 | subIntentInfo | [LinkIntentInfo](#linkintentinfo20) \| [PageIntentInfo](#pageintentinfo20) \| [FunctionIntentInfo](#functionintentinfo20) | 是 | 否 | 表示特定意图装饰器的意图信息。 |
 | parameters | Record<string, Object> | 是 | 否 | 表示意图参数的数据格式声明，用于意图调用时定义入参的数据格式。 |
 
