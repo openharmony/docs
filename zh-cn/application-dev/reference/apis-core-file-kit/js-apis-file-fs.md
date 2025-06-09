@@ -4218,7 +4218,7 @@ getBaseFile(): File
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
 
 **示例：**
 
@@ -4260,7 +4260,7 @@ openRead(): ReadStream
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
 
 **示例：**
 
@@ -4312,7 +4312,7 @@ readFully(): ArrayBuffer
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
 
 **示例：**
 
@@ -4364,7 +4364,7 @@ startWrite(): WriteStream
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
 
 **示例：**
 
@@ -4399,7 +4399,7 @@ finishWrite(): void
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
 
 **示例：**
 
@@ -4433,7 +4433,7 @@ failWrite(): void
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
 
 **示例：**
 
@@ -4470,7 +4470,7 @@ delete(): void
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
 
 **示例：**
 
@@ -5544,7 +5544,7 @@ onStatus(networkId: string, status: number): void;
   | 参数名  | 类型     | 必填   | 说明                              |
   | ---- | ------ | ---- | ---------------------------------------- |
   | networkId   | string | 是    | 设备的网络Id。                             |
-  | status | number | 是    | 分布式文件系统的状态码（以connectDfs回调onStatus的特定错误码作为入参）。触发场景为connectDfs调用过程中出现对端设备异常，对应错误码为：<br/>-&nbsp;[13900046](errorcode-filemanagement.md#13900046)：软件造成连接中断。
+  | status | number | 是    | 分布式文件系统的状态码（以connectDfs回调onStatus的特定错误码作为入参）。触发场景为connectDfs调用过程中出现对端设备异常，对应错误码为：<br/>-&nbsp;[13900046](errorcode-filemanagement.md#13900046-软件造成连接中断)：软件造成连接中断。
 
 ## RandomAccessFile
 
