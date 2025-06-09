@@ -972,7 +972,7 @@ try {
 
 getTopNavDestinationName(windowId: number): Promise&lt;string&gt;
 
-获取指定前台窗口栈顶Router页面中的的[NavDestination](arkui-ts/ts-basic-components-navdestination.md)名称，使用Promise异步回调。
+获取指定前台窗口当前栈顶[Navigation](arkui-ts/ts-basic-components-navigation.md)中的[NavDestination](arkui-ts/ts-basic-components-navdestination.md)名称，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -982,13 +982,13 @@ getTopNavDestinationName(windowId: number): Promise&lt;string&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                                                        |
 | ------ | ---------- |----|---------------------------------------------------------------------------|
-| windowId   | number| 是  | 窗口ID，用于指定要查询的窗口。该参数应为大于等于0的整数，小于0时会返回错误码1300016，如果指定的窗口不存在或生命周期不在前台，返回值为1300002。|
+| windowId   | number| 是  | 窗口Id，用于指定要查询的窗口。该参数应为大于0的整数，小于等于0时会返回错误码1300016，如果指定的窗口不存在或生命周期不在前台，返回值为1300002。|
 
 **返回值：**
 
 | 类型                             | 说明                      |
 | -------------------------------- |-------------------------|
-| Promise&lt;string&gt; | Promise对象。返回获取到的[NavDestination](arkui-ts/ts-basic-components-navdestination.md)名称。如果没有，返回空字符串。|
+| Promise&lt;string&gt; | Promise对象。返回获取到的[NavDestination](arkui-ts/ts-basic-components-navdestination.md)名称。<br>对于[Navigation](arkui-ts/ts-basic-components-navigation.md)嵌套以及当前页面存在多个[Navigation](arkui-ts/ts-basic-components-navigation.md)的场景，查询的是后上树的[Navigation](arkui-ts/ts-basic-components-navigation.md)的信息。<br>如果页面没有[Navigation](arkui-ts/ts-basic-components-navigation.md)或者[Navigation](arkui-ts/ts-basic-components-navigation.md)中没有[NavDestination](arkui-ts/ts-basic-components-navdestination.md)，返回空字符串。|
 
 **错误码：**
 
@@ -1002,6 +1002,7 @@ getTopNavDestinationName(windowId: number): Promise&lt;string&gt;
 | 1300003 | This window manager service works abnormally. |
 | 1300016 | Parameter error. Possible cause: 1. Invalid parameter range. |
 
+**示例：**
 ```ts
 import { window } from '@ohos.window';
 import { BusinessError } from '@kit.BasicServicesKit';
