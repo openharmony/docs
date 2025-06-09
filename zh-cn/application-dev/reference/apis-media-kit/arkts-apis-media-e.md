@@ -116,7 +116,7 @@
 
 ## AVMimeTypes<sup>12+</sup>
 
-媒体MIME类型，通过[setMimeType](#setmimetype12)设置。
+媒体MIME类型，通过[setMimeType](arkts-apis-media-MediaSource.md#setmimetype12)设置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -260,7 +260,7 @@
 | SEEK_NEXT_SYNC | 0    | 表示跳转到指定时间点的下一个关键帧，建议向后快进的时候用这个枚举值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | SEEK_PREV_SYNC | 1    | 表示跳转到指定时间点的上一个关键帧，建议向前快进的时候用这个枚举值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | SEEK_CLOSEST<sup>12+</sup> | 2    | 表示跳转到距离指定时间点最近的帧，建议精准跳转进度的时候用这个枚举值。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| SEEK_CONTINUOUS<sup>18+</sup> | 3    | 该模式提供了一种画面平滑流畅变化的Seek体验，应用可以结合进度条控件持续调用Seek方法，AVPlayer根据Seek调用持续流畅地更新画面。<br>应用可以调用[isSeekContinuousSupported](#isseekcontinuoussupported18)方法根据返回结果感知视频源是否支持该模式Seek。<br>对于不支持该Seek模式的视频源调用该模式Seek时，会上报AVERR_SEEK_CONTINUOUS_UNSUPPORTED错误([媒体错误码](#averrorcode9))，同时画面更新的流畅性会降低。<br>该Seek模式不会触发[seekDone事件](#onseekdone9)。<br>当应用需要退出该模式下的Seek时，需要调用`seek(-1, SeekMode.SEEK_CONTINUOUS)`来结束该模式下的Seek。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| SEEK_CONTINUOUS<sup>18+</sup> | 3    | 该模式提供了一种画面平滑流畅变化的Seek体验，应用可以结合进度条控件持续调用Seek方法，AVPlayer根据Seek调用持续流畅地更新画面。<br>应用可以调用[isSeekContinuousSupported](arkts-apis-media-AVPlayer.md#isseekcontinuoussupported18)方法根据返回结果感知视频源是否支持该模式Seek。<br>对于不支持该Seek模式的视频源调用该模式Seek时，会上报AVERR_SEEK_CONTINUOUS_UNSUPPORTED错误([媒体错误码](#averrorcode9))，同时画面更新的流畅性会降低。<br>该Seek模式不会触发[seekDone事件](arkts-apis-media-AVPlayer.md#onseekdone9)。<br>当应用需要退出该模式下的Seek时，需要调用`seek(-1, SeekMode.SEEK_CONTINUOUS)`来结束该模式下的Seek。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## SwitchMode<sup>12+</sup>
 
