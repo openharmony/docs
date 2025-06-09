@@ -207,7 +207,7 @@ setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| src | [MediaSource](arkts-apis-media-MediaSource.md#mediasource12) | 是   | 流媒体预下载媒体来源。 |
+| src | [MediaSource](arkts-apis-media-MediaSource.md) | 是   | 流媒体预下载媒体来源。 |
 | strategy | [PlaybackStrategy](arkts-apis-media-i.md#playbackstrategy12) | 否   | 流媒体预下载播放策略。 |
 
 **返回值：**
