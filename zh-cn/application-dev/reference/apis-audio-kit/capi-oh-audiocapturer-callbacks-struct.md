@@ -8,14 +8,6 @@
 
 **起始版本：** 10
 
-**废弃版本：** 18
-
-**替代接口：**
-
-请分别使用以下回调类型替代：
-
-[OH_AudioCapturer_OnReadDataCallback](capi-native-audiocapturer-h.md#oh_audiocapturer_onreaddatacallback)、 [OH_AudioCapturer_OnDeviceChangeCallback](capi-native-audiocapturer-h.md#oh_audiocapturer_ondevicechangecallback)、 [OH_AudioCapturer_OnInterruptCallback](capi-native-audiocapturer-h.md#oh_audiocapturer_oninterruptcallback) 以及 [OH_AudioCapturer_OnErrorCallback](capi-native-audiocapturer-h.md#oh_audiocapturer_onerrorcallback)。
-
 **相关模块：** [OHAudio](capi-ohaudio.md)
 
 **所在头文件：** [native_audiostream_base.h](capi-native-audiostream-base-h.md)
@@ -50,10 +42,6 @@ int32_t (*OH_AudioCapturer_OnReadData)(OH_AudioCapturer* capturer,void* userData
 
 **起始版本：** 10
 
-**废弃版本：** 18
-
-**替代接口：** [OH_AudioCapturer_OnReadDataCallback](capi-native-audiocapturer-h.md#oh_audiocapturer_onreaddatacallback)
-
 **参数：**
 
 | 参数项 | 描述 |
@@ -75,10 +63,6 @@ int32_t (*OH_AudioCapturer_OnStreamEvent)(OH_AudioCapturer* capturer,void* userD
 
 **起始版本：** 10
 
-**废弃版本：** 18
-
-**替代接口：** [OH_AudioCapturer_OnDeviceChangeCallback](capi-native-audiocapturer-h.md#oh_audiocapturer_ondevicechangecallback)
-
 **参数：**
 
 | 参数项 | 描述 |
@@ -98,10 +82,6 @@ int32_t (*OH_AudioCapturer_OnInterruptEvent)(OH_AudioCapturer* capturer,void* us
 该函数指针将指向用于处理音频录制中断事件的回调函数。
 
 **起始版本：** 10
-
-**废弃版本：** 18
-
-**替代接口：** [OH_AudioCapturer_OnInterruptCallback](capi-native-audiocapturer-h.md#oh_audiocapturer_oninterruptcallback)
 
 **参数：**
 
@@ -124,10 +104,6 @@ int32_t (*OH_AudioCapturer_OnError)(OH_AudioCapturer* capturer, void* userData, 
 该函数指针将指向用于处理音频录制错误结果的回调函数。
 
 **起始版本：** 10
-
-**废弃版本：** 18
-
-**替代接口：** [OH_AudioCapturer_OnErrorCallback](capi-native-audiocapturer-h.md#oh_audiocapturer_onerrorcallback)
 
 **参数：**
 
