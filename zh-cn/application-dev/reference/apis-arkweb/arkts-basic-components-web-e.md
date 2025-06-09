@@ -205,6 +205,8 @@ Web布局模式的配置。
 | ----- | -- | ------------- |
 | None  | 0 | 非特殊媒体或其他媒体类型。 |
 | Image | 1 | 图片。           |
+| Video<sup>20+</sup> | 2 | 视频。           |
+| Audio<sup>20+</sup> | 3 | 音频。           |
 
 ## ContextMenuInputFieldType<sup>9+</sup>
 
