@@ -2861,7 +2861,7 @@ getTextDirection(): TextDirection
 
 | 类型                   | 说明           |
 | ---------------------- | -------------- |
-|   [TextDirection](#textdirection)  | 该排版单元的文本方向。|
+|   [TextDirection](#textdirection)  | 返回该排版单元的文本方向。|
 
 **示例：**
 
@@ -2887,7 +2887,7 @@ getAdvances(range: Range): Array<common2D.Point>
 
 | 类型                   | 说明                                   |
 | ---------------------- | ------------------------------------- |
-| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | 该排版单元中每个字形相对于水平方向和垂直方向的字形宽度。 |
+| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | 返回该排版单元中每个字形相对于水平方向和垂直方向的字形宽度。 |
 
 **示例：**
 
