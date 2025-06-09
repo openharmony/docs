@@ -13358,6 +13358,10 @@ ArkUI_NodeAdapterHandle OH_ArkUI_NodeAdapter_Create ()
 
 **起始版本：** 12
 
+**返回：**
+
+组件适配器对象。
+
 
 ### OH_ArkUI_NodeAdapter_Dispose()
 
@@ -13712,6 +13716,10 @@ void* OH_ArkUI_NodeAdapterEvent_GetUserData (ArkUI_NodeAdapterEvent * event)
 | 名称 | 描述 | 
 | -------- | -------- |
 | event | 适配器事件对象。  | 
+
+**返回：**
+
+用户自定义数据的指针。
 
 
 ### OH_ArkUI_NodeAdapterEvent_SetItem()
