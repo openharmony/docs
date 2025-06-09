@@ -8087,6 +8087,12 @@ webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): v
 
 获取网页全量绘制结果。
 
+> **说明：**
+>
+> 仅支持对渲染进程上的资源进行截图：静态图片和文本。
+> 
+> 如果页面有视频则截图时会显示该视频的占位图片，没有占位图片则显示空白。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -17079,11 +17085,6 @@ struct WebComponent {
 | status | boolean | 否 |  snapshot的状态，正常为true，失败为false，获取全量绘制结果失败，返回size的长宽都为0，map为空。|
 | size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | 否 | web绘制的真实尺寸，number类型，单位vp。|
 | imagePixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否 | 全量绘制结果image.pixelMap格式。|
-
-> **说明：**
->
-> 仅支持对渲染进程上的资源进行截图：静态图片和文本。
-> 不支持动态视频，如果页面有视频则截图时会显示该视频的占位图片。
 
 ## ScrollType<sup>12+</sup>
 
