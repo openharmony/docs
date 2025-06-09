@@ -21,7 +21,7 @@ setMimeType(mimeType: AVMimeTypes): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| mimeType | [AVMimeTypes](arkts-apis-media-e.md#mediasource12) | 是   | 媒体MIME类型。 |
+| mimeType | [AVMimeTypes](arkts-apis-media-e.md#avmimetypes12) | 是   | 媒体MIME类型。 |
 
 ## setMediaResourceLoaderDelegate<sup>18+</sup>
 
