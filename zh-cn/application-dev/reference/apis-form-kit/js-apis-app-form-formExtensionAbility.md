@@ -6,12 +6,15 @@ FormExtensionAbility为卡片扩展模块，提供卡片创建、销毁、刷新
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
+> FormExtensionAbility创建后10秒内无操作将会被清理。
+>
 > 如下模块不支持在FormExtensionAbility引用，可能会导致程序异常退出。
 > - @ohos.ability.particleAbility (ParticleAbility模块)
 > - @ohos.multimedia.audio (音频管理)
 > - @ohos.multimedia.camera (相机管理)
 > - @ohos.multimedia.media (媒体服务)
 > - @ohos.resourceschedule.backgroundTaskManager (后台任务管理)
+
 
 ## 导入模块
 
@@ -272,8 +275,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onConfigurationUpdate(newConfig: Configuration): void
 
-当系统配置更新时调用。  
-仅当前formExtensionAbility存活时更新配置才会触发此生命周期。需要注意：formExtensionAbility创建后10秒内无操作将会被清理。
+当系统配置项变更时调用，仅当FormExtensionAbility存活时才会触发onConfigurationUpdate回调。<!--Del-->此外，从API version 20开始，对于系统应用，当系统语言发生变更时会拉起FormExtensionAbility再触发onConfigurationUpdate回调。<!--DelEnd-->
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
