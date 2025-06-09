@@ -1,11 +1,11 @@
-# ffrt_mutexattr_t
+# ffrt_rwlockattr_t
 
 
 ## Overview
 
-The **ffrt_mutexattr_t** struct describes an FFRT mutex attribute.
+The **ffrt_rwlockattr_t** struct describes an FFRT read-write lock attribute.
 
-**Since**: 10
+**Since**: 18
 
 **Related module**: [FFRT](_f_f_r_t.md)
 
@@ -18,7 +18,7 @@ The **ffrt_mutexattr_t** struct describes an FFRT mutex attribute.
 
 | Name| Description| 
 | -------- | -------- |
-| long [storage](#storage) | Storage size of a mutex attribute. | 
+| long [storage](#storage) | Storage size of a read-write lock. | 
 
 
 ## Member Variable Description
@@ -27,7 +27,7 @@ The **ffrt_mutexattr_t** struct describes an FFRT mutex attribute.
 ### storage
 
 ```
-long ffrt_mutexattr_t::storage
+long ffrt_rwlockattr_t::storage
 ```
 **Description**
-Storage size of a mutex attribute.
+Storage size of a read-write lock.
