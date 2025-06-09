@@ -22,7 +22,7 @@ createAVPlayer(callback: AsyncCallback\<AVPlayer>): void
 
 | 参数名   | 类型                                  | 必填 | 说明                                                         |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[AVPlayer](#avplayer9)> | 是   | 回调函数。异步返回AVPlayer实例，失败时返回null。可用于音视频播放。 |
+| callback | AsyncCallback\<[AVPlayer](aekts-apis-media-AVPlayer.md#avplayer9)> | 是   | 回调函数。异步返回AVPlayer实例，失败时返回null。可用于音视频播放。 |
 
 **错误码：**
 
@@ -67,7 +67,7 @@ createAVPlayer(): Promise\<AVPlayer>
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise\<[AVPlayer](#avplayer9)> | Promise对象。异步返回AVPlayer实例，失败时返回null。可用于音视频播放。 |
+| Promise\<[AVPlayer](aekts-apis-media-AVPlayer.md#avplayer9)> | Promise对象。异步返回AVPlayer实例，失败时返回null。可用于音视频播放。 |
 
 **错误码：**
 
@@ -111,7 +111,7 @@ createAVRecorder(callback: AsyncCallback\<AVRecorder>): void
 
 | 参数名   | 类型                                       | 必填 | 说明                                                         |
 | -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[AVRecorder](#avrecorder9)> | 是   | 回调函数。异步返回AVRecorder实例，失败时返回null。可用于录制音视频媒体。 |
+| callback | AsyncCallback\<[AVRecorder](arkts-apis-media-AVRecorder.md#avrecorder9)> | 是   | 回调函数。异步返回AVRecorder实例，失败时返回null。可用于录制音视频媒体。 |
 
 **错误码：**
 
@@ -155,7 +155,7 @@ createAVRecorder(): Promise\<AVRecorder>
 
 | 类型                                 | 说明                                                         |
 | ------------------------------------ | ------------------------------------------------------------ |
-| Promise\<[AVRecorder](#avrecorder9)> | Promise对象。异步返回AVRecorder实例，失败时返回null。可用于录制音视频媒体。 |
+| Promise\<[AVRecorder](arkts-apis-media-AVRecorder.md#avrecorder9)> | Promise对象。异步返回AVRecorder实例，失败时返回null。可用于录制音视频媒体。 |
 
 **错误码：**
 
@@ -199,7 +199,7 @@ createAVTranscoder(): Promise\<AVTranscoder>
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise\<[AVTranscoder](#avtranscoder12)> | Promise对象。异步返回AVTranscoder实例，失败时返回null。可用于视频转码。 |
+| Promise\<[AVTranscoder](arkts-apis-media-AVTranscoder.md#avtranscoder12)> | Promise对象。异步返回AVTranscoder实例，失败时返回null。可用于视频转码。 |
 
 **错误码：**
 
@@ -239,7 +239,7 @@ createAVMetadataExtractor(callback: AsyncCallback\<AVMetadataExtractor>): void
 
 | 参数名   | 类型                                  | 必填 | 说明                                                         |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[AVMetadataExtractor](#avmetadataextractor11)> | 是   | 回调函数。当创建AVMetadataExtractor实例成功，err为undefined，data为获取到的AVMetadataExtractor实例，否则为错误对象。 |
+| callback | AsyncCallback\<[AVMetadataExtractor](arkts-apis-media-AVMetadataExtractor.md#avmetadataextractor11)> | 是   | 回调函数。当创建AVMetadataExtractor实例成功，err为undefined，data为获取到的AVMetadataExtractor实例，否则为错误对象。 |
 
 **错误码：**
 
@@ -277,7 +277,7 @@ createAVMetadataExtractor(): Promise\<AVMetadataExtractor>
 
 | 类型           | 说明                                     |
 | -------------- | ---------------------------------------- |
-| Promise\<[AVMetadataExtractor](#avmetadataextractor11)>  | Promise对象。异步返回元数据获取类对象（AVMetadataExtractor）。 |
+| Promise\<[AVMetadataExtractor](arkts-apis-media-AVMetadataExtractor.md#avmetadataextractor11)>  | Promise对象。异步返回元数据获取类对象（AVMetadataExtractor）。 |
 
 **错误码：**
 
@@ -426,7 +426,7 @@ createAVScreenCaptureRecorder(): Promise\<AVScreenCaptureRecorder>
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise\<[AVScreenCaptureRecorder](#avscreencapturerecorder12)> | Promise对象。异步返回AVScreenCaptureRecorder实例，失败时返回null。可用于进行屏幕录制。 |
+| Promise\<[AVScreenCaptureRecorder](arkts-apis-media-AVScreenCaptureRecorder.md#avscreencapturerecorder12)> | Promise对象。异步返回AVScreenCaptureRecorder实例，失败时返回null。可用于进行屏幕录制。 |
 
 **错误码：**
 
@@ -464,7 +464,7 @@ createAVImageGenerator(callback: AsyncCallback\<AVImageGenerator>): void
 
 | 参数名   | 类型                                  | 必填 | 说明                                                         |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[AVImageGenerator](#avimagegenerator12)> | 是   | 回调函数。异步返回AVImageGenerator实例，失败时返回null。可用于获取视频缩略图。 |
+| callback | AsyncCallback\<[AVImageGenerator](arkts-apis-media-AVImageGenerator.md#avimagegenerator12)> | 是   | 回调函数。异步返回AVImageGenerator实例，失败时返回null。可用于获取视频缩略图。 |
 
 **错误码：**
 
@@ -502,7 +502,7 @@ createAVImageGenerator(): Promise\<AVImageGenerator>
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise\<[AVImageGenerator](#avimagegenerator12)> | Promise对象。异步返回AVImageGenerator实例，失败时返回null。可用于获取视频缩略图。 |
+| Promise\<[AVImageGenerator](arkts-apis-media-AVImageGenerator.md#avimagegenerator12)> | Promise对象。异步返回AVImageGenerator实例，失败时返回null。可用于获取视频缩略图。 |
 
 **错误码：**
 
@@ -550,7 +550,7 @@ createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaS
 
 | 类型           | 说明                                       |
 | -------------- | ------------------------------------------ |
-| [MediaSource](#mediasource12) | MediaSource返回值。 |
+| [MediaSource](arkts-apis-media-MediaSource.md#mediasource12) | MediaSource返回值。 |
 
 **错误码：**
 
@@ -608,13 +608,13 @@ createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 
 | 参数名  | 类型                                 | 必填 | 说明                                                  |
 | ------- | ------------------------------------ | ---- | ----------------------------------------------------- |
-| streams | Array<[MediaStream](#mediastream19)> | 是 | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
+| streams | Array<[MediaStream](arkts-apis-media-MediaStream.md#mediastream19)> | 是 | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
 
 **返回值：**
 
 | 类型                          | 说明                |
 | ----------------------------- | ------------------- |
-| [MediaSource](#mediasource12) | 返回MediaSource，用于媒体资源设置。 |
+| [MediaSource](arkts-apis-media-MediaSource.md#mediasource12) | 返回MediaSource，用于媒体资源设置。 |
 
 **示例1：**
 
@@ -641,7 +641,7 @@ createAudioPlayer(): AudioPlayer
 
 | 类型                        | 说明                                                         |
 | --------------------------- | ------------------------------------------------------------ |
-| [AudioPlayer](#audioplayerdeprecated) | 返回AudioPlayer类实例，失败时返回null。可用于音频播放、暂停、停止等操作。 |
+| [AudioPlayer](arkts-apis-media-AudioPlayer.md#audioplayerdeprecated) | 返回AudioPlayer类实例，失败时返回null。可用于音频播放、暂停、停止等操作。 |
 
 **示例：**
 
@@ -664,7 +664,7 @@ createVideoPlayer(callback: AsyncCallback\<VideoPlayer>): void
 
 | 参数名   | 类型                                       | 必填 | 说明                                                         |
 | -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[VideoPlayer](#videoplayerdeprecated)> | 是   | 回调函数。创建VideoPlayer实例成功时，err为undefined，data为获取到的VideoPlayer实例，否则为错误对象。 |
+| callback | AsyncCallback<[VideoPlayer](arkts-apis-media-VideoPlayer.md#videoplayerdeprecated)> | 是   | 回调函数。创建VideoPlayer实例成功时，err为undefined，data为获取到的VideoPlayer实例，否则为错误对象。 |
 
 **示例：**
 
@@ -733,7 +733,7 @@ createAudioRecorder(): AudioRecorder
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| [AudioRecorder](#audiorecorderdeprecated) | 返回AudioRecorder类实例，失败时返回null。可用于录制音频媒体。 |
+| [AudioRecorder](arkts-apis-media-AudioRecorder.md#audiorecorderdeprecated) | 返回AudioRecorder类实例，失败时返回null。可用于录制音频媒体。 |
 
 **示例：**
 
