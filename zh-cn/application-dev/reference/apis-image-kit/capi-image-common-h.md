@@ -303,7 +303,7 @@ Image_ErrorCode OH_PictureMetadata_Create(Image_MetadataType metadataType, OH_Pi
 | 参数项 | 描述 |
 | -- | -- |
 | [Image_MetadataType](#image_metadatatype) metadataType | 元数据的类型。 |
-| OH_PictureMetadata **metadata | 被操作的OH_PictureMetadata指针。 |
+| [OH_PictureMetadata](capi-oh-picturemetadata.md) **metadata | 被操作的OH_PictureMetadata指针。 |
 
 **返回：**
 
@@ -328,7 +328,7 @@ Image_ErrorCode OH_PictureMetadata_GetProperty(OH_PictureMetadata *metadata, Ima
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_PictureMetadata *metadata | 被操作的OH_PictureMetadata指针。 |
+| [OH_PictureMetadata](capi-oh-picturemetadata.md) *metadata | 被操作的OH_PictureMetadata指针。 |
 | [Image_String](capi-image-string.md) *key | 属性的键。 |
 | [Image_String](capi-image-string.md) *value | 属性的值。 |
 
@@ -355,7 +355,7 @@ Image_ErrorCode OH_PictureMetadata_SetProperty(OH_PictureMetadata *metadata, Ima
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_PictureMetadata *metadata | 被操作的OH_PictureMetadata指针。 |
+| [OH_PictureMetadata](capi-oh-picturemetadata.md) *metadata | 被操作的OH_PictureMetadata指针。 |
 | [Image_String](capi-image-string.md) *key | 属性的键。 |
 | [Image_String](capi-image-string.md) *value | 属性的值。 |
 
