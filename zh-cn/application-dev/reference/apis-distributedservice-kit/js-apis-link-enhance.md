@@ -453,7 +453,7 @@ linkEnhanceStart(name: string) {
 | ----------------- | ------ | ----  | ---- | ------------------ |
 | deviceId          | string | 是    |是    | 对端设备ID，成功返回对端设备的deviceId，失败返回空字符串。     |
 | success           | boolean | 是    |是   | 连接结果，true表示连接成功，false表示连接失败。 |
-| reason            | number | 是    |是    | 连接失败返回错误码，连接成功返回零。 |
+| reason            | number | 是    |是    | 连接成功返回0，连接失败返回错误码：<br>- 32390200：表示客户端连接超时。<br>- 32390201：表示服务端服务未启动。<br>- 32390300：表示内部错误。<br>更多关于错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。 |
 
 ## Connection
 

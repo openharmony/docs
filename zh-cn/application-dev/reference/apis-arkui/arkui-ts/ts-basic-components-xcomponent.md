@@ -16,7 +16,7 @@
 
 XComponent(params: NativeXComponentParameters)
 
-在native侧获取XComponent节点实例、注册XComponent持有的Surface的生命周期回调和触摸、鼠标、按键等组件事件回调。
+在Native侧获取XComponent节点实例、注册XComponent持有的Surface的生命周期回调和触摸、鼠标、按键等组件事件回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -100,7 +100,7 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 
 ## NativeXComponentParameters<sup>19+</sup>
 
-定义XComponent的具体配置参数。这种方式创建的XComponent可以对应的[FrameNode](../js-apis-arkui-frameNode.md)可以传递到native侧使用NDK接口构建UI的方式[监听组件事件](../../../ui/ndk-listen-to-component-events.md)以及进行surface生命周期相关的设置。
+定义XComponent的具体配置参数。这种方式创建的XComponent可以对应的[FrameNode](../js-apis-arkui-frameNode.md)可以传递到Native侧使用NDK接口构建UI的方式[监听组件事件](../../../ui/ndk-listen-to-component-events.md)以及进行surface生命周期相关的设置。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -280,7 +280,7 @@ xcomponentController: XComponentController = new XComponentController();
 
 getXComponentSurfaceId(): string
 
-获取XComponent对应Surface的ID，供@ohos接口使用，使用方式可参考[相机管理](../../apis-camera-kit/js-apis-camera.md)，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
+获取XComponent对应Surface的ID，供@ohos接口使用，使用方式可参考[相机管理](../../apis-camera-kit/arkts-apis-camera.md)，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -457,7 +457,7 @@ startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[AI分析类库错误码](../errorcode-image-analyzer.md)。
+以下错误码的详细介绍请参见[AI分析类库错误码](errorcode-image-analyzer.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | -------------------------------------------- |

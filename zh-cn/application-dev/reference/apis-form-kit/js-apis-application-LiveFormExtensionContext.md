@@ -28,9 +28,9 @@ setBackgroundImage(res: Resource): Promise&lt;void&gt;
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明                                   |
-  | ------ | ------ | ---- | ------------------------------------- |
-  | res | [Resource](../apis-localization-kit/js-apis-resource.md) | 是 | 需要设置的互动卡片背景图对应的资源信息，包括资源id、资源类型等。|
+| 参数名 | 类型    | 必填 | 说明                                   |
+| ------ | ------ | ---- | ------------------------------------- |
+| res | [Resource](../apis-localization-kit/js-apis-resource.md) | 是 | 需要设置的互动卡片背景图对应的资源信息，包括资源id、资源类型等。|
 
 **返回值：**
 
@@ -52,8 +52,7 @@ setBackgroundImage(res: Resource): Promise&lt;void&gt;
 ```ts
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { LiveFormExtensionAbility } from '@kit.FormKit';
-import { LiveFormInfo } from '@ohos.app.form.LiveFormExtensionAbility';
+import { LiveFormExtensionAbility, LiveFormInfo } from '@kit.FormKit';
 
 const TAG: string = '[testTag]LiveFormExtAbility';
 

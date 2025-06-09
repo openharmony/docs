@@ -245,7 +245,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MPEG2Level](#oh_mpeg2level-1) {<br/>MPEG2_LEVEL_LL = 0,<br/>MPEG2_LEVEL_ML = 1,<br/>MPEG2_LEVEL_H14 = 2,<br/>MPEG2_LEVEL_HL = 3<br/> } | MPEG2级别。 | 
 | [OH_MPEG4Level](#oh_mpeg4level-1) {<br/>MPEG4_LEVEL_0 = 0,<br/>MPEG4_LEVEL_0B = 1,<br/>MPEG4_LEVEL_1 = 2,<br/>MPEG4_LEVEL_2 = 3,<br/>MPEG4_LEVEL_3 = 4,<br/>MPEG4_LEVEL_3B = 5,<br/>MPEG4_LEVEL_4 = 6,<br/>MPEG4_LEVEL_4A = 7,<br/>MPEG4_LEVEL_5 = 8,<br/>MPEG4_LEVEL_6 = 9<br/>} | MPEG4级别。 | 
 | [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1) { <br/>ADJACENT_REFERENCE = 0, <br/>JUMP_REFERENCE = 1, <br/>UNIFORMLY_SCALED_REFERENCE = 2 <br/>} | 时域图片组参考模式。  | 
-| [OH_BitrateMode](#oh_bitratemode-1) { <br/>BITRATE_MODE_CBR = 0, <br/>BITRATE_MODE_VBR = 1, <br/>BITRATE_MODE_CQ = 2 } | 编码器的比特率模式。  |
+| [OH_BitrateMode](#oh_bitratemode-1) { <br/>BITRATE_MODE_CBR = 0, <br/>BITRATE_MODE_VBR = 1, <br/>BITRATE_MODE_CQ = 2, <br/>BITRATE_MODE_SQR = 3 } | 编码器的比特率模式。  |
 
 ### 变量
 
@@ -1632,6 +1632,7 @@ enum OH_BitrateMode
 | BITRATE_MODE_CBR  | 恒定比特率模式。   | 
 | BITRATE_MODE_VBR  | 可变比特率模式，码率仅作参考。   | 
 | BITRATE_MODE_CQ  | 恒定质量模式。   | 
+| BITRATE_MODE_SQR<sup>20+</sup>  | 质量稳定模式，仅支持H265（HEVC）。   | 
 
 ## 变量说明
 

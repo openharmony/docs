@@ -1,6 +1,6 @@
-# @ohos.app.ability.AbilityConstant (AbilityConstant)
+# @ohos.app.ability.AbilityConstant (Ability相关的常量定义)
 
-AbilityConstant提供UIAbility相关的枚举，包括设置初次启动原因、上次退出原因、迁移结果、窗口类型等。
+AbilityConstant提供Ability相关的枚举，包括应用启动原因[LaunchReason](#launchreason)、上次退出原因[LastExitReason](#lastexitreason)、迁移结果[OnContinueResult](#oncontinueresult)等。
 
 > **说明：**
 > 
@@ -22,15 +22,15 @@ import { AbilityConstant } from '@kit.AbilityKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| launchReason | [LaunchReason](#launchreason)| 否 | 否 | 枚举类型，表示启动原因。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| launchReasonMessage<sup>18+</sup> | string | 否 | 是 | 表示启动的详细原因。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
-| lastExitReason | [LastExitReason](#lastexitreason) | 否 | 否 | 枚举类型，表示最后退出原因。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| launchReason | [LaunchReason](#launchreason)| 否 | 否 | 枚举类型，表示应用启动原因（如故障恢复拉起、意图调用拉起、原子化服务分享拉起等），详见[LaunchReason](#launchreason)。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| launchReasonMessage<sup>18+</sup> | string | 否 | 是 | 表示应用启动的详细原因。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| lastExitReason | [LastExitReason](#lastexitreason) | 否 | 否 | 枚举类型，表示应用上次退出原因。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | lastExitMessage<sup>12+</sup> | string | 否 | 否 | 表示最后退出详细原因。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
-| lastExitDetailInfo<sup>18+</sup> | [LastExitDetailInfo](#lastexitdetailinfo18) | 否 | 是 | 表示最后退出时的进程状态和详细原因。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| lastExitDetailInfo<sup>18+</sup> | [LastExitDetailInfo](#lastexitdetailinfo18) | 否 | 是 | 表示应用上次退出的关键运行时状态（含进程ID、退出时间戳、RSS内存值等）。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## LaunchReason
 
-Ability初次启动原因，该类型为枚举，可配合UIAbility的[onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#oncreate)方法根据launchParam.launchReason的不同类型执行相应操作。
+应用启动原因，该类型为枚举，可配合UIAbility的[onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#oncreate)方法根据launchParam.launchReason的不同类型执行相应操作。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -51,7 +51,7 @@ Ability初次启动原因，该类型为枚举，可配合UIAbility的[onCreate(
 ```ts
 import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
 
-class MyAbility extends UIAbility {
+export default class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     if (launchParam.launchReason === AbilityConstant.LaunchReason.START_ABILITY) {
       console.log('The ability has been started by the way of startAbility.');
@@ -69,7 +69,7 @@ Ability上次退出原因，该类型为枚举，可配合UIAbility的[onCreate(
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | 未知原因。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| ABILITY_NOT_RESPONDING<sup>(deprecated)</sup> | 1    | ability未响应。<br>**说明:** 从API version 9开始支持，从API version 10开始废弃，请使用APP_FREEZE替代。|
+| ABILITY_NOT_RESPONDING<sup>(deprecated)</sup> | 1    | Ability未响应。<br>**说明:** 从API version 9开始支持，从API version 10开始废弃，请使用APP_FREEZE替代。|
 | NORMAL | 2    | 用户主动关闭，应用程序正常退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。<br>**说明**：如果调用[process.exit()](../apis-arkts/js-apis-process.md#processexitdeprecated)、kill命令等非Ability Kit提供的能力退出应用进程，也会返回NORMAL。 |
 | CPP_CRASH<sup>10+</sup>  | 3    | 本机异常信号，导致应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | JS_ERROR<sup>10+</sup>  | 4    | 当应用存在JS语法错误并未被开发者捕获时，触发JS_ERROR故障，导致应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -85,7 +85,7 @@ Ability上次退出原因，该类型为枚举，可配合UIAbility的[onCreate(
 ```ts
 import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
 
-class MyAbility extends UIAbility {
+export default class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     if (launchParam.lastExitReason === AbilityConstant.LastExitReason.APP_FREEZE) {
       console.log('The ability has exit last because the ability was not responding.');
@@ -122,7 +122,7 @@ class MyAbility extends UIAbility {
 ```ts
 import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
 
-class MyAbility extends UIAbility {
+export default class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     if (launchParam.lastExitDetailInfo) {
       console.log('pid: ' + launchParam.lastExitDetailInfo.pid +
@@ -142,7 +142,7 @@ class MyAbility extends UIAbility {
 
 ## OnContinueResult 
 
-Ability迁移结果，该类型为枚举，可配合UIAbility的[onContinue()](js-apis-app-ability-uiAbility.md#oncontinue)方法进完成相应的返回。
+Ability迁移结果，该类型为枚举，可配合UIAbility的[onContinue()](js-apis-app-ability-uiAbility.md#oncontinue)方法完成相应的返回。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -151,15 +151,15 @@ Ability迁移结果，该类型为枚举，可配合UIAbility的[onContinue()](j
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | AGREE           | 0    | 表示同意。 |
-| REJECT           | 1    | 表示拒绝：如应用在[onContinue](js-apis-app-ability-uiAbility.md#oncontinue)中异常会导致迁移以后数据恢复时显示异常，则可以建议REJECT。 |
-| MISMATCH  | 2    | 表示版本不匹配：迁移发起端应用可以在[onContinue](js-apis-app-ability-uiAbility.md#oncontinue)中获取到迁移目标端应用的版本号，进行协商后，如果版本不匹配导致无法迁移，可以返回该错误。|
+| REJECT           | 1    | 表示拒绝：如应用在[onContinue](js-apis-app-ability-uiAbility.md#oncontinue)中异常会导致迁移以后数据恢复时显示异常，则可以返回REJECT。 |
+| MISMATCH  | 2    | 表示版本不匹配：迁移发起端应用可以在[onContinue](js-apis-app-ability-uiAbility.md#oncontinue)中获取到迁移目标端应用的版本号，进行协商后，如果版本不匹配导致无法迁移，可以返回该结果。|
 
 **示例：**
 
 ```ts
 import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
-class MyAbility extends UIAbility {
+export default class MyAbility extends UIAbility {
   onContinue(wantParam: Record<string, Object>) {
     return AbilityConstant.OnContinueResult.AGREE;
   }
@@ -192,7 +192,7 @@ class MyAbility extends UIAbility {
 ```ts
 import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
-class MyAbility extends UIAbility {
+export default class MyAbility extends UIAbility {
   onMemoryLevel(level: AbilityConstant.MemoryLevel) {
     if (level === AbilityConstant.MemoryLevel.MEMORY_LEVEL_CRITICAL) {
       console.log('The memory of device is critical, please release some memory.');
@@ -228,7 +228,7 @@ let option: StartOptions = {
 };
 
 // 确保从上下文获取到context
-class MyAbility extends UIAbility {
+export default class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     this.context.startAbility(want, option).then(() => {
       console.log('Succeed to start ability.');
@@ -261,7 +261,7 @@ class MyAbility extends UIAbility {
 ```ts
 import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
-class MyAbility extends UIAbility {
+export default class MyAbility extends UIAbility {
   onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
     return AbilityConstant.OnSaveResult.ALL_AGREE;
   }
@@ -286,7 +286,7 @@ class MyAbility extends UIAbility {
 ```ts
 import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
-class MyAbility extends UIAbility {
+export default class MyAbility extends UIAbility {
   onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
     if (reason === AbilityConstant.StateType.CONTINUATION) {
       console.log('Save the ability data when the ability continuation.');
@@ -315,7 +315,7 @@ class MyAbility extends UIAbility {
 import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-class MyAbility extends UIAbility {
+export default class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result: BusinessError) => {
       console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
@@ -340,7 +340,7 @@ class MyAbility extends UIAbility {
 ```ts
 import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
-class MyAbility extends UIAbility {
+export default class MyAbility extends UIAbility {
   onCollaborate(wantParam: Record<string, Object>) {
     return AbilityConstant.CollaborateResult.ACCEPT;
   }
@@ -365,7 +365,7 @@ class MyAbility extends UIAbility {
 ```ts
 import { AbilityConstant, AbilityStage } from '@kit.AbilityKit';
 
-class MyAbilityStage extends AbilityStage {
+export default class MyAbilityStage extends AbilityStage {
   onPrepareTermination(): AbilityConstant.PrepareTermination {
     console.info('MyAbilityStage.onPrepareTermination is called');
     return AbilityConstant.PrepareTermination.CANCEL;

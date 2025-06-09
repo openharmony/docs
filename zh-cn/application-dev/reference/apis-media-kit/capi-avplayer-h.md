@@ -704,7 +704,7 @@ OH_AVErrCode OH_AVPlayer_SelectBitRate(OH_AVPlayer *player, uint32_t bitRate)
 
 **描述**
 
-设置hls播放器使用的码率。仅对HLS协议网络流有效。<br>默认情况下，播放器会根据网络连接情况选择合适的码率和速度。<br>通过INFO_TYPE_BITRATE_COLLECT上报有效码率链表，设置并选择指定的码率，选择小于和最接近的码率。准备好后，读取以查询当前选择的比特率。
+设置hls播放器使用的码率。仅对HLS协议网络流有效。<br>默认情况下，播放器会根据网络连接情况选择合适的码率和速度。<br>通过INFO_TYPE_BITRATE_COLLECT上报有效码率链表，设置并选择指定的码率，选择小于且最接近的码率。准备好后，读取以查询当前选择的比特率。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -988,7 +988,7 @@ OH_AVErrCode OH_AVPlayer_GetCurrentTrack(OH_AVPlayer *player, int32_t trackType,
 
 **描述**
 
-获取当前有效的轨道索引。请将状态设置为准备/正在播放/暂停/完成状态。
+获取当前有效的轨道索引。请将状态设置为准备/正在播放/暂停/完成。
 
 该接口在当前版本暂不支持，将在后续版本开放能力。
 
@@ -1037,7 +1037,7 @@ OH_AVErrCode OH_AVPlayer_SetMediaKeySystemInfoCallback(OH_AVPlayer *player,Playe
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：输入player为空指针，callback为空指针，player SetDrmSystemInfoCallback，<br> SetDrmSystemInfoCallback或SetDrmSystemInfoCallback执行失败。 |
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br> AV_ERR_INVALID_VAL：输入player为空指针，callback为空指针或player SetDrmSystemInfoCallback执行失败。 |
 
 ### OH_AVPlayer_GetMediaKeySystemInfo()
 
@@ -1123,7 +1123,7 @@ OH_AVErrCode OH_AVPlayer_SetOnInfoCallback(OH_AVPlayer *player, OH_AVPlayerOnInf
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_NO_MEMORY：输入分配内存失败。<br>         AV_ERR_INVALID_VAL： 输入player为空指针或者函数执行失败。 |
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_NO_MEMORY：内存分配失败。<br>         AV_ERR_INVALID_VAL： 输入player为空指针或者函数执行失败。 |
 
 ### OH_AVPlayer_SetOnErrorCallback()
 

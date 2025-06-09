@@ -4,7 +4,7 @@
 
 定义创建和使用色彩空间的相关函数。
 
-**引用文件：** native_color_space_manager.h
+**引用文件：** <native_color_space_manager/native_color_space_manager.h>
 
 **库：** libnative_color_space_manager.so
 

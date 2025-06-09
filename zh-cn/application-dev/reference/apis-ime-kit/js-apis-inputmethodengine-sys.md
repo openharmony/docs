@@ -24,7 +24,7 @@ type SizeUpdateCallback = (size: window.Size, keyboardArea: KeyboardArea) => voi
 
 | 参数名       | 类型                                                 | 必填 | 说明                             |
 | ------------ | ---------------------------------------------------- | ---- | -------------------------------- |
-| size         | [window.Size](../apis-arkui/js-apis-window.md#size7) | 是   | 当前面板大小。                   |
+| size         | [window.Size](../apis-arkui/arkts-apis-window-i.md#size7) | 是   | 当前面板大小。                   |
 | keyboardArea | [KeyboardArea](./js-apis-inputmethodengine.md#keyboardarea15)    | 是   | 当前面板中可作为键盘区域的大小。 |
 
 ## Panel<sup>10+</sup>

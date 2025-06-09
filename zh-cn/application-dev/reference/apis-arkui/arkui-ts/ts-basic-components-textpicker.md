@@ -71,8 +71,8 @@ TextPicker(options?: TextPickerOptions)
 | 名称        | 类型                                 | 必填 | 说明                                                         |
 | ----------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | strokeWidth | [Dimension](ts-types.md#dimension10) | 否   | 分割线的线宽（默认单位vp），也可指定单位为px，不支持"百分比"类型。<br/>取值范围：strokeWidth小于0取默认值，最大不得超过列高的一半。<br/>默认值：2.0px |
-| startMargin | [Dimension](ts-types.md#dimension10) | 否   | 分割线与TextPicker侧边起始端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。<br/>取值范围：startMargin小于0无效，最大不得超过TextPicker列宽。<br/>默认值：0 |
-| endMargin   | [Dimension](ts-types.md#dimension10) | 否   | 分割线与TextPicker侧边结束端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。<br/>取值范围：endMargin小于0无效，最大不得超过TextPicker列宽。<br/>默认值：0 |
+| startMargin | [Dimension](ts-types.md#dimension10) | 否   | 分割线与TextPicker侧边起始端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。<br/>取值范围：startMargin小于0时无效，最大值不得超过TextPicker列宽。<br/>默认值：0 |
+| endMargin   | [Dimension](ts-types.md#dimension10) | 否   | 分割线与TextPicker侧边结束端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。<br/>取值范围：endMargin小于0时无效，最大值不得超过TextPicker列宽。<br/>默认值：0 |
 | color       | [ResourceColor](ts-types.md#resourcecolor)  | 否   | 分割线的颜色。<br/>默认值：'#33000000'
 
 ## 属性
@@ -115,7 +115,7 @@ defaultPickerItemHeight(height: Optional\<number | string>)
 
 disappearTextStyle(value: PickerTextStyle)
 
-设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。
+设置所有选项中最上和最下两个选项的文本颜色、字号和字体粗细。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -179,7 +179,7 @@ textStyle(style: Optional\<PickerTextStyle>)
 
 selectedTextStyle(value: PickerTextStyle)
 
-设置选中项的文本颜色、字号、字体粗细。
+设置选中项的文本颜色、字号、字体粗细。Wearable设备不支持设置该属性。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -221,7 +221,7 @@ selectedIndex(value: number | number[])
 
 | 参数名 | 类型                         | 必填 | 说明                         |
 | ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | number&nbsp;\|&nbsp;number[] | 是   | 默认选中项在数组中的索引值，索引从0开始。<br/>默认值：0 <br/>当value的值为undefined时，默认值与[options](#textpickeroptions对象说明)中的selected值保持一致，如果[options](#textpickeroptions对象说明)中的selected值为undefined，则默认值为0。<br/> |
+| value  | number&nbsp;\|&nbsp;number[] | 是   | 默认选中项在数组中的索引值，索引从0开始。<br/>默认值：0 <br/>当value的值为undefined时，默认值与[options](#textpickeroptions对象说明)中的selected值保持一致。如果[options](#textpickeroptions对象说明)中的selected值为undefined，则默认值为0。<br/> |
 
 ### selectedIndex<sup>18+</sup>
 
@@ -418,7 +418,7 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 >  **说明：**
 >
->  用于穿戴设备圆形屏幕使用。组件响应[表冠事件](ts-universal-events-crown.md)，需要先获取焦点。
+>  用于圆形屏幕的穿戴设备。组件响应[表冠事件](ts-universal-events-crown.md)，需要先获取焦点。
 
 ### selectedBackgroundStyle<sup>20+</sup>
 selectedBackgroundStyle(style: Optional\<PickerBackgroundStyle>)
@@ -431,7 +431,7 @@ selectedBackgroundStyle(style: Optional\<PickerBackgroundStyle>)
 
 | 参数名   | 类型                                     | 必填   | 说明                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
-| style | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerBackgroundStyle](#pickerbackgroundstyle20)> | 是    | 选中项背景的颜色和边框圆角半径。<br/>默认值：<br/>{ <br/>color: '#0C182431'<br/>borderRadius: { value:24 unit:1 }<br/>}|
+| style | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerBackgroundStyle](#pickerbackgroundstyle20)> | 是    | 选中项背景的颜色和边框圆角半径，多列模式时会同时设置所有列的选中项背景的颜色和圆角半径。<br/>默认值：<br/>{ <br/>color: '#0C182431'<br/>borderRadius: { value:24 unit:1 }<br/>}|
 
 ## 事件
 
@@ -441,7 +441,7 @@ selectedBackgroundStyle(style: Optional\<PickerBackgroundStyle>)
 
 onChange(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[],&nbsp;index:&nbsp;number&nbsp;\|&nbsp;number[])&nbsp;=&gt;&nbsp;void)
 
-滑动选中TextPicker文本内容后，触发该回调。当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
+滑动TextPicker文本内容后，选项归位至选中项位置时，触发该回调。当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -459,6 +459,8 @@ onChange(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[],&nbsp;index:&n
 onChange(callback: Optional\<OnTextPickerChangeCallback>)
 
 滑动TextPicker文本内容后，选项归位至选中项位置时，触发该回调。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
+
+回调会在滑动动画结束后触发，如果需要快速获取索引值变化，建议使用[onEnterSelectedArea](#onenterselectedarea18)接口。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -906,7 +908,7 @@ struct TextPickerExample {
 
 ### 示例7（设置循环滚动）
 
-该示例使用canLoop设置TextPicker是否循环滚动。
+该示例通过配置canLoop设置TextPicker是否循环滚动。
 
 ```ts
 // xxx.ets
@@ -1067,4 +1069,4 @@ struct TextPickerExample {
 }
 ```
 
-![textpicker](figures/TextPickerDemo10.jpeg)
+![textpicker](figures/TextPickerDemo10.gif)

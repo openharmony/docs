@@ -16,9 +16,9 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| [WindowManager_Rect](capi-windowmanager-rect) topRect | 避让区域的顶部矩形。 |
-| [WindowManager_Rect](capi-windowmanager-rect) leftRect | 避让区域的左侧矩形。 |
-| [WindowManager_Rect](capi-windowmanager-rect) rightRect | 避让区域的右侧矩形。 |
-| [WindowManager_Rect](capi-windowmanager-rect) bottomRect | 避让区域的底部矩形。 |
+| [WindowManager_Rect](capi-windowmanager-rect.md) topRect | 避让区域的顶部矩形。 |
+| [WindowManager_Rect](capi-windowmanager-rect.md) leftRect | 避让区域的左侧矩形。 |
+| [WindowManager_Rect](capi-windowmanager-rect.md) rightRect | 避让区域的右侧矩形。 |
+| [WindowManager_Rect](capi-windowmanager-rect.md) bottomRect | 避让区域的底部矩形。 |
 
 

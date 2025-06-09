@@ -357,6 +357,10 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     int32_t rateMode = static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_VBR);
     // 配置关键帧的间隔，单位为毫秒。
     int32_t iFrameInterval = 1000;
+    // 配置质量稳定码率因子。
+    int32_t sqrFactor = 30;
+    // 配置最大比特率，单位为bps。
+    int64_t maxBitRate = 20000000;
     // 配置比特率，单位为bps。
     int64_t bitRate = 5000000;
     // 配置编码质量。
@@ -374,9 +378,13 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_MATRIX_COEFFICIENTS, matrix);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, iFrameInterval);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, profile);
-    //只有当OH_BitrateMode = BITRATE_MODE_CQ 时，才需要配置OH_MD_KEY_QUALITY。
+    //只有当OH_BitrateMode = BITRATE_MODE_CQ时，才需要配置OH_MD_KEY_QUALITY。
     if (rateMode == static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_CQ)) {
         OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality);
+    } else if (rateMode == static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_SQR)) {
+        // 只有当OH_BitrateMode = BITRATE_MODE_SQR时，才需要配置OH_MD_KEY_MAX_BITRATE和OH_MD_KEY_SQR_FACTOR。
+        OH_AVFormat_SetLongValue(format, OH_MD_KEY_MAX_BITRATE, maxBitRate);
+        OH_AVFormat_SetIntValue(format, OH_MD_KEY_SQR_FACTOR, sqrFactor);
     } else if (rateMode == static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_CBR) ||
                rateMode == static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_VBR)){
         OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);

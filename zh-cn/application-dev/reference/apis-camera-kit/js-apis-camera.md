@@ -1379,13 +1379,13 @@ getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurren
 
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
-| cameras | Array\<[CameraDevice](#cameradevice)\>  | 是   | 一组CameraDevice对象，并得到与这一组CamraDevice对应的并发信息。 |
+| cameras | Array\<[CameraDevice](#cameradevice)\>  | 是   | 一组CameraDevice相机设备，并得到与这一组CamraDevice对应的并发信息，推荐设置为由[getCameraDevice](#getcameradevice18)获取的前置与后置两个用于并发的相机设备。 |
 
 **返回值：**
 
 | 类型             | 说明                     |
 | -----------------| ------------------------ |
-|  Array\<[CameraConcurrentInfo](#cameraconcurrentinfo18)\>    |  一组CameraDevice对象对应的并发信息，与CameraDevice一一对应。      |
+|  Array\<[CameraConcurrentInfo](#cameraconcurrentinfo18)\>    |  一组CameraDevice相机设备对象对应的并发信息，与CameraDevice相机设备一一对应。      |
 
 **错误码：**
 
@@ -1519,10 +1519,10 @@ function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDev
 
 | 名称   | 类型    | 只读 | 可选  | 说明         |
 | ------ | ------ | ---- |-----| ------------ |
-| device              | [CameraDevice](#cameradevice)   | 否   | 否   | 相机并发设备。 |
-| type                | [CameraConcurrentType](#cameraconcurrenttype18)  | 否   | 否   | 镜头并发类型。 |
-| modes               | Array\<[SceneMode](#scenemode11) \>              | 否   | 否   | 相机支持的模式。 |
-| outputCapabilities  | Array\<[CameraOutputCapability](#cameraoutputcapability) \> | 否   | 否   | 相机对应模式的输出能力集。 |
+| device              | [CameraDevice](#cameradevice)   | 是   | 否   | 相机并发设备。 |
+| type                | [CameraConcurrentType](#cameraconcurrenttype18)  | 是   | 否   | 镜头并发类型。 |
+| modes               | Array\<[SceneMode](#scenemode11) \>              | 是   | 否   | 相机支持的模式。 |
+| outputCapabilities  | Array\<[CameraOutputCapability](#cameraoutputcapability) \> | 是   | 否   | 相机对应模式的输出能力集。 |
 
 ## CameraInput
 
@@ -6232,7 +6232,7 @@ function isFocusModeSupported(photoSession: camera.PhotoSession): boolean {
 
 isMacroSupported(): boolean
 
-检测当前状态下是否支持微距能力，需要在CaptureSession调用[commitConfig](js-apis-camera.md#commitconfig11-1)之后进行调用。
+检测当前状态下是否支持微距能力，需要在CaptureSession调用[commitConfig](#commitconfig11-1)之后进行调用。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -9543,5 +9543,292 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 ```ts
 function unregisterFocusStateChange(secureSession: camera.SecureSession): void {
   secureSession.off('focusStateChange');
+}
+```
+
+## WhiteBalanceMode<sup>20+</sup>
+
+枚举，白平衡模式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称             | 值 | 说明         |
+|----------------|---| ----------- |
+| AUTO           | 0 | 自动 |
+| CLOUDY         | 1 | 阴天 |
+| INCANDESCENT   | 2 | 白炽光 |
+| FLUORESCENT    | 3 | 荧光 |
+| DAYLIGHT     	 | 4 | 日光 |
+| MANUAL         | 5 | 手动 |
+
+## WhiteBalanceQuery<sup>20+</sup>
+
+提供了查询设备对指定的白平衡模式是否支持，以及获取设备支持的白平衡模式范围的方法。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+### isWhiteBalanceModeSupported<sup>20+</sup>
+
+isWhiteBalanceModeSupported(mode: WhiteBalanceMode): boolean
+
+检测是否支持当前传入的白平衡模式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                                      | 必填  | 说明                           |
+| -------- |-----------------------------------------| ---- | ----------------------------- |
+| mode   | [WhiteBalanceMode](#whitebalancemode20) | 是   | 白平衡模式。                      |
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| boolean    | 表示是否支持白平衡模式。true表示支持，false表示不支持。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect.        |
+| 7400103                |  Session not config, only throw in session usage.                                  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isWhiteBalanceModeSupported(session: camera.PhotoSession | camera.VideoSession): boolean {
+  let status: boolean = false;
+  try {
+	let mode: WhiteBalanceMode = camera.WhiteBalanceMode.DAYLIGHT;
+    status = session.isWhiteBalanceModeSupported(mode);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The isWhiteBalanceModeSupported call failed. error code: ${err.code}`);
+  }
+  return status;
+}
+```
+
+### getWhiteBalanceRange<sup>20+</sup>
+
+getWhiteBalanceRange(): Array\<number\>
+
+获取手动白平衡模式下，白平衡值的范围。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| Array\<number\>   | 用于获取手动白平衡值的可调范围，如[2800，10000]，单位为K（Kelvin，温度单位），实际情况根据底层能力返回为准。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config, only throw in session usage.                                  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getWhiteBalanceRange(session: camera.PhotoSession | camera.VideoSession): Array<number> {
+  let range: Array<number> = [];
+  try {
+    range = session.getWhiteBalanceRange();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The getWhiteBalanceRange call failed. error code: ${err.code}`);
+  }
+  return range;
+}
+```
+
+## WhiteBalance<sup>20+</sup>
+
+WhiteBalance extends [WhiteBalanceQuery](#whitebalancequery20)
+
+提供了处理设备白平衡的相关功能，包括获取和设置白平衡模式以及白平衡值。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+### setWhiteBalanceMode<sup>20+</sup>
+
+setWhiteBalanceMode(mode: WhiteBalanceMode): void
+
+设置白平衡模式。设置之前需要先检查设备是否支持指定的白平衡模式，具体方法请参考[isWhiteBalanceModeSupported](#iswhitebalancemodesupported20)。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                                      | 必填 | 说明                    |
+| -------- |-----------------------------------------| ---- | ----------------------- |
+| mode   | [WhiteBalanceMode](#whitebalancemode20) | 是   | 白平衡模式。                |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect.        |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setWhiteBalanceMode(session: camera.PhotoSession | camera.VideoSession): void {
+  try {
+    session.setWhiteBalanceMode(camera.WhiteBalanceMode.DAYLIGHT);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The setWhiteBalanceMode call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getWhiteBalanceMode<sup>20+</sup>
+
+getWhiteBalanceMode(): WhiteBalanceMode
+
+获取当前白平衡模式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型                                      | 说明                          |
+|-----------------------------------------| ----------------------------- |
+| [WhiteBalanceMode](#whitebalancemode20) | 获取当前白平衡模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getWhiteBalanceMode(session: camera.PhotoSession | camera.VideoSession): camera.WhiteBalanceMode | undefined {
+  let whiteBalanceMode: camera.WhiteBalanceMode | undefined = undefined;
+  try {
+    whiteBalanceMode = session.getWhiteBalanceMode();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The getWhiteBalanceMode call failed. error code: ${err.code}`);
+  }
+  return whiteBalanceMode;
+}
+```
+
+### setWhiteBalance<sup>20+</sup>
+setWhiteBalance(whiteBalance: number): void
+
+设置手动白平衡值。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                     | 必填 | 说明                 |
+| -------- | ----------------------- | ---- | ------------------- |
+| whiteBalance | number | 是   | 设置手动白平衡值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect.        |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setWhiteBalance(session: camera.PhotoSession | camera.VideoSession): void {
+  try {
+    let whiteBalance: number = 1000;
+    session.setWhiteBalance(whiteBalance);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The setWhiteBalance call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getWhiteBalance<sup>20+</sup>
+
+getWhiteBalance(): number
+
+获取当前手动白平衡的值。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| number    | 返回当前白平衡值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getWhiteBalance(session: camera.PhotoSession | camera.VideoSession): number {
+  let whiteBalance: number = 0;
+  try {
+    whiteBalance = session.getWhiteBalance();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The getWhiteBalance call failed. error code: ${err.code}`);
+  }
+  return whiteBalance;
 }
 ```

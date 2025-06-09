@@ -258,7 +258,7 @@ typedef void (*OH_MediaLibrary_OnImageDataPrepared)(MediaLibrary_ErrorCode resul
 | [MediaLibrary_RequestId](capi-medialibrary-requestid.md) requestId | 请求的[MediaLibrary_RequestId](capi-medialibrary-requestid.md)。 |
 |  [MediaLibrary_MediaQuality](capi-media-asset-base-capi-h.md#medialibrary_mediaquality) mediaQuality | 请求源的[MediaLibrary_MediaQuality](capi-media-asset-base-capi-h.md#medialibrary_mediaquality)。 |
 |  [MediaLibrary_MediaContentType](capi-media-asset-base-capi-h.md#medialibrary_mediacontenttype) type | 请求源的[MediaLibrary_MediaContentType](capi-media-asset-base-capi-h.md#medialibrary_mediacontenttype)。 |
-| [OH_ImageSourceNative](../apis-image-kit/_image___native_module.md#oh_imagesourcenative)* imageSourceNative | 当请求的图像源准备就绪时获取[OH_ImageSourceNative](../apis-image-kit/_image___native_module.md#oh_imagesourcenative)。 |
+| [OH_ImageSourceNative](../apis-image-kit/capi-oh-imagesourcenative.md)* imageSourceNative | 当请求的图像源准备就绪时获取[OH_ImageSourceNative](../apis-image-kit/capi-oh-imagesourcenative.md)。 |
 
 ### OH_MediaLibrary_OnMovingPhotoDataPrepared()
 

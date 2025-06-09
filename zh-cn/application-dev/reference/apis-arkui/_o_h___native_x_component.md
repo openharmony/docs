@@ -43,6 +43,7 @@
 | [OH_NativeXComponent_ExtraMouseEventInfo](#oh_nativexcomponent_extramouseeventinfo) | 提供封装的扩展的鼠标事件信息实例。|
 | [OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback) | 定义surface生命周期回调函数。|
 | [OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder) | 提供封装的OH_ArkUI_SurfaceHolder实例。|
+| [OHNativeWindow](#ohnativewindow) | 提供封装的NativeWindow实例。|
 
 
 ### 枚举
@@ -104,8 +105,20 @@
 |void [OH_ArkUI_SurfaceCallback_Dispose](#oh_arkui_surfacecallback_dispose)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback)|销毁OH_ArkUI_SurfaceCallback对象。|
 |[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* [OH_ArkUI_SurfaceHolder_Create](#oh_arkui_surfaceholder_create)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node)|创建XComponent组件的OH_ArkUI_SurfaceHolder对象。|
 |void [OH_ArkUI_SurfaceHolder_Dispose](#oh_arkui_surfaceholder_dispose)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder)|销毁OH_ArkUI_SurfaceHolder对象。|
+|int32_t [OH_ArkUI_SurfaceHolder_SetUserData](#oh_arkui_surfaceholder_setuserdata)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder, void* userData)|向OH_ArkUI_SurfaceHolder实例存储自定义数据。|
+|void* [OH_ArkUI_SurfaceHolder_GetUserData](#oh_arkui_surfaceholder_getuserdata)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder)|获取OH_ArkUI_SurfaceHolder实例存储的自定义数据。|
+|void [OH_ArkUI_SurfaceCallback_SetSurfaceCreatedEvent](#oh_arkui_surfacecallback_setsurfacecreatedevent)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback, void (\*onSurfaceCreated)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)\* surfaceHolder))|设置surface生命周期回调中的创建回调事件。|
+|void [OH_ArkUI_SurfaceCallback_SetSurfaceChangedEvent](#oh_arkui_surfacecallback_setsurfacechangedevent)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback, void (\*onSurfaceChanged)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)\* surfaceHolder, uint64_t width, uint64_t height))|设置surface生命周期回调中的大小改变回调事件。|
+|void [OH_ArkUI_SurfaceCallback_SetSurfaceDestroyedEvent](#oh_arkui_surfacecallback_setsurfacedestroyedevent)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback, void (\*onSurfaceDestroyed)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)\* surfaceHolder))|设置surface生命周期回调中的销毁回调事件。|
+|int32_t [OH_ArkUI_SurfaceHolder_AddSurfaceCallback](#oh_arkui_surfaceholder_addsurfacecallback)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder, [OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback)|添加surface生命周期回调到OH_ArkUI_SurfaceHolder实例。|
+|int32_t [OH_ArkUI_SurfaceHolder_RemoveSurfaceCallback](#oh_arkui_surfaceholder_removesurfacecallback)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder, [OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback)|删除OH_ArkUI_SurfaceHolder实例的先前添加的surface生命周期回调。|
+|[OHNativeWindow](#ohnativewindow)* [OH_ArkUI_XComponent_GetNativeWindow](#oh_arkui_xcomponent_getnativewindow)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder)|获取OH_ArkUI_SurfaceHolder实例关联的nativeWindow。|
+|int32_t [OH_ArkUI_XComponent_SetAutoInitialize](#oh_arkui_xcomponent_setautoinitialize)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, bool autoInitialize)|设置XComponent组件是否需要自动初始化Surface的标志位。|
+|int32_t [OH_ArkUI_XComponent_Initialize](#oh_arkui_xcomponent_initialize)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node)|初始化XComponent组件持有的Surface。|
+|int32_t [OH_ArkUI_XComponent_Finalize](#oh_arkui_xcomponent_finalize)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node)|销毁XComponent组件持有的surface。|
+|int32_t [OH_ArkUI_XComponent_IsInitialized](#oh_arkui_xcomponent_isinitialized)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, bool* isInitialized)|获取XComponent组件是否已经初始化Surface的标志位。|
 |int32_t [OH_NativeXComponent_GetExtraMouseEventInfo](#oh_nativexcomponent_getextramouseeventinfo)([OH_NativeXComponent](#oh_nativexcomponent)* component, [OH_NativeXComponent_ExtraMouseEventInfo](#oh_nativexcomponent_extramouseeventinfo)** extraMouseEventInfo)| 从此OH_NativeXComponent实例中获取扩展的鼠标事件信息。|
-|int32_t [OH_NativeXComponent_GetMouseEventModifierKeyStates](#oh_nativexcomponent_getmouseeventmodifierkeystates)([OH_NativeXComponent_ExtraMouseEventInfo](#oh_nativexcomponent_extramouseeventinfo)* ExtraMouseEventInfo, uint64_t* keys)|从OH_NativeXComponent_ExtraMouseEventInfo实例中获取功能键按压状态信息。|
+|int32_t [OH_NativeXComponent_GetMouseEventModifierKeyStates](#oh_nativexcomponent_getmouseeventmodifierkeystates)([OH_NativeXComponent_ExtraMouseEventInfo](#oh_nativexcomponent_extramouseeventinfo)* extraMouseEventInfo, uint64_t* keys)|从OH_NativeXComponent_ExtraMouseEventInfo实例中获取功能键按压状态信息。|
 |int32_t [OH_NativeXComponent_GetKeyEventModifierKeyStates](#oh_nativexcomponent_getkeyeventmodifierkeystates)([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)* keyEvent, uint64_t* keys)|从按键事件中获取功能键按压状态信息。|
 |int32_t [OH_NativeXComponent_GetKeyEventNumLockState](#oh_nativexcomponent_getkeyeventnumlockstate)([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)* keyEvent, bool* isNumLockOn) | 从按键事件中获取NumLock（小键盘锁定）键的状态信息。|
 |int32_t [OH_NativeXComponent_GetKeyEventCapsLockState](#oh_nativexcomponent_getkeyeventcapslockstate)([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)* keyEvent, bool* isCapsLockOn)| 从按键事件中获取CapsLock（大写锁定）键的状态信息。|
@@ -257,6 +270,25 @@ typedef struct OH_ArkUI_SurfaceHolder OH_ArkUI_SurfaceHolder
 > **说明：**
 >
 > 此类型的具体定义并不直接暴露。可调用[OH_ArkUI_SurfaceHolder_Create](#oh_arkui_surfaceholder_create)接口以创建此类型实例，可调用[OH_ArkUI_SurfaceHolder_Dispose](#oh_arkui_surfaceholder_dispose)接口以销毁此类型实例。
+
+**起始版本：**
+
+19
+
+
+### OHNativeWindow
+
+```
+typedef struct NativeWindow OHNativeWindow
+```
+
+**描述：**
+
+提供封装的NativeWindow实例。
+
+> **说明：**
+>
+> 此类型的具体定义并不直接暴露。可调用[OH_ArkUI_XComponent_GetNativeWindow](#oh_arkui_xcomponent_getnativewindow)接口以获取此类型实例
 
 **起始版本：**
 
@@ -1932,6 +1964,308 @@ void OH_ArkUI_SurfaceHolder_Dispose(OH_ArkUI_SurfaceHolder* surfaceHolder)
 | --------- | --------------------------------------- |
 | surfaceHolder |  表示指向需要销毁的[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例的指针。 |
 
+### OH_ArkUI_SurfaceHolder_SetUserData()
+
+```
+int32_t OH_ArkUI_SurfaceHolder_SetUserData(OH_ArkUI_SurfaceHolder* surfaceHolder, void* userData)
+```
+
+**描述：**
+
+向[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例存储自定义数据。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| surfaceHolder |  表示指向需要销毁的[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例的指针。 |
+| userData |  表示指向要存储的自定义数据的指针。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+### OH_ArkUI_SurfaceHolder_GetUserData()
+
+```
+void* OH_ArkUI_SurfaceHolder_GetUserData(OH_ArkUI_SurfaceHolder* surfaceHolder);
+```
+
+**描述：**
+
+获取[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例存储的自定义数据。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| surfaceHolder |  表示指向需要销毁的[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例的指针。 |
+
+**返回：**
+
+返回自定义数据。
+
+### OH_ArkUI_SurfaceCallback_SetSurfaceCreatedEvent()
+
+```
+void OH_ArkUI_SurfaceCallback_SetSurfaceCreatedEvent(OH_ArkUI_SurfaceCallback* callback, void (*onSurfaceCreated)(OH_ArkUI_SurfaceHolder* surfaceHolder))
+```
+
+**描述：**
+
+设置surface生命周期回调中的创建回调事件。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| callback |  表示指示指向surface生命周期回调的指针。 |
+| onSurfaceCreated |  表示声明surface创建时会触发的回调事件。 |
+
+### OH_ArkUI_SurfaceCallback_SetSurfaceChangedEvent()
+
+```
+void OH_ArkUI_SurfaceCallback_SetSurfaceCreatedEvent(OH_ArkUI_SurfaceCallback* callback, void (*onSurfaceChanged)(OH_ArkUI_SurfaceHolder* surfaceHolder, uint64_t width, uint64_t heigh))
+```
+
+**描述：**
+
+设置surface生命周期回调中的大小改变回调事件。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| callback |  表示指示指向surface生命周期回调的指针。 |
+| onSurfaceChanged |  表示声明surface大小改变时会触发的回调事件。 |
+
+### OH_ArkUI_SurfaceCallback_SetSurfaceDestroyedEvent()
+
+```
+void OH_ArkUI_SurfaceCallback_SetSurfaceCreatedEvent(OH_ArkUI_SurfaceCallback* callback, void (*onSurfaceDestroyed)(OH_ArkUI_SurfaceHolder* surfaceHolder))
+```
+
+**描述：**
+
+设置surface生命周期回调中的销毁回调事件。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| callback |  表示指示指向surface生命周期回调的指针。 |
+| onSurfaceDestroyed |  表示声明surface销毁时会触发的回调事件。 |
+
+### OH_ArkUI_SurfaceHolder_AddSurfaceCallback()
+
+```
+int32_t OH_ArkUI_SurfaceHolder_AddSurfaceCallback(OH_ArkUI_SurfaceHolder* surfaceHolder, OH_ArkUI_SurfaceCallback* callback)
+```
+
+**描述：**
+
+添加surface生命周期回调到[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| surfaceHolder |  表示指向需要销毁的[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例的指针。 |
+| callback |  表示指向新回调的指针。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+### OH_ArkUI_SurfaceHolder_RemoveSurfaceCallback()
+
+```
+int32_t OH_ArkUI_SurfaceHolder_RemoveSurfaceCallback(OH_ArkUI_SurfaceHolder* surfaceHolder, OH_ArkUI_SurfaceCallback* callback)
+```
+
+**描述：**
+
+删除[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例先前添加的surface生命周期回调。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| surfaceHolder |  表示指向需要销毁的[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例的指针。 |
+| callback |  表示指向新回调的指针。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+### OH_ArkUI_XComponent_GetNativeWindow()
+
+```
+OHNativeWindow* OH_ArkUI_XComponent_GetNativeWindow(OH_ArkUI_SurfaceHolder* surfaceHolder)
+```
+
+**描述：**
+
+获取[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例关联的NativeWindow。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| surfaceHolder |  表示指向需要销毁的[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例的指针。 |
+
+**返回：**
+
+返回OH_ArkUI_SurfaceHolder实例关联的nativeWindow。
+
+### OH_ArkUI_XComponent_SetAutoInitialize()
+
+```
+int32_t OH_ArkUI_XComponent_SetAutoInitialize(ArkUI_NodeHandle node, bool autoInitialize)
+```
+
+**描述：**
+
+设置XComponent组件是否需要自动初始化Surface的标志位。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| node |  表示指向XComponent组件实例的指针。 |
+| autoInitialize |  表示XComponent组件是否需要自动初始化Surface。如果autoInitialize值是true，OnSurfaceCreated回调会在挂树时被触发，OnSurfaceDestroyed回调会在下树时被触发。autoInitialize默认值是true。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+### OH_ArkUI_XComponent_Initialize()
+
+```
+int32_t OH_ArkUI_XComponent_Initialize(ArkUI_NodeHandle node)
+```
+
+**描述：**
+
+初始化XComponent组件持有的Surface。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| node |  表示指向XComponent组件实例的指针。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+[ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - XComponent持有的surface已经被初始化。
+
+### OH_ArkUI_XComponent_Finalize()
+
+```
+int32_t OH_ArkUI_XComponent_Finalize(ArkUI_NodeHandle node)
+```
+
+**描述：**
+
+销毁XComponent组件持有的surface。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| node |  表示指向XComponent组件实例的指针。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+[ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - XComponent持有的surface已经被销毁。
+
+### OH_ArkUI_XComponent_IsInitialized()
+
+```
+int32_t OH_ArkUI_XComponent_IsInitialized(ArkUI_NodeHandle node, bool* isInitialized)
+```
+
+**描述：**
+
+销毁XComponent组件持有的surface。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| node |  表示指向XComponent组件实例的指针。 |
+| isInitialized |  表示XComponent组件是否已经初始化Surface。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
 ### OH_NativeXComponent_GetExtraMouseEventInfo()
 
 ```
@@ -1970,7 +2304,7 @@ int32_t OH_NativeXComponent_GetExtraMouseEventInfo(OH_NativeXComponent* componen
 ### OH_NativeXComponent_GetMouseEventModifierKeyStates()
 
 ```
-int32_t OH_NativeXComponent_GetMouseEventModifierKeyStates(OH_NativeXComponent_ExtraMouseEventInfo* ExtraMouseEventInfo, uint64_t* keys)
+int32_t OH_NativeXComponent_GetMouseEventModifierKeyStates(OH_NativeXComponent_ExtraMouseEventInfo* extraMouseEventInfo, uint64_t* keys)
 ```
 
 **描述：**

@@ -86,7 +86,7 @@
    drawImage()函数接受4个参数，第一个就是上文中创建的PixelMap，第二个是绘制图片位置的左上角x轴坐标，第三个是左上角y轴坐标，第四个为采样选项对象，默认为不使用任何参数构造的原始采样选项对象。
 
    ```ts
-   canvas.drawImage(pixelMap, 300, 300);
+   canvas.drawImage(pixelMap, 0, 0);
    ```
 
    绘制效果如下：

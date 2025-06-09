@@ -2,10 +2,11 @@
 - [Form Kit简介](formkit-overview.md)
 - 服务卡片开发指导（Stage模型）<!--arkts-ui-widget-stage-->
   - 开发基于ArkTS UI的卡片<!--arkts-ui-widget-->
+    - [ArkTS卡片概述](arkts-form-overview.md)
     - [ArkTS卡片运行机制](arkts-ui-widget-working-principles.md)
     - [ArkTS卡片相关模块](arkts-ui-widget-modules.md)
     - ArkTS卡片开发指导<!--arkts-ui-widget-dev-->
-      - [创建一个ArkTS卡片](arkts-ui-widget-creation.md)
+      - [创建ArkTS卡片](arkts-ui-widget-creation.md)
       - [配置卡片的配置文件](arkts-ui-widget-configuration.md)
       - [卡片生命周期管理](arkts-ui-widget-lifecycle.md)
       - 开发卡片页面<!--arkts-ui-widget-page-->
@@ -37,5 +38,14 @@
     <!--Del--> 
     - [卡片使用方开发指导（仅对系统应用开放）](widget-host-development-guide.md)
     <!--DelEnd-->
+    - 互动卡片开发
+      - [互动卡片概述](arkts-ui-liveform-overview.md)
+      - [趣味交互类型互动卡片开发指导](arkts-ui-liveform-funinteraction-development.md)
+      - 场景动效类型互动卡片
+        - [场景动效类型互动卡片概述](arkts-ui-liveform-sceneanimation-overview.md)
+        - [场景动效类型互动卡片开发指导](arkts-ui-liveform-sceneanimation-development.md)
+        <!--Del-->
+        - [场景动效类型互动卡片开发指导（系统应用）](arkts-ui-liveform-sceneanimation-development-sys.md)
+        <!--DelEnd-->
   - [开发基于JS UI的卡片](js-ui-widget-development.md)
-- [服务卡片开发指导（FA模型）](widget-development-fa.md)
+- [JS卡片开发指导（FA模型）](widget-development-fa.md)

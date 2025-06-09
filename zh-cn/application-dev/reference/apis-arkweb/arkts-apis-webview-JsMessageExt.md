@@ -1,0 +1,194 @@
+# Class (JsMessageExt)
+
+[runJavaScriptExt](./arkts-apis-webview-WebviewController.md#runjavascriptext10)接口执行脚本返回的数据对象。
+
+> **说明：**
+>
+> - 本模块接口从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 示例效果请以真机运行为准，当前IDE预览器不支持。
+
+## getType<sup>10+</sup>
+
+getType(): JsMessageType
+
+获取数据对象的类型。完整示例代码参考[runJavaScriptExt](./arkts-apis-webview-WebviewController.md#runjavascriptext10)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型           | 说明                                                      |
+| --------------| --------------------------------------------------------- |
+| [JsMessageType](./arkts-apis-webview-e.md#jsmessagetype10) | [runJavaScriptExt](./arkts-apis-webview-WebviewController.md#runjavascriptext10)接口脚本执行后返回的结果的类型。 |
+
+## getString<sup>10+</sup>
+
+getString(): string
+
+获取数据对象的字符串类型数据。完整示例代码参考[runJavaScriptExt](./arkts-apis-webview-WebviewController.md#runjavascriptext10)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型           | 说明          |
+| --------------| ------------- |
+| string | 返回字符串类型的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100014 | The type and value of the message do not match. |
+
+## getNumber<sup>10+</sup>
+
+getNumber(): number
+
+获取数据对象的数值类型数据。完整示例代码参考[runJavaScriptExt](./arkts-apis-webview-WebviewController.md#runjavascriptext10)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型           | 说明          |
+| --------------| ------------- |
+| number | 返回数值类型的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100014 | The type and value of the message do not match. |
+
+## getBoolean<sup>10+</sup>
+
+getBoolean(): boolean
+
+获取数据对象的布尔类型数据。完整示例代码参考[runJavaScriptExt](./arkts-apis-webview-WebviewController.md#runjavascriptext10)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型           | 说明          |
+| --------------| ------------- |
+| boolean | 返回布尔类型的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100014 | The type and value of the message do not match. |
+
+## getArrayBuffer<sup>10+</sup>
+
+getArrayBuffer(): ArrayBuffer
+
+获取数据对象的原始二进制数据。完整示例代码参考[runJavaScriptExt](./arkts-apis-webview-WebviewController.md#runjavascriptext10)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型           | 说明          |
+| --------------| ------------- |
+| ArrayBuffer | 返回原始二进制数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100014 | The type and value of the message do not match. |
+
+## getArray<sup>10+</sup>
+
+getArray(): Array\<string | number | boolean\>
+
+获取数据对象的数组类型数据。完整示例代码参考[runJavaScriptExt](./arkts-apis-webview-WebviewController.md#runjavascriptext10)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型           | 说明          |
+| --------------| ------------- |
+| Array\<string \| number \| boolean\> | 返回数组类型的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100014 | The type and value of the message do not match. |
+
+## getItemAtIndex
+
+getItemAtIndex(index: number): HistoryItem
+
+获取历史列表中指定索引的历史记录项信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | ---------------------- |
+| index  | number | 是   | 指定历史列表中的索引。 |
+
+**返回值：**
+
+| 类型                        | 说明         |
+| --------------------------- | ------------ |
+| [HistoryItem](./arkts-apis-webview-i.md#historyitem) | 历史记录项。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+  @State icon: image.PixelMap | undefined = undefined;
+
+  build() {
+    Column() {
+      Button('getBackForwardEntries')
+        .onClick(() => {
+          try {
+            let list = this.controller.getBackForwardEntries();
+            let historyItem = list.getItemAtIndex(list.currentIndex);
+            console.log("HistoryItem: " + JSON.stringify(historyItem));
+            this.icon = historyItem.icon;
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```

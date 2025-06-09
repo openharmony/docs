@@ -15,7 +15,7 @@ Repeat根据容器组件的**有效加载范围**（屏幕可视区域+预加载
 > **说明：**
 > 
 > Repeat与[LazyForEach](./arkts-rendering-control-lazyforeach.md)组件的区别：
-> - Repeat直接监听状态变量的变化，而LazyForEach需要开发者实现[IDataSource](../../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md#idatasource10)接口，手动管理子组件内容/索引的修改。
+> - Repeat直接监听状态变量的变化，而LazyForEach需要开发者实现[IDataSource](../../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md#idatasource)接口，手动管理子组件内容/索引的修改。
 > - Repeat还增强了节点复用能力，提高了长列表滑动和数据更新的渲染性能。
 > - Repeat增加了渲染模板（template）的能力，在同一个数组中，根据开发者自定义的模板类型（template type）渲染不同的子组件。
 
@@ -143,7 +143,7 @@ struct RepeatExampleWithTemplates {
 
 Repeat组件默认开启节点复用功能。从API version 18开始，可以通过配置`reusable`字段选择是否启用复用功能。为了提高渲染性能，建议开发者保持节点复用。代码示例见[VirtualScrollOptions对象说明](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscrolloptions对象说明)。
 
-从API version 18开始，Repeat支持L2缓存自定义组件冻结，详细描述见[缓存池自定义组件冻结](./arkts-custom-components-freezeV2.md#repeat)。
+从API version 18开始，Repeat支持L2缓存自定义组件冻结。详细描述见[缓存池自定义组件冻结](./arkts-custom-components-freezeV2.md#repeat)。
 
 下面通过典型的[滑动场景](#滑动场景)和[数据更新场景](#数据更新场景)示例来展示Repeat子组件的渲染逻辑。图中L1缓存为Repeat有效加载区域，L2缓存为每个循环渲染模板的空闲节点缓存池。
 

@@ -227,9 +227,9 @@
 | 名称     | 类型                              | 必填   | 说明       |
 | ------ | ------------------------------- | ---- | -------- |
 | top    | [ResourceColor](#resourcecolor) | 否    | 组件上边框颜色。 |
-| end    | [ResourceColor](#resourcecolor) | 否    | 组件右边框颜色。<br />从左至右显示语言模式下为组件左边框颜色。 |
+| end    | [ResourceColor](#resourcecolor) | 否    | 组件右边框颜色。<br />从右至左显示语言模式下为组件左边框颜色。 |
 | bottom | [ResourceColor](#resourcecolor) | 否    | 组件下边框颜色。 |
-| start  | [ResourceColor](#resourcecolor) | 否    | 组件左边框颜色。<br />从左至右显示语言模式下为组件右边框颜色。 |
+| start  | [ResourceColor](#resourcecolor) | 否    | 组件左边框颜色。<br />从右至左显示语言模式下为组件右边框颜色。 |
 
 ## EdgeStyles<sup>9+</sup>
 
@@ -483,8 +483,8 @@
 | 名称        | 类型                                       | 必填 | 默认值      | 描述                                                         |
 | ----------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------------------------ |
 | strokeColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | Color.White | 内部图标颜色。                                               |
-| size        | [Length](ts-types.md#length)               | 否   | -           | 内部图标大小，单位vp。默认大小与多选框组件宽度设置值一致。<br />不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
-| strokeWidth | [Length](ts-types.md#length)               | 否   | 2           | 内部图标粗细，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
+| size        | [Length](ts-types.md#length)               | 否   | -           | 内部图标大小，单位vp。默认大小与多选框组件宽度相同。<br />不支持百分比形式设置。设置为非法值时，按照默认值处理。 |
+| strokeWidth | [Length](ts-types.md#length)               | 否   | 2           | 内部图标粗细，单位vp。不支持设置百分比。设置为非法值时，按照默认值处理。 |
 
 ## ModalTransition<sup>10+</sup>
 
@@ -857,6 +857,12 @@ addText(text: string, textOperationOptions?: TextContentControllerOptions): numb
 | text | string | 是    | 插入的文本内容。 |
 | textOperationOptions   | [TextContentControllerOptions](#textcontentcontrolleroptions15) | 否    | 插入文本的配置选项，不设置时默认插入文本至末尾。 |
 
+**返回值：**
+
+| 类型  | 说明       |
+| ----- | -------- |
+| number| 插入文本后光标的位置。 |
+
 ### deleteText<sup>15+</sup>
 
 deleteText(range?: TextRange): void
@@ -1041,6 +1047,8 @@ setTextSelection选中文字时的配置。
 
 >  **说明：**
 >
+> - LayoutPolicy支持设置三种布局策略：matchParent（自适应父组件布局）、wrapContent（根据内容自适应但不超过父组件尺寸的布局）和fixAtIdealSize（根据内容自适应，可能超过父组件尺寸的布局）。具体示例代码参见[设置布局策略](./ts-universal-attributes-size.md#示例5设置布局策略)。
+>
 > - 当设置了matchParent组件，其父容器设定了长度时，该组件将以父容器的尺寸为基准，自动调整以适应父组件的布局。若父容器未设定长度，该组件则会等待其父组件所有子组件完成布局后，再进行自身调整以适应父组件布局。
 > 
 > - 若同一父组件下有多个设置matchParent的子组件，则多个子组件均会被设置为父组件大小，也即在特定组件（[Flex](./ts-container-flex.md)、[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[RelativeContainer](./ts-container-relativecontainer.md)）上子组件会被绘制出容器外。
@@ -1050,6 +1058,10 @@ setTextSelection选中文字时的配置。
 > - matchParent的生效优先级为宽高比 > matchParent > [constraintSize](ts-universal-attributes-size.md#constraintsize) ，wrapContent的生效优先级为宽高比 > [constraintSize](ts-universal-attributes-size.md#constraintsize) > wrapContent，fixAtIdealSize的生效优先级为宽高比 > [constraintSize](ts-universal-attributes-size.md#constraintsize) > fixAtIdealSize。
 >
 > - 设置了matchParent的组件会将其大小设置为其父组件不包含padding、border以及safeAreaPadding后的大小，即与父组件内容区大小相等。
+>
+>  **使用场景：**
+> 
+> - 使用[自定义组件的自定义布局](ts-custom-component-layout.md#自定义组件的自定义布局)时，对其中的子组件的内容未知，不能确定设置固定的长度和宽度，可以为其的宽度或高度设置LayoutPolicy.fixAtIdealSize，使得子组件不受到父组件的影响，只受到自定义布局限制的影响。
 
 ## TextContentControllerOptions<sup>15+</sup>
 

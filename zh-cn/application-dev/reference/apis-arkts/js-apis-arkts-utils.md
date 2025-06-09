@@ -295,7 +295,7 @@ let p1 = lock.lockAsync<void>(() => {
 
 lockAsync\<T, U>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode, options: AsyncLockOptions\<U>): Promise\<T | U>
 
-在获取的锁下执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用[lockAsync](#lockasync)的同一线程中以异步方式执行。在[AsyncLockOptions](#asynclockoptions)中可以提供一个可选的超时值。在这种情况下，如果超时前未能获取锁，lockAsync将拒绝返回的Promise并带上一个BusinessError实例。这种情况下，错误信息将包含持有的锁和等待的锁的信息以及可能的死锁警告。
+在获取的锁下执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用[lockAsync](#lockasync)的同一线程中以异步方式执行。在[AsyncLockOptions](#asynclockoptions)中可以提供一个可选的超时值。在这种情况下，如果超时前未能获取锁，lockAsync将返回被拒绝的Promise并带上一个BusinessError实例。这种情况下，错误信息将包含持有的锁和等待的锁的信息以及可能的死锁警告。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -460,7 +460,7 @@ options.signal = s;
 
 ### AbortSignal
 
-用于中止异步操作的对象。该类的实例必须在其创建的同一线程中访问。从其他线程访问此类的字段会导致未定义的行为。
+用于终止异步操作的对象。该类的实例必须在其创建的同一线程中访问。从其他线程访问此类的字段会导致未定义的行为。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -475,7 +475,7 @@ options.signal = s;
 
 ### ConditionVariable<sup>18+</sup>
 
-实现异步等待功能的类，支持异步等待通知操作。
+实现异步等待功能的类，支持异步等待通知操作。该类使用[@Sendable装饰器](../../arkts-utils/arkts-sendable.md)装饰。
 
 **原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
 
@@ -623,7 +623,7 @@ conditionVariable.notifyOne();
 
 ## ArkTSUtils.ASON
 
-为支持将JSON字符串解析为共享数据，即[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)，ArkTS语言基础库新增了ASON工具。ASON工具支持解析JSON字符串并生成共享数据，用于跨并发域传输，同时也支持将共享数据转换为JSON字符串。
+为支持将JSON字符串解析为共享数据，即[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)，ArkTS语言基础库新增了ASON工具。ASON工具支持解析JSON字符串并生成共享数据，用于跨并发实例引用传递，同时也支持将共享数据转换为JSON字符串。
 
 ### ISendable
 
@@ -767,7 +767,7 @@ console.info("largeNumber is " + (map as collections.Map<string,bigint>).get("la
 
 stringify(value: ISendable | null | undefined): string
 
-该方法将ISendable数据转换为JSON字符串。
+该方法将Sendable数据转换为JSON字符串。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -777,7 +777,7 @@ stringify(value: ISendable | null | undefined): string
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | [ISendable](#isendable) \| null \| undefined  | 是 | ISendable数据。|
+| value | [ISendable](#isendable) \| null \| undefined  | 是 | Sendable数据。|
 
 **返回值：**
 
@@ -1066,7 +1066,7 @@ console.info('res = ' + res);
 
 getCreateCount(): number
 
-获取调用createDefault接口创建对象的次数。
+获取调用内部默认接口创建对象的次数。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1076,7 +1076,7 @@ getCreateCount(): number
 
 | 类型   | 说明                |
 | ------ | -------------------|
-| number | 返回使用createDefault接口创建对象的次数。 |
+| number | 返回使用内部默认接口创建对象的次数。 |
 
 **示例：**
 
@@ -1256,7 +1256,7 @@ get(key: K): V | undefined
 
 | 类型                     | 说明                                                         |
 | ------------------------ | ------------------------------------------------------------ |
-| V \| undefined | 如果指定的键存在于缓冲区中，则返回与键关联的值；否则调用createDefault接口，如果返回值为undefined，则返回undefined，否则返回createDefault接口结果。 |
+| V \| undefined | 如果指定的键存在于缓冲区中，则返回与键关联的值；否则调用内部默认接口，并返回其结果。如果内部默认接口返回undefined，则最终返回undefined。 |
 
 **示例：**
 
@@ -1289,7 +1289,7 @@ put(key: K,value: V): V
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| V    | 返回与添加的键关联的值。如果键或值为空，将抛出错误ID为401的参数错误异常。 |
+| V    | 返回与添加的键关联的值。|
 
 **示例：**
 
@@ -1342,7 +1342,7 @@ keys(): K[]
 
 | 类型      | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| K&nbsp;[] | 返回当前缓冲区中所有键的列表，按从最近访问到最少访问的升序排列。 |
+| K&nbsp;[] | 返回当前缓冲区中所有键的列表，按从最近访问到最少访问的顺序排列。 |
 
 **示例：**
 

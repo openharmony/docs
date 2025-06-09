@@ -3,21 +3,15 @@
 
 ## 概述
 
-[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md)是应用中对象的上下文，其提供了应用的一些基础信息，例如[resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)（资源管理）、[applicationInfo](../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md)（当前应用信息）、[dir](../reference/apis-ability-kit/js-apis-inner-application-context.md#属性)（应用文件路径）、[area](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode)（文件分区）等，以及应用的一些基本方法，例如<!--Del-->[createBundleContext()](../reference/apis-ability-kit/js-apis-app-ability-application-sys.md#applicationcreatebundlecontext12)、<!--DelEnd-->[getApplicationContext()](../reference/apis-ability-kit/js-apis-inner-application-context.md#getapplicationcontext)等。[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)组件和各种[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)派生类组件都有各自不同的Context类。分别有基类Context、[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)、[AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)、[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)、[ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md)<!--Del-->、[ServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md)<!--DelEnd-->等Context。
+[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md)是应用中对象的上下文，其提供了应用的一些基础信息，例如[resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)（资源管理）、[applicationInfo](../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md)（当前应用信息）、[dir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context-1)（应用文件路径）、[area](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode)（文件分区）等，以及应用的一些基本方法，例如<!--Del-->[createBundleContext()](../reference/apis-ability-kit/js-apis-app-ability-application-sys.md#applicationcreatebundlecontext12)、<!--DelEnd-->[getApplicationContext()](../reference/apis-ability-kit/js-apis-inner-application-context.md#getapplicationcontext)等。[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)组件和各种[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)派生类组件都有各自不同的Context类。分别有基类Context、[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)、[AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)、[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)、[ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md)<!--Del-->、[ServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md)<!--DelEnd-->等Context。各类Context的继承和持有关系详见[不同类型Context的继承和持有关系](../reference/apis-ability-kit/js-apis-inner-application-context.md#不同类型context的继承和持有关系)。
 
 > **说明**
 >
 > [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md)是指UI实例上下文，用于关联窗口与UI页面。与本文档中的应用上下文Context无直接关联，不存在继承或持有关系。
 
-- 应用Context的继承关系  
-  ![context-inheritance](figures/context-inheritance.png)
-  
-- 应用Context的持有关系  
-  ![context-holding](figures/context-holding.png)
-  
 - 应用Context的获取方式
   - 获取[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。每个[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)中都包含了一个Context属性，提供操作应用组件、获取应用组件的配置信息等能力。
-    
+
     ```ts
     import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
 
@@ -28,12 +22,12 @@
       }
     }
     ```
-     
+
      > **说明：**
      >
      > 页面中获取UIAbility实例的上下文信息请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
   - 获取特定场景[ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md)。以FormExtensionContext为例，表示卡片服务的上下文环境，继承自ExtensionContext，提供卡片服务相关的接口能力。
-    
+
     ```ts
     import { FormExtensionAbility, formBindingData } from '@kit.FormKit';
     import { Want } from '@kit.AbilityKit';
@@ -52,7 +46,7 @@
     }
     ```
   - 获取[AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)（Module级别的Context）。和基类Context相比，额外提供[HapModuleInfo](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md#属性)、[Configuration](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md#属性)等信息。
-    
+
     ```ts
     import { AbilityStage } from '@kit.AbilityKit';
 
@@ -64,7 +58,7 @@
     }
     ```
   - 获取[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)（应用级别的Context）。ApplicationContext在基类Context的基础上提供了订阅应用内应用组件的生命周期的变化、订阅系统内存变化、订阅应用内系统环境变化、设置应用语言、设置应用颜色模式、清除应用自身数据的同时撤销应用向用户申请的权限等能力，在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)、[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)、[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)中均可以获取。
-    
+
     ```ts
     import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
 
@@ -277,7 +271,7 @@ struct Page_Context {
 ### 获取本应用中其他Module的Context
 
 调用[createModuleContext(context: Context, moduleName: string)](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12)方法，获取本应用中其他Module的Context。获取到其他Module的Context之后，即可获取到相应Module的资源信息。
-  
+
   ```ts
   import { common, application } from '@kit.AbilityKit';
   import { BusinessError } from '@kit.BasicServicesKit';

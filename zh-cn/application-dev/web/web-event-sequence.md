@@ -20,28 +20,28 @@ Web页面保活可以参考[使用离线Web组件](../web/web-offline-mode.md)�
 
 - [aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)函数：在创建自定义组件的新实例后，在执行其build函数前执行。建议在此设置WebDebug调试模式、自定义协议URL的权限、Cookie等。
 
-- [onControllerAttached](../reference/apis-arkweb/ts-basic-components-web-events.md#oncontrollerattached10)事件：当Controller成功绑定到Web组件时触发该回调，且禁止在该事件回调前调用Web组件相关的接口，否则会抛出js-error异常。建议在此事件中注入JS对象、设置自定义用户代理，使用操作网页不相关的接口。但因该回调调用时网页还未加载，因此无法在回调中使用有关操作网页的接口，例如[zoomIn](../reference/apis-arkweb/js-apis-webview-WebviewController.md#zoomin)、[zoomOut](../reference/apis-arkweb/js-apis-webview-WebviewController.md#zoomout)等。
+- [onControllerAttached](../reference/apis-arkweb/arkts-basic-components-web-events.md#oncontrollerattached10)事件：当Controller成功绑定到Web组件时触发该回调，且禁止在该事件回调前调用Web组件相关的接口，否则会抛出js-error异常。建议在此事件中注入JS对象、设置自定义用户代理，使用操作网页不相关的接口。但因该回调调用时网页还未加载，因此无法在回调中使用有关操作网页的接口，例如[zoomIn](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#zoomin)、[zoomOut](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#zoomout)等。
 
-- [onLoadIntercept](../reference/apis-arkweb/ts-basic-components-web-events.md#onloadintercept10)事件：当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。
+- [onLoadIntercept](../reference/apis-arkweb/arkts-basic-components-web-events.md#onloadintercept10)事件：当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。
 
-- [onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web-events.md#oninterceptrequest9)事件：当Web组件加载url之前触发该回调，用于拦截url并返回响应数据。
+- [onInterceptRequest](../reference/apis-arkweb/arkts-basic-components-web-events.md#oninterceptrequest9)事件：当Web组件加载url之前触发该回调，用于拦截url并返回响应数据。
 
-- [onPageBegin](../reference/apis-arkweb/ts-basic-components-web-events.md#onpagebegin)事件：网页开始加载时触发该回调，且只在主frame（表示一个HTML元素，用于展示HTML页面的HTML元素）触发。如果是iframe或者frameset（用于包含frame的HTML标签）的内容加载时则不会触发此回调。多frame页面可能同时加载，主frame加载结束时子frame可能仍在加载。同一页面导航或失败的导航不会触发该回调。
+- [onPageBegin](../reference/apis-arkweb/arkts-basic-components-web-events.md#onpagebegin)事件：网页开始加载时触发该回调，且只在主frame（表示一个HTML元素，用于展示HTML页面的HTML元素）触发。如果是iframe或者frameset（用于包含frame的HTML标签）的内容加载时则不会触发此回调。多frame页面可能同时加载，主frame加载结束时子frame可能仍在加载。同一页面导航或失败的导航不会触发该回调。
 
-- [onProgressChange](../reference/apis-arkweb/ts-basic-components-web-events.md#onprogresschange)事件：告知开发者当前页面加载的进度。多frame页面或者子frame可能还在继续加载而主frame已经加载结束，所以在[onPageEnd](../reference/apis-arkweb/ts-basic-components-web-events.md#onpageend)事件后仍可能收到该事件。
+- [onProgressChange](../reference/apis-arkweb/arkts-basic-components-web-events.md#onprogresschange)事件：告知开发者当前页面加载的进度。多frame页面或者子frame可能还在继续加载而主frame已经加载结束，所以在[onPageEnd](../reference/apis-arkweb/arkts-basic-components-web-events.md#onpageend)事件后仍可能收到该事件。
 
-- [onPageEnd](../reference/apis-arkweb/ts-basic-components-web-events.md#onpageend)事件：网页加载完成时触发该回调，且只在主frame触发。多frame页面有可能同时开始加载，即使主frame已经加载结束，子frame也有可能才开始或者继续加载中。同一页面导航或失败的导航不会触发该回调。建议在此回调中执行JavaScript脚本。注意，收到该回调不能保证下一帧反映DOM状态。
+- [onPageEnd](../reference/apis-arkweb/arkts-basic-components-web-events.md#onpageend)事件：网页加载完成时触发该回调，且只在主frame触发。多frame页面有可能同时开始加载，即使主frame已经加载结束，子frame也有可能才开始或者继续加载中。同一页面导航或失败的导航不会触发该回调。建议在此回调中执行JavaScript脚本。注意，收到该回调不能保证下一帧反映DOM状态。
 
 > **说明：**
 >
 > - 当前web页面没有加载完成时不允许上滑。
 
 ## Web组件网页异常加载过程所涉及的状态说明 
-- [onOverrideUrlLoading](../reference/apis-arkweb/ts-basic-components-web-events.md#onoverrideurlloading12)事件：当URL将要加载到当前Web中时，让宿主应用程序有机会获得控制权，回调函数返回true将导致当前Web中止加载URL，而返回false则会导致Web继续照常加载URL。onLoadIntercept接口和onOverrideUrlLoading接口行为不一致，触发时机也不同，所以在应用场景上存在一定区别。onLoadIntercept事件在LoadUrl和iframe加载时触发，但onOverrideUrlLoading事件在LoadUrl和特定iframe加载时不会触发。详情见文档。
+- [onOverrideUrlLoading](../reference/apis-arkweb/arkts-basic-components-web-events.md#onoverrideurlloading12)事件：当URL将要加载到当前Web中时，让宿主应用程序有机会获得控制权，回调函数返回true将导致当前Web中止加载URL，而返回false则会导致Web继续照常加载URL。onLoadIntercept接口和onOverrideUrlLoading接口行为不一致，触发时机也不同，所以在应用场景上存在一定区别。onLoadIntercept事件在LoadUrl和iframe加载时触发，但onOverrideUrlLoading事件在LoadUrl和特定iframe加载时不会触发。详情见文档。
 
-- [onPageVisible](../reference/apis-arkweb/ts-basic-components-web-events.md#onpagevisible9)事件：Web回调事件。渲染流程中当HTTP响应的主体开始加载，新页面即将可见时触发该回调。此时文档加载还处于早期，因此链接的资源比如在线CSS、在线图片等可能尚不可用。
+- [onPageVisible](../reference/apis-arkweb/arkts-basic-components-web-events.md#onpagevisible9)事件：Web回调事件。渲染流程中当HTTP响应的主体开始加载，新页面即将可见时触发该回调。此时文档加载还处于早期，因此链接的资源比如在线CSS、在线图片等可能尚不可用。
 
-- [onRenderExited](../reference/apis-arkweb/ts-basic-components-web-events.md#onrenderexited9)事件：应用渲染进程异常退出时触发该回调，可以在此回调中进行系统资源的释放、数据的保存等操作。如果应用希望异常恢复，需要调用[loadUrl](../reference/apis-arkweb/js-apis-webview-WebviewController.md#loadurl)接口重新加载页面。详细用法参考[应用如何避免Web组件渲染子进程异常退出导致的页面卡死问题](#应用如何避免web组件渲染子进程异常退出导致的页面卡死问题)。
+- [onRenderExited](../reference/apis-arkweb/arkts-basic-components-web-events.md#onrenderexited9)事件：应用渲染进程异常退出时触发该回调，可以在此回调中进行系统资源的释放、数据的保存等操作。如果应用希望异常恢复，需要调用[loadUrl](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#loadurl)接口重新加载页面。详细用法参考[应用如何避免Web组件渲染子进程异常退出导致的页面卡死问题](#应用如何避免web组件渲染子进程异常退出导致的页面卡死问题)。
 
 - [onDisAppear](../reference/apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear)事件：组件卸载消失时触发此回调。该事件在组件卸载时触发。
 
@@ -186,17 +186,17 @@ Web页面保活可以参考[使用离线Web组件](../web/web-offline-mode.md)�
 
 网页加载过程中需要关注一些重要的性能指标。例如，FCP(First Contentful Paint)首次内容绘制，FMP(First Meaningful Paint)首次有效绘制，LCP(Largest Contentful Paint)最大内容绘制等。Web组件提供了如下接口来通知开发者，接口仅支持在线非PDF网页，不支持本地网页和PDF网页。
 
-- [onFirstContentfulPaint](../reference/apis-arkweb/ts-basic-components-web-events.md#onfirstcontentfulpaint10)事件：网页首次内容绘制的回调函数。首次绘制文本、图像、首次绘制文本、图像、非空白Canvas或SVG的时间点。
+- [onFirstContentfulPaint](../reference/apis-arkweb/arkts-basic-components-web-events.md#onfirstcontentfulpaint10)事件：网页首次内容绘制的回调函数。首次绘制文本、图像、首次绘制文本、图像、非空白Canvas或SVG的时间点。
 
-- [onFirstMeaningfulPaint](../reference/apis-arkweb//ts-basic-components-web-events.md#onfirstmeaningfulpaint12)事件：网页绘制页面主要内容的回调函数。首次绘制主要内容的时间点。
+- [onFirstMeaningfulPaint](../reference/apis-arkweb/arkts-basic-components-web-events.md#onfirstmeaningfulpaint12)事件：网页绘制页面主要内容的回调函数。首次绘制主要内容的时间点。
 
-- [onLargestContentfulPaint](../reference/apis-arkweb/ts-basic-components-web-events.md#onlargestcontentfulpaint12)事件：网页绘制页面最大内容的回调函数。绘制可视区域内最大图片、文本块或视频的时间点。
+- [onLargestContentfulPaint](../reference/apis-arkweb/arkts-basic-components-web-events.md#onlargestcontentfulpaint12)事件：网页绘制页面最大内容的回调函数。绘制可视区域内最大图片、文本块或视频的时间点。
 
 ## 应用如何避免Web组件渲染子进程异常退出导致的页面卡死问题
 
 ArkWeb（方舟Web）是一个Web组件平台，旨在为应用程序提供展示Web页面内容的功能，并向开发者提供一系列的能力，如页面加载、交互和调试等功能。使用ArkWeb相关应用时，可能因各种原因（例如前端偶现异常导致ArkWeb渲染子进程崩溃，或是打开的应用较多，系统资源紧张导致后台ArkWeb渲染子进程被终止）而出现页面卡死的问题，这时需要重新打开页面或重启应用来解决。
 
-在ArkWeb渲染子进程异常退出导致页面卡死后，应用可通过监听[onRenderExited](../reference/apis-arkweb/ts-basic-components-web-events.md#onrenderexited9)事件来获取具体的退出原因[RenderExitReason](../reference/apis-arkweb/ts-basic-components-web-e.md#renderexitreason9)，并在异常回调中根据退出的具体原因，执行相应的异常处理。
+在ArkWeb渲染子进程异常退出导致页面卡死后，应用可通过监听[onRenderExited](../reference/apis-arkweb/arkts-basic-components-web-events.md#onrenderexited9)事件来获取具体的退出原因[RenderExitReason](../reference/apis-arkweb/arkts-basic-components-web-e.md#renderexitreason9)，并在异常回调中根据退出的具体原因，执行相应的异常处理。
 
 **开发实践案例**
 ```ts

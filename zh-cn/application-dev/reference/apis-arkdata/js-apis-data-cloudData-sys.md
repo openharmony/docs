@@ -109,7 +109,7 @@ interface ExtraData {
 | ---------- | ------------------------------------------------------------ | ---- | -------------------------- |
 | startTime  | Date                                                         | 是   | 最近一次端云同步的开始时间。 |
 | finishTime | Date                                                         | 是   | 最近一次端云同步的结束时间。 |
-| code       | [relationalStore.ProgressCode](js-apis-data-relationalStore.md#progresscode10) | 是   | 最近一次端云同步的结果。 |
+| code       | [relationalStore.ProgressCode](arkts-apis-data-relationalStore-e.md#progresscode10) | 是   | 最近一次端云同步的结果。 |
 | syncStatus<sup>18+</sup> | [SyncStatus](#syncstatus18) | 否 | 最近一次端云同步的状态，默认值cloudData.SyncStatus.RUNNING。 |
 
 ## Config
@@ -1054,7 +1054,7 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | storeId      | string                        | 是   | 数据库名称。 |
-| predicates   | [relationalStore.RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates) | 是   | 表示查找共享资源标识的数据的谓词条件。 |
+| predicates   | [relationalStore.RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | 表示查找共享资源标识的数据的谓词条件。 |
 | participants | Array&lt;[Participant](#participant11)&gt; | 是   | 端云共享的参与者。 |
 | columns      | Array&lt;string&gt;           | 否   | 表示要查找的列字段名。默认为undefined，不返回列字段。 |
 
@@ -1062,7 +1062,7 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)&gt; | Promise对象，返回查询并共享的共享资源标识结果集。 |
+| Promise&lt;[relationalStore.ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | Promise对象，返回查询并共享的共享资源标识结果集。 |
 
 **错误码：**
 
@@ -1124,10 +1124,10 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | storeId      | string                        | 是   | 数据库名称。 |
-| predicates   | [relationalStore.RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates) | 是   | 表示查找共享资源标识的数据的谓词条件。 |
+| predicates   | [relationalStore.RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | 表示查找共享资源标识的数据的谓词条件。 |
 | participants | Array&lt;[Participant](#participant11)&gt; | 是   | 端云共享的参与者。 |
 | columns      | Array&lt;string&gt;           | 是   | 表示要查找的列字段名。 |
-| callback     | AsyncCallback&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)&gt;  | 是  | 回调函数。 返回查询并共享的共享资源标识结果集。 |
+| callback     | AsyncCallback&lt;[relationalStore.ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt;  | 是  | 回调函数。 返回查询并共享的共享资源标识结果集。 |
 
 **错误码：**
 
@@ -1191,9 +1191,9 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | storeId      | string                        | 是   | 数据库名称。 |
-| predicates   | [relationalStore.RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates) | 是   | 表示查找共享资源标识的数据的谓词条件。 |
+| predicates   | [relationalStore.RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | 表示查找共享资源标识的数据的谓词条件。 |
 | participants | Array&lt;[Participant](#participant11)&gt; | 是   | 端云共享的参与者。 |
-| callback     | AsyncCallback&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)&gt;  | 是   | 回调函数。返回查询并共享的共享资源标识结果集。 |
+| callback     | AsyncCallback&lt;[relationalStore.ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt;  | 是   | 回调函数。返回查询并共享的共享资源标识结果集。 |
 
 **错误码：**
 

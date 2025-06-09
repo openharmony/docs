@@ -36,7 +36,7 @@ ArkUI提供了使用C和C++开发拖拽功能的能力，开发者可调用C API
 
 2. 自定义拖拽预览和背板图。
 
-   创建[pixelMap](../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_createpixelmap)，设置pixelMap的宽高等各项属性。设置Image节点的[dragPreviewOption](../reference/apis-arkui/drag__and__drop_8h.md#函数)，可用于设置跟手图的圆角、角标等。
+   创建[pixelMap](../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_createpixelmap)，设置pixelMap的宽高等各项属性。设置Image节点的[dragPreviewOption](../reference/apis-arkui/drag__and__drop_8h.md#函数)，可用于设置跟手图的圆角、角标等。
 
     ```cpp
       // 创建pixelMap
@@ -247,7 +247,7 @@ ArkUI提供了使用C和C++开发拖拽功能的能力，开发者可调用C API
       ```
 3. 起拖阶段设置。
 
-     在NODE_ON_TOUCH_INTERCEPT事件中，需要对DragAction进行相关设置。为了主动发起拖拽，需要创建[pixelMap](../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_createpixelmap)，设置[dragPreviewOption](../reference/apis-arkui/drag__and__drop_8h.md#函数)和跟手点，并将拖拽过程中的文本数据设置到DragAction中。
+     在NODE_ON_TOUCH_INTERCEPT事件中，需要对DragAction进行相关设置。为了主动发起拖拽，需要创建[pixelMap](../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_createpixelmap)，设置[dragPreviewOption](../reference/apis-arkui/drag__and__drop_8h.md#函数)和跟手点，并将拖拽过程中的文本数据设置到DragAction中。
 
       ```cpp
       case NODE_ON_TOUCH_INTERCEPT: {

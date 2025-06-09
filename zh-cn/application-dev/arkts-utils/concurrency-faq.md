@@ -264,3 +264,13 @@ JS异常：TypeError: Cannot add property in prevent extensions
 
 3. 应用在Local Test单元测试或预览器中使用Sendable特性时，抛出新增属性异常。由于Sendable特性暂不支持在Local Test和预览器中使用，导致抛出非预期的异常。  
 **解决方案**：规格限制，暂不支持。
+
+## ArkTS提供的Promise能力的原理是什么
+
+Promise是ArkTS提供的异步并发能力，是标准的JS语法。详情请查看[Promise](async-concurrency-overview.md#promise)概述。
+
+## Taskpool线程是否可以执行不需要@Concurrent和@Sendable修饰的JS闭包函数
+
+Taskpool执行的任务函数必须使用@Concurrent装饰器修饰，由于Concurrent函数不能访问闭包，因此函数内不可调用当前文件的其他普通函数，详情请参考[Taskpool注意事项](taskpool-introduction.md#taskpool注意事项)。但是，开发者可以通过给Concurrent函数传参的方式，传入@Sendable装饰器修饰的普通function和Async function，在Concurrent函数内调用Sendable function。
+
+因此，Taskpool线程目前不支持执行普通的JS闭包函数。如果有相关诉求，开发者可以根据业务需要使用[Worker](worker-introduction.md)并发能力进行业务改造。

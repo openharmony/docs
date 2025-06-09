@@ -67,7 +67,7 @@ API 10开始支持应用卡死时的状态保存。JsError故障时，onSaveStat
 
 这里建议应用开发者使用[errorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md)对应用的异常进行处理，处理完成后开发者可以选择调用状态保存接口并主动重启应用。
 如果开发者没有注册[ErrorObserver](../reference/apis-ability-kit/js-apis-inner-application-errorObserver.md)也没有使能应用恢复，则按照系统的默认逻辑执行进程退出。用户可以选择从启动器再次打开应用。
-如果开发者使能应用恢复，框架会首先检查当前故障是否支持状态保存以及开发者是否配置了状态保存，如果支持则会回调[Ability](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的[onSaveState](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonsavestate)的接口。最后重启应用。
+如果开发者使能应用恢复，框架会首先检查当前故障是否支持状态保存以及开发者是否配置了状态保存，如果支持则会回调[Ability](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的[onSaveState](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onsavestate)的接口。最后重启应用。
 
 ### 应用故障管理接口支持场景
 

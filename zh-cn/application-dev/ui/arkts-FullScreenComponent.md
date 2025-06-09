@@ -19,7 +19,7 @@ FullScreenLaunchComponent允许开发者以全屏方式拉起原子化服务，�
 
 FullScreenLaunchComponent提供的一种全屏启动原子化服务的能力。需要拉起原子化服务时，拉起方向AMS查询拉起方是否授权使用方可以嵌入式运行原子化服务。已授权时，使用方全屏嵌入式运行原子化服务；未授权时，使用方跳出式拉起原子化服务。
 
-全屏嵌入式运行原子化服务是指，通过UIExtensionComponent的组件方式嵌入到使用方的组件树中，拉起EmbeddableUIAbility，展示提供方的应用内容。能够实现组件式的交互体验。
+<!--Del-->全屏嵌入式运行原子化服务是指，通过[UIExtension](./arkts-ui-extension-components.md)封装的组件方式嵌入到使用方的组件树中，拉起EmbeddableUIAbility，展示提供方的应用内容，以实现组件式的交互体验。<!--DelEnd-->
 
 跳出式运行原子化服务是指，非组件化的方式拉起EmbeddableUIAbility，交互体验接近独立窗口。
 
@@ -30,8 +30,8 @@ FullScreenLaunchComponent提供的一种全屏启动原子化服务的能力。�
 
 ### 组件基本能力
 
-- 当被拉起方授权使用方可以嵌入式运行原子化服务时，使用方全屏嵌入式运行原子化服务EmbeddableUIAbility
-- 当被拉起方未授权使用方可以嵌入式运行原子化服务时，使用方跳出式拉起原子化服务EmbeddableUIAbility
+- 当被拉起方授权使用方可以嵌入式运行原子化服务时，使用方全屏嵌入式运行原子化服务
+- 当被拉起方未授权使用方可以嵌入式运行原子化服务时，使用方跳出式拉起原子化服务
 - 提供图标占位自定义组件功能，控件展示图标占位，点击图标后拉起原子化服务
 
 ### EmbeddableUIAbility进程应用可用能力范围
@@ -89,7 +89,7 @@ Native API接口提供能力，在FullScreenLaunchComponent场景下也需要考
 | [页面间转场](../reference/apis-arkui/arkui-ts/ts-page-transition-animation.md) | 不支持   | 当路由进行切换时，可以通过在pageTransition函数中自定义页面入场和页面退场的转场动效。 | —                                                            |
 | [组件内隐式共享元素转场](../reference/apis-arkui/arkui-ts/ts-transition-animation-geometrytransition.md) | 不支持   | 在视图切换过程中提供丝滑的上下文传承过渡。通用transition机制提供了opacity、scale等转场效果，geometryTransition通过安排绑定的in/out组件(in指新视图、out指旧视图)的frame、position使得原本独立的transition动画在空间位置上发生联系，将视觉焦点由旧视图位置引导到新视图位置。 | —                                                            |
 | [componentUtils](../reference/apis-arkui/js-apis-arkui-componentUtils.md) | 不支持   | 提供获取组件绘制区域坐标和大小的能力。                       | 获取信息来自于窗口，默认情况下直接获取到的位置信息是EmbeddableUIAbility的WindowProxy的信息，非宿主应用的主窗口信息。 |
-| [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md) | 不支持   | @ohos.window在API version 10 新增[getUIContext](../reference/apis-arkui/js-apis-window.md#getuicontext10)接口，获取UI上下文实例UIContext对象，使用UIContext对象提供的替代方法，可以直接作用在对应的UI实例上。 | 基于window获取，但FullScreenLaunchComponent内部默认方式下，提供方无真正的窗口承载，无法使用该接口获取到正确的UIContext。 |
+| [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md) | 不支持   | @ohos.window在API version 10 新增[getUIContext](../reference/apis-arkui/arkts-apis-window-Window.md#getuicontext10)接口，获取UI上下文实例UIContext对象，使用UIContext对象提供的替代方法，可以直接作用在对应的UI实例上。 | 基于window获取，但FullScreenLaunchComponent内部默认方式下，提供方无真正的窗口承载，无法使用该接口获取到正确的UIContext。 |
 | [DragController](../reference/apis-arkui/js-apis-arkui-dragController.md) | 不支持   | 本模块提供发起主动拖拽的能力，当应用接收到触摸或长按等事件时可以主动发起拖拽的动作，并在其中携带拖拽信息。<br/>本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](./arkts-global-interface.md)的地方使用，参见UIContext说明。 | 拖拽时通过UIContext上下文传递组件间的事件传递，使用方应用和提供方应用不共享UIContext内容，默认能力下无法支持拖拽事件的传递。 |
 | [布局回调](../reference/apis-arkui/js-apis-arkui-inspector.md) | 部分支持 | 提供注册组件布局和绘制完成回调通知的能力。                   | 如果指定FullScreenLaunchComponent组件，预期是获得所有FullScreenLaunchComponent中的组件信息，尚未支持该能力；提供方内部可以正常使用。 |
 | <!--DelRow-->[性能监测](../reference/apis-arkui/js-apis-arkui-performancemonitor-sys.md) | 不支持   | 用户操作场景提供性能相关指标监测能力，目前仅包含响应时延、完成时延、丢帧。| —                                                            |
@@ -101,7 +101,7 @@ Native API接口提供能力，在FullScreenLaunchComponent场景下也需要考
 
 ### 安全能力约束
 
-FullScreenLaunchComponent组件（使用方）可以访问调用集成了EmbeddableUIAbility的应用（提供方），提供了一种通用应用共享能力。FullScreenLaunchComponent能力无法独立提供安全保障机制，作为提供服务的应用（提供方）保护自己不被使用方应用攻击，需要提供方应用结合使用其他ArkUI的能力进行安全保护。
+FullScreenLaunchComponent组件（使用方）可以访问调用集成了EmbeddableUIAbility的应用（提供方），提供了一种通用应用共享能力。FullScreenLaunchComponent能力无法独立提供安全保障机制，作为提供服务的应用（提供方）需要结合使用其他ArkUI的能力进行安全保护，以保护自己不被使用方应用攻击。
 
 由于FullScreenLaunchComponent能力（包含基于FullScreenLaunchComponent衍生的相关能力）机制的灵活性，如果提供方应用存在安全方面的诉求，无法在现有FullScreenLaunchComponent的场景下解决的，建议优先使用其他方案。如选择继续采用FullScreenLaunchComponent能力，提供方应用以及使用方应用都需要承担一定的安全风险。
 
@@ -137,7 +137,7 @@ FullScreenLaunchComponent不支持通用事件，会将事件经过坐标转换�
 | 通用事件 | 拖拽事件（onDragXXX）      | 支持     | 异步                      | —                                                            |
 | 通用事件 | 按键事件（KeyEvent）       | 支持     | 同步                      | 支持超时等待机制，超时后会结束等待，对上层来说相当于事件未处理。 |
 | 通用事件 | 焦点事件（onFocus/onBlur） | 支持     | 同步                      | 支持超时等待机制，超时后会结束等待，对上层来说相当于事件未处理。 |
-| 通用事件 | 鼠标事件（onHove/onMouse） | 支持     | 异步                      | —                                                            |
+| 通用事件 | 鼠标事件（onHover/onMouse） | 支持     | 异步                      | —                                                            |
 | 手势处理 | —                          | 支持     | 异步                      | —                                                            |
 | 无障碍   | —                          | 支持     | 同步                      | 支持超时等待机制，超时后会结束等待，对上层来说相当于事件未处理。 |
 

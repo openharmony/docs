@@ -294,8 +294,12 @@ struct ImageAnimatorExample {
           }
         ])
         .duration(2000)
-        .state(this.state).reverse(this.reverse)
-        .fillMode(FillMode.None).iterations(this.iterations).width(340).height(240)
+        .state(this.state)
+        .reverse(this.reverse)
+        .fillMode(FillMode.None)
+        .iterations(this.iterations)
+        .width(340)
+        .height(240)
         .margin({ top: 100 })
         .onStart(() => {
           console.info('Start')
@@ -318,10 +322,10 @@ struct ImageAnimatorExample {
           this.state = AnimationStatus.Running
         }).margin(5)
         Button('pause').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Paused     // 显示当前帧图片
+          this.state = AnimationStatus.Paused // 显示当前帧图片
         }).margin(5)
         Button('stop').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Stopped    // 显示动画的起始帧图片
+          this.state = AnimationStatus.Stopped // 显示动画的起始帧图片
         }).margin(5)
       }
 
@@ -356,18 +360,24 @@ struct ImageAnimatorExample {
   @State state: AnimationStatus = AnimationStatus.Initial;
   @State reverse: boolean = false;
   @State iterations: number = 1;
-  @State images:Array<ImageFrameInfo> = [];
+  @State images: Array<ImageFrameInfo> = [];
+
   async aboutToAppear() {
     this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.icon')));
-    this.images.push({src:this.imagePixelMap[0]});
+    this.images.push({ src: this.imagePixelMap[0] });
   }
+
   build() {
     Column({ space: 10 }) {
       ImageAnimator()
         .images(this.images)
         .duration(2000)
-        .state(this.state).reverse(this.reverse)
-        .fillMode(FillMode.None).iterations(this.iterations).width(340).height(240)
+        .state(this.state)
+        .reverse(this.reverse)
+        .fillMode(FillMode.None)
+        .iterations(this.iterations)
+        .width(340)
+        .height(240)
         .margin({ top: 100 })
         .onStart(() => {
           console.info('Start');
@@ -390,12 +400,13 @@ struct ImageAnimatorExample {
           this.state = AnimationStatus.Running;
         }).margin(5)
         Button('pause').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Paused;    // 显示当前帧图片
+          this.state = AnimationStatus.Paused; // 显示当前帧图片
         }).margin(5)
         Button('stop').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Stopped;   // 显示动画的起始帧图片
+          this.state = AnimationStatus.Stopped; // 显示动画的起始帧图片
         }).margin(5)
       }
+
       Row() {
         Button('reverse').width(100).padding(5).onClick(() => {
           this.reverse = !this.reverse;
@@ -464,8 +475,14 @@ struct ImageAnimatorAutoPauseTest {
             ])
             .borderRadius(10)
             .monitorInvisibleArea(true)
-            .clip(true).duration(4000).state(this.state).reverse(this.reverse)
-            .fillMode(FillMode.Forwards).iterations(this.iterations).width(340).height(240)
+            .clip(true)
+            .duration(4000)
+            .state(this.state)
+            .reverse(this.reverse)
+            .fillMode(FillMode.Forwards)
+            .iterations(this.iterations)
+            .width(340)
+            .height(240)
             .margin({ top: 100 })
             .onStart(() => {
               this.preCallBack = "Start";
@@ -511,6 +528,7 @@ struct ImageAnimatorAutoPauseTest {
       .onScrollStop(() => {
         console.info('Scroll Stop');
       })
+
       Text("上次触发的回调（Pause/Start）：" + this.preCallBack)
         .margin({ top: 60, left: 20 })
     }.width('100%').height('100%').backgroundColor(0xDCDCDC)

@@ -1,6 +1,6 @@
 # SaveButton
 
-安全控件的保存控件，用户通过点击该保存按钮，可以临时获取存储权限，而不需要权限弹框授权确认。
+安全控件的保存控件。用户点击保存控件，应用可以临时获取存储权限，而不需要权限弹框授权确认。
 
 > **说明：**
 >
@@ -16,7 +16,7 @@
 
 SaveButton()
 
-默认创建带有图标、文本、背景的保存按钮。
+默认创建带有图标、文本、背景的保存控件。
 
 为避免控件样式不合法导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
 
@@ -28,7 +28,7 @@ SaveButton()
 
 SaveButton(options: SaveButtonOptions)
 
-创建包含指定元素的保存按钮。
+创建包含指定元素的保存控件。
 
 为避免控件样式不合法导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
 
@@ -40,11 +40,11 @@ SaveButton(options: SaveButtonOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [SaveButtonOptions](#savebuttonoptions) | 是 | 创建包含指定元素的保存按钮。 |
+| options | [SaveButtonOptions](#savebuttonoptions) | 是 | 创建包含指定元素的保存控件。 |
 
 ## SaveButtonOptions
 
-用于指定保存按钮的图标、文本等指定元素。
+用于指定保存控件的图标、文本等指定元素。
 
 > **说明：**
 >
@@ -64,9 +64,9 @@ SaveButton(options: SaveButtonOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| icon | [SaveIconStyle](#saveiconstyle枚举说明) | 否 | 设置保存按钮的图标风格。<br/>不传入该参数表示没有图标。 |
-| text | [SaveDescription](#savedescription枚举说明) | 否 | 设置保存按钮的文本描述。<br/>不传入该参数表示没有文字描述。 |
-| buttonType | [ButtonType](ts-securitycomponent-attributes.md#buttontype枚举说明) | 否 | 设置保存按钮的背景样式。<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
+| icon | [SaveIconStyle](#saveiconstyle枚举说明) | 否 | 设置保存控件的图标风格。<br/>不传入该参数表示没有图标。 |
+| text | [SaveDescription](#savedescription枚举说明) | 否 | 设置保存控件的文本描述。<br/>不传入该参数表示没有文字描述。 |
+| buttonType | [ButtonType](ts-securitycomponent-attributes.md#buttontype枚举说明) | 否 | 设置保存控件的背景样式。<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
 
 ## SaveIconStyle枚举说明
 
@@ -76,8 +76,8 @@ SaveButton(options: SaveButtonOptions)
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| FULL_FILLED | 0 | 保存按钮展示填充样式图标。 |
-| LINES | 1 | 保存按钮展示线条样式图标。 |
+| FULL_FILLED | 0 | 保存控件展示填充样式图标。 |
+| LINES | 1 | 保存控件展示线条样式图标。 |
 
 ## SaveDescription枚举说明
 
@@ -85,19 +85,19 @@ SaveButton(options: SaveButtonOptions)
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| DOWNLOAD | 0 | 保存按钮的文字描述为“下载”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| DOWNLOAD_FILE | 1 | 保存按钮的文字描述为“下载文件”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| SAVE | 2 | 保存按钮的文字描述为“保存”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| SAVE_IMAGE | 3 | 保存按钮的文字描述为“保存图片”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| SAVE_FILE | 4 | 保存按钮的文字描述为“保存文件”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| DOWNLOAD_AND_SHARE | 5 | 保存按钮的文字描述为“下载分享”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| RECEIVE | 6 | 保存按钮的文字描述为“接收”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| CONTINUE_TO_RECEIVE | 7 | 保存按钮的文字描述为“继续接收”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| SAVE_TO_GALLERY<sup>12+</sup> | 8 | 保存按钮的文字描述为“保存至图库”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| EXPORT_TO_GALLERY<sup>12+</sup> | 9 | 保存按钮的文字描述为“导出”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| QUICK_SAVE_TO_GALLERY<sup>12+</sup> | 10 | 保存按钮的文字描述为“快速保存图片”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| RESAVE_TO_GALLERY<sup>12+</sup> | 11 | 保存按钮的文字描述为“重新保存”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| SAVE_ALL<sup>18+</sup> | 12 | 保存按钮的文字描述为“全部保存”。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| DOWNLOAD | 0 | 保存控件的文字描述为“下载”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| DOWNLOAD_FILE | 1 | 保存控件的文字描述为“下载文件”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| SAVE | 2 | 保存控件的文字描述为“保存”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| SAVE_IMAGE | 3 | 保存控件的文字描述为“保存图片”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| SAVE_FILE | 4 | 保存控件的文字描述为“保存文件”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| DOWNLOAD_AND_SHARE | 5 | 保存控件的文字描述为“下载分享”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| RECEIVE | 6 | 保存控件的文字描述为“接收”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| CONTINUE_TO_RECEIVE | 7 | 保存控件的文字描述为“继续接收”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| SAVE_TO_GALLERY<sup>12+</sup> | 8 | 保存控件的文字描述为“保存至图库”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| EXPORT_TO_GALLERY<sup>12+</sup> | 9 | 保存控件的文字描述为“导出”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| QUICK_SAVE_TO_GALLERY<sup>12+</sup> | 10 | 保存控件的文字描述为“快速保存图片”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| RESAVE_TO_GALLERY<sup>12+</sup> | 11 | 保存控件的文字描述为“重新保存”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| SAVE_ALL<sup>18+</sup> | 12 | 保存控件的文字描述为“全部保存”。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## SaveButtonOnClickResult枚举说明
 
@@ -107,8 +107,8 @@ SaveButton(options: SaveButtonOptions)
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| SUCCESS | 0 | 保存按钮点击成功。 |
-| TEMPORARY_AUTHORIZATION_FAILED | 1 | 保存按钮点击后权限授权失败。 |
+| SUCCESS | 0 | 保存控件点击后权限授权成功。 |
+| TEMPORARY_AUTHORIZATION_FAILED | 1 | 保存控件点击后权限授权失败。 |
 
 ## SaveButtonTipPosition<sup>20+</sup>枚举说明
 
@@ -125,7 +125,7 @@ SaveButton(options: SaveButtonOptions)
 
 type SaveButtonCallback = (event: ClickEvent, result: SaveButtonOnClickResult, error?: BusinessError&lt;void&gt;) =&gt; void
 
-点击保存按钮触发该回调。
+点击保存控件触发该回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -135,7 +135,7 @@ type SaveButtonCallback = (event: ClickEvent, result: SaveButtonOnClickResult, e
 |------------|------|-------|---------|
 | event | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) |是 |见ClickEvent对象说明。|
 | result | [SaveButtonOnClickResult](#savebuttononclickresult枚举说明)| 是 | 存储权限的授权结果，授权时长为10秒，即触发点击后，可以在10秒之内不限制次数的调用特定媒体库接口，超出10秒的调用会鉴权失败。|
-| error | [BusinessError&lt;void&gt;](../../apis-basic-services-kit/js-apis-base.md#businesserror) | 否 | 点击按钮时的错误码和错误信息。<br>错误码0表示点击保存按钮授权成功。<br>错误码1表示系统内部错误。<br>错误码2表示属性设置错误，包括但不限于：<br>1. 字体或图标设置过小。<br>2. 字体或图标与背托颜色相近。<br>3. 字体或图标颜色过于透明。<br>4. padding为负值。<br>5. 按钮被其他组件或窗口遮挡。<br>6. 文本超出背托范围。<br>7. 按钮超出窗口或屏幕。<br>8. 按钮整体尺寸过大。<br>9. 按钮文本被截断，显示不全。<br>10. 相关属性设置影响安全控件显示。|
+| error | [BusinessError&lt;void&gt;](../../apis-basic-services-kit/js-apis-base.md#businesserror) | 否 | 点击按钮时的错误码和错误信息。<br>错误码0表示点击保存控件授权成功。<br>错误码1表示系统内部错误。<br>错误码2表示属性设置错误，包括但不限于：<br>1. 字体或图标设置过小。<br>2. 字体或图标与背托颜色相近。<br>3. 字体或图标颜色过于透明。<br>4. padding为负值。<br>5. 按钮被其他组件或窗口遮挡。<br>6. 文本超出背托范围。<br>7. 按钮超出窗口或屏幕。<br>8. 按钮整体尺寸过大。<br>9. 按钮文本被截断，显示不全。<br>10. 相关属性设置影响安全控件显示。|
 
 ## SaveButtonAttribute
 SaveButtonAttribute提供设置自定义图标（setIcon）、自定义文本（setText）、图标尺寸设置（iconSize）、图标圆角设置（iconBorderRadius），是否显示按压态（stateEffect）以及系统提示弹框位置设置的方法属性。
@@ -318,7 +318,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct Index {
   handleSaveButtonClick: SaveButtonCallback =
-    async (event: ClickEvent, result: SaveButtonOnClickResult, error: BusinessError<void>) => {
+    async (event: ClickEvent, result: SaveButtonOnClickResult, error?: BusinessError<void>) => {
       if (result == SaveButtonOnClickResult.SUCCESS) {
         try {
           const context = this.getUIContext().getHostContext();
@@ -335,8 +335,8 @@ struct Index {
           console.error("error is " + JSON.stringify(error));
         }
       } else {
-        console.info("errCode: " + error.code);
-        console.info("errMessage: " + error.message);
+        console.error("errCode: " + error?.code);
+        console.error("errMessage: " + error?.message);
       }
     };
 

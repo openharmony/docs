@@ -105,7 +105,7 @@ restartSelfAtomicService(context: Context): void
 | 16000053 | The ability is not on the top of the UI. |
 | 16000064 | Restart too frequently. Try again at least 3s later. |
 | 16000086 | The context is not UIAbilityContext. |
-| 16000090 | Caller is not atomic service. |
+| 16000090 | The caller is not an atomic service. |
 
 **示例**：
 

@@ -4,7 +4,7 @@
 
 声明与绘图模块中的着色器对象相关的函数。
 
-**引用文件：** drawing_shader_effect.h
+**引用文件：** <native_drawing/drawing_shader_effect.h>
 
 **库：** libnative_drawing.so
 

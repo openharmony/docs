@@ -4,7 +4,7 @@ Web组件提供了两种可配置的渲染模式，能够根据不同的容器�
 
 ## 异步渲染模式（默认）
 
-异步渲染模式下（renderMode: [RenderMode](../reference/apis-arkweb/ts-basic-components-web-e.md#rendermode12).ASYNC_RENDER），Web组件作为图形surface节点，独立送显。建议在仅由Web组件构成的应用页面中使用此模式，以提高性能并降低功耗。
+异步渲染模式下（renderMode: [RenderMode](../reference/apis-arkweb/arkts-basic-components-web-e.md#rendermode12).ASYNC_RENDER），Web组件作为图形surface节点，独立送显。建议在仅由Web组件构成的应用页面中使用此模式，以提高性能并降低功耗。
 
 - Web组件的宽高不能超过7,680px（物理像素），超过会导致白屏。
 - 不支持动态切换模式。
@@ -17,7 +17,7 @@ Web组件提供了两种可配置的渲染模式，能够根据不同的容器�
 
 ## 同步渲染模式
 
-同步渲染模式下（ renderMode: [RenderMode](../reference/apis-arkweb/ts-basic-components-web-e.md#rendermode12).SYNC_RENDER），Web组件作为图形canvas节点, Web渲染跟随系统组件一起送显，可以渲染更长Web组件内容，但会增加性能消耗。
+同步渲染模式下（ renderMode: [RenderMode](../reference/apis-arkweb/arkts-basic-components-web-e.md#rendermode12).SYNC_RENDER），Web组件作为图形canvas节点, Web渲染跟随系统组件一起送显，可以渲染更长Web组件内容，但会增加性能消耗。
 
 - Web组件的宽高不能超过500,000px（物理像素），超过会导致白屏。
 - 不支持DSS合成。

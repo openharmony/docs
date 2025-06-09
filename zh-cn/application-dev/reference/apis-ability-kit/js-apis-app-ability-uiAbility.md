@@ -1,17 +1,38 @@
-# @ohos.app.ability.UIAbility (UIAbility)
+# @ohos.app.ability.UIAbility (带界面的应用组件)
 
-UIAbility是包含UI界面的应用组件，继承自[Ability](js-apis-app-ability-ability.md)，提供组件创建、销毁、前后台切换等生命周期回调，同时也具备组件协同的能力，组件协同主要提供如下常用功能：
-
-- [Caller](#caller)：由[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口返回，CallerAbility(调用者)可使用Caller与CalleeAbility(被调用者)进行通信。
-- [Callee](#callee)：UIAbility的内部对象，CalleeAbility(被调用者)可以通过Callee与Caller进行通信。
-
-各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
+UIAbility是包含UI界面的应用组件，继承自[Ability](js-apis-app-ability-ability.md)，提供UIAbility组件创建、销毁、前后台切换等[生命周期](#uiability生命周期)回调，同时也具备[后台通信能力](#后台通信能力)。
 
 > **说明：**
 >
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 本模块接口仅可在Stage模型下使用。
+
+各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
+
+## UIAbility生命周期状态
+
+**图1** UIAbility生命周期状态
+
+![Ability-Life-Cycle](../../application-models/figures/Ability-Life-Cycle.png)
+
+- Create：表示UIAbility实例已创建。系统会在该状态下触发其[onCreate](#oncreate)回调函数，开发者可以在[onCreate](#oncreate)中执行初始化操作。
+- Foreground：表示UIAbility被拉到前台。系统会在该状态下触发其[onForeground](#onforeground)回调函数，开发者可以在[onForeground](#onforeground)中申请应用所需的资源。
+- Background：表示UIAbility被拉到后台。系统会在该状态下触发其[onBackground](#onbackground)回调函数，开发者可以在[onBackground](#onbackground)中释放一些应用资源。
+- Destroy：表示UIAbility实例要销毁。系统会在该状态下触发其[onDestroy](#ondestroy)回调函数，开发者可以在[onDestroy](#ondestroy)中执行数据保存等操作。
+
+## 后台通信能力
+
+通过Call调用可以与目标UIAbility进行后台通信。Call调用示意图如下所示。
+
+
+**图2** Call调用示意图
+
+![call](../../application-models/figures/call.png)
+
+- Caller UIAbility调用[startAbilityByCall()](js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口获取[Caller](#caller)对象，并使用Caller对象的[call](#call)方法向Callee UIAbility发送数据。
+
+- Callee UIAbility持有一个[Callee](#callee)对象，通过Callee的[on](#on)方法注册回调函数，用于接收Caller对象发送的数据。
 
 ## 导入模块
 
@@ -29,16 +50,19 @@ import { UIAbility } from '@kit.AbilityKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 否 | 否 | 上下文。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| launchWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | UIAbility启动时的参数。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| lastRequestWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | 当前UIAbility被多次拉起时，通过[onCreate](#oncreate)或[onNewWant](#onnewwant)接收到的最近一次Want请求参数。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
-| callee | [Callee](#callee) | 否 | 否 | 调用Stub（桩）服务对象。|
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 否 | 否 | UIAbility的上下文。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| launchWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | UIAbility冷启动时接收到的Want参数，取值为[onCreate](#oncreate)接收到的Want参数。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | 最近一次拉起UIAbility请求的Want参数。<br>- 首次拉起UIAbility时，取值为[onCreate](#oncreate)接收到的Want参数。<br>- 重复拉起UIAbility时，取值为[onNewWant](#onnewwant)最近一次接收到的Want参数。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
+| callee | [Callee](#callee) | 否 | 否 | 系统为UIAbility创建的后台通信对象，Callee UIAbility（被调用方），可以通过Callee对象接收Caller对象发送的数据进。 |
+
 
 ### onCreate
 
 onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
-UIAbility实例处于完全关闭状态下被创建完成后进入该生命周期回调，执行初始化业务逻辑操作。即UIAbility实例[冷启动](../../application-models/uiability-intra-device-interaction.md#目标uiability冷启动)时进入该生命周期回调。同步接口，不支持异步回调。
+当UIAbility实例完成创建时，系统会触发该回调，开发者可在该回调中执行初始化逻辑（如定义变量、加载资源等）。该回调仅会在UIAbility[冷启动](../../application-models/uiability-intra-device-interaction.md#目标uiability冷启动)时触发。
+
+同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -48,8 +72,8 @@ UIAbility实例处于完全关闭状态下被创建完成后进入该生命周�
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | 当前UIAbility的Want类型信息，包括ability名称、bundle名称等。 |
-| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#launchparam) | 是 | 创建&nbsp;ability、上次异常退出的原因信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 调用方拉起该UIAbility时传递的数据。 |
+| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#launchparam) | 是 | 应用启动参数，包含应用启动原因、应用上次退出原因等。 |
 
 **示例：**
 
@@ -62,6 +86,7 @@ export default class MyUIAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     // 执行异步任务
     hilog.info(0x0000, 'testTag', `onCreate, want: ${want.abilityName}`);
+    hilog.info(0x0000, 'testTag', `the launchReason is +  ${launchParam.launchReason} + , the lastExitReason is  + ${launchParam.lastExitReason}`);
   }
 }
 ```
@@ -71,7 +96,7 @@ export default class MyUIAbility extends UIAbility {
 
 onWindowStageCreate(windowStage: window.WindowStage): void
 
-当WindowStage创建后调用。
+当WindowStage实例创建完成后，系统会触发该回调。开发者可以在该回调中通过WindowStage加载页面。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -81,7 +106,7 @@ onWindowStageCreate(windowStage: window.WindowStage): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | WindowStage相关信息。 |
+| windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9) | 是 | WindowStage实例对象。 |
 
 **示例：**
 
@@ -109,7 +134,7 @@ export default class MyUIAbility extends UIAbility {
 
 onWindowStageWillDestroy(windowStage: window.WindowStage): void
 
-当WindowStage即将销毁时调用。
+当WindowStage即将销毁时，系统触发该回调。开发者可以在该生命周期中取消windowStage事件的监听。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -119,7 +144,7 @@ onWindowStageWillDestroy(windowStage: window.WindowStage): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | WindowStage相关信息。 |
+| windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9) | 是 | WindowStage实例对象。 |
 
 **示例：**
 
@@ -140,7 +165,9 @@ export default class MyUIAbility extends UIAbility {
 
 onWindowStageDestroy(): void
 
-当WindowStage销毁后调用。
+当WindowStage销毁后，系统触发该回调。该回调用于通知开发者WindowStage对象已被销毁，不能再继续使用。
+
+仅当UIAbility正常退出时会触发该回调，异常退出场景（例如低内存查杀）不会触发该回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -165,7 +192,12 @@ export default class MyUIAbility extends UIAbility {
 
 onWindowStageRestore(windowStage: window.WindowStage): void
 
-当迁移多实例Ability时，恢复WindowStage后调用。
+当UIAbility跨端迁移时，目标端UIAbility恢复页面栈时回调。
+
+> **说明：**
+>
+> 在应用迁移启动时，无论是冷启动还是热启动，都会在执行完[onCreate()](#oncreate)/[onNewWant()](#onnewwant)后，触发onWindowStageRestore()生命周期函数，不执行onWindowStageCreate()生命周期函数。
+
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -175,7 +207,7 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | WindowStage相关信息。 |
+| windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9) | 是 | WindowStage实例对象。 |
 
 **示例：**
 
@@ -196,7 +228,11 @@ export default class MyUIAbility extends UIAbility {
 
 onDestroy(): void | Promise&lt;void&gt;
 
-UIAbility生命周期回调，在销毁时回调，执行资源清理等操作。使用同步回调或Promise异步回调。
+当UIAbility被销毁（例如使用[terminateSelf](js-apis-inner-application-uiAbilityContext.md#terminateself)接口停止UIAbility）时，系统触发该回调。开发者可以在该生命周期中执行资源清理、数据保存等相关操作。使用同步回调或Promise异步回调。
+
+在执行完onDestroy生命周期回调后，应用可能会退出，从而可能导致onDestroy中的异步函数未能正确执行，比如异步写入数据库。推荐使用Promise异步回调，避免因应用退出导致onDestroy中的异步函数（比如异步写入数据库）未能正确执行。
+
+仅当UIAbility正常退出时会触发该回调，异常退出场景（例如低内存查杀）不会触发该回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -210,29 +246,33 @@ UIAbility生命周期回调，在销毁时回调，执行资源清理等操作�
 
 **示例：**
 
-```ts
-import { UIAbility } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
+- 同步回调示例如下：
 
-export default class MyUIAbility extends UIAbility {
-  onDestroy() {
-    hilog.info(0x0000, 'testTag', `onDestroy`);
+  ```ts
+  import { UIAbility } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  export default class MyUIAbility extends UIAbility {
+    onDestroy() {
+      hilog.info(0x0000, 'testTag', `onDestroy`);
+      // 调用同步函数...
+    }
   }
-}
-```
+  ```
 
-在执行完onDestroy生命周期回调后，应用可能会退出，从而可能导致onDestroy中的异步函数未能正确执行，比如异步写入数据库。可以使用异步生命周期，以确保异步onDestroy完成后再继续后续的生命周期。
+- Promise异步回调示例如下：
 
-```ts
-import { UIAbility } from '@kit.AbilityKit';
+  ```ts
+  import { UIAbility } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-class MyUIAbility extends UIAbility {
-  async onDestroy() {
-    console.log('onDestroy');
-    // 调用异步函数...
+  export default class MyUIAbility extends UIAbility {
+    async onDestroy() {
+      hilog.info(0x0000, 'testTag', `onDestroy`);
+      // 调用异步函数...
+    }
   }
-}
-```
+  ```
 
 
 ### onWillForeground<sup>20+</sup>
@@ -305,7 +345,7 @@ export default class EntryAbility extends UIAbility {
 
 onForeground(): void
 
-UIAbility生命周期回调，应用从后台转到前台时触发，在[onWillForeground](#onwillbackground20)与[onDidForeground](#ondidforeground20)之间被调用。可在该回调中实现系统所需资源的申请，如应用转到前台时申请定位服务等。
+当应用首次启动到前台或者从后台转入到前台时，系统触发该回调。开发者可在该回调中实现系统所需资源的申请，如应用转到前台时申请定位服务等。
 
 同步接口，不支持异步回调。
 
@@ -365,7 +405,7 @@ import { UIAbility } from '@kit.AbilityKit';
 import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onWillBackground(): void {
     let eventParams: Record<string, number | string> = {
       "int_data": 100,
@@ -379,10 +419,10 @@ class MyUIAbility extends UIAbility {
       params: eventParams,
     }, (err: BusinessError) => {
       if (err) {
-        hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
+        hilog.error(0x0000, 'testTag', `hiAppEvent code: ${err.code}, message: ${err.message}`);
         return;
       }
-      hilog.info(0x0000, 'hiAppEvent', `success to write event`);
+      hilog.info(0x0000, 'testTag', `hiAppEvent success to write event`);
     });
   }
 }
@@ -393,7 +433,7 @@ class MyUIAbility extends UIAbility {
 
 onBackground(): void
 
-UIAbility生命周期回调，当应用从前台转到后台时触发，在[onWillBackground](#onwillbackground20)与[onDidBackground](#ondidbackground20)之间被调用。可在该回调中实现UI不可见时的资源释放操作，如停止定位功能等。
+当应用从前台转入到后台时，系统触发该回调。开发者可在该回调中实现UI不可见时的资源释放操作，如停止定位功能等。
 
 同步接口，不支持异步回调。
 
@@ -433,9 +473,10 @@ UIAbility生命周期回调，当应用从前台转到后台后触发，在[onBa
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { audio } from '@kit.AudioKit';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   static audioRenderer: audio.AudioRenderer;
   // ...
   onForeground(): void {
@@ -459,9 +500,9 @@ class MyUIAbility extends UIAbility {
     // 在前台时申请audioRenderer，用于播放PCM（Pulse Code Modulation）音频数据
     audio.createAudioRenderer(audioRendererOptions).then((data) => {
       MyUIAbility.audioRenderer = data;
-      console.info(`AudioRenderer Created : Success : Stream Type: SUCCESS.`);
+      hilog.info(0x0000, 'testTag', `AudioRenderer Created : Success : Stream Type: SUCCESS.`);
     }).catch((err: BusinessError) => {
-      console.error(`AudioRenderer Created : F : ${JSON.stringify(err)}.`);
+      hilog.error(0x0000, 'testTag', `AudioRenderer Created : F : ${JSON.stringify(err)}.`);
     });
   }
 
@@ -469,9 +510,9 @@ class MyUIAbility extends UIAbility {
     // 转到后台后，释放audioRenderer资源
     MyUIAbility.audioRenderer.release((err: BusinessError) => {
       if (err) {
-        console.error(`AudioRenderer release failed, error: ${JSON.stringify(err)}.`);
+        hilog.error(0x0000, 'testTag', `AudioRenderer release failed, error: ${JSON.stringify(err)}.`);
       } else {
-        console.info(`AudioRenderer released.`);
+        hilog.info(0x0000, 'testTag',  `AudioRenderer released.`);
       }
     });
   }
@@ -485,7 +526,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 当Ability准备迁移时触发，保存数据。
 
 > **说明：**
-> 
+>
 > 从API version 12 开始，UIAbility.onContinue生命周期新增支持返回值为Promise\<[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#oncontinueresult)\>形式。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
@@ -496,34 +537,36 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | want相关参数。 |
+| wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 开发者通过该参数保存待迁移的数据。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#oncontinueresult)&nbsp;\|&nbsp;Promise&lt;[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#oncontinueresult)&gt;  | 接续的结果或带接续结果的Promise对象。 |
+| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#oncontinueresult)&nbsp;\|&nbsp;Promise&lt;[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#oncontinueresult)&gt;  | 表示是否同意迁移的结果：<br>- AGREE：表示同意。<br>- REJECT：表示拒绝，如应用在onContinue中异常可以返回REJECT。<br>- MISMATCH：表示版本不匹配，接续源端应用可以在onContinue中获取到迁移对端应用的版本号，进行协商后，如果版本不匹配导致无法迁移，可以返回该结果。<br> 该回调与onWindowStageRestore成对出现。在接续场景下，源端的UIAbility触发onContinue保存自定义数据，在目标端UIAbility触发onWindowStageRestore恢复自定义数据。 |
 
 **示例：**
 
+- 应用迁移时使用同步接口进行数据保存，示例如下：
+
   ```ts
   import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
-  class MyUIAbility extends UIAbility {
-      onContinue(wantParams: Record<string, Object>) {
-          console.log('onContinue');
-          wantParams['myData'] = 'my1234567';
-          return AbilityConstant.OnContinueResult.AGREE;
-      }
+  export default class MyUIAbility extends UIAbility {
+    onContinue(wantParams: Record<string, Object>) {
+      console.log('onContinue');
+      wantParams['myData'] = 'my1234567';
+      return AbilityConstant.OnContinueResult.AGREE;
+    }
   }
   ```
 
-支持应用在迁移时，使用异步接口进行数据保存。
+- 应用迁移时使用异步接口进行数据保存，示例如下：
 
   ```ts
   import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
-  class MyUIAbility extends UIAbility {
+  export default class MyUIAbility extends UIAbility {
     async setWant(wantParams: Record<string, Object>) {
       console.log('setWant start');
       for (let time = 0; time < 1000; ++time) {
@@ -546,7 +589,8 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 
 onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
-UIAbility实例已经启动并在前台运行过，由于某些原因切换到后台，再次启动该UIAbility实例时会回调执行该方法。即UIAbility实例[热启动](../../application-models/uiability-intra-device-interaction.md#目标uiability热启动)时进入该生命周期回调。
+当已在前台运行过的UIAbility实例切换至后台后，被再次拉起时（即[热启动](../../application-models/uiability-intra-device-interaction.md#目标uiability热启动)场景），会触发该生命周期回调。
+
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -556,15 +600,15 @@ UIAbility实例已经启动并在前台运行过，由于某些原因切换到�
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，如Ability名称，包名等。 |
-| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#launchparam) | 是 | UIAbility启动的原因、上次异常退出的原因信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 调用方再次拉起该UIAbility时传递的数据。 |
+| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#launchparam) | 是 | UIAbility启动的原因。 |
 
 **示例：**
 
 ```ts
 import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
     console.log(`onNewWant, want: ${want.abilityName}`);
     console.log(`onNewWant, launchParam: ${JSON.stringify(launchParam)}`);
@@ -576,7 +620,7 @@ class MyUIAbility extends UIAbility {
 
 onDump(params: Array\<string>): Array\<string>
 
-转储客户端信息时调用，可用于转储非敏感信息。
+应用调测场景下，通过命令行dump UIAbility转储UIAbility数据时回调。开发者可以在该回调中返回UIAbility要dump出的非敏感信息。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -586,20 +630,20 @@ onDump(params: Array\<string>): Array\<string>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| params | Array\<string> | 是 | 表示命令形式的参数。|
+| params | Array\<string> | 是 | 表示dump命令参数。|
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Array\<string> | 转储信息数组。|
+| Array\<string> | 返回的dump信息。|
 
 **示例：**
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onDump(params: Array<string>) {
     console.log(`dump, params: ${JSON.stringify(params)}`);
     return ['params'];
@@ -614,6 +658,8 @@ onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Obje
 
 该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。当应用出现故障时，如果已启用自动保存状态，框架将调用onSaveState来保存UIAbility的状态。
 
+如果应用已使能故障恢复功能（即[enableAppRecovery](js-apis-app-ability-appRecovery.md#apprecoveryenableapprecovery)接口中saveOccasion参数配置为SAVE_WHEN_ERROR），当应用出现故障时，将触发该回调来保存UIAbility的数据。
+
 > **说明：**
 >
 > 从API version 20开始，当[UIAbility.onSaveStateAsync](#onsavestateasync20)实现时，本回调函数将不执行。
@@ -626,21 +672,21 @@ onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Obje
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reason | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#statetype) | 是 | 回调保存状态的原因。 |
-| wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | want相关参数。 |
+| reason | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#statetype) | 是 | 触发应用保存状态的原因，当前仅支持APP_RECOVERY（即应用故障恢复场景）。 |
+| wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 用户自定义的应用状态数据，应用再启动时被保存在onCreate中的Want.parameters中。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [AbilityConstant.OnSaveResult](js-apis-app-ability-abilityConstant.md#onsaveresult) | 是否同意保存当前UIAbility的状态。 |
+| [AbilityConstant.OnSaveResult](js-apis-app-ability-abilityConstant.md#onsaveresult) | 返回一个数据保存策略的对象（如全部拒绝、全部允许、只允许故障恢复场景等）。 |
 
 **示例：**
 
 ```ts
 import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
     console.log('onSaveState');
     wantParam['myData'] = 'my1234567';
@@ -691,7 +737,7 @@ class MyUIAbility extends UIAbility {
 
 onShare(wantParam: Record&lt;string, Object&gt;): void
 
-在跨端分享场景下，在UIAbility中设置分享方设备要分享的数据。
+当跨端分享原子化服务时，系统触发该回调。开发者可以在该回调中设置待分享原子化服务的标题、摘要和URL等数据。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -708,7 +754,7 @@ onShare(wantParam: Record&lt;string, Object&gt;): void
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onShare(wantParams: Record<string, Object>) {
     console.log('onShare');
     wantParams['ohos.extra.param.key.shareUrl'] = 'example.com';
@@ -720,13 +766,17 @@ class MyUIAbility extends UIAbility {
 
 onPrepareToTerminate(): boolean
 
-UIAbility生命周期回调，在UIAbility关闭时触发，用于在UIAbility正式关闭前执行其他操作。例如，询问用户是否确认关闭UIAbility。如果用户确认关闭UIAbility，可配合[terminateSelf](js-apis-inner-application-uiAbilityContext.md#terminateself)接口关闭。
+当UIAbility即将关闭前，系统触发该回调，用于在UIAbility正式关闭前执行其他操作。开发者可以在该回调中返回true阻拦此次关闭，然后在合适时机主动调用[terminateSelf](js-apis-inner-application-uiAbilityContext.md#terminateself)接口关闭。例如，询问用户是否确认关闭UIAbility，再主动销毁UIAbility。
 
-当前仅在2in1设备上生效。
 
 > **说明：**
 >
+> - 回调前提：该接口仅在2in1设备上生效，且需要应用申请ohos.permission.PREPARE_APP_TERMINATE权限。
+>
+> - 回调时机：当用户通过点击应用窗口右上角的关闭按钮、或者通过Dock栏/托盘右键退出应用时，可以使用该回调。
+>
 > - 从API version 15开始，当[UIAbility.onPrepareToTerminateAsync](#onpreparetoterminateasync15)实现时，本回调函数将不执行。当[AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#abilitystageonprepareterminationasync15)或[AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15)实现时，在dock栏或系统托盘处右键点击关闭，本回调函数将不执行。
+> - 如果应用本身或者所使用的三方框架注册了[window.WindowStage.on('windowStageClose')](../apis-arkui/js-apis-window.md#onwindowstageclose14)监听，本回调函数将不执行。
 
 **需要权限**：ohos.permission.PREPARE_APP_TERMINATE
 
@@ -777,13 +827,19 @@ export default class EntryAbility extends UIAbility {
 
 onPrepareToTerminateAsync(): Promise\<boolean>
 
-UIAbility生命周期异步回调，在UIAbility关闭时触发，通过使用Promise异步回调的方式，在UIAbility正式关闭前执行操作。例如，询问用户是否确认关闭UIAbility。如果用户确认关闭UIAbility，可配合[terminateSelf](js-apis-inner-application-uiAbilityContext.md#terminateself)接口关闭。
+当UIAbility关闭前，系统触发该回调，用于在UIAbility正式关闭前执行其他操作。
 
-当前仅在2in1设备上生效。
+开发者可以在该回调中返回true阻拦此次关闭，然后在合适时机主动调用[terminateSelf](js-apis-inner-application-uiAbilityContext.md#terminateself)接口关闭。例如，询问用户是否确认关闭UIAbility，再主动销毁UIAbility。
+
 
 > **说明：**
 >
+> - 回调前提：该接口仅在2in1设备上生效，且需要应用申请ohos.permission.PREPARE_APP_TERMINATE权限。
+>
+> - 回调时机：当用户通过点击应用窗口右上角的关闭按钮、或者通过Dock栏/托盘右键退出应用时，可以使用该回调。
+>
 > - 当[AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#abilitystageonprepareterminationasync15)或[AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15)实现时，在dock栏或系统托盘处右键点击关闭，本回调函数将不执行。
+> - 如果应用本身或者所使用的三方框架注册了[window.WindowStage.on('windowStageClose')](../apis-arkui/js-apis-window.md#onwindowstageclose14)监听，本回调函数将不执行。
 >
 > - 若异步回调内发生crash，按超时处理，执行等待超过10秒未响应，UIAbility将被强制关闭。
 
@@ -867,16 +923,16 @@ UIAbility生命周期回调，在多设备协同场景下，协同方应用在�
 
 **返回值：**
 
-| 名称     | 值   | 说明       |
-| -------- | ---- | ---------- |
-| [AbilityConstant.CollaborateResult](js-apis-app-ability-abilityConstant.md#collaborateresult18) | 协同方应用是否接受协同。 |
+| 类型     | 说明   |
+| -------- | ---- |
+| [AbilityConstant.CollaborateResult](js-apis-app-ability-abilityConstant.md#collaborateresult18) | 协同方是否接受协同的结果。 |
 
 **示例：**
 
 ```ts
 import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
-class MyAbility extends UIAbility {
+export default class MyAbility extends UIAbility {
   onCollaborate(wantParam: Record<string, Object>) {
     return AbilityConstant.CollaborateResult.ACCEPT;
   }
@@ -885,13 +941,13 @@ class MyAbility extends UIAbility {
 
 ## Caller
 
-通用组件Caller通信客户端调用接口, 用来向通用组件服务端发送约定数据。
+调用方Caller UIAbility（仅支持系统应用）可以通过[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口拉起目标Callee UIAbility（可以为三方应用）。Callee UIAbility会返回一个Caller对象给到Caller UIAbility。Caller UIAbility拿到这个Caller对象后，就可以通过Caller对象与Callee UIAbility通讯，发送数据。
 
 ### call
 
 call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;
 
-向通用组件服务端发送约定序列化数据。使用Promise异步回调。
+Caller UIAbility向Callee UIAbility发送双方约定好的序列化的数据。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -899,8 +955,8 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| method | string | 是 | 约定的服务端注册事件字符串。 |
-| data | [rpc.Parcelable](../apis-ipc-kit/js-apis-rpc.md#parcelable9) | 是 | 由开发者实现的Parcelable可序列化数据。 |
+| method | string | 是 | 由Caller和Calle双方约定好的方法名，Callee方通过该字段区分消息类型。 |
+| data | [rpc.Parcelable](../apis-ipc-kit/js-apis-rpc.md#parcelable9) | 是 | 由Caller向Callee发送的消息内容，消息内容是序列化的数据。 |
 
 **返回值：**
 
@@ -979,7 +1035,7 @@ export default class MainUIAbility extends UIAbility {
 
 callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;
 
-向通用组件服务端发送约定序列化数据, 并将服务端返回的约定序列化数据带回。使用Promise异步回调。
+Caller UIAbility向Callee UIAbility发送消息，Callee UIAbility处理完成后返回结果。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -987,14 +1043,14 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| method | string | 是 | 约定的服务端注册事件字符串。 |
-| data | [rpc.Parcelable](../apis-ipc-kit/js-apis-rpc.md#parcelable9) | 是 | 由开发者实现的Parcelable可序列化数据。 |
+| method | string | 是 | 由Caller和Calle双方约定好的方法名，Callee方通过该字段区分消息类型。 |
+| data | [rpc.Parcelable](../apis-ipc-kit/js-apis-rpc.md#parcelable9) | 是 | 由Caller向Callee发送的消息内容，消息内容是序列化的数据。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9)&gt; | Promise对象，返回通用组件服务端应答数据。 |
+| Promise&lt;[rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9)&gt; | Promise对象，返回Callee UIAbility的应答数据。 |
 
 **错误码：**
 
@@ -1069,7 +1125,7 @@ export default class MainUIAbility extends UIAbility {
 
 release(): void
 
-主动释放通用组件服务端的通信接口。
+Caller主动释放与Callee UIAbility的连接。调用该接口后，Caller不能再使用call或callWithResult向Callee方发送消息。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1113,9 +1169,9 @@ export default class MainUIAbility extends UIAbility {
 
 ### onRelease
 
- onRelease(callback: OnReleaseCallback): void
+onRelease(callback: OnReleaseCallback): void
 
-注册通用组件服务端Stub（桩）断开监听通知。使用callback异步回调。
+Caller可使用该接口注册Callee UIAbility断开的通知，通过callback回调监听Callee UIAbility主动断开或异常断开事件。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1224,7 +1280,7 @@ export default class MainAbility extends UIAbility {
 
 on(type: 'release', callback: OnReleaseCallback): void
 
-注册通用组件服务端Stub（桩）断开监听通知。使用callback异步回调。
+Caller可使用该接口注册Callee UIAbility断开的通知，通过callback回调监听Callee UIAbility主动断开或异常断开事件。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1279,7 +1335,7 @@ export default class MainUIAbility extends UIAbility {
 
 off(type: 'release', callback: OnReleaseCallback): void
 
-取消注册通用组件服务端Stub（桩）断开监听通知。预留能力，当前暂未支持。使用callback异步回调。
+取消注册Callee UIAbility断开的通知，与[Caller.on('release')](#onrelease-1)是反向操作，当前暂未支持。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1335,7 +1391,7 @@ export default class MainUIAbility extends UIAbility {
 
 off(type: 'release'): void
 
-取消注册通用组件服务端Stub（桩）断开监听通知。预留能力，当前暂未支持。
+取消注册Callee UIAbility断开的通知，与[Caller.on('release')](#onrelease-1)是反向操作，当前暂未支持。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1519,7 +1575,7 @@ export default class MainUIAbility extends UIAbility {
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | ----- | --- | -------- |
-| msg | string | 是 | 用于传递释放消息。 | 
+| msg | string | 是 | 用于传递释放消息。 |
 
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
@@ -1535,7 +1591,7 @@ export default class MainUIAbility extends UIAbility {
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | ----- | --- | -------- |
-| msg | string | 是 | 用于传递释放消息。 | 
+| msg | string | 是 | 用于传递释放消息。 |
 
 ## CalleeCallback
 
