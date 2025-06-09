@@ -75,7 +75,7 @@ callback(data:userStatus.DetectionResult) {
 };
 
 try {
-    userStatus.on('MinorIdentification', this.callback);  
+    userStatus.on('ChildDetection', this.callback);  
     console.info("on succeeded");
 } catch (err) {
     let error = err as BusinessError;
@@ -120,7 +120,7 @@ off(type: 'ChildDetection', callback?: Callback&lt;DetectionStatus&gt;): void;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    userStatus.off('MinorIdentification');
+    userStatus.off('ChildDetection');
     console.info("off succeeded");
 } catch (err) {
     let error = err as BusinessError;
