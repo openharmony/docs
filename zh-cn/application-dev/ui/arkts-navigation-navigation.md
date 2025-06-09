@@ -628,7 +628,7 @@ Navigation作为路由容器，其生命周期承载在NavDestination组件上�
   ```
 - 页面状态监听
   
-  通过[observer.on('navDestinationUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#observeronnavdestinationupdate)提供的注册接口可以注册NavDestination生命周期变化的监听，使用方式如下：
+  通过[observer.on('navDestinationUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#uiobserveronnavdestinationupdate)提供的注册接口可以注册NavDestination生命周期变化的监听，使用方式如下：
   
   ```ts
   uiObserver.on('navDestinationUpdate', (info) => {
