@@ -697,7 +697,7 @@ createVideoPlayer(): Promise\<VideoPlayer>
 
 | 类型                                 | 说明                                                         |
 | ------------------------------------ | ------------------------------------------------------------ |
-| Promise<[VideoPlayer](#videoplayerdeprecated)> | Promise对象。异步返回VideoPlayer实例，失败时返回null。可用于管理和播放视频媒体。 |
+| Promise<[VideoPlayer](arkts-apis-media-VideoPlayer.md#videoplayerdeprecated)> | Promise对象。异步返回VideoPlayer实例，失败时返回null。可用于管理和播放视频媒体。 |
 
 **示例：**
 
