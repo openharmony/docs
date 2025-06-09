@@ -45,7 +45,7 @@ import base from '@ohos.base';
 try {
     deviceAttest.getAttestStatus((error: base.BusinessError, value: deviceAttest.AttestResultInfo) => {
     if (typeof error != 'undefined') {
-        console.info("error code:" + error.code + " message:" + error.message);
+        console.error("error code:" + error.code + " message:" + error.message);
     } else {
         console.info("auth:" + value.authResult + " software:" + value.softwareResult + " ticket:" + value.ticket);
         console.info("versionIdResult:" + value.softwareResultDetail[0],
@@ -58,7 +58,7 @@ try {
 } catch (error) {
     let code: number = (error as base.BusinessError).code;
     let message: string = (error as base.BusinessError).message;
-    console.info("error code:" + code + " message:" + message);
+    console.error("error code:" + code + " message:" + message);
 }
 ```
 
@@ -103,7 +103,7 @@ try {
 } catch (error) {
     let code: number = (error as base.BusinessError).code;
     let message: string = (error as base.BusinessError).message;
-    console.info("error code:" + code + " message:" + message);
+    console.error("error code:" + code + " message:" + message);
 }
 ```
 
@@ -145,7 +145,7 @@ try {
 } catch (error) {
     let code: number = (error as base.BusinessError).code;
     let message: string = (error as base.BusinessError).message;
-    console.info("error code:" + code + " message:" + message);
+    console.error("error code:" + code + " message:" + message);
 }
 ```
 
@@ -155,7 +155,7 @@ try {
 
 **系统能力：** SystemCapability.XTS.DeviceAttest
 
-| 名称                  | 类型                  | 可读 | 可写 | 说明                   |
+| 名称                  | 类型                  | 只读 | 可选 | 说明                   |
 | --------------------- | --------------------- | ---- | ---- | ---------------------- |
 | authResult            | number               | 是   | 否   | 设备硬件信息校验结果。    |
 | softwareResult        | number               | 是   | 否   | 设备软件信息校验结果。    |
