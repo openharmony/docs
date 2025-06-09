@@ -1221,7 +1221,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
   wifiManager.getLinkedInfo().then(data => {
       console.info("get wifi linked info: " + JSON.stringify(data));
   }).catch((error:number) => {
-      console.info("get linked info error");
+      console.error("get linked info error");
   });
 ```
 
