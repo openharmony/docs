@@ -1,4 +1,4 @@
-# @ohos.app.appstartup.StartupTask
+# @ohos.app.appstartup.StartupTask (启动框架任务)
 
 本模块提供启动任务的相关能力。
 
