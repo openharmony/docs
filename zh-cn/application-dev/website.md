@@ -2427,7 +2427,7 @@
         - [@arkts.utils (ArkTS工具库)](reference/apis-arkts/js-apis-arkts-utils.md)
         - [@ohos.buffer (Buffer)](reference/apis-arkts/js-apis-buffer.md)
         - [@ohos.convertxml (xml转换JavaScript)](reference/apis-arkts/js-apis-convertxml.md)
-        - [@ohos.fastbuffer (线性容器FastBuffer)](reference/apis-arkts/js-apis-fastbuffer.md)
+        - [@ohos.fastbuffer (FastBuffer)](reference/apis-arkts/js-apis-fastbuffer.md)
         - [@ohos.process (获取进程相关的信息)](reference/apis-arkts/js-apis-process.md)
         - [@ohos.taskpool (启动任务池)](reference/apis-arkts/js-apis-taskpool.md)
         - [@ohos.uri (URI字符串解析)](reference/apis-arkts/js-apis-uri.md)
