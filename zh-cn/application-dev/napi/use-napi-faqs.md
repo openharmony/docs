@@ -316,3 +316,80 @@ napi_value NapiGenericFailure(napi_env env, napi_callback_info)
     }).detach();;
 }
 ```
+
+## napi_add_env_cleanup_hook/napi_remove_env_cleanup_hook调用报错，该如何处理
+`napi_add_env_cleanup_hook`/`napi_remove_env_cleanup_hook`调用报错，有以下几个常见原因和对应的特征日志，均为接口使用不当导致。
+1. 在`env`所在的js线程外使用上述两个接口，导致多线程安全问题。特征报错日志`ecma_vm cannot run in multi-thread`。
+2. 调用`napi_add_env_cleanup_hook`时，重复使用同一个`args`注册不同的回调函数，导致后续注册失败问题。该接口第三个入参`args`是作为接口内部`map`的`key`值，当重复注册同一个`args`的回调时，后续注册动作将会失败，仅第一次注册才会成功。注册失败可能会引起后续业务上的功能/崩溃问题。特征报错日志`AddCleanupHook Failed`。
+3. 调用`napi_remove_env_cleanup_hook`时，尝试通过一个不存在（或已被删除）的`args`删除回调函数，该接口调用失败，出现特征报错日志`RemoveCleanupHook Failed`。
+
+常见错误场景示例如下：
+
+```c++
+void AddEnvCleanupHook(napi_env env)
+{
+    napi_add_env_cleanup_hook(env, [](void* args) -> void {
+        // cleanup function回调
+    }, env); // env是个通用的数据，即使此处没有重复注册，可能会被其他地方所提前注册，导致该处注册失败。
+}
+
+static napi_value Test(napi_env env, napi_callback_info info)
+{
+    //第一次注册
+    AddEnvCleanupHook(env);
+    //第二次重复注册
+    AddEnvCleanupHook(env);
+    return nullptr;
+}
+```
+
+修复建议：
+1. 对于多线程安全问题，需确保调用接口的线程在`env`所在的js线程上。
+2. 对于注册失败的问题，需要使用者评估想注册的函数到底是哪一个。需要保证`key`值（也就是`napi_add_env_cleanup_hook`的第三个入参）是唯一的即可。
+3. 对于删除失败的问题，需要使用者确保`args`之前被注册过且未被删除。
+
+相关参考资料链接：
+[使用Node-API接口注册和使用环境清理钩子](use-napi-about-cleanuphook.md)
+[方舟运行时的NApi](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-coding-standard-api#section1219614634615)
+
+## `napi_wrap`如何保证被wrap的对象按期望顺序析构
+问题：在使用`napi_wrap`把两个 C++ 对象包装成两个 JavaScript 对象的场景中，由于这两个 C++ 对象存在依赖关系，要求其中一个c++对象必须在另一个c++对象之前析构。然而，JavaScript 垃圾回收（GC）的时机不确定，直接在`napi_wrap`的`finalize_cb`回调里销毁 C++ 对象，没办法保证析构顺序符合要求。该如何保证两个c++对象析构的前后顺序？
+
+参考方案：  
+先标记可释放状态，当A和B都为可释放状态时同时释放C++对象   
+原理：将所有依赖对象的释放逻辑集中在最后一个被销毁的 JS 对象的 finalize_cb 中处理。  
+实现步骤：   
+在 jsObjA 的 finalize_cb 中标记 cppObjA 为待销毁（不立即释放）。  
+在 jsObjB 的 finalize_cb 中标记 cppObjB 为待销毁（不立即释放）。  
+jsObjA 和 jsObjB 都为待销毁状态时，按顺序销毁A和B。
+示例代码：    
+```cpp
+struct ObjectPair {
+    CppObjA* objA;
+    CppObjB* objB;
+    bool objADestroyedA = false;
+    bool objADestroyedB = false;
+};
+
+// jsObjA 的 finalize 回调
+void FinalizeA(napi_env env, void* data, void* hint) {
+    ObjectPair* pair = static_cast<ObjectPair*>(data);
+    pair->objADestroyedA = true;
+    if (pair->objADestroyedA && pair->objADestroyedB) {
+        delete pair->objA; // 确保先销毁 A
+        delete pair->objB; // 再销毁 B
+        delete pair;       // 释放包装结构
+    }
+}
+
+// jsObjB 的 finalize 回调
+void FinalizeB(napi_env env, void* data, void* hint) {
+    ObjectPair* pair = static_cast<ObjectPair*>(data);
+    pair->objADestroyedB = true;
+    if (pair->objADestroyedA && pair->objADestroyedB) {
+        delete pair->objA; // 确保先销毁 A
+        delete pair->objB; // 再销毁 B
+        delete pair;       // 释放包装结构
+    }
+}
+```
