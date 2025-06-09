@@ -134,7 +134,7 @@ struct MyComponent {
               })
           }.margin({ left: 10, right: 10 })
         }
-      }, (item: string) => 'same key')
+      }, (item: string) => `same key`) // 自定义键值生成函数，返回相同键值
     }.cachedCount(5)
   }
 }
@@ -144,6 +144,26 @@ struct MyComponent {
 
 **图2**  LazyForEach存在相同键值  
 ![LazyForEach-Render-SameKey](./figures/LazyForEach-Render-SameKey.gif)
+
+修改上述示例中LazyForEach的键值生成函数，使每个数据项生成唯一的键值，保证渲染效果符合预期。
+
+```ts
+LazyForEach(this.data, (item: string) => {
+  ListItem() {
+   Row() {
+    Text(item).fontSize(50)
+      .onAppear(() => {
+        console.info(`appear: ${item}`);
+      })
+    }.margin({ left: 10, right: 10 })
+  }
+}, (item: string, index: number) => `${item}-${index}`) // 自定义键值生成函数，返回唯一键值
+```
+
+修改后运行效果如下图所示。
+
+**图3**  LazyForEach生成唯一键值  
+![LazyForEach-Render-UniqueKey](./figures/LazyForEach-Render-UniqueKey.gif)
 
 ### 非首次渲染
 
@@ -207,7 +227,7 @@ struct MyComponent {
 
 运行效果如下图所示。
 
-**图3**  LazyForEach添加数据  
+**图4**  LazyForEach添加数据  
 ![LazyForEach-Add-Data](./figures/LazyForEach-Add-Data.gif)
 
 #### 删除数据
@@ -276,7 +296,7 @@ struct MyComponent {
 
 运行效果如下图所示。
 
-**图4**  LazyForEach删除数据  
+**图5**  LazyForEach删除数据  
 ![LazyForEach-Delete-Data](./figures/LazyForEach-Delete-Data.gif)
 
 #### 交换数据
@@ -352,7 +372,7 @@ struct MyComponent {
 
 运行效果如下图所示。
 
-**图5**  LazyForEach交换数据  
+**图6**  LazyForEach交换数据  
 ![LazyForEach-Exchange-Data](./figures/LazyForEach-Exchange-Data.gif)
 
 #### 改变单个数据
@@ -416,7 +436,7 @@ struct MyComponent {
 
 运行效果如下图所示。
 
-**图6**  LazyForEach改变单个数据  
+**图7**  LazyForEach改变单个数据  
 ![LazyForEach-Change-SingleData](./figures/LazyForEach-Change-SingleData.gif)
 
 #### 改变多个数据
@@ -486,7 +506,7 @@ struct MyComponent {
 
 运行效果如下图所示。
 
-**图7**  LazyForEach改变多个数据  
+**图8**  LazyForEach改变多个数据  
 ![LazyForEach-Reload-Data](./figures/LazyForEach-Reload-Data.gif)
 
 #### 精准批量修改数据
@@ -568,8 +588,7 @@ struct MyComponent {
 
 onDatasetChange接口允许开发者一次性通知LazyForEach进行数据添加、删除、移动和交换等操作。在上述例子中，点击“change data”文本后,第二项数据被移动到第四项位置，第五项与第七项数据交换位置，并且从第九项开始添加了数据"Hello 1"和"Hello 2"，同时从第十一项开始删除了两项数据。  
 
-**图8**  LazyForEach改变多个数据  
-
+**图9**  LazyForEach改变多个数据  
 ![LazyForEach-Change-MultiData](./figures/LazyForEach-Change-MultiData.gif)  
 
 第二个例子，直接给数组赋值，不涉及 splice 操作。operations直接从比较原数组和新数组得到。
@@ -640,8 +659,8 @@ struct MyComponent {
   }
 }
 ```
-**图9**  LazyForEach改变多个数据
 
+**图10**  LazyForEach改变多个数据  
 ![LazyForEach-Change-MultiData2](./figures/LazyForEach-Change-MultiData2.gif)  
 
 使用该接口时请注意以下事项。
@@ -741,7 +760,7 @@ struct ChildComponent {
 
 点击`LazyForEach`子组件改变`item.message`时，重渲染依赖`ChildComponent`的`@ObjectLink`成员变量对子属性的监听。框架仅刷新`Text(this.data.message)`，不会重建整个`ListItem`子组件。
 
-**图10**  LazyForEach改变数据子属性  
+**图11**  LazyForEach改变数据子属性  
 ![LazyForEach-Change-SubProperty](./figures/LazyForEach-Change-SubProperty.gif)
 
 ### 使用状态管理V2
@@ -1043,7 +1062,7 @@ struct Parent {
 }
 ```
 
-**图11** LazyForEach拖拽排序效果图  
+**图12**  LazyForEach拖拽排序效果图  
 ![LazyForEach-Drag-Sort](./figures/ForEach-Drag-Sort.gif)
 
 ## 常见问题
@@ -1107,7 +1126,7 @@ struct MyComponent {
 }
 ```
 
-**图12**  LazyForEach删除数据非预期  
+**图13**  LazyForEach删除数据非预期  
 ![LazyForEach-Render-Not-Expected](./figures/LazyForEach-Render-Not-Expected.gif)
 
 多次点击子组件时，发现删除的不一定是点击的那个子组件。原因在于删除某个子组件后，该子组件之后的数据项的`index`应减1，但实际后续数据项对应的子组件仍使用最初分配的`index`，`itemGenerator`中的`index`未更新，导致删除结果与预期不符。
@@ -1179,7 +1198,7 @@ struct MyComponent {
 
 在删除一个数据项后调用`reloadData`方法，重建后面的数据项，以达到更新`index`索引的目的。要保证`reloadData`方法重建数据项，必须保证数据项能生成新的key。这里用了`item + index.toString()`保证被删除数据项后面的数据项都被重建。如果用`item + Date.now().toString()`替代，那么所有数据项都生成新的key，导致所有数据项都被重建。这种方法，效果是一样的，只是性能略差。
 
-**图13**  修复LazyForEach删除数据非预期  
+**图14**  修复LazyForEach删除数据非预期  
 ![LazyForEach-Render-Not-Expected-Repair](./figures/LazyForEach-Render-Not-Expected-Repair.gif)
 
 ### 重渲染时图片闪烁
@@ -1255,7 +1274,7 @@ struct MyComponent {
 }
 ```
 
-**图14**  LazyForEach仅改变文字但是图片闪烁问题  
+**图15**  LazyForEach仅改变文字但是图片闪烁问题  
 ![LazyForEach-Image-Flush](./figures/LazyForEach-Image-Flush.gif)
 
 单击`ListItem`子组件时，只改变了数据项的`message`属性，但`LazyForEach`的刷新机制会导致整个`ListItem`被重建。由于`Image`组件异步刷新，视觉上图片会闪烁。解决方法是使用`@ObjectLink`和`@Observed`单独刷新子组件`Text`。
@@ -1339,7 +1358,7 @@ struct ChildComponent {
 }
 ```
 
-**图15**  修复LazyForEach仅改变文字但是图片闪烁问题  
+**图16**  修复LazyForEach仅改变文字但是图片闪烁问题  
 ![LazyForEach-Image-Flush-Repair](./figures/LazyForEach-Image-Flush-Repair.gif)
 
 ### @ObjectLink属性变化UI未更新
@@ -1423,7 +1442,7 @@ struct ChildComponent {
 }
 ```
 
-**图16**  ObjectLink属性变化后UI未更新  
+**图17**  ObjectLink属性变化后UI未更新  
 ![LazyForEach-ObjectLink-NotRenderUI](./figures/LazyForEach-ObjectLink-NotRenderUI.gif)
 
 @ObjectLink装饰的成员变量仅能监听到其子属性的变化，无法监听深层嵌套属性，因此，只能通过修改子属性来通知组件重新渲染。具体[请查看@ObjectLink与@Observed的详细使用方法和限制条件](./arkts-observed-and-objectlink.md)。
@@ -1510,7 +1529,7 @@ struct ChildComponent {
 }
 ```
 
-**图17**  修复ObjectLink属性变化后UI更新  
+**图18**  修复ObjectLink属性变化后UI更新  
 ![LazyForEach-ObjectLink-NotRenderUI-Repair](./figures/LazyForEach-ObjectLink-NotRenderUI-Repair.gif)
 
 ### 在List内使用屏幕闪烁
@@ -1583,7 +1602,7 @@ struct MyComponent {
 }
 ```
 
-当List下拉到底时，屏闪效果如下图所示。  
+**图19**  当List下拉到底时，屏幕闪烁  
 ![LazyForEach-Screen-Flicker](./figures/LazyForEach-Screen-Flicker.gif)
 
 使用`onDatasetChange`代替`onDataReloaded`，不仅可以修复闪屏问题，还能提升加载性能。
@@ -1656,7 +1675,7 @@ struct MyComponent {
 }
 ```
 
-修复后的效果如下图所示。 
+**图20**  修复后，当List下拉到底时，屏幕不闪烁  
 ![LazyForEach-Screen-Flicker-Repair](./figures/LazyForEach-Screen-Flicker-Repair.gif)
 
 ### 组件复用渲染异常
@@ -1806,7 +1825,7 @@ struct MyComponent {
 }
 ```
 
-点击按钮更新数据，组件不会刷新。
+**图21**  点击按钮更新数据，组件不会刷新  
 ![LazyForEach-Refresh-Not-Expected](./figures/LazyForEach-Refresh-Not-Expected.gif)
 
 LazyForEach依赖生成的键值判断是否刷新子组件，如果更新的数据没有改变键值（如示例中开发者没有定义键值生成函数，此时键值仅与组件索引index有关，更新数据时键值不变），则LazyForEach不会刷新对应组件。
@@ -1819,7 +1838,7 @@ LazyForEach(this.data, (item: string) => {
 }, (item: string) => item) // 定义键值生成函数
 ```
 
-定义键值生成函数后，点击按钮更新数据，组件刷新。
+**图22**  定义键值生成函数后，点击按钮更新数据，组件刷新  
 ![LazyForEach-Refresh-Not-Expected-Repair](./figures/LazyForEach-Refresh-Not-Expected-Repair.gif)
 
 ### 懒加载失效
