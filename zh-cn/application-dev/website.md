@@ -122,6 +122,7 @@
           - [设置任务快照的图标和名称](application-models/mission-set-icon-name-for-task-snapshot.md)
         <!--DelEnd-->
         - [Stage模型应用配置文件](application-models/config-file-stage.md)
+        - [标准意图接入规范](application-models/insight-intent-access-specifications.md)
       - FA模型开发指导<!--fa-model-development-->
         - [FA模型开发概述](application-models/fa-model-development-overview.md)
         - FA模型应用组件<!--fa-model-application-components-->
