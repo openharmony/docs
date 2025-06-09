@@ -33,13 +33,11 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ```text
 日期 时间 进程号 线程号 日志级别 domainID/日志tag: 日志内容
-```
 
-如下所示，这是一条domainID为0x3200、tag是"testTag"的info级别的日志：
-
-```text
 04-19 17:02:14.735  5394  5394 I A03200/testTag: this is a info level hilog
 ```
+
+如上，这是一条domainID为0x3200、tag是"testTag"的info级别的日志：
 
 说明：
 
@@ -134,7 +132,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
         Show n lines logs on tail of buffer.
    ```
 
-### 日志查看
+### 查看日志
 
 #### 非阻塞读日志
 
@@ -423,10 +421,16 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ### 查看和设置日志级别
 
-   ```
-   // 全局日志级别默认为Info，查询全局日志级别
-   param get param get hilog.loggable.global
+#### 查看日志级别
 
+   ```
+   $ param get hilog.loggable.global
+   I
+   ```
+
+#### 设置日志级别
+
+   ```
    // 设置全局日志级别
    hilog -b D/I/W/E/F
 
@@ -446,9 +450,6 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    **使用样例：**
 
    ```
-   $ param get hilog.loggable.global
-   I
-
    $ hilog -b E
    Set global log level to E successfully
 
@@ -464,7 +465,6 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    $ hilog -b E -T testTag
    Set tag testTag log level to E successfully
    ```
-
 
 ## 其他常用命令
 
