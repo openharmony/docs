@@ -203,12 +203,12 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
 
                 // 注册onerror回调，当Worker在执行过程中发生异常时被调用，在宿主线程执行
                 workerInstance.onerror = (err: ErrorEvent) => {
-                  console.info('workerInstance onerror message is: ' + err.message);
+                  console.error('workerInstance onerror message is: ' + err.message);
                 }
 
                 // 注册onmessageerror回调，当Worker对象接收到无法序列化的消息时被调用，在宿主线程执行
                 workerInstance.onmessageerror = () => {
-                  console.info('workerInstance onmessageerror');
+                  console.error('workerInstance onmessageerror');
                 }
 
                 // 注册onexit回调，当Worker销毁时被调用，在宿主线程执行
@@ -246,12 +246,12 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
 
       // 注册onmessageerror回调，当Worker对象接收到一条无法被序列化的消息时被调用，在Worker线程执行
       workerPort.onmessageerror = () => {
-        console.info('workerPort onmessageerror');
+        console.error('workerPort onmessageerror');
       }
 
       // 注册onerror回调，当Worker在执行过程中发生异常被调用，在Worker线程执行
       workerPort.onerror = (err: ErrorEvent) => {
-        console.info('workerPort onerror err is: ', err.message);
+        console.error('workerPort onerror err is: ', err.message);
       }
       ```
 
@@ -347,7 +347,7 @@ parentworker.onexit = () => {
 }
 
 parentworker.onerror = (err: ErrorEvent) => {
-  console.info('主线程接收到父worker报错 ' + err);
+  console.error('主线程接收到父worker报错 ' + err);
 }
 
 parentworker.postMessage('主线程发送消息给父worker-推荐示例');
@@ -378,7 +378,7 @@ workerPort.onmessage = (e : MessageEvents) => {
     }
 
     childworker.onerror = (err: ErrorEvent) => {
-      console.info('子Worker发生报错 ' + err);
+      console.error('子Worker发生报错 ' + err);
     }
 
     childworker.postMessage('父Worker向子Worker发送信息-推荐示例');
@@ -422,7 +422,7 @@ parentworker.onexit = () => {
 }
 
 parentworker.onerror = (err: ErrorEvent) => {
-  console.info('主线程接收到父Worker报错 ' + err);
+  console.error('主线程接收到父Worker报错 ' + err);
 }
 
 parentworker.postMessage('主线程发送消息给父Worker');
@@ -449,7 +449,7 @@ workerPort.onmessage = (e : MessageEvents) => {
   }
 
   childworker.onerror = (err: ErrorEvent) => {
-    console.info('子Worker发生报错 ' + err);
+    console.error('子Worker发生报错 ' + err);
   }
 
   childworker.postMessage('父Worker向子Worker发送信息');
@@ -493,7 +493,7 @@ parentworker.onexit = () => {
 }
 
 parentworker.onerror = (err: ErrorEvent) => {
-  console.info('主线程接收到父Worker报错 ' + err);
+  console.error('主线程接收到父Worker报错 ' + err);
 }
 
 parentworker.postMessage('主线程发送消息给父Worker');
@@ -526,7 +526,7 @@ workerPort.onmessage = (e : MessageEvents) => {
   }
 
   childworker.onerror = (err: ErrorEvent) => {
-    console.info('子Worker发生报错 ' + err);
+    console.error('子Worker发生报错 ' + err);
   }
 
   childworker.postMessage('父Worker向子Worker发送信息');
