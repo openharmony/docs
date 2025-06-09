@@ -4493,7 +4493,6 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 >
 > - prefetchPage有时间限制，500ms内不能多次预取。
 
-
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
