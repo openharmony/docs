@@ -2284,3 +2284,32 @@ struct TextAreaExample {
 ```
 
 ![textAreaEnableAutoSpacing](figures/textAreaEnableAutoSpacing.png)
+
+### 示例21（TextArea控件支持maxLines配置为滚动）
+
+该示例通过设置TextArea中文本超过maxLines属性设置得最大行支持滚动
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextAreaExample {
+  build() {
+    Row() {
+      Column() {
+        TextArea({ text: '1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20' })
+          .fontSize(50)
+          .width('50%')
+          .borderWidth(1)
+          .margin(100)
+          .textOverflow(TextOverflow.Clip)
+          .maxLines(3, { overflowMode: MaxLinesMode.SCROLL })
+      }.height('90%')
+    }
+    .width('90%')
+    .margin(10)
+  }
+}
+
+```
+![TextAreaMaxLines](figures/TextAreaMaxLines.gif)
