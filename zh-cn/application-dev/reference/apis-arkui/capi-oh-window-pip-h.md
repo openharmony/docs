@@ -221,7 +221,7 @@ typedef void (*WebPipLifecycleCallback)(uint32_t controllerId, PictureInPicture_
 ### WebPipControlEventCallback()
 
 ```
-typedef void (*WebPipControlEventCallback)(uint32_t controllerId, PictureInPicture_PipControlType controlType,PictureInPicture_PipControlStatus status)
+typedef void (*WebPipControlEventCallback)(uint32_t controllerId, PictureInPicture_PipControlType controlType, PictureInPicture_PipControlStatus status)
 ```
 
 **描述**
@@ -340,7 +340,7 @@ int32_t OH_PictureInPicture_SetPipMainWindowId(PictureInPicture_PipConfig pipCon
 ### OH_PictureInPicture_SetPipTemplateType()
 
 ```
-int32_t OH_PictureInPicture_SetPipTemplateType(PictureInPicture_PipConfig pipConfig,PictureInPicture_PipTemplateType pipTemplateType)
+int32_t OH_PictureInPicture_SetPipTemplateType(PictureInPicture_PipConfig pipConfig, PictureInPicture_PipTemplateType pipTemplateType)
 ```
 
 **描述**
@@ -393,7 +393,7 @@ int32_t OH_PictureInPicture_SetPipRect(PictureInPicture_PipConfig pipConfig, uin
 ### OH_PictureInPicture_SetPipControlGroup()
 
 ```
-int32_t OH_PictureInPicture_SetPipControlGroup(PictureInPicture_PipConfig pipConfig,PictureInPicture_PipControlGroup* controlGroup, uint8_t controlGroupLength)
+int32_t OH_PictureInPicture_SetPipControlGroup(PictureInPicture_PipConfig pipConfig, PictureInPicture_PipControlGroup* controlGroup, uint8_t controlGroupLength)
 ```
 
 **描述**
@@ -574,7 +574,7 @@ int32_t OH_PictureInPicture_UpdatePipContentSize(uint32_t controllerId, uint32_t
 ### OH_PictureInPicture_UpdatePipControlStatus()
 
 ```
-int32_t OH_PictureInPicture_UpdatePipControlStatus(uint32_t controllerId, PictureInPicture_PipControlType controlType,PictureInPicture_PipControlStatus status)
+int32_t OH_PictureInPicture_UpdatePipControlStatus(uint32_t controllerId, PictureInPicture_PipControlType controlType, PictureInPicture_PipControlStatus status)
 ```
 
 **描述**
@@ -601,7 +601,7 @@ int32_t OH_PictureInPicture_UpdatePipControlStatus(uint32_t controllerId, Pictur
 ### OH_PictureInPicture_SetPipControlEnabled()
 
 ```
-int32_t OH_PictureInPicture_SetPipControlEnabled(uint32_t controllerId, PictureInPicture_PipControlType controlType,bool enabled)
+int32_t OH_PictureInPicture_SetPipControlEnabled(uint32_t controllerId, PictureInPicture_PipControlType controlType, bool enabled)
 ```
 
 **描述**
