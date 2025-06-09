@@ -5,7 +5,7 @@
   - [@ohos.multimodalAwareness.motion (动作感知能力)](js-apis-awareness-motion.md)
   - [@js-apis-awareness-metadataBinding (回旋镖)](js-apis-awareness-metadataBinding.md)
   - [@ohos.multimodalAwareness.deviceStatus (设备状态感知)](js-apis-awareness-deviceStatus.md)
-  - [@ohos.multimodalAwareness.userStatus (设备状态感知)](js-apis-awareness-userStatus.md) 
+  - [@ohos.multimodalAwareness.userStatus (用户状态感知)](js-apis-awareness-userStatus.md) 
   <!--Del-->
   - [@js-apis-awareness-metadataBinding (回旋镖)(系统接口)](js-apis-awareness-metadataBinding-sys.md)
   <!--DelEnd-->

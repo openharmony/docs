@@ -1,4 +1,4 @@
-# @ohos.multimodalawareness.userStatus (动作感知)
+# @ohos.multimodalawareness.userStatus (用户感知)
 
 本模块，提供对用户状态感知能力，包括未成年检测等。
 
@@ -22,7 +22,7 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 | 名称                | 值   | 说明                   |
 | ------------------- | ---- | ---------------------- |
 | ADULT  | 0    | 表示是成年人。 |
-| MINOR  | 1    | 表示是未成年。 |
+| MINOR  | 1    | 表示是未成年人。 |
 
 
 ## userStatus.on('MinorIdentification')
@@ -39,8 +39,8 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                           | 是   | 事件类型。type为“MinorIdentification”，表示未成年检测功能。 |
-| callback | Callback&lt;[IdentificationStatus](#IdentificationStatus)&gt; | 是   | 回调函数，返回未成年检测结果。|
+| type     | string                           | 是   | 事件类型。type为“MinorIdentification”，表示未成年人检测功能。 |
+| callback | Callback&lt;[IdentificationStatus](#IdentificationStatus)&gt; | 是   | 回调函数，返回未成年人检测结果。|
 
 **错误码**：
 
@@ -88,8 +88,8 @@ off(type: 'MinorIdentification', callback?: Callback&lt;IdentificationStatus&gt;
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                           | 是   | 事件类型。type为“MinorIdentification”，表示未成年检测功能。 |
-| callback | Callback&lt;[IdentificationStatus](#IdentificationStatus)&gt; | 否   | 回调函数，返回未成年检测结果。 |
+| type     | string                           | 是   | 事件类型。type为“MinorIdentification”，表示未成年人检测功能。 |
+| callback | Callback&lt;[IdentificationStatus](#IdentificationStatus)&gt; | 否   | 回调函数，返回未成年人检测结果。 |
 
 **错误码**：
 
