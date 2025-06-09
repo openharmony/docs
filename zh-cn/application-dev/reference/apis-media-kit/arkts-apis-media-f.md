@@ -550,7 +550,7 @@ createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaS
 
 | 类型           | 说明                                       |
 | -------------- | ------------------------------------------ |
-| [MediaSource](arkts-apis-media-MediaSource.md#mediasource12) | MediaSource返回值。 |
+| [MediaSource](arkts-apis-media-MediaSource.md) | MediaSource返回值。 |
 
 **错误码：**
 
@@ -614,7 +614,7 @@ createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 
 | 类型                          | 说明                |
 | ----------------------------- | ------------------- |
-| [MediaSource](arkts-apis-media-MediaSource.md#mediasource12) | 返回MediaSource，用于媒体资源设置。 |
+| [MediaSource](arkts-apis-media-MediaSource.md) | 返回MediaSource，用于媒体资源设置。 |
 
 **示例1：**
 
