@@ -968,6 +968,57 @@ try {
 }
 ```
 
+## window.getTopNavDestinationName<sup>20+</sup>
+
+getTopNavDestinationName(windowId: number): Promise&lt;string&gt;
+
+获取指定前台窗口栈顶Router页面中的的[NavDestination](arkui-ts/ts-basic-components-navdestination.md)名称，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                                        |
+| ------ | ---------- |----|---------------------------------------------------------------------------|
+| windowId   | number| 是  | 窗口ID，用于指定要查询的窗口。该参数应为大于等于0的整数，小于0时会返回错误码1300016，如果指定的窗口不存在或生命周期不在前台，返回值为1300002。|
+
+**返回值：**
+
+| 类型                             | 说明                      |
+| -------------------------------- |-------------------------|
+| Promise&lt;string&gt; | Promise对象。返回获取到的[NavDestination](arkui-ts/ts-basic-components-navdestination.md)名称。如果没有，返回空字符串。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID    | 错误信息 |
+|----------| ------------------------------ |
+| 202     | Permission verification failed, non-system application uses system API. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300016 | Parameter error. Possible cause: 1. Invalid parameter range. |
+
+```ts
+import { window } from '@ohos.window';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let windowId = 10;
+  let promise = window.getTopNavDestinationName(windowId);
+  promise.then((data) => {
+    console.info(`Succeeded, data: ${data}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed, cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed, exception code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ## Window
 
 当前窗口实例，窗口管理器管理的基本单元。
