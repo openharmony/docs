@@ -63,6 +63,8 @@
 | typedef struct [ArkUI_CustomSpanMetrics](_ark_u_i___native_module.md#arkui_customspanmetrics) [ArkUI_CustomSpanMetrics](_ark_u_i___native_module.md#arkui_customspanmetrics) | 自定义段落组件的度量指标。  | 
 | typedef struct [ArkUI_CustomSpanDrawInfo](_ark_u_i___native_module.md#arkui_customspandrawinfo) [ArkUI_CustomSpanDrawInfo](_ark_u_i___native_module.md#arkui_customspandrawinfo) | 自定义段落组件的绘制信息。  | 
 | typedef struct [ArkUI_SwiperIndicator](_ark_u_i___native_module.md#arkui_swiperindicator) [ArkUI_SwiperIndicator](_ark_u_i___native_module.md#arkui_swiperindicator) | 定义 Swiper 组件的导航指示器风格。  | 
+| typedef struct [ArkUI_SwiperDigitIndicator](_ark_u_i___native_module.md#arkui_swiperdigitindicator) [ArkUI_SwiperDigitIndicator](_ark_u_i___native_module.md#arkui_swiperdigitindicator) | 定义Swiper组件的数字导航指示器风格。<br/>**起始版本：** 19  | 
+| typedef struct [ArkUI_SwiperArrowStyle](_ark_u_i___native_module.md#arkui_swiperarrowstyle) [ArkUI_SwiperArrowStyle](_ark_u_i___native_module.md#arkui_swiperarrowstyle) | 定义Swiper组件的导航箭头风格。<br/>**起始版本：** 19   | 
 | typedef struct [ArkUI_StyledString_Descriptor](_ark_u_i___native_module.md#arkui_styledstring_descriptor) [ArkUI_StyledString_Descriptor](_ark_u_i___native_module.md#arkui_styledstring_descriptor) | 定义文本组件支持的属性字符串的数据对象。  | 
 | typedef struct [ArkUI_SnapshotOptions](_ark_u_i___native_module.md#arkui_snapshotoptions) [ArkUI_SnapshotOptions](_ark_u_i___native_module.md#arkui_snapshotoptions) | 组件截图参数。  | 
 | typedef struct [ArkUI_VisibleAreaEventOptions ](_ark_u_i___native_module.md#arkui_visibleareaeventoptions) [ArkUI_VisibleAreaEventOptions](_ark_u_i___native_module.md#arkui_visibleareaeventoptions) | 可见区域变化监听的参数。| 
