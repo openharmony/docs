@@ -2285,9 +2285,9 @@ struct TextAreaExample {
 
 ![textAreaEnableAutoSpacing](figures/textAreaEnableAutoSpacing.png)
 
-### 示例21（TextArea控件支持maxLines配置为滚动）
+### 示例21（设置最大行数）
 
-该示例通过设置TextArea中文本超过maxLines属性设置得最大行支持滚动
+该示例通过maxLines属性设置显示最大行数，超出最大行数后可滚动。
 
 ```ts
 // xxx.ets
@@ -2313,3 +2313,32 @@ struct TextAreaExample {
 
 ```
 ![TextAreaMaxLines](figures/TextAreaMaxLines.gif)
+
+### 示例22（设置最小行数）
+
+该示例通过minLines属性设置显示的最小行数。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        TextArea({ text: this.message })
+          .width('95%')
+          .fontSize(20)
+          .margin(10)
+          .minLines(3)
+      }
+    }
+    .width('90%')
+    .margin(10)
+  }
+}
+```
+
+![textAreaMinlines](figures/textAreaMinlines.png)
