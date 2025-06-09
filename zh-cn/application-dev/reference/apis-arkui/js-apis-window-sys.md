@@ -972,7 +972,7 @@ try {
 
 getTopNavDestinationName(windowId: number): Promise&lt;string&gt;
 
-获取指定前台窗口当前栈顶[Navigation](arkui-ts/ts-basic-components-navigation.md)中的[NavDestination](arkui-ts/ts-basic-components-navdestination.md)名称，使用Promise异步回调。
+获取指定的前台窗口当前栈顶[Navigation](arkui-ts/ts-basic-components-navigation.md)中的[NavDestination](arkui-ts/ts-basic-components-navdestination.md)名称，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -988,7 +988,7 @@ getTopNavDestinationName(windowId: number): Promise&lt;string&gt;
 
 | 类型                             | 说明                      |
 | -------------------------------- |-------------------------|
-| Promise&lt;string&gt; | Promise对象。返回获取到的[NavDestination](arkui-ts/ts-basic-components-navdestination.md)名称。<br>对于[Navigation](arkui-ts/ts-basic-components-navigation.md)嵌套以及当前页面存在多个[Navigation](arkui-ts/ts-basic-components-navigation.md)的场景，查询的是后上树的[Navigation](arkui-ts/ts-basic-components-navigation.md)的信息。<br>如果页面没有[Navigation](arkui-ts/ts-basic-components-navigation.md)或者[Navigation](arkui-ts/ts-basic-components-navigation.md)中没有[NavDestination](arkui-ts/ts-basic-components-navdestination.md)，返回空字符串。|
+| Promise&lt;string&gt; | Promise对象。返回获取到的[NavDestination](arkui-ts/ts-basic-components-navdestination.md)名称。<br>对于[Navigation](arkui-ts/ts-basic-components-navigation.md)嵌套以及当前页面存在多个[Navigation](arkui-ts/ts-basic-components-navigation.md)的场景，查询的是后创建的[Navigation](arkui-ts/ts-basic-components-navigation.md)的信息。<br>如果页面没有[Navigation](arkui-ts/ts-basic-components-navigation.md)或者[Navigation](arkui-ts/ts-basic-components-navigation.md)中没有[NavDestination](arkui-ts/ts-basic-components-navdestination.md)，返回空字符串。|
 
 **错误码：**
 
