@@ -12,6 +12,10 @@ overlay(value: string | CustomBuilder | ComponentContent, options?: OverlayOptio
 
 在当前组件上，增加遮罩文本或者叠加自定义组件以及ComponentContent作为该组件的浮层。浮层不通过组件树进行渲染，部分接口（例如[getRectangleById](../js-apis-arkui-componentUtils.md#componentutilsgetrectanglebyid)）不支持获取浮层中的组件。
 
+>**说明：**
+>
+> overlay会将浮层组件覆盖在所绑定的组件上方，阻塞用户对浮层下方组件的所有交互操作。若需用户可操作下方组件，应参照[示例2（通过builder设置浮层）](#示例2通过builder设置浮层)中的实现，在浮层builder的最外层组件上配置`.hitTestBehavior(HitTestMode.Transparent)`。此配置在通过浮层实现水印时尤其重要，因为水印显示不应妨碍用户对下层组件的操作。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -94,7 +98,11 @@ struct OverlayExample {
     Column() {
       Image($r('app.media.img1'))
       Text("This is overlayNode").fontSize(20).fontColor(Color.White)
-    }.width(180).height(180).alignItems(HorizontalAlign.Center)
+    }
+    .width(180)
+    .height(180)
+    .alignItems(HorizontalAlign.Center)
+    .hitTestBehavior(HitTestMode.Transparent) // 配置浮层不阻塞交互
   }
 
   build() {

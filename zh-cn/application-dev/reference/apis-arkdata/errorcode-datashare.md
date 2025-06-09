@@ -49,8 +49,8 @@ The DataShareHelper is not initialized successfully.
 
 1. 咨询DataShare服务端提供者，获取正确的uri路径。
 2. DataShare仅支持Stage模型，检查context是否为Stage模型的context。
-3. 检查客户端是否有数据的读或者写权限，具体步骤如下：
-    (1) 找到数据提供者包名，在uri的path里面找，例如：uri = "datashareproxy://com.acts.ohos.data.datasharetest/test"。
+3. 检查客户端是否有数据的读或者写权限，具体步骤如下：<br/>
+    (1) 找到数据提供者包名，在uri的path里面找，例如：uri = "datashareproxy://com.acts.ohos.data.datasharetest/test"。<br/>
     (2) 根据包名找到配置，例如：bm dump --bundle-name com.acts.ohos.data.datasharetest，在里面找到DataShareExtension的配置，确认数据访问者是否有readPermission或writePermission中配置的权限。
 
 ## 15700011 uri不存在

@@ -307,7 +307,7 @@
 
 ## ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
-允许设备管理系统的设置参数。
+允许设备管理系统设置参数策略。
 
 **权限级别**：system_basic
 
@@ -424,7 +424,7 @@
 
 ## ohos.permission.ENTERPRISE_ADMIN_MANAGE
 
-允许设备管理应用管理设备管理器。
+允许应用管理设备管理应用。
 
 **权限级别**：system_basic
 
@@ -460,3 +460,93 @@
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：14
+
+## ohos.permission.ENTERPRISE_GET_ALL_BUNDLE_INFO
+
+允许设备管理应用获取设备所有应用信息。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.ENTERPRISE_SET_USER_RESTRICTION
+
+允许设备管理应用限制用户修改系统设置。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.ENTERPRISE_MANAGE_APN
+
+允许设备管理应用管理设备APN策略。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.ENTERPRISE_MANAGE_TELEPHONY
+
+允许设备管理应用管理设备通话策略。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.ENTERPRISE_SET_KIOSK
+
+允许设备管理应用设置Kiosk模式。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.ENTERPRISE_SET_WALLPAPER
+
+允许设备管理应用设置壁纸。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20

@@ -20,7 +20,7 @@
 | **接口名**  | **描述** |
 | -------- | -------- |
 | [publish](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerpublish-1)(request: NotificationRequest): Promise\<void\>       | 发布通知。  |
-| [on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeon)(method: string, callback: CalleeCallback): void       | 通用组件服务端注册消息通知callback。  |
+| [on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#on)(method: string, callback: CalleeCallback): void       | 通用组件服务端注册消息通知callback。  |
 
 ## 开发步骤
 
@@ -28,23 +28,19 @@
 
     ```typescript
     import { notificationManager } from '@kit.NotificationKit';
-    import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+    import { AbilityConstant, UIAbility, Want, wantAgent, WantAgent } from '@kit.AbilityKit';
     import { window } from '@kit.ArkUI';
     import { rpc } from '@kit.IPCKit';
     import { BusinessError } from '@kit.BasicServicesKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
     import { common } from '@kit.AbilityKit';
-
-    const TAG: string = '[PublishOperation]';
-    const DOMAIN_NUMBER: number = 0xFF00;
     ```
 
 2. 手机中应用订阅通知回复事件。
 
     ```typescript
     class MySequenceable implements rpc.Parcelable {
-      inputKey: string = ""
-      userInput: string = ""
+      inputKey: string = ''
+      userInput: string = ''
 
       constructor(inputKey: string, userInput: string) {
         this.inputKey = inputKey
@@ -71,23 +67,23 @@
       receivedData.inputKey = data.readString();
       // receivedData.userInput为用户指定的快捷回复内容。
       receivedData.userInput = data.readString();
-      hilog.info(0x0000, '01203', "inputKey : " + JSON.stringify(receivedData.inputKey));
-      hilog.info(0x0000, '01203', "userInput : " + JSON.stringify(receivedData.userInput));
+      console.info(`inputKey : ${JSON.stringify(receivedData.inputKey)}`);
+      console.info(`userInput : ${JSON.stringify(receivedData.userInput)}`);
 
       return new MySequenceable('', '')
     }
 
     export default class EntryAbility extends UIAbility {
       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-        hilog.info(0x0000, '01203', '%{public}s', 'Ability onCreate');
-        hilog.info(0x0000, '01203', 'onCreate %{public}s', JSON.stringify(want));
+        console.info('Ability onCreate');
+        console.info(`onCreate ${JSON.stringify(want)}`);
         try {
           // 服务端注册消息通知回调sendMsgCallback，且必须订阅com.ohos.notification_service.sendReply
           this.callee.on('com.ohos.notification_service.sendReply', sendMsgCallback)
         } catch (error) {
-          hilog.error(DOMAIN_NUMBER, TAG, `Failed to register. Code is ${error.code}, message is ${error.message}`);
+          console.error(`Failed to register. Code is ${error.code}, message is ${error.message}`);
         }
-        hilog.info(0x0000, '01203', 'register successfully');
+        console.info('register successfully');
       }
     }
     ```
@@ -117,10 +113,10 @@
     // 创建WantAgent
     wantAgent.getWantAgent(wantAgentInfo, (err: BusinessError, data:WantAgent) => {
       if (err) {
-         hilog.error(DOMAIN_NUMBER, TAG, `Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
+         console.error(`Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
          return;
       }
-      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in getting want agent.');
+      console.info('Succeeded in getting want agent.');
       wantAgentObj = data;
       let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
@@ -135,19 +131,19 @@
           },
         },
         actionButtons: [{
-          title: "button1",
+          title: 'button1',
           wantAgent: wantAgentObj,
           // 必须携带userInput
-          userInput: {"inputKey": "value1"},
+          userInput: {'inputKey': 'value1'},
         }],
       }
       // 发布通知
       notificationManager.publish(notificationRequest, (err: BusinessError) => {
         if (err) {
-          hilog.error(DOMAIN_NUMBER, TAG, `Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
         }
-        hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in publishing notification.');
+        console.info('Succeeded in publishing notification.');
       });
     });
    ```

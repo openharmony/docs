@@ -47,11 +47,11 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import { UIAbility, application, common } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, application, common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-  onCreate() {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     let moduleContext: common.Context;
     try {
       application.createModuleContext(this.context, 'entry').then((data: Context) => {
@@ -61,7 +61,7 @@ export default class EntryAbility extends UIAbility {
         let code: number = (error as BusinessError).code;
         let message: string = (error as BusinessError).message;
         console.error(`createModuleContext failed, error.code: ${code}, error.message: ${message}`);
-      })
+      });
     } catch (error) {
       let code: number = (error as BusinessError).code;
       let message: string = (error as BusinessError).message;
@@ -101,17 +101,76 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import { UIAbility, application } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, application, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(): void {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     try {
       let applicationContext = application.getApplicationContext();
     } catch (error) {
       let code: number = (error as BusinessError).code;
       let message: string = (error as BusinessError).message;
       console.error(`getApplicationContext failed, error.code: ${code}, error.message: ${message}`);
+    }
+  }
+}
+```
+
+## application.createPluginModuleContext<sup>19+</sup>
+
+createPluginModuleContext(context: Context, pluginBundleName: string, pluginModuleName: string): Promise\<Context>
+
+Creates the context of a plugin under the current application based on the context, plugin bundle name, and plugin module name, so as to obtain the basic information about the plugin. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name       | Type                                      | Mandatory  | Description            |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| context | [Context](js-apis-inner-application-context.md) | Yes| Application context.|
+| pluginBundleName | string | Yes| Bundle name of the plugin.|
+| pluginModuleName | string | Yes| Module name of the plugin.|
+
+**Return value**
+
+| Type              | Description               |
+| ------------------ | ------------------- |
+| Promise\<[Context](../../reference/apis-ability-kit/js-apis-inner-application-context.md)> | Promise used to return the context created.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message       |
+| -------- | --------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { AbilityConstant, UIAbility, application, common, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    let moduleContext: common.Context;
+    try {
+      application.createPluginModuleContext(this.context, 'pluginBundleName', 'pluginModuleName')
+        .then((data: Context) => {
+          moduleContext = data;
+          console.info('createPluginModuleContext success!');
+        })
+        .catch((error: BusinessError) => {
+          let code: number = (error as BusinessError).code;
+          let message: string = (error as BusinessError).message;
+          console.error(`createPluginModuleContext failed, error.code: ${code}, error.message: ${message}`);
+        });
+    } catch (error) {
+      let code: number = (error as BusinessError).code;
+      let message: string = (error as BusinessError).message;
+      console.error(`createPluginModuleContext failed, error.code: ${code}, error.message: ${message}`);
     }
   }
 }

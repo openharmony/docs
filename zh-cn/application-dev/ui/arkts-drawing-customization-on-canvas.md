@@ -81,7 +81,7 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
 
   >**说明：**
   >
-  >在画布组件中，通过CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象在Canvas组件上进行绘制时调用的接口相同，另接口参数如无特别说明，单位均为vp。
+  >在画布组件中，通过CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象在Canvas组件上进行绘制时调用的接口相同，另外，接口参数如无特别说明，单位均为vp。
 
 - 在Canvas上加载Lottie动画时，需要先按照如下方式下载Lottie。
 
@@ -200,25 +200,6 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
   ```
 
   ![2023022795105(1)](figures/2023022795105(1).jpg)
-
-- 使用自定义字体绘制文本。
-
-  可以通过[font](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#font)接口（设置文本绘制中的字体样式）加载自定义字体，然后通过[fillText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#filltext)（绘制填充类文本）、[strokeText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#stroketext)（绘制描边类文本）等接口进行文本绘制。
-
-  ```ts
-  Canvas(this.context)
-    .width('100%')
-    .height('100%')
-    .backgroundColor('#F5DC62')
-    .onReady(() => {
-      //加载自定义字体
-      this.context.font = '30vp customFont'
-      this.context.fillText("Hello World!", 20, 50)
-      this.context.strokeText("Hello World!", 20, 100)
-    })
-  ```
-
-  ![customFont](figures/customFont.jpeg)
 
 - 绘制图片和图像像素信息处理。
 

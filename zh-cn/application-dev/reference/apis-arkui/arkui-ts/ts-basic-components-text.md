@@ -198,7 +198,7 @@ letterSpacing(value: number | ResourceStr)
 
 | 参数名 | 类型                       | 必填 | 说明           |
 | ------ | -------------------------- | ---- | -------------- |
-| value  | number&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr) | 是   | 文本字符间距。<br/>单位：[fp](ts-pixel-units.md#像素单位) <br>从API version 20开始，支持Resource类型。|
+| value  | number&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr) | 是   | 文本字符间距。<br/>默认值：0<br/>单位：[fp](ts-pixel-units.md#像素单位) <br>从API version 20开始，支持Resource类型。|
 
 ### minFontSize
 
@@ -240,7 +240,7 @@ string类型支持number类型取值的字符串形式，可以附带单位，�
 
 自适应字号生效时，fontSize设置不生效。
 
-maxFontSize小于或等于0时，自适应字号不生效，此时按照[fontSize](#fontsize)属性的值生效，未设置时按照其默认值生效。
+maxFontSize小于等于0或者maxFontSize小于minFontSize时，自适应字号不生效，此时按照[fontSize](#fontsize)属性的值生效，未设置时按照其默认值生效。
 
 从API version 18开始支持在子组件和属性字符串上生效，未设置字号的部分会自适应。
 
@@ -290,7 +290,7 @@ fontColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明       |
 | ------ | ------------------------------------------ | ---- | ---------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 字体颜色。<br />默认值：'e6182431'<br />Wearable设备上默认值为：'#c5ffffff' |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 字体颜色。<br />默认值：'#e6182431'<br />Wearable设备上默认值为：'#c5ffffff' |
 
 ### fontSize
 
@@ -404,7 +404,7 @@ draggable(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                 |
 | ------ | ------- | ---- | ------------------------------------ |
-| value  | boolean | 是   | 选中文本拖拽效果。<br/>默认值：false |
+| value  | boolean | 是   | 选中文本拖拽效果。<br/>true表示选中文本可拖拽，false表示不可拖拽。<br/>默认值：false |
 
 ### font<sup>10+</sup>
 
@@ -576,6 +576,10 @@ decoration:{
 
 当copyOption设置为CopyOptions.None时，点击实体弹出的菜单不包含选择文本、复制、翻译、分享和搜索功能。当copyOption不为CopyOptions.None，且textSelectable设置为TextSelectableMode.UNSELECTABLE时，仍然具有实体复制功能，但不包含选择文本功能。
 
+从API 20开始支持AI菜单。当enableDataDetector设置为true，并且[copyOption](#copyoption9)设置为CopyOptions.LocalDevice时，AI菜单生效，菜单选项包括[TextMenuItemId](ts-text-common.md#textmenuitemid12)中的url、email、phoneNumber、address、dateTime。
+
+AI菜单生效时，需要选中单个AI实体，才能展示AI菜单。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -584,7 +588,7 @@ decoration:{
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable  | boolean | 是   | 使能文本识别。<br/>默认值： false |
+| enable  | boolean | 是   | 使能文本识别。<br/>true表示文本可实体识别，false表示不可识别。<br/>默认值：false |
 
 ### dataDetectorConfig<sup>11+</sup>
 
@@ -660,7 +664,7 @@ fontFeature(value: string)
 | ------ | ------ | ---- | -------------- |
 | value  | string | 是   | 文字特性效果。 |
 
-fontFeature属性列表<br/>
+fontFeature属性列表：
 ![alt text](figures/arkts-fontfeature.png)
 
 设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
@@ -896,16 +900,17 @@ enableHapticFeedback(isEnabled: boolean)
 
 optimizeTrailingSpace(optimize: boolean)
 
-
 设置是否在文本布局过程中优化每行末尾的空格，可解决行尾空格影响对齐显示效果问题。
 
 设置Text.optimizeTrailingSpace为true时：
 
-* 多行、单行、图文混排等多种情况下均会优化行尾空格（TextAlign.Center时，优化效果明显）；
+* 多行、单行、图文混排等多种情况下均会优化行尾空格（TextAlign.Center或TextAlign.End时，优化效果明显）；
 
 * 纯空格文本时，修饰线、阴影、背景色跟随空格文本显示；
 
 * 行首空格不在优化范围内，行尾文本强制换行，每行行尾空格根据组件宽度优化行尾空格。
+
+当纯空格文本设置优化行尾空格[optimizeTrailingSpace](#optimizetrailingspace20)为true时，不允许同时设置文本背景色 [backgroundcolor](ts-universal-attributes-background.md#backgroundcolor)、空格装饰线 [textDecoration](../arkui-js/js-components-basic-text.md#text)和对齐 [textAlign](#textalign)三个属性。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -966,6 +971,38 @@ marqueeOptions(options: Optional\<TextMarqueeOptions>)
 | 参数名 | 类型                                       | 必填 | 说明                                       |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
 | options | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextMarqueeOptions](#textmarqueeoptions18对象说明)> | 是 | 当text组件的textOverflow属性设置为MARQUEE时，可通过marqueeOptions设置跑马灯动效具体的属性，如开关、步长、循环次数、方向等。 |
+
+### enableAutoSpacing<sup>20+</sup>
+
+enableAutoSpacing(enable: Optional\<boolean>)
+
+设置是否开启中文与西文的自动间距。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                               |
+| ------ | ------- | ---- | ---------------------------------- |
+| enable | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
+
+### shaderStyle<sup>20+</sup>
+
+shaderStyle(shader: ShaderStyle)
+
+可以显示为径向渐变[radialGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#radialgradient)或线性渐变[LinearGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#lineargradient)的效果，shaderStyle的优先级高于[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)，纯色建议使用[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                         | 必填                             | 说明                               |
+| -------------- | -------------------------------------------- | ----------------------------------- | ----------------------------------- |
+| shader | [ShaderStyle](../arkui-ts/ts-text-common.md#shaderstyle20) | 是 | 径向或线性渐变。<br/>根据传入的参数区分处理径向渐变[radialGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#radialgradient)或线性渐变[LinearGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#lineargradient)，最终设置到Text文本上显示为渐变色效果。 |
 
 ## TextSpanType<sup>11+</sup>枚举说明
 
@@ -1045,7 +1082,7 @@ marqueeOptions(options: Optional\<TextMarqueeOptions>)
 
 onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
-长按文本内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。目前文本复制仅支持文本。
+长按文本内部区域弹出剪贴板后，点击剪贴板复制按钮，触发该回调。目前文本复制仅支持文本。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1409,7 +1446,7 @@ struct TextExample2 {
   }
 }
 ```
-![textExp1](figures/textExp2.gif)
+![textExp2](figures/textExp2.gif)
 
 ### 示例3（设置文本超长省略）
 
@@ -2095,3 +2132,112 @@ struct TextExample13 {
 ```
 
 ![textPrivacySensitive](figures/textPrivacySensitive.gif)
+
+### 示例14（设置中西文自动间距）
+
+该示例通过enableAutoSpacing属性设置中西文自动间距。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextExample {
+  build() {
+    Row() {
+      Column() {
+        Text('开启中西文自动间距').margin(5)
+        Text('中西文Auto Spacing自动间距')
+          .enableAutoSpacing(true)
+        Text('关闭中西文自动间距').margin(5)
+        Text('中西文Auto Spacing自动间距')
+          .enableAutoSpacing(false)
+      }.height('100%')
+    }
+    .width('60%')
+  }
+}
+```
+
+![textEnableAutoSpacing](figures/textEnableAutoSpacing.png)
+
+### 示例15（文本颜色按线性或径向渐变）
+
+该示例通过shaderStyle接口实现了对Text控件显示为渐变色的功能。
+
+```ts
+@Entry
+@Component
+struct shaderStyle {
+  @State message: string = 'Hello World';
+
+  build() {
+    Column({ space: 5 }) {
+      Text('angle为45°的线性渐变').fontSize(18).width('90%').fontColor(0xCCCCCC)
+        .margin({ top: 40, left: 40 })
+      Text(this.message)
+        .fontSize(50)
+        .shaderStyle({
+          angle: 45,
+          colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]]
+        })
+        .width('80%')
+        .height(50)
+      Text('direction为LeftTop的线性渐变').fontSize(18).width('90%').fontColor(0xCCCCCC)
+        .margin({ top: 40, left: 40 })
+      Text(this.message)
+        .fontSize(50)
+        .shaderStyle({
+          direction: GradientDirection.LeftTop,
+          colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
+          repeating: true,
+        })
+        .width('80%')
+        .height(50)
+      Text('径向渐变').fontSize(18).width('90%').fontColor(0xCCCCCC)
+        .margin({ top: 40, left: 40 })
+      Text(this.message)
+        .fontSize(50)
+        .shaderStyle({
+          center: [50, 50],
+          radius: 20,
+          colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
+          repeating: true,
+        })
+        .width('80%')
+        .height(50)
+    }
+  }
+}
+```
+![zh-cn_image_0000001219864149](figures/gradientcolor.png)
+
+### 示例16（配置除去行尾空格）
+
+该示例通过optimizeTrailingSpace属性展示了文本如何配置除去行尾空格的效果，一般需要与对齐功能搭配使用，实际显示需要字体引擎支持。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextExample16 {
+  build() {
+    Column() {
+      Text("Trimmed space enabled     ")
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+        .margin({ top: 20 })
+        .optimizeTrailingSpace(true)
+        .textAlign(TextAlign.Center)
+      Text("Trimmed space disabled     ")
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+        .margin({ top: 20 })
+        .optimizeTrailingSpace(false)
+        .textAlign(TextAlign.Center)
+    }
+    .width("100%")
+  }
+}
+```
+
+![textOptimizeTrailingSpace](figures/textOptimizeTrailingSpace.PNG)

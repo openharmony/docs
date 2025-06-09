@@ -76,7 +76,7 @@ For details about the development guide and sample, see [Obtaining Supported Cod
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetSupportedLevelsForProfile](#oh_avcapability_getsupportedlevelsforprofile) (OH_AVCapability \*capability, int32_t profile, const int32_t \*\*levels, uint32_t \*levelNum) | Obtains the codec levels supported by a profile. | 
 | bool [OH_AVCapability_AreProfileAndLevelSupported](#oh_avcapability_areprofileandlevelsupported) (OH_AVCapability \*capability, int32_t profile, int32_t level) | Checks whether a codec supports the combination of a profile and level. | 
 | bool [OH_AVCapability_IsFeatureSupported](#oh_avcapability_isfeaturesupported) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](#oh_avcapabilityfeature) feature) | Checks whether a codec supports a feature. | 
-| [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVCapability_GetFeatureProperties](#oh_avcapability_getfeatureproperties) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](#oh_avcapabilityfeature) feature) | Obtains the properties of a feature. The caller must manually release the **OH_AVFormat** instance in the return value. | 
+| [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVCapability_GetFeatureProperties](#oh_avcapability_getfeatureproperties) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](#oh_avcapabilityfeature) feature) | Obtains the properties of a feature. You must manually release the **OH_AVFormat** instance in the return value. | 
 
 
 ## Type Description
@@ -364,7 +364,7 @@ OH_AVFormat* OH_AVCapability_GetFeatureProperties (OH_AVCapability *capability, 
 ```
 **Description**
 
-Obtains the properties of a feature. The caller must manually release the **OH_AVFormat** instance in the return value.
+Obtains the properties of a feature. You must manually release the **OH_AVFormat** instance in the return value.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 

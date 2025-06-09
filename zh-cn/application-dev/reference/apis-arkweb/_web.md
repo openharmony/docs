@@ -181,7 +181,8 @@
 | void [OH_NativeArkWeb_SetDestroyCallback](#oh_nativearkweb_setdestroycallback) (const char \*webTag, [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback) callback) | 设置组件销毁时的回调函数。  | 
 | [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback) [OH_NativeArkWeb_GetDestroyCallback](#oh_nativearkweb_getdestroycallback) (const char \*webTag) | 获取已注册的组件销毁时的回调函数。  | 
 | [ArkWeb_ErrorCode](#arkweb_errorcode) [OH_NativeArkWeb_LoadData](#oh_nativearkweb_loaddata) (const char* webTag,const char* data,const char* mimeType,const char* encoding,const char* baseUrl,const char* historyUrl) | 加载数据或URL，此函数应在主线程中调用。  |
-| bool [OH_ArkWeb_RegisterScrollCallback](#oh_arkweb_registerscrollcallback) (const char\* webTag, [ArkWeb_OnScrollCallback](#arkweb_onscrollcallback) callback, void\* userData) | 设置组件滚动时的回调函数。 |
+| bool [OH_ArkWeb_RegisterScrollCallback](#oh_arkweb_registerscrollcallback) (const char\* webTag, [ArkWeb_OnScrollCallback](#arkweb_onscrollcallback) callback, void\* userData) | 设置组件滚动时的回调函数。 | 
+| void [OH_NativeArkWeb_RegisterAsyncThreadJavaScriptProxy](#oh_nativearkweb_registerasyncthreadjavascriptproxy) (const char \*webTag, const [ArkWeb_ProxyObjectWithResult](_ark_web___proxy_object_with_result.md) \*proxyObject, const char \*permission) | 注册一个包含回调方法的 JavaScript 对象，这些方法可带有返回值。该对象将被注入到当前页面的所有frame中，包括所有的 iframe，并且可以通过在 ArkWeb_ProxyObjectWithResult 中指定的名称进行访问。该对象只会在下一次加载或重新加载页面后在 JavaScript 中生效。这些方法将在 ArkWeb 的工作线程中执行。  | 
 
 
 ## 宏定义说明
@@ -349,6 +350,12 @@ typedef void(* ArkWeb_OnComponentCallback) (const char *webTag, void *userData)
 
 **起始版本：** 12
 
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| webTag | Web组件名称。  | 
+| userData | 用户自定义的数据。 | 
 
 ### ArkWeb_OnJavaScriptCallback
 
@@ -361,6 +368,13 @@ typedef void(* ArkWeb_OnJavaScriptCallback) (const char *webTag, const ArkWeb_Ja
 
 **起始版本：** 12
 
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| webTag | Web组件名称。  | 
+| data | JavaScriptBridge数据。  | 
+| userData | 用户自定义的数据。 | 
 
 ### ArkWeb_OnJavaScriptProxyCallback
 
@@ -373,6 +387,14 @@ Proxy方法被执行的回调。
 
 **起始版本：** 12
 
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| webTag | Web组件名称。  | 
+| dataArray | 数组数据。  | 
+| arraySize | 数组大小。  | 
+| userData | 用户自定义的数据。 | 
 
 ### ArkWeb_OnJavaScriptProxyCallbackWithResult
 
@@ -1309,7 +1331,7 @@ uint64_t OH_ArkWebHttpBodyStream_GetPosition (const ArkWeb_HttpBodyStream * http
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| httpBodyStream | ArkWeb_HttpBodyStream。  | 
+| httpBodyStream | [ArkWeb_HttpBodyStream](#arkweb_httpbodystream)。  | 
 
 **返回：**
 
@@ -1335,7 +1357,7 @@ uint64_t OH_ArkWebHttpBodyStream_GetSize (const ArkWeb_HttpBodyStream * httpBody
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| httpBodyStream | ArkWeb_HttpBodyStream。  | 
+| httpBodyStream | [ArkWeb_HttpBodyStream](#arkweb_httpbodystream)。  | 
 
 **返回：**
 
@@ -1359,7 +1381,7 @@ void* OH_ArkWebHttpBodyStream_GetUserData (const ArkWeb_HttpBodyStream * httpBod
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| httpBodyStream | ArkWeb_HttpBodyStream。  | 
+| httpBodyStream | [ArkWeb_HttpBodyStream](#arkweb_httpbodystream)。  | 
 
 **返回：**
 
@@ -1385,7 +1407,7 @@ int32_t OH_ArkWebHttpBodyStream_Init (ArkWeb_HttpBodyStream * httpBodyStream, Ar
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| httpBodyStream | ArkWeb_HttpBodyStream。  | 
+| httpBodyStream | [ArkWeb_HttpBodyStream](#arkweb_httpbodystream)。  | 
 | initCallback | 初始化的回调函数。  | 
 
 **返回：**
@@ -1410,7 +1432,7 @@ bool OH_ArkWebHttpBodyStream_IsChunked (const ArkWeb_HttpBodyStream * httpBodySt
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| httpBodyStream | ArkWeb_HttpBodyStream。  | 
+| httpBodyStream | [ArkWeb_HttpBodyStream](#arkweb_httpbodystream)。  | 
 
 **返回：**
 
@@ -1436,7 +1458,7 @@ bool OH_ArkWebHttpBodyStream_IsEof (const ArkWeb_HttpBodyStream * httpBodyStream
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| httpBodyStream | ArkWeb_HttpBodyStream。  | 
+| httpBodyStream | [ArkWeb_HttpBodyStream](#arkweb_httpbodystream)。  | 
 
 **返回：**
 
@@ -1462,7 +1484,7 @@ bool OH_ArkWebHttpBodyStream_IsInMemory (const ArkWeb_HttpBodyStream * httpBodyS
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| httpBodyStream | ArkWeb_HttpBodyStream。  | 
+| httpBodyStream | [ArkWeb_HttpBodyStream](#arkweb_httpbodystream)。  | 
 
 **返回：**
 
@@ -1488,7 +1510,7 @@ buffer的大小必须大于bufLen。我们将从工作线程读取数据到buffe
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| httpBodyStream | ArkWeb_HttpBodyStream。  | 
+| httpBodyStream | [ArkWeb_HttpBodyStream](#arkweb_httpbodystream)。  | 
 | buffer | 接收数据的buffer。  | 
 | bufLen | 要读取的字节的大小。 | 
 
@@ -1514,7 +1536,7 @@ OH_ArkWebHttpBodyStream_Read的结果将通过readCallback通知给调用者。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| httpBodyStream | ArkWeb_HttpBodyStream。  | 
+| httpBodyStream | [ArkWeb_HttpBodyStream](#arkweb_httpbodystream)。  | 
 | readCallback | OH_ArkWebHttpBodyStream_Read的回调函数。  | 
 
 **返回：**
@@ -1539,7 +1561,7 @@ int32_t OH_ArkWebHttpBodyStream_SetUserData (ArkWeb_HttpBodyStream * httpBodyStr
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| httpBodyStream | ArkWeb_HttpBodyStream。  | 
+| httpBodyStream | [ArkWeb_HttpBodyStream](#arkweb_httpbodystream)。  | 
 | userData | 要设置的用户数据。  | 
 
 **返回：**
@@ -2739,3 +2761,24 @@ bool OH_ArkWeb_RegisterScrollCallback(const char* webTag, ArkWeb_OnScrollCallbac
 **返回：**
 
 如果回调设置成功，则返回true，否则返回false。
+
+### OH_NativeArkWeb_RegisterAsyncThreadJavaScriptProxy()
+
+```
+void OH_NativeArkWeb_RegisterAsyncThreadJavaScriptProxy (const char* webTag, const ArkWeb_ProxyObjectWithResult* proxyObject, const char* permission)
+```
+**描述：**
+
+注册一个包含回调方法的 JavaScript 对象，这些方法可带有返回值。该对象将被注入到当前页面的所有frame中，包括所有的 iframe，并且可以通过在 ArkWeb_ProxyObjectWithResult 中指定的名称进行访问。该对象只会在下一次加载或重新加载页面后在 JavaScript 中生效。这些方法将在 ArkWeb 的工作线程中执行。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| webTag | Web组件的名称。  | 
+| proxyObject | 注册的对象。  | 
+| permission | json格式字符串，默认值为空。该字符串用来配置JSBridge的权限限制，可以配置对象和方法级别。 | 

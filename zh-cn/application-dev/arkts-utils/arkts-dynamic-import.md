@@ -12,7 +12,7 @@
 * 当被导入的模块有副作用（这里的副作用，可以理解为模块中会直接运行的代码），这些副作用只有在触发了某些条件才被需要时。
 
 ## 业务扩展场景介绍
-动态import在业务上除了能实现条件延迟加载，还可以实现部分反射功能。实例如下，HAP动态import HAR包harlibrary，并调用静态成员函数staticAdd()、成员函数instanceAdd()，以及全局方法addHarlibrary()。
+动态import在业务上除了能实现条件延迟加载，还可以实现部分反射功能。实例如下，HAP动态import HAR包harlibrary，并调用静态成员函数staticAdd()、成员函数instanceAdd()，以及全局方法addHarLibrary()。
 ```typescript
 // harlibrary's src/main/ets/utils/Calc.ets
 export class Calc {
@@ -29,16 +29,16 @@ export class Calc {
   }
 }
 
-export function addHarlibrary(a:number, b:number):number {
+export function addHarLibrary(a:number, b:number):number {
   let c = a + b;
-  console.info('DynamicImport I am harlibrary in addHarlibrary, %d + %d = %d', a, b, c);
+  console.info('DynamicImport I am harlibrary in addHarLibrary, %d + %d = %d', a, b, c);
   return c;
 }
 ```
 
 ```typescript
 // harlibrary's Index.ets
-export { Calc, addHarlibrary } from './src/main/ets/utils/Calc'
+export { Calc, addHarLibrary } from './src/main/ets/utils/Calc'
 ```
 
 ```json5
@@ -54,17 +54,17 @@ import('harlibrary').then((ns:ESObject) => {
   ns.Calc.staticAdd(8, 9);  // 调用静态成员函数staticAdd()
   let calc:ESObject = new ns.Calc();  // 实例化类Calc
   calc.instanceAdd(10, 11);  // 调用成员函数instanceAdd()
-  ns.addHarlibrary(6, 7);  // 调用全局方法addHarlibrary()
+  ns.addHarLibrary(6, 7);  // 调用全局方法addHarLibrary()
 
   // 使用类、成员函数和方法的字符串名字进行反射调用
   let className = 'Calc';
   let methodName = 'instanceAdd';
   let staticMethod = 'staticAdd';
-  let functionName = 'addHarlibrary';
+  let functionName = 'addHarLibrary';
   ns[className][staticMethod](12, 13);  // 调用静态成员函数staticAdd()
   let calc1:ESObject = new ns[className]();  // 实例化类Calc
   calc1[methodName](14, 15);  // 调用成员函数instanceAdd()
-  ns[functionName](16, 17);  // 调用全局方法addHarlibrary()
+  ns[functionName](16, 17);  // 调用全局方法addHarLibrary()
 });
 ```
 
@@ -76,9 +76,9 @@ import('harlibrary').then((ns:ESObject) => {
 | :------------- | :----------------------------- | :------------------------------------------------------- |
 | 本地工程模块   | 动态import模块内文件路径       | 要求路径以./或../开头。                                    |
 | 本地工程模块   | 动态import HSP模块名           | -                                                        |
-| 本地工程模块   | 动态import HSP模块文件路径     | 暂仅支持动态import常量表达式，不支持动态import变量表达式。 |
+| 本地工程模块   | 动态import HSP模块文件路径     | -                                                        |
 | 本地工程模块   | 动态import HAR模块名           | -                                                        |
-| 本地工程模块   | 动态import HAR模块文件路径     | 暂仅支持动态import常量表达式，不支持动态import变量表达式。 |
+| 本地工程模块   | 动态import HAR模块文件路径     | -                                                        |
 | 远程包         | 动态import远程HAR模块名        | -                                                        |
 | 远程包         | 动态import ohpm包名            | -                                                        |
 | API            | 动态import @system.*           | -                                                        |
@@ -113,13 +113,13 @@ import('harlibrary').then((ns:ESObject) => {
 
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
-  import('myHar').then((ns:ESObject) => {
+  import('myhar').then((ns:ESObject) => {
     console.info(ns.add(3, 5));
   });
 
   // 可使用 await 处理动态导入 (必须在 async 函数内使用)
   async function asyncDynamicImport() {
-    let ns:ESObject = await import('myHar');
+    let ns:ESObject = await import('myhar');
     console.info(ns.add(3, 5));
   }
   ```
@@ -127,7 +127,7 @@ import('harlibrary').then((ns:ESObject) => {
   ```json5
   // HAP's oh-package.json5
   "dependencies": {
-    "myHar": "file:../myHar"
+    "myhar": "file:../myhar"
   }
   ```
 
@@ -144,7 +144,7 @@ import('harlibrary').then((ns:ESObject) => {
 
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
-  import('myHar/Index').then((ns:ESObject) => {
+  import('myhar/Index').then((ns:ESObject) => {
     console.info(ns.add(3, 5));
   });
   ```
@@ -152,7 +152,7 @@ import('harlibrary').then((ns:ESObject) => {
   ```json5
   // HAP's oh-package.json5
   "dependencies": {
-    "myHar": "file:../myHar"
+    "myhar": "file:../myhar"
   }
   ```
 
@@ -298,13 +298,17 @@ DevEco Studio中模块间的依赖关系通过oh-package.json5中的dependencies
 在HAP/HSP/HAR的build-profile.json5中的buildOption中增加runtimeOnly配置项，仅在通过变量动态import时配置，静态import和常量动态import无需配置；并且，通过变量动态import加载API时也无需配置runtimeOnly。如下实例说明如何配置通过变量动态import其他模块，以及变量动态import本模块自己的单文件：
 
 ```typescript
-// 变量动态import其他模块myHar
-let harName = 'myHar';
-import(harName).then(……);
+// 变量动态import其他模块myhar
+let harName = 'myhar';
+import(harName).then((obj: ESObject) => {
+    console.info('DynamicImport I am a har');
+}
 
 // 变量动态import本模块自己的单文件src/main/ets/index.ets
 let filePath = './Calc';
-import(filePath).then(……);
+import(filePath).then((obj: ESObject) => {
+    console.info('DynamicImport I am a file');
+}
 ```
 
 对应的runtimeOnly配置：
@@ -313,7 +317,7 @@ import(filePath).then(……);
 "buildOption": {
   "arkOptions": {
     "runtimeOnly": {
-      "packages": [ "myHar" ]  // 配置本模块变量动态import其他模块名，要求与dependencies中配置的名字一致。
+      "packages": [ "myhar" ]  // 配置本模块变量动态import其他模块名，要求与dependencies中配置的名字一致。
       "sources": [ "./src/main/ets/utils/Calc.ets" ]  // 配置本模块变量动态import自己的文件路径，路径相对于当前build-profile.json5文件。
     }
   }
@@ -337,7 +341,7 @@ import(filePath).then(……);
   ```
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
-  let packageName = 'myHar';
+  let packageName = 'myhar';
   import(packageName).then((ns:ESObject) => {
     console.info(ns.add(3, 5));
   });
@@ -345,7 +349,7 @@ import(filePath).then(……);
   ```json5
   // HAP's oh-package.json5
   "dependencies": {
-    "myHar": "file:../myHar"
+    "myhar": "file:../myhar"
   }
   ```
   ```json5
@@ -354,7 +358,7 @@ import(filePath).then(……);
     "arkOptions": {
       "runtimeOnly": {
         "packages": [
-          "myHar"  // 仅用于使用变量动态import其他模块名场景，静态import或常量动态import无需配置。
+          "myhar"  // 仅用于使用变量动态import其他模块名场景，静态import或常量动态import无需配置。
         ]
       }
     }

@@ -1669,7 +1669,7 @@ clearUpAppData(bundleName: string, appCloneIndex?: number): Promise\<void>
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-| 16000073 | The app clone index does not exist. |
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -1711,7 +1711,7 @@ setKeepAliveForBundle(bundleName: string, userId: number, enable: boolean): Prom
 | -------- | -------- | -------- | -------- |
 | bundleName    | string   | 是    | 表示要设置保活的应用包名。 |
 | userId    | number   | 是    | 表示要设置保活应用所属的用户ID。 |
-| enable    | boolean   | 是    | 表示对应用保活或者取消保活。 |
+| enable    | boolean   | 是    | 表示对应用保活或者取消保活。true表示对应用保活，false表示对应用取消保活。 |
 
 **返回值：**
 
@@ -1731,9 +1731,9 @@ setKeepAliveForBundle(bundleName: string, userId: number, enable: boolean): Prom
 | 801 | Capability not supported. |
 | 16000050 | Internal error. |
 | 16300005 | The target bundle does not exist. |
-| 16300008 | The target bundle has no main ability. |
+| 16300008 | The target bundle has no MainAbility. |
 | 16300009 | The target bundle has no status-bar ability. |
-| 16300010 | The target application is not attached to status bar. |
+| 16300010 | The target application is not attached to the status bar. |
 
 **示例：**
 

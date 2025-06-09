@@ -12,8 +12,8 @@
 target_link_libraries(sample PUBLIC libmedia_asset_manager.so)
 ```
 
-开发者通过引入[media_asset_manager_capi.h](../../reference/apis-media-library-kit/media__asset__manager__capi_8h.md)和[media_asset_base_capi.h](../../reference/apis-media-library-kit/media__asset__base__capi_8h.md)头文件，使用MediaAssetManager相关API。
-详细的API说明请参考[MediaAssetManager API](../../reference/apis-media-library-kit/_media_asset_manager.md)。
+开发者通过引入[media_asset_manager_capi.h](../../reference/apis-media-library-kit/capi-media-asset-manager-capi-h.md)和[media_asset_base_capi.h](../../reference/apis-media-library-kit/capi-media-asset-base-capi-h.md)头文件，使用MediaAssetManager相关API。
+详细的API说明请参考[MediaAssetManager API](../../reference/apis-media-library-kit/capi-mediaassetmanager.md)。
 
 > **说明：**
 > 开发前，需要参考[开发准备](photoAccessHelper-preparation.md)，申请`ohos.permission.READ_IMAGEVIDEO`权限。

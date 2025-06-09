@@ -16,7 +16,7 @@ import { serialManager } from '@kit.BasicServicesKit';
 
 ## serialManager.addSerialRight
 
-addSerialRight(tokenId: number, portId: number): void;
+addSerialRight(tokenId: number, portId: number): void
 
 为应用程序添加访问串口设备权限。
 

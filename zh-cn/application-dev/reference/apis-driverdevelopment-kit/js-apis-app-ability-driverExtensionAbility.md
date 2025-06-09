@@ -12,19 +12,21 @@ DriverExtensionAbility模块提供驱动相关扩展能力，提供驱动创建�
 import { DriverExtensionAbility } from '@kit.DriverDevelopmentKit';
 ```
 
-## 属性
+
+## DriverExtensionAbility
+
+### 属性
 
 **模型约束**：此接口仅在Stage模型下使用。
 
 **系统能力**：SystemCapability.Driver.ExternalDevice
 
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | context | [DriverExtensionContext](js-apis-inner-application-driverExtensionContext.md)  | 是 | 否 | DriverExtension的上下文环境，继承自ExtensionContext。 |
 
-
-## DriverExtensionAbility.onInit
+### onInit
 
 onInit(want: Want): void
 
@@ -52,8 +54,7 @@ Extension生命周期回调，在创建时回调，执行初始化业务逻辑�
   }
   ```
 
-
-## DriverExtensionAbility.onRelease
+### onRelease
 
 onRelease(): void
 
@@ -73,8 +74,7 @@ Extension生命周期回调，在销毁时回调，执行资源清理等操作�
   }
   ```
 
-
-## DriverExtensionAbility.onConnect
+### onConnect
 
 onConnect(want: Want): rpc.RemoteObject | Promise<rpc.RemoteObject>
 
@@ -147,7 +147,7 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
   }
   ```
 
-## DriverExtensionAbility.onDisconnect
+### onDisconnect
 
 onDisconnect(want: Want): void | Promise\<void>
 
@@ -195,7 +195,7 @@ Extension的生命周期回调，客户端执行断开连接服务时回调。
   ```
 
 
-## DriverExtensionAbility.onDump
+### onDump
 
 onDump(params: Array\<string>): Array\<string>
 

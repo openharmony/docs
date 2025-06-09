@@ -57,6 +57,22 @@ enableNestedScroll(enabled: Optional\<boolean>)
 >
 > 设置嵌套滚动模式为PARALLEL时，父子组件同时滚动，需要开发者在onScrollFrameBegin中按照所需逻辑，自行设置父子组件滚动顺序。
 
+### scrollBarColor<sup>20+</sup>
+
+scrollBarColor(color: Optional\<ColorMetrics\>)
+
+设置滚动条滑块的颜色，仅滚动条不放置子组件时生效。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明           |
+| ------ | ------------------------------------------------------------ | ---- | -------------- |
+| color  |  [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)\> | 是   | 滚动条的颜色。<br/>默认值：'\#66182431'   |
+
 ## ScrollBarOptions对象说明
 
 滚动条组件参数。
@@ -148,11 +164,13 @@ struct ScrollBarExample {
 该示例为ScrollBar组件没有子节点时的滚动条样式。
 
 ```ts
+import { ColorMetrics } from '@kit.ArkUI'
 @Entry
 @Component
 struct ScrollBarExample {
   private scroller: Scroller = new Scroller();
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+  @State scrollBarColor:ColorMetrics = ColorMetrics.rgba(24, 35, 48, 0.4);
 
   build() {
     Column() {
@@ -177,6 +195,7 @@ struct ScrollBarExample {
         .scrollBar(BarState.Off)
         .scrollable(ScrollDirection.Vertical)
         ScrollBar({ scroller: this.scroller, direction: ScrollBarDirection.Vertical,state: BarState.Auto })
+          .scrollBarColor(this.scrollBarColor)
       }
     }
   }
@@ -190,11 +209,13 @@ struct ScrollBarExample {
 
 该示例通过enableNestedScroll属性使ScrollBar组件支持嵌套滚动。
 ```ts
+import { ColorMetrics } from '@kit.ArkUI'
 @Entry
 @Component
 struct StickyNestedScroll {
   listScroller: Scroller = new Scroller();
   @State array: number[] = [];
+  @State scrollBarColor:ColorMetrics = ColorMetrics.rgba(24, 35, 48, 0.4);
 
   @Styles
   listCard() {
@@ -239,6 +260,7 @@ struct StickyNestedScroll {
       ScrollBar({ scroller: this.listScroller})
         .position({right:0})
         .enableNestedScroll(true)
+        .scrollBarColor(this.scrollBarColor)
     }
   }
 

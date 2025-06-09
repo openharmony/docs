@@ -14,7 +14,7 @@ The **HarmonyAppProvision** file consists of several parts, which are described 
 | issuer | Issuer of the **HarmonyAppProvision** file.       | String    | Yes| No|
 | validity    | Validity period of the **HarmonyAppProvision** file. For details, see [validity](#validity). | Object    | Yes| No |
 | bundle-info | Information about the application bundle and developer. For details, see [bundle-info](#bundle-info).        | Object    | Yes| No |
-| acls        | Information about the permissions authorized via the Access Control List (ACL). For details, see [acls](#acls). | Object    | No| Yes   |
+| acls        | Information about the permissions requested via Access Control List (ACL). For details, see [acls](#acls). | Object    | No| Yes   |
 | permissions | Permissions required for your application. For details, see [permissions](#permissions).     | Object    | No| Yes   |
 | debug-info  | Additional information for application debugging. For details, see [debug-info](#debug-info).         | Object    | No| Yes        |
 | app-privilege-capabilities | Privilege information required by the application bundle. For details, see the [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).  | String array| No| Yes        |
@@ -94,7 +94,7 @@ The **permissions** object contains restricted permissions required for your app
 
 | Name                 | Description                           | Data Type| Mandatory| Initial Value Allowed|
 | ------------------------ | ------------------------------- | ------- | ------- | --------- |
-| restricted-permissions | [user_grant permissions](AccessToken/permissions-for-all.md#user_grant-permissions) that can be used.| String array   | No| No  |
+| restricted-permissions | Restricted sensitive permissions allowed. For details, see [Restricted Permissions](AccessToken/restricted-permissions.md).| String array   | No| No  |
 
 ### debug-info
 The **debug-info** object contains debugging information of your application, mainly device management and control information.

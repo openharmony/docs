@@ -62,7 +62,7 @@
 | OH_UdmfData \* [OH_Pasteboard_GetData](_pasteboard.md#oh_pasteboard_getdata) ([OH_Pasteboard](_pasteboard.md#oh_pasteboard) \*pasteboard, int \*status) | 获取剪贴板中的数据。  |
 | int [OH_Pasteboard_SetData](_pasteboard.md#oh_pasteboard_setdata) ([OH_Pasteboard](_pasteboard.md#oh_pasteboard) \*pasteboard, OH_UdmfData \*data) | 将统一数据对象数据写入剪贴板。  |
 | int [OH_Pasteboard_ClearData](_pasteboard.md#oh_pasteboard_cleardata) ([OH_Pasteboard](_pasteboard.md#oh_pasteboard) \*pasteboard) | 清空剪贴板中的数据。  |
-| char ** [OH_Pasteboard_GetMimeTypes](_pasteboard.md#oh_pasteboard_getmimetypes) ([OH_Pasteboard](_pasteboard.md#oh_pasteboard) \*pasteboard, unsigned int *count) | 获取剪切板中的MIME类型。  |
+| char ** [OH_Pasteboard_GetMimeTypes](_pasteboard.md#oh_pasteboard_getmimetypes) ([OH_Pasteboard](_pasteboard.md#oh_pasteboard) \*pasteboard, unsigned int *count) | 获取剪贴板中的MIME类型。  |
 | [Pasteboard_GetDataParams](_pasteboard.md#pasteboard_getdataparams) *[OH_Pasteboard_GetDataParams_Create](_pasteboard.md#oh_pasteboard_getdataparams_create)(void) | 创建剪贴板[Pasteboard_GetDataParams](_pasteboard.md#pasteboard_getdataparams)指针及实例对象。 |
 | void [OH_Pasteboard_GetDataParams_Destroy](_pasteboard.md#oh_pasteboard_getdataparams_destroy)([Pasteboard_GetDataParams](_pasteboard.md#pasteboard_getdataparams)* params) | 销毁剪贴板[Pasteboard_GetDataParams](_pasteboard.md#pasteboard_getdataparams)实例对象。 |
 | void [OH_Pasteboard_GetDataParams_SetProgressIndicator](_pasteboard.md#oh_pasteboard_getdataparams_setprogressindicator)([Pasteboard_GetDataParams](_pasteboard.md#pasteboard_getdataparams)* params, [Pasteboard_ProgressIndicator](_pasteboard.md#pasteboard_progressindicator) progressIndicator) | 向剪贴板[Pasteboard_GetDataParams](_pasteboard.md#pasteboard_getdataparams)设置进度条指示选项，可选择是否采用系统默认进度显示。 |
@@ -72,5 +72,5 @@
 | int [OH_Pasteboard_ProgressInfo_GetProgress](_pasteboard.md#oh_pasteboard_progressinfo_getprogress)([Pasteboard_ProgressInfo](_pasteboard.md#pasteboard_progressinfo)* progressInfo) | 通过[Pasteboard_ProgressInfo](_pasteboard.md#pasteboard_progressinfo)获取粘贴进度。 |
 | void [OH_Pasteboard_ProgressCancel](_pasteboard.md#oh_pasteboard_progresscancel)([Pasteboard_GetDataParams](_pasteboard.md#pasteboard_getdataparams)* params) | 通过[Pasteboard_GetDataParams](_pasteboard.md#pasteboard_getdataparams)取消正在进行的拷贝粘贴任务。 |
 | OH_UdmfData* [OH_Pasteboard_GetDataWithProgress](_pasteboard.md#oh_pasteboard_getdatawithprogress)([OH_Pasteboard](_pasteboard.md#oh_pasteboard)* pasteboard, [Pasteboard_GetDataParams](_pasteboard.md#pasteboard_getdataparams)* params, int* status) | 获取剪贴板的数据以及粘贴进度，不支持对文件夹的拷贝。 |
-| int32_t [OH_Pasteboard_GetChangeCount](_pasteboard.md#oh_pasteboard_getchangecount) ([OH_Pasteboard](_pasteboard.md#oh_pasteboard) \*pasteboard) | 获取剪切板内容的变化次数。  |
+| int32_t [OH_Pasteboard_GetChangeCount](_pasteboard.md#oh_pasteboard_getchangecount) ([OH_Pasteboard](_pasteboard.md#oh_pasteboard) \*pasteboard) | 获取剪贴板内容的变化次数。  |
 

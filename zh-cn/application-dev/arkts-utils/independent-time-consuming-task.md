@@ -23,7 +23,7 @@
    // IndependentTask.ets
    import { IconItemSource } from './IconItemSource';
     
-   // 在Task中执行的方法，需要添加@Concurrent注解，否则无法正常调用。
+   // 在TaskPool线程中执行的方法，需要添加@Concurrent注解，否则无法正常调用。
    @Concurrent
    export function loadPicture(count: number): IconItemSource[] {
      let iconItemSourceList: IconItemSource[] = [];

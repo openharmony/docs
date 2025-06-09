@@ -115,7 +115,7 @@ openCertificateManagerDialog(context: common.Context, pageType: CertificateDialo
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission verification failed. The application does not have the permission required to call the API.     |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 29700001 | Internal error.     |
+| 29700001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.     |
 
 **示例**：
 ```ts
@@ -175,7 +175,7 @@ openInstallCertificateDialog(context: common.Context, certType: CertificateType,
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission verification failed. The application does not have the permission required to call the API.     |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 29700001 | Internal error.     |
+| 29700001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.     |
 | 29700002 | The user cancels the installation operation.     |
 | 29700003 | The user install certificate failed in the certificate manager dialog, such as the certificate is in an invalid format.     |
 | 29700004 | The API is not supported on this device.     |
@@ -245,7 +245,7 @@ openUninstallCertificateDialog(context: common.Context, certType: CertificateTyp
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission verification failed. The application does not have the permission required to call the API.     |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 29700001 | Internal error.     |
+| 29700001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.     |
 | 29700002 | The user cancels the uninstallation operation.     |
 | 29700003 | The user uninstall certificate failed in the certificate manager dialog, such as the certificate uri is not exist.     |
 | 29700004 | The API is not supported on this device.     |
@@ -311,7 +311,7 @@ openCertificateDetailDialog(context: common.Context, cert: Uint8Array, property:
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 29700001 | Internal error.                                              |
+| 29700001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.                                              |
 | 29700003 | Show the certificate detail dialog fail, such as the certificate is in an invalid format. |
 | 29700004 | The API is not supported on this device.                     |
 
@@ -339,5 +339,58 @@ try {
   })
 } catch (error) {
   console.error(`Failed to open certificate detail dialog. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## certificateManagerDialog.openAuthorizeDialog<sup>20+</sup>
+
+openAuthorizeDialog(context: common.Context): Promise\<string>
+
+打开证书管理对话框的授权页面。在弹出的页面中，用户可以为应用授权证书。使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.ACCESS_CERT_MANAGER
+
+**系统能力：** SystemCapability.Security.CertificateManagerDialog
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+| 参数名     | 类型                                                                 | 必填 | 说明          |
+|---------|--------------------------------------------------------------------|----|-------------|
+| context | [common.Context](../apis-ability-kit/js-apis-app-ability-common.md) | 是  | 表示应用的上下文信息。 |
+
+**返回值**：
+
+| 类型               | 说明                                   |
+|------------------|--------------------------------------|
+| Promise\<string> | Promise对象。表示返回授权证书uri的结果，最大长度为256字节。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书管理对话框错误码](errorcode-certManagerDialog.md)。
+
+| 错误码ID    | 错误信息                                                                                                                                            |
+|----------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| 201      | Permission verification failed. The application does not have the permission required to call the API.                                          |
+| 401      | Invalid parameter. Possible cause: 1. A mandatory parameter is left unspecified. 2. Incorrect parameter type. 3. Parameter verification failed. |
+| 29700001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.                                                                                                                                 |
+| 29700002 | The user cancels the authorization.                                                                                                             |
+
+**示例**：
+```ts
+import { certificateManagerDialog } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+/* context为应用的上下文信息，调用方自行获取，此处仅为示例 */
+let context: common.Context = new UIContext().getHostContext() as common.Context;
+try {
+    certificateManagerDialog.openAuthorizeDialog(context).then((uri: string) => {
+        console.info(`Success to authorize certificate, uri: ${uri}`)
+    }).catch((err: BusinessError) => {
+        console.error(`Failed to authorize certificate. Code: ${err.code}, message: ${err.message}`);
+    });
+} catch (err) {
+    let error = err as BusinessError;
+    console.error(`Failed to authorize certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```

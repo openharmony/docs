@@ -55,7 +55,7 @@
     |RoutePlan|指示路线规划功能|
     |PlaceSearch|指示地点搜索功能|
 
-2. 跳转一键返回能力：用户从A应用跳转至B应用的某个功能界面后，B应用调用[一键返回能力](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextbacktocallerabilitywithresult12)，可以支持用户直接返回A应用，无问询弹窗。例如：A应用跳转至B应用的支付界面，若B应用已申请了支付的linkfeature，则用户在B应用内完成操作后，可一键返回A应用。
+2. 跳转一键返回能力：用户从A应用跳转至B应用的某个功能界面后，B应用调用[一键返回能力](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#backtocallerabilitywithresult12)，可以支持用户直接返回A应用，无问询弹窗。例如：A应用跳转至B应用的支付界面，若B应用已申请了支付的linkfeature，则用户在B应用内完成操作后，可一键返回A应用。
 
     |值|说明|
     |---|---|

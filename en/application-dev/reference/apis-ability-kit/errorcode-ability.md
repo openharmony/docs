@@ -326,11 +326,11 @@ Internal error.
 
 **Description**
 
-This error code is reported when an error occurs during internal processing, such as memory application or multi-thread processing.
+This error code is reported when an error occurs during internal processing, such as memory application or multithreading processing.
 
 **Possible Causes**
 
-Common kernel errors such as memory application and multi-thread processing errors occur. The possible causes are as follows: empty internal object, processing timeout, failure in obtaining application information, failing in obtaining the system service, and too many started ability instances.
+Common kernel errors such as memory application and multithreading processing errors occur. The possible causes are as follows: empty internal object, processing timeout, failure in obtaining application information, failing in obtaining the system service, and too many started ability instances.
 
 **Solution**
 
@@ -720,7 +720,7 @@ This error code is reported when the [getCurrentAppCloneIndex](./js-apis-inner-a
 Configure the **multiAppMode** field in the **app.json5** file by referring to [Creating an Application Multi-Instance](../../quick-start/multiInstance.md). After app clone mode is enabled, call the [getCurrentAppCloneIndex](./js-apis-inner-application-applicationContext.md#applicationcontextgetcurrentappcloneindex12) API.
 
 <!--Del-->
-## 16000072 Multi-app Mode Is Not Supported
+## 16000072 Multi-App Mode Is Not Supported
 
 **Error Message**
 
@@ -728,15 +728,15 @@ App clone or multi-instance is not supported.
 
 **Description**
 
-This error code is reported when the application does not support the multi-app mode.
+This error code is reported when the application does not support multi-app mode.
 
 **Possible Causes**
 
-The **getRunningMultiAppInfo()** API is called to query the information about an application that does not support the multi-app mode.
+The **getRunningMultiAppInfo()** API is called to query the information about an application that does not support multi-app mode.
 
 **Solution**
 
-When calling **getCurrentAppCloneIndex()**, ensure that the application supports the multi-app mode.
+When calling **getCurrentAppCloneIndex()**, ensure that the application supports multi-app mode.
 <!--DelEnd-->
 
 ## 16000073 appCloneIndex Is Invalid
@@ -837,7 +837,7 @@ Before creating an application instance, the application does not check whether 
 
 You can create application instances only after adjusting the upper limit of application instances or deleting existing application instances.
 
-## 16000078 Application Multi-Instance Not Supported
+## 16000078 Multi-Instance Mode Is Not Supported
 
 **Error Message**
 
@@ -845,16 +845,16 @@ The multi-instance is not supported.
 
 **Description**
 
-This error code is reported when the application does not support the multi-instance mode.
+This error code is reported when the application does not support multi-instance mode.
 
 **Possible Causes**
 
-1. The multi-instance mode is not configured for the application.
-2. The current device type does not support the multi-instance mode.
+1. Multi-instance mode is not configured for the application.
+2. The current device type does not support multi-instance mode.
 
 **Solution**
 
-1. Configure the multi-instance mode for the application.
+1. Configure multi-instance mode for the application.
 2. Call the API to create multiple instances on a 2-in-1 device.
 
 ## 16000079 APP_INSTANCE_KEY Cannot Be Specified
@@ -932,6 +932,62 @@ The UIAbility is in singleton mode and is being started.
 **Solution**
 
 Ensure that the UIAbility finishes starting before executing a new startup task.
+
+## 16000083 Specified Ability Cannot Be Started by This Type of ExtensionAbility
+
+**Error Message**
+
+The extension can not start the ability due to extension control.
+
+**Description**
+
+Different types of ExtensionAbilities require different capabilities. The system does not allow this type of ExtensionAbility to start the specified ability.
+
+**Possible Causes**
+
+The current type of ExtensionAbility is under system control and is not allowed to start the specified ability.
+
+**Solution**
+
+Check the usage constraints for this type of ExtensionAbility, and ensure that the API is used as required.
+
+## 16000084 Only One DelegatorAbility Is Allowed to Call the API
+
+**Error Message**
+
+Only allow DelegatorAbility to call the method once.
+
+**Description**
+
+The system allows the DelegatorAbility to call this API only once.
+
+**Possible Causes**
+
+1. The caller is not a DelegatorAbility.
+2. The caller is a DelegatorAbility, but it calls the API repeatedly.
+
+**Solution**
+
+1. Check whether the caller is a DelegatorAbility.
+2. Check whether the API is being called repeatedly.
+
+## 16000085 Error Occurs During the Interaction Between the Ability and Window
+
+**Error Message**
+
+The interaction process between Ability and Window encountered an error.
+
+**Description**
+
+An error occurs during the interaction between the ability and the window.
+
+**Possible Causes**
+
+The window service process is abnormal.
+
+**Solution**
+
+This is a system error. Try calling the API again.
 
 ## 16000100 Failed to Call AbilityMonitor APIs to Listen for Ability Lifecycle Changes
 
@@ -1394,11 +1450,11 @@ Internal error.
 
 **Description**
 
-This error code is reported when an error occurs during internal processing, such as memory application or multi-thread processing.
+This error code is reported when an error occurs during internal processing, such as memory application or multithreading processing.
 
 **Possible Causes**
 
-Common kernel errors such as memory application and multi-thread processing errors occur.
+Common kernel errors such as memory application and multithreading processing errors occur.
 
 **Solution**
 
@@ -1524,7 +1580,7 @@ This error code is reported when an internal error such as memory allocation or 
 
 **Possible Causes**
 
-Common kernel errors such as memory application and multi-thread processing errors occur. The possible causes are as follows: The internal object is empty, and the processing times out.
+Common kernel errors such as memory application and multithreading processing errors occur. The possible causes are as follows: The internal object is empty, and the processing times out.
 
 **Solution**
 

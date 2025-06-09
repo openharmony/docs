@@ -230,7 +230,7 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | 名称                  | 值  | 说明           |
 | ---------------------| ---- | -------------- |
 | CLASS_LEVEL_HIGH     | 0    | 表示设备能力定级为高。     |
-| CLASS_LEVEL_MIDIUM   | 1    | 表示设备能力定级为中。   |
+| CLASS_LEVEL_MEDIUM   | 1    | 表示设备能力定级为中。   |
 | CLASS_LEVEL_LOW      | 2    | 表示设备能力定级为低。   |
 
 ## DeviceTypes<sup>20+</sup>

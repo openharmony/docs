@@ -576,3 +576,31 @@ Allows an application to customize the icon and text of SaveButton.
 **Supported devices**: Phone | PC/2in1 | Tablet
 
 **Valid since**: 20
+
+## ohos.permission.GET_ABILITY_INFO
+
+Allows an application to obtain ability information based on a URI.
+
+<!--RP42--><!--RP42End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Supported devices**: PC/2in1
+
+**Valid since**: 20
+
+## ohos.permission.ACCESS_FIDO2_ONLINEAUTH
+
+Allows an application to use the Native Development Kit (NDK) of the passkey service.
+
+<!--RP45--><!--RP45End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**: 20

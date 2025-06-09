@@ -1,6 +1,6 @@
 # **@ohos.bundle.shortcutManager (shortcutManager模块)(系统接口)**
 
-本模块提供系统应用对于快捷方式的增加、删除，以及查询能力，包括[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)信息的增加、删除以及查询等。
+本模块提供系统应用对于快捷方式的增加、删除，以及查询能力，包括[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)信息的增加、删除以及查询等。
 
 > **说明：**
 >
@@ -17,9 +17,9 @@ import { shortcutManager } from '@kit.AbilityKit';
 
 ## shortcutManager.addDesktopShortcutInfo<sup>12+</sup>
 
-addDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md), userId: number) : Promise\<void>
+addDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-shortcutInfo.md), userId: number) : Promise\<void>
 
-增加指定用户的[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)。
+增加指定用户的快捷方式信息。
 
 **需要权限：** ohos.permission.MANAGE_SHORTCUTS
 
@@ -31,8 +31,14 @@ addDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-shortc
 
 | 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
-| shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) | 是   | 快捷方式信息。 |
+| shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo.md) | 是   | 快捷方式信息。 |
 | userId     | number | 是   | 用户id。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -96,9 +102,9 @@ struct ShortcutExample {
 
 ## shortcutManager.deleteDesktopShortcutInfo<sup>12+</sup>
 
-deleteDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md), userId: number) : Promise\<void>
+deleteDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-shortcutInfo.md), userId: number) : Promise\<void>
 
-删除指定用户的[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)。
+删除指定用户的快捷方式信息。
 
 **需要权限：** ohos.permission.MANAGE_SHORTCUTS
 
@@ -110,8 +116,14 @@ deleteDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-sho
 
 | 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
-| shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) | 是   | 快捷方式信息。 |
+| shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo.md) | 是   | 快捷方式信息。 |
 | userId     | number | 是   | 用户id。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -171,9 +183,9 @@ struct ShortcutExample {
 
 ## shortcutManager.getAllDesktopShortcutInfo<sup>12+</sup>
 
-getAllDesktopShortcutInfo(userId: number) : Promise<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)>>
+getAllDesktopShortcutInfo(userId: number) : Promise<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>>
 
-查询指定用户的所有[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)。
+查询指定用户的所有快捷方式信息。
 
 **需要权限：** ohos.permission.MANAGE_SHORTCUTS
 
@@ -191,7 +203,7 @@ getAllDesktopShortcutInfo(userId: number) : Promise<Array\<[ShortcutInfo](js-api
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)> | Array形式返回[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)信息。 |
+| Promise<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>> | Promise对象，返回应用配置文件中定义的快捷方式信息。 |
 
 **错误码：**
 

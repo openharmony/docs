@@ -6,7 +6,7 @@ IsolatedComponent组件是构建隔离组件的工具，能够帮助开发者创
 
 ## 基本概念
 
-IsolatedComponent旨在在本页面中嵌入并展示由独立Abc（即.abc文件）所提供的UI，其展示内容在受限的worker线程中执行。
+[IsolatedComponent](../reference/apis-arkui/arkui-ts/ts-container-isolated-component-sys.md)旨在在本页面中嵌入并展示由独立Abc（即.abc文件）所提供的UI，其展示内容在受限的worker线程中执行。
 
 该组件通常用于有Abc热更新诉求的模块化开发场景。
 
@@ -87,7 +87,7 @@ workerPort.onmessage = (e: MessageEvents) => {}
 workerPort.onmessageerror = (e: MessageEvents) => {}
 workerPort.onerror = (e: ErrorEvent) => {}
 ```
-
+<!--deprecated_code_no_check-->
 ```ts
 IsolatedComponent({
   want: {
@@ -138,7 +138,7 @@ struct Extension {
 
 ```ts
 import { worker } from '@kit.ArkTS';
-import { bundleManager } from '@kit.AbilityKit';
+import { bundleManager, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 对Abc文件进行校验，并拷贝到指定沙箱路径下
@@ -164,6 +164,7 @@ struct Index {
   @State resourcePath: string = "";
   @State abcPath: string = "";
   @State entryPoint: string = "";
+  @State context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   // Abc文件名
   private fileName: string = "modules";
   // Abc文件所属应用的bundleName
@@ -176,7 +177,7 @@ struct Index {
       Column({ space: 20 }) {
         // 1.调用verifyAbc接口校验Abc文件
         Button("verifyAbc").onClick(() => {
-          let abcFilePath = `${getContext(this).filesDir}/${this.fileName}.abc`;
+          let abcFilePath = `${this.context.filesDir}/${this.fileName}.abc`;
           console.log("abcFilePath: " + abcFilePath);
           VerifyAbc([abcFilePath], false);
         }).height(100).width(200)
@@ -185,9 +186,9 @@ struct Index {
         Button("showIsolatedComponent").onClick(() => {
           if (!this.isShow) {
             // 资源路径
-            this.resourcePath = `${getContext(this).filesDir}/${this.fileName}.hap`;
+            this.resourcePath = `${this.context.filesDir}/${this.fileName}.hap`;
             // Abc文件校验后的沙箱路径
-            this.abcPath = `/abcs${getContext(this).filesDir}/${this.fileName}`;
+            this.abcPath = `/abcs${this.context.filesDir}/${this.fileName}`;
             // 需要显示页面的入口路径
             this.entryPoint = `${this.bundleName}/entry/ets/pages/extension`;
             this.isShow = true;

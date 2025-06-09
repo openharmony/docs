@@ -26,7 +26,8 @@
 | -------- | -------- |
 | [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md) | 表示应用信息。 |
 | [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md) | 表示应用入口的信息。 |
-
+| [OH_NativeBundle_Metadata](native_interface_bundle_metadata.md) | 表示元数据信息。 |
+| [OH_NativeBundle_ModuleMetadata](native_interface_bundle_module_metadata.md) | 表示模块元数据的信息。 |
 
 
 ### 函数
@@ -38,7 +39,8 @@
 | [OH_NativeBundle_GetAppIdentifier](#oh_nativebundle_getappidentifier) | 获取当前应用的appIdentifier信息。 |
 | [OH_NativeBundle_GetMainElementName](#oh_nativebundle_getmainelementname) | 获取当前应用的入口信息。 |
 | [OH_NativeBundle_GetCompatibleDeviceType](_bundle.md#oh_nativebundle_getcompatibledevicetype) | 获取当前应用适用的设备类型。 |
-
+| [OH_NativeBundle_IsDebugMode](#oh_nativebundle_isdebugmode) | 获取当前应用是否处于调试模式。|
+| [OH_NativeBundle_GetModuleMetadata](#oh_nativebundle_getmodulemetadata) | 获取当前应用的元数据信息。 |
 
 ## 函数说明
 
@@ -122,3 +124,48 @@ char* OH_NativeBundle_GetCompatibleDeviceType()
 **返回：**
 
 返回一个字符串，表示该应用适用的设备类型。
+
+### OH_NativeBundle_IsDebugMode
+
+```
+bool OH_NativeBundle_IsDebugMode(bool* isDebugMode)
+```
+
+**描述**
+
+查询当前应用的调试模式。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| isDebugMode | 表示应用是否处于调试模式，取值为true表示可调试模式，取值为false表示不可调试模式。 |
+
+**返回：**
+
+如果调用成功，则返回true，否则返回false。
+
+### OH_NativeBundle_GetModuleMetadata
+
+```
+OH_NativeBundle_ModuleMetadata* OH_NativeBundle_GetModuleMetadata(size_t* size)
+```
+
+**描述**
+
+获取当前应用程序的模块元数据数组。在使用该接口之后，为了防止内存泄漏，需要手动释放接口返回的指针。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| size | 表示模块元数据数组大小。 |
+
+**返回：**
+
+返回模块元数据数组，如果返回的对象为NULL，则表示获取失败。
+失败的可能原因是应用程序地址空间已满，导致空间分配失败。

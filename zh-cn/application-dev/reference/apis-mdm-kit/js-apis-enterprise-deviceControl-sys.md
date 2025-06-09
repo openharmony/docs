@@ -22,7 +22,7 @@ import { deviceControl } from '@kit.MDMKit';
 
 resetFactory(admin: Want, callback: AsyncCallback\<void>): void
 
-指定设备管理应用使设备恢复出厂设置。使用callback异步回调。
+使设备恢复出厂设置。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_RESET_DEVICE
 
@@ -33,7 +33,7 @@ resetFactory(admin: Want, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码：**
@@ -51,7 +51,6 @@ resetFactory(admin: Want, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { deviceControl } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
@@ -71,8 +70,7 @@ deviceControl.resetFactory(wantTemp, (err) => {
 ## deviceControl.resetFactory
 
 resetFactory(admin: Want): Promise\<void>
-
-指定设备管理应用使设备恢复出厂设置。使用Promise异步回调。
+使设备恢复出厂设置。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_RESET_DEVICE
 
@@ -83,7 +81,7 @@ resetFactory(admin: Want): Promise\<void>
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 
 **返回值：**
 
@@ -106,7 +104,6 @@ resetFactory(admin: Want): Promise\<void>
 **示例：**
 
 ```ts
-import { deviceControl } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -125,7 +122,7 @@ deviceControl.resetFactory(wantTemp).then(() => {
 
 shutdown(admin: Want): void
 
-指定设备管理应用使设备关机。
+使设备关机。
 
 **需要权限：** ohos.permission.ENTERPRISE_REBOOT
 
@@ -136,7 +133,7 @@ shutdown(admin: Want): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 
 **错误码：**
 
@@ -153,7 +150,6 @@ shutdown(admin: Want): void
 **示例：**
 
 ```ts
-import { deviceControl } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
@@ -172,7 +168,7 @@ try {
 
 reboot(admin: Want): void
 
-指定设备管理应用使设备重启。
+使设备重启。
 
 **需要权限：** ohos.permission.ENTERPRISE_REBOOT
 
@@ -183,7 +179,7 @@ reboot(admin: Want): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 
 **错误码：**
 
@@ -200,7 +196,6 @@ reboot(admin: Want): void
 **示例：**
 
 ```ts
-import { deviceControl } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
@@ -219,7 +214,7 @@ try {
 
 lockScreen(admin: Want): void
 
-指定设备管理应用使设备屏幕锁定。
+使设备屏幕锁定。设置之后设备立即锁屏。
 
 **需要权限：** ohos.permission.ENTERPRISE_LOCK_DEVICE
 
@@ -230,7 +225,7 @@ lockScreen(admin: Want): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 
 **错误码：**
 
@@ -247,7 +242,6 @@ lockScreen(admin: Want): void
 **示例：**
 
 ```ts
-import { deviceControl } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {

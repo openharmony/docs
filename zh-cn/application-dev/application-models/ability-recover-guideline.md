@@ -2,15 +2,15 @@
 
 ## 场景介绍
 
-当应用后台运行时，可能由于系统资源管控等原因导致应用关闭、进程退出，应用直接退出可能会导致用户数据丢失。如果应用在[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)中启用了[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)备份恢复功能，并对临时数据进行保存，则可以在应用退出后的下一次启动时恢复先前的状态和数据（包括应用的页面栈以及[onSaveState](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonsavestate)接口中保存的数据），从而保证用户体验的连贯性。
+当应用后台运行时，可能由于系统资源管控等原因导致应用关闭、进程退出，应用直接退出可能会导致用户数据丢失。如果应用在[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)中启用了[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)备份恢复功能，并对临时数据进行保存，则可以在应用退出后的下一次启动时恢复先前的状态和数据（包括应用的页面栈以及[onSaveState](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onsavestate)接口中保存的数据），从而保证用户体验的连贯性。
 
 > **说明：**
 >
 > 应用正常关闭时，不会触发[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)备份流程。应用正常启动（例如通过startAbility接口启动或点击图标启动），不触发[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)恢复流程。
 
 ## 运行机制
-- [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)数据备份：在应用的[onBackground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonbackground)生命周期后，系统自动调用[onSaveState](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonsavestate)进行备份。
-- [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)数据恢复：恢复的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)数据可以在应用的[onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)生命周期中获取，页面栈数据在应用的[onWindowStageCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期中恢复。
+- [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)数据备份：在应用的[onBackground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onbackground)生命周期后，系统自动调用[onSaveState](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onsavestate)进行备份。
+- [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)数据恢复：恢复的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)数据可以在应用的[onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate)生命周期中获取，页面栈数据在应用的[onWindowStageCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate)生命周期中恢复。
 
 ## 约束限制
 
@@ -30,7 +30,7 @@
 | ------------------------------------------------------------ | ---------------------------------------------------- |
 | setRestoreEnabled(enabled: boolean): void | 设置当[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)从后台切换回时是否启用恢复。|
 
-**[setRestoreEnabled](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetrestoreenabled14)：** 需要在应用初始化阶段调用（[onForeground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonforeground)前），比如[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的[onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)调用。
+**[setRestoreEnabled](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#setrestoreenabled14)：** 需要在应用初始化阶段调用（[onForeground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onforeground)前），比如[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的[onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate)调用。
 
 
 ## 开发步骤

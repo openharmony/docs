@@ -1,6 +1,6 @@
 # LocationButton
 
-安全控件的位置控件，用户通过点击该位置按钮，可以临时获取精准定位权限，而不需要权限弹框授权确认。
+安全控件的位置控件。用户点击位置控件，应用可以临时获取精准定位权限，而不需要权限弹框授权确认。
 
 > **说明：**
 >
@@ -18,7 +18,7 @@
 
 LocationButton()
 
-默认创建带有图标、文本、背景的位置按钮。
+默认创建带有图标、文本、背景的位置控件。
 
 为避免控件样式不合法导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
 
@@ -30,7 +30,7 @@ LocationButton()
 
 LocationButton(options: LocationButtonOptions)
 
-创建包含指定元素的位置按钮。
+创建包含指定元素的位置控件。
 
 为避免控件样式不合法导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
 
@@ -42,11 +42,11 @@ LocationButton(options: LocationButtonOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [LocationButtonOptions](#locationbuttonoptions) | 是 | 创建包含指定元素的位置按钮。 |
+| options | [LocationButtonOptions](#locationbuttonoptions) | 是 | 创建包含指定元素的位置控件。 |
 
 ## LocationButtonOptions
 
-用于指定位置按钮的图标、文本等指定元素。
+用于指定位置控件的图标、文本等指定元素。
 
 > **说明：**
 >
@@ -66,9 +66,9 @@ LocationButton(options: LocationButtonOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| icon | [LocationIconStyle](#locationiconstyle枚举说明) | 否 | 设置位置按钮的图标风格。<br/>不传入该参数表示没有图标。 |
-| text | [LocationDescription](#locationdescription枚举说明) | 否 | 设置位置按钮的文本描述。<br/>不传入该参数表示没有文字描述。 |
-| buttonType | [ButtonType](ts-securitycomponent-attributes.md#buttontype枚举说明) | 否 | 设置位置按钮的背景样式。<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
+| icon | [LocationIconStyle](#locationiconstyle枚举说明) | 否 | 设置位置控件的图标风格。<br/>不传入该参数表示没有图标。 |
+| text | [LocationDescription](#locationdescription枚举说明) | 否 | 设置位置控件的文本描述。<br/>不传入该参数表示没有文字描述。 |
+| buttonType | [ButtonType](ts-securitycomponent-attributes.md#buttontype枚举说明) | 否 | 设置位置控件的背景样式。<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
 
 ## LocationIconStyle枚举说明
 
@@ -78,8 +78,8 @@ LocationButton(options: LocationButtonOptions)
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| FULL_FILLED |  0 | 位置按钮展示填充样式图标。 |
-| LINES | 1 | 位置按钮展示线条样式图标。 |
+| FULL_FILLED |  0 | 位置控件展示填充样式图标。 |
+| LINES | 1 | 位置控件展示线条样式图标。 |
 
 ## LocationDescription枚举说明
 
@@ -89,17 +89,17 @@ LocationButton(options: LocationButtonOptions)
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| CURRENT_LOCATION | 0 | 位置按钮的文字描述为“当前位置”。 |
-| ADD_LOCATION | 1 | 位置按钮的文字描述为“添加位置”。 |
-| SELECT_LOCATION | 2 | 位置按钮的文字描述为“选择位置”。 |
-| SHARE_LOCATION | 3 | 位置按钮的文字描述为“共享位置”。 |
-| SEND_LOCATION | 4 | 位置按钮的文字描述为“发送位置”。 |
-| LOCATING | 5 | 位置按钮的文字描述为“定位”。 |
-| LOCATION | 6 | 位置按钮的文字描述为“位置”。 |
-| SEND_CURRENT_LOCATION | 7 | 位置按钮的文字描述为“发送实时位置”。 |
-| RELOCATION | 8 | 位置按钮的文字描述为“重定位”。 |
-| PUNCH_IN | 9 | 位置按钮的文字描述为“打卡定位”。 |
-| CURRENT_POSITION | 10 | 位置按钮的文字描述为“所在位置”。 |
+| CURRENT_LOCATION | 0 | 位置控件的文字描述为“当前位置”。 |
+| ADD_LOCATION | 1 | 位置控件的文字描述为“添加位置”。 |
+| SELECT_LOCATION | 2 | 位置控件的文字描述为“选择位置”。 |
+| SHARE_LOCATION | 3 | 位置控件的文字描述为“共享位置”。 |
+| SEND_LOCATION | 4 | 位置控件的文字描述为“发送位置”。 |
+| LOCATING | 5 | 位置控件的文字描述为“定位”。 |
+| LOCATION | 6 | 位置控件的文字描述为“位置”。 |
+| SEND_CURRENT_LOCATION | 7 | 位置控件的文字描述为“发送实时位置”。 |
+| RELOCATION | 8 | 位置控件的文字描述为“重定位”。 |
+| PUNCH_IN | 9 | 位置控件的文字描述为“打卡定位”。 |
+| CURRENT_POSITION | 10 | 位置控件的文字描述为“所在位置”。 |
 
 ## LocationButtonOnClickResult枚举说明
 
@@ -109,14 +109,14 @@ LocationButton(options: LocationButtonOptions)
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| SUCCESS | 0 | 位置按钮点击成功。 |
-| TEMPORARY_AUTHORIZATION_FAILED | 1 | 位置按钮点击后位置权限授权失败。 |
+| SUCCESS | 0 | 位置控件点击后权限授权成功。 |
+| TEMPORARY_AUTHORIZATION_FAILED | 1 | 位置控件点击后位置权限授权失败。 |
 
 ## LocationButtonCallback<sup>18+</sup>
 
 type LocationButtonCallback = (event: ClickEvent, result: LocationButtonOnClickResult, error?: BusinessError&lt;void&gt;) =&gt; void
 
-点击位置按钮触发该回调。
+点击位置控件触发该回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -126,7 +126,7 @@ type LocationButtonCallback = (event: ClickEvent, result: LocationButtonOnClickR
 |------------|------|-------|---------|
 | event | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) |是 |见ClickEvent对象说明。|
 | result | [LocationButtonOnClickResult](#locationbuttononclickresult枚举说明)| 是 | 位置权限的授权结果。|
-| error | [BusinessError&lt;void&gt;](../../apis-basic-services-kit/js-apis-base.md#businesserror)| 否  | 点击按钮时的错误码和错误信息。<br>错误码0表示点击位置按钮授权成功。<br>错误码1表示系统内部错误。<br>错误码2表示属性设置错误，包括但不限于：<br>1. 字体或图标设置过小。<br>2. 字体或图标与背托颜色相近。<br>3. 字体或图标颜色过于透明。<br>4. padding为负值。<br>5. 按钮被其他组件或窗口遮挡。<br>6. 文本超出背托范围。<br>7. 按钮超出窗口或屏幕。<br>8. 按钮整体尺寸过大。<br>9. 按钮文本被截断，显示不全。<br>10. 相关属性设置影响安全控件显示。|
+| error | [BusinessError&lt;void&gt;](../../apis-basic-services-kit/js-apis-base.md#businesserror)| 否  | 点击按钮时的错误码和错误信息。<br>错误码0表示点击位置控件授权成功。<br>错误码1表示系统内部错误。<br>错误码2表示属性设置错误，包括但不限于：<br>1. 字体或图标设置过小。<br>2. 字体或图标与背托颜色相近。<br>3. 字体或图标颜色过于透明。<br>4. padding为负值。<br>5. 按钮被其他组件或窗口遮挡。<br>6. 文本超出背托范围。<br>7. 按钮超出窗口或屏幕。<br>8. 按钮整体尺寸过大。<br>9. 按钮文本被截断，显示不全。<br>10. 相关属性设置影响安全控件显示。|
 
 ## 属性
 
@@ -162,12 +162,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct Index {
   handleLocationButtonClick: LocationButtonCallback =
-    (event: ClickEvent, result: LocationButtonOnClickResult, error: BusinessError<void>) => {
+    (event: ClickEvent, result: LocationButtonOnClickResult, error?: BusinessError<void>) => {
       if (result == LocationButtonOnClickResult.SUCCESS) {
         console.info("success");
       } else {
-        console.info("errCode: " + error.code);
-        console.info("errMessage: " + error.message);
+        console.error("errCode: " + error?.code);
+        console.error("errMessage: " + error?.message);
       }
     };
 

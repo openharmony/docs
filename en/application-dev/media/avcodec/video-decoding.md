@@ -40,6 +40,7 @@ Through the VideoDecoder module, your application can implement the following ke
   - In surface mode, the caller can choose to call **OH_VideoDecoder_FreeOutputBuffer** to free the output buffer (without rendering the data). In buffer mode, the caller must call **OH_VideoDecoder_FreeOutputBuffer** to free the output buffer.
   - In surface mode, the caller must call **OH_VideoDecoder_SetSurface** to set an OHNativeWindow before the decoder is ready and call **OH_VideoDecoder_RenderOutputBuffer** to render the decoded data after the decoder is started.
   - In buffer mode, an application can obtain the shared memory address and data from the output buffer. In surface mode, an application can obtain the data from the output buffer.
+- Data transfer performance in surface mode is better than that in buffer mode.
 
 For details about the development procedure, see [Surface Output](#surface-output) and [Buffer Output](#buffer-output).
 
@@ -424,27 +425,26 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     OH_NativeWindow_NativeWindowSetScalingModeV2(nativeWindow, OH_SCALING_MODE_SCALE_CROP_V2);
     ```
 
-7. (Optional) Call **OH_VideoDecoder_SetParameter()** to set the surface parameters of the decoder.
-    For details about the configurable options, see [Video Dedicated Key-Value Paris](../../reference/apis-avcodec-kit/_codec_base.md#media-data-key-value-pairs).
+    > **NOTE**
+    >
+    > If both decoder 1 and decoder 2 are bound to the same NativeWindow using the **OH_VideoDecoder_SetSurface** function, and decoder 2 is running, destroying decoder 1 with **OH_VideoDecoder_Destroy** will cause decoder 2's video playback to freeze.
+    >
+    > Consider the following approaches:
+    > 1. Wait for decoder 1 to be fully released before starting decoder 2 with **OH_VideoDecoder_Start**.
+    > 2. Use surface 1 for decoder 1, and create a temporary surface for decoder 2 using **OH_ConsumerSurface_Create**. Once decoder 1 is released, bind decoder 2 to surface 1 using **OH_VideoDecoder_SetSurface**. For details, see [Concurrently Creating a Video Decoder and Initializing NativeWindow](../../media/avcodec/parallel-decoding-nativeWindow.md).
+
+7. Call **OH_VideoDecoder_Prepare()** to prepare internal resources for the decoder.
+
+     
 
     ```c++
-    OH_AVFormat *format = OH_AVFormat_Create();
-    // Configure the display rotation angle.
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_ROTATION, 90);
-    int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
-    OH_AVFormat_Destroy(format);
-    ```
-
-8. Call **OH_VideoDecoder_Prepare()** to prepare internal resources for the decoder.
-
-    ```c++
-    ret = OH_VideoDecoder_Prepare(videoDec);
+    int32_t ret = OH_VideoDecoder_Prepare(videoDec);
     if (ret != AV_ERR_OK) {
         // Handle exceptions.
     }
     ```
 
-9. Call **OH_VideoDecoder_Start()** to start the decoder.
+8. Call **OH_VideoDecoder_Start()** to start the decoder.
 
     ```c++
     // Start the decoder.
@@ -452,6 +452,21 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     if (ret != AV_ERR_OK) {
         // Handle exceptions.
     }
+    ```
+
+9. (Optional) Call **OH_VideoDecoder_SetParameter()** to set the surface parameters of the decoder.
+
+    For details about the configurable options, see [Video Dedicated Key-Value Paris](../../reference/apis-avcodec-kit/_codec_base.md#media-data-key-value-pairs).
+
+    ```c++
+    OH_AVFormat *format = OH_AVFormat_Create();
+    // Configure the display rotation angle.
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_ROTATION, 90);
+    int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
+    if (ret != AV_ERR_OK) {
+        // Handle exceptions.
+    }
+    OH_AVFormat_Destroy(format);
     ```
 
 10. (Optional) Call **OH_AVCencInfo_SetAVBuffer()** to set the Common Encryption Scheme (CENC) information.
@@ -667,7 +682,6 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     >
     > When **OH_VideoDecoder_Start** s called again after the flush operation, the PPS/SPS must be retransferred.
 
-
 14. (Optional) Call **OH_VideoDecoder_Reset()** to reset the decoder.
 
     After **OH_VideoDecoder_Reset** is called, the decoder returns to the Initialized state. To continue decoding, you must call **OH_VideoDecoder_Configure**, **OH_VideoDecoder_SetSurface**, and **OH_VideoDecoder_Prepare** in sequence.
@@ -723,6 +737,11 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
 
     ```c++
     std::unique_lock<std::shared_mutex> lock(codecMutex);
+    // Release the nativeWindow instance.
+    if(nativeWindow != nullptr){
+        OH_NativeWindow_DestroyNativeWindow(nativeWindow);
+        nativeWindow = nullptr;
+    }
     // Call OH_VideoDecoder_Destroy to destroy the decoder.
     int32_t ret = AV_ERR_OK;
     if (videoDec != nullptr) {
@@ -952,7 +971,21 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     }
     ```
 
-8. (Optional) Call **OH_AVCencInfo_SetAVBuffer()** to set the CENC information.
+8. (Optional) Call **OH_VideoDecoder_SetParameter()** to set the decoder parameters.
+    For details about the configurable options, see [Video Dedicated Key-Value Paris](../../reference/apis-avcodec-kit/_codec_base.md#media-data-key-value-pairs).
+
+    ```c++
+    OH_AVFormat *format = OH_AVFormat_Create();
+    // Set the frame rate.
+    OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, 30.0);
+    int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
+    if (ret != AV_ERR_OK) {
+        // Handle exceptions.
+    }
+    OH_AVFormat_Destroy(format);
+    ```
+
+9. (Optional) Call **OH_AVCencInfo_SetAVBuffer()** to set the CENC information.
 
     The procedure is the same as that in surface mode and is not described here.
 
@@ -1010,7 +1043,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     }
     ```
 
-9. Call **OH_VideoDecoder_PushInputBuffer()** to push the stream to the input buffer for decoding.
+10. Call **OH_VideoDecoder_PushInputBuffer()** to push the stream to the input buffer for decoding.
 
     The procedure is the same as that in surface mode and is not described here.
 
@@ -1045,7 +1078,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     }
     ```
 
-10. Call **OH_VideoDecoder_FreeOutputBuffer()** to release decoded frames.
+11. Call **OH_VideoDecoder_FreeOutputBuffer()** to release decoded frames.
 
     In the code snippet below, the following variables are used:
 

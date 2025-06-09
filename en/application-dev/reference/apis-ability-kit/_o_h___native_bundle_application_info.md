@@ -11,6 +11,8 @@ It is an output parameter of [OH_NativeBundle_GetCurrentApplicationInfo()](_bund
 
 **Related module**: [Bundle](_bundle.md)
 
+**Header file**: [native_interface_bundle.h](native__interface__bundle.md)
+
 
 ## Summary
 

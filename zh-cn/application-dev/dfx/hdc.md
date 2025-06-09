@@ -25,13 +25,55 @@ hdc分为三部分：
 
 ### （可选）命令行直接执行hdc程序
 
-开发者可通过命令行进入SDK的toolchains目录，在目录中执行hdc相关命令进行调试。
-为了方便在命令行中直接执行hdc程序，开发者也可以将hdc程序文件路径添加到操作系统命令搜索路径的环境变量中。
-例如，Windows系统可以添加到系统环境变量Path中。
+**SDK的toolchains目录调试**
+
+开发者可以在SDK的toolchains子目录下执行hdc命令进行设备调试。
+
+**（可选）hdc独立运行**
+
+hdc支持独立运行，将安装子目录toolchains下的hdc可执行文件和libusb_shared依赖文件集中存放至自定义目录中，可在该目录下直接执行hdc命令，实现独立调试功能。
+
+**（可选）添加hdc到系统环境变量**
+
+- Windows环境变量设置方法
+   
+   在此电脑 > 属性 > 高级系统设置 > 高级 > 环境变量 > Path > 编辑 中，将hdc.exe所在目录添加到 Path，环境变量配置完成后，请重启电脑，即可在cmd窗口执行hdc命令。
+
+- Linux/MacOS系统：
+
+   1. 打开终端工具，执行以下命令，根据输出结果分别执行不同命令。
+
+      `echo $SHELL`
+
+      a. 如果输出结果为bin/bash，则执行以下命令，打开.bashrc文件。
+   
+      `vi ~/.bashrc`
+
+      b. 如果输出结果为/bin/zsh，则执行以下命令，打开.zshrc文件。
+
+      `vi ~/.zshrc`
+
+   2. 单击字母“i”，进入Insert模式。
+   3. 输入以下内容，添加PATH信息。
+
+      `export PATH=$PATH:/path/to/your/hdc`
+   
+   4. 编辑完成后，单击Esc键，退出编辑模式，然后输入“:wq”，单击Enter键保存。
+   5. 执行以下命令，使配置的环境变量生效。
+      
+      a. 如果步骤1操作打开的是.bashrc文件，请执行如下命令：
+
+      `source ~/.bashrc`
+
+      b. 如果步骤1操作打开的是.zshrc文件，请执行如下命令：
+
+      `source ~/.zshrc`
+
+   6. 环境变量配置完成后，重启电脑。
 
 ### （可选）hdc server配置
 
-通过配置对应的系统环境变量，可以修改hdc server的监听端口，日志打印级别或特性开关等，详细介绍请查看[可选配置项](#可选配置项)章节。
+通过配置对应的系统环境变量，可以修改hdc server的监听端口，日志打印级别，特性开关或命令录制等，详细介绍请查看[可选配置项](#可选配置项)章节。
 
 > **说明：**
 >
@@ -1124,15 +1166,6 @@ hdc -l5 start
 |--------------------|-----|--------------------------------|
 | OHOS_HDC_LOG_LEVEL | 5   | 用于配置服务进程日志记录级别，日志级别详情参考：<br>[server端日志](#server端日志)指定运行时日志等级章节。  |
 
-环境变量配置方法：
-
-以下通过配置OHOS_HDC_LOG_LEVEL环境变量为例，配置环境变量值为：5，介绍环境变量配置方法。
-
-| 操作系统 | 配置方法 |
-|---|---|
-| Windows  | 在**此电脑 &gt; 属性 &gt; 高级系统设置 &gt; 高级 &gt; 环境变量**中，添加环境变量名称为OHOS_HDC_LOG_LEVEL，变量值为5。配置完毕后点击确认。环境变量配置完成后，关闭并重启命令行或其他使用到OpenHarmony SDK的软件，以生效新配置的环境变量。  |
-| Linux  | 在~/.bash_profile文件末尾追加内容export OHOS_HDC_LOG_LEVEL=5并保存后，执行`source ~/.bash_profile`生效当前环境变量。 |
-| MacOS  | 在~/.zshrc文件末尾追加内容export OHOS_HDC_LOG_LEVEL=5并保存后，执行`source ~/.zshrc`生效当前环境变量。环境变量配置完成后，关闭并重启命令行或其他使用到OpenHarmony SDK的软件，以生效新配置的环境变量。 |
 
 ### 设备端日志
 
@@ -1173,6 +1206,33 @@ hdc server和hdc daemon启动后，默认会互相发送心跳数据包，收到
 当hdc server对应的电脑中配置环境变量OHOS_HDC_HEARTBEAT为“1”后，hdc server会关闭心跳特性；当设备连接这台电脑后，hdc server会给hdc daemon发送心跳特性关闭的信息，双方不再互相发送心跳数据包。
 
 设置为"1"表示关闭心跳功能；设置为其它数字表示开启心跳功能。
+
+### OHOS_HDC_CMD_RECORD
+默认：hdc命令录制关闭。
+
+用于设置hdc命令录制功能的开关。此功能仅记录执行的hdc命令，不记录命令的执行结果。
+
+设置为"1"表示开启命令录制功能；不设置或者设置为其它数字表示关闭命令录制功能。
+
+从API version 20开始，支持该参数。
+
+录制日志存放路径：
+
+| 平台 | 路径 | 备注 |
+| -------- | -------- | -------- |
+| Windows | %temp%\hdc_cmd\ | 实际路径参考：`C:\Users\用户名\AppData\Local\Temp\hdc_cmd\` <br/>（实际使用请替换用户名变量）。 |
+| Linux | /tmp/hdc_cmd/ | - |
+| MacOS | $TMPDIR/hdc_cmd/ | - |
+
+### 环境变量配置方法
+
+以配置OHOS_HDC_CMD_RECORD环境变量为例，将其值设为 1，介绍环境变量配置方法。
+
+| 操作系统 | 配置方法 |
+|---|---|
+| Windows  | 在**此电脑 &gt; 属性 &gt; 高级系统设置 &gt; 高级 &gt; 环境变量**中，添加环境变量名称为OHOS_HDC_CMD_RECORD，变量值为1。配置完毕后点击确认。环境变量配置完成后，关闭并重启命令行或其他使用到OpenHarmony SDK的软件，以生效新配置的环境变量。  |
+| Linux  | 在~/.bash_profile文件末尾追加内容export OHOS_HDC_CMD_RECORD=1并保存后，执行`source ~/.bash_profile`生效当前环境变量。 |
+| MacOS  | 在~/.zshrc文件末尾追加内容export OHOS_HDC_CMD_RECORD=1并保存后，执行`source ~/.zshrc`生效当前环境变量。环境变量配置完成后，关闭并重启命令行或其他使用到OpenHarmony SDK的软件，以生效新配置的环境变量。 |
 
 ## 常见问题
 
@@ -1355,6 +1415,30 @@ linux环境可以选择开启非root用户USB设备操作权限，方法如下�
    Windows运行环境：建议使用Windows10/Windows11 64位版本，如低版本缺失WinUSB库/驱动，请使用Zadig工具更新。对于符合设备，需要使用Zadig工具安装libusb-win32驱动。详情请见：[Zadig链接](https://github.com/pbatard/libwdi/releases)。
 
 - 运行方式不当：请使用命令行依照正确命令运行hdc工具，而非鼠标双击文件。
+
+### 使用hdc file send/recv传输中文文件出现乱码
+
+**现象描述**
+
+hdc文件传输命令执行出现乱码，如使用`file recv`从设备侧发送带有中文命令的文件到本地，报错提示`[Fail]Error opening file: no such file or directory, path:XXXXX`，其中path显示中文乱码。
+
+**可能原因&解决方法**
+
+3.1.0a版本开始，文件传输命令支持参数路径包含中文，版本过低需要更新至最新版本。
+
+执行`hdc checkserver`命令检查当前版本，如果低于3.1.0a版本需自行升级SDK到API12或更高版本。
+
+### 执行hdc list targets显示“Unauthorized”
+
+**现象描述**
+
+使用`hdc list targets`命令查询已连接设备，连接设备标识后显示Unauthorized。
+
+**可能原因&解决方法**
+
+- 首次连接未授权：连接设备后解锁设备，屏幕显示“是否信任此设备？”窗口，点击“始终信任”或“信任”完成授权。
+
+- 授权窗口关闭或拒绝授权：设备侧授权窗口会在超时后关闭，或开发者在授权窗口点击“不信任”拒绝授权。需要再次授权可在设备侧 设置 > 系统 > 开发者选项 > USB调试/无线调试 中，关闭已开启的调试开关后再开启，屏幕显示“是否信任此设备？”窗口，点击“始终信任”或“信任”完成授权。
 
 ### 其他问题排查常用步骤
 

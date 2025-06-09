@@ -25,7 +25,7 @@ enable(isEnable: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| isEnable | boolean | 是 | 是否使能jsLeakWatcher。 |
+| isEnable | boolean | 是 | 是否使能jsLeakWatcher。true：使能jsleakwatcher；false：不使能jsleakwatcher。 |
 
 **示例：**
 

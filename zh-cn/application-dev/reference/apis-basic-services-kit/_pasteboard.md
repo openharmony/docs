@@ -64,7 +64,7 @@
 | OH_UdmfData \* [OH_Pasteboard_GetData](#oh_pasteboard_getdata) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard, int \*status) | 获取剪贴板中的数据。  |
 | int [OH_Pasteboard_SetData](#oh_pasteboard_setdata) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard, OH_UdmfData \*data) | 将统一数据对象数据写入剪贴板。  |
 | int [OH_Pasteboard_ClearData](#oh_pasteboard_cleardata) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard) | 清空剪贴板中的数据。  |
-| char ** [OH_Pasteboard_GetMimeTypes](#oh_pasteboard_getmimetypes) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard, unsigned int *count) | 获取剪切板中的MIME类型。  |
+| char ** [OH_Pasteboard_GetMimeTypes](#oh_pasteboard_getmimetypes) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard, unsigned int *count) | 获取剪贴板中的MIME类型。  |
 | [Pasteboard_GetDataParams](#pasteboard_getdataparams) *[OH_Pasteboard_GetDataParams_Create](#oh_pasteboard_getdataparams_create)(void) | 创建剪贴板[Pasteboard_GetDataParams](#pasteboard_getdataparams)指针及实例对象。 |
 | void [OH_Pasteboard_GetDataParams_Destroy](#oh_pasteboard_getdataparams_destroy)([Pasteboard_GetDataParams](#pasteboard_getdataparams)* params) | 销毁剪贴板[Pasteboard_GetDataParams](#pasteboard_getdataparams)实例对象。 |
 | void [OH_Pasteboard_GetDataParams_SetProgressIndicator](#oh_pasteboard_getdataparams_setprogressindicator)([Pasteboard_GetDataParams](#pasteboard_getdataparams)* params, [Pasteboard_ProgressIndicator](#pasteboard_progressindicator) progressIndicator) | 向剪贴板[Pasteboard_GetDataParams](#pasteboard_getdataparams)设置进度条指示选项，可选择是否采用系统默认进度显示。 |
@@ -74,7 +74,7 @@
 | int [OH_Pasteboard_ProgressInfo_GetProgress](#oh_pasteboard_progressinfo_getprogress)([Pasteboard_ProgressInfo](#pasteboard_progressinfo)* progressInfo) | 通过[Pasteboard_ProgressInfo](#pasteboard_progressinfo)获取粘贴进度。 |
 | void [OH_Pasteboard_ProgressCancel](#oh_pasteboard_progresscancel)([Pasteboard_GetDataParams](#pasteboard_getdataparams)* params) | 通过[Pasteboard_GetDataParams](#pasteboard_getdataparams)取消正在进行的拷贝粘贴任务。 |
 | OH_UdmfData* [OH_Pasteboard_GetDataWithProgress](#oh_pasteboard_getdatawithprogress)([OH_Pasteboard](#oh_pasteboard)* pasteboard, [Pasteboard_GetDataParams](#pasteboard_getdataparams)* params, int* status) | 获取剪贴板的数据以及粘贴进度，不支持对文件夹的拷贝。 |
-| uint32_t [OH_Pasteboard_GetChangeCount](#oh_pasteboard_getchangecount) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard) | 获取剪切板内容的变化次数。  |
+| uint32_t [OH_Pasteboard_GetChangeCount](#oh_pasteboard_getchangecount) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard) | 获取剪贴板内容的变化次数。  |
 
 
 ## 类型定义说明
@@ -402,13 +402,13 @@ OH_UdmfData* OH_Pasteboard_GetData (OH_Pasteboard * pasteboard, int * status )
 
 **返回：**
 
-执行成功时返回统一数据对象[OH_UdmfData](../apis-arkdata/_u_d_m_f.md#oh_udmfdata)实例的指针。否则返回空指针。
+执行成功时返回统一数据对象[OH_UdmfData](../apis-arkdata/capi-oh-udmfdata.md)实例的指针。否则返回空指针。
 
 **参见：**
 
 [OH_Pasteboard](#oh_pasteboard)
 
-[OH_UdmfData](../apis-arkdata/_u_d_m_f.md#oh_udmfdata)
+[OH_UdmfData](../apis-arkdata/capi-oh-udmfdata.md)
 
 [PASTEBOARD_ErrCode](#pasteboard_errcode)
 
@@ -546,7 +546,7 @@ int OH_Pasteboard_SetData (OH_Pasteboard * pasteboard, OH_UdmfData * data )
 | 名称 | 描述 |
 | -------- | -------- |
 | pasteboard | 表示指向剪贴板[OH_Pasteboard](#oh_pasteboard)实例的指针。  |
-| data | 表示指向统一数据对象[OH_UdmfData](../apis-arkdata/_u_d_m_f.md#oh_udmfdata)实例的指针。  |
+| data | 表示指向统一数据对象[OH_UdmfData](../apis-arkdata/capi-oh-udmfdata.md)实例的指针。  |
 
 **返回：**
 
@@ -556,7 +556,7 @@ int OH_Pasteboard_SetData (OH_Pasteboard * pasteboard, OH_UdmfData * data )
 
 [OH_Pasteboard](#oh_pasteboard)
 
-[OH_UdmfData](../apis-arkdata/_u_d_m_f.md#oh_udmfdata)
+[OH_UdmfData](../apis-arkdata/capi-oh-udmfdata.md)
 
 [PASTEBOARD_ErrCode](#pasteboard_errcode)
 
@@ -716,7 +716,7 @@ char ** OH_Pasteboard_GetMimeTypes (OH_Pasteboard * pasteboard, unsigned int * c
 ```
 **描述：**
 
-获取剪切板中的MIME类型。
+获取剪贴板中的MIME类型。
 
 **起始版本：** 14
 
@@ -729,7 +729,7 @@ char ** OH_Pasteboard_GetMimeTypes (OH_Pasteboard * pasteboard, unsigned int * c
 
 **返回：**
 
-执行成功时返回剪切板所有内容的MIME类型，否则返回nullptr。
+执行成功时返回剪贴板所有内容的MIME类型，否则返回nullptr。
 
 本接口返回对象的生命周期由入参对象pasteboard管理，应用调用[OH_Pasteboard_Destroy](#oh_pasteboard_destroy)销毁入参对象pasteboard时同步释放本接口返回的结果，不允许应用主动释放。
 
@@ -955,7 +955,7 @@ OH_UdmfData* OH_Pasteboard_GetDataWithProgress(OH_Pasteboard* pasteboard, Pasteb
 
 **返回：**
 
-执行成功时返回统一数据对象[OH_UdmfData](../apis-arkdata/_u_d_m_f.md#oh_udmfdata)实例的指针。否则返回空指针。
+执行成功时返回统一数据对象[OH_UdmfData](../apis-arkdata/capi-oh-udmfdata.md)实例的指针。否则返回空指针。
 
 **参见：**
 
@@ -968,9 +968,9 @@ uint32_t OH_Pasteboard_GetChangeCount(OH_Pasteboard *pasteboard);
 ```
 **描述：**
 
-获取剪切板内容的变化次数。
+获取剪贴板内容的变化次数。
 
-当剪切板内容过期或调用[OH_Pasteboard_ClearData](#oh_pasteboard_cleardata)等接口导致剪切板内容为空时，内容变化次数不会因此改变。
+当剪贴板内容过期或调用[OH_Pasteboard_ClearData](#oh_pasteboard_cleardata)等接口导致剪贴板内容为空时，内容变化次数不会因此改变。
 
 系统重启或剪贴板服务异常重启时，剪贴板内容变化次数重新从0开始计数。对同一内容连续多次复制会被视作多次更改，每次复制均会导致内容变化次数增加。
 
@@ -984,7 +984,7 @@ uint32_t OH_Pasteboard_GetChangeCount(OH_Pasteboard *pasteboard);
 
 **返回：**
 
-执行成功时返回剪切板内容的变化次数，否则返回0。
+执行成功时返回剪贴板内容的变化次数，否则返回0。
 
 **参见：**
 

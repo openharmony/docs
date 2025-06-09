@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 >  属性字符串目前不支持在worker线程中使用。
 
@@ -84,7 +84,7 @@ equals(other: StyledString): boolean
 
 ### subStyledString
 
-subStyledString(start: number , length?: number): StyledString
+subStyledString(start: number, length?: number): StyledString
 
 获取属性字符串的子字符串。
 
@@ -149,7 +149,24 @@ getStyles(start: number , length: number , styledKey?: StyledStringKey): Array\<
 
 static fromHtml(html: string): Promise\<StyledString>
 
-将HTML格式字符串转换成属性字符串，当前支持转换的HTML标签范围：\<p>、\<span>、\<img>。仅支持将这三种标签中的style属性样式转换成对应的属性字符串样式。
+将HTML格式字符串转换成属性字符串，当前支持转换的HTML标签范围：\<p>、\<span>、\<img>、\<br>、\<strong>、\<b>、\<a>、\<i>、\<em>、\<s>、\<u>、\<del>、\<sup>、\<sub>。支持将标签中的style属性样式转换成对应的属性字符串样式。
+
+| 标签名称 | 说明                   |
+|-------------|----------------------------|
+| \<p\>       | 段落，分隔文本段落         |
+| \<span\>    | 行内文本，支持样式设置     |
+| \<img\>     | 插入图片                   |
+| \<strong\>  | 加粗文本                   |
+| \<br\><sup>20+</sup>      | 换行                       |
+| \<b\><sup>20+</sup>       | 加粗文本                   |
+| \<a\><sup>20+</sup>       | 超链接                     |
+| \<i\><sup>20+</sup>       | 斜体文本                   |
+| \<em\><sup>20+</sup>      | 斜体文本                   |
+| \<s\><sup>20+</sup>       | 删除线（中划线）           |
+| \<u\><sup>20+</sup>       | 下划线                     |
+| \<del\><sup>20+</sup>     | 删除线（中划线）           |
+| \<sup\><sup>20+</sup>     | 上标文本                   |
+| \<sub\><sup>20+</sup>     | 下标文本                   |
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -169,11 +186,12 @@ static fromHtml(html: string): Promise\<StyledString>
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)和[属性字符串错误码](../errorcode-styled-string.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 170001 | Convert Error. |
 
 ### toHtml<sup>14+</sup>
 
@@ -552,10 +570,9 @@ TextShadowStyle | GestureStyle | ImageAttachment | ParagraphStyle | LineHeightSt
 | fontSize    | number                                   | 是   | 是   | 获取属性字符串的文本字体大小。<br/>单位：[fp](ts-pixel-units.md#像素单位) <br/>**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。 |
 | fontWeight  | number                                   | 是   | 是   | 获取属性字符串的文本字体粗细。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                           |
 | fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle) | 是   | 是   | 获取属性字符串的文本字体样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                           |
-| strokeWidth<sup>20+</sup> | number                                   | 是   | 是   | 获取属性字符串的文本描边宽度。<br/>默认返回0，单位为[px](ts-pixel-units.md#像素单位)。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
-| strokeColor<sup>20+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 是   | 是   | 获取属性字符串的文本描边颜色。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
+| strokeWidth<sup>20+</sup> | number                                   | 是   | 是   | 获取属性字符串的文本描边宽度。<br/>默认返回0，单位为[vp](ts-pixel-units.md#像素单位)。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
+| strokeColor<sup>20+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 是   | 是   | 获取属性字符串的文本描边颜色。<br/>默认返回字体颜色。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
 | superscript<sup>20+</sup> | [SuperscriptStyle](ts-text-common.md#superscriptstyle20枚举说明)  | 是   | 是   | 获取属性字符串的文本上下角标。<br/>默认值：SuperscriptStyle.NORMAL。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
-
 
 ### constructor
 
@@ -584,8 +601,8 @@ constructor(value?: TextStyleInterface)
 | fontSize    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)    | 否   | 字体大小。如果LengthMetrics的unit值是percent，当前设置不生效，处理为16fp。<br/>单位：[fp](ts-pixel-units.md#像素单位) <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                        |
 | fontWeight  | number\| [FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | 字体粗细。<br/>number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle)                      | 否   | 字体样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                  |
-| strokeWidth<sup>20+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)    | 否   | 文本描边宽度。如果LengthMetrics的unit值是percent，当前设置不生效，处理为0px。<br/>设置值小于0时为实心字，大于0时为空心字。默认值为0，单位为[px](ts-pixel-units.md#像素单位)。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                                                                                                                                                      |
-| strokeColor<sup>20+</sup> | [ResourceColor](ts-types.md#resourcecolor)                       | 否   | 文本描边颜色。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                              |
+| strokeWidth<sup>20+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)    | 否   | 文本描边宽度。如果LengthMetrics的unit值是percent，当前设置不生效，处理为0。<br/>设置值小于0时为实心字，大于0时为空心字。<br/>默认值为0。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                                                                                                                                                      |
+| strokeColor<sup>20+</sup> | [ResourceColor](ts-types.md#resourcecolor)                       | 否   | 文本描边颜色。<br/>默认值为字体颜色，设置异常值时取字体颜色。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                              |
 | superscript<sup>20+</sup> | [SuperscriptStyle](ts-text-common.md#superscriptstyle20枚举说明)                       | 否   | 文本上下角标。<br/>默认值：SuperscriptStyle.NORMAL。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                              |
 
 ## GestureStyle
@@ -997,7 +1014,7 @@ abstract onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
 | context | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | 是   | 图形绘制上下文。<br/>**说明：** <br/>DrawContext的canvas方法获取的画布是Text组件的画布，绘制时不会超出Text组件的范围。 |
 | drawInfo | [CustomSpanDrawInfo](#customspandrawinfo对象说明) | 是   | 自定义绘制Span的绘制信息。 |
 
-### invalidate<sup>13+<sup>
+### invalidate<sup>13+</sup>
 
 invalidate(): void
 
@@ -1481,14 +1498,16 @@ struct styled_string_demo3 {
     fontSize: LengthMetrics.vp(20),
     fontWeight: FontWeight.Bolder,
     fontStyle: FontStyle.Italic,
-    fontFamily: "Arial"
+    fontFamily: "Arial",
+    superscript: SuperscriptStyle.SUPERSCRIPT
   });
   fontStyleAttr3: StyledStringValue = new TextStyle({
     fontColor: Color.Orange,
     fontSize: LengthMetrics.vp(20),
     fontWeight: FontWeight.Lighter,
     fontStyle: FontStyle.Italic,
-    fontFamily: "Arial"
+    fontFamily: "Arial",
+    superscript: SuperscriptStyle.SUBSCRIPT
   });
   // 创建多重TextStyle样式的对象mutableStyledString1
   mutableStyledString1: MutableStyledString = new MutableStyledString("运动45分钟", [{
@@ -1593,6 +1612,7 @@ struct styled_string_demo3 {
                   console.info('mutableStyledString1 fontWeight:' + fontAttr.fontWeight);
                   console.info('mutableStyledString1 fontStyle:' + fontAttr.fontStyle);
                   console.info('mutableStyledString1 fontStyle:' + fontAttr.fontFamily);
+                  console.info('mutableStyledString1 superscript:' + fontAttr.superscript);
                 }
               }
             }
@@ -2389,10 +2409,217 @@ struct styled_string_demo11 {
 
 ![](figures/styledString_11.gif)
 
+### 示例12（属性字符串的文本描边）
 
+该示例通过设置strokeWidth和strokeColor接口实现属性字符串的文本描边。
 
+``` ts
+// xxx.ets
+import { LengthMetrics } from '@kit.ArkUI';
 
+@Entry
+@Component
+struct styled_string_demo12 {
+  @State string1: string = "Hello";
+  spanStyle: SpanStyle = {
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.FONT,
+    styledValue: new TextStyle({
+      fontColor: '#ff2787d9',
+      strokeWidth: LengthMetrics.px(-5),
+      strokeColor: Color.Black,
+      fontWeight: FontWeight.Bolder,
+      fontSize: LengthMetrics.px(100)
+    })
+  };
+  spanStyle1: SpanStyle = {
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.FONT,
+    styledValue: new TextStyle({
+      fontColor: '#ff2787d9',
+      strokeWidth: LengthMetrics.px(5),
+      strokeColor: Color.Black,
+      fontWeight: FontWeight.Bolder,
+      fontSize: LengthMetrics.px(100)
+    })
+  };
 
+  mutableStyledString: MutableStyledString = new MutableStyledString(this.string1, []);
+  controller: TextController = new TextController();
 
+  mutableStyledString1: MutableStyledString = new MutableStyledString(this.string1, []);
+  controller1: TextController = new TextController();
 
+  async onPageShow() {
+    this.mutableStyledString.setStyle(this.spanStyle)
+    this.controller.setStyledString(this.mutableStyledString);
+
+    this.mutableStyledString1.setStyle(this.spanStyle1)
+    this.controller1.setStyledString(this.mutableStyledString1);
+  }
+
+  build() {
+    Column() {
+      //实心字
+      Text(undefined, { controller: this.controller })
+        .margin({ top: 10, bottom: 50 })
+        .draggable(true)
+        .onDragStart(() => {
+        })
+      //空心字
+      Text(undefined, { controller: this.controller1 })
+        .margin({ top: 10, bottom: 50 })
+        .draggable(true)
+        .onDragStart(() => {
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![](figures/styledString_12.png)
+
+### 示例13（fromHtml和toHtml互相转换）
+
+该示例通过fromHtml、toHtml接口，将HTML中b、strong、em、i、u、del、s、a、sub、sup标签及其style属性中的background-color转换为属性字符串并转回HTML。
+
+``` ts
+// xxx.ets
+@Entry
+@Component
+struct HtmlSpanStringDemo {
+  @State html: string = "<p>This is <b>b</b> <strong>strong</strong> <em>em</em> <i>i</i> <u>u</u> <del>del</del> <s>s</s> <span style = \"foreground-color:blue\"> <a href='https://www.example.com'>www.example</a> </span> <span style=\"background-color: red;\">red span</span> <sup>superscript</sup> and <sub>subscript</sub></p>";
+  @State spanString: StyledString | undefined = undefined;
+  @State resultText: string = ""; // 保存结果文本的状态
+  controller: TextController = new TextController;
+
+  build() {
+    Column() {
+      // 显示转换后的spanString
+      Text(undefined, { controller: this.controller }).height(100)
+
+      // TextArea显示每个步骤的结果
+      TextArea({ text: this.html })
+        .width("100%")
+        .height(100)
+        .margin(5)
+
+      // 按钮1:将HTML转换为SpanString
+      Button("将HTML转换为SpanString").onClick(async () => {
+        this.spanString = await StyledString.fromHtml(this.html);
+        this.controller.setStyledString(this.spanString);
+        this.resultText = "Converted HTML to SpanString successfully.";
+      }).margin(5)
+
+      // 按钮2:将SpanString转换为HTML
+      Button("将SpanString转换为HTML").onClick(() => {
+        if (this.spanString) {
+          // 将spanString转换为HTML并替换当前的HTML状态
+          const newHtml = StyledString.toHtml(this.spanString);
+          if (newHtml !== this.html) { // 通过检查内容是否已经相同来防止重复
+            this.html = newHtml;
+          }
+          this.resultText = "Converted SpanString to HTML successfully.";
+        } else {
+          this.resultText = "SpanString is undefined.";
+        }
+      }).margin(5)
+
+      // 按钮3:将HTML转换回SpanString
+      Button("将HTML转换回SpanString").onClick(async () => {
+        this.spanString = await StyledString.fromHtml(this.html);
+        this.controller.setStyledString(this.spanString);
+        this.resultText = "Converted HTML back to SpanString successfully.";
+      }).margin(5)
+
+      // 重置：重置HTML和SpanString
+      Button("重置").onClick(() => {
+        this.html = "<p>This is <b>b</b> <strong>strong</strong> <em>em</em> <i>i</i> <u>u</u> <del>del</del> <s>s</s> <span style = \"foreground-color:blue\"> <a href='https://www.example.com'>www.example</a> </span> <span style=\"background-color: red;\">red span</span> <sup>superscript</sup> and <sub>subscript</sub></p>";
+        this.spanString = undefined;
+        this.controller.setStyledString(new StyledString("")); // 使用空的StyledString实例
+        this.resultText = "Reset HTML and SpanString successfully.";
+      }).margin(5)
+    }.width("100%").padding(20)
+  }
+}
+```
+
+![](figures/styledString_13.gif)
+
+### 示例14（多装饰线与加粗装饰线）
+
+该示例通过enableMultiType、thicknessScale接口，实现多装饰线显示与加粗装饰线的效果。
+
+``` ts
+// xxx.ets
+import { LengthMetrics } from '@kit.ArkUI'
+@Entry
+@Component
+struct Index {
+  @State styledString : StyledString | undefined = undefined
+  controller : TextController = new TextController
+  thickness: number = 2.0
+  mutableStyledString1: MutableStyledString = new MutableStyledString("1234567890", [
+    {
+      start: 0,
+      length: 10,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({ fontColor: Color.Orange, fontSize: LengthMetrics.vp(30) })
+    },
+    {
+      start: 0,
+      length: 4,
+      styledKey: StyledStringKey.DECORATION,
+      styledValue: new DecorationStyle({type: TextDecorationType.LineThrough, thicknessScale: this.thickness}, {enableMultiType: true})
+    },
+    {
+      start: 2,
+      length: 5,
+      styledKey: StyledStringKey.DECORATION,
+      styledValue: new DecorationStyle({type: TextDecorationType.Underline, thicknessScale: this.thickness}, {enableMultiType: true})
+    },
+    {
+      start: 0,
+      length: 4,
+      styledKey: StyledStringKey.DECORATION,
+      styledValue: new DecorationStyle({type: TextDecorationType.Overline, thicknessScale: this.thickness}, {enableMultiType: true})
+    },
+    {
+      start: 6,
+      length: 2,
+      styledKey: StyledStringKey.DECORATION,
+      styledValue: new DecorationStyle({type: TextDecorationType.LineThrough})
+    },
+    {
+      start: 7,
+      length: 2,
+      styledKey: StyledStringKey.DECORATION,
+      styledValue: new DecorationStyle({type: TextDecorationType.LineThrough, color: Color.Green}, {enableMultiType: true})
+    },
+    {
+      start: 8,
+      length: 2,
+      styledKey: StyledStringKey.DECORATION,
+      styledValue: new DecorationStyle({type: TextDecorationType.Overline, color: Color.Green}, {enableMultiType: true})
+    }
+  ]);
+  build() {
+    Column({ space:3 }) {
+      Text(undefined, { controller: this.controller })
+        .height(100)
+        .copyOption(CopyOptions.LocalDevice)
+        .onAppear(()=>{
+          this.styledString = this.mutableStyledString1
+          this.controller.setStyledString(this.mutableStyledString1)
+        })
+    }.width("100%")
+  }
+}
+```
+
+![](figures/styledString_14.png)
 

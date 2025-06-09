@@ -34,7 +34,7 @@ Defines the status of the operating hand.
 
 Subscribes to operating hand change events.
 
-**Required permissions**: ohos.permission.ACTIVITY_MOTION
+**Required permissions**: ohos.permission.ACTIVITY_MOTION or ohos.permission.DETECT_GESTURE
 
 **System capability**: SystemCapability.MultimodalAwareness.Motion
 
@@ -55,7 +55,7 @@ For details about the error codes, see [Motion Awareness Error Codes](errorcode-
 | 401      | Parameter error. Parameter verification failed. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
 | 31500001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception; 2. N-API invocation exception, invalid N-API status. |
-| 31500002 | Subscribe Failed. Possible causes: 1. Callback registration failure; 2. Failed to bind native object to js wrapper; 3. N-API invocation exception, invalid N-API status; 4. IPC request exception. |
+| 31500002 | Subscription failed. Possible causes: 1. Callback registration failure; 2. Failed to bind native object to js wrapper; 3. N-API invocation exception, invalid N-API status; 4. IPC request exception. |
 
 **Example**
 
@@ -83,7 +83,7 @@ off(type: 'operatingHandChanged', callback?: Callback&lt;OperatingHandStatus&gt;
 
 Unsubscribes from operating hand change events.
 
-**Required permissions**: ohos.permission.ACTIVITY_MOTION
+**Required permissions**: ohos.permission.ACTIVITY_MOTION or ohos.permission.DETECT_GESTURE
 
 **System capability**: SystemCapability.MultimodalAwareness.Motion
 
@@ -104,7 +104,7 @@ For details about the error codes, see [Motion Awareness Error Codes](errorcode-
 | 401      | Parameter error. Parameter verification failed. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
 | 31500001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception; 2. N-API invocation exception, invalid N-API status. |
-| 31500003 | Unsubscribe Failed. Possible causes: 1. Callback removal failure; 2. N-API invocation exception, invalid N-API status; 3. IPC request exception. |
+| 31500003 | Unsubscription failed. Possible causes: 1. Callback failure; 2. N-API invocation exception, invalid N-API status; 3. IPC request exception. |
 
 **Example**
 
@@ -128,7 +128,7 @@ getRecentOperatingHandStatus(): OperatingHandStatus;
 
 Obtains the latest operating hand status.
 
-**Required permissions**: ohos.permission.ACTIVITY_MOTION
+**Required permissions**: ohos.permission.ACTIVITY_MOTION or ohos.permission.DETECT_GESTURE
 
 **System capability**: SystemCapability.MultimodalAwareness.Motion
 

@@ -13,9 +13,9 @@ XML模块提供XmlPullParser类解析XML文本，输入为含有XML文本的Arra
 | -------- | -------- | -------- | -------- |
 | supportDoctype | boolean | 否 | 是否解析文档类型，false表示不解析文档类型，true表示解析文档类型，默认false。 |
 | ignoreNameSpace | boolean | 否 | 是否忽略命名空间，忽略命名空间后，将不会对其进行解析。true表示忽略命名空间，false表示不忽略命名空间，默认false。|
-| tagValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否 | 获取tagValue回调函数，打印标签及标签值。默认为null，表示不解析XML标签和标签值。 |
-| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否 | 获取attributeValue回调函数，打印属性及属性值。默认为null，表示不解析XML属性和属性值。 |
-| tokenValueCallbackFunction | (eventType: EventType, value: ParseInfo) =&gt; boolean | 否 | 获取tokenValue回调函数，打印标签事件类型及parseInfo对应属性。默认为null，表示不解析XML事件类型。 |
+| tagValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否 | 获取tagValue回调函数，打印标签及标签值。默认为undefined，表示不解析XML标签和标签值。 |
+| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否 | 获取attributeValue回调函数，打印属性及属性值。默认为undefined，表示不解析XML属性和属性值。 |
+| tokenValueCallbackFunction | (eventType: EventType, value: ParseInfo) =&gt; boolean | 否 | 获取tokenValue回调函数，打印标签事件类型及parseInfo对应属性。默认为undefined，表示不解析XML事件类型。 |
 
 
 ## 注意事项

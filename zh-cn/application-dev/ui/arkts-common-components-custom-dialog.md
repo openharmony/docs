@@ -5,7 +5,9 @@ CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件�
 > 
 > 当前，ArkUI弹出框默认为非页面级弹出框，在页面路由跳转时，如果开发者未调用close方法将其关闭，弹出框将不会自动关闭。若需实现在跳转页面时覆盖弹出框的场景，可以使用[组件导航子页面显示类型的弹窗类型](arkts-navigation-navigation.md#页面显示类型)或者[页面级弹出框](arkts-embedded-dialog.md)。
 
-弹出框（CustomDialog）可以通过配置[isModal](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontrolleroptions对象说明)来实现模态和非模态弹窗。isModal为true的时候，弹出框为模态弹窗。isModal为false时，弹出框为非模态弹窗。
+默认为模态弹窗且有蒙层，不可与蒙层下方控件进行交互（不支持点击和手势等向下透传）。可以通过配置[isModal](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontrolleroptions对象说明)来实现模态和非模态弹窗，详细说明可参考[弹窗的种类](arkts-dialog-overview.md#弹窗的种类)。
+
+当isModal为true时，弹出框为模态弹窗，且弹窗周围的蒙层区不支持透传。isModal为false时，弹出框为非模态弹窗，且弹窗周围的蒙层区可以透传。因此如果需要同时允许弹出框的交互和弹出框外页面的交互行为，需要将弹出框设置为非模态。
 
 ## 创建自定义弹出框
 
@@ -62,7 +64,7 @@ CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件�
 
 弹出框可用于数据交互，完成用户一系列响应操作。
 
-1. 在\@CustomDialog装饰器内添加按钮，同时添加数据函数。
+1. 在\@CustomDialog装饰器内添加按钮和数据函数。
    
    ```ts
    @CustomDialog
@@ -319,7 +321,7 @@ struct CustomDialogUser {
 
 ## 弹出框的样式
 
-弹出框通过定义宽度、高度、背景色、阴影等参数来控制样式。
+通过定义弹出框的宽度、高度、背景色、阴影等参数，控制其样式。
 
 ```ts
 @CustomDialog
@@ -486,6 +488,103 @@ struct CustomDialogUser {
 ![nested_dialog](figures/nested_dialog.gif)
 
 由于自定义弹出框在状态管理侧有父子关系，如果将第二个弹出框定义在第一个弹出框内，那么当父组件（第一个弹出框）被销毁（关闭）时，子组件（第二个弹出框）内无法再继续创建新的组件。
+
+## 实现弹出框的物理返回拦截
+
+执行点击遮障层关闭、侧滑（左滑或右滑）、三键Back、键盘ESC关闭等交互操作时，如果注册了[onWillDismiss](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontrolleroptions对象说明)回调函数，弹出框不会立即关闭。在回调函数中，通过[reason](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#dismissdialogaction12)获取阻拦关闭弹出框的操作类型，根据原因决定是否关闭弹出框。
+
+```ts
+@CustomDialog
+struct CustomDialogExample {
+  cancel: () => void = () => {
+  }
+  confirm: () => void = () => {
+  }
+  controller?: CustomDialogController;
+
+  build() {
+    Column() {
+      Text('Are you sure?')
+        .fontSize(20)
+        .margin({
+          top: 10,
+          bottom: 10
+        })
+      Row() {
+        Button('cancel')
+          .onClick(() => {
+            if (this.controller != undefined) {
+              this.controller.close();
+            }
+          })
+          .backgroundColor(0xffffff)
+          .fontColor(Color.Black)
+        Button('confirm')
+          .onClick(() => {
+            if (this.controller != undefined) {
+              this.controller.close();
+            }
+          })
+          .backgroundColor(0xffffff)
+          .fontColor(Color.Red)
+      }
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
+      .margin({ bottom: 10 })
+    }
+  }
+}
+
+@Entry
+@Component
+struct InterceptCustomDialog {
+  dialogController: CustomDialogController = new CustomDialogController({
+    builder: CustomDialogExample({
+      cancel: () => {
+        this.onCancel();
+      },
+      confirm: () => {
+        this.onAccept();
+      }
+    }),
+    onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+      console.log('dialog onWillDismiss reason: ' + dismissDialogAction.reason);
+      // 1、PRESS_BACK    点击三键back、侧滑（左滑/右滑）、键盘ESC。
+      // 2、TOUCH_OUTSIDE    点击遮障层时
+      // 3、CLOSE_BUTTON    点击关闭按钮
+      if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
+        // 处理业务逻辑后通过dismiss主动关闭对话框
+        // dismissDialogAction.dismiss();
+      }
+      if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
+        // dismissDialogAction.dismiss();
+      }
+    },
+    alignment: DialogAlignment.Bottom,
+    offset: { dx: 0, dy: -20 }
+  })
+
+  onCancel() {
+    console.info('Callback when the first button is clicked');
+  }
+
+  onAccept() {
+    console.info('Callback when the second button is clicked');
+  }
+
+  build() {
+    Column() {
+      Button('click me')
+        .onClick(() => {
+          this.dialogController.open();
+        })
+    }
+    .width('100%')
+  }
+}
+```
+
+![onWillDismiss_dialog](figures/onWillDismiss_dialog.gif)
 
 ## 相关实例
 

@@ -62,8 +62,8 @@ export const coerceToBool: <T>(data: T) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.coerceToBool<number>(0);
 let str = testNapi.coerceToBool<string>('111111111');
@@ -112,8 +112,8 @@ export const coerceToNumber: <T>(data: T) => number;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.coerceToNumber<string>('2556');
 let str = testNapi.coerceToNumber<string>('sssss');
@@ -157,8 +157,8 @@ export const coerceToObject: <T>(data: T) => Object;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.coerceToObject<string>('222222');
 let result = testNapi.coerceToObject<number>(111);
@@ -202,8 +202,8 @@ export const coerceToString: <T>(data: T) => string;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.coerceToString<number>(212);
 let obj = new Object();
@@ -252,8 +252,8 @@ export const getBoolean: <T>(data: T, value: String) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.getBoolean<number>(1, '1');
 let data = testNapi.getBoolean<string>('sss', '1');
@@ -298,8 +298,8 @@ export const getValueBool: (value: boolean | string) => boolean | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 // 分别传入布尔值和非布尔值检测接口,传入布尔值将返回原布尔值,传入其他类型返回undefined
 hilog.info(0x0000, 'Node-API', 'get_value_bool_not_bool %{public}s', testNapi.getValueBool('你好123'));
@@ -335,8 +335,8 @@ export const getGlobal: () => Object;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let globalObj = testNapi.getGlobal();
 // 判断获取的global是否具有global的自身属性
@@ -370,8 +370,8 @@ export const getNull: () => null;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.getNull();
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_null:%{public}s', value);
@@ -416,8 +416,8 @@ export const getUndefined: (value: undefined) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let data: undefined = undefined;
 let value = testNapi.getUndefined(data);

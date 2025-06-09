@@ -3232,7 +3232,7 @@ When the decoded output stream<!--RP2--><!--RP2End--> changes, the height can be
 
 The width and height parsed from the **OH_AVFormat** instance are aligned, which are different from **OH_MD_KEY_WIDTH** and **OH_MD_KEY_HEIGHT** set by calling **Configure**.
 
-For details about the image arrangement and usage examples of **width**, **height**, **wStride**, and **hStride**, see step 8 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md#buffer-input) or step 10 in buffer mode in [Video Decoding](../../media/avcodec/video-decoding.md#buffer-output).
+For details about the image arrangement and usage examples of **width**, **height**, **wStride**, and **hStride**, see step 8 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md#buffer-input) or step 11 in buffer mode in [Video Decoding](../../media/avcodec/video-decoding.md#buffer-output).
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -3255,7 +3255,7 @@ When the decoded output stream<!--RP2--><!--RP2End--> changes, the width can be 
 
 The width and height parsed from the **OH_AVFormat** instance are aligned, which are different from **OH_MD_KEY_WIDTH** and **OH_MD_KEY_HEIGHT** set by calling **Configure**.
 
-For details about the image arrangement and usage examples of **width**, **height**, **wStride**, and **hStride**, see step 8 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md#buffer-input) or step 10 in buffer mode in [Video Decoding](../../media/avcodec/video-decoding.md#buffer-output).
+For details about the image arrangement and usage examples of **width**, **height**, **wStride**, and **hStride**, see step 8 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md#buffer-input) or step 11 in buffer mode in [Video Decoding](../../media/avcodec/video-decoding.md#buffer-output).
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -3277,7 +3277,7 @@ The height of the U/V plane can be calculated based on the color format, but it 
 
 For details, see step 3 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md#buffer-input).
 
-For details about the image arrangement and usage examples of **width**, **height**, **wStride**, and **hStride**, see step 8 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md#buffer-input) or step 10 in buffer mode in [Video Decoding](../../media/avcodec/video-decoding.md#buffer-output).
+For details about the image arrangement and usage examples of **width**, **height**, **wStride**, and **hStride**, see step 8 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md#buffer-input) or step 11 in buffer mode in [Video Decoding](../../media/avcodec/video-decoding.md#buffer-output).
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -3299,7 +3299,7 @@ For the YUV420 format, the stride corresponds to the Y plane. The stride of the 
 
 For details, see step 3 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md#buffer-input).
 
-For details about the image arrangement and usage examples of **width**, **height**, **wStride**, and **hStride**, see step 8 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md#buffer-input) or step 10 in buffer mode in [Video Decoding](../../media/avcodec/video-decoding.md#buffer-output).
+For details about the image arrangement and usage examples of **width**, **height**, **wStride**, and **hStride**, see step 8 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md#buffer-input) or step 11 in buffer mode in [Video Decoding](../../media/avcodec/video-decoding.md#buffer-output).
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 

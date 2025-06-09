@@ -418,7 +418,7 @@ libnative_rdb_ndk.z.so
     // Do something.
     }
     const Rdb_ProgressObserver observer = { .context = nullptr, .callback = RdbProgressObserverCallback };
-OH_Rdb_SubscribeAutoSyncProgress(store_, &observer);
+    OH_Rdb_SubscribeAutoSyncProgress(store_, &observer);
     ```
     
 13. Unsubscribe from the auto sync progress from an RDB store. After that, the callback will not be invoked to process the observation. 

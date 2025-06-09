@@ -1,4 +1,4 @@
-# @ohos.app.ability.autoFillManager (autoFillManager)
+# @ohos.app.ability.autoFillManager (自动填充框架)
 
 autoFillManager模块提供账号密码保存等功能。
 
@@ -20,7 +20,7 @@ import { autoFillManager } from '@kit.AbilityKit';
 
 当保存请求完成时所触发的回调接口。
 
-### AutoSaveCallback.onSuccess
+### onSuccess
 
 onSuccess(): void
 
@@ -32,9 +32,9 @@ onSuccess(): void
 
 **示例：**
 
-参见[AutoSaveCallback.onFailure](#autosavecallbackonfailure)。
+参见[AutoSaveCallback.onFailure](#onfailure)。
 
-### AutoSaveCallback.onFailure
+### onFailure
 
 onFailure(): void
 

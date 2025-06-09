@@ -1,6 +1,6 @@
 # 指定二进制数据转换对称密钥(ArkTS)
 
-以3DES和HMAC为例，根据指定的对称密钥二进制数据，生成密钥（SymKey），即将外部或存储的二进制数据转换为算法库的密钥对象，该对象可用于后续的加解密等操作。
+以3DES和HMAC为例，根据指定的对称密钥二进制数据，生成对称密钥对象（SymKey），即将外部或存储的二进制数据转换为算法库的密钥对象，该对象可用于后续的加解密等操作。
 
 ## 指定二进制数据转换3DES密钥
 
@@ -10,7 +10,7 @@
 
 2. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)，指定字符串参数'3DES192'，创建密钥算法为3DES、密钥长度为192位的对称密钥生成器（SymKeyGenerator）。
 
-3. 调用[SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1)，根据指定的对称密钥二进制数据，生成对称密钥对象（SymKey）。
+3. 调用[SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1)，根据指定的对称密钥二进制数据生成对称密钥对象（SymKey）。
 
 4. 调用[SymKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded)，获取密钥对象的二进制数据。
 
@@ -43,7 +43,7 @@
         }
         console.info('key algName:' + key.algName);
         console.info('key format:' + key.format);
-        let encodedKey = key.getEncoded(); // 获取对称密钥的二进制数据，并以字节数组形式输出。长度为24字节。
+        let encodedKey = key.getEncoded(); // 获取对称密钥对象的二进制数据，并以字节数组形式输出。长度为24字节。
         console.info('key getEncoded hex: ' + encodedKey.data);
       })
     } catch (error) { // 参数检查发现错误立即抛出异常。
@@ -72,31 +72,31 @@
     // 根据指定的数据生成对称密钥。
     let keyMaterialBlob = genKeyMaterialBlob();
     let key = symKeyGenerator.convertKeySync(keyMaterialBlob);
-    let encodedKey = key.getEncoded(); // 获取对称密钥的二进制数据，并以字节数组形式输出。长度为24字节。
+    let encodedKey = key.getEncoded(); // 获取对称密钥对象的二进制数据，并以字节数组形式输出。长度为24字节。
     console.info('key getEncoded hex' + encodedKey.data);
   }
   ```
 
 ## 指定二进制数据转换HMAC密钥
 
-对应的算法规格请查看[对称密钥生成和转换规格：HMAC](crypto-sym-key-generation-conversion-spec.md#hmac)。
+请查看[对称密钥生成和转换规格：HMAC](crypto-sym-key-generation-conversion-spec.md#hmac)。
 
-1. 获取HMAC二进制密钥，封装成DataBlob对象。
+1. 获取HMAC二进制密钥并封装成DataBlob对象。
 
 2. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)，指定字符串参数'HMAC'，创建密钥算法为HMAC、密钥长度为[1, 32768]位的对称密钥生成器（SymKeyGenerator）。
 
 3. 调用[SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1)，根据指定的对称密钥二进制数据，生成对称密钥对象（SymKey）。
 
-4. 调用[SymKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded)，获取密钥对象的二进制数据。
+4. 调用[SymKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded)，获取密钥的二进制数据。
 
-- 以使用await方式生成HMAC密钥为例：
+- 以生成HMAC密钥为例，使用await方式：
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
   async function testConvertHmacKey() {
-    // 对称密钥长度为64字节，512比特。
+    // 对称密钥长度64字节，512比特。
     let keyMessage = '12345678abcdefgh12345678abcdefgh12345678abcdefgh12345678abcdefgh';
     let keyBlob: cryptoFramework.DataBlob = {
       data : new Uint8Array(buffer.from(keyMessage, 'utf-8').buffer)
@@ -114,7 +114,7 @@
   import { buffer } from '@kit.ArkTS';
 
   function testConvertKeySync() {
-    // 对称密钥长度为64字节，512比特。
+    // 对称密钥长度64字节，512比特。
     let keyMessage = '12345678abcdefgh12345678abcdefgh12345678abcdefgh12345678abcdefgh';
     let keyBlob: cryptoFramework.DataBlob = {
       data : new Uint8Array(buffer.from(keyMessage, 'utf-8').buffer)

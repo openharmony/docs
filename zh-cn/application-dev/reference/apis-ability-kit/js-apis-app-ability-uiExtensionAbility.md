@@ -14,7 +14,11 @@ UIExtensionAbility是特定场景下带界面扩展能力的基类，继承自[E
 import { UIExtensionAbility } from '@kit.AbilityKit';
 ```
 
-## 属性
+## UIExtensionAbility
+
+表示特定场景下带界面扩展能力的基类，新增带界面扩展能力相关的属性和方法。
+
+### 属性
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -22,7 +26,7 @@ import { UIExtensionAbility } from '@kit.AbilityKit';
 | -------- | -------- | -------- | -------- | -------- |
 | context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | 否 | 否 | UIExtensionAbility的上下文。 |
 
-## UIExtensionAbility.onCreate
+### onCreate
 
 onCreate(launchParam: AbilityConstant.LaunchParam): void
 
@@ -49,7 +53,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionAbility.onSessionCreate
+### onSessionCreate
 
 onSessionCreate(want: Want, session: UIExtensionContentSession): void
 
@@ -78,7 +82,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionAbility.onSessionDestroy
+### onSessionDestroy
 
 onSessionDestroy(session: UIExtensionContentSession): void
 
@@ -106,7 +110,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionAbility.onForeground
+### onForeground
 
 onForeground(): void
 
@@ -128,7 +132,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionAbility.onBackground
+### onBackground
 
 onBackground(): void
 
@@ -150,20 +154,20 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionAbility.onDestroy
+### onDestroy
 
 onDestroy(): void | Promise&lt;void&gt;
+
+UIExtensionAbility生命周期回调，在销毁时回调，执行资源清理等操作。
+在执行完onDestroy生命周期回调后，应用可能会退出，从而可能导致onDestroy中的异步函数未能正确执行，比如异步写入数据库。可以使用异步生命周期，以确保异步onDestroy完成后再继续后续的生命周期。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
 | Promise\<void> | Promise对象。无返回结果的Promise对象。                            |
-
-UIExtensionAbility生命周期回调，在销毁时回调，执行资源清理等操作。
-在执行完onDestroy生命周期回调后，应用可能会退出，从而可能导致onDestroy中的异步函数未能正确执行，比如异步写入数据库。可以使用异步生命周期，以确保异步onDestroy完成后再继续后续的生命周期。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **示例：**
 

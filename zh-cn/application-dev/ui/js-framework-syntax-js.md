@@ -74,7 +74,7 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
 - 页面对象
   | 属性     | 类型            | 描述                                                         |
   | -------- | --------------- | ------------------------------------------------------------ |
-  | data     | Object/Function | 页面的数据模型，类型是对象或者函数，如果类型是函数，返回值必须是对象。属性名不能以\$或_开头，不要使用保留字for,&nbsp;if,&nbsp;show,&nbsp;tid。<br/>data与private和public不能重合使用。 |
+  | data     | Object/Function | 页面的数据模型，类型是对象或者函数，如果类型是函数，返回值必须是对象。属性名不能以\$或_开头，不要使用保留字for,&nbsp;if,&nbsp;show,&nbsp;tid。<br/>data字段不可与private/public字段同时使用。 |
   | $refs    | Object          | 持有注册过ref&nbsp;属性的DOM元素或子组件实例的对象。示例见[获取DOM元素](#获取dom元素)。 |
   | private  | Object          | 页面的数据模型，private下的数据属性只能由当前页面修改。      |
   | public   | Object          | 页面的数据模型，public下的数据属性的行为与data保持一致。     |
@@ -142,8 +142,8 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
   示例：
 
   ```js
-  this.$rootElement().scrollTo({position: 0})
-  this.$rootElement().scrollTo({id: 'id', duration: 200, timingFunction: 'ease-in', complete: ()=>void})
+  this.$rootElement().scrollTo({ position: 0 });
+  this.$rootElement().scrollTo({ id: 'id', duration: 200, timingFunction: 'ease-in', complete: () => void });
   ```
 
 

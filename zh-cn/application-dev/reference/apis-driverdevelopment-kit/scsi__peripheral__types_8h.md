@@ -7,6 +7,8 @@
 
 **引用文件：** &lt;scsi_peripheral/scsi_peripheral_types.h&gt;
 
+**库：** libscsi.z.so
+
 **系统能力：** SystemCapability.Driver.SCSI.Extension
 
 **起始版本：** 18

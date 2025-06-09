@@ -136,7 +136,7 @@ off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): v
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type     | string   | 是       | 取消监听的任务名称。 |
+  | type     | string   | 是       | 取消监听的任务名称。固定值：'mission'，表示系统任务状态监听器。 |
   | listenerId | number | 是 | 系统任务状态监器法的index值，和监听器一一对应，由on方法返回。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
@@ -234,7 +234,7 @@ off(type: 'mission', listenerId: number): Promise&lt;void&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type     | string   | 是       | 取消监听的任务名称。 |
+  | type     | string   | 是       | 取消监听的任务名称。固定值：'mission'，表示系统任务状态监听器。 |
   | listenerId | number | 是 | 系统任务状态监听器的index值，和监听器一一对应，由on方法返回。 |
 
 **返回值：**

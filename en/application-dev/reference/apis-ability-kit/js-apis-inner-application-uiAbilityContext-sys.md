@@ -73,7 +73,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -168,7 +167,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -271,7 +269,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -1042,7 +1039,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -1137,7 +1133,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -1234,7 +1229,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -1290,7 +1284,7 @@ Sets an icon for this ability in the mission. This API uses an asynchronous call
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | icon | image.PixelMap | Yes| Icon of the ability to set.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the setting is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1351,7 +1345,7 @@ Sets an icon for this ability in the mission. This API uses a promise to return 
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -1437,7 +1431,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 | 16000073 | The app clone index is invalid. |
 
@@ -1479,8 +1472,6 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt
 
 Starts an ability with the start options specified. If the ability has multiple instances, the latest instance is started.  This API uses an asynchronous callback to return the result. It can be called only by the main thread.
 
-
-
 > **NOTE**
 >
 > For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
@@ -1518,7 +1509,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 | 16000073 | The app clone index is invalid. |
 
@@ -1600,7 +1590,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 | 16000073 | The app clone index is invalid. |
 
@@ -1645,7 +1634,6 @@ export default class EntryAbility extends UIAbility {
 startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;
 
 Starts an ability with the account ID specified and obtains the caller object for communicating with the ability. This API can be called only by the main thread.
-
 This API cannot be used to start the UIAbility with the launch type set to [specified](../../application-models/uiability-launch-type.md#specified).
 
 Observe the following when using this API:
@@ -1791,7 +1779,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -1868,7 +1855,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -1955,7 +1941,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**

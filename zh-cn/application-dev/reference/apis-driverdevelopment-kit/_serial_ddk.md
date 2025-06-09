@@ -6,7 +6,7 @@ USB Serial DDK是为开发者提供的USB Serial DDK设备驱动程序开发套�
 
 在工业用途场景以及一些老旧设备上，常会使用到串口通信，如：发卡机、身份证读卡器等。通过USB Serial DDK提供的接口，开发者可以开发非标外设扩展驱动，实现USB串口设备的扩展功能。
 
-**系统能力：** SystemCapability.Driver.SERIAL.Extension
+**系统能力：** SystemCapability.Driver.UsbSerial.Extension
 
 **起始版本：** 18
 

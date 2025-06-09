@@ -18,7 +18,7 @@ Context获取方式请参考：[获取UIAbility的上下文信息](../../applica
 
 如需要在图库中看到所保存的图片、视频资源，需要将其保存到媒体库，保存方式请参考：[保存媒体库资源](../medialibrary/photoAccessHelper-savebutton.md)。
 
-需要在[photoOutput.on('photoAvailable')](../../reference/apis-camera-kit/js-apis-camera.md#onphotoavailable11)接口获取到buffer时，将buffer在安全控件中保存到媒体库。
+需要在[photoOutput.on('photoAvailable')](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#onphotoavailable11)接口获取到buffer时，将buffer在安全控件中保存到媒体库。
 ```ts
 import { camera } from '@kit.CameraKit';
 import { image } from '@kit.ImageKit';
@@ -28,7 +28,7 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
   //设置回调之后，调用photoOutput的capture方法，就会将拍照的buffer回传到回调中。
   photoOutput.on('photoAvailable', (errCode: BusinessError, photo: camera.Photo): void => {
     console.info('getPhoto start');
-    console.info(`err: ${errCode}`);
+    console.error(`err: ${errCode}`);
     if (errCode || photo === undefined) {
       console.error('getPhoto failed');
       return;

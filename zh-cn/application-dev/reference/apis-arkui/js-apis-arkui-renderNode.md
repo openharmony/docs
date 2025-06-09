@@ -1803,6 +1803,10 @@ draw(context: DrawContext): void
 
 绘制方法，需要开发者进行实现。该方法会在RenderNode进行绘制时被调用。
 
+> **说明：**
+>
+> RenderNode初始化时，会调用两次draw方法。第一次调用是在首次创建FrameNode时触发Render流程，第二次调用是在首次设置modifier时触发绘制。后续绘制流程皆由modifier触发。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1819,7 +1823,7 @@ ArkTS侧代码：
 
 ```ts
 // Index.ets
-import bridge from "libentry.so" // 该 so 由开发者通过 NAPI 编写并生成
+import bridge from "libentry.so"; // 该 so 由开发者通过 NAPI 编写并生成
 import { RenderNode, FrameNode, NodeController, DrawContext } from '@kit.ArkUI';
 
 class MyRenderNode extends RenderNode {
@@ -1986,7 +1990,7 @@ invalidate(): void
 **示例：**
 
 ```ts
-import bridge from "libentry.so" // 该 so 由开发者通过 NAPI 编写并生成
+import bridge from "libentry.so"; // 该 so 由开发者通过 NAPI 编写并生成
 import { RenderNode, FrameNode, NodeController, DrawContext } from '@kit.ArkUI';
 
 class MyRenderNode extends RenderNode {

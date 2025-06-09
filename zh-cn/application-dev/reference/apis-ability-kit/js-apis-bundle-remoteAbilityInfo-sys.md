@@ -14,7 +14,7 @@ remoteAbility信息。
 
 > 从API version 9开始不再维护，建议使用[bundleManager-RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md#remoteabilityinfo)替代。
 
- **系统能力:** SystemCapability.BundleManager.DistributedBundleFramework
+ **系统能力：** SystemCapability.BundleManager.DistributedBundleFramework
 
  **系统接口：**  此接口为系统接口。
 

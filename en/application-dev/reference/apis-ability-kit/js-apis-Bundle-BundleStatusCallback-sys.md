@@ -6,10 +6,13 @@ The BundleStatusCallback module provides callbacks for bundle status changes. Th
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
+> The APIs of this module are deprecated since API version 9. You are advised to use [bundleMonitor](js-apis-bundleMonitor-sys.md) instead.
+> 
 > The APIs provided by this module are system APIs.
 
 ## BundleStatusCallback<sup>(deprecated)<sup>
-> This API is deprecated since API version 9. You are advised to use [bundleMonitor](js-apis-bundleMonitor-sys.md) instead.
+
+This API is deprecated since API version 9. You are advised to use [bundleMonitor](js-apis-bundleMonitor-sys.md) instead.
 
 **System API**: This is a system API.
 

@@ -171,7 +171,7 @@ barHeight(value: Length)
 
 设置TabBar的高度值。横向Tabs可以设置height为'auto'，让TabBar自适应子组件高度。height设置为小于0或大于Tabs高度值时，按默认值显示。
 
-API Version 14之前的版本，若设置barHeight为固定值后，TabBar无法扩展底部安全区。从API Version 14开始支持配合[safeAreaPadding](./ts-universal-attributes-size.md#safeareapadding14)属性，当safeAreaPadding不设置bottom或者bottom设置为0时，可以实现扩展安全区。
+API version 14之前的版本，若设置barHeight为固定值后，TabBar无法扩展底部安全区。从API version 14开始支持配合[safeAreaPadding](./ts-universal-attributes-size.md#safeareapadding14)属性，当safeAreaPadding不设置bottom或者bottom设置为0时，可以实现扩展安全区。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -181,7 +181,7 @@ API Version 14之前的版本，若设置barHeight为固定值后，TabBar无法
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length)<sup>8+</sup> | 是   | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9)样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabBarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9)样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabBarStyle样式且vertical属性为false时，默认值为56vp，从API Version 12开始，默认值变更为48vp。 |
+| value  | [Length](ts-types.md#length)<sup>8+</sup> | 是   | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9)样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabBarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9)样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabBarStyle样式且vertical属性为false时，默认值为56vp，从API version 12开始，默认值变更为48vp。 |
 
 ### barHeight<sup>20+</sup>
 
@@ -200,11 +200,31 @@ barHeight(height: Length, noMinHeightLimit: boolean)
 | height           | [Length](ts-types.md#length) | 是   | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9)样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabBarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9)样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabBarStyle样式且vertical属性为false时，默认值为48vp。 |
 | noMinHeightLimit | boolean                      | 是   | height设置为'auto'时，设置是否取消TabBar的最小高度限制。默认值为false。<br/>**说明：** <br/>值为true表示取消TabBar的最小高度限制，即TabBar的高度值可以小于默认值。<br/>值为false表示限制TabBar的最小高度，即TabBar的最小高度值等于默认值。 |
 
+### animationCurve<sup>20+</sup>
+
+animationCurve(curve: Curve | ICurve)
+
+设置Tabs翻页动画曲线。常用曲线参考[Curve](ts-appendix-enums.md#curve)枚举说明，也可以通过[插值计算](../js-apis-curve.md)模块提供的接口创建自定义的插值曲线对象。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------- |
+| curve  | [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve9) | 是   | Tabs翻页的动画曲线。<br/>默认值：<br/>滑动TabContent翻页时，默认值为interpolatingSpring(-1, 1, 228, 30)。<br/>点击TabBar页签和调用TabsController的changeIndex接口翻页时，默认值为cubicBezierCurve(0.2, 0.0, 0.1, 1.0)。<br/>设置自定义动画曲线时，滑动翻页和点击页签、调用changeIndex翻页都使用设置的动画曲线。 |
+
 ### animationDuration
 
 animationDuration(value: number)
 
-设置点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。
+设置Tabs翻页动画时长。
+
+animationCurve不设置时，由于滑动TabContent翻页动画曲线interpolatingSpring(-1, 1, 228, 30)时长只受曲线自身参数影响，animationDuration只能控制点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。
+
+不受animationDuration控制的曲线可以查阅[插值计算](../js-apis-curve.md)模块，比如[springMotion](../js-apis-curve.md#curvesspringmotion9)、[responsiveSpringMotion](../js-apis-curve.md#curvesresponsivespringmotion9)和[interpolatingSpring](../js-apis-curve.md#curvesinterpolatingspring10)类型的曲线。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -214,7 +234,7 @@ animationDuration(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。<br/>默认值：<br/>API version 10及以前，不设置该属性或设置为null时，默认值为0，即点击TabBar页签和调用TabsController的changeIndex接口切换TabContent无动画。设置为小于0或undefined时，默认值为300。<br/>API version 11及以后，不设置该属性或设置为异常值，且设置TabBar为BottomTabBarStyle样式时，默认值为0。设置TabBar为其他样式时，默认值为300。<br/>单位：ms<br/>取值范围：[0, +∞)。 |
+| value  | number | 是   | Tabs翻页的动画时长。<br/>默认值：<br/>API version 10及以前，不设置该属性或设置为null时，默认值为0，即Tabs翻页无动画。设置为小于0或undefined时，默认值为300。<br/>API version 11及以后，不设置该属性或设置为异常值，且设置TabBar为BottomTabBarStyle样式时，默认值为0。设置TabBar为其他样式时，默认值为300。<br/>单位：ms<br/>取值范围：[0, +∞) |
 
 ### animationMode<sup>12+</sup>
 
@@ -409,13 +429,13 @@ pageFlipMode(mode: Optional\<PageFlipMode>)
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | mode  | Optional\<[PageFlipMode](ts-appendix-enums.md#pageflipmode15)> | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
 
-### cachedMaxCount<sup>18+</sup>
+### cachedMaxCount<sup>19+</sup>
 
 cachedMaxCount(count: number, mode: TabsCacheMode)
 
 设置子组件的最大缓存个数和缓存模式。设置该属性后，不会对缓存范围内的子组件进行预加载，仅对缓存范围外的子组件进行释放。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -424,7 +444,7 @@ cachedMaxCount(count: number, mode: TabsCacheMode)
 | 参数名 | 类型                                                        | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | count  | number                                                      | 是   | 子组件的最大缓存个数。默认所有子组件加载后都不再释放。<br/>取值范围：[0, +∞)。|
-| mode   | [TabsCacheMode](#tabscachemode18枚举说明)                   | 是   | 子组件的缓存模式。<br/>默认值：TabsCacheMode.CACHE_BOTH_SIDE   |
+| mode   | [TabsCacheMode](#tabscachemode19枚举说明)                   | 是   | 子组件的缓存模式。<br/>默认值：TabsCacheMode.CACHE_BOTH_SIDE   |
 
 ## DividerStyle<sup>10+</sup>对象说明
 
@@ -525,11 +545,11 @@ type CommonModifier = CommonModifier
 | ---------- | ---------------------------------------- |
 | [CommonModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier) | 设置TabBar的通用属性。 |
 
-## TabsCacheMode<sup>18+</sup>枚举说明
+## TabsCacheMode<sup>19+</sup>枚举说明
 
 子组件的缓存模式。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -853,9 +873,9 @@ Tabs组件动画相关信息集合。
 
 | 名称            | 类型      | 只读 | 可选 | 说明                                       |
 | ------------- | ---------- | ---- | ---- | ------------------------ |
-| currentOffset | number | 否 | 否 | Tabs当前显示元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
-| targetOffset | number | 否 | 否 | Tabs动画目标元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
-| velocity | number | 否 | 否 | Tabs离手动画开始时的离手速度。单位VP/S，默认值为0。|
+| currentOffset | number | 否 | 否 | Tabs当前显示元素在主轴方向上，相对于Tabs起始位置的位移。单位vp，默认值为0。|
+| targetOffset | number | 否 | 否 | Tabs动画目标元素在主轴方向上，相对于Tabs起始位置的位移。单位vp，默认值为0。|
+| velocity | number | 否 | 否 | Tabs离手动画开始时的离手速度。单位vp/s，默认值为0。|
 
 ## TabContentAnimatedTransition<sup>11+</sup>
 
@@ -2776,3 +2796,67 @@ struct TabsExample {
 }
 ```
 ![tabs20](figures/tabs_edges_slide.gif)
+
+### 示例21（Tabs设置翻页动画曲线）
+
+该示例展示了如何通过animationCurve接口设置Tabs翻页动画曲线，并结合animationDuration设置翻页动画的时长。
+
+```ts
+import { curves } from '@kit.ArkUI';
+
+interface TabsItemType { text: string, backgroundColor: ResourceColor }
+
+@Entry
+@Component
+struct TabsExample {
+  private tabsController: TabsController = new TabsController();
+  private curves: (Curve | ICurve) [] = [
+    curves.interpolatingSpring(-1, 1, 328, 34),
+    curves.springCurve(10, 1, 228, 30),
+    curves.cubicBezierCurve(0.25, 0.1, 0.25, 1.0),
+  ];
+  @State curveIndex: number = 0;
+  private datas: TabsItemType[] = [
+    { text: '1', backgroundColor: '#004AAF' },
+    { text: '2', backgroundColor: '#2787D9' },
+    { text: '3', backgroundColor: '#D5D5D5' },
+    { text: '4', backgroundColor: '#707070' },
+    { text: '5', backgroundColor: '#F7F7F7' },
+  ];
+  @State duration: number = 0;
+
+  build() {
+    Column({ space:2 }) {
+      Tabs({ controller: this.tabsController }) {
+        ForEach(this.datas, (item: TabsItemType, index: number) => {
+          TabContent() {}
+          .tabBar(item.text)
+          .backgroundColor(item.backgroundColor)
+        })
+      }
+      .backgroundColor(0xf1f3f5)
+      .width('100%')
+      .height(500)
+      .animationCurve(this.curves[this.curveIndex])
+      .animationDuration(this.duration)
+      Row({ space:2 }) {
+        Text('Curve:' + this.curveIndex)
+        Button('++').onClick(() => { this.curveIndex = (this.curveIndex + 1) % this.curves.length; })
+        Button('reset').onClick(() => { this.curveIndex = 0; })
+      }
+      .margin({ left: '10vp' })
+      .width('100%')
+      Row({ space:2 }) {
+        Text('Duration:' + this.duration)
+        Button('+100').onClick(() => { this.duration = (this.duration + 100) % 10000; })
+        Button('+1000').onClick(() => { this.duration = (this.duration + 1000) % 10000; })
+        Button('reset').onClick(() => { this.duration = 0; })
+      }
+      .margin({ left: '10vp' })
+      .width('100%')
+    }
+    .margin('10vp')
+  }
+}
+```
+![tabs_curve](figures/tabs_curve.gif)

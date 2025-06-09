@@ -15,7 +15,7 @@
 
 ## 接口说明
 
-注册使用自定义字体的相关接口如下所示，详细接口说明请参考[Drawing](../reference/apis-arkgraphics2d/_drawing.md)。
+注册使用自定义字体的相关接口如下所示，详细接口说明请参考[Drawing](../reference/apis-arkgraphics2d/capi-drawing.md)。
 
 | 接口名 | 描述 | 
 | -------- | -------- |

@@ -2741,6 +2741,7 @@ readException(): void
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -3376,7 +3377,6 @@ readAshmem(): Ashmem
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
   | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
@@ -5648,6 +5648,7 @@ readException(): void
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -6510,6 +6511,7 @@ asObject(): IRemoteObject
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7007,6 +7009,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7103,6 +7106,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7201,6 +7205,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7351,6 +7356,7 @@ getLocalInterface(interface: string): IRemoteBroker
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7432,6 +7438,7 @@ queryLocalInterface(interface: string): IRemoteBroker
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7506,6 +7513,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7593,6 +7601,7 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7672,6 +7681,7 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7760,6 +7770,7 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7839,6 +7850,7 @@ getDescriptor(): string
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7913,6 +7925,7 @@ getInterfaceDescriptor(): string
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7977,7 +7990,7 @@ isObjectDead(): boolean
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
-
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';

@@ -2,7 +2,7 @@
 
 ## 总体写作说明
 
-> **说明：** <br/>所有的写作说明，在完成写作后，都要删除。
+> **说明**：<br/>所有的写作说明，在完成写作后，都要删除。
 
 |      | 说明项                            | 细则                                                         |
 | ---- | --------------------------------- | ------------------------------------------------------------ |
@@ -23,13 +23,14 @@
 
 | d.ts的标签 | 含义 | 文档字段 |
 | ---------- | ---- | ------- |
-| @since | 版本说明 | 1. 每个模块要有起始版本说明，使用引用语法“>”对接口的起始版本进行说明。接口没有标记的，默认与模块同一个起始版本。<br/>2. 已有模块新增接口使用\<sup>标签标记对应版本号。写法：`<sup>版本号+</sup>`<br/> 例如`<sup>7+</sup>`<br/> 示例：API 6已有的模块，在API 7新增了一个属性字段，则在属性后加标记，即newAttribute<sup>7+</sup>。<br/>如果新增了一个方法，则在方法标题后增加标记，即 sim.getSimIccId<sup>7+</sup>，interface、class、枚举等同理。 |
+| @since | 版本说明 | 1. 每个模块要有起始版本说明，使用引用语法“>”对接口的起始版本进行说明。接口没有标记的，默认与模块同一个起始版本。<br/>2. 已有模块新增接口使用\<sup>标签标记对应版本号。写法：`<sup>版本号+</sup>`<br/> 例如`<sup>7+</sup>`<br/> 示例：API 6已有的模块，在API 7新增了一个属性字段，则在属性后加标记，即newAttribute<sup>7+</sup>。<br/>如果新增了一个方法，则在方法标题后增加标记，即 sim.getSimIccId<sup>7+</sup>，interface、class、枚举等同理。<br/>**需要注意的特殊情况**：因匿名对象整改，导致部分接口出现外层元素版本号高于内层元素版本号情况。为避免开发者困惑，需要在此类“接口描述”处统一增加说明：为规范匿名对象的定义，API XX版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。 |
 | @deprecated | 废弃说明 | 废弃内容不能直接删去，上标标注(deprecated)，起始版本和废弃版本均使用引用语法“>”说明。<br/>示例：abandonmentMethod<sup>(deprecated) </sup><br/>> 从API version 4 开始支持，从API version 7 开始废弃，建议使用[newMethod]\(#newmethod)替代。|
-| @FAModelOnly / @StageModelOnly | 模型约束 | **模型约束：** 此接口仅可在FA模型下使用。 <br/ > **模型约束：** 此接口仅可在Stage模型下使用。 |
-| @form | 卡片能力 | **卡片能力：** 从API version x开始，该接口支持在ArkTS卡片中使用。 |
-| @systemapi | 系统接口 | **系统接口：** 此接口为系统接口。 |
-| @syscap | 系统能力 | **系统能力**：SystemCapability.xxx.xxx |  1. 如果仅涉及一个权限，格式：<br/>    **需要权限：** ohos.permission.xxxx   <br/>2. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限：** ohos.permission.A 和 ohos.permission.B<br/>    **需要权限：** ohos.permission.A 或 ohos.permission.B |
-| @permission | 权限 |  1. 如果仅涉及一个权限，格式：<br/>    **需要权限：** ohos.permission.xxxx   <br/>2. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限：** ohos.permission.A 和 ohos.permission.B<br/>    **需要权限：** ohos.permission.A 或 ohos.permission.B <br/>3. 涉及版本变更时，“需要权限”后跟当前版本的权限要求，历史版本的权限要求换行按列表描述，样例：<br/>**需要权限：** ohos.permission.A <br/>- 在API x-(y-1)时，需要申请权限ohos.permission.A和B。<br/>- 从API y开始，仅需申请ohos.permission.A。<br/>4. 仅在某些固定场景下，需要申请权限。“需要权限”后跟d.ts的@permission保持一致，再补充情况说明，分为两类情况，当情况较为简单时，可采用括号补充描述；当情况较为复杂时，换行描述。<br/>样例1：<br/> **需要权限：** ohos.permission.A（仅当创建窗口类型为AA时需要申请）<br/>样例2：<br/> **需要权限：** ohos.permission.A<br/>- 当应用处于xx情况时，需要同步申请ohos.permission.B。<br/>- 当应用处于yy情况时，无需申请任何权限。|
+| @FAModelOnly / @StageModelOnly | 模型约束 | **模型约束**：此接口仅可在FA模型下使用。 <br/> **模型约束**：此接口仅可在Stage模型下使用。 |
+| @form | 卡片能力 | **卡片能力**：从API version x开始，该接口支持在ArkTS卡片中使用。 |
+| @atomicservice | 原子化服务是否可用 | **原子化服务API**：从API version x开始，该接口支持在原子化服务中使用。 |
+| @systemapi | 系统接口 | **系统接口**：此接口为系统接口。 |
+| @syscap | 系统能力 | **系统能力**：SystemCapability.xxx.xxx |  1. 如果仅涉及一个权限，格式：<br/>    **需要权限**：ohos.permission.xxxx   <br/>2. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限**：ohos.permission.A 和 ohos.permission.B<br/>    **需要权限：**：ohos.permission.A 或 ohos.permission.B |
+| @permission | 权限 |  1. 如果仅涉及一个权限，格式：<br/>    **需要权限**：ohos.permission.xxxx   <br/>2. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限**：ohos.permission.A 和 ohos.permission.B<br/>    **需要权限**：ohos.permission.A 或 ohos.permission.B <br/>3. 涉及版本变更时，“需要权限”后跟当前版本的权限要求，历史版本的权限要求换行按列表描述，样例：<br/>**需要权限**：ohos.permission.A <br/>- 在API x-(y-1)时，需要申请权限ohos.permission.A和B。<br/>- 从API y开始，仅需申请ohos.permission.A。<br/>4. 仅在某些固定场景下，需要申请权限。“需要权限”后跟d.ts的@permission保持一致，再补充情况说明，分为两类情况，当情况较为简单时，可采用括号补充描述；当情况较为复杂时，换行描述。<br/>样例1：<br/> **需要权限**：ohos.permission.A（仅当创建窗口类型为AA时需要申请）<br/>样例2：<br/> **需要权限**：ohos.permission.A<br/>- 当应用处于xx情况时，需要同步申请ohos.permission.B。<br/>- 当应用处于yy情况时，无需申请任何权限。|
 | @extends | 继承 |  带有该标签或实际存在extends关系但未带该标签时，在相关描述处应明确说明“xxx继承自xxx（提供链接）。” |
 
 下面进入具体每个API的写作。
@@ -113,7 +114,7 @@ import { call } from '@kit.TelephonyKit';
 >
 > 4. 对于可选属性：如果仅支持固定字段，需要进行说明。如该属性定义时，带有?，即为可选。
 
-**系统能力：** SystemCapability.xxx.xxx（必选）
+**系统能力**：SystemCapability.xxx.xxx（必选）
 
 | 名称             | 类型                                      | 只读 | 可选 | 说明                                       |
 | ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
@@ -128,7 +129,7 @@ import { call } from '@kit.TelephonyKit';
 > 2. 部分const用于定义只读变量，无对应值，此时表格为：名称、类型、只读、说明，四列。
 > 3. 类型如果为自定义类型，需要建立链接到对应的interface或enum中。
 
-**系统能力：** SystemCapability.xxx.xxx（必选）
+**系统能力**：SystemCapability.xxx.xxx（必选）
 
 | 名称             | 类型                                |  值      | 说明                                       |
 | ---------------- | -----------------------------------| -------- | ------------------------------------------ |
@@ -176,7 +177,7 @@ import { call } from '@kit.TelephonyKit';
 
 **系统能力**：SystemCapability.xxx.xxx（必选）
 
-**参数：** （可选，如不涉及可删除）
+**参数**：（可选，如不涉及可删除）
 
 | 参数名       | 类型                                          | 必填 | 说明                                                         |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -242,7 +243,7 @@ import { call } from '@kit.TelephonyKit';
 
 **系统能力**：SystemCapability.xxx.xxx（必选）
 
-**参数：** （可选，如不涉及可删除）
+**参数：**（可选，如不涉及可删除）
 
 | 参数名   | 类型                                 | 必填 | 说明                                                         |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -340,7 +341,7 @@ type Xxx = number | string | 'xxx'
 
 在此处给出该类型实际取值的逻辑。如：取值类型为下表类型中的并集/交集。
 
-**系统能力：** SystemCapability.xxx.xxx（必选）
+**系统能力**：SystemCapability.xxx.xxx（必选）
 
 | 类型      | 说明                          |
 | -----------| ---------------------------- |
@@ -354,9 +355,9 @@ type Xxx = number | string | 'xxx'
 
 *（在此处给出type的具体定义形式）* type Xxx\<Aaa, Bbb> = (param1: number, param2: string) => Interface1
 
-**系统能力：** SystemCapability.xxx.xxx（必选）
+**系统能力**：SystemCapability.xxx.xxx（必选）
 
-**参数：** （可选，如不涉及可删除）
+**参数：**（可选，如不涉及可删除）
 
 | 参数名   | 类型                                 | 必填 | 说明                                                         |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -375,7 +376,7 @@ type Xxx = number | string | 'xxx'
 
 *（在此处给出type的具体定义形式）*  type Xxx = { aaa: string; bbb?: number; }
 
-**系统能力：** SystemCapability.xxx.xxx（必选）
+**系统能力**：SystemCapability.xxx.xxx（必选）
 
 
 | 名称   | 类型                                 | 必填 | 说明                                                         |
@@ -387,6 +388,7 @@ type Xxx = number | string | 'xxx'
 
 | 变更说明                                                                 | 日期         |
 | ----------------------------------------------------------------------- | ------------ |
+| 补充“关于匿名对象整改@since版本号情况的说明”固定句式。 | 2025/06/03 |
 | 优化权限的写作规范，可覆盖多种类型的权限描述，适配扫描工具需求。 | 2025/03/12 |
 | 增加Type模板三，增加以含有多个属性字段的Interface别名。 | 2025/03/04 |
 | 增加示例代码需捕获传参异常的要求。 |  2025/03/03 |

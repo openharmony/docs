@@ -17,7 +17,7 @@
 
 ## 开发步骤
 
-详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/js-apis-camera.md)。
+详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/arkts-apis-camera.md)。
 
 1. 导入依赖，需要导入相机框架、媒体库、图片相关领域依赖。
 
@@ -30,7 +30,7 @@
 
 2. 确定拍照输出流。
 
-   通过[CameraOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability)类中的photoProfiles属性，可获取当前设备支持的拍照输出流，通过[createPhotoOutput](../../reference/apis-camera-kit/js-apis-camera.md#createphotooutput11)方法创建拍照输出流。
+   通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)类中的photoProfiles属性，可获取当前设备支持的拍照输出流，通过[createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11)方法创建拍照输出流。
 
    ```ts
    function getPhotoOutput(cameraManager: camera.CameraManager, 
@@ -44,7 +44,7 @@
        photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to createPhotoOutput. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to createPhotoOutput. error: ${err}`);
      }
      return photoOutput;
    }
@@ -96,7 +96,7 @@
    function onPhotoOutputDeferredPhotoProxyAvailable(photoOutput: camera.PhotoOutput, context: Context): void {
      photoOutput.on('deferredPhotoProxyAvailable', (err: BusinessError, proxyObj: camera.DeferredPhotoProxy): void => {
        if (err) {
-         console.info(`deferredPhotoProxyAvailable error: ${JSON.stringify(err)}.`);
+         console.error(`deferredPhotoProxyAvailable error: ${err}.`);
          return;
        }
        console.info('photoOutPutCallBack deferredPhotoProxyAvailable');
@@ -129,7 +129,7 @@
        let res = await accessHelper.applyChanges(mediaRequest);
        console.info('saveDeferredPhoto success.');
      } catch (err) {
-       console.error(`Failed to saveDeferredPhoto. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to saveDeferredPhoto. error: ${err}`);
      }
    }
    ```

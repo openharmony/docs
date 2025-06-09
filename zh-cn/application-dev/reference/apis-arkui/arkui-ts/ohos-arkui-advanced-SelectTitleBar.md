@@ -74,7 +74,6 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 ```ts
 import { SelectTitleBar, Prompt, SelectTitleBarMenuItem } from '@kit.ArkUI';
 
-
 @Entry
 @Component
 struct Index {

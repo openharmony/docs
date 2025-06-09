@@ -33,7 +33,18 @@
       packOpts.desiredDynamicRange = image.PackingDynamicRange.AUTO;
       ```
 
-3. [创建PixelMap对象或创建ImageSource对象](image-decoding.md)。
+3. 创建PixelMap对象或创建ImageSource对象。
+   ```ts
+   import { common } from '@kit.AbilityKit';
+
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+   //此处'test.jpg'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
+   const path: string = context.filesDir + "/test.jpg";
+   const imageSource: image.ImageSource = image.createImageSource(path);
+   let decodingOptions : image.DecodingOptions = { editable: true, desiredPixelFormat: image.PixelMapFormat.RGBA_8888 };
+   let pixelmap = imageSource.createPixelMapSync(decodingOptions);
+   ```
 
 4. 进行图片编码，并保存编码后的图片。
 
@@ -68,7 +79,6 @@
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    import { fileIo as fs } from '@kit.CoreFileKit';
-   const context : Context = getContext(this);
    const path : string = context.cacheDir + "/pixel_map.jpg";
    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
    imagePackerApi.packToFile(pixelMap, file.fd, packOpts).then(() => {
@@ -85,7 +95,6 @@
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    import { fileIo as fs } from '@kit.CoreFileKit';
-   const context : Context = getContext(this);
    const filePath : string = context.cacheDir + "/image_source.jpg";
    let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
    imagePackerApi.packToFile(imageSource, file.fd, packOpts).then(() => {

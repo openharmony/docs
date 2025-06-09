@@ -136,7 +136,7 @@ struct Index {
       dnsAddresses: ["114.114.114.114"]
     }
     this.VpnConnection.setUp(config, (error: BusinessError, data: number) => {
-      console.info(JSON.stringify(error));
+      console.error(JSON.stringify(error));
       console.info("tunfd: " + JSON.stringify(data));
     });
   }
@@ -214,7 +214,7 @@ struct Index {
     this.VpnConnection.setUp(config).then((data: number) => {
       console.info("setUp success, tunfd: " + JSON.stringify(data));
     }).catch((err: BusinessError) => {
-      console.info("setUp fail" + JSON.stringify(err));
+      console.error("setUp fail" + JSON.stringify(err));
     });
   }
   build() { }
@@ -289,7 +289,7 @@ struct Index {
     tcp.getSocketFd().then((tunnelfd: number) => {
       console.info("tunenlfd: " + tunnelfd);
       this.VpnConnection.protect(tunnelfd, (error: BusinessError) => {
-        console.info(JSON.stringify(error));
+        console.error(JSON.stringify(error));
       });
     });
   }
@@ -372,7 +372,7 @@ struct Index {
       this.VpnConnection.protect(tunnelfd).then(() => {
         console.info("protect success.");
       }).catch((err: BusinessError) => {
-        console.info("protect fail" + JSON.stringify(err));
+        console.error("protect fail" + JSON.stringify(err));
       });
     });
   }
@@ -428,7 +428,7 @@ struct Index {
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
   Destroy(): void {
     this.VpnConnection.destroy((error: BusinessError) => {
-      console.info(JSON.stringify(error));
+      console.error(JSON.stringify(error));
     });
   }
   build() { }
@@ -485,7 +485,7 @@ struct Index {
     this.VpnConnection.destroy().then(() => {
       console.info("destroy success.");
     }).catch((err: BusinessError) => {
-      console.info("destroy fail" + JSON.stringify(err));
+      console.error("destroy fail" + JSON.stringify(err));
     });
   }
   build() { }

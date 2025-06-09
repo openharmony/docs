@@ -41,7 +41,7 @@ static JSVM_Value WellKnownSymbols(JSVM_Env env, JSVM_CallbackInfo info) {
 
     JSVM_HandleScope handleScope;
     OH_JSVM_OpenHandleScope(env, &handleScope);
-    string src = R"JS(Symbol.toStringTag)JS";
+    std::string src = R"JS(Symbol.toStringTag)JS";
     JSVM_Value jsSrc;
     JSVM_Script script;
     JSVM_Value result1;

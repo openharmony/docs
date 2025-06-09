@@ -70,7 +70,7 @@ try {
   let eventUp: EventUp = { KeyEvent: backKeyUp }
   inputEventClient.injectEvent(eventUp);
 } catch (error) {
-  console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -131,7 +131,7 @@ try {
   let eventUp: EventUp = { keyEvent: backKeyUp }
   inputEventClient.injectKeyEvent(eventUp);
 } catch (error) {
-  console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 ## inputEventClient.injectMouseEvent<sup>11+</sup>
@@ -231,7 +231,7 @@ try {
 }
 
 catch (error) {
-  console.log(`Failed to inject MouseEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to inject MouseEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -321,7 +321,7 @@ try {
   }
   inputEventClient.injectTouchEvent(touchEventDown);
 } catch (error) {
-  console.log(`Failed to inject touchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to inject touchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 

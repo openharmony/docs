@@ -29,7 +29,7 @@ For details about the error codes, see [Metadata Binding Error Codes](errorcode-
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-|32100001|Internal handling failed. Set Meta data to screenshot app fail.|
+|32100001|Internal handling failed. File creation failed.|
 
 **Example**
 
@@ -64,8 +64,8 @@ For details about the error codes, see [Metadata Binding Error Codes](errorcode-
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-|32100001|Internal handling failed. Service exception.|
-|32100004|Subscribe Failed. Possible causes: 1. Abnormal system capability; 2. IPC communication abnormality; 3. Algorithm loading exception.|
+|32100001|Internal handling failed. File creation failed.|
+|32100004|Subscription failed. Possible causes: 1. Abnormal system capability; 2. IPC exception; 3. Algorithm loading exception.|
 
 **Example** 
 ```ts
@@ -103,8 +103,8 @@ For details about the error codes, see [Metadata Binding Error Codes](errorcode-
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-|32100001|Internal handling failed. Service exception.|
-|32100005|Unsubscribe Failed. Possible causes: 1. Abnormal system capability; 2. IPC communication abnormality.|
+|32100001|Internal handling failed. File creation failed.|
+|32100005|Unsubscription failed. Possible causes: 1. Abnormal system capability; 2. IPC exception.|
 
 **Example**
 

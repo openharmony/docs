@@ -194,7 +194,7 @@ Represents the cloud data change information.
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | eventId | string | Yes  | Change event ID.|
-| extraData | ExtraData | Yes  | Change of the cloud data.|
+| extraData | ExtraData | Yes  | Represents the cloud data change information.|
 
 ## cloudSyncManager.notifyDataChange<sup>11+</sup>
 
@@ -211,7 +211,7 @@ Notifies the cloud sync service of the application data change in the cloud. Thi
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | userId | number | Yes  | User ID.|
-| extraData | ExtraData | Yes  | Change of the cloud data.|
+| extraData | ExtraData | Yes  | Represents the cloud data change information.|
 
 **Return value**
 
@@ -258,7 +258,7 @@ Notifies the cloud sync service of the application data change in the cloud. Thi
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | userId | number | Yes  | User ID.|
-| extraData | ExtraData | Yes  | Change of the cloud data.|
+| extraData | ExtraData | Yes  | Represents the cloud data change information.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the application data change in the cloud.|
 
 **Error codes**
@@ -302,7 +302,7 @@ Enables device-cloud synergy. This API uses a promise to return the result.
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | accountId | string | Yes  | Account ID.|
-| switches | object | Yes  | Whether to enable the device-cloud synergy feature. **bundleName** is a string indicating the application bundle name. The switch status is a Boolean value.|
+| switches | Record<string, boolean> | Yes  | Whether to enable the device-cloud synergy feature. The application bundle name is a string. The switch status is a Boolean value. The value **true** means to enable this function; the value **false** means the opposite.|
 
 **Return value**
 
@@ -351,7 +351,7 @@ Enables device-cloud synergy. This API uses an asynchronous callback to return t
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | accountId | string | Yes  | Account ID.|
-| switches | object | Yes  | Whether to enable the device-cloud synergy feature. **bundleName** is a string indicating the application bundle name. The switch status is a Boolean value.|
+| switches | Record<string, boolean> | Yes  | Whether to enable the device-cloud synergy feature. The application bundle name is a string. The switch status is a Boolean value. The value **true** means to enable this function; the value **false** means the opposite.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -495,7 +495,7 @@ Clears the cloud data locally. This API uses a promise to return the result.
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | accountId | string | Yes  | Account ID.|
-| appActions | object | Yes  | Action to perform. **bundleName** is a string indicating the application whose data is to be cleared.[Action](#action) specifies the action to perform.|
+| appActions | Record<string, Action> | Yes  | Action to perform. The bundle name of the application whose data is to be cleared is a string. [Action](#action) specifies the action to perform.|
 
 **Return value**
 
@@ -544,7 +544,7 @@ Clears the cloud data locally. This API uses an asynchronous callback to return 
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | accountId | string | Yes  | Account ID.|
-| appActions | object | Yes  | Action to perform. **bundleName** is a string indicating the application whose data is to be cleared.[Action](#action) specifies the action to perform.|
+| appActions | Record<string, Action> | Yes  | Action to perform. The bundle name of the application whose data is to be cleared is a string. [Action](#action) specifies the action to perform.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to clear the cloud data locally.|
 
 **Error codes**
@@ -556,7 +556,6 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 13600001  | IPC error. |
 
 **Example**
 
