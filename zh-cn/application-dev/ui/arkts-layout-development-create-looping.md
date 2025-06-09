@@ -549,7 +549,7 @@ Swiper() {
 )
 ```
 
-圆点导航点设置间距及忽略组件大小完整示列代码如下：
+圆点导航点设置间距及忽略组件大小完整示例代码如下：
 
 ```ts
 import { LengthMetrics } from '@kit.ArkUI';

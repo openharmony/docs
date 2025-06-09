@@ -92,7 +92,7 @@ try {
 } catch (errData) {
     let message = (errData as BusinessError).message;
     let errCode = (errData as BusinessError).code;
-    console.log(`errData is errCode:${errCode}  message:${message}`);
+    console.error(`errData is errCode:${errCode}  message:${message}`);
 }
 ```
 
@@ -136,6 +136,6 @@ try {
 } catch (errData) {
     let message = (errData as BusinessError).message;
     let errCode = (errData as BusinessError).code;
-    console.log(`errData is errCode:${errCode}  message:${message}`);
+    console.error(`errData is errCode:${errCode}  message:${message}`);
 }
 ```

@@ -402,13 +402,13 @@ OH_UdmfData* OH_Pasteboard_GetData (OH_Pasteboard * pasteboard, int * status )
 
 **返回：**
 
-执行成功时返回统一数据对象[OH_UdmfData](../apis-arkdata/_u_d_m_f.md#oh_udmfdata)实例的指针。否则返回空指针。
+执行成功时返回统一数据对象[OH_UdmfData](../apis-arkdata/capi-oh-udmfdata.md)实例的指针。否则返回空指针。
 
 **参见：**
 
 [OH_Pasteboard](#oh_pasteboard)
 
-[OH_UdmfData](../apis-arkdata/_u_d_m_f.md#oh_udmfdata)
+[OH_UdmfData](../apis-arkdata/capi-oh-udmfdata.md)
 
 [PASTEBOARD_ErrCode](#pasteboard_errcode)
 
@@ -546,7 +546,7 @@ int OH_Pasteboard_SetData (OH_Pasteboard * pasteboard, OH_UdmfData * data )
 | 名称 | 描述 |
 | -------- | -------- |
 | pasteboard | 表示指向剪贴板[OH_Pasteboard](#oh_pasteboard)实例的指针。  |
-| data | 表示指向统一数据对象[OH_UdmfData](../apis-arkdata/_u_d_m_f.md#oh_udmfdata)实例的指针。  |
+| data | 表示指向统一数据对象[OH_UdmfData](../apis-arkdata/capi-oh-udmfdata.md)实例的指针。  |
 
 **返回：**
 
@@ -556,7 +556,7 @@ int OH_Pasteboard_SetData (OH_Pasteboard * pasteboard, OH_UdmfData * data )
 
 [OH_Pasteboard](#oh_pasteboard)
 
-[OH_UdmfData](../apis-arkdata/_u_d_m_f.md#oh_udmfdata)
+[OH_UdmfData](../apis-arkdata/capi-oh-udmfdata.md)
 
 [PASTEBOARD_ErrCode](#pasteboard_errcode)
 
@@ -955,7 +955,7 @@ OH_UdmfData* OH_Pasteboard_GetDataWithProgress(OH_Pasteboard* pasteboard, Pasteb
 
 **返回：**
 
-执行成功时返回统一数据对象[OH_UdmfData](../apis-arkdata/_u_d_m_f.md#oh_udmfdata)实例的指针。否则返回空指针。
+执行成功时返回统一数据对象[OH_UdmfData](../apis-arkdata/capi-oh-udmfdata.md)实例的指针。否则返回空指针。
 
 **参见：**
 

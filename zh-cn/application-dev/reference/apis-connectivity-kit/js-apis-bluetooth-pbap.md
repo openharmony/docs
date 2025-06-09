@@ -40,7 +40,7 @@ createPbapServerProfile(): PbapServerProfile
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| PbapServerProfile | 返回该profile的实例。 |
+|PbapServerProfile | 返回该profile的实例。 |
 
 **错误码**：
 

@@ -8,7 +8,7 @@
 
 **库：** libohaudio.so
 
-**引用文件：** <multimedia/audio_framework/common/native_audio_common.h>
+**引用文件：** <ohaudio/native_audio_common.h>
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 

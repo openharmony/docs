@@ -23,6 +23,7 @@
     - [OH_NativeImage](capi-oh-nativeimage.md)
     - [NativeVsync](capi-nativevsync.md)
     - [NativeWindow](capi-nativewindow.md)
+    - [NativeFence](capi-nativefence.md)
   - 头文件<!--arkgraphics-headerfile-->
     - [buffer_common.h](capi-buffer-common-h.md)
     - [native_buffer.h](capi-native-buffer-h.md)
@@ -76,6 +77,7 @@
     - [buffer_handle.h](capi-buffer-handle-h.md)
     - [external_window.h](capi-external-window-h.md)
     - [graphic_error_code.h](capi-graphic-error-code-h.md)
+    - [native_fence.h](capi-native-fence-h.md)
   - 结构体<!--arkgraphics-struct-->
     - [OH_NativeBuffer_ColorXY](capi-oh-nativebuffer-colorxy.md)
     - [OH_NativeBuffer_Smpte2086](capi-oh-nativebuffer-smpte2086.md)

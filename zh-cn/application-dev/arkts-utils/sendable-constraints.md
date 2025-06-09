@@ -4,7 +4,7 @@
 
 ### Sendable类必须继承自Sendable类
 
-Sendable对象的布局和原型链不可变，而非Sendable对象可以通过特殊方式修改布局。因此，不允许互相继承。这里的类不包括变量。Sendable类不能继承自变量。
+Sendable对象的布局和原型链不可变，而非Sendable对象可以通过特殊方式修改布局。因此，不允许互相继承。这里的类不包括变量，Sendable类不能继承自变量。
 
 **正例：**
 
@@ -466,6 +466,8 @@ class SendableClass {
 
 
 ### NAPI规则（目前只针对Sendable对象）
+
+NAPI相关接口请参考[Sendable相关的NAPI接口](../napi/use-napi-about-extension.md#sendable相关)，具体使用请参考[Native与Sendable ArkTS对象绑定](../napi/use-sendable-napi.md)。
 
 | 规则 |
 | -------- |

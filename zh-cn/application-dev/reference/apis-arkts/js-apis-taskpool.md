@@ -1341,7 +1341,7 @@ static sendData(...args: Object[]): void
 > **说明：**
 >
 > - 该接口在taskpool的线程中调用。
-> - 避免在回调函数中使用该方法。
+> - 避免在回调函数中使用该方法，否则可能导致消息无法发送到宿主线程。
 > - 调用该接口时确保处理数据的回调函数已在宿主线程注册。
 
 **系统能力：** SystemCapability.Utils.Lang

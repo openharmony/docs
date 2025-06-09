@@ -11,106 +11,136 @@ Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for t
 1. Set an external subtitle resource in the AVPlayer instance used for video playback.
 
    ```ts
-   private context: Context | undefined;
-   constructor(context: Context) {
-     this.context = context; // this.getUIContext().getHostContext();
-   }
-   let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.srt');
-
-   avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length);
-
-   // Alternatively, use addSubtitleFromUrl.
-   let fdUrl:string = "http://xxx.xxx.xxx.xxx:xx/xx/index.srt" ;
-   avPlayer.addSubtitleFromUrl(fdUrl);
+    // Set subtitles.
+    let fileDescriptorSub = await this.context.resourceManager.getRawFd('xxx.srt');
+    this.avPlayer.addSubtitleFromFd(fileDescriptorSub.fd, fileDescriptorSub.offset, fileDescriptorSub.length);
    ```
 
 2. Register a subtitle callback function in the AVPlayer instance used for video playback.
 
    ```ts
-   avPlayer.on('subtitleUpdate', (info: media.SubtitleInfo) => {
-     if (!!info) {
-       let text = (!info.text) ? '' : info.text;
-       let startTime = (!info.startTime) ? 0 : info.startTime;
-       let duration = (!info.duration) ? 0 : info.duration;
-       console.info('subtitleUpdate info: text=' + text + ' startTime=' + startTime +' duration=' + duration);
-     } else {
-       console.info('subtitleUpdate info is null');
-     }
-   });
+    // Callback function for subtitle updates.
+    this.avPlayer.on('subtitleUpdate', (info: media.SubtitleInfo) => {
+      if (!!info) {
+        let text = (!info.text) ? '' : info.text;
+        let startTime = (!info.startTime) ? 0 : info.startTime;
+        let duration = (!info.duration) ? 0 : info.duration;
+        console.info(`${this.tag}: subtitleUpdate info: text=${text} startTime=${startTime} duration=${duration}`);
+        this.subtitle = text;
+      } else {
+        console.info(`${this.tag}: subtitleUpdate info is null`);
+      }
+    });
    ```
 
 3. (Optional) Unregister the subtitle callback function in the AVPlayer instance used for video playback when subtitles are not required.
 
    ```ts
-   avPlayer.off('subtitleUpdate');
+    this.avPlayer?.off('subtitleUpdate');
    ```
 
 
-## Sample Code
+## Running the Sample Project
+
+1. Create a project, download the [sample project](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVPlayer/AVPlayerArkTSSubtitle), and copy the following resources of the sample project to the corresponding directories.
+    ```
+    AVPlayerArkTSSubtitle
+    entry/src/main/ets/
+    └── pages
+        └── Index.ets (playback page)
+    entry/src/main/resources/
+    ├── base
+    │   ├── element
+    │   │   ├── color.json
+    │   │   ├── float.json
+    │   │   └── string.json
+    │   └── media
+    │       ├── ic_video_play.svg (play button image resource)
+    │       └── ic_video_pause.svg (pause button image resource)
+    └── rawfile
+        └── test1.mp4 (video resource)
+        └── test1.srt (subtitle resource)
+    ```
+
+2. Compile and run the project.
+
+## Development Example
 
 ```ts
-import { media } from '@kit.MediaKit';
+import display from '@ohos.display';
+import emitter from '@ohos.events.emitter';
 import { common } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+import media from '@ohos.multimedia.media';
 
-export class AVPlayerSubtitleDemo {
-  private avPlayer: media.AVPlayer | undefined = undefined;
-  private context: Context | undefined;
-  constructor(context: Context) {
-    this.context = context; // this.getUIContext().getHostContext();
-  }
-  // Set AVPlayer callback functions.
-  setAVPlayerCallback(avPlayer: media.AVPlayer) {
-    // Callback function for errors. If an error occurs during the operation on the AVPlayer, reset() is called to reset the AVPlayer.
-    avPlayer.on('error', (err: BusinessError) => {
-      console.error(`Invoke avPlayer failed, code is ${err.code}, message is ${err.message}`);
-      avPlayer.reset(); // Call reset() to reset the AVPlayer, which enters the idle state.
+...
+
+@Entry
+@Component
+struct Index {
+  private avPlayer: media.AVPlayer | null = null;
+  private context: common.UIAbilityContext | undefined = undefined;
+  @State subtitle: string = '';
+  ...
+
+  async avSetupVideoAndSubtitle() {
+    // Call getRawFd of the resourceManager member of UIAbilityContext to obtain the media asset URL.
+    // The return type is {fd,offset,length}, where fd indicates the file descriptor address of the HAP file, offset indicates the media asset offset, and length indicates the duration of the media asset to play.
+    ...
+    // Create an AVPlayer instance.
+    this.avPlayer = await media.createAVPlayer();
+
+    // Set a callback function for state changes.
+    await this.setAVPlayerCallback((avPlayer: media.AVPlayer) => {
+      this.percent = avPlayer.width / avPlayer.height;
+      this.setVideoWH();
+      this.durationTime = this.getDurationTime();
+      setInterval(() => { // Update the current time.
+        if (!this.isSwiping) {
+          this.currentTime = this.getCurrentTime();
+        }
+      }, SET_INTERVAL);
     });
-    // Register a subtitle update callback function.
-    avPlayer.on('subtitleUpdate', (info: media.SubtitleInfo) => {
-      if (info) {
+
+    // Assign a value to fdSrc to trigger the reporting of the initialized state.
+    this.avPlayer.fdSrc = avFileDescriptor;
+
+    // Set subtitles.
+    let fileDescriptorSub = await this.context.resourceManager.getRawFd('test1.srt');
+    this.avPlayer.addSubtitleFromFd(fileDescriptorSub.fd, fileDescriptorSub.offset, fileDescriptorSub.length);
+  }
+
+  // (Optional) Unregister the subtitle callback function in the AVPlayer instance used for video playback when subtitles are not required.
+  // async avTurnOffSubtitle() {
+  //   this.avPlayer?.off('subtitleUpdate');
+  // }
+
+  // Set AVPlayer callback functions.
+  async setAVPlayerCallback(callback: (avPlayer: media.AVPlayer) => void, vType?: number): Promise<void> {
+    // Callback function for the seek operation.
+    ...
+    // Callback function for state changes.
+    ...
+    // Callback function for time updates.
+    ...
+    // Callback function for subtitle updates.
+    this.avPlayer.on('subtitleUpdate', (info: media.SubtitleInfo) => {
+      if (!!info) {
         let text = (!info.text) ? '' : info.text;
         let startTime = (!info.startTime) ? 0 : info.startTime;
         let duration = (!info.duration) ? 0 : info.duration;
-        console.info('subtitleUpdate info: text=' + text + ' startTime=' + startTime +' duration=' + duration);
+        console.info(`${this.tag}: subtitleUpdate info: text=${text} startTime=${startTime} duration=${duration}`);
+        this.subtitle = text;
       } else {
-        console.info('subtitleUpdate info is null');
+        console.info(`${this.tag}: subtitleUpdate info is null`);
       }
     });
   }
 
-  // The following demo shows how to use resourceManager to obtain the media file packed in the HAP file and set based on the url attribute.
-  async avPlayerSubtitleUrlDemo() {
-    // Create an AVPlayer instance.
-    this.avPlayer = await media.createAVPlayer();
-    // Set video information.
-    // Create a callback function.
-    this.setAVPlayerCallback(this.avPlayer);
+  ...
 
-    let fdUrl:string = "http://xxx.xxx.xxx.xxx:xx/xx/index.srt";
+  @Builder
+  CoverXComponent() {...}
 
-    this.avPlayer.addSubtitleFromUrl(fdUrl);
-  }
-
-  // The following demo shows how to use resourceManager to obtain the media file packed in the HAP file and set based on the FromFd attribute.
-  async avPlayerSubtitleFromFdDemo() {
-    // Create an AVPlayer instance.
-    this.avPlayer = await media.createAVPlayer();
-    // Set video information.
-    // Create a callback function.
-    this.setAVPlayerCallback(this.avPlayer);
-
-    let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.srt');
-
-    this.avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length);
-  }
-
-  // Unregister the subtitle update callback function.
-  async avPlayerSubtitleOffDemo() {
-    if(this.avPlayer) {
-      this.avPlayer.off('subtitleUpdate');
-    }
-  }
-
+  build() {...}
 }
 ```

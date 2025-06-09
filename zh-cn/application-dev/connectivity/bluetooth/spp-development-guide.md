@@ -1,12 +1,12 @@
 # 连接和传输数据
 
 ## 简介
-本文主要提供了基于串口通信协议（Serial Port Profile，SPP）实现设备间连接和传输数据的开发指导。当两个设备间进行SPP通信交互时，依据设备功能的不同，可区分为客户端与服务端，本指南将分别介绍客户端与服务端的实现方法。
+本指南主要提供了基于串口通信协议（Serial Port Profile，SPP）实现设备间连接和传输数据的开发指导。当两个设备间进行SPP通信交互时，依据设备功能的不同，可区分为客户端与服务端，本指南将分别介绍客户端与服务端的实现方法。
 
 ## 实现原理
-客户端获取到服务端的目标设备地址后，即可向服务端特定的UUID发起连接。其中目标设备地址可以通过查找设备流程获取，详见[查找设备](br-discovery-development-guide.md)。待连接成功后，可向服务端发送数据或者接收服务端的数据。
+客户端获取到服务端的设备地址后，即可向服务端特定的UUID发起连接。服务端设备地址可以通过查找设备流程获取，详见[查找设备](br-discovery-development-guide.md)。待两端连接成功后，可向服务端发送数据或者接收服务端的数据。
 
-服务端需要支持客户端需要连接的UUID服务，保持连接状态监听即可。待连接成功后，即可接收客户端数据或者向客户端发送数据。
+服务端需要支持客户端连接的UUID服务，保持连接状态监听即可。待两端连接成功后，即可接收客户端数据或者向客户端发送数据。
 
 客户端和服务端都可以主动断开连接，应用需要根据实际场景决定由哪一端执行断开操作。
 
@@ -25,7 +25,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 ### 客户端
 
 #### 发起连接
-客户端通过查找设备流程搜索到目标设备后，即可发起连接。需要连接的UUID能力，必须与服务端创建socket时构造的UUID能力一致。在连接过程中，蓝牙子系统会去查询服务端是否支持该UUID能力，若不支持，则会连接失败。因此应用需要确保目标设备有需要的UUID能力，否则发起的是无效连接。
+客户端通过查找设备流程搜索到目标设备后，即可发起连接。需要连接的UUID服务，必须与服务端创建socket时构造的UUID服务一致。在连接过程中，蓝牙子系统会去查询服务端是否支持该UUID服务，若不支持，则会连接失败。因此应用需要确保目标设备是否支持需要的UUID服务，否则发起的是无效连接。
 ```ts
 // 设备地址可以通过查找设备流程获取
 let peerDevice = 'XX:XX:XX:XX:XX:XX';
@@ -35,7 +35,7 @@ let clientNumber = -1;
 
 // 配置连接参数
 let option: socket.SppOptions = {
-  uuid: '00009999-0000-1000-8000-00805F9B34FB', // 需要连接的服务端UUID能力，确保服务端支持
+  uuid: '00009999-0000-1000-8000-00805F9B34FB', // 需要连接的服务端UUID服务，确保服务端支持
   secure: false,
   type: socket.SppType.SPP_RFCOMM
 };
@@ -115,7 +115,7 @@ try {
 ### 服务端
 
 #### 创建服务端套接字
-服务端需通过创建套接字的方式，注册蓝牙子系统中指定的UUID能力。该UUID能力的名称无限制，可使用应用名称。当客户端发起连接请求时，会携带一个UUID以表示所需连接的服务。只有服务端与客户端的UUID一致时，连接才能成功建立。
+服务端需通过创建套接字的方式，在蓝牙子系统中注册指定的UUID服务。该UUID服务的名称无限制，可使用应用名称。当客户端发起连接请求时，会携带一个UUID以表示所需连接的服务。只有服务端与客户端的UUID一致时，连接才能成功建立。
 ```ts
 // 定义服务端scoket id
 let serverNumber = -1;
@@ -127,7 +127,7 @@ let option: socket.SppOptions = {
   type: socket.SppType.SPP_RFCOMM
 };
 
-// 创建服务端监听socket，往蓝牙子系统注册该UUID能力
+// 创建服务端监听socket，将在蓝牙子系统中注册该UUID服务
 socket.sppListen("Demo", option, (err, num: number) => {
   if (err) {
     console.error('sppListen errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -220,7 +220,7 @@ try {
 ```
 
 #### 删除服务端套接字
-当应用不再需要该服务端套接字时，需要主动关闭创建时获取到的套接字，蓝牙子系统会删除此前注册的UUID能力。如果此时客户端发起连接，就会连接失败。
+当应用不再需要该服务端套接字时，需要主动关闭创建时获取到的套接字，蓝牙子系统会删除此前注册的UUID服务。如果此时客户端发起连接，就会连接失败。
 
 - 应用也可以通过删除套接字时，实现断开连接。在此之前，需要先取消读取数据的订阅。
 ```ts
@@ -262,7 +262,7 @@ class SppClientManager {
   public startConnect(peerDevice: string): void {
     // 配置连接参数
     let option: socket.SppOptions = {
-      uuid: '00009999-0000-1000-8000-00805F9B34FB', // 需要连接的服务端UUID能力，确保服务端支持
+      uuid: '00009999-0000-1000-8000-00805F9B34FB', // 需要连接的服务端UUID服务，确保服务端支持
       secure: false,
       type: socket.SppType.SPP_RFCOMM
     };
@@ -350,7 +350,7 @@ class SppServerManager {
       type: socket.SppType.SPP_RFCOMM
     };
 
-    // 创建服务端监听socket，往蓝牙子系统注册该UUID能力
+    // 创建服务端监听socket，将在蓝牙子系统中注册该UUID服务
     socket.sppListen("Demo", option, (err, num: number) => {
       if (err) {
         console.error('sppListen errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);

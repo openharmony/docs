@@ -6,7 +6,7 @@
 
 **库：** libohaudio.so
 
-**引用文件：** <multimedia/audio_framework/audio_renderer/native_audiorenderer.h>
+**引用文件：** <ohaudio/native_audiorenderer.h>
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 

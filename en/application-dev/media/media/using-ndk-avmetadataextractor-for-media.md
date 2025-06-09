@@ -40,27 +40,28 @@ In addition, link the following dynamic link library in the CMake script:
 target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 ```
 
-You can use the APIs related to metadata retrieval by including the header files [avmetadata_extractor.h](../../reference/apis-media-kit/avmetadata__extractor_8h.md), [avmetadata_extractor_base.h](../../reference/apis-media-kit/avmetadata__extractor__base_8h.md), and [native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md).
-Read [AVMetadataExtractor](../../reference/apis-media-kit/_a_v_metadata_extractor.md) for the API reference.
+You can use the APIs related to metadata retrieval by including the header files [avmetadata_extractor.h](../../reference/apis-media-kit/capi-avmetadata-extractor-h.md), [avmetadata_extractor_base.h](../../reference/apis-media-kit/capi-avmetadata-extractor-base-h.md), and [native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md).
 
-1. Call [OH_AVMetadataExtractor_Create()](../../reference/apis-media-kit/_a_v_metadata_extractor.md#oh_avmetadataextractor_create) to create an instance.
+Read [AVMetadataExtractor](../../reference/apis-media-kit/capi-avmetadataextractor.md) for the API reference.
 
-2. Call [OH_AVMetadataExtractor_SetFDSoucre()](../../reference/apis-media-kit/_a_v_metadata_extractor.md#oh_avmetadataextractor_setfdsource) to set the file descriptor of a video resource.
+1. Call [OH_AVMetadataExtractor_Create()](../../reference/apis-media-kit/capi-avmetadata-extractor-h.md#oh_avmetadataextractor_create) to create an instance.
+
+2. Call [OH_AVMetadataExtractor_SetFDSoucre()](../../reference/apis-media-kit/capi-avmetadata-extractor-h.md#oh_avmetadataextractor_setfdsource) to set the file descriptor of a video resource.
    
-> If different AVMetadataExtractor or [AVImageGenerator](../../reference/apis-media-kit/_a_v_image_generator.md) instances need to operate the same resource, the file descriptor needs to be opened for multiple times. Therefore, do not share a file descriptor.
+   If different AVMetadataExtractor or [AVImageGenerator](../../reference/apis-media-kit/capi-avimagegenerator.md) instances need to operate the same resource, the file descriptor needs to be opened for multiple times. Therefore, do not share a file descriptor.
+
+3. Call [OH_AVMetadataExtractor_FetchMetadata()](../../reference/apis-media-kit/capi-avmetadata-extractor-h.md#oh_avmetadataextractor_fetchmetadata) to obtain metadata.
    
-3. Call [OH_AVMetadataExtractor_FetchMetadata()](../../reference/apis-media-kit/_a_v_metadata_extractor.md#oh_avmetadataextractor_fetchmetadata) to obtain metadata.
+   First, call **OH_AVFormat_Create()** to create an **OH_AVFormat** object and obtain the metadata by accessing the key-value pairs of the object. When the object is no longer required, call **OH_AVFormat_Destroy** to release the object to prevent memory leakage. For details, see [OH_AVFormat](../../reference/apis-avcodec-kit/_core.md#oh_avformat).
+
+4. (Optional) Call [OH_AVMetadataExtractor_FetchAlbumCover()](../../reference/apis-media-kit/capi-avmetadata-extractor-h.md#oh_avmetadataextractor_fetchalbumcover) to obtain the album cover.
    
-> First, call **OH_AVFormat_Create()** to create an **OH_AVFormat** object and obtain the metadata by accessing the key-value pairs of the object. When the object is no longer required, call **OH_AVFormat_Destroy** to release the object to prevent memory leakage. For details, see [OH_AVFormat](../../reference/apis-avcodec-kit/_core.md#oh_avformat).
-   
-4. (Optional) Call [OH_AVMetadataExtractor_FetchAlbumCover()](../../reference/apis-media-kit/_a_v_metadata_extractor.md#oh_avmetadataextractor_fetchalbumcover) to obtain the album cover.
-   
-> When the object is no longer required, call **OH_PixelmapNative_Release** to release the object. For details, see [Image_NativeModule](../../reference/apis-image-kit/_image___native_module.md).
-   
-5. Call [OH_AVMetadataExtractor_Release()](../../reference/apis-media-kit/_a_v_metadata_extractor.md#oh_avmetadataextractor_release) to destroy the instance and release resources.
+   When the object is no longer required, call **OH_PixelmapNative_Release** to release the object. For details, see [Image_NativeModule](../../reference/apis-image-kit/_image___native_module.md).
+
+5. Call [OH_AVMetadataExtractor_Release()](../../reference/apis-media-kit/capi-avmetadata-extractor-h.md#oh_avmetadataextractor_release) to destroy the instance and release resources.
 
 
-## Sample Code
+## Development Example
 
 Refer to the sample code below to set the file descriptor and obtain the metadata and album cover of an audio asset.
 

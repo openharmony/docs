@@ -755,7 +755,7 @@ hilog.info(0x0000, 'testTag', ' Node-API aboutSerialize: %{public}d', testNapi.a
 | napi_wrap_sendable | 包裹一个native实例到ArkTS对象中。|
 | napi_wrap_sendable_with_size | 包裹一个native实例到ArkTS对象中并指定大小。|
 | napi_unwrap_sendable | 获取ArkTS对象包裹的native实例。|
-| napi_remove_wrap_sendable | 移除并获取ArkTS对象包裹的native实例。|
+| napi_remove_wrap_sendable | 移除并获取ArkTS对象包裹的native实例，移除后回调将不再触发，需手动delete释放内存。|
 
 ### 使用示例
 
@@ -1207,7 +1207,7 @@ testNapi.unwrapSendable();
 
 #### napi_remove_wrap_sendable
 
-移除并获取ArkTS对象包裹的native实例。
+移除并获取ArkTS对象包裹的native实例，移除后回调将不再触发，需手动delete释放内存。
 
 cpp部分代码
 

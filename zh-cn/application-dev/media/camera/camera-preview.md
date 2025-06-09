@@ -6,7 +6,7 @@
 
 ## 开发步骤
 
-详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/js-apis-camera.md)。
+详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/arkts-apis-camera.md)。
 
 1. 导入camera接口，接口中提供了相机相关的属性和方法，导入方法如下。
      
@@ -22,7 +22,7 @@
     > **说明：**
     > 预览流与录像输出流的分辨率的宽高比要保持一致，如果设置XComponent组件中的Surface显示区域宽高比为1920:1080 = 16:9，则需要预览流中的分辨率的宽高比也为16:9，如分辨率选择640:360，或960:540，或1920:1080，以此类推。
 
-3. 通过[CameraOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability)类中的previewProfiles属性获取当前设备支持的预览能力，返回previewProfilesArray数组 。通过[createPreviewOutput](../../reference/apis-camera-kit/js-apis-camera.md#createpreviewoutput)方法创建预览输出流，其中，[createPreviewOutput](../../reference/apis-camera-kit/js-apis-camera.md#createpreviewoutput)方法中的两个参数分别是当前设备支持的预览配置信息previewProfile和步骤二中获取的surfaceId。
+3. 通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)类中的previewProfiles属性获取当前设备支持的预览能力，返回previewProfilesArray数组 。通过[createPreviewOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.m#createpreviewoutput)方法创建预览输出流，其中，[createPreviewOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.m#createpreviewoutput)方法中的两个参数分别是当前设备支持的预览配置信息previewProfile和步骤二中获取的surfaceId。
      
    ```ts
    function getPreviewOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability, surfaceId: string): camera.PreviewOutput | undefined {
@@ -39,7 +39,7 @@
    }
    ```
 
-4. 使能。通过[Session.start](../../reference/apis-camera-kit/js-apis-camera.md#start11)方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera错误码](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode)。
+4. 使能。通过[Session.start](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#start11)方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera错误码](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraerrorcode)。
      
    ```ts
    async function startPreviewOutput(cameraManager: camera.CameraManager, previewOutput: camera.PreviewOutput): Promise<void> {
@@ -104,7 +104,7 @@
   }
   ```
 
-- 通过注册固定的error回调函数获取监听预览输出错误结果，回调返回预览输出接口使用错误时对应的错误码，错误码类型参见[Camera错误码](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode)。
+- 通过注册固定的error回调函数获取监听预览输出错误结果，回调返回预览输出接口使用错误时对应的错误码，错误码类型参见[Camera错误码](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraerrorcode)。
     
   ```ts
   function onPreviewOutputError(previewOutput: camera.PreviewOutput): void {

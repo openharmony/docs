@@ -962,8 +962,9 @@ createAlphaPixelmapSync(): PixelMap
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 
-async function Demo() {
+async function Demo(pixelMap : sendableImage.PixelMap) {
     let resPixelMap : sendableImage.PixelMap = pixelMap.createAlphaPixelmapSync();
     return resPixelMap;
 }
@@ -1750,6 +1751,8 @@ createImageSource(uri: string): ImageSource
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
+
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.cacheDir + "/test.jpg";
@@ -1781,6 +1784,7 @@ createImageSource(fd: number): ImageSource
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
@@ -1896,6 +1900,7 @@ createPixelMap(options?: image.DecodingOptions): Promise\<PixelMap>
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
@@ -1926,6 +1931,7 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext

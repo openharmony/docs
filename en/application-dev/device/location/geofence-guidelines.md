@@ -10,7 +10,7 @@ A typical application of geofencing is to create a geofence around an enterprise
 
 ## Available APIs
 
-Geo-fencing uses the following interfaces. For details, see [Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md).
+The following table lists the APIs used in geofencing. For details, see [Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md).
 
 | API| Description| 
 | -------- | -------- |

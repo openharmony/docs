@@ -16,7 +16,7 @@
 
 ## 加载网络页面
 
-开发者可以在Web组件创建时，指定默认加载的网络页面。在默认页面加载完成后，如果需要变更此Web组件显示的网络页面，可以通过调用[loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl)接口加载指定的网页。[Web组件](../reference/apis-arkweb/ts-basic-components-web.md#web)的第一个参数变量src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl)重新加载。
+开发者可以在Web组件创建时，指定默认加载的网络页面。在默认页面加载完成后，如果需要变更此Web组件显示的网络页面，可以通过调用[loadUrl()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#loadurl)接口加载指定的网页。[Web组件](../reference/apis-arkweb/ts-basic-components-web.md#web)的第一个参数变量src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#loadurl)重新加载。
 
 
 在下面的示例中，在Web组件加载完“www\.example.com”页面后，开发者可通过loadUrl接口将此Web组件显示页面变更为“www\.example1.com”。
@@ -58,7 +58,7 @@ struct WebComponent {
 
 在下面的示例中展示加载本地页面文件的方法：
 
-将本地页面文件放在应用的rawfile目录下，开发者可以在Web组件创建的时候指定默认加载的本地页面，并且加载完成后可通过调用[loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl)接口变更当前Web组件的页面。
+将本地页面文件放在应用的rawfile目录下，开发者可以在Web组件创建的时候指定默认加载的本地页面，并且加载完成后可通过调用[loadUrl()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#loadurl)接口变更当前Web组件的页面。
 
 加载本地html文件时引用本地css样式文件可以通过以下方法实现。
 
@@ -131,7 +131,7 @@ struct WebComponent {
 
 加载沙箱路径下的本地页面文件。
 
-1. 通过构造的单例对象GlobalContext获取沙箱路径。需要开启应用中文件系统的访问[fileAccess](../reference/apis-arkweb/ts-basic-components-web.md#fileaccess)权限。
+1. 通过构造的单例对象GlobalContext获取沙箱路径。需要开启应用中文件系统的访问[fileAccess](../reference/apis-arkweb/ts-basic-components-web-attributes.md#fileaccess)权限。
 
    ```ts
    // GlobalContext.ets
@@ -213,7 +213,7 @@ struct WebComponent {
 
 ## 加载HTML格式的文本数据
 
-Web组件可以通过[loadData()](../reference/apis-arkweb/js-apis-webview.md#loaddata)接口实现加载HTML格式的文本数据。当开发者不需要加载整个页面，只需要显示一些页面片段时，可通过此功能来快速加载页面，当加载大量html文件时，需设置第四个参数baseUrl为"data"。
+Web组件可以通过[loadData()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#loaddata)接口实现加载HTML格式的文本数据。当开发者不需要加载整个页面，只需要显示一些页面片段时，可通过此功能来快速加载页面，当加载大量html文件时，需设置第四个参数baseUrl为"data"。
 
 ```ts
 // xxx.ets
