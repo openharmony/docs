@@ -1362,8 +1362,8 @@ type DataProgressListener = (progressInfo: ProgressInfo, data: UnifiedData | nul
 
 描述数据的类型与数量要求。
 
-- 在 **数据接收方** 中使用，表示期望加载的数据类型与数量；
 - 在 **数据发送方** 中使用，表示实际可提供的数据范围。
+- 在 **数据接收方** 中使用，表示期望加载的数据类型与数量, 可根据需要设置该字段；
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1394,7 +1394,7 @@ type DataLoadHandler = (acceptableInfo?: DataLoadInfo) => UnifiedData | null
 
 ## DataLoadParams<sup>20+</sup>
 
-用于在延迟拖拽场景中描述发送方的数据加载策略。
+用于在延迟加载场景下描述发送方的数据加载策略。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
