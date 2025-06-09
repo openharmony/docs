@@ -3504,6 +3504,7 @@
             - [Asset_Attr](reference/apis-asset-store-kit/capi-asset-attr.md)
             - [Asset_Result](reference/apis-asset-store-kit/capi-asset-result.md)
             - [Asset_ResultSet](reference/apis-asset-store-kit/capi-asset-resultset.md)
+            - [Asset_SyncResult](reference/apis-asset-store-kit/capi-asset-syncresult.md)
         - 错误码<!--asset-store-arkts-errcode-->
           - [Asset错误码](reference/apis-asset-store-kit/errorcode-asset.md)
       - Crypto Architecture Kit（加解密算法框架服务）<!--crypto-architecture-api-->
