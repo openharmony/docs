@@ -1,6 +1,6 @@
 # @ohos.multimodalawareness.userStatus (用户感知)
 
-本模块，提供对用户状态感知能力，包括未成年检测等。
+本模块，提供对用户状态感知能力，包括未成年人检测等。
 
 > **说明：**
 >
@@ -13,21 +13,32 @@
 import { userStatus } from '@kit.MultimodalAwarenessKit';
 ```
 
-## IdentificationStatus
+## DetectionStatus
 
 未成年人检测状态信息。
 
 **系统能力**：SystemCapability.MultimodalAwareness.UserStatus
 
-| 名称                | 值   | 说明                   |
+| 名称                | 值  | 说明                   |
 | ------------------- | ---- | ---------------------- |
-| ADULT  | 0    | 表示是成年人。 |
-| MINOR  | 1    | 表示是未成年人。 |
+| ADULT_STATUS  | 0    | 表示是成年人操作。 |
+| CHILD_STATUS  | 1    | 表示是儿童操作。 |
+
+## DetectionResult
+
+未成年人检测结果。
+
+**系统能力**：SystemCapability.MultimodalAwareness.UserStatus
+
+| 名称                | 类型   | 说明                   |
+| ------------------- | ---- | ---------------------- |
+| result  | [DetectionStatus](#DetectionStatus)   | 表示是未成年人检测结果。 |
+| credibility  | number    | 表示未成年人检测结果的置信度，取值范围为0~1的浮点数，数值越大代表置信度越高。 |
 
 
-## userStatus.on('MinorIdentification')
+## userStatus.on('ChildDetection')
 
- on(type: 'MinorIdentification', callback: Callback&lt;IdentificationStatus&gt;): void;
+ on(type: 'ChildDetection', callback: Callback&lt;DetectionStatus&gt;): void;
 
 订阅未成年人检测功能。
 
@@ -39,8 +50,8 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                           | 是   | 事件类型。type为“MinorIdentification”，表示未成年人检测功能。 |
-| callback | Callback&lt;[IdentificationStatus](#IdentificationStatus)&gt; | 是   | 回调函数，返回未成年人检测结果。|
+| type     | string                           | 是   | 事件类型。type为“ChildDetection”，表示未成年人检测功能。 |
+| callback | Callback&lt;[DetectionStatus](#DetectionStatus)&gt; | 是   | 回调函数，返回未成年人检测结果。|
 
 **错误码**：
 
@@ -48,7 +59,7 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied. An attempt was made to subscribe MinorIdentification feature forbidden by permission: ohos.permission.ACCELEROMETER. |
+| 201      | Permission denied. An attempt was made to subscribe ChildDetection feature forbidden by permission: ohos.permission.ACCELEROMETER. |
 | 401      | Parameter error. Parameter verification failed. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
 | 33500001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception; 2. N-API invocation exception, invalid N-API status. |
@@ -59,7 +70,7 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-callback(data:userStatus.IdentificationStatus) {
+callback(data:userStatus.DetectionStatus) {
     console.info('callback success' + data);
 };
 
@@ -74,9 +85,9 @@ try {
 
 
 
-## userStatus.off('MinorIdentification')
+## userStatus.off('ChildDetection')
 
-off(type: 'MinorIdentification', callback?: Callback&lt;IdentificationStatus&gt;): void;
+off(type: 'ChildDetection', callback?: Callback&lt;DetectionStatus&gt;): void;
 
 取消订阅未成年人检测功能。
 
@@ -88,8 +99,8 @@ off(type: 'MinorIdentification', callback?: Callback&lt;IdentificationStatus&gt;
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                           | 是   | 事件类型。type为“MinorIdentification”，表示未成年人检测功能。 |
-| callback | Callback&lt;[IdentificationStatus](#IdentificationStatus)&gt; | 否   | 回调函数，返回未成年人检测结果。 |
+| type     | string                           | 是   | 事件类型。type为“ChildDetection”，表示未成年人检测功能。 |
+| callback | Callback&lt;[DetectionStatus](#DetectionStatus)&gt; | 否   | 回调函数，返回未成年人检测结果。 |
 
 **错误码**：
 
