@@ -34,7 +34,7 @@ Web页面保活可以参考[使用离线Web组件](../web/web-offline-mode.md)�
 
 > **说明：**
 >
-> - Web组件仅在页面加载完成后响应触摸事件，为了避免阻塞用户交互，建议使用加载转圈或者懒加载的方式过渡。
+> - 当前web页面没有加载完成时不允许上滑。
 
 ## Web组件网页异常加载过程所涉及的状态说明 
 - [onOverrideUrlLoading](../reference/apis-arkweb/ts-basic-components-web.md#onoverrideurlloading12)事件：当URL将要加载到当前Web中时，让宿主应用程序有机会获得控制权，回调函数返回true将导致当前Web中止加载URL，而返回false则会导致Web继续照常加载URL。onLoadIntercept接口和onOverrideUrlLoading接口行为不一致，触发时机也不同，所以在应用场景上存在一定区别。onLoadIntercept事件在LoadUrl和iframe加载时触发，但onOverrideUrlLoading事件在LoadUrl和特定iframe加载时不会触发。详情见文档。
