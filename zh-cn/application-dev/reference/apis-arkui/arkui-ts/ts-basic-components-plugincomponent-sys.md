@@ -20,9 +20,13 @@ PluginComponent(value: { template: PluginComponentTemplate, data: KVObject})
 
 创建插件组件，用于显示外部应用提供的UI。
 
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名 | 参数类型                                                     | 必填 | 参数描述                                                     |
+| 参数名 | 参数类型                                                     | 必填 | 说明                                                     |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | {<br/>template:&nbsp; [PluginComponentTemplate](#plugincomponenttemplate9类型说明),<br/>data:&nbsp;[KVObject](../js-apis-plugincomponent.md#kvobject)<br/>} | 是   | template:&nbsp;&nbsp;组件模板，用于跟提供方定义的组件绑定。<br/>data:&nbsp;传给插件组件提供方使用的数据。 |
 
