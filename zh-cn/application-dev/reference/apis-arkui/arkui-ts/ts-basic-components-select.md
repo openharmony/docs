@@ -1366,3 +1366,51 @@ struct SelectExample {
 
 ```
 ![](figures/SelectOptionModifier.png)
+
+## 示例8（设置分割线模式）
+
+该示例通过配置dividerStyle的mode属性设置分割线模式。
+
+```ts
+import { LengthMetrics } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Index {
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ content: "Item Content" })
+      MenuItem({ content: "Item Content" })
+      MenuItem({ content: "Item Content" })
+      MenuItemGroup() {
+        MenuItem({ content: "Group Child" })
+        MenuItem({ content: "Group Child" })
+      }
+      MenuItem({ content: "Item Content" })
+    }
+    .menuItemDivider({
+      strokeWidth: LengthMetrics.vp(5),
+      color: '#d5d5d5',
+      mode: DividerMode.EMBEDDED_IN_MENU
+    })
+    .menuItemGroupDivider({
+      strokeWidth: LengthMetrics.vp(5),
+      color: '#707070',
+      mode: DividerMode.EMBEDDED_IN_MENU
+    })
+  }
+
+  build() {
+    RelativeContainer() {
+      Button("show menu")
+        .bindMenu(this.MyMenu())
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![dividerStyleMode](figures/dividerStyleMode.png)
