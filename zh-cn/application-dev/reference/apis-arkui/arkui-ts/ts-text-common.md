@@ -955,3 +955,18 @@ constructor(color: ResourceColor)
 | ACCESSIBILITY | 10 | 无障碍接口。 |
 | COLLABORATION | 11 | 跨端拍照。 |
 | STYLUS | 12 | 手写笔。 |
+
+## TextVerticalAlign<sup>20+</sup>
+
+文本垂直对齐的方式。默认值BASELINE，沿基线对齐。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         |  值          | 说明                  |
+| --------------------- | -------------------| ------------------- |
+| BASELINE |  0          | 对齐文本基线。 |
+| BOTTOM   |  1          | 对齐文本底部。 |
+| CENTER   |  2          | 垂直居中对齐。 |
+| TOP      |  3          | 对齐文本顶部。 |

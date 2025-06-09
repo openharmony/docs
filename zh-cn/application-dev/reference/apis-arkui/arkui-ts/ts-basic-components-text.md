@@ -62,9 +62,9 @@ textAlign(value: TextAlign)
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
 | value  | [TextAlign](ts-appendix-enums.md#textalign) | 是   | 文本段落在水平方向的对齐方式。<br/>默认值：TextAlign.Start<br/>Wearable设备上默认值为：TextAlign.Center |
 
-### textVerticalAlign
+### textVerticalAlign<sup>20+</sup>
 
-textVerticalAlign(textVerticalAlign: TextVerticalAlign)
+textVerticalAlign(textVerticalAlign: Optional\<TextVerticalAlign>)
 
 设置文本段落在垂直方向的对齐方式。
 
@@ -78,7 +78,7 @@ textVerticalAlign(textVerticalAlign: TextVerticalAlign)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                       |
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
-| textVerticalAlign  | [TextVerticalAlign](ts-appendix-enums.md#textverticalalign) | 是   | 文本段落在垂直方向的对齐方式。<br/>默认值：TextVerticalAlign.BASELINE |
+| textVerticalAlign  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextVerticalAlign](ts-text-common.md#textverticalalign)> | 否   | 文本段落在垂直方向的对齐方式。<br/>默认值：TextVerticalAlign.BASELINE |
 
 ### textOverflow
 
