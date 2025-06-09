@@ -24,7 +24,7 @@ The example simplifies the logic for handling exceptions and ensuring thread sec
 #include <fstream>
 #include <iostream>
 #include <thread>
-#include "ffrt/cpp/queue.h"
+#include "ffrt/ffrt.h"
 
 class Logger {
 public:
@@ -90,7 +90,8 @@ The main FFRT APIs involved in the preceding example are as follows:
 
 > **NOTE**
 >
-> For details about how to use FFRT C++ APIs, see [Using FFRT C++ APIs](ffrt-development-guideline.md#using-ffrt-c-api-1).
+> - For details about how to use FFRT C++ APIs, see [Using FFRT C++ APIs](ffrt-development-guideline.md#using-ffrt-c-api-1).
+> - When using FFRT C or C++ APIs, you can use the FFRT C++ API third-party library to simplify the header file inclusion, that is, use the `#include "ffrt/ffrt.h"` header file to include statements.
 
 ## Constraints
 
