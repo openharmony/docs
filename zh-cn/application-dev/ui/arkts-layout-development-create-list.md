@@ -222,6 +222,7 @@ struct CityList {
 List() {
   ListItem() {
     Row() {
+      // app.media.iconE为自定义资源
       Image($r('app.media.iconE'))
         .width(40)
         .height(40)
@@ -234,6 +235,7 @@ List() {
 
   ListItem() {
     Row() {
+      // app.media.iconF为自定义资源
       Image($r('app.media.iconF'))
         .width(40)
         .height(40)
