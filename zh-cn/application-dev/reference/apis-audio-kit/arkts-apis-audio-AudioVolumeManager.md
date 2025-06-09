@@ -5,7 +5,7 @@
 
 音量管理。
 
-在使用AudioVolumeManager的接口之前，需先通过[getVolumeManager](#getvolumemanager9)获取AudioVolumeManager实例。
+在使用AudioVolumeManager的接口之前，需先通过[getVolumeManager](arkts-apis-audio-AudioManager.md#getvolumemanager9)获取AudioVolumeManager实例。
 
 ## getVolumeGroupManager<sup>9+</sup>
 
@@ -20,7 +20,7 @@ getVolumeGroupManager(groupId: number, callback: AsyncCallback<AudioVolumeGroupM
 | 参数名     | 类型                                                         | 必填 | 说明                                                        |
 | ---------- | ------------------------------------------------------------ | ---- |-----------------------------------------------------------|
 | groupId    | number                                    | 是   | 音量组id，默认使用LOCAL_VOLUME_GROUP_ID。                          |
-| callback   | AsyncCallback&lt;[AudioVolumeGroupManager](#audiovolumegroupmanager9)&gt; | 是   | 回调函数。当获取音频组管理器成功，err为undefined，data为获取到的音频组管理器对象；否则为错误对象。 |
+| callback   | AsyncCallback&lt;[AudioVolumeGroupManager](arkts-apis-audio-AudioVolumeGroupManager.md#interfaces-audiovolumegroupmanager)&gt; | 是   | 回调函数。当获取音频组管理器成功，err为undefined，data为获取到的音频组管理器对象；否则为错误对象。 |
 
 **示例：**
 
@@ -57,7 +57,7 @@ getVolumeGroupManager(groupId: number\): Promise<AudioVolumeGroupManager\>
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| Promise&lt; [AudioVolumeGroupManager](#audiovolumegroupmanager9) &gt; | Promise对象，返回音量组实例。 |
+| Promise&lt; [AudioVolumeGroupManager](arkts-apis-audio-AudioVolumeGroupManager.md#interfaces-audiovolumegroupmanager) &gt; | Promise对象，返回音量组实例。 |
 
 **示例：**
 
@@ -91,7 +91,7 @@ getVolumeGroupManagerSync(groupId: number\): AudioVolumeGroupManager
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| [AudioVolumeGroupManager](#audiovolumegroupmanager9) | 音量组实例。 |
+| [AudioVolumeGroupManager](arkts-apis-audio-AudioVolumeGroupManager.md#interfaces-audiovolumegroupmanager) | 音量组实例。 |
 
 **错误码：**
 
@@ -192,7 +192,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | 是   | 事件回调类型，支持的事件为'volumeChange'，当系统音量发生变化时，触发该事件。 |
-| callback | Callback<[VolumeEvent](#volumeevent9)> | 是   | 回调函数，返回变化后的音量信息。 |
+| callback | Callback<[VolumeEvent](apis-audio-kit/arkts-apis-audio-i.md#volumeevent9)> | 是   | 回调函数，返回变化后的音量信息。 |
 
 **错误码：**
 
@@ -226,7 +226,7 @@ off(type: 'volumeChange', callback?: Callback\<VolumeEvent>): void
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | 是   | 事件回调类型，支持的事件为'volumeChange'，当取消监听系统音量变化事件时，触发该事件。 |
-| callback | Callback<[VolumeEvent](#volumeevent9)> | 否   | 回调函数，返回变化后的音量信息。 |
+| callback | Callback<[VolumeEvent](apis-audio-kit/arkts-apis-audio-i.md#volumeevent9)> | 否   | 回调函数，返回变化后的音量信息。 |
 
 **错误码：**
 
@@ -342,7 +342,7 @@ on(type: 'activeVolumeTypeChange', callback: Callback\<AudioVolumeType>): void
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | 是   | 事件回调类型，支持的事件为'activeVolumeTypeChange'，当活跃流发生变化时，触发该事件。 |
-| callback | Callback\<[AudioVolumeType](#audiovolumetype)> | 是   | 回调函数，返回变化后的活跃流类型。 |
+| callback | Callback\<[AudioVolumeType](arkts-apis-audio-e.md#audiovolumetype)> | 是   | 回调函数，返回变化后的活跃流类型。 |
 
 **错误码：**
 
@@ -374,7 +374,7 @@ off(type: 'activeVolumeTypeChange', callback?: Callback\<AudioVolumeType>): void
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | 是   | 事件回调类型，支持的事件为'activeVolumeTypeChange'，当取消监听当前活跃流变化事件时，触发该事件。 |
-| callback | Callback\<[AudioVolumeType](#audiovolumetype)> | 否   | 回调函数，返回变化后的活跃流类型。 |
+| callback | Callback\<[AudioVolumeType](arkts-apis-audio-e.md#audiovolumetype)> | 否   | 回调函数，返回变化后的活跃流类型。 |
 
 **错误码：**
 
