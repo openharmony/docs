@@ -28,6 +28,14 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 > **说明：**
 >
 > OH_LOG_IsLoggable()和OH_LOG_Print()使用的domain、tag和level应保持一致。
+>
+> - isLoggable()返回值：如果指定的domain、tag、level日志可以打印则返回true；否则返回false。
+>
+>   debug应用：不做日志级别管控，所有级别日志都能够正常打印出来；
+>
+>   release应用：按照全局日志级别（默认为INFO）管控，当日志的级别不低于全局日志级别时，才能正常打印出来；
+>
+>   调试过程中，可手动修改日志级别，参考: [查看和设置日志级别](hilog.md#查看和设置日志级别)
 
 - domain：用于指定输出日志所对应的业务领域，取值范围为0x0000~0xFFFF，开发者可以根据需要进行自定义。
 
