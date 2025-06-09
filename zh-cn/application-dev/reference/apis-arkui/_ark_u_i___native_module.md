@@ -15181,6 +15181,28 @@ void* OH_ArkUI_GestureInterrupter_GetUserData(ArkUI_GestureInterruptInfo* event)
 
 指向用户自定义数据的指针。
 
+### OH_ArkUI_PreventGestureRecognizerBegin
+
+```
+ArkUI_ErrorCode OH_ArkUI_PreventGestureRecognizerBegin(ArkUI_GestureRecognizer* recognizer)
+```
+
+**描述：**
+
+在手指全部抬起前阻止手势识别器参与当前手势识别。如果系统已确定该手势识别器的结果（无论成功与否），调用此接口将无效。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称  | 描述                       |
+| ----- | -------------------------- |
+| recognizer | 手势识别器指针。       |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 参数错误。
 
 ### OH_ArkUI_PinchGesture_GetCenterX()
 
@@ -18623,6 +18645,31 @@ ArkUI_ErrorCode OH_ArkUI_PanGesture_GetDistanceByToolType(ArkUI_GestureRecognize
 ARKUI_ERROR_CODE_NO_ERROR 成功。
 ARKUI_ERROR_CODE_PARAM_INVALID 参数错误。
 ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED 不支持手势识别器类型。
+
+### OH_ArkUI_SetTouchTestDoneCallback()
+
+```
+ArkUI_ErrorCode OH_ArkUI_SetTouchTestDoneCallback(ArkUI_NodeHandle node, void* userData,
+    void (*touchTestDone)(ArkUI_GestureEvent* event, ArkUI_GestureRecognizerHandleArray recognizers, int32_t count, void* userData))
+```
+**描述：**
+
+注册一个在所有手势识别器收集完成后执行的回调函数。当用户开始触摸屏幕时，系统会进行命中测试并根据触摸位置收集手势识别器。随后，在处理移动事件之前，组件可以使用此接口确定将参与识别并相互竞争的手势识别器。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| node | 需要设置手势收集完成回调的节点句柄。 |
+| userData | 自定义事件参数，在回调触发时在回调函数中携带。 |
+| touchTestDone | 手势收集完成后触发的回调函数。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 参数错误。
 
 ### OH_ArkUI_DragEvent_RequestDragEndPending()
 
