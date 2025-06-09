@@ -5,7 +5,7 @@
 
 提供音频渲染的相关接口。
 
-在使用AudioRenderer的接口之前，需先通过[createAudioRenderer](#audiocreateaudiorenderer8)获取AudioRenderer实例。
+在使用AudioRenderer的接口之前，需先通过[createAudioRenderer](arkts-apis-audio-f.md#audiocreateaudiorenderer8)获取AudioRenderer实例。
 
 ## 属性
 
@@ -13,7 +13,7 @@
 
 | 名称  | 类型                     | 可读 | 可写 | 说明               |
 | ----- | -------------------------- | ---- | ---- | ------------------ |
-| state<sup>8+</sup> | [AudioState](#audiostate8) | 是   | 否   | 音频渲染器的状态。 |
+| state<sup>8+</sup> | [AudioState](arkts-apis-audio-e.md#audiostate8) | 是   | 否   | 音频渲染器的状态。 |
 
 **示例：**
 
@@ -35,7 +35,7 @@ getRendererInfo(callback: AsyncCallback<AudioRendererInfo\>): void
 
 | 参数名   | 类型                                                     | 必填 | 说明                   |
 | :------- | :------------------------------------------------------- | :--- | :--------------------- |
-| callback | AsyncCallback<[AudioRendererInfo](#audiorendererinfo8)\> | 是   | 回调函数。当获取音频渲染器的信息成功，err为undefined，data为获取到的音频渲染器的信息；否则为错误对象。 |
+| callback | AsyncCallback<[AudioRendererInfo](arkts-apis-audio-i.md#audiorendererinfo8)\> | 是   | 回调函数。当获取音频渲染器的信息成功，err为undefined，data为获取到的音频渲染器的信息；否则为错误对象。 |
 
 **示例：**
 
@@ -62,7 +62,7 @@ getRendererInfo(): Promise<AudioRendererInfo\>
 
 | 类型                                               | 说明                            |
 | -------------------------------------------------- | ------------------------------- |
-| Promise<[AudioRendererInfo](#audiorendererinfo8)\> | Promise对象，返回音频渲染器信息。 |
+| Promise<[AudioRendererInfo](arkts-apis-audio-i.md#audiorendererinfo8)\> | Promise对象，返回音频渲染器信息。 |
 
 **示例：**
 
@@ -91,7 +91,7 @@ getRendererInfoSync(): AudioRendererInfo
 
 | 类型                                               | 说明                            |
 | -------------------------------------------------- | ------------------------------- |
-| [AudioRendererInfo](#audiorendererinfo8) | 返回音频渲染器信息。 |
+| [AudioRendererInfo](arkts-apis-audio-i.md#audiorendererinfo8) | 返回音频渲染器信息。 |
 
 **示例：**
 
@@ -121,7 +121,7 @@ getStreamInfo(callback: AsyncCallback<AudioStreamInfo\>): void
 
 | 参数名   | 类型                                                 | 必填 | 说明                 |
 | :------- | :--------------------------------------------------- | :--- | :------------------- |
-| callback | AsyncCallback<[AudioStreamInfo](#audiostreaminfo8)\> | 是   | 回调函数。当获取音频流信息成功，err为undefined，data为获取到的音频流信息；否则为错误对象。 |
+| callback | AsyncCallback<[AudioStreamInfo](arkts-apis-audio-i.md#audiostreaminfo8)\> | 是   | 回调函数。当获取音频流信息成功，err为undefined，data为获取到的音频流信息；否则为错误对象。 |
 
 **示例：**
 
@@ -149,7 +149,7 @@ getStreamInfo(): Promise<AudioStreamInfo\>
 
 | 类型                                           | 说明                   |
 | :--------------------------------------------- | :--------------------- |
-| Promise<[AudioStreamInfo](#audiostreaminfo8)\> | Promise对象，返回音频流信息。 |
+| Promise<[AudioStreamInfo](arkts-apis-audio-i.md#audiostreaminfo8)\> | Promise对象，返回音频流信息。 |
 
 **示例：**
 
@@ -179,7 +179,7 @@ getStreamInfoSync(): AudioStreamInfo
 
 | 类型                                           | 说明                   |
 | :--------------------------------------------- | :--------------------- |
-| [AudioStreamInfo](#audiostreaminfo8) | 返回音频流信息。 |
+| [AudioStreamInfo](arkts-apis-audio-i.md#audiostreaminfo8) | 返回音频流信息。 |
 
 **示例：**
 
@@ -288,7 +288,7 @@ setAudioEffectMode(mode: AudioEffectMode, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                     | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| mode     | [AudioEffectMode](#audioeffectmode10)    | 是   | 音效模式。               |
+| mode     | [AudioEffectMode](arkts-apis-audio-e.md#audioeffectmode10)    | 是   | 音效模式。               |
 | callback | AsyncCallback\<void>                     | 是   | 回调函数。当设置当前音效模式成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -326,7 +326,7 @@ setAudioEffectMode(mode: AudioEffectMode): Promise\<void>
 
 | 参数名 | 类型                                     | 必填 | 说明         |
 | ------ | ---------------------------------------- | ---- | ------------ |
-| mode   | [AudioEffectMode](#audioeffectmode10)   | 是   | 音效模式。 |
+| mode   | [AudioEffectMode](arkts-apis-audio-e.md#audioeffectmode10)   | 是   | 音效模式。 |
 
 **返回值：**
 
@@ -367,7 +367,7 @@ getAudioEffectMode(callback: AsyncCallback\<AudioEffectMode>): void
 
 | 参数名   | 类型                                                    | 必填 | 说明               |
 | -------- | ------------------------------------------------------- | ---- | ------------------ |
-| callback | AsyncCallback<[AudioEffectMode](#audioeffectmode10)> | 是   | 回调函数。当获取当前音效模式成功，err为undefined，data为获取到的当前音效模式；否则为错误对象。 |
+| callback | AsyncCallback<[AudioEffectMode](arkts-apis-audio-e.md#audioeffectmode10)> | 是   | 回调函数。当获取当前音效模式成功，err为undefined，data为获取到的当前音效模式；否则为错误对象。 |
 
 **示例：**
 
@@ -395,7 +395,7 @@ getAudioEffectMode(): Promise\<AudioEffectMode>
 
 | 类型                                              | 说明                      |
 | ------------------------------------------------- | ------------------------- |
-| Promise<[AudioEffectMode](#audioeffectmode10)> | Promise对象，返回当前音效模式。 |
+| Promise<[AudioEffectMode](arkts-apis-audio-e.md#audioeffectmode10)> | Promise对象，返回当前音效模式。 |
 
 **示例：**
 
@@ -575,7 +575,7 @@ audioRenderer.drain().then(() => {
 
 flush(): Promise\<void>
 
-清空缓冲区（[AudioState](#audiostate8)为STATE_RUNNING、STATE_PAUSED、STATE_STOPPED状态下可用）。使用Promise异步回调。
+清空缓冲区（[AudioState](arkts-apis-audio-e.md#audiostate8)为STATE_RUNNING、STATE_PAUSED、STATE_STOPPED状态下可用）。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -942,7 +942,7 @@ setInterruptMode(mode: InterruptMode): Promise&lt;void&gt;
 
 | 参数名     | 类型                                | 必填   | 说明        |
 | ---------- | ---------------------------------- | ------ | ---------- |
-| mode       | [InterruptMode](#interruptmode9)    | 是     | 焦点模型。  |
+| mode       | [InterruptMode](arkts-apis-audio-e.md#interruptmode9)    | 是     | 焦点模型。  |
 
 **返回值：**
 
@@ -975,7 +975,7 @@ setInterruptMode(mode: InterruptMode, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                | 必填   | 说明            |
 | ------- | ----------------------------------- | ------ | -------------- |
-|mode     | [InterruptMode](#interruptmode9)     | 是     | 焦点模型。|
+|mode     | [InterruptMode](arkts-apis-audio-e.md#interruptmode9)     | 是     | 焦点模型。|
 |callback | AsyncCallback\<void>                 | 是     |回调函数。当设置应用的焦点模型成功，err为undefined，否则为错误对象。|
 
 **示例：**
@@ -1005,7 +1005,7 @@ setInterruptModeSync(mode: InterruptMode): void
 
 | 参数名     | 类型                                | 必填   | 说明        |
 | ---------- | ---------------------------------- | ------ | ---------- |
-| mode       | [InterruptMode](#interruptmode9)    | 是     | 焦点模型。  |
+| mode       | [InterruptMode](arkts-apis-audio-e.md#interruptmode9)    | 是     | 焦点模型。  |
 
 **错误码：**
 
@@ -1372,7 +1372,7 @@ getCurrentOutputDevices(callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): 
 
 | 参数名  | 类型       | 必填   | 说明                 |
 | ------- | -----------| ------ | ------------------- |
-|callback | AsyncCallback\<[AudioDeviceDescriptors](#audiodevicedescriptors)>| 是     |回调函数。当获取音频流输出设备信息成功，err为undefined，data为获取到的音频流输出设备信息；否则为错误对象。|
+|callback | AsyncCallback\<[AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)>| 是     |回调函数。当获取音频流输出设备信息成功，err为undefined，data为获取到的音频流输出设备信息；否则为错误对象。|
 
 **示例：**
 
@@ -1408,7 +1408,7 @@ getCurrentOutputDevices(): Promise&lt;AudioDeviceDescriptors&gt;
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| Promise&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;| Promise对象，返回音频流的输出设备信息。 |
+| Promise&lt;[AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)&gt;| Promise对象，返回音频流的输出设备信息。 |
 
 **示例：**
 
@@ -1443,7 +1443,7 @@ getCurrentOutputDevicesSync(): AudioDeviceDescriptors
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| [AudioDeviceDescriptors](#audiodevicedescriptors) | 返回音频流的输出设备信息。 |
+| [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors) | 返回音频流的输出设备信息。 |
 
 **示例：**
 
@@ -1479,7 +1479,7 @@ setChannelBlendMode(mode: ChannelBlendMode): void
 
 | 参数名     | 类型                                | 必填 | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
-| mode | [ChannelBlendMode](#channelblendmode11) | 是   | 声道混合模式类型。                                             |
+| mode | [ChannelBlendMode](arkts-apis-audio-e.md#channelblendmode11) | 是   | 声道混合模式类型。                                             |
 
 **错误码：**
 
@@ -1583,7 +1583,7 @@ setDefaultOutputDevice(deviceType: DeviceType): Promise&lt;void&gt;
 
 > **说明：**
 >
-> - 本接口仅适用于[StreamUsage](#streamusage)为语音消息、VoIP语音通话或者VoIP视频通话的场景，支持听筒、扬声器和系统默认设备。
+> - 本接口仅适用于[StreamUsage](arkts-apis-audio-e.md#streamusage)为语音消息、VoIP语音通话或者VoIP视频通话的场景，支持听筒、扬声器和系统默认设备。
 >
 > - 本接口允许在AudioRenderer创建后随时调用，系统记录应用设置的默认本机内置发声设备。应用启动播放时，若外接设备如蓝牙耳机或有线耳机已接入，系统优先从外接设备发声；否则，系统遵循应用设置的默认本机内置发声设备。
 >
@@ -1595,7 +1595,7 @@ setDefaultOutputDevice(deviceType: DeviceType): Promise&lt;void&gt;
 
 | 参数名     | 类型             | 必填   | 说明                                                      |
 | ---------- |----------------| ------ |---------------------------------------------------------|
-| deviceType | [DeviceType](#devicetype) | 是     | 设备类型。<br>仅支持以下设备：EARPIECE（听筒）、SPEAKER（扬声器）和DEFAULT（系统默认设备）。 |
+| deviceType | [DeviceType](arkts-apis-audio-e.md#devicetype) | 是     | 设备类型。<br>仅支持以下设备：EARPIECE（听筒）、SPEAKER（扬声器）和DEFAULT（系统默认设备）。 |
 
 **返回值：**
 
@@ -1636,7 +1636,7 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 AudioRenderer对象在start事件时获取焦点，在pause、stop等事件时释放焦点，无需开发者主动申请。
 
-调用此方法后，如果AudioRenderer对象获取焦点失败或发生中断事件（如被其他音频打断等），会收到[InterruptEvent](#interruptevent9)。建议应用根据InterruptEvent的信息进行进一步处理。更多信息请参阅文档[音频焦点和音频会话介绍](../../media/audio/audio-playback-concurrency.md)。
+调用此方法后，如果AudioRenderer对象获取焦点失败或发生中断事件（如被其他音频打断等），会收到[InterruptEvent](arkts-apis-audio-i.md#interruptevent9)。建议应用根据InterruptEvent的信息进行进一步处理。更多信息请参阅文档[音频焦点和音频会话介绍](../../media/audio/audio-playback-concurrency.md)。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
@@ -1645,7 +1645,7 @@ AudioRenderer对象在start事件时获取焦点，在pause、stop等事件时�
 | 参数名   | 类型                                         | 必填 | 说明                                                        |
 | -------- | -------------------------------------------- | ---- | ----------------------------------------------------------- |
 | type     | string                                       | 是   | 事件回调类型，支持的事件为'audioInterrupt'，当音频焦点状态发生变化时，触发该事件。 |
-| callback | Callback\<[InterruptEvent](#interruptevent9)\> | 是   | 回调函数，返回中断事件信息。 |
+| callback | Callback\<[InterruptEvent](arkts-apis-audio-i.md#interruptevent9)\> | 是   | 回调函数，返回中断事件信息。 |
 
 **错误码：**
 
@@ -1729,7 +1729,7 @@ off(type: 'audioInterrupt', callback?: Callback&lt;InterruptEvent&gt;): void
 | 参数名   | 类型                                         | 必填 | 说明                                                         |
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 事件回调类型，支持的事件为'audioInterrupt'，当取消监听音频中断事件时，触发该事件。 |
-| callback | Callback\<[InterruptEvent](#interruptevent9)\> | 否 |  回调函数，返回中断事件信息。 |
+| callback | Callback\<[InterruptEvent](arkts-apis-audio-i.md#interruptevent9)\> | 否 |  回调函数，返回中断事件信息。 |
 
 **错误码：**
 
@@ -1938,7 +1938,7 @@ on(type: 'stateChange', callback: Callback<AudioState\>): void
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | 是   | 事件回调类型，支持的事件为'stateChange'，当AudioRenderer的状态发生变化时，触发该事件。 |
-| callback | Callback\<[AudioState](#audiostate8)> | 是   | 回调函数，返回当前音频的状态。 |
+| callback | Callback\<[AudioState](arkts-apis-audio-e.md#audiostate8)> | 是   | 回调函数，返回当前音频的状态。 |
 
 **示例：**
 
@@ -1966,7 +1966,7 @@ off(type: 'stateChange', callback?: Callback&lt;AudioState&gt;): void
 | 参数名 | 类型   | 必填 | 说明                                                |
 | :----- | :----- | :--- | :-------------------------------------------------- |
 | type   | string | 是   | 事件回调类型，支持的事件为'stateChange'，当取消监听到达标记事件时，触发该事件。 |
-| callback | Callback\<[AudioState](#audiostate8)> | 否 | 回调函数，返回当前音频的状态。 |
+| callback | Callback\<[AudioState](arkts-apis-audio-e.md#audiostate8)> | 否 | 回调函数，返回当前音频的状态。 |
 
 **错误码：**
 
@@ -2010,7 +2010,7 @@ on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): voi
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | 是   | 事件回调类型，支持的事件为'outputDeviceChange'，当音频输出设备发生变化时，触发该事件。 |
-| callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 是   | 回调函数，返回当前音频流的输出设备描述信息。 |
+| callback | Callback\<[AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)> | 是   | 回调函数，返回当前音频流的输出设备描述信息。 |
 
 **错误码：**
 
@@ -2044,7 +2044,7 @@ off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): v
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | 是   | 事件回调类型，支持的事件为'outputDeviceChange'，当取消监听音频输出设备变化事件时，触发该事件。 |
-| callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 否   | 回调函数，返回当前音频流的输出设备描述信息。 |
+| callback | Callback\<[AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)> | 否   | 回调函数，返回当前音频流的输出设备描述信息。 |
 
 **错误码：**
 
@@ -2086,7 +2086,7 @@ on(type: 'outputDeviceChangeWithInfo', callback: Callback\<AudioStreamDeviceChan
 | 参数名   | 类型                                                                       | 必填 | 说明                                          |
 | :------- |:-------------------------------------------------------------------------| :--- |:--------------------------------------------|
 | type     | string                                                                   | 是   | 事件回调类型，支持的事件为'outputDeviceChangeWithInfo'，当音频输出设备发生变化时，触发该事件。 |
-| callback | Callback\<[AudioStreamDeviceChangeInfo](#audiostreamdevicechangeinfo11)> | 是   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
+| callback | Callback\<[AudioStreamDeviceChangeInfo](arkts-apis-audio-i.md#audiostreamdevicechangeinfo11)> | 是   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
 
 **错误码：**
 
@@ -2121,7 +2121,7 @@ off(type: 'outputDeviceChangeWithInfo', callback?: Callback\<AudioStreamDeviceCh
 | 参数名   | 类型                                                                       | 必填 | 说明                                          |
 | :------- |:-------------------------------------------------------------------------| :--- |:--------------------------------------------|
 | type     | string | 是   | 事件回调类型，支持的事件为'outputDeviceChangeWithInfo'，当取消监听音频流输出设备变化及原因事件时，触发该事件。 |
-| callback | Callback\<[AudioStreamDeviceChangeInfo](#audiostreamdevicechangeinfo11)> | 否   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
+| callback | Callback\<[AudioStreamDeviceChangeInfo](arkts-apis-audio-i.md#audiostreamdevicechangeinfo11)> | 否   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
 
 **错误码：**
 
@@ -2166,7 +2166,7 @@ on(type: 'writeData', callback: AudioRendererWriteDataCallback): void
 | 参数名   | 类型                             | 必填 | 说明                                  |
 | :------- |:--------------------------------| :--- |:--------------------------------------|
 | type     | string                           | 是   | 事件回调类型，支持的事件为'writeData'，当需要写入音频数据时，触发该事件。 |
-| callback | [AudioRendererWriteDataCallback](#audiorendererwritedatacallback12)   | 是   | 回调函数，入参代表应用接收待写入的数据缓冲区。<br>API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果[AudioDataCallbackResult](#audiodatacallbackresult12)。        |
+| callback | [AudioRendererWriteDataCallback](arkts-apis-audio-t.md#audiorendererwritedatacallback12)   | 是   | 回调函数，入参代表应用接收待写入的数据缓冲区。<br>API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果[AudioDataCallbackResult](arkts-apis-audio-e.md#audiodatacallbackresult12)。        |
 
 **错误码：**
 
@@ -2235,7 +2235,7 @@ off(type: 'writeData', callback?: AudioRendererWriteDataCallback): void
 | 参数名   | 类型                             | 必填 | 说明                                  |
 | :------- |:--------------------------------| :--- |:--------------------------------------|
 | type     | string                           | 是   | 事件回调类型，支持的事件为'writeData'，当取消监听音频数据写入回调事件时，触发该事件。 |
-| callback | [AudioRendererWriteDataCallback](#audiorendererwritedatacallback12)   | 否   | 回调函数，入参代表应用接收待写入的数据缓冲区。<br>API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果[AudioDataCallbackResult](#audiodatacallbackresult12)。 |
+| callback | [AudioRendererWriteDataCallback](arkts-apis-audio-t.md#audiorendererwritedatacallback12)   | 否   | 回调函数，入参代表应用接收待写入的数据缓冲区。<br>API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果[AudioDataCallbackResult](arkts-apis-audio-e.md#audiodatacallbackresult12)。 |
 
 **错误码：**
 
@@ -2406,7 +2406,7 @@ setRenderRate(rate: AudioRendererRate, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                     | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| rate     | [AudioRendererRate](#audiorendererrate8) | 是   | 渲染的速率。             |
+| rate     | [AudioRendererRate](arkts-apis-audio-e.md#audiorendererrate8) | 是   | 渲染的速率。             |
 | callback | AsyncCallback\<void>                     | 是   | 回调函数。当设置音频渲染速率成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -2438,7 +2438,7 @@ setRenderRate(rate: AudioRendererRate): Promise\<void>
 
 | 参数名 | 类型                                     | 必填 | 说明         |
 | ------ | ---------------------------------------- | ---- | ------------ |
-| rate   | [AudioRendererRate](#audiorendererrate8) | 是   | 渲染的速率。 |
+| rate   | [AudioRendererRate](arkts-apis-audio-e.md#audiorendererrate8) | 是   | 渲染的速率。 |
 
 **返回值：**
 
@@ -2473,7 +2473,7 @@ getRenderRate(callback: AsyncCallback\<AudioRendererRate>): void
 
 | 参数名   | 类型                                                    | 必填 | 说明               |
 | -------- | ------------------------------------------------------- | ---- | ------------------ |
-| callback | AsyncCallback<[AudioRendererRate](#audiorendererrate8)> | 是   | 回调函数。当获取当前渲染速率成功，err为undefined，data为获取到的当前渲染速率；否则为错误对象。 |
+| callback | AsyncCallback<[AudioRendererRate](arkts-apis-audio-e.md#audiorendererrate8)> | 是   | 回调函数。当获取当前渲染速率成功，err为undefined，data为获取到的当前渲染速率；否则为错误对象。 |
 
 **示例：**
 
@@ -2500,7 +2500,7 @@ getRenderRate(): Promise\<AudioRendererRate>
 
 | 类型                                              | 说明                      |
 | ------------------------------------------------- | ------------------------- |
-| Promise<[AudioRendererRate](#audiorendererrate8)> | Promise对象，返回渲染速率。 |
+| Promise<[AudioRendererRate](arkts-apis-audio-e.md#audiorendererrate8)> | Promise对象，返回渲染速率。 |
 
 **示例：**
 
@@ -2529,7 +2529,7 @@ getRenderRateSync(): AudioRendererRate
 
 | 类型                                              | 说明                      |
 | ------------------------------------------------- | ------------------------- |
-| [AudioRendererRate](#audiorendererrate8) | 返回渲染速率。 |
+| [AudioRendererRate](arkts-apis-audio-e.md#audiorendererrate8) | 返回渲染速率。 |
 
 **示例：**
 
