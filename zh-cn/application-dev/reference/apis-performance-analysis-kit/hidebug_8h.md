@@ -19,6 +19,13 @@
 ## 汇总
 
 
+### 类型定义
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| typedef void(\* [OH_HiDebug_SymbolicAddressCallback](_hi_debug.md#oh_hidebug_symbolicaddresscallback)) (void \*pc, void \*arg, const [HiDebug_StackFrame](_hi_debug___stack_frame.md) \*frame) | 若[OH_HiDebug_SymbolicAddress](_hi_debug.md#oh_hidebug_symbolicaddress)接口调用成功，将通过该函数将解析后的栈信息返回给调用者。  | 
+
+
 ### 函数
 
 | 名称 | 描述 | 
@@ -33,3 +40,7 @@
 | [HiDebug_ErrorCode](_hi_debug.md#hidebug_errorcode) [OH_HiDebug_StartAppTraceCapture](_hi_debug.md#oh_hidebug_startapptracecapture) ([HiDebug_TraceFlag](_hi_debug.md#hidebug_traceflag) flag, uint64_t tags, uint32_t limitSize, char \*fileName, uint32_t length) | 启动应用trace采集。  | 
 | [HiDebug_ErrorCode](_hi_debug.md#hidebug_errorcode) [OH_HiDebug_StopAppTraceCapture](_hi_debug.md#oh_hidebug_stopapptracecapture) () | 停止采集应用程序trace。  | 
 | [HiDebug_ErrorCode](_hi_debug.md#hidebug_errorcode) [OH_HiDebug_GetGraphicsMemory](_hi_debug.md#oh_hidebug_getgraphicsmemory) (uint32_t \*value) | 获取应用gpu显存大小。  | 
+| int [OH_HiDebug_BacktraceFromFp](_hi_debug.md#oh_hidebug_backtracefromfp) ([HiDebug_Backtrace_Object](_hi_debug.md#hidebug_backtrace_object) object, void \*startFp, void \*\*pcArray, int size) | 根据给定的fp地址进行栈回溯，该函数异步信号安全。  | 
+| [HiDebug_ErrorCode](_hi_debug.md#hidebug_errorcode) [OH_HiDebug_SymbolicAddress](_hi_debug.md#oh_hidebug_symbolicaddress) ([HiDebug_Backtrace_Object](_hi_debug.md#hidebug_backtrace_object) object, void \*pc, void \*arg, [OH_HiDebug_SymbolicAddressCallback](_hi_debug.md#oh_hidebug_symbolicaddresscallback) callback) | 通过给定的pc地址获取详细的符号信息，该函数非异步信号安全。  | 
+| [HiDebug_Backtrace_Object](_hi_debug.md#hidebug_backtrace_object) [OH_HiDebug_CreateBacktraceObject](_hi_debug.md#oh_hidebug_createbacktraceobject) (void) | 创建一个用于栈回溯及栈解析的对象，该函数非异步信号安全。  | 
+| void [OH_HiDebug_DestroyBacktraceObject](_hi_debug.md#oh_hidebug_destroybacktraceobject) ([HiDebug_Backtrace_Object](_hi_debug.md#hidebug_backtrace_object) object) | 销毁由[OH_HiDebug_CreateBacktraceObject](_hi_debug.md#oh_hidebug_createbacktraceobject)创建的对象，以释放栈回溯及栈解析过程中申请的资源，该函数非异步信号安全。  | 
