@@ -955,7 +955,7 @@ getPlaybackInfo(): Promise\<PlaybackInfo>
 
 | 类型                                                   | 说明                                              |
 | ------------------------------------------------------ | ------------------------------------------------- |
-| Promise<[PlaybackInfo](arkts-apis-media-e.md#playbackinfo12)> | Promise对象，返回播放器信息PlaybackInfo。 |
+| Promise<[PlaybackInfo](arkts-apis-media-i.md#playbackinfo12)> | Promise对象，返回播放器信息PlaybackInfo。 |
 
 **示例：**
 
