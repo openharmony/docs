@@ -28,18 +28,18 @@
         <!--DelEnd-->
         - [刷新本地图片和网络图片](arkts-ui-widget-image-update.md)
         - [根据卡片状态刷新不同内容](arkts-ui-widget-update-by-status.md)
-    - ArkTS卡片页面编辑
+    - ArkTS卡片页面编辑<!--arkts-ui-widget-event-formedit-->
         - [ArkTS卡片页面编辑交互概述](arkts-ui-widget-event-formeditextensionability-overview.md)
         - [编辑刷新卡片页面内容](arkts-ui-widget-event-formeditextensionability.md)
-    - 应用内请求卡片加桌
+    - 应用内请求卡片加桌<!--arkts-ui-widget-open-formmanager-->
         - [应用内拉起卡片管理加桌](arkts-ui-widget-open-formmanager.md)
     <!--Del--> 
     - [卡片使用方开发指导（仅对系统应用开放）](widget-host-development-guide.md)
     <!--DelEnd-->
-    - 互动卡片开发
+    - 互动卡片开发<!--arkts-ui-liveform-->
       - [互动卡片概述](arkts-ui-liveform-overview.md)
       - [趣味交互类型互动卡片开发指导](arkts-ui-liveform-funinteraction-development.md)
-      - 场景动效类型互动卡片
+      - 场景动效类型互动卡片<!--arkts-ui-liveform-sceneanimation-->
         - [场景动效类型互动卡片概述](arkts-ui-liveform-sceneanimation-overview.md)
         - [场景动效类型互动卡片开发指导](arkts-ui-liveform-sceneanimation-development.md)
         <!--Del-->
