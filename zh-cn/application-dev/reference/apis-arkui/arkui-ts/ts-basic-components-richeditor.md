@@ -5498,7 +5498,7 @@ struct Index {
 
 
 ### 示例31（设置开启中西文自动间距）
-该示例通过[enableAutoSpacing](#enableAutoSpacing20)属性设置中西文自动间距。
+该示例通过[enableAutoSpacing](#enableautospacing20)属性设置中西文自动间距。
 
 ```ts
 @Entry
