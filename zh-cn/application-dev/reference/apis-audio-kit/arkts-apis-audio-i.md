@@ -223,21 +223,6 @@ audio.getAudioManager().getRoutingManager().getDevices(audio.DeviceFlag.OUTPUT_D
 | updateUi   | boolean                             | 是   |  是否在UI中显示音量变化。true表示显示，false表示不显示。             |
 | volumeMode<sup>19+</sup> | [AudioVolumeMode](arkts-apis-audio-e.md#audiovolumemode19) | 否 | 音频的音量模式。默认值为SYSTEM_GLOBAL。|
 
-## AudioInterrupt<sup>(deprecated)</sup>
-
-音频监听事件传入的参数。
-
-> **说明：**
->
-> 从API version 7开始支持，从API version 9开始废弃，无替代接口。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Renderer
-
-| 名称            | 类型                        | 必填 | 说明                                                         |
-| --------------- | --------------------------- | ----| ------------------------------------------------------------ |
-| streamUsage     | [StreamUsage](arkts-apis-audio-e.md#streamusage) | 是  | 音频流使用类型。                                             |
-| contentType     | [ContentType](arkts-apis-audio-e.md#contenttypedeprecated) | 是  | 音频打断媒体类型。                                           |
-| pauseWhenDucked | boolean                     | 是  | 音频打断时是否可以暂停音频播放。true表示音频播放可以在音频打断期间暂停，false表示音频播放不可以在音频打断期间暂停。 |
 
 ## MicStateChangeEvent<sup>9+</sup>
 
@@ -304,6 +289,22 @@ audio.getAudioManager().getRoutingManager().getDevices(audio.DeviceFlag.OUTPUT_D
 | streamInfo                          | [AudioStreamInfo](#audiostreaminfo8)                      | 是   | 音频流信息。 <br/>**系统能力：** SystemCapability.Multimedia.Audio.Capturer   |
 | capturerInfo                        | [AudioCapturerInfo](#audiocapturerinfo8)                   | 是   | 音频采集器信息。 <br/>**系统能力：** SystemCapability.Multimedia.Audio.Capturer        |
 | playbackCaptureConfig<sup>(deprecated)</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfigdeprecated) | 否   | 音频内录的配置信息。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture。<br/> 从API version 10开始支持，从API version 12开始废弃，建议使用[录屏接口AVScreenCapture](../apis-media-kit/capi-avscreencapture.md)替代。  |
+
+## AudioInterrupt<sup>(deprecated)</sup>
+
+音频监听事件传入的参数。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，无替代接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+| 名称            | 类型                        | 必填 | 说明                                                         |
+| --------------- | --------------------------- | ----| ------------------------------------------------------------ |
+| streamUsage     | [StreamUsage](arkts-apis-audio-e.md#streamusage) | 是  | 音频流使用类型。                                             |
+| contentType     | [ContentType](arkts-apis-audio-e.md#contenttypedeprecated) | 是  | 音频打断媒体类型。                                           |
+| pauseWhenDucked | boolean                     | 是  | 音频打断时是否可以暂停音频播放。true表示音频播放可以在音频打断期间暂停，false表示音频播放不可以在音频打断期间暂停。 |
 
 ## CaptureFilterOptions<sup>(deprecated)</sup>
 
