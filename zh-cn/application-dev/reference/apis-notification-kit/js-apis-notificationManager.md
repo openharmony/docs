@@ -890,7 +890,7 @@ setBadgeNumber(badgeNumber: number): Promise\<void\>
 
 当角标设定个数取值小于或等于0时，表示清除角标。取值大于99时，通知角标将显示99+。
 
-该接口不支持tv和wearable设备。
+该接口不支持wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -940,7 +940,7 @@ setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
 
 当角标设定个数取值小于或等于0时，表示清除角标。取值大于99时，通知角标将显示99+。
 
-该接口不支持tv和wearable设备。
+该接口不支持wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 
