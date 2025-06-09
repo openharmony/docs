@@ -231,6 +231,8 @@ type GetItemMainSizeByIndex = (index: number) => number
 > **说明：** 
 >
 > WaterFlow组件使用通用属性[clip<sup>12+</sup>](ts-universal-attributes-sharp-clipping.md#clip12)和通用属性[clip<sup>18+</sup>](ts-universal-attributes-sharp-clipping.md#clip18)时默认值都为true。
+>
+> WaterFlow组件padding区域会被[裁剪](ts-container-scrollable-common.md#contentclipmode14枚举说明)不显示。
 
 ### columnsTemplate
 
