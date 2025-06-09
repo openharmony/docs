@@ -13,6 +13,8 @@ Image(src: PixelMap | ResourceStr | DrawableDescriptor)
 
 该接口通过图片数据源获取图片，支持本地图片和网络图片的渲染展示。其中，src是图片的数据源，加载方式请参考[加载图片资源](#加载图片资源)。
 
+如果图片加载过程中出现白色块，请参考[Image白块问题解决方案](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-image-white-lump-solution)。如果图片加载时间过长，请参考[优化应用预置图片资源加载耗时问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-texture-compression-improve-performance)。
+
 
 ## 加载图片资源
 
@@ -196,7 +198,6 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
        width: number = 100;
      }
 
-     let si: tmp = new tmp()
      let options: Record<string, number | boolean | tmp> = {
        'alphaType': 0, // 透明度
        'editable': false, // 是否可编辑
