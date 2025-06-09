@@ -256,7 +256,7 @@ listFile(filter?: Filter) : FileIterator
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | -- | -- |
-| filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象。  |
+| filter | [Filter](js-apis-file-fs.md#filter10) | 否 | 过滤器对象。  |
 
 **返回值：**
 
@@ -316,7 +316,7 @@ scanFile(filter?: Filter) : FileIterator;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | -- | -- |
-| filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象。  |
+| filter | [Filter](js-apis-file-fs.md#filter10) | 否 | 过滤器对象。  |
 
 **返回值：**
 
@@ -428,7 +428,7 @@ listFile(filter?: Filter) : FileIterator
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | -- | -- |
-| filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象。  |
+| filter | [Filter](js-apis-file-fs.md#filter10) | 否 | 过滤器对象。  |
 
 **返回值：**
 
@@ -488,7 +488,7 @@ scanFile(filter?: Filter) : FileIterator
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | -- | -- |
-| filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象。  |
+| filter | [Filter](js-apis-file-fs.md#filter10) | 否 | 过滤器对象。  |
 
 **返回值：**
 
