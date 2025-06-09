@@ -264,29 +264,6 @@ SEI信息内容，描述SEI信息的负载类型和数据。
 | metadata<sup>12+</sup>        | [AVMetadata](#avmetadata11)              | 否   | 设置元数据信息。详情见 [AVMetadata](#avmetadata11)。                  |
 | maxDuration<sup>18+</sup>        | number             | 否   | 设置录制的最大时长，单位为秒，有效值取值范围[1 , 2^31-1]，无效输入会重置为最大值。录制到达设定时长后，录制会自动停止，并通过stateChange回调录制状态，[AVRecorderState](arkts-apis-media-t.md#avrecorderstate9) = 'stopped'，[StateChangeReason](arkts-apis-media-e.md#statechangereason9) = BACKGROUND。|
 
-## MediaDescriptionKey<sup>8+</sup>
-
-媒体信息描述枚举。
-
-**系统能力：** SystemCapability.Multimedia.Media.Core
-
-| 名称                     | 值              | 说明                                                         |
-| ------------------------ | --------------- | ------------------------------------------------------------ |
-| MD_KEY_TRACK_INDEX       | 'track_index'   | 表示轨道序号，其对应键值类型为number。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| MD_KEY_TRACK_TYPE        | 'track_type'    | 表示轨道类型，其对应键值类型为number，参考[MediaType](arkts-apis-media-e.md#mediatype8)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| MD_KEY_CODEC_MIME        | 'codec_mime'    | 表示codec_mime类型，其对应键值类型为string。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| MD_KEY_DURATION          | 'duration'      | 表示媒体时长，其对应键值类型为number，单位为毫秒（ms）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| MD_KEY_BITRATE           | 'bitrate'       | 表示比特率，其对应键值类型为number，单位为比特率（bps）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| MD_KEY_WIDTH             | 'width'         | 表示视频宽度，其对应键值类型为number，单位为像素（px）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| MD_KEY_HEIGHT            | 'height'        | 表示视频高度，其对应键值类型为number，单位为像素（px）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| MD_KEY_FRAME_RATE        | 'frame_rate'    | 表示视频帧率，其对应键值类型为number，单位为每100秒的帧数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | 表示声道数，其对应键值类型为number。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| MD_KEY_AUD_SAMPLE_RATE   | 'sample_rate'   | 表示采样率，其对应键值类型为number，单位为赫兹（Hz）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| MD_KEY_AUD_SAMPLE_DEPTH<sup>12+</sup>  | 'sample_depth'  | 表示位深，其对应键值类型为number，单位为位（bit）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| MD_KEY_LANGUAGE<sup>12+</sup>  | 'language'  | 表示字幕语言，其对应键值类型为string。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| MD_KEY_TRACK_NAME<sup>12+</sup>  | 'track_name'  | 表示track名称，其对应键值类型为string。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| MD_KEY_HDR_TYPE<sup>12+</sup>  | 'hdr_type'  | 表示视频轨类型，其对应键值类型为string。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-
 ## AVScreenCaptureStrategy<sup>20+</sup>
 
 录屏策略。
@@ -327,6 +304,49 @@ SEI信息内容，描述SEI信息的负载类型和数据。
 | ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
 | width  | number | 否   | 是   | 输出的缩略图宽度。<br/>- 如果该值小于0，宽度是视频的原始宽度。<br/>- 如果值为0或未分配任何值，缩放比例同高度比例。 |
 | height | number | 否   | 是   | 输出的缩略图高度。<br/>- 如果该值小于0，高度是视频的原始高度。<br/>- 如果值为0或未分配任何值，缩放比例同宽度比例。 |
+
+## MediaDescription<sup>8+</sup>
+
+通过key-value方式获取媒体信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+| 名称          | 类型   | 必填 | 说明                                                         |
+| ------------- | ------ | ---- | ------------------------------------------------------------ |
+| [key: string] | Object | 是   | 该键值对支持的key取值范围，请参考[MediaDescriptionKey](#mediadescriptionkey8);每个key值的Object类型和范围，请参考[MediaDescriptionKey](#mediadescriptionkey8)对应Key值的说明 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function printfItemDescription(obj: media.MediaDescription, key: string) {
+  let property: Object = obj[key];
+  console.info('audio key is ' + key); // 通过key值获取对应的value。key值具体可见[MediaDescriptionKey]。
+  console.info('audio value is ' + property); //对应key值得value。其类型可为任意类型，具体key对应value的类型可参考[MediaDescriptionKey]。
+}
+
+let avPlayer: media.AVPlayer | undefined = undefined;
+media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
+  if(player != null) {
+    avPlayer = player;
+    console.info(`Succeeded in creating AVPlayer`);
+    avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
+      if (arrList != null) {
+        for (let i = 0; i < arrList.length; i++) {
+          printfItemDescription(arrList[i], media.MediaDescriptionKey.MD_KEY_TRACK_TYPE);  //打印出每条轨道MD_KEY_TRACK_TYPE的值。
+        }
+      } else {
+        console.error(`Failed to get TrackDescription, error:${error}`);
+      }
+    });
+  } else {
+    console.error(`Failed to create AVPlayer, error message:${err.message}`);
+  }
+});
+```
 
 ## AudioRecorderConfig<sup>(deprecated)</sup>
 
