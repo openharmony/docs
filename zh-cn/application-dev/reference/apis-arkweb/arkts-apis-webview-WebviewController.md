@@ -8736,7 +8736,7 @@ struct WebComponent {
 }
 ```
 
-### getAttachState<sup>20+</sup>
+## getAttachState<sup>20+</sup>
 
 getAttachState(): ControllerAttachState
 
@@ -8784,7 +8784,7 @@ struct WebComponent {
   }
 }
 ```
-### on('controllerAttachStateChange')<sup>20+</sup>
+## on('controllerAttachStateChange')<sup>20+</sup>
 
 on(type: 'controllerAttachStateChange', callback: Callback&lt;ControllerAttachState&gt;): void
 
@@ -8803,7 +8803,7 @@ on(type: 'controllerAttachStateChange', callback: Callback&lt;ControllerAttachSt
 
 请参考[off](#offcontrollerattachstatechange20)。
 
-### off('controllerAttachStateChange')<sup>20+</sup>
+## off('controllerAttachStateChange')<sup>20+</sup>
 
 off(type: 'controllerAttachStateChange', callback?: Callback&lt;ControllerAttachState&gt;): void
 
@@ -8872,7 +8872,7 @@ struct WebComponent {
   }
 }
 ```
-### waitForAttached<sup>20+</sup>
+## waitForAttached<sup>20+</sup>
 
 waitForAttached(timeout: number):Promise&lt;ControllerAttachState&gt;
 
