@@ -7577,7 +7577,7 @@ async function clone(context: Context) {
 
 createImageReceiver(size: Size, format: ImageFormat, capacity: number): ImageReceiver
 
-通过图片大小、图片格式、容量创建ImageReceiver实例。ImageReceiver做为图片的接收方、消费者，它的参数属性实际上不会对接收到的图片产生影响。图片属性的配置应在发送方、生产者进行，如相机预览流[createPreviewOutput](../apis-camera-kit/js-apis-camera.md#createpreviewoutput)。
+通过图片大小、图片格式、容量创建ImageReceiver实例。ImageReceiver做为图片的接收方、消费者，它的参数属性实际上不会对接收到的图片产生影响。图片属性的配置应在发送方、生产者进行，如相机预览流[createPreviewOutput](../apis-camera-kit/arkts-apis-camera-CameraManager.md#createpreviewoutput)。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
