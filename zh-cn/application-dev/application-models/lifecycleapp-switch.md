@@ -3,8 +3,8 @@
 
 | FA模型接口 | Stage模型接口对应d.ts文件 | Stage模型对应接口 |
 | -------- | -------- | -------- |
-| onShow?():&nbsp;void; | \@ohos.window.d.ts | [on(eventType:&nbsp;'windowStageEvent',&nbsp;callback:&nbsp;Callback&lt;WindowStageEventType&gt;):&nbsp;void;](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9)<br/>监听SHOWN切到前台状态 |
-| onHide?():&nbsp;void; | \@ohos.window.d.ts | [on(eventType:&nbsp;'windowStageEvent',&nbsp;callback:&nbsp;Callback&lt;WindowStageEventType&gt;):&nbsp;void;](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9)<br/>监听HIDDEN切到后台状态 |
+| onShow?():&nbsp;void; | \@ohos.window.d.ts | [on(eventType:&nbsp;'windowStageEvent',&nbsp;callback:&nbsp;Callback&lt;WindowStageEventType&gt;):&nbsp;void;](../reference/apis-arkui/arkts-apis-window-WindowStage.md#onwindowstageevent9)<br/>监听SHOWN切到前台状态 |
+| onHide?():&nbsp;void; | \@ohos.window.d.ts | [on(eventType:&nbsp;'windowStageEvent',&nbsp;callback:&nbsp;Callback&lt;WindowStageEventType&gt;):&nbsp;void;](../reference/apis-arkui/arkts-apis-window-WindowStage.md#onwindowstageevent9)<br/>监听HIDDEN切到后台状态 |
 | onDestroy?():&nbsp;void; | \@ohos.app.ability.UIAbility.d.ts | [onDestroy():&nbsp;void;](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#ondestroy) |
 | onCreate?():&nbsp;void; | \@ohos.app.ability.UIAbility.d.ts | [onCreate(want:&nbsp;Want,&nbsp;launchParam:&nbsp;AbilityConstant.LaunchParam):&nbsp;void;](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate) |
 | onWindowDisplayModeChanged?(isShownInMultiWindow:&nbsp;boolean,&nbsp;newConfig:&nbsp;resourceManager.Configuration):&nbsp;void; | Stage模型无对应接口 | 暂时未提供对应接口 |

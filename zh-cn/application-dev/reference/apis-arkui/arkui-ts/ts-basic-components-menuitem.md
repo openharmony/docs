@@ -12,7 +12,7 @@
 
 ## 接口
 
-MenuItem(value?: MenuItemOptions| CustomBuilder)
+MenuItem(value?: MenuItemOptions | CustomBuilder)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -76,7 +76,7 @@ selectIcon(value: boolean | ResourceStr | SymbolGlyphModifier)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | boolean&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)<sup>10+</sup>\|&nbsp;[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)<sup>12+</sup> | 是   | 菜单项被选中时，是否显示被选中的图标。<br/>默认值：false<br/>true：菜单项被选中时，显示默认的对勾图标。<br/>false：即使菜单项被选中也不显示图标。<br/>ResourceStr：菜单项被选中时，显示指定的图标。<br/>SymbolGlyphModifier：菜单项被选中时，显示指定的HMSymbol图标。 |
+| value  | boolean&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)<sup>10+</sup>\|&nbsp;[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)<sup>12+</sup> | 是   | 菜单项被选中时，是否显示被选中的图标。<br/>默认值：false<br/>true：显示默认的对勾图标。<br/>false：不显示图标。<br/>ResourceStr：显示指定的图标。<br/>SymbolGlyphModifier：显示指定的HMSymbol图标。 |
 ### contentFont<sup>10+</sup>
 
 contentFont(value: Font)

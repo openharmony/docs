@@ -49,7 +49,7 @@
 | \@Consume变量装饰器 | 说明                                       |
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。<br/>如果提供了别名，则必须有\@Provide的变量和其有相同的别名才可以匹配成功；否则，则需要变量名相同才能匹配成功。 |
-| 同步类型           | 双向：从\@Provide变量（具体请参见\@Provide）到所有\@Consume变量，以及相反的方向。双向同步操作与\@State和\@Link的组合相同。 |
+| 同步类型           | 双向同步：从\@Provide变量（具体请参见\@Provide）到所有\@Consume变量，以及相反的方向。双向同步操作与\@State和\@Link的组合相同。 |
 | 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>必须指定类型。<br/>\@Provide变量和\@Consume变量的类型必须相同。<br/>\@Consume装饰的变量，在其父组件或者祖先组件上，必须有对应的属性和别名的\@Provide装饰的变量。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any类型。<br/>API version 11及以上支持上述支持类型的联合类型。例如：string \| number, string \| undefined或者ClassA \| null，示例见[@Provide和Consume支持联合类型实例](#provide和consume支持联合类型实例)。 <br/>**注意：**<br/>当使用undefined和null的时候，建议显示指定类型，遵循TypeScript类型校验。例如：`@Consume a : string \| undefined`。
 | 被装饰变量的初始值      | 无，禁止本地初始化。                               |
 
@@ -152,8 +152,8 @@ struct Parent {
 
 1. 初始渲染：
    1. \@Provide装饰的变量会以Map的形式，传递给当前\@Provide所属组件的所有子组件。
-   2. 子组件中如果使用\@Consume变量，则会在map中查找是否有该变量名/alias（别名）对应的\@Provide的变量，如果查找不到，框架会抛出JS ERROR。
-   3. 在初始化\@Consume变量时，和\@State/\@Link的流程类似，\@Consume变量会在map中查找到对应的\@Provide变量进行保存，并把自己注册给\@Provide。
+   2. 子组件中如果使用\@Consume变量，则会在Map中查找是否有该变量名/alias（别名）对应的\@Provide的变量，如果查找不到，框架会抛出JS ERROR。
+   3. 在初始化\@Consume变量时，和\@State/\@Link的流程类似，\@Consume变量会在Map中查找到对应的\@Provide变量进行保存，并把自己注册给\@Provide。
 
 2. 当\@Provide装饰的数据变化时：
    1. 通过初始渲染的步骤可知，子组件\@Consume已把自己注册给父组件。父组件\@Provide变量变更后，会遍历更新所有依赖它的系统组件（elementid）和状态变量（\@Consume）。
@@ -384,7 +384,7 @@ struct Child {
         Text(`${item[1]}`).fontSize(30)
         Divider()
       })
-      Button('Consume init map').onClick(() => {
+      Button('Consume init Map').onClick(() => {
         this.message = new Map([[0, "a"], [1, "b"], [3, "c"]])
       })
       Button('Consume set new one').onClick(() => {
@@ -412,7 +412,7 @@ struct MapSample {
   build() {
     Row() {
       Column() {
-        Button('Provide init map').onClick(() => {
+        Button('Provide init Map').onClick(() => {
           this.message = new Map([[0, "a"], [1, "b"], [3, "c"], [4, "d"]])
         })
         Child()

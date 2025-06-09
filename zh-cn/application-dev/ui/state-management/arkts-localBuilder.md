@@ -1,6 +1,6 @@
 # \@LocalBuilder装饰器： 维持组件关系
 
-当开发者使用局部@Builder进行引用数据传递时，需要考虑组件的父子关系。然而在使用.bind(this)的方式更改函数调用上下文后，会出现组件的父子关系与状态管理的父子关系不一致的问题。为了解决这一问题，引入@LocalBuilder装饰器。@LocalBuilder拥有和局部@Builder相同的功能，且比局部@Builder能够更好的确定组件的父子关系和状态管理的父子关系。
+当开发者使用局部\@Builder进行引用数据传递时，需要考虑组件的父子关系。然而在使用.bind(this)的方式更改函数调用上下文后，会出现组件的父子关系与状态管理的父子关系不一致的问题。为了解决这一问题，引入\@LocalBuilder装饰器。\@LocalBuilder拥有和局部\@Builder相同的功能，且比局部\@Builder能够更好的确定组件的父子关系和状态管理的父子关系。
 
 在阅读本文档前，建议提前阅读：[@Builder](./arkts-builder.md)。
 
@@ -31,15 +31,15 @@ this.myBuilderFunction()
 
 ## 限制条件
 
-- @LocalBuilder只能在所属组件内声明，不允许全局声明。
+- \@LocalBuilder只能在所属组件内声明，不允许全局声明。
 
-- @LocalBuilder不能与内置装饰器或自定义装饰器一起使用。
+- \@LocalBuilder不能与内置装饰器或自定义装饰器一起使用。
 
-- 在自定义组件中，@LocalBuilder不能用来装饰静态函数。
+- 在自定义组件中，\@LocalBuilder不能用来装饰静态函数。
 
-## @LocalBuilder和局部@Builder使用区别
+## \@LocalBuilder和局部\@Builder使用区别
 
-跨组件传递局部@Builder函数时，会使用.bind(this)更改函数上下文，但这可能会导致组件的父子关系与状态管理的父子关系不一致。而@LocalBuilder无论是否使用.bind(this)，都不会改变组件的父子关系，即@LocalBuilder中定义组件所属的父组件是确定的，无法被改变。详情请参考[@LocalBuilder和@Builder区别说明](arkts-localBuilder.md#localbuilder和builder区别说明)。
+跨组件传递局部\@Builder函数时，会使用.bind(this)更改函数上下文，但这可能会导致组件的父子关系与状态管理的父子关系不一致。而\@LocalBuilder无论是否使用.bind(this)，都不会改变组件的父子关系，即\@LocalBuilder中定义组件所属的父组件是确定的，无法被改变。详情请参考[@LocalBuilder和@Builder区别说明](arkts-localBuilder.md#localbuilder和builder区别说明)。
 
 ![zh-cn_image_compatible_localBuilder](figures/zh-cn_image_compatible_localBuilder.png)
 
@@ -49,11 +49,11 @@ this.myBuilderFunction()
 
 ## 参数传递规则
 
-@LocalBuilder函数的参数传递有[按值传递](#按值传递参数)和[按引用传递](#按引用传递参数)两种，均需遵守以下规则：
+\@LocalBuilder函数的参数传递有[按值传递](#按值传递参数)和[按引用传递](#按引用传递参数)两种，均需遵守以下规则：
 
-- 参数的类型必须与参数声明的类型一致，不允许undefined、null和返回undefined、null的表达式。
+- 参数的类型必须与参数声明的类型一致，且不允许为undefined、null。
 
-- 在@LocalBuilder修饰的函数内部，不允许改变参数值。
+- 在\@LocalBuilder修饰的函数内部，不允许改变参数值。
 
 - \@LocalBuilder内的UI语法遵循[UI语法规则](arkts-create-custom-components.md#build函数)。
 
@@ -67,7 +67,7 @@ this.myBuilderFunction()
 >
 > 若\@LocalBuilder函数和$$参数一起使用，子组件调用父组件的@LocalBuilder函数，子组件传入的参数发生变化，不会引起\@LocalBuilder函数内的UI刷新。
 
-组件Parent内的@LocalBuilder函数在build函数内调用，按键值对写法进行传值，当点击Click me 时，@LocalBuilder内的Text文本内容会随着状态变量内容的改变而改变。
+组件Parent内的\@LocalBuilder函数在build函数内调用，按键值对写法进行传值，当点击Click me时，\@LocalBuilder内的Text文本内容会随着状态变量内容的改变而改变。
 
 ```ts
 class ReferenceType {
@@ -99,7 +99,7 @@ struct Parent {
 
 按引用传递参数时，如果在\@LocalBuilder函数内调用自定义组件，ArkUI提供[$$](arkts-two-way-sync.md)作为按引用传递参数的范式。
 
-组件Parent内的@LocalBuilder函数内调用自定义组件，且按照引用传递参数将值传递到自定义组件，当Parent组件内状态变量值发生变化时，@LocalBuilder函数内的自定义组件HelloComponent的message值也会发生变化。
+组件Parent内的\@LocalBuilder函数内调用自定义组件，且按照引用传递参数将值传递到自定义组件，当Parent组件内状态变量值发生变化时，\@LocalBuilder函数内的自定义组件HelloComponent的message值也会发生变化。
 
 ```ts
 class ReferenceType {
@@ -143,9 +143,9 @@ struct Parent {
 }
 ```
 
-当子组件引用父组件的@LocalBuilder函数并传入状态变量时，状态变量的改变不会触发@LocalBuilder函数内的UI刷新。这是因为调用@LocalBuilder装饰的函数创建出来的组件绑定于父组件，而状态变量的刷新机制仅作用于当前组件及其子组件，对父组件无效。而使用@Builder修饰函数可触发UI刷新，原因在于@Builder改变了函数的this指向，使创建出来的组件绑定到子组件上，从而在子组件修改变量能够实现@Builder中的UI刷新。
+当子组件引用父组件的\@LocalBuilder函数并传入状态变量时，状态变量的改变不会触发\@LocalBuilder函数内的UI刷新。这是因为调用\@LocalBuilder装饰的函数创建出来的组件绑定于父组件，而状态变量的刷新机制仅作用于当前组件及其子组件，对父组件无效。而使用\@Builder修饰函数可触发UI刷新，原因在于\@Builder改变了函数的this指向，使创建出来的组件绑定到子组件上，从而在子组件修改变量能够实现\@Builder中的UI刷新。
 
-组件Child将状态变量传递到Parent的@Builder和@LocalBuilder函数内。在@Builder函数内，`this`指向Child，参数变化能触发UI刷新。在@LocalBuilder函数内，`this`指向Parent，参数变化不会触发UI刷新。若@LocalBuilder函数内引用Parent的状态变量发生变化，UI能正常刷新。
+组件Child将状态变量传递到Parent的\@Builder和\@LocalBuilder函数内。在\@Builder函数内，`this`指向Child，参数变化能触发UI刷新。在\@LocalBuilder函数内，`this`指向Parent，参数变化不会触发UI刷新。若\@LocalBuilder函数内引用Parent的状态变量发生变化，UI能正常刷新。
 
 ```ts
 class Data {
@@ -217,7 +217,7 @@ struct Child {
 
 调用\@LocalBuilder装饰的函数默认按值传递。当传递的参数为状态变量时，状态变量的改变不会引起\@LocalBuilder函数内的UI刷新。所以当使用状态变量的时候，推荐使用[按引用传递](#按引用传递参数)。
 
-组件Parent将@State修饰的label值按照函数传参方式传递到@LocalBuilder函数内，此时@LocalBuilder函数获取到的值为普通变量值，所以改变@State修饰的label值时，@LocalBuilder函数内的值不会发生改变。
+组件Parent将\@State修饰的label值按照函数传参方式传递到\@LocalBuilder函数内，此时\@LocalBuilder函数获取到的值为普通变量值，所以改变\@State修饰的label值时，\@LocalBuilder函数内的值不会发生改变。
 
 ```ts
 @Entry
@@ -240,14 +240,14 @@ struct Parent {
 }
 ```
 
-## @LocalBuilder和@Builder区别说明
+## \@LocalBuilder和\@Builder区别说明
 
-当函数componentBuilder被@Builder修饰时，显示效果为“Child”；当函数componentBuilder被@LocalBuilder修饰时，显示效果是“Parent”。
+当函数componentBuilder被\@Builder修饰时，显示效果为“Child”；当函数componentBuilder被\@LocalBuilder修饰时，显示效果是“Parent”。
 说明：
 
-@Builder componentBuilder()通过this.componentBuilder的形式传给子组件@BuilderParam customBuilderParam，this指向子组件Child的实例。
+\@Builder componentBuilder()通过this.componentBuilder的形式传给子组件\@BuilderParam customBuilderParam，this指向子组件Child的实例。
 
-@LocalBuilder componentBuilder()通过this.componentBuilder的形式传给子组件@BuilderParam customBuilderParam，this指向父组件Parent的实例。
+\@LocalBuilder componentBuilder()通过this.componentBuilder的形式传给子组件\@BuilderParam customBuilderParam，this指向父组件Parent的实例。
 
 ```ts
 @Component
@@ -285,9 +285,9 @@ struct Parent {
 
 ## 使用场景
 
-### @LocalBuilder在@ComponentV2修饰的自定义组件中使用
+### \@LocalBuilder在\@ComponentV2修饰的自定义组件中使用
 
-在@ComponentV2修饰的自定义组件中使用局部的@LocalBuilder调用，修改变量时会触发UI刷新。
+在@ComponentV2装饰的自定义组件中使用局部的@LocalBuilder，修改变量时会触发UI刷新。
 
 ```ts
 @ObservedV2
@@ -299,6 +299,7 @@ class Info {
 @ComponentV2
 struct ChildPage {
   @Require @Param childInfo: Info;
+
   build() {
     Column() {
       Text(`自定义组件 name :${this.childInfo.name}`)
@@ -340,6 +341,7 @@ struct ParentPage {
         .fontWeight(FontWeight.Bold)
     }
   }
+
   build() {
     Column() {
       Text(`info1: ${this.info1.name}  ${this.info1.age}`) // Text1
@@ -361,7 +363,7 @@ struct ParentPage {
       Text(`info1: ${this.info1.name}  ${this.info1.age}`) // Text1
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
-      ChildPage({ childInfo: this.info1}) // 调用自定义组件
+      ChildPage({ childInfo: this.info1 }) // 调用自定义组件
       Line()
         .width('100%')
         .height(10)
@@ -369,15 +371,15 @@ struct ParentPage {
       Text(`info2: ${this.info2.name}  ${this.info2.age}`) // Text2
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
-      ChildPage({ childInfo: this.info2}) // 调用自定义组件
+      ChildPage({ childInfo: this.info2 }) // 调用自定义组件
       Line()
         .width('100%')
         .height(10)
         .backgroundColor('#000000').margin(10)
       Button("change info1&info2")
         .onClick(() => {
-          this.info1 = { name: "Cat", age: 18}; // Text1不会刷新，原因是info1没被装饰器装饰，无法监听到值的改变。
-          this.info2 = { name: "Cat", age: 18}; // Text2会刷新，原因是info2有装饰器装饰，可以监听到值的改变。
+          this.info1 = { name: "Cat", age: 18 }; // Text1不会刷新，原因是info1没被装饰器装饰，无法监听到值的改变。
+          this.info2 = { name: "Cat", age: 18 }; // Text2会刷新，原因是info2有装饰器装饰，可以监听到值的改变。
         })
     }
   }

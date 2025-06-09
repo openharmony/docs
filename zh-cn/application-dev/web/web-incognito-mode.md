@@ -1,9 +1,9 @@
 # 使用隐私模式 
 
 
-开发者在创建Web组件时，可以将可选参数[incognitoMode](../reference/apis-arkweb/ts-basic-components-web.md#weboptions)设置为true，来开启Web组件的隐私模式。当使用隐私模式时，浏览网页时的Cookie、Cache Data等数据不会保存在本地的持久化文件，当隐私模式的Web组件被销毁时，Cookie、Cache Data等数据将不被记录下来。
+开发者在创建Web组件时，可以将可选参数[incognitoMode](../reference/apis-arkweb/arkts-basic-components-web-i.md#weboptions)设置为true，来开启Web组件的隐私模式。当使用隐私模式时，浏览网页时的Cookie、Cache Data等数据不会保存在本地的持久化文件，当隐私模式的Web组件被销毁时，Cookie、Cache Data等数据将不被记录下来。
 
-- 创建隐私模式的[Web组件](../reference/apis-arkweb/ts-basic-components-web.md#web)。
+- 创建隐私模式的[Web组件](../reference/apis-arkweb/arkts-basic-components-web.md)。
  
    ```ts
   // xxx.ets
@@ -22,7 +22,7 @@
   }
   ```
 
-- 通过[isIncognitoMode](../reference/apis-arkweb/js-apis-webview-WebviewController.md#isincognitomode11) 判断当前Web组件是否是隐私模式。
+- 通过[isIncognitoMode](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#isincognitomode11) 判断当前Web组件是否是隐私模式。
 
   ```ts
   // xxx.ets
@@ -53,7 +53,7 @@
 
 隐私模式提供了一系列接口，用于操作地理位置、Cookie以及Cache Data。
 
-- 通过[allowGeolocation](../reference/apis-arkweb/js-apis-webview-GeolocationPermissions.md#allowgeolocation)设置隐私模式下的Web组件允许指定来源使用地理位置。
+- 通过[allowGeolocation](../reference/apis-arkweb/arkts-apis-webview-GeolocationPermissions.md#allowgeolocation)设置隐私模式下的Web组件允许指定来源使用地理位置。
 
   ```ts
   // xxx.ets
@@ -83,7 +83,7 @@
   }
   ```
 
-- 通过[deleteGeolocation](../reference/apis-arkweb/js-apis-webview-GeolocationPermissions.md#deletegeolocation)清除隐私模式下指定来源的地理位置权限状态。
+- 通过[deleteGeolocation](../reference/apis-arkweb/arkts-apis-webview-GeolocationPermissions.md#deletegeolocation)清除隐私模式下指定来源的地理位置权限状态。
 
   ```ts
   // xxx.ets
@@ -113,7 +113,7 @@
   }
   ```
 
-- 通过[getAccessibleGeolocation](../reference/apis-arkweb/js-apis-webview-GeolocationPermissions.md#getaccessiblegeolocation)以回调方式异步获取隐私模式下指定源的地理位置权限状态。
+- 通过[getAccessibleGeolocation](../reference/apis-arkweb/arkts-apis-webview-GeolocationPermissions.md#getaccessiblegeolocation)以回调方式异步获取隐私模式下指定源的地理位置权限状态。
 
   ```ts
   // xxx.ets
@@ -149,7 +149,7 @@
   }
   ```
 
-- 通过[deleteAllData](../reference/apis-arkweb/js-apis-webview-WebStorage.md#deletealldata)清除隐私模式下Web SQL当前使用的所有存储。
+- 通过[deleteAllData](../reference/apis-arkweb/arkts-apis-webview-WebStorage.md#deletealldata)清除隐私模式下Web SQL当前使用的所有存储。
 
   ```ts
   // xxx.ets
@@ -223,7 +223,7 @@
   </html>
   ```
 
-- 通过[fetchCookieSync](../reference/apis-arkweb/js-apis-webview-WebCookieManager.md#fetchcookiesync11)获取隐私模式下指定url对应cookie的值。
+- 通过[fetchCookieSync](../reference/apis-arkweb/arkts-apis-webview-WebCookieManager.md#fetchcookiesync11)获取隐私模式下指定url对应cookie的值。
 
   ```ts
   // xxx.ets
@@ -253,7 +253,7 @@
   }
   ```
 
-- 通过[configCookieSync](../reference/apis-arkweb/js-apis-webview-WebCookieManager.md#configcookiesync11)设置隐私模式下指定url的单个cookie的值。
+- 通过[configCookieSync](../reference/apis-arkweb/arkts-apis-webview-WebCookieManager.md#configcookiesync11)设置隐私模式下指定url的单个cookie的值。
 
   ```ts
   // xxx.ets
@@ -282,7 +282,7 @@
   }
   ```
 
-- 通过[existCookie](../reference/apis-arkweb/js-apis-webview-WebCookieManager.md#existcookie)查询隐私模式下是否存在cookie。
+- 通过[existCookie](../reference/apis-arkweb/arkts-apis-webview-WebCookieManager.md#existcookie)查询隐私模式下是否存在cookie。
 
   ```ts
   // xxx.ets
@@ -307,7 +307,7 @@
   }
   ```
 
-- 通过[clearAllCookiesSync](../reference/apis-arkweb/js-apis-webview-WebCookieManager.md#clearallcookiessync11)清除隐私模式下所有cookie。 
+- 通过[clearAllCookiesSync](../reference/apis-arkweb/arkts-apis-webview-WebCookieManager.md#clearallcookiessync11)清除隐私模式下所有cookie。 
 
   ```ts
   // xxx.ets

@@ -74,7 +74,7 @@ unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 
 | 参数名  | 类型                | 必填 | 说明                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | 是   | 指定的待解压缩文件的文件路径，路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](../apis-ability-kit/js-apis-inner-app-context.md)，[Stage模型](../apis-ability-kit/js-apis-inner-application-context.md)。 |
+| inFile  | string              | 是   | 指定的待解压缩文件的文件路径，路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](../apis-ability-kit/js-apis-inner-app-context.md)，[Stage模型](../apis-ability-kit/js-apis-inner-application-context.md)。如果待解压的.zip文件中包含中文的文件名或目录名，需使用UTF8进行编码，避免解压时文件名或目录名出现中文乱码。 |
 | outFile | string              | 是   | 指定的解压文件路径。                                         |
 | options | [Options](#options) | 是   | 解压的可选参数。                                             |
 
@@ -248,7 +248,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 | 参数名                  | 类型                | 必填 | 说明                                                         |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile                  | string              | 是   | 指定的待解压缩文件的文件路径，文件后缀需要以.zip结尾。文件路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](../apis-ability-kit/js-apis-inner-app-context.md)，[Stage模型](../apis-ability-kit/js-apis-inner-application-context.md)。 |
+| inFile                  | string              | 是   | 指定的待解压缩文件的文件路径，文件后缀需要以.zip结尾。文件路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](../apis-ability-kit/js-apis-inner-app-context.md)，[Stage模型](../apis-ability-kit/js-apis-inner-application-context.md)。如果待解压的.zip文件中包含中文的文件名或目录名，需使用UTF8进行编码，避免解压时文件名或目录名出现中文乱码。 |
 | outFile                 | string              | 是   | 指定的解压后的文件夹路径，文件夹目录路径需要在系统中存在，不存在则会解压失败。路径必须为沙箱路径，沙箱路径可以通过context获取，具体方法可参考[application/context（Stage模型）](../apis-ability-kit/js-apis-inner-application-context.md)或 [app/context（FA模型）](../apis-ability-kit/js-apis-inner-app-context.md)。如果待解压的文件或文件夹在解压后的路径下已经存在，则会直接覆盖同名文件或同名文件夹中的同名文件。多个线程同时解压文件时，outFile不能相同。 |
 | options                 | [Options](#options) | 是   | 解压的配置参数。                                             |
 | callback | AsyncCallback\<void>            | 是   | 异步获取解压结果之后的回调。成功返回null，失败返回错误码。                                             |
@@ -308,7 +308,7 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 
 | 参数名  | 类型                | 必填 | 说明                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | 是   | 指定的待解压缩文件的文件路径，文件后缀需要以.zip结尾。文件路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](../apis-ability-kit/js-apis-inner-app-context.md)，[Stage模型](../apis-ability-kit/js-apis-inner-application-context.md)。 |
+| inFile  | string              | 是   | 指定的待解压缩文件的文件路径，文件后缀需要以.zip结尾。文件路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](../apis-ability-kit/js-apis-inner-app-context.md)，[Stage模型](../apis-ability-kit/js-apis-inner-application-context.md)。如果待解压的.zip文件中包含中文的文件名或目录名，需使用UTF8进行编码，避免解压时文件名或目录名出现中文乱码。 |
 | outFile | string              | 是   | 指定的解压后的文件夹路径，文件夹目录路径需要在系统中存在，不存在则会解压失败。路径必须为沙箱路径，沙箱路径可以通过context获取，具体方法可参考[application/context（Stage模型）](../apis-ability-kit/js-apis-inner-application-context.md)或 [app/context（FA模型）](../apis-ability-kit/js-apis-inner-app-context.md)。如果待解压的文件或文件夹在解压后的路径下已经存在，则会直接覆盖同名文件或同名文件夹中的同名文件。多个线程同时解压文件时，outFile不能相同。 |
 | options | [Options](#options) | 否   | 解压时的配置参数。                                           |
 
@@ -372,7 +372,7 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 
 | 参数名                  | 类型                | 必填 | 说明                                                         |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile                  | string              | 是   | 指定的待解压缩文件的文件路径，文件后缀需要以.zip结尾。文件路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](../apis-ability-kit/js-apis-inner-app-context.md)，[Stage模型](../apis-ability-kit/js-apis-inner-application-context.md)。 |
+| inFile                  | string              | 是   | 指定的待解压缩文件的文件路径，文件后缀需要以.zip结尾。文件路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](../apis-ability-kit/js-apis-inner-app-context.md)，[Stage模型](../apis-ability-kit/js-apis-inner-application-context.md)。如果待解压的.zip文件中包含中文的文件名或目录名，需使用UTF8进行编码，避免解压时文件名或目录名出现中文乱码。 |
 | outFile                 | string              | 是   | 指定的解压后的文件夹路径，文件夹目录路径需要在系统中存在，不存在则会解压失败。路径必须为沙箱路径，沙箱路径可以通过context获取，具体方法可参考[application/context（Stage模型）](../apis-ability-kit/js-apis-inner-application-context.md)或 [app/context（FA模型）](../apis-ability-kit/js-apis-inner-app-context.md)。如果待解压的文件或文件夹在解压后的路径下已经存在，则会直接覆盖同名文件或同名文件夹中的同名文件。多个线程同时解压文件时，outFile不能相同。 |
 | callback | AsyncCallback\<void>            | 是   | 异步获取解压结果之后的回调。成功返回null，失败返回错误码。                                             |
 
@@ -3350,7 +3350,7 @@ deflateTune(strm: ZStream, goodLength: number, maxLazy: number, niceLength: numb
 | ---------- | ------- | ---- | ------------------------------- |
 | strm       | ZStream | 是   | 参考[ZStream定义](#zstream12)。 |
 | goodLength | number  | 是   | 匹配的长度阈值。                |
-| maxLazy    | number  | 是   | 最大延迟匹配时间。              |
+| maxLazy    | number  | 是   | 压缩算法在构建哈夫曼树时的延迟匹配策略，取值范围为0到4的整数。1到4，值越大，算法越‘懒’，匹配过程越慢，但可能生成更优的压缩结果。0：禁用懒惰匹配，算法会尽快构建哈夫曼树，压缩速度快，但压缩率低。  |
 | niceLength | number  | 是   | 适合的延迟长度阈值。              |
 | maxChain   | number  | 是   | 最大链条长度。                    |
 
@@ -3787,7 +3787,13 @@ async function demo() {
 | PARALLEL_STRATEGY_SEQUENTIAL             | 0    | 默认值，串行压缩/解压策略。|
 | PARALLEL_STRATEGY_PARALLEL_DECOMPRESSION | 1    | 并行解压策略。            |
 
-## ErrorCode
+## ErrorCode<sup>(deprecated)<sup>
+
+> **说明：**
+> 
+> 本模块首批接口从API version 7 开始支持。
+> 
+> 从API Version 9开始，该模块不再维护。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 

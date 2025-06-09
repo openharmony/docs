@@ -242,7 +242,7 @@ const normalAsset = sendableRelationalStore.fromSendableAsset(sendableAsset);
 | createTime | string | 否   | 否   | 资产被创建出来的时间。             |
 | modifyTime | string | 否   | 否   | 资产最后一次被修改的时间。         |
 | size       | string | 否   | 否   | 资产占用空间的大小。               |
-| status     | number | 否   | 是   | 资产的状态，取值与[relationalStore.AssetStatus](./js-apis-data-relationalStore.md#assetstatus10)枚举值保持一致，默认值为relationalStore.AssetStatus.ASSET_NORMAL。|
+| status     | number | 否   | 是   | 资产的状态，取值与[relationalStore.AssetStatus](arkts-apis-data-relationalStore-e.md#assetstatus10)枚举值保持一致，默认值为relationalStore.AssetStatus.ASSET_NORMAL。|
 
 
 ## Assets
@@ -299,7 +299,7 @@ type NonSendableBucket = relationalStore.ValuesBucket
 
 | 类型                                                                           | 说明                         |
 | ------------------------------------------------------------------------------ | ---------------------------- |
-| [relationalStore.ValuesBucket](./js-apis-data-relationalStore.md#valuesbucket) | 非并发场景的键值对数据存储。 |
+| [relationalStore.ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket) | 非并发场景的键值对数据存储。 |
 
 ## NonSendableAsset
 
@@ -311,7 +311,7 @@ type NonSendableAsset = relationalStore.Asset
 
 | 类型                                                               | 说明                           |
 | ------------------------------------------------------------------ | ------------------------------ |
-| [relationalStore.Asset](./js-apis-data-relationalStore.md#asset10) | 非并发场景的资产附件数据存储。 |
+| [relationalStore.Asset](arkts-apis-data-relationalStore-i.md#asset10) | 非并发场景的资产附件数据存储。 |
 
 ## 跨线程传递使用示例
 

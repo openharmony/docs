@@ -4,7 +4,7 @@
 
 文件中定义了与画笔相关的功能函数。
 
-**引用文件：** drawing_pen.h
+**引用文件：** <native_drawing/drawing_pen.h>
 
 **库：** libnative_drawing.so
 

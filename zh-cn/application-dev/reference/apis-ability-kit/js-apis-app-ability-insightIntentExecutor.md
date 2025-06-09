@@ -49,7 +49,7 @@ onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, 
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 意图调用名称。 |
 | param | Record<string, Object> | 是 | 意图调用参数。 |
-| pageLoader | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | 页面加载器。 |
+| pageLoader | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9) | 是 | 页面加载器。 |
 
 **返回值：**
 

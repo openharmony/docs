@@ -1,6 +1,6 @@
 # 不依赖UI组件的全局自定义弹出框 (openCustomDialog)（推荐）
 
-由于[CustomDialogController](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontroller)在使用上存在诸多限制，不支持动态创建也不支持动态刷新，在相对较复杂的应用场景中推荐使用UIContext中获取到的PromptAction对象提供的[openCustomDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12)接口来实现自定义弹出框。
+由于[CustomDialogController](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontroller)在使用上存在诸多限制，不支持动态创建和动态刷新，在相对较复杂的应用场景中推荐使用UIContext中获取到的PromptAction对象提供的[openCustomDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12)接口来实现自定义弹出框。
 
 > **说明：**
 > 
@@ -10,7 +10,9 @@
 > 
 > 本文介绍通过入参形式为ComponentContent创建自定义弹出框，传builder形式的弹出框使用方法可参考[openCustomDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12-1)。
 
-弹出框（openCustomDialog）可以通过配置[isModal](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12)来实现模态和非模态弹窗。isModal为true时，弹出框为模态弹窗。isModal为false时，弹出框为非模态弹窗。
+弹出框（openCustomDialog）默认为模态弹窗且有蒙层，不可与蒙层下方控件进行交互（不支持点击和手势等向下透传）。可以通过配置[isModal](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12)来实现模态和非模态弹窗，详细说明可参考[弹窗的种类](arkts-dialog-overview.md#弹窗的种类)。
+
+当isModal为true时，弹出框为模态弹窗，且弹窗周围的蒙层区不支持透传。isModal为false时，弹出框为非模态弹窗，且弹窗周围的蒙层区可以透传。因此如果需要同时允许弹出框的交互和弹出框外页面的交互行为，需要将弹出框设置为非模态。
 
 ## 生命周期
 
@@ -38,7 +40,7 @@
    ```
 2. 打开自定义弹出框。
    
-   通过调用openCustomDialog接口打开的弹出框默认为customStyle为true的弹出框，即弹出框的内容样式完全按照contentNode自定义样式显示。
+   调用openCustomDialog接口打开的弹出框默认customStyle为true，即弹出框的内容样式完全按照contentNode自定义样式显示。
    
    ```ts
    PromptActionClass.ctx.getPromptAction().openCustomDialog(PromptActionClass.contentNode, PromptActionClass.options)
@@ -85,7 +87,7 @@ this.contentNode.update(new Params('update'))
 
 通过updateCustomDialog可以动态更新弹出框的属性。目前支持的属性包括alignment、offset、autoCancel、maskColor。
 
-需要注意的是，更新属性时，未设置的属性会恢复为默认值。例如，初始设置{ alignment: DialogAlignment.Top, offset: { dx: 0, dy: 50 } }，更新时设置{ alignment: DialogAlignment.Bottom }，则初始设置的offset: { dx: 0, dy: 50 }不会保留，会恢复为默认值。
+更新属性时，未设置的属性会恢复为默认值。例如，初始设置{ alignment: DialogAlignment.Top, offset: { dx: 0, dy: 50 } }，更新时设置{ alignment: DialogAlignment.Bottom }，则初始设置的offset: { dx: 0, dy: 50 }不会保留，会恢复为默认值。
 
 ```ts
 PromptActionClass.ctx.getPromptAction().updateCustomDialog(PromptActionClass.contentNode, options)
@@ -173,6 +175,56 @@ struct Index {
 ```
 
  ![UIContextPromptAction](figures/UIContextPromptActionDialogMask.gif)
+
+## 设置弹出框避让软键盘的距离
+
+为显示弹出框的独立性，弹出框弹出时会与周边进行避让，包括状态栏、导航条以及键盘等留有间距。故当软键盘弹出时，默认情况下，弹出框会自动避开软键盘，并与之保持16vp的距离。开发者可以利用[BaseDialogOptions](../reference/apis-arkui/js-apis-promptAction.md#basedialogoptions11)中的keyboardAvoidMode和keyboardAvoidDistance这两个配置项，来设置弹出框在软键盘弹出时的行为，包括是否需要避开软键盘以及与软键盘之间的距离。
+设置软键盘间距时，需要将keyboardAvoidMode值设为KeyboardAvoidMode.DEFAULT。
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { LengthMetrics } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Index {
+  @Builder
+  customDialogComponent() {
+      Column() {
+        Text('keyboardAvoidDistance: 0vp')
+          .fontSize(20)
+          .margin({ bottom: 36 })
+        TextInput({ placeholder: '' })
+      }.backgroundColor('#FFF0F0F0')
+  }
+
+  build() {
+    Row() {
+      Row({ space: 20 }) {
+        Text('打开弹窗')
+          .fontSize(30)
+          .onClick(() => {
+            this.getUIContext().getPromptAction().openCustomDialog({
+              builder: () => {
+                this.customDialogComponent()
+              },
+              alignment:DialogAlignment.Bottom,
+              keyboardAvoidMode: KeyboardAvoidMode.DEFAULT, // 软键盘弹出时，弹出框自动避让
+              keyboardAvoidDistance: LengthMetrics.vp(0) // 软键盘弹出时与弹出框的距离为0vp
+            }).catch((error: BusinessError) => {
+                console.error(`openCustomDialog error code is ${error.code}, message is ${error.message}`)
+              })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+ ![UIContextPromptAction](figures/UIContextPromptActionCustomDialog.gif)
+
 
 ## 完整示例
 

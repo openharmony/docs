@@ -17,6 +17,7 @@ import { http } from '@kit.NetworkKit';
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 // 引入包名
 import { http } from '@kit.NetworkKit';
@@ -93,7 +94,7 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
       // 当该请求使用完毕时，开发者务必调用destroy方法主动销毁该JavaScript Object。
       httpRequest.destroy();
     } else {
-      console.info('error:' + JSON.stringify(err));
+      console.error('error:' + JSON.stringify(err));
       // 取消订阅HTTP响应头事件。
       httpRequest.off('headersReceive');
       // 当该请求使用完毕时，开发者务必调用destroy方法主动销毁该JavaScript Object。
@@ -217,7 +218,7 @@ httpRequest.request("EXAMPLE_URL", (err: Error, data: http.HttpResponse) => {
     console.info('header:' + JSON.stringify(data.header));
     console.info('cookies:' + data.cookies); // 自API version 8开始支持cookie。
   } else {
-    console.info('error:' + JSON.stringify(err));
+    console.error('error:' + JSON.stringify(err));
   }
 });
 ```
@@ -326,7 +327,7 @@ httpRequest.request("EXAMPLE_URL", options, (err: Error, data: http.HttpResponse
     console.info('header:' + JSON.stringify(data.header));
     console.info('cookies:' + data.cookies); // 自API version 8开始支持cookie。
   } else {
-    console.info('error:' + JSON.stringify(err));
+    console.error('error:' + JSON.stringify(err));
   }
 });
 ```
@@ -432,7 +433,7 @@ promise.then((data:http.HttpResponse) => {
   console.info('header.content-Type:' + data.header);
   console.info('header.Status-Line:' + data.header);
 }).catch((err:Error) => {
-  console.info('error:' + JSON.stringify(err));
+  console.error('error:' + JSON.stringify(err));
 });
 ```
 
@@ -525,7 +526,7 @@ httpRequest.requestInStream("EXAMPLE_URL", (err: BusinessError, data: number) =>
   if (!err) {
     console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
   } else {
-    console.info("requestInStream ERROR : err = " + JSON.stringify(err));
+    console.error("requestInStream ERROR : err = " + JSON.stringify(err));
   }
 })
 ```
@@ -623,7 +624,7 @@ httpRequest.requestInStream("EXAMPLE_URL", options, (err: BusinessError<void> , 
   if (!err) {
     console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
   } else {
-    console.info("requestInStream ERROR : err = " + JSON.stringify(err));
+    console.error("requestInStream ERROR : err = " + JSON.stringify(err));
   }
 })
 ```
@@ -716,7 +717,7 @@ let promise = httpRequest.requestInStream("EXAMPLE_URL", {
 promise.then((data: number) => {
   console.info("requestInStream OK!" + data);
 }).catch((err: Error) => {
-  console.info("requestInStream ERROR : err = " + JSON.stringify(err));
+  console.error("requestInStream ERROR : err = " + JSON.stringify(err));
 });
 ```
 
@@ -746,7 +747,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("headerReceive", (data: BusinessError) => {
-  console.info("error:" + JSON.stringify(data));
+  console.error("error:" + JSON.stringify(data));
 });
 ```
 
@@ -1423,7 +1424,7 @@ promise.then((data: http.HttpResponse) => {
   httpResponseCache.flush().then(() => {
     console.error('flush success');
   }).catch((err: BusinessError) => {
-    console.info('flush fail');
+    console.error('flush fail');
   });
 }).catch((err: Error) => {
   console.error('error:' + JSON.stringify(err));

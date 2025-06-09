@@ -58,7 +58,7 @@ Repeat<string>(this.arr)
 
 ### each
 
-each(itemGenerator: (repeatItem: RepeatItem\<T\>) => void): RepeatAttribute\<T\>
+each(itemGenerator: (repeatItem: RepeatItem\<T\>) => void)
 
 组件生成函数。当所有`.template()`的type和`.templateId()`返回值不匹配时，将使用`.each()`处理数据项。
 
@@ -88,7 +88,7 @@ Repeat<string>(this.arr)
 
 ### key
 
-key(keyGenerator: (item: T, index: number) => string): RepeatAttribute\<T\>
+key(keyGenerator: (item: T, index: number) => string)
 
 键值生成函数。
 
@@ -116,7 +116,7 @@ Repeat<string>(this.arr)
 
 ### virtualScroll
 
-virtualScroll(virtualScrollOptions?: VirtualScrollOptions): RepeatAttribute\<T\>
+virtualScroll(virtualScrollOptions?: VirtualScrollOptions)
 
 `Repeat`开启虚拟滚动。
 
@@ -143,7 +143,7 @@ List() {
 
 ### template
 
-template(type: string, itemBuilder: RepeatItemBuilder\<T\>, templateOptions?: TemplateOptions): RepeatAttribute\<T\>
+template(type: string, itemBuilder: RepeatItemBuilder\<T\>, templateOptions?: TemplateOptions)
 
 由template type渲染对应的template子组件。
 
@@ -174,7 +174,7 @@ List() {
 
 ### templateId
 
-templateId(typedFunc: TemplateTypedFunc\<T\>): RepeatAttribute\<T\>
+templateId(typedFunc: TemplateTypedFunc\<T\>)
 
 为当前数据项分配template type。
 
@@ -273,7 +273,7 @@ totalCount表示期望加载的数据长度，默认为原数组长度，可以�
 >
 > 当totalCount > arr.length时，在父组件容器滚动过程中，应用需要保证在列表即将滑动到数据源末尾时请求后续数据。开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动过程中会出现滚动效果异常。解决方案见[totalCount值大于数据源长度](../../../ui/state-management/arkts-new-rendering-control-repeat.md#totalcount值大于数据源长度)。
 
-### onLazyLoading：数据精准懒加载
+### onLazyLoading<sup>19+</sup>：数据精准懒加载
 
 onLazyLoading从API version 19开始支持，需在懒加载场景下使用。开发者可设置自定义方法，用于向指定的数据源index中写入数据。以下为onLazyLoading的处理规则：
 
@@ -289,7 +289,7 @@ onLazyLoading从API version 19开始支持，需在懒加载场景下使用。�
 > - onLazyLoading方法中应避免高耗时操作。若数据加载耗时较长，建议先在onLazyLoading方法中为此数据创建占位符，再创建异步任务加载数据。
 > - 当使用onLazyLoading，并设置onTotalCount为`arr.length + 1`时，可实现数据的无限加载。需要注意，在此场景下，开发者需要提供首屏显示所需的初始数据，并建议设置父容器组件`cachedCount > 0`，否则将会导致渲染异常。若与Swiper-Loop模式同时使用，停留在`index = 0`处时将导致onLazyLoading方法被持续触发，建议避免与Swiper-Loop模式同时使用。此外，开发者需要关注内存消耗情况，避免因数据持续加载而导致内存过量消耗。
 
-### onTotalCount：计算期望的数据长度
+### onTotalCount<sup>19+</sup>：计算期望的数据长度
 
 onTotalCount从API version 19开始支持，需在懒加载场景下使用。开发者可设置自定义方法，用于计算期望的数组长度。其返回值应当为自然数，可以不等于实际数据源长度arr.length。以下为onTotalCount的处理规则：
 
@@ -348,7 +348,7 @@ type RepeatItemBuilder\<T\> = (repeatItem: RepeatItem\<T\>) => void
 
 | 名称      | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| cachedCount | number | 否   | 当前template的缓存池中可缓存子组件节点的最大数量。取值范围是[0, +∞)。|
+| cachedCount | number | 否   | 当前template的缓存池中可缓存子组件节点的最大数量。取值范围是[0, +∞)。默认值为屏上节点与预加载节点的个数之和。当屏上节点与预加载节点的个数之和增多时，cachedCount也会对应增长。需要注意cachedCount数量不会减少。|
 
 当cachedCount值被设置为当前template在屏上显示的最大节点数量时，Repeat会做到最大程度的复用。然而当屏上没有当前template的节点时，缓存池不会释放的同时应用内存增大。需要开发者根据具体情况自行把控。
 
@@ -377,7 +377,7 @@ List() {
 
 ## TemplateTypedFunc\<T\>
 
-type TemplateTypedFunc\<T\> = (item : T, index : number) => string
+type TemplateTypedFunc\<T\> = (item: T, index: number) => string
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

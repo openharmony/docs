@@ -97,11 +97,11 @@ ArkWeb提供灵活控制Web组件深色模式的能力，支持独立于系统�
 
 ## Web深色模式设置
 
-通过[darkMode()](../reference/apis-arkweb/ts-basic-components-web-attributes.md#darkmode9)接口可以配置Web深色模式，默认状态为关闭。应用可设置[WebDarkMode.Auto](../reference/apis-arkweb/ts-basic-components-web-e.md#webdarkmode9)，表示Web深色模式跟随系统设置。也可以手动设置[WebDarkMode.On](../reference/apis-arkweb/ts-basic-components-web-e.md#webdarkmode9)或[WebDarkMode.Off](../reference/apis-arkweb/ts-basic-components-web-e.md#webdarkmode9)来控制深色模式的开启与关闭。
+通过[darkMode()](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#darkmode9)接口可以配置Web深色模式，默认状态为关闭。应用可设置[WebDarkMode.Auto](../reference/apis-arkweb/arkts-basic-components-web-e.md#webdarkmode9)，表示Web深色模式跟随系统设置。也可以手动设置[WebDarkMode.On](../reference/apis-arkweb/arkts-basic-components-web-e.md#webdarkmode9)或[WebDarkMode.Off](../reference/apis-arkweb/arkts-basic-components-web-e.md#webdarkmode9)来控制深色模式的开启与关闭。
 
-设置[WebDarkMode.On](../reference/apis-arkweb/ts-basic-components-web-e.md#webdarkmode9)，或设置[WebDarkMode.Auto](../reference/apis-arkweb/ts-basic-components-web-e.md#webdarkmode9)并启用系统深色模式时，Web将进入深色模式。在深色模式下，Web会应用媒体查询@media(prefers-color-scheme: dark)中定义的深色样式。如果网页未定义深色样式，则保持原有样式。
+设置[WebDarkMode.On](../reference/apis-arkweb/arkts-basic-components-web-e.md#webdarkmode9)，或设置[WebDarkMode.Auto](../reference/apis-arkweb/arkts-basic-components-web-e.md#webdarkmode9)并启用系统深色模式时，Web将进入深色模式。在深色模式下，Web会应用媒体查询@media(prefers-color-scheme: dark)中定义的深色样式。如果网页未定义深色样式，则保持原有样式。
 
-若要使未适配深色模式的网页强制转换为深色样式，可以使用[forceDarkAccess()](../reference/apis-arkweb/ts-basic-components-web-attributes.md#forcedarkaccess9)接口开启强制深色模式。强制深色模式可以覆盖网页默认样式，转换网页背景和文字的颜色，以适应在深色模式下显示。强制深色模式无法保证所有颜色转换符合预期。
+若要使未适配深色模式的网页强制转换为深色样式，可以使用[forceDarkAccess()](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#forcedarkaccess9)接口开启强制深色模式。强制深色模式可以覆盖网页默认样式，转换网页背景和文字的颜色，以适应在深色模式下显示。强制深色模式无法保证所有颜色转换符合预期。
 
 在强制深色模式下，高亮度色值将被转换为适合低光环境的色值，低亮度色值则保持不变。具体色值转换算法沿用Chromium内核标准，随Chromium内核的更新迭代。色值转换只针对不支持深色配色方案的元素。如果网页全局声明支持深色配色方案，则整个网页的色值均不会被Web转换。
 
@@ -114,11 +114,11 @@ ArkWeb提供灵活控制Web组件深色模式的能力，支持独立于系统�
 | 深色模式 | 强制深色模式 | color-scheme | 预期结果 |
 | - | - | - | - |
 | 关闭 | 无影响 | - | 网页采用color-scheme支持的配色方案。 |
-| 开启 | 关闭 | - | 网页采用color-scheme支持的配色方案，并应用@media(prefers-color-scheme: dark)中定义的样式 |
-| 开启 | 开启 | 支持深色 | 网页采用深色配色方案，并应用@media(prefers-color-scheme: dark)中定义的样式 |
-| 开启 | 开启 | 不支持深色 | 根据算法转换网页高亮元素色值。若网页在@media(prefers-color-scheme: dark)中定义了样式，则会在该样式色值上进行转换 |
+| 开启 | 关闭 | - | 网页采用color-scheme支持的配色方案，并应用@media(prefers-color-scheme: dark)中定义的样式。 |
+| 开启 | 开启 | 支持深色 | 网页采用深色配色方案，并应用@media(prefers-color-scheme: dark)中定义的样式。 |
+| 开启 | 开启 | 不支持深色 | 根据算法转换网页高亮元素色值。若网页在@media(prefers-color-scheme: dark)中定义了样式，则会在该样式色值上进行转换。 |
 
-[forceDarkAccess()](../reference/apis-arkweb/ts-basic-components-web-attributes.md#forcedarkaccess9)接口仅在Web深色模式开启时生效。在下面的示例中，应用设置Web深色模式跟随系统。系统开启深色模式时，Web进入强制深色模式。
+[forceDarkAccess()](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#forcedarkaccess9)接口仅在Web深色模式开启时生效。在下面的示例中，应用设置Web深色模式跟随系统。系统开启深色模式时，Web进入强制深色模式。
 
 ```ts
 // xxx.ets
@@ -183,9 +183,9 @@ index.html页面在深色模式关闭、深色模式开启及强制深色模式�
 
 网页未切换为深色样式的原因有多种，可以按以下步骤排查：
 
-1. 检查Web是否开启深色模式。Web深色模式接口[darkMode()](../reference/apis-arkweb/ts-basic-components-web-attributes.md#darkmode9)默认状态为关闭，需显式声明为[WebDarkMode.On](../reference/apis-arkweb/ts-basic-components-web-e.md#webdarkmode9)或[WebDarkMode.Auto](../reference/apis-arkweb/ts-basic-components-web-e.md#webdarkmode9)，才能开启深色模式。
+1. 检查Web是否开启深色模式。Web深色模式接口[darkMode()](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#darkmode9)默认状态为关闭，需显式声明为[WebDarkMode.On](../reference/apis-arkweb/arkts-basic-components-web-e.md#webdarkmode9)或[WebDarkMode.Auto](../reference/apis-arkweb/arkts-basic-components-web-e.md#webdarkmode9)，才能开启深色模式。
 
-2. Web已开启深色模式时，检查网页是否定义深色样式。网页的深色样式需要网页开发者适配。如果未定义深色样式，即使Web开启深色模式，网页样式也会保持不变。若需强制适配，可以使用[forceDarkAccess()](../reference/apis-arkweb/ts-basic-components-web-attributes.md#forcedarkaccess9)接口开启强制深色模式。
+2. Web已开启深色模式时，检查网页是否定义深色样式。网页的深色样式需要网页开发者适配。如果未定义深色样式，即使Web开启深色模式，网页样式也会保持不变。若需强制适配，可以使用[forceDarkAccess()](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#forcedarkaccess9)接口开启强制深色模式。
 
 3. Web已开启强制深色模式时，检查网页是否声明支持深色配色方案。通过color-scheme声明支持深色配色方案的网页，在强制深色模式下色值不会被Web转换。同时，如果网页内元素自定义了颜色样式，则不会被color-scheme影响。因此表现为网页样式未切换为深色样式。此时，需要网页开发者进行适配修改。
 
@@ -198,3 +198,13 @@ index.html页面在深色模式关闭、深色模式开启及强制深色模式�
 **解决措施**
 
 强制深色模式下，Web使用Chromium原生色值转换算法自动调整元素颜色样式。不同网页的布局和样式写法各异，算法无法确保所有转换均符合预期。建议网页开发者自定义深色样式。
+
+### 未开启深色模式，但Web网页背景变深
+
+**问题现象**
+
+Web组件未开启深色模式，但Web网页背景变深。
+
+**解决措施**
+
+Web网页未设置背景颜色，或者设置背景颜色透明时，会呈现Web组件的背景颜色。因此出现该问题时，可排查Web组件是否设置了深色的[backgroundColor()](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor)。

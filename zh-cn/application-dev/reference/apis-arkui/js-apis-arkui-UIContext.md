@@ -1,8 +1,8 @@
 # @ohos.arkui.UIContext (UIContext)
 
-在Stage模型中，WindowStage/Window可以通过[loadContent](js-apis-window.md#loadcontent9)接口加载页面并创建UI的实例，并将页面内容渲染到关联的窗口中，所以UI实例和窗口是一一关联的。一些全局的UI接口是和具体UI实例的执行上下文相关的，在当前接口调用时，通过追溯调用链跟踪到UI的上下文，来确定具体的UI实例。若在非UI页面中或者一些异步回调中调用这类接口，可能无法跟踪到当前UI的上下文，导致接口执行失败。
+在Stage模型中，WindowStage/Window可以通过[loadContent](arkts-apis-window-Window.md#loadcontent9)接口加载页面并创建UI的实例，并将页面内容渲染到关联的窗口中，所以UI实例和窗口是一一关联的。一些全局的UI接口是和具体UI实例的执行上下文相关的，在当前接口调用时，通过追溯调用链跟踪到UI的上下文，来确定具体的UI实例。若在非UI页面中或者一些异步回调中调用这类接口，可能无法跟踪到当前UI的上下文，导致接口执行失败。
 
-@ohos.window在API version 10 新增[getUIContext](js-apis-window.md#getuicontext10)接口，获取UI上下文实例UIContext对象，使用UIContext对象提供的替代方法，可以直接作用在对应的UI实例上。
+@ohos.window在API version 10 新增[getUIContext](arkts-apis-window-Window.md#getuicontext10)接口，获取UI上下文实例UIContext对象，使用UIContext对象提供的替代方法，可以直接作用在对应的UI实例上。
 
 > **说明：**
 >
@@ -22,13 +22,13 @@ import {
 
 ## UIContext
 
-以下API需先使用ohos.window中的[getUIContext()](js-apis-window.md#getuicontext10)方法获取UIContext实例，再通过此实例调用对应方法。或者可以通过自定义组件内置方法[getUIContext()](arkui-ts/ts-custom-component-api.md#getuicontext)获取。本文中UIContext对象以uiContext表示。
+以下API需先使用ohos.window中的[getUIContext()](arkts-apis-window-Window.md#getuicontext10)方法获取UIContext实例，再通过此实例调用对应方法。或者可以通过自定义组件内置方法[getUIContext()](arkui-ts/ts-custom-component-api.md#getuicontext)获取。本文中UIContext对象以uiContext表示。
 
 ### isAvailable<sup>20+</sup>
 
 isAvailable(): boolean
 
-判断UIContext对象对应的UI实例是否有效。
+判断UIContext对象对应的UI实例是否有效。使用getUIContext方法创建UIContext对象。后端UI实例存在时，该UI实例有效。通过new UIContext()创建的UIContext对应的UI实例无效；多次loadContent后，旧的UI实例以及多窗口应用关闭对应窗口后，该窗口的UI实例无效。即后端UI实例不存在时，UI实例无效。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -43,8 +43,63 @@ isAvailable(): boolean
 **示例：**
 
 ```ts
-uiContext.isAvailable();
+import { UIContext } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct UIContextCompare {
+  @State result1: string = ""
+  @State result2: string = ""
+
+  build() {
+    Column() {
+      Text("getUIContext() 结果: " + this.result1)
+        .fontSize(20)
+        .margin(10)
+
+      Text("new UIContext() 结果: " + this.result2)
+        .fontSize(20)
+        .margin(10)
+
+      Divider().margin(20)
+
+      Button("getUIContext()")
+        .width("70%")
+        .height(50)
+        .margin(10)
+        .onClick(() => {
+          try {
+            const ctx: UIContext = this.getUIContext();
+            const available: boolean = ctx.isAvailable();
+            this.result1 = `可用状态: ${available} UI实例有效 `;
+            console.log("getUIContext测试:", available);
+          } catch (e) {
+            this.result1 = "错误: " + (e instanceof Error ? e.message : String(e));
+          }
+        })
+
+      Button("new UIContext()")
+        .width("70%")
+        .height(50)
+        .margin(10)
+        .onClick(() => {
+          try {
+            const ctx: UIContext = new UIContext();
+            const available: boolean = ctx.isAvailable();
+            this.result2 = `可用状态: ${available} UI实例无效`;
+            console.log("new UIContext测试:", available);
+          } catch (e) {
+            this.result2 = "错误: " + (e instanceof Error ? e.message : String(e));
+          }
+        })
+    }
+    .width("100%")
+    .height("100%")
+    .padding(20)
+  }
+}
 ```
+![example](figures/uicontext_isavailable.gif)
 ### getFont
 
 getFont(): Font
@@ -248,7 +303,7 @@ setOverlayManagerOptions(options: OverlayManagerOptions): boolean
 
 | 类型    | 说明           |
 | ------- | -------------- |
-| boolean | 是否设置成功。<br/>返回true时，设置成功。返回false时，设置失败。 |
+| boolean | 是否设置成功。<br/>返回true表示设置成功。返回false表示设置失败。 |
 
 **示例：**
 
@@ -1297,7 +1352,7 @@ getFilteredInspectorTree(filters?: Array\<string\>): string
 
 | 参数名  | 类型            | 必填 | 说明                                                         |
 | ------- | --------------- | ---- | ------------------------------------------------------------ |
-| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段：<br/>"id"：组件唯一标识。<br/>"src"：资源来源。 <br/>"content"：元素、组件或对象所包含的信息或数据。<br/>"editable"：是否可编辑。<br/>"scrollable"：是否可滚动。<br/>"selectable"：是否可选择。<br/>"focusable"：是否可聚焦。<br/>"focused"：是否已聚焦。<br/>从API version 20开始，支持该过滤字段：<br/>"isLayoutInspector"：是否显示自定义组件的属性。<br/>其余字段仅供测试场景使用。 |
+| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段：<br/>"id"：组件唯一标识。<br/>"src"：资源来源。 <br/>"content"：元素、组件或对象所包含的信息或数据。<br/>"editable"：是否可编辑。<br/>"scrollable"：是否可滚动。<br/>"selectable"：是否可选择。<br/>"focusable"：是否可聚焦。<br/>"focused"：是否已聚焦。<br/>如果在filters参数中包含以上一个或者多个字段，则未包含的字段会在组件属性查询结果中被过滤掉。如果用户未传入filters参数或者filters参数为空数组，则以上字段全部不会在组件属性查询结果中被过滤掉。<br/>从API version 20开始，支持该过滤字段：<br/>"isLayoutInspector"：是否显示自定义组件的属性。<br/>其余字段仅供测试场景使用。 |
 
 **返回值：** 
 
@@ -2018,7 +2073,7 @@ openBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheetOp
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -2149,7 +2204,7 @@ updateBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheet
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -2275,7 +2330,7 @@ closeBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>): Promi
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -2997,6 +3052,11 @@ Router和NavDestination等页面信息，若无对应的Router或NavDestination�
 
 以下API需先使用UIContext中的[getUIObserver()](#getuiobserver11)方法获取到UIObserver对象，再通过该对象调用对应方法。
 
+> **说明：**
+>
+> UIObserver仅能监听到本进程内的相关信息，不支持获取<!--Del-->[UIExtensionComponent](../../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)等<!--DelEnd-->跨进程场景的信息。
+>
+
 ### on('navDestinationUpdate')<sup>11+</sup>
 
 on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo\>): void
@@ -3181,9 +3241,9 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 
 参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate11-1)示例。
 
-### on('navDestinationUpdate')<sup>20+</sup>
+### on('navDestinationUpdateByUniqueId')<sup>20+</sup>
 
-on(type: 'navDestinationUpdate', navigationUniqueId: number, callback: Callback\<observer.NavDestinationInfo\>): void
+on(type: 'navDestinationUpdateByUniqueId', navigationUniqueId: number, callback: Callback\<observer.NavDestinationInfo\>): void
 
 通过Navigation的uniqueId监听NavDestination组件的状态变化，uniqueId可通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。
 
@@ -3195,7 +3255,7 @@ on(type: 'navDestinationUpdate', navigationUniqueId: number, callback: Callback\
 
 | 参数名   | 类型                                                                 | 必填 | 说明                                                                     |
 | -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
-| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdateByUniqueId'，即NavDestination组件的状态变化。 |
 | navigationUniqueId  | number | 是   | 指定监听的Navigation的uniqueId，可以通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。                                               |
 | callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>                | 是   | 回调函数。返回当前的NavDestination组件状态。                             |
 
@@ -3205,8 +3265,8 @@ on(type: 'navDestinationUpdate', navigationUniqueId: number, callback: Callback\
 
 ```ts
 // Index.ets
-// 演示 on('navDestinationUpdate', navigationUniqueId, callback)
-// off('navDestinationUpdate', navigationUniqueId, callback)
+// 演示 on('navDestinationUpdateByUniqueId', navigationUniqueId, callback)
+// off('navDestinationUpdateByUniqueId', navigationUniqueId, callback)
 @Component
 struct PageOne {
   private text = '';
@@ -3217,12 +3277,12 @@ struct PageOne {
       this.uniqueid = navigationuniqueid.valueOf();
     }
     this.text = JSON.stringify(this.uniqueid);
-    this.getUIContext().getUIObserver().on('navDestinationUpdate', this.uniqueid, (info) => {
+    this.getUIContext().getUIObserver().on('navDestinationUpdateByUniqueId', this.uniqueid, (info) => {
       console.info('NavDestination state update navigationId', JSON.stringify(info));
     });
   }
   aboutToDisappear() {
-    this.getUIContext().getUIObserver().off('navDestinationUpdate', this.uniqueid);
+    this.getUIContext().getUIObserver().off('navDestinationUpdateByUniqueId', this.uniqueid);
   }
   build() {
     NavDestination() {
@@ -3263,9 +3323,9 @@ struct Index {
 }
 ```
 
-### off('navDestinationUpdate')<sup>20+</sup>
+### off('navDestinationUpdateByUniqueId')<sup>20+</sup>
 
-off(type: 'navDestinationUpdate', navigationUniqueId: number, callback?: Callback\<observer.NavDestinationInfo\>): void
+off(type: 'navDestinationUpdateByUniqueId', navigationUniqueId: number, callback?: Callback\<observer.NavDestinationInfo\>): void
 
 取消通过navigationUniqueId监听NavDestination组件的变化。
 
@@ -3277,13 +3337,13 @@ off(type: 'navDestinationUpdate', navigationUniqueId: number, callback?: Callbac
 
 | 参数名   | 类型                                                                 | 必填 | 说明                                                                     |
 | -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
-| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdateByUniqueId'，即NavDestination组件的状态变化。 |
 | navigationUniqueId  | number | 是   | 指定监听的Navigation的uniqueId，可以通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。                                               |
 | callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>                | 否   | 需要取消的监听回调，不传参数时，取消该Navigation上所有的监听回调。                             |
 
 **示例：**
 
-参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate20)示例。
+参考[uiObserver.on('navDestinationUpdateByUniqueId')](#onnavdestinationupdatebyuniqueid20)示例。
 
 ### on('scrollEvent')<sup>12+</sup>
 
@@ -4368,9 +4428,6 @@ on(type: 'beforePanStart', callback: PanListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { uiObserver } from '@kit.ArkUI';
-import router from '@ohos.router';
-
 let TEST_TAG: string = 'node';
 
 function callbackFunc() {
@@ -4390,7 +4447,7 @@ function afterEndCallBack() {
 }
 
 function beforeStartCallBack() {
-  console.info('bxq on == beforeStartCallBack');
+  console.info('on == beforeStartCallBack');
 }
 
 function panGestureCallBack(event: GestureEvent, current: GestureRecognizer, node?: FrameNode) {
@@ -4934,7 +4991,7 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -5088,7 +5145,7 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -5256,7 +5313,7 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -5402,7 +5459,7 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -5562,7 +5619,7 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -5715,7 +5772,7 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Pro
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -5882,7 +5939,7 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -6029,7 +6086,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -6469,7 +6526,7 @@ router.getParams();
 
 type CustomBuilderWithId = (id: number)&nbsp;=&gt;&nbsp;void
 
-组件属性方法参数可使用CustomBuilderWithId类型来自定义UI描述，并且可以指定组件ID生成用户自定义组件。
+组件属性、方法参数可使用CustomBuilderWithId类型来自定义UI描述，并且可以指定组件ID生成用户自定义组件。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -6713,7 +6770,7 @@ try {
 
 showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.ShowDialogSuccessResponse&gt;
 
-创建并显示对话框，对话框响应后同步返回结果，通过Promise获取对话框响应结果。
+创建并显示对话框，通过Promise获取对话框响应结果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -6965,7 +7022,7 @@ openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -7057,7 +7114,7 @@ openCustomDialogWithController\<T extends Object>(dialogContent: ComponentConten
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -7153,7 +7210,7 @@ closeCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>): Promi
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -7249,7 +7306,7 @@ updateCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, optio
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -7329,7 +7386,7 @@ struct Index {
 
 openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
 
-创建并弹出自定义弹窗。使用Promise异步回调，返回供closeCustomDialog使用的对话框id。暂不支持isModal = true与showInSubWindow = true同时使用。
+创建并弹出自定义弹窗。通过Promise异步回调返回供closeCustomDialog使用的对话框id。暂不支持isModal = true与showInSubWindow = true同时使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7360,7 +7417,7 @@ openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
 
 presentCustomDialog(builder: CustomBuilder \| CustomBuilderWithId, controller?: promptAction.DialogController, options?: promptAction.DialogOptions): Promise\<number>
 
-创建并弹出自定义弹窗。使用Promise异步回调，返回供closeCustomDialog使用的对话框id。
+创建并弹出自定义弹窗。通过Promise异步回调返回供closeCustomDialog使用的对话框id。
 
 支持在自定义弹窗内容中持有弹窗ID进行对应操作。支持传入弹窗控制器与自定义弹窗绑定，后续可以通过控制器控制自定义弹窗。
 
@@ -7574,7 +7631,7 @@ getTopOrder(): LevelOrder
 
 **示例：**
 
-该示例通过调用getTopOrder接口，展示了获取最顶层显示的弹窗的顺序的功能。
+该示例通过调用getTopOrder接口，展示了获取最顶层显示弹窗顺序的功能。
 
 ```ts
 import { ComponentContent, PromptAction, LevelOrder, promptAction, UIContext } from '@kit.ArkUI';
@@ -7654,7 +7711,7 @@ getBottomOrder(): LevelOrder
 
 **示例：**
 
-该示例通过调用getBottomOrder接口，展示了获取最底层显示的弹窗的顺序的功能。
+该示例通过调用getBottomOrder接口，展示了获取最底层显示弹窗顺序的功能。
 
 ```ts
 import { ComponentContent, PromptAction, LevelOrder, promptAction, UIContext } from '@kit.ArkUI';
@@ -7744,7 +7801,7 @@ openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, 
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -7783,7 +7840,7 @@ export function showPopup(context: UIContext, uniqueId: number, contentNode: Com
       console.info('openPopup success');
     })
     .catch((err: BusinessError) => {
-      console.info('openPopup error: ' + err.code + ' ' + err.message);
+      console.error('openPopup error: ' + err.code + ' ' + err.message);
     })
   popupParam.updateFunc = () => {
     promptAction.updatePopup(contentNode, {
@@ -7793,7 +7850,7 @@ export function showPopup(context: UIContext, uniqueId: number, contentNode: Com
         console.info('updatePopup success');
       })
       .catch((err: BusinessError) => {
-        console.info('updatePopup error: ' + err.code + ' ' + err.message);
+        console.error('updatePopup error: ' + err.code + ' ' + err.message);
       })
   }
   popupParam.closeFunc = () => {
@@ -7802,7 +7859,7 @@ export function showPopup(context: UIContext, uniqueId: number, contentNode: Com
         console.info('closePopup success');
       })
       .catch((err: BusinessError) => {
-        console.info('closePopup error: ' + err.code + ' ' + err.message);
+        console.error('closePopup error: ' + err.code + ' ' + err.message);
       })
   }
 }
@@ -7869,7 +7926,7 @@ updatePopup\<T extends Object>(content: ComponentContent\<T>, options: PopupComm
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -7905,7 +7962,7 @@ closePopup\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -7951,7 +8008,7 @@ openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, o
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -8045,7 +8102,7 @@ updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOption
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -8133,7 +8190,7 @@ closeMenu\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -8807,7 +8864,7 @@ addComponentContent(content: ComponentContent, index?: number): void
 | 参数名     | 类型                                       | 必填   | 说明          |
 | ------- | ---------------------------------------- | ---- | ----------- |
 | content | [ComponentContent](js-apis-arkui-ComponentContent.md) | 是    | 在OverlayManager上新增指定节点上添加此content。 <br>**说明：** <br/> 新增的节点默认处于页面居中，按层级堆叠。|
-| index | number | 否    | 新增节点在OverlayManager上的层级位置。<br>**说明：** <br/> 当index ≥ 0时，若index的值越大，则ComponentContent的层级越高；当多个ComponentContent的index相同时，若ComponentContent添加的时间越晚，则层级越高。<br/> 当index < 0、index = null或index = undefined时，ComponentContent默认添加至最高层。<br/>当同一个ComponentContent被添加多次时，只保留最后一次添加的ComponentContent。<br/>
+| index | number | 否    | 新增节点在OverlayManager上的层级位置。<br>**说明：** <br/> 当index ≥ 0时，越大，ComponentContent的层级越高；若多个ComponentContent的index相同，ComponentContent添加的时间越晚层级越高。<br/> 当index < 0、index = null或index = undefined时，ComponentContent默认添加至最高层。<br/>当同一个ComponentContent被添加多次时，只保留最后一次添加的ComponentContent。
 
 **示例：**
 
@@ -8913,7 +8970,7 @@ struct OverlayExample {
 
 addComponentContentWithOrder(content: ComponentContent, levelOrder?: LevelOrder): void
 
-指定显示顺序创建浮层节点。
+创建浮层节点时，指定显示顺序。
 
 支持在浮层节点创建时指定显示的顺序。
 
@@ -8930,7 +8987,7 @@ addComponentContentWithOrder(content: ComponentContent, levelOrder?: LevelOrder)
 
 **示例：**
 
-该示例通过调用addComponentContentWithOrder接口，展示了指定显示顺序创建浮层节点的功能。
+该示例通过调用addComponentContentWithOrder接口，实现了按照指定显示顺序创建浮层节点的功能。
 
 ```ts
 import { ComponentContent, PromptAction, LevelOrder, UIContext, OverlayManager } from '@kit.ArkUI';
@@ -9013,7 +9070,7 @@ struct Index {
 
 removeComponentContent(content: ComponentContent): void
 
-在overlay上删除指定节点。
+删除overlay上的指定节点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -9053,7 +9110,7 @@ showComponentContent(content: ComponentContent): void
 
 hideComponentContent(content: ComponentContent): void
 
-在OverlayManager上隐藏指定节点。
+隐藏OverlayManager上的指定节点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -9957,7 +10014,7 @@ measureText(options: MeasureOptions): number
 
 | 类型          | 说明       |
 | ------------  | --------- |
-| number        | 文本宽度。<br/>**说明:**<br/>单位px。 |
+| number        | 文本宽度。<br/>**说明:**<br/>浮点数会向上取整。<br/>单位：px |
 
 
 **示例：**
@@ -10008,11 +10065,11 @@ measureTextSize(options: MeasureOptions): SizeOptions
 
 | 类型          | 说明       |
 | ------------  | --------- |
-| [SizeOption](arkui-ts/ts-types.md#sizeoptions)   | 返回文本所占布局宽度和高度。<br/>**说明:**<br/> 文本宽度以及高度返回值单位均为px。 |
+| [SizeOptions](arkui-ts/ts-types.md#sizeoptions)   | 返回文本所占布局宽度和高度。<br/>**说明:**<br/>没有传参constraintWidth的情况下，文本宽度返回值浮点数会向上取整。<br/>文本宽度以及高度返回值单位均为px。 |
 
 
 **示例：**
-通过MeasureUtils的measureTextSize方法获取"Hello World"文字的宽度和高度
+通过MeasureUtils的measureTextSize方法获取"Hello World"文字的宽度和高度。
 
 ```ts
 import { MeasureUtils } from '@kit.ArkUI';
@@ -10193,7 +10250,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 >
 > 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟，不适宜使用在对性能敏感的场景。
 >
-> 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
+> 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/arkts-basic-components-web.md)组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -10284,7 +10341,7 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 >
 > 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟，不适宜使用在对性能敏感的场景。
 >
-> 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
+> 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/arkts-basic-components-web.md)组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -10295,7 +10352,7 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 | 参数名  | 类型                                                 | 必填 | 说明                                                    |
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
 | builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。 |
-| delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒|
+| delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒<br/> 取值范围：[0, +∞)，小于0时按默认值处理。|
 | checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | 否    | 截图相关的自定义参数。 |
 
@@ -11191,7 +11248,7 @@ static disableSystemServiceMenuItems(disable: boolean): void
 >
 > 此接口调用后将影响文本组件的接口[editMenuOptions](./arkui-ts/ts-basic-components-text.md#editmenuoptions12)，其回调方法[onCreateMenu](./arkui-ts/ts-text-common.md#oncreatemenu12)的入参列表中不包含被屏蔽的菜单选项。
 >
-> 涉及文本选择菜单的组件有 [Text](./arkui-ts/ts-basic-components-text.md)、[TextArea](./arkui-ts/ts-basic-components-textarea.md)、[TextInput](./arkui-ts/ts-basic-components-textinput.md)、[Search](./arkui-ts/ts-basic-components-search.md)、[RichEditor](./arkui-ts/ts-basic-components-richeditor.md)、[Web](../apis-arkweb/ts-basic-components-web.md)。
+> 涉及文本选择菜单的组件有 [Text](./arkui-ts/ts-basic-components-text.md)、[TextArea](./arkui-ts/ts-basic-components-textarea.md)、[TextInput](./arkui-ts/ts-basic-components-textinput.md)、[Search](./arkui-ts/ts-basic-components-search.md)、[RichEditor](./arkui-ts/ts-basic-components-richeditor.md)、[Web](../apis-arkweb/arkts-basic-components-web.md)。
 >
 > 系统服务菜单项指除[TextMenuItemId](./arkui-ts/ts-text-common.md#textmenuitemid12)中的复制、剪切、全选、粘贴以外的菜单项。
 
@@ -11262,7 +11319,7 @@ static disableMenuItems(items: Array\<TextMenuItemId>): void
 >
 > 此接口调用后将影响文本组件的接口[editMenuOptions](./arkui-ts/ts-basic-components-text.md#editmenuoptions12)，其回调方法[onCreateMenu](./arkui-ts/ts-text-common.md#oncreatemenu12)的入参列表中不包含被屏蔽的菜单选项。
 >
-> 涉及文本选择菜单的组件有 [Text](./arkui-ts/ts-basic-components-text.md)、[TextArea](./arkui-ts/ts-basic-components-textarea.md)、[TextInput](./arkui-ts/ts-basic-components-textinput.md)、[Search](./arkui-ts/ts-basic-components-search.md)、[RichEditor](./arkui-ts/ts-basic-components-richeditor.md)、[Web](../apis-arkweb/ts-basic-components-web.md)。
+> 涉及文本选择菜单的组件有 [Text](./arkui-ts/ts-basic-components-text.md)、[TextArea](./arkui-ts/ts-basic-components-textarea.md)、[TextInput](./arkui-ts/ts-basic-components-textinput.md)、[Search](./arkui-ts/ts-basic-components-search.md)、[RichEditor](./arkui-ts/ts-basic-components-richeditor.md)、[Web](../apis-arkweb/arkts-basic-components-web.md)。
 >
 > 系统服务菜单项指除[TextMenuItemId](./arkui-ts/ts-text-common.md#textmenuitemid12)中的复制、剪切、全选、粘贴以外的菜单项。
 

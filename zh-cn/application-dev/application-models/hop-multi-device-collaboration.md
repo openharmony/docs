@@ -664,7 +664,7 @@
 
 3. 创建被调用端UIAbility。
 
-     被调用端[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)需要实现指定方法的数据接收回调函数、数据的序列化及反序列化方法。在需要接收数据期间，通过[on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeon)接口注册监听，无需接收数据时通过[off](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeoff)接口解除监听。
+     被调用端[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)需要实现指定方法的数据接收回调函数、数据的序列化及反序列化方法。在需要接收数据期间，通过[on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#on)接口注册监听，无需接收数据时通过[off](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#off)接口解除监听。
 
     1. 配置UIAbility的启动模式。
         配置[module.json5](../quick-start/module-configuration-file.md)，将CalleeAbility配置为单实例"singleton"。
@@ -725,7 +725,7 @@
           };
         }
         ```
-    4. 实现[Callee.on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeon)监听及[Callee.off](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeoff)解除监听。
+    4. 实现[Callee.on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#on)监听及[Callee.off](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#off)解除监听。
           如下示例在Ability的[onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate)注册MSG_SEND_METHOD监听，在[onDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#ondestroy)取消监听，收到序列化数据后作相应处理并返回。应用开发者根据实际业务需要做相应处理。
            
         ```ts
@@ -823,7 +823,7 @@
         import { UIAbility } from '@kit.AbilityKit';
         ```
     2. 获取Caller通信接口。
-        Ability的context属性实现了[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall)方法，用于获取指定通用组件的[Caller](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#caller)通信接口。如下示例通过this.context获取Ability实例的context属性，使用startAbilityByCall拉起[Callee](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callee)被调用端并获取Caller通信接口，注册Caller的[onRelease](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleronrelease)和[onRemoteStateChange](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleronremotestatechange10)监听。应用开发者根据实际业务需要做相应处理。
+        Ability的context属性实现了[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall)方法，用于获取指定通用组件的[Caller](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#caller)通信接口。如下示例通过this.context获取Ability实例的context属性，使用startAbilityByCall拉起[Callee](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callee)被调用端并获取Caller通信接口，注册Caller的[onRelease](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onrelease)和[onRemoteStateChange](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onremotestatechange10)监听。应用开发者根据实际业务需要做相应处理。
 
         ```ts
         import { BusinessError } from '@kit.BasicServicesKit';
@@ -917,7 +917,7 @@
         getRemoteDeviceId方法参照[通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据](#通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据)。
    
 5. 向被调用端UIAbility发送约定序列化数据。
-    1. 向被调用端发送Parcelable数据有两种方式，一种是不带返回值，一种是获取被调用端返回的数据，method以及序列化数据需要与被调用端协商一致。如下示例调用[Call](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callercall)接口，向[Callee](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callee)被调用端发送数据。
+    1. 向被调用端发送Parcelable数据有两种方式，一种是不带返回值，一种是获取被调用端返回的数据，method以及序列化数据需要与被调用端协商一致。如下示例调用[Call](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#call)接口，向[Callee](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callee)被调用端发送数据。
       
         ```ts
         import { UIAbility, Caller } from '@kit.AbilityKit';
@@ -972,7 +972,7 @@
           // ...
         }
         ```
-    2. 如下示例调用[CallWithResult](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callercallwithresult)接口，向Callee被调用端发送待处理的数据originMsg，并将’CallSendMsg’方法处理完毕的数据赋值给backMsg。
+    2. 如下示例调用[CallWithResult](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callwithresult)接口，向Callee被调用端发送待处理的数据originMsg，并将’CallSendMsg’方法处理完毕的数据赋值给backMsg。
       
         ```ts
         import { UIAbility, Caller } from '@kit.AbilityKit';
@@ -1038,7 +1038,7 @@
    
 6. 释放Caller通信接口。
 
-    [Caller](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#caller)不再使用后，应用开发者可以通过[release](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callerrelease)接口释放Caller。
+    [Caller](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#caller)不再使用后，应用开发者可以通过[release](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#release)接口释放Caller。
 
       ```ts
       import { UIAbility, Caller } from '@kit.AbilityKit';

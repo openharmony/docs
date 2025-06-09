@@ -4865,7 +4865,7 @@ getAuthInfo(options?: GetAuthInfoOptions): Promise&lt;Array&lt;EnrolledCredInfo&
 
 | 参数名    | 类型                                | 必填 | 说明      |
 | -------- | ----------------------------------- | ---- | -------- |
-| options | [GetAuthInfoOptions](#getauthinfooptions12)          | 否   | 获取认证信息的可选参数集合。 |
+| options | [GetAuthInfoOptions](#getauthinfooptions12)          | 否   | 获取认证信息的可选参数集合。默认为空，表示查询当前用户所有已注册凭据信息。 |
 
 **返回值：**
 
@@ -5224,6 +5224,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | enrollmentProgress<sup>10+</sup> | string   | 是    | 是   | 指示录入进度，默认为空。 |
 | sensorInfo<sup>10+</sup> | string           | 是    | 是   | 指示传感器信息，默认为空。 |
 | nextPhaseFreezingTime<sup>12+</sup> | number | 是    | 是   | 指示下次冻结时间，默认为undefined。 |
+| credentialLength<sup>20+</sup> | number | 是    | 是   | 指示凭据长度，默认为undefined。查询生物信息等无定长属性的凭据时返回undefined。 |
 
 ## AuthResult<sup>8+</sup>
 
@@ -5284,8 +5285,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | authType     | [AuthType](#authtype8)       | 是    | 指示认证凭据类型。   |
 | authSubType  | [AuthSubType](#authsubtype8) | 是    | 指示认证凭据子类型。 |
 | templateId   | Uint8Array                               | 是    | 指示凭据模板ID。     |
-| isAbandoned<sup>20+</sup>   | boolean                      | 否    | 指示凭据是否废弃。废弃后的凭据可能作为备份凭据保存一段时间。   |
-| validityPeriod<sup>20+</sup>   | number                    | 否    | 指示凭据有效期。     |
+| isAbandoned<sup>20+</sup>   | boolean                      | 否    | 指示凭据是否废弃。废弃后的凭据可能作为备份凭据保存一段时间。默认为undefined，表示是否废弃未定义。   |
+| validityPeriod<sup>20+</sup>   | number                    | 否    | 指示凭据有效期。默认为undefined，表示有效期未定义。     |
 
 ## GetPropertyType<sup>8+</sup>
 
@@ -5303,6 +5304,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | ENROLLMENT_PROGRESS<sup>10+</sup> | 4      | 录入进度。   |
 | SENSOR_INFO<sup>10+</sup> | 5      | 传感器信息。   |
 | NEXT_PHASE_FREEZING_TIME<sup>12+</sup> | 6 | 下次冻结时间。 |
+| CREDENTIAL_LENGTH<sup>20+</sup> | 7 | 凭据长度。 |
 
 ## SetPropertyType<sup>8+</sup>
 

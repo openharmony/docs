@@ -303,7 +303,7 @@ animator.play();
 
 finish(): void
 
-结束动画。
+结束动画，会触发[onFinish](#onfinish12)回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -335,7 +335,7 @@ animator.pause();
 
 cancel(): void
 
-取消动画。
+取消动画，会触发[onCancel](#oncancel12)回调。此接口和[finish](#finish)接口功能上没有区别，仅触发的回调不同，建议使用finish接口结束动画。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -965,7 +965,7 @@ class DateT {
 
 <!--deprecated_code_no_check-->
 ```ts
-import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+import { AnimatorResult } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -977,8 +977,8 @@ struct AnimatorTest {
   @State hei: number = 100
 
   create() {
-    this.backAnimator = animator.create({
-      // 建议使用 this.getUIContext.createAnimator()接口
+    this.backAnimator = this.getUIContext().createAnimator({
+      // 建议使用 this.getUIContext().createAnimator()接口
       duration: 2000,
       easing: "ease",
       delay: 0,

@@ -566,7 +566,7 @@ OffsetA为buildNode相对于父组件的偏移量，可以通过FrameNode中的[
 >
 > 传入的坐标值需要转换为px，如果builderNode有仿射变换，则需要再叠加仿射变换。
 >
-> 在[webview](../apis-arkweb/js-apis-webview.md)中，内部已经处理过坐标系变换，可以将TouchEvent事件直接下发。
+> 在[webview](../apis-arkweb/arkts-apis-webview.md)中，内部已经处理过坐标系变换，可以将TouchEvent事件直接下发。
 >
 > 同一时间戳，postTouchEvent只能调用一次。<!--Del-->
 >
@@ -1141,9 +1141,13 @@ postInputEvent(event: InputEventType): boolean
 
 将事件分发到目标节点。
 
+offsetA为builderNode相对于父组件的偏移，offsetB为命中位置相对于builderNode的偏移，offsetC为offsetA+offsetB，最终输入给postInputEvent中的window信息。
+
+![接口坐标换算示例图](figures/postInputEvent-point.png)
+
 > **说明：**
 >
-> 传入的坐标值需要转换为px。
+> 传入的坐标值需要转换为px，坐标转换示例可以参考下面示例代码。
 >
 > 鼠标左键点击事件会转换成触摸事件，转发时需注意不要在外层同时绑定触摸事件和鼠标事件，规格可查看[onTouch](arkui-ts/ts-universal-events-touch.md#ontouch)。
 >
@@ -1151,9 +1155,11 @@ postInputEvent(event: InputEventType): boolean
 >
 > 转发的事件会在被分发到的目标组件所在的子树里做touchtest，并触发对应手势，原始事件也会触发当前组件所在组件树中的手势。不保证两类手势的竞争结果。
 >
-> 针对同一个事件，在事件分发流程中不可以转发多次。
+> 如果是开发者构造的事件，必填字段必须赋值，比如触摸事件的touches字段，轴事件的scrollStep字段。要保证事件的完整，比如触摸事件的[TouchType](arkui-ts/ts-appendix-enums.md#touchtype)DOWN和UP都要有，防止出现未定义行为。
 >
-> [Webview](../apis-arkweb/js-apis-webview.md)已经处理过坐标系变换，可以将事件直接下发。
+> [Webview](../apis-arkweb/arkts-apis-webview.md)已经处理过坐标系变换，可以将事件直接下发。
+>
+> postTouchEvent接口需要提供手势坐标相对于post事件对端内的局部坐标，postInputEvent接口需要提供手势坐标相对于post事件对端内的窗口坐标。
 >
 > 不建议同一个事件转发多次。<!--Del-->不支持[UIExtensionComponent](arkui-ts/ts-container-ui-extension-component-sys.md)。<!--DelEnd-->
 
@@ -1180,7 +1186,7 @@ postInputEvent(event: InputEventType): boolean
 该示例演示了在自定义组件中截获鼠标事件并进行坐标转换的完整流程。组件通过onMouse回调读取本地x/y，再结合FrameNode.getPositionToParent()得到的偏移量，调用vp2px将相对坐标转换为像素坐标，更新MouseEvent的windowX/windowY、displayX/displayY。最后通过rootNode.postInputEvent(event)将转换后的鼠标事件分发给子节点进行处理。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext, promptAction  } from '@kit.ArkUI';
+import { NodeController, BuilderNode, FrameNode, UIContext, PromptAction  } from '@kit.ArkUI';
 import { InputEventType } from '@ohos.arkui.node';
 
 class Params {
@@ -1198,6 +1204,7 @@ function ButtonBuilder(params: Params) {
       .height("30%")
       .offset({x: 100, y: 100})
       .onMouse((event) => {
+        let promptAction: PromptAction = this.getUIContext().getPromptAction();
         promptAction.showToast({
           message: 'onMouse',
           duration: 3000
@@ -1218,7 +1225,7 @@ class MyNodeController extends NodeController {
     return this.rootNode.getFrameNode();
   }
 
-  postInputEvent(event: InputEventType): boolean {
+  postInputEvent(event: InputEventType, uiContext: UIContext): boolean {
     if (this.rootNode == null) {
       return false;
     }
@@ -1229,12 +1236,12 @@ class MyNodeController extends NodeController {
     if (event.source == SourceType.Mouse) {
       let mouseEvent = event as MouseEvent;
       if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
-        mouseEvent.windowX = vp2px(offsetX + mouseEvent.x)
-        mouseEvent.windowY = vp2px(offsetY + mouseEvent.y)
-        mouseEvent.displayX = vp2px(offsetX + mouseEvent.x)
-        mouseEvent.displayY = vp2px(offsetY + mouseEvent.y)
-        mouseEvent.x = vp2px(mouseEvent.x)
-        mouseEvent.y = vp2px(mouseEvent.y)
+        mouseEvent.windowX = uiContext.vp2px(offsetX + mouseEvent.x)
+        mouseEvent.windowY = uiContext.vp2px(offsetY + mouseEvent.y)
+        mouseEvent.displayX = uiContext.vp2px(offsetX + mouseEvent.x)
+        mouseEvent.displayY = uiContext.vp2px(offsetY + mouseEvent.y)
+        mouseEvent.x = uiContext.vp2px(mouseEvent.x)
+        mouseEvent.y = uiContext.vp2px(mouseEvent.y)
       }
     }
 
@@ -1257,7 +1264,7 @@ struct MyComponent {
         .backgroundColor(Color.Transparent)
         .onMouse((event) => {
           if (event != undefined) {
-            this.nodeController.postInputEvent(event);
+            this.nodeController.postInputEvent(event, this.getUIContext());
           }
         })
     }.offset({top: 100})
@@ -1272,7 +1279,7 @@ struct MyComponent {
 该示例演示了在自定义组件中截获触摸事件并对触点坐标进行转换的完整流程。在onTouch回调中，遍历TouchEvent的changedTouches和touches数组，对每个触点的x/y加上组件偏移量并调用vp2px转换为像素，更新各自的windowX/windowY、displayX/displayY。最后同样通过rootNode.postInputEvent(event)将转换后的触摸事件分发给子节点处理。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext, promptAction  } from '@kit.ArkUI';
+import { NodeController, BuilderNode, FrameNode, UIContext, PromptAction  } from '@kit.ArkUI';
 import { InputEventType } from '@ohos.arkui.node';
 
 class Params {
@@ -1290,6 +1297,7 @@ function ButtonBuilder(params: Params) {
       .height("30%")
       .offset({x: 100, y: 100})
       .onTouch((event) => {
+        let promptAction: PromptAction = this.getUIContext().getPromptAction();
         promptAction.showToast({
           message: 'onTouch',
           duration: 3000
@@ -1310,7 +1318,7 @@ class MyNodeController extends NodeController {
     return this.rootNode.getFrameNode();
   }
 
-  postInputEvent(event: InputEventType): boolean {
+  postInputEvent(event: InputEventType, uiContext: UIContext): boolean {
     if (this.rootNode == null) {
       return false;
     }
@@ -1324,19 +1332,19 @@ class MyNodeController extends NodeController {
       let changedTouchLen = touchevent.changedTouches.length;
       for (let i = 0; i < changedTouchLen; i++) {
         if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
-          touchevent.changedTouches[i].windowX = vp2px(offsetX + touchevent.changedTouches[i].x);
-          touchevent.changedTouches[i].windowY = vp2px(offsetY + touchevent.changedTouches[i].y);
-          touchevent.changedTouches[i].displayX = vp2px(offsetX + touchevent.changedTouches[i].x);
-          touchevent.changedTouches[i].displayY = vp2px(offsetY + touchevent.changedTouches[i].y);
+          touchevent.changedTouches[i].windowX = uiContext.vp2px(offsetX + touchevent.changedTouches[i].x);
+          touchevent.changedTouches[i].windowY = uiContext.vp2px(offsetY + touchevent.changedTouches[i].y);
+          touchevent.changedTouches[i].displayX = uiContext.vp2px(offsetX + touchevent.changedTouches[i].x);
+          touchevent.changedTouches[i].displayY = uiContext.vp2px(offsetY + touchevent.changedTouches[i].y);
         }
       }
       let touchesLen = touchevent.touches.length;
       for (let i = 0; i < touchesLen; i++) {
         if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
-          touchevent.touches[i].windowX = vp2px(offsetX + touchevent.touches[i].x);
-          touchevent.touches[i].windowY = vp2px(offsetY + touchevent.touches[i].y);
-          touchevent.touches[i].displayX = vp2px(offsetX + touchevent.touches[i].x);
-          touchevent.touches[i].displayY = vp2px(offsetY + touchevent.touches[i].y);
+          touchevent.touches[i].windowX = uiContext.vp2px(offsetX + touchevent.touches[i].x);
+          touchevent.touches[i].windowY = uiContext.vp2px(offsetY + touchevent.touches[i].y);
+          touchevent.touches[i].displayX = uiContext.vp2px(offsetX + touchevent.touches[i].x);
+          touchevent.touches[i].displayY = uiContext.vp2px(offsetY + touchevent.touches[i].y);
         }
       }
     }
@@ -1360,7 +1368,7 @@ struct MyComponent {
         .backgroundColor(Color.Transparent)
         .onTouch((event) => {
           if (event != undefined) {
-            this.nodeController.postInputEvent(event);
+            this.nodeController.postInputEvent(event, this.getUIContext());
           }
         })
     }.offset({top: 100})
@@ -1375,7 +1383,7 @@ struct MyComponent {
 该示例演示了在自定义组件中截获滚轮或触控板轴事件并进行坐标转换的完整流程。在onAxisEvent回调中，先获取事件的相对x/y，再加上组件偏移量后调用vp2px转换为像素，更新AxisEvent的windowX/windowY、displayX/displayY，最后通过rootNode.postInputEvent(event)将转换后的轴事件分发给子节点进行处理。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext, promptAction } from '@kit.ArkUI';
+import { NodeController, BuilderNode, FrameNode, UIContext, PromptAction } from '@kit.ArkUI';
 import { InputEventType } from '@ohos.arkui.node';
 
 class Params {
@@ -1393,6 +1401,7 @@ function ButtonBuilder(params: Params) {
       .height("30%")
       .offset({x: 100, y: 100})
       .onAxisEvent((event) => {
+        let promptAction: PromptAction = this.getUIContext().getPromptAction();
         promptAction.showToast({
           message: 'onAxisEvent',
           duration: 3000
@@ -1413,7 +1422,7 @@ class MyNodeController extends NodeController {
     return this.rootNode.getFrameNode();
   }
 
-  postInputEvent(event: InputEventType): boolean {
+  postInputEvent(event: InputEventType, uiContext: UIContext): boolean {
     if (this.rootNode == null) {
       return false;
     }
@@ -1423,12 +1432,12 @@ class MyNodeController extends NodeController {
 
     let axiseEvent = event as AxisEvent;
     if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
-      axiseEvent.windowX = vp2px(offsetX + axiseEvent.x)
-      axiseEvent.windowY = vp2px(offsetY + axiseEvent.y)
-      axiseEvent.displayX = vp2px(offsetX + axiseEvent.x)
-      axiseEvent.displayY = vp2px(offsetY + axiseEvent.y)
-      axiseEvent.x = vp2px(axiseEvent.x)
-      axiseEvent.y = vp2px(axiseEvent.y)
+      axiseEvent.windowX = uiContext.vp2px(offsetX + axiseEvent.x)
+      axiseEvent.windowY = uiContext.vp2px(offsetY + axiseEvent.y)
+      axiseEvent.displayX = uiContext.vp2px(offsetX + axiseEvent.x)
+      axiseEvent.displayY = uiContext.vp2px(offsetY + axiseEvent.y)
+      axiseEvent.x = uiContext.vp2px(axiseEvent.x)
+      axiseEvent.y = uiContext.vp2px(axiseEvent.y)
     }
 
     let result = this.rootNode.postInputEvent(event);
@@ -1450,7 +1459,7 @@ struct MyComponent {
         .backgroundColor(Color.Transparent)
         .onAxisEvent((event) => {
           if (event != undefined) {
-            this.nodeController.postInputEvent(event);
+            this.nodeController.postInputEvent(event, this.getUIContext());
           }
         })
     }.offset({top: 100})

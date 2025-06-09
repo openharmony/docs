@@ -27,6 +27,8 @@ Navigation组件通过mode属性设置页面的显示模式。
 
 - 单页面模式
 
+  单页面模式适用于窄屏设备，发生路由跳转时，整个页面都会被替换。
+
     **图1** 单页面布局示意图  
 
   ![zh-cn_image_0000001511740532](figures/zh-cn_image_0000001511740532.png)
@@ -44,6 +46,8 @@ Navigation组件通过mode属性设置页面的显示模式。
   ![导航单栏模式](figures/导航单栏模式.jpg)
 
 - 分栏模式
+
+  分栏模式适用于宽屏设备，分为左右两部分，发生路由跳转时，只有右边子页会被替换。
 
   **图2** 分栏布局示意图
 
@@ -310,7 +314,9 @@ Navigation路由相关的操作都是基于页面栈[NavPathStack](../reference/
 
 > **说明：**
 >
-> 不建议开发者通过监听生命周期的方式管理自己的页面栈。
+> 1.不建议开发者通过监听生命周期的方式管理自己的页面栈。
+>
+> 2.在应用处于后台状态下，调用NavPathStack的栈操作方法，会在应用再次回到前台状态时触发刷新。
 
 ```ts
 @Entry
@@ -475,7 +481,7 @@ this.pageStack.setInterception({
 1. 当指定为LaunchMode.MOVE_TO_TOP_SINGLETON时，系统会从栈底到栈顶查找具有指定名称的NavDestination。找到后，该页面将被移动到栈顶（replace操作会用指定的NavDestination替换当前栈顶）。
 2. 若指定为LaunchMode.POP_TO_SINGLETON，系统同样会从栈底到栈顶查找具有指定名称的NavDestination。找到后，便会移除该NavDestination上方的所有页面（replace操作会用指定的NavDestination替换当前栈顶）。
 
-当栈中存在的NavDestination页面通过单实例方式移动到栈顶时，将触发[onNewParam](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md#onnewparam18)回调。
+当栈中存在的NavDestination页面通过单实例方式移动到栈顶时，将触发[onNewParam](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md#onnewparam19)回调。
 
 有关单实例路由栈操作的示例代码，可以参考[Navigation单例跳转示例](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例2使用路由栈方法)。
 
@@ -746,7 +752,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
 
 ### 系统路由表
 
-系统路由表是动态路由的一种实现方式。从API version 12开始，Navigation支持使用系统路由表的方式进行动态路由。各业务模块（[HSP](../quick-start/in-app-hsp.md)/[HAR](../quick-start/har-package.md)）中需要独立配置route_map.json文件，在触发路由跳转时，应用只需要通过NavPathStack提供的路由方法，传入需要路由的页面配置名称，此时系统会自动完成路由模块的动态加载、页面组件构建，并完成路由跳转，从而实现了开发层面的模块解耦。系统路由表不支持预览器及模拟器。其主要步骤如下：
+系统路由表是动态路由的一种实现方式。从API version 12开始，Navigation支持使用系统路由表的方式进行动态路由。各业务模块（[HSP](../quick-start/in-app-hsp.md)/[HAR](../quick-start/har-package.md)）中需要独立配置route_map.json文件，在触发路由跳转时，应用只需要通过NavPathStack提供的路由方法，传入需要路由的页面配置名称，此时系统会自动完成路由模块的动态加载、页面组件构建，并完成路由跳转，从而实现了开发层面的模块解耦。系统路由表支持模拟器但不支持预览器。其主要步骤如下：
 
 1. 在跳转目标模块的配置文件module.json5添加路由表配置：
    

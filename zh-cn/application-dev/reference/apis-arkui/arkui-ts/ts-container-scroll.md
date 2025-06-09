@@ -82,7 +82,7 @@ scrollBarColor(color: Color | number | string)
 
 | 参数名 | 类型                                                         | 必填 | 说明           |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
-| color  | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是   | 滚动条的颜色。<br/>默认值：'\#182431'（40%不透明度）<br/>number为HEX格式颜色，支持rgb或者argb，示例：0xffffff。string为rgb或者argb格式颜色，示例：'#ffffff'。   |
+| color  | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是   | 滚动条的颜色。<br/>默认值：'\#66182431'<br/>number为HEX格式颜色，支持rgb或者argb，示例：0xffffff。string为rgb或者argb格式颜色，示例：'#ffffff'。   |
 
 ### scrollBarWidth
 
@@ -165,7 +165,7 @@ nestedScroll(value: NestedScrollOptions)
 
 | 参数名 | 类型                                                  | 必填 | 说明           |
 | ------ | ----------------------------------------------------- | ---- | -------------- |
-| value  | [NestedScrollOptions](ts-container-scrollable-common.md#nestedscrolloptions10对象说明) | 是   | 嵌套滚动选项。<br/>默认值：{ scrollForward: NestedScrollMode.SELF_ONLY, scrollBackward: NestedScrollMode.SELF_ONLY }|
+| value  | [NestedScrollOptions](ts-container-scrollable-common.md#nestedscrolloptions10对象说明) | 是   | 嵌套滚动选项。<br/>默认值：{ scrollForward: NestedScrollMode.SELF_ONLY, scrollBackward: NestedScrollMode.SELF_ONLY }<br/>Scroll设置[enablePaging](#enablepaging11)或者[scrollSnap](#scrollsnap10)，并同时设置父组件优先的嵌套滚动时，嵌套滚动不生效。|
 
 ### friction<sup>10+</sup>
 
@@ -226,7 +226,7 @@ initialOffset(value: OffsetOptions)
 | Horizontal | 仅支持水平方向滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | Vertical   | 仅支持竖直方向滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | None       | 不可滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| Free<sup>(deprecated) </sup> | 支持竖直或水平方向滚动<br/> 从API version 9开始废弃。|
+| Free<sup>(deprecated) </sup> | 支持竖直或水平方向滚动。<br/> 从API version 9开始废弃。|
 
 ## ScrollSnapOptions<sup>10+</sup>对象说明
 
@@ -375,7 +375,7 @@ onScrollEdge(event: OnScrollEdgeCallback)
 
 | 参数名 | 类型                              | 必填 | 说明               |
 | ------ | --------------------------------- | ---- | ------------------ |
-| event   | [OnScrollEdgeCallback](#onscrolledgecallback18) | 是   | 滚动到的边缘位置。 |
+| event   | [OnScrollEdgeCallback](#onscrolledgecallback18) | 是   | 滚动到的边缘位置。<br/>当Scroll设置为水平方向滚动时，上报[Edge.Center](ts-appendix-enums.md#edge)表示水平方向起始位置，上报[Edge.Baseline](ts-appendix-enums.md#edge)表示水平方向末尾位置。由于[Edge.Center](ts-appendix-enums.md#edge)和[Edge.Baseline](ts-appendix-enums.md#edge)枚举值已经废弃，推荐使用[onReachStart](ts-container-scrollable-common.md#onreachstart11)、[onReachEnd](ts-container-scrollable-common.md#onreachend11)事件监听是否滚动到边界。 |
 
 ### onScrollEnd<sup>(deprecated) </sup>
 
@@ -472,7 +472,7 @@ Scroll滚动前触发的回调。
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| void \| [OffsetResult](#offsetresult11对象说明) |  返回OffsetResult时按照开发者指定的偏移量滚动；不返回时按回调参数(xOffset，yOffset)滚动。 |
+| void \| [OffsetResult](#offsetresult11对象说明) |  返回OffsetResult时按照开发者指定的偏移量滚动；不返回时按回调参数(xOffset, yOffset)滚动。 |
 
 ## OnScrollEdgeCallback<sup>18+</sup>
 
@@ -1455,3 +1455,37 @@ struct ScrollExample {
 ```
 
 ![edgeEffect_scroll](figures/edgeEffect_scroll.gif)
+
+### 示例9（划动翻页效果）
+
+该示例通过enablePaging接口，实现了Scroll组件划动翻页效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct EnablePagingExample {
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+  build() {
+    Stack({ alignContent: Alignment.Center }) {
+      Scroll() {
+        Column() {
+          ForEach(this.arr, (item: number) => {
+            Text(item.toString())
+              .width('100%')
+              .height('100%')
+              .borderRadius(15)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .backgroundColor(0xFFFFFF)
+          }, (item: string) => item)
+        }
+      }.width('90%').height('90%')
+      .enablePaging(true)
+    }.width('100%').height('100%').backgroundColor(0xDCDCDC)
+  }
+}
+```
+
+![enablePaging](figures/enablePaging.gif)

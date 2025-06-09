@@ -40,7 +40,7 @@ align(alignment: Alignment | LocalizedAlignment)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                         |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| alignment  | [Alignment](ts-appendix-enums.md#alignment) \| [LocalizedAlignment](ts-appendix-enums.md#localizedalignment20) | 是   | 设置容器元素绘制区域内的子元素的对齐方式，增加支持镜像的能力。<br/>LocalizedAlignment只在[Stack](ts-container-stack.md)、[Shape](ts-drawing-components-shape.md)、[ListItem](ts-container-listitem.md)、[Button](ts-basic-components-button.md)、[GridItem](ts-container-griditem.md)、[FlowItem](ts-container-flowitem.md)、[ImageAnimator](ts-basic-components-imageanimator.md)、[LoadingProgress](ts-basic-components-loadingprogress.md)、[PatternLock](ts-basic-components-patternlock.md)、[Progress](ts-basic-components-progress.md)、[QRCode](ts-basic-components-qrcode.md)、[TextClock](ts-basic-components-textclock.md)、[TextTimer](ts-basic-components-texttimer.md)、[StepperItem](ts-basic-components-stepperitem.md)、[MenuItem](ts-basic-components-menuitem.md)、[Toggle](ts-basic-components-toggle.md)、[Checkbox](ts-basic-components-checkbox.md)、[RichEditor](ts-basic-components-richeditor.md)中生效。<br/>默认值：Alignment.Center、LocalizedAlignment.CENTER<br/>**说明：** <br/>Alignment类型不支持镜像能力；LocalizedAlignment类型支持镜像能力，选择LocalizedAlignment中的泛化方向词，根据direction或系统语言方向的改变实现镜像切换。其中direction的优先级高于系统语言方向，当设置direction且不为auto时，LocalizedAlignment的镜像按照direction进行布局；当设置direction为auto或未设置时，LocalizedAlignment的镜像按照系统语言方向进行布局。<br/>align取undefined或null时按默认值处理，效果为居中显示。 |
+| alignment  | [Alignment](ts-appendix-enums.md#alignment) \| [LocalizedAlignment](ts-appendix-enums.md#localizedalignment20) | 是   | 设置容器元素绘制区域内的子元素的对齐方式，增加支持镜像的能力。<br/>LocalizedAlignment只在[Shape](ts-drawing-components-shape.md)、[Button](ts-basic-components-button.md)、[GridItem](ts-container-griditem.md)、[FlowItem](ts-container-flowitem.md)、[ImageAnimator](ts-basic-components-imageanimator.md)、[LoadingProgress](ts-basic-components-loadingprogress.md)、[PatternLock](ts-basic-components-patternlock.md)、[Progress](ts-basic-components-progress.md)、[QRCode](ts-basic-components-qrcode.md)、[TextClock](ts-basic-components-textclock.md)、[TextTimer](ts-basic-components-texttimer.md)、[StepperItem](ts-basic-components-stepperitem.md)、[MenuItem](ts-basic-components-menuitem.md)、[Toggle](ts-basic-components-toggle.md)、[Checkbox](ts-basic-components-checkbox.md)、[ListItem](ts-container-listitem.md)中有效果。<br/>其中，除[ListItem](ts-container-listitem.md)与Alignment的效果保持一致以外，其他组件镜像切换均生效；其他设置LocalizedAlignment无效果的组件按其默认效果显示。<br/>默认值：Alignment.Center、LocalizedAlignment.CENTER<br/>**说明：** <br/>Alignment类型不支持镜像能力；LocalizedAlignment类型支持镜像能力，选择LocalizedAlignment中的枚举值，根据direction或系统语言方向的改变实现镜像切换。其中direction的优先级高于系统语言方向，当设置direction且不为auto时，LocalizedAlignment的镜像按照direction进行布局；当设置direction为auto或未设置时，LocalizedAlignment的镜像按照系统语言方向进行布局。<br/>align属性入参为undefined或null时按默认值处理，效果为居中显示。 |
 
 ## direction
 
@@ -469,7 +469,7 @@ struct Example3 {
 
 ### 示例4（镜像效果）
 
-通用布局属性支持镜像能力。从上到下依次通过position，offset，markAnchor实现镜像效果。黄色赋值为原本效果，粉色赋值为镜像效果。
+通用布局属性支持镜像能力。从上到下依次通过position，offset，markAnchor实现镜像效果。浅蓝色赋值为原本效果，深蓝色赋值为镜像效果。
 
 ```ts
 // xxx.ets
@@ -490,7 +490,7 @@ struct Example4 {
               .position({ start: LengthMetrics.px(200), top: LengthMetrics.px(100) })
               .width("30%")
               .height("20%")
-              .backgroundColor(Color.Pink)
+              .backgroundColor('rgb(0, 74, 175)')
               .padding(50)
               .margin(50)
               Row() {
@@ -498,7 +498,7 @@ struct Example4 {
               .position({ left:'200px', top: '100px' })
               .width("30%")
               .height("20%")
-              .backgroundColor(Color.Yellow)
+              .backgroundColor('rgb(39, 135, 217)')
               .padding(50)
               .margin(50)
               Row() {
@@ -506,7 +506,7 @@ struct Example4 {
               .offset({ start: LengthMetrics.vp(100), top: LengthMetrics.vp(200)  })
               .width("30%")
               .height("20%")
-              .backgroundColor(Color.Pink)
+              .backgroundColor('rgb(0, 74, 175)')
               .padding(50)
               .margin(50)
               Row() {
@@ -514,7 +514,7 @@ struct Example4 {
               .offset({ left: 100, top: 200  })
               .width("30%")
               .height("20%")
-              .backgroundColor(Color.Yellow)
+              .backgroundColor('rgb(39, 135, 217)')
               .padding(50)
               .margin(50)
               Row() {
@@ -522,7 +522,7 @@ struct Example4 {
               .markAnchor({ start: LengthMetrics.fp(100), top: LengthMetrics.fp(-350) })
               .width("30%")
               .height("20%")
-              .backgroundColor(Color.Pink)
+              .backgroundColor('rgb(0, 74, 175)')
               .padding(50)
               .margin(50)
               Row() {
@@ -530,7 +530,7 @@ struct Example4 {
               .markAnchor({ x: '100fp', y: '-350fp' })
               .width("30%")
               .height("20%")
-              .backgroundColor(Color.Yellow)
+              .backgroundColor('rgb(39, 135, 217)')
               .padding(50)
               .margin(50)
             }
@@ -556,7 +556,13 @@ struct Example4 {
 }
 ```
 
+镜像前：
+
 ![position.png](figures/position3.png)
+
+镜像后：
+
+![position.png](figures/positionEdge.png)
 
 ### 示例5（align属性适配镜像特性）
 
@@ -578,20 +584,6 @@ struct buttonTestDemo {
   build() {
     Row() {
       Column() {
-        Row() {
-          Button('TOP_START')
-            .onClick(() => {
-              this.isLocalizedAlignmentIndex = 0
-            })
-          Button('TOP')
-            .onClick(() => {
-              this.isLocalizedAlignmentIndex = 1
-            })
-          Button('TOP_END')
-            .onClick(() => {
-              this.isLocalizedAlignmentIndex = 2
-            })
-        }
 
         Row() {
           Button('START')
@@ -606,22 +598,7 @@ struct buttonTestDemo {
             .onClick(() => {
               this.isLocalizedAlignmentIndex = 5
             })
-        }
-
-        Row() {
-          Button('BOTTOM_START')
-            .onClick(() => {
-              this.isLocalizedAlignmentIndex = 6
-            })
-          Button('BOTTOM')
-            .onClick(() => {
-              this.isLocalizedAlignmentIndex = 7
-            })
-          Button('BOTTOM_END')
-            .onClick(() => {
-              this.isLocalizedAlignmentIndex = 8
-            })
-        }
+        }.margin(20)
 
         Row() {
           Button('Ltr')
@@ -636,13 +613,15 @@ struct buttonTestDemo {
             .onClick(() => {
               this.isDirectionIndex = 2
             })
-        }
-        Button('OK', { type: ButtonType.Capsule, stateEffect: true })
-          .backgroundColor(0x317aff)
-          .width(210)
-          .height(100)
-          .direction(this.isDirection[this.isDirectionIndex])
-          .align(this.isLocalizedAlignment[this.isLocalizedAlignmentIndex])
+        }.margin(20)
+        Row() {
+          Button('OK', { type: ButtonType.Capsule, stateEffect: true })
+            .backgroundColor(0x317aff)
+            .width(200)
+            .height(100)
+            .direction(this.isDirection[this.isDirectionIndex])
+            .align(this.isLocalizedAlignment[this.isLocalizedAlignmentIndex])
+        }.margin(20)
       }
       .width('100%')
     }

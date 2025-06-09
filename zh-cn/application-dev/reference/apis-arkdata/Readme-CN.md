@@ -8,7 +8,15 @@
   - [@ohos.data.distributedKVStore (分布式键值数据库)](js-apis-distributedKVStore.md)
   - [@ohos.data.preferences (用户首选项)](js-apis-data-preferences.md)
   - [@ohos.data.sendablePreferences (共享用户首选项)](js-apis-data-sendablePreferences.md)
-  - [@ohos.data.relationalStore (关系型数据库)](js-apis-data-relationalStore.md)
+  - [@ohos.data.relationalStore (关系型数据库)](arkts-apis-data-relationalStore.md)
+    - [Functions](arkts-apis-data-relationalStore-f.md)
+    - [Interface (RdbStore)](arkts-apis-data-relationalStore-RdbStore.md)
+    - [Interface (ResultSet)](arkts-apis-data-relationalStore-ResultSet.md)
+    - [Interface (Transaction)](arkts-apis-data-relationalStore-Transaction.md)
+    - [Interfaces (其他)](arkts-apis-data-relationalStore-i.md)
+    - [Class (RdbPredicates)](arkts-apis-data-relationalStore-RdbPredicates.md)
+    - [Enums](arkts-apis-data-relationalStore-e.md)
+    - [Types](arkts-apis-data-relationalStore-t.md)
   - [@ohos.data.sendableRelationalStore (共享关系型数据库)](js-apis-data-sendableRelationalStore.md)
   - [@ohos.data.unifiedDataChannel (标准化数据通路)](js-apis-data-unifiedDataChannel.md)
   - [@ohos.data.uniformDataStruct (标准化数据结构)](js-apis-data-uniformDataStruct.md)
@@ -26,7 +34,6 @@
   - [@ohos.data.dataSharePredicates (数据共享谓词)(系统接口)](js-apis-data-dataSharePredicates-sys.md)
   - [@ohos.data.dataShareResultSet (数据共享结果集)(系统接口)](js-apis-data-DataShareResultSet-sys.md)
   - [@ohos.data.distributedKVStore (分布式键值数据库)(系统接口)](js-apis-distributedKVStore-sys.md)
-  - [@ohos.data.graphStore (图数据库)(系统接口)](js-apis-data-graphStore-sys.md)
   - [@ohos.data.relationalStore (关系型数据库)(系统接口)](js-apis-data-relationalStore-sys.md)
   <!--DelEnd-->
   - 已停止维护的接口<!--arkdata-arkts-dep-->
@@ -112,9 +119,6 @@
     - [OH_UdsContentForm](capi-oh-udscontentform.md)
     - [OH_Utd](capi-oh-utd.md)
 - 错误码<!--arkdata-arkts-errcode-->
-  <!--Del-->
-  - [图数据库错误码](errorcode-data-gdb.md)
-  <!--DelEnd-->
   - [关系型数据库错误码](errorcode-data-rdb.md)
   - [数据共享错误码](errorcode-datashare.md)
   - [分布式数据对象错误码](errorcode-distributed-dataObject.md)

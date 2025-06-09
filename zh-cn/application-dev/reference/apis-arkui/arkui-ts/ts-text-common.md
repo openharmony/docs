@@ -821,3 +821,137 @@ type RectWidthStyle = RectWidthStyle
 | 名称    | 类型                                                    | 必填 | 说明                                                    |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | showMode  | [TextMenuShowMode](#textmenushowmode16) | 否   | 菜单的显示模式。<br/>默认值：TextMenuShowMode.DEFAULT |
+
+## ShaderStyle<sup>20+</sup>
+
+显示为线性渐变或径向渐变的效果。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+## LinearGradientStyle<sup>20+</sup>
+
+显示为线性渐变。LinearGradientStyle继承自[ShaderStyle](#shaderstyle20)。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 类型   | 必填   | 说明  |
+| ------- | ------ | ---- | ----- |
+| options | [LinearGradientOptions](../arkui-ts/ts-universal-attributes-gradient-color.md#lineargradientoptions18对象说明) | 是    | 显示为线性渐变效果。 |
+
+### constructor<sup>20+</sup>
+
+constructor(options: LinearGradientOptions)
+
+用于创建LinearGradientStyle对象的构造函数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型   | 必填   | 说明  |
+| ------- | ------ | ---- | ----- |
+| options | [LinearGradientOptions](../arkui-ts/ts-universal-attributes-gradient-color.md#lineargradientoptions18对象说明) | 是    | 显示为线性渐变效果。 |
+
+## RadialGradientStyle<sup>20+</sup>
+
+显示为径向渐变。RadialGradientStyle继承自[ShaderStyle](#shaderstyle20)。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型                                                    | 必填 | 说明                                                    |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [RadialGradientOptions](../arkui-ts/ts-universal-attributes-gradient-color.md#radialgradientoptions18对象说明) | 是    | 显示为径向渐变效果。 |
+
+### constructor<sup>20+</sup>
+
+constructor(options: RadialGradientOptions)
+
+用于创建RadialGradientOptions对象的构造函数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型                                                    | 必填 | 说明                                                    |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [RadialGradientOptions](../arkui-ts/ts-universal-attributes-gradient-color.md#radialgradientoptions18对象说明) | 是    | 显示为径向渐变效果。 |
+
+## ColorShaderStyle<sup>20+</sup>
+
+显示为纯色。ColorShaderStyle继承自[ShaderStyle](#shaderstyle20)。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型                                                    | 必填 | 说明                                                    |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 是    | 显示为纯色效果。 |
+
+### constructor<sup>20+</sup>
+
+constructor(color: ResourceColor)
+
+用于创建ResourceColor对象的构造函数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型                                                    | 必填 | 说明                                                    |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 是    | 显示为纯色效果。 |
+
+## TextChangeReason<sup>20+</sup>
+
+组件内容变化原因。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| ------- | ---- | ------------------- |
+| UNKNOWN | 0 | 未知原因。 |
+| INPUT | 1 | 用户输入。 |
+| PASTE | 2 | 粘贴。 |
+| CUT | 3 | 剪切。 |
+| DRAG | 4 | 拖拽。 |
+| AUTO_FILL | 5 | 自动填充。 |
+| AI_WRITE | 6 | 小艺帮写。 |
+| REDO | 7 | 重做。 |
+| UNDO | 8 | 撤销。 |
+| CONTROLLER | 9 | 开发者API调用。 |
+| ACCESSIBILITY | 10 | 无障碍接口。 |
+| COLLABORATION | 11 | 跨端拍照。 |
+| STYLUS | 12 | 手写笔。 |

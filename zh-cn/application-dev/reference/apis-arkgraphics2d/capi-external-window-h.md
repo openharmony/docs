@@ -7,7 +7,7 @@
 <!--RP1-->
 **相关示例：** [NDKNativeWindow](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkNativeWindow)<!--RP1End-->
 
-**引用文件：** external_window.h
+**引用文件：** <native_window/external_window.h>
 
 **库：** libnative_window.so
 

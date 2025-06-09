@@ -112,7 +112,7 @@ onFolderStateChange(callback: OnFoldStatusChangeCallback)
 
 | 参数名     | 类型                                            | 必填 | 说明                 |
 | ---------- | ----------------------------------------------- | ---- | -------------------- |
-| callback | [OnFoldStatusChangeCallback](#onfoldstatuschangecallback14) | 是   | 当前设备的折叠状态。 |
+| callback | [OnFoldStatusChangeCallback](#onfoldstatuschangecallback18) | 是   | 当前设备的折叠状态。 |
 
 
 ### onHoverStatusChange<sup>12+</sup>
@@ -129,15 +129,15 @@ onHoverStatusChange(handler: OnHoverStatusChangeCallback)
 
 | 参数名     | 类型                                            | 必填 | 说明                 |
 | ---------- | ----------------------------------------------- | ---- | -------------------- |
-| handler | [OnHoverStatusChangeCallback](#onhoverstatuschangecallback14) | 是   | 当悬停状态改变的时候触发回调。 |
+| handler | [OnHoverStatusChangeCallback](#onhoverstatuschangecallback18) | 是   | 当悬停状态改变的时候触发回调。 |
 
-## OnHoverStatusChangeCallback<sup>14+</sup>
+## OnHoverStatusChangeCallback<sup>18+</sup>
 
 type OnHoverStatusChangeCallback = (param: HoverEventParam) => void
 
 当悬停状态改变的时候触发回调。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -145,13 +145,13 @@ type OnHoverStatusChangeCallback = (param: HoverEventParam) => void
 | ---------- | ----------------------------------------------- | ---- | -------------------- |
 | param | [HoverEventParam](#hovereventparam12对象说明) | 是   | 当悬停状态改变的时候触发回调。 |
 
-## OnFoldStatusChangeCallback<sup>14+</sup>
+## OnFoldStatusChangeCallback<sup>18+</sup>
 
 type OnFoldStatusChangeCallback = (event: OnFoldStatusChangeInfo) => void
 
 当前设备的折叠状态。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -197,7 +197,7 @@ type WindowStatusType = WindowStatusType
 
 | 类型        | 说明                 |
 | ---------- | ---------------------|
-| [WindowStatusType](../js-apis-window.md#windowstatustype11)  | 窗口模式枚举。 |
+| [WindowStatusType](../arkts-apis-window-e.md#windowstatustype11)  | 窗口模式枚举。 |
 
 ## 示例
 

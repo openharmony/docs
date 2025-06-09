@@ -162,7 +162,7 @@ fontStyle(value: FontStyle): T
 
 ## fontWeight
 
-fontWeight(value: number | FontWeight | string): T
+fontWeight(value: number | FontWeight | string | Resource): T
 
 设置安全控件文字粗细。
 
@@ -174,7 +174,7 @@ fontWeight(value: number | FontWeight | string): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string |是 |安全控件上文字粗细，number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Medium。|
+| value | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string \| [Resource](ts-types.md#resource)<sup>20+</sup> |是 |安全控件上文字粗细。<br/>number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如'400'，以及'bold'、'bolder'、'lighter'、'regular'、'medium'，分别对应FontWeight中相应的枚举值。<br/>从API version 20开始，支持Resource类型。Resource类型仅支持'integer'和'string'，当类型为'integer'时，取值参考前述number类型；当类型为'string'时，取值参考前述string类型。<br/>默认值：FontWeight.Medium。|
 
 **返回值：**
 
@@ -590,7 +590,7 @@ id(description: string): T
 
 **参数：**
 
-| 名称   | 类型      | 必填 | 说明                       |
+| 参数名   | 类型      | 必填 | 说明                       |
 | ------ | -------- | -----|---------------------- |
 | description | string   |  是  | 组件的唯一标识，唯一性由使用者保证。<br>默认值：''。<br/> |
 
@@ -684,7 +684,7 @@ minFontSize(minSize: number | string | Resource): T
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。 |
+| minSize  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。 |
 
 **返回值：**
 
@@ -708,7 +708,7 @@ maxFontSize(maxSize: number | string | Resource): T
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
+| maxSize  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
 
 **返回值：**
 
@@ -718,7 +718,7 @@ maxFontSize(maxSize: number | string | Resource): T
 
 ## maxLines<sup>18+</sup>
 
-maxLines(line: number): T
+maxLines(line: number | Resource): T
 
 设置文本的最大行数。默认情况下，文本自动换行，指定此属性后，文本行数最大不会超过指定值。
 
@@ -730,7 +730,7 @@ maxLines(line: number): T
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| value  | number | 是   | 文本的最大行数。<br/>取值范围：[1, +∞)。<br/>**说明：** <br/>设置的值小于1时，按默认值100000处理。 |
+| line  | number \| [Resource](ts-types.md#resource)<sup>20+</sup> | 是   | 文本的最大行数。<br/>number类型入参的取值范围：[1, +∞)。从API version 20开始，支持Resource类型。Resource类型仅支持'integer'，取值范围为[1, +∞)。<br/>**说明：** <br/>设置的值小于1时，按默认值100000处理。 |
 
 **返回值：**
 
@@ -766,7 +766,7 @@ heightAdaptivePolicy(policy: TextHeightAdaptivePolicy): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 是   | 文本自适应高度的方式。<br/>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST。 |
+| policy  | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 是   | 文本自适应高度的方式。<br/>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST。 |
 
 **返回值：**
 
@@ -788,7 +788,7 @@ enabled(respond: boolean): T
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 值为true表示组件可交互，响应点击等操作。<br/>值为false表示组件不可交互，不响应点击等操作。<br/>默认值：true。 |
+| respond  | boolean | 是   | 值为true表示组件可交互，响应点击等操作。<br/>值为false表示组件不可交互，不响应点击等操作。<br/>默认值：true。 |
 
 **返回值：**
 
@@ -816,11 +816,12 @@ enabled(respond: boolean): T
 不同的按钮类型将影响属性[borderRadius（边框圆角半径）](ts-securitycomponent-attributes.md#borderradius)的设置效果。影响如下：
 
 - 当按钮类型为Capsule时，borderRadius设置不生效，按钮圆角半径始终为宽、高中较小值的一半。
-- 当按钮类型为Circle时：
-  - 若同时设置了宽和高，则borderRadius不生效，且按钮半径为宽高中较小值的一半；
-  - 若只设置宽、高中的一个，则borderRadius不生效，且按钮半径为所设宽或所设高值的一半；
-  - 若不设置宽高或者borderRadius的值为负，borderRadius不生效，按钮半径根据具体布局确定。
-- 在不设置borderRadius时，圆角矩形按钮的圆角半径大小保持默认值20vp不变，不随按钮高度变化而变化。
+- 当按钮类型为Circle时，borderRadius设置不生效：
+  - 若同时设置了宽和高，按钮圆角半径为宽高中较小值的一半；
+  - 若只设置宽、高中的一个，按钮圆角半径为所设宽或所设高值的一半；
+  - 若不设置宽高或者borderRadius的值为负，按钮圆角半径根据具体布局确定。
+- 当按钮类型为Normal时，按钮圆角半径可通过borderRadius设置，圆角大小受组件尺寸限制，最小值为0，最大值为组件宽高中较小值的一半。
+- 当按钮类型为ROUNDED_RECTANGLE时，若不设置borderRadius，圆角矩形按钮的圆角半径大小保持默认值20vp不变，不随按钮高度变化而变化。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -840,7 +841,7 @@ enabled(respond: boolean): T
 
 ### 示例1
 
-设置SecurityComponent基础属性，生成一个保存控件
+设置SecurityComponent基础属性，生成一个保存控件。
 
 ```ts
 @Entry
@@ -849,7 +850,7 @@ struct Index {
   build() {
     Row() {
       Column({ space: 5 }) {
-        // 生成一个保存按钮，并设置它的SecurityComponent属性。
+        // 生成一个保存控件，并设置它的SecurityComponent属性。
         SaveButton()
           .fontSize(35)
           .fontColor(Color.White)
@@ -892,7 +893,7 @@ struct Index {
 
 ### 示例2
 
-以容器和容器内组件作为锚点进行布局
+以容器和容器内组件作为锚点进行布局。
 
 ```ts
 @Entry
@@ -904,56 +905,56 @@ struct Index {
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .width(100)
           .height(100)
-          .backgroundColor("#A3CF62")
+          .backgroundColor('#A3CF62')
           .alignRules({
-            top: { anchor: "__container__", align: VerticalAlign.Top },
-            left: { anchor: "__container__", align: HorizontalAlign.Start }
+            top: { anchor: '__container__', align: VerticalAlign.Top },
+            left: { anchor: '__container__', align: HorizontalAlign.Start }
           })
-          .id("row1")
+          .id('row1')
 
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .width(100)
           .height(100)
-          .backgroundColor("#00AE9D")
+          .backgroundColor('#00AE9D')
           .alignRules({
-            top: { anchor: "__container__", align: VerticalAlign.Top },
-            right: { anchor: "__container__", align: HorizontalAlign.End }
+            top: { anchor: '__container__', align: VerticalAlign.Top },
+            right: { anchor: '__container__', align: HorizontalAlign.End }
           })
-          .id("row2")
+          .id('row2')
 
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .height(100)
-          .backgroundColor("#0A59F7")
+          .backgroundColor('#0A59F7')
           .alignRules({
-            top: { anchor: "row1", align: VerticalAlign.Bottom },
-            left: { anchor: "row1", align: HorizontalAlign.End },
-            right: { anchor: "row2", align: HorizontalAlign.Start }
+            top: { anchor: 'row1', align: VerticalAlign.Bottom },
+            left: { anchor: 'row1', align: HorizontalAlign.End },
+            right: { anchor: 'row2', align: HorizontalAlign.Start }
           })
-          .id("row3")
+          .id('row3')
 
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
-          .backgroundColor("#2CA9E0")
+          .backgroundColor('#2CA9E0')
           .alignRules({
-            top: { anchor: "row3", align: VerticalAlign.Bottom },
-            bottom: { anchor: "__container__", align: VerticalAlign.Bottom },
-            left: { anchor: "__container__", align: HorizontalAlign.Start },
-            right: { anchor: "row1", align: HorizontalAlign.End }
+            top: { anchor: 'row3', align: VerticalAlign.Bottom },
+            bottom: { anchor: '__container__', align: VerticalAlign.Bottom },
+            left: { anchor: '__container__', align: HorizontalAlign.Start },
+            right: { anchor: 'row1', align: HorizontalAlign.End }
           })
-          .id("row4")
+          .id('row4')
 
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
-          .backgroundColor("#30C9F7")
+          .backgroundColor('#30C9F7')
           .alignRules({
-            top: { anchor: "row3", align: VerticalAlign.Bottom },
-            bottom: { anchor: "__container__", align: VerticalAlign.Bottom },
-            left: { anchor: "row2", align: HorizontalAlign.Start },
-            right: { anchor: "__container__", align: HorizontalAlign.End }
+            top: { anchor: 'row3', align: VerticalAlign.Bottom },
+            bottom: { anchor: '__container__', align: VerticalAlign.Bottom },
+            left: { anchor: 'row2', align: HorizontalAlign.Start },
+            right: { anchor: '__container__', align: HorizontalAlign.End }
           })
-          .id("row5")
+          .id('row5')
       }
       .width(300).height(300)
       .margin({ left: 50 })
-      .border({ width: 2, color: "#6699FF" })
+      .border({ width: 2, color: '#6699FF' })
     }
     .height('100%')
   }

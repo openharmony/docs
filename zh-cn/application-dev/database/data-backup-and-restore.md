@@ -175,7 +175,7 @@
 
 ### 手动备份
 
-手动备份：通过调用[backup](../reference/apis-arkdata/js-apis-data-relationalStore.md#backup)接口实现数据库手动备份。示例如下：
+手动备份：通过调用[backup](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#backup)接口实现数据库手动备份。示例如下：
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -261,7 +261,7 @@ export default class EntryAbility extends UIAbility {
 
 在创建或使用关系型数据库的过程中，抛出14800011异常错误码说明数据库出现异常，可以删除数据库后恢复数据。
 
-需要通过在[StoreConfig](../reference/apis-arkdata/js-apis-data-relationalStore.md#storeconfig)中配置allowRebuild参数为true以设置数据库在出现异常时自动删库。数据库重建成功后为空库，需要开发者重新建表并且使用提前备份好的数据进行数据恢复，备份操作可见[关系型数据库备份](#关系型数据库备份)，数据恢复可见[关系型数据库恢复](#关系型数据库数据恢复)。
+需要通过在[StoreConfig](../reference/apis-arkdata/arkts-apis-data-relationalStore-i.md#storeconfig)中配置allowRebuild参数为true以设置数据库在出现异常时自动删库。数据库重建成功后为空库，需要开发者重新建表并且使用提前备份好的数据进行数据恢复，备份操作可见[关系型数据库备份](#关系型数据库备份)，数据恢复可见[关系型数据库恢复](#关系型数据库数据恢复)。
 
 若数据库异常前已配置StoreConfig中的allowRebuild为true，则数据库出现异常时将自动删库。
 

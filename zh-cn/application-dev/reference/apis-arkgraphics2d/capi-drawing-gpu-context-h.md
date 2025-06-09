@@ -4,7 +4,7 @@
 
 声明与绘图模块中的图形处理器上下文对象相关的函数。
 
-**引用文件：** drawing_gpu_context.h
+**引用文件：** <native_drawing/drawing_gpu_context.h>
 
 **库：** libnative_drawing.so
 

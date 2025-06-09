@@ -14,7 +14,7 @@
 
 \@Provider，即数据提供方，其所有的子组件都可以通过\@Consumer绑定相同的key来获取\@Provider提供的数据。
 \@Consumer，即数据消费方，可以通过绑定同样的key获取其最近父节点的\@Provider的数据，当查找不到\@Provider的数据时，使用本地默认值。
-\@Provider和\@Consumer装饰数据类型需要一致。
+\@Provider和\@Consumer装饰的数据类型需要一致。
 
 开发者在使用\@Provider和\@Consumer时要注意：
 - \@Provider和\@Consumer强依赖自定义组件层级，\@Consumer会因为所在组件的父组件不同，而被初始化为不同的值。
@@ -22,11 +22,11 @@
 
 ## \@Provider和\@Consumer vs \@Provide和\@Consume能力对比
 在状态管理V1版本中，提供跨组件层级双向的装饰器为[\@Provide和\@Consume](./arkts-provide-and-consume.md)，当前文档介绍的是状态管理V2装饰器\@Provider和\@Consumer。虽然两者名字和功能类似，但在特性上还存在一些差异。
-如果开发者不了解状态管理V1中\@Provide和\@Consume，可以直接跳过本节。
+如果开发者不了解状态管理V1中的\@Provide和\@Consume，可以直接跳过本节。
 
 | 能力 | V2装饰器\@Provider和\@Consumer                                             |V1装饰器\@Provide和\@Consume|
 | ------------------ | ----------------------------------------------------- |----------------------------------------------------- |
-| \@Consume(r)         |允许本地初始化，当找不到\@Provider的时候使用本地默认值。| 禁止本地初始化，当找不到对应的的\@Provide时候，会抛出异常。 |
+| \@Consume(r)         |允许本地初始化，当找不到\@Provider的时候使用本地默认值。| 禁止本地初始化，当找不到对应的\@Provide时候，会抛出异常。 |
 | 支持类型           | 支持function。 | 不支持function。 |
 | 观察能力           | 仅能观察自身赋值变化，如果要观察嵌套场景，配合[\@Trace](arkts-new-observedV2-and-trace.md)一起使用。 | 观察第一层变化，如果要观察嵌套场景，配合[\@Observed和\@ObjectLink](arkts-observed-and-objectlink.md)一起使用。 |
 | alias和属性名         | alias是唯一匹配的key，缺省时默认属性名为alias。 | alias和属性名都为key，优先匹配alias，匹配不到可以匹配属性名。|

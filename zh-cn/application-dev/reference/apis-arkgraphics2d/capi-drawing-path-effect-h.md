@@ -4,7 +4,7 @@
 
 文件中定义了与路径效果相关的功能函数。
 
-**引用文件：** drawing_path_effect.h
+**引用文件：** <native_drawing/drawing_path_effect.h>
 
 **库：** libnative_drawing.so
 
