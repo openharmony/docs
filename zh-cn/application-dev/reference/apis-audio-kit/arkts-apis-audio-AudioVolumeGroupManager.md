@@ -419,7 +419,7 @@ getRingerMode(callback: AsyncCallback&lt;AudioRingMode&gt;): void
 
 | 参数名   | 类型                                                 | 必填 | 说明                     |
 | -------- | ---------------------------------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback&lt;[AudioRingMode](apis-audio-kit/arkts-apis-audio-e.md#audioringmode)&gt; | 是   | 回调函数。当获取铃声模式成功，err为undefined，data为获取到的铃声模式；否则为错误对象。 |
+| callback | AsyncCallback&lt;[AudioRingMode](arkts-apis-audio-e.md#audioringmode)&gt; | 是   | 回调函数。当获取铃声模式成功，err为undefined，data为获取到的铃声模式；否则为错误对象。 |
 
 **示例：**
 
@@ -447,7 +447,7 @@ getRingerMode(): Promise&lt;AudioRingMode&gt;
 
 | 类型                                           | 说明                            |
 | ---------------------------------------------- | ------------------------------- |
-| Promise&lt;[AudioRingMode](apis-audio-kit/arkts-apis-audio-e.md#audioringmode)&gt; | Promise对象，返回系统的铃声模式。 |
+| Promise&lt;[AudioRingMode](arkts-apis-audio-e.md#audioringmode)&gt; | Promise对象，返回系统的铃声模式。 |
 
 **示例：**
 
@@ -469,7 +469,7 @@ getRingerModeSync(): AudioRingMode
 
 | 类型                                           | 说明                            |
 | ---------------------------------------------- | ------------------------------- |
-| [AudioRingMode](apis-audio-kit/arkts-apis-audio-e.md#audioringmode) | 返回系统的铃声模式。 |
+| [AudioRingMode](arkts-apis-audio-e.md#audioringmode) | 返回系统的铃声模式。 |
 
 **示例：**
 
@@ -498,7 +498,7 @@ on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 | 参数名   | 类型                                      | 必填 | 说明                                                         |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                    | 是   | 事件回调类型，支持的事件为'ringerModeChange'，当铃声模式发生变化时，触发该事件。 |
-| callback | Callback<[AudioRingMode](apis-audio-kit/arkts-apis-audio-e.md#audioringmode)> | 是   | 回调函数，返回变化后的铃音模式。 |
+| callback | Callback<[AudioRingMode](arkts-apis-audio-e.md#audioringmode)> | 是   | 回调函数，返回变化后的铃音模式。 |
 
 **错误码：**
 
@@ -530,7 +530,7 @@ off(type: 'ringerModeChange', callback?: Callback&lt;AudioRingMode&gt;): void
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- |----| ------------------------------------------------------------ |
 | type     | string                                 | 是  | 事件回调类型，支持的事件为'ringerModeChange'，当取消监听铃声模式变化事件时，触发该事件。 |
-| callback |Callback&lt;[AudioRingMode](apis-audio-kit/arkts-apis-audio-e.md#audioringmode)&gt; | 否  | 回调函数，返回变化后的铃音模式。 |
+| callback |Callback&lt;[AudioRingMode](arkts-apis-audio-e.md#audioringmode)&gt; | 否  | 回调函数，返回变化后的铃音模式。 |
 
 **错误码：**
 
