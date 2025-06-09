@@ -992,7 +992,7 @@ enableAutoSpacing(enable: Optional\<boolean>)
 
 shaderStyle(shader: ShaderStyle)
 
-可以显示为径向渐变[radialGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#radialgradient)或线性渐变[LinearGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#lineargradient)的效果，shaderStyle的优先级高于[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)，纯色建议使用[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)。
+可以显示为径向渐变[radialGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#radialgradient)或线性渐变[LinearGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#lineargradient)的效果，shaderStyle的优先级高于[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)和AI识别，纯色建议使用[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)。当center设置到组件范围外时，可将repeating设置为true查看现象。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2169,40 +2169,45 @@ struct TextExample {
 @Component
 struct shaderStyle {
   @State message: string = 'Hello World';
-
+  @State linearGradientOptions1: LinearGradientOptions =
+  {
+    angle: 45,
+    colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]]
+  };
+  @State linearGradientOptions2: LinearGradientOptions =
+  {
+    direction: GradientDirection.LeftTop,
+    colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
+    repeating: true,
+  };
+  @State radialGradientOptions: RadialGradientOptions = 
+  {
+    center: [50, 50],
+    radius: 20,
+    colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
+    repeating: true,
+  };
   build() {
     Column({ space: 5 }) {
       Text('angle为45°的线性渐变').fontSize(18).width('90%').fontColor(0xCCCCCC)
         .margin({ top: 40, left: 40 })
       Text(this.message)
         .fontSize(50)
-        .shaderStyle({
-          angle: 45,
-          colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]]
-        })
+        .shaderStyle(this.linearGradientOptions1)
         .width('80%')
         .height(50)
       Text('direction为LeftTop的线性渐变').fontSize(18).width('90%').fontColor(0xCCCCCC)
         .margin({ top: 40, left: 40 })
       Text(this.message)
         .fontSize(50)
-        .shaderStyle({
-          direction: GradientDirection.LeftTop,
-          colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
-          repeating: true,
-        })
+        .shaderStyle(this.linearGradientOptions2)
         .width('80%')
         .height(50)
       Text('径向渐变').fontSize(18).width('90%').fontColor(0xCCCCCC)
         .margin({ top: 40, left: 40 })
       Text(this.message)
         .fontSize(50)
-        .shaderStyle({
-          center: [50, 50],
-          radius: 20,
-          colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
-          repeating: true,
-        })
+        .shaderStyle(this.radialGradientOptions)
         .width('80%')
         .height(50)
     }
