@@ -742,6 +742,7 @@ queryLastUseTime(appInfo: Record&lt;string, Array&lt;number&gt;&gt;): Promise&lt
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+
 // 查询时将com.ohos.camera替换为实际查询的包名
 usageStatistics.queryLastUseTime({"com.ohos.camera": [0]}).then((res:usageStatistics.AppStatsMap) => {
   console.log('queryLastUseTime promise success.');
