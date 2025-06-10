@@ -4,7 +4,6 @@
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
 
-<!--Del-->
 ## 4100001 按键不支持前置监听
 
 **错误信息**
@@ -21,4 +20,4 @@ Event listening not supported for the key.
 
 **处理步骤**
 
-检查传入的按键值是否支持监听，当前仅支持监听META_LEFT键、META_RIGHT键、电源键、音量键。<!--DelEnd-->
+检查传入的按键值是否支持监听，当前仅支持监听META_LEFT键、META_RIGHT键、电源键、音量键。
