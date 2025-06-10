@@ -41,7 +41,7 @@ RichText(content:string &nbsp;|&nbsp; Resource)
 
 | 参数名 | 类型 | 必填  | 说明 |
 | ------- | -------- | ------------- | -------- |
-| content | string \| [Resource](ts-types.md##resource) <sup>20+</sup>   | 是   | 表示HTML格式的字符串或者本地资源文件。 |
+| content | string \| [Resource](ts-types.md#resource) <sup>20+</sup>   | 是   | 表示HTML格式的字符串或者本地资源文件。 |
 
 
 
