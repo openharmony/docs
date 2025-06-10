@@ -33,7 +33,7 @@ static connect<T extends object>(
 
 | connect      | 说明                                                  |
 | ------------ | ----------------------------------------------------- |
-| 参数         | type：指定的类型，若未指定key，则使用type的name作为key；</br > keyOrDefaultCreator：指定的key，或者是默认数据的构造器；</br > defaultCreator：默认数据的构造器。                                          |
+| 参数         | type：指定的类型，若未指定key，则使用type的name作为key；</br>keyOrDefaultCreator：指定的key，或者是默认数据的构造器；</br>defaultCreator：默认数据的构造器。                                          |
 | 返回值       | 创建或获取数据成功时，返回数据；否则返回undefined。 |
 
 >**说明：**
