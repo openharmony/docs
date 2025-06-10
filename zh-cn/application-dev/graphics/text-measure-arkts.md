@@ -90,15 +90,16 @@
 
 ```ts
 // Index.ets
-import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
-import { UIContext } from '@kit.ArkUI'
-import { text } from '@kit.ArkGraphics2D'
+import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI';
+import { UIContext } from '@kit.ArkUI';
+import { text } from '@kit.ArkGraphics2D';
 
+// 创建一个自定义的渲染节点类，用于绘制文本
 class MyRenderNode extends RenderNode {
   async draw(context: DrawContext) {
     // 获取画布canvas对象
-    const canvas = context.canvas
-    // 设置文本样式
+    const canvas = context.canvas;
+    // 配置文本样式（红色，字号100px）
     let myTextStyle: text.TextStyle = {
       color: {
         alpha: 255,
@@ -112,9 +113,9 @@ class MyRenderNode extends RenderNode {
     let myParagraphStyle: text.ParagraphStyle = {
       textStyle: myTextStyle,
       wordBreak: text.WordBreak.NORMAL
-    }
+    };
     // 创建一个段落生成器
-    let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, new text.FontCollection())
+    let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, new text.FontCollection());
     // 在段落生成器中设置文本样式
     paragraphBuilder.pushStyle(myTextStyle);
     // 在段落生成器中设置文本内容
@@ -137,8 +138,8 @@ class MyRenderNode extends RenderNode {
       const textline = textLines[index];
       let curLineRange = textline.getTextRange();
       let curLineGlyCnt = textline.getGlyphCount();
-      console.info("第" + index + "行 TextRange start: " + curLineRange.start + " TextRange end: " + curLineRange.end);
-      console.info("第" + index + "行字形数量为: " + curLineGlyCnt);
+      console.info("MetricsMSG: 第" + (index + 1) + "行 TextRange start: " + curLineRange.start + " TextRange end: " + curLineRange.end);
+      console.info("MetricsMSG: 第" + (index + 1) + "行字形数量为: " + curLineGlyCnt);
     }
 
     // case4: 获取排版后指定行对应的度量信息
@@ -146,81 +147,62 @@ class MyRenderNode extends RenderNode {
     for (let index = 0; index < lineCnt; index++) {
       let lineMetrics = paragraph.getLineMetrics(index);
       if (lineMetrics) {
-        console.info("第" + index + "行 lineMetrics width: " + lineMetrics.width);
-        console.info("第" + index + "行 lineMetrics start index: " + lineMetrics.startIndex + ", end index: " +
+        console.info("MetricsMSG: 第" + (index + 1) + "行 lineMetrics width: " + lineMetrics.width);
+        console.info("MetricsMSG: 第" + (index + 1) + "行 lineMetrics start index: " + lineMetrics.startIndex + ", end index: " +
         lineMetrics.endIndex);
       }
     }
 
     // case5: 获取排版后所有行度量信息数组
     let allLineMetrics = paragraph.getLineMetrics();
-    paragraph.paint(canvas, 200, 800);
+    console.info("MetricsMSG: 第1行 lineMetrics width: " + allLineMetrics[0].width);
+    paragraph.paint(canvas, 0, 800);
   }
 }
 
-// 创建一个MyRenderNode对象
-function getNewRenderNode() {
-  const textNodeTest = new MyRenderNode();
-  textNodeTest.frame = {
-    x: 0,
-    y: 0,
-    width: 500,
-    height: 500
-  }
-  textNodeTest.pivot = { x: 0.5, y: 0.5 }
-  textNodeTest.scale = { x: 1, y: 1 }
-  return textNodeTest;
-}
-
+// 创建文本渲染节点实例
 const textNode = new MyRenderNode();
-// 定义newNode的像素格式
-textNode.frame = {
-  x: 0,
-  y: 0,
-  width: 500,
-  height: 500
-}
-textNode.pivot = { x: 0.5, y: 0.5 }
-textNode.scale = { x: 1, y: 1 }
+// 定义newNode的大小和位置
+textNode.frame = { x: 0, y: 0, width: 400, height: 600 };
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode {
-    this.rootNode = new FrameNode(uiContext)
+    this.rootNode = new FrameNode(uiContext);
     if (this.rootNode == null) {
-      return this.rootNode
+      return this.rootNode;
     }
-    const renderNode = this.rootNode.getRenderNode()
+    const renderNode = this.rootNode.getRenderNode();
     if (renderNode != null) {
       renderNode.frame = {
         x: 0,
         y: 0,
         width: 300,
         height: 50
-      }
-      renderNode.pivot = { x: 0, y: 0 }
+      };
+      renderNode.pivot = { x: 0, y: 0 };
     }
-    return this.rootNode
+    return this.rootNode;
   }
 
   addNode(node: RenderNode): void {
     if (this.rootNode == null) {
-      return
+      return;
     }
-    const renderNode = this.rootNode.getRenderNode()
+    const renderNode = this.rootNode.getRenderNode();
     if (renderNode != null) {
-      renderNode.appendChild(node)
+      renderNode.appendChild(node);
     }
   }
 
   clearNodes(): void {
     if (this.rootNode == null) {
-      return
+      return;
     }
-    const renderNode = this.rootNode.getRenderNode()
+    const renderNode = this.rootNode.getRenderNode();
     if (renderNode != null) {
-      renderNode.clearChildren()
+      renderNode.clearChildren();
     }
   }
 }
@@ -228,34 +210,33 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct RenderTest {
-  private myNodeController: MyNodeController = new MyNodeController()
+  private myNodeController: MyNodeController = new MyNodeController();
 
   build() {
     Column() {
       Row() {
         NodeContainer(this.myNodeController)
           .height('100%')
+          .position({ x: 30, y: 25 })
       }
-      .height('90%')
-      .backgroundColor(Color.White)
 
-      Row() {
-        Button("Draw Text")
-          .fontSize('16fp')
-          .fontWeight(500)
-          .margin({ bottom: 24, right: 12 })
-          .onClick(() => {
-            this.myNodeController.clearNodes()
-            this.myNodeController.addNode(getNewRenderNode())
-          })
-          .width('50%')
-          .height(40)
+        Row() {
+          Button("Draw Text")
+            .fontSize('16fp')
+            .fontWeight(500)
+            .margin({ bottom: 24, right: 12 })
+            .onClick(() => {
+              this.myNodeController.clearNodes();
+              this.myNodeController.addNode(textNode);
+            })
+            .width('50%')
+            .height(40)
+        }
+        .width('100%')
+        .justifyContent(FlexAlign.Center) // 设置当前Row容器内子元素在主轴上居中对齐
+        .alignItems(VerticalAlign.Bottom) // 设置当前Row容器内子元素在交叉轴（垂直方向）上的对齐方式为底部对齐
+        .layoutWeight(1) // 设置当前Row在父容器Column中的布局权重为1
       }
-      .width('100%')
-      .justifyContent(FlexAlign.Center)
-      .alignItems(VerticalAlign.Bottom)
-      .layoutWeight(1)
     }
   }
-}
 ```
