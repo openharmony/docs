@@ -5694,9 +5694,9 @@ rekey(cryptoParam?: CryptoParam): Promise\<void>
 
 手动更新加密数据库的密钥。使用Promise异步回调。
 
-不支持非wal模式进行密钥更新。
+不支持非wal模式的DB进行密钥更新。
 
-不支持多进程并发场景下进行密钥更新。
+不支持并发场景（有事务链接未释放或者其它进程打开了DB未释放）下进行密钥更新。
 
 仅支持加密数据库进行秘钥更新，不支持非加密库变加密库及加密库变非加密库，且需要保持加密参数和秘钥生成方式与建库时一致。
 
@@ -5774,6 +5774,11 @@ let store: relationalStore.RdbStore | undefined = undefined;
 
 let cryptoParam: relationalStore.CryptoParam = {
   encryptionKey: new Uint8Array([1, 2, 3, 4, 5, 6]),
+  iterationCount: 1000,
+  encryptionAlgo: relationalStore.EncryptionAlgo.AES_256_GCM,
+  hmacAlgo: relationalStore.HmacAlgo.SHA256,
+  kdfAlgo: relationalStore.KdfAlgo.KDF_SHA256,
+  cryptoPageSize: 1024,
 };
 
 const STORE_CONFIG2: relationalStore.StoreConfig = {
@@ -5791,7 +5796,12 @@ relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: r
 });
 
 let cryptoParam2: relationalStore.CryptoParam = {
-    encryptionKey: new Uint8Array([6, 5, 4, 3, 2, 1]),
+  encryptionKey: new Uint8Array([6, 5, 4, 3, 2, 1]),
+  iterationCount: 1000,
+  encryptionAlgo: relationalStore.EncryptionAlgo.AES_256_GCM,
+  hmacAlgo: relationalStore.HmacAlgo.SHA256,
+  kdfAlgo: relationalStore.KdfAlgo.KDF_SHA256,
+  cryptoPageSize: 1024,
 };
 
 if(store != undefined) {
