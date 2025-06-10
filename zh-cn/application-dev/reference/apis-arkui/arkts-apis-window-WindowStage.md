@@ -1118,7 +1118,7 @@ setDefaultDensityEnabled(enabled: boolean): void
 
 不调用此接口进行设置，则表示不使用系统默认Density，即窗口会跟随系统显示大小变化重新布局。
 
-当存在同时使用该接口和[setCustomDensity()](#setCustomDensity15)时，以最后调用的设置效果为准。
+当存在同时使用该接口和[setCustomDensity()](#setcustomdensity15)时，以最后调用的设置效果为准。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 

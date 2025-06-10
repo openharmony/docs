@@ -1205,7 +1205,7 @@ try {
 
 getImmersiveModeEnabledState(): boolean
 
-查询当前窗口是否通过[setImmersiveModeEnabledState()](#setImmersiveModeEnabledState12)设置开启沉浸式布局。
+查询当前窗口是否通过[setImmersiveModeEnabledState()](#setimmersivemodeenabledstate12)设置开启沉浸式布局。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -1214,7 +1214,7 @@ getImmersiveModeEnabledState(): boolean
 **返回值：**
 | 类型     | 说明                                                                                 |
 | ------- | ------------------------------------------------------------------------------------ |
-| boolean | 是否通过[setImmersiveModeEnabledState()](#setImmersiveModeEnabledState12)设置开启沉浸式布局。<br>true表示开启，false表示关闭。</br> |
+| boolean | 是否通过[setImmersiveModeEnabledState()](#setimmersivemodeenabledstate12)设置开启沉浸式布局。<br>true表示开启，false表示关闭。</br> |
 
 **错误码：**
 
@@ -1247,7 +1247,7 @@ isImmersiveLayout(): boolean
 **返回值：**
 | 类型     | 说明                                                                                 |
 | ------- | ------------------------------------------------------------------------------------ |
-| boolean | 是否已经开启沉浸式布局。<br>true表示开启，false表示关闭。</br> |
+| boolean | 是否已经开启沉浸式布局。<br>true表示开启，false表示关闭。|
 
 **错误码：**
 
@@ -1272,7 +1272,7 @@ export default class EntryAbility extends UIAbility {
     windowStage.getMainWindow((err: BusinessError, data) => {
       const errCode: number = err.code;
       if (errCode) {
-        console.error(Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message});
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       windowClass = data;
@@ -1281,7 +1281,7 @@ export default class EntryAbility extends UIAbility {
       try {
         let isEnabled = windowClass.isImmersiveLayout();
       } catch (exception) {
-        console.error(Failed to check if the window layout is in immersive mode. Cause code: ${exception.code}, message: ${exception.message});
+        console.error(`Failed to check if the window layout is in immersive mode. Cause code: ${exception.code}, message: ${exception.message}`);
       }
     });
   }
