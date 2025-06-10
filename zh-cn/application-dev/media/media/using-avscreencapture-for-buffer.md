@@ -128,7 +128,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
 ## PC/2in1设备录屏窗口选择界面规格说明
 基于录屏取码流接口提供了PC/2in1设备录屏窗口选择界面，按照以下表格中的配置弹出相应的弹窗。PC/2in1设备弹出Picker选择弹窗并根据传入的窗口Id选中对应窗口。最终录屏内容以Picker弹出后，用户在弹窗上的选择为准。
 
-API 20开始，支持通过OH_AVScreenCapture_SetCaptureArea接口，设置区域录屏功能生效，弹出隐私允许/不允许弹窗。
+API 20开始，支持通过[OH_AVScreenCapture_SetCaptureArea](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_setcapturearea)接口，设置区域录屏功能生效，弹出隐私允许/不允许弹窗。
 
 | 屏幕模式类型                                          | 传入窗口Id数量     | 弹窗类型            |
 | ----------------------------------------------------- | ------------------ | ------------------- |
