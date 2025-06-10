@@ -24,6 +24,45 @@ import {
 
 以下API需先使用ohos.window中的[getUIContext()](js-apis-window.md#getuicontext10)方法获取UIContext实例，再通过此实例调用对应方法。或者可以通过自定义组件内置方法[getUIContext()](arkui-ts/ts-custom-component-api.md#getuicontext)获取。本文中UIContext对象以uiContext表示。
 
+**示例：**
+
+```ts
+//两种方法获取到的UIContext没有差异
+//index.ets
+import { UIContext } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @build
+  build() {
+    Column() {
+      Button("Button")
+          .onClick(()=>{
+            //通过自定义组件内置方法获取
+            this.getUIContext()
+            //其他运行逻辑
+          })
+    }  
+  }
+}
+
+//EntryAbility.ets
+import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+
+const DOMAIN = 0x0000;
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    //通过ohos.window获取
+    windowStage.getMainWindowSync().getUIContext()
+    //其他运行逻辑
+  }
+}
+```
+
 ### getFont
 
 getFont(): Font
