@@ -848,3 +848,43 @@ onCountUpdated(propName: string): void {
 屏幕像素单位px(pixel)，表示屏幕上的实际像素，1px代表设备屏幕上的一个像素点。视窗逻辑像素单位lpx，lpx单位为实际屏幕宽度与逻辑宽度（通过designWidth配置）的比值，标识页面设计基准宽度。以此为基准，根据实际设备宽度来缩放元素大小。距离使用vp(virtual pixel)，字体大小使用fp(font pixel)，虚拟像素单位vp(virtual pixel)，vp具体计算公式为：vp= px/（DPI/160）。  
 以屏幕相对像素为单位, 是一台设备针对应用而言所具有的虚拟尺寸（区别于屏幕硬件本身的像素单位）。它提供了一种灵活的方式来适应不同屏幕密度的显示效果,使用虚拟像素，使元素在不同密度的设备上具有一致的视觉体量。字体像素单位fp(font pixel)，字体像素(font pixel)大小默认情况下与vp相同，即默认情况下1fp=1vp。如果用户在设置中选择了更大的字体，字体的实际显示大小就会在vp的基础上乘以scale系数，即1fp=1vp*scale。Percentage - 需要指定以%像素单位，如'10%'。  
 Resource - 资源引用类型，引入系统资源或者应用资源中的尺寸。 
+
+## Surface模式的XComponent组件设置RenderFit出现显示异常时，如何获取正确的显示效果(API 10)
+
+**背景介绍**
+
+系统基于的芯片平台除通用的CPU/GPU计算单元外，还提供Hardware Composer（简称HWC）专用硬件合成器用于图形输送显。与通用计算单元相比，HWC在图层叠加场景中具有更高的处理效率和更低的能耗。XComponent组件的Surface模式是否能通过HWC硬件合成通道，取决于芯片平台能力、产品形态以及应用绘制行为。
+
+**解决措施**
+
+当Surface模式下的XComponent组件内容与组件尺寸不一致时，可通过设置[renderFit](../reference/apis-arkui/arkui-ts/ts-universal-attributes-renderfit.md#renderfit18)通用属性，调整绘制内容与组件尺寸之间的布局方式，例如拉伸、居中、等比缩放等。
+在API version 18之前，当使用HWC硬件合成通道时（当XComponent组件的背景色设置为纯黑不透明时，会使用HWC硬件合成通道，这取决于芯片平台能力和产品形态），其[renderFit](../reference/apis-arkui/arkui-ts/ts-universal-attributes-renderfit.md#renderfit18)通用属性仅支持设置为RenderFit.RESIZE_FILL。设置为其他RenderFit枚举值可能导致显示异常。通过升级至API version 18或在id字段中包含"RenderFitSurface"可以修正显示效果。
+
+示例代码如下：
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State xc_width: number = 500;
+  @State xc_height: number = 700;
+  myXComponentController: XComponentController = new XComponentController();
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+      XComponent({
+        id: 'myXComponent_RenderFitSurface', // 当id的字符串中包含"RenderFitSurface"时，可以使RenderFit显示正确。
+        type: XComponentType.SURFACE,
+        controller: this.myXComponentController
+      })
+        .width(this.xc_width)
+        .height(this.xc_height)
+        .renderFit(RenderFit.CENTER)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+```
