@@ -729,10 +729,10 @@ try {
  cooperate.activateCooperateWithOptions(targetNetworkId, inputDeviceId).then(() => {
     console.log(`activateCooperateWithOptions success.`);
   }, (error: BusinessError) => {
-    console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.log(`activateCooperateWithOptions, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.log(`activateCooperateWithOptions, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
