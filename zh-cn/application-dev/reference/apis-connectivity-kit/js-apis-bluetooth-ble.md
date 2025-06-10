@@ -1453,7 +1453,7 @@ characteristics[0] = characteristic;
 let gattService: ble.GattService = {serviceUuid:'00001810-0000-1000-8000-00805F9B34FB', isPrimary: true, characteristics:characteristics, includeServices:[]};
 
 try {
-    let gattServer: ble.GattServer = ble.createGattServer(); 
+    let gattServer: ble.GattServer = ble.createGattServer();
     gattServer.addService(gattService);
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -4469,7 +4469,7 @@ BLE扫描的配置参数。
 
 | 名称        | 类型                    | 只读 | 可选   | 说明                                     |
 | --------- | ----------------------- | ---- | ---- | -------------------------------------- |
-| interval  | number                  | 否 | 是    | 扫描结果上报的延迟时间，默认值为0。<br>- 如果该值是0，扫描到符合条件的广播报文后，会立刻上报。<br>- 如果该值大于0，扫描到符合条件的广播报文后，会放入缓存队列，延时上报。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                    |
+| interval  | number                  | 否 | 是    | 扫描结果上报的延迟时间，单位为ms，默认值为0。搭配 [ScanReportMode](#scanreportmode15)使用。<br>- 该值在常规或围栏扫描上报模式下不生效，当扫描到符合过滤条件的广播报文后，立刻上报。<br>- 该值在批量扫描上报模式下生效，当扫描到符合过滤条件的广播报文后，会存入缓存队列，延时上报。若不设置该值或该值在[0,5000)范围内，蓝牙子系统会默认设置延时时间为5000。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                    |
 | dutyMode  | [ScanDuty](#scanduty)   | 否 | 是    | 扫描模式，默认值为SCAN_MODE_LOW_POWER。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。        |
 | matchMode | [MatchMode](#matchmode) | 否 | 是    | 硬件的过滤匹配模式，默认值为MATCH_MODE_AGGRESSIVE。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
 | phyType<sup>12+</sup> | [PhyType](#phytype12) | 否 | 是    | 扫描中使用的物理通道类型，默认值为PHY_LE_1M。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -4599,14 +4599,13 @@ BLE扫描的配置参数。
 
 枚举，扫描结果上报类型。
 
-**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称      | 值    | 说明                           |
 | --------  | ---- | ------------------------------ |
-| ON_FOUND  | 1    | 扫描到符合过滤条件的BLE广播报文时，触发上报，可搭配常规和围栏上报模式使用。       |
-| ON_LOST | 2    | 当不再扫描到符合过滤条件的BLE广播报文时，触发上报，只搭配围栏上报模式使用。    |
+| ON_FOUND  | 1    | 扫描到符合过滤条件的BLE广播报文时，触发上报，可搭配常规和围栏上报模式使用。 <br> **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。      |
+| ON_LOST | 2    | 当不再扫描到符合过滤条件的BLE广播报文时，触发上报，只搭配围栏上报模式使用。 <br> **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用    |
+| ON_BATCH<sup>19+</sup> | 3    | 扫描到符合过滤条件的BLE广播报文时，以[ScanOptions](#scanoptions)中的interval字段为周期触发上报。 <br> **原子化服务API**：从API version 19开始，该接口支持在原子化服务中使用    |
 
 ## ScanReportMode<sup>15+</sup>
 
@@ -4617,5 +4616,6 @@ BLE扫描的配置参数。
 | 名称      | 值    | 说明                           |
 | --------  | ---- | ------------------------------ |
 | NORMAL  | 1    | 常规扫描上报模式，扫描到符合过滤条件的BLE广播报文后就会立刻上报。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。       |
+| BATCH<sup>19+</sup>  | 2    | 批量扫描上报模式。<br>- 该模式可通过降低蓝牙芯片上报扫描结果频率，使系统更长时间地保持在休眠状态，从而降低整机功耗。<br>- 该模式下，扫描到符合过滤条件的BLE广播报文后不会立刻上报，需要缓存一段时间（[ScanOptions](#scanoptions)中的interval字段）后上报。 <br>**原子化服务API**：从API version 19开始，该接口支持在原子化服务中使用。       |
 | FENCE_SENSITIVITY_LOW<sup>18+</sup>  | 10    | 低灵敏度围栏上报模式。<br>- 围栏模式表示只在广播进入或离开围栏时上报。<br>- 扫描到的广播信号强度高且广播数量多时，可进入低灵敏度围栏。<br>- 首次扫描到广播即进入围栏，触发一次上报。<br>- 一段时间内扫描不到广播即离开围栏，触发一次上报。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。    |
 | FENCE_SENSITIVITY_HIGH<sup>18+</sup>  | 11    | 高灵敏度围栏上报模式。<br>- 围栏模式表示只在广播进入或离开围栏时上报。<br>- 扫描到的广播信号强度低且广播数量少时，可进入高灵敏度围栏。<br>- 首次扫描到广播即进入围栏，触发一次上报。<br>- 一段时间内扫描不到广播即离开围栏，触发一次上报。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。    |

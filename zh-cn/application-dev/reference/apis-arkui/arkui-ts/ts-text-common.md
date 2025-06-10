@@ -226,7 +226,7 @@ equals(id: TextMenuItemId): boolean
 
 onCreateMenu(menuItems: Array\<TextMenuItem>): Array\<TextMenuItem>
 
-菜单数据模版编辑能力。
+在菜单创建时触发该回调，可在该回调中进行菜单数据设置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -236,13 +236,13 @@ onCreateMenu(menuItems: Array\<TextMenuItem>): Array\<TextMenuItem>
 
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| menuItems | Array<[TextMenuItem](#textmenuitem12对象说明)> | 是   | 菜单项。<br/>**说明：** <br/>对默认菜单项的名称修改不生效。 |
+| menuItems | Array<[TextMenuItem](#textmenuitem12对象说明)> | 是   |  将要显示的菜单项。<br/>**说明：** <br/>对默认菜单项的名称、图标、快捷键提示修改不生效。 |
 
 **返回值：**
 
 | 类型              |       说明       |
 | ------- | --------------------------------- |
-| Array\<[TextMenuItem](#textmenuitem12对象说明)> | 设置的菜单项。<br/>**说明：** <br/>不返回系统默认菜单项的图标。 |
+| Array\<[TextMenuItem](#textmenuitem12对象说明)> | 处理后的菜单项。|
 
 ### onMenuItemClick<sup>12+</sup>
 
@@ -266,6 +266,44 @@ onMenuItemClick(menuItem: TextMenuItem, range: TextRange): boolean
 | 类型              |       说明       |
 | ------- | --------------------------------- |
 | boolean | 菜单项的执行逻辑。<br/>返回为true，拦截系统默认逻辑，仅执行自定义逻辑。<br/>返回为false，先执行自定义逻辑，再执行系统逻辑。 |
+
+### onPrepareMenu<sup>20+</sup>
+
+onPrepareMenu?: OnPrepareMenuCallback
+
+当文本选择区域变化后显示菜单之前触发该回调，可在该回调中进行菜单数据设置。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                              | 说明   |
+| --------------------------------- | --------------------------------- |
+| [OnPrepareMenuCallback](#onpreparemenucallback20) | 当文本选择区域变化后显示菜单之前触发该回调，可在该回调中进行菜单数据设置。|
+
+## OnPrepareMenuCallback<sup>20+</sup>
+
+type OnPrepareMenuCallback = (menuItems: Array\<TextMenuItem\>) => Array\<TextMenuItem\>
+
+当文本选择区域变化后显示菜单之前触发该回调，可在该回调中进行菜单数据设置。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| menuItems | Array<[TextMenuItem](#textmenuitem12对象说明)> | 是   | 将要显示的菜单项。<br/>**说明：** <br/>对默认菜单项的名称、图标、快捷键提示修改不生效。 |
+
+**返回值：**
+
+| 类型              |       说明       |
+| ------- | --------------------------------- |
+| Array\<[TextMenuItem](#textmenuitem12对象说明)> | 处理后的菜单项。|
 
 ## TextRange<sup>12+</sup>
 
@@ -402,6 +440,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText, o
 | onDetectResultUpdate   | (result: string) => void | 否   | 文本识别成功后，触发onDetectResultUpdate回调。<br/>-&nbsp;result：文本识别的结果，Json格式。 |
 | color<sup>12+</sup>   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本识别成功后的实体颜色。<br/>默认值：'#ff0a59f7' |
 | decoration<sup>12+</sup>  | [DecorationStyleInterface](ts-universal-styled-string.md#decorationstyleinterface)| 否   | 设置文本识别成功后的实体装饰线样式。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.Underline,<br/>&nbsp;color:&nbsp;与实体颜色一致,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
+| enablePreviewMenu<sup>20+</sup>   | boolean | 否   | 设置是否开启文本识别长按显示预览菜单。true表示开启，false表示未开启。<br/>默认值：false |
 
 ## PreviewText<sup>12+</sup>
 

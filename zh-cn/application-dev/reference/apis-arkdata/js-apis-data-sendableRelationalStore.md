@@ -228,6 +228,81 @@ const sendableAsset = sendableRelationalStore.toSendableAsset(asset1);
 const normalAsset = sendableRelationalStore.fromSendableAsset(sendableAsset);
 ```
 
+## sendableRelationalStore.fromSendableValues<sup>20+</sup>
+
+fromSendableValues(values: collections.Array\<ValueType>): NonSendableValues
+
+将可跨线程传递的数组数据，转换为不可跨线程传递的数组数据。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名 | 类型            | 必填 | 说明                      |
+| ------ | --------------- | ---- | :------------------------ |
+| values  | collections.Array\<[ValueType](arkts-apis-data-relationalStore-t.md#valuetype)> | 是   | 可跨线程传递的数组数据。 |
+
+**返回值**：
+
+| 类型                                   | 说明                        |
+| -------------------------------------- | --------------------------- |
+| [NonSendableValues](#nonsendablevalues20) | 不可跨线程传递的数组数据。 |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                                                                  |
+| ------------ | ------------------------------------------------------------------------------------------------------------- |
+| 14800000     | Inner error.                                                                                                  |
+
+**示例：**
+
+```ts
+import collections from '@kit.arkTS';
+const array = new collections.Array<sendableRelationalStore.ValueType>();
+array.push("a");
+array.push("b");
+array.push(1);
+array.push(2);
+const values = sendableRelationalStore.fromSendableValues(array);
+```
+
+## sendableRelationalStore.toSendableValues<sup>20+</sup>
+
+toSendableValues(values: NonSendableValues): collections.Array\<ValueType>
+
+将不可跨线程传递的数组数据，转换为可跨线程传递的数组数据。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名 | 类型            | 必填 | 说明                      |
+| ------ | --------------- | ---- | :------------------------ |
+| values  | [NonSendableValues](#nonsendablevalues20) | 是   | 不可跨线程传递的数组数据。 |
+
+**返回值**：
+
+| 类型                                   | 说明                        |
+| -------------------------------------- | --------------------------- |
+| collections.Array\<[ValueType](arkts-apis-data-relationalStore-t.md#valuetype)> | 可跨线程传递的数组数据。 |
+
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                                                                  |
+| ------------ | ------------------------------------------------------------------------------------------------------------- |
+| 14800000     | Inner error.                                                                                                  |
+
+**示例：**
+
+```ts
+const array: relationalStore.valueType[] = [];
+array.push(1);
+array.push(2);
+array.push("aaaaaa")
+const values = sendableRelationalStore.toSendableValues(array);
+```
+
 ## Asset
 
 记录资产附件（文件、图片、视频等类型文件）的相关信息。用于支持资产数据跨线程传递，继承自[lang.ISendable](../apis-arkts/js-apis-arkts-lang.md#langisendable)。资产类型的相关接口暂不支持Datashare。使用[sendableRelationalStore.toSendableAsset](#sendablerelationalstoretosendableasset)方法创建。
@@ -300,6 +375,18 @@ type NonSendableBucket = relationalStore.ValuesBucket
 | 类型                                                                           | 说明                         |
 | ------------------------------------------------------------------------------ | ---------------------------- |
 | [relationalStore.ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket) | 非并发场景的键值对数据存储。 |
+
+## NonSendableValues<sup>20+</sup>
+
+type NonSendableValues = Array\<relationalStore.ValueType>
+
+表示[ValueType](arkts-apis-data-relationalStore-t.md#valuetype)数据数组存储。不支持跨线程传递。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 类型                                                               | 说明                           |
+| ------------------------------------------------------------------ | ------------------------------ |
+| Array\<[relationalStore.ValueType](arkts-apis-data-relationalStore-t.md#valuetype)> | 非并发场景的数组数据存储，值的类型为ValueType。 |
 
 ## NonSendableAsset
 

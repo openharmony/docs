@@ -43,7 +43,8 @@
       "com.ohos.photos",
       "com.ohos.screenshot",
       "com.ohos.note"
-    ]
+    ],
+    "startMode": "mainTask"
   },
 }
 ```
@@ -90,6 +91,7 @@ app.json5配置文件包含以下标签。
 | [configuration](#configuration标签) | 标识当前应用字体大小跟随系统配置的能力。<br/>该标签是一个profile文件资源，用于指定描述应用字体大小跟随系统变更的配置文件。| 字符串 | 该标签可缺省，缺省时configuration使用不跟随系统默认设定。 |
 | assetAccessGroups | 配置应用的Group ID，它和Developer ID一起组成群组信息。<br/>打包HAP时，DevEco使用开发者证书对群组信息签名，其中群组信息由Developer ID（由应用市场分配）+ Group ID（开发者配置）组成。<br/>**说明：** <br/>从API version 18开始，支持该字段。| 字符串数组 | 该标签可缺省，缺省值为空。 |
 | appPreloadPhase | 配置应用预加载到不同阶段。支持的取值如下：<br/>-processCreated：预加载到进程创建完成阶段。<br/>-abilityStageCreated：预加载到[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)创建完成阶段。<br/>-windowStageCreated：预加载到[WindowStage](../reference/apis-arkui/arkts-apis-window-WindowStage.md#windowstage9)创建完成阶段。<br/>**说明：** <br/>从API version 20开始，支持该字段。<br>仅在[应用](../reference/apis-ability-kit/js-apis-bundleManager.md#bundletype)的entry模块配置有效。| 字符串| 该标签可缺省，缺省时不进行预加载。 |
+| [startMode](../application-models/application-component-configuration-stage.md#应用启动模式配置) | 配置应用的启动模式，支持的取值如下：<br/>-&nbsp;mainTask：主任务模式，表示图标启动后打开主UIAbility。<br/>-&nbsp;recentTask：最近任务模式，表示图标启动后打开最近使用的UIAbility。<br/>**说明：**<br/>从API version 20开始，支持该字段。<br/>仅在launchType为[单实例模式](../application-models/uiability-launch-type.md#singleton启动模式)时生效。<br/>该字段仅支持phone和tablet设备(不包含自由多窗)。 | 字符串 | 该标签可缺省，缺省值为mainTask。 |
 
 ## icon标签
 
@@ -194,7 +196,7 @@ configuration标签示例：
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | fontSizeScale | 应用字体大小是否跟随系统，支持的取值如下：<br/>-&nbsp;followSystem：跟随系统。<br/>-&nbsp;nonFollowSystem：不跟随系统。| 字符串 | 该标签可缺省，缺省值为nonFollowSystem。 |
-| fontSizeMaxScale | 应用字体大小选择跟随系统后，配置的最大比例，支持的取值：1、1.15、1.3、1.45、1.75、2、3.2。	 <br/> fontSizeScale为nonFollowSystem时，该项不生效。 | 字符串 | 该标签可缺省，缺省值为3.2。 |
+| fontSizeMaxScale | 应用字体大小选择跟随系统后，相比系统字体的最大比例，支持的取值为：1、1.15、1.3、1.45、1.75、2、3.2。	 <br/> 例如配置最大比例为1.75，系统字体默认大小为10fp。<br/>（1）如果设置中调整系统大小为1.5倍，此时系统的实际字体大小为15fp，应用会跟随系统字体一起调整为15fp。<br/>（2）如果设置中调整系统大小为2倍，此时系统的字体大小为20fp，但由于应用配置的跟随系统的最大比例为1.75，所以此时应用的字体大小为17.5fp。 <br/> **说明**<br/> fontSizeScale为nonFollowSystem时，该项不生效。 | 字符串 | 该标签可缺省，缺省值为3.2。 |
 
 configuration标签示例：
 

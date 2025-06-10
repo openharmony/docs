@@ -5687,3 +5687,128 @@ if (store != undefined) {
   });
 }
 ```
+
+### rekey<sup>20+</sup>
+
+rekey(cryptoParam?: CryptoParam): Promise\<void>
+
+手动更新加密数据库的密钥。使用Promise异步回调。
+
+不支持非wal模式的数据库进行密钥更新。
+
+手动更新密钥时需要独占访问数据库，此时若存在任何未释放的结果集（ResultSet）、事务（Transaction）或其他进程打开的数据库均会引发失败。
+
+仅支持加密数据库进行密钥更新，不支持非加密库变加密库及加密库变非加密库，且需要保持加密参数和密钥生成方式与建库时一致。
+
+数据库越大，密钥更新的时间越长。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名       | 类型                                                               | 必填 | 说明                                       |
+| ------------ | ----------------------------------------------------------------- | ---- | ----------------------------------------- |
+| cryptoParam  | [CryptoParam](arkts-apis-data-relationalStore-i.md#cryptoparam14) | 否   | 指定用户自定义的加密参数。<br/>当此参数不填时，使用默认的加密参数，见CryptoParam。|
+
+**返回值：**
+
+| 类型          | 说明                       |
+| -------------- | ------------------------ |
+| Promise\<void> | 无返回结果的Promise对象。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                                         |
+| ------------ | ----------------------------------------------------------------------------------- |
+| 801          | Capability not supported.                                                           |
+| 14800001     | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause.|
+| 14800011     | Database corrupted.                                                                 |
+| 14800014     | Already closed.                                                                     |
+| 14800015     | The database does not respond.                                                      |
+| 14800021     | SQLite: Generic error.                                                              |
+| 14800023     | SQLite: Access permission denied.                                                   |
+| 14800024     | SQLite: The database file is locked.                                                |
+| 14800026     | SQLite: The database is out of memory.                                              |
+| 14800027     | SQLite: Attempt to write a readonly database.                                       |
+| 14800028     | SQLite: Some kind of disk I/O error occurred.                                       |
+| 14800029     | SQLite: The database is full.                                                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+// 示例1：使用默认的加密参数
+let store: relationalStore.RdbStore | undefined = undefined;
+
+const STORE_CONFIG1: relationalStore.StoreConfig = {
+  name: "rdbstore1.db",
+  securityLevel: relationalStore.SecurityLevel.S3;
+  encrypt: true,
+};
+
+relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
+  store = rdbStore;
+  console.info('Get RdbStore successfully.');
+}).catch((err: BusinessError) => {
+  console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+});
+
+let cryptoParam1: relationalStore.CryptoParam = {
+    encryptionKey: new Uint8Array();
+};
+
+if(store != undefined) {
+  try {
+    (store as relationalStore.RdbStore).rekey(cryptoParam1);
+    console.info(`rekey is successful`);
+  } catch (err) {
+    console.error(`rekey is failed, code is ${err.code},message is ${err.message}`);
+  }
+}
+
+// 示例2：使用自定义的加密参数
+let store: relationalStore.RdbStore | undefined = undefined;
+
+let cryptoParam: relationalStore.CryptoParam = {
+  encryptionKey: new Uint8Array([1, 2, 3, 4, 5, 6]),
+  iterationCount: 1000,
+  encryptionAlgo: relationalStore.EncryptionAlgo.AES_256_GCM,
+  hmacAlgo: relationalStore.HmacAlgo.SHA256,
+  kdfAlgo: relationalStore.KdfAlgo.KDF_SHA256,
+  cryptoPageSize: 1024,
+};
+
+const STORE_CONFIG2: relationalStore.StoreConfig = {
+  name: "rdbstore2.db",
+  securityLevel: relationalStore.SecurityLevel.S3;
+  encrypt: true,
+  cryptoParam: cryptoParam,
+};
+
+relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
+  store = rdbStore;
+  console.info('Get RdbStore successfully.');
+}).catch((err: BusinessError) => {
+  console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+});
+
+let cryptoParam2: relationalStore.CryptoParam = {
+  encryptionKey: new Uint8Array([6, 5, 4, 3, 2, 1]),
+  iterationCount: 1000,
+  encryptionAlgo: relationalStore.EncryptionAlgo.AES_256_GCM,
+  hmacAlgo: relationalStore.HmacAlgo.SHA256,
+  kdfAlgo: relationalStore.KdfAlgo.KDF_SHA256,
+  cryptoPageSize: 1024,
+};
+
+if(store != undefined) {
+  try {
+    (store as relationalStore.RdbStore).rekey(cryptoParam2);
+    console.info(`rekey is successful`);
+  } catch (err) {
+    console.error(`rekey is failed, code is ${err.code},message is ${err.message}`);
+  }
+}
+```
