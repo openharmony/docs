@@ -411,6 +411,22 @@ undoStyle(style: Optional&lt;UndoStyle&gt;)
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
 | style  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;[UndoStyle](#undostyle20-1)&gt; | 否   | 撤销还原是否保留原样式选项。默认值：UndoStyle.CLEAR_STYLE |
 
+### enableAutoSpacing<sup>20+</sup>
+
+enableAutoSpacing(enable: Optional\<boolean>)
+
+设置是否开启中文与西文的自动间距。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                               |
+| ------ | ------- | ---- | ---------------------------------- |
+| enable | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
+
 ## 事件
 
 除支持[通用事件](ts-component-general-events.md)外，还支持[OnDidChangeCallback](ts-text-common.md#ondidchangecallback12)、[StyledStringChangedListener](ts-text-common.md#styledstringchangedlistener12)、[StyledStringChangeValue](ts-text-common.md#styledstringchangevalue12)和以下事件：
@@ -5479,3 +5495,104 @@ struct Index {
 }
 ```
 ![Decoration](figures/decoration_thickness_scale.gif)
+
+
+### 示例31（设置开启中西文自动间距）
+该示例通过[enableAutoSpacing](#enableautospacing20)属性设置中西文自动间距。
+
+```ts
+@Entry
+@Component
+struct AutoSpacing {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+  @State enableAutoSpace:boolean = false;
+  build() {
+    Column() {
+      Column() {
+        Row({space:2}) {
+          Button("插入中西文内容").onClick(() => {
+            this.controller.addTextSpan("Add文本Span",
+              {
+                style:
+                {
+                  fontColor: Color.Orange,
+                  fontSize: 20
+                }
+              })
+          })
+          Button("插入图片").onClick(() => {
+            this.controller.addImageSpan($r("app.media.icon"),
+              {
+                imageStyle:
+                {
+                  size: ["100px", "100px"]
+                }
+              });
+          })
+          Button("插入Symbol").onClick(() => {
+            this.controller.addSymbolSpan($r("sys.symbol.ohos_trash"),
+              {
+                style:
+                {
+                  fontSize: 32
+                }
+              });
+          })
+        }
+        .borderWidth(1)
+        .borderColor(Color.Red)
+        .justifyContent(FlexAlign.Center)
+        .width("100%")
+        .height("10%")
+        Row({space:2}) {
+          Button("开启中西文自动间距").onClick(() => {
+            this.enableAutoSpace = true;
+          })
+          Button("关闭中西文自动间距").onClick(() => {
+            this.enableAutoSpace = false;
+          })
+        }
+        .borderWidth(1)
+        .borderColor(Color.Red)
+        .justifyContent(FlexAlign.Center)
+        .width("100%")
+        .height("10%")
+      }
+      Column() {
+        RichEditor(this.options)
+          .onReady(()=>{
+            this.controller.addImageSpan($r("app.media.icon"),
+              {
+                imageStyle:
+                {
+                  size: ["100px", "100px"]
+                }
+              });
+            this.controller.addTextSpan("中西文Auto Spacing自动间距",
+              {
+                style:
+                {
+                  fontColor: Color.Orange,
+                  fontSize: 20
+                }
+              })
+            this.controller.addSymbolSpan($r("sys.symbol.ohos_trash"),
+              {
+                style:
+                {
+                  fontSize: 20
+                }
+              });
+          })
+          .enableAutoSpacing(this.enableAutoSpace)
+          .borderWidth(1)
+          .borderColor(Color.Green)
+          .width("100%")
+          .height("50%")
+      }
+    }
+  }
+}
+```
+![AutoSpacing](figures/richEditorAutoSpacing.gif)
