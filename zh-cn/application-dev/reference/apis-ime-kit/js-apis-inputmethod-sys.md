@@ -169,7 +169,7 @@ off(type: 'imeShow', callback?: (info: Array\<InputWindowInfo>) => void): void
 
 | 参数名   | 类型 | 必填 | 说明   |
 | -------- | ---- | ---- | ------ |
-| type     | string | 是 | 设置监听类型，固定取值`imeShow`。 |
+| type     | string | 是 | 设置监听类型，固定取值'imeShow'。 |
 | callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void  | 否 | 取消订阅的回调函数。<br>参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
