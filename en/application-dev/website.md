@@ -18,7 +18,8 @@
         - [HAP](quick-start/hap-package.md)
         - [HAR](quick-start/har-package.md)
         - [HSP](quick-start/in-app-hsp.md)
-      - [Application Installation, Uninstall, and Update](quick-start/application-package-install-uninstall.md)
+      - Application Installation, Uninstall, and Update<!--application-package-install-->
+        - [Development of Application Installation, Uninstall, and Update](quick-start/application-package-install-uninstall.md)
     - Application Configuration Files in Stage Model<!--application-configuration-file-stage-->
       - [Overview of Application Configuration Files in Stage Model](quick-start/application-configuration-file-overview-stage.md)
       - [app.json5 Configuration File](quick-start/app-configuration-file.md)
@@ -1661,9 +1662,13 @@
         - [Publishing a Text Notification](notification/text-notification.md)
         - [Publishing a Progress Notification](notification/progress-bar-notification.md)
         <!--Del-->
-        - [Publishing Live View Notification (for System Applications Only)](notification/live-view-notification.md)
+        - [Publishing a Live View Notification (for System Applications Only)](notification/live-view-notification.md)
         <!--DelEnd-->
         - [Adding a WantAgent Object to a Notification](notification/notification-with-wantagent.md)
+        - [Enabling Quick Reply for Cross-device Notifications](notification/notification-quickreply.md)
+        <!--Del-->
+        - [Cross-Device Notification Management (for System Applications Only)](notification/notification-distributed-notdistributed.md)
+        <!--DelEnd-->
       - [Updating a Notification](notification/notification-update.md)
       - [Canceling a Notification](notification/notification-cancel.md)
       <!--Del-->
@@ -3635,6 +3640,7 @@
             - [loop.h](reference/apis-ffrt-kit/loop_8h.md)
             - [mutex.h](reference/apis-ffrt-kit/mutex_8h.md)
             - [queue.h](reference/apis-ffrt-kit/queue_8h.md)
+            - [shared_mutex.h](reference/apis-ffrt-kit/shared__mutex_8h.md)
             - [sleep.h](reference/apis-ffrt-kit/sleep_8h.md)
             - [task.h](reference/apis-ffrt-kit/task_8h.md)
             - [timer.h](reference/apis-ffrt-kit/timer_8h.md)
@@ -3648,6 +3654,8 @@
             - [ffrt_mutex_t](reference/apis-ffrt-kit/ffrt__mutex__t.md)
             - [ffrt_mutexattr_t](reference/apis-ffrt-kit/ffrt__mutexattr__t.md)
             - [ffrt_queue_attr_t](reference/apis-ffrt-kit/ffrt__queue__attr__t.md)
+            - [ffrt_rwlock_t](reference/apis-ffrt-kit/ffrt__rwlock__t.md)
+            - [ffrt_rwlockattr_t](reference/apis-ffrt-kit/ffrt__rwlockattr__t.md)
             - [ffrt_task_attr_t](reference/apis-ffrt-kit/ffrt__task__attr__t.md)
       - Input Kit<!--input-api-->
         - ArkTS APIs<!--input-arkts-->
