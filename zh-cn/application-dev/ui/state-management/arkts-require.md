@@ -205,8 +205,9 @@ struct Index {
 
   build() {
     Row() {
-      //构造Child组件时没有传参，会导致编译不通过。
+      //构造Child、ChildV2组件时没有传参，会导致编译不通过。
       Child()
+      ChildV2()
     }
   }
 }
@@ -236,5 +237,16 @@ struct Child {
     }
   }
 }
-```
 
+@ComponentV2
+struct ChildV2 {
+  // 使用@Require必须构造时传参。
+  @Require @Param message: string;
+
+  build() {
+    Column() {
+      Text(this.message)
+    }
+  }
+}
+```
