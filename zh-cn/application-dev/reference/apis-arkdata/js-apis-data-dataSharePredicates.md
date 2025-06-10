@@ -2,15 +2,21 @@
 
 **谓词(DataSharePredicates)** 是开发者通过DataShare查询数据库中的数据所使用的筛选条件，经常被应用在更新数据、删除数据和查询数据中。
 
-谓词的接口函数与数据库的筛选条件一一对应，开发者在使用前需了解数据库相关知识。当前支持[关系型数据库](arkts-apis-data-relationalStore.md)和[键值型数据库](js-apis-distributedKVStore.md)。
+谓词的接口函数与数据库的筛选条件一一对应，开发者在使用前需了解数据库相关知识。
+
+谓词(DataSharePredicates)的使用场景如下：
+
+- 用于在媒体文件管理服务作为检索条件使用，参考[相册管理模块检索条件](../apis-media-library-kit/js-apis-photoAccessHelper.md#fetchoptions)。此种场景下，开发者无需关注数据库类型。
+
+<!--Del-->
+- 用于调用[关系型数据库](js-apis-data-relationalStore-sys.md)和[键值型数据库](js-apis-distributedKVStore-sys.md)系统接口时的检索条件使用。此种场景下，开发者根据使用的数据库类型参考对应的谓词使用方法。
+<!--DelEnd-->
 
 > **说明：** 
 >
 > - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > - 本模块接口仅可在Stage模型下使用。
->
-> - 当前主要用于在媒体文件管理服务作为检索条件使用，参考[相册管理模块检索条件](../apis-media-library-kit/js-apis-photoAccessHelper.md#fetchoptions)。
 
 
 
