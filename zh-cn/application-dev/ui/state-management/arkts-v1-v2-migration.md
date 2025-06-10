@@ -2870,7 +2870,7 @@ struct Index {
 }
 ```
 
-#### 组件Modfier
+#### 组件Modifier
 
 动态设置组件的属性类。以Text组件为例。
 
