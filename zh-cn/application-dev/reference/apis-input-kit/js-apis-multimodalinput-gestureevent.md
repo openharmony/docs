@@ -18,10 +18,10 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称             | 类型        | 可读   | 可写   | 说明                                       |
+| 名称             | 类型        | 只读   | 可选   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| type         | [ActionType](#actiontype)   | 是    | 否    | 捏合事件类型。                                   |
-| scale        | number      | 是    | 否    | 捏合度，取值范围大于等于0。                             |
+| type         | [ActionType](#actiontype)   | 否    | 否    | 捏合事件类型。                                   |
+| scale        | number      | 否    | 否    | 捏合度，取值范围大于等于0。                             |
 
 ## Rotate<sup>11+</sup>
 
@@ -29,10 +29,10 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称             | 类型        | 可读   | 可写   | 说明                                       |
+| 名称             | 类型        | 只读   | 可选   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| type | [ActionType](#actiontype)   | 是    | 否    | 旋转事件类型。                                   |
-| angle | number      | 是    | 否    | 旋转角度。                             |
+| type | [ActionType](#actiontype)   | 否    | 否    | 旋转事件类型。                                   |
+| angle | number      | 否    | 否    | 旋转角度。                             |
 
 ## ThreeFingersSwipe
 
@@ -40,11 +40,11 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称             | 类型        | 可读   | 可写   | 说明                                       |
+| 名称             | 类型        | 只读   | 可选   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| type         | [ActionType](#actiontype)   | 是    | 否    | 三指滑动事件类型。                                   |
-| x        | number      | 是    | 否    | 坐标x。                             |
-| y        | number      | 是    | 否    | 坐标y。                             |
+| type         | [ActionType](#actiontype)   | 否    | 否    | 三指滑动事件类型。                                   |
+| x        | number      | 否    | 否    | 坐标x。                             |
+| y        | number      | 否    | 否    | 坐标y。                             |
 
 ## FourFingersSwipe
 
@@ -52,11 +52,11 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称             | 类型        | 可读   | 可写   | 说明                                       |
+| 名称             | 类型        | 只读   | 可选   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| type         | [ActionType](#actiontype)   | 是    | 否    | 四指滑动事件类型。                                   |
-| x        | number      | 是    | 否    | 坐标x。                             |
-| y        | number      | 是    | 否    | 坐标y。                             |
+| type         | [ActionType](#actiontype)   | 否    | 否    | 四指滑动事件类型。                                   |
+| x        | number      | 否    | 否    | 坐标x。                             |
+| y        | number      | 否    | 否    | 坐标y。                             |
 
 ## ThreeFingersTap<sup>11+</sup>
 
@@ -64,9 +64,9 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称               | 类型                      | 可读 | 可写 | 说明             |
+| 名称               | 类型                      | 只读 | 可选 | 说明             |
 | ------------------ | ------------------------- | ---- | ---- | ---------------- |
-| type | [ActionType](#actiontype) | 是   | 否   | 三指轻点事件类型。 |
+| type | [ActionType](#actiontype) | 否   | 否   | 三指轻点事件类型。 |
 
 ## ActionType
 
