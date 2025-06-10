@@ -1,7 +1,7 @@
 # 配对连接设备
 
 ## 简介
-提供主动配对设备和连接设备可用profile能力的开发指导。
+本指南主要提供了主动配对设备和连接设备可用profile能力的开发指导。
 
 ## 开发步骤
 
@@ -59,7 +59,7 @@ try {
 ```
 
 ### 连接已配对设备的profile
-若应用配对完目标设备后，可以调用[connectAllowedProfiles](../../reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#connectionconnectallowedprofiles16)，发起连接该设备支持的profile能力（只包括A2DP、HFP和HID）。若应用需要使用SPP连接，请参考[传输数据](spp-development-guide.md)。
+若应用配对完目标设备后，可以调用[connectAllowedProfiles](../../reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#connectionconnectallowedprofiles16)，发起连接该设备支持的profile能力（只包括A2DP、HFP和HID）。若应用需要使用SPP连接，请参考[连接和传输数据](spp-development-guide.md)。
 
 - 蓝牙子系统会在配对过程中查询和保存目标设备支持的所有profile能力。
 - 配对完成后，应用可以主动查询目标设备的profile能力，需调用[getRemoteProfileUuids](../../reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#connectiongetremoteprofileuuids12)。若存在应用需要的能力，则可以在配对完成后30s内，发起连接目标设备的profile。
@@ -111,19 +111,19 @@ import { connection, a2dp, hfp, hid, baseProfile, constant } from '@kit.Connecti
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export class PairDeviceManager {
-  device: string | null = null;
+  device: string = '';
   pairState: connection.BondState = connection.BondState.BOND_STATE_INVALID;
   a2dpSrc = a2dp.createA2dpSrcProfile();
   hfpAg = hfp.createHfpAgProfile();
   hidHost = hid.createHidHostProfile();
 
   // 定义配对状态变化回调函数
-  onBondStateEvent(data: connection.BondStateParam) {
+  onBondStateEvent = (data: connection.BondStateParam) => {
     console.info('pair result: '+ JSON.stringify(data));
     if (data && data.deviceId == this.device) {
       this.pairState = data.state; // 保存目标设备的配对状态
     }
-  }
+  };
 
   // 发起配对，设备地址可以通过查找设备流程获取
   public startPair(device: string) {
@@ -148,19 +148,19 @@ export class PairDeviceManager {
   }
 
   // 定义A2DP连接状态变化回调函数
-  onA2dpConnectStateChange(data: baseProfile.StateChangeParam) {
+  onA2dpConnectStateChange = (data: baseProfile.StateChangeParam) => {
     console.info(`A2DP State: ${JSON.stringify(data)}`);
-  }
+  };
 
   // 定义HFP连接状态变化回调函数
-  onHfpConnectStateChange(data: baseProfile.StateChangeParam) {
+  onHfpConnectStateChange = (data: baseProfile.StateChangeParam) => {
     console.info(`HFP State: ${JSON.stringify(data)}`);
-  }
+  };
 
   // 定义HID连接状态变化回调函数
-  onHidConnectStateChange(data: baseProfile.StateChangeParam) {
+  onHidConnectStateChange = (data: baseProfile.StateChangeParam) => {
     console.info(`HID State: ${JSON.stringify(data)}`);
-  }
+  };
 
   // 发起连接
   public async connect(device: string) {

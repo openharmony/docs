@@ -106,7 +106,7 @@ Web组件的onUrlLoadIntercept的不同返回结果对应不同的操作：
 
 **参考链接**
 
-[onUrlloadIntercept](../reference/apis-arkweb/ts-basic-components-web.md#onurlloadinterceptdeprecated)
+[onUrlloadIntercept](../reference/apis-arkweb/arkts-basic-components-web-events.md#onurlloadinterceptdeprecated)
 
 
 ## 为什么Web组件的onKeyEvent键盘事件不生效(API 9)
@@ -121,7 +121,7 @@ onKeyEvent为通用事件，当前Web组件不支持通用事件。Web组件监�
 
 **参考链接**
 
-[onInterceptKeyEvent](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptkeyevent9)
+[onInterceptKeyEvent](../reference/apis-arkweb/arkts-basic-components-web-events.md#oninterceptkeyevent9)
 
 
 ## onInterceptRequest拦截URL并自定义HTML文件，页面加载失败(API 9)
@@ -158,7 +158,7 @@ Web({ src: 'www.example.com', controller: this.controller })
 
 **参考链接**
 
-[WebResourceResponse](../reference/apis-arkweb/ts-basic-components-web.md#webresourceresponse)
+[WebResourceResponse](../reference/apis-arkweb/arkts-basic-components-web-WebResourceResponse.md)
 
 
 ## 如何在ArkTS代码中执行HTML内的JS函数(API 9)
@@ -172,7 +172,7 @@ Web({ src: 'www.example.com', controller: this.controller })
 
 **参考链接**
 
-[runJavaScript](../reference/apis-arkweb/js-apis-webview.md#runjavascript)
+[runJavaScript](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#runjavascript)
 
 
 ## 使用Web组件加载本地网页时，如何在本地网页中调用ArkTS中的函数(API 9)
@@ -247,7 +247,7 @@ Web({ src: 'www.example.com', controller: this.controller })
 
 **参考链接**
 
-[javaScriptProxy](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy)
+[javaScriptProxy](../reference/apis-arkweb/arkts-basic-components-web-i.md#javascriptproxy12)
 
 
 ## Web组件domStorageAccess属性设置(API 9)
@@ -258,7 +258,7 @@ Web({ src: 'www.example.com', controller: this.controller })
 
 **参考链接**
 
-[domStorageAccess](../reference/apis-arkweb/ts-basic-components-web.md#domstorageaccess)
+[domStorageAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#domstorageaccess)
 
 
 ## 如何解决Web组件加载的HTML页面内检测网络状态失败(API 9)
@@ -316,7 +316,7 @@ struct Index {
 
 **参考链接**
 
-[userAgent](../reference/apis-arkweb/ts-basic-components-web.md#useragentdeprecated)、[getUserAgent](../reference/apis-arkweb/js-apis-webview.md#getuseragent)
+[userAgent](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#useragentdeprecated)、[getUserAgent](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#getuseragent)
 ## WebView支持同层渲染吗(API 10)
 
 **解决措施**
@@ -357,7 +357,7 @@ setWebDebuggingAccess()接口开启Web组件前端页面调试能力，利用Dev
 
 **参考链接**
 
-[runJavaScript](../reference/apis-arkweb/js-apis-webview.md#runjavascriptext10)、[registerJavaScriptProxy](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)、[javaScriptProxy](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy)、[onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptrequest9)
+[runJavaScript](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#runjavascriptext10)、[registerJavaScriptProxy](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#registerjavascriptproxy)、[javaScriptProxy](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#javascriptproxy)、[onInterceptRequest](../reference/apis-arkweb/arkts-basic-components-web-events.md#oninterceptrequest9)
 
 
 ## WebView进程模型和渲染机制是什么(API 11)
@@ -386,7 +386,7 @@ Webview提供mixedMode(mixedMode: MixedMode)接口，设置是否允许加载超
 
 **参考链接**
 
-[mixedmode](../reference/apis-arkweb/ts-basic-components-web.md#mixedmode)
+[mixedmode](../reference/apis-arkweb/arkts-basic-components-web-e.md#mixedmode)
 
 
 ## WebView除了设置缓存，还有什么方式可以提升渲染速度吗？
@@ -397,7 +397,7 @@ Webview提供mixedMode(mixedMode: MixedMode)接口，设置是否允许加载超
 
 **参考链接**
 
-[prepareforpageload](../reference/apis-arkweb/js-apis-webview.md#prepareforpageload10)
+[prepareforpageload](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#prepareforpageload10)
 
 
 ## 如何预创建Web组件？如何回收web组件复用？

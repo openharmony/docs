@@ -23,6 +23,7 @@
       <!--DelEnd-->
       - [UIServiceExtension](uiserviceextension.md)
       - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
+      - [使用AppServiceExtensionAbility实现后台服务](app-service-extension-ability.md)
     - [AbilityStage组件容器](abilitystage.md)
     - [应用上下文Context](application-context-stage.md)
     - 信息传递载体Want<!--want-->

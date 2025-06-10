@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Service Exception. Possible causes: 1. A system error, such as null pointer, container-related exception, IPC exception. 2. N-API invocation exception, invalid N-API status.
+Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status.
 
 **错误描述**
 

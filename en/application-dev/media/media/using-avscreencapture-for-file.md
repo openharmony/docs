@@ -12,7 +12,7 @@ If you are in a call when screen capture starts or a call is coming during scree
 
 Screen capture automatically stops upon system user switching, and **OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES** is reported.
 
-This topic describes how to use the AVScreenCapture APIs to carry out one-time screen capture. For details about the API reference, see [AVScreenCapture](../../reference/apis-media-kit/_a_v_screen_capture.md).
+This topic describes how to use the AVScreenCapture APIs to carry out one-time screen capture. For details about the API reference, see [AVScreenCapture](../../reference/apis-media-kit/capi-avscreencapture.md).
 
 If microphone data collection is configured, configure the permission **ohos.permission.MICROPHONE** and request a continuous task. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md) and [Continuous Task](../../task-management/continuous-task.md).
 
@@ -122,12 +122,11 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     OH_AVScreenCapture_Release(capture);
     ```
 
-## Sample Code
+## Development Example
 
 Refer to the sample code below to implement captured file storage using AVScreenCapture.
 
 ```c++
-
 #include "napi/native_api.h"
 #include <multimedia/player_framework/native_avscreen_capture.h>
 #include <multimedia/player_framework/native_avscreen_capture_base.h>
@@ -159,7 +158,26 @@ void OnDisplaySelected(struct OH_AVScreenCapture *capture, uint64_t displayId, v
     (void)userData;
 }
 
-static napi_value Screencapture(napi_env env, napi_callback_info info) {
+// OnCaptureContentChanged(), a callback function invoked when screen capture content changes.
+void OnCaptureContentChanged(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureContentChangedEvent event, OH_Rect *area, void *userData) {
+    (void)capture;
+    if (event == OH_SCREEN_CAPTURE_CONTENT_HIDE) {
+        // Process the event indicating that screen capture content is hidden.
+    }
+    if (event == OH_SCREEN_CAPTURE_CONTENT_VISIBLE) {
+        // Process the event indicating that screen capture content is visible.
+        // Obtain the window area information from the area parameter returned by the callback function when the screen capture content becomes visible.
+    }
+    if (event == OH_SCREEN_CAPTURE_CONTENT_UNAVAILABLE) {
+        // Process the event indicating that screen capture content becomes unavailable, for example, the screen capture window is closed.
+    }
+    (void)area;
+    (void)userData;
+}
+
+struct OH_AVScreenCapture *capture;
+// Call StartScreenCapture to start screen capture.
+static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
     OH_AVScreenCaptureConfig config;
     OH_AudioCaptureInfo micCapInfo = {
         .audioSampleRate = 48000, 
@@ -208,7 +226,8 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
         .videoInfo = videoInfo,
     };
 
-    struct OH_AVScreenCapture *capture = OH_AVScreenCapture_Create();
+    // Instantiate AVScreenCapture.
+    capture = OH_AVScreenCapture_Create();
 
     // Initialize the screen capture parameters and pass in an OH_AVScreenRecorderConfig struct.
     OH_RecorderInfo recorderInfo;
@@ -222,6 +241,10 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // Set a callback to respond to state changes.
     OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, nullptr);
 
+    // (Optional) Set a callback for screen capture content changes.
+    OH_Rect* area = nullptr;
+    OH_AVScreenCapture_SetCaptureContentChangedCallback(capture, OnCaptureContentChanged, area);
+
     // (Optional) Set a callback to obtain the display ID. This operation must be performed before screen capture starts.
     OH_AVScreenCapture_SetDisplayCallback(capture, OnDisplaySelected, nullptr);
 
@@ -234,15 +257,25 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // Start screen capture.
     int32_t retStart = OH_AVScreenCapture_StartScreenRecording(capture);
 
-    // Capture the screen for 10s.
-    sleep(10);
+    // Call StopScreenCapture to stop screen capture.
+    
+    // Return the call result. In the example, only a random number is returned.
+    napi_value sum;
+    napi_create_double(env, 5, &sum);
 
-    // Stop screen capture.
-    int32_t retStop = OH_AVScreenCapture_StopScreenRecording(capture);
+    return sum;
+}
 
-    // Release the AVScreenCapture instance.
-    int32_t retRelease = OH_AVScreenCapture_Release(capture);
+// Call StopScreenCapture to stop screen capture.
+static napi_value StopScreenCapture(napi_env env, napi_callback_info info) {
+    if (capture != nullptr) {
+        // Stop screen capture.
+        int32_t retStop = OH_AVScreenCapture_StopScreenRecording(capture);
 
+        // Release the AVScreenCapture instance.
+        int32_t retRelease = OH_AVScreenCapture_Release(capture);
+        capture = nullptr;
+    }
     // Return the call result. In the example, only a random number is returned.
     napi_value sum;
     napi_create_double(env, 5, &sum);
@@ -253,7 +286,8 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports) {
     napi_property_descriptor desc[] = {
-        {"screencapture", nullptr, Screencapture, nullptr, nullptr, nullptr, napi_default, nullptr}};
+        {"startScreenCapture", nullptr, StartScreenCapture, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"stopScreenCapture", nullptr, StopScreenCapture, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }

@@ -48,7 +48,7 @@ import { sharing } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.isSharingSupported((error: BusinessError, data: boolean) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -93,7 +93,7 @@ sharing
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -132,7 +132,7 @@ import { sharing } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.isSharing((error: BusinessError, data: boolean) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -177,7 +177,7 @@ sharing
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -224,7 +224,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing.startSharing(SHARING_WIFI, (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -281,7 +281,7 @@ sharing
     console.log('start wifi sharing successful');
   })
   .catch((error: BusinessError) => {
-    console.log('start wifi sharing failed');
+    console.error('start wifi sharing failed');
   });
 ```
 
@@ -327,7 +327,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing.stopSharing(SHARING_WIFI, (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -383,7 +383,7 @@ sharing
     console.log('stop wifi sharing successful');
   })
   .catch((error: BusinessError) => {
-    console.log('stop wifi sharing failed');
+    console.error('stop wifi sharing failed');
   });
 ```
 
@@ -422,7 +422,7 @@ import { sharing } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.getStatsRxBytes((error: BusinessError, data: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -467,7 +467,7 @@ sharing
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -506,7 +506,7 @@ import { sharing } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.getStatsTxBytes((error: BusinessError, data: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -551,7 +551,7 @@ sharing
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -590,7 +590,7 @@ import { sharing } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.getStatsTotalBytes((error: BusinessError, data: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -635,7 +635,7 @@ sharing
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -677,7 +677,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_BLUETOOTH = 2;
 sharing.getSharingIfaces(SHARING_BLUETOOTH, (error: BusinessError, data: string[]) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -730,7 +730,7 @@ sharing
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -772,7 +772,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing.getSharingState(SHARING_WIFI, (error: BusinessError, data: sharing.SharingIfaceState) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -825,7 +825,7 @@ sharing
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -867,7 +867,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing.getSharableRegexes(SHARING_WIFI, (error: BusinessError, data: string[]) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -920,7 +920,7 @@ sharing
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -940,7 +940,7 @@ on(type: 'sharingStateChange', callback: Callback\<boolean>): void
 
 | 参数名   | 类型                    | 必填 | 说明                         |
 | -------- | ----------------------- | ---- | ---------------------------- |
-| type     | string                  | 是   | 事件名称。                   |
+| type     | string                  | 是   | 订阅的事件类型。'sharingStateChange'：注册网络共享状态变化事件。                   |
 | callback | AsyncCallback\<boolean> | 是   | 回调函数，返回网络共享状态。 |
 
 **错误码：**
@@ -977,7 +977,7 @@ off(type: 'sharingStateChange', callback?: Callback\<boolean>): void
 
 | 参数名   | 类型                    | 必填 | 说明                         |
 | -------- | ----------------------- | ---- | ---------------------------- |
-| type     | string                  | 是   | 事件名称。                   |
+| type     | string                  | 是   | 注销的事件类型。'sharingStateChange'：注销网络共享状态变化事件。                   |
 | callback | AsyncCallback\<boolean> | 否   | 回调函数，返回网络共享状态。 |
 
 **错误码：**
@@ -1014,7 +1014,7 @@ on(type: 'interfaceSharingStateChange', callback: Callback\<InterfaceSharingStat
 
 | 参数名   | 类型                                                                   | 必填 | 说明                                  |
 | -------- | -------------------------------------------------------------------- | ---- | ------------------------------------- |
-| type     | string                                                                | 是   | 事件名称。                            |
+| type     | string                                                                | 是   | 订阅的事件类型。'interfaceSharingStateChange'：注册网卡网络共享状态变化事件。                            |
 | callback | AsyncCallback\<[InterfaceSharingStateInfo](#interfacesharingstateinfo11)> | 是   | 回调函数。指定网卡共享状态变化时调用。 |
 
 **错误码：**
@@ -1051,7 +1051,7 @@ off(type: 'interfaceSharingStateChange', callback?: Callback\<InterfaceSharingSt
 
 | 参数名   | 类型                                                                        | 必填 | 说明                                     |
 | -------- | --------------------------------------------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                                                     | 是   | 事件名称。                               |
+| type     | string                                                                     | 是   | 注销的事件类型。'interfaceSharingStateChange'：注销网卡网络共享状态变化事件。                               |
 | callback | AsyncCallback\<[InterfaceSharingStateInfo](#interfacesharingstateinfo11)> | 否   | 回调函数，注销指定网卡共享状态变化通知。 |
 
 **错误码：**
@@ -1088,7 +1088,7 @@ on(type: 'sharingUpstreamChange', callback: Callback\<NetHandle>): void
 
 | 参数名   | 类型                      | 必填 | 说明                           |
 | -------- | ------------------------- | ---- | ------------------------------ |
-| type     | string                    | 是   | 事件名称。                     |
+| type     | string                    | 是   | 订阅的事件类型。'sharingUpstreamChange'：注册上行网络变化事件。                     |
 | callback | AsyncCallback\<NetHandle> | 是   | 回调函数，上行网络变化时调用。 |
 
 **错误码：**
@@ -1125,7 +1125,7 @@ off(type: 'sharingUpstreamChange', callback?: Callback\<NetHandle>): void
 
 | 参数名   | 类型                      | 必填 | 说明                             |
 | -------- | ------------------------- | ---- | -------------------------------- |
-| type     | string                    | 是   | 事件名称。                       |
+| type     | string                    | 是   | 注销的事件类型。'sharingUpstreamChange'：注销上行网络变化事件。                       |
 | callback | AsyncCallback\<NetHandle> | 否   | 回调函数，注销上行网络变化事件。 |
 
 **错误码：**

@@ -38,6 +38,7 @@ getFreeSize(path:string):Promise&lt;number&gt;
 
 **示例：**
 
+<!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -73,6 +74,7 @@ getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
+<!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -115,6 +117,7 @@ getFreeSizeSync(path:string): number
 
 **示例：**
 
+<!--code_no_check-->
   ```ts
   import { common } from '@kit.AbilityKit';
 
@@ -151,6 +154,7 @@ getTotalSize(path: string): Promise&lt;number&gt;
 
 **示例：**
 
+<!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -186,6 +190,7 @@ getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
+<!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -228,6 +233,7 @@ getTotalSizeSync(path: string): number
 
 **示例：**
 
+<!--code_no_check-->
   ```ts
   import { common } from '@kit.AbilityKit';
 

@@ -22,6 +22,9 @@ import fileShare from '@ohos.fileshare';
 | ----- |-----|-----|
 | READ_MODE  | 0b1 | 读权限。 |
 | WRITE_MODE  | 0b10 | 写权限。 |
+| CREATE_MODE<sup>20+</sup>  | 0b100 | 创建文件/文件夹权限。 |
+| DELETE_MODE<sup>20+</sup>  | 0b1000 | 删除文件/文件夹权限。 |
+| RENAME_MODE<sup>20+</sup>  | 0b10000 | 重命名文件/文件夹权限。 |
 
 ## PolicyErrorCode<sup>11+</sup>
 

@@ -32,6 +32,8 @@ target_link_libraries(sample PUBLIC libohenvironment.so)
 **Adding Header Files**
 
 ```c++
+#include <cstdio>
+#include <cstdlib>
 #include <filemanagement/environment/oh_environment.h>
 #include <filemanagement/fileio/oh_fileio.h>
 ```

@@ -9,7 +9,7 @@
 
 **参考链接**
 
-[关系型数据库](../reference/apis-arkdata/js-apis-data-relationalStore.md#storeconfig)
+[关系型数据库](../reference/apis-arkdata/arkts-apis-data-relationalStore-i.md#storeconfig)
 
 
 ## 关系型数据库rdb中使用TRUNCATE TABLE语句无法清空表数据(API 9)
@@ -152,7 +152,7 @@ RDB数据库底层使用的是SQLite，默认的内存数据库模式是文件�
 
 **解决措施**
 
-可以使用[execute](../reference/apis-arkdata/js-apis-data-relationalStore.md#execute12)接口执行sql语句获取数据库大小，如：SELECT page_count * page_size AS size FROM pragma_page_count(), pragma_page_size()。
+可以使用[execute](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#execute12)接口执行sql语句获取数据库大小，如：SELECT page_count * page_size AS size FROM pragma_page_count(), pragma_page_size()。
 关系型数据库使用的是WAL模式，在查询前可以执行sql语句触发一次checkpoint刷新数据库文件大小，如：PRAGMA wal_checkpoint。
 
 

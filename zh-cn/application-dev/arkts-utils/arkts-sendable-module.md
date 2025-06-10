@@ -2,7 +2,7 @@
 
 共享模块是进程内只会加载一次的模块，使用"use shared"这一指令来标记一个模块是否为共享模块。
 
-非共享模块在同一线程内只加载一次，而在不同线程中会加载多次，每个线程都会生成新的模块对象。因此，可以使用共享模块来实现进程单例。
+非共享模块在同一线程内只加载一次，而在不同线程中会加载多次，每个线程都会生成新的模块对象。因此，目前只能使用共享模块来实现进程单例。
 
 
 ## 约束限制
@@ -48,9 +48,19 @@
 
 - 共享模块可以引用共享模块或非共享模块。共享模块的引用和被引用场景没有限制。
 
-- napi_load_module和napi_load_module_with_info支持加载共享模块。
+- 仅支持使用静态加载、napi_load_module或napi_load_module_with_info加载共享模块。
+  ```ts
+  // test.ets
+  import { num } from './A'; // 支持静态加载
 
-- 动态加载不支持加载共享模块。
+  import worker from '@ohos.worker';
+  let wk = new worker.ThreadWorker("./A"); // 不支持其他方式加载共享模块, 将产生运行时报错
+  
+  // A.ets
+  'use shared'
+  
+  export {num, str} from './test';
+  ```
 
 ## 使用示例
 

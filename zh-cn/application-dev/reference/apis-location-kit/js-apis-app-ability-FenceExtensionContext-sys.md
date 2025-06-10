@@ -62,13 +62,12 @@ startAbility(want: Want): Promise&lt;void&gt;
 | 16000005 | The specified process does not have the permission.          |
 | 16000006 | Cross-user operations are not allowed.                       |
 | 16000008 | The crowdtesting application expires.                        |
-| 16000009 | An ability cannot be started or stopped in Wukong mode.      |
 | 16000011 | The context does not exist.                                  |
+| 16000012 | The application is controlled.                               |
+| 16000013 | The application is controlled by EDM.                        |
+| 16000019 | Can not match any component                                  |
 | 16000050 | Internal error.                                              |
-| 16000053 | The ability is not on the top of the UI.                     |
-| 16000055 | Installation-free timed out.                                 |
 | 16200001 | The caller has been released.                                |
-| 16300003 | The target application is not the current application.       |
 
 以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
@@ -95,14 +94,14 @@ export class MyFenceExtensionAbility extends FenceExtensionAbility {
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
-          console.info('startAbility failed, error.code: ' + JSON.stringify(error.code) +
+          console.error('startAbility failed, error.code: ' + JSON.stringify(error.code) +
             ' error.message: ' + JSON.stringify(error.message));
         });
     } catch (paramError) {
       // 处理入参错误异常
       let code = (paramError as BusinessError).code;
       let message = (paramError as BusinessError).message;
-      console.info('startAbility failed, error.code: ' + JSON.stringify(code) +
+      console.error('startAbility failed, error.code: ' + JSON.stringify(code) +
         ' error.message: ' + JSON.stringify(message));
     }
   }

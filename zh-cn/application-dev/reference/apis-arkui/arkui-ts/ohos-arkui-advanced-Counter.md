@@ -6,7 +6,7 @@ Counter是用于精确调节数值的组件。
 >
 >  该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  如果Counter设置[通用属性](ts-component-general-attributes.md)和[通用事件](ts-component-general-events.md)，编译工具链会额外生成节点__common__，并将通用属性或通用事件挂载在__common__上，而不是直接应用到Counter本身。这可能导致开发者设置的通用属性或通用事件的效果不生效或不符合预期，因此，Counter不支持通用属性和通用事件。
+>  如果Counter设置[通用属性](ts-component-general-attributes.md)和[通用事件](ts-component-general-events.md)，编译工具链会额外生成节点__Common__，并将通用属性或通用事件挂载在__Common__上，而不是直接应用到Counter本身。这可能导致开发者设置的通用属性或通用事件的效果不生效或不符合预期，因此，不建议Counter设置通用属性和通用事件。
 
 ## 导入模块
 
@@ -14,7 +14,7 @@ Counter是用于精确调节数值的组件。
 import { CounterType, CounterComponent, CounterOptions, DateData } from '@kit.ArkUI';
 ```
 
-##  子组件
+## 子组件
 
 无
 
@@ -44,8 +44,8 @@ CounterOptions定义Counter的类型及具体式样参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 类型       | 必填        | 说明                            |
-| ----------- | ---------- | ------| --------------------------------- |
+| 名称        | 类型       | 必填 | 说明                            |
+| ----------- | ---------- | ---- | ------------------------------- |
 | type | [CounterType](#countertype) | 是   | 指定当前Counter的类型。 |
 | direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | 否 | 布局方向。<br/>默认值：Direction.Auto |
 | numberOptions | [NumberStyleOptions](#numberstyleoptions) | 否    | 列表型和紧凑型counter的式样。 |
@@ -84,19 +84,18 @@ CommonOptions定义Counter的共通属性和事件。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-
 | 名称            | 类型                      | 必填 | 说明                                                         |
 | --------------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | focusable       | boolean                   | 否   | 设置Counter是否可以获焦。<br/>**说明：** <br/>该属性对列表型、紧凑型Counter生效。<br/>默认值：true。 <br/>true：设置Counter可以获焦；false：设置Counter不可以获焦。|
 | step            | number                    | 否   | 设置Counter的步长。<br/>取值范围：大于等于1的整数。<br/>默认值：1 |
-| onHoverIncrease | (isHover: boolean) =>void | 否   | 鼠标进入或退出Counter组件的增加按钮触发该回调。<br/>isHover：表示鼠标是否悬浮在组件上，鼠标进入时为true, 退出时为false。 |
-| onHoverDecrease | (isHover: boolean) =>void | 否   | 鼠标进入或退出Counter组件的减小按钮触发该回调。<br/>isHover：表示鼠标是否悬浮在组件上，鼠标进入时为true, 退出时为false。 |
+| onHoverIncrease | (isHover: boolean) => void | 否   | 鼠标进入或退出Counter组件的增加按钮触发该回调。<br/>isHover：表示鼠标是否悬浮在组件上，鼠标进入时为true，退出时为false。 |
+| onHoverDecrease | (isHover: boolean) => void | 否   | 鼠标进入或退出Counter组件的减小按钮触发该回调。<br/>isHover：表示鼠标是否悬浮在组件上，鼠标进入时为true，退出时为false。 |
 
-##  InlineStyleOptions
+## InlineStyleOptions
 
 InlineStyleOptions定义Inline Style（数值内联型Counter）的属性和事件。
 
-继承于[CommonOptions ](#commonoptions)。
+继承于[CommonOptions](#commonoptions)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -108,7 +107,7 @@ InlineStyleOptions定义Inline Style（数值内联型Counter）的属性和事�
 | min       | number                 | 否   | 设置Counter的最小值。<br/>默认值：0                    |
 | max       | number                 | 否   | 设置Counter的最大值。<br/>默认值：999                  |
 | textWidth | number                 | 否   | 设置数值文本的宽度。<br/>默认值：0                     |
-| onChange  | (value: number) =>void | 否   | 当数值改变时，返回当前值。<br/>value：当前显示的数值。 |
+| onChange  | (value: number) => void | 否   | 当数值改变时，返回当前值。<br/>value：当前显示的数值。 |
 
 ## NumberStyleOptions
 
@@ -123,16 +122,16 @@ NumberStyleOptions定义Number style（列表型Counter和紧凑型Counter）的
 | 名称            | 类型                                   | 必填 | 说明                                          |
 | --------------- | -------------------------------------- | ---- | --------------------------------------------- |
 | label           | [ResourceStr](ts-types.md#resourcestr) | 否   | 设置Counter的说明文本。                       |
-| onFocusIncrease | () =>void                              | 否   | 当前Counter组件增加按钮获取焦点时触发的回调。 |
-| onFocusDecrease | () =>void                              | 否   | 当前Counter组件减小按钮获取焦点时触发的回调。 |
-| onBlurIncrease  | () =>void                              | 否   | 当前Counter组件增加按钮失去焦点时触发的回调。 |
-| onBlurDecrease  | () =>void                              | 否   | 当前Counter组件减小按钮失去焦点时触发的回调。 |
+| onFocusIncrease | () => void                              | 否   | 当前Counter组件增加按钮获取焦点时触发的回调。 |
+| onFocusDecrease | () => void                              | 否   | 当前Counter组件减小按钮获取焦点时触发的回调。 |
+| onBlurIncrease  | () => void                              | 否   | 当前Counter组件增加按钮失去焦点时触发的回调。 |
+| onBlurDecrease  | () => void                              | 否   | 当前Counter组件减小按钮失去焦点时触发的回调。 |
 
 ## DateStyleOptions
 
 DateStyleOptions定义Date style（日期内联型Counter）的属性和事件。
 
-继承于[CommonOptions ](#commonoptions)。
+继承于[CommonOptions](#commonoptions)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -143,7 +142,7 @@ DateStyleOptions定义Date style（日期内联型Counter）的属性和事件�
 | year         | number                              | 否   | 设置日期内联型初始年份。<br/>默认值：1                    |
 | month        | number                              | 否   | 设置日期内联型初始月份。<br/>默认值：1                    |
 | day          | number                              | 否   | 设置日期内联型初始日。<br/>默认值：1                      |
-| onDateChange | (date: [DateData](#datedata))=>void | 否   | 当日期改变时，返回当前日期。<br/>date：当前显示的日期值。 |
+| onDateChange | (date: [DateData](#datedata)) => void | 否   | 当日期改变时，返回当前日期。<br/>date：当前显示的日期值。 |
 
 ## DateData
 
@@ -191,7 +190,7 @@ toString(): string
 | -------- | -------- |
 | string | 当前日期值。 |
 
-## 示例   
+## 示例
 
 ### 示例1（列表型Counter）
 
@@ -223,6 +222,7 @@ struct ListCounterExample {
 ```
 
 ![listcounter](figures/listcounter.gif)
+
 ### 示例2（紧凑型Counter）
 
 该示例通过设置type为CounterType.COMPACT以及numberOptions，实现紧凑型Counter。
@@ -252,7 +252,9 @@ struct CompactCounterExample {
   }
 }
 ```
+
 ![compactcounter](figures/compactcounter.gif)
+
 ### 示例3（数值内联型Counter）
 
 该示例通过设置type为CounterType.INLINE以及inlineOptions，实现数值内联型Counter。
@@ -285,7 +287,9 @@ struct NumberStyleExample {
   }
 }
 ```
+
 ![numberstyle](figures/numberstyle.gif)
+
 ### 示例4（日期内联型Counter）
 
 该示例通过设置type为CounterType.INLINE_DATE以及dateOptions，实现日期内联型Counter，用户可以手动输入日期。
@@ -314,6 +318,7 @@ struct DataStyleExample {
   }
 }
 ```
+
 ![datestyle](figures/datestyle.gif)
 
 ### 示例5（镜像布局展示）
@@ -400,4 +405,5 @@ struct CounterPage {
   }
 }
 ```
+
 ![datestyle](figures/counter_direction.png)

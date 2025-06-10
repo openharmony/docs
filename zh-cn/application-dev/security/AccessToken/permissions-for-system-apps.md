@@ -1200,18 +1200,6 @@
 
 **起始版本**：10
 
-## ohos.permission.GET_WIFI_LOCAL_MAC
-
-允许应用获取本机的Wi-Fi设备的MAC地址。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：8
-
 ## ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO
 
 允许应用获取风险详细数据。
@@ -1243,6 +1231,8 @@
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
+
+**支持设备**：General
 
 **ACL使能**：true
 
@@ -1461,6 +1451,8 @@
 **权限级别**：system_core
 
 **授权方式**：系统授权（system_grant）
+
+**支持设备**：General
 
 **ACL使能**：true
 
@@ -1713,6 +1705,8 @@
 **权限级别**：system_core
 
 **授权方式**：系统授权（system_grant）
+
+**支持设备**：General
 
 **ACL使能**：true
 
@@ -4336,23 +4330,6 @@
 
 **起始版本**：18
 
-## ohos.permission.ACCESS_DDK_DRIVERS
-
-允许扩展外设驱动客户端绑定到扩展外设驱动服务端。
-
-该权限针对扩展外设客户端绑定到扩展外设服务端权限校验，具体规则：
-
-1. 外设扩展驱动客户端权限声明中的value字段中描述的目标扩展驱动服务端已上架或一并上架。
-2. 被申请目标扩展驱动服务端对外提供能力与扩展外设驱动客户端业务诉求一致。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：18
-
 ## ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
 
 允许扩展外设驱动访问SCSI DDK接口开发SCSI Peripheral扩展外设驱动。
@@ -4707,6 +4684,8 @@
 
 **授权方式**：系统授权（system_grant）
 
+**支持设备**：General
+
 **ACL使能**：true
 
 **起始版本**：20
@@ -4804,5 +4783,35 @@
 **ACL使能**：true
 
 **支持设备**：Phone
+
+**起始版本**：20
+
+## ohos.permission.kernel.ALLOW_APP_CODE_DECRYPT
+
+允许系统应用或系统服务调用内核接口进行代码解密。
+
+应用或服务拥有此权限后，可跨进程访问内核接口，针对已加密的代码内容请求解密，可避免非法访问，进一步保护应用代码资产。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：General
+
+**起始版本**：20
+
+## ohos.permission.GRANT_URI_PERMISSION_AS_CALLER
+
+允许应用以调用方的身份将URI访问权限授权给目标应用。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：General
 
 **起始版本**：20

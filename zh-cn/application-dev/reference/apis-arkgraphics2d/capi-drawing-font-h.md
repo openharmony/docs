@@ -4,7 +4,7 @@
 
 文件中定义了与字体相关的功能函数。
 
-**引用文件：** drawing_font.h
+**引用文件：** <native_drawing/drawing_font.h>
 
 **库：** libnative_drawing.so
 
@@ -31,6 +31,10 @@
 
 | 名称 | 描述 |
 | -- | -- |
+| [OH_Drawing_ErrorCode OH_Drawing_FontGetSpacing(const OH_Drawing_Font* font, float* spacing)](#oh_drawing_fontgetspacing) | 用于获取推荐的字型行间距。 |
+| [OH_Drawing_ErrorCode OH_Drawing_FontGetPos(const OH_Drawing_Font* font, const uint16_t* glyphs, int count,const OH_Drawing_Point* origin, OH_Drawing_Point2D* points)](#oh_drawing_fontgetpos) | 用于从指定的原点开始，获取每个字形的相对位置。 |
+| [OH_Drawing_ErrorCode OH_Drawing_FontGetWidthsBounds(const OH_Drawing_Font* font, const uint16_t* glyphs, int count,const OH_Drawing_Brush* brush, const OH_Drawing_Pen* pen, float* widths, OH_Drawing_Array* bounds)](#oh_drawing_fontgetwidthsbounds) | 用于获取字形数组中每个字形的宽度和边界框。 |
+| [OH_Drawing_ErrorCode OH_Drawing_FontMeasureTextWithBrushOrPen(const OH_Drawing_Font* font, const void* text,size_t byteLength, OH_Drawing_TextEncoding encoding, const OH_Drawing_Brush* brush, const OH_Drawing_Pen* pen,OH_Drawing_Rect* bounds, float* textWidth)](#oh_drawing_fontmeasuretextwithbrushorpen) | 使用画刷或画笔获取文本的宽度和边界框。 |
 | [OH_Drawing_Font* OH_Drawing_FontCreate(void)](#oh_drawing_fontcreate) | 用于创建一个字型对象。 |
 | [void OH_Drawing_FontSetBaselineSnap(OH_Drawing_Font* font, bool baselineSnap)](#oh_drawing_fontsetbaselinesnap) | 当前画布矩阵轴对齐时，将字型基线设置为是否与像素对齐。<br>本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](capi-drawing-error-code-h.md#oh_drawing_errorcodeget)查看错误码的取值。<br>font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。 |
 | [bool OH_Drawing_FontIsBaselineSnap(const OH_Drawing_Font* font)](#oh_drawing_fontisbaselinesnap) | 当前画布矩阵轴对齐时，获取字型基线是否与像素对齐。<br>本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](capi-drawing-error-code-h.md#oh_drawing_errorcodeget)查看错误码的取值。<br>font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。 |
@@ -110,6 +114,128 @@ enum OH_Drawing_FontEdging
 
 
 ## 函数说明
+
+### OH_Drawing_FontMeasureTextWithBrushOrPen()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontMeasureTextWithBrushOrPen(const OH_Drawing_Font* font, const void* text,size_t byteLength, OH_Drawing_TextEncoding encoding, const OH_Drawing_Brush* brush, const OH_Drawing_Pen* pen,OH_Drawing_Rect* bounds, float* textWidth)
+```
+
+**描述**
+
+使用画刷或画笔获取文本的宽度和边界框。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 19
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const OH_Drawing_Font* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const void* text | 指向文本的指针。 |
+| size_t byteLength | 表示以字节为单位的文本长度。 |
+| [OH_Drawing_TextEncoding](capi-drawing-types-h.md#oh_drawing_textencoding) encoding | 文本编码类型。 |
+| const OH_Drawing_Brush* brush | 指向画刷对象[OH_Drawing_Brush](capi-oh-drawing-brush.md)的指针。 |
+| const OH_Drawing_Pen* pen | 指向画笔对象[OH_Drawing_Pen](capi-oh-drawing-pen.md)的指针。 |
+| OH_Drawing_Rect* bounds | 用于承载获取的边界框，可以为NULL。 |
+| float* textWidth | 表示文本宽度。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数返回执行操作码。<br>返回OH_DRAWING_SUCCESS，表示执行成功。<br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数font、text、textWidth至少有一个为空，或者byteLength为0，或者brush和pen同时存在。 |
+
+### OH_Drawing_FontGetWidthsBounds()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontGetWidthsBounds(const OH_Drawing_Font* font, const uint16_t* glyphs, int count,const OH_Drawing_Brush* brush, const OH_Drawing_Pen* pen, float* widths, OH_Drawing_Array* bounds)
+```
+
+**描述**
+
+用于获取字形数组中每个字形的宽度和边界框。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 19
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const OH_Drawing_Font* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const uint16_t* glyphs | 字形索引存储首地址。 |
+| int count | 字形索引的数量，大小与glyphs数组大小保持一致。 |
+| const OH_Drawing_Brush* brush | 指向画刷对象[OH_Drawing_Brush](capi-oh-drawing-brush.md)的指针。 |
+| const OH_Drawing_Pen* pen | 指向画笔对象[OH_Drawing_Pen](capi-oh-drawing-pen.md)的指针。 |
+| float* widths | 字形宽度存储首地址，用于存储得到的字形宽度，作为返回值返回给调用者。 |
+| OH_Drawing_Array* bounds | 字形边界框存储首地址，用于存储得到的字形边界框。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数返回执行操作码。<br>返回OH_DRAWING_SUCCESS，表示执行成功。<br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数font、glyphs至少有一个为空，或者count不大于0，或者brush和pen同时存在，或者widths和bounds同时为空。 |
+
+### OH_Drawing_FontGetPos()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontGetPos(const OH_Drawing_Font* font, const uint16_t* glyphs, int count,const OH_Drawing_Point* origin, OH_Drawing_Point2D* points)
+```
+
+**描述**
+
+用于从指定的原点开始，获取每个字形的相对位置。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 19
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const OH_Drawing_Font* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const uint16_t* glyphs | 字形索引存储首地址。 |
+| int count | 字形索引的数量，大小与glyphs数组大小保持一致。 |
+| const OH_Drawing_Point* origin | 指向第一个字形的位置，可以为NULL，为NULL默认从(0, 0)开始。 |
+| [OH_Drawing_Point2D](capi-oh-drawing-point2d.md)* points | 字形相对位置存储首地址，用于存储得到的字形相对位置，作为返回值返回给调用者。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数返回执行操作码。<br>返回OH_DRAWING_SUCCESS，表示执行成功。<br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数font、glyphs、points至少有一个为空，或者count不大于0。 |
+
+### OH_Drawing_FontGetSpacing()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontGetSpacing(const OH_Drawing_Font* font, float* spacing)
+```
+
+**描述**
+
+用于获取推荐的字型行间距。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 19
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const OH_Drawing_Font* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| float* spacing | 推荐的字型行间距，作为返回值返回给调用者。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数返回执行操作码。<br>返回OH_DRAWING_SUCCESS，表示执行成功。<br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数font、spacing至少有一个为空。 |
 
 ### OH_Drawing_FontCreate()
 
