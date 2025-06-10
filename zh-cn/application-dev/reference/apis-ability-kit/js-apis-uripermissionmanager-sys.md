@@ -69,7 +69,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
     if (err) {
       console.error(`mkdir failed, err code: ${err.code}, err msg: ${err.message}.`);
     } else {
-      console.log(`mkdir success.`);
+      console.info(`mkdir success.`);
     }
   });
   let uri = fileUri.getUriFromPath(path);
@@ -143,13 +143,13 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
     if (err) {
       console.error(`mkdir failed, err code: ${err.code}, err msg: ${err.message}.`);
     } else {
-      console.log(`mkdir succeed.`);
+      console.info(`mkdir succeed.`);
     }
   });
   let uri = fileUri.getUriFromPath(path);
   uriPermissionManager.grantUriPermission(uri, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName)
     .then((data) => {
-      console.log(`Verification succeeded, data: ${JSON.stringify(data)}.`);
+      console.info(`Verification succeeded, data: ${JSON.stringify(data)}.`);
     }).catch((err: BusinessError) => {
     console.error(`Verification failed, err code: ${err.code}, err msg: ${err.message}.`);
   });
@@ -224,7 +224,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
         uriPermissionManager.grantUriPermission(uri, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName,
           appCloneIndex)
           .then(() => {
-            console.log('grantUriPermission succeeded.');
+            console.info('grantUriPermission succeeded.');
           }).catch((error: BusinessError) => {
           console.error(`grantUriPermission failed. error: ${JSON.stringify(error)}.`);
         });
@@ -238,7 +238,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
         uriPermissionManager.grantUriPermission(uri, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName,
           appCloneIndex)
           .then(() => {
-            console.log('grantUriPermission succeeded.');
+            console.info('grantUriPermission succeeded.');
           }).catch((error: BusinessError) => {
           console.error(`grantUriPermission failed. error: ${JSON.stringify(error)}.`);
         });
@@ -353,7 +353,7 @@ revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt
 
   uriPermissionManager.revokeUriPermission(uri, targetBundleName)
     .then((data) => {
-      console.log(`Verification success, data: ${JSON.stringify(data)}.`);
+      console.info(`Verification success, data: ${JSON.stringify(data)}.`);
     }).catch((error: BusinessError) => {
     console.error(`Verification failed, err code: ${error.code}, err msg: ${error.message}.`);
   });
@@ -421,7 +421,7 @@ revokeUriPermission(uri: string, targetBundleName: string, appCloneIndex: number
         let appCloneIndex: number = 0;
         uriPermissionManager.revokeUriPermission(uri, targetBundleName, appCloneIndex)
           .then(() => {
-            console.log('revokeUriPermission succeeded.');
+            console.info('revokeUriPermission succeeded.');
           }).catch((error: BusinessError) => {
           console.error(`revokeUriPermission failed. error: ${JSON.stringify(error)}.`);
         });
@@ -434,7 +434,7 @@ revokeUriPermission(uri: string, targetBundleName: string, appCloneIndex: number
         let appCloneIndex: number = 0;
         uriPermissionManager.revokeUriPermission(uri, targetBundleName, appCloneIndex)
           .then(() => {
-            console.log('revokeUriPermission succeeded.');
+            console.info('revokeUriPermission succeeded.');
           }).catch((error: BusinessError) => {
           console.error(`revokeUriPermission failed. error: ${JSON.stringify(error)}.`);
         });

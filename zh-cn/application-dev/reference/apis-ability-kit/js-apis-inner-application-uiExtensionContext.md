@@ -1232,26 +1232,26 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 import { ShareExtensionAbility, Want, UIExtensionContentSession, OpenLinkOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class ShareExtAbility extends ShareExtensionAbility {
+export default class UIExtAbility extends UIExtensionAbility {
   onCreate() {
-    console.log(`UIExtAbility onCreate`);
+    console.info(`UIExtAbility onCreate`);
   }
 
   onForeground() {
-    console.log(`UIExtAbility onForeground`);
+    console.info(`UIExtAbility onForeground`);
   }
 
   onBackground() {
-    console.log(`UIExtAbility onBackground`);
+    console.info(`UIExtAbility onBackground`);
   }
 
   onDestroy() {
-    console.log(`UIExtAbility onDestroy`);
+    console.info(`UIExtAbility onDestroy`);
   }
 
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    console.log(`UIExtAbility onSessionCreate`);
-    console.log(`UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`);
+    console.info(`UIExtAbility onSessionCreate`);
+    console.info(`UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`);
     let record: Record<string, UIExtensionContentSession> = {
       'session': session
     };
@@ -1271,10 +1271,10 @@ export default class ShareExtAbility extends ShareExtensionAbility {
             console.error(`openLink callback failed, err code: ${err.code}, err msg: ${err.message}.`);
             return;
           }
-          console.log(`openLink success, resule code: ${result.resultCode} result data: ${result.want}.`);
+          console.info(`openLink success, resule code: ${result.resultCode} result data: ${result.want}.`);
         }
       ).then(() => {
-        console.log(`open link success.`);
+        console.info(`open link success.`);
       }).catch((err: BusinessError) => {
         console.error(`open link failed, err code: ${err.code}, err msg: ${err.message}.`);
       });
@@ -1286,7 +1286,7 @@ export default class ShareExtAbility extends ShareExtensionAbility {
   }
 
   onSessionDestroy(session: UIExtensionContentSession) {
-    console.log(`UIExtAbility onSessionDestroy`);
+    console.info(`UIExtAbility onSessionDestroy`);
   }
 }
 ```
@@ -1361,7 +1361,7 @@ struct Index {
             try {
               // 启动UIServiceExtensionAbility
               context.startUIServiceExtensionAbility(startWant).then(() => {
-                console.log(`startUIServiceExtensionAbility success.`);
+                console.info(`startUIServiceExtensionAbility success.`);
               }).catch((error: BusinessError) => {
                 console.error(`startUIServiceExtensionAbility failed, err code: ${error.code}, err msg: ${error.message}.`);
               })
@@ -1448,16 +1448,16 @@ struct Page_UIServiceExtensionAbility {
         // 定义回调
         const callback: common.UIServiceExtensionConnectCallback = {
           onData: (data: Record<string, Object>): void => {
-            console.log(`onData, data: ${JSON.stringify(data)}.`);
+            console.info(`onData, data: ${JSON.stringify(data)}.`);
           },
           onDisconnect: (): void => {
-            console.log(`onDisconnect`);
+            console.info(`onDisconnect`);
           }
         };
         // 连接UIServiceExtensionAbility
         context.connectUIServiceExtensionAbility(want, callback).then((uiServiceProxy: common.UIServiceProxy) => {
           this.uiServiceProxy = uiServiceProxy;
-          console.log(`connectUIServiceExtensionAbility success`);
+          console.info(`connectUIServiceExtensionAbility success`);
         }).catch((error: BusinessError) => {
           console.error(`connectUIServiceExtensionAbility failed, err code: ${error.code}, err msg: ${error.message}.`);
         })
@@ -1517,9 +1517,9 @@ struct Page_UIServiceExtensionAbility {
         const context = this.getUIContext().getHostContext() as common.UIExtensionContext;
         // this.uiServiceProxy是连接时保存的proxy对象
         context.disconnectUIServiceExtensionAbility(this.uiServiceProxy).then(() => {
-          console.log(`disconnectUIServiceExtensionAbility success.`);
+          console.info(`disconnectUIServiceExtensionAbility success.`);
         }).catch((error: BusinessError) => {
-          console.log(`disconnectUIServiceExtensionAbility failed, err code: ${error.code}, err msg: ${error.message}.`);
+          console.info(`disconnectUIServiceExtensionAbility failed, err code: ${error.code}, err msg: ${error.message}.`);
         })
       })
     }

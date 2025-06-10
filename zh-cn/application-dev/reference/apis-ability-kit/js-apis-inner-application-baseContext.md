@@ -32,7 +32,7 @@ import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
 class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     // EntryAbility onCreate, isStageMode: true
-    console.log(`EntryAbility onCreate, isStageMode: ${this.context.stageMode}`);
+    console.info(`EntryAbility onCreate, isStageMode: ${this.context.stageMode}`);
   }
 }
 ```

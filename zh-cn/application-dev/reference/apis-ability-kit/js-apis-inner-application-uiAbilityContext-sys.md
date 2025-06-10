@@ -1733,7 +1733,7 @@ export default class EntryAbility extends UIAbility {
         .then((obj: Caller) => {
           // 执行正常业务
           caller = obj;
-          console.log('startAbilityByCallWithAccount succeed');
+          console.info('startAbilityByCallWithAccount succeed');
         }).catch((error: BusinessError) => {
         // 处理业务逻辑错误
         console.error(`startAbilityByCallWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);
@@ -1816,7 +1816,7 @@ export default class EntryAbility extends UIAbility {
       if (err && err.code != 0) {
         console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
       } else {
-        console.log('startAbilityAsCaller success.');
+        console.info('startAbilityAsCaller success.');
       }
     })
   }
@@ -1895,7 +1895,7 @@ export default class EntryAbility extends UIAbility {
       if (err && err.code != 0) {
         console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
       } else {
-        console.log('startAbilityAsCaller success.');
+        console.info('startAbilityAsCaller success.');
       }
     })
   }
@@ -1980,7 +1980,7 @@ export default class EntryAbility extends UIAbility {
     // 使用启动方的Caller身份信息启动新Ability
     this.context.startAbilityAsCaller(localWant, option)
       .then(() => {
-        console.log('startAbilityAsCaller success.');
+        console.info('startAbilityAsCaller success.');
       })
       .catch((err: BusinessError) => {
         console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));

@@ -48,13 +48,13 @@ function getExtensionInfos() {
 
     for (let i = 0; i < data.length; i++) {
       let extensionRunningInfo = data[i];
-      console.log(`extensionRunningInfo.extension: ${JSON.stringify(extensionRunningInfo.extension)}`);
-      console.log(`extensionRunningInfo.pid: ${JSON.stringify(extensionRunningInfo.pid)}`);
-      console.log(`extensionRunningInfo.uid: ${JSON.stringify(extensionRunningInfo.uid)}`);
-      console.log(`extensionRunningInfo.processName: ${JSON.stringify(extensionRunningInfo.processName)}`);
-      console.log(`extensionRunningInfo.startTime: ${JSON.stringify(extensionRunningInfo.startTime)}`);
-      console.log(`extensionRunningInfo.clientPackage: ${JSON.stringify(extensionRunningInfo.clientPackage)}`);
-      console.log(`extensionRunningInfo.type: ${JSON.stringify(extensionRunningInfo.type)}`);
+      console.info(`extensionRunningInfo.extension: ${JSON.stringify(extensionRunningInfo.extension)}`);
+      console.info(`extensionRunningInfo.pid: ${JSON.stringify(extensionRunningInfo.pid)}`);
+      console.info(`extensionRunningInfo.uid: ${JSON.stringify(extensionRunningInfo.uid)}`);
+      console.info(`extensionRunningInfo.processName: ${JSON.stringify(extensionRunningInfo.processName)}`);
+      console.info(`extensionRunningInfo.startTime: ${JSON.stringify(extensionRunningInfo.startTime)}`);
+      console.info(`extensionRunningInfo.clientPackage: ${JSON.stringify(extensionRunningInfo.clientPackage)}`);
+      console.info(`extensionRunningInfo.type: ${JSON.stringify(extensionRunningInfo.type)}`);
     }
   });
 }

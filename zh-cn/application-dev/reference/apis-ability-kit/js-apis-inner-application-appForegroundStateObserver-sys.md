@@ -37,7 +37,7 @@ import { appManager } from '@kit.AbilityKit';
 
 let observer: appManager.AppForegroundStateObserver = {
   onAppStateChanged(appStateData) {
-    console.log(`onAppStateChanged appStateData: ${JSON.stringify(appStateData)}`);
+    console.info(`onAppStateChanged appStateData: ${JSON.stringify(appStateData)}`);
   },
 };
 appManager.on('appForegroundState', observer);

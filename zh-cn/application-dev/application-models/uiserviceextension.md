@@ -49,7 +49,7 @@ struct Index {
             try {
               // 启动UIServiceExtensionAbility
               context.startUIServiceExtensionAbility(startWant).then(() => {
-                console.log('startUIServiceExtensionAbility success.');
+                console.info('startUIServiceExtensionAbility success.');
               }).catch((error: BusinessError) => {
                 console.error(`startUIServiceExtensionAbility failed, err code: ${error.code}, err msg: ${error.message}.`);
               })
@@ -80,10 +80,10 @@ struct Index {
   comProxy: common.UIServiceProxy | null = null;
   connectCallback: common.UIServiceExtensionConnectCallback = {
     onData: (data: Record<string, Object>) => {
-      console.log(`data received, data: ${JSON.stringify(data)}.`);
+      console.info(`data received, data: ${JSON.stringify(data)}.`);
     },
     onDisconnect: () => {
-      console.log(`onDisconnect.`);
+      console.info(`onDisconnect.`);
     }
   }
 

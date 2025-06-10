@@ -39,8 +39,8 @@ try {
       console.error(`getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
       return;
     }
-    console.log(`size = ${missions.length}`);
-    console.log(`missions = ${JSON.stringify(missions)}`);
+    console.info(`size = ${missions.length}`);
+    console.info(`missions = ${JSON.stringify(missions)}`);
     let id = missions[0].missionId;
 
     missionManager.getMissionSnapShot('', id, (err, snapshot) => {
@@ -49,7 +49,7 @@ try {
         return;
       }
       // 执行正常业务
-      console.log(`bundleName = ${snapshot.ability.bundleName}`);
+      console.info(`bundleName = ${snapshot.ability.bundleName}`);
     });
   });
 } catch (paramError) {

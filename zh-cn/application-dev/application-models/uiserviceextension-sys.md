@@ -49,7 +49,7 @@
 
 - **onConnect**
 
-  当另一个组件调用[connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectuiserviceextensionability14)方法与该服务连接时，触发该回调。此方法中，接收一个调用方远端代理对象（[UIServiceHostProxy](../reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md)），服务端拿到这个对象后可以通过这个对象与客户端进行通信。同一个客户端，want里面的(DeviceId, BundleName,ModuleName,AbilityName)以及callback对象相同情况下去连接，只会在第一次收到[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect)，其他情况每次连接都会收到[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect)。
+  当另一个组件调用[connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectuiserviceextensionability14)方法与该服务连接时，触发该回调。此方法中，接收一个调用方远端代理对象（[UIServiceHostProxy](../reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md)），服务端拿到这个对象后可以通过这个对象与客户端进行通信。同一个客户端，want里面的(DeviceId, BundleName,ModuleName,AbilityName)以及callback对象相同情况下去连接，只会在第一次收到[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#onconnect)，其他情况每次连接都会收到[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#onconnect)。
 
 - **onData**
 
@@ -208,7 +208,7 @@ struct Index {
             try {
               // 启动UIServiceExtensionAbility
               context.startUIServiceExtensionAbility(startWant).then(() => {
-                console.log(`startUIServiceExtensionAbility success.`);
+                console.info(`startUIServiceExtensionAbility success.`);
               }).catch((error: BusinessError) => {
                 console.error(`startUIServiceExtensionAbility failed, err code: ${error.code}, err msg: ${error.message}.`);
               })
@@ -226,7 +226,7 @@ struct Index {
 
 ### 连接UIServiceExtension
 
-应用可以通过[connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectuiserviceextensionability14)连接一个服务（在[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象中指定启动的目标服务），服务的[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect)就会被调用，并在该回调方法中接收到调用者传递过来的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象，从而建立连接。
+应用可以通过[connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectuiserviceextensionability14)连接一个服务（在[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象中指定启动的目标服务），服务的[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#onconnect)就会被调用，并在该回调方法中接收到调用者传递过来的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象，从而建立连接。
 
 客户端调用[connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectuiserviceextensionability14)连接服务端时，会接收并保存服务端返回的[UIServiceProxy](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md)对象，该proxy对象可以用于向服务端发送数据。客户端需要通过保存的[UIServiceProxy](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md)对象来调用[disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectuiserviceextensionability14)断开与服务端的连接。
 
@@ -255,16 +255,16 @@ struct Index {
             // 定义回调
             const callback: common.UIServiceExtensionConnectCallback = {
               onData: (data: Record<string, Object>): void => {
-                console.log(`onData, data: ${JSON.stringify(data)}.`);
+                console.info(`onData, data: ${JSON.stringify(data)}.`);
               },
               onDisconnect: (): void => {
-                console.log(`onDisconnect.`);
+                console.info(`onDisconnect.`);
               }
             };
             // 连接UIServiceExtensionAbility
             context.connectUIServiceExtensionAbility(want, callback).then((uiServiceProxy: common.UIServiceProxy) => {
               this.uiServiceProxy = uiServiceProxy;
-              console.log(`connectUIServiceExtensionAbility success.`);
+              console.info(`connectUIServiceExtensionAbility success.`);
             }).catch((error: BusinessError) => {
               console.error(`connectUIServiceExtensionAbility failed, err code:${error.code}, err msg: ${error.message}.`);
             })
@@ -293,7 +293,7 @@ struct Index {
             const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             // this.uiServiceProxy是连接时保存的proxy对象
             context.disconnectUIServiceExtensionAbility(this.uiServiceProxy).then(() => {
-              console.log(`disconnectUIServiceExtensionAbility success.`);
+              console.info(`disconnectUIServiceExtensionAbility success.`);
             }).catch((error: BusinessError) => {
               console.error(`disconnectUIServiceExtensionAbility failed, err code: ${error.code}, err msg: ${error.message}.`);
             })
@@ -329,10 +329,10 @@ struct Index {
       comProxy: common.UIServiceProxy | null = null;
       connectCallback: common.UIServiceExtensionConnectCallback = {
         onData: (data: Record<string, Object>) => {
-          console.log(`onData, data: ${JSON.stringify(data)}.`);
+          console.info(`onData, data: ${JSON.stringify(data)}.`);
         },
         onDisconnect: () => {
-          console.log(`onDisconnect.`);
+          console.info(`onDisconnect.`);
         }
       }
 
@@ -382,7 +382,7 @@ struct Index {
 
 - 服务端收发数据
 
-  服务端通过[onData()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#ondata)接收客户端传递的数据，使用保存的客户端连接服务端时传递过来的[UIServiceHostProxy](../reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md)对象，调用[sendData()](../reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md#uiservicehostproxysenddata)将服务端数据发送给客户端。
+  服务端通过[onData()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#ondata)接收客户端传递的数据，使用保存的客户端连接服务端时传递过来的[UIServiceHostProxy](../reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md)对象，调用[sendData()](../reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md#senddata)将服务端数据发送给客户端。
     ```ts
     import { common, Want, UIServiceExtensionAbility } from '@kit.AbilityKit';
     import { window } from '@kit.ArkUI';
@@ -393,29 +393,29 @@ struct Index {
 
       // 创建
       onCreate(want: Want) {
-        console.log('UIServiceExtensionAbility onCreate');
+        console.info('UIServiceExtensionAbility onCreate');
       }
 
       // 请求处理
       onRequest(want: Want, startId: number) {
-        console.log('UIServiceExtensionAbility onRequest');
+        console.info('UIServiceExtensionAbility onRequest');
       }
 
       // 连接
       onConnect(want: Want, proxy: common.UIServiceHostProxy) {
-        console.log('UIServiceExtensionAbility onConnect');
+        console.info('UIServiceExtensionAbility onConnect');
         this.comProxy = proxy;
       }
 
       // 断开连接
       onDisconnect(want: Want, proxy: common.UIServiceHostProxy) {
-        console.log('UIServiceExtensionAbility onDisconnect');
+        console.info('UIServiceExtensionAbility onDisconnect');
         this.comProxy = null;
       }
 
       // 接收数据
       onData(proxy: common.UIServiceHostProxy, data: Record<string, Object>) {
-        console.log('UIServiceExtensionAbility onData');
+        console.info('UIServiceExtensionAbility onData');
         try {
           let formData: Record<string, string> = {
             'Data': 'reply message'
@@ -429,15 +429,15 @@ struct Index {
       }
 
       onWindowWillCreate(extensionWindowConfig: window.ExtensionWindowConfig) {
-        console.log('UIServiceExtensionAbility onWindowWillCreate');
+        console.info('UIServiceExtensionAbility onWindowWillCreate');
       }
 
       onWindowDidCreate(window: window.Window) {
-        console.log('UIServiceExtensionAbility onWindowDidCreate');
+        console.info('UIServiceExtensionAbility onWindowDidCreate');
       }
 
       onDestroy() {
-        console.log('UIServiceExtensionAbility onDestroy');
+        console.info('UIServiceExtensionAbility onDestroy');
       }
     }
     ```

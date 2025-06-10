@@ -16,7 +16,7 @@ import { StartupTask } from '@kit.AbilityKit';
 
 ## StartupTask
 
-## onDependencyCompleted
+### onDependencyCompleted
 
 onDependencyCompleted?(dependency: string, result: Object): void
 
@@ -56,7 +56,7 @@ export default class StartupTask_001 extends StartupTask {
 ```
 
 
-## init
+### init
 
 init(context: AbilityStageContext): Promise\<Object \| void\>
 

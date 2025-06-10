@@ -55,7 +55,7 @@ const TAG: string = '[UiServiceExtensionAbility] ';
 export default class MyUiServiceExtensionAbility extends UIServiceExtensionAbility {
   // 数据发送处理
   onData(proxy: common.UIServiceHostProxy, data: Record<string, Object>) {
-    console.log(TAG + `onData ${JSON.stringify(data)}`);
+    console.info(TAG + `onData ${JSON.stringify(data)}`);
     // 定义发送数据内容
     let formData: Record<string, string> = {
       'proxyData': 'proxyData'

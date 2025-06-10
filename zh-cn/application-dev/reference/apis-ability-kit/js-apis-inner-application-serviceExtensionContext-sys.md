@@ -107,7 +107,7 @@ class EntryAbility extends ServiceExtensionAbility {
           return;
         }
         // 执行正常业务
-        console.log('startAbility succeed');
+        console.info('startAbility succeed');
       });
     } catch (paramError) {
       // 处理入参错误异常
@@ -193,7 +193,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.startAbility(want, options)
         .then((data: void) => {
           // 执行正常业务
-          console.log('startAbility succeed');
+          console.info('startAbility succeed');
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
@@ -283,7 +283,7 @@ class EntryAbility extends ServiceExtensionAbility {
           return;
         }
         // 执行正常业务
-        console.log('startAbility succeed');
+        console.info('startAbility succeed');
       });
     } catch (paramError) {
       // 处理入参错误异常
@@ -374,7 +374,7 @@ class EntryAbility extends ServiceExtensionAbility {
           return;
         }
         // 执行正常业务
-        console.log('startAbilityWithAccount succeed');
+        console.info('startAbilityWithAccount succeed');
       });
     } catch (paramError) {
       // 处理入参错误异常
@@ -469,7 +469,7 @@ class EntryAbility extends ServiceExtensionAbility {
           return;
         }
         // 执行正常业务
-        console.log('startAbilityWithAccount succeed');
+        console.info('startAbilityWithAccount succeed');
       });
     } catch (paramError) {
       // 处理入参错误异常
@@ -566,7 +566,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.startAbilityWithAccount(want, accountId, options)
         .then((data: void) => {
           // 执行正常业务
-          console.log('startAbilityWithAccount succeed');
+          console.info('startAbilityWithAccount succeed');
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
@@ -641,7 +641,7 @@ class EntryAbility extends ServiceExtensionAbility {
           return;
         }
         // 执行正常业务
-        console.log('startServiceExtensionAbility succeed');
+        console.info('startServiceExtensionAbility succeed');
       });
     } catch (paramError) {
       // 处理入参错误异常
@@ -713,7 +713,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.startServiceExtensionAbility(want)
         .then((data) => {
           // 执行正常业务
-          console.log('startServiceExtensionAbility succeed');
+          console.info('startServiceExtensionAbility succeed');
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
@@ -797,7 +797,7 @@ class EntryAbility extends ServiceExtensionAbility {
           return;
         }
         // 执行正常业务
-        console.log('startServiceExtensionAbilityWithAccount succeed');
+        console.info('startServiceExtensionAbilityWithAccount succeed');
       });
     } catch (paramError) {
       // 处理入参错误异常
@@ -878,7 +878,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.startServiceExtensionAbilityWithAccount(want, accountId)
         .then((data: void) => {
           // 执行正常业务
-          console.log('startServiceExtensionAbilityWithAccount succeed');
+          console.info('startServiceExtensionAbilityWithAccount succeed');
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
@@ -964,7 +964,7 @@ class EntryAbility extends ServiceExtensionAbility {
       if (err && err.code != 0) {
         console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
       } else {
-        console.log('startAbilityAsCaller success.');
+        console.info('startAbilityAsCaller success.');
       }
     })
   }
@@ -1046,7 +1046,7 @@ class EntryAbility extends ServiceExtensionAbility {
       if (err && err.code != 0) {
         console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
       } else {
-        console.log('startAbilityAsCaller success.');
+        console.info('startAbilityAsCaller success.');
       }
     })
   }
@@ -1134,7 +1134,7 @@ class EntryAbility extends ServiceExtensionAbility {
     // 使用启动方的Caller身份信息启动新Ability
     this.context.startAbilityAsCaller(localWant, option)
       .then(() => {
-        console.log('startAbilityAsCaller success.');
+        console.info('startAbilityAsCaller success.');
       })
       .catch((err: BusinessError) => {
         console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
@@ -1200,7 +1200,7 @@ class EntryAbility extends ServiceExtensionAbility {
           return;
         }
         // 执行正常业务
-        console.log('stopServiceExtensionAbility succeed');
+        console.info('stopServiceExtensionAbility succeed');
       });
     } catch (paramError) {
       // 处理入参错误异常
@@ -1268,7 +1268,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.stopServiceExtensionAbility(want)
         .then(() => {
           // 执行正常业务
-          console.log('stopServiceExtensionAbility succeed');
+          console.info('stopServiceExtensionAbility succeed');
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
@@ -1347,7 +1347,7 @@ class EntryAbility extends ServiceExtensionAbility {
           return;
         }
         // 执行正常业务
-        console.log('stopServiceExtensionAbilityWithAccount succeed');
+        console.info('stopServiceExtensionAbilityWithAccount succeed');
       });
     } catch (paramError) {
       // 处理入参错误异常
@@ -1423,7 +1423,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
         .then(() => {
           // 执行正常业务
-          console.log('stopServiceExtensionAbilityWithAccount succeed');
+          console.info('stopServiceExtensionAbilityWithAccount succeed');
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
@@ -1479,7 +1479,7 @@ class EntryAbility extends ServiceExtensionAbility {
         return;
       }
       // 执行正常业务
-      console.log('terminateSelf succeed');
+      console.info('terminateSelf succeed');
     });
   }
 }
@@ -1521,7 +1521,7 @@ class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
     this.context.terminateSelf().then(() => {
       // 执行正常业务
-      console.log('terminateSelf succeed');
+      console.info('terminateSelf succeed');
     }).catch((error: BusinessError) => {
       // 处理业务逻辑错误
       console.error(`terminateSelf failed, error.code: ${error.code}, error.message: ${error.message}`);
@@ -1594,10 +1594,10 @@ class EntryAbility extends ServiceExtensionAbility {
     let options: common.ConnectOptions = {
       onConnect(elementName, remote) {
         commRemote = remote;
-        console.log('----------- onConnect -----------');
+        console.info('----------- onConnect -----------');
       },
       onDisconnect(elementName) {
-        console.log('----------- onDisconnect -----------');
+        console.info('----------- onDisconnect -----------');
       },
       onFailed(code) {
         console.error('----------- onFailed -----------');
@@ -1688,13 +1688,13 @@ class EntryAbility extends ServiceExtensionAbility {
     let options: common.ConnectOptions = {
       onConnect(elementName, remote) {
         commRemote = remote;
-        console.log('----------- onConnect -----------');
+        console.info('----------- onConnect -----------');
       },
       onDisconnect(elementName) {
-        console.log('----------- onDisconnect -----------');
+        console.info('----------- onDisconnect -----------');
       },
       onFailed(code) {
-        console.log('----------- onFailed -----------');
+        console.info('----------- onFailed -----------');
       }
     };
     let connection: number;
@@ -1758,7 +1758,7 @@ class EntryAbility extends ServiceExtensionAbility {
           return;
         }
         // 执行正常业务
-        console.log('disconnectServiceExtensionAbility succeed');
+        console.info('disconnectServiceExtensionAbility succeed');
       });
     } catch (paramError) {
       commRemote = null;
@@ -1819,7 +1819,7 @@ class EntryAbility extends ServiceExtensionAbility {
         .then(() => {
           commRemote = null;
           // 执行正常业务
-          console.log('disconnectServiceExtensionAbility succeed');
+          console.info('disconnectServiceExtensionAbility succeed');
         })
         .catch((error: BusinessError) => {
           commRemote = null;
@@ -1907,7 +1907,7 @@ class EntryAbility extends ServiceExtensionAbility {
         .then((obj: Caller) => {
           // 执行正常业务
           caller = obj;
-          console.log('startAbilityByCall succeed');
+          console.info('startAbilityByCall succeed');
         }).catch((error: BusinessError) => {
         // 处理业务逻辑错误
         console.error(`startAbilityByCall failed, error.code: ${error.code}, error.message: ${error.message}`);
@@ -1945,7 +1945,7 @@ class EntryAbility extends ServiceExtensionAbility {
         .then((obj: Caller) => {
           // 执行正常业务
           caller = obj;
-          console.log('startAbilityByCall succeed');
+          console.info('startAbilityByCall succeed');
         }).catch((error: BusinessError) => {
         // 处理业务逻辑错误
         console.error(`startAbilityByCall failed, error.code: ${error.code}, error.message: ${error.message}`);
@@ -2297,7 +2297,7 @@ class EntryAbility extends ServiceExtensionAbility {
         .then((obj: Caller) => {
           // 执行正常业务
           caller = obj;
-          console.log('startAbilityByCallWithAccount succeed');
+          console.info('startAbilityByCallWithAccount succeed');
         }).catch((error: BusinessError) => {
         // 处理业务逻辑错误
         console.error(`startAbilityByCallWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);

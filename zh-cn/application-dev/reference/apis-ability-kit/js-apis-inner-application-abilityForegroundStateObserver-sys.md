@@ -38,7 +38,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: abilityManager.AbilityForegroundStateObserver = {
   onAbilityStateChanged(abilityStateData) {
-    console.log(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+    console.info(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
   },
 };
 try {

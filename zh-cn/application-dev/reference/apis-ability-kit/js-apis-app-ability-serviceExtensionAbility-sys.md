@@ -56,7 +56,7 @@ import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
 
 class ServiceExt extends ServiceExtensionAbility {
   onCreate(want: Want) {
-    console.log(`onCreate, want: ${want.abilityName}`);
+    console.info(`onCreate, want: ${want.abilityName}`);
   }
 }
 ```
@@ -79,7 +79,7 @@ import { ServiceExtensionAbility } from '@kit.AbilityKit';
 
 class ServiceExt extends ServiceExtensionAbility {
   onDestroy() {
-    console.log('onDestroy');
+    console.info('onDestroy');
   }
 }
 ```
@@ -109,7 +109,7 @@ import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
 
 class ServiceExt extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
-    console.log('onRequest, want: ${want.abilityName}');
+    console.info('onRequest, want: ${want.abilityName}');
   }
 }
 ```
@@ -152,7 +152,7 @@ class StubTest extends rpc.RemoteObject{
 }
 class ServiceExt extends ServiceExtensionAbility {
   onConnect(want: Want) {
-    console.log('onConnect , want: ${want.abilityName}');
+    console.info('onConnect , want: ${want.abilityName}');
     return new StubTest('test');
   }
 }
@@ -177,7 +177,7 @@ async function getDescriptor() {
 }
 class ServiceExt extends ServiceExtensionAbility {
   async onConnect(want: Want) {
-    console.log(`onConnect , want: ${want.abilityName}`);
+    console.info(`onConnect , want: ${want.abilityName}`);
     let descriptor = await getDescriptor();
     return new StubTest(descriptor);
   }
@@ -213,7 +213,7 @@ import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
 
 class ServiceExt extends ServiceExtensionAbility {
   onDisconnect(want: Want) {
-    console.log('onDisconnect, want: ${want.abilityName}');
+    console.info('onDisconnect, want: ${want.abilityName}');
   }
 }
 ```
@@ -225,7 +225,7 @@ import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
 
 class ServiceExt extends ServiceExtensionAbility {
   async onDisconnect(want: Want) {
-    console.log('onDisconnect, want: ${want.abilityName}');
+    console.info('onDisconnect, want: ${want.abilityName}');
     // 调用异步函数...
   }
 }
@@ -254,7 +254,7 @@ import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
 
 class ServiceExt extends ServiceExtensionAbility {
   onReconnect(want: Want) {
-    console.log('onReconnect, want: ${want.abilityName}');
+    console.info('onReconnect, want: ${want.abilityName}');
   }
 }
 ```
@@ -282,7 +282,7 @@ import { ServiceExtensionAbility, Configuration } from '@kit.AbilityKit';
 
 class ServiceExt extends ServiceExtensionAbility {
   onConfigurationUpdate(newConfig: Configuration) {
-    console.log(`onConfigurationUpdate, config: ${JSON.stringify(newConfig)}`);
+    console.info(`onConfigurationUpdate, config: ${JSON.stringify(newConfig)}`);
   }
 }
 ```
@@ -316,7 +316,7 @@ import { ServiceExtensionAbility } from '@kit.AbilityKit';
 
 class ServiceExt extends ServiceExtensionAbility {
   onDump(params: Array<string>) {
-    console.log(`dump, params: ${JSON.stringify(params)}`);
+    console.info(`dump, params: ${JSON.stringify(params)}`);
     return ['params'];
   }
 }
