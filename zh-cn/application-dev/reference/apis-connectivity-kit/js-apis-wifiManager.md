@@ -470,13 +470,13 @@ WLAN配置信息。
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
 | ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| bssidType<sup>10+</sup> | [DeviceAddressType](#deviceaddresstype10) | 是 | 否 | 热点的BSSID类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| bssid | string | 是 | 是 | 热点的BSSID，例如：00:11:22:33:44:55。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| bssidType<sup>10+</sup> | [DeviceAddressType](#deviceaddresstype10) | 是 | 是 | 热点的BSSID类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preSharedKey | string | 是 | 否 | 热点的密钥，最大长度为64字节。<br>当securityType为WIFI_SEC_TYPE_OPEN时该字段需为空串，其他加密类型不能为空串。<br>当securityType为WIFI_SEC_TYPE_WEP时，该字段长度只允许为5、10、13、26、16和32字节其中之一，并且当字段长度为偶数时，该字段必须为纯十六进制数字构成。<br>当securityType为WIFI_SEC_TYPE_SAE时，该字段最小长度为1字节。<br>当securityType为WIFI_SEC_TYPE_PSK时，该字段最小长度为8字节。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| isHiddenSsid | boolean | 是 | 否 | 是否是隐藏网络。true:是隐藏网络，false:不是隐藏网络。 |
+| isHiddenSsid | boolean | 是 | 是 | 是否是隐藏网络。true:是隐藏网络，false:不是隐藏网络。 |
 | securityType | [WifiSecurityType](#wifisecuritytype9)| 是 | 否 | 加密类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| eapConfig<sup>10+</sup> | [WifiEapConfig](#wifieapconfig10) | 是 | 否 | 可扩展身份验证协议配置。只有securityType为WIFI_SEC_TYPE_EAP时需要填写。 |
-| wapiConfig<sup>12+</sup> | [WifiWapiConfig](#wifiwapiconfig12) | 是 | 否 | WAPI身份验证协议配置。只有securityType为WIFI_SEC_TYPE_WAPI_CERT或WIFI_SEC_TYPE_WAPI_PSK时需要填写。 |
+| eapConfig<sup>10+</sup> | [WifiEapConfig](#wifieapconfig10) | 是 | 是 | 可扩展身份验证协议配置。只有securityType为WIFI_SEC_TYPE_EAP时需要填写。 |
+| wapiConfig<sup>12+</sup> | [WifiWapiConfig](#wifiwapiconfig12) | 是 | 是 | WAPI身份验证协议配置。只有securityType为WIFI_SEC_TYPE_WAPI_CERT或WIFI_SEC_TYPE_WAPI_PSK时需要填写。 |
 
 ## WifiEapConfig<sup>10+</sup>
 
@@ -494,8 +494,8 @@ WLAN配置信息。
 | caCertAlias | string | 是 | 否 | CA 证书别名。 |
 | caPath | string | 是 | 否 | CA 证书路径。 |
 | clientCertAlias | string | 是 | 否 | 客户端证书别名。 |
-| certEntry | Uint8Array | 是 | 是 | CA 证书内容。当eapMethod为EAP_TLS时，如果该字段为空，则clientCertAlias不能为空。 |
-| certPassword | string | 是 | 是 | CA证书密码，最大长度为128字节。 |
+| certEntry | Uint8Array | 是 | 否 | CA 证书内容。当eapMethod为EAP_TLS时，如果该字段为空，则clientCertAlias不能为空。 |
+| certPassword | string | 是 | 否 | CA证书密码，最大长度为128字节。 |
 | altSubjectMatch | string | 是 | 否 | 替代主题匹配。 |
 | domainSuffixMatch | string | 是 | 否 | 域后缀匹配。 |
 | realm | string | 是 | 否 | 通行证凭证的领域。 |
@@ -511,9 +511,9 @@ WAPI身份验证协议配置。
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| wapiPskType | [WapiPskType](#wapipsktype12)| 是 | 是 | 加密类型。 |
-| wapiAsCert | string | 否 | 是 | As证书。 |
-| wapiUserCert | string | 否 | 是 | 用户证书。 |
+| wapiPskType | [WapiPskType](#wapipsktype12)| 是 | 否 | 加密类型。 |
+| wapiAsCert | string | 否 | 否 | As证书。 |
+| wapiUserCert | string | 否 | 否 | 用户证书。 |
 
 ## WapiPskType<sup>12+</sup>
 
@@ -1296,7 +1296,7 @@ getLinkedInfoSync(): WifiLinkedInfo;
 | wifiStandard<sup>10+</sup> | [WifiStandard](#wifistandard10) | 是 | 否 | 当前连接热点的Wi-Fi标准。 |
 | supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | 是 | 否 | 热点支持的最高Wi-Fi级别。 |
 | isHiLinkNetwork<sup>12+</sup> | boolean | 是 | 否| 热点是否支持hilink，true:支持，&nbsp;false:不支持。 |
-| wifiLinkType<sup>18+</sup> | [WifiLinkType](#wifilinktype18) | 是 | 否|  Wi-Fi7连接类型。  |
+| wifiLinkType<sup>18+</sup> | [WifiLinkType](#wifilinktype18) | 是 | 是 |  Wi-Fi7连接类型。  |
 
 
 ## WifiLinkType<sup>18+</sup>
@@ -1574,8 +1574,8 @@ Ipv6信息。
 | linkIpv6Address | string | 是 | 否 | 链路Ipv6地址。 |
 | globalIpv6Address | string | 是 | 否 | 全局Ipv6地址。 |
 | randomGlobalIpv6Address | string | 是 | 否 | 随机全局Ipv6地址。 预留字段，暂不支持。|
-| uniqueIpv6Address<sup>12+</sup> | string | 是 | 否 | 唯一本地Ipv6地址。 |
-| randomUniqueIpv6Address<sup>12+</sup> | string | 是 | 否 | 随机唯一本地Ipv6地址。 |
+| uniqueIpv6Address<sup>12+</sup> | string | 是 | 是 | 唯一本地Ipv6地址。 |
+| randomUniqueIpv6Address<sup>12+</sup> | string | 是 | 是 | 随机唯一本地Ipv6地址。 |
 | gateway | string | 是 | 否 | 网关。 |
 | netmask | string | 是 | 否 | 网络掩码。 |
 | primaryDNS | string | 是 | 否 | 主DNS服务器Ipv6地址。 |
@@ -2006,7 +2006,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | -------- | -------- | -------- | -------- | -------- |
 | deviceName | string | 是 | 否 | 设备名称。 |
 | deviceAddress | string | 是 | 否 | 设备MAC地址。 |
-| deviceAddressType<sup>10+</sup> | [DeviceAddressType](#deviceaddresstype10) | 是 | 否 | 设备MAC地址类型。 |
+| deviceAddressType<sup>10+</sup> | [DeviceAddressType](#deviceaddresstype10) | 是 | 是 | 设备MAC地址类型。 |
 | primaryDeviceType | string | 是 | 否 | 主设备类型。 |
 | deviceStatus | [P2pDeviceStatus](#p2pdevicestatus9) | 是 | 否 | 设备状态。 |
 | groupCapabilities | number | 是 | 否 | 群组能力。 |
@@ -2155,7 +2155,7 @@ createGroup(config: WifiP2PConfig): void
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | deviceAddress | string | 是 | 否 | 设备地址。 |
-| deviceAddressType<sup>10+</sup>| [DeviceAddressType](#deviceaddresstype10) | 是 | 否 | 设备地址类型。 |
+| deviceAddressType<sup>10+</sup>| [DeviceAddressType](#deviceaddresstype10) | 是 | 是 | 设备地址类型。 |
 | netId | number | 是 | 否 | 网络ID。创建群组时-1表示创建临时组，-2表示创建永久组。 |
 | passphrase | string | 是 | 否 | 群组密钥。 |
 | groupName | string | 是 | 否 | 群组名称。 |
@@ -2883,7 +2883,7 @@ on(type: 'p2pStateChange', callback: Callback&lt;number&gt;): void
 | type | string | 是 | 固定填"p2pStateChange"字符串。 |
 | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数。 |
 
-** P2P状态改变事件的枚举：**
+**P2P状态改变事件的枚举：**
 
 | **枚举值** | **说明** |
 | -------- | -------- |
