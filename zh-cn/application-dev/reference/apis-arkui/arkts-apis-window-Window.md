@@ -1205,7 +1205,9 @@ try {
 
 getImmersiveModeEnabledState(): boolean
 
-查询当前窗口是否通过[setImmersiveModeEnabledState()](#setimmersivemodeenabledstate12)设置开启沉浸式布局。
+查询当前窗口是否开启沉浸式布局。
+
+返回值与[setImmersiveModeEnabledState()](#setimmersivemodeenabledstate12)设置一致，若未调用setImmersiveModeEnabledState()则默认返回false。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -1214,7 +1216,7 @@ getImmersiveModeEnabledState(): boolean
 **返回值：**
 | 类型     | 说明                                                                                 |
 | ------- | ------------------------------------------------------------------------------------ |
-| boolean | 是否通过[setImmersiveModeEnabledState()](#setimmersivemodeenabledstate12)设置开启沉浸式布局。</br>true表示通过setImmersiveModeEnabledState()设置开启沉浸式布局；</br>false表示通过setImmersiveModeEnabledState()设置关闭沉浸式布局。|
+| boolean | 是否设置开启沉浸式布局。</br>true表示开启沉浸式布局，false表示关闭沉浸式布局。|
 
 **错误码：**
 
