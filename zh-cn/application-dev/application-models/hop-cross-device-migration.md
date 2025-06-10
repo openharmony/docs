@@ -1009,7 +1009,7 @@ export default class MigrationAbility extends UIAbility {
     return wrapper;
   }
 
-  async onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult {
+  async onContinue(wantParam: Record<string, Object>): Promise<AbilityConstant.OnContinueResult> {
     // ...
 
     // 创建了多个资产对象
@@ -1042,6 +1042,7 @@ export default class MigrationAbility extends UIAbility {
     this.d_object = distributedDataObject.create(this.context, source);
 
     // ...
+    return AbilityConstant.OnContinueResult.AGREE;
   }
 }
 ```
