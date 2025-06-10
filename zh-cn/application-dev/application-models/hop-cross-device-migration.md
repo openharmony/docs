@@ -104,7 +104,7 @@
         // 兼容性校验
         if (targetVersion < versionThreshold) {
           // 建议在校验版本兼容性失败后，提示用户拒绝迁移的原因
-          promptAction.showToast({
+          promptAction.openToast({
               message: '目标端应用版本号过低，不支持接续，请您升级应用版本后再试',
               duration: 2000
           })
@@ -221,7 +221,7 @@
     @Entry
     @Component
     struct Page_MigrationAbilityFirst {
-      private context = getContext(this) as common.UIAbilityContext;
+      private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
         
       // ...
       onPageShow(){
@@ -243,7 +243,7 @@
     // Page_MigrationAbilityFirst.ets
     import { AbilityConstant, common } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { PromptAction } from '@kit.ArkUI';
+    import { promptAction } from '@kit.ArkUI';
     
     const TAG: string = '[MigrationAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -251,8 +251,7 @@
     @Entry
     @Component
     struct Page_MigrationAbilityFirst {
-      private context = this.getUIContext().getHostContext();
-      let promptAction: promptAction = uiContext.getPromptAction;
+      private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
       build() {
         Column() {
           //...
@@ -265,7 +264,7 @@
                 // 点击该按钮时，将应用设置为可迁移状态
                 this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
                   hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
-                  promptAction.showToast({
+                  promptAction.openToast({
                     message: 'Success'
                   });
                 });
