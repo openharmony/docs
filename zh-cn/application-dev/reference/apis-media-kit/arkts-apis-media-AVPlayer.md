@@ -88,7 +88,7 @@ avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason
       console.info('unknown state :' + state);
       break;
   }
-})
+});
 ```
 
 ## off('stateChange')<sup>9+</sup>
@@ -111,7 +111,7 @@ off(type: 'stateChange', callback?: OnAVPlayerStateChangeHandle): void
 **示例：**
 
 ```ts
-avPlayer.off('stateChange')
+avPlayer.off('stateChange');
 ```
 
 ## on('error')<sup>9+</sup>
@@ -166,9 +166,9 @@ on(type: 'error', callback: ErrorCallback): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.on('error', (error: BusinessError) => {
-  console.info('error happened,and error message is :' + error.message)
-  console.info('error happened,and error code is :' + error.code)
-})
+  console.info('error happened,and error message is :' + error.message);
+  console.info('error happened,and error code is :' + error.code);
+});
 ```
 
 ## off('error')<sup>9+</sup>
@@ -191,7 +191,7 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```ts
-avPlayer.off('error')
+avPlayer.off('error');
 ```
 
 ## setMediaSource<sup>12+</sup>
@@ -287,7 +287,7 @@ constructor(context: Context) {
 }
 
 let player = await media.createAVPlayer();
-let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.mp4')
+let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.mp4');
 player.fdSrc = fileDescriptor
 let playStrategy : media.PlaybackStrategy = {
   preferredWidth: 1,
@@ -373,11 +373,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.prepare((err: BusinessError) => {
   if (err) {
-    console.error('Failed to prepare,error message is :' + err.message)
+    console.error('Failed to prepare,error message is :' + err.message);
   } else {
     console.info('Succeeded in preparing');
   }
-})
+});
 ```
 
 ## prepare<sup>9+</sup>
@@ -415,8 +415,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avPlayer.prepare().then(() => {
   console.info('Succeeded in preparing');
 }, (err: BusinessError) => {
-  console.error('Failed to prepare,error message is :' + err.message)
-})
+  console.error('Failed to prepare,error message is :' + err.message);
+});
 ```
 
 ## setMediaMuted<sup>12+</sup>
@@ -458,10 +458,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.prepare().then(() => {
   console.info('Succeeded in preparing');
-  avPlayer.setMediaMuted(media.MediaType.MEDIA_TYPE_AUD, true)
+  avPlayer.setMediaMuted(media.MediaType.MEDIA_TYPE_AUD, true);
 }, (err: BusinessError) => {
-  console.error('Failed to prepare,error message is :' + err.message)
-})
+  console.error('Failed to prepare,error message is :' + err.message);
+});
 ```
 
 ## play<sup>9+</sup>
@@ -495,11 +495,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.play((err: BusinessError) => {
   if (err) {
-    console.error('Failed to play,error message is :' + err.message)
+    console.error('Failed to play,error message is :' + err.message);
   } else {
     console.info('Succeeded in playing');
   }
-})
+});
 ```
 
 ## play<sup>9+</sup>
@@ -534,8 +534,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avPlayer.play().then(() => {
   console.info('Succeeded in playing');
 }, (err: BusinessError) => {
-  console.error('Failed to play,error message is :' + err.message)
-})
+  console.error('Failed to play,error message is :' + err.message);
+});
 ```
 
 ## pause<sup>9+</sup>
@@ -569,11 +569,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.pause((err: BusinessError) => {
   if (err) {
-    console.error('Failed to pause,error message is :' + err.message)
+    console.error('Failed to pause,error message is :' + err.message);
   } else {
     console.info('Succeeded in pausing');
   }
-})
+});
 ```
 
 ## pause<sup>9+</sup>
@@ -608,8 +608,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avPlayer.pause().then(() => {
   console.info('Succeeded in pausing');
 }, (err: BusinessError) => {
-  console.error('Failed to pause,error message is :' + err.message)
-})
+  console.error('Failed to pause,error message is :' + err.message);
+});
 ```
 
 ## stop<sup>9+</sup>
@@ -643,11 +643,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.stop((err: BusinessError) => {
   if (err) {
-    console.error('Failed to stop,error message is :' + err.message)
+    console.error('Failed to stop,error message is :' + err.message);
   } else {
     console.info('Succeeded in stopping');
   }
-})
+});
 ```
 
 ## stop<sup>9+</sup>
@@ -682,8 +682,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avPlayer.stop().then(() => {
   console.info('Succeeded in stopping');
 }, (err: BusinessError) => {
-  console.error('Failed to stop,error message is :' + err.message)
-})
+  console.error('Failed to stop,error message is :' + err.message);
+});
 ```
 
 ## reset<sup>9+</sup>
@@ -717,11 +717,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.reset((err: BusinessError) => {
   if (err) {
-    console.error('Failed to reset,error message is :' + err.message)
+    console.error('Failed to reset,error message is :' + err.message);
   } else {
     console.info('Succeeded in resetting');
   }
-})
+});
 ```
 
 ## reset<sup>9+</sup>
@@ -756,8 +756,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avPlayer.reset().then(() => {
   console.info('Succeeded in resetting');
 }, (err: BusinessError) => {
-  console.error('Failed to reset,error message is :' + err.message)
-})
+  console.error('Failed to reset,error message is :' + err.message);
+});
 ```
 
 ## release<sup>9+</sup>
@@ -791,11 +791,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.release((err: BusinessError) => {
   if (err) {
-    console.error('Failed to release,error message is :' + err.message)
+    console.error('Failed to release,error message is :' + err.message);
   } else {
     console.info('Succeeded in releasing');
   }
-})
+});
 ```
 
 ## release<sup>9+</sup>
@@ -830,8 +830,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avPlayer.release().then(() => {
   console.info('Succeeded in releasing');
 }, (err: BusinessError) => {
-  console.error('Failed to release,error message is :' + err.message)
-})
+  console.error('Failed to release,error message is :' + err.message);
+});
 ```
 
 ## getTrackDescription<sup>9+</sup>
@@ -1013,12 +1013,12 @@ getPlaybackPosition(): number
 import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.prepare().then(() => {
-  console.info('Succeeded in preparing')
-  let playbackPosition: number = avPlayer.getPlaybackPosition()
-  console.info(`AVPlayer getPlaybackPosition== ${playbackPosition}`)
+  console.info('Succeeded in preparing');
+  let playbackPosition: number = avPlayer.getPlaybackPosition();
+  console.info(`AVPlayer getPlaybackPosition== ${playbackPosition}`);
 }, (err: BusinessError) => {
-  console.error('Failed to prepare,error message is :' + err.message)
-})
+  console.error('Failed to prepare,error message is :' + err.message);
+});
 ```
 
 ## selectTrack<sup>12+</sup>
@@ -1228,17 +1228,17 @@ seek(timeMs: number, mode?:SeekMode): void
 **示例：**
 
 ```ts
-let seekTime: number = 1000
-avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC)
+let seekTime: number = 1000;
+avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC);
 ```
 
 ```ts
 // SEEK_CONTINUOUS 可以结合Slider的onChange回调方法进行对应处理，当slideMode为Moving时，触发拖动过程的SeekContinuous。
-let slideMovingTime: number = 2000
-avPlayer.seek(slideMovingTime, media.SeekMode.SEEK_CONTINUOUS)
+let slideMovingTime: number = 2000;
+avPlayer.seek(slideMovingTime, media.SeekMode.SEEK_CONTINUOUS);
 
 // 当slideMode为End时，调用seek(-1, media.SeekMode.SEEK_CONTINUOUS)结束seek。
-avPlayer.seek(-1, media.SeekMode.SEEK_CONTINUOUS)
+avPlayer.seek(-1, media.SeekMode.SEEK_CONTINUOUS);
 ```
 
 ## isSeekContinuousSupported<sup>18+</sup>
@@ -1260,7 +1260,7 @@ isSeekContinuousSupported() : boolean
 **示例：**
 
 ```ts
-let isSupported = avPlayer.isSeekContinuousSupported()
+let isSupported = avPlayer.isSeekContinuousSupported();
 ```
 
 ## on('seekDone')<sup>9+</sup>
@@ -1284,8 +1284,8 @@ on(type: 'seekDone', callback: Callback\<number>): void
 
 ```ts
 avPlayer.on('seekDone', (seekDoneTime:number) => {
-  console.info('seekDone called,and seek time is:' + seekDoneTime)
-})
+  console.info('seekDone called,and seek time is:' + seekDoneTime);
+});
 ```
 
 ## off('seekDone')<sup>9+</sup>
@@ -1308,7 +1308,7 @@ off(type: 'seekDone', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
-avPlayer.off('seekDone')
+avPlayer.off('seekDone');
 ```
 
 ## setSpeed<sup>9+</sup>
@@ -1331,14 +1331,14 @@ setSpeed(speed: PlaybackSpeed): void
 **示例：**
 
 ```ts
-avPlayer.setSpeed(media.PlaybackSpeed.SPEED_FORWARD_2_00_X)
+avPlayer.setSpeed(media.PlaybackSpeed.SPEED_FORWARD_2_00_X);
 ```
 
 ## on('speedDone')<sup>9+</sup>
 
 on(type: 'speedDone', callback: Callback\<number>): void
 
-监听setSpeed生效的事件
+监听setSpeed生效的事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1355,8 +1355,8 @@ on(type: 'speedDone', callback: Callback\<number>): void
 
 ```ts
 avPlayer.on('speedDone', (speed:number) => {
-  console.info('speedDone called,and speed value is:' + speed)
-})
+  console.info('speedDone called,and speed value is:' + speed);
+});
 ```
 
 ## off('speedDone')<sup>9+</sup>
@@ -1377,18 +1377,18 @@ off(type: 'speedDone', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
-avPlayer.off('speedDone')
+avPlayer.off('speedDone');
 ```
-
 
 ## setPlaybackRate<sup>20+</sup>
 
 setPlaybackRate(rate: number): void
 
-设置倍速模式。只能在prepared/playing/paused/completed状态调用，取值范围是[0.125, 4.0]，可以通过[playbackRateDone](#onplaybackratedone20)事件确认是否生效。<br>
->**注意：**
+设置倍速模式。只能在prepared/playing/paused/completed状态调用，取值范围是[0.125, 4.0]，可以通过[playbackRateDone](#onplaybackratedone20)事件确认是否生效。
+
+> **注意：**
 >
->直播场景不支持setPlaybackRate。
+> 直播场景不支持setPlaybackRate。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1412,9 +1412,8 @@ setPlaybackRate(rate: number): void
 **示例：**
 
 ```ts
-avPlayer.setPlaybackRate(2.0)
+avPlayer.setPlaybackRate(2.0);
 ```
-
 
 ## on('playbackRateDone')<sup>20+</sup>
 
@@ -1437,8 +1436,8 @@ on(type: 'playbackRateDone', callback: OnPlaybackRateDone): void
 
 ```ts
 avPlayer.on('playbackRateDone', (rate:number) => {
-  console.info('playbackRateDone called,and rate value is:' + rate)
-})
+  console.info('playbackRateDone called,and rate value is:' + rate);
+});
 ```
 
 ## off('playbackRateDone')<sup>20+</sup>
@@ -1461,9 +1460,8 @@ off(type: 'playbackRateDone', callback?: OnPlaybackRateDone): void
 **示例：**
 
 ```ts
-avPlayer.off('playbackRateDone')
+avPlayer.off('playbackRateDone');
 ```
-
 
 ## setBitrate<sup>9+</sup>
 
@@ -1484,8 +1482,8 @@ setBitrate(bitrate: number): void
 **示例：**
 
 ```ts
-let bitrate: number = 96000
-avPlayer.setBitrate(bitrate)
+let bitrate: number = 96000;
+avPlayer.setBitrate(bitrate);
 ```
 
 ## on('bitrateDone')<sup>9+</sup>
@@ -1509,8 +1507,8 @@ on(type: 'bitrateDone', callback: Callback\<number>): void
 
 ```ts
 avPlayer.on('bitrateDone', (bitrate:number) => {
-  console.info('bitrateDone called,and bitrate value is:' + bitrate)
-})
+  console.info('bitrateDone called,and bitrate value is:' + bitrate);
+});
 ```
 
 ## off('bitrateDone')<sup>9+</sup>
@@ -1531,7 +1529,7 @@ off(type: 'bitrateDone', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
-avPlayer.off('bitrateDone')
+avPlayer.off('bitrateDone');
 ```
 
 ## on('availableBitrates')<sup>9+</sup>
@@ -1555,8 +1553,8 @@ on(type: 'availableBitrates', callback: Callback\<Array\<number>>): void
 
 ```ts
 avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
-  console.info('availableBitrates called,and availableBitrates length is:' + bitrates.length)
-})
+  console.info('availableBitrates called,and availableBitrates length is:' + bitrates.length);
+});
 ```
 
 ## off('availableBitrates')<sup>9+</sup>
@@ -1579,7 +1577,7 @@ off(type: 'availableBitrates', callback?: Callback\<Array\<number>>): void
 **示例：**
 
 ```ts
-avPlayer.off('availableBitrates')
+avPlayer.off('availableBitrates');
 ```
 
 
@@ -1610,7 +1608,7 @@ avPlayer.on('mediaKeySystemInfoUpdate', (mediaKeySystemInfo: Array<drm.MediaKeyS
       console.info('mediaKeySystemInfoUpdate happened uuid: ' + mediaKeySystemInfo[i]["uuid"]);
       console.info('mediaKeySystemInfoUpdate happened pssh: ' + mediaKeySystemInfo[i]["pssh"]);
     }
-})
+});
 ```
 
 ## off('mediaKeySystemInfoUpdate')<sup>11+</sup>
@@ -1633,7 +1631,7 @@ off(type: 'mediaKeySystemInfoUpdate', callback?: Callback\<Array\<drm.MediaKeySy
 **示例：**
 
 ```ts
-avPlayer.off('mediaKeySystemInfoUpdate')
+avPlayer.off('mediaKeySystemInfoUpdate');
 ```
 
 ## setVolume<sup>9+</sup>
@@ -1655,8 +1653,8 @@ setVolume(volume: number): void
 **示例：**
 
 ```ts
-let volume: number = 1.0
-avPlayer.setVolume(volume)
+let volume: number = 1.0;
+avPlayer.setVolume(volume);
 ```
 
 ## on('volumeChange')<sup>9+</sup>
@@ -1680,8 +1678,8 @@ on(type: 'volumeChange', callback: Callback\<number>): void
 
 ```ts
 avPlayer.on('volumeChange', (vol: number) => {
-  console.info('volumeChange called,and new volume is :' + vol)
-})
+  console.info('volumeChange called,and new volume is :' + vol);
+});
 ```
 
 ## off('volumeChange')<sup>9+</sup>
@@ -1702,7 +1700,7 @@ off(type: 'volumeChange', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
-avPlayer.off('volumeChange')
+avPlayer.off('volumeChange');
 ```
 
 ## on('endOfStream')<sup>9+</sup>
@@ -1726,8 +1724,8 @@ on(type: 'endOfStream', callback: Callback\<void>): void
 
 ```ts
 avPlayer.on('endOfStream', () => {
-  console.info('endOfStream called')
-})
+  console.info('endOfStream called');
+});
 ```
 
 ## off('endOfStream')<sup>9+</sup>
@@ -1748,7 +1746,7 @@ off(type: 'endOfStream', callback?: Callback\<void>): void
 **示例：**
 
 ```ts
-avPlayer.off('endOfStream')
+avPlayer.off('endOfStream');
 ```
 
 ## on('timeUpdate')<sup>9+</sup>
@@ -1774,8 +1772,8 @@ on(type: 'timeUpdate', callback: Callback\<number>): void
 
 ```ts
 avPlayer.on('timeUpdate', (time:number) => {
-  console.info('timeUpdate called,and new time is :' + time)
-})
+  console.info('timeUpdate called,and new time is :' + time);
+});
 ```
 
 ## off('timeUpdate')<sup>9+</sup>
@@ -1798,7 +1796,7 @@ off(type: 'timeUpdate', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
-avPlayer.off('timeUpdate')
+avPlayer.off('timeUpdate');
 ```
 
 ## on('durationUpdate')<sup>9+</sup>
@@ -1824,8 +1822,8 @@ on(type: 'durationUpdate', callback: Callback\<number>): void
 
 ```ts
 avPlayer.on('durationUpdate', (duration: number) => {
-  console.info('durationUpdate called,new duration is :' + duration)
-})
+  console.info('durationUpdate called,new duration is :' + duration);
+});
 ```
 
 ## off('durationUpdate')<sup>9+</sup>
@@ -1846,7 +1844,7 @@ off(type: 'durationUpdate', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
-avPlayer.off('durationUpdate')
+avPlayer.off('durationUpdate');
 ```
 
 ## on('bufferingUpdate')<sup>9+</sup>
@@ -1870,8 +1868,8 @@ on(type: 'bufferingUpdate', callback: OnBufferingUpdateHandler): void
 
 ```ts
 avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
-  console.info('bufferingUpdate called,and infoType value is:' + infoType + ', value is :' + value)
-})
+  console.info('bufferingUpdate called,and infoType value is:' + infoType + ', value is :' + value);
+});
 ```
 
 ## off('bufferingUpdate')<sup>9+</sup>
@@ -1894,7 +1892,7 @@ off(type: 'bufferingUpdate', callback?: OnBufferingUpdateHandler): void
 **示例：**
 
 ```ts
-avPlayer.off('bufferingUpdate')
+avPlayer.off('bufferingUpdate');
 ```
 
 ## on('startRenderFrame')<sup>9+</sup>
@@ -1918,8 +1916,8 @@ on(type: 'startRenderFrame', callback: Callback\<void>): void
 
 ```ts
 avPlayer.on('startRenderFrame', () => {
-  console.info('startRenderFrame called')
-})
+  console.info('startRenderFrame called');
+});
 ```
 
 ## off('startRenderFrame')<sup>9+</sup>
@@ -1940,7 +1938,7 @@ off(type: 'startRenderFrame', callback?: Callback\<void>): void
 **示例：**
 
 ```ts
-avPlayer.off('startRenderFrame')
+avPlayer.off('startRenderFrame');
 ```
 
 ## on('videoSizeChange')<sup>9+</sup>
@@ -1964,8 +1962,8 @@ on(type: 'videoSizeChange', callback: OnVideoSizeChangeHandler): void
 
 ```ts
 avPlayer.on('videoSizeChange', (width: number, height: number) => {
-  console.info('videoSizeChange called,and width is:' + width + ', height is :' + height)
-})
+  console.info('videoSizeChange called,and width is:' + width + ', height is :' + height);
+});
 ```
 
 ## off('videoSizeChange')<sup>9+</sup>
@@ -1988,7 +1986,7 @@ off(type: 'videoSizeChange', callback?: OnVideoSizeChangeHandler): void
 **示例：**
 
 ```ts
-avPlayer.off('videoSizeChange')
+avPlayer.off('videoSizeChange');
 ```
 
 ## on('audioInterrupt')<sup>9+</sup>
@@ -2014,8 +2012,8 @@ on(type: 'audioInterrupt', callback: Callback\<audio.InterruptEvent>): void
 import { audio } from '@kit.AudioKit';
 
 avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
-  console.info('audioInterrupt called,and InterruptEvent info is:' + info)
-})
+  console.info('audioInterrupt called,and InterruptEvent info is:' + info);
+});
 ```
 
 ## off('audioInterrupt')<sup>9+</sup>
@@ -2038,7 +2036,7 @@ off(type: 'audioInterrupt', callback?: Callback<audio.InterruptEvent>): void
 **示例：**
 
 ```ts
-avPlayer.off('audioInterrupt')
+avPlayer.off('audioInterrupt');
 ```
 
 ## on('audioOutputDeviceChangeWithInfo')<sup>11+</sup>
@@ -2057,7 +2055,7 @@ on(type: 'audioOutputDeviceChangeWithInfo', callback: Callback\<audio.AudioStrea
 
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChangeWithInfo'。 |
+| type     | string                     | 是   | 事件回调类型，支持的事件为：'audioOutputDeviceChangeWithInfo'。 |
 | callback | Callback\<[audio.AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | 是   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
 
 **错误码：**
@@ -2090,7 +2088,7 @@ off(type: 'audioOutputDeviceChangeWithInfo', callback?: Callback\<audio.AudioStr
 
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChange'。 |
+| type     | string                     | 是   | 事件回调类型，支持的事件为：'audioOutputDeviceChangeWithInfo'。 |
 | callback | Callback\<[audio.AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | 否   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
 
 **错误码：**
@@ -2148,7 +2146,7 @@ constructor(context: Context) {
 }
 let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.srt');
 
-avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length)
+avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length);
 ```
 
 ## addSubtitleFromUrl<sup>12+</sup>
@@ -2184,10 +2182,10 @@ addSubtitleFromUrl(url: string): Promise\<void>
 
 <!--code_no_check-->
 ```ts
-let fdUrl:string = 'http://xxx.xxx.xxx/xx/index.srt'
+let fdUrl:string = 'http://xxx.xxx.xxx/xx/index.srt';
 
-let avPlayer: media.AVPlayer = await media.createAVPlayer()
-avPlayer.addSubtitleFromUrl(fdUrl)
+let avPlayer: media.AVPlayer = await media.createAVPlayer();
+avPlayer.addSubtitleFromUrl(fdUrl);
 ```
 
 ## on('subtitleUpdate')<sup>12+</sup>
@@ -2215,11 +2213,11 @@ avPlayer.on('subtitleUpdate', async (info: media.SubtitleInfo) => {
     let text = (!info.text) ? '' : info.text
     let startTime = (!info.startTime) ? 0 : info.startTime
     let duration = (!info.duration) ? 0 : info.duration
-    console.info('subtitleUpdate info: text=' + text + ' startTime=' + startTime +' duration=' + duration)
+    console.info('subtitleUpdate info: text=' + text + ' startTime=' + startTime +' duration=' + duration);
   } else {
-    console.info('subtitleUpdate info is null')
+    console.info('subtitleUpdate info is null');
   }
-})
+});
 ```
 
 ## off('subtitleUpdate')<sup>12+</sup>
@@ -2242,7 +2240,7 @@ off(type: 'subtitleUpdate', callback?: Callback\<SubtitleInfo>): void
 **示例：**
 
 ```ts
-avPlayer.off('subtitleUpdate')
+avPlayer.off('subtitleUpdate');
 ```
 
 ## on('trackChange')<sup>12+</sup>
@@ -2266,8 +2264,8 @@ on(type: 'trackChange', callback: OnTrackChangeHandler): void
 
 ```ts
 avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
-  console.info('trackChange info: index=' + index + ' isSelect=' + isSelect)
-})
+  console.info('trackChange info: index=' + index + ' isSelect=' + isSelect);
+});
 ```
 
 ## off('trackChange')<sup>12+</sup>
@@ -2290,7 +2288,7 @@ off(type: 'trackChange', callback?: OnTrackChangeHandler): void
 **示例：**
 
 ```ts
-avPlayer.off('trackChange')
+avPlayer.off('trackChange');
 ```
 
 ## on('trackInfoUpdate')<sup>12+</sup>
@@ -2318,12 +2316,12 @@ avPlayer.on('trackInfoUpdate', (info: Array<media.MediaDescription>) => {
     for (let i = 0; i < info.length; i++) {
       let propertyIndex: Object = info[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
       let propertyType: Object = info[i][media.MediaDescriptionKey.MD_KEY_TRACK_TYPE];
-      console.info('track info: index=' + propertyIndex + ' tracktype=' + propertyType)
+      console.info('track info: index=' + propertyIndex + ' tracktype=' + propertyType);
     }
   } else {
-    console.info('track info is null')
+    console.info('track info is null');
   }
-})
+});
 ```
 
 ## off('trackInfoUpdate')<sup>12+</sup>
@@ -2346,7 +2344,7 @@ off(type: 'trackInfoUpdate', callback?: Callback\<Array\<MediaDescription>>): vo
 **示例：**
 
 ```ts
-avPlayer.off('trackInfoUpdate')
+avPlayer.off('trackInfoUpdate');
 ```
 
 ## on('amplitudeUpdate')<sup>13+</sup>
@@ -2368,8 +2366,8 @@ on(type: 'amplitudeUpdate', callback: Callback\<Array\<number>>): void
 
 ```ts
 avPlayer.on('amplitudeUpdate', (value: Array<number>) => {
-  console.info('amplitudeUpdate called,and amplitudeUpdate = ${value}')
-})
+  console.info('amplitudeUpdate called,and amplitudeUpdate = ${value}');
+});
 ```
 
 ## off('amplitudeUpdate')<sup>13+</sup>
@@ -2390,7 +2388,7 @@ off(type: 'amplitudeUpdate', callback?: Callback\<Array\<number>>): void
 **示例：**
 
 ```ts
-avPlayer.off('amplitudeUpdate')
+avPlayer.off('amplitudeUpdate');
 ```
 
 ## on('seiMessageReceived')<sup>18+</sup>
@@ -2418,16 +2416,16 @@ import util from '@ohos.util';
 
 avPlayer.on('seiMessageReceived', [5], (messages: Array<media.SeiMessage>, playbackPosition?: number) =>
 {
-  console.info('seiMessageReceived playbackPosition ' + playbackPosition)
+  console.info('seiMessageReceived playbackPosition ' + playbackPosition);
 
   for (let key = 0; key < messages.length; key++) {
-    console.info('seiMessageReceived messages payloadType ' + messages[key].payloadType + ' payload size ' + messages[key].payload.byteLength)
+    console.info('seiMessageReceived messages payloadType ' + messages[key].payloadType + ' payload size ' + messages[key].payload.byteLength);
 
-    let textDecoder = util.TextDecoder.create("utf-8",{ignoreBOM: true})
-    let ab = messages[key]?.payload?.slice(16, messages[key].payload.byteLength)
-    let result: Uint8Array = new Uint8Array(ab)
-    let retStr: string = textDecoder.decodeToString(result)
-    console.info('seiMessageReceived messages payload ' + retStr)
+    let textDecoder = util.TextDecoder.create("utf-8",{ignoreBOM: true});
+    let ab = messages[key]?.payload?.slice(16, messages[key].payload.byteLength);
+    let result: Uint8Array = new Uint8Array(ab);
+    let retStr: string = textDecoder.decodeToString(result);
+    console.info('seiMessageReceived messages payload ' + retStr);
   }
 });
 ```
@@ -2453,7 +2451,7 @@ off(type: 'seiMessageReceived', payloadTypes?: Array\<number>, callback?: OnSeiM
 **示例：**
 
 ```ts
-avPlayer.off('seiMessageReceived')
+avPlayer.off('seiMessageReceived');
 ```
 
 ## setSuperResolution<sup>18+</sup>
@@ -2493,7 +2491,7 @@ setSuperResolution(enabled: boolean) : Promise\<void>
 **示例：**
 
 ```ts
-avPlayer.setSuperResolution(true)
+avPlayer.setSuperResolution(true);
 ```
 
 ## setVideoWindowSize<sup>18+</sup>
@@ -2535,7 +2533,7 @@ setVideoWindowSize(width: number, height: number) : Promise\<void>
 **示例：**
 
 ```ts
-avPlayer.setVideoWindowSize(1920, 1080)
+avPlayer.setVideoWindowSize(1920, 1080);
 ```
 
 ## on('superResolutionChanged')<sup>18+</sup>
@@ -2559,8 +2557,8 @@ on(type:'superResolutionChanged', callback: OnSuperResolutionChanged): void
 
 ```ts
 avPlayer.on('superResolutionChanged', (enabled: boolean) => {
-  console.info('superResolutionChanged called, and enabled is:' + enabled)
-})
+  console.info('superResolutionChanged called, and enabled is:' + enabled);
+});
 ```
 
 ## off('superResolutionChanged')<sup>18+</sup>
@@ -2583,5 +2581,5 @@ off(type:'superResolutionChanged', callback?: OnSuperResolutionChanged): void
 **示例：**
 
 ```ts
-avPlayer.off('superResolutionChanged')
+avPlayer.off('superResolutionChanged');
 ```
