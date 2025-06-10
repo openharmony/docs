@@ -6149,7 +6149,7 @@ class MyNodeController extends NodeController {
     console.log("myButton reuse");
   }
 
-  //  onUnbind时，子节点已经完全下数，此时调用recycle，保证子组件的能完全被回收。
+  //  onUnbind时，子节点已经完全下树，此时调用recycle，保证子组件的能完全被回收。
   onUnbind(containerId: number): void {
     // 该方法触发子组件的回收，全局复用场景下，回收FrameNode后端资源用于重新利用。
     this.rootNode?.recycle();
