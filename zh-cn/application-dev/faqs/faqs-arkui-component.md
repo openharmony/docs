@@ -858,7 +858,7 @@ Resource - 资源引用类型，引入系统资源或者应用资源中的尺寸
 **解决措施**
 
 当Surface模式下的XComponent组件内容与组件尺寸不一致时，可通过设置[renderFit](../reference/apis-arkui/arkui-ts/ts-universal-attributes-renderfit.md#renderfit18)通用属性，调整绘制内容与组件尺寸之间的布局方式，例如拉伸、居中、等比缩放等。
-在API version 18之前，当使用HWC硬件合成通道时（当XComponent组件的背景色设置为纯黑不透明时，会使用HWC硬件合成通道，这取决于芯片平台能力和产品形态等），其[renderFit](../reference/apis-arkui/arkui-ts/ts-universal-attributes-renderfit.md#renderfit18)通用属性仅支持设置为RenderFit.RESIZE_FILL。设置为其他RenderFit枚举值可能导致显示异常。通过升级至API version 18或在id字段中包含"RenderFitSurface"可以修正显示效果。
+在API version 18之前，当使用HWC硬件合成通道时（当XComponent组件的背景色设置为纯黑不透明时，会使用HWC硬件合成通道，这取决于芯片平台能力和产品形态等），其[renderFit](../reference/apis-arkui/arkui-ts/ts-universal-attributes-renderfit.md#renderfit18)通用属性仅支持设置为RenderFit.RESIZE_FILL。设置为其他RenderFit枚举值可能导致显示异常。通过升级至API version 18或在id字段中包含"RenderFitSurface"可以修正显示效果。 
 
 示例代码如下：
 
