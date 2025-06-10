@@ -45,7 +45,7 @@ Network connection error or OS error.
 
 **错误信息**
 
-Location NTP time of the system is invalid.
+The local NTP time of the system is invalid.
 
 **错误描述**
 
