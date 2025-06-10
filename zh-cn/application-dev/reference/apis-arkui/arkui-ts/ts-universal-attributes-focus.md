@@ -120,7 +120,7 @@ focusBox(style: FocusBoxStyle): T
 
 requestFocus(value: string): boolean
 
-方法语句中可使用的全局接口，调用此接口可以主动让焦点转移至参数指定的组件上。非当前帧生效，在下一帧才生效，建议使用FocusController中的[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)。
+方法语句中可使用的全局接口，调用此接口可以主动让焦点转移至参数指定的组件上，非当前帧生效，在下一帧才生效。直接使用focusControl可能导致[UI上下文不明确](../../../ui/arkts-global-interface.md)的问题，建议使用FocusController中的[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
