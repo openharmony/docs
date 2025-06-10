@@ -5776,14 +5776,14 @@ let cryptoParam: relationalStore.CryptoParam = {
   encryptionKey: new Uint8Array([1, 2, 3, 4, 5, 6]),
 };
 
-const STORE_CONFIG1: relationalStore.StoreConfig = {
+const STORE_CONFIG2: relationalStore.StoreConfig = {
   name: "rdbstore2.db",
   securityLevel: relationalStore.SecurityLevel.S3;
   encrypt: true,
   cryptoParam: cryptoParam,
 };
 
-relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
+relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
   store = rdbStore;
   console.info('Get RdbStore successfully.');
 }).catch((err: BusinessError) => {
