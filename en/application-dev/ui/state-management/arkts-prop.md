@@ -949,7 +949,7 @@ struct Parent {
 }
 ```
 
-[Correct Example]
+**Correct Usage**
 
 ```ts
 @Observed
@@ -1071,7 +1071,7 @@ struct Child {
 
 You can add a proxy for **this.score** to re-render the UI by assigning a value to the variable and then calling the variable.
 
-[Correct Example]
+**Correct Usage**
 
 ```ts
 class Score {
