@@ -10,7 +10,7 @@
 
 ## bindSheet
 
-bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOptions)
+bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOptions): T
 
 给组件绑定半模态页面，点击后显示模态页面。
 
@@ -25,6 +25,12 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | isShow  | Optional\<boolean\>                          | 是   | 是否显示半模态页面。<br/>true：显示半模态页面。<br/>false：隐藏半模态页面。<br/>从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。 |
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置半模态页面内容。                                         |
 | options | [SheetOptions](#sheetoptions)               | 否   | 配置半模态页面的可选属性。                                   |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 > **说明：**
 >

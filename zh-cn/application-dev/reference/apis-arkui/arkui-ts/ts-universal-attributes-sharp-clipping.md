@@ -8,7 +8,7 @@
 
 ## clip<sup>12+</sup>
 
-clip(value: boolean)
+clip(value: boolean): T
 
 是否对子组件超出当前组件范围外的区域进行裁剪。
 
@@ -24,9 +24,15 @@ clip(value: boolean)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 参数为boolean类型，设置是否按照父容器边缘轮廓进行裁剪。<br/>默认值：false <br/>true表示按照父容器边缘轮廓进行裁剪，false表示不对子组件进行裁剪。 <br/>**说明：** 设置为true后，子组件超出当前组件范围外的区域将不响应绑定的手势事件。 |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## clip<sup>(deprecated)</sup>
 
-clip(value: boolean | CircleAttribute | EllipseAttribute | PathAttribute | RectAttribute)
+clip(value: boolean | CircleAttribute | EllipseAttribute | PathAttribute | RectAttribute): T
 
 按指定的形状对当前组件进行裁剪。
 
@@ -44,9 +50,15 @@ clip(value: boolean | CircleAttribute | EllipseAttribute | PathAttribute | RectA
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | boolean&nbsp;\|&nbsp;[CircleAttribute](ts-drawing-components-circle.md)&nbsp;\|&nbsp;[EllipseAttribute](ts-drawing-components-ellipse.md)&nbsp;\|&nbsp;[PathAttribute](ts-drawing-components-path.md)&nbsp;\|&nbsp;[RectAttribute](ts-drawing-components-rect.md) | 是   | 参数为相应类型的组件，按指定的形状对当前组件进行裁剪；参数为boolean类型时，设置是否按照父容器边缘轮廓进行裁剪。<br/>默认值：false <br/>**说明：** 参数为对应类型的组件时，裁剪不会导致被裁剪区域无法响应绑定的手势事件。参数为boolean类型时，裁剪会导致被裁剪区域无法响应绑定的手势事件。 |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## clipShape<sup>12+</sup>
 
-clipShape(value: CircleShape | EllipseShape | PathShape | RectShape)
+clipShape(value: CircleShape | EllipseShape | PathShape | RectShape): T
 
 按指定的形状（形状中可包含位置信息）对当前组件进行裁剪。
 
@@ -70,9 +82,15 @@ clipShape(value: CircleShape | EllipseShape | PathShape | RectShape)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [CircleShape](../js-apis-arkui-shape.md#circleshape)&nbsp;\|&nbsp;[EllipseShape](../js-apis-arkui-shape.md#ellipseshape)&nbsp;\|&nbsp;[PathShape](../js-apis-arkui-shape.md#pathshape)&nbsp;\|&nbsp;[RectShape](../js-apis-arkui-shape.md#rectshape) | 是   | 参数为相应类型的组件，按指定的形状（形状中可包含位置信息）对当前组件进行裁剪。<br/>**说明：** 裁剪不会导致被裁剪区域无法响应绑定的手势事件。|
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## mask<sup>12+</sup>
 
-mask(value: ProgressMask)
+mask(value: ProgressMask): T
 
 为组件上添加可调节进度的遮罩。
 
@@ -86,9 +104,15 @@ mask(value: ProgressMask)
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------- |
 | value  | [ProgressMask](#progressmask10) | 是   | 在当前组件上加上可动态设置进度、最大值和颜色的遮罩。 |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## mask<sup>(deprecated)</sup>
 
-mask(value: CircleAttribute | EllipseAttribute | PathAttribute | RectAttribute | ProgressMask)
+mask(value: CircleAttribute | EllipseAttribute | PathAttribute | RectAttribute | ProgressMask): T
 
 为组件上添加指定形状的遮罩。
 
@@ -106,9 +130,15 @@ mask(value: CircleAttribute | EllipseAttribute | PathAttribute | RectAttribute |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------- |
 | value  | [CircleAttribute](ts-drawing-components-circle.md)&nbsp;\|&nbsp;[EllipseAttribute](ts-drawing-components-ellipse.md)&nbsp;\|&nbsp;[PathAttribute](ts-drawing-components-path.md)&nbsp;\|&nbsp;[RectAttribute](ts-drawing-components-rect.md) \|&nbsp;[ProgressMask](#progressmask10)<sup>10+</sup> | 是   | 在当前组件上加上指定形状的遮罩。 |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## maskShape<sup>12+</sup>
 
-maskShape(value: CircleShape | EllipseShape | PathShape | RectShape)
+maskShape(value: CircleShape | EllipseShape | PathShape | RectShape): T
 
 为组件上添加指定形状的遮罩。
 
@@ -123,6 +153,12 @@ maskShape(value: CircleShape | EllipseShape | PathShape | RectShape)
 | 参数名 | 类型                                                         | 必填 | 说明                             |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------- |
 | value  | [CircleShape](../js-apis-arkui-shape.md#circleshape)&nbsp;\|&nbsp;[EllipseShape](../js-apis-arkui-shape.md#ellipseshape)&nbsp;\|&nbsp;[PathShape](../js-apis-arkui-shape.md#pathshape)&nbsp;\|&nbsp;[RectShape](../js-apis-arkui-shape.md#rectshape) | 是   | 在当前组件上加上指定形状的遮罩。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
 
 ## ProgressMask<sup>10+</sup>
 
