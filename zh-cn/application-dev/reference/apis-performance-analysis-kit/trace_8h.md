@@ -9,48 +9,6 @@ HiTraceMeter模块打点接口定义，通过这些接口实现性能打点相�
 
 用户态trace总长度限制512字符，超过的部分将会被截断。
 
-使用示例：
-
-同步时间片跟踪事件：
-
-```
-OH_HiTrace_StartTraceEx(HITRACE_LEVEL_COMMERCIAL, "testName", "key=value");
-OH_HiTrace_FinishTraceEx(HITRACE_LEVEL_COMMERCIAL);
-```
-
-结果输出：
-  
-```
-<...>-1668 (----—) [003] .... 135.059377: tracing_mark_write: B|1668|H:hitraceTest
-<...>-1668 (----—) [003] .... 135.059415: tracing_mark_write: E|1668|
-```
-
-异步时间片跟踪事件：
-
-```
-OH_HiTrace_StartAsyncTraceEx(HITRACE_LEVEL_COMMERCIAL, "testName", 123, "test", "key=value");
-OH_HiTrace_FinishAsyncTraceEx(HITRACE_LEVEL_COMMERCIAL, "testName", 123);
-```
-
-结果输出：
-
-```
-<...>-2477 (----—) [001] .... 396.427165: tracing_mark_write: S|2477|H:testName|123|M62|test|key=value
-<...>-2477 (----—) [001] .... 396.427196: tracing_mark_write: F|2477|H:testName|123|M62
-```
-
-整数值跟踪事件：
-
-```
-OH_HiTrace_CountTraceEx(HITRACE_LEVEL_COMMERCIAL, "testName", 500);
-```
-
-结果输出：
-
-```
-<...>-2638 (----—) [002] .... 458.904382: tracing_mark_write: C|2638|H:testName|500|M62
-```
-
 **库：** libhitrace_ndk.z.so
 
 **引用文件：** &lt;hitrace/trace.h&gt;

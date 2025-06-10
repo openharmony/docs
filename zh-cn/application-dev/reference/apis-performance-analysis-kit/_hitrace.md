@@ -42,7 +42,6 @@ HiTraceChain支持在业务执行流程中，生成和传递唯一跟踪标识�
 | typedef enum [HiTrace_Flag](#hitrace_flag) [HiTrace_Flag](#hitrace_flag) | HiTrace标志位。  | 
 | typedef enum [HiTrace_Tracepoint_Type](#hitrace_tracepoint_type) [HiTrace_Tracepoint_Type](#hitrace_tracepoint_type) | HiTrace打点类型。  | 
 | typedef enum [HiTrace_Communication_Mode](#hitrace_communication_mode) [HiTrace_Communication_Mode](#hitrace_communication_mode) | HiTrace通信模式枚举。  |
-| typedef enum [HiTrace_Output_Level](#hitrace_output_level)[HiTrace_Output_Level](#hitrace_output_level) | HiTrace输出级别。  |  
 | typedef struct [HiTraceId](_hi_trace_id.md) [HiTraceId](_hi_trace_id.md) | 系统跟踪Id。 | 
 
 
