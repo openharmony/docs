@@ -5128,6 +5128,10 @@ enableSafeBrowsing(enable: boolean): void
 本功能默认不生效，OpenHarmony只提供恶意网址拦截页WebUI，网址风险检测以及显示WebUI的功能由Vendor实现。推荐在WebContentsObserver中监听跳转[DidStartNavigation](https://gitee.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidStartNavigation)、[DidRedirectNavigation](https://gitee.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidRedirectNavigation)进行检测。
 <!--RP1End-->
 
+> **说明：**
+> 
+> 该接口不生效，调用不会产生任何实际效果。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
