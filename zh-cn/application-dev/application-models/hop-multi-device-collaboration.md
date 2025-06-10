@@ -149,7 +149,7 @@
                 };
                 // context为发起端UIAbility的AbilityContext
                 this.context.startAbility(want).then(() => {
-                  promptAction.showToast({
+                  promptAction.openToast({
                     message: 'SuccessfulCollaboration'
                   });
                 }).catch((err: BusinessError) => {
@@ -300,7 +300,7 @@
                 // 退出由startAbility接口启动的ServiceExtensionAbility
                 this.context.stopServiceExtensionAbility(want).then(() => {
                   hilog.info(DOMAIN_NUMBER, TAG, 'stop service extension ability success')
-                  promptAction.showToast({
+                  promptAction.openToast({
                     message: 'SuccessfullyStop'
                   });
                 }).catch((err: BusinessError) => {
@@ -430,7 +430,7 @@
                     let info = data.want?.parameters?.info;
                     hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(info) ?? '');
                     if (info !== null) {
-                      promptAction.showToast({
+                      promptAction.openToast({
                         message: JSON.stringify(info)
                       });
                     }
@@ -613,7 +613,7 @@
                 this.context.disconnectServiceExtensionAbility(connectionId).then(() => {
                   hilog.info(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility success');
                   // 成功断连后台服务
-                  promptAction.showToast({
+                  promptAction.openToast({
                     message: 'SuccessfullyDisconnectBackendService'
                   })
                 }).catch((error: BusinessError) => {
@@ -884,7 +884,7 @@
                           hilog.info(DOMAIN_NUMBER, TAG, `remote caller onRelease is called ${msg}`);
                         });
                         hilog.info(DOMAIN_NUMBER, TAG, 'remote caller register OnRelease succeed');
-                        promptAction.showToast({
+                        promptAction.openToast({
                           message: 'CallerSuccess'
                         });
                         // 注册caller的协同场景下跨设备组件状态变化监听通知
