@@ -29,7 +29,7 @@ import { UIServiceExtensionAbility } from '@kit.AbilityKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIServiceExtensionContext](js-apis-inner-application-uiserviceExtensionContext-sys.md) | 是 | 否 | [UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)。 |
+| context | [UIServiceExtensionContext](js-apis-inner-application-uiserviceExtensionContext-sys.md) | 否 | 否 | [UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)。 |
 
 
 ### onCreate
@@ -56,7 +56,7 @@ import { UIServiceExtensionAbility, Want } from '@kit.AbilityKit';
 class UIServiceExt extends UIServiceExtensionAbility {
   // 创建UIServiceExtensionAbility
   onCreate(want: Want) {
-    console.log(`onCreate, want: ${want.abilityName}`);
+    console.info(`onCreate, want: ${want.abilityName}`);
   }
 }
 ```
@@ -86,7 +86,7 @@ import { UIServiceExtensionAbility, Want} from '@kit.AbilityKit';
 
 class UIServiceExt extends UIServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
-    console.log('onRequest, want:' + want.abilityName + ', startId:' + startId);
+    console.info('onRequest, want:' + want.abilityName + ', startId:' + startId);
   }
 }
 ```
@@ -117,7 +117,7 @@ import { UIServiceExtensionAbility, Want, common} from '@kit.AbilityKit';
 
 class UIServiceExt extends UIServiceExtensionAbility {
   onConnect(want: Want, proxy: common.UIServiceHostProxy){
-    console.log('onConnect, want:' + want.abilityName + '');
+    console.info('onConnect, want:' + want.abilityName + '');
   }
 }
 ```
@@ -147,7 +147,7 @@ import { UIServiceExtensionAbility, Want, common } from '@kit.AbilityKit';
 
 class UIServiceExt extends UIServiceExtensionAbility {
   onDisconnect(want: Want, proxy: common.UIServiceHostProxy) {
-    console.log('onDisconnect, want: ${want.abilityName}');
+    console.info('onDisconnect, want: ${want.abilityName}');
   }
 }
 ```
@@ -177,7 +177,7 @@ import { window } from '@kit.ArkUI';
 
 class UIServiceExt extends UIServiceExtensionAbility {
   onWindowWillCreate(config : window.ExtensionWindowConfig){
-    console.log('onWindowWillCreate');
+    console.info('onWindowWillCreate');
   }
 }
 ```
@@ -206,7 +206,7 @@ import { window } from '@kit.ArkUI';
 
 class ServiceExt extends UIServiceExtensionAbility {
   onWindowDidCreate(window : window.Window){
-    console.log('onWindowDidCreate');
+    console.info('onWindowDidCreate');
   }
 }
 ```
@@ -235,7 +235,7 @@ import { UIServiceExtensionAbility, common} from '@kit.AbilityKit';
 
 class ServiceExt extends UIServiceExtensionAbility {
   onData(proxy : common.UIServiceHostProxy, data : Record<string, Object> ){
-    console.log('onData');
+    console.info('onData');
   }
 }
 ```
@@ -257,7 +257,7 @@ import { UIServiceExtensionAbility } from '@kit.AbilityKit';
 
 class ServiceExt extends UIServiceExtensionAbility {
   onDestroy() {
-    console.log('onDestroy');
+    console.info('onDestroy');
   }
 }
 ```

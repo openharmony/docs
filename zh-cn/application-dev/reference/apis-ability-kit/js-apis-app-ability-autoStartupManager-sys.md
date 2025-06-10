@@ -37,18 +37,21 @@ on(type: 'systemAutoStartup', callback: AutoStartupCallback): void
 
 ```ts
 import { autoStartupManager, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   autoStartupManager.on('systemAutoStartup', {
     onAutoStartupOn(data: common.AutoStartupInfo) {
-      console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+      console.info(`autostartupmanager onAutoStartupOn, data: ${JSON.stringify(data)}.`);
     },
     onAutoStartupOff(data: common.AutoStartupInfo) {
-      console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+      console.info(`autostartupmanager onAutoStartupOff, data: ${JSON.stringify(data)}.`);
     }
   });
 } catch (err) {
-  console.info('===> autostartupmanager on throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`autostartupmanager on success, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -73,18 +76,21 @@ off(type: 'systemAutoStartup', callback?: AutoStartupCallback): void
 
 ```ts
 import { autoStartupManager, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   autoStartupManager.off('systemAutoStartup', {
     onAutoStartupOn(data: common.AutoStartupInfo) {
-      console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+      console.info(`autostartupmanager onAutoStartupOn, data: ${JSON.stringify(data)}.`);
     },
     onAutoStartupOff(data: common.AutoStartupInfo) {
-      console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+      console.info(`autostartupmanager onAutoStartupOff, data: ${JSON.stringify(data)}.`);
     }
   });
 } catch (err) {
-  console.info('===> autostartupmanager off throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`autostartupmanager on success, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -119,16 +125,23 @@ setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>
 
 ```ts
 import { autoStartupManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   autoStartupManager.setApplicationAutoStartup({
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
-  }, (err, data) => {
-    console.info('====> setApplicationAutoStartup: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+  }, (err: BusinessError) => {
+    if (err) {
+      console.error(`setApplicationAutoStartup failed, err code: ${err.code}, err msg: ${err.message}.`);
+      return;
+    }
+    console.info(`setApplicationAutoStartup success.`);
   });
 } catch (err) {
-  console.info('====> setApplicationAutoStartup throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`setApplicationAutoStartup failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -175,12 +188,14 @@ try {
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
   }).then((data: void) => {
-    console.info('====> setApplicationAutoStartup data: ' + JSON.stringify(data));
+    console.info(`setApplicationAutoStartup success.`);
   }).catch((err: BusinessError) => {
-    console.info('====> setApplicationAutoStartup err: ' + JSON.stringify(err));
+    console.error(`setApplicationAutoStartup failed, err code: ${err.code}, err msg: ${err.message}.`);
   });
 } catch (err) {
-  console.info('====> setApplicationAutoStartup throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`setApplicationAutoStartup failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -215,16 +230,23 @@ cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<voi
 
 ```ts
 import { autoStartupManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   autoStartupManager.cancelApplicationAutoStartup({
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
-  }, (err, data) => {
-    console.info('====> cancelApplicationAutoStartup err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+  }, (err: BusinessError) => {
+    if (err) {
+      console.error(`cancelApplicationAutoStartup failed, err code: ${err.code}, msg: ${err.message}.`);
+      return;
+    }
+    console.info(`cancelApplicationAutoStartup success.`);
   });
 } catch (err) {
-  console.info('====> cancelApplicationAutoStartup throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`cancelApplicationAutoStartup failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -270,13 +292,15 @@ try {
   autoStartupManager.cancelApplicationAutoStartup({
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
-  }).then((data: void) => {
-    console.info('====> cancelApplicationAutoStartup data: ' + JSON.stringify(data));
+  }).then(() => {
+    console.info(`cancelApplicationAutoStartup success.`);
   }).catch((err: BusinessError) => {
-    console.info('====> cancelApplicationAutoStartup err: ' + JSON.stringify(err));
+    console.error(`cancelApplicationAutoStartup failed, err code: ${err.code}, msg: ${err.message}.`);
   });
 } catch (err) {
-  console.info('====> cancelApplicationAutoStartup throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`cancelApplicationAutoStartup failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -307,14 +331,21 @@ queryAllAutoStartupApplications(callback: AsyncCallback\<Array\<AutoStartupInfo\
 **示例**：
 
 ```ts
-import { autoStartupManager } from '@kit.AbilityKit';
+import { autoStartupManager, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  autoStartupManager.queryAllAutoStartupApplications((err, data) => {
-    console.info('====> queryAllAutoStartupApplications err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+  autoStartupManager.queryAllAutoStartupApplications((err, data: common.AutoStartupInfo[]) => {
+    if (err) {
+      console.error(`queryAllAutoStartupApplications failed, err code: ${err.code}, err msg: ${err.message}.`);
+      return;
+    }
+    console.info(`queryAllAutoStartupApplications success, data: ${JSON.stringify(data)}.`);
   });
 } catch (err) {
-  console.info('====> queryAllAutoStartupApplications throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`queryAllAutoStartupApplications failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -349,12 +380,14 @@ import { autoStartupManager, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  autoStartupManager.queryAllAutoStartupApplications().then((autoStartupInfo: common.AutoStartupInfo[]) => {
-    console.info('====> queryAllAutoStartupApplications data: ' + JSON.stringify(autoStartupInfo));
+  autoStartupManager.queryAllAutoStartupApplications().then((data: common.AutoStartupInfo[]) => {
+    console.info(`queryAllAutoStartupApplications success, data: ${JSON.stringify(data)}.`);
   }).catch((err: BusinessError) => {
-    console.info('====> queryAllAutoStartupApplications err: ' + JSON.stringify(err));
+    console.error(`queryAllAutoStartupApplications failed, err code: ${err.code}, err msg: ${err.message}.`);
   });
 } catch (err) {
-  console.info('====> queryAllAutoStartupApplications throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`queryAllAutoStartupApplications failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```

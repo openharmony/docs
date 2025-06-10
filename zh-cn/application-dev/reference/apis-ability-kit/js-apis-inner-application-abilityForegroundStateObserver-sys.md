@@ -13,13 +13,23 @@
 import { abilityManager } from '@kit.AbilityKit';
 ```
 
-## 属性
+## AbilityForegroundStateObserver
+
+### onAbilityStateChanged
+
+onAbilityStateChanged(abilityStateData: AbilityStateData): void
+
+当Ability前后台状态发生变化时，系统会触发该回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称                             | 类型                    | 可读 | 可写 | 说明   |
-| -------------------------------- | ---------------------- | ---- | ---- | ------------------ |
-| onAbilityStateChanged   | AsyncCallback\<void>   | 是   | 否   | Ability前后台状态发生变化时执行的回调函数。传入参数类型是[AbilityStateData](js-apis-inner-application-abilityStateData.md)。 |
+**系统接口**：此接口为系统接口。
+
+**参数**：
+
+| 参数名  | 类型  | 必填  | 说明  |
+| ------ | ----- | ----- | ----- |
+| abilityStateData   | [AbilityStateData](js-apis-inner-application-abilityStateData.md)   | 是 | Ability状态信息。 |
 
 **示例：**
 ```ts
@@ -28,7 +38,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: abilityManager.AbilityForegroundStateObserver = {
   onAbilityStateChanged(abilityStateData) {
-    console.log(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+    console.info(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
   },
 };
 try {
