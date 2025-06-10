@@ -109,13 +109,13 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ### 查看帮助命令
 
-   ```
+   ```shell
    hilog -h
    ```
 
    **使用样例：**
 
-   ```
+   ```shell
     $ hilog -h
     Usage:
     -h --help
@@ -136,14 +136,14 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 #### 非阻塞读日志
 
-   ```
+   ```shell
    hilog -x
    ```
 
    **使用样例：**
 
 <!--RP1-->
-   ```
+   ```shell
    $ hilog -x
    11-15 15:51:02.087  2823  2823 I A01B05/AOD: AodClockFullScreen --> timeTextLineHeight:313.3333333333333 clockMarginTop:99
    11-15 15:51:02.087  2823  2823 I A01B05/AOD: AodClockFullScreen --> timeFontSize:114.48717948717947
@@ -156,14 +156,14 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 #### 查看指定级别日志
 
-   ```
+   ```shell
    hilog -L D/I/W/E/F
    ```
 
    **使用样例：**
 
 <!--RP2-->
-   ```
+   ```shell
    $ hilog -L E
    08-28 09:01:25.730  2678  2678 E A00F00/AiDataService_5.10.7.320: DataChangeNotifyManager: notifyDataChange CommonEntity no valid entity to notify
    08-28 09:01:56.058  8560  8560 E A00500/SettingsData: DB not ready request = datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=analysis_service_switch_on , retry after DB startup
@@ -177,14 +177,14 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 #### 查看指定类型日志
 
-   ```
+   ```shell
    hilog -t app
    ```
 
    **使用样例：**
 
 <!--RP3-->
-   ```
+   ```shell
    $ hilog -t app
    11-15 16:04:45.903  5630  5630 I A0A5A5/Diagnosis: [DetectionFilter]820001084: switch off
    11-15 16:04:45.905  5630  5630 I A0A5A5/Diagnosis: [DetectionFilter]847005050: frequency limit
@@ -196,14 +196,14 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 #### 查看指定domain日志
 
-   ```
+   ```shell
    hilog -D 01B06
    ```
 
    **使用样例：**
 
 <!--RP4-->
-   ```
+   ```shell
    $ hilog -D 01B06
    11-15 16:04:54.981  5687  5687 I A01B06/KG: MetaBalls-MetaBallRenderer --> pressTime = 0 appearTime = 1731657885972
    11-15 16:04:54.981  5687  5687 I A01B06/KG: MetaBalls-MetaBallRenderer --> backAnimator on finish
@@ -215,14 +215,14 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 #### 查看指定TAG日志
 
-   ```
+   ```shell
    hilog -T tag
    ```
 
    **使用样例：**
 
 <!--RP5-->
-   ```
+   ```shell
    $ hilog -T SAMGR
    08-28 09:27:59.581   610 11504 I C01800/SAMGR: CommonEventCollect save extraData 1661
    08-28 09:27:59.581   610 11504 I C01800/SAMGR: OnReceiveEvent get action: usual.event.BATTERY_CHANGED code: 0, extraDataId 1661
@@ -237,14 +237,14 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 #### 查看缓冲区前n行日志
 
-   ```
+   ```shell
    hilog -a 8
    ```
 
    **使用样例：**
 
 <!--RP6-->
-   ```
+   ```shell
    $ hilog -a 8
    11-15 16:04:08.628     0     0 I I00000/HiLog: ========Zeroth log of type: init
    11-15 16:04:08.603   506   506 I I02C01/CustCarrierMount: MountCarrierToShared start
@@ -259,14 +259,14 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 #### 查看缓冲区后n行日志
 
-   ```
+   ```shell
    hilog -z 8
    ```
 
    **使用样例：**
 
 <!--RP7-->
-   ```
+   ```shell
    $ hilog -z 8
    11-15 16:12:19.015  1899  7867 W C01719/ffrt: 423:FFRTQosApplyForOther:244 tid 7867, Operation not permitted, ret:-1, eno:1
    11-15 16:12:19.125  1043  1072 I C01C42/TimeService: uid: 1010 id:428551571 name:wifi_manager_service wk:0
@@ -281,14 +281,14 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 #### 查看指定进程日志
 
-   ```
+   ```shell
    hilog -P pid
    ```
 
    **使用样例：**
 
 <!--RP8-->
-   ```
+   ```shell
    $ hilog -P 618
    08-28 10:19:16.872   618 17729 I C02D15/XPower: [task_52]#current system load is: 0.028767
    08-28 10:19:23.997   618 17580 I C02D10/CpuCollector: CalculateProcessCpuStatInfos: startTime=1724811553746, endTime=1724811563996, startBootTime=47001084, endBootTime=47011335, period=10251
@@ -302,14 +302,14 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 #### 查看符合正则匹配关键字的日志
 
-   ```
+   ```shell
    hilog -e start
    ```
 
    **使用样例：**
 
 <!--RP9-->
-   ```
+   ```shell
    $ hilog -e start
    11-15 16:17:17.578   547  4504 I C01800/SAMGR: AddProc start proc:media_analysis_service spend 223ms
    11-15 16:17:17.578   547  4504 I C01800/SAMGR: Scheduler proc:media_analysis_service handle started event
@@ -324,14 +324,14 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 #### 查看不同显示格式的日志
 
-   ```
+   ```shell
    hilog -v time/color/epoch/monotonic/usec/nsec/year/zone/wrap
    ```
 
    **使用样例：**
 
 <!--RP10-->
-   ```
+   ```shell
    $ hilog -v time
    11-15 16:36:21.027  1134  1723 I C02B01/HrilExt: [NotifyToBoosterTel-(hril_manager_ext.cpp:440)] RilExt:Notify to booster tel finish
    11-15 16:36:21.027  1134  1723 I C02B01/HrilExt: [NotifyToBoosterNet-(hril_manager_ext.cpp:450)] RilExt: HNOTI_BOOSTER_NET_IND report to booster net
@@ -356,13 +356,13 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 #### 查看落盘任务
 
-   ```
+   ```shell
    hilog -w query
    ```
 
    当前不存在落盘任务：
 
-   ```
+   ```shell
    $ hilog -w query
    Persist task query failed
    No running persistent task [CODE: -63]
@@ -371,7 +371,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
    当前存在落盘任务：
 
-   ```
+   ```shell
    $ hilog -w query
    1 init,core,app,only_prerelease zlib /data/log/hilog/hilog 4.0M 1000
    2 kmsg zlib /data/log/hilog/hilog_kmsg 4.0M 100
@@ -385,15 +385,17 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    > 当前没有落盘任务时，才能开启落盘任务，如果已经存在落盘任务，需要先停止落盘任务。
 
    开启hilog落盘任务，并且设置落盘文件数量为1000个：
-   ```
+
+   ```shell
    $
    $ hilog -w start -n 1000
    Persist task [jobid:1][fileNum:1000][fileSize:4194304] start successfully
    $
    ```
 
-   开启kmsglog落盘任务，并且设置落盘文件数量为100个： hilog -w start -n 100 -t kmsg
-   ```
+   开启kmsglog落盘任务，并且设置落盘文件数量为100个：
+
+   ```shell
    $
    $ hilog -w start -n 100 -t kmsg
    Persist task [jobid:2][fileNum:100][fileSize:4194304] start successfully
@@ -401,7 +403,8 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    ```
 
    开启落盘任务时可以自定义落盘规则，其中压缩方式可以为zlib，zstd，none。以设置落盘文件名为kmsglog，大小为2M，数量为100个, 其压缩方式为zlib压缩为例，命令行为：
-   ```
+
+   ```shell
    $
    $ hilog -w start -t kmsg -f kmsglog -l 2M -n 100 -m zlib
    Persist task [jobid:2][fileNum:100][fileSize:2097152] start successfully
@@ -412,7 +415,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
    停止当前落盘任务：
 
-   ```
+   ```shell
    $ hilog -w stop
    Persist task [jobid:1] stop successfully
    Persist task [jobid:2] stop successfully
@@ -423,14 +426,14 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 #### 查看日志级别
 
-   ```
+   ```shell
    $ param get hilog.loggable.global
    I
    ```
 
 #### 设置日志级别
 
-   ```
+   ```text
    // 设置全局日志级别
    hilog -b D/I/W/E/F
 
@@ -449,7 +452,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
    **使用样例：**
 
-   ```
+   ```shell
    $ hilog -b E
    Set global log level to E successfully
 
@@ -470,13 +473,13 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ### 查看日志缓冲区大小
 
-   ```
+   ```shell
    hilog -g
    ```
 
    **使用样例：**
 
-   ```
+   ```shell
    $ hilog -g
    Log type app buffer size is 16.0M
    Log type init buffer size is 16.0M
@@ -486,12 +489,13 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ### 修改日志缓冲区大小
 
-   ```
+   ```shell
    hilog -G size
    ```
 
    **使用样例：**
-   ```
+
+   ```shell
    $ hilog -G 16M
    Set log type app buffer size to 16.0M successfully
    Set log type init buffer size to 16.0M successfully
@@ -513,12 +517,13 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ### 内核日志读取开关控制
 
-   ```
+   ```shell
    hilog -k on/off
    ```
 
    **使用样例：**
-   ```
+
+   ```shell
    $ hilog -k on
    Set hilogd storing kmsg log on successfully
    $ 
@@ -528,12 +533,13 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ### 查询统计信息
 
-   ```
+   ```shell
    hilog -s
    ```
 
    **使用样例：**
-   ```
+
+   ```shell
    $ param set persist.sys.hilog.stats true
    Set parameter persist.sys.hilog.stats true success
    $ reboot
@@ -564,13 +570,13 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ### 清除统计信息
 
-   ```
+   ```shell
    hilog -S
    ```
 
    **使用样例：**
 
-   ```
+   ```shell
    $ hilog -S
    Statistic info clear successfully
    ```
@@ -619,13 +625,13 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 <!--Del-->
 ### 隐私开关
 
-   ```
+   ```shell
    hilog -p on/off
    ```
 
    **使用样例：**
 
-   ```
+   ```shell
    # hilog -p on
    Set hilog privacy format on successfully
    #
