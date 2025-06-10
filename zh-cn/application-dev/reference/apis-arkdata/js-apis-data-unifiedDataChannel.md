@@ -1380,7 +1380,7 @@ type DataProgressListener = (progressInfo: ProgressInfo, data: UnifiedData | nul
 
 type DataLoadHandler = (acceptableInfo?: DataLoadInfo) => UnifiedData | null
 
-用于延迟构建数据的函数。支持数据发送方根据接收方传入的信息，动态生成数据，实现更灵活、精准的数据交互策略。
+用于延迟加载数据的处理函数。支持数据发送方根据接收方传入的信息，动态生成数据，实现更灵活、精准的数据交互策略。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
