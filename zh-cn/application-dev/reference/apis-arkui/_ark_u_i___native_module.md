@@ -8162,10 +8162,9 @@ int32_t OH_ArkUI_NodeUtils_GetNodeHandleByUniqueId(const uint32_t uniqueId, ArkU
 
 **返回：**
 
-返回错误码。
-[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。
-[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 方法参数异常。
-[ARKUI_ERROR_CODE_CAPI_INIT_ERROR](_ark_u_i___native_module.md#arkui_errorcode) CAPI初始化错误。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 方法参数异常。</br >
+[ARKUI_ERROR_CODE_CAPI_INIT_ERROR](_ark_u_i___native_module.md#arkui_errorcode) CAPI初始化错误。</br >
 
 ### OH_ArkUI_NodeUtils_GetNodeUniqueId()
 
@@ -8187,10 +8186,9 @@ int32_t OH_ArkUI_NodeUtils_GetNodeUniqueId(ArkUI_NodeHandle node, int32_t* uniqu
 
 **返回：**
 
-返回错误码。
-[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。
-[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 方法参数异常。
-[ARKUI_ERROR_CODE_CAPI_INIT_ERROR](_ark_u_i___native_module.md#arkui_errorcode) CAPI初始化错误。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 方法参数异常。</br >
+[ARKUI_ERROR_CODE_CAPI_INIT_ERROR](_ark_u_i___native_module.md#arkui_errorcode) CAPI初始化错误。</br >
 
 ### OH_ArkUI_NodeUtils_SetCrossLanguageOption()
 
