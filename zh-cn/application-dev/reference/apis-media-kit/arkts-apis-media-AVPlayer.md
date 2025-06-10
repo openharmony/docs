@@ -1,4 +1,4 @@
-# Interfaces (AVPlayer) 
+# Interfaces (AVPlayer)
 
 > **说明：**
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -10,6 +10,7 @@ Audio/Video播放demo可参考：[音频播放开发指导](../../media/media/us
 > **说明：**
 >
 > 在使用AVPlayer实例的方法时，建议开发者注册相关回调，主动获取当前状态变化。
+>
 > - [on('stateChange')](#onstatechange9)：监听播放状态机AVPlayerState切换。
 > - [on('error')](#onerror9)：监听错误事件。
 
@@ -117,7 +118,7 @@ avPlayer.off('stateChange')
 
 on(type: 'error', callback: ErrorCallback): void
 
-监听[AVPlayer](arkts-apis-media-AVPlayer.md#avplayer9)的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVPlayerState](arkts-apis-media-t.md#avplayerstate9)也切至error状态，用户需要通过[reset()](#reset9)或者[release()](#release9)退出播放操作。
+监听[AVPlayer](arkts-apis-media-AVPlayer.md)的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVPlayerState](arkts-apis-media-t.md#avplayerstate9)也切至error状态，用户需要通过[reset()](#reset9)或者[release()](#release9)退出播放操作。
 
 **原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
