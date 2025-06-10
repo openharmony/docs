@@ -1643,7 +1643,7 @@ px2lpx(value : number) : number
 
 将px单位的数值转换为以lpx为单位的数值。
 
-转换公式为：px值 = lpx值 ÷ 实际屏幕宽度与逻辑宽度（通过[designWidth](../../quick-start/module-configuration-file.md#pages标签)配置）的比值
+转换公式为：lpx值 = px值 ÷ 实际屏幕宽度与逻辑宽度（通过[designWidth](../../quick-start/module-configuration-file.md#pages标签)配置）的比值
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3573,7 +3573,7 @@ off(type: 'didLayout', callback?: Callback\<void\>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'didLayout'，即是否将要绘制。 |
+| type     | string                                                       | 是   | 监听事件，固定为'didLayout'，即是否布局完成。 |
 | callback | Callback\<void\>        | 否   | 需要被注销的回调函数。                  |
 
 ```ts
@@ -10265,8 +10265,8 @@ SwiperDynamicSyncScene继承自[DynamicSyncScene](#dynamicsyncscene12)，对应S
 
 | 名称     | 值   | 说明                   |
 | -------- | ---- | ---------------------- |
-| GESTURE | 0   | 手势操作场景 |
-| ANIMATION | 1   | 动画过度场景 |
+| GESTURE | 0   | 手势操作场景。 |
+| ANIMATION | 1   | 动画过渡场景。 |
 
 ## MarqueeDynamicSyncScene<sup>14+</sup>
 
