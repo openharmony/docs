@@ -481,3 +481,140 @@ try {
   console.error(`Failed to get keep alive apps. Code is ${err.code}, message is ${err.message}`);
 }
 ```
+
+## applicationManager.setAllowedKioskApps<sup>20+</sup>
+
+setAllowedKioskApps(admin: Want, bundleNames: Array&lt;string&gt;): void
+
+设置允许在Kiosk模式(Kiosk模式是一种特殊的设备管理模式，用于将设备转换为单一(组)应用程序模式。在Kiosk模式下，设备只能运行指定的应用，用户无法退出这个应用，也不能访问其他的应用或设备设置。这种模式适用于需要对用户进行限制或控制的场合。)下运行的应用。
+
+**需要权限：** ohos.permission.ENTERPRISE_SET_KIOSK
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名    | 类型                                                    | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
+| bundleNames | Array&lt;string&gt;                                   | 是   | 应用包名数组，设置允许在Kiosk模式下运行的应用。重复设置时，新设置的数组会覆盖旧的设置，最多设置200个。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201  | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { applicationManager } from '@kit.MDMKit';
+
+let wantTemp: Want = {
+  // 需根据实际情况进行替换
+  bundleName: 'com.example.edmtest',
+  abilityName: 'com.example.edmtest.EnterpriseAdminAbility',
+};
+
+try {
+  let bundleNames: Array<string> = ['com.example.test'];
+  applicationManager.setAllowedKioskApps(wantTemp, bundleNames);
+  console.info('Succeeded in setting allowed kiosk apps.');
+} catch (err) {
+  console.error(`Failed to set allowed kiosk apps. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## applicationManager.getAllowedKioskApps<sup>20+</sup>
+
+getAllowedKioskApps(admin: Want): Array&lt;string&gt;
+
+获取允许在Kiosk模式(Kiosk模式是一种特殊的设备管理模式，用于将设备转换为单一(组)应用程序模式。在Kiosk模式下，设备只能运行指定的应用，用户无法退出这个应用，也不能访问其他的应用或设备设置。这种模式适用于需要对用户进行限制或控制的场合。)下运行的应用。
+
+**需要权限：** ohos.permission.ENTERPRISE_SET_KIOSK
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名    | 类型                                                    | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
+
+**返回值：**
+
+| 类型                | 说明                             |
+| ------------------- | -------------------------------- |
+| Array&lt;string&gt; | 允许在Kiosk模式下运行的应用清单。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201  | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { applicationManager } from '@kit.MDMKit';
+
+let wantTemp: Want = {
+  // 需根据实际情况进行替换
+  bundleName: 'com.example.edmtest',
+  abilityName: 'com.example.edmtest.EnterpriseAdminAbility',
+};
+
+try {
+  let bundleNames: Array<string> = applicationManager.getAllowedKioskApps(wantTemp);
+  console.info(`Succeeded in getting allowed kiosk apps, bundleNames: ${JSON.stringify(bundleNames)}`);
+} catch (err) {
+  console.error(`Failed to get allowed kiosk apps. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## applicationManager.isAppKioskAllowed<sup>20+</sup>
+
+isAppKioskAllowed(bundleName: string): boolean
+
+查询某应用是否允许在Kiosk模式(Kiosk模式是一种特殊的设备管理模式，用于将设备转换为单一(组)应用程序模式。在Kiosk模式下，设备只能运行指定的应用，用户无法退出这个应用，也不能访问其他的应用或设备设置。这种模式适用于需要对用户进行限制或控制的场合。)下运行。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名    | 类型                                                    | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName | string                                                 | 是   | 应用包名。                                       |
+
+**返回值：**
+
+| 类型                | 说明                             |
+| ------------------- | -------------------------------- |
+| boolean    | true表示允许在Kiosk模式下运行。false表示不允许在Kiosk模式下运行。 |
+
+**示例：**
+
+```ts
+import { applicationManager } from '@kit.MDMKit';
+
+try {
+  let isAllowed: boolean = applicationManager.isAppKioskAllowed('com.example.test');
+  console.info(`Succeeded in querying if the app is allowed kiosk, isAllowed: ${isAllowed}`);
+} catch (err) {
+  console.error(`Failed to query if the app is allowed kiosk. Code is ${err.code}, message is ${err.message}`);
+}
+```

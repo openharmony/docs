@@ -330,3 +330,57 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
   }
 };
 ```
+
+## EnterpriseAdminExtensionAbility.onKioskModeEntering<sup>20+</sup>
+
+onKioskModeEntering(bundleName: string, accountId: number): void
+
+应用进入Kiosk模式(Kiosk模式是一种特殊的设备管理模式，用于将设备转换为单一(组)应用程序模式。在Kiosk模式下，设备只能运行指定的应用，用户无法退出这个应用，也不能访问其他的应用或设备设置。这种模式适用于需要对用户进行限制或控制的场合。)回调，回调中包含应用包名和用户ID。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| bundleName | string | 是    | 进入Kiosk模式应用的包名。 |
+| accountId | number | 是    | 进入Kiosk模式应用所在的用户ID。 |
+
+**示例：**
+
+```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onKioskModeEntering(bundleName: string, accountId: number): void {
+    console.info(`Succeeded in calling onKioskModeEntering callback, bundleName:${bundleName}, accountId:${accountId}`);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onKioskModeExiting<sup>20+</sup>
+
+onKioskModeExiting(bundleName: string, accountId: number): void
+
+应用退出Kiosk模式(Kiosk模式是一种特殊的设备管理模式，用于将设备转换为单一(组)应用程序模式。在Kiosk模式下，设备只能运行指定的应用，用户无法退出这个应用，也不能访问其他的应用或设备设置。这种模式适用于需要对用户进行限制或控制的场合。)回调，回调中包含应用包名和用户ID。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| bundleName | string | 是    | 退出Kiosk模式应用的包名。 |
+| accountId | number | 是    | 退出Kiosk模式应用所在的用户ID。 |
+
+**示例：**
+
+```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onKioskModeExiting(bundleName: string, accountId: number): void {
+    console.info(`Succeeded in calling onKioskModeExiting callback, bundleName:${bundleName}, accountId:${accountId}`);
+  }
+};
+```
