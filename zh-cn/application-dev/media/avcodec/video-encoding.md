@@ -810,7 +810,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 写入图像数据。
     int32_t frameSize = 0;
     if (widthStride == width && heightStride == height) {
-        frameSize =  width * height * 3 / 2; // NV12像素格式下，每帧数据大小的计算公式
+        frameSize = width * height * 3 / 2; // NV12像素格式下，每帧数据大小的计算公式
         int32_t capacity = OH_AVBuffer_GetCapacity(bufferInfo->buffer);
         if (frameSize > capacity) {
             // 异常处理。
