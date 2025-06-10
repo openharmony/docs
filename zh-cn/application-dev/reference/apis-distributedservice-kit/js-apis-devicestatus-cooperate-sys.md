@@ -687,7 +687,7 @@ try {
 ## cooperate.activateCooperateWithOptions<sup>12+</sup>
 
 activateCooperateWithOptions(targetNetworkId: string, inputDeviceId: number,
-    cooperateOptions?: CooperateOptions;
+    cooperateOptions?: CooperateOptions ): Promise<void>;
 
 使用选项开始屏幕跳转。
 
