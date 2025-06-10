@@ -92,7 +92,7 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@kit.InputKit';
 
 | 名称             | 类型        | 只读   | 可选   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| action         | [Action](#action)      | 是    | 否    | 鼠标事件动作。                                   |
+| action         | [Action](#action)      | 否    | 否    | 鼠标事件动作。                                   |
 | screenX        | number      | 否    | 否    | 鼠标光标在屏幕中的横坐标。                             |
 | screenY        | number      | 否    | 否    | 鼠标光标在屏幕中的纵坐标。                             |
 | windowX        | number      | 否    | 否    | 鼠标所在窗口的横坐标。                               |
