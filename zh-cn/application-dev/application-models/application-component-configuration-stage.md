@@ -88,3 +88,20 @@ Module支持的设备类型需要在[module.json5配置文件](../quick-start/mo
 ## Module权限配置
 
 Module访问系统或其他应用受保护部分所需的权限信息需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中配置[requestPermissions标签](../security/AccessToken/declare-permissions.md)。该标签用于声明需要申请权限的名称、申请权限的原因以及权限使用的场景。
+
+## 应用启动模式配置
+
+从API version 20开始，支持应用配置startMode字段以自定义点击图标启动的模式，且仅在launchType为[单实例模式](./uiability-launch-type.md#singleton启动模式)时生效，用于一个应用存在多个UIAbility的场景。需要在[app.json5配置文件](../quick-start/app-configuration-file.md#配置文件标签)中配置startMode标签。
+
+- 默认值为"mainTask"，表现为点击图标总是启动应用主UIAbility。
+- 可选值"recentTask"，表现为点击图标打开最近使用的UIAbility。
+
+```json
+{
+  ...
+  "app": {
+    "startMode": "mainTask"
+    ...
+  }
+}
+```

@@ -1,6 +1,8 @@
-# ApplicationContext
+# ApplicationContext（应用级别的上下文）
 
-ApplicationContext模块继承自[Context](js-apis-inner-application-context.md)，提供开发者应用级别的上下文的能力，包括提供注册及取消注册应用内组件生命周期的监听接口。
+ApplicationContext模块继承自[Context](js-apis-inner-application-context.md)，为开发者提供应用级别的上下文的能力，包括提供注册及取消注册应用内组件生命周期的监听接口
+
+ApplicationContext可以通过[getApplicationContext](js-apis-app-ability-application.md#applicationgetapplicationcontext14)接口获取。
 
 > **说明：**
 >
@@ -13,15 +15,11 @@ ApplicationContext模块继承自[Context](js-apis-inner-application-context.md)
 import { common } from '@kit.AbilityKit';
 ```
 
-## 使用说明
-
-在使用ApplicationContext的功能前，需要通过Context的实例获取。
-
 ## ApplicationContext.on('abilityLifecycle')
 
 on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 
-注册监听应用内生命周期。使用callback异步回调。仅支持主线程调用。
+注册监听应用内UIAbility的生命周期。使用callback异步回调。仅支持主线程调用。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -31,14 +29,14 @@ on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 
 | 参数名                   | 类型     | 必填 | 说明                           |
 | ------------------------ | -------- | ---- | ------------------------------ |
-| type | 'abilityLifecycle' | 是   | 监听事件的类型。 |
-| callback | [AbilityLifecycleCallback](js-apis-app-ability-abilityLifecycleCallback.md) | 是   | 回调方法，返回注册监听事件的ID。 |
+| type | 'abilityLifecycle' | 是   | 此类型表示应用内UIAbility的生命周期。 |
+| callback | [AbilityLifecycleCallback](js-apis-app-ability-abilityLifecycleCallback.md) | 是   | UIAbility生命周期变化时触发的回调方法。 |
 
 **返回值：**
 
-| 类型   | 说明                           |
-| ------ | ------------------------------ |
-| number | 返回的此次注册监听生命周期的ID（每次注册该ID会自增+1，当超过监听上限数量2^63-1时，返回-1）。|
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| number | 返回此次注册的callbackID（每次注册该ID会自增+1，当超过监听上限数量2^63-1时，返回-1），该ID用于在[ApplicationContext.off('abilityLifecycle')](#applicationcontextoffabilitylifecycle)方法中取消注册对应的callback。 |
 
 **错误码**：
 
@@ -109,7 +107,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void>): void
 
-取消监听应用内生命周期。使用callback异步回调。仅支持主线程调用。
+取消监听应用内UIAbility的生命周期。使用callback异步回调。仅支持主线程调用。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -119,8 +117,8 @@ off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void
 
 | 参数名        | 类型     | 必填 | 说明                       |
 | ------------- | -------- | ---- | -------------------------- |
-| type | 'abilityLifecycle' | 是   | 取消监听事件的类型。 |
-| callbackId    | number   | 是   | 注册监听应用内生命周期的ID。 |
+| type | 'abilityLifecycle' | 是   | 此类型表示应用内UIAbility的生命周期。 |
+| callbackId    | number   | 是   | 通过[ApplicationContext.on('abilityLifecycle')](#applicationcontextonabilitylifecycle)接口注册监听应用内UIAbility的生命周期时返回的ID。 |
 | callback | AsyncCallback\<void> | 是   | 回调方法。当取消监听应用内生命周期成功，err为undefined，否则为错误对象。   |
 
 **错误码**：
@@ -162,7 +160,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 
-取消监听应用内生命周期。使用Promise异步回调。仅支持主线程调用。
+取消监听应用内UIAbility的生命周期。使用Promise异步回调。仅支持主线程调用。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -172,14 +170,14 @@ off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 
 | 参数名        | 类型     | 必填 | 说明                       |
 | ------------- | -------- | ---- | -------------------------- |
-| type | 'abilityLifecycle' | 是   | 取消监听事件的类型。 |
-| callbackId    | number   | 是   | 注册监听应用内生命周期的ID。 |
+| type | 'abilityLifecycle' | 是   | 此类型表示应用内UIAbility的生命周期。 |
+| callbackId    | number   | 是   | 通过[ApplicationContext.on('abilityLifecycle')](#applicationcontextonabilitylifecycle)接口注册监听应用内UIAbility的生命周期时返回的ID。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -224,14 +222,14 @@ on(type: 'environment', callback: EnvironmentCallback): number
 
 | 参数名                   | 类型     | 必填 | 说明                           |
 | ------------------------ | -------- | ---- | ------------------------------ |
-| type | 'environment' | 是   | 监听事件的类型。 |
-| callback | [EnvironmentCallback](js-apis-app-ability-environmentCallback.md) | 是   | 回调方法，提供应用上下文ApplicationContext对系统环境变量监听回调的能力。 |
+| type | 'environment' | 是   | 此类型表示系统环境变化，如系统深浅色发生变化。 |
+| callback | [EnvironmentCallback](js-apis-app-ability-environmentCallback.md) | 是   | 系统环境变化时触发的回调方法。 |
 
 **返回值：**
 
-| 类型   | 说明                           |
-| ------ | ------------------------------ |
-| number | 返回的此次注册监听系统环境变化的ID（每次注册该ID会自增+1，当超过监听上限数量2^63-1时，返回-1）。|
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| number | 返回此次注册的callbackID（每次注册该ID会自增+1，当超过监听上限数量2^63-1时，返回-1），该ID用于在[ApplicationContext.off('environment')](#applicationcontextoffenvironment)方法中取消注册对应的callback。 |
 
 **错误码**：
 
@@ -287,8 +285,8 @@ off(type: 'environment', callbackId: number,  callback: AsyncCallback\<void>): v
 
 | 参数名         | 类型     | 必填 | 说明                       |
 | ------------- | -------- | ---- | -------------------------- |
-| type | 'environment' | 是   | 取消监听事件的类型。 |
-| callbackId    | number   | 是   | 注册监听系统环境变化的ID。   |
+| type | 'environment' | 是   | 此类型表示系统环境变化，如系统深浅色发生变化。 |
+| callbackId    | number   | 是   | 通过[ApplicationContext.on('environment')](#applicationcontextonenvironment)接口注册监听系统环境变化时返回的ID。 |
 | callback | AsyncCallback\<void> | 是   | 回调方法。当取消对系统环境变化的监听成功，err为undefined，否则为错误对象。   |
 
 **错误码**：
@@ -339,14 +337,14 @@ off(type: 'environment', callbackId: number): Promise\<void\>
 
 | 参数名         | 类型     | 必填 | 说明                       |
 | ------------- | -------- | ---- | -------------------------- |
-| type | 'environment' | 是   | 取消监听事件的类型。 |
-| callbackId    | number   | 是   | 注册监听系统环境变化的ID。   |
+| type | 'environment' | 是   | 此类型表示系统环境变化，如系统深浅色发生变化。 |
+| callbackId    | number   | 是   | 通过[ApplicationContext.on('environment')](#applicationcontextonenvironment)接口注册监听系统环境变化时返回的ID。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -380,7 +378,7 @@ export default class MyAbility extends UIAbility {
 
 on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): void
 
-注册对当前应用前后台变化的监听。使用callback异步回调。仅支持主线程调用。
+注册对当前应用前后台状态变化的监听。使用callback异步回调。仅支持主线程调用。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -390,8 +388,8 @@ on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): vo
 
 | 参数名   | 类型                                                         | 必填 | 说明             |
 | -------- | ------------------------------------------------------------ | ---- | ---------------- |
-| type     | 'applicationStateChange'                                     | 是   | 监听事件类型。 |
-| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 是   | 回调函数。可以对应用从后台切换到前台，以及前台切换到后台分别定义回调。       |
+| type     | 'applicationStateChange'                                     | 是   | 此类型表示应用前后台状态变化。 |
+| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 是   | 应用前后台切换时触发的回调方法。 |
 
 **错误码**：
 
@@ -436,7 +434,7 @@ export default class MyAbility extends UIAbility {
 
 off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): void
 
-取消对应用前后台切换事件的监听。使用callback异步回调。仅支持主线程调用。
+取消对应用前后台状态变化的监听。使用callback异步回调。仅支持主线程调用。
 
 > **说明：**
 >
@@ -450,8 +448,8 @@ off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): 
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| type   | 'applicationStateChange' | 是   | 取消监听事件的类型。 |
-| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 否   | 回调函数。取值可以为使用ApplicationContext.on('applicationStateChange')方法定义的callback回调，也可以为空。<br/>-&nbsp;如果传入已定义的回调，则取消该监听。 <br/>-&nbsp;如果未传入参数，则取消当前应用对所有前后台切换事件的监听。  |
+| type   | 'applicationStateChange' | 是   | 此类型表示应用前后台状态变化。 |
+| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 否   | 回调函数。取值可以为使用[ApplicationContext.on('applicationStateChange')](#applicationcontextonapplicationstatechange10)方法定义的callback回调，也可以为空。<br/>-&nbsp;如果传入已定义的回调，则取消该监听。 <br/>-&nbsp;如果未传入参数，则取消当前应用对所有前后台切换事件的监听。  |
 
 **错误码**：
 
@@ -572,7 +570,7 @@ export default class MyAbility extends UIAbility {
     let applicationContext = this.context.getApplicationContext();
     applicationContext.getRunningProcessInformation((err, data) => {
       if (err) {
-        console.error(`getRunningProcessInformation faile, err: ${JSON.stringify(err)}`);
+        console.error(`getRunningProcessInformation failed, err: ${JSON.stringify(err)}`);
       } else {
         console.log(`The process running information is: ${JSON.stringify(data)}`);
       }
@@ -585,7 +583,7 @@ export default class MyAbility extends UIAbility {
 
 killAllProcesses(): Promise\<void\>
 
-终止应用的所有进程，进程退出时不会正常走完应用生命周期。使用Promise异步回调。仅支持主线程调用。
+终止应用的所有进程，进程退出时不会正常执行完整的应用生命周期流程。使用Promise异步回调。仅支持主线程调用。
 
 > **说明：**
 >
@@ -627,7 +625,7 @@ export default class MyAbility extends UIAbility {
 
 killAllProcesses(clearPageStack: boolean): Promise\<void\>
 
-终止应用的所有进程，进程退出时不会正常走完应用生命周期。使用Promise异步回调。仅支持主线程调用。
+终止应用的所有进程，进程退出时不会正常执行完整的应用生命周期流程。使用Promise异步回调。仅支持主线程调用。
 
 > **说明：**
 >
@@ -677,7 +675,7 @@ export default class MyAbility extends UIAbility {
 
 killAllProcesses(callback: AsyncCallback\<void\>)
 
-终止应用的所有进程，进程退出时不会正常走完应用生命周期。使用callback异步回调。仅支持主线程调用。
+终止应用的所有进程，进程退出时不会正常执行完整的应用生命周期流程。使用callback异步回调。仅支持主线程调用。
 
 > **说明：**
 >
@@ -722,7 +720,7 @@ export default class MyAbility extends UIAbility {
 
 setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
-设置应用的颜色模式。仅支持主线程调用。
+设置应用的深浅色模式。仅支持主线程调用。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -732,7 +730,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md#colormode) | 是   | 设置颜色模式，包括：深色模式、浅色模式、不设置（跟随系统）。 |
+| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md#colormode) | 是   | 深浅色模式，包括：深色模式、浅色模式、跟随系统模式（默认）。 |
 
 **错误码**：
 

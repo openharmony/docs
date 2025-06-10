@@ -303,7 +303,7 @@ onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configura
 | 401       | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 | 190001    | Data not found.|
 | 190002    | Data error. |
-| 190003    | Operation on allowed for current pharse. |
+| 190003    | Operation not allowed for current pharse. |
 
 ## DragResult<sup>10+</sup>枚举说明
 
@@ -400,7 +400,7 @@ type OnDragEventCallback = (event: DragEvent, extraParams?: string) => void
 
 | 参数名     | 类型  | 只读 | 可选 | 描述             |
 | ------ | ------ | ---------------- | ------ | ------ |
-| disableDataPrefetch | bool  | 否  | 否  | 设置拖拽是否提前获取数据。<br/>**说明：**<br/> 当使用startDataLoading获取数据时需设置该参数为true，防止拖拽提前获取数据。 |
+| disableDataPrefetch | bool  | 否  | 否  | 设置拖拽是否提前获取数据。true表示不提前获取数据，false表示提前获取数据，默认值为false。<br/>**说明：**<br/> 当使用startDataLoading获取数据时需设置该参数为true，防止拖拽提前获取数据。 |
 
 ## 示例
 

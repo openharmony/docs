@@ -65,6 +65,8 @@ bm install -p /data/app/ohos.app.hap -r
 bm install -s xxx.hsp
 # 同时安装使用方应用和其依赖的应用间共享库
 bm install -p aaa.hap -s xxx.hsp yyy.hsp
+# 同时安装HAP和应用内共享库
+bm install -p /data/app/
 # 安装一个hap,等待时间为10s
 bm install -p /data/app/ohos.app.hap -w 10
 ```
@@ -119,7 +121,7 @@ bm dump [-h] [-a] [-g] [-n bundleName] [-s shortcutInfo] [-d deviceId] [-l label
 | -n | 可选参数，查询指定Bundle名称的详细信息。 |
 | -s | 可选参数，查询指定Bundle名称下的快捷方式信息。 |
 | -d | 可选参数，查询指定设备中的包信息。默认查询当前设备。 |
-| -l | 可选参数，查询指定Bundle名称的label值（应用的名称）。 |
+| -l | 可选参数，查询指定Bundle名称的label值（应用的名称），需要与-n或者-a参数组合使用。 |
 
 
 示例：
@@ -458,7 +460,7 @@ bm install-plugin -n com.ohos.app -p /data/plugin.hsp
 > **说明：**
 >
 > 在同一个应用中安装同一个插件，则视作插件版本更新，插件不支持降级安装；插件版本更新后，需要重启应用插件才能生效。
-> 
+>
 > 不推荐安装与宿主应用模块同名的插件，目前运行态暂不支持。
 
 
@@ -1017,12 +1019,13 @@ error: install failed due to insufficient disk memory.
 **处理步骤**
 
 查看设备存储空间并清理，保证满足安装所需空间，再重试安装应用。
-
+<!--RP4-->
 ```bash
 # 查看磁盘空间使用情况
 hdc shell df -h /system
 hdc shell df -h /data
 ```
+<!--RP4End-->
 
 
 ### 9568289 权限请求失败导致安装失败
@@ -1104,7 +1107,7 @@ error: install failed due to apptype not same.
 应用已安装HAP包和待安装HAP包包名一致，但签名文件中app-feature配置不一致。
 
 **处理步骤**
-  
+
 * 方案1：卸载已安装的HAP包，再安装新的HAP包。
 * 方案2：修改待安装HAP包的签名文件中的app-feature字段，确保与已安装包配置一致，重新打包、签名[应用/元服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)，再重试安装。<!--DelEnd-->
 
@@ -1232,16 +1235,18 @@ error: install parse unexpected.
 
 **可能原因**
 
-* 场景一：设备system分区存储空间已满，导致hdc file send文件后，因存储空间不足导致设备中文件损坏。
+* 场景一：设备存储空间已满，导致hdc file send文件后，因存储空间不足导致设备中文件损坏。
 
 * 场景二：推送HAP包到设备过程HAP包损坏。
 
 **处理步骤**
 
-* 场景一：查看设备system分区存储空间，若已满，清理存储满足安装所需空间。
+* 场景一：查看设备存储空间，若已满，清理存储满足安装所需空间。
+<!--RP4-->
   ```bash
   hdc shell df -h /system
   ```
+<!--RP4End-->
 
 * 场景二：查看本地HAP与推送到设备上HAP的md5值，若不一致则表示推送过程HAP损毁，请尝试重传。
 
@@ -2662,23 +2667,29 @@ error: install parse native so failed.
 
 1. 将设备或模拟器与DevEco Studio进行连接，具体指导及要求可查看[运行应用/元服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-running-app)。
 
-2. 在命令行执行如下[hdc命令](#环境要求hdc工具)，查询设备支持的Abi列表，返回结果为default/armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个Abi类型。
+2. 在命令行执行如下[hdc命令](#环境要求hdc工具)，查询设备支持的Abi列表。
 
     ```
     hdc shell
     param get const.product.cpu.abilist
     ```
 3. 根据查询返回结果，检查[模块级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile)文件中的[“abiFilters”参数](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ohos-abi#%E5%9C%A8%E7%BC%96%E8%AF%91%E6%9E%B6%E6%9E%84%E4%B8%AD%E6%8C%87%E5%AE%9Aabi)中的配置，规则如下：
+
+    <!--Del-->
     * 若返回结果为default，请执行如下命令，查询是否存在lib64文件夹。
+    <!--RP4-->
       ```
       cd /system/
       ls
       ```
+    <!--RP4End-->
       ![示例图](figures/zh-cn_image_0000001609001262.png)
       * 存在lib64文件夹：则“abiFilters”参数中需要包含arm64-v8a类型。
-      * 不存在lib64文件夹：则“abiFilters”参数中需要至少包含armeabi/armeabi-v7a中的一个类型。
-    * 若返回结果为armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个，需要在“abiFilters”参数中至少包含返回结果中的一个Abi类型。
+      * 不存在lib64文件夹：则“abiFilters”参数中需要至少包含armeabi/armeabi-v7a中的一个类型。<!--DelEnd-->
 
+
+
+    * 若返回结果为armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个，需要在“abiFilters”参数中至少包含返回结果中的一个Abi类型。
 
 ### 9568348 解析 ark native SO文件失败
 
@@ -2869,3 +2880,21 @@ error: Install failed due to the U1Enabled is not same in all haps.
 **处理步骤**
 
 重新签名，签名过程中，请参考[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section9786111152213)的支持ACL权限、或者[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section157591551175916)的使用ACL的签名配置指导进行配置，使多个HAP包签名信息中allowed-acls的U1Enabled信息一致。
+
+<!--Del-->
+## 常见问题
+
+### 1. 预置系统应用已经卸载，重新安装应用时在特定场景下会报错：降级安装或者签名信息不一致
+
+**问题描述**
+
+应用已经卸载了，重新安装时报错降级安装或者签名信息不一致，但桌面上会出现对应的应用图标，能正常拉起。
+
+**可能原因**
+
+针对已卸载的预置系统应用增强了安全管控能力，安装一个相同bundleName的应用时，系统侧会先恢复预置镜像版本中的应用，然后再继续安装传入的应用。
+
+**处理步骤**
+
+根据报错信息和错误码进行处理。
+<!--DelEnd-->

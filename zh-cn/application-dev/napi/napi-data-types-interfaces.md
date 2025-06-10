@@ -538,6 +538,7 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_remove_wrap_sendable | 移除并获取ArkTS对象包裹的native实例，移除后回调将不再触发，需手动delete释放内存。|
 | napi_wrap_enhance | 在ArkTS对象上绑定一个Node-API模块对象实例并指定实例大小，开发者可以指定绑定的回调函数是否异步执行，如果异步执行，则回调函数必须是线程安全的。 |
 |napi_create_ark_context| 创建一个新的上下文环境。|
+|napi_switch_ark_context| 切换到指定的运行时上下文环境。|
 |napi_destroy_ark_context| 销毁通过napi_create_ark_context创建的上下文环境。|
 
 #### napi_queue_async_work_with_qos
@@ -557,7 +558,7 @@ napi_status napi_run_script_path(napi_env env,
                                  const char* abcPath,
                                  napi_value* result);
 ```
-
+**注：**使用限制说明文档：[使用napi_run_script_path接口执行包内abc文件的使用限制](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs/faqs-ndk-65)
 #### napi_load_module
 
 ```c
@@ -763,6 +764,11 @@ napi_status napi_wrap_enhance(napi_env env,
 ```c
 NAPI_EXTERN napi_status napi_create_ark_context(napi_env env,
                                                 napi_env* newEnv);
+```
+
+#### napi_switch_ark_context
+```c
+NAPI_EXTERN napi_status napi_switch_ark_context(napi_env env);
 ```
 
 #### napi_destroy_ark_context

@@ -4,7 +4,7 @@
 
 ## 历史记录导航
 
-在前端页面点击网页中的链接时，Web组件默认会自动打开并加载目标网址。当前端页面替换为新的加载链接时，会自动记录已经访问的网页地址。可以通过[forward()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#forward)和[backward()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#backward)接口向前/向后浏览上一个/下一个历史记录。
+在前端页面点击网页中的链接时，Web组件默认会自动打开并加载目标网址。当前端页面替换为新的加载链接时，会自动记录已经访问的网页地址。可以通过[forward()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#forward)和[backward()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#backward)接口向前/向后浏览上一个/下一个历史记录。
 
 页面加载涉及网络资源时，需在module.json5中配置网络访问权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
 
@@ -42,12 +42,12 @@ struct WebComponent {
 ```
 
 
-如果存在历史记录，[accessBackward()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#accessbackward)接口将返回true。同样，开发者可以使用[accessForward()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#accessforward)接口检查是否存在前进的历史记录。如果未执行检查，当用户浏览到历史记录的末尾时，调用[forward()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#forward)和[backward()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#backward)接口将不会执行任何操作。
+如果存在历史记录，[accessBackward()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#accessbackward)接口将返回true。同样，开发者可以使用[accessForward()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#accessforward)接口检查是否存在前进的历史记录。如果未执行检查，当用户浏览到历史记录的末尾时，调用[forward()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#forward)和[backward()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#backward)接口将不会执行任何操作。
 
 
 ## 页面跳转
 
-当点击页面中的链接需要跳转到应用内其他页面时，可以通过使用Web组件的[onLoadIntercept()](../reference/apis-arkweb/ts-basic-components-web-events.md#onloadintercept10)接口来实现。
+当点击页面中的链接需要跳转到应用内其他页面时，可以通过使用Web组件的[onLoadIntercept()](../reference/apis-arkweb/arkts-basic-components-web-events.md#onloadintercept10)接口来实现。
 
 在下面的示例中，应用首页Index.ets加载前端页面route.html，在route.html页面点击'个人中心'超链接，可跳转到应用的ProfilePage.ets页面。
 

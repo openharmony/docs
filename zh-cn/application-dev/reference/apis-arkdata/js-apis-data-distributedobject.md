@@ -839,7 +839,7 @@ on(type: 'change', callback: DataObserver): void
 **示例：**
 
 ```ts
-function changeCallback1(sessionId: string, fields: Array<string>) {
+const changeCallback1: distributedDataObject.DataObserver = (sessionId: string, fields: Array<string>) => {
   console.info("change callback1 " + sessionId);
   if (fields != null && fields != undefined) {
       for (let index: number = 0; index < fields.length; index++) {
@@ -872,7 +872,7 @@ off(type: 'change', callback?: DataObserver): void
 **示例：**
 
 ```ts
-function changeCallback1(sessionId: string, fields: Array<string>) {
+const changeCallback1: distributedDataObject.DataObserver = (sessionId: string, fields: Array<string>) => {
   console.info("change callback1 " + sessionId);
   if (fields != null && fields != undefined) {
       for (let index: number = 0; index < fields.length; index++) {
@@ -881,7 +881,7 @@ function changeCallback1(sessionId: string, fields: Array<string>) {
   }
 }
 
-function changeCallback2(sessionId: string, fields: Array<string>) {
+const changeCallback2: distributedDataObject.DataObserver = (sessionId: string, fields: Array<string>) => {
   console.info("change callback2 " + sessionId);
   if (fields != null && fields != undefined) {
       for (let index: number = 0; index < fields.length; index++) {
@@ -922,7 +922,7 @@ on(type: 'status', callback: StatusObserver): void
 **示例：**
 
 ```ts
-function statusCallback1(sessionId: string, networkId: string, status: string) {
+const statusCallback1: distributedDataObject.StatusObserver = (sessionId: string, networkId: string, status: string) => {
   console.info("status callback " + sessionId);
 }
 try {
@@ -950,12 +950,12 @@ off(type: 'status', callback?: StatusObserver): void
 **示例：**
 
 ```ts
-function statusCallback1(sessionId: string, networkId: string, status: string) {
+const statusCallback1: distributedDataObject.StatusObserver = (sessionId: string, networkId: string, status: string) => {
   console.info("status callback1" + sessionId);
-
 }
-function statusCallback2(sessionId: string, networkId: string, status: string) {
-  console.info("status callback1" + sessionId);
+
+const statusCallback2: distributedDataObject.StatusObserver = (sessionId: string, networkId: string, status: string) => {
+  console.info("status callback2" + sessionId);
 }
 try {
   // 删除单个状态变更回调函数

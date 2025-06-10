@@ -9,7 +9,7 @@
 
 
 
-  **图1** 主轴为水平方向的Flex容器示意图  
+  **图1** 主轴为水平方向的Flex容器示意图
 
 ![flex-layout](figures/flex-layout.png)
 
@@ -25,7 +25,7 @@
 
 在弹性布局中，容器的子元素可以按照任意方向排列。通过设置参数direction，可以决定主轴的方向，从而控制子元素的排列方向。
 
-  **图2** 弹性布局方向图  
+  **图2** 弹性布局方向图
 
 ![flex-layout-direction](figures/flex-layout-direction.png)
 

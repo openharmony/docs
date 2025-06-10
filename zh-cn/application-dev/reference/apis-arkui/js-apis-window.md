@@ -48,6 +48,7 @@ import { window } from '@kit.ArkUI';
 | parentId   | number                     | 否 | 父窗口id。不设置，则默认为-1，该参数应为整数。                                                           |
 | decorEnabled<sup>12+</sup> | boolean | 否 | 是否显示窗口装饰，仅在windowType为TYPE_DIALOG时生效。true表示显示，false表示不显示。此参数默认值为false。<br>**系统能力：** SystemCapability.Window.SessionManager |
 | title<sup>12+</sup> | string| 否 | `decorEnabled`属性设置为true时，窗口的标题内容。标题显示区域最右端不超过系统三键区域最左端，超过部分以省略号表示。不设置，则默认为空字符串。 <br>**系统能力：** SystemCapability.Window.SessionManager |
+| defaultDensityEnabled<sup>20+</sup> | boolean| 否 | 是否使用系统默认Density，使用系统默认Density之后，窗口不会跟随系统显示大小变化重新布局。<br>当创建的系统窗口设置此参数为true时，表示当前窗口使用系统默认Density，且不受[setDefaultDensityEnabled()](#setdefaultdensityenabled12)和[setCustomDensity()](#setcustomdensity15)设置的主窗口的相关影响。<br>当创建的系统窗口设置此参数为false时，表示当前窗口不使用系统默认Density，且会受到[setDefaultDensityEnabled()](#setdefaultdensityenabled12)和[setCustomDensity()](#setcustomdensity15)设置的主窗口的相关影响。<br>默认为false。<br>**系统能力：** SystemCapability.Window.SessionManager |
 
 ## AvoidAreaType<sup>7+</sup>
 
@@ -600,10 +601,10 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 | 名称   | 类型 | 只读  | 可选 | 说明                    |
 | ------ | ---- | ----- | ---- | ----------------------- |
-| type | [RotationChangeType](#rotationchangetype19) | 是 | 否 | 窗口旋转事件类型。 |
-| orientation | number | 是 | 否 | 窗口显示方向。<br>- 0表示竖屏。<br>- 1表示反向横屏。<br>- 2表示反向竖屏。<br>- 3表示横屏。<br>开发者在使用时，需要注意该方向与display对象的属性orientation含义不一致。 |
-| displayId | number | 是 | 否 | 窗口所在屏幕Id。 |
-| displayRect | [Rect](#rect7) | 是 | 否 | 窗口所在屏幕旋转后的矩形区域大小。 |
+| type | [RotationChangeType](#rotationchangetype19) | 否 | 否 | 窗口旋转事件类型。 |
+| orientation | number | 否 | 否 | 窗口显示方向。<br>- 0表示竖屏。<br>- 1表示反向横屏。<br>- 2表示反向竖屏。<br>- 3表示横屏。<br>开发者在使用时，需要注意该方向与display对象的属性orientation含义不一致。 |
+| displayId | number | 否 | 否 | 窗口所在屏幕Id。 |
+| displayRect | [Rect](#rect7) | 否 | 否 | 窗口所在屏幕旋转后的矩形区域大小。 |
 
 ## RotationChangeResult<sup>19+</sup>
 
@@ -778,7 +779,8 @@ export default class EntryAbility extends UIAbility {
     let config: window.Configuration = {
       name: "test",
       windowType: window.WindowType.TYPE_DIALOG,
-      ctx: this.context
+      ctx: this.context,
+      defaultDensityEnabled: true
     };
     try {
       window.createWindow(config).then((value:window.Window) => {
@@ -1336,7 +1338,7 @@ getGlobalWindowMode(displayId?: number): Promise&lt;number&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                                                        |
 | ------ | ---------- |----|---------------------------------------------------------------------------|
-| displayId   | number| 否  | 可选的屏幕ID，用于获取对应屏幕上的窗口模式信息，该参数应为大于等于0的整数，小于0时会返回错误码1300016，不传则代表查询所有屏幕，如果指定的屏幕不存在，返回值为0。|
+| displayId   | number| 否  | 可选的屏幕ID，用于获取对应屏幕上的窗口模式信息。该参数应为大于等于0的整数，小于0时会返回错误码1300016，不传或传值为null以及undefined则代表查询所有屏幕。如果指定的屏幕不存在，返回值为0。|
 
 **返回值：**
 
@@ -3103,7 +3105,7 @@ setWindowDelayRaiseOnDrag(isEnabled: boolean): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 801     | Capability not supported.function setWindowDelayRaiseOnDrag can not work correctly due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 
 **示例：**
@@ -4005,10 +4007,11 @@ try {
 ```ts
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
-@Entry({routeName: entryName, storage : LocalStorage.getShared()})
+@Entry({routeName: entryName, useSharedStorage: true})
 @Component
 export struct Index {
   @State message: string = 'Hello World'
+  @LocalStorageLink('storageSimpleProp') storageSimpleProp: number = 1;
   build() {
     Row() {
       Column() {
@@ -4149,10 +4152,11 @@ try {
 ```ts
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
-@Entry({routeName: entryName, storage : LocalStorage.getShared()})
+@Entry({routeName: entryName, useSharedStorage: true})
 @Component
 export struct Index {
   @State message: string = 'Hello World'
+  @LocalStorageLink('storageSimpleProp') storageSimpleProp: number = 1;
   build() {
     Row() {
       Column() {
@@ -5539,8 +5543,6 @@ on(type: 'windowStatusDidChange', callback: Callback&lt;WindowStatusType&gt;): v
 
 开启窗口模式变化的监听，当窗口windowStatus发生变化后进行通知（此时窗口[Rect](#rect7)属性已经完成更新）。
 
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -5576,8 +5578,6 @@ try {
 off(type: 'windowStatusDidChange', callback?: Callback&lt;WindowStatusType&gt;): void
 
 关闭窗口模式变化的监听。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -10543,7 +10543,7 @@ setSubWindowZLevel(zLevel: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                      |
 | ------- | --------------------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 | 801     | Capability not supported. Function setSubWindowZLevel can not work correctly due to limited device capabilities. |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
@@ -13414,10 +13414,11 @@ export default class EntryAbility extends UIAbility {
 ```ts
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
-@Entry({routeName: entryName, storage : LocalStorage.getShared()})
+@Entry({routeName: entryName, useSharedStorage: true})
 @Component
 export struct Index {
   @State message: string = 'Hello World'
+  @LocalStorageLink('storageSimpleProp') storageSimpleProp: number = 1;
   build() {
     Row() {
       Column() {
@@ -13573,10 +13574,11 @@ export default class EntryAbility extends UIAbility {
 ```ts
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
-@Entry({routeName: entryName, storage : LocalStorage.getShared()})
+@Entry({routeName: entryName, useSharedStorage: true})
 @Component
 export struct Index {
   @State message: string = 'Hello World'
+  @LocalStorageLink('storageSimpleProp') storageSimpleProp: number = 1;
   build() {
     Row() {
       Column() {
@@ -13825,7 +13827,7 @@ export default class EntryAbility extends UIAbility {
 
 setDefaultDensityEnabled(enabled: boolean): void
 
-设置应用是否使用系统默认Density，调用此接口前，需先调用[WindowStage.loadContent()](#loadcontent9-2)初始化布局，确保接口调用时序正确。
+设置应用主窗口是否使用系统默认Density，子窗和系统窗口会跟随主窗生效。调用此接口前，需先调用[WindowStage.loadContent()](#loadcontent9-2)初始化布局，确保接口调用时序正确。
 
 不调用此接口进行设置，则表示不使用系统默认Density，即窗口会跟随系统显示大小变化重新布局。
 
@@ -13886,7 +13888,7 @@ export default class EntryAbility extends UIAbility {
 
 setCustomDensity(density: number): void
 
-支持应用主窗口自定义其显示大小缩放系数，子窗会跟随主窗生效。当存在同时使用该接口和[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时，以最后调用的设置效果为准。
+支持应用主窗口自定义其显示大小缩放系数，子窗和系统窗口会跟随主窗生效。当存在同时使用该接口和[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时，以最后调用的设置效果为准。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 

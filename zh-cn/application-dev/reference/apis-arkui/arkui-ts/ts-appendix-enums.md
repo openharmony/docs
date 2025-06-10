@@ -1293,6 +1293,19 @@ type Nullable\<T> = T | undefined
 > - 建议在出现[像素取整常见问题](./ts-universal-attributes-pixelRound.md#常见问题)时，尝试采用PIXEL_ROUND_AFTER_MEASURE模式解决。
 > - 在PIXEL_ROUND_AFTER_MEASURE模式下，组件会在测量大小结束时进行一次取整，即最终大小相比于PIXEL_ROUND_ON_LAYOUT_FINISH模式可能扩大1px。
 
+## TipsAnchorType<sup>20+</sup>
+
+指定Tips跟随类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    |  说明                   |
+| ------  | -------------------- |
+| TARGET | Tips跟随目标物。 |
+| CURSOR | Tips跟随鼠标。 |
+
 ## AnimationPropertyType<sup>20+</sup>
 
 用于动画的属性类型。
@@ -1307,6 +1320,20 @@ type Nullable\<T> = T | undefined
 | TRANSLATION | 1 | x、y方向的平移属性。该属性对应参数个数为2，属性的单位为px。 |
 | SCALE | 2 | x、y方向的缩放属性。该属性对应参数个数为2。 |
 | OPACITY | 3 | 透明度属性。该属性对应参数个数为1，属性的取值范围为[0,1]。 |
+
+## ColorSpace<sup>20+</sup>
+
+定义了颜色空间的类型，用于指定颜色显示的模式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    |  值   | 说明                   |
+| ------  | ---- | -------------------- |
+| SRGB | 0 | SRGB颜色空间，适用于大多数显示设备。 |
+| DISPLAY_P3 | 1 | Display-P3颜色空间，具有更广的色域，适用于高端显示设备。 |
+
 ## FocusWrapMode<sup>20+</sup>
 
 交叉轴方向键走焦模式枚举。

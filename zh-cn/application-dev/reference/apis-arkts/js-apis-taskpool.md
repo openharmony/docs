@@ -587,6 +587,8 @@ cancel(task: Task): void
 
 取消任务池中的任务。当任务在taskpool等待队列中，取消该任务后该任务将不再执行，并返回任务被取消的异常；当任务已经在taskpool工作线程执行，取消该任务并不影响任务继续执行，执行结果在catch分支返回，搭配isCanceled使用可以对任务取消行为作出响应。taskpool.cancel对其之前的taskpool.execute/taskpool.executeDelayed生效。
 
+从API version 20开始，支持在执行cancel操作后，在catch分支里使用BusinessError<[taskpool.TaskResult](#taskresult20)>的泛型标记，来获取任务中抛出的异常信息或最终的执行结果。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
@@ -665,6 +667,8 @@ cancel(group: TaskGroup): void
 
 取消任务池中的任务组。当一个任务组的任务未全部执行结束时取消任务组，则返回undefined作为任务组结果。
 
+从API version 20开始，支持在执行cancel操作后，在catch分支里使用BusinessError<[taskpool.TaskResult](#taskresult20)>的泛型标记，来获取任务中抛出的异常信息或最终的执行结果。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
@@ -725,6 +729,8 @@ concurrentFunc();
 cancel(taskId: number): void
 
 通过任务ID取消任务池中的任务。当任务在taskpool等待队列中，取消该任务后该任务将不再执行，并返回任务被取消的异常；当任务已经在taskpool工作线程执行，取消该任务并不影响任务继续执行，执行结果在catch分支返回，搭配isCanceled使用可以对任务取消行为作出响应。taskpool.cancel对其之前的taskpool.execute/taskpool.executeDelayed生效。在其他线程调用taskpool.cancel时需要注意，因为cancel的行为是异步的，可能对之后的taskpool.execute/taskpool.executeDelayed生效。
+
+从API version 20开始，支持在执行cancel操作后，在catch分支里使用BusinessError<[taskpool.TaskResult](#taskresult20)>的泛型标记，来获取任务中抛出的异常信息或最终的执行结果。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -950,10 +956,10 @@ for (let i: number = 0; i < taskArray.length; i+=4) { // 4: 每次执行4个任�
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称                 | 类型       | 可读 | 可写 | 说明                                                         |
+| 名称                 | 类型       | 只读 | 可选 | 说明                                                         |
 | -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
-| function             | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
-| arguments            | Object[]  | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
+| function             | Function  | 否   | 否   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
+| arguments            | Object[]  | 否   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
 | name<sup>11+</sup>   | string    | 是   | 否   | 创建任务时指定的任务名称。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
 | taskId<sup>18+</sup>   | number    | 是   | 否   | 任务的ID。<br>**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。|
 | totalDuration<sup>11+</sup>  | number    | 是   | 否   | 执行任务总耗时。单位为ms。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
@@ -1341,7 +1347,7 @@ static sendData(...args: Object[]): void
 > **说明：**
 >
 > - 该接口在taskpool的线程中调用。
-> - 避免在回调函数中使用该方法。
+> - 避免在回调函数中使用该方法，否则可能导致消息无法发送到宿主线程。
 > - 调用该接口时确保处理数据的回调函数已在宿主线程注册。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -2107,9 +2113,9 @@ taskGroup.addTask(task);
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
-| 名称 | 类型   | 可读 | 可写 | 说明                         |
+| 名称 | 类型   | 只读 | 可选 | 说明                         |
 | ---- | ------ | ---- | ---- | ---------------------------- |
-| name<sup>11+</sup> | string | 是   | 是   | 创建任务组时指定的任务组名称。 |
+| name<sup>11+</sup> | string | 否   | 否   | 创建任务组时指定的任务组名称。 |
 
 ## SequenceRunner <sup>11+</sup>
 
@@ -2434,7 +2440,7 @@ async function asyRunner2() {
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称     | 类型                | 可读 | 可写 | 说明                                                           |
+| 名称     | 类型                | 只读 | 可选 | 说明                                                           |
 | -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
 | name<sup>12+</sup> | string             | 是   | 否   | 任务的名字。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                    |
 | taskId   | number             | 是   | 否   | 任务的ID。<br/> **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。                                                     |
@@ -2453,7 +2459,7 @@ async function asyRunner2() {
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
-| 名称     | 类型                    | 可读 | 可写 | 说明                                                      |
+| 名称     | 类型                    | 只读 | 可选 | 说明                                                      |
 | -------- | ---------------------- | ---- | ---- | -------------------------------------------------------- |
 | tid      | number                 | 是   | 否   | 工作线程的标识符。返回为空时，代表没有任务执行。              |
 | taskIds  | number[]               | 是   | 否   | 在当前线程上运行的任务id列表。返回为空时，代表没有任务执行。   |
@@ -2471,14 +2477,14 @@ async function asyRunner2() {
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
-| 名称          | 类型                              | 可读 | 可写 | 说明                  |
+| 名称          | 类型                              | 只读 | 可选 | 说明                  |
 | ------------- | -------------------------------- | ---- | ---- | -------------------- |
 | threadInfos   | [ThreadInfo[]](#threadinfo10)    | 是   | 否   | 工作线程的内部信息。   |
 | taskInfos     | [TaskInfo[]](#taskinfo10)        | 是   | 否   | 任务的内部信息。       |
 
 ## TaskResult<sup>20+</sup>
 
-处于等待或执行过程中的任务进行[taskpool.cancel](#taskpoolcancel)操作后，在catch分支里捕获到BusinessError里的补充信息。其他场景下该信息为undefined。
+处于等待或执行过程中的任务进行取消操作后，在catch分支里捕获到BusinessError里的补充信息。其他场景下该信息为undefined。
 
 **系统能力：** SystemCapability.Utils.Lang
 

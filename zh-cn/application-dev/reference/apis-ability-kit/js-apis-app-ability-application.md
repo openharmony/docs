@@ -1,4 +1,4 @@
-#  @ohos.app.ability.application (Application)
+#  @ohos.app.ability.application (应用基础能力)
 
 开发者可以通过该模块创建[Context](../../application-models/application-context-stage.md)。
 

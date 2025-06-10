@@ -4,7 +4,7 @@
 
 ## 监听页面触发的下载
 
-通过[setDownloadDelegate()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#setdownloaddelegate11)向Web组件注册一个DownloadDelegate来监听页面触发的下载任务。资源由Web组件来下载，Web组件会通过DownloadDelegate将下载的进度通知给应用。
+通过[setDownloadDelegate()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setdownloaddelegate11)向Web组件注册一个DownloadDelegate来监听页面触发的下载任务。资源由Web组件来下载，Web组件会通过DownloadDelegate将下载的进度通知给应用。
 
 下面的示例中，在应用的rawfile中创建index.html以及download.html。应用启动后会创建一个Web组件并加载index.html，点击setDownloadDelegate按钮向Web组件注册一个DownloadDelegate，点击页面里的下载按钮的时候会触发一个下载任务，在DownloadDelegate中可以监听到下载的进度。
 
@@ -86,7 +86,7 @@ struct WebComponent {
 
 ## 使用Web组件发起一个下载任务
 
-使用[startDownload()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#startdownload11)接口发起一个下载。
+使用[startDownload()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#startdownload11)接口发起一个下载。
 Web组件发起的下载会根据当前显示的url以及Web组件默认的Referrer Policy来计算referrer。
 
   在下面的示例中，先点击setDownloadDelegate按钮向Web注册一个监听类，然后点击startDownload主动发起了一个下载，
@@ -225,14 +225,14 @@ function getDownloadPathFromPicker(): Promise<string> {
 
 > **说明：**
 >
->Web组件的下载功能要求应用通过调用[WebDownloadItem.start](../reference/apis-arkweb/js-apis-webview.md#start11)来指定下载文件的保存路径。
+>Web组件的下载功能要求应用通过调用[WebDownloadItem.start](../reference/apis-arkweb/arkts-apis-webview-WebDownloadItem.md#start11)来指定下载文件的保存路径。
 >
->值得注意的是，WebDownloadItem.start并非启动下载，下载过程实际上在用户点击页面链接时即已开始。WebDownloadItem.start的作用是将已经下载到临时文件的部分移动到指定目标路径，后续未完成的下载的内容将直接保存到指定目标路径，临时目录位于`/data/storage/el2/base/cache/web/Temp/`。如果决定取消当前下载，应调用[WebDownloadItem.cancel](../reference/apis-arkweb/js-apis-webview.md#cancel11)，此时临时文件将被删除。
+>值得注意的是，WebDownloadItem.start并非启动下载，下载过程实际上在用户点击页面链接时即已开始。WebDownloadItem.start的作用是将已经下载到临时文件的部分移动到指定目标路径，后续未完成的下载的内容将直接保存到指定目标路径，临时目录位于`/data/storage/el2/base/cache/web/Temp/`。如果决定取消当前下载，应调用[WebDownloadItem.cancel](../reference/apis-arkweb/arkts-apis-webview-WebDownloadItem.md#cancel11)，此时临时文件将被删除。
 >
->如果不希望在WebDownloadItem.start之前将文件下载到临时目录，可以通过WebDownloadItem.cancel中断下载，后续可通过[WebDownloadManager.resumeDownload](../reference/apis-arkweb/js-apis-webview.md#resumedownload11)恢复中断的下载。
+>如果不希望在WebDownloadItem.start之前将文件下载到临时目录，可以通过WebDownloadItem.cancel中断下载，后续可通过[WebDownloadManager.resumeDownload](../reference/apis-arkweb/arkts-apis-webview-WebDownloadManager.md#resumedownload11)恢复中断的下载。
 
 ## 使用Web组件恢复进程退出时未下载完成的任务
-在Web组件启动时，可通过[resumeDownload()](../reference/apis-arkweb/js-apis-webview.md#resumedownload11)接口恢复未完成的下载任务。
+在Web组件启动时，可通过[resumeDownload()](../reference/apis-arkweb/arkts-apis-webview-WebDownloadManager.md#resumedownload11)接口恢复未完成的下载任务。
 
 在以下示例中，通过“record”按钮将当前下载任务保存至持久化文件中，应用重启后，可借助“recovery”按钮恢复持久化的下载任务。示例代码实现了将当前下载任务持久化保存至文件的功能，若需保存多个下载任务，应用可根据需求调整持久化的时机与方式。
 ```ts

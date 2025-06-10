@@ -135,15 +135,18 @@ class Tmp {
   paramA1: string = '';
 }
 
-@Builder function overBuilder(params: Tmp) {
+@Builder
+function overBuilder(params: Tmp) {
   Row() {
     Text(`UseStateVarByReference: ${params.paramA1} `)
   }
 }
+
 @Entry
 @Component
 struct Parent {
   @State label: string = 'Hello';
+
   build() {
     Column() {
       // 在父组件中调用overBuilder组件时，

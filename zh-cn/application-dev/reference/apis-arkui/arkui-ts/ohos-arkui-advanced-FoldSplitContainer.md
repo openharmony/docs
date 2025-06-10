@@ -127,7 +127,7 @@ onHoverStatusChange事件处理。
 | foldStatus | [display.FoldStatus](../js-apis-display.md#foldstatus10) | 是 | 设备的折叠状态。 |
 | isHoverMode | boolean | 是 | app当前是否处于悬停态。设置为true时表示当前为悬停态，设置为false时表示当前为非悬停态。 |
 | appRotation | number | 是 | 应用旋转角度。 |
-| windowStatusType | [window.WindowStatusType](../js-apis-window.md#windowstatustype11) | 是 | 窗口模式。 |
+| windowStatusType | [window.WindowStatusType](../arkts-apis-window-e.md#windowstatustype11) | 是 | 窗口模式。 |
 
 ## ExtraRegionPosition
 

@@ -1,11 +1,20 @@
-# Context
+# Context（Stage模型的上下文基类）
 
-Context模块继承自[BaseContext](js-apis-inner-application-baseContext.md)，提供了ability或application的上下文的能力，包括访问特定应用程序的资源等。
+Context模块继承自[BaseContext](js-apis-inner-application-baseContext.md)，提供了Ability或Application的上下文的基础能力，包括访问特定应用程序的资源等。
 
 > **说明：**
 >
 >  - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >  - 本模块接口仅可在Stage模型下使用。
+
+## 不同类型Context的继承和持有关系
+- 不同类型Context的继承关系如下：
+
+  ![context-inheritance](../../application-models/figures/context-inheritance.png)
+
+- 不同类型Context的持有关系如下：
+
+  ![context-holding](../../application-models/figures/context-holding.png)
 
 ## 导入模块
 
@@ -25,17 +34,17 @@ Context提供了ability或application的上下文的能力，包括访问特定�
 |---------------------| ------ | ---- | ---- |------------------------------------------------------------------|
 | resourceManager     | resmgr.[ResourceManager](../apis-localization-kit/js-apis-resource-manager.md#resourcemanager) | 否    | 否    | 资源管理对象。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | applicationInfo     | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | 否    | 否    | 当前应用程序的信息。 <br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| cacheDir            | string | 否    | 否    | 缓存目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| tempDir             | string | 否    | 否    | 临时目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| cacheDir            | string | 否    | 否    | 缓存目录，详情参考[应用沙箱目录](../../file-management/app-sandbox-directory.md)。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| tempDir             | string | 否    | 否    | 临时目录，详情参考[应用沙箱目录](../../file-management/app-sandbox-directory.md)。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | resourceDir<sup>11+<sup>         | string | 否    | 否    | 资源目录。<br>**说明**：需要开发者手动在`\<module-name>\resource`路径下创建`resfile`目录。创建的`resfile`目录仅支持以只读方式访问。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| filesDir            | string | 否    | 否    | 文件目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| databaseDir         | string | 否    | 否    | 数据库目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| preferencesDir      | string | 否    | 否    | preferences目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| bundleCodeDir       | string | 否    | 否    | 安装包目录。不能拼接路径访问资源文件，请使用[资源管理接口](../apis-localization-kit/js-apis-resource-manager.md)访问资源。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| distributedFilesDir | string | 否    | 否    | 分布式文件目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| filesDir            | string | 否    | 否    | 文件目录，详情参考[应用沙箱目录](../../file-management/app-sandbox-directory.md)。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| databaseDir         | string | 否    | 否    | 数据库目录，详情参考[应用沙箱目录](../../file-management/app-sandbox-directory.md)。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| preferencesDir      | string | 否    | 否    | preferences目录，详情参考[应用沙箱目录](../../file-management/app-sandbox-directory.md)。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| bundleCodeDir       | string | 否    | 否    | 安装包目录。不能拼接路径访问资源文件，请使用[资源管理接口](../apis-localization-kit/js-apis-resource-manager.md)访问资源，详情参考[应用沙箱目录](../../file-management/app-sandbox-directory.md)。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| distributedFilesDir | string | 否    | 否    | 分布式文件目录，详情参考[应用沙箱目录](../../file-management/app-sandbox-directory.md)。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | cloudFileDir<sup>12+</sup>        | string | 否    | 否    | 云文件目录。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。    |
 | eventHub            | [EventHub](js-apis-inner-application-eventHub.md) | 否    | 否    | 事件中心，提供订阅、取消订阅、触发事件对象。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | 否    | 否    | 文件分区信息。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md#areamode) | 否    | 否    | 文件分区信息，按加密等级[AreaMode](js-apis-app-ability-contextConstant.md#areamode) 进行分区。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | processName<sup>18+</sup> | string | 否   | 否 | 当前应用的进程名。<br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ### createModuleContext<sup>(deprecated)</sup>
@@ -46,7 +55,9 @@ createModuleContext(moduleName: string): Context
 
 > **说明：**
 >
-> 从 API Version 12 开始废弃，建议使用[application.createModuleContext](./js-apis-app-ability-application.md#applicationcreatemodulecontext12)替代。
+> - 仅支持获取本应用中其他Module的Context和应用内HSP的Context，不支持获取其他应用的Context。
+>
+> - 从 API Version 12 开始废弃，建议使用[application.createModuleContext](./js-apis-app-ability-application.md#applicationcreatemodulecontext12)替代，否则可能导致资源获取异常。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -90,8 +101,6 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-
-> 说明：仅支持获取本应用中其他Module的Context和应用内HSP的Context，不支持获取其他应用的Context。
 
 ### getApplicationContext
 

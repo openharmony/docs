@@ -111,7 +111,7 @@ let dialCallOptions: call.DialCallOptions = {
     accountId: 0,
     videoState: 0,
     dialScene: 0,
-    dialType: 0,
+    dialType: 0
 }
 call.dialCall("138xxxxxxxx", dialCallOptions, (err: BusinessError) => {
     if (err) {
@@ -1987,7 +1987,7 @@ postDialProceed\(callId: number, proceed: boolean, callback: AsyncCallback\<void
 | 参数名   | 类型                      | 必填 | 说明                                                           |
 | -------- | ------------------------- | ---- | -------------------------------------------------------------- |
 | callId   | number                    | 是   | 呼叫Id。                                                       |
-| proceed  | boolean                   | 是   | 用户选择是否发送DTMF(Dual Tone Multi Frequency，双音多频)音。|
+| proceed  | boolean                   | 是   | 用户选择是否发送DTMF(Dual Tone Multi Frequency，双音多频)音，默认为false。<br/>-true：是<br/>-false：否|
 | callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回继续进行通话的结果。                    |
 
 **错误码：**
@@ -5561,7 +5561,7 @@ controlCamera\(callId: number, cameraId: string\): Promise\<void\>
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- | -------------- |
 | callId | number                       | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。       |
-| cameraId | string                     | 是   | 相机Id。cameraId获取方式可参考[相机管理](../apis-camera-kit/js-apis-camera.md#getsupportedcameras)。|
+| cameraId | string                     | 是   | 相机Id。cameraId获取方式可参考[相机管理](../apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedcameras)。|
 
 **返回值：**
 
@@ -6207,7 +6207,7 @@ call.off('cameraCapabilitiesChange', (data: call.CameraCapabilities) => {
 | markContent | string | 否  | 号码的标记内容，markType为MARK_TYPE_ENTERPRISE时，该字段返回信息为“姓名 工号”。 |
 | markCount | number       | 否  | 号码的标记次数。 |
 | markSource | string | 否 | 号码的标记来源供应商。 |
-| isCloud | boolean | 否 | 号码的标记是否来自云端。 |
+| isCloud | boolean | 否 | 号码的标记是否来自云端，默认为false。<br/>-true：是<br/>-false：否|
 | markDetails<sup>14+</sup> | string | 否 | 号码标记的详细信息，markType为MARK_TYPE_ENTERPRISE时，该字段返回信息为“部门 职位”。 |
 
 ## MarkType<sup>12+</sup>

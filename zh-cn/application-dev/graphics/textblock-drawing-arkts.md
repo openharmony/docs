@@ -37,7 +37,7 @@ const font = new drawing.Font();
 // 设置字体大小
 font.setSize(100);
 // 创建字块对象
-const textBlob = drawing.TextBlob.makeFromString("Hello world", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+const textBlob = drawing.TextBlob.makeFromString('Hello world', font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
 // 绘制字块
 canvas.drawTextBlob(textBlob, 200, 300);
 ```

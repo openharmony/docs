@@ -54,7 +54,7 @@
    | updateDuration | 表示卡片定时刷新的更新周期，单位为30分钟，取值为自然数。<br/>当取值为0时，表示该参数不生效。<br/>当取值为正整数N时，表示刷新周期为30\*N分钟。<br/>**说明：**<br/>updateDuration参数优先级高于scheduledUpdateTime，两者同时配置时，以updateDuration配置的刷新时间为准。 | 数值 | 可缺省，缺省值为“0”。 |
    | formConfigAbility | 表示卡片的配置跳转链接，采用URI格式。| 字符串 | 可缺省，缺省值为空。 |
    | metadata | 表示卡片的自定义信息，参考[Metadata](../reference/apis-ability-kit/js-apis-bundleManager-metadata.md)数组标签。 | 对象 | 可缺省，缺省值为空。 |
-   | dataProxyEnabled | 表示卡片是否支持卡片代理刷新，取值范围：<br/>-&nbsp;true：表示支持代理刷新。<br/>-&nbsp;false：表示不支持代理刷新。<br/>设置为true时，[定时刷新和下次刷新不生效，但不影响定点刷新](./arkts-ui-widget-update-by-time.md)。 | 布尔类型 | 可缺省，缺省值为false。 |
+   | dataProxyEnabled | 表示卡片是否支持卡片代理刷新，取值范围：<br/>-&nbsp;true：表示支持代理刷新。<br/>-&nbsp;false：表示不支持代理刷新。<br/>设置为true时，[定时刷新和下次刷新不生效，但不影响定点刷新](arkts-ui-widget-passive-refresh.md)。 | 布尔类型 | 可缺省，缺省值为false。 |
    | [isDynamic](#isdynamic标签) | 表示此卡片是否为动态卡片（仅针对ArkTS卡片生效）。 <br/>-&nbsp;true：为动态卡片 。<br/>-&nbsp;false：为静态卡片。<br/>| 布尔类型 | 可缺省，缺省值为true。 |
    | fontScaleFollowSystem | 表示卡片使用方设置此卡片的字体是否支持跟随系统变化。 <br/>-&nbsp;true：支持跟随系统字体大小变化 。<br/>-&nbsp;false：不支持跟随系统字体大小变化。<br/>| 布尔类型 | 可缺省，缺省值为true。 |
    | supportShapes | 表示卡片的显示形状，取值范围如下：<br/>-&nbsp;rect：表示方形卡片。<br/>-&nbsp;circle：表示圆形卡片。| 字符串 | 可缺省，缺省值为“rect”。 |
@@ -91,20 +91,20 @@
 此标签标识趣味交互类型互动卡片配置。funInteractionParams 和 sceneAnimationParams 同时配置时识别为趣味交互类型互动卡片。
 
 | 名称                | 类型  | 必填 | 说明                                                                  |
-|-------------------|-----|----|---------------------------------------------------------------------|
-| abilityName       | 字符串 | 否 | 趣味交互场景 extensionAbility 名称，默认为空。                                  |
-| targetBundleName  | string | 是  |  趣味交互场景[主包包名](https://developer.huawei.com/consumer/cn/doc/quickApp-Guides/quickgame-independent-subpackage-0000002076341729)。|
-| subBundleName     | string | 是  |  趣味交互场景[独立分包名](https://developer.huawei.com/consumer/cn/doc/quickApp-Guides/quickgame-independent-subpackage-0000002076341729)。|
-| keepStateDuration | 数值  | 否  | 趣味交互场景无交互时，激活态保持时长。默认值为10000，单位ms。取值为[0,10000]的整数，超过取值范围则取默认值10000。 |
+|-------------------|-----|--|---------------------------------------------------------------------|
+| abilityName       | 字符串 | 否 | 趣味交互场景LiveFormExtensionAbility名称，默认为空。                                  |
+| targetBundleName  | 字符串 | 否 |  趣味交互场景[主包包名](https://developer.huawei.com/consumer/cn/doc/quickApp-Guides/quickgame-independent-subpackage-0000002076341729)。|
+| subBundleName     | 字符串 | 否 |  趣味交互场景[独立分包名](https://developer.huawei.com/consumer/cn/doc/quickApp-Guides/quickgame-independent-subpackage-0000002076341729)。|
+| keepStateDuration | 数值  | 否 | 趣味交互场景无交互时，激活态保持时长。默认值为10000，单位ms。取值为[0,10000]的整数，超过取值范围则取默认值10000。 |
 
 ## sceneAnimationParams标签
 
 此标签标识场景动效类型互动卡片配置。funInteractionParams 和 sceneAnimationParams 同时配置时识别为趣味交互类型互动卡片。
 
-| 名称                                     | 类型     | 必填 | 说明 |
-|----------------------------------------|--------|----|----------------------------|
-| abilityName                            | 字符串 | 是  | 场景动效 extensionAbility 名称。|
-| <!--DelRow--> disabledDesktopBehaviors | 字符串数组 | 否  | 支持的取值包括SWIPE_DESKTOP（滑动桌面）、PULL_DOWN_SEARCH（下拉全搜）、LONG_CLICK（长按）、DRAG（拖动）。可以取值一个或多个，不同行为通过 \| 拼接，例如SWIPE_DESKTOP\|PULL_DOWN_SEARCH。缺省表示不禁用任何行为。 |
+| 名称                                    | 类型     | 必填 | 说明 |
+|---------------------------------------|--------|----|----------------------------|
+| abilityName                           | 字符串 | 是  | 场景动效 extensionAbility 名称。|
+| <!--DelRow-->disabledDesktopBehaviors | 字符串数组 | 否  | 支持的取值包括SWIPE_DESKTOP（滑动桌面）、PULL_DOWN_SEARCH（下拉全搜）、LONG_CLICK（长按）、DRAG（拖动）。可以取值一个或多个，不同行为通过 \| 拼接，例如SWIPE_DESKTOP\|PULL_DOWN_SEARCH。缺省表示不禁用任何行为。 |
 
 <!--RP2-->
    ```json
@@ -154,7 +154,8 @@
          "transparencyEnabled": false,
          "metadata": [],
          "funInteractionParams": {
-            "targetBundleName": "com.example.funInteraction"
+            "targetBundleName": "com.example.funInteraction",
+            "subBundleName": "com.example.subFunInteraction"
          }
        }
      ]

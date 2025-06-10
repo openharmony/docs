@@ -154,7 +154,7 @@ margin(value: Margin | Length | LocalizedMargin)
 
 ## safeAreaPadding<sup>14+</sup>
 
-safeAreaPadding(value: Padding | LengthMetrics | LocalizedPadding)
+safeAreaPadding(paddingValue: Padding | LengthMetrics | LocalizedPadding)
 
 设置安全区边距属性。允许容器向自身添加组件级安全区域，供子组件延伸，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 

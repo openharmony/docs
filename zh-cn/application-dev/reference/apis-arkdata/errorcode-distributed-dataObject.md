@@ -26,7 +26,7 @@ Failed to create the in-memory database.
 
 **错误信息**
 
-Parameter error. Possible causes: 1. The assetKey is invalid, such as ""; 2. The uri is invalid, such as "". 3. The uris is invalid, such as the length of uris is more than 50.
+Parameter error.
 
 **错误描述**
 

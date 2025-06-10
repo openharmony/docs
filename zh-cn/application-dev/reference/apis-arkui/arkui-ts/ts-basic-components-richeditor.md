@@ -1982,7 +1982,7 @@ type OnHoverCallback = (status: boolean, event: HoverEvent) => void
 
 Url信息。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2219,6 +2219,8 @@ struct RichEditorExample {
 
 ### 示例3（绑定自定义菜单）
 通过[bindSelectionMenu](#bindselectionmenu)给组件绑定自定义菜单。
+
+示例中的粘贴菜单项涉及读取剪贴板数据，因此需按规范[申请访问剪贴板权限](../../../basic-services/pasteboard/get-pastedata-permission-guidelines.md)。
 
 ```ts
 // xxx.ets
@@ -5350,3 +5352,130 @@ struct RichEditorExample {
   }
 }
 ```
+
+### 示例30（设置装饰线粗细和多装饰线）
+
+```ts
+import { LengthMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  private controller: RichEditorController = new RichEditorController();
+  private styledStringController: RichEditorStyledStringController = new RichEditorStyledStringController();
+
+  build() {
+    Column({ space: 20 }) {
+      RichEditor({ controller: this.controller })
+        .onReady(() => {
+          // 预置一段文本
+          this.controller.addTextSpan('一段预置的文本', {
+            style: {
+              fontSize: 25,
+              decoration: {
+                type: TextDecorationType.LineThrough,
+                // 设置装饰线粗细比例为2
+                thicknessScale: 2
+              }
+            }
+          })
+        })
+
+      // 设置富文本多装饰线
+      RichEditor({ controller: this.styledStringController })
+
+      Button('追加粗细比例为8的文本')
+        .fontSize(20)
+        .onClick(() => {
+          this.controller.addTextSpan('追加的文本', {
+            style: {
+              fontSize: 25,
+              decoration: {
+                type: TextDecorationType.LineThrough,
+                // 设置装饰线粗细比例为8
+                thicknessScale: 8
+              }
+            }
+          })
+        })
+
+      Button('修改全段文本的粗细比例为4')
+        .fontSize(20)
+        .onClick(() => {
+          this.controller.updateSpanStyle({
+            start: 0,
+            end: 1000, // 下标超过文本长度时，会更新整段文本
+            textStyle: {
+              decoration: {
+                type: TextDecorationType.LineThrough,
+                // 设置装饰线粗细比例为4
+                thicknessScale: 4
+              }
+            }
+          })
+        })
+
+      Button('多装饰线文本')
+        .fontSize(20)
+        .onClick(() => {
+          let mutString: MutableStyledString = new MutableStyledString('设置富文本多装饰线', [
+            {
+              start: 0,
+              length: 9,
+              styledKey: StyledStringKey.FONT,
+              styledValue: new TextStyle({ fontSize: LengthMetrics.vp(25) })
+            },
+            {
+              start: 0,
+              length: 5,
+              styledKey: StyledStringKey.DECORATION,
+              styledValue: new DecorationStyle(
+                {
+                  type: TextDecorationType.Underline,
+                },
+                {
+                  // 开启多装饰线
+                  enableMultiType: true
+                }
+              )
+            },
+            {
+              start: 2,
+              length: 4,
+              styledKey: StyledStringKey.DECORATION,
+              styledValue: new DecorationStyle(
+                {
+                  type: TextDecorationType.LineThrough,
+                },
+                {
+                  // 开启多装饰线
+                  enableMultiType: true
+                }
+              )
+            },
+            {
+              start: 4,
+              length: 5,
+              styledKey: StyledStringKey.DECORATION,
+              styledValue: new DecorationStyle(
+                {
+                  type: TextDecorationType.Overline,
+                },
+                {
+                  // 开启多装饰线
+                  enableMultiType: true
+                }
+              )
+            },
+          ])
+          this.styledStringController.setStyledString(mutString);
+        })
+    }
+    .height('100%')
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+![Decoration](figures/decoration_thickness_scale.gif)
