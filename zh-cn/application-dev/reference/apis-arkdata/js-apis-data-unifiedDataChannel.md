@@ -1396,7 +1396,7 @@ type DataLoadHandler = (acceptableInfo?: DataLoadInfo) => UnifiedData | null
 
 | 类型                    | 说明                                |
 |-----------------------|-----------------------------------|
-| [UnifiedData](#unifieddata) \| null | 当延迟处理函数触发时，返回[UnifiedData](#unifieddata)或null。 |
+| [UnifiedData](#unifieddata) \| null | 当延迟处理函数触发时，返回UnifiedData或null。 |
 
 ## DataLoadParams<sup>20+</sup>
 
