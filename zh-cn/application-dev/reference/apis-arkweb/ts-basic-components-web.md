@@ -1025,20 +1025,20 @@ copyOptions(value: CopyOptions)
 **示例：**
 
   ```ts
-import { webview } from '@kit.ArkWeb';
-
-@Entry
-@Component
-struct WebComponent {
-  controller: webview.WebviewController = new webview.WebviewController();
-
-  build() {
-    Column() {
-      Web({ src: 'www.example.com', controller: this.controller })
-        .copyOptions(CopyOptions.None)
+  import { webview } from '@kit.ArkWeb';
+  
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+  
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .copyOptions(CopyOptions.None)
+      }
     }
   }
-}
   ```
 
 ### textZoomAtio<sup>(deprecated)</sup>
@@ -2194,7 +2194,7 @@ layoutMode(mode: WebLayoutMode)
 > - Web组件宽高规格：指定`RenderMode.SYNC_RENDER`模式时，分别不超过50万px；指定`RenderMode.ASYNC_RENDER`模式时，分别不超过7680px。
 > - 频繁更改页面宽高会触发Web组件重新布局，影响体验。
 > - 不支持瀑布流网页（下拉到底部加载更多）。
-> - 仅支持高度自适应，不支持宽度自适应。
+> - 不支持宽度自适应，仅支持高度自适应（不支持vh单位）。
 > - 由于高度自适应网页高度，您无法通过修改组件高度属性来修改组件高度。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -5156,7 +5156,15 @@ onContextMenuHide(callback: OnContextMenuHideCallback)
 
 onScroll(callback: Callback\<OnScrollEvent\>)
 
-通知网页滚动条滚动位置。
+通知网页全局滚动位置。
+
+> **说明：**
+>
+> 通知的是页面全局滚动位置，局部滚动位置的变化是无法触发此回调。
+>
+> 判断页面是否是全局滚动，在滚动前后打印window.pagYOffset或者window.pagXOffset。
+>
+> 如果是全局滚动，window.pagYOffset或者window.pagXOffset的值在滚动前后会有变化，反之没有变化。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8559,7 +8567,7 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 | FileOpenFolderMode   | 2 | 打开上传文件夹模式。 |
 | FileSaveMode         | 3 | 文件保存模式。    |
 
- ## HitTestType枚举说明
+## HitTestType枚举说明
 
  **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8574,7 +8582,7 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 | Phone         | 6 | 电话号码。                    |
 | Unknown       | 7 | 未知内容。                    |
 
- ## OverScrollMode<sup>11+</sup>枚举说明
+## OverScrollMode<sup>11+</sup>枚举说明
 
 设置Web的过滚动模式为关闭或开启。
 
@@ -8756,7 +8764,7 @@ cancel(): void
   }
   ```
 
-  ## WebController
+## WebController
 
 通过WebController可以控制Web组件各种行为。一个WebController对象只能控制一个Web组件，且必须在Web组件和WebController绑定后，才能调用WebController上的方法。
 

@@ -74,10 +74,11 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { UIExtensionAbility, Want } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
 
   onForeground() {
     let want: Want = {
@@ -162,10 +163,11 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 **示例：**
 
 ```ts
-import { UIExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -260,10 +262,11 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { UIExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -354,10 +357,11 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 **示例：**
 
 ```ts
-import { UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, Want, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -444,10 +448,11 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 **示例：**
 
 ```ts
-import { UIExtensionAbility, Want, common, StartOptions } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, Want, common, StartOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -546,10 +551,11 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 **示例：**
 
 ```ts
-import { UIExtensionAbility, Want, common, StartOptions } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, Want, common, StartOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -630,11 +636,12 @@ ServiceExtensionAbility是一类特殊的[ExtensionAbility](../../application-mo
 **示例：**
 
 ```ts
-import { UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, Want, common } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -702,11 +709,12 @@ ServiceExtensionAbility是一类特殊的[ExtensionAbility](../../application-mo
 **示例：**
 
 ```ts
-import { UIExtensionAbility } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     // connection为connectServiceExtensionAbility中的返回值
     let connection = 1;
@@ -762,11 +770,12 @@ ServiceExtensionAbility是一类特殊的[ExtensionAbility](../../application-mo
 **示例：**
 
 ```ts
-import { UIExtensionAbility } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     // connection为connectServiceExtensionAbility中的返回值
     let connection = 1;
@@ -819,10 +828,11 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { UIExtensionAbility } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     try {
       this.context.terminateSelf((err: BusinessError) => {
@@ -861,10 +871,11 @@ terminateSelf(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { UIExtensionAbility } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     try {
       this.context.terminateSelf()
@@ -912,10 +923,11 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 **示例：**
 
 ```ts
-import { UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, Want, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -977,10 +989,11 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 ```ts
-import { UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, Want, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -1039,12 +1052,13 @@ reportDrawnCompleted(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { UIExtensionAbility, Want, UIExtensionContentSession } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, Want, UIExtensionContentSession } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const TAG: string = '[testTag] UIExtAbility';
+const TAG: string = '[testTag] ShareExtAbility';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
     console.info(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
     let data: Record<string, UIExtensionContentSession> = {
@@ -1122,10 +1136,11 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 **示例：**
 
 ```ts
-import { UIExtensionAbility, common, AtomicServiceOptions } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, common, AtomicServiceOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     let appId: string = '6918661953712445909';
     let options: AtomicServiceOptions = {
@@ -1213,14 +1228,15 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 **示例：**
 
 ```ts
-import { UIExtensionAbility, Want, UIExtensionContentSession, OpenLinkOptions } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, Want, UIExtensionContentSession, OpenLinkOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function log(info: string) {
   console.error(`MyUIExtension:: ${JSON.stringify(info)}`);
 }
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onCreate() {
     log(`UIExtAbility onCreate`);
   }
