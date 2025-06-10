@@ -34,9 +34,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct [OH_VideoProcessing](#oh_videoprocessing-1) [OH_VideoProcessing](#oh_videoprocessing) | 定义视频处理对象。 | 
+| typedef struct [OH_VideoProcessing](#oh_videoprocessing) [OH_VideoProcessing](#oh_videoprocessing) | 定义视频处理对象。 | 
 | typedef struct NativeWindow [OHNativeWindow](#ohnativewindow) | 定义NativeWindow对象。 | 
-| typedef struct [OH_AVFormat](#oh_avformat-1) [OH_AVFormat](#oh_avformat) | 定义OH_AVFormat对象。 | 
+| typedef struct [OH_AVFormat](#oh_avformat) [OH_AVFormat](#oh_avformat) | 定义OH_AVFormat对象。 | 
 | typedef struct [VideoProcessing_ColorSpaceInfo](_video_processing___color_space_info.md) [VideoProcessing_ColorSpaceInfo](#videoprocessing_colorspaceinfo) | 视频颜色空间信息数据结构。 | 
 | typedef enum [VideoDetailEnhancer_QualityLevel](#videodetailenhancer_qualitylevel-1) [VideoDetailEnhancer_QualityLevel](#videodetailenhancer_qualitylevel) | 用于细节增强的质量等级。 | 
 | typedef enum [VideoProcessing_ErrorCode](#videoprocessing_errorcode-1) [VideoProcessing_ErrorCode](#videoprocessing_errorcode) | 视频处理错误码。 | 
