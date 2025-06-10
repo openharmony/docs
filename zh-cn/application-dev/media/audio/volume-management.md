@@ -124,12 +124,12 @@ audioVolumeManager.getAppVolumePercentageForUid(uid).then((value: number) => {
 });
 
 // 查询应用音量是否已静音。
-audioVolumeManager.setAppVolumePercentageForUid(uid, true).then((value: boolean) => {
+audioVolumeManager.isAppVolumeMutedForUid(uid, true).then((value: boolean) => {
   console.info(`app muted state is ${value}.`);
 });
 
 // 设置应用静音状态。
-audioVolumeManager.setAppVolumePercentageForUid(uid, true).then(() => {
+audioVolumeManager.setAppVolumeMutedForUid(uid, true).then(() => {
   console.info(`set app mute state success.`);
 });
 

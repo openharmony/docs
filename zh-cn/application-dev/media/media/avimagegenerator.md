@@ -9,6 +9,10 @@
 详细的API说明请参考[AVImageGenerator API参考](../../reference/apis-media-kit/js-apis-media.md#avimagegenerator12)。
 
 1. 使用createAVImageGenerator()创建实例。
+   ```ts
+   import { media } from '@kit.MediaKit';
+   let avImageGenerator: media.AVImageGenerator = await media.createAVImageGenerator();
+   ```
 
 2. 设置资源：需要设置属性fdSrc（表示文件描述符）。
    > **说明：**
@@ -20,81 +24,59 @@
    >
    > - 不同AVImageGenerator或者[AVMetadataExtractor](../../reference/apis-media-kit/js-apis-media.md#avmetadataextractor11)，如果需要操作同一资源，需要多次打开文件描述符，不要共用同一文件描述符。
 
+   ```ts
+   import { common } from '@kit.AbilityKit';
+   // 获取当前组件所在Ability的Context，并通过Context获取应用文件路径。
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+   // 设置fdSrc，H264_AAC.mp4为rawfile目录下的预置资源，需要开发者根据实际情况进行替换。
+   avImageGenerator.fdSrc = await context.resourceManager.getRawFd('H264_AAC.mp4');
+   ```
+
 3. 获取指定时间图像：调用fetchFrameByTime()，可以获取到一个PixelMap对象，该对象可用于图片显示。
+   ```ts
+   import { image } from '@kit.ImageKit';
+
+   // pixelMap对象声明，用于图片显示。
+   @State pixelMap: image.PixelMap | undefined = undefined;
+
+   // 初始化入参。
+   let timeUs = 0; // 需要获取的缩略图在视频中的时间点。
+   let queryOption = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC; // AV_IMAGE_QUERY_NEXT_SYNC表示选取传入时间点或之后的关键帧。
+   // 输出缩略图的格式参数。
+   let param: media.PixelMapParams = {
+     width : 300, // 输出的缩略图宽度。
+     height : 300 // 输出的缩略图高度。
+   };
+
+   // 获取缩略图（promise模式）。
+   this.pixelMap = await avImageGenerator.fetchFrameByTime(timeUs, queryOption, param);
+   ```
 
 4. 释放资源：调用release()销毁实例，释放资源。
+   ```ts
+   // 释放资源（promise模式）。
+   avImageGenerator.release();
+   ```
 
-## 完整示例
+## 运行示例工程
 
-参考以下示例，设置文件描述符，获取一个视频指定时间的缩略图。
+参考以下示例，获取一个视频指定时间的缩略图。
 
-```ts
-import { media } from '@kit.MediaKit';
-import { image } from '@kit.ImageKit';
-import { common } from '@kit.AbilityKit';
-
-const TAG = 'MetadataDemo';
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Hello World';
-
-  // pixelMap对象声明，用于图片显示。
-  @State pixelMap: image.PixelMap | undefined = undefined;
-
-  build() {
-    Row() {
-      Column() {
-        Text(this.message).fontSize(50).fontWeight(FontWeight.Bold)
-        Button() {
-          Text('TestButton')
-            .fontSize(30)
-            .fontWeight(FontWeight.Bold)
-        }
-        .type(ButtonType.Capsule)
-        .margin({
-          top: 20
-        })
-        .backgroundColor('#0D9FFB')
-        .width('60%')
-        .height('5%')
-        .onClick(() => {
-          // 设置fdSrc, 获取视频的缩略图。
-          this.testFetchFrameByTime();
-        })
-        Image(this.pixelMap).width(300).height(300)
-          .margin({
-            top: 20
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-
-  // 在以下demo中，使用资源管理接口获取打包在HAP内的视频文件，通过设置fdSrc属性。
-  // 获取视频指定时间的缩略图，并通过Image控件显示在屏幕上。
-  async testFetchFrameByTime() {
-    // 创建AVImageGenerator对象。
-    let avImageGenerator: media.AVImageGenerator = await media.createAVImageGenerator();
-    // 设置fdSrc。
-    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-    avImageGenerator.fdSrc = await context.resourceManager.getRawFd('demo.mp4');
-
-    // 初始化入参。
-    let timeUs = 0;
-    let queryOption = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC;
-    let param: media.PixelMapParams = {
-      width : 300,
-      height : 300
-    };
-
-    // 获取缩略图（promise模式）。
-    this.pixelMap = await avImageGenerator.fetchFrameByTime(timeUs, queryOption, param);
-
-    // 释放资源（promise模式）。
-    avImageGenerator.release();
-    console.info(TAG, `release success.`);
-  }
-}
-```
+1. 新建工程，下载[完整示例工程](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVImageGenerator/AVImageGeneratorArkTS)，并将示例工程的资源复制到对应目录。
+    ```
+    AVImageGeneratorArkTS
+    entry/src/main/ets/
+    └── pages
+        └── Index.ets (获取缩略图界面)
+    entry/src/main/resources/
+    ├── base
+    │   ├── element
+    │   │   ├── color.json
+    │   │   ├── float.json
+    │   │   └── string.json
+    │   └── media
+    │
+    └── rawfile
+        └── H264_AAC.mp4 (视频资源)
+    ```
+2. 编译新建工程并运行。

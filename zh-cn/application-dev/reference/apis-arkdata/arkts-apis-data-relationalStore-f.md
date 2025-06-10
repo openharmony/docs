@@ -37,7 +37,7 @@ getRdbStore目前不支持多线程并发操作。
 
 | **错误码ID** | **错误信息**   |
 |-----------|---------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error.     |
 | 14800010  | Failed to open or delete the database by an invalid database path.   |
 | 14800011  | Failed to open the database because it is corrupted.    |
@@ -148,7 +148,7 @@ getRdbStore目前不支持多线程并发操作。
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800010  | Failed to open or delete the database by an invalid database path. |
 | 14800011  | Failed to open the database because it is corrupted.  |
@@ -223,6 +223,8 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 删除成功后，建议将数据库对象置为null。建立数据库时，若在[StoreConfig](arkts-apis-data-relationalStore-i.md#storeconfig)中配置了自定义路径，则调用此接口进行删库无效，必须使用 [deleteRdbStore](#relationalstoredeleterdbstore10) 接口进行删库。
 
+当使用向量数据库时，在调用deleteRdbStore接口前，应当确保向量数据库已打开的RdbStore和ResultSet均已成功关闭。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
@@ -295,6 +297,8 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 使用指定的数据库文件配置删除数据库，使用Promise异步回调。
 
 删除成功后，建议将数据库对象置为null。建立数据库时，若在[StoreConfig](arkts-apis-data-relationalStore-i.md#storeconfig)中配置了自定义路径，则调用此接口进行删库无效，必须使用 [deleteRdbStore](#relationalstoredeleterdbstore10-1) 接口进行删库。
+
+当使用向量数据库时，在调用deleteRdbStore接口前，应当确保向量数据库已打开的RdbStore和ResultSet均已成功关闭。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -369,6 +373,8 @@ deleteRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback\<v
 使用指定的数据库文件配置删除数据库，使用callback异步回调。
 
 删除成功后，建议将数据库对象置为null。若数据库文件处于公共沙箱目录下，则删除数据库时必须使用该接口，当存在多个进程操作同一个数据库的情况，建议向其他进程发送数据库删除通知使其感知并处理。建立数据库时，若在[StoreConfig](arkts-apis-data-relationalStore-i.md#storeconfig)中配置了自定义路径，则必须调用此接口进行删库。
+
+当使用向量数据库时，在调用deleteRdbStore接口前，应当确保向量数据库已打开的RdbStore和ResultSet均已成功关闭。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -453,6 +459,8 @@ deleteRdbStore(context: Context, config: StoreConfig): Promise\<void>
 使用指定的数据库文件配置删除数据库，使用Promise异步回调。
 
 删除成功后，建议将数据库对象置为null。若数据库文件处于公共沙箱目录下，则删除数据库时必须使用该接口，当存在多个进程操作同一个数据库的情况，建议向其他进程发送数据库删除通知使其感知并处理。建立数据库时，若在[StoreConfig](arkts-apis-data-relationalStore-i.md#storeconfig)中配置了自定义路径，则必须调用此接口进行删库。
+
+当使用向量数据库时，在调用deleteRdbStore接口前，应当确保向量数据库已打开的RdbStore和ResultSet均已成功关闭。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -590,4 +598,183 @@ import { relationalStore } from '@kit.ArkData'; // 导入模块
 let customType = relationalStore.Tokenizer.CUSTOM_TOKENIZER;
 let customTypeSupported = relationalStore.isTokenizerSupported(customType);
 console.info("custom tokenizer supported on current platform: " + customTypeSupported);
+```
+
+## relationalStore.getInsertSqlInfo<sup>20+</sup>
+
+getInsertSqlInfo(table: string, values: ValuesBucket, conflict?: ConflictResolution): SqlInfo
+
+获取用于插入数据的SQL语句，此为同步接口。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名  | 类型                  | 必填 | 说明                                                         |
+| ------- | --------------------- | ---- | ------------------------------------------------------------ |
+| table | string              | 是   | 要写入数据的数据库表名。 |
+| values | [ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket) | 是 | 要写入数据库中数据的字段信息以及对应的值信息。 |
+| conflict | [ConflictResolution](arkts-apis-data-relationalStore-e.md#conflictresolution10) | 否 |指定冲突解决模式。默认值是relationalStore.ConflictResolution.ON_CONFLICT_NONE。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| [SqlInfo](arkts-apis-data-relationalStore-i.md#sqlinfo20) | SqlInfo对象，其中sql为返回的sql语句，args为执行SQL中的参数信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**             |
+|-----------|---------------------|
+| 14800001       | Invalid args. |
+
+
+**示例：**
+
+```ts
+import { relationalStore } from '@kit.ArkData'; // 导入模块
+const bucket: relationStore.ValuesBucket = {
+  name: "Logitech",
+  age: 18,
+  sex: "man",
+  desc: "asserter"
+};
+const sqlInfo: relationStore.SqlInfo = relationStore.getInsertSqlInfo(
+  "USER",
+  bucket,
+  relationStore.ConflictResolution.ON_CONFLICT_NONE
+);
+```
+
+## relationalStore.getUpdateSqlInfo<sup>20+</sup>
+
+getUpdateSqlInfo(predicates: RdbPredicates, values: ValuesBucket, conflict?: ConflictResolution): SqlInfo
+
+获取用于更新数据的SQL语句，此为同步接口。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名  | 类型                  | 必填 | 说明                                                         |
+| ------- | --------------------- | ---- | ------------------------------------------------------------ |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | 与指定字段匹配的谓词。 |
+| values | [ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket) | 是 | 要写入数据库中数据的字段信息以及对应的值信息。 |
+| conflict | [ConflictResolution](arkts-apis-data-relationalStore-e.md#conflictresolution10) | 否 | 指定冲突解决模式。 默认值是relationalStore.ConflictResolution.ON_CONFLICT_NONE。|
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| [SqlInfo](arkts-apis-data-relationalStore-i.md#sqlinfo20) | SqlInfo对象，其中sql为返回的sql语句，args为执行SQL中的参数信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**             |
+|-----------|---------------------|
+| 14800001       | Invalid arguments. |
+
+
+**示例：**
+
+```ts
+import { relationalStore } from '@kit.ArkData'; // 导入模块
+
+const bucket: relationStore.ValuesBucket = {
+  name: "Logitech",
+  age: 18,
+  sex: "man",
+  desc: "asserter"
+};
+const predicates = new relationalStore.RdbPredicates("users");
+const sqlInfo: relationStore.SqlInfo = relationStore.getUpdateSqlInfo(
+  predicates,
+  bucket,
+  relationStore.ConflictResolution.ON_CONFLICT_NONE
+);
+```
+
+## relationalStore.getDeleteSqlInfo<sup>20+</sup>
+
+getDeleteSqlInfo(predicates: RdbPredicates): SqlInfo
+
+获取用于删除数据的SQL语句，此为同步接口。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名  | 类型                  | 必填 | 说明                                                         |
+| ------- | --------------------- | ---- | ------------------------------------------------------------ |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | 与指定字段匹配的谓词。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| [SqlInfo](arkts-apis-data-relationalStore-i.md#sqlinfo20) | SqlInfo对象，其中sql为返回的sql语句，args为执行SQL中的参数信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**             |
+|-----------|---------------------|
+| 14800001       | Invalid args. |
+
+
+**示例：**
+
+```ts
+import { relationalStore } from '@kit.ArkData'; // 导入模块
+
+const predicates = new relationalStore.RdbPredicates("users");
+predicates.equalTo("tableName", "a");
+predicates.notEqualTo("age", 18);
+const sqlInfo: relationStore.SqlInfo = relationStore.getDeleteSqlInfo(predicates);
+```
+
+## relationalStore.getQuerySqlInfo<sup>20+</sup>
+
+getQuerySqlInfo(predicates: RdbPredicates, columns: Array\<string>): SqlInfo
+
+获取用于查询数据的SQL语句，此为同步接口。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名  | 类型                  | 必填 | 说明                                                         |
+| ------- | --------------------- | ---- | ------------------------------------------------------------ |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | 与指定字段匹配的谓词。 |
+| columns | Array\<string> | 否 | 要查询的列；如果不指定此参数，则查询所有列。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| [SqlInfo](arkts-apis-data-relationalStore-i.md#sqlinfo20) | SqlInfo对象，其中sql为返回的sql语句，args为执行SQL中的参数信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**             |
+|-----------|---------------------|
+| 14800001       | Invalid arguments. |
+
+
+**示例：**
+
+```ts
+import { relationalStore } from '@kit.ArkData'; // 导入模块
+
+const predicates = new relationalStore.RdbPredicates("users");
+predicates.notEqualTo("age", 18);
+predicates.equalTo("name", "zhangsan");
+const sqlInfo: relationStore.SqlInfo = relationStore.getQuerySqlInfo(predicates);
 ```

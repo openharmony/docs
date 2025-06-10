@@ -1,7 +1,7 @@
 # 管理位置权限
 
 
-Web组件提供位置权限管理能力（<!--RP1-->[隐私保护说明](../../device-dev/security/security-privacy-protection.md)<!--RP1End-->）。开发者可以通过[onGeolocationShow()](../reference/apis-arkweb/ts-basic-components-web-events.md#ongeolocationshow)接口对某个网站进行位置权限管理。Web组件根据接口响应结果，决定是否赋予前端页面权限。
+Web组件提供位置权限管理能力（<!--RP1-->[隐私保护说明](../../device-dev/security/security-privacy-protection.md)<!--RP1End-->）。开发者可以通过[onGeolocationShow()](../reference/apis-arkweb/arkts-basic-components-web-events.md#ongeolocationshow)接口对某个网站进行位置权限管理。Web组件根据接口响应结果，决定是否赋予前端页面权限。
 
 - 使用获取设备位置功能前请在module.json5中添加位置相关权限，权限的添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
 

@@ -506,6 +506,7 @@
     - [OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md)
     - [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md)
     - [OH_NativeXComponent_TouchPoint](_o_h___native_x_component___touch_point.md)
+    - [PictureInPicture_PipConfig](capi-pictureinpicture-pipconfig.md)
     - [WindowManager_Rect](capi-windowmanager-rect.md)
     - [struct](capi-struct.md)
     - [WindowManager_WindowProperties](capi-windowmanager-windowproperties.md)
@@ -534,6 +535,7 @@
     - [注册节点渲染状态监听错误码](errorcode-node-render-monitor.md)
     - [交互事件错误码](errorcode-event.md)
     - [Canvas错误码](errorcode-canvas.md)
+    - [自定义节点错误码](errorcode-node.md)
     <!--Del-->
     - [用户界面外观服务错误码](errorcode-uiappearance.md)
     - [UIExtension错误码](errorcode-uiextension.md)

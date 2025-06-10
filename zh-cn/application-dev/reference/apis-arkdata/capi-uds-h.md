@@ -79,7 +79,7 @@
 | [OH_UdsPixelMap* OH_UdsPixelMap_Create()](#oh_udspixelmap_create) | 创建像素图片类型[OH_UdsPixelMap](capi-oh-udspixelmap.md)的实例对象以及指向它的指针。当不再需要使用指针时，请使用[OH_UdsPixelMap_Destroy](capi-uds-h.md#oh_udspixelmap_destroy)销毁实例对象，否则会导致内存泄漏。 |
 | [void OH_UdsPixelMap_Destroy(OH_UdsPixelMap* pThis)](#oh_udspixelmap_destroy) | 销毁像素图片类型[OH_UdsPixelMap](capi-oh-udspixelmap.md)的实例对象。 |
 | [const char* OH_UdsPixelMap_GetType(OH_UdsPixelMap* pThis)](#oh_udspixelmap_gettype) | 从像素图片类型[OH_UdsPixelMap](capi-oh-udspixelmap.md)实例中获取类型ID。 |
-| [void OH_UdsPixelMap_GetPixelMap(OH_UdsPixelMap* pThis, OH_PixelmapNative* pixelmapNative)](#oh_udspixelmap_getpixelmap) | 从像素图片类型[OH_UdsPixelMap](capi-oh-udspixelmap.md)实例中获取像素图片[OH_PixelmapNative](../apis-image-kit/_image___native_module.md#oh_pixelmapnative_antialiasinglevel)实例的指针。 |
+| [void OH_UdsPixelMap_GetPixelMap(OH_UdsPixelMap* pThis, OH_PixelmapNative* pixelmapNative)](#oh_udspixelmap_getpixelmap) | 从像素图片类型[OH_UdsPixelMap](capi-oh-udspixelmap.md)实例中获取像素图片[OH_PixelmapNative](../apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_antialiasinglevel)实例的指针。 |
 | [int OH_UdsPixelMap_SetPixelMap(OH_UdsPixelMap* pThis, OH_PixelmapNative* pixelmapNative)](#oh_udspixelmap_setpixelmap) | 设置像素图片类型[OH_UdsPixelMap](capi-oh-udspixelmap.md)对象的像素图片内容。 |
 | [OH_UdsArrayBuffer* OH_UdsArrayBuffer_Create()](#oh_udsarraybuffer_create) | 创建ArrayBuffer类型[OH_UdsArrayBuffer](capi-oh-udsarraybuffer.md)的实例对象以及指向它的指针。当不再需要使用指针时，请使用[OH_UdsArrayBuffer_Destroy](capi-uds-h.md#oh_udsarraybuffer_destroy)销毁实例对象，否则会导致内存泄漏。 |
 | [int OH_UdsArrayBuffer_Destroy(OH_UdsArrayBuffer* buffer)](#oh_udsarraybuffer_destroy) | 销毁ArrayBuffer类型[OH_UdsArrayBuffer](capi-oh-udsarraybuffer.md)的实例对象。 |
@@ -1199,7 +1199,7 @@ void OH_UdsPixelMap_GetPixelMap(OH_UdsPixelMap* pThis, OH_PixelmapNative* pixelm
 
 **描述**
 
-从像素图片类型[OH_UdsPixelMap](capi-oh-udspixelmap.md)实例中获取像素图片[OH_PixelmapNative](../apis-image-kit/_image___native_module.md#oh_pixelmapnative_antialiasinglevel)实例的指针。
+从像素图片类型[OH_UdsPixelMap](capi-oh-udspixelmap.md)实例中获取像素图片[OH_PixelmapNative](../apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_antialiasinglevel)实例的指针。
 
 **起始版本：** 13
 
@@ -1209,7 +1209,7 @@ void OH_UdsPixelMap_GetPixelMap(OH_UdsPixelMap* pThis, OH_PixelmapNative* pixelm
 | 参数项                                          | 描述                                                         |
 | ----------------------------------------------- | ------------------------------------------------------------ |
 | [OH_UdsPixelMap](capi-oh-udspixelmap.md)* pThis | 表示指向像素图片类型[OH_UdsPixelMap](capi-oh-udspixelmap.md)实例的指针。 |
-| OH_PixelmapNative* pixelmapNative               | 该参数是输出参数，表示指向像素图片[OH_PixelmapNative](../apis-image-kit/_image___native_module.md#oh_pixelmapnative_antialiasinglevel)实例的指针。 |
+| OH_PixelmapNative* pixelmapNative               | 该参数是输出参数，表示指向像素图片[OH_PixelmapNative](../apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_antialiasinglevel)实例的指针。 |
 
 ### OH_UdsPixelMap_SetPixelMap()
 
@@ -1229,7 +1229,7 @@ int OH_UdsPixelMap_SetPixelMap(OH_UdsPixelMap* pThis, OH_PixelmapNative* pixelma
 | 参数项                                          | 描述                                                         |
 | ----------------------------------------------- | ------------------------------------------------------------ |
 | [OH_UdsPixelMap](capi-oh-udspixelmap.md)* pThis | 表示指向像素图片类型[OH_UdsPixelMap](capi-oh-udspixelmap.md)实例的指针。 |
-| OH_PixelmapNative* pixelmapNative               | 表示指向像素图片[OH_PixelmapNative](../apis-image-kit/_image___native_module.md#oh_pixelmapnative_antialiasinglevel)实例的指针 |
+| OH_PixelmapNative* pixelmapNative               | 表示指向像素图片[OH_PixelmapNative](../apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_antialiasinglevel)实例的指针 |
 
 **返回：**
 

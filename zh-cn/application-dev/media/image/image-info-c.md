@@ -14,7 +14,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libohimage.so libimage_rece
 
 ### Native接口调用
 
-具体接口说明请参考[API文档](../../reference/apis-image-kit/_image___native_module.md)。
+具体接口说明请参考[API文档](../../reference/apis-image-kit/capi-image-nativemodule.md)。
 
 在Deveco Studio新建Native C++应用，默认生成的项目中包含index.ets文件，在entry\src\main\cpp目录下会自动生成一个cpp文件（hello.cpp或napi_init.cpp，本示例以hello.cpp文件名为例）。在hello.cpp中实现C API接口调用逻辑，示例代码如下：
 

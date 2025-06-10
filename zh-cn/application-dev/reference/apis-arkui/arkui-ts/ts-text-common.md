@@ -402,6 +402,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText, o
 | onDetectResultUpdate   | (result: string) => void | 否   | 文本识别成功后，触发onDetectResultUpdate回调。<br/>-&nbsp;result：文本识别的结果，Json格式。 |
 | color<sup>12+</sup>   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本识别成功后的实体颜色。<br/>默认值：'#ff0a59f7' |
 | decoration<sup>12+</sup>  | [DecorationStyleInterface](ts-universal-styled-string.md#decorationstyleinterface)| 否   | 设置文本识别成功后的实体装饰线样式。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.Underline,<br/>&nbsp;color:&nbsp;与实体颜色一致,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
+| enablePreviewMenu<sup>20+</sup>   | boolean | 否   | 设置是否开启文本识别长按显示预览菜单。true表示开启，false表示未开启。<br/>默认值：false |
 
 ## PreviewText<sup>12+</sup>
 
@@ -931,3 +932,27 @@ constructor(color: ResourceColor)
 | 参数名    | 类型                                                    | 必填 | 说明                                                    |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 是    | 显示为纯色效果。 |
+
+## TextChangeReason<sup>20+</sup>
+
+组件内容变化原因。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| ------- | ---- | ------------------- |
+| UNKNOWN | 0 | 未知原因。 |
+| INPUT | 1 | 用户输入。 |
+| PASTE | 2 | 粘贴。 |
+| CUT | 3 | 剪切。 |
+| DRAG | 4 | 拖拽。 |
+| AUTO_FILL | 5 | 自动填充。 |
+| AI_WRITE | 6 | 小艺帮写。 |
+| REDO | 7 | 重做。 |
+| UNDO | 8 | 撤销。 |
+| CONTROLLER | 9 | 开发者API调用。 |
+| ACCESSIBILITY | 10 | 无障碍接口。 |
+| COLLABORATION | 11 | 跨端拍照。 |
+| STYLUS | 12 | 手写笔。 |

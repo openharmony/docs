@@ -566,7 +566,7 @@ OffsetA为buildNode相对于父组件的偏移量，可以通过FrameNode中的[
 >
 > 传入的坐标值需要转换为px，如果builderNode有仿射变换，则需要再叠加仿射变换。
 >
-> 在[webview](../apis-arkweb/js-apis-webview.md)中，内部已经处理过坐标系变换，可以将TouchEvent事件直接下发。
+> 在[webview](../apis-arkweb/arkts-apis-webview.md)中，内部已经处理过坐标系变换，可以将TouchEvent事件直接下发。
 >
 > 同一时间戳，postTouchEvent只能调用一次。<!--Del-->
 >
@@ -1135,6 +1135,23 @@ struct Index {
   }
 }
 ```
+
+### isDisposed<sup>20+</sup>
+
+isDisposed(): boolean
+
+查询当前BuilderNode对象是否已解除与后端实体节点的引用关系。前端节点均绑定有相应的后端实体节点，当节点调用dispose接口解除绑定后，再次调用接口可能会出现crash、返回默认值的情况。由于业务需求，可能存在节点在dispose后仍被调用接口的情况。为此，提供此接口以供开发者在操作节点前检查其有效性，避免潜在风险。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型    | 说明               |
+| ------- | ------------------ |
+| boolean | 后端实体节点是否解除引用。true为节点已与后端实体节点解除引用，false为节点未与后端实体节点解除引用。
+
 ### postInputEvent<sup>20+</sup>
 
 postInputEvent(event: InputEventType): boolean
@@ -1157,7 +1174,7 @@ offsetA为builderNode相对于父组件的偏移，offsetB为命中位置相对�
 >
 > 如果是开发者构造的事件，必填字段必须赋值，比如触摸事件的touches字段，轴事件的scrollStep字段。要保证事件的完整，比如触摸事件的[TouchType](arkui-ts/ts-appendix-enums.md#touchtype)DOWN和UP都要有，防止出现未定义行为。
 >
-> [Webview](../apis-arkweb/js-apis-webview.md)已经处理过坐标系变换，可以将事件直接下发。
+> [Webview](../apis-arkweb/arkts-apis-webview.md)已经处理过坐标系变换，可以将事件直接下发。
 >
 > postTouchEvent接口需要提供手势坐标相对于post事件对端内的局部坐标，postInputEvent接口需要提供手势坐标相对于post事件对端内的窗口坐标。
 >
@@ -1468,3 +1485,119 @@ struct MyComponent {
 ```
 
 ![onAxisEvent](figures/onAxisEvent.gif)
+
+### 示例4（检验命令式节点是否有效）
+
+该示例演示了释放节点前后分别使用isDisposed接口验证节点的状态，释放节点前节点调用isDisposed接口返回true，释放节点后节点调用isDisposed接口返回false。
+
+```ts
+import {
+  RenderNode,
+  FrameNode,
+  NodeController,
+  BuilderNode,
+  ComponentContent,
+  PromptAction,
+  NodeAdapter,
+  typeNode
+} from "@kit.ArkUI";
+
+@Builder
+function buildText() {
+  Text("IsDisposed")
+    .textAlign(TextAlign.Center)
+    .width('100%')
+    .height('100%')
+    .fontSize(30)
+}
+
+class MyNodeAdapter extends NodeAdapter {
+}
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private builderNode: BuilderNode<[]> | null = null;
+  private renderNode: RenderNode | null = null;
+  private frameNode: FrameNode | null = null;
+  nodeAdapter: MyNodeAdapter | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 200, height: 100 } });
+    this.builderNode.build(new WrappedBuilder(buildText));
+
+    const rootRenderNode = this.rootNode!.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.size = { width: 200, height: 200 };
+      rootRenderNode.backgroundColor = 0xffd5d5d5;
+      rootRenderNode.appendChild(this.builderNode!.getFrameNode()!.getRenderNode());
+      this.renderNode = new RenderNode();
+      rootRenderNode.appendChild(this.renderNode);
+      this.frameNode = new FrameNode(uiContext);
+      this.rootNode.appendChild(this.frameNode);
+
+
+      let listNode = typeNode.createNode(uiContext, "List");
+      listNode.initialize({ space: 3 });
+      this.rootNode.appendChild(listNode);
+      this.nodeAdapter = new MyNodeAdapter();
+      NodeAdapter.attachNodeAdapter(this.nodeAdapter, listNode);
+    }
+
+    return this.rootNode;
+  }
+
+  disposeTest() {
+    if (this.frameNode !== null && this.nodeAdapter !== null && this.builderNode !== null && this.renderNode !== null) {
+      console.log(`jerry before BuilderNode dispose: isDisposed=`, this.builderNode.isDisposed());
+      this.builderNode.dispose();
+      console.log(`jerry after BuilderNode dispose: isDisposed=`, this.builderNode.isDisposed());
+      console.log(`jerry before FrameNode dispose: isDisposed=`, this.frameNode.isDisposed());
+      this.frameNode.dispose();
+      console.log(`jerry after FrameNode dispose: isDisposed=`, this.frameNode.isDisposed());
+      console.log(`jerry before RenderNode dispose: isDisposed=`, this.renderNode.isDisposed());
+      this.renderNode.dispose();
+      console.log(`jerry after RenderNode dispose: isDisposed=`, this.renderNode.isDisposed());
+      console.log(`jerry before NodeAdapter dispose: isDisposed=`, this.nodeAdapter.isDisposed());
+      this.nodeAdapter.dispose();
+      console.log(`jerry after NodeAdapter dispose: isDisposed=`, this.nodeAdapter.isDisposed());
+    }
+  }
+}
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  private promptAction: PromptAction | null = null;
+  private contentNode: ComponentContent<[]> | null = null;
+
+  build() {
+    Column({ space: 4 }) {
+      NodeContainer(this.myNodeController)
+      Button('OpenDialog')
+        .onClick(() => {
+          let uiContext = this.getUIContext();
+          this.promptAction = uiContext.getPromptAction();
+          this.contentNode = new ComponentContent(uiContext, wrapBuilder(buildText));
+          this.promptAction.openCustomDialog(this.contentNode);
+        })
+        .width(120)
+        .height(40)
+      Button('DisposeTest')
+        .onClick(() => {
+          this.myNodeController.disposeTest();
+          this.promptAction?.closeCustomDialog(this.contentNode);
+          console.log(`jerry before ComponentContent dispose: isDisposed=`, this.contentNode?.isDisposed());
+          this.contentNode?.dispose();
+          console.log(`jerry after ComponentContent dispose: isDisposed=`, this.contentNode?.isDisposed());
+        })
+        .width(120)
+        .height(40)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![isDisposed](figures/isDisposed.gif)

@@ -1,4 +1,4 @@
-# Interfaces (Session)
+# Interface (Session)
 
 > **说明：**
 >

@@ -210,6 +210,8 @@ divider(options: Optional\<DividerOptions> | null)
 
 ### dividerStyle<sup>19+</sup>
 
+dividerStyle(style: Optional\<DividerStyleOptions>)
+
 设置分割线样式，不设置该属性则按“默认值”展示分割线。该属性与divider互斥，按调用顺序生效。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
@@ -220,7 +222,7 @@ divider(options: Optional\<DividerOptions> | null)
 
 | 参数名 | 类型    | 必填 | 说明                                                                  |
 | ------ | ------- | ---- | --------------------------------------------------------------------- |
-| options  | Optional\<[DividerStyleOptions](ts-types.md#dividerstyleoptions12)> \| null | 是   | 1.设置DividerOptions，则按设置的样式显示分割线。<br/>默认值：<br/>{<br/>strokeWidth: '1px' , <br/>color: '#33182431'<br/>}<br/>2.设置为null或undefined时，展示默认分割线。<br/>3.当mode为FLOAT_ABOVE_MENU时，strokeWidth设置过宽时，会覆盖文字。分割线会从每一个Item底部开始，同时向上向下画分割线。当mode为EMBEDDED_IN_MENU时，分割线在Menu中展开，独立占用高度。<br/>4.startMargin和endMargin的默认值与不设置divider属性时的分割线样式保持一致。startMargin和endMargin的和与optionWidth的值相等时，不显示分割线。startMargin和endMargin的和超过optionWidth的值时，按照默认样式显示分割线。|
+| style  | Optional\<[DividerStyleOptions](ts-types.md#dividerstyleoptions12)>  | 是   | 1.设置DividerOptions，则按设置的样式显示分割线。<br/>默认值：<br/>{<br/>strokeWidth: '1px' , <br/>color: '#33182431'<br/>}<br/>2.设置为null或undefined时，展示默认分割线。<br/>3.当mode为FLOAT_ABOVE_MENU时，strokeWidth设置过宽时，会覆盖文字。分割线会从每一个Item底部开始，同时向上向下画分割线。当mode为EMBEDDED_IN_MENU时，分割线在Menu中展开，独立占用高度。<br/>4.startMargin和endMargin的默认值与不设置divider属性时的分割线样式保持一致。startMargin和endMargin的和与optionWidth的值相等时，不显示分割线。startMargin和endMargin的和超过optionWidth的值时，按照默认样式显示分割线。|
 
 ### font
 
@@ -834,6 +836,22 @@ selectedOptionTextModifier(modifier: Optional\<[TextModifier](ts-universal-attri
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 设置下拉菜单项选中项的文本样式。<br/>开发者可以根据需要管理和维护文本的样式进行设置。 |
 
+### showInSubWindow<sup>20+</sup>
+
+showInSubWindow(showInSubWindow:Optional\<boolean>)
+
+设置Select的Menu是否显示在子窗中。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| showInSubWindow  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 设置Select的Menu是否显示在子窗中。<br>true代表Select的Menu显示在子窗中，仅对2in1设备生效。<br>false代表Select的Menu不显示在子窗中。<br>默认值：2in1设备为true，其他设备为false。 |
+
 ## ArrowPosition<sup>10+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -949,22 +967,6 @@ type OnSelectCallback = (index: number, selectStr: string) => void
 | ------ | ------ | ---- | -------------- |
 | index  | number | 是   | 选中项的索引，索引值从0开始。 |
 | selectStr | string | 是   | 选中项的值。   |
-
-## showInSubWindow<sup>20+</sup>
-
-showInSubWindow(showInSubWindow:Optional\<boolean>)
-
-设置Select的Menu是否显示在子窗中。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型   | 必填 | 说明           |
-| ------ | ------ | ---- | -------------- |
-| showInSubWindow  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 设置Select的Menu是否显示在子窗中。<br>true代表Select的Menu显示在子窗中，仅对2in1设备生效。<br>false代表Select的Menu不显示在子窗中。<br>默认值：2in1设备为true，其他设备为false。 |
 
 ##  示例1（设置下拉菜单）
 
@@ -1364,3 +1366,31 @@ struct SelectExample {
 
 ```
 ![](figures/SelectOptionModifier.png)
+
+## 示例8（设置分割线模式）
+
+该示例通过配置dividerStyle的mode属性设置分割线模式。
+
+```ts
+import { LengthMetrics } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Select([{ value: "SelectItem" }, { value: "SelectItem" }, { value: "SelectItem" },])
+        .value("请选择")
+        .dividerStyle({
+          strokeWidth: LengthMetrics.vp(5),
+          color: '#d5d5d5',
+          mode: DividerMode.EMBEDDED_IN_MENU
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![dividerStyleMode](figures/SelectdividerStyleMode.png)

@@ -39,6 +39,8 @@ body:
       description: 在哪些版本、分支存在该缺陷的？
       options:
         - label: master
+        - label: OpenHarmony-6.0-Beta1
+        - label: OpenHarmony-5.1.0-Release
         - label: OpenHarmony-5.0.3-Release
         - label: OpenHarmony-5.0.2-Release
         - label: OpenHarmony-5.0.1-Release

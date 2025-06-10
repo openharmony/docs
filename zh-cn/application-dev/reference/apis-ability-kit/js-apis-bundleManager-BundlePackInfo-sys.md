@@ -30,7 +30,7 @@
 | deviceTypes          | Array\<string> | 是   | 否   | 包支持的设备类型。                                       |
 | name                | string         | 是   | 否   | 包的名称。                                                   |
 | moduleType          | string         | 是   | 否   | 包的module类型。                                             |
-| deliveryWithInstall | boolean        | 是   | 否   | 是否在用户主动安装的时候安装。true表示主动安装时安装，false表示主动安装时不安装。 |
+| deliveryWithInstall | boolean        | 是   | 否   | 是否跟随应用一起安装。true表示跟随应用一起安装，false表示不跟随应用一起安装。 |
 
 ## PackageSummary
 
@@ -77,7 +77,7 @@
 
 | 名称                | 类型    | 只读 | 可选 | 说明                                                         |
 | ------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
-| deliveryWithInstall | boolean | 是   | 否   | 是否在用户主动安装的时候安装。true表示主动安装时安装，false表示主动安装时不安装。 |
+| deliveryWithInstall | boolean | 是   | 否   | 是否跟随应用一起安装。true表示跟随应用一起安装，false表示不跟随应用一起安装。 |
 | installationFree    | boolean | 是   | 否   | 表示当前HAP是否支持免安装特性。true表示支持免安装特性，且符合免安装约束，false表示不支持免安装特性。 |
 | moduleName          | string  | 是   | 否   | module名称。                                                 |
 | moduleType          | string  | 是   | 否   | module类型。                                                 |

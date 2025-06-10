@@ -1,4 +1,4 @@
-# Interfaces (WhiteBalance)
+# Interface (WhiteBalance)
 
 > **说明：**
 >

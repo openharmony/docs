@@ -516,4 +516,4 @@ struct TextPickerExample {
 }
 ```
 
-![TextPickerDialog](figures/TextPickerDialogDemo8.jpeg)
+![TextPickerDialog](figures/TextPickerDialogDemo8.gif)

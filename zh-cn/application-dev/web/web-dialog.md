@@ -2,7 +2,7 @@
 
 在HTML中，可以使用JavaScript创建三种类型的弹框：警告框`window.alert(message)`、确认框`window.confirm(message)`和提示框`window.prompt(message, defaultValue)`。这些弹框可以用于向用户传递信息、确认操作或请求输入。
 
-当前，ArkWeb暂未提供默认的应用弹框。如果需要网页的弹框能够正常使用，应用需要通过[onAlert](../reference/apis-arkweb/ts-basic-components-web-events.md#onalert)、[onConfirm](../reference/apis-arkweb/ts-basic-components-web-events.md#onconfirm)和[onPrompt](../reference/apis-arkweb/ts-basic-components-web-events.md#onprompt9)接口自定义弹框功能。
+当前，ArkWeb暂未提供默认的应用弹框。如果需要网页的弹框能够正常使用，应用需要通过[onAlert](../reference/apis-arkweb/arkts-basic-components-web-events.md#onalert)、[onConfirm](../reference/apis-arkweb/arkts-basic-components-web-events.md#onconfirm)和[onPrompt](../reference/apis-arkweb/arkts-basic-components-web-events.md#onprompt9)接口自定义弹框功能。
 
 ## 实现Alert弹框
 
@@ -10,7 +10,7 @@
 - 可选参数`message`是要显示在警告对话框中的字符串，如果传入其他类型的值，会转换成字符串。
 - 该方法不存在返回值。
 
-应用可以通过[onAlert](../reference/apis-arkweb/ts-basic-components-web-events.md#onalert)事件监听网页`alert`方法，并创建合适的弹框。
+应用可以通过[onAlert](../reference/apis-arkweb/arkts-basic-components-web-events.md#onalert)事件监听网页`alert`方法，并创建合适的弹框。
 
 - 用[AlertDialog](../reference/apis-arkui/arkui-ts/ts-methods-alert-dialog-box.md)创建弹框。
 
@@ -175,7 +175,7 @@
 
 确认框用于验证用户是否接受某个操作，常用于询问用户是否离开网页，以防页面表单等数据丢失。
 
-应用可以通过[onConfirm](../reference/apis-arkweb/ts-basic-components-web-events.md#onconfirm)事件监听网页`confirm`方法，并创建合适的弹框。
+应用可以通过[onConfirm](../reference/apis-arkweb/arkts-basic-components-web-events.md#onconfirm)事件监听网页`confirm`方法，并创建合适的弹框。
 
 - 用[AlertDialog](../reference/apis-arkui/arkui-ts/ts-methods-alert-dialog-box.md)创建弹框。
 
@@ -368,7 +368,7 @@
 
 提示框用于提示用户输入某个值，常用于需要用户输入临时的口令或验证码等场景。
 
-应用可以通过[onPrompt](../reference/apis-arkweb/ts-basic-components-web-events.md#onprompt9)事件监听网页`prompt`方法，并创建合适的弹框。
+应用可以通过[onPrompt](../reference/apis-arkweb/arkts-basic-components-web-events.md#onprompt9)事件监听网页`prompt`方法，并创建合适的弹框。
 
 - 用[CustomDialog-CustomContentDialog](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md#customcontentdialog12)创建弹框。
 

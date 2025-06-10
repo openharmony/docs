@@ -4330,25 +4330,6 @@
 
 **起始版本**：18
 
-## ohos.permission.ACCESS_DDK_DRIVERS
-
-允许扩展外设驱动客户端绑定到扩展外设驱动服务端。
-
-该权限针对扩展外设客户端绑定到扩展外设服务端权限校验，具体规则：
-
-1. 外设扩展驱动客户端权限声明中的value字段中描述的目标扩展驱动服务端已上架或一并上架。
-2. 被申请目标扩展驱动服务端对外提供能力与扩展外设驱动客户端业务诉求一致。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**携带额外数据**：是，配置方法请见[Driver Development Kit开发指导](../../device/driver/externaldevice-guidelines.md#应用签名)。
-
-**起始版本**：18
-
 ## ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
 
 允许扩展外设驱动访问SCSI DDK接口开发SCSI Peripheral扩展外设驱动。
@@ -4818,6 +4799,76 @@
 **ACL使能**：true
 
 **支持设备**：General
+
+**起始版本**：20
+
+## ohos.permission.VIRUS_PROTECTION_SERVICE
+
+允许应用启动病毒查杀任务。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.UPLOAD_SAMPLE_FILE
+
+允许应用上传样本文件到云侧。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.DOWNLOAD_POLICY_FILE
+
+允许应用从云侧下载策略文件。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.NOTIFY_VIRUS_PROTECTION
+
+允许应用发送通知给病毒防护。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.ACCESS_VIRUS_PROTECTION
+
+允许应用跳转到病毒防护页面。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
 
 **起始版本**：20
 
