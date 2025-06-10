@@ -107,7 +107,6 @@ struct formHostSample {
     descriptionId: 0,
     type: formInfo.FormType.eTS,
     jsComponentName: '',
-    colorMode: formInfo.ColorMode.MODE_AUTO,
     isDefault: false,
     updateEnabled: false,
     formVisibleNotify: true,
