@@ -77,7 +77,7 @@ try {
     if (err) {
       console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
     } else {
-      console.log('updateConfiguration success.');
+      console.info('updateConfiguration success.');
     }
   });
 } catch (paramError) {
@@ -139,7 +139,7 @@ const config: Configuration = {
 
 try {
   abilityManager.updateConfiguration(config).then(() => {
-    console.log('updateConfiguration success.');
+    console.info('updateConfiguration success.');
   }).catch((err: BusinessError) => {
     console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
   });
@@ -189,7 +189,7 @@ try {
     if (err) {
       console.error(`getAbilityRunningInfos fail, error: ${JSON.stringify(err)}`);
     } else {
-      console.log(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
+      console.info(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
     }
   });
 } catch (paramError) {
@@ -241,7 +241,7 @@ try {
     if (err) {
       console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
     } else {
-      console.log(`getExtensionRunningInfos success, data: ${JSON.stringify(data)}`);
+      console.info(`getExtensionRunningInfos success, data: ${JSON.stringify(data)}`);
     }
   });
 } catch (paramError) {
@@ -295,7 +295,7 @@ let upperLimit = 10;
 
 try {
   abilityManager.getExtensionRunningInfos(upperLimit).then((data: Array<abilityManager.ExtensionRunningInfo>) => {
-    console.log(`getExtensionRunningInfos success, data: ${JSON.stringify(data)}`);
+    console.info(`getExtensionRunningInfos success, data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
     console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
   });
@@ -342,7 +342,7 @@ abilityManager.getTopAbility((err: BusinessError, data) => {
   if (err) {
     console.error(`getTopAbility fail, err: ${JSON.stringify(err)}`);
   } else {
-    console.log(`getTopAbility success, data: ${JSON.stringify(data)}`);
+    console.info(`getTopAbility success, data: ${JSON.stringify(data)}`);
   }
 });
 ```
@@ -379,7 +379,7 @@ import { abilityManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 abilityManager.getTopAbility().then((data) => {
-  console.log(`getTopAbility success, data: ${JSON.stringify(data)}`);
+  console.info(`getTopAbility success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`getTopAbility fail, err: ${JSON.stringify(err)}`);
 });
@@ -423,7 +423,7 @@ try {
     if (err) {
       console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
     } else {
-      console.log(`acquireShareData success, data: ${JSON.stringify(wantParam)}`);
+      console.info(`acquireShareData success, data: ${JSON.stringify(wantParam)}`);
     }
   });
 } catch (paramError) {
@@ -473,7 +473,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   abilityManager.acquireShareData(1).then((wantParam: Record<string, Object>) => {
-    console.log(`acquireShareData success, data: ${JSON.stringify(wantParam)}`);
+    console.info(`acquireShareData success, data: ${JSON.stringify(wantParam)}`);
   }).catch((err: BusinessError) => {
     console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
   });
@@ -537,7 +537,7 @@ try {
     if (err && err.code != 0) {
       console.error(`notifySaveAsResult fail, err: ${JSON.stringify(err)}`);
     } else {
-      console.log(`notifySaveAsResult success`);
+      console.info(`notifySaveAsResult success`);
     }
   });
 } catch (paramError) {
@@ -602,7 +602,7 @@ let abilityResult: common.AbilityResult = {
 let requestCode = 1;
 try {
   abilityManager.notifySaveAsResult(abilityResult, requestCode).then(() => {
-    console.log(`notifySaveAsResult success`);
+    console.info(`notifySaveAsResult success`);
   }).catch((err: BusinessError) => {
     console.error(`notifySaveAsResult fail, err: ${JSON.stringify(err)}`);
   });
@@ -651,7 +651,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: abilityManager.AbilityForegroundStateObserver = {
   onAbilityStateChanged(abilityStateData) {
-    console.log(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+    console.info(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
   },
 };
 try {
@@ -703,7 +703,7 @@ let observer_: abilityManager.AbilityForegroundStateObserver | undefined;
 // 1.注册应用启动和退出的监听器
 let observer: abilityManager.AbilityForegroundStateObserver = {
   onAbilityStateChanged(abilityStateData: abilityManager.AbilityStateData) {
-    console.log(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+    console.info(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
   },
 };
 try {
@@ -764,7 +764,7 @@ abilityManager.getForegroundUIAbilities((err: BusinessError, data: Array<ability
   if (err) {
     console.error(`Get foreground ui abilities failed, error: ${JSON.stringify(err)}`);
   } else {
-    console.log(`Get foreground ui abilities data is: ${JSON.stringify(data)}`);
+    console.info(`Get foreground ui abilities data is: ${JSON.stringify(data)}`);
   }
 });
 ```
@@ -804,7 +804,7 @@ import { abilityManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 abilityManager.getForegroundUIAbilities().then((data: Array<abilityManager.AbilityStateData>) => {
-  console.log(`Get foreground ui abilities data is: ${JSON.stringify(data)}`);
+  console.info(`Get foreground ui abilities data is: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
   console.error(`Get foreground ui abilities failed, error: ${JSON.stringify(error)}`);
 });
@@ -860,7 +860,7 @@ export default class UiExtAbility extends UIExtensionAbility {
     }
     let status = abilityManager.UserStatus.ASSERT_TERMINATE;
     abilityManager.notifyDebugAssertResult(sessionId, status).then(() => {
-      console.log('notifyDebugAssertResult success.');
+      console.info('notifyDebugAssertResult success.');
     }).catch((err: BusinessError) => {
       console.error(`notifyDebugAssertResult failed, error: ${JSON.stringify(err)}`);
     });
@@ -968,7 +968,7 @@ try {
   let enable: boolean = false;
   abilityManager.setResidentProcessEnabled(residentProcessBundleName, enable)
     .then(() => {
-      console.log('setResidentProcessEnabled success.');
+      console.info('setResidentProcessEnabled success.');
     })
     .catch((err: BusinessError) => {
       console.error(`setResidentProcessEnabled fail, err: ${JSON.stringify(err)}`);
@@ -990,8 +990,8 @@ try {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | ---------| ---- | ---- | --------- |
-| isOpenAllowed | boolean   | 是   | 否   | 是否允许拉起原子化服务。true表示允许拉起原子化服务，false表示不允许拉起原子化服务。 |
-| isEmbeddedAllowed | boolean   | 是   | 否  | 是否允许嵌入式拉起原子化服务。true表示允许嵌入式拉起原子化服务，false表示不允许嵌入式拉起原子化服务。 |
+| isOpenAllowed | boolean   | 否   | 否   | 是否允许拉起原子化服务。true表示允许拉起原子化服务，false表示不允许拉起原子化服务。 |
+| isEmbeddedAllowed | boolean   | 否   | 否  | 是否允许嵌入式拉起原子化服务。true表示允许嵌入式拉起原子化服务，false表示不允许嵌入式拉起原子化服务。 |
 
 ## abilityManager.queryAtomicServiceStartupRule<sup>18+</sup>
 
