@@ -343,15 +343,15 @@ let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags : 0
-}
+};
 
 media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`Failed to createSoundPool`)
+    console.error(`Failed to createSoundPool`);
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`Succeeded in createSoundPool`)
+    console.info(`Succeeded in createSoundPool`);
   }
 });
 ```
@@ -400,7 +400,7 @@ let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags : 0
-}
+};
 
 media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
   if (soundpool_ != null) {
@@ -618,13 +618,13 @@ createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 | ----------------------------- | ------------------- |
 | [MediaSource](arkts-apis-media-MediaSource.md) | 返回MediaSource，用于媒体资源设置。 |
 
-**示例1：**
+**示例：**
 
 ```ts
 let streams : Array<media.MediaStream> = [];
 streams.push({url: "http://xxx/480p.flv", width: 854, height: 480, bitrate: 800000});
-streams.push({url: "http:/xxx/720p.flv", width: 1280, height: 720, bitrate: 2000000});
-streams.push({url: "http:/xxx/1080p.flv", width: 1280, height: 720, bitrate: 2000000});
+streams.push({url: "http://xxx/720p.flv", width: 1280, height: 720, bitrate: 2000000});
+streams.push({url: "http://xxx/1080p.flv", width: 1280, height: 720, bitrate: 2000000});
 let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(streams);
 ```
 

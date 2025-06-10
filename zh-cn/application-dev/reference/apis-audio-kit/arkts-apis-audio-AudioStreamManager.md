@@ -7,7 +7,7 @@
 
 在使用AudioStreamManager的接口之前，需先通过[getStreamManager](arkts-apis-audio-AudioManager.md#getstreammanager9)获取AudioStreamManager实例。
 
-### getCurrentAudioRendererInfoArray<sup>9+</sup>
+## getCurrentAudioRendererInfoArray<sup>9+</sup>
 
 getCurrentAudioRendererInfoArray(callback: AsyncCallback&lt;AudioRendererChangeInfoArray&gt;): void
 
@@ -54,7 +54,7 @@ audioStreamManager.getCurrentAudioRendererInfoArray(async (err: BusinessError, A
 });
 ```
 
-### getCurrentAudioRendererInfoArray<sup>9+</sup>
+## getCurrentAudioRendererInfoArray<sup>9+</sup>
 
 getCurrentAudioRendererInfoArray(): Promise&lt;AudioRendererChangeInfoArray&gt;
 
@@ -100,7 +100,7 @@ async function getCurrentAudioRendererInfoArray(){
   });
 }
 ```
-### getCurrentAudioRendererInfoArraySync<sup>10+</sup>
+## getCurrentAudioRendererInfoArraySync<sup>10+</sup>
 
 getCurrentAudioRendererInfoArraySync(): AudioRendererChangeInfoArray
 
@@ -147,7 +147,7 @@ try {
 }
 ```
 
-### getCurrentAudioCapturerInfoArray<sup>9+</sup>
+## getCurrentAudioCapturerInfoArray<sup>9+</sup>
 
 getCurrentAudioCapturerInfoArray(callback: AsyncCallback&lt;AudioCapturerChangeInfoArray&gt;): void
 
@@ -192,7 +192,7 @@ audioStreamManager.getCurrentAudioCapturerInfoArray(async (err: BusinessError, A
 });
 ```
 
-### getCurrentAudioCapturerInfoArray<sup>9+</sup>
+## getCurrentAudioCapturerInfoArray<sup>9+</sup>
 
 getCurrentAudioCapturerInfoArray(): Promise&lt;AudioCapturerChangeInfoArray&gt;
 
@@ -236,7 +236,8 @@ async function getCurrentAudioCapturerInfoArray(){
   });
 }
 ```
-### getCurrentAudioCapturerInfoArraySync<sup>10+</sup>
+
+## getCurrentAudioCapturerInfoArraySync<sup>10+</sup>
 
 getCurrentAudioCapturerInfoArraySync(): AudioCapturerChangeInfoArray
 
@@ -281,7 +282,7 @@ try {
 }
 ```
 
-### on('audioRendererChange')<sup>9+</sup>
+## on('audioRendererChange')<sup>9+</sup>
 
 on(type: 'audioRendererChange', callback: Callback&lt;AudioRendererChangeInfoArray&gt;): void
 
@@ -330,7 +331,7 @@ audioStreamManager.on('audioRendererChange',  (audioRendererChangeInfoArray: aud
 });
 ```
 
-### off('audioRendererChange')<sup>9+</sup>
+## off('audioRendererChange')<sup>9+</sup>
 
 off(type: 'audioRendererChange', callback?: Callback&lt;AudioRendererChangeInfoArray&gt;): void
 
@@ -386,7 +387,7 @@ audioStreamManager.on('audioRendererChange', audioRendererChangeCallback);
 audioStreamManager.off('audioRendererChange', audioRendererChangeCallback);
 ```
 
-### on('audioCapturerChange')<sup>9+</sup>
+## on('audioCapturerChange')<sup>9+</sup>
 
 on(type: 'audioCapturerChange', callback: Callback&lt;AudioCapturerChangeInfoArray&gt;): void
 
@@ -433,7 +434,7 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray: audi
 });
 ```
 
-### off('audioCapturerChange')<sup>9+</sup>
+## off('audioCapturerChange')<sup>9+</sup>
 
 off(type: 'audioCapturerChange', callback?: Callback&lt;AudioCapturerChangeInfoArray&gt;): void
 
@@ -488,7 +489,7 @@ audioStreamManager.on('audioCapturerChange', audioCapturerChangeCallback);
 audioStreamManager.off('audioCapturerChange', audioCapturerChangeCallback);
 ```
 
-### isActive<sup>9+</sup>
+## isActive<sup>9+</sup>
 
 isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -517,7 +518,7 @@ if (err) {
 });
 ```
 
-### isActive<sup>9+</sup>
+## isActive<sup>9+</sup>
 
 isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
@@ -545,7 +546,7 @@ audioStreamManager.isActive(audio.AudioVolumeType.MEDIA).then((value: boolean) =
 });
 ```
 
-### isActiveSync<sup>10+</sup>
+## isActiveSync<sup>10+</sup>
 
 isActiveSync(volumeType: AudioVolumeType): boolean
 
@@ -588,7 +589,7 @@ try {
 }
 ```
 
-### getAudioEffectInfoArray<sup>10+</sup>
+## getAudioEffectInfoArray<sup>10+</sup>
 
 getAudioEffectInfoArray(usage: StreamUsage, callback: AsyncCallback&lt;AudioEffectInfoArray&gt;): void
 
@@ -628,7 +629,7 @@ audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MUSIC,
 });
 ```
 
-### getAudioEffectInfoArray<sup>10+</sup>
+## getAudioEffectInfoArray<sup>10+</sup>
 
 getAudioEffectInfoArray(usage: StreamUsage): Promise&lt;AudioEffectInfoArray&gt;
 
@@ -670,7 +671,7 @@ audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MUSIC)
 });
 ```
 
-### getAudioEffectInfoArraySync<sup>10+</sup>
+## getAudioEffectInfoArraySync<sup>10+</sup>
 
 getAudioEffectInfoArraySync(usage: StreamUsage): AudioEffectInfoArray
 
@@ -713,7 +714,7 @@ try {
 }
 ```
 
-### isAcousticEchoCancelerSupported<sup>20+</sup>
+## isAcousticEchoCancelerSupported<sup>20+</sup>
 
 isAcousticEchoCancelerSupported(sourceType: SourceType): boolean
 

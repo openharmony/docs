@@ -131,7 +131,7 @@ skipPrivacyMode(windowIDs: Array\<number>): Promise\<void>
 
 | 参数名 | 类型    | 必填 | 说明                                                      |
 | ------ | ------- | ---- | --------------------------------------------------------- |
-| windowIDs | Array\<number> | 是   | 需要豁免隐私的窗口列表，包括主窗口id和子窗口id，窗口属性获取方法可以参考[窗口API引用](../apis-arkui/js-apis-window.md#getwindowproperties9)。 |
+| windowIDs | Array\<number> | 是   | 需要豁免隐私的窗口列表，包括主窗口id和子窗口id，窗口属性获取方法可以参考[窗口API引用](../apis-arkui/arkts-apis-window-Window.md#getwindowproperties9)。 |
 
 **返回值：**
 
