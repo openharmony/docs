@@ -5723,7 +5723,7 @@ rekey(cryptoParam?: CryptoParam): Promise\<void>
 | **错误码ID** | **错误信息**                                                                         |
 | ------------ | ----------------------------------------------------------------------------------- |
 | 801          | Capability not supported.                                                           |
-| 14800001     | Invalid args. Possible causes: 1. conditions are empty;  2. missing GROUP BY clause.|
+| 14800001     | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause.|
 | 14800011     | Database corrupted.                                                                 |
 | 14800014     | Already closed.                                                                     |
 | 14800015     | The database does not respond.                                                      |
