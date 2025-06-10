@@ -21,7 +21,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 - 在线查看：
 
-  使用hdc shell hilog命令在线查看日志；
+  使用hdc shell hilog命令在线查看日志。
 
 - 查看落盘的文件：
 
@@ -39,11 +39,10 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 如上，这是一条domainID为0x3200、tag是"testTag"的info级别的日志：
 
-说明：
-
--  日志级别：I表示Info级别，其余级别参考[日志等级](../reference/apis-performance-analysis-kit/_hi_log.md#loglevel)首字母。
-
--  domainID：A03200中A表示应用日志（LOG_APP），3200表示domainID为0x3200。
+> **说明：**
+>
+> -  日志级别：I表示Info级别，其余级别参考[日志等级](../reference/apis-performance-analysis-kit/_hi_log.md#loglevel)首字母。
+> -  domainID：A03200中A表示应用日志（LOG_APP），3200表示domainID为0x3200。
 
 <!--RP15End-->
 
@@ -340,7 +339,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    11-15 16:36:21.802  2809  2831 E C02D06/XCollie: Send kick,foundation to hungtask Successful
    11-15 16:36:21.911   882  3016 I C01F0B/TelephonyVSim: state machine ProcessEvent Id: 125
    11-15 16:36:21.911   882  3016 I C01F0B/TelephonyVSim: StateProcess
-   $
+
    $ hilog -v nsec
    11-15 16:37:09.010658555  1134  1723 I C02B01/HrilExt: [BoosterRawInd-(hril_booster.cpp:296)] RilExt: BoosterRawInd
    11-15 16:37:09.010676263  1134  1723 I C02B01/HrilExt: [BoosterRawInd-(hril_booster.cpp:328)] check need notify to satellite:indType 6
@@ -366,7 +365,6 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    $ hilog -w query
    Persist task query failed
    No running persistent task [CODE: -63]
-   $
    ```
 
    当前存在落盘任务：
@@ -375,7 +373,6 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    $ hilog -w query
    1 init,core,app,only_prerelease zlib /data/log/hilog/hilog 4.0M 1000
    2 kmsg zlib /data/log/hilog/hilog_kmsg 4.0M 100
-   $
    ```
 
 #### 设置落盘任务
@@ -387,28 +384,22 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    开启hilog落盘任务，并且设置落盘文件数量为1000个：
 
    ```shell
-   $
    $ hilog -w start -n 1000
    Persist task [jobid:1][fileNum:1000][fileSize:4194304] start successfully
-   $
    ```
 
    开启kmsglog落盘任务，并且设置落盘文件数量为100个：
 
    ```shell
-   $
    $ hilog -w start -n 100 -t kmsg
    Persist task [jobid:2][fileNum:100][fileSize:4194304] start successfully
-   $
    ```
 
-   开启落盘任务时可以自定义落盘规则，其中压缩方式可以为zlib，zstd，none。以设置落盘文件名为kmsglog，大小为2M，数量为100个, 其压缩方式为zlib压缩为例，命令行为：
+   开启落盘任务时可以自定义落盘规则，其中压缩方式可以为zlib、zstd、none。以设置落盘文件名为kmsglog，大小为2M，数量为100个, 其压缩方式为zlib压缩为例，命令行为：
 
    ```shell
-   $
    $ hilog -w start -t kmsg -f kmsglog -l 2M -n 100 -m zlib
    Persist task [jobid:2][fileNum:100][fileSize:2097152] start successfully
-   $
    ```
 
 #### 关闭落盘任务
@@ -419,7 +410,6 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    $ hilog -w stop
    Persist task [jobid:1] stop successfully
    Persist task [jobid:2] stop successfully
-   $
    ```
 
 ### 查看和设置日志级别
@@ -431,6 +421,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    I
    ```
 
+<!--RP16-->
 #### 设置日志级别
 
    ```text
@@ -440,10 +431,8 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    // 设置全局日志级别，重启仍生效
    hilog -b D/I/W/E/F --persist
 
-   <!--RP16-->
    // 设置LOG_APP类型[DOMAINID]可打印的日志级别
    hilog -b D/I/W/E/F -D 0x[DOMAINID]
-   <!--RP16End-->
 
    // 设置[TAG]可打印的日志级别
    hilog -b D/I/W/E/F -T [TAG]
@@ -460,14 +449,13 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    Set global log level to E successfully
    Set persist global log level to E successfully
 
-   <!--RP17-->
    $ hilog -b D -D 0x2d00
    Set domain 0x2d00 log level to D successfully
-   <!--RP17End-->
 
    $ hilog -b E -T testTag
    Set tag testTag log level to E successfully
    ```
+<!--RP16End-->
 
 ## 其他常用命令
 
@@ -526,7 +514,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    ```shell
    $ hilog -k on
    Set hilogd storing kmsg log on successfully
-   $ 
+
    $ hilog -k off
    Set hilogd storing kmsg log off successfully
    ```
@@ -560,12 +548,12 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
    **统计信息说明**
    ```
-   MAX_FREQ：日志打印频率最高的每秒行数
-   TIME：    对应发生时间
-   MAX_TP：  日志打印频率最高的每秒字节数
-   LINES：   统计周期内的总行数
-   LENGTH：  统计周期内的总字节数
-   DROPPED： 统计周期内丢失的行数
+   MAX_FREQ：日志打印频率最高的每秒行数。
+   TIME：    对应发生时间。
+   MAX_TP：  日志打印频率最高的每秒字节数。
+   LINES：   统计周期内的总行数。
+   LENGTH：  统计周期内的总字节数。
+   DROPPED： 统计周期内丢失的行数。
    ```
 
 ### 清除统计信息
