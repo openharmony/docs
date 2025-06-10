@@ -174,7 +174,7 @@ websocket客户端接收open消息的回调函数定义。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| client | websocket客户端。 | 
+| client | websocket客户端。  | 
 | openResult | websocket客户端接收建立连接消息的内容。  | 
 
 
