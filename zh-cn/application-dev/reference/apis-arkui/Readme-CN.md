@@ -49,7 +49,8 @@
       - [NodeContent](js-apis-arkui-NodeContent.md)
   - 窗口管理<!--window-manager-api-->
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
-    - [@ohos.window (窗口)](arkts-apis-window.md)
+    - @ohos.window (窗口)<!--js-apis-window-->
+      - [模块描述](arkts-apis-window.md)
       - [Functions](arkts-apis-window-f.md)
       - [Interface (Window)](arkts-apis-window-Window.md)
       - [Interface (WindowStage)](arkts-apis-window-WindowStage.md)

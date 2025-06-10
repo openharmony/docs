@@ -2301,7 +2301,8 @@
         - [@ohos.data.distributedKVStore (分布式键值数据库)](reference/apis-arkdata/js-apis-distributedKVStore.md)
         - [@ohos.data.preferences (用户首选项)](reference/apis-arkdata/js-apis-data-preferences.md)
         - [@ohos.data.sendablePreferences (共享用户首选项)](reference/apis-arkdata/js-apis-data-sendablePreferences.md)
-        - [@ohos.data.relationalStore (关系型数据库)](reference/apis-arkdata/arkts-apis-data-relationalStore.md)
+        - @ohos.data.relationalStore (关系型数据库)<!--js-apis-data-relationalStore-->
+          - [模块描述](reference/apis-arkdata/arkts-apis-data-relationalStore.md)
           - [Functions](reference/apis-arkdata/arkts-apis-data-relationalStore-f.md)
           - [Interface (RdbStore)](reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md)
           - [Interface (ResultSet)](reference/apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md)
@@ -2508,7 +2509,8 @@
             - [NodeContent](reference/apis-arkui/js-apis-arkui-NodeContent.md)
         - 窗口管理<!--window-manager-api-->
           - [@ohos.PiPWindow (画中画窗口)](reference/apis-arkui/js-apis-pipWindow.md)
-          - [@ohos.window (窗口)](reference/apis-arkui/arkts-apis-window.md)
+          - @ohos.window (窗口)<!--js-apis-window-->
+            - [模块描述](reference/apis-arkui/arkts-apis-window.md)
             - [Functions](reference/apis-arkui/arkts-apis-window-f.md)
             - [Interface (Window)](reference/apis-arkui/arkts-apis-window-Window.md)
             - [Interface (WindowStage)](reference/apis-arkui/arkts-apis-window-WindowStage.md)
