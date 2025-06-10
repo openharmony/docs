@@ -492,34 +492,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
     let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance();
     ```
 
-3. （可选）订阅TLSSocket相关的订阅事件。
-
-    ```ts
-    class SocketInfo {
-      message: ArrayBuffer = new ArrayBuffer(1);
-      remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-    }
-
-    // 订阅TLS Socket相关的订阅事件。
-    tlsTwoWay.on('message', (value: SocketInfo) => {
-      console.log("on message");
-      let buffer = value.message;
-      let dataView = new DataView(buffer);
-      let str = "";
-      for (let i = 0; i < dataView.byteLength; ++i) {
-        str += String.fromCharCode(dataView.getUint8(i));
-      }
-      console.log("on connect received:" + str);
-    });
-    tlsTwoWay.on('connect', () => {
-      console.log("on connect");
-    });
-    tlsTwoWay.on('close', () => {
-      console.log("on close");
-    });
-    ```
-
-4. 绑定服务器IP地址和端口。
+3. 绑定服务器IP地址和端口，确保bind成功后，再订阅TLS Socket相关的订阅事件。
 
     ```ts
     // 绑定本地IP地址和端口。
@@ -532,10 +505,27 @@ UDP与TCP流程大体类似，下面以TCP为例：
         return;
       }
       console.log('bind success');
+      // 确保bind成功后，再订阅TLS Socket相关的订阅事件
+      tlsTwoWay.on('message', (value: SocketInfo) => {
+        console.log("on message");
+        let buffer = value.message;
+        let dataView = new DataView(buffer);
+        let str = "";
+        for (let i = 0; i < dataView.byteLength; ++i) {
+          str += String.fromCharCode(dataView.getUint8(i));
+        }
+        console.log("on connect received:" + str);
+      });
+      tlsTwoWay.on('connect', () => {
+        console.log("on connect");
+      });
+      tlsTwoWay.on('close', () => {
+        console.log("on close");
+      });
     });
     ```
 
-5. 双向认证上传客户端CA证书及数字证书，并建立连接，连接建立成功后可以发送数据。
+4. 双向认证上传客户端CA证书及数字证书，并建立连接，连接建立成功后可以发送数据。
 
     ```ts
     ipAddress.address = "192.168.xxx.xxx";
@@ -552,7 +542,6 @@ UDP与TCP流程大体类似，下面以TCP为例：
     tlsSecureOption.cipherSuite = "AES256-SHA256";
 
     let tlsTwoWayConnectOption : socket.TLSConnectOptions = {} as socket.TLSConnectOptions;
-    tlsSecureOption.key = "xxxx";
     tlsTwoWayConnectOption.address = ipAddress;
     tlsTwoWayConnectOption.secureOptions = tlsSecureOption;
     tlsTwoWayConnectOption.ALPNProtocols = ["spdy/1", "http/1.1"];
@@ -571,7 +560,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
     });
     ```
 
-6. TLSSocket连接使用完毕后，主动关闭。
+5. TLSSocket连接使用完毕后，主动关闭。
 
     ```ts
     // 连接使用完毕后，主动关闭，并取消相关事件的订阅。
@@ -603,33 +592,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
     let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
     ```
 
-3. （可选）订阅TLSSocket相关的订阅事件。
-
-    ```ts
-    class SocketInfo {
-      message: ArrayBuffer = new ArrayBuffer(1);
-      remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-    }
-    // 订阅TLS Socket相关的订阅事件。
-    tlsOneWay.on('message', (value: SocketInfo) => {
-      console.log("on message");
-      let buffer = value.message;
-      let dataView = new DataView(buffer);
-      let str = "";
-      for (let i = 0; i < dataView.byteLength; ++i) {
-        str += String.fromCharCode(dataView.getUint8(i));
-      }
-      console.log("on connect received:" + str);
-    });
-    tlsOneWay.on('connect', () => {
-      console.log("on connect");
-    });
-    tlsOneWay.on('close', () => {
-      console.log("on close");
-    });
-    ```
-
-4. 绑定服务器IP地址和端口。
+3. 绑定服务器IP地址和端口，确保bind成功后，再订阅TLS Socket相关的订阅事件。。
 
     ```ts
     // 绑定本地IP地址和端口。
@@ -642,10 +605,27 @@ UDP与TCP流程大体类似，下面以TCP为例：
         return;
       }
       console.log('bind success');
+      // 订阅TLS Socket相关的订阅事件
+      tlsOneWay.on('message', (value: SocketInfo) => {
+        console.log("on message");
+        let buffer = value.message;
+        let dataView = new DataView(buffer);
+        let str = "";
+        for (let i = 0; i < dataView.byteLength; ++i) {
+          str += String.fromCharCode(dataView.getUint8(i));
+        }
+        console.log("on connect received:" + str);
+      });
+      tlsOneWay.on('connect', () => {
+        console.log("on connect");
+      });
+      tlsOneWay.on('close', () => {
+        console.log("on close");
+      });
     });
     ```
 
-5. 单向认证上传客户端CA证书，并建立连接。
+4. 单向认证上传客户端CA证书，并建立连接。
 
     ```ts
     ipAddress.address = "192.168.xxx.xxx";
@@ -672,7 +652,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
     });
     ```
 
-6. TLSSocket连接使用完毕后，主动关闭。
+5. TLSSocket连接使用完毕后，主动关闭。
 
     ```ts
     // 连接使用完毕后，主动关闭，并取消相关事件的订阅。

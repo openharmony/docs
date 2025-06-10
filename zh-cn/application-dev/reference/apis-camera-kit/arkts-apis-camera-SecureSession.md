@@ -1,4 +1,4 @@
-# Interfaces (SecureSession)
+# Interface (SecureSession)
 
 > **说明：**
 >

@@ -56,7 +56,7 @@ canOpenLink是[bundleManager](../reference/apis-ability-kit/js-apis-bundleManage
         //...
         "skills": [
           {
-            // actions不能为空，actions为空会造成目标方匹配失败。
+            // actions不能为空，actions为空会造成目标方匹配失败
             "actions": ["ohos.want.action.home"],
             "uris": [
               {

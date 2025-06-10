@@ -146,7 +146,7 @@ addAllowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 | 参数名       | 类型                                                       | 必填 | 说明                                                         |
 | ------------ | -------------------------------------------------------    | ---- | ------------------------------------------------------------ |
 | admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md)    | 是   | 企业设备管理扩展组件。                                       |
-| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                   | 是   | Wi-Fi白名单数组。数组长度上限为200。 |
+| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                   | 是   | Wi-Fi白名单数组。数组总长度不能超过200。例如，若当前白名单数组中已有100个Wi-Fi，则最多支持通过该接口再添加100个。 |
 
 **错误码**：
 
@@ -199,7 +199,7 @@ removeAllowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 | 参数名       | 类型                                                    | 必填 | 说明                                                         |
 | ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
-| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                | 是   | 待移除的Wi-Fi白名单数组。数组长度上限为200。                                              |
+| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                | 是   | 待移除的Wi-Fi白名单数组。数组总长度不能超过200。                                            |
 
 **错误码**：
 
@@ -294,8 +294,8 @@ addDisallowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 
 以下情况下，调用本接口会报策略冲突：
 
-1. 已经通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了设备WLAN能力。通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)解除WLAN禁用后，可解除冲突。
-2. 已经通过[addAllowedWifiList](#wifimanageraddallowedwifilist19)接口添加了WLAN白名单。通过[removeAllowedWifiList](#wifimanagerremoveallowedwifilist19)移除WLAN白名单后，可解除冲突。
+1. 已经通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了设备Wi-Fi能力。通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)解除Wi-Fi禁用后，可解除冲突。
+2. 已经通过[addAllowedWifiList](#wifimanageraddallowedwifilist19)接口添加了Wi-Fi白名单。通过[removeAllowedWifiList](#wifimanagerremoveallowedwifilist19)移除Wi-Fi白名单后，可解除冲突。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -308,7 +308,7 @@ addDisallowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 | 参数名       | 类型                                                    | 必填 | 说明                                                         |
 | ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
-| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                | 是   | Wi-Fi黑名单数组。数组长度上限为200。 |
+| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                | 是   | Wi-Fi黑名单数组。数组总长度不能超过200。例如，若当前黑名单数组中已有100个Wi-Fi，则最多支持通过该接口再添加100个。 |
 
 **错误码**：
 
@@ -361,7 +361,7 @@ removeDisallowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 | 参数名       | 类型                                                    | 必填 | 说明                                                         |
 | ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
-| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                | 是   | 待移除的Wi-Fi黑名单数组。数组长度上限为200。                      |
+| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                | 是   | 待移除的Wi-Fi黑名单数组。数组总长度不能超过200。                      |
 
 **错误码**：
 

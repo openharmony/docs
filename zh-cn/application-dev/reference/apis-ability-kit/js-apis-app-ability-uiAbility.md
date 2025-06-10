@@ -2,9 +2,15 @@
 
 UIAbility是包含UI界面的应用组件，继承自[Ability](js-apis-app-ability-ability.md)，提供UIAbility组件创建、销毁、前后台切换等[生命周期](#uiability生命周期)回调，同时也具备[后台通信能力](#后台通信能力)。
 
+> **说明：**
+>
+> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 本模块接口仅可在Stage模型下使用。
+
 各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
 
-## UIAbility生命周期
+## UIAbility生命周期状态
 
 **图1** UIAbility生命周期状态
 
@@ -27,12 +33,6 @@ UIAbility是包含UI界面的应用组件，继承自[Ability](js-apis-app-abili
 - Caller UIAbility调用[startAbilityByCall()](js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口获取[Caller](#caller)对象，并使用Caller对象的[call](#call)方法向Callee UIAbility发送数据。
 
 - Callee UIAbility持有一个[Callee](#callee)对象，通过Callee的[on](#on)方法注册回调函数，用于接收Caller对象发送的数据。
-
-> **说明：**
->
-> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
-> 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
 
@@ -776,6 +776,7 @@ onPrepareToTerminate(): boolean
 > - 回调时机：当用户通过点击应用窗口右上角的关闭按钮、或者通过Dock栏/托盘右键退出应用时，可以使用该回调。
 >
 > - 从API version 15开始，当[UIAbility.onPrepareToTerminateAsync](#onpreparetoterminateasync15)实现时，本回调函数将不执行。当[AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#abilitystageonprepareterminationasync15)或[AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15)实现时，在dock栏或系统托盘处右键点击关闭，本回调函数将不执行。
+> - 如果应用本身或者所使用的三方框架注册了[window.WindowStage.on('windowStageClose')](../apis-arkui/js-apis-window.md#onwindowstageclose14)监听，本回调函数将不执行。
 
 **需要权限**：ohos.permission.PREPARE_APP_TERMINATE
 
@@ -838,6 +839,7 @@ onPrepareToTerminateAsync(): Promise\<boolean>
 > - 回调时机：当用户通过点击应用窗口右上角的关闭按钮、或者通过Dock栏/托盘右键退出应用时，可以使用该回调。
 >
 > - 当[AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#abilitystageonprepareterminationasync15)或[AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15)实现时，在dock栏或系统托盘处右键点击关闭，本回调函数将不执行。
+> - 如果应用本身或者所使用的三方框架注册了[window.WindowStage.on('windowStageClose')](../apis-arkui/js-apis-window.md#onwindowstageclose14)监听，本回调函数将不执行。
 >
 > - 若异步回调内发生crash，按超时处理，执行等待超过10秒未响应，UIAbility将被强制关闭。
 

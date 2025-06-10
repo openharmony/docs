@@ -58,6 +58,33 @@ setTextHighContrast(action: TextHighContrast): void
 text.setTextHighContrast(text.TextHighContrast.TEXT_APP_DISABLE_HIGH_CONTRAST)
 ```
 
+## text.setTextUndefinedGlyphDisplay<sup>20+</sup>
+
+setTextUndefinedGlyphDisplay(noGlyphShow: TextUndefinedGlyphDisplay): void
+
+设置字符映射到.notdef（未定义）字形时要使用的字形类型。
+
+影响此调用后呈现的所有文本。
+
+此配置会影响显示字体中未定义字符的方式：
+
+- 默认行为遵循字体的内部.notdef字形设计。
+- 开启后将强制使缺失字形的字符以豆腐块形式显示。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型               | 必填 | 说明                              |
+| ----- | ------------------ | ---- | ------------------------------------------------------------------------------- |
+| noGlyphShow | [TextUndefinedGlyphDisplay](#textundefinedglyphdisplay20) | 是   | 无法塑形字符的显示方式。 |
+
+**示例：**
+
+```ts
+text.setTextUndefinedGlyphDisplay(text.TextUndefinedGlyphDisplay.USE_TOFU)
+```
+
 ## text.matchFontDescriptors<sup>18+</sup>
 
 matchFontDescriptors(desc: FontDescriptor): Promise&lt;Array&lt;FontDescriptor&gt;&gt;
@@ -264,6 +291,17 @@ struct Index {
 | TEXT_FOLLOW_SYSTEM_HIGH_CONTRAST   | 0    | 跟随系统设置中的高对比度文字配置。                                            |
 | TEXT_APP_DISABLE_HIGH_CONTRAST     | 1    | 关闭APP的文字渲染高对比度配置，该模式的优先级要高于系统设置中的高对比度文字配置。 |
 | TEXT_APP_ENABLE_HIGH_CONTRAST      | 2    | 开启APP的文字渲染高对比度配置，该模式的优先级要高于系统设置中的高对比度文字配置。 |
+
+## TextUndefinedGlyphDisplay<sup>20+</sup>
+
+文本未定义字形时的显示方式枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称           | 值   | 说明                                 |
+| -------------- | ---- | ------------------------------------ |
+| USE_DEFAULT    | 0    | 使用字体的内部.notdef字形。遵循字体的内部.notdef字形设计，可以是空框、空格或自定义符号。|
+| USE_TOFU       | 1    | 总是用显式的豆腐块替换未定义的字形，覆盖字体的默认行为。用于调试缺失字符或强制一致的缺失符号显示。|
 
 ## TextAlign
 
@@ -540,7 +578,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称                      | 类型                                       | 只读 | 可选 | 说明                                                                 |
 | -------------  | ---------------------------------------------------- | ---- | -- | --------------------------------------------------------------------- |
-| fontFamilies   | Array\<string>                                       | 是   | 是 | 字体族名称列表，默认为空，匹配系统字体。                                               |
+| fontFamilies   | Array\<string>                                       | 是   | 是 | 字体家族名称列表，默认为空，匹配系统字体。                                               |
 | fontStyle      | [FontStyle](#fontstyle)                              | 是   | 是 | 字体样式，默认为常规样式。                                               |
 | fontWidth      | [FontWidth](#fontwidth)                              | 是   | 是 | 字体宽度，默认为NORMAL。                                                |
 | fontWeight     | [FontWeight](#fontweight)                            | 是   | 是 | 字重，默认为W400。系统默认字体支持字重调节，其他字体设置字重值小于W600时无变化，大于等于W600时可能触发伪加粗效果。                             |
@@ -715,6 +753,118 @@ struct RenderTest {
   }
 
   build() {
+  }
+}
+```
+
+### unloadFontSync<sup>20+</sup>
+unloadFontSync(name: string): void
+
+卸载指定的自定义字体，此接口为同步接口。
+
+使用此接口卸载字体别名所对应的自定义字体后，对应的自定义字体将不再可用。
+
+所有使用该字体别名的排版对象都应该被销毁重建。
+
+- 卸载不存在的字体别名不会产生任何效果且不会抛出错误。
+- 此操作仅影响后续字体使用。
+- 卸载正在使用的字体可能导致文本渲染异常（如乱码或字形缺失）。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+|   参数名 | 类型               | 必填 | 说明                              |
+|   -----  | ------------------ | ---- | --------------------------------------------------------------------------------- |
+|   name   | string             | 是   | 需要取消注册的字体别名，与加载字体时使用的别名相同。 |
+
+**示例：**
+
+``` ts
+import { text } from "@kit.ArkGraphics2D"
+
+@Entry
+@Component
+struct UnloadFontSyncTest {
+  private fc: text.FontCollection = text.FontCollection.getGlobalInstance();
+  @State content: string = "默认字体"
+
+  build() {
+    Column({ space: 10 }) {
+      Text(this.content)
+        .fontFamily("custom")
+      Button("load font")
+        .onClick(() => {
+          this.fc.loadFontSync("custom", "file:///system/fonts/NotoSansCJK-Regular.ttc")
+          this.content = "自定义字体"
+        })
+      Button("unload font")
+        .onClick(() => {
+          this.fc.unloadFontSync("custom")
+          this.content = "默认字体"
+        })
+    }.width("100%")
+    .height("100%")
+    .justifyContent(FlexAlign.Center)
+  }
+}
+```
+
+### unloadFont<sup>20+</sup>
+unloadFont(name: string): Promise\<void>
+
+卸载指定的自定义字体。使用Promise异步回调。
+
+使用此接口卸载字体别名所对应的自定义字体后，对应的自定义字体将不再可用。
+
+所有使用该字体别名的排版对象都应该被销毁重建。
+
+- 卸载不存在的字体别名不会产生任何效果且不会抛出错误。
+- 此操作仅影响后续字体使用。
+- 卸载正在使用的字体可能导致文本渲染异常（如乱码或字形缺失）。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型               | 必填 | 说明                              |
+| -----  | ------------------ | ---- | --------------------------------- |
+| name   | string             | 是   | 需要卸载的字体的别名，与加载字体时使用的别名相同。 |
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+@Entry
+@Component
+struct UnloadFontTest {
+  private fc: text.FontCollection = text.FontCollection.getGlobalInstance();
+  @State content: string = "默认字体"
+
+  build() {
+    Column({ space: 10 }) {
+      Text(this.content)
+        .fontFamily("custom")
+      Button("load font")
+        .onClick(async () => {
+          await this.fc.loadFont("custom", "file:///system/fonts/NotoSansCJK-Regular.ttc")
+          this.content = "自定义字体"
+        })
+      Button("unload font")
+        .onClick(async () => {
+          await this.fc.unloadFont("custom")
+          this.content = "默认字体"
+        })
+    }.width("100%")
+    .height("100%")
+    .justifyContent(FlexAlign.Center)
   }
 }
 ```
@@ -2847,6 +2997,55 @@ getTypographicBounds(): TypographicBounds
 
 ```ts
 let typographicBounds = runs[0].getTypographicBounds();
+```
+
+### getTextDirection<sup>20+</sup>
+
+getTextDirection(): TextDirection
+
+获取该排版单元的文本方向。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                   | 说明           |
+| ---------------------- | -------------- |
+|   [TextDirection](#textdirection)  | 返回该排版单元的文本方向。|
+
+**示例：**
+
+```ts
+let textDirection = runs[0].getTextDirection();
+```
+
+### getAdvances<sup>20+</sup>
+
+getAdvances(range: Range): Array<common2D.Point>
+
+获取该排版单元指定范围内每个字形的字形宽度数组。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                       |
+| -------- | ------- | ---- | -------------------------- |
+| range    | [Range](#range)   | 是   | 要获取的字形位置范围。range.start表示范围开始的位置，range.end表示范围的长度。如果长度是0表示从range.start开始获取到渲染块结束。当range.end、range.start为负数，或者传入null、undefined时，该方法将返回undefined。|
+
+**返回值：**
+
+| 类型                   | 说明                                   |
+| ---------------------- | ------------------------------------- |
+| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | 返回该排版单元中每个字形相对于水平方向和垂直方向的字形宽度。 |
+
+**示例：**
+
+```ts
+let advancesRange = runs[0].getAdvances({start:1, end:2}); // 获取渲染块从起始位置1开始, 长度为2范围内的字形宽度
+advancesRange = runs[0].getAdvances({start:-1, end:2}); // -1是非法参数，将返回undefined
+advancesRange = runs[0].getAdvances({start:0, end:-10}); // -10是非法参数，将返回undefined
+let advancesNull = runs[0].getAdvances(null); // null是非法参数，将返回undefined
 ```
 
 ## TextTab<sup>18+</sup>

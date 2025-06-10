@@ -11,22 +11,23 @@
 - 方式二：直接修改HarmonyAppProvision配置文件。
   1. 打开HarmonyAppProvision配置文件，即SDK目录下的“Sdk/openharmony/_{Version} _/toolchains /lib/UnsgnedReleasedProfileTemplate.json”文件。
   2. 添加需要使用的受限权限。
-    - 不携带权限数据的受限权限通过修改 "acls" &gt; "allowed-acls" 字段添加。
-    - 携带权限数据的受限权限通过修改 "app-services-capabilities" 字段添加。
 
-      ```json
-      {
-        // ...
-        "acls":{
-          "allowed-acls":[
-            "ohos.permission.WRITE_AUDIO",
-            "ohos.permission.CAPTURE_SCREEN"
-          ]
-        },
-        "app-services-capabilities": {
-            "ohos.permission.ACCESS_DDK_DRIVERS": "..."
+      - 不携带权限数据的受限权限通过修改 "acls" &gt; "allowed-acls" 字段添加。
+      - 携带权限数据的受限权限通过修改 "app-services-capabilities" 字段添加。
+
+        ```json
+        {
+          // ...
+          "acls":{
+            "allowed-acls":[
+              "ohos.permission.WRITE_AUDIO",
+              "ohos.permission.CAPTURE_SCREEN"
+            ]
+          },
+          "app-services-capabilities": {
+              "ohos.permission.ACCESS_DDK_DRIVERS": "..."
+          }
         }
-      }
-      ```
+        ```
 
   3. 重新进行应用签名。

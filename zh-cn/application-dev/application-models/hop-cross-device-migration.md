@@ -38,8 +38,7 @@
 
 ## 约束限制
 
-- 跨端迁移要求在同一[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)之间进行，也就是需要相同的`bundleName`、`abilityName`和签名信息。
-- 为了获得最佳体验，使用`wantParam`传输的数据需要控制在100KB以下。
+为了获得最佳体验，使用`wantParam`传输的数据需要控制在100KB以下。
 
 ## 开发步骤
 
@@ -410,11 +409,11 @@ export default class MigrationAbility extends UIAbility {
    >
    > continueType在本应用中要保证唯一，字符串以字母、数字和下划线组成，最大长度127个字节，不支持中文。
    > continueType标签类型为字符串数组，如果配置了多个字段，当前仅第一个字段会生效。
-    
+
 示例如下：
 
    不同BundleName的相同应用在设备A和设备B之间相互迁移，设备A应用的BundleName为com.demo.example1，设备B应用的BundleName为com.demo.example2。
-  
+
 ```JSON
 // 在设备A的应用配置文件中，continueBundleName字段配置包含设备B上应用的BundleName。
 {

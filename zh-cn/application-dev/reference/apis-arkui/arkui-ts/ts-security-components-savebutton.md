@@ -284,7 +284,7 @@ tipPosition(position: SaveButtonTipPosition): SaveButtonAttribute
 
 ## 属性
 
-不支持通用属性，仅继承[安全控件通用属性](ts-securitycomponent-attributes.md#属性)。
+不支持通用属性，仅继承[安全控件通用属性](ts-securitycomponent-attributes.md)。
 
 ## 事件
 
@@ -318,7 +318,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct Index {
   handleSaveButtonClick: SaveButtonCallback =
-    async (event: ClickEvent, result: SaveButtonOnClickResult, error: BusinessError<void>) => {
+    async (event: ClickEvent, result: SaveButtonOnClickResult, error?: BusinessError<void>) => {
       if (result == SaveButtonOnClickResult.SUCCESS) {
         try {
           const context = this.getUIContext().getHostContext();
@@ -335,8 +335,8 @@ struct Index {
           console.error("error is " + JSON.stringify(error));
         }
       } else {
-        console.error("errCode: " + error.code);
-        console.error("errMessage: " + error.message);
+        console.error("errCode: " + error?.code);
+        console.error("errMessage: " + error?.message);
       }
     };
 

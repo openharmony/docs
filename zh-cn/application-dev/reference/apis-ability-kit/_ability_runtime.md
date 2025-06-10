@@ -66,8 +66,8 @@
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsWindowWidth](#oh_abilityruntime_getstartoptionswindowwidth)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, int32_t &windowWidth) | 获取启动Ability时的窗口宽度，单位为px。 |
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsStartVisibility](#oh_abilityruntime_setstartoptionsstartvisibility)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [AbilityRuntime_StartVisibility](#abilityruntime_startvisibility) startVisibility) | 设置启动Ability时窗口和dock栏图标的显示模式。 |
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsStartVisibility](#oh_abilityruntime_getstartoptionsstartvisibility)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [AbilityRuntime_StartVisibility](#abilityruntime_startvisibility) &startVisibility) | 获取启动Ability时窗口和dock栏图标的显示模式。|
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsStartWindowIcon](#oh_abilityruntime_setstartoptionsstartwindowicon)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [OH_PixelmapNative](../apis-image-kit/_image___native_module.md#oh_pixelmapnative) *startWindowIcon) | 设置启动Ability时的窗口启动图标。 |
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsStartWindowIcon](#oh_abilityruntime_getstartoptionsstartwindowicon)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [OH_PixelmapNative](../apis-image-kit/_image___native_module.md#oh_pixelmapnative) **startWindowIcon) | 获取启动Ability时的窗口启动图标。 |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsStartWindowIcon](#oh_abilityruntime_setstartoptionsstartwindowicon)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [OH_PixelmapNative](../apis-image-kit/capi-oh-pixelmapnative.md) *startWindowIcon) | 设置启动Ability时的窗口启动图标。 |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsStartWindowIcon](#oh_abilityruntime_getstartoptionsstartwindowicon)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [OH_PixelmapNative](../apis-image-kit/capi-oh-pixelmapnative.md) **startWindowIcon) | 获取启动Ability时的窗口启动图标。 |
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsStartWindowBackgroundColor](#oh_abilityruntime_setstartoptionsstartwindowbackgroundcolor)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, const char *startWindowBackgroundColor) | 设置启动Ability时的窗口背景颜色。 |
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsStartWindowBackgroundColor](#oh_abilityruntime_getstartoptionsstartwindowbackgroundcolor)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, char **startWindowBackgroundColor, size_t &size) | 获取启动Ability时的窗口背景颜色。 |
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsSupportedWindowModes](#oh_abilityruntime_setstartoptionssupportedwindowmodes)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [AbilityRuntime_SupportedWindowMode](#abilityruntime_supportedwindowmode) *supportedWindowModes, size_t size) | 设置启动Ability时组件所支持的窗口模式。 |
@@ -579,7 +579,7 @@ void startSelfUIAbilityTest()
 {
     AbilityBase_Element element;
     element.abilityName = const_cast<char*>("EntryAbility");
-    element.bundleName = const_cast<char*>("com.exampl.myapplication");
+    element.bundleName = const_cast<char*>("com.example.myapplication");
     element.moduleName = const_cast<char*>("entry");
     AbilityBase_Want* want = OH_AbilityBase_CreateWant(element);
 
@@ -2237,7 +2237,7 @@ void demo()
 {
     AbilityBase_Element element;
     element.abilityName = const_cast<char*>("EntryAbility");
-    element.bundleName = const_cast<char*>("com.exampl.myapplication");
+    element.bundleName = const_cast<char*>("com.example.myapplication");
     element.moduleName = const_cast<char*>("entry");
     AbilityBase_Want* want = OH_AbilityBase_CreateWant(element);
     if (want == nullptr) {

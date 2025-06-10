@@ -5,7 +5,7 @@
 
 ## 预解析和预连接
 
-此方法可以针对域名级进行优化，通过[prepareForPageLoad()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#prepareforpageload10)来预解析或者预连接将要加载的页面。该方式仅对url进行DNS解析以及建立tcp连接，但不会获取主资源子资源。
+此方法可以针对域名级进行优化，通过[prepareForPageLoad()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#prepareforpageload10)来预解析或者预连接将要加载的页面。该方式仅对url进行DNS解析以及建立tcp连接，但不会获取主资源子资源。
 
   在下面的示例中，在Web组件的onAppear中对要加载的页面进行预连接。
 
@@ -37,8 +37,8 @@ struct WebComponent {
 }
 ```
 
-也可以通过[initializeWebEngine()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#initializewebengine)来提前初始化内核，然后在初始化内核后调用
-[prepareForPageLoad()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#prepareforpageload10)对即将要加载的页面进行预解析、预连接。这种方式适合提前对首页进行
+也可以通过[initializeWebEngine()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#initializewebengine)来提前初始化内核，然后在初始化内核后调用
+[prepareForPageLoad()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#prepareforpageload10)对即将要加载的页面进行预解析、预连接。这种方式适合提前对首页进行
 预解析、预连接。
 
   在下面的示例中，Ability的onCreate中提前初始化Web内核并对首页进行预连接。
@@ -62,7 +62,7 @@ export default class EntryAbility extends UIAbility {
 
 ## 预加载
 
-此方法可针对资源级进行优化。如果能够预测到Web组件将要加载的页面或者即将要跳转的页面。可以通过[prefetchPage()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#prefetchpage10)来预加载即将要加载页面。
+此方法可针对资源级进行优化。如果能够预测到Web组件将要加载的页面或者即将要跳转的页面。可以通过[prefetchPage()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#prefetchpage10)来预加载即将要加载页面。
 
 预加载会提前下载页面所需的资源，包括主资源子资源，避免阻塞页面渲染。但不会执行网页JavaScript代码。预加载是WebviewController的实例方法，需要一个已经关联好Web组件的WebviewController实例。
 
@@ -91,7 +91,7 @@ struct WebComponent {
 
 ## 预获取post请求
 
-此方法可以针对请求级进行优化。可以通过[prefetchResource()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#prefetchresource12)预获取将要加载页面中的post请求。在页面加载结束时，可以通过[clearPrefetchedResource()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#clearprefetchedresource12)清除后续不再使用的预获取资源缓存。
+此方法可以针对请求级进行优化。可以通过[prefetchResource()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#prefetchresource12)预获取将要加载页面中的post请求。在页面加载结束时，可以通过[clearPrefetchedResource()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#clearprefetchedresource12)清除后续不再使用的预获取资源缓存。
 
   以下示例，在Web组件onAppear中，对要加载页面中的post请求进行预获取。在onPageEnd中，可以清除预获取的post请求缓存。
 
@@ -130,7 +130,7 @@ struct WebComponent {
 }
 ```
 
-如果能够预测到Web组件将要加载页面或者即将要跳转页面中的post请求。可以通过[prefetchResource()](../reference/apis-arkweb//js-apis-webview-WebviewController.md#prefetchresource12)预获取即将要加载页面的post请求。
+如果能够预测到Web组件将要加载页面或者即将要跳转页面中的post请求。可以通过[prefetchResource()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#prefetchresource12)预获取即将要加载页面的post请求。
 
   以下示例，在onPageEnd中，触发预获取一个要访问页面的post请求。
 
@@ -165,7 +165,7 @@ struct WebComponent {
 }
 ```
 
-也可以通过[initializeWebEngine()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#initializewebengine)提前初始化内核，然后在初始化内核后调用[prefetchResource()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#prefetchresource12)预获取将要加载页面中的post请求。这种方式适合提前预获取首页的post请求。
+也可以通过[initializeWebEngine()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#initializewebengine)提前初始化内核，然后在初始化内核后调用[prefetchResource()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#prefetchresource12)预获取将要加载页面中的post请求。这种方式适合提前预获取首页的post请求。
 
   以下示例，在Ability的onCreate中，提前初始化Web内核并预获取首页的post请求。
 
@@ -198,7 +198,7 @@ export default class EntryAbility extends UIAbility {
 
 ## 预编译生成编译缓存
 
-可以通过[precompileJavaScript()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#precompilejavascript12)在页面加载前提前生成脚本文件的编译缓存。
+可以通过[precompileJavaScript()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#precompilejavascript12)在页面加载前提前生成脚本文件的编译缓存。
 
 推荐配合动态组件使用，使用离线的Web组件用于生成字节码缓存，并在适当的时机加载业务用Web组件使用这些字节码缓存。下方是代码示例：
 
@@ -412,7 +412,7 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
 当需要更新本地已经生成的编译字节码时，修改cacheOptions参数中responseHeaders中的E-Tag或Last-Modified响应头对应的值，再次调用接口即可。
 
 ## 离线资源免拦截注入
-可以通过[injectOfflineResources()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#injectofflineresources12)在页面加载前提前将图片、样式表或脚本资源注入到应用的内存缓存中。
+可以通过[injectOfflineResources()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#injectofflineresources12)在页面加载前提前将图片、样式表或脚本资源注入到应用的内存缓存中。
 
 推荐配合动态组件使用，使用离线的Web组件用于将资源注入到内核的内存缓存中，并在适当的时机加载业务用Web组件使用这些资源。下方是代码示例：
 

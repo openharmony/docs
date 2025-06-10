@@ -1546,7 +1546,7 @@ type ModuleMetadata = _ModuleMetadata
 
 | 类型                                                         | 说明           |
 | ------------------------------------------------------------ | -------------- |
-| [_ModuleMetadata](js-apis-bundleManager-applicationInfo.md#ModuleMetadata10) | 模块的元数据信息。 |
+| [_ModuleMetadata](js-apis-bundleManager-applicationInfo.md#modulemetadata10) | 模块的元数据信息。 |
 
 ## Metadata
 

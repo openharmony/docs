@@ -31,27 +31,29 @@
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [typedef void (\*WebPipStartPipCallback)(uint32_t controllerId, uint8_t requestId, uint64_t surfaceId)](#webpipstartpipcallback) | WebPipStartPipCallback | 定义画中画窗口创建完成的回调函数。 |
-| [typedef void (\*WebPipLifeCycleCallback)(uint32_t controllerId, PictureInPicture_PipState state, int32_t errcode)](#webpiplifecyclecallback) | WebPipLifeCycleCallback | 定义画中画窗口的生命周期回调函数。 |
+| [typedef void (\*WebPipLifecycleCallback)(uint32_t controllerId, PictureInPicture_PipState state, int32_t errcode)](#webpiplifecyclecallback) | WebPipLifecycleCallback | 定义画中画窗口的生命周期回调函数。 |
 | [typedef void (\*WebPipControlEventCallback)(uint32_t controllerId, PictureInPicture_PipControlType controlType,PictureInPicture_PipControlStatus status)](#webpipcontroleventcallback) | WebPipControlEventCallback | 定义画中画窗口的控件点击事件回调函数。 |
 | [typedef void (\*WebPipResizeCallback)(uint32_t controllerId, uint32_t width, uint32_t height, double scale)](#webpipresizecallback) | WebPipResizeCallback | 定义画中画窗口的尺寸变化回调函数。 |
-| [int32_t OH_PictureInPicture_CreatePip(uint32_t* controllerId)](#oh_pictureinpicture_createpip) | - | 创建画中画控制器。 |
-| [int32_t OH_PictureInPicture_SetPipMainWindowId(uint32_t controllerId, uint32_t mainWindowId)](#oh_pictureinpicture_setpipmainwindowid) | - | 设置拉起画中画的主窗口Id。 |
-| [int32_t OH_PictureInPicture_SetPipTemplateType(uint32_t controllerId, PictureInPicture_PipTemplateType pipTemplateType)](#oh_pictureinpicture_setpiptemplatetype) | - | 设置画中画模板类型，默认为视频播放。 |
-| [int32_t OH_PictureInPicture_SetPipRect(uint32_t controllerId, uint32_t width, uint32_t height)](#oh_pictureinpicture_setpiprect) | - | 设置画中画窗口大小，用于计算尺寸比例。 |
-| [int32_t OH_PictureInPicture_SetPipControlGroup(uint32_t controllerId, PictureInPicture_PipControlGroup* controlGroup,uint8_t controlGroupLength)](#oh_pictureinpicture_setpipcontrolgroup) | - | 设置画中画控件组，需保证控件组与模板类型匹配。 |
-| [int32_t OH_PictureInPicture_SetPipNapiEnv(uint32_t controllerId, void* env)](#oh_pictureinpicture_setpipnapienv) | - | 设置拉起画中画的运行时环境。 |
+| [int32_t OH_PictureInPicture_CreatePipConfig(PictureInPicture_PipConfig* pipConfig)](#oh_pictureinpicture_createpipconfig) | - | 创建画中画参数配置器。 |
+| [int32_t OH_PictureInPicture_DestroyPipConfig(PictureInPicture_PipConfig* pipConfig)](#oh_pictureinpicture_destroypipconfig) | - | 销毁画中画参数配置器。 |
+| [int32_t OH_PictureInPicture_SetPipMainWindowId(PictureInPicture_PipConfig pipConfig, uint32_t mainWindowId)](#oh_pictureinpicture_setpipmainwindowid) | - | 设置拉起画中画的主窗口Id。 |
+| [int32_t OH_PictureInPicture_SetPipTemplateType(PictureInPicture_PipConfig pipConfig,PictureInPicture_PipTemplateType pipTemplateType)](#oh_pictureinpicture_setpiptemplatetype) | - | 设置画中画模板类型，默认为视频播放。 |
+| [int32_t OH_PictureInPicture_SetPipRect(PictureInPicture_PipConfig pipConfig, uint32_t width, uint32_t height)](#oh_pictureinpicture_setpiprect) | - | 设置画中画窗口大小，用于计算尺寸比例。 |
+| [int32_t OH_PictureInPicture_SetPipControlGroup(PictureInPicture_PipConfig pipConfig,PictureInPicture_PipControlGroup* controlGroup, uint8_t controlGroupLength)](#oh_pictureinpicture_setpipcontrolgroup) | - | 设置画中画控件组，需保证控件组与模板类型匹配。 |
+| [int32_t OH_PictureInPicture_SetPipNapiEnv(PictureInPicture_PipConfig pipConfig, void* env)](#oh_pictureinpicture_setpipnapienv) | - | 设置拉起画中画的运行时环境。 |
+| [int32_t OH_PictureInPicture_CreatePip(PictureInPicture_PipConfig pipConfig, uint32_t* controllerId)](#oh_pictureinpicture_createpip) | - | 创建画中画控制器。 |
 | [int32_t OH_PictureInPicture_DeletePip(uint32_t controllerId)](#oh_pictureinpicture_deletepip) | - | 删除画中画控制器。 |
 | [int32_t OH_PictureInPicture_StartPip(uint32_t controllerId)](#oh_pictureinpicture_startpip) | - | 开启画中画。 |
 | [int32_t OH_PictureInPicture_StopPip(uint32_t controllerId)](#oh_pictureinpicture_stoppip) | - | 关闭画中画。 |
-| [void OH_PictureInPicture_UpdatePipContentSize(uint32_t controllerId, uint32_t width, uint32_t height)](#oh_pictureinpicture_updatepipcontentsize) | - | 当媒体源切换时，向画中画控制器更新媒体源尺寸信息。 |
-| [void OH_PictureInPicture_UpdatePipControlStatus(uint32_t controllerId, PictureInPicture_PipControlType controlType,PictureInPicture_PipControlStatus status)](#oh_pictureinpicture_updatepipcontrolstatus) | - | 更新画中画控制面板控件功能状态。 |
-| [void OH_PictureInPicture_SetPipControlEnabled(uint32_t controllerId, PictureInPicture_PipControlType controlType,bool enabled)](#oh_pictureinpicture_setpipcontrolenabled) | - | 设置控制面板控件使能状态。 |
+| [int32_t OH_PictureInPicture_UpdatePipContentSize(uint32_t controllerId, uint32_t width, uint32_t height)](#oh_pictureinpicture_updatepipcontentsize) | - | 当媒体源切换时，向画中画控制器更新媒体源尺寸信息。 |
+| [int32_t OH_PictureInPicture_UpdatePipControlStatus(uint32_t controllerId, PictureInPicture_PipControlType controlType,PictureInPicture_PipControlStatus status)](#oh_pictureinpicture_updatepipcontrolstatus) | - | 更新画中画控制面板控件功能状态。 |
+| [int32_t OH_PictureInPicture_SetPipControlEnabled(uint32_t controllerId, PictureInPicture_PipControlType controlType,bool enabled)](#oh_pictureinpicture_setpipcontrolenabled) | - | 设置控制面板控件使能状态。 |
 | [int32_t OH_PictureInPicture_RegisterStartPipCallback(uint32_t controllerId, WebPipStartPipCallback callback)](#oh_pictureinpicture_registerstartpipcallback) | - | 注册画中画窗口创建完成的回调函数。 |
 | [int32_t OH_PictureInPicture_UnregisterStartPipCallback(uint32_t controllerId, WebPipStartPipCallback callback)](#oh_pictureinpicture_unregisterstartpipcallback) | - | 取消注册画中画窗口单个创建完成的回调函数。 |
 | [int32_t OH_PictureInPicture_UnregisterAllStartPipCallbacks(uint32_t controllerId)](#oh_pictureinpicture_unregisterallstartpipcallbacks) | - | 取消注册画中画窗口所有创建完成的回调函数。 |
-| [int32_t OH_PictureInPicture_RegisterLifeCycleListener(uint32_t controllerId, WebPipLifeCycleCallback callback)](#oh_pictureinpicture_registerlifecyclelistener) | - | 注册画中画窗口的生命周期回调函数。 |
-| [int32_t OH_PictureInPicture_UnregisterLifeCycleListener(uint32_t controllerId, WebPipLifeCycleCallback callback)](#oh_pictureinpicture_unregisterlifecyclelistener) | - | 取消注册画中画窗口的单个生命周期回调函数。 |
-| [int32_t OH_PictureInPicture_UnregisterAllLifeCycleListeners(uint32_t controllerId)](#oh_pictureinpicture_unregisteralllifecyclelisteners) | - | 取消注册画中画窗口的所有生命周期回调函数。 |
+| [int32_t OH_PictureInPicture_RegisterLifecycleListener(uint32_t controllerId, WebPipLifecycleCallback callback)](#oh_pictureinpicture_registerlifecyclelistener) | - | 注册画中画窗口的生命周期回调函数。 |
+| [int32_t OH_PictureInPicture_UnregisterLifecycleListener(uint32_t controllerId, WebPipLifecycleCallback callback)](#oh_pictureinpicture_unregisterlifecyclelistener) | - | 取消注册画中画窗口的单个生命周期回调函数。 |
+| [int32_t OH_PictureInPicture_UnregisterAllLifecycleListeners(uint32_t controllerId)](#oh_pictureinpicture_unregisteralllifecyclelisteners) | - | 取消注册画中画窗口的所有生命周期回调函数。 |
 | [int32_t OH_PictureInPicture_RegisterControlEventListener(uint32_t controllerId, WebPipControlEventCallback callback)](#oh_pictureinpicture_registercontroleventlistener) | - | 注册画中画窗口的控件点击事件回调函数。 |
 | [int32_t OH_PictureInPicture_UnregisterControlEventListener(uint32_t controllerId, WebPipControlEventCallback callback)](#oh_pictureinpicture_unregistercontroleventlistener) | - | 取消注册画中画窗口的单个控件点击事件回调函数。 |
 | [int32_t OH_PictureInPicture_UnregisterAllControlEventListeners(uint32_t controllerId)](#oh_pictureinpicture_unregisterallcontroleventlisteners) | - | 取消注册画中画窗口的所有控件点击事件回调函数。 |
@@ -130,7 +132,6 @@ enum PictureInPicture_PipControlType
 | MICROPHONE_SWITCH = 6 | 打开/关闭麦克风控件。 |
 | CAMERA_SWITCH = 7 | 打开/关闭摄像头控件。 |
 | MUTE_SWITCH = 8 | 打开/关闭静音控件。 |
-| END | 保留字段，无实际含义。 |
 
 ### PictureInPicture_PipControlStatus
 
@@ -196,10 +197,10 @@ typedef void (*WebPipStartPipCallback)(uint32_t controllerId, uint8_t requestId,
 |  uint8_t requestId | 请求Id，表示当前请求拉起画中画窗口的次数。 |
 |  uint64_t surfaceId | 画中画内部Xcomponent组件的surfaceId，用于应用自行渲染。 |
 
-### WebPipLifeCycleCallback()
+### WebPipLifecycleCallback()
 
 ```
-typedef void (*WebPipLifeCycleCallback)(uint32_t controllerId, PictureInPicture_PipState state, int32_t errcode)
+typedef void (*WebPipLifecycleCallback)(uint32_t controllerId, PictureInPicture_PipState state, int32_t errcode)
 ```
 
 **描述**
@@ -220,7 +221,7 @@ typedef void (*WebPipLifeCycleCallback)(uint32_t controllerId, PictureInPicture_
 ### WebPipControlEventCallback()
 
 ```
-typedef void (*WebPipControlEventCallback)(uint32_t controllerId, PictureInPicture_PipControlType controlType,PictureInPicture_PipControlStatus status)
+typedef void (*WebPipControlEventCallback)(uint32_t controllerId, PictureInPicture_PipControlType controlType, PictureInPicture_PipControlStatus status)
 ```
 
 **描述**
@@ -260,15 +261,15 @@ typedef void (*WebPipResizeCallback)(uint32_t controllerId, uint32_t width, uint
 |  uint32_t height | 画中画窗口高度，单位为px，该参数为正整数，不大于屏幕高。 |
 |  double scale | 画中画窗口缩放比，显示大小相对于width和height的缩放比，该参数为浮点数，取值范围大于0.0，小于等于1.0。等于1表示画中画窗口的实际显示宽高值与width和height一样大。 |
 
-### OH_PictureInPicture_CreatePip()
+### OH_PictureInPicture_CreatePipConfig()
 
 ```
-int32_t OH_PictureInPicture_CreatePip(uint32_t* controllerId)
+int32_t OH_PictureInPicture_CreatePipConfig(PictureInPicture_PipConfig* pipConfig)
 ```
 
 **描述**
 
-创建画中画控制器。
+创建画中画参数配置器。
 
 **起始版本：** 20
 
@@ -277,18 +278,43 @@ int32_t OH_PictureInPicture_CreatePip(uint32_t* controllerId)
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t* controllerId | 用于接收创建画中画控制器的id。 |
+| [PictureInPicture_PipConfig](capi-pictureinpicture-pipconfig.md)* pipConfig | 用于接受创建的画中画参数配置器。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br> 返回WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。 |
+
+### OH_PictureInPicture_DestroyPipConfig()
+
+```
+int32_t OH_PictureInPicture_DestroyPipConfig(PictureInPicture_PipConfig* pipConfig)
+```
+
+**描述**
+
+销毁画中画参数配置器。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [PictureInPicture_PipConfig](capi-pictureinpicture-pipconfig.md)* pipConfig | 画中画参数配置器。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。 |
 
 ### OH_PictureInPicture_SetPipMainWindowId()
 
 ```
-int32_t OH_PictureInPicture_SetPipMainWindowId(uint32_t controllerId, uint32_t mainWindowId)
+int32_t OH_PictureInPicture_SetPipMainWindowId(PictureInPicture_PipConfig pipConfig, uint32_t mainWindowId)
 ```
 
 **描述**
@@ -302,19 +328,19 @@ int32_t OH_PictureInPicture_SetPipMainWindowId(uint32_t controllerId, uint32_t m
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| [PictureInPicture_PipConfig](capi-pictureinpicture-pipconfig.md) pipConfig | 画中画参数配置器。 |
 | uint32_t mainWindowId | 拉起画中画的主窗口Id。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。 |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。 |
 
 ### OH_PictureInPicture_SetPipTemplateType()
 
 ```
-int32_t OH_PictureInPicture_SetPipTemplateType(uint32_t controllerId, PictureInPicture_PipTemplateType pipTemplateType)
+int32_t OH_PictureInPicture_SetPipTemplateType(PictureInPicture_PipConfig pipConfig, PictureInPicture_PipTemplateType pipTemplateType)
 ```
 
 **描述**
@@ -328,19 +354,19 @@ int32_t OH_PictureInPicture_SetPipTemplateType(uint32_t controllerId, PictureInP
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| [PictureInPicture_PipConfig](capi-pictureinpicture-pipconfig.md) pipConfig | 画中画参数配置器。 |
 | [PictureInPicture_PipTemplateType](#pictureinpicture_piptemplatetype) pipTemplateType | 画中画模板类型。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。 |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。 |
 
 ### OH_PictureInPicture_SetPipRect()
 
 ```
-int32_t OH_PictureInPicture_SetPipRect(uint32_t controllerId, uint32_t width, uint32_t height)
+int32_t OH_PictureInPicture_SetPipRect(PictureInPicture_PipConfig pipConfig, uint32_t width, uint32_t height)
 ```
 
 **描述**
@@ -354,7 +380,7 @@ int32_t OH_PictureInPicture_SetPipRect(uint32_t controllerId, uint32_t width, ui
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| [PictureInPicture_PipConfig](capi-pictureinpicture-pipconfig.md) pipConfig | 画中画参数配置器。 |
 | uint32_t width | 原始内容宽度，单位为px，该参数应为正整数。用于确定画中画窗口比例。 |
 | uint32_t height | 原始内容高度，单位为px，该参数应为正整数。用于确定画中画窗口比例。 |
 
@@ -362,12 +388,12 @@ int32_t OH_PictureInPicture_SetPipRect(uint32_t controllerId, uint32_t width, ui
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。 |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。 |
 
 ### OH_PictureInPicture_SetPipControlGroup()
 
 ```
-int32_t OH_PictureInPicture_SetPipControlGroup(uint32_t controllerId, PictureInPicture_PipControlGroup* controlGroup,uint8_t controlGroupLength)
+int32_t OH_PictureInPicture_SetPipControlGroup(PictureInPicture_PipConfig pipConfig, PictureInPicture_PipControlGroup* controlGroup, uint8_t controlGroupLength)
 ```
 
 **描述**
@@ -381,7 +407,7 @@ int32_t OH_PictureInPicture_SetPipControlGroup(uint32_t controllerId, PictureInP
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| [PictureInPicture_PipConfig](capi-pictureinpicture-pipconfig.md) pipConfig | 画中画参数配置器。 |
 | [PictureInPicture_PipControlGroup](#pictureinpicture_pipcontrolgroup)* controlGroup | 画中画控制面板的可选控件组列表，应用可以对此进行配置以决定是否显示。应用未配置时，面板显示基础控件（如视频播放控件组的播放/暂停控件）；应用选择配置时，则最多可以选择三个控件。 |
 | uint8_t controlGroupLength | 画中画控件组数量，取值范围为0 ~ 3。 |
 
@@ -389,12 +415,12 @@ int32_t OH_PictureInPicture_SetPipControlGroup(uint32_t controllerId, PictureInP
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。 |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。 |
 
 ### OH_PictureInPicture_SetPipNapiEnv()
 
 ```
-int32_t OH_PictureInPicture_SetPipNapiEnv(uint32_t controllerId, void* env)
+int32_t OH_PictureInPicture_SetPipNapiEnv(PictureInPicture_PipConfig pipConfig, void* env)
 ```
 
 **描述**
@@ -408,14 +434,40 @@ int32_t OH_PictureInPicture_SetPipNapiEnv(uint32_t controllerId, void* env)
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| [PictureInPicture_PipConfig](capi-pictureinpicture-pipconfig.md) pipConfig | 画中画参数配置器。 |
 | void* env | napi的环境指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。 |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。 |
+
+### OH_PictureInPicture_CreatePip()
+
+```
+int32_t OH_PictureInPicture_CreatePip(PictureInPicture_PipConfig pipConfig, uint32_t* controllerId)
+```
+
+**描述**
+
+创建画中画控制器。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [PictureInPicture_PipConfig](capi-pictureinpicture-pipconfig.md) pipConfig | 画中画参数配置器。 |
+| uint32_t* controllerId | 用于接收创建画中画控制器的id。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br>返回WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
 
 ### OH_PictureInPicture_DeletePip()
 
@@ -440,7 +492,7 @@ int32_t OH_PictureInPicture_DeletePip(uint32_t controllerId)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。 |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。 |
 
 ### OH_PictureInPicture_StartPip()
 
@@ -465,7 +517,7 @@ int32_t OH_PictureInPicture_StartPip(uint32_t controllerId)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_PIP_STATE_ABNORMAL，表示画中画窗口状态异常。<br> 返回WINDOW_MANAGER_ERRORCODE_PIP_CREATE_FAILED，表示画中画窗口创建失败。<br> 返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。<br> 返回WINDOW_MANAGER_ERRORCODE_PIP_REPEAT_OPERATION，表示画中画窗口重复操作。 |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_PIP_STATE_ABNORMAL，表示画中画窗口状态异常。<br>返回WINDOW_MANAGER_ERRORCODE_PIP_CREATE_FAILED，表示画中画窗口创建失败。<br>返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。<br>返回WINDOW_MANAGER_ERRORCODE_PIP_REPEAT_OPERATION，表示画中画窗口重复操作。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。 |
 
 ### OH_PictureInPicture_StopPip()
 
@@ -490,12 +542,12 @@ int32_t OH_PictureInPicture_StopPip(uint32_t controllerId)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_PIP_DESTROY_FAILED，表示画中画窗口销毁失败。<br> 返回WINDOW_MANAGER_ERRORCODE_PIP_STATE_ABNORMAL，表示画中画窗口状态异常。<br> 返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。<br> 返回WINDOW_MANAGER_ERRORCODE_PIP_REPEAT_OPERATION，表示画中画窗口重复操作。 |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_PIP_DESTROY_FAILED，表示画中画窗口销毁失败。<br>返回WINDOW_MANAGER_ERRORCODE_PIP_STATE_ABNORMAL，表示画中画窗口状态异常。<br>返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。<br>返回WINDOW_MANAGER_ERRORCODE_PIP_REPEAT_OPERATION，表示画中画窗口重复操作。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。 |
 
 ### OH_PictureInPicture_UpdatePipContentSize()
 
 ```
-void OH_PictureInPicture_UpdatePipContentSize(uint32_t controllerId, uint32_t width, uint32_t height)
+int32_t OH_PictureInPicture_UpdatePipContentSize(uint32_t controllerId, uint32_t width, uint32_t height)
 ```
 
 **描述**
@@ -513,10 +565,16 @@ void OH_PictureInPicture_UpdatePipContentSize(uint32_t controllerId, uint32_t wi
 | uint32_t width | 表示媒体内容宽度，单位为px，该参数应为正整数。用于更新画中画窗口比例。 |
 | uint32_t height | 表示媒体内容高度，单位为px，该参数应为正整数。用于更新画中画窗口比例。 |
 
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
+
 ### OH_PictureInPicture_UpdatePipControlStatus()
 
 ```
-void OH_PictureInPicture_UpdatePipControlStatus(uint32_t controllerId, PictureInPicture_PipControlType controlType,PictureInPicture_PipControlStatus status)
+int32_t OH_PictureInPicture_UpdatePipControlStatus(uint32_t controllerId, PictureInPicture_PipControlType controlType, PictureInPicture_PipControlStatus status)
 ```
 
 **描述**
@@ -534,10 +592,16 @@ void OH_PictureInPicture_UpdatePipControlStatus(uint32_t controllerId, PictureIn
 | [PictureInPicture_PipControlType](#pictureinpicture_pipcontroltype) controlType | 表示画中画控制面板控件类型。目前仅支持VIDEO_PLAY_PAUSE、MICROPHONE_SWITCH、CAMERA_SWITCH和MUTE_SWITCH这几种控件类型，传入其他控件类型无效。 |
 | [PictureInPicture_PipControlStatus](#pictureinpicture_pipcontrolstatus) status | 表示画中画控制面板控件状态。 |
 
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
+
 ### OH_PictureInPicture_SetPipControlEnabled()
 
 ```
-void OH_PictureInPicture_SetPipControlEnabled(uint32_t controllerId, PictureInPicture_PipControlType controlType,bool enabled)
+int32_t OH_PictureInPicture_SetPipControlEnabled(uint32_t controllerId, PictureInPicture_PipControlType controlType, bool enabled)
 ```
 
 **描述**
@@ -554,6 +618,12 @@ void OH_PictureInPicture_SetPipControlEnabled(uint32_t controllerId, PictureInPi
 | uint32_t controllerId | 画中画控制器Id，为非负整数。 |
 | [PictureInPicture_PipControlType](#pictureinpicture_pipcontroltype) controlType | 表示画中画控制面板控件类型。 |
 | bool enabled | 表示画中画控制面板控件使能状态。true表示控件为可使用状态，false则为禁用状态。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
 
 ### OH_PictureInPicture_RegisterStartPipCallback()
 
@@ -579,7 +649,7 @@ int32_t OH_PictureInPicture_RegisterStartPipCallback(uint32_t controllerId, WebP
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br> 返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br>返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
 
 ### OH_PictureInPicture_UnregisterStartPipCallback()
 
@@ -605,7 +675,7 @@ int32_t OH_PictureInPicture_UnregisterStartPipCallback(uint32_t controllerId, We
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br> 返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br>返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
 
 ### OH_PictureInPicture_UnregisterAllStartPipCallbacks()
 
@@ -630,12 +700,12 @@ int32_t OH_PictureInPicture_UnregisterAllStartPipCallbacks(uint32_t controllerId
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br> 返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br>返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
 
-### OH_PictureInPicture_RegisterLifeCycleListener()
+### OH_PictureInPicture_RegisterLifecycleListener()
 
 ```
-int32_t OH_PictureInPicture_RegisterLifeCycleListener(uint32_t controllerId, WebPipLifeCycleCallback callback)
+int32_t OH_PictureInPicture_RegisterLifecycleListener(uint32_t controllerId, WebPipLifecycleCallback callback)
 ```
 
 **描述**
@@ -650,18 +720,18 @@ int32_t OH_PictureInPicture_RegisterLifeCycleListener(uint32_t controllerId, Web
 | 参数项 | 描述 |
 | -- | -- |
 | uint32_t controllerId | 画中画控制器Id，为非负整数。 |
-| [WebPipLifeCycleCallback](#webpiplifecyclecallback) callback | 画中画窗口的生命周期回调函数。 |
+| [WebPipLifecycleCallback](#webpiplifecyclecallback) callback | 画中画窗口的生命周期回调函数。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br> 返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br>返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
 
-### OH_PictureInPicture_UnregisterLifeCycleListener()
+### OH_PictureInPicture_UnregisterLifecycleListener()
 
 ```
-int32_t OH_PictureInPicture_UnregisterLifeCycleListener(uint32_t controllerId, WebPipLifeCycleCallback callback)
+int32_t OH_PictureInPicture_UnregisterLifecycleListener(uint32_t controllerId, WebPipLifecycleCallback callback)
 ```
 
 **描述**
@@ -676,18 +746,18 @@ int32_t OH_PictureInPicture_UnregisterLifeCycleListener(uint32_t controllerId, W
 | 参数项 | 描述 |
 | -- | -- |
 | uint32_t controllerId | 画中画控制器Id，为非负整数。 |
-| [WebPipLifeCycleCallback](#webpiplifecyclecallback) callback | 画中画窗口的生命周期回调函数。 |
+| [WebPipLifecycleCallback](#webpiplifecyclecallback) callback | 画中画窗口的生命周期回调函数。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br> 返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br>返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
 
-### OH_PictureInPicture_UnregisterAllLifeCycleListeners()
+### OH_PictureInPicture_UnregisterAllLifecycleListeners()
 
 ```
-int32_t OH_PictureInPicture_UnregisterAllLifeCycleListeners(uint32_t controllerId)
+int32_t OH_PictureInPicture_UnregisterAllLifecycleListeners(uint32_t controllerId)
 ```
 
 **描述**
@@ -707,7 +777,7 @@ int32_t OH_PictureInPicture_UnregisterAllLifeCycleListeners(uint32_t controllerI
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br> 返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br>返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
 
 ### OH_PictureInPicture_RegisterControlEventListener()
 
@@ -733,7 +803,7 @@ int32_t OH_PictureInPicture_RegisterControlEventListener(uint32_t controllerId, 
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br> 返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br>返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
 
 ### OH_PictureInPicture_UnregisterControlEventListener()
 
@@ -759,7 +829,7 @@ int32_t OH_PictureInPicture_UnregisterControlEventListener(uint32_t controllerId
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br> 返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br>返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
 
 ### OH_PictureInPicture_UnregisterAllControlEventListeners()
 
@@ -784,7 +854,7 @@ int32_t OH_PictureInPicture_UnregisterAllControlEventListeners(uint32_t controll
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br> 返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br>返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
 
 ### OH_PictureInPicture_RegisterResizeListener()
 
@@ -810,7 +880,7 @@ int32_t OH_PictureInPicture_RegisterResizeListener(uint32_t controllerId, WebPip
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br> 返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br>返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
 
 ### OH_PictureInPicture_UnregisterResizeListener()
 
@@ -836,7 +906,7 @@ int32_t OH_PictureInPicture_UnregisterResizeListener(uint32_t controllerId, WebP
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br> 返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br>返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
 
 ### OH_PictureInPicture_UnregisterAllResizeListeners()
 
@@ -850,7 +920,6 @@ int32_t OH_PictureInPicture_UnregisterAllResizeListeners(uint32_t controllerId)
 
 **起始版本：** 20
 
-
 **参数：**
 
 | 参数项 | 描述 |
@@ -861,6 +930,4 @@ int32_t OH_PictureInPicture_UnregisterAllResizeListeners(uint32_t controllerId)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br> 返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
-
-
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br>返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |

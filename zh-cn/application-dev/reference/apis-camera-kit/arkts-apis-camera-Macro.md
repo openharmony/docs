@@ -1,4 +1,4 @@
-# Interfaces (Macro)
+# Interface (Macro)
 
 > **说明：**
 >

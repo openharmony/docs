@@ -34,3 +34,38 @@
 | 名称          | 类型         | 必填   | 说明            |
 | ----------- | ---------- | ---- | ------------- |
 | onDoubleClick<sup>14+</sup> | Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)\>  | 否    | [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)为用户双击事件。<br/>长按完成时回调事件。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+
+## RichEditorChangeValue<sup>12+</sup>
+
+**系统能力：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| changeReason<sup>20+</sup> | [TextChangeReason](ts-text-common.md#textchangereason20) | 是 | 组件内容变化的原因。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+
+## 示例（获取组件内容变化原因）
+可以通过onWillChange接口返回的changeReason获取组件内容变化的原因。
+
+```ts
+@Entry
+@Component
+struct RichEditorExample {
+  controller: RichEditorController = new RichEditorController()
+  options: RichEditorOptions = { controller: this.controller }
+
+  build() {
+    Column() {
+      RichEditor(this.options)
+        .height('25%')
+        .width('100%')
+        .border({ width: 1, color: Color.Blue })
+        .onWillChange((value: RichEditorChangeValue) => {
+          console.log('onWillChange, changeReason=' + value.changeReason)
+          return true
+        })
+    }
+  }
+}
+```

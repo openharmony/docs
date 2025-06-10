@@ -5280,7 +5280,7 @@ Camera_ErrorCode OH_PhotoNative_GetMainImage(OH_PhotoNative* photo, OH_ImageNati
 | 名称 | 描述 | 
 | -------- | -------- |
 | photo | [OH_PhotoNative](#oh_photonative)实例。 | 
-| mainImage | 用于获取全质量图的[OH_ImageNative](../apis-image-kit/_image___native_module.md#oh_imagenative)。 | 
+| mainImage | 用于获取全质量图的[OH_ImageNative](../apis-image-kit/capi-oh-imagenative.md)。 | 
 
 **返回：**
 

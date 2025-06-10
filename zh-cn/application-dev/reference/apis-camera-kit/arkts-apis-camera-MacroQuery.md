@@ -1,4 +1,4 @@
-# Interfaces (MacroQuery)
+# Interface (MacroQuery)
 
 > **说明：**
 >

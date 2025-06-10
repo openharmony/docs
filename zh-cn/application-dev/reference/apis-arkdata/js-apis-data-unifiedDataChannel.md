@@ -1894,7 +1894,7 @@ setAppShareOptions(intention: Intention, shareOptions: ShareOptions): void
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 201          | Permission denied. Interface caller does not have permission "ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION". |
+| 201          | Permission verification failed. The application does not have the permission required to call the API. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 20400001     | Settings already exist. To reconfigure, remove the existing sharing options.       |
 
@@ -1935,7 +1935,7 @@ removeAppShareOptions(intention: Intention): void
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 201          | Permission denied. Interface caller does not have permission "ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION". |
+| 201          | Permission verification failed. The application does not have the permission required to call the API. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**

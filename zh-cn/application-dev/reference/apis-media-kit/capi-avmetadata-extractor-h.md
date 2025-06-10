@@ -134,7 +134,7 @@ OH_AVErrCode OH_AVMetadataExtractor_FetchAlbumCover(OH_AVMetadataExtractor* extr
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVMetadataExtractor](capi-oh-avmetadataextractor.md)* extractor | 指向OH_AVMetadataExtractor实例的指针。 |
-| [OH_PixelmapNative](../apis-image-kit/_image___native_module.md#oh_pixelmapnative)** pixelMap | 从音频源获取的专辑封面。 |
+| [OH_PixelmapNative](../apis-image-kit/capi-oh-pixelmapnative.md** pixelMap | 从音频源获取的专辑封面。 |
 
 **返回：**
 

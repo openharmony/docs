@@ -1,4 +1,4 @@
-# @ohos.app.ability.StartOptions (StartOptions)
+# @ohos.app.ability.StartOptions (startAbility的可选参数)
 
 StartOptions可以作为[startAbility()](js-apis-inner-application-uiAbilityContext.md#startability-1)的入参，用于指定目标Ability的窗口模式。
 

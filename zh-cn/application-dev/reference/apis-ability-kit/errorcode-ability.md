@@ -633,7 +633,7 @@ App clone is not supported.
 
 **处理步骤**
 
-参考[应用多实例的配置方法](../../quick-start/multiInstance.md#应用多实例的配置方法)，在app.json5配置文件中配置multiAppMode标签，开启应用分身功能后，再调用[getCurrentAppCloneIndex](./js-apis-inner-application-applicationContext.md#applicationcontextgetcurrentappcloneindex12)接口。
+参考[应用多实例的配置方法](../../quick-start/multiInstance.md)，在app.json5配置文件中配置multiAppMode标签，开启应用分身功能后，再调用[getCurrentAppCloneIndex](./js-apis-inner-application-applicationContext.md#applicationcontextgetcurrentappcloneindex12)接口。
 
 <!--Del-->
 ## 16000072 不支持应用多开
@@ -975,7 +975,7 @@ Invalid wantAgent object.
 
 **错误信息**
 
-The wantAgent object has been canceled.
+The WantAgent has been canceled.
 
 **错误描述**
 
