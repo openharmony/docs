@@ -24,6 +24,7 @@
     - [@ohos.pluginComponent (PluginComponentManager)](js-apis-plugincomponent.md)
     - [@ohos.promptAction (弹窗)](js-apis-promptAction.md)
     - [@ohos.router (页面路由)(不推荐)](js-apis-router.md)
+    - [@ohos.uiAppearance (用户界面外观)](js-apis-uiappearance.md)
     - [getContext](js-apis-getContext.md)
     - [postCardAction](js-apis-postCardAction.md)
     <!--Del-->
@@ -557,9 +558,7 @@
     - [Canvas错误码](errorcode-canvas.md)
     - [自定义节点错误码](errorcode-node.md)   
     - [UIExtension错误码](errorcode-uiextension.md)
-    <!--Del-->
     - [用户界面外观服务错误码](errorcode-uiappearance.md)
-    <!--DelEnd-->
     - [NodeAdapter错误码](errorcode-nodeadapter.md)
   - 图形图像<!--arkui-graphics-images-arkts-errcode-->
     - [屏幕错误码](errorcode-display.md)
