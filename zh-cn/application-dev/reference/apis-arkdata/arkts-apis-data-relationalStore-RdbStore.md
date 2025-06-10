@@ -5694,7 +5694,11 @@ rekey(cryptoParam?: CryptoParam): Promise\<void>
 
 手动更新加密数据库的密钥。使用Promise异步回调。
 
-仅支持加密数据库到加密数据库的密钥更新，且保持密钥生成方式一致。
+不支持非wal模式进行密钥更新。
+
+不支持多进程并发场景下进行密钥更新。
+
+仅支持加密数据库进行秘钥更新，不支持非加密库变加密库及加密库变非加密库，且需要保持加密参数和秘钥生成方式与建库时一致。
 
 数据库越大，密钥更新的时间越长。
 
@@ -5702,9 +5706,10 @@ rekey(cryptoParam?: CryptoParam): Promise\<void>
 
 **参数：**
 
-| 参数名       | 类型                               | 必填 | 说明                                                                        |
-| ------------ | --------------------------------- | ---- | --------------------------------------------------------------------------- |
-| cryptoParam  | [CryptoParam](#cryptoparam14)     | 否   | 指定用户自定义的加密参数。<br/>当此参数不填时，使用默认的加密参数，见CryptoParam。|
+| 参数名       | 类型                                                               | 必填 | 说明                                       |
+| ------------ | ----------------------------------------------------------------- | ---- | ----------------------------------------- |
+| cryptoParam  | [CryptoParam](arkts-apis-data-relationalStore-i.md#cryptoparam14) | 否   | 指定用户自定义的加密参数。<br/>当此参数不填时，
+使用默认的加密参数，见CryptoParam。|
 
 **返回值：**
 
@@ -5736,9 +5741,23 @@ rekey(cryptoParam?: CryptoParam): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 // 示例1：使用默认的加密参数
-let cryptoParam1: relationalStore.CryptoParam = {
-    encryptionKey: new Uint8Array(),
+let store: relationalStore.RdbStore | undefined = undefined;
 
+const STORE_CONFIG1: relationalStore.StoreConfig = {
+  name: "rdbstore1.db",
+  securityLevel: relationalStore.SecurityLevel.S3;
+  encrypt: true,
+};
+
+relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
+  store = rdbStore;
+  console.info('Get RdbStore successfully.');
+}).catch((err: BusinessError) => {
+  console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+});
+
+let cryptoParam1: relationalStore.CryptoParam = {
+    encryptionKey: new Uint8Array();
 };
 
 if(store != undefined) {
@@ -5751,6 +5770,26 @@ if(store != undefined) {
 }
 
 // 示例2：使用自定义的加密参数
+let store: relationalStore.RdbStore | undefined = undefined;
+
+let cryptoParam: relationalStore.CryptoParam = {
+  encryptionKey: new Uint8Array([1, 2, 3, 4, 5, 6]),
+};
+
+const STORE_CONFIG1: relationalStore.StoreConfig = {
+  name: "rdbstore2.db",
+  securityLevel: relationalStore.SecurityLevel.S3;
+  encrypt: true,
+  cryptoParam: cryptoParam,
+};
+
+relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
+  store = rdbStore;
+  console.info('Get RdbStore successfully.');
+}).catch((err: BusinessError) => {
+  console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+});
+
 let cryptoParam2: relationalStore.CryptoParam = {
     encryptionKey: new Uint8Array([6, 5, 4, 3, 2, 1]),
 };
