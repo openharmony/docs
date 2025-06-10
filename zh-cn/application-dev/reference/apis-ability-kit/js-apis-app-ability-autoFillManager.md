@@ -55,10 +55,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let uiContext = AppStorage.get<UIContext>("uiContext");
 let callback: autoFillManager.AutoSaveCallback = {
   onSuccess: () => {
-    console.log("save request on success");
+    console.log(`save request on success.`);
   },
   onFailure: () => {
-    console.log("save request on failure");
+    console.error(`save request on failure.`);
   }
 };
 
@@ -176,10 +176,10 @@ struct Index {
             // 发起保存请求
             autoFillManager.requestAutoSave(uiContext, {
               onSuccess: () => {
-                console.log("save request on success");
+                console.log(`save request on success.`);
               },
               onFailure: () => {
-                console.log("save request on failure");
+                console.error(`save request on failure.`);
               }
             });
           } catch (error) {

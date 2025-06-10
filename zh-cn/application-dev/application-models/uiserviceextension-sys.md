@@ -95,29 +95,36 @@
     import { common, UIServiceExtensionAbility, Want } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { window } from '@kit.ArkUI';
-    
+
     export default class UIServiceExtAbility extends UIServiceExtensionAbility {
       // 创建UIServiceExtensionAbility
       onCreate(want: Want) {
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
       }
+
       // 请求处理
       onRequest(want: Want, startId: number) {
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onRequest');
       }
+
       // 连接
       onConnect(want: Want, proxy: common.UIServiceHostProxy) {
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onConnect');
       }
+
       // 断开连接
       onDisconnect(want: Want, proxy: common.UIServiceHostProxy) {
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDisconnect');
       }
+
       // 窗口即将创建
       onWindowWillCreate(config: window.ExtensionWindowConfig): void {
-        hilog.info(0x0000, TestTag, '%{public}s', 'Ability onWindowWillCreate');
+        hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowWillCreate');
         let rect: window.Rect = {
-          left: 100, top: 100, width: 500, height: 500
+          left: 100,
+          top: 100,
+          width: 500,
+          height: 500
         };
         config.windowRect = rect;
         // 创建子窗
@@ -130,18 +137,21 @@
           // 是否模态窗口
           isModal: false
         }
-        hilog.info(0x0000, TestTag, '%{public}s', 'Ability onWindowWillCreate end');
+        hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowWillCreate end');
       }
+
       // 窗口创建完成
       onWindowDidCreate(window: window.Window) {
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowDidCreate');
         window.setUIContent('uiservice/page/WindowPage')
         window.showWindow()
       }
+
       // 接收数据
       onData(proxy: common.UIServiceHostProxy, data: Record<string, Object>) {
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onData');
       }
+
       // 销毁
       onDestroy() {
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
@@ -198,12 +208,14 @@ struct Index {
             try {
               // 启动UIServiceExtensionAbility
               context.startUIServiceExtensionAbility(startWant).then(() => {
-                console.log('startUIServiceExtensionAbility success');
+                console.log(`startUIServiceExtensionAbility success.`);
               }).catch((error: BusinessError) => {
-                console.log('startUIServiceExtensionAbility error', JSON.stringify(error));
+                console.error(`startUIServiceExtensionAbility failed, err code: ${error.code}, err msg: ${error.message}.`);
               })
             } catch (err) {
-              console.log('startUIServiceExtensionAbility failed', JSON.stringify(err));
+              let code = (err as BusinessError).code;
+              let msg = (err as BusinessError).message;
+              console.errro(`startUIServiceExtensionAbility failed, err code: ${code}, err msg: ${msg}.`);
             }
           })
       }
@@ -243,18 +255,18 @@ struct Index {
             // 定义回调
             const callback: common.UIServiceExtensionConnectCallback = {
               onData: (data: Record<string, Object>): void => {
-                console.log('onData:', JSON.stringify(data));
+                console.log(`onData, data: ${JSON.stringify(data)}.`);
               },
               onDisconnect: (): void => {
-                console.log('onDisconnect');
+                console.log(`onDisconnect.`);
               }
             };
             // 连接UIServiceExtensionAbility
             context.connectUIServiceExtensionAbility(want, callback).then((uiServiceProxy: common.UIServiceProxy) => {
               this.uiServiceProxy = uiServiceProxy;
-              console.log('connectUIServiceExtensionAbility success');
+              console.log(`connectUIServiceExtensionAbility success.`);
             }).catch((error: BusinessError) => {
-              console.log('connectUIServiceExtensionAbility failed', JSON.stringify(error));
+              console.error(`connectUIServiceExtensionAbility failed, err code:${error.code}, err msg: ${error.message}.`);
             })
           })
         }
@@ -281,9 +293,9 @@ struct Index {
             const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             // this.uiServiceProxy是连接时保存的proxy对象
             context.disconnectUIServiceExtensionAbility(this.uiServiceProxy).then(() => {
-              console.log('disconnectUIServiceExtensionAbility success');
+              console.log(`disconnectUIServiceExtensionAbility success.`);
             }).catch((error: BusinessError) => {
-              console.log('disconnectUIServiceExtensionAbility failed', JSON.stringify(error));
+              console.error(`disconnectUIServiceExtensionAbility failed, err code: ${error.code}, err msg: ${error.message}.`);
             })
           })
         }
@@ -308,19 +320,19 @@ struct Index {
 
   客户端通过[connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md#uiextensioncontextconnectuiserviceextensionability14)连接服务端，获得[UIServiceProxy](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md)对象。通过它的[sendData()](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md#uiserviceproxysenddata)方法发送数据给服务端。服务端通过[onData()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityondata)回调接收数据。
     ```ts
-    import { common, Want} from '@kit.AbilityKit';
+    import { common, Want } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
     @Entry
     @Component
     struct Index {
       comProxy: common.UIServiceProxy | null = null;
-      connectCallback : common.UIServiceExtensionConnectCallback = {
-        onData:(data: Record<string, Object>) => {
-          console.log("received data", JSON.stringify(data));
+      connectCallback: common.UIServiceExtensionConnectCallback = {
+        onData: (data: Record<string, Object>) => {
+          console.log(`onData, data: ${JSON.stringify(data)}.`);
         },
-        onDisconnect:() => {
-          console.log("onDisconnect");
+        onDisconnect: () => {
+          console.log(`onDisconnect.`);
         }
       }
 
@@ -328,31 +340,38 @@ struct Index {
         Column() {
           Row() {
             // 创建连接按钮
-            Button("connect ability")
+            Button('connect ability')
               .enabled(true)
               .onClick(() => {
                 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-                let startWant:Want = {
+                let startWant: Want = {
                   bundleName: 'com.acts.uiserviceextensionability',
                   abilityName: 'UiServiceExtAbility',
                 };
                 try {
                   // 连接UIServiceExtensionAbility
-                  context.connectUIServiceExtensionAbility(startWant, this.connectCallback).then((proxy: common.UIServiceProxy) => {
-                    this.comProxy = proxy;
-                    let formData: Record<string, string> = {
-                      'test': 'test'
-                    };
-                    try {
-                      this.comProxy.sendData(formData);
-                    } catch (err) {
-                      console.log('sendData failed', JSON.stringify(err));
-                    };
-                  }).catch((err: BusinessError) => {
-                    console.log("connectUIServiceExtensionAbility failed", JSON.stringify(err));
-                  });
-                } catch(err) {
-                  console.log("connectUIServiceExtensionAbility failed", JSON.stringify(err));
+                  context.connectUIServiceExtensionAbility(startWant, this.connectCallback)
+                    .then((proxy: common.UIServiceProxy) => {
+                      this.comProxy = proxy;
+                      let formData: Record<string, string> = {
+                        'test': 'test'
+                      };
+                      try {
+                        this.comProxy.sendData(formData);
+                      } catch (err) {
+                        let code = (err as BusinessError).code;
+                        let msg = (err as BusinessError).message;
+                        console.error(`sendData failed, err code: ${code}, err msg: ${msg}.`);
+                      }
+                      ;
+                    })
+                    .catch((err: BusinessError) => {
+                      console.error(`connectUIServiceExtensionAbility failed, err code: ${err.code}, err msg: ${err.message}.`);
+                    });
+                } catch (err) {
+                  let code = (err as BusinessError).code;
+                  let msg = (err as BusinessError).message;
+                  console.error(`connectUIServiceExtensionAbility failed, err code: ${code}, err msg: ${msg}.`);
                 }
               })
           }
@@ -365,51 +384,54 @@ struct Index {
 
   服务端通过[onData()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityondata)接收客户端传递的数据，使用保存的客户端连接服务端时传递过来的[UIServiceHostProxy](../reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md)对象，调用[sendData()](../reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md#uiservicehostproxysenddata)将服务端数据发送给客户端。
     ```ts
-    import { common, Want, UIServiceExtensionAbility} from '@kit.AbilityKit';
+    import { common, Want, UIServiceExtensionAbility } from '@kit.AbilityKit';
     import { window } from '@kit.ArkUI';
-    
+    import { BusinessError } from '@kit.BasicServicesKit';
+
     export default class MyServiceExtAbility extends UIServiceExtensionAbility {
-      comProxy : common.UIServiceHostProxy | null = null;
+      comProxy: common.UIServiceHostProxy | null = null;
+
       // 创建
-      onCreate(want: Want) {        
+      onCreate(want: Want) {
         console.log('UIServiceExtensionAbility onCreate');
       }
-      
+
       // 请求处理
       onRequest(want: Want, startId: number) {
         console.log('UIServiceExtensionAbility onRequest');
       }
-      
+
       // 连接
       onConnect(want: Want, proxy: common.UIServiceHostProxy) {
         console.log('UIServiceExtensionAbility onConnect');
         this.comProxy = proxy;
       }
-      
+
       // 断开连接
       onDisconnect(want: Want, proxy: common.UIServiceHostProxy) {
         console.log('UIServiceExtensionAbility onDisconnect');
         this.comProxy = null;
       }
-      
+
       // 接收数据
       onData(proxy: common.UIServiceHostProxy, data: Record<string, Object>) {
         console.log('UIServiceExtensionAbility onData');
         try {
           let formData: Record<string, string> = {
-            'Data' : 'reply message'
+            'Data': 'reply message'
           };
           proxy.sendData(formData);
         } catch (err) {
-          console.log('sendData failed',JSON.stringify(err));
-        };
-    
+          let code = (err as BusinessError).code;
+          let msg = (err as BusinessError).message;
+          console.error(`sendData failed, err code: ${code}, err msg: ${msg}.`);
+        }
       }
-    
+
       onWindowWillCreate(extensionWindowConfig: window.ExtensionWindowConfig) {
         console.log('UIServiceExtensionAbility onWindowWillCreate');
       }
-      
+
       onWindowDidCreate(window: window.Window) {
         console.log('UIServiceExtensionAbility onWindowDidCreate');
       }

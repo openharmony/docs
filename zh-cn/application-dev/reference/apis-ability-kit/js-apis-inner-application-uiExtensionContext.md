@@ -641,13 +641,13 @@ export default class EntryAbility extends UIExtensionAbility {
     let options: common.ConnectOptions = {
       onConnect(elementName, remote) {
         commRemote = remote;
-        console.info('onConnect...')
+        console.info('onConnect...');
       },
       onDisconnect(elementName) {
-        console.info('onDisconnect...')
+        console.info('onDisconnect...');
       },
       onFailed(code) {
-        console.info('onFailed...')
+        console.error(`onFailed, err code: ${code}.`);
       }
     };
     let connection: number;
@@ -1208,30 +1208,26 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 import { UIExtensionAbility, Want, UIExtensionContentSession, OpenLinkOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function log(info: string) {
-  console.error(`MyUIExtension:: ${JSON.stringify(info)}`);
-}
-
 export default class UIExtAbility extends UIExtensionAbility {
   onCreate() {
-    log(`UIExtAbility onCreate`);
+    console.log(`UIExtAbility onCreate`);
   }
 
   onForeground() {
-    log(`UIExtAbility onForeground`);
+    console.log(`UIExtAbility onForeground`);
   }
 
   onBackground() {
-    log(`UIExtAbility onBackground`);
+    console.log(`UIExtAbility onBackground`);
   }
 
   onDestroy() {
-    log(`UIExtAbility onDestroy`);
+    console.log(`UIExtAbility onDestroy`);
   }
 
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    log(`UIExtAbility onSessionCreate`);
-    log(`UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`);
+    console.log(`UIExtAbility onSessionCreate`);
+    console.log(`UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`);
     let record: Record<string, UIExtensionContentSession> = {
       'session': session
     };
@@ -1247,24 +1243,26 @@ export default class UIExtAbility extends UIExtensionAbility {
         link,
         openLinkOptions,
         (err, result) => {
-          log(`openLink callback error.code: ${JSON.stringify(err)}`);
-          log(`openLink callback result: ${JSON.stringify(result.resultCode)}`);
-          log(`openLink callback result data: ${JSON.stringify(result.want)}`);
+          if (err) {
+            console.error(`openLink callback failed, err code: ${err.code}, err msg: ${err.message}.`);
+            return;
+          }
+          console.log(`openLink success, resule code: ${result.resultCode} result data: ${result.want}.`);
         }
       ).then(() => {
-        log(`open link success.`);
+        console.log(`open link success.`);
       }).catch((err: BusinessError) => {
-        log(`open link failed, errCode ${JSON.stringify(err.code)}`);
+        console.error(`open link failed, err code: ${err.code}, err msg: ${err.message}.`);
       });
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let msg = (err as BusinessError).message;
+      console.error(`openLink failed, err code: ${code}, err msg: ${msg}.`);
     }
-    catch (e) {
-      log(`exception occured, errCode ${JSON.stringify(e.code)}`);
-    }
-
   }
 
   onSessionDestroy(session: UIExtensionContentSession) {
-    log(`UIExtAbility onSessionDestroy`);
+    console.log(`UIExtAbility onSessionDestroy`);
   }
 }
 ```
@@ -1339,12 +1337,14 @@ struct Index {
             try {
               // 启动UIServiceExtensionAbility
               context.startUIServiceExtensionAbility(startWant).then(() => {
-                console.log('startUIServiceExtensionAbility success');
+                console.log(`startUIServiceExtensionAbility success.`);
               }).catch((error: BusinessError) => {
-                console.log('startUIServiceExtensionAbility error', JSON.stringify(error));
+                console.error(`startUIServiceExtensionAbility failed, err code: ${error.code}, err msg: ${error.message}.`);
               })
             } catch (err) {
-              console.log('startUIServiceExtensionAbility failed', JSON.stringify(err));
+              let code = (err as BusinessError).code;
+              let msg = (err as BusinessError).message;
+              console.error(`startUIServiceExtensionAbility failed, err code: ${code}, err msg: ${msg}.`);
             }
           })
       }
@@ -1424,18 +1424,18 @@ struct Page_UIServiceExtensionAbility {
         // 定义回调
         const callback: common.UIServiceExtensionConnectCallback = {
           onData: (data: Record<string, Object>): void => {
-            console.log('onData:', JSON.stringify(data));
+            console.log(`onData, data: ${JSON.stringify(data)}.`);
           },
           onDisconnect: (): void => {
-            console.log('onDisconnect');
+            console.log(`onDisconnect`);
           }
         };
         // 连接UIServiceExtensionAbility
         context.connectUIServiceExtensionAbility(want, callback).then((uiServiceProxy: common.UIServiceProxy) => {
           this.uiServiceProxy = uiServiceProxy;
-          console.log('connectUIServiceExtensionAbility success');
+          console.log(`connectUIServiceExtensionAbility success`);
         }).catch((error: BusinessError) => {
-          console.log('connectUIServiceExtensionAbility failed', JSON.stringify(error));
+          console.error(`connectUIServiceExtensionAbility failed, err code: ${error.code}, err msg: ${error.message}.`);
         })
       })
     }
@@ -1493,9 +1493,9 @@ struct Page_UIServiceExtensionAbility {
         const context = this.getUIContext().getHostContext() as common.UIExtensionContext;
         // this.uiServiceProxy是连接时保存的proxy对象
         context.disconnectUIServiceExtensionAbility(this.uiServiceProxy).then(() => {
-          console.log('disconnectUIServiceExtensionAbility success');
+          console.log(`disconnectUIServiceExtensionAbility success.`);
         }).catch((error: BusinessError) => {
-          console.log('disconnectUIServiceExtensionAbility failed', JSON.stringify(error));
+          console.log(`disconnectUIServiceExtensionAbility failed, err code: ${error.code}, err msg: ${error.message}.`);
         })
       })
     }

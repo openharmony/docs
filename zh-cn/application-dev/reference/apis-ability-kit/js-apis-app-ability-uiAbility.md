@@ -994,23 +994,26 @@ class MyMessageAble implements rpc.Parcelable {
   name: string
   str: string
   num: number = 1
+
   constructor(name: string, str: string) {
     this.name = name;
     this.str = str;
   }
+
   marshalling(messageSequence: rpc.MessageSequence) {
     messageSequence.writeInt(this.num);
     messageSequence.writeString(this.str);
     console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
     return true;
   }
+
   unmarshalling(messageSequence: rpc.MessageSequence) {
     this.num = messageSequence.readInt();
     this.str = messageSequence.readString();
     console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
     return true;
   }
-};
+}
 let method = 'call_Function';
 let caller: Caller;
 
@@ -1026,8 +1029,8 @@ export default class MainUIAbility extends UIAbility {
       caller.callWithResult(method, msg)
         .then((data) => {
           console.log('Caller callWithResult() called');
-          let retmsg = new MyMessageAble('msg', 'world');
-          data.readParcelable(retmsg);
+          let retMsg = new MyMessageAble('msg', 'world');
+          data.readParcelable(retMsg);
         })
         .catch((callErr: BusinessError) => {
           console.error(`Caller.callWithResult catch error, error.code: ${callErr.code}, error.message: ${callErr.message}`);

@@ -50,10 +50,10 @@ struct UIServiceExtensionAbility {
   comProxy: common.UIServiceProxy | null = null;
   dataCallBack: common.UIServiceExtensionConnectCallback = {
     onData: (data: Record<string, Object>) => {
-      console.log(TAG + `dataCallBack received data: `, JSON.stringify(data));
+      console.log(`${TAG} dataCallBack received data: ${JSON.stringify(data)}.`);
     },
     onDisconnect: () => {
-      console.log(TAG + `dataCallBack onDisconnect`);
+      console.log(`${TAG} dataCallBack onDisconnect.`);
       this.comProxy = null;
     }
   }
@@ -97,26 +97,26 @@ struct UIServiceExtensionAbility {
         .then((proxy: common.UIServiceProxy) => {
           console.log(TAG + `try to connectUIServiceExtensionAbility ${proxy}}`);
           this.comProxy = proxy;
-          let formData: Record<string,string> = {
+          let formData: Record<string, string> = {
             'PATH': '/tmp/aaa.jpg'
           };
           try {
-            console.log(TAG + `sendData`);
+            console.log(`${TAG} sendData.`);
             this.comProxy.sendData(formData);
           } catch (err) {
             let code = (err as BusinessError).code;
             let message = (err as BusinessError).message;
-            console.log(TAG + `sendData failed, code is ${code}, message is ${message}`);
+            console.error(`${TAG} sendData failed, code is ${code}, message is ${message}.`);
           }
         }).catch((err: Error) => {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
-        console.log(TAG + `connectUIServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+        console.error(`${TAG} connectUIServiceExtensionAbility failed, code is ${code}, message is ${message}.`);
       });
     } catch (err) {
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
-      console.log(TAG + `connectUIServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+      console.error(`${TAG} connectUIServiceExtensionAbility failed, code is ${code}, message is ${message}.`);
     }
   }
 }
@@ -151,11 +151,11 @@ struct UIServiceExtensionAbility {
   // 链接时的回调接口
   dataCallBack: common.UIServiceExtensionConnectCallback = {
     onData: (data: Record<string, Object>) => {
-      console.log(TAG + `dataCallBack received data: `, JSON.stringify(data));
+      console.log(`${TAG} dataCallBack received data: ${JSON.stringify(data)}.`);
     },
     onDisconnect: () => {
       // 链接断链后的触发
-      console.log(TAG + `dataCallBack onDisconnect`);
+      console.log(`${TAG} dataCallBack onDisconnect.`);
       this.comProxy = null;
     }
   }
@@ -191,16 +191,16 @@ struct UIServiceExtensionAbility {
     try {
       // this.comProxy在链接成功后保存
       context.disconnectUIServiceExtensionAbility(this.comProxy).then(() => {
-        console.log(TAG + `disconnectUIServiceExtensionAbility success`);
+        console.log(`${TAG} disconnectUIServiceExtensionAbility success.`);
       }).catch((err: Error) => {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
-        console.log(TAG + `disconnectUIServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+        console.error(`${TAG} disconnectUIServiceExtensionAbility failed, code is ${code}, message is ${message}.`);
       });
     } catch (err) {
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
-      console.log(TAG + `disconnectUIServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+      console.error(`${TAG} disconnectUIServiceExtensionAbility failed, code is ${code}, message is ${message}.`);
     }
   }
 }

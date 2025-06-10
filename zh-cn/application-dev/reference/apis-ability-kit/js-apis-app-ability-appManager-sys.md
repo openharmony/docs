@@ -65,10 +65,9 @@ import { appManager } from '@kit.AbilityKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ------------------------- | ------ | ---- | ---- | --------- |
-| bundleName   | string | 是 | 否  | Bundle名称。 |
-| userId   | number | 是 | 否  | 用户ID。 |
-| appType       | [KeepAliveAppType](#keepaliveapptype14) | 是 | 否 | 表示被保活应用的应用类型。   |
-| setter       | [KeepAliveSetter](#keepalivesetter14) | 是 | 否 | 表示应用保活设置者类型。   |
+| bundleName   | string | 否 | 否  | Bundle名称。 |
+| type       | [KeepAliveAppType](#keepaliveapptype14) | 否 | 否 | 表示被保活应用的应用类型。   |
+| setter       | [KeepAliveSetter](#keepalivesetter14) | 否 | 否 | 表示应用保活设置者类型。   |
 
 ## appManager.isSharedBundleRunning<sup>10+</sup>
 

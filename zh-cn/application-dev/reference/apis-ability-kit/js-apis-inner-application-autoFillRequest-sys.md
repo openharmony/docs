@@ -624,7 +624,7 @@ struct SavePage {
 
       Button('onFailure')
         .onClick(() => {
-          hilog.info(0x0000, 'testTag', 'autofill failure');
+          hilog.error(0x0000, 'testTag', 'autofill onFailure');
           try {
             this.saveCallback?.onFailure();
           } catch (error) {

@@ -64,22 +64,23 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
   import { fileIo, fileUri } from '@kit.CoreFileKit';
 
   let targetBundleName = 'com.example.test_case1'
-  let path = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir";
+  let path = 'file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir';
   fileIo.mkdir(path, (err) => {
     if (err) {
-      console.log("mkdir error" + err.message);
+      console.error(`mkdir failed, err code: ${err.code}, err msg: ${err.message}.`);
     } else {
-      console.log("mkdir succeed");
+      console.log(`mkdir success.`);
     }
   });
   let uri = fileUri.getUriFromPath(path);
-  uriPermissionManager.grantUriPermission(uri, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName, (error) => {
-    if (error && error.code !== 0) {
-      console.error("grantUriPermission failed, error.code = " + error.code);
-      return;
-    }
-    console.info("grantUriPermission success");
-  });
+  uriPermissionManager.grantUriPermission(uri, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName,
+    (error) => {
+      if (error && error.code !== 0) {
+        console.error(`grantUriPermission failed, err code: ${error.code}, err msg: ${error.message}.`);
+        return;
+      }
+      console.info(`grantUriPermission success.`);
+    });
   ```
 
 
@@ -136,21 +137,21 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let targetBundleName = 'com.example.test_case1'
-  let path = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir";
+  let path = 'file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir';
 
   fileIo.mkdir(path, (err) => {
     if (err) {
-      console.log("mkdir error" + err.message);
+      console.error(`mkdir failed, err code: ${err.code}, err msg: ${err.message}.`);
     } else {
-      console.log("mkdir succeed");
+      console.log(`mkdir succeed.`);
     }
   });
   let uri = fileUri.getUriFromPath(path);
   uriPermissionManager.grantUriPermission(uri, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName)
     .then((data) => {
-      console.log('Verification succeeded.' + data);
-    }).catch((error: BusinessError) => {
-    console.log('Verification failed.');
+      console.log(`Verification succeeded, data: ${JSON.stringify(data)}.`);
+    }).catch((err: BusinessError) => {
+    console.error(`Verification failed, err code: ${err.code}, err msg: ${err.message}.`);
   });
   ```
 
@@ -348,13 +349,13 @@ revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let targetBundleName = 'com.example.test_case2';
-  let uri = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir";
+  let uri = 'file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir';
 
   uriPermissionManager.revokeUriPermission(uri, targetBundleName)
     .then((data) => {
-      console.log('Verification succeeded.' + data);
+      console.log(`Verification success, data: ${JSON.stringify(data)}.`);
     }).catch((error: BusinessError) => {
-    console.log('Verification failed.');
+    console.error(`Verification failed, err code: ${error.code}, err msg: ${error.message}.`);
   });
   ```
 ## uriPermissionManager.revokeUriPermission<sup>14+</sup>

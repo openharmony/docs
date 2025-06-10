@@ -19,10 +19,10 @@ import { missionManager } from '@kit.AbilityKit';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| ability | ElementName | 是 | 是 | 表示该任务的组件信息。 | 
-| snapshot | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 是 | 表示任务快照。 |
+| ability | ElementName | 否 | 否 | 表示该任务的组件信息。 | 
+| snapshot | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否 | 否 | 表示任务快照。 |
 
 ## 使用说明
 

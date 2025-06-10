@@ -20,18 +20,20 @@ import { ServiceExtensionAbility } from '@kit.AbilityKit';
 
 无
 
-## 属性
+## ServiceExtensionAbility
+
+### 属性
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统接口**：此接口为系统接口。
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext-sys.md)  | 是 | 否 | ServiceExtension的上下文环境，继承自ExtensionContext。 |
+| context | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext-sys.md)  | 否 | 否 | ServiceExtension的上下文环境，继承自ExtensionContext。 |
 
 
-## ServiceExtensionAbility.onCreate
+### onCreate
 
 onCreate(want: Want): void;
 
@@ -60,7 +62,7 @@ class ServiceExt extends ServiceExtensionAbility {
 ```
 
 
-## ServiceExtensionAbility.onDestroy
+### onDestroy
 
 onDestroy(): void;
 
@@ -83,7 +85,7 @@ class ServiceExt extends ServiceExtensionAbility {
 ```
 
 
-## ServiceExtensionAbility.onRequest
+### onRequest
 
 onRequest(want: Want, startId: number): void;
 
@@ -113,7 +115,7 @@ class ServiceExt extends ServiceExtensionAbility {
 ```
 
 
-## ServiceExtensionAbility.onConnect
+### onConnect
 
 onConnect(want: Want): rpc.RemoteObject | Promise<rpc.RemoteObject>;
 
@@ -182,7 +184,7 @@ class ServiceExt extends ServiceExtensionAbility {
 }
 ```
 
-## ServiceExtensionAbility.onDisconnect
+### onDisconnect
 
 onDisconnect(want: Want): void | Promise\<void>;
 
@@ -229,7 +231,7 @@ class ServiceExt extends ServiceExtensionAbility {
 }
 ```
 
-## ServiceExtensionAbility.onReconnect
+### onReconnect
 
 onReconnect(want: Want): void;
 
@@ -257,7 +259,7 @@ class ServiceExt extends ServiceExtensionAbility {
 }
 ```
 
-## ServiceExtensionAbility.onConfigurationUpdate
+### onConfigurationUpdate
 
 onConfigurationUpdate(newConfig: Configuration): void;
 
@@ -285,7 +287,7 @@ class ServiceExt extends ServiceExtensionAbility {
 }
 ```
 
-## ServiceExtensionAbility.onDump
+### onDump
 
 onDump(params: Array\<string>): Array\<string>;
 

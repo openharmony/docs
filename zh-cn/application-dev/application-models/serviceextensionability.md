@@ -28,7 +28,7 @@ ServiceExtensionAbility可以被其他组件启动或连接，并根据调用者
 
 ## 生命周期
 
-[ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)提供了[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityoncreate)、[onRequest()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonrequest)、[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect)、[onDisconnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityondisconnect)和[onDestroy()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityondestroy)生命周期回调，根据需要重写对应的回调方法。下图展示了ServiceExtensionAbility的生命周期。
+[ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)提供了[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#oncreate)、[onRequest()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#onrequest)、[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#onconnect)、[onDisconnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#ondisconnect)和[onDestroy()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#ondestroy)生命周期回调，根据需要重写对应的回调方法。下图展示了ServiceExtensionAbility的生命周期。
 
   **图1** ServiceExtensionAbility生命周期  
 ![ServiceExtensionAbility-lifecycle](figures/ServiceExtensionAbility-lifecycle.png)
@@ -133,7 +133,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
     └
     ```
 
-3. 在ServiceExtAbility.ets文件中，增加导入[ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)的依赖包，自定义类继承ServiceExtensionAbility并实现生命周期回调，在[onConnect](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityoncreate)生命周期回调里，需要将之前定义的ServiceExtImpl对象返回。
+3. 在ServiceExtAbility.ets文件中，增加导入[ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)的依赖包，自定义类继承ServiceExtensionAbility并实现生命周期回调，在[onConnect](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#oncreate)生命周期回调里，需要将之前定义的ServiceExtImpl对象返回。
 
     ```ts
     import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';

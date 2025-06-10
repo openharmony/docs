@@ -28,7 +28,7 @@ import { UIServiceExtensionAbility } from '@kit.AbilityKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIServiceExtensionContext](js-apis-inner-application-uiserviceExtensionContext-sys.md) | 是 | 否 | [UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)。 |
+| context | [UIServiceExtensionContext](js-apis-inner-application-uiserviceExtensionContext-sys.md) | 否 | 否 | [UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)。 |
 
 
 ## UIServiceExtensionAbility.onCreate
