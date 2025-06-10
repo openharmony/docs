@@ -43,9 +43,10 @@ loadContent(path: string, storage?: LocalStorage): void
 **示例：**
 
 ```ts
-import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { UIExtensionContentSession, ShareExtensionAbility, Want } from '@kit.AbilityKit';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   // ...
 
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
@@ -335,10 +336,11 @@ setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { UIExtensionContentSession, ShareExtensionAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   // ...
 
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
@@ -391,10 +393,11 @@ setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;
 **示例：**
 
 ```ts
-import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { UIExtensionContentSession, ShareExtensionAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   // ...
 
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
@@ -448,10 +451,11 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 **示例：**
 
 ```ts
-import { UIExtensionContentSession, UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { UIExtensionContentSession, ShareExtensionAbility, Want, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   // ...
 
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
@@ -515,10 +519,11 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 **示例：**
 
 ```ts
-import { UIExtensionContentSession, UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { UIExtensionContentSession, ShareExtensionAbility, Want, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   // ...
 
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
