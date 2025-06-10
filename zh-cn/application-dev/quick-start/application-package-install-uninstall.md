@@ -1,9 +1,9 @@
-# 应用程序包安装卸载与更新
+# 应用安装卸载与更新开发指导
 
 本章节介绍应用程序包的安装卸载流程和两种更新方式。
 
 ## 应用程序包的安装卸载
-开发者可以通过调试命令安装和卸载应用，详情参考[编译发布与上架部署流程图](./application-package-structure-stage.md#发布态包结构)。
+开发者可以通过调试命令安装和卸载应用，安装应用命令参考bm工具中的[install](../tools/bm-tool.md#安装命令install)，卸载应用命令参考bm工具中的[uninstall](../tools/bm-tool.md#卸载命令uninstall)，详情参考[编译发布与上架部署流程图](./application-package-structure-stage.md#发布态包结构)。
 
 **图1** 应用程序包安装和卸载流程（开发者）
 
