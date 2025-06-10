@@ -269,7 +269,7 @@ IP配置信息。
 
 turnOnWifi(admin: Want, isForce: boolean): void
 
-强制打开Wi-Fi。
+强制打开Wi-Fi开关。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -317,7 +317,7 @@ try {
 
 turnOffWifi(admin: Want): void
 
-关闭Wi-Fi。
+关闭Wi-Fi开关。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
