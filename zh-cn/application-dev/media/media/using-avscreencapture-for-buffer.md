@@ -126,7 +126,17 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     ```
 
 ## PC/2in1设备录屏窗口选择界面规格说明
-基于录屏取码流接口提供了PC/2in1设备录屏窗口选择界面，为兼容已有的接口设计，目前支持三方应用在指定屏幕模式(OH_CAPTURE_SPECIFIED_SCREEN)、传一个窗口Id的指定窗口模式(OH_CAPTURE_SPECIFIED_WINDOW)下，PC/2in1设备弹出Picker选择弹窗并根据传入的窗口Id选中对应窗口。最终录屏内容以Picker弹出后，用户在弹窗上的选择为准。
+基于录屏取码流接口提供了PC/2in1设备录屏窗口选择界面，按照以下表格中的配置弹出相应的弹窗。PC/2in1设备弹出Picker选择弹窗并根据传入的窗口Id选中对应窗口。最终录屏内容以Picker弹出后，用户在弹窗上的选择为准。
+
+API 20开始，支持通过OH_AVScreenCapture_SetCaptureArea接口，设置区域录屏功能生效，弹出隐私允许/不允许弹窗。
+
+| 屏幕模式类型                                          | 传入窗口Id数量     | 弹窗类型            |
+| ----------------------------------------------------- | ------------------ | ------------------- |
+| OH_CAPTURE_HOME_SCREEN                                | 传入的窗口Id不生效 | 隐私允许/不允许弹窗 |
+| OH_CAPTURE_SPECIFIED_SCREEN                           | 传入的窗口Id不生效 | Picker弹窗          |
+| OH_CAPTURE_SPECIFIED_WINDOW                           | 0个或1个窗口Id     | Picker弹窗          |
+| OH_CAPTURE_SPECIFIED_WINDOW                           | 2个或多个窗口Id    | 隐私允许/不允许弹窗 |
+| 区域录屏（调用OH_AVScreenCapture_SetCaptureArea接口） | 传入的窗口Id不生效 | 隐私允许/不允许弹窗 |
 
 PC/2in1设备录屏窗口选择界面推荐在OH_CAPTURE_SPECIFIED_WINDOW模式下使用，需根据PC/2in1设备分辨率配置录屏的高度和宽度值并传入屏幕Id（若有期望录制的某个窗口，可同时传入单个窗口Id）。
 
@@ -591,6 +601,15 @@ static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
                                        .audioInfo = audioinfo,
                                        .videoInfo = videoinfo};
     OH_AVScreenCapture_Init(capture, config);
+
+    // 可选（API 20开始支持）：可以根据需要设置区域坐标和大小，设置想要捕获的区域，如下方创建了一个从（0，0）为起点的长100，宽100的矩形区域。此接口也可以在开始录屏以后设置。
+    OH_Rect* region = new OH_Rect;
+    region->x = 0;
+    region->y = 0;
+    region->width = 100;
+    region->height = 100;
+    uint64_t regionDisplayId = 0; // 传入矩形区域所在的屏幕Id。
+    OH_AVScreenCapture_SetCaptureArea(capture, regionDisplayId, region);
 
     // 可选 [Surface模式]。
     // 通过 MIME TYPE 创建编码器，系统会根据MIME创建最合适的编码器。
