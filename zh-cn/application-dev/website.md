@@ -1152,6 +1152,8 @@
         - WLAN<!--wlan-->
           - [WLAN服务开发概述](connectivity/wlan/wlan-overview.md)
           - [P2P模式开发指南](connectivity/wlan/p2p-development-guide.md)
+          - [STA模式开发指南](connectivity/wlan/sta-development-guide.md)
+          - [Wi-Fi扫描开发指南](connectivity/wlan/scan-development-guide.md)
         - [Connectivity Kit术语](connectivity/terminology.md)
       - Distributed Service Kit（分布式管理服务）<!--distributed-service-kit-->
         - [Distributed Service Kit简介](distributedservice/distributedservice-kit-intro.md)
