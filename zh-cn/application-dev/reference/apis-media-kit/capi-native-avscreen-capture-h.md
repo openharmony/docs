@@ -27,7 +27,7 @@
 | [OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenRecording(struct OH_AVScreenCapture *capture)](#oh_avscreencapture_startscreenrecording) | 启动录屏，调用此接口，可保存录屏文件。 |
 | [OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StopScreenRecording(struct OH_AVScreenCapture *capture)](#oh_avscreencapture_stopscreenrecording) | 停止录屏，与[OH_AVScreenCapture_StartScreenRecording](#oh_avscreencapture_startscreenrecording)配合使用。 |
 | [OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_AcquireAudioBuffer(struct OH_AVScreenCapture *capture,OH_AudioBuffer **audiobuffer, OH_AudioCaptureSourceType type)](#oh_avscreencapture_acquireaudiobuffer) | 获取音频buffer。应用调用时需分配audiobuffer对应结构体大小的内存，否则影响音频buffer的获取。<br> 从API 12开始，推荐使用接口[OH_AVScreenCapture_OnBufferAvailable](capi-native-avscreen-capture-base-h.md#oh_avscreencapture_onbufferavailable)替代。 |
-| [OH_NativeBuffer* OH_AVScreenCapture_AcquireVideoBuffer(struct OH_AVScreenCapture *capture,int32_t *fence, int64_t *timestamp, struct OH_Rect *region)](#oh_avscreencapture_acquirevideobuffer) | 获取视频buffer。应用通过此接口获取视频缓存区及时间戳等信息。<br>buffer使用完成后，调用OH_AVScreenCapture_ReleaseVideoBuffer接口进行视频buffer的释放。<br> 从API 12开始，推荐使用接口[OH_AVScreenCapture_OnBufferAvailable](capi-native-avscreen-capture-base-h.md#oh_avscreencapture_onbufferavailable)替代。 |
+| [OH_NativeBuffer* OH_AVScreenCapture_AcquireVideoBuffer(struct OH_AVScreenCapture *capture,int32_t *fence, int64_t *timestamp, struct OH_Rect *region)](#oh_avscreencapture_acquirevideobuffer) | 获取视频buffer。应用通过此接口获取视频缓存区及时间戳等信息。<br> buffer使用完成后，调用OH_AVScreenCapture_ReleaseVideoBuffer接口进行视频buffer的释放。<br> 从API 12开始，推荐使用接口[OH_AVScreenCapture_OnBufferAvailable](capi-native-avscreen-capture-base-h.md#oh_avscreencapture_onbufferavailable)替代。 |
 | [OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ReleaseAudioBuffer(struct OH_AVScreenCapture *capture,OH_AudioCaptureSourceType type)](#oh_avscreencapture_releaseaudiobuffer) | 根据音频类型释放buffer。当某一帧音频buffer使用完成后，调用此接口进行释放对应的音频buffer。<br> 从API 12开始，推荐使用接口[OH_AVScreenCapture_OnBufferAvailable](capi-native-avscreen-capture-base-h.md#oh_avscreencapture_onbufferavailable)替代。 |
 | [OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ReleaseVideoBuffer(struct OH_AVScreenCapture *capture)](#oh_avscreencapture_releasevideobuffer) | 根据视频类型释放buffer。当某一帧视频buffer使用完成后，调用此接口释放对应的视频buffer。<br> 从API 12开始，推荐使用接口[OH_AVScreenCapture_OnBufferAvailable](capi-native-avscreen-capture-base-h.md#oh_avscreencapture_onbufferavailable)替代。 |
 | [OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCallback(struct OH_AVScreenCapture *capture,struct OH_AVScreenCaptureCallback callback)](#oh_avscreencapture_setcallback) | 设置监听接口，通过设置监听，可以监听到调用过程中的错误信息，以及是否有可用的视频buffer和音频buffer。<br> 从API 12开始，推荐使用接口[OH_AVScreenCapture_SetErrorCallback](#oh_avscreencapture_seterrorcallback)、[OH_AVScreenCapture_SetDataCallback](#oh_avscreencapture_setdatacallback)替代。 |
@@ -55,6 +55,9 @@
 | [OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCaptureContentChangedCallback(struct OH_AVScreenCapture *capture,OH_AVScreenCapture_OnCaptureContentChanged callback, void *userData)](#oh_avscreencapture_setcapturecontentchangedcallback) | 设置录屏内容变更回调事件，需在录屏启动前被调用。 |
 | [OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCaptureArea(struct OH_AVScreenCapture \*capture,uint64_t displayId, OH_Rect\* area)](#oh_avscreencapture_setcapturearea) | 设置或更新捕获区域。<br> 接口在开始录屏前后都可以设置，设置的坐标和宽高不能为负数，捕获区域不能跨屏幕，区域位置设置失败后仍按照上一次的区域进行捕获。 |
 | [OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForPrivacyMaskMode(OH_AVScreenCapture_CaptureStrategy *strategy, int32_t value)](#oh_avscreencapture_strategyforprivacymaskmode) | 设置隐私窗口屏蔽模式。 |
+| [OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetSelectionCallback(struct OH_AVScreenCapture *capture,OH_AVScreenCapture_OnUserSelected callback, void *userData)](#oh_avscreencapture_setselectioncallback) | 注册手工确认界面用户选择结果的回调，需要在start之前注册。 |
+| [OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetCaptureTypeSelected(OH_AVScreenCapture_UserSelectionInfo \*selection,int32_t\* type)](#oh_avscreencapture_getcapturetypeselected) | 获取用户在确认界面选择的屏幕捕获对象类型。在[OH_AVScreenCapture_OnUserSelected](capi-native-avscreen-capture-base-h.md#oh_avscreencapture_onuserselected)回调中使用，selection指针在回调结束后销毁。 |
+| [OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetDisplayIdSelected(OH_AVScreenCapture_UserSelectionInfo \*selection,uint64_t\* displayId)](#oh_avscreencapture_getdisplayidselected) | 获取确认页面，用户选择录制的屏幕ID。在[OH_AVScreenCapture_OnUserSelected](capi-native-avscreen-capture-base-h.md#oh_avscreencapture_onuserselected)回调中使用，selection指针在回调结束后销毁。 |
 
 ## 函数说明
 
@@ -349,7 +352,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCallback(struct OH_AVScreenCap
 
 | 参数项 | 描述 |
 | -- | -- |
-| struct [OH_AVScreenCapture](capi-oh-avscreencapture.md) *capture |指向OH_AVScreenCapture实例的指针。 |
+| struct [OH_AVScreenCapture](capi-oh-avscreencapture.md) *capture | 指向OH_AVScreenCapture实例的指针。 |
 | struct [OH_AVScreenCaptureCallback](capi-oh-avscreencapturecallback.md) callback | OH_AVScreenCaptureCallback的结构体，保存相关回调函数指针。 |
 
 **返回：**
@@ -519,7 +522,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCaptureWithSurface(str
 
 | 参数项 | 描述 |
 | -- | -- |
-| struct [OH_AVScreenCapture](capi-oh-avscreencapture.md) *capture |指向OH_AVScreenCapture实例的指针。 |
+| struct [OH_AVScreenCapture](capi-oh-avscreencapture.md) *capture | 指向OH_AVScreenCapture实例的指针。 |
 | [OHNativeWindow](../apis-arkgraphics2d/capi-nativewindow.md) *window | 指向OHNativeWindow实例的指针。 |
 
 **返回：**
@@ -898,7 +901,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCaptureStrategy(struct OH_AVSc
 | 参数项 | 描述 |
 | -- | -- |
 | struct [OH_AVScreenCapture](capi-oh-avscreencapture.md) *capture | 指向OH_AVScreenCapture实例的指针。 |
-| [OH_AVScreenCapture_CaptureStrategy](capi-oh-avscreencapture-capturestrategy.md)* strategy | 指向捕获策略对象的指针。 |
+| [OH_AVScreenCapture_CaptureStrategy](capi-oh-avscreencapture-capturestrategy.md) *strategy | 指向捕获策略对象的指针。 |
 
 **返回：**
 
@@ -925,7 +928,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForKeepCaptureDuringCall(
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVScreenCapture_CaptureStrategy](capi-oh-avscreencapture-capturestrategy.md) strategy | 指向OH_AVScreenCapture_CaptureStrategy对象的指针。 |
+| [OH_AVScreenCapture_CaptureStrategy](capi-oh-avscreencapture-capturestrategy.md) *strategy | 指向OH_AVScreenCapture_CaptureStrategy对象的指针。 |
 | bool value | 蜂窝通话时是否可以进行屏幕录制。<br> true表示蜂窝通话时可以录屏，false表示蜂窝通话时不允许录屏。<br> 默认是false。 |
 
 **返回：**
@@ -1017,5 +1020,85 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForPrivacyMaskMode(OH_AVS
 | 类型 | 说明 |
 | -- | -- |
 | [OH_AVSCREEN_CAPTURE_ErrCode](capi-native-avscreen-capture-errors-h.md#oh_avscreen_capture_errcode) | AV_SCREEN_CAPTURE_ERR_OK：执行成功。<br>         AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数strategy为空指针或输入value为无效值。 |
+
+### OH_AVScreenCapture_SetSelectionCallback()
+
+```
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetSelectionCallback(struct OH_AVScreenCapture *capture,OH_AVScreenCapture_OnUserSelected callback, void *userData)
+```
+
+**描述**
+
+注册手工确认界面用户选择结果的回调，需要在start之前注册。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| struct [OH_AVScreenCapture](capi-oh-avscreencapture.md) *capture | 需要注册该回调的屏幕捕获对象。 |
+| [OH_AVScreenCapture_OnUserSelected](capi-native-avscreen-capture-base-h.md#oh_avscreencapture_onuserselected) callback | 用户在界面确认后，通过该函数通知应用进行逻辑处理。 |
+| void *userData | 应用传入的控制块指针，在返回时携带给应用。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_AVSCREEN_CAPTURE_ErrCode](capi-native-avscreen-capture-errors-h.md#oh_avscreen_capture_errcode) | AV_SCREEN_CAPTURE_ERR_OK：执行成功。<br>         AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。 |
+
+### OH_AVScreenCapture_GetCaptureTypeSelected()
+
+```
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetCaptureTypeSelected(OH_AVScreenCapture_UserSelectionInfo *selection,int32_t* type)
+```
+
+**描述**
+
+获取用户在确认界面选择的屏幕捕获对象类型。在[OH_AVScreenCapture_OnUserSelected](capi-native-avscreen-capture-base-h.md#oh_avscreencapture_onuserselected)回调中使用，selection指针在回调结束后销毁。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_AVScreenCapture_UserSelectionInfo](capi-oh-avscreencapture-userselectioninfo.md) *selection | 指向OH_AVScreenCapture_UserSelectionInfo实例的指针。 |
+| int32_t* type | 用户选择的捕获对象类型，0：代表屏幕，1：代表窗口。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_AVSCREEN_CAPTURE_ErrCode](capi-native-avscreen-capture-errors-h.md#oh_avscreen_capture_errcode) | AV_SCREEN_CAPTURE_ERR_OK：执行成功。<br>         AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数selection为空指针。 |
+
+### OH_AVScreenCapture_GetDisplayIdSelected()
+
+```
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetDisplayIdSelected(OH_AVScreenCapture_UserSelectionInfo *selection,uint64_t* displayId)
+```
+
+**描述**
+
+获取确认页面，用户选择录制的屏幕ID。在[OH_AVScreenCapture_OnUserSelected](capi-native-avscreen-capture-base-h.md#oh_avscreencapture_onuserselected)回调中使用，selection指针在回调结束后销毁。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_AVScreenCapture_UserSelectionInfo](capi-oh-avscreencapture-userselectioninfo.md) *selection | 指向OH_AVScreenCapture_UserSelectionInfo实例的指针。 |
+| uint64_t* displayId | 返回用户选择的屏幕ID。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_AVSCREEN_CAPTURE_ErrCode](capi-native-avscreen-capture-errors-h.md#oh_avscreen_capture_errcode) | AV_SCREEN_CAPTURE_ERR_OK：执行成功。<br>         AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数selection为空指针。 |
+
 
 
