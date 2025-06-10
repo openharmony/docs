@@ -10,7 +10,7 @@ skill标签对象，可以通过[bundleManager.getBundleInfoForSelf](js-apis-bun
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.BundleManager.BundleFramework.Core
-| 名称     | 类型   | 可读 | 可写 | 说明       |
+| 名称     | 类型   | 只读 | 可选 | 说明       |
 | -------- | ------ | ---- | ---- | ---------- |
 | actions     | Array\<string> | 是   | 否   | Skill接收的[Action集合](js-apis-ability-wantConstant.md#action)。 |
 | entities    | Array\<string> | 是   | 否   | Skill接收的[Entity集合](js-apis-ability-wantConstant.md#entity)。   |
@@ -22,7 +22,7 @@ skill标签对象，可以通过[bundleManager.getBundleInfoForSelf](js-apis-bun
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
-| 名称            | 类型   | 可读 | 可写 | 说明                                                        |
+| 名称            | 类型   | 只读 | 可选 | 说明                                                        |
 | --------------- | ------ | ---- | ---- | ----------------------------------------------------------- |
 | scheme          | string | 是   | 否   | 标识 URI 协议名，常见的有http、https、file、ftp等。          |
 | host            | string | 是   | 否   | 标识 URI 主机地址部分，仅当 scheme 存在时才生效。            |
