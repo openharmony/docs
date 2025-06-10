@@ -1260,7 +1260,7 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
 
 onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceResponse>)
 
-当Web组件加载url之前触发该回调，用于拦截url并返回响应数据。
+当Web组件加载url之前触发该回调，用于拦截url并返回响应数据。onInterceptRequest可以拦截所有跳转，需要根据具体业务去做判断。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

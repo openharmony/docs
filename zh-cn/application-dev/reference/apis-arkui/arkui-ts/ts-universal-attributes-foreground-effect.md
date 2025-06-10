@@ -8,7 +8,7 @@
 
 ## foregroundEffect
 
-foregroundEffect(options: ForegroundEffectOptions)
+foregroundEffect(options: ForegroundEffectOptions): T
 
 设置组件的前景属性。
 
@@ -21,6 +21,12 @@ foregroundEffect(options: ForegroundEffectOptions)
 | 参数名 | 类型                                                         | 必填 | 说明                                                 |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
 | options | [ForegroundEffectOptions](#foregroundeffectoptions12) | 是   | 设置组件前景属性包括：模糊半径。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
 
 ## ForegroundEffectOptions<sup>12+</sup>
 前景效果参数。

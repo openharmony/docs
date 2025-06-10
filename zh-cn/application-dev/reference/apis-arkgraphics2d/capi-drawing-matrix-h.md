@@ -4,6 +4,9 @@
 
 文件中定义了与矩阵相关的功能函数。
 
+<!--RP1-->
+**相关示例：** [NDKAPIDrawing (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKAPIDrawing)<!--RP1End-->
+
 **引用文件：** <native_drawing/drawing_matrix.h>
 
 **库：** libnative_drawing.so

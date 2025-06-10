@@ -600,8 +600,8 @@
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
 | radius | number \| [Resource](#resource) | 否 | 投影模糊半径。 <br/>API version 10及以前，默认值：5<br/>API version 11及以后，默认值：20<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|
-| offsetX | number \| [Resource](#resource) | 否 | X轴的偏移量。 <br/>默认值：5<br/>单位：vp |
-| offsetY | number \| [Resource](#resource) | 否 | Y轴的偏移量。 <br/>默认值：5<br/>单位：vp |
+| offsetX | number \| [Resource](#resource) | 否 | X轴偏移量。 <br/>默认值：5<br/>单位：vp |
+| offsetY | number \| [Resource](#resource) | 否 | Y轴偏移量。 <br/>默认值：5<br/>单位：vp |
 
 ## SafeAreaType<sup>10+</sup>
 
@@ -652,15 +652,24 @@
 | 名称     | 描述                                       |
 | -------- | ------------------------------------------ |
 | SYSTEM   | 系统默认非安全区域，包括状态栏、导航栏。   |
+| KEYBOARD<sup>20+</sup> | 软键盘区域。                               |
+| ALL<sup>20+</sup>   | 同时包含SYSTEM和KEYBOARD区域。 |
 
 ## LayoutSafeAreaEdge<sup>12+</sup>
 
 扩展安全区域的方向。
 
-| 名称   | 描述       |
-| ------ | ---------- |
-| TOP    | 上方区域。 |
-| BOTTOM | 下方区域。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 值 | 描述       |
+| ------ | --- | ---------- |
+| TOP    | 0 | 上方区域。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BOTTOM | 1 | 下方区域。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| START<sup>20+</sup>      | 2 | 前部区域。LTR模式时表示左侧区域，RTL模式表示右侧区域。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| END<sup>20+</sup>        | 3 |尾部区域。LTR模式时表示右侧区域，RTL模式表示左侧区域。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| VERTICAL<sup>20+</sup>   | 4 |垂直区域。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| HORIZONTAL<sup>20+</sup> | 5 |水平区域。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| ALL<sup>20+</sup>        | 6 |全部区域。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## TouchPoint<sup>11+</sup>
 

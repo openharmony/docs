@@ -8,7 +8,7 @@
 
 ## motionBlur
 
-motionBlur(value: MotionBlurOptions)
+motionBlur(value: MotionBlurOptions): T
 
 在当前组件由缩放大小或位移变化引起的运动过程中，增加动态模糊效果。
 
@@ -34,9 +34,15 @@ motionBlur(value: MotionBlurOptions)
 | ------ | ----------------------------------------------- | ---- | ------------------ |
 | value  | [MotionBlurOptions](#motionbluroptions对象说明) | 是   | 定义运动模糊参数。 |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## motionBlur<sup>18+</sup>
 
-motionBlur(motionBlur: Optional\<MotionBlurOptions>)
+motionBlur(motionBlur: Optional\<MotionBlurOptions>): T
 
 在当前组件由缩放大小或位移变化引起的运动过程中，增加动态模糊效果。与[motionBlur](#motionblur)相比，motionBlur参数新增了对undefined类型的支持。
 
@@ -61,6 +67,12 @@ motionBlur(motionBlur: Optional\<MotionBlurOptions>)
 |   参数名    |    类型                                                      |  必填  |     说明                                                       |
 | ---------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | motionBlur | Optional\<[MotionBlurOptions](#motionbluroptions对象说明)> | 是   | 定义运动模糊参数。<br/>当motionBlur的值为undefined时，维持之前取值。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
 
 ## MotionBlurOptions对象说明
 

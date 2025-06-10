@@ -30,7 +30,7 @@ Counter()
 
 enableInc(value: boolean)
 
-设置增加按钮禁用或使能。
+设置增加按钮的禁用或使能。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -46,7 +46,7 @@ enableInc(value: boolean)
 
 enableDec(value: boolean)
 
-设置减少按钮禁用或使能。
+设置减少按钮的禁用或使能。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

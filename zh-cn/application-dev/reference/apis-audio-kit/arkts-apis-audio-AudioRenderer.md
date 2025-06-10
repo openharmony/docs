@@ -421,7 +421,7 @@ start(callback: AsyncCallback<void\>): void
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当启动音频采集器成功，err为undefined，否则为错误对象。异常将返回error对象：<br>错误码6800301：表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当启动音频渲染器成功，err为undefined，否则为错误对象。异常将返回error对象：<br>错误码6800301：表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
 
 **示例：**
 
@@ -449,7 +449,7 @@ start(): Promise<void\>
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise对象，成功表示启动音频采集器成功，异常将返回error对象：<br>错误码6800301：表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
+| Promise\<void> | Promise对象，成功表示启动音频渲染器成功。异常将返回error对象：<br>错误码6800301：表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
 
 **示例：**
 
@@ -785,6 +785,76 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let timestamp: number = audioRenderer.getAudioTimeSync();
   console.info(`Current timestamp: ${timestamp}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
+## getAudioTimestampInfo<sup>19+</sup>
+
+getAudioTimestampInfo(): Promise\<AudioTimestampInfo>
+
+获取音频流时间戳和当前数据帧位置信息。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型                                                    | 描述                    |
+|-------------------------------------------------------| ----------------------- |
+| Promise\<[AudioTimestampInfo](arkts-apis-audio-i.md#audiotimestampinfo19)> | Promise对象，返回音频流时间戳和当前数据帧位置信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800103 | Operation not permit at current state. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioRenderer.getAudioTimestampInfo().then((audioTimestampInfo: audio.AudioTimestampInfo) => {
+  console.info(`Current timestamp: ${audioTimestampInfo.timestamp}`);
+}).catch((err: BusinessError) => {
+  console.error(`ERROR: ${err}`);
+});
+```
+
+## getAudioTimestampInfoSync<sup>19+</sup>
+
+getAudioTimestampInfoSync(): AudioTimestampInfo
+
+获取音频流时间戳和当前数据帧位置信息。同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型             | 描述                    |
+| ---------------- | ----------------------- |
+| [AudioTimestampInfo](arkts-apis-audio-i.md#audiotimestampinfo19) | 返回音频流时间戳和当前数据帧位置信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800103 | Operation not permit at current state. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let audioTimestampInfo: audio.AudioTimestampInfo = audioRenderer.getAudioTimestampInfoSync();
+  console.info(`Current timestamp: ${audioTimestampInfo.timestamp}`);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`ERROR: ${error}`);
@@ -1859,7 +1929,7 @@ let markReachCallback = (position: number) => {
   }
 };
 
-audioRenderer.on('markReach', markReachCallback);
+audioRenderer.on('markReach', 1000, markReachCallback);
 
 audioRenderer.off('markReach', markReachCallback);
 ```
@@ -2194,7 +2264,7 @@ let bufferSize: number = 0;
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let path = context.cacheDir;
 // 确保该沙箱路径下存在该资源。
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let writeDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {
@@ -2261,7 +2331,7 @@ audioRenderer.on('writeData', writeDataCallback);
 
 audioRenderer.off('writeData', writeDataCallback);
 ```
-## write<sup>8+(deprecated)</sup>
+## write<sup>(deprecated)</sup>
 
 write(buffer: ArrayBuffer, callback: AsyncCallback\<number>): void
 
@@ -2298,7 +2368,7 @@ audioRenderer.getBufferSize().then((data: number)=> {
   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.cacheDir;
-  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
   let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   fs.stat(filePath).then(async (stat: fs.Stat) => {
     let buf = new ArrayBuffer(bufferSize);
@@ -2325,7 +2395,7 @@ audioRenderer.getBufferSize().then((data: number)=> {
 });
 ```
 
-## write<sup>8+(deprecated)</sup>
+## write<sup>(deprecated)</sup>
 
 write(buffer: ArrayBuffer): Promise\<number>
 
@@ -2367,7 +2437,7 @@ audioRenderer.getBufferSize().then((data: number) => {
   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.cacheDir;
-  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
   let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   fs.stat(filePath).then(async (stat: fs.Stat) => {
     let buf = new ArrayBuffer(bufferSize);
@@ -2391,7 +2461,7 @@ audioRenderer.getBufferSize().then((data: number) => {
 });
 ```
 
-## setRenderRate<sup>8+(deprecated)</sup>
+## setRenderRate<sup>(deprecated)</sup>
 
 setRenderRate(rate: AudioRendererRate, callback: AsyncCallback\<void>): void
 
@@ -2423,7 +2493,7 @@ audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL, (err: Bu
 });
 ```
 
-## setRenderRate<sup>8+(deprecated)</sup>
+## setRenderRate<sup>(deprecated)</sup>
 
 setRenderRate(rate: AudioRendererRate): Promise\<void>
 
@@ -2458,7 +2528,7 @@ audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL).then(() 
 });
 ```
 
-## getRenderRate<sup>8+(deprecated)</sup>
+## getRenderRate<sup>(deprecated)</sup>
 
 getRenderRate(callback: AsyncCallback\<AudioRendererRate>): void
 
@@ -2485,7 +2555,7 @@ audioRenderer.getRenderRate((err: BusinessError, renderRate: audio.AudioRenderer
 });
 ```
 
-## getRenderRate<sup>8+(deprecated)</sup>
+## getRenderRate<sup>(deprecated)</sup>
 
 getRenderRate(): Promise\<AudioRendererRate>
 
@@ -2514,7 +2584,7 @@ audioRenderer.getRenderRate().then((renderRate: audio.AudioRendererRate) => {
 });
 ```
 
-## getRenderRateSync<sup>10+(deprecated)</sup>
+## getRenderRateSync<sup>(deprecated)</sup>
 
 getRenderRateSync(): AudioRendererRate
 

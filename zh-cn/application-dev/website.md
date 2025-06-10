@@ -1153,9 +1153,13 @@
         - 蓝牙<!--bluetooth-->
           - [蓝牙服务开发概述](connectivity/bluetooth/bluetooth-overview.md)
           - [蓝牙设置](connectivity/bluetooth/br-development-guide.md)
-          - [广播与扫描](connectivity/bluetooth/ble-development-guide.md)
-          - [通用属性协议](connectivity/bluetooth/gatt-development-guide.md)
-          - [串行通信](connectivity/bluetooth/spp-development-guide.md)
+          - 传统蓝牙<!--bluetooth-br-->
+            - [查找设备](connectivity/bluetooth/br-discovery-development-guide.md)
+            - [配对连接设备](connectivity/bluetooth/br-pair-device-development-guide.md)
+            - [连接和传输数据](connectivity/bluetooth/spp-development-guide.md)
+          - 低功耗蓝牙<!--bluetooth-ble-->
+            - [查找设备](connectivity/bluetooth/ble-development-guide.md)
+            - [连接和传输数据](connectivity/bluetooth/gatt-development-guide.md)
         - NFC<!--nfc-->
           - [NFC标签读写开发指南](connectivity/nfc/nfc-tag-access-guide.md)
           - [HCE卡模拟开发指南](connectivity/nfc/nfc-hce-guide.md)
@@ -2188,7 +2192,6 @@
             <!--Del-->
             - [ApplicationInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-ApplicationInfo-sys.md)
             - [AppProvisionInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-AppProvisionInfo-sys.md)
-            - [BundleInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-BundleInfo-sys.md)
             - [BundlePackInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-BundlePackInfo-sys.md)
             - [BundleResourceInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-BundleResourceInfo-sys.md)
             - [BusinessAbilityInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-businessAbilityInfo-sys.md)
@@ -2302,7 +2305,8 @@
         - [@ohos.data.distributedKVStore (分布式键值数据库)](reference/apis-arkdata/js-apis-distributedKVStore.md)
         - [@ohos.data.preferences (用户首选项)](reference/apis-arkdata/js-apis-data-preferences.md)
         - [@ohos.data.sendablePreferences (共享用户首选项)](reference/apis-arkdata/js-apis-data-sendablePreferences.md)
-        - [@ohos.data.relationalStore (关系型数据库)](reference/apis-arkdata/arkts-apis-data-relationalStore.md)
+        - @ohos.data.relationalStore (关系型数据库)<!--js-apis-data-relationalStore-->
+          - [模块描述](reference/apis-arkdata/arkts-apis-data-relationalStore.md)
           - [Functions](reference/apis-arkdata/arkts-apis-data-relationalStore-f.md)
           - [Interface (RdbStore)](reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md)
           - [Interface (ResultSet)](reference/apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md)
@@ -2509,7 +2513,8 @@
             - [NodeContent](reference/apis-arkui/js-apis-arkui-NodeContent.md)
         - 窗口管理<!--window-manager-api-->
           - [@ohos.PiPWindow (画中画窗口)](reference/apis-arkui/js-apis-pipWindow.md)
-          - [@ohos.window (窗口)](reference/apis-arkui/arkts-apis-window.md)
+          - @ohos.window (窗口)<!--js-apis-window-->
+            - [模块描述](reference/apis-arkui/arkts-apis-window.md)
             - [Functions](reference/apis-arkui/arkts-apis-window-f.md)
             - [Interface (Window)](reference/apis-arkui/arkts-apis-window-Window.md)
             - [Interface (WindowStage)](reference/apis-arkui/arkts-apis-window-WindowStage.md)
@@ -3170,9 +3175,9 @@
           - [交互事件错误码](reference/apis-arkui/errorcode-event.md)
           - [Canvas错误码](reference/apis-arkui/errorcode-canvas.md)
           - [自定义节点错误码](reference/apis-arkui/errorcode-node.md)
+          - [UIExtension错误码](reference/apis-arkui/errorcode-uiextension.md)
           <!--Del-->
           - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
-          - [UIExtension错误码](reference/apis-arkui/errorcode-uiextension.md)
           <!--DelEnd-->
         - UI编译<!--arkui-compile-arkts-errcode-->
           - [编译错误码](reference/apis-arkui/_ark_ui_compile.md)
@@ -3193,6 +3198,7 @@
           - [Class (NativeMediaPlayerSurfaceInfo)](reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerSurfaceInfo.md)
           - [Class (PdfData)](reference/apis-arkweb/arkts-apis-webview-PdfData.md)
           - [Class (ProxyConfig)](reference/apis-arkweb/arkts-apis-webview-ProxyConfig.md)
+          - [Class (ProxyController)](reference/apis-arkweb/arkts-apis-webview-ProxyController.md)
           - [Class (ProxyRule)](reference/apis-arkweb/arkts-apis-webview-ProxyRule.md)
           - [Class (WebviewController)](reference/apis-arkweb/arkts-apis-webview-WebviewController.md)
           - [Class (WebCookieManager)](reference/apis-arkweb/arkts-apis-webview-WebCookieManager.md)
@@ -4288,23 +4294,25 @@
           - [native_audio_routing_manager.h](reference/apis-audio-kit/capi-native-audio-routing-manager-h.md)
           - [native_audio_session_manager.h](reference/apis-audio-kit/capi-native-audio-session-manager-h.md)
           - [native_audio_stream_manager.h](reference/apis-audio-kit/capi-native-audio-stream-manager-h.md)
+          - [native_audio_volume_manager.h](reference/apis-audio-kit/capi-native-audio-volume-manager-h.md)
           - [native_audiorenderer.h](reference/apis-audio-kit/capi-native-audiorenderer-h.md)
           - [native_audio_common.h](reference/apis-audio-kit/capi-native-audio-common-h.md)
           - [native_audio_device_base.h](reference/apis-audio-kit/capi-native-audio-device-base-h.md)
           - [native_audiostream_base.h](reference/apis-audio-kit/capi-native-audiostream-base-h.md)
           - [native_audiostreambuilder.h](reference/apis-audio-kit/capi-native-audiostreambuilder-h.md)
         - 结构体<!--audio-struct-->
+          - [OH_AudioManager](reference/apis-audio-kit/capi-oh-audiomanager.md)
+          - [OH_AudioRoutingManager](reference/apis-audio-kit/capi-oh-audioroutingmanager.md)
           - [OH_AudioSession_Strategy](reference/apis-audio-kit/capi-oh-audiosession-strategy.md)
           - [OH_AudioSession_DeactivatedEvent](reference/apis-audio-kit/capi-oh-audiosession-deactivatedevent.md)
+          - [OH_AudioSessionManager](reference/apis-audio-kit/capi-oh-audiosessionmanager.md)
+          - [OH_AudioStreamManager](reference/apis-audio-kit/capi-oh-audiostreammanager.md)
+          - [OH_AudioVolumeManager](reference/apis-audio-kit/capi-oh-audiovolumemanager.md)
           - [OH_AudioDeviceDescriptorArray](reference/apis-audio-kit/capi-oh-audiodevicedescriptorarray.md)
+          - [OH_AudioDeviceDescriptor](reference/apis-audio-kit/capi-oh-audiodevicedescriptor.md)
           - [OH_AudioStreamInfo](reference/apis-audio-kit/capi-oh-audiostreaminfo.md)
           - [OH_AudioRenderer_Callbacks_Struct](reference/apis-audio-kit/capi-oh-audiorenderer-callbacks-struct.md)
           - [OH_AudioCapturer_Callbacks_Struct](reference/apis-audio-kit/capi-oh-audiocapturer-callbacks-struct.md)
-          - [OH_AudioManager](reference/apis-audio-kit/capi-oh-audiomanager.md)
-          - [OH_AudioRoutingManager](reference/apis-audio-kit/capi-oh-audioroutingmanager.md)
-          - [OH_AudioSessionManager](reference/apis-audio-kit/capi-oh-audiosessionmanager.md)
-          - [OH_AudioStreamManager](reference/apis-audio-kit/capi-oh-audiostreammanager.md)
-          - [OH_AudioDeviceDescriptor](reference/apis-audio-kit/capi-oh-audiodevicedescriptor.md)
           - [OH_AudioStreamBuilderStruct](reference/apis-audio-kit/capi-oh-audiostreambuilderstruct.md)
           - [OH_AudioRendererStruct](reference/apis-audio-kit/capi-oh-audiorendererstruct.md)
           - [OH_AudioCapturerStruct](reference/apis-audio-kit/capi-oh-audiocapturerstruct.md)

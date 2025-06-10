@@ -201,7 +201,7 @@ struct BorderImage {
 
 ### 示例3（使用LocalizedEdgeWidths类型值）
 
-borderImage接口中的slice、width、outset属性值使用[LocalizedEdgeWidths](ts-types.md#localizededgewidths12)类型。
+borderImage接口中的slice、width和outset属性值使用[LocalizedEdgeWidths](ts-types.md#localizededgewidths12)类型。
 
 ```ts
 // xxx.ets
