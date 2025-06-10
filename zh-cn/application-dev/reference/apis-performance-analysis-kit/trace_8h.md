@@ -93,7 +93,6 @@ OH_HiTrace_CountTraceEx(HITRACE_LEVEL_COMMERCIAL, "testName", 500);
 | [HiTrace_Flag](_hitrace.md#hitrace_flag) {<br/>HITRACE_FLAG_DEFAULT = 0, <br/>HITRACE_FLAG_INCLUDE_ASYNC = 1 &lt;&lt; 0, <br/>HITRACE_FLAG_DONOT_CREATE_SPAN = 1 &lt;&lt; 1, <br/>HITRACE_FLAG_TP_INFO = 1 &lt;&lt; 2,<br/>HITRACE_FLAG_NO_BE_INFO = 1 &lt;&lt; 3, <br/>HITRACE_FLAG_DONOT_ENABLE_LOG = 1 &lt;&lt; 4, <br/>HITRACE_FLAG_FAULT_TRIGGER = 1 &lt;&lt; 5, <br/>HITRACE_FLAG_D2D_TP_INFO = 1 &lt;&lt; 6<br/>} | HiTrace标志位。  | 
 | [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) {<br/>HITRACE_TP_CS = 0, <br/>HITRACE_TP_CR = 1, <br/>HITRACE_TP_SS = 2, <br/>HITRACE_TP_SR = 3,<br/>HITRACE_TP_GENERAL = 4<br/>} | HiTrace打点类型。  | 
 | [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) {<br/>HITRACE_CM_DEFAULT = 0, <br/>HITRACE_CM_THREAD = 1, <br/>HITRACE_CM_PROCESS = 2, <br/>HITRACE_CM_DEVICE = 3<br/>} | HiTrace通信模式枚举。  | 
-| [HiTrace_Output_Level](_hitrace.md#hitrace_output_level) {<br/>HITRACE_LEVEL_DEBUG = 0, <br/>HITRACE_LEVEL_INFO = 1, <br/>HITRACE_LEVEL_CRITICAL = 2, <br/>HITRACE_LEVEL_COMMERCIAL = 3, <br/>HITRACE_LEVEL_MAX = HITRACE_LEVEL_COMMERCIAL<br/>} | HiTrace输出级别。  | 
 
 
 ### 函数
@@ -126,9 +125,3 @@ OH_HiTrace_CountTraceEx(HITRACE_LEVEL_COMMERCIAL, "testName", 500);
 | void [OH_HiTrace_StartAsyncTrace](_hitrace.md#oh_hitrace_startasynctrace) (const char \*name, int32_t taskId) | 标记一个异步跟踪耗时任务的开始。  | 
 | void [OH_HiTrace_FinishAsyncTrace](_hitrace.md#oh_hitrace_finishasynctrace) (const char \*name, int32_t taskId) | 标记一个异步跟踪耗时任务的结束。  | 
 | void [OH_HiTrace_CountTrace](_hitrace.md#oh_hitrace_counttrace) (const char \*name, int64_t count) | 用于跟踪给定整数变量名和整数值。  | 
-| void [OH_HiTrace_StartTraceEx](_hitrace.md#oh_hitrace_starttraceex) ([HiTrace_Output_Level](_hitrace.md#hitrace_output_level) level, const char \*name, const char \*customArgs) | 标记一个同步跟踪耗时任务的开始，分级控制跟踪输出。  | 
-| void [OH_HiTrace_FinishTraceEx](_hitrace.md#oh_hitrace_finishtraceex) ([HiTrace_Output_Level](_hitrace.md#hitrace_output_level) level) | 标记一个同步跟踪耗时任务的结束，分级控制跟踪输出。  | 
-| void [OH_HiTrace_StartAsyncTraceEx](_hitrace.md#oh_hitrace_startasynctraceex) ([HiTrace_Output_Level](_hitrace.md#hitrace_output_level) level, const char \*name, int32_t taskId, const char \*customCategory, const char \*customArgs) | 标记一个异步跟踪耗时任务的开始，分级控制跟踪输出。  | 
-| void [OH_HiTrace_FinishAsyncTraceEx](_hitrace.md#oh_hitrace_finishasynctraceex) ([HiTrace_Output_Level](_hitrace.md#hitrace_output_level) level, const char \*name, int32_t taskId) | 标记一个异步跟踪耗时任务的结束，分级控制跟踪输出。  | 
-| void [OH_HiTrace_CountTraceEx](_hitrace.md#oh_hitrace_counttraceex) ([HiTrace_Output_Level](_hitrace.md#hitrace_output_level) level, const char \*name, int64_t count) | 标记一个跟踪的整数变量，分级控制跟踪输出。  | 
-| bool [OH_HiTrace_IsTraceEnabled](_hitrace.md#oh_hitrace_istraceenabled) () | 判断当前是否开启应用trace捕获。应用trace捕获未开启时，HiTraceMeter性能跟踪打点无效。  | 
