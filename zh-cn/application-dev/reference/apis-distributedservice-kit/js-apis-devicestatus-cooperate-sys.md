@@ -701,12 +701,7 @@ activateCooperateWithOptions(targetNetworkId: string, inputDeviceId: number,
 | --------- | ------ | ---- | ------------------------ |
 | targetNetworkId | string | 是   | 键鼠穿越目标设备描述符。 |
 | inputDeviceId   | number | 是   | 待穿越输入设备标识符。   |
-
-**返回值**：
-
-| 参数                   | 说明                                                         |
-| ---------------------- | ------------------------------------------------------------ |
-| cooperateOptions | 对端设备的配合选项。 |
+|cooperateOptions | CooperateOptions | 否   | 对端设备的配合选项。 |
 
 **错误码：**
 
