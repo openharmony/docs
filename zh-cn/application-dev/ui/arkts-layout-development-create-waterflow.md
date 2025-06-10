@@ -23,11 +23,7 @@ ArkUI提供了WaterFlow容器组件，用于构建瀑布流布局。WaterFlow组
 
 > **说明：** 
 >
-> WaterFlow组件使用通用属性[clip<sup>12+</sup>](ts-universal-attributes-sharp-clipping.md#clip12)和通用属性[clip<sup>18+</sup>](ts-universal-attributes-sharp-clipping.md#clip18)时默认值都为true。
->
-> WaterFlow组件padding区域会被[裁剪](ts-container-scrollable-common.md#contentclipmode14枚举说明)不显示。
->
-> 示例代码仅展示主体代码，完整示例请参考 [WaterFlow 组件-示例1（使用基本瀑布流）](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md#示例1使用基本瀑布流)。
+> 完整示例请参考 [WaterFlow 组件-示例1（使用基本瀑布流）](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md#示例1使用基本瀑布流)。
 
 ```ts
   @Builder
@@ -97,9 +93,7 @@ ArkUI提供了WaterFlow容器组件，用于构建瀑布流布局。WaterFlow组
 
 > **说明：** 
 >
-> WaterFlow组件使用通用属性[clip<sup>12+</sup>](ts-universal-attributes-sharp-clipping.md#clip12)和通用属性[clip<sup>18+</sup>](ts-universal-attributes-sharp-clipping.md#clip18)时默认值都为true。
->
-> WaterFlow组件padding区域会被[裁剪](ts-container-scrollable-common.md#contentclipmode14枚举说明)不显示。
+> 完整示例请参考 [WaterFlow 组件-示例1（使用基本瀑布流）](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md#示例1使用基本瀑布流)。
 
 ```ts
   build() {
@@ -139,9 +133,7 @@ ArkUI提供了WaterFlow容器组件，用于构建瀑布流布局。WaterFlow组
 
 > **说明：** 
 >
-> WaterFlow组件使用通用属性[clip<sup>12+</sup>](ts-universal-attributes-sharp-clipping.md#clip12)和通用属性[clip<sup>18+</sup>](ts-universal-attributes-sharp-clipping.md#clip18)时默认值都为true。
->
-> WaterFlow组件padding区域会被[裁剪](ts-container-scrollable-common.md#contentclipmode14枚举说明)不显示。
+> 完整示例请参考 [WaterFlow 组件-示例4（双指缩放改变列数）](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md#示例4双指缩放改变列数)。
 
 ```ts
 // 通过状态变量设置列数，可以按需修改触发布局更新
@@ -221,9 +213,7 @@ struct ReusableListItem {
 
 > **说明：** 
 >
-> WaterFlow组件使用通用属性[clip<sup>12+</sup>](ts-universal-attributes-sharp-clipping.md#clip12)和通用属性[clip<sup>18+</sup>](ts-universal-attributes-sharp-clipping.md#clip18)时默认值都为true。
->
-> WaterFlow组件padding区域会被[裁剪](ts-container-scrollable-common.md#contentclipmode14枚举说明)不显示。
+> 完整示例请参考 [WaterFlow 组件-示例3（使用分组）](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md#示例3使用分组)。
 
 ```ts
 @Entry
