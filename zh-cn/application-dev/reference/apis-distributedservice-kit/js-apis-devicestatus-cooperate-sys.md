@@ -684,7 +684,7 @@ try {
 }
 ```
 
-## cooperate.activateCooperateWithOptions<sup>12+</sup>
+## cooperate.activateCooperateWithOptions<sup>20+</sup>
 
 activateCooperateWithOptions(targetNetworkId: string, inputDeviceId: number,
     cooperateOptions?: CooperateOptions ): Promise<void>;
@@ -796,7 +796,7 @@ try {
 | displayHeight | number         | 是   | 否   | 鼠标所在屏幕高度，单位：px。 |
 
 
-## CooperateOptions<sup>12+</sup>
+## CooperateOptions<sup>20+</sup>
 
 键鼠穿越的消息。
 
