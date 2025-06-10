@@ -684,6 +684,60 @@ try {
 }
 ```
 
+## cooperate.activateCooperateWithOptions<sup>12+</sup>
+
+activateCooperateWithOptions(targetNetworkId: string, inputDeviceId: number,
+    cooperateOptions?: CooperateOptions;
+
+使用选项开始屏幕跳转。
+
+**需要权限**：ohos.permission.COOPERATE_MANAGER
+
+**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
+
+**参数**：
+
+| 参数名    | 类型   | 必填 | 说明                     |
+| --------- | ------ | ---- | ------------------------ |
+| targetNetworkId | string | 是   | 键鼠穿越目标设备描述符。 |
+| inputDeviceId   | number | 是   | 待穿越输入设备标识符。   |
+
+**返回值**：
+
+| 参数                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| cooperateOptions | 对端设备的配合选项。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+| 20900001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status. |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@ohos.base';
+let targetNetworkId = "networkId";
+let inputDeviceId = 0;
+try {
+ cooperate.activateCooperateWithOptions(targetNetworkId, inputDeviceId).then(() => {
+    console.log(`activateCooperateWithOptions success.`);
+  }, (error: BusinessError) => {
+    console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  });
+} catch (error) {
+  console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
 
 
 ## CooperateMessage<sup>11+</sup>
@@ -744,6 +798,18 @@ try {
 | displayWidth  | number         | 是   | 否   | 鼠标所在屏幕宽度，单位：px。 |
 | displayHeight | number         | 是   | 否   | 鼠标所在屏幕高度，单位：px。 |
 
+
+## CooperateOptions<sup>12+</sup>
+
+键鼠穿越的消息。
+
+**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
+
+| 名称      | 类型           | 可读 | 可写 | 说明                     |
+| --------- | -------------- | ---- | ---- | ------------------------ |
+| displayX      | number         | 是   | 否   | 鼠标X坐标位置。 |
+| displayY      | number         | 是   | 否   | 鼠标Y坐标位置。 |
+| displayId     | number         | 是   | 否   | 对端设备屏幕标识。 |
 
 ## cooperate.prepare<sup>(deprecated)</sup>
 
