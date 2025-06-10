@@ -1217,9 +1217,9 @@ getxattrSync(path: string, key: string): string
 
 **返回值：**
 
-  | 类型     | 说明                                       |
-  | ------ | ---------------------------------------- |
-  | key| string对象。返回扩展属性的value。      |
+  | 类型    | 说明                |
+  | ------ | ------------------- |
+  | string | 返回扩展属性的value。|
 
 **错误码：**
 
@@ -4223,6 +4223,12 @@ getBaseFile(): File
 文件描述符fd需要由用户调用close方法关闭。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**返回值：**
+
+  | 类型          | 说明            |
+  | ------------- | -------------- |
+  | [File](#file) | 打开的File对象。|
 
 **错误码：**
 
