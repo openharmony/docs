@@ -1360,7 +1360,7 @@ type DataProgressListener = (progressInfo: ProgressInfo, data: UnifiedData | nul
 
 ## DataLoadInfo<sup>20+</sup>
 
-描述数据的类型与数量要求。
+用于描述被加载数据的类型与数量。
 
 - 在**数据发送方**中使用，表示实际可提供的数据范围，必须设置该字段。
 - 在**数据接收方**中使用，表示期望加载的数据类型与数量，可根据需要设置该字段。
@@ -1390,7 +1390,7 @@ type DataLoadHandler = (acceptableInfo?: DataLoadInfo) => UnifiedData | null
 
 | 参数名      | 类型                            | 必填    | 说明           |
 |----------|-------------------------------|-------|--------------|
-| acceptableInfo | [DataLoadInfo](#dataloadinfo20) | 否     | 表示数据接收方可以接受的数据类型和数量。 |
+| acceptableInfo | [DataLoadInfo](#dataloadinfo20) | 否     | 表示数据接收方可以接受的数据类型和数量，默认为空。 |
 
 ## DataLoadParams<sup>20+</sup>
 
