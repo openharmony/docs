@@ -495,6 +495,10 @@ UDP与TCP流程大体类似，下面以TCP为例：
 3. 绑定服务器IP地址和端口，确保bind成功后，再订阅TLS Socket相关的订阅事件。
 
     ```ts
+    class SocketInfo {
+      message: ArrayBuffer = new ArrayBuffer(1);
+      remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+    }
     // 绑定本地IP地址和端口。
     let ipAddress : socket.NetAddress = {} as socket.NetAddress;
     ipAddress.address = "192.168.xxx.xxx";
@@ -595,6 +599,10 @@ UDP与TCP流程大体类似，下面以TCP为例：
 3. 绑定服务器IP地址和端口，确保bind成功后，再订阅TLS Socket相关的订阅事件。。
 
     ```ts
+    class SocketInfo {
+      message: ArrayBuffer = new ArrayBuffer(1);
+      remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+    }
     // 绑定本地IP地址和端口。
     let ipAddress : socket.NetAddress = {} as socket.NetAddress;
     ipAddress.address = "192.168.xxx.xxx";
