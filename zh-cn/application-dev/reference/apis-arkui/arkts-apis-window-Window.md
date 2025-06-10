@@ -1214,7 +1214,7 @@ getImmersiveModeEnabledState(): boolean
 **返回值：**
 | 类型     | 说明                                                                                 |
 | ------- | ------------------------------------------------------------------------------------ |
-| boolean | 是否通过[setImmersiveModeEnabledState()](#setimmersivemodeenabledstate12)设置开启沉浸式布局。</br>true表示通过setImmersiveModeEnabledState()设置开启沉浸式布局。</br>false表示表示通过setImmersiveModeEnabledState()设置关闭沉浸式布局。|
+| boolean | 是否通过[setImmersiveModeEnabledState()](#setimmersivemodeenabledstate12)设置开启沉浸式布局。</br>true表示通过setImmersiveModeEnabledState()设置开启沉浸式布局；</br>false表示通过setImmersiveModeEnabledState()设置关闭沉浸式布局。|
 
 **错误码：**
 
