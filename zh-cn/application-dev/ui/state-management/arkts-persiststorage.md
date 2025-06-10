@@ -144,7 +144,7 @@ let aProp = AppStorage.setOrCreate('aProp', 47);
 PersistentStorage.persistProp('aProp', 48);
 ```
 
-应用在非首次运行时，先执行AppStorage.setOrCreate('aProp', 47)：属性“aProp”在AppStorage中创建，其类型为number，其值设置为指定的默认值47。“aProp”是持久化的属性，所以会被写回PersistentStorage磁盘中，PersistentStorage存储的上次退出应用的值丢失。
+应用在非首次运行时，先执行AppStorage.setOrCreate('aProp', 47)：属性“aProp”在AppStorage中创建，其类型为number，其值设置为指定的默认值47。“aProp”是持久化的属性，所以会被写回PersistentStorage磁盘中，PersistentStorage存储的上次退出应用的值被覆盖。
 
 PersistentStorage.persistProp('aProp', 48)：在PersistentStorage中查找到“aProp”，值为刚刚使用AppStorage接口写入的47。
 
@@ -160,7 +160,7 @@ if (AppStorage.get('aProp') > 50) {
 }
 ```
 
-示例代码在读取PersistentStorage储存的数据后判断“aProp”的值是否大于50，如果大于50的话使用AppStorage的接口设置为47。
+示例代码在读取PersistentStorage存储的数据后，判断“aProp”的值是否大于50，如果大于50，则使用AppStorage的接口将其设置为47。
 
 
 ### 支持联合类型
