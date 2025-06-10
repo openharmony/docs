@@ -4483,11 +4483,15 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 
 > **说明：**
 >
-> 下载的页面资源，会缓存五分钟左右，超过这段时间Web组件会自动释放。
+> - 下载的页面资源，会缓存五分钟左右，超过这段时间Web组件会自动释放。
 >
-> prefetchPage对302重定向页面同样正常预取。
+> - prefetchPage对302重定向页面同样正常预取。
 >
-> 先执行prefetchPage，再加载页面时，已预取的资源将直接从缓存中加载。
+> - 先执行prefetchPage，再加载页面时，已预取的资源将直接从缓存中加载。
+>
+> - 连续prefetchPage多个url只有第一个生效。
+>
+> - prefetchPage有时间限制，500ms内不能多次预取。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
