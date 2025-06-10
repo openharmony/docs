@@ -1214,7 +1214,9 @@ getImmersiveModeEnabledState(): boolean
 **返回值：**
 | 类型     | 说明                                                                                 |
 | ------- | ------------------------------------------------------------------------------------ |
-| boolean | 是否通过[setImmersiveModeEnabledState()](#setimmersivemodeenabledstate12)设置开启沉浸式布局。<br>true表示开启，false表示关闭。</br> |
+| boolean | 是否通过[setImmersiveModeEnabledState()](#setimmersivemodeenabledstate12)设置开启沉浸式布局。
+            </br>true表示通过[setImmersiveModeEnabledState()](#setimmersivemodeenabledstate12)设置开启沉浸式布局。
+            </br>false表示表示通过[setImmersiveModeEnabledState()](#setimmersivemodeenabledstate12)设置关闭沉浸式布局。|
 
 **错误码：**
 
@@ -1247,7 +1249,7 @@ isImmersiveLayout(): boolean
 **返回值：**
 | 类型     | 说明                                                                                 |
 | ------- | ------------------------------------------------------------------------------------ |
-| boolean | 是否已经开启沉浸式布局。true表示开启，false表示关闭。</br>子窗默认为ture，主窗、系统窗默认为false。|
+| boolean | 是否处于沉浸式布局状态。true表示处于沉浸式布局状态，false表示不处于沉浸式布局状态。</br>子窗默认为ture，主窗、系统窗默认为false。|
 
 **错误码：**
 
