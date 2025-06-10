@@ -269,7 +269,7 @@ IP配置信息。
 
 turnOnWifi(admin: Want, isForce: boolean): void
 
-强制打开Wi-Fi开关。
+打开Wi-Fi开关。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -282,7 +282,7 @@ turnOnWifi(admin: Want, isForce: boolean): void
 | 参数名  | 类型                                                    | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
-| isForce | boolean                                                 | 是   | 是否需要强制打开Wi-Fi功能。true表示强制开启Wi-Fi，false表示非强制开启Wi-Fi。 |
+| isForce | boolean                                                 | 是   | 是否强制打开Wi-Fi功能。<br/>true表示强制开启Wi-Fi，强制开启后不支持用户在设备上手动关闭Wi-Fi开关，必须采用[turnOffWifi](https://gitee.com/openharmony/docs/pulls/86803/files#wifimanagerturnoffwifi20)接口关闭。false表示非强制开启Wi-Fi，此时用户可以在设备上手动操作关闭Wi-Fi开关。 |
 
 **错误码**：
 
@@ -299,7 +299,7 @@ turnOnWifi(admin: Want, isForce: boolean): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { wifiManager } from '@kit.MDMKit'
+import { wifiManager } from '@kit.MDMKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -346,7 +346,7 @@ turnOffWifi(admin: Want): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { wifiManager } from '@kit.MDMKit'
+import { wifiManager } from '@kit.MDMKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
