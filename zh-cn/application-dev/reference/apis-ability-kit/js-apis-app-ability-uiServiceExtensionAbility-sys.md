@@ -96,7 +96,7 @@ class UIServiceExt extends UIServiceExtensionAbility {
 
 onConnect(want: Want, proxy: UIServiceHostProxy): void
 
-[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)生命周期回调。如果是[connectUIServiceExtensionAbility()](js-apis-inner-application-uiExtensionContext.md#connectuiserviceextensionability14)拉起的服务，会在[onCreate()](#uiserviceextensionabilityoncreate)之后回调。接收一个[UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md)对象，用于客户端和服务端进行通信。
+[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)生命周期回调。如果是[connectUIServiceExtensionAbility()](js-apis-inner-application-uiExtensionContext.md#connectuiserviceextensionability14)拉起的服务，会在[onCreate()](#oncreate)之后回调。接收一个[UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md)对象，用于客户端和服务端进行通信。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
