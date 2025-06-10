@@ -88,7 +88,7 @@
     ```ts
     import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { PromptAction } from '@kit.ArkUI';
+    import { promptAction } from '@kit.ArkUI';
     
     const TAG: string = '[MigrationAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -103,10 +103,9 @@
         // 应用可根据源端版本号设置支持接续的最小兼容版本号，源端版本号可从app.json5文件中的versionCode字段获取；防止目标端版本号过低导致不兼容。
         let versionThreshold: number = -1; // 替换为应用自己支持兼容的最小版本号
         // 兼容性校验
-        let promptAction: promptAction = uiContext.getPromptAction;
         if (targetVersion < versionThreshold) {
           // 建议在校验版本兼容性失败后，提示用户拒绝迁移的原因
-          promptAction.showToast({
+          promptAction.openToast({
               message: '目标端应用版本号过低，不支持接续，请您升级应用版本后再试',
               duration: 2000
           })
@@ -223,16 +222,18 @@
     @Entry
     @Component
     struct Page_MigrationAbilityFirst {
-      private context = this.getUIContext().getHostContext();
-      build() {
-        // ...
-      }
+      private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
       // ...
       onPageShow(){
         // 进入该页面时，将应用设置为可迁移状态
         this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
           hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
         });
+      }
+
+      build() {
+        // ...
       }
     }
     ```
@@ -243,7 +244,7 @@
     // Page_MigrationAbilityFirst.ets
     import { AbilityConstant, common } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { PromptAction } from '@kit.ArkUI';
+    import { promptAction } from '@kit.ArkUI';
     
     const TAG: string = '[MigrationAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -251,8 +252,7 @@
     @Entry
     @Component
     struct Page_MigrationAbilityFirst {
-      private context = this.getUIContext().getHostContext();
-      let promptAction: promptAction = uiContext.getPromptAction;
+      private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
       build() {
         Column() {
           //...
@@ -265,7 +265,7 @@
                 // 点击该按钮时，将应用设置为可迁移状态
                 this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
                   hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
-                  promptAction.showToast({
+                  promptAction.openToast({
                     message: 'Success'
                   });
                 });
@@ -1009,7 +1009,7 @@ export default class MigrationAbility extends UIAbility {
     return wrapper;
   }
 
-  async onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult {
+  async onContinue(wantParam: Record<string, Object>): Promise<AbilityConstant.OnContinueResult> {
     // ...
 
     // 创建了多个资产对象
@@ -1032,6 +1032,7 @@ export default class MigrationAbility extends UIAbility {
     this.d_object = distributedDataObject.create(this.context, source);
 
     // ...
+    return AbilityConstant.OnContinueResult.AGREE;
   }
 }
 ```
