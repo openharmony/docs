@@ -1468,3 +1468,53 @@ struct MyComponent {
 ```
 
 ![onAxisEvent](figures/onAxisEvent.gif)
+
+### 示例4（BuilderNode共享localStorage）
+该示例演示了如何在BuilderNode通过build方法传入外部localStorage，此时挂载在BuilderNode的所有自定义组件共享该localStorage。
+```ts
+let globalBuilderNode: BuilderNode<[Params]> | null = null;
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({bottom: 36})
+    Test()
+  }
+}
+let localStorage: LocalStorage = new LocalStorage();
+localStorage.setOrCreate('PropA', 'PropA');
+
+class TextNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(context: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(context);
+    if (globalBuilderNode === null) {
+      globalBuilderNode = new BuilderNode(context);
+      globalBuilderNode.build(wrapBuilder<[Params]>(buildText), new Params('builder node text'), { localStorage: localStorage })
+    }
+    this.rootNode.appendChild(globalBuilderNode.getFrameNode());
+    return this.rootNode;
+  }
+}
+@Entry(localStorage)
+@Component
+struct Index {
+  private controller: TextNodeController = new TextNodeController();
+  @LocalStorageLink('PropA') PropA: string = 'Hello World';
+  build() {
+    Row() {
+      Column() {
+        Text(this.PropA)
+        NodeContainer(this.controller)
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
