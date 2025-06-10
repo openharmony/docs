@@ -110,7 +110,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 | 类型     | 说明        | 
 | ------- |-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -237,7 +237,7 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 
 | 类型     | 说明        | 
 | ------- |-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -348,7 +348,7 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -460,7 +460,7 @@ setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -823,7 +823,7 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -982,7 +982,7 @@ setSlotFlagsByBundle(bundle: BundleOption, slotFlags: number): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -1098,7 +1098,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -1683,7 +1683,7 @@ removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -1792,7 +1792,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -1909,7 +1909,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -2308,7 +2308,7 @@ setDistributedEnable(enable: boolean): Promise\<void>
 
 | 类型              | 说明        | 
 |-----------------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -2416,7 +2416,7 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<vo
 
 | 类型              | 说明        | 
 |-----------------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -2745,7 +2745,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 | 类型              | 说明        | 
 |-----------------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -2821,7 +2821,7 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 
 | 类型              | 说明        | 
 |-----------------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -2954,7 +2954,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 
 | 类型              | 说明        | 
 |-----------------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -3013,7 +3013,7 @@ cancelAsBundle(representativeBundle: BundleOption, id: number): Promise\<void\>
 
 | 类型              | 说明        | 
 |-----------------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -3070,7 +3070,7 @@ cancel(representativeBundle: BundleOption, id: number): Promise\<void\>
 
 | 类型              | 说明        | 
 |-----------------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -3242,7 +3242,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 | 类型     | 说明         |
 | ------- |------------|
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -3767,7 +3767,7 @@ triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOption
 
 | 类型 | 说明 |
 | ---- | ----|
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -3827,7 +3827,7 @@ subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>
 
 | 类型 | 说明 |
 | ---- | ----|
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -3884,7 +3884,7 @@ setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: 
 
 | 类型 | 说明 |
 | ---- | ----|
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4001,7 +4001,7 @@ setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void\>
 
 | 类型 | 说明 |
 | ---- | ----|
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4107,7 +4107,7 @@ setBadgeNumberByBundle(bundle: BundleOption, badgeNumber: number): Promise\<void
 
 | 类型            | 说明                      |
 | --------------- | ------------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4223,7 +4223,7 @@ addDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void\>
 
 | 类型      | 说明        |
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4291,7 +4291,7 @@ removeDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void
 
 | 类型      | 说明        |
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
