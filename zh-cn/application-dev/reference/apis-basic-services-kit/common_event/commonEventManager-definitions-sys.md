@@ -90,7 +90,6 @@
 
 **取值：** "usual.event.SHORTCUT_CHANGED"
 
-
 ## Background Tasks Kit 
 
 ### COMMON_EVENT_DEVICE_IDLE_EXEMPTION_LIST_UPDATED<sup>10+<sup>
@@ -110,6 +109,35 @@
 
 **取值：** "usual.event.DEVICE_IDLE_EXEMPTION_LIST_UPDATED"
 
+## Basic Services Kit-定制
+
+### COMMON_EVENT_CONFIG_POLICY_LAYER_UPDATE<sup>20+</sup>
+
+表示配置层级发生变化的公共事件。
+
+在识别完设备归属国家之后，会对设备的配置层级参数进行刷新，刷新完成后会发送此公共事件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** "usual.event.CONFIG_POLICY_LAYER_UPDATE"
+
+### COMMON_EVENT_ROAMING_REGION_CODE_UPDATE<sup>20+</sup>
+
+表示设备漫游国家发生变化的公共事件。
+
+在设备注入网络、驻留网络、GPS定位等属性变化时，进行国家识别，当识别到漫游国家发生变化，则会更新设备漫游国家参数，在更新完成后会发送此公共事件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** "usual.event.ROAMING_REGION_CODE_UPDATE"
 
 ## Basic Services Kit-电源
 
