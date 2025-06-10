@@ -86,8 +86,8 @@ For details about how to use the APIs (such as parameter usage restrictions and 
                           auto bundleName = params["bundle_name"].asString();
                           auto bundleVersion = params["bundle_version"].asString();
                           auto memory = writer.write(params["memory"]);
-                          auto externalLog = writer.write(eventInfo["external_log"]);
-                          std::string logOverLimit = eventInfo["log_over_limit"].asBool() ? "true":"false";
+                          auto externalLog = writer.write(params["external_log"]);
+                          std::string logOverLimit = params["log_over_limit"].asBool() ? "true":"false";
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.pid=%{public}d", pid);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uid=%{public}d", uid);
@@ -221,7 +221,14 @@ For details about how to use the APIs (such as parameter usage restrictions and 
    ```
 
 7. In the **entry/src/main/ets/pages/index.ets** file, add the **memoryleak** button and construct a scenario for triggering a resource leak event in **onClick()**.
-   In this case, use [hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12) to set the memory limit to trigger a memory leak event, and enable **System resource leak log** in **Developer options**. (Restart the device to enable or disable this function.) The sample code is as follows:
+   You can use [hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12) to set the application's memory limit to construct a memory leak event and trigger a resource leak event report. You are advised not to use this API in the production environment.
+To obtain profiler logs, enable **System resource leak log** in **Developer options**. (You need to restart the device to enable or disable this functionality.)
+
+   <!--RP1-->
+   For details about how to locate resource leak errors, see [Memory Leak Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-insight-session-snapshot).
+   <!--RP1End-->
+
+   The sample code is as follows:
 
    ```ts
     import hidebug from "@ohos.hidebug";
@@ -251,7 +258,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
     }
    ```
 
-8. Click the **Run** button in DevEco Studio to run the project, and then a memory leak event will be reported after 15 to 30 minutes.
+8. Click the **Run** button in DevEco Studio to run the project, click the **pss leak** button, and then a memory leak event will be reported after 15 to 30 minutes.
    For the same application, the memory leak event can be reported at most once within 24 hours. If the memory leak needs to be reported again within a shorter time, restart the device.
 
 9. After the memory leak event is reported, you can view the following event information in the **Log** window.
