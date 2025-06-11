@@ -154,7 +154,7 @@ alignRules(alignRule: LocalizedAlignRuleOptions)
 
 layoutGravity(alignment: LocalizedAlignment): T
 
-单独设置Stack容器中子组件的对齐规则，仅当父容器为Stack时生效。
+单独设置Stack容器中子组件的对齐规则，仅当父容器为Stack时生效。与align属性同时使用时，layoutGravity优先级更高。
 
 **卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
 
