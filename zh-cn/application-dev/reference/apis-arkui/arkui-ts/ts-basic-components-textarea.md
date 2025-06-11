@@ -1934,24 +1934,29 @@ struct TextAreaExample {
 @Component
 struct TextAreaExample {
   @State text: string = 'TextArea editMenuOptions';
+  @State endIndex: number = 0;
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
-      content: 'custom1',
+      content: 'create1',
       icon: $r('app.media.startIcon'),
-      id: TextMenuItemId.of('custom1'),
+      id: TextMenuItemId.of('create1'),
     };
     let item2: TextMenuItem = {
-      content: 'custom2',
-      id: TextMenuItemId.of('custom2'),
+      content: 'create2',
+      id: TextMenuItemId.of('create2'),
       icon: $r('app.media.startIcon'),
     };
-    menuItems.push(item1)
-    menuItems.unshift(item2)
-    return menuItems
-  };
+    menuItems.push(item1);
+    menuItems.unshift(item2);
+    return menuItems;
+  }
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
-    if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-      console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end);
+    if (menuItem.id.equals(TextMenuItemId.of("create2"))) {
+      console.log("拦截 id: create2 start:" + textRange.start + "; end:" + textRange.end);
+      return true;
+    }
+    if (menuItem.id.equals(TextMenuItemId.of("prepare1"))) {
+      console.log("拦截 id: prepare1 start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
@@ -1964,8 +1969,19 @@ struct TextAreaExample {
     }
     return false;
   }
+  onPrepareMenu = (menuItems: Array<TextMenuItem>) => {
+    let item1: TextMenuItem = {
+      content: 'prepare1_' + this.endIndex,
+      icon: $r('app.media.startIcon'),
+      id: TextMenuItemId.of('prepare1'),
+    };
+    menuItems.unshift(item1);
+    return menuItems;
+  }
   @State editMenuOptions: EditMenuOptions = {
-    onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
+    onCreateMenu: this.onCreateMenu,
+    onMenuItemClick: this.onMenuItemClick,
+    onPrepareMenu: this.onPrepareMenu
   };
 
   build() {
@@ -1975,6 +1991,9 @@ struct TextAreaExample {
         .height(56)
         .editMenuOptions(this.editMenuOptions)
         .margin({ top: 100 })
+        .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
+          this.endIndex = selectionEnd;
+        })
     }
     .width("90%")
     .margin("5%")
@@ -2284,3 +2303,61 @@ struct TextAreaExample {
 ```
 
 ![textAreaEnableAutoSpacing](figures/textAreaEnableAutoSpacing.png)
+
+### 示例21（设置最大行数）
+
+该示例通过maxLines属性设置显示最大行数，超出最大行数后可滚动。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextAreaExample {
+  build() {
+    Row() {
+      Column() {
+        TextArea({ text: '1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20' })
+          .fontSize(50)
+          .width('50%')
+          .borderWidth(1)
+          .margin(100)
+          .textOverflow(TextOverflow.Clip)
+          .maxLines(3, { overflowMode: MaxLinesMode.SCROLL })
+      }.height('90%')
+    }
+    .width('90%')
+    .margin(10)
+  }
+}
+
+```
+![TextAreaMaxLines](figures/TextAreaMaxLines.gif)
+
+### 示例22（设置最小行数）
+
+该示例通过minLines属性设置显示的最小行数。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        TextArea({ text: this.message })
+          .width('95%')
+          .fontSize(20)
+          .margin(10)
+          .minLines(3)
+      }
+    }
+    .width('90%')
+    .margin(10)
+  }
+}
+```
+
+![textAreaMinlines](figures/textAreaMinlines.png)

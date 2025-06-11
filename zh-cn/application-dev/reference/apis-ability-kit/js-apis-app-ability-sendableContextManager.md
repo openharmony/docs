@@ -1,4 +1,4 @@
-# @ohos.app.ability.sendableContextManager (sendableContextManager)
+# @ohos.app.ability.sendableContextManager (sendable上下文管理)
 
 sendableContextManager模块提供Context与[SendableContext](js-apis-inner-application-sendableContext.md)相互转换的能力。
 

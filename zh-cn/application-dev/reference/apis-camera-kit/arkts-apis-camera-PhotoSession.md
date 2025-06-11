@@ -1,4 +1,4 @@
-# Interfaces (PhotoSession)
+# Interface (PhotoSession)
 
 > **说明：**
 >

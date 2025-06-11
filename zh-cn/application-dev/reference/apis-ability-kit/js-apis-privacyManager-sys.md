@@ -908,11 +908,11 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
 **系统能力：** SystemCapability.Security.AccessToken
 
-| 名称       | 类型             | 可读 | 可写 | 说明                                       |
+| 名称       | 类型             | 只读 | 可选 | 说明                                       |
 | --------- | -------------- | ---- | ---- | ---------------------------------------- |
-| beginTime | number         | 是    | 否    | 查询记录的起始时间，单位：ms。 |
-| endTime   | number         | 是    | 否    | 查询记录的终止时间，单位：ms。 |
-| bundleRecords  | Array&lt;[BundleUsedRecord](#bundleusedrecord)&gt;         | 是    | 否    | 应用的权限使用记录集合。                                 |
+| beginTime | number         | 否    | 否    | 查询记录的起始时间，单位：ms。 |
+| endTime   | number         | 否    | 否    | 查询记录的终止时间，单位：ms。 |
+| bundleRecords  | Array&lt;[BundleUsedRecord](#bundleusedrecord)&gt;         | 否    | 否    | 应用的权限使用记录集合。                                 |
 
 ## BundleUsedRecord
 
@@ -920,13 +920,13 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
 **系统能力：** SystemCapability.Security.AccessToken
 
-| 名称       | 类型             | 可读 | 可写 | 说明                                       |
+| 名称       | 类型             | 只读 | 可选 | 说明                                       |
 | -------- | -------------- | ---- | ---- | ---------------------------------------- |
-| tokenId  | number         | 是    | 否    | 目标应用的身份标识。                                 |
-| isRemote | boolean         | 是    | 否    | 是否是分布式设备。默认值为false，表示不是分布式设备，true表示是分布式设备。 |
-| deviceId  | string         | 是    | 否    | 目标应用所在设备的ID。                                 |
-| bundleName | string         | 是    | 否    | 目标应用的包名。 |
-| permissionRecords  | Array&lt;[PermissionUsedRecord](#permissionusedrecord)&gt;         | 是    | 否    | 每个应用的权限使用记录集合。                                 |
+| tokenId  | number         | 否    | 否    | 目标应用的身份标识。                                 |
+| isRemote | boolean         | 否    | 否    | 是否是分布式设备。默认值为false，表示不是分布式设备，true表示是分布式设备。 |
+| deviceId  | string         | 否    | 否    | 目标应用所在设备的ID。                                 |
+| bundleName | string         | 否    | 否    | 目标应用的包名。 |
+| permissionRecords  | Array&lt;[PermissionUsedRecord](#permissionusedrecord)&gt;         | 否    | 否    | 每个应用的权限使用记录集合。                                 |
 
 ## PermissionUsedRecord
 
@@ -934,16 +934,16 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
 **系统能力：** SystemCapability.Security.AccessToken
 
-| 名称       | 类型             | 可读 | 可写 | 说明                                       |
+| 名称       | 类型             | 只读 | 可选 | 说明                                       |
 | -------- | -------------- | ---- | ---- | ---------------------------------------- |
-| permissionName  | Permissions         | 是    | 否    | 权限名。                                 |
-| accessCount | number         | 是    | 否    | 该权限访问总次数。 |
-| rejectCount | number         | 是    | 否    | 该权限拒绝总次数。 |
-| lastAccessTime | number         | 是    | 否    | 最后一次访问时间，单位：ms。 |
-| lastRejectTime | number         | 是    | 否    | 最后一次拒绝时间，单位：ms。 |
-| lastAccessDuration | number         | 是    | 否    | 最后一次访问时长，单位：ms。 |
-| accessRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 是    | 否    | 访问记录集合，当flag为FLAG_PERMISSION_USAGE_DETAIL时生效，默认查询10条。                                 |
-| rejectRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 是    | 否    | 拒绝记录集合，当flag为FLAG_PERMISSION_USAGE_DETAIL时生效，默认查询10条。                                 |
+| permissionName  | Permissions         | 否    | 否    | 权限名。                                 |
+| accessCount | number         | 否    | 否    | 该权限访问总次数。 |
+| rejectCount | number         | 否    | 否    | 该权限拒绝总次数。 |
+| lastAccessTime | number         | 否    | 否    | 最后一次访问时间，单位：ms。 |
+| lastRejectTime | number         | 否    | 否    | 最后一次拒绝时间，单位：ms。 |
+| lastAccessDuration | number         | 否    | 否    | 最后一次访问时长，单位：ms。 |
+| accessRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 否    | 否    | 访问记录集合，当flag为FLAG_PERMISSION_USAGE_DETAIL时生效，默认查询10条。                                 |
+| rejectRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 否    | 否    | 拒绝记录集合，当flag为FLAG_PERMISSION_USAGE_DETAIL时生效，默认查询10条。                                 |
 
 ## UsedRecordDetail
 
@@ -951,14 +951,14 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
 **系统能力：** SystemCapability.Security.AccessToken
 
-| 名称       | 类型             | 可读 | 可写 | 说明                                       |
+| 名称       | 类型             | 只读 | 可选 | 说明                                       |
 | -------- | -------------- | ---- | ---- | ---------------------------------------- |
-| status  | number         | 是    | 否    | 访问状态。                                 |
-| lockScreenStatus<sup>11+</sup>  | number         | 是    | 否    | 访问时的锁屏状态。<br> - 1，表示非锁屏场景使用权限。<br> - 2，表示锁屏场景使用权限。                                 |
-| timestamp | number         | 是    | 否    | 访问时的时间戳，单位：ms。 |
-| accessDuration  | number         | 是    | 否    | 访问时长，单位：ms。                                 |
-| count<sup>11+</sup> | number | 是 | 否    | 成功或失败次数。
-| usedType<sup>12+</sup> | [PermissionUsedType](#permissionusedtype12) | 是 | 否    | 敏感权限访问方式。 |
+| status  | number         | 否    | 否    | 访问状态。                                 |
+| lockScreenStatus<sup>11+</sup>  | number         | 否    | 是    | 访问时的锁屏状态。<br> - 1，表示非锁屏场景使用权限。<br> - 2，表示锁屏场景使用权限。                                 |
+| timestamp | number         | 否    | 否    | 访问时的时间戳，单位：ms。 |
+| accessDuration  | number         | 否    | 否    | 访问时长，单位：ms。                                 |
+| count<sup>11+</sup> | number | 否 | 是    | 成功或失败次数。
+| usedType<sup>12+</sup> | [PermissionUsedType](#permissionusedtype12) | 否 | 是    | 敏感权限访问方式。 |
 
 ## PermissionActiveStatus
 
@@ -978,14 +978,14 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
  **系统能力:** SystemCapability.Security.AccessToken
 
-| 名称           | 类型                    | 可读 | 可写 | 说明                   |
+| 名称           | 类型                    | 只读 | 可选 | 说明                   |
 | -------------- | ---------------------- | ---- | ---- | --------------------- |
-| callingTokenId<sup>18+</sup> | number   | 是   | 否   | 接口调用方的应用身份标识，activeStatus是INACTIVE时该值无效。 |
-| tokenId        | number                 | 是   | 否   | 被订阅的应用身份标识。    |
-| permissionName | Permissions            | 是   | 否   | 权限使用状态发生变化的权限名。 |
-| deviceId       | string                 | 是   | 否   | 设备号。                 |
-| activeStatus   | [PermissionActiveStatus](#permissionactivestatus) | 是   | 否   | 权限使用状态变化类型。        |
-| usedType<sup>18+</sup> | [PermissionUsedType](#permissionusedtype12) | 是   | 否   | 敏感权限使用类型，activeStatus是INACTIVE时该值无效。 |
+| callingTokenId<sup>18+</sup> | number   | 否   | 是   | 接口调用方的应用身份标识，activeStatus是INACTIVE时该值无效。 |
+| tokenId        | number                 | 否   | 否   | 被订阅的应用身份标识。    |
+| permissionName | Permissions            | 否   | 否   | 权限使用状态发生变化的权限名。 |
+| deviceId       | string                 | 否   | 否   | 设备号。                 |
+| activeStatus   | [PermissionActiveStatus](#permissionactivestatus) | 否   | 否   | 权限使用状态变化类型。        |
+| usedType<sup>18+</sup> | [PermissionUsedType](#permissionusedtype12) | 否   | 是   | 敏感权限使用类型，activeStatus是INACTIVE时该值无效。 |
 
 ## PermissionUsedType<sup>12+</sup>
 
@@ -1005,11 +1005,11 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
  **系统能力:** SystemCapability.Security.AccessToken
 
-| 名称           | 类型                    | 可读 | 可写 | 说明                   |
+| 名称           | 类型                    | 只读 | 可选 | 说明                   |
 | -------------- | ---------------------- | ---- | ---- | --------------------- |
-| tokenId        | number                 | 是   | 否   | 访问敏感权限的应用身份标识。 |
-| permissionName | Permissions            | 是   | 否   | 被访问的敏感权限名称。 |
-| usedType | [PermissionUsedType](#permissionusedtype12) | 是 | 否    | 敏感权限使用类型。 |
+| tokenId        | number                 | 否   | 否   | 访问敏感权限的应用身份标识。 |
+| permissionName | Permissions            | 否   | 否   | 被访问的敏感权限名称。 |
+| usedType | [PermissionUsedType](#permissionusedtype12) | 否 | 否    | 敏感权限使用类型。 |
 
 ## AddPermissionUsedRecordOptions<sup>12+</sup>
 
@@ -1017,6 +1017,6 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
  **系统能力:** SystemCapability.Security.AccessToken
 
-| 名称           | 类型                    | 可读 | 可写 | 说明                   |
+| 名称           | 类型                    | 只读 | 可选 | 说明                   |
 | -------------- | ---------------------- | ---- | ---- | --------------------- |
-| usedType | [PermissionUsedType](#permissionusedtype12) | 是 | 否    | 敏感权限使用类型。 |
+| usedType | [PermissionUsedType](#permissionusedtype12) | 否 | 是    | 敏感权限使用类型。 |

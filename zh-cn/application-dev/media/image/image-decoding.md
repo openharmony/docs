@@ -45,6 +45,7 @@
             const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
             // 获取资源文件内容，返回Uint8Array。
             const fileData: Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
+            console.info('Successfully got RawFileContent');
             // 转为ArrayBuffer并返回。
             const buffer: ArrayBuffer = fileData.buffer.slice(0);
             return buffer;

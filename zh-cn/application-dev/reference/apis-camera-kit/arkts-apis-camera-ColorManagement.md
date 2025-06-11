@@ -1,4 +1,4 @@
-# Interfaces (ColorManagement)
+# Interface (ColorManagement)
 
 > **说明：**
 >

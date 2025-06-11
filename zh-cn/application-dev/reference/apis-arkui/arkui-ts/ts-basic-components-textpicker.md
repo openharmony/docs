@@ -4,7 +4,9 @@
 
 >  **说明：**
 >
->  该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 该组件不建议开发者在动效过程中修改属性数据。
 
 
 ## 子组件
@@ -338,10 +340,6 @@ gradientHeight(height: Optional\<Dimension>)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | height  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Dimension](ts-types.md#dimension10)> | 是   | 内容区上下边缘的渐隐高度（支持百分比，100%为TextPicker高度的一半即最大值），设置为0时不显示渐隐效果，负数等非法值显示默认渐隐效果。默认值为36vp。<br/>当height的值为undefined时，默认值为36vp。 |
 
-> **说明：**
->
-> 该组件不建议开发者在动效过程中修改属性数据。
-
 ### disableTextStyleAnimation<sup>15+</sup>
 
 disableTextStyleAnimation(disabled: boolean)
@@ -362,7 +360,7 @@ disableTextStyleAnimation(disabled: boolean)
 
 defaultTextStyle(style: TextPickerTextStyle)
 
-设置关闭滑动过程中文本样式变化动效时，各个选项文本的样式。
+设置关闭滑动过程中文本样式变化动效时，各个选项文本的样式。仅当[disableTextStyleAnimation](#disabletextstyleanimation15)为true时生效。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -372,11 +370,7 @@ defaultTextStyle(style: TextPickerTextStyle)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [TextPickerTextStyle](#textpickertextstyle15类型说明) | 是   | 设置关闭滑动过程中文本样式变化动效时的各个选项文本的样式，仅当disableTextStyleAnimation为true时生效。<br/>默认值：与[Text](ts-basic-components-text.md)组件默认值相同。 |
-
-> **说明：**
-
->不建议在动效过程中修改该组件的属性数据。
+| style  | [TextPickerTextStyle](#textpickertextstyle15类型说明) | 是   | 设置关闭滑动过程中文本样式变化动效时的各个选项文本的样式。<br/>默认值：与[Text](ts-basic-components-text.md)组件默认值相同。 |
 
 ### enableHapticFeedback<sup>18+</sup>
 
@@ -431,7 +425,7 @@ selectedBackgroundStyle(style: Optional\<PickerBackgroundStyle>)
 
 | 参数名   | 类型                                     | 必填   | 说明                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
-| style | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerBackgroundStyle](#pickerbackgroundstyle20)> | 是    | 选中项背景的颜色和边框圆角半径。<br/>默认值：<br/>{ <br/>color: '#0C182431'<br/>borderRadius: { value:24 unit:1 }<br/>}|
+| style | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerBackgroundStyle](#pickerbackgroundstyle20)> | 是    | 选中项背景的颜色和边框圆角半径，多列模式时会同时设置所有列的选中项背景的颜色和圆角半径。<br/>默认值：<br/>{ <br/>color: '#0C182431'<br/>borderRadius: { value:24 unit:1 }<br/>}|
 
 ## 事件
 
@@ -1069,4 +1063,4 @@ struct TextPickerExample {
 }
 ```
 
-![textpicker](figures/TextPickerDemo10.jpeg)
+![textpicker](figures/TextPickerDemo10.gif)

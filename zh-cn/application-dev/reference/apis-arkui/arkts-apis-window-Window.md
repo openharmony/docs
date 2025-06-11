@@ -1205,7 +1205,9 @@ try {
 
 getImmersiveModeEnabledState(): boolean
 
-查询当前窗口是否已经开启沉浸式布局。
+查询当前窗口是否开启沉浸式布局。
+
+返回值与[setImmersiveModeEnabledState()](#setimmersivemodeenabledstate12)以及[setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9)设置结果一致，若未调用上述两个接口则默认返回false。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -1214,7 +1216,7 @@ getImmersiveModeEnabledState(): boolean
 **返回值：**
 | 类型     | 说明                                                                                 |
 | ------- | ------------------------------------------------------------------------------------ |
-| boolean | 是否已经开启沉浸式布局。<br>true表示开启，false表示关闭。</br> |
+| boolean | 是否设置开启沉浸式布局。</br>true表示开启沉浸式布局，false表示关闭沉浸式布局。|
 
 **错误码：**
 
@@ -1233,6 +1235,38 @@ try {
   let isEnabled = windowClass.getImmersiveModeEnabledState();
 } catch (exception) {
   console.error(`Failed to get the window immersive mode enabled status. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### isImmersiveLayout<sup>20+</sup>
+
+isImmersiveLayout(): boolean
+
+查询当前窗口是否处于沉浸式布局状态。 
+
+**系统能力**：SystemCapability.Window.SessionManager
+
+**返回值：**
+| 类型     | 说明                                                                                 |
+| ------- | ------------------------------------------------------------------------------------ |
+| boolean | 是否处于沉浸式布局状态。true表示处于沉浸式布局状态，false表示不处于沉浸式布局状态。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------------------------------------------- |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002  | This window state is abnormal.               |
+
+**示例：**
+
+```ts
+try {
+  let isEnabled = windowClass.isImmersiveLayout();
+} catch (exception) {
+  console.error(`Failed to check if the window layout is in immersive mode. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -6441,7 +6475,7 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 
 setWindowTitle(titleName: string): Promise&lt;void&gt;
 
-设置窗口标题，存在标题栏的窗口形态生效，使用Promise异步回调。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+设置窗口标题，存在标题栏的窗口形态生效，若不存在标题栏则返回1300002错误码，使用Promise异步回调。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 此接口仅支持2in1设备和平板设备。
 
@@ -7284,24 +7318,22 @@ let keyUpEventAry: string[] = [];
 @Component
 struct Index {
   private context = (this.getUIContext()?.getHostContext() as common.UIAbilityContext);
+  private windowStage = this.context.windowStage;
 
   build() {
     RelativeContainer() {
       Button("窗口置顶")
         .onClick(() => {
           try {
-            let promiseCtx = window.getLastWindow(this.context);
-            promiseCtx.then((data) => {
-              windowClass = data;
-              //  true:窗口置顶，false:取消窗口置顶
-              let isWindowTopmost: boolean = true;
-              let promiseTopmost = windowClass.setWindowTopmost(isWindowTopmost);
-              promiseTopmost.then(() => {
-                console.info('Succeeded in setting the main window to be topmost.');
-              }).catch((err: BusinessError) => {
-                console.error(`Failed to set the main window to be topmost. Cause code: ${err.code}, message: ${err.message}`);
-              });
-            })
+            windowClass = this.windowStage.getMainWindowSync();
+            //  true:窗口置顶，false:取消窗口置顶
+            let isWindowTopmost: boolean = true;
+            let promiseTopmost = windowClass.setWindowTopmost(isWindowTopmost);
+            promiseTopmost.then(() => {
+              console.info('Succeeded in setting the main window to be topmost.');
+            }).catch((err: BusinessError) => {
+              console.error(`Failed to set the main window to be topmost. Cause code: ${err.code}, message: ${err.message}`);
+            });
           } catch (exception) {
             console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`)
           }

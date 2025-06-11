@@ -1,4 +1,4 @@
-# Interfaces (VideoSession)
+# Interface (VideoSession)
 
 > **说明：**
 >

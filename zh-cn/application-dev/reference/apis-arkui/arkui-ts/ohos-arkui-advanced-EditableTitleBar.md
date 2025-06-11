@@ -326,7 +326,7 @@ struct Index1 {
   }
 }
 ```
-![/zh-cn_image_editabletitlebar_example03](figures/zh-cn_image_editabletitlebar_example03.png)
+![zh-cn_image_editabletitlebar_example03](figures/zh-cn_image_editabletitlebar_example03.png)
 
 ### 示例4（左侧图标设置为默认焦点）
 该示例通过设置标题栏属性leftIconDefaultFocus使左侧图标默认获焦。
@@ -354,7 +354,7 @@ struct Index {
   }
 }
 ```
-![/editabletitlebarDefaultFocus01](figures/editabletitlebarDefaultFocus01.png)
+![editabletitlebarDefaultFocus01](figures/editabletitlebarDefaultFocus01.png)
 
 ### 示例5（右侧自定义图标设置为默认焦点）
 该示例通过设置标题栏右侧图标属性defaultFocus使右侧图标默认获焦。
@@ -399,7 +399,7 @@ struct Index {
   }
 }
 ```
-![/editabletitlebarDefaultFocus02](figures/editabletitlebarDefaultFocus02.png)
+![editabletitlebarDefaultFocus02](figures/editabletitlebarDefaultFocus02.png)
 
 ### 示例6（设置Symbol类型图标）
 

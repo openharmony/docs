@@ -1,4 +1,4 @@
-# Interfaces (Zoom)
+# Interface (Zoom)
 
 > **说明：**
 >

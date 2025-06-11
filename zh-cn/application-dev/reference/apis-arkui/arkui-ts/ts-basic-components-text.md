@@ -992,7 +992,7 @@ enableAutoSpacing(enable: Optional\<boolean>)
 
 shaderStyle(shader: ShaderStyle)
 
-可以显示为径向渐变[radialGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#radialgradient)或线性渐变[LinearGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#lineargradient)的效果，shaderStyle的优先级高于[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)，纯色建议使用[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)。
+可以显示为径向渐变[radialGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#radialgradient)或线性渐变[LinearGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#lineargradient)的效果，shaderStyle的优先级高于[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)和AI识别，纯色建议使用[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)。当center设置到组件范围外时，可将repeating设置为true查看现象。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2060,15 +2060,16 @@ struct TextExample11 {
 @Component
 struct TextExample12 {
   @State text: string = 'Text editMenuOptions'
+  @State endIndex: number = 0;
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
-      content: 'custom1',
+      content: 'create1',
       icon: $r('app.media.startIcon'),
-      id: TextMenuItemId.of('custom1'),
+      id: TextMenuItemId.of('create1'),
     };
     let item2: TextMenuItem = {
-      content: 'custom2',
-      id: TextMenuItemId.of('custom2'),
+      content: 'create2',
+      id: TextMenuItemId.of('create2'),
       icon: $r('app.media.startIcon'),
     };
     menuItems.push(item1);
@@ -2076,8 +2077,12 @@ struct TextExample12 {
     return menuItems;
   }
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
-    if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-      console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end);
+    if (menuItem.id.equals(TextMenuItemId.of("create2"))) {
+      console.log("拦截 id: create2 start:" + textRange.start + "; end:" + textRange.end);
+      return true;
+    }
+    if (menuItem.id.equals(TextMenuItemId.of("prepare1"))) {
+      console.log("拦截 id: prepare1 start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
@@ -2089,9 +2094,20 @@ struct TextExample12 {
       return false;
     }
     return false;
-  };
+  }
+  onPrepareMenu = (menuItems: Array<TextMenuItem>) => {
+    let item1: TextMenuItem = {
+      content: 'prepare1_' + this.endIndex,
+      icon: $r('app.media.startIcon'),
+      id: TextMenuItemId.of('prepare1'),
+    };
+    menuItems.unshift(item1);
+    return menuItems;
+  }
   @State editMenuOptions: EditMenuOptions = {
-    onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
+    onCreateMenu: this.onCreateMenu,
+    onMenuItemClick: this.onMenuItemClick,
+    onPrepareMenu: this.onPrepareMenu
   };
 
   build() {
@@ -2101,6 +2117,9 @@ struct TextExample12 {
         .copyOption(CopyOptions.LocalDevice)
         .editMenuOptions(this.editMenuOptions)
         .margin({ top: 100 })
+        .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
+          this.endIndex = selectionEnd;
+        })
     }
     .width("90%")
     .margin("5%")
@@ -2159,6 +2178,7 @@ struct TextExample {
 ```
 
 ![textEnableAutoSpacing](figures/textEnableAutoSpacing.png)
+
 ### 示例15（文本颜色按线性或径向渐变）
 
 该示例通过shaderStyle接口实现了对Text控件显示为渐变色的功能。
@@ -2168,40 +2188,45 @@ struct TextExample {
 @Component
 struct shaderStyle {
   @State message: string = 'Hello World';
-
+  @State linearGradientOptions1: LinearGradientOptions =
+  {
+    angle: 45,
+    colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]]
+  };
+  @State linearGradientOptions2: LinearGradientOptions =
+  {
+    direction: GradientDirection.LeftTop,
+    colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
+    repeating: true,
+  };
+  @State radialGradientOptions: RadialGradientOptions = 
+  {
+    center: [50, 50],
+    radius: 20,
+    colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
+    repeating: true,
+  };
   build() {
     Column({ space: 5 }) {
       Text('angle为45°的线性渐变').fontSize(18).width('90%').fontColor(0xCCCCCC)
         .margin({ top: 40, left: 40 })
       Text(this.message)
         .fontSize(50)
-        .shaderStyle({
-          angle: 45,
-          colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]]
-        })
+        .shaderStyle(this.linearGradientOptions1)
         .width('80%')
         .height(50)
       Text('direction为LeftTop的线性渐变').fontSize(18).width('90%').fontColor(0xCCCCCC)
         .margin({ top: 40, left: 40 })
       Text(this.message)
         .fontSize(50)
-        .shaderStyle({
-          direction: GradientDirection.LeftTop,
-          colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
-          repeating: true,
-        })
+        .shaderStyle(this.linearGradientOptions2)
         .width('80%')
         .height(50)
       Text('径向渐变').fontSize(18).width('90%').fontColor(0xCCCCCC)
         .margin({ top: 40, left: 40 })
       Text(this.message)
         .fontSize(50)
-        .shaderStyle({
-          center: [50, 50],
-          radius: 20,
-          colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
-          repeating: true,
-        })
+        .shaderStyle(this.radialGradientOptions)
         .width('80%')
         .height(50)
     }
@@ -2209,3 +2234,34 @@ struct shaderStyle {
 }
 ```
 ![zh-cn_image_0000001219864149](figures/gradientcolor.png)
+
+### 示例16（配置除去行尾空格）
+
+该示例通过optimizeTrailingSpace属性展示了文本如何配置除去行尾空格的效果，一般需要与对齐功能搭配使用，实际显示需要字体引擎支持。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextExample16 {
+  build() {
+    Column() {
+      Text("Trimmed space enabled     ")
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+        .margin({ top: 20 })
+        .optimizeTrailingSpace(true)
+        .textAlign(TextAlign.Center)
+      Text("Trimmed space disabled     ")
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+        .margin({ top: 20 })
+        .optimizeTrailingSpace(false)
+        .textAlign(TextAlign.Center)
+    }
+    .width("100%")
+  }
+}
+```
+
+![textOptimizeTrailingSpace](figures/textOptimizeTrailingSpace.PNG)

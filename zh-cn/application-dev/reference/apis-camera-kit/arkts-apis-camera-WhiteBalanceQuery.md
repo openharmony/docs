@@ -1,4 +1,4 @@
-# Interfaces (WhiteBalanceQuery)
+# Interface (WhiteBalanceQuery)
 
 > **说明：**
 >

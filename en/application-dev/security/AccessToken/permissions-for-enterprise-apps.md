@@ -351,3 +351,20 @@ With this permission, the software can obtain 802.1x packets and add information
 **Supported Devices**：PC/2in1
 
 **Valid since**：20
+
+## ohos.permission.SUPPORT_INSTALL_ON_U1
+
+Allows an application to install on user 1.
+
+User 1 is a user who supports third-party applications running in singleton mode.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: PC/2in1
+
+**Valid since**：20

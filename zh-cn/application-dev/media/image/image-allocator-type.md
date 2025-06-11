@@ -99,7 +99,7 @@ async CreatePixelMapUsingAllocator(context : Context) {
   let pixelmap = await imageSource.createPixelMapUsingAllocator(options, image.AllocatorType.AUTO);
   let info = await pixelmap.getImageInfo();
   // 用DMA_ALLOC内存申请出的pixelmap的stride与SHARE_MEMORY内存申请出的pixelmap的stride不同。
-  console.log("stride = " + info.stride);
+  console.info("stride = " + info.stride);
   let region: image.Region = { x: 0, y: 0, size: {height: 100, width:35} };
   if (pixelmap != undefined) {
     await pixelmap.crop(region);
