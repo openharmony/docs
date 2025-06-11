@@ -1,6 +1,5 @@
 # Environment
 
-
 ## Overview
 
 Provides the capability of obtaining the root directory of user files.
@@ -10,30 +9,26 @@ Provides the capability of obtaining the root directory of user files.
 
 ## Summary
 
-
 ### Files
 
 | Name| Description|
 | -------- | -------- |
 | [oh_environment.h](oh__environment_8h.md) | Defines the native APIs used to obtain the sandbox paths of the user files. |
 
-
 ### Functions
 
 | Name| Description|
 | -------- | -------- |
-| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDownloadDir](#oh_environment_getuserdownloaddir) (char \*\*result) | Obtains the sandbox path of the **Download** root directory. This function supports only 2-in-1 devices.|
-| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDesktopDir](#oh_environment_getuserdesktopdir) (char \*\*result) | Obtains the sandbox path of the **Desktop** root directory. This function supports only 2-in-1 devices.|
-| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDocumentDir](#oh_environment_getuserdocumentdir) (char \*\*result) | Obtains the sandbox path of the **Documents** root directory. This function supports only 2-in-1 devices.|
-
+| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDownloadDir](#oh_environment_getuserdownloaddir) (char \*\*result) | Obtains the sandbox path of the **Download** root directory. Only 2-in-1 devices are supported.|
+| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDesktopDir](#oh_environment_getuserdesktopdir) (char \*\*result) | Obtains the sandbox path of the **Desktop** root directory. Only 2-in-1 devices are supported.|
+| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDocumentDir](#oh_environment_getuserdocumentdir) (char \*\*result) | Obtains the sandbox path of the **Document** root directory. Only 2-in-1 devices are supported.|
 
 ## Function Description
-
 
 ### OH_Environment_GetUserDesktopDir()
 
 ```
-FileManagement_ErrCode OH_Environment_GetUserDesktopDir (char ** result)
+FileManagement_ErrCode OH_Environment_GetUserDesktopDir(char **result)
 ```
 **Description**
 Obtains the sandbox path of the **Desktop** root directory.
@@ -44,20 +39,20 @@ Obtains the sandbox path of the **Desktop** root directory.
 
 | Name| Description|
 | -------- | -------- |
-| result | Pointer to the sandbox path of the **Desktop** root directory obtained. You also need to include **malloc.h** and use **free()** to release the memory allocated. |
+| result | Double pointer to the sandbox path of the **Desktop** root directory obtained. You also need to include **malloc.h** and use **free()** to release the memory allocated. |
 
-**Returns**
+**Return value**
 
-Returns [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode).
+[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode)
 
 
 ### OH_Environment_GetUserDocumentDir()
 
 ```
-FileManagement_ErrCode OH_Environment_GetUserDocumentDir (char ** result)
+FileManagement_ErrCode OH_Environment_GetUserDocumentDir(char **result)
 ```
 **Description**
-Obtains the sandbox path of the **Documents** root directory.
+Obtains the sandbox path of the **Document** root directory.
 
 **Since**: 12
 
@@ -65,11 +60,12 @@ Obtains the sandbox path of the **Documents** root directory.
 
 | Name| Description|
 | -------- | -------- |
-| result | Pointer to the sandbox path of the **Documents** root directory obtained. You also need to include **malloc.h** and use **free()** to release the memory allocated. |
+| result | Double pointer to the sandbox path of the **Document** root directory obtained. You also need to include **malloc.h** and use **free()** to release the memory allocated. |
 
-**Returns**
 
-Returns [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode).
+**Return value**
+
+[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode)
 
 
 ### OH_Environment_GetUserDownloadDir()
@@ -86,8 +82,8 @@ Obtains the sandbox path of the **Download** root directory.
 
 | Name| Description|
 | -------- | -------- |
-| result | Pointer to the path of the **Download** root directory obtained. You also need to include **malloc.h** and use **free()** to release the memory allocated. |
+| result | Double pointer to the path of the **Download** root directory obtained. You also need to include **malloc.h** and use **free()** to release the memory allocated. |
 
-**Returns**
+**Return value**
 
-Returns [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode).
+[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode)

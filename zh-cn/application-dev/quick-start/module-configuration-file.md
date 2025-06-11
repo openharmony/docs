@@ -121,7 +121,7 @@ module.json5配置文件包含以下标签。
 | <!--DelRow-->process | 标识当前Module的进程名，取值为长度不超过31字节的字符串。如果在HAP标签下配置了process，则该Module的所有UIAbility、DataShareExtensionAbility、ServiceExtensionAbility都运行在该进程中。<br/>**说明：**<br/>开启[多实例特权](../../device-dev/subsystems/subsys-app-privilege-config-guide.md#可由设备厂商配置的特权)生效，三方应用配置不生效。 | 字符串 | 该标签可缺省，缺省为app.json5文件下app标签下的bundleName。 |
 | mainElement | 标识当前Module的入口UIAbility名称或者ExtensionAbility名称，需要和srcEntry字段指向同一个UIAbility或者ExtensionAbility，取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | [deviceTypes](#devicetypes标签) | 标识当前Module可以运行在哪类设备上。<br/>**说明：**<br/>当存在多个模块时，各模块的配置可以不同，但都必须包含将要安装的设备类型，以确保正常运行。 | 字符串数组 | 该标签不可缺省。 |
-| deliveryWithInstall | 标识当前Module是否在用户主动安装的时候安装，即该Module对应的HAP是否跟随应用一起安装。<br/>-&nbsp;true：主动安装时安装。<br/>-&nbsp;false：主动安装时不安装。 | 布尔值 | 该标签不可缺省。 |
+| deliveryWithInstall | 标识当前Module是否在用户主动安装的时候安装，即该Module对应的HAP是否跟随应用一起安装。<br/>-&nbsp;true：跟随应用一起安装。<br/>-&nbsp;false：不跟随应用一起安装。 | 布尔值 | 该标签不可缺省。 |
 | installationFree | 标识当前Module是否支持免安装特性。<br/>-&nbsp;true：表示支持免安装特性，且符合免安装约束。<br/>-&nbsp;false：表示不支持免安装特性。<br/>**说明：**<br/>当[bundleType](./app-configuration-file.md#配置文件标签)为原子化服务时，该字段需要配置为true。反之，该字段需要配置为false。 | 布尔值 | 该标签不可缺省。 |
 | virtualMachine | 标识当前Module运行的目标虚拟机类型，供云端分发使用，如应用市场和分发中心。如果目标虚拟机类型为ArkTS引擎，则其值为“ark+版本号”。 | 字符串 | 该标签由IDE构建HAP的时候自动插入。 |
 | [pages](#pages标签) | 标识当前Module的profile资源，用于列举每个页面信息，取值为长度不超过255字节的字符串。 | 字符串 | 在有UIAbility的场景下，该标签不可缺省。 |
@@ -324,9 +324,9 @@ abilities标签描述UIAbility组件的配置信息，标签值为数组类型�
 | label | 标识当前UIAbility组件对用户显示的[名称](../application-models/application-component-configuration-stage.md#生成机制)，要求采用该名称的资源索引，以支持多语言。取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | permissions | 标识当前UIAbility组件自定义的权限信息。其他应用访问该UIAbility时，需要申请相应的权限信息。<br/>一个数组元素为一个权限名称，权限名称采用反向域名格式（不超过255字节），取值为系统预定义的权限。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | [metadata](#metadata标签) | 标识当前UIAbility组件的元信息。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-| exported | 标识当前UIAbility组件是否可以被其他应用调用。<br/>-&nbsp;true：表示可以被其他应用调用。<br/>-&nbsp;false：表示不可以被其他应用调用，包括无法被aa工具命令拉起应用。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+| exported | 标识当前UIAbility组件是否可以被其他应用拉起。<br/>-&nbsp;true：表示可以被其他应用拉起。<br/>-&nbsp;false：表示不可以被其他应用拉起，只能由同应用或者具有ohos.permission.START_INVISIBLE_ABILITY权限（该权限仅系统应用支持申请）的应用拉起。<br/> 例如，配置为false时，桌面具备该权限，桌面点击应用图标、快捷方式或push通知消息可以拉起当前UIAbility组件，但aa命令行工具没有权限无法拉起。| 布尔值 | 该标签可缺省，缺省值为false。 |
 | continuable | 标识当前UIAbility组件是否支持跨端迁移。<br/>-&nbsp;true：表示支持迁移。<br/>-&nbsp;false：表示不支持迁移。 | 布尔值 | 该标签可缺省，缺省值为false。 |
-| [skills](#skills标签) | 标识当前UIAbility组件或ExtensionAbility组件能够接收的[Want](../application-models/want-overview.md)特征集，为数组格式。<br/>配置规则：<br/>-&nbsp;对于Entry类型的HAP，应用可以配置多个具有入口能力的skills标签（即配置了ohos.want.action.home和entity.system.home）。<br/>-&nbsp;对于Feature类型的HAP，只有应用可以配置具有入口能力的skills标签，服务不允许配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
+| [skills](#skills标签) | 标识当前UIAbility组件能够接收的[Want](../application-models/want-overview.md)特征集，为数组格式。<br/>配置规则：<br/>-&nbsp;对于Entry类型的HAP，应用可以配置多个具有入口能力的skills标签（即配置了ohos.want.action.home和entity.system.home）。<br/>-&nbsp;对于Feature类型的HAP，只有应用可以配置具有入口能力的skills标签，服务不允许配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | backgroundModes | 标识当前UIAbility组件的长时任务集合，指定用于满足特定类型的长时任务。<br/>长时任务类型有如下：<br/>-&nbsp;dataTransfer：通过网络/对端设备进行数据下载、备份、分享、传输等。<br/>-&nbsp;audioPlayback：音频播放。<br/>-&nbsp;audioRecording：录音。<br/>-&nbsp;location：定位、导航。<br/>-&nbsp;bluetoothInteraction：蓝牙扫描、连接、传输（穿戴）。<br/>-&nbsp;multiDeviceConnection：多设备互联。<br/>-&nbsp;taskKeeping：计算。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | [startWindow](#startwindow标签) | 标识当前UIAbility组件启动页面profile资源，取值为长度不超过255字节的字符串，如果配置了该字段，startWindowIcon和startWindowBackground字段均不生效。<br/>**说明：** <br/>从API version 18开始，支持该字段。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | startWindowIcon | 标识当前UIAbility组件启动页面图标资源文件的索引，取值为长度不超过255字节的字符串。 | 字符串 | 该标签不可缺省。 |
@@ -431,9 +431,13 @@ abilities示例：
 
   **表8** uris标签说明
 
+> **说明：**
+>
+> 以下字符串类型的字段不支持使用资源索引的方式（$string）配置。
+
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| scheme | 标识URI的协议名部分，常见的有http、https、file、ftp等。<br/>**说明：**<br/>从API 18开始，该字段在参与隐式Want匹配时不区分大小写。 | 字符串 | uris中仅配置type时可以缺省，缺省值为空，否则不可缺省。 |
+| scheme | 标识URI的协议名部分，常见的有http、https、file、ftp等。<br/>**说明：**<br/>从API 18开始，该字段在参与隐式Want匹配时不区分大小写。| 字符串 | uris中仅配置type时可以缺省，缺省值为空，否则不可缺省。 |
 | host | 标识URI的主机地址部分，该字段只有当scheme配置时才生效。常见的方式：<br/>-&nbsp;域名方式，如example.com。<br/>-&nbsp;IP地址方式，如10.10.10.1。<br/>**说明：**<br/>从API 18开始，该字段在参与隐式Want匹配时不区分大小写。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | port | 标识URI的端口部分。如http默认端口为80，https默认端口是443，ftp默认端口是21。该字段只有当scheme和host都配置时才生效。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | path&nbsp;\|&nbsp;pathStartWith&nbsp;\|&nbsp;pathRegex | 标识URI的路径部分，path、pathStartWith和pathRegex配置时三选一。path标识URI与want中的路径部分全匹配，pathStartWith标识URI与want中的路径部分允许前缀匹配，pathRegex标识URI与want中的路径部分允许正则匹配。该字段只有当scheme和host都配置时才生效。 | 字符串 | 该标签可缺省，缺省值为空。 |

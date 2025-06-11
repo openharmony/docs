@@ -429,8 +429,8 @@ int OH_Pasteboard_GetDataSource (OH_Pasteboard * pasteboard, char * source, unsi
 | 名称 | 描述 |
 | -------- | -------- |
 | pasteboard | 表示指向剪贴板[OH_Pasteboard](#oh_pasteboard)实例的指针。  |
-| source | 该参数是输出参数，表示剪贴板中数据的数据源字符串。  |
-| len | 该参数是输出参数，表示数据源字符串的长度。  |
+| source | 表示用于存放剪贴板数据数据源实例的指针，开发者需在调用接口前申请指针指向的内存。  |
+| len | 表示source指针对应的内存长度，当内存长度不足时调用接口会失败，建议长度：128。  |
 
 **返回：**
 

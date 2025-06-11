@@ -1,4 +1,4 @@
-# @ohos.app.ability.AbilityConstant (Ability相关的常量定义)
+# @ohos.app.ability.AbilityConstant (Ability相关常量)
 
 AbilityConstant提供Ability相关的枚举，包括应用启动原因[LaunchReason](#launchreason)、上次退出原因[LastExitReason](#lastexitreason)、迁移结果[OnContinueResult](#oncontinueresult)等。
 

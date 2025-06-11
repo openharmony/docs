@@ -8,7 +8,7 @@
 
 ## background<sup>10+</sup>
 
-background(builder: CustomBuilder, options?: { align?: Alignment })
+background(builder: CustomBuilder, options?: { align?: Alignment }): T
 
 设置组件背景。
 
@@ -22,6 +22,12 @@ background(builder: CustomBuilder, options?: { align?: Alignment })
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | builder | [CustomBuilder](ts-types.md#custombuilder8)          | 是   | 自定义背景。                                                 |
 | options | {align?:[Alignment](ts-appendix-enums.md#alignment)} | 否   | 设置自定义背景与组件的对齐方式。<br/>同时设置了background，backgroundColor，backgroundImage时，叠加显示，background在最上层。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
 
 >  **说明：**
 >
@@ -81,7 +87,7 @@ backgroundColor(color: Optional\<ResourceColor>): T
 
 ## backgroundImage
 
-backgroundImage(src: ResourceStr&nbsp;|&nbsp;PixelMap, repeat?: ImageRepeat)
+backgroundImage(src: ResourceStr&nbsp;|&nbsp;PixelMap, repeat?: ImageRepeat): T
 
 设置组件的背景图片。
 
@@ -95,12 +101,18 @@ backgroundImage(src: ResourceStr&nbsp;|&nbsp;PixelMap, repeat?: ImageRepeat)
 
 | 参数名 | 类型                                            | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| src    | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap<sup>12+</sup>](../../apis-image-kit/js-apis-image.md#pixelmap7)          | 是   | 图片地址，支持网络图片资源地址、本地图片资源地址、Base64和PixelMap资源，不支持svg类型的图片。 |
+| src    | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap<sup>12+</sup>](../../apis-image-kit/js-apis-image.md#pixelmap7)          | 是   | 图片地址，支持网络图片资源地址、本地图片资源地址、Base64和PixelMap资源，不支持svg和gif类型的图片。 |
 | repeat | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | 否   | 设置背景图片的重复样式，默认不重复。当设置的背景图片为透明底色图片，且同时设置了backgroundColor时，二者叠加显示，背景颜色在最底部。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
 
 ## backgroundImage<sup>18+</sup>
 
-backgroundImage(src: ResourceStr&nbsp;|&nbsp;PixelMap, options?: BackgroundImageOptions)
+backgroundImage(src: ResourceStr&nbsp;|&nbsp;PixelMap, options?: BackgroundImageOptions): T
 
 设置组件的背景图片。与[backgroundImage](#backgroundimage)相比，增加了设置图片同步或异步加载方式的能力。
 
@@ -114,12 +126,18 @@ backgroundImage(src: ResourceStr&nbsp;|&nbsp;PixelMap, options?: BackgroundImage
 
 | 参数名 | 类型                                            | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| src    | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)          | 是   | 图片地址，支持网络图片资源地址、本地图片资源地址、Base64和PixelMap资源，不支持svg类型的图片。 |
+| src    | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)          | 是   | 图片地址，支持网络图片资源地址、本地图片资源地址、Base64和PixelMap资源，不支持svg和gif类型的图片。 |
 | options | [BackgroundImageOptions](ts-universal-attributes-image-effect.md#backgroundimageoptions18) | 否   | 设置背景图选项。|
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
 
 ## backgroundImageSize
 
-backgroundImageSize(value: SizeOptions | ImageSize)
+backgroundImageSize(value: SizeOptions | ImageSize): T
 
 设置组件背景图片的宽度和高度。
 
@@ -135,9 +153,15 @@ backgroundImageSize(value: SizeOptions | ImageSize)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [SizeOptions](ts-universal-attributes-size.md#sizeoptions对象说明)&nbsp;\|&nbsp;[ImageSize](ts-appendix-enums.md#imagesize) | 是   | 设置背景图像的高度和宽度。当输入为{width:&nbsp;Length,&nbsp;height:&nbsp;Length}对象时，如果只设置一个属性，则第二个属性保持图片原始宽高比进行调整。默认保持原图的比例不变。<br/>width和height取值范围： [0, +∞)<br/>默认值：ImageSize.Auto<br/>**说明：** <br/>width和height均设置为小于或等于0的值时，按值为0显示。当width和height中只有一个值未设置或者设置为小于等于0的值时，另一个会根据图片原始宽高比进行调整。 |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## backgroundImagePosition
 
-backgroundImagePosition(value: Position | Alignment)
+backgroundImagePosition(value: Position | Alignment): T
 
 设置背景图的位置。
 
@@ -152,6 +176,12 @@ backgroundImagePosition(value: Position | Alignment)
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [Position](ts-types.md#position)&nbsp;\|&nbsp;[Alignment](ts-appendix-enums.md#alignment) | 是   | 设置背景图在组件中显示位置，即相对于组件左上角的坐标。<br/>默认值：<br/>{<br/>x:&nbsp;0,<br/>y:&nbsp;0<br/>} <br/> x和y值设置百分比时，偏移量是相对组件自身宽高计算的。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
 
 ## BlurStyle<sup>9+</sup>
 
@@ -321,6 +351,12 @@ backgroundEffect(options: Optional\<BackgroundEffectOptions>): T
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | options | Optional\<[BackgroundEffectOptions](#backgroundeffectoptions11)> | 是   | 设置组件背景属性包括：饱和度，亮度，颜色。<br/>当options的值为undefined时，恢复为无效果的背景。 |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## BackgroundEffectOptions<sup>11+</sup>
 
 背景效果参数。
@@ -335,14 +371,14 @@ backgroundEffect(options: Optional\<BackgroundEffectOptions>): T
 | saturation   | number        |   否   |   饱和度，取值范围：[0, +∞)，默认为1。推荐取值范围：[0, 50]。     |
 | brightness   | number        |   否   |   亮度，取值范围：[0, +∞)，默认为1。推荐取值范围：[0, 2]。 |
 | color        | [ResourceColor](ts-types.md#resourcecolor)         |   否   |   颜色，默认透明色。  |
-| adaptiveColor | [AdaptiveColor](ts-universal-attributes-foreground-blur-style.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。使用AVERAGE时color必须带有透明度，取色模式才生效。   |
+| adaptiveColor | [AdaptiveColor](ts-universal-attributes-foreground-blur-style.md#adaptivecolor10枚举说明) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。使用AVERAGE时color必须带有透明度，取色模式才生效。   |
 | blurOptions  | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
 | policy<sup>14+</sup>    | [BlurStyleActivePolicy](#blurstyleactivepolicy14) | 否    | 模糊激活策略。<br/> 默认值：BlurStyleActivePolicy.ALWAYS_ACTIVE |
 | inactiveColor<sup>14+</sup>  | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 窗口失焦后，窗口内控件模糊效果会被移除，则使用inactiveColor作为控件背板颜色。 |
 
 ## backgroundImageResizable<sup>12+</sup>
 
-backgroundImageResizable(value: ResizableOptions)
+backgroundImageResizable(value: ResizableOptions): T
 
 设置背景图在拉伸时可调整大小的图像选项。
 
@@ -359,6 +395,12 @@ backgroundImageResizable(value: ResizableOptions)
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
 | value  | [ResizableOptions](ts-basic-components-image.md#resizableoptions11) | 是   | 图像拉伸时可调整大小的图像选项。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
 
 ## BackgroundBlurStyleOptions<sup>10+</sup>对象说明
 

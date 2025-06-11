@@ -553,6 +553,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     // 写入码流数据。
     uint8_t *addr = OH_AVBuffer_GetAddr(bufferInfo->buffer);
+    if (addr == nullptr) {
+       // 异常处理 
+    }
     int32_t capcacity = OH_AVBuffer_GetCapacity(bufferInfo->buffer);
     if (size > capcacity) {
         // 异常处理。
@@ -653,6 +656,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     // 重传PPS/SPS。
     // 配置帧数据PPS/SPS信息。
     uint8_t *addr = OH_AVBuffer_GetAddr(bufferInfo->buffer);
+    if (addr == nullptr) {
+       // 异常处理 
+    }
     int32_t capcacity = OH_AVBuffer_GetCapacity(bufferInfo->buffer);
     if (xpsSize > capcacity) {
         // 异常处理。
@@ -1052,6 +1058,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     // 写入码流数据。
     uint8_t *addr = OH_AVBuffer_GetAddr(bufferInfo->buffer);
+    if (addr == nullptr) {
+       // 异常处理 
+    }
     int32_t capcacity = OH_AVBuffer_GetCapacity(bufferInfo->buffer);
     if (size > capcacity) {
         // 异常处理。
@@ -1095,7 +1104,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 异常处理。
     }
     // 将解码完成数据data写入到对应输出文件中。
-    outputFile->write(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(bufferInfo->buffer)), info.size);
+    uint8_t *addr = OH_AVBuffer_GetAddr(bufferInfo->buffer);
+    if (addr == nullptr) {
+       // 异常处理 
+    }
+    outputFile->write(reinterpret_cast<char *>(addr), info.size);
     // Buffer模式，释放已完成写入的数据，index为对应buffer队列的下标。
     ret = OH_VideoDecoder_FreeOutputBuffer(videoDec, bufferInfo->index);
     if (ret != AV_ERR_OK) {

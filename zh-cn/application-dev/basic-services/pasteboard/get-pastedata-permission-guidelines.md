@@ -8,7 +8,7 @@ API version 12及之后，系统为提升用户隐私安全保护能力，剪贴
 
 | 名称 | 说明                                                                                                                                        |
 | -------- |----------------------------------------------------------------------------------------------------------------------------------------|
-| getData( callback: AsyncCallback&lt;PasteData&gt;): void | 读取系统剪贴板内容，使用callback异步回调。 |
+| getData(callback: AsyncCallback&lt;PasteData&gt;): void | 读取系统剪贴板内容，使用callback异步回调。 |
 | getData(): Promise&lt;PasteData&gt; | 读取系统剪贴板内容，使用Promise异步回调。 |
 | getDataSync(): PasteData | 读取系统剪贴板内容, 此接口为同步接口。 |
 | getUnifiedData(): Promise\<unifiedDataChannel.UnifiedData\> | 从系统剪贴板中读取统一数据对象的数据。 |

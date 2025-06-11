@@ -423,8 +423,6 @@ data数据必须使用base64编码或将内容中的任何#字符编码为%23。
 > - 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
 >
 > - 若html中的富文本中带有注入#等特殊字符，建议将baseUrl和historyUrl两个参数的值设置为"空格"。
->
-> - 加载文字场景，需主动设置<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">避免文本字体大小不一致。
 
 **错误码：**
 
@@ -5029,6 +5027,10 @@ enableSafeBrowsing(enable: boolean): void
 本功能默认不生效，OpenHarmony只提供恶意网址拦截页WebUI，网址风险检测以及显示WebUI的功能由Vendor实现。推荐在WebContentsObserver中监听跳转[DidStartNavigation](https://gitee.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidStartNavigation)、[DidRedirectNavigation](https://gitee.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidRedirectNavigation)进行检测。
 <!--RP1End-->
 
+> **说明：**
+> 
+> 该接口不生效，调用不会产生任何实际效果。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -7525,6 +7527,12 @@ struct WebComponent {
 webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): void
 
 获取网页全量绘制结果。
+
+> **说明：**
+>
+> 仅支持对渲染进程上的资源进行截图：静态图片和文本。
+> 
+> 如果页面有视频则截图时会显示该视频的占位图片，没有占位图片则显示空白。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

@@ -115,7 +115,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onUpdateForm(formId: string, wantParams?: Record<string, Object>): void
 
-卡片提供方接收携带参数的更新卡片的通知接口。获取最新数据后调用formProvider的[updateForm](js-apis-app-form-formProvider.md#updateform)接口刷新卡片数据。
+卡片提供方接收携带参数的更新卡片的通知接口。获取最新数据后调用formProvider的[updateForm](js-apis-app-form-formProvider.md#formproviderupdateform)接口刷新卡片数据。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 

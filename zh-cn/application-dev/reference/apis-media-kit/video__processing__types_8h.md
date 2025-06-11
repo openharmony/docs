@@ -32,7 +32,7 @@
 | -------- | -------- |
 | typedef struct [OH_VideoProcessing](_video_processing.md#oh_videoprocessing ) [OH_VideoProcessing](_video_processing.md#oh_videoprocessing) | 定义视频处理对象。 | 
 | typedef struct NativeWindow [OHNativeWindow](_video_processing.md#ohnativewindow) | 定义NativeWindow对象。 | 
-| typedef struct [OH_AVFormat](_video_processing.md#oh_avformat-1) [OH_AVFormat](_video_processing.md#oh_avformat) | 定义OH_AVFormat对象。 | 
+| typedef struct [OH_AVFormat](_video_processing.md#oh_avformat) [OH_AVFormat](_video_processing.md#oh_avformat) | 定义OH_AVFormat对象。 | 
 | typedef struct [VideoProcessing_ColorSpaceInfo](_video_processing___color_space_info.md) [VideoProcessing_ColorSpaceInfo](_video_processing.md#videoprocessing_colorspaceinfo) | 视频颜色空间信息数据结构。 | 
 | typedef enum [VideoDetailEnhancer_QualityLevel](_video_processing.md#videodetailenhancer_qualitylevel-1) [VideoDetailEnhancer_QualityLevel](_video_processing.md#videodetailenhancer_qualitylevel) | 用于细节增强的质量等级。 | 
 | typedef enum [VideoProcessing_ErrorCode](_video_processing.md#videoprocessing_errorcode-1) [VideoProcessing_ErrorCode](_video_processing.md#videoprocessing_errorcode) | 视频处理错误码。 | 

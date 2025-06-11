@@ -767,30 +767,6 @@ onRefreshAccessedHistory(callback: Callback\<OnRefreshAccessedHistoryEvent\>)
   }
   ```
 
-## onSslErrorReceive<sup>(deprecated)</sup>
-
-onSslErrorReceive(callback: (event?: { handler: Function, error: object }) => void)
-
-通知用户加载资源时发生SSL错误。
-
-> **说明：**
->
-> 从API version 8开始支持，从API version 9开始废弃。建议使用[onSslErrorEventReceive<sup>9+</sup>](#onsslerroreventreceive9)替代。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-## onFileSelectorShow<sup>(deprecated)</sup>
-
-onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object }) => void)
-
-调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮。
-
-> **说明：**
->
-> 从API version 8开始支持，从API version 9开始废弃。建议使用[onShowFileSelector<sup>9+</sup>](#onshowfileselector9)替代。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
 ## onRenderExited<sup>9+</sup>
 
 onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
@@ -1134,46 +1110,6 @@ onScaleChange(callback: Callback\<OnScaleChangeEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onScaleChange((event) => {
             console.log('onScaleChange changed from ' + event.oldScale + ' to ' + event.newScale);
-          })
-      }
-    }
-  }
-  ```
-
-## onUrlLoadIntercept<sup>(deprecated)</sup>
-
-onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
-
-当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。
-从API version 10开始不再维护，建议使用[onLoadIntercept<sup>10+</sup>](#onloadintercept10)代替。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名    | 类型   | 必填   | 说明                  |
-| ------ | ------ | ---- | --------------------- |
-| callback | (event?: { data:string \| [WebResourceRequest](./ts-basic-components-web.md#webresourcerequest) }) => boolean | 是 | url的相关信息。<br>返回值：boolean，true表示阻止此次加载，false表示允许此次加载。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import { webview } from '@kit.ArkWeb';
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
-
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .onUrlLoadIntercept((event) => {
-            if (event) {
-              console.log('onUrlLoadIntercept ' + event.data.toString());
-            }
-            return true
           })
       }
     }
@@ -1989,7 +1925,15 @@ onContextMenuHide(callback: OnContextMenuHideCallback)
 
 onScroll(callback: Callback\<OnScrollEvent\>)
 
-通知网页滚动条滚动位置。
+通知网页全局滚动位置。
+
+> **说明：**
+>
+> 通知的是页面全局滚动位置，局部滚动位置的变化是无法触发此回调。
+>
+> 判断页面是否是全局滚动，在滚动前后打印window.pagYOffset或者window.pagXOffset。
+>
+> 如果是全局滚动，window.pagYOffset或者window.pagXOffset的值在滚动前后会有变化，反之没有变化。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3917,4 +3861,68 @@ onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
   </div>
   </body>
   </html>
+  ```
+
+## onSslErrorReceive<sup>(deprecated)</sup>
+
+onSslErrorReceive(callback: (event?: { handler: Function, error: object }) => void)
+
+通知用户加载资源时发生SSL错误。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[onSslErrorEventReceive<sup>9+</sup>](#onsslerroreventreceive9)替代。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+## onFileSelectorShow<sup>(deprecated)</sup>
+
+onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object }) => void)
+
+调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[onShowFileSelector<sup>9+</sup>](#onshowfileselector9)替代。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+## onUrlLoadIntercept<sup>(deprecated)</sup>
+
+onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
+
+当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。
+从API version 10开始不再维护，建议使用[onLoadIntercept<sup>10+</sup>](#onloadintercept10)代替。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名    | 类型   | 必填   | 说明                  |
+| ------ | ------ | ---- | --------------------- |
+| callback | (event?: { data:string \| [WebResourceRequest](./ts-basic-components-web.md#webresourcerequest) }) => boolean | 是 | url的相关信息。<br>返回值：boolean，true表示阻止此次加载，false表示允许此次加载。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onUrlLoadIntercept((event) => {
+            if (event) {
+              console.log('onUrlLoadIntercept ' + event.data.toString());
+            }
+            return true
+          })
+      }
+    }
+  }
   ```
