@@ -702,7 +702,7 @@
         - [使用Web组件的手势与应用交互](web/web-gesture.md)
         - [使用Web组件管理网页缩放](web/web-scale-zoom.md)
         - [使用Web组件显示网页弹框](web/web-dialog.md)
-        - [使用Web组件的拖拽功能与网页交互](web_drag.md)
+        - [使用Web组件的拖拽功能与网页交互](web/web_drag.md)
       - 管理Web组件的网络安全与隐私<!--web-manage-cyber-security-privacy-->
         - [解决Web组件本地资源跨域问题](web/web-cross-origin.md)
         - [使用智能防跟踪功能](web/web-intelligent-tracking-prevention.md)
