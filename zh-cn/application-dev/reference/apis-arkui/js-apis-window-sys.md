@@ -1004,7 +1004,7 @@ getTopNavDestinationName(windowId: number): Promise&lt;string&gt;
 
 **示例：**
 ```ts
-import { window } from '@ohos.window';
+import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
