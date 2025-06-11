@@ -2,7 +2,7 @@
 
 
 <!--Del-->
-DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-start/deveco-studio-user-guide-for-openharmony.md)。<!--DelEnd-->本章主要介绍如何使用DevEco Studio进行多设备应用开发。
+DevEco Studio的基本使用，请参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-tools-overview)。<!--DelEnd-->本章主要介绍如何使用DevEco Studio进行多设备应用开发。
 
 
 > **说明：**
