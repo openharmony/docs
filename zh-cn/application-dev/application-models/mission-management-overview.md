@@ -138,7 +138,7 @@
         hilog.error(DOMAIN_NUMBER, TAG,
           `getMissionSnapShot is called, error code: ${error.code}, error msg: ${error.message}.`);
         hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
-      })
+      });
     ```
     ```ts
     // 5.获取低分辨任务快照
@@ -152,7 +152,7 @@
         hilog.error(DOMAIN_NUMBER, TAG,
           `getLowResolutionMissionSnapShot is called, error code: ${error.code}, error msg: ${error.message}.`);
         hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
-      })
+      });
     ```
     ```ts
     // 6-1 加锁任务
@@ -202,7 +202,7 @@
         });
       }
       hilog.info(DOMAIN_NUMBER, TAG, 'unregisterMissionListener');
-    })
+    });
     ```
 
 ## 相关实例

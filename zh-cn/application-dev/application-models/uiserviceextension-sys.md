@@ -136,15 +136,15 @@
           decorEnabled: true,
           // 是否模态窗口
           isModal: false
-        }
+        };
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowWillCreate end');
       }
 
       // 窗口创建完成
       onWindowDidCreate(window: window.Window) {
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowDidCreate');
-        window.setUIContent('uiservice/page/WindowPage')
-        window.showWindow()
+        window.setUIContent('uiservice/page/WindowPage');
+        window.showWindow();
       }
 
       // 接收数据
@@ -215,7 +215,7 @@ struct Index {
             } catch (err) {
               let code = (err as BusinessError).code;
               let msg = (err as BusinessError).message;
-              console.errro(`startUIServiceExtensionAbility failed, err code: ${code}, err msg: ${msg}.`);
+              console.error(`startUIServiceExtensionAbility failed, err code: ${code}, err msg: ${msg}.`);
             }
           })
       }
@@ -267,7 +267,7 @@ struct Index {
               console.info(`connectUIServiceExtensionAbility success.`);
             }).catch((error: BusinessError) => {
               console.error(`connectUIServiceExtensionAbility failed, err code:${error.code}, err msg: ${error.message}.`);
-            })
+            });
           })
         }
       }
@@ -296,7 +296,7 @@ struct Index {
               console.info(`disconnectUIServiceExtensionAbility success.`);
             }).catch((error: BusinessError) => {
               console.error(`disconnectUIServiceExtensionAbility failed, err code: ${error.code}, err msg: ${error.message}.`);
-            })
+            });
           })
         }
       }
@@ -363,7 +363,6 @@ struct Index {
                         let msg = (err as BusinessError).message;
                         console.error(`sendData failed, err code: ${code}, err msg: ${msg}.`);
                       }
-                      ;
                     })
                     .catch((err: BusinessError) => {
                       console.error(`connectUIServiceExtensionAbility failed, err code: ${err.code}, err msg: ${err.message}.`);
