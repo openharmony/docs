@@ -43,9 +43,9 @@ FoldSplitContainer({
 
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| primary | ()=>void | 是 | @BuilderParam | 主要区域回调函数。 |
-| secondary | ()=>void | 是 | @BuilderParam | 次要区域回调函数。 |
-| extra | ()=>void | 否 | @BuilderParam | 扩展区域回调函数，不传入的情况，没有对应区域。 |
+| primary | Callback\<void> | 是 | @BuilderParam | 主要区域回调函数。 |
+| secondary | Callback\<void> | 是 | @BuilderParam | 次要区域回调函数。 |
+| extra | Callback\<void> | 否 | @BuilderParam | 扩展区域回调函数，不传入的情况，没有对应区域。 |
 | expandedLayoutOptions | [ExpandedRegionLayoutOptions](#expandedregionlayoutoptions) | 是 | @Prop | 展开态布局信息。 |
 | hoverModeLayoutOptions | [HoverModeRegionLayoutOptions](#hovermoderegionlayoutoptions) | 是 | @Prop | 悬停态布局信息。 |
 | foldedLayoutOptions | [FoldedRegionLayoutOptions](#foldedregionlayoutoptions) | 是 | @Prop | 折叠态布局信息。 |
