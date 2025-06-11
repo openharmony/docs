@@ -122,7 +122,7 @@ HiCollie模块对外提供函数执行时间超长的检测机制。
            Button("TestHiCollieTimerNdk")
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
-             .onClick(testNapi.TestHiCollieTimerNdk);  //添加点击事件，触发testHiCollieTimerNdk方法。
+             .onClick(testNapi.TestHiCollieTimerNdk);  //添加点击事件，触发TestHiCollieTimerNdk方法。
          }
          .width('100%')
        }
