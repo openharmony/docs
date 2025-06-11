@@ -2824,7 +2824,7 @@ getFontByName(fontName: string): font.FontInfo
 
 | 类型                                      | 说明           |
 | ----------------------------------------- | -------------- |
-| [font.FontInfo](js-apis-font.md#fontinfo) | 字体的详细信息 |
+| [font.FontInfo](js-apis-font.md#fontinfo10) | 字体的详细信息。 |
 
 **示例：** 
 
