@@ -7983,7 +7983,7 @@ if (controller !== undefined) {
 
 ### off('extrasChange')<sup>10+</sup>
 
-off(type: 'extrasChange', callback?: (c{[key:string]: Object}) => void): void
+off(type: 'extrasChange', callback?: (extras: {[key:string]: Object}) => void): void
 
 媒体控制器取消监听自定义媒体数据包变化事件。
 
