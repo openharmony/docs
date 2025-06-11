@@ -2914,10 +2914,10 @@ revokeDelegator() : Promise&lt;void&gt;
 
 1. 设置DelegatorAbility。
 
-    在[module.json5](../../quick-start/module-configuration-file.md#modulejson5配置文件)配置文件标签中配置abilitySrcEntryDelegator和abilityStageSrcEntryDelegator。当Module下首个UIAbility冷启动时，系统优先启动abilitySrcEntryDelegator指向的UIAbility。
+    在[module.json5](../../quick-start/module-configuration-file.md)配置文件标签中配置abilitySrcEntryDelegator和abilityStageSrcEntryDelegator。当Module下首个UIAbility冷启动时，系统优先启动abilitySrcEntryDelegator指向的UIAbility。
     > **说明**：
     >
-    >  - 当UIAbility是通过[startAbilityByCall](#startabilitybycall)启动时，系统会忽略在[module.json5](../../quick-start/module-configuration-file.md#modulejson5配置文件)配置文件标签中配置的abilitySrcEntryDelegator和abilityStageSrcEntryDelegator。
+    >  - 当UIAbility是通过[startAbilityByCall](#startabilitybycall)启动时，系统会忽略在[module.json5](../../quick-start/module-configuration-file.md)配置文件标签中配置的abilitySrcEntryDelegator和abilityStageSrcEntryDelegator。
     >  - abilityStageSrcEntryDelegator指定的ModuleName不能与当前ModuleName相同。
     ```json
     {
