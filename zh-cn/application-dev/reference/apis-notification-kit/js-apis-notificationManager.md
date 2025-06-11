@@ -26,7 +26,7 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                                        | 必填 | 说明                                        |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | callback | AsyncCallback\<void\>                       | 是   | 发布通知的回调方法。                        |
 
 **错误码：**
@@ -92,7 +92,7 @@ publish(request: NotificationRequest): Promise\<void\>
 
 | 参数名     | 类型                                        | 必填 | 说明                                        |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 
 **返回值：**
 
@@ -1069,7 +1069,7 @@ getActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>): v
 
 | 参数名     | 类型                                                         | 必填 | 说明                           |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | 是   | 获取当前应用通知列表回调函数。 |
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1)>> | 是   | 获取当前应用通知列表回调函数。 |
 
 **错误码：**
 
@@ -1109,7 +1109,7 @@ getActiveNotifications(): Promise\<Array\<NotificationRequest\>\>
 
 | 类型                                                         | 说明                                    |
 | ------------------------------------------------------------ | --------------------------------------- |
-| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\> | 以Promise形式返回获取当前应用通知列表。 |
+| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1)\>\> | 以Promise形式返回获取当前应用通知列表。 |
 
 **错误码：**
 
@@ -1145,7 +1145,7 @@ cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                         |
 | --------- | --------------------- | ---- | ---------------------------- |
-| groupName | string                | 是   | 通知组名称，此名称需要在发布通知时通过[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)对象指定。 |
+| groupName | string                | 是   | 通知组名称，此名称需要在发布通知时通过[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1)对象指定。 |
 | callback  | AsyncCallback\<void\> | 是   | 取消本应用指定组下通知的回调函数。 |
 
 **错误码：**
@@ -1187,7 +1187,7 @@ cancelGroup(groupName: string): Promise\<void\>
 
 | 参数名      | 类型   | 必填 | 说明           |
 | --------- | ------ | ---- | -------------- |
-| groupName | string | 是   | 通知组名称，此名称需要在发布通知时通过[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)对象指定。 |
+| groupName | string | 是   | 通知组名称，此名称需要在发布通知时通过[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1)对象指定。 |
 
 **返回值：**
 
@@ -1756,7 +1756,7 @@ type NotificationContent = _NotificationContent
 
 | 类型 | 说明 |
 | --- | --- |
-| [_NotificationContent](js-apis-inner-notification-notificationContent.md#notificationcontent) | 描述通知内容。 |
+| [_NotificationContent](js-apis-inner-notification-notificationContent.md#notificationcontent-1) | 描述通知内容。 |
 
 ## NotificationLongTextContent
 
@@ -1816,7 +1816,7 @@ type NotificationRequest = _NotificationRequest
 
 | 类型 | 说明 |
 | --- | --- |
-| [_NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 描述通知的请求。 |
+| [_NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1) | 描述通知的请求。 |
 
 ## DistributedOptions
 
