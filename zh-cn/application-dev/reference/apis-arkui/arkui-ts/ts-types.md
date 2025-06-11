@@ -227,9 +227,9 @@
 | 名称     | 类型                              | 必填   | 说明       |
 | ------ | ------------------------------- | ---- | -------- |
 | top    | [ResourceColor](#resourcecolor) | 否    | 组件上边框颜色。 |
-| end    | [ResourceColor](#resourcecolor) | 否    | 组件右边框颜色。<br />从左至右显示语言模式下为组件左边框颜色。 |
+| end    | [ResourceColor](#resourcecolor) | 否    | 组件右边框颜色。<br />从右至左显示语言模式下为组件左边框颜色。 |
 | bottom | [ResourceColor](#resourcecolor) | 否    | 组件下边框颜色。 |
-| start  | [ResourceColor](#resourcecolor) | 否    | 组件左边框颜色。<br />从左至右显示语言模式下为组件右边框颜色。 |
+| start  | [ResourceColor](#resourcecolor) | 否    | 组件左边框颜色。<br />从右至左显示语言模式下为组件右边框颜色。 |
 
 ## EdgeStyles<sup>9+</sup>
 
@@ -483,8 +483,8 @@
 | 名称        | 类型                                       | 必填 | 默认值      | 描述                                                         |
 | ----------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------------------------ |
 | strokeColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | Color.White | 内部图标颜色。                                               |
-| size        | [Length](ts-types.md#length)               | 否   | -           | 内部图标大小，单位vp。默认大小与多选框组件宽度设置值一致。<br />不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
-| strokeWidth | [Length](ts-types.md#length)               | 否   | 2           | 内部图标粗细，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
+| size        | [Length](ts-types.md#length)               | 否   | -           | 内部图标大小，单位vp。默认大小与多选框组件宽度相同。<br />不支持百分比形式设置。设置为非法值时，按照默认值处理。 |
+| strokeWidth | [Length](ts-types.md#length)               | 否   | 2           | 内部图标粗细，单位vp。不支持设置百分比。设置为非法值时，按照默认值处理。 |
 
 ## ModalTransition<sup>10+</sup>
 
@@ -600,8 +600,8 @@
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
 | radius | number \| [Resource](#resource) | 否 | 投影模糊半径。 <br/>API version 10及以前，默认值：5<br/>API version 11及以后，默认值：20<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|
-| offsetX | number \| [Resource](#resource) | 否 | X轴的偏移量。 <br/>默认值：5<br/>单位：vp |
-| offsetY | number \| [Resource](#resource) | 否 | Y轴的偏移量。 <br/>默认值：5<br/>单位：vp |
+| offsetX | number \| [Resource](#resource) | 否 | X轴偏移量。 <br/>默认值：5<br/>单位：vp |
+| offsetY | number \| [Resource](#resource) | 否 | Y轴偏移量。 <br/>默认值：5<br/>单位：vp |
 
 ## SafeAreaType<sup>10+</sup>
 
@@ -634,6 +634,8 @@
 
 ## KeyboardAvoidMode<sup>12+</sup>枚举说明
 
+弹窗避让键盘时，避让模式的枚举类型。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -650,15 +652,24 @@
 | 名称     | 描述                                       |
 | -------- | ------------------------------------------ |
 | SYSTEM   | 系统默认非安全区域，包括状态栏、导航栏。   |
+| KEYBOARD<sup>20+</sup> | 软键盘区域。                               |
+| ALL<sup>20+</sup>   | 同时包含SYSTEM和KEYBOARD区域。 |
 
 ## LayoutSafeAreaEdge<sup>12+</sup>
 
 扩展安全区域的方向。
 
-| 名称   | 描述       |
-| ------ | ---------- |
-| TOP    | 上方区域。 |
-| BOTTOM | 下方区域。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 值 | 描述       |
+| ------ | --- | ---------- |
+| TOP    | 0 | 上方区域。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BOTTOM | 1 | 下方区域。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| START<sup>20+</sup>      | 2 | 前部区域。LTR模式时表示左侧区域，RTL模式表示右侧区域。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| END<sup>20+</sup>        | 3 |尾部区域。LTR模式时表示右侧区域，RTL模式表示左侧区域。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| VERTICAL<sup>20+</sup>   | 4 |垂直区域。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| HORIZONTAL<sup>20+</sup> | 5 |水平区域。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| ALL<sup>20+</sup>        | 6 |全部区域。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## TouchPoint<sup>11+</sup>
 
@@ -763,7 +774,7 @@ type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) =>
 | color  | [ResourceColor](#resourcecolor) | 否  | 分割线的颜色。         |
 | startMargin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否  | 分割线与菜单侧边起始端的距离。 |
 | endMargin  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup>| 否  | 分割线与菜单侧边结束端的距离。 |
-| mode  | [DividerMode](#dividermode19枚举说明)<sup>19+</sup>| 否  | 设置分割线模式。 |
+| mode  | [DividerMode](ts-appendix-enums.md#dividermode19枚举说明)<sup>19+</sup>| 否  | 设置分割线模式。 |
 
 ## TextContentControllerBase<sup>10+</sup>
 
@@ -854,6 +865,12 @@ addText(text: string, textOperationOptions?: TextContentControllerOptions): numb
 | ------- | ------ | ---- | ----- |
 | text | string | 是    | 插入的文本内容。 |
 | textOperationOptions   | [TextContentControllerOptions](#textcontentcontrolleroptions15) | 否    | 插入文本的配置选项，不设置时默认插入文本至末尾。 |
+
+**返回值：**
+
+| 类型  | 说明       |
+| ----- | -------- |
+| number| 插入文本后光标的位置。 |
 
 ### deleteText<sup>15+</sup>
 
@@ -1026,25 +1043,34 @@ setTextSelection选中文字时的配置。
 
 ## LayoutPolicy<sup>15+</sup>
 
-用于设置线性布局的布局策略。
+用于设置布局策略。
 
-**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 类型   | 只读 | 可选 | 说明 |
 | --------- | ------ | ---- | ---- |---------- |
-| matchParent | LayoutPolicy | 是 | 否 |适应父组件布局。 |
+| matchParent | [LayoutPolicy](ts-types.md#layoutpolicy15) | 是 | 否   | 当前组件适应父组件布局，其大小与父组件内容区相等。<br>**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。 <br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| wrapContent<sup>20+</sup> | [LayoutPolicy](ts-types.md#layoutpolicy15) | 是 | 否   | 当前组件适应子组件布局，其大小与子组件相等且不能超过父组件内容区大小。<br>**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。 <br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| fixAtIdealSize<sup>20+</sup> | [LayoutPolicy](ts-types.md#layoutpolicy15) | 是 | 否   | 当前组件适应子组件布局，其大小与子组件相等但可以超过父组件内容区大小。<br>**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。 <br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 >  **说明：**
 >
->  - 当线性布局组件的父容器设定了长度，组件将以父容器的尺寸为基准，自动调整以适应父组件的布局。若父容器未设定长度，线性布局组件则会等待所有子组件完成布局后，再进行自身调整以适应父组件布局。
+> - LayoutPolicy支持设置三种布局策略：matchParent（自适应父组件布局）、wrapContent（根据内容自适应但不超过父组件尺寸的布局）和fixAtIdealSize（根据内容自适应，可能超过父组件尺寸的布局）。具体示例代码参见[设置布局策略](./ts-universal-attributes-size.md#示例5设置布局策略)。
+>
+> - 当设置了matchParent组件，其父容器设定了长度时，该组件将以父容器的尺寸为基准，自动调整以适应父组件的布局。若父容器未设定长度，该组件则会等待其父组件所有子组件完成布局后，再进行自身调整以适应父组件布局。
 > 
->  - 若同一父组件下有多个设置matchParent的子组件，则多个子组件均会被设置为父组件大小，也即会产生溢出现象。
+> - 若同一父组件下有多个设置matchParent的子组件，则多个子组件均会被设置为父组件大小，也即在特定组件（[Flex](./ts-container-flex.md)、[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[RelativeContainer](./ts-container-relativecontainer.md)）上子组件会被绘制出容器外。
 > 
->  - matchParent会强制将自身大小设置成父组件大小，因此其设置的其他约束大小的属性将会失效。
+> - matchParent会强制将自身大小设置成父组件大小，因此其设置的其他除宽高比外约束大小的属性将会失效。
+>
+> - matchParent的生效优先级为宽高比 > matchParent > [constraintSize](ts-universal-attributes-size.md#constraintsize) ，wrapContent的生效优先级为宽高比 > [constraintSize](ts-universal-attributes-size.md#constraintsize) > wrapContent，fixAtIdealSize的生效优先级为宽高比 > [constraintSize](ts-universal-attributes-size.md#constraintsize) > fixAtIdealSize。
+>
+> - 设置了matchParent的组件会将其大小设置为其父组件不包含padding、border以及safeAreaPadding后的大小，即与父组件内容区大小相等。
+>
+>  **使用场景：**
+> 
+> - 使用[自定义组件的自定义布局](ts-custom-component-layout.md#自定义组件的自定义布局)时，对其中的子组件的内容未知，不能确定设置固定的长度和宽度，可以为其的宽度或高度设置LayoutPolicy.fixAtIdealSize，使得子组件不受到父组件的影响，只受到自定义布局限制的影响。
 
 ## TextContentControllerOptions<sup>15+</sup>
 
@@ -1057,16 +1083,3 @@ setTextSelection选中文字时的配置。
 | 名称      | 类型   | 只读 | 可选 | 说明       |
 | --------- | ------ | ---- | ---- | ---------- |
 | offset | number | 是   | 是   | 插入文本的位置。 |
-
-## DividerMode<sup>19+</sup>枚举说明
-
-分割线模式
-
-**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称            | 值 | 说明                                       |
-| ------------------ | - | ---------------------------------------- |
-| FLOATING_ABOVE_MENU| 0 | 悬浮在Menu之上，默认值，不占用高度。      |
-| EMBEDDED_IN_MENU   | 1 | 在Menu中展开，参与布局计算，占用高度。    |

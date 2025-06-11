@@ -103,7 +103,7 @@
 
 GridRow中通过columns设置栅格布局的总列数。
 
-- API version 20之前，columns默认值为12，即在未设置columns时，任何断点下，栅格布局均被分成12列。 
+- API version 20之前，columns默认值为12，即在未设置columns时，任何断点下，栅格布局均被分成12列。
 - API version 20及以后，columns默认值为{ xs: 2, sm: 4, md: 8, lg: 12, xl: 12, xxl: 12 }。
 
 
@@ -511,4 +511,4 @@ struct GridRowExample {
 ![zh-cn_image_0000001563060697](figures/zh-cn_image_0000001563060697.png)
 
 
-综上所述，栅格组件提供了丰富的自定义能力，功能异常灵活和强大。只需要明确栅格在不同断点下的Columns、Margin、Gutter及span等参数，即可确定最终布局，无需关心具体的设备类型及设备状态（如横竖屏）等。
+综上所述，栅格组件提供了丰富的自定义能力，功能非常灵活和强大。只需要明确栅格在不同断点下的Columns、Margin、Gutter及span等参数，即可确定最终布局，无需关心具体的设备类型及设备状态（如横竖屏）等。

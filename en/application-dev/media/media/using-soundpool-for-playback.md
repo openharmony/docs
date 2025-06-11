@@ -4,7 +4,7 @@ The [SoundPool](media-kit-intro.md#soundpool) class provides APIs to implement l
 
 Short sound effects (such as the camera shutter sound effect and system notification sound effect) are often required during application development. You can call the APIs provided by SoundPool to implement one-time loading of short sounds and multiple times of low-latency playback.
 
-Currently, the SoundPool APIs can be used to play an audio file that is less than 1 MB. If the size of an audio file exceeds 1 MB, 1 MB data is captured and played.
+SoundPool currently supports playing of audio files that are under 1 MB in size after decoding. For audio files that exceed this limit after decoding, only the first 1 MB of data is played. This is equivalent to approximately 5.6 seconds of audio duration at a 44.1 kHz sampling rate with 16-bit depth for stereo sound. (At lower sampling rates or in mono mode, the duration may be slightly longer.)
 
 This topic walks you through on how to use the SoundPool APIs to implement low-latency playback. For details about the API, see [SoundPool](../../reference/apis-media-kit/js-apis-inner-multimedia-soundPool.md).
 
@@ -72,7 +72,7 @@ During application development, you must subscribe to playback state changes and
 
     ```ts
     soundPool.on('error', (error: BusinessError) => {
-      console.info('error happened,message is :' + error.message);
+      console.error('error happened,message is :' + error.message);
     });
     ```
 
@@ -116,7 +116,7 @@ During application development, you must subscribe to playback state changes and
       };
     soundPool.play(soundID, playParameters, (error: BusinessError, streamId: number) => {
       if (error) {
-        console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
+        console.error(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
         streamID = streamId;
         console.info('play success soundid:' + streamId);
@@ -219,7 +219,7 @@ During application development, you must subscribe to playback state changes and
     });
     ```
 
-## Sample Code
+## Development Example
 
 The following sample code implements low-latency playback using SoundPool.
 
@@ -282,14 +282,14 @@ function finishPlayCallback() {
 // Set the listener for errors.
 function setErrorCallback() {
   soundPool.on('error', (error: BusinessError) => {
-    console.info('error happened,message is :' + error.message);
+    console.error('error happened,message is :' + error.message);
   })
 }
 async function PlaySoundPool() {
   // Start playback. The play operation can also contain PlayParameters. Perform the play operation after the audio resources are loaded, that is, after the loadComplete callback is received.
   soundPool.play(soundId, playParameters, (error, streamID: number) => {
     if (error) {
-      console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
+      console.error(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
     } else {
       streamId = streamID;
       console.info('play success soundid:' + streamId);

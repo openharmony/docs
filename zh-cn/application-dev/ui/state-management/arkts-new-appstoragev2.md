@@ -11,15 +11,13 @@ AppStorageV2是提供状态变量在应用级全局共享的能力，开发者�
 >AppStorageV2从API version 12开始支持。
 >
 
-
 ## 概述
 
-AppStorageV2是在应用UI启动时会被创建的单例。它的目的是为了提供应用状态数据的中心存储，这些状态数据在应用级别都是可访问的。AppStorageV2将在应用运行过程保留其数据。数据通过唯一的键字符串值访问。
+AppStorageV2是在应用UI启动时会被创建的单例。它的目的是为了提供应用状态数据的中心存储，这些状态数据在应用级别都是可访问的。AppStorageV2将在应用运行过程保留其数据。数据通过唯一的键字符串值访问。需要注意的是，AppStorage与AppStorageV2之间的数据互不共享。
 
-AppStorageV2可以和UI组件同步，且可以在应用业务逻辑中被访问。
+AppStorageV2可以修改connect的返回值，实现与UI组件的同步。
 
 AppStorageV2支持应用的[主线程](../../application-models/thread-model-stage.md)内多个UIAbility实例间的状态共享。
-
 
 ## 使用说明
 
@@ -35,7 +33,7 @@ static connect<T extends object>(
 
 | connect      | 说明                                                  |
 | ------------ | ----------------------------------------------------- |
-| 参数         | type：指定的类型，若未指定key，则使用type的name作为key；</br > keyOrDefaultCreator：指定的key，或者是默认数据的构造器；</br > defaultCreator：默认数据的构造器。                                          |
+| 参数         | type：指定的类型，若未指定key，则使用type的name作为key；</br>keyOrDefaultCreator：指定的key，或者是默认数据的构造器；</br>defaultCreator：默认数据的构造器。                                          |
 | 返回值       | 创建或获取数据成功时，返回数据；否则返回undefined。 |
 
 >**说明：**

@@ -544,7 +544,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 | ------ | ------- | ---- | --- | ---------------- |
 | bundle | string  | Yes | No | Bundle name of the application.      |
 | uid    | number  | Yes | No | UID of the application.       |
-| enable | boolean | Yes | No | Notification enabled state of the application.|
+| enable | boolean | Yes | No | Whether the application notification is enabled.<br> - **true**: enabled.<br> - **false**: disabled.|
 
 
 ## BadgeNumberCallbackData<sup>10+</sup>

@@ -1,6 +1,8 @@
 # @ohos.app.ability.Want (Want)
 
-Want是对象间信息传递的载体，可以用于应用组件间的信息传递。Want的使用场景之一是作为startAbility的参数，其包含了指定的启动目标，以及启动时需携带的相关数据，例如bundleName和abilityName字段分别指明目标Ability所在应用的包名以及对应包内的Ability名称。当UIAbilityA需要启动UIAbilityB并传入一些数据时，可使用Want作为载体将这些数据传递给UIAbilityB。
+Want是对象间信息传递的载体，可以用于应用组件间的信息传递。
+
+其典型应用场景之一是，当UIAbilityA启动UIAbilityB、并需要传入一些数据时，可使用Want作为载体。例如在startAbility接口的入参want中，可以通过abilityName指定启动的目标Ability，也可以通过parameters等字段携带其他数据。
 
 > **说明：**
 >
@@ -12,7 +14,7 @@ Want是对象间信息传递的载体，可以用于应用组件间的信息传�
 import { Want } from '@kit.AbilityKit';
 ```
 
-## 属性
+## Want
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -207,7 +209,7 @@ import { Want } from '@kit.AbilityKit';
 
             try {
               fd = fileIo.openSync('/data/storage/el2/base/haps/pic.png').fd;
-            } catch(err) {
+            } catch (err) {
               let code = (err as BusinessError).code;
               let message = (err as BusinessError).message;
               console.error(`Failed to openSync. Code: ${code}, message: ${message}`);
@@ -294,5 +296,5 @@ import { Want } from '@kit.AbilityKit';
         }
         ```
     * parameters参数中获取拉起方的信息。
-      
+
       详见[获取UIAbility拉起方的信息](../../application-models/uiability-usage.md#获取uiability拉起方的信息)。

@@ -1,9 +1,11 @@
 # Bluetooth<!--bluetooth-->
 
 - [Bluetooth Overview](bluetooth-overview.md)
+- [Bluetooth Setting](br-development-guide.md)
 - Classic Bluetooth
-  - [Bluetooth Setting Development](br-development-guide.md)
-  - [SPP-based Data Transmission Development](spp-development-guide.md)
+  - [Device Discovery](br-discovery-development-guide.md)
+  - [Device Pairing](br-pair-device-development-guide.md)
+  - [SPP-based Data Transmission](spp-development-guide.md)
 - Bluetooth Low Energy
-  - [BLE Advertising and Scanning Development](ble-development-guide.md)
-  - [GATT-based BLE Connection and Data Transmission Development](gatt-development-guide.md)
+  - [BLE Advertising and Scanning](ble-development-guide.md)
+  - [GATT-based BLE Connection and Data Transmission](gatt-development-guide.md)

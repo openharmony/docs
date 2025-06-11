@@ -10,7 +10,6 @@
 > - 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 示例效果请以真机为准，当前DevEco Studio预览器无真实音量展示和调节功能。
 > - **设备限制：** 
->   - 暂不支持在2in1设备上使用。 
 >   - 在穿戴设备上，可用于调节系统音量，但不显示UX界面，需开发者自行设计界面。
 
 ## 导入模块
@@ -37,7 +36,7 @@ AVVolumePanel({volumeLevel?: number, volumeParameter?: AVVolumePanelParameter})
 
 | 名称 | 类型 | 必填 | 装饰器类型  | 说明                                                                                                                                                                                                    |
 | -------- | -------- | -------- |--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|volumeLevel | number | 否 | \@Prop | 通过音量面板设置设备音量。该值应介于当前设备音量的最小值和最大值之间。<br>- 如果该值大于当前设备音量的最大值，则视为设置设备最大音量值。<br>- 如果该值小于当前设备音量的最小值，则视为设置设备最小音量值。<br>- 如果不传入该参数，则为系统默认音量。<br>获取音量的最大值与最小值可参考[AudioVolumeGroupManager](../apis-audio-kit/js-apis-audio.md#audiovolumegroupmanager9)。 |
+|volumeLevel | number | 否 | \@Prop | 通过音量面板设置的音量值。该值应介于当前设备音量的最小值和最大值之间。如果该值大于当前设备音量的最大值，则视为设置最大音量值；如果该值小于当前设备音量的最小值，则视为设置最小音量值。获取设备的最大值、最小值和当前值，可参考[AudioVolumeGroupManager](../apis-audio-kit/js-apis-audio.md#audiovolumegroupmanager9)。 |
 |volumeParameter | [AVVolumePanelParameter](#avvolumepanelparameter)  | 否 | \@Prop | 设置音量面板的自定义参数。 如果不传入该参数，则调用系统音量条。                                                                                                                                                                      |
 
 ## AVVolumePanelParameter
@@ -57,7 +56,6 @@ AVVolumePanel({volumeLevel?: number, volumeParameter?: AVVolumePanelParameter})
 支持[通用事件](../apis-arkui/arkui-ts/ts-component-general-events.md)。
 
 ## 使用建议
-
 1. 应用在实现自定义音量条的过程中，建议使用音频框架的音量变化监听接口，通过接口回调的音量类型volumeEvent.volumeType，音量等级volumeEvent.volume以及是否显示音量条volumeEvent.updateUi等信息，应用可以判断是否需要处理当前数据和显示自定义的音量条，具体可参考[音量变化回调接口](js-apis-audio.md#onvolumechange9)介绍。
 2. 为确保用户能感知音量变化，不允许应用后台调节音量，系统会做出对应的控制措施。
 

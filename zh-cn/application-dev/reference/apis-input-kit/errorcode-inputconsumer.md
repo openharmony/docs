@@ -20,7 +20,7 @@ The hotkey has been used by the system.
 
 **处理步骤**
 
-1. 可以通过inputConsumer.getAllSystemHotkeys接口查询所有的系统快捷键，注册未被系统占用的快捷键。
+1. 可以通过[getAllSystemHotkeys](js-apis-inputconsumer.md#inputconsumergetallsystemhotkeys)接口查询所有的系统快捷键。
 
 ## 4200003 快捷键已经被三方注册
 

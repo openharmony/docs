@@ -125,6 +125,8 @@
        - [固定样式弹出框](arkts-fixes-style-dialog.md)
        - [页面级弹出框](arkts-embedded-dialog.md)
        - [弹出框层级管理](arkts-dialog-levelorder.md)
+       - [弹出框控制器](arkts-dialog-controller.md)
+       - [弹出框焦点策略](arkts-dialog-focusable.md)
      - 菜单<!--arkts-use-menu-->
        - [菜单概述](arkts-menu-overview.md)
        - [菜单控制 (Menu)](arkts-popup-and-menu-components-menu.md)

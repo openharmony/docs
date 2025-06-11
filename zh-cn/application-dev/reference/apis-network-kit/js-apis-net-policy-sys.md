@@ -49,7 +49,7 @@ setBackgroundAllowed(isAllowed: boolean, callback: AsyncCallback\<void>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.setBackgroundAllowed(true, (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -96,7 +96,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy.setBackgroundAllowed(true).then(() => {
   console.log("setBackgroundAllowed success");
 }).catch((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -135,7 +135,7 @@ isBackgroundAllowed(callback: AsyncCallback\<boolean>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.isBackgroundAllowed((error: BusinessError, data: boolean) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -180,7 +180,7 @@ policy
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -221,7 +221,7 @@ setPolicyByUid(uid: number, policy: NetUidPolicy, callback: AsyncCallback\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE, (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -272,7 +272,7 @@ policy
     console.log('setPolicyByUid success');
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -312,7 +312,7 @@ getPolicyByUid(uid: number, callback: AsyncCallback\<NetUidPolicy>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.getPolicyByUid(11111, (error: BusinessError, data: policy.NetUidPolicy) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -363,7 +363,7 @@ policy
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -403,7 +403,7 @@ getUidsByPolicy(policy: NetUidPolicy, callback: AsyncCallback\<Array\<number>>):
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.getUidsByPolicy(11111, (error: BusinessError, data: number[]) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -454,7 +454,7 @@ policy
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -493,7 +493,7 @@ getNetQuotaPolicies(callback: AsyncCallback\<Array\<NetQuotaPolicy>>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.getNetQuotaPolicies((error: BusinessError, data: policy.NetQuotaPolicy[]) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -537,7 +537,7 @@ policy
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -595,7 +595,7 @@ let netquotapolicy: policy.NetQuotaPolicy = {
 netQuotaPolicyList.push(netquotapolicy);
 
 policy.setNetQuotaPolicies(netQuotaPolicyList, (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -663,7 +663,7 @@ policy
     console.log('setNetQuotaPolicies success');
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -704,7 +704,7 @@ isUidNetAllowed(uid: number, isMetered: boolean, callback: AsyncCallback\<boolea
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.isUidNetAllowed(11111, true, (error: BusinessError, data: boolean) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -756,7 +756,7 @@ policy
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -797,7 +797,7 @@ isUidNetAllowed(uid: number, iface: string, callback: AsyncCallback\<boolean>): 
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.isUidNetAllowed(11111, 'wlan0', (error: BusinessError, data: boolean) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -849,7 +849,7 @@ policy
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -890,7 +890,7 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean, callback: Async
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.setDeviceIdleTrustlist([11111, 22222], true, (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -941,7 +941,7 @@ policy
     console.log('setDeviceIdleTrustlist success');
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -980,7 +980,7 @@ getDeviceIdleTrustlist(callback: AsyncCallback\<Array\<number>>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.getDeviceIdleTrustlist((error: BusinessError, data: number[]) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -1024,7 +1024,7 @@ policy
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -1064,7 +1064,7 @@ getBackgroundPolicyByUid(uid: number, callback: AsyncCallback\<NetBackgroundPoli
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.getBackgroundPolicyByUid(11111, (error: BusinessError, data: policy.NetBackgroundPolicy) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -1115,7 +1115,7 @@ policy
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -1155,7 +1155,7 @@ resetPolicies(simId: string, callback: AsyncCallback\<void>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.resetPolicies('1', (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -1205,7 +1205,7 @@ policy
     console.log('resetPolicies success');
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -1252,7 +1252,7 @@ policy.updateRemindPolicy(
   '1',
   policy.RemindType.REMIND_TYPE_WARNING,
   (error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   }
 );
 ```
@@ -1310,7 +1310,7 @@ policy
     console.log('updateRemindPolicy success');
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -1351,7 +1351,7 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean, callback: AsyncC
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.setPowerSaveTrustlist([11111, 22222], true, (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -1402,7 +1402,7 @@ policy
     console.log('setPowerSaveTrustlist success');
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -1441,7 +1441,7 @@ getPowerSaveTrustlist(callback: AsyncCallback\<Array\<number>>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.getPowerSaveTrustlist((error: BusinessError, data: number[]) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -1485,7 +1485,7 @@ policy
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -1674,7 +1674,7 @@ on(type: "netUidPolicyChange", callback: Callback\<NetUidPolicyInfo\>): void
 
 | 参数名   | 类型                                                                | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                                              | 是   | policy 发生改变的类型。                  |
+| type     | string                                                              | 是   | 订阅的事件类型。'netUidPolicyChange'：注册policy发生改变事件。                  |
 | callback | Callback\<[NetUidPolicyInfo](#netuidpolicyinfo11)> | 是   | 回调函数。注册 policy 发生改变时调用。 |
 
 **错误码：**
@@ -1723,7 +1723,7 @@ off(type: "netUidPolicyChange", callback?: Callback\<NetUidPolicyInfo\>): void
 
 | 参数名   | 类型                                                                | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                                              | 是   | policy 发生改变的类型。                 |
+| type     | string                                                              | 是   | 注销的事件类型。'netUidPolicyChange'：注销policy发生改变事件。               |
 | callback | Callback\<[NetUidPolicyInfo](#netuidpolicyinfo11)> | 否   | 回调函数。注销 policy 发生改变时调用。 |
 
 **错误码：**
@@ -1780,7 +1780,7 @@ on(type: "netUidRuleChange", callback: Callback\<NetUidRuleInfo\>): void
 
 | 参数名   | 类型                                                          | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                                        | 是   | rule 发生改变的类型。                    |
+| type     | string                                                        | 是   | 订阅的事件类型。'netUidRuleChange'：注册rule发生改变事件。                    |
 | callback | Callback\<[NetUidRuleInfo](#netuidruleinfo11)> | 是   | 回调函数。注册 rule 发生改变时的调用。 |
 
 **错误码：**
@@ -1829,7 +1829,7 @@ off(type: "netUidRuleChange", callback?: Callback\<NetUidRuleInfo\>): void
 
 | 参数名   | 类型                                                          | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                                        | 是   | rule 发生改变的类型。                    |
+| type     | string                                                        | 是   | 注销的事件类型。'netUidRuleChange'：注销rule发生改变事件。                    |
 | callback | Callback\<[NetUidRuleInfo](#netuidruleinfo11)> | 否   | 回调函数。注销 rule 发生改变时的调用。 |
 
 **错误码：**
@@ -1886,7 +1886,7 @@ on(type: "netMeteredIfacesChange", callback: Callback\<Array\<string>>): void
 
 | 参数名   | 类型                      | 必填 | 说明                                      |
 | -------- | ------------------------- | ---- | ----------------------------------------- |
-| type     | string                    | 是   | 计量 iface 发生改变的类型。                 |
+| type     | string                    | 是   | 订阅的事件类型。'netMeteredIfacesChange'：注册计量iface发生改变事件。                 |
 | callback | Callback\<Array\<string>> | 是   | 回调函数。注册计量 iface 发生改变时调用。 |
 
 **错误码：**
@@ -1930,7 +1930,7 @@ off(type: "netMeteredIfacesChange", callback?: Callback\<Array\<string>>): void
 
 | 参数名   | 类型                      | 必填 | 说明                                      |
 | -------- | ------------------------- | ---- | ----------------------------------------- |
-| type     | string                    | 是   | 计量 iface 发生改变的类型。                 |
+| type     | string                    | 是   | 注销的事件类型。'netMeteredIfacesChange'：注销计量iface发生改变事件。                 |
 | callback | Callback\<Array\<string>> | 否   | 回调函数。注册计量 iface 发生改变时调用。 |
 
 **错误码：**
@@ -1982,7 +1982,7 @@ on(type: "netQuotaPolicyChange", callback: Callback\<Array\<NetQuotaPolicy>>): v
 
 | 参数名   | 类型                                                   | 必填 | 说明                                       |
 | -------- | ------------------------------------------------------ | ---- | ------------------------------------------ |
-| type     | string                                                 | 是   | 计量网络策略发生改变的类型。                 |
+| type     | string                                                 | 是   | 订阅的事件类型。'netQuotaPolicyChange'：注册计量网络策略发生改变事件。                 |
 | callback | Callback\<Array\<[NetQuotaPolicy](#netquotapolicy10)>> | 是   | 回调函数。注册计量网络策略发生改变时调用。 |
 
 **错误码：**
@@ -2031,7 +2031,7 @@ off(type: "netQuotaPolicyChange", callback?: Callback\<Array\<NetQuotaPolicy>>):
 
 | 参数名   | 类型                                                   | 必填 | 说明                                       |
 | -------- | ------------------------------------------------------ | ---- | ------------------------------------------ |
-| type     | string                                                 | 是   | 计量网络策略发生改变的类型。                 |
+| type     | string                                                 | 是   | 注销的事件类型。'netQuotaPolicyChange'：注销计量网络策略发生改变事件。                 |
 | callback | Callback\<Array\<[NetQuotaPolicy](#netquotapolicy10)>> | 否   | 回调函数。注册计量网络策略发生改变时调用。 |
 
 **错误码：**
@@ -2083,7 +2083,7 @@ on(type: "netBackgroundPolicyChange", callback: Callback\<boolean>): void
 
 | 参数名   | 类型               | 必填 | 说明                                       |
 | -------- | ------------------ | ---- | ------------------------------------------ |
-| type     | string             | 是   | 后台网络策略发生改变的类型。                 |
+| type     | string             | 是   | 订阅的事件类型。'netBackgroundPolicyChange'：注册后台网络策略发生改变事件。                 |
 | callback | Callback\<boolean> | 是   | 回调函数。注册后台网络策略发生改变时调用。 |
 
 **错误码：**
@@ -2127,7 +2127,7 @@ off(type: "netBackgroundPolicyChange", callback?: Callback\<boolean>): void
 
 | 参数名   | 类型               | 必填 | 说明                                       |
 | -------- | ------------------ | ---- | ------------------------------------------ |
-| type     | string             | 是   | 后台网络策略发生改变的类型。                 |
+| type     | string             | 是   | 注销的事件类型。'netBackgroundPolicyChange'：注销后台网络策略发生改变事件。                 |
 | callback | Callback\<boolean> | 否   | 回调函数。注册后台网络策略发生改变时调用。 |
 
 **错误码：**

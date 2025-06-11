@@ -222,7 +222,7 @@ registerWebAdInterface(controller: web_webview.WebviewController, context: commo
 
 | 参数名     | 类型                                                                                         | 必填 | 说明                   |
 |------------|----------------------------------------------------------------------------------------------|-----|----------------------|
-| controller | web_webview.[WebviewController](../apis-arkweb/js-apis-webview.md#webviewcontroller)         | 是   | Web组件控制器。         |
+| controller | web_webview.[WebviewController](../apis-arkweb/arkts-apis-webview-WebviewController.md)         | 是   | Web组件控制器。         |
 | context    | common.[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | 是   | UIAbility的上下文环境。 |
 
 **错误码：**
@@ -284,7 +284,7 @@ registerWebAdInterface(controller: web_webview.WebviewController, context: commo
 
 | 参数名      | 类型                                                                                         | 必填 | 说明                                        |
 |-------------|----------------------------------------------------------------------------------------------|-----|-------------------------------------------|
-| controller  | web_webview.[WebviewController](../apis-arkweb/js-apis-webview.md#webviewcontroller)         | 是   | Web组件控制器。                              |
+| controller  | web_webview.[WebviewController](../apis-arkweb/arkts-apis-webview-WebviewController.md)         | 是   | Web组件控制器。                              |
 | context     | common.[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | 是   | UIAbility的上下文环境。                      |
 | needRefresh | boolean                                                                                      | 是   | 是否需要刷新页面（true: 需要；false: 不需要）。 |
 
@@ -347,7 +347,7 @@ deleteWebAdInterface(controller: web_webview.WebviewController, needRefresh: boo
 
 | 参数名      | 类型                                                                                 | 必填 | 说明                                        |
 |-------------|--------------------------------------------------------------------------------------|-----|-------------------------------------------|
-| controller  | web_webview.[WebviewController](../apis-arkweb/js-apis-webview.md#webviewcontroller) | 是   | Web组件控制器。                              |
+| controller  | web_webview.[WebviewController](../apis-arkweb/arkts-apis-webview-WebviewController.md) | 是   | Web组件控制器。                              |
 | needRefresh | boolean                                                                              | 是   | 是否需要刷新页面（true: 需要；false: 不需要）。 |
 
 **错误码：**

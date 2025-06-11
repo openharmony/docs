@@ -179,7 +179,7 @@ CAMERA_STATUS_AVAILABLE 2 相机可用。
 
 CAMERA_STATUS_UNAVAILABLE 3 相机不可用。
 
-参考文档：[CameraStatus](../reference/apis-camera-kit/js-apis-camera.md#oncamerastatus)
+参考文档：[CameraStatus](../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#oncamerastatus)
 
 ## SoundPool播放的音频是否支持wmv格式？支持哪些格式？(API 10)
 **解决措施**

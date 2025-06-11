@@ -59,7 +59,7 @@ defaultFocus(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 设置当前组件是否为当前页面上的默认焦点，仅在初次创建的页面第一次进入时生效。<br/>默认值：false<br/>**说明：** <br/>值为true则表示为默认焦点，值为false无效。<br/>若页面内无任何组件设置defaultFocus(true)，API version 11及之前，页面的默认焦点是当前页面上首个可获焦的非容器组件，API version 11之后，页面的默认焦点就是页面的根容器。<br/>若某页面内有多个组件设置了defaultFocus(true)，则以组件树深度遍历找到的第一个组件为默认焦点。 |
+| value  | boolean | 是   | 设置当前组件是否为当前页面上的默认焦点，仅在初次创建的页面第一次进入时生效。<br/>默认值：false<br/>**说明：** <br/>值为true则表示为默认焦点，值为false时无效。<br/>若页面内无任何组件设置defaultFocus(true)，API version 11及之前，页面的默认焦点是当前页面上首个可获焦的非容器组件，API version 11之后，页面的默认焦点就是页面的根容器。<br/>若某页面内有多个组件设置了defaultFocus(true)，则以组件树深度遍历找到的第一个组件为默认焦点。 |
 
 ## groupDefaultFocus<sup>9+</sup>
 
@@ -120,7 +120,7 @@ focusBox(style: FocusBoxStyle): T
 
 requestFocus(value: string): boolean
 
-方法语句中可使用的全局接口，调用此接口可以主动让焦点转移至参数指定的组件上。非当前帧生效，在下一帧才生效，建议使用FocusController中的[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)。
+方法语句中可使用的全局接口，调用此接口可以主动让焦点转移至参数指定的组件上，非当前帧生效，在下一帧才生效。直接使用focusControl可能导致[UI上下文不明确](../../../ui/arkts-global-interface.md)的问题，建议使用FocusController中的[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -227,7 +227,7 @@ focusScopeId(id: string, isGroup?: boolean, arrowStepOut?: boolean)
 
 ## tabStop<sup>14+</sup>
 
-tabStop(isTabStop: boolean) :T
+tabStop(isTabStop: boolean): T
 
 设置当前容器组件的tabStop，可决定焦点在走焦时是否会停留在当前容器。
 
@@ -682,7 +682,7 @@ struct FocusableExample {
 
 ### 示例5（设置tab走焦停留）
 
-该示例通过配置tabstop实现使用tab走焦停留在组件上。
+该示例通过配置tabStop实现使用tab走焦停留在组件上。
 
 ```ts
 import { ColorMetrics, LengthMetrics } from '@kit.ArkUI';

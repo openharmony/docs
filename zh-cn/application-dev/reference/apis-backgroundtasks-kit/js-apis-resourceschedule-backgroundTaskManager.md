@@ -46,7 +46,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 | --------- | ------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9900001 | Caller information verification failed for a transient task. |
@@ -97,7 +97,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 | --------- | ------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9900001 | Caller information verification failed for a transient task. |
@@ -148,7 +148,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 | --------- | ------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9900001 | Caller information verification failed for a transient task. |
@@ -190,7 +190,7 @@ cancelSuspendDelay(requestId: number): void
 | --------- | ------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9900001 | Caller information verification failed for a transient task. |
@@ -208,6 +208,47 @@ cancelSuspendDelay(requestId: number): void
     console.error(`cancelSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
   }
   ```
+
+## backgroundTaskManager.getTransientTaskInfo<sup>20+</sup>
+
+getAllTransientTasks(): Promise&lt;TransientTaskInfo&gt;
+
+获取所有短时任务信息，如当日剩余总配额等，使用Promise异步回调。
+
+**系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+
+**返回值**：
+
+| 类型                                      | 说明          |
+|-----------------------------------------|-------------|
+|  Promise&lt;[TransientTaskInfo](#transienttaskinfo20)&gt; | Promise对象，返回所有短时任务信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900003 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
+| 9900004 | System service operation failed. |
+
+**示例**：
+
+```ts
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    backgroundTaskManager.getTransientTaskInfo().then((res: backgroundTaskManager.TransientTaskInfo) => {
+        console.info(`Operation getTransientTaskInfo succeeded. data: ` + JSON.stringify(res));
+    }).catch((error : BusinessError) => {
+        console.error(`Operation getTransientTaskInfo failed. code is ${error.code} message is ${error.message}`);
+    });
+} catch (error) {
+    console.error(`Operation getTransientTaskInfo failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+}
+```
 
 ## backgroundTaskManager.startBackgroundRunning
 
@@ -240,7 +281,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | 202 | Not System App. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
@@ -334,7 +375,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | 202 | Not System App. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
@@ -413,7 +454,7 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
@@ -476,7 +517,7 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
@@ -540,7 +581,7 @@ startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
@@ -636,6 +677,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ## backgroundTaskManager.updateBackgroundRunning<sup>12+</sup>
 
 updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;ContinuousTaskNotification&gt;
@@ -670,7 +712,7 @@ updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;Continu
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
@@ -696,8 +738,68 @@ export default class EntryAbility extends UIAbility {
                         console.error(`Operation updateBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
                     });
                 } catch (error) {
-                    console.error(`Operation startBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+                    console.error(`Operation updateBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
                 }
+        } catch (error) {
+            console.error(`Operation getWantAgent failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
+    }
+};
+```
+
+## backgroundTaskManager.getAllContinuousTasks<sup>20+</sup>
+
+getAllContinuousTasks(context: Context): Promise&lt;ContinuousTaskInfo[]&gt;
+
+获取所有长时任务信息，如长时任务Id、长时任务类型等，使用Promise异步回调。
+
+**需要权限**: ohos.permission.KEEP_BACKGROUND_RUNNING
+
+**系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+**参数**：
+
+| 参数名       | 类型                                 | 必填   | 说明                                       |
+| --------- | ---------------------------------- | ---- | ---------------------------------------- |
+| context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | 是    | 应用运行的上下文。 |
+
+**返回值**：
+
+| 类型                                            | 说明          |
+|-----------------------------------------------|-------------|
+|  Promise&lt;[ContinuousTaskInfo](#continuoustaskinfo20)[]&gt; | Promise对象，返回所有长时任务信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 201 | Permission denied. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
+| 9800004 | System service operation failed. |
+| 9800005 | Continuous task verification failed. |
+
+**示例**：
+
+```ts
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        try {
+            try {
+                // 如果当前没有申请长时任务，则获取到一个空数组
+                backgroundTaskManager.getAllContinuousTasks(this.context).then((res: backgroundTaskManager.ContinuousTaskInfo[]) => {
+                    console.info(`Operation getAllContinuousTasks succeeded. data: ` + JSON.stringify(res));
+                }).catch((error: BusinessError) => {
+                    console.error(`Operation getAllContinuousTasks failed. code is ${error.code} message is ${error.message}`);
+                });
+            } catch (error) {
+                console.error(`Operation getAllContinuousTasks failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+            }
         } catch (error) {
             console.error(`Operation getWantAgent failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
         }
@@ -1006,6 +1108,17 @@ export default class EntryAbility extends UIAbility {
 | requestId       | number | 是    | 短时任务的请求ID。                               |
 | actualDelayTime | number | 是    | 应用实际申请的短时任务时间，单位为毫秒。<br/> **说明** ：申请时间最长为3分钟，[低电量](../apis-basic-services-kit/js-apis-battery-info.md)时最长为1分钟。 |
 
+## TransientTaskInfo<sup>20+</sup>
+
+所有短时任务信息。
+
+**系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+
+| 名称             | 类型                                      | 只读   | 可选   | 说明              |
+| --------------- |-----------------------------------------| ---- | ---- |-----------------|
+| remainingQuota       | number                                  | 否    | 否    | 应用当日所剩余总配额，单位：ms。     |
+| transientTasks | [DelaySuspendInfo](#delaysuspendinfo)[] | 否    | 否    | 当前已申请的所有短时任务信息。 |
+
 ## BackgroundMode
 
 长时任务类型。
@@ -1097,7 +1210,7 @@ export default class EntryAbility extends UIAbility {
 | --------------- | ------ | ---- | ---------------------------------------- |
 | continuousTaskId | number | 是    | 被暂停的长时任务 Id。|
 | suspendState | boolean | 是    | 长时任务状态，false表示激活，true表示暂停。|
-| reason | [ContinuousTaskSuspendReason](#continuoustasksuspendreason20) | 是    | 长时任务暂停原因。|
+| suspendReason | [ContinuousTaskSuspendReason](#continuoustasksuspendreason20) | 是    | 长时任务暂停原因。|
 
 ## ContinuousTaskSuspendReason<sup>20+</sup>
 
@@ -1126,3 +1239,23 @@ export default class EntryAbility extends UIAbility {
 | 名称             | 类型     | 必填   | 说明                                       |
 | --------------- | ------ | ---- | ---------------------------------------- |
 | id | number | 是    | 被激活的长时任务 Id。|
+
+## ContinuousTaskInfo<sup>20+</sup>
+
+长时任务信息。
+
+**系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+| 名称          | 类型       | 只读   | 可选   | 说明                    |
+|-------------|----------| ---- | ---- |-----------------------|
+| abilityName | string   | 否    | 否    | UIAbility名称。          |
+| uid         | number   | 否    | 否    | 应用的UID。               |
+| pid         | number   | 否    | 否    | 应用进程的PID。               |
+| isFromWebView | boolean  | 否    | 否    | 是否通过Webview方式申请，即通过系统代理应用申请长时任务。      |
+| [backgroundModes](#backgroundmode) | string[] | 否    | 否    | 长时任务类型。               |
+| [backgroundSubModes](#backgroundsubmode16) | string[] | 否    | 否    | 长时任务子类型。              |
+| notificationId | number   | 否    | 否    | 通知 Id。                |
+| continuousTaskId | number   | 否    | 否    | 长时任务Id。              |
+| abilityId | number   | 否    | 否    | UIAbility Id。         |
+| wantAgentBundleName | string   | 否    | 否    | WantAgent配置的包名。WantAgent为通知参数，用于指定点击长时任务通知后跳转的界面，在申请长时任务时作为参数传入。        |
+| wantAgentAbilityName | string   | 否    | 否    | WantAgent配置的ability名称。WantAgent为通知参数，用于指定点击长时任务通知后跳转的界面，在申请长时任务时作为参数传入。 |

@@ -70,8 +70,8 @@ export const getPropertyNames: (obj: Object) => Array<string> | void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   class Obj {
     data: number = 0
@@ -129,8 +129,8 @@ export const setProperty: (obj: Object, key: String, value: string) => Object | 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   class Obj {
     data: number = 0
@@ -180,8 +180,8 @@ export const getProperty: (obj: Object, key: string) => string | void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   class Obj {
     data: number = 0
@@ -235,8 +235,8 @@ export const hasProperty: (obj: Object, key: number | string) => boolean | void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   class Obj {
     data: number = 0
@@ -300,8 +300,8 @@ export const deleteProperty: (obj: Object, key:string) => boolean;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 class Obj {
   first: number = 0;
 }
@@ -369,8 +369,8 @@ export const napiHasOwnProperty: (obj: Object, key:string) => boolean | void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let myObj = { 'myProperty': 1 };
 let inheritedObj = { 'inheritedProperty': 2 };
@@ -428,8 +428,8 @@ export const napiSetNamedProperty: (key: string) => Object | void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let obj = testNapi.napiSetNamedProperty('myProperty');
 let objAsString = JSON.stringify(obj);
@@ -478,8 +478,8 @@ export const napiGetNamedProperty: (obj: Object, key:string) => boolean | number
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 interface NestedObj {
   nestedStr: string;
@@ -546,8 +546,8 @@ export const napiHasNamedProperty: (obj: Object, key:string) => boolean | void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 interface NestedObj {
   nestedStr: string;
   nestedNum: number;
@@ -675,8 +675,8 @@ export const createStringWithGetterSetter: () => DefineGetterSetterObj;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 // Define a property of the method type.
 hilog.info(0x0000, 'testTag', 'Test Node-API define_method_properties:%{public}d', testNapi.defineMethodProperties()
   .defineMethodPropertiesExample());
@@ -730,8 +730,8 @@ export const getAllPropertyNames : (obj: Object) => Array<string> | void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   class Obj {
     data: number = 0

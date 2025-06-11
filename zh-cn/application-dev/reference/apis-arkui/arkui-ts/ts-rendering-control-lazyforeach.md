@@ -20,7 +20,7 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 
 | 参数名        | 类型                                                      | 必填 | 说明                                                         |
 | ------------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| dataSource    | [IDataSource](#idatasource10)                       | 是   | LazyForEach数据源，需要开发者实现相关接口。                  |
+| dataSource    | [IDataSource](#idatasource)                       | 是   | LazyForEach数据源，需要开发者实现相关接口。                  |
 | itemGenerator | (item:&nbsp;Object, index: number)&nbsp;=&gt;&nbsp;void   | 是   | 子组件生成函数，为数组中的每一个数据项创建一个子组件。<br/>**说明：**<br/>- item是当前数据项，index是数据项索引值。<br/>- itemGenerator的函数体必须使用大括号{...}。<br />- itemGenerator每次迭代只能并且必须生成一个子组件。<br />- itemGenerator中可以使用if语句，但是必须保证if语句每个分支都会创建一个相同类型的子组件。 |
 | keyGenerator  | (item:&nbsp;Object, index: number)&nbsp;=&gt;&nbsp;string | 否   | 键值生成函数，用于给数据源中的每一个数据项生成唯一且固定的键值。修改数据源中的一个数据项若不影响其生成的键值，则对应组件不会被更新，否则此处组件就会被重建更新。`keyGenerator`参数是可选的，但是，为了使开发框架能够更好地识别数组更改并正确更新组件，建议提供。<br/>**说明：**<br/>- item是当前数据项，index是数据项索引值。<br/>- 数据源中的每一个数据项生成的键值不能重复。<br/>- `keyGenerator`缺省时，使用默认的键值生成函数，即`(item: Object, index: number) => { return viewId + '-' + index.toString(); }`，生成键值仅受索引值index影响。 |
 
@@ -28,7 +28,7 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 
 继承自[DynamicNode](./ts-rendering-control-foreach.md#dynamicnode12)。
 
-## IDataSource<sup>10+</sup>
+## IDataSource
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -43,6 +43,12 @@ totalCount(): number
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | --------- |
+| number | 获得数据总数，由数据源决定实际大小。 |
 
 ### getData
 
@@ -59,6 +65,12 @@ getData(index:&nbsp;number): any
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
 | index  | number | 是   | 获取数据对应的索引值。取值范围是[0, 数据源长度-1]。 |
+
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | --------- |
+| any | 获取索引值index对应的数据，由数据源决定具体类型。 |
 
 ### registerDataChangeListener
 
@@ -120,7 +132,7 @@ onDataAdded(index: number): void
 
 通知组件index的位置有数据添加。添加数据完成后调用。
 
-> 从API 8开始，建议使用[onDataAdd](#ondataadd8)。
+> 从API version 8开始，建议使用[onDataAdd](#ondataadd8)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -136,7 +148,7 @@ onDataMoved(from: number, to: number): void
 
 通知组件数据有移动。将from和to位置的数据进行交换。
 
-> 从API 8开始，建议使用[onDataMove](#ondatamove8)。
+> 从API version 8开始，建议使用[onDataMove](#ondatamove8)。
 
 > **说明：** 
 >
@@ -157,7 +169,7 @@ onDataDeleted(index: number): void
 
 通知组件删除index位置的数据并刷新LazyForEach的展示内容。删除数据完成后调用。
 
-> 从API 8开始，建议使用[onDataDelete](#ondatadelete8)。
+> 从API version 8开始，建议使用[onDataDelete](#ondatadelete8)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -171,9 +183,9 @@ onDataDeleted(index: number): void
 
 onDataChanged(index: number): void
 
-通知组件index的位置有数据有变化。改变数据完成后调用。
+通知组件index的位置有数据变化。改变数据完成后调用。
 
-> 从API 8开始，建议使用[onDataChange](#ondatachange8)。
+> 从API version 8开始，建议使用[onDataChange](#ondatachange8)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -410,7 +422,7 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 ### DataReloadOperation
 
-重载所有数据操作。当onDatasetChange含有DataOperationType.RELOAD操作时，其余操作全部失效，框架会自己调用keygenerator进行键值比对。
+重载所有数据操作。当onDatasetChange含有DataOperationType.RELOAD操作时，其余操作全部失效，框架会自己调用keyGenerator进行键值比对。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

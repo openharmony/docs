@@ -2,7 +2,7 @@
 
 ## 接口介绍
 
-可通过API文档查看新增关键资产的接口[OH_Asset_Add](../../reference/apis-asset-store-kit/_asset_api.md#oh_asset_add)的详细介绍。
+可通过API文档查看新增关键资产的接口[OH_Asset_Add](../../reference/apis-asset-store-kit/capi-asset-api-h.md#oh_asset_add)的详细介绍。
 
 在新增关键资产时，关键资产属性的内容参数如下表所示：
 
@@ -14,10 +14,10 @@
 | ------------------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | ASSET_TAG_SECRET                | 类型为uint8[]，长度为1-1024字节。                              | 必选     | 关键资产明文。                                                 |
 | ASSET_TAG_ALIAS                 | 类型为uint8[]，长度为1-256字节。                               | 必选     | 关键资产别名，每条关键资产的唯一索引。                         |
-| ASSET_TAG_ACCESSIBILITY         | 类型为uint32_t，取值范围详见[Asset_Accessibility](../../reference/apis-asset-store-kit/_asset_type.md#asset_accessibility)。 | 可选     | 基于锁屏状态的访问控制，默认值为ASSET_ACCESSIBILITY_DEVICE_FIRST_UNLOCKED，即首次解锁后可访问。                       |
+| ASSET_TAG_ACCESSIBILITY         | 类型为uint32_t，取值范围详见[Asset_Accessibility](../../reference/apis-asset-store-kit/capi-asset-type-h.md#asset_accessibility)。 | 可选     | 基于锁屏状态的访问控制，默认值为ASSET_ACCESSIBILITY_DEVICE_FIRST_UNLOCKED，即首次解锁后可访问。                       |
 | ASSET_TAG_REQUIRE_PASSWORD_SET  | 类型为bool。                                                   | 可选     | 是否仅在设置了锁屏密码的情况下，可访问关键资产。为true时，表示仅在用户设置了锁屏密码的情况下，关键资产才允许被访问；为false时，表示无论用户是否设置锁屏密码，关键资产均允许被访问。默认值为false。                 |
-| ASSET_TAG_AUTH_TYPE             | 类型为uint32_t，取值范围详见[Asset_AuthType](../../reference/apis-asset-store-kit/_asset_type.md#asset_authtype)。 | 可选     | 访问关键资产所需的用户认证类型，默认值为ASSET_AUTH_TYPE_NONE，即访问关键资产前无需用户认证。   |
-| ASSET_TAG_SYNC_TYPE             | 类型为uint32_t，取值范围详见[Asset_SyncType](../../reference/apis-asset-store-kit/_asset_type.md#asset_synctype)。 | 可选     | 关键资产支持的同步类型，默认值为ASSET_SYNC_TYPE_NEVER，即不允许同步该关键资产。            |
+| ASSET_TAG_AUTH_TYPE             | 类型为uint32_t，取值范围详见[Asset_AuthType](../../reference/apis-asset-store-kit/capi-asset-type-h.md#asset_authtype)。 | 可选     | 访问关键资产所需的用户认证类型，默认值为ASSET_AUTH_TYPE_NONE，即访问关键资产前无需用户认证。   |
+| ASSET_TAG_SYNC_TYPE             | 类型为uint32_t，取值范围详见[Asset_SyncType](../../reference/apis-asset-store-kit/capi-asset-type-h.md#asset_synctype)。 | 可选     | 关键资产支持的同步类型，默认值为ASSET_SYNC_TYPE_NEVER，即不允许同步该关键资产。            |
 | ASSET_TAG_IS_PERSISTENT         | 类型为bool。                                                   | 可选     | 在应用卸载时是否需要保留关键资产。为true时表示应用卸载后，应用存储的关键资产将被保留；为false时表示应用卸载后，应用存储的关键资产将被删除。默认值为false。<br>**注意：** 设置此属性时，需[申请权限](../AccessToken/declare-permissions.md)ohos.permission.STORE_PERSISTENT_DATA。|
 | ASSET_TAG_DATA_LABEL_CRITICAL_1 | 类型为uint8[]，长度为1-2048字节。                           | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
 | ASSET_TAG_DATA_LABEL_CRITICAL_2 | 类型为uint8[]，长度为1-2048字节。                           | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
@@ -31,10 +31,10 @@
 | ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_2<sup>12+</sup> | 类型为uint8[]，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
 | ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | 类型为uint8[]，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
 | ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | 类型为uint8[]，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
-| ASSET_TAG_CONFLICT_RESOLUTION   | 类型为uint32_t，取值范围详见[Asset_ConflictResolution](../../reference/apis-asset-store-kit/_asset_type.md#asset_conflictresolution)。 | 可选     | 新增关键资产时的冲突（如：别名相同）处理策略，默认值为ASSET_CONFLICT_THROW_ERROR，即抛出异常，由业务进行后续处理。             |
+| ASSET_TAG_CONFLICT_RESOLUTION   | 类型为uint32_t，取值范围详见[Asset_ConflictResolution](../../reference/apis-asset-store-kit/capi-asset-type-h.md#asset_conflictresolution)。 | 可选     | 新增关键资产时的冲突（如：别名相同）处理策略，默认值为ASSET_CONFLICT_THROW_ERROR，即抛出异常，由业务进行后续处理。             |
 | ASSET_TAG_REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | 类型为bool。 | 可选 | 是否加密业务自定义附属信息。为true时表示业务自定义附属信息加密存储，为false时表示业务自定义附属信息不加密存储。默认值为false。|
 | ASSET_TAG_GROUP_ID<sup>18+</sup> | 类型为uint8[]，长度为7-127字节。 | 可选 | 待新增的关键资产所属群组，默认新增不属于任何群组的关键资产。|
-| ASSET_TAG_WRAP_TYPE<sup>18+</sup> |类型为uint32_t，取值范围详见[Asset_WrapType](../../reference/apis-asset-store-kit/_asset_type.md#asset_wraptype)。 | 可选 | 关键资产支持的加密导入导出类型，默认值为ASSET_WRAP_TYPE_NEVER，即不允许加密导入导出关键资产。|
+| ASSET_TAG_WRAP_TYPE<sup>18+</sup> |类型为uint32_t，取值范围详见[Asset_WrapType](../../reference/apis-asset-store-kit/capi-asset-type-h.md#asset_wraptype)。 | 可选 | 关键资产支持的加密导入导出类型，默认值为ASSET_WRAP_TYPE_NEVER，即不允许加密导入导出关键资产。|
 
 ## 约束和限制
 

@@ -3,9 +3,9 @@
 > **注意：**
 > 请务必按如下模板反馈PR所携带的修改信息。
 > 请分析是否需要同步合入活跃的发布分支。当前活跃的分支除master外还包括：
-> OpenHarmony-feature-20250512 (API 19)
-> OpenHarmony-5.1.0-Release (API 18)
-> OpenHarmony-feature-20240401 (API 17)
+> (API 19) OpenHarmony-feature-20250512
+> (API 18) OpenHarmony-5.1.0-Release
+> (API 17) OpenHarmony-feature-20240401
 
 
 ## 文档变更类型
@@ -31,3 +31,7 @@
 - 对于文档的写作，已学习并参考相关[资料模板规范要求](https://gitee.com/openharmony/docs/tree/master/zh-cn/contribute/template)，符合OpenHarmony文档质量要求。（ ）
 
 ## 示例代码编译通过截图证明（如涉及示例代码需提供）：
+
+> **说明：**
+> 1. 示例代码验证时，应尽可能**在有效设备上实际运行**。仅编译或IDE预览器运行均无法发现所有潜在问题。
+> 2. 示例代码截图应提供**编译日志**和**运行日志**以证明示例代码无问题。**存在错误码但不阻塞编译的日志均视为示例代码有误**。

@@ -937,7 +937,7 @@ It is not allowed to install the enterprise bundle.
 因策略管制，不允许通过特定的接口，安装企业应用。
 
 **处理步骤**<br/>
-请更换[install接口](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall)。
+请更换[install接口](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall)。<!--DelEnd-->
 
 
 ## 17700072 Launch Want不存在
@@ -953,6 +953,7 @@ Launch Want不存在。
 **处理步骤**<br/>
 应用需要有entities配置为entity.system.home并且actions配置为action.system.home的Ability。
 
+<!--Del-->
 ## 17700073 由于设备上存在具有相同包名称但不同签名信息的应用程序，导致安装失败
 **错误信息**<br/>
 Failed to install the HAP because an application with the same bundle name but different signature information exists on the device.
@@ -1238,7 +1239,11 @@ Bundle manager service is excepted.
 包管理服务异常。
 
 **可能原因**<br/>
+场景一： 
 系统出现未知的异常，导致包管理服务已停止或者异常退出。
+
+场景二：
+系统抛出未捕获的错误码，例如IPC失败、文件拷贝失败等。
 
 **处理步骤**<br/>
 1. 重启手机后再次尝试请求接口。
@@ -1254,6 +1259,7 @@ ls -ls
 hdc file recv /data/log/faultlog/faultlogger/
 hdc file recv /data/log/hilog/
 ```
+
 <!--Del-->
 ## 17700201 abc文件校验失败
 **错误信息**<br/>

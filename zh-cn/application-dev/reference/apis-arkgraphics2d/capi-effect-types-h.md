@@ -4,7 +4,7 @@
 
 声明滤镜效果的数据类型。
 
-**引用文件：** effect_types.h
+**引用文件：** <native_effect/effect_types.h>
 
 **库：** libnative_effect.so
 

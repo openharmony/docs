@@ -49,7 +49,14 @@
       - [NodeContent](js-apis-arkui-NodeContent.md)
   - 窗口管理<!--window-manager-api-->
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
-    - [@ohos.window (窗口)](js-apis-window.md)
+    - @ohos.window (窗口)<!--js-apis-window-->
+      - [模块描述](arkts-apis-window.md)
+      - [Functions](arkts-apis-window-f.md)
+      - [Interface (Window)](arkts-apis-window-Window.md)
+      - [Interface (WindowStage)](arkts-apis-window-WindowStage.md)
+      - [Interfaces (其他)](arkts-apis-window-i.md)
+      - [Enums](arkts-apis-window-e.md)
+      - [Types](arkts-apis-window-t.md)
     <!--Del-->
     - [@ohos.animation.windowAnimationManager (窗口动画管理)(系统接口)](js-apis-windowAnimationManager-sys.md)
     - [@ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)](js-apis-application-windowExtensionAbility-sys.md)
@@ -500,6 +507,7 @@
     - [OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md)
     - [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md)
     - [OH_NativeXComponent_TouchPoint](_o_h___native_x_component___touch_point.md)
+    - [PictureInPicture_PipConfig](capi-pictureinpicture-pipconfig.md)
     - [WindowManager_Rect](capi-windowmanager-rect.md)
     - [struct](capi-struct.md)
     - [WindowManager_WindowProperties](capi-windowmanager-windowproperties.md)
@@ -517,7 +525,7 @@
     - [弹窗错误码](errorcode-promptAction.md)
     - [页面路由错误码](errorcode-router.md)
     - [拖拽事件错误码](errorcode-drag-event.md)
-    - [图像AI分析错误码](errorcode-image-analyzer.md)
+    - [图像AI分析错误码](arkui-ts/errorcode-image-analyzer.md)
     - [焦点错误码](errorcode-focus.md)
     - [系统资源错误码](errorcode-system-resource.md)
     - [半模态错误码](errorcode-bindSheet.md)
@@ -528,9 +536,10 @@
     - [注册节点渲染状态监听错误码](errorcode-node-render-monitor.md)
     - [交互事件错误码](errorcode-event.md)
     - [Canvas错误码](errorcode-canvas.md)
+    - [自定义节点错误码](errorcode-node.md)
+    - [UIExtension错误码](errorcode-uiextension.md)
     <!--Del-->
     - [用户界面外观服务错误码](errorcode-uiappearance.md)
-    - [UIExtension错误码](errorcode-uiextension.md)
     <!--DelEnd-->
   - 图形图像<!--arkui-graphics-images-arkts-errcode-->
     - [屏幕错误码](errorcode-display.md)

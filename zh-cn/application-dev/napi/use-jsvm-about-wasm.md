@@ -187,7 +187,7 @@ static JSVM_Value WasmDemo(JSVM_Env env, JSVM_CallbackInfo info) {
                                        &cacheRejected, &wasmModule2);
    
     // 传入的 wasm cache 如果是匹配的，且内部校验通过 (如版本)，则会接受 cache
-    CHECK_STATUS(cacheRejected == false);
+    CHECK_STATUS(!cacheRejected);
     CHECK_STATUS(IsWasmModuleObject(env, wasmModule2));
 
     // 对反序列化得到的 wasmModule2 进行同样的操作：函数编译、实例化、验证功能，期望也都是通过的
@@ -216,6 +216,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(wasmDemo())JS";
 ```
+<!-- @[jsvm_wasm](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/webassembly/src/main/cpp/hello.cpp) -->
 预期输出
 ```
 JSVM Init

@@ -105,7 +105,7 @@ export class Contact {
 @Entry
 @Component
 struct JumpMessage {
-    private context = getContext(this) as common.UIAbilityContext;
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     startMMSAbilityExplicit() {
         // Complete the contact and number. You can query the contact name based on the phone number. Therefore, the phone number is mainly used in this mode.
@@ -178,7 +178,7 @@ In actual development, replace the recipient number with the actual number. The 
 
 #### On Applications
 
-Pass the SMS message string to the **uri** parameter. In the application, the context can be obtained through **getContext (this)** for a page and through **this.context** for an ability.
+Pass the sms string to the **uri** parameter. In the application, the context can be obtained through **this.getUIContext().getHostContext()** for a page and through **this.context** for an ability.
 
 ```ts
 @Entry
@@ -209,4 +209,3 @@ struct Index {
   }
 }
 ```
-
