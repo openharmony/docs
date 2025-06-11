@@ -64,7 +64,7 @@ import { Constants } from '../../common/Constants';
 const ANIMATION_RECT_SIZE: number = 100;
 const END_SCALE: number = 1.5;
 const END_TRANSLATE: number = -300;
-let storageForMyLiveFormPage = LocalStorage.getShared()
+let storageForMyLiveFormPage = LocalStorage.getShared();
 
 @Entry(storageForMyLiveFormPage)
 @Component
