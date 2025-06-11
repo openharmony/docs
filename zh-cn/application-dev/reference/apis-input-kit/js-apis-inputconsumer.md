@@ -1,6 +1,6 @@
 # @ohos.multimodalInput.inputConsumer (全局快捷键)
 
-全局快捷键订阅模块，用于处理组合按键的订阅。
+全局快捷键订阅模块，用于处理组合按键的订阅。本模块也支持音量键拦截监听能力。
 
 > **说明：**
 >
@@ -184,6 +184,8 @@ on(type: 'keyPressed', options: KeyPressedConfig, callback: Callback&lt;KeyEvent
 
 订阅按键按下事件，使用callback异步回调。若当前应用窗口为前台焦点窗口，用户按下指定按键，会触发回调。
 
+订阅成功后，该按键事件的系统默认行为将被屏蔽，即不会再触发系统级的响应，如音量调节弹窗、返回操作等。要恢复系统响应，请使用inputConsumer.off('keyPressed')方法取消订阅。
+
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
 **参数：**
@@ -201,7 +203,7 @@ on(type: 'keyPressed', options: KeyPressedConfig, callback: Callback&lt;KeyEvent
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801 | Capability not supported. |
+| 801 | Capability not supported. 该错误通常由以下原因引起： 1.设备未启用多模输入能力； 2.当前设备型号未在支持白名单内或显式位于黑名单中。 |
 
 **示例：**
 
@@ -224,7 +226,7 @@ try {
 
 off(type: 'keyPressed', callback?: Callback&lt;KeyEvent&gt;): void
 
-取消按键按下事件订阅，使用callback异步回调。
+取消对'keyPressed'事件的订阅，使用callback异步回调。调用该方法后，被屏蔽的系统按键默认行为将恢复，即系统对音量键、返回键等的默认响应（如音量条弹出、返回上一页等）将恢复。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -242,7 +244,7 @@ off(type: 'keyPressed', callback?: Callback&lt;KeyEvent&gt;): void
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801 | Capability not supported. |
+| 801 | Capability not supported. 该错误通常由以下原因引起： 1.设备未启用多模输入能力； 2.当前设备型号未在支持白名单内或显式位于黑名单中。 |
 
 **示例：**
 
