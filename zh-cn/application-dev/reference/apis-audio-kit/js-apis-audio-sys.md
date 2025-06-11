@@ -10,7 +10,7 @@
 > **说明：**
 >
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.multimedia.audio (音频管理)](js-apis-audio.md)。
+> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.multimedia.audio (音频管理)](arkts-apis-audio.md)。
 
 ## 导入模块
 
@@ -114,7 +114,7 @@ createAsrProcessingController(audioCapturer: AudioCapturer): AsrProcessingContro
 
 | 参数名  | 类型                                           | 必填 | 说明       |
 | :------ | :---------------------------------------------| :--- |:---------|
-| audioCapturer | [AudioCapturer](js-apis-audio.md#audiocapturer8)      | 是   | 音频采集器对象。 |
+| audioCapturer | [AudioCapturer](arkts-apis-audio-AudioCapturer.md)      | 是   | 音频采集器对象。 |
 
 **返回值：**
 
@@ -542,7 +542,7 @@ setAudioScene\(scene: AudioScene, callback: AsyncCallback<void\>\): void
 
 | 参数名   | 类型                                 | 必填 | 说明                 |
 | :------- | :----------------------------------- | :--- | :------------------- |
-| scene    | [AudioScene](js-apis-audio.md#audioscene8) | 是   | 音频场景模式。       |
+| scene    | [AudioScene](arkts-apis-audio-e.md#audioscene8) | 是   | 音频场景模式。       |
 | callback | AsyncCallback<void\>                 | 是   | 回调函数。当设置音频场景模式成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -573,7 +573,7 @@ setAudioScene\(scene: AudioScene\): Promise<void\>
 
 | 参数名 | 类型                                 | 必填 | 说明           |
 | :----- | :----------------------------------- | :--- | :------------- |
-| scene  | [AudioScene](js-apis-audio.md#audioscene8) | 是   | 音频场景模式。 |
+| scene  | [AudioScene](arkts-apis-audio-e.md#audioscene8) | 是   | 音频场景模式。 |
 
 **返回值：**
 
@@ -702,7 +702,7 @@ audioManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 
 on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
-监听铃声模式变化事件（当[铃声模式](js-apis-audio.md#audioringmode)发生改变时触发）。使用callback异步回调。
+监听铃声模式变化事件（当[铃声模式](arkts-apis-audio-e.md#audioringmode)发生改变时触发）。使用callback异步回调。
 
 > **说明：**
 > 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[on('ringerModeChange')](js-apis-audio.md#onringermodechange9)替代。
@@ -716,7 +716,7 @@ on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 | 参数名   | 类型                                      | 必填 | 说明                                                         |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                    | 是   | 事件回调类型，支持的事件为'ringerModeChange'，当铃声模式发生改变时，触发该事件。 |
-| callback | Callback<[AudioRingMode](js-apis-audio.md#audioringmode)> | 是   | 回调函数，返回变化后的铃音模式。                                                   |
+| callback | Callback<[AudioRingMode](arkts-apis-audio-e.md#audioringmode)> | 是   | 回调函数，返回变化后的铃音模式。                                                   |
 
 **示例：**
 
@@ -1308,7 +1308,7 @@ setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                            | 必填 | 说明                     |
 | -------- | ------------------------------- | ---- | ------------------------ |
-| mode     | [AudioRingMode](js-apis-audio.md#audioringmode) | 是   | 音频铃声模式。           |
+| mode     | [AudioRingMode](arkts-apis-audio-e.md#audioringmode) | 是   | 音频铃声模式。           |
 | callback | AsyncCallback&lt;void&gt;       | 是   | 回调函数。当设置铃声模式成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -1343,7 +1343,7 @@ setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
 
 | 参数名 | 类型                            | 必填 | 说明           |
 | ------ | ------------------------------- | ---- | -------------- |
-| mode   | [AudioRingMode](js-apis-audio.md#audioringmode) | 是   | 音频铃声模式。 |
+| mode   | [AudioRingMode](arkts-apis-audio-e.md#audioringmode) | 是   | 音频铃声模式。 |
 
 **返回值：**
 
@@ -1744,7 +1744,7 @@ selectInputDevice(inputAudioDevices: AudioDeviceDescriptors, callback: AsyncCall
 
 | 参数名                       | 类型                                                         | 必填 | 说明                      |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| inputAudioDevices           | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)            | 是   | 输入设备类。               |
+| inputAudioDevices           | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)            | 是   | 输入设备类。               |
 | callback                    | AsyncCallback&lt;void&gt;                                    | 是   | 回调函数。当选择音频输入设备成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -1792,7 +1792,7 @@ selectInputDevice(inputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt
 
 | 参数名                       | 类型                                                         | 必填 | 说明                      |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| inputAudioDevices           | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)            | 是   | 输入设备类。               |
+| inputAudioDevices           | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)            | 是   | 输入设备类。               |
 
 **返回值：**
 
@@ -1844,7 +1844,7 @@ selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors, callback: AsyncCa
 
 | 参数名                       | 类型                                                         | 必填 | 说明                      |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| outputAudioDevices          | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)            | 是   | 输出设备类。               |
+| outputAudioDevices          | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)            | 是   | 输出设备类。               |
 | callback                    | AsyncCallback&lt;void&gt;                                    | 是   | 回调函数。当选择音频输出设备成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -1891,7 +1891,7 @@ selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&
 
 | 参数名                       | 类型                                                         | 必填 | 说明                      |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| outputAudioDevices          | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)            | 是   | 输出设备类。               |
+| outputAudioDevices          | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)            | 是   | 输出设备类。               |
 
 **返回值：**
 
@@ -1944,7 +1944,7 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 | 参数名                       | 类型                                                         | 必填 | 说明                      |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
 | filter                      | [AudioRendererFilter](#audiorendererfilter9)                 | 是   | 过滤条件类。               |
-| outputAudioDevices          | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)            | 是   | 输出设备类。               |
+| outputAudioDevices          | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)            | 是   | 输出设备类。               |
 | callback                    | AsyncCallback&lt;void&gt;                                    | 是   | 回调函数。当选择音频输出设备成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -2001,7 +2001,7 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 | 参数名                 | 类型                                                         | 必填 | 说明                      |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
 | filter                | [AudioRendererFilter](#audiorendererfilter9)                 | 是   | 过滤条件类。               |
-| outputAudioDevices    | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)            | 是   | 输出设备类。               |
+| outputAudioDevices    | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)            | 是   | 输出设备类。               |
 
 **返回值：**
 
@@ -2063,7 +2063,7 @@ selectInputDeviceByFilter(filter: AudioCapturerFilter, inputAudioDevices: AudioD
 | 参数名                 | 类型                                                                | 必填 | 说明     |
 | ----------------------|-------------------------------------------------------------------| ---- |--------|
 | filter                      | [AudioCapturerFilter](#audiocapturerfilter18)                     | 是   | 过滤条件类。 |
-| inputAudioDevices | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | 是   | 输入设备类。 |
+| inputAudioDevices | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors) | 是   | 输入设备类。 |
 
 **返回值：**
 
@@ -2141,7 +2141,7 @@ getPreferredOutputDeviceByFilter(filter: AudioRendererFilter): AudioDeviceDescri
 
 | 类型                  | 说明                         |
 | --------------------- | --------------------------- |
-| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)| return the device list. |
+| [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)| return the device list. |
 
 **错误码：**
 
@@ -2194,7 +2194,7 @@ getPreferredInputDeviceByFilter(filter: AudioCapturerFilter): AudioDeviceDescrip
 
 | 类型                  | 说明                         |
 | --------------------- | --------------------------- |
-| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | return the device list. |
+| [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors) | return the device list. |
 
 **错误码：**
 
@@ -2248,7 +2248,7 @@ excludeOutputDevices(usage: DeviceUsage, devices: AudioDeviceDescriptors): Promi
 | 参数名                       | 类型                                                         | 必填 | 说明                      |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
 | usage          | [DeviceUsage](js-apis-audio.md#deviceusage12)            | 是   | 设备种类。只支持排除输出设备。               |
-| devices          | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)            | 是   | 排除输出设备列表。               |
+| devices          | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)            | 是   | 排除输出设备列表。               |
 
 **返回值：**
 
@@ -2315,7 +2315,7 @@ unexcludeOutputDevices(usage: DeviceUsage, devices: AudioDeviceDescriptors): Pro
 | 参数名                       | 类型                                                         | 必填 | 说明                      |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
 | usage          | [DeviceUsage](js-apis-audio.md#deviceusage12)            | 是   | 设备种类。只支持排除输出设备。               |
-| devices          | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)            | 是   | 解除排除输出设备列表。               |
+| devices          | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)            | 是   | 解除排除输出设备列表。               |
 
 **返回值：**
 
@@ -2438,7 +2438,7 @@ getExcludedDevices(usage: DeviceUsage): AudioDeviceDescriptors
 
 | 类型                  | 说明                         |
 | --------------------- | --------------------------- |
-| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | 排除设备列表。 |
+| [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors) | 排除设备列表。 |
 
 **错误码：**
 
@@ -2472,7 +2472,7 @@ async function getExcludedDevices(){
 | 名称               | 类型                                       | 可读 | 可写 | 说明                          |
 | -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
 | clientUid          | number                                    | 是   | 否   | 音频渲染器客户端应用程序的Uid。<br/>此接口为系统接口。 |
-| rendererState      | [AudioState](js-apis-audio.md#audiostate8)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口。|
+| rendererState      | [AudioState](arkts-apis-audio-e.md#audiostate8)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口。|
 
 ## AudioCapturerChangeInfo<sup>9+</sup>
 
@@ -2483,7 +2483,7 @@ async function getExcludedDevices(){
 | 名称               | 类型                                       | 可读 | 可写 | 说明                          |
 | -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
 | clientUid          | number                                    | 是   | 否   | 音频采集器客户端应用程序的Uid。<br/>此接口为系统接口。 |
-| capturerState      | [AudioState](js-apis-audio.md#audiostate8)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口。|
+| capturerState      | [AudioState](arkts-apis-audio-e.md#audiostate8)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口。|
 
 ## AudioDeviceDescriptor
 
@@ -2556,7 +2556,7 @@ let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
 
 | 参数名                 | 类型                                                         | 必填 | 说明                      |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
+| deviceDescriptor | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
 | enabled               | boolean                                                      | 是   | 表示开启/关闭空间音频渲染或头动。true为开启，false为关闭。  |
 
 ## AudioSpatializationManager<sup>11+</sup>
@@ -2615,7 +2615,7 @@ isSpatializationSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boo
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
+| deviceDescriptor | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
 
 **返回值：**
 
@@ -2716,7 +2716,7 @@ isHeadTrackingSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boole
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
+| deviceDescriptor | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
 
 **返回值：**
 
@@ -2880,7 +2880,7 @@ setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boole
 
 | 参数名                 | 类型                                                         | 必填 | 说明                      |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
+| deviceDescriptor | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
 | enabled               | boolean                                                      | 是   | 表示开启/关闭空间音频渲染。true为开启，false为关闭。  |
 
 **返回值：**
@@ -2986,7 +2986,7 @@ isSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean
 
 | 参数名                 | 类型                                                         | 必填 | 说明                      |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor) | 是   | 指定设备的描述。     |
+| deviceDescriptor | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor) | 是   | 指定设备的描述。     |
 
 **返回值：**
 
@@ -3321,7 +3321,7 @@ setHeadTrackingEnabled(enable: boolean): Promise&lt;void&gt;
 
 | 参数名                 | 类型                                                         | 必填 | 说明                      |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
+| deviceDescriptor | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
 | enable                | boolean                                                      | 是   | 表示开启/关闭头动跟踪。true为开启，false为关闭。  |
 
 **返回值：**
@@ -3426,7 +3426,7 @@ isHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean
 
 | 参数名                 | 类型                                                         | 必填 | 说明                      |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor) | 是   | 指定设备的描述。     |
+| deviceDescriptor | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor) | 是   | 指定设备的描述。     |
 
 **返回值：**
 

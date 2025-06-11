@@ -1,6 +1,6 @@
 # 使用合适的音频流类型
 
-[音频流](audio-kit-intro.md#音频流介绍)类型是定义音频数据播放和录制方式的关键属性。对于播放流，其类型由[StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage)确定；对于录制流，则由[SourceType](../../reference/apis-audio-kit/js-apis-audio.md#sourcetype8)决定。音频流类型对音量控制、音频焦点管理以及输入/输出设备的选择具有决定性影响。
+[音频流](audio-kit-intro.md#音频流介绍)类型是定义音频数据播放和录制方式的关键属性。对于播放流，其类型由[StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)确定；对于录制流，则由[SourceType](../../reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8)决定。音频流类型对音量控制、音频焦点管理以及输入/输出设备的选择具有决定性影响。
 
 为了确保音频行为符合预期并提供优质的用户体验，应用开发者应根据具体业务场景和实际需求，为音频选择恰当的流类型。
 
@@ -10,7 +10,7 @@
 
 ### 播放音频流类型
 
-下表中列举常用的播放音频流类型，由[StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage)定义。
+下表中列举常用的播放音频流类型，由[StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)定义。
 
 | 音频流使用类型（StreamUsage） | 适用场景 |
 | ---------- | ---------- |
@@ -27,7 +27,7 @@
 
 ### 录制音频流类型
 
-下表中列举常用的录制音频流类型，由[SourceType](../../reference/apis-audio-kit/js-apis-audio.md#sourcetype8)定义。
+下表中列举常用的录制音频流类型，由[SourceType](../../reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8)定义。
 
 | 音频流使用类型（StreamUsage） | 适用场景 |
 | ---------- | ---------- |
@@ -46,7 +46,7 @@
 
 ### 音量控制
 
-播放流类型（[StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage)）决定了音频流所属的音量类型（[AudioVolumeType](../../reference/apis-audio-kit/js-apis-audio.md#audiovolumetype)），各类音量类型（如媒体、铃声、闹钟、通话等）拥有独立的音量值，在用户界面上可独立调节，相互之间不会影响。
+播放流类型（[StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)）决定了音频流所属的音量类型（[AudioVolumeType](../../reference/apis-audio-kit/js-apis-audio.md#audiovolumetype)），各类音量类型（如媒体、铃声、闹钟、通话等）拥有独立的音量值，在用户界面上可独立调节，相互之间不会影响。
 
 常见的播放流类型与音量类型的对应关系为：
 
@@ -97,7 +97,7 @@
 
 - **[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)**：
 
-   可以在调用[createAudioRenderer](../../reference/apis-audio-kit/js-apis-audio.md#audiocreateaudiorenderer8)以获取音频渲染器时，传入对应的[StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage)。
+   可以在调用[createAudioRenderer](../../reference/apis-audio-kit/arkts-apis-audio-f.md#audiocreateaudiorenderer8)以获取音频渲染器时，传入对应的[StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)。
 
    createAudioRenderer的参数options类型为AudioRendererOptions，包含AudioRendererInfo渲染器信息，使用AudioRendererInfo.usage可指定StreamUsage音频流类型。
 
@@ -107,7 +107,7 @@
 
 - **[使用AVPlayer开发音频播放功能(ArkTS)](../media/using-avplayer-for-playback.md)**：
   
-  可以通过设置AVPlayer的[属性](../../reference/apis-media-kit/js-apis-media.md#属性)audioRendererInfo来实现。AVPlayer.audioRendererInfo的类型为audio.AudioRendererInfo。使用AudioRendererInfo.usage可指定[StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage)音频流类型。
+  可以通过设置AVPlayer的[属性](../../reference/apis-media-kit/js-apis-media.md#属性)audioRendererInfo来实现。AVPlayer.audioRendererInfo的类型为audio.AudioRendererInfo。使用AudioRendererInfo.usage可指定[StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)音频流类型。
 
   > **说明：**
   > 在设置AVPlayer的audioRendererInfo属性时，只允许在initialized状态下设置。
@@ -120,13 +120,13 @@
 
 - **[使用SoundPool开发音频播放功能](../media/using-soundpool-for-playback.md)**：
   
-  可以在调用[createSoundPool](../../reference/apis-media-kit/js-apis-media.md#mediacreatesoundpool10)接口时，传入对应的[StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage)指定音频流类型。
+  可以在调用[createSoundPool](../../reference/apis-media-kit/js-apis-media.md#mediacreatesoundpool10)接口时，传入对应的[StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)指定音频流类型。
 
 常见的设置录制音频流类型的方法有：
 
 - **[使用AudioCapturer开发音频录制功能](using-audiocapturer-for-recording.md)**：
   
-  可以在调用[createAudioCapturer](../../reference/apis-audio-kit/js-apis-audio.md#audiocreateaudiocapturer8)接口时，传入对应的[SourceType](../../reference/apis-audio-kit/js-apis-audio.md#sourcetype8)。
+  可以在调用[createAudioCapturer](../../reference/apis-audio-kit/arkts-apis-audio-f.md#audiocreateaudiocapturer8)接口时，传入对应的[SourceType](../../reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8)。
 
    createAudioCapturer的参数options类型为AudioCapturerOptions，包含AudioCapturerInfo采集器信息，使用AudioCapturerInfo.source可指定SourceType音源类型。
 

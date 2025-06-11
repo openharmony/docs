@@ -1,4 +1,4 @@
-# Interfaces (AudioVolumeManager)
+# Interface (AudioVolumeManager)
 
 > **说明：**
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -20,7 +20,7 @@ getVolumeGroupManager(groupId: number, callback: AsyncCallback<AudioVolumeGroupM
 | 参数名     | 类型                                                         | 必填 | 说明                                                        |
 | ---------- | ------------------------------------------------------------ | ---- |-----------------------------------------------------------|
 | groupId    | number                                    | 是   | 音量组id，默认使用DEFAULT_VOLUME_GROUP_ID。                         |
-| callback   | AsyncCallback&lt;[AudioVolumeGroupManager](arkts-apis-audio-AudioVolumeGroupManager.md#interfaces-audiovolumegroupmanager)&gt; | 是   | 回调函数。当获取音频组管理器成功，err为undefined，data为获取到的音频组管理器对象；否则为错误对象。 |
+| callback   | AsyncCallback&lt;[AudioVolumeGroupManager](arkts-apis-audio-AudioVolumeGroupManager.md)&gt; | 是   | 回调函数。当获取音频组管理器成功，err为undefined，data为获取到的音频组管理器对象；否则为错误对象。 |
 
 **示例：**
 
@@ -57,7 +57,7 @@ getVolumeGroupManager(groupId: number\): Promise<AudioVolumeGroupManager\>
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| Promise&lt; [AudioVolumeGroupManager](arkts-apis-audio-AudioVolumeGroupManager.md#interfaces-audiovolumegroupmanager) &gt; | Promise对象，返回音量组实例。 |
+| Promise&lt; [AudioVolumeGroupManager](arkts-apis-audio-AudioVolumeGroupManager.md) &gt; | Promise对象，返回音量组实例。 |
 
 **示例：**
 
@@ -91,7 +91,7 @@ getVolumeGroupManagerSync(groupId: number\): AudioVolumeGroupManager
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| [AudioVolumeGroupManager](arkts-apis-audio-AudioVolumeGroupManager.md#interfaces-audiovolumegroupmanager) | 音量组实例。 |
+| [AudioVolumeGroupManager](arkts-apis-audio-AudioVolumeGroupManager.md) | 音量组实例。 |
 
 **错误码：**
 

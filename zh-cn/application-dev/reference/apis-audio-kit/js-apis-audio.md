@@ -4945,7 +4945,7 @@ getAvailableDevices(deviceUsage: DeviceUsage): AudioDeviceDescriptors
 
 | 类型                                                         | 说明                      |
 | ------------------------------------------------------------ | ------------------------- |
-| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | 返回设备列表。 |
+| [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors) | 返回设备列表。 |
 
 **错误码：**
 

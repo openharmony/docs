@@ -156,7 +156,7 @@ let volume = 1.0;  // 指定的音量大小，取值范围为[0.00-1.00]，1表�
 avPlayer.setVolume(volume);
 ```
 
-使用[AudioRenderer](../../reference/apis-audio-kit/js-apis-audio.md#audiocreateaudiorenderer8)设置音频流音量的示例代码如下：
+使用[AudioRenderer](../../reference/apis-audio-kit/arkts-apis-audio-f.md#audiocreateaudiorenderer8)设置音频流音量的示例代码如下：
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';

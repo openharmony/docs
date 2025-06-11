@@ -23,7 +23,7 @@ AudioVivid是全球首个基于AI技术的音频编解码标准，由世界超�
 
 ### 查询设备是否支持空间音频渲染能力
 
-应用开发者可以使用[AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor)的spatializationSupported属性获取指定设备是否具有空间音频渲染的能力，需要通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。
+应用开发者可以使用[AudioDeviceDescriptor](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor)的spatializationSupported属性获取指定设备是否具有空间音频渲染的能力，需要通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。
 
   ```ts
   import { audio } from '@kit.AudioKit';

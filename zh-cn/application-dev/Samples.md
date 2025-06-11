@@ -1068,7 +1068,7 @@ Preferences.flush()保存并刷新文件内容。
 
 * 音频，视频操作模块
   * 使用媒体服务进行音视频播放，暂停，seek等操作，其中AudioPlayer方法播放音频，VideoPlayer方法播放视频。
-  * 接口参考：[@ohos.multimedia.media](reference/apis-arkui/js-apis-display.md)，[@ohos.multimedia.audio](reference/apis-audio-kit/js-apis-audio.md)
+  * 接口参考：[@ohos.multimedia.media](reference/apis-arkui/js-apis-display.md)，[@ohos.multimedia.audio](reference/apis-audio-kit/arkts-apis-audio.md)
 
 * 设备适配模块
   * 使用屏幕管理接口获取设备宽度进行适配。
@@ -1331,7 +1331,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了音频的相关功能，使用[@ohos.multimedia.audio](reference/apis-audio-kit/js-apis-audio.md)等接口实现音频的发声设备的切换与查询、音频焦点、音效的查询与设置以及音频录制等功能。
+本示例主要展示了音频的相关功能，使用[@ohos.multimedia.audio](reference/apis-audio-kit/arkts-apis-audio.md)等接口实现音频的发声设备的切换与查询、音频焦点、音效的查询与设置以及音频录制等功能。
 
 ##### 使用
 
@@ -1530,7 +1530,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用[audio](reference/apis-audio-kit/js-apis-audio.md)相关接口实现音频录制和播放的功能，使用[@ohos.filemanagement.userFileManager](reference/apis-core-file-kit/js-apis-userFileManager-sys.md)实现音频文件的管理。
+本示例使用[audio](reference/apis-audio-kit/arkts-apis-audio.md)相关接口实现音频录制和播放的功能，使用[@ohos.filemanagement.userFileManager](reference/apis-core-file-kit/js-apis-userFileManager-sys.md)实现音频文件的管理。
 
 ##### 使用
 
@@ -1547,7 +1547,7 @@ Preferences.flush()保存并刷新文件内容。
 * 本示例分为三个模块：
     * 录音页面模块
         * 使用FileAsset提供封装文件属性的方法，createAudioPlayer同步方式创建音频播放实例实现录音，暂停录音功能
-        * 参考接口：[audio](reference/apis-audio-kit/js-apis-audio.md)，[@ohos.router](reference/apis-arkui/js-apis-router.md)，[@ohos.filemanagement.userFileManager](reference/apis-core-file-kit/js-apis-userFileManager-sys.md)，[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)，[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)，[@ohos.window](reference/apis-arkui/arkts-apis-window.md)，[@ohos.promptAction](reference/apis-arkui/js-apis-promptAction.md)，[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)
+        * 参考接口：[audio](reference/apis-audio-kit/arkts-apis-audio.md)，[@ohos.router](reference/apis-arkui/js-apis-router.md)，[@ohos.filemanagement.userFileManager](reference/apis-core-file-kit/js-apis-userFileManager-sys.md)，[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)，[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)，[@ohos.window](reference/apis-arkui/arkts-apis-window.md)，[@ohos.promptAction](reference/apis-arkui/js-apis-promptAction.md)，[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)
 
     * 录音列表模块
         * getMediaLibraryAPI访问媒体数据信息，renameCallBack，renameDialogController方法对录音进行重命名，deleteFile，deleteDialogShow方法删除某条录音。
@@ -1634,7 +1634,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了音频通话相关的功能，使用[@ohos.multimedia.audio](reference/apis-audio-kit/js-apis-audio.md) 、[@ohos.net.socket](reference/apis-network-kit/js-apis-socket.md) 等接口，实现音频录制和渲染，音频数据网络传输等功能。
+本示例主要展示了音频通话相关的功能，使用[@ohos.multimedia.audio](reference/apis-audio-kit/arkts-apis-audio.md) 、[@ohos.net.socket](reference/apis-network-kit/js-apis-socket.md) 等接口，实现音频录制和渲染，音频数据网络传输等功能。
 
 ##### 使用
 

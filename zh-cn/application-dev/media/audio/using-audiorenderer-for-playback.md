@@ -16,19 +16,19 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 
 在进行应用开发的过程中，建议开发者通过[on('stateChange')](../../reference/apis-audio-kit/js-apis-audio.md#onstatechange-8)方法订阅AudioRenderer的状态变更。因为针对AudioRenderer的某些操作，仅在音频播放器在固定状态时才能执行。如果应用在音频播放器处于错误状态时执行操作，系统可能会抛出异常或生成其他未定义的行为。
 
-- prepared状态： 通过调用[createAudioRenderer()](../../reference/apis-audio-kit/js-apis-audio.md#audiocreateaudiorenderer8)方法进入到该状态。
+- prepared状态： 通过调用[createAudioRenderer()](../../reference/apis-audio-kit/arkts-apis-audio-f.md#audiocreateaudiorenderer8)方法进入到该状态。
 
-- running状态： 正在进行音频数据播放，可以在prepared状态通过调用[start()](../../reference/apis-audio-kit/js-apis-audio.md#start8)方法进入此状态，也可以在paused状态和stopped状态通过调用[start()](../../reference/apis-audio-kit/js-apis-audio.md#start8)方法进入此状态。
+- running状态： 正在进行音频数据播放，可以在prepared状态通过调用[start()](../../reference/apis-audio-kit/arkts-apis-audio-AudioRenderer.md#start8)方法进入此状态，也可以在paused状态和stopped状态通过调用[start()](../../reference/apis-audio-kit/arkts-apis-audio-AudioRenderer.md#start8)方法进入此状态。
 
-- paused状态： 在running状态可以通过调用[pause()](../../reference/apis-audio-kit/js-apis-audio.md#pause8)方法暂停音频数据的播放并进入paused状态，暂停播放之后可以通过调用[start()](../../reference/apis-audio-kit/js-apis-audio.md#start8)方法继续音频数据播放。
+- paused状态： 在running状态可以通过调用[pause()](../../reference/apis-audio-kit/js-apis-audio.md#pause8)方法暂停音频数据的播放并进入paused状态，暂停播放之后可以通过调用[start()](../../reference/apis-audio-kit/arkts-apis-audio-AudioRenderer.md#start8)方法继续音频数据播放。
 
-- stopped状态： 在paused/running状态可以通过[stop()](../../reference/apis-audio-kit/js-apis-audio.md#stop8)方法停止音频数据的播放。
+- stopped状态： 在paused/running状态可以通过[stop()](../../reference/apis-audio-kit/arkts-apis-audio-AudioRenderer.md#stop8)方法停止音频数据的播放。
 
-- released状态： 在prepared、paused、stopped等状态，用户均可通过[release()](../../reference/apis-audio-kit/js-apis-audio.md#release8)方法释放掉所有占用的硬件和软件资源，并且不会再进入到其他的任何一种状态了。
+- released状态： 在prepared、paused、stopped等状态，用户均可通过[release()](../../reference/apis-audio-kit/arkts-apis-audio-AudioRenderer.md#release8)方法释放掉所有占用的硬件和软件资源，并且不会再进入到其他的任何一种状态了。
 
 ### 开发步骤及注意事项
 
-1. 配置音频渲染参数并创建AudioRenderer实例，音频渲染参数的详细信息可以查看[AudioRendererOptions](../../reference/apis-audio-kit/js-apis-audio.md#audiorendereroptions8)。
+1. 配置音频渲染参数并创建AudioRenderer实例，音频渲染参数的详细信息可以查看[AudioRendererOptions](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiorendereroptions8)。
 
     ```ts
     import { audio } from '@kit.AudioKit';
@@ -201,7 +201,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 
 创建播放器时候，开发者需要根据应用场景指定播放器的`StreamUsage`，选择正确的`StreamUsage`可以避免用户遇到不符合预期的行为。
 
-在音频API文档[StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage)介绍中，列举了每一种类型推荐的应用场景。例如音乐场景推荐使用`STREAM_USAGE_MUSIC`，电影或者视频场景推荐使用`STREAM_USAGE_MOVIE`，游戏场景推荐使用`STREAM_USAGE_GAME`，等等。
+在音频API文档[StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)介绍中，列举了每一种类型推荐的应用场景。例如音乐场景推荐使用`STREAM_USAGE_MUSIC`，电影或者视频场景推荐使用`STREAM_USAGE_MOVIE`，游戏场景推荐使用`STREAM_USAGE_GAME`，等等。
 
 如果开发者配置了不正确的`StreamUsage`，可能带来一些不符合预期的行为。例如以下场景。
 

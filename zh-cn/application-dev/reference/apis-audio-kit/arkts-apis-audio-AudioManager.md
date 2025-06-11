@@ -1,4 +1,4 @@
-# Interfaces (AudioManager)
+# Interface (AudioManager)
 
 > **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -155,7 +155,7 @@ getVolumeManager(): AudioVolumeManager
 
 | 类型                                      | 说明                          |
 |-----------------------------------------| ----------------------------- |
-| [AudioVolumeManager](arkts-apis-audio-AudioVolumeManager.md#interfaces-audiovolumemanager) | AudioVolumeManager实例。 |
+| [AudioVolumeManager](arkts-apis-audio-AudioVolumeManager.md) | AudioVolumeManager实例。 |
 
 **示例：**
 
@@ -177,7 +177,7 @@ getStreamManager(): AudioStreamManager
 
 | 类型                                         | 说明                          |
 |--------------------------------------------| ----------------------------- |
-| [AudioStreamManager](arkts-apis-audio-AudioStreamManager.md#interfaces-audiostreammanager) | AudioStreamManager实例。 |
+| [AudioStreamManager](arkts-apis-audio-AudioStreamManager.md) | AudioStreamManager实例。 |
 
 **示例：**
 

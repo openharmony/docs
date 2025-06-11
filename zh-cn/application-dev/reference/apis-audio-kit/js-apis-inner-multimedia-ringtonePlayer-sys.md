@@ -439,7 +439,7 @@ on(type: 'audioInterrupt', callback: Callback&lt;audio.InterruptEvent&gt;): void
 | 参数名   | 类型                     | 必填 | 说明                                                                       |
 | -------- | ----------------------- | ---- | -------------------------------------------------------------------------- |
 | type     | string                  | 是   | 事件回调类型，支持的事件为'audioInterrupt'，当音频焦点状态发生变化时，触发该事件。 |
-| callback | Callback&lt;[audio.InterruptEvent](../apis-audio-kit/js-apis-audio.md#interruptevent9)&gt; | 是   | 回调函数，返回中断事件信息。 |
+| callback | Callback&lt;[audio.InterruptEvent](../apis-audio-kit/arkts-apis-audio-i.md#interruptevent9)&gt; | 是   | 回调函数，返回中断事件信息。 |
 
 **错误码：**
 
