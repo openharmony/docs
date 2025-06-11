@@ -721,14 +721,14 @@
         - [使用Web组件的下载能力](web/web-download.md)
       - 使用网页多媒体<!--web-use-multimedia-->
         - [使用WebRTC进行Web视频会议](web/web-rtc.md)
-        - [托管网页中的媒体播放](app-takeovers-web-media.md)
+        - [托管网页中的媒体播放](web/app-takeovers-web-media.md)
         - [使用Web组件支持画中画](web/web-picture-in-picture.md)
         - [Web组件支持视频沉浸式全屏播放](web_full_screen.md)
       - 处理网页内容<!--web-process-page-content-->
         - [使用Web组件打印前端页面](web/web-print.md)
         - [使用Web组件的PDF文档预览能力](web/web-pdf-preview.md)
         - [网页中安全区域计算和避让适配](web/web-safe-area-insets.md)
-        - [使用Web组件菜单处理网页内容](web_menu.md)
+        - [使用Web组件菜单处理网页内容](web/web_menu.md)
       - [同层渲染](web/web-same-layer.md)
       - [使用离线Web组件](web/web-offline-mode.md)
       - Web调试维测<!--web-debugging-->
