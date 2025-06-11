@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import { FixedMode,Touch,TouchEvent } from '@kit.InputKit';
+import { FixedMode, Touch, TouchEvent } from '@kit.InputKit';
 ```
 
 ## FixedMode
