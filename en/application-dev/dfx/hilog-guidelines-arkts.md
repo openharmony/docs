@@ -14,7 +14,7 @@ HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides
 | API| Description| 
 | -------- | -------- |
 | isLoggable(domain: number, tag: string, level: LogLevel) | Checks whether logs of the specified domain, tag, and level can be printed.|
-| debug(domain: number, tag: string, format: string, ...args: any[]) | Outputs DEBUG logs, which are used only for debugging applications and services.<br>To set the log level to **DEBUG**, run the **hdc shell hilogcat** command in the **Terminal** window of DevEco Studio or in the **cmd** window.|
+| debug(domain: number, tag: string, format: string, ...args: any[]) | Outputs DEBUG logs, which are used only for debugging applications and services.<br>To set the log level to **DEBUG**, run the **hdc shell hilog -b D** command in the **Terminal** window of DevEco Studio or in the **cmd** window.|
 | info(domain: number, tag: string, format: string, ...args: any[]) | Outputs INFO logs, which provide prevalent, highlighting events related to key service processes.|
 | warn(domain: number, tag: string, format: string, ...args: any[]) | Outputs WARN logs, which indicate issues that have little impact on the system.|
 | error(domain: number, tag: string, format: string, ...args: any[]) | Outputs ERROR logs, which indicate program or functional errors.|

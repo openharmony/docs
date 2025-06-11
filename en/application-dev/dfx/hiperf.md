@@ -6,7 +6,7 @@ hiperf is a command-line tool provided to capture performance data of a specific
 
 - The environment for OpenHarmony Device Connector (hdc) has been set up. For details, see [Environment Setup](hdc.md#environment-setup).
 
-- The devices are properly connected.
+- The devices are properly connected and **hdc shell** is executed.
 
 ## hiperf
 
