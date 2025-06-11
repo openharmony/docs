@@ -80,6 +80,7 @@ struct Index {
   }
 }
 ```
+<!-- @[example_pass_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/CommunicationObjects/entry/src/main/ets/managers/TransferabledObject.ets) -->
 
 ```ts
 // pixelMapTest.ets
@@ -99,3 +100,4 @@ export async function loadPixelMap(rawFileDescriptor: number): Promise<PixelMap>
   return pixelMap;
 }
 ```
+<!-- @[example_pass_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/CommunicationObjects/entry/src/main/ets/managers/pixelMapTest.ets) -->
