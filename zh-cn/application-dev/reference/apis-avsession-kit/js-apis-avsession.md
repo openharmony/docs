@@ -151,15 +151,14 @@ struct Index {
 
 远端设备支持的协议类型的枚举。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
-| TYPE_LOCAL<sup>11+</sup>      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。 |
-| TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式。表示媒体正在其他设备上展示。 |
-| TYPE_DLNA<sup>12+</sup>      | 4    | DLNA协议。表示媒体正在其他设备上展示。 |
+| TYPE_LOCAL<sup>11+</sup>      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式。表示媒体正在其他设备上展示。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| TYPE_DLNA<sup>12+</sup>      | 4    | DLNA协议。表示媒体正在其他设备上展示。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| TYPE_CAST_PLUS_AUDIO<sup>20+</sup>      | 8    | PCM模式。表示媒体正在其他设备上展示。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## AVSessionType<sup>10+<sup>
 
@@ -5545,30 +5544,31 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-| 名称         | 类型                    | 必填  | 说明                     |
-| ------------ | ----------------------- | ---- | ----------------------- |
-| assetId      | string                  | 是   | 播放列表媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。          |
-| title        | string                  | 否   | 播放列表媒体标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
-| subtitle     | string                  | 否   | 播放列表媒体子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
-| description  | string                  | 否   | 播放列表媒体描述的文本。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
-| mediaImage | image.PixelMap \| string   | 否   | 播放列表媒体图片像素数据。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| extras       | {[key: string]: Object}    | 否   | 播放列表媒体额外字段。     |
-| mediaUri     | string                  | 否   | 播放列表媒体URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| mediaType     | string                  | 否   | 播放列表媒体类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| mediaSize     | number                  | 否   | 播放列表媒体的大小。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| albumTitle     | string                  | 否   | 播放列表媒体专辑标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| albumCoverUri     | string                  | 否   | 播放列表媒体专辑标题URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。    |
-| lyricContent     | string                  | 否   | 播放列表媒体歌词内容。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| lyricUri     | string                  | 否   | 播放列表媒体歌词URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| artist     | string                  | 否   | 播放列表媒体专辑作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| fdSrc     | media.AVFileDescriptor        | 否   | 播放列表媒体本地文件的句柄。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | 否   | 播放列表数据源描述。         |
-| drmScheme<sup>12+</sup>     | string        | 否   | 播放列表媒体支持的DRM方案，由uuid表示。       |
-| duration     | number                  | 否   | 播放列表媒体播放时长。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| startPosition     | number                  | 否   | 播放列表媒体起始播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| creditsPosition     | number                  | 否   | 播放列表媒体的片尾播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| appName     | string                  | 否   | 播放列表提供的应用的名字。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-|displayTags<sup>11+</sup>     | number | 否   | 媒体资源的金标类型，取值参考[DisplayTag](#displaytag11)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
+| 名称         | 类型                    | 只读  | 可选  | 说明                     |
+| ------------ | ----------------------- | ---- | ---- | ----------------------- |
+| assetId      | string                  | 否   | 否   | 播放列表媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。          |
+| title        | string                  | 否   | 是   | 播放列表媒体标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
+| subtitle     | string                  | 否   | 是   | 播放列表媒体子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
+| description  | string                  | 否   | 是   | 播放列表媒体描述的文本。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| mediaImage | image.PixelMap \| string   | 否   | 是   | 播放列表媒体图片像素数据。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| extras       | {[key: string]: Object}    | 否   | 是   | 播放列表媒体额外字段。     |
+| mediaUri     | string                  | 否   | 是   | 播放列表媒体URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| mediaType     | string                  | 否   | 是   | 播放列表媒体类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| mediaSize     | number                  | 否   | 是   | 播放列表媒体的大小。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| albumTitle     | string                  | 否   | 是   | 播放列表媒体专辑标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| albumCoverUri     | string                  | 否   | 是   | 播放列表媒体专辑标题URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。    |
+| lyricContent     | string                  | 否   | 是   | 播放列表媒体歌词内容。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| lyricUri     | string                  | 否   | 是   | 播放列表媒体歌词URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| artist     | string                  | 否   | 是   | 播放列表媒体专辑作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| fdSrc     | media.AVFileDescriptor        | 否   | 是   | 播放列表媒体本地文件的句柄。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | 否   | 是   | 播放列表数据源描述。         |
+| pcmSrc<sup>20+</sup>     | boolean        | 否   | 是   | 播放列表是否使用PCM数据源。true表示使用PCM数据源，false表示不使用PCM数据源。         |
+| drmScheme<sup>12+</sup>     | string        | 否   | 是   | 播放列表媒体支持的DRM方案，由uuid表示。       |
+| duration     | number                  | 否   | 是   | 播放列表媒体播放时长。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| startPosition     | number                  | 否   | 是   | 播放列表媒体起始播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| creditsPosition     | number                  | 否   | 是   | 播放列表媒体的片尾播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| appName     | string                  | 否   | 是   | 播放列表提供的应用的名字。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+|displayTags<sup>11+</sup>     | number | 否   | 是   | 媒体资源的金标类型，取值参考[DisplayTag](#displaytag11)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
 
 ## AVQueueItem<sup>10+</sup>
 
@@ -8744,3 +8744,15 @@ async function onPickerStateChange(context: common.Context) {
 | SECONDS_10             | 10 | 时间为10秒。             |
 | SECONDS_15             | 15 | 时间为15秒。             |
 | SECONDS_30             | 30 | 时间为30秒。             |
+
+## AudioCapabilities<sup>20+</sup>
+
+表示投播设备支持的音频能力。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+| 名称            | 类型                      | 只读 | 可选 | 说明                                                                  |
+| --------------- |-------------------------| ---- | ---- |---------------------------------------------------------------------|
+| streamInfos            | Array\<[audio.AudioStreamInfo](../apis-audio-kit/arkts-apis-audio-i.md#audiostreaminfo8)>                  | 是    | 否    | 音频能力参数的列表。  |

@@ -795,8 +795,6 @@
       - 服务卡片开发指导（Stage模型）<!--arkts-ui-widget-stage-->
         - 开发基于ArkTS UI的卡片<!--arkts-ui-widget-->
           - [ArkTS卡片概述](form/arkts-form-overview.md)
-          - [ArkTS卡片运行机制](form/arkts-ui-widget-working-principles.md)
-          - [ArkTS卡片相关模块](form/arkts-ui-widget-modules.md)
           - ArkTS卡片开发指导<!--arkts-ui-widget-dev-->
             - [创建ArkTS卡片](form/arkts-ui-widget-creation.md)
             - [配置卡片的配置文件](form/arkts-ui-widget-configuration.md)
@@ -1172,9 +1170,6 @@
         - [分布式设备管理](distributedservice/devicemanager-guidelines.md)
         - 应用跨设备连接管理<!--abilityconnect-distributed-->
           - [UIAbility与UIAbility连接开发指南](distributedservice/abilityconnectmanager-guidelines.md)
-          <!--Del-->
-          - [UIAbility与Extension连接开发指南](distributedservice/distributedextension-guidelines.md)
-          <!--DelEnd-->
         - 硬件跨设备连接管理<!--devconnect-distributed-->
           - [分布式相机开发指南](distributedservice/camera-distributed.md)
       - Network Kit（网络服务）<!--network-kit-->
@@ -1417,7 +1412,9 @@
         <!--DelEnd-->
         - [param工具](tools/param-tool.md)
         - [power-shell工具](tools/power-shell.md)
+        <!--Del-->
         - [OpenHarmony SDK升级助手](tools/openharmony_sdk_upgrade_assistant.md)
+        <!--DelEnd-->
         - [atm工具](tools/atm-tool.md)
         <!--Del-->
         - [acm工具](tools/acm-tool.md)
@@ -2305,7 +2302,7 @@
         - [@ohos.data.distributedKVStore (分布式键值数据库)](reference/apis-arkdata/js-apis-distributedKVStore.md)
         - [@ohos.data.preferences (用户首选项)](reference/apis-arkdata/js-apis-data-preferences.md)
         - [@ohos.data.sendablePreferences (共享用户首选项)](reference/apis-arkdata/js-apis-data-sendablePreferences.md)
-        - @ohos.data.relationalStore (关系型数据库)<!--js-apis-data-relationalStore-->
+        - @ohos.data.relationalStore (关系型数据库)<!--js-apis-data-relationalstore-->
           - [模块描述](reference/apis-arkdata/arkts-apis-data-relationalStore.md)
           - [Functions](reference/apis-arkdata/arkts-apis-data-relationalStore-f.md)
           - [Interface (RdbStore)](reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md)
@@ -2564,6 +2561,7 @@
             - [自定义事件拦截](reference/apis-arkui/arkui-ts/ts-universal-attributes-on-touch-intercept.md)
             - [焦点轴事件](reference/apis-arkui/arkui-ts/ts-universal-events-focus_axis.md)
             - [轴事件](reference/apis-arkui/arkui-ts/ts-universal-events-axis.md)
+            - [拖拽事件（系统接口）](reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop-sys.md)
           - [通用属性](reference/apis-arkui/arkui-ts/ts-component-general-attributes.md)
             - [尺寸设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)
             - [位置设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md)
@@ -3174,7 +3172,6 @@
           - [注册节点渲染状态监听错误码](reference/apis-arkui/errorcode-node-render-monitor.md)
           - [交互事件错误码](reference/apis-arkui/errorcode-event.md)
           - [Canvas错误码](reference/apis-arkui/errorcode-canvas.md)
-          - [自定义节点错误码](reference/apis-arkui/errorcode-node.md)
           - [UIExtension错误码](reference/apis-arkui/errorcode-uiextension.md)
           <!--Del-->
           - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
@@ -3709,7 +3706,6 @@
         - ArkTS API<!--distributed-service-arkts-->
           - [@ohos.distributedDeviceManager (设备管理)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md)
           - [@ohos.distributedsched.abilityConnectionManager (应用多端协同管理)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager.md)
-          - [@ohos.application.DistributedExtensionAbility (协同Extension)](reference/apis-distributedservice-kit/js-apis-distributedExtensionAbility.md)
           <!--Del-->
           - [@ohos.distributedHardware.hardwareManager (分布式硬件管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedHardwareManager-sys.md)
           - [@ohos.distributedDeviceManager (设备管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager-sys.md)
