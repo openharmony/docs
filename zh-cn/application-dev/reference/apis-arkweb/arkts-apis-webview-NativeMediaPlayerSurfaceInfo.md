@@ -8,9 +8,11 @@
 >
 > - 示例效果请以真机运行为准，当前IDE预览器不支持。
 
+## 属性
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| id | string | 是 | surface的id，用于同层渲染的NativeImage的psurfaceid。<br/>详见[NativeEmbedDataInfo](./arkts-basic-components-web-i.md#nativeembeddatainfo11)。 |
-| rect | [RectEvent](./arkts-apis-webview-i.md#rectevent12) | 是 | surface的位置信息。 |
+| id<sup>12+</sup> | string | 是 | surface的id，用于同层渲染的NativeImage的psurfaceid。<br/>详见[NativeEmbedDataInfo](./arkts-basic-components-web-i.md#nativeembeddatainfo11)。 |
+| rect<sup>12+</sup> | [RectEvent](./arkts-apis-webview-i.md#rectevent12) | 是 | surface的位置信息。 |

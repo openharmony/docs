@@ -3845,7 +3845,7 @@ getBackForwardEntries(): BackForwardList
 
 | 类型                                | 说明                        |
 | ----------------------------------- | --------------------------- |
-| [BackForwardList](./arkts-apis-webview-i.md#backforwardlist) | 当前Webview的历史信息列表。 |
+| [BackForwardList](./arkts-apis-webview-BackForwardList.md) | 当前Webview的历史信息列表。 |
 
 **错误码：**
 

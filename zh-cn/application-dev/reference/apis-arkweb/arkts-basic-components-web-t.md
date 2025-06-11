@@ -209,20 +209,6 @@ onOverrideUrlLoading的回调。
 | ------- | ------------------------ |
 | boolean | 返回true表示阻止此次加载，否则允许此次加载。 |
 
-## OnViewportFitChangedCallback<sup>12+</sup>
-
-type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
-
-网页meta中viewport-fit配置项更改时触发的回调。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名    | 类型   | 必填   | 说明                  |
-| ------ | ------ | ---- | --------------------- |
-| viewportFit | [ViewportFit](./arkts-basic-components-web-e.md#viewportfit12) | 是 | 网页meta中viewport-fit配置的视口类型。 |
-
 ## WebKeyboardCallback<sup>12+</sup>
 
 type WebKeyboardCallback = (keyboardCallbackInfo: WebKeyboardCallbackInfo) => WebKeyboardOptions
@@ -242,39 +228,3 @@ type WebKeyboardCallback = (keyboardCallbackInfo: WebKeyboardCallbackInfo) => We
 | 类型               | 说明                                                         |
 | ------------------ | ------------------------------------------------------------ |
 | [WebKeyboardOptions](./arkts-basic-components-web-i.md#webkeyboardoptions12) | 回调函数通过返回[WebKeyboardOptions](./arkts-basic-components-web-i.md#webkeyboardoptions12)来决定ArkWeb内核拉起不同类型的软键盘。 |
-
-## OnNativeEmbedVisibilityChangeCallback<sup>12+</sup>
-
-type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeEmbedVisibilityInfo) => void
-
-当同层标签可见性变化时触发该回调。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名    | 类型   | 必填   | 说明                  |
-| ------ | ------ | ---- | --------------------- |
-| nativeEmbedVisibilityInfo | [NativeEmbedVisibilityInfo](./arkts-basic-components-web-i.md#nativeembedvisibilityinfo12)  | 是 | 提供同层标签的可见性信息。 |
-
-## OnRenderProcessNotRespondingCallback<sup>12+</sup>
-
-type OnRenderProcessNotRespondingCallback = (data : RenderProcessNotRespondingData) => void
-
-渲染进程无响应时触发的回调。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名    | 类型   | 必填   | 说明                  |
-| ------ | ------ | ---- | --------------------- |
-| data | [RenderProcessNotRespondingData](./arkts-basic-components-web-i.md#renderprocessnotrespondingdata12) | 是 | 渲染进程无响应的详细信息。 |
-
-## OnRenderProcessRespondingCallback<sup>12+</sup>
-
-type OnRenderProcessRespondingCallback = () => void
-
-渲染进程由无响应状态变回正常运行状态时触发该回调。
-
-**系统能力：** SystemCapability.Web.Webview.Core
