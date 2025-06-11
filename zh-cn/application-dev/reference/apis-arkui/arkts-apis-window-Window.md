@@ -7671,6 +7671,57 @@ struct Index {
 }
 ```
 
+### enableDrag<sup>20+</sup>
+
+enableDrag(enable: boolean): Promise&lt;void&gt;
+
+使能/禁止拖拽窗口。使用Promise异步回调。
+
+使能后，将允许通过鼠标操作或触摸对窗口进行拉伸操作。
+
+仅对手机、平板和2in1设备上的子窗及系统窗口生效，其他设备类型和其他窗口类型调用此接口会报错。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | ---------------------------- | -- | --------- |
+| enable| boolean | 是 | 是否允许拖拽。<br>true表示允许，false表示不允许。</br> |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------------------------------------------- |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  windowClass.enableDrag(true).then(() => { 
+    console.info('succeeded in setting window draggable');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set window draggable. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to set window draggable. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### startMoving<sup>14+</sup>
 
 startMoving(): Promise&lt;void&gt;
@@ -7679,9 +7730,13 @@ startMoving(): Promise&lt;void&gt;
 
 仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标或触摸点移动。
 
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+手机设备上对子窗、系统窗口生效。
 
-仅对主窗、子窗、系统窗口生效，其它设备类型和窗口类型调用此接口会报错。
+平板设备非自由多窗模式上对子窗、系统窗口生效；平板设备自由多窗模式上对主窗、子窗和系统窗口生效。
+
+2in1设备上对主窗、子窗及系统窗口生效。
+
+其他设备类型和其它窗口类型调用此接口会报错。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
