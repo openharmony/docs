@@ -8,7 +8,13 @@
 >
 > 本模块为系统接口。
 
-## **PermissionDef**
+## 导入模块
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+```
+
+## PermissionDef
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
  

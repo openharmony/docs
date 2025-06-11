@@ -912,7 +912,7 @@ try {
 
 setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt;
 
-创建悬浮窗、模态窗或WindowType窗口类型为系统窗口时，可以调用该接口使能窗口获取[避让区][AvoidArea](arkts-apis-window-i.md#avoidarea7)。
+创建悬浮窗、模态窗或WindowType窗口类型为系统窗口时，可以调用该接口使能窗口获取避让区[AvoidArea](arkts-apis-window-i.md#avoidarea7)。
 
 该接口一般适用于此场景：应用于创建上述类型窗口并希望获取避让区信息时，需要在创建窗口后调用该接口设置使能该窗口，再调用[getWindowAvoidArea()](#getwindowavoidarea9)或[on('avoidAreaChange')](#onavoidareachange9)获取或监听避让区。
 
@@ -976,7 +976,7 @@ try {
 
 isSystemAvoidAreaEnabled(): boolean
 
-获取悬浮窗、模态窗或WindowType为系统类型的窗口是否可以获取窗口内容的[避让区][AvoidArea](arkts-apis-window-i.md#avoidarea7)。
+获取悬浮窗、模态窗或WindowType为系统类型的窗口是否可以获取窗口内容的避让区[AvoidArea](arkts-apis-window-i.md#avoidarea7)。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -2287,7 +2287,7 @@ export struct Index {
 
 ### loadContentByName<sup>11+</sup>
 
-loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
+loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt
 
 根据指定路由页面名称为当前窗口加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，通过LocalStorage传递状态属性至加载页面，使用Promise异步回调。建议在UIAbility启动过程中使用该接口，重复调用该接口将先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 

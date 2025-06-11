@@ -7,9 +7,9 @@
 
 该模块提供以下音频相关的常用功能：
 
-- [AudioManager](arkts-apis-audio-AudioManager.md#interfaces-audiomanager)：音频管理器。
-- [AudioRenderer](arkts-apis-audio-AudioRenderer.md#interfaces-audiorenderer)：音频渲染，用于播放PCM（Pulse Code Modulation）音频数据。
-- [AudioCapturer](arkts-apis-audio-AudioCapturer.md#interfaces-audiocapturer)：音频采集，用于录制PCM音频数据。
+- [AudioManager](arkts-apis-audio-AudioManager.md)：音频管理器。
+- [AudioRenderer](arkts-apis-audio-AudioRenderer.md)：音频渲染，用于播放PCM（Pulse Code Modulation）音频数据。
+- [AudioCapturer](arkts-apis-audio-AudioCapturer.md)：音频采集，用于录制PCM音频数据。
 
 ## 导入模块
 
