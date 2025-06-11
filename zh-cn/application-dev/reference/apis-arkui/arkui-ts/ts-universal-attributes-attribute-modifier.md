@@ -12,7 +12,7 @@
 
 ## attributeModifier
 
-attributeModifier(modifier: AttributeModifier\<T>)
+attributeModifier(modifier: AttributeModifier\<T>): T
 
 动态设置组件的属性方法。
 
@@ -25,6 +25,12 @@ attributeModifier(modifier: AttributeModifier\<T>)
 | 参数名   | 类型                                         | 必填 | 说明                                                                                                                             |
 | -------- | -------------------------------------------- | ---- | -------------------------------------------------------------------------------------------------------------------------------- |
 | modifier | [AttributeModifier\<T>](#attributemodifiert) | 是   | 在当前组件上，动态设置属性方法，支持使用if/else语法。<br/>modifier：属性修改器，开发者需要自定义class实现AttributeModifier接口。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+| T | 返回当前组件。 |
 
 ## AttributeModifier\<T>
 
