@@ -25,6 +25,9 @@ HiTraceMeter提供系统性能打点接口。开发者通过在关键代码位�
 | finishAsyncTrace(level: HiTraceOutputLevel, name: string, taskId: number): void | 结束一个异步时间片跟踪事件，分级控制跟踪输出。level、name和taskId必须与流程开始的startAsyncTrace对应参数值保持一致。<br/>**说明**：从API version 19开始，支持该接口。 |
 | traceByValue(level: HiTraceOutputLevel, name: string, count: number): void | 整数跟踪事件，分级控制跟踪输出。name、count两个参数分别用来标记一个预跟踪的整数变量名及整数值。<br/>**说明**：从API version 19开始，支持该接口。 |
 | isTraceEnabled(): boolean                                    | 判断当前是否开启应用trace捕获。应用trace捕获未开启时，HiTraceMeter性能跟踪打点无效。<br/>**说明**：从API version 19开始，支持该接口。 |
+| startTrace(name: string, taskId: number): void               | 开启一个异步时间片跟踪事件。taskId是trace中用来表示关联的ID，如果有多个name相同的任务并行执行，则每次调用startTrace的taskId不同；如果具有相同name的任务是串行执行的，则taskId可以相同。<br/>从API version 19开始，不建议使用该接口，建议使用[startAsyncTrace<sup>19+</sup>](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md#hitracemeterstartasynctrace19)接口。<br/>**说明**：从API version 8开始，支持该接口。 |
+| finishTrace(name: string, taskId: number): void              | 结束一个异步时间片跟踪事件。name和taskId必须与流程开始的startTrace对应参数值保持一致。<br/>从API version 19开始，不建议使用该接口，建议使用[finishAsyncTrace<sup>19+</sup>](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md#hitracemeterfinishasynctrace19)接口。<br/>**说明**：从API version 8开始，支持该接口。 |
+| traceByValue(name: string, value: number): void              | 整数跟踪接口，用来标记一个预跟踪的数值变量，该变量的数值会不断变化。<br/>从API version 19开始，不建议使用该接口，建议使用[traceByValue<sup>19+</sup>](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md#hitracemetertracebyvalue19)接口。<br/>**说明**：从API version 8开始，支持该接口。 |
 
 > **注意：**
 >
@@ -42,7 +45,7 @@ HiTraceMeter打点接口按功能/行为分类，主要分三类：同步时间�
 | -------------- | ------ | ---- | ------------------------------------------------------------ |
 | level          | enum   | 是   | 跟踪输出级别，低于系统阈值的跟踪将不会被输出。<br>log版本阈值为INFO，nolog版本阈值为COMMERCIAL。 |
 | name           | string | 是   | 要跟踪的任务名称或整数变量名称。                             |
-| taskId         | number | 是   | 用来表示关联的ID，如果有多个name相同的任务是并行执行的，则开发者每次调用startAsyncTrace时传入的taskId需不同。 |
+| taskId         | number | 是   | 用来表示关联的ID，如果有多个name相同的任务是并行执行的，则开发者每次调用接口时传入的taskId需不同。 |
 | count          | number | 是   | 整数变量的值。                                               |
 | customCategory | string | 是   | 自定义聚类名称，用于聚合同一类异步跟踪打点。<br>若不需要聚类，可传入一个空字符串。 |
 | customArgs     | string | 否   | 自定义键值对，若有多组键值对，使用逗号进行分隔，例"key1=value1,key2=value2"。<br>若不需要该参数，可不传入该参数或传入一个空字符串。 |
@@ -53,9 +56,11 @@ HiTraceMeter打点接口按功能/行为分类，主要分三类：同步时间�
 
 ## 开发示例
 
-在应用启动执行页面加载后，开始分布式跟踪；完成业务之后，停止分布式跟踪。以下为一个使用HiTraceMeter打点接口的ArkTS应用示例。
+在DevEco Studio中创建ArkTS应用工程，使用HiTraceMeter ArkTS打点接口。在应用业务开始前，开始跟踪；在应用业务完成之后，停止跟踪。
 
-1. 新建一个ArkTS应用工程，工程目录结构如下：
+### 使用HiTraceMeter性能打点（API version 19及以后支持的接口）
+
+1. 新建一个ArkTS应用工程，工程SDK版本选择19及以上，工程目录结构如下：
 
    ```text
    ├── entry
@@ -180,7 +185,104 @@ HiTraceMeter打点接口按功能/行为分类，主要分三类：同步时间�
    myTraceTest running, trace is not enabled
    ```
 
+
+### 使用HiTraceMeter性能打点（API version 19前支持的接口）
+
+1. 新建一个ArkTS应用工程，工程目录结构如下：
+
+   ```text
+   ├── entry
+   │   ├── src
+   │       ├── main
+   │       │   ├── ets
+   │       │   │   ├── entryability
+   │       │   │   │   └── EntryAbility.ets
+   │       │   │   ├── entrybackupability
+   │       │   │   │   └── EntryBackupAbility.ets
+   │       │   │   └── pages
+   │       │   │       └── Index.ets
+   ```
+
+2. 编辑"Index.ets"文件，在文本点击事件处理业务中使用hiTraceMeter性能跟踪打点接口，示例代码如下：
+
+   ```ts
+   import { hiTraceMeter, hilog } from '@kit.PerformanceAnalysisKit';
    
+   @Entry
+   @Component
+   struct Index {
+     @State message: string = 'Hello World';
+   
+     build() {
+       Row() {
+         Column() {
+           Text(this.message)
+             .fontSize(50)
+             .fontWeight(FontWeight.Bold)
+             .onClick(() => {
+               this.message = (this.message == 'Hello HiTrace') ? 'Hello World' : 'Hello HiTrace';
+   
+               let traceCount = 0;
+               // 第一个跟踪任务开始
+               hiTraceMeter.startTrace("myTestAsyncTrace", 1001);
+               // 开始计数任务
+               traceCount++;
+               hiTraceMeter.traceByValue("myTestCountTrace", traceCount);
+               // 业务流程
+               console.log(`myTraceTest running, taskid: 1001`);
+   
+               // 第二个跟踪任务开始，同时第一个跟踪的同名任务还没结束，出现了并行执行，对应接口的taskId需要不同。
+               hiTraceMeter.startTrace("myTestAsyncTrace", 1002);
+               // 开始计数任务
+               traceCount++;
+               hiTraceMeter.traceByValue("myTestCountTrace", traceCount);
+               // 业务流程
+               console.log(`myTraceTest running, taskid: 1002`);
+   
+               // 结束taskId为1001的跟踪任务
+               hiTraceMeter.finishTrace("myTestAsyncTrace", 1001);
+               // 结束taskId为1002的跟踪任务
+               hiTraceMeter.finishTrace("myTestAsyncTrace", 1002);
+             })
+          }
+          .width('100%')
+        }
+        .height('100%')
+      }
+   }
+   ```
 
+3. 在DevEco Studio Terminal窗口中执行如下命令，开启应用trace捕获：
 
+   ```shell
+   PS D:\xxx\xxx> hdc shell
+   $ hitrace --trace_begin app
+   ```
+
+4. 单击DevEco Studio界面上的运行按钮，启动应用，点击屏幕中间的字符串，执行包含HiTraceMeter打点的业务逻辑，然后执行如下命令抓取trace数据：
+
+   ```shell
+   $ hitrace --trace_dump | grep myTest
+   ```
+
+   成功抓取的trace数据如下所示：
+
+   ```text
+   <...>-24812   (-------) [010] .... 372550.749599: tracing_mark_write: S|24812|H:myTestAsyncTrace 1001
+   <...>-24812   (-------) [010] .... 372550.749622: tracing_mark_write: C|24812|H:myTestCountTrace 1
+   <...>-24812   (-------) [010] .... 372550.750118: tracing_mark_write: S|24812|H:myTestAsyncTrace 1002
+   <...>-24812   (-------) [010] .... 372550.750131: tracing_mark_write: C|24812|H:myTestCountTrace 2
+   <...>-24812   (-------) [010] .... 372550.750177: tracing_mark_write: F|24812|H:myTestAsyncTrace 1001
+   <...>-24812   (-------) [010] .... 372550.750188: tracing_mark_write: F|24812|H:myTestAsyncTrace 1002
+   ```
+
+   > **说明：**
+   >
+   > 此处为API version 19之前的用户态trace数据，若实际trace数据格式有差异，可参考文档[用户态trace格式说明](./hitracemeter-view.md#用户态trace格式说明)，查看不同版本上用户态trace格式的差异。
+
+5. 执行如下命令，结束应用trace捕获：
+
+   ```shell
+   $ hitrace --trace_finish
+   ```
 

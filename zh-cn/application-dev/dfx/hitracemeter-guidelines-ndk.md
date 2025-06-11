@@ -25,6 +25,11 @@ HiTraceMeter提供系统性能打点接口。开发者通过在关键代码位�
 | void OH_HiTrace_FinishAsyncTraceEx(HiTrace_Output_Level level, const char* name, int32_t taskId) | 结束一个异步时间片跟踪事件，分级控制跟踪输出。level、name和taskId必须与流程开始的OH_HiTrace_StartAsyncTraceEx对应参数值保持一致。<br/>**说明**：从API version 19开始，支持该接口。 |
 | void OH_HiTrace_CountTraceEx(HiTrace_Output_Level level, const char* name, int64_t count) | 整数跟踪事件，分级控制跟踪输出。用来标记一个预跟踪的整数变量，该变量的数值会不断变化。<br/>**说明**：从API version 19开始，支持该接口。 |
 | bool OH_HiTrace_IsTraceEnabled(void)                         | 判断当前是否开启应用trace捕获。应用trace捕获未开启时，HiTraceMeter性能跟踪打点无效。<br/>**说明**：从API version 19开始，支持该接口。 |
+| void OH_HiTrace_StartTrace(const char* name)                 | 开启一个同步时间片跟踪事件。<br/>从API version 19开始，不建议使用该接口，建议使用[OH_HiTrace_StartTraceEx](../reference/apis-performance-analysis-kit/_hitrace.md#oh_hitrace_starttraceex)接口。<br/>**说明**：从API version 10开始，支持该接口。 |
+| void OH_HiTrace_FinishTrace()                                | 结束一个同步时间片跟踪事件。<br/>从API version 19开始，不建议使用该接口，建议使用[OH_HiTrace_FinishTraceEx](../reference/apis-performance-analysis-kit/_hitrace.md#oh_hitrace_finishtraceex)接口。<br/>**说明**：从API version 10开始，支持该接口。 |
+| void OH_HiTrace_StartAsyncTrace(const char* name, int32_t taskId) | 开启一个异步时间片跟踪事件。<br/>从API version 19开始，不建议使用该接口，建议使用[OH_HiTrace_StartAsyncTraceEx](../reference/apis-performance-analysis-kit/_hitrace.md#oh_hitrace_startasynctraceex)接口。<br/>**说明**：从API version 10开始，支持该接口。 |
+| void OH_HiTrace_FinishAsyncTrace(const char* name, int32_t taskId) | 结束一个异步时间片跟踪事件。<br/>从API version 19开始，不建议使用该接口，建议使用[OH_HiTrace_FinishAsyncTraceEx](../reference/apis-performance-analysis-kit/_hitrace.md#oh_hitrace_finishasynctraceex)接口。<br/>**说明**：从API version 10开始，支持该接口。 |
+| void OH_HiTrace_CountTrace(const char* name, int64_t count)  | 整数跟踪事件。<br/>从API version 19开始，不建议使用该接口，建议使用[OH_HiTrace_CountTraceEx](../reference/apis-performance-analysis-kit/_hitrace.md#oh_hitrace_counttraceex)接口。<br/>**说明**：从API version 10开始，支持该接口。 |
 
 > **注意：**
 >
@@ -42,7 +47,7 @@ HiTraceMeter打点接口按功能/行为分类，主要分三类：同步时间�
 | -------------- | ----------- | ------------------------------------------------------------ |
 | level          | enum        | 跟踪输出级别，低于系统阈值的跟踪将不会被输出。<br>log版本阈值为HITRACE_LEVEL_INFO，nolog版本阈值为HITRACE_LEVEL_COMMERCIAL。 |
 | name           | const char* | 要跟踪的任务名称或整数变量名称。                             |
-| taskId         | int32_t     | 用来表示关联的ID，如果有多个name相同的任务是并行执行的，则开发者每次调用OH_HiTrace_StartAsyncTraceEx时传入的taskId需不同。 |
+| taskId         | int32_t     | 用来表示关联的ID，如果有多个name相同的任务是并行执行的，则开发者每次调用接口时传入的taskId需不同。 |
 | count          | int64_t     | 整数变量的值。                                               |
 | customCategory | const char* | 自定义聚类名称，用于聚合同一类异步跟踪打点。<br>若不需要聚类，可传入一个空字符串。 |
 | customArgs     | const char* | 自定义键值对，若有多组键值对，使用逗号进行分隔，例"key1=value1,key2=value2"。<br>若不需要该参数，可传入一个空字符串。 |
@@ -53,9 +58,11 @@ HiTraceMeter打点接口按功能/行为分类，主要分三类：同步时间�
 
 ## 开发示例
 
-在DevEco Studio中创建Native C++工程，使用HiTraceMeter NDK_C打点接口，以下为一个Native C++工程示例。
+在DevEco Studio中创建Native C++工程，使用HiTraceMeter NDK_C打点接口。在应用业务开始前，开始跟踪；在应用业务完成之后，停止跟踪。
 
-1. 新建一个Native C++工程，工程目录结构如下：
+### 使用HiTraceMeter性能打点（API version 19及以后支持的接口）
+
+1. 新建一个Native C++工程，工程SDK版本选择19及以上，工程目录结构如下：
 
    ```text
    ├── entry
@@ -234,7 +241,161 @@ HiTraceMeter打点接口按功能/行为分类，主要分三类：同步时间�
    myTraceTest running, trace is not enabled
    ```
 
+
+### 使用HiTraceMeter性能打点（API version 19前支持的接口）
+
+1. 新建一个Native C++工程，工程目录结构如下：
+
+   ```text
+   ├── entry
+   │   ├── src
+   │       ├── main
+   │       │   ├── cpp
+   │       │   │   ├── CMakeLists.txt
+   │       │   │   ├── napi_init.cpp
+   │       │   │   └── types
+   │       │   │       └── libentry
+   │       │   │           ├── Index.d.ts
+   │       │   │           └── oh-package.json5
+   │       │   ├── ets
+   │       │   │   ├── entryability
+   │       │   │   │   └── EntryAbility.ets
+   │       │   │   ├── entrybackupability
+   │       │   │   │   └── EntryBackupAbility.ets
+   │       │   │   └── pages
+   │       │   │       └── Index.ets
+   ```
+
+2. 在"CMakeLists.txt"文件末尾新增如下内容，添加libhitrace_ndk.z.so和libhilog_ndk.z.so动态链接库。
+
+   ```cmake
+   target_link_libraries(entry PUBLIC libhitrace_ndk.z.so libhilog_ndk.z.so)
+   ```
+
+3. 编辑"napi_init.cpp"文件，在Add函数中调用HiTraceMeter NDK_C的接口，进行性能打点跟踪， 示例代码如下：
+
+   ```c++
+   #include "hilog/log.h"
+   #include "hitrace/trace.h"
+   #include "napi/native_api.h"
    
+   #undef LOG_TAG
+   #define LOG_TAG "traceTest"
+   
+   static napi_value Add(napi_env env, napi_callback_info info)
+   {
+       // 第一个异步跟踪任务开始
+       OH_HiTrace_StartAsyncTrace("myTestAsyncTrace", 1001);
+       // 开始计数任务
+       int64_t traceCount = 0;
+       traceCount++;
+       OH_HiTrace_CountTrace("myTestCountTrace", traceCount);
+       // 业务流程
+       OH_LOG_INFO(LogType::LOG_APP, "myTraceTest running, taskId: 1001");
+   
+       // 第二个异步跟踪任务开始，同时第一个跟踪的同名任务还没结束，出现了并行执行，对应接口的taskId需要不同
+       OH_HiTrace_StartAsyncTrace("myTestAsyncTrace", 1002);
+       // 开始计数任务
+       traceCount++;
+       OH_HiTrace_CountTrace("myTestCountTrace", traceCount);
+       // 业务流程
+       OH_LOG_INFO(LogType::LOG_APP, "myTraceTest running, taskId: 1002");
+   
+       // 结束taskId为1001的异步跟踪任务
+       OH_HiTrace_FinishAsyncTrace("myTestAsyncTrace", 1001);
+       // 结束taskId为1002的异步跟踪任务
+       OH_HiTrace_FinishAsyncTrace("myTestAsyncTrace", 1002);
+   
+       // 开始同步跟踪任务
+       OH_HiTrace_StartTrace("myTestSyncTrace");
+       // 业务流程
+       OH_LOG_INFO(LogType::LOG_APP, "myTraceTest running, synchronizing trace");
+       // 结束同步跟踪任务
+       OH_HiTrace_FinishTrace();
+   
+       size_t requireArgc = 2;
+       size_t argc = 2;
+       napi_value args[2] = {nullptr};
+   
+       napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
+   
+       napi_valuetype valuetype0;
+       napi_typeof(env, args[0], &valuetype0);
+   
+       napi_valuetype valuetype1;
+       napi_typeof(env, args[1], &valuetype1);
+   
+       double value0;
+       napi_get_value_double(env, args[0], &value0);
+   
+       double value1;
+       napi_get_value_double(env, args[1], &value1);
+   
+       napi_value sum;
+       napi_create_double(env, value0 + value1, &sum);
+   
+       return sum;
+   }
+   
+   EXTERN_C_START
+   static napi_value Init(napi_env env, napi_value exports)
+   {
+       napi_property_descriptor desc[] = {
+           { "add", nullptr, Add, nullptr, nullptr, nullptr, napi_default, nullptr }
+       };
+       napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+       return exports;
+   }
+   EXTERN_C_END
+   
+   static napi_module demoModule = {
+       .nm_version = 1,
+       .nm_flags = 0,
+       .nm_filename = nullptr,
+       .nm_register_func = Init,
+       .nm_modname = "entry",
+       .nm_priv = ((void*)0),
+       .reserved = { 0 },
+   };
+   
+   extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
+   {
+       napi_module_register(&demoModule);
+   }
+   ```
 
+4. 在DevEco Studio Terminal窗口中执行如下命令，开启应用trace捕获：
 
+   ```shell
+   PS D:\xxx\xxx> hdc shell
+   $ hitrace --trace_begin app
+   ```
+
+5. 单击DevEco Studio界面上的运行按钮，启动应用，点击屏幕中间的字符串，执行包含HiTraceMeter打点的业务逻辑，然后执行如下命令抓取trace数据：
+
+   ```shell
+   $ hitrace --trace_dump | grep myTest
+   ```
+
+   成功抓取的trace数据如下所示：
+
+   ```text
+   <...>-21458   (-------) [009] .... 372404.331037: tracing_mark_write: S|21458|H:myTestAsyncTrace 1001
+   <...>-21458   (-------) [009] .... 372404.331040: tracing_mark_write: C|21458|H:myTestCountTrace 1
+   <...>-21458   (-------) [009] .... 372404.331083: tracing_mark_write: S|21458|H:myTestAsyncTrace 1002
+   <...>-21458   (-------) [009] .... 372404.331085: tracing_mark_write: C|21458|H:myTestCountTrace 2
+   <...>-21458   (-------) [009] .... 372404.331091: tracing_mark_write: F|21458|H:myTestAsyncTrace 1001
+   <...>-21458   (-------) [009] .... 372404.331093: tracing_mark_write: F|21458|H:myTestAsyncTrace 1002
+   <...>-21458   (-------) [009] .... 372404.331095: tracing_mark_write: B|21458|H:myTestSyncTrace
+   ```
+
+   > **说明：**
+   >
+   > 此处为API version 19之前的用户态trace数据，若实际trace数据格式有差异，可参考文档[用户态trace格式说明](./hitracemeter-view.md#用户态trace格式说明)，查看不同版本上用户态trace格式的差异。
+
+6. 执行如下命令，结束应用trace捕获：
+
+   ```shell
+   $ hitrace --trace_finish
+   ```
 

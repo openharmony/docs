@@ -1026,6 +1026,10 @@ type OnScrollVisibleContentChangeCallback = (start: VisibleListContentInfo, end:
 
 有子组件划入或划出List显示区域时触发。
 
+start和end的index同时返回-1，代表List从有数据变成空的List。
+
+start和end的index同时返回0，代表List内只有一个子组件。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full

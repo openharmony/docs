@@ -18,8 +18,8 @@ ArkUI提供的Native侧自定义弹窗接口集合。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md#ArkUI_NativeDialogAPI_1) nativeDialogAPI1 | ArkUI提供的Native侧自定义弹窗接口集合。  | 
-| [ArkUI_NativeDialogAPI_2](_ark_u_i___native_dialog_a_p_i__2.md#ArkUI_NativeDialogAPI_2) nativeDialogAPI2 | ArkUI提供的Native侧自定义弹窗接口集合2。  |
+| [ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md#arkui_nativedialogapi_1) nativeDialogAPI1 | ArkUI提供的Native侧自定义弹窗接口集合。  | 
+| [ArkUI_NativeDialogAPI_2](_ark_u_i___native_dialog_a_p_i__2.md#arkui_nativedialogapi_2) nativeDialogAPI2 | ArkUI提供的Native侧自定义弹窗接口集合2。  |
 | int32_t(\* [setLevelOrder](#setlevelorder) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, double levelOrder) | 设置自定义弹窗显示的顺序。  | 
 | int32_t(\* [registerOnWillAppear](#registeronwillappear) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, void* userData, void (* callback)(void* userData)) | 注册自定义弹窗显示之前的回调函数。  | 
 | int32_t(\* [registerOnDidAppear](#registerondidappear) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, void* userData, void (* callback)(void* userData)) | 注册自定义弹窗显示之后的回调函数。  | 

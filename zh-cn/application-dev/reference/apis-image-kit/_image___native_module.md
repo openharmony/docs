@@ -86,7 +86,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Image_ErrorCode](#image_errorcode) {<br/>IMAGE_SUCCESS = 0, IMAGE_BAD_PARAMETER = 401, IMAGE_UNSUPPORTED_MIME_TYPE = 7600101, IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br/>IMAGE_TOO_LARGE = 7600103, IMAGE_DMA_NOT_EXIST = 7600173, IMAGE_DMA_OPERATION_FAILED = 7600174, IMAGE_UNSUPPORTED_OPERATION = 7600201,<br/>IMAGE_UNSUPPORTED_METADATA = 7600202, IMAGE_UNSUPPORTED_CONVERSION = 7600203, IMAGE_INVALID_REGION = 7600204, IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205,<br/>IMAGE_ALLOC_FAILED = 7600301, IMAGE_COPY_FAILED = 7600302, IMAGE_LOCK_UNLOCK_FAILED = 7600303, IMAGE_UNKNOWN_ERROR = 7600901,<br/>IMAGE_BAD_SOURCE = 7700101,<br/>IMAGE_SOURCE_UNSUPPORTED_MIME_TYPE = 7700102,<br/>IMAGE_SOURCE_TOO_LARGE = 7700103,<br/>IMAGE_SOURCE_UNSUPPORTED_ALLOCATOR_TYPE = 7700201,<br/>IMAGE_SOURCE_UNSUPPORTED_OPTIONS = 7700203, <br/>IMAGE_DECODE_FAILED = 7700301,<br/>IMAGE_SOURCE_ALLOC_FAILED = 7700302,<br/>IMAGE_ENCODE_FAILED = 7800301<br/>} | 错误码。 | 
+| [Image_ErrorCode](#image_errorcode) {<br/>IMAGE_SUCCESS = 0, IMAGE_BAD_PARAMETER = 401, IMAGE_UNSUPPORTED_MIME_TYPE = 7600101, IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br/>IMAGE_TOO_LARGE = 7600103, IMAGE_DMA_NOT_EXIST = 7600173, IMAGE_DMA_OPERATION_FAILED = 7600174, IMAGE_UNSUPPORTED_OPERATION = 7600201,<br/>IMAGE_UNSUPPORTED_METADATA = 7600202, IMAGE_UNSUPPORTED_CONVERSION = 7600203, IMAGE_INVALID_REGION = 7600204, IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205,<br/>IMAGE_ALLOC_FAILED = 7600301, IMAGE_COPY_FAILED = 7600302, IMAGE_LOCK_UNLOCK_FAILED = 7600303, IMAGE_UNKNOWN_ERROR = 7600901,<br/>IMAGE_BAD_SOURCE = 7700101,<br/>IMAGE_SOURCE_UNSUPPORTED_MIME_TYPE = 7700102,<br/>IMAGE_SOURCE_TOO_LARGE = 7700103,<br/>IMAGE_SOURCE_UNSUPPORTED_ALLOCATOR_TYPE = 7700201,<br/>IMAGE_SOURCE_UNSUPPORTED_OPTIONS = 7700203, <br/>IMAGE_SOURCE_INVALID_PARAMETER = 7700204, <br/>IMAGE_DECODE_FAILED = 7700301,<br/>IMAGE_SOURCE_ALLOC_FAILED = 7700302, <br/>IMAGE_PACKER_INVALID_PARAMETER = 7800202, <br/>IMAGE_ENCODE_FAILED = 7800301<br/>} | 错误码。 | 
 | [Image_MetadataType](#image_metadatatype) { EXIF_METADATA = 1, FRAGMENT_METADATA = 2 } | 定义元数据类型。  | 
 | [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range) {<br/>IMAGE_PACKER_DYNAMIC_RANGE_AUTO = 0,<br/>IMAGE_PACKER_DYNAMIC_RANGE_SDR = 1 } | 编码指定动态范围。 | 
 | [IMAGE_DYNAMIC_RANGE](#image_dynamic_range) {<br/>IMAGE_DYNAMIC_RANGE_AUTO = 0,<br/>IMAGE_DYNAMIC_RANGE_SDR = 1,<br/>IMAGE_DYNAMIC_RANGE_HDR = 2 } | 解码指定期望动态范围。 | 
@@ -107,6 +107,7 @@
 | [Image_ErrorCode](#image_errorcode) [OH_PictureMetadata_Create](#oh_picturemetadata_create) ([Image_MetadataType](#image_metadatatype) metadataType, [OH_PictureMetadata](#oh_picturemetadata) \*\*metadata) | 创建OH_PictureMetadata指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PictureMetadata_GetProperty](#oh_picturemetadata_getproperty) ([OH_PictureMetadata](#oh_picturemetadata) \*metadata, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | 根据key获取Metadata的单条属性。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PictureMetadata_SetProperty](#oh_picturemetadata_setproperty) ([OH_PictureMetadata](#oh_picturemetadata) \*metadata, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | 根据key修改Metadata的单条属性。  | 
+| [Image_ErrorCode](#image_errorcode) [OH_PictureMetadata_GetPropertyWithNull](#oh_picturemetadata_getpropertywithnull)([OH_PictureMetadata](#oh_picturemetadata) *metadata, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | 获取图片元数据的属性值。输出的value.data以字符串结束符结尾。 |
 | [Image_ErrorCode](#image_errorcode) [OH_PictureMetadata_Release](#oh_picturemetadata_release) ([OH_PictureMetadata](#oh_picturemetadata) \*metadata) | 释放OH_PictureMetadata指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PictureMetadata_Clone](#oh_picturemetadata_clone) ([OH_PictureMetadata](#oh_picturemetadata) \*oldMetadata, [OH_PictureMetadata](#oh_picturemetadata) \*\*newMetadata) | 拷贝元数据。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageNative_GetImageSize](#oh_imagenative_getimagesize) ([OH_ImageNative](#oh_imagenative) \*image, [Image_Size](_image___size.md) \*size) | 获取Native [OH_ImageNative](#oh_imagenative) 对象的 [Image_Size](_image___size.md) 信息。  | 
@@ -119,6 +120,7 @@
 | [Image_ErrorCode](#image_errorcode) [OH_ImageNative_Release](#oh_imagenative_release) ([OH_ImageNative](#oh_imagenative) \*image) | 释放native [OH_ImageNative](#oh_imagenative) 对象。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_Create](#oh_packingoptions_create) ([OH_PackingOptions](#oh_packingoptions) \*\*options) | 创建PackingOptions结构体的指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_GetMimeType](#oh_packingoptions_getmimetype) ([OH_PackingOptions](#oh_packingoptions) \*options, [Image_MimeType](#image_mimetype) \*format) | 获取MIME类型。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_GetMimeTypeWithNull](#oh_packingoptions_getmimetypewithnull)([OH_PackingOptions](#oh_packingoptions) \*options, [Image_MimeType](#image_mimetype) \*format) | 获取编解码参数中的MIME类型。输出的format.data以字符串结束符结尾。 |
 | [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_SetMimeType](#oh_packingoptions_setmimetype) ([OH_PackingOptions](#oh_packingoptions) \*options, [Image_MimeType](#image_mimetype) \*format) | 设置MIME类型。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_GetQuality](#oh_packingoptions_getquality) ([OH_PackingOptions](#oh_packingoptions) \*options, uint32_t \*quality) | 获取编码质量。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_SetQuality](#oh_packingoptions_setquality) ([OH_PackingOptions](#oh_packingoptions) \*options, uint32_t quality) | 设置编码质量。  | 
@@ -180,6 +182,8 @@
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetDesiredDynamicRange](#oh_decodingoptions_setdesireddynamicrange) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t desiredDynamicRange) | 设置解码时的期望动态范围。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetCropAndScaleStrategy](#oh_decodingoptions_setcropandscalestrategy) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t cropAndScaleStrategy) | 设置解码选项的裁剪和缩放策略。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetCropAndScaleStrategy](#oh_decodingoptions_getcropandscalestrategy) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t \*cropAndScaleStrategy) | 获取解码选项的裁剪和缩放策略。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetCropRegion](#oh_decodingoptions_getcropregion)([OH_DecodingOptions](#oh_decodingoptions) *options, [Image_Region](_image___region.md) \*cropRegion) | 获取解码参数中的裁剪区域。 |
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetCropRegion](#oh_decodingoptions_setcropregion)([OH_DecodingOptions](#oh_decodingoptions) *options, [Image_Region](_image___region.md) \*cropRegion) | 设置解码参数中的裁剪区域。 |
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_Release](#oh_decodingoptions_release) ([OH_DecodingOptions](#oh_decodingoptions) \*options) | 释放OH_DecodingOptions指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromUri](#oh_imagesourcenative_createfromuri) (char \*uri, size_t uriSize, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | 通过uri创建OH_ImageSourceNative指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromFd](#oh_imagesourcenative_createfromfd) (int32_t fd, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | 通过fd创建OH_ImageSourceNative指针。  | 
@@ -192,6 +196,7 @@
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetDelayTimeList](#oh_imagesourcenative_getdelaytimelist) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, int32_t \*delayTimeList, size_t size) | 获取图像延迟时间数组。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetImageInfo](#oh_imagesourcenative_getimageinfo) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, int32_t index, [OH_ImageSource_Info](#oh_imagesource_info) \*info) | 获取指定序号的图片信息。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetImageProperty](#oh_imagesourcenative_getimageproperty) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | 获取图片指定属性键的值。  | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetImagePropertyWithNull](#oh_imagesourcenative_getimagepropertywithnull)([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | 获取图像属性值。输出的value.data以字符串结束符结尾。 |
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_ModifyImageProperty](#oh_imagesourcenative_modifyimageproperty) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | 通过指定的键修改图片属性的值。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetFrameCount](#oh_imagesourcenative_getframecount) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, uint32_t \*frameCount) | 获取图像帧数。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_Release](#oh_imagesourcenative_release) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source) | 释放OH_ImageSourceNative指针。  | 
@@ -633,17 +638,17 @@ typedef struct OH_ImageReceiverOptionsOH_ImageReceiverOptions
 OH_ImageReceiverOptions是native层封装的图片接收器选项设置器结构体，用于创建OH_ImageReceiverNative时传入设置参数。
 OH_ImageReceiverOptions结构体不可直接操作，而是采用函数调用方式创建、释放结构体以及操作具体字段。
 
-创建OH_ImageReceiverOptions对象使用[OH_ImageReceiverOptions_Create](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceiveroptions_create)函数。
+创建OH_ImageReceiverOptions对象使用[OH_ImageReceiverOptions_Create](#oh_imagereceiveroptions_create)函数。
 
-释放OH_ImageReceiverOptions对象使用[OH_ImageReceiverOptions_Release](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceiveroptions_release)函数。
+释放OH_ImageReceiverOptions对象使用[OH_ImageReceiverOptions_Release](#oh_imagereceiveroptions_release)函数。
 
 OH_ImageReceiverOptions结构体内容和操作方式如下：
 | 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
 | -------- | -------- | -------- | -------- | -------- |
-| Image_Size | size | 图像大小 | [OH_ImageReceiverOptions_GetSize](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceiveroptions_getsize)	|获取 OH_ImageReceiverOptions 对象的 Image_Size 信息。|
-| Image_Size | size | 图像大小 | [OH_ImageReceiverOptions_SetSize](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceiveroptions_setsize)	|设置 OH_ImageReceiverOptions 对象的 Image_Size 信息。|
-| int32_t | capacity | 图片缓存容量 | [OH_ImageReceiverOptions_GetCapacity](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceiveroptions_getcapacity)	|获取 OH_ImageReceiverOptions 对象的图片缓存容量的信息。|
-| int32_t | capacity | 图片缓存容量 | [OH_ImageReceiverOptions_SetCapacity](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceiveroptions_setcapacity)	|设置 OH_ImageReceiverOptions 对象的图片缓存容量的信息。|
+| Image_Size | size | 图像大小 | [OH_ImageReceiverOptions_GetSize](#oh_imagereceiveroptions_getsize)	|获取 OH_ImageReceiverOptions 对象的 Image_Size 信息。|
+| Image_Size | size | 图像大小 | [OH_ImageReceiverOptions_SetSize](#oh_imagereceiveroptions_setsize)	|设置 OH_ImageReceiverOptions 对象的 Image_Size 信息。|
+| int32_t | capacity | 图片缓存容量 | [OH_ImageReceiverOptions_GetCapacity](#oh_imagereceiveroptions_getcapacity)	|获取 OH_ImageReceiverOptions 对象的图片缓存容量的信息。|
+| int32_t | capacity | 图片缓存容量 | [OH_ImageReceiverOptions_SetCapacity](#oh_imagereceiveroptions_setcapacity)	|设置 OH_ImageReceiverOptions 对象的图片缓存容量的信息。|
 
 **起始版本：** 12
 
@@ -1017,8 +1022,10 @@ enum Image_ErrorCode
 | IMAGE_SOURCE_TOO_LARGE | 图像过大。<br/>**起始版本：** 15 | 
 | IMAGE_SOURCE_UNSUPPORTED_ALLOCATOR_TYPE | 不支持的分配器类型。例如，DMA支持HDR元数据，可以使用共享内存解码HDR图像。<br/>**起始版本：** 15 | 
 | IMAGE_SOURCE_UNSUPPORTED_OPTIONS | 不支持的选项。例如，无法将图像转换为所需的像素格式。<br/>**起始版本：** 15 | 
+| IMAGE_SOURCE_INVALID_PARAMETER | ImageSource的无效参数。<br/>**起始版本：** 19 |
 | IMAGE_DECODE_FAILED | 解码失败。 | 
 | IMAGE_SOURCE_ALLOC_FAILED | 内存申请失败。<br/>**起始版本：** 15 | 
+| IMAGE_PACKER_INVALID_PARAMETER | ImagePacker的无效参数。<br/>**起始版本：** 19 | 
 | IMAGE_ENCODE_FAILED | 编码失败。 | 
 
 
@@ -1623,6 +1630,51 @@ Image_ErrorCode OH_DecodingOptions_GetCropAndScaleStrategy(OH_DecodingOptions *o
 
 如果操作成功返回 IMAGE_SUCCESS，如果options或者cropAndScaleStrategy为空指针返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
+### OH_DecodingOptions_GetCropRegion
+
+```
+Image_ErrorCode OH_DecodingOptions_GetCropRegion(OH_DecodingOptions *options, Image_Region *cropRegion)
+```
+
+**描述**
+
+获取解码参数中的裁剪区域。
+
+**起始版本：** 19
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 指向解码参数指针。 | 
+| cropAndScaleStrategy | 指向要裁剪的目标区域指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果options或cropRegion为空返回 IMAGE_SOURCE_INVALID_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+### OH_DecodingOptions_SetCropRegion
+
+```
+Image_ErrorCode OH_DecodingOptions_SetCropRegion(OH_DecodingOptions *options, Image_Region *cropRegion)
+```
+
+**描述**
+
+设置解码参数中的裁剪区域。
+
+**起始版本：** 19
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 指向解码参数指针。 | 
+| cropAndScaleStrategy | 指向要裁剪的目标区域指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果options或cropRegion为空返回 IMAGE_SOURCE_INVALID_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 ### OH_DecodingOptions_GetDesiredDynamicRange()
 
@@ -3223,6 +3275,28 @@ Image_ErrorCode OH_ImageSourceNative_GetImageProperty(OH_ImageSourceNative *sour
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
+### OH_ImageSourceNative_GetImagePropertyWithNull()
+
+```
+Image_ErrorCode OH_ImageSourceNative_GetImagePropertyWithNull(OH_ImageSourceNative *source, Image_String *key, Image_String *value)
+```
+**描述**
+获取图像属性值。输出的value.data以字符串结束符结尾。
+
+**起始版本：** 19
+
+**参数：**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| source | 指向ImageSource的指针。  | 
+| key | 指向属性键的指针。  | 
+| value | 指向属性值的指针（输出参数）。  | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果source、key或value为空返回 IMAGE_SOURCE_INVALID_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
 
 ### OH_ImageSourceNative_ModifyImageProperty()
 
@@ -3331,6 +3405,27 @@ Image_ErrorCode OH_PackingOptions_GetMimeType (OH_PackingOptions * options, Imag
 **返回：**
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+### OH_PackingOptions_GetMimeTypeWithNull()
+
+```
+Image_ErrorCode OH_PackingOptions_GetMimeTypeWithNull(OH_PackingOptions *options, Image_MimeType *format)
+```
+**描述**
+获取编解码参数中的MIME类型。输出的format.data以字符串结束符结尾。
+
+**起始版本：** 19
+
+**参数：**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 编码参数指针。  | 
+| format | 编码参数中的MIME类型的指针。  | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果options或format为空返回 IMAGE_PACKER_INVALID_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
 ### OH_PackingOptions_GetQuality()
@@ -3730,6 +3825,28 @@ Image_ErrorCode OH_PictureMetadata_GetProperty(OH_PictureMetadata *metadata, Ima
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果是不支持的元数据类型或元数据类型与辅助图类型不匹配返回 IMAGE_UNSUPPORTED_METADATA， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
+
+### OH_PictureMetadata_GetPropertyWithNull()
+
+```
+Image_ErrorCode OH_PictureMetadata_GetPropertyWithNull(OH_PictureMetadata *metadata, Image_String *key, Image_String *value)
+```
+**描述**
+获取图片元数据的属性值。输出的value.data以字符串结束符结尾。
+
+**起始版本：** 13
+
+**参数：**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| metadata | 被操作的OH_PictureMetadata指针。  | 
+| key | 属性键指针。  | 
+| value | 属性值指针。  | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果metadata、key或value为空返回 IMAGE_INVALID_PARAMETER，如果是不支持的元数据类型，或元数据类型与辅助图片类型不匹配返回 IMAGE_UNSUPPORTED_METADATA，具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 ### OH_PictureMetadata_Release()
 

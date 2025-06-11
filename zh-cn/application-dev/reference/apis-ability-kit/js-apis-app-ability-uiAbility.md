@@ -1,6 +1,6 @@
 # @ohos.app.ability.UIAbility (带界面的应用组件)
 
-UIAbility是包含UI界面的应用组件，继承自[Ability](js-apis-app-ability-ability.md)，提供UIAbility组件创建、销毁、前后台切换等[生命周期]回调(#uiability生命周期)，同时也具备[后台通信能力](#后台通信能力)。
+UIAbility是包含UI界面的应用组件，继承自[Ability](js-apis-app-ability-ability.md)，提供UIAbility组件创建、销毁、前后台切换等[生命周期](#uiability生命周期状态)回调，同时也具备[后台通信能力](#后台通信能力)。
 
 > **说明：**
 >

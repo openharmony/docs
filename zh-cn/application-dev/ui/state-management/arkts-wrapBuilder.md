@@ -23,7 +23,7 @@ function testBuilder() {
 }
 ```
 
-在上述代码中，`builderArr`是一个`@Builder`方法组成的数组。在`ForEach`循环中取每个`@Builder`方法时，会出现`@Builder`方法在UI方法中无法使用的问题。
+在上述代码中，`builderArr`是一个由`@Builder`方法组成的数组。在`ForEach`循环中取每个`@Builder`方法时，会出现`@Builder`方法在UI方法中无法使用的问题。
 
 为了解决这一问题，引入`wrapBuilder`作为全局`@Builder`封装函数。`wrapBuilder`返回`WrappedBuilder`对象，实现[全局\@Builder](arkts-builder.md#全局自定义构建函数)可以进行赋值和传递。 
 
@@ -94,7 +94,7 @@ struct Index {
 
 ##  @Builder方法赋值给变量在UI语法中使用
 
-自定义组件Index使用`ForEach`来进行不同`@Builder`函数的渲染，可以使用`builderArr`声明的`wrapBuilder`数组进行不同`@Builder`函数效果体现。整体代码会较整洁。
+自定义组件Index使用`ForEach`进行不同`@Builder`函数的渲染，可以使用`builderArr`声明的`wrapBuilder`数组来实现不同的`@Builder`函数效果。整体代码会更加整洁。
 
 ```
 @Builder

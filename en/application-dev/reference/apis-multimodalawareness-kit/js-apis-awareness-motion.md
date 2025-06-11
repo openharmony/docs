@@ -17,7 +17,7 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 
 Defines the status of the operating hand.
 
-**System capability**: SystemCapability.MultimodalAwarness.Motion
+**System capability**: SystemCapability.MultimodalAwareness.Motion
 
 | Name               | Value  | Description                  |
 | ------------------- | ---- | ---------------------- |
@@ -36,7 +36,7 @@ Subscribes to operating hand change events.
 
 **Required permissions**: ohos.permission.ACTIVITY_MOTION
 
-**System capability**: SystemCapability.MultimodalAwarness.Motion
+**System capability**: SystemCapability.MultimodalAwareness.Motion
 
 **Parameters**
 
@@ -75,7 +75,7 @@ Unsubscribes from operating hand change events.
 
 **Required permissions**: ohos.permission.ACTIVITY_MOTION
 
-**System capability**: SystemCapability.MultimodalAwarness.Motion
+**System capability**: SystemCapability.MultimodalAwareness.Motion
 
 **Parameters**
 
@@ -114,7 +114,7 @@ Obtains the latest operating hand status.
 
 **Required permissions**: ohos.permission.ACTIVITY_MOTION
 
-**System capability**: SystemCapability.MultimodalAwarness.Motion
+**System capability**: SystemCapability.MultimodalAwareness.Motion
 
 **Return value**
 

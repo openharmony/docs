@@ -1,4 +1,4 @@
-# @ohos.app.ability.autoFillManager (autoFillManager)
+# @ohos.app.ability.autoFillManager (自动填充框架)
 
 autoFillManager模块提供账号密码保存等功能。
 

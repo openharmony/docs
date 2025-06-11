@@ -210,6 +210,8 @@ divider(options: Optional\<DividerOptions> | null)
 
 ### dividerStyle<sup>19+</sup>
 
+dividerStyle(style: Optional\<DividerStyleOptions>)
+
 设置分割线样式，不设置该属性则按“默认值”展示分割线。该属性与divider互斥，按调用顺序生效。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
@@ -220,7 +222,7 @@ divider(options: Optional\<DividerOptions> | null)
 
 | 参数名 | 类型    | 必填 | 说明                                                                  |
 | ------ | ------- | ---- | --------------------------------------------------------------------- |
-| options  | Optional\<[DividerStyleOptions](ts-types.md#dividerstyleoptions12)> \| null | 是   | 1.设置DividerOptions，则按设置的样式显示分割线。<br/>默认值：<br/>{<br/>strokeWidth: '1px' , <br/>color: '#33182431'<br/>}<br/>2.设置为null或undefined时，展示默认分割线。<br/>3.当mode为FLOAT_ABOVE_MENU时，strokeWidth设置过宽时，会覆盖文字。分割线会从每一个Item底部开始，同时向上向下画分割线。当mode为EMBEDDED_IN_MENU时，分割线在Menu中展开，独立占用高度。<br/>4.startMargin和endMargin的默认值与不设置divider属性时的分割线样式保持一致。startMargin和endMargin的和与optionWidth的值相等时，不显示分割线。startMargin和endMargin的和超过optionWidth的值时，按照默认样式显示分割线。|
+| style  | Optional\<[DividerStyleOptions](ts-types.md#dividerstyleoptions12)>  | 是   | 1.设置DividerOptions，则按设置的样式显示分割线。<br/>默认值：<br/>{<br/>strokeWidth: '1px' , <br/>color: '#33182431'<br/>}<br/>2.设置为null或undefined时，展示默认分割线。<br/>3.当mode为FLOAT_ABOVE_MENU时，strokeWidth设置过宽时，会覆盖文字。分割线会从每一个Item底部开始，同时向上向下画分割线。当mode为EMBEDDED_IN_MENU时，分割线在Menu中展开，独立占用高度。<br/>4.startMargin和endMargin的默认值与不设置divider属性时的分割线样式保持一致。startMargin和endMargin的和与optionWidth的值相等时，不显示分割线。startMargin和endMargin的和超过optionWidth的值时，按照默认样式显示分割线。|
 
 ### font
 
@@ -818,7 +820,7 @@ onSelect(callback: Optional\<OnSelectCallback> )
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnSelectCallback](#onselectcallback16)> | 是   | 下拉菜单选中某一项的回调。<br/>当callback的值为undefined时，不使用回调函数。 |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnSelectCallback](#onselectcallback18)> | 是   | 下拉菜单选中某一项的回调。<br/>当callback的值为undefined时，不使用回调函数。 |
 
 ## OnSelectCallback<sup>18+</sup>
 
@@ -1100,3 +1102,31 @@ struct SelectExample {
 }
 ```
 ![](figures/SelectHideDivider.png)
+
+## 示例6（设置分割线模式）
+
+该示例通过配置dividerStyle的mode属性设置分割线模式。
+
+```ts
+import { LengthMetrics } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Select([{ value: "SelectItem" }, { value: "SelectItem" }, { value: "SelectItem" },])
+        .value("请选择")
+        .dividerStyle({
+          strokeWidth: LengthMetrics.vp(5),
+          color: '#d5d5d5',
+          mode: DividerMode.EMBEDDED_IN_MENU
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![dividerStyleMode](figures/SelectdividerStyleMode.png)

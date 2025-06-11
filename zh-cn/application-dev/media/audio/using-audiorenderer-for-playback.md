@@ -14,7 +14,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 
 ![AudioRenderer status change](figures/audiorenderer-status-change.png)
 
-在进行应用开发的过程中，建议开发者通过[on('stateChange')](../../reference/apis-audio-kit/js-apis-audio.md#onstatechange-8)方法订阅AudioRenderer的状态变更。因为针对AudioRenderer的某些操作，仅在音频播放器在固定状态时才能执行。如果应用在音频播放器处于错误状态时执行操作，系统可能会抛出异常或生成其他未定义的行为。
+在进行应用开发的过程中，建议开发者通过[on('stateChange')](../../reference/apis-audio-kit/js-apis-audio.md#onstatechange8)方法订阅AudioRenderer的状态变更。因为针对AudioRenderer的某些操作，仅在音频播放器在固定状态时才能执行。如果应用在音频播放器处于错误状态时执行操作，系统可能会抛出异常或生成其他未定义的行为。
 
 - prepared状态： 通过调用[createAudioRenderer()](../../reference/apis-audio-kit/js-apis-audio.md#audiocreateaudiorenderer8)方法进入到该状态。
 
@@ -89,7 +89,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
      let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
      let path = context.cacheDir;
      // 确保该沙箱路径下存在该资源。
-     let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+     let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 
      let writeDataCallback = (buffer: ArrayBuffer) => {
@@ -140,7 +140,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
      let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
      let path = context.cacheDir;
      // 确保该沙箱路径下存在该资源。
-     let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+     let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
      let writeDataCallback = (buffer: ArrayBuffer) => {
        // 如果开发者不希望播放某段buffer，可在此处添加判断并对buffer进行置空处理。
@@ -211,9 +211,11 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 ### 配置合适的音频采样率
 
 采样率：指音频每秒单个声道样点数，单位为Hz。
-重采样：根据输入输出音频采样率的差异，进行上采样(通过插值增加样点数)或下采样(通过抽取减少样点数)。
+
+重采样：根据输入输出音频采样率的差异，进行上采样（通过插值增加样点数）或下采样（通过抽取减少样点数）。
 
 AudioRenderer支持枚举类型AudioSamplingRate中定义的所有采样率。
+
 若通过AudioRenderer设置的输入音频采样率与设备输出采样率不一致，系统会将输入音频重采样为设备输出采样率。
 
 若为减少重采样功耗，可使用采样率与输出设备采样率一致的输入音频。推荐使用48k采样率。
@@ -255,7 +257,7 @@ let audioRendererOptions: audio.AudioRendererOptions = {
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let path = context.cacheDir;
 // 确保该沙箱路径下存在该资源。
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let writeDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {

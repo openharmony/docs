@@ -133,7 +133,7 @@ ArcSliderValueOptions的构造函数。
 
 | 名称     | 类型                                    | 必填 | 装饰器类型 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ---------- | ------------------------------------------------------------ |
-| reverse  | boolean                                 | 否   | @Trace     | 设置弧形Slider取值范围是否反向。<br />默认值：true。表示从下往上滑动。 |
+| reverse  | boolean                                 | 否   | @Trace     | 设置弧形Slider取值范围是否反向。值为false时表示从上往下滑。<br />默认值：true，表示从下往上滑动。 |
 | position | [ArcSliderPosition](#arcsliderposition) | 否   | @Trace     | 弧形Slider的屏幕显示位置。<br />默认值：ArcSliderPosition.RIGHT |
 
 ### constructor
