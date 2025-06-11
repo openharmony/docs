@@ -78,7 +78,7 @@ The FFRT provides task graph that can describe the task dependency and paralleli
 
 ```cpp
 #include <iostream>
-#include "ffrt/cpp/task.h"
+#include "ffrt/ffrt.h"
 
 int main()
 {
@@ -111,7 +111,7 @@ Each number in the Fibonacci sequence is the sum of the first two numbers. The p
 
 ```cpp
 #include <iostream>
-#include "ffrt/cpp/task.h"
+#include "ffrt/ffrt.h"
 
 void Fib(int x, int& y)
 {
@@ -162,7 +162,8 @@ The main FFRT APIs involved in the preceding example are as follows:
 
 > **NOTE**
 >
-> For details about how to use FFRT C++ APIs, see [Using FFRT C++ APIs](ffrt-development-guideline.md#using-ffrt-c-api-1).
+> - For details about how to use FFRT C++ APIs, see [Using FFRT C++ APIs](ffrt-development-guideline.md#using-ffrt-c-api-1).
+> - When using FFRT C or C++ APIs, you can use the FFRT C++ API third-party library to simplify the header file inclusion, that is, use the `#include "ffrt/ffrt.h"` header file to include statements.
 
 ## Constraints
 

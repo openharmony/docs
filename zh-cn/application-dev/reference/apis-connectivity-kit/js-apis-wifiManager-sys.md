@@ -208,17 +208,19 @@ WLAN配置信息。
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 
-| **名称** | **类型** | **可读** | **可写** | **说明** |
+| **名称** | **类型** | **只读** | **可选** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| creatorUid | number | 是 | 否 | 创建用户的ID。 <br /> **系统接口：** 此接口为系统接口。 |
-| disableReason | number | 是 | 否 | 禁用原因： <br /> -1 - 未知原因，0 - 未禁用，1 - 关联拒绝，2 - 认证失败 <br /> 3 - DHCP失败，4 - 暂时无互联网连接 <br /> 5 - 认证无凭据，6 - 永久无互联网连接 <br /> 7 - 由WIFI管理器禁用，8 - 由于密码错误禁用 <br /> 9 - 认证无订阅，10 - 私有EAP认证错误 <br /> 11 - 未找到网络，12 - 连续失败 <br /> 13 - 由系统禁用，14 - EAP-AKA认证失败 <br /> 15 - 解除关联原因，16 - 禁用网络选择最大值<br /> **系统接口：** 此接口为系统接口。 |
-| netId | number | 是 | 否 | 分配的网络ID。 <br /> **系统接口：** 此接口为系统接口。 |
-| randomMacType | number | 是 | 否 | MAC地址类型。0 - 随机MAC地址，1 - 设备MAC地址 <br /> **系统接口：** 此接口为系统接口。 |
-| randomMacAddr | string | 是 | 否 | MAC地址。<br /> **系统接口：** 此接口为系统接口。 |
-| ipType | [IpType](#iptype9) | 是 | 否 | IP地址类型。 <br /> **系统接口：** 此接口为系统接口。 |
-| staticIp | [IpConfig](#ipconfig9) | 是 | 否 | 静态IP配置信息。 <br /> **系统接口：** 此接口为系统接口。 |
-| proxyConfig<sup>10+</sup> | [WifiProxyConfig](#wifiproxyconfig10) | 是 | 否 | 代理配置。  <br /> **系统接口：** 此接口为系统接口。|
-| configStatus<sup>12+</sup> | number | 是 | 否 | 返回当前网络是否允许参与选网。 <br />  1 - 允许参与选网，2 - 禁止参与 <br /> 3 - 永久禁止参与，4 - 未知 <br /> **系统接口：** 此接口为系统接口。|
+| creatorUid | number | 是 | 是 | 创建用户的ID。 <br /> **系统接口：** 此接口为系统接口。 |
+| disableReason | number | 是 | 是 | 禁用原因： <br /> -1 - 未知原因，0 - 未禁用，1 - 关联拒绝，2 - 认证失败 <br /> 3 - DHCP失败，4 - 暂时无互联网连接 <br /> 5 - 认证无凭据，6 - 永久无互联网连接 <br /> 7 - 由WIFI管理器禁用，8 - 由于密码错误禁用 <br /> 9 - 认证无订阅，10 - 私有EAP认证错误 <br /> 11 - 未找到网络，12 - 连续失败 <br /> 13 - 由系统禁用，14 - EAP-AKA认证失败 <br /> 15 - 解除关联原因，16 - 禁用网络选择最大值<br /> **系统接口：** 此接口为系统接口。 |
+| netId | number | 是 | 是 | 分配的网络ID。 <br /> **系统接口：** 此接口为系统接口。 |
+| randomMacType | number | 是 | 是 | MAC地址类型。0 - 随机MAC地址，1 - 设备MAC地址 <br /> **系统接口：** 此接口为系统接口。 |
+| randomMacAddr | string | 是 | 是 | MAC地址。<br /> **系统接口：** 此接口为系统接口。 |
+| ipType | [IpType](#iptype9) | 是 | 是 | IP地址类型。 <br /> **系统接口：** 此接口为系统接口。 |
+| staticIp | [IpConfig](#ipconfig9) | 是 | 是 | 静态IP配置信息。 <br /> **系统接口：** 此接口为系统接口。 |
+| proxyConfig<sup>10+</sup> | [WifiProxyConfig](#wifiproxyconfig10) | 是 | 是 | 代理配置。  <br /> **系统接口：** 此接口为系统接口。|
+| configStatus<sup>12+</sup> | number | 是 | 是 | 返回当前网络是否允许参与选网。 <br />  1 - 允许参与选网，2 - 禁止参与 <br /> 3 - 永久禁止参与，4 - 未知 <br /> **系统接口：** 此接口为系统接口。|
+| isAutoConnectAllowed<sup>17+</sup> | boolean | 是 | 是 | 是否允许自动连接。false:不允许，true：允许自动连接。<br /> **系统接口：** 此接口为系统接口。|
+| isSecureWifi<sup>20+</sup> | boolean | 是 | 是 | 安全WiFi检测。false:不是安全Wifi，true：是安全WiFi。<br /> **系统接口：** 此接口为系统接口。|
 
 ## IpType<sup>9+</sup>
 
@@ -244,7 +246,7 @@ IP配置信息。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
-| **名称** | **类型** | **可读** | **可写** | **说明** |
+| **名称** | **类型** | **只读** | **可选** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
 | ipAddress | number | 是 | 否 | IP地址。 |
 | gateway | number | 是 | 否 | 网关。 |
@@ -261,13 +263,13 @@ Wifi 代理配置。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
-| **名称** | **类型** | **可读** | **可写** | **说明** |
+| **名称** | **类型** | **只读** | **可选** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| proxyMethod | ProxyMethod | 是 | 否 | 代理方法。 |
-| pacWebAddress | string | 是 | 否 | 自动配置代理的PAC web 地址。 |
-| serverHostName | string | 是 | 否 | 手动配置代理的服务器主机名。 |
-| serverPort | number | 是 | 否 | 手动配置代理的服务器端口。 |
-| exclusionObjects | string | 是 | 否 | 手动配置代理的排除对象，对象用“,”分隔。|
+| proxyMethod | ProxyMethod | 是 | 是 | 代理方法。 |
+| pacWebAddress | string | 是 | 是 | 自动配置代理的PAC web 地址。 |
+| serverHostName | string | 是 | 是 | 手动配置代理的服务器主机名。 |
+| serverPort | number | 是 | 是 | 手动配置代理的服务器端口。 |
+| exclusionObjects | string | 是 | 是 | 手动配置代理的排除对象，对象用“,”分隔。|
 
 ## ProxyMethod<sup>10+</sup>
 
@@ -338,7 +340,7 @@ connectToDevice(config: WifiDeviceConfig): void
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | networkId | number | 是 | 否 | 网络配置ID。 <br /> **系统接口：** 此接口为系统接口。 |
 | chload | number | 是 | 否 | 连接负载，值越大表示负载约高。 <br /> **系统接口：** 此接口为系统接口。 |
@@ -1160,14 +1162,15 @@ setHotspotConfig(config: HotspotConfig): void
 
 **系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
-| **名称** | **类型** | **可读** | **可写** | **说明** |
+| **名称** | **类型** | **只读** | **可选** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | 是 | 是 | 热点的SSID，编码格式为UTF-8。 |
-| securityType | [WifiSecurityType](js-apis-wifiManager.md#wifisecuritytype9)| 是 | 是 | 加密类型。 |
-| band | number | 是 | 是 | 热点的带宽。1: 2.4G, 2: 5G, 3: 双模频段 |
+| ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
+| securityType | [WifiSecurityType](js-apis-wifiManager.md#wifisecuritytype9)| 是 | 否 | 加密类型。 |
+| band | number | 是 | 否 | 热点的带宽。1: 2.4G, 2: 5G, 3: 双模频段 |
 | channel<sup>10+</sup> | number | 是 | 是 | 热点的信道（2.4G：1~14,5G：7~196）。 |
-| preSharedKey | string | 是 | 是 | 热点的密钥。 |
-| maxConn | number | 是 | 是 | 最大设备连接数。 |
+| preSharedKey | string | 否 | 否 | 热点的密钥。 |
+| maxConn | number | 是 | 否 | 最大设备连接数。 |
+| ipAddress | string | 是 | 是 | DHCP服务器的IP地址。|
 
 ## wifiManager.getHotspotConfig<sup>9+</sup>
 
@@ -1263,11 +1266,11 @@ API 10起：ohos.permission.GET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_HOTSPO
 
 **系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
-| **名称** | **类型** | **可读** | **可写** | **说明** |
+| **名称** | **类型** | **只读** | **可选** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
 | name | string | 是 | 否 | 设备名称。 |
 | macAddress | string | 是 | 否 | MAC地址。 |
-| macAddressType<sup>10+</sup> | [DeviceAddressType](js-apis-wifiManager.md#deviceaddresstype10) | 是 | 否 | MAC地址类型。 |
+| macAddressType<sup>10+</sup> | [DeviceAddressType](js-apis-wifiManager.md#deviceaddresstype10) | 是 | 是 | MAC地址类型。 |
 | ipAddress | string | 是 | 否 | IP地址。 |
 
 ## wifiManager.addHotspotBlockList<sup>11+</sup>

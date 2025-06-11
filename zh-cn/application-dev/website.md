@@ -795,8 +795,6 @@
       - 服务卡片开发指导（Stage模型）<!--arkts-ui-widget-stage-->
         - 开发基于ArkTS UI的卡片<!--arkts-ui-widget-->
           - [ArkTS卡片概述](form/arkts-form-overview.md)
-          - [ArkTS卡片运行机制](form/arkts-ui-widget-working-principles.md)
-          - [ArkTS卡片相关模块](form/arkts-ui-widget-modules.md)
           - ArkTS卡片开发指导<!--arkts-ui-widget-dev-->
             - [创建ArkTS卡片](form/arkts-ui-widget-creation.md)
             - [配置卡片的配置文件](form/arkts-ui-widget-configuration.md)
@@ -1413,7 +1411,9 @@
         <!--DelEnd-->
         - [param工具](tools/param-tool.md)
         - [power-shell工具](tools/power-shell.md)
+        <!--Del-->
         - [OpenHarmony SDK升级助手](tools/openharmony_sdk_upgrade_assistant.md)
+        <!--DelEnd-->
         - [atm工具](tools/atm-tool.md)
         <!--Del-->
         - [acm工具](tools/acm-tool.md)
@@ -2302,7 +2302,8 @@
         - [@ohos.data.distributedKVStore (分布式键值数据库)](reference/apis-arkdata/js-apis-distributedKVStore.md)
         - [@ohos.data.preferences (用户首选项)](reference/apis-arkdata/js-apis-data-preferences.md)
         - [@ohos.data.sendablePreferences (共享用户首选项)](reference/apis-arkdata/js-apis-data-sendablePreferences.md)
-        - [@ohos.data.relationalStore (关系型数据库)](reference/apis-arkdata/arkts-apis-data-relationalStore.md)
+        - @ohos.data.relationalStore (关系型数据库)<!--js-apis-data-relationalstore-->
+          - [模块描述](reference/apis-arkdata/arkts-apis-data-relationalStore.md)
           - [Functions](reference/apis-arkdata/arkts-apis-data-relationalStore-f.md)
           - [Interface (RdbStore)](reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md)
           - [Interface (ResultSet)](reference/apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md)
@@ -2427,7 +2428,7 @@
         - [@arkts.utils (ArkTS工具库)](reference/apis-arkts/js-apis-arkts-utils.md)
         - [@ohos.buffer (Buffer)](reference/apis-arkts/js-apis-buffer.md)
         - [@ohos.convertxml (xml转换JavaScript)](reference/apis-arkts/js-apis-convertxml.md)
-        - [@ohos.fastbuffer (线性容器FastBuffer)](reference/apis-arkts/js-apis-fastbuffer.md)
+        - [@ohos.fastbuffer (FastBuffer)](reference/apis-arkts/js-apis-fastbuffer.md)
         - [@ohos.process (获取进程相关的信息)](reference/apis-arkts/js-apis-process.md)
         - [@ohos.taskpool (启动任务池)](reference/apis-arkts/js-apis-taskpool.md)
         - [@ohos.uri (URI字符串解析)](reference/apis-arkts/js-apis-uri.md)
@@ -2509,7 +2510,8 @@
             - [NodeContent](reference/apis-arkui/js-apis-arkui-NodeContent.md)
         - 窗口管理<!--window-manager-api-->
           - [@ohos.PiPWindow (画中画窗口)](reference/apis-arkui/js-apis-pipWindow.md)
-          - [@ohos.window (窗口)](reference/apis-arkui/arkts-apis-window.md)
+          - @ohos.window (窗口)<!--js-apis-window-->
+            - [模块描述](reference/apis-arkui/arkts-apis-window.md)
             - [Functions](reference/apis-arkui/arkts-apis-window-f.md)
             - [Interface (Window)](reference/apis-arkui/arkts-apis-window-Window.md)
             - [Interface (WindowStage)](reference/apis-arkui/arkts-apis-window-WindowStage.md)
@@ -2559,6 +2561,7 @@
             - [自定义事件拦截](reference/apis-arkui/arkui-ts/ts-universal-attributes-on-touch-intercept.md)
             - [焦点轴事件](reference/apis-arkui/arkui-ts/ts-universal-events-focus_axis.md)
             - [轴事件](reference/apis-arkui/arkui-ts/ts-universal-events-axis.md)
+            - [拖拽事件（系统接口）](reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop-sys.md)
           - [通用属性](reference/apis-arkui/arkui-ts/ts-component-general-attributes.md)
             - [尺寸设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)
             - [位置设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md)
@@ -3140,6 +3143,7 @@
           - [OH_NativeXComponent_MouseEvent_Callback](reference/apis-arkui/_o_h___native_x_component___mouse_event___callback.md)
           - [OH_NativeXComponent_TouchEvent](reference/apis-arkui/_o_h___native_x_component___touch_event.md)
           - [OH_NativeXComponent_TouchPoint](reference/apis-arkui/_o_h___native_x_component___touch_point.md)
+          - [PictureInPicture_PipConfig](reference/apis-arkui/capi-pictureinpicture-pipconfig.md)
           - [WindowManager_Rect](reference/apis-arkui/capi-windowmanager-rect.md)
           - [struct](reference/apis-arkui/capi-struct.md)
           - [WindowManager_WindowProperties](reference/apis-arkui/capi-windowmanager-windowproperties.md)
@@ -3169,9 +3173,9 @@
           - [交互事件错误码](reference/apis-arkui/errorcode-event.md)
           - [Canvas错误码](reference/apis-arkui/errorcode-canvas.md)
           - [自定义节点错误码](reference/apis-arkui/errorcode-node.md)
+          - [UIExtension错误码](reference/apis-arkui/errorcode-uiextension.md)
           <!--Del-->
           - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
-          - [UIExtension错误码](reference/apis-arkui/errorcode-uiextension.md)
           <!--DelEnd-->
         - UI编译<!--arkui-compile-arkts-errcode-->
           - [编译错误码](reference/apis-arkui/_ark_ui_compile.md)
@@ -3192,6 +3196,7 @@
           - [Class (NativeMediaPlayerSurfaceInfo)](reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerSurfaceInfo.md)
           - [Class (PdfData)](reference/apis-arkweb/arkts-apis-webview-PdfData.md)
           - [Class (ProxyConfig)](reference/apis-arkweb/arkts-apis-webview-ProxyConfig.md)
+          - [Class (ProxyController)](reference/apis-arkweb/arkts-apis-webview-ProxyController.md)
           - [Class (ProxyRule)](reference/apis-arkweb/arkts-apis-webview-ProxyRule.md)
           - [Class (WebviewController)](reference/apis-arkweb/arkts-apis-webview-WebviewController.md)
           - [Class (WebCookieManager)](reference/apis-arkweb/arkts-apis-webview-WebCookieManager.md)
@@ -3503,6 +3508,7 @@
             - [Asset_Attr](reference/apis-asset-store-kit/capi-asset-attr.md)
             - [Asset_Result](reference/apis-asset-store-kit/capi-asset-result.md)
             - [Asset_ResultSet](reference/apis-asset-store-kit/capi-asset-resultset.md)
+            - [Asset_SyncResult](reference/apis-asset-store-kit/capi-asset-syncresult.md)
         - 错误码<!--asset-store-arkts-errcode-->
           - [Asset错误码](reference/apis-asset-store-kit/errorcode-asset.md)
       - Crypto Architecture Kit（加解密算法框架服务）<!--crypto-architecture-api-->
@@ -4047,9 +4053,11 @@
             - [Input_DeviceInfo](reference/apis-input-kit/capi-input-deviceinfo.md)
             - [Input_InterceptorOptions](reference/apis-input-kit/capi-input-interceptoroptions.md)
         - 错误码<!--input-arkts-errcode-->
+          <!--Del-->
           - [键鼠穿越管理错误码](reference/apis-input-kit/errorcode-cooperator.md)
-          - [全局快捷键管理错误码](reference/apis-input-kit/errorcode-inputconsumer.md)
           - [按键前置监听错误码](reference/apis-input-kit/errorcode-inputmonitor.md)
+          <!--DelEnd-->
+          - [全局快捷键管理错误码](reference/apis-input-kit/errorcode-inputconsumer.md)
           - [输入设备错误码](reference/apis-input-kit/errorcode-inputdevice.md)
           - [鼠标指针错误码](reference/apis-input-kit/errorcode-pointer.md)
       - MDM Kit（企业设备管理服务）<!--mdm-api-->
@@ -4286,23 +4294,25 @@
           - [native_audio_routing_manager.h](reference/apis-audio-kit/capi-native-audio-routing-manager-h.md)
           - [native_audio_session_manager.h](reference/apis-audio-kit/capi-native-audio-session-manager-h.md)
           - [native_audio_stream_manager.h](reference/apis-audio-kit/capi-native-audio-stream-manager-h.md)
+          - [native_audio_volume_manager.h](reference/apis-audio-kit/capi-native-audio-volume-manager-h.md)
           - [native_audiorenderer.h](reference/apis-audio-kit/capi-native-audiorenderer-h.md)
           - [native_audio_common.h](reference/apis-audio-kit/capi-native-audio-common-h.md)
           - [native_audio_device_base.h](reference/apis-audio-kit/capi-native-audio-device-base-h.md)
           - [native_audiostream_base.h](reference/apis-audio-kit/capi-native-audiostream-base-h.md)
           - [native_audiostreambuilder.h](reference/apis-audio-kit/capi-native-audiostreambuilder-h.md)
         - 结构体<!--audio-struct-->
+          - [OH_AudioManager](reference/apis-audio-kit/capi-oh-audiomanager.md)
+          - [OH_AudioRoutingManager](reference/apis-audio-kit/capi-oh-audioroutingmanager.md)
           - [OH_AudioSession_Strategy](reference/apis-audio-kit/capi-oh-audiosession-strategy.md)
           - [OH_AudioSession_DeactivatedEvent](reference/apis-audio-kit/capi-oh-audiosession-deactivatedevent.md)
+          - [OH_AudioSessionManager](reference/apis-audio-kit/capi-oh-audiosessionmanager.md)
+          - [OH_AudioStreamManager](reference/apis-audio-kit/capi-oh-audiostreammanager.md)
+          - [OH_AudioVolumeManager](reference/apis-audio-kit/capi-oh-audiovolumemanager.md)
           - [OH_AudioDeviceDescriptorArray](reference/apis-audio-kit/capi-oh-audiodevicedescriptorarray.md)
+          - [OH_AudioDeviceDescriptor](reference/apis-audio-kit/capi-oh-audiodevicedescriptor.md)
           - [OH_AudioStreamInfo](reference/apis-audio-kit/capi-oh-audiostreaminfo.md)
           - [OH_AudioRenderer_Callbacks_Struct](reference/apis-audio-kit/capi-oh-audiorenderer-callbacks-struct.md)
           - [OH_AudioCapturer_Callbacks_Struct](reference/apis-audio-kit/capi-oh-audiocapturer-callbacks-struct.md)
-          - [OH_AudioManager](reference/apis-audio-kit/capi-oh-audiomanager.md)
-          - [OH_AudioRoutingManager](reference/apis-audio-kit/capi-oh-audioroutingmanager.md)
-          - [OH_AudioSessionManager](reference/apis-audio-kit/capi-oh-audiosessionmanager.md)
-          - [OH_AudioStreamManager](reference/apis-audio-kit/capi-oh-audiostreammanager.md)
-          - [OH_AudioDeviceDescriptor](reference/apis-audio-kit/capi-oh-audiodevicedescriptor.md)
           - [OH_AudioStreamBuilderStruct](reference/apis-audio-kit/capi-oh-audiostreambuilderstruct.md)
           - [OH_AudioRendererStruct](reference/apis-audio-kit/capi-oh-audiorendererstruct.md)
           - [OH_AudioCapturerStruct](reference/apis-audio-kit/capi-oh-audiocapturerstruct.md)
@@ -4618,25 +4628,21 @@
           - [video_processing.h](reference/apis-media-kit/capi-video-processing-h.md)
           - [video_processing_types.h](reference/apis-media-kit/capi-video-processing-types-h.md)
         - 结构体<!--media-struct-->
+          - [OH_AVImageGenerator](reference/apis-media-kit/capi-oh-avimagegenerator.md)
+          - [OH_AVMetadataExtractor](reference/apis-media-kit/capi-oh-avmetadataextractor.md)
           - [MediaKeySession](reference/apis-media-kit/capi-mediakeysession.md)
           - [DRM_MediaKeySystemInfo](reference/apis-media-kit/capi-drm-mediakeysysteminfo.md)
           - [AVPlayerCallback](reference/apis-media-kit/capi-avplayercallback.md)
           - [OH_AVPlayer](reference/apis-media-kit/capi-oh-avplayer.md)
-          - [OH_AVImageGenerator](reference/apis-media-kit/capi-oh-avimagegenerator.md)
-          - [OH_AVMetadataExtractor](reference/apis-media-kit/capi-oh-avmetadataextractor.md)
           - [OH_AVRecorder_Profile](reference/apis-media-kit/capi-oh-avrecorder-profile.md)
-          - [OH_AVRecorder](reference/apis-media-kit/capi-oh-avrecorder.md)
           - [OH_AVRecorder_Location](reference/apis-media-kit/capi-oh-avrecorder-location.md)
           - [OH_AVRecorder_MetadataTemplate](reference/apis-media-kit/capi-oh-avrecorder-metadatatemplate.md)
           - [OH_AVRecorder_Metadata](reference/apis-media-kit/capi-oh-avrecorder-metadata.md)
           - [OH_AVRecorder_Config](reference/apis-media-kit/capi-oh-avrecorder-config.md)
           - [OH_AVRecorder_Range](reference/apis-media-kit/capi-oh-avrecorder-range.md)
           - [OH_AVRecorder_EncoderInfo](reference/apis-media-kit/capi-oh-avrecorder-encoderinfo.md)
+          - [OH_AVRecorder](reference/apis-media-kit/capi-oh-avrecorder.md)
           - [OH_AudioCaptureInfo](reference/apis-media-kit/capi-oh-audiocaptureinfo.md)
-          - [OH_NativeBuffer](reference/apis-media-kit/capi-oh-nativebuffer.md)
-          - [OH_AVScreenCapture](reference/apis-media-kit/capi-oh-avscreencapture.md)
-          - [OH_AVScreenCapture_ContentFilter](reference/apis-media-kit/capi-oh-avscreencapture-contentfilter.md)
-          - [OH_AVScreenCapture_CaptureStrategy](reference/apis-media-kit/capi-oh-avscreencapture-capturestrategy.md)
           - [OH_AudioEncInfo](reference/apis-media-kit/capi-oh-audioencinfo.md)
           - [OH_AudioInfo](reference/apis-media-kit/capi-oh-audioinfo.md)
           - [OH_VideoCaptureInfo](reference/apis-media-kit/capi-oh-videocaptureinfo.md)
@@ -4647,6 +4653,11 @@
           - [OH_AVScreenCaptureCallback](reference/apis-media-kit/capi-oh-avscreencapturecallback.md)
           - [OH_Rect](reference/apis-media-kit/capi-oh-rect.md)
           - [OH_AudioBuffer](reference/apis-media-kit/capi-oh-audiobuffer.md)
+          - [OH_NativeBuffer](reference/apis-media-kit/capi-oh-nativebuffer.md)
+          - [OH_AVScreenCapture](reference/apis-media-kit/capi-oh-avscreencapture.md)
+          - [OH_AVScreenCapture_ContentFilter](reference/apis-media-kit/capi-oh-avscreencapture-contentfilter.md)
+          - [OH_AVScreenCapture_CaptureStrategy](reference/apis-media-kit/capi-oh-avscreencapture-capturestrategy.md)
+          - [OH_AVScreenCapture_UserSelectionInfo](reference/apis-media-kit/capi-oh-avscreencapture-userselectioninfo.md)
           - [VideoProcessing_ColorSpaceInfo](reference/apis-media-kit/capi-videoprocessing-colorspaceinfo.md)
           - [OH_VideoProcessing](reference/apis-media-kit/capi-oh-videoprocessing.md)
           - [VideoProcessing_Callback](reference/apis-media-kit/capi-videoprocessing-callback.md)

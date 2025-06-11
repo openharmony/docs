@@ -26,7 +26,7 @@ createServer(name:&nbsp;string):&nbsp;Server
 
 | 参数名       | 类型                                       | 必填   | 说明       |
 | --------- | ---------------------------------------- | ---- | -------- |
-| name | string  | 是    | 自定义字符串，标识应用的服务名，最大长度255字节。  |
+| name | string  | 是    | 自定义的非空字符串，标识应用的服务名，最大长度255字节。  |
 
 **返回值：**
 
@@ -78,8 +78,8 @@ createConnection(deviceId:&nbsp;string,&nbsp;name:&nbsp;string):&nbsp;Connection
 
 | 参数名       | 类型                                      | 必填   | 说明        |
 | --------- | --------------------------------------- | ---- | --------- |
-| deviceId  | string | 是    | 连接的目标设备的deviceId，即对端设备的BLE MAC地址。[BLE MAC获取方法](../../connectivity/bluetooth/ble-development-guide.md)|
-| name      | string | 是    | 连接的目标设备的服务名，最大长度255字节。|
+| deviceId  | string | 是    | 连接的目标设备的deviceId，即对端设备的BLE MAC地址。BLE MAC的获取方法，请参考[查找设备](../../connectivity/bluetooth/ble-development-guide.md)。|
+| name      | string | 是    | 连接的目标设备的服务名，非空字符串，最大长度255字节。|
 
 **返回值：**
 
@@ -126,7 +126,7 @@ linkEnhanceCreateConnection(peerDeviceId: string) {
 
 start():&nbsp;void
 
-创建服务成功后，需要调用start()开启该服务，方可被客户端连接。
+创建服务成功后，需要调用start()开启该服务，方可被客户端连接，最大服务个数为10。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -451,9 +451,9 @@ linkEnhanceStart(name: string) {
 
 | 名称                    | 类型       |只读   | 可选   | 说明                 |
 | ----------------- | ------ | ----  | ---- | ------------------ |
-| deviceId          | string | 是    |是    | 对端设备ID，成功返回对端设备的deviceId，失败返回空字符串。     |
-| success           | boolean | 是    |是   | 连接结果，true表示连接成功，false表示连接失败。 |
-| reason            | number | 是    |是    | 连接成功返回0，连接失败返回错误码：<br>- 32390200：表示客户端连接超时。<br>- 32390201：表示服务端服务未启动。<br>- 32390300：表示内部错误。<br>更多关于错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。 |
+| deviceId          | string | 否    |否    | 对端设备ID，成功返回对端设备的deviceId，失败返回空字符串。     |
+| success           | boolean | 否    |否   | 连接结果，true表示连接成功，false表示连接失败。 |
+| reason            | number | 否    |否    | 连接成功返回0，连接失败返回错误码：<br>- 32390200：表示客户端连接超时。<br>- 32390201：表示服务端服务未启动。<br>- 32390300：表示内部错误。<br>更多关于错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。 |
 
 ## Connection
 
@@ -463,7 +463,7 @@ linkEnhanceStart(name: string) {
 
 connect(void):&nbsp;void
 
-在客户端执行，向服务端设备发起连接。
+在客户端执行，向服务端设备发起连接，最大连接个数限制为10。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 

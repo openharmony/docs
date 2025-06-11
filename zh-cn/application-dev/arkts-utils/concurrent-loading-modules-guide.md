@@ -63,6 +63,7 @@
      }
    }
    ```
+   <!-- @[define_calculator_module](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/sdk/Calculator.ets) -->
 
    定时器业务模块定义如下：
 
@@ -84,6 +85,7 @@
      }
    }
    ```
+   <!-- @[define_timer_module](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/sdk/TimerSdk.ets) -->
 
 2. 在UI主线程触发各业务模块分发到子线程，加载完成后在UI主线程使用，示例如下：
 
@@ -164,3 +166,4 @@
      }
    }
    ```
+   <!-- @[distribute_child_thread](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/ConcurrentLoadingModulesGuide.ets) -->
