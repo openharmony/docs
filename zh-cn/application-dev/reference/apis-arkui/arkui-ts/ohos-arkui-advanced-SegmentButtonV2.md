@@ -274,7 +274,7 @@ constructor(items: SegmentButtonV2ItemOptions[])
 
 | 参数名  | 类型                                                              | 必填 | 说明                       |
 | ----- | ----------------------------------------------------------------- | ---- | -------------------------- |
-| items | Array\<[SegmentButtonV2ItemOptions](#segmentbuttonv2itemoptions)> | 是   | 分段按钮选项配置参数集合。 |
+| items | [SegmentButtonV2ItemOptions](#segmentbuttonv2itemoptions)[] | 是   | 分段按钮选项配置参数集合。 |
 
 ### hasHybrid
 
