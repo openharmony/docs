@@ -117,7 +117,7 @@ HMAC使用指定的摘要算法，以共享密钥和消息作为输入，生成�
     let key = await genSymKeyByData(keyData);
     let macAlgName = "SHA256"; // 摘要算法名。
     let mac = cryptoFramework.createMac(macAlgName);
-    // 信息共43字节，utf-8解码后仍为43字节。
+    // 消息共43字节，utf-8解码后仍为43字节。
     let messageText = "aaaaa......bbbbb......ccccc......ddddd......eee";
     let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
     let updateLength = 20; // 以20字节为单位进行分段更新。
@@ -153,7 +153,7 @@ HMAC使用指定的摘要算法，以共享密钥和消息作为输入，生成�
     let key = genSymKeyByData(keyData);
     let macAlgName = "SHA256"; // 摘要算法名。
     let mac = cryptoFramework.createMac(macAlgName);
-    // 信息总计43字节，按utf-8解码。
+    // 消息总计43字节，按utf-8解码。
     let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
     let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
     let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求。
