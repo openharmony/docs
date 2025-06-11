@@ -246,7 +246,7 @@ deviceTypes示例：
 | value | 标识数据项的值，取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | resource | 标识了用户自定义数据，取值为长度不超过255字节的字符串，内容为该数据的资源索引，例如配置成$profile:shortcuts_config，表示指向了/resources/base/profile/shortcuts_config.json配置文件。| 字符串 | 该标签可缺省，缺省值为空。 |
 
-下面给出三种metadata标签的使用场景及示例，开发者也可以根据实际需求自定义设置。
+下面给出四种metadata标签的使用场景及示例，开发者也可以根据实际需求自定义设置。
 
 1. 使用metadata标签配置主窗口的默认大小和位置（单位为vp）。其中name取值及对应含义如下：
 
