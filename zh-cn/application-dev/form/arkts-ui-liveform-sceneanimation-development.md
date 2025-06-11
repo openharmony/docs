@@ -54,7 +54,7 @@ export default class MyLiveFormExtensionAbility extends LiveFormExtensionAbility
 ```
 
 2. 互动卡片页面实现
- 
+
 ```ts
 // entry/src/main/ets/myliveformextensionability/pages/MyLiveFormPage.ets
 import { UIExtensionContentSession } from '@kit.AbilityKit';

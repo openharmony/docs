@@ -35,7 +35,7 @@
 ## 约束和限制
 
 ### 请求参数约束
-1. 互动卡片“破框”最大合法动效时长：3500ms。<!--Del-->仅三方应用生效，系统应用不作限制。<!--DelEnd-->
+1. 互动卡片“破框”动效最大合法动效时长：3500ms。<!--Del-->仅三方应用生效，系统应用不作限制。<!--DelEnd-->
 2. 由卡片定时定点刷新触发的互动卡片动效，一天内单张卡片最多触发50次。
 3. 最大可申请动效区域：如下图，矩形ABCD表示卡片自身渲染区域，矩形IJKL表示卡片最大可申请动效区域。两个矩形中心对齐。尺寸满足以下表格描述。
 
@@ -56,6 +56,12 @@
 调用[formProvider.requestOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20)接口时，[overflowInfo](../reference/apis-form-kit/js-apis-app-form-formInfo.md#overflowinfo20)中描述的互动卡片动效渲染区域（矩形EFGH）需要满足：
 1. 完整包含了卡片（矩形ABCD）。
 2. 不超过矩形IJKL（矩形IJKL完整包含矩形EFGH）。<!--Del-->仅三方应用生效，系统应用不作限制。<!--DelEnd-->
+
+例如：某设备上一个2*2卡片宽度为158vp，高度为158vp。对上上图则有： 
+1. AD=158vp，AB=158vp，IJ=158*1.5=237vp，IL=158*1.5=237vp。
+2. IA两点水平相距39.5vp，垂直相距39.5vp。
+
+因此，以A点为原点，向右为X轴正方向，向下为Y轴正方向，图5中E点的合法坐标可以是（-20，-20），EF边长合法值可以是200vp，EH边长合法值可以是200vp。
 
 具体可参考[场景动效类型互动卡片开发指导](arkts-ui-liveform-sceneanimation-development.md)。
 

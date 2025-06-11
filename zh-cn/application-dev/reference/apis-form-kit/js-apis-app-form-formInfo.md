@@ -123,7 +123,7 @@ import { formInfo } from '@kit.FormKit';
 | FORM_PERMISSION_NAME_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_name' | 用户授权权限名称。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | FORM_PERMISSION_GRANTED_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_granted' | 用户是否授权。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | FORM_WIDTH_VP_KEY<sup>20+</sup> | 'ohos.extra.param.key.form_width_vp' | 卡片宽度信息，单位vp。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| FORM_HEIGHT_VP_KEY <sup>12+</sup> | 'ohos.extra.param.key.form_height_vp' | 卡片高度信息，单位vp。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| FORM_HEIGHT_VP_KEY <sup>20+</sup> | 'ohos.extra.param.key.form_height_vp' | 卡片高度信息，单位vp。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## FormDimension
 
