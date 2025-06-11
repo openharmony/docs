@@ -23,4 +23,5 @@
 ![live-form-weather-demo.gif](figures/live-form-weather-demo.gif)
 
 ## 约束和限制
-互动卡片作为卡片功能的增强，卡片自身业务不能强依赖互动卡片动效能力。
+1. 互动卡片作为卡片功能的增强，卡片自身业务不能强依赖互动卡片动效能力。
+2. 互动卡片能力目前仅支持mate60系列和mate70系列产品，
