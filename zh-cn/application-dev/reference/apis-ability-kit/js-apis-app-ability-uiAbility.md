@@ -576,10 +576,10 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
     }
 
     async onContinue(wantParams: Record<string, Object>) {
-        console.info('onContinue');
-        return this.setWant(wantParams).then(()=>{
-          return AbilityConstant.OnContinueResult.AGREE;
-        });
+      console.info('onContinue');
+      return this.setWant(wantParams).then(() => {
+        return AbilityConstant.OnContinueResult.AGREE;
+      });
     }
   }
   ```
