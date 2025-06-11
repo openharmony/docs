@@ -839,7 +839,7 @@ onPrepareToTerminateAsync(): Promise\<boolean>
 > - 回调时机：当用户通过点击应用窗口右上角的关闭按钮、或者通过Dock栏/托盘右键退出应用时，可以使用该回调。
 >
 > - 当[AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#abilitystageonprepareterminationasync15)或[AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15)实现时，在dock栏或系统托盘处右键点击关闭，本回调函数将不执行。
-> - 如果应用本身或者所使用的三方框架注册了[window.WindowStage.on('windowStageClose')](../apis-arkui/js-apis-window.md#onwindowstageclose14)监听，本回调函数将不执行。
+> - 如果应用本身或者所使用的三方框架注册了[window.WindowStage.on('windowStageClose')](../apis-arkui/arkts-apis-window-WindowStage.md#onwindowstageclose14)监听，本回调函数将不执行。
 >
 > - 若异步回调内发生crash，按超时处理，执行等待超过10秒未响应，UIAbility将被强制关闭。
 
