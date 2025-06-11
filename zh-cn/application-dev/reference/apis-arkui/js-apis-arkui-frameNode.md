@@ -1642,7 +1642,7 @@ getInteractionEventBindingInfo(eventType: EventQueryType): InteractionEventBindi
 
 recycle(): void
 
-子组件的回收方法。
+全局复用场景下，触发子组件回收，彻底释放FrameNode后端资源，以便于资源的重新复用，确保后端资源能够被有效回收并再次使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1656,7 +1656,7 @@ recycle(): void
 
 reuse(): void
 
-子组件的复用方法。
+全局复用场景下，触发子组件复用，实现FrameNode后端资源的复用，提升资源利用效率。为保证资源充足，可以在recycle之后使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -6102,14 +6102,14 @@ class MyNodeController extends NodeController {
     console.log("myButton on detach");
   }
 
-  //  onBind时复用
+  //  onBind时，子节点已经重新上树，此时调用reuse，保证子组件的能重新被复用。
   onBind(containerId: number): void {
     // 该方法触发子组件复用，全局复用场景下，复用FrameNode后端资源。
     this.rootNode?.reuse();
     console.log("myButton reuse");
   }
 
-  //  onUnbind时回收
+  //  onUnbind时，子节点已经完全下树，此时调用recycle，保证子组件的能完全被回收。
   onUnbind(containerId: number): void {
     // 该方法触发子组件的回收，全局复用场景下，回收FrameNode后端资源用于重新利用。
     this.rootNode?.recycle();
