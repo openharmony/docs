@@ -1785,6 +1785,7 @@
         - [fdsan使用指导](napi/fdsan.md)
       - 使用Node-API实现跨语言交互<!--using-napi-interaction-with-cpp-->
         - [Node-API简介](napi/napi-introduction.md)
+        - [Node-API接口返回状态码介绍](napi/napi_status_introduction.md)
         - [Node-API支持的数据类型和接口](napi/napi-data-types-interfaces.md)
         - [Node-API开发规范](napi/napi-guidelines.md)
         - [使用Node-API实现跨语言交互开发流程](napi/use-napi-process.md)
