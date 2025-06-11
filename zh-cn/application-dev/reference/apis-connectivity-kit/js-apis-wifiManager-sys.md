@@ -220,7 +220,7 @@ WLAN配置信息。
 | proxyConfig<sup>10+</sup> | [WifiProxyConfig](#wifiproxyconfig10) | 是 | 是 | 代理配置。  <br /> **系统接口：** 此接口为系统接口。|
 | configStatus<sup>12+</sup> | number | 是 | 是 | 返回当前网络是否允许参与选网。 <br />  1 - 允许参与选网，2 - 禁止参与 <br /> 3 - 永久禁止参与，4 - 未知 <br /> **系统接口：** 此接口为系统接口。|
 | isAutoConnectAllowed<sup>17+</sup> | boolean | 是 | 是 | 是否允许自动连接。false:不允许，true：允许自动连接。<br /> **系统接口：** 此接口为系统接口。|
-| isSecureWifi<sup>17+</sup> | boolean | 是 | 是 | 安全WiFi检测。false:不是安全Wifi，true：是安全WiFi。<br /> **系统接口：** 此接口为系统接口。|
+| isSecureWifi<sup>20+</sup> | boolean | 是 | 是 | 安全WiFi检测。false:不是安全Wifi，true：是安全WiFi。<br /> **系统接口：** 此接口为系统接口。|
 
 ## IpType<sup>9+</sup>
 
@@ -1168,8 +1168,9 @@ setHotspotConfig(config: HotspotConfig): void
 | securityType | [WifiSecurityType](js-apis-wifiManager.md#wifisecuritytype9)| 是 | 否 | 加密类型。 |
 | band | number | 是 | 否 | 热点的带宽。1: 2.4G, 2: 5G, 3: 双模频段 |
 | channel<sup>10+</sup> | number | 是 | 是 | 热点的信道（2.4G：1~14,5G：7~196）。 |
-| preSharedKey | string | 否 | 是 | 热点的密钥。 |
+| preSharedKey | string | 否 | 否 | 热点的密钥。 |
 | maxConn | number | 是 | 否 | 最大设备连接数。 |
+| ipAddress | string | 是 | 是 | DHCP服务器的IP地址。|
 
 ## wifiManager.getHotspotConfig<sup>9+</sup>
 
