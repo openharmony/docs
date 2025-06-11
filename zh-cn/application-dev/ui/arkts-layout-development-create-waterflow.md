@@ -212,7 +212,8 @@ struct ReusableListItem {
 
 > **说明：** 
 >
-> 完整示例请参考 [WaterFlowGroupingMixing](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/waterFlow/WaterFlowGroupingMixing.ets)
+> 完整示例请参考 [WaterFlow 组件-示例3（使用分组）](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md#示例3使用分组)。
+
 
 ```ts
 @Entry
