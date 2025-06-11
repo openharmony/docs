@@ -4274,7 +4274,22 @@
   - 媒体<!--media-reference-->
     - Audio Kit（音频服务）<!--audio-api-->
       - ArkTS API<!--audio-arkts-->
-        - [@ohos.multimedia.audio (音频管理)](reference/apis-audio-kit/js-apis-audio.md)
+        - @ohos.multimedia.audio (音频管理)<!--js-apis-audio-->
+          - [模块描述](reference/apis-audio-kit/arkts-apis-audio.md)
+          - [Functions](reference/apis-audio-kit/arkts-apis-audio-f.md)
+          - [Interface (AudioCapturer)](reference/apis-audio-kit/arkts-apis-audio-AudioCapturer.md)
+          - [Interface (AudioManager)](reference/apis-audio-kit/arkts-apis-audio-AudioManager.md)
+          - [Interface (AudioRenderer)](reference/apis-audio-kit/arkts-apis-audio-AudioRenderer.md)
+          - [Interface (AudioRoutingManager)](reference/apis-audio-kit/arkts-apis-audio-AudioRoutingManager.md)
+          - [Interface (AudioSessionManager)](reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md)
+          - [Interface (AudioSpatializationManager)](reference/apis-audio-kit/arkts-apis-audio-AudioSpatializationManager.md)
+          - [Interface (AudioStreamManager)](reference/apis-audio-kit/arkts-apis-audio-AudioStreamManager.md)
+          - [Interface (AudioVolumeGroupManager)](reference/apis-audio-kit/arkts-apis-audio-AudioVolumeGroupManager.md)
+          - [Interface (AudioVolumeManager)](reference/apis-audio-kit/arkts-apis-audio-AudioVolumeManager.md)
+          - [Interfaces (其他)](reference/apis-audio-kit/arkts-apis-audio-i.md)
+          - [Enums](reference/apis-audio-kit/arkts-apis-audio-e.md)
+          - [Constants](reference/apis-audio-kit/arkts-apis-audio-c.md)
+          - [Types](reference/apis-audio-kit/arkts-apis-audio-t.md)
         - [@ohos.multimedia.audioHaptic (音振协同)](reference/apis-audio-kit/js-apis-audioHaptic.md)
         <!--Del-->
         - [@ohos.multimedia.audio (音频管理)(系统接口)](reference/apis-audio-kit/js-apis-audio-sys.md)
@@ -4596,7 +4611,23 @@
         - [Image错误码](reference/apis-image-kit/errorcode-image.md)
     - Media Kit（媒体服务）<!--media-api-->
       - ArkTS API<!--media-arkts-->
-        - [@ohos.multimedia.media (媒体服务)](reference/apis-media-kit/js-apis-media.md)
+        - @ohos.multimedia.media (媒体服务)<!--js-apis-media-->
+          - [模块描述](reference/apis-media-kit/arkts-apis-media.md)
+          - [Functions](reference/apis-media-kit/arkts-apis-media-f.md)
+          - [Interface (AVImageGenerator)](reference/apis-media-kit/arkts-apis-media-AVImageGenerator.md)
+          - [Interface (AVMetadataExtractor)](reference/apis-media-kit/arkts-apis-media-AVMetadataExtractor.md)
+          - [Interface (AVPlayer)](reference/apis-media-kit/arkts-apis-media-AVPlayer.md)
+          - [Interface (AVRecorder)](reference/apis-media-kit/arkts-apis-media-AVRecorder.md)
+          - [Interface (AVScreenCaptureRecorder)](reference/apis-media-kit/arkts-apis-media-AVScreenCaptureRecorder.md)
+          - [Interface (AVTranscoder)](reference/apis-media-kit/arkts-apis-media-AVTranscoder.md)
+          - [Interface (MediaSource)](reference/apis-media-kit/arkts-apis-media-MediaSource.md)
+          - [Interface (MediaSourceLoadingRequest)](reference/apis-media-kit/arkts-apis-media-MediaSourceLoadingRequest.md)
+          - [Interfaces (其他)](reference/apis-media-kit/arkts-apis-media-i.md)
+          - [Enums](reference/apis-media-kit/arkts-apis-media-e.md)
+          - [Types](reference/apis-media-kit/arkts-apis-media-t.md)
+          - [废弃的Interface (AudioPlayer, deprecated)](reference/apis-media-kit/arkts-apis-media-AudioPlayer.md)
+          - [废弃的Interface (AudioRecorder, deprecated)](reference/apis-media-kit/arkts-apis-media-AudioRecorder.md)
+          - [废弃的Interface (VideoPlayer, deprecated)](reference/apis-media-kit/arkts-apis-media-VideoPlayer.md)
         <!--Del-->
         - [@ohos.multimedia.media (媒体服务)(系统接口)](reference/apis-media-kit/js-apis-media-sys.md)
         <!--DelEnd-->

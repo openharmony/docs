@@ -10,7 +10,7 @@ AVRecorder支持开发音视频录制，集成了音频捕获，音频编码，�
 
 ![Recording status change](figures/recording-status-change-ndk.png)
 
-状态的详细说明请参考[AVRecorderState](../../reference/apis-media-kit/js-apis-media.md#avrecorderstate9)。
+状态的详细说明请参考[AVRecorderState](../../reference/apis-media-kit/arkts-apis-media-t.md#avrecorderstate9)。
 
 
 ## 申请权限
