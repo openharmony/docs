@@ -52,7 +52,7 @@ struct Index {
                 console.info('startUIServiceExtensionAbility success.');
               }).catch((error: BusinessError) => {
                 console.error(`startUIServiceExtensionAbility failed, err code: ${error.code}, err msg: ${error.message}.`);
-              })
+              });
             } catch (err) {
               let code = (err as BusinessError).code;
               let msg = (err as BusinessError).message;
@@ -114,8 +114,7 @@ struct Index {
                     let msg = (err as BusinessError).message;
                     console.error(`sendData failed, err code:${code}, err msg:${msg}.`);
                   }
-                  ;
-                })
+                });
                 .catch((err: BusinessError) => {
                   console.error(`connectUIServiceExtensionAbility failed, err code: ${err.code}, err msg: ${err.message}.`);
                 });
@@ -124,7 +123,6 @@ struct Index {
               let msg = (err as BusinessError).message;
               console.error(`connectUIServiceExtensionAbility failed, err code:${code}, err msg:${msg}.`);
             }
-            ;
           })
       }
     }
