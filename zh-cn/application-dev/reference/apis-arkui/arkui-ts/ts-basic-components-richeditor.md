@@ -5003,65 +5003,7 @@ struct RichEditorExample {
 ```
 ![StyledString](figures/maxLengthmaxLines.gif)
 
-### 示例26（设置自定义布局拖拽背板及拖拽投影配置）
-通过使用addBuilderSpan，可以在拖拽场景中为自定义布局的拖拽背板和拖拽投影设置相关参数。
-
-```ts
-// xxx.ets
-import { ColorMetrics } from '@kit.ArkUI'
-
-@Entry
-@Component
-struct richEditorNew03 {
-  controller: RichEditorController = new RichEditorController();
-  options: RichEditorOptions = { controller: this.controller }
-  build() {
-    Column({ space: 10 }) {
-      Column() {
-        RichEditor(this.options)
-          .onReady(() => {
-            this.controller.addBuilderSpan(() => {
-              this.placeholderBuilder()
-            }, {
-              offset: -1,
-              dragBackgroundColor: ColorMetrics.rgba(0xff, 0x80, 0, 0xff),
-              isDragShadowNeeded: false
-            })
-            this.controller.addBuilderSpan(() => {
-              this.placeholderBuilder()
-            }, {
-              offset: -1,
-              dragBackgroundColor: ColorMetrics.resourceColor("#ffff0000")
-                .blendColor(ColorMetrics.resourceColor("#ff00ff00")),
-              isDragShadowNeeded: true
-            })
-            this.controller.addBuilderSpan(() => {
-              this.placeholderBuilder()
-            }, { offset: -1 })
-          })
-          .borderWidth(1)
-          .width("100%")
-          .height("50%")
-          .margin(50)
-      }
-      .width('100%')
-      .margin({top:100})
-    }
-  }
-
-  @Builder
-  placeholderBuilder() {
-    Row() {
-      Text('是BuilderSpan，不是纯文本内容')
-        .fontSize(22)
-        .copyOption(CopyOptions.InApp)
-    }
-  }
-}
-```
-![StyledString](figures/builderspan_drag_config.gif)
-
-### 示例27（文本设置Url样式）
+### 示例26（文本设置Url样式）
 可以通过在addTextSpan和UpdateSpanStyle接口中加入UrlStyle，来实现文本点击时跳转到指定链接的功能。
 
 ```ts
@@ -5108,7 +5050,7 @@ struct RichEditorExample {
 }
 ```
 
-### 示例28（开启带样式的撤销还原能力）
+### 示例27（开启带样式的撤销还原能力）
 对于不使用属性字符串的富文本组件，可以通过配置[undoStyle](#undostyle20)属性为UndoStyle.KEEP_STYLE，以支持撤销还原时保留原内容的样式。
 
 ```ts
@@ -5244,7 +5186,7 @@ struct StyledUndo {
 ```
 ![UndoStyle](figures/richEditorStyledUndo.gif)
 
-### 示例29（设置装饰线粗细和多装饰线）
+### 示例28（设置装饰线粗细和多装饰线）
 
 ```ts
 import { LengthMetrics } from '@kit.ArkUI';
