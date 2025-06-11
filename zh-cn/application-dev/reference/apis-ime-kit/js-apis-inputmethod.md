@@ -2533,7 +2533,7 @@ on(type: 'moveCursor', callback: (direction: Direction) => void): void
 | 参数名   | 类型 | 必填 | 说明   |
 | -------- | ------ | ---- | ------ |
 | type     | string | 是   | 设置监听类型，固定取值为'moveCursor'。 |
-| callback | callback: (direction: [Direction<sup>10+</sup>](#direction10)) => void | 是   | 回调函数，返回光标信息。<br/>根据返回的光标移动方向，改变光标位置，如光标向上或向下。  |
+| callback | (direction: [Direction](#direction10)) => void | 是   | 回调函数，返回光标信息。<br/>根据返回的光标移动方向，改变光标位置，如光标向上或向下。  |
 
 **错误码：**
 
@@ -2594,7 +2594,7 @@ on(type: 'handleExtendAction', callback: (action: ExtendAction) => void): void
 | 参数名   | 类型  | 必填 | 说明   |
 | -------- | ------ | ---- | -------- |
 | type     | string    | 是   | 设置监听类型，固定取值为'handleExtendAction'。 |
-| callback | callback: (action: [ExtendAction](#extendaction10)) => void | 是   | 回调函数，返回扩展编辑操作类型。<br/>根据传入的扩展编辑操作类型，做相应的操作，如剪切、复制等。|
+| callback | (action: [ExtendAction](#extendaction10)) => void | 是   | 回调函数，返回扩展编辑操作类型。<br/>根据传入的扩展编辑操作类型，做相应的操作，如剪切、复制等。|
 
 **错误码：**
 
