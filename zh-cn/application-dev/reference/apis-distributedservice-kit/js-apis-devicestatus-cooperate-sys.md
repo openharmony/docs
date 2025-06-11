@@ -700,8 +700,8 @@ activateCooperateWithOptions(targetNetworkId: string, inputDeviceId: number,
 | 参数名    | 类型   | 必填 | 说明                     |
 | --------- | ------ | ---- | ------------------------ |
 | targetNetworkId | string | 是   | 键鼠穿越目标设备描述符。 |
-| inputDeviceId   | number | 是   | 待穿越输入设备标识符。   |
-|cooperateOptions | CooperateOptions | 否   | 对端设备的配合选项。 |
+| inputDeviceId   | number | 是   |  发起穿越操作的输入设备ID。   |
+|cooperateOptions | CooperateOptions | 否   | 穿越可选控制参数，控制穿出点位置。 |
 
 **错误码：**
 
@@ -793,7 +793,7 @@ try {
 
 ## CooperateOptions<sup>20+</sup>
 
-键鼠穿越的消息。
+ 键鼠穿越可选控制参数，控制穿出点位置。
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
