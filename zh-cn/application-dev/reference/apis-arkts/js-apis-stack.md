@@ -332,7 +332,7 @@ stack.push(4);
 // 使用方法一：
 while(!stack.isEmpty()) {
   // 业务逻辑
-  let item = stack.pop()
+  let item = stack.pop();
   console.log("value:" + item);
 }
 

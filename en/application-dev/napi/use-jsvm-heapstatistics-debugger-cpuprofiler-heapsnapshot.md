@@ -71,6 +71,11 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(getVM())JS";
 ```
 
+Expected result:
+```
+JSVM OH_JSVM_GetVM: success
+```
+
 ### OH_JSVM_GetHeapStatistics
 
 Use **OH_JSVM_GetHeapStatistics** to obtain heap statistics of a VM.
@@ -132,6 +137,22 @@ static JSVM_PropertyDescriptor descriptor[] = {
 ```c++
 const char *srcCallNative = R"JS(getHeapStatistics())JS";
 ```
+Expected result:
+```
+JSVM API heap totalHeapSize: 1597440
+JSVM API heap totalHeapSizeExecutable: 0
+JSVM API heap totalPhysicalSize: 1323008
+JSVM API heap totalAvailableSize: 1519203688
+JSVM API heap usedHeapSize: 178256
+JSVM API heap heapSizeLimit: 1518338048
+JSVM API heap mallocedMemory: 32848
+JSVM API heap externalMemory: 0
+JSVM API heap peakMallocedMemory: 40960
+JSVM API heap numberOfNativeContexts: 1
+JSVM API heap numberOfDetachedContexts: 0
+JSVM API heap totalGlobalHandlesSize: 8192
+JSVM API heap usedGlobalHandlesSize: 32
+```
 
 For details about the sample code of the previous APIs, see:
 
@@ -139,25 +160,24 @@ For details about the sample code of the previous APIs, see:
 
 ### OH_JSVM_StartCpuProfiler
 
-Use **OH_JSVM_StartCpuProfiler** to create and start a CPU profiler instance.
+Creates and starts a CPU profiler instance.
 
 ### OH_JSVM_StopCpuProfiler
 
-Use **OH_JSVM_StopCpuProfiler** to stop the CPU profiler and output the result to a stream.
+Stops the CPU profiler and outputs the result to a stream.
 
 ### OH_JSVM_TakeHeapSnapshot
 
-Use **OH_JSVM_TakeHeapSnapshot** to obtain a snapshot of the current heap and output it to a stream.
+Obtains a snapshot of the current heap and outputs it to a stream.
 
 ### OH_JSVM_OpenInspector
 
-Use **OH_JSVM_OpenInspector** to open an inspector instance on the specified host and port for debugging JS code.
+Opens an inspector instance on the specified host and port for debugging JS code.
 
 ### OH_JSVM_CloseInspector
 
-Use **OH_JSVM_CloseInspector** to close all remaining inspector connections.
+Closes all remaining inspector connections.
 
 ### OH_JSVM_WaitForDebugger
 
-Use **OH_JSVM_WaitForDebugger** to wait for the host to set up a socket connection with an inspector. After the connection is set up, the application continues to run. You can use **Runtime.runIfWaitingForDebugger** to run paused targets.
-
+Waits for the host to set up a socket connection with an inspector. After the connection is set up, the application continues to run. You can use **Runtime.runIfWaitingForDebugger** to run paused targets.

@@ -357,6 +357,10 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     int32_t rateMode = static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_VBR);
     // 配置关键帧的间隔，单位为毫秒。
     int32_t iFrameInterval = 1000;
+    // 配置质量稳定码率因子。
+    int32_t sqrFactor = 30;
+    // 配置最大比特率，单位为bps。
+    int64_t maxBitRate = 20000000;
     // 配置比特率，单位为bps。
     int64_t bitRate = 5000000;
     // 配置编码质量。
@@ -374,9 +378,13 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_MATRIX_COEFFICIENTS, matrix);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, iFrameInterval);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, profile);
-    //只有当OH_BitrateMode = BITRATE_MODE_CQ 时，才需要配置OH_MD_KEY_QUALITY。
+    //只有当OH_BitrateMode = BITRATE_MODE_CQ时，才需要配置OH_MD_KEY_QUALITY。
     if (rateMode == static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_CQ)) {
         OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality);
+    } else if (rateMode == static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_SQR)) {
+        // 只有当OH_BitrateMode = BITRATE_MODE_SQR时，才需要配置OH_MD_KEY_MAX_BITRATE和OH_MD_KEY_SQR_FACTOR。
+        OH_AVFormat_SetLongValue(format, OH_MD_KEY_MAX_BITRATE, maxBitRate);
+        OH_AVFormat_SetIntValue(format, OH_MD_KEY_SQR_FACTOR, sqrFactor);
     } else if (rateMode == static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_CBR) ||
                rateMode == static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_VBR)){
         OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
@@ -507,7 +515,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理。
     }
     // 将编码完成帧数据buffer写入到对应输出文件中。
-    outputFile->write(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(bufferInfo->buffer)), info.size);
+    uint8_t *addr = OH_AVBuffer_GetAddr(bufferInfo->buffer);
+    if (addr == nullptr) {
+       // 异常处理 
+    }
+    outputFile->write(reinterpret_cast<char *>(addr), info.size);
     // 释放已完成写入的数据，index为对应输出队列下标
     ret = OH_VideoEncoder_FreeOutputBuffer(videoEnc, bufferInfo->index);
     if (ret != AV_ERR_OK) {
@@ -804,10 +816,19 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理。
     }
     // 写入图像数据。
-    if (widthStride == width) {
+    int32_t frameSize = 0;
+    if (widthStride == width && heightStride == height) {
+        frameSize = width * height * 3 / 2; // NV12像素格式下，每帧数据大小的计算公式
+        int32_t capacity = OH_AVBuffer_GetCapacity(bufferInfo->buffer);
+        if (frameSize > capacity) {
+            // 异常处理。
+        }
         // 处理文件流得到帧的长度，再将需要编码的数据写入到对应index的buffer中。
-        int32_t frameSize = width * height * 3 / 2; // NV12像素格式下，每帧数据大小的计算公式。
-        inputFile->read(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(bufferInfo->buffer)), frameSize);
+        uint8_t *addr = OH_AVBuffer_GetAddr(bufferInfo->buffer);
+        if (addr == nullptr) {
+           // 异常处理 
+        }
+        inputFile->read(reinterpret_cast<char *>(addr), frameSize);
     } else {
         // 如果跨距不等于宽，需要开发者按照跨距进行偏移，具体可参考以下示例。
     }
@@ -959,7 +980,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理。
     }
     // 将编码完成帧数据buffer写入到对应输出文件中。
-    outputFile->write(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(bufferInfo->buffer)), info.size);
+    uint8_t *addr = OH_AVBuffer_GetAddr(bufferInfo->buffer);
+    if (addr == nullptr) {
+       // 异常处理 
+    }
+    outputFile->write(reinterpret_cast<char *>(addr), info.size);
     // 释放已完成写入的数据，index为对应输出队列的下标。
     ret = OH_VideoEncoder_FreeOutputBuffer(videoEnc, bufferInfo->index);
     if (ret != AV_ERR_OK) {

@@ -8,7 +8,7 @@
         - [XML生成](xml-generation.md)
         - [XML解析](xml-parsing.md)
         - [XML转换](xml-conversion.md)
-    - [Buffer介绍](buffer.md)
+    - [Buffer与FastBuffer](buffer.md)
     - [JSON扩展库](arkts-json.md)
     - ArkTS容器类库<!--containers-->
         - [容器类库概述](container-overview.md)
@@ -71,6 +71,7 @@
             - [多线程取消TaskPool任务场景](multi-thread-cancel-task.md)
             - [ArkTS多线程间操作Native对象场景](napi-coerce-to-native-binding-object.md)
             - [Worker常驻线程通过TaskPool进行多任务并发处理](worker-and-taskpool.md)
+    - [并发常见问题](concurrency-faq.md)
 - [ArkTS跨语言交互](arkts-cross-language-interaction.md)
 - ArkTS运行时<!--arkts-runtime-->
     - [ArkTS运行时概述](arkts-runtime-overview.md)

@@ -33,14 +33,27 @@ import { inputMethod } from '@kit.IMEKit';
 | -------- | -------- | -------- | -------- | -------- |
 | name<sup>9+</sup>  | string | 是 | 否 | 必填。输入法包名。|
 | id<sup>9+</sup>    | string | 是 | 否 | 必填。输入法扩展在应用内唯一标识，与name一起组成输入法扩展的全局唯一标识。|
-| label<sup>9+</sup>    | string | 是 | 是 | 非必填。输入法扩展对外显示名称。优先使用InputmethodExtensionAbility中配置的label，若未配置，自动使用应用入口ability的label，当应用入口ability未配置label时，自动使用应用AppScope中配置的label。|
-| labelId<sup>10+</sup>    | number | 是 | 是 | 非必填。输入法对外显示名称资源号。|
-| icon<sup>9+</sup>    | string | 是 | 是 | 非必填。输入法图标数据，可以通过iconId查询获取。预留字段，暂不支持使用。|
-| iconId<sup>9+</sup>    | number | 是 | 是 | 非必填。输入法图标资源号。 |
-| enabledState<sup>20+</sup>    | [EnabledState](js-apis-inputmethod.md#enabledstate15) | 是 | 是 | 非必填。输入法启用状态。|
+| label<sup>9+</sup>    | string | 是 | 是 | 非必填。<br>- 当InputMethodProperty用于切换、查询等接口的入参时，开发者可不填写此字段，通过name和id即可唯一指定一个输入法扩展。<br>- 当InputMethodProperty作为查询接口的返回值时（如[getCurrentInputMethod](#inputmethodgetcurrentinputmethod9)），此字段表示输入法扩展对外显示的名称，优先使用InputmethodExtensionAbility中配置的label，若未配置，自动使用应用入口ability的label；当应用入口ability未配置label时，自动使用应用AppScope中配置的label。|
+| labelId<sup>10+</sup>    | number | 是 | 是 | 非必填。<br>- 当InputMethodProperty用于切换、查询等接口的入参时，开发者可不填写此字段，通过name和id即可唯一指定一个输入法扩展。<br>- 当InputMethodProperty作为查询接口的返回值时（如[getCurrentInputMethod](#inputmethodgetcurrentinputmethod9)），此字段表示label字段的资源号。|
+| icon<sup>9+</sup>    | string | 是 | 是 | 非必填。<br>- 当InputMethodProperty用于切换、查询等接口的入参时，开发者可不填写此字段，通过name和id即可唯一指定一个输入法扩展。<br>- 当InputMethodProperty作为查询接口的返回值时（如[getCurrentInputMethod](#inputmethodgetcurrentinputmethod9)），此字段表示输入法图标数据，可以通过iconId查询获取。|
+| iconId<sup>9+</sup>    | number | 是 | 是 | 非必填。<br>- 当InputMethodProperty用于切换、查询等接口的入参时，开发者可不填写此字段，通过name和id即可唯一指定一个输入法扩展。<br>- 当InputMethodProperty作为查询接口的返回值时（如[getCurrentInputMethod](#inputmethodgetcurrentinputmethod9)），此字段表示icon字段的资源号。|
+| enabledState<sup>20+</sup>    | [EnabledState](js-apis-inputmethod.md#enabledstate15) | 是 | 是 | 非必填。<br>- 当InputMethodProperty用于切换、查询等接口的入参时，开发者可不填写此字段，通过name和id即可唯一指定一个输入法扩展<br>- 当InputMethodProperty作为查询接口的返回值时（如[getCurrentInputMethod](#inputmethodgetcurrentinputmethod9)），此字段表示该输入法启用状态。|
 | extra<sup>9+</sup>    | object | 否 | 是 | 输入法扩展信息。预留字段，当前无具体含义，暂不支持使用。<br/>- API version 10起：非必填；<br/>- API version 9：必填。|
 | packageName<sup>(deprecated)</sup> | string | 是 | 否 | 输入法包名。必填。<br/>说明：从API version 8开始支持，从API version 9开始废弃，建议使用name替代。 |
 | methodId<sup>(deprecated)</sup> | string | 是 | 否 | 输入法唯一标识。必填。<br/>说明：从API version 8开始支持，从API version 9开始废弃，建议使用id替代。 |
+
+## CapitalizeMode<sup>20+</sup>
+
+枚举，定义了文本首字母大写的不同模式。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称 | 值 | 描述 |
+| -------- | -- | -------- |
+| NONE | 0 | 不进行任何首字母大写处理。|
+| SENTENCES | 1 | 每个句子的首字母大写。|
+| WORDS | 2 | 每个单词首字母大写。|
+| CHARACTERS | 3 | 每个字母都大写。|
 
 ## inputMethod.getController<sup>9+</sup>
 
@@ -642,6 +655,11 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 | URL  | 6 |链接类型。 |
 | VISIBLE_PASSWORD  | 7 |密码类型。 |
 | NUMBER_PASSWORD<sup>11+</sup> | 8 |数字密码类型。 |
+| SCREEN_LOCK_PASSWORD<sup>20+</sup> | 9 |锁屏密码类型。 |
+| USER_NAME<sup>20+</sup> | 10 |用户名类型。 |
+| NEW_PASSWORD<sup>20+</sup> | 11 |新密码类型。 |
+| NUMBER_DECIMAL<sup>20+</sup> | 12 |带小数点的数字类型。 |
+| ONE_TIME_CODE<sup>20+</sup> | 13 |验证码类型。 |
 
 ## EnterKeyType<sup>10+</sup>
 
@@ -719,6 +737,9 @@ Enter键的功能类型。
 | -------- | -------- | -------- | -------- | -------- |
 | textInputType<sup>10+</sup>  | [TextInputType](#textinputtype10) | 否 | 否 | 文本输入类型。|
 | enterKeyType<sup>10+</sup>  | [EnterKeyType](#enterkeytype10) | 否 | 否 | Enter键功能类型。|
+| placeholder<sup>20+</sup> | string | 否 | 是 | 编辑框设置的占位符信息。 <br/>- 编辑框设置占位符信息时，长度不超过255个字符（如果超出将会自动截断为255个字符），用于提示或引导用户输入临时性文本或符号。（例如：提示输入项为"必填"或"非必填"的输入结果反馈。）<br/>- 编辑框没有设置占位符信息时，默认为空字符串。<br/>- 该字段在调用[attach](#attach10)时提供给输入法应用。|
+| abilityName<sup>20+</sup> | string | 否 | 是 | 编辑框设置的ability名称。<br/>- 编辑框设置ability名称时，长度不超过127个字符（如果超出将会自动截断为127个字符）。<br/>- 编辑框未设置ability名称时，默认为空字符串。<br/>- 该字段在调用绑定[attach](#attach10)时提供给输入法应用。|
+| capitalizeMode<sup>20+</sup> | [CapitalizeMode](#capitalizemode20) | 否 | 是 | 编辑框设置大小写模式。如果没有设置或设置非法值，默认不进行任何首字母大写处理。|
 
 ## TextConfig<sup>10+</sup>
 
@@ -732,6 +753,7 @@ Enter键的功能类型。
 | cursorInfo<sup>10+</sup>  | [CursorInfo](#cursorinfo10) | 否 | 是 | 光标信息。|
 | selection<sup>10+</sup>  | [Range](#range10) | 否 | 是 | 文本选中的范围。|
 | windowId<sup>10+</sup>  | number | 否 | 是 | 编辑框所在的窗口Id。|
+| newEditBox<sup>20+</sup> | boolean | 否 | 是 | 表示是否为新编辑框。true表示新编辑框，false表示非新编辑框。 |
 
 ## CursorInfo<sup>10+</sup>
 
@@ -1082,6 +1104,47 @@ try {
 } catch(err) {
   console.error(`Failed to attach: ${JSON.stringify(err)}`);
 }
+```
+
+### discardTypingText<sup>20+</sup>
+
+discardTypingText(): Promise&lt;void&gt;
+
+编辑框应用发送“清空正在输入的文字”命令到输入法。使用promise异步回调。
+
+> **说明：**
+>
+> 当编辑框应用与输入法绑定成功后，才可调用该接口实现此功能。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 12800003 | input method client error. |
+| 12800009 | input method client detached. |
+| 12800015 | the other side does not accept the request. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { inputMethod } from '@kit.IMEKit';
+
+inputMethod.getController().discardTypingText().then(() => {
+  console.info('Succeeded discardTypingText.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to discardTypingText errCode:${err.code}, errMsg:${err.message}`);
+});
 ```
 
 ### showTextInput<sup>10+</sup>

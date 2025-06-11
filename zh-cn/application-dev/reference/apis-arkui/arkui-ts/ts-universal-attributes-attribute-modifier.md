@@ -132,7 +132,7 @@ CommonModifier、ColumnModifier、ColumnSplitModifier、RowModifier、RowSplitMo
 ```ts
 // xxx.ets
 class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
-  isDark: boolean = false;
+  public isDark: boolean = false;
 
   applyNormalAttribute(instance: ButtonAttribute): void {
     if (this.isDark) {

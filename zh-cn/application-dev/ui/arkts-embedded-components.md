@@ -173,7 +173,7 @@ export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
 ```ts
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-let storage = LocalStorage.getShared()
+let storage = new LocalStorage();
 
 @Entry(storage)
 @Component

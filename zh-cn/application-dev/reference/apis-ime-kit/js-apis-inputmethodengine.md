@@ -38,6 +38,10 @@ import { inputMethodEngine } from '@kit.IMEKit';
 | PATTERN_PASSWORD | number | 7 | 密码编辑框。 |
 | PATTERN_PASSWORD_NUMBER<sup>11+</sup> | number | 8 | 数字密码编辑框。 |
 | PATTERN_PASSWORD_SCREEN_LOCK<sup>11+</sup> | number | 9 | 锁屏密码编辑框。 |
+| PATTERN_USER_NAME<sup>20+</sup> | number | 10 | 用户名编辑框。 |
+| PATTERN_NEW_PASSWORD<sup>20+</sup> | number | 11 | 新密码编辑框。 |
+| PATTERN_NUMBER_DECIMAL<sup>20+</sup> | number | 12 | 带小数点的数字编辑框。 |
+| PATTERN_ONE_TIME_CODE<sup>20+</sup> | number | 13 | 验证码编辑框。 |
 | OPTION_ASCII | number | 20 | 允许输入ASCII值。 |
 | OPTION_NONE | number | 0 | 不指定编辑框输入属性。 |
 | OPTION_AUTO_CAP_CHARACTERS | number | 2 | 允许输入字符。 |
@@ -167,7 +171,7 @@ type SizeChangeCallback = (size: window.Size, keyboardArea?: KeyboardArea) => vo
 
 | 参数名       | 类型                                                 | 必填 | 说明                             |
 | ------------ | ---------------------------------------------------- | ---- | -------------------------------- |
-| size         | [window.Size](../apis-arkui/js-apis-window.md#size7) | 是   | 当前面板大小。                   |
+| size         | [window.Size](../apis-arkui/arkts-apis-window-i.md#size7) | 是   | 当前面板大小。                   |
 | keyboardArea | [KeyboardArea](#keyboardarea15)                      | 否   | 当前面板中可作为键盘区域的大小。 |
 
 ## InputMethodEngine
@@ -774,6 +778,70 @@ try {
 } catch (err) {
   let error = err as BusinessError;
   console.error(`unregist calling display changed error: ${error.code} ${error.message}`);
+}
+```
+
+### on('discardTypingText')<sup>20+</sup>
+
+on(type: 'discardTypingText', callback: Callback\<void>): void
+
+订阅编辑框应用发送“清空候选词”事件到输入法。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                          | 必填 | 说明                                       |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                        | 是   | 设置监听类型，固定取值为'discardTypingText'。<br/> - 'discardTypingText'：表示订阅编辑框应用发送“清空候选词”事件到输入法。 |
+| callback |  Callback\<void> | 是   | 回调函数。当命令发送成功，err为undefined，否则为错误对象。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import inputMethodEngine from '@ohos.inputMethodEngine';
+
+try {
+  console.info(`discard the typing text`);
+  inputMethodEngine.getInputMethodAbility().on('discardTypingText', ( ) => {
+    console.info('InputMethodAbility discard the typing text.');
+  });
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`discard the typing text error: ${error.code} ${error.message}`);
+}
+```
+
+### off('discardTypingText')<sup>20+</sup>
+
+off(type: 'discardTypingText', callback?: Callback\<void>): void
+
+取消订阅编辑框应用发送“清空候选词”事件到输入法。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                        | 必填 | 说明                                                         |
+| -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                      | 是   | 设置监听类型，固定取值为'discardTypingText'。<br/> - 'discardTypingText'：表示取消订阅编辑框应用发送“清空候选词”事件到输入法。 |
+| callback | Callback\<void>  | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import inputMethodEngine from '@ohos.inputMethodEngine';
+
+try {
+  console.info(`discard the typing text`);
+  inputMethodEngine.getInputMethodAbility().off('discardTypingText', ( ) => {
+    console.info('InputMethodAbility discard the typing text.');
+  });
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`discard the typing text error: ${error.code} ${error.message}`);
 }
 ```
 
@@ -2025,7 +2093,7 @@ updateRegion(inputRegion: Array&lt;window.Rect&gt;): void
 
 | 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| inputRegion | Array&lt;[window.Rect](../apis-arkui/js-apis-window.md#rect7)&gt; | 是   | 面板内接收输入事件的区域。<br/>- 数组大小限制为[1, 4]。<br/>- 传入的热区位置是相对于输入法面板窗口左顶点的位置。 |
+| inputRegion | Array&lt;[window.Rect](../apis-arkui/arkts-apis-window-i.md#rect7)&gt; | 是   | 面板内接收输入事件的区域。<br/>- 数组大小限制为[1, 4]。<br/>- 传入的热区位置是相对于输入法面板窗口左顶点的位置。 |
 
 **错误码：**
 
@@ -2115,7 +2183,7 @@ on(type: 'sizeChange', callback: SizeChangeCallback): void
 >
 > 仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。输入法通过adjustPanelRect等接口对面板大小进行调节时，系统会根据一定规则校验计算出最终的数值（例如超出屏幕等场景），输入法应用可通过该回调获取的真实面板大小，完成最终的面板布局刷新。
 >
->-  从API version 12-14开始支持，此接口回调函数中仅包含[window.Size](../apis-arkui/js-apis-window.md#size7)类型的必选参数。
+>-  从API version 12-14开始支持，此接口回调函数中仅包含[window.Size](../apis-arkui/arkts-apis-window-i.md#size7)类型的必选参数。
 >-  从API version 15起，调用[adjustPanelRect](#adjustpanelrect15)接口后，此接口回调函数增加[KeyboardArea](#keyboardarea15)类型的可选参数。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -2223,7 +2291,7 @@ off(type: 'sizeChange', callback?: SizeChangeCallback): void
 >
 > 仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。输入法通过adjustPanelRect等接口对面板大小进行调节时，系统会根据一定规则校验计算出最终的数值（例如超出屏幕等场景），输入法应用可通过该回调获取的真实面板大小，完成最终的面板布局刷新。
 >
->-  从API version 12-14开始支持，此接口回调函数中仅包含[window.Size](../apis-arkui/js-apis-window.md#size7)类型的必选参数。
+>-  从API version 12-14开始支持，此接口回调函数中仅包含[window.Size](../apis-arkui/arkts-apis-window-i.md#size7)类型的必选参数。
 >-  从API version 15起，调用[adjustPanelRect](#adjustpanelrect15)接口后，此接口回调函数增加[KeyboardArea](#keyboardarea15)类型的可选参数。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -2409,7 +2477,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 keyboardController.hide((err: BusinessError) => {
   if (err) {
-    console.error(`Failed to hide: ${JSON.stringify(err)}`);
+    console.error(`Failed to hide. Code:${err.code}, message:${err.message}`);
     return;
   }
   console.info('Succeeded in hiding keyboard.');
@@ -2446,7 +2514,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 keyboardController.hide().then(() => {
   console.info('Succeeded in hiding keyboard.');
 }).catch((err: BusinessError) => {
-  console.info(`Failed to hide: ${JSON.stringify(err)}`);
+  let error = err as BusinessError;
+  console.error(`Failed to hide. Code:${error.code}, message:${error.message}`);
 });
 ```
 
@@ -2542,7 +2611,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 keyboardController.exitCurrentInputType((err: BusinessError) => {
   if (err) {
-    console.error(`Failed to exitCurrentInputType: ${JSON.stringify(err)}`);
+    console.error(`Failed to exit current input type. Code:${err.code}, message:${err.message}`);
     return;
   }
   console.info('Succeeded in exiting current input type.');
@@ -2580,7 +2649,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 keyboardController.exitCurrentInputType().then(() => {
   console.info('Succeeded in exiting current input type.');
 }).catch((err: BusinessError) => {
-  console.info(`Failed to exit current input type: ${JSON.stringify(err)}`);
+  let error = err as BusinessError;
+  console.error(`Failed to exit current input type. Code:${error.code}, message:${error.message}`);
 });
 ```
 
@@ -4679,6 +4749,19 @@ try {
 }
 ```
 
+### CapitalizeMode<sup>20+</sup>
+
+枚举，定义了文本首字母大写的不同模式。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称 | 值 | 描述 |
+| -------- | -- | -------- |
+| NONE | 0 | 不进行任何首字母大写处理。|
+| SENTENCES | 1 | 每个句子的首字母大写。|
+| WORDS | 2 | 每个单词的首字母大写。|
+| CHARACTERS | 3 | 每个字母都大写。|
+
 ### EditorAttribute
 
 编辑框属性值。
@@ -4687,13 +4770,16 @@ try {
 
 | 名称         | 类型 | 只读 | 可选 | 说明               |
 | ------------ | -------- | ---- | ---- | ------------------ |
-| enterKeyType | number   | 是   | 否   | 编辑框的功能属性。 |
-| inputPattern | number   | 是   | 否   | 编辑框的文本属性。 |
+| enterKeyType | number   | 是   | 否   | 编辑框的功能属性，详见[常量中的功能键定义](#常量)。 |
+| inputPattern | number   | 是   | 否   | 编辑框的文本属性，详见[常量中的编译框定义](#常量)。 |
 | isTextPreviewSupported<sup>12+</sup> | boolean | 否 | 否 | 编辑框是否支持预上屏。<br/>- 值为true，表示支持。<br/>- 值为false，表示不支持。 |
 | bundleName<sup>14+</sup> | string | 是 | 是 | 编辑框所属应用包名；该值可能为""，使用该属性时需要考虑为""的场景。 |
 | immersiveMode<sup>15+</sup> | [ImmersiveMode](#immersivemode15) | 是   | 是   | 输入法沉浸模式。 |
 | windowId<sup>18+</sup> | number | 是 | 是 | 编辑框设置所属窗口ID。 |
 | displayId<sup>18+</sup> | number | 是   | 是   | 编辑框设置窗口对应的屏幕ID。如果没有设置windowId，取当前焦点窗口屏幕ID。|
+| placeholder<sup>20+</sup> | string | 是 | 是 | 编辑框设置的占位符信息。|
+| abilityName<sup>20+</sup> | string | 是 | 是 | 编辑框设置的ability名称。|
+| capitalizeMode<sup>20+</sup> | [CapitalizeMode](#capitalizemode20) | 是 | 是 | 编辑框设置大小写模式。如果没有设置或设置非法值，默认不进行任何首字母大写处理。|
 
 ## KeyEvent
 
@@ -4748,8 +4834,8 @@ try {
 
 | 名称         | 类型 | 只读 | 可选 | 说明               |
 | ------------ | -------- | ---- | ---- | ------------------ |
-| landscapeRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | 否   | 否   | 横屏状态时输入法面板窗口的位置大小。 |
-| portraitRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | 否   | 否   | 竖屏状态时输入法面板窗口的位置大小。 |
+| landscapeRect | [window.Rect](../apis-arkui/arkts-apis-window-i.md#rect7)   | 否   | 否   | 横屏状态时输入法面板窗口的位置大小。 |
+| portraitRect | [window.Rect](../apis-arkui/arkts-apis-window-i.md#rect7)   | 否   | 否   | 竖屏状态时输入法面板窗口的位置大小。 |
 
 ## EnhancedPanelRect<sup>15+</sup>
 
@@ -4759,12 +4845,12 @@ try {
 
 | 名称                 | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| landscapeRect        | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | 否   | 是   | 横屏状态时输入法面板窗口的位置大小。<br/>- 当fullScreenMode不填写或值为false时，此属性为必选。 |
-| portraitRect         | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | 否   | 是   | 竖屏状态时，输入法面板窗口的位置大小。<br/>- 当fullScreenMode不填写或值为false时，此属性为必选。 |
+| landscapeRect        | [window.Rect](../apis-arkui/arkts-apis-window-i.md#rect7)         | 否   | 是   | 横屏状态时输入法面板窗口的位置大小。<br/>- 当fullScreenMode不填写或值为false时，此属性为必选。 |
+| portraitRect         | [window.Rect](../apis-arkui/arkts-apis-window-i.md#rect7)         | 否   | 是   | 竖屏状态时，输入法面板窗口的位置大小。<br/>- 当fullScreenMode不填写或值为false时，此属性为必选。 |
 | landscapeAvoidY      | number                                                       | 否   | 是   | 横屏状态时，面板中的避让线距离面板顶部的距离。默认值为0。<br/>- 应用内其他系统组件会对避让线以下的输入法面板区域进行避让。<br/>- 面板为固定态时，避让线到屏幕底部的高度不能超过屏幕高度的70%。 |
-| landscapeInputRegion | Array&lt;[window.Rect](../apis-arkui/js-apis-window.md#rect7)&gt; | 否   | 是   | 横屏状态时，面板接收输入事件的区域。<br/>- 数组大小限制为[1, 4]。默认值为横屏时的面板大小。<br/>- 传入的热区位置是相对于输入法面板窗口左顶点的位置。 |
+| landscapeInputRegion | Array&lt;[window.Rect](../apis-arkui/arkts-apis-window-i.md#rect7)&gt; | 否   | 是   | 横屏状态时，面板接收输入事件的区域。<br/>- 数组大小限制为[1, 4]。默认值为横屏时的面板大小。<br/>- 传入的热区位置是相对于输入法面板窗口左顶点的位置。 |
 | portraitAvoidY       | number                                                       | 否   | 是   | 竖屏状态时，面板中的避让线距离面板顶部的距离。默认值为0。<br/>- 应用内其他系统组件会对避让线以下的输入法面板区域进行避让。<br/>- 面板为固定态时，避让线到屏幕底部的高度不能超过屏幕高度的70%。 |
-| portraitInputRegion  | Array&lt;[window.Rect](../apis-arkui/js-apis-window.md#rect7)&gt; | 否   | 是   | 竖屏状态时，面板接收输入事件的区域。<br/>- 数组大小限制为[1, 4]。默认值为竖屏时的面板大小。<br/>- 传入的热区位置是相对于输入法面板窗口左顶点的位置。 |
+| portraitInputRegion  | Array&lt;[window.Rect](../apis-arkui/arkts-apis-window-i.md#rect7)&gt; | 否   | 是   | 竖屏状态时，面板接收输入事件的区域。<br/>- 数组大小限制为[1, 4]。默认值为竖屏时的面板大小。<br/>- 传入的热区位置是相对于输入法面板窗口左顶点的位置。 |
 | fullScreenMode       | boolean                                                      | 否   | 是   | 是否开启全屏模式。默认值为false。<br/>- 值为true，landscapeRect和portraitRect可不填写。<br/>- 值为false，landscapeRect和portraitRect为必选属性。 |
 
 ## KeyboardArea<sup>15+</sup>
@@ -4798,8 +4884,8 @@ try {
 
 | 名称   | 类型                                                         | 只读 | 可选 | 说明           |
 | ------ | ------------------------------------------------------------ | ---- | ---- | -------------- |
-| rect   | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | 否   | 否   | 窗口矩形区域。 |
-| status | [window.WindowStatusType](../apis-arkui/js-apis-window.md#windowstatustype11) | 否   | 否   | 窗口模式类型。 |
+| rect   | [window.Rect](../apis-arkui/arkts-apis-window-i.md#rect7)         | 否   | 否   | 窗口矩形区域。 |
+| status | [window.WindowStatusType](../apis-arkui/arkts-apis-window-e.md#windowstatustype11) | 否   | 否   | 窗口模式类型。 |
 
 ## ImmersiveMode<sup>15+</sup>
 

@@ -9,7 +9,7 @@
 ## 内存类型介绍
 
 当前PixelMap的内存类型包括以下两种。
-- DMA_ALLOC：ION内存。IPC耗时同样较短，但无需纹理上传。
+- DMA_ALLOC：DMA内存。IPC耗时同样较短，但无需纹理上传。
 - SHARE_MEMORY：共享内存。IPC耗时较少，但需要进行纹理上传。
  
 鉴于当前的解码接口内存分配策略无法满足某些场景的需求，系统提供了[createPixelMapUsingAllocator](../../reference/apis-image-kit/js-apis-image.md#createpixelmapusingallocator15)接口，以便用户能够自定义内存分配类型进行解码。接口定义及使用示例详见[图片解码接口说明](../../reference/apis-image-kit/js-apis-image.md#imagesource)。
@@ -79,20 +79,19 @@
 
 stride（步幅）描述了图片在内存中每一行像素数据的存储宽度。它是图片绘制过程中的重要参数，用于正确定位图片数据在内存中的布局。
 
-使用DMA分配机制分配内存时，stride必须满足 硬件对齐要求。
+使用DMA分配机制分配内存时，stride必须满足硬件对齐要求。
 
-- stride 值需为 硬件平台要求字节数的整数倍。
-- 如果通过上面的计算公式得到的 stride 不满足对齐要求时，系统会自动补齐填充数据（padding）。
-stride的值可以通过[PixelMap::GetImageInfo()](../../reference/apis-image-kit/js-apis-image.md#getimageinfo-1) 接口获取。
+- stride值需为硬件平台要求字节数的整数倍。
+- 如果通过上面的计算公式得到的stride不满足对齐要求时，系统会自动补齐填充数据（padding）。
+stride的值可以通过[getImageInfo()](../../reference/apis-image-kit/js-apis-image.md#getimageinfo-1) 接口获取。
 
-1. 调用[GetImageInfo()](../../reference/apis-image-kit/js-apis-image.md#getimageinfo-1)方法，获取ImageInfo对象。
+1. 调用[getImageInfo()](../../reference/apis-image-kit/js-apis-image.md#getimageinfo-1)方法，获取ImageInfo对象。
 2. 从ImageInfo对象中访问stride值：info.stride。
 
 ```ts
 import image from '@ohos.multimedia.image';
 
-async CreatePixelMapUsingAllocator() {
-  const context = getContext();
+async CreatePixelMapUsingAllocator(context : Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("test.jpg");  // 测试图片。
   let imageSource: image.ImageSource | null = await image.createImageSource(rawFile.buffer as ArrayBuffer);
@@ -100,7 +99,7 @@ async CreatePixelMapUsingAllocator() {
   let pixelmap = await imageSource.createPixelMapUsingAllocator(options, image.AllocatorType.AUTO);
   let info = await pixelmap.getImageInfo();
   // 用DMA_ALLOC内存申请出的pixelmap的stride与SHARE_MEMORY内存申请出的pixelmap的stride不同。
-  console.log("stride = " + info.stride);
+  console.info("stride = " + info.stride);
   let region: image.Region = { x: 0, y: 0, size: {height: 100, width:35} };
   if (pixelmap != undefined) {
     await pixelmap.crop(region);

@@ -162,8 +162,8 @@ import { cloudExtension } from '@kit.ArkData';
 | TEXT                                               | 3    | 文本类型。                             |
 | BOOL                                               | 4    | 布尔类型。                             |
 | BLOB                                               | 5    | 二进制大对象类型，可以存储二进制文件。 |
-| [ASSET](js-apis-data-relationalStore.md#asset10)   | 6    | 资产类型。                             |
-| [ASSETS](js-apis-data-relationalStore.md#assets10) | 7    | 资产列表类型。                         |
+| [ASSET](arkts-apis-data-relationalStore-i.md#asset10)   | 6    | 资产类型。                             |
+| [ASSETS](arkts-apis-data-relationalStore-t.md#assets10) | 7    | 资产列表类型。                         |
 
 ## Field
 

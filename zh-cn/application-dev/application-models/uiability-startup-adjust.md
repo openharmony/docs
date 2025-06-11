@@ -41,7 +41,7 @@
     }
     ```
 
-2. 调用方通过[openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)接口执行跳转，在接口入参需要传入转换后的link和配置[options](../reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md)，不再传入bundleName、moduleName和abilityName。系统会根据传入的link匹配到符合skills配置的应用。
+2. 调用方通过[openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#openlink12)接口执行跳转，在接口入参需要传入转换后的link和配置[options](../reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md)，不再传入bundleName、moduleName和abilityName。系统会根据传入的link匹配到符合skills配置的应用。
     - 当options中的appLinkingOnly为true时，匹配到的应用会经过应用市场域名检查（需联网）返回域名校验检查的唯一匹配项或未匹配结果。
     - 当options中的appLinkingOnly为false时，会优先尝试以AppLinking的方式拉起，如果没有匹配的应用则改为使用DeepLinking的方式拉起目标应用。
 
@@ -140,7 +140,7 @@
     }
     ```
 
-2. 调用方通过[openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)接口执行跳转，在接口入参需要传入转换后的link和配置[options](../reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md)，不再传入bundleName、moduleName和abilityName。系统会根据传入的link匹配到符合skills配置的应用。AbilityResult回调结果返回通过入参传入回调函数，在启动ability停止自身后返回给调用方的信息。启动成功和失败结果仍通过Promise返回。<br>
+2. 调用方通过[openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#openlink12)接口执行跳转，在接口入参需要传入转换后的link和配置[options](../reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md)，不再传入bundleName、moduleName和abilityName。系统会根据传入的link匹配到符合skills配置的应用。AbilityResult回调结果返回通过入参传入回调函数，在启动ability停止自身后返回给调用方的信息。启动成功和失败结果仍通过Promise返回。<br>
     - 当options中的appLinkingOnly为true时，匹配到的应用会经过应用市场域名检查（需联网）返回域名校验检查的唯一匹配项或未匹配结果。
     - 当options中的appLinkingOnly为false时，会优先尝试以AppLinking的方式拉起，如果没有匹配的应用则改为使用DeepLinking的方式拉起目标应用。
 

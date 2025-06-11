@@ -73,10 +73,11 @@ import { bundleManager } from '@kit.AbilityKit';
 | INSIGHT_INTENT_UI<sup>12+</sup> | 22 | InsightIntentUIExtensionAbility：为开发者提供能被小艺意图调用，以窗口形态呈现内容的扩展能力。 |
 | FENCE<sup>18+</sup> | 24 | [FenceExtensionAbility](../apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md)：为开发者提供地理围栏相关的能力，继承自ExtensionAbility。 |
 | ASSET_ACCELERATION<sup>18+</sup> | 26 | AssetAccelerationExtensionAbility：资源预下载扩展能力，提供在设备闲时状态，进行后台资源预下载的能力。 |
-| DISTRIBUTED<sup>18+</sup> | 28 | [DistributedExtensionAbility](../apis-distributedservice-kit/js-apis-distributedExtensionAbility.md)：提供分布式相关扩展能力，提供分布式创建、销毁、连接的生命周期回调。 |
+| FORM_EDIT<sup>18+</sup> | 27 | [FormEditExtensionAbility](../apis-form-kit/js-apis-app-form-formEditExtensionAbility.md)：为开发者提供卡片编辑的能力，继承自UIExtensionAbility。 |
 | APP_SERVICE<sup>20+</sup> | 29 | [AppServiceExtensionAbility](../apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)：为企业普通应用提供后台服务能力。 |
+| LIVE_FORM<sup>20+</sup> | 30 | [LiveFormExtensionAbility](../apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md)：互动卡片相关扩展能力，提供互动卡片创建、销毁的生命周期回调。 |
 | UNSPECIFIED      | 255 | 不指定类型<!--Del-->，配合[queryExtensionAbilityInfo接口](js-apis-bundleManager-sys.md#bundlemanagerqueryextensionabilityinfo)可以查询所有类型的ExtensionAbility<!--DelEnd-->。 |
-
+<!--RP2--><!--RP2End-->
 
 ## PermissionGrantState
 
@@ -206,6 +207,25 @@ import { bundleManager } from '@kit.AbilityKit';
 | UNSPECIFIED|  0 | 未指定类型，表示[multiAppMode配置](../../quick-start/app-configuration-file.md#multiappmode标签)未配置时的默认状态。 |
 | MULTI_INSTANCE |  1  | [多实例模式](../../quick-start/multiInstance.md)。常驻进程不支持该字段。  |
 | APP_CLONE |  2  |  [分身模式](../../quick-start/app-clone.md)。  |
+
+## AbilityFlag<sup>20+</sup>
+
+Ability组件信息标志，指示需要获取的Ability组件信息的内容。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 名称                              | 值         | 说明                                                         |
+| --------------------------------- | ---------- | ------------------------------------------------------------ |
+| GET_ABILITY_INFO_DEFAULT          | 0x00000000 | 获取默认[AbilityInfo](js-apis-bundleManager-abilityInfo.md)，获取的AbilityInfo不包含permissions、metadata、被禁用Ability对应的AbilityInfo。<!--Del-->通过[setAbilityEnabled接口](./js-apis-bundleManager-sys.md#bundlemanagersetabilityenabled)可设置Ability禁用状态、通过[isAbilityEnabled接口](./js-apis-bundleManager-sys.md#bundlemanagerisabilityenabled-1)可获取Ability禁用状态。<!--DelEnd-->|
+| GET_ABILITY_INFO_WITH_PERMISSION  | 0x00000001 | 获取包含permissions的AbilityInfo。                         |
+| GET_ABILITY_INFO_WITH_APPLICATION | 0x00000002 | 获取包含applicationInfo的AbilityInfo。                     |
+| GET_ABILITY_INFO_WITH_METADATA    | 0x00000004 | 获取包含metadata的AbilityInfo。                            |
+| GET_ABILITY_INFO_WITH_DISABLE     | 0x00000008 | 获取被禁用Ability对应的AbilityInfo。                   |
+| GET_ABILITY_INFO_ONLY_SYSTEM_APP  | 0x00000010 | 获取系统应用对应的AbilityInfo。                           |
+| GET_ABILITY_INFO_WITH_APP_LINKING | 0x00000040 | 获取通过[域名校验](../../quick-start/module-configuration-file.md#skills标签)筛选的AbilityInfo。          |
+| GET_ABILITY_INFO_WITH_SKILL       | 0x00000080 | 获取包含skills的AbilityInfo。                    |
 
 ## bundleManager.getBundleInfoForSelf
 
@@ -339,7 +359,6 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                            |
 | 17700029 | The specified ability is disabled.                            |
 
 **示例：**
@@ -403,7 +422,6 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                            |
 | 17700029 | The specified ability is disabled.                            |
 
 **示例：**
@@ -487,7 +505,6 @@ getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: 
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                            |
 | 17700029 | The specified ability is disabled.                            |
 
 **示例：**
@@ -560,7 +577,6 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                            |
 
 **示例：**
 
@@ -623,7 +639,6 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                            |
 
 **示例：**
 
@@ -695,7 +710,6 @@ getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: strin
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                            |
 
 **示例：**
 
@@ -1448,6 +1462,63 @@ try {
 }
 ```
 
+
+## bundleManager.getAbilityInfo<sup>20+</sup>
+
+getAbilityInfo(uri: string, abilityFlags: number): Promise\<Array\<AbilityInfo>>
+
+获取指定资源标识符和组件信息标志对应的Ability信息，使用Promise异步回调。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**需要权限：** ohos.permission.GET_ABILITY_INFO
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名      | 类型   | 必填 | 说明                                                  |
+| ------------ | ------ | ---- | ------------------------------------------------------- |
+| uri         | string   | 是   | 表示统一资源标识符URI，取值与[module.json5配置文件中skills下的uris字段](../../quick-start/module-configuration-file.md#skills标签)相对应。                   |
+| abilityFlags  | number | 是   | 表示[Ability组件信息标志](js-apis-bundleManager.md#abilityflag20)，指示需要获取的Ability组件信息的内容。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                                 |
+| ------------------------------------------------------------ | ------------------------------------ |
+| Promise<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | 返回获取到的Ability信息数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 17700003 | The ability is not found.    |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_WITH_APPLICATION;
+let uri = "https://www.example.com"; 
+
+try {
+    bundleManager.getAbilityInfo(uri, abilityFlags).then((data) => {
+        console.info('getAbilityInfo successfully. Data: ' + JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+        let message = (err as BusinessError).message;
+        console.error('getAbilityInfo failed. Cause: ' + message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    console.error('getAbilityInfo failed. Cause: ' + message);
+}
+```
+
 ## ApplicationInfo
 
 type ApplicationInfo = _ApplicationInfo
@@ -1474,7 +1545,7 @@ type ModuleMetadata = _ModuleMetadata
 
 | 类型                                                         | 说明           |
 | ------------------------------------------------------------ | -------------- |
-| [_ModuleMetadata](js-apis-bundleManager-applicationInfo.md#ModuleMetadata10) | 模块的元数据信息。 |
+| [_ModuleMetadata](js-apis-bundleManager-applicationInfo.md#modulemetadata10) | 模块的元数据信息。 |
 
 ## Metadata
 

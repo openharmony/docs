@@ -45,12 +45,12 @@
    OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
    // 创建段落生成器
    OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, OH_Drawing_CreateFontCollection());
-   // 创建文本样式，并设置字体大小为20
+   // 创建文本样式，并设置字体大小为50
    OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
-   OH_Drawing_SetTextStyleFontSize(txtStyle, 20);
+   OH_Drawing_SetTextStyleFontSize(txtStyle, 50);
    OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
    // 向构造器中添加文本
-   const char *text = "Hello world，你好世界！";
+   const char *text = "排版测量的文字度量信息";
    OH_Drawing_TypographyHandlerAddText(handler, text);
    // 通过生成器构造段落
    OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);

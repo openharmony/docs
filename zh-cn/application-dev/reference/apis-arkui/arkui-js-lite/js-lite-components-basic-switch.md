@@ -16,7 +16,7 @@
 
 | 名称 | 类型 | 默认值 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
-| checked | boolean | false | 否 | 是否选中。 |
+| checked | boolean | false | 否 | 是否选中。true表示被选中，false表示不被选中。 |
 | id | string | - | 否 | 组件的唯一标识。 |
 | style | string | - | 否 | 组件的样式声明。 |
 | class | string | - | 否 | 组件的样式类，用于引用样式表。 |

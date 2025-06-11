@@ -224,12 +224,12 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 10. 调用OH_AVMuxer_Stop()，停止封装。
 
-   ```c++
-   // 调用stop，写封装文件尾。stop后不能写入媒体数据。
-   if (OH_AVMuxer_Stop(muxer) != AV_ERR_OK) {
-       // 异常处理。
-   }
-   ```
+    ```c++
+    // 调用stop，写封装文件尾。stop后不能写入媒体数据。
+    if (OH_AVMuxer_Stop(muxer) != AV_ERR_OK) {
+        // 异常处理。
+    }
+    ```
 
 11. 调用OH_AVMuxer_Destroy()销毁实例，释放资源。
 

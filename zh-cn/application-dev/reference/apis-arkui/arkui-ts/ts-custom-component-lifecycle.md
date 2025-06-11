@@ -175,6 +175,7 @@ struct Index {
   }
 }
 ```
+<!--code_no_check-->
 ```ts
 // pages/PageOne.ets
 import { router } from '@kit.ArkUI';

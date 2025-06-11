@@ -9,7 +9,7 @@
 >  目前支持通过外接鼠标、手写笔以及触控板触发。
 
 ## bindTips
-bindTips(message: TipsMessageType, options?: TipsOptions)
+bindTips(message: TipsMessageType, options?: TipsOptions): T
 
 为组件绑定Tips悬浮气泡。
 
@@ -28,6 +28,12 @@ bindTips(message: TipsMessageType, options?: TipsOptions)
 | message|  [TipsMessageType](#tipsmessagetype)                                                     | 是   | 弹窗信息内容。 |
 | options  | [TipsOptions](#tipsoptions类型说明) | 否   | 配置悬浮气泡的参数。<br/>默认值：<br/>{<br/>appearingTime: 700,<br/>disappearingTime: 300,<br/>appearingTimeWithContinuousOperation: 300,<br/>disappearingTimeWithContinuousOperation: 0, enableArrow: true,<br/>arrowPointPosition: ArrowPointPosition.CENTER,<br/>arrowWidth: 16,arrowHeight: 8vp<br/>} |
 
+**返回值：** 
+
+|类型|说明|
+|---|---|
+|T|返回当前组件。|
+
 ## TipsOptions类型说明
 
 悬浮气泡自定义参数。
@@ -42,9 +48,9 @@ bindTips(message: TipsMessageType, options?: TipsOptions)
 | disappearingTime                 |   number   | 否   | 设置悬浮气泡的隐藏时延。 <br/>默认值：300<br/>单位：ms |
 | appearingTimeWithContinuousOperation    |     number   | 否   | 多个组件连续弹出悬浮气泡时，悬浮气泡的显示时延。 <br/>默认值：300<br/>单位：ms |
 | disappearingTimeWithContinuousOperation |     number   | 否   | 多个组件连续弹出悬浮气泡时，悬浮气泡的隐藏时延。 <br/>默认值：0<br/>单位：ms |
-| enableArrow        | boolean                                                      | 否   | 设置是否显示气泡箭头。值为true时，显示箭头，值为false时，不显示箭头。<br/>默认值：true<br/>**说明：** <br/>当页面可用空间无法让气泡完全避让时，气泡会覆盖到组件上并且不显示气泡箭头。 |
+| enableArrow        | boolean                                                      | 否   | 设置是否显示气泡箭头。值为true时，显示箭头；值为false时，不显示箭头。<br/>默认值：true<br/>**说明：** <br/>当页面可用空间无法让气泡完全避让时，气泡会覆盖到组件上并且不显示气泡箭头。 |
 | arrowPointPosition     | [ArrowPointPosition](ts-appendix-enums.md#arrowpointposition11) | 否   | 气泡箭头相对于父组件显示位置，气泡箭头在垂直和水平方向上有 ”Start“、”Center“、”End“三个位置点可选。所有位置点均位于父组件区域范围内，不会超出父组件的边界范围，也不会覆盖圆角范围。<br/>默认值：ArrowPointPosition.CENTER |
-| arrowWidth           | [Dimension](ts-types.md#dimension10)                  | 否   | 设置气泡箭头宽度。若所设置的气泡箭头宽度超过所在边的长度减去两倍的气泡圆角大小，则不绘制气泡箭头。<br/>默认值：16<br/>单位：vp<br/>**说明：**<br />不支持设置百分比。 |
+| arrowWidth           | [Dimension](ts-types.md#dimension10)                  | 否   | 设置气泡箭头宽度。若所设置的宽度超过所在边的长度减去两倍的气泡圆角大小，则不绘制气泡箭头。<br/>默认值：16<br/>单位：vp<br/>**说明：**<br />不支持设置百分比。 |
 | arrowHeight          | [Dimension](ts-types.md#dimension10)                  | 否   | 设置气泡箭头高度。<br/>默认值：8<br/>单位：vp<br/>**说明：**<br />不支持设置百分比。 |
 
 ## TipsMessageType
