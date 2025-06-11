@@ -822,15 +822,15 @@ struct CustomDialogUser {
       })
       Button("show loading dialog").onClick(() => {
         //获取窗口对象
-        let windowClass = window.getLastWindow(getContext());
+        let windowClass = window.getLastWindow(this.getUIContext().getHostContext());
         windowClass.then(window => {
           //获取窗口信息，设置maskRect
           let properties = window.getWindowProperties();
           let maskRect = {
-            x: px2vp(properties.windowRect.left + 150),
-            y: px2vp(properties.windowRect.top + 350),
-            width: px2vp(properties.windowRect.width - 300),
-            height: px2vp(properties.windowRect.height - 700)
+            x: this.getUIContext().px2vp(properties.windowRect.left + 150),
+            y: this.getUIContext().px2vp(properties.windowRect.top + 350),
+            width: this.getUIContext().px2vp(properties.windowRect.width - 300),
+            height: this.getUIContext().px2vp(properties.windowRect.height - 700)
           } as Rectangle
           if (this.dialogController == null) {
             this.dialogController = new CustomDialogController({
@@ -879,7 +879,6 @@ struct CustomDialogUser {
 
 ```ts
 import window from '@ohos.window';
-import { LengthMetrics } from '@kit.ArkUI';
 
 @CustomDialog
 @Component
@@ -964,7 +963,7 @@ struct CustomDialogUser {
   })
 
   aboutToAppear(): void {
-    let windowClass = window.getLastWindow(getContext());
+    let windowClass = window.getLastWindow(this.getUIContext().getHostContext());
     windowClass.then(win => {
       this.windowClass = win;
       // 获取底部导航栏高度

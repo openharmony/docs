@@ -54,6 +54,30 @@ rotate(options: Optional\<RotateOptions>): T
 | ------ | ------------------------ |
 | T | 返回当前组件。 |
 
+## rotate<sup>20+</sup>
+
+rotate(options: Optional<RotateOptions | RotateAngleOptions>): T
+
+设置组件旋转效果。与[rotate](#rotate18)相比，options参数新增了对RotateAngleOptions类型的支持。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| options | Optional\<[RotateOptions](#rotateoptions对象说明) \| [RotateAngleOptions](#rotateangleoptions20对象说明)> | 是   | RotateOptions可使组件在以组件左上角为坐标原点的坐标系中进行旋转（坐标系如下图所示）。其中，(x,&nbsp;y,&nbsp;z）指定一个矢量，作为旋转轴。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>默认值：在x、y、z都不指定时，x、y、z的默认值分别为0、0、1。指定了x、y、z任何一个值时，x、y、z中未指定的值默认为0。<br/>{<br/>centerX:&nbsp;'50%',<br/>centerY:&nbsp;'50%',<br/>centerZ:&nbsp;0,<br/>perspective:&nbsp;0<br/>}<br/>RotateAngleOptions可使组件在以组件左上角为坐标原点的坐标系中进行旋转（坐标系如下图所示）。其中，(angleX,&nbsp;angleY,&nbsp;angleZ）指定三个轴方向上的旋转角。<br/>默认值：<br/>{<br/>angleX:0,<br />angleY:0,<br />angleZ:0,<br />centerX:&nbsp;'50%',<br/>centerY:&nbsp;'50%',<br/>centerZ:&nbsp;0,<br/>perspective:&nbsp;0<br/>}<br/>![coordinates](figures/coordinates.png)<br/>当options的值为undefined时，恢复为无旋转效果。 |
+
+**返回值：**
+
+| 类型 | 说明           |
+| ---- | -------------- |
+| T    | 返回当前组件。 |
+
 ## translate
 
 translate(value: TranslateOptions): T
@@ -244,6 +268,25 @@ type Matrix4Transit = Matrix4Transit
 | centerY                   | number&nbsp;\|&nbsp;string | 否   | 变换中心点y轴坐标。表示组件变换中心点（即锚点）的y方向坐标。<br/>单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | centerZ<sup>10+</sup>     | number                     | 否   | z轴锚点，即3D旋转中心点的z轴分量。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | perspective<sup>10+</sup> | number                     | 否   | 视距，即视点到z=0平面的距离。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
+
+## RotateAngleOptions<sup>20+</sup>对象说明
+指定各轴旋转角的旋转参数选项。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                      | 类型                       | 必填 | 说明                                                         |
+| ------------------------- | -------------------------- | ---- | ------------------------------------------------------------ |
+| angleX                    | number&nbsp;\|&nbsp;string | 否   | X轴方向上的旋转角。取值为正时相对于旋转轴方向顺时针转动，取值为负时逆时针转动。取值可为string类型，如'90deg'。<br/>默认值：0<br/>取值范围：(-∞, +∞) |
+| angleY                    | number&nbsp;\|&nbsp;string | 否   | Y轴方向上的旋转角。取值为正时相对于旋转轴方向顺时针转动，取值为负时逆时针转动。取值可为string类型，如'90deg'。<br/>默认值：0<br/>取值范围：(-∞, +∞) |
+| angleZ                    | number&nbsp;\|&nbsp;string | 否   | Z轴方向上的旋转角。取值为正时相对于旋转轴方向顺时针转动，取值为负时逆时针转动。取值可为string类型，如'90deg'。<br/>默认值：0<br/>取值范围：(-∞, +∞) |
+| centerX                   | number&nbsp;\|&nbsp;string | 否   | 变换中心点x轴坐标。表示组件变换中心点（即锚点）的x方向坐标。<br/>单位：vp<br/>默认值：'50%'<br/>取值范围：(-∞, +∞) |
+| centerY                   | number&nbsp;\|&nbsp;string | 否   | 变换中心点y轴坐标。表示组件变换中心点（即锚点）的y方向坐标。<br/>单位：vp<br/>默认值：'50%'<br/>取值范围：(-∞, +∞) |
+| centerZ                   | number                     | 否   | z轴锚点，即3D旋转中心点的z轴分量。<br/>默认值：0<br/>取值范围：(-∞, +∞) |
+| perspective               | number                     | 否   | 视距，即视点到z=0平面的距离。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>默认值：0<br/>取值范围：(-∞, +∞) |
 
 ## TranslateOptions对象说明
 
@@ -485,3 +528,39 @@ struct Tests {
 ```
 
 ![transform3D](figures/transform3D.png)
+
+### 示例5（按各轴旋转角的方式实现旋转）
+
+该示例通过设置rotate的[RotateAngleOptions](#rotateangleoptions20对象说明)参数实现旋转效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+
+  build() {
+    Row() {
+      Column() {
+        Stack()
+          .width(100)
+          .height(100)
+          .backgroundColor(Color.Blue)
+          .rotate({ angleZ: -45 })
+        Button('rotateAngle')
+          .width("40%")
+          .margin({ top: 100 })
+          .rotate({ angleY: 30, centerX: '90%', perspective: 10 })
+        Image($r("app.media.startIcon"))
+          .width(200)
+          .height(200)
+          .rotate({ angleX: 60, angleY: -125, angleZ: 75, centerX: 100, centerZ: 20})
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![rotate.png](figures/rotate.png)
