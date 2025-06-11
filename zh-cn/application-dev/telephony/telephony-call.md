@@ -64,7 +64,7 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
     if (isSupport) {
         // 如果设备支持呼叫能力，调用以下接口进行拨号
         call.dialCall("13xxxx", (err: BusinessError) => {
-            console.log(`callback: dial call err->${JSON.stringify(err)}`);
+            console.error(`callback: dial call err->${JSON.stringify(err)}`);
         })
 
         // 订阅通话业务状态变化（可选）
@@ -101,7 +101,7 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
             if (!err) {
                 console.log("make call success.");
             } else {
-                console.log("make call fail, err is:" + JSON.stringify(err));
+                console.error("make call fail, err is:" + JSON.stringify(err));
             }
         });
         // 订阅通话业务状态变化（可选）

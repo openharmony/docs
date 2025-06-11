@@ -540,7 +540,7 @@ pageFlipMode(mode: Optional\<PageFlipMode>)
 
 maintainVisibleContentPosition(enabled: boolean)
 
-设置显示区域上方或前方插入或删除数据时是否要保持可见内容位置不变。
+设置显示区域上方或前方插入或删除数据时是否保持可见内容位置不变。适用于使用单一LazyForEach作为Swiper子节点的情况，通过LazyForEach的onDateAdd、onDataDelete等接口修改数据源。
 
 在displayCount属性的swipeByGroup参数设置为true，生效按组翻页时，一次在显示区域上方或前方插入或删除和一组节点数量倍数的数据量时才能保持可见内容位置不变，否则可见内容位置可能会随每组数据重新分组改变。
 
@@ -554,7 +554,7 @@ maintainVisibleContentPosition(enabled: boolean)
 
 | 参数名 | 类型                                                        | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| enabled  | boolean | 是   | 设置显示区域上方或前方插入或删除数据时是否要保持可见内容位置不变。<br/>默认值：false，显示区域上方或前方插入或删除数据时可见内容位置会跟随变化。 true：显示区域上方或前方插入或删除数据时可见内容位置不变。 |
+| enabled  | boolean | 是   | 设置显示区域上方或前方插入或删除数据时是否要保持可见内容位置不变。<br/>默认值：false，显示区域上方或前方插入或删除数据时可见内容位置会跟随变化。 true：显示区域上方或前方插入或删除数据时可见内容位置不变。如果改变数据源是在动画过程中，由于目标索引变化会导致动画停止。 |
 
 ## IndicatorStyle<sup>(deprecated)</sup>对象说明
 

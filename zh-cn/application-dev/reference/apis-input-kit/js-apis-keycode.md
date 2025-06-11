@@ -368,3 +368,4 @@ import { KeyCode } from '@kit.InputKit';
 | KEYCODE_DAGGER_CLICK<sup>18+</sup> | 3211 | 智能手表dagger单击键。 |
 | KEYCODE_DAGGER_DOUBLE_CLICK<sup>18+</sup> | 3212 | 智能手表dagger双击键。 |
 | KEYCODE_DAGGER_LONG_PRESS<sup>18+</sup> | 3213 | 智能手表dagger长按键。 |
+| KEYCODE_DIV<sup>20+</sup> | 3220 | 智能手表左按键，仅支持智能穿戴设备使用。 |

@@ -211,7 +211,7 @@ grantUriPermission(policies: Array&lt;PolicyInfo&gt;, targetBundleName: string, 
 
 | 参数名 | 类型| 必填 | 说明|
 | -------- |-------| -------- |----------|
-| policies| Array&lt;[PathPolicyInfo](js-apis-fileShare.md#pathpolicyinfo15)> | 是 | 需要授权路径的策略信息，policies数组大小上限为500。|
+| policies| Array&lt;[PolicyInfo](js-apis-fileShare.md#policyinfo11)> | 是 | 需要授权路径的策略信息，policies数组大小上限为500。|
 | targetBundleName| string | 是 | 被授权应用的应用包名。 |
 | appCloneIndex| number | 是 | 被授权应用的分身索引，取值为0时表示主应用。 |
 

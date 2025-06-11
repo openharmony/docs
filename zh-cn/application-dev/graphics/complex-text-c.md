@@ -95,7 +95,7 @@ OH_Drawing_DestroyTypography(typography);
 
 ```c++
 // 设置排版宽度
-double layoutWidth = 1310;
+double layoutWidth = 640;
 // 创建 FontCollection，FontCollection 用于管理字体匹配逻辑
 OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
 
@@ -157,7 +157,7 @@ OH_Drawing_TypographyHandlerAddText(handlerBreakWord, text);
 OH_Drawing_Typography *typographyBreakWord = OH_Drawing_CreateTypography(handlerBreakWord);
 OH_Drawing_TypographyLayout(typographyBreakWord, layoutWidth);
 // 设置文本在画布上绘制的起始位置
-double positionBreakWord[2] = {0, 1140};
+double positionBreakWord[2] = {0, 100};
 // 将文本绘制到画布上
 OH_Drawing_TypographyPaint(typographyBreakWord, canvas, positionBreakWord[0], positionBreakWord[1]);
 
@@ -175,7 +175,7 @@ OH_Drawing_DestroyTypography(typographyBreakWord);
 
 ### 效果展示
 
-![zh-cn_image_0000002211603596](figures/zh-cn_image_0000002211603596.png)
+![zh-cn_image_0000002211603596](figures/MultilineText.PNG)
 
 
 ## 多样式文本绘制与显示

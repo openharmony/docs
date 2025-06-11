@@ -270,17 +270,17 @@ zh-cn/application-dev/application-models/windowextensionability.md @zhangqiang18
 zh-cn/application-dev/web/ @yp99ustc @HelloCrease @patrickrubystar @GHiker
 
 [开发-Background Tasks Kit]
-zh-cn/application-dev/task-management/ @Brilliantry_Rui @zhouben25 @cooffee10 
-zh-cn/application-dev/task-management/background-task-overview.md @Brilliantry_Rui @zhouben25 @cooffee10  
-zh-cn/application-dev/task-management/transient-task.md @Brilliantry_Rui @zhouben25 @cooffee10 
-zh-cn/application-dev/task-management/continuous-task.md @Brilliantry_Rui @zhouben25 @cooffee10   
-zh-cn/application-dev/task-management/work-scheduler.md @Brilliantry_Rui @zhouben25 @cooffee10  
-zh-cn/application-dev/task-management/agent-powered-reminder.md @Brilliantry_Rui @zhouben25 @cooffee10  
-zh-cn/application-dev/task-management/efficiency-resource-request.md @Brilliantry_Rui @zhouben25 @cooffee10   
-zh-cn/application-dev/task-management/native-transient-task.md @Brilliantry_Rui @zhouben25 @cooffee10  
-zh-cn/application-dev/device-usage-statistics/  @Brilliantry_Rui @zhouben25 @cooffee10  
-zh-cn/application-dev/device-usage-statistics/device-usage-statistics-overview.md @Brilliantry_Rui @zhouben25 @cooffee10  
-zh-cn/application-dev/device-usage-statistics/device-usage-statistics-use-guide.md @Brilliantry_Rui @zhouben25 @cooffee10  
+zh-cn/application-dev/task-management/ @Brilliantry_Rui @zhouben25  @fenglili18
+zh-cn/application-dev/task-management/background-task-overview.md @Brilliantry_Rui @zhouben25 @fenglili18  
+zh-cn/application-dev/task-management/transient-task.md @Brilliantry_Rui @zhouben25 @fenglili18 
+zh-cn/application-dev/task-management/continuous-task.md @Brilliantry_Rui @zhouben25 @fenglili18   
+zh-cn/application-dev/task-management/work-scheduler.md @Brilliantry_Rui @zhouben25 @fenglili18 
+zh-cn/application-dev/task-management/agent-powered-reminder.md @Brilliantry_Rui @zhouben25 @fenglili18  
+zh-cn/application-dev/task-management/efficiency-resource-request.md @Brilliantry_Rui @zhouben25 @fenglili18   
+zh-cn/application-dev/task-management/native-transient-task.md @Brilliantry_Rui @zhouben25 @fenglili18 
+zh-cn/application-dev/device-usage-statistics/  @Brilliantry_Rui @zhouben25 @fenglili18  
+zh-cn/application-dev/device-usage-statistics/device-usage-statistics-overview.md @Brilliantry_Rui @zhouben25 @fenglili18  
+zh-cn/application-dev/device-usage-statistics/device-usage-statistics-use-guide.md @Brilliantry_Rui @zhouben25 @fenglili18  
 
 [开发-Basic Services Kit-帐号]
 zh-cn/application-dev/account/ @zengyawen
@@ -296,6 +296,9 @@ zh-cn/application-dev/device/usb-guidelines.md @li-yan339 @Kevin-Lau @liuhonggan
 zh-cn/application-dev/basic-services/update/Readme-CN.md @zhang_yixin13
 zh-cn/application-dev/basic-services/update/sample-server-overview.md  @zhang_yixin13
 zh-cn/application-dev/basic-services/update/sample-server-guidelines.md  @zhang_yixin13
+
+[开发-Basic Services Kit-压缩解压]
+zh-cn/application-dev/basic-services/compress  @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
 
 [开发-CalendarManager Kit]
 zh-cn/application-dev/calendarmanager @liuqian677 @jt_123456 @edollar
@@ -737,7 +740,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-rowsplit.md	@la
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-scroll.md	@rongshao-Z	@yeyinglong_admin	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md	@raulnaruto_admin	@jiangdayuan	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-stack.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-swiper.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-swiper.md	@huangxiaolinabc123	@jiangdayuan	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabs.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabcontent.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-waterflow.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
@@ -889,20 +892,20 @@ zh-cn/application-dev/reference/apis-arkweb/  @yp99ustc @HelloCrease @patrickrub
 
 
 [API参考-Background Tasks Kit]
-zh-cn/application-dev/reference/apis-backgroundtasks-kit  @Brilliantry_Rui @zhouben25 @cooffee10
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md  @Brilliantry_Rui @zhouben25 @cooffee10 
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager-sys.md  @Brilliantry_Rui @zhouben25 @cooffee10 
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md  @Brilliantry_Rui @zhouben25 @cooffee10 
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager-sys.md  @Brilliantry_Rui @zhouben25 @cooffee10 
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md  @Brilliantry_Rui @zhouben25 @cooffee10  
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md  @Brilliantry_Rui @zhouben25 @cooffee10  
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-inner-application-WorkSchedulerExtensionContext.md  @Brilliantry_Rui @zhouben25 @cooffee10  
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceStandby-sys.md  @Brilliantry_Rui @zhouben25 @cooffee10  
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md  @Brilliantry_Rui @zhouben25 @cooffee10 
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-backgroundTaskMgr.md  @Brilliantry_Rui @zhouben25 @cooffee10 
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-reminderAgentManager.md  @Brilliantry_Rui @zhouben25 @cooffee10 
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-workScheduler.md  @Brilliantry_Rui @zhouben25 @cooffee10 
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-DeviceUsageStatistics.md  @Brilliantry_Rui @zhouben25 @cooffee10 
+zh-cn/application-dev/reference/apis-backgroundtasks-kit  @Brilliantry_Rui @zhouben25 @fenglili18
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md  @Brilliantry_Rui @zhouben25 @fenglili18 
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager-sys.md  @Brilliantry_Rui @zhouben25 @fenglili18 
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md  @Brilliantry_Rui @zhouben25 @fenglili18 
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager-sys.md  @Brilliantry_Rui @zhouben25 @fenglili18 
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md  @Brilliantry_Rui @zhouben25 @fenglili18  
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md  @Brilliantry_Rui @zhouben25 @fenglili18  
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-inner-application-WorkSchedulerExtensionContext.md  @Brilliantry_Rui @zhouben25 @fenglili18  
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceStandby-sys.md  @Brilliantry_Rui @zhouben25 @fenglili18  
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md  @Brilliantry_Rui @zhouben25 @fenglili18 
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-backgroundTaskMgr.md  @Brilliantry_Rui @zhouben25 @fenglili18 
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-reminderAgentManager.md  @Brilliantry_Rui @zhouben25 @fenglili18 
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-workScheduler.md  @Brilliantry_Rui @zhouben25 @fenglili18 
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-DeviceUsageStatistics.md  @Brilliantry_Rui @zhouben25 @fenglili18 
 
 [API参考-Basic Services Kit-配置策略]
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-configPolicy-sys.md @Brilliantry_Rui  @liubingbing  @lpw_work  
@@ -973,6 +976,9 @@ zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-capabilit
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-parameterV9.md  @zhang_yixin13 
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-device-info.md  @zhang_yixin13 
 
+[API参考-Basic Services Kit-压缩解压]
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-zlib.md  @Brilliantry_Rui @changzheng6   @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-zlib.md  @Brilliantry_Rui @changzheng6   @kongjing2  @small_bricklayer
 
 [API参考-CalendarManager Kit]
 zh-cn/application-dev/reference/apis-calendar-kit/ @liuqian677 @jt_123456 @edollar
@@ -1067,6 +1073,7 @@ zh-cn/application-dev/reference/apis-input-kit/ @Brilliantry_Rui @mayunteng @ust
 zh-cn/application-dev/reference/apis-ipc-kit/js-apis-rpc.md @xdx1921 @zhang_yixin13 @zhaopeng_gitee @zhang-yang123321
 
 [API参考-Localization Kit]
+zh-cn/application-dev/reference/apis-Localization-kit  @Brilliantry_Rui  @lpw_work 
 zh-cn/application-dev/reference/apis-Localization-kit/js-apis-i18n.md  @Brilliantry_Rui @yliupy  @sunyaozu @lpw_work 
 zh-cn/application-dev/reference/apis-Localization-kit/js-apis-intl.md  @Brilliantry_Rui @yliupy  @sunyaozu @lpw_work 
 zh-cn/application-dev/reference/apis-Localization-kit/js-apis-i18n-sys.md  @Brilliantry_Rui @yliupy  @sunyaozu @lpw_work 

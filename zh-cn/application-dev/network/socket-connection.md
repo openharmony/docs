@@ -532,23 +532,6 @@ class SocketInfo {
 }
 // 创建一个（双向认证）TLS Socket连接，返回一个TLS Socket对象。
 let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance();
-// 订阅TLS Socket相关的订阅事件
-tlsTwoWay.on('message', (value: SocketInfo) => {
-  console.log("on message");
-  let buffer = value.message;
-  let dataView = new DataView(buffer);
-  let str = "";
-  for (let i = 0; i < dataView.byteLength; ++i) {
-    str += String.fromCharCode(dataView.getUint8(i));
-  }
-  console.log("on connect received:" + str);
-});
-tlsTwoWay.on('connect', () => {
-  console.log("on connect");
-});
-tlsTwoWay.on('close', () => {
-  console.log("on close");
-});
 
 // 绑定本地IP地址和端口。
 let ipAddress : socket.NetAddress = {} as socket.NetAddress;
@@ -560,6 +543,23 @@ tlsTwoWay.bind(ipAddress, (err: BusinessError) => {
     return;
   }
   console.log('bind success');
+  // 确保bind成功后，再订阅TLS Socket相关的订阅事件
+  tlsTwoWay.on('message', (value: SocketInfo) => {
+    console.log("on message");
+    let buffer = value.message;
+    let dataView = new DataView(buffer);
+    let str = "";
+    for (let i = 0; i < dataView.byteLength; ++i) {
+      str += String.fromCharCode(dataView.getUint8(i));
+    }
+    console.log("on connect received:" + str);
+  });
+  tlsTwoWay.on('connect', () => {
+    console.log("on connect");
+  });
+  tlsTwoWay.on('close', () => {
+    console.log("on close");
+  });
 });
 
 ipAddress.address = "192.168.xxx.xxx";
@@ -576,7 +576,6 @@ tlsSecureOption.signatureAlgorithms = "rsa_pss_rsae_sha256:ECDSA+SHA256";
 tlsSecureOption.cipherSuite = "AES256-SHA256";
 
 let tlsTwoWayConnectOption : socket.TLSConnectOptions = {} as socket.TLSConnectOptions;
-tlsSecureOption.key = "xxxx";
 tlsTwoWayConnectOption.address = ipAddress;
 tlsTwoWayConnectOption.secureOptions = tlsSecureOption;
 tlsTwoWayConnectOption.ALPNProtocols = ["spdy/1", "http/1.1"];
@@ -603,24 +602,6 @@ tlsTwoWay.close((err: BusinessError) => {
 // 创建一个（单向认证）TLS Socket连接，返回一个TLS Socket对象。
 let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
 
-// 订阅TLS Socket相关的订阅事件
-tlsTwoWay.on('message', (value: SocketInfo) => {
-  console.log("on message");
-  let buffer = value.message;
-  let dataView = new DataView(buffer);
-  let str = "";
-  for (let i = 0; i < dataView.byteLength; ++i) {
-    str += String.fromCharCode(dataView.getUint8(i));
-  }
-  console.log("on connect received:" + str);
-});
-tlsTwoWay.on('connect', () => {
-  console.log("on connect");
-});
-tlsTwoWay.on('close', () => {
-  console.log("on close");
-});
-
 // 绑定本地IP地址和端口。
 ipAddress.address = "192.168.xxx.xxx";
 ipAddress.port = 5445;
@@ -630,6 +611,23 @@ tlsOneWay.bind(ipAddress, (err:BusinessError) => {
     return;
   }
   console.log('bind success');
+  // 订阅TLS Socket相关的订阅事件
+  tlsOneWay.on('message', (value: SocketInfo) => {
+    console.log("on message");
+    let buffer = value.message;
+    let dataView = new DataView(buffer);
+    let str = "";
+    for (let i = 0; i < dataView.byteLength; ++i) {
+      str += String.fromCharCode(dataView.getUint8(i));
+    }
+    console.log("on connect received:" + str);
+  });
+  tlsOneWay.on('connect', () => {
+    console.log("on connect");
+  });
+  tlsOneWay.on('close', () => {
+    console.log("on close");
+  });
 });
 
 ipAddress.address = "192.168.xxx.xxx";

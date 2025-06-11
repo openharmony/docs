@@ -28,7 +28,7 @@ ConsoleMessage的信息级别。
 | Compatible | 1 | 兼容模式：混合内容兼容性模式，部分不安全的内容可能被加载。           |
 | None       | 2 | 严格模式：不允许加载HTTP和HTTPS混合内容。               |
 
- ## HitTestType
+## HitTestType
 
  **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -324,3 +324,15 @@ Web布局模式的配置。
 | 名称            | 值 | 说明                |
 | -------------- | -- | ------------------  |
 | LONG_PRESS     | 1 | 通过长按触发菜单弹出。 |
+
+## AudioSessionType<sup>20+</sup>
+
+应用中Web音频类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 名称            | 值 | 说明                |
+| -------------- | -- | ------------------  |
+| AMBIENT     | 3 | 适用于网页游戏场景，支持Web游戏声音与系统音乐同时播放。 |

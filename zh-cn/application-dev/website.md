@@ -795,8 +795,6 @@
       - 服务卡片开发指导（Stage模型）<!--arkts-ui-widget-stage-->
         - 开发基于ArkTS UI的卡片<!--arkts-ui-widget-->
           - [ArkTS卡片概述](form/arkts-form-overview.md)
-          - [ArkTS卡片运行机制](form/arkts-ui-widget-working-principles.md)
-          - [ArkTS卡片相关模块](form/arkts-ui-widget-modules.md)
           - ArkTS卡片开发指导<!--arkts-ui-widget-dev-->
             - [创建ArkTS卡片](form/arkts-ui-widget-creation.md)
             - [配置卡片的配置文件](form/arkts-ui-widget-configuration.md)
@@ -811,14 +809,12 @@
               - [拉起卡片提供方的UIAbility到后台(call事件)](form/arkts-ui-widget-event-call.md)
               - [通过message事件刷新卡片内容](form/arkts-ui-widget-event-formextensionability.md)
               - [通过router或call事件刷新卡片内容](form/arkts-ui-widget-event-uiability.md)
-            - 卡片数据交互<!--arkts-ui-widget-interaction-->
-              - [卡片内容更新](form/arkts-ui-widget-interaction-overview.md)
-              - [卡片定时刷新](form/arkts-ui-widget-update-by-time.md)
-              - [卡片定点刷新](form/arkts-ui-widget-update-by-time-point.md)
+            - ArkTS卡片页面刷新<!--arkts-ui-widget-interaction-->
+              - [ArkTS卡片页面刷新概述](form/arkts-ui-widget-interaction-overview.md)
+              - [ArkTS卡片主动刷新](form/arkts-ui-widget-active-refresh.md)
+              - [ArkTS卡片被动刷新](form/arkts-ui-widget-passive-refresh.md)
               <!--Del-->
               - [卡片代理刷新](form/arkts-ui-widget-update-by-proxy.md)
-              - [卡片条件刷新](form/arkts-ui-widget-update-by-conditions.md)
-              - [卡片使用方主动请求刷新卡片内容（仅对系统应用开放）](form/arkts-ui-widget-content-update.md)
               <!--DelEnd-->
               - [刷新本地图片和网络图片](form/arkts-ui-widget-image-update.md)
               - [根据卡片状态刷新不同内容](form/arkts-ui-widget-update-by-status.md)
@@ -2304,7 +2300,8 @@
         - [@ohos.data.distributedKVStore (分布式键值数据库)](reference/apis-arkdata/js-apis-distributedKVStore.md)
         - [@ohos.data.preferences (用户首选项)](reference/apis-arkdata/js-apis-data-preferences.md)
         - [@ohos.data.sendablePreferences (共享用户首选项)](reference/apis-arkdata/js-apis-data-sendablePreferences.md)
-        - [@ohos.data.relationalStore (关系型数据库)](reference/apis-arkdata/arkts-apis-data-relationalStore.md)
+        - @ohos.data.relationalStore (关系型数据库)<!--js-apis-data-relationalStore-->
+          - [模块描述](reference/apis-arkdata/arkts-apis-data-relationalStore.md)
           - [Functions](reference/apis-arkdata/arkts-apis-data-relationalStore-f.md)
           - [Interface (RdbStore)](reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md)
           - [Interface (ResultSet)](reference/apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md)
@@ -2429,7 +2426,7 @@
         - [@arkts.utils (ArkTS工具库)](reference/apis-arkts/js-apis-arkts-utils.md)
         - [@ohos.buffer (Buffer)](reference/apis-arkts/js-apis-buffer.md)
         - [@ohos.convertxml (xml转换JavaScript)](reference/apis-arkts/js-apis-convertxml.md)
-        - [@ohos.fastbuffer (线性容器FastBuffer)](reference/apis-arkts/js-apis-fastbuffer.md)
+        - [@ohos.fastbuffer (FastBuffer)](reference/apis-arkts/js-apis-fastbuffer.md)
         - [@ohos.process (获取进程相关的信息)](reference/apis-arkts/js-apis-process.md)
         - [@ohos.taskpool (启动任务池)](reference/apis-arkts/js-apis-taskpool.md)
         - [@ohos.uri (URI字符串解析)](reference/apis-arkts/js-apis-uri.md)
@@ -2511,7 +2508,8 @@
             - [NodeContent](reference/apis-arkui/js-apis-arkui-NodeContent.md)
         - 窗口管理<!--window-manager-api-->
           - [@ohos.PiPWindow (画中画窗口)](reference/apis-arkui/js-apis-pipWindow.md)
-          - [@ohos.window (窗口)](reference/apis-arkui/arkts-apis-window.md)
+          - @ohos.window (窗口)<!--js-apis-window-->
+            - [模块描述](reference/apis-arkui/arkts-apis-window.md)
             - [Functions](reference/apis-arkui/arkts-apis-window-f.md)
             - [Interface (Window)](reference/apis-arkui/arkts-apis-window-Window.md)
             - [Interface (WindowStage)](reference/apis-arkui/arkts-apis-window-WindowStage.md)
@@ -3142,6 +3140,7 @@
           - [OH_NativeXComponent_MouseEvent_Callback](reference/apis-arkui/_o_h___native_x_component___mouse_event___callback.md)
           - [OH_NativeXComponent_TouchEvent](reference/apis-arkui/_o_h___native_x_component___touch_event.md)
           - [OH_NativeXComponent_TouchPoint](reference/apis-arkui/_o_h___native_x_component___touch_point.md)
+          - [PictureInPicture_PipConfig](reference/apis-arkui/capi-pictureinpicture-pipconfig.md)
           - [WindowManager_Rect](reference/apis-arkui/capi-windowmanager-rect.md)
           - [struct](reference/apis-arkui/capi-struct.md)
           - [WindowManager_WindowProperties](reference/apis-arkui/capi-windowmanager-windowproperties.md)
@@ -3171,9 +3170,9 @@
           - [交互事件错误码](reference/apis-arkui/errorcode-event.md)
           - [Canvas错误码](reference/apis-arkui/errorcode-canvas.md)
           - [自定义节点错误码](reference/apis-arkui/errorcode-node.md)
+          - [UIExtension错误码](reference/apis-arkui/errorcode-uiextension.md)
           <!--Del-->
           - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
-          - [UIExtension错误码](reference/apis-arkui/errorcode-uiextension.md)
           <!--DelEnd-->
         - UI编译<!--arkui-compile-arkts-errcode-->
           - [编译错误码](reference/apis-arkui/_ark_ui_compile.md)
@@ -3194,6 +3193,7 @@
           - [Class (NativeMediaPlayerSurfaceInfo)](reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerSurfaceInfo.md)
           - [Class (PdfData)](reference/apis-arkweb/arkts-apis-webview-PdfData.md)
           - [Class (ProxyConfig)](reference/apis-arkweb/arkts-apis-webview-ProxyConfig.md)
+          - [Class (ProxyController)](reference/apis-arkweb/arkts-apis-webview-ProxyController.md)
           - [Class (ProxyRule)](reference/apis-arkweb/arkts-apis-webview-ProxyRule.md)
           - [Class (WebviewController)](reference/apis-arkweb/arkts-apis-webview-WebviewController.md)
           - [Class (WebCookieManager)](reference/apis-arkweb/arkts-apis-webview-WebCookieManager.md)
@@ -3505,6 +3505,7 @@
             - [Asset_Attr](reference/apis-asset-store-kit/capi-asset-attr.md)
             - [Asset_Result](reference/apis-asset-store-kit/capi-asset-result.md)
             - [Asset_ResultSet](reference/apis-asset-store-kit/capi-asset-resultset.md)
+            - [Asset_SyncResult](reference/apis-asset-store-kit/capi-asset-syncresult.md)
         - 错误码<!--asset-store-arkts-errcode-->
           - [Asset错误码](reference/apis-asset-store-kit/errorcode-asset.md)
       - Crypto Architecture Kit（加解密算法框架服务）<!--crypto-architecture-api-->
@@ -4049,9 +4050,11 @@
             - [Input_DeviceInfo](reference/apis-input-kit/capi-input-deviceinfo.md)
             - [Input_InterceptorOptions](reference/apis-input-kit/capi-input-interceptoroptions.md)
         - 错误码<!--input-arkts-errcode-->
+          <!--Del-->
           - [键鼠穿越管理错误码](reference/apis-input-kit/errorcode-cooperator.md)
-          - [全局快捷键管理错误码](reference/apis-input-kit/errorcode-inputconsumer.md)
           - [按键前置监听错误码](reference/apis-input-kit/errorcode-inputmonitor.md)
+          <!--DelEnd-->
+          - [全局快捷键管理错误码](reference/apis-input-kit/errorcode-inputconsumer.md)
           - [输入设备错误码](reference/apis-input-kit/errorcode-inputdevice.md)
           - [鼠标指针错误码](reference/apis-input-kit/errorcode-pointer.md)
       - MDM Kit（企业设备管理服务）<!--mdm-api-->
@@ -4234,8 +4237,11 @@
             - [HiAppEvent_AppEventInfo](reference/apis-performance-analysis-kit/_hi_app_event___app_event_info.md)
             - [HiCollie_DetectionParam](reference/apis-performance-analysis-kit/_hi_collie___detection_param.md)
             - [HiCollie_SetTimerParam](reference/apis-performance-analysis-kit/_hi_collie___set_timer_param.md)
+            - [HiDebug_JsStackFrame](reference/apis-performance-analysis-kit/_hi_debug___js_stack_frame.md)
             - [HiDebug_MemoryLimit](reference/apis-performance-analysis-kit/_hi_debug___memory_limit.md)
             - [HiDebug_NativeMemInfo](reference/apis-performance-analysis-kit/_hi_debug___native_mem_info.md)
+            - [HiDebug_NativeStackFrame](reference/apis-performance-analysis-kit/_hi_debug___native_stack_frame.md)
+            - [HiDebug_StackFrame](reference/apis-performance-analysis-kit/_hi_debug___stack_frame.md)
             - [HiDebug_SystemMemInfo](reference/apis-performance-analysis-kit/_hi_debug___system_mem_info.md)
             - [HiDebug_ThreadCpuUsage](reference/apis-performance-analysis-kit/_hi_debug___thread_cpu_usage.md)
             - [HiTraceId](reference/apis-performance-analysis-kit/_hi_trace_id.md)
@@ -4285,23 +4291,25 @@
           - [native_audio_routing_manager.h](reference/apis-audio-kit/capi-native-audio-routing-manager-h.md)
           - [native_audio_session_manager.h](reference/apis-audio-kit/capi-native-audio-session-manager-h.md)
           - [native_audio_stream_manager.h](reference/apis-audio-kit/capi-native-audio-stream-manager-h.md)
+          - [native_audio_volume_manager.h](reference/apis-audio-kit/capi-native-audio-volume-manager-h.md)
           - [native_audiorenderer.h](reference/apis-audio-kit/capi-native-audiorenderer-h.md)
           - [native_audio_common.h](reference/apis-audio-kit/capi-native-audio-common-h.md)
           - [native_audio_device_base.h](reference/apis-audio-kit/capi-native-audio-device-base-h.md)
           - [native_audiostream_base.h](reference/apis-audio-kit/capi-native-audiostream-base-h.md)
           - [native_audiostreambuilder.h](reference/apis-audio-kit/capi-native-audiostreambuilder-h.md)
         - 结构体<!--audio-struct-->
+          - [OH_AudioManager](reference/apis-audio-kit/capi-oh-audiomanager.md)
+          - [OH_AudioRoutingManager](reference/apis-audio-kit/capi-oh-audioroutingmanager.md)
           - [OH_AudioSession_Strategy](reference/apis-audio-kit/capi-oh-audiosession-strategy.md)
           - [OH_AudioSession_DeactivatedEvent](reference/apis-audio-kit/capi-oh-audiosession-deactivatedevent.md)
+          - [OH_AudioSessionManager](reference/apis-audio-kit/capi-oh-audiosessionmanager.md)
+          - [OH_AudioStreamManager](reference/apis-audio-kit/capi-oh-audiostreammanager.md)
+          - [OH_AudioVolumeManager](reference/apis-audio-kit/capi-oh-audiovolumemanager.md)
           - [OH_AudioDeviceDescriptorArray](reference/apis-audio-kit/capi-oh-audiodevicedescriptorarray.md)
+          - [OH_AudioDeviceDescriptor](reference/apis-audio-kit/capi-oh-audiodevicedescriptor.md)
           - [OH_AudioStreamInfo](reference/apis-audio-kit/capi-oh-audiostreaminfo.md)
           - [OH_AudioRenderer_Callbacks_Struct](reference/apis-audio-kit/capi-oh-audiorenderer-callbacks-struct.md)
           - [OH_AudioCapturer_Callbacks_Struct](reference/apis-audio-kit/capi-oh-audiocapturer-callbacks-struct.md)
-          - [OH_AudioManager](reference/apis-audio-kit/capi-oh-audiomanager.md)
-          - [OH_AudioRoutingManager](reference/apis-audio-kit/capi-oh-audioroutingmanager.md)
-          - [OH_AudioSessionManager](reference/apis-audio-kit/capi-oh-audiosessionmanager.md)
-          - [OH_AudioStreamManager](reference/apis-audio-kit/capi-oh-audiostreammanager.md)
-          - [OH_AudioDeviceDescriptor](reference/apis-audio-kit/capi-oh-audiodevicedescriptor.md)
           - [OH_AudioStreamBuilderStruct](reference/apis-audio-kit/capi-oh-audiostreambuilderstruct.md)
           - [OH_AudioRendererStruct](reference/apis-audio-kit/capi-oh-audiorendererstruct.md)
           - [OH_AudioCapturerStruct](reference/apis-audio-kit/capi-oh-audiocapturerstruct.md)

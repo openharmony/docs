@@ -49,7 +49,8 @@
       - [NodeContent](js-apis-arkui-NodeContent.md)
   - 窗口管理<!--window-manager-api-->
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
-    - [@ohos.window (窗口)](arkts-apis-window.md)
+    - @ohos.window (窗口)<!--js-apis-window-->
+      - [模块描述](arkts-apis-window.md)
       - [Functions](arkts-apis-window-f.md)
       - [Interface (Window)](arkts-apis-window-Window.md)
       - [Interface (WindowStage)](arkts-apis-window-WindowStage.md)
@@ -506,6 +507,7 @@
     - [OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md)
     - [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md)
     - [OH_NativeXComponent_TouchPoint](_o_h___native_x_component___touch_point.md)
+    - [PictureInPicture_PipConfig](capi-pictureinpicture-pipconfig.md)
     - [WindowManager_Rect](capi-windowmanager-rect.md)
     - [struct](capi-struct.md)
     - [WindowManager_WindowProperties](capi-windowmanager-windowproperties.md)
@@ -534,10 +536,10 @@
     - [注册节点渲染状态监听错误码](errorcode-node-render-monitor.md)
     - [交互事件错误码](errorcode-event.md)
     - [Canvas错误码](errorcode-canvas.md)
-    - [自定义节点错误码](errorcode-node.md)
+    - [自定义节点错误码](errorcode-node.md)   
+    - [UIExtension错误码](errorcode-uiextension.md)
     <!--Del-->
     - [用户界面外观服务错误码](errorcode-uiappearance.md)
-    - [UIExtension错误码](errorcode-uiextension.md)
     <!--DelEnd-->
   - 图形图像<!--arkui-graphics-images-arkts-errcode-->
     - [屏幕错误码](errorcode-display.md)

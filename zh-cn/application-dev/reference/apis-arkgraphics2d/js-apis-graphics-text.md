@@ -578,7 +578,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称                      | 类型                                       | 只读 | 可选 | 说明                                                                 |
 | -------------  | ---------------------------------------------------- | ---- | -- | --------------------------------------------------------------------- |
-| fontFamilies   | Array\<string>                                       | 是   | 是 | 字体族名称列表，默认为空，匹配系统字体。                                               |
+| fontFamilies   | Array\<string>                                       | 是   | 是 | 字体家族名称列表，默认为空，匹配系统字体。                                               |
 | fontStyle      | [FontStyle](#fontstyle)                              | 是   | 是 | 字体样式，默认为常规样式。                                               |
 | fontWidth      | [FontWidth](#fontwidth)                              | 是   | 是 | 字体宽度，默认为NORMAL。                                                |
 | fontWeight     | [FontWeight](#fontweight)                            | 是   | 是 | 字重，默认为W400。系统默认字体支持字重调节，其他字体设置字重值小于W600时无变化，大于等于W600时可能触发伪加粗效果。                             |
@@ -2997,6 +2997,55 @@ getTypographicBounds(): TypographicBounds
 
 ```ts
 let typographicBounds = runs[0].getTypographicBounds();
+```
+
+### getTextDirection<sup>20+</sup>
+
+getTextDirection(): TextDirection
+
+获取该排版单元的文本方向。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                   | 说明           |
+| ---------------------- | -------------- |
+|   [TextDirection](#textdirection)  | 返回该排版单元的文本方向。|
+
+**示例：**
+
+```ts
+let textDirection = runs[0].getTextDirection();
+```
+
+### getAdvances<sup>20+</sup>
+
+getAdvances(range: Range): Array<common2D.Point>
+
+获取该排版单元指定范围内每个字形的字形宽度数组。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                       |
+| -------- | ------- | ---- | -------------------------- |
+| range    | [Range](#range)   | 是   | 要获取的字形位置范围。range.start表示范围开始的位置，range.end表示范围的长度。如果长度是0表示从range.start开始获取到渲染块结束。当range.end、range.start为负数，或者传入null、undefined时，该方法将返回undefined。|
+
+**返回值：**
+
+| 类型                   | 说明                                   |
+| ---------------------- | ------------------------------------- |
+| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | 返回该排版单元中每个字形相对于水平方向和垂直方向的字形宽度。 |
+
+**示例：**
+
+```ts
+let advancesRange = runs[0].getAdvances({start:1, end:2}); // 获取渲染块从起始位置1开始, 长度为2范围内的字形宽度
+advancesRange = runs[0].getAdvances({start:-1, end:2}); // -1是非法参数，将返回undefined
+advancesRange = runs[0].getAdvances({start:0, end:-10}); // -10是非法参数，将返回undefined
+let advancesNull = runs[0].getAdvances(null); // null是非法参数，将返回undefined
 ```
 
 ## TextTab<sup>18+</sup>
