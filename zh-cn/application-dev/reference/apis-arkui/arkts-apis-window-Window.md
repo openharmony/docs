@@ -5509,8 +5509,8 @@ import { image } from '@kit.ImageKit';
 try {
   let pixelMap = windowClass.snapshotSync();
   pixelMap.release(); // PixelMap使用完后及时释放内存
-} catch (err: BusinessError) {
-  console.error(`Failed to snapshot window. Cause code: ${err.code}, message: ${err.message}`);
+} catch (exception) {
+  console.error(`Failed to snapshot window. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
