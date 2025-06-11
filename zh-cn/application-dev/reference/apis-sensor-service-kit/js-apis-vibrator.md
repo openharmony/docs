@@ -53,8 +53,8 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
    import { BusinessError } from '@kit.BasicServicesKit';
 
    try {
-     // 查询是否支持'haptic.clock.timer'
-     vibrator.isSupportEffect('haptic.clock.timer', (err: BusinessError, state: boolean) => {
+     // 查询是否支持'haptic.notice.success'
+     vibrator.isSupportEffect('haptic.notice.success', (err: BusinessError, state: boolean) => {
        if (err) {
          console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
          return;
@@ -64,10 +64,10 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
          try {
            vibrator.startVibration({
              type: 'preset',
-             effectId: 'haptic.clock.timer',
+             effectId: 'haptic.notice.success',
              count: 1,
            }, {
-             usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+             usage: 'notification' // 根据实际选择类型归属不同的开关管控
            }, (error: BusinessError) => {
              if (error) {
                console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
@@ -209,8 +209,8 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
    import { BusinessError } from '@kit.BasicServicesKit';
 
    try {
-     // 查询是否支持'haptic.clock.timer'
-     vibrator.isSupportEffect('haptic.clock.timer', (err: BusinessError, state: boolean) => {
+     // 查询是否支持'haptic.notice.success'
+     vibrator.isSupportEffect('haptic.notice.success', (err: BusinessError, state: boolean) => {
        if (err) {
          console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
          return;
@@ -220,10 +220,10 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
          try {
            vibrator.startVibration({
              type: 'preset',
-             effectId: 'haptic.clock.timer',
+             effectId: 'haptic.notice.success',
              count: 1,
            }, {
-             usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+             usage: 'notification' // 根据实际选择类型归属不同的开关管控
            }, (error: BusinessError) => {
              if (error) {
                console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
@@ -397,11 +397,11 @@ stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): 
      // 按照预置效果振动
      vibrator.startVibration({
        type: 'preset',
-       effectId: 'haptic.clock.timer',
+       effectId: 'haptic.notice.success',
        count: 1,
      }, {
        id: 0,
-       usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+       usage: 'notification' // 根据实际选择类型归属不同的开关管控
      }, (error: BusinessError) => {
        if (error) {
          console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
@@ -509,11 +509,11 @@ stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
      // 按照预置效果振动
      vibrator.startVibration({
        type: 'preset',
-       effectId: 'haptic.clock.timer',
+       effectId: 'haptic.notice.success',
        count: 1,
      }, {
        id: 0,
-       usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+       usage: 'notification' // 根据实际选择类型归属不同的开关管控
      }).then(() => {
        console.info('Succeed in starting vibration');
      }, (error: BusinessError) => {
@@ -697,8 +697,8 @@ isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
    import { BusinessError } from '@kit.BasicServicesKit';
   
    try {
-     // 查询是否支持'haptic.clock.timer'
-     vibrator.isSupportEffect('haptic.clock.timer', (err: BusinessError, state: boolean) => {
+     // 查询是否支持'haptic.notice.success'
+     vibrator.isSupportEffect('haptic.notice.success', (err: BusinessError, state: boolean) => {
        if (err) {
          console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
          return;
@@ -709,7 +709,7 @@ isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
            // 使用startVibration需要添加ohos.permission.VIBRATE权限
            vibrator.startVibration({
              type: 'preset',
-             effectId: 'haptic.clock.timer',
+             effectId: 'haptic.notice.success',
              count: 1,
            }, {
              usage: 'unknown' // 根据实际选择类型归属不同的开关管控
@@ -768,14 +768,14 @@ isSupportEffect(effectId: string): Promise&lt;boolean&gt;
    import { BusinessError } from '@kit.BasicServicesKit';
 
    try {
-     // 查询是否支持'haptic.clock.timer'
-     vibrator.isSupportEffect('haptic.clock.timer').then((state: boolean) => {
+     // 查询是否支持'haptic.notice.success'
+     vibrator.isSupportEffect('haptic.notice.success').then((state: boolean) => {
        console.info(`The query result is ${state}`);
        if (state) {
          try {
            vibrator.startVibration({
              type: 'preset',
-             effectId: 'haptic.clock.timer',
+             effectId: 'haptic.notice.success',
              count: 1,
            }, {
              usage: 'unknown' // 根据实际选择类型归属不同的开关管控
@@ -834,8 +834,8 @@ isSupportEffectSync(effectId: string): boolean
    import { BusinessError } from '@kit.BasicServicesKit';
 
    try {
-     // 查询是否支持预设'haptic.clock.timer'
-     let ret = vibrator.isSupportEffectSync('haptic.clock.timer');
+     // 查询是否支持预设'haptic.notice.success'
+     let ret = vibrator.isSupportEffectSync('haptic.notice.success');
      console.info(`The query result is ${ret}`);
    } catch (error) {
      let e: BusinessError = error as BusinessError;
@@ -1053,7 +1053,7 @@ build(): VibratorPattern;
 
 ## EffectId
 
-预置的振动效果。在调用[vibrator.startVibration9+](#vibratorstartvibration9)或[vibrator.stopVibration9+](#vibratorstopvibration9-1)接口下发[VibratePreset](#vibratepreset9)形式振动的时候需要使用此参数类型。此参数值种类多样，'haptic.effect.soft'为其中一种。
+预置的振动效果。在调用[vibrator.startVibration9+](#vibratorstartvibration9)或[vibrator.stopVibration9+](#vibratorstopvibration9-1)接口下发[VibratePreset](#vibratepreset9)形式振动的时候需要使用此参数类型。此参数值种类多样，'haptic.clock.timer'为其中一种。[HapticFeedback<sup>12+</sup>](#hapticfeedback12)展示了几种常用的EffectId值。
 
 > **说明：**
 > 
@@ -1063,7 +1063,7 @@ build(): VibratorPattern;
 
 | 名称        | 值                   | 说明                         |
 | ----------- | -------------------- | ---------------------------- |
-| EFFECT_SOFT | 'haptic.effect.soft' | 较松散的振动效果，频率偏低。 |
+| EFFECT_CLOCK_TIMER | 'haptic.clock.timer' | 描述用户调整计时器时的振动效果。 |
 
 ## HapticFeedback<sup>12+</sup>
 
@@ -1143,7 +1143,7 @@ build(): VibratorPattern;
 
 ## HapticFileDescriptor<sup>10+</sup>
 
-自定义振动配置文件的描述符，必须确认资源文件可用，其参数可通过[文件管理API](../apis-core-file-kit/js-apis-file-fs.md#fsopen)从沙箱路径获取或者通过[资源管理API](../apis-localization-kit/js-apis-resource-manager.md#getrawfd9)从HAP资源获取。使用场景：振动序列被存储在一个文件中，需要根据偏移量和长度进行振动，振动序列存储格式，请参考[自定义振动格式](../../device/sensor/vibrator-guidelines.md#自定义振动)。
+自定义振动配置文件的描述符，必须确认资源文件可用，其参数可通过[文件管理API](../apis-core-file-kit/js-apis-file-fs.md#fsopen)从沙箱路径获取或者通过[资源管理API](../apis-localization-kit/js-apis-resource-manager.md#getrawfd9)从HAP资源获取。使用场景：振动序列被存储在一个文件中，需要根据偏移量和长度进行振动，振动序列存储格式，请参考[自定义振动格式](../../device/sensor/vibrator-guidelines.md#振动效果说明)。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
