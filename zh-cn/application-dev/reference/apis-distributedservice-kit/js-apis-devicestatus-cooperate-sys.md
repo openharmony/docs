@@ -689,7 +689,7 @@ try {
 activateCooperateWithOptions(targetNetworkId: string, inputDeviceId: number,
     cooperateOptions?: CooperateOptions ): Promise<void>;
 
-使用选项开始屏幕跳转。
+启动键鼠穿越，使用选项开始屏幕跳转。
 
 **需要权限**：ohos.permission.COOPERATE_MANAGER
 
