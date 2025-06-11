@@ -1101,7 +1101,7 @@ audioVolumeManager.off('appVolumeChangeForUid', appVolumeChangeForUidCallback);
 
 ## AudioVolumeGroupManager<sup>9+</sup>
 
-管理音频组音量。在调用AudioVolumeGroupManager的接口前，需要先通过 [getVolumeGroupManager](arkts-apis-audio-AudioManager.md#getvolumegroupmanager9) 创建实例。
+管理音频组音量。在调用AudioVolumeGroupManager的接口前，需要先通过 [getVolumeGroupManager](arkts-apis-audio-AudioVolumeManager.md#getvolumegroupmanager9) 创建实例。
 
 ### setVolume<sup>9+</sup>
 
