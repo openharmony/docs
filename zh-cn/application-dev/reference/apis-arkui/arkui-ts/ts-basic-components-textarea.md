@@ -979,22 +979,6 @@ EllipsisMode.START和EllipsisMode.CENTER仅在maxLines设置为1生效。
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
 | mode  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[EllipsisMode](ts-appendix-enums.md#ellipsismode11)> | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
 
-### enableAutoSpacing<sup>20+</sup>
-
-enableAutoSpacing(enabled: Optional\<boolean>)
-
-设置是否开启中文与西文的自动间距。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明                               |
-| ------ | ------- | ---- | ---------------------------------- |
-| enabled | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
-
 ## 事件
 
 除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
@@ -2230,6 +2214,8 @@ struct TextAreaExample {
 
 ```ts
 // xxx.ets
+import { LengthMetrics } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct TextAreaExample {
@@ -2238,14 +2224,20 @@ struct TextAreaExample {
       Column() {
         Text('stroke feature').fontSize(9).fontColor(0xCCCCCC)
 
-        TextArea({text: 'StrokeSet123'})
+        TextArea({ text: 'StrokeSet123' })
           .width('80%').height(90).borderWidth(1).fontSize(40)
-        TextArea({text: 'StrokeSet123'})
-          .width('80%').height(90).borderWidth(1).fontSize(40)
+        TextArea({ text: 'StrokeSet123' })
+          .width('80%')
+          .height(90)
+          .borderWidth(1)
+          .fontSize(40)
           .strokeWidth(LengthMetrics.px(-3.0))
           .strokeColor(Color.Red)
-        TextArea({text: 'StrokeSet123'})
-          .width('80%').height(90).borderWidth(1).fontSize(40)
+        TextArea({ text: 'StrokeSet123' })
+          .width('80%')
+          .height(90)
+          .borderWidth(1)
+          .fontSize(40)
           .strokeWidth(LengthMetrics.px(3.0))
           .strokeColor(Color.Red)
       }.height('90%')
@@ -2257,30 +2249,3 @@ struct TextAreaExample {
 ```
 
 ![textAreaSetStroke](figures/textAreaSetStroke.png)
-
-### 示例20（设置中西文自动间距）
-
-该示例通过enableAutoSpacing属性设置中西文自动间距。
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct TextAreaExample {
-  build() {
-    Row() {
-      Column() {
-        Text('开启中西文自动间距').margin(5)
-        TextArea({text: '中西文Auto Spacing自动间距'})
-          .enableAutoSpacing(true)
-        Text('关闭中西文自动间距').margin(5)
-        TextArea({text: '中西文Auto Spacing自动间距'})
-          .enableAutoSpacing(false)
-      }.height('100%')
-    }
-    .width('60%')
-  }
-}
-```
-
-![textAreaEnableAutoSpacing](figures/textAreaEnableAutoSpacing.png)

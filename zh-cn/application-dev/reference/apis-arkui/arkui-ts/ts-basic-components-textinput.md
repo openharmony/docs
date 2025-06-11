@@ -2843,6 +2843,8 @@ struct TextInputExample {
 
 ```ts
 // xxx.ets
+import { LengthMetrics } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct TextInputExample {
@@ -2851,14 +2853,20 @@ struct TextInputExample {
       Column() {
         Text('stroke feature').fontSize(9).fontColor(0xCCCCCC)
 
-        TextInput({text: 'StrokeSet123'})
+        TextInput({ text: 'StrokeSet123' })
           .width('80%').height(90).borderWidth(1).fontSize(40)
-        TextInput({text: 'StrokeSet123'})
-          .width('80%').height(90).borderWidth(1).fontSize(40)
+        TextInput({ text: 'StrokeSet123' })
+          .width('80%')
+          .height(90)
+          .borderWidth(1)
+          .fontSize(40)
           .strokeWidth(LengthMetrics.px(-3.0))
           .strokeColor(Color.Red)
-        TextInput({text: 'StrokeSet123'})
-          .width('80%').height(90).borderWidth(1).fontSize(40)
+        TextInput({ text: 'StrokeSet123' })
+          .width('80%')
+          .height(90)
+          .borderWidth(1)
+          .fontSize(40)
           .strokeWidth(LengthMetrics.px(3.0))
           .strokeColor(Color.Red)
       }.height('90%')
