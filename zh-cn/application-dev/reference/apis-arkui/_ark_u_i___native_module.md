@@ -11075,8 +11075,8 @@ void OH_ArkUI_KeyEvent_SetConsumed (const ArkUI_UIInputEvent * event, bool isCon
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| event | ArkUI_UIInputEvent事件指针。  | 
-| isConsumed | 是否被消费。  | 
+| event | ArkUI_UIInputEvent事件指针。  |
+| isConsumed | 是否被消费。true表示事件被消费，false表示事件未被消费。  |
 
 
 ### OH_ArkUI_KeyEvent_StopPropagation()
@@ -11094,8 +11094,8 @@ void OH_ArkUI_KeyEvent_StopPropagation (const ArkUI_UIInputEvent * event, bool s
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| event | ArkUI_UIInputEvent事件指针。  | 
-| stopPropagation | 表示是否阻止事件冒泡。  | 
+| event | ArkUI_UIInputEvent事件指针。  |
+| stopPropagation | 表示是否阻止事件冒泡。true表示阻止事件冒泡，false表示不阻止事件冒泡。  |
 
 
 ### OH_ArkUI_KeyEvent_Dispatch()
