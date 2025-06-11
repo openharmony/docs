@@ -23,11 +23,11 @@ Web页面出现白屏的原因众多，本文列举了若干常见白屏问题�
 * 开启相关权限：
     | 名称   | 说明  |                       
     | ----   | -------------------------------- |
-    | [domStorageAccess](../reference/apis-arkweb/ts-basic-components-web-attributes.md#domstorageaccess) | DOM Storage API权限，若不开启，无法使用localStorage存储数据，任何调用localStorage的代码都将失效，依赖本地存储的功能会异常。 |
-    | [fileAccess](../reference/apis-arkweb/ts-basic-components-web-attributes.md#fileaccess) | ‌若不开启，文件读写功能完全被阻断，依赖文件的模块会崩溃。 | 
-    | [imageAccess](../reference/apis-arkweb/ts-basic-components-web-attributes.md#imageaccess) | 设置是否允许自动加载图片资源。 | 
-    | [onlineImageAccess](../reference/apis-arkweb/ts-basic-components-web-attributes.md#onlineimageaccess) | 设置是否允许从网络加载图片资源（通过HTTP和HTTPS访问的资源）。 |
-    | [javaScriptAccess](../reference/apis-arkweb/ts-basic-components-web-attributes.md#javascriptaccess) | 设置是否允许执行JavaScript脚本。 | 
+    | [domStorageAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#domstorageaccess) | DOM Storage API权限，若不开启，无法使用localStorage存储数据，任何调用localStorage的代码都将失效，依赖本地存储的功能会异常。 |
+    | [fileAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#fileaccess) | ‌若不开启，文件读写功能完全被阻断，依赖文件的模块会崩溃。 | 
+    | [imageAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#imageaccess) | 设置是否允许自动加载图片资源。 | 
+    | [onlineImageAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#onlineimageaccess) | 设置是否允许从网络加载图片资源（通过HTTP和HTTPS访问的资源）。 |
+    | [javaScriptAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#javascriptaccess) | 设置是否允许执行JavaScript脚本。 | 
 
 
   ```ts
@@ -51,7 +51,7 @@ Web页面出现白屏的原因众多，本文列举了若干常见白屏问题�
     }
   }
   ```
-* 修改[UserAgent](../reference/apis-arkweb/js-apis-webview-WebviewController.md#setcustomuseragent10)后再观察页面是否恢复正常。
+* 修改[UserAgent](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setcustomuseragent10)后再观察页面是否恢复正常。
 
   ```ts
   // xxx.ets
@@ -91,7 +91,7 @@ Web页面出现白屏的原因众多，本文列举了若干常见白屏问题�
 
     解决方案：
     * 改用HTTP或HTTPS协议加载主页面（需本地服务器支持）。
-    * 若必需使用本地文件，通过[onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web-events.md#oninterceptrequest9)拦截资源请求并替换为本地资源。
+    * 若必需使用本地文件，通过[onInterceptRequest](../reference/apis-arkweb/arkts-basic-components-web-events.md#oninterceptrequest9)拦截资源请求并替换为本地资源。
    ```c
    // 在web组件中拦截请求并返回本地资源
    Web({
@@ -116,15 +116,15 @@ Web页面出现白屏的原因众多，本文列举了若干常见白屏问题�
 
     | 名称   | 说明  |                       
     | ----   | -------------------------------- |
-    | [onErrorReceive](../reference/apis-arkweb/ts-basic-components-web-events.md#onerrorreceive) | 资源加载失败会上报该回调，比如访问内核不支持的scheme， 会报302(UNKNOWN_URL_SCHEME)。 |
-    | [onHttpErrorReceive](../reference/apis-arkweb/ts-basic-components-web-events.md#onhttperrorreceive) | 服务器返回HTTP错误码，这类问题一般需要跟服务器进行联调。 | 
-    | [onHttpAuthRequest](../reference/apis-arkweb/ts-basic-components-web-events.md#onhttpauthrequest9) | 服务器返回407需要端侧提供用户名密码认证，如果不正确处理，可能会导致加载异常、白屏。 | 
-    | [onClientAuthenticationRequest](../reference/apis-arkweb/ts-basic-components-web-events.md#onclientauthenticationrequest9) | 服务器向端侧请求证书，如果不正确处理，会导致页面加载异常。 | 
-    | [onSslErrorEvent](../reference/apis-arkweb/ts-basic-components-web-events.md#onsslerrorevent12) | 证书错误，需要应用根据证书错误信息进行排查，是证书配错了？还是过期了。 | 
+    | [onErrorReceive](../reference/apis-arkweb/arkts-basic-components-web-events.md#onerrorreceive) | 资源加载失败会上报该回调，比如访问内核不支持的scheme， 会报302(UNKNOWN_URL_SCHEME)。 |
+    | [onHttpErrorReceive](../reference/apis-arkweb/arkts-basic-components-web-events.md#onhttperrorreceive) | 服务器返回HTTP错误码，这类问题一般需要跟服务器进行联调。 | 
+    | [onHttpAuthRequest](../reference/apis-arkweb/arkts-basic-components-web-events.md#onhttpauthrequest9) | 服务器返回407需要端侧提供用户名密码认证，如果不正确处理，可能会导致加载异常、白屏。 | 
+    | [onClientAuthenticationRequest](../reference/apis-arkweb/arkts-basic-components-web-events.md#onclientauthenticationrequest9) | 服务器向端侧请求证书，如果不正确处理，会导致页面加载异常。 | 
+    | [onSslErrorEvent](../reference/apis-arkweb/arkts-basic-components-web-events.md#onsslerrorevent12) | 证书错误，需要应用根据证书错误信息进行排查，是证书配错了？还是过期了。 | 
 
 
 ## 复杂的布局与渲染模式导致白屏
-若页面使用了复杂布局或渲染模式，需注意其应用场景和约束条件，不当使用可能导致布局混乱或白屏。比如使用[layoutMode](../reference/apis-arkweb/ts-basic-components-web-attributes.md#layoutmode11)：
+若页面使用了复杂布局或渲染模式，需注意其应用场景和约束条件，不当使用可能导致布局混乱或白屏。比如使用[layoutMode](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#layoutmode11)：
 
 - 配置同步渲染模式：webSetting({renderingMode: WebRenderingMode.SYNCHRONOUS})。
 - 关闭滚动效果：webSetting({overScrollMode: OverScrollMode.NEVER})。

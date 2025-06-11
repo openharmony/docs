@@ -46,9 +46,13 @@ IsolatedComponent(options: IsolatedOptions)
 
 创建IsolatedComponent组件，用于显示受限worker运行的Abc。
 
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名                | 参数类型                                                   | 必填 | 参数描述           |
+| 参数名                | 参数类型                                                   | 必填 | 说明           |
 | --------------------- | ---------------------------------------------------------- | ---- | ------------------ |
 | options | [IsolatedOptions](#isolatedoptions)                | 是   | 需要传递的构造项。 |
 
@@ -57,7 +61,7 @@ IsolatedComponent(options: IsolatedOptions)
 
 **参数：**
 
-| 参数名               | 参数类型                                 | 必填 | 参数描述                                                                                                      |
+| 参数名               | 参数类型                                 | 必填 | 说明                                                                                                      |
 | ----                 | ---------------------------------------- | ---- | ---------------                                                                                               |
 | want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md)                                  | 是   | 要加载的Abc信息。 |
 | worker | [RestrictedWorker](../../apis-arkts/js-apis-worker-sys.md#restrictedworker11)       | 是   | 运行Abc的受限worker。 |
@@ -79,11 +83,15 @@ onError(callback:ErrorCallback)
 
 被拉起的Ability扩展在运行过程中发生异常时触发本回调。可通过回调参数中的code、name和message获取错误信息并做处理。
 
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名                       | 类型   | 说明                                                         |
-| ---------------------------- | ------ | ------------------------------------------------------------ |
-| callback                        | [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback) | 报错信息。    |
+| 参数名                | 参数类型                                                   | 必填 | 说明           |
+| --------------------- | ---------------------------------------------------------- | ---- | ------------------ |
+| callback | [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)                | 是   | 报错信息。 |
 
 ## 示例（加载IsolatedComponent）
 

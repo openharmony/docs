@@ -76,7 +76,7 @@ ws.on('open', (err: BusinessError, value: Object) => {
     if (!err) {
       console.log("Message send successfully");
     } else {
-      console.log("Failed to send the message. Err:" + JSON.stringify(err));
+      console.error("Failed to send the message. Err:" + JSON.stringify(err));
     }
   });
 });
@@ -88,7 +88,7 @@ ws.on('message', (err: BusinessError, value: string | ArrayBuffer) => {
       if (!err) {
         console.log("Connection closed successfully");
       } else {
-        console.log("Failed to close the connection. Err: " + JSON.stringify(err));
+        console.error("Failed to close the connection. Err: " + JSON.stringify(err));
       }
     });
   }
@@ -97,13 +97,13 @@ ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
   console.log("on close, code is " + value.code + ", reason is " + value.reason);
 });
 ws.on('error', (err: BusinessError) => {
-  console.log("on error, error:" + JSON.stringify(err));
+  console.error("on error, error:" + JSON.stringify(err));
 });
 ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
   if (!err) {
     console.log("Connected successfully");
   } else {
-    console.log("Connection failed. Err:" + JSON.stringify(err));
+    console.error("Connection failed. Err:" + JSON.stringify(err));
   }
 });
 ```

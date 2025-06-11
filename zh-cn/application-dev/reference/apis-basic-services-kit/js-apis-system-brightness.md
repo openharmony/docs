@@ -133,7 +133,7 @@ setMode(options?: SetBrightnessModeOptions): void
 
 setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
->从API version 7开始不再维护，建议使用[window.setWindowKeepScreenOn()](../apis-arkui/js-apis-window.md#setwindowkeepscreenon9)替代。
+>从API version 7开始不再维护，建议使用[window.setWindowKeepScreenOn()](../apis-arkui/arkts-apis-window-Window.md#setwindowkeepscreenon9)替代。
 
 设置屏幕是否保持常亮状态，开启常亮模式推荐在onShow()阶段调用。
 

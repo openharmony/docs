@@ -31,9 +31,13 @@
 
 关于AUDIO_PLAYBACK（音视频播放）说明：
 
-- 若要通过AUDIO_PLAYBACK实现后台播放，须使用媒体会话服务（[AVSession](../media/avsession/avsession-overview.md)）进行音视频开发。
-
 - 音视频投播，是指将一台设备的音视频投至另一台设备播放。投播退至后台，长时任务会检测音视频播放和投屏两个业务，只要有其一正常运行，长时任务就不会终止。
+
+- 当应用需要在后台播放媒体类型（流类型为STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE和STREAM_USAGE_AUDIOBOOK）和游戏类型（流类型为STREAM_USAGE_GAME）时，必须接入媒体会话服务（[AVSession](../media/avsession/avsession-overview.md)）并申请AUDIO_PLAYBACK类型长时任务。
+
+- 除了上述播放类型，当应用需要在后台长时间运行用户可感知的其他后台播放任务时，必须申请AUDIO_PLAYBACK类型长时任务，无需接入AVSession。
+
+- 如果应用不满足上述接入规范，退至后台播放时会被系统静音并冻结，无法在后台正常播放，直到应用重新切回前台时，才会解除静音并恢复播放。
 
 ### 约束与限制
 

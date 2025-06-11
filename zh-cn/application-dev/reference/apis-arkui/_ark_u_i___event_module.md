@@ -261,7 +261,7 @@ enum ArkUI_ModifierKeyName
 | ARKUI_MODIFIER_KEY_CTRL  | Ctrl.  | 
 | ARKUI_MODIFIER_KEY_SHIFT  | Shift.  | 
 | ARKUI_MODIFIER_KEY_ALT  | Alt.  | 
-| ARKUI_MODIFIER_KEY_FN  | Fn.  | 
+| ARKUI_MODIFIER_KEY_FN  | Fn（仅调试使用，通常不上报Fn状态）.  | 
 
 
 ### ArkUI_UIInputEvent_Type
@@ -1396,7 +1396,7 @@ int64_t OH_ArkUI_UIInputEvent_GetEventTime (const ArkUI_UIInputEvent * event)
 ```
 **描述：**
 
-获取UI输入事件发生的时间。
+获取UI输入事件发生的时间。单位：ns。
 
 **起始版本：** 12
 

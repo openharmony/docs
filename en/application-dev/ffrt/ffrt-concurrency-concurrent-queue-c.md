@@ -21,8 +21,7 @@ The implementation code is as follows:
 ```c
 #include <stdio.h>
 #include <unistd.h>
-#include "ffrt/queue.h"
-#include "ffrt/task.h"
+#include "ffrt/ffrt.h"
 
 ffrt_queue_t create_bank_system(const char *name, int concurrency)
 {
@@ -67,7 +66,7 @@ ffrt_task_handle_t commit_request(ffrt_queue_t bank, void (*func)(void *), const
     ffrt_task_attr_set_queue_priority(&task_attr, level);
     ffrt_task_attr_set_delay(&task_attr, delay);
 
-    return ffrt_queue_submit_h(bank, ffrt_create_function_wrapper(func, NULL, name), &task_attr);
+    return ffrt_queue_submit_h_f(bank, func, name, &task_attr);
 }
 
 // Encapsulate the operation of canceling a task in a queue into a function.
@@ -89,68 +88,27 @@ int main()
         printf("create bank system failed\n");
         return -1;
     }
-    commit_request(bank, bank_business, "customer1", ffrt_queue_priority_low, 0);
-    commit_request(bank, bank_business, "customer2", ffrt_queue_priority_low, 0);
-    commit_request(bank, bank_business, "customer3", ffrt_queue_priority_low, 0);
-    commit_request(bank, bank_business, "customer4", ffrt_queue_priority_low, 0);
 
+    ffrt_task_handle_t task1 = commit_request(bank, bank_business, "customer1", ffrt_queue_priority_low, 0);
+    ffrt_task_handle_t task2 = commit_request(bank, bank_business, "customer2", ffrt_queue_priority_low, 0);
     // VIP customers have the priority to enjoy services.
-    commit_request(bank, bank_business, "VIP", ffrt_queue_priority_high, 0);
+    ffrt_task_handle_t task3 = commit_request(bank, bank_business, "customer3 VIP", ffrt_queue_priority_high, 0);
+    ffrt_task_handle_t task4 = commit_request(bank, bank_business, "customer4", ffrt_queue_priority_low, 0);
+    ffrt_task_handle_t task5 = commit_request(bank, bank_business, "customer5", ffrt_queue_priority_low, 0);
 
-    ffrt_task_handle_t task = commit_request(bank, bank_business, "customer5", ffrt_queue_priority_low, 0);
-    ffrt_task_handle_t task_last = commit_request(bank, bank_business, "customer6", ffrt_queue_priority_low, 0);
-
-    // Cancel the service for customer 5.
-    cancel_request(task);
+    // Cancel the service for customer 4.
+    cancel_request(task4);
 
     // Wait until all customer services are complete.
-    wait_for_request(task_last);
+    wait_for_request(task5);
     destroy_bank_system(bank);
 
+    ffrt_task_handle_destroy(task1);
+    ffrt_task_handle_destroy(task2);
+    ffrt_task_handle_destroy(task3);
+    ffrt_task_handle_destroy(task4);
+    ffrt_task_handle_destroy(task5);
     return 0;
-}
-```
-
-C-style FFRT construction requires additional encapsulation using common code and is irrelevant to specific service scenarios.
-
-```c
-typedef struct {
-    ffrt_function_header_t header;
-    ffrt_function_t func;
-    ffrt_function_t after_func;
-    void* arg;
-} c_function_t;
-
-static inline void ffrt_exec_function_wrapper(void* t)
-{
-    c_function_t* f = (c_function_t *)t;
-    if (f->func) {
-        f->func(f->arg);
-    }
-}
-
-static inline void ffrt_destroy_function_wrapper(void* t)
-{
-    c_function_t* f = (c_function_t *)t;
-    if (f->after_func) {
-        f->after_func(f->arg);
-    }
-}
-
-#define FFRT_STATIC_ASSERT(cond, msg) int x(int static_assertion_##msg[(cond) ? 1 : -1])
-static inline ffrt_function_header_t *ffrt_create_function_wrapper(const ffrt_function_t func,
-    const ffrt_function_t after_func, void *arg)
-{
-    FFRT_STATIC_ASSERT(sizeof(c_function_t) <= ffrt_auto_managed_function_storage_size,
-        size_of_function_must_be_less_than_ffrt_auto_managed_function_storage_size);
-
-    c_function_t* f = (c_function_t *)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_queue);
-    f->header.exec = ffrt_exec_function_wrapper;
-    f->header.destroy = ffrt_destroy_function_wrapper;
-    f->func = func;
-    f->after_func = after_func;
-    f->arg = arg;
-    return (ffrt_function_header_t *)f;
 }
 ```
 
@@ -164,6 +122,12 @@ The main FFRT APIs involved in the preceding example are as follows:
 | [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_destroy)                                   | Destroys a queue.            |
 | [ffrt_task_attr_set_queue_priority](ffrt-api-guideline-c.md#ffrt_task_attr_set_queue_priority)     | Sets the priority of a task in a queue.  |
 | [ffrt_queue_attr_set_max_concurrency](ffrt-api-guideline-c.md#ffrt_queue_attr_set_max_concurrency) | Sets the concurrency of the concurrent queue.|
+| [ffrt_queue_submit_h_f](ffrt-api-guideline-c.md#ffrt_queue_submit_h_f)                             | Submits a task to a queue.  |
+
+> **NOTE**
+>
+> - For details about how to use FFRT C++ APIs, see [Using FFRT C++ APIs](ffrt-development-guideline.md#using-ffrt-c-api-1).
+> - When using FFRT C or C++ APIs, you can use the FFRT C++ API third-party library to simplify the header file inclusion, that is, use the `#include "ffrt/ffrt.h"` header file to include statements.
 
 ## Constraints
 

@@ -6232,7 +6232,7 @@ function isFocusModeSupported(photoSession: camera.PhotoSession): boolean {
 
 isMacroSupported(): boolean
 
-检测当前状态下是否支持微距能力，需要在CaptureSession调用[commitConfig](js-apis-camera.md#commitconfig11-1)之后进行调用。
+检测当前状态下是否支持微距能力，需要在CaptureSession调用[commitConfig](#commitconfig11-1)之后进行调用。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 

@@ -65,6 +65,8 @@ bm install -p /data/app/ohos.app.hap -r
 bm install -s xxx.hsp
 # 同时安装使用方应用和其依赖的应用间共享库
 bm install -p aaa.hap -s xxx.hsp yyy.hsp
+# 同时安装HAP和应用内共享库
+bm install -p /data/app/
 # 安装一个hap,等待时间为10s
 bm install -p /data/app/ohos.app.hap -w 10
 ```
@@ -1017,12 +1019,13 @@ error: install failed due to insufficient disk memory.
 **处理步骤**
 
 查看设备存储空间并清理，保证满足安装所需空间，再重试安装应用。
-
+<!--RP4-->
 ```bash
 # 查看磁盘空间使用情况
 hdc shell df -h /system
 hdc shell df -h /data
 ```
+<!--RP4End-->
 
 
 ### 9568289 权限请求失败导致安装失败
@@ -1166,8 +1169,8 @@ error: install sign info inconsistent.
 
 **可能原因**
 
-1. 设备上已安装的应用与新安装的应用中签名不一致或者多个包（HAP和HSP）之间的签名存在差异。如果在“Edit Configurations”中勾选了“Keep Application Data”（即不卸载应用，直接覆盖安装），并且重新进行了签名，将导致该报错。
-2. 如果某个应用被卸载但是保留了数据，那么后面安装相同包名的应用时，需要校验其身份信息的一致性。如果两者的签名信息皆不一致，则会导致该报错。
+1. 设备上已安装的应用与新安装的应用中签名不一致或者多个包（HAP和HSP）之间的签名存在差异。若两个应用的签名[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)或[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)中至少有一项相同，则认为它们的签名一致。如果在DevEco Studio的“Edit Configurations”中勾选了“Keep Application Data”（即不卸载应用，直接覆盖安装），并且重新进行了签名，将导致该报错。
+2. 如果某个应用被卸载但是保留了数据，那么后面安装相同包名的应用时，需要校验其签名信息的一致性。如果两者签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)都不一致，则会导致该报错。
 
 
 **处理步骤**
@@ -1232,16 +1235,18 @@ error: install parse unexpected.
 
 **可能原因**
 
-* 场景一：设备system分区存储空间已满，导致hdc file send文件后，因存储空间不足导致设备中文件损坏。
+* 场景一：设备存储空间已满，导致hdc file send文件后，因存储空间不足导致设备中文件损坏。
 
 * 场景二：推送HAP包到设备过程HAP包损坏。
 
 **处理步骤**
 
-* 场景一：查看设备system分区存储空间，若已满，清理存储满足安装所需空间。
+* 场景一：查看设备存储空间，若已满，清理存储满足安装所需空间。
+<!--RP4-->
   ```bash
   hdc shell df -h /system
   ```
+<!--RP4End-->
 
 * 场景二：查看本地HAP与推送到设备上HAP的md5值，若不一致则表示推送过程HAP损毁，请尝试重传。
 
@@ -2662,23 +2667,29 @@ error: install parse native so failed.
 
 1. 将设备或模拟器与DevEco Studio进行连接，具体指导及要求可查看[运行应用/元服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-running-app)。
 
-2. 在命令行执行如下[hdc命令](#环境要求hdc工具)，查询设备支持的Abi列表，返回结果为default/armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个Abi类型。
+2. 在命令行执行如下[hdc命令](#环境要求hdc工具)，查询设备支持的Abi列表。
 
     ```
     hdc shell
     param get const.product.cpu.abilist
     ```
 3. 根据查询返回结果，检查[模块级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile)文件中的[“abiFilters”参数](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ohos-abi#%E5%9C%A8%E7%BC%96%E8%AF%91%E6%9E%B6%E6%9E%84%E4%B8%AD%E6%8C%87%E5%AE%9Aabi)中的配置，规则如下：
+
+    <!--Del-->
     * 若返回结果为default，请执行如下命令，查询是否存在lib64文件夹。
+    <!--RP4-->
       ```
       cd /system/
       ls
       ```
+    <!--RP4End-->
       ![示例图](figures/zh-cn_image_0000001609001262.png)
       * 存在lib64文件夹：则“abiFilters”参数中需要包含arm64-v8a类型。
-      * 不存在lib64文件夹：则“abiFilters”参数中需要至少包含armeabi/armeabi-v7a中的一个类型。
-    * 若返回结果为armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个，需要在“abiFilters”参数中至少包含返回结果中的一个Abi类型。
+      * 不存在lib64文件夹：则“abiFilters”参数中需要至少包含armeabi/armeabi-v7a中的一个类型。<!--DelEnd-->
 
+
+
+    * 若返回结果为armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个，需要在“abiFilters”参数中至少包含返回结果中的一个Abi类型。
 
 ### 9568348 解析 ark native SO文件失败
 

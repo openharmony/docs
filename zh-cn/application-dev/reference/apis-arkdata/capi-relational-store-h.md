@@ -78,7 +78,7 @@
 | [OH_Rdb_Store *OH_Rdb_CreateOrOpen(const OH_Rdb_ConfigV2 *config, int *errCode)](#oh_rdb_createoropen) | - | 使用指定的数据库文件配置[OH_Rdb_ConfigV2](capi-oh-rdb-configv2.md)，获得一个对应的[OH_Rdb_Store](capi-oh-rdb-store.md)实例，用来操作关系型数据库。 |
 | [int OH_Rdb_CloseStore(OH_Rdb_Store *store)](#oh_rdb_closestore) | - | 销毁[OH_Rdb_Store](capi-oh-rdb-store.md)对象，并回收该对象占用的内存。 |
 | [int OH_Rdb_DeleteStore(const OH_Rdb_Config *config)](#oh_rdb_deletestore) | - | 使用指定的数据库文件配置删除数据库。 |
-| [int OH_Rdb_DeleteStoreV2(const OH_Rdb_ConfigV2 *config)](#oh_rdb_deletestorev2) | - | 使用指定的数据库文件配置[OH_Rdb_ConfigV2](capi-oh-rdb-configv2.md)删除数据库。<br>当使用向量数据库时，在调用接口前，应当确保向量数据库已经被正确关闭。 |
+| [int OH_Rdb_DeleteStoreV2(const OH_Rdb_ConfigV2 *config)](#oh_rdb_deletestorev2) | - | 使用指定的数据库文件配置[OH_Rdb_ConfigV2](capi-oh-rdb-configv2.md)删除数据库。<br>当使用向量数据库时，在调用接口前，应当确保向量数据库已经打开的OH_Rdb_Store和OH_Cursor均已成功关闭。 |
 | [int OH_Rdb_Insert(OH_Rdb_Store *store, const char *table, OH_VBucket *valuesBucket)](#oh_rdb_insert) | - | 向目标表中插入一行数据。 |
 | [int OH_Rdb_InsertWithConflictResolution(OH_Rdb_Store *store, const char *table, OH_VBucket *row,Rdb_ConflictResolution resolution, int64_t *rowId)](#oh_rdb_insertwithconflictresolution) | - | 向目标表中插入一行数据，并支持冲突解决。 |
 | [int OH_Rdb_BatchInsert(OH_Rdb_Store *store, const char *table,const OH_Data_VBuckets *rows, Rdb_ConflictResolution resolution, int64_t *changes)](#oh_rdb_batchinsert) | - | 将一批数据插入到目标表中。 |
@@ -948,7 +948,7 @@ int OH_Rdb_DeleteStoreV2(const OH_Rdb_ConfigV2 *config)
 
 **描述**
 
-使用指定的数据库文件配置[OH_Rdb_ConfigV2](capi-oh-rdb-configv2.md)删除数据库。<br>当使用向量数据库时，在调用接口前，应当确保向量数据库已经被正确关闭。
+使用指定的数据库文件配置[OH_Rdb_ConfigV2](capi-oh-rdb-configv2.md)删除数据库。<br>当使用向量数据库时，在调用接口前，应当确保向量数据库已经打开的OH_Rdb_Store和OH_Cursor均已成功关闭。
 
 **起始版本：** 14
 
@@ -2017,7 +2017,7 @@ int OH_Rdb_Attach(OH_Rdb_Store *store, const OH_Rdb_ConfigV2 *config, const char
 | [OH_Rdb_Store](capi-oh-rdb-store.md) *store | 表示指向[OH_Rdb_Store](capi-oh-rdb-store.md)实例的指针。 |
 | const [OH_Rdb_ConfigV2](capi-oh-rdb-configv2.md) *config | 表示指向与此RDB存储相关的数据库配置[OH_Rdb_ConfigV2](capi-oh-rdb-configv2.md)的指针。 |
 | const char *attachName | 表示数据库的别名。 |
-| int64_t waitTime | 表示附加数据库的最大允许时间，范围为1到300。 |
+| int64_t waitTime | 表示附加数据库的最大允许时间，范围为1到300，单位为秒。 |
 | size_t *attachedNumber | 表示已附加的数据库数量，作为输出参数。 |
 
 **返回：**
@@ -2045,7 +2045,7 @@ int OH_Rdb_Detach(OH_Rdb_Store *store, const char *attachName, int64_t waitTime,
 | -- | -- |
 | [OH_Rdb_Store](capi-oh-rdb-store.md) *store | 表示指向[OH_Rdb_Store](capi-oh-rdb-store.md)实例的指针。 |
 | const char *attachName | 表示数据库的别名。 |
-| int64_t waitTime | 表示分离数据库的最大允许时间，范围为1到300。 |
+| int64_t waitTime | 表示分离数据库的最大允许时间，范围为1到300，单位为秒。 |
 | size_t *attachedNumber | 表示已附加的数据库数量，作为输出参数。 |
 
 **返回：**

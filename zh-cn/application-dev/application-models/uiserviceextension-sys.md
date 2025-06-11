@@ -45,7 +45,7 @@
 
 - **onWindowDidCreate**
 
-  创建窗口回调接口，开发者通过[Window](../reference/apis-arkui/js-apis-window-sys.md#window)对象操作窗口。通过[window.on('windowVisibilityChange')](../reference/apis-arkui/js-apis-window.md#onwindowvisibilitychange11)方法绑定窗口事件，处理各种窗口事件，如窗口显示、窗口隐藏、窗口销毁等。
+  创建窗口回调接口，开发者通过[Window](../reference/apis-arkui/arkts-apis-window-Window.md)对象操作窗口。通过[window.on('windowVisibilityChange')](../reference/apis-arkui/arkts-apis-window-Window.md#onwindowvisibilitychange11)方法绑定窗口事件，处理各种窗口事件，如窗口显示、窗口隐藏、窗口销毁等。
 
 - **onConnect**
 

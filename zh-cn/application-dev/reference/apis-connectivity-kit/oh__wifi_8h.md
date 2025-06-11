@@ -28,7 +28,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Wifi_ResultCode](_wifi.md#wifi_resultcode) {<br/>[WIFI_SUCCESS](_wifi.md) = 0,<br/>[WIFI_PERMISSION_DENIED](_wifi.md) = 201,<br/>[WIFI_INVALID_PARAM](_wifi.md) = 401,<br/>[WIFI_NOT_SUPPORTED](_wifi.md) = 801,<br/>[WIFI_OPERATION_FAILED](_wifi.md) = 2501000<br/>} | 定义WIFI接口返回值的错误码。 | 
+| [Wifi_ResultCode](_wifi.md#wifi_resultcode) {<br/>[WIFI_SUCCESS] = 0,<br/>[WIFI_PERMISSION_DENIED] = 201,<br/>[WIFI_INVALID_PARAM] = 401,<br/>[WIFI_NOT_SUPPORTED] = 801,<br/>[WIFI_OPERATION_FAILED] = 2501000<br/>} | 定义WIFI接口返回值的错误码。 |
 
 
 ### 函数

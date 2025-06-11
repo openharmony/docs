@@ -14,9 +14,11 @@ ArkTS模块化运行根据ECMAScript模块规范实现，以后序遍历的方�
 
 ![zh-cn_image_0000002043487154](figures/zh-cn_image_0000002043487154.png)
 
-A文件称为入口文件，即执行起点。一些内置的加载接口，如[windowStage.loadContent](../reference/apis-arkui/js-apis-window.md#loadcontent9)和[路由跳转](../ui/arkts-navigation-navigation.md)等页面拉起接口（即不是通过import写法拉起的文件），入参文件都会作为入口文件执行。
+A文件称为入口文件，即执行起点。一些内置的加载接口，如[windowStage.loadContent](../reference/apis-arkui/arkts-apis-window-Window.md#loadcontent9)和[路由跳转](../ui/arkts-navigation-navigation.md)等页面拉起接口（即不是通过import写法拉起的文件），入参文件都会作为入口文件执行。
 
 以A文件为入口，会加载一整套文件，包含A文件，A文件依赖的文件，这些文件后面依赖的文件，直到各分支叶节点。
+
+普通模块在同一线程内只加载一次，而在不同线程中会加载多次，每个线程都会生成新的模块对象。如果需要在进程内只会加载一次，请使用[共享模块](./arkts-sendable-module.md)。
 
 ## ArkTS支持的模块化规范
 

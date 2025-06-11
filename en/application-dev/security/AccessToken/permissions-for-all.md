@@ -444,3 +444,15 @@ With this permission, the application can obtain the icon of the specified file 
 **Authorization mode**: system_grant
 
 **Valid since**: 17
+
+## ohos.permission.DETECT_GESTURE
+
+Allows an application to detect gestures.
+
+With this permission, the application can detect information such as the user's holding posture and operating hand.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 20

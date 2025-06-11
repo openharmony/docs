@@ -299,7 +299,7 @@ typedef JSVM_CallbackStruct* JSVM_Callback;
 
 **JSVM_Finalize**
 
-函数指针，用于传入OH_JSVM_SetInstanceData、OH_JSVM_CreateExternal、OH_JSVM_Wrap等接口。JSVM_Finalize在对象被回收时会被调用，可用于在JavaScript对象被垃圾回收时释放Native对象。
+函数指针，用于传入OH_JSVM_SetInstanceData、OH_JSVM_CreateExternal、OH_JSVM_Wrap等接口。JSVM_Finalize在对象被回收后会被调用，可用于在JavaScript对象被垃圾回收时释放Native对象。JSVM 不保证是否执行该回调函数，也不保证执行该回调函数的时机，**开发者不应依赖于该回调的执行时机**。
 
 写法如下：
 

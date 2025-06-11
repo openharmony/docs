@@ -147,7 +147,8 @@ export default class MyAbilityStage extends AbilityStage {
 
 > **说明：**
 >
-> 当使用回调方法订阅系统环境变量的变化时，该回调方法会随着UIAbility的生命周期而存在，在UIAbility销毁时一并销毁。
+> - 当使用回调方法订阅系统环境变量的变化时，该回调方法会随着UIAbility的生命周期而存在，在UIAbility销毁时一并销毁。
+> - 如果使用该接口监听屏幕方向变化，需要在module.json5配置文件的[abilities标签](../quick-start/module-configuration-file.md#abilities标签)中将orientation字段配置为auto_rotation。
 
 例如，在[onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)回调方法中实现监测系统语言的变化。
 

@@ -427,7 +427,27 @@ this.pageStack.moveIndexToTop(1);
 
 ### 参数获取
 
-NavPathStack通过Get相关接口去获取页面的一些参数。
+NavDestination子页第一次创建时会触发[onReady](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md#onready11)回调，可以获取此页面对应的参数。
+
+```ts
+@Component
+struct Page01 {
+  pathStack: NavPathStack | undefined = undefined;
+  pageParam: string = '';
+
+  build() {
+    NavDestination() {
+...
+    }.title('Page01')
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack;
+      this.pageParam = context.pathInfo.param as string;
+    })
+  }
+}
+```
+
+其他业务场景，可以通过主动调用NavPathStack的Get相关接口去获取指定页面的参数。
 
 ```ts
 // 获取栈中所有页面name集合
@@ -610,7 +630,7 @@ Navigation作为路由容器，其生命周期承载在NavDestination组件上�
   ```
 - 页面状态监听
   
-  通过[observer.on('navDestinationUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#observeronnavdestinationupdate)提供的注册接口可以注册NavDestination生命周期变化的监听，使用方式如下：
+  通过[observer.on('navDestinationUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#uiobserveronnavdestinationupdate)提供的注册接口可以注册NavDestination生命周期变化的监听，使用方式如下：
   
   ```ts
   uiObserver.on('navDestinationUpdate', (info) => {
@@ -752,7 +772,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
 
 ### 系统路由表
 
-系统路由表是动态路由的一种实现方式。从API version 12开始，Navigation支持使用系统路由表的方式进行动态路由。各业务模块（[HSP](../quick-start/in-app-hsp.md)/[HAR](../quick-start/har-package.md)）中需要独立配置route_map.json文件，在触发路由跳转时，应用只需要通过NavPathStack提供的路由方法，传入需要路由的页面配置名称，此时系统会自动完成路由模块的动态加载、页面组件构建，并完成路由跳转，从而实现了开发层面的模块解耦。系统路由表不支持预览器及模拟器。其主要步骤如下：
+系统路由表是动态路由的一种实现方式。从API version 12开始，Navigation支持使用系统路由表的方式进行动态路由。各业务模块（[HSP](../quick-start/in-app-hsp.md)/[HAR](../quick-start/har-package.md)）中需要独立配置route_map.json文件，在触发路由跳转时，应用只需要通过NavPathStack提供的路由方法，传入需要路由的页面配置名称，此时系统会自动完成路由模块的动态加载、页面组件构建，并完成路由跳转，从而实现了开发层面的模块解耦。系统路由表支持模拟器但不支持预览器。其主要步骤如下：
 
 1. 在跳转目标模块的配置文件module.json5添加路由表配置：
    

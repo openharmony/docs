@@ -1,10 +1,16 @@
 # @ohos.app.ability.UIAbility (带界面的应用组件)
 
-UIAbility是包含UI界面的应用组件，继承自[Ability](js-apis-app-ability-ability.md)，提供UIAbility组件创建、销毁、前后台切换等[生命周期](#uiability生命周期)回调，同时也具备[后台通信能力](#后台通信能力)。
+UIAbility是包含UI界面的应用组件，继承自[Ability](js-apis-app-ability-ability.md)，提供UIAbility组件创建、销毁、前后台切换等[生命周期](#uiability生命周期状态)回调，同时也具备[后台通信能力](#后台通信能力)。
+
+> **说明：**
+>
+> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 本模块接口仅可在Stage模型下使用。
 
 各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
 
-## UIAbility生命周期
+## UIAbility生命周期状态
 
 **图1** UIAbility生命周期状态
 
@@ -28,12 +34,6 @@ UIAbility是包含UI界面的应用组件，继承自[Ability](js-apis-app-abili
 
 - Callee UIAbility持有一个[Callee](#callee)对象，通过Callee的[on](#on)方法注册回调函数，用于接收Caller对象发送的数据。
 
-> **说明：**
->
-> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
-> 本模块接口仅可在Stage模型下使用。
-
 ## 导入模块
 
 ```ts
@@ -54,7 +54,7 @@ import { UIAbility } from '@kit.AbilityKit';
 | launchWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | UIAbility冷启动时接收到的Want参数，取值为[onCreate](#oncreate)接收到的Want参数。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | lastRequestWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | 最近一次拉起UIAbility请求的Want参数。<br>- 首次拉起UIAbility时，取值为[onCreate](#oncreate)接收到的Want参数。<br>- 重复拉起UIAbility时，取值为[onNewWant](#onnewwant)最近一次接收到的Want参数。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
 | callee | [Callee](#callee) | 否 | 否 | 系统为UIAbility创建的后台通信对象，Callee UIAbility（被调用方），可以通过Callee对象接收Caller对象发送的数据进。 |
- 
+
 
 ### onCreate
 
@@ -63,7 +63,7 @@ onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
 当UIAbility实例完成创建时，系统会触发该回调，开发者可在该回调中执行初始化逻辑（如定义变量、加载资源等）。该回调仅会在UIAbility[冷启动](../../application-models/uiability-intra-device-interaction.md#目标uiability冷启动)时触发。
 
 同步接口，不支持异步回调。
- 
+
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
@@ -106,7 +106,7 @@ onWindowStageCreate(windowStage: window.WindowStage): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | WindowStage实例对象。 |
+| windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9) | 是 | WindowStage实例对象。 |
 
 **示例：**
 
@@ -144,7 +144,7 @@ onWindowStageWillDestroy(windowStage: window.WindowStage): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | WindowStage实例对象。 |
+| windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9) | 是 | WindowStage实例对象。 |
 
 **示例：**
 
@@ -166,6 +166,8 @@ export default class MyUIAbility extends UIAbility {
 onWindowStageDestroy(): void
 
 当WindowStage销毁后，系统触发该回调。该回调用于通知开发者WindowStage对象已被销毁，不能再继续使用。
+
+仅当UIAbility正常退出时会触发该回调，异常退出场景（例如低内存查杀）不会触发该回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -205,7 +207,7 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | WindowStage实例对象。 |
+| windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9) | 是 | WindowStage实例对象。 |
 
 **示例：**
 
@@ -229,6 +231,8 @@ onDestroy(): void | Promise&lt;void&gt;
 当UIAbility被销毁（例如使用[terminateSelf](js-apis-inner-application-uiAbilityContext.md#terminateself)接口停止UIAbility）时，系统触发该回调。开发者可以在该生命周期中执行资源清理、数据保存等相关操作。使用同步回调或Promise异步回调。
 
 在执行完onDestroy生命周期回调后，应用可能会退出，从而可能导致onDestroy中的异步函数未能正确执行，比如异步写入数据库。推荐使用Promise异步回调，避免因应用退出导致onDestroy中的异步函数（比如异步写入数据库）未能正确执行。
+
+仅当UIAbility正常退出时会触发该回调，异常退出场景（例如低内存查杀）不会触发该回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -522,7 +526,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 当Ability准备迁移时触发，保存数据。
 
 > **说明：**
-> 
+>
 > 从API version 12 开始，UIAbility.onContinue生命周期新增支持返回值为Promise\<[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#oncontinueresult)\>形式。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
@@ -772,6 +776,7 @@ onPrepareToTerminate(): boolean
 > - 回调时机：当用户通过点击应用窗口右上角的关闭按钮、或者通过Dock栏/托盘右键退出应用时，可以使用该回调。
 >
 > - 从API version 15开始，当[UIAbility.onPrepareToTerminateAsync](#onpreparetoterminateasync15)实现时，本回调函数将不执行。当[AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#abilitystageonprepareterminationasync15)或[AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15)实现时，在dock栏或系统托盘处右键点击关闭，本回调函数将不执行。
+> - 如果应用本身或者所使用的三方框架注册了[window.WindowStage.on('windowStageClose')](../apis-arkui/arkts-apis-window-WindowStage.md#onwindowstageclose14)监听，本回调函数将不执行。
 
 **需要权限**：ohos.permission.PREPARE_APP_TERMINATE
 
@@ -834,6 +839,7 @@ onPrepareToTerminateAsync(): Promise\<boolean>
 > - 回调时机：当用户通过点击应用窗口右上角的关闭按钮、或者通过Dock栏/托盘右键退出应用时，可以使用该回调。
 >
 > - 当[AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#abilitystageonprepareterminationasync15)或[AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15)实现时，在dock栏或系统托盘处右键点击关闭，本回调函数将不执行。
+> - 如果应用本身或者所使用的三方框架注册了[window.WindowStage.on('windowStageClose')](../apis-arkui/arkts-apis-window-WindowStage.md#onwindowstageclose14)监听，本回调函数将不执行。
 >
 > - 若异步回调内发生crash，按超时处理，执行等待超过10秒未响应，UIAbility将被强制关闭。
 
@@ -1569,7 +1575,7 @@ export default class MainUIAbility extends UIAbility {
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | ----- | --- | -------- |
-| msg | string | 是 | 用于传递释放消息。 | 
+| msg | string | 是 | 用于传递释放消息。 |
 
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
@@ -1585,7 +1591,7 @@ export default class MainUIAbility extends UIAbility {
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | ----- | --- | -------- |
-| msg | string | 是 | 用于传递释放消息。 | 
+| msg | string | 是 | 用于传递释放消息。 |
 
 ## CalleeCallback
 

@@ -4699,6 +4699,34 @@ Allows an application to install and uninstall fonts.
 
 **Valid since**: 19
 
+## ohos.permission.READ_PARENT_CONTROL_DATA
+
+Allows an application to read the parental control website configuration.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**：Phone | Tablet | 2in1
+
+**Valid since**：19
+
+## ohos.permission.WRITE_PARENT_CONTROL_DATA
+
+Allows an application to write the parental control website configuration.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**：Phone | Tablet | 2in1
+
+**Valid since**：19
+
 ## ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
 Allows an application to call the accessibility service extension APIs to query and manipulate UI components.
@@ -4820,6 +4848,76 @@ With this permission, the application can access kernel APIs across processes to
 **Enable via ACL**：true
 
 **Supported devices**: General
+
+**Valid since**：20
+
+## ohos.permission.VIRUS_PROTECTION_SERVICE
+
+Allows an application to start virus scanning tasks.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**：20
+
+## ohos.permission.UPLOAD_SAMPLE_FILE
+
+Allows an application to upload sample files to the cloud.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**：20
+
+## ohos.permission.DOWNLOAD_POLICY_FILE
+
+Allows an application to dowonload policy files from the cloud.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**：20
+
+## ohos.permission.NOTIFY_VIRUS_PROTECTION
+
+Allows an application to send notification to the virus protection page.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**：20
+
+## ohos.permission.ACCESS_VIRUS_PROTECTION
+
+Allows an application to access the virus protection page.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: Phone | PC/2in1 | Tablet
 
 **Valid since**：20
 

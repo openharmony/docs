@@ -28,8 +28,8 @@
 ## 规格与约束
 
 1. 建议配置[渲染模式](web-render-mode.md)为同步渲染模式，避免因为组件大小超出限制导致异常场景（白屏，布局错误）。
-2. 建议配置[过滚动模式](../reference/apis-arkweb/ts-basic-components-web-attributes.md#overscrollmode11)为关闭状态。当过滚动模式开启时，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面，会与Scroll组件的回弹相互冲突，影响体验。
-3. [键盘避让](../reference/apis-arkweb/ts-basic-components-web-attributes.md#keyboardavoidmode12)属性配置为RESIZE_CONTENT时，该避让模式不生效。
+2. 建议配置[过滚动模式](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#overscrollmode11)为关闭状态。当过滚动模式开启时，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面，会与Scroll组件的回弹相互冲突，影响体验。
+3. [键盘避让](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#keyboardavoidmode12)属性配置为RESIZE_CONTENT时，该避让模式不生效。
 4. 不支持对页面进行缩放。
 5. 不支持通过Web组件的height属性修改组件高度。
 6. 仅支持根据页面内容自适应组件高度，不支持自适应宽度。

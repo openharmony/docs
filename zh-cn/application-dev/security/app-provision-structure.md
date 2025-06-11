@@ -83,14 +83,14 @@ HarmonyAppProvision文件示例：
 
 
 ### acls对象内部结构
-acls对象包含已授权的[ACL权限](AccessToken/permissions-for-system-apps.md)。需要指出的是，开发者仍然需要在[应用包配置文件](../quick-start/module-configuration-file.md#requestpermissions标签)将acls权限信息填写到requestPermissions属性中。
+acls对象包含已授权的[ACL权限](AccessToken/permissions-for-system-apps.md)。需要指出的是，开发者仍然需要在应用包配置文件将acls权限信息填写到requestPermissions属性中。
 
 | 属性名称                  | 含义                            | 数据类型 | 是否必选 | 是否可缺省 |
 | ------------------------ | ------------------------------- | ------- | ------- | --------- |
 | allowed-acls | 表示已授权的[ACL权限](AccessToken/permissions-for-system-apps.md)列表。 | 字符串数组    | 可选 | 不可缺省   |
 
 ### permissions对象内部结构
-permissions对象包含允许使用的受限敏感权限。不同于acls对象，permissions对象中的权限仅代表应用允许使用该敏感权限，权限最终由用户运行时授权。需要指出的是，开发者仍然需要在[应用包配置文件](../quick-start/module-configuration-file.md#requestpermissions标签)将permissions权限信息填写到requestPermissions属性中。
+permissions对象包含允许使用的受限敏感权限。不同于acls对象，permissions对象中的权限仅代表应用允许使用该敏感权限，权限最终由用户运行时授权。需要指出的是，开发者仍然需要在应用包配置文件将permissions权限信息填写到requestPermissions属性中。
 
 | 属性名称                  | 含义                            | 数据类型 | 是否必选 | 是否可缺省 |
 | ------------------------ | ------------------------------- | ------- | ------- | --------- |

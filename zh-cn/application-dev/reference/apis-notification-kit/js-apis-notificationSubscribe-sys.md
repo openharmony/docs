@@ -62,7 +62,7 @@ let subscribeCallback = (err: BusinessError) => {
   }
 }
 let onConsumeCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
-  console.info("Consume callback: " + JSON.stringify(data));
+  console.info(`Consume callback: ${JSON.stringify(data)}`);
 }
 let subscriber: notificationSubscribe.NotificationSubscriber = {
   onConsume: onConsumeCallback
@@ -120,7 +120,7 @@ let subscribeCallback = (err: BusinessError) => {
   }
 }
 let onConsumeCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
-  console.info("Consume callback: " + JSON.stringify(data));
+  console.info(`Consume callback: ${JSON.stringify(data)}`);
 }
 let subscriber: notificationSubscribe.NotificationSubscriber = {
   onConsume: onConsumeCallback
@@ -175,7 +175,7 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let onConsumeCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
-  console.info("Consume callback: " + JSON.stringify(data));
+  console.info(`Consume callback: ${JSON.stringify(data)}`);
 }
 let subscriber: notificationSubscribe.NotificationSubscriber = {
   onConsume: onConsumeCallback
@@ -183,7 +183,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber).then(() => {
   console.info("subscribe success");
 }).catch((err: BusinessError) => {
-  console.error("subscribe fail: " + JSON.stringify(err));
+  console.error(`subscribe fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -237,7 +237,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribeSelf(subscriber).then(() => {
   console.info("subscribeSelf success");
 }).catch((err: BusinessError) => {
-  console.error("subscribeSelf fail: " + JSON.stringify(err));
+  console.error(`subscribeSelf fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -347,7 +347,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.unsubscribe(subscriber).then(() => {
   console.info("unsubscribe success");
 }).catch((err: BusinessError) => {
-  console.error("unsubscribe fail: " + JSON.stringify(err));
+  console.error(`unsubscribe fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -471,7 +471,7 @@ let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveRea
 notificationSubscribe.remove(bundle, notificationKey, reason).then(() => {
   console.info("remove success");
 }).catch((err: BusinessError) => {
-  console.error("remove fail: " + JSON.stringify(err));
+  console.error(`remove fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -575,7 +575,7 @@ let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveRea
 notificationSubscribe.remove(hashCode, reason).then(() => {
 	console.info("remove success");
 }).catch((err: BusinessError) => {
-  console.error("remove fail: " + JSON.stringify(err));
+  console.error(`remove fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -677,7 +677,7 @@ let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveRea
 notificationSubscribe.remove(hashCodes, reason).then(() => {
   console.info("remove success");
 }).catch((err: BusinessError) => {
-  console.error("remove fail: " + JSON.stringify(err));
+  console.error(`remove fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -825,7 +825,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 notificationSubscribe.removeAll().then(() => {
 	console.info("removeAll success");
 }).catch((err: BusinessError) => {
-  console.error("removeAll fail: " + JSON.stringify(err));
+  console.error(`removeAll fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -926,7 +926,7 @@ let userId: number = 1;
 notificationSubscribe.removeAll(userId).then(() => {
 	console.info("removeAll success");
 }).catch((err: BusinessError) => {
-  console.error("removeAll fail: " + JSON.stringify(err));
+  console.error(`removeAll fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -980,7 +980,7 @@ let operationInfo: notificationSubscribe.OperationInfo = {
 notificationSubscribe.distributeOperation(hashcode, operationInfo).then(() => {
 	console.info("distributeOperation success");
 }).catch((err: BusinessError) => {
-  console.error("distributeOperation fail: " + JSON.stringify(err));
+  console.error(`distributeOperation fail: ${JSON.stringify(err)}`);
 });
 ```
 

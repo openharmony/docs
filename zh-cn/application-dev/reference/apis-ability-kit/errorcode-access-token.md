@@ -12,7 +12,6 @@ Invalid Parameter. Error message: messageInfo.
 
 **可能原因**
 
-该错误码表示参数校验出现错误，可能原因如下。
 1. tokenId值为0。
 2. 指定的权限名为空或者权限名长度大于256。
 3. 请求授权/撤销权限的flag取值非法。
@@ -61,7 +60,7 @@ Permission does not exist.
 
 **处理步骤**
 
-检查入参，修正参数值为有效值。[权限列表](../../security/AccessToken/app-permissions.md)。
+检查入参，修正参数值为有效值，有效值请参考[权限列表](../../security/AccessToken/app-permissions.md)。
 <!--DelEnd-->
 
 ## 12100004 接口未配套使用
@@ -72,7 +71,6 @@ The API is not used in pair with others.
 
 **可能原因**
 
-该错误码表示监听器接口未配套使用，可能原因如下。
 1. 当前接口在未配套使用的情况下，重复调用。
 2. 当前接口在未配套使用的情况下，单独调用。
 
@@ -122,7 +120,6 @@ The service is abnormal.
 
 **可能原因**
 
-该错误码表示系统服务工作异常。
 1. 权限管理服务无法正常启动。
 2. IPC数据读取写入失败。
 

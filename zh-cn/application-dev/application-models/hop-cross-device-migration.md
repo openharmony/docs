@@ -38,8 +38,7 @@
 
 ## 约束限制
 
-- 跨端迁移要求在同一[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)之间进行，也就是需要相同的`bundleName`、`abilityName`和签名信息。
-- 为了获得最佳体验，使用`wantParam`传输的数据需要控制在100KB以下。
+为了获得最佳体验，使用`wantParam`传输的数据需要控制在100KB以下。
 
 ## 开发步骤
 
@@ -88,7 +87,7 @@
     ```ts
     import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { PromptAction } from '@kit.ArkUI';
+    import { promptAction } from '@kit.ArkUI';
     
     const TAG: string = '[MigrationAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -103,10 +102,9 @@
         // 应用可根据源端版本号设置支持接续的最小兼容版本号，源端版本号可从app.json5文件中的versionCode字段获取；防止目标端版本号过低导致不兼容。
         let versionThreshold: number = -1; // 替换为应用自己支持兼容的最小版本号
         // 兼容性校验
-        let promptAction: promptAction = uiContext.getPromptAction;
         if (targetVersion < versionThreshold) {
           // 建议在校验版本兼容性失败后，提示用户拒绝迁移的原因
-          promptAction.showToast({
+          promptAction.openToast({
               message: '目标端应用版本号过低，不支持接续，请您升级应用版本后再试',
               duration: 2000
           })
@@ -216,23 +214,25 @@
     // Page_MigrationAbilityFirst.ets
     import { AbilityConstant, common } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-
+    
     const TAG: string = '[MigrationAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
-
+    
     @Entry
     @Component
     struct Page_MigrationAbilityFirst {
-      private context = this.getUIContext().getHostContext();
-      build() {
-        // ...
-      }
+      private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+        
       // ...
       onPageShow(){
         // 进入该页面时，将应用设置为可迁移状态
         this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
           hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
         });
+      }
+        
+      build() {
+        // ...
       }
     }
     ```
@@ -243,7 +243,7 @@
     // Page_MigrationAbilityFirst.ets
     import { AbilityConstant, common } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { PromptAction } from '@kit.ArkUI';
+    import { promptAction } from '@kit.ArkUI';
     
     const TAG: string = '[MigrationAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -251,8 +251,7 @@
     @Entry
     @Component
     struct Page_MigrationAbilityFirst {
-      private context = this.getUIContext().getHostContext();
-      let promptAction: promptAction = uiContext.getPromptAction;
+      private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
       build() {
         Column() {
           //...
@@ -265,7 +264,7 @@
                 // 点击该按钮时，将应用设置为可迁移状态
                 this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
                   hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
-                  promptAction.showToast({
+                  promptAction.openToast({
                     message: 'Success'
                   });
                 });
@@ -410,11 +409,11 @@ export default class MigrationAbility extends UIAbility {
    >
    > continueType在本应用中要保证唯一，字符串以字母、数字和下划线组成，最大长度127个字节，不支持中文。
    > continueType标签类型为字符串数组，如果配置了多个字段，当前仅第一个字段会生效。
-    
+
 示例如下：
 
    不同BundleName的相同应用在设备A和设备B之间相互迁移，设备A应用的BundleName为com.demo.example1，设备B应用的BundleName为com.demo.example2。
-  
+
 ```JSON
 // 在设备A的应用配置文件中，continueBundleName字段配置包含设备B上应用的BundleName。
 {
@@ -540,7 +539,7 @@ export default class MigrationAbility extends UIAbility {
 }
 ```
 
-快速拉起目标应用时，应用的[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate)和[onWindowStageRestore()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagerestore)回调会被依次触发。通常在onWindowStageCreate()中，开发者会调用[loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9)加载页面，该接口会抛出一个异步任务加载首页，该异步任务与onWindowStageRestore()无同步关系。如果在onWindowStageRestore()中使用UI接口（如路由接口），其调用时机可能早于首页加载。为保证正常加载顺序，可以使用[setTimeout()](../reference/common/js-apis-timer.md#settimeout)抛出异步任务执行相关操作。详细见示例代码。
+快速拉起目标应用时，应用的[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate)和[onWindowStageRestore()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagerestore)回调会被依次触发。通常在onWindowStageCreate()中，开发者会调用[loadContent()](../reference/apis-arkui/arkts-apis-window-Window.md#loadcontent9)加载页面，该接口会抛出一个异步任务加载首页，该异步任务与onWindowStageRestore()无同步关系。如果在onWindowStageRestore()中使用UI接口（如路由接口），其调用时机可能早于首页加载。为保证正常加载顺序，可以使用[setTimeout()](../reference/common/js-apis-timer.md#settimeout)抛出异步任务执行相关操作。详细见示例代码。
 
 示例代码如下：
 
@@ -1009,16 +1008,26 @@ export default class MigrationAbility extends UIAbility {
     return wrapper;
   }
 
-  async onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult {
+  async onContinue(wantParam: Record<string, Object>): Promise<AbilityConstant.OnContinueResult> {
     // ...
 
     // 创建了多个资产对象
     let attachment1: commonType.Asset = {
-      // ...
+      name: '',
+      uri: '',
+      path: '',
+      createTime: '',
+      modifyTime: '',
+      size: '',
     }
 
     let attachment2: commonType.Asset = {
-      // ...
+      name: '',
+      uri: '',
+      path: '',
+      createTime: '',
+      modifyTime: '',
+      size: '',
     }
 
     // 将资产对象插入资产数组
@@ -1032,6 +1041,7 @@ export default class MigrationAbility extends UIAbility {
     this.d_object = distributedDataObject.create(this.context, source);
 
     // ...
+    return AbilityConstant.OnContinueResult.AGREE;
   }
 }
 ```
@@ -1127,7 +1137,7 @@ export default class MigrationAbility extends UIAbility {
 
 ### Q2：在onWindowStageRestore()中调用loadContent()没有生效
 
-如果应用没有配置关闭页面栈迁移能力，系统默认对应用的页面栈进行迁移与加载。这种情况下，如果开发者在生命周期函数[onWindowStageRestore()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagerestore)中再次通过[loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9)等方式触发指定页面加载，则这次加载不会生效，依然恢复页面栈中的页面。
+如果应用没有配置关闭页面栈迁移能力，系统默认对应用的页面栈进行迁移与加载。这种情况下，如果开发者在生命周期函数[onWindowStageRestore()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagerestore)中再次通过[loadContent()](../reference/apis-arkui/arkts-apis-window-Window.md#loadcontent9)等方式触发指定页面加载，则这次加载不会生效，依然恢复页面栈中的页面。
 
 ## 相关实例
 

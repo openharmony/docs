@@ -268,7 +268,7 @@ systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;[SystemBarStyle](../js-apis-window.md#systembarstyle12)&gt; | 是   | 系统状态栏样式。 |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;[SystemBarStyle](../arkts-apis-window-i.md#systembarstyle12)&gt; | 是   | 系统状态栏样式。 |
 
 > **说明：**
 >
@@ -397,7 +397,7 @@ preferredOrientation(orientation: Optional&lt;Orientation&gt;)
 > 2. NavDestination所属的Navigation的大小占满整个应用页面；
 > 3. NavDestination类型为[STANDARD](#navdestinationmode枚举说明11)。
 >
-> 设置显示方向的实际效果依赖于具体的设备支持情况，具体参考窗口的[setPreferredOrientation](../js-apis-window.md#setpreferredorientation9-1)接口。
+> 设置显示方向的实际效果依赖于具体的设备支持情况，具体参考窗口的[setPreferredOrientation](../arkts-apis-window-Window.md#setpreferredorientation9-1)接口。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -407,7 +407,7 @@ preferredOrientation(orientation: Optional&lt;Orientation&gt;)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| orientation  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;[Orientation](../js-apis-window.md#orientation9)&gt; | 是   | NavDestination页面对应的Orientation。 |
+| orientation  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;[Orientation](../arkts-apis-window-e.md#orientation9)&gt; | 是   | NavDestination页面对应的Orientation。 |
 
 ### enableStatusBar<sup>19+</sup>
 
@@ -423,7 +423,7 @@ enableStatusBar(enabled: Optional&lt;boolean&gt;, animated?: boolean)
 > 3. NavDestination的大小占满整个Navigation组件；
 > 4. NavDestination类型为[STANDARD](#navdestinationmode枚举说明11)。
 >
-> 设置系统状态栏的实际效果依赖于具体的设备支持情况，具体参考窗口的[setSpecificSystemBarEnabled](../js-apis-window.md#setspecificsystembarenabled11)接口。
+> 设置系统状态栏的实际效果依赖于具体的设备支持情况，具体参考窗口的[setSpecificSystemBarEnabled](../arkts-apis-window-Window.md#setspecificsystembarenabled11)接口。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -450,7 +450,7 @@ enableNavigationIndicator(enabled: Optional&lt;boolean&gt;)
 > 3. NavDestination的大小占满整个Navigation组件；
 > 4. NavDestination类型为[STANDARD](#navdestinationmode枚举说明11)。
 >
-> 设置系统导航条的实际效果依赖于具体的设备支持情况，具体参考窗口的[setSpecificSystemBarEnabled](../js-apis-window.md#setspecificsystembarenabled11)接口。
+> 设置系统导航条的实际效果依赖于具体的设备支持情况，具体参考窗口的[setSpecificSystemBarEnabled](../arkts-apis-window-Window.md#setspecificsystembarenabled11)接口。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
