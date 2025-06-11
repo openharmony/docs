@@ -23,8 +23,7 @@ ArkUI提供了WaterFlow容器组件，用于构建瀑布流布局。WaterFlow组
 
 > **说明：** 
 >
-> 完整示例请参考 [WaterFlow 组件-示例1（使用基本瀑布流）](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md#示例1使用基本瀑布流)。
-
+> 完整示例请参考 [WaterFlow 组件-示例8（WaterFlow组件实现下拉刷新）](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md#示例8waterflow组件实现下拉刷新)。
 ```ts
   @Builder
   itemFoot() {
@@ -328,4 +327,5 @@ struct WaterFlowDemo {
 
 针对瀑布流开发，有以下实例可供参考：
 
-[主页瀑布流实现](https://gitee.com/harmonyos-cases/cases/blob/master/CommonAppDevelopment/feature/functionalscenes/README.md)
+- [主页瀑布流实现](https://gitee.com/harmonyos-cases/cases/blob/master/CommonAppDevelopment/feature/functionalscenes/README.md)
+- [创建瀑布流](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/ScrollableComponent)
