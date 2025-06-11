@@ -38,7 +38,7 @@ createTonePlayer(options: AudioRendererInfo, callback: AsyncCallback&lt;TonePlay
 
 | 参数名   | 类型                                             | 必填 | 说明            |
 | -------- | ----------------------------------------------- | ---- | -------------- |
-| options  | [AudioRendererInfo](js-apis-audio.md#audiorendererinfo8)        | 是   | 配置音频渲染器信息。|
+| options  | [AudioRendererInfo](arkts-apis-audio-i.md#audiorendererinfo8)        | 是   | 配置音频渲染器信息。|
 | callback | AsyncCallback<[TonePlayer](#toneplayer9)>       | 是   | 回调函数。当获取DTMF播放器成功，err为undefined，data为获取到的DTMF播放器对象；否则为错误对象。|
 
 **示例：**
@@ -77,7 +77,7 @@ createTonePlayer(options: AudioRendererInfo): Promise&lt;TonePlayer&gt;
 
 | 参数名  | 类型                                           | 必填 | 说明         |
 | :------ | :---------------------------------------------| :--- | :----------- |
-| options | [AudioRendererInfo](js-apis-audio.md#audiorendererinfo8)      | 是   | 配置音频渲染器信息。 |
+| options | [AudioRendererInfo](arkts-apis-audio-i.md#audiorendererinfo8)      | 是   | 配置音频渲染器信息。 |
 
 **返回值：**
 
@@ -427,7 +427,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 ## AudioManager
 
-管理音频音量和音频设备。在调用AudioManager的接口前，需要先通过[getAudioManager](js-apis-audio.md#audiogetaudiomanager)创建实例。
+管理音频音量和音频设备。在调用AudioManager的接口前，需要先通过[getAudioManager](arkts-apis-audio-f.md#audiogetaudiomanager)创建实例。
 
 ### setExtraParameters<sup>11+</sup>
 
@@ -671,7 +671,7 @@ audioManager.disableSafeMediaVolume().then(() => {
 on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeManager中的[on('volumeChange')](js-apis-audio.md#onvolumechange9)替代。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeManager中的[on('volumeChange')](arkts-apis-audio-AudioVolumeManager.md#onvolumechange9)替代。
 
 监听系统音量变化事件（当系统音量发生变化时触发）。使用callback异步回调。
 
@@ -705,7 +705,7 @@ on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 监听铃声模式变化事件（当[铃声模式](arkts-apis-audio-e.md#audioringmode)发生改变时触发）。使用callback异步回调。
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[on('ringerModeChange')](js-apis-audio.md#onringermodechange9)替代。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[on('ringerModeChange')](arkts-apis-audio-AudioVolumeGroupManager.md#onringermodechange9)替代。
 
 **系统接口：** 该接口为系统接口
 
@@ -728,7 +728,7 @@ audioManager.on('ringerModeChange', (ringerMode: audio.AudioRingMode) => {
 
 ## AudioVolumeManager<sup>9+</sup>
 
-音量管理。在使用AudioVolumeManager的接口前，需要使用[getVolumeManager](js-apis-audio.md#getvolumemanager9)获取AudioVolumeManager实例。
+音量管理。在使用AudioVolumeManager的接口前，需要使用[getVolumeManager](arkts-apis-audio-AudioManager.md#getvolumemanager9)获取AudioVolumeManager实例。
 
 ### getVolumeGroupInfos<sup>9+</sup>
 
@@ -1030,7 +1030,7 @@ on(type: 'appVolumeChangeForUid', uid: number, callback: Callback\<VolumeEvent>)
 | -------- | -------------------------------------- | ---- |-----------------------------------|
 | type     | string                                 | 是   | 事件回调类型，支持的事件为'appVolumeChangeForUid'，当应用级音量发生变化时，触发该事件。 |
 | uid | number |  是   | 表示应用ID。                          |
-| callback | Callback<[VolumeEvent](js-apis-audio.md#volumeevent9)> | 是   | 回调函数，返回变化后的音量信息。                  |
+| callback | Callback<[VolumeEvent](arkts-apis-audio-i.md#volumeevent9)> | 是   | 回调函数，返回变化后的音量信息。                  |
 
 **错误码：**
 
@@ -1069,7 +1069,7 @@ off(type: 'appVolumeChangeForUid', callback?: Callback\<VolumeEvent>): void
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 事件回调类型，支持的事件为'appVolumeChangeForUid'，当取消监听指定应用应用级音量变化事件时，触发该事件。 |
-| callback | Callback<[VolumeEvent](js-apis-audio.md#volumeevent9)> | 否   | 回调函数，返回变化后的音量信息。 |
+| callback | Callback<[VolumeEvent](arkts-apis-audio-i.md#volumeevent9)> | 否   | 回调函数，返回变化后的音量信息。 |
 
 **错误码：**
 
@@ -1101,7 +1101,7 @@ audioVolumeManager.off('appVolumeChangeForUid', appVolumeChangeForUidCallback);
 
 ## AudioVolumeGroupManager<sup>9+</sup>
 
-管理音频组音量。在调用AudioVolumeGroupManager的接口前，需要先通过 [getVolumeGroupManager](js-apis-audio.md#getvolumegroupmanager9) 创建实例。
+管理音频组音量。在调用AudioVolumeGroupManager的接口前，需要先通过 [getVolumeGroupManager](arkts-apis-audio-AudioVolumeManager.md#getvolumegroupmanager9) 创建实例。
 
 ### setVolume<sup>9+</sup>
 
@@ -1122,7 +1122,7 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 | 参数名     | 类型                                | 必填 | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
-| volume     | number                              | 是   | 音量等级，可设置范围通过[getMinVolume](js-apis-audio.md#getminvolume9)和[getMaxVolume](js-apis-audio.md#getmaxvolume9)获取。 |
+| volume     | number                              | 是   | 音量等级，可设置范围通过[getMinVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getminvolume9)和[getMaxVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getmaxvolume9)获取。 |
 | callback   | AsyncCallback&lt;void&gt;           | 是   | 回调函数。当设置指定流的音量成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -1158,7 +1158,7 @@ setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 | 参数名     | 类型                                | 必填 | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
-| volume     | number                              | 是   | 音量等级，可设置范围通过[getMinVolume](js-apis-audio.md#getminvolume9)和[getMaxVolume](js-apis-audio.md#getmaxvolume9)获取。 |
+| volume     | number                              | 是   | 音量等级，可设置范围通过[getMinVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getminvolume9)和[getMaxVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getmaxvolume9)获取。 |
 
 **返回值：**
 
@@ -1193,7 +1193,7 @@ setVolumeWithFlag(volumeType: AudioVolumeType, volume: number, flags: number): P
 | 参数名     | 类型                                | 必填 | 说明                                   |
 | ---------- | ----------------------------------- | ---- |--------------------------------------|
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                               |
-| volume     | number                              | 是   | 音量等级，可设置范围通过[getMinVolume](js-apis-audio.md#getminvolume9)和[getMaxVolume](js-apis-audio.md#getmaxvolume9)获取。 |
+| volume     | number                              | 是   | 音量等级，可设置范围通过[getMinVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getminvolume9)和[getMaxVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getmaxvolume9)获取。 |
 | flags      | number                              | 是   | 是否需要显示系统音量条，0为不需要显示，1为需要显示。 |
 
 **返回值：**
@@ -1728,7 +1728,7 @@ try {
 
 ## AudioRoutingManager<sup>9+</sup>
 
-音频路由管理。在使用AudioRoutingManager的接口前，需要使用[getRoutingManager](js-apis-audio.md#getroutingmanager9)获取AudioRoutingManager实例。
+音频路由管理。在使用AudioRoutingManager的接口前，需要使用[getRoutingManager](arkts-apis-audio-AudioManager.md#getroutingmanager9)获取AudioRoutingManager实例。
 
 ### selectInputDevice<sup>9+</sup>
 
@@ -2247,7 +2247,7 @@ excludeOutputDevices(usage: DeviceUsage, devices: AudioDeviceDescriptors): Promi
 
 | 参数名                       | 类型                                                         | 必填 | 说明                      |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| usage          | [DeviceUsage](js-apis-audio.md#deviceusage12)            | 是   | 设备种类。只支持排除输出设备。               |
+| usage          | [DeviceUsage](arkts-apis-audio-e.md#deviceusage12)            | 是   | 设备种类。只支持排除输出设备。               |
 | devices          | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)            | 是   | 排除输出设备列表。               |
 
 **返回值：**
@@ -2314,7 +2314,7 @@ unexcludeOutputDevices(usage: DeviceUsage, devices: AudioDeviceDescriptors): Pro
 
 | 参数名                       | 类型                                                         | 必填 | 说明                      |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| usage          | [DeviceUsage](js-apis-audio.md#deviceusage12)            | 是   | 设备种类。只支持排除输出设备。               |
+| usage          | [DeviceUsage](arkts-apis-audio-e.md#deviceusage12)            | 是   | 设备种类。只支持排除输出设备。               |
 | devices          | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)            | 是   | 解除排除输出设备列表。               |
 
 **返回值：**
@@ -2381,7 +2381,7 @@ unexcludeOutputDevices(usage: DeviceUsage): Promise&lt;void&gt;
 
 | 参数名                       | 类型                                                         | 必填 | 说明                      |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| usage          | [DeviceUsage](js-apis-audio.md#deviceusage12)            | 是   | 设备种类。只支持排除输出设备。               |
+| usage          | [DeviceUsage](arkts-apis-audio-e.md#deviceusage12)            | 是   | 设备种类。只支持排除输出设备。               |
 
 **返回值：**
 
@@ -2432,7 +2432,7 @@ getExcludedDevices(usage: DeviceUsage): AudioDeviceDescriptors
 
 | 参数名                       | 类型                                                         | 必填 | 说明                      |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| usage          | [DeviceUsage](js-apis-audio.md#deviceusage12)            | 是   | 设备种类。只支持排除输出设备。               |
+| usage          | [DeviceUsage](arkts-apis-audio-e.md#deviceusage12)            | 是   | 设备种类。只支持排除输出设备。               |
 
 **返回值：**
 
@@ -2504,7 +2504,7 @@ async function getExcludedDevices(){
 | 名称          | 类型                                     | 必填 | 说明          |
 | -------------| ---------------------------------------- | ---- | -------------- |
 | uid          | number                                   |  否  | 表示应用ID。<br> **系统能力：** SystemCapability.Multimedia.Audio.Core|
-| rendererInfo | [AudioRendererInfo](js-apis-audio.md#audiorendererinfo8) |  否  | 表示渲染器信息。<br> **系统能力：** SystemCapability.Multimedia.Audio.Renderer|
+| rendererInfo | [AudioRendererInfo](arkts-apis-audio-i.md#audiorendererinfo8) |  否  | 表示渲染器信息。<br> **系统能力：** SystemCapability.Multimedia.Audio.Renderer|
 | rendererId   | number                                   |  否  | 音频流唯一id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Renderer|
 
 **示例：**
@@ -2530,7 +2530,7 @@ let outputAudioRendererFilter: audio.AudioRendererFilter = {
 | 名称          | 类型                                     | 必填 | 说明          |
 | -------------| ---------------------------------------- | ---- | -------------- |
 | uid          | number                                   |  否  | 表示应用ID。<br> **系统能力：** SystemCapability.Multimedia.Audio.Core|
-| capturerInfo | [AudioCapturerInfo](js-apis-audio.md#audiocapturerinfo8) |  否  | 表示采集器信息。。<br> **系统能力：** SystemCapability.Multimedia.Audio.Capturer|
+| capturerInfo | [AudioCapturerInfo](arkts-apis-audio-i.md#audiocapturerinfo8) |  否  | 表示采集器信息。。<br> **系统能力：** SystemCapability.Multimedia.Audio.Capturer|
 
 **示例：**
 
@@ -2561,7 +2561,7 @@ let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
 
 ## AudioSpatializationManager<sup>11+</sup>
 
-空间音频管理。在使用AudioSpatializationManager的接口前，需要使用[getSpatializationManager](js-apis-audio.md#getspatializationmanager18)获取AudioSpatializationManager实例。
+空间音频管理。在使用AudioSpatializationManager的接口前，需要使用[getSpatializationManager](arkts-apis-audio-AudioManager.md#getspatializationmanager18)获取AudioSpatializationManager实例。
 
 ### isSpatializationSupported<sup>11+</sup>
 

@@ -268,7 +268,7 @@ on(type: 'appVolumeChange', callback: Callback\<VolumeEvent>): void
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | 是   | 事件回调类型，支持的事件为'appVolumeChange'，当应用级音量发生变化时，触发该事件。 |
-| callback | Callback<[VolumeEvent](js-apis-audio.md#volumeevent9)> | 是   | 回调函数，返回变化后的音量信息。 |
+| callback | Callback<[VolumeEvent](arkts-apis-audio-i.md#volumeevent9)> | 是   | 回调函数，返回变化后的音量信息。 |
 
 **错误码：**
 
@@ -301,7 +301,7 @@ off(type: 'appVolumeChange', callback?: Callback\<VolumeEvent>): void
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | 是   | 事件回调类型，支持的事件为'appVolumeChange'，当取消监听当前应用应用级音量变化事件时，触发该事件。 |
-| callback | Callback<[VolumeEvent](js-apis-audio.md#volumeevent9)> | 否   | 回调函数，返回变化后的音量信息。 |
+| callback | Callback<[VolumeEvent](arkts-apis-audio-i.md#volumeevent9)> | 否   | 回调函数，返回变化后的音量信息。 |
 
 **错误码：**
 

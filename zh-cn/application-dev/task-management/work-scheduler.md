@@ -47,7 +47,7 @@
 
   [@ohos.multimedia.audio (音频管理)](../reference/apis-audio-kit/arkts-apis-audio.md)
 
-  [@ohos.multimedia.media (媒体服务)](../reference/apis-media-kit/js-apis-media.md)
+  [@ohos.multimedia.media (媒体服务)](../reference/apis-media-kit/arkts-apis-media.md)
 
 
 ## 接口说明

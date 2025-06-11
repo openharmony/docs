@@ -46,7 +46,7 @@
 
 ### 音量控制
 
-播放流类型（[StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)）决定了音频流所属的音量类型（[AudioVolumeType](../../reference/apis-audio-kit/js-apis-audio.md#audiovolumetype)），各类音量类型（如媒体、铃声、闹钟、通话等）拥有独立的音量值，在用户界面上可独立调节，相互之间不会影响。
+播放流类型（[StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)）决定了音频流所属的音量类型（[AudioVolumeType](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audiovolumetype)），各类音量类型（如媒体、铃声、闹钟、通话等）拥有独立的音量值，在用户界面上可独立调节，相互之间不会影响。
 
 常见的播放流类型与音量类型的对应关系为：
 
@@ -87,7 +87,7 @@
 
 - 闹铃（Alarm）类型音频流的默认输出设备为扬声器‌。若先连接蓝牙耳机，再开始播放Alarm音频，则扬声器和蓝牙耳机会同时播放。
 
-若默认的输入/输出设备不符合使用诉求，应用也可以调用相关接口主动修改。应用[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)时，可以调用[setDefaultOutputDevice](../../reference/apis-audio-kit/js-apis-audio.md#setdefaultoutputdevice12)接口，设置默认发声设备。
+若默认的输入/输出设备不符合使用诉求，应用也可以调用相关接口主动修改。应用[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)时，可以调用[setDefaultOutputDevice](../../reference/apis-audio-kit/arkts-apis-audio-AudioRenderer.md#setdefaultoutputdevice12)接口，设置默认发声设备。
 
 ## 设置音频流类型
 
@@ -107,7 +107,7 @@
 
 - **[使用AVPlayer开发音频播放功能(ArkTS)](../media/using-avplayer-for-playback.md)**：
   
-  可以通过设置AVPlayer的[属性](../../reference/apis-media-kit/js-apis-media.md#属性)audioRendererInfo来实现。AVPlayer.audioRendererInfo的类型为audio.AudioRendererInfo。使用AudioRendererInfo.usage可指定[StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)音频流类型。
+  可以通过设置AVPlayer的[属性](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#属性)audioRendererInfo来实现。AVPlayer.audioRendererInfo的类型为audio.AudioRendererInfo。使用AudioRendererInfo.usage可指定[StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)音频流类型。
 
   > **说明：**
   > 在设置AVPlayer的audioRendererInfo属性时，只允许在initialized状态下设置。
@@ -120,7 +120,7 @@
 
 - **[使用SoundPool开发音频播放功能](../media/using-soundpool-for-playback.md)**：
   
-  可以在调用[createSoundPool](../../reference/apis-media-kit/js-apis-media.md#mediacreatesoundpool10)接口时，传入对应的[StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)指定音频流类型。
+  可以在调用[createSoundPool](../../reference/apis-media-kit/arkts-apis-media-f.md#mediacreatesoundpool10)接口时，传入对应的[StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)指定音频流类型。
 
 常见的设置录制音频流类型的方法有：
 
@@ -136,6 +136,6 @@
 
 - **[使用AVRecorder开发音频录制功能](../media/using-avrecorder-for-recording.md)**：
   
-  可以在调用[AVRecorder.prepare](../../reference/apis-media-kit/js-apis-media.md#prepare9-3)接口时，传入对应的[AudioSourceType](../../reference/apis-media-kit/js-apis-media.md#audiosourcetype9)。
+  可以在调用[AVRecorder.prepare](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md#prepare9-1)接口时，传入对应的[AudioSourceType](../../reference/apis-media-kit/arkts-apis-media-e.md#audiosourcetype9)。
 
   AVRecorder.prepare的参数config类型为AVRecorderConfig，使用AVRecorderConfig.audioSourceType可指定音源类型。

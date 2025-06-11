@@ -40,7 +40,7 @@
 
 **情况三：设置HTTP请求头信息播放**
 
-当服务器需要校验HTTP请求头信息时，可通过[createMediaSourceWithUrl](../../reference/apis-media-kit/js-apis-media.md#mediacreatemediasourcewithurl12)设置HTTP请求头信息。
+当服务器需要校验HTTP请求头信息时，可通过[createMediaSourceWithUrl](../../reference/apis-media-kit/arkts-apis-media-f.md#mediacreatemediasourcewithurl12)设置HTTP请求头信息。
 ```ts
   import media from '@ohos.multimedia.media';
   // 类成员定义avPlayer。
@@ -64,7 +64,7 @@
 
 **情况四：通过本地Raw文件中的m3u8文件播放在线流媒体资源**
 
-当应用需要通过解析本地Raw文件中的m3u8文件，播放在线流媒体资源时，可以通过[resourceManager.getRawFd](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)获取文件描述符，将其拼接成fdUrl，并通过[setMimeType](../../reference/apis-media-kit/js-apis-media.md#setmimetype12)设置MIME类型为APPLICATION_M3U8。
+当应用需要通过解析本地Raw文件中的m3u8文件，播放在线流媒体资源时，可以通过[resourceManager.getRawFd](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)获取文件描述符，将其拼接成fdUrl，并通过[setMimeType](../../reference/apis-media-kit/arkts-apis-media-MediaSource.md#setmimetype12)设置MIME类型为APPLICATION_M3U8。
 ```ts
   import media from '@ohos.multimedia.media';
   // 类成员定义avPlayer和context。
@@ -97,7 +97,7 @@
 
 **情况五：通过应用沙箱中的m3u8文件播放在线流媒体资源**
 
-当应用需要通过解析应用沙箱中的的m3u8文件，播放在线流媒体资源时，可以通过[fs.openSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)获取文件句柄，将其拼接成fdUrl，并通过[setMimeType](../../reference/apis-media-kit/js-apis-media.md#setmimetype12)设置MIME类型为APPLICATION_M3U8。
+当应用需要通过解析应用沙箱中的的m3u8文件，播放在线流媒体资源时，可以通过[fs.openSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)获取文件句柄，将其拼接成fdUrl，并通过[setMimeType](../../reference/apis-media-kit/arkts-apis-media-MediaSource.md#setmimetype12)设置MIME类型为APPLICATION_M3U8。
 ```ts
   import media from '@ohos.multimedia.media';
   import { fileIo as fs } from '@kit.CoreFileKit';

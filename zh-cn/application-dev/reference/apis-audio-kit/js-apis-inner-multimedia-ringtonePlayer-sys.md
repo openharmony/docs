@@ -40,7 +40,7 @@ import { systemSoundManager } from '@kit.AudioKit';
 
 | 名称  | 类型                        | 可读 | 可写 | 说明               |
 | ----- | -------------------------- | ---- | ---- | ------------------ |
-| state | [media.AVPlayerState](../apis-media-kit/js-apis-media.md#avplayerstate9) | 是   | 否   | 音频渲染器的状态。 |
+| state | [media.AVPlayerState](../apis-media-kit/arkts-apis-media-t.md#avplayerstate9) | 是   | 否   | 音频渲染器的状态。 |
 
 **示例：**
 
@@ -121,7 +121,7 @@ getAudioRendererInfo(callback: AsyncCallback&lt;audio.AudioRendererInfo&gt;): vo
 
 | 参数名   | 类型                                      | 必填 | 说明                       |
 | -------- | -----------------------------------------| ---- | ------------------------- |
-| callback | AsyncCallback&lt;[audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)&gt; | 是 | 回调函数。当获取音频渲染器信息成功，err为undefined，data为获取到的音频渲染器信息；否则为错误对象。 |
+| callback | AsyncCallback&lt;[audio.AudioRendererInfo](../apis-audio-kit/arkts-apis-audio-i.md#audiorendererinfo8)&gt; | 是 | 回调函数。当获取音频渲染器信息成功，err为undefined，data为获取到的音频渲染器信息；否则为错误对象。 |
 
 **示例：**
 
@@ -155,7 +155,7 @@ getAudioRendererInfo(): Promise&lt;audio.AudioRendererInfo&gt;
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;[audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)&gt; | Promise对象，返回获取的音频渲染器信息。 |
+| Promise&lt;[audio.AudioRendererInfo](../apis-audio-kit/arkts-apis-audio-i.md#audiorendererinfo8)&gt; | Promise对象，返回获取的音频渲染器信息。 |
 
 **示例：**
 
