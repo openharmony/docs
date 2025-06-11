@@ -93,18 +93,7 @@ HiTraceChain支持在业务执行流程中，生成和传递唯一跟踪标识�
 | void [OH_HiTrace_StartAsyncTraceEx](#oh_hitrace_startasynctraceex) ([HiTrace_Output_Level](#hitrace_output_level) level, const char \*name, int32_t taskId, const char \*customCategory, const char \*customArgs) | 标记一个异步跟踪耗时任务的开始，分级控制跟踪输出。  | 
 | void [OH_HiTrace_FinishAsyncTraceEx](#oh_hitrace_finishasynctraceex) ([HiTrace_Output_Level](#hitrace_output_level) level, const char \*name, int32_t taskId) | 标记一个异步跟踪耗时任务的结束，分级控制跟踪输出。  | 
 | void [OH_HiTrace_CountTraceEx](#oh_hitrace_counttraceex) ([HiTrace_Output_Level](#hitrace_output_level) level, const char \*name, int64_t count) | 标记一个跟踪的整数变量，分级控制跟踪输出。  | 
-| bool [OH_HiTrace_IsTraceEnabled](#oh_hitrace_istraceenabled) () | 判断当前是否开启应用trace捕获。应用trace捕获未开启时，HiTraceMeter性能跟踪打点无效。  | 
-
-### 变量
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| uint64_t [HiTraceId::valid](#valid): 1 | HiTraceId是否有效。  | 
-| uint64_t [HiTraceId::ver](#ver): 3 | HiTraceId的版本号。  | 
-| uint64_t [HiTraceId::chainId](#chainid): 60 | HiTraceId的链Id。  | 
-| uint64_t [HiTraceId::flags](#flags): 12 | HiTraceId的标志位。  | 
-| uint64_t [HiTraceId::spanId](#spanid): 26 | HiTraceId的当前跨度号。  | 
-| uint64_t [HiTraceId::parentSpanId](#parentspanid): 26 | HiTraceId的父跨度号。  |
+| bool [OH_HiTrace_IsTraceEnabled](#oh_hitrace_istraceenabled) (void) | 判断当前是否开启应用trace捕获。应用trace捕获未开启时，HiTraceMeter性能跟踪打点无效。  | 
 
 
 ## 类型定义说明
@@ -146,9 +135,11 @@ HiTrace输出级别。
 
 低于系统跟踪输出级别阈值的打点将不会生效。log版本阈值为HITRACE_LEVEL_INFO；nolog版本阈值为HITRACE_LEVEL_COMMERCIAL。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
-**起始版本：** 18
+**起始版本：** 19
 
 
 ### HiTrace_Tracepoint_Type
@@ -207,10 +198,10 @@ HiTrace通信模式枚举。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| HITRACE_CM_DEFAULT | 未指明。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
-| HITRACE_CM_THREAD | 线程间通信。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
-| HITRACE_CM_PROCESS | 进程间通信。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
-| HITRACE_CM_DEVICE | 设备间通信。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_CM_DEFAULT | 未指明。<br/>SysCap：<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_CM_THREAD | 线程间通信。<br/>SysCap：<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_CM_PROCESS | 进程间通信。<br/>SysCap：<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_CM_DEVICE | 设备间通信。<br/>SysCap：<br/>SystemCapability.HiviewDFX.HiTrace | 
 
 
 ### HiTrace_Flag
@@ -235,6 +226,31 @@ HiTrace标志位。
 | HITRACE_FLAG_DONOT_ENABLE_LOG | 不添加id到日志中，默认添加id到日志中。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
 | HITRACE_FLAG_FAULT_TRIGGER | 跟踪是由故障触发的。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
 | HITRACE_FLAG_D2D_TP_INFO | 仅输出span中的设备到设备跟踪点信息。默认值：不输出设备到设备跟踪点信息。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+
+
+### HiTrace_Output_Level
+
+```
+enum HiTrace_Output_Level
+```
+**描述**
+HiTrace输出级别。
+
+低于系统跟踪输出级别阈值的打点将不会生效。log版本阈值为HITRACE_LEVEL_INFO；nolog版本阈值为HITRACE_LEVEL_COMMERCIAL。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.HiviewDFX.HiTrace
+
+**起始版本：** 19
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| HITRACE_LEVEL_DEBUG  | 仅用于调试的输出级别，优先级最低。| 
+| HITRACE_LEVEL_INFO  | 用于log版本的输出级别。 | 
+| HITRACE_LEVEL_CRITICAL  | 用于log版本的输出级别，优先级高于HITRACE_LEVEL_INFO。| 
+| HITRACE_LEVEL_COMMERCIAL  | 用于nolog版本的输出级别，优先级最高。| 
+| HITRACE_LEVEL_MAX  | 输出级别范围限制。| 
 
 
 ### HiTrace_Tracepoint_Type
@@ -347,7 +363,7 @@ void OH_HiTrace_CountTrace (const char * name, int64_t count )
 
 多次执行该接口可以跟踪给定整数变量在不同时刻的数值变化。
 
-从API version 18开始，建议使用OH_HiTrace_CountTraceEx接口，以便分级控制跟踪输出。
+从API version 19开始，建议使用OH_HiTrace_CountTraceEx接口，以便分级控制跟踪输出。
 
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
@@ -358,7 +374,7 @@ void OH_HiTrace_CountTrace (const char * name, int64_t count )
 | 名称 | 描述 | 
 | -------- | -------- |
 | name | 整数变量跟踪的名字，不必与真实变量名相同。  | 
-| count | 整数数值，一般可以传入整数变量。 | 
+| count | 整数值。 | 
 
 
 ### OH_HiTrace_CountTraceEx()
@@ -369,7 +385,9 @@ void OH_HiTrace_CountTraceEx(HiTrace_Output_Level level, const char *name, int64
 **描述**
 标记一个跟踪的整数变量，分级控制跟踪输出。
 
-**起始版本：** 18
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**起始版本：** 19
 
 **参数：**
 
@@ -448,7 +466,7 @@ void OH_HiTrace_FinishAsyncTrace (const char * name, int32_t taskId )
 
 和OH_HiTrace_StartAsyncTrace配对使用，参数name和taskId必须与异步跟踪的开始打点接口的对应参数值保持一致。
 
-从API version 18开始，建议使用OH_HiTrace_FinishAsyncTraceEx接口，以便分级控制跟踪输出。
+从API version 19开始，建议使用OH_HiTrace_FinishAsyncTraceEx接口，以便分级控制跟踪输出。
 
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
@@ -474,7 +492,9 @@ void OH_HiTrace_FinishAsyncTraceEx(HiTrace_Output_Level level, const char *name,
 
 和OH_HiTrace_StartAsyncTraceEx配对使用，参数level、name和taskId必须与异步跟踪开始打点接口的对应参数值保持一致。
 
-**起始版本：** 18
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**起始版本：** 19
 
 **参数：**
 
@@ -495,7 +515,7 @@ void OH_HiTrace_FinishTrace(void)
 
 必须和OH_HiTrace_StartTrace配对使用。跟踪解析时，和其前执行流程中最近的OH_HiTrace_StartTrace进行匹配。
 
-从API version 18开始，建议使用OH_HiTrace_FinishTraceEx接口，以便分级控制跟踪输出。
+从API version 19开始，建议使用OH_HiTrace_FinishTraceEx接口，以便分级控制跟踪输出。
 
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
@@ -514,7 +534,9 @@ void OH_HiTrace_FinishTraceEx(HiTrace_Output_Level level)
 
 跟踪数据解析时，和其前执行流程中最近的OH_HiTrace_StartTraceEx进行匹配。
 
-**起始版本：** 18
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**起始版本：** 19
 
 **参数：**
 
@@ -758,7 +780,9 @@ bool OH_HiTrace_IsTraceEnabled()
 **描述**
 判断当前是否开启应用trace捕获。应用trace捕获未开启时，HiTraceMeter性能跟踪打点无效。
 
-**起始版本：** 18
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**起始版本：** 19
 
 **返回：**
 
@@ -884,7 +908,7 @@ void OH_HiTrace_StartAsyncTrace (const char * name, int32_t taskId )
 
 如果具有相同name的任务是串行执行的，则taskId可以相同。
 
-从API version 18开始，建议使用OH_HiTrace_StartAsyncTraceEx接口，以便分级控制跟踪输出与跟踪聚类。
+从API version 19开始，建议使用OH_HiTrace_StartAsyncTraceEx接口，以便分级控制跟踪输出与跟踪聚类。
 
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
@@ -916,7 +940,9 @@ void OH_HiTrace_StartAsyncTraceEx(HiTrace_Output_Level level, const char *name, 
 
 不同进程的taskId不会相互干扰。
 
-**起始版本：** 18
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**起始版本：** 19
 
 **参数：**
 
@@ -925,7 +951,7 @@ void OH_HiTrace_StartAsyncTraceEx(HiTrace_Output_Level level, const char *name, 
 | level | 跟踪输出优先级。  | 
 | name | 异步跟踪的名字。  | 
 | taskId | 异步跟踪的ID。  | 
-| customCategory | 用于聚合异步跟踪的标签。  | 
+| customCategory | 自定义聚类名称，用于聚合同一类异步跟踪打点。  | 
 | customArgs | 键值对，多个键值对使用逗号分隔，例"key1=value1,key2=value2"。 | 
 
 
@@ -941,7 +967,7 @@ void OH_HiTrace_StartTrace(const char *name)
 
 OH_HiTrace_StartTrace和OH_HiTrace_FinishTrace函数对可以嵌套使用，跟踪解析时使用栈式数据结构进行匹配。
 
-从API version 18开始，建议使用OH_HiTrace_StartTraceEx接口，以便分级控制跟踪输出。
+从API version 19开始，建议使用OH_HiTrace_StartTraceEx接口，以便分级控制跟踪输出。
 
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
@@ -966,8 +992,9 @@ void OH_HiTrace_StartTraceEx(HiTrace_Output_Level level, const char *name, const
 
 OH_HiTrace_StartTraceEx和OH_HiTrace_FinishTraceEx函数对可以嵌套使用，跟踪解析时使用栈式数据结构进行匹配。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数：**
 

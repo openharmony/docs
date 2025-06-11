@@ -965,7 +965,7 @@ isAppVolumeMutedForUid(uid: number, owned: boolean\): Promise<boolean\>
 ```ts
 let uid: number = 20010041; // 应用ID。
 
-audioVolumeManager.setAppVolumePercentageForUid(uid, true).then((value: boolean) => {
+audioVolumeManager.isAppVolumeMutedForUid(uid, true).then((value: boolean) => {
   console.info(`app muted state is ${value}.`);
 });
 ```
@@ -1009,7 +1009,7 @@ setAppVolumeMutedForUid(uid: number, muted: boolean\): Promise<void\>
 ```ts
 let uid: number = 20010041; // 应用ID。
 
-audioVolumeManager.setAppVolumePercentageForUid(uid, true).then(() => {
+audioVolumeManager.setAppVolumeMutedForUid(uid, true).then(() => {
   console.info(`set app mute state success.`);
 });
 ```

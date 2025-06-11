@@ -1,4 +1,4 @@
-# @ohos.app.ability.ApplicationStateChangeCallback (ApplicationStateChangeCallback)
+# @ohos.app.ability.ApplicationStateChangeCallback (应用前后台状态变化监听器)
 
 ApplicationStateChangeCallback模块提供应用上下文ApplicationContext对当前应用前后台变化监听回调的能力。
 

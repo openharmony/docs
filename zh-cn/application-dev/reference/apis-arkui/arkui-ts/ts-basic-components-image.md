@@ -527,6 +527,26 @@ orientation(orientation: ImageRotateOrientation)
 | ------ | --------------------------------------- | ---- | -------------------------------- |
 | orientation  | [ImageRotateOrientation](#imagerotateorientation14) | 是   | 图像内容的显示方向。<br/>不支持gif和svg类型的图片。<br/>如果需要显示携带旋转角度信息或翻转信息的图片，建议使用ImageRotateOrientation.AUTO进行设置。<br/>默认值：ImageRotateOrientation.UP |
 
+### hdrBrightness<sup>19+</sup>
+
+hdrBrightness(brightness: number)
+
+设置组件在显示HDR图片时的亮度。
+
+svg类型图源不支持该属性。
+
+该属性与[dynamicRangeMode](#dynamicrangemode12)属性同时设置时，[dynamicRangeMode](#dynamicrangemode12)属性不生效。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                   |
+| -------- | ------- | ---- | ---------------------- |
+| brightness | number | 是   | 用于调整组件展示HDR图片的亮度，该接口仅对HDR图源生效。<br/>默认值：1.0<br/>取值范围：[0.0，1.0]，小于0和大于1.0时取1。0表示图片按照SDR亮度显示，1表示图片按照当前允许的最高HDR亮度显示。  |
+
 ## ImageContent<sup>12+</sup>
 
 指定图像内容。
@@ -814,7 +834,7 @@ type ImageErrorCallback = (error: ImageError) => void
 
 ### 示例1（加载基本类型图片）
 
-加载png、gif、svg和jpg等基本类型的图片。
+该示例通过传入[Resource](ts-types.md#resource)资源，加载png、gif、svg和jpg等基本类型的图片。
 
 ```ts
 @Entry
@@ -915,7 +935,7 @@ struct ImageExample2 {
 
 ### 示例3（为图片添加事件）
 
-为图片添加onClick和onFinish事件。
+该示例为图片添加[onClick](ts-universal-events-click.md#onclick)和[onFinish](#onfinish)事件。
 
 ```ts
 @Entry
@@ -953,7 +973,7 @@ struct ImageExample3 {
 
 ### 示例4（开启图像AI分析）
 <!--RP2-->
-使用enableAnalyzer接口开启图像AI分析。
+该示例使用[enableAnalyzer](#enableanalyzer11)接口开启图像AI分析。
 
 ```ts
 import { image } from '@kit.ImageKit';
@@ -1007,7 +1027,7 @@ struct ImageExample4 {
 <!--RP2End-->
 ### 示例5（通过slice拉伸图片）
 
-调整不同方向对图片进行拉伸。
+该示例通过[resizable](#resizable11)属性的slice选项，调整不同方向对图片进行拉伸。
 
 ```ts
 @Entry
@@ -1074,7 +1094,7 @@ struct Index {
 
 ### 示例6（通过lattice拉伸图片）
 
-使用矩形网格对象对图片进行拉伸。
+该示例使用[resizable](#resizable11)属性的lattice选项，使用矩形网格对象对图片进行拉伸。
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
@@ -1118,7 +1138,7 @@ struct drawingLatticeTest {
 
 ### 示例7（播放PixelMap数组动画）
 
-该示例通过[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)播放PixelMap数组动画。
+该示例通过[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)对象播放PixelMap数组动画。
 
 ```ts
 import {AnimationOptions, AnimatedDrawableDescriptor} from '@kit.ArkUI';
@@ -1200,7 +1220,7 @@ struct ImageExample {
 
 ### 示例8（为图像设置颜色滤镜效果）
 
-该示例通过[colorFilter](#colorfilter9)实现了给图像设置颜色滤镜效果。
+该示例通过[colorFilter](#colorfilter9)属性实现了给图像设置颜色滤镜效果。
 
 ```ts
 import { drawing, common2D } from '@kit.ArkGraphics2D';
@@ -1251,7 +1271,7 @@ struct ImageExample3 {
 
 ### 示例9（为图像设置填充效果）
 
-该示例通过[objectFit](#objectfit)为图像设置填充效果。
+该示例通过[objectFit](#objectfit)属性为图像设置填充效果。
 
 ```ts
 @Entry
@@ -1298,7 +1318,7 @@ struct ImageExample{
 
 ### 示例10（切换显示不同类型图片）
 
-该示例展示了ResourceStr类型与ImageContent类型作为数据源的显示图片效果。
+该示例展示了[ResourceStr](ts-types.md#resourcestr)类型与[ImageContent](#imagecontent12)类型作为数据源的显示图片效果。
 
 ```ts
 @Entry
@@ -1327,7 +1347,7 @@ struct ImageContentExample {
 
 ### 示例11（配置隐私隐藏）
 
-该示例通过[privacySensitive](#privacysensitive12)展示了如何配置隐私隐藏，效果展示需要卡片框架支持。
+该示例通过[privacySensitive](#privacysensitive12)属性展示了如何配置隐私隐藏，效果展示需要卡片框架支持。
 
 ```ts
 @Entry
@@ -1351,7 +1371,7 @@ struct ImageExample {
 
 ### 示例12（为图片设置扫光效果）
 
-该示例通过[linearGradient](./ts-basic-components-datapanel.md#lineargradient10)接口和[animateTo()](./ts-explicit-animation.md)实现了给图片设置扫光效果。
+该示例通过[linearGradient](./ts-basic-components-datapanel.md#lineargradient10)接口和[animateTo()](./ts-explicit-animation.md)接口实现了给图片设置扫光效果。
 
 ```ts
 import { curves } from '@kit.ArkUI';
@@ -1587,7 +1607,7 @@ struct Index {
 
 ### 示例17（设置SVG图片的填充颜色）
 
-该示例通过[fillColor](#fillcolor15)为SVG图片设置不同颜色的填充效果。
+该示例通过[fillColor](#fillcolor15)属性为SVG图片设置不同颜色的填充效果。
 
 ```ts
 @Entry
@@ -1631,7 +1651,56 @@ struct Index {
 
 ![fillColorExample](figures/fillColorExample.png)
 
-### 示例18（设置图片是否跟随系统语言方向）
+### 示例18（设置HDR图源动态提亮）
+
+该示例通过[hdrBrightness](#hdrbrightness19)属性调整HDR图源的亮度，将hdrBrightness从0调整到1。
+
+```ts
+import { image } from '@kit.ImageKit';
+
+const TAG = 'AceImage';
+
+@Entry
+@Component
+struct Index {
+  @State imgUrl: string = 'img_1';
+  @State bright: number = 0; // 默认亮度为0
+  aboutToAppear(): void {
+    // 获取资源管理器中的媒体资源
+    let img = this.getUIContext().getHostContext()?.resourceManager.getMediaByNameSync(this.imgUrl);
+    // 创建图片源并获取图片信息
+    let imageSource = image.createImageSource(img?.buffer.slice(0));
+    let imageInfo = imageSource.getImageInfoSync();
+    // 检查图片信息是否获取成功
+    if (imageInfo == undefined) {
+      console.error(TAG, 'Failed to obtain the image information.');
+    } else {
+      // 成功获取到图片信息，打印HDR状态
+      console.info(TAG, 'imageInfo.isHdr:' + imageInfo.isHdr);
+    }
+  }
+
+  build() {
+    Column() {
+      Image($r('app.media.img_1')).width('50%')
+        .height('auto')
+        .margin({top:160})
+        .hdrBrightness(this.bright) // 设置图片的HDR亮度，值由bright状态控制
+      Button("图片动态提亮 0->1")
+        .onClick(() => {
+          // 动画过渡，切换亮度值
+          this.getUIContext()?.animateTo({}, () => {
+            this.bright = 1.0 - this.bright;
+          });
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+### 示例19（设置图片是否跟随系统语言方向）
 
 该示例通过[matchTextDirection](#matchtextdirection)接口，设置手机语言为维语时图片是否显示镜像翻转显示效果。
 

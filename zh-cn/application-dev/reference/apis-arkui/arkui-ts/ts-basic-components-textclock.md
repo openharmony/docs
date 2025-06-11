@@ -2,7 +2,7 @@
 
 TextClock组件通过文本将当前系统时间显示在设备上。支持不同时区的时间显示，最高精度到秒级。
 
-在组件不可见时时间变动将停止，组件的可见状态基于[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)处理，可见阈值ratios大于0即视为可见状态。
+组件不可见时，时间变动将停止。组件的可见状态基于[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)处理，可见阈值ratios大于0即视为可见状态。
 
 >**说明：**
 >
@@ -168,7 +168,7 @@ fontStyle(value: FontStyle)
 
 fontWeight(value: number | FontWeight | string)
 
-设置文本的字体粗细，设置过大可能会在不同字体下有截断。
+设置文本的字体粗细，设置过大可能会导致不同字体下的文字出现截断。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
