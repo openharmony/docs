@@ -61,13 +61,13 @@ The **params** parameter in the event information is described as follows.
 | tid | number | Thread ID.|
 | frames | object[] | Thread call stack. For details, see **frame**.|
 
-**frame (C/C++)**
+**frame (native)**
 
 | Name   | Type  | Description                      |
 | ------- | ------ | ------------------------- |
 | file | string | File name.|
-| symbol | string | Function name. |
-| buildId | string | Unique file ID. |
+| symbol | string | Function name. When the length of a function name exceeds 256 bytes, the stack frame does not contain the function name.|
+| buildId | string | Unique file ID. If the ELF file does not contain **.note.gnu.build-id**, the stack frame does not contain the **build-id** information.|
 | pc | string | PC register address.|
 | offset | number | Function offset.|
 
@@ -77,5 +77,5 @@ The **params** parameter in the event information is described as follows.
 | ------- | ------ | ------------------------- |
 | file | string | File name.|
 | symbol | string | Function name.|
-| column | number | The column where an exception occurs.|
 | line | number | The line where an exception occurs.|
+| column | number | The column where an exception occurs.|
