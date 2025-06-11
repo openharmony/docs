@@ -10,10 +10,6 @@
 > **说明：**
 > 为了保证应用的运行效率，所有API调用都是异步的，对于异步调用的API均提供了Promise的方式，以下示例均采用Promise方式，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-netfirewall.md)。
 
-## 约束
-
-- 开发语言：JS
-
 ## 场景介绍
 
 防火墙的典型场景有：
@@ -34,196 +30,197 @@
 
 以下分别介绍具体开发方式。
 
-## 接口说明
-
-完整的JS API说明以及实例代码请参考：[网络防火墙](../reference/apis-network-kit/js-apis-net-netfirewall.md)。
-
-| 接口                                                                                               | 描述              |
-| -------------------------------------------------------------------------------------------------- | ----------------- |
-| setNetFirewallPolicy(userId: number, policy: NetFirewallPolicy): Promise\<void>                    | 设置防火墙状态。    |
-| getNetFirewallPolicy(userId: number): Promise\<NetFirewallPolicy>                                  | 查询防火墙状态。    |
-| addNetFirewallRule(rule: NetFirewallRule): Promise\<number>                                        | 添加防火墙规则。    |
-| updateNetFirewallRule(rule: NetFirewallRule): Promise\<void>                                       | 更新防火墙规则。   |
-| removeNetFirewallRule(userId: number, ruleId: number): Promise\<void>                              | 删除防火墙规则。    |
-| getNetFirewallRules(userId: number, requestParam: RequestParam): Promise\<FirewallRulePage>        | 分页查询防火墙规则。 |
-| getNetFirewallRule(userId: number, ruleId: number): Promise\<NetFirewallRule>                      | 查询单条防火墙规则。 |
-| <!--DelRow-->getInterceptedRecords(userId: number, requestParam: RequestParam): Promise\<InterceptedRecordPage> | 查询防火墙拦截记录。 |
-
 ## 针对特定IP联网访问控制
 
 1. 设备通过硬件接口，插入网线。
 2. 从@kit.NetworkKit中导入netfirewall命名空间。
+
+    ```ts
+    // 从@kit.NetworkKit中导入netFirewall命名空间。
+    import { netFirewall } from '@kit.NetworkKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    ```
+
 3. 用户调用setNetFirewallPolicy方法，打开防火墙。
+
+    ```ts
+    interface IpType{
+          family:number;
+          type:number;
+          address?:string;
+          mask?:number;
+          startIp?:string;
+          endIp?:string;
+    }
+    interface IpPort{
+        startPort:number;
+        endPort:number;
+    }
+
+    // 定义防火墙策略：打开，入站阻止，出站允许。
+    let policy: netFirewall.NetFirewallPolicy = {
+      isOpen: true,
+      inAction: netFirewall.FirewallRuleAction.RULE_DENY,
+      outAction: netFirewall.FirewallRuleAction.RULE_ALLOW
+    };
+    // 给用户100设置防火墙策略。
+    netFirewall.setNetFirewallPolicy(100, policy).then(() => {
+      console.info("set firewall policy success.");
+    }).catch((error : BusinessError) => {
+      console.error("set firewall policy failed: " + JSON.stringify(error));
+    });
+    ```
+
 4. 用户通过addNetFirewallRule方法，添加防火墙规则。
 
-```ts
-// 从@kit.NetworkKit中导入netFirewall命名空间
-import { netFirewall } from '@kit.NetworkKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-interface IpType{
-      family:number;
-      type:number;
-      address?:string;
-      mask?:number;
-      startIp?:string;
-      endIp?:string;
-}
-interface IpPort{
-    startPort:number;
-    endPort:number;
-}
-
-// 定义防火墙策略：打开，入站阻止，出站允许
-let policy: netFirewall.NetFirewallPolicy = {
-  isOpen: true,
-  inAction: netFirewall.FirewallRuleAction.RULE_DENY,
-  outAction: netFirewall.FirewallRuleAction.RULE_ALLOW
-};
-// 给用户100设置防火墙策略
-netFirewall.setNetFirewallPolicy(100, policy).then(() => {
-  console.info("set firewall policy success.");
-}).catch((error : BusinessError) => {
-  console.error("set firewall policy failed: " + JSON.stringify(error));
-});
-
-// 初始化具体的防火墙ip类型规则
-let ipRule: netFirewall.NetFirewallRule = {
-  name: "rule1",
-  description: "rule1 description",
-  direction: netFirewall.NetFirewallRuleDirection.RULE_IN,
-  action:netFirewall.FirewallRuleAction.RULE_DENY,
-  type: netFirewall.NetFirewallRuleType.RULE_IP,
-  isEnabled: true,
-  appUid: 20001,
-  localIps: [
-    {
-      family: 1,
-      type: 1,
-      address: "10.10.1.1",
-      mask: 24
-    },{
-      family: 1,
-      type: 2,
-      startIp: "10.20.1.1",
-      endIp: "10.20.1.10"
-    }] as IpType[],
-  remoteIps:[
-    {
-      family: 1,
-      type: 1,
-      address: "20.10.1.1",
-      mask: 24
-    },{
-      family: 1,
-      type: 2,
-      startIp: "20.20.1.1",
-      endIp: "20.20.1.10"
-    }] as IpType[],
-  protocol: 6,
-  localPorts: [
-    {
-      startPort: 1000,
-      endPort: 1000
-    },{
-      startPort: 2000,
-      endPort: 2001
-    }] as IpPort[],
-  remotePorts: [
-    {
-      startPort: 443,
-      endPort: 443
-    }] as IpPort[],
-  userId: 100
-};
-// 添加防火墙规则
-netFirewall.addNetFirewallRule(ipRule).then((result: number) => {
-  console.info('rule Id: ', result);
-}, (reason: BusinessError) => {
-  console.error('add firewall rule failed: ', JSON.stringify(reason));
-});
-```
+    ```ts
+    // 初始化具体的防火墙ip类型规则。
+    let ipRule: netFirewall.NetFirewallRule = {
+      name: "rule1",
+      description: "rule1 description",
+      direction: netFirewall.NetFirewallRuleDirection.RULE_IN,
+      action:netFirewall.FirewallRuleAction.RULE_DENY,
+      type: netFirewall.NetFirewallRuleType.RULE_IP,
+      isEnabled: true,
+      appUid: 20001,
+      localIps: [
+        {
+          family: 1,
+          type: 1,
+          address: "10.10.1.1",
+          mask: 24
+        },{
+          family: 1,
+          type: 2,
+          startIp: "10.20.1.1",
+          endIp: "10.20.1.10"
+        }] as IpType[],
+      remoteIps:[
+        {
+          family: 1,
+          type: 1,
+          address: "20.10.1.1",
+          mask: 24
+        },{
+          family: 1,
+          type: 2,
+          startIp: "20.20.1.1",
+          endIp: "20.20.1.10"
+        }] as IpType[],
+      protocol: 6,
+      localPorts: [
+        {
+          startPort: 1000,
+          endPort: 1000
+        },{
+          startPort: 2000,
+          endPort: 2001
+        }] as IpPort[],
+      remotePorts: [
+        {
+          startPort: 443,
+          endPort: 443
+        }] as IpPort[],
+      userId: 100
+    };
+    // 添加防火墙规则。
+    netFirewall.addNetFirewallRule(ipRule).then((result: number) => {
+      console.info('rule Id: ', result);
+    }, (reason: BusinessError) => {
+      console.error('add firewall rule failed: ', JSON.stringify(reason));
+    });
+    ```
 
 ## 针对域名联网访问控制支持拦截
 
 1. 设备通过硬件接口，插入网线。
 2. 从@kit.NetworkKit中导入netFirewall命名空间。
+
+    ```ts
+    // 从@kit.NetworkKit中导入netFirewall命名空间。
+    import { netFirewall } from '@kit.NetworkKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    ```
+
 3. 用户态调用setNetFirewallPolicy方法，打开防火墙。
+
+    ```ts
+    interface domain{
+        isWildcard: boolean;
+        domain: string;
+    }
+
+    // 定义防火墙策略：打开，入站阻止，出站允许。
+    let policy: netFirewall.NetFirewallPolicy = {
+      isOpen: true,
+      inAction: netFirewall.FirewallRuleAction.RULE_DENY,
+      outAction: netFirewall.FirewallRuleAction.RULE_ALLOW
+    };
+    // 给用户100设置防火墙策略
+    netFirewall.setNetFirewallPolicy(100, policy).then(() => {
+      console.info("set firewall policy success.");
+    }).catch((error : BusinessError) => {
+      console.error("set firewall policy failed: " + JSON.stringify(error));
+    });
+    ```
+
 4. 用户态通过addNetFirewallRule方法，添加防火墙规则。
 
-```ts
-// 从@kit.NetworkKit中导入netFirewall命名空间
-import { netFirewall } from '@kit.NetworkKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+    ```ts
+    // 初始化具体的防火墙域名类型规则。
+    let domainRule: netFirewall.NetFirewallRule = {
+      name: "rule2",
+      description: "rule2 description",
+      direction: netFirewall.NetFirewallRuleDirection.RULE_IN,
+      action:netFirewall.FirewallRuleAction.RULE_DENY,
+      type: netFirewall.NetFirewallRuleType.RULE_DOMAIN,
+      isEnabled: true,
+      appUid: 20002,
+      domains: [
+        {
+          isWildcard: false,
+          domain: "www.openharmony.cn"
+        },{
+          isWildcard: true,
+          domain: "*.openharmony.cn"
+        }] as domain[],
+      userId: 100
+    };
 
-interface domain{
-    isWildcard: boolean;
-    domain: string;
-}
-
-// 定义防火墙策略：打开，入站阻止，出站允许
-let policy: netFirewall.NetFirewallPolicy = {
-  isOpen: true,
-  inAction: netFirewall.FirewallRuleAction.RULE_DENY,
-  outAction: netFirewall.FirewallRuleAction.RULE_ALLOW
-};
-// 给用户100设置防火墙策略
-netFirewall.setNetFirewallPolicy(100, policy).then(() => {
-  console.info("set firewall policy success.");
-}).catch((error : BusinessError) => {
-  console.error("set firewall policy failed: " + JSON.stringify(error));
-});
-
-// 初始化具体的防火墙域名类型规则
-let domainRule: netFirewall.NetFirewallRule = {
-  name: "rule2",
-  description: "rule2 description",
-  direction: netFirewall.NetFirewallRuleDirection.RULE_IN,
-  action:netFirewall.FirewallRuleAction.RULE_DENY,
-  type: netFirewall.NetFirewallRuleType.RULE_DOMAIN,
-  isEnabled: true,
-  appUid: 20002,
-  domains: [
-    {
-      isWildcard: false,
-      domain: "www.openharmony.cn"
-    },{
-      isWildcard: true,
-      domain: "*.openharmony.cn"
-    }] as domain[],
-  userId: 100
-};
-// 添加防火墙规则
-netFirewall.addNetFirewallRule(domainRule).then((result: number) => {
-  console.info('rule Id: ', result);
-}, (reason: BusinessError) => {
-  console.error('add firewall rule failed: ', JSON.stringify(reason));
-});
-```
+    // 添加防火墙规则。
+    netFirewall.addNetFirewallRule(domainRule).then((result: number) => {
+      console.info('rule Id: ', result);
+    }, (reason: BusinessError) => {
+      console.error('add firewall rule failed: ', JSON.stringify(reason));
+    });
+    ```
 
 <!--Del-->
 ## 查询防火墙拦截记录
 
 1. 设备通过硬件接口，插入网线。
 2. 从@kit.NetworkKit中导入netfirewall命名空间。
+
+    ```ts
+    // 从@kit.NetworkKit中导入netFirewall命名空间。
+    import { netFirewall } from '@kit.NetworkKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    ```
+
 3. 用户态通过getInterceptRecords方法查询拦截记录。
 
-```ts
-// 从@kit.NetworkKit中导入netFirewall命名空间
-import { netFirewall } from '@kit.NetworkKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-// 通过getInterceptedRecords方法分页查询拦截记录
-let interceptRecordParam: netFirewall.RequestParam = {
-  page: 1,
-  pageSize: 10,
-  orderField: netFirewall.NetFirewallOrderField.ORDER_BY_RECORD_TIME,
-  orderType: netFirewall.NetFirewallOrderType.ORDER_DESC
-};
-netFirewall.getInterceptedRecords(100, interceptRecordParam).then((result: netFirewall.InterceptedRecordPage) => {
-  console.info("result:", JSON.stringify(result));
-}, (error: BusinessError) => {
-  console.error("get intercept records failed: " + JSON.stringify(error));
-});
-```
+    ```ts
+    // 通过getInterceptedRecords方法分页查询拦截记录。
+    let interceptRecordParam: netFirewall.RequestParam = {
+      page: 1,
+      pageSize: 10,
+      orderField: netFirewall.NetFirewallOrderField.ORDER_BY_RECORD_TIME,
+      orderType: netFirewall.NetFirewallOrderType.ORDER_DESC
+    };
+    netFirewall.getInterceptedRecords(100, interceptRecordParam).then((result: netFirewall.InterceptedRecordPage) => {
+      console.info("result:", JSON.stringify(result));
+    }, (error: BusinessError) => {
+      console.error("get intercept records failed: " + JSON.stringify(error));
+    });
+    ```
 <!--DelEnd-->
