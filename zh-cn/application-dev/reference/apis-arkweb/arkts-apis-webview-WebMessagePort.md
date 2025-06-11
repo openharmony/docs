@@ -406,6 +406,7 @@ struct WebComponent {
 </html>
 ```
 
+<!--code_no_check-->
 ```js
 //index.js
 var h5Port;
