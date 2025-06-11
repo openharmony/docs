@@ -12221,7 +12221,7 @@ void OH_ArkUI_KeyEvent_SetConsumed (const ArkUI_UIInputEvent * event, bool isCon
 | 名称 | 描述 |
 | -------- | -------- |
 | event | ArkUI_UIInputEvent事件指针。  |
-| isConsumed | 是否被消费。  |
+| isConsumed | 是否被消费。true表示事件被消费，false表示事件未被消费。  |
 
 
 ### OH_ArkUI_KeyEvent_StopPropagation()
@@ -12240,7 +12240,7 @@ void OH_ArkUI_KeyEvent_StopPropagation (const ArkUI_UIInputEvent * event, bool s
 | 名称 | 描述 |
 | -------- | -------- |
 | event | ArkUI_UIInputEvent事件指针。  |
-| stopPropagation | 表示是否阻止事件冒泡。  |
+| stopPropagation | 表示是否阻止事件冒泡。true表示阻止事件冒泡，false表示不阻止事件冒泡。  |
 
 
 ### OH_ArkUI_KeyEvent_Dispatch()
@@ -12277,7 +12277,7 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsNumLockOn(const ArkUI_UIInputEvent* event, b
 | 名称 | 描述 |
 | -------- | -------- |
 | event | ArkUI_UIInputEvent事件指针。  |
-| state | 输出参数，返回NumLock的状态。  |
+| state | 输出参数，返回NumLock的状态。true表示处于激活状态，false表示处于未激活状态。  |
 
 **返回：**
 
@@ -12299,7 +12299,7 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsCapsLockOn(const ArkUI_UIInputEvent* event, 
 | 名称 | 描述 |
 | -------- | -------- |
 | event | ArkUI_UIInputEvent事件指针。  |
-| state | 输出参数，返回CapsLock的状态。  |
+| state | 输出参数，返回CapsLock的状态。true表示处于激活状态，false表示处于未激活状态。  |
 
 **返回：**
 
@@ -12321,7 +12321,7 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsScrollLockOn(const ArkUI_UIInputEvent* event
 | 名称 | 描述 |
 | -------- | -------- |
 | event | ArkUI_UIInputEvent事件指针。  |
-| state | 输出参数，返回ScrollLock的状态。  |
+| state | 输出参数，返回ScrollLock的状态。true表示处于激活状态，false表示处于未激活状态。 |
 
 **返回：**
 
