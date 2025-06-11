@@ -107,7 +107,6 @@ struct formHostSample {
     descriptionId: 0,
     type: formInfo.FormType.eTS,
     jsComponentName: '',
-    colorMode: formInfo.ColorMode.MODE_AUTO,
     isDefault: false,
     updateEnabled: false,
     formVisibleNotify: true,
@@ -276,8 +275,8 @@ struct formHostSample {
         Button($r('app.string.selectAddForm'))
           .enabled(this.showFormPicker)
           .onClick(() => {
-            console.info("showTextPickerDiaglog")
-            this.getUIContext().showTextPickerDiaglog({
+            console.info("showTextPickerDialog")
+            this.getUIContext().showTextPickerDialog({
               range: this.formInfoRecord,
               selected: this.pickDialogIndex,
               canLoop: false,

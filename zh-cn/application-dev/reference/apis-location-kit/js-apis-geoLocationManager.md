@@ -127,7 +127,6 @@ import { geoLocationManager } from '@kit.LocationKit';
 | -------- | -------- | -------- | -------- | -------- |
 | interval | number | 否 | 否 | 表示上报位置信息的时间间隔，单位是秒。默认值为1，取值范围为大于等于0。等于0时对位置上报时间间隔无限制。|
 | locationScenario | [UserActivityScenario](#useractivityscenario12) &#124; [PowerConsumptionScenario](#powerconsumptionscenario12) | 否 | 否 | 表示定位的场景信息。取值范围见[UserActivityScenario](#useractivityscenario12)和[PowerConsumptionScenario](#powerconsumptionscenario12)的定义。 |
-| sportsType<sup>18+</sup> | [SportsType](#sportstype18) | 否 | 是 | 表示运动类型。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 | needPoi<sup>19+ | boolean | 否 | 是 | 表示是否需要获取当前位置附近的POI信息。false代表不需要获取当前位置附近的POI信息，true代表需要获取当前位置附近的POI信息。不设置时，默认值为false。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
 
 
@@ -511,6 +510,8 @@ POI(Point of Interest, 兴趣点)信息。
 ## PoiInfo<sup>19+</sup>
 
 POI信息结构体。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -2564,6 +2565,8 @@ isPoiServiceSupported(): boolean
 
 查询系统（即软件）是否支持POI服务。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Location.Location.Core
 
 
@@ -2589,8 +2592,11 @@ getPoiInfo(): Promise&lt;PoiInfo&gt;
 
 获取当前位置附近的POI信息。
 
-**系统能力**：SystemCapability.Location.Location.Core
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
 
 **返回值**：
 
@@ -2605,7 +2611,7 @@ getPoiInfo(): Promise&lt;PoiInfo&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 |201 | Permission verification failed. The application does not have the permission required to call the API.                 |
-|801 | Capability not supported. Failed to call ${geoLocationManager.getPoiInfo()} due to limited device capabilities.          |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getPoiInfo} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 
@@ -2631,6 +2637,8 @@ getPoiInfo(): Promise&lt;PoiInfo&gt;
 getDistanceBetweenLocations(location1: Location, location2: Location): number
 
 获取两个位置之间的直线距离。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 

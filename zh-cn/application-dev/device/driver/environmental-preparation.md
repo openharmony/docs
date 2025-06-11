@@ -8,7 +8,7 @@ DevEco Studio作为驱动开发工具，是进行驱动开发的必备条件之�
 
 ## SDK版本配置
 
-扩展外设管理模块提供的ArkTs接口，所需SDK版本为API10及以上版本才可使用，更新SDK的具体操作可参见[更新指南](../../tools/openharmony_sdk_upgrade_assistant.md)。
+扩展外设管理模块提供的ArkTs接口，所需SDK版本为API10及以上版本才可使用<!--Del-->，更新SDK的具体操作可参见[更新指南](../../tools/openharmony_sdk_upgrade_assistant.md)<!--DelEnd-->。
 
 基于DDK能力开发专业专用扩展外设驱动或扩展外设增强驱动时，对SDK版本的要求如下：
 

@@ -673,18 +673,6 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
   </html>
   ```
 
-## password<sup>(deprecated)</sup>
-
-password(password: boolean)
-
-设置是否应保存密码。该接口为空接口。
-
-> **说明：**
->
-> 从API version 10开始废弃，并且不再提供新的接口作为替代。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
 ## cacheMode
 
 cacheMode(cacheMode: CacheMode)
@@ -737,51 +725,17 @@ copyOptions(value: CopyOptions)
 **示例：**
 
   ```ts
-import { webview } from '@kit.ArkWeb';
+  import { webview } from '@kit.ArkWeb';
 
-@Entry
-@Component
-struct WebComponent {
-  controller: webview.WebviewController = new webview.WebviewController();
-
-  build() {
-    Column() {
-      Web({ src: 'www.example.com', controller: this.controller })
-        .copyOptions(CopyOptions.None)
-    }
-  }
-}
-  ```
-
-## textZoomAtio<sup>(deprecated)</sup>
-
-textZoomAtio(textZoomAtio: number)
-
-设置页面的文本缩放百分比。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-从API version 9开始不再维护，建议使用[textZoomRatio<sup>9+</sup>](#textzoomratio9)代替。
-
-**参数：**
-
-| 参数名          | 类型   | 必填  | 说明                             |
-| ------------ | ------ | ---- | -------------------------------- |
-| textZoomAtio | number | 是   | 要设置的页面的文本缩放百分比。<br>取值范围为正整数。<br>默认值：100。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
-    @State ratio: number = 150
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .textZoomAtio(this.ratio)
+          .copyOptions(CopyOptions.None)
       }
     }
   }
@@ -852,45 +806,6 @@ initialScale(percent: number)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .initialScale(this.percent)
-      }
-    }
-  }
-  ```
-
-## userAgent<sup>(deprecated)</sup>
-
-userAgent(userAgent: string)
-
-设置用户代理。
-
-> **说明：**
->
-> 从API version 8开始支持，从API version 10开始废弃。建议使用[setCustomUserAgent](./arkts-apis-webview-WebviewController.md#setcustomuseragent10)<sup>10+</sup>替代。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名       | 类型   | 必填   | 说明      |
-| --------- | ------ | ---- | --------- |
-| userAgent | string | 是    | 要设置的用户代理。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import { webview } from '@kit.ArkWeb';
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
-    @State userAgent:string = 'Mozilla/5.0 (Phone; OpenHarmony 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 ArkWeb/4.1.6.1 Mobile DemoApp';
-
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .userAgent(this.userAgent)
       }
     }
   }
@@ -1351,30 +1266,6 @@ forceDarkAccess(access: boolean)
     }
   }
   ```
-
-## tableData<sup>(deprecated)</sup>
-
-tableData(tableData: boolean)
-
-设置是否应保存表单数据。该接口为空接口。
-
-> **说明：**
->
-> 从API version 10开始废弃，并且不再提供新的接口作为替代。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-## wideViewModeAccess<sup>(deprecated)</sup>
-
-wideViewModeAccess(wideViewModeAccess: boolean)
-
-设置web是否支持html中meta标签的viewport属性。该接口为空接口。
-
-> **说明：**
->
-> 从API version 10开始废弃，并且不再提供新的接口作为替代。
-
-**系统能力：** SystemCapability.Web.Webview.Core
 
 ## pinchSmooth<sup>9+</sup>
 
@@ -2365,69 +2256,6 @@ enableNativeMediaPlayer(config: NativeMediaPlayerConfig)
   }
   ```
 
-## selectionMenuOptions<sup>(deprecated)</sup>
-
-selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
-
-Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本内容、图标、回调方法。
-
-该接口只支持选中纯文本，当选中内容包含图片及其他非文本内容时，action信息中会显示乱码。
-
-> **说明：**
->
-> 从API version 12开始支持，从API version 20开始废弃。建议使用[editMenuOptions<sup>12+</sup>](#editmenuoptions12)替代。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名              | 类型                                                         | 必填   | 说明          |
-| ------------------- | ----------------------------------------------------------    | ---- | ------------- |
-| expandedMenuOptions | Array<[ExpandedMenuItemOptions](./arkts-basic-components-web-i.md#expandedmenuitemoptions12)> | 是    | 扩展菜单选项。<br/>菜单项数量，及菜单的content大小、startIcon图标尺寸，与ArkUI [Menu](../apis-arkui/arkui-ts/ts-basic-components-menu.md)组件保持一致。|
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import { webview } from '@kit.ArkWeb';
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
-    @State menuOptionArray: Array<ExpandedMenuItemOptions> = [
-      {content: 'Apple', startIcon: $r('app.media.icon'), action: (selectedText) => {
-        console.info('select info ' + selectedText.toString());
-      }},
-      {content: '香蕉', startIcon: $r('app.media.icon'), action: (selectedText) => {
-        console.info('select info ' + selectedText.toString());
-      }}
-    ];
-
-    build() {
-      Column() {
-        Web({ src: $rawfile("index.html"), controller: this.controller })
-        .selectionMenuOptions(this.menuOptionArray)
-      }
-    }
-  }
-  ```
-
-  加载的html文件。
-  ```html
-  <!--index.html-->
-  <!DOCTYPE html>
-  <html>
-  <head>
-    <title>测试网页</title>
-  </head>
-  <body>
-    <h1>selectionMenuOptions Demo</h1>
-    <span>selection menu options</span>
-  </body>
-  </html>
-  ```
-
 ## onAdsBlocked<sup>12+</sup>
 
 onAdsBlocked(callback: OnAdsBlockedCallback)
@@ -3167,3 +2995,175 @@ dataDetectorConfig(config: TextDataDetectorConfig)
   </body>
   </html>
   ```
+
+## selectionMenuOptions<sup>(deprecated)</sup>
+
+selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
+
+Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本内容、图标、回调方法。
+
+该接口只支持选中纯文本，当选中内容包含图片及其他非文本内容时，action信息中会显示乱码。
+
+> **说明：**
+>
+> 从API version 12开始支持，从API version 20开始废弃。建议使用[editMenuOptions<sup>12+</sup>](#editmenuoptions12)替代。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名              | 类型                                                         | 必填   | 说明          |
+| ------------------- | ----------------------------------------------------------    | ---- | ------------- |
+| expandedMenuOptions | Array<[ExpandedMenuItemOptions](./arkts-basic-components-web-i.md#expandedmenuitemoptions12)> | 是    | 扩展菜单选项。<br/>菜单项数量，及菜单的content大小、startIcon图标尺寸，与ArkUI [Menu](../apis-arkui/arkui-ts/ts-basic-components-menu.md)组件保持一致。|
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State menuOptionArray: Array<ExpandedMenuItemOptions> = [
+      {content: 'Apple', startIcon: $r('app.media.icon'), action: (selectedText) => {
+        console.info('select info ' + selectedText.toString());
+      }},
+      {content: '香蕉', startIcon: $r('app.media.icon'), action: (selectedText) => {
+        console.info('select info ' + selectedText.toString());
+      }}
+    ];
+
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+        .selectionMenuOptions(this.menuOptionArray)
+      }
+    }
+  }
+  ```
+
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>测试网页</title>
+  </head>
+  <body>
+    <h1>selectionMenuOptions Demo</h1>
+    <span>selection menu options</span>
+  </body>
+  </html>
+  ```
+
+## password<sup>(deprecated)</sup>
+
+password(password: boolean)
+
+设置是否应保存密码。该接口为空接口。
+
+> **说明：**
+>
+> 从API version 10开始废弃，并且不再提供新的接口作为替代。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+## textZoomAtio<sup>(deprecated)</sup>
+
+textZoomAtio(textZoomAtio: number)
+
+设置页面的文本缩放百分比。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+从API version 9开始不再维护，建议使用[textZoomRatio<sup>9+</sup>](#textzoomratio9)代替。
+
+**参数：**
+
+| 参数名          | 类型   | 必填  | 说明                             |
+| ------------ | ------ | ---- | -------------------------------- |
+| textZoomAtio | number | 是   | 要设置的页面的文本缩放百分比。<br>取值范围为正整数。<br>默认值：100。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    @State ratio: number = 150
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .textZoomAtio(this.ratio)
+      }
+    }
+  }
+  ```
+
+## userAgent<sup>(deprecated)</sup>
+
+userAgent(userAgent: string)
+
+设置用户代理。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 10开始废弃。建议使用[setCustomUserAgent](./arkts-apis-webview-WebviewController.md#setcustomuseragent10)<sup>10+</sup>替代。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名       | 类型   | 必填   | 说明      |
+| --------- | ------ | ---- | --------- |
+| userAgent | string | 是    | 要设置的用户代理。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State userAgent:string = 'Mozilla/5.0 (Phone; OpenHarmony 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 ArkWeb/4.1.6.1 Mobile DemoApp';
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .userAgent(this.userAgent)
+      }
+    }
+  }
+  ```
+
+## tableData<sup>(deprecated)</sup>
+
+tableData(tableData: boolean)
+
+设置是否应保存表单数据。该接口为空接口。
+
+> **说明：**
+>
+> 从API version 10开始废弃，并且不再提供新的接口作为替代。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+## wideViewModeAccess<sup>(deprecated)</sup>
+
+wideViewModeAccess(wideViewModeAccess: boolean)
+
+设置web是否支持html中meta标签的viewport属性。该接口为空接口。
+
+> **说明：**
+>
+> 从API version 10开始废弃，并且不再提供新的接口作为替代。
+
+**系统能力：** SystemCapability.Web.Webview.Core

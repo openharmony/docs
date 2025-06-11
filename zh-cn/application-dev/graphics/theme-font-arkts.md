@@ -64,7 +64,7 @@
    // 在段落生成器中设置文本样式
    paragraphBuilder.pushStyle(myTextStyle);
    // 在段落生成器中设置文本内容
-   paragraphBuilder.addText("Custom font test");
+   paragraphBuilder.addText("Hello World. \nThis is the theme font.");
    // 通过段落生成器生成段落
    let paragraph = paragraphBuilder.build();
    ```
@@ -152,18 +152,19 @@
 
 ```ts
 // /pages/Index.ets
-import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
-import { UIContext } from '@kit.ArkUI'
-import { text } from '@kit.ArkGraphics2D'
+import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI';
+import { UIContext } from '@kit.ArkUI';
+import { text } from '@kit.ArkGraphics2D';
 
+// 创建一个自定义的渲染节点类，用于绘制文本
 class MyRenderNode extends RenderNode {
   async draw(context: DrawContext) {
     // 获取画布canvas对象
-    const canvas = context.canvas
+    const canvas = context.canvas;
     // 设置文本样式
     let myTextStyle: text.TextStyle = {
       color: { alpha: 255, red: 255, green: 0, blue: 0 },
-      fontSize: 100
+      fontSize: 33
     };
     // 创建一个段落样式对象，以设置排版风格
     let myParagraphStyle: text.ParagraphStyle = {
@@ -172,18 +173,18 @@ class MyRenderNode extends RenderNode {
       wordBreak:text.WordBreak.NORMAL
     };
     // 获取字体管理器全局FontCollection实例
-    let fontCollection = text.FontCollection.getGlobalInstance() //获取Arkui全局FC
+    let fontCollection = text.FontCollection.getGlobalInstance(); // 获取Arkui全局FC
     // 创建一个段落生成器
-    let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection)
+    let paragraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
     // 在段落生成器中设置文本样式
-    paragraphBuilder.pushStyle(myTextStyle);
+    paragraphGraphBuilder.pushStyle(myTextStyle);
     // 在段落生成器中设置文本内容
-    paragraphBuilder.addText("Hello World. \nThis is the theme font.");
+    paragraphGraphBuilder.addText("Hello World. \nThis is the theme font.");
     // 通过段落生成器生成段落
-    let paragraph = paragraphBuilder.build();
+    let paragraph = paragraphGraphBuilder.build();
     // 布局
-    paragraph.layoutSync(1500);
-    paragraph.paint(canvas, 200, 800);
+    paragraph.layoutSync(2500);
+    paragraph.paint(canvas, 0, 400);
   }
 }
 // 创建渲染节点数组
@@ -192,61 +193,64 @@ const renderNodeMap: Array<RenderNode> = new Array();
 export function updateRenderNodeData() {
   renderNodeMap.forEach((node) => {
     // 主动触发节点重绘制
-    node.invalidate()
-  })
-}
-
-// 创建一个MyRenderNode对象
-function getNewRenderNode() {
-  const textNodeTest = new MyRenderNode();
-  // 定义newNode的像素格式
-  textNodeTest.frame = { x: 0, y: 0, width: 500, height: 500 }
-  textNodeTest.pivot = { x: 0.5, y: 0.5 }
-  textNodeTest.scale = { x: 1, y: 1 }
-  return textNodeTest;
+    node.invalidate();
+  });
 }
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
   makeNode(uiContext: UIContext): FrameNode {
-    this.rootNode = new FrameNode(uiContext)
+    this.rootNode = new FrameNode(uiContext);
     if (this.rootNode == null) {
-      return this.rootNode
+      return this.rootNode;
     }
-    const renderNode = this.rootNode.getRenderNode()
+    const renderNode = this.rootNode.getRenderNode();
     if (renderNode != null) {
-      renderNode.frame = { x: 0, y: 0, width: 300, height: 50 }
-      renderNode.pivot = { x: 0, y: 0 }
+      renderNode.frame = { x: 0, y: 0, width: 300, height: 50 };
+      renderNode.pivot = { x: 0, y: 0 };
     }
-    return this.rootNode
+    return this.rootNode;
   }
   addNode(node: RenderNode): void {
     if (this.rootNode == null) {
-      return
+      return;
     }
-    const renderNode = this.rootNode.getRenderNode()
+    const renderNode = this.rootNode.getRenderNode();
     if (renderNode != null) {
-      renderNode.appendChild(node)
+      renderNode.appendChild(node);
       // 将节点添加到渲染节点数组中
-      renderNodeMap.push(node)
+      renderNodeMap.push(node);
     }
   }
   clearNodes(): void {
     if (this.rootNode == null) {
-      return
+      return;
     }
-    const renderNode = this.rootNode.getRenderNode()
+    const renderNode = this.rootNode.getRenderNode();
     if (renderNode != null) {
-      renderNode.clearChildren()
+      renderNode.clearChildren();
       // 将节点从渲染节点数组中移除
-      renderNodeMap.pop()
+      renderNodeMap.pop();
     }
   }
 }
+
+// 创建一个TextRenderNode对象
+const textNode = new MyRenderNode();
+// 定义textNode的像素格式
+textNode.frame = {
+  x: 0,
+  y: 100,
+  width: 600,
+  height: 800
+};
+textNode.pivot = { x: 0.2, y: 0.8 };
+textNode.scale = { x: 1, y: 1 };
+
 @Entry
 @Component
 struct RenderTest {
-  private myNodeController: MyNodeController = new MyNodeController()
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Column() {
       Row() {
@@ -261,18 +265,18 @@ struct RenderTest {
           .fontWeight(500)
           .margin({ bottom: 24, right: 12 })
           .onClick(() => {
-            this.myNodeController.clearNodes()
-            this.myNodeController.addNode(getNewRenderNode())
+            this.myNodeController.clearNodes();
+            this.myNodeController.addNode(textNode);
           })
           .width('50%')
           .height(40)
           .shadow(ShadowStyle.OUTER_DEFAULT_LG)
       }
       .width('100%')
-      .justifyContent(FlexAlign.Center)
-      .shadow(ShadowStyle.OUTER_DEFAULT_SM)
-      .alignItems(VerticalAlign.Bottom)
-      .layoutWeight(1)
+      .justifyContent(FlexAlign.Center) // 设置当前Row容器内子元素在主轴上居中对齐
+      .shadow(ShadowStyle.OUTER_DEFAULT_SM) // 设置Row容器外阴影效果
+      .alignItems(VerticalAlign.Bottom) // 设置当前Row容器内子元素在交叉轴（垂直方向）上的对齐方式为底部对齐
+      .layoutWeight(1) // 设置当前Row在父容器Column中的布局权重为1
     }
   }
 }
@@ -308,7 +312,7 @@ export default class EntryAbility extends UIAbility {
 
 **图2** 主题字体1的效果 
 
-![themeFont_ts_01](figures/themeFont_ts_01.png)
+![themeFont_ts_01](figures/themeFont.PNG)
 
 **图3** 主题字体2的效果
 

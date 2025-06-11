@@ -645,23 +645,10 @@
 
 | 名称                    | 说明                  |
 | --------------------- | ------------------- |
-| None                  | 文本超长时按最大行截断显示。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| None                  | 文本超长时按最大行截断显示，与Clip相同。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | Clip                  | 文本超长时按最大行截断显示。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | Ellipsis              | 文本超长时显示不下的文本用省略号代替。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | MARQUEE<sup>10+</sup> | 文本超长时以跑马灯的方式展示。 |
-
-## MaxLinesMode<sup>20+</sup>
-
-TextArea组件在文本超长时显示效果。默认值为Clip，按最大行截断显示。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称                   | 值  | 说明                  |
-| --------------------- | -------  | ------------------- |
-| CLIP                  | 0  | 文本超长时按最大行截断显示。 |
-| SCROLL                | 1  | 文本超长时可滚动显示。 |
 
 ## TextDecorationType
 
@@ -1293,19 +1280,6 @@ type Nullable\<T> = T | undefined
 > - 建议在出现[像素取整常见问题](./ts-universal-attributes-pixelRound.md#常见问题)时，尝试采用PIXEL_ROUND_AFTER_MEASURE模式解决。
 > - 在PIXEL_ROUND_AFTER_MEASURE模式下，组件会在测量大小结束时进行一次取整，即最终大小相比于PIXEL_ROUND_ON_LAYOUT_FINISH模式可能扩大1px。
 
-## TipsAnchorType<sup>20+</sup>
-
-指定Tips跟随类型。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称    |  说明                   |
-| ------  | -------------------- |
-| TARGET | Tips跟随目标物。 |
-| CURSOR | Tips跟随鼠标。 |
-
 ## AnimationPropertyType<sup>20+</sup>
 
 用于动画的属性类型。
@@ -1334,20 +1308,7 @@ type Nullable\<T> = T | undefined
 | SRGB | 0 | SRGB颜色空间，适用于大多数显示设备。 |
 | DISPLAY_P3 | 1 | Display-P3颜色空间，具有更广的色域，适用于高端显示设备。 |
 
-## FocusWrapMode<sup>20+</sup>
 
-交叉轴方向键走焦模式枚举。
-
-**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称            | 值   | 说明                                                         |
-| --------------- | ---- | ------------------------------------------------------------ |
-| DEFAULT         | 0    | 交叉轴方向键不能换行。                                       |
-| WRAP_WITH_ARROW | 1    | 交叉轴方向键允许换行。<br/>不规则单元格场景下，交叉轴方向键走焦时优先走到同一行的可获焦item。 |
 
 ## DividerMode<sup>19+</sup>枚举说明
 

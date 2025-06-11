@@ -4208,10 +4208,10 @@ off(event: 'wait', callback?: Callback&lt;WaitingReason&gt;): void
     token: "it is a secret"
   };
   let waitOffCallback1 = (progress: request.agent.HttpResponse) => {
-    console.info('upload task failed.');
+    console.info('upload task waiting.');
   };
   let waitOffCallback2 = (progress: request.agent.HttpResponse) => {
-    console.info('upload task failed.');
+    console.info('upload task waiting.');
   };
   request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('wait', waitOffCallback1);
