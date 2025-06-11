@@ -423,11 +423,6 @@ data数据必须使用base64编码或将内容中的任何#字符编码为%23。
 > - 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
 >
 > - 若html中的富文本中带有注入#等特殊字符，建议将baseUrl和historyUrl两个参数的值设置为"空格"。
-<<<<<<< HEAD
->
-> - 加载文字场景，需主动设置\<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">避免文本字体大小不一致。
-=======
->>>>>>> 49a62ef442d7ef6f0ee97d40bc721ec6b1502a11
 
 **错误码：**
 
