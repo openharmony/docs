@@ -66,10 +66,10 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@kit.InputKit';
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-| 名称    | 类型   | 可读   | 可写   | 说明   |
+| 名称    | 类型   | 只读   | 可选   | 说明   |
 | ----- | ------ | ---- | ---- | ---- |
-| axis  | [Axis](#axis)   | 是    | 否    | 轴类型。  |
-| value | number | 是    | 否    | 轴的值。  |
+| axis  | [Axis](#axis)   | 否    | 否    | 轴类型。  |
+| value | number | 否    | 否    | 轴的值。  |
 
 ## ToolType<sup>11+</sup>
 
@@ -90,25 +90,25 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@kit.InputKit';
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-| 名称             | 类型        | 可读   | 可写   | 说明                                       |
+| 名称             | 类型        | 只读   | 可选   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| action         | [Action](#action)      | 是    | 否    | 鼠标事件动作。                                   |
-| screenX        | number      | 是    | 否    | 鼠标光标在屏幕中的横坐标。                             |
-| screenY        | number      | 是    | 否    | 鼠标光标在屏幕中的纵坐标。                             |
-| windowX        | number      | 是    | 否    | 鼠标所在窗口的横坐标。                               |
-| windowY        | number      | 是    | 否    | 鼠标所在窗口的纵坐标。                               |
-| rawDeltaX      | number      | 是    | 否    | 鼠标本次操作横坐标偏移值。 |
-| rawDeltaY      | number      | 是    | 否    | 鼠标本次操作纵坐标偏移值。                          |
-| button         | [Button](#button)      | 是    | 否    | 鼠标按钮。                       |        
-| pressedButtons | [Button](#button)[]    | 是    | 否    | 当前处于按下状态的鼠标按钮。                              |
-| axes           | [AxisValue](#axisvalue)[] | 是    | 否    | 事件包含的所有轴数据。                               |
-| pressedKeys    | [KeyCode](js-apis-keycode.md#keycode)[]   | 是    | 否    | 当前处于按下状态的按键列表。                            |
-| ctrlKey        | boolean     | 是    | 否    | 当前ctrlKey是否处于按下状态。 <br>true表示处于按下状态，false表示处于抬起状态。    |
-| altKey         | boolean     | 是    | 否    | 当前altKey是否处于按下状态。 <br>true表示处于按下状态，false表示处于抬起状态。                         |
-| shiftKey       | boolean     | 是    | 否    | 当前shiftKey是否处于按下状态。 <br>true表示处于按下状态，false表示处于抬起状态。                       |
-| logoKey        | boolean     | 是    | 否    | 当前logoKey是否处于按下状态。 <br>true表示处于按下状态，false表示处于抬起状态。                        |
-| fnKey          | boolean     | 是    | 否    | 当前fnKey是否处于按下状态。 <br>true表示处于按下状态，false表示处于抬起状态。                          |
-| capsLock       | boolean     | 是    | 否    | 当前capsLock是否处于激活状态。 <br>true表示激活状态，false表示处于未激活状态。  |
-| numLock        | boolean     | 是    | 否    | 当前numLock是否处于激活状态。 <br>true表示激活状态，false表示处于未激活状态。                        |
-| scrollLock     | boolean     | 是    | 否    | 当前scrollLock是否处于激活状态。 <br>true表示激活状态，false表示处于未激活状态。                     |
-| toolType<sup>11+</sup> | [ToolType](#tooltype11) | 是    | 否    | 工具类型。                     |
+| action         | [Action](#action)      | 否    | 否    | 鼠标事件动作。                                   |
+| screenX        | number      | 否    | 否    | 鼠标光标在屏幕中的横坐标。                             |
+| screenY        | number      | 否    | 否    | 鼠标光标在屏幕中的纵坐标。                             |
+| windowX        | number      | 否    | 否    | 鼠标所在窗口的横坐标。                               |
+| windowY        | number      | 否    | 否    | 鼠标所在窗口的纵坐标。                               |
+| rawDeltaX      | number      | 否    | 否    | 鼠标本次操作横坐标偏移值。 |
+| rawDeltaY      | number      | 否    | 否    | 鼠标本次操作纵坐标偏移值。                          |
+| button         | [Button](#button)      | 否    | 否    | 鼠标按钮。                       |        
+| pressedButtons | [Button](#button)[]    | 否    | 否    | 当前处于按下状态的鼠标按钮。                              |
+| axes           | [AxisValue](#axisvalue)[] | 否    | 否    | 事件包含的所有轴数据。                               |
+| pressedKeys    | [KeyCode](js-apis-keycode.md#keycode)[]   | 否    | 否    | 当前处于按下状态的按键列表。                            |
+| ctrlKey        | boolean     | 否    | 否    | 当前ctrlKey是否处于按下状态。 <br>true表示处于按下状态，false表示处于抬起状态。    |
+| altKey         | boolean     | 否    | 否    | 当前altKey是否处于按下状态。 <br>true表示处于按下状态，false表示处于抬起状态。                         |
+| shiftKey       | boolean     | 否    | 否    | 当前shiftKey是否处于按下状态。 <br>true表示处于按下状态，false表示处于抬起状态。                       |
+| logoKey        | boolean     | 否    | 否    | 当前logoKey是否处于按下状态。 <br>true表示处于按下状态，false表示处于抬起状态。                        |
+| fnKey          | boolean     | 否    | 否    | 当前fnKey是否处于按下状态。 <br>true表示处于按下状态，false表示处于抬起状态。                          |
+| capsLock       | boolean     | 否    | 否    | 当前capsLock是否处于激活状态。 <br>true表示激活状态，false表示处于未激活状态。  |
+| numLock        | boolean     | 否    | 否    | 当前numLock是否处于激活状态。 <br>true表示激活状态，false表示处于未激活状态。                        |
+| scrollLock     | boolean     | 否    | 否    | 当前scrollLock是否处于激活状态。 <br>true表示激活状态，false表示处于未激活状态。                     |
+| toolType<sup>11+</sup> | [ToolType](#tooltype11) | 否    | 否    | 工具类型。                     |
