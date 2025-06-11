@@ -653,18 +653,18 @@ class MyNodeController extends NodeController {
 
   disposeTest() {
     if (this.frameNode !== null && this.nodeAdapter !== null && this.builderNode !== null && this.renderNode !== null) {
-      console.log(`jerry before BuilderNode dispose: isDisposed=`, this.builderNode.isDisposed());
+      console.log(`before BuilderNode dispose: isDisposed=`, this.builderNode.isDisposed());
       this.builderNode.dispose();
-      console.log(`jerry after BuilderNode dispose: isDisposed=`, this.builderNode.isDisposed());
-      console.log(`jerry before FrameNode dispose: isDisposed=`, this.frameNode.isDisposed());
+      console.log(`after BuilderNode dispose: isDisposed=`, this.builderNode.isDisposed());
+      console.log(`before FrameNode dispose: isDisposed=`, this.frameNode.isDisposed());
       this.frameNode.dispose();
-      console.log(`jerry after FrameNode dispose: isDisposed=`, this.frameNode.isDisposed());
-      console.log(`jerry before RenderNode dispose: isDisposed=`, this.renderNode.isDisposed());
+      console.log(`after FrameNode dispose: isDisposed=`, this.frameNode.isDisposed());
+      console.log(`before RenderNode dispose: isDisposed=`, this.renderNode.isDisposed());
       this.renderNode.dispose();
-      console.log(`jerry after RenderNode dispose: isDisposed=`, this.renderNode.isDisposed());
-      console.log(`jerry before NodeAdapter dispose: isDisposed=`, this.nodeAdapter.isDisposed());
+      console.log(`after RenderNode dispose: isDisposed=`, this.renderNode.isDisposed());
+      console.log(`before NodeAdapter dispose: isDisposed=`, this.nodeAdapter.isDisposed());
       this.nodeAdapter.dispose();
-      console.log(`jerry after NodeAdapter dispose: isDisposed=`, this.nodeAdapter.isDisposed());
+      console.log(`after NodeAdapter dispose: isDisposed=`, this.nodeAdapter.isDisposed());
     }
   }
 }
@@ -691,9 +691,9 @@ struct Index {
         .onClick(() => {
           this.myNodeController.disposeTest();
           this.promptAction?.closeCustomDialog(this.contentNode);
-          console.log(`jerry before ComponentContent dispose: isDisposed=`, this.contentNode?.isDisposed());
+          console.log(`before ComponentContent dispose: isDisposed=`, this.contentNode?.isDisposed());
           this.contentNode?.dispose();
-          console.log(`jerry after ComponentContent dispose: isDisposed=`, this.contentNode?.isDisposed());
+          console.log(`after ComponentContent dispose: isDisposed=`, this.contentNode?.isDisposed());
         })
         .width(120)
         .height(40)
