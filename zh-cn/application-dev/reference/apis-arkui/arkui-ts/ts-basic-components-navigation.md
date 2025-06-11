@@ -2183,8 +2183,8 @@ export struct PageTwo {
 ```
 
 ```json
-// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
-// route_map.json
+// 在src/main目录下的工程配置文件module.json5中的module字段里配置 "routerMap": "$profile:route_map"
+// src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
     {
@@ -2665,8 +2665,8 @@ export class CustomTransition {
 }
 ```
 ```json
-// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
-// route_map.json
+// 在src/main目录下的工程配置文件module.json5中的module字段里配置 "routerMap": "$profile:route_map"
+// src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
     {
@@ -2952,8 +2952,8 @@ export struct PageTwo {
 }
 ```
 ```json
-// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
-// route_map.json
+// 在src/main目录下的工程配置文件module.json5中的module字段里配置 "routerMap": "$profile:route_map"
+// src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
     {
@@ -3280,8 +3280,8 @@ export function PageOneBuilder(name: string) {
 }
 ```
 ```json
-// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
-// route_map.json
+// 在src/main目录下的工程配置文件module.json5中的module字段里配置 "routerMap": "$profile:route_map"
+// src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
     {
@@ -3391,8 +3391,8 @@ struct NavigationExample2 {
 }
 ```
 ```json
-// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
-// route_map.json
+// 在src/main目录下的工程配置文件module.json5中的module字段里配置 "routerMap": "$profile:route_map"
+// src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
     {
@@ -3510,8 +3510,8 @@ struct NavigationExample3 {
 }
 ```
 ```json
-// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
-// route_map.json
+// 在src/main目录下的工程配置文件module.json5中的module字段里配置 "routerMap": "$profile:route_map"
+// src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
     {
@@ -4292,8 +4292,8 @@ export class CustomTransition {
 ```
 
 ```json
-// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
-// route_map.json
+// 在src/main目录下的工程配置文件module.json5中的module字段里配置 "routerMap": "$profile:route_map"
+// src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
     {
