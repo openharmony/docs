@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-应用通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。当前提供了2种HTTP请求方式，若不关心数据发送和接收进度事件时可以使用HTTP一般数据请求[HttpRequest.request](../reference/apis-network-kit/js-apis-http.md#request)方法，如果是大文件的上传或者下载，需要关注数据发送和接收进度，可以使用HTTP流式响应[HttpRequest.requestInstream](../reference/apis-network-kit/js-apis-http.md#requestinstream10)方法。
+应用通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。当前提供了2种HTTP请求方式，若请求发送或接收的数据量较少，可使用[HttpRequest.request](../reference/apis-network-kit/js-apis-http.md#request)，若是大文件的上传或者下载，且关注数据发送和接收进度，可使用HTTP请求流式传输[HttpRequest.requestInstream](../reference/apis-network-kit/js-apis-http.md#requestinstream10)。
 
 <!--RP1-->
 
@@ -12,30 +12,30 @@
 
 | 功能分类     | 功能名称                           |功能描述                      | 开始支持的版本         |
 | ----------- | -----------------------------------|-----------------------------|------------------------|
-| 基础功能     | 设置请求方式。                      | 支持GET、POST、HEAD、PUT、DELETE、TRACE、CONNECT、OPTIONS方法，默认为GET。  |  API version 6  |
-| 基础功能     | 设置请求额外数据。                 | 支持发送请求时同步携带额外数据，默认无此字段。 | API version 6    |
-| 基础功能     | 设置读取超时时间。                 | 该参数设置的是从请求开始到请求结束的总时间，包括DNS解析、连接建立、传输等。单位为毫秒（ms），默认为60000ms。 |  API version 6   |
-| 基础功能     | 设置连接超时时间。                 | 该参数设置的是连接超时时间。单位为毫秒（ms），默认为60000ms。 |  API version 6   |
-| 基础功能     | 设置HTTP请求头。                  | 当请求方式为"POST" "PUT" "DELETE" 或者""时，默认{'content-Type': 'application/json'}， 否则默认{'content-Type': 'application/x-www-form-urlencoded'}。 |  API version 6   |
-| 基础功能     | 设置响应数据类型。                | 可以指定HTTP响应数据的类型，默认无此字段。如果设置了此参数，系统将优先返回指定的类型。 |  API version 9   |
-| 基础功能     | 设置请求并发优先级。              |  指定HTTP/HTTPS请求并发优先级，值越大优先级越高，范围[1,1000]，默认为1。|  API version 9   |
-| 基础功能     | 设置是否使用缓存。                | 可以指定是否使用缓存，默认为true，请求时优先读取缓存。 缓存跟随当前进程生效。新缓存会替换旧缓存，设置为false表示不使用缓存。 |  API version 9   |
-| 基础功能     | 设置使用协议类型。                 | 默认值由系统自动指定，用户可以指定为HTTP 1.1、HTTP 2、HTTP 3协议版本。 |  API version 9   |
-| 代理设置     | 设置HTTP请求代理。                 | 是否使用HTTP代理，默认为false，不使用代理，设置为true表示使用HTTP代理，此时会使用系统默认代理，也支持自定义网络代理。 |  API version 10  |
-| 证书验证     | 设置CA证书路径。                   | 如果设置了此参数，系统将使用用户指定路径的CA证书（开发者需保证该路径下CA证书的可访问性），否则将使用系统预设CA证书。 | API version 10    |
-| 证书验证     | 设置支持传输客户端证书。            | 支持传输客户端证书，包括证书路径、证书类型、证书密钥路径和密码信息。 | API version 11    |
-| 基础功能     | 设置下载起始位置和结束位置。         | 指定客户端要获取的数据范围，通常用户下载文件。 |  API version 11  |
-| 基础功能     | 设置需要上传的数据字段表单列表。        |设置多部分表单数据，通常用于上传文件。 |  API version 11   |
-| DNS设置      | 设置使用HTTPS协议的服务器进行DNS解析。  | 设置使用HTTPS协议的服务器进行DNS解析。- 参数必须以以下格式进行URL编码:"https://host:port/path"。 | API version 11    |
-| DNS设置     | 设置指定的DNS服务器进行DNS解析。         | 设置指定的DNS服务器进行DNS解析。- 可以设置多个DNS解析服务器，最多3个服务器。如果有3个以上，只取前3个。- 服务器必须是IPV4或者IPV6地址。 |  API version 11   |
-| 基础功能     | 设置响应消息的最大字节限制。            | 响应消息的最大字节限制。默认值为5\*1024\*1024，以字节为单位。最大值为100\*1024\*1024，以字节为单位。 |   API version 11  |
-| 证书验证     | 设置动态设置证书锁定配置。             | 动态设置证书锁定配置，可以传入单个或多个证书PIN码。 |   API version 12  |
-| 证书验证     | 设置解析目标域名时限定地址类型。        | 指定在解析目标域名时的地址类型，可以设置为跟随系统网络配置，强制仅使用IPV4地址进行解析或者强制仅使用IPV6地址进行解析。 |  API version 15   |
-| 证书验证     | 设置跳过SSL证书校验。                     | 可以设置跳过SSL证书校验流程。 | API version 18    |
-| 证书验证     | 设置证书校验的版本和加密套件。             | 自定义证书校验版本和加密套件。 |  API version 18  |
-| 证书验证     | 设置安全连接期间的服务器身份验证配置信息。        | 设置安全连接期间的服务器身份验证配置。 |  API version 18   |
+| 基础功能     | 设置请求方式                      | 支持GET、POST、HEAD、PUT、DELETE、TRACE、CONNECT、OPTIONS方法，默认为GET。  |  API version 6  |
+| 基础功能     | 设置请求额外数据                 | 支持发送请求时同步携带额外数据，默认无此字段。 | API version 6    |
+| 基础功能     | 设置读取超时时间                 | 该参数设置的是从请求开始到请求结束的总时间，包括DNS解析、连接建立、传输等。单位为毫秒（ms），默认为60000ms。 |  API version 6   |
+| 基础功能     | 设置连接超时时间                 | 该参数设置的是连接超时时间。单位为毫秒（ms），默认为60000ms。 |  API version 6   |
+| 基础功能     | 设置HTTP请求头                  | 当请求方式为"POST" "PUT" "DELETE" 或者""时，默认{'content-Type': 'application/json'}， 否则默认{'content-Type': 'application/x-www-form-urlencoded'}。 |  API version 6   |
+| 基础功能     | 设置响应数据类型                | 可以指定HTTP响应数据的类型，默认无此字段。如果设置了此参数，系统将优先返回指定的类型。 |  API version 9   |
+| 基础功能     | 设置请求并发优先级              |  指定HTTP/HTTPS请求并发优先级，值越大优先级越高，范围[1,1000]，默认为1。|  API version 9   |
+| 基础功能     | 设置是否使用缓存                | 可以指定是否使用缓存，默认为true，请求时优先读取缓存。 缓存跟随当前进程生效。新缓存会替换旧缓存，设置为false表示不使用缓存。 |  API version 9   |
+| 基础功能     | 设置使用协议类型                 | 默认值由系统自动指定，用户可以指定为HTTP 1.1、HTTP 2、HTTP 3协议版本。 |  API version 9   |
+| 代理设置     | 设置HTTP请求代理                 | 设置HTTP代理，默认值为false，表示不使用代理，若设置为true，表示使用HTTP代理，且为系统默认代理，也可通过配置HttpProxy自定义网络代理。 |  API version 10  |
+| 证书验证     | 设置CA证书路径                   | 如果设置了此参数，系统将使用用户指定路径的CA证书（开发者需保证该路径下CA证书的可访问性），否则将使用系统预设CA证书。 | API version 10    |
+| 证书验证     | 设置支持传输客户端证书            | 支持传输客户端证书，包括证书路径、证书类型、证书密钥路径和密码信息。 | API version 11    |
+| 基础功能     | 设置下载起始位置和结束位置         | 指定客户端要获取的数据范围，通常在下载文件时配置该参数。 |  API version 11  |
+| 基础功能     | 设置需要上传的数据字段表单列表        |设置多部分表单数据，通常用于上传文件。 |  API version 11   |
+| DNS设置      | 设置使用HTTPS协议的服务器进行DNS解析  | 设置使用HTTPS协议的服务器进行DNS解析。参数必须以以下格式进行URL编码:"https://host:port/path"。 | API version 11    |
+| DNS设置     | 设置指定的DNS服务器进行DNS解析         | 设置指定的DNS服务器进行DNS解析。可以设置多个DNS解析服务器，最多3个服务器。如果有3个以上，只取前3个。服务器必须是IPV4或者IPV6地址形式。 |  API version 11   |
+| 基础功能     | 设置响应消息的最大字节限制            | 响应消息的最大字节限制。以字节为单位，默认值为5\*1024\*1024，最大值为100\*1024\*1024。 |   API version 11  |
+| 证书验证     | 设置动态设置证书锁定配置             | 动态设置证书锁定配置，可以传入单个或多个证书PIN码。 |   API version 12  |
+| 证书验证     | 设置解析目标域名时限定地址类型        | 指定在解析目标域名时的地址类型，可以设置为：跟随系统网络配置、强制仅使用IPV4地址或者强制仅使用IPV6地址。 |  API version 15   |
+| 证书验证     | 设置跳过SSL证书校验                     | 可以设置跳过SSL证书校验流程。 | API version 18    |
+| 证书验证     | 设置证书校验的版本和加密套件             | 自定义证书校验版本和加密套件。 |  API version 18  |
+| 证书验证     | 设置安全连接期间的服务器身份验证配置信息        | 设置安全连接期间的服务器身份验证配置。 |  API version 18   |
 
-## 发起HTTP一般数据请求
+## 发起HTTP数据请求
 
 > **说明：**
 >
