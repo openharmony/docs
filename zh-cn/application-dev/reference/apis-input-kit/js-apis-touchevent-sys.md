@@ -1,0 +1,71 @@
+# @ohos.multimodalInput.touchEvent (触摸输入事件)(系统接口)
+
+设备上报的触摸（触屏）事件，继承自[InputEvent](./js-apis-inputevent.md)。
+
+> **说明：**
+>
+> 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.multimodalInput.touchEvent (触摸输入事件)](js-apis-touchevent.md)。
+
+## 导入模块
+
+```js
+import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
+```
+
+<!--Del-->
+## FixedMode<sup>19+</sup>
+
+修正坐标的模式。该接口仅在手机设备上生效。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Core
+
+| 名称          | 值  | 说明   |
+| ------------ | ------ | ---- |
+| NONE       |  0 | 正常模式。 |
+| AUTO |  1 | 单手模式。 |
+<!--DelEnd-->
+
+## Touch
+
+触摸点信息。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+| 名称          | 类型   | 可读   | 可写   | 说明                                  |
+| ----------- | ------ | ---- | ---- | ----------------------------------- |
+| id          | number | 是    | 否    | 触摸事件标识。                                |
+| pressedTime | number | 是    | 否    | 按下时间戳，单位：μs。                           |
+| screenX     | number | 是    | 否    | 触摸位置所属的屏幕x坐标。                        |
+| screenY     | number | 是    | 否    | 触摸位置所属的屏幕y坐标。                        |
+| windowX     | number | 是    | 否    | 触摸位置在窗口中的x坐标。                        |
+| windowY     | number | 是    | 否    | 触摸位置在窗口中的y坐标。                        |
+| pressure    | number | 是    | 否    | 压力值，取值范围是[0.0, 1.0]，0.0表示不支持。       |
+| width       | number | 是    | 否    | 触摸区域的宽度。                           |
+| height      | number | 是    | 否    | 触摸区域的高度。                           |
+| tiltX       | number | 是    | 否    | 相对YZ平面的角度，取值的范围[-90, 90]，其中正值是向右倾斜。 |
+| tiltY       | number | 是    | 否    | 相对XZ平面的角度，取值的范围[-90, 90]，其中正值是向下倾斜。 |
+| toolX       | number | 是    | 否    | 工具区域的中心点x坐标。                           |
+| toolY       | number | 是    | 否    | 工具区域的中心点y坐标。                           |
+| toolWidth   | number | 是    | 否    | 工具区域宽度。                              |
+| toolHeight  | number | 是    | 否    | 工具区域高度。                              |
+| rawX        | number | 是    | 否    | 输入设备上的x坐标。                          |
+| rawY        | number | 是    | 否    | 输入设备上的y坐标。                           |
+| toolType    | [ToolType](#tooltype) | 是    | 否    | 工具类型。                                |
+| <!--DelRow-->fixedDisplayX<sup>19+</sup>| number| 是    | 否    | 适配单手模式下screenX坐标的修正值。<br> **说明**： 该接口仅在手机设备上生效。 |
+| <!--DelRow-->fixedDisplayY<sup>19+</sup>| number| 是    | 否    | 适配单手模式下screenY坐标的修正值。<br> **说明**： 该接口仅在手机设备上生效。    |
+
+## TouchEvent
+
+触屏事件。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+| 名称         | 类型       | 可读   | 可写   | 说明        |
+| ---------- | ---------- | ---- | ---- | --------- |
+| action     | [Action](#action)     | 是    | 否    | 触屏事件类型。     |
+| touch      | [Touch](#touch)      | 是    | 否    | 当前触摸点信息。   |
+| touches    | [Touch](#touch)[]    | 是    | 否    | 所有触摸点。     |
+| sourceType | [SourceType](#sourcetype) | 是    | 否    | 触摸来源的设备类型。 |
+| <!--DelRow-->fixedMode<sup>19+</sup>  | [FixedMode](#fixedmode19)   | 是    | 是    | 修正坐标的模式。<br> **说明**：该接口仅在手机设备上生效。|
