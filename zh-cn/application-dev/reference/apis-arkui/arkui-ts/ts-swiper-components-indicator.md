@@ -59,7 +59,7 @@ style(indicatorStyle: DotIndicator | DigitIndicator)
 
 > **说明：**
 >
-> 当indicatorStyle的类型为DotIndicator时，[maxDisplayCount](ts-container-swiper.md#maxDisplayCount12)不生效。
+> 当indicatorStyle的类型为DotIndicator时，[maxDisplayCount](ts-container-swiper.md#maxdisplaycount12)不生效。
 
 ### count
 
