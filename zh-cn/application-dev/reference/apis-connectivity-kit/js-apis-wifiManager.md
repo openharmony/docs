@@ -347,7 +347,7 @@ WLAN热点信息。
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 
-| **名称** | **类型** | **可读** | **可写** | **说明** |
+| **名称** | **类型** | **只读** | **可选** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
 | ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -437,7 +437,7 @@ WLAN热点信息。
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 
-| **名称** | **类型** | **可读** | **可写** | **说明** |
+| **名称** | **类型** | **只读** | **可选** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
 | eid | number | 是 | 否 | 元素ID。 |
 | content | Uint8Array | 是 | 否 | 元素内容。 |
@@ -467,7 +467,7 @@ WLAN配置信息。
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 
-| **名称** | **类型** | **可读** | **可写** | **说明** |
+| **名称** | **类型** | **只读** | **可选** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
 | ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | bssid | string | 是 | 是 | 热点的BSSID，例如：00:11:22:33:44:55。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -484,7 +484,7 @@ WLAN配置信息。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
-| **名称** | **类型** | **可读** | **可写** | **说明** |
+| **名称** | **类型** | **只读** | **可选** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
 | eapMethod | [EapMethod](#eapmethod10) | 是 | 否 | EAP认证方式。 |
 | phase2Method | [Phase2Method](#phase2method10) | 是 | 否 | 第二阶段认证方式。只有eapMethod为EAP_PEAP或EAP_TTLS时需要填写。 |
@@ -509,7 +509,7 @@ WAPI身份验证协议配置。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
-| **名称** | **类型** | **可读** | **可写** | **说明** |
+| **名称** | **类型** | **只读** | **可选** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
 | wapiPskType | [WapiPskType](#wapipsktype12)| 是 | 否 | 加密类型。 |
 | wapiAsCert | string | 否 | 否 | As证书。 |
@@ -1275,7 +1275,7 @@ getLinkedInfoSync(): WifiLinkedInfo;
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | bssid | string | 是 | 否 | 热点的BSSID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -1515,7 +1515,7 @@ IPV4信息。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
-| **名称** | **类型** | **可读** | **可写** | **说明** |
+| **名称** | **类型** | **只读** | **可选** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
 | ipAddress | number | 是 | 否 | IP地址。(ipAddress值为number类型，需要转换为IP常用格式，具体请参考[IP格式转换](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs/faqs-connectivity-4)。|
 | gateway | number | 是 | 否 | 网关。 |
@@ -1569,7 +1569,7 @@ Ipv6信息。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
-| **名称** | **类型** | **可读** | **可写** | **说明** |
+| **名称** | **类型** | **只读** | **可选** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
 | linkIpv6Address | string | 是 | 否 | 链路Ipv6地址。 |
 | globalIpv6Address | string | 是 | 否 | 全局Ipv6地址。 |
@@ -1831,7 +1831,7 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | connectState | [P2pConnectState](#p2pconnectstate9) | 是 | 否 | P2P连接状态。 |
 | isGroupOwner | boolean | 是 | 否 | true:是群主，false:不是群主。|
@@ -2002,7 +2002,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | deviceName | string | 是 | 否 | 设备名称。 |
 | deviceAddress | string | 是 | 否 | 设备MAC地址。 |
@@ -2152,7 +2152,7 @@ createGroup(config: WifiP2PConfig): void
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | deviceAddress | string | 是 | 否 | 设备地址。 |
 | deviceAddressType<sup>10+</sup>| [DeviceAddressType](#deviceaddresstype10) | 是 | 是 | 设备地址类型。 |
@@ -2451,7 +2451,7 @@ import { wifiManager } from '@kit.ConnectivityKit';
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | isP2pGo | boolean | 是 | 否 | 是否是群主。true:是群主，false:不是群主。 |
 | ownerInfo | [WifiP2pDevice](#wifip2pdevice9) | 是 | 否 | 群组的设备信息。 |
