@@ -6154,7 +6154,7 @@ try {
 
 ### on('rotationChange')<sup>19+</sup>
 
-on(type: 'rotationChange', callback: RotationChangeCallback&lt;info: RotationChangeInfo, RotationChangeResult | void&gt;): void
+on(type: 'rotationChange', callback: RotationChangeCallback&lt;RotationChangeInfo, RotationChangeResult | void&gt;): void
 
 开启窗口旋转变化的监听。[RotationChangeInfo](#rotationchangeinfo19)中窗口旋转事件类型为窗口即将旋转时，必须返回[RotationChangeResult](#rotationchangeresult19)。窗口旋转事件类型为窗口旋转结束时返回[RotationChangeResult](#rotationchangeresult19)不生效。
 
@@ -6226,7 +6226,7 @@ try {
 
 ### off('rotationChange')<sup>19+</sup>
 
-off(type: 'rotationChange', callback?: RotationChangeCallback&lt;info: RotationChangeInfo, RotationChangeResult | void&gt;): void
+off(type: 'rotationChange', callback?: RotationChangeCallback&lt;RotationChangeInfo, RotationChangeResult | void&gt;): void
 
 关闭窗口旋转变化的监听。
 
