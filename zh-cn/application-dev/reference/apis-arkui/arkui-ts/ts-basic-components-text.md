@@ -78,7 +78,7 @@ textOverflow(options: TextOverflowOptions)
 
 - 设置[maxLines](#maxlines)及[copyOption](#copyoption9)属性均不生效。
 
-- Text组件[clip](ts-universal-attributes-sharp-clipping.md#clip)属性默认为true。
+- Text组件[clip](ts-universal-attributes-sharp-clipping.md#clip12)属性默认为true。
 
 - 属性字符串的[CustomSpan](ts-universal-styled-string.md#customspan)不支持跑马灯模式。
 
@@ -1100,7 +1100,7 @@ getLayoutManager(): LayoutManager
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| [LayoutManager](ts-text-common.md#LayoutManager) | 布局管理器对象。 |
+| [LayoutManager](ts-text-common.md#layoutmanager12) | 布局管理器对象。 |
 
 ## TextMarqueeOptions<sup>18+</sup>对象说明
 

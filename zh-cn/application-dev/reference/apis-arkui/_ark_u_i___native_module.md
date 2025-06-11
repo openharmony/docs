@@ -2391,7 +2391,7 @@ enum ArkUI_ErrorCode
 | ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT  | 该事件不是克隆事件。<br/>起始版本：15  | 
 | ARKUI_ERROR_CODE_POST_CLONED_COMPONENT_STATUS_ABNORMAL  | 组件状态异常。<br/>起始版本：15  | 
 | ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT  | 未命中可响应事件的组件。<br/>起始版本：15  | 
-| ARKUI_ERROR_CODE_INVALID_STYLED_STRING  | 无效的属性字符串。<br/>起始版本：14  | 
+| ARKUI_ERROR_CODE_INVALID_STYLED_STRING = 180101  | 无效的属性字符串。<br/>错误码的详细介绍请参见[属性字符串错误码](../apis-arkui/errorcode-styled-string.md#属性字符串错误码)。<br/>**起始版本：** 14  | 
 | ARKUI_ERROR_CODE_UI_CONTEXT_INVALID  | 无效的UIContext对象。<br/>起始版本：18  | 
 | ARKUI_ERROR_CODE_CALLBACK_INVALID  | 无效的回调函数。<br/>起始版本：18  | 
 | ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED  | 不支持手势识别器类型。<br/>起始版本：18  | 
