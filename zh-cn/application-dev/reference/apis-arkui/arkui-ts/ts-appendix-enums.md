@@ -1308,20 +1308,7 @@ type Nullable\<T> = T | undefined
 | SRGB | 0 | SRGB颜色空间，适用于大多数显示设备。 |
 | DISPLAY_P3 | 1 | Display-P3颜色空间，具有更广的色域，适用于高端显示设备。 |
 
-## FocusWrapMode<sup>20+</sup>
 
-交叉轴方向键走焦模式枚举。
-
-**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称            | 值   | 说明                                                         |
-| --------------- | ---- | ------------------------------------------------------------ |
-| DEFAULT         | 0    | 交叉轴方向键不能换行。                                       |
-| WRAP_WITH_ARROW | 1    | 交叉轴方向键允许换行。<br/>不规则单元格场景下，交叉轴方向键走焦时优先走到同一行的可获焦item。 |
 
 ## DividerMode<sup>19+</sup>枚举说明
 
