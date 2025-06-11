@@ -78,10 +78,10 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 | 名称   | 类型   | 只读 | 可选 | 说明                      |
 | ------ | ------ | ---- | ---- | ------------------------- |
-| left   | number |  否   | 否 |控件边框的左上角的X坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。  |
-| top    | number |  否   | 否 |控件边框的左上角的Y坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。  |
-| right  | number |  否   | 否 |控件边框的右下角的X坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。  |
-| bottom | number |  否   | 否 |控件边框的右下角的Y坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。 |
+| left   | number |  是   | 否 |控件边框的左上角的X坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。  |
+| top    | number |  是   | 否 |控件边框的左上角的Y坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。  |
+| right  | number |  是   | 否 |控件边框的右下角的X坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。  |
+| bottom | number |  是   | 否 |控件边框的右下角的Y坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## WindowMode<sup>9+</sup>
 
