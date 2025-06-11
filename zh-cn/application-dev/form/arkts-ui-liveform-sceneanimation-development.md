@@ -64,7 +64,7 @@ import { Constants } from '../../common/Constants';
 const ANIMATION_RECT_SIZE: number = 100;
 const END_SCALE: number = 1.5;
 const END_TRANSLATE: number = -300;
-let storageForMyLiveFormPage = new LocalStorage();
+let storageForMyLiveFormPage = LocalStorage.getShared()
 
 @Entry(storageForMyLiveFormPage)
 @Component
@@ -228,7 +228,7 @@ struct WidgetCard {
 
 1. 触发互动卡片动效
 
-在加桌时，互动卡片可以通过[onUpdateForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonupdateform)生命周期回调中的wantParams参数获取卡片实际尺寸。卡片提供方以此计算动效申请范围，单位为vp。可以参考[请求参数约束](arkts-ui-liveform-sceneanimation-overview.md#请求参数约束)
+在加桌时，互动卡片可以通过[onUpdateForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonupdateform)生命周期回调中的wantParams参数获取卡片实际尺寸。卡片提供方以此计算动效申请范围，单位为vp。计算规则具体请参考[互动卡片请求参数约束](arkts-ui-liveform-sceneanimation-overview.md#请求参数约束)
 
 ```ts
 // entry/src/main/ets/entryformability/EntryFormAbility.ets
