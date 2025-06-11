@@ -199,7 +199,7 @@ getRoutingManager(): AudioRoutingManager
 
 | 类型                                       | 说明                          |
 |------------------------------------------| ----------------------------- |
-| [AudioRoutingManager](arkts-apis-audio-AudioRoutingManager.md#class-audioroutingmanager) | AudioRoutingManager实例。 |
+| [AudioRoutingManager](arkts-apis-audio-AudioRoutingManager.md) | AudioRoutingManager实例。 |
 
 **示例：**
 
@@ -221,7 +221,7 @@ getSessionManager(): AudioSessionManager
 
 | 类型                                           | 说明                          |
 |----------------------------------------------| ----------------------------- |
-| [AudioSessionManager](arkts-apis-audio-AudioSessionManager.md#class-audiosessionmanager) | AudioSessionManager实例。 |
+| [AudioSessionManager](arkts-apis-audio-AudioSessionManager.md) | AudioSessionManager实例。 |
 
 **示例：**
 
@@ -243,7 +243,7 @@ getSpatializationManager(): AudioSpatializationManager
 
 | 类型                                       | 说明                          |
 |------------------------------------------| ----------------------------- |
-| [AudioSpatializationManager](arkts-apis-audio-AudioSpatializationManager.md#class-audiospatializationmanager) | AudioSpatializationManager实例。 |
+| [AudioSpatializationManager](arkts-apis-audio-AudioSpatializationManager.md) | AudioSpatializationManager实例。 |
 
 **示例：**
 
