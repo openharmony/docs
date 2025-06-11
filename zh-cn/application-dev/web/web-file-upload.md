@@ -89,7 +89,7 @@ Web组件支持前端页面选择文件上传功能，应用开发者可以使�
       photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
       // 设置最大选择数量
       photoSelectOptions.maxSelectNumber = 5;
-      let chooseFile: picker.PhotoSelectResult = await photoPicker.select(photoSelectOptions);
+      let chooseFile: photoAccessHelper.PhotoSelectResult = await photoPicker.select(photoSelectOptions);
       // 获取选择的文件列表
       result.handleFileList(chooseFile.photoUris);
     }

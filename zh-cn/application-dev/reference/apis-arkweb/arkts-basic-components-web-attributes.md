@@ -2859,6 +2859,7 @@ enableDataDetector(enable: boolean)
 
 当enableDataDetector设置为true，同时不设置dataDetectorConfig属性时，默认识别所有类型的实体，所识别实体的color和decoration会被更改为如下样式：
 
+<!--code_no_check-->
 ```ts
 color: '#ff007dff'
 decoration:{
