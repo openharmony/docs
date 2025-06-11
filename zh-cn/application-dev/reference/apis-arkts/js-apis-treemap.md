@@ -109,7 +109,7 @@ for (let item of numbers) {
  }
  ts1.set(entry1, "0");
  ts1.set(entry2, "1");
- console.info(ts1.length); // 2
+ console.info("length: " + ts1.length); // length: 2
 
 ```
 
