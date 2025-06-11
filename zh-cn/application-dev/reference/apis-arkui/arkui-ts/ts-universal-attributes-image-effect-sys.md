@@ -12,7 +12,7 @@
 
 advancedBlendMode(effect: BlendMode | Blender, type?: BlendApplyType): T
 
-将当前组件的内容（包含子节点内容）与下方画布（可能为离屏画布）已有内容进行混合。不能与[blendMode](ts-universal-attributes-image-effect.md#blendmode11)接口一起使用。
+将当前组件的内容（包含子节点内容）与下方画布（可能为离屏画布）已有内容进行混合。不能与[blendMode](ts-universal-attributes-image-effect.md#blendmode11)接口同时使用。
 
 **卡片能力：** 从API version 13开始，该接口支持在ArkTS卡片中使用。
 

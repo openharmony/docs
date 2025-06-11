@@ -120,7 +120,7 @@ focusBox(style: FocusBoxStyle): T
 
 requestFocus(value: string): boolean
 
-方法语句中可使用的全局接口，调用此接口可以主动让焦点转移至参数指定的组件上。非当前帧生效，在下一帧才生效，建议使用FocusController中的[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)。
+方法语句中可使用的全局接口，调用此接口可以主动让焦点转移至参数指定的组件上，非当前帧生效，在下一帧才生效。直接使用focusControl可能导致[UI上下文不明确](../../../ui/arkts-global-interface.md)的问题，建议使用FocusController中的[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -417,7 +417,7 @@ struct FocusableExample {
 
 ![defaultFocus](figures/defaultFocus.png)
 
-首次按TAB键，焦点切换到tabIndex(1)的容器上，且自动走到其内部的groupDefaultFocus绑定的组件上：
+首次按TAB键，焦点切换到tabIndex(1)的容器上，且自动走焦到内部第一个可获焦组件上：
 
 ![groupDefaultFocus1](figures/groupDefaultFocus1.png)
 
@@ -425,7 +425,7 @@ struct FocusableExample {
 
 ![groupDefaultFocus2](figures/groupDefaultFocus2.png)
 
-第三次按TAB键，焦点切换到tabIndex(3)的容器上，且自动走到其内部的groupDefaultFocus绑定的组件上：
+第三次按TAB键，焦点切换到tabIndex(3)的容器上，且自动走焦到内部配置了DefaultFocus的组件上：
 
 ![groupDefaultFocus3](figures/groupDefaultFocus3.png)
 

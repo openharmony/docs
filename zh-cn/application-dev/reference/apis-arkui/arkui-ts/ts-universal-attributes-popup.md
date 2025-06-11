@@ -10,7 +10,7 @@
 
 ## bindPopup
 
-bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
+bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 
 为组件绑定Popup气泡。
 
@@ -24,6 +24,12 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | show   | boolean                                                      | 是   | 弹窗显示状态，默认值为false，隐藏弹窗。Popup弹窗必须等待页面全部构建完成才能展示，因此show不能在页面构建中设置为true，否则会导致Popup弹窗显示位置及形状错误。该参数从API version 13开始支持[!!语法](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。 |
 | popup  | [PopupOptions](#popupoptions类型说明)&nbsp;\|&nbsp;[CustomPopupOptions](#custompopupoptions8类型说明)<sup>8+</sup> | 是   | 配置弹出弹窗的参数。                                         |
+
+**返回值：** 
+
+|类型|说明|
+|---|---|
+|T|返回当前组件。|
 
 ## PopupOptions类型说明
 

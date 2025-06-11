@@ -687,7 +687,7 @@ struct CustomWidgetChild {
 }
 ```
 
-[Correct Example]
+**Correct Usage**
 
 ```ts
 class Tmp {

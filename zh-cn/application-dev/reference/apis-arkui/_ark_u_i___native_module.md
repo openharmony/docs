@@ -2391,7 +2391,7 @@ enum ArkUI_ErrorCode
 | ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT  | 该事件不是克隆事件。<br/>起始版本：15  | 
 | ARKUI_ERROR_CODE_POST_CLONED_COMPONENT_STATUS_ABNORMAL  | 组件状态异常。<br/>起始版本：15  | 
 | ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT  | 未命中可响应事件的组件。<br/>起始版本：15  | 
-| ARKUI_ERROR_CODE_INVALID_STYLED_STRING  | 无效的属性字符串。<br/>起始版本：14  | 
+| ARKUI_ERROR_CODE_INVALID_STYLED_STRING = 180101  | 无效的属性字符串。<br/>错误码的详细介绍请参见[属性字符串错误码](../apis-arkui/errorcode-styled-string.md#属性字符串错误码)。<br/>**起始版本：** 14  | 
 | ARKUI_ERROR_CODE_UI_CONTEXT_INVALID  | 无效的UIContext对象。<br/>起始版本：18  | 
 | ARKUI_ERROR_CODE_CALLBACK_INVALID  | 无效的回调函数。<br/>起始版本：18  | 
 | ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED  | 不支持手势识别器类型。<br/>起始版本：18  | 
@@ -3588,12 +3588,12 @@ enum ArkUI_NodeAttributeType
 | NODE_SWIPER_CURVE  | 设置Swiper的动画曲线，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置动画曲线参数，参数类型[ArkUI_AnimationCurve](#arkui_animationcurve)，默认值为ARKUI_CURVE_LINEAR。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置动画曲线参数，参数类型[ArkUI_AnimationCurve](#arkui_animationcurve)，默认值为ARKUI_CURVE_LINEAR。 | 
 | NODE_SWIPER_ITEM_SPACE  | 设置Swiper子组件与子组件之间间隙，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：子组件与子组件之间间隙数值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：子组件与子组件之间间隙数值。 | 
 | NODE_SWIPER_INDEX  | 设置Swiper当前在容器中显示的子组件的索引值，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：子组件的索引值。<br/>.value[1]?.i32：跳转动画模式，参数类型[ArkUI_SwiperAnimationMode](#arkui_swiperanimationmode)。仅当次调用有效。<br/>该参数自API 15开始支持。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：子组件的索引值。 | 
-| NODE_SWIPER_DISPLAY_COUNT  | 设置Swiper一页内元素显示个数，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：视窗内显示的子元素个数。<br/>.value[1]?.i32：是否按组翻页，0：按子元素翻页，1：视窗内显示的子元素按组翻页，默认值：0。<br/>.string?：此参数只能设置为“auto”。当设置为“auto”时，value[] 参数将被忽略。<br/>.起始版本：18<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：视窗内显示的子元素个数。<br/> .value[1].i32：是否按组翻页。<br/>起始版本：18|
+| NODE_SWIPER_DISPLAY_COUNT  | 设置Swiper一页内元素显示个数，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：视窗内显示的子元素个数。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：视窗内显示的子元素个数。 |
 | NODE_SWIPER_DISABLE_SWIPE  | 设置Swiper禁用组件滑动切换功能，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否禁用组件滑动切换功能，0表示不禁用滑动切换功能，1表示禁用滑动切换功能，默认值为0。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否禁用组件滑动切换功能，0表示不禁用滑动切换功能，1表示禁用滑动切换功能，默认值为0。 | 
 | NODE_SWIPER_SHOW_DISPLAY_ARROW  | 设置Swiper是否显示导航点箭头，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置是否显示导航点箭头，参数类型[ArkUI_SwiperArrow](#arkui_swiperarrow)，<br/>默认值为ARKUI_SWIPER_ARROW_HIDE。 </br>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置是否显示导航点箭头，参数类型[ArkUI_SwiperArrow](#arkui_swiperarrow)，<br/>默认值为ARKUI_SWIPER_ARROW_HIDE。 |
 | NODE_SWIPER_EDGE_EFFECT_MODE  | 设置Swiper的边缘滑动效果，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32: 边缘滑动效果，参数类型[ArkUI_EdgeEffect](#arkui_edgeeffect)，<br/>默认值为ARKUI_EDGE_EFFECT_SPRING。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32: 边缘滑动效果，参数类型[ArkUI_EdgeEffect](#arkui_edgeeffect)， | 
 | NODE_SWIPER_NODE_ADAPTER  | swiper组件适配器，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object：使用**ArkUI_NodeAdapter**对象作为适配器。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object：返回值格式为**ArkUI_NodeAdapter**。 | 
-| NODE_SWIPER_CACHED_COUNT  | swiper组件Adapter缓存数量，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：配合swiper组件Adapter使用，设置adapter中的缓存数量<br/>.value[1]?.i32：是否显示缓存节点，0：不显示，1：显示，默认值：0。<br/>起始版本：<br/>18<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：adapter中的缓存数量。<br/>.value[1].i32：是否显示缓存节点，0：不显示，1：显示。<br/>起始版本：<br/>18 |
+| NODE_SWIPER_CACHED_COUNT  | swiper组件Adapter缓存数量，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：配合swiper组件Adapter使用，设置adapter中的缓存数量<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：adapter中的缓存数量。 |
 | NODE_SWIPER_PREV_MARGIN  | 设置 Swiper 组件的前边距，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：前边距数值，单位为vp，默认值为0。<br/>.value[1]?.i32：是否忽略空白，1表示忽略空白，0表示不忽略空白。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：前边距数值，单位为vp。 .value[1].i32：是否忽略空白，1表示忽略空白，0表示不忽略空白。 | 
 | NODE_SWIPER_NEXT_MARGIN  | 设置 Swiper 组件的后边距，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：后边距数值，单位为vp，默认值为0。<br/>.value[1]?.i32：是否忽略空白，1表示忽略空白，0表示不忽略空白。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：后边距数值，单位为vp。 .value[1].i32：是否忽略空白，1表示忽略空白，0表示不忽略空白。 | 
 | NODE_SWIPER_INDICATOR  | 设置 Swiper 组件的导航指示器类型，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置导航指示器的类型，参数类型[ArkUI_SwiperIndicatorType](#arkui_swiperindicatortype)。<br/>.object：导航指示器的类型为ARKUI_SWIPER_INDICATOR_TYPE_DOT时参数类型[ArkUI_SwiperIndicator](#arkui_swiperindicator)。 <br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：导航指示器的类型，参数类型[ArkUI_SwiperIndicatorType](#arkui_swiperindicatortype)。<br/>.object：导航指示器的类型为ARKUI_SWIPER_INDICATOR_TYPE_DOT时参数类型[ArkUI_SwiperIndicator](#arkui_swiperindicator)。 |
@@ -11075,8 +11075,8 @@ void OH_ArkUI_KeyEvent_SetConsumed (const ArkUI_UIInputEvent * event, bool isCon
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| event | ArkUI_UIInputEvent事件指针。  | 
-| isConsumed | 是否被消费。  | 
+| event | ArkUI_UIInputEvent事件指针。  |
+| isConsumed | 是否被消费。true表示事件被消费，false表示事件未被消费。  |
 
 
 ### OH_ArkUI_KeyEvent_StopPropagation()
@@ -11094,8 +11094,8 @@ void OH_ArkUI_KeyEvent_StopPropagation (const ArkUI_UIInputEvent * event, bool s
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| event | ArkUI_UIInputEvent事件指针。  | 
-| stopPropagation | 表示是否阻止事件冒泡。  | 
+| event | ArkUI_UIInputEvent事件指针。  |
+| stopPropagation | 表示是否阻止事件冒泡。true表示阻止事件冒泡，false表示不阻止事件冒泡。  |
 
 
 ### OH_ArkUI_KeyEvent_Dispatch()
@@ -12330,6 +12330,10 @@ ArkUI_NodeAdapterHandle OH_ArkUI_NodeAdapter_Create ()
 
 **起始版本：** 12
 
+**返回：**
+
+组件适配器对象。
+
 
 ### OH_ArkUI_NodeAdapter_Dispose()
 
@@ -12684,6 +12688,10 @@ void* OH_ArkUI_NodeAdapterEvent_GetUserData (ArkUI_NodeAdapterEvent * event)
 | 名称 | 描述 | 
 | -------- | -------- |
 | event | 适配器事件对象。  | 
+
+**返回：**
+
+用户自定义数据的指针。
 
 
 ### OH_ArkUI_NodeAdapterEvent_SetItem()

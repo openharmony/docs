@@ -346,7 +346,7 @@ struct WebComponent {
     Column() {
       Button('getStoredGeolocation')
         .onClick(() => {
-          try {-
+          try {
             webview.GeolocationPermissions.getStoredGeolocation()
               .then(origins => {
                 let origins_str: string = origins.join();

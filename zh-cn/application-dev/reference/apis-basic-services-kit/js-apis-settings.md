@@ -737,7 +737,7 @@ enableAirplaneMode(enable: boolean, callback: AsyncCallback\<void>): void
 let isEnabled :boolean = true;
 settings.enableAirplaneMode(isEnabled, (err:Error) => {
     if (err) {
-        console.log('Failed to enable AirplaneMode.');
+        console.error('Failed to enable AirplaneMode.');
         return;
     }
     console.log('Return true if enable.');
@@ -771,7 +771,7 @@ let isEnabled :boolean = true;
 settings.enableAirplaneMode(isEnabled).then(() => {
   console.log('Succeeded in enabling AirplaneMode.');
 }).catch((err:Error) => {
-  console.log(`Failed to enable AirplaneMode. Cause: ${err}`);
+  console.error(`Failed to enable AirplaneMode. Cause: ${err}`);
 })
 ```
 
