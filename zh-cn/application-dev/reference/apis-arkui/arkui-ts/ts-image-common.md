@@ -52,7 +52,7 @@
 
 ## ImageAnalyzerController
 
-图像分析控制器，可以将此对象绑定至支持的组件，然后通过控制器来调用支持的方法。
+图像分析控制器。可以将此对象绑定至支持的组件，通过控制器来调用支持的方法。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

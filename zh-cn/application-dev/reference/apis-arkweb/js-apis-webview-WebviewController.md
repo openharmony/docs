@@ -423,8 +423,11 @@ data数据必须使用base64编码或将内容中的任何#字符编码为%23。
 > - 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
 >
 > - 若html中的富文本中带有注入#等特殊字符，建议将baseUrl和historyUrl两个参数的值设置为"空格"。
+<<<<<<< HEAD
 >
 > - 加载文字场景，需主动设置\<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">避免文本字体大小不一致。
+=======
+>>>>>>> 49a62ef442d7ef6f0ee97d40bc721ec6b1502a11
 
 **错误码：**
 
@@ -7525,6 +7528,12 @@ struct WebComponent {
 webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): void
 
 获取网页全量绘制结果。
+
+> **说明：**
+>
+> 仅支持对渲染进程上的资源进行截图：静态图片和文本。
+> 
+> 如果页面有视频则截图时会显示该视频的占位图片，没有占位图片则显示空白。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

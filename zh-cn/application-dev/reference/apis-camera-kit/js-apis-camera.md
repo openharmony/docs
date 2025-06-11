@@ -1274,6 +1274,7 @@ getCameraDevice(position:CameraPosition, type: CameraType): CameraDevice
 
 ```ts
 import { camera } from '@kit.CameraKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getCameraDevice(cameraManager: camera.CameraManager, position: camera.CameraPosition, type: camera.CameraType): void {
   try {
@@ -1319,11 +1320,12 @@ getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurren
 
 ```ts
 import { camera } from '@kit.CameraKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDeviceArray: Array<camera.CameraDevice>): void {
   try {
-    let cameraconcurrentinfos: Array<camera.CameraConcurrentInfo> = [];
-    cameraconcurrentinfos = cameraManager.getCameraConcurrentInfos(cameraDeviceArray);
+    let cameraConcurrentInfos: Array<camera.CameraConcurrentInfo> = [];
+    cameraConcurrentInfos = cameraManager.getCameraConcurrentInfos(cameraDeviceArray);
   } catch (error) {
     // 失败返回错误码并处理。
     let err = error as BusinessError;
@@ -2262,6 +2264,8 @@ getActiveProfile(): Profile
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function testGetActiveProfile(previewOutput: camera.PreviewOutput): camera.Profile | undefined {
   let activeProfile: camera.Profile | undefined = undefined;
   try {
@@ -2311,6 +2315,8 @@ getPreviewRotation(displayRotation: number): ImageRotation
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function testGetPreviewRotation(previewOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
   let previewRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
@@ -2351,6 +2357,8 @@ setPreviewRotation(previewRotation: ImageRotation, isDisplayLocked?: boolean): v
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function testSetPreviewRotation(previewOutput: camera.PreviewOutput, previewRotation : camera.ImageRotation, isDisplayLocked: boolean): void {
   try {
     previewOutput.setPreviewRotation(previewRotation, isDisplayLocked);
@@ -3484,6 +3492,8 @@ getActiveProfile(): Profile
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function testGetActiveProfile(photoOutput: camera.PhotoOutput): camera.Profile | undefined {
   let activeProfile: camera.Profile | undefined = undefined;
   try {
@@ -4025,6 +4035,8 @@ getActiveProfile(): VideoProfile
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function testGetActiveProfile(videoOutput: camera.VideoOutput): camera.Profile | undefined {
   let activeProfile: camera.VideoProfile | undefined = undefined;
   try {
