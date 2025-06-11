@@ -6154,7 +6154,7 @@ try {
 
 ### on('rotationChange')<sup>19+</sup>
 
-on(type: 'rotationChange', callback: RotationChangeCallback&lt;RotationChangeInfo, RotationChangeResult | void&gt;): void
+on(type: 'rotationChange', callback: RotationChangeCallback&lt;info: RotationChangeInfo, RotationChangeResult | void&gt;): void
 
 开启窗口旋转变化的监听。[RotationChangeInfo](#rotationchangeinfo19)中窗口旋转事件类型为窗口即将旋转时，必须返回[RotationChangeResult](#rotationchangeresult19)。窗口旋转事件类型为窗口旋转结束时返回[RotationChangeResult](#rotationchangeresult19)不生效。
 
@@ -6226,7 +6226,7 @@ try {
 
 ### off('rotationChange')<sup>19+</sup>
 
-off(type: 'rotationChange', callback?: RotationChangeCallback&lt;RotationChangeInfo, RotationChangeResult | void&gt;): void
+off(type: 'rotationChange', callback?: RotationChangeCallback&lt;info: RotationChangeInfo, RotationChangeResult | void&gt;): void
 
 关闭窗口旋转变化的监听。
 
@@ -6241,7 +6241,7 @@ off(type: 'rotationChange', callback?: RotationChangeCallback&lt;RotationChangeI
 | 参数名   | 类型                           | 必填 | 说明                                                         |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                         | 是   | 监听事件，固定为'rotationChange'，即窗口旋转变化事件。     |
-| callback | RotationChangeCallback&lt;[RotationChangeInfo](#rotationchangeinfo19), [RotationChangeResult](#rotationchangeresult19) \| void&gt; | 否   | 回调函数。如果传入参数，则关闭该监听。如果未传入参数，则关闭该窗口的所有监听。 |
+| callback | RotationChangeCallback&lt;info: [RotationChangeInfo](#rotationchangeinfo19), [RotationChangeResult](#rotationchangeresult19) \| void&gt; | 否   | 回调函数。如果传入参数，则关闭该监听。如果未传入参数，则关闭该窗口的所有监听。 |
 
 **错误码：**
 
