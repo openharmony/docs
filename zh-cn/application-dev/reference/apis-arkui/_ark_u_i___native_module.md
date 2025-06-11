@@ -331,7 +331,7 @@
 | int32_t [OH_ArkUI_DragAction_SetPointerId](#oh_arkui_dragaction_setpointerid) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, int32_t pointer) | 设置手指ID，当屏幕上仅有一只手指在操作时，pointer ID 为 0；一般情况下，配置 0 即可。  | 
 | int32_t [OH_ArkUI_DragAction_SetPixelMaps](#oh_arkui_dragaction_setpixelmaps) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, [OH_PixelmapNative](#oh_pixelmapnative) \*pixelmapArray[], int32_t size) | 设置拖拽跟手图，只能使用 pixelmap 格式对象。  | 
 | int32_t [OH_ArkUI_DragAction_SetTouchPointX](#oh_arkui_dragaction_settouchpointx) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, float x) | 设置跟手点，相对于设置的第一个pixelmap的左上角。  | 
-| int32_t [OH_ArkUI_DragAction_SetTouchPointY](#oh_arkui_dragaction_settouchpointy) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, float y) | 设置跟手点,相对于设置的第一个pixelmap的左上角。  | 
+| int32_t [OH_ArkUI_DragAction_SetTouchPointY](#oh_arkui_dragaction_settouchpointy) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, float y) | 设置跟手点，相对于设置的第一个pixelmap的左上角。  | 
 | int32_t [OH_ArkUI_DragAction_SetData](#oh_arkui_dragaction_setdata) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, [OH_UdmfData](#oh_udmfdata) \*data) | 设置拖拽数据。  | 
 | int32_t [OH_ArkUI_DragAction_SetDragPreviewOption](#oh_arkui_dragaction_setdragpreviewoption) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, [ArkUI_DragPreviewOption](#arkui_dragpreviewoption) \*option) | 将构造的ArkUI_DragPreviewOption设置给ArkUI_DragAction。  | 
 | int32_t [OH_ArkUI_DragAction_RegisterStatusListener](#oh_arkui_dragaction_registerstatuslistener) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, void \*userData, void(\*listener)([ArkUI_DragAndDropInfo](#arkui_draganddropinfo) \*dragAndDropInfo, void \*userData)) | 注册拖拽状态监听回调，该回调可感知到拖拽已经发起或用户松手结束的状态，可通过该监听获取到落入方对数据的接收处理是否成功。  | 
@@ -10002,7 +10002,7 @@ int32_t OH_ArkUI_DragPreviewOption_SetDefaultAnimationBeforeLiftingEnabled (ArkU
 | 名称 | 描述 | 
 | -------- | -------- |
 | option | 自定义参数。  | 
-| enabled | 是否开启默认点按效果。  | 
+| enabled | 是否开启默认点按效果。true表示开启默认点按效果，false表示不开启默认点按效果。  | 
 
 **返回：**
 
@@ -10025,7 +10025,7 @@ int32_t OH_ArkUI_DragPreviewOption_SetDefaultRadiusEnabled (ArkUI_DragPreviewOpt
 | 名称 | 描述 | 
 | -------- | -------- |
 | option | 自定义参数。  | 
-| enabled | 是否开启圆角效果显示。  | 
+| enabled | 是否开启圆角效果显示。true表示开启圆角效果显示，false表示不开启圆角效果显示。  | 
 
 **返回：**
 
@@ -10048,7 +10048,7 @@ int32_t OH_ArkUI_DragPreviewOption_SetDefaultShadowEnabled (ArkUI_DragPreviewOpt
 | 名称 | 描述 | 
 | -------- | -------- |
 | option | 自定义参数。  | 
-| enabled | 是否使用默认投影效果。  | 
+| enabled | 是否使用默认投影效果。true表示使用默认投影效果，false表示不使用默认投影效果。  | 
 
 **返回：**
 
@@ -10071,7 +10071,7 @@ int32_t OH_ArkUI_DragPreviewOption_SetNumberBadgeEnabled (ArkUI_DragPreviewOptio
 | 名称 | 描述 | 
 | -------- | -------- |
 | option | 自定义参数。  | 
-| enabled | 是否开启角标显示。  | 
+| enabled | 是否开启角标显示。true表示开启角标显示，false表示不开启角标显示。  | 
 
 **返回：**
 
