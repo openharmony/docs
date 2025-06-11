@@ -22,8 +22,8 @@
 
 - 接收指定网络的状态变化通知。
 - 获取所有注册的网络。
-- 根据数据网络查询网络的连接信息。
-- 使用对应网络解析域名，获取所有IP。
+- 查询默认网络或者指定网络的连接信息。
+- 使用默认网络解析域名，获取所有IP。
 
 具体开发方式介绍如下。
 
@@ -266,7 +266,7 @@ async function socketTest() {
     });
     ```
 
-## 根据数据网络查询网络的能力信息及连接信息
+## 查询默认网络或者指定网络的连接信息
 
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
 此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
@@ -391,9 +391,9 @@ async function socketTest() {
     })
     ```
 
-## 判断默认网络是否可用
+## 判断默认网络是否可以访问互联网
 
-使用网络前，例如打开一个应用时，需要检查当前连接的网络是否可用。如果可用，则正常进行网络请求；如果不可用，则需要提示用户网络不可用。判断当前连接的网络是否可用的步骤如下：
+如果应用需要检查当前连接的网络是否可以访问互联网，可参考以下步骤进行判断：
 
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO
 此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
@@ -406,7 +406,7 @@ async function socketTest() {
     import { BusinessError } from '@kit.BasicServicesKit';
     ```
 
-3. 调用[getDefaultNetSync](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetdefaultnetsync9)方法，获取当前默认网络的netHandle，netHandle有效的情况下，调用[getNetCapabilitiesSync](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetnetcapabilitiessync10)方法，获取NetHandle对应网络的能力信息，根据获取到的能力信息，判断networkCap数组中的值是否存在，如果有，则表示网络可用。
+3. 调用[getDefaultNetSync](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetdefaultnetsync9)方法，获取当前默认网络的netHandle，netHandle有效的情况下，调用[getNetCapabilitiesSync](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetnetcapabilitiessync10)方法，获取NetHandle对应网络的能力信息，根据获取到的能力信息，判断networkCap数组中的值判断网络是否可用。
 
     ```ts
     judgeHasNet(): boolean {
@@ -418,7 +418,7 @@ async function socketTest() {
         let netCapabilities = connection.getNetCapabilitiesSync(netHandle);
         let cap = netCapabilities.networkCap || [];
         if (!cap.includes(connection.NetCap.NET_CAPABILITY_CHECKING_CONNECTIVITY) && cap.includes(connection.NetCap.NET_CAPABILITY_VALIDATED)) {
-          // connection.NetCap.NET_CAPABILITY_CHECKING_CONNECTIVITY表示没有在进行连通性判断的过程，connection.NetCap.NET_CAPABILITY_VALIDATED表示网络连通性校验通过
+          // NET_CAPABILITY_CHECKING_CONNECTIVITY表示在进行连通性判断的过程中，当不处于连通性判断过程中，且networkCap数组中包含NET_CAPABILITY_VALIDATED表示网络连通性校验通过
           return true;
         } else {
           return false;
@@ -431,7 +431,7 @@ async function socketTest() {
     }
     ```
 
-## 使用对应网络解析域名，获取所有IP
+## 使用默认网络解析域名，获取所有IP
 
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO
 此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
