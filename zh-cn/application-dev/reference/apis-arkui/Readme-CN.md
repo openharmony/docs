@@ -520,8 +520,8 @@
     - [属性字符串错误码](errorcode-styled-string.md)
     - [UI上下文错误码](errorcode-uicontext.md)
     - [交互事件错误码](errorcode-event.md)
-    - [UIExtension错误码](errorcode-uiextension.md)
     <!--Del-->
+    - [UIExtension错误码](errorcode-uiextension.md)
     - [用户界面外观服务错误码](errorcode-uiappearance.md)
     <!--DelEnd-->
   - 图形图像<!--arkui-graphics-images-arkts-errcode-->
