@@ -42,7 +42,7 @@ UDPSocket连接。在调用UDPSocket的方法前，需要先通过[socket.constr
 
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
-绑定IP地址和端口，端口可以指定或由系统随机分配。使用callback方式作为异步方法。
+绑定IP地址和端口，端口可以由用户指定或由系统随机分配。使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -56,6 +56,8 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 | callback | AsyncCallback\<void\>              | 是   | 回调函数。成功返回空，失败返回错误码、错误信息。        |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -86,7 +88,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
 
 bind(address: NetAddress): Promise\<void\>
 
-绑定IP地址和端口，端口可以指定或由系统随机分配。使用Promise方式作为异步方法。
+绑定IP地址和端口，端口可以由用户指定或由系统随机分配。使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -100,6 +102,8 @@ bind(address: NetAddress): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -109,7 +113,7 @@ bind(address: NetAddress): Promise\<void\>
 
 | 类型            | 说明                                       |
 |  -------------- |  ----------------------------------------- |
-| Promise\<void\> | 以Promise形式异步返回UDPSocket绑定的结果。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。|
 
 **示例：**
 
@@ -149,6 +153,8 @@ send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 | callback | AsyncCallback\<void\>                    | 是   | 回调函数。成功返回空，失败返回错误码、错误信息。                                                  |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -263,6 +269,8 @@ send(options: UDPSendOptions): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -280,7 +288,7 @@ send(options: UDPSendOptions): Promise\<void\>
 
 | 类型            | 说明                                           |
 |  -------------- |  --------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回UDPSocket连接发送数据的结果。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -374,6 +382,8 @@ close(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 201     | Permission denied.      |
@@ -406,6 +416,8 @@ close(): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 201     | Permission denied.      |
@@ -414,7 +426,7 @@ close(): Promise\<void\>
 
 | 类型            | 说明                                       |
 |  -------------- |  ----------------------------------------- |
-| Promise\<void\> | 以Promise形式返回关闭UDPSocket连接的结果。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -450,6 +462,8 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 | callback | AsyncCallback\<[SocketStateBase](#socketstatebase)\> | 是   | 回调函数。成功返回UDPSocket状态信息，失败返回错误码、错误信息。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -496,6 +510,9 @@ getState(): Promise\<SocketStateBase\>
 **系统能力**：SystemCapability.Communication.NetStack
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -553,6 +570,8 @@ setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback\<void\>): void
 | callback | AsyncCallback\<void\>                    | 是   | 回调函数。成功返回空，失败返回错误码、错误信息。                    |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -617,9 +636,11 @@ setExtraOptions(options: UDPExtraOptions): Promise\<void\>
 
 | 类型            | 说明                                                 |
 |  -------------- |  --------------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回设置UDPSocket连接的其他属性的结果。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -677,6 +698,8 @@ getLocalAddress(): Promise\<NetAddress\>
 | Promise\<[NetAddress](#netaddress)\> | 以Promise形式返回获取本地socket地址的结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
@@ -756,8 +779,8 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 回调函数。返回取消订阅某类事件后UDPSocket连接的状态信息。                              |
+| type     | string                                                       | 是   | 取消订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。                              |
 
 **示例：**
 
@@ -825,8 +848,8 @@ off(type: 'listening' | 'close', callback?: Callback\<void\>): void
 
 | 参数名   | 类型             | 必填 | 说明                                                         |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | 是   | 订阅事件类型。<br />- 'listening'：数据包消息事件。<br />- 'close'：关闭事件。 |
-| callback | Callback\<void\> | 否   | 回调函数。取消订阅UDPSocket连接的数据包消息事件或关闭事件后触发回调函数。     |
+| type     | string           | 是   | 取消订阅事件类型。<br />- 'listening'：数据包消息事件。<br />- 'close'：关闭事件。 |
+| callback | Callback\<void\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。     |
 
 **示例：**
 
@@ -890,8 +913,8 @@ off(type: 'error', callback?: ErrorCallback): void
 
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 否   | 回调函数。UDPSocket连接发生error事件后。      |
+| type     | string        | 是   | 取消订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。      |
 
 **示例：**
 
@@ -965,7 +988,7 @@ UDPSocket连接的其他属性。继承自[ExtraOptionsBase](#extraoptionsbase7)
 
 | 名称            | 类型    | 必填 | 说明                             |
 | ----------------- | ------- | ---- | -------------------------------- |
-| broadcast         | boolean | 否   | 是否可以发送广播。默认为false。true：可发送广播；false：不可发送广播。  |
+| broadcast         | boolean | 否   | 是否可以发送广播。true表示可发送广播，false表示不可发送广播。默认为false。  |
 
 ## SocketMessageInfo<sup>11+</sup>
 
@@ -1007,7 +1030,7 @@ Socket的连接信息。
 
 UDP 其余错误码映射形式为：2301000 + Linux内核错误码。
 
-错误码的详细介绍参见[Socket错误码](errorcode-net-socket.md)
+错误码的详细介绍参见[Socket错误码](errorcode-net-socket.md)。
 
 ## socket.constructMulticastSocketInstance<sup>11+</sup>
 
@@ -1055,6 +1078,8 @@ addMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): vo
 | callback          | AsyncCallback\<void\>         |  是  | 回调函数。失败返回错误码、错误信息。                                 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -1111,6 +1136,8 @@ addMembership(multicastAddress: NetAddress): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -1157,6 +1184,8 @@ dropMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): v
 | callback          | AsyncCallback\<void\>         |  是  | 回调函数。失败返回错误码、错误信息。|
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -1212,6 +1241,8 @@ dropMembership(multicastAddress: NetAddress): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -1258,6 +1289,8 @@ setMulticastTTL(ttl: number, callback: AsyncCallback\<void\>): void
 | callback      | AsyncCallback\<void\> |  是  | 回调函数。失败返回错误码、错误信息。    |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -1309,6 +1342,8 @@ setMulticastTTL(ttl: number): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -1349,6 +1384,8 @@ getMulticastTTL(callback: AsyncCallback\<number\>): void
 | callback      | AsyncCallback\<number\> |  是  | 回调函数。失败返回错误码、错误信息。  |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -1392,6 +1429,8 @@ getMulticastTTL(): Promise\<number\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -1427,10 +1466,12 @@ setLoopbackMode(flag: boolean, callback: AsyncCallback\<void\>): void
 
 | 参数名         | 类型                  | 必填 | 说明                         |
 | ------------- | --------------------- | ---- | ---------------------------- |
-| flag          | boolean               |  是  | ttl设置数值，类型为boolen 。  |
+| flag          | boolean               |  是  | 是否开启环回模式。true表示环回模式开启，false表示环回模式关闭。  |
 | callback      | AsyncCallback\<void\> |  是  | 回调函数。失败返回错误码、错误信息。    |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -1469,7 +1510,7 @@ setLoopbackMode(flag: boolean): Promise\<void\>
 
 | 参数名         | 类型                   | 必填 | 说明                             |
 | ------------- | ---------------------- | ---- | -------------------------------- |
-| flag          | boolean                |  是  | 环回模式标志位，类型为数字boolean。|
+| flag          | boolean                |  是  | 是否开启环回模式。true表示环回模式开启，false表示环回模式关闭。|
 
 **返回值：**
 
@@ -1478,6 +1519,8 @@ setLoopbackMode(flag: boolean): Promise\<void\>
 | Promise\<void\> | 以Promise形式返回MulticastSocket设置环回模式的结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                |
 | ------- | ----------------------- |
@@ -1514,9 +1557,11 @@ getLoopbackMode(callback: AsyncCallback\<boolean\>): void
 
 | 参数名         | 类型                     | 必填 | 说明                         |
 | ------------- | ----------------------- | ---- | --------------------------- |
-| callback      | AsyncCallback\<boolean\> |  是  | 回调函数。失败返回错误码、错误信息。  |
+| callback      | AsyncCallback\<boolean\> |  是  | 回调函数。返回值为环回模式状态，true表示环回模式开启，false表示环回模式关闭。  |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                |
 | ------- | ----------------------- |
@@ -1555,9 +1600,11 @@ getLoopbackMode(): Promise\<boolean\>
 
 | 类型                | 说明                        |
 | ----------------  | --------------------------- |
-| Promise\<boolean\> | 以Promise形式返回当前TTL数值。 |
+| Promise\<boolean\> | Promise对象。返回true表示环回模式开启，返回false表示环回模式关闭。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                |
 | ------- | ----------------------- |
@@ -1606,7 +1653,7 @@ TCPSocket连接。在调用TCPSocket的方法前，需要先通过[socket.constr
 
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
-绑定IP地址和端口，端口可以指定为0由系统随机分配或指定为其它非0端口。使用callback方法作为异步方法。
+绑定IP地址和端口，端口可以指定为0由系统随机分配或由用户指定为其它非0端口。使用callback方法作为异步方法。
 
 > **说明：**
 > bind方法如果因为端口冲突而执行失败，则会由系统随机分配端口号。
@@ -1625,6 +1672,8 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 | callback | AsyncCallback\<void\>              | 是   | 回调函数。失败返回错误、错误信息。                   |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -1655,7 +1704,7 @@ tcp.bind(bindAddr, (err: BusinessError) => {
 
 bind(address: NetAddress): Promise\<void\>
 
-绑定IP地址和端口，端口可以指定为0由系统随机分配或指定为其它非0端口。使用Promise方法作为异步方法。
+绑定IP地址和端口，端口可以指定为0由系统随机分配或由用户指定为其它非0端口。使用Promise方法作为异步方法。
 
 > **说明：**
 > bind方法如果因为端口冲突而执行失败，则会由系统随机分配端口号。
@@ -1679,6 +1728,8 @@ bind(address: NetAddress): Promise\<void\>
 | Promise\<void\> | 以Promise形式返回TCPSocket绑定本机的IP地址和端口的结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -1724,6 +1775,8 @@ connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
 | callback | AsyncCallback\<void\>                    | 是   | 回调函数。失败返回错误码、错误信息。                      |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -1823,6 +1876,8 @@ connect(options: TCPConnectOptions): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -1912,6 +1967,8 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -1970,9 +2027,11 @@ send(options: TCPSendOptions): Promise\<void\>
 
 | 类型            | 说明                                               |
 | -------------- | ------------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回通过TCPSocket连接发送数据的结果。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -2025,6 +2084,8 @@ close(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 201     | Permission denied.      |
@@ -2060,9 +2121,11 @@ close(): Promise\<void\>
 
 | 类型            | 说明                                       |
 | -------------- | ----------------------------------------- |
-| Promise\<void\> | 以Promise形式返回关闭TCPSocket连接的结果。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -2102,6 +2165,8 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 | callback | AsyncCallback\<[NetAddress](#netaddress)\> | 是   | 回调函数。成功时返回对端Socket地址，失败时返回错误码、错误信息。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -2155,6 +2220,8 @@ getRemoteAddress(): Promise\<NetAddress\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 201     | Permission denied.      |
@@ -2207,6 +2274,8 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 201     | Permission denied.      |
@@ -2258,6 +2327,8 @@ getState(): Promise\<SocketStateBase\>
 | Promise\<[SocketStateBase](#socketstatebase)\> | 以Promise形式返回获取TCPSocket状态的结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -2396,6 +2467,8 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -2448,7 +2521,7 @@ tcp.connect(tcpconnectoptions, () => {
 
 setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
-设置TCPSocket连接的其他属性，使用Promise方式作为异步方法。
+设置TCPSocket连接的其他属性。使用Promise方式作为异步方法。
 
 > **说明：**
 > bind或connect方法调用成功后，才可调用此方法。
@@ -2467,9 +2540,11 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 | 类型            | 说明                                                 |
 | -------------- | --------------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回设置TCPSocket连接的其他属性的结果。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -2535,6 +2610,8 @@ getLocalAddress(): Promise\<NetAddress\>
 | Promise\<[NetAddress](#netaddress)\> | 以Promise形式返回获取本地socket地址的结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
@@ -2612,8 +2689,8 @@ off(type: 'message', callback?: Callback<SocketMessageInfo\>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 回调函数。取消订阅TCPSocket连接的接收消息事件时触发回调函数。                             |
+| type     | string                                                       | 是   | 取消订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。                             |
 
 **示例：**
 
@@ -2681,8 +2758,8 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
 | 参数名   | 类型             | 必填 | 说明                                                         |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | 是   | 订阅的事件类型。<br />- 'connect'：连接事件。<br />- 'close'：关闭事件。 |
-| callback | Callback\<void\> | 否   | 回调函数。TCPSocket的连接事件或关闭事件触发时调用回调函数。                        |
+| type     | string           | 是   | 取消订阅的事件类型。<br />- 'connect'：连接事件。<br />- 'close'：关闭事件。 |
+| callback | Callback\<void\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。                        |
 
 **示例：**
 
@@ -2746,8 +2823,8 @@ off(type: 'error', callback?: ErrorCallback): void
 
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 否   | 回调函数。TCPSocket连接取消订阅的某类error事件触发时调用回调函数。                           |
+| type     | string        | 是   | 取消订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。                           |
 
 **示例：**
 
@@ -2848,6 +2925,8 @@ listen(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 401      | Parameter error.                            |
@@ -2902,9 +2981,11 @@ listen(address: NetAddress): Promise\<void\>
 
 | 类型            | 说明                                                         |
 |  -------------- |  ----------------------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回, 成功返回空，失败返回错误码错误信息。|
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。|
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
@@ -2955,6 +3036,8 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 | callback | AsyncCallback\<[SocketStateBase](#socketstatebase)\> | 是   | 回调函数。失败时返回错误码、错误信息。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
@@ -3012,6 +3095,8 @@ getState(): Promise\<SocketStateBase\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
 | 201      | Permission denied.              |
@@ -3065,6 +3150,8 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 | callback | AsyncCallback\<void\>               | 是   | 回调函数。失败时返回错误码、错误信息。                |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
@@ -3121,7 +3208,7 @@ tcpServer.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
 
 setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
-设置TCPSocketServer连接的其他属性，使用Promise方式作为异步方法。
+设置TCPSocketServer连接的其他属性。使用Promise方式作为异步方法。
 
 > **说明：**
 > listen方法调用成功后，才可调用此方法。
@@ -3140,9 +3227,11 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 | 类型            | 说明                                                       |
 |  -------------- |  --------------------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
@@ -3213,6 +3302,8 @@ getLocalAddress(): Promise\<NetAddress\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
+
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 2300002  | System internal error.                      |
@@ -3262,6 +3353,8 @@ on(type: 'connect', callback: Callback\<TCPSocketConnection\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
 | 401      | Parameter error. |
@@ -3302,10 +3395,12 @@ off(type: 'connect', callback?: Callback\<TCPSocketConnection\>): void
 
 | 参数名   | 类型                            | 必填 | 说明                                  |
 | -------- | ------------------------------- | ---- | ------------------------------------- |
-| type     | string                          | 是   | 订阅的事件类型。'connect'：连接事件。 |
-| callback | Callback\<[TCPSocketConnection](#tcpsocketconnection10)\> | 否   | 回调函数。失败时返回错误码、错误信息。 |
+| type     | string                          | 是   | 取消订阅的事件类型。'connect'：连接事件。 |
+| callback | Callback\<[TCPSocketConnection](#tcpsocketconnection10)\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
@@ -3359,6 +3454,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
 | 401      | Parameter error. |
@@ -3400,10 +3497,12 @@ off(type: 'error', callback?: ErrorCallback): void
 
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 否   | 回调函数。失败时返回错误码、错误信息。                           |
+| type     | string        | 是   | 取消订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。                           |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
@@ -3475,6 +3574,8 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401      | Parameter error.       |
@@ -3521,9 +3622,11 @@ send(options: TCPSendOptions): Promise\<void\>
 
 | 类型            | 说明                                                         |
 |  -------------- |  ----------------------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -3569,6 +3672,8 @@ close(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401      | Parameter error.       |
@@ -3608,9 +3713,11 @@ close(): Promise\<void\>
 
 | 类型            | 说明                                         |
 |  -------------- |  ------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -3652,6 +3759,8 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 | callback | AsyncCallback\<[NetAddress](#netaddress)\> | 是   | 回调函数。失败时返回错误码、错误信息。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
@@ -3699,6 +3808,8 @@ getRemoteAddress(): Promise\<NetAddress\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
 | 201      | Permission denied.              |
@@ -3736,6 +3847,8 @@ getLocalAddress(): Promise\<NetAddress\>
 | Promise\<[NetAddress](#netaddress)\> | 以Promise形式返回获取本地socket地址的结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
@@ -3799,6 +3912,8 @@ on(type: 'message', callback: Callback<SocketMessageInfo\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
 | 401      | Parameter error. |
@@ -3838,10 +3953,12 @@ off(type: 'message', callback?: Callback<SocketMessageInfo\>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 回调函数。失败时返回错误码、错误信息。        |
+| type     | string                                                       | 是   | 取消订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。        |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
@@ -3890,6 +4007,8 @@ on(type: 'close', callback: Callback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
 | 401      | Parameter error. |
@@ -3920,10 +4039,12 @@ off(type: 'close', callback?: Callback\<void\>): void
 
 | 参数名   | 类型             | 必填 | 说明                                |
 | -------- | ---------------- | ---- | ----------------------------------- |
-| type     | string           | 是   | 订阅的事件类型。'close'：关闭事件。 |
-| callback | Callback\<void\> | 否   | 回调函数。失败时返回错误码、错误信息。    |
+| type     | string           | 是   | 取消订阅的事件类型。'close'：关闭事件。 |
+| callback | Callback\<void\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。    |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
@@ -3963,6 +4084,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
 | 401      | Parameter error. |
@@ -3993,10 +4116,12 @@ off(type: 'error', callback?: ErrorCallback): void
 
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 否   | 回调函数。失败时返回错误码、错误信息。  |
+| type     | string        | 是   | 取消订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。  |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
@@ -4024,7 +4149,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
 
 TCP 其余错误码映射形式为：2301000 + Linux内核错误码。
 
-错误码的详细介绍参见[Socket错误码](errorcode-net-socket.md)
+错误码的详细介绍参见[Socket错误码](errorcode-net-socket.md)。
 
 ## socket.constructLocalSocketInstance<sup>11+</sup>
 
@@ -4073,9 +4198,11 @@ bind(address: LocalAddress): Promise\<void\>;
 
 | 类型            | 说明                                       |
 | :-------------- | :---------------------------------------- |
-| Promise\<void\> | Promise\<void\>：Promise对象。无返回结果的Promise对象。|
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。|
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                    |
 | ------- | -------------------------- |
@@ -4131,6 +4258,8 @@ connect(options: LocalConnectOptions): Promise\<void\>
 | Promise\<void\> | 以Promise形式返回LocalSocket连接服务端的结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -4188,9 +4317,11 @@ send(options: LocalSendOptions): Promise\<void\>
 
 | 类型            | 说明                                         |
 | :-------------- | :------------------------------------------ |
-| Promise\<void\> | 以Promise形式返回通过LocalSocket发送数据的结果。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -4244,9 +4375,11 @@ close(): Promise\<void\>
 
 | 类型            | 说明                                       |
 | :-------------- | :----------------------------------------- |
-| Promise\<void\> | 以Promise形式返回关闭LocalSocket连接的结果。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -4369,7 +4502,7 @@ client.getSocketFd().then((data: number) => {
 
 setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 
-设置LocalSocket的套接字属性，使用Promise方式作为异步方法。
+设置LocalSocket的套接字属性。使用Promise方式作为异步方法。
 
 > **说明：**
 > bind或connect方法调用成功后，才可调用此方法。
@@ -4389,6 +4522,8 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 | Promise\<void\> | 以Promise形式返回设置LocalSocket套接字属性的结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -4436,7 +4571,7 @@ client.connect(connectOpt).then(() => {
 
 getExtraOptions(): Promise\<ExtraOptionsBase\>;
 
-获取LocalSocket的套接字属性，使用Promise方式作为异步方法。
+获取LocalSocket的套接字属性。使用Promise方式作为异步方法。
 
 > **说明：**
 > bind或connect方法调用成功后，才可调用此方法。
@@ -4450,6 +4585,8 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 | Promise\<[ExtraOptionsBase](#extraoptionsbase7)\> | 以Promise形式返回设置LocalSocket套接字的属性。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -4506,6 +4643,8 @@ getLocalAddress(): Promise\<string\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
+
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 2300002  | System internal error.                      |
@@ -4556,6 +4695,8 @@ on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -4589,10 +4730,12 @@ off(type: 'message', callback?: Callback\<LocalSocketMessageInfo\>): void
 
 | 参数名   | 类型                                               | 必填 | 说明                                 |
 | -------- | ------------------------------------------------ | ---- | ----------------------------------- |
-| type     | string                                           | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | 否   | 指定传入on中的callback取消一个订阅。|
+| type     | string                                           | 是   | 取消订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。|
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -4635,6 +4778,8 @@ on(type: 'connect', callback: Callback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -4662,10 +4807,12 @@ off(type: 'connect', callback?: Callback\<void\>): void
 
 | 参数名   | 类型             | 必填 | 说明                                                         |
 | -------- | ---------------- | ---- | --------------------------------------------------------- |
-| type     | string           | 是   | 订阅的事件类型。                                             |
-| callback | Callback\<void\> | 否   | 指定传入on中的callback取消一个订阅。                           |
+| type     | string           | 是   | 取消订阅的事件类型。'connect'：LocalSocket的connect事件。        |
+| callback | Callback\<void\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。                           |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -4703,6 +4850,8 @@ on(type: 'close', callback: Callback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -4731,10 +4880,12 @@ off(type: 'close', callback?: Callback\<void\>): void
 
 | 参数名   | 类型             | 必填 | 说明                        |
 | -------- | ---------------- | ---- | ------------------------ |
-| type     | string           | 是   | 订阅LocalSocket的关闭事件。 |
-| callback | Callback\<void\> | 否   | 取消指定传入on中的callback取消一个订阅。|
+| type     | string           | 是   | 取消订阅的事件类型。'close'：LocalSocket的关闭事件。 |
+| callback | Callback\<void\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。|
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -4772,6 +4923,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -4799,10 +4952,12 @@ off(type: 'error', callback?: ErrorCallback): void
 
 | 参数名   | 类型          | 必填 | 说明                             |
 | -------- | ------------- | ---- | ----------------------------- |
-| type     | string        | 是   | 取消订阅LocalSocket的error事件。 |
-| callback | ErrorCallback | 否   | 指定传入on中的callback取消一个订阅。|
+| type     | string        | 是   | 取消订阅的事件类型。'error'：LocalSocket的error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。|
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -4926,9 +5081,11 @@ listen(address: LocalAddress): Promise\<void\>
 
 | 类型            | 说明                                                   |
 | :-------------- | :---------------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回执行结果, 成功返回空，失败返回错误码错误信息。|
+| Promise\<void\> | 以Promise形式返回执行结果， 成功返回空，失败返回错误码错误信息。|
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                      |
 | -------- | --------------------------- |
@@ -5011,7 +5168,7 @@ server.getState().then((data: socket.SocketStateBase) => {
 
 setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 
-设置LocalSocketServer连接的套接字属性，使用Promise方式作为异步方法。
+设置LocalSocketServer连接的套接字属性。使用Promise方式作为异步方法。
 
 > **说明：**
 > listen方法调用成功后，才可调用此方法。
@@ -5028,9 +5185,11 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 
 | 类型            | 说明                                             |
 | :-------------- | :---------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
@@ -5075,7 +5234,7 @@ server.setExtraOptions(options).then(() => {
 
 getExtraOptions(): Promise\<ExtraOptionsBase\>;
 
-获取LocalSocketServer中连接的套接字的属性，使用Promise方式作为异步方法。
+获取LocalSocketServer中连接的套接字的属性。使用Promise方式作为异步方法。
 
 > **说明：**
 > listen方法调用成功后，才可调用此方法。
@@ -5089,6 +5248,8 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 | Promise\<[ExtraOptionsBase](#extraoptionsbase7)\> | 以Promise形式返回套接字的属性。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | -------------------- |
@@ -5140,6 +5301,8 @@ getLocalAddress(): Promise\<string\>
 | Promise\<string\> | 以Promise形式返回获取本地socket地址的结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
@@ -5195,6 +5358,8 @@ on(type: 'connect', callback: Callback\<LocalSocketConnection\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
 | 401      | Parameter error. |
@@ -5224,10 +5389,12 @@ off(type: 'connect', callback?: Callback\<LocalSocketConnection\>): void
 
 | 参数名   | 类型                            | 必填 | 说明                                  |
 | -------- | ------------------------------- | ---- | ------------------------------------- |
-| type     | string                          | 是   | 订阅的事件类型。'connect'：连接事件。 |
-| callback | Callback\<[LocalSocketConnection](#localsocketconnection11)\> | 否   | 指定传入on的一个callback取消注册。|
+| type     | string                          | 是   | 取消订阅的事件类型。'connect'：LocalSocketServer的连接事件。 |
+| callback | Callback\<[LocalSocketConnection](#localsocketconnection11)\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。|
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
@@ -5270,6 +5437,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
 | 401      | Parameter error. |
@@ -5297,10 +5466,12 @@ off(type: 'error', callback?: ErrorCallback): void
 
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 否   | 指定传入on的一个callback取消订阅。   |
+| type     | string        | 是   | 取消订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。   |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
@@ -5358,9 +5529,11 @@ send(options: LocalSendOptions): Promise\<void\>
 
 | 类型            | 说明                                             |
 | :-------------- | :---------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -5398,9 +5571,11 @@ close(): Promise\<void\>
 
 | 类型            | 说明                                         |
 | :-------------- | :------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | -------------------- |
@@ -5436,6 +5611,8 @@ getLocalAddress(): Promise\<string\>
 | Promise\<string\> | 以Promise形式返回获取本地socket地址的结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
@@ -5494,6 +5671,8 @@ on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
 | 401      | Parameter error. |
@@ -5544,10 +5723,12 @@ off(type: 'message', callback?: Callback\<LocalSocketMessageInfo\>): void
 
 | 参数名   | 类型                                              | 必填 | 说明                                 |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
-| type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | 否   | 指定传入on的一个callback取消注册。 |
+| type     | string                                          | 是   | 取消订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
@@ -5593,6 +5774,8 @@ on(type: 'close', callback: Callback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
 | 401      | Parameter error. |
@@ -5622,10 +5805,12 @@ off(type: 'close', callback?: Callback\<void\>): void
 
 | 参数名   | 类型             | 必填 | 说明                                |
 | -------- | ---------------- | ---- | ----------------------------------- |
-| type     | string           | 是   | 订阅的事件类型。'close'：关闭事件。 |
-| callback | Callback\<void\> | 否   | 指定传入on的一个callback取消订阅。 |
+| type     | string           | 是   | 取消订阅的事件类型。'close'：关闭事件。 |
+| callback | Callback\<void\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
@@ -5665,6 +5850,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
 | 401      | Parameter error. |
@@ -5694,10 +5881,12 @@ off(type: 'error', callback?: ErrorCallback): void
 
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 否   | 指定传入on的一个callback取消订阅。   |
+| type     | string        | 是   | 取消订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。   |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
@@ -5724,7 +5913,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 
 LocalSocket 错误码映射形式为：2301000 + Linux内核错误码。
 
-错误码的详细介绍参见[Socket错误码](errorcode-net-socket.md)
+错误码的详细介绍参见[Socket错误码](errorcode-net-socket.md)。
 
 ## socket.constructTLSSocketInstance<sup>9+</sup>
 
@@ -5772,6 +5961,8 @@ constructTLSSocketInstance(tcpSocket: TCPSocket): TLSSocket
 | [TLSSocket](#tlssocket9) | 返回一个TLSSocket对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息                             |
 |---------|----------------------------------|
@@ -5834,6 +6025,8 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -5888,6 +6081,8 @@ bind(address: NetAddress): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -5928,6 +6123,8 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 | callback | AsyncCallback\<[SocketStateBase](#socketstatebase)\> | 是   | 回调函数。成功返回TLSSocket状态，失败返回错误码、错误信息。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
 
 | 错误码ID | 错误信息                        |
 | ------- | ------------------------------ |
@@ -5977,6 +6174,8 @@ getState(): Promise\<SocketStateBase\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | ------------------------------ |
 | 2303188 | Socket operation on non-socket.|
@@ -6023,6 +6222,8 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 | callback | AsyncCallback\<void\>                     | 是   | 回调函数。成功返回设置TCPSocket连接的其他属性的结果，失败返回错误码、错误信息。|
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -6077,7 +6278,7 @@ tls.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
 
 setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
-在TLSSocket的bind成功之后，设置TCPSocket连接的其他属性，使用Promise方式作为异步方法。
+在TLSSocket的bind成功之后，设置TCPSocket连接的其他属性。使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -6091,9 +6292,11 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 | 类型            | 说明                                                 |
 |  -------------- |  --------------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回设置TCPSocket连接的其他属性的结果。失败返回错误码，错误信息。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                        |
 | ------- | ------------------------------ |
@@ -6162,6 +6365,8 @@ on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 | callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 回调函数。TLSSocket连接订阅某类接受消息事件触发的调用函数，返回TLSSocket连接信息。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                        |
 | ------- | ------------------------------ |
