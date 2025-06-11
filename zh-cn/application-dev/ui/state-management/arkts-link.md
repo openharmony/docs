@@ -308,7 +308,7 @@ struct GreenButton {
       .width(this.greenButtonState.width)
       .height(40)
       .backgroundColor('#64bb5c')
-      .fontColor('#FFFFFF，90%')
+      .fontColor('#FFFFFF')
       .onClick(() => {
         if (this.greenButtonState.width < 700) {
           // 更新class的属性，变化可以被观察到同步回父组件
@@ -330,7 +330,7 @@ struct YellowButton {
       .width(this.yellowButtonState)
       .height(40)
       .backgroundColor('#f7ce00')
-      .fontColor('#FFFFFF，90%')
+      .fontColor('#FFFFFF')
       .onClick(() => {
         // 子组件的简单类型可以同步回父组件
         this.yellowButtonState += 40.0;
@@ -349,26 +349,26 @@ struct ShufflingContainer {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
         // 简单类型从父组件@State向子组件@Link数据同步
         Button('Parent View: Set yellowButton')
-          .width(312)
+          .width(this.yellowButtonProp)
           .height(40)
           .margin(12)
-          .fontColor('#FFFFFF，90%')
+          .fontColor('#FFFFFF')
           .onClick(() => {
             this.yellowButtonProp = (this.yellowButtonProp < 700) ? this.yellowButtonProp + 40 : 100;
           })
         // class类型从父组件@State向子组件@Link数据同步
         Button('Parent View: Set GreenButton')
-          .width(312)
+          .width(this.greenButtonState.width)
           .height(40)
           .margin(12)
-          .fontColor('#FFFFFF，90%')
+          .fontColor('#FFFFFF')
           .onClick(() => {
             this.greenButtonState.width = (this.greenButtonState.width < 700) ? this.greenButtonState.width + 100 : 100;
           })
         // class类型初始化@Link
-        GreenButton({ greenButtonState: $greenButtonState }).margin(12)
+        GreenButton({ greenButtonState: this.greenButtonState }).margin(12)
         // 简单类型初始化@Link
-        YellowButton({ yellowButtonState: $yellowButtonProp }).margin(12)
+        YellowButton({ yellowButtonState: this.yellowButtonProp }).margin(12)
       }
     }
   }
