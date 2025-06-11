@@ -25,7 +25,7 @@ Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程
 
 ### node_api_get_module_file_name
 
-用于获取加载项加载位置的绝对路径。
+用于获取加载项的绝对路径。
 
 cpp部分代码
 

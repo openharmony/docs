@@ -2,7 +2,7 @@
 
 ## 简介
 
-使用Node-API接口进行object相关开发，处理ArkTS对象的基本操作的功能，例如创建对象、获取原型、冻结和密封对象，检查对象的类型等。这些操作是在处理ArkTS对象时非常常见的，提供了一种与ArkTS对象交互的方式。
+Node-API提供了相关接口对object进行基本操作，例如创建对象、获取原型、冻结和密封对象，检查对象的类型等。
 
 ## 基本概念
 
@@ -28,7 +28,7 @@
 | napi_create_external | 用于创建一个ArkTS外部对象，该对象可以用于将C/C++中的自定义数据结构或对象传递到ArkTS中，并且可以在ArkTS中访问其属性和方法。 |
 | napi_get_value_external | 用于获得napi_create_external创建的绑定了外部数据的ArkTS值，此函数可以在ArkTS和C/C++之间传递数据。 |
 
-这些接口为开发人员提供了在Node-API模块中处理ArkTS对象的灵活性和功能性，可以实现从创建对象到管理对象属性以及类型检查等多种操作。
+这些接口为开发人员提供了在Node-API模块中处理ArkTS对象的灵活性和功能性，可以实现从创建对象、管理对象属性和类型检查等多种操作。
 
 ## 使用示例
 
@@ -260,7 +260,7 @@ try {
 
 ### napi_typeof
 
-获取给定ArkTS value的ArkTS Type。
+这个接口用于获取给定ArkTS value的ArkTS Type。
 
 **注：**napi_typeof可以判断的类型包含：   
 undefined  
@@ -522,7 +522,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_check_object_type_tag objB -> 
 
 ### napi_create_external
 
-创建包装自定义的C/C++对象并将其公开给ArkTS代码。这种情况下，我们可以使用napi_create_external来创建一个包含指向自定义对象的指针的Node-API值，以便让ArkTS代码能够访问和操作该对象。
+创建自定义的C/C++对象并将其公开给ArkTS代码。这种情况下，我们可以使用napi_create_external来创建一个包含指向自定义对象的指针的Node-API值，以便让ArkTS代码能够访问和操作该对象。
 
 cpp部分代码
 

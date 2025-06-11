@@ -2,15 +2,15 @@
 
 ## 简介
 
-在Node-API模块中，我们可以使用Node-API接口将特定数据与当前的环境相关联，并在需要时检索该数据。
+在Node-API模块中，可以使用Node-API接口将特定数据与当前环境相关联，并在需要时检索该数据。
 
 ## 基本概念
 
-在Node-API中的关联数据是指将自定义的C++数据结构的生命周期与当前环境的生命周期相关联，这意味着只要当前运行环境存在，关联数据就会保持有效。
+在Node-API中，关联数据指的是将自定义的C++数据结构与当前环境的生命周期绑定，这意味着只要当前运行环境存在，关联数据就会保持有效。
 
 ## 场景和功能介绍
 
-以下接口可以帮助我们在Node-API模块中更方便地管理对象实例所需的状态信息、引用计数或其他自定义数据，他们的使用场景如下：
+以下接口可在Node-API模块中更方便地管理对象实例所需的状态信息、引用计数或其他自定义数据，他们的使用场景如下：
 | 接口 | 描述 |
 | -------- | -------- |
 | napi_set_instance_data | 绑定与当前运行的环境相关联的数据项。 |
@@ -42,7 +42,6 @@ void FinalizeCallback(napi_env env, void *finalize_data, void *finalize_hint)
         InstanceData *data = reinterpret_cast<InstanceData *>(finalize_data);
         // 释放内存，清除指针指向地址
         delete (data);
-        *(InstanceData **)finalize_data = nullptr;
     }
 }
 
@@ -85,7 +84,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_instance_data:%{public}s',
 
 ### napi_get_instance_data
 
-检索出与当前运行的环境相关联的数据项。
+检索与当前运行的环境相关联的数据项。
 
 cpp部分代码
 

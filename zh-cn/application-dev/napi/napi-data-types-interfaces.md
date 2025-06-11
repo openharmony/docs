@@ -39,7 +39,7 @@ typedef enum {
 
 ### napi_extended_error_info
 
-一个结构体，在调用函数不成功时存储了较为详细的错误信息。
+一个结构体，在调用Node-API接口不成功时存储了较为详细的错误信息。
 
 ```c
 typedef struct {
@@ -52,23 +52,23 @@ typedef struct {
 
 ### napi_value
 
-napi_value是一个C的结构体指针，表示一个JavaScript对象的引用。napi_value持有了JS对象，同时，napi_value受handle_scope管理，scope中napi_value持有的JS对象不会被释放；出scope后，napi_value将失效，不再持有对应的JS对象。
+napi_value是一个C的结构体指针，表示一个ArkTS/JS对象的引用。napi_value持有了ArkTS/JS对象，同时，napi_value受[napi_handle_scope](#napi_handle_scope)管理，scope中napi_value持有的JS对象不会被释放；出scope后，napi_value将失效，不再持有对应的ArkTS/JS对象。
 
 ### napi_env
 
 - 用于表示Node-API执行时的上下文，Native侧函数入参，并传递给函数中的Node-API接口。
 
-- napi_env与JS线程绑定，JS线程退出后，napi_env将失效。
+- napi_env与ArkTS/JS线程的上下文环境绑定，每一个napi_env都持有独立的运行时上下文环境，当ArkTS/JS线程退出之后，相应的napi_env将不再有效。
 
-- 禁止缓存napi_env，禁止在不同线程中传递napi_env。
+- 禁止缓存napi_env，禁止在不同线程间传递napi_env。
 
 ### napi_threadsafe_function
 
-[napi_threadsafe_function](use-napi-thread-safety.md)用来创建一个线程安全的JavaScript函数，可以在不同的线程中调用。可以用于将异步操作的结果传递给JavaScript环境，例如从另一个线程中读取数据或执行计算密集型操作。此外，它还可以用于从JavaScript环境中调用C++代码中的函数，以便在另一个线程中执行。通过使用napi_threadsafe_function，可以实现JavaScript和C++之间的高效通信，同时保持线程安全性。
+[napi_threadsafe_function](use-napi-thread-safety.md)用来创建一个线程安全的ArkTS/JS函数，可以在不同的线程中调用。可以用于将异步操作的结果传递给ArkTS/JS环境，例如从另一个线程中读取数据或执行计算密集型操作。线程安全函数回调的执行仅在创建线程安全函数的ArkTS线程中执行。通过使用napi_threadsafe_function，可以实现ArkTS/JS和C++之间的高效通信，同时保持线程安全性。
 
 ### napi_threadsafe_function_release_mode
 
-该枚举类型定义了两个常量，用于指定在何时释放线程安全函数的回调函数。
+该枚举类型定义了两个常量，用于指定以哪一种方式来释放线程安全函数。
 
 ```c
 typedef enum {
@@ -84,10 +84,10 @@ napi_release_threadsafe_function(napi_threadsafe_function func,
                                  napi_threadsafe_function_release_mode mode);
 ```
 
-- mode值为napi_tsfn_release时：表示当前线程不再调用此tsfn。
+- mode值为napi_tsfn_release时：表示将tsfn中持有的线程数减一，当线程数减到0是，线程安全函数tsfn将被销毁。
 
 - mode值为napi_tsfn_abort时：该tsfn关闭，不能再调用此tsfn。
-  如果设置为napi_tsfn_abort，利用napi_call_threadsafe_function接口调用此tsfn时将返回napi_closing，tsfn函数并不会被放入queue中。
+  如果设置为napi_tsfn_abort，利用napi_call_threadsafe_function接口调用此tsfn时，该行为可能导致UAF问题，仅在线程安全函数完全释放前返回napi_closing，调用线程安全函数的指定的data并不会被放入queue中。
 
 ### napi_threadsafe_function_call_mode
 
@@ -110,23 +110,23 @@ typedef enum {
 
 Node-API包含以下内存管理类型：
 
-**napi_handle_scope**
+#### napi_handle_scope
 
-napi_handle_scope数据类型是用来管理JavaScript对象的生命周期的。它允许JavaScript对象在一定范围内保持活动状态，以便在JavaScript代码中使用。在创建napi_handle_scope时，所有在该范围内创建的JavaScript对象都会保持活动状态，直到结束。这样可以做到JavaScript对象生命周期最小化，[避免发生内存泄漏问题](napi-guidelines.md#生命周期管理)。同时，napi_handle_scope也可参考[生命周期类问题注意事项](../dfx/cppcrash-guidelines.md#案例4生命周期类问题)。
+napi_handle_scope数据类型是用来管理ArkTS/JS对象的生命周期的。它允许ArkTS/JS对象在一定范围内保持活动状态，以便在ArkTS/JS代码中使用。在创建napi_handle_scope时，所有在该范围内创建的ArkTS/JS对象都会保持活动状态，直到scope被关闭。这样可以做到ArkTS/JS对象生命周期最小化，[避免发生内存泄漏问题](napi-guidelines.md#生命周期管理)。同时，napi_handle_scope也可参考[生命周期类问题注意事项](../dfx/cppcrash-guidelines.md#案例4生命周期类问题)。
 
-**napi_escapable_handle_scope**
+#### napi_escapable_handle_scope
 
 - 由napi_open_escapable_handle_scope接口创建，由napi_close_escapable_handle_scope接口关闭。
 
 - 表示一种特殊类型的句柄范围，用于将在escapable_handle_scope范围内创建的值返回给父scope。
 
-- 用于napi_escape_handle接口，将escape_handle_scope提升到JS对象，以便在外部作用域使用。
+- 用于napi_escape_handle接口，将ArkTS/JS对象逃逸到父scope，以便在外部作用域使用。
 
-**napi_ref**
+#### napi_ref 
 
-指向napi_value，允许用户管理JavaScript值的生命周期。
+指向napi_value，允许用户管理ArkTS/JS值的生命周期。
 
-**napi_type_tag**
+#### napi_type_tag
 
 该结构体定义了一个包含两个无符号64位整数的类型标签，用于标识一个Node-API值的类型信息。
 
@@ -137,27 +137,27 @@ typedef struct {
 } napi_type_tag;
 ```
 
-- 存储了两个无符号64位整数的128位值，用它来标记JavaScript对象，确保它们属于某种类型。
+- 存储了两个无符号64位整数的128位值，用它来标记ArkTS/JS对象，确保它们属于某种类型。
 
-- 比napi_instanceof更强的类型检查，如果对象的原型被操纵，napi_instanceof可能会报告误报。
+- 比napi_instanceof更强的类型检查，如果对象的原型被操纵，napi_instanceof可能会存在语病。
 
 - type_tag与napi_wrap结合非常有用，因为它确保从包装对象检索的指针可以安全地转换为与先前应用于JavaScript对象的类型标记相对应的Native类型。
 
-**napi_async_cleanup_hook_handle**
+#### napi_async_cleanup_hook_handle
 
-napi_async_cleanup_hook_handle用于注册异步操作的回调函数。它主要用于在异步操作完成或被取消时执行清理操作，例如释放资源或撤销操作。使用napi_async_cleanup_hook_handle可以确保在异步操作完成或被取消时，相关资源得到正确的释放和清理，从而避免内存泄漏等问题。
+napi_async_cleanup_hook_handle是Node-API中用于管理异步资源生命周期的一种机制。它允许注册一个清理钩子（cleanup hook），该钩子仅在当前napi_env环境生命周期结束时被调用。通过使用 napi_async_cleanup_hook_handle，可以确保某些异步资源在环境销毁前得到妥善释放，从而避免资源泄漏。此外，在Node-API实现中，只要该结构未被释放，会延迟整个 napi_env 环境的销毁。在OpenHarmony中，该接口的行为基本等同于env生命周期相关的清理钩子，除了支持重复注册相同的上下文数据（data）外，其余行为与标准的env清理钩子一致。。
 
 ### 回调类型
 
 Node-API包含以下回调类型：
 
-**napi_callback_info**
+##### napi_callback_info
 
 Native侧获取JS侧参数信息，传递给napi_get_cb_info，用于获取JS侧入参信息。
 
-**napi_callback**
+##### napi_callback
 
-表示用户定义的Native函数，暴露给JavaScript，即JS侧调用的接口；一般不在此callback中创建handle或者callback scope。
+表示用户定义的Native函数，暴露给ArkTS/JS，即ArkTS/JS侧调用的接口；一般不需要callback中创建handle或者callback scope。
 
 基本用法如下：
 
@@ -165,33 +165,33 @@ Native侧获取JS侧参数信息，传递给napi_get_cb_info，用于获取JS侧
 typedef napi_value (*napi_callback)(napi_env, napi_callback_info);
 ```
 
-**napi_finalize**
+##### napi_finalize
 
-函数指针，用于传入napi_create_threadsafe_function和napi_set_instance_data等接口。napi_finalize在对象被回收时会被调用。
+函数指针，用于传入napi_create_threadsafe_function、napi_set_instance_data、napi_wrap、 napi_add_finalizer等接口。napi_finalize在对象被回收时会被调用。
 
-**napi_async_execute_callback**
+##### napi_async_execute_callback
 
 函数指针，用于napi_create_async_work接口。
 
-- 异步执行的Native函数，从工作池线程调用，可与主事件循环线程并行执行。
+- 异步执行的Native函数，从工作池线程调用，可与事件循环线程并行执行。
 
-- 函数实现中必须避免执行JavaScript或与JavaScript对象交互的Node-API调用。
+- 函数实现中必须避免调用非线程安全的Node-API。
 
 - Node-API调用可以在napi_async_complete_callback中执行。
 
-**napi_async_complete_callback**
+##### napi_async_complete_callback
 
 napi_async_complete_callback用于异步操作完成后的回调。当需要进行异步操作时，可以使用napi_create_async_work函数创建一个异步操作任务，并指定一个napi_async_complete_callback回调函数，在异步操作完成后会自动调用该回调函数，以便进行后续的处理。该回调函数的参数包括当前异步操作任务的状态和返回值等信息，可以根据这些信息进行相应的处理。
 
-**napi_threadsafe_function_call_js**
+##### napi_threadsafe_function_call_js
 
-函数指针，在主线程中与独立线程中的JavaScript代码进行交互，从而实现更加复杂的功能，用于napi_create_threadsafe_function(napi_env env,…,napi_threadsafe_function_call_js call_js_cb,...)接口。
+函数指针，在事件循环线程中执行，可与ArkTS/JS交互，从而实现更加复杂的功能，用于napi_create_threadsafe_function(napi_env env,…,napi_threadsafe_function_call_js call_js_cb,...)接口。
 
-**napi_cleanup_hook**
+##### napi_cleanup_hook
 
 函数指针，用于napi_add_env_cleanup_hook接口，当环境销毁时会被执行。
 
-**napi_async_cleanup_hook**
+##### napi_async_cleanup_hook
 
 函数指针，用于napi_add_async_cleanup_hook接口，当环境销毁时会被执行。
 
@@ -228,7 +228,7 @@ typedef enum {
 
 | 事件循环运行模式 | 解释说明 |
 | -------- | -------- |
-| napi_event_mode_default | 阻塞式的运行底层事件循环，直到循环中没有任何任务时退出事件循环。 |
+| napi_event_mode_default | 阻塞式的运行底层事件循环，直到循环中没有或活跃的uv_handle句柄时退出事件循环。 |
 | napi_event_mode_nowait | 非阻塞式的运行底层事件循环，尝试去处理一个任务，处理完之后退出事件循环；如果事件循环中没有任务，立刻退出事件循环。 |
 
 ### 线程安全任务优先级
@@ -271,9 +271,9 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 
 | 接口 | 功能说明 |
 | -------- | -------- |
-| napi_create_buffer | 创建并获取一个指定大小的JS Buffer。 |
-| napi_create_buffer_copy | 创建并获取一个指定大小的JS Buffer，并以给定数据进行初始化。 |
-| napi_create_external_buffer | 创建并获取一个指定大小的JS Buffer，并以给定数据进行初始化，该接口可为Buffer附带额外数据。 |
+| napi_create_buffer | 创建并获取一个指定大小的ArkTS Buffer。 |
+| napi_create_buffer_copy | 创建并获取一个指定大小的ArkTS Buffer，并以给定数据进行初始化。 |
+| napi_create_external_buffer | 创建并获取一个指定大小的ArkTS Buffer，使用给定的数据作为buffer对象的底层缓冲区，该接口可为Buffer附带额外数据。 |
 | napi_get_buffer_info | 获取JS Buffer底层data及其长度。 |
 | napi_is_buffer | 判断给定JS value是否为Buffer对象。 |
 | napi_create_external_arraybuffer | 分配一个附加有外部数据的JS ArrayBuffer。 |
@@ -282,27 +282,27 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 
 | 接口 | 功能说明 |
 | -------- | -------- |
-| napi_create_string_utf16 | 通过UTF16编码的C字符串数据创建JS String。 |
-| napi_get_value_string_utf16 | 获取给定JS vaule对应的UTF16编码的字符串。 |
-| napi_create_string_latin1 | 通过ISO-8859-1编码的C字符串数据创建JS String。 |
-| napi_create_string_utf8 | 通过UTF8编码的C字符串数据创建JS String。 |
-| napi_get_value_string_latin1 | 获取给定JS vaule对应的ISO-8859-1编码的字符串。 |
-| napi_get_value_string_utf8 | 获取给定JS vaule对应的UTF8编码的字符串。 |
+| napi_create_string_utf16 | 通过UTF16编码的C字符串数据创建ArkTS String。 |
+| napi_get_value_string_utf16 | 获取给定ArkTS vaule对应的UTF16编码的字符串。 |
+| napi_create_string_latin1 | 通过ISO-8859-1编码的C字符串数据创建ArkTS String。 |
+| napi_create_string_utf8 | 通过UTF8编码的C字符串数据创建ArkTS String。 |
+| napi_get_value_string_latin1 | 获取给定ArkTSvaule对应的ISO-8859-1编码的字符串。 |
+| napi_get_value_string_utf8 | 获取给定ArkTS vaule对应的UTF8编码的字符串。 |
 
 ### date相关
 
 | 接口 | 功能说明 |
 | -------- | -------- |
-| napi_create_date | 通过一个C的double数据创建JS Date。 |
-| napi_get_date_value | 获取给定JS Date对应的C double值。 |
-| napi_is_date | 判断给定JS value是否为JS Date对象。 |
+| napi_create_date | 通过一个C的double数据创建ArkTS Date。 |
+| napi_get_date_value | 获取给定ArkTS Date对应的C double值。 |
+| napi_is_date | 判断给定ArkTS value是否为ArkTS Date对象。 |
 
 ### arraybuffer相关
 
 | 接口 | 功能说明 |
 | -------- | -------- |
-| napi_get_arraybuffer_info | 获取ArrayBuffer的底层data buffer及其长度。 |
-| napi_is_arraybuffer | 判断给定JS value是否为ArrayBuffer。 |
+| napi_get_arraybuffer_info | 获取ArrayBuffer的底层缓冲区及其长度。 |
+| napi_is_arraybuffer | 判断给定ArkTS value是否为ArrayBuffer。 |
 | napi_detach_arraybuffer | 分离给定ArrayBuffer的底层数据。 |
 | napi_is_detached_arraybuffer | 判断给定的ArrayBuffer是否已被分离。 |
 | napi_create_arraybuffer | 创建并获取一个指定大小的JS ArrayBuffer。 |
@@ -317,44 +317,44 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 
 | 接口 | 功能说明 |
 | -------- | -------- |
-| napi_open_handle_scope | 创建一个上下文环境使用。需要使用napi_close_handle_scope进行关闭。 |
-| napi_close_handle_scope | 关闭传入的上下文环境，关闭后，全部在其中声明的引用都将被关闭。 |
+| napi_open_handle_scope | 创建一个napi_handle_scope。需要使用napi_close_handle_scope进行关闭。 |
+| napi_close_handle_scope | 关闭传入的napi_handle_scope，关闭后，全部在其中产生的napi_value都将被关闭。 |
 | napi_open_escapable_handle_scope | 创建出一个可逃逸的handle scope，可将范围内声明的值返回到父作用域。需要使用napi_close_escapable_handle_scope进行关闭。 |
 | napi_close_escapable_handle_scope | 关闭传入的可逃逸的handle scope。 |
 | napi_escape_handle | 提升传入的JS Object的生命周期到其父作用域。 |
-| napi_create_reference | 为Object创建一个reference，以延长其生命周期。调用者需要自己管理reference生命周期。 |
-| napi_delete_reference | 删除传入的reference。 |
-| napi_reference_ref | 增加传入的reference的引用计数，并获取新的计数。 |
-| napi_reference_unref | 减少传入的reference的引用计数，并获取新的计数。 |
-| napi_get_reference_value | 获取与reference相关联的JS Object。 |
-| napi_add_finalizer | 当js Object中的对象被垃圾回收时调用注册的napi_finalize回调。 |
+| napi_create_reference | 为Object创建一个napi_ref。调用者需要自己管理napi_ref生命周期。 |
+| napi_delete_reference | 删除传入的napi_ref。 |
+| napi_reference_ref | 增加传入的napi_ref的引用计数，并获取新的计数。 |
+| napi_reference_unref | 减少传入的napi_ref的引用计数，并获取新的计数。 |
+| napi_get_reference_value | 获取与napi_ref相关联的JS Object。 |
+| napi_add_finalizer | 当ArkTS Object中的对象被垃圾回收时调用注册的napi_finalize回调。 |
 
 ### promise相关
 
 | 接口 | 功能说明 |
 | -------- | -------- |
-| napi_create_promise | 创建一个promise对象。 |
-| napi_resolve_deferred | 对promise关联的deferred对象进行resolve。 |
-| napi_reject_deferred | 对promise关联的deferred对象进行reject。 |
-| napi_is_promise | 判断给定napi_value是否为promise对象。 |
+| napi_create_promise | 创建一个Promise对象。 |
+| napi_resolve_deferred | 对Promise关联的deferred对象进行兑现。 |
+| napi_reject_deferred | 对Promise关联的deferred对象进行拒绝。 |
+| napi_is_promise | 判断给定napi_value是否为Promise对象。 |
 
 ### array相关
 
 | 接口 | 功能说明 |
 | -------- | -------- |
-| napi_create_array | 创建并获取一个JS Array。 |
-| napi_create_array_with_length | 创建并获取一个指定长度的JS Array。 |
+| napi_create_array | 创建一个ArkTS Array。 |
+| napi_create_array_with_length | 创建并获取一个指定长度的ArkTS Array。 |
 | napi_get_array_length | 获取array的length。 |
-| napi_is_array | 判断给定JS value是否为array。 |
-| napi_set_element | 在给定Object的指定索引处，设置元素。 |
+| napi_is_array | 判断给定ArkTS value是否为array。 |
+| napi_set_element | 在给定Object的指定索引处，设置属性值。 |
 | napi_get_element | 获取给定Object指定索引处的元素。 |
-| napi_has_element | 若给定Object的指定索引处拥有属性，获取该元素。 |
+| napi_has_element | 若给定Object的指定索引处拥有属性。 |
 | napi_delete_element | 尝试删除给定Object的指定索引处的元素。 |
-| napi_create_typedarray | 通过现有的ArrayBuffer创建一个JS TypeArray。 |
-| napi_is_typedarray | 判断给定JS value是否为TypeArray。|
-| napi_get_typedarray_info | 获取给定TypedArray的各种属性。 |
-| napi_create_dataview | 通过现有的ArrayBuffer创建一个JS DataView。 |
-| napi_is_dataview | 判断给定JS value是否为DataView。|
+| napi_create_typedarray | 通过现有的ArrayBuffer创建一个ArkTS TypeArray。 |
+| napi_is_typedarray | 判断给定ArkTS value是否为TypeArray。|
+| napi_get_typedarray_info | 获取给定TypedArray的各种属性（例如：类型，长度，字节偏移量，ArrayBuffer等）。 |
+| napi_create_dataview | 通过现有的ArrayBuffer创建一个ArkTS DataView。 |
+| napi_is_dataview | 判断给定ArkTS value是否为DataView。|
 | napi_get_dataview_info | 获取给定DataView的各种属性。|
 
 ### primitive相关
@@ -377,7 +377,7 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_new_instance | 通过给定的构造函数，构建一个实例。 |
 | napi_get_new_target | 获取构造函数调用的new.target。 |
 | napi_define_class | 定义与C++类相对应的JavaScript类。 |
-| napi_wrap | 在ArkTS对象上绑定一个Node-API模块对象实例。这个函数通常在将Node-API模块对象与ArkTS对象进行绑定时使用，以便在ArkTS中使用本地对象的方法和属性。 |
+| napi_wrap | 在ArkTS对象上绑定一个Node-API模块对象实例。这个函数通常在将Node-API模块对象与ArkTS对象进行绑定时使用，以便在ArkTS中使用Native方法和属性。 |
 | napi_unwrap | 从ArkTS对象上获取之前绑定的Node-API模块对象实例。 |
 | napi_remove_wrap | 从ArkTS对象上获取之前绑定的Node-API模块对象实例，并解除绑定。 |
 
@@ -385,17 +385,17 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 
 | 接口 | 功能说明 |
 | -------- | -------- |
-| napi_get_prototype | 获取给定JS Object的prototype。 |
-| napi_create_object | 创建一个默认的JS Object。 |
+| napi_get_prototype | 获取给定ArkTS Object的prototype。 |
+| napi_create_object | 创建一个默认的ArkTS Object。 |
 | napi_object_freeze | 冻结给定的对象。 |
 | napi_object_seal | 密封给定的对象。 |
-| napi_typeof | 获取给定JS value的JS Type。 |
+| napi_typeof | 获取给定ArkTS value的ArkTS Type。 |
 | napi_instanceof | 判断给定object是否为给定constructor的实例。 |
 | napi_type_tag_object | 将tag指针的值与Object关联。 |
-| napi_check_object_type_tag | 判断给定的tag指针是否被关联到了JS Object上。 |
-| napi_create_symbol | 创建一个JS Symbol对象。 |
-| napi_create_external | 用于创建一个JS外部对象，该对象可以用于将C/C++中的自定义数据结构或对象传递到JS中，并且可以在JS中访问其属性和方法。 |
-| napi_get_value_external | 用于获得napi_create_external创建的绑定了外部数据的JS值，此函数可以在JS和C/C++之间传递数据。 |
+| napi_check_object_type_tag | 判断给定的tag指针是否被关联到了ArkTS Object上。 |
+| napi_create_symbol | 创建一个ArkTS Symbol对象。 |
+| napi_create_external | 用于创建一个ArkTS外部对象，该对象可以用于将C/C++中的自定义数据结构或对象传递到JS中，并且可以在ArkTS中访问其属性和方法。 |
+| napi_get_value_external | 用于获得napi_create_external创建的绑定了外部数据的ArkTS值，此函数可以在ArkTS和C/C++之间传递数据。 |
 
 ### 基本数据类型相关
 
@@ -428,12 +428,12 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | -------- | -------- |
 | napi_throw | 抛出一个JS value。 |
 | napi_throw_error | 用于抛出一个带文本信息的ArkTS Error。|
-| napi_throw_type_error | 抛出一个带文本信息的JS TypeError。 |
-| napi_throw_range_error | 抛出一个带文本信息的JS RangeError。 |
+| napi_throw_type_error | 抛出一个带文本信息的ArkTS TypeError。 |
+| napi_throw_range_error | 抛出一个带文本信息的ArkTS RangeError。 |
 | napi_is_error | 判断napi_value是否表示为一个error对象。 |
-| napi_create_error | 创建并获取一个带文本信息的JS Error。 |
-| napi_create_type_error | 创建并获取一个带文本信息的JS TypeError。 |
-| napi_create_range_error | 创建并获取一个带文本信息的JS RangeError。 |
+| napi_create_error | 创建并获取一个带文本信息的ArkTS Error。 |
+| napi_create_type_error | 创建并获取一个带文本信息的ArkTS Error对象 |
+| napi_create_range_error | 创建并获取一个带文本信息的ArkTS Error对象。 |
 | napi_get_and_clear_last_exception | 获取并清除最近一次出现的异常。 |
 | napi_is_exception_pending | 判断是否出现了异常。 |
 | napi_fatal_error | 引发致命错误以立即终止进程。 |
