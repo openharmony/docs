@@ -14,22 +14,6 @@
 import { bundleManager } from '@kit.AbilityKit';
 ```
 
-## 权限列表
-
-| 权限                                       | 权限等级     | 描述            |
-| ------------------------------------------ | ------------ | ------------------|
-| ohos.permission.GET_BUNDLE_INFO            | normal       | 允许查询应用的基本信息。   |
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 允许查询应用的基本信息和其他敏感信息。 |
-| ohos.permission.REMOVE_CACHE_FILES         | system_basic | 清理应用缓存。       |
-| ohos.permission.CHANGE_ABILITY_ENABLED_STATE| system_basic | 设置禁用使能所需的权限。  |
-| ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | 读取已安装应用列表。 |
-| ohos.permission.RUN_DYN_CODE | normal | 允许系统方舟运行时引擎在受限模式下执行动态下发的方舟字节码。 |
-| ohos.permission.MIGRATE_DATA | system_core | 允许应用迁移传入路径下的数据到指定目录。 |
-| ohos.permission.ACCESS_DYNAMIC_ICON | system_basic | 允许应用使用动态图标。 |
-| ohos.permission.CHANGE_BUNDLE_UNINSTALL_STATE | system_core | 允许系统应用改变指定应用的可卸载状态。 |
-
-权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
-
 ## BundleFlag
 
 包信息标志，指示需要获取的包信息的内容，当前页面仅包含本模块的系统接口，其他公开类型参见[BundleFlag](./js-apis-bundleManager.md#bundleflag)。
