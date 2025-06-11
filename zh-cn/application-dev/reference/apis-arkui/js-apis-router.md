@@ -1568,7 +1568,7 @@ struct Index {
       params: new routerParams('这是第一页的值', [12, 45, 78])
     }
     // 建议使用this.getUIContext().getRouter().pushUrl()
-    router.pushUrl(options)
+    this.getUIContext().getRouter().pushUrl(options)
       .then(() => {
         console.error(`pushUrl finish`);
       })
