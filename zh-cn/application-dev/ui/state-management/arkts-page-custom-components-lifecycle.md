@@ -249,14 +249,14 @@ MyComponent aboutToDisappear
 Child aboutToDisappear
 ```
 
-- 如果当前页面在Index页，点击返回按钮，触发页面生命周期Index onBackPress，若onBackPress使用默认false返回值，则触发返回后会导致当前Index页面被隐藏，执行页面生命周期Index onPageHide。此时日志输出信息如下：
+- 如果当前页面在Index页，点击返回按钮，触发页面生命周期Index onBackPress，若onBackPress使用默认false返回值，则触发返回后会导致当前Index页面被隐藏，执行页面生命周期onPageHide。此时日志输出信息如下：
 
 ```ts
 Index onBackPress
 Index onPageHide
 ```
 
-- 如果当前页面在Page页，点击返回按钮，触发页面生命周期Page onBackPress，若onBackPress使用默认false返回值，则触发返回后会导致当前Page页面被销毁，执行页面生命周期Page onPageHide和Page aboutToDisappear。相关日志输出信息如下：
+- 如果当前页面在Page页，点击返回按钮，触发页面生命周期Page onBackPress，若onBackPress使用默认false返回值，则触发返回后会导致当前Page页面被销毁，执行页面生命周期onPageHide和组件生命周期aboutToDisappear。此时日志输出信息如下：
 
 ```ts
 Page onBackPress

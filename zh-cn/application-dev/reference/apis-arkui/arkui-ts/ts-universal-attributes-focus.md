@@ -482,7 +482,7 @@ struct FocusableExample {
 
 ![defaultFocus](figures/defaultFocus.png)
 
-首次按TAB键，焦点切换到tabIndex(1)的容器上，且自动走到其内部的groupDefaultFocus绑定的组件上：
+首次按TAB键，焦点切换到tabIndex(1)的容器上，且自动走焦到内部第一个可获焦组件上：
 
 ![groupDefaultFocus1](figures/groupDefaultFocus1.png)
 
@@ -490,7 +490,7 @@ struct FocusableExample {
 
 ![groupDefaultFocus2](figures/groupDefaultFocus2.png)
 
-第三次按TAB键，焦点切换到tabIndex(3)的容器上，且自动走到其内部的groupDefaultFocus绑定的组件上：
+第三次按TAB键，焦点切换到tabIndex(3)的容器上，且自动走焦到内部配置了DefaultFocus的组件上：
 
 ![groupDefaultFocus3](figures/groupDefaultFocus3.png)
 

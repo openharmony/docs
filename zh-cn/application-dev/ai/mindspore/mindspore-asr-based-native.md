@@ -32,7 +32,7 @@
 
 #### 播放音频
 
-1. 调用[@ohos.multimedia.media](../../reference/apis-media-kit/js-apis-media.md)、[@ohos.multimedia.audio](../../reference/apis-audio-kit/js-apis-audio.md)，实现播放音频的功能。
+1. 调用[@ohos.multimedia.media](../../reference/apis-media-kit/arkts-apis-media.md)、[@ohos.multimedia.audio](../../reference/apis-audio-kit/arkts-apis-audio.md)，实现播放音频的功能。
 
    ```ts
    // player.ets

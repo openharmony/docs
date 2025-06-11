@@ -1,6 +1,6 @@
 # 管理全局音频输出设备
 
-有时设备同时连接多个音频输出设备，需要指定音频输出设备进行音频播放，此时需要使用AudioRoutingManager接口进行输出设备的管理，API说明可以参考[AudioRoutingManager API文档](../../reference/apis-audio-kit/js-apis-audio.md#audioroutingmanager9)。
+有时设备同时连接多个音频输出设备，需要指定音频输出设备进行音频播放，此时需要使用AudioRoutingManager接口进行输出设备的管理，API说明可以参考[AudioRoutingManager API文档](../../reference/apis-audio-kit/arkts-apis-audio-AudioRoutingManager.md)。
 
 ## 创建AudioRoutingManager实例
 
@@ -65,7 +65,7 @@ audioRoutingManager.off('deviceChange');
 <!--Del-->
 ## 选择音频输出设备（仅对系统应用开放）
 
-选择音频输出设备，当前只能选择一个输出设备，以设备ID作为唯一标识。AudioDeviceDescriptors的具体信息可以参考[AudioDeviceDescriptors](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptors)。
+选择音频输出设备，当前只能选择一个输出设备，以设备ID作为唯一标识。AudioDeviceDescriptors的具体信息可以参考[AudioDeviceDescriptors](../../reference/apis-audio-kit/arkts-apis-audio-t.md#audiodevicedescriptors)。
 
 > **说明：**
 > 

@@ -2,16 +2,16 @@
 
 开发者可以了解音频流输出设备变更信息，并完成相应适配，确保应用在设备发生变更时的用户体验。
 
-开发者可使用AudioRenderer的[outputDeviceChangeWithInfo](../../reference/apis-audio-kit/js-apis-audio.md#onoutputdevicechangewithinfo11)，用于监听音频流输出设备变化及原因。当系统出现音频输出设备的上下线、用户强选、设备抢占或设备选择策略变更等情况，导致音频流输出设备变更时，系统将通过该接口通知应用当前音频流设备变更信息，包含当前音频流输出设备信息和设备变更原因。
+开发者可使用AudioRenderer的[outputDeviceChangeWithInfo](../../reference/apis-audio-kit/arkts-apis-audio-AudioRenderer.md#onoutputdevicechangewithinfo11)，用于监听音频流输出设备变化及原因。当系统出现音频输出设备的上下线、用户强选、设备抢占或设备选择策略变更等情况，导致音频流输出设备变更时，系统将通过该接口通知应用当前音频流设备变更信息，包含当前音频流输出设备信息和设备变更原因。
 
 ## 音频流输出设备信息
 
-在[outputDeviceChangeWithInfo](../../reference/apis-audio-kit/js-apis-audio.md#onoutputdevicechangewithinfo11)返回的音频流设备变更信息中，包含当前音频流输出设备信息，以数组形式发送，一般该列表仅包含一个设备信息，具体可参考[AudioDeviceDescriptors](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptors)（设备信息列表）。
+在[outputDeviceChangeWithInfo](../../reference/apis-audio-kit/arkts-apis-audio-AudioRenderer.md#onoutputdevicechangewithinfo11)返回的音频流设备变更信息中，包含当前音频流输出设备信息，以数组形式发送，一般该列表仅包含一个设备信息，具体可参考[AudioDeviceDescriptors](../../reference/apis-audio-kit/arkts-apis-audio-t.md#audiodevicedescriptors)（设备信息列表）。
 
 ## 音频流输出设备变更原因
 
 > **说明：**
-当发生下述四种情况（[AudioStreamDeviceChangeReason](../../reference/apis-audio-kit/js-apis-audio.md#audiostreamdevicechangereason11)）时，系统将向应用发送设备变更回调。
+当发生下述四种情况（[AudioStreamDeviceChangeReason](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audiostreamdevicechangereason11)）时，系统将向应用发送设备变更回调。
 
 - **REASON_NEW_DEVICE_AVAILABLE**：新设备可用。
 
