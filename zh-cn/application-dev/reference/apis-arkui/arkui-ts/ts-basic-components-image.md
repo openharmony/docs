@@ -649,10 +649,6 @@ svg类型图源不支持该属性。
 | RIGHT | 2 | 将当前图片顺时针旋转90度后显示。 |
 | DOWN | 3 | 将当前图片顺时针旋转180度后显示。 |
 | LEFT | 4 | 将当前图片顺时针旋转270度后显示。 |
-| UP_MIRRORED<sup>20+</sup> | 5 | 将当前图片水平翻转后显示。 |
-| RIGHT_MIRRORED<sup>20+</sup> | 6 | 将当前图片水平翻转再顺时针旋转90度后显示。 |
-| DOWN_MIRRORED<sup>20+</sup> | 7 | 将当前图片垂直翻转后显示。 |
-| LEFT_MIRRORED<sup>20+</sup> | 8 | 将当前图片水平翻转再顺时针旋转270度后显示。 |
 
 ## ImageSourceSize<sup>18+</sup>对象说明
 
@@ -1780,88 +1776,3 @@ struct Index {
 ```
 
 ![matchTextDirection](figures/matchTextDirection.png)
-
-### 示例20（设置图像内容的显示方向）
-
-该示例通过[orientation](#orientation14)属性，设置图像内容的显示方向。
-
-```ts
-@Entry
-@Component
-struct OrientationExample {
-  build() {
-    Column() {
-      Row({ space: 25 }) {
-        Column() {
-          Text('AUTO')
-          Image($r('app.media.hello'))
-            .width(125).height(125)
-            .orientation(ImageRotateOrientation.AUTO)
-        }
-
-        Column() {
-          Text('UP')
-          Image($r('app.media.hello'))
-            .width(125).height(125)
-            .orientation(ImageRotateOrientation.UP)
-        }
-
-        Column() {
-          Text('RIGHT')
-          Image($r('app.media.hello'))
-            .width(125).height(125)
-            .orientation(ImageRotateOrientation.RIGHT)
-        }
-      }
-
-      Row({ space: 25 }) {
-        Column() {
-          Text('DOWN')
-          Image($r('app.media.hello'))
-            .width(125).height(125)
-            .orientation(ImageRotateOrientation.DOWN)
-        }
-
-        Column() {
-          Text('LEFT')
-          Image($r('app.media.hello'))
-            .width(125).height(125)
-            .orientation(ImageRotateOrientation.LEFT)
-        }
-
-        Column() {
-          Text('UP_MIRRORED')
-          Image($r('app.media.hello'))
-            .width(125).height(125)
-            .orientation(ImageRotateOrientation.UP_MIRRORED)
-        }
-      }
-
-      Row({ space: 15 }) {
-        Column() {
-          Text('RIGHT_MIRRORED')
-          Image($r('app.media.hello'))
-            .width(125).height(125)
-            .orientation(ImageRotateOrientation.RIGHT_MIRRORED)
-        }
-
-        Column() {
-          Text('DOWN_MIRRORED')
-          Image($r('app.media.hello'))
-            .width(125).height(125)
-            .orientation(ImageRotateOrientation.DOWN_MIRRORED)
-        }
-
-        Column() {
-          Text('LEFT_MIRRORED')
-          Image($r('app.media.hello'))
-            .width(125).height(125)
-            .orientation(ImageRotateOrientation.LEFT_MIRRORED)
-        }
-      }
-    }
-  }
-}
-```
-
-![matchTextDirection](figures/orientation.png)
