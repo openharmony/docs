@@ -10,7 +10,7 @@
 
 ## bindPopup
 
-bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
+bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 
 为组件绑定Popup气泡。
 
@@ -24,6 +24,12 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | show   | boolean                                                      | 是   | 弹窗显示状态，默认值为false，隐藏弹窗。Popup弹窗必须等待页面全部构建完成才能展示，因此show不能在页面构建中设置为true，否则会导致Popup弹窗显示位置及形状错误。该参数从API version 13开始支持[!!语法](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。 |
 | popup  | [PopupOptions](#popupoptions类型说明)&nbsp;\|&nbsp;[CustomPopupOptions](#custompopupoptions8类型说明)<sup>8+</sup> | 是   | 配置弹出弹窗的参数。                                         |
+
+**返回值：** 
+
+|类型|说明|
+|---|---|
+|T|返回当前组件。|
 
 ## PopupOptions类型说明
 
@@ -104,7 +110,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 | onStateChange                | (event:&nbsp;{&nbsp;isVisible:&nbsp;boolean&nbsp;})&nbsp;=&gt;&nbsp;void | 否    | 气泡状态变化事件回调，参数为气泡的显示状态。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                 |
 | arrowOffset<sup>9+</sup>     | [Length](ts-types.md#length) | 否    | Popup箭头在气泡处的偏移。箭头在气泡上下方时，数值为0表示箭头居最左侧，偏移量为箭头至最左侧的距离，默认居中。箭头在气泡左右侧时，偏移量为箭头至最上侧的距离，默认居中。显示在屏幕边缘时，气泡会自动左右偏移，数值为0时箭头始终指向绑定组件。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | showInSubWindow<sup>9+</sup> | boolean                                  | 否    | 取值为true时，气泡会显示在创建的子窗里，取值为false时，气泡会显示在对应的主窗中。<br />默认值：false<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                    |
-| maskColor<sup>(deprecated)</sup> | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;&nbsp;[Color](ts-types.md) | 否   | 设置气泡遮罩层颜色。<br />**说明：**<br />从 API version 10 开始废弃，建议使用`mask`替代。 |
+| maskColor<sup>(deprecated)</sup> | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;&nbsp;[Color](ts-appendix-enums.md#color) | 否   | 设置气泡遮罩层颜色。<br />**说明：**<br />从 API version 10 开始废弃，建议使用`mask`替代。 |
 | mask<sup>10+</sup>           | boolean&nbsp;\|&nbsp;{ color : [ResourceColor](ts-types.md#resourcecolor) }| 否    | 设置气泡是否有遮罩层及遮罩颜色。如果设置为false，则没有遮罩层；如果设置为true，则设置有遮罩层并且颜色为透明色；如果设置为Color，则为遮罩层的颜色。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | targetSpace<sup>10+</sup>    | [Length](ts-types.md#length)             | 否    | 设置Popup与目标的间距。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                           |
 | offset<sup>10+</sup>         | [Position](ts-types.md#position)                            | 否   | 设置Popup组件相对于placement设置的显示位置的偏移。<br />**说明：**<br />不支持设置百分比。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
