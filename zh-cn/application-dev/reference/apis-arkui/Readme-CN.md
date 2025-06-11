@@ -247,7 +247,7 @@
     <!--Del-->
     - [TextInput (系统接口)](arkui-ts/ts-basic-components-textinput-sys.md)
     - [属性字符串 (系统接口)](arkui-ts/ts-universal-styled-string-sys.md)
-    -  [RichEditor(系统接口)](arkui-ts/ts-basic-components-richeditor-sys.md)
+    - [RichEditor(系统接口)](arkui-ts/ts-basic-components-richeditor-sys.md)
     <!--DelEnd-->
   - 图片与视频<!--images-and-videos-->
     - [Image](arkui-ts/ts-basic-components-image.md)
@@ -521,8 +521,8 @@
     - [UI上下文错误码](errorcode-uicontext.md)
     - [交互事件错误码](errorcode-event.md)
     <!--Del-->
-    - [UIExtension错误码](errorcode-uiextension.md)
     - [用户界面外观服务错误码](errorcode-uiappearance.md)
+    - [UIExtension错误码](errorcode-uiextension.md)
     <!--DelEnd-->
   - 图形图像<!--arkui-graphics-images-arkts-errcode-->
     - [屏幕错误码](errorcode-display.md)
