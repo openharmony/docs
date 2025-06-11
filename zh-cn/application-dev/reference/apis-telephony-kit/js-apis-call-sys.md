@@ -2035,7 +2035,7 @@ postDialProceed\(callId: number, proceed: boolean\): Promise\<void\>
 | 参数名   | 类型                      | 必填 | 说明                    |
 | -------- | ------------------------- | ---- | ----------------------- |
 | callId   | number                    | 是   | 呼叫Id。                |
-| proceed  | boolean                   | 是   | 用户选择是否发送DTMF音,默认为false。<br/>-true：是<br/>-false：否|
+| proceed  | boolean                   | 是   | 用户选择是否发送DTMF音，默认为false。<br/>-true：是<br/>-false：否|
 
 **返回值：**
 
