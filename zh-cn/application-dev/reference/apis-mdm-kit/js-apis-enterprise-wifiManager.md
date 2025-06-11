@@ -271,6 +271,10 @@ turnOnWifi(admin: Want, isForce: boolean): void
 
 打开Wi-Fi开关。
 
+以下情况下，通过本接口打开Wi-Fi开关，会报策略冲突：
+
+​	1. 已经通过[setDisallowedPolicy](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了Wi-Fi。通过[setDisallowedPolicy](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口启用Wi-Fi后，可解决冲突。
+
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
@@ -318,6 +322,10 @@ try {
 turnOffWifi(admin: Want): void
 
 关闭Wi-Fi开关。
+
+以下情况下，通过本接口关闭Wi-Fi开关，会报策略冲突：
+
+​	1. 已经通过[setDisallowedPolicy](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了Wi-Fi。通过[setDisallowedPolicy](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口启用Wi-Fi后，可解决冲突。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
