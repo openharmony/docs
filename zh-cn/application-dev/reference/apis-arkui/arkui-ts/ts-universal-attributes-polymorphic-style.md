@@ -12,7 +12,7 @@
 
 ## stateStyles
 
-stateStyles(value: StateStyles)
+stateStyles(value: StateStyles): T
 
 设置组件不同状态的样式。
 
@@ -27,6 +27,12 @@ stateStyles(value: StateStyles)
 | 参数名 | 类型                                | 必填 | 说明                     |
 | ------ | ----------------------------------- | ---- | ------------------------ |
 | value  | [StateStyles](#statestyles) | 是   | 设置组件不同状态的样式。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## StateStyles
 

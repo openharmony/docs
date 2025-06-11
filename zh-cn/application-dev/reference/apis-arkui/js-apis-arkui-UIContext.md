@@ -1252,7 +1252,7 @@ getDragController(): DragController
 
 |类型|说明|
 |----|----|
-|[DragController](js-apis-arkui-dragController.md#dragController)| 获取DragController对象。|
+|[DragController](js-apis-arkui-dragController.md#ohosarkuidragcontroller-dragcontroller)| 获取DragController对象。|
 
 **示例：**
 
@@ -2698,6 +2698,12 @@ dispatchKeyEvent(node: number | string, event: KeyEvent): boolean
 | ------ | ----------------------------- | ---- | ------------------ |
 | node  | number \| string | 是   | 组件的id或者节点UniqueID。 |
 | event  |[KeyEvent](./arkui-ts/ts-universal-events-key.md#keyevent对象说明) | 是   | KeyEvent对象。 |
+
+**返回值：**
+
+| 类型      | 说明            |
+|---------|---------------|
+| boolean | 按键事件是否成功分发给指定的组件。<br/> true表示分发成功，false表示分发失败。 |
 
 **示例：**
 
