@@ -181,8 +181,10 @@ import { window } from '@kit.ArkUI';
 
 ## StartAnimationSystemOption<sup>20+</sup>
 
-启动动画配置。仅在非应用间切换生效。
+启动动画配置。
+仅对同应用的不同ability间跳转生效。
 仅对手机以及pad的非自由多窗模式生效。
+仅对全屏应用生效。
 
 **系统接口：** 此接口为系统接口。
 

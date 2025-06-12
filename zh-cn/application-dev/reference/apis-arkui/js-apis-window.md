@@ -531,14 +531,16 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 ## StartAnimationOption<sup>20+</sup>
 
-应用启动动画配置。
-仅对同应用的不同ability间跳转生效。仅对全屏应用生效。
+启动动画配置。
+仅对同应用的不同ability间跳转生效。
+仅对手机以及pad的非自由多窗模式生效。
+仅对全屏应用生效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称     | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type    | [AnimationType](#animationtype20)           | 是   | 窗口动画类型。                                               |
+| type    | [AnimationType](#animationtype20)           | 是   | 窗口动画类型。淡入动画在应用启动时生效，淡出动画仅在被打断时生效，非打断场景依然走默认动效。 |
 
 ## WindowAnchor<sup>20+</sup>
 
