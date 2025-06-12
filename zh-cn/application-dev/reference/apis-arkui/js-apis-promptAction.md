@@ -873,6 +873,73 @@ try {
 
 ![zh-cn_image_0002_showinsubwindow](figures/zh-cn_image_0002_showinsubwindow.jpg)
 
+以下示例展示了弹窗生命周期的相关接口的使用方法。
+
+```ts
+// xxx.ets
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct DialogExample {
+  @State log:string = 'Log information:';
+  build() {
+    Column() {
+      Button('showdialog')
+        .width(200)
+        .height(60)
+        .margin(20)
+        .fontSize(16)
+        .onClick(() => {
+          this.showCustomDialog();
+        })
+      Text(this.log).fontSize(30).margin({ top: 200 })
+    }.width('100%').margin({ top: 5 })
+  }
+
+  showCustomDialog() {
+    try {
+      this.getUIContext().getPromptAction().showDialog({
+        title: '操作确认',
+        message: '您确定要执行此操作吗？',
+        alignment: DialogAlignment.Bottom,
+        buttons: [
+          {
+            text: '取消',
+            color: '#999999'
+          },
+          {
+            text: '确定',
+            color: '#007DFF'
+          }
+        ],
+        onDidAppear: () => {
+          this.log += '# onDidAppear'
+          console.info("prompAction,is onDidAppear!")
+        },
+        onDidDisappear: () => {
+          this.log += '# onDidDisappear'
+          console.info("prompAction,is onDidDisappear!")
+        },
+        onWillAppear: () => {
+          this.log = 'Log information:#onWillAppear'
+          console.info("prompAction,is onWillAppear!")
+        },
+        onWillDisappear: () => {
+          this.log += '# onWillDisappear'
+          console.info("prompAction,is onWillDisappear!")
+        },
+      })
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`捕获到异常: ${err.code}, ${err.message}`);
+    }
+  }
+}
+```
+
+![zh-cn_image_0002_lifecycle](figures/zh-cn_image_0002_lifecycle.gif)
+
 
 
 ## promptAction.showActionMenu<sup>(deprecated)</sup>
