@@ -301,7 +301,6 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
       console.error("requestInStream ERROR : err = " + JSON.stringify(err));
     });
     ```
-rr
 5. 取消订阅HTTP流式响应头事件
 
     调用该对象的off()方法，取消订阅HTTP响应头事件，该方法调用的时机，可以参考步骤4中的示例代码。
