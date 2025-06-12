@@ -390,3 +390,98 @@ try {
 | name            | string                                                       | 是   | 表示设备的蓝牙名称。     |
 | state           | [access.BluetoothState](../apis-connectivity-kit/js-apis-bluetooth-access.md#bluetoothstate) | 是   | 表示设备的蓝牙状态。     |
 | connectionState | [constant.ProfileConnectionState](../apis-connectivity-kit/js-apis-bluetooth-constant.md#profileconnectionstate) | 是   | 表示设备的蓝牙连接状态。 |
+
+## bluetoothManager.turnOnBluetooth<sup>20+</sup>
+
+turnOnBluetooth(admin: Want): void
+
+开启蓝牙。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明                   |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 203      | This function is prohibited by enterprise management policies. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { bluetoothManager } from '@kit.MDMKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+try {
+    bluetoothManager.turnOnBluetooth(wantTemp);
+    console.info(`Succeeded in turning on bluetooth.`);
+} catch(err) {
+    console.error(`Failed to turn on bluetooth. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## bluetoothManager.turnOffBluetooth<sup>20+</sup>
+
+turnOffBluetooth(admin: Want): void
+
+关闭蓝牙。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明                   |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 203      | This function is prohibited by enterprise management policies. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { bluetoothManager } from '@kit.MDMKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+try {
+    bluetoothManager.turnOffBluetooth(wantTemp);
+    console.info(`Succeeded in turning off bluetooth.`);
+} catch(err) {
+    console.error(`Failed to turn off bluetooth. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
