@@ -4640,3 +4640,31 @@
 **ACL使能**：true
 
 **起始版本**：18
+
+## ohos.permission.READ_PARENT_CONTROL_DATA
+
+允许应用读取家长管控网站的配置。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | Tablet | 2in1
+
+**起始版本**：19
+
+## ohos.permission.WRITE_PARENT_CONTROL_DATA
+
+允许应用写入家长管控网站的配置。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | Tablet | 2in1
+
+**起始版本**：19
