@@ -21,7 +21,13 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 | \#define OH_LOG_ERROR(type, ...) ((void)OH_LOG_Print((type), LOG_ERROR, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | ERROR级别写日志，宏封装接口。 |
 | \#define OH_LOG_FATAL(type, ...) ((void)OH_LOG_Print((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | FATAL级别写日志，宏封装接口。 |
 | void OH_LOG_SetCallback(LogCallback callback) | 注册函数，注册后可通过LogCallback回调获取本进程所有的hilog日志。|
-| void OH_LOG_SetMinLogLevel(LogLevel level)|设置应用日志打印的最低日志级别，进程在打印日志时，需要同时校验该日志级别和全局日志级别，所以设置的日志级别不能低于全局日志级别，[全局日志级别](hilog.md#查看和设置日志级别)默认为Info。|
+| void OH_LOG_SetMinLogLevel(LogLevel level)|设置应用日志打印的最低日志级别，进程在打印日志时，需要同时校验该日志级别和全局日志级别，所以设置的日志级别不能低于全局日志级别。|
+
+<!--RP1-->
+> **说明：**
+>
+> 全局日志级别，默认为info, 可参考[查看和设置日志级别](hilog.md#查看和设置日志级别)
+<!--RP1End-->
 
 ### 参数解析
 
@@ -33,7 +39,7 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 >
 >   debug应用：不做日志级别管控，所有级别日志都能够正常打印出来；
 >
->   release应用：按照全局日志级别（默认为INFO）管控，当日志的级别不低于全局日志级别时，才能正常打印出来；
+>   release应用：按照全局日志级别管控，当日志的级别不低于全局日志级别时，才能正常打印出来；
 >
 >   调试过程中，可手动修改日志级别，参考：[查看和设置日志级别](hilog.md#查看和设置日志级别)
 
