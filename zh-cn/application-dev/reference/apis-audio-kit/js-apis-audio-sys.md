@@ -368,7 +368,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
-| 名称                        | 类型                       | 可读 | 可写 | 说明       |
+| 名称                        | 类型                       | 只读 | 可选 | 说明       |
 | -------------------------- | -------------------------- | ---- | ---- | ---------- |
 | networkId<sup>9+</sup>     | string                     | 是   | 否   | 组网络id。  |
 | groupId<sup>9+</sup>       | number                     | 是   | 否   | 组设备组id。 |
@@ -1631,7 +1631,7 @@ async function selectOutputDeviceByFilter(){
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
-| 名称               | 类型                                       | 可读 | 可写 | 说明                          |
+| 名称               | 类型                                       | 只读 | 可选 | 说明                          |
 | -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
 | clientUid          | number                                    | 是   | 否   | 音频渲染器客户端应用程序的Uid。<br/>此接口为系统接口。 |
 | rendererState      | [AudioState](js-apis-audio.md#audiostate8)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口。|
@@ -1642,7 +1642,7 @@ async function selectOutputDeviceByFilter(){
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
-| 名称               | 类型                                       | 可读 | 可写 | 说明                          |
+| 名称               | 类型                                       | 只读 | 可选 | 说明                          |
 | -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
 | clientUid          | number                                    | 是   | 否   | 音频采集器客户端应用程序的Uid。<br/>此接口为系统接口。 |
 | capturerState      | [AudioState](js-apis-audio.md#audiostate8)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口。|
@@ -1651,7 +1651,7 @@ async function selectOutputDeviceByFilter(){
 
 描述音频设备。
 
-| 名称                          | 类型                       | 可读 | 可写 | 说明       |
+| 名称                          | 类型                       | 只读 | 可选 | 说明       |
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
 | networkId<sup>9+</sup>        | string                     | 是   | 否   | 设备组网的ID。<br/>此接口为系统接口。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
 | interruptGroupId<sup>9+</sup> | number                     | 是   | 否   | 设备所处的焦点组ID。<br/>此接口为系统接口。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
@@ -2926,12 +2926,12 @@ try {
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
-| 名称                          | 类型                       | 可读 | 可写 | 说明       |
+| 名称                          | 类型                       | 只读 | 可选 | 说明       |
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
-| address | string         | 是   | 是   | 空间化设备地址。|
-| isSpatializationSupported | boolean        | 是   | 是   | 空间化设备是否支持空间音频渲染。true表示支持，false表示不支持。|
-| isHeadTrackingSupported | boolean        | 是   | 是   | 空间化设备是否支持头动跟踪。true表示支持，false表示不支持。|
-| spatialDeviceType | [AudioSpatialDeviceType](#audiospatialdevicetype11)   | 是   | 是   | 空间化设备类型。|
+| address | string         | 否 | 否 | 空间化设备地址。|
+| isSpatializationSupported | boolean        | 否 | 否 | 空间化设备是否支持空间音频渲染。true表示支持，false表示不支持。|
+| isHeadTrackingSupported | boolean        | 否 | 否 | 空间化设备是否支持头动跟踪。true表示支持，false表示不支持。|
+| spatialDeviceType | [AudioSpatialDeviceType](#audiospatialdevicetype11)   | 否 | 否 | 空间化设备类型。|
 
 **示例：**
 
