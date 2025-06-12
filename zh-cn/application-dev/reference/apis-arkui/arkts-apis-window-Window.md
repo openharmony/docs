@@ -6551,9 +6551,7 @@ setWindowTitle(titleName: string): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let windowClass: window.Window | undefined = undefined;
 try {
-  windowClass = window.findWindow("window");
   let title = "title";
   windowClass.setWindowTitle(title).then(() => {
     console.info('Succeeded in setting the window title.');
