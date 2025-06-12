@@ -244,7 +244,7 @@ import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from('1234');
 let buf2 = buffer.from('0123');
-let res = buf1.compare(buf2);
+let res = buffer.compare(buf1, buf2);
 
 console.info(Number(res).toString());
 // 输出结果：1
