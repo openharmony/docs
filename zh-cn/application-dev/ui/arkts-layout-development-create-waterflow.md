@@ -21,9 +21,6 @@ ArkUI提供了WaterFlow容器组件，用于构建瀑布流布局。WaterFlow组
 
 瀑布流常用于无限滚动的信息流。可以在瀑布流组件到达末尾位置时触发的[onReachEnd](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md#onreachend)事件回调中对[LazyForEach](../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)增加新数据，并将footer做成正在加载新数据的样式（使用[LoadingProgress](../reference/apis-arkui/arkui-ts/ts-basic-components-loadingprogress.md)组件）。
 
-> **说明：** 
->
-> 完整示例请参考[WaterFlowInfiniteScrolling](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/waterFlow/WaterFlowInfiniteScrolling.ets)。
 ```ts
   @Builder
   itemFoot() {
@@ -90,10 +87,6 @@ ArkUI提供了WaterFlow容器组件，用于构建瀑布流布局。WaterFlow组
 
 为了实现更加流畅的无限滑动，需要调整增加新数据的时机。比如可以在LazyForEach还剩余若干个数据未遍历的情况下提前加载新数据。以下代码通过在WaterFlow的[onScrollIndex](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md#onscrollindex11)中判断当前显示的最后一个子节点相对数据集终点的距离，并在合适时机提前加载新数据，实现了无停顿的无限滚动。
 
-> **说明：** 
->
-> 完整示例请参考[WaterFlowInfiniteScrollingEarly](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/waterFlow/WaterFlowInfiniteScrollingEarly.ets)。
-
 ```ts
   build() {
     Column({ space: 2 }) {
@@ -129,10 +122,6 @@ ArkUI提供了WaterFlow容器组件，用于构建瀑布流布局。WaterFlow组
 ## 动态切换列数
 
 通过动态调整瀑布流的列数，应用能够实现在列表模式与瀑布流模式间的切换，或适应屏幕宽度的变化。 若要动态设置列数，建议采用瀑布流的移动窗口布局模式，这可以实现更快速的列数转换。
-
-> **说明：** 
->
-> 完整示例请参考[WaterFlowDynamicSwitchover](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/waterFlow/WaterFlowDynamicSwitchover.ets)。
 
 ```ts
 // 通过状态变量设置列数，可以按需修改触发布局更新
@@ -209,10 +198,6 @@ struct ReusableListItem {
 如果能够将不同部分的子节点整合到一个数据源中，那么通过设置 WaterFlowSections，可以在一个 WaterFlow 容器内实现混合布局。与嵌套滚动相比，这种方法可以简化滚动事件处理等应用逻辑。
 
 每个瀑布流分组可以分别设置自己的列数、行间距、列间距、margin和子节点总数，如下代码可以实现上述效果：
-
-> **说明：** 
->
-> 完整示例请参考WaterFlow组件[示例3（使用分组）](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md#示例3使用分组)。
 
 
 ```ts
@@ -329,4 +314,4 @@ struct WaterFlowDemo {
 针对瀑布流开发，有以下实例可供参考：
 
 - [主页瀑布流实现](https://gitee.com/harmonyos-cases/cases/blob/master/CommonAppDevelopment/feature/functionalscenes/README.md)
-- [ArkUI使用滚动类指南文档示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/ScrollableComponent#arkui使用滚动类指南文档示例)
+- [WaterFlow示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/waterFlow)
