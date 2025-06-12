@@ -805,9 +805,9 @@ try {
 
 | 名称      | 类型           | 只读 | 可选 | 说明                     |
 | --------- | -------------- | ---- | ---- | ------------------------ |
-| displayX      | number         | 是   | 否   | 鼠标X坐标位置。 |
-| displayY      | number         | 是   | 否   | 鼠标Y坐标位置。 |
-| displayId     | number         | 是   | 否   | 对端设备屏幕标识。 |
+| displayX      | number         | 否   | 否   | 鼠标X坐标位置。 |
+| displayY      | number         | 否   | 否   | 鼠标Y坐标位置。 |
+| displayId     | number         | 否   | 否   | 对端设备屏幕标识。 |
 
 ## cooperate.prepare<sup>(deprecated)</sup>
 
