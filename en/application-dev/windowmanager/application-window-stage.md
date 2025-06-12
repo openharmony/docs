@@ -28,7 +28,7 @@ In the stage model, you can perform the following operations during application 
 
 ## Available APIs
 
-The table below lists the common APIs used for application window development. For details about more APIs, see [Window](../reference/apis-arkui/js-apis-window.md).
+The table below lists the common APIs used for application window development. For details about more APIs, see [Window](../reference/apis-arkui/arkts-apis-window.md).
 
 | Instance        | API                                                      | Description                                                        |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -42,7 +42,7 @@ The table below lists the common APIs used for application window development. F
 | Window         | setWindowTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void | Sets whether this window is touchable.                                    |
 | Window         | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.                                          |
 | Window         | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | Changes the window size.                                          |
-| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt; | Sets whether to enable the full-screen mode for the window layout.                                 |
+| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt; | Sets whether to enable the full-screen mode for the window layout.                                |
 | Window         | setWindowSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | Sets whether to display the status bar and navigation bar in this window.                                |
 | Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt; | Sets the properties of the status bar and navigation bar in this window.<br>**systemBarProperties**: properties of the status bar and navigation bar.|
 | Window         | showWindow(callback: AsyncCallback\<void>): void             | Shows this window.                                              |
@@ -80,11 +80,11 @@ export default class EntryAbility extends UIAbility {
     windowStage.getMainWindow((err: BusinessError, data) => {
       let errCode: number = err.code;
       if (errCode) {
-        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        console.error(`Failed to obtain the main window. Code:${err.code}, message:${err.message}`);
         return;
       }
       windowClass = data;
-      console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+      console.info(`Succeeded in obtaining the main window. Result:${data}`);
       // 2. Set the touchable property of the main window.
       let isTouchable: boolean = true;
       windowClass.setWindowTouchable(isTouchable, (err: BusinessError) => {

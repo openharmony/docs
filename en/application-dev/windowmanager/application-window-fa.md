@@ -20,7 +20,7 @@ In the FA model, you can perform the following operations during application win
 
 ## Available APIs
 
-The table below lists the common APIs used for application window development. For details about more APIs, see [Window](../reference/apis-arkui/js-apis-window.md).
+The table below lists the common APIs used for application window development. For details about more APIs, see [Window](../reference/apis-arkui/arkts-apis-window.md).
 
 | Instance        | API                                                      | Description                                                        |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -66,7 +66,7 @@ You can create a child window, such as a dialog box, and set its properties.
    window.createWindow(config, (err: BusinessError, data) => {
      let errCode: number = err.code;
      if (errCode) {
-       console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
+       console.error(`Failed to create the subWindow. Code:${err.code}, message:${err.message}`);
        return;
      }
      console.info('Succeeded in creating subWindow. Data: ' + JSON.stringify(data));
