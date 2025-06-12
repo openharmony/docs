@@ -273,7 +273,7 @@ turnOnWifi(admin: Want, isForce: boolean): void
 
 以下情况下，通过本接口打开Wi-Fi开关，会报错系统功能被禁用：
 
-​	1. 已经通过[setDisallowedPolicy](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了Wi-Fi。通过[setDisallowedPolicy](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口启用Wi-Fi后，可解决系统功能被禁用报错。
+​	1. 已经通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了Wi-Fi。通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口启用Wi-Fi后，可解决系统功能被禁用报错。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -286,7 +286,7 @@ turnOnWifi(admin: Want, isForce: boolean): void
 | 参数名  | 类型                                                    | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
-| isForce | boolean                                                 | 是   | 是否强制打开Wi-Fi功能。<br/>true表示强制开启Wi-Fi，强制开启后不支持用户在设备上手动关闭Wi-Fi开关，必须采用[turnOffWifi](https://gitee.com/openharmony/docs/pulls/86803/files#wifimanagerturnoffwifi20)接口关闭。false表示非强制开启Wi-Fi，此时用户可以在设备上手动操作关闭Wi-Fi开关。 |
+| isForce | boolean                                                 | 是   | 是否强制打开Wi-Fi功能。<br/>true表示强制开启Wi-Fi，强制开启后不支持用户在设备上手动关闭Wi-Fi开关，必须采用[turnOffWifi](#wifimanagerturnoffwifi20)接口关闭。false表示非强制开启Wi-Fi，此时用户可以在设备上手动操作关闭Wi-Fi开关。 |
 
 **错误码**：
 
@@ -325,7 +325,7 @@ turnOffWifi(admin: Want): void
 
 以下情况下，通过本接口关闭Wi-Fi开关，会报错系统功能被禁用：
 
-​	1. 已经通过[setDisallowedPolicy](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了Wi-Fi。通过[setDisallowedPolicy](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口启用Wi-Fi后，可解决系统功能被禁用报错。
+​	1. 已经通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了Wi-Fi。通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口启用Wi-Fi后，可解决系统功能被禁用报错。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
