@@ -1470,7 +1470,7 @@ NavPathInfo参数信息。
 |-------|-------|------|-------|
 | name | string | 否 | NavDestination名称，如果为根视图(NavBar)，则返回值为undefined。|
 | index | number | 是 | NavDestination在NavPathStack中的序号， 如果为根视图(NavBar)，则返回值为 -1。<br/>取值范围：[-1, +∞)。 |
-| mode | [NavDestinationMode](ts-basic-components-navdestination.md#navdestinationmode枚举说明) | 否 | NavDestination的模式，如果是根视图(NavBar)，则返回值为undefined。|
+| mode | [NavDestinationMode](ts-basic-components-navdestination.md#navdestinationmode枚举说明11) | 否 | NavDestination的模式，如果是根视图(NavBar)，则返回值为undefined。|
 | param<sup>12+</sup> | Object | 否 | NavDestination页面加载的参数。|
 | navDestinationId<sup>12+</sup> | string | 否 | NavDestination的唯一标识符。|
 
