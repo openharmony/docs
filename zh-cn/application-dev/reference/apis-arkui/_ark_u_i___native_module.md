@@ -2533,17 +2533,17 @@ enum ArkUI_ErrorCode
 | ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE  | 当前节点无法获得焦点。<br/>起始版本：15  | 
 | ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR  | 当前节点对应的祖先节点中存在无法获焦节点。<br/>起始版本：15  | 
 | ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT>  | 当前节点不存在。<br/>起始版本：15  | 
-| ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT  | 截图超时。<br/>起始版本：15  | 
-| ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER  | 非滚动类容器。  | 
-| ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH  | 存储区大小不足。  | 
-| ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT  | 该事件不是克隆事件。<br/>起始版本：15  | 
+| ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT = 160002  | 截图超时。<br/>错误码的详细介绍请参见[截图错误码](../apis-arkui/errorcode-snapshot.md)。<br/>起始版本：15  |
+| ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER = 180001  | 非滚动类容器。<br/>错误码的详细介绍请参见[交互事件错误码](../apis-arkui/errorcode-event.md)。  |
+| ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH = 180002  | 存储区大小不足。<br/>错误码的详细介绍请参见[交互事件错误码](../apis-arkui/errorcode-event.md)。  |
+| ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT = 180003  | 该事件不是克隆事件。<br/>错误码的详细介绍请参见[交互事件错误码](../apis-arkui/errorcode-event.md)。<br/>起始版本：15  |
 | ARKUI_ERROR_CODE_POST_CLONED_COMPONENT_STATUS_ABNORMAL  | 组件状态异常。<br/>起始版本：15  | 
-| ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT  | 未命中可响应事件的组件。<br/>起始版本：15  | 
+| ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT = 180005  | 未命中可响应事件的组件。<br/>错误码的详细介绍请参见[交互事件错误码](../apis-arkui/errorcode-event.md)。<br/>起始版本：15  |
 | ARKUI_ERROR_CODE_INVALID_STYLED_STRING = 180101  | 无效的属性字符串。<br/>错误码的详细介绍请参见[属性字符串错误码](../apis-arkui/errorcode-styled-string.md#属性字符串错误码)。<br/>起始版本：14  | 
 | ARKUI_ERROR_CODE_UI_CONTEXT_INVALID  | 无效的UIContext对象。<br/>起始版本：18  | 
 | ARKUI_ERROR_CODE_CALLBACK_INVALID  | 无效的回调函数。<br/>起始版本：18  | 
-| ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED  | 不支持手势识别器类型。<br/>起始版本：18  | 
-| ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED  | 当前阶段不允许该操作。<br/>起始版本：18  | 
+| ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED = 180102  | 不支持手势识别器类型。<br/>错误码的详细介绍请参见[交互事件错误码](../apis-arkui/errorcode-event.md)。<br/>起始版本：18  |
+| ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED = 190004  | 当前阶段不允许该操作。<br/>错误码的详细介绍请参见[拖拽事件错误码](../apis-arkui/errorcode-drag-event.md)。<br/>起始版本：18  |
 
 
 ### ArkUI_FinishCallbackType
