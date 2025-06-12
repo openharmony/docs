@@ -517,3 +517,80 @@ struct ActionSheetExample {
 ```
 
 ![zh-cn_image_action_style](figures/zh-cn_image_action_hovermode.gif)
+
+### 示例6（弹窗生命周期）
+
+该示例展示了弹窗生命周期的相关接口的使用方法。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Example1 {
+  @State log:string = 'Log information:';
+  flag: boolean = false;
+
+  build() {
+    Column({ space: 5 }) {
+      Button('ActionSheet')
+        .onClick(() => {
+          ActionSheet.show({
+            title: 'ActionSheet',
+            message: 'message',
+            autoCancel: true,
+            alignment: DialogAlignment.Bottom,
+            offset: { dx: 0, dy: -20 },
+            confirm: {
+              value: 'button',
+              action: () => {
+                console.info('ActionSheet Button-clicking callback')
+              }
+            },
+            cancel: () => {
+              console.info('ActionSheet Closed callbacks')
+            },
+            sheets: [
+              {
+                title: 'apples',
+                action: () => {
+                  console.log('ActionSheet apples')
+                }
+              },
+              {
+                title: 'bananas',
+                action: () => {
+                  console.log('ActionSheet bananas')
+                }
+              },
+              {
+                title: 'pears',
+                action: () => {
+                  console.log('ActionSheet pears')
+                }
+              }
+            ],
+            onDidAppear: () => {
+              this.log += '# onDidAppear'
+              console.info("ActionSheet,is onDidAppear!")
+            },
+            onDidDisappear: () => {
+              this.log += '# onDidDisappear'
+              console.info("ActionSheet,is onDidDisappear!")
+            },
+            onWillAppear: () => {
+              this.log = 'Log information:onWillAppear'
+              console.info("ActionSheet,is onWillAppear!")
+            },
+            onWillDisappear: () => {
+              this.log += '# onWillDisappear'
+              console.info("ActionSheet,is onWillDisappear!")
+            }
+          })
+        }).backgroundColor(0x317aff).height("88px")
+      Text(this.log).fontSize(30).margin({ top: 200 })
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![zh-cn_image_action_lifecycle](figures/zh-cn_image_action_lifecycle.gif)
