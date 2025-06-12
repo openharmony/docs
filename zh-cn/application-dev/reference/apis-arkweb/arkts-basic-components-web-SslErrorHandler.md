@@ -16,19 +16,13 @@ SslErrorHandler的构造函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-## handleCancel<sup>20+</sup>
+## handleCancel<sup>9+</sup>
 
-handleCancel(abortLoading: boolean): void
+handleCancel(): void
 
 通知Web组件取消此请求。
 
 **系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名          | 类型 | 必填  | 说明             |
-| --------------- | -------- | ----  |------- |
-| abortLoading    | boolean  | 否    | 是否在取消请求后停止加载页面。<br>true表示停止加载页面，false表示继续加载页面。<br>默认值为false。 |
 
 ## handleConfirm<sup>9+</sup>
 
@@ -42,7 +36,7 @@ handleConfirm(): void
 
 handleCancel(abortLoading: boolean): void
 
-通知Web组件取消此请求。
+通知Web组件取消此请求,并根据参数决定是否停止加载。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
