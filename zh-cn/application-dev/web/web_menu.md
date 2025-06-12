@@ -310,10 +310,10 @@ struct WebComponent {
               this.previewWidth = this.uiContext!.px2vp(event.param.getPreviewWidth());
               this.previewHeight = this.uiContext!.px2vp(event.param.getPreviewHeight());
               if (event.param.getSourceUrl().indexOf("resource://rawfile/") == 0) {
-                this.previewImage = $rawfile(event.param.getSourceUrl().substr(19));
+                this.previewImage = $rawfile(event.param.getSourceUrl().substring(19));
               } else {
                 this.previewImage = event.param.getSourceUrl();
-              }1
+              }
               return true;
             }
             return false;
@@ -403,7 +403,7 @@ struct WebComponent {
           .onClick(async (event, result: SaveButtonOnClickResult) => {
             if (result == SaveButtonOnClickResult.SUCCESS) {
               try {
-                let context = getContext();
+                let context = this.context;
                 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
                 let uri = '';
                 if (this.imgUrl?.includes('rawfile')) {
