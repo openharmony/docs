@@ -222,7 +222,7 @@ hdc shell bm dump -n com.xxx.demo |grep versionCode
 
 ![示例图](figures/installed_hap_verisonCode.PNG)
 
-2. 新安装的应用查看版本，HAP或者HSP用IDE打开，查看里面module.json文件中的versionCode字段配置。
+2. 新安装的应用查看版本，HAP或者HSP用DevEco Studio打开，查看里面module.json文件中的versionCode字段配置。
 
 ![示例图](figures/hap_verisonCode.PNG)
 
