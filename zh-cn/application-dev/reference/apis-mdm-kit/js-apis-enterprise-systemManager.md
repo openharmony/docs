@@ -440,6 +440,102 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
     console.error(`Get update auth data failed. Code is ${error.code},message is ${error.message}`);
   });
 ```
+
+## systemManager.setAutoUnlockAfterReboot
+
+setAutoUnlockAfterReboot(admin: Want, isAllowed: boolean): void
+
+设置重启自动解锁。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
+| isAllowed | boolean | 是 | 表示是否支持重启自动解锁，true表示支持重启自动解锁，false表示不支持重启自动解锁，默认值为false。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                      |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device. |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let isAllowed: boolean = true;
+try {
+  systemManager.setAutoUnlockAfterReboot(wantTemp, isAllowed);
+  console.info('Succeeded in setting setAutoUnlockAfterReboot.');
+} catch (err) {
+  console.error(`Failed to set auto unlock after reboot. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## systemManager.getAutoUnlockAfterReboot
+
+getAutoUnlockAfterReboot(admin: Want): boolean
+
+获取是否支持重启自动解锁。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明                   |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+
+**返回值：**
+
+| 类型   | 说明                                |
+| ------ | ----------------------------------- |
+| boolean | 表示是否支持重启自动解锁，true表示支持重启自动解锁，false表示不支持重启自动解锁，默认值为false。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@ohos.base';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+try {
+  systemManager.getAutoUnlockAfterReboot(wantTemp);
+  console.info('Succeeded in getting auto unlock after reboot.');
+} catch (err) {
+  console.error(`Failed to get auto unlock after reboot. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
 ## SystemUpdateInfo
 
 待更新的系统版本信息。
