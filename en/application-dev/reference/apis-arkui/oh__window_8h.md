@@ -13,7 +13,7 @@ The **oh_window.h** file declares the window management APIs. You can use the AP
 
 **Since**: 15
 
-**Related module**: [WindowManager_NativeModule](_window_manager___native_module.md)
+**Related module**: [WindowManager](_window_manager___native_module.md)
 
 
 ## Summary
@@ -23,6 +23,8 @@ The **oh_window.h** file declares the window management APIs. You can use the AP
 
 | Name| Description|
 | -------- | -------- |
+| int32_t [OH_WindowManager_GetAllWindowLayoutInfoList](_window_manager___native_module.md#oh_windowmanager_getallwindowlayoutinfolist) (int64_t displayId, [WindowManager_Rect](_window_manager___rect.md) \*\*windowLayoutInfoList, size_t \*windowLayoutInfoSize) | Obtains the layout information array of all windows visible on a display. The layout information is arranged based on the current window stacking order, and the topmost window in the hierarchy is at index 0 of the array.  | 
+| void [OH_WindowManager_ReleaseAllWindowLayoutInfoList](_window_manager___native_module.md#oh_windowmanager_releaseallwindowlayoutinfolist) ([WindowManager_Rect](_window_manager___rect.md) \*windowLayoutInfoList) | Releases the memory occupied by a window layout information array.  | 
 | int32_t [OH_WindowManager_SetWindowStatusBarEnabled](_window_manager___native_module.md#oh_windowmanager_setwindowstatusbarenabled) (int32_t windowId, bool enabled, bool enableAnimation) | Sets whether to display the status bar in a window.|
 | int32_t [OH_WindowManager_SetWindowStatusBarColor](_window_manager___native_module.md#oh_windowmanager_setwindowstatusbarcolor) (int32_t windowId, int32_t color) | Sets the color of the status bar in a window.|
 | int32_t [OH_WindowManager_SetWindowNavigationBarEnabled](_window_manager___native_module.md#oh_windowmanager_setwindownavigationbarenabled) (int32_t windowId, bool enabled, bool enableAnimation) | Sets whether to display the navigation bar in a window.|
