@@ -2279,7 +2279,7 @@ set borderRadius(radius: BorderRadiuses)
 
 | 参数名 | 类型                                                         | 必填 | 说明                   |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------- |
-| radius | [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses) | 是   | RenderNode的边框圆角，单位为vp。 |
+| radius | [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses12) | 是   | RenderNode的边框圆角，单位为vp。 |
 
 
 get borderRadius(): BorderRadiuses
@@ -2294,7 +2294,7 @@ get borderRadius(): BorderRadiuses
 
 | 类型                                                         | 说明                   |
 | ------------------------------------------------------------ | ---------------------- |
-| [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses) | RenderNode的边框圆角，默认所有边框圆角为0vp。 |
+| [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses12) | RenderNode的边框圆角，默认所有边框圆角为0vp。 |
 
 **示例：**
 
