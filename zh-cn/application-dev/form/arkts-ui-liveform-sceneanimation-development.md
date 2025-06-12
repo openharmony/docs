@@ -273,8 +273,8 @@ export default class EntryFormAbility extends FormExtensionAbility {
   private saveFormSize(formId: string, wantParams: Record<string, Object>) {
     let width = 0;
     let height = 0;
-    width = wantParams[formInfo.FormParam.FORM_WIDTH_VP_KEY] as number;
-    height = wantParams[formInfo.FormParam.FORM_HEIGHT_VP_KEY] as number;
+    width = wantParams['ohos.extra.param.key.form_width_vp'] as number;
+    height = wantParams['ohos.extra.param.key.form_height_vp'] as number;
     console.log(`onUpdateForm, formId: ${formId}, size:[${width}, ${height}]`);
     let promise: Promise<preferences.Preferences> = preferences.getPreferences(this.context, DB_NAME);
 
