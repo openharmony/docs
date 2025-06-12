@@ -9,10 +9,10 @@
       - [创建ArkTS卡片](arkts-ui-widget-creation.md)
       - [配置卡片的配置文件](arkts-ui-widget-configuration.md)
       - [卡片生命周期管理](arkts-ui-widget-lifecycle.md)
-      - 开发卡片页面<!--arkts-ui-widget-page-->
-        - [卡片页面能力说明](arkts-ui-widget-page-overview.md)
-        - [卡片使用动效能力](arkts-ui-widget-page-animation.md)
-        - [卡片使用自定义绘制能力](arkts-ui-widget-page-custom-drawing.md)
+      - ArkTS卡片UI界面开发<!--arkts-ui-widget-page-->
+        - [ArkTS卡片界面开发概述](arkts-ui-widget-page-overview.md)
+        - [ArkTS卡片为组件添加动效](arkts-ui-widget-page-animation.md)
+        - [ArkTS卡片使用画布组件绘制自定义图形](arkts-ui-widget-page-custom-drawing.md)
       - 开发卡片事件<!--arkts-ui-widget-event-->
         - [卡片事件能力说明](arkts-ui-widget-event-overview.md)
         - [拉起卡片提供方的UIAbility(router事件)](arkts-ui-widget-event-router.md)

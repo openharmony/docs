@@ -1,4 +1,4 @@
-# 卡片使用动效能力
+# ArkTS卡片为组件添加动效
 
 
 ArkTS卡片开放了使用动画效果的能力，支持[显式动画](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md)、[属性动画](../reference/apis-arkui/arkui-ts/ts-animatorproperty.md)、[组件内转场](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md)能力。需要注意的是，ArkTS卡片使用动画效果时具有以下限制：
@@ -16,12 +16,14 @@ ArkTS卡片开放了使用动画效果的能力，支持[显式动画](../refere
 >
 >静态卡片不支持使用动效能力。
 
+### 1.组件自身动效
 以下示例代码实现了按钮旋转的动画效果：  
 ![WidgetAnimation](figures/WidgetAnimation.gif)
 
 
 
 ```ts
+//widgetcard.ets
 @Entry
 @Component
 struct AnimationCard {
@@ -42,6 +44,50 @@ struct AnimationCard {
           playMode: PlayMode.Normal,
         })
     }.height('100%').alignItems(VerticalAlign.Center)
+  }
+}
+```
+### 2.组件转场动效
+以下示例代码实现了同一TransitionEffect来实现图片的出现与消失的动画效果：
+<<<<<<< HEAD
+![WidgetAnimation](figures/WidgetTransitionAnimation.gif)
+
+```ts
+//widgetcard.ets
+=======
+![WidgetAnimation](figures/transitionComponent2.gif)
+
+```ts
+// xxx.ets
+>>>>>>> d6fef84536a750830535c83130d4efed86d2bc80
+@Entry
+@Component
+struct TransitionEffectExample1 {
+  @State flag: boolean = true;
+  @State show: string = 'show';
+
+  build() {
+    Column() {
+      Button(this.show).width(80).height(30).margin(30)
+        .onClick(() => {
+          // 点击Button控制Image的显示和消失
+          if (this.flag) {
+            this.show = 'hide';
+          } else {
+            this.show = 'show';
+          }
+          this.flag = !this.flag;
+        })
+      if (this.flag) {
+        // Image的显示和消失配置为相同的过渡效果（出现和消失互为逆过程）
+        // 出现时从指定的透明度为0、绕z轴旋转180°的状态，变为默认的透明度为1、旋转角为0的状态，透明度与旋转动画时长都为2000ms
+        // 消失时从默认的透明度为1、旋转角为0的状态，变为指定的透明度为0、绕z轴旋转180°的状态，透明度与旋转动画时长都为2000ms
+        Image($r('app.media.testImg')).width(200).height(200)
+          .transition(TransitionEffect.OPACITY.animation({ duration: 2000, curve: Curve.Ease }).combine(
+            TransitionEffect.rotate({ z: 1, angle: 180 })
+          ))
+      }
+    }.width('100%')
   }
 }
 ```
