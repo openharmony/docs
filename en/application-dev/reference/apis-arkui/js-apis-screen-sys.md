@@ -272,7 +272,7 @@ Stops extended mode. This API uses an asynchronous callback to return the result
 
 | Name| Type| Mandatory| Description                                     |
 | ------------ | --------------------------- | --- |-----------------------------------------|
-| expandScreen | Array&lt;number&gt;         | Yes  | IDs of the extended screens. Each ID must be an integer. The size of the **expandScreen** array cannot exceed 1000. |
+| expandScreen | Array&lt;number&gt;         | Yes  | IDs of the extended screens. Each ID is an integer. The size of the **expandScreen** array cannot exceed 1000. |
 | callback     | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If extended mode is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -313,7 +313,7 @@ Stops extended mode. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description                |
 | ------------ | ------------------- | --- |--------------------|
-| expandScreen | Array&lt;number&gt; | Yes  | IDs of the extended screens. Each ID must be an integer. The size of the expandScreen array cannot exceed 1000.|
+| expandScreen | Array&lt;number&gt; | Yes  | IDs of the extended screens. Each ID is an integer. The size of the expandScreen array cannot exceed 1000.|
 
 **Return value**
 
@@ -528,13 +528,13 @@ Sets the screen to independent display mode. This API uses a promise to return t
 
 | Name   | Type  | Mandatory| Description         |
 | --------- | ------ | ---- | ------------- |
-| uniqueScreen  | Array&lt;number&gt; | Yes  | Arry of independent screen IDs. Each ID must be an integer greater than or equal to 0; otherwise, error code 401 is returned.|
+| uniqueScreen  | Array&lt;number&gt; | Yes  | Arry of independent screen IDs. Each ID must be an integer greater than 0; otherwise, error code 401 is returned.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise used to returns the independent screen IDs, where each ID is an integer greater than or equal to 0.|
+| Promise&lt;Array&lt;number&gt;&gt; | Promise used to returns the independent screen IDs, where each ID is an integer greater than 0.|
 
 **Error codes**
 
@@ -767,53 +767,7 @@ screen.destroyVirtualScreen(screenId).then(() => {
   console.error(`Failed to destroy the virtual screen.Code:${err.code},message is ${err.message}`);
 });
 ```
-
-## screen.setVirtualScreenSurface
-
-setVirtualScreenSurface(screenId:number, surfaceId: string, callback: AsyncCallback&lt;void&gt;): void
-
-Sets the surface for a virtual screen. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-**Required permissions**: ohos.permission.CAPTURE_SCREEN (available only to system applications)
-
-**Parameters**
-
-| Name   | Type                     | Mandatory| Description                                                        |
-| --------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| screenId  | number                    | Yes  | Screen ID. The value must be an integer.                                                  |
-| surfaceId | string                    | Yes  | Surface ID of the virtual screen. The value can be customized.                                               |
-| callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the virtual screen surface is successfully set, **err** is **undefined**; otherwise, **err** is an error object.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
-
-| ID| Error Message|
-| ------- | ----------------------- |
-| 201 | Permission verification failed. |
-| 202     | Permission verification failed. A non-system application calls a system API.|
-| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 1400001 | Invalid display or screen. |
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let screenId: number = 1;
-let surfaceId: string = '2048';
-screen.setVirtualScreenSurface(screenId, surfaceId, (err: BusinessError) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to set the surface for the virtual screen. Code:${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info('Succeeded in setting the surface for the virtual screen.');
-});
-```
-## screen.setScreenPrivacyMaskImage<sup>18+</sup>
+## screen.setScreenPrivacyMaskImage<sup>19+</sup>
 
 setScreenPrivacyMaskImage(screenId:number, image?: image.PixelMap): Promise&lt;void&gt;
 
@@ -865,6 +819,52 @@ image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
 }).catch((error: BusinessError) => {
   console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
 })
+```
+
+## screen.setVirtualScreenSurface
+
+setVirtualScreenSurface(screenId:number, surfaceId: string, callback: AsyncCallback&lt;void&gt;): void
+
+Sets the surface for a virtual screen. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Required permissions**: ohos.permission.CAPTURE_SCREEN (available only to system applications)
+
+**Parameters**
+
+| Name   | Type                     | Mandatory| Description                                                        |
+| --------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| screenId  | number                    | Yes  | Screen ID. The value must be an integer.                                                  |
+| surfaceId | string                    | Yes  | Surface ID of the virtual screen. The value can be customized.                                               |
+| callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the virtual screen surface is successfully set, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 201 | Permission verification failed. |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 1400001 | Invalid display or screen. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let screenId: number = 1;
+let surfaceId: string = '2048';
+screen.setVirtualScreenSurface(screenId, surfaceId, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to set the surface for the virtual screen. Code:${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in setting the surface for the virtual screen.');
+});
 ```
 ## screen.setVirtualScreenSurface
 
@@ -989,7 +989,7 @@ console.info('Succeeded in getting the screen rotation lock status. isLocked:' +
 
 setScreenRotationLocked(isLocked: boolean): Promise&lt;void&gt;
 
-Sets whether to lock auto rotate. This API uses a promise to return the result.
+Sets whether to lock auto rotate. This API uses a promise to return the result. It is unavailable for 2-in-1 devices.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1031,7 +1031,7 @@ screen.setScreenRotationLocked(isLocked).then(() => {
 
 setScreenRotationLocked(isLocked: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether to lock auto rotate. This API uses an asynchronous callback to return the result.
+Sets whether to lock auto rotate. This API uses an asynchronous callback to return the result. It is unavailable for 2-in-1 devices.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1222,7 +1222,7 @@ Defines virtual screen parameters.
 
 makeMirrorWithRegion(mainScreen:number, mirrorScreen:Array&lt;number&gt;, mainScreenRegion:Rect): Promise&lt;number&gt;
 
-Sets a rectangle on the screen to mirror mode. This API uses a promise to return the result.
+Sets a rectangle on the screen to mirror mode. This API uses a promise to return the result. After this API is called, you are advised not to rotate or fold the screen further. Otherwise, the mirrored content may be abnormal.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1283,10 +1283,10 @@ Before calling any API in **Screen**, you must use **[getAllScreens()](#screenge
 
 | Name             | Type                                      | Read-Only| Optional| Description                                                         |
 | ----------------- | ---------------------------------------------- | ---- | ---- |-------------------------------------------------------------|
-| id                | number                                         | Yes  | No  | Screen ID. The value must be an integer.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core                                             |
-| parent            | number                                         | Yes  | No  | ID of the group to which a screen belongs. The value must be an integer.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core                                         |
+| id                | number                                         | Yes  | No  | Screen ID, which is an integer.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core                                             |
+| parent            | number                                         | Yes  | No  | ID of the group to which a screen belongs, where the ID is an integer.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core                                         |
 | supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | Yes  | No  | Mode set supported by the screen.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core                                                 |
-| activeModeIndex   | number                                         | Yes  | No  | Index of the active screen mode. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware. The value must be an integer.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| activeModeIndex   | number                                         | Yes  | No  | Index of the active screen mode. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware. The value is an integer.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
 | orientation       | [Orientation](#orientation)                     | Yes  | No  | Screen orientation.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core                                                      |
 | sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | Yes  | No  | Source mode of the screen.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core                                                    |
 | serialNumber<sup>15+</sup> | string        | Yes  | Yes  | Serial number of the extended screen. Currently, this property is available only for 2-in-1 devices.  <br>**System capability**: SystemCapability.WindowManager.WindowManager                        |       
@@ -1698,10 +1698,10 @@ Defines the screen mode information.
 
 | Name       | Type| Readable| Writable| Description                                              |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |
-| id          | number   | Yes  | Yes  | Mode ID. The supported mode is determined by the device resolution and refresh rate. The value must be an integer.| 
-| width       | number   | Yes  | Yes  | Width of the screen, in px. The value must be an integer.                               |
-| height      | number   | Yes  | Yes  | Height of the screen, in px. The value must be an integer.                               |
-| refreshRate | number   | Yes  | Yes  | Refresh rate of the screen, in hz. The value must be an integer.                                    |
+| id          | number   | Yes  | Yes  | Mode ID. The supported mode is determined by the device resolution and refresh rate. The value is an integer.| 
+| width       | number   | Yes  | Yes  | Width of the screen, in px. The value is an integer.                               |
+| height      | number   | Yes  | Yes  | Height of the screen, in px. The value is an integer.                               |
+| refreshRate | number   | Yes  | Yes  | Refresh rate of the screen, in hz. The value is an integer.                                    |
 
 ## Rect<sup>15+</sup>
 
