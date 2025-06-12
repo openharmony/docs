@@ -2722,7 +2722,9 @@ try {
 
 getImmersiveModeEnabledState(): boolean
 
-查询当前窗口是否已经开启沉浸式布局。
+查询当前窗口是否开启沉浸式布局。
+
+返回值与[setImmersiveModeEnabledState()](#setimmersivemodeenabledstate12)以及[setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9)设置结果一致，若未调用上述两个接口则默认返回false。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -2731,7 +2733,7 @@ getImmersiveModeEnabledState(): boolean
 **返回值：**
 | 类型     | 说明                                                                                 |
 | ------- | ------------------------------------------------------------------------------------ |
-| boolean | 是否已经开启沉浸式布局。<br>true表示开启，false表示关闭。</br> |
+| boolean | 是否设置开启沉浸式布局。</br>true表示开启沉浸式布局，false表示关闭沉浸式布局。 |
 
 **错误码：**
 
@@ -12906,7 +12908,9 @@ setDefaultDensityEnabled(enabled: boolean): void
 
 设置应用是否使用系统默认Density，调用此接口前，需先调用[WindowStage.loadContent()](#loadcontent9-2)初始化布局，确保接口调用时序正确。
 
-不调用此接口进行设置，则表示不使用系统默认Density，即窗口会跟随系统显示大小变化重新布局。
+不调用此接口进行设置，则表示不使用系统默认Density。
+
+不使用系统默认Density时，若调用过[setCustomDensity()](#setcustomdensity15)，则窗口会跟随用户自定义的显示大小变化重新布局，否则跟随系统显示大小变化重新布局。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
