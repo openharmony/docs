@@ -7,7 +7,7 @@
 
 ## flexBasis
 
-flexBasis(value: number | string)
+flexBasis(value: number | string): T
 
 设置组件的基准尺寸。
 
@@ -23,9 +23,15 @@ flexBasis(value: number | string)
 | ------ | -------------------------- | ---- | ------------------------------------------------------------ |
 | value  | number&nbsp;\|&nbsp;string | 是   | 设置组件在父容器主轴方向上的基准尺寸。<br/>默认值：'auto'（表示组件在主轴方向上的基准尺寸为组件原本的大小）。<br/>string类型可选值：可以转化为数字的字符串（如'10'）或带长度单位的字符串（如'10px'）或'auto'，不允许设置百分比字符串。<br/>number：取值范围(0,+∞)，单位为vp。<br/>异常值：默认为'auto'。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+|  T | 返回当前组件。 |
+
 ## flexGrow
 
-flexGrow(value: number)
+flexGrow(value: number): T
 
 设置组件在父容器的剩余空间所占比例。
 
@@ -41,9 +47,15 @@ flexGrow(value: number)
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | number | 是   | 设置父容器在主轴方向上的剩余空间分配给此属性所在组件的比例。<br/>取值范围[0,+∞)，默认值：0 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+|  T | 返回当前组件。 |
+
 ## flexShrink
 
-flexShrink(value: number)
+flexShrink(value: number): T
 
 设置父容器压缩尺寸分配给此属性所在组件的比例。当父容器为Column、Row时，需设置主轴方向的尺寸。
 
@@ -59,9 +71,15 @@ flexShrink(value: number)
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | number | 是   | 设置父容器压缩尺寸分配给此属性所在组件的比例。<br/>父容器为[Column](ts-container-column.md)、[Row](ts-container-row.md)时，默认值：0, 取值范围[0,+∞)。<br/> 父容器为[Flex](ts-container-flex.md)时，默认值：1 <br/>[constraintSize](ts-universal-attributes-size.md#constraintsize)限制组件的尺寸范围。[Column](ts-container-column.md)和[Row](ts-container-row.md)即使设置了[constraintSize](ts-universal-attributes-size.md#constraintsize)，在未设置主轴尺寸（[width](ts-universal-attributes-size.md#width)/[height](ts-universal-attributes-size.md#height)/[size](ts-universal-attributes-size.md#size)）时仍遵守默认布局行为，在主轴上自适应子组件尺寸，此时flexShrink不生效。|
 
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+|  T | 返回当前组件。 |
+
 ## alignSelf
 
-alignSelf(value: ItemAlign)
+alignSelf(value: ItemAlign): T
 
 子组件在父容器交叉轴的对齐格式。
 
@@ -77,6 +95,11 @@ alignSelf(value: ItemAlign)
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [ItemAlign](ts-appendix-enums.md#itemalign) | 是   | 子组件在父容器交叉轴的对齐格式，会覆盖[Flex](ts-container-flex.md)、[Column](ts-container-column.md)、[Row](ts-container-row.md)、[GridRow](ts-container-gridrow.md)布局容器中的alignItems设置。<br/>[GridCol](./ts-container-gridcol.md)可以绑定alignSelf属性来改变它自身在交叉轴方向上的布局。<br/>默认值：ItemAlign.Auto |
 
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+|  T | 返回当前组件。 |
 
 ## 示例
 
