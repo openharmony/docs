@@ -199,7 +199,6 @@ struct ReusableListItem {
 
 每个瀑布流分组可以分别设置自己的列数、行间距、列间距、margin和子节点总数，如下代码可以实现上述效果：
 
-
 ```ts
 @Entry
 @Component
