@@ -1,10 +1,10 @@
-# Analyzing Cpp Crash
+# Analyzing C++ Crash
 
-A cpp crash refers to a process crash in C/C++ application. The FaultLogger module provides capabilities such as process crash detection, log collection, log storage, and log reporting, helping you to locate faults more effectively.
+C++ crash refers to a process crash in C/C++ application. The FaultLogger module provides capabilities such as process crash detection, log collection, log storage, and log reporting, helping you to locate faults more effectively.
 
-The following introduces cpp crash detection, crash fault locating and analysis, and typical cases. To use this guideline, you need to have basic knowledge about stack and heap in C/C++.
+The following introduces process crash detection, crash fault locating and analysis, and typical cases. To use this guideline, you need to have basic knowledge about stack and heap in C/C++.
 
-## Cpp Crash Detection
+## C++ Crash Detection
 
 Process crash detection is based on the posix signal mechanism. Currently, the exception signals that can be processed are as follows:
 
@@ -19,65 +19,65 @@ Process crash detection is based on the posix signal mechanism. Currently, the e
 | 16 | SIGSTKFLT | Stack error| The processor performs an incorrect stack operation, such as a pop when the stack is empty or a push when the stack is full.|
 | 31 | SIGSYS | Incorrect system call| An incorrect or invalid parameter is used in a system call.|
 
-Some of the preceding fault signals are classified into codes based on specific scenarios.
-**SIGILL** occurs in Unix and Unix-like operating systems. It indicates an invalid instruction exception. The **SIGILL** signal is usually triggered by the following causes:
-| No.| Code| Description| Trigger Cause|
+Some of the preceding fault signals are classified into codes based on specific scenarios. 
+**SIGILL** indicates an invalid instruction exception in Unix and Unix-like operating systems. The trigger causes of **SIGILL** are as follows. 
+| Code| Value| Description| Trigger Cause|
 | -------- | -------- | -------- | -------- |
-| 1 | ILL_ILLOPC | Illegal operation code| A privileged instruction or an instruction that is unsupported by the CPU is executed.|
-| 2 | ILL_ILLOPN | Illegal operand| An incorrect operand or improper operand type is used.|
-| 3 | ILL_ILLADR | Illegal address| A program accesses an invalid memory address or an unaligned memory address.|
-| 4 | ILL_ILLTRP | Illegal trap| A program performs an illegal trap instruction or an undefined operation.|
-| 5 | ILL_PRVOPC | Illegal privileged operation code| A common user executes a privileged instruction.|
-| 6 | ILL_PRVREG | Illegal privileged register| A common user accesses a privileged register.|
-| 7 | ILL_COPROC | Illegal coprocessor| A program performs an undefined coprocessor instruction.|
-| 8 | ILL_BADSTK | Illegal stack| A program performs an operation at an invalid stack address, or when the stack overflows.|
+| 1 | ILL_ILLOPC | Illegal operation code.| A privileged instruction or an instruction that is unsupported by the CPU is executed.|
+| 2 | ILL_ILLOPN | Illegal operand.| An incorrect operand or improper operand type is used.|
+| 3 | ILL_ILLADR | Illegal address.| A program accesses an invalid memory address or an unaligned memory address.|
+| 4 | ILL_ILLTRP | Illegal trap.| A program performs an illegal trap instruction or an undefined operation.|
+| 5 | ILL_PRVOPC | Illegal privileged operation code.| A common user executes a privileged instruction.|
+| 6 | ILL_PRVREG | Illegal privileged register.| A common user accesses a privileged register.|
+| 7 | ILL_COPROC | Illegal coprocessor.| A program performs an undefined coprocessor instruction.|
+| 8 | ILL_BADSTK | Illegal stack.| A program performs an operation at an invalid stack address, or when the stack overflows.|
 
-**SIGTRAP** usually occurs in debugging and tracking. The four scenarios of the **SIGTRAP** signal are described as follows.
-| No.| Code| Description| Trigger Cause|
+**SIGTRAP** usually occurs in debugging and tracking. The four scenarios of the **SIGTRAP** signal are described as follows. 
+| Code| Value| Description| Trigger Cause|
 | -------- | -------- | -------- | -------- |
-| 1 | TRAP_BRKPT | Software breakpoint| The software breakpoint is reached in a program. When debugging a program, a software breakpoint at the key position can be used to pause the program execution and check information such as variable values.|
-| 2 | TRAP_TRACE | Single-step debugging| A single instruction is executed in a program. Single instruction can be used to check the execution result of each instruction.|
-| 3 | TRAP_BRANCH | Branch Tracing| A branch instruction is executed in a program. Branch instruction can be used to control the execution process of a program, such as if statements and loop statements.|
-| 4 | TRAP_HWBKPT | Hardware breakpoint| The hardware breakpoint is reached in a program. When debugging a program, a hardware breakpoint at the key position can be used to pause the program execution and check information such as variable values. Different from a software breakpoint, a hardware breakpoint is implemented in CPU hardware. Therefore, whether a hardware breakpoint is triggered can be detected in real time during program execution.|
+| 1 | TRAP_BRKPT | Software breakpoint.| The software breakpoint is reached in a program. When debugging a program, a software breakpoint at the key position can be used to pause the program execution and check information such as variable values.|
+| 2 | TRAP_TRACE | Single-step debugging.| A single instruction is executed in a program. Single instruction can be used to check the execution result of each instruction.|
+| 3 | TRAP_BRANCH | Branch tracing.| A branch instruction is executed in a program. Branch instruction can be used to control the execution process of a program, such as if statements and loop statements.|
+| 4 | TRAP_HWBKPT | Hardware breakpoint.| The hardware breakpoint is reached in a program. When debugging a program, a hardware breakpoint at the key position can be used to pause the program execution and check information such as variable values. Different from a software breakpoint, a hardware breakpoint is implemented in CPU hardware. Therefore, whether a hardware breakpoint is triggered can be detected in real time during program execution.|
 
-The **SIGBUS** signal is sent by the operating system to a process. It usually indicates a memory access error. The codes of the **SIGBUS** signal are described as follows:
-| No.| Code| Description| Trigger Cause|
+The **SIGBUS** signal is sent by the operating system to a process. It usually indicates a memory access error. The trigger causes of **SIGBUS** are as follows. 
+| Code| Value| Description| Trigger Cause|
 | -------- | -------- | -------- | -------- |
-| 1 | BUS_ADRALN | Unaligned memory address| A program accesses an unaligned memory address, for example, a non-even address of a 4-byte integer.|
-| 2 | BUS_ADRERR | Invalid memory address| A program accesses a memory address that does not exist in the Process Address Space, such as a null pointer.|
-| 3 | BUS_OBJERR | Invalid object access| A program accesses an object that is deleted or not initialized.|
-| 4 | BUS_MCEERR_AR | Invalid hardware memory check| A checksum error is detected when the hardware memory is accessed.|
-| 5 | BUS_MCEERR_AO | Invalid hardware memory check| An address check error is detected when the hardware memory is accessed.|
+| 1 | BUS_ADRALN | Unaligned memory address.| A program accesses an unaligned memory address, for example, a non-even address of a 4-byte integer.|
+| 2 | BUS_ADRERR | Invalid memory address.| A program accesses a memory address that does not exist in the Process Address Space, such as a null pointer.|
+| 3 | BUS_OBJERR | Invalid object access.| A program accesses an object that is deleted or not initialized.|
+| 4 | BUS_MCEERR_AR | Invalid hardware memory check.| A checksum error is detected when the hardware memory is accessed.|
+| 5 | BUS_MCEERR_AO | Invalid hardware memory check.| An address check error is detected when the hardware memory is accessed.|
 
-The **SIGFPE** signal indicates a floating-point exception or an arithmetic exception. The codes of the **SIGFPE** signal are described as follows:
-| No.| Code| Description| Trigger Cause|
+The **SIGFPE** signal indicates a floating-point exception or an arithmetic exception. The trigger causes of **SIGFPE** are as follows. 
+| Code| Value| Description| Trigger Cause|
 | -------- | -------- | -------- | -------- |
-| 1 | FPE_INTDIV | Invalid integer division| The divisor in an integer division is zero.  |
-| 2 | FPE_INTOVF | Integer overflow| The divisor in an integer division is negative.  |
-| 3 | FPE_FLTDIV | Invalid floating-point division| The divisor in a floating-point division is zero.  |
-| 4 | FPE_FLTOVF | Floating-point overflow| The divisor in a floating-point division is negative.  |
-| 5 | FPE_FLTUND | Floating-point underflow| The divisor in a floating-point division is zero.  |
-| 6 | FPE_FLTRES | Invalid floating-point result| The divisor in a floating-point division is positive.  |
-| 7 | FPE_FLTINV | Invalid floating-point operation| The divisor in a floating-point division is negative.  |
-| 8 | FPE_FLTSUB | Floating-point trap| The divisor in a floating-point division is zero.  |
+| 1 | FPE_INTDIV | Invalid integer division.| The divisor in an integer division is zero. The program performs an integer division operation while the divisor is zero.|
+| 2 | FPE_INTOVF | Integer overflow.| The divisor in an integer division is negative. The program performs an integer division operation while the divisor is negative.|
+| 3 | FPE_FLTDIV | Invalid floating-point division.| The divisor in a floating-point division is zero. The program performs a floating-point division operation while the divisor is zero.|
+| 4 | FPE_FLTOVF | Floating-point overflow.| The divisor in a floating-point division is negative. The program performs a floating-point division operation while the divisor is negative.|
+| 5 | FPE_FLTUND | Floating-point underflow error.| The divisor in a floating-point division is zero. The program performs a floating-point division operation while the divisor is zero.|
+| 6 | FPE_FLTRES | Invalid floating-point result.| The divisor in a floating-point division is positive. The program performs a floating-point division operation while the divisor is positive.|
+| 7 | FPE_FLTINV | Invalid floating-point operation.| The divisor in a floating-point division is negative. The program performs a floating-point division operation while the divisor is negative.|
+| 8 | FPE_FLTSUB | Floating-point trap.| The divisor in a floating-point division is zero. The program performs a floating-point division operation while the divisor is zero.|
 
-The **SIGSEGV** signal occurs when a process accesses a non-existent memory address or an inaccessible address. The codes of the **SIGSEGV** signal are described as follows:
-| No.| Code| Description| Trigger Cause|
+**SIGSEGV** occurs when a process accesses a non-existent memory address or an inaccessible address. The trigger causes of the **SIGSEGV** signal are described as follows: 
+| Code| Value| Description| Trigger Cause|
 | -------- | -------- | -------- | -------- |
-| 1 | SEGV_MAPERR | Non-existent memory address| A process accesses a memory address that does not exist or that is not mapped to the Process Address Space. This exception is usually caused by pointer errors or memory leaks.|
-| 2 | SEGV_ACCERR | Inaccessible memory address| A process accesses an inaccessible memory address marked by the operating system, such as a read-only memory address or a memory address without execution permission. This exception is usually caused by buffer overflow or modifying read-only memory.|
+| 1 | SEGV_MAPERR | Non-existent memory address.| A process accesses a memory address that does not exist or that is not mapped to the process address space. This exception is usually caused by pointer errors or memory leaks.|
+| 2 | SEGV_ACCERR | Inaccessible memory address.| A process accesses an inaccessible memory address marked by the operating system, such as a read-only memory address or a memory address without execution permission. This exception is usually caused by buffer overflow or modifying read-only memory.|
 
-The classification of codes cannot only be based on **signo**, but also be based on the causes of the signal. The preceding describes the codes classified based on the **signo** of each signal, while the following describes the codes classified based on causes of all signals:
-| No.| Code| Description| Trigger Cause|
+The classification of codes cannot only be based on **signo**, but also be based on the causes of the signal. The preceding describes the codes classified based on the **signo** of each signal, while the following describes the codes classified based on causes of all signals: 
+| Code| Value| Description| Trigger Cause|
 | -------- | -------- | -------- | -------- |
-| 0 | SI_USER | User space signal|This signal is sent by a process in user space to another process, usually using the **kill()**. For example, when a user presses **Ctrl+C** on the terminal, a **SIGINT** signal is sent to all foreground processes.|
-| 0x80 | SI_KERNEL | Kernel signal|This signal is sent by the kernel to the process. It is usually sent when the kernel detects some errors or exceptions. For example, when a process accesses an invalid memory address or executes an invalid instruction, the kernel sends a **SIGSEGV** signal to the process.|
-| -1 | SI_QUEUE | **sigqueue()** signal|This signal is sent by **sigqueue()**, and an additional integer value and a pointer can be carried. It is usually used for advanced communication between processes, such as transferring data or notifying a process that an event occurs.|
-| -2 | SI_TIMER | Timer signal|This signal is sent by a timer and is usually used to execute a scheduled task or a periodic task. For example, when a timer expires, the kernel sends a **SIGALRM** signal to the process.|
-| -3 | SI_MESGQ | Message queue signal|This signal is sent by a message queue and is usually used for communication across processes. For example, when a process sends a message to a message queue, the kernel sends a **SIGIO** signal to the receiving process.|
-| -4 | SI_ASYNCIO | Asynchronous I/O signal|This signal is sent by an asynchronous I/O and is usually used for a non-blocking I/O. For example, when an I/O operation on a file descriptor is complete, the kernel sends a **SIGIO** signal to the process.|
-| -5 | SI_SIGIO | Synchronous I/O signal|This signal is sent by a synchronous I/O and is usually used for a non-blocking I/O. For example, when an I/O operation on a file descriptor is complete, the kernel sends a **SIGIO** signal to the process.|
-| -6 | SI_TKILL | **tkill()** signal|This signal is sent by the function **tkill()**, which is similar to the function **kill()**. In addition, you can specify the ID of the thread that sends the signal. It is usually used to send a signal to a specified thread in a multithreaded program.|
+| 0 | SI_USER | User space.|This signal is sent by a process in user space to another process, usually using the **kill()**. For example, when a user presses **Ctrl+C** on the terminal, a **SIGINT** signal is sent to all foreground processes.|
+| 0x80 | SI_KERNEL | Kernel.|This signal is sent by the kernel to the process. It is usually sent when the kernel detects some errors or exceptions. For example, when a process accesses an invalid memory address or executes an invalid instruction, the kernel sends a **SIGSEGV** signal to the process.|
+| -1 | SI_QUEUE | The **sigqueue()** function.|This signal is sent by **sigqueue()**, and an additional integer value and a pointer can be carried. It is usually used for advanced communication between processes, such as transferring data or notifying a process that an event occurs.|
+| -2 | SI_TIMER | Timer.|This signal is sent by a timer and is usually used to execute a scheduled task or a periodic task. For example, when a timer expires, the kernel sends a **SIGALRM** signal to the process.|
+| -3 | SI_MESGQ | Message queue.|This signal is sent by a message queue and is usually used for communication across processes. For example, when a process sends a message to a message queue, the kernel sends a **SIGIO** signal to the receiving process.|
+| -4 | SI_ASYNCIO | Asynchronous I/O.|This signal is sent by a synchronous I/O and is usually used for a non-blocking I/O. For example, when an I/O operation on a file descriptor is complete, the kernel sends a **SIGIO** signal to the process.|
+| -5 | SI_SIGIO | Synchronous I/O.|This signal is sent by a synchronous I/O and is usually used for a non-blocking I/O. For example, when an I/O operation on a file descriptor is complete, the kernel sends a **SIGIO** signal to the process.|
+| -6 | SI_TKILL | The **tkill()** function.|This signal is sent by the function **tkill()**, which is similar to the function **kill()**. In addition, you can specify the ID of the thread that sends the signal. It is usually used to send a signal to a specified thread in a multithreaded program.|
 
 ## Fault Analysis
 
@@ -89,9 +89,9 @@ The process crash log is managed together with the app freeze and JS crash logs 
 
     DevEco Studio collects process crash logs from **/data/log/faultlog/faultlogger/** to FaultLog, where logs are displayed by process name, fault, and time. For details about how to obtain logs, see <!--RP1-->[DevEco Studio User Guide-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-fault-log-V5)<!--RP1End-->.
 
-- Method 2: hiAppEvent APIs
+- Method 2: HiAppEvent APIs
 
-    hiAppEvent provides APIs to subscribe to various fault logs. For details, see [Introduction to HiAppEvent](hiappevent-intro.md).
+    HiAppEvent provides APIs to subscribe to various fault information. For details, see [Introduction to HiAppEvent](hiappevent-intro.md).
 
 <!--Del-->
 - Method 3: Shell
@@ -106,7 +106,7 @@ The process crash log is managed together with the app freeze and JS crash logs 
 
 <!--DelEnd-->
 **Fault Logs of Null Pointer**
-In this scenario, a message is printed in the log, indicating that the fault may be caused by null pointer dereference.
+In this scenario, a message is printed in the log, indicating that the fault may be caused by a null pointer dereference. 
 The following is the core content of a process crash log archived by DevEco Studio in FaultLog. The content is the same as that archived in /**data/log/faultlog/faultlogger**.
 
 ```
@@ -115,7 +115,7 @@ Generated by HiviewDFX@OpenHarmony
 Device info:OpenHarmony 3.2        <- Device information
 Build info:OpenHarmony 5.0.0.23    <- Build information
 Fingerprint:cdf52fd0cc328fc432459928f3ed8edfe8a72a92ee7316445143bed179138073 <- Fingerprint
-Module name:crasher_cpp            <-Module name
+Module name:crasher_cpp            <- Module name
 Timestamp:2024-05-06 20:10:51.000  <- Timestamp when the fault occurs
 Pid:9623   <- Process ID
 Uid:0         <- User ID
@@ -232,7 +232,7 @@ OpenFiles:   <- FD information of the file opened by the process when the fault 
 25->/dev/ptmx native object of unknown type 0
 26->/dev/ptmx native object of unknown type 0
 
-HiLog:   <- Hilog logs when the fault occurs
+HiLog:   <- HiLog logs when the fault occurs
 05-06 20:10:51.301  9623  9623 E C03f00/MUSL-SIGCHAIN: signal_chain_handler call 2 rd sigchain action for signal: 11
 05-06 20:10:51.306  9623  9623 I C02d11/DfxSignalHandler: DFX_SigchainHandler :: sig(11), pid(9623), tid(9623).
 05-06 20:10:51.307  9623  9623 I C02d11/DfxSignalHandler: DFX_SigchainHandler :: sig(11), pid(9623), processName(./crasher_cpp), threadName(crasher_cpp).
@@ -349,7 +349,7 @@ f7cab000-f7cad000 rw-p 0011f000 /system/lib/ld-musl-arm.so.1
 f7cad000-f7cbc000 rw-p 00000000 [anon:ld-musl-arm.so.1.bss]
 ffd07000-ffd28000 rw-p 00000000 [stack]
 ffff0000-ffff1000 r-xp 00000000 [vectors]
-OpenFiles:   <- FD information of the file opened by the process when the fault occurs
+OpenFiles:   <-  FD information of the file opened by the process when the fault occurs
 0->/dev/pts/1 native object of unknown type 0
 1->/dev/pts/1 native object of unknown type 0
 2->/dev/pts/1 native object of unknown type 0
@@ -361,7 +361,7 @@ OpenFiles:   <- FD information of the file opened by the process when the fault 
 26->/dev/ptmx native object of unknown type 0
 ```
 <!--DelEnd-->
-**Fault Logs of Stack Overflow**
+**Fault Logs of Stack Overflow** 
 If the following prompt information is printed in logs, it indicates that the fault may be caused by stack overflow. The key logs are as follows:
 
 ```
@@ -369,7 +369,7 @@ Generated by HiviewDFX@OpenHarmony
 ================================================================
 Device info:OpenHarmony 3.2            <- Device information
 Build info:OpenHarmony 5.0.0.23        <- Build information
-Fingerprint:8bc3343f50024204e258b8dce86f41f8fcc50c4d25d56b24e71fe26c0a23e321 <- Fingerprint
+Fingerprint:8bc3343f50024204e258b8dce86f41f8fcc50c4d25d56b24e71fe26c0a23e321  <- Fingerprint
 Module name:crasher_cpp                <- Module name
 Timestamp:2024-05-06 20:18:24.000      <- Timestamp when the fault occurs
 Pid:9838                               <- Process ID
@@ -380,7 +380,7 @@ Reason:Signal:SIGSEGV(SEGV_ACCERR)@0xf76b7ffc current thread stack low address =
 ...
 ```
 
-**Fault Logs of Stack Coverage**
+**Fault Logs of Stack Coverage** 
 In the stack coverage scenario, the stack frame cannot be traced because the stack memory is illegally accessed. A message is displayed in the log, indicating that the stack fails to be returned and the system attempts to parse the thread stack to obtain an unreliable call stack. The information is provided for problem analysis. The key logs are as follows:
 
 ```
@@ -407,8 +407,8 @@ Tid:10026, Name:crasher_cpp               <- Thread ID, thread name
 ...
 ```
 
-**Fault Logs of Asynchronous Thread**
-(Currently, this logging only supports ARM64 architecture and is enabled in the debugging application **HAP_DEBUGGABLE**.)
+**Fault Logs of Asynchronous Thread** 
+(Currently, this logging only supports ARM64 architecture and is enabled in the debugging application **HAP_DEBUGGABLE**.) 
 When an asynchronous thread crashes, the stack of the thread that submits the asynchronous task is also printed to locate the fault. The **SubmitterStacktrace** is used to differentiate the call stack of the crash thread and that of the submitting thread. The key logs are as follows:
 
 ```
@@ -447,8 +447,8 @@ In application development, you can locate the problematic code in the cppcrash 
 
 #### Method 2: SDK llvm-addr2line
 
-- Obtain the symbol list
-    Obtain the .so file with symbols in the crash stack, which should be the same as that of the application or system.
+- Obtain the symbol list.
+    (1) Obtain the .so file with symbols in the crash stack. Ensure that the file version is the same as that of the running application or system.
     Compiled and built in DevEco Studio, the .so file of dynamic library is generated with symbols by default in **/build/default/intermediates/libs**. You can run the **Linux file** command to check whether the BuildID of two .so files match. Generated by a compiler, BuildID is the unique identifier of a binary file, in which "not stripped" indicates that a symbol table is included.
 
     ```
@@ -456,10 +456,10 @@ In application development, you can locate the problematic code in the cppcrash 
     libbabel.so: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=fdb1b5432b9ea4e2a3d29780c3abf30e2a22da9d, with debug_info, not stripped
     ```
 
-    Note: The symbol table of the system dynamic library is archived with the version.
+    **Note**: The symbol table of the system dynamic library is archived with the version.
 
-- Locate the line number using llvm-addr2line
-    You can find llvm-addr2line in **[SDK DIR PATH]\OpenHarmony\11\native\llvm\bin**, or you need to search for the path as it varies based on the SDK version. 
+- Locate the line number using llvm-addr2line.
+    You can find llvm-addr2line in **[SDK DIR PATH]\OpenHarmony\11\native\llvm\bin**, or you need to search for the path as it varies based on the SDK version.
     The sample stack is as follows (part are omitted):
 
     ```
@@ -495,7 +495,7 @@ In application development, you can locate the problematic code in the cppcrash 
     fp:f7d8a5a0 ip:00000000 sp:ffc47aac lr:f4d6b0c7 pc:bd843510
     ```
 
-    Parsed by SDK llvm-addr2line, the row number of problematic code is as follows:
+    Parsed by SDK llvm-addr2line, the line number of problematic code is as follows:
 
     ```
     [SDK DIR PATH]\OpenHarmony\11\native\llvm\bin> .\llvm-addr2line.exe -Cfie libentry.so 3150
@@ -517,27 +517,175 @@ Review the context after the row number of the stack top is obtained. As shown i
 
 This example is constructed, and actual scenario is usually more complicate and needs to be analyzed based on services.
 
-### Disassembling (optional)
+### Disassembling (Optional)
 
 Generally, if the problem is clear, you can locate the problem by decompiling the code line. In a few cases, if the method called in a line contains multiple parameters and the parameters involve structs, you need to use disassembly for further analysis.
 
-```
-objdump -S xxx.so > xxx.txt
-objdump -d xxxx                    Disassembles the xxxx file.
-objdump -S -l xxxx                 Disassembles the xxxx file and display the source code line.
+Case
+
+The header information of the CPPCRASH log is as follows:
+
+```text
+Process name:com.ohos.medialibrary.medialibrarydata
+
+Process life time:13402s
+
+Reason:SIGSEGV(SEGV_MAPERR)@0x0000005b3b46c000
+
+Fault thread info:
+
+Tid:48552, Name:UpradeTask
+
+#00 pc 00000000000a87e4 /system/lib/ld-musl-aarch64.so.1(memcpy+356)(3c3e7fb27680dc2ee99aa08dd0f81e85)
+
+...
 ```
 
-### Common CppCrash Faults and Causes
+Analysis procedure:
 
-- Null pointer dereference
-    When a crash log is in format **SIGSEGV(SEGV_MAPERR)@0x00000000** or the values of the input parameter registers such as **r0** and **r1** printed in the **Register** are **0**, check whether a null pointer is input when invoking a method.
-    When a crash log is in format **SIGSEGV(SEGVMAPERR)@0x0000000c** or the value of the input parameter register such as **r1** printed in the **Register** is small, check whether the called structs contain a null pointer.
-- SIGABRT
+- Obtain the corresponding assembly instruction based on the PC register address and obtain the current operation based on the assembly instruction.
+
+    Obtain the PC address at the top of the stack from the CPPCRASH log file and disassemble the corresponding ELF file (using the unstrip .so file and the **llvm-objdump -d -l xxx.so** command).
+
+    For example, when a **data_abort** issue occurs during the execution of the instruction corresponding to the **00000000000a87e4** address, decompile the libc.so file corresponding to the buildId (**3c3e7fb27680dc2ee99aa08dd0f81e85**).
+
+    Disassemble the code to view the information displayed in the **a87e4** offset address:
+
+    ```text
+    xxx/../../third_party/optimized-routines/string/aarch64/memcpy.S:175
+
+    a87e4:   a94371aa         ldp x10, x11, [x1, #48]
+    ```
+
+    Check the code of the **memcpy.S** source file corresponding to line 175:
+
+    ```text
+    L(loop64):
+
+    line 170   stp A_l, A_h, [dst, 16]
+
+    line 171   ldp A_l, A_h, [src, 16]
+
+    line 172   stp B_l, B_h, [dst, 32]
+
+    line 173   ldp B_l, B_h, [src, 32]
+
+    line 174   stp C_l, C_h, [dst, 48]
+
+    line 175   ldp C_l, C_h, [src, 48]      ---->  Instruction in the crash
+
+    line 176   stp D_l, D_h, [dst, 64]
+
+    line 177   ldp D_l, D_h, [src, 64]
+
+    line 178   subs count, count, 64
+
+    line 179   b.hi L(loop64)
+    ```
+
+- Infer the code object of the current operation based on the register value and context.
+
+    Generally, register **x0** is the first parameter of the function, **x1** is the second parameter, **x2** is the third parameter, and so on. If the method is a class method, **x0** is the address pointer of the object, and **x1**, **x2**, and **x3** are deduced by analogy. Note that if there are more than five function parameters, they will be pushed into the stack.
+
+    In **void* memcpy(void* restrict dest, void* restrict src, size_t n)** at the stack top, **x0** indicates the destination address **dest**, **x1** indicates the source address, and **x2** indicates the number of copied bytes.
+
+    Obtain the corresponding three register values in the CPPCRASH log file. Based on the error access address **0x0000005b3b46c000**, it is determined that the faulty parameter is the **src** parameter corresponding to **x1**.
+
+    ```text
+    Register:
+
+    x0:000005b50c3e3c4 x1:000005b3b46bfcc x2:0000000000007e88 x3:000005b50c42380
+
+    ...
+    ```
+
+3. Determine the fault type of the code object.
+
+    Check **Memory near registers** in the CPPCRASH log.
+
+    ```text
+    x1(/data/medialibrary/database/kvdb/3ddb6fb8b2fcb38d2f431e86bfb806dab771637860d6e86bb9430fa15df04248/single_ver/main/gen_natural_st):
+
+        0000005b21bb1fb8 8067d0f2e727f00a
+
+        0000005b21bb1fc0 1b10e1e9a1079f7a
+
+        0000005b21bb1fc8 83906d9c18cdb9c1
+
+        0000005b21bb1fd0 627dd75ab9335eb0
+
+        0000005b21bb1fd8 aabe2bb1b00f2c03
+
+        0000005b21bb1fe0 f981e4acb716cbc1
+
+        0000005b21bb1fe8 806b3d5730d281ee
+
+        0000005b21bb1ff0 3e99fedbc0a9b5e9
+
+        0000005b21bb1ff8 a91ab9d327969682
+
+        0000005b21bb2000 ffffffffffffffff       -----> Out-of-bounds read
+
+        0000005b21bb2008 ffffffffffffffff
+
+        0000005b21bb2010 ffffffffffffffff
+
+        0000005b21bb2018 ffffffffffffffff
+
+        0000005b21bb2020 ffffffffffffffff
+
+        0000005b21bb2028 ffffffffffffffff
+
+        0000005b21bb2030 ffffffffffffffff
+    ```
+
+    According to the log, an out-of-bound read problem occurs. The faulty parameters are **buf** and **bufSize** of **memcpy**.
+
+    In this case, you only need to analyze the parameter logic passed in when **memcpy** is called in the code.
+
+4. Track the parameter source of the problematic object and locate the problem based on the code and logs.
+
+    Method 1: Check whether the parameter object and range are valid. For example, check whether the **buf** size is the same as the input **bufSize**.
+
+    Method 2: Check whether the lifecycle of the parameter object is valid. For example, check whether **buf** has been released and whether memory corruption occurs due to multi-thread operations.
+
+    Method 3: Use the parameter object to access the function context and check the improper operation logic of the parameter. For example, trace the operation logic of **buf** and **bufsize**, add debugging information, and locate the improper operation logic.
+
+    Code snippet:
+
+    ```text
+    static StatusInter xxxFunc(..., const uint8_t *buf, uint32_t bufSize)
+
+    ...
+
+    uint32_t srcSize = bufSize;
+
+    uint32_t srcOffset = cache->appendOffset - bufSize;
+
+    errno_t ret = memcpy_s(cache->buffer + srcOffset, srcSize, buf, bufSize); 
+
+    if (ret != EOK) {
+
+        return MEMORY_OPERATE_FAILED_INTER;
+
+    }
+
+    ...
+    ```
+
+    By continuously tracing the sources of **buf** and **bufSize**, it is found that after continuous copy, **bufSize** is greater than **buf**, causing out-of-bounds read.
+
+### Common C++ Crash Faults and Causes
+
+- Null pointer dereference. 
+    When a crash log is in format **SIGSEGV(SEGV_MAPERR)@0x00000000** or the values of the input parameter registers such as **r0** and **r1** printed in the **Register** are **0**, check whether a null pointer is input when invoking a method. 
+    When a crash log is in format **SIGSEGV(SEGV_MAPERR)@0x0000000c** or the value of the input parameter register such as **r1** printed in the **Register** is small, check whether the called structs contain a null pointer.
+- SIGABRT. 
     Generally, this fault is triggered by the user, framework, or C library, and you can locate the problematic code in the first frame of the framework library. In this case, check whether resources such as thread and file descriptor are properly used, and whether the invoking sequence of APIs is correct.
-- SIGSEGV
+- SIGSEGV.
   - Multithreading operation collection in STD library is not thread-safe. If the collection is added or deleted on multiple threads, the **SIGSEGV** crash occurs. If **llvm-addr2line** is used and the result code involve operations on collections, this could be the reason for the crash.
   - If the pointer does not match the lifecycle of an object, for example, using a raw pointer to store the **sptr** type and **shared_ptr** type, can lead to memory leak and dangling pointer. A raw pointer is a pointer that does not have features such as encapsulation and automatic memory management. It is only a simple pointer to the memory address. The memory to which the pointer points is not protected or managed. A raw pointer can directly access the pointed memory, but problems such as memory leak and null pointer reference may also occur. Therefore, when using a raw pointer, pay attention to potential security problems. You are advised to use smart pointers to manage memory.
-- Use after free
+- Use after free.
     This fault occurs when the reference of a released stack variable is not set to null and the access continues.
 
     ```
@@ -582,16 +730,16 @@ objdump -S -l xxxx                 Disassembles the xxxx file and display the so
     When a **RecursiveClass** object is created, its constructor is called. When this object is destroyed, its destructor is called. In the destructor, a new **RecursiveClass** object is created, which causes recursive calls until the stack overflows. Recursive calls are infinite. As a result, the stack space is used up and the application crashes.
 - Binary mismatch usually indicates the mismatch of the Application Binary Interface (ABI). For example, when a compiled binary interface or its data structure definition does not match the ABI, a random crash stack is generated.
 - Memory corruption occurs when the memory of a valid wild pointer is changed to an invalid value, which results in out-of-bounds access and data overwrite. In this case, a random crash stack is generated.
-- SIGBUS (Aligment) occurs when the address is in the unaligned state after the pointer is forcibly converted.
+- SIGBUS (Alignment) occurs when the address is in the unaligned state after the pointer is forcibly converted.
 
-## Case Study
+## Analysis cases
 
-The following analyzes the typical CppCrash cases based on signals, scenarios, and tools respectively.
-The analysis based on signals introduces common crash signals and provides a typical case for each type of signal.
-The analysis based on scenarios concludes a common scenario for frequent problems, and provides a typical case for each scenario.
+The following analyzes the typical C++ crash cases based on signals, scenarios, and tools respectively. 
+The analysis based on signals introduces common crash signals and provides a typical case for each type of signal. 
+The analysis based on scenarios concludes a common scenario for frequent problems, and provides a typical case for each scenario. 
 The analysis based on tools describes how to use various maintenance and debugging tools, and provides a typical case for each tool.
 
-### Analyzing CppCrash Based on Signals
+### Analyzing C++ Crash Based on Signals
 
 #### Type 1: SIGSEGV Crash
 
@@ -599,13 +747,13 @@ The **SIGSEGV** signal indicates a Segmentation Fault of the program. This fault
 
 - **SIGSEGV** is a type of memory management fault.
 - **SIGSEGV** is generated in a user-mode program. 
-- **SIGSEGV** occurs when a user-mode program accesses a memory area outside its bound.
+- It occurs when a user-mode program accesses (reads, writes, or executes) a memory that is not allowed to access.
 - **SIGSEGV** also occurs when a user-mode program accesses a memory without correct permission.
 
 In most cases, **SIGSEGV** is caused by pointer overwriting. However, not all pointer overwriting causes **SIGSEGV**. The **SIGSEGV** crash would not be triggered unless an out-of-bounds pointer is dereferenced. In addition, even if an out-of-bounds pointer is dereferenced, the **SIGSEGV** crash may not be caused. The **SIGSEGV** crash involves the operating system, C library, compiler, and linker. The examples are as follows:
 
 - The memory area is read-only memory.
-    The sample code is as follows:
+    The sample code of executing the **assert()** function:
 
     ```
     static napi_value TriggerCrash(napi_env env, napi_callback_info info)
@@ -622,7 +770,7 @@ In most cases, **SIGSEGV** is caused by pointer overwriting. However, not all po
 
 - The memory area is out of the process address space.
 
-    The sample code is as follows:
+    The sample code of executing the **assert()** function:
 
     ```
     static napi_value TriggerCrash(napi_env env, napi_callback_info info)
@@ -633,7 +781,7 @@ In most cases, **SIGSEGV** is caused by pointer overwriting. However, not all po
     }
     ```
 
-    In this example, the program accesses a memory address in the kernel. The **SIGSEGV(SEGV_MAPERR)@0xffffffcfc42ae6f4** crash is usually triggered by the program by accident. The key logs of this cpp crash are as follows:
+    In this example, the program accesses a memory address in the kernel. The **SIGSEGV(SEGV_MAPERR)@0xffffffcfc42ae6f4** crash is usually triggered by the program by accident. The key logs of this C++ crash are as follows:
 
     ```
     Device info:xxxxxx xxxx xx xxx
@@ -649,7 +797,7 @@ In most cases, **SIGSEGV** is caused by pointer overwriting. However, not all po
     Uid:20020144
     Process name:com.samples.recovery
     Process life time:8s
-    Reason:Signal:SIGSEGV(SEGV_MAPERR)@0xffffffcfc42ae6f4 
+    Reason:Signal:SIGSEGV(SEGV_MAPERR)@0xffffffcfc42ae6f4  <-Crash address
     Fault thread info:
     Tid:21374, Name:amples.recovery
     # 00 pc 0000000000001ccc /data/storage/el1/bundle/libs/arm64/libentry.so(TriggerCrash(napi_env__*, napi_callback_info__*)+36)(4dd115fa8b8c1b3f37bdb5b7b67fc70f31f0dbac)
@@ -666,7 +814,7 @@ In most cases, **SIGSEGV** is caused by pointer overwriting. However, not all po
     ```
 
 3. The memory does not exist.
-    The sample code is as follows:
+    The sample code of executing the **assert()** function:
 
     ```
     static napi_value TriggerCrash(napi_env env, napi_callback_info info)
@@ -682,7 +830,7 @@ In most cases, **SIGSEGV** is caused by pointer overwriting. However, not all po
     ![cppcrash-demo3](figures/cppcrash_image_006.png)
 
 4. Double free.
-    The sample code is as follows:
+    The sample code of executing the **assert()** function:
 
     ```
     static napi_value TriggerCrash(napi_env env, napi_callback_info info)
@@ -706,7 +854,7 @@ In most cases, **SIGSEGV** is caused by pointer overwriting. However, not all po
 The **SIGABRT** signal is sent to abort the process. This signal can be called by the process executing **abort()** in C standard library, or it can be sent to the process from outside like other signals. 
 
 - Executing the **abort()** function.
-    The sample code is as follows:
+    The sample code of executing the **assert()** function:
 
     ```
     static napi_value TriggerCrash(napi_env env, napi_callback_info info)
@@ -722,7 +870,7 @@ The **SIGABRT** signal is sent to abort the process. This signal can be called b
     ![cppcrash-demo4](figures/cppcrash_image_008.png)
 
 - Executing the **assert()** function.
-    The sample code is as follows:
+    The sample code of executing the **assert()** function:
 
     ```
     static napi_value TriggerCrash(napi_env env, napi_callback_info info)
@@ -741,7 +889,7 @@ The **SIGABRT** signal is sent to abort the process. This signal can be called b
 
     ![cppcrash-demo5](figures/cppcrash_image_009.png)
 
-### Analyzing CppCrash Based on Scenarios
+### Analyzing C++ Crash Based on Scenarios
 
 #### Type 1: Memory Access Crash
 
@@ -812,7 +960,6 @@ previously allocated by thread T0 (thread name) here:
 ...
 ```
 
-Continue the analysis based on the stack.
 When **JsiWeak** is destructed or reset, **CopyableGlobal** in the parent class **JsiType** of its member (**JsiObject**/**JsiValue**/**JsiFunction**) is released, as shown in the following figure.
 
 ![cppcrash-demo5](figures/cppcrash_image_011.png)
@@ -821,22 +968,22 @@ During Garbage Collection (GC), **IterateWeakEcmaGlobalStorage** calls **Dispose
 
 ![cppcrash-demo6](figures/cppcrash_image_012.png)
 
-Therefore, for the same **WeakNode**, there may be two functions for release. If **IterateWeakEcmaGlobalStorage** releases it first during GC, without a callback notification to **JsiWeak** for cleanup, **JsiWeak** still retains a reference **CopyableGlobal** to the released **WeakNode**. When the **NodeList** containing the **WeakNode** is released and returned to the operating system, the retained **CopyableGlobal** in **JsiWeak** is released again, leading to a double-free error. 
+Therefore, for the same **WeakNode**, there may be two functions for release. If **IterateWeakEcmaGlobalStorage** releases it first during GC, without a callback notification to **JsiWeak** for cleanup, **JsiWeak** still retains a reference **CopyableGlobal** to the released **WeakNode**. When the **NodeList** containing the **WeakNode** is released and returned to the operating system, the retained **CopyableGlobal** in **JsiWeak** is released again, leading to a double-free error.
 
 ![cppcrash-demo7](figures/cppcrash_image_013.png)
 
-**Solutions**
+**Solutions** 
 Invoke a callback when **JsiWeak** calls **SetWeakCallback**. Therefore, the callback can notify **JsiWeak** to reset **CopyableGlobal** when **IterateWeakEcmaGlobalStorage** releases the **WeakNode**, ensuring the same address is not double-freed.
 
-**Suggestions**
+**Suggestions** 
 When using memory, consider whether the memory is double-freed or not freed. Additionally, when locating memory access crashes (usually **SIGSEGV** crashes), run the ASan to reproduce the fault if there is no clue based on the crash stack analysis.
 
 #### Type 2: Multi-thread Crash
 
-**Background**
+**Background** 
 **napi_env** is still used after being released.
 
-**Symptom**
+**Symptom** 
 The **env** of a **napi** API is invalid. The crash stack is mounted to **NativeEngineInterface::ClearLastError()**. Based on the log of **env** address, it is found that the **env** is used after being released.
 
 ![cppcrash-demo9](figures/cppcrash_image_015.png)
@@ -845,79 +992,79 @@ The key crash stack is as follows.
 
 ![cppcrash-demo8](figures/cppcrash_image_014.png)
 
-**Solutions**
+**Solutions** 
 The **env** created by a thread should not be transferred to another thread.
 
-**Suggestions**
-You can select the **Multi Thread Check** option to locate multi thread faults. For details, see "Ark Multi Thread Check" in guideline.
+**Suggestions** 
+You can select the **Multi Thread Check** option to locate multi thread faults. For details, see "Ark Runtime Multi Thread Check" in guideline.
 
 Note: **env** in the **napi** interface is the **arkNativeEngine** when the engine is created.
 
 #### Type 3: Lifecycle Crash
 
-**Background**
+**Background** 
 When you create a native **napi_value**, it needs to be used with **napi_handle_scope**. The **napi_handle_scope** is used to manage the lifecycle of **napi_value**. **napi_value** can be used only within **napi_handle_scope**, otherwise, the lifecycle of **napi_value** and its JS objects is no longer protected. If the reference count is 0, **napi_value** is collected by GC. Using **napi_value** at this point indicates accessing freed memory, which results in faults. 
 
-**Symptom**
-**napi_value** is a raw pointer (a struct pointer). It is used to hold JS objects and maintain the lifecycle of JS objects to ensure that JS objects are not collected by GC. **napi_handle_scope** is used to manage **napi_value**. Once out of **napi_handle_scope**, **napi_value** is collected by GC, and **napi_value** no longer holds the JS object (no longer protects the JS object's lifecycle)
+**Symptom** 
+**napi_value** is a raw pointer (a struct pointer). It is used to hold JS objects and maintain the lifecycle of JS objects to ensure that JS objects are not collected by GC. **napi_handle_scope** is used to manage **napi_value**. Once out of **napi_handle_scope**, **napi_value** is collected by GC, and **napi_value** no longer holds the JS object (no longer protects the JS object's lifecycle).
 
-**Fault Analysis**
+**Fault Analysis** 
 By decompiling the crash stack, the upper-level interface of the problematic **napi** interface can be located, in which the problematic **napi_value** can be found. In this case, you need to check if the **napi_value** is used out of **napi_handle_scope**. 
 
-**Cases**
+**Cases** 
 The **napi_value** is used out of the scope of the NAPI framework.
 
 ![cppcrash-demo9](figures/cppcrash_image_016.png)
 
-On the JS side, data is added using the **Add()**, and on the native side, **napi_value** is saved to a **vector**. On the JS side, data is obtained using the **get** API, and on the native side, the saved **napi_value** is returned as an array. The JS side then reads the properties of the data. The error message "Can not get Prototype on non ECMA Object" is displayed. The **native_value** across **napi** is not saved using **napi_ref**. As a result, the **native_value** is invalid.
+On the JS side, data is added using the **Add()**, and on the native side, **napi_value** is saved to a **vector**. On the JS side, data is obtained using the **get** API, and on the native side, the saved **napi_value** is returned as an array. The JS side then reads the properties of the data. The error message "Can not get Prototype on non ECMA Object" is displayed. The **native_value** across **napi** is not saved using **napi_ref**. As a result, the **native_value** is invalid. 
 Note: The scope of the NAPI framework is **napi_handle_scope**. You can use **napi_handle_scope** to manage the lifecycle of **napi_value**. The scope of the framework layer is embedded in the end-to-end process of the JS call native. That is, the scope is opened when the native method is entered, and the scope is closed when the native method ends.
 
 #### Type 4: Pointer Crash
 
-**Background**
+**Background** 
 Smart pointers are used without null checks, causing null pointer dereference crashes during process execution. 
 
-**Impact**
+**Impact** 
 The process crashes, causing unexpected exit.
 
-**Fault Analysis**
+**Fault Analysis** 
 ![cppcrash-demo10](figures/cppcrash_image_017.png)
 
 Null pointer crashes can be identified based on the fault cause. Run the llvm-addr2line command to parse the line number. It is found that the service code does not check whether the smart pointer is null before using it. As a result, the service code accesses the null address, causing the crash.
 
-**Solution**
+**Solution** 
 Add protective null checks for the pointer. 
 
-**Suggestions**
+**Suggestions** 
 Pointers should be null-checked before using it to prevent null pointers and process crashes and exits.
 
-### Analyzing CppCrash Based on Tools
+### Analyzing Crashes Based on Tools
 
 #### Tool 1: ASAN
 
-[ASan Check](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-asan-V5)
+[ASan Check](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-asan-V5).
 
-#### Tool 2: Ark Multi Thread Check
+#### Tool 2: Ark Runtime Multi Thread Check
 
-**Fundamentals**
+**Fundamentals** 
 JS is single-threaded. Operations on JS objects can be performed only on the JS thread. Otherwise, multi-thread security problems may occur. (JS objects created on the main thread can be operated only on the main thread, and JS objects created on the worker thread can be operated only on the worker thread.) The napi APIs involve object operations. Therefore, 95% napi APIs can be used only on the JS thread. The multi-thread detection mechanism checks whether the **JS thread ID** of the calling thread is the same as that of the used **VM/Env**. If they are different, the **VM/Env** is used across threads, causing multi-thread security problems. Common problems: 1. Napi APIs are used in non-JS threads. 2. **env** of other threads are used in napi APIs.
 
-**How to Use**
+**Usage** 
 ![cppcrash-demo13](figures/cppcrash_image_020.png)
 
 Select **Multi Thread Check** on DevEco to enable Ark multi-thread detection.
 
-**Scenario**
+**Use Scenarios** 
 If the stack of crash logs is difficult to analyze and the probability of this problem is high, you need to enable multi-thread detection. When the multi-thread detection is enabled, if the fatal information in the **cpp_crash** log is "Fatal: ecma_vm cannot run in multi-thread! thread:3096 currentThread:3550", it indicates that a multi-thread security problem occurs. That is, the calling thread ID is **3550**, but the JS thread is created by thread **3096**. The **vm** is used across threads.
 
-**Cases**
-After the function is enabled, the crash is triggered again. If the problem is caused by multiple threads, fatal information is displayed. The following is an example:
+**Cases** 
+After the multi thread check is enabled, the crash is triggered again. If the problem is caused by multiple threads, fatal information is displayed. The following is an example:
 
 ```
 Fatal: ecma_vm cannot run in multi-thread! thread:xxx currentThread:yyy
 ```
 
-The preceding information indicates that the calling thread ID is **17585**, but the JS thread is created by thread **17688**. The **vm** is used across threads. The **vm** is the **napi_env__*** of the JS thread. It is the environment for running thread code. One thread uses one **vm**.
+The preceding information indicates that the calling thread ID is **17585**, but the JS thread is created by thread **17688**. The **vm** is used across threads. The **vm** is the **napi_env__*** of the JS thread. It is the environment for running thread code. One thread uses one **vm**. 
 The key crash log is as follows:
 
 ```
@@ -935,13 +1082,13 @@ Tid:17585, Name:xxxxx
 # 06 pc 00000000005d9770 /data/ storage/el1/bundle/libs/arm64/xxxxx.so (c0f1735eada49fadc5197745f5afOc0a52246270)
 ```
 
-To analyze the multi-thread problem, perform the following steps:
-i. Check the first stack frame under **libace_napi.z.so**. The preceding figure shows **xxxxx.so**. Check whether the **napi_env** of thread **17688** is transferred to thread **17585**.
+To analyze the multi-thread problem, perform the following steps: 
+i. Check the first stack frame under **libace_napi.z.so**. The preceding figure shows **xxxxx.so**. Check whether the **napi_env** of thread **17688** is transferred to thread **17585**. 
 ii. If the stack frame under **libace_napi.z.so** does not transfer the **napi_env** parameter, check whether the parameter is transferred as a struct member variable.
 
 #### Tool 3: objdump
 
-**How to Use**
+**Usage** 
 objdump binary is a system tool. You must have the OpenHarmony compilation environment, whose project code can be obtained from Gitee. The command is as follows:
 
 ```
@@ -956,10 +1103,10 @@ You can obtain the tool in **prebuilts/clang/ohos/linux-x86_64/llvm/bin/llvm-obj
 prebuilts/clang/ohos/linux-x86_64/llvm/bin/llvm-objdump -d libark_jsruntime.so > dump.txt
 ```
 
-**Scenario**
+**Use scenarios** 
 In some cases, addr2line can only be used to check whether a line of the code is faulty but cannot determine which variable is abnormal. In this case, you can use objdump to disassemble the code and combine the information from the cppcrash register to further determine the crash cause.
 
-**Cases**
+**Cases** 
 The log is as follows:
 
 ```
@@ -980,7 +1127,7 @@ Run the addr2line command to locate the error line.
 
 ![cppcrash-demo14](figures/cppcrash_image_021.png)
 
-The preceding information indicates that a null pointer is accessed and the process is suspended when **InYoungSpace** is accessed. Therefore, it can be suspected that the **Region** is a null pointer.
+The preceding information indicates that a null pointer is accessed and the process is suspended when **InYoungSpace** is accessed. Therefore, it can be suspected that the **Region** is a null pointer. 
 Use objdump to disassemble and search for the error address **4492d4**. The command is as follows:
 
 ![cppcrash-demo15](figures/cppcrash_image_022.png)
@@ -998,5 +1145,5 @@ Registers: x0:0000007f0fe31560 x1:0000000000000003 x2:0000000000000000 x3:000000
         x28:0000007f9f21a1c0 x29:00000055a0e19700 lr:0000007f9cb4b584 sp:00000055a0e19700 pc:0000007f9cb492d4
 ```
 
-**ldrb w8, [x20]** corresponds to **packedData_.flags_.spaceFlag_** because **packedData_** is the first field of **region**, **flags_** is the first field of **packedData_**, and **spaceFlag_** is the first field of **flags_**. Therefore, the first byte corresponding to the **objectRegion** address is used.
+**ldrb w8, [x20]** corresponds to **packedData_.flags_.spaceFlag_** because **packedData_** is the first field of **region**, **flags_** is the first field of **packedData_**, and **spaceFlag_** is the first field of **flags_**. Therefore, the first byte corresponding to the **objectRegion** address is used. 
 To view assembly code, you need to be familiar with common assembly instructions and parameter transfer rules. For example, the non-inline member function **r0** in C++ stores the **this** pointer. In addition, due to compiler optimization, the mapping between source code and assembly code may not be clear. The mapping can be quickly obtained based on some feature values (constants) in the code.

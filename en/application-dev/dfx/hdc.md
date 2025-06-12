@@ -21,7 +21,7 @@ The following figure shows the relationship.
 
 ## Environment Setup
 
-The hdc tool is obtained from the **toolchains** directory of OpenHarmony SDK.
+Download and install [DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/). You can obtain the hdc application in **DevEco Studio/sdk/default/openharmony/toolchains**.
 
 ### (Optional) Running the hdc Program on the CLI
 
@@ -29,9 +29,9 @@ You can go to the **toolchains** directory of SDK through the CLI and run the hd
 To facilitate the execution of the hdc program in the CLI, you can add the file path of the hdc program to the system environment variable that specifies the command search path.
 For example, add it to **Path** on Windows.
 
-### (Optional) Configuring the server Listening Port
+### (Optional) Configuring the hdc Server
 
-When the hdc server is started, it listens for port 8710 of the PC by default. The hdc client uses TCP to connect to the server through this port. If port 8710 of the PC has been used or you want to use another port, you can add the environment variable **OHOS_HDC_SERVER_PORT** to the system environment variable to listen for any unoccupied port when the server is started.
+If port 8710 of the PC has been used or you want to use another port, you can add the environment variable **OHOS_HDC_SERVER_PORT** to the system environment variable to listen for any unoccupied port when the server is started.
 For example, set **OHOS_HDC_SERVER_PORT** to **18710**.
 
 > **NOTE**
@@ -461,7 +461,7 @@ You are advised to enable or disable the USB debugging and network debugging on 
 
 ## Running the Interactive Command
 
-The command format is as follows:
+Run the following commands:
 
    ```shell
    hdc shell [-b bundlename] [command]
@@ -483,7 +483,7 @@ The command format is as follows:
    **Usage**
 
    ```shell
-   # Enter the interactive mode to run a commands
+   # Enter the interactive mode to run a command.
    hdc shell
 
    # Run the command in non-interactive mode.
@@ -498,7 +498,7 @@ The command format is as follows:
 
    > **NOTE**
    >
-   > To use the **\[-b _bundlename_]** parameter, ensure that the installed application to be specified is an application built in debug mode. For details about how to build an application in debug mode, see [Building a HAR in Debug Mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110).
+   > To use the **[-b _bundlename_]** parameter, ensure that the installed application to be specified is an application signed by a debug certificate. For details about how to request and use the debug certificate, see [Requesting a Debug Certificate](https://developer.huawei.com/consumer/en/doc/app/agc-help-add-debugcert-0000001914263178).
 
 ## Managing Applications
 
@@ -601,7 +601,7 @@ The command format is as follows:
    >
    > In the **hdc file send -b com.example.myapplication a.txt data/storage/el2/base/b.txt** command, the **-b** parameter is specified to transfer the **a.txt** file in the current local directory to the relative path **data/storage/el2/base/** of the **com.example.myapplication** application data directory and rename the file to **b.txt**.
    >
-   > To use the **\[-b _bundlename_]** parameter, ensure that the installed application to be specified is an application built in debug mode. For details about how to build an application in debug mode, see [Building a HAR in Debug Mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110).
+   > To use the **[-b _bundlename_]** parameter, ensure that the installed application to be specified is an application signed by a debug certificate. For details about how to request and use the debug certificate, see [Requesting a Debug Certificate](https://developer.huawei.com/consumer/en/doc/app/agc-help-add-debugcert-0000001914263178).
 
 2. Send a file from a remote device to the local device.
 
@@ -636,7 +636,7 @@ The command format is as follows:
    >
    > In the **hdc file recv -b com.example.myapplication data/storage/el2/base/b.txt a.txt** command, the **-b** parameter is specified to transfer the **b.txt** file in the relative path **data/storage/el2/base/** of the **com.example.myapplication** application data directory to the current local directory and rename the file to **a.txt**.
    >
-   > To use the **\[-b _bundlename_]** parameter, ensure that the installed application to be specified is an application built in debug mode. For details about how to build an application in debug mode, see [Building a HAR in Debug Mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110).
+   > To use the **[-b _bundlename_]** parameter, ensure that the installed application to be specified is an application signed by a debug certificate. For details about how to request and use the debug certificate, see [Requesting a Debug Certificate](https://developer.huawei.com/consumer/en/doc/app/agc-help-add-debugcert-0000001914263178).
 
 ## Port Forwarding
 
@@ -749,7 +749,7 @@ Port forwarding type supported by the device: TCP, DEV, localabstract, localfile
    **Return value**
    | Return Value| Description|
    | -------- | -------- |
-   | No return value | The server is started successfully.|
+   | No return value| The server is started successfully.|
 
    **Usage**
 
@@ -1051,7 +1051,7 @@ Port forwarding type supported by the device: TCP, DEV, localabstract, localfile
 
 ### Server Logs
 
-#### Log level
+#### Specifying the Log Level
 
 Specify the hdc log level. The default value is **LOG_INFO**. 
 
@@ -1062,7 +1062,7 @@ Specify the hdc log level. The default value is **LOG_INFO**.
    **Parameters**
 | Parameter| Description|
 | -------- | -------- |
-| [level] | Log level.<br>0: LOG_OFF<br>1: LOG_FATAL<br>2: LOG_WARN<br>3: LOG_INFO<br>4: LOG_DEBUG<br>5: LOG_ALL<br>6: LOG_LIBUSB|
+| [level] | Log Level<br>0: LOG_OFF<br>1: LOG_FATAL<br>2: LOG_WARN<br>3: LOG_INFO<br>4: LOG_DEBUG<br>5: LOG_ALL<br>6: LOG_LIBUSB|
 | command | Command to be executed.|
 
    > **NOTE**
@@ -1113,9 +1113,9 @@ hdc -l5 start
 
 The collected logs are stored in the following path.
 
-| OS | Path | Remarks |
+| OS| Path| Remarks|
 | -------- | -------- | -------- |
-| Windows | %temp%\hdc.log | The following are examples. Replace *Username* with the actual one.<br/>C:\Users\Username\AppData\Local\Temp\hdc.log**.|
+| Windows | %temp% | Example: **C:\Users\Username\AppData\Local\Temp\hdc.log**.<br>Replace *Username* with the actual one.|
 | Linux | /tmp/hdc.log | - |
 | MacOS | $TMPDIR/hdc.log | - |
 
@@ -1129,11 +1129,11 @@ Configure environment variables as follows:
 
 The following shows how to set the **OHOS_HDC_LOG_LEVEL** environment variable to **5**.
 
-| OS| Configuration Method|
+| OS | Configuration Method |
 |---|---|
-| Windows  | Choose **This PC >Properties >Advanced system settings >Advanced >Environment Variables**, add the environment variable **OHOS_HDC_LOG_LEVEL**, and set its value to **5**. After the configuration is complete, click **OK**. Restart the CLI or other software that uses OpenHarmony SDK for the new environment variable to take effect. |
-| Linux  | Add **export OHOS_HDC_LOG_LEVEL=5** to the end of the **~/.bash_profile** file, save the file, and run the **source ~/.bash_profile** command for the current environment variable to take effect.|
-| macOS | Add **export OHOS_HDC_LOG_LEVEL=5** to the end of the **~/.zshrc** file, save the file, and run the **source ~/.zshrc** command for the current environment variable to take effect. Restart the CLI or other software that uses OpenHarmony SDK for the new environment variable to take effect.|
+| Windows  | Choose **This PC >Properties >Advanced system settings >Advanced >Environment Variables**, add the environment variable **OHOS_HDC_LOG_LEVEL**, and set its value to **5**. Restart the CLI or other software that uses OpenHarmony SDK for the new environment variable to take effect.  |
+| Linux  | Add **export OHOS_HDC_LOG_LEVEL=5** to the end of the **~/.bash_profile** file, save the file, and run the **source ~/.bash_profile** command for the current environment variable to take effect. |
+| MacOS  | Add **export OHOS_HDC_LOG_LEVEL=5** to the end of the **~/.zshrc** file, save the file, and run the **source ~/.zshrc** command for the current environment variable to take effect. |
 
 ### Device Logs
 
@@ -1141,8 +1141,8 @@ Enable HiLog to obtain the corresponding logs.
 
 ```shell
 hdc shell hilog -w start                             // Enable the function of storing HiLog logs.
-hdc shell ls /data/log/hilog                     // View the stored HilLog logs.
-hdc file recv /data/log/hilog                  // Obtain the stored HilLog logs (including kernel logs).
+hdc shell ls /data/log/hilog                     // View the stored HiLog logs.
+hdc file recv /data/log/hilog                  // Obtain the stored HiLog logs (including kernel logs).
 ```
 
 ## FAQs
@@ -1350,7 +1350,7 @@ The **_bundlename_** specified in the **hdc shell [-b bundlename] [command]** co
 
 * Scenario 1: The specified application is not installed on the device.
 
-* Scenario 2: The specified application is not built in debug mode.
+* Scenario 2: The specified application is not a debug application.
 
 * Scenario 3: The specified application is not started.
 
@@ -1376,22 +1376,21 @@ The **_bundlename_** specified in the **hdc shell [-b bundlename] [command]** co
 
    c. If the application is not a debug application but a release application, the** _bundlename_** cannot be specified.
 
-* Scenario 2: Run the **hdc shell "bm dump -n bundlename | grep debug"** command to check whether the specified application is built in debug mode. The expected result is **"appProvisionType": "debug", "debug": true**.
+* Scenario 2: Run the **hdc shell "bm dump -n bundlename | grep appProvisionType"** command to check whether the application specified in the command can be debugged. The expected output is **"appProvisionType": "debug"**.
 
    For example, run the following command to check the bundle name **com.example.myapplication**:
 
    ```shell
-   hdc shell "bm dump -n com.example.myapplication | grep debug"
+   hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
    ```
 
-   If the application corresponding to the bundle name is built in debug mode, the following information is displayed:
+   If the application is a debug application, the following information is displayed:
 
    ```shell
    "appProvisionType": "debug",
-   "debug": true,
    ```
 
-   For details about how to build an application in debug mode, see [Building a HAR in Debug Mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110).
+   To build a debug application, you need to use a debug certificate for signature. For details about how to request and use the debug certificate, see [Requesting a Debug Certificate](https://developer.huawei.com/consumer/en/doc/app/agc-help-add-debugcert-0000001914263178).
 
 * Scenario 3: Ensure that the bundle specified by the command has been started.
 
