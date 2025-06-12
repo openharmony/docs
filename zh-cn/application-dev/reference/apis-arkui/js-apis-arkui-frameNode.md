@@ -904,7 +904,7 @@ isDisposed(): boolean
 
 **示例：**
 
-请参考[检验FrameNode是否有效示例](#检验FrameNode是否有效示例)。
+请参考[检验FrameNode是否有效示例](#检验framenode是否有效示例)。
 
 ### getInspectorInfo<sup>12+</sup>
 
@@ -4487,7 +4487,7 @@ isDisposed(): boolean
 
 **示例：**
 
-请参考[检验NodeAdapter是否有效示例](#检验NodeAdapter是否有效示例)。
+请参考[检验NodeAdapter是否有效示例](#检验nodeadapter是否有效示例)。
 
 ## 自定义具体类型节点示例
 
