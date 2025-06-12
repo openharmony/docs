@@ -145,7 +145,7 @@ decoration:{
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable  | boolean | 是   | 使能文本识别。<br/>默认值： false |
+| enable  | boolean | 是   | 使能文本识别。<br/>true表示使能文本特殊实体识别，false表示不使能文本特殊实体识别。<br/>默认值： false |
 
 ### dataDetectorConfig<sup>11+</sup>
 
@@ -297,7 +297,7 @@ enableKeyboardOnFocus(isEnabled: boolean)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| isEnabled  | boolean | 是   | 通过点击以外的方式获焦时，是否主动拉起软键盘。<br/>默认值：true，表示能够主动拉起软键盘。 |
+| isEnabled  | boolean | 是   | 通过点击以外的方式获焦时，是否主动拉起软键盘。<br/>true表示主动拉起软键盘，false表示不主动拉起软键盘。<br/>默认值： true |
 
 ### barState<sup>13+</sup>
 
