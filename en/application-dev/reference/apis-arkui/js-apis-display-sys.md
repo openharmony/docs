@@ -6,7 +6,7 @@ The Display module provides APIs for managing displays, such as obtaining inform
 >
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohso.display (Display)](js-apis-display.md).
+> - This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.display (Display)](js-apis-display.md).
 
 ## Modules to Import
 
@@ -28,7 +28,7 @@ Checks whether there is a visible privacy window on a display. The privacy windo
 
 | Name| Type                     | Mandatory| Description      |
 | ------ | ------------------------- | ---- |----------|
-| id     | number                    | Yes  | ID of the display. The value must be an integer greater than or equal to 0.|
+| displayId    | number                    | Yes  | ID of the display. The value must be an integer greater than or equal to 0.|
 
 **Return value**
 
@@ -130,7 +130,7 @@ Unsubscribes from privacy mode changes of this display. When there is a privacy 
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes  | Event type. The value is fixed at **'privateModeChange'**, indicating that the privacy mode of the display is changed.|
-| callback | Callback&lt;boolean&gt; | No  | Callback used to return whether the privacy mode of the display is changed. The value **true** means that the display changes to the privacy mode, and **false** means the opposite.|
+| callback | Callback&lt;boolean&gt; | No  | Callback used to return whether the privacy mode of the display is changed. The value **true** means that the display changes to the privacy mode, and **false** means the opposite. If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
