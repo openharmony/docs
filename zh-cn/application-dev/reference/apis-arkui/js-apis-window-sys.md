@@ -181,8 +181,8 @@ import { window } from '@kit.ArkUI';
 
 ## StartAnimationSystemOption<sup>20+</sup>
 
-系统应用启动动画配置。
-仅对全屏应用生效。
+启动动画配置。仅在非应用间切换生效。
+仅对手机以及pad的非自由多窗模式生效。
 
 **系统接口：** 此接口为系统接口。
 
@@ -190,7 +190,7 @@ import { window } from '@kit.ArkUI';
 
 | 名称     | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type    | [AnimationType](#animationtype20)           | 是   | 窗口动画类型。                                               |
+| type    | [AnimationType](#animationtype20)           | 是   | 窗口动画类型。淡入动画在应用启动时生效，淡出动画仅在被打断时生效，非打断场景依然走默认动效。|
 | animationConifg    | [WindowAnimationConfig](#windowanimationconfig20) | 否   | 窗口动画参数配置。                 |
 
 ## window.minimizeAll<sup>9+</sup>
