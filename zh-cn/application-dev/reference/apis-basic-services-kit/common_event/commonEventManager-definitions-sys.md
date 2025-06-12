@@ -111,7 +111,7 @@
 
 ## Basic Services Kit-定制
 
-### COMMON_EVENT_CONFIG_POLICY_LAYER_UPDATE<sup>20+</sup>
+### COMMON_EVENT_CUSTOM_CONFIG_POLICY_UPDATED<sup>20+</sup>
 
 表示配置层级发生变化的公共事件。
 
@@ -123,9 +123,9 @@
 
 **订阅者所需权限：** 无
 
-**取值：** "usual.event.CONFIG_POLICY_LAYER_UPDATE"
+**取值：** "usual.event.CUSTOM_CONFIG_POLICY_UPDATED"
 
-### COMMON_EVENT_ROAMING_REGION_CODE_UPDATE<sup>20+</sup>
+### COMMON_EVENT_CUSTOM_ROAMING_REGION_UPDATED<sup>20+</sup>
 
 表示设备漫游国家发生变化的公共事件。
 
@@ -137,7 +137,7 @@
 
 **订阅者所需权限：** 无
 
-**取值：** "usual.event.ROAMING_REGION_CODE_UPDATE"
+**取值：** "usual.event.CUSTOM_ROAMING_REGION_UPDATED"
 
 ## Basic Services Kit-电源
 
