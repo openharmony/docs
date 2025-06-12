@@ -18,6 +18,7 @@
         - [message事件交互](arkts-ui-widget-event-formextensionability.md)
         - [router事件交互](arkts-ui-widget-event-router.md)
         - [call事件交互](arkts-ui-widget-event-call.md)
+        - [通过router或call事件刷新卡片内容](arkts-ui-widget-event-uiability.md)
       - ArkTS卡片页面刷新<!--arkts-ui-widget-interaction-->
         - [ArkTS卡片页面刷新概述](arkts-ui-widget-interaction-overview.md)
         - [ArkTS卡片主动刷新](arkts-ui-widget-active-refresh.md)
