@@ -5716,6 +5716,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 枚举，支持进行过滤的操作符。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | 名称  |  值 |  说明 |
