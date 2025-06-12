@@ -114,6 +114,7 @@ struct MyLiveFormPage {
           this.runAnimation();
         })
 
+      // 点击按钮，调用 formProvider.cancelOverflow 接口，打断当前破框动效，卡片切换为非激活态
       Button('强制取消动效')
         .backgroundColor(Color.Grey)
         .onClick(() => {
@@ -227,7 +228,7 @@ struct WidgetCard {
 
 1. 触发互动卡片动效
 
-在加桌时，互动卡片可以通过[onUpdateForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonupdateform)生命周期回调中的wantParams参数获取卡片实际尺寸。卡片提供方以此计算动效申请范围，坐标计算时，以上图A点为（0,0）点，计算矩形EFGH对应参数，单位为vp。
+在加桌时，互动卡片可以通过[onUpdateForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonupdateform)生命周期回调中的wantParams参数获取卡片实际尺寸。卡片提供方以此计算动效申请范围，单位为vp。计算规则具体请参考[互动卡片请求参数约束](arkts-ui-liveform-sceneanimation-overview.md#请求参数约束)
 
 ```ts
 // entry/src/main/ets/entryformability/EntryFormAbility.ets
@@ -370,4 +371,5 @@ export class Constants {
 ```
 
 ## 实现效果
+以下是按照本文档代码示例开发而成的效果demo，demo执行动效时，点击按钮，将调用 [formProvider.cancelOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovidercanceloverflow20) 接口，打断当前破框动效，卡片切换为非激活态。
 ![live-form-base-demo.gif](figures/live-form-base-demo.gif)

@@ -623,7 +623,7 @@ requestOverflow(formId: string, overflowInfo: formInfo.OverflowInfo): Promise&lt
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 801 | Capability not supported.function cancelOverflow can not work correctly due to limited device capabilities. |
+| 801 |   Capability not supported.function requestOverflow can not work correctly due to limited device capabilities. |
 | 16500050 | IPC connection error. |
 | 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
