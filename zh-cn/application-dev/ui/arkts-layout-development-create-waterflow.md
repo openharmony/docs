@@ -329,4 +329,4 @@ struct WaterFlowDemo {
 针对瀑布流开发，有以下实例可供参考：
 
 - [主页瀑布流实现](https://gitee.com/harmonyos-cases/cases/blob/master/CommonAppDevelopment/feature/functionalscenes/README.md)
-- [ArkUI使用滚动类指南文档示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/ScrollableComponent)
+- [ArkUI使用滚动类指南文档示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/ScrollableComponent#arkui使用滚动类指南文档示例)
