@@ -85,6 +85,9 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
      }
 
      let bufferSize: number = 0;
+     let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+     let path = context.cacheDir;
+     // 确保该沙箱路径下存在该资源。
      // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
      let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
