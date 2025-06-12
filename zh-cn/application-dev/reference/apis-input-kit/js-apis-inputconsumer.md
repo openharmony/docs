@@ -182,9 +182,9 @@ try {
 
 on(type: 'keyPressed', options: KeyPressedConfig, callback: Callback&lt;KeyEvent&gt;): void
 
-订阅按键按下事件，使用callback异步回调。若当前应用窗口为前台焦点窗口，用户按下指定按键，会触发回调。
+订阅按键按下事件，使用callback异步回调。若当前应用窗口为前台焦点窗口，用户按下指定按键，会触发回调。此接口仅支持手机和平板形态设备。
 
-订阅成功后，该按键事件的系统默认行为将被屏蔽，即不会再触发系统级的响应，如音量调节、翻页功能。要恢复系统响应，请使用inputConsumer.off('keyPressed')方法取消订阅。
+订阅成功后，该按键事件的系统默认行为将被屏蔽，即不会再触发系统级的响应，如音量调节。要恢复系统响应，请使用inputConsumer.off('keyPressed')方法取消订阅。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -203,7 +203,7 @@ on(type: 'keyPressed', options: KeyPressedConfig, callback: Callback&lt;KeyEvent
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801 | Capability not supported. 非手机和平板形态，设备不支持。 |
+| 801 | Capability not supported. |
 
 **示例：**
 
@@ -226,7 +226,7 @@ try {
 
 off(type: 'keyPressed', callback?: Callback&lt;KeyEvent&gt;): void
 
-取消对'keyPressed'事件的订阅，使用callback异步回调。调用该方法后，被屏蔽的系统按键默认行为将恢复，即系统对音量调节、翻页功能等的默认响应将恢复。
+取消对'keyPressed'事件的订阅，使用callback异步回调。调用该方法后，被屏蔽的系统按键默认行为将恢复，即系统对音量调节等默认响应将恢复。此接口仅支持手机和平板形态设备。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -244,7 +244,7 @@ off(type: 'keyPressed', callback?: Callback&lt;KeyEvent&gt;): void
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801 | Capability not supported. 非手机和平板形态，设备不支持。 |
+| 801 | Capability not supported. |
 
 **示例：**
 

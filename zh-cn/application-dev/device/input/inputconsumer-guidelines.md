@@ -1,8 +1,8 @@
-# 快捷键开发指导
+# 全局快捷键开发指导
 
 ## 场景介绍
 
-快捷键功能提供订阅快捷键、设置屏蔽按键拦截状态等能力。使用场景例如：当用户需要通过快捷键实现快捷功能时，开发者可以订阅快捷键，通过组合按键启用快捷功能。
+全局快捷键功能提供订阅全局快捷键、设置屏蔽按键拦截状态等能力。使用场景例如：当用户需要通过全局快捷键实现快捷功能时，开发者可以订阅全局快捷键，通过组合按键启用快捷功能。
 
 ## 导入模块
 
@@ -12,21 +12,21 @@ import { inputConsumer } from '@kit.InputKit';
 
 ## 接口说明
 
-快捷键管理常用接口如下表所示，接口详细介绍请参考[ohos.multimodalInput.inputConsumer-sys文档](../../reference/apis-input-kit/js-apis-inputconsumer-sys.md)和[ohos.multimodalInput.inputConsumer文档](../../reference/apis-input-kit/js-apis-inputconsumer.md)。
+全局快捷键管理常用接口如下表所示，接口详细介绍请参考[ohos.multimodalInput.inputConsumer-sys文档](../../reference/apis-input-kit/js-apis-inputconsumer-sys.md)和[ohos.multimodalInput.inputConsumer文档](../../reference/apis-input-kit/js-apis-inputconsumer.md)。
 
 | 接口名称  | 描述 |
 | ------------------------------------------------------------ | -------------------------- |
-| on(type: 'key', keyOptions: KeyOptions, callback: Callback\<KeyOptions>): void | 订阅快捷键。 |
-| off(type: 'key', keyOptions: KeyOptions, callback?: Callback\<KeyOptions>): void | 取消订阅快捷键。 |
+| on(type: 'key', keyOptions: KeyOptions, callback: Callback\<KeyOptions>): void | 订阅系统快捷键。 |
+| off(type: 'key', keyOptions: KeyOptions, callback?: Callback\<KeyOptions>): void | 取消订阅系统快捷键。 |
 | setShieldStatus(shieldMode: ShieldMode, isShield: boolean): void | 设置屏蔽按键拦截状态。 |
 | getShieldStatus(shieldMode: ShieldMode): boolean | 获取屏蔽按键拦截是否生效。 |
 | getAllSystemHotkeys(): Promise\<Array\<HotkeyOptions>> | 获取所有系统快捷键。 |
-| on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback\<HotkeyOptions>): void | 订阅全局快捷键。 |
-| off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback\<HotkeyOptions>): void | 取消订阅全局快捷键。 |
+| on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback\<HotkeyOptions>): void | 订阅应用快捷键。 |
+| off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback\<HotkeyOptions>): void | 取消订阅应用快捷键。 |
 
 ## 开发步骤
 
-特定快捷键的应用开启时调用[on](../../reference/apis-input-kit/js-apis-inputconsumer-sys.md#inputconsumeron)方法订阅快捷键，应用关闭时再用[off](../../reference/apis-input-kit/js-apis-inputconsumer-sys.md#inputconsumeroff)方法取消订阅组合键。
+特定全局快捷键的应用开启时调用[on](../../reference/apis-input-kit/js-apis-inputconsumer-sys.md#inputconsumeron)方法订阅全局快捷键，应用关闭时再用[off](../../reference/apis-input-kit/js-apis-inputconsumer-sys.md#inputconsumeroff)方法取消订阅全局快捷键。
 
 ```js
 let leftAltKey = 2045;
@@ -37,13 +37,13 @@ let callback = (keyOptions: inputConsumer.KeyOptions) => {
 //应用开启
 let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
 try {
-  inputConsumer.on("key", keyOption, callback);//订阅快捷键
+  inputConsumer.on("key", keyOption, callback);//订阅系统快捷键
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 //应用关闭
 try {
-  inputConsumer.off("key", keyOption, callback);//取消订阅快捷键
+  inputConsumer.off("key", keyOption, callback);//取消订阅系统快捷键
   console.log(`Unsubscribe success`);
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -61,13 +61,13 @@ inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOption
 });
 //应用开启
 try {
-  inputConsumer.on("hotkeyChange", hotkeyOption, hotkeyCallback);//订阅全局快捷键
+  inputConsumer.on("hotkeyChange", hotkeyOption, hotkeyCallback);//订阅应用快捷键
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 //应用关闭
 try {
-  inputConsumer.off("hotkeyChange", hotkeyOption, hotkeyCallback);//取消订阅全局快捷键
+  inputConsumer.off("hotkeyChange", hotkeyOption, hotkeyCallback);//取消订阅应用快捷键
   console.log(`Unsubscribe success`);
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
