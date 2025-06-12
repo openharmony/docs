@@ -21,6 +21,9 @@ import { LiveFormExtensionAbility } from '@kit.FormKit';
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Ability.Form
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 | 名称 | 类型    | 只读 | 可选  |说明|
 | ------ | ------ | ---- | ---- | ---- |
 | context |  [LiveFormExtensionContext](./js-apis-application-LiveFormExtensionContext.md) | 否   | 否 |LiveFormExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。|
