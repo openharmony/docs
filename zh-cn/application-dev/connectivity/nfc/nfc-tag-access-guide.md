@@ -66,7 +66,7 @@ NFC标签读写完整的JS API说明以及实例代码请参考：[NFC标签接�
               "entity.system.home"
             ],
             "actions": [
-              "action.system.home",
+              "ohos.want.action.home",
 
               // actions须包含"ohos.nfc.tag.action.TAG_FOUND"
               "ohos.nfc.tag.action.TAG_FOUND"
@@ -229,7 +229,7 @@ export default class EntryAbility extends UIAbility {
               "entity.system.home"
             ],
             "actions": [
-              "action.system.home",
+              "ohos.want.action.home",
 
               // actions须包含"ohos.nfc.tag.action.TAG_FOUND"
               "ohos.nfc.tag.action.TAG_FOUND"

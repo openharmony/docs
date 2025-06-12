@@ -53,7 +53,7 @@ NFC卡模拟完整的JS API说明以及实例代码请参考：[NFC卡模拟接�
               "entity.system.home"
             ],
             "actions": [
-              "action.system.home",
+              "ohos.want.action.home",
 
               // actions须包含"ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
               "ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
@@ -179,7 +179,7 @@ export default class EntryAbility extends UIAbility {
               "entity.system.home"
             ],
             "actions": [
-              "action.system.home",
+              "ohos.want.action.home",
 
               // actions须包含"ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
               "ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
