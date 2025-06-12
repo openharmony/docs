@@ -186,6 +186,8 @@ import { window } from '@kit.ArkUI';
 仅对手机以及pad的非自由多窗模式生效。
 仅对全屏应用生效。
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Window.SessionManager

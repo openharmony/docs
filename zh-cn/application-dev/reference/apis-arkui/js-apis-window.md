@@ -510,6 +510,8 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 窗口动画类型枚举。
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **系统能力：**  SystemCapability.Window.SessionManager
 
 | 名称    | 值   | 说明                       |
@@ -535,6 +537,8 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 仅对同应用的不同ability间跳转生效。
 仅对手机以及pad的非自由多窗模式生效。
 仅对全屏应用生效。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
