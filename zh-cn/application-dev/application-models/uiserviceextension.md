@@ -49,12 +49,14 @@ struct Index {
             try {
               // 启动UIServiceExtensionAbility
               context.startUIServiceExtensionAbility(startWant).then(() => {
-                console.log('startUIServiceExtensionAbility success');
+                console.info('startUIServiceExtensionAbility success.');
               }).catch((error: BusinessError) => {
-                console.log('startUIServiceExtensionAbility error', JSON.stringify(error));
-              })
+                console.error(`startUIServiceExtensionAbility failed, err code: ${error.code}, err msg: ${error.message}.`);
+              });
             } catch (err) {
-              console.log('startUIServiceExtensionAbility failed', JSON.stringify(err));
+              let code = (err as BusinessError).code;
+              let msg = (err as BusinessError).message;
+              console.error(`startUIServiceExtensionAbility failed, err code: ${code}, err msg: ${msg}.`);
             }
           })
       }
@@ -76,12 +78,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct Index {
   comProxy: common.UIServiceProxy | null = null;
-  connectCallback : common.UIServiceExtensionConnectCallback = {
-    onData:(data: Record<string, Object>) => {
-      console.log("received data", JSON.stringify(data));
+  connectCallback: common.UIServiceExtensionConnectCallback = {
+    onData: (data: Record<string, Object>) => {
+      console.info(`data received, data: ${JSON.stringify(data)}.`);
     },
-    onDisconnect:() => {
-      console.log("onDisconnect ");
+    onDisconnect: () => {
+      console.info(`onDisconnect.`);
     }
   }
 
@@ -89,32 +91,38 @@ struct Index {
     Column() {
       Row() {
         // 创建连接按钮
-        Button("connect ability")
+        Button('connect ability')
           .enabled(true)
           .onClick(() => {
             let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-            let startWant:Want = {
+            let startWant: Want = {
               bundleName: 'com.acts.uiserviceextensionability',
               abilityName: 'UiServiceExtAbility',
             };
             try {
               // 连接UIServiceExtensionAbility
-              context.connectUIServiceExtensionAbility(startWant, this.connectCallback).then((proxy: common.UIServiceProxy) => {
-                this.comProxy = proxy;
-                let formData: Record<string, string> = {
-                  'test': 'test'
-                };
-                try {
-                  this.comProxy.sendData(formData);
-                } catch (err) {
-                  console.log('sendData failed', JSON.stringify(err));
-                };
-              }).catch((err: BusinessError) => {
-                console.log("connectUIServiceExtensionAbility failed", JSON.stringify(err));
-              });
-            } catch(err) {
-              console.log("connectUIServiceExtensionAbility failed", JSON.stringify(err));
-            };
+              context.connectUIServiceExtensionAbility(startWant, this.connectCallback)
+                .then((proxy: common.UIServiceProxy) => {
+                  this.comProxy = proxy;
+                  let formData: Record<string, string> = {
+                    'test': 'test'
+                  };
+                  try {
+                    this.comProxy.sendData(formData);
+                  } catch (err) {
+                    let code = (err as BusinessError).code;
+                    let msg = (err as BusinessError).message;
+                    console.error(`sendData failed, err code:${code}, err msg:${msg}.`);
+                  }
+                });
+                .catch((err: BusinessError) => {
+                  console.error(`connectUIServiceExtensionAbility failed, err code: ${err.code}, err msg: ${err.message}.`);
+                });
+            } catch (err) {
+              let code = (err as BusinessError).code;
+              let msg = (err as BusinessError).message;
+              console.error(`connectUIServiceExtensionAbility failed, err code:${code}, err msg:${msg}.`);
+            }
           })
       }
     }

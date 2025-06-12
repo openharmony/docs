@@ -359,7 +359,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 
   export default class MyUIAbility extends UIAbility {
     onContinue(wantParams: Record<string, Object>) {
-      console.log('onContinue');
+      console.info('onContinue');
       wantParams['myData'] = 'my1234567';
       return AbilityConstant.OnContinueResult.AGREE;
     }
@@ -373,18 +373,18 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 
   export default class MyUIAbility extends UIAbility {
     async setWant(wantParams: Record<string, Object>) {
-      console.log('setWant start');
+      console.info('setWant start');
       for (let time = 0; time < 1000; ++time) {
         wantParams[time] = time;
       }
-      console.log('setWant end');
+      console.info('setWant end');
     }
 
     async onContinue(wantParams: Record<string, Object>) {
-        console.log('onContinue');
-        return this.setWant(wantParams).then(()=>{
-          return AbilityConstant.OnContinueResult.AGREE;
-        });
+      console.info('onContinue');
+      return this.setWant(wantParams).then(() => {
+        return AbilityConstant.OnContinueResult.AGREE;
+      });
     }
   }
   ```
@@ -415,8 +415,8 @@ import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
 
 export default class MyUIAbility extends UIAbility {
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log(`onNewWant, want: ${want.abilityName}`);
-    console.log(`onNewWant, launchParam: ${JSON.stringify(launchParam)}`);
+    console.info(`onNewWant, want: ${want.abilityName}`);
+    console.info(`onNewWant, launchParam: ${JSON.stringify(launchParam)}`);
   }
 }
 ```
@@ -450,7 +450,7 @@ import { UIAbility } from '@kit.AbilityKit';
 
 export default class MyUIAbility extends UIAbility {
   onDump(params: Array<string>) {
-    console.log(`dump, params: ${JSON.stringify(params)}`);
+    console.info(`dump, params: ${JSON.stringify(params)}`);
     return ['params'];
   }
 }
@@ -489,7 +489,7 @@ import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
 export default class MyUIAbility extends UIAbility {
   onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
-    console.log('onSaveState');
+    console.info('onSaveState');
     wantParam['myData'] = 'my1234567';
     return AbilityConstant.OnSaveResult.RECOVERY_AGREE;
   }
@@ -519,7 +519,7 @@ import { UIAbility } from '@kit.AbilityKit';
 
 export default class MyUIAbility extends UIAbility {
   onShare(wantParams: Record<string, Object>) {
-    console.log('onShare');
+    console.info('onShare');
     wantParams['ohos.extra.param.key.shareUrl'] = 'example.com';
   }
 }
@@ -571,7 +571,7 @@ export default class EntryAbility extends UIAbility {
     this.context.startAbilityForResult(want)
       .then((result)=>{
         // 获取ability处理结果，当返回结果的resultCode为0关闭当前UIAbility
-        console.log('startAbilityForResult success, resultCode is ' + result.resultCode);
+        console.info('startAbilityForResult success, resultCode is ' + result.resultCode);
         if (result.resultCode === 0) {
           this.context.terminateSelf();
         }
@@ -757,13 +757,13 @@ class MyMessageAble implements rpc.Parcelable { // 自定义的Parcelable数据�
   marshalling(messageSequence: rpc.MessageSequence) {
     messageSequence.writeInt(this.num);
     messageSequence.writeString(this.str);
-    console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
+    console.info(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
     return true;
   }
   unmarshalling(messageSequence: rpc.MessageSequence) {
     this.num = messageSequence.readInt();
     this.str = messageSequence.readString();
-    console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
+    console.info(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
     return true;
   }
 };
@@ -781,7 +781,7 @@ export default class MainUIAbility extends UIAbility {
       let msg = new MyMessageAble('msg', 'world'); // 参考Parcelable数据定义
       caller.call(method, msg)
         .then(() => {
-          console.log('Caller call() called');
+          console.info('Caller call() called');
         })
         .catch((callErr: BusinessError) => {
           console.error(`Caller.call catch error, error.code: ${callErr.code}, error.message: ${callErr.message}`);
@@ -838,23 +838,26 @@ class MyMessageAble implements rpc.Parcelable {
   name: string
   str: string
   num: number = 1
+
   constructor(name: string, str: string) {
     this.name = name;
     this.str = str;
   }
+
   marshalling(messageSequence: rpc.MessageSequence) {
     messageSequence.writeInt(this.num);
     messageSequence.writeString(this.str);
-    console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
+    console.info(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
     return true;
   }
+
   unmarshalling(messageSequence: rpc.MessageSequence) {
     this.num = messageSequence.readInt();
     this.str = messageSequence.readString();
-    console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
+    console.info(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
     return true;
   }
-};
+}
 let method = 'call_Function';
 let caller: Caller;
 
@@ -869,9 +872,9 @@ export default class MainUIAbility extends UIAbility {
       let msg = new MyMessageAble('msg', 'world');
       caller.callWithResult(method, msg)
         .then((data) => {
-          console.log('Caller callWithResult() called');
-          let retmsg = new MyMessageAble('msg', 'world');
-          data.readParcelable(retmsg);
+          console.info('Caller callWithResult() called');
+          let retMsg = new MyMessageAble('msg', 'world');
+          data.readParcelable(retMsg);
         })
         .catch((callErr: BusinessError) => {
           console.error(`Caller.callWithResult catch error, error.code: ${callErr.code}, error.message: ${callErr.message}`);
@@ -972,7 +975,7 @@ export default class MainUIAbility extends UIAbility {
       caller = obj;
       try {
         caller.onRelease((str) => {
-          console.log(`Caller OnRelease CallBack is called ${str}`);
+          console.info(`Caller OnRelease CallBack is called ${str}`);
         });
       } catch (error) {
         console.error(`Caller.onRelease catch error, error.code: $error.code}, error.message: ${error.message}`);
@@ -1027,7 +1030,7 @@ export default class MainAbility extends UIAbility {
       caller = obj;
       try {
         caller.onRemoteStateChange((str) => {
-          console.log('Remote state changed ' + str);
+          console.info('Remote state changed ' + str);
         });
       } catch (error) {
         console.error(`Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
@@ -1082,7 +1085,7 @@ export default class MainUIAbility extends UIAbility {
       caller = obj;
       try {
         caller.on('release', (str) => {
-          console.log(`Caller OnRelease CallBack is called ${str}`);
+          console.info(`Caller OnRelease CallBack is called ${str}`);
         });
       } catch (error) {
         console.error(`Caller.on catch error, error.code: ${error.code}, error.message: ${error.message}`);
@@ -1136,7 +1139,7 @@ export default class MainUIAbility extends UIAbility {
       caller = obj;
       try {
         let onReleaseCallBack: OnReleaseCallback = (str) => {
-          console.log(`Caller OnRelease CallBack is called ${str}`);
+          console.info(`Caller OnRelease CallBack is called ${str}`);
         };
         caller.on('release', onReleaseCallBack);
         caller.off('release', onReleaseCallBack);
@@ -1191,7 +1194,7 @@ export default class MainUIAbility extends UIAbility {
       caller = obj;
       try {
         let onReleaseCallBack: OnReleaseCallback = (str) => {
-          console.log(`Caller OnRelease CallBack is called ${str}`);
+          console.info(`Caller OnRelease CallBack is called ${str}`);
         };
         caller.on('release', onReleaseCallBack);
         caller.off('release');
@@ -1251,27 +1254,27 @@ class MyMessageAble implements rpc.Parcelable {
   marshalling(messageSequence: rpc.MessageSequence) {
     messageSequence.writeInt(this.num);
     messageSequence.writeString(this.str);
-    console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
+    console.info(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
     return true;
   }
   unmarshalling(messageSequence: rpc.MessageSequence) {
     this.num = messageSequence.readInt();
     this.str = messageSequence.readString();
-    console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
+    console.info(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
     return true;
   }
 };
 let method = 'call_Function';
 
 function funcCallBack(pdata: rpc.MessageSequence) {
-  console.log(`Callee funcCallBack is called ${pdata}`);
+  console.info(`Callee funcCallBack is called ${pdata}`);
   let msg = new MyMessageAble('test', '');
   pdata.readParcelable(msg);
   return new MyMessageAble('test1', 'Callee test');
 }
 export default class MainUIAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log('Callee onCreate is called');
+    console.info('Callee onCreate is called');
     try {
       this.callee.on(method, funcCallBack);
     } catch (error) {
@@ -1314,7 +1317,7 @@ let method = 'call_Function';
 
 export default class MainUIAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log('Callee onCreate is called');
+    console.info('Callee onCreate is called');
     try {
       this.callee.off(method);
     } catch (error) {
