@@ -839,7 +839,7 @@ let apnInfo: Record<string, string> = {
   "mcc": "",
 };
 try {
-  networkManager.addApn(wantTemp，apnInfo);
+  networkManager.addApn(wantTemp, apnInfo);
   console.info(`Succeeded in adding apn.`);
 } catch (err) {
   console.error(`Failed to add apn. Code: ${err.code}, message: ${err.message}`);
@@ -885,7 +885,7 @@ let wantTemp: Want = {
 };
 let apnId: string = "1";
 try {
-  networkManager.deleteApn(wantTemp，apnId);
+  networkManager.deleteApn(wantTemp, apnId);
   console.info(`Succeeded in deleting apn.`);
 } catch (err) {
   console.error(`Failed to delete apn. Code: ${err.code}, message: ${err.message}`);
@@ -938,7 +938,7 @@ let apnInfo: Record<string, string> = {
 };
 let apnId: string = "1";
 try {
-  networkManager.updateApn(wantTemp，apnInfo, apnId);
+  networkManager.updateApn(wantTemp, apnInfo, apnId);
   console.info(`Succeeded in updating apn.`);
 } catch (err) {
   console.error(`Failed to update apn. Code: ${err.code}, message: ${err.message}`);
@@ -984,7 +984,7 @@ let wantTemp: Want = {
 };
 let apnId: string = "1";
 try {
-  networkManager.setPreferredApn(wantTemp，apnId);
+  networkManager.setPreferredApn(wantTemp, apnId);
   console.info(`Succeeded in setting preferred apn.`);
 } catch (err) {
   console.error(`Failed to set preferred apn. Code: ${err.code}, message: ${err.message}`);
@@ -1041,7 +1041,7 @@ let apnInfo: Record<string, string> = {
   "mcc": "",
 };
 try {
-  let queryResult: Array<string> = networkManager.queryApn(wantTemp，apnInfo);
+  let queryResult: Array<string> = networkManager.queryApn(wantTemp, apnInfo);
   console.info(`Succeeded in querying apn, result : ${JSON.stringify(queryResult)}`);
 } catch (err) {
   console.error(`Failed to query apn. Code: ${err.code}, message: ${err.message}`);
@@ -1093,7 +1093,7 @@ let wantTemp: Want = {
 };
 let apnId: string = "1";
 try {
-  let queryResult: Record<string, string> = networkManager.queryApn(wantTemp，apnId);
+  let queryResult: Record<string, string> = networkManager.queryApn(wantTemp, apnId);
   console.info(`Succeeded in querying apn, result : ${JSON.stringify(queryResult)}`);
 } catch (err) {
   console.error(`Failed to query apn. Code: ${err.code}, message: ${err.message}`);
