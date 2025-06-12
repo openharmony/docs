@@ -6617,6 +6617,45 @@ struct Index {
 import { FrameNode, NodeController, NodeAdapter, typeNode } from '@kit.ArkUI';
 
 class MyNodeAdapter extends NodeAdapter {
+  uiContext: UIContext
+  cachePool: Array<FrameNode> = new Array();
+  changed: boolean = false
+  reloadTimes: number = 0;
+  data: Array<string> = new Array();
+  hostNode?: FrameNode
+
+  constructor(uiContext: UIContext, count: number) {
+    super();
+    this.uiContext = uiContext;
+    this.totalNodeCount = count;
+    this.loadData();
+  }
+
+  loadData(): void {
+    for (let i = 0; i < this.totalNodeCount; i++) {
+      this.data[i] = "Adapter ListItem " + i + " r:" + this.reloadTimes;
+    }
+  }
+
+  onCreateChild(index: number): FrameNode {
+    console.log("UINodeAdapter onCreateChild:" + index);
+    if (this.cachePool.length > 0) {
+      let cacheNode = this.cachePool.pop();
+      if (cacheNode !== undefined) {
+        console.log("UINodeAdapter onCreateChild reused id:" + cacheNode.getUniqueId());
+        let text = cacheNode?.getFirstChild();
+        let textNode = text as typeNode.Text;
+        textNode?.initialize(this.data[index]).fontSize(20);
+        return cacheNode;
+      }
+    }
+    console.log("UINodeAdapter onCreateChild createNew");
+    let itemNode = typeNode.createNode(this.uiContext, "ListItem");
+    let textNode = typeNode.createNode(this.uiContext, "Text");
+    textNode.initialize(this.data[index]).fontSize(20);
+    itemNode.appendChild(textNode);
+    return itemNode;
+  }
 }
 
 class MyNodeAdapterController extends NodeController {
@@ -6628,7 +6667,7 @@ class MyNodeAdapterController extends NodeController {
     let listNode = typeNode.createNode(uiContext, "List");
     listNode.initialize({ space: 3 }).borderColor(Color.Black);
     this.rootNode.appendChild(listNode);
-    this.nodeAdapter = new MyNodeAdapter();
+    this.nodeAdapter = new MyNodeAdapter(uiContext, 20);
     NodeAdapter.attachNodeAdapter(this.nodeAdapter, listNode);
     return this.rootNode;
   }
