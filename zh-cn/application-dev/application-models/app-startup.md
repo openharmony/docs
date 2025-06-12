@@ -257,8 +257,8 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
 
 上述操作中已完成启动框架配置文件、启动参数的配置，还需要在每个功能组件对应的启动任务文件中，通过实现[StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)来添加启动任务。其中，需要用到下面的两个方法：
 
-- [init](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md#startuptaskinit)：启动任务初始化。当该任务依赖的启动任务全部执行完毕，即onDependencyCompleted完成调用后，才会执行init方法对该任务进行初始化。
-- [onDependencyCompleted](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md#startuptaskondependencycompleted)：当前任务依赖的启动任务执行完成时，调用该方法。
+- [init](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md#init)：启动任务初始化。当该任务依赖的启动任务全部执行完毕，即onDependencyCompleted完成调用后，才会执行init方法对该任务进行初始化。
+- [onDependencyCompleted](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md#ondependencycompleted)：当前任务依赖的启动任务执行完成时，调用该方法。
 
 
 下面以[startup_config.json](#定义启动框架配置文件)中的StartupTask_001.ets文件为例，示例代码如下。开发者需要分别为每个待初始化功能组件添加启动任务。
