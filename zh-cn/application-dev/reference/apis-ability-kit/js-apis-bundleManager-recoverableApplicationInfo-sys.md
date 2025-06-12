@@ -8,6 +8,12 @@
 >
 > 本模块为系统接口。
 
+## 导入模块
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+```
+
 ## RecoverableApplicationInfo
 
 预置应用被卸载后可以恢复的预置应用信息。

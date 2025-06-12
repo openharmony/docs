@@ -397,7 +397,7 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
 
   onUpdateRequest(request: autoFillManager.UpdateRequest): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onUpdateRequest');
-    console.log(`get fill request viewData: ${JSON.stringify(request.viewData)}.`);
+    console.info(`get fill request viewData: ${JSON.stringify(request.viewData)}.`);
     let fillCallback = this.storage.get<autoFillManager.FillRequestCallback>('fillCallback');
 
     if (fillCallback) {
@@ -419,8 +419,8 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
   onFillRequest(session: UIExtensionContentSession, request: autoFillManager.FillRequest, callback: autoFillManager.FillRequestCallback) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
     hilog.info(0x0000, 'testTag', 'Fill RequestCallback: %{public}s ', JSON.stringify(callback));
-    console.log(`testTag. Get fill request viewData: ${JSON.stringify(request.viewData)}.`);
-    console.log(`testTag. Get fill request type: ${JSON.stringify(request.type)}.`);
+    console.info(`testTag. Get fill request viewData: ${JSON.stringify(request.viewData)}.`);
+    console.info(`testTag. Get fill request type: ${JSON.stringify(request.type)}.`);
 
     try {
       let localStorageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData | autoFillManager.AutoFillType> = {
@@ -624,7 +624,7 @@ struct SavePage {
 
       Button('onFailure')
         .onClick(() => {
-          hilog.info(0x0000, 'testTag', 'autofill failure');
+          hilog.error(0x0000, 'testTag', 'autofill onFailure');
           try {
             this.saveCallback?.onFailure();
           } catch (error) {

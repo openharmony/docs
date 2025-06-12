@@ -14,20 +14,20 @@ import { abilityManager } from '@kit.AbilityKit';
 
 ## 使用说明
 
-通过abilityManager中[getAbilityRunningInfos](js-apis-app-ability-abilityManager.md#getabilityrunninginfos)方法获取。
+通过abilityManager中[getAbilityRunningInfos](js-apis-app-ability-abilityManager.md#abilitymanagergetabilityrunninginfos)方法获取。
 
 ## 属性
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| ability | ElementName | 是 | 否 | Ability匹配信息  |
-| pid | number | 是 | 否 | 进程ID。 |
-| uid | number | 是 | 否 | 用户ID。  |
-| processName | string | 是 | 否 | 进程名称。  |
-| startTime | number | 是 | 否 | Ability启动时间。  |
-| abilityState | [abilityManager.AbilityState](js-apis-app-ability-abilityManager.md#abilitystate14) | 是 | 否 | Ability状态。  |
+| ability | ElementName | 否 | 否 | Ability匹配信息  |
+| pid | number | 否 | 否 | 进程ID。 |
+| uid | number | 否 | 否 | 用户ID。  |
+| processName | string | 否 | 否 | 进程名称。  |
+| startTime | number | 否 | 否 | Ability启动时间。  |
+| abilityState | [abilityManager.AbilityState](js-apis-app-ability-abilityManager.md#abilitystate14) | 否 | 否 | Ability状态。  |
 
 **示例：**
 

@@ -80,7 +80,7 @@ mediatool recv <media-target> <dest-path>
 该命令能够将`<media-target>`指定的媒体库资源的源文件内容导出到`<dest-path>`指定的设备路径下。
 
 `<media-target>`可以为以下两种形式：
-* 系统媒体目录下的文件路径。（可通过[mediatool ls -l](#mediatool-ls--l)获取。不支持指定文件夹路径。）
+* 系统媒体目录下的文件路径。（可通过mediatool ls -l获取。不支持指定文件夹路径。）
 * 媒体库uri。（参考[媒体库uri介绍/获取方式](#媒体库uri介绍获取方式)）
 
 如果`<media-target>`指定文件路径，只支持以下几种路径，以下几种路径存在映射关系，访问的目录相同，均访问当前用户的系统媒体目录：

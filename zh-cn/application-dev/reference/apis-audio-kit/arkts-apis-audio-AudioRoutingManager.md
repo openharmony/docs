@@ -1,4 +1,4 @@
-# Class (AudioRoutingManager)
+# Interface (AudioRoutingManager)
 
 > **说明：**
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -340,7 +340,7 @@ getAvailableDevices(deviceUsage: DeviceUsage): AudioDeviceDescriptors
 
 | 类型                                                         | 说明                      |
 | ------------------------------------------------------------ | ------------------------- |
-| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | 返回设备列表。 |
+| [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors) | 返回设备列表。 |
 
 **错误码：**
 
@@ -379,7 +379,7 @@ on(type: 'availableDeviceChange', deviceUsage: DeviceUsage, callback: Callback<D
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
 | type     | string                                               | 是   | 事件回调类型，支持的事件为'availableDeviceChange'，当音频可选设备连接状态发生变化时，触发该事件。 |
 | deviceUsage | [DeviceUsage](arkts-apis-audio-e.md#deviceusage12)                       | 是   | 音频设备类型（根据用途分类）。     |
-| callback | Callback<[DeviceChangeAction](js-apis-audio.md#devicechangeaction)\> | 是   | 回调函数，返回设备更新详情。 |
+| callback | Callback<[DeviceChangeAction](arkts-apis-audio-i.md#devicechangeaction)\> | 是   | 回调函数，返回设备更新详情。 |
 
 **错误码：**
 
@@ -414,7 +414,7 @@ off(type: 'availableDeviceChange', callback?: Callback<DeviceChangeAction\>): vo
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                              | 是   | 事件回调类型，支持的事件为'availableDeviceChange'，当取消监听音频可选设备连接变化事件时，触发该事件。 |
-| callback | Callback<[DeviceChangeAction](js-apis-audio.md#devicechangeaction)> | 否   | 回调函数，返回可选设备更新详情。 |
+| callback | Callback<[DeviceChangeAction](arkts-apis-audio-i.md#devicechangeaction)> | 否   | 回调函数，返回可选设备更新详情。 |
 
 **错误码：**
 

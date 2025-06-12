@@ -27,7 +27,7 @@
 
 #### 生命周期
 
-[AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)提供了[onCreate](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityoncreate)、[onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonsessiondestroy)、[onForeground](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonforeground)、[onBackground](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonbackground)、[onDestroy](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityondestroy)、[onSaveRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonsaverequest)和[onFillRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonfillrequest)生命周期回调，根据需要重写对应的回调方法。
+[AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)提供了[onCreate](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#oncreate)、[onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onsessiondestroy)、[onForeground](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onforeground)、[onBackground](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onbackground)、[onDestroy](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#ondestroy)、[onSaveRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onsaverequest)和[onFillRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onfillrequest)生命周期回调，根据需要重写对应的回调方法。
 
 - **onCreate**：当AutoFillExtensionAbility创建时回调，执行初始化业务逻辑操作。
 - **onSessionDestroy**：当AutoFillExtensionAbility界面内容对象销毁后调用。
@@ -123,7 +123,7 @@
 
    2. 在autofillpages目录中，右键选择“New &gt; File”，新建一个.ets文件并命名为AutoFillPassWord.ets。
 
-   3. 当点击界面中账号或密码输入框时，自动填充框架会向自动填充服务发起自动填充请求，触发[onFillRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonfillrequest)的生命周期。在onFillRequest生命周期中拉起账号密码备选信息页面(AutoFillPassWord.ets)。
+   3. 当点击界面中账号或密码输入框时，自动填充框架会向自动填充服务发起自动填充请求，触发[onFillRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onfillrequest)的生命周期。在onFillRequest生命周期中拉起账号密码备选信息页面(AutoFillPassWord.ets)。
 
       ```ts
       import { autoFillManager } from '@kit.AbilityKit';
@@ -241,7 +241,7 @@
 
    1. 在autofillpages目录，右键选择“New &gt; File”，新建一个.ets文件并命名为SavePage.ets。
 
-   2. 当TextInput中存在有信息时，页面切换(点击登录按钮)将触发[onSaveRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonsaverequest)的生命周期。在onSaveRequest中拉起保存信息处理界面(SavePage.ets)。
+   2. 当TextInput中存在有信息时，页面切换(点击登录按钮)将触发[onSaveRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onsaverequest)的生命周期。在onSaveRequest中拉起保存信息处理界面(SavePage.ets)。
 
       ```ts
       import { autoFillManager } from '@kit.AbilityKit';

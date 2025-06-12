@@ -24,6 +24,45 @@ import {
 
 以下API需先使用ohos.window中的[getUIContext()](arkts-apis-window-Window.md#getuicontext10)方法获取UIContext实例，再通过此实例调用对应方法。或者可以通过自定义组件内置方法[getUIContext()](arkui-ts/ts-custom-component-api.md#getuicontext)获取。本文中UIContext对象以uiContext表示。
 
+**示例：**
+
+```ts
+//两种方法获取到的UIContext没有差异
+//index.ets
+import { UIContext } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @build
+  build() {
+    Column() {
+      Button("Button")
+          .onClick(()=>{
+            //通过自定义组件内置方法获取
+            this.getUIContext()
+            //其他运行逻辑
+          })
+    }  
+  }
+}
+
+//EntryAbility.ets
+import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+
+const DOMAIN = 0x0000;
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    //通过ohos.window获取
+    windowStage.getMainWindowSync().getUIContext()
+    //其他运行逻辑
+  }
+}
+```
+
 ### isAvailable<sup>20+</sup>
 
 isAvailable(): boolean
@@ -9993,6 +10032,15 @@ struct Index {
 ## MeasureUtils<sup>12+</sup>
 
 以下API需先使用UIContext中的[getMeasureUtils()](js-apis-arkui-UIContext.md#getmeasureutils12)方法获取MeasureUtils实例，再通过此实例调用对应方法。
+
+> **说明：**
+>
+>
+> 如需更多测算文本参数，建议使用图形对应测算接口[Paragraph](../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph)接口。
+>
+> 调用文本计算接口时，不推荐同时用[ApplicationContext.setFontSizeScale](../apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextsetfontsizescale13)设置应用字体大小缩放比例。为了确保时序正确性，建议开发者自行监听字体缩放变化，以保证测算结果的准确性。
+>
+> 如果计算裁剪后的文本，在裁剪字符串时，建议按照unicode单位迭代，而非按照字符串length长度迭代。否则容易出现字符被截断，导致计算结果不准确的情况，常见emoji字符被截断。
 
 ### measureText<sup>12+</sup>
 

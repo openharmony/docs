@@ -201,6 +201,7 @@ reset(options: AnimatorOptions): void
 
 **示例：**
 
+<!--deprecated_code_no_check-->
 ```ts
 import { Animator as animator, AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';

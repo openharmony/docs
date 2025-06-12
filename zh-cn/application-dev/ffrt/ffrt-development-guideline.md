@@ -577,13 +577,13 @@ FFRT任务中使用标准库的互斥锁可能发生死锁，需要更换为FFRT
     }
     ```
 
-## Using FFRT in DevEco IDE
+## Using FFRT in DevEco Studio
 
 ### Using FFRT C API
 
 NDK（Native Development Kit）是系统提供的Native API的集合，方便开发者使用C或C++语言实现应用的关键功能。
 
-FFRT C API已集成在NDK中，在DevEco IDE中可以直接使用对应的接口。
+FFRT C API已集成在NDK中，在DevEco Studio中可以直接使用对应的接口。
 
 ```c
 #include "ffrt/task.h"
@@ -611,7 +611,7 @@ FFRT的部署依赖FFRT动态库`libffrt.so`和一组头文件，其中动态库
 ohpm install @ppd/ffrt
 ```
 
-也可以直接在`oh-package.json5`文件中配置对应的依赖，由IDE自动进行三方库下载安装。
+也可以直接在`oh-package.json5`文件中配置对应的依赖，由DevEco Studio自动进行三方库下载安装。
 
 在模块`CMakeLists.txt`文件中添加头文件搜索路径和链接依赖：
 

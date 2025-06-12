@@ -5,6 +5,12 @@ Ability信息，可以通过[bundleManager.getBundleInfoForSelf](js-apis-bundleM
 > **说明：**
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+## 导入模块
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+```
+
 ## AbilityInfo
 
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
@@ -14,7 +20,7 @@ Ability信息，可以通过[bundleManager.getBundleInfoForSelf](js-apis-bundleM
 | bundleName            | string                                                   | 是   | 否   | 应用Bundle名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | moduleName            | string                                                   | 是   | 否   | Ability所属的模块名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | name                  | string                                                   | 是   | 否   | Ability名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| label                 | string                                                   | 是   | 否   | Ability对用户显示的名称的资源描述符，如："label": "$string: mainability_description"。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| label                 | string                                                   | 是   | 否   | Ability对用户显示的名称的资源描述符，如："label": "$string: mainability_description"。从API version 20开始，如果是通过[bundleManager.getAbilityInfo](js-apis-bundleManager.md#bundlemanagergetabilityinfo20)获取Ability信息，该字段为Ability对用户显示的名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | labelId               | number                                                   | 是   | 否   | Ability的标签资源id。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | description           | string                                                   | 是   | 否   | Ability的描述。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | descriptionId         | number                                                   | 是   | 否   | Ability的描述资源id。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |

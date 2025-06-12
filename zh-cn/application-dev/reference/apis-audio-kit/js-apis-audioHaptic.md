@@ -70,7 +70,7 @@ registerSource(audioUri: string, hapticUri: string): Promise&lt;number&gt;
 
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| audioUri  | string                                  | 是   | 音频资源的Uri。对普通时延模式，音频资源格式和路径格式的支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)；对低时延模式，音频资源格式支持可参考[SoundPool](../apis-media-kit/js-apis-inner-multimedia-soundPool.md#soundpool)，路径格式需满足[文件管理模块open函数](../apis-core-file-kit/js-apis-file-fs.md#fsopen)的要求。对两种时延模式，均建议传入文件的绝对路径。           |
+| audioUri  | string                                  | 是   | 音频资源的Uri。对普通时延模式，音频资源格式和路径格式的支持可参考[media.AVPlayer](../apis-media-kit/arkts-apis-media-AVPlayer.md)；对低时延模式，音频资源格式支持可参考[SoundPool](../apis-media-kit/js-apis-inner-multimedia-soundPool.md#soundpool)，路径格式需满足[文件管理模块open函数](../apis-core-file-kit/js-apis-file-fs.md#fsopen)的要求。对两种时延模式，均建议传入文件的绝对路径。           |
 | hapticUri | string                                  | 是   | 振动资源的Uri。振动资源格式支持可参考[vibrator](../apis-sensor-service-kit/js-apis-vibrator.md#hapticfiledescriptor10)，路径格式需满足[文件管理模块open函数](../apis-core-file-kit/js-apis-file-fs.md#fsopen)的要求。建议传入文件的绝对路径。         |
 
 **返回值：**
@@ -213,7 +213,7 @@ setStreamUsage(id: number, usage: audio.StreamUsage): void
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | id       | number                                   | 是   | 已注册资源的source id。    |
-| usage    | [audio.StreamUsage](js-apis-audio.md#streamusage) | 是   | 音频流使用类型。    |
+| usage    | [audio.StreamUsage](arkts-apis-audio-e.md#streamusage) | 是   | 音频流使用类型。    |
 
 **错误码：**
 
@@ -533,7 +533,7 @@ on(type: 'audioInterrupt', callback: Callback&lt;audio.InterruptEvent&gt;): void
 | 参数名   | 类型                     | 必填 | 说明                                                                       |
 | -------- | ----------------------- | ---- | -------------------------------------------------------------------------- |
 | type     | string                  | 是   | 事件回调类型，支持的事件为'audioInterrupt'，当音频焦点状态发生变化时，触发该事件。 |
-| callback | Callback&lt;[audio.InterruptEvent](js-apis-audio.md#interruptevent9)&gt; | 是   | 回调函数，返回中断事件信息。 |
+| callback | Callback&lt;[audio.InterruptEvent](arkts-apis-audio-i.md#interruptevent9)&gt; | 是   | 回调函数，返回中断事件信息。 |
 
 **示例：**
 
@@ -603,7 +603,7 @@ off(type: 'audioInterrupt', callback?: Callback&lt;audio.InterruptEvent&gt;): vo
 | 参数名 | 类型   | 必填 | 说明                                              |
 | ----- | ----- | ---- | ------------------------------------------------- |
 | type   | string | 是   | 事件回调类型，支持的事件为'audioInterrupt'，当取消监听音频中断事件时，触发该事件。 |
-| callback | Callback&lt;[audio.InterruptEvent](js-apis-audio.md#interruptevent9)&gt; | 否   | 回调函数，返回中断事件信息。 |
+| callback | Callback&lt;[audio.InterruptEvent](arkts-apis-audio-i.md#interruptevent9)&gt; | 否   | 回调函数，返回中断事件信息。 |
 
 **示例：**
 
