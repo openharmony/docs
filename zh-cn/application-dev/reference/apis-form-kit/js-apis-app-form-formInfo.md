@@ -112,8 +112,8 @@ import { formInfo } from '@kit.FormKit';
 | DIMENSION_KEY      | 'ohos.extra.param.key.form_dimension'  | 卡片规格样式。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | NAME_KEY       | 'ohos.extra.param.key.form_name'   | 卡片名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | MODULE_NAME_KEY        | 'ohos.extra.param.key.module_name'   | 卡片所属模块名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| WIDTH_KEY        | 'ohos.extra.param.key.form_width'   | 卡片宽度，单位px。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| HEIGHT_KEY         | 'ohos.extra.param.key.form_height'   | 卡片高度，单位px。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| WIDTH_KEY        | 'ohos.extra.param.key.form_width'   | 卡片宽度。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| HEIGHT_KEY         | 'ohos.extra.param.key.form_height'   | 卡片高度。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | TEMPORARY_KEY          | 'ohos.extra.param.key.form_temporary'   | 临时卡片。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | ABILITY_NAME_KEY   | 'ohos.extra.param.key.ability_name'   | ability名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | BUNDLE_NAME_KEY    | 'ohos.extra.param.key.bundle_name'   | Bundle名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
@@ -124,8 +124,6 @@ import { formInfo } from '@kit.FormKit';
 | FORM_LOCATION_KEY<sup>12+</sup>    | 'ohos.extra.param.key.form_location'   | 卡片位置。 <br>OTHER                         -1    （其他位置） <br>DESKTOP                       0     （桌面） <br>FORM_CENTER                   1     （桌面的卡片中心） <br>FORM_MANAGER                  2     （桌面的卡片管理器） <br>NEGATIVE_SCREEN               3     （负一屏） <br>FORM_CENTER_NEGATIVE_SCREEN   4     （负一屏的服务中心） <br>FORM_MANAGER_NEGATIVE_SCREEN  5     （负一屏的卡片管理器） <br>SCREEN_LOCK                   6     （锁屏） <br>AI_SUGGESTION                 7     （小艺建议推荐区）|
 | FORM_PERMISSION_NAME_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_name' | 用户授权权限名称。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | FORM_PERMISSION_GRANTED_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_granted' | 用户是否授权。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| FORM_WIDTH_VP_KEY<sup>20+</sup> | 'ohos.extra.param.key.form_width_vp'   | 卡片宽度，单位vp。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
-| FORM_HEIGHT_VP_KEY<sup>20+</sup> | 'ohos.extra.param.key.form_height_vp'   | 卡片高度，单位vp。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## FormDimension
 
