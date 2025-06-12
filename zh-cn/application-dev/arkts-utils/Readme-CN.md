@@ -25,6 +25,7 @@
     - 并发线程间通信<!--interthead-communication-->
         - [ArkTS线程间通信概述](interthread-communication-overview.md)
         - 线程间通信对象<!--interthead-communication-object-->
+            - [线程间通信对象概述](serializable-overview.md)
             - [普通对象](normal-object.md)
             - [ArrayBuffer对象](arraybuffer-object.md)
             - [SharedArrayBuffer对象](shared-arraybuffer-object.md)
