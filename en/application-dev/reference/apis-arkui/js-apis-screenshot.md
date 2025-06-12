@@ -56,7 +56,7 @@ Describes the screenshot options.
 
 pick(): Promise&lt;PickInfo&gt;
 
-Takes a screenshot. This API can be used only on 2-in-1 devices.
+Takes a screenshot. This API can be used only on 2-in-1 devices. Currently, this API can only be used to take screenshots for the screen with **displayId** 0.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -102,7 +102,7 @@ capture(options?: CaptureOption): Promise&lt;image.PixelMap&gt;
 
 Takes a screenshot of the entire screen. This API can be used only on tablets and 2-in-1 devices.
 
-Different from [pick](#screenshotpick), this API can be used to capture a full-screen screenshot on the specified display
+This API allows you to take screenshots of different screens by setting various **displayId** values, but only full-screen captures are supported. The[pick](#screenshotpick) API allows you to take screenshots of a specified region.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 

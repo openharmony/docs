@@ -62,6 +62,27 @@ For details about the overall architecture and design ideas of the two models, s
 
 You are advised to use the stage model for window development.
 
+### Main Window Lifecycle in the Stage Model
+
+In the stage model, the main window is managed and its lifecycle is maintained by the UIAbility through WindowStage. Notifications for the creation and destruction of the main window can be received via **onWindowStageCreate** and **onWindowStageDestroy**. For details, see [UIAbility Lifecycle](../application-models/uiability-lifecycle.md#windowstagecreate-and-windowstagedestroy).
+
+WindowStage also provides [on('windowStageEvent')](../reference/apis-arkui/arkts-apis-window-WindowStage.md#onwindowstageevent9) to listen for its lifecycle changes.
+
+In the stage model, when the main window of an application moves from the foreground to the background, it also triggers the UIAbility lifecycle transition. You need to pay special attention to the differences in behavior across different types of products.
+
+- **On phones**: When a window moves from the foreground to the background, it triggers the UIAbility to transition to the background.
+
+- **On tablets**:
+
+  - For applications that do not support running on 2-in-1 devices, or that can run on both phones and 2-in-1 devices, moving a window from the foreground to the background will trigger the UIAbility to transition to the background.
+
+  - For applications that do not support running on phones but do support running on  2-in-1 devices, moving a window from the foreground to the background will not trigger the UIAbility to transition to the background.
+
+- **On 2-in-1 devices**:
+
+  - For applications that support running on phones, moving a window from the foreground to the background will trigger the UIAbility to transition to the background.
+
+  - For applications that do not support running on phones, moving a window from the foreground to the background will not trigger the UIAbility to transition to the background.
 
 ## Constraints
 
