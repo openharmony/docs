@@ -132,7 +132,7 @@ ArkUI提供了WaterFlow容器组件，用于构建瀑布流布局。WaterFlow组
 
 > **说明：** 
 >
-> 完整示例请参考[WaterFlowDynamicSwitchover](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/waterFlow/WaterFlowInfiniteScrolling.ets)。
+> 完整示例请参考[WaterFlowDynamicSwitchover](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/waterFlow/WaterFlowDynamicSwitchover.ets)。
 
 ```ts
 // 通过状态变量设置列数，可以按需修改触发布局更新
