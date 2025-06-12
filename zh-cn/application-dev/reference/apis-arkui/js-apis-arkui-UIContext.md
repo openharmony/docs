@@ -5687,7 +5687,7 @@ getStateByIndex(index: number): router.RouterState | undefined
 
 | 类型                          | 说明      |
 | --------------------------- | ------- |
-| router.[RouterState](js-apis-router.md#outerstate) \| undefined | 返回页面状态信息。索引不存在时返回undefined。 |
+| router.[RouterState](js-apis-router.md#routerstate) \| undefined | 返回页面状态信息。索引不存在时返回undefined。 |
 
 **示例：** 
 
@@ -5706,7 +5706,7 @@ if (options != undefined) {
 ```
 ### getStateByUrl<sup>12+</sup>
 
-getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#outerstate)>
+getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#routerstate)>
 
 通过url获取当前页面的状态信息。
 
@@ -5724,7 +5724,7 @@ getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#outerst
 
 | 类型                          | 说明      |
 | --------------------------- | ------- |
-| Array<router.[RouterState](js-apis-router.md#outerstate)> | 页面状态信息。 |
+| Array<router.[RouterState](js-apis-router.md#routerstate)> | 页面状态信息。 |
 
 **示例：** 
 
