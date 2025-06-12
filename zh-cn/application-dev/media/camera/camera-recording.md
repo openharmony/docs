@@ -8,8 +8,8 @@
 
 1. 导入media模块。
 
-   创建录像输出流的SurfaceId以及录像输出的数据，都需要用到系统提供的[media接口](../../reference/apis-media-kit/js-apis-media.md)能力，导入media接口的方法如下。
-     
+   创建录像输出流的SurfaceId以及录像输出的数据，都需要用到系统提供的[media接口](../../reference/apis-media-kit/arkts-apis-media.md)能力，导入media接口的方法如下。
+
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    import { camera } from '@kit.CameraKit';
@@ -17,8 +17,8 @@
    ```
 
 2. 创建Surface。
-   
-   系统提供的media接口可以创建一个录像AVRecorder实例，通过该实例的[getInputSurface](../../reference/apis-media-kit/js-apis-media.md#getinputsurface9)方法获取SurfaceId，与录像输出流做关联，处理录像输出流输出的数据。
+
+   系统提供的media接口可以创建一个录像AVRecorder实例，通过该实例的[getInputSurface](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md#getinputsurface9)方法获取SurfaceId，与录像输出流做关联，处理录像输出流输出的数据。
 
    ```ts
    async function getVideoSurfaceId(aVRecorderConfig: media.AVRecorderConfig): Promise<string | undefined> {  // aVRecorderConfig可参考下一章节。
@@ -111,7 +111,7 @@
 
 4. 开始录像。
 
-   先通过videoOutput的[start](../../reference/apis-camera-kit/arkts-apis-camera-VideoOutput.md#start-1)方法启动录像输出流，再通过avRecorder的[start](../../reference/apis-media-kit/js-apis-media.md#start9)方法开始录像。
+   先通过videoOutput的[start](../../reference/apis-camera-kit/arkts-apis-camera-VideoOutput.md#start-1)方法启动录像输出流，再通过avRecorder的[start](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md#start9)方法开始录像。
 
    ```ts
    async function startVideo(videoOutput: camera.VideoOutput, avRecorder: media.AVRecorder): Promise<void> {
@@ -133,8 +133,8 @@
 
 5. 停止录像。
 
-   先通过avRecorder的[stop](../../reference/apis-media-kit/js-apis-media.md#stop9-3)方法停止录像，再通过videoOutput的[stop](../../reference/apis-camera-kit/arkts-apis-camera-VideoOutput.md#stop-1)方法停止录像输出流。
-     
+   先通过avRecorder的[stop](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md#stop9-1)方法停止录像，再通过videoOutput的[stop](../../reference/apis-camera-kit/arkts-apis-camera-VideoOutput.md#stop-1)方法停止录像输出流。
+
    ```ts
    async function stopVideo(videoOutput: camera.VideoOutput, avRecorder: media.AVRecorder): Promise<void> {
      try {

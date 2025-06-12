@@ -512,7 +512,7 @@ enableModeChangeAnimation(isEnabled: Optional&lt;boolean&gt;)
 
 enableToolBarAdaptation(enable: Optional&lt;boolean&gt;)
 
-设置是否启用Navigation和NavDestination的工具栏自适应能力。
+设置是否启用Navigation和NavDestination的工具栏自适应能力。该接口不适配于自定义菜单，使用该接口需采用[NavigationMenuItem](#navigationmenuitem)接口来定义[菜单](#menus)。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -1470,7 +1470,7 @@ NavPathInfo参数信息。
 |-------|-------|------|-------|
 | name | string | 否 | NavDestination名称，如果为根视图(NavBar)，则返回值为undefined。|
 | index | number | 是 | NavDestination在NavPathStack中的序号， 如果为根视图(NavBar)，则返回值为 -1。<br/>取值范围：[-1, +∞)。 |
-| mode | [NavDestinationMode](ts-basic-components-navdestination.md#navdestinationmode枚举说明) | 否 | NavDestination的模式，如果是根视图(NavBar)，则返回值为undefined。|
+| mode | [NavDestinationMode](ts-basic-components-navdestination.md#navdestinationmode枚举说明11) | 否 | NavDestination的模式，如果是根视图(NavBar)，则返回值为undefined。|
 | param<sup>12+</sup> | Object | 否 | NavDestination页面加载的参数。|
 | navDestinationId<sup>12+</sup> | string | 否 | NavDestination的唯一标识符。|
 
@@ -1714,7 +1714,7 @@ Navigation自定义标题。
 | 名称  | 说明                                                         |
 | ----- | ------------------------------------------------------------ |
 | Stack | 导航栏与内容区独立显示，相当于两个页面。                     |
-| Split | 导航栏与内容区分两栏显示。<br/>以下navBarWidthRange的值用[minNavBarWidth,maxNavBarWidth]表示<br/>1.当navBarWidth属性的值，在navBarWidthRange属性的值范围以外时，navBarWidth按如下规则显示：<br/>navBarWidth < minNavBarWidth时，navBarWidth修正为minNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp) > maxNavBarWidth时，navBarWidth修正为maxNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp) < minNavBarWidth时，navBarWidth修正为minNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp)在navBarWidthRange范围内，navBarWidth修正为组件宽度 - 分割线宽度(1vp) - minContentWidth。<br/>2.当navBarWidth属性的值，在navBarWidthRange属性的值范围以内时，navBarWidth按如下规则显示：<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) >= 组件宽度时，navBarWidth修正为minNavBarWidth；<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度，且navBarWidth + minContentWidth + 分割线宽度(1vp) >= 组件宽度时，navBarWidth修正为组件宽度 - 分割线宽度(1vp) - minContentWidth;<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度，且navBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度时，navBarWidth为设置的值。<br/>3.缩小组件尺寸时，先缩小内容区的尺寸至minContentWidth，然后再缩小导航栏的尺寸至minNavBarWidth。若继续缩小，先缩小内容区，内容区消失后再缩小导航栏。<br/>4.设置导航栏为固定尺寸时，若持续缩小组件尺寸，导航栏最后压缩显示。<br/>5.若只设置了navBarWidth属性，则导航栏宽度为navBarWidth，且分割线不可拖动。<br/>6.分割线的热区左右各2vp，建议避让4vp以上。 |
+| Split | 导航栏与内容区分两栏显示。<br/>以下navBarWidthRange的值用[minNavBarWidth,maxNavBarWidth]表示<br/>1.当navBarWidth属性的值，在navBarWidthRange属性的值范围以外时，navBarWidth按如下规则显示：<br/>navBarWidth < minNavBarWidth时，navBarWidth修正为minNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp) > maxNavBarWidth时，navBarWidth修正为maxNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp) < minNavBarWidth时，navBarWidth修正为minNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp)在navBarWidthRange范围内，navBarWidth修正为组件宽度 - 分割线宽度(1vp) - minContentWidth。<br/>2.当navBarWidth属性的值，在navBarWidthRange属性的值范围以内时，navBarWidth按如下规则显示：<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) >= 组件宽度时，navBarWidth修正为minNavBarWidth；<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度，且navBarWidth + minContentWidth + 分割线宽度(1vp) >= 组件宽度时，navBarWidth修正为组件宽度 - 分割线宽度(1vp) - minContentWidth;<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度，且navBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度时，navBarWidth为设置的值。<br/>3.缩小组件尺寸时，先缩小内容区的尺寸至minContentWidth，然后再缩小导航栏的尺寸至minNavBarWidth。若继续缩小，先缩小内容区，内容区消失后再缩小导航栏。<br/>4.设置导航栏为固定尺寸时，若持续缩小组件尺寸，导航栏最后压缩显示。<br/>5.若只设置了navBarWidth属性，则导航栏宽度为navBarWidth，且分割线不可拖动。<br/>6.分割线的热区左右各2vp，建议避让4vp以上。<br/>7.Split模式下，内容区若只存在一个页面，则页面左上角不会显示返回按钮。 |
 | Auto  | API version 9之前：窗口宽度>=520vp时，采用Split模式显示；窗口宽度<520vp时，采用Stack模式显示。<br/>API version 10及以上：窗口宽度>=600vp时，采用Split模式显示；窗口宽度<600vp时，采用Stack模式显示，600vp等于minNavBarWidth(240vp) + minContentWidth (360vp)。 |
 
 ## NavigationOperation<sup>11+</sup>枚举说明
@@ -2199,8 +2199,8 @@ export struct PageTwo {
 ```
 
 ```json
-// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
-// route_map.json
+// 在src/main目录下的工程配置文件module.json5中的module字段里配置 "routerMap": "$profile:route_map"
+// src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
     {
@@ -2681,8 +2681,8 @@ export class CustomTransition {
 }
 ```
 ```json
-// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
-// route_map.json
+// 在src/main目录下的工程配置文件module.json5中的module字段里配置 "routerMap": "$profile:route_map"
+// src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
     {
@@ -2968,8 +2968,8 @@ export struct PageTwo {
 }
 ```
 ```json
-// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
-// route_map.json
+// 在src/main目录下的工程配置文件module.json5中的module字段里配置 "routerMap": "$profile:route_map"
+// src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
     {
@@ -3296,8 +3296,8 @@ export function PageOneBuilder(name: string) {
 }
 ```
 ```json
-// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
-// route_map.json
+// 在src/main目录下的工程配置文件module.json5中的module字段里配置 "routerMap": "$profile:route_map"
+// src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
     {
@@ -3407,8 +3407,8 @@ struct NavigationExample2 {
 }
 ```
 ```json
-// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
-// route_map.json
+// 在src/main目录下的工程配置文件module.json5中的module字段里配置 "routerMap": "$profile:route_map"
+// src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
     {
@@ -3526,8 +3526,8 @@ struct NavigationExample3 {
 }
 ```
 ```json
-// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
-// route_map.json
+// 在src/main目录下的工程配置文件module.json5中的module字段里配置 "routerMap": "$profile:route_map"
+// src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
     {
@@ -4308,8 +4308,8 @@ export class CustomTransition {
 ```
 
 ```json
-// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
-// route_map.json
+// 在src/main目录下的工程配置文件module.json5中的module字段里配置 "routerMap": "$profile:route_map"
+// src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
     {
@@ -4445,3 +4445,71 @@ struct NavigationExample {
 ```
 
 ![zh-cn_image_navigation_splitPlaceholder](figures/zh-cn_image_navigation_splitPlaceholder.png)
+
+### 示例15（Navigation工具栏自适应）
+
+该示例主要展示Navigation工具栏的自适应能力的启用及关闭。
+
+```ts
+// 工程配置文件module.json5中配置 {"orientation": "landscape"}
+import { SymbolGlyphModifier } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct NavigationExample {
+  @Provide('navPathStack') navPathStack:NavPathStack = new NavPathStack();
+  @State enable: boolean = false
+  @State menuItems:Array<NavigationMenuItem> = [
+    {
+      value:'menuItem1',
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.card_writer')),
+    },
+    {
+      value:'menuItem2',
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus'))
+    },
+    {
+      value:'menuItem3',
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
+    },
+  ]
+
+  @State toolItems:Array<ToolbarItem>= [
+    {
+      value:'toolItem1',
+      symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
+      action:()=>{}
+    },
+    {
+      value:'toolItem2',
+      symbolIcon:new SymbolGlyphModifier($r('sys.symbol.card_migration')),
+      action:()=>{}
+    },
+    {
+      value:'toolItem3',
+      symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
+      action:()=>{}
+    }
+  ]
+
+  build() {
+    Navigation(this.navPathStack) {
+      Column() {
+        Button('启用/关闭自适应').onClick(()=> {
+          this.enable = !this.enable;
+        })
+        Text("启用自适应能力：" + this.enable)
+      }
+    }
+    .mode(NavigationMode.Stack)
+    .enableToolBarAdaptation(this.enable) //是否启用工具栏自适应能力
+    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')))
+    .titleMode(NavigationTitleMode.Mini)
+    .menus(this.menuItems)
+    .toolbarConfiguration(this.toolItems)
+    .title('一级页面')
+  }
+}
+```
+
+![zh-cn_image_navigation_toolbar_adaptation_landscape](figures/zh-cn_image_navigation_toolbar_adaptation_landscape.gif)

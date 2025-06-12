@@ -13,7 +13,7 @@ You can use the **hiAppEvent** APIs to subscribe to the main thread jank event t
 
 When the main thread experiences a timeout between 150 ms and 450 ms, it triggers a call stack sampling. If the timeout exceeds 450 ms, it triggers a trace sampling. 
 
-1. Begin time
+1. Begin time.
 
     Stack sampling triggered by main thread Jank (150 ms < Main thread processing time < 450 ms): For the processes with the same PID, the call stack sampling for a main thread jank event can be triggered only once. If **Developer Options** is enabled, call stack sampling can be triggered once an hour. No timeout check is performed within 10s after the application starts.
 
@@ -27,11 +27,11 @@ When the main thread experiences a timeout between 150 ms and 450 ms, it trigger
     >
     > When **Developer Options** is disabled, DevEco Studio may be unavailable. Therefore, you are advised to install the application before disabling **Developer Options**.
 
-2. Stack capture time
+2. Stack capture time.
 
     When the main thread jank event occurs, the main thread checker starts to check whether the jank event occurs again every 150 ms (1 ≤ number of check times ≤ 2). There are three cases:
 
-    (1) If a jank event is detected during the first check, the main thread checker starts stack sampling every 150 ms for 10 times. The stack sampling data is collected and an event is reported at the next interval. Then the check ends. 
+    (1) If a jank event is detected during the first check, the main thread checker starts stack sampling every 150 ms for 10 times. The stack sampling data is collected and an event is reported at the next interval. Then the check ends.
 
     ![Stack capture time example 1](figures/sample_stack_1.png)
 
@@ -43,7 +43,7 @@ When the main thread experiences a timeout between 150 ms and 450 ms, it trigger
 
     ![Stack capture time example 3](figures/sample_stack_3.png)
 
-3. Trace capture time 
+3. Trace capture time.
 
    After the function is called to capture tracing data, the main thread checker checks for a main thread jank event every 150 ms for 20 times. If a main thread jank event occurs in any of the 20 checks, the check ends in 3s and the tracing data is stored.
 
@@ -59,13 +59,13 @@ When the main thread experiences a timeout between 150 ms and 450 ms, it trigger
 
 The system provides the basic check function for the main thread jank event. However, if your application has special requirements for the check interval and collection times, you can customize parameters for stack sampling.
 
-For details about how to use the APIs, see [hiAppEvent.setEventConfig in Application Event Logging](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md#hiappeventseteventconfig16).
+For details about how to use the APIs, see [hiAppEvent.setEventConfig in Application Event Logging](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md#hiappeventseteventconfig15).
 
 ### Available APIs
 
 | API                                                                               | Description                                        |
 | -------------------------------------------------------------------------------------| -------------------------------------------- |
-| setEventConfig(name: string, config: Record<string, ParamType>): Promise\<void>       | Sets the parameters of the main thread jank event that triggers the stack sampling. Currently, only the **MAIN_THREAD_JANK** event parameter can be customized. Therefore, the value of **name** is **MAIN_THREAD_JANK**. |
+| setEventConfig(name: string, config: Record<string, ParamType>): Promise\<void>       | Sets the parameters of the main thread jank event that triggers the stack sampling. The value of name is **MAIN_THREAD_JANK**.|
 
 ### Setting Parameters
 
@@ -81,13 +81,13 @@ You can customize the specifications of the **MAIN_THREAD_JANK** event by settin
         };
     ```
 
-2. If **log_type** is set to **1**, you can customize the threshold parameters of the main thread jank event for triggering the stack sampling. You need to set the following parameters:
+2. If **log_type** is set to **1**, you can customize the threshold parameters of the main thread jank event for triggering the stack sampling. You must set the following parameters:
 
     (1) **sample_interval**: sampling interval of the main thread jank event. The system performs the check based on the custom interval and uses the interval for the periodic check. The value range is [50, 500], in ms. The default value is 150 ms.
 
     (2) **ignore_startup_time**: time window after thread startup during which no checks are performed. For the process that takes time to start, it is not necessary to capture the full stack. You can set this parameter to prevent the check from being performed within the custom startup time. The minimum value is 3s. The default value is 10s.
 
-    (3) **sample_count**: number of sampling times for the main thread jank event. After detecting that the main thread processing time exceeds the threshold, the system starts periodic stack sampling for **sample_count** times. The minimum value is 1. The maximum value can be calculated based on the custom value of **sample_interval** as follows: <br>**sample_count** ≤ (2500/**sample_interval** - 4)  
+    (3) **sample_count**: number of sampling times for the main thread jank event. After detecting that the main thread processing time exceeds the threshold, the system starts periodic stack sampling for **sample_count** times. The minimum value is 1. The maximum value can be calculated based on the custom value of **sample_interval** as follows: <br>**sample_count** ≤ (2500/**sample_interval** - 4) You need to set the parameters as required.
 
     > **NOTE**
     >
@@ -111,7 +111,7 @@ You can customize the specifications of the **MAIN_THREAD_JANK** event by settin
         "sample_interval": "100",
         "ignore_startup_time": "11",
         "sample_count": "21",
-        "report_times_per_app": "3",
+        "report_times_per_app": "3"
         };
     ```
 
@@ -123,15 +123,13 @@ You can customize the specifications of the **MAIN_THREAD_JANK** event by settin
         };
     ```
 
-## Main Thread Jank Event Specifications
+## Log Specifications of the Main Thread Jank Event
 
-1. Log aging
+1. Log aging.
 
-    Generally, the size of a stack file is 7 KB to 10 KB, and the size of a trace file is 1 MB to 5 MB. The **watchdog** directory in the application sandbox can hold files up to10 MB. If the total file size exceeds the limit, the user needs to manually delete files. The path to **watchdog** is **/data/app/el2/100/log/*app_bundle_name*/watchdog**.
+    Generally, the size of a stack file is 7 KB to 10 KB, and the size of a trace file is 1 MB to 5 MB. The **watchdog** directory in the app sandbox can store a maximum of 10 MB files. If the total file size exceeds 10 MB, the user needs to manually delete files. The path to **watchdog** is **/data/storage/el2/log/watchdog/**.
 
-2.  
-
-    You can obtain the log path from **external_logs**.
+2.  You can obtain the log path from **external_logs**.
 
 3. Currently, stack capturing supports only the ARM64 architecture. The stack capture result contains both native frames and JS frames parsed.
 
@@ -157,7 +155,7 @@ You can customize the specifications of the **MAIN_THREAD_JANK** event by settin
                                                     ......
     ```
 
-   Each time a stack is sampled, 16 KB of the call stack information of the main thread is captured for backtrace analysis. Therefore, each stack capture result contains a maximum of 16 KB call information of the process. The stack sampling is performed 10 times in total. The captured data is displayed in a tree view, with repeated stack frames aggregated and different call layers distinguished by line indentation. If the stack fails to be captured (for example, the main thread is blocked in the kernel or signals are masked), the content of the **/proc/self/wchan** file is output.
+   Each stack capture records 16 KB call stack information of the main thread for stack unwinding. Therefore, each stack capture result contains a maximum of 16 KB invocation information of the process for 10 times. The captured data is displayed in a tree view, with repeated stack frames aggregated and different call layers distinguished by line indentation. If the stack fails to be captured (for example, the main thread is blocked in the kernel or signals are masked), the content of the **/proc/self/wchan** file is output.
 
    In the result, each row indicates a piece of stack information. The meaning of a row of stack frame information can be interpreted as follows:
 
@@ -169,7 +167,7 @@ You can customize the specifications of the **MAIN_THREAD_JANK** event by settin
     1  2       3               4              5                   6
 
     1 indicates the number of times that the frame is sampled.
-    2 indicates the call level of the frame. The line indentation size corresponds to this level. The number of sampling times of all frames at the same level cannot be greater than 10. The number of sampling times of #00 is 10 (sampling times specified).
+    2 indicates the invoking level of the frame. The line indentation size corresponds to this level. The number of sampling times of all frames at the same level cannot be greater than 10. The number of sampling times of #00 is 10 (set the sampling times).
     3 indicates the Program Counter (PC) value of the native frame.
     4 indicates the path of the called file.
     5 indicates the name of the called function and code line offset (available in unstripped version, and may not available in stripped version).
@@ -184,18 +182,16 @@ You can customize the specifications of the **MAIN_THREAD_JANK** event by settin
     1  2    3               4
 
     1 indicates the number of times that the frame is sampled. The maximum value is the sampling times.
-    2 indicates the call level of the frame, which is the same as that of the native frame.
+    2 indicates the invoking level of the frame, which is the same as that of the native frame.
     3 indicates the name of the called function, which is **wait2**.
     4 indicates the path, file, row number, and column number of the called function.
     ```
 
-4. Trace specifications
+4. Trace specifications.
 
-    The size of a trace file is 1 MB to 5 MB. You can parse the trace file using [SmartPerf](https://www.smartperf.host).
+    The size of the trace file is 1 MB to 5 MB. You can visually analyze the trace file using [SmartPerf](https://gitee.com/openharmony/developtools_smartperf_host). You can download the tool from [developtools_smartperf_host Release](https://gitee.com/openharmony/developtools_smartperf_host/releases).
 
-    After a trace file is imported, the page displays the time axis, CPU usage, CPU load, IPC method calling, and process, thread, and method calling information from the top down. In this way, the data is displayed from the event dimension.
-
-    For details about how to use trace files, see [How to Load Trace Files on the Web Client](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_systemtrace.md).
+    For details about the trace file, see [Loading Trace Files on the Web Client](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_systemtrace.md).
 
 ## params
 

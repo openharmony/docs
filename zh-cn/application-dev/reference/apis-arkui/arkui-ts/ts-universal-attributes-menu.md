@@ -24,7 +24,7 @@
 
 ## bindMenu
 
-bindMenu(content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions)
+bindMenu(content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions): T
 
 给组件绑定菜单，点击后弹出菜单。弹出菜单项支持图标+文本排列和自定义两种功能。
 
@@ -39,9 +39,15 @@ bindMenu(content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions)
 | content | Array<[MenuElement](#menuelement)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置菜单项图标和文本的数组，或者自定义组件。 |
 | options | [MenuOptions](#menuoptions10)                                | 否   | 配置弹出菜单的参数。                         |
 
+**返回值：** 
+
+|类型|说明|
+|---|---|
+|T|返回当前组件。|
+
 ## bindMenu<sup>11+</sup>
 
-bindMenu(isShow: boolean, content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions)
+bindMenu(isShow: boolean, content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions): T
 
 给组件绑定菜单，点击后弹出菜单。弹出菜单项支持图标+文本排列和自定义两种功能。
 
@@ -57,9 +63,15 @@ bindMenu(isShow: boolean, content: Array<MenuElement&gt; | CustomBuilder, option
 | content              | Array<[MenuElement](#menuelement)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置菜单项图标和文本的数组，或者自定义组件。                 |
 | options              | [MenuOptions](#menuoptions10)                                | 否   | 配置弹出菜单的参数。                                         |
 
+**返回值：** 
+
+|类型|说明|
+|---|---|
+|T|返回当前组件。|
+
 ## bindContextMenu<sup>8+</sup>
 
-bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: ContextMenuOptions)
+bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: ContextMenuOptions): T
 
 给组件绑定菜单，控制菜单显隐的触发方式为长按或右键点击，弹出的菜单项需自定义。若需通过代码逻辑控制菜单显隐，请使用[bindContextMenu<sup>12+</sup>](#bindcontextmenu12)。
 
@@ -75,9 +87,15 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 | responseType | [ResponseType](ts-appendix-enums.md#responsetype8) | 是   | 菜单弹出条件，长按或者右键点击。不支持鼠标长按。 |
 | options      | [ContextMenuOptions](#contextmenuoptions10)        | 否   | 配置弹出菜单的参数。             |
 
+**返回值：** 
+
+|类型|说明|
+|---|---|
+|T|返回当前组件。|
+
 ## bindContextMenu<sup>12+</sup>
 
-bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuOptions)
+bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuOptions): T
 
 给组件绑定菜单，菜单的显隐通过控制绑定的isShown触发。
 
@@ -97,6 +115,12 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 | isShown | boolean | 是   | 支持开发者通过状态变量控制显隐，值为true时弹出菜单，值为false时关闭菜单，默认值为false。菜单必须等待页面全部构建完成后才能展示，如果在页面构建前或构建中设置为true，可能导致显示位置及形状错误、无法正常弹出显示等问题。不支持长按触发拖拽。该参数从API version13开始支持[!!语法](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。 |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)        | 是   | 自定义菜单内容构造器。 |
 | options      | [ContextMenuOptions](#contextmenuoptions10)                      | 否   | 配置弹出菜单的参数。                         |
+
+**返回值：** 
+
+|类型|说明|
+|---|---|
+|T|返回当前组件。|
 
 ## MenuElement
 
@@ -143,7 +167,7 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 | backgroundBlurStyleOptions<sup>18+</sup> | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明) | 否 | 背景模糊效果。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | backgroundEffect<sup>18+</sup> | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | 否 | 背景效果参数。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | hapticFeedbackMode<sup>18+</sup> | [HapticFeedbackMode](#hapticfeedbackmode18) | 否 | 菜单弹出时振动效果。<br/>默认值：HapticFeedbackMode.DISABLED，菜单弹出时不振动。<br />**说明：**<br />只有一级菜单可配置弹出时振动效果。<br />仅当应用具备ohos.permission.VIBRATE权限，且用户启用了触感反馈时才会生效。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| outlineWidth<sup>20+</sup> | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](ts-universal-attributes-outline.md#edgeoutlinewidths对象说明) | 否 | 设置菜单边框外描边宽度。<br />**说明：**<br />不支持百分比，若需要外描边效果outlineWidth为必填项。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| outlineWidth<sup>20+</sup> | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](ts-universal-attributes-outline.md#edgeoutlinewidths对象说明) | 否 | 设置菜单边框外描边宽度。<br />默认值：0vp<br />**说明：**<br />不支持百分比，若需要外描边效果outlineWidth为必填项。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | outlineColor<sup>20+</sup> | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-universal-attributes-outline.md#edgecolors对象说明) | 否 | 设置菜单边框外描边颜色。<br />**说明：**<br />默认值：'#19ffffff'<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | mask<sup>20+</sup> | boolean&nbsp;\|&nbsp;[MenuMaskType](#menumasktype20类型说明) | 否 | 设置菜单是否有蒙层及蒙层样式。如果设置为false，则没有蒙层；如果设置为true，则有蒙层；如果设置为MenuMaskType，则自定义蒙层的样式。<br/>默认值：使用bindContextMenu且配置预览图弹出菜单时默认值为true，其它情况默认值为false。<br>**说明：** <br/>2in1设备不生效。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | modalMode<sup>20+</sup> | [ModalMode](#modalmode20类型说明) | 否 | 设置菜单的模态模式。<br />**说明：**<br />默认值：ModalMode.AUTO<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |

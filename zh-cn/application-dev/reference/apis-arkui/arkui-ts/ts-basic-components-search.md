@@ -696,7 +696,7 @@ stopBackPress(isStopped: Optional\<boolean>)
 
 ### enableAutoSpacing<sup>20+</sup>
 
-enableAutoSpacing(enable: Optional\<boolean>)
+enableAutoSpacing(enabled: Optional\<boolean>)
 
 设置是否开启中文与西文的自动间距。
 
@@ -708,7 +708,7 @@ enableAutoSpacing(enable: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| enable | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
+| enabled | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
 
 ## IconOptions<sup>10+</sup>对象说明
 
@@ -1521,15 +1521,16 @@ struct SearchExample {
 @Component
 struct SearchExample {
   @State text: string = 'Search editMenuOptions';
+  @State endIndex: number = 0;
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
-      content: 'custom1',
+      content: 'create1',
       icon: $r('app.media.startIcon'),
-      id: TextMenuItemId.of('custom1'),
+      id: TextMenuItemId.of('create1'),
     };
     let item2: TextMenuItem = {
-      content: 'custom2',
-      id: TextMenuItemId.of('custom2'),
+      content: 'create2',
+      id: TextMenuItemId.of('create2'),
       icon: $r('app.media.startIcon'),
     };
     menuItems.push(item1);
@@ -1537,8 +1538,12 @@ struct SearchExample {
     return menuItems;
   }
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
-    if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-      console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end);
+    if (menuItem.id.equals(TextMenuItemId.of("create2"))) {
+      console.log("拦截 id: create2 start:" + textRange.start + "; end:" + textRange.end);
+      return true;
+    }
+    if (menuItem.id.equals(TextMenuItemId.of("prepare1"))) {
+      console.log("拦截 id: prepare1 start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
@@ -1551,8 +1556,19 @@ struct SearchExample {
     }
     return false;
   }
+  onPrepareMenu = (menuItems: Array<TextMenuItem>) => {
+    let item1: TextMenuItem = {
+      content: 'prepare1_' + this.endIndex,
+      icon: $r('app.media.startIcon'),
+      id: TextMenuItemId.of('prepare1'),
+    };
+    menuItems.unshift(item1);
+    return menuItems;
+  }
   @State editMenuOptions: EditMenuOptions = {
-    onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
+    onCreateMenu: this.onCreateMenu,
+    onMenuItemClick: this.onMenuItemClick,
+    onPrepareMenu: this.onPrepareMenu
   };
 
   build() {
@@ -1561,6 +1577,9 @@ struct SearchExample {
         .width('95%')
         .editMenuOptions(this.editMenuOptions)
         .margin({ top: 100 })
+        .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
+          this.endIndex = selectionEnd;
+        })
     }
     .width("90%")
     .margin("5%")

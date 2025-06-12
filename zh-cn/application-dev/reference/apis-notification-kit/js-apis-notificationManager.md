@@ -26,7 +26,7 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                                        | 必填 | 说明                                        |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 设置发布通知的内容和相关配置信息。 |
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1) | 是   | 设置发布通知的内容和相关配置信息。 |
 | callback | AsyncCallback\<void\>                       | 是   | 回调函数。当发布通知成功，err为undefined，否则为错误对象。                        |
 
 **错误码：**
@@ -47,7 +47,7 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 | 1600014  | No permission.                                       |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
+| 1600020  | The application is not allowed to send notifications due to permission settings. |
 | 2300007  | Network unreachable.                                 |
 
 **示例：**
@@ -92,7 +92,7 @@ publish(request: NotificationRequest): Promise\<void\>
 
 | 参数名     | 类型                                        | 必填 | 说明                                        |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 设置发布通知的内容和相关配置信息。 |
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1) | 是   | 设置发布通知的内容和相关配置信息。 |
 
 **返回值：**
 
@@ -118,7 +118,7 @@ publish(request: NotificationRequest): Promise\<void\>
 | 1600014  | No permission.                                       |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
+| 1600020  | The application is not allowed to send notifications due to permission settings. |
 | 2300007  | Network unreachable.                                 |
 
 **示例：**
@@ -1065,7 +1065,7 @@ getActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>): v
 
 | 参数名     | 类型                                                         | 必填 | 说明                           |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | 是   | 回调函数。当获取未删除的通知列表成功，err为undefined，data为获取到的通知列表，否则为错误对象。 |
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1)>> | 是   | 回调函数。当获取未删除的通知列表成功，err为undefined，data为获取到的通知列表，否则为错误对象。 |
 
 **错误码：**
 
@@ -1105,7 +1105,7 @@ getActiveNotifications(): Promise\<Array\<NotificationRequest\>\>
 
 | 类型                                                         | 说明                                    |
 | ------------------------------------------------------------ | --------------------------------------- |
-| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\> | Promise对象，返回当前应用的通知列表。 |
+| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1)\>\> | Promise对象，返回当前应用的通知列表。 |
 
 **错误码：**
 
@@ -1141,7 +1141,7 @@ cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                         |
 | --------- | --------------------- | ---- | ---------------------------- |
-| groupName | string                | 是   | 通知组名称，此名称需要在发布通知时通过[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)对象指定。 |
+| groupName | string                | 是   | 通知组名称，此名称需要在发布通知时通过[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1)对象指定。 |
 | callback  | AsyncCallback\<void\> | 是   | 回调函数。当取消当前应用指定组下的通知成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -1183,7 +1183,7 @@ cancelGroup(groupName: string): Promise\<void\>
 
 | 参数名      | 类型   | 必填 | 说明           |
 | --------- | ------ | ---- | -------------- |
-| groupName | string | 是   | 通知组名称，此名称需要在发布通知时通过[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)对象指定。 |
+| groupName | string | 是   | 通知组名称，此名称需要在发布通知时通过[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1)对象指定。 |
 
 **返回值：**
 
@@ -1794,7 +1794,7 @@ type NotificationContent = _NotificationContent
 
 | 类型 | 说明 |
 | --- | --- |
-| [_NotificationContent](js-apis-inner-notification-notificationContent.md#notificationcontent) | 描述通知内容。 |
+| [_NotificationContent](js-apis-inner-notification-notificationContent.md#notificationcontent-1) | 描述通知内容。 |
 
 ## NotificationLongTextContent
 
@@ -1854,7 +1854,7 @@ type NotificationRequest = _NotificationRequest
 
 | 类型 | 说明 |
 | --- | --- |
-| [_NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 通知请求。 |
+| [_NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1) | 通知请求。 |
 
 ## DistributedOptions
 

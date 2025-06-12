@@ -23,11 +23,12 @@ Describes screenshot options.
 
 | Name                | Type         | Mandatory| Description                                                        |
 | ---------------------- | ------------- | ---- | ------------------------------------------------------------ |
-| screenRect             | [Rect](js-apis-screenshot.md#rect) | No  | Region of the screen to capture. If this parameter is null, the full screen will be captured.                      |
-| imageSize              | [Size](#size) | No  | Size of the screen region to capture. If this parameter is null, the full screen will be captured.                      |
-| rotation               | number        | No  | Rotation angle of the screenshot. Currently, the value can be **0** only. The default value is **0**. The value must be an integer.    |
+| screenRect             | [Rect](js-apis-screenshot.md#rect) | No  | Region of the screen to capture. If no value is passed, the region of the logical screen associated with the specified display ID is returned.                      |
+| imageSize              | [Size](#size) | No  | Size of the captured image. If no value is passed, the size of the logical screen associated with the specified display ID is returned. If **screenRect** is smaller than **imageSize**, the image is stretched to **imageSize**; otherwise, it is compressed to **imageSize**.                      |
+| rotation               | number        | No  | Angle by which the captured image should be rotated. Currently, the value can be **0** only. The default value is **0**.    |
 | displayId<sup>8+</sup> | number        | No  | ID of the [display](js-apis-display.md#display) device on which the screen region is to be captured. The value must be an integer.|
 | isNotificationNeeded<sup>14+</sup>| boolean        | No  | Whether to send a notification after a snapshot is captured. The value **true** means to send a notification, and **false** means the opposite. The default value is **true**. Such a notification can be listened for through [captureStatusChange](js-apis-display.md#displayoncapturestatuschange12).  |
+| isCaptureFullOfScreen<sup>19+</sup> | boolean        | No  | Whether to capture all displays on the current screen. If the screen contains multiple displays, the value **true** means that the entire screen is captured, and **false** means that only the region of the logical screen associated with the specified display ID is captured.|
 
 ## Size
 
@@ -59,7 +60,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses an async
 | Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [ScreenshotOptions](#screenshotoptions) | Yes  | Information about the snapshot.|
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;     | Yes  | Callback used to return a **PixelMap** object.                                  |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;     | Yes  | Callback used to return a **PixelMap** object. The size of the **PixelMap** object is **imageSize**. If **imageSize** is not specified, the size of the logical screen associated with the specified display ID is used.                                  |
 
 **Error codes**
 
@@ -89,20 +90,17 @@ let screenshotOptions: screenshot.ScreenshotOptions = {
     "height": 300 },
   "rotation": 0,
   "displayId": 0,
-  "isNotificationNeeded": true
+  "isNotificationNeeded": true,
+  "isCaptureFullOfScreen": true
 };
-try {
-  screenshot.save(screenshotOptions, (err: BusinessError, pixelMap: image.PixelMap) => {
-    if (err) {
-      console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
-      return;
-    }
-    console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-    pixelMap.release(); // Release the memory in time after the PixelMap is used.
-  });
-} catch (exception) {
-  console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
-};
+screenshot.save(screenshotOptions, (err: BusinessError, pixelMap: image.PixelMap) => {
+  if (err) {
+    console.error('Failed to save screenshot. Code: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+  pixelMap.release(); // Release the memory in time after the PixelMap is used.
+});
 ```
 
 ## screenshot.save
@@ -139,18 +137,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-try {
-  screenshot.save((err: BusinessError, pixelMap: image.PixelMap) => {
-    if (err) {
-      console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
-      return;
-    }
-    console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-    pixelMap.release(); // Release the memory in time after the PixelMap is used.
-  });
-} catch (exception) {
-  console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
-};
+screenshot.save((err: BusinessError, pixelMap: image.PixelMap) => {
+  if (err) {
+    console.error('Failed to save screenshot. Code: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+  pixelMap.release(); // Release the memory in time after the PixelMap is used.
+});
 ```
 
 ## screenshot.save
@@ -205,7 +199,8 @@ let screenshotOptions: screenshot.ScreenshotOptions = {
     "height": 300 },
   "rotation": 0,
   "displayId": 0,
-  "isNotificationNeeded": true
+  "isNotificationNeeded": true,
+  "isCaptureFullOfScreen": true
 };
 try {
   let promise = screenshot.save(screenshotOptions);

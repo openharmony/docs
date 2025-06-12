@@ -20,7 +20,7 @@ type LinkAddress = connection.LinkAddress
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| [connection.LinkAddress](./js-apis-net-connection.md#linkaddress) | 网络链路信息 |
+| [connection.LinkAddress](./js-apis-net-connection.md#linkaddress) | 网络链路信息。 |
 
 ## RouteInfo<sup>11+</sup>
 type RouteInfo = connection.RouteInfo
@@ -31,24 +31,24 @@ type RouteInfo = connection.RouteInfo
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| [connection.RouteInfo](./js-apis-net-connection.md#routeinfo) | 网络路由信息 |
+| [connection.RouteInfo](./js-apis-net-connection.md#routeinfo) | 网络路由信息。 |
 
 ## VpnExtensionContext<sup>11+</sup>
 type VpnExtensionContext = _VpnExtensionContext
 
-vpn扩展的上下文。它允许访问serviceExtension特定资源。
+VPN扩展的上下文。它允许访问serviceExtension特定资源。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| [_VpnExtensionContext](./js-apis-inner-application-VpnExtensionContext.md) | vpn扩展的上下文 |
+| [_VpnExtensionContext](./js-apis-inner-application-VpnExtensionContext.md) | VPN扩展的上下文。 |
 
 ## vpnExtension.startVpnExtensionAbility
 
 startVpnExtensionAbility(want: Want): Promise\<void>
 
-启动新的三方vpn功能。
+启动新的三方VPN功能。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -64,9 +64,11 @@ startVpnExtensionAbility(want: Want): Promise\<void>
 
 | 类型           | 说明                    |
 | -------------- | ----------------------- |
-| Promise\<void> | 无返回值的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | --------- | -------------------------------------- |
@@ -117,7 +119,7 @@ struct Index {
 
 stopVpnExtensionAbility(want: Want): Promise\<void>
 
-停止同一应用程序中的服务。
+停止同一应用程序中的服务。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -127,17 +129,19 @@ stopVpnExtensionAbility(want: Want): Promise\<void>
 
 | 参数名 | 类型                                | 必填 | 说明             |
 | ------ | ----------------------------------- | ---- | ---------------- |
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 指示要启动的信息 |
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 指示要启动的信息。 |
 
 **返回值：**
 
 | 类型           | 说明                    |
 | -------------- | ----------------------- |
-| Promise\<void> | 无返回值的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-| 错误码ID | 错误信息                               |
+以下错误码的详细介绍请参见[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码 ID | 错误信息                               |
 | --------- | -------------------------------------- |
 | 401       | If the input parameter is not valid parameter.|
 | 16000001  | The specified ability does not exist.  |
@@ -190,11 +194,11 @@ struct Index {
 
 createVpnConnection(context: VpnExtensionContext): VpnConnection
 
-创建一个 三方VPN 连接对象。
+创建一个三方VPN连接对象。
 
 > **说明：**
 >
-> 调用createVpnConnection接口前，需要先调用startVpnExtensionAbility接口启用vpn功能。
+> 调用createVpnConnection接口前，需要先调用startVpnExtensionAbility接口启用VPN功能。
 
 **系统能力**：SystemCapability.Communication.NetManager.Vpn
 
@@ -210,9 +214,11 @@ createVpnConnection(context: VpnExtensionContext): VpnConnection
 
 | 类型                            | 说明                    |
 | :------------------------------ | :---------------------- |
-| [VpnConnection](#vpnconnection) | 返回一个 VPN 连接对象。 |
+| [VpnConnection](#vpnconnection) | 返回一个VPN连接对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息         |
 | --------- | ---------------- |
@@ -229,20 +235,20 @@ let context: vpnExtension.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
   onCreate(want: Want) {
     let vpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
-    console.info("vpn createVpnConnection: " + JSON.stringify(vpnConnection));
+    console.info("VPN createVpnConnection: " + JSON.stringify(vpnConnection));
   }
 }
 ```
 
 ## VpnConnection
 
-VPN 连接对象。在调用 VpnConnection 的方法前，需要先通过vpnExt.createVpnConnection创建 VPN 连接对象。
+VPN连接对象。在调用VpnConnection的方法前，需要先通过vpnExt.createVpnConnection创建VPN连接对象。
 
 ### create
 
 create(config: VpnConfig): Promise\<number\>
 
-使用 config 创建一个 vpn 网络，使用 Promise 方式作为异步方法。
+使用config创建一个VPN网络。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Communication.NetManager.Vpn
 
@@ -250,7 +256,7 @@ create(config: VpnConfig): Promise\<number\>
 
 | 参数名 | 类型                    | 必填 | 说明                      |
 | ------ | ----------------------- | ---- | ------------------------- |
-| config | [VpnConfig](#vpnconfig) | 是   | 指定 VPN 网络的配置信息。 |
+| config | [VpnConfig](#vpnconfig) | 是   | 指定VPN网络的配置信息。 |
 
 **返回值：**
 
@@ -259,6 +265,8 @@ create(config: VpnConfig): Promise\<number\>
 | Promise\<number\> | 以 Promise 形式返回获取结果，返回指定虚拟网卡的文件描述符 fd。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[VPN错误码](errorcode-net-vpn.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                         |
 | --------- | ------------------------------------------------ |
@@ -335,7 +343,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
                 hilog.error(0x0000, 'developTag', 'tunfd: %{public}s', JSON.stringify(data) ?? '');
             })
         } catch (error) {
-            hilog.error(0x0000, 'developTag', 'vpn setUp fail: %{public}s', JSON.stringify(error) ?? '');
+            hilog.error(0x0000, 'developTag', 'VPN setUp fail: %{public}s', JSON.stringify(error) ?? '');
         }
     }
 }
@@ -345,7 +353,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 
 protect(socketFd: number): Promise\<void\>
 
-保护套接字不受 VPN 连接影响，通过该套接字发送的数据将直接基于物理网络收发，因此其流量不会通过 VPN 转发，使用 Promise 方式作为异步方法。
+保护套接字不受VPN连接影响，通过该套接字发送的数据将直接基于物理网络收发，因此其流量不会通过VPN转发。使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Vpn
 
@@ -359,9 +367,11 @@ protect(socketFd: number): Promise\<void\>
 
 | 类型            | 说明                                                  |
 | --------------- | ----------------------------------------------------- |
-| Promise\<void\> | 以 Promise 形式返回设定结果，失败返回错误码错误信息。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[VPN错误码](errorcode-net-vpn.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -384,7 +394,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
   private vpnServerIp: string = '192.168.31.13';
   onCreate(want: Want) {
     let vpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
-    console.info("vpn createVpnConnection: " + JSON.stringify(vpnConnection));
+    console.info("VPN createVpnConnection: " + JSON.stringify(vpnConnection));
     this.CreateTunnel();
     this.Protect();
   }
@@ -392,12 +402,12 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
       g_tunnelFd = 8888;
   }
   Protect() {
-        hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect');
+        hilog.info(0x0000, 'developTag', '%{public}s', 'VPN Protect');
         let vpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
         vpnConnection.protect(g_tunnelFd).then(() => {
-            hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect Success');
+            hilog.info(0x0000, 'developTag', '%{public}s', 'VPN Protect Success');
         }).catch((err : Error) => {
-            hilog.error(0x0000, 'developTag', 'vpn Protect Failed %{public}s', JSON.stringify(err) ?? '');
+            hilog.error(0x0000, 'developTag', 'VPN Protect Failed %{public}s', JSON.stringify(err) ?? '');
         })
   }
 }
@@ -407,7 +417,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 
 destroy(): Promise\<void\>
 
-销毁启动的 VPN 网络，使用 Promise 方式作为异步方法。
+销毁启动的VPN网络。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Communication.NetManager.Vpn
 
@@ -415,9 +425,11 @@ destroy(): Promise\<void\>
 
 | 类型            | 说明                                                  |
 | --------------- | ----------------------------------------------------- |
-| Promise\<void\> | 以 Promise 形式返回设定结果，失败返回错误码错误信息。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[VPN错误码](errorcode-net-vpn.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -436,7 +448,7 @@ let context: vpnExtension.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
   onCreate(want: Want) {
     let vpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
-    console.info("vpn createVpnConnection: " + JSON.stringify(vpnConnection));
+    console.info("VPN createVpnConnection: " + JSON.stringify(vpnConnection));
     vpnConnection.destroy().then(() => {
       console.info("destroy success.");
     }).catch((error : BusinessError) => {
@@ -452,19 +464,19 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 
 **系统能力**：SystemCapability.Communication.NetManager.Vpn
 
-| 名称                | 类型                                                           | 必填 | 说明                                |
-| ------------------- | -------------------------------------------------------------- | ---- | ----------------------------------- |
-| addresses           | Array\<[LinkAddress](js-apis-net-connection.md#linkaddress)\> | 是   | VPN 虚拟网卡的 IP 地址。            |
-| routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>     | 否   | VPN 虚拟网卡的路由信息(目前最多可配置1024条路由)。            |
-| dnsAddresses        | Array\<string\>                                                | 否   | DNS 服务器地址信息。                |
-| searchDomains       | Array\<string\>                                                | 否   | DNS 的搜索域列表。                  |
-| mtu                 | number                                                         | 否   | 最大传输单元 MTU 值(单位:字节)。取值范围：576-1500。     |
-| isIPv4Accepted      | boolean                                                        | 否   | 是否支持 IPV4, 默认值为 true。true：支持 IPV4；false：不支持 IPV4。      |
-| isIPv6Accepted      | boolean                                                        | 否   | 是否支持 IPV6, 默认值为 false。true：支持 IPV6；false：不支持 IPV6。     |
-| isInternal          | boolean                                                        | 否   | 是否支持内置 VPN, 默认值为 false。true：支持内置 VPN；false：不支持内置 VPN。   |
-| isBlocking          | boolean                                                        | 否   | 是否阻塞模式, 默认值为 false。true：阻塞模式；false：非阻塞模式。       |
-| trustedApplications | Array\<string\>                                                | 否   | 白名单信息, string 类型表示的包名。  |
-| blockedApplications | Array\<string\>                                                | 否   | 黑名单信息, string 类型表示的包名。  |
+| 名称                | 类型                                                           | 必填 | 说明                                             |
+| ------------------- | -------------------------------------------------------------- | ---- |------------------------------------------------|
+| addresses           | Array\<[LinkAddress](js-apis-net-connection.md#linkaddress)\> | 是   | VPN虚拟网卡的IP地址。                                  |
+| routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>     | 否   | VPN虚拟网卡的路由信息（目前最多可配置1024条路由）。                  |
+| dnsAddresses        | Array\<string\>                                                | 否   | DNS服务器地址信息。                                    |
+| searchDomains       | Array\<string\>                                                | 否   | DNS的搜索域列表。                                     |
+| mtu                 | number                                                         | 否   | 最大传输单元MTU值（单位：字节）。取值范围：[576，1500]。               |
+| isIPv4Accepted      | boolean                                                        | 否   | 是否支持IPV4。true表示支持，false表示不支持, 默认值为true。  |
+| isIPv6Accepted      | boolean                                                        | 否   | 是否支持IPV6。true表示支持，false表示不支持, 默认值为false。 |
+| isInternal          | boolean                                                        | 否   | 是否支持内置VPN。true表示支持，false表示不支持, 默认值为false。 |
+| isBlocking          | boolean                                                        | 否   | 是否阻塞模式。true表示阻塞模式，false表示非阻塞模式, 默认值为false。       |
+| trustedApplications | Array\<string\>                                                | 否   | 受信任的应用信息列表，string类型表示的包名。                         |
+| blockedApplications | Array\<string\>                                                | 否   | 被阻止的应用信息列表，string类型表示的包名。                         |
 
 **示例：**
 
@@ -501,7 +513,7 @@ let context: vpnExtension.VpnExtensionContext;
 function vpnCreate(){
   let vpnConnection: vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
   vpnConnection.create(vpnConfig).then((data) => {
-    console.info("vpn create " + JSON.stringify(data));
+    console.info("VPN create " + JSON.stringify(data));
   })
 }
 ```

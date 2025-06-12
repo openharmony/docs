@@ -11,7 +11,7 @@ The **params** parameter in the event information is described as follows:
 | Name   | Type  | Description                      |
 | ------- | ------ | ------------------------- |
 | time     | number | Event triggering time, in ms.|
-| foreground | boolean | Whether the application is running in the foreground.|
+| foreground | boolean | Whether the application is running in the foreground. **true** indicates that the application is running in the foreground, and **false** indicates the opposite.|
 | bundle_version | string | Application version.|
 | process_name | string | Process name of the application.|
 | pid | number | Process ID of the application.|

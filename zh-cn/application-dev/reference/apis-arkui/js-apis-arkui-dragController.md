@@ -688,7 +688,7 @@ struct DragControllerPage {
 | 名称          | 类型                                                   | 必填 | 说明                                     |
 | -----------   | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | status       | [DragStatus](#dragstatus11)                                                 | 是   | 当前拖拽状态（启动和结束）。         |
-| event        | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent) | 是   | 当前状态所对应的拖拽事件。通过dragController发起的dragEvent仅支持获取result和behavior，且用于拖拽结束状态。 |
+| event        | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent7) | 是   | 当前状态所对应的拖拽事件。通过dragController发起的dragEvent仅支持获取result和behavior，且用于拖拽结束状态。 |
 | extraParams| string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。默认值为空。 |
 
 ## DragStatus<sup>11+</sup>
@@ -715,7 +715,7 @@ struct DragControllerPage {
 | 名称        | 类型                                                   | 必填 | 说明                                     |
 | ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | duration    | number                                                 | 否   | 动画持续时间，单位为毫秒。<br/>默认值：1000<br/>**说明：**<br/>-&nbsp;设置小于0的值时按0处理。<br/>-&nbsp;设置浮点型类型的值时，向下取整。例如，设置值为1.2，按照1处理。|
-| curve       |&nbsp;[Curve](arkui-ts/ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](js-apis-curve.md#icurve) | 否    | 设置动画曲线。<br/>默认值：Curve.EaseInOut|                          |
+| curve       |&nbsp;[Curve](arkui-ts/ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](js-apis-curve.md#icurve9) | 否    | 设置动画曲线。<br/>默认值：Curve.EaseInOut|                          |
 
 ## DragEventParam<sup>12+</sup>
 
@@ -727,7 +727,7 @@ struct DragControllerPage {
 
 | 名称        | 类型                                                         | 必填 | 说明                           |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| event       | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent) | 是   | 拖拽事件信息，仅包括拖拽结果。 |
+| event       | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent7) | 是   | 拖拽事件信息，仅包括拖拽结果。 |
 | extraParams | string                                                       | 是   | 拖拽事件额外信息。             |
 
 ## dragController.getDragPreview<sup>(deprecated)</sup>

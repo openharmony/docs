@@ -1,4 +1,4 @@
-# @ohos.net.networkSecurity (Network Security)
+# @ohos.net.networkSecurity (网络安全校验)
 
 本模块提供网络安全校验能力。应用可以通过证书校验API完成证书校验功能。
 
@@ -89,6 +89,8 @@ certVerification(cert: CertBlob, caCert?: CertBlob): Promise\<number\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络安全校验错误码](errorcode-net-networkSecurity.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
 | 401      | Parameter error.                                     |
@@ -112,7 +114,7 @@ certVerification(cert: CertBlob, caCert?: CertBlob): Promise\<number\>
 
 > **说明：**
 > 
-> 这些错误代码对应于证书验证过程中的各种失败，提供有关所遇到问题的详细信息。
+> 这些错误代码对应于证书验证过程中的各种失败。
 
 **示例：**
 
@@ -169,6 +171,8 @@ certVerificationSync(cert: CertBlob, caCert?: CertBlob): number
 
 **错误码：**
 
+以下错误码的详细介绍请参见[网络安全校验错误码](errorcode-net-networkSecurity.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
 | 401      | Parameter error.                                     |
@@ -192,7 +196,7 @@ certVerificationSync(cert: CertBlob, caCert?: CertBlob): number
 
 > **说明：**
 >
-> 这些错误代码对应于证书验证过程中的各种失败，提供有关所遇到问题的详细信息。
+> 这些错误代码对应于证书验证过程中的各种失败。
 
 **示例：**
 
@@ -247,6 +251,8 @@ isCleartextPermitted(): boolean
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
 | 201      | Permission denied.                                  |
@@ -288,6 +294,8 @@ isCleartextPermittedByHostName(hostName: string): boolean
 | boolean | 按域名明文HTTP是否允许。返回true表示允许明文HTTP访问该主机，false表示不允许。默认返回true。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |

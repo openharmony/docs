@@ -1396,7 +1396,7 @@ int64_t OH_ArkUI_UIInputEvent_GetEventTime (const ArkUI_UIInputEvent * event)
 ```
 **描述：**
 
-获取UI输入事件发生的时间。
+获取UI输入事件发生的时间。单位：ns。
 
 **起始版本：** 12
 

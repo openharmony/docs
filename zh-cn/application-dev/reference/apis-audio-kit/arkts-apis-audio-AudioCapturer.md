@@ -1,4 +1,4 @@
-# Interfaces (AudioCapturer)
+# Interface (AudioCapturer)
 
 > **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -1378,7 +1378,47 @@ try {
 }
 ```
 
-## read<sup>8+(deprecated)</sup>
+## setWillMuteWhenInterrupted<sup>20+</sup>
+
+setWillMuteWhenInterrupted(muteWhenInterrupted: boolean): Promise&lt;void&gt;
+
+设置当前录制音频流是否启用静音打断模式。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名     | 类型             | 必填   | 说明                                                      |
+| ---------- |---------------- | ------ |---------------------------------------------------------|
+| muteWhenInterrupted | boolean  | 是  | 设置当前录制音频流是否启用静音打断模式, true表示启用，false表示不启用，保持为默认打断模式。 |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt;| Promise对象。无返回结果的Promise对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800103 | Operation not permit at current state.    |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioRenderer.setWillMuteWhenInterrupted(true).then(() => {
+  console.info('setWillMuteWhenInterrupted Success!');
+}).catch((err: BusinessError) => {
+  console.error(`setWillMuteWhenInterrupted Fail: ${err}`);
+});
+```
+
+## read<sup>(deprecated)</sup>
 
 read(size: number, isBlockingRead: boolean, callback: AsyncCallback<ArrayBuffer\>): void
 
@@ -1418,7 +1458,7 @@ audioCapturer.read(bufferSize, true, (err: BusinessError, buffer: ArrayBuffer) =
 });
 ```
 
-## read<sup>8+(deprecated)</sup>
+## read<sup>(deprecated)</sup>
 
 read(size: number, isBlockingRead: boolean): Promise<ArrayBuffer\>
 

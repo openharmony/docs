@@ -22,6 +22,7 @@ export class TestA {
   name: string = 'ClassA';
 }
 ```
+<!-- @[define_test_class](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/CommunicationObjects/entry/src/main/ets/managers/Test.ets) -->
 
 ```ts
 // Index.ets
@@ -67,3 +68,4 @@ struct Index {
   }
 }
 ```
+<!-- @[example_normal_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/CommunicationObjects/entry/src/main/ets/managers/NormalObject.ets) -->
