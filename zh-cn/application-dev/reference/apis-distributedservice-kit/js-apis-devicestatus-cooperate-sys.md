@@ -687,7 +687,7 @@ try {
 ## cooperate.activateCooperateWithOptions<sup>20+</sup>
 
 activateCooperateWithOptions(targetNetworkId: string, inputDeviceId: number,
-    cooperateOptions?: CooperateOptions ): Promise&lt;void&gt;;
+    cooperateOptions?: CooperateOptions ): Promise&lt;void&gt;
 
 启动键鼠穿越，使用选项开始屏幕跳转。
 
@@ -701,11 +701,17 @@ activateCooperateWithOptions(targetNetworkId: string, inputDeviceId: number,
 | --------- | ------ | ---- | ------------------------ |
 | targetNetworkId | string | 是   | 键鼠穿越目标设备描述符。 |
 | inputDeviceId   | number | 是   |  发起穿越操作的输入设备ID。   |
-|cooperateOptions | CooperateOptions | 否   | 穿越可选控制参数，控制穿出点位置。 |
+|cooperateOptions | [CooperateOptions](#CooperateOptions20) | 否   | 穿越可选控制参数，控制穿出点位置。 |
+
+**返回值：**
+
+| 参数                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[ohos.devicestatus错误码](errorcode-devicestatus.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -722,12 +728,12 @@ let targetNetworkId = "networkId";
 let inputDeviceId = 0;
 try {
  cooperate.activateCooperateWithOptions(targetNetworkId, inputDeviceId).then(() => {
-    console.log(`activateCooperateWithOptions success.`);
+    console.info(`activateCooperateWithOptions success.`);
   }, (error: BusinessError) => {
-    console.log(`activateCooperateWithOptions, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`activateCooperateWithOptions, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`activateCooperateWithOptions, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`activateCooperateWithOptions, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -797,7 +803,7 @@ try {
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
-| 名称      | 类型           | 可读 | 可写 | 说明                     |
+| 名称      | 类型           | 只读 | 可选 | 说明                     |
 | --------- | -------------- | ---- | ---- | ------------------------ |
 | displayX      | number         | 是   | 否   | 鼠标X坐标位置。 |
 | displayY      | number         | 是   | 否   | 鼠标Y坐标位置。 |
