@@ -634,3 +634,59 @@ struct AlertDialogExample {
 ```
 
 ![zh-cn_image_alert](figures/zh-cn_image_alert_hovermode.gif)
+
+### 示例6（弹窗生命周期）
+
+该示例展示了弹窗生命周期的相关接口的使用方法。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Example2 {
+  @State log:string = 'Log information:';
+
+  build() {
+    Column({ space: 5 }) {
+      Button('AlertDialog')
+        .onClick(() => {
+          AlertDialog.show({
+            title: 'AlertDialog',
+            message: 'message',
+            autoCancel: true,
+            alignment: DialogAlignment.Bottom,
+            offset: { dx: 0, dy: -20 },
+            confirm: {
+              value: 'button',
+              action: () => {
+                console.info('AlertDialog Button-clicking callback')
+              }
+            },
+            cancel: () => {
+              console.info('Closed callbacks')
+            },
+            onDidAppear: () => {
+              this.log += '# onDidAppear'
+              console.info("AlertDialog,is onDidAppear!")
+            },
+            onDidDisappear: () => {
+              this.log += '# onDidDisappear'
+              console.info("AlertDialog,is onDidDisappear!")
+            },
+            onWillAppear: () => {
+              this.log = 'Log information:onWillAppear'
+              console.info("AlertDialog,is onWillAppear!")
+            },
+            onWillDisappear: () => {
+              this.log += '# onWillDisappear'
+              console.info("AlertDialog,is onWillDisappear!")
+            }
+          })
+        }).backgroundColor(0x317aff).height("88px")
+      Text(this.log).fontSize(30).margin({ top: 200 })
+    }.width('100%').margin({ top: 5 }).justifyContent(FlexAlign.SpaceAround)
+  }
+}
+```
+
+![zh-cn_image_alert_lifecycle](figures/zh-cn_image_alert_lifecycle.gif)
