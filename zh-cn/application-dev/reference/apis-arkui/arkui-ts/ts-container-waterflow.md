@@ -511,12 +511,6 @@ onScrollIndex(event: (first: number, last: number) => void)
 | first  | number | 是   | 当前显示的瀑布流起始位置的索引值。<br/>取值范围：[0, 子节点总数-1] |
 | last   | number | 是   | 当前显示的瀑布流终止位置的索引值。<br/>取值范围：[0, 子节点总数-1] |
 
-
-> **说明：**  
->
-> - `first` 与 `last` 都为 `-1`：表示当前列表为空（例如数据清空后）。  
-> - `first` 与 `last` 都为 `0`：表示当前列表中仅有一个可见子组件。
-
 ## UIWaterFlowEvent<sup>19+</sup>
 frameNode中[getEvent('WaterFlow')](../js-apis-arkui-frameNode.md#geteventwaterflow19)方法的返回值，可用于给WaterFlow节点设置滚动事件。
 
