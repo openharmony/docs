@@ -47,7 +47,7 @@ Enumerates the window types.
 | TYPE_HANDWRITE<sup>12+</sup>        | 21      | Stylus window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.Window.SessionManager|
 | TYPE_WALLET_SWIPE_CARD<sup>15+</sup>| 22      | Wallet swipe card window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.Window.SessionManager|
 | TYPE_SCREEN_CONTROL<sup>15+</sup>   | 23      | Top-level window used for locking touch input, which intercepts screen touch and click events.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.Window.SessionManager|
-
+| TYPE_FLOAT_NAVIGATION<sup>17+</sup> | 24      | Floating window with a three-button navigation bar.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.Window.SessionManager|
 
 ## WindowMode<sup>7+</sup>
 
@@ -167,23 +167,6 @@ Describes the translation parameters.
 | x    | number   | No  | Yes | Distance to translate along the x-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
 | y    | number   | No  | Yes | Distance to translate along the y-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
 | z    | number   | No  | Yes | Distance to translate along the z-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
-
-## WindowInfo<sup>12+</sup>
-
-Describes the window information.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Window.SessionManager
-
-| Name  | Type  | Read Only| Optional| Description                                      |
-| ------ | ------ | ---- | ---- | ------------------------------------------ |
-| rect  | [Rect](js-apis-window.md#rect7)   | Yes  | No  | Size of the rectangle that can be drawn in the window. The upper boundary and left boundary are calculated relative to the window.|
-| bundleName  | string   | Yes  | No  | Bundle name.         |
-| abilityName | string   | Yes  | No  | Ability name.              |
-| windowId | number | Yes  | No  | Window ID.  |
-| windowStatusType | [WindowStatusType](js-apis-window.md#windowstatustype11) | Yes  | No  | Window mode.  |
-| isFocused<sup>14+</sup> | boolean | Yes  | Yes  | Whether the window gains focus. The value **true** means that the window gains focus, and **false** means the opposite.  |
 
 ## window.minimizeAll<sup>9+</sup>
 minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
@@ -573,7 +556,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 try {
   window.on('gestureNavigationEnabledChange', (data) => {
-    console.info('Succeeded in enabling the listener for gesture navigation status changes. Data: ' + JSON.stringify(data));
+    console.info(`Succeeded in enabling the listener for gesture navigation status changes. Data: ${data}`);
   });
 } catch (exception) {
   console.error(`Failed to enable the listener for gesture navigation status changes. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -656,7 +639,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 try {
   window.on('waterMarkFlagChange', (data) => {
-    console.info('Succeeded in enabling the listener for watermark flag changes. Data: ' + JSON.stringify(data));
+    console.info(`Succeeded in enabling the listener for watermark flag changes. Data: ${data}`);
   });
 } catch (exception) {
   console.error(`Failed to enable the listener for watermark flag changes. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -818,7 +801,7 @@ Sets the watermark image display status. This API uses an asynchronous callback 
 
 | Name  | Type                     | Mandatory| Description          |
 | -------- | ------------------------- | ---- | -------------- |
-| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes| Watermark image.|
+| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes| Watermark image, which can be obtained by calling [createPixelMap](../apis-image-kit/js-apis-image.md#imagecreatepixelmap8).|
 | enable   | boolean                  | Yes  | Whether to display the watermark image. The value **true** means to display the watermark image, and **false** means the opposite.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
@@ -878,7 +861,7 @@ Sets the watermark image display status. This API uses a promise to return the r
 
 | Name| Type                       | Mandatory | Description                |
 | ------ | --------------------------- | ---- | -------------------- |
-| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes| Watermark image.|
+| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes| Watermark image, which can be obtained by calling [createPixelMap](../apis-image-kit/js-apis-image.md#imagecreatepixelmap8).|
 | enable   | boolean                  | Yes  | Whether to display the watermark image. The value **true** means to display the watermark image, and **false** means the opposite.|
 
 **Return value**
@@ -977,57 +960,6 @@ try {
 } catch (exception) {
   console.error(`Failed to get snapshot. Cause code: ${exception.code}, message: ${exception.message}`);
 }
-```
-
-## window.getVisibleWindowInfo<sup>12+</sup>
-
-getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
-
-Obtains information about visible windows on the current screen. Visible windows are windows that are not returned to the background.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Window.SessionManager
-
-
-**Return value**
-
-| Type| Description|
-| ------------------- | ----------------------- |
-| Promise&lt;[WindowInfo](#windowinfo12)&gt; | Promise used to return the information about visible windows.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
-
-| ID| Error Message|
-| ------- | ------------------------------ |
-| 202     | Permission verification failed, non-system application uses system API. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300003 | This window manager service works abnormally. |
-
-**Example**
-
-```ts
-import { window } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let promise = window.getVisibleWindowInfo();
-promise.then((data) => {
-  data.forEach(windowInfo=>{
-    console.info(`left:${windowInfo.rect.left}`);
-    console.info(`top:${windowInfo.rect.top}`);
-    console.info(`width:${windowInfo.rect.width}`);
-    console.info(`height:${windowInfo.rect.height}`);
-    console.info(`windowId:${windowInfo.windowId}`);
-    console.info(`windowStatusType:${windowInfo.windowStatusType}`);
-    console.info(`abilityName:${windowInfo.abilityName}`);
-    console.info(`bundleName:${windowInfo.bundleName}`);
-    console.info(`isFocused:${windowInfo.isFocused}`);
-  })
-}).catch((err: BusinessError) => {
-  console.error('Failed to getWindowInfo. Cause: ' + JSON.stringify(err));
-});
 ```
 
 ## Window
@@ -1772,7 +1704,9 @@ try {
 ### setSnapshotSkip<sup>9+</sup>
 setSnapshotSkip(isSkip: boolean): void
 
-Sets whether to ignore this window during screen capturing or recording. This API is generally used in scenarios where screen capture or recording is disabled.
+Sets whether to ignore this window during screen capture, recording, or casting. This API is typically used in situations where you want to prevent screen capture, recording, or casting.
+
+If you want the window to always be ignored during screen capture, recording, or casting while it is in the foreground, listen for window lifecycle changes using [on('windowEvent')](js-apis-window.md#onwindowevent10). Set **isSkip** to **false** when the window is in the background and **true** when it is in the foreground.
 
 **System API**: This is a system API.
 
@@ -2784,7 +2718,7 @@ enableDrag(enable: boolean): Promise&lt;void&gt;
 
 Enables or disables window dragging. This API uses a promise to return the result.
 
-After window dragging is enabled, the window can be resized using the mouse.
+After window dragging is enabled, the window can be resized using the mouse or touch operations.
 
 This API takes effect only for the system window on 2-in-1 devices. If this API is called for other device types, an error is reported.
 
@@ -2893,14 +2827,18 @@ export default class EntryAbility extends UIAbility {
       console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
 
       let shouldHide = true;
-      // Call hideNonSystemFloatingWindows with the callback parameter.
-      mainWindow.hideNonSystemFloatingWindows(shouldHide, (err) => {
-        if (err.code) {
-          console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
-          return;
-        }
-        console.info('Succeeded in hiding the non-system floating windows.');
-      });
+      try {
+        // Call hideNonSystemFloatingWindows with the callback parameter.
+        mainWindow.hideNonSystemFloatingWindows(shouldHide, (err) => {
+          if (err.code) {
+            console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in hiding the non-system floating windows.');
+        });
+      } catch (exception) {
+        console.error(`Failed to hide the non-system floating windows. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
     });
   }
 }
@@ -2972,13 +2910,17 @@ export default class EntryAbility extends UIAbility {
       console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
 
       let shouldHide = true;
-      // Call hideNonSystemFloatingWindows to obtain a promise object.
-      let promise = mainWindow.hideNonSystemFloatingWindows(shouldHide);
-      promise.then(()=> {
-        console.info('Succeeded in hiding the non-system floating windows.');
-      }).catch((err: BusinessError)=>{
-        console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
-      });
+      try {
+        // Call hideNonSystemFloatingWindows to obtain a promise object.
+        let promise = mainWindow.hideNonSystemFloatingWindows(shouldHide);
+        promise.then(()=> {
+          console.info('Succeeded in hiding the non-system floating windows.');
+        }).catch((err: BusinessError)=>{
+          console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to hide the non-system floating windows. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
     });
   }
 }
@@ -3086,12 +3028,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let enable = true;
-let promise = windowClass.setSingleFrameComposerEnabled(enable);
-promise.then(()=> {
-    console.info('Succeeded in enabling the single-frame-composer function.');
-}).catch((err: BusinessError)=>{
-    console.error(`Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.`);
-});
+try {
+  let promise = windowClass.setSingleFrameComposerEnabled(enable);
+  promise.then(()=> {
+      console.info('Succeeded in enabling the single-frame-composer function.');
+  }).catch((err: BusinessError)=>{
+      console.error(`Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.`);
+  });
+} catch (exception) {
+  console.error(`Failed to enable the single-frame-composer function. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### setTitleButtonVisible<sup>12+</sup>
@@ -3299,7 +3245,7 @@ Describes the parameters used for creating a child window.
 
 Implements a window manager, which manages each basic window unit, that is, [Window](#window) instance.
 
-Before calling any of the following APIs, you must use [onWindowStageCreate()](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) to create a **WindowStage** instance.
+Before calling any of the following APIs, you must use [onWindowStageCreate()](../apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate) to create a **WindowStage** instance.
 
 ### disableWindowDecor<sup>9+</sup>
 
@@ -3436,7 +3382,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 (context: window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
-  animateTo({
+  this.getUIContext()?.animateTo({
     duration: 1000, // Animation duration.
     tempo: 0.5, // Playback speed.
     curve: Curve.EaseInOut, // Animation curve.
@@ -3544,7 +3490,7 @@ try {
   animationConfig?.ShowWindowWithCustomAnimation(systemTypeWindow, (context : window.TransitionContext)=>{
     console.info('complete transition end');
     let toWindow = context.toWindow;
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 1000, // Animation duration.
       tempo: 0.5, // Playback speed.
       curve: Curve.EaseInOut, // Animation curve.
@@ -3627,7 +3573,7 @@ try {
   animationConfig?.HideWindowWithCustomAnimation(systemTypeWindow, (context : window.TransitionContext)=>{
     console.info('complete transition end');
     let toWindow = context.toWindow;
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 1000, // Animation duration.
       tempo: 0.5, // Playback speed.
       curve: Curve.EaseInOut, // Animation curve.
