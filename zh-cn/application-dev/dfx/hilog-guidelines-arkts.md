@@ -19,7 +19,13 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 | warn(domain: number, tag: string, format: string, ...args: any[]) | 输出WARN级别日志。表示存在警告。 |
 | error(domain: number, tag: string, format: string, ...args: any[]) | 输出ERROR级别日志。表示存在错误。 |
 | fatal(domain: number, tag: string, format: string, ...args: any[]) | 输出FATAL级别日志。表示出现致命错误、不可恢复错误。 |
-| setMinLogLevel(level: LogLevel) | 设置应用日志打印的最低日志级别，进程在打印日志时，需要同时校验该日志级别和全局日志级别，所以设置的日志级别不能低于全局日志级别，[全局日志级别](hilog.md#查看和设置日志级别)默认为Info。|
+| setMinLogLevel(level: LogLevel) | 设置应用日志打印的最低日志级别，进程在打印日志时，需要同时校验该日志级别和全局日志级别，所以设置的日志级别不能低于全局日志级别。|
+
+<!--RP1-->
+> **说明：**
+>
+> 全局日志级别，默认为info, 可参考[查看和设置日志级别](hilog.md#查看和设置日志级别)
+<!--RP1End-->
 
 ### 参数解析
 
@@ -33,7 +39,7 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 >
 >   debug应用：不做日志级别管控，所有级别日志都能够正常打印出来；
 >
->   release应用：按照全局日志级别（默认为INFO）管控，当日志的级别不低于全局日志级别时，才能正常打印出来；
+>   release应用：按照全局日志级别管控，当日志的级别不低于全局日志级别时，才能正常打印出来；
 >
 >   调试过程中，可手动修改日志级别，参考：[查看和设置日志级别](hilog.md#查看和设置日志级别)。
 
