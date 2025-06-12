@@ -263,8 +263,6 @@ IP配置信息。
 | PHASE2_AKA       | 6    | AKA类型。       |
 | PHASE2_AKA_PRIME | 7    | AKA Prime类型。 |
 
-
-
 ## wifiManager.turnOnWifi<sup>20+</sup>
 
 turnOnWifi(admin: Want, isForce: boolean): void
