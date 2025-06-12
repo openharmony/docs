@@ -147,7 +147,7 @@ off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;H
 ```js
 let leftCtrlKey = 2072;
 let zKey = 2042;
-// 取消订阅单个全局快捷键回调函数
+// 取消订阅单个应用快捷键回调函数
 let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
   console.log(`hotkeyOptions: ${JSON.stringify(hotkeyOptions)}`);
 }
@@ -164,7 +164,7 @@ try {
 ```js
 let leftCtrlKey = 2072;
 let zKey = 2042;
-// 取消订阅所有全局快捷键回调函数
+// 取消订阅所有应用快捷键回调函数
 let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
   console.log(`hotkeyOptions: ${JSON.stringify(hotkeyOptions)}`);
 }
@@ -184,7 +184,7 @@ on(type: 'keyPressed', options: KeyPressedConfig, callback: Callback&lt;KeyEvent
 
 订阅按键按下事件，使用callback异步回调。若当前应用窗口为前台焦点窗口，用户按下指定按键，会触发回调。此接口仅支持手机和平板形态设备。
 
-订阅成功后，该按键事件的系统默认行为将被屏蔽，即不会再触发系统级的响应，如音量调节。要恢复系统响应，请使用inputConsumer.off('keyPressed')方法取消订阅。
+订阅成功后，该按键事件的系统默认行为将被屏蔽，即不会再触发系统级的响应，如音量调节。要恢复系统响应，请使用[off](#inputconsumeroffkeypressed16)方法取消订阅。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 

@@ -23,13 +23,14 @@ import { inputConsumer } from '@kit.InputKit';
 
 ## 开发步骤
 
-应用开启时调用[on](../../reference/apis-input-kit/js-apis-inputconsumer.md#inputConsumer.on('keyPressed'))方法订阅全局快捷键，应用关闭时再用[off](../../reference/apis-input-kit/js-apis-inputconsumer.md#inputConsumer.off('keyPressed'))方法取消订阅全局快捷键。
+应用开启时调用[on](../../reference/apis-input-kit/js-apis-inputconsumer.md#inputconsumeronkeypressed16)方法订阅全局快捷键，应用关闭时再用[off](../../reference/apis-input-kit/js-apis-inputconsumer.md#inputconsumeroffkeypressed16)方法取消订阅全局快捷键。
 
 ### 音量键翻页
 
 在电子书或新闻阅读应用中，用户希望通过音量键控制翻页（例如：音量加键向下翻页，音量减键向上翻页）。
 
 ```js
+import { inputConsumer } from '@kit.InputKit';
 //应用开启
 try {
   let options: inputConsumer.KeyPressedConfig = {
