@@ -10,7 +10,7 @@
 
 type WebMessage = ArrayBuffer | string
 
-用于描述[WebMessagePort](./js-apis-webview-WebMessagePort.md#interfaces-webmessageport)所支持的数据类型。
+用于描述[WebMessagePort](./js-apis-webview-WebMessagePort.md)所支持的数据类型。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
