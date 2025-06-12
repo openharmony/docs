@@ -9,6 +9,7 @@ The WindowManager_AvoidArea struct describes the avoid area.
 
 **Related module**: [WindowManager_NativeModule](_window_manager___native_module.md)
 
+**Header file**: [oh_window_comm.h](oh__window__comm_8h.md)
 
 ## Summary
 

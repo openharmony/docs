@@ -28,6 +28,7 @@ Describes screenshot options.
 | rotation               | number        | No  | Rotation angle of the screenshot. Currently, the value can be **0** only. The default value is **0**. The value must be an integer.    |
 | displayId<sup>8+</sup> | number        | No  | ID of the [display](js-apis-display.md#display) device on which the screen region is to be captured. The value must be an integer.|
 | isNotificationNeeded<sup>14+</sup>| boolean        | No  | Whether to send a notification after a snapshot is captured. The value **true** means to send a notification, and **false** means the opposite. The default value is **true**. Such a notification can be listened for through [captureStatusChange](js-apis-display.md#displayoncapturestatuschange12).  |
+| isPointerNeeded<sup>14+</sup>| boolean       | No   | Whether to retain the cursor in the captured image. The value **true** means to retain the cursor, and **false** means the opposite. The default value is **true**. This parameter is currently unsupported.   |
 
 ## Size
 
