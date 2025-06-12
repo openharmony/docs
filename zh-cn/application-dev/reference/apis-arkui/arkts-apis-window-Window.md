@@ -5476,7 +5476,7 @@ promise.then((pixelMap: image.PixelMap) => {
 
 ### snapshotSync<sup>20+</sup>
 
-snapshotSync(): image.PixelMap;
+snapshotSync(): image.PixelMap
 
 获取当前窗口截图。若当前窗口设置为隐私模式（可通过[setWindowPrivacyMode](#setwindowprivacymode9)接口设置），截图结果为白屏。
 
