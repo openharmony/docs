@@ -370,6 +370,7 @@ startAdminProvision(admin: Want, type: AdminType, context: common.Context, param
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common, Want } from '@kit.AbilityKit';
 
@@ -381,6 +382,7 @@ let recordParameters: Record<string, string> = {
   "activateId": "activateId testValue",
   "customizedInfo": "customizedInfo testValue"
 };
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   console.info('context:' + JSON.stringify(context));
