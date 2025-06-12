@@ -32,6 +32,11 @@ The OH_DisplayManager module provides the display management capability.
 | struct  [NativeDisplayManager_DisplayInfo](_native_display_manager___display_info.md) | Encapsulates the information about a display.| 
 | struct  [NativeDisplayManager_DisplaysInfo](_native_display_manager___displays_info.md) | Encapsulates the information about displays of a device with multiple screens.| 
 
+### Macros
+
+| Name| Description| 
+| -------- | -------- |
+| [OH_DISPLAY_NAME_LENGTH](#oh_display_name_length)   32 | Maximum length of a display name.  | 
 
 ### Types
 
@@ -95,6 +100,20 @@ The OH_DisplayManager module provides the display management capability.
 | void [OH_NativeDisplayManager_DestroyDisplay](#oh_nativedisplaymanager_destroydisplay) ([NativeDisplayManager_DisplayInfo](_native_display_manager___display_info.md) \*displayInfo) | Destroys the object that contains the information about a display.| 
 | [NativeDisplayManager_ErrorCode](#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_CreatePrimaryDisplay](#oh_nativedisplaymanager_createprimarydisplay) ([NativeDisplayManager_DisplayInfo](_native_display_manager___display_info.md) \*\*displayInfo) | Obtains the object that contains the information about the primary display. For devices other than 2-in-1 devices, the displayInfo object obtained contains information about the built-in screen. For 2-in-1 devices with an external screen, the displayInfo object obtained contains information about the current primary screen. For 2-in-1 devices without an external screen, the displayInfo object obtained contains information about the built-in screen.| 
 
+## Macro Description
+
+
+### OH_DISPLAY_NAME_LENGTH
+
+```
+#define OH_DISPLAY_NAME_LENGTH   32
+```
+
+**Description**
+
+Maximum length of a display name.
+
+**Since**: 14
 
 ## Type Description
 
