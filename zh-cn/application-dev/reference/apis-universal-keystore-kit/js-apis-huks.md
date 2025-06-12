@@ -2951,7 +2951,7 @@ API version 11系统能力为SystemCapability.Security.Huks.Extension；从API v
 
 ## HuksKeyWrapType<sup>20+</sup>
 
-枚举。密钥加密类型（加密导出或导入密钥）。
+表示密钥加密类型（加密导出或导入密钥）的枚举。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2959,7 +2959,7 @@ API version 11系统能力为SystemCapability.Security.Huks.Extension；从API v
 
 | 名称                           | 值   | 说明                                                         |
 | ------------------------------ | ---- | ------------------------------------------------------------ |
-| HUKS_KEY_WRAP_TYPE_HUK_BASED | 2    | 硬件唯一密钥加密类型。 |
+| HUKS_KEY_WRAP_TYPE_HUK_BASED | 2    | 硬件唯一密钥加密类型。<!--Del-->（当前暂不支持）<!--DelEnd--> |
 
 ## HuksTagType
 
