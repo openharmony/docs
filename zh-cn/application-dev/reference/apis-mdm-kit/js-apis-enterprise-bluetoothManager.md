@@ -482,7 +482,5 @@ try {
     console.info(`Succeeded in turning off bluetooth.`);
 } catch(err) {
     console.error(`Failed to turn off bluetooth. Code: ${err.code}, message: ${err.message}`);
-}
+} 
 ```
-
- 
