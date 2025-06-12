@@ -13,7 +13,7 @@ The **oh_window_comm.h** file declares the common enums and definitions of the w
 
 **Since**: 12
 
-**Related module**: [WindowManager_NativeModule](_window_manager___native_module.md)
+**Related module**: [WindowManager](_window_manager___native_module.md)
 
 
 ## Summary
