@@ -1328,7 +1328,7 @@ getDragController(): DragController
 
 |类型|说明|
 |----|----|
-|[DragController](js-apis-arkui-dragController.md#dragController)| 获取DragController对象。|
+|[DragController](js-apis-arkui-dragController.md#ohosarkuidragcontroller-dragcontroller)| 获取DragController对象。|
 
 **示例：**
 
@@ -2837,6 +2837,12 @@ dispatchKeyEvent(node: number | string, event: KeyEvent): boolean
 | ------ | ----------------------------- | ---- | ------------------ |
 | node  | number \| string | 是   | 组件的id或者节点UniqueID。 |
 | event  |[KeyEvent](./arkui-ts/ts-universal-events-key.md#keyevent对象说明) | 是   | KeyEvent对象。 |
+
+**返回值：**
+
+| 类型      | 说明            |
+|---------|---------------|
+| boolean | 按键事件是否成功分发给指定的组件。<br/> true表示分发成功，false表示分发失败。 |
 
 **示例：**
 
@@ -4616,7 +4622,7 @@ off(type: 'afterPanStart', callback?: PanListenerCallback): void
 
 取消[on('afterPanStart')](#onafterpanstart19)监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的callback回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -8835,7 +8841,7 @@ struct NormalEts {
 ```
 ### enableDropDisallowedBadge<sup>20+</sup>
 
-enableDropDisallowedBadge(enable: boolean): void
+enableDropDisallowedBadge(enabled: boolean): void
 
 当组件的类型与配置的[allowDrop](../apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#allowdrop)无交集时可显示禁用角标。当目标进行拖拽时，通过该方法检查是否显示拖拽禁止角标。该接口暂不支持[UIExtension](../apis-arkui/js-apis-arkui-uiExtension.md)。
 
@@ -8847,7 +8853,7 @@ enableDropDisallowedBadge(enable: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| enable | boolean | 是   | 当组件的类型与配置的[allowDrop](../apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#allowdrop)无交集时可显示禁用角标，当目标进行拖拽时，通过enableDropDisallowedBadge方法检查是否显示拖拽禁止角标。true表示显示拖拽禁止角标，false表示不显示拖拽禁止角标。默认值为false。 |
+| enabled | boolean | 是   | 当组件的类型与配置的[allowDrop](../apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#allowdrop)无交集时可显示禁用角标，当目标进行拖拽时，通过enableDropDisallowedBadge方法检查是否显示拖拽禁止角标。true表示显示拖拽禁止角标，false表示不显示拖拽禁止角标。默认值为false。 |
 
 **示例：**
 
