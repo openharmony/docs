@@ -8,7 +8,7 @@
 
 ## customProperty
 
-customProperty(name: string, value: Optional\<Object>)
+customProperty(name: string, value: Optional\<Object>): T
 
 设置组件的自定义属性。[自定义组件](../../../ui/state-management/arkts-create-custom-components.md#创建自定义组件)不支持设置自定义属性。
 
@@ -24,6 +24,12 @@ customProperty(name: string, value: Optional\<Object>)
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | name  | string | 是   | 自定义属性的名称。 |
 | value  | Optional\<Object> | 是   | 自定义属性的值。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+| T | 返回当前组件。 |
 
 
 ## Optional<sup>12+</sup>
