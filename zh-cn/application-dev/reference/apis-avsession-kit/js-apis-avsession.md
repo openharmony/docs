@@ -3639,7 +3639,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 aVCastController.getSupportedDecoders().then((decoderTypes: avSession.DecoderType[]) => {
   console.info(`getSupportedDecoders : SUCCESS : decoderTypes.length : ${decoderTypes.length}`);
-  if (descriptors.length > 0 ) {
+  if (decoderTypes.length > 0 ) {
     console.info(`getSupportedDecoders : SUCCESS : decoderTypes[0] : ${decoderTypes[0]}`);
   }
 }).catch((err: BusinessError) => {
