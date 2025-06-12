@@ -72,7 +72,7 @@ export default class ServiceExtensionAbility1 extends ServiceExtensionAbility {
     window.createWindow(config, (err: BusinessError, data) => {
       let errCode: number = err.code;
       if (errCode) {
-        console.error('Failed to create the volume window. Cause:' + JSON.stringify(err));
+        console.error(`Failed to create the volume window. Code:${err.code}, message:${err.message}`);
         return;
       }
       console.info('Succeeded in creating the volume window.')

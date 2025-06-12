@@ -272,7 +272,7 @@ Stops extended mode. This API uses an asynchronous callback to return the result
 
 | Name| Type| Mandatory| Description                                     |
 | ------------ | --------------------------- | --- |-----------------------------------------|
-| expandScreen | Array&lt;number&gt;         | Yes  | IDs of the extended screens. Each ID must be an integer. The size of the **expandScreen** array cannot exceed 1000. |
+| expandScreen | Array&lt;number&gt;         | Yes  | IDs of the extended screens. Each ID is an integer. The size of the **expandScreen** array cannot exceed 1000. |
 | callback     | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If extended mode is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -313,7 +313,7 @@ Stops extended mode. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description                |
 | ------------ | ------------------- | --- |--------------------|
-| expandScreen | Array&lt;number&gt; | Yes  | IDs of the extended screens. Each ID must be an integer. The size of the expandScreen array cannot exceed 1000.|
+| expandScreen | Array&lt;number&gt; | Yes  | IDs of the extended screens. Each ID is an integer. The size of the expandScreen array cannot exceed 1000.|
 
 **Return value**
 
@@ -406,7 +406,7 @@ Sets the screen to mirror mode. This API uses a promise to return the result.
 
 | Type                 | Description                             |
 | --------------------- |---------------------------------|
-| Promise&lt;number&gt; | Promise used to return the group ID of the secondary screens, where the ID is an integer.|
+| Promise&lt;number&gt; | Promise used to return the group ID of the secondary screens, where the ID should be an integer.|
 
 **Error codes**
 
@@ -768,7 +768,6 @@ screen.setVirtualScreenSurface(screenId, surfaceId, (err: BusinessError) => {
   console.info('Succeeded in setting the surface for the virtual screen.');
 });
 ```
-
 ## screen.setVirtualScreenSurface
 
 setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
@@ -892,7 +891,7 @@ console.info('Succeeded in getting the screen rotation lock status. isLocked:' +
 
 setScreenRotationLocked(isLocked: boolean): Promise&lt;void&gt;
 
-Sets whether to lock auto rotate. This API uses a promise to return the result.
+Sets whether to lock auto rotate. This API uses a promise to return the result. It is unavailable for 2-in-1 devices.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -934,7 +933,7 @@ screen.setScreenRotationLocked(isLocked).then(() => {
 
 setScreenRotationLocked(isLocked: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether to lock auto rotate. This API uses an asynchronous callback to return the result.
+Sets whether to lock auto rotate. This API uses an asynchronous callback to return the result. It is unavailable for 2-in-1 devices.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1132,10 +1131,10 @@ Before calling any API in **Screen**, you must use **[getAllScreens()](#screenge
 
 | Name             | Type                                      | Read-Only| Optional| Description                                                         |
 | ----------------- | ---------------------------------------------- | ---- | ---- |-------------------------------------------------------------|
-| id                | number                                         | Yes  | No  | Screen ID. The value must be an integer.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core                                             |
-| parent            | number                                         | Yes  | No  | ID of the group to which a screen belongs. The value must be an integer.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core                                         |
+| id                | number                                         | Yes  | No  | Screen ID, which is an integer.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core                                             |
+| parent            | number                                         | Yes  | No  | ID of the group to which a screen belongs, where the ID is an integer.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core                                         |
 | supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | Yes  | No  | Mode set supported by the screen.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core                                                 |
-| activeModeIndex   | number                                         | Yes  | No  | Index of the active screen mode. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware. The value must be an integer.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| activeModeIndex   | number                                         | Yes  | No  | Index of the active screen mode. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware. The value is an integer.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
 | orientation       | [Orientation](#orientation)                     | Yes  | No  | Screen orientation.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core                                                      |
 | sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | Yes  | No  | Source mode of the screen.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core                                                    |
 | serialNumber<sup>15+</sup> | string        | Yes  | Yes  | Serial number of the extended screen. Currently, this property is available only for 2-in-1 devices.  <br>**System capability**: SystemCapability.WindowManager.WindowManager                        |       
@@ -1547,7 +1546,7 @@ Defines the screen mode information.
 
 | Name       | Type| Readable| Writable| Description                                              |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |
-| id          | number   | Yes  | Yes  | Mode ID. The supported mode is determined by the device resolution and refresh rate. The value must be an integer.| 
-| width       | number   | Yes  | Yes  | Width of the screen, in px. The value must be an integer.                               |
-| height      | number   | Yes  | Yes  | Height of the screen, in px. The value must be an integer.                               |
-| refreshRate | number   | Yes  | Yes  | Refresh rate of the screen, in hz. The value must be an integer.                                    |
+| id          | number   | Yes  | Yes  | Mode ID. The supported mode is determined by the device resolution and refresh rate. The value is an integer.| 
+| width       | number   | Yes  | Yes  | Width of the screen, in px. The value is an integer.                               |
+| height      | number   | Yes  | Yes  | Height of the screen, in px. The value is an integer.                               |
+| refreshRate | number   | Yes  | Yes  | Refresh rate of the screen, in hz. The value is an integer.                                    |

@@ -47,7 +47,7 @@ Enumerates the window types.
 | TYPE_HANDWRITE<sup>12+</sup>        | 21      | Stylus window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.Window.SessionManager|
 | TYPE_WALLET_SWIPE_CARD<sup>15+</sup>| 22      | Wallet swipe card window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.Window.SessionManager|
 | TYPE_SCREEN_CONTROL<sup>15+</sup>   | 23      | Top-level window used for locking touch input, which intercepts screen touch and click events.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.Window.SessionManager|
-
+| TYPE_FLOAT_NAVIGATION<sup>17+</sup> | 24      | Floating window with a three-button navigation bar.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.Window.SessionManager|
 
 ## WindowMode<sup>7+</sup>
 
@@ -573,7 +573,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 try {
   window.on('gestureNavigationEnabledChange', (data) => {
-    console.info('Succeeded in enabling the listener for gesture navigation status changes. Data: ' + JSON.stringify(data));
+    console.info(`Succeeded in enabling the listener for gesture navigation status changes. Data: ${data}`);
   });
 } catch (exception) {
   console.error(`Failed to enable the listener for gesture navigation status changes. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -656,7 +656,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 try {
   window.on('waterMarkFlagChange', (data) => {
-    console.info('Succeeded in enabling the listener for watermark flag changes. Data: ' + JSON.stringify(data));
+    console.info(`Succeeded in enabling the listener for watermark flag changes. Data: ${data}`);
   });
 } catch (exception) {
   console.error(`Failed to enable the listener for watermark flag changes. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -818,7 +818,7 @@ Sets the watermark image display status. This API uses an asynchronous callback 
 
 | Name  | Type                     | Mandatory| Description          |
 | -------- | ------------------------- | ---- | -------------- |
-| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes| Watermark image.|
+| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes| Watermark image, which can be obtained by calling [createPixelMap](../apis-image-kit/js-apis-image.md#imagecreatepixelmap8).|
 | enable   | boolean                  | Yes  | Whether to display the watermark image. The value **true** means to display the watermark image, and **false** means the opposite.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
@@ -878,7 +878,7 @@ Sets the watermark image display status. This API uses a promise to return the r
 
 | Name| Type                       | Mandatory | Description                |
 | ------ | --------------------------- | ---- | -------------------- |
-| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes| Watermark image.|
+| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes| Watermark image, which can be obtained by calling [createPixelMap](../apis-image-kit/js-apis-image.md#imagecreatepixelmap8).|
 | enable   | boolean                  | Yes  | Whether to display the watermark image. The value **true** means to display the watermark image, and **false** means the opposite.|
 
 **Return value**
@@ -1772,7 +1772,9 @@ try {
 ### setSnapshotSkip<sup>9+</sup>
 setSnapshotSkip(isSkip: boolean): void
 
-Sets whether to ignore this window during screen capturing or recording. This API is generally used in scenarios where screen capture or recording is disabled.
+Sets whether to ignore this window during screen capture, recording, or casting. This API is typically used in situations where you want to prevent screen capture, recording, or casting.
+
+If you want the window to always be ignored during screen capture, recording, or casting while it is in the foreground, listen for window lifecycle changes using [on('windowEvent')](js-apis-window.md#onwindowevent10). Set **isSkip** to **false** when the window is in the background and **true** when it is in the foreground.
 
 **System API**: This is a system API.
 
@@ -2784,7 +2786,7 @@ enableDrag(enable: boolean): Promise&lt;void&gt;
 
 Enables or disables window dragging. This API uses a promise to return the result.
 
-After window dragging is enabled, the window can be resized using the mouse.
+After window dragging is enabled, the window can be resized using the mouse or touch operations.
 
 This API takes effect only for the system window on 2-in-1 devices. If this API is called for other device types, an error is reported.
 
@@ -2893,14 +2895,18 @@ export default class EntryAbility extends UIAbility {
       console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
 
       let shouldHide = true;
-      // Call hideNonSystemFloatingWindows with the callback parameter.
-      mainWindow.hideNonSystemFloatingWindows(shouldHide, (err) => {
-        if (err.code) {
-          console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
-          return;
-        }
-        console.info('Succeeded in hiding the non-system floating windows.');
-      });
+      try {
+        // Call hideNonSystemFloatingWindows with the callback parameter.
+        mainWindow.hideNonSystemFloatingWindows(shouldHide, (err) => {
+          if (err.code) {
+            console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in hiding the non-system floating windows.');
+        });
+      } catch (exception) {
+        console.error(`Failed to hide the non-system floating windows. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
     });
   }
 }
@@ -2972,13 +2978,17 @@ export default class EntryAbility extends UIAbility {
       console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
 
       let shouldHide = true;
-      // Call hideNonSystemFloatingWindows to obtain a promise object.
-      let promise = mainWindow.hideNonSystemFloatingWindows(shouldHide);
-      promise.then(()=> {
-        console.info('Succeeded in hiding the non-system floating windows.');
-      }).catch((err: BusinessError)=>{
-        console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
-      });
+      try {
+        // Call hideNonSystemFloatingWindows to obtain a promise object.
+        let promise = mainWindow.hideNonSystemFloatingWindows(shouldHide);
+        promise.then(()=> {
+          console.info('Succeeded in hiding the non-system floating windows.');
+        }).catch((err: BusinessError)=>{
+          console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to hide the non-system floating windows. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
     });
   }
 }
@@ -3086,12 +3096,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let enable = true;
-let promise = windowClass.setSingleFrameComposerEnabled(enable);
-promise.then(()=> {
-    console.info('Succeeded in enabling the single-frame-composer function.');
-}).catch((err: BusinessError)=>{
-    console.error(`Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.`);
-});
+try {
+  let promise = windowClass.setSingleFrameComposerEnabled(enable);
+  promise.then(()=> {
+      console.info('Succeeded in enabling the single-frame-composer function.');
+  }).catch((err: BusinessError)=>{
+      console.error(`Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.`);
+  });
+} catch (exception) {
+  console.error(`Failed to enable the single-frame-composer function. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### setTitleButtonVisible<sup>12+</sup>
@@ -3299,7 +3313,7 @@ Describes the parameters used for creating a child window.
 
 Implements a window manager, which manages each basic window unit, that is, [Window](#window) instance.
 
-Before calling any of the following APIs, you must use [onWindowStageCreate()](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) to create a **WindowStage** instance.
+Before calling any of the following APIs, you must use [onWindowStageCreate()](../apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate) to create a **WindowStage** instance.
 
 ### disableWindowDecor<sup>9+</sup>
 

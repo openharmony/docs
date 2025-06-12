@@ -114,10 +114,10 @@ Describes a rectangle on the display.
 
 | Name  | Type| Readable| Writable| Description              |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | Yes  | Yes  | Left boundary of the rectangle, in px. The value must be an integer.|
-| top    | number   | Yes  | Yes  | Top boundary of the rectangle, in px. The value must be an integer.|
-| width  | number   | Yes  | Yes  | Width of the rectangle, in px. The value must be an integer.  |
-| height | number   | Yes  | Yes  | Height of the rectangle, in px. The value must be an integer.  |
+| left   | number   | Yes  | Yes  | Left boundary of the rectangle, in px. The value is an integer.|
+| top    | number   | Yes  | Yes  | Top boundary of the rectangle, in px. The value is an integer.|
+| width  | number   | Yes  | Yes  | Width of the rectangle, in px. The value is an integer.  |
+| height | number   | Yes  | Yes  | Height of the rectangle, in px. The value is an integer.  |
 
 ## WaterfallDisplayAreaRects<sup>9+</sup>
 
@@ -157,8 +157,22 @@ Describes the display mode of a foldable device and the corresponding physical s
 | Name                       | Type     | Read-Only| Optional| Description              |
 | --------------------------- | ------------- | ---- | ---- | ------------------ |
 | foldDisplayMode             | [FoldDisplayMode](#folddisplaymode10) | Yes  | No  | Display mode of the foldable device.|
-| physicalWidth   | number | Yes| No| Width of the foldable device, in px. The value must be an integer greater than 0.|
-| physicalHeight  | number | Yes| No| Height of the foldable device, in px. The value must be an integer greater than 0.|
+| physicalWidth   | number | Yes| No| Width of the foldable device, in px. The value is an integer greater than 0.|
+| physicalHeight  | number | Yes| No| Height of the foldable device, in px. The value is an integer greater than 0.|
+
+## VirtualScreenConfig<sup>16+</sup>
+
+Describes the virtual screen parameters.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+| Name     | Type| Read-Only| Optional| Description                      |
+| --------- | -------- | ---- | ---- |--------------------------|
+| name      | string   | No  | No  | Name of the virtual screen, which can be customized.              |
+| width     | number   | No  | No  | Width of the virtual screen, in px. The value must be a positive integer.|
+| height    | number   | No  | No  | Height of the virtual screen, in px. The value must be a positive integer.|
+| density   | number   | No  | No  | Density of the virtual screen, in px. The value is a floating point number.|
+| surfaceId | string   | No  | No  | Surface ID of the virtual screen, which can be customized.       |
 
 ## display.getDisplayByIdSync<sup>12+</sup>
 
@@ -452,7 +466,7 @@ Unsubscribes from display changes.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type.<br>- **add**, indicating the display addition event. Example: event that a display is connected.<br>- **remove**, indicating the display removal event. Example: event that a display is disconnected.<br>- **change**, indicating the display change event. Example: event that the display orientation is changed.|
-| callback | Callback&lt;number&gt; | No| Callback used for unsubscription. If this parameter is not specified, all subscriptions to the specified event are canceled.|
+| callback | Callback&lt;number&gt; | No| Callback used to return the ID of the display, which is an integer. If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -543,7 +557,7 @@ console.info('Succeeded in obtaining fold status. Data: ' + JSON.stringify(data)
 ## display.getFoldDisplayMode<sup>10+</sup>
 getFoldDisplayMode(): FoldDisplayMode
 
-Obtains the display mode of the foldable device.
+Obtains the display mode of the foldable device. This API is unavailable for 2-in-1 devices.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -610,7 +624,7 @@ on(type: 'foldStatusChange', callback: Callback&lt;FoldStatus&gt;): void
 
 Subscribes to fold status change events of the foldable device.
 
-Note that [display.on('foldDisplayModeChange')](#displayonfolddisplaymodechange10) subscribes to display mode change events of the foldable device.
+To subscribe to display mode change events of foldable devices, use [display.on('foldDisplayModeChange')](#displayonfolddisplaymodechange10).
 
 The two are different. In terms of time sequence, the fold status changes first, and the bottom layer matches the display mode status based on the fold status.
 
@@ -666,7 +680,7 @@ Unsubscribes from fold status change events of the foldable device.
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes  | Event type. The event **'foldStatusChange'** is triggered when the fold status of the device changes.|
-| callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all subscriptions to the specified event are canceled.|
+| callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | No  | Callback used to return the fold status. If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -743,7 +757,7 @@ Unsubscribes from folding angle change events of the foldable device.
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                    | Yes | Event type. The event **'foldAngleChange'** is triggered when the folding angle of the device changes.|
-| callback | Callback&lt;Array&lt;number&gt;&gt; | No | Callback used for unsubscription. If this parameter is not specified, all subscriptions to the specified event are canceled.|
+| callback | Callback&lt;Array&lt;number&gt;&gt; | No | Callback used to return the folding angle (0–180 degrees). If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -757,7 +771,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
+
+// Unregister all the callbacks that have been registered through on().
 display.off('foldAngleChange');
+
+let callback: Callback<Array<number>> = (angles: Array<number>) => {
+  console.info('Listening fold angles length: ' + angles.length);
+};
+// Unregister the specified callback.
+display.off('foldAngleChange', callback);
 ```
 
 ## display.on('captureStatusChange')<sup>12+</sup>
@@ -775,7 +797,7 @@ Subscribes to screen capture, casting, or recording status changes.
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes| Event type. The event **'captureStatusChange'** is triggered when the screen capture, casting, or recording status changes.|
-| callback | Callback&lt;boolean&gt; | Yes| Callback used to return the screen capture, casting, or recording status change. The value **true** means that the device starts screen capture, casting, or recording, and **false** means that the device stops screen capture, casting, or recording.|
+| callback | Callback&lt;boolean&gt; | Yes| Callback used to return the status change during screen capture, casting, or recording. The value **true** means the start of screen casting or recording, and **false** means the end of screen casting or recording. In the case of screen capture, only **true** is returned once.|
 
 **Error codes**
 
@@ -812,7 +834,7 @@ Unsubscribes from screen capture, casting, or recording status changes.
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes| Event type. The event **'captureStatusChange'** is triggered when the screen capture, casting, or recording status changes.|
-| callback | Callback&lt;boolean&gt; | No| Callback used for unsubscription. If this parameter is not specified, all subscriptions to the specified event are canceled.|
+| callback | Callback&lt;boolean&gt; | No| Callback used to return the status change during screen capture, casting, or recording. The value **true** means the start of screen casting or recording, and **false** means the end of screen casting or recording. In the case of screen capture, only **true** is returned once. If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -826,7 +848,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
+
+// Unregister all the callbacks that have been registered through on().
 display.off('captureStatusChange');
+
+let callback: Callback<boolean> = (captureStatus: boolean) => {
+  console.info('Listening capture status: ' + captureStatus);
+};
+// Unregister the specified callback.
+display.off('captureStatusChange', callback);
 ```
 
 ## display.isCaptured<sup>12+</sup>
@@ -865,9 +895,9 @@ ret = display.isCaptured();
 
 on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): void
 
-Subscribes to display mode change events of the foldable device.
+Subscribes to display mode change events of the foldable device. This API is unavailable for 2-in-1 devices.
 
-Subscribes to display mode change events of the foldable device. Note that [display.on('foldStatusChange')](#displayonfoldstatuschange10) subscribes to fold status change events of the foldable device. 
+To subscribe to fold status change events of foldable devices, use [display.on('foldStatusChange')](#displayonfoldstatuschange10).
 
 The two are different. In terms of time sequence, the fold status changes first, and the bottom layer matches the display mode status based on the fold status.
 
@@ -910,7 +940,7 @@ display.on('foldDisplayModeChange', callback);
 
 off(type: 'foldDisplayModeChange', callback?: Callback&lt;FoldDisplayMode&gt;): void
 
-Unsubscribes from display mode change events of the foldable device.
+Unsubscribes from display mode change events of the foldable device. This API is unavailable for 2-in-1 devices.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -921,7 +951,7 @@ Unsubscribes from display mode change events of the foldable device.
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes  | Event type. The event **'foldDisplayModeChange'** is triggered when the display mode of the device changes.|
-| callback | Callback&lt;[FoldDisplayMode](#folddisplaymode10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all subscriptions to the specified event are canceled.|
+| callback | Callback&lt;[FoldDisplayMode](#folddisplaymode10)&gt; | No  | Callback used to return the display mode. If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -1079,6 +1109,210 @@ promise.then((data: Array<display.Display>) => {
 });
 ```
 
+## display.createVirtualScreen<sup>16+</sup>
+
+createVirtualScreen(config:VirtualScreenConfig): Promise&lt;number&gt;
+
+Creates a virtual screen. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Required permissions**: ohos.permission.ACCESS_VIRTUAL_SCREEN
+
+**Parameters**
+
+| Name | Type                                       | Mandatory| Description                    |
+| ------- | ------------------------------------------- | ---- | ------------------------ |
+| config | [VirtualScreenConfig](#virtualscreenconfig16) | Yes  | Virtual screen parameters.|
+
+**Return value**
+
+| Type                            | Description                                 |
+| -------------------------------- | ------------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the ID of the created virtual screen.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801     | Capability not supported.function createVirtualScreen can not work correctly due to limited device capabilities. |
+| 1400001 | Invalid display or screen. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class VirtualScreenConfig {
+  name : string = '';
+  width : number = 0;
+  height : number = 0;
+  density : number = 0;
+  surfaceId : string = '';
+}
+
+let config : VirtualScreenConfig = {
+  name: 'screen01',
+  width: 1080,
+  height: 2340,
+  density: 2,
+  surfaceId: ''
+};
+
+display.createVirtualScreen(config).then((screenId: number) => {
+  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(screenId));
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+});
+```
+
+## display.destroyVirtualScreen<sup>16+</sup>
+
+destroyVirtualScreen(screenId:number): Promise&lt;void&gt;
+
+Destroys a virtual screen. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Required permissions**: ohos.permission.ACCESS_VIRTUAL_SCREEN
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description      |
+| -------- | ------ | ---- | ---------- |
+| screenId | number | Yes  | Screen ID, which must match the ID of the virtual screen created by calling the **createVirtualScreen()** API. This parameter only accepts integer values.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801     | Capability not supported.function destroyVirtualScreen can not work correctly due to limited device capabilities. |
+| 1400001 | Invalid display or screen. |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let screenId: number = 1;
+display.destroyVirtualScreen(screenId).then(() => {
+  console.info('Succeeded in destroying the virtual screen.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to destroy the virtual screen.Code:${err.code},message is ${err.message}`);
+});
+```
+
+## display.setVirtualScreenSurface<sup>16+</sup>
+
+setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
+
+Sets a surface ID for a virtual screen. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Required permissions**: ohos.permission.ACCESS_VIRTUAL_SCREEN
+
+**Parameters**
+
+| Name   | Type  | Mandatory| Description         |
+| --------- | ------ | ---- | ------------- |
+| screenId  | number | Yes  | Screen ID, which must match the ID of the virtual screen created by calling the **createVirtualScreen()** API. This parameter only accepts integer values.   |
+| surfaceId | string | Yes  | Surface ID of the virtual screen. The value can be customized.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801     | Capability not supported.function setVirtualScreenSurface can not work correctly due to limited device capabilities. |
+| 1400001 | Invalid display or screen. |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let screenId: number = 1;
+let surfaceId: string = '2048';
+display.setVirtualScreenSurface(screenId, surfaceId).then(() => {
+  console.info('Succeeded in setting the surface for the virtual screen.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set the surface for the virtual screen. Code:${err.code},message is ${err.message}`);
+});
+```
+
+## display.makeUnique<sup>16+</sup>
+
+makeUnique(screenId:number): Promise&lt;void&gt;
+
+Sets the screen to independent display mode. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Required permissions**: ohos.permission.ACCESS_VIRTUAL_SCREEN
+
+**Parameters**
+
+| Name   | Type  | Mandatory| Description         |
+| --------- | ------ | ---- | ------------- |
+| screenId  | number | Yes  | ID of the screen. Each ID must be an integer greater than 0; otherwise, error code 401 is returned.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
+| 801     | Capability not supported.function makeUnique can not work correctly due to limited device capabilities. |
+| 1400001 | Invalid display or screen. |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let screenId: number = 0;
+display.makeUnique(screenId).then(() => {
+  console.info('Succeeded in making unique screens.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to make unique screens. Code:${err.code},message is ${err.message}`);
+});
+```
+
 ## Display
 Implements a **Display** instance, with properties and APIs defined.
 
@@ -1090,14 +1324,14 @@ Before calling any API in **Display**, you must use [getAllDisplays()](#displayg
 
 | Name| Type| Read-Only| Optional| Description                                                                                                           |
 | -------- | -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------|
-| id | number | Yes| No| ID of the display. The value must be an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                            |
+| id | number | Yes| No| ID of the display. The value is an integer greater than or equal to 0.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                            |
 | name | string | Yes| No| Name of the display.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                     |
-| alive | boolean | Yes| No| Whether the display is alive.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                    |
+| alive | boolean | Yes| No| Whether the display is alive. The value **true** means that the display is alive, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                    |
 | state | [DisplayState](#displaystate) | Yes| No| State of the display.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                     |
-| refreshRate | number | Yes| No| Refresh rate of the display, in hz. The value must be an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                            |
+| refreshRate | number | Yes| No| Refresh rate of the display, in hz. The value is an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                            |
 | rotation | number | Yes| No| Clockwise rotation angle of the display.<br>The value **0** indicates that the display rotates clockwise by 0°.<br>The value **1** indicates that the display rotates clockwise by 90°.<br>The value **2** indicates that the display rotates clockwise by 180°.<br>The value **3** indicates that the display rotates clockwise by 270°.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| width | number | Yes| No| Width of the display, in px. The value must be an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                       |
-| height | number | Yes| No| Height of the display, in px. The value must be an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                       |
+| width | number | Yes| No| Width of the display, in px. The value is an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                       |
+| height | number | Yes| No| Height of the display, in px. The value is an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                       |
 | densityDPI | number | Yes| No| Physical pixel density of the display, that is, the number of pixels per inch. The value is a floating point number, in px. Generally, the value is **160.0** or **480.0**. The actual value depends on the optional values provided by the device in use.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                  |
 | orientation<sup>10+</sup> | [Orientation](#orientation10) | Yes| No| Orientation of the display.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                 |
 | densityPixels | number | Yes| No| Logical pixel density of the display, which is the scaling coefficient between physical pixels and logical pixels. The calculation method is as follows:<br>![densityPixels](figures/densityPixels.jpg)<br>The value is a floating point number and is restricted by the range of **densityDPI**. The value range is [0.5, 4.0]. Generally, the value is **1.0** or **3.0**. The actual value depends on the density DPI provided by the device in use.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                 |
@@ -1192,6 +1426,8 @@ getAvailableArea(): Promise&lt;Rect&gt;
 
 Obtains the available area of the display of the current device. This API uses a promise to return the result.
 
+Only 2-in-1 devices are supported.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
@@ -1235,6 +1471,8 @@ try {
 on(type: 'availableAreaChange', callback: Callback&lt;Rect&gt;): void
 
 Subscribes to changes of the available area on the display of the current device. This API uses an asynchronous callback to return the result.
+
+Only 2-in-1 devices are supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1281,6 +1519,8 @@ off(type: 'availableAreaChange', callback?: Callback&lt;Rect&gt;): void
 
 Unsubscribes from changes of the available area on the display of the current device.
 
+Only 2-in-1 devices are supported.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
@@ -1290,7 +1530,7 @@ Unsubscribes from changes of the available area on the display of the current de
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes  | Event type. The event **'availableAreaChange'** is triggered when the available area of the display changes.|
-| callback | Callback&lt;[Rect](#rect9)&gt; | No  | Callback used for unsubscription. If no value is passed in, all subscriptions to the specified event are canceled.|
+| callback | Callback&lt;[Rect](#rect9)&gt; | No  | Callback used to return the new available area. If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 

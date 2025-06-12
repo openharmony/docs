@@ -9,6 +9,7 @@ The NativeDisplayManager_DisplayColorSpace struct encapsulates all the color spa
 
 **Related module**: [OH_DisplayManager](_o_h___display_manager.md)
 
+**Header file**: [oh_display_info.h](oh__display__info_8h.md)
 
 ## Summary
 
