@@ -761,6 +761,10 @@ enum MyEnum {
 
 ## 保留选项
 
+开启混淆后，代码中的方法、属性或路径被混淆。但是在程序运行时，如果访问未混淆的方法、属性或路径，可能导致功能不可用。因此需要根据不同的场景配置保留选项。
+
+排查场景和配置字段时，推荐使用[混淆助手配置保留选项](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-build-obfuscation#section19439175917123)，快速识别需要配置的保留选项和白名单字段。
+
 ### 已有保留选项汇总
 
 | 功能 | 选项 |
