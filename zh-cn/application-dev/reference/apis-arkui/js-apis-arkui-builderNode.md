@@ -1209,6 +1209,7 @@ import { InputEventType } from '@ohos.arkui.node';
 
 class Params {
   text: string = "this is a text"
+  uiContext: UIContext | null = null
 }
 @Builder
 function ButtonBuilder(params: Params) {
@@ -1222,7 +1223,7 @@ function ButtonBuilder(params: Params) {
       .height("30%")
       .offset({x: 100, y: 100})
       .onMouse((event) => {
-        let promptAction: PromptAction = this.getUIContext().getPromptAction();
+        let promptAction: PromptAction = params.uiContext!.getPromptAction();
         promptAction.showToast({
           message: 'onMouse',
           duration: 3000
@@ -1239,7 +1240,7 @@ class MyNodeController extends NodeController {
   private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(ButtonBuilder);
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new BuilderNode(uiContext);
-    this.rootNode.build(this.wrapBuilder, { text: "This is a string" })
+    this.rootNode.build(this.wrapBuilder, { text: "This is a string", uiContext })
     return this.rootNode.getFrameNode();
   }
 
@@ -1302,6 +1303,7 @@ import { InputEventType } from '@ohos.arkui.node';
 
 class Params {
   text: string = "this is a text"
+  uiContext: UIContext | null = null
 }
 @Builder
 function ButtonBuilder(params: Params) {
@@ -1315,7 +1317,7 @@ function ButtonBuilder(params: Params) {
       .height("30%")
       .offset({x: 100, y: 100})
       .onTouch((event) => {
-        let promptAction: PromptAction = this.getUIContext().getPromptAction();
+        let promptAction: PromptAction = params.uiContext!.getPromptAction();
         promptAction.showToast({
           message: 'onTouch',
           duration: 3000
@@ -1332,7 +1334,7 @@ class MyNodeController extends NodeController {
   private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(ButtonBuilder);
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new BuilderNode(uiContext);
-    this.rootNode.build(this.wrapBuilder, { text: "This is a string" })
+    this.rootNode.build(this.wrapBuilder, { text: "This is a string", uiContext })
     return this.rootNode.getFrameNode();
   }
 
@@ -1406,6 +1408,7 @@ import { InputEventType } from '@ohos.arkui.node';
 
 class Params {
   text: string = "this is a text"
+  uiContext: UIContext | null = null
 }
 @Builder
 function ButtonBuilder(params: Params) {
@@ -1419,7 +1422,7 @@ function ButtonBuilder(params: Params) {
       .height("30%")
       .offset({x: 100, y: 100})
       .onAxisEvent((event) => {
-        let promptAction: PromptAction = this.getUIContext().getPromptAction();
+        let promptAction: PromptAction = params.uiContext!.getPromptAction();
         promptAction.showToast({
           message: 'onAxisEvent',
           duration: 3000
@@ -1436,7 +1439,7 @@ class MyNodeController extends NodeController {
   private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(ButtonBuilder);
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new BuilderNode(uiContext);
-    this.rootNode.build(this.wrapBuilder, { text: "This is a string" })
+    this.rootNode.build(this.wrapBuilder, { text: "This is a string", uiContext })
     return this.rootNode.getFrameNode();
   }
 
