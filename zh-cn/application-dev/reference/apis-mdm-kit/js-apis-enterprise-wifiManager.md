@@ -304,6 +304,7 @@ turnOnWifi(admin: Want, isForce: boolean): void
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { wifiManager } from '@kit.MDMKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -355,6 +356,7 @@ turnOffWifi(admin: Want): void
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { wifiManager } from '@kit.MDMKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
