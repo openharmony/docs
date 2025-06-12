@@ -5478,7 +5478,7 @@ promise.then((pixelMap: image.PixelMap) => {
 
 snapshotSync(): image.PixelMap
 
-获取当前窗口截图。若当前窗口设置为隐私模式（可通过[setWindowPrivacyMode](#setwindowprivacymode9)接口设置），截图结果为白屏。
+获取当前窗口截图，此接口为同步接口。若当前窗口设置为隐私模式（[setWindowPrivacyMode](#setwindowprivacymode9)接口设置），截图结果为白屏。
 
 Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
@@ -5508,7 +5508,7 @@ import { image } from '@kit.ImageKit';
 
 try {
   let pixelMap = windowClass.snapshotSync();
-  console.info(`success snapshotSync`);
+  console.info(`Succeeded in snapshotting window`);
   pixelMap.release(); // PixelMap使用完后及时释放内存
 } catch (exception) {
   console.error(`Failed to snapshot window. Cause code: ${exception.code}, message: ${exception.message}`);
