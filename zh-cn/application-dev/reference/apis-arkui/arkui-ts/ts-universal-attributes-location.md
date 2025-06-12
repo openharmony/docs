@@ -8,7 +8,7 @@
 
 ## align
 
-align(value: Alignment)
+align(value: Alignment): T
 
 设置容器元素绘制区域内的子元素的对齐方式。
 
@@ -24,9 +24,16 @@ align(value: Alignment)
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Alignment](ts-appendix-enums.md#alignment) | 是   | 设置容器元素绘制区域内的子元素的对齐方式。<br/>只在Stack、FolderStack、Shape、Button、Marquee、StepperItem、Text、TextArea、TextInput、[RichEditor](ts-basic-components-richeditor.md)、Hyperlink、SymbolGlyph、ListItem、GridItem、Scroll、FlowItem、ImageAnimator、LoadingProgress、PatternLock、Progress、QRCode、TextClock、TextTimer、MenuItem、Toggle、Checkbox、NodeContainer中生效，其中和文本相关的组件Marquee、Text、TextArea、TextInput、RichEditor、Hyperlink的align结果参考[textAlign](ts-basic-components-text.md#textalign)。<br/>不支持textAlign属性的组件则无法设置水平方向的文字对齐。<br/>默认值：Alignment.Center<br/>**说明：** <br/>该属性不支持镜像能力。<br/>在Stack中该属性与alignContent效果一致，只能设置子组件在容器内的对齐方式。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+|  T | 返回当前组件。 |
+
+
 ## direction
 
-direction(value: Direction)
+direction(value: Direction): T
 
 设置容器元素内主轴方向上的布局。
 
@@ -42,9 +49,15 @@ direction(value: Direction)
 | ------ | ------------------------------------------- | ---- | --------------------------------------------------- |
 | value  | [Direction](ts-appendix-enums.md#direction) | 是   | 设置容器元素内主轴方向上的布局。<br/>属性配置为auto的时候，按照系统语言方向进行布局。<br/>该属性在Column组件上不生效。<br/>默认值：Direction.Auto |
 
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+|  T | 返回当前组件。 |
+
 ## position
 
-position(value: Position | Edges | LocalizedEdges)
+position(value: Position | Edges | LocalizedEdges): T
 
 绝对定位，确定子组件相对父组件的位置。
 
@@ -60,9 +73,15 @@ position(value: Position | Edges | LocalizedEdges)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [Position](ts-types.md#position) \| [Edges<sup>12+</sup>](ts-types.md#edges12) \| [LocalizedEdges<sup>12+</sup>](ts-types.md#localizededges12) | 是   | 绝对定位，确定子组件相对父组件的位置。当父容器为Row/Column/Flex时，设置position的子组件不占位。<br/>Position类型基于父组件左上角确定位置;Edges类型基于父组件四边确定位置，top/left/right/bottom分别为组件各边距离父组件相应边的边距，通过边距来确定组件相对于父组件的位置；LocalizedEdges类型基于父组件四边确定位置，支持镜像模式。<br/>适用于置顶显示、悬浮按钮等组件在父容器中位置固定的场景。<br/>不支持在宽高为零的布局容器上设置。<br/>当父容器为[RelativeContainer](ts-container-relativecontainer.md)，且子组件设置了alignRules属性，则子组件的position属性不生效。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+|  T | 返回当前组件。 |
+
 ## markAnchor
 
-markAnchor(value: Position | LocalizedPosition)
+markAnchor(value: Position | LocalizedPosition): T
 
 设置元素在位置定位时的锚点。
 
@@ -78,9 +97,15 @@ markAnchor(value: Position | LocalizedPosition)
 | ------ | -------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Position](ts-types.md#position) \| [LocalizedPosition<sup>12+</sup>](ts-types.md#localizedposition12) | 是   | 设置元素在位置定位时的锚点，从position或offset的位置上，进一步偏移。<br/>设置.position({x: value1, y: value2}).markAnchor({x: value3, y: value4})，效果等于设置.position({x: value1 - value3, y: value2 - value4})，offset同理。<br/>单独使用markAnchor，设置.markAnchor({x: value1, y: value2})，效果等于设置.offset({x: -value1, y: -value2})。<br/>API version 9及以前，默认值为：<br/>{<br/>x: 0,<br/>y: 0<br/>}<br/>API version 10：无默认值。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+|  T | 返回当前组件。 |
+
 ## offset
 
-offset(value: Position | Edges | LocalizedEdges)
+offset(value: Position | Edges | LocalizedEdges): T
 
 相对偏移，组件相对原本的布局位置进行偏移。
 
@@ -96,9 +121,15 @@ offset(value: Position | Edges | LocalizedEdges)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [Position](ts-types.md#position) \| [Edges<sup>12+</sup>](ts-types.md#edges12)  \| [LocalizedEdges<sup>12+</sup>](ts-types.md#localizededges12) | 是   | 相对偏移，组件相对原本的布局位置进行偏移。offset属性不影响父容器布局，仅在绘制时调整位置。<br/>Position类型基于组件自身左上角偏移，Edges类型基于组件自身四边偏移。 offset属性设置 {x: x, y: y} 与设置 {left: x, top: y} 以及 {right: -x, bottom: -y} 效果相同,  类型LocalizedEdges支持镜像模式：LTR模式下start 等同于x，RTL模式下等同于-x<br/>API version 9及以前，默认值为：<br/>{<br/>x: 0,<br/>y: 0<br/>}<br/>默认单位：vp<br/>API version 10：无默认值。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+|  T | 返回当前组件。 |
+
 ## alignRules<sup>9+</sup>
 
-alignRules(value: AlignRuleOption)
+alignRules(value: AlignRuleOption): T
 
 指定设置在相对容器中子组件的对齐规则，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。
 
@@ -114,9 +145,15 @@ alignRules(value: AlignRuleOption)
 | ------ | ------------------------------------------- | ---- | ------------------------ |
 | value  | [AlignRuleOption](#alignruleoption对象说明) | 是   | 指定设置在相对容器中子组件的对齐规则。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+|  T | 返回当前组件。 |
+
 ## alignRules<sup>12+</sup>
 
-alignRules(alignRule: LocalizedAlignRuleOptions)
+alignRules(alignRule: LocalizedAlignRuleOptions): T
 
 指定设置在相对容器中子组件的对齐规则，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。该方法水平方向上以start和end分别替代原方法的left和right，以便在RTL模式下能镜像显示，建议使用该方法指定设置在相对容器中子组件的对齐规则。
 
@@ -131,6 +168,12 @@ alignRules(alignRule: LocalizedAlignRuleOptions)
 | 参数名 | 类型                                        | 必填 | 说明                     |
 | ------ | ------------------------------------------- | ---- | ------------------------ |
 | alignRule  | [LocalizedAlignRuleOptions](#localizedalignruleoptions12对象说明) | 是   | 指定设置在相对容器中子组件的对齐规则。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+|  T | 返回当前组件。 |
 
 ## AlignRuleOption对象说明
 
@@ -196,7 +239,7 @@ alignRules(alignRule: LocalizedAlignRuleOptions)
 
 ## chainMode<sup>12+</sup>
 
-chainMode(direction: Axis, style: ChainStyle)
+chainMode(direction: Axis, style: ChainStyle): T
 
 指定以该组件为链头所构成的链的参数，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。链头指满足成链规则时链的第一个组件（水平方向从左边起始，镜像语言下从右边起始；竖直方向从上边起始）。
 详细用法请参考[RelativeContainer示例7（设置链）](ts-container-relativecontainer.md#示例7设置链)。
@@ -209,6 +252,12 @@ chainMode(direction: Axis, style: ChainStyle)
 | ------ | ------------------------------------------- | ---- | ------------------------ |
 | direction  | [Axis](ts-appendix-enums.md#axis) | 是   | 链的方向。 |
 | style  | [ChainStyle](#chainstyle12) | 是   | 链的样式。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+|  T | 返回当前组件。 |
 
 ## ChainStyle<sup>12+</sup>
 
@@ -226,7 +275,7 @@ chainMode(direction: Axis, style: ChainStyle)
 
 ## chainWeight<sup>14+</sup>
 
-chainWeight(chainWeight: ChainWeightOptions)
+chainWeight(chainWeight: ChainWeightOptions): T
 
 对形成链的组件进行重新布局。仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。
 
@@ -239,6 +288,12 @@ chainWeight(chainWeight: ChainWeightOptions)
 | 参数名 | 类型                                        | 必填 | 说明                     |
 | ------ | ------------------------------------------- | ---- | ------------------------ |
 | chainWeight  | [ChainWeightOptions](ts-types.md#chainweightoptions14对象说明) | 是   | 设置了chainWeight属性的组件与同一条链上的兄弟组件在水平或竖直方向的尺寸会按照设置的权重进行分配，分配时会忽略组件本身尺寸设置，按分配的权重自适应占满剩余空间。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+|  T | 返回当前组件。 |
 
 ## 示例
 
