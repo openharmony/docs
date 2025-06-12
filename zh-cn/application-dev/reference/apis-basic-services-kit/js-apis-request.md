@@ -3331,7 +3331,7 @@ on(event: 'faultOccur', callback: Callback&lt;Faults&gt;): void
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3407,7 +3407,7 @@ on(event: 'wait', callback: Callback&lt;WaitingReason&gt;): void
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4118,7 +4118,7 @@ off(event: 'faultOccur', callback?: Callback&lt;Faults&gt;): void
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4203,7 +4203,7 @@ off(event: 'wait', callback?: Callback&lt;WaitingReason&gt;): void
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
