@@ -48,7 +48,7 @@
 |FUNC|eglWaitSync|
 |FUNC|eglCreatePlatformWindowSurfaceEXT|
 |FUNC|eglCreatePlatformPixmapSurfaceEXT|
-|FUNC|eglSwapBuffersWithDamageEXT|
+|FUNC|eglSwapBuffersWithDamageKHR|
 |FUNC|eglGetCompositorTimingSupportedANDROID|
 |FUNC|eglGetFrameTimestampSupportedANDROID|
 |FUNC|eglPresentationTimeANDROID|
