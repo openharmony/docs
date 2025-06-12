@@ -3323,7 +3323,7 @@ on(event: 'faultOccur', callback: Callback&lt;Faults&gt;): void
 | callback | Callback&lt;[Faults](#faults10)&gt; | 是 | 发生相关的事件时触发该回调方法，返回任务失败的原因。 |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3391,7 +3391,7 @@ on(event: 'wait', callback: Callback&lt;WaitingReason&gt;): void
 | callback | Callback&lt;[WaitingReason](#waitingreason20)&gt; | 是 | 发生相关的事件时触发该回调方法，返回任务等待的原因。      |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4094,7 +4094,7 @@ off(event: 'faultOccur', callback?: Callback&lt;Faults&gt;): void
 | callback | Callback&lt;[Faults](#faults10)&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则默认取消订阅当前类型的所有回调函数。 |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4171,7 +4171,7 @@ off(event: 'wait', callback?: Callback&lt;WaitingReason&gt;): void
 | callback | Callback&lt;[WaitingReason](#waitingreason20)&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则默认取消订阅当前类型的所有回调函数。 |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
