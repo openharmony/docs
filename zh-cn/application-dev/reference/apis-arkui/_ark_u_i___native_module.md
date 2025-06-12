@@ -7870,7 +7870,7 @@ int32_t OH_ArkUI_NodeUtils_MoveTo(ArkUI_NodeHandle node, ArkUI_NodeHandle target
 
 将节点移动到目标父节点下，作为子节点。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
