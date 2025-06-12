@@ -2656,7 +2656,7 @@ try {
 }
 ```
 
-### off('keyboardWillShow')<sup>20</sup>
+### off('keyboardWillShow')<sup>20+</sup>
 
 off(type: 'keyboardWillShow', callback?: Callback&lt;KeyboardInfo&gt;): void
 
