@@ -174,7 +174,7 @@ fontWeight(value: number | FontWeight | string | Resource): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string \| [Resource](ts-types.md#resource)<sup>20+</sup> |是 |安全控件上文字粗细。<br/>number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如'400'，以及'bold'、'bolder'、'lighter'、'regular'、'medium'，分别对应FontWeight中相应的枚举值。<br/>从API version 20开始，支持Resource类型。Resource类型仅支持'integer'和'string'，当类型为'integer'时，取值参考前述number类型；当类型为'string'时，取值参考前述string类型。<br/>默认值：FontWeight.Medium。|
+| value | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string \| [Resource](ts-types.md#resource)<sup>20+</sup> |是 |安全控件上文字粗细。<br/>number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如'400'，以及'bold'、'bolder'、'lighter'、'regular'、'medium'，分别对应FontWeight中相应的枚举值。<br/>从API version 20开始，支持Resource类型。Resource类型仅支持'integer'和'string'，当类型为'integer'时，取值参考前述number类型；当类型为'string'时，取值参考前述string类型。<br/>如果控件未设置fontWeight，文字粗细将默认设置为FontWeight.Medium；如果value入参为非法值，文字粗细将被设置为FontWeight.Normal。|
 
 **返回值：**
 

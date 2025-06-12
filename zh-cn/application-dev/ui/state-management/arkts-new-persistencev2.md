@@ -19,7 +19,7 @@ PersistenceV2提供状态变量持久化能力，开发者可以通过connect或
 
 PersistenceV2是在应用UI启动时会被创建的单例。它的目的是为了提供应用状态数据的中心存储，这些状态数据在应用级别都是可访问的。数据通过唯一的键字符串值访问。不同于AppStorageV2，PersistenceV2还将最新数据储存在设备磁盘上（持久化）。这意味着，应用退出再次启动后，依然能保存选定的结果。
 
-对于与PersistenceV2关联的[\@ObservedV2](./arkts-new-observedV2-and-trace.md)对象，该对象的[\@Trace](./arkts-new-observedV2-and-trace.md)属性的变化，会触发**整个关联对象的自动持久化**；非[\@Trace](./arkts-new-observedV2-and-trace.md)属性的变化则不会，如有必要，可调用PersistenceV2 API手动持久化。
+对于与PersistenceV2关联的[\@ObservedV2](./arkts-new-observedV2-and-trace.md)对象，该对象的[\@Trace](./arkts-new-observedV2-and-trace.md)属性的变化，会触发**整个关联对象的自动持久化**；非[\@Trace](./arkts-new-observedV2-and-trace.md)属性的变化则不会，如有必要，可调用PersistenceV2 API手动持久化。请注意：被PersistenceV2持久化的类属性必须要有初值，否则不支持持久化。
 
 PersistenceV2可以和UI组件同步，且可以在应用业务逻辑中被访问。
 
@@ -183,7 +183,7 @@ static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
 
 4、单个key支持数据大小约8k，过大会导致持久化失败。
 
-5、持久化的数据必须是class对象，不能是容器（如Array、Set、Map），不能是buildin的构造对象（如Date、Number）。
+5、持久化的数据必须是class对象，不支持容器类型（如Array、Set、Map），不支持buildin的构造对象（如Date、Number），不支持持久化基本类型（如string、number、boolean）。如果需要持久化非class对象，建议使用[prefrence](../../database/preferences-guidelines.md)进行数据持久化。
 
 6、不支持循环引用的对象。
 
@@ -193,7 +193,6 @@ static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
 
 9、connect和globalConnect不建议混用，如果混用，key不能一样，否则应用crash。
 
-10、不支持存储基本类型，如string、number、boolean等。
 
 ## 使用场景
 
