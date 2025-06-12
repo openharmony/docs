@@ -195,7 +195,7 @@ enum Rdb_Tokenizer
 | 枚举项 | 描述 |
 | -- | -- |
 | RDB_NONE_TOKENIZER = 1 | 表示不使用分词器。 |
-| RDB_ICU_TOKENIZER = 2 | 表示使用原生ICU分词器。 |
+| RDB_ICU_TOKENIZER = 2 | 表示使用ICU分词器。 |
 | RDB_CUSTOM_TOKENIZER = 3 | 表示使用CUSTOM分词器。	<br>**起始版本：** 18 |
 
 ### Rdb_DistributedType
