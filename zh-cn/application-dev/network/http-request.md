@@ -200,7 +200,7 @@ httpRequest.requestInStream("EXAMPLE_URL", streamInfo).then((data: number) => {
   // 当该请求使用完毕时，调用destroy方法主动销毁
   httpRequest.destroy();
 }).catch((err: Error) => {
-  console.info("requestInStream ERROR : err = " + JSON.stringify(err));
+  console.error("requestInStream ERROR : err = " + JSON.stringify(err));
 });
 ```
 
