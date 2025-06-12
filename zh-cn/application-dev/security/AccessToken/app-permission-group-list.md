@@ -160,7 +160,7 @@
 
 - ohos.permission.WRITE_MEDIA
 
-**废弃替代方案：**
+**替代方案：**
 
 - 读写媒体库图片或视频：
 
