@@ -12,12 +12,12 @@
 
 ## 创建对象
 
-<!--code_no_check-->
+<!--deprecated_code_no_check-->
 ```ts
 let webController: WebController = new WebController()
 ```
 
-## constructor
+## constructor<sup>(deprecated)</sup>
 
 constructor()
 

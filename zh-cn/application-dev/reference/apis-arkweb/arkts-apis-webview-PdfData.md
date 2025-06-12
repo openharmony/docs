@@ -10,7 +10,7 @@ createPdf函数输出数据流类。
 >
 > - 示例效果请以真机运行为准，当前IDE预览器不支持。
 
-### pdfArrayBuffer<sup>14+</sup>
+## pdfArrayBuffer<sup>14+</sup>
 
 pdfArrayBuffer(): Uint8Array
 
