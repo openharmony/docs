@@ -173,7 +173,7 @@ let dialCallOptions: call.DialCallOptions = {
     accountId: 0,
     videoState: 0,
     dialScene: 0,
-    dialType: 0,
+    dialType: 0
 }
 call.dialCall("138xxxxxxxx", dialCallOptions).then(() => {
     console.log(`dialCall success.`);
@@ -2035,7 +2035,7 @@ postDialProceed\(callId: number, proceed: boolean\): Promise\<void\>
 | 参数名   | 类型                      | 必填 | 说明                    |
 | -------- | ------------------------- | ---- | ----------------------- |
 | callId   | number                    | 是   | 呼叫Id。                |
-| proceed  | boolean                   | 是   | 用户选择是否发送DTMF音。|
+| proceed  | boolean                   | 是   | 用户选择是否发送DTMF音，默认为false。<br/>-true：是<br/>-false：否|
 
 **返回值：**
 

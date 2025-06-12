@@ -275,6 +275,7 @@
         - 并发线程间通信<!--interthead-communication-->
           - [ArkTS线程间通信概述](arkts-utils/interthread-communication-overview.md)
           - 线程间通信对象<!--interthead-communication-object-->
+            - [线程间通信对象概述](arkts-utils/serializable-overview.md)
             - [普通对象](arkts-utils/normal-object.md)
             - [ArrayBuffer对象](arkts-utils/arraybuffer-object.md)
             - [SharedArrayBuffer对象](arkts-utils/shared-arraybuffer-object.md)
@@ -319,7 +320,8 @@
             - [ArkUI瀑布流渲染场景](arkts-utils/taskpool-waterflow.md)
             - [获取最近访问列表场景](arkts-utils/sendablelrucache-recent-list.md)
             - [多线程取消TaskPool任务场景](arkts-utils/multi-thread-cancel-task.md)
-            - [ArkTS多线程间操作Native对象场景](arkts-utils/napi-coerce-to-native-binding-object.md)
+            - [自定义Native Transferable对象的多线程操作场景](arkts-utils/napi-coerce-to-native-binding-object.md)
+            - [自定义Native Sendable对象的多线程操作场景](arkts-utils/napi-define-sendable-object.md)
             - [Worker常驻线程通过TaskPool进行多任务并发处理](arkts-utils/worker-and-taskpool.md)
         - [并发常见问题](arkts-utils/concurrency-faq.md)
       - [ArkTS跨语言交互](arkts-utils/arkts-cross-language-interaction.md)
@@ -699,9 +701,10 @@
         - [Web页面显示内容滚动](web/web-content-scrolling.md)
         - [Web组件对接软键盘](web/web-docking-softkeyboard.md)
         - [Web组件焦点管理](web/web-focus.md)
-        - [Web组件手势事件](web/web-gesture.md)
-        - [Web组件缩放功能](web/web-scale-zoom.md)
+        - [使用Web组件的手势与应用交互](web/web-gesture.md)
+        - [使用Web组件管理网页缩放](web/web-scale-zoom.md)
         - [使用Web组件显示网页弹框](web/web-dialog.md)
+        - [使用Web组件的拖拽功能与网页交互](web/web_drag.md)
       - 管理Web组件的网络安全与隐私<!--web-manage-cyber-security-privacy-->
         - [解决Web组件本地资源跨域问题](web/web-cross-origin.md)
         - [使用智能防跟踪功能](web/web-intelligent-tracking-prevention.md)
@@ -727,7 +730,8 @@
         - [使用Web组件打印前端页面](web/web-print.md)
         - [使用Web组件的PDF文档预览能力](web/web-pdf-preview.md)
         - [网页中安全区域计算和避让适配](web/web-safe-area-insets.md)
-        - [Web组件的菜单功能](web/web_menu.md)
+        - [使用Web组件菜单处理网页内容](web/web_menu.md)
+        - [使用Web组件与系统剪贴板交互处理网页内容](web/web-clipboard.md)
       - [同层渲染](web/web-same-layer.md)
       - [使用离线Web组件](web/web-offline-mode.md)
       - Web调试维测<!--web-debugging-->
@@ -1798,6 +1802,7 @@
         - [fdsan使用指导](napi/fdsan.md)
       - 使用Node-API实现跨语言交互<!--using-napi-interaction-with-cpp-->
         - [Node-API简介](napi/napi-introduction.md)
+        - [Node-API接口返回状态码介绍](napi/napi_status_introduction.md)
         - [Node-API支持的数据类型和接口](napi/napi-data-types-interfaces.md)
         - [Node-API开发规范](napi/napi-guidelines.md)
         - [使用Node-API实现跨语言交互开发流程](napi/use-napi-process.md)
@@ -2412,6 +2417,7 @@
           - [OH_UdsPixelMap](reference/apis-arkdata/capi-oh-udspixelmap.md)
           - [OH_UdsArrayBuffer](reference/apis-arkdata/capi-oh-udsarraybuffer.md)
           - [OH_UdsContentForm](reference/apis-arkdata/capi-oh-udscontentform.md)
+          - [OH_Utd](reference/apis-arkdata/capi-oh-utd.md)
       - 错误码<!--arkdata-arkts-errcode-->
         - [关系型数据库错误码](reference/apis-arkdata/errorcode-data-rdb.md)
         - [数据共享错误码](reference/apis-arkdata/errorcode-datashare.md)
@@ -4274,7 +4280,22 @@
   - 媒体<!--media-reference-->
     - Audio Kit（音频服务）<!--audio-api-->
       - ArkTS API<!--audio-arkts-->
-        - [@ohos.multimedia.audio (音频管理)](reference/apis-audio-kit/js-apis-audio.md)
+        - @ohos.multimedia.audio (音频管理)<!--js-apis-audio-->
+          - [模块描述](reference/apis-audio-kit/arkts-apis-audio.md)
+          - [Functions](reference/apis-audio-kit/arkts-apis-audio-f.md)
+          - [Interface (AudioCapturer)](reference/apis-audio-kit/arkts-apis-audio-AudioCapturer.md)
+          - [Interface (AudioManager)](reference/apis-audio-kit/arkts-apis-audio-AudioManager.md)
+          - [Interface (AudioRenderer)](reference/apis-audio-kit/arkts-apis-audio-AudioRenderer.md)
+          - [Interface (AudioRoutingManager)](reference/apis-audio-kit/arkts-apis-audio-AudioRoutingManager.md)
+          - [Interface (AudioSessionManager)](reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md)
+          - [Interface (AudioSpatializationManager)](reference/apis-audio-kit/arkts-apis-audio-AudioSpatializationManager.md)
+          - [Interface (AudioStreamManager)](reference/apis-audio-kit/arkts-apis-audio-AudioStreamManager.md)
+          - [Interface (AudioVolumeGroupManager)](reference/apis-audio-kit/arkts-apis-audio-AudioVolumeGroupManager.md)
+          - [Interface (AudioVolumeManager)](reference/apis-audio-kit/arkts-apis-audio-AudioVolumeManager.md)
+          - [Interfaces (其他)](reference/apis-audio-kit/arkts-apis-audio-i.md)
+          - [Enums](reference/apis-audio-kit/arkts-apis-audio-e.md)
+          - [Constants](reference/apis-audio-kit/arkts-apis-audio-c.md)
+          - [Types](reference/apis-audio-kit/arkts-apis-audio-t.md)
         - [@ohos.multimedia.audioHaptic (音振协同)](reference/apis-audio-kit/js-apis-audioHaptic.md)
         <!--Del-->
         - [@ohos.multimedia.audio (音频管理)(系统接口)](reference/apis-audio-kit/js-apis-audio-sys.md)
@@ -4596,7 +4617,23 @@
         - [Image错误码](reference/apis-image-kit/errorcode-image.md)
     - Media Kit（媒体服务）<!--media-api-->
       - ArkTS API<!--media-arkts-->
-        - [@ohos.multimedia.media (媒体服务)](reference/apis-media-kit/js-apis-media.md)
+        - @ohos.multimedia.media (媒体服务)<!--js-apis-media-->
+          - [模块描述](reference/apis-media-kit/arkts-apis-media.md)
+          - [Functions](reference/apis-media-kit/arkts-apis-media-f.md)
+          - [Interface (AVImageGenerator)](reference/apis-media-kit/arkts-apis-media-AVImageGenerator.md)
+          - [Interface (AVMetadataExtractor)](reference/apis-media-kit/arkts-apis-media-AVMetadataExtractor.md)
+          - [Interface (AVPlayer)](reference/apis-media-kit/arkts-apis-media-AVPlayer.md)
+          - [Interface (AVRecorder)](reference/apis-media-kit/arkts-apis-media-AVRecorder.md)
+          - [Interface (AVScreenCaptureRecorder)](reference/apis-media-kit/arkts-apis-media-AVScreenCaptureRecorder.md)
+          - [Interface (AVTranscoder)](reference/apis-media-kit/arkts-apis-media-AVTranscoder.md)
+          - [Interface (MediaSource)](reference/apis-media-kit/arkts-apis-media-MediaSource.md)
+          - [Interface (MediaSourceLoadingRequest)](reference/apis-media-kit/arkts-apis-media-MediaSourceLoadingRequest.md)
+          - [Interfaces (其他)](reference/apis-media-kit/arkts-apis-media-i.md)
+          - [Enums](reference/apis-media-kit/arkts-apis-media-e.md)
+          - [Types](reference/apis-media-kit/arkts-apis-media-t.md)
+          - [废弃的Interface (AudioPlayer, deprecated)](reference/apis-media-kit/arkts-apis-media-AudioPlayer.md)
+          - [废弃的Interface (AudioRecorder, deprecated)](reference/apis-media-kit/arkts-apis-media-AudioRecorder.md)
+          - [废弃的Interface (VideoPlayer, deprecated)](reference/apis-media-kit/arkts-apis-media-VideoPlayer.md)
         <!--Del-->
         - [@ohos.multimedia.media (媒体服务)(系统接口)](reference/apis-media-kit/js-apis-media-sys.md)
         <!--DelEnd-->

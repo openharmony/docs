@@ -309,7 +309,7 @@ getAllInsightIntentInfo(intentFlags: number): Promise<Array\<[InsightIntentInfo]
 
 **系统接口**：此接口为系统接口。
 
-**需要权限**：ohos.permission.EXECUTE_INSIGHT_INTENT
+**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -366,7 +366,7 @@ getInsightIntentInfoByBundleName(bundleName: string, intentFlags: number): Promi
 
 **系统接口**：此接口为系统接口。
 
-**需要权限**：ohos.permission.EXECUTE_INSIGHT_INTENT
+**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -425,7 +425,7 @@ getInsightIntentInfoByIntentName(bundleName: string, moduleName: string, intentN
 
 **系统接口**：此接口为系统接口。
 
-**需要权限**：ohos.permission.EXECUTE_INSIGHT_INTENT
+**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

@@ -417,7 +417,7 @@ castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDe
 | 参数名        | 类型           | 必填 | 说明 |
 | ------------ | -------------- |------|------|
 | session      | [SessionToken](#sessiontoken) &#124; 'all' | 是   | 会话令牌。SessionToken表示单个token；字符串`'all'`指所有token。 |
-| audioDevices | Array\<[audio.AudioDeviceDescriptor](../apis-audio-kit/js-apis-audio.md#audiodevicedescriptor)\> | 是   | 媒体设备列表。  |
+| audioDevices | Array\<[audio.AudioDeviceDescriptor](../apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor)\> | 是   | 媒体设备列表。  |
 
 **返回值：**
 
@@ -481,7 +481,7 @@ castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDe
 | 参数名       | 类型                                         | 必填 | 说明                                                         |
 | ------------ |--------------------------------------------| ---- | ------------------------------------------------------------ |
 | session      | [SessionToken](#sessiontoken) &#124; 'all' | 是   | 会话令牌。SessionToken表示单个token；字符串`'all'`指所有token。 |
-| audioDevices | Array\<[audio.AudioDeviceDescriptor](../apis-audio-kit/js-apis-audio.md#audiodevicedescriptor)\>   | 是   | 媒体设备列表。 |
+| audioDevices | Array\<[audio.AudioDeviceDescriptor](../apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor)\>   | 是   | 媒体设备列表。 |
 | callback     | AsyncCallback\<void>     | 是   | 回调函数。当投播成功，err为undefined，否则返回错误对象。      |
 
 **错误码：**

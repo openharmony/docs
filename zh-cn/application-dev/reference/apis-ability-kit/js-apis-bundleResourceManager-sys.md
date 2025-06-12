@@ -13,17 +13,8 @@
 ## 导入模块
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 ```
-
-## 权限列表
-
-| 权限                                       | 权限等级     | 描述            |
-| ------------------------------------------ | ------------ | ------------------|
-| ohos.permission.GET_BUNDLE_RESOURCES| system_basic | 允许查询应用的资源信息。 |
-| ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | 读取已安装应用列表。 |
-
-权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 
 ## 枚举
 
@@ -88,7 +79,7 @@ getBundleResourceInfo(bundleName: string, resourceFlags?: [number](#resourceflag
 **示例：**
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = "com.example.myapplication";
@@ -142,7 +133,7 @@ getLauncherAbilityResourceInfo(bundleName: string, resourceFlags?: [number](#res
 **示例：**
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = "com.example.myapplication";
@@ -188,7 +179,7 @@ getAllBundleResourceInfo(resourceFlags: [number](#resourceflag), callback: Async
 **示例：**
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
@@ -243,7 +234,7 @@ getAllBundleResourceInfo(resourceFlags: [number](#resourceflag)): Promise<Array<
 **示例：**
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
@@ -291,7 +282,7 @@ getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag), callba
 **示例：**
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
@@ -345,7 +336,7 @@ getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag)): Promi
 
 **示例：**
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
@@ -404,7 +395,7 @@ getBundleResourceInfo(bundleName: string, resourceFlags?: [number](#resourceflag
 **示例：**
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = "com.example.myapplication";
@@ -460,7 +451,7 @@ getLauncherAbilityResourceInfo(bundleName: string, resourceFlags?: [number](#res
 **示例：**
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = "com.example.myapplication";

@@ -2,7 +2,7 @@
 
 通过文本显示计时信息并控制其计时器状态的组件。
 
-在组件不可见时时间变动将停止，组件的可见状态基于[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)处理，可见阈值ratios大于0即视为可见状态。
+组件不可见时，时间变动将停止，组件的可见状态基于[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)处理，可见阈值ratios大于0即视为可见状态。
 
 >  **说明：**
 >
@@ -38,7 +38,7 @@ TextTimer(options?: TextTimerOptions)
 
 | 名称   | 类型     | 必填  | 说明                   |
 | ----------- | -------- | -------- | -------- |
-| isCountDown | boolean  | 否   | 是否倒计时。值为true时，计时器开启倒计时，例如从30秒 ~ 0秒。值为false时，计时器开始计时，例如从0秒 ~ 30秒。<br/>默认值：false |
+| isCountDown | boolean  | 否   | 倒计时开关。值为true时，计时器开启倒计时，例如从30秒 ~ 0秒。值为false时，计时器开始计时，例如从0秒 ~ 30秒。<br/>默认值：false |
 | count       | number   | 否   | 计时器时间（isCountDown为true时生效），单位为毫秒。最长不超过86400000毫秒（24小时）。&nbsp;0&lt;count&lt;86400000时，count值为计时器初始值。否则，使用默认值为计时器初始值。<br/>默认值：60000 |
 | controller  | [TextTimerController](#texttimercontroller) | 否  | TextTimer控制器。 |
 
@@ -50,7 +50,7 @@ TextTimer(options?: TextTimerOptions)
 
 format(value: string)
 
-设置自定义格式，需至少包含一个HH、mm、ss、SS中的关键字。如使用yy、MM、dd等日期格式，则使用默认值。
+设置自定义格式，需至少包含一个HH、mm、ss、SS中的关键字。使用yy、MM、dd等日期格式时，使用默认值。
 
 计时器更新频率按format最小单位处理，例如：format设置为'HH:mm'时，更新频率为一分钟。
 
@@ -125,7 +125,7 @@ fontStyle(value: FontStyle)
 
 fontWeight(value: number | FontWeight | ResourceStr)
 
-设置文本的字体粗细，设置过大可能会在不同字体下有截断。
+设置文本的字体粗细，设置过大可能会导致不同字体下的文字出现截断。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -155,7 +155,7 @@ fontFamily(value: ResourceStr)
 
 | 参数名 | 类型                                   | 必填 | 说明                                                         |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体为'HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
 
 ### textShadow<sup>11+</sup>
 
@@ -195,7 +195,7 @@ contentModifier(modifier: ContentModifier\<TextTimerConfiguration>)
 
 onTimer(event:&nbsp;(utc:&nbsp;number,&nbsp;elapsedTime:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
-时间文本发生变化时触发。锁屏状态和应用后台状态下不会触发该事件。
+时间文本发生变化时触发该事件。锁屏状态和应用后台状态下不会触发该事件。
 设置高精度的format（SSS、SS）时，回调间隔可能会出现波动。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。

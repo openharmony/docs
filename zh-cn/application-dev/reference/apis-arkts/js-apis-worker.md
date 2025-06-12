@@ -44,7 +44,7 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 
 ## ThreadWorkerPriority<sup>18+</sup>
 
-Worker线程的优先级枚举，各优先级对应关系请参考[QoS等级](../../napi/qos-guidelines.md#qos等级定义)。
+Worker线程的优先级枚举，各优先级对应关系请参考[QoS等级定义](../../napi/qos-guidelines.md#qos等级定义)。
 
 **系统能力：** SystemCapability.Utils.Lang
 

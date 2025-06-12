@@ -1004,7 +1004,7 @@ getTopNavDestinationName(windowId: number): Promise&lt;string&gt;
 
 **示例：**
 ```ts
-import { window } from '@ohos.window';
+import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -2794,61 +2794,6 @@ export default class EntryAbility extends UIAbility {
       });
     });
   }
-}
-```
-
-### enableDrag<sup>14+</sup>
-
-enableDrag(enable: boolean): Promise&lt;void&gt;
-
-使能/禁止拖拽窗口。使用Promise异步回调。
-
-使能后，将允许通过鼠标操作或触摸对窗口进行拉伸操作。
-
-仅对2in1设备的系统窗口生效，其它设备类型调用此接口会报错。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**系统接口：** 此接口为系统接口。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | ---------------------------- | -- | --------- |
-| enable| boolean | 是 | 是否允许拖拽。<br>true表示允许，false表示不允许。</br> |
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。  |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------------------------------------------- |
-| 202     | Permission verification failed. A non-system application calls a system API.   |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal.                |
-| 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation.                       |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  windowClass.enableDrag(true).then(() => { 
-    console.info('succeeded in setting window draggable');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set window draggable. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to set window draggable. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 

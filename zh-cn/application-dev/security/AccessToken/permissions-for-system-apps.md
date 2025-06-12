@@ -4676,8 +4676,6 @@
 
 **起始版本**：19
 
-**起始版本**：17
-
 ## ohos.permission.READ_PARENT_CONTROL_DATA
 
 允许应用读取家长管控网站的配置。
