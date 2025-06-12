@@ -19,6 +19,11 @@
 >  WaterFlow子组件的visibility属性设置为None时不显示，但该子组件周围的columnsGap、rowsGap、margin仍会生效。
 >  在涉及大量子组件的情况下，建议采用懒加载、缓存数据、组件复用、固定宽高以及布局优化等方法，以提升性能和减少内存占用。最佳实践请参考[优化瀑布流加载慢丢帧问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-waterflow-performance-optimization)。
 
+> **注意：**  
+>
+> WaterFlow组件采用“最短列优先”的放置规则，即每个子项会优先放入当前总高度最小的列中。
+
+
 ## 接口
 
 WaterFlow(options?:  WaterFlowOptions)
@@ -504,6 +509,12 @@ onScrollIndex(event: (first: number, last: number) => void)
 | ------ | ------ | ---- | ------------------------------------- |
 | first  | number | 是   | 当前显示的瀑布流起始位置的索引值。<br/>取值范围：[0, 子节点总数-1] |
 | last   | number | 是   | 当前显示的瀑布流终止位置的索引值。<br/>取值范围：[0, 子节点总数-1] |
+
+
+> **说明：**  
+>
+> - `first` 与 `last` 都为 `-1`：表示当前列表为空（例如数据清空后）。  
+> - `first` 与 `last` 都为 `0`：表示当前列表中仅有一个可见子组件。
 
 ## UIWaterFlowEvent<sup>19+</sup>
 frameNode中[getEvent('WaterFlow')](../js-apis-arkui-frameNode.md#geteventwaterflow19)方法的返回值，可用于给WaterFlow节点设置滚动事件。
