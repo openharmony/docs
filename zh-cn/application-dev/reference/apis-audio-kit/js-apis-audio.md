@@ -5396,7 +5396,7 @@ type AudioRendererChangeInfoArray = Array&lt;Readonly&lt;AudioRendererChangeInfo
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
-| 名称               | 类型                                       | 可读 | 可写 | 说明                          |
+| 名称               | 类型                                       | 只读 | 可选 | 说明                          |
 | -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
 | streamId           | number                                    | 是   | 否   | 音频流唯一id。                |
 | rendererInfo       | [AudioRendererInfo](#audiorendererinfo8)  | 是   | 否   | 音频渲染器信息。               |
@@ -5451,12 +5451,12 @@ type AudioCapturerChangeInfoArray = Array&lt;Readonly&lt;AudioCapturerChangeInfo
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
-| 名称               | 类型                                       | 可读 | 可写 | 说明                          |
+| 名称               | 类型                                       | 只读 | 可选 | 说明                          |
 | -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
 | streamId           | number                                    | 是   | 否   | 音频流唯一id。                |
 | capturerInfo       | [AudioCapturerInfo](#audiocapturerinfo8)  | 是   | 否   | 音频采集器信息。               |
 | deviceDescriptors  | [AudioDeviceDescriptors](#audiodevicedescriptors)      | 是   | 否   | 音频设备信息。|
-| muted<sup>11+</sup>  | boolean    | 是   | 否   | 音频采集器是否处于静音状态。true表示静音，false表示非静音。|
+| muted<sup>11+</sup>  | boolean    | 是   | 是 | 音频采集器是否处于静音状态。true表示静音，false表示非静音。|
 
 **示例：**
 
@@ -5519,7 +5519,7 @@ type AudioDeviceDescriptors = Array&lt;Readonly&lt;AudioDeviceDescriptor&gt;&gt;
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称                          | 类型                       | 可读 | 可写 | 说明       |
+| 名称                          | 类型                       | 只读 | 可选 | 说明       |
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
 | deviceRole                    | [DeviceRole](#devicerole)  | 是   | 否   | 设备角色。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
 | deviceType                    | [DeviceType](#devicetype)  | 是   | 否   | 设备类型。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
@@ -5530,7 +5530,7 @@ type AudioDeviceDescriptors = Array&lt;Readonly&lt;AudioDeviceDescriptor&gt;&gt;
 | channelCounts<sup>9+</sup>    | Array&lt;number&gt;        | 是   | 否   | 支持的通道数。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
 | channelMasks<sup>9+</sup>     | Array&lt;number&gt;        | 是   | 否   | 支持的通道掩码。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
 | displayName<sup>10+</sup>     | string                     | 是   | 否   | 设备显示名。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
-| encodingTypes<sup>11+</sup>    | Array&lt;[AudioEncodingType](#audioencodingtype8)&gt;                     | 是   | 否   | 支持的编码类型。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Core|
+| encodingTypes<sup>11+</sup>    | Array&lt;[AudioEncodingType](#audioencodingtype8)&gt;                     | 是   | 是 | 支持的编码类型。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Core|
 
 **示例：**
 
@@ -5595,7 +5595,7 @@ type AudioRendererWriteDataCallback = (data: ArrayBuffer) => AudioDataCallbackRe
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
-| 名称  | 类型                     | 可读 | 可写 | 说明               |
+| 名称  | 类型                     | 只读 | 可选 | 说明               |
 | ----- | -------------------------- | ---- | ---- | ------------------ |
 | state<sup>8+</sup> | [AudioState](#audiostate8) | 是   | 否   | 音频渲染器的状态。 |
 
@@ -7975,7 +7975,7 @@ audioRenderer.off('writeData', writeDataCallback);
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
-| 名称  | 类型                     | 可读 | 可写 | 说明             |
+| 名称  | 类型                     | 只读 | 可选 | 说明             |
 | :---- | :------------------------- | :--- | :--- | :--------------- |
 | state<sup>8+</sup>  | [AudioState](#audiostate8) | 是 | 否   | 音频采集器状态。 |
 
