@@ -119,6 +119,7 @@ build的可选参数。
 | ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | nestingBuilderSupported |boolean | 否   | 是否支持Builder嵌套Builder进行使用。其中，false表示Builder使用的入参一致，true表示Builder使用的入参不一致。默认值：false<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | localStorage<sup>20+</sup> |[LocalStorage](../../ui/state-management/arkts-localstorage.md) | 否   | 给当前builderNode设置localStorage，挂载在此builderNode下的自定义组件共享该localStorage，如果自定义组件构造函数同时也传入localStorage，优先使用构造函数中传入的localStorage。默认值：null<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务
+
 ### InputEventType<sup>20+</sup>
 
 type InputEventType = TouchEvent | MouseEvent | AxisEvent
@@ -1194,7 +1195,7 @@ offsetA为builderNode相对于父组件的偏移，offsetB为命中位置相对�
 
 | 类型    | 说明               |
 | ------- | ------------------ |
-| boolean | 事件是否被消费。 |
+| boolean | 事件是否被消费。true表示事件已被消费，false表示事件未被消费。 |
 
 ## 示例
 
@@ -1486,7 +1487,56 @@ struct MyComponent {
 
 ![onAxisEvent](figures/onAxisEvent.gif)
 
-### 示例4（检验命令式节点是否有效）
+### 示例4（BuilderNode共享localStorage）
+该示例演示了如何在BuilderNode通过build方法传入外部localStorage，此时挂载在BuilderNode的所有自定义组件共享该localStorage。
+```ts
+let globalBuilderNode: BuilderNode<[Params]> | null = null;
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({bottom: 36})
+    Test()
+  }
+}
+let localStorage: LocalStorage = new LocalStorage();
+localStorage.setOrCreate('PropA', 'PropA');
+
+class TextNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(context: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(context);
+    if (globalBuilderNode === null) {
+      globalBuilderNode = new BuilderNode(context);
+      globalBuilderNode.build(wrapBuilder<[Params]>(buildText), new Params('builder node text'), { localStorage: localStorage })
+    }
+    this.rootNode.appendChild(globalBuilderNode.getFrameNode());
+    return this.rootNode;
+  }
+}
+@Entry(localStorage)
+@Component
+struct Index {
+  private controller: TextNodeController = new TextNodeController();
+  @LocalStorageLink('PropA') PropA: string = 'Hello World';
+  build() {
+    Row() {
+      Column() {
+        Text(this.PropA)
+        NodeContainer(this.controller)
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
+### 示例5（检验命令式节点是否有效）
 
 该示例演示了释放节点前后分别使用isDisposed接口验证节点的状态，释放节点前节点调用isDisposed接口返回true，释放节点后节点调用isDisposed接口返回false。
 

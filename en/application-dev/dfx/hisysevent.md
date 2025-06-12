@@ -1,6 +1,14 @@
 # HiSysEvent
 
-HiSysEvent is a built-in tool that helps you subscribe to real-time system events and query historical system events. To use this tool, access the target device with [hdc](hdc.md) and then run **hisysevent** commands in the command-line interface (CLI).
+HiSysEvent is a built-in tool that helps you subscribe to real-time system events and query historical system events.
+
+## Environment requirements
+
+- The environment for OpenHarmony Device Connector (hdc) has been set up. For details, see [Environment Setup](hdc.md#environment-setup).
+
+- The devices are properly connected and **hdc shell** is executed.
+
+- The **hisysevent** command is executed on the device to call related capabilities.
 
 ## Subscribing to Real-Time System Events
 
@@ -117,8 +125,8 @@ If system event validity check is enabled, invalid content contained in system e
 >
 > Invalid content is defined as follows:
 >
-> - Custom parameter key that is not configured
-> - Type mismatch
+> 1. Custom parameter key that is not configured.
+> 2. Type mismatch.
 
 Example: For the system event named **INTERACTION_APP_JANK** of the **ACE** domain, the <!--RP1-->[system event configuration](../../device-dev/subsystems/subsys-dfx-hisysevent-logging-config.md)<!--RP1End--> does not contain the custom parameters **DURITION** and **DISPLAY_ANIMATOR**. If these parameters are contained in the event saved, they will be highlighted in red when system event validity check is enabled.
 

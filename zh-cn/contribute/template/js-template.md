@@ -11,7 +11,7 @@
 | 3    | 文件命名                          | 一个d.ts对应一个js api文档，文件名称应与模块名称保持一致，格式为：**js-apis-模块名.md**。<br/>示例：<br/>媒体@ohos.multimedia.audio，文件命名为：js-apis-audio.md<br/>电话@ohos.telephony.sms，文件命名为：js-apis-sms.md |
 | 4    | 目录修改                          | 新增文件，需要修改对应的Readme，即`docs/zh-cn/application-dev/reference/apis/Readme-CN.md`。<br/>目录按字母顺序排列。 |
 | 5    | 文档结构                          | - 模块说明<br/>- 起始版本说明<br/>- 导入模块/使用说明<br/>- 接口（属性、常量、方法、枚举、自定义类型）<br/>  描述顺序和代码保持一致，如果某些接口具有逻辑顺序，请注意排列。 |
-| 6   | 异步接口说明（callback、Promise） | 对于callback、Promise在方法描述、参数说明、返回值说明的具体描述要求如下：<br/>**callback**的固定句式：<br/>方法介绍：xxx（方法描述）。使用callback异步回调。<br/>参数说明：<br/>**callback\<boolean>**：回调函数。返回true表示xxx；返回false表示xxx。<br/>**callback\<Object>**：回调函数，返回xxx。例如”回调函数，返回音频采集器对象。“<br/>**AsyncCallback\<void>**：回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined，否则为错误对象。<br/>**AsyncCallback\<Object x>**：回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined，data为获取到的Object x；否则为错误对象。<br/>**Promise**的固定句式：<br/>方法介绍：xxx（方法描述）。使用Promise异步回调。<br/>参数说明：<br/>**Promise\<boolean>**：Promise对象。返回true表示xxx；返回false表示xxx。<br/>**Promise\<Object>**：Promise对象，返回xxx。例如”Promise对象，返回音频采集器对象。“<br/>**Promise\<void>**：Promise对象。无返回结果的Promise对象。 |
+| 6   | 异步接口说明（callback、Promise） | 对于callback、Promise在方法描述、参数说明、返回值说明的具体描述要求如下：<br/>**callback**的固定句式：<br/>方法介绍：xxx（方法描述）。使用callback异步回调。<br/>参数说明：<br/>**callback\<boolean>**：回调函数。返回true表示xxx；返回false表示xxx。<br/>**callback\<Object>**：回调函数，返回xxx。例如”回调函数，返回音频采集器对象。“<br/>**AsyncCallback\<void>**：回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined，否则为错误对象。<br/>**AsyncCallback\<Object x>**：回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined，data为获取到的Object x；否则为错误对象。<br/>**Promise**的固定句式：<br/>方法介绍：xxx（方法描述）。使用Promise异步回调。<br/>参数说明：<br/>**Promise\<boolean>**：Promise对象。返回true表示xxx；返回false表示xxx。<br/>**Promise\<Object>**：Promise对象，返回xxx。例如”Promise对象，返回音频采集器对象。“<br/>**Promise\<void>**：Promise对象，无返回结果。 |
 | 7   | 示例代码语言                      | 所有的示例代码采用代码块的样式，并标记开发语言。<br/>JS和eTS通用的标注`js`；仅eTS可用的，标注`ts`。 |
 | 8   | 链接写法                          | 格式：[链接文字]\(链接内容)<br/>跨文件夹链接：[指南]\(\.\./../xxx/xxx.md)，一个`../`表示上移一层文件夹。<br/>页面内链接：[接口A<sup>7+</sup>]\(#xxxa7)，页面内链接和需要链接到的标题保持一致，全小写无特殊符号无标签。 |
 
@@ -388,6 +388,7 @@ type Xxx = number | string | 'xxx'
 
 | 变更说明                                                                 | 日期         |
 | ----------------------------------------------------------------------- | ------------ |
+| 精简Promise\<void>固定句式。新写作内容使用新句式；存量内容无需主动整改，表意无问题。 | 2025/06/10 |
 | 补充“关于匿名对象整改@since版本号情况的说明”固定句式。 | 2025/06/03 |
 | 优化权限的写作规范，可覆盖多种类型的权限描述，适配扫描工具需求。 | 2025/03/12 |
 | 增加Type模板三，增加以含有多个属性字段的Interface别名。 | 2025/03/04 |

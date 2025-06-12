@@ -651,6 +651,55 @@ struct SwiperExample {
 
 ![controll](figures/indicator_space.gif)
 
+## 保持可见内容位置不变
+
+Swiper通过设置[maintainVisibleContentPosition](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#maintainvisiblecontentposition20)属性，可在使用LazyForEach懒加载数据时（如通过onDataAdd新增数据），保持当前可见内容位置不变，避免因数据增删导致的视图跳动。该属性默认值为false。
+
+maintainVisibleContentPosition为true时，显示区域上方或前方插入或删除数据时可见内容位置不变。
+
+关于数据[LazyForEach：懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)的具体使用，可参考数据懒加载章节中的示例。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SwiperExample {
+  private data: MyDataSource = new MyDataSource();
+  @State index: number = 3;
+  build() {
+    Column({ space: 5 }) {
+      Swiper() {
+        LazyForEach(this.data, () => {
+          // ...
+        })
+      }
+      .onChange((index) => {
+        this.index = index;
+      })
+      .index(3)
+      .maintainVisibleContentPosition(true)
+
+      Column({ space: 12 }) {
+        Text("index:" + this.index).fontSize(20)
+        Row() {
+          // 在LazyForEach索引为0的位置添加数据
+          Button('header data add').height(30).onClick(() => {
+            this.data.addData(0, 'header Data');
+          })
+          // 删除LazyForEach索引为0的位置数据
+          Button('header data delete').height(30).onClick(() => {
+            this.data.deleteData(0);
+          })
+        }
+      }.margin(5)
+    }.width('100%')
+    .margin({ top: 5 })
+  }
+}
+```
+
+![controll](figures/maintainVisibleContentPosition_true.gif)
+
 ## 相关实例
 
 针对Swiper组件开发，有以下相关实例可供参考：

@@ -1,4 +1,4 @@
-# Interfaces (AudioVolumeGroupManager)
+# Interface (AudioVolumeGroupManager)
 
 > **说明：**
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -914,7 +914,7 @@ audio.getAudioManager().getRoutingManager().getPreferredInputDeviceForCapturerIn
 
 getMaxAmplitudeForOutputDevice(outputDevice: AudioDeviceDescriptor): Promise&lt;number&gt;
 
-获取输入设备音频流的最大电平值，取值范围为[0, 1]。使用Promise异步回调。
+获取输出设备音频流的最大电平值，取值范围为[0, 1]。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 

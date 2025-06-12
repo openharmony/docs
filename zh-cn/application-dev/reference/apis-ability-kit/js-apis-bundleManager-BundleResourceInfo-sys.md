@@ -8,6 +8,12 @@
 >
 > 本模块为系统接口。
 
+## 导入模块
+
+```ts
+import { bundleResourceManager } from '@kit.AbilityKit';
+```
+
 ## BundleResourceInfo
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Resource

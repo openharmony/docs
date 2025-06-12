@@ -20,7 +20,7 @@ import { WindowExtensionAbility } from '@kit.ArkUI';
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name     | Type | Readable | Writable | Description                     |
+| Name     | Type| Readable| Writable| Description                     |
 | --------- | -------- | ---- | ---- | ------------------------- |
 | context      | [WindowExtensionContext](js-apis-inner-application-windowExtensionContext-sys.md)   | Yes  | No  | Context of an Extension ability.     |
 
@@ -28,15 +28,15 @@ import { WindowExtensionAbility } from '@kit.ArkUI';
 
 onConnect(want: Want): void
 
-Called when this Window Extension ability is connected to an ability for the first time.
+Called when this WindowExtensionAbility is connected to an ability for the first time.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes | Information related to this Window Extension ability, including the ability name and bundle name. |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes| Information related to this WindowExtensionAbility, including the ability name and bundle name.|
 
 **Example**
 
@@ -55,15 +55,15 @@ export default class MyWindowExtensionAbility extends WindowExtensionAbility {
 
 onDisconnect(want: Want): void
 
-Called when this Window Extension ability is disconnected from all connected abilities.
+Called when this WindowExtensionAbility is disconnected from all connected abilities.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes | Information related to this Window Extension ability, including the ability name and bundle name. |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes| Information related to this WindowExtensionAbility, including the ability name and bundle name.|
 
 
 **Example**
@@ -89,9 +89,9 @@ Called when a window is ready.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| window | [window.Window](js-apis-window.md#window) | Yes | Current **Window** instance. |
+| window | [window.Window](arkts-apis-window-Window.md#window) | Yes| Current **Window** instance.|
 
 
 **Example**

@@ -222,7 +222,7 @@ hdc shell bm dump -n com.xxx.demo |grep versionCode
 
 ![示例图](figures/installed_hap_verisonCode.PNG)
 
-2. 新安装的应用查看版本，HAP或者HSP用IDE打开，查看里面module.json文件中的versionCode字段配置。
+2. 新安装的应用查看版本，HAP或者HSP用DevEco Studio打开，查看里面module.json文件中的versionCode字段配置。
 
 ![示例图](figures/hap_verisonCode.PNG)
 
@@ -1239,7 +1239,11 @@ Bundle manager service is excepted.
 包管理服务异常。
 
 **可能原因**<br/>
+场景一： 
 系统出现未知的异常，导致包管理服务已停止或者异常退出。
+
+场景二：
+系统抛出未捕获的错误码，例如IPC失败、文件拷贝失败等。
 
 **处理步骤**<br/>
 1. 重启手机后再次尝试请求接口。
@@ -1255,6 +1259,7 @@ ls -ls
 hdc file recv /data/log/faultlog/faultlogger/
 hdc file recv /data/log/hilog/
 ```
+
 <!--Del-->
 ## 17700201 abc文件校验失败
 **错误信息**<br/>

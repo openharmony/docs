@@ -63,6 +63,8 @@
 | typedef struct [ArkUI_CustomSpanMetrics](_ark_u_i___native_module.md#arkui_customspanmetrics) [ArkUI_CustomSpanMetrics](_ark_u_i___native_module.md#arkui_customspanmetrics) | 自定义段落组件的度量指标。  | 
 | typedef struct [ArkUI_CustomSpanDrawInfo](_ark_u_i___native_module.md#arkui_customspandrawinfo) [ArkUI_CustomSpanDrawInfo](_ark_u_i___native_module.md#arkui_customspandrawinfo) | 自定义段落组件的绘制信息。  | 
 | typedef struct [ArkUI_SwiperIndicator](_ark_u_i___native_module.md#arkui_swiperindicator) [ArkUI_SwiperIndicator](_ark_u_i___native_module.md#arkui_swiperindicator) | 定义 Swiper 组件的导航指示器风格。  | 
+| typedef struct [ArkUI_SwiperDigitIndicator](_ark_u_i___native_module.md#arkui_swiperdigitindicator) [ArkUI_SwiperDigitIndicator](_ark_u_i___native_module.md#arkui_swiperdigitindicator) | 定义Swiper组件的数字导航指示器风格。<br/>**起始版本：** 19  | 
+| typedef struct [ArkUI_SwiperArrowStyle](_ark_u_i___native_module.md#arkui_swiperarrowstyle) [ArkUI_SwiperArrowStyle](_ark_u_i___native_module.md#arkui_swiperarrowstyle) | 定义Swiper组件的导航箭头风格。<br/>**起始版本：** 19   | 
 | typedef struct [ArkUI_StyledString_Descriptor](_ark_u_i___native_module.md#arkui_styledstring_descriptor) [ArkUI_StyledString_Descriptor](_ark_u_i___native_module.md#arkui_styledstring_descriptor) | 定义文本组件支持的属性字符串的数据对象。  | 
 | typedef struct [ArkUI_SnapshotOptions](_ark_u_i___native_module.md#arkui_snapshotoptions) [ArkUI_SnapshotOptions](_ark_u_i___native_module.md#arkui_snapshotoptions) | 组件截图参数。  | 
 | typedef struct [ArkUI_VisibleAreaEventOptions ](_ark_u_i___native_module.md#arkui_visibleareaeventoptions) [ArkUI_VisibleAreaEventOptions](_ark_u_i___native_module.md#arkui_visibleareaeventoptions) | 可见区域变化监听的参数。| 
@@ -70,6 +72,8 @@
 | typedef struct [ArkUI_HostWindowInfo](_ark_u_i___native_module.md#arkui_hostwindowinfo) [ArkUI_HostWindowInfo](_ark_u_i___native_module.md#arkui_hostwindowinfo) | 定义窗口属性的HostWindowInfo类信息。  | 
 | typedef struct [ArkUI_ActiveChildrenInfo](_ark_u_i___native_module.md#arkui_activechildreninfo) [ArkUI_HostWindowInfo](_ark_u_i___native_module.md#arkui_activechildreninfo) | 定义ActiveChildrenInfo类信息。  | 
 | typedef struct [ArkUI_EmbeddedComponentOption](_ark_u_i___native_module.md#arkui_embeddedcomponentoption) [ArkUI_EmbeddedComponentOption](_ark_u_i___native_module.md#arkui_embeddedcomponentoption) | 定义EmbeddedComponent组件的选项。  | 
+| typedef struct [ArkUI_TextPickerRangeContentArray](_ark_u_i___native_module.md#arkui_textpickerrangecontentarray) [ArkUI_TextPickerRangeContentArray](_ark_u_i___native_module.md#arkui_textpickerrangecontentarray) | 定义文本选择器的数据选择列表。<br/>**起始版本：** 19  | 
+| typedef struct [ArkUI_TextCascadePickerRangeContentArray](_ark_u_i___native_module.md#arkui_textcascadepickerrangecontentarray) [ArkUI_TextCascadePickerRangeContentArray](_ark_u_i___native_module.md#arkui_textcascadepickerrangecontentarray) | 定义多列联动数据选择器的多列联动数据选择列表。<br/>**起始版本：** 19  | 
 
 ### 枚举
 
@@ -416,7 +420,7 @@
 | int32_t [OH_ArkUI_VisibleAreaEventOptions_GetRatios](_ark_u_i___native_module.md#oh_arkui_visibleareaeventoptions_getratios) ([ArkUI_VisibleAreaEventOptions](_ark_u_i___native_module.md#arkui_visibleareaeventoptions) \*option, float\* value, int32_t\* size) | 获取阈值数组。  | 
 | int32_t [OH_ArkUI_VisibleAreaEventOptions_GetExpectedUpdateInterval](_ark_u_i___native_module.md#oh_arkui_visibleareaeventoptions_getexpectedupdateinterval) ([ArkUI_VisibleAreaEventOptions](_ark_u_i___native_module.md#arkui_visibleareaeventoptions) \*option,) |  获取预期更新间隔。 | 
 | [ArkUI_TextPickerRangeContentArray](_ark_u_i___native_module.md#arkui_textpickerrangecontentarray)\* [OH_ArkUI_TextPickerRangeContentArray_Create](_ark_u_i___native_module.md#oh_arkui_textpickerrangecontentarray_create) (int32_t length) |  创建TextPickerRangeContent数组的对象。<br />**起始版本：** 19 |
-| void [OH_ArkUI_TextPickerRangeContentArray_SetIconAtIndex](_ark_u_i___native_module.md#oh_arkui_textpickerrangearray_seticonatindex) ([ArkUI_TextPickerRangeContentArray](_ark_u_i___native_module.md#arkui_textpickerrangecontentarray) \*handle,char\* icon,int32_t index) |  指定TextPickerRangeContent数组指定位置的icon数据。<br />**起始版本：** 19 |
+| void [OH_ArkUI_TextPickerRangeContentArray_SetIconAtIndex](_ark_u_i___native_module.md#oh_arkui_textpickerrangecontentarray_seticonatindex) ([ArkUI_TextPickerRangeContentArray](_ark_u_i___native_module.md#arkui_textpickerrangecontentarray) \*handle,char\* icon,int32_t index) |  指定TextPickerRangeContent数组指定位置的icon数据。<br />**起始版本：** 19 |
 | void [OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex](_ark_u_i___native_module.md#oh_arkui_textpickerrangecontentarray_settextatindex) ([ArkUI_TextPickerRangeContentArray](_ark_u_i___native_module.md#arkui_textpickerrangecontentarray) \*handle,char\* text,int32_t index) |  指定TextPickerRangeContent数组指定位置的text数据。<br />**起始版本：** 19 |
 | void [OH_ArkUI_TextPickerRangeContentArray_Destroy](_ark_u_i___native_module.md#oh_arkui_textpickerrangecontentarray_destroy) ([ArkUI_TextPickerRangeContentArray](_ark_u_i___native_module.md#arkui_textpickerrangecontentarray) \*handle) |  删除TextPickerRangeContent数组对象。<br />**起始版本：** 19 |
 | [ArkUI_TextCascadePickerRangeContentArray](_ark_u_i___native_module.md#arkui_textcascadepickerrangecontentarray)\* [OH_ArkUI_TextCascadePickerRangeContentArray_Create](_ark_u_i___native_module.md#oh_arkui_textcascadepickerrangecontentarray_create) (int32_t length) |  创建TextCascadePickerRangeContent数组对象。<br />**起始版本：** 19 |

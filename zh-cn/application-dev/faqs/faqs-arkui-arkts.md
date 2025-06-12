@@ -747,7 +747,7 @@ Text组件不用设置lineHeight属性，默认就是居中的。绘制文本是
 
 **参考链接**
 
-[Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#示例1)
+[Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#示例1设置文本布局)
 
 
 ## 使用什么接口进行url编码(API 9)

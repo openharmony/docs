@@ -23,4 +23,5 @@
 ![live-form-weather-demo.gif](figures/live-form-weather-demo.gif)
 
 ## 约束和限制
-互动卡片作为卡片功能的增强，卡片自身业务不能强依赖互动卡片动效能力。
+- 互动卡片作为卡片功能的增强，卡片自身业务不能强依赖互动卡片动效能力。
+<!--RP1--><!--RP1End-->

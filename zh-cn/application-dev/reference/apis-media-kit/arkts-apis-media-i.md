@@ -1,4 +1,4 @@
-# Interfaces
+# Interfaces (其他)
 
 > **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -297,6 +297,45 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 | open | [SourceOpenCallback](arkts-apis-media-t.md#sourceopencallback18) | 是  | 由应用程序实现的回调函数，用于处理资源打开请求。 |
 | read | [SourceReadCallback](arkts-apis-media-t.md#sourcereadcallback18) | 是  | 由应用程序实现的回调函数，用于处理资源读取请求。 |
 | close | [SourceCloseCallback](arkts-apis-media-t.md#sourceclosecallback18) | 是  | 由应用程序实现的回调函数，用于处理资源关闭请求。 |
+
+**示例：**
+
+```ts
+import HashMap from '@ohos.util.HashMap';
+
+let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
+let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
+let uuid: number = 1;
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+let mediaSourceLoader: media.MediaSourceLoader = {
+  open: (request: media.MediaSourceLoadingRequest) => {
+    console.log(`Opening resource: ${request.url}`);
+    // 成功打开资源，返回唯一的句柄, 保证uuid和request对应。
+    uuid += 1;
+    requests.set(uuid, request);
+    return uuid;
+  },
+  read: (uuid: number, requestedOffset: number, requestedLength: number) => {
+    console.log(`Reading resource with handle ${uuid}, offset: ${requestedOffset}, length: ${requestedLength}`);
+    // 判断uuid是否合法、存储read请求，不要在read请求阻塞去推送数据和头信息。
+  },
+  close: (uuid: number) => {
+    console.log(`Closing resource with handle ${uuid}`);
+    // 清除当前uuid相关资源。
+    requests.remove(uuid);
+  }
+};
+
+mediaSource.setMediaResourceLoaderDelegate(mediaSourceLoader);
+let playStrategy : media.PlaybackStrategy = {
+  preferredBufferDuration: 20,
+};
+
+async function setupPlayer() {
+  let player = await media.createAVPlayer();
+  player.setMediaSource(mediaSource, playStrategy);
+}
+```
 
 ## PlaybackStrategy<sup>12+</sup>
 

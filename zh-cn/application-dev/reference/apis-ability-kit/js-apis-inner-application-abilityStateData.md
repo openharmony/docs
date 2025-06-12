@@ -1,6 +1,6 @@
 # AbilityStateData
 
-定义Ability状态信息，可以通过[on](js-apis-app-ability-appManager.md#appmanageronapplicationstate)注册生命周期变化监听后，通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)的onAbilityStateChanged生命周期回调获取。
+定义Ability状态信息，可以通过[on](js-apis-app-ability-appManager.md#appmanageronapplicationstate14)注册生命周期变化监听后，通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)的onAbilityStateChanged生命周期回调获取。
 
 > **说明：**
 > 
@@ -16,17 +16,17 @@ import { appManager } from '@kit.AbilityKit';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称                     | 类型     | 可读 | 可写 | 说明                       |
+| 名称                     | 类型     | 只读 | 可选 | 说明                       |
 | ----------------------- | ---------| ---- | ---- | ------------------------- |
-| pid                     | number   | 是   | 否   | 进程ID。                    |
-| bundleName              | string   | 是   | 否  | 应用Bundle名称。          |
-| abilityName            | string   | 是   | 否   | Ability名称。               |
-| uid                    | number   | 是   | 否   | 用户ID。                  |
-| state                   | number   | 是   | 否   | Ability状态。<br>- Stage模型：UIAbility的状态参见[Ability状态](#ability状态)；ExtensionAbility的状态参见[Extension状态](#extension状态)。<br>- FA模型：参见[Ability状态](#ability状态)。                |
-| moduleName | string   | 是   | 否   | Ability所属的HAP的名称。    |
-| abilityType | number | 是   | 否   | [Ability类型](#ability类型)：页面或服务等。 |
-| isAtomicService | boolean   | 是  | 否  | 判断Ability所属的应用是否是原子化服务。<br>true:Ability所属的应用是原子化服务。<br>false:Ability所属的应用不是原子化服务。     |
-| appCloneIndex          | number   | 是   | 否   | 分身应用索引。                  |
+| pid                     | number   | 否   | 否   | 进程ID。                    |
+| bundleName              | string   | 否   | 否  | 应用Bundle名称。          |
+| abilityName            | string   | 否   | 否   | Ability名称。               |
+| uid                    | number   | 否   | 否   | 用户ID。                  |
+| state                   | number   | 否   | 否   | Ability状态。<br>- Stage模型：UIAbility的状态参见[Ability状态](#ability状态)；ExtensionAbility的状态参见[Extension状态](#extension状态)。<br>- FA模型：参见[Ability状态](#ability状态)。                |
+| moduleName | string   | 否   | 否   | Ability所属的HAP的名称。    |
+| abilityType | number | 否   | 否   | [Ability类型](#ability类型)：页面或服务等。 |
+| isAtomicService | boolean   | 否  | 否  | 判断Ability所属的应用是否是原子化服务。<br>true:Ability所属的应用是原子化服务。<br>false:Ability所属的应用不是原子化服务。     |
+| appCloneIndex          | number   | 否   | 是   | 分身应用索引。                  |
 
 ### Ability状态
 
