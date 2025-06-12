@@ -1,6 +1,6 @@
 # Class (SslErrorHandler)
 
-Web组件返回的SSL错误通知事件用户处理功能对象。示例代码参考[onSslErrorEventReceive事件](./arkts-basic-components-web-events.md#onsslerroreventreceive9)。
+Web组件返回的SSL错误通知事件用户处理功能对象。示例代码参考[onSslErrorEvent事件](./arkts-basic-components-web-events.md#onsslerrorevent12)。
 
 > **说明：**
 >
@@ -16,13 +16,19 @@ SslErrorHandler的构造函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-## handleCancel<sup>9+</sup>
+## handleCancel<sup>20+</sup>
 
-handleCancel(): void
+handleCancel(abortLoading: boolean): void
 
 通知Web组件取消此请求。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型 | 必填  | 说明             |
+| --------------- | -------- | ----  |------- |
+| abortLoading    | boolean  | 否    | 是否在取消请求后停止加载页面。<br>true表示停止加载页面，false表示继续加载页面。<br>默认值为false。 |
 
 ## handleConfirm<sup>9+</sup>
 
