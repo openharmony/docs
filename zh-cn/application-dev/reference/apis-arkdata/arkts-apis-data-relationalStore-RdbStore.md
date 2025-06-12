@@ -4626,41 +4626,39 @@ on(event: 'sqliteErrorOccurred', observer: Callback&lt;ExceptionMessage&gt;): vo
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async test()
-{
-  try {
-    if (store != undefined) {
-      let exceptionMessage: relationalStore.ExceptionMessage;
-      store.on('sqliteErrorOccurred', exceptionMessage => {
-        let sqliteCode = exceptionMessage.code;
-        let sqliteMessage = exceptionMessage.message;
-        let errSQL = exceptionMessage.sql;
-        console.info(`error log is ${sqliteCode}, errMessage is ${sqliteMessage}, errSQL is ${errSQL}`);
-      })
-    }
-  } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error(`Register observer failed, code is ${code},message is ${message}`);
+try {
+  if (store != undefined) {
+    let exceptionMessage: relationalStore.ExceptionMessage;
+    store.on('sqliteErrorOccurred', exceptionMessage => {
+      let sqliteCode = exceptionMessage.code;
+      let sqliteMessage = exceptionMessage.message;
+      let errSQL = exceptionMessage.sql;
+      console.info(`error log is ${sqliteCode}, errMessage is ${sqliteMessage}, errSQL is ${errSQL}`);
+    })
   }
-  const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-    "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL)";
-  try {
-    let value = new Uint8Array([1, 2, 3, 4, 5]);
-    const valueBucket: relationalStore.ValuesBucket = {
-      'name': "Lisa",
-      'age': 18,
-      'salary': 100.5,
-      'codes': value,
-    };
-    await store.executeSql(CREATE_TABLE_TEST);
-    if (store != undefined) {
-      (store as relationalStore.RdbStore).insert('test', valueBucket);
-    }
-  } catch (err) {
-    console.error(`Insert fail, code:${err.code}, message: ${err.message}`);
-  }
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`Register observer failed, code is ${code},message is ${message}`);
 }
+const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+  "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL)";
+try {
+  let value = new Uint8Array([1, 2, 3, 4, 5]);
+  const valueBucket: relationalStore.ValuesBucket = {
+    'name': "Lisa",
+    'age': 18,
+    'salary': 100.5,
+    'codes': value,
+  };
+  await store.executeSql(CREATE_TABLE_TEST);
+  if (store != undefined) {
+    (store as relationalStore.RdbStore).insert('test', valueBucket);
+  }
+} catch (err) {
+  console.error(`Insert fail, code:${err.code}, message: ${err.message}`);
+}
+
 ```
 
 ### off('dataChange')

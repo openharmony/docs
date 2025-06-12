@@ -7292,7 +7292,7 @@ try {
 
 ### off('sqliteErrorOccurred')<sup>20+</sup>
 
-off(event: 'sqliteErrorOccurred', observer: Callback&lt;ExceptionMessage&gt;): void
+off(event: 'sqliteErrorOccurred', observer?: Callback&lt;ExceptionMessage&gt;): void
 
 停止记录SQL执行过程中的异常日志。
 
@@ -7303,7 +7303,7 @@ off(event: 'sqliteErrorOccurred', observer: Callback&lt;ExceptionMessage&gt;): v
 | 参数名       | 类型                              | 必填 | 说明                                |
 | ------------ |---------------------------------| ---- |-----------------------------------|
 | event        | string                          | 是   | 取消订阅事件名称，取值为'sqliteErrorOccurred'，记录SQL语句执行过程中的错误信息。 |
-| observer     | Callback&lt;[ExceptionMessage](#exceptionmessage20)&gt; | 是   | 回调函数。该参数存在，则取消指定Callback监听回调，否则取消该event事件的所有监听回调。  |
+| observer     | Callback&lt;[ExceptionMessage](#exceptionmessage20)&gt; | 否   | 回调函数。该参数存在，则取消指定Callback监听回调，否则取消该event事件的所有监听回调。  |
 
 **错误码：**
 
