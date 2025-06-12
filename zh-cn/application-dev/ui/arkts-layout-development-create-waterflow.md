@@ -23,7 +23,7 @@ ArkUI提供了WaterFlow容器组件，用于构建瀑布流布局。WaterFlow组
 
 > **说明：** 
 >
-> 完整示例请参考 [WaterFlowInfiniteScrolling](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/waterFlow/WaterFlowInfiniteScrolling.ets)
+> 完整示例请参考[WaterFlowInfiniteScrolling](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/waterFlow/WaterFlowInfiniteScrolling.ets)。
 ```ts
   @Builder
   itemFoot() {
@@ -132,7 +132,7 @@ ArkUI提供了WaterFlow容器组件，用于构建瀑布流布局。WaterFlow组
 
 > **说明：** 
 >
-> 完整示例请参考 [WaterFlowDynamicSwitchover](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/waterFlow/WaterFlowInfiniteScrolling.ets)
+> 完整示例请参考[WaterFlowDynamicSwitchover](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/waterFlow/WaterFlowInfiniteScrolling.ets)。
 
 ```ts
 // 通过状态变量设置列数，可以按需修改触发布局更新
@@ -212,7 +212,7 @@ struct ReusableListItem {
 
 > **说明：** 
 >
-> 完整示例请参考 [WaterFlow 组件-示例3（使用分组）](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md#示例3使用分组)。
+> 完整示例请参考WaterFlow组件[示例3（使用分组）](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md#示例3使用分组)。
 
 
 ```ts
@@ -329,4 +329,4 @@ struct WaterFlowDemo {
 针对瀑布流开发，有以下实例可供参考：
 
 - [主页瀑布流实现](https://gitee.com/harmonyos-cases/cases/blob/master/CommonAppDevelopment/feature/functionalscenes/README.md)
-- [创建瀑布流示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/ScrollableComponent)
+- [ArkUI使用滚动类指南文档示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/ScrollableComponent)
