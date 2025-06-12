@@ -144,6 +144,7 @@ struct KeyEventExample {
   build() {
     Column() {
       Button('KeyEvent')
+        .defaultFocus(true)
         .onKeyEvent((event?: KeyEvent) => {
           if(event){
             if (event.type === KeyType.Down) {
