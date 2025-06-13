@@ -383,6 +383,8 @@
 | INTERRUPT_HINT_STOP                | 3      | 提示音频停止，彻底失去音频焦点。                |
 | INTERRUPT_HINT_DUCK                | 4      | 提示音频躲避开始，降低音量播放。 |
 | INTERRUPT_HINT_UNDUCK<sup>8+</sup> | 5      | 提示音频躲避结束，恢复音量播放。            |
+| INTERRUPT_HINT_MUTE<sup>20+</sup> | 6      | 提示音频静音。 |
+| INTERRUPT_HINT_UNMUTE<sup>20+</sup> | 7      | 提示音频解除静音。            |
 
 ## AudioVolumeMode<sup>19+</sup>
 
