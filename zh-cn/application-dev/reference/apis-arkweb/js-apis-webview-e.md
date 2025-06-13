@@ -72,7 +72,7 @@ Web组件使用HTTPDNS的模式。
 
 ## WebMessageType<sup>10+</sup>
 
-[webMessagePort](./js-apis-webview-WebMessagePort.md#interfaces-webmessageport)接口所支持的数据类型。
+[webMessagePort](./js-apis-webview-WebMessagePort.md)接口所支持的数据类型。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

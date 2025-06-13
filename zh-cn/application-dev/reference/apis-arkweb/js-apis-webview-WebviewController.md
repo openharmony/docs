@@ -2167,7 +2167,7 @@ createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
 | 类型                   | 说明              |
 | ---------------------- | ----------------- |
-| Array\<[WebMessagePort](./js-apis-webview-WebMessagePort.md#interfaces-webmessageport)> | web消息端口列表。 |
+| Array\<[WebMessagePort](./js-apis-webview-WebMessagePort.md)> | web消息端口列表。 |
 
 **错误码：**
 
@@ -2195,7 +2195,7 @@ postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 | 参数名 | 类型                   | 必填 | 说明                             |
 | ------ | ---------------------- | ---- | :------------------------------- |
 | name   | string                 | 是   | 要发送的消息名称。            |
-| ports  | Array\<[WebMessagePort](./js-apis-webview-WebMessagePort.md#interfaces-webmessageport)> | 是   | 要发送的消息端口。            |
+| ports  | Array\<[WebMessagePort](./js-apis-webview-WebMessagePort.md)> | 是   | 要发送的消息端口。            |
 | uri    | string                 | 是   | 接收该消息的URI。                |
 
 **错误码：**
@@ -3845,7 +3845,7 @@ getBackForwardEntries(): BackForwardList
 
 | 类型                                | 说明                        |
 | ----------------------------------- | --------------------------- |
-| [BackForwardList](./js-apis-webview-i.md#backforwardlist) | 当前Webview的历史信息列表。 |
+| [BackForwardList](./js-apis-webview-BackForwardList.md) | 当前Webview的历史信息列表。 |
 
 **错误码：**
 
