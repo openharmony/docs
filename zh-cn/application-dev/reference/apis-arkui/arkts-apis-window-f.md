@@ -816,15 +816,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { ColorMetrics, window } from '@kit.ArkUI';
 
 try {
-  let promise =
-    window.setStartWindowBackgroundColor("entry", "EntryAbility", ColorMetrics.numeric(0xff000000));
+  let promise = window.setStartWindowBackgroundColor("entry", "EntryAbility", ColorMetrics.numeric(0xff000000));
   promise.then(() => {
     console.log('Succeeded in setting the starting window color.');
   }).catch((err: BusinessError) => {
-    console.error(`Failed to set the starting window color. Cause code: ${err.code}, message:  ${err.message}`);
+    console.error(`Failed to set the starting window color. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error(`Failed to set the starting window color. Cause code: ${exception.code}, message:  ${exception.message}`);
+  console.error(`Failed to set the starting window color. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
