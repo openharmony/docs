@@ -1098,7 +1098,7 @@ enum Rdb_Tokenizer
 | 枚举值 | 描述 |
 | -------- | -------- |
 | RDB_NONE_TOKENIZER | 表示不使用分词器。 |
-| RDB_ICU_TOKENIZER | 表示使用原生ICU分词器。 |
+| RDB_ICU_TOKENIZER | 表示使用ICU分词器。 |
 | RDB_CUSTOM_TOKENIZER<sup>18+</sup> | 表示使用CUSTOM分词器。 |
 
 ### Rdb_DBType
