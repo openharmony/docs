@@ -6,10 +6,34 @@
 
 The **\<image>** component is used to render and display images.
 
+```ts
+// xxx.js
+export default {
+  data: {
+    fit:"cover",
+    fits: ["cover", "contain", "fill", "none", "scale-down"],
+  },
+  change_fit(e) {
+    this.fit = e.newValue;
+  },
+}
+```
 
 ## Child Components
 
 Not supported
+
+```java
+export default {
+  data: {
+    fit:"cover",
+    fits: ["cover", "contain", "fill", "none", "scale-down"],
+  },
+  change_fit(e) {
+    this.fit = e.newValue;
+  },
+}
+```
 
 
 ## Attributes
