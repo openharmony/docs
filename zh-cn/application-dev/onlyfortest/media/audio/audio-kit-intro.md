@@ -2,6 +2,13 @@
 
 api-info==10
 
+```cangjie
+  let dataAbilityPredicates = new dataAbility.DataAbilityPredicates()
+  dataAbilityPredicates.equalTo("NAME", "Rose")
+  // EMPLOYEE是使用关系型数据库创建的表。
+  let predicates = dataAbility.createRdbPredicates("EMPLOYEE", dataAbilityPredicates)
+```
+
 ## 概述
 
 声明输入类型的音频流相关接口,
@@ -10,11 +17,25 @@ api-info==10
 
 **起始版本：** 10
 
+```ts
+  let dataAbilityPredicates = new dataAbility.DataAbilityPredicates()
+  dataAbilityPredicates.equalTo("NAME", "Rose")
+  // EMPLOYEE是使用关系型数据库创建的表。
+  let predicates = dataAbility.createRdbPredicates("EMPLOYEE", dataAbilityPredicates)
+```
+
 ## 汇总
 
 Section存在自身的起始版本，以自身起始版本为主，api-info==11
 
 **起始版本：** 11
+
+```go
+  let dataAbilityPredicates = new dataAbility.DataAbilityPredicates()
+  dataAbilityPredicates.equalTo("NAME", "Rose")
+  // EMPLOYEE是使用关系型数据库创建的表。
+  let predicates = dataAbility.createRdbPredicates("EMPLOYEE", dataAbilityPredicates)
+```
 
 ### subsection本身无起始版本，继承section的起始版本
 
