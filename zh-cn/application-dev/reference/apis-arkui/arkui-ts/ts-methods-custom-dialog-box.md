@@ -168,7 +168,7 @@ getState(): PromptActionCommonState
 
 ## PromptActionCommonState<sup>20+</sup>
 
-type PromptActionCommonState = CommonState
+type PromptActionCommonState = promptAction.CommonState
 
 自定义弹窗的状态。
 
@@ -178,7 +178,7 @@ type PromptActionCommonState = CommonState
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [CommonState](../js-apis-promptAction.md#commonstate20枚举说明) | 返回对应的弹窗状态。 |
+| [promptAction.CommonState](../js-apis-promptAction.md#commonstate20枚举说明) | 返回对应的弹窗状态。 |
 
 ## 示例
 
