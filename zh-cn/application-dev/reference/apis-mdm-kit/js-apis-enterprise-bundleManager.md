@@ -619,3 +619,160 @@ bundleManager.install(wantTemp, hapFilePaths, installParam).then(() => {
 | userId                   | number                 | 否   | 指示用户id，默认值：调用方所在用户，取值范围：大于等于0。    |
 | installFlag              | number                 | 否   | 安装标志。枚举值：0：应用初次安装，1：应用覆盖安装，2：应用免安装，默认值为应用初次安装。 |
 | parameters<sup>19+</sup> | Record&lt;string, string&gt; | 否   | 扩展参数，默认值为空。key取值支持"ohos.bms.param.enterpriseForAllUser"，若对应的value值为"true"，表示为所有用户安装应用。 |
+
+## bundleManager.addInstallationAllowedAppDistributionTypes<sup>20+</sup>
+
+addInstallationAllowedAppDistributionTypes(admin: Want, appDistributionTypes: Array&lt;AppDistributionType&gt;): void
+
+添加可安装的应用类型。
+
+**需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名       | 类型                                                       | 必填 | 说明                                                         |
+| ------------ | -------------------------------------------------------    | ---- | ------------------------------------------------------------ |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md)    | 是   | 企业设备管理扩展组件。                                       |
+| appDistributionTypes  | Array&lt;[AppDistributionType](#appdistributiontype20)&gt;  | 是   | 应用类型数组 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |                     |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  //需根据实际情况进行替换
+  bundleName: 'com.example.edmtest',
+  abilityName: 'com.example.edmtest.EnterpriseAdminAbility'
+};
+try {
+  let appDistributionTypes: Array<bundleManager.AppDistributionType> = [bundleManager.AppDistributionType.APP_GALLERY];
+  bundleManager.addInstallationAllowedAppDistributionTypes(wantTemp, appDistributionTypes);
+  console.info(`Succeeded in adding allowed appDistributionTypes.`);
+} catch (err) {
+  console.error(`Failed to add allowed appDistributionTypes. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## bundleManager.removeInstallationAllowedAppDistributionTypes<sup>20+</sup>
+
+removeInstallationAllowedAppDistributionTypes(admin: Want, appDistributionTypes: Array&lt;AppDistributionType&gt;): void
+
+删除可安装的应用类型。
+
+**需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名       | 类型                                                       | 必填 | 说明                                                         |
+| ------------ | -------------------------------------------------------    | ---- | ------------------------------------------------------------ |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md)    | 是   | 企业设备管理扩展组件。                                       |
+| appDistributionTypes  | Array&lt;[AppDistributionType](#appdistributiontype20)&gt;  | 是 | 应用类型数组 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |                     |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  //需根据实际情况进行替换
+  bundleName: 'com.example.edmtest',
+  abilityName: 'com.example.edmtest.EnterpriseAdminAbility'
+};
+try {
+  let appDistributionTypes: Array<bundleManager.AppDistributionType> = [bundleManager.AppDistributionType.APP_GALLERY];
+  bundleManager.removeInstallationAllowedAppDistributionTypes(wantTemp, appDistributionTypes);
+  console.info(`Succeeded in remove allowed appDistributionTypes.`);
+} catch (err) {
+  console.error(`Failed to remove allowed appDistributionTypes. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## bundleManager.getInstallationAllowedAppDistributionTypes<sup>20+</sup>
+
+getInstallationAllowedAppDistributionTypes(admin: Want): Array&lt;AppDistributionType&gt;
+
+获取可安装的应用类型。
+
+**需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名       | 类型                                                       | 必填 | 说明                                                         |
+| ------------ | -------------------------------------------------------    | ---- | ------------------------------------------------------------ |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md)    | 是   | 企业设备管理扩展组件。                                       |
+
+**返回值：**
+
+| 类型                               | 说明                      |
+| ---------------------------------- | ------------------------- |
+| Array&lt;[AppDistributionType](#appdistributiontype20)&gt; | 应用类型数组 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |                     |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  //需根据实际情况进行替换
+  bundleName: 'com.example.edmtest',
+  abilityName: 'com.example.edmtest.EnterpriseAdminAbility'
+};
+try {
+  let result: Array<bundleManager.AppDistributionType> = bundleManager.getInstallationAllowedAppDistributionTypes(wantTemp);
+  console.info(`Succeeded in getting allowed appDistributionTypes. Result: ${JSON.stringify(result)}`);
+} catch (err) {
+  console.error(`Failed to get allowed appDistributionTypes. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## AppDistributionType
+
+应用类型。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+| 名称         | 值 | 说明                            |
+| ----------- | -------- | ------------------------------- |
+| APP_GALLERY | 1  | 应用市场分发的应用。 |
+| ENTERPRISE | 2  | 企业应用。 |
+| ENTERPRISE_NORMAL | 3  | 普通企业应用。 |
+| ENTERPRISE_MDM | 4  | 企业MDM应用。 |
+| INTERNALTESTING | 5  | 应用市场内测的应用。 |
+| CROWDTESTING | 6  | 众包测试应用。 |
