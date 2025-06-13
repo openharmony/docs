@@ -10,7 +10,7 @@
 
 **起始版本：** 18
 
-**相关模块：** [AVMetadataExtractor](capi-avmetadataextractor.md) 
+**相关模块：** [AVMetadataExtractor](capi-avmetadataextractor.md)
 
 ## 汇总
 
