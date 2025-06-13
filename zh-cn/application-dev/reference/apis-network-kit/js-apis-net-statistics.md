@@ -807,9 +807,7 @@ type NetBearType = connection.NetBearType
 
 网络类型。
 
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Communication.NetManager
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 |       类型       |            说明             |
 | ---------------- | --------------------------- |
