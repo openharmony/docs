@@ -7992,7 +7992,7 @@ let periodReachCallback = (position: number) => {
   }
 };
 
-audioRenderer.on('periodReach', periodReachCallback);
+audioRenderer.on('periodReach', 1000, periodReachCallback);
 
 audioRenderer.off('periodReach', periodReachCallback);
 ```
@@ -9490,7 +9490,7 @@ let periodReachCallback = (position: number) => {
   }
 };
 
-audioCapturer.on('periodReach', periodReachCallback);
+audioCapturer.on('periodReach', 1000, periodReachCallback);
 
 audioCapturer.off('periodReach', periodReachCallback);
 ```
