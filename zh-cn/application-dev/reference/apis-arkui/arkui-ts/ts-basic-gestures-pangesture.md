@@ -117,7 +117,7 @@ struct PanGestureExample {
   @State offsetY: number = 0;
   @State positionX: number = 0;
   @State positionY: number = 0;
-  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right })
+  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right });
 
   build() {
     Column() {
@@ -134,26 +134,28 @@ struct PanGestureExample {
       .gesture(
       PanGesture(this.panOption)
         .onActionStart((event: GestureEvent) => {
-          console.info('Pan start')
+          console.info('Pan start');
+          console.info('Pan start timeStamp is: ' + event.timestamp);
         })
         .onActionUpdate((event: GestureEvent) => {
           if (event) {
-            this.offsetX = this.positionX + event.offsetX
-            this.offsetY = this.positionY + event.offsetY
+            this.offsetX = this.positionX + event.offsetX;
+            this.offsetY = this.positionY + event.offsetY;
           }
         })
         .onActionEnd((event: GestureEvent) => {
-          this.positionX = this.offsetX
-          this.positionY = this.offsetY
-          console.info('Pan end')
+          this.positionX = this.offsetX;
+          this.positionY = this.offsetY;
+          console.info('Pan end');
+          console.info('Pan end timeStamp is: ' + event.timestamp);
         })
       )
 
       Button('修改PanGesture触发条件')
         .onClick(() => {
           // 将PanGesture手势事件触发条件改为双指以任意方向滑动
-          this.panOption.setDirection(PanDirection.All)
-          this.panOption.setFingers(2)
+          this.panOption.setDirection(PanDirection.All);
+          this.panOption.setFingers(2);
         })
     }
   }
