@@ -12,7 +12,7 @@ prepare(config: AudioRecorderConfig): void
 录音准备。
 
 > **说明：**
-> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder.prepare](arkts-apis-media-AVRecorder.md#prepare9-1)替代。
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder.prepare](arkts-apis-media-AVRecorder.md#prepare9)替代。
 
 **需要权限：** ohos.permission.MICROPHONE
 
@@ -77,7 +77,7 @@ pause():void
 暂停录制，需要在'start'事件成功触发后，才能调用pause方法。
 
 > **说明：**
-> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder.pause](arkts-apis-media-AVRecorder.md#pause9-1)替代。
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder.pause](arkts-apis-media-AVRecorder.md#pause9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -117,7 +117,7 @@ stop(): void
 停止录音。
 
 > **说明：**
-> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder.stop](arkts-apis-media-AVRecorder.md#stop9-1)替代。
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder.stop](arkts-apis-media-AVRecorder.md#stop9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -137,7 +137,7 @@ release(): void
 释放录音资源。
 
 > **说明：**
-> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder.release](arkts-apis-media-AVRecorder.md#release9-1)替代。
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder.release](arkts-apis-media-AVRecorder.md#release9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -160,7 +160,7 @@ reset(): void
 进行重置录音之前，需要先调用stop()停止录音。重置录音之后，需要调用prepare()设置录音参数项，才能再次进行录音。
 
 > **说明：**
-> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder.reset](arkts-apis-media-AVRecorder.md#reset9-1)替代。
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder.reset](arkts-apis-media-AVRecorder.md#reset9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
