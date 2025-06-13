@@ -328,6 +328,8 @@ getAllRxBytes(callback: AsyncCallback\<number>): void;
 
 获取所有网卡实时下行流量，使用 callback 方式作为异步方法。
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -365,6 +367,8 @@ getAllRxBytes(): Promise\<number>;
 
 获取所有网卡实时下行流量，使用 Promise 方式作为异步方法。
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **返回值：**
@@ -398,6 +402,8 @@ statistics.getAllRxBytes().then((stats: number) => {
 getAllTxBytes(callback: AsyncCallback\<number>): void;
 
 获取所有网卡实时上行流量，使用 callback 方式作为异步方法。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -435,6 +441,8 @@ statistics.getAllTxBytes((error: BusinessError, stats: number) => {
 getAllTxBytes(): Promise\<number>;
 
 获取所有网卡实时上行流量，使用 Promise 方式作为异步方法。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -798,6 +806,8 @@ statistics.getSockfdTxBytes(sockfd).then((stats: number) => {
 type NetBearType = connection.NetBearType
 
 网络类型。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager
 
