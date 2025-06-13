@@ -79,19 +79,3 @@ Not supported
 }
 ```
 
-```javascript
-// xxx.js
-export default {
-  data: {
-      title: 'on'
-  },
-  switchChange(e){
-      console.log(e.checked);
-      if(e.checked){
-          this.title="on"
-      }else{
-          this.title="off"
-      }
-  }
-}
-```
