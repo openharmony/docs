@@ -4,7 +4,7 @@
 ArkTS是OpenHarmony优选的主力应用开发语言，它在[TypeScript](https://www.typescriptlang.org/)（简称TS）生态基础上做了扩展，保持TS的基本风格，通过规范定义强化开发期静态检查和分析，提升程序执行稳定性和性能。
 
 
-从API version 10开始，ArkTS进一步通过规范强化静态检查和分析，对比标准TS的差异可以参考[从TypeScript到ArkTS的适配规则](typescript-to-arkts-migration-guide.md)：
+自API version 10起，ArkTS进一步通过规范强化静态检查和分析，其主要特性及标准TS的差异包括[从TypeScript到ArkTS的适配规则](typescript-to-arkts-migration-guide.md)：
 
 
 - 强制使用静态类型：静态类型是ArkTS最重要的特性之一。如果使用静态类型，那么程序中变量的类型就是确定的。同时，由于所有类型在程序实际运行前都是已知的，编译器可以验证代码的正确性，从而减少运行时的类型检查，有助于性能提升。
