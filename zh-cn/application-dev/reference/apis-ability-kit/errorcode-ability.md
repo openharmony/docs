@@ -270,7 +270,7 @@ Service timeout.
 
 **错误信息**
 
-Redirection to a third-party application is not allowed in API version 11 or later.
+Redirection to a third-party application is not allowed in API version greater than 11.
 
 **错误描述**
 
@@ -633,7 +633,7 @@ App clone is not supported.
 
 **处理步骤**
 
-参考[应用多实例的配置方法](../../quick-start/multiInstance.md#应用多实例的配置方法)，在app.json5配置文件中配置multiAppMode标签，开启应用分身功能后，再调用[getCurrentAppCloneIndex](./js-apis-inner-application-applicationContext.md#applicationcontextgetcurrentappcloneindex12)接口。
+参考[应用多实例的配置方法](../../quick-start/multiInstance.md)，在app.json5配置文件中配置multiAppMode标签，开启应用分身功能后，再调用[getCurrentAppCloneIndex](./js-apis-inner-application-applicationContext.md#applicationcontextgetcurrentappcloneindex12)接口。
 
 <!--Del-->
 ## 16000072 不支持应用多开
@@ -868,42 +868,6 @@ An error occurred during the interaction between the ability and window.
 **处理步骤**
 
 系统错误，尝试重新调用。
-
-## 16000086 传入的context不是UIAbilityContext
-
-**错误信息**
-
-The context is not UIAbilityContext.
-
-**错误描述**
-
-传入的context不是UIAbilityContext。
-
-**可能原因**
-
-传入的Context对象既不是UIAbilityContext、也没有继承自UIAbilityContext。
-
-**处理步骤**
-
-使用UIAbilityContext对象或者继承了UIAbilityContext类的对象作为入参。
-
-## 16000090 调用方不是原子化服务
-
-**错误信息**
-
-The caller is not an atomic service.
-
-**错误描述**
-
-调用方不是原子化服务。
-
-**可能原因**
-
-接口调用方不是原子化服务。
-
-**处理步骤**
-
-当前应用不支持调用该接口。
 
 ## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
 

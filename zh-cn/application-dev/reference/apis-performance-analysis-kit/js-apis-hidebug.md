@@ -1111,3 +1111,101 @@ hidebug.dumpJsRawHeapData().then((filePath: string) => {
   console.error(`error code: ${error.code}, error msg: ${error.message}`);
 })
 ```
+
+## hidebug.enableGwpAsanGrayscale<sup>20+</sup>
+
+enableGwpAsanGrayscale(options?: GwpAsanOptions, duration?: number): void
+
+使能GWP-Asan，用于检测堆内存使用中的非法行为。
+
+该接口主要用于动态配置并启用GWP-Asan，以适配应用自定义的GWP-Asan检测策略。配置在应用重新启动后生效。
+
+更多关于GWP-Asan的说明，请参见[使用GWP-Asan检测内存错误](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-gwpasan-detection)。
+
+> **说明**：
+> 
+> 1. 若设备运行期间已使能超过20个应用，调用该接口将会失败，并抛出错误码。
+> 2. 为避免应用异常退出，请务必使用try-catch捕获异常。
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**参数**：
+| 参数名   | 类型   | 必填 | 说明   |
+|---------|---------|--------|-----|
+|options | [GwpAsanOptions](#gwpasanoptions20) | 否 | GWP-Asan配置项。如果未进行设置，则会使用默认参数。|
+|duration | number | 否 | GWP-Asan持续时间，默认7天，需要传入大于0的正整数。|
+
+**错误码**：
+
+以下错误码的详细介绍请参见[HiDebug错误码](errorcode-hiviewdfx-hidebug.md)。
+
+| 错误码ID    | 错误信息 |
+|----------| ----------------------------------------------------------------- |
+| 11400114 | The number of GWP-ASAN applications of this device overflowed after last boot. |
+
+**示例**：
+
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let options: hidebug.GwpAsanOptions = {
+  alwaysEnabled: true,
+  sampleRate: 2500,
+  maxSimutaneousAllocations: 5000,
+};
+let duration: number = 4;
+
+try {
+  hidebug.enableGwpAsanGrayscale(options, duration);
+  console.info('Succeeded in enabling GWP-Asan.');
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`Failed to enable GWP-Asan. Code: ${err.code}, message: ${err.message}`);
+}
+```
+## GwpAsanOptions<sup>20+</sup>
+GWP-Asan配置项。可用于配置是否使能、采样频率，以及最大分配的插槽数。
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 名称         | 类型  | 只读  | 可选 | 说明 |
+|--------------|------|-------|-------|-----|
+|alwaysEnabled | bool | 否  | 是 | true：100%使能GWP-Asan。<br/>false：1/128概率使能GWP-Asan。<br/> 默认值：false。|
+|sampleRate    |number| 否  |是|GWP-Asan采样频率，默认值为2500，需要传入大于0的正整数，若传入小数则向上取整。<br/> 1/sampleRate的概率对分配的内存进行采样。|
+|maxSimutaneousAllocations|number|否|是|最大分配的插槽数，默认值为1000，需要传入大于0的正整数，若传入小数则向上取整。<br/>当插槽用尽时，新分配的内存将不再受监控。<br/>释放已使用的内存后，其占用的插槽将自动复用，以便于后续内存的监控。|
+
+## hidebug.disableGwpAsanGrayscale<sup>20+</sup>
+disableGwpAsanGrayscale(): void
+
+停止使能GWP-Asan。调用该接口将取消自定义配置，恢复默认参数[GwpAsanOptions](#gwpasanoptions20)。
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**示例**：
+
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+hidebug.disableGwpAsanGrayscale();
+```
+
+## hidebug.getGwpAsanGrayscaleState<sup>20+</sup>
+getGwpAsanGrayscaleState(): number
+
+获取当前GWP-Asan剩余使能天数。
+
+**返回值**：
+
+| 类型 | 说明 |
+|-----------|-------------|
+| number    |获取当前GWP-Asan剩余使能天数。若当前未使能，返回值0。|
+
+**示例**：
+
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let remainDays: number = hidebug.getGwpAsanGrayscaleState();
+console.info(`remainDays: ${remainDays}`);
+```

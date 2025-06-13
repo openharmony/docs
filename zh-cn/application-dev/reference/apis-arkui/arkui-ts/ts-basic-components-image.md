@@ -12,7 +12,7 @@ Image为图片组件，常用于在应用中显示图片。Image支持加载[Pix
 >
 > 动图的播放依赖于Image节点的可见性变化，其默认行为是不播放的。当节点可见时，通过回调启动动画，当节点不可见时，停止动画。可见性状态的判断是通过[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)事件触发的，当可见阈值ratios大于0时，表明Image处于可见状态。
 >
->如果图片加载过程中出现白色块，请参考[Image白块问题解决方案](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-image-white-lump-solution)。如果图片加载时间过长，请参考按照步骤[优化应用预置图片资源加载耗时问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-texture-compression-improve-performance)。
+>如果图片加载过程中出现白色块，请参考[Image白块问题解决方案](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-image-white-lump-solution)。如果图片加载时间过长，请参考[优化应用预置图片资源加载耗时问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-texture-compression-improve-performance)。
 
 ## 需要权限
 
@@ -649,10 +649,6 @@ svg类型图源不支持该属性。
 | RIGHT | 2 | 将当前图片顺时针旋转90度后显示。 |
 | DOWN | 3 | 将当前图片顺时针旋转180度后显示。 |
 | LEFT | 4 | 将当前图片顺时针旋转270度后显示。 |
-| UP_MIRRORED<sup>20+</sup> | 5 | 将当前图片水平翻转后显示。 |
-| RIGHT_MIRRORED<sup>20+</sup> | 6 | 将当前图片水平翻转再顺时针旋转90度后显示。 |
-| DOWN_MIRRORED<sup>20+</sup> | 7 | 将当前图片垂直翻转后显示。 |
-| LEFT_MIRRORED<sup>20+</sup> | 8 | 将当前图片水平翻转再顺时针旋转270度后显示。 |
 
 ## ImageSourceSize<sup>18+</sup>对象说明
 
@@ -884,7 +880,7 @@ type BusinessError\<T> = BusinessError\<T>
 
 ### 示例1（加载基本类型图片）
 
-加载png、gif、svg和jpg等基本类型的图片。
+该示例通过传入[Resource](ts-types.md#resource)资源，加载png、gif、svg和jpg等基本类型的图片。
 
 ```ts
 @Entry
@@ -985,7 +981,7 @@ struct ImageExample2 {
 
 ### 示例3（为图片添加事件）
 
-为图片添加onClick和onFinish事件。
+该示例为图片添加[onClick](ts-universal-events-click.md#onclick)和[onFinish](#onfinish)事件。
 
 ```ts
 @Entry
@@ -1023,7 +1019,7 @@ struct ImageExample3 {
 
 ### 示例4（开启图像AI分析）
 <!--RP2-->
-使用enableAnalyzer接口开启图像AI分析。
+该示例使用[enableAnalyzer](#enableanalyzer11)接口开启图像AI分析。
 
 ```ts
 import { image } from '@kit.ImageKit';
@@ -1077,7 +1073,7 @@ struct ImageExample4 {
 <!--RP2End-->
 ### 示例5（通过slice拉伸图片）
 
-调整不同方向对图片进行拉伸。
+该示例通过[resizable](#resizable11)属性的slice选项，调整不同方向对图片进行拉伸。
 
 ```ts
 @Entry
@@ -1144,7 +1140,7 @@ struct Index {
 
 ### 示例6（通过lattice拉伸图片）
 
-使用矩形网格对象对图片进行拉伸。
+该示例使用[resizable](#resizable11)属性的lattice选项，使用矩形网格对象对图片进行拉伸。
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
@@ -1188,7 +1184,7 @@ struct drawingLatticeTest {
 
 ### 示例7（播放PixelMap数组动画）
 
-该示例通过[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)播放PixelMap数组动画。
+该示例通过[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)对象播放PixelMap数组动画。
 
 ```ts
 import {AnimationOptions, AnimatedDrawableDescriptor} from '@kit.ArkUI';
@@ -1270,7 +1266,7 @@ struct ImageExample {
 
 ### 示例8（为图像设置颜色滤镜效果）
 
-该示例通过[colorFilter](#colorfilter9)实现了给图像设置颜色滤镜效果。
+该示例通过[colorFilter](#colorfilter9)属性实现了给图像设置颜色滤镜效果。
 
 ```ts
 import { drawing, common2D } from '@kit.ArkGraphics2D';
@@ -1321,7 +1317,7 @@ struct ImageExample3 {
 
 ### 示例9（为图像设置填充效果）
 
-该示例通过[objectFit](#objectfit)为图像设置填充效果。
+该示例通过[objectFit](#objectfit)属性为图像设置填充效果。
 
 ```ts
 @Entry
@@ -1368,7 +1364,7 @@ struct ImageExample{
 
 ### 示例10（切换显示不同类型图片）
 
-该示例展示了ResourceStr类型与ImageContent类型作为数据源的显示图片效果。
+该示例展示了[ResourceStr](ts-types.md#resourcestr)类型与[ImageContent](#imagecontent12)类型作为数据源的显示图片效果。
 
 ```ts
 @Entry
@@ -1397,7 +1393,7 @@ struct ImageContentExample {
 
 ### 示例11（配置隐私隐藏）
 
-该示例通过[privacySensitive](#privacysensitive12)展示了如何配置隐私隐藏，效果展示需要卡片框架支持。
+该示例通过[privacySensitive](#privacysensitive12)属性展示了如何配置隐私隐藏，效果展示需要卡片框架支持。
 
 ```ts
 @Entry
@@ -1421,7 +1417,7 @@ struct ImageExample {
 
 ### 示例12（为图片设置扫光效果）
 
-该示例通过[linearGradient](./ts-basic-components-datapanel.md#lineargradient10)接口和[animateTo()](./ts-explicit-animation.md)实现了给图片设置扫光效果。
+该示例通过[linearGradient](./ts-basic-components-datapanel.md#lineargradient10)接口和[animateTo()](./ts-explicit-animation.md)接口实现了给图片设置扫光效果。
 
 ```ts
 import { curves } from '@kit.ArkUI';
@@ -1657,7 +1653,7 @@ struct Index {
 
 ### 示例17（设置SVG图片的填充颜色）
 
-该示例通过[fillColor](#fillcolor15)为SVG图片设置不同颜色的填充效果。
+该示例通过[fillColor](#fillcolor15)属性为SVG图片设置不同颜色的填充效果。
 
 ```ts
 @Entry
@@ -1703,7 +1699,7 @@ struct Index {
 
 ### 示例18（设置HDR图源动态提亮）
 
-该示例通过[hdrBrightness](#hdrbrightness19)调整HDR图源的亮度，将hdrBrightness从0调整到1。
+该示例通过[hdrBrightness](#hdrbrightness19)属性调整HDR图源的亮度，将hdrBrightness从0调整到1。
 
 ```ts
 import { image } from '@kit.ImageKit';
@@ -1780,88 +1776,3 @@ struct Index {
 ```
 
 ![matchTextDirection](figures/matchTextDirection.png)
-
-### 示例20（设置图像内容的显示方向）
-
-该示例通过[orientation](#orientation14)属性，设置图像内容的显示方向。
-
-```ts
-@Entry
-@Component
-struct OrientationExample {
-  build() {
-    Column() {
-      Row({ space: 25 }) {
-        Column() {
-          Text('AUTO')
-          Image($r('app.media.hello'))
-            .width(125).height(125)
-            .orientation(ImageRotateOrientation.AUTO)
-        }
-
-        Column() {
-          Text('UP')
-          Image($r('app.media.hello'))
-            .width(125).height(125)
-            .orientation(ImageRotateOrientation.UP)
-        }
-
-        Column() {
-          Text('RIGHT')
-          Image($r('app.media.hello'))
-            .width(125).height(125)
-            .orientation(ImageRotateOrientation.RIGHT)
-        }
-      }
-
-      Row({ space: 25 }) {
-        Column() {
-          Text('DOWN')
-          Image($r('app.media.hello'))
-            .width(125).height(125)
-            .orientation(ImageRotateOrientation.DOWN)
-        }
-
-        Column() {
-          Text('LEFT')
-          Image($r('app.media.hello'))
-            .width(125).height(125)
-            .orientation(ImageRotateOrientation.LEFT)
-        }
-
-        Column() {
-          Text('UP_MIRRORED')
-          Image($r('app.media.hello'))
-            .width(125).height(125)
-            .orientation(ImageRotateOrientation.UP_MIRRORED)
-        }
-      }
-
-      Row({ space: 15 }) {
-        Column() {
-          Text('RIGHT_MIRRORED')
-          Image($r('app.media.hello'))
-            .width(125).height(125)
-            .orientation(ImageRotateOrientation.RIGHT_MIRRORED)
-        }
-
-        Column() {
-          Text('DOWN_MIRRORED')
-          Image($r('app.media.hello'))
-            .width(125).height(125)
-            .orientation(ImageRotateOrientation.DOWN_MIRRORED)
-        }
-
-        Column() {
-          Text('LEFT_MIRRORED')
-          Image($r('app.media.hello'))
-            .width(125).height(125)
-            .orientation(ImageRotateOrientation.LEFT_MIRRORED)
-        }
-      }
-    }
-  }
-}
-```
-
-![matchTextDirection](figures/orientation.png)

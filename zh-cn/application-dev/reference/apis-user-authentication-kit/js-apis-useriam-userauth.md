@@ -507,7 +507,7 @@ start(): void
 
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
-| 201      | Permission verification failed.                  |
+| 201      | Permission verification failed. Possible causes:1.No permission to access biometric. 2.No permission to start authentication from background.|
 | 401      | Incorrect parameters. Possible causes: 1.Incorrect parameter types. |
 | 12500001 | Authentication failed.                           |
 | 12500002 | General operation error.                         |

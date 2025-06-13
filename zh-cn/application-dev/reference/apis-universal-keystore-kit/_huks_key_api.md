@@ -145,7 +145,7 @@ struct OH_Huks_Result OH_Huks_DeleteKeyItem (const struct OH_Huks_Blob * keyAlia
 | 名称 | 描述 | 
 | -------- | -------- |
 | keyAlias | 待删除密钥的别名，应与密钥生成时使用的别名相同。  | 
-| paramSet | 删除密钥需要属性参数。 若不指定则默认要删除的密钥存储等级为[OH_HUKS_AUTH_STORAGE_LEVEL_CE](_huks_type_api.md#OH_Huks_AuthStorageLevel)。 | 
+| paramSet | 删除密钥需要属性参数。 若不指定则默认要删除的密钥存储等级为[OH_HUKS_AUTH_STORAGE_LEVEL_CE](_huks_type_api.md#oh_huks_authstoragelevel)。 | 
 
 **返回：**
 

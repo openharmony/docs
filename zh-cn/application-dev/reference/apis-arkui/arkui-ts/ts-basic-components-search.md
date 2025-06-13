@@ -694,22 +694,6 @@ stopBackPress(isStopped: Optional\<boolean>)
 | ------ | ------- | ---- | ---------------------------------- |
 | isStopped | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否阻止返回键。<br/>true表示阻止返回键向其它组件或应用侧传递，false表示不阻止。<br />默认值：true |
 
-### enableAutoSpacing<sup>20+</sup>
-
-enableAutoSpacing(enable: Optional\<boolean>)
-
-设置是否开启中文与西文的自动间距。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明                               |
-| ------ | ------- | ---- | ---------------------------------- |
-| enable | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
-
 ## IconOptions<sup>10+</sup>对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -1928,6 +1912,8 @@ struct SearchExample {
 
 ```ts
 // xxx.ets
+import { LengthMetrics } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct SearchExample {
@@ -1936,18 +1922,24 @@ struct SearchExample {
       Column() {
         Text('stroke feature').fontSize(9).fontColor(0xCCCCCC)
 
-        Search({value: 'This is the text without stroke setting'})
-          .width('80%').height(90).borderWidth(1)
+        Search({ value: 'This is the text without stroke setting' })
+          .width('80%')
+          .height(90)
+          .borderWidth(1)
           .minFontSize(60)
           .maxFontSize(60)
-        Search({value: 'This is the text with the stroke setting'})
-          .width('80%').height(90).borderWidth(1)
+        Search({ value: 'This is the text with the stroke setting' })
+          .width('80%')
+          .height(90)
+          .borderWidth(1)
           .minFontSize(60)
           .maxFontSize(60)
           .strokeWidth(LengthMetrics.px(-3.0))
           .strokeColor(Color.Red)
-        Search({value: 'This is the text with the stroke setting'})
-          .width('80%').height(90).borderWidth(1)
+        Search({ value: 'This is the text with the stroke setting' })
+          .width('80%')
+          .height(90)
+          .borderWidth(1)
           .minFontSize(60)
           .maxFontSize(60)
           .strokeWidth(LengthMetrics.px(3.0))
@@ -1961,30 +1953,3 @@ struct SearchExample {
 ```
 
 ![searchSetStroke](figures/searchSetStroke.png)
-
-### 示例21（设置中西文自动间距）
-
-该示例通过enableAutoSpacing属性设置中西文自动间距。
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct SearchExample {
-  build() {
-    Row() {
-      Column() {
-        Text('开启中西文自动间距').margin(5)
-        Search({value: '中西文Auto Spacing自动间距'})
-          .enableAutoSpacing(true)
-        Text('关闭中西文自动间距').margin(5)
-        Search({value: '中西文Auto Spacing自动间距'})
-          .enableAutoSpacing(false)
-      }.height('100%')
-    }
-    .width('60%')
-  }
-}
-```
-
-![searchEnableAutoSpacing](figures/searchEnableAutoSpacing.png)

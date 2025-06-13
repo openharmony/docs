@@ -836,6 +836,22 @@ selectedOptionTextModifier(modifier: Optional\<[TextModifier](ts-universal-attri
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 设置下拉菜单项选中项的文本样式。<br/>开发者可以根据需要管理和维护文本的样式进行设置。 |
 
+### showInSubWindow<sup>20+</sup>
+
+showInSubWindow(showInSubWindow:Optional\<boolean>)
+
+设置Select的Menu是否显示在子窗中。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| showInSubWindow  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 设置Select的Menu是否显示在子窗中。<br>true代表Select的Menu显示在子窗中，仅对2in1设备生效。<br>false代表Select的Menu不显示在子窗中。<br>默认值：2in1设备为true，其他设备为false。 |
+
 ## ArrowPosition<sup>10+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -933,7 +949,7 @@ onSelect(callback: Optional\<OnSelectCallback> )
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnSelectCallback](#onselectcallback16)> | 是   | 下拉菜单选中某一项的回调。<br/>当callback的值为undefined时，不使用回调函数。 |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnSelectCallback](#onselectcallback18)> | 是   | 下拉菜单选中某一项的回调。<br/>当callback的值为undefined时，不使用回调函数。 |
 
 ## OnSelectCallback<sup>18+</sup>
 
@@ -951,22 +967,6 @@ type OnSelectCallback = (index: number, selectStr: string) => void
 | ------ | ------ | ---- | -------------- |
 | index  | number | 是   | 选中项的索引，索引值从0开始。 |
 | selectStr | string | 是   | 选中项的值。   |
-
-## showInSubWindow<sup>20+</sup>
-
-showInSubWindow(showInSubWindow:Optional\<boolean>)
-
-设置Select的Menu是否显示在子窗中。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型   | 必填 | 说明           |
-| ------ | ------ | ---- | -------------- |
-| showInSubWindow  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 设置Select的Menu是否显示在子窗中。<br>true代表Select的Menu显示在子窗中，仅对2in1设备生效。<br>false代表Select的Menu不显示在子窗中。<br>默认值：2in1设备为true，其他设备为false。 |
 
 ##  示例1（设置下拉菜单）
 
@@ -1366,3 +1366,31 @@ struct SelectExample {
 
 ```
 ![](figures/SelectOptionModifier.png)
+
+## 示例8（设置分割线模式）
+
+该示例通过配置dividerStyle的mode属性设置分割线模式。
+
+```ts
+import { LengthMetrics } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Select([{ value: "SelectItem" }, { value: "SelectItem" }, { value: "SelectItem" },])
+        .value("请选择")
+        .dividerStyle({
+          strokeWidth: LengthMetrics.vp(5),
+          color: '#d5d5d5',
+          mode: DividerMode.EMBEDDED_IN_MENU
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![dividerStyleMode](figures/SelectdividerStyleMode.png)

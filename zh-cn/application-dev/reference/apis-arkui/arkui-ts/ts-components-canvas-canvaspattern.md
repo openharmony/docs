@@ -12,7 +12,7 @@
 
 setTransform(transform?: Matrix2D): void
 
-使用Matrix2D对象作为参数、对当前CanvasPattern进行矩阵变换。
+使用Matrix2D对象作为参数，对当前CanvasPattern进行矩阵变换。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -24,7 +24,7 @@ setTransform(transform?: Matrix2D): void
 
 | 参数名      | 类型  | 必填 | 说明   |
 | --------- | -------------- | ------ | ---------- |
-| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 否  | 转换矩阵。<br>默认值：null |
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md#matrix2d) | 否  | 转换矩阵。<br>默认值：null |
 
 ## 示例
 

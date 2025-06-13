@@ -31,7 +31,7 @@
 | backgroundEffect<sup>19+</sup> | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | 否 | 背景效果参数。默认值请参考BackgroundEffectOptions类型说明。<br />**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 | onWillDismiss<sup>12+</sup>       | Callback<[DismissDialogAction](#dismissdialogaction12)> | 否   | 交互式关闭回调函数。<br/>**说明：**<br/>1.当用户执行点击遮障层关闭、侧滑（左滑/右滑）、三键back、键盘ESC关闭交互操作时，如果注册该回调函数，则不会立刻关闭弹窗。在回调函数中可以通过reason得到阻拦关闭弹窗的操作类型，从而根据原因选择是否能关闭弹窗。当前组件返回的reason中，暂不支持CLOSE_BUTTON的枚举值。<br/>2.在onWillDismiss回调中，不能再做onWillDismiss拦截。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | cornerRadius<sup>12+</sup>        | &nbsp;[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9)&nbsp;\|&nbsp;[LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | 否   | 设置背板的圆角半径。<br />可分别设置4个圆角的半径。<br />默认值：{ topLeft: '32vp', topRight: '32vp', bottomLeft: '32vp', bottomRight: '32vp' }<br /> 圆角大小受组件尺寸限制，最大值为组件宽或高的一半，若值为负，则按照默认值处理。 <br /> 百分比参数方式：以父元素弹窗宽和高的百分比来设置弹窗的圆角。<br/>**说明：**<br/>当cornerRadius属性类型为LocalizedBorderRadiuses时，支持随语言习惯改变布局顺序。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| transition<sup>12+</sup>          | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10) | 否   | 设置弹窗显示和退出的过渡效果。<br/>**说明：**<br/> 1.如果不设置，则使用默认的显示/退出动效。<br/> 2.显示动效中按back键，打断显示动效，执行退出动效，动画效果为显示动效与退出动效的曲线叠加后的效果。<br/> 3.退出动效中按back键，不会打断退出动效，退出动效继续执行，继续按back键退出应用。                               <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| transition<sup>12+</sup>          | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否   | 设置弹窗显示和退出的过渡效果。<br/>**说明：**<br/> 1.如果不设置，则使用默认的显示/退出动效。<br/> 2.显示动效中按back键，打断显示动效，执行退出动效，动画效果为显示动效与退出动效的曲线叠加后的效果。<br/> 3.退出动效中按back键，不会打断退出动效，退出动效继续执行，继续按back键退出应用。                               <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | width<sup>12+</sup>               | [Dimension](ts-types.md#dimension10) | 否   | 设置弹窗背板的宽度。<br />**说明：**<br>- 弹窗宽度默认最大值：400vp。<br />- 百分比参数方式：弹窗参考宽度为所在窗口的宽度，在此基础上调小或调大。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | height<sup>12+</sup>              | [Dimension](ts-types.md#dimension10)                         | 否   | 设置弹窗背板的高度。<br />**说明：**<br />- 弹窗高度默认最大值：0.9 *（窗口高度 - 安全区域）。<br />- 百分比参数方式：弹窗参考高度为（窗口高度 - 安全区域），在此基础上调小或调大。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | borderWidth<sup>12+</sup>         | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeWidths](ts-types.md#edgewidths9)&nbsp;\|&nbsp;[LocalizedEdgeWidths](ts-types.md#localizededgewidths12) | 否   |可分别设置4个边框宽度。<br />默认值：0<br /> 百分比参数方式：以父元素弹窗宽的百分比来设置弹窗的边框宽度。<br />当弹窗左边框和右边框大于弹窗宽度，弹窗上边框和下边框大于弹窗高度，显示可能不符合预期。<br/>**说明：**<br/>当borderWidth属性类型为LocalizedEdgeWidths时，支持随语言习惯改变布局顺序。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
@@ -634,3 +634,59 @@ struct AlertDialogExample {
 ```
 
 ![zh-cn_image_alert](figures/zh-cn_image_alert_hovermode.gif)
+
+### 示例6（弹窗生命周期）
+
+该示例展示了弹窗生命周期的相关接口的使用方法。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Example2 {
+  @State log:string = 'Log information:';
+
+  build() {
+    Column({ space: 5 }) {
+      Button('AlertDialog')
+        .onClick(() => {
+          AlertDialog.show({
+            title: 'AlertDialog',
+            message: 'message',
+            autoCancel: true,
+            alignment: DialogAlignment.Bottom,
+            offset: { dx: 0, dy: -20 },
+            confirm: {
+              value: 'button',
+              action: () => {
+                console.info('AlertDialog Button-clicking callback')
+              }
+            },
+            cancel: () => {
+              console.info('Closed callbacks')
+            },
+            onDidAppear: () => {
+              this.log += '# onDidAppear'
+              console.info("AlertDialog,is onDidAppear!")
+            },
+            onDidDisappear: () => {
+              this.log += '# onDidDisappear'
+              console.info("AlertDialog,is onDidDisappear!")
+            },
+            onWillAppear: () => {
+              this.log = 'Log information:onWillAppear'
+              console.info("AlertDialog,is onWillAppear!")
+            },
+            onWillDisappear: () => {
+              this.log += '# onWillDisappear'
+              console.info("AlertDialog,is onWillDisappear!")
+            }
+          })
+        }).backgroundColor(0x317aff).height("88px")
+      Text(this.log).fontSize(30).margin({ top: 200 })
+    }.width('100%').margin({ top: 5 }).justifyContent(FlexAlign.SpaceAround)
+  }
+}
+```
+
+![zh-cn_image_alert_lifecycle](figures/zh-cn_image_alert_lifecycle.gif)

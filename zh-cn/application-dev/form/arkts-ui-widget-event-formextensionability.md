@@ -62,7 +62,7 @@
   }
   ```
   
-- 在FormExtensionAbility的onFormEvent生命周期中调用[updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform)接口刷新卡片。
+- 在FormExtensionAbility的onFormEvent生命周期中调用[updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderupdateform)接口刷新卡片。
   
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';

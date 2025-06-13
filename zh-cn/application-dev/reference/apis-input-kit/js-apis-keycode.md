@@ -24,7 +24,6 @@ import { KeyCode } from '@kit.InputKit';
 | KEYCODE_UNKNOWN                  |  -1 | 未知按键。                        |
 | KEYCODE_HOME                     |  1 | 功能（Home）键。                  |
 | KEYCODE_BACK                     |  2 | 返回键。                         |
-| KEYCODE_HEADSETHOOK<sup>20+</sup>              |  6 | 有线耳机播放/暂停键。                         |
 | KEYCODE_SEARCH<sup>13+</sup> | 9 | 搜索键。 |
 | KEYCODE_MEDIA_PLAY_PAUSE        |  10 | 多媒体键：播放/暂停。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
 | KEYCODE_MEDIA_STOP               |  11 | 多媒体键：停止。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
@@ -365,6 +364,6 @@ import { KeyCode } from '@kit.InputKit';
 | KEYCODE_BTN_7                    |  3107 | 按键7。                         |
 | KEYCODE_BTN_8                    |  3108 | 按键8。                         |
 | KEYCODE_BTN_9                    |  3109 | 按键9。                         |
-| KEYCODE_DAGGER_CLICK<sup>18+</sup> | 3211 | 智能手表dagger单击键。 |
-| KEYCODE_DAGGER_DOUBLE_CLICK<sup>18+</sup> | 3212 | 智能手表dagger双击键。 |
-| KEYCODE_DAGGER_LONG_PRESS<sup>18+</sup> | 3213 | 智能手表dagger长按键。 |
+| KEYCODE_DAGGER_CLICK<sup>18+</sup> | 3211 | 智能手表智感窗按键单击。 |
+| KEYCODE_DAGGER_DOUBLE_CLICK<sup>18+</sup> | 3212 | 智能手表智感窗按键双击。 |
+| KEYCODE_DAGGER_LONG_PRESS<sup>18+</sup> | 3213 | 智能手表智感窗按键长按。 |

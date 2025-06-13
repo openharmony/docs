@@ -198,11 +198,9 @@
       - [metadata](js-apis-bundleManager-metadata.md)
       - [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)
       - [Skill](js-apis-bundleManager-skill.md)
-      - [shortcutInfo](js-apis-bundleManager-shortcutInfo.md)
       <!--Del-->
       - [ApplicationInfo (系统接口)](js-apis-bundleManager-ApplicationInfo-sys.md)
       - [AppProvisionInfo (系统接口)](js-apis-bundleManager-AppProvisionInfo-sys.md)
-      - [BundleInfo (系统接口)](js-apis-bundleManager-BundleInfo-sys.md)
       - [BundlePackInfo (系统接口)](js-apis-bundleManager-BundlePackInfo-sys.md)
       - [BundleResourceInfo (系统接口)](js-apis-bundleManager-BundleResourceInfo-sys.md)
       - [BusinessAbilityInfo (系统接口)](js-apis-bundleManager-businessAbilityInfo-sys.md)
@@ -212,6 +210,7 @@
       - [recoverableApplicationInfo (系统接口)](js-apis-bundleManager-recoverableApplicationInfo-sys.md)
       - [remoteAbilityInfo (系统接口)](js-apis-bundleManager-remoteAbilityInfo-sys.md)
       - [SharedBundleInfo (系统接口)](js-apis-bundleManager-sharedBundleInfo-sys.md)
+      - [shortcutInfo (系统接口)](js-apis-bundleManager-shortcutInfo-sys.md)
       <!--DelEnd-->
     - continuation<!--continuation-->
       - [continuationExtraParams](js-apis-continuation-continuationExtraParams.md)

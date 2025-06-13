@@ -12,7 +12,7 @@
 
 ## 音频场景模式
 
-应用使用音频通话相关功能时，系统会切换至与通话相关的音频场景模式（[AudioScene](../../reference/apis-audio-kit/js-apis-audio.md#audioscene8)），当前预置了多种音频场景，包括响铃、通话、语音聊天等，在不同的场景下，系统会采用不同的策略来处理音频。
+应用使用音频通话相关功能时，系统会切换至与通话相关的音频场景模式（[AudioScene](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audioscene8)），当前预置了多种音频场景，包括响铃、通话、语音聊天等，在不同的场景下，系统会采用不同的策略来处理音频。
 <!--Del-->
 如在蜂窝通话场景中会更注重人声的清晰度。系统会使用3A算法对音频数据进行预处理，抑制通话回声，消除背景噪音，调整音量范围，从而达到清晰人声的效果。3A算法，指声学回声消除（Acoustic Echo Cancellation, AEC）、背景噪声抑制（Active Noise Control, ANC）、自动增益控制（Automatic Gain Control, AGC）三种音频处理算法。<!--DelEnd-->
 
@@ -26,11 +26,11 @@
 
 - AUDIO_SCENE_VOICE_CHAT：语音聊天音频场景，VoIP通话时使用。
 
-应用可通过[AudioManager](../../reference/apis-audio-kit/js-apis-audio.md#audiomanager)的getAudioScene来获取当前的音频场景模式。当应用开始或结束使用音频通话相关功能时，可通过此方法检查系统是否已切换为合适的音频场景模式。
+应用可通过[AudioManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioManager.md)的getAudioScene来获取当前的音频场景模式。当应用开始或结束使用音频通话相关功能时，可通过此方法检查系统是否已切换为合适的音频场景模式。
 
 ## 铃声模式
 
-在用户进入到音频通话时，应用可以使用铃声或振动来提示用户。系统通过调整铃声模式（[AudioRingMode](../../reference/apis-audio-kit/js-apis-audio.md#audioringmode)），实现便捷地管理铃声音量，并调整设备的振动模式。
+在用户进入到音频通话时，应用可以使用铃声或振动来提示用户。系统通过调整铃声模式（[AudioRingMode](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audioringmode)），实现便捷地管理铃声音量，并调整设备的振动模式。
 
 当前预置的三种铃声模式：
 
@@ -40,7 +40,7 @@
 
 - RINGER_MODE_NORMAL：响铃模式，此模式下铃声音量正常。
 
-应用可以调用[AudioVolumeGroupManager](../../reference/apis-audio-kit/js-apis-audio.md#audiovolumegroupmanager9)中的getRingerMode获取当前的铃声模式，以便采取合适的提示策略。
+应用可以调用[AudioVolumeGroupManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioVolumeGroupManager.md)中的getRingerMode获取当前的铃声模式，以便采取合适的提示策略。
 
 如果应用希望及时获取铃声模式的变化情况，可以通过AudioVolumeGroupManager中的on('ringerModeChange')监听铃声模式变化事件，使应用在铃声模式发生变化时及时收到通知，方便应用做出相应的调整。
 

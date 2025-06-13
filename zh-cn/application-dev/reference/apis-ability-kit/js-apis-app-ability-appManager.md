@@ -686,7 +686,7 @@ killProcessesByBundleName(bundleName: string, clearPageStack: boolean, appIndex?
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 表示Bundle名称。 |
 | clearPageStack | boolean | 是 | 表示是否清除页面堆栈。true表示清除，false表示不清除。 |
-| appIndex | number | 否 | 应用分身Id。 |
+| appIndex | number | 否 | 应用分身Id，默认值为0。取值为0时，表示终止主应用的所有进程。取值大于0时，表示终止指定分身应用的所有进程。 |
 
 **返回值：**
 

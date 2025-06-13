@@ -1480,8 +1480,8 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileScript (JSVM_Env env, JSVM_Value script, 
 | script | 包含要编译的脚本的JavaScript代码。 | 
 | cachedData | 可选。脚本的代码缓存数据。 | 
 | cacheDataLength | cachedData数组的长度。 | 
-| eagerCompile | 是否立即编译脚本。 | 
-| cacheRejected | 代码缓存是否被编译拒绝。 | 
+| eagerCompile | 是否立即编译脚本，取值为true表示立即编译脚本，取值为false表示非立即编译脚本。 | 
+| cacheRejected | 代码缓存是否被编译拒绝，取值为true表示缓存被拒绝，取值为false表示缓存被接受。 | 
 | result | 编译后的脚本。 | 
 
 **返回：**
@@ -1544,8 +1544,8 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileScriptWithOrigin (JSVM_Env env, JSVM_Valu
 | script | 包含要编译的脚本的JavaScript代码。 | 
 | cachedData | 可选。脚本的代码缓存数据。 | 
 | cacheDataLength | cachedData数组的长度。 | 
-| eagerCompile | 是否立即编译脚本。 | 
-| cacheRejected | 代码缓存是否被编译拒绝。 | 
+| eagerCompile | 是否立即编译脚本，取值为true表示立即编译脚本，取值为false表示非立即编译脚本。 | 
+| cacheRejected | 代码缓存是否被编译拒绝，取值为true表示缓存被拒绝，取值为false表示缓存被接受。 | 
 | origin | 源代码信息，包括 source map 的位置和源代码文件名等信息 | 
 | result | 编译后的脚本。 | 
 

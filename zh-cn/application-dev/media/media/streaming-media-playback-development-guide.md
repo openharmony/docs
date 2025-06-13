@@ -14,7 +14,7 @@
 
 ## 开发步骤
 
-创建AVPlayer、设置播放资源和窗口、设置播放参数（音量/倍速/缩放模式）、进行播放控制（播放/暂停/跳转/停止）、重置资源、销毁资源。应用开发时，开发者可通过AVPlayer的state属性主动获取当前状态，或使用on('stateChange')方法监听状态变化。视频播放器处于错误状态时执行操作，可能导致异常或未定义行为。状态详细参见[AVPlayerState](../../reference/apis-media-kit/js-apis-media.md#avplayerstate9)。具体步骤如下：
+创建AVPlayer、设置播放资源和窗口、设置播放参数（音量/倍速/缩放模式）、进行播放控制（播放/暂停/跳转/停止）、重置资源、销毁资源。应用开发时，开发者可通过AVPlayer的state属性主动获取当前状态，或使用on('stateChange')方法监听状态变化。视频播放器处于错误状态时执行操作，可能导致异常或未定义行为。状态详细参见[AVPlayerState](../../reference/apis-media-kit/arkts-apis-media-t.md#avplayerstate9)。具体步骤如下：
 
 1. 创建实例createAVPlayer()，初始化AVPlayer为idle状态。
 
@@ -60,7 +60,7 @@
 
 ### 流媒体缓冲状态
 
-当下载速率低于片源的码率时，会出现卡顿。此时，播放器检测到缓冲区数据不足，会先缓冲一些数据再播放，避免连续卡顿。一次卡顿对应的缓冲事件上报过程为：BUFFERING_START-> BUFFERING_PERCENT 0 -> ... -> BUFFERING_PERCENT 100 -> BUFFERING_END。CACHED_DURATION在卡顿过程和播放过程中都会持续上报，直至下载至资源末尾。详见[BufferingInfoType缓冲事件类型枚举](../../reference/apis-media-kit/js-apis-media.md#bufferinginfotype8)。
+当下载速率低于片源的码率时，会出现卡顿。此时，播放器检测到缓冲区数据不足，会先缓冲一些数据再播放，避免连续卡顿。一次卡顿对应的缓冲事件上报过程为：BUFFERING_START-> BUFFERING_PERCENT 0 -> ... -> BUFFERING_PERCENT 100 -> BUFFERING_END。CACHED_DURATION在卡顿过程和播放过程中都会持续上报，直至下载至资源末尾。详见[BufferingInfoType缓冲事件类型枚举](../../reference/apis-media-kit/arkts-apis-media-e.md#bufferinginfotype8)。
 
 监听当前bufferingUpdate缓冲状态示例代码：
 
@@ -74,7 +74,7 @@ this.avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value :
 
 当前流媒体HLS协议流支持多码率播放，默认情况下，播放器会根据网络下载速度选择合适的码率。
 
-1. 通过[on('availableBitrates')](../../reference/apis-media-kit/js-apis-media.md#onavailablebitrates9)监听当前HLS协议流可用的码率。如果监听的码率列表长度为0，则不支持设置指定码率。
+1. 通过[on('availableBitrates')](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#onavailablebitrates9)监听当前HLS协议流可用的码率。如果监听的码率列表长度为0，则不支持设置指定码率。
 
     ```ts
     // 创建avPlayer实例对象。
@@ -85,7 +85,7 @@ this.avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value :
     })
     ```
 
-2. 通过[setBitrate](../../reference/apis-media-kit/js-apis-media.md#setbitrate9)接口设置播放码率。若用户设置的码率不在可用码率中，播放器将选择最小且最接近的码率。该接口只能在prepared/playing/paused/completed状态下调用，可通过监听[bitrateDone](../../reference/apis-media-kit/js-apis-media.md#onbitratedone9)事件确认是否生效。
+2. 通过[setBitrate](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#setbitrate9)接口设置播放码率。若用户设置的码率不在可用码率中，播放器将选择最小且最接近的码率。该接口只能在prepared/playing/paused/completed状态下调用，可通过监听[bitrateDone](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#onbitratedone9)事件确认是否生效。
 
     ```ts
     // 创建avPlayer实例对象。
@@ -115,7 +115,7 @@ this.avPlayer.setMediaSource(mediaSource, playbackStrategy);
 
 DASH流媒体资源包含多路不同分辨率、码率、采样率、编码格式的音频、视频及字幕资源。默认情况下，AVPlayer会依据网络状况自动切换不同码率的视频轨道。开发者可根据需求选择指定的音视频轨道播放，此时自适应码率切换策略将失效。
 
-1. 设置selectTrack生效的监听事件[trackChange](../../reference/apis-media-kit/js-apis-media.md#ontrackchange12)。
+1. 设置selectTrack生效的监听事件[trackChange](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#ontrackchange12)。
 
     ```ts
     this.avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
@@ -123,7 +123,7 @@ DASH流媒体资源包含多路不同分辨率、码率、采样率、编码格�
     })
     ```
 
-2. 调用[getTrackDescription](../../reference/apis-media-kit/js-apis-media.md#gettrackdescription9)获取所有音视频轨道列表。开发者可根据实际需求，基于[MediaDescription](../../reference/apis-media-kit/js-apis-media.md#mediadescription8)各字段信息，确定目标轨道索引。
+2. 调用[getTrackDescription](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#gettrackdescription9)获取所有音视频轨道列表。开发者可根据实际需求，基于[MediaDescription](../../reference/apis-media-kit/arkts-apis-media-i.md#mediadescription8)各字段信息，确定目标轨道索引。
 
     ```ts
     // 以获取1080p视频轨道索引为例。
@@ -142,9 +142,9 @@ DASH流媒体资源包含多路不同分辨率、码率、采样率、编码格�
         console.error(`getTrackDescription fail, error:${error}`);
       }
     });
-    ```                   
+    ```
 
-3. 在音视频播放过程中调用[selectTrack](../../reference/apis-media-kit/js-apis-media.md#selecttrack12)选择对应的音视频轨道，或者调用[deselectTrack](../../reference/apis-media-kit/js-apis-media.md#deselecttrack12)取消选择的音视频轨道。
+3. 在音视频播放过程中调用[selectTrack](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#selecttrack12)选择对应的音视频轨道，或者调用[deselectTrack](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#deselecttrack12)取消选择的音视频轨道。
 
     ```ts
     // 切换至目标视频轨道。

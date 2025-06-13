@@ -27,6 +27,7 @@
     - [Class (WebSchemeHandlerRequest)](arkts-apis-webview-WebSchemeHandlerRequest.md)
     - [Class (WebSchemeHandlerResponse)](arkts-apis-webview-WebSchemeHandlerResponse.md)
     - [Class (WebStorage)](arkts-apis-webview-WebStorage.md)  
+    - [Interface (BackForwardList)](arkts-apis-webview-BackForwardList.md)
     - [Interface (NativeMediaPlayerBridge)](arkts-apis-webview-NativeMediaPlayerBridge.md)
     - [Interface (NativeMediaPlayerHandler)](arkts-apis-webview-NativeMediaPlayerHandler.md)
     - [Interface (WebMessagePort)](arkts-apis-webview-WebMessagePort.md)

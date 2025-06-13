@@ -545,11 +545,11 @@ while (flag) {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称     | 类型                | 可读   | 可写   | 说明          |
+| 名称     | 类型                | 只读   | 可选   | 说明          |
 | ------ | ------------------- | ---- | ---- | ----------- |
-| uuid   | string              | 是    | 是    | spp单据的uuid。 |
-| secure | boolean             | 是    | 是    | 是否是安全通道。true表示是安全通道，false表示非安全通道。    |
-| type   | [SppType](#spptype)            | 是    | 是    | Spp链路类型。    |
+| uuid   | string              | 否    | 否    | spp单据的uuid。 |
+| secure | boolean             | 否    | 否    | 是否是安全通道。true表示是安全通道，false表示非安全通道。    |
+| type   | [SppType](#spptype)            | 否    | 否    | Spp链路类型。    |
 
 
 ## SppType

@@ -2477,7 +2477,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 keyboardController.hide((err: BusinessError) => {
   if (err) {
-    console.error(`Failed to hide: ${JSON.stringify(err)}`);
+    console.error(`Failed to hide. Code:${err.code}, message:${err.message}`);
     return;
   }
   console.info('Succeeded in hiding keyboard.');
@@ -2514,7 +2514,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 keyboardController.hide().then(() => {
   console.info('Succeeded in hiding keyboard.');
 }).catch((err: BusinessError) => {
-  console.info(`Failed to hide: ${JSON.stringify(err)}`);
+  let error = err as BusinessError;
+  console.error(`Failed to hide. Code:${error.code}, message:${error.message}`);
 });
 ```
 
@@ -2610,7 +2611,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 keyboardController.exitCurrentInputType((err: BusinessError) => {
   if (err) {
-    console.error(`Failed to exitCurrentInputType: ${JSON.stringify(err)}`);
+    console.error(`Failed to exit current input type. Code:${err.code}, message:${err.message}`);
     return;
   }
   console.info('Succeeded in exiting current input type.');
@@ -2648,7 +2649,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 keyboardController.exitCurrentInputType().then(() => {
   console.info('Succeeded in exiting current input type.');
 }).catch((err: BusinessError) => {
-  console.info(`Failed to exit current input type: ${JSON.stringify(err)}`);
+  let error = err as BusinessError;
+  console.error(`Failed to exit current input type. Code:${error.code}, message:${error.message}`);
 });
 ```
 
@@ -4753,7 +4755,7 @@ try {
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -- | -------- |
 | NONE | 0 | 不进行任何首字母大写处理。|
 | SENTENCES | 1 | 每个句子的首字母大写。|

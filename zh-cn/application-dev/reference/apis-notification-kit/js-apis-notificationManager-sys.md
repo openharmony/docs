@@ -55,7 +55,7 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 | 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
+| 1600020  | The application is not allowed to send notifications due to permission settings. |
 | 2300007  | Network unreachable.                              |
 
 **示例：**
@@ -111,7 +111,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 | 类型     | 说明        | 
 | ------- |-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -134,7 +134,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 | 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
+| 1600020  | The application is not allowed to send notifications due to permission settings. |
 | 2300007  | Network unreachable.                              |
 
 **示例：**
@@ -239,7 +239,7 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 
 | 类型     | 说明        | 
 | ------- |-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -350,7 +350,7 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -462,7 +462,7 @@ setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -830,7 +830,7 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -998,7 +998,7 @@ setSlotFlagsByBundle(bundle: BundleOption, slotFlags: number): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -1120,7 +1120,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -1721,7 +1721,7 @@ removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -1835,7 +1835,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -1958,7 +1958,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -2381,7 +2381,7 @@ setDistributedEnable(enable: boolean): Promise\<void>
 
 | 类型              | 说明        | 
 |-----------------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -2495,7 +2495,7 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<vo
 
 | 类型              | 说明        | 
 |-----------------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -2778,7 +2778,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600012  | No memory space.                          |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
+| 1600020  | The application is not allowed to send notifications due to permission settings. |
 | 2300007  | Network unreachable.                              |
 
 **示例：**
@@ -2838,7 +2838,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 | 类型              | 说明        | 
 |-----------------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -2860,7 +2860,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600012  | No memory space.                          |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
+| 1600020  | The application is not allowed to send notifications due to permission settings. |
 | 2300007  | Network unreachable.                              |
 
 **示例：**
@@ -2915,7 +2915,7 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 
 | 类型              | 说明        | 
 |-----------------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -2937,7 +2937,7 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 | 1600012  | No memory space.                          |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
+| 1600020  | The application is not allowed to send notifications due to permission settings. |
 | 2300007  | Network unreachable.                              |
 
 **示例：**
@@ -3049,7 +3049,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 
 | 类型              | 说明        | 
 |-----------------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -3108,7 +3108,7 @@ cancelAsBundle(representativeBundle: BundleOption, id: number): Promise\<void\>
 
 | 类型              | 说明        | 
 |-----------------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -3165,7 +3165,7 @@ cancel(representativeBundle: BundleOption, id: number): Promise\<void\>
 
 | 类型              | 说明        | 
 |-----------------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -3345,7 +3345,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 | 类型     | 说明         |
 | ------- |------------|
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -3885,7 +3885,7 @@ triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOption
 
 | 类型 | 说明 |
 | ---- | ----|
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -3948,7 +3948,7 @@ subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>
 
 | 类型 | 说明 |
 | ---- | ----|
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4008,7 +4008,7 @@ setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: 
 
 | 类型 | 说明 |
 | ---- | ----|
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4131,7 +4131,7 @@ setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void\>
 
 | 类型 | 说明 |
 | ---- | ----|
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4243,7 +4243,7 @@ setBadgeNumberByBundle(bundle: BundleOption, badgeNumber: number): Promise\<void
 
 | 类型            | 说明                      |
 | --------------- | ------------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4365,7 +4365,7 @@ addDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void\>
 
 | 类型      | 说明        |
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4436,7 +4436,7 @@ removeDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void
 
 | 类型      | 说明        |
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4602,7 +4602,7 @@ disableNotificationFeature(disabled: boolean, bundleList: Array\<string\>): Prom
 
 | 类型            | 说明                     | 
 |-----------------|-------------------------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码**：
 
@@ -4660,7 +4660,7 @@ setTargetDeviceStatus(deviceType: string, status: number): Promise\<void\>
 
 | 类型            | 说明                     | 
 |-----------------|-------------------------|
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -4708,7 +4708,7 @@ setDistributedEnabledBySlot(slot: SlotType, deviceType: string, enabled: boolean
 
 | 类型            | 说明                     | 
 |-----------------|-------------------------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码**：
 

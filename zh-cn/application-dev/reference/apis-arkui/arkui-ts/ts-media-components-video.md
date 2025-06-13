@@ -5,7 +5,7 @@
 >  **说明：**
 >
 >  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。<br/>
->  Video组件只提供简单的视频播放功能，无法支撑复杂的视频播控场景。复杂开发场景推荐使用[AVPlayer播控API](../../apis-media-kit/js-apis-media.md#avplayer9)和[XComponent](ts-basic-components-xcomponent.md)组件开发。
+>  Video组件只提供简单的视频播放功能，无法支撑复杂的视频播控场景。复杂开发场景推荐使用[AVPlayer播控API](../../apis-media-kit/arkts-apis-media-AVPlayer.md)和[XComponent](ts-basic-components-xcomponent.md)组件开发。
 
 ## 权限列表
 
@@ -414,7 +414,7 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 ## VideoController
 
-一个VideoController对象可以控制一个或多个Video，可用视频播放实例请参考[@ohos.multimedia.media](../../apis-media-kit/js-apis-media.md)。
+一个VideoController对象可以控制一个或多个Video，可用视频播放实例请参考[@ohos.multimedia.media](../../apis-media-kit/arkts-apis-media.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -532,7 +532,7 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 | 参数名      | 类型     | 必填   | 说明           |
 | -------- | -------- | ---- | -------------- |
-| value    | number   | 是    | 视频播放进度位置，单位为s。 |
+| value    | number   | 是    | 视频播放进度位置，单位：秒。 |
 | seekMode | [SeekMode](#seekmode8枚举说明) | 是    | 跳转模式。          |
 
 ## SeekMode<sup>8+</sup>枚举说明
@@ -552,7 +552,7 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 ### 示例1（视频播放基础用法）
 
-基础用法，包括控制栏、预览图、自动播放、播放速度、响应快捷键、控制器（开始播放、暂停播放、停止播放、重置avPlayer、跳转等）、首帧送显以及一些状态回调方法。
+基础用法包括：控制栏、预览图、自动播放、播放速度、响应快捷键、控制器（开始播放、暂停播放、停止播放、重置avPlayer、跳转等）、首帧送显以及一些状态回调方法。
 
 ```ts
 // xxx.ets

@@ -2612,7 +2612,8 @@ async function testListAliases() {
 | HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST             | 12000013 | 缺失所需凭据。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core              |
 | HUKS_ERR_CODE_INSUFFICIENT_MEMORY              | 12000014 | 内存不足。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core                  |
 | HUKS_ERR_CODE_CALL_SERVICE_FAILED              | 12000015 | 调用其他系统服务失败。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core      |
-| HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET<sup>11+</sup>  | 12000016 | 需要锁屏密码但未设置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension     |
+| HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET<sup>12+</sup>  | 12000016 | 需要锁屏密码但未设置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension     |
+| HUKS_ERR_CODE_INVALID_ARGUMENT<sup>20+</sup>  | 12000018 | 输入参数非法。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core     |
 
 ## HuksKeyPurpose
 
@@ -2855,15 +2856,14 @@ API version 10-11系统能力为SystemCapability.Security.Huks.Extension；从AP
 
 表示用户认证类型。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Security.Huks.Extension
 
 | 名称                            | 值   | 说明                      |
 | ------------------------------- | ---- | ------------------------- |
-| HUKS_USER_AUTH_TYPE_FINGERPRINT | 1 << 0 | 表示用户认证类型为指纹。  |
-| HUKS_USER_AUTH_TYPE_FACE        | 1 << 1 | 表示用户认证类型为人脸。 |
-| HUKS_USER_AUTH_TYPE_PIN         | 1 << 2  | 表示用户认证类型为PIN码。 |
+| HUKS_USER_AUTH_TYPE_FINGERPRINT | 1 << 0 | 表示用户认证类型为指纹。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| HUKS_USER_AUTH_TYPE_FACE        | 1 << 1 | 表示用户认证类型为人脸。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| HUKS_USER_AUTH_TYPE_PIN         | 1 << 2  | 表示用户认证类型为PIN码。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| HUKS_USER_AUTH_TYPE_TUI_PIN<sup>20+</sup>         | 1 << 5  | 表示用户认证类型为TUI PIN码。<!--Del-->（当前暂不支持）<!--DelEnd--> |
 
 ## HuksUserAuthMode<sup>12+</sup>
 
@@ -2948,6 +2948,18 @@ API version 11系统能力为SystemCapability.Security.Huks.Extension；从API v
 | HUKS_AUTH_STORAGE_LEVEL_DE | 0    | 表示密钥仅在开机后可访问。 |
 | HUKS_AUTH_STORAGE_LEVEL_CE | 1    | 表示密钥仅在首次解锁后可访问。 |
 | HUKS_AUTH_STORAGE_LEVEL_ECE | 2    | 表示密钥仅在解锁状态时可访问。 |
+
+## HuksKeyWrapType<sup>20+</sup>
+
+表示密钥加密类型（加密导出或导入密钥）的枚举。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Core
+
+| 名称                           | 值   | 说明                                                         |
+| ------------------------------ | ---- | ------------------------------------------------------------ |
+| HUKS_KEY_WRAP_TYPE_HUK_BASED | 2    | 硬件唯一密钥加密类型。<!--Del-->（当前暂不支持）<!--DelEnd--> |
 
 ## HuksTagType
 

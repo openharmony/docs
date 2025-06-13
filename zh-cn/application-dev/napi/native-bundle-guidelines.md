@@ -79,7 +79,7 @@
     static napi_value GetCompatibleDeviceType(napi_env env, napi_callback_info info);
     static napi_value IsDebugMode(napi_env env, napi_callback_info info);
     static napi_value GetModuleMetadata(napi_env env, napi_callback_info info);
-3. 在src/main/cpp/napi_init.cpp文件中获取Native的包信息对象，并转为js的包信息对象，即可在js测获取应用的信息：
+3. 在src/main/cpp/napi_init.cpp文件中获取Native的包信息对象，并转为js的包信息对象，即可在js侧获取应用的信息：
 
     ```c++
     static napi_value GetCurrentApplicationInfo(napi_env env, napi_callback_info info)

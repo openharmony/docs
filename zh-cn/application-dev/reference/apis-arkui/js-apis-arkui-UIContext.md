@@ -24,6 +24,45 @@ import {
 
 以下API需先使用ohos.window中的[getUIContext()](arkts-apis-window-Window.md#getuicontext10)方法获取UIContext实例，再通过此实例调用对应方法。或者可以通过自定义组件内置方法[getUIContext()](arkui-ts/ts-custom-component-api.md#getuicontext)获取。本文中UIContext对象以uiContext表示。
 
+**示例：**
+
+```ts
+//两种方法获取到的UIContext没有差异
+//index.ets
+import { UIContext } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @build
+  build() {
+    Column() {
+      Button("Button")
+          .onClick(()=>{
+            //通过自定义组件内置方法获取
+            this.getUIContext()
+            //其他运行逻辑
+          })
+    }  
+  }
+}
+
+//EntryAbility.ets
+import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+
+const DOMAIN = 0x0000;
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    //通过ohos.window获取
+    windowStage.getMainWindowSync().getUIContext()
+    //其他运行逻辑
+  }
+}
+```
+
 ### isAvailable<sup>20+</sup>
 
 isAvailable(): boolean
@@ -1289,7 +1328,7 @@ getDragController(): DragController
 
 |类型|说明|
 |----|----|
-|[DragController](js-apis-arkui-dragController.md#dragController)| 获取DragController对象。|
+|[DragController](js-apis-arkui-dragController.md#ohosarkuidragcontroller-dragcontroller)| 获取DragController对象。|
 
 **示例：**
 
@@ -1551,7 +1590,9 @@ uiContext.getMeasureUtils();
 
 getComponentSnapshot(): ComponentSnapshot
 
-获取ComponentSnapshot对象，可通过该对象获取组件截图的能力。典型使用场景及最佳实践可参考[组件截图](../../ui/arkts-uicontext-component-snapshot.md)。
+获取ComponentSnapshot对象，可通过该对象获取组件截图的能力。
+
+典型使用场景（如长截图）及最佳实践请参考[使用组件截图](../../ui/arkts-uicontext-component-snapshot.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1743,7 +1784,7 @@ px2lpx(value : number) : number
 
 将px单位的数值转换为以lpx为单位的数值。
 
-转换公式为：px值 = lpx值 ÷ 实际屏幕宽度与逻辑宽度（通过[designWidth](../../quick-start/module-configuration-file.md#pages标签)配置）的比值
+转换公式为：lpx值 = px值 ÷ 实际屏幕宽度与逻辑宽度（通过[designWidth](../../quick-start/module-configuration-file.md#pages标签)配置）的比值
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2676,7 +2717,7 @@ enableSwipeBack(enabled: Optional\<boolean\>): void
 
 | 参数名     | 类型    | 必填   | 说明      |
 | --- | --- | --- | --- |
-| enabled | boolean | 是 | 是否支持应用内横向滑动返回，默认值为true。<br>当值为true时，支持应用内横向滑动返回。<br>当值为false时，不支持应用内横向滑动返回。|
+| enabled | Optional\<boolean> | 是 | 是否支持应用内横向滑动返回，默认值为true。<br>当值为true时，支持应用内横向滑动返回。<br>当值为false时，不支持应用内横向滑动返回。|
 
 **示例：**
 
@@ -2799,6 +2840,12 @@ dispatchKeyEvent(node: number | string, event: KeyEvent): boolean
 | node  | number \| string | 是   | 组件的id或者节点UniqueID。 |
 | event  |[KeyEvent](./arkui-ts/ts-universal-events-key.md#keyevent对象说明) | 是   | KeyEvent对象。 |
 
+**返回值：**
+
+| 类型      | 说明            |
+|---------|---------------|
+| boolean | 按键事件是否成功分发给指定的组件。<br/> true表示分发成功，false表示分发失败。 |
+
 **示例：**
 
 ```ts
@@ -2839,6 +2886,83 @@ struct Index {
     })
   }
 }
+```
+### setPixelRoundMode<sup>18+</sup>
+
+setPixelRoundMode(mode: PixelRoundMode): void
+
+配置当前页面的像素取整模式。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型         | 必填   | 说明   |
+| -------- | ---------- | ---- | ---- |
+| mode | [PixelRoundMode](./arkui-ts/ts-appendix-enums.md#pixelroundmode18)| 是    | 像素取整模式。<br />默认值：PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIContext } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
+      uiContext.setPixelRoundMode(PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH);
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
+  }
+```
+
+### getPixelRoundMode<sup>18+</sup>
+
+getPixelRoundMode(): PixelRoundMode
+
+获取当前页面的像素取整模式。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型         | 说明   |
+| ---------- | ---- |
+| [PixelRoundMode](./arkui-ts/ts-appendix-enums.md#pixelroundmode18)| 当前页面的像素取整模式。|
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIContext } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+      console.info("pixelRoundMode : " + uiContext.getPixelRoundMode().valueOf());
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
+  }
 ```
 ## Font
 
@@ -2924,7 +3048,7 @@ getFontByName(fontName: string): font.FontInfo
 
 | 类型                                      | 说明           |
 | ----------------------------------------- | -------------- |
-| [font.FontInfo](js-apis-font.md#fontinfo) | 字体的详细信息 |
+| [font.FontInfo](js-apis-font.md#fontinfo10) | 字体的详细信息。 |
 
 **示例：** 
 
@@ -3777,7 +3901,7 @@ off(type: 'didLayout', callback?: Callback\<void\>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'didLayout'，即是否将要绘制。 |
+| type     | string                                                       | 是   | 监听事件，固定为'didLayout'，即是否布局完成。 |
 | callback | Callback\<void\>        | 否   | 需要被注销的回调函数。                  |
 
 ```ts
@@ -4577,7 +4701,7 @@ off(type: 'afterPanStart', callback?: PanListenerCallback): void
 
 取消[on('afterPanStart')](#onafterpanstart19)监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的callback回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -6377,7 +6501,7 @@ getStateByIndex(index: number): router.RouterState | undefined
 
 | 类型                          | 说明      |
 | --------------------------- | ------- |
-| router.[RouterState](js-apis-router.md#outerstate) \| undefined | 返回页面状态信息。索引不存在时返回undefined。 |
+| router.[RouterState](js-apis-router.md#routerstate) \| undefined | 返回页面状态信息。索引不存在时返回undefined。 |
 
 **示例：** 
 
@@ -6396,7 +6520,7 @@ if (options != undefined) {
 ```
 ### getStateByUrl<sup>12+</sup>
 
-getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#outerstate)>
+getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#routerstate)>
 
 通过url获取当前页面的状态信息。
 
@@ -6414,7 +6538,7 @@ getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#outerst
 
 | 类型                          | 说明      |
 | --------------------------- | ------- |
-| Array<router.[RouterState](js-apis-router.md#outerstate)> | 页面状态信息。 |
+| Array<router.[RouterState](js-apis-router.md#routerstate)> | 页面状态信息。 |
 
 **示例：** 
 
@@ -8796,7 +8920,7 @@ struct NormalEts {
 ```
 ### enableDropDisallowedBadge<sup>20+</sup>
 
-enableDropDisallowedBadge(enable: boolean): void
+enableDropDisallowedBadge(enabled: boolean): void
 
 当组件的类型与配置的[allowDrop](../apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#allowdrop)无交集时可显示禁用角标。当目标进行拖拽时，通过该方法检查是否显示拖拽禁止角标。该接口暂不支持[UIExtension](../apis-arkui/js-apis-arkui-uiExtension.md)。
 
@@ -8808,7 +8932,7 @@ enableDropDisallowedBadge(enable: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| enable | boolean | 是   | 当组件的类型与配置的[allowDrop](../apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#allowdrop)无交集时可显示禁用角标，当目标进行拖拽时，通过enableDropDisallowedBadge方法检查是否显示拖拽禁止角标。true表示显示拖拽禁止角标，false表示不显示拖拽禁止角标。默认值为false。 |
+| enabled | boolean | 是   | 当组件的类型与配置的[allowDrop](../apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#allowdrop)无交集时可显示禁用角标，当目标进行拖拽时，通过enableDropDisallowedBadge方法检查是否显示拖拽禁止角标。true表示显示拖拽禁止角标，false表示不显示拖拽禁止角标。默认值为false。 |
 
 **示例：**
 
@@ -9994,6 +10118,15 @@ struct Index {
 
 以下API需先使用UIContext中的[getMeasureUtils()](js-apis-arkui-UIContext.md#getmeasureutils12)方法获取MeasureUtils实例，再通过此实例调用对应方法。
 
+> **说明：**
+>
+>
+> 如需更多测算文本参数，建议使用图形对应测算接口[Paragraph](../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph)接口。
+>
+> 调用文本计算接口时，不推荐同时用[ApplicationContext.setFontSizeScale](../apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextsetfontsizescale13)设置应用字体大小缩放比例。为了确保时序正确性，建议开发者自行监听字体缩放变化，以保证测算结果的准确性。
+>
+> 如果计算裁剪后的文本，在裁剪字符串时，建议按照unicode单位迭代，而非按照字符串length长度迭代。否则容易出现字符被截断，导致计算结果不准确的情况，常见emoji字符被截断。
+
 ### measureText<sup>12+</sup>
 
 measureText(options: MeasureOptions): number
@@ -11074,8 +11207,8 @@ SwiperDynamicSyncScene继承自[DynamicSyncScene](#dynamicsyncscene12)，对应S
 
 | 名称     | 值   | 说明                   |
 | -------- | ---- | ---------------------- |
-| GESTURE | 0   | 手势操作场景 |
-| ANIMATION | 1   | 动画过度场景 |
+| GESTURE | 0   | 手势操作场景。 |
+| ANIMATION | 1   | 动画过渡场景。 |
 
 ## MarqueeDynamicSyncScene<sup>14+</sup>
 
@@ -11375,81 +11508,4 @@ struct Index {
     .height('100%')
   }
 }
-```
-## setPixelRoundMode<sup>18+</sup>
-
-setPixelRoundMode(mode: PixelRoundMode): void
-
-配置当前页面的像素取整模式。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名      | 类型         | 必填   | 说明   |
-| -------- | ---------- | ---- | ---- |
-| mode | [PixelRoundMode](./arkui-ts/ts-appendix-enums.md#pixelroundmode18)| 是    | 像素取整模式。<br />默认值：PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH |
-
-**示例：**
-
-```ts
-// EntryAbility.ets
-import { UIContext } from '@kit.ArkUI';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
-onWindowStageCreate(windowStage: window.WindowStage) {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-
-    windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
-      uiContext.setPixelRoundMode(PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH);
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
-  }
-```
-
-## getPixelRoundMode<sup>18+</sup>
-
-getPixelRoundMode(): PixelRoundMode
-
-获取当前页面的像素取整模式。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型         | 说明   |
-| ---------- | ---- |
-| [PixelRoundMode](./arkui-ts/ts-appendix-enums.md#pixelroundmode18)| 当前页面的像素取整模式。|
-
-**示例：**
-
-```ts
-// EntryAbility.ets
-import { UIContext } from '@kit.ArkUI';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
-onWindowStageCreate(windowStage: window.WindowStage) {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-
-    windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
-      console.info("pixelRoundMode : " + uiContext.getPixelRoundMode().valueOf());
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
-  }
 ```

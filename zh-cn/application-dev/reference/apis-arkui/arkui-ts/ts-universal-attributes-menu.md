@@ -20,11 +20,13 @@
 >
 >    2. 仅支持[MenuPreviewMode](#menupreviewmode11)设置为NONE的菜单。
 >  - 菜单最大宽度受设备所占栅格限制，即使设置宽度100%，也不会占满屏幕。
+>
+>  - 菜单绑定的组件对象销毁时，菜单消失。
 
 
 ## bindMenu
 
-bindMenu(content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions)
+bindMenu(content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions): T
 
 给组件绑定菜单，点击后弹出菜单。弹出菜单项支持图标+文本排列和自定义两种功能。
 
@@ -39,9 +41,15 @@ bindMenu(content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions)
 | content | Array<[MenuElement](#menuelement)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置菜单项图标和文本的数组，或者自定义组件。 |
 | options | [MenuOptions](#menuoptions10)                                | 否   | 配置弹出菜单的参数。                         |
 
+**返回值：** 
+
+|类型|说明|
+|---|---|
+|T|返回当前组件。|
+
 ## bindMenu<sup>11+</sup>
 
-bindMenu(isShow: boolean, content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions)
+bindMenu(isShow: boolean, content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions): T
 
 给组件绑定菜单，点击后弹出菜单。弹出菜单项支持图标+文本排列和自定义两种功能。
 
@@ -57,9 +65,15 @@ bindMenu(isShow: boolean, content: Array<MenuElement&gt; | CustomBuilder, option
 | content              | Array<[MenuElement](#menuelement)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置菜单项图标和文本的数组，或者自定义组件。                 |
 | options              | [MenuOptions](#menuoptions10)                                | 否   | 配置弹出菜单的参数。                                         |
 
+**返回值：** 
+
+|类型|说明|
+|---|---|
+|T|返回当前组件。|
+
 ## bindContextMenu<sup>8+</sup>
 
-bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: ContextMenuOptions)
+bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: ContextMenuOptions): T
 
 给组件绑定菜单，控制菜单显隐的触发方式为长按或右键点击，弹出的菜单项需自定义。若需通过代码逻辑控制菜单显隐，请使用[bindContextMenu<sup>12+</sup>](#bindcontextmenu12)。
 
@@ -75,9 +89,15 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 | responseType | [ResponseType](ts-appendix-enums.md#responsetype8) | 是   | 菜单弹出条件，长按或者右键点击。不支持鼠标长按。 |
 | options      | [ContextMenuOptions](#contextmenuoptions10)        | 否   | 配置弹出菜单的参数。             |
 
+**返回值：** 
+
+|类型|说明|
+|---|---|
+|T|返回当前组件。|
+
 ## bindContextMenu<sup>12+</sup>
 
-bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuOptions)
+bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuOptions): T
 
 给组件绑定菜单，菜单的显隐通过控制绑定的isShown触发。
 
@@ -97,6 +117,12 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 | isShown | boolean | 是   | 支持开发者通过状态变量控制显隐，值为true时弹出菜单，值为false时关闭菜单，默认值为false。菜单必须等待页面全部构建完成后才能展示，如果在页面构建前或构建中设置为true，可能导致显示位置及形状错误、无法正常弹出显示等问题。不支持长按触发拖拽。该参数从API version13开始支持[!!语法](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。 |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)        | 是   | 自定义菜单内容构造器。 |
 | options      | [ContextMenuOptions](#contextmenuoptions10)                      | 否   | 配置弹出菜单的参数。                         |
+
+**返回值：** 
+
+|类型|说明|
+|---|---|
+|T|返回当前组件。|
 
 ## MenuElement
 
@@ -143,10 +169,9 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 | backgroundBlurStyleOptions<sup>18+</sup> | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明) | 否 | 背景模糊效果。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | backgroundEffect<sup>18+</sup> | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | 否 | 背景效果参数。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | hapticFeedbackMode<sup>18+</sup> | [HapticFeedbackMode](#hapticfeedbackmode18) | 否 | 菜单弹出时振动效果。<br/>默认值：HapticFeedbackMode.DISABLED，菜单弹出时不振动。<br />**说明：**<br />只有一级菜单可配置弹出时振动效果。<br />仅当应用具备ohos.permission.VIBRATE权限，且用户启用了触感反馈时才会生效。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| outlineWidth<sup>20+</sup> | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](ts-universal-attributes-outline.md#edgeoutlinewidths对象说明) | 否 | 设置菜单边框外描边宽度。<br />**说明：**<br />不支持百分比，若需要外描边效果outlineWidth为必填项。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| outlineWidth<sup>20+</sup> | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](ts-universal-attributes-outline.md#edgeoutlinewidths对象说明) | 否 | 设置菜单边框外描边宽度。<br />默认值：0vp<br />**说明：**<br />不支持百分比，若需要外描边效果outlineWidth为必填项。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | outlineColor<sup>20+</sup> | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-universal-attributes-outline.md#edgecolors对象说明) | 否 | 设置菜单边框外描边颜色。<br />**说明：**<br />默认值：'#19ffffff'<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | mask<sup>20+</sup> | boolean&nbsp;\|&nbsp;[MenuMaskType](#menumasktype20类型说明) | 否 | 设置菜单是否有蒙层及蒙层样式。如果设置为false，则没有蒙层；如果设置为true，则有蒙层；如果设置为MenuMaskType，则自定义蒙层的样式。<br/>默认值：使用bindContextMenu且配置预览图弹出菜单时默认值为true，其它情况默认值为false。<br>**说明：** <br/>2in1设备不生效。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| modalMode<sup>20+</sup> | [ModalMode](#modalmode20类型说明) | 否 | 设置菜单的模态模式。<br />**说明：**<br />默认值：ModalMode.AUTO<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## MenuPreviewMode<sup>11+</sup>
 
@@ -168,7 +193,6 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 | scale | [AnimationRange](#animationrange11)\<number> | 否   | 动画开始和结束时相对预览原图缩放比例。<br/>**说明：** <br/>缩放比例需要根据实际开发场景设置，建议设置值为小于预览图宽度或布局的最大限制。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否   | 设置菜单显示和退出的过渡效果。<br/>**说明：** <br/>在菜单退出动效过程中，横竖屏切换时，菜单会避让。二级菜单不继承自定义动效。弹出过程中可以点击二级菜单，但在退出动效执行过程中不允许点击二级菜单。<br />详细描述见[TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明)对象说明。 <br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | hoverScale<sup>12+</sup> | [AnimationRange](#animationrange11)\<number> | 否   | 设置预览自定义长按场景下，浮起原组件截图的缩放动画开始和结束时相对预览原图缩放比例，且有与预览图的切换的过渡动效。 <br/>**说明：**<br /> 倍率设置参数小于等于0时，不生效。<br />[bindContextMenu<sup>12+</sup>](#bindcontextmenu12)场景下，不生效。<br /> 设置transition接口时，不生效。<br /> 使用此接口且同时使用scale接口时，scale接口起始值不生效。<br /> 为保障最佳体验，最终预览图尺寸不建议小于原组件截图尺寸。当前预览动效宽高会受组件截图和自定义预览大小影响，请根据实际使用情况自行保障展示效果。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| hoverScaleInterruption<sup>20+</sup> | boolean | 否   | 设置预览自定义长按场景且hoverScale为true时，在触发拖拽效果前抬起手是否允许取消预览菜单弹出。true表示允许取消预览菜单弹出，false表示不允许取消预览菜单弹出。<br/>默认值：false <br/>**说明：** <br />未设置hoverScale接口或设置了transition接口时，该参数不生效。长按时长不足以触发拖拽效果时抬起手，预览菜单hoverScale效果回退，预览菜单不弹出，并可触发原组件上绑定的click等手势事件。长按时长足以触发拖拽效果后抬起手，预览菜单正常弹出，并不再触发原组件上绑定的click等手势事件。 <br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## AnimationRange<sup>11+</sup>
 
@@ -226,20 +250,6 @@ type BorderRadiusType = [Length](ts-types.md#length) | [BorderRadiuses](ts-types
 | --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置蒙层颜色。<br/>默认值：0x33182431                                       |
 | backgroundBlurStyle | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否   | 设置蒙层模糊材质。<br/>默认值：BlurStyle.BACKGROUND_THIN                                       |
-
-## ModalMode<sup>20+</sup>类型说明
-
-子窗菜单的模态模式。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称  | 值 | 说明                                   |
-| ----- | -  | --------------------------------------|
-| AUTO  | 0  | 自动模式，跟随系统设置。|
-| NONE  | 1   | 菜单周围的事件可穿透到所在窗口，下层控件可响应。|
-| TARGET_WINDOW | 2 | 模住所在的窗口，菜单显示时下层控件不可响应事件。|
 
 ## 示例
 
@@ -826,64 +836,7 @@ struct MenuExample {
 
 ![preview-builder](figures/zh-cn_image_backgroundEffect.png)
 
- ### 示例13（设置一镜到底动效支持抬手打断）
-
-该示例为bindContextMenu通过配置preview中hoverScale实现一镜到底过渡动效的基础上, 再配置hoverScaleInterruption控制是否允许长按抬手取消菜单弹出。
-
- ```ts
- // xxx.ets
-@Entry
-@Component
-struct Index {
-  private iconStr: ResourceStr = $r("app.media.app_icon");
-
-  @Builder
-  MyMenu() {
-    Menu() {
-      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
-      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
-      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
-    }
-  }
-
-  @Builder
-  MyPreview() {
-    Column() {
-      Image($r('app.media.example'))
-        .width(300)
-        .height(200)
-    }
-  }
-
-  build() {
-    Column({ space: 50 }) {
-      Column() {
-        Column() {
-          Image($r('app.media.example'))
-            .width(100)
-            .height(100)
-            .margin(100)
-            .bindContextMenu(this.MyMenu, ResponseType.LongPress,
-              {
-                preview: this.MyPreview,
-                previewAnimationOptions: {
-                  hoverScale: [1.0, 0.8],
-                  hoverScaleInterruption: true
-                }
-              })
-            .onClick(() => {
-              console.log('trigger onClick')
-            })
-        }
-      }.width('100%')
-    }
-  }
-}
-```
-
-![hoverScaleInterruption](figures/hoverScaleInterruption.gif)
-
-### 示例14（设置预览图边框圆角半径）
+### 示例13（设置预览图边框圆角半径）
 
 该示例为bindContextMenu通过配置responseType.LongPress、preview的MenuPreviewMode类型弹出菜单预览样式、previewBorderRadius设置预览图边框圆角半径。
 

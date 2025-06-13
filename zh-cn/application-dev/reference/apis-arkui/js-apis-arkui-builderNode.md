@@ -1135,6 +1135,23 @@ struct Index {
   }
 }
 ```
+
+### isDisposed<sup>20+</sup>
+
+isDisposed(): boolean
+
+查询当前BuilderNode对象是否已解除与后端实体节点的引用关系。前端节点均绑定有相应的后端实体节点，当节点调用dispose接口解除绑定后，再次调用接口可能会出现crash、返回默认值的情况。由于业务需求，可能存在节点在dispose后仍被调用接口的情况。为此，提供此接口以供开发者在操作节点前检查其有效性，避免潜在风险。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型    | 说明               |
+| ------- | ------------------ |
+| boolean | 后端实体节点是否解除引用。true为节点已与后端实体节点解除引用，false为节点未与后端实体节点解除引用。
+
 ### postInputEvent<sup>20+</sup>
 
 postInputEvent(event: InputEventType): boolean
@@ -1177,7 +1194,7 @@ offsetA为builderNode相对于父组件的偏移，offsetB为命中位置相对�
 
 | 类型    | 说明               |
 | ------- | ------------------ |
-| boolean | 事件是否被消费。 |
+| boolean | 事件是否被消费。true表示事件已被消费，false表示事件未被消费。 |
 
 ## 示例
 
@@ -1191,6 +1208,7 @@ import { InputEventType } from '@ohos.arkui.node';
 
 class Params {
   text: string = "this is a text"
+  uiContext: UIContext | null = null
 }
 @Builder
 function ButtonBuilder(params: Params) {
@@ -1204,7 +1222,7 @@ function ButtonBuilder(params: Params) {
       .height("30%")
       .offset({x: 100, y: 100})
       .onMouse((event) => {
-        let promptAction: PromptAction = this.getUIContext().getPromptAction();
+        let promptAction: PromptAction = params.uiContext!.getPromptAction();
         promptAction.showToast({
           message: 'onMouse',
           duration: 3000
@@ -1221,7 +1239,7 @@ class MyNodeController extends NodeController {
   private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(ButtonBuilder);
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new BuilderNode(uiContext);
-    this.rootNode.build(this.wrapBuilder, { text: "This is a string" })
+    this.rootNode.build(this.wrapBuilder, { text: "This is a string", uiContext })
     return this.rootNode.getFrameNode();
   }
 
@@ -1284,6 +1302,7 @@ import { InputEventType } from '@ohos.arkui.node';
 
 class Params {
   text: string = "this is a text"
+  uiContext: UIContext | null = null
 }
 @Builder
 function ButtonBuilder(params: Params) {
@@ -1297,7 +1316,7 @@ function ButtonBuilder(params: Params) {
       .height("30%")
       .offset({x: 100, y: 100})
       .onTouch((event) => {
-        let promptAction: PromptAction = this.getUIContext().getPromptAction();
+        let promptAction: PromptAction = params.uiContext!.getPromptAction();
         promptAction.showToast({
           message: 'onTouch',
           duration: 3000
@@ -1314,7 +1333,7 @@ class MyNodeController extends NodeController {
   private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(ButtonBuilder);
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new BuilderNode(uiContext);
-    this.rootNode.build(this.wrapBuilder, { text: "This is a string" })
+    this.rootNode.build(this.wrapBuilder, { text: "This is a string", uiContext })
     return this.rootNode.getFrameNode();
   }
 
@@ -1388,6 +1407,7 @@ import { InputEventType } from '@ohos.arkui.node';
 
 class Params {
   text: string = "this is a text"
+  uiContext: UIContext | null = null
 }
 @Builder
 function ButtonBuilder(params: Params) {
@@ -1401,7 +1421,7 @@ function ButtonBuilder(params: Params) {
       .height("30%")
       .offset({x: 100, y: 100})
       .onAxisEvent((event) => {
-        let promptAction: PromptAction = this.getUIContext().getPromptAction();
+        let promptAction: PromptAction = params.uiContext!.getPromptAction();
         promptAction.showToast({
           message: 'onAxisEvent',
           duration: 3000
@@ -1418,7 +1438,7 @@ class MyNodeController extends NodeController {
   private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(ButtonBuilder);
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new BuilderNode(uiContext);
-    this.rootNode.build(this.wrapBuilder, { text: "This is a string" })
+    this.rootNode.build(this.wrapBuilder, { text: "This is a string", uiContext })
     return this.rootNode.getFrameNode();
   }
 
@@ -1468,3 +1488,169 @@ struct MyComponent {
 ```
 
 ![onAxisEvent](figures/onAxisEvent.gif)
+
+### 示例4（BuilderNode共享localStorage）
+该示例演示了如何在BuilderNode通过build方法传入外部localStorage，此时挂载在BuilderNode的所有自定义组件共享该localStorage。
+```ts
+let globalBuilderNode: BuilderNode<[Params]> | null = null;
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({bottom: 36})
+    Test()
+  }
+}
+let localStorage: LocalStorage = new LocalStorage();
+localStorage.setOrCreate('PropA', 'PropA');
+
+class TextNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(context: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(context);
+    if (globalBuilderNode === null) {
+      globalBuilderNode = new BuilderNode(context);
+      globalBuilderNode.build(wrapBuilder<[Params]>(buildText), new Params('builder node text'), { localStorage: localStorage })
+    }
+    this.rootNode.appendChild(globalBuilderNode.getFrameNode());
+    return this.rootNode;
+  }
+}
+@Entry(localStorage)
+@Component
+struct Index {
+  private controller: TextNodeController = new TextNodeController();
+  @LocalStorageLink('PropA') PropA: string = 'Hello World';
+  build() {
+    Row() {
+      Column() {
+        Text(this.PropA)
+        NodeContainer(this.controller)
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### 示例5（检验命令式节点是否有效）
+
+该示例演示了释放节点前后分别使用isDisposed接口验证节点的状态，释放节点前节点调用isDisposed接口返回true，释放节点后节点调用isDisposed接口返回false。
+
+```ts
+import {
+  RenderNode,
+  FrameNode,
+  NodeController,
+  BuilderNode,
+  ComponentContent,
+  PromptAction,
+  NodeAdapter,
+  typeNode
+} from "@kit.ArkUI";
+
+@Builder
+function buildText() {
+  Text("IsDisposed")
+    .textAlign(TextAlign.Center)
+    .width('100%')
+    .height('100%')
+    .fontSize(30)
+}
+
+class MyNodeAdapter extends NodeAdapter {
+}
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private builderNode: BuilderNode<[]> | null = null;
+  private renderNode: RenderNode | null = null;
+  private frameNode: FrameNode | null = null;
+  nodeAdapter: MyNodeAdapter | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 200, height: 100 } });
+    this.builderNode.build(new WrappedBuilder(buildText));
+
+    const rootRenderNode = this.rootNode!.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.size = { width: 200, height: 200 };
+      rootRenderNode.backgroundColor = 0xffd5d5d5;
+      rootRenderNode.appendChild(this.builderNode!.getFrameNode()!.getRenderNode());
+      this.renderNode = new RenderNode();
+      rootRenderNode.appendChild(this.renderNode);
+      this.frameNode = new FrameNode(uiContext);
+      this.rootNode.appendChild(this.frameNode);
+
+
+      let listNode = typeNode.createNode(uiContext, "List");
+      listNode.initialize({ space: 3 });
+      this.rootNode.appendChild(listNode);
+      this.nodeAdapter = new MyNodeAdapter();
+      NodeAdapter.attachNodeAdapter(this.nodeAdapter, listNode);
+    }
+
+    return this.rootNode;
+  }
+
+  disposeTest() {
+    if (this.frameNode !== null && this.nodeAdapter !== null && this.builderNode !== null && this.renderNode !== null) {
+      console.log(`before BuilderNode dispose: isDisposed=`, this.builderNode.isDisposed());
+      this.builderNode.dispose();
+      console.log(`after BuilderNode dispose: isDisposed=`, this.builderNode.isDisposed());
+      console.log(`before FrameNode dispose: isDisposed=`, this.frameNode.isDisposed());
+      this.frameNode.dispose();
+      console.log(`after FrameNode dispose: isDisposed=`, this.frameNode.isDisposed());
+      console.log(`before RenderNode dispose: isDisposed=`, this.renderNode.isDisposed());
+      this.renderNode.dispose();
+      console.log(`after RenderNode dispose: isDisposed=`, this.renderNode.isDisposed());
+      console.log(`before NodeAdapter dispose: isDisposed=`, this.nodeAdapter.isDisposed());
+      this.nodeAdapter.dispose();
+      console.log(`after NodeAdapter dispose: isDisposed=`, this.nodeAdapter.isDisposed());
+    }
+  }
+}
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  private promptAction: PromptAction | null = null;
+  private contentNode: ComponentContent<[]> | null = null;
+
+  build() {
+    Column({ space: 4 }) {
+      NodeContainer(this.myNodeController)
+      Button('OpenDialog')
+        .onClick(() => {
+          let uiContext = this.getUIContext();
+          this.promptAction = uiContext.getPromptAction();
+          this.contentNode = new ComponentContent(uiContext, wrapBuilder(buildText));
+          this.promptAction.openCustomDialog(this.contentNode);
+        })
+        .width(120)
+        .height(40)
+      Button('DisposeTest')
+        .onClick(() => {
+          this.myNodeController.disposeTest();
+          this.promptAction?.closeCustomDialog(this.contentNode);
+          console.log(`before ComponentContent dispose: isDisposed=`, this.contentNode?.isDisposed());
+          this.contentNode?.dispose();
+          console.log(`after ComponentContent dispose: isDisposed=`, this.contentNode?.isDisposed());
+        })
+        .width(120)
+        .height(40)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![isDisposed](figures/isDisposed.gif)

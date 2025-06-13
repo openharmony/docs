@@ -130,7 +130,7 @@ struct Index {
           let context: Context = this.getUIContext().getHostContext() as Context;
           let sessionId: string;  // 供后续函数入参使用。
 
-          avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
+          avSession.createAVSession(context, tag, "audio", async (err: BusinessError, data: avSession.AVSession) => {
             if (err) {
               console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
             } else {
@@ -151,15 +151,14 @@ struct Index {
 
 远端设备支持的协议类型的枚举。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
-| TYPE_LOCAL<sup>11+</sup>      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。 |
-| TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式。表示媒体正在其他设备上展示。 |
-| TYPE_DLNA<sup>12+</sup>      | 4    | DLNA协议。表示媒体正在其他设备上展示。 |
+| TYPE_LOCAL<sup>11+</sup>      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式。表示媒体正在其他设备上展示。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| TYPE_DLNA<sup>12+</sup>      | 4    | DLNA协议。表示媒体正在其他设备上展示。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| TYPE_CAST_PLUS_AUDIO<sup>20+</sup>      | 8    | PCM模式。表示媒体正在其他设备上展示。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## AVSessionType<sup>10+<sup>
 
@@ -1370,17 +1369,35 @@ getController(callback: AsyncCallback\<AVSessionController>): void
 **示例：**
 
 ```ts
+import { avSession } from '@kit.AVSessionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avsessionController: avSession.AVSessionController;
-currentAVSession.getController((err: BusinessError, avcontroller: avSession.AVSessionController) => {
-  if (err) {
-    console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    avsessionController = avcontroller;
-    console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
+
+  build() {
+    Column() {
+      Text(this.message)
+        .onClick(async () => {
+          let context: Context = this.getUIContext().getHostContext() as Context;
+          let currentAVSession: avSession.AVSession = await avSession.createAVSession(context, 'SESSION_NAME', 'audio');
+          let avsessionController: avSession.AVSessionController;
+          currentAVSession.getController((err: BusinessError, avcontroller: avSession.AVSessionController) => {
+            if (err) {
+              console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
+            } else {
+              avsessionController = avcontroller;
+              console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
+            }
+          });
+        })
+    }
+    .width('100%')
+    .height('100%')
   }
-});
+}
 ```
 
 ### getAVCastController<sup>10+</sup>
@@ -2034,7 +2051,7 @@ on(type:'playFromAssetId', callback: (assetId: number) => void): void
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | type     | string               | 是   | 事件回调类型，支持的事件是`'playFromAssetId'`，当媒体id播放时，触发该事件回调。 |
-| callback | callback: (assetId: number) => void | 是   | 回调函数。参数assetId是媒体id。      |
+| callback | (assetId: number) => void | 是   | 回调函数。参数assetId是媒体id。      |
 
 **错误码：**
 
@@ -2072,7 +2089,7 @@ off(type: 'playFromAssetId', callback?: (assetId: number) => void): void
 | 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
 | type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'playFromAssetId'`。 |
-| callback | callback: (assetId: number) => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。参数assetId是媒体id。                            |
+| callback | (assetId: number) => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。参数assetId是媒体id。                            |
 
 **错误码：**
 
@@ -2107,7 +2124,7 @@ on(type:'playWithAssetId', callback: Callback\<string>): void
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | type     | string               | 是   | 事件回调类型，支持的事件是`'playWithAssetId'`，当指定资源id进行播放时，触发该事件回调。 |
-| callback | callback: Callback\<string> | 是   | 回调函数。参数assetId是媒体id。      |
+| callback | Callback\<string> | 是   | 回调函数。参数assetId是媒体id。      |
 
 **错误码：**
 
@@ -2145,7 +2162,7 @@ off(type: 'playWithAssetId', callback?: Callback\<string>): void
 | 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
 | type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'playWithAssetId'`。 |
-| callback | callback: Callback\<string> | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。参数assetId是媒体id。                            |
+| callback | Callback\<string> | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。参数assetId是媒体id。                            |
 
 **错误码：**
 
@@ -3497,7 +3514,7 @@ type AVCastControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPr
 | 'rewind'         | 快退。无需传入参数。        |
 | 'seek'           | 跳转某一节点。对应参数使用number类型。 |
 | 'setVolume'      | 设置音量。对应参数使用number类型, 可通过[AVPlaybackState.maxVolume](#avplaybackstate10)获取系统最大音量     |
-| 'setSpeed'       | 设置播放倍速。对应参数使用[media.PlaybackSpeed](../apis-media-kit/js-apis-media.md#playbackspeed8)。 |
+| 'setSpeed'       | 设置播放倍速。对应参数使用[media.PlaybackSpeed](../apis-media-kit/arkts-apis-media-e.md#playbackspeed8)。 |
 | 'setLoopMode'    | 设置循环模式。对应参数使用[LoopMode](#loopmode10)。 |
 | 'toggleFavorite' | 是否收藏。对应参数使用[AVMetadata.assetId](#avmetadata10)。    |
 | 'toggleMute'     | 设置静音状态。无需传入参数。 |
@@ -3513,7 +3530,7 @@ type AVCastControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPr
 | 名称      | 类型                                              | 必填 | 说明           |
 | --------- | ------------------------------------------------- | ---- | -------------- |
 | command   | [AVCastControlCommandType](#avcastcontrolcommandtype10)     | 是   | 命令。每种命令对应的参数不同，具体的对应关系可查阅[AVCastControlCommandType](#avcastcontrolcommandtype10)里的详细介绍。 |
-| parameter | [media.PlaybackSpeed](../apis-media-kit/js-apis-media.md#playbackspeed8) &#124; number &#124; string &#124; [LoopMode](#loopmode10) | 否   | 命令对应的参数。 |
+| parameter | [media.PlaybackSpeed](../apis-media-kit/arkts-apis-media-e.md#playbackspeed8) &#124; number &#124; string &#124; [LoopMode](#loopmode10) | 否   | 命令对应的参数。 |
 
 ## AVCastController<sup>10+</sup>
 
@@ -3622,7 +3639,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 aVCastController.getSupportedDecoders().then((decoderTypes: avSession.DecoderType[]) => {
   console.info(`getSupportedDecoders : SUCCESS : decoderTypes.length : ${decoderTypes.length}`);
-  if (descriptors.length > 0 ) {
+  if (decoderTypes.length > 0 ) {
     console.info(`getSupportedDecoders : SUCCESS : decoderTypes[0] : ${decoderTypes[0]}`);
   }
 }).catch((err: BusinessError) => {
@@ -4169,7 +4186,7 @@ getValidCommands(callback: AsyncCallback<Array\<AVCastControlCommandType>>): voi
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
-| callback | Array<[AVCastControlCommandType](#avcastcontrolcommandtype10)> | 是 | 回调函数。返回当前支持的命令。 |
+| callback | AsyncCallback<Array<[AVCastControlCommandType](#avcastcontrolcommandtype10)>> | 是 | 回调函数。返回当前支持的命令。 |
 
 **错误码：**
 
@@ -4432,7 +4449,7 @@ on(type: 'mediaItemChange', callback: Callback\<AVQueueItem>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件回调类型，支持事件`'mediaItemChange'`：当播放的媒体内容变化时，触发该事件。 |
-| callback | (callback: [AVQueueItem](#avqueueitem10)) => void         | 是   | 回调函数，参数AVQueueItem是当前正在播放的媒体内容。                      |
+| callback | Callback<[AVQueueItem](#avqueueitem10)> => void         | 是   | 回调函数，参数AVQueueItem是当前正在播放的媒体内容。                      |
 
 **错误码：**
 
@@ -4625,7 +4642,7 @@ on(type: 'requestPlay', callback: Callback\<AVQueueItem>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件回调类型，支持事件`'requestPlay'`：当请求播放状态变化时，触发该事件。 |
-| callback | (state: [AVQueueItem](#avqueueitem10)) => void               | 是   | 回调函数，参数AVQueueItem是当前正在播放的媒体内容。当监听事件注册成功，err为undefined，否则返回错误对象。  | 
+| callback | Callback\<[AVQueueItem](#avqueueitem10)> => void               | 是   | 回调函数，参数AVQueueItem是当前正在播放的媒体内容。当监听事件注册成功，err为undefined，否则返回错误对象。  | 
 
 **错误码：**
 
@@ -4657,7 +4674,7 @@ off(type: 'requestPlay', callback?: Callback\<AVQueueItem>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------| ---- | ----------------------------------------------------- |
 | type     | string                                                      | 是   | 取消对应的监听事件，支持事件`'requestPlay'`。    |
-| callback | (state: [AVQueueItem](#avqueueitem10)) => void              | 否   | 回调函数，参数AVQueueItem是当前正在播放的媒体内容。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。|
+| callback | Callback\<[AVQueueItem](#avqueueitem10)> => void              | 否   | 回调函数，参数AVQueueItem是当前正在播放的媒体内容。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。|
 
 **错误码：**
 
@@ -5545,30 +5562,31 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-| 名称         | 类型                    | 必填  | 说明                     |
-| ------------ | ----------------------- | ---- | ----------------------- |
-| assetId      | string                  | 是   | 播放列表媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。          |
-| title        | string                  | 否   | 播放列表媒体标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
-| subtitle     | string                  | 否   | 播放列表媒体子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
-| description  | string                  | 否   | 播放列表媒体描述的文本。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
-| mediaImage | image.PixelMap \| string   | 否   | 播放列表媒体图片像素数据。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| extras       | {[key: string]: Object}    | 否   | 播放列表媒体额外字段。     |
-| mediaUri     | string                  | 否   | 播放列表媒体URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| mediaType     | string                  | 否   | 播放列表媒体类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| mediaSize     | number                  | 否   | 播放列表媒体的大小。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| albumTitle     | string                  | 否   | 播放列表媒体专辑标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| albumCoverUri     | string                  | 否   | 播放列表媒体专辑标题URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。    |
-| lyricContent     | string                  | 否   | 播放列表媒体歌词内容。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| lyricUri     | string                  | 否   | 播放列表媒体歌词URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| artist     | string                  | 否   | 播放列表媒体专辑作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| fdSrc     | media.AVFileDescriptor        | 否   | 播放列表媒体本地文件的句柄。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | 否   | 播放列表数据源描述。         |
-| drmScheme<sup>12+</sup>     | string        | 否   | 播放列表媒体支持的DRM方案，由uuid表示。       |
-| duration     | number                  | 否   | 播放列表媒体播放时长。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| startPosition     | number                  | 否   | 播放列表媒体起始播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| creditsPosition     | number                  | 否   | 播放列表媒体的片尾播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| appName     | string                  | 否   | 播放列表提供的应用的名字。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-|displayTags<sup>11+</sup>     | number | 否   | 媒体资源的金标类型，取值参考[DisplayTag](#displaytag11)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
+| 名称         | 类型                    | 只读  | 可选  | 说明                     |
+| ------------ | ----------------------- | ---- | ---- | ----------------------- |
+| assetId      | string                  | 否   | 否   | 播放列表媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。          |
+| title        | string                  | 否   | 是   | 播放列表媒体标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
+| subtitle     | string                  | 否   | 是   | 播放列表媒体子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
+| description  | string                  | 否   | 是   | 播放列表媒体描述的文本。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| mediaImage | image.PixelMap \| string   | 否   | 是   | 播放列表媒体图片像素数据。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| extras       | {[key: string]: Object}    | 否   | 是   | 播放列表媒体额外字段。     |
+| mediaUri     | string                  | 否   | 是   | 播放列表媒体URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| mediaType     | string                  | 否   | 是   | 播放列表媒体类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| mediaSize     | number                  | 否   | 是   | 播放列表媒体的大小。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| albumTitle     | string                  | 否   | 是   | 播放列表媒体专辑标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| albumCoverUri     | string                  | 否   | 是   | 播放列表媒体专辑标题URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。    |
+| lyricContent     | string                  | 否   | 是   | 播放列表媒体歌词内容。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| lyricUri     | string                  | 否   | 是   | 播放列表媒体歌词URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| artist     | string                  | 否   | 是   | 播放列表媒体专辑作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| fdSrc     | media.AVFileDescriptor        | 否   | 是   | 播放列表媒体本地文件的句柄。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | 否   | 是   | 播放列表数据源描述。         |
+| pcmSrc<sup>20+</sup>     | boolean        | 否   | 是   | 播放列表是否使用PCM数据源。true表示使用PCM数据源，false表示不使用PCM数据源。<br>由于设备限制，暂时无法使用，将在后续版本提供支持。         |
+| drmScheme<sup>12+</sup>     | string        | 否   | 是   | 播放列表媒体支持的DRM方案，由uuid表示。       |
+| duration     | number                  | 否   | 是   | 播放列表媒体播放时长。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| startPosition     | number                  | 否   | 是   | 播放列表媒体起始播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| creditsPosition     | number                  | 否   | 是   | 播放列表媒体的片尾播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| appName     | string                  | 否   | 是   | 播放列表提供的应用的名字。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+|displayTags<sup>11+</sup>     | number | 否   | 是   | 媒体资源的金标类型，取值参考[DisplayTag](#displaytag11)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
 
 ## AVQueueItem<sup>10+</sup>
 
@@ -5745,6 +5763,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | supportedDrmCapabilities<sup>12+</sup> | Array\<string> | 否   | 播放设备支持的DRM能力。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast   <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | manufacturer<sup>13+</sup> | string | 否   | 播放设备生产厂家。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast  <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
 | modelName<sup>13+</sup> | string | 否   | 播放设备型号名称。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast  <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
+| audioCapabilities<sup>20+</sup> | [AudioCapabilities](#audiocapabilities20) | 否   | 播放设备支持的音频能力。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast |
 
 ## OutputDeviceInfo<sup>10+</sup>
 
@@ -7289,7 +7308,7 @@ on(type: 'callMetadataChange', filter: Array\<keyof CallMetadata> | 'all', callb
 | --------| -----------|-----|------------|
 | type     | string    | 是   | 事件回调类型，支持事件`'callMetadataChange'`：当通话元数据变化时，触发该事件。 |
 | filter   | Array\<keyof&nbsp;[CallMetadata](#callmetadata11)\>&nbsp;&#124;&nbsp;'all' | 是   | 'all' 表示关注通话元数据所有字段变化；Array<keyof&nbsp;[CallMetadata](#callmetadata11)\> 表示关注Array中的字段变化。 |
-| callback | Callback<[CallMetadata](#callmetadata11)\>\>   | 是   | 回调函数，参数callmetadata是变化后的通话元数据。|
+| callback | Callback<[CallMetadata](#callmetadata11)\>   | 是   | 回调函数，参数callmetadata是变化后的通话元数据。|
 
 **错误码：**
 
@@ -7707,7 +7726,7 @@ on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key:string]: O
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件回调类型，支持事件`'sessionEvent'`：当会话事件变化时，触发该事件。 |
-| callback | (sessionEvent: string, args: {[key:string]: object}) => void         | 是   | 回调函数，sessionEvent为变化的会话事件名，args为事件的参数。          |
+| callback | (sessionEvent: string, args: {[key:string]: Object}) => void         | 是   | 回调函数，sessionEvent为变化的会话事件名，args为事件的参数。          |
 
 **错误码：**
 
@@ -7927,7 +7946,7 @@ on(type: 'extrasChange', callback: (extras: {[key:string]: Object}) => void): vo
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件回调类型，支持事件`'extrasChange'`：当媒体提供方设置自定义媒体数据包时，触发该事件。 |
-| callback | (extras: {[key:string]: object}) => void         | 是   | 回调函数，extras为媒体提供方新设置的自定义媒体数据包，该自定义媒体数据包与dispatchSessionEvent方法设置的数据包完全一致。          |
+| callback | (extras: {[key:string]: Object}) => void         | 是   | 回调函数，extras为媒体提供方新设置的自定义媒体数据包，该自定义媒体数据包与dispatchSessionEvent方法设置的数据包完全一致。          |
 
 **错误码：**
 
@@ -7978,7 +7997,7 @@ off(type: 'extrasChange', callback?: (extras: {[key:string]: Object}) => void): 
 | 参数名    | 类型                    | 必填 | 说明                                                                                                    |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------------------------------------------------- |
 | type     | string                  | 是   | 取消对应的监听事件，支持事件`'extrasChange'`。                                                         |
-| callback | ({[key:string]: Object}) => void | 否   | 注册监听事件时的回调函数。<br>该参数为可选参数，若不填写该参数，则认为取消会话所有与此事件相关的监听。 |
+| callback | (extras: {[key:string]: Object}) => void | 否   | 注册监听事件时的回调函数。<br>该参数为可选参数，若不填写该参数，则认为取消会话所有与此事件相关的监听。 |
 
 **错误码：**
 
@@ -8744,3 +8763,15 @@ async function onPickerStateChange(context: common.Context) {
 | SECONDS_10             | 10 | 时间为10秒。             |
 | SECONDS_15             | 15 | 时间为15秒。             |
 | SECONDS_30             | 30 | 时间为30秒。             |
+
+## AudioCapabilities<sup>20+</sup>
+
+表示投播设备支持的音频能力。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+| 名称            | 类型                      | 只读 | 可选 | 说明                                                                  |
+| --------------- |-------------------------| ---- | ---- |---------------------------------------------------------------------|
+| streamInfos            | Array\<[audio.AudioStreamInfo](../apis-audio-kit/arkts-apis-audio-i.md#audiostreaminfo8)>                  | 是    | 否    | 音频能力参数的列表。  |

@@ -20,7 +20,7 @@
 | DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup> | 分布式输入设备。&nbsp;此接口为系统接口。 | 
 | ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup> | 分布式输入输出设备。&nbsp;此接口为系统接口。 | 
 
-具体接口说明请参考[AudioRoutingManager API文档](../../reference/apis-audio-kit/js-apis-audio.md#audioroutingmanager9)。
+具体接口说明请参考[AudioRoutingManager API文档](../../reference/apis-audio-kit/arkts-apis-audio-AudioRoutingManager.md)。
 
 ### 投播所有音频
 

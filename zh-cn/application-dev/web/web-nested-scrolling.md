@@ -4,6 +4,10 @@ Web组件嵌套滚动的典型应用场景为，在页面中，多个独立区�
 
 Web组件嵌套滚动可通过[方案1：使用nestedScroll属性实现嵌套滚动](#使用nestedscroll属性实现嵌套滚动)或[方案2：滚动偏移量由滚动父组件统一派发](#滚动偏移量由滚动父组件统一派发)两个方案实现，方案的选择应取决于应用嵌套滚动的具体业务场景。如果只是简单的Web组件与其他父组件联动滚动建议通过方案1实现；如果应用需要自定义控制Web组件和其他滚动组件滚动，以及一些复杂场景建议使用方案2。
 
+> **说明：**
+>
+> 如果Web组件用到了全量展开的场景（layoutMode为`WebLayoutMode.FIT_CONTENT`），需要显式指明渲染模式(`RenderMode.SYNC_RENDER`)，[详见](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#layoutmode11)
+
 ## 使用nestedScroll属性实现嵌套滚动
 
 使用Web组件[nestedScroll](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#nestedscroll11)属性来设置上下左右四个方向，或者设置向前、向后两个方向的嵌套滚动模式，实现与父组件的滚动联动，同时也允许在过程中动态改变嵌套滚动的模式。
@@ -139,7 +143,7 @@ struct NestedScroll {
 	
 	(2) 判断Web组件是否滚动到顶部：webController.getScrollOffset() == 0;
 	
-	(3) 判断Web组件是否滚动到底部：webController.getScrollOffset().y + this.webHeight = webController.getPageHeight();
+	(3) 判断Web组件是否滚动到底部：webController.getScrollOffset().y + this.webHeight >= webController.getPageHeight();
 	
 	(4) 获取Web组件自身高度：webController.[getPageHeight()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#getpageheight);
 	

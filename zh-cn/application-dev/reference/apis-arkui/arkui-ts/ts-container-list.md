@@ -10,7 +10,8 @@
 
 ## 子组件
 
-仅支持[ListItem](ts-container-listitem.md)、[ListItemGroup](ts-container-listitemgroup.md)子组件，支持通过渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）动态生成子组件，更推荐使用LazyForEach或Repeat以优化性能。
+仅支持[ListItem](ts-container-listitem.md)、[ListItemGroup](ts-container-listitemgroup.md)子组件和自定义组件。自定义组件在List下使用时，建议使用ListItem或ListItemGroup作为自定组件的顶层组件，不建议给自定义组件设置属性和事件方法。
+支持通过渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）动态生成子组件，更推荐使用LazyForEach或Repeat以优化性能。
 
 > **说明：**
 >
@@ -495,22 +496,6 @@ stackFromEnd(enabled: boolean)
 > - stackFromEnd属性设置为true后，当List内容小于List组件高度时，内容底部对齐。
 > - stackFromEnd属性设置为true后，显示区域内有ListItem变高，或有插入ListItem，内容上方的ListItem往上移动。
 > - stackFromEnd属性设置为true后，initialIndex参数默认值为总item个数-1。
-
-### focusWrapMode<sup>20+</sup>
-
-focusWrapMode(mode: Optional\<FocusWrapMode\>)
-
-设置方向键走焦模式。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| mode   | Optional\<[FocusWrapMode](ts-appendix-enums.md#focuswrapmode20)\> | 是   | 交叉轴方向键走焦模式。<br/>默认值：FocusWrapMode.DEFAULT<br/>**说明：** <br/>异常值按默认值处理，即交叉轴方向键不能换行。 |
 
 ## ListItemAlign<sup>9+</sup>枚举说明
 
@@ -1049,6 +1034,10 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeswipeactionoption
 type OnScrollVisibleContentChangeCallback = (start: VisibleListContentInfo, end: VisibleListContentInfo) => void
 
 有子组件划入或划出List显示区域时触发。
+
+start和end的index同时返回-1，代表List从有数据变成空的List。
+
+start和end的index同时返回0，代表List内只有一个子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1759,50 +1748,3 @@ struct ListExample {
 ```
 
 ![edgeEffect_list](figures/edgeEffect_list.gif)
-
-### 示例9（设置折行走焦）
-
-该示例通过focusWrapMode接口，实现了List组件方向键走焦换行效果。
-
-```ts
-@Entry
-@Component
-struct ListExample {
-  @State arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  build() {
-    Stack({ alignContent: Alignment.TopStart }) {
-      Column() {
-        List({ space: 40, initialIndex: 0 }) {
-          ForEach(this.arr, (item: number, index?: number) => {
-            ListItem() {
-              Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
-                Text('' + item)
-                  .width(150)
-                  .height(93)
-                  .fontSize(30)
-                  .textAlign(TextAlign.Center)
-                  .borderRadius(10)
-                  .backgroundColor(0xFFFFFF)
-                  .flexShrink(1)
-                  .focusable(true)
-                  .offset({left:5})
-              }
-            }
-          }, (item: string) => item)
-        }
-        .lanes(2)
-        .contentStartOffset(20)
-        .contentEndOffset(20)
-        .width('100%')
-        .scrollBar(BarState.Off)
-        .friction(0.6)
-        .focusWrapMode(FocusWrapMode.WRAP_WITH_ARROW)
-        .alignListItem(ListItemAlign.Center)
-        .offset({left:20})
-      }.width('90%')
-    }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
-  }
-}
-```
-
-![edgeEffect_list](figures/focusWrapMode_list.gif)

@@ -66,23 +66,24 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 | 名称 | 类型   | 只读 |  可选 | 说明        |
 | ---- | ------ | ---- | ---- |-----------|
-| x    | number |  否   | 否   | 坐标点的横坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。从API version 20开始，该属性不再为只读属性。 |
-| y    | number |  否   | 否   | 坐标点的纵坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。从API version 20开始，该属性不再为只读属性。|
-| displayId<sup>20+</sup>    | number | 否    | 是   | 坐标点所属的屏幕ID，取值范围：大于等于0的整数。默认值为设备默认屏幕ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| x    | number |  否   | 否   | 坐标点的横坐标，取值大于0的整数。<br> **说明：** 从API version 20开始，该属性不再为只读属性。<br> **原子化服务API：**  从API version 11开始，该接口支持在原子化服务中使用。 |
+| y    | number |  否   | 否   | 坐标点的纵坐标，取值大于0的整数。<br> **说明：** 从API version 20开始，该属性不再为只读属性。<br> **原子化服务API：**  从API version 11开始，该接口支持在原子化服务中使用。 |
+| displayId<sup>20+</sup>    | number | 否    | 是   | 坐标点所属的屏幕ID，取值范围：大于等于0的整数。默认值为设备默认屏幕ID。<br> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## Rect<sup>9+</sup>
 
 控件的边框信息。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称   | 类型   | 只读 | 可选 | 说明                      |
 | ------ | ------ | ---- | ---- | ------------------------- |
-| left   | number |  否   | 否 |控件边框的左上角的X坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。从API version 20开始，该属性不再为只读属性。  |
-| top    | number |  否   | 否 |控件边框的左上角的Y坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。从API version 20开始，该属性不再为只读属性。  |
-| right  | number |  否   | 否 |控件边框的右下角的X坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。从API version 20开始，该属性不再为只读属性。  |
-| bottom | number |  否   | 否 |控件边框的右下角的Y坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。从API version 20开始，该属性不再为只读属性。  |
-| displayId<sup>20+</sup> | number |  否   | 是 |控件边框所属的屏幕ID，取值大于或等于0的整数。默认值为设备默认屏幕ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。  |
+| left   | number |  是   | 否 |控件边框的左上角的X坐标，取值大于0的整数。 |
+| top    | number |  是   | 否 |控件边框的左上角的Y坐标，取值大于0的整数。 |
+| right  | number |  是   | 否 |控件边框的右下角的X坐标，取值大于0的整数。 |
+| bottom | number |  是   | 否 |控件边框的右下角的Y坐标，取值大于0的整数。 |
 
 ## WindowMode<sup>9+</sup>
 
@@ -127,7 +128,6 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 | focused              | boolean | 否  | 是   | 窗口是否处于获焦状态，true：获焦状态，false：未获焦状态，默认值为false。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | actived(deprecated)  | boolean | 否   | 是  | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态，默认值为false。<br>从API version 11开始废弃，建议使用active替代。                                                |
 | active<sup>11+</sup> | boolean | 否  | 是  | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态，默认值为false。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
-| displayId<sup>20+</sup> | number | 否   | 是  | 窗口所属的屏幕ID。取值大于或等于0的整数。默认值为设备默认屏ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## UiDirection<sup>10+</sup>
 
@@ -936,44 +936,6 @@ hint(val: string, pattern?: MatchPattern): On
  let on:On = ON.hint('welcome', MatchPattern.EQUALS); // 使用静态构造器ON创建On对象，指定目标控件的提示文本属性。
 ```
 
-### belongingDisplay<sup>20+</sup>
-
-belongingDisplay(displayId: number): On
-
-获取指定屏幕内的控件对象，返回On对象自身。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                                    |
-| ------ | ------ |----|---------------------------------------|
-| displayId | number | 是  | 指定控件所属屏幕ID，取值范围：大于等于0的整数。<br> **说明：** 传入displayId不存在时，将抛出17000007异常。可通过[getAllDisplays](../apis-arkui/js-apis-display.md#displaygetalldisplays9)获取当前所有的display对象，并由display对象获取对应的屏幕ID。 |
-
-**返回值：**
-
-| 类型       | 说明                                     |
-| ---------- | ---------------------------------------- |
-| [On](#on9) | 返回指定控件所属屏幕的On对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-|  17000007  | Parameter verification failed.|
-
-**示例：**
-
-```ts
- import { On, ON } from '@kit.TestKit';
- 
- let on:On = ON.belongingDisplay(0); // 使用静态构造器ON创建On对象，指定目标控件所属屏幕ID
-```
-
 ## Component<sup>9+</sup>
 
 UiTest框架在API9中，Component类代表了UI界面上的一个控件，提供控件属性获取，控件点击，滑动查找，文本注入等API。
@@ -1646,7 +1608,7 @@ inputText(text: string, mode: InputTextMode): Promise\<void>
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
 | text   | string | 是   | 输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
-| mode | [InputTextMode](#inputtextmode20)  | 否   | 输入文本的方式，取值请参考[InputTextMode](#inputtextmode20)。<br> **说明：** InputTextMode.addition取值为ture时，在控件已有文本末尾后追加指定文本。取值为false时，指定文本将覆盖控件已有文本。|
+| mode | [InputTextMode](#inputtextmode20)  | 是   | 输入文本的方式，取值请参考[InputTextMode](#inputtextmode20)。<br> **说明：** InputTextMode.addition取值为ture时，在控件已有文本末尾后追加指定文本。取值为false时，指定文本将覆盖控件已有文本。|
 
 **返回值：**
 
@@ -1663,7 +1625,7 @@ inputText(text: string, mode: InputTextMode): Promise\<void>
 | 17000002 | The async function is not called with await. |
 | 17000004 | The window or component is invisible or destroyed.           |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
-| 801      | Capability not supported, function can not work correctly due to limited device capabilities.|
+| 801      | Capability not support, function can not work correctly due to limited device capabilities.|
 
 **示例：**
 ```ts
@@ -2091,43 +2053,6 @@ async function demo() {
   let hints = await button.getHint();
 }
 ```
-### getDisplayId<sup>20+</sup>
-
-getDisplayId(): Promise\<number>
-
-获取控件对象所属的屏幕ID，使用Promise异步回调。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**返回值：**
-
-| 类型             | 说明                   |
-| ---------------- |----------------------|
-| Promise\<number> | Promise对象，返回控件所属的屏幕ID。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
-
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 17000002 | The async function is not called with await. |
-| 17000004 | The window or component is invisible or destroyed.           |
-
-**示例：**
-
-```ts
-import { Component, Driver, ON } from '@kit.TestKit';
-
-async function demo() {
-  let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('TextInput'));
-  let displayId = await button.getDisplayId();
-}
-```
-
 ## Driver<sup>9+</sup>
 
 Driver类为uitest测试框架的总入口，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等能力。
@@ -2447,48 +2372,6 @@ async function demo() {
   await driver.pressBack();
 }
 ```
-
-### pressBack<sup>20+</sup>
-
-pressBack(displayId: number): Promise\<void>
-
-对指定屏幕进行点击BACK键的操作，使用Promise异步回调。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名  | 类型   | 必填 | 说明          |
-| ------- | ------ | ---- | ------------- |
-| displayId | number | 是   | 指定的屏幕ID，取值范围：大于等于0的整数。<br> **说明：** 传入displayId不存在时，将抛出17000007异常。  |
-
-**返回值：**
-
-| 类型             | 说明              |
-|----------------|-----------------|
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
-
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
-| 17000002 | The async function is not called with await. |
-| 17000007 | Parameter verification failed. |
-
-**示例：**
-
-```ts
-import { Driver } from '@kit.TestKit';
-async function demo() {
-  let driver: Driver = Driver.create();
-  await driver.pressBack(0);
-}
-```
-
 ### triggerKey<sup>9+</sup>
 
 triggerKey(keyCode: number): Promise\<void>
@@ -2527,49 +2410,6 @@ import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.triggerKey(123);
-}
-```
-
-### triggerKey<sup>20+</sup>
-
-triggerKey(keyCode: number, displayId: number): Promise\<void>
-
-在指定屏幕，传入key值实现模拟点击对应按键的效果，使用Promise异步回调。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名  | 类型   | 必填 | 说明          |
-| ------- | ------ | ---- | ------------- |
-| keyCode | number | 是   | 指定的key值，取值范围：大于等于0的整数。取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。 |
-| displayId | number | 是   | 指定的屏幕ID，取值范围：大于等于0的整数。<br> **说明：** 传入displayId不存在时，将抛出17000007异常。  |
-
-**返回值：**
-
-| 类型             | 说明              |
-|----------------|-----------------|
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
-
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
-| 17000002 | The async function is not called with await. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
-
-**示例：**
-
-```ts
-import { Driver } from '@kit.TestKit';
-
-async function demo() {
-  let driver: Driver = Driver.create();
-  await driver.triggerKey(123, 0);
 }
 ```
 
@@ -2616,51 +2456,6 @@ async function demo() {
 }
 ```
 
-### triggerCombineKeys<sup>20+</sup>
-
-triggerCombineKeys(key0: number, key1: number, key2?: number, displayId?: number): Promise\<void>
-
-通过给定的key值，找到对应组合键，并在指定屏幕下进行点击，使用Promise异步回调。例如，Key值为(2072, 2019)时，找到key值对应的组合键并点击，如ctrl+c。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                           |
-| ------ | ------ | ---- | ------------------------------ |
-| key0   | number | 是   | 指定的第一个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。            |
-| key1   | number | 是   | 指定的第二个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。            |
-| key2   | number | 否   | 指定的第三个key值，取值范围：大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。 |
-| displayId | number | 否  | 指定的屏幕ID，取值范围：大于等于0的整数，默认值为设备默认屏幕ID。 |
-
-**返回值：**
-
-| 类型             | 说明              |
-|----------------|-----------------|
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
-
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
-| 17000002 | The async function is not called with await. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
-
-**示例：**
-
-```ts
-import { Driver } from '@kit.TestKit';
-
-async function demo() {
-  let driver: Driver = Driver.create();
-  await driver.triggerCombineKeys(2072, 2047, 2035, 0);
-}
-```
-
 ### click<sup>9+</sup>
 
 click(x: number, y: number): Promise\<void>
@@ -2703,48 +2498,6 @@ async function demo() {
 }
 ```
 
-### clickAt<sup>20+</sup>
-
-clickAt(point: Point): Promise\<void>
-
-在目标坐标点进行单击，使用Promise异步回调。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                                            |
-| ------ | ------ | ---- | ----------------------------------------------- |
-| point      | [Point](#point9) | 是   | 以Point对象的形式传入目标点信息。 |
-
-**返回值：**
-
-| 类型             | 说明              |
-|----------------|-----------------|
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
-
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
-| 17000002 | The async function is not called with await. |
-| 17000007 | Parameter verification failed. |
-
-**示例：**
-
-```ts
-import { Driver } from '@kit.TestKit';
-
-async function demo() {
-  let driver: Driver = Driver.create();
-  await driver.clickAt({ x: 100, y: 100, displayId: 0 });
-}
-```
-
 ### doubleClick<sup>9+</sup>
 
 doubleClick(x: number, y: number): Promise\<void>
@@ -2784,48 +2537,6 @@ import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.doubleClick(100,100);
-}
-```
-
-### doubleClickAt<sup>20+</sup>
-
-doubleClickAt(point: Point): Promise\<void>
-
-对目标坐标进行双击，使用Promise异步回调。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                                            |
-| ------ | ------ | ---- | ----------------------------------------------- |
-| point      | [Point](#point9) | 是   | 以Point对象的形式传入目标点信息。 |
-
-**返回值：**
-
-| 类型             | 说明              |
-|----------------|-----------------|
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
-
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
-| 17000002 | The async function is not called with await. |
-| 17000007 | Parameter verification failed. |
-
-**示例：**
-
-```ts
-import { Driver } from '@kit.TestKit';
-
-async function demo() {
-  let driver: Driver = Driver.create();
-  await driver.doubleClickAt({ x: 100, y: 100, displayId: 0 });
 }
 ```
 
@@ -2956,50 +2667,6 @@ import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.swipe(100,100,200,200,600);
-}
-```
-
-### swipeBetween<sup>20+</sup>
-
-swipeBetween(from: Point, to: Point, speed?: number): Promise\<void>
-
-从起始坐标点滑向目标坐标点，使用Promise异步回调。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                                                   |
-| ------ | ------ | ---- |------------------------------------------------------|
-| from | [Point](#point9) | 是   | 以Point对象的形式传入起始点的坐标信息和所属屏幕ID。                       |
-| to  | [Point](#point9) | 是   | 以Point对象的形式传入终止点的坐标信息和所属屏幕ID。<br> **说明：** 应与起始点属于同一个屏幕，否则将抛出17000007异常。                       |
-| speed  | number | 否   | 滑动速率，取值范围为200-40000的整数，默认值为600，不在范围内设为默认值为600，单位：px/s。|
-
-**返回值：**
-
-| 类型             | 说明              |
-|----------------|-----------------|
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
-
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
-| 17000002 | The async function is not called with await. |
-| 17000007 | Parameter verification failed. |
-
-**示例：**
-
-```ts
-import { Driver } from '@kit.TestKit';
-
-async function demo() {
-  let driver: Driver = Driver.create();
-  await driver.swipeBetween({x: 100, y: 100, displayId: 0}, {x: 1000, y: 1000, displayId: 0}, 800);
 }
 ```
 
@@ -3142,50 +2809,6 @@ async function demo() {
   await driver.screenCap('/data/storage/el2/base/cache/1.png');
 }
 ```
-
-### screenCap<sup>20+</sup>
-
-screenCap(savePath: string, displayId: number): Promise\<boolean>
-
-捕获指定屏幕，并保存为PNG格式的图片至给出的保存路径中，使用Promise异步回调。适用于支持截屏的场景。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明                                       |
-| -------- | ------ | ---- | ------------------------------------------ |
-| savePath | string | 是   | 文件保存路径。路径需为当前应用的[沙箱路径](../../file-management/app-sandbox-directory.md)。 |
-| displayId     | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。 <br> **说明：** 传入displayId不存在时，将抛出17000007异常。                  |
-
-**返回值：**
-
-| 类型              | 说明                                        |
-| ----------------- |-------------------------------------------|
-| Promise\<boolean> | Promise对象，返回截图操作是否成功完成。true：完成。false：未完成。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
-
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
-| 17000002 | The async function is not called with await. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
-
-**示例：**
-
-```ts
-import { Driver } from '@kit.TestKit';
-
-async function demo() {
-  let driver: Driver = Driver.create();
-  await driver.screenCap('/data/storage/el2/base/cache/1.png', 0);
-}
-```
-
 ### setDisplayRotation<sup>9+</sup>
 
 setDisplayRotation(rotation: DisplayRotation): Promise\<void>
@@ -3262,48 +2885,6 @@ import { DisplayRotation, Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let rotation: DisplayRotation = await driver.getDisplayRotation();
-}
-```
-
-### getDisplayRotation<sup>20+</sup>
-
-getDisplayRotation(displayId: number): Promise\<DisplayRotation>
-
-获取当前设备指定屏幕的显示方向，使用Promise异步回调。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明                                       |
-| -------- | ------ | ---- | ------------------------------------------ |
-| displayId     | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。 <br> **说明：** 传入displayId不存在时，将抛出17000007异常。                  |
-
-**返回值：**
-
-| 类型                                           | 说明                                    |
-| ---------------------------------------------- | --------------------------------------- |
-| Promise\<[DisplayRotation](#displayrotation9)> | Promise对象，返回指定屏幕的显示方向。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
-
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
-| 17000002 | The async function is not called with await. |
-| 17000007 |  Parameter verification failed. |
-
-**示例：**
-
-```ts
-import { DisplayRotation, Driver } from '@kit.TestKit';
-
-async function demo() {
-  let driver: Driver = Driver.create();
-  let rotation: DisplayRotation = await driver.getDisplayRotation(0);
 }
 ```
 
@@ -3387,48 +2968,6 @@ async function demo() {
 }
 ```
 
-### getDisplaySize<sup>20+</sup>
-
-getDisplaySize(displayId: number): Promise\<Point>
-
-获取当前设备指定屏幕的大小，使用Promise异步回调。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明                                       |
-| -------- | ------ | ---- | ------------------------------------------ |
-| displayId     | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。 <br> **说明：** 传入displayId不存在时，将抛出17000007异常。               |
-
-**返回值：**
-
-| 类型                       | 说明                                    |
-| -------------------------- | --------------------------------------- |
-| Promise\<[Point](#point9)> | Promise对象，返回Point对象，当前设备指定屏幕的大小为Point.x * Point.y。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
-
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
-| 17000002 | The async function is not called with await. |
-| 17000007 |  Parameter verification failed. |
-
-**示例：**
-
-```ts
-import { Driver } from '@kit.TestKit';
-
-async function demo() {
-  let driver: Driver = Driver.create();
-  let size = await driver.getDisplaySize(0);
-}
-```
-
 ### getDisplayDensity<sup>9+</sup>
 
 getDisplayDensity(): Promise\<Point>
@@ -3460,48 +2999,6 @@ import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let density = await driver.getDisplayDensity();
-}
-```
-
-### getDisplayDensity<sup>20+</sup>
-
-getDisplayDensity(displayId: number): Promise\<Point>
-
-获取当前设备指定屏幕的分辨率，使用Promise异步回调。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明                                       |
-| -------- | ------ | ---- | ------------------------------------------ |
-| displayId | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。 <br> **说明：** 传入displayId不存在时，将抛出17000007异常。                  |
-
-**返回值：**
-
-| 类型                       | 说明                                      |
-| -------------------------- | ----------------------------------------- |
-| Promise\<[Point](#point9)> | Promise对象，返回Point对象，当前设备指定屏幕的分辨率为Point.x*Point.y。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
-
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
-| 17000002 | The async function is not called with await. |
-| 17000007 |  Parameter verification failed. |
-
-**示例：**
-
-```ts
-import { Driver } from '@kit.TestKit';
-
-async function demo() {
-  let driver: Driver = Driver.create();
-  let density = await driver.getDisplayDensity(0);
 }
 ```
 
@@ -3576,53 +3073,6 @@ async function demo() {
   await driver.pressHome();
 }
 ```
-
-### pressHome<sup>20+</sup>
-
-pressHome(displayId: number): Promise\<void>
-
-设备指定屏幕上注入返回桌面操作，使用Promise异步回调。
-
-> **说明**
->
-> 该接口仅在手机、平板、PC/2in1设备上生效。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明                                       |
-| -------- | ------ | ---- | ------------------------------------------ |
-| displayId     | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。 <br> **说明：** 传入displayId不存在时，将抛出17000007异常。                  |
-
-**返回值：**
-
-| 类型             | 说明              |
-|----------------|-----------------|
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
-
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
-| 17000002 | The async function is not called with await. |
-| 17000007 |  Parameter verification failed. |
-
-**示例：**
-
-```ts
-import { Driver } from '@kit.TestKit';
-
-async function demo() {
-  let driver: Driver = Driver.create();
-  await driver.pressHome(0);
-}
-```
-
 ### waitForIdle<sup>9+</sup>
 
 waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
@@ -3803,50 +3253,6 @@ import { Driver, UiDirection } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.fling(UiDirection.DOWN, 10000);
-}
-```
-
-### fling<sup>20+</sup>
-
-fling(direction: UiDirection, speed: number, displayId: number): Promise\<void>
-
-指定方向和速度，模拟手指滑动后脱离屏幕的快速滑动操作，使用Promise异步回调。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名    | 类型                          | 必填 | 说明                                                     |
-| --------- | ----------------------------- | ---- |--------------------------------------------------------|
-| direction | [UiDirection](#uidirection10) | 是   | 进行抛滑的方向。                                               |
-| speed     | number                        | 是   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
-| displayId     | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。 <br> **说明：** 传入displayId不存在时，将抛出17000007异常。                  |
-
-**返回值：**
-
-| 类型             | 说明              |
-|----------------|-----------------|
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 17000002 | The async function is not called with await.             |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
-
-**示例：**
-
-```ts
-import { Driver, UiDirection } from '@kit.TestKit';
-
-async function demo() {
-  let driver: Driver = Driver.create();
-  await driver.fling(UiDirection.DOWN, 10000, 0);
 }
 ```
 
@@ -4346,7 +3752,7 @@ inputText(p: Point, text: string, mode: InputTextMode): Promise\<void>
 | ------ | ---------------- | ---- | ------------------ |
 | p      | [Point](#point9) | 是   | 输入文本的坐标点。 |
 | text   | string           | 是   |输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
-| mode | [InputTextMode](#inputtextmode20) | 否   | 输入文本的方式，取值请参考[InputTextMode](#inputtextmode20)。 <br> **说明：** InputTextMode.addition取值为ture时，将光标移动至文本末尾后输入指定文本。取值为false时，将在坐标点位置输入指定文本。 |
+| mode | [InputTextMode](#inputtextmode20) |  是 | 输入文本的方式，取值请参考[InputTextMode](#inputtextmode20)。 <br> **说明：** InputTextMode.addition取值为ture时，将光标移动至文本末尾后输入指定文本。取值为false时，将在坐标点位置输入指定文本。 |
 
 **返回值：**
 
@@ -4362,7 +3768,7 @@ inputText(p: Point, text: string, mode: InputTextMode): Promise\<void>
 | -------- | ------------------------------------------------------------ |
 | 17000002 | The async function is not called with await.             |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
-| 801      | Capability not supported, function can not work correctly due to limited device capabilities.|
+| 801      | Capability not support, function can not work correctly due to limited device capabilities.|
 
 **示例：**
 
@@ -4683,7 +4089,7 @@ crownRotate(d: number, speed?: number): Promise\<void>
 | -------- | ------------------------------------------------------------ |
 | 17000002 | The async function is not called with await.             |
 | 17000007 |  Parameter verification failed. |
-| 801 | Capability not supported, function can not work correctly due to limited device capabilities. |
+| 801 | Capability not support, function can not work correctly due to limited device capabilities. |
 
 **示例：**
 
@@ -5357,43 +4763,6 @@ async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({active: true});
   let focused = await window.isActive();
-}
-```
-
-### getDisplayId<sup>20+</sup>
-
-getDisplayId(): Promise\<number>
-
-获取窗口所属的屏幕ID，使用Promise异步回调。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**返回值：**
-
-| 类型             | 说明                   |
-| ---------------- |----------------------|
-| Promise\<number> | Promise对象，返回窗口所属的屏幕ID。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
-
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 17000002 | The async function is not called with await. |
-| 17000004 | The window or component is invisible or destroyed.           |
-
-**示例：**
-
-```ts
-import { UiWindow, Driver } from '@kit.TestKit';
-
-async function demo() {
-  let driver: Driver = Driver.create();
-  let window: UiWindow = await driver.findWindow({active: true});
-  let id = await window.getDisplayId();
 }
 ```
 

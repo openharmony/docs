@@ -8,7 +8,7 @@
 
 ## visibility
 
-visibility(value: Visibility)
+visibility(value: Visibility): T
 
 控制组件的显示或隐藏。
 
@@ -23,6 +23,12 @@ visibility(value: Visibility)
 | 参数名 | 类型                                          | 必填 | 说明                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Visibility](ts-appendix-enums.md#visibility) | 是   | 控制当前组件显示或隐藏。根据具体场景需要可使用[条件渲染](../../../ui/state-management/arkts-rendering-control-ifelse.md)代替。<br/>默认值：Visibility.Visible |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 
 ## 示例

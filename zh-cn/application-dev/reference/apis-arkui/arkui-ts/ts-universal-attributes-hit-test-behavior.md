@@ -8,7 +8,7 @@
 
 ## hitTestBehavior
 
-hitTestBehavior(value: HitTestMode)
+hitTestBehavior(value: HitTestMode): T
 
 设置组件的触摸测试类型。
 
@@ -21,6 +21,12 @@ hitTestBehavior(value: HitTestMode)
 | 参数名            | 类型     | 必填                             | 说明                               |
 | -------------------- | -------- | ---------------------------------------- | ---------------------------------------- |
 | value | [HitTestMode](#hittestmode枚举说明) | 是 | 设置当前组件的触摸测试类型。<br>默认值： HitTestMode.Default |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## HitTestMode枚举说明
 

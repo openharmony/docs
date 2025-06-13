@@ -80,7 +80,7 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 | -------- | ---------------------- | ---- | ---------------------- |
 | event    | string                 | 是   | 表示要发布的公共事件。详见[系统公共事件定义](./common_event/commonEventManager-definitions.md)。  |
 | options  | [CommonEventPublishData](./js-apis-inner-commonEvent-commonEventPublishData.md) | 是   | 表示发布公共事件的属性。 |
-| callback | syncCallback\<void>   | 是   | 回调函数。当公共事件发布成功时，err为undefined，否则为错误对象。  |
+| callback | AsyncCallback\<void>   | 是   | 回调函数。当公共事件发布成功时，err为undefined，否则为错误对象。  |
 
 **错误码：**
 
@@ -298,7 +298,7 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEven
 | 801  | capability not supported.               |
 | 1500007  | Failed to send the message to the common event service. |
 | 1500008  | Failed to initialize the common event service. |
-| 1500010  | The number of subscribers exceeds the upper limit. |
+| 1500010  | The count of subscriber exceed system specification. |
 
 **示例：**
 
@@ -459,10 +459,10 @@ subscribeToEvent(subscriber: CommonEventSubscriber, callback: Callback\<CommonEv
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 801  | capability not supported.               |
+| 801  | Capability not supported.               |
 | 1500007  | Failed to send the message to the common event service. |
 | 1500008  | Failed to initialize the common event service. |
-| 1500010  | The number of subscribers exceeds the upper limit. |
+| 1500010  | The count of subscriber exceed system specification. |
 
 **示例：**
 

@@ -571,6 +571,45 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
                 Dma:0 kB
     ```
 
+    获取设备中简易的内存信息，只获取进程内存使用信息。
+
+    ```shell
+    hidumper --mem --prune
+    ```
+
+    **使用样例：**
+
+    ```text
+    $ hidumper --mem --prune
+
+    -------------------------------[memory]-------------------------------
+    Total Memory Usage by PID:
+    PID        Total Pss(xxx in SwapPss)           GL     AdjLabel     Name
+    1              1546(0 in SwapPss) kB         0 kB        -1000     init
+    170             691(0 in SwapPss) kB         0 kB         -900     ueventd
+    ...
+    ```
+
+    采集进程内存变化信息。
+
+    ```shell
+    hidumper --mem pid -t timeInterval
+    ```
+    timeInterval为间隔时长，单位为s。
+
+    **使用样例：**
+
+    ```text
+    $ hidumper --mem 1 -t 1
+
+    -------------------------------[memory]-------------------------------
+    StartTime           EndTime              Count                MaxMem              Change
+    2017-09-19 01:14:43 2017-09-19 01:14:58  15                   1517kB               0kB
+    ********************      times1: PSS=1517kB
+    ********************      times2: PSS=1517kB
+    ...
+    ```
+
     **Graph字段统计方式为：计算/proc/process_dmabuf_info节点下该进程使用的内存大小。**
    
 16. 保存命令输出到/data/log/hidumper下的压缩文件。

@@ -3322,8 +3322,16 @@ on(event: 'faultOccur', callback: Callback&lt;Faults&gt;): void
 | event | string                              | 是 | 订阅的事件类型。<br>- 取值为'faultOccur'，表示任务失败。 |
 | callback | Callback&lt;[Faults](#faults10)&gt; | 是 | 发生相关的事件时触发该回调方法，返回任务失败的原因。 |
 
-**示例：**
+**错误码：**
 
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+
+**示例：**
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3390,8 +3398,16 @@ on(event: 'wait', callback: Callback&lt;WaitingReason&gt;): void
 | event | string                                            | 是 | 订阅的事件类型。<br>- 取值为'wait'，表示任务等待。 |
 | callback | Callback&lt;[WaitingReason](#waitingreason20)&gt; | 是 | 发生相关的事件时触发该回调方法，返回任务等待的原因。      |
 
-**示例：**
+**错误码：**
 
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+
+**示例：**
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4093,8 +4109,16 @@ off(event: 'faultOccur', callback?: Callback&lt;Faults&gt;): void
 | event | string                     | 是 | 订阅的事件类型。<br>- 取值为'faultOccur'，表示任务失败。      |
 | callback | Callback&lt;[Faults](#faults10)&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则默认取消订阅当前类型的所有回调函数。 |
 
-**示例：**
+**错误码：**
 
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+
+**示例：**
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4170,8 +4194,16 @@ off(event: 'wait', callback?: Callback&lt;WaitingReason&gt;): void
 | event | string                            | 是 | 订阅的事件类型。<br>- 取值为'wait'，表示任务等待。       |
 | callback | Callback&lt;[WaitingReason](#waitingreason20)&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则默认取消订阅当前类型的所有回调函数。 |
 
-**示例：**
+**错误码：**
 
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+
+**示例：**
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4207,11 +4239,11 @@ off(event: 'wait', callback?: Callback&lt;WaitingReason&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  let waitOffCallback1 = (progress: request.agent.HttpResponse) => {
-    console.info('upload task failed.');
+  let waitOffCallback1 = (reason: request.agent.WaitingReason) => {
+    console.info('upload task waiting.');
   };
-  let waitOffCallback2 = (progress: request.agent.HttpResponse) => {
-    console.info('upload task failed.');
+  let waitOffCallback2 = (reason: request.agent.WaitingReason) => {
+    console.info('upload task waiting.');
   };
   request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('wait', waitOffCallback1);

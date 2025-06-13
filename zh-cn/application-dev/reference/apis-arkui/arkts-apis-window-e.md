@@ -159,26 +159,6 @@
 | ------- | ---- | -------------------------- |
 | DESTROY | 0    | 表示窗口销毁时的转场动画。 |
 
-## WindowAnchor<sup>20+</sup>
-
-窗口锚点枚举。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：**  SystemCapability.Window.SessionManager
-
-| 名称       | 值   | 说明                          |
-| ---------- | ---- | ----------------------------- |
-| TOP_START  | 0    | 窗口左上角。|
-| TOP  | 1    | 窗口上边界横向居中点。|
-| TOP_END  | 2    | 窗口右上角。|
-| START  | 3    | 窗口左边界纵向居中点。|
-| CENTER  | 4    | 窗口横向和纵向居中点。|
-| END  | 5    | 窗口右边界纵向居中点。|
-| BOTTOM_START  | 6    | 窗口左下角。|
-| BOTTOM  | 7    | 窗口下边界横向居中点。|
-| BOTTOM_END  | 8    | 窗口右下角。|
-
 ## RotationChangeType<sup>19+</sup>
 
 窗口旋转事件类型。

@@ -297,7 +297,7 @@ FA卡片开发，即基于[FA模型](../application-models/fa-model-development-
   | description | 表示卡片的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。字符串最大长度为255字节。 | 字符串 | 可缺省，缺省为空。 |
   | isDefault | 表示该卡片是否为默认卡片，每个Ability有且只有一个默认卡片。<br/>true：默认卡片。<br/>false：非默认卡片。 | 布尔值 | 否 |
   | type | 表示卡片的类型。取值范围如下：<br/>JS：JS卡片。 | 字符串 | 否 |
-  | colorMode | 表示卡片的主题样式，取值范围如下：<br/>auto：自适应。<br/>dark：深色主题。<br/>light：浅色主题。 | 字符串 | 可缺省，缺省值为“auto”。 |
+  | colorMode<sup>(deprecated)</sup> | 表示卡片的主题样式，取值范围如下：<br/>auto：自适应。<br/>dark：深色主题。<br/>light：浅色主题。<br/>**说明：**<br/>从API version 20开始，该接口废弃，卡片主题样式统一跟随系统的颜色模式。 | 字符串 | 可缺省，缺省值为“auto”。 |
   | supportDimensions | 表示卡片支持的外观规格，取值范围：<br/>1&nbsp;\*&nbsp;2：表示1行2列的二宫格。<br/>2&nbsp;\*&nbsp;2：表示2行2列的四宫格。<br/>2&nbsp;\*&nbsp;4：表示2行4列的八宫格。<br/>4&nbsp;\*&nbsp;4：表示4行4列的十六宫格。 | 字符串数组 | 否 |
   | defaultDimension | 表示卡片的默认外观规格，取值必须在该卡片supportDimensions配置的列表中。 | 字符串 | 否 |
   | updateEnabled | 表示卡片是否支持周期性刷新，取值范围：<br/>true：表示支持周期性刷新，可以在定时刷新（updateDuration）和定点刷新（scheduledUpdateTime）两种方式任选其一，优先选择定时刷新。<br/>false：表示不支持周期性刷新。 | 布尔类型 | 否 |
@@ -332,7 +332,6 @@ FA卡片开发，即基于[FA模型](../application-models/fa-model-development-
           "defaultDimension": "2*2",
           "name": "widget",
           "description": "This is a service widget.",
-          "colorMode": "auto",
           "type": "JS",
           "formVisibleNotify": true,
           "supportDimensions": [

@@ -951,7 +951,7 @@ copyDirSync(src: string, dest: string, mode?: number): void
 
 dup(fd: number): File
 
-将文件描述符转化为File。
+复制文件描述符，并返回对应的File对象。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1217,9 +1217,9 @@ getxattrSync(path: string, key: string): string
 
 **返回值：**
 
-  | 类型     | 说明                                       |
-  | ------ | ---------------------------------------- |
-  | key| string对象。返回扩展属性的value。      |
+  | 类型    | 说明                |
+  | ------ | ------------------- |
+  | string | 返回扩展属性的value。|
 
 **错误码：**
 
@@ -3214,9 +3214,8 @@ moveDir(src: string, dest: string, mode?: number): Promise\<void>
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-  // move directory from srcPath to destPath
-  let srcPath = pathDir + "/srcDir/";
-  let destPath = pathDir + "/destDir/";
+  let srcPath = pathDir + "/srcDir";
+  let destPath = pathDir + "/destDir";
   fs.moveDir(srcPath, destPath, 1).then(() => {
     console.info("move directory succeed");
   }).catch((err: BusinessError) => {
@@ -3254,9 +3253,8 @@ moveDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { fileIo as fs, ConflictFiles } from '@kit.CoreFileKit';
-  // move directory from srcPath to destPath
-  let srcPath = pathDir + "/srcDir/";
-  let destPath = pathDir + "/destDir/";
+  let srcPath = pathDir + "/srcDir";
+  let destPath = pathDir + "/destDir";
   fs.moveDir(srcPath, destPath, 1, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015 && err.data?.length !== undefined) {
       for (let i = 0; i < err.data.length; i++) {
@@ -3301,9 +3299,8 @@ moveDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<Conflic
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { fileIo as fs, ConflictFiles } from '@kit.CoreFileKit';
-  // move directory from srcPath to destPath
-  let srcPath = pathDir + "/srcDir/";
-  let destPath = pathDir + "/destDir/";
+  let srcPath = pathDir + "/srcDir";
+  let destPath = pathDir + "/destDir";
   fs.moveDir(srcPath, destPath, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015 && err.data?.length !== undefined) {
       for (let i = 0; i < err.data.length; i++) {
@@ -3346,9 +3343,8 @@ moveDirSync(src: string, dest: string, mode?: number): void
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs, ConflictFiles } from '@kit.CoreFileKit';
-// move directory from srcPath to destPath
-let srcPath = pathDir + "/srcDir/";
-let destPath = pathDir + "/destDir/";
+let srcPath = pathDir + "/srcDir";
+let destPath = pathDir + "/destDir";
 try {
   fs.moveDirSync(srcPath, destPath, 1);
   console.info("move directory succeed");
@@ -4228,9 +4224,15 @@ getBaseFile(): File
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
+**返回值：**
+
+  | 类型          | 说明            |
+  | ------------- | -------------- |
+  | [File](#file) | 打开的File对象。|
+
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
 
 **示例：**
 
@@ -4273,7 +4275,7 @@ openRead(): ReadStream
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
 
 **示例：**
 
@@ -4326,7 +4328,7 @@ readFully(): ArrayBuffer
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
 
 **示例：**
 
@@ -4379,7 +4381,7 @@ startWrite(): WriteStream
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
 
 **示例：**
 
@@ -4415,7 +4417,7 @@ finishWrite(): void
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
 
 **示例：**
 
@@ -4450,7 +4452,7 @@ failWrite(): void
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
 
 **示例：**
 
@@ -4488,7 +4490,7 @@ delete(): void
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
 
 **示例：**
 
@@ -4759,6 +4761,10 @@ copySignal.onCancel().then(() => {
 | mtimeNs<sup>15+</sup>  | bigint | 是    | 是    | 上次修改该文件的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
 | ctimeNs<sup>15+</sup>  | bigint | 是    | 是    | 最近改变文件状态的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
 | location<sup>11+</sup> | [LocaltionType](#locationtype11)| 是 |否| 文件的位置，表示该文件是本地文件或者云端文件。
+
+> **说明：**
+>
+> Stat中部分属性仅支持普通文件获取，开发者可通过[isFile()](#isfile)接口判断文件是否为普通文件。
 
 ### isBlockDevice
 
@@ -5590,7 +5596,7 @@ onStatus(networkId: string, status: number): void;
   | 参数名  | 类型     | 必填   | 说明                              |
   | ---- | ------ | ---- | ---------------------------------------- |
   | networkId   | string | 是    | 设备的网络Id。                             |
-  | status | number | 是    | 分布式文件系统的状态码（以connectDfs回调onStatus的特定错误码作为入参）。触发场景为connectDfs调用过程中出现对端设备异常，对应错误码为：<br/>-&nbsp;[13900046](errorcode-filemanagement.md#13900046)：软件造成连接中断。
+  | status | number | 是    | 分布式文件系统的状态码（以connectDfs回调onStatus的特定错误码作为入参）。触发场景为connectDfs调用过程中出现对端设备异常，对应错误码为：<br/>-&nbsp;[13900046](errorcode-filemanagement.md#13900046-软件造成连接中断)：软件造成连接中断。
 
 ## RandomAccessFile
 
@@ -6098,7 +6104,7 @@ open接口flags参数常量。文件打开标签。
 
 | 名称        | 值       | 说明                |
 | ----------- | --------------- | ------------------ |
-| LOCAl | 1     | 文件在本地存在。           |
+| LOCAL | 1     | 文件在本地存在。           |
 | CLOUD    | 2     | 文件在云端存在。 |
 
 ## AccessModeType<sup>12+</sup>

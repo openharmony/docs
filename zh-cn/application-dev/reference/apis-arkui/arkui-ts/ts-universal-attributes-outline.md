@@ -10,7 +10,7 @@
 
 ## outline
 
-outline(value: OutlineOptions)
+outline(value: OutlineOptions): T
 
 统一外描边样式设置接口。
 
@@ -26,9 +26,15 @@ outline(value: OutlineOptions)
 | ------ | ----------------------------------------- | ---- | ------------ |
 | value  | [OutlineOptions](#outlineoptions对象说明) | 是   | 外描边样式。 |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## outline<sup>18+</sup>
 
-outline(options: Optional\<OutlineOptions>)
+outline(options: Optional\<OutlineOptions>): T
 
 统一外描边样式设置接口。与[outline](#outline)相比，options参数新增了对undefined类型的支持。
 
@@ -43,6 +49,12 @@ outline(options: Optional\<OutlineOptions>)
 | 参数名 | 类型                                      | 必填 | 说明 |
 | ------ | ----------------------------------------- | ---- | ---- |
 | options | Optional\<[OutlineOptions](#outlineoptions对象说明)> | 是   |   外描边样式。<br/>当options的值为undefined时，恢复为无外边框效果。   |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
 
 ## OutlineStyle<sup>11+</sup>枚举说明
 
@@ -62,7 +74,7 @@ outline(options: Optional\<OutlineOptions>)
 
 ## outlineStyle
 
-outlineStyle(value: OutlineStyle | EdgeOutlineStyles)
+outlineStyle(value: OutlineStyle | EdgeOutlineStyles): T
 
 设置元素的外描边样式。
 
@@ -78,9 +90,15 @@ outlineStyle(value: OutlineStyle | EdgeOutlineStyles)
 | ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | value  | [OutlineStyle](#outlinestyle11枚举说明)&nbsp;\|&nbsp;[EdgeOutlineStyles](#edgeoutlinestyles对象说明) | 是   | 设置元素的外描边样式。<br/>默认值：OutlineStyle.SOLID |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## outlineStyle<sup>18+</sup>
 
-outlineStyle(style: Optional\<OutlineStyle | EdgeOutlineStyles>)
+outlineStyle(style: Optional\<OutlineStyle | EdgeOutlineStyles>): T
 
 设置元素的外描边样式。与[outlineStyle](#outlinestyle)相比，style参数新增了对undefined类型的支持。
 
@@ -96,9 +114,15 @@ outlineStyle(style: Optional\<OutlineStyle | EdgeOutlineStyles>)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | style  | Optional\<[OutlineStyle](#outlinestyle11枚举说明)&nbsp;\|&nbsp;[EdgeOutlineStyles](#edgeoutlinestyles对象说明)> | 是   | 设置元素的外描边样式。<br/>默认值：OutlineStyle.SOLID<br/>当style的值为undefined时，恢复为无外描边样式的效果。 |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## outlineWidth
 
-outlineWidth(value: Dimension | EdgeOutlineWidths)
+outlineWidth(value: Dimension | EdgeOutlineWidths): T
 
 设置元素的外描边宽度。
 
@@ -114,9 +138,15 @@ outlineWidth(value: Dimension | EdgeOutlineWidths)
 | ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](#edgeoutlinewidths对象说明) | 是   | 设置元素的外描边宽度，不支持百分比。 <br/>默认值：0。 |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## outlineWidth<sup>18+</sup>
 
-outlineWidth(width: Optional\<Dimension | EdgeOutlineWidths>)
+outlineWidth(width: Optional\<Dimension | EdgeOutlineWidths>): T
 
 设置元素的外描边宽度。与[outlineWidth](#outlinewidth)相比，width参数新增了对undefined类型的支持。
 
@@ -132,9 +162,15 @@ outlineWidth(width: Optional\<Dimension | EdgeOutlineWidths>)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | width  | Optional\<[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](#edgeoutlinewidths对象说明)> | 是   | 设置元素的外描边宽度，不支持百分比。 <br/>默认值：0。<br/>当width的值为undefined时，恢复为无外描边宽度的效果。 |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## outlineColor
 
-outlineColor(value: ResourceColor | EdgeColors)
+outlineColor(value: ResourceColor | EdgeColors): T
 
 设置元素的外描边颜色。
 
@@ -150,9 +186,15 @@ outlineColor(value: ResourceColor | EdgeColors)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors对象说明) | 是   | 设置元素的外描边颜色。<br/>默认值：Color.Black |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## outlineColor<sup>18+</sup>
 
-outlineColor(color: Optional\<ResourceColor | EdgeColors>)
+outlineColor(color: Optional\<ResourceColor | EdgeColors>): T
 
 设置元素的外描边颜色。与[outlineColor](#outlinecolor)相比，color参数新增了对undefined类型的支持。
 
@@ -168,9 +210,15 @@ outlineColor(color: Optional\<ResourceColor | EdgeColors>)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | color  | Optional\<[ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors对象说明)> | 是   | 设置元素的外描边颜色。<br/>默认值：Color.Black<br/>当color的值为undefined时，恢复为描边颜色为Color.Black的效果。 |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## outlineRadius
 
-outlineRadius(value: Dimension | OutlineRadiuses)
+outlineRadius(value: Dimension | OutlineRadiuses): T
 
 设置元素的外描边圆角半径。
 
@@ -186,9 +234,15 @@ outlineRadius(value: Dimension | OutlineRadiuses)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OutlineRadiuses](#outlineradiuses对象说明) | 是   | 设置元素的外描边圆角半径，不支持百分比。<br/>默认值：0。<br/>最大生效值：组件width/2 + outlineWidth或组件height/2 + outlineWidth。 |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## outlineRadius<sup>18+</sup>
 
-outlineRadius(radius: Optional\<Dimension | OutlineRadiuses>)
+outlineRadius(radius: Optional\<Dimension | OutlineRadiuses>): T
 
 设置元素的外描边圆角半径。与[outlineRadius](#outlineradius)相比，radius参数新增了对undefined类型的支持。
 
@@ -203,6 +257,12 @@ outlineRadius(radius: Optional\<Dimension | OutlineRadiuses>)
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | radius | Optional\<[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OutlineRadiuses](#outlineradiuses对象说明)> | 是   | 设置元素的外描边圆角半径，不支持百分比。<br/>默认值：0。<br/>最大生效值：组件width/2 + outlineWidth或组件height/2 + outlineWidth。<br/>当radius的值为undefined时，恢复为外描边圆角半径为0的效果。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
 
 ## OutlineOptions对象说明
 

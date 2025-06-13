@@ -843,30 +843,6 @@ onRefreshAccessedHistory(callback: Callback\<OnRefreshAccessedHistoryEvent\>)
   }
   ```
 
-## onSslErrorReceive<sup>(deprecated)</sup>
-
-onSslErrorReceive(callback: (event?: { handler: Function, error: object }) => void)
-
-通知用户加载资源时发生SSL错误。
-
-> **说明：**
->
-> 从API version 8开始支持，从API version 9开始废弃。建议使用[onSslErrorEventReceive<sup>9+</sup>](#onsslerroreventreceive9)替代。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-## onFileSelectorShow<sup>(deprecated)</sup>
-
-onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object }) => void)
-
-调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮。
-
-> **说明：**
->
-> 从API version 8开始支持，从API version 9开始废弃。建议使用[onShowFileSelector<sup>9+</sup>](#onshowfileselector9)替代。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
 ## onRenderExited<sup>9+</sup>
 
 onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
@@ -1260,7 +1236,7 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
 
 onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceResponse>)
 
-当Web组件加载url之前触发该回调，用于拦截url并返回响应数据。
+当Web组件加载url之前触发该回调，用于拦截url并返回响应数据。onInterceptRequest可以拦截所有跳转，需要根据具体业务去做判断。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2092,7 +2068,15 @@ onContextMenuHide(callback: OnContextMenuHideCallback)
 
 onScroll(callback: Callback\<OnScrollEvent\>)
 
-通知网页滚动条滚动位置。
+通知网页全局滚动位置。
+
+> **说明：**
+>
+> 通知的是页面全局滚动位置，局部滚动位置的变化是无法触发此回调。
+>
+> 判断页面是否是全局滚动，在滚动前后打印window.pagYOffset或者window.pagXOffset。
+>
+> 如果是全局滚动，window.pagYOffset或者window.pagXOffset的值在滚动前后会有变化，反之没有变化。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4123,3 +4107,27 @@ onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
   </body>
   </html>
   ```
+
+## onSslErrorReceive<sup>(deprecated)</sup>
+
+onSslErrorReceive(callback: (event?: { handler: Function, error: object }) => void)
+
+通知用户加载资源时发生SSL错误。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[onSslErrorEventReceive<sup>9+</sup>](#onsslerroreventreceive9)替代。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+## onFileSelectorShow<sup>(deprecated)</sup>
+
+onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object }) => void)
+
+调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[onShowFileSelector<sup>9+</sup>](#onshowfileselector9)替代。
+
+**系统能力：** SystemCapability.Web.Webview.Core

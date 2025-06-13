@@ -1,6 +1,6 @@
 # NodeContainer
 
-基础组件，不支持尾随添加子节点。组件接受一个[NodeController](../js-apis-arkui-nodeController.md)的实例接口。需要NodeController组合使用。
+基础组件，用于挂载自定义节点（如[FrameNode](../js-apis-arkui-frameNode.md)或[BuilderNode](../js-apis-arkui-builderNode.md)），并通过[NodeController](../js-apis-arkui-nodeController.md)动态控制节点的上树和下树。不支持尾随添加子节点。组件接受一个[NodeController](../js-apis-arkui-nodeController.md)的实例接口。需要NodeController组合使用。
 
 > **说明：**
 >

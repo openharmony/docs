@@ -20,7 +20,7 @@ import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } 
 > - 当前不支持动态属性设置。
 > - 当前不支持ArkUI通用属性ComponentOptions中expandSafeArea属性设置。
 > - 该组件长按触发播放时组件区域放大为1.1倍。
-> - 该组件使用[AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)进行播放，同时开启的AVPlayer个数不建议超过3个，超过3个可能会出现视频播放卡顿现象。
+> - 该组件使用[AVPlayer](../apis-media-kit/arkts-apis-media-AVPlayer.md)进行播放，同时开启的AVPlayer个数不建议超过3个，超过3个可能会出现视频播放卡顿现象。
 
 MovingPhotoView(options: MovingPhotoViewOptions)
 
@@ -263,7 +263,7 @@ declare type MovingPhotoViewEventCallback = () => void
 
 ## MovingPhotoViewController
 
-一个MovingPhotoViewController对象可以控制一个MovingPhotoView，可用视频播放实例请参考[@ohos.multimedia.media](../apis-media-kit/js-apis-media.md)。
+一个MovingPhotoViewController对象可以控制一个MovingPhotoView，可用视频播放实例请参考[@ohos.multimedia.media](../apis-media-kit/arkts-apis-media.md)。
 
 ### startPlayback
 

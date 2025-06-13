@@ -22,12 +22,12 @@ import image from '@ohos.multimedia.image';
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
-| 名称               | 类型                               | 可读 | 可写 | 说明             |
-| ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
-| resolutionQuality         | number                             | 是   | 是   | 画质效果等级。 |
+| 名称               | 类型              | 只读 | 可选 | 说明             |
+| ----------------- | ----------------- | ---- | ---- | ---------------- |
+| resolutionQuality | [ResolutionQuality](#resolutionquality12) | 否   | 是   | 画质效果等级。 |
 
 
-## ResolutionQuality <sup>12+</sup>
+## ResolutionQuality<sup>12+</sup>
 
 枚举，画质效果等级类型。
 

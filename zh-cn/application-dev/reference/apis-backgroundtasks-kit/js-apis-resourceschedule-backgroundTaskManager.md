@@ -211,7 +211,7 @@ cancelSuspendDelay(requestId: number): void
 
 ## backgroundTaskManager.getTransientTaskInfo<sup>20+</sup>
 
-getAllTransientTasks(): Promise&lt;TransientTaskInfo&gt;
+getTransientTaskInfo(): Promise&lt;TransientTaskInfo&gt;
 
 获取所有短时任务信息，如当日剩余总配额等，使用Promise异步回调。
 

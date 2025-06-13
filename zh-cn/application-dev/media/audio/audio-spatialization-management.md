@@ -38,7 +38,7 @@
 
 ## 查询指定设备是否支持空间音频渲染能力
 
-系统应用开发者可以通过[isSpatializationSupportedForDevice](../../reference/apis-audio-kit/js-apis-audio-sys.md#isspatializationsupportedfordevice11)接口查询指定设备是否具有空间音频渲染的能力，开发者需要使用AudioDeviceDescriptor作为入参来指定设备，建议通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。AudioDeviceDescriptor的具体信息可以参考[AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor)。
+系统应用开发者可以通过[isSpatializationSupportedForDevice](../../reference/apis-audio-kit/js-apis-audio-sys.md#isspatializationsupportedfordevice11)接口查询指定设备是否具有空间音频渲染的能力，开发者需要使用AudioDeviceDescriptor作为入参来指定设备，建议通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。AudioDeviceDescriptor的具体信息可以参考[AudioDeviceDescriptor](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor)。
 
   ```ts
   import { audio } from '@kit.AudioKit';
@@ -85,7 +85,7 @@
 
 ## 查询指定设备是否支持头动跟踪能力
 
-系统应用开发者可以通过[isHeadTrackingSupportedForDevice](../../reference/apis-audio-kit/js-apis-audio-sys.md#isheadtrackingsupportedfordevice11)接口查询指定设备是否具有头动跟踪的能力，开发者需要使用AudioDeviceDescriptor作为入参来指定设备，建议通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。AudioDeviceDescriptor的具体信息可以参考[AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor)。
+系统应用开发者可以通过[isHeadTrackingSupportedForDevice](../../reference/apis-audio-kit/js-apis-audio-sys.md#isheadtrackingsupportedfordevice11)接口查询指定设备是否具有头动跟踪的能力，开发者需要使用AudioDeviceDescriptor作为入参来指定设备，建议通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。AudioDeviceDescriptor的具体信息可以参考[AudioDeviceDescriptor](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor)。
 
   ```ts
   import { audio } from '@kit.AudioKit';
@@ -119,7 +119,7 @@
 
 系统应用开发者可以通过[setSpatializationEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#setspatializationenabled12)接口开启/关闭指定设备的空间音频渲染效果，该接口需要传递两个参数：AudioDeviceDescriptor和enabled。
 
-AudioDeviceDescriptor：用于指定音频设备。建议通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。AudioDeviceDescriptor的具体信息可以参考[AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor)。
+AudioDeviceDescriptor：用于指定音频设备。建议通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。AudioDeviceDescriptor的具体信息可以参考[AudioDeviceDescriptor](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor)。
 enabled：布尔值类型，用于控制指定设备的空间音频渲染开关。入参为true时为开启空间音频渲染，入参为false时为关闭空间音频渲染。
 
 在使用此功能前，应用需要先申请权限`ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS`，申请方式请参考：[申请应用权限](../../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
@@ -155,7 +155,7 @@ enabled：布尔值类型，用于控制指定设备的空间音频渲染开关�
 
 ## 查询指定设备的空间音频渲染效果开关状态
 
-系统应用开发者可以通过[isSpatializationEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#isspatializationenabled12)接口查询指定设备的空间音频渲染效果开关状态，开发者需要使用AudioDeviceDescriptor作为入参来指定设备，建议通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。AudioDeviceDescriptor的具体信息可以参考[AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor)。该接口返回为true表示空间音频渲染开启，false表示空间音频渲染关闭。返回值为setSpatializationEnabled接口中成功设置的指定设备空间音频渲染开关状态，默认为关闭。该状态仅为开关状态，实际是否生效还需依赖系统和指定设备是否支持空间音频渲染。
+系统应用开发者可以通过[isSpatializationEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#isspatializationenabled12)接口查询指定设备的空间音频渲染效果开关状态，开发者需要使用AudioDeviceDescriptor作为入参来指定设备，建议通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。AudioDeviceDescriptor的具体信息可以参考[AudioDeviceDescriptor](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor)。该接口返回为true表示空间音频渲染开启，false表示空间音频渲染关闭。返回值为setSpatializationEnabled接口中成功设置的指定设备空间音频渲染开关状态，默认为关闭。该状态仅为开关状态，实际是否生效还需依赖系统和指定设备是否支持空间音频渲染。
 
   ```ts
   import { audio } from '@kit.AudioKit';
@@ -211,7 +211,7 @@ enabled：布尔值类型，用于控制指定设备的空间音频渲染开关�
 
 系统应用开发者可以通过[setHeadTrackingEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#setheadtrackingenabled12)接口开启/关闭指定设备的空间音频渲染效果，该接口需要传递两个参数：AudioDeviceDescriptor和enabled。
 
-AudioDeviceDescriptor：用于指定音频设备。建议通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。AudioDeviceDescriptor的具体信息可以参考[AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor)。
+AudioDeviceDescriptor：用于指定音频设备。建议通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。AudioDeviceDescriptor的具体信息可以参考[AudioDeviceDescriptor](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor)。
 enabled：布尔值类型，用于控制指定设备的头动跟踪开关。入参为true时为开启头动跟踪，入参为false时为关闭头动跟踪。
 
 在使用此功能前，应用需要先申请权限`ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS`，申请方式请参考：[申请应用权限](../../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
@@ -247,7 +247,7 @@ enabled：布尔值类型，用于控制指定设备的头动跟踪开关。入�
 
 ## 查询指定设备的头动跟踪效果开关状态
 
-系统应用开发者可以通过[isHeadTrackingEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#isheadtrackingenabled12)接口查询指定设备的头动跟踪效果开关状态，开发者需要使用AudioDeviceDescriptor作为入参来指定设备，建议通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。AudioDeviceDescriptor的具体信息可以参考[AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor)。该接口返回为true表示头动跟踪开启，false表示头动跟踪关闭。返回值为setHeadTrackingEnabled接口中成功设置的指定设备头动跟踪开关状态，默认为关闭。该状态仅为开关状态，实际是否生效还需依赖系统和指定设备是否支持头动跟踪，以及指定设备空间音频渲染开关是否打开。
+系统应用开发者可以通过[isHeadTrackingEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#isheadtrackingenabled12)接口查询指定设备的头动跟踪效果开关状态，开发者需要使用AudioDeviceDescriptor作为入参来指定设备，建议通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。AudioDeviceDescriptor的具体信息可以参考[AudioDeviceDescriptor](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor)。该接口返回为true表示头动跟踪开启，false表示头动跟踪关闭。返回值为setHeadTrackingEnabled接口中成功设置的指定设备头动跟踪开关状态，默认为关闭。该状态仅为开关状态，实际是否生效还需依赖系统和指定设备是否支持头动跟踪，以及指定设备空间音频渲染开关是否打开。
 
   ```ts
   import { audio } from '@kit.AudioKit';

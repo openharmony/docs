@@ -44,7 +44,6 @@ RichText(content:string)
 | content | string | 是   | 表示HTML格式的字符串。 |
 
 
-
 ## 事件
 
 ### onStart
