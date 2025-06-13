@@ -2,7 +2,7 @@
 
 当前卡片框架提供了如下几种按时间刷新卡片的方式：
 
-- 定时刷新：表示在一定时间间隔内调用[onUpdateForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onupdateform)的生命周期回调函数自动刷新卡片内容。可以在[form_config.json](arkts-ui-widget-configuration.md)配置文件的`updateDuration`字段中进行设置。例如，可以将`updateDuration`字段的值设置为2，表示刷新时间设置为每小时一次。
+- 定时刷新：表示在一定时间间隔内调用[onUpdateForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonupdateform)的生命周期回调函数自动刷新卡片内容。可以在[form_config.json](arkts-ui-widget-configuration.md)配置文件的`updateDuration`字段中进行设置。例如，可以将`updateDuration`字段的值设置为2，表示刷新时间设置为每小时一次。
 
   ```json
   {
@@ -42,7 +42,7 @@
   > <br/> ● 卡片定时刷新的更新周期单位为30分钟。应用市场配置的刷新周期范围是1~336，即最短为半小时(1 * 30min)刷新一次，最长为一周(336 * 30min)刷新一次。
   > <br/> ● 该规则从API11开始生效。若小于API11，则以form_config.json文件中配置的刷新周期为准。
 
-- 下次刷新：表示指定卡片的下一次刷新时间。可以通过调用[setFormNextRefreshTime](../reference/apis-form-kit/js-apis-app-form-formProvider.md#setformnextrefreshtime)接口来实现。最短刷新时间为5分钟。例如，可以在接口调用后的5分钟内刷新卡片内容。
+- 下次刷新：表示指定卡片的下一次刷新时间。可以通过调用[setFormNextRefreshTime](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovidersetformnextrefreshtime)接口来实现。最短刷新时间为5分钟。例如，可以在接口调用后的5分钟内刷新卡片内容。
 
   ```ts
   import { FormExtensionAbility, formProvider } from '@kit.FormKit';
