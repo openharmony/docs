@@ -21,11 +21,11 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 | fatal(domain: number, tag: string, format: string, ...args: any[]) | 输出FATAL级别日志。表示出现致命错误、不可恢复错误。 |
 | setMinLogLevel(level: LogLevel) | 设置应用日志打印的最低日志级别，进程在打印日志时，需要同时校验该日志级别和全局日志级别，所以设置的日志级别不能低于全局日志级别。|
 
-<!--RP1-->
+<!--RP2-->
 > **说明：**
 >
 > 全局日志级别，默认为info, 可参考[查看和设置日志级别](hilog.md#查看和设置日志级别)
-<!--RP1End-->
+<!--RP2End-->
 
 ### 参数解析
 
