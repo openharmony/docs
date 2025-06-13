@@ -1,6 +1,6 @@
 # @ohos.file.sendablePhotoAccessHelper (相册管理模块)(系统接口)
 
-该模块基于[Sendable](../../arkts-utils/arkts-sendable.md#)对象，提供相册管理模块能力，包括创建相册以及访问、修改相册中的媒体数据信息等。
+该模块基于[Sendable](../../arkts-utils/arkts-sendable.md)对象，提供相册管理模块能力，包括创建相册以及访问、修改相册中的媒体数据信息等。
 
 > **说明：**
 >
