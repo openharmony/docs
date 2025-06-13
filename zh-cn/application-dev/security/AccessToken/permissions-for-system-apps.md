@@ -4916,7 +4916,7 @@
 
 ## ohos.permission.FILE_ACCESS_FOR_PRIVATE_SPACE
 
-允许应用挂载主空间公共目录至应用沙箱。
+允许隐私用户条件挂载沙箱。
 
 **权限级别**：system_core
 
