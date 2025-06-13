@@ -375,7 +375,7 @@
 | TOP_END       | 'top_end'     | 顶部尾端。    |
 | START         | 'start'       | 起始端纵向居中。 |
 | CENTER        | 'center'      | 横向和纵向居中。 |
-| End           | 'end'         | 尾端纵向居中。  |
+| END           | 'end'         | 尾端纵向居中。  |
 | BOTTOM_START  | 'bottom_start'| 底部起始端。   |
 | BOTTOM        | 'bottom'      | 底部横向居中。  |
 | BOTTOM_END    | 'bottom_end'  | 底部尾端。    |
