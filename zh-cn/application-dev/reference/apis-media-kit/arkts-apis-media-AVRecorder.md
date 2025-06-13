@@ -501,7 +501,7 @@ resume(callback: AsyncCallback\<void>): void
 
 异步方式恢复视频录制。通过注册回调函数获取返回值。
 
-需要在[pause()](#pause9-2)事件成功触发后，才能调用resume方法。
+需要在[pause()](#pause9)事件成功触发后，才能调用resume方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -581,7 +581,7 @@ stop(callback: AsyncCallback\<void>): void
 
 异步方式停止视频录制。通过注册回调函数获取返回值。
 
-需要在[start()](#start9)或[pause()](#pause9-2)事件成功触发后，才能调用stop方法。
+需要在[start()](#start9)或[pause()](#pause9)事件成功触发后，才能调用stop方法。
 
 纯音频录制时，需要重新调用[prepare()](#prepare9-2)接口才能重新录制。纯视频录制，音视频录制时，需要重新调用[prepare()](#prepare9-2)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
 
