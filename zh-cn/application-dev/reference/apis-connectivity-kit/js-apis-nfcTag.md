@@ -351,7 +351,7 @@ getNfcV(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 
 ## tag.getIsoDep<sup>9+</sup>
 
-getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isoDepTag9 )
+getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isodeptag9 )
 
 获取IsoDep类型Tag对象，通过该对象可访问支持IsoDep技术类型的Tag。
 
