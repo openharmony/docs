@@ -270,7 +270,7 @@ Service timeout.
 
 **错误信息**
 
-Redirection to a third-party application is not allowed in API version 11 or later.
+Redirection to a third-party application is not allowed in API version greater than 11.
 
 **错误描述**
 
