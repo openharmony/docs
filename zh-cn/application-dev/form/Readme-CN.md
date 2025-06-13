@@ -18,6 +18,7 @@
         - [拉起卡片提供方的UIAbility(router事件)](arkts-ui-widget-event-router.md)
         - [拉起卡片提供方的UIAbility到后台(call事件)](arkts-ui-widget-event-call.md)
         - [通过message事件刷新卡片内容](arkts-ui-widget-event-formextensionability.md)
+        - [通过router或call事件刷新卡片内容](arkts-ui-widget-event-uiability.md)
       - ArkTS卡片页面刷新<!--arkts-ui-widget-interaction-->
         - [ArkTS卡片页面刷新概述](arkts-ui-widget-interaction-overview.md)
         - [ArkTS卡片主动刷新](arkts-ui-widget-active-refresh.md)
