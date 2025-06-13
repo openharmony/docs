@@ -1,4 +1,4 @@
-# 废弃的Interfaces (AudioPlayer，deprecated)
+# 废弃的Interface (AudioPlayer，deprecated)
 
 > **说明：**
 > 从API version 6开始支持，从API version 9开始废弃，建议使用[AVPlayer](arkts-apis-media-t.md#avplayer9)替代。
