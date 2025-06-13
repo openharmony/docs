@@ -4315,6 +4315,7 @@
            - [@ohos.app.ability.abilityDelegatorRegistry (AbilityDelegatorRegistry)](reference/apis-test-kit/js-apis-app-ability-abilityDelegatorRegistry.md)
            - [@ohos.application.testRunner (TestRunner)](reference/apis-test-kit/js-apis-application-testRunner.md)
            - [@ohos.UiTest](reference/apis-test-kit/js-apis-uitest.md)
+           - [@ohos.test.PerfTest](reference/apis-test-kit/js-apis-perftest.md)
            - 接口依赖的元素及定义<!--test-api-interface-depend-->
               - [abilityDelegator](reference/apis-test-kit/js-apis-inner-application-abilityDelegator.md)
               - [abilityDelegatorArgs](reference/apis-test-kit/js-apis-inner-application-abilityDelegatorArgs.md)
@@ -4323,6 +4324,7 @@
               - [@ohos.application.abilityDelegatorRegistry (AbilityDelegatorRegistry)](reference/apis-test-kit/js-apis-application-abilityDelegatorRegistry.md)
         - 错误码<!--test-arkts-errcode-->
            - [uitest错误码](reference/apis-test-kit/errorcode-uitest.md)
+           - [perftest错误码](reference/apis-test-kit/errorcode-perftest.md)
   - 媒体<!--media-reference-->
     - Audio Kit（音频服务）<!--audio-api-->
       - ArkTS API<!--audio-arkts-->
