@@ -15599,10 +15599,10 @@ int32_t OH_ArkUI_PostFrameCallback(ArkUI_ContextHandle uiContext, void* userData
 
 **返回：**
 
-ARKUI_ERROR_CODE_NO_ERROR 成功。
-ARKUI_ERROR_CODE_CAPI_INIT_ERROR CAPI初始化错误。
-ARKUI_ERROR_CODE_UI_CONTEXT_INVALID uiContext对象无效。
-ARKUI_ERROR_CODE_CALLBACK_INVALID 回调函数无效。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
+[ARKUI_ERROR_CODE_CAPI_INIT_ERROR](_ark_u_i___native_module.md#arkui_errorcode) CAPI初始化错误。</br >
+[ARKUI_ERROR_CODE_UI_CONTEXT_INVALID](_ark_u_i___native_module.md#arkui_errorcode) uiContext对象无效。</br >
+[ARKUI_ERROR_CODE_CALLBACK_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 回调函数无效。</br >
 
 
 ### OH_ArkUI_RegisterLayoutCallbackOnNodeHandle()
