@@ -1990,7 +1990,7 @@ let periodReachCallback = (position: number) => {
   }
 };
 
-audioRenderer.on('periodReach', periodReachCallback);
+audioRenderer.on('periodReach', 1000, periodReachCallback);
 
 audioRenderer.off('periodReach', periodReachCallback);
 ```
