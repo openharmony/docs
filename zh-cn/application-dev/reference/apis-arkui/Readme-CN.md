@@ -554,6 +554,7 @@
     - [UIExtension错误码](errorcode-uiextension.md)
     <!--Del-->
     - [用户界面外观服务错误码](errorcode-uiappearance.md)
+    - [NodeAdapter错误码](errorcode-nodeadapter.md)
     <!--DelEnd-->
   - 图形图像<!--arkui-graphics-images-arkts-errcode-->
     - [屏幕错误码](errorcode-display.md)
