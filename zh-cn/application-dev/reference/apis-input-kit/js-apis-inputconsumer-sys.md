@@ -185,7 +185,7 @@ try {
 
 ## shieldMode<sup>11+</sup>
 
-快捷键屏蔽类型。
+系统快捷键屏蔽类型。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
