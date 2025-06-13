@@ -2559,6 +2559,7 @@ wifiManager.addCandidateConfig(config,(error,networkId) => {
  netConnectionWlan.register((error: BusinessError) => {
    console.error(JSON.stringify(error));
  });
+});
 ```
 
 ## NetCapabilityInfo<sup>10+</sup>
