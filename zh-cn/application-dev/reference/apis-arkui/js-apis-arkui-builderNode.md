@@ -1539,113 +1539,110 @@ struct Index {
   }
 }
 ```
-### 示例5（检验命令式节点是否有效）
+### 示例5（检验BuilderNode是否有效）
 
-该示例演示了释放节点前后分别使用isDisposed接口验证节点的状态，释放节点前节点调用isDisposed接口返回true，释放节点后节点调用isDisposed接口返回false。
+该示例演示了BuilderNode释放节点前后分别使用isDisposed接口验证节点的状态，释放节点前节点调用isDisposed接口返回true，释放节点后节点调用isDisposed接口返回false。
 
 ```ts
-import {
-  RenderNode,
-  FrameNode,
-  NodeController,
-  BuilderNode,
-  ComponentContent,
-  PromptAction,
-  NodeAdapter,
-  typeNode
-} from "@kit.ArkUI";
+import { RenderNode, FrameNode, NodeController, BuilderNode } from "@kit.ArkUI";
 
-@Builder
-function buildText() {
-  Text("IsDisposed")
-    .textAlign(TextAlign.Center)
+@Component
+struct TestComponent {
+  build() {
+    Column() {
+      Text('This is a BuilderNode.')
+        .fontSize(25)
+        .fontWeight(FontWeight.Bold)
+    }
     .width('100%')
-    .height('100%')
-    .fontSize(30)
+    .height(30)
+    .backgroundColor(Color.Gray)
+  }
+
+  aboutToAppear() {
+    console.error('aboutToAppear');
+  }
+
+  aboutToDisappear() {
+    console.error('aboutToDisappear');
+  }
 }
 
-class MyNodeAdapter extends NodeAdapter {
+@Builder
+function buildComponent() {
+  TestComponent()
 }
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
   private builderNode: BuilderNode<[]> | null = null;
-  private renderNode: RenderNode | null = null;
-  private frameNode: FrameNode | null = null;
-  nodeAdapter: MyNodeAdapter | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
     this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 200, height: 100 } });
-    this.builderNode.build(new WrappedBuilder(buildText));
+    this.builderNode.build(new WrappedBuilder(buildComponent));
 
     const rootRenderNode = this.rootNode!.getRenderNode();
     if (rootRenderNode !== null) {
-      rootRenderNode.size = { width: 200, height: 200 };
+      rootRenderNode.size = { width: 300, height: 300 };
       rootRenderNode.backgroundColor = 0xffd5d5d5;
       rootRenderNode.appendChild(this.builderNode!.getFrameNode()!.getRenderNode());
-      this.renderNode = new RenderNode();
-      rootRenderNode.appendChild(this.renderNode);
-      this.frameNode = new FrameNode(uiContext);
-      this.rootNode.appendChild(this.frameNode);
-
-
-      let listNode = typeNode.createNode(uiContext, "List");
-      listNode.initialize({ space: 3 });
-      this.rootNode.appendChild(listNode);
-      this.nodeAdapter = new MyNodeAdapter();
-      NodeAdapter.attachNodeAdapter(this.nodeAdapter, listNode);
     }
 
     return this.rootNode;
   }
 
-  disposeTest() {
-    if (this.frameNode !== null && this.nodeAdapter !== null && this.builderNode !== null && this.renderNode !== null) {
-      console.log(`jerry before BuilderNode dispose: isDisposed=`, this.builderNode.isDisposed());
+  dispose() {
+    if (this.builderNode !== null) {
       this.builderNode.dispose();
-      console.log(`jerry after BuilderNode dispose: isDisposed=`, this.builderNode.isDisposed());
-      console.log(`jerry before FrameNode dispose: isDisposed=`, this.frameNode.isDisposed());
-      this.frameNode.dispose();
-      console.log(`jerry after FrameNode dispose: isDisposed=`, this.frameNode.isDisposed());
-      console.log(`jerry before RenderNode dispose: isDisposed=`, this.renderNode.isDisposed());
-      this.renderNode.dispose();
-      console.log(`jerry after RenderNode dispose: isDisposed=`, this.renderNode.isDisposed());
-      console.log(`jerry before NodeAdapter dispose: isDisposed=`, this.nodeAdapter.isDisposed());
-      this.nodeAdapter.dispose();
-      console.log(`jerry after NodeAdapter dispose: isDisposed=`, this.nodeAdapter.isDisposed());
+    }
+  }
+
+  isDisposed() : string{
+    if (this.builderNode !== null) {
+      if (this.builderNode.isDisposed()) {
+        return 'builderNode isDisposed is true';
+      }
+      else {
+        return 'builderNode isDisposed is false';
+      }
+    }
+    return 'builderNode is null';
+  }
+
+  removeBuilderNode() {
+    const rootRenderNode = this.rootNode!.getRenderNode();
+    if (rootRenderNode !== null && this.builderNode !== null && this.builderNode.getFrameNode() !== null) {
+      rootRenderNode.removeChild(this.builderNode!.getFrameNode()!.getRenderNode());
     }
   }
 }
+
 @Entry
 @Component
 struct Index {
+  @State text: string = ''
   private myNodeController: MyNodeController = new MyNodeController();
-  private promptAction: PromptAction | null = null;
-  private contentNode: ComponentContent<[]> | null = null;
 
   build() {
     Column({ space: 4 }) {
       NodeContainer(this.myNodeController)
-      Button('OpenDialog')
+      Button('BuilderNode dispose')
         .onClick(() => {
-          let uiContext = this.getUIContext();
-          this.promptAction = uiContext.getPromptAction();
-          this.contentNode = new ComponentContent(uiContext, wrapBuilder(buildText));
-          this.promptAction.openCustomDialog(this.contentNode);
+          this.myNodeController.removeBuilderNode();
+          this.myNodeController.dispose();
+          this.text = '';
         })
-        .width(120)
-        .height(40)
-      Button('DisposeTest')
+        .width(200)
+        .height(50)
+      Button('BuilderNode isDisposed')
         .onClick(() => {
-          this.myNodeController.disposeTest();
-          this.promptAction?.closeCustomDialog(this.contentNode);
-          console.log(`jerry before ComponentContent dispose: isDisposed=`, this.contentNode?.isDisposed());
-          this.contentNode?.dispose();
-          console.log(`jerry after ComponentContent dispose: isDisposed=`, this.contentNode?.isDisposed());
+          this.text = this.myNodeController.isDisposed();
         })
-        .width(120)
-        .height(40)
+        .width(200)
+        .height(50)
+      Text(this.text)
+        .fontSize(25)
     }
     .width('100%')
     .height('100%')
@@ -1653,4 +1650,4 @@ struct Index {
 }
 ```
 
-![isDisposed](figures/isDisposed.gif)
+![isDisposed](figures/builderNode_isDisposed.gif)
