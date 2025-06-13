@@ -5612,7 +5612,7 @@ setPreviewSurface\(callId: number, surfaceId: string\): Promise\<void\>
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- | -------------- |
 | callId | number                       | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。       |
-| surfaceId | string                    | 是   | 预览窗口Id。surfaceId获取方式可参考[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9)。   |
+| surfaceId | string                    | 是   | 预览窗口Id。surfaceId获取方式可参考[getXComponentSurfaceId](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9)。   |
 
 **返回值：**
 
@@ -5663,7 +5663,7 @@ setDisplaySurface\(callId: number, surfaceId: string\): Promise\<void\>
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- | -------------- |
 | callId | number                       | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。       |
-| surfaceId | string                    | 是   | 画面窗口Id。surfaceId获取方式可参考[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。   |
+| surfaceId | string                    | 是   | 画面窗口Id。surfaceId获取方式可参考[getXComponentSurfaceId](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9)。   |
 
 **返回值：**
 
