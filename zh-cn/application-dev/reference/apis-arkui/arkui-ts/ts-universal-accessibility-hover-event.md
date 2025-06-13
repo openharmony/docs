@@ -72,7 +72,7 @@ type AccessibilityCallback = (isHover: boolean, event: AccessibilityHoverEvent) 
 
 onAccessibilityHoverTransparent(callback: AccessibilityTransparentCallback): T
 
-当前触摸位置处于注册了回调接口的组件区域，但未能响应无障碍hover事件。仅支持手指触摸。不支持如下组件在触摸位置中的场景，包括[UIExtension](../../apis-arkui/js-apis-arkui-uiExtension.md)、[Web](../../apis-arkweb/arkts-basic-components-web.md)、<!--Del-->[FormComponent](ts-basic-components-formcomponent-sys.md)、<!--DelEnd-->[XComponent](ts-basic-components-xcomponent.md)与第三方UI框架对接。在上述场景下，该回调接口无法生效。
+当前触摸位置处于注册了回调接口的组件区域，但未能响应无障碍悬浮事件。仅支持手指触摸。不支持如下组件在触摸位置中的场景，包括[UIExtension](../../apis-arkui/js-apis-arkui-uiExtension.md)、[Web](../../apis-arkweb/arkts-basic-components-web.md)、<!--Del-->[FormComponent](ts-basic-components-formcomponent-sys.md)、<!--DelEnd-->[XComponent](ts-basic-components-xcomponent.md)与第三方UI框架对接。在上述场景下，该回调接口无法生效。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -81,7 +81,7 @@ onAccessibilityHoverTransparent(callback: AccessibilityTransparentCallback): T
 **参数：**
 | 参数名        | 类型                    | 必填  | 说明                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| callback      | [AccessibilityTransparentCallback](ts-universal-accessibility-hover-event.md#accessibilitytransparentcallback20) | 是   |  提供开启无障碍模式后未能响应的用户输入的触摸事件，当开启无障碍模式后，单指触摸未能响应无障碍hover事件位置时触发该回调。 |
+| callback      | [AccessibilityTransparentCallback](ts-universal-accessibility-hover-event.md#accessibilitytransparentcallback20) | 是   |  提供开启无障碍模式后未能响应的用户输入的触摸事件，当开启无障碍模式后，单指触摸未能响应无障碍悬浮事件位置时触发该回调。 |
 
 **返回值：**
 
@@ -103,7 +103,7 @@ type AccessibilityTransparentCallback = (event: TouchEvent) => void
 
 | 参数名              | 类型                                | 必填 | 说明                                                         |
 | ------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| event | [TouchEvent](ts-universal-events-touch.md#touchevent对象说明)| 是   | 原始touch事件。 <br/>**说明：** TouchEvent对象的触摸事件的类型[TouchType](ts-appendix-enums.md#touchtype)为四种无障碍hover事件类型中的一种，四种无障碍hover事件类型为HOVER_ENTER、HOVER_MOVE、HOVER_EXIT和HOVER_CANCEL。
+| event | [TouchEvent](ts-universal-events-touch.md#touchevent对象说明)| 是   | 原始touch事件。 <br/>**说明：** TouchEvent对象的触摸事件的类型[TouchType](ts-appendix-enums.md#touchtype)为四种无障碍悬浮事件类型中的一种，四种无障碍悬浮事件类型为HOVER_ENTER、HOVER_MOVE、HOVER_EXIT和HOVER_CANCEL。
 
 ## 示例
 

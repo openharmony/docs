@@ -81,7 +81,7 @@ onAttach?(): void
 
 > **说明：**
 >
-> 回调时机参考[onAttach](arkui-ts/ts-universal-events-show-hide.md#onattach)。
+> 回调时机参考[onAttach](arkui-ts/ts-universal-events-show-hide.md#onattach12)。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -95,7 +95,7 @@ onDetach?(): void
 
 > **说明：**
 >
-> 回调时机参考[onDetach](arkui-ts/ts-universal-events-show-hide.md#ondetach)。
+> 回调时机参考[onDetach](arkui-ts/ts-universal-events-show-hide.md#ondetach12)。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 

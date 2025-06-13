@@ -1518,7 +1518,7 @@ isWindowRectAutoSave(): Promise&lt;boolean&gt;
 | ------- | ------------------------------ |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
-| 1300003 | This window manager services works abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 

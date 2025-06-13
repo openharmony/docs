@@ -44,14 +44,6 @@ setTextHighContrast(action: TextHighContrast): void
 | ----- | ------------------ | ---- | --------------------------------------------------------------------------------- |
 | action | [TextHighContrast](#texthighcontrast20)  | 是   | 文字渲染高对比度模式。                                                              |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3. Parameter verification failed. |
-
 **示例：**
 
 ```ts
@@ -318,6 +310,19 @@ struct Index {
 | START     | 4    | 基于文本的方向[TextDirection](#textdirection)，文本靠开头方向对齐。 |
 | END       | 5    | 基于文本的方向[TextDirection](#textdirection)，文本以结束方向对齐。 |
 
+## TextVerticalAlign<sup>20+</sup>
+
+文本垂直对齐方式枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称        | 值   | 说明                                          |
+| --------- | ---- | ---------------------------------------------- |
+| BASELINE | 0    | 文本基线对齐。                                  |
+| BOTTOM | 1    | 文本底部对齐。                                  |
+| CENTER    | 2    | 文本居中对齐。                                  |
+| TOP | 3    | 文本顶部对齐。                    |
+
 ## TextDirection
 
 文本排版方向枚举。
@@ -568,7 +573,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | fontVariations| Array\<[FontVariation](#fontvariation)>              | 是 | 是 | 可变字体属性数组。|
 | textShadows   | Array\<[TextShadow](#textshadow)>                    | 是 | 是 | 文本阴影数组。|
 | backgroundRect| [RectStyle](#rectstyle)                              | 是 | 是 | 文本矩形框样式。|
-| textBadgeType<sup>20+</sup>   | [TextBadgeType](#textbadgetype20) | 是   | 是   | 设置文本排版时是否使能上标或下标。TEXT_SUPERSCRIPT表示使能上标，TEXT_SUBSCRIPT表示使能下标，默认值为TEXT_BADGE_NONE表示不使能。|
+| badgeType<sup>20+</sup>   | [TextBadgeType](#textbadgetype20) | 是   | 是   | 设置文本排版时是否使能上标或下标。TEXT_SUPERSCRIPT表示使能上标，TEXT_SUBSCRIPT表示使能下标，默认值为TEXT_BADGE_NONE表示不使能。|
 
 ## StrutStyle
 
@@ -914,7 +919,7 @@ struct Index {
 | tab<sup>18+</sup>   | [TextTab](#texttab18)  | 是   | 是   | 表示段落中文本制表符后的文本对齐方式及位置，默认将制表符替换为一个空格。此参数与文本对齐方式（align属性）或省略号样式（[TextStyle](#textstyle)中的ellipsis属性）共同配置时无效。 |
 | trailingSpaceOptimized<sup>20+</sup>   | boolean | 是   | 是   | 表示文本排版时行尾空格是否参与对齐计算。true表示行尾空格不参与计算，false表示行尾空格参与计算，默认值为false。|
 | autoSpace<sup>20+</sup>   | boolean | 是   | 是   | 设置文本排版时是否使能自动间距。true表示使能自动间距，则会在文本排版时自动调整CJK（中文字符、日文字符、韩文字符）与西文（拉丁字母、西里尔字母、希腊字母）、CJK与数字、CJK与版权符号、版权符号与数字、版权符号与西文之间的间距。false表示不使能自动间距，默认值为false。|
-
+| verticalAlign<sup>20+</sup>   | [TextVerticalAlign](#textverticalalign20) | 是   | 是   | 文本垂直对齐方式，开启行高缩放（即设置[TextStyle](#textstyle)的heightScale）或行内不同字号（即设置[TextStyle](#textstyle)的fontSize）文本混排时生效。 |
 
 ## PlaceholderAlignment
 
@@ -930,6 +935,7 @@ struct Index {
 | TOP_OF_ROW_BOX      | 3 | 顶部与文本顶部对齐。   |
 | BOTTOM_OF_ROW_BOX   | 4 | 底部与文本底部对齐。   |
 | CENTER_OF_ROW_BOX   | 5 | 居中对齐。|
+| FOLLOW_PARAGRAPH<sup>20+</sup> | 6 | 跟随文本排版对齐。|
 
 ![zh-ch_image_PlaceholderAlignment.png](figures/zh-ch_image_PlaceholderAlignment.png)
 

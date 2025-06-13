@@ -727,7 +727,7 @@ struct DragControllerPage {
 
 | 名称        | 类型                                                         | 必填 | 说明                           |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| event       | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent) | 是   | 拖拽事件信息，仅包括拖拽结果。 |
+| event       | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent7) | 是   | 拖拽事件信息，仅包括拖拽结果。 |
 | extraParams | string                                                       | 是   | 拖拽事件额外信息。             |
 
 ## dragController.getDragPreview<sup>(deprecated)</sup>

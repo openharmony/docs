@@ -1032,7 +1032,7 @@ showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs:
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| srcFileUris | Array&lt;string&gt; | 是 | 需保存到媒体库中的图片/视频文件对应的[媒体库uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。<br>**注意：**<br>- 仅支持处理图片、视频uri。<br>- 不支持手动拼接的uri，需调用接口获取，获取方式参考[媒体文件uri获取方式](../../file-management/user-file-uri-intro.md#媒体文件uri获取方式)。  |
+| srcFileUris | Array&lt;string&gt; | 是 | 需保存到媒体库中的图片/视频文件对应的[媒体库uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。<br>**注意：**<br>- 一次弹窗最多保存100张图片。<br>- 仅支持处理图片、视频uri。<br>- 不支持手动拼接的uri，需调用接口获取，获取方式参考[媒体文件uri获取方式](../../file-management/user-file-uri-intro.md#媒体文件uri获取方式)。  |
 | photoCreationConfigs | Array&lt;[PhotoCreationConfig](#photocreationconfig12)&gt; | 是 | 保存图片或视频到媒体库的配置，包括文件名等，与srcFileUris保持一一对应。 |
 
 **返回值：**
@@ -5526,7 +5526,6 @@ title参数的规格如下：
 | DRIVER_LICENSE<sup>12+</sup> |  8 | 驾驶证。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | DRIVING_LICENSE<sup>12+</sup> |  9 | 行驶证。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | FEATURED_SINGLE_PORTRAIT<sup>12+</sup> |  10 | 推荐人像。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| COLOR_STYLE_PHOTO<sup>18+</sup> |  12 | 推荐风格。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 
@@ -5715,6 +5714,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 ## FilterOperator<sup>19+</sup>
 
 枚举，支持进行过滤的操作符。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 

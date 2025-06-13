@@ -47,7 +47,7 @@ XComponentNode加载完成时触发该回调。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
@@ -69,17 +69,17 @@ changeRenderType(type: NodeRenderType): boolean
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名 | 类型                                                     | 必填 | 说明             |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | type   | [NodeRenderType](./js-apis-arkui-builderNode.md#noderendertype) | 是 | 需要修改的渲染类型。 |
 
-**返回值:**
+**返回值：**
 
 | 类型 | 描述                   |
 | ---- | ---------------------- |
-| boolean | 修改渲染类型是否成功。 |
+| boolean | 修改渲染类型是否成功。<br/>true：修改渲染类型成功；false：修改渲染类型失败。 |
 
 ## 示例
 

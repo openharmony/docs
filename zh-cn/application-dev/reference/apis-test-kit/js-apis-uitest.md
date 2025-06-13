@@ -66,9 +66,9 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 | 名称 | 类型   | 只读 |  可选 | 说明        |
 | ---- | ------ | ---- | ---- |-----------|
-| x    | number |  否   | 否   | 坐标点的横坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。从API version 20开始，该属性不再为只读属性。 |
-| y    | number |  否   | 否   | 坐标点的纵坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。从API version 20开始，该属性不再为只读属性。|
-| displayId<sup>20+</sup>    | number | 否    | 是   | 坐标点所属的屏幕ID，取值范围：大于等于0的整数。默认值为设备默认屏幕ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| x    | number |  否   | 否   | 坐标点的横坐标，取值大于0的整数。<br> **说明：** 从API version 20开始，该属性不再为只读属性。<br> **原子化服务API：**  从API version 11开始，该接口支持在原子化服务中使用。 |
+| y    | number |  否   | 否   | 坐标点的纵坐标，取值大于0的整数。<br> **说明：** 从API version 20开始，该属性不再为只读属性。<br> **原子化服务API：**  从API version 11开始，该接口支持在原子化服务中使用。|
+| displayId<sup>20+</sup>    | number | 否    | 是   | 坐标点所属的屏幕ID，取值范围：大于等于0的整数。默认值为设备默认屏幕ID。<br> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## Rect<sup>9+</sup>
 
@@ -78,11 +78,11 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 | 名称   | 类型   | 只读 | 可选 | 说明                      |
 | ------ | ------ | ---- | ---- | ------------------------- |
-| left   | number |  否   | 否 |控件边框的左上角的X坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。从API version 20开始，该属性不再为只读属性。  |
-| top    | number |  否   | 否 |控件边框的左上角的Y坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。从API version 20开始，该属性不再为只读属性。  |
-| right  | number |  否   | 否 |控件边框的右下角的X坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。从API version 20开始，该属性不再为只读属性。  |
-| bottom | number |  否   | 否 |控件边框的右下角的Y坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。从API version 20开始，该属性不再为只读属性。  |
-| displayId<sup>20+</sup> | number |  否   | 是 |控件边框所属的屏幕ID，取值大于或等于0的整数。默认值为设备默认屏幕ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。  |
+| left   | number |  否   | 否 |控件边框的左上角的X坐标，取值大于0的整数。<br> **说明：** 从API version 20开始，该属性不再为只读属性。<br> **原子化服务API：**  从API version 11开始，该接口支持在原子化服务中使用。 |
+| top    | number |  否   | 否 |控件边框的左上角的Y坐标，取值大于0的整数。<br> **说明：** 从API version 20开始，该属性不再为只读属性。<br> **原子化服务API：**  从API version 11开始，该接口支持在原子化服务中使用。  |
+| right  | number |  否   | 否 |控件边框的右下角的X坐标，取值大于0的整数。<br> **说明：** 从API version 20开始，该属性不再为只读属性。<br> **原子化服务API：**  从API version 11开始，该接口支持在原子化服务中使用。  |
+| bottom | number |  否   | 否 |控件边框的右下角的Y坐标，取值大于0的整数。<br> **说明：** 从API version 20开始，该属性不再为只读属性。<br> **原子化服务API：**  从API version 11开始，该接口支持在原子化服务中使用。  |
+| displayId<sup>20+</sup> | number |  否   | 是 |控件边框所属的屏幕ID，取值大于或等于0的整数。默认值为设备默认屏幕ID。<br> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。  |
 
 ## WindowMode<sup>9+</sup>
 
@@ -127,7 +127,7 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 | focused              | boolean | 否  | 是   | 窗口是否处于获焦状态，true：获焦状态，false：未获焦状态，默认值为false。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | actived(deprecated)  | boolean | 否   | 是  | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态，默认值为false。<br>从API version 11开始废弃，建议使用active替代。                                                |
 | active<sup>11+</sup> | boolean | 否  | 是  | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态，默认值为false。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
-| displayId<sup>20+</sup> | number | 否   | 是  | 窗口所属的屏幕ID。取值大于或等于0的整数。默认值为设备默认屏ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| displayId<sup>20+</sup> | number | 否   | 是  | 窗口所属的屏幕ID。取值大于或等于0的整数。默认值为设备默认屏ID。<br> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## UiDirection<sup>10+</sup>
 

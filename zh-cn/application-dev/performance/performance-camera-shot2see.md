@@ -79,7 +79,7 @@
 
 - 首先通过[getCameraManager](../reference/apis-camera-kit/arkts-apis-camera-f.md#cameragetcameramanager)来获取CameraMananger相机管理器类。
 - 调用[getSupportedCameras](../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedcameras)和[getSupportedOutputCapability](../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedoutputcapability11)方法来获取支持的camera设备以及设备能力集。
-- 调用[createPreviewOutput](../reference/apis-camera-kit/arkts-apis-camera-CameraManager.m#createpreviewoutput)和[createPhotoOutput](../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11)方法来创建预览输出和拍照输出对象。
+- 调用[createPreviewOutput](../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createpreviewoutput)和[createPhotoOutput](../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11)方法来创建预览输出和拍照输出对象。
 - 使用CameraInput的open方法来打开相机输入，通过onCameraStatusChange函数来创建CameraManager注册回调。
 - 最后调用sessionFlowFn函数创建并开启Session。具体代码如下所示：
 

@@ -394,7 +394,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
-| 名称                        | 类型                       | 可读 | 可写 | 说明       |
+| 名称                        | 类型                       | 只读 | 可选 | 说明       |
 | -------------------------- | -------------------------- | ---- | ---- | ---------- |
 | networkId<sup>9+</sup>     | string                     | 是   | 否   | 组网络id。  |
 | groupId<sup>9+</sup>       | number                     | 是   | 否   | 组设备组id。 |
@@ -836,7 +836,7 @@ try {
 }
 ```
 
-### getAppVolumePercentageForUid<sup>18+</sup>
+### getAppVolumePercentageForUid<sup>19+</sup>
 
 getAppVolumePercentageForUid(uid: number\): Promise<number\>
 
@@ -878,7 +878,7 @@ audioVolumeManager.getAppVolumePercentageForUid(20010041).then((value: number) =
 });
 ```
 
-### setAppVolumePercentageForUid<sup>18+</sup>
+### setAppVolumePercentageForUid<sup>19+</sup>
 
 setAppVolumePercentageForUid(uid: number, volume: number\): Promise<void\>
 
@@ -923,7 +923,7 @@ audioVolumeManager.setAppVolumePercentageForUid(uid, volume).then(() => {
 });
 ```
 
-### isAppVolumeMutedForUid<sup>18+</sup>
+### isAppVolumeMutedForUid<sup>19+</sup>
 
 isAppVolumeMutedForUid(uid: number, owned: boolean\): Promise<boolean\>
 
@@ -970,7 +970,7 @@ audioVolumeManager.isAppVolumeMutedForUid(uid, true).then((value: boolean) => {
 });
 ```
 
-### setAppVolumeMutedForUid<sup>18+</sup>
+### setAppVolumeMutedForUid<sup>19+</sup>
 
 setAppVolumeMutedForUid(uid: number, muted: boolean\): Promise<void\>
 
@@ -1014,7 +1014,7 @@ audioVolumeManager.setAppVolumeMutedForUid(uid, true).then(() => {
 });
 ```
 
-### on('appVolumeChangeForUid')<sup>18+</sup>
+### on('appVolumeChangeForUid')<sup>19+</sup>
 
 on(type: 'appVolumeChangeForUid', uid: number, callback: Callback\<VolumeEvent>): void
 
@@ -1054,7 +1054,7 @@ audioVolumeManager.on('appVolumeChangeForUid', uid, (volumeEvent: audio.VolumeEv
 });
 ```
 
-### off('appVolumeChangeForUid')<sup>18+</sup>
+### off('appVolumeChangeForUid')<sup>19+</sup>
 
 off(type: 'appVolumeChangeForUid', callback?: Callback\<VolumeEvent>): void
 
@@ -1097,6 +1097,82 @@ let appVolumeChangeForUidCallback = (volumeEvent: audio.VolumeEvent) => {
 audioVolumeManager.on('appVolumeChangeForUid', appVolumeChangeForUidCallback);
 
 audioVolumeManager.off('appVolumeChangeForUid', appVolumeChangeForUidCallback);
+```
+
+### on('activeVolumeTypeChange')<sup>20+</sup>
+
+on(type: 'activeVolumeTypeChange', callback: Callback\<AudioVolumeType>): void
+
+监听当前活跃流变化事件（当活跃流发生变化时触发）。使用callback异步回调。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为'activeVolumeTypeChange'，当活跃流发生变化时，触发该事件。 |
+| callback | Callback\<[AudioVolumeType](arkts-apis-audio-e.md#audiovolumetype)> | 是   | 回调函数，返回变化后的活跃流类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Not system App. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+audioVolumeManager.on('activeVolumeTypeChange', (volumeType: audio.AudioVolumeType) => {
+  console.info(`VolumeType of stream: ${volumeType} `);
+});
+```
+
+### off('activeVolumeTypeChange')<sup>20+</sup>
+
+off(type: 'activeVolumeTypeChange', callback?: Callback\<AudioVolumeType>): void
+
+取消监听当前活跃流变化事件。使用callback异步回调。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为'activeVolumeTypeChange'，当取消监听当前活跃流变化事件时，触发该事件。 |
+| callback | Callback\<[AudioVolumeType](arkts-apis-audio-e.md#audiovolumetype)> | 否   | 回调函数，返回变化后的活跃流类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Not system App. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听。
+audioVolumeManager.off('activeVolumeTypeChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let activeVolumeTypeChangeCallback = (volumeType: audio.AudioVolumeType) => {
+  console.info(`VolumeType of stream: ${volumeType} `);
+};
+
+audioVolumeManager.on('activeVolumeTypeChange', activeVolumeTypeChangeCallback);
+
+audioVolumeManager.off('activeVolumeTypeChange', activeVolumeTypeChangeCallback);
 ```
 
 ## AudioVolumeGroupManager<sup>9+</sup>
@@ -2467,33 +2543,40 @@ async function getExcludedDevices(){
 
 描述音频渲染器更改信息。
 
+**系统接口：** 该接口为系统接口。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
-| 名称               | 类型                                       | 可读 | 可写 | 说明                          |
+| 名称               | 类型                                       | 只读 | 可选 | 说明                          |
 | -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
-| clientUid          | number                                    | 是   | 否   | 音频渲染器客户端应用程序的Uid。<br/>此接口为系统接口。 |
-| rendererState      | [AudioState](arkts-apis-audio-e.md#audiostate8)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口。|
+| clientUid          | number                                    | 是   | 否   | 音频渲染器客户端应用程序的Uid。 |
+| rendererState      | [AudioState](arkts-apis-audio-e.md#audiostate8)                 | 是   | 否   | 音频状态。|
 
 ## AudioCapturerChangeInfo<sup>9+</sup>
 
 描述音频采集器更改信息。
 
+**系统接口：** 该接口为系统接口。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
-| 名称               | 类型                                       | 可读 | 可写 | 说明                          |
+| 名称               | 类型                                       | 只读 | 可选 | 说明                          |
 | -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
-| clientUid          | number                                    | 是   | 否   | 音频采集器客户端应用程序的Uid。<br/>此接口为系统接口。 |
-| capturerState      | [AudioState](arkts-apis-audio-e.md#audiostate8)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口。|
+| clientUid          | number                                    | 是   | 否   | 音频采集器客户端应用程序的Uid。 |
+| capturerState      | [AudioState](arkts-apis-audio-e.md#audiostate8)                 | 是   | 否   | 音频状态。|
 
 ## AudioDeviceDescriptor
 
 描述音频设备。
 
-| 名称                          | 类型                       | 可读 | 可写 | 说明       |
+**系统接口：** 该接口为系统接口。
+
+| 名称                          | 类型                       | 只读 | 可选 | 说明       |
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
-| networkId<sup>9+</sup>        | string                     | 是   | 否   | 设备组网的ID。<br/>此接口为系统接口。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
-| interruptGroupId<sup>9+</sup> | number                     | 是   | 否   | 设备所处的焦点组ID。<br/>此接口为系统接口。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
-| volumeGroupId<sup>9+</sup>    | number                     | 是   | 否   | 设备所处的音量组ID。<br/>此接口为系统接口。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
+| networkId<sup>9+</sup>        | string                     | 是   | 否   | 设备组网的ID。<br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
+| interruptGroupId<sup>9+</sup> | number                     | 是   | 否   | 设备所处的焦点组ID。<br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
+| volumeGroupId<sup>9+</sup>    | number                     | 是   | 否   | 设备所处的音量组ID。<br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
+| dmDeviceType<sup>18+</sup>    | number                     | 是   | 是 | 设备的子类型ID。<br> **系统能力：** SystemCapability.Multimedia.Audio.Core|
 
 ## AudioRendererFilter<sup>9+</sup>
 
@@ -3789,12 +3872,12 @@ try {
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
-| 名称                          | 类型                       | 可读 | 可写 | 说明       |
+| 名称                          | 类型                       | 只读 | 可选 | 说明       |
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
-| address | string         | 是   | 是   | 空间化设备地址。|
-| isSpatializationSupported | boolean        | 是   | 是   | 空间化设备是否支持空间音频渲染。true表示支持，false表示不支持。|
-| isHeadTrackingSupported | boolean        | 是   | 是   | 空间化设备是否支持头动跟踪。true表示支持，false表示不支持。|
-| spatialDeviceType | [AudioSpatialDeviceType](#audiospatialdevicetype11)   | 是   | 是   | 空间化设备类型。|
+| address | string         | 否 | 否 | 空间化设备地址。|
+| isSpatializationSupported | boolean        | 否 | 否 | 空间化设备是否支持空间音频渲染。true表示支持，false表示不支持。|
+| isHeadTrackingSupported | boolean        | 否 | 否 | 空间化设备是否支持头动跟踪。true表示支持，false表示不支持。|
+| spatialDeviceType | [AudioSpatialDeviceType](#audiospatialdevicetype11)   | 否 | 否 | 空间化设备类型。|
 
 **示例：**
 

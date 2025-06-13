@@ -1467,7 +1467,7 @@ onGestureSwipe(event: OnSwiperGestureSwipeCallback)
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| event  | [OnSwiperGestureSwipeCallback](#onswipergestureswipecallback18) | 是   | 在页面跟手滑动过程中，逐帧触发的回调。 |
+| event  | [OnSwiperGestureSwipeCallback](#onswipergestureswipecallback18) | 是   | 在页面跟手滑动过程中，逐帧触发的回调。onGestureSwipe回调触发时机在onTouch之后，如果需要在离手后执行操作建议使用[onAnimationStart](#onanimationstart9)。 |
 
 ### customContentTransition<sup>12+</sup>
 

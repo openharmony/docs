@@ -273,7 +273,7 @@ isTetheringOn(): boolean
 
 > **说明：**
 >
-> 从API version 9开始支持，从API version 10开始废弃，建议使用[pan.PanProfile#isTetheringOn](js-apis-bluetooth-pan-sys.md#isTetheringOn)替代。
+> 从API version 9开始支持，从API version 10开始废弃，建议使用[isTetheringOn](js-apis-bluetooth-pan-sys.md#istetheringon)替代。
 
 **系统接口**：此接口为系统接口。
 

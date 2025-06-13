@@ -21,3 +21,81 @@ Component does not support prevent function.
 **处理步骤**
 
 NA
+
+## 180001 非滚动类容器
+
+**错误信息**
+
+Component is not a scroll container.
+
+**错误描述**
+
+非滚动类容器。
+
+**可能原因**
+
+使用的组件非滚动类容器。
+
+**处理步骤**
+
+NA
+
+## 180002 存储区大小不足
+
+**错误信息**
+
+Buffer is not large enough.
+
+**错误描述**
+
+存储区大小不足。
+
+**可能原因**
+
+数组的长度过小。
+
+**处理步骤**
+
+对传入数组进行扩容。
+
+## 180003 该事件不是克隆事件
+
+**错误信息**
+
+The input event pointer is not a cloned event pointer.
+
+**错误描述**
+
+该事件不是克隆事件。
+
+**处理步骤**
+
+NA
+
+## 180005 未命中可响应事件的组件
+
+**错误信息**
+
+No component hit to response to the event.
+
+**错误描述**
+
+未命中可响应事件的组件。
+
+**处理步骤**
+
+NA
+
+## 180102 不支持手势识别器类型
+
+**错误信息**
+
+The gesture recognizer type is not supported.
+
+**错误描述**
+
+不支持手势识别器类型。
+
+**处理步骤**
+
+NA

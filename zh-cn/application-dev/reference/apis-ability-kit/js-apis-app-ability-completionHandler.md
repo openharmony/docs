@@ -14,7 +14,7 @@ CompletionHandler作为[StartOptions](js-apis-app-ability-startOptions.md)的可
 
 当前支持使用该模块的接口包括：
 - [startAbility](js-apis-inner-application-uiAbilityContext.md#startability-2)
-- [startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#startability-2)
+- [startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#startabilityforresult-2)
 
 <!--Del-->
 - [startAbilityForResultWithAccount](js-apis-inner-application-uiAbilityContext-sys.md#startabilityforresultwithaccount-2)

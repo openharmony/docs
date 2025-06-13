@@ -108,6 +108,8 @@ struct Index {
 1. 指定待保存到媒体库的[应用文件](../../file-management/app-file-access.md)uri（需为应用沙箱路径）。
 2. 指定待保存照片的创建选项，包括文件后缀和照片类型，标题和照片子类型可选。
 3. 调用[showAssetsCreationDialog](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#showassetscreationdialog12)，基于弹窗授权的方式获取的目标[媒体文件](../../file-management/user-file-uri-intro.md#媒体文件uri)uri。
+
+   弹框需要显示应用名称，无法直接获取应用名称，依赖于配置项的label和icon，因此调用此接口时请确保module.json5文件中的abilities标签中配置了label和icon项。当传入uri为沙箱路径时，可正常保存图片/视频，但无界面预览。
 4. 将应用沙箱的照片内容写入媒体库的目标uri。
 
 ```ts

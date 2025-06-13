@@ -33,6 +33,9 @@
 | hidebug.getGraphicsMemory          | 使用异步方式获取应用显存大小。                    |
 | hidebug.getGraphicsMemorySync      | 使用同步方式获取应用显存大小。                    |
 | hidebug.dumpJsRawHeapData          | 为当前线程转储虚拟机的原始堆快照。                  |
+| hidebug.enableGwpAsanGrayscale     | 使能GWP-Asan，用于检测堆内存使用中的非法行为。      |
+| hidebug.disableGwpAsanGrayscale    | 停止使能GWP-Asan。                               |
+| hidebug.getGwpAsanGrayscaleState   | 获取当前GWP-Asan剩余使能天数。                    |
 
 HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)。
 

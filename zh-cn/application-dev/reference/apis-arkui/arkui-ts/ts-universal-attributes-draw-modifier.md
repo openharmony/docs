@@ -8,7 +8,7 @@
 
 ## drawModifier
 
-drawModifier(modifier: DrawModifier | undefined)
+drawModifier(modifier: DrawModifier | undefined): T
 
 设置组件的自定义绘制修改器。
 
@@ -25,6 +25,12 @@ AlphabetIndexer、Badge、Blank、Button、CalendarPicker、Checkbox、CheckboxG
 | 参数名 | 类型                                                 | 必填 | 说明                                                         |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | modifier  | &nbsp;[DrawModifier](#drawmodifier-1)&nbsp;\|&nbsp;undefined | 是   | 自定义绘制修改器，其中定义了自定义绘制的逻辑。 <br> 默认值：undefined <br/>**说明：** <br/> 每个自定义修改器只对当前绑定组件的FrameNode生效，对其子节点不生效。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+| T | 返回当前组件。 |
 
 ## DrawModifier
 

@@ -2688,7 +2688,7 @@ try {
 }
 ```
 
-### off('keyboardWillShow')<sup>20</sup>
+### off('keyboardWillShow')<sup>20+</sup>
 
 off(type: 'keyboardWillShow', callback?: Callback&lt;KeyboardInfo&gt;): void
 
@@ -5474,6 +5474,47 @@ promise.then((pixelMap: image.PixelMap) => {
 });
 ```
 
+### snapshotSync<sup>20+</sup>
+
+snapshotSync(): image.PixelMap
+
+获取当前窗口截图，此接口为同步接口。若当前窗口设置为隐私模式（[setWindowPrivacyMode](#setwindowprivacymode9)接口设置），截图结果为白屏。
+
+Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 返回当前窗口截图。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300018 | Timeout. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
+
+try {
+  let pixelMap = windowClass.snapshotSync();
+  console.info(`Succeeded in snapshotting window`);
+  pixelMap.release(); // PixelMap使用完后及时释放内存
+} catch (exception) {
+  console.error(`Failed to snapshot window. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### snapshotIgnorePrivacy<sup>18+</sup>
 
 snapshotIgnorePrivacy(): Promise&lt;image.PixelMap&gt;
@@ -6508,25 +6549,17 @@ setWindowTitle(titleName: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let windowClass: window.Window | undefined = undefined;
 try {
-  let promise = window.getLastWindow(this.context);
-  promise.then((data) => {
-    windowClass = data;
-    let title = "title";
-    windowClass.setWindowTitle(title).then(() => {
-      console.info('Succeeded in setting the window title.');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to set the window title. Cause code: ${err.code}, message: ${err.message}`);
-    });
+  let title = "title";
+  windowClass.setWindowTitle(title).then(() => {
+    console.info('Succeeded in setting the window title.');
   }).catch((err: BusinessError) => {
-    console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to set the window title. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to set the window title. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 

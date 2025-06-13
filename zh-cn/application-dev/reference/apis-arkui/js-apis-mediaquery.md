@@ -120,6 +120,7 @@ off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 **示例：** 
 
 <!--code_no_check-->
+<!--deprecated_code_no_check-->
 ```ts
 import { mediaquery } from '@kit.ArkUI';
 
@@ -161,6 +162,7 @@ listener.off('change', onPortrait) // 去取消注册回调
 > 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMediaQuery](js-apis-arkui-UIContext.md#getmediaquery)方法获取当前UI上下文关联的[MediaQuery](js-apis-arkui-UIContext.md#mediaquery)对象。
 
 <!--code_no_check-->
+<!--deprecated_code_no_check-->
 ```ts
 import { mediaquery } from '@kit.ArkUI';
 

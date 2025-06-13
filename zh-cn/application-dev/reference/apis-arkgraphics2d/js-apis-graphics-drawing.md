@@ -169,7 +169,7 @@ next(points: Array<common2D.Point>, offset?: number): PathIteratorVerb
 
 | 参数名   | 类型                                         | 必填 | 说明                            |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
-| points | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)>   | 是   | 坐标点数组，长度必须至少为偏移量加4，以确保能容纳所有类型的路径数据。操作执行后，该数组会被覆盖。填入的坐标点数量取决于操作类型，其中，MOVE填入1个坐标点，LINE填入2个坐标点，QUAD填入3个坐标点，CONIC填入3个坐标点 + 1个权重值（共3.5组），CUBIC填入4个坐标点，CLOSE和DONE不填入任何点。 |
+| points | Array\<[common2D.Point](js-apis-graphics-common2D.md#point12)>   | 是   | 坐标点数组，长度必须至少为偏移量加4，以确保能容纳所有类型的路径数据。操作执行后，该数组会被覆盖。填入的坐标点数量取决于操作类型，其中，MOVE填入1个坐标点，LINE填入2个坐标点，QUAD填入3个坐标点，CONIC填入3个坐标点 + 1个权重值（共3.5组），CUBIC填入4个坐标点，CLOSE和DONE不填入任何点。 |
 | offset | number   | 否   | 数组中写入位置相对起始点的偏移量，默认为0，取值范围为[0, size-4]，size是指坐标点数组长度。 |
 
 **返回值：**
@@ -1122,7 +1122,7 @@ addPolygon(points: Array\<common2D.Point>, close: boolean): void
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| points | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)>   | 是   | 坐标点数组。 |
+| points | Array\<[common2D.Point](js-apis-graphics-common2D.md#point12)>   | 是   | 坐标点数组。 |
 | close  | boolean                                                        | 是   | 表示是否将路径闭合，即是否添加路径起始点到终点的连线。true表示将路径闭合，false表示不将路径闭合。 |
 
 **错误码：**
@@ -1397,8 +1397,8 @@ getPositionAndTangent(forceClosed: boolean, distance: number, position: common2D
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
 | forceClosed | boolean | 是   | 表示是否按照闭合路径测量，true表示测量时路径会被强制视为已闭合，false表示会根据路径的实际闭合状态测量。                 |
 | distance | number | 是   | 表示与路径起始点的距离，小于0时会被视作0，大于路径长度时会被视作路径长度。该参数为浮点数。               |
-| position | [common2D.Point](js-apis-graphics-common2D.md#point) | 是   | 存储获取到的距离路径起始点distance处的点的坐标。                  |
-| tangent | [common2D.Point](js-apis-graphics-common2D.md#point) | 是   | 存储获取到的距离路径起始点distance处的点的切线值，tangent.x表示该点切线的余弦值，tangent.y表示该点切线的正弦值。                 |
+| position | [common2D.Point](js-apis-graphics-common2D.md#point12) | 是   | 存储获取到的距离路径起始点distance处的点的坐标。                  |
+| tangent | [common2D.Point](js-apis-graphics-common2D.md#point12) | 是   | 存储获取到的距离路径起始点distance处的点的切线值，tangent.x表示该点切线的余弦值，tangent.y表示该点切线的正弦值。                 |
 
 **返回值：**
 
@@ -2653,7 +2653,7 @@ drawPoints(points: Array\<common2D.Point>, mode?: PointMode): void
 
 | 参数名  | 类型                                       | 必填   | 说明        |
 | ---- | ---------------------------------------- | ---- | --------- |
-| points  | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | 是    | 要绘制的点的数组。长度不能为0。   |
+| points  | Array\<[common2D.Point](js-apis-graphics-common2D.md#point12)> | 是    | 要绘制的点的数组。长度不能为0。   |
 | mode | [PointMode](#pointmode12)                  | 否    | 绘制数组中的点的方式，默认为drawing.PointMode.POINTS。 |
 
 **错误码：**
@@ -4332,7 +4332,7 @@ static makeFromPosText(text: string, len: number, points: common2D.Point[], font
 | -------- | ----------------------------- | ---- | -------------------------------------- |
 | text     | string             | 是   | 绘制字形的文本内容。                   |
 | len      | number             | 是   | 字形个数，由[countText](#counttext12)获取，该参数为整数。 |
-| points   |[common2D.Point](js-apis-graphics-common2D.md#point)[]     | 是   |点数组，用于指定每个字形的坐标，长度必须为len。|
+| points   |[common2D.Point](js-apis-graphics-common2D.md#point12)[]     | 是   |点数组，用于指定每个字形的坐标，长度必须为len。|
 | font     | [Font](#font)      | 是   | 字型对象。 |
 
 **返回值：**
@@ -9267,13 +9267,13 @@ mapPoints(src: Array\<common2D.Point>): Array\<common2D.Point>
 
 | 参数名          | 类型    | 必填 | 说明                                                        |
 | --------------- | ------- | ---- | ----------------------------------------------------------- |
-| src | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | 是   | 源点数组。 |
+| src | Array\<[common2D.Point](js-apis-graphics-common2D.md#point12)> | 是   | 源点数组。 |
 
 **返回值：**
 
 | 类型                  | 说明           |
 | --------------------- | -------------- |
-| Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | 源点数组经矩阵变换后的点数组。 |
+| Array\<[common2D.Point](js-apis-graphics-common2D.md#point12)> | 源点数组经矩阵变换后的点数组。 |
 
 **错误码：**
 
@@ -9421,8 +9421,8 @@ setPolyToPoly(src: Array\<common2D.Point>, dst: Array\<common2D.Point>, count: n
 
 | 参数名          | 类型    | 必填 | 说明                                                        |
 | --------------- | ------- | ---- | ----------------------------------------------------------- |
-| src | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | 是   | 源点数组，长度必须为count。 |
-| dst | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | 是   | 目标点数组，长度必须为count。 |
+| src | Array\<[common2D.Point](js-apis-graphics-common2D.md#point12)> | 是   | 源点数组，长度必须为count。 |
+| dst | Array\<[common2D.Point](js-apis-graphics-common2D.md#point12)> | 是   | 目标点数组，长度必须为count。 |
 | count | number | 是   | 在src和dst点的数量，该参数为整数。 |
 
 **返回值：**
@@ -9563,7 +9563,7 @@ getCorner(pos: CornerPos): common2D.Point
 
 | 类型                  | 说明           |
 | --------------------- | -------------- |
-| [common2D.Point](js-apis-graphics-common2D.md#point)  | 返回一个点，其横坐标表示圆角x轴方向上的半径，纵坐标表示y轴方向上的半径。 |
+| [common2D.Point](js-apis-graphics-common2D.md#point12)  | 返回一个点，其横坐标表示圆角x轴方向上的半径，纵坐标表示y轴方向上的半径。 |
 
 **错误码：**
 
@@ -10521,8 +10521,8 @@ static createLinearGradient(startPt: common2D.Point, endPt: common2D.Point, colo
 
 | 参数名 | 类型                                               | 必填 | 说明           |
 | ------ | -------------------------------------------------- | ---- | -------------- |
-| startPt  | [common2D.Point](js-apis-graphics-common2D.md#point)  | 是   | 表示渐变的起点。 |
-| endPt   | [common2D.Point](js-apis-graphics-common2D.md#point)  | 是   | 表示渐变的终点。 |
+| startPt  | [common2D.Point](js-apis-graphics-common2D.md#point12)  | 是   | 表示渐变的起点。 |
+| endPt   | [common2D.Point](js-apis-graphics-common2D.md#point12)  | 是   | 表示渐变的终点。 |
 | colors | Array\<number> | 是   | 表示在两个点之间分布的颜色数组，数组中的值为32位（ARGB）无符号整数。 |
 | mode  | [TileMode](#tilemode12) | 是   | 着色器效果平铺模式。 |
 | pos | Array\<number> \|null| 否   | 表示每种对应颜色在颜色数组中的相对位置。数组长度需和colors保持一致，数组的首个元素应当是0.0，末尾元素应当是1.0，中间的元素应当在0与1之间并且逐下标递增，表示colors中每个对应颜色的相对位置。默认为null，表示颜色均匀分布在起点和终点之间。 |
@@ -10568,7 +10568,7 @@ static createRadialGradient(centerPt: common2D.Point, radius: number, colors: Ar
 
 | 参数名 | 类型                                               | 必填 | 说明           |
 | ------ | -------------------------------------------------- | ---- | -------------- |
-| centerPt  | [common2D.Point](js-apis-graphics-common2D.md#point)  | 是   | 表示渐变的圆心。 |
+| centerPt  | [common2D.Point](js-apis-graphics-common2D.md#point12)  | 是   | 表示渐变的圆心。 |
 | radius   | number  | 是   | 表示渐变的半径，小于等于0时无效，该参数为浮点数。 |
 | colors | Array\<number> | 是   | 表示在圆心和圆边界之间分布的颜色数组，数组中的值为32位（ARGB）无符号整数。 |
 | mode  | [TileMode](#tilemode12) | 是   | 着色器效果平铺模式。 |
@@ -10616,7 +10616,7 @@ static createSweepGradient(centerPt: common2D.Point, colors: Array\<number>,
 
 | 参数名 | 类型                                               | 必填 | 说明           |
 | ------ | -------------------------------------------------- | ---- | -------------- |
-| centerPt  | [common2D.Point](js-apis-graphics-common2D.md#point)  | 是   | 表示渐变的圆心。 |
+| centerPt  | [common2D.Point](js-apis-graphics-common2D.md#point12)  | 是   | 表示渐变的圆心。 |
 | colors | Array\<number> | 是   | 表示在起始角度和结束角度之间分布的颜色数组，数组中的值为32位（ARGB）无符号整数。 |
 | mode  | [TileMode](#tilemode12) | 是   | 着色器效果平铺模式。 |
 | startAngle | number | 是   | 表示扇形渐变的起始角度，单位为度。0度时为x轴正方向，正数往顺时针方向偏移，负数往逆时针方向偏移。该参数为浮点数。 |
@@ -10664,9 +10664,9 @@ pos?: Array\<number> | null, matrix?: Matrix | null): ShaderEffect;
 
 | 参数名 | 类型                                               | 必填 | 说明           |
 | ------ | -------------------------------------------------- | ---- | -------------- |
-| startPt  | [common2D.Point](js-apis-graphics-common2D.md#point)  | 是   |表示渐变的起始圆的圆心。 |
+| startPt  | [common2D.Point](js-apis-graphics-common2D.md#point12)  | 是   |表示渐变的起始圆的圆心。 |
 | startRadius | number | 是   | 表示渐变的起始圆的半径，小于0时无效。该参数为浮点数。 |
-| endPt  | [common2D.Point](js-apis-graphics-common2D.md#point)  | 是   | 表示渐变的结束圆的圆心。 |
+| endPt  | [common2D.Point](js-apis-graphics-common2D.md#point12)  | 是   | 表示渐变的结束圆的圆心。 |
 | endRadius | number | 是   | 表示渐变的结束圆的半径，小于0时无效。该参数为浮点数。 |
 | colors | Array\<number> | 是   | 表示在起始圆和结束圆之间分布的颜色数组，数组中的值为32位（ARGB）无符号整数。 |
 | mode  | [TileMode](#tilemode12) | 是   | 着色器效果平铺模式。 |

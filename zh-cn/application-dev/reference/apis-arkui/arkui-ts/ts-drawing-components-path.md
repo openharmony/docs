@@ -42,7 +42,7 @@ Path(options?: PathOptions)
 | -------- | -------- | -------- | -------- |
 | width | [Length](ts-types.md#length) | 否 | 路径所在矩形的宽度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp |
 | height | [Length](ts-types.md#length) | 否 | 路径所在矩形的高度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp |
-| [commands](ts-drawing-components-path.md#commands) | [ResourceStr](ts-types.md#ResourceStr)  | 否 | 路径绘制的命令字符串。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。默认值：空字符串<br/>异常值按照默认值处理。 |
+| [commands](ts-drawing-components-path.md#commands) | [ResourceStr](ts-types.md#resourcestr)  | 否 | 路径绘制的命令字符串。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。默认值：空字符串<br/>异常值按照默认值处理。 |
 
 ## 属性
 
@@ -50,7 +50,7 @@ Path(options?: PathOptions)
 
 ### commands
 
-commands(value: [ResourceStr](ts-types.md#ResourceStr))
+commands(value: [ResourceStr](ts-types.md#resourcestr))
 
 设置符合[SVG路径描述规范](ts-drawing-components-path.md#svg路径描述规范)的命令字符串，单位为px。像素单位转换方法请参考[像素单位转换](ts-pixel-units.md)。
 
@@ -64,7 +64,7 @@ commands(value: [ResourceStr](ts-types.md#ResourceStr))
 
 | 参数名 | 类型   | 必填 | 说明                          |
 | ------ | ------ | ---- | ----------------------------- |
-| value  | [ResourceStr](ts-types.md#ResourceStr) | 是   | 线条绘制的路径。<br/>默认值：空字符串<br/>默认单位：px |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 线条绘制的路径。<br/>默认值：空字符串<br/>默认单位：px |
 
 ### fill
 

@@ -92,7 +92,7 @@ import { window } from '@kit.ArkUI';
 
 | 名称                                   | 类型 |  必填 | 说明 |
 | ------------------------------------- | -------- | ---- |------- |
-| contentColor     | string   |  是   | 状态栏文字颜色，固定为ARGB格式, 如：`#E5FFFFFF`。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
+| contentColor     | string   |  是   | 状态栏文字颜色，固定为ARGB格式, 如：`#E5FFFFFF`。 <br> **系统能力：** SystemCapability.Window.SessionManager|
 
 ## SystemBarStyle<sup>12+</sup>
 
@@ -119,7 +119,7 @@ import { window } from '@kit.ArkUI';
 | LANDSCAPE_INVERTED                    | 4    | 表示反向横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | AUTO_ROTATION                         | 5    | 跟随传感器自动旋转，可以旋转到竖屏、横屏、反向竖屏、反向横屏四个方向。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | AUTO_ROTATION_PORTRAIT                | 6    | 跟随传感器自动竖向旋转，可以旋转到竖屏、反向竖屏，无法旋转到横屏、反向横屏。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| AUTO_ROTATION_LANDSCAPE               | 7    | 跟随传感器自动横向旋转，可以旋转到横屏、反向横屏，无法旋转到竖屏、反向竖屏。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| AUTO_ROTATION_LANDSCAPE               | 7    | 跟随传感器自动横向旋转，可以旋转到横屏、反向横屏，无法旋转到竖屏、反向竖屏。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | AUTO_ROTATION_RESTRICTED              | 8    | 跟随传感器自动旋转，可以旋转到竖屏、横屏、反向竖屏、反向横屏四个方向，且受控制中心的旋转开关控制。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | 跟随传感器自动竖向旋转，可以旋转到竖屏、反向竖屏，无法旋转到横屏、反向横屏，且受控制中心的旋转开关控制。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
 | AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 跟随传感器自动横向旋转，可以旋转到横屏、反向横屏，无法旋转到竖屏、反向竖屏，且受控制中心的旋转开关控制。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|

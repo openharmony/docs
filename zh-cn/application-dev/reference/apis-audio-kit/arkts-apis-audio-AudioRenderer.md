@@ -11,7 +11,7 @@
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
-| 名称  | 类型                     | 可读 | 可写 | 说明               |
+| 名称  | 类型                     | 只读 | 可选 | 说明               |
 | ----- | -------------------------- | ---- | ---- | ------------------ |
 | state<sup>8+</sup> | [AudioState](arkts-apis-audio-e.md#audiostate8) | 是   | 否   | 音频渲染器的状态。 |
 

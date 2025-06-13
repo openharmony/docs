@@ -2,6 +2,16 @@
 
 滑动手势事件，当滑动的最小距离达到设定的最小值时触发滑动手势事件。
 
+以下场景可以触发滑动手势：
+
+| 触发方式              | 输入源类型           | 输入设备类型            | 备注                              | 
+|----------------------|---------------------|------------------------|-----------------------------------|
+| 手指按下滑动。          | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9).Finger   | [SourceType](ts-gesture-settings.md#sourcetype枚举说明8).TouchScreen | axisVertical和axisHorizontal均为0。 |
+| 鼠标左键按下滑动。      | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9).Mouse    | [SourceType](ts-gesture-settings.md#sourcetype枚举说明8).Mouse        | axisVertical和axisHorizontal均为0。 |
+| 鼠标滚轮滚动。          | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9).Mouse    | [SourceType](ts-gesture-settings.md#sourcetype枚举说明8).Mouse        | axisVertical或axisHorizontal不为0。 |
+| 触摸板按下左键后滑动。  | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9).TouchPad  | [SourceType](ts-gesture-settings.md#sourcetype枚举说明8).Unknown     | axisVertical和axisHorizontal均为0。 |
+| 触摸板双指滑动。       | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9).TouchPad  | [SourceType](ts-gesture-settings.md#sourcetype枚举说明8).Unknown      | axisVertical或axisHorizontal不为0。 |
+
 >  **说明：**
 >
 >  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
