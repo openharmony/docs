@@ -271,19 +271,18 @@ struct DragControllerPage {
   ![zh-cn_executeDrag2](figures/executeDrag2.gif)
 ## DragInfo
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 发起拖拽所需要的属性和拖拽时携带的信息。
 
 | 名称        | 类型                                                   | 必填 | 说明                                     |
 | ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
-| pointerId   | number                                                 | 是   | 设置启动拖拽时屏幕上触摸点的Id。取值范围为0-9的整数。         |
-| data        | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 否   | 设置拖拽过程中携带的数据。               |
-| extraParams | string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。默认值为空。 |
-| touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | 否   | 配置跟手点坐标。不配置时，左右居中，顶部向下偏移20%。 |
-| previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | 否   | 设置拖拽过程中背板图处理模式及数量角标的显示。 |
+| pointerId   | number                                                 | 是   | 设置启动拖拽时屏幕上触摸点的Id。取值范围为0-9的整数。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| data        | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 否   | 设置拖拽过程中携带的数据。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。               |
+| extraParams | string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。默认值为空。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | 否   | 配置跟手点坐标。不配置时，左右居中，顶部向下偏移20%。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | 否   | 设置拖拽过程中背板图处理模式及数量角标的显示。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| dataLoadParams<sup>20+</sup>| [unifiedDataChannel.DataLoadParams](../apis-arkdata/js-apis-data-unifiedDataChannel.md#dataloadparams20)                                | 否   | 设置拖起方延迟提供数据。使用此方法向系统提供数据加载参数，而不是直接提供完整的数据对象。当用户在目标应用程序上落入时，系统将使用此参数从起拖方请求实际数据。默认值为空。 <br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## dragController.createDragAction<sup>(deprecated)</sup>
 
