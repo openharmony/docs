@@ -495,7 +495,7 @@ getNdefFormatable(tagInfo: [TagInfo](#taginfo)): [NdefFormatableTag](js-apis-nfc
 
 | **类型**                                                  | **说明**                                                                  |
 | --------------------------------------------------------- | ------------------------------------------------------------------------- |
-| [NdefFormatableTag](js-apis-nfctech.md#ndefformatabletag) | NDEF Formatable类型Tag对象，通过该对象访问NDEF Formatable类型的相关接口。 |
+| [NdefFormatableTag](js-apis-nfctech.md#ndefformatabletag9) | NDEF Formatable类型Tag对象，通过该对象访问NDEF Formatable类型的相关接口。 |
 
 **错误码：**
 
