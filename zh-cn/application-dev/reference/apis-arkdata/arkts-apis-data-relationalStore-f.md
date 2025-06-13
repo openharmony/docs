@@ -599,3 +599,182 @@ let customType = relationalStore.Tokenizer.CUSTOM_TOKENIZER;
 let customTypeSupported = relationalStore.isTokenizerSupported(customType);
 console.info("custom tokenizer supported on current platform: " + customTypeSupported);
 ```
+
+## relationalStore.getInsertSqlInfo<sup>20+</sup>
+
+getInsertSqlInfo(table: string, values: ValuesBucket, conflict?: ConflictResolution): SqlInfo
+
+获取用于插入数据的SQL语句，此为同步接口。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名  | 类型                  | 必填 | 说明                                                         |
+| ------- | --------------------- | ---- | ------------------------------------------------------------ |
+| table | string              | 是   | 要写入数据的数据库表名。 |
+| values | [ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket) | 是 | 要写入数据库中数据的字段信息以及对应的值信息。 |
+| conflict | [ConflictResolution](arkts-apis-data-relationalStore-e.md#conflictresolution10) | 否 |指定冲突解决模式。默认值是relationalStore.ConflictResolution.ON_CONFLICT_NONE。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| [SqlInfo](arkts-apis-data-relationalStore-i.md#sqlinfo20) | SqlInfo对象，其中sql为返回的sql语句，args为执行SQL中的参数信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**             |
+|-----------|---------------------|
+| 14800001       | Invalid args. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
+
+
+**示例：**
+
+```ts
+import { relationalStore } from '@kit.ArkData'; // 导入模块
+const bucket: relationalStore.ValuesBucket = {
+  name: "Logitech",
+  age: 18,
+  sex: "man",
+  desc: "asserter"
+};
+const sqlInfo: relationalStore.SqlInfo = relationalStore.getInsertSqlInfo(
+  "USER",
+  bucket,
+  relationalStore.ConflictResolution.ON_CONFLICT_NONE
+);
+```
+
+## relationalStore.getUpdateSqlInfo<sup>20+</sup>
+
+getUpdateSqlInfo(predicates: RdbPredicates, values: ValuesBucket, conflict?: ConflictResolution): SqlInfo
+
+获取用于更新数据的SQL语句，此为同步接口。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名  | 类型                  | 必填 | 说明                                                         |
+| ------- | --------------------- | ---- | ------------------------------------------------------------ |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | 与指定字段匹配的谓词。 |
+| values | [ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket) | 是 | 要写入数据库中数据的字段信息以及对应的值信息。 |
+| conflict | [ConflictResolution](arkts-apis-data-relationalStore-e.md#conflictresolution10) | 否 | 指定冲突解决模式。 默认值是relationalStore.ConflictResolution.ON_CONFLICT_NONE。|
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| [SqlInfo](arkts-apis-data-relationalStore-i.md#sqlinfo20) | SqlInfo对象，其中sql为返回的sql语句，args为执行SQL中的参数信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**             |
+|-----------|---------------------|
+| 14800001       | Invalid args. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
+
+
+**示例：**
+
+```ts
+import { relationalStore } from '@kit.ArkData'; // 导入模块
+
+const bucket: relationalStore.ValuesBucket = {
+  name: "Logitech",
+  age: 18,
+  sex: "man",
+  desc: "asserter"
+};
+const predicates = new relationalStore.RdbPredicates("users");
+const sqlInfo: relationalStore.SqlInfo = relationalStore.getUpdateSqlInfo(
+  predicates,
+  bucket,
+  relationalStore.ConflictResolution.ON_CONFLICT_NONE
+);
+```
+
+## relationalStore.getDeleteSqlInfo<sup>20+</sup>
+
+getDeleteSqlInfo(predicates: RdbPredicates): SqlInfo
+
+获取用于删除数据的SQL语句，此为同步接口。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名  | 类型                  | 必填 | 说明                                                         |
+| ------- | --------------------- | ---- | ------------------------------------------------------------ |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | 与指定字段匹配的谓词。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| [SqlInfo](arkts-apis-data-relationalStore-i.md#sqlinfo20) | SqlInfo对象，其中sql为返回的sql语句，args为执行SQL中的参数信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**             |
+|-----------|---------------------|
+| 14800001       | Invalid args. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
+
+
+**示例：**
+
+```ts
+import { relationalStore } from '@kit.ArkData'; // 导入模块
+
+const predicates = new relationalStore.RdbPredicates("users");
+predicates.equalTo("tableName", "a");
+predicates.notEqualTo("age", 18);
+const sqlInfo: relationalStore.SqlInfo = relationalStore.getDeleteSqlInfo(predicates);
+```
+
+## relationalStore.getQuerySqlInfo<sup>20+</sup>
+
+getQuerySqlInfo(predicates: RdbPredicates, columns: Array\<string>): SqlInfo
+
+获取用于查询数据的SQL语句，此为同步接口。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名  | 类型                  | 必填 | 说明                                                         |
+| ------- | --------------------- | ---- | ------------------------------------------------------------ |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | 与指定字段匹配的谓词。 |
+| columns | Array\<string> | 否 | 要查询的列；如果不指定此参数，则查询所有列。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| [SqlInfo](arkts-apis-data-relationalStore-i.md#sqlinfo20) | SqlInfo对象，其中sql为返回的sql语句，args为执行SQL中的参数信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**             |
+|-----------|---------------------|
+| 14800001       | Invalid args. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
+
+
+**示例：**
+
+```ts
+import { relationalStore } from '@kit.ArkData'; // 导入模块
+
+const predicates = new relationalStore.RdbPredicates("users");
+predicates.notEqualTo("age", 18);
+predicates.equalTo("name", "zhangsan");
+const sqlInfo: relationalStore.SqlInfo = relationalStore.getQuerySqlInfo(predicates);
+```
