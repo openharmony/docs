@@ -396,7 +396,9 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    Persist task [jobid:2][fileNum:100][fileSize:4194304] start successfully
    ```
 
-   开启落盘任务时可以自定义落盘规则，其中压缩方式可以为zlib、zstd、none。以设置落盘文件名为kmsglog，大小为2M，数量为100个, 其压缩方式为zlib压缩为例，命令行为：
+   开启落盘任务时可以自定义落盘规则，其中压缩方式可以为zlib、zstd、none。
+
+   以设置落盘文件名为kmsglog，大小为2M，数量为100个, 其压缩方式为zlib压缩为例，命令行为：
 
    ```shell
    $ hilog -w start -t kmsg -f kmsglog -l 2M -n 100 -m zlib
