@@ -550,7 +550,7 @@ stopStream(sessionId:&nbsp;number):&nbsp;void
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 名称       | 类型   | 可读   | 可写   | 必填   | 说明      |
+| 名称       | 类型   | 可读   | 可选 | 必填   | 说明      |
 | -------- | ------ | ---- | ---- | ---- | ------- |
 | eventType | [CollaborateEventType](#collaborateeventtype) | 是    | 否    | 是    | 表示协作事件的类型。 |
 | eventMsg | string | 是    | 否    | 否    | 表示协作事件的协作消息。 |
@@ -561,7 +561,7 @@ stopStream(sessionId:&nbsp;number):&nbsp;void
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 名称       | 类型    | 可读   | 可写   | 必填   | 说明          |
+| 名称       | 类型    | 可读   | 可选  | 必填   | 说明          |
 | -------- | ------ | ---- | ---- | ---- | ----------- |
 | name  | string   | 是    | 否    | 是    |   表示流传输的名称（接收端必须与发送端一致）。 |
 | role  | [StreamRole](#streamrole)     | 是    | 否    | 是    |   表示流传输的方式（可以是接收流或发送流）。 |
@@ -574,7 +574,7 @@ Surface配置参数。
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 名称       | 类型   | 可读   | 可写   | 必填   | 说明      |
+| 名称       | 类型   | 可读   | 可选  | 必填   | 说明      |
 | -------- | ------ | ---- | ---- | ---- | ------- |
 | width | number | 是    | 否    | 是    | 表示编码宽度。必须在流启动前设置，流启动后到停止前均无法更新。如需更新需要将流停止后重新配置。 |
 | height | number | 是    | 否    | 是   | 表示编码长度。必须在流启动前设置，流启动后到停止前均无法更新。如需更新需要将流停止后重新配置。 |
@@ -644,7 +644,7 @@ Surface配置参数。
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 名称       | 类型    | 可读   | 可写   | 说明          |
+| 名称       | 类型    | 可读   | 可选  | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
 | image  | image.PixelMap | 是    | 否    |   表示接收的图片。 |
 
@@ -653,7 +653,7 @@ Surface配置参数。
 启动选项参数的枚举。
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
- 
+
 | 名称|  值 | 说明 |
 |-------|-------|-------|
 | START_IN_BACKGROUND | 1 |表示将对端应用启动至后台。|
