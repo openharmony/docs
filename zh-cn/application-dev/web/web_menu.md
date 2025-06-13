@@ -313,7 +313,7 @@ struct WebComponent {
                 this.previewImage = $rawfile(event.param.getSourceUrl().substr(19));
               } else {
                 this.previewImage = event.param.getSourceUrl();
-              }1
+              }
               return true;
             }
             return false;
