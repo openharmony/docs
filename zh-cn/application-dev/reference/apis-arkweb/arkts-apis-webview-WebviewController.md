@@ -2301,6 +2301,7 @@ struct WebComponent {
 </html>
 ```
 
+<!--code_no_check-->
 ```js
 //xxx.js
 var h5Port;
@@ -4670,7 +4671,7 @@ static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: numb
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
 | 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048.                                                 |
-| 171000013| The number of preconnect sockets is invalid.                                                 |
+| 17100013 | The number of preconnect sockets is invalid.                                                 |
 
 **示例：**
 
