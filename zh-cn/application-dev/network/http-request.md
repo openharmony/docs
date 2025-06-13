@@ -298,7 +298,7 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
       // 当该请求使用完毕时，调用destroy方法主动销毁。
       httpRequest.destroy();
     }).catch((err: Error) => {
-      console.info("requestInStream ERROR : err = " + JSON.stringify(err));
+      console.error("requestInStream ERROR : err = " + JSON.stringify(err));
     });
     ```
 

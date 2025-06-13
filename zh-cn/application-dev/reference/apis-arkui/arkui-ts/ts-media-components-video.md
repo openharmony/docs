@@ -532,7 +532,7 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 | 参数名      | 类型     | 必填   | 说明           |
 | -------- | -------- | ---- | -------------- |
-| value    | number   | 是    | 视频播放进度位置，单位为s。 |
+| value    | number   | 是    | 视频播放进度位置，单位：秒。 |
 | seekMode | [SeekMode](#seekmode8枚举说明) | 是    | 跳转模式。          |
 
 ## SeekMode<sup>8+</sup>枚举说明
@@ -552,7 +552,7 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 ### 示例1（视频播放基础用法）
 
-基础用法，包括控制栏、预览图、自动播放、播放速度、响应快捷键、控制器（开始播放、暂停播放、停止播放、重置avPlayer、跳转等）、首帧送显以及一些状态回调方法。
+基础用法包括：控制栏、预览图、自动播放、播放速度、响应快捷键、控制器（开始播放、暂停播放、停止播放、重置avPlayer、跳转等）、首帧送显以及一些状态回调方法。
 
 ```ts
 // xxx.ets

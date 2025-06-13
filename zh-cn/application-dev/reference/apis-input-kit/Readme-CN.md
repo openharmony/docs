@@ -20,6 +20,7 @@
   - [@ohos.multimodalInput.inputEventClient (输入事件注入)(系统接口)](js-apis-inputeventclient-sys.md)
   - [@ohos.multimodalInput.inputMonitor (输入监听)(系统接口)](js-apis-inputmonitor-sys.md)
   - [@ohos.multimodalInput.gestureEvent (手势事件)(系统接口)](js-apis-multimodalinput-gestureevent-sys.md)
+  - [@ohos.multimodalInput.touchEvent (触摸输入事件)(系统接口)](js-apis-touchevent-sys.md)
   - 已停止维护的接口<!--input-arkts-dep-->
     - [@ohos.multimodalInput.inputDeviceCooperate (键鼠穿越)(系统接口)](js-apis-cooperate-sys.md)
   <!--DelEnd-->

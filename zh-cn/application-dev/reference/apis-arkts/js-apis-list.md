@@ -451,7 +451,7 @@ let result = list.remove(2);
 replaceAllElements(callbackFn: (value: T, index?: number, list?: List&lt;T&gt;) => T,
 thisArg?: Object): void
 
-用户操作List中的元素，用操作后的元素替换原元素并返回操作后的元素。
+遍历List中的元素，并用回调函数返回的新值替换原List中的元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

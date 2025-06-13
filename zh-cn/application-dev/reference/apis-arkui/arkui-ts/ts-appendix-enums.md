@@ -87,7 +87,7 @@
 | Down   | -    | 手指按下时触发。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
 | Up     | -    | 手指抬起时触发。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
 | Move   | -    | 手指按压态在屏幕上移动时触发。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
-| Cancel | -    | 触摸事件取消时触发。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
+| Cancel | -    | 触摸事件取消时触发。例如：1.手指按住屏幕同时点击Home键返回桌面，此时会触发Cancel；2.折叠屏手机，应用在按住屏幕的情况下折叠手机切换到外屏，此时会触发Cancel。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 | HOVER_ENTER<sup>20+</sup> | 9    | 无障碍模式下，手指按下时触发。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。        |
 | HOVER_MOVE<sup>20+</sup>   | 10    | 无障碍模式下，触摸移动时触发。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。        |
 | HOVER_EXIT<sup>20+</sup> | 11    | 无障碍模式下，抬手触发。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。        |
@@ -375,7 +375,7 @@
 | TOP_END       | 'top_end'     | 顶部尾端。    |
 | START         | 'start'       | 起始端纵向居中。 |
 | CENTER        | 'center'      | 横向和纵向居中。 |
-| End           | 'end'         | 尾端纵向居中。  |
+| END           | 'end'         | 尾端纵向居中。  |
 | BOTTOM_START  | 'bottom_start'| 底部起始端。   |
 | BOTTOM        | 'bottom'      | 底部横向居中。  |
 | BOTTOM_END    | 'bottom_end'  | 底部尾端。    |
@@ -1041,16 +1041,15 @@ type Nullable\<T> = T | undefined
 
 ## ImageSpanAlignment<sup>10+</sup>
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 说明                           |
 | -------- | ------------------------------ |
-| TOP      | 图片上边沿与行上边沿对齐。   |
-| CENTER   | 图片中间与行中间对齐。       |
-| BOTTOM   | 图片下边沿与行下边沿对齐。   |
-| BASELINE | 图片下边沿与文本BaseLine对齐。 |
+| TOP      | 图片上边沿与行上边沿对齐。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| CENTER   | 图片中间与行中间对齐。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| BOTTOM   | 图片下边沿与行下边沿对齐。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| BASELINE | 图片下边沿与文本BaseLine对齐。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| FOLLOW_PARAGRAPH<sup>20+</sup>  | 对齐方式跟随Text父组件。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 
 ## XComponentType<sup>10+</sup>

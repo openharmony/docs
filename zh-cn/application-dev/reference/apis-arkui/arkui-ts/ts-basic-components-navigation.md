@@ -239,7 +239,7 @@ navBarWidth(value: Length)
 
 设置导航栏宽度。仅在Navigation组件分栏时生效。
 
-从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#组件参数双向绑定)双向绑定变量。
+从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md)双向绑定变量。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1776,7 +1776,7 @@ Navigation自定义标题。
 | backgroundEffect<sup>19+</sup>   | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11)        | 否    | 设置工具栏背景属性包括：模糊半径，亮度，饱和度，颜色等。<br/>**说明：** <br/>不建议与backgroundBlurStyleOptions同时使用。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 | barStyle<sup>14+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 设置工具栏布局方式。<br/>默认值：BarStyle.STANDARD。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 | hideItemValue<sup>19+</sup>   | boolean | 否    | 设置是否隐藏工具栏的文本，默认显示文本。<br/>默认值：false。<br/>true：隐藏工具栏的文本。<br/>false：不隐藏工具栏的文本。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
-| moreButtonOptions<sup>19+</sup>   | [MoreButtonOptions](#morebuttonoptions19)        | 否    | 工具栏更多图标的菜单选项。 |
+| moreButtonOptions<sup>19+</sup>   | [MoreButtonOptions](#morebuttonoptions19)        | 否    | 工具栏更多图标的菜单选项。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 
 ## NavigationMenuOptions<sup>19+</sup>
 

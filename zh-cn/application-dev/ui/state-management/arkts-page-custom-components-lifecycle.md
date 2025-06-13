@@ -271,7 +271,7 @@ Page aboutToDisappear
 
 ## 自定义组件监听页面生命周期
 
-使用[无感监听页面路由](../../reference/apis-arkui/js-apis-arkui-observer.md#observeronrouterpageupdate11)的能力，能够实现在自定义组件中监听页面的生命周期。
+使用[无感监听页面路由](../../reference/apis-arkui/js-apis-arkui-observer.md#uiobserveronrouterpageupdate11)的能力，能够实现在自定义组件中监听页面的生命周期。
 
 ```ts
 // Index.ets

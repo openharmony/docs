@@ -192,7 +192,7 @@ mark(style: Optional\<MarkStyle>)
 
 shape(value: CheckBoxShape)
 
-设置CheckBox组件形状，包括圆形和圆角方形。
+设置CheckBox组件形状，包括圆形和圆角方形。如果想要调整当前CheckBox的样式，需使用[contentModifier](#contentmodifier12)属性自定义CheckBox样式。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -210,7 +210,7 @@ shape(value: CheckBoxShape)
 
 shape(shape: Optional\<CheckBoxShape>)
 
-设置CheckBox组件形状，包括圆形和圆角方形。与[shape](#shape11)<sup>11+</sup>相比，shape参数新增了对undefined类型的支持。
+设置CheckBox组件形状，包括圆形和圆角方形。与[shape](#shape11)<sup>11+</sup>相比，shape参数新增了对undefined类型的支持。如果想要调整当前CheckBox的样式，需使用[contentModifier](#contentmodifier12)属性自定义CheckBox样式。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -228,7 +228,7 @@ shape(shape: Optional\<CheckBoxShape>)
 
 contentModifier(modifier: ContentModifier\<CheckBoxConfiguration>)
 
-定制CheckBox内容区的方法。
+定制CheckBox内容区的方法。设置该属性时，会导致其他属性设置失效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -244,7 +244,7 @@ contentModifier(modifier: ContentModifier\<CheckBoxConfiguration>)
 
 contentModifier(modifier: Optional<ContentModifier\<CheckBoxConfiguration>>)
 
-定制CheckBox内容区的方法。与[contentModifier](#contentmodifier12)<sup>12+</sup>相比，modifier参数新增了对undefined类型的支持。
+定制CheckBox内容区的方法。与[contentModifier](#contentmodifier12)<sup>12+</sup>相比，modifier参数新增了对undefined类型的支持。设置该属性时，会导致其他属性设置失效。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -416,7 +416,7 @@ struct Index {
 ![](figures/checkbox2.gif)
 
 ### 示例3（自定义多选框样式）
-该示例实现了自定义复选框样式的功能，自定义样式实现了一个五边形复选框，如果选中，内部会出现红色三角图案，标题会显示选中字样，如果取消选中，红色三角图案消失，标题会显示非选中字样。
+该示例通过[contentModifier](#contentmodifier12)属性实现了自定义复选框样式的功能，自定义样式实现了一个五边形复选框，如果选中，内部会出现红色三角图案，标题会显示选中字样，如果取消选中，红色三角图案消失，标题会显示非选中字样。
 
 ```ts
 // xxx.ets

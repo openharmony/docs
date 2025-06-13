@@ -35,6 +35,7 @@
       - [创建应用分身](quick-start/app-clone.md)
       - [创建应用多实例](quick-start/multiInstance.md)
       - [配置应用图标](quick-start/layered-image.md)
+    - [应用程序包常见问题](quick-start/common_problem_of_application.md)
     - [应用程序包术语](quick-start/application-package-glossary.md)
   - [资源分类与访问](quick-start/resource-categories-and-access.md)
   - 学习ArkTS语言<!--learning-arkts-->
@@ -2547,100 +2548,118 @@
           - [@system.router (页面路由)](reference/apis-arkui/js-apis-system-router.md)
           - [XComponentNode](reference/apis-arkui/js-apis-arkui-xcomponentNode.md)
       - ArkTS组件<!--arkui-declarative-comp-->
-        - 组件通用信息<!--universal-component-information-->
-          - [通用事件](reference/apis-arkui/arkui-ts/ts-component-general-events.md)
-            - [点击事件](reference/apis-arkui/arkui-ts/ts-universal-events-click.md)
+        - [通用事件](reference/apis-arkui/arkui-ts/ts-component-general-events.md)
+          - 基础输入事件<!--basic-raw-input-event-->
             - [触摸事件](reference/apis-arkui/arkui-ts/ts-universal-events-touch.md)
-            - [挂载卸载事件](reference/apis-arkui/arkui-ts/ts-universal-events-show-hide.md)
-            - [拖拽事件](reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md)
-            - [按键事件](reference/apis-arkui/arkui-ts/ts-universal-events-key.md)
-            - [焦点事件](reference/apis-arkui/arkui-ts/ts-universal-focus-event.md)
             - [鼠标事件](reference/apis-arkui/arkui-ts/ts-universal-mouse-key.md)
+            - [轴事件](reference/apis-arkui/arkui-ts/ts-universal-events-axis.md)
+            - [按键事件](reference/apis-arkui/arkui-ts/ts-universal-events-key.md)
             - [表冠事件](reference/apis-arkui/arkui-ts/ts-universal-events-crown.md)
+            - [焦点轴事件](reference/apis-arkui/arkui-ts/ts-universal-events-focus_axis.md)
+          - 交互响应事件<!--interaction-events-->
+            - [点击事件](reference/apis-arkui/arkui-ts/ts-universal-events-click.md)
+            - [拖拽事件](reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md)
+            <!--Del-->
+            - [拖拽事件（系统接口）](reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop-sys.md)
+            <!--DelEnd-->
+            - [焦点事件](reference/apis-arkui/arkui-ts/ts-universal-focus-event.md)
             - [悬浮事件](reference/apis-arkui/arkui-ts/ts-universal-events-hover.md)
+            - [组件快捷键事件](reference/apis-arkui/arkui-ts/ts-universal-events-keyboardshortcut.md)
+          - 交互事件分发控制<!--event-dispatch-control-->
+            - [自定义事件拦截](reference/apis-arkui/arkui-ts/ts-universal-attributes-on-touch-intercept.md)
+            - [自定义事件分发](reference/apis-arkui/arkui-ts/ts-universal-attributes-on-child-touch-test.md)
+          - 无障碍相关<!--accessibility-related-->
+            - [无障碍事件](reference/apis-arkui/arkui-ts/ts-universal-accessibility-event.md)
             - [无障碍悬浮事件](reference/apis-arkui/arkui-ts/ts-universal-accessibility-hover-event.md)
+          - 组件变化事件<!--component-change-->
+            - [挂载卸载事件](reference/apis-arkui/arkui-ts/ts-universal-events-show-hide.md)
             - [组件区域变化事件](reference/apis-arkui/arkui-ts/ts-universal-component-area-change-event.md)
             - [组件尺寸变化事件](reference/apis-arkui/arkui-ts/ts-universal-component-size-change-event.md)
             - [组件可见区域变化事件](reference/apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md)
-            - [组件快捷键事件](reference/apis-arkui/arkui-ts/ts-universal-events-keyboardshortcut.md)
-            - [自定义事件分发](reference/apis-arkui/arkui-ts/ts-universal-attributes-on-child-touch-test.md)
-            - [自定义事件拦截](reference/apis-arkui/arkui-ts/ts-universal-attributes-on-touch-intercept.md)
-            - [焦点轴事件](reference/apis-arkui/arkui-ts/ts-universal-events-focus_axis.md)
-            - [轴事件](reference/apis-arkui/arkui-ts/ts-universal-events-axis.md)
-            - [拖拽事件（系统接口）](reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop-sys.md)
-          - [通用属性](reference/apis-arkui/arkui-ts/ts-component-general-attributes.md)
+        - [通用属性](reference/apis-arkui/arkui-ts/ts-component-general-attributes.md)
+          - 基础属性<!--basic-property-->
+            - [组件标识](reference/apis-arkui/arkui-ts/ts-universal-attributes-component-id.md)
+            - [分布式迁移标识](reference/apis-arkui/arkui-ts/ts-universal-attributes-restoreId.md)
+            - [显隐控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-visibility.md)
+            - [背景设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md)
+            - [浮层](reference/apis-arkui/arkui-ts/ts-universal-attributes-overlay.md)
+            - [Z序控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-z-order.md)
+            - [隐私遮罩](reference/apis-arkui/arkui-ts/ts-universal-attributes-obscured.md)
+          - 布局与边框<!--layout-property-->
             - [尺寸设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)
             - [位置设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md)
             - [布局约束](reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md)
-            - [组件级像素取整](reference/apis-arkui/arkui-ts/ts-universal-attributes-pixelRound.md)
             - [Flex布局](reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md)
+            - [安全区域](reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md)
+            - [组件级像素取整](reference/apis-arkui/arkui-ts/ts-universal-attributes-pixelRound.md)
             - [边框设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-border.md)
             - [图片边框设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-border-image.md)
-            - [背景设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md)
+          - 视效与模糊<!--visual-effect-property-->
             - [透明度设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-opacity.md)
-            - [显隐控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-visibility.md)
-            - [禁用控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md)
-            - [浮层](reference/apis-arkui/arkui-ts/ts-universal-attributes-overlay.md)
-            - [Z序控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-z-order.md)
             - [图形变换](reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md)
             - [图像效果](reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md)
             - [形状裁剪](reference/apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md)
             - [颜色渐变](reference/apis-arkui/arkui-ts/ts-universal-attributes-gradient-color.md)
-            - [Popup控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md)
-            - [Tips控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-tips.md)
-            - [菜单控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md)
-            - [焦点控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md)
-            - [悬浮态效果](reference/apis-arkui/arkui-ts/ts-universal-attributes-hover-effect.md)
-            - [组件标识](reference/apis-arkui/arkui-ts/ts-universal-attributes-component-id.md)
-            - [复用标识](reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse-id.md)
-            - [多态样式](reference/apis-arkui/arkui-ts/ts-universal-attributes-polymorphic-style.md)
-            - [分布式迁移标识](reference/apis-arkui/arkui-ts/ts-universal-attributes-restoreId.md)
             - [前景色设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-color.md)
             - [前景属性设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-effect.md)
+            - [外描边设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-outline.md)
+            - [视效设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-filter-effect.md)
             - [组件内容模糊](reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-blur-style.md)
             - [运动模糊](reference/apis-arkui/arkui-ts/ts-universal-attributes-motionBlur.md)
             - [点击回弹效果](reference/apis-arkui/arkui-ts/ts-universal-attributes-click-effect.md)
-            - [无障碍属性](reference/apis-arkui/arkui-ts/ts-universal-attributes-accessibility.md)
-            - [动态属性设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md)
-            - [动态手势设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-gesture-modifier.md)
-            - [外描边设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-outline.md)
-            - [视效设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-filter-effect.md)
-            - [自定义绘制](reference/apis-arkui/arkui-ts/ts-universal-attributes-draw-modifier.md)
-            - [自定义内容](reference/apis-arkui/arkui-ts/ts-universal-attributes-content-modifier.md)
-            - [自定义属性设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-custom-property.md)
-            - [自定义窗口工具栏](reference/apis-arkui/arkui-ts/ts-universal-attributes-toolbar.md)
-            - 触摸交互控制<!--touch-interactions-->
-              - [触摸热区设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md)
-              - [触摸测试控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md)
-            - 模态转场设置<!--transition-->
-              - [全屏模态转场](reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md)
-              - [半模态转场](reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md)
-              <!--Del-->
-              - [半模态转场 (系统接口)](reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition-sys.md)
-              <!--DelEnd-->
-            - [隐私遮罩](reference/apis-arkui/arkui-ts/ts-universal-attributes-obscured.md)
-            - [文本通用](reference/apis-arkui/arkui-ts/ts-universal-attributes-text-style.md)
-            - [拖拽控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md)
-            - [安全区域](reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md)
-            - [组件内容填充方式](reference/apis-arkui/arkui-ts/ts-universal-attributes-renderfit.md)
-            - [事件独占控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-monopolize-events.md)
-            - [鼠标光标控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-cursor.md)
             - [特效绘制合并](reference/apis-arkui/arkui-ts/ts-universal-attributes-use-effect.md)
+            - [组件内容填充方式](reference/apis-arkui/arkui-ts/ts-universal-attributes-renderfit.md)
             <!--Del-->
             - [点光源设置 (系统接口)](reference/apis-arkui/arkui-ts/ts-universal-attributes-point-light-style-sys.md)
             - [图像效果 (系统接口)](reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect-sys.md)
             <!--DelEnd-->
-          - 手势处理<!--gesture-handling-->
+          - 交互属性<!--interaction-property-->
+            - [禁用控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md)
+            - [焦点控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md)
+            - [拖拽控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md)
+            - [悬浮态效果](reference/apis-arkui/arkui-ts/ts-universal-attributes-hover-effect.md)
+            - 触摸交互控制<!--touch-interactions-->
+              - [触摸热区设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md)
+              - [触摸测试控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md)
+              - [事件独占控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-monopolize-events.md)
+            - [鼠标光标控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-cursor.md)
+          - [多态样式](reference/apis-arkui/arkui-ts/ts-universal-attributes-polymorphic-style.md)
+          - 弹窗控制<!--popup-property-->
+            - [Popup控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md)
+            - [Tips控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-tips.md)
+            - [菜单控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md)
+          - [无障碍属性](reference/apis-arkui/arkui-ts/ts-universal-attributes-accessibility.md)
+          - [文本通用](reference/apis-arkui/arkui-ts/ts-universal-attributes-text-style.md)
+          - 模态转场设置<!--transition-->
+            - [全屏模态转场](reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md)
+            - [半模态转场](reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md)
+            <!--Del-->
+            - [半模态转场 (系统接口)](reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition-sys.md)
+            <!--DelEnd-->
+          - 动态属性与自定义<!--attibute-modifier-property-->
+            - [动态属性设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md)
+            - [动态手势设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-gesture-modifier.md)
+            - [自定义绘制](reference/apis-arkui/arkui-ts/ts-universal-attributes-draw-modifier.md)
+            - [自定义内容](reference/apis-arkui/arkui-ts/ts-universal-attributes-content-modifier.md)
+            - [自定义属性设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-custom-property.md)
+          - 其他<!--other-property-->
+            - [复用标识](reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse-id.md)
+            - [复用选项](reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse.md)
+            - [自定义窗口工具栏](reference/apis-arkui/arkui-ts/ts-universal-attributes-toolbar.md)
+        - 手势处理<!--gesture-handling-->
+          - 绑定手势<!--gesture-binding-->
             - [绑定手势方法](reference/apis-arkui/arkui-ts/ts-gesture-settings.md)
+            - [设置组件绑定的手势](reference/apis-arkui/arkui-ts/ts-uigestureevent.md)
+          - 基础手势<!--basic-gestures-->
             - [TapGesture](reference/apis-arkui/arkui-ts/ts-basic-gestures-tapgesture.md)
             - [LongPressGesture](reference/apis-arkui/arkui-ts/ts-basic-gestures-longpressgesture.md)
             - [PanGesture](reference/apis-arkui/arkui-ts/ts-basic-gestures-pangesture.md)
             - [PinchGesture](reference/apis-arkui/arkui-ts/ts-basic-gestures-pinchgesture.md)
             - [RotationGesture](reference/apis-arkui/arkui-ts/ts-basic-gestures-rotationgesture.md)
             - [SwipeGesture](reference/apis-arkui/arkui-ts/ts-basic-gestures-swipegesture.md)
-            - [组合手势](reference/apis-arkui/arkui-ts/ts-combined-gestures.md)
+          - [组合手势](reference/apis-arkui/arkui-ts/ts-combined-gestures.md)
+          - 手势控制<!--gesture-control-->
             - [自定义手势判定](reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md)
-            - [设置组件绑定的手势](reference/apis-arkui/arkui-ts/ts-uigestureevent.md)
             - [手势拦截增强](reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md)
         - 行列与堆叠<!--rows-columns-and-stacking-->
           - [Flex](reference/apis-arkui/arkui-ts/ts-container-flex.md)
@@ -3183,6 +3202,7 @@
           <!--Del-->
           - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
           <!--DelEnd-->
+          - [NodeAdapter错误码](reference/apis-arkui/errorcode-nodeadapter.md)
         - UI编译<!--arkui-compile-arkts-errcode-->
           - [编译错误码](reference/apis-arkui/_ark_ui_compile.md)
         - 图形图像<!--arkui-graphics-images-arkts-errcode-->
@@ -3217,6 +3237,7 @@
           - [Class (WebSchemeHandlerRequest)](reference/apis-arkweb/arkts-apis-webview-WebSchemeHandlerRequest.md)
           - [Class (WebSchemeHandlerResponse)](reference/apis-arkweb/arkts-apis-webview-WebSchemeHandlerResponse.md)
           - [Class (WebStorage)](reference/apis-arkweb/arkts-apis-webview-WebStorage.md)  
+          - [Interface (BackForwardList)](reference/apis-arkweb/arkts-apis-webview-BackForwardList.md)
           - [Interface (NativeMediaPlayerBridge)](reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerBridge.md)
           - [Interface (NativeMediaPlayerHandler)](reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerHandler.md)
           - [Interface (WebMessagePort)](reference/apis-arkweb/arkts-apis-webview-WebMessagePort.md)
@@ -3943,15 +3964,15 @@
             - [OH_BatteryInfo](reference/apis-basic-services-kit/oh__batteryinfo.md)
             - [OH_Scan](reference/apis-basic-services-kit/c-apis-scan.md)
             - [OH_Print](reference/apis-basic-services-kit/_o_h___print.md)
-            - [Pasteboard](reference/apis-basic-services-kit/_pasteboard.md)
+            - [Pasteboard](reference/apis-basic-services-kit/capi-pasteboard.md)
             - [TimeService](reference/apis-basic-services-kit/_time_service.md)
           - 头文件<!--basic-services-headerfile-->
             - [deviceinfo.h](reference/apis-basic-services-kit/deviceinfo_8h.md)
             - [ohbattery_info.h](reference/apis-basic-services-kit/ohbattery__info_8h.md)
             - [oh_commonevent.h](reference/apis-basic-services-kit/oh_commonevent_8h.md)
             - [oh_commonevnt_support.h](reference/apis-basic-services-kit/oh_commonevent_support_8h.md)
-            - [oh_pasteboard.h](reference/apis-basic-services-kit/oh__pasteboard_8h.md)
-            - [oh_pasteboard_err_code.h](reference/apis-basic-services-kit/oh__pasteboard__err__code_8h.md)
+            - [oh_pasteboard.h](reference/apis-basic-services-kit/capi-oh-pasteboard-h.md)
+            - [oh_pasteboard_err_code.h](reference/apis-basic-services-kit/capi-oh-pasteboard-err-code-h.md)
             - [os_account.h](reference/apis-basic-services-kit/capi-os-account-h.md)
             - [os_account_common.h](reference/apis-basic-services-kit/capi-os-account-common-h.md)
             - [ohprint.h](reference/apis-basic-services-kit/ohprint_8h.md)
@@ -3963,6 +3984,10 @@
             - [Print_PrintAttributes](reference/apis-basic-services-kit/_print___print_attributes.md)
             - [Print_PrintDocCallback](reference/apis-basic-services-kit/_print___print_doc_callback.md)
             - [Print_Range](reference/apis-basic-services-kit/_print___range.md)
+            - [Pasteboard_ProgressInfo](reference/apis-basic-services-kit/capi-pasteboard-progressinfo.md)
+            - [Pasteboard_GetDataParams](reference/apis-basic-services-kit/capi-pasteboard-getdataparams.md)
+            - [OH_PasteboardObserver](reference/apis-basic-services-kit/capi-oh-pasteboardobserver.md)
+            - [OH_Pasteboard](reference/apis-basic-services-kit/capi-oh-pasteboard.md)
         - 错误码<!--basic-services-arkts-errcode-->
           - [USB服务错误码](reference/apis-basic-services-kit/errorcode-usb.md)
           - [RunningLock锁错误码](reference/apis-basic-services-kit/errorcode-runninglock.md)
@@ -4037,6 +4062,7 @@
           - [@ohos.multimodalInput.inputEventClient (输入事件注入)(系统接口)](reference/apis-input-kit/js-apis-inputeventclient-sys.md)
           - [@ohos.multimodalInput.inputMonitor (输入监听)(系统接口)](reference/apis-input-kit/js-apis-inputmonitor-sys.md)
           - [@ohos.multimodalInput.gestureEvent (手势事件)(系统接口)](reference/apis-input-kit/js-apis-multimodalinput-gestureevent-sys.md)
+          - [@ohos.multimodalInput.touchEvent (触摸输入事件)(系统接口)](reference/apis-input-kit/js-apis-touchevent-sys.md)
           - 已停止维护的接口<!--input-arkts-dep-->
             - [@ohos.multimodalInput.inputDeviceCooperate (键鼠穿越)(系统接口)](reference/apis-input-kit/js-apis-cooperate-sys.md)
           <!--DelEnd-->
@@ -4269,6 +4295,7 @@
            - [@ohos.app.ability.abilityDelegatorRegistry (AbilityDelegatorRegistry)](reference/apis-test-kit/js-apis-app-ability-abilityDelegatorRegistry.md)
            - [@ohos.application.testRunner (TestRunner)](reference/apis-test-kit/js-apis-application-testRunner.md)
            - [@ohos.UiTest](reference/apis-test-kit/js-apis-uitest.md)
+           - [@ohos.test.PerfTest](reference/apis-test-kit/js-apis-perftest.md)
            - 接口依赖的元素及定义<!--test-api-interface-depend-->
               - [abilityDelegator](reference/apis-test-kit/js-apis-inner-application-abilityDelegator.md)
               - [abilityDelegatorArgs](reference/apis-test-kit/js-apis-inner-application-abilityDelegatorArgs.md)
@@ -4277,6 +4304,7 @@
               - [@ohos.application.abilityDelegatorRegistry (AbilityDelegatorRegistry)](reference/apis-test-kit/js-apis-application-abilityDelegatorRegistry.md)
         - 错误码<!--test-arkts-errcode-->
            - [uitest错误码](reference/apis-test-kit/errorcode-uitest.md)
+           - [perftest错误码](reference/apis-test-kit/errorcode-perftest.md)
   - 媒体<!--media-reference-->
     - Audio Kit（音频服务）<!--audio-api-->
       - ArkTS API<!--audio-arkts-->

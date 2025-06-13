@@ -686,7 +686,7 @@ type OnNavigationModeChangeCallback = (mode: NavigationMode) => void
 
 | 名称 | 类型                                                         | 必填 | 说明                           |
 | ---- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| mode | [NavigationMode](./ts-basic-components-navigation.md#navigationmode9) | 是   | 当回调触发时的NavigationMode。 |
+| mode | [NavigationMode](./ts-basic-components-navigation.md#navigationmode9枚举说明) | 是   | 当回调触发时的NavigationMode。 |
 
 ## OnHomeShowOnTopCallback
 
