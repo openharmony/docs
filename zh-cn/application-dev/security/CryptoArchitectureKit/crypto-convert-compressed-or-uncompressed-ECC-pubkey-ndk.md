@@ -7,7 +7,7 @@
 
 ##  指定非压缩公钥数据转换为压缩公钥数据
 
-1. 指定uint8_t类型的ECC非压缩公钥数据，封装成[Crypto_DataBlob](../../reference/apis-crypto-architecture-kit/capi-crypto-datablob-h.md)。  
+1. 指定uint8_t类型的ECC非压缩公钥数据，封装成[Crypto_DataBlob](../../reference/apis-crypto-architecture-kit/capi-crypto-datablob.md)。  
 公钥和私钥可单独传入，此处示例传入非压缩公钥。
 2. 调用[OH_CryptoAsymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-asym-key-h.md#oh_cryptoasymkeygenerator_generate)，指定字符串参数'ECC_BrainPoolP256r1'，创建密钥算法为ECC、密钥长度为256位的非对称密钥生成器（OH_CryptoAsymKeyGenerator）。
 3. 调用[OH_CryptoAsymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/capi-crypto-asym-key-h.md#oh_cryptoasymkeygenerator_convert)，传入封装后的[Crypto_DataBlob](../../reference/apis-crypto-architecture-kit/capi-crypto-datablob-h.md)，生成非对称密钥对象（OH_CryptoKeyPair）。
