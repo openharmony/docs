@@ -985,7 +985,7 @@ httpRequest.off("dataEnd");
 
 ### on('dataReceiveProgress')<sup>10+</sup>
 
-on(type: 'dataReceiveProgress', callback: AsyncCallback\<[DataReceiveProgressInfo](#datareceiveprogressinfo11)\>): void
+on(type: 'dataReceiveProgress', callback: AsyncCallback\<DataReceiveProgressInfo\>): void
 
 订阅HTTP流式响应数据接收进度事件。
 
@@ -1043,7 +1043,7 @@ httpRequest.off("dataReceiveProgress");
 
 ### on('dataSendProgress')<sup>11+</sup>
 
-on(type: 'dataSendProgress', callback: AsyncCallback\<[DataSendProgressInfo](#datasendprogressinfo11)\>): void
+on(type: 'dataSendProgress', callback: AsyncCallback\<DataSendProgressInfo\>): void
 
 订阅HTTP网络请求数据发送进度事件。
 
