@@ -82,7 +82,7 @@ textVerticalAlign(textVerticalAlign: Optional\<TextVerticalAlign>)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                       |
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
-| textVerticalAlign  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextVerticalAlign](ts-text-common.md#textverticalalign)> | 否   | 文本段落在垂直方向的对齐方式。<br/>默认值：TextVerticalAlign.BASELINE |
+| textVerticalAlign  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextVerticalAlign](ts-text-common.md#textverticalalign20)> | 否   | 文本段落在垂直方向的对齐方式。<br/>默认值：TextVerticalAlign.BASELINE |
 
 ### textOverflow
 
