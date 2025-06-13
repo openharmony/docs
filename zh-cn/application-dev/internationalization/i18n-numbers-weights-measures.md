@@ -160,7 +160,7 @@ formattedNumber = halfCeilFormat.format(11.21); // formattedNumber = '$11.20'
 
 ### 数字范围格式化
 
-数字范围格式化通过[NumberFormat](../reference/apis-localization-kit/js-apis-intl.md#numberformat)的[formatRange](../reference/apis-localization-kit/js-apis-intl.md#formatrange-1)接口实现，具体开发步骤如下：
+数字范围格式化通过[NumberFormat](../reference/apis-localization-kit/js-apis-intl.md#numberformat)的[formatRange](../reference/apis-localization-kit/js-apis-intl.md#formatrange18)接口实现，具体开发步骤如下：
 
 1. 导入模块。
    ```ts
