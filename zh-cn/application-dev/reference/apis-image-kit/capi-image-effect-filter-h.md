@@ -736,7 +736,7 @@ typedef void (*OH_EffectFilterDelegate_PushData)(OH_EffectFilter *filter, OH_Eff
 
 **描述**
 
-自定义滤镜传递图像信息到下一级滤镜的函数指针。需要在[OH_EffectFilterDelegate_Render](capi-imageeffect-filterdelegate.md#oh_effectfilterdelegate_render)的回调中主动调用该函数指针。
+自定义滤镜传递图像信息到下一级滤镜的函数指针。需要在[OH_EffectFilterDelegate_Render](capi-image-effect-filter-h.md#oh_effectfilterdelegate_render)的回调中主动调用该函数指针。
 
 **系统能力：** SystemCapability.Multimedia.ImageEffect.Core
 
