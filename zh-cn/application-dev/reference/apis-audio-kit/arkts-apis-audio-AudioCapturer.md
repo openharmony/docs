@@ -27,7 +27,7 @@ let state: audio.AudioState = audioCapturer.state;
 
 getCapturerInfo(callback: AsyncCallback<AudioCapturerInfo\>): void
 
-获取音频采集器信息。使用callback异步回调。
+查询当前音频流使用场景类型，获取音频采集器信息。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -35,7 +35,7 @@ getCapturerInfo(callback: AsyncCallback<AudioCapturerInfo\>): void
 
 | 参数名   | 类型                              | 必填 | 说明                                 |
 | :------- | :-------------------------------- | :--- | :----------------------------------- |
-| callback | AsyncCallback<[AudioCapturerInfo](arkts-apis-audio-i.md#audiocapturerinfo8)\> | 是   | 回调函数。当获取音频采集器信息成功，err为undefined，data为获取到的音频采集器信息；否则为错误对象。 |
+| callback | AsyncCallback<[AudioCapturerInfo](arkts-apis-audio-i.md#audiocapturerinfo8)\> | 是   | 回调函数。当查询当前音频流使用场景类型，获取音频采集器信息成功，err为undefined，data为获取到的音频采集器信息；否则为错误对象。 |
 
 **示例：**
 
@@ -58,7 +58,7 @@ audioCapturer.getCapturerInfo((err: BusinessError, capturerInfo: audio.AudioCapt
 
 getCapturerInfo(): Promise<AudioCapturerInfo\>
 
-获取音频采集器信息。使用Promise异步回调。
+查询当前音频流使用场景类型，获取音频采集器信息。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -291,7 +291,7 @@ try {
 
 start(callback: AsyncCallback<void\>): void
 
-启动音频采集器。使用callback异步回调。
+启动音频采集器，开始获取音频数据。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -320,7 +320,7 @@ audioCapturer.start((err: BusinessError) => {
 
 start(): Promise<void\>
 
-启动音频采集器。使用Promise异步回调。
+启动音频采集器，开始获取音频数据。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -352,7 +352,7 @@ audioCapturer.start().then(() => {
 
 stop(callback: AsyncCallback<void\>): void
 
-停止音频采集。使用callback异步回调。
+停止输入音频流。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -360,7 +360,7 @@ stop(callback: AsyncCallback<void\>): void
 
 | 参数名   | 类型                 | 必填 | 说明                           |
 | :------- | :------------------- | :--- | :----------------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数。当停止音频采集成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback<void\> | 是   | 回调函数。当停止输入音频流成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -381,7 +381,7 @@ audioCapturer.stop((err: BusinessError) => {
 
 stop(): Promise<void\>
 
-停止音频采集。使用Promise异步回调。
+停止输入音频流。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -411,7 +411,7 @@ audioCapturer.stop().then(() => {
 
 release(callback: AsyncCallback<void\>): void
 
-释放音频采集器。使用callback异步回调。
+释放输入音频流。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -419,7 +419,7 @@ release(callback: AsyncCallback<void\>): void
 
 | 参数名   | 类型                 | 必填 | 说明                                |
 | :------- | :------------------- | :--- | :---------------------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数。当释放音频采集器成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback<void\> | 是   | 回调函数。当释放输入音频流成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -440,7 +440,7 @@ audioCapturer.release((err: BusinessError) => {
 
 release(): Promise<void\>
 
-释放音频采集器。使用Promise异步回调。
+释放输入音频流。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -547,7 +547,9 @@ try {
 
 getAudioTimestampInfo(): Promise\<AudioTimestampInfo>
 
-获取音频流时间戳和当前数据帧位置信息。使用Promise异步回调。
+获取输入音频流时间戳和当前数据帧位置信息。使用Promise异步回调。
+
+该接口可以获取到音频通道实际录制位置（framePosition）以及录制到该位置时候的时间戳（timestamp），时间戳单位为纳秒。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
