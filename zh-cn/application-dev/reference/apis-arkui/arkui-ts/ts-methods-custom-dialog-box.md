@@ -81,6 +81,7 @@ constructor(value: CustomDialogControllerOptions)
 > - 为了达成良好的视觉体验，弹窗的显示和关闭存在默认动画，动画时长不同设备间可能存在差异。
 >   需要注意：在动画播放过程中，页面不响应触摸、滑动、点击操作。关闭默认弹窗动画效果可设置openAnimation和closeAnimation的duration为0。
 > - 当前，ArkUI弹出框默认为非页面级弹出框，在页面路由跳转时，如果开发者未调用close方法将其关闭，弹出框将不会自动关闭。若需实现在跳转页面时覆盖弹出框的场景，可以使用[组件导航子页面显示类型的弹窗类型](../../../ui/arkts-navigation-navigation.md#页面显示类型)或者[页面级弹出框](../../../ui/arkts-embedded-dialog.md)。
+> - customStyle为true时，弹窗显示区域为屏幕；为false时，受安全区域的影响，弹窗显示区域将排除安全区域。
 
 ## DismissDialogAction<sup>12+</sup>
 
@@ -1013,3 +1014,88 @@ struct Example3 {
 ```
 
 ![zh-cn_image_custom_lifecycle](figures/zh-cn_image_custom_lifecycle.gif)
+
+### 示例9（不同customStyle下的弹窗示例）
+
+该示例时在对齐方式为DialogAlignment.Bottom时，展示customStyle不同值下，弹窗内容与安全区域的效果。
+
+```ts
+@CustomDialog
+@Component
+struct CustomStyleDialogExample {
+  controller?: CustomDialogController;
+  cancel: () => void = () => {
+  }
+  confirm: () => void = () => {
+  }
+
+  build() {
+    Column().borderRadius(10).width(110).height(110).backgroundColor("#2787d9")
+  }
+}
+
+@Entry
+@Component
+struct CustomDialogUser {
+  @State customStyle: boolean = false;
+  dialogController: CustomDialogController | null = null;
+
+  // 在自定义组件即将析构销毁时将dialogController置空
+  aboutToDisappear() {
+    this.dialogController = null; // 将dialogController置空
+  }
+
+  onCancel() {
+    console.info('Callback when the first button is clicked');
+  }
+
+  onAccept() {
+    console.info('Callback when the second button is clicked');
+  }
+
+  exitApp() {
+    console.info('Click the callback in the blank area');
+  }
+
+  build() {
+    Column() {
+      Button("change  customStyle:" + this.customStyle).onClick(() => {
+        this.customStyle = !this.customStyle;
+      })
+      Button("show dialog").onClick(() => {
+        if (this.dialogController != null) {
+          this.dialogController.close();
+        }
+        this.dialogController = new CustomDialogController({
+          builder: CustomStyleDialogExample({
+            cancel: () => {
+              this.onCancel();
+            },
+            confirm: () => {
+              this.onAccept();
+            },
+          }),
+          cancel: this.exitApp,
+          autoCancel: true,
+          showInSubWindow: false,
+          onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+            if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+              dismissDialogAction.dismiss();
+            }
+            if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+              dismissDialogAction.dismiss();
+            }
+          },
+          alignment: DialogAlignment.Bottom,
+          customStyle: this.customStyle,
+          cornerRadius: 10,
+          openAnimation: { duration: 0, tempo: 0 },
+          closeAnimation: { duration: 0, tempo: 0 }
+        })
+        this.dialogController.open();
+      }).margin({ top: 5 })
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+![zh-cn_image_custom](figures/customstyle_dialog_demo.gif)
