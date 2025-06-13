@@ -1142,7 +1142,7 @@ let periodReachCallback = (position: number) => {
   }
 };
 
-audioCapturer.on('periodReach', periodReachCallback);
+audioCapturer.on('periodReach', 1000, periodReachCallback);
 
 audioCapturer.off('periodReach', periodReachCallback);
 ```
@@ -1404,14 +1404,14 @@ setWillMuteWhenInterrupted(muteWhenInterrupted: boolean): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800103 | Operation not permit at current state.    |
+| 6800103 | Operation not permitted at current state. |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-audioRenderer.setWillMuteWhenInterrupted(true).then(() => {
+audioCapturer.setWillMuteWhenInterrupted(true).then(() => {
   console.info('setWillMuteWhenInterrupted Success!');
 }).catch((err: BusinessError) => {
   console.error(`setWillMuteWhenInterrupted Fail: ${err}`);

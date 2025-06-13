@@ -125,7 +125,7 @@ off(type: 'audioSceneChange', callback?: Callback\<AudioScene\>): void
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | 是   | 事件回调类型，支持的事件为'audioSceneChange'，当取消监听当前音频场景变化事件时，触发该事件。 |
-| callback | Callback\<[AudioScene](arkts-apis-audio-e.md#audioscene8)> | 是   | 回调函数，返回当前音频场景模式。 |
+| callback | Callback\<[AudioScene](arkts-apis-audio-e.md#audioscene8)> | 否 | 回调函数，返回当前音频场景模式。 |
 
 **示例：**
 
