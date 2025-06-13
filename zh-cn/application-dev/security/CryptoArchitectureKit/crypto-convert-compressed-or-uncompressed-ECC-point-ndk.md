@@ -6,7 +6,7 @@ ECC的算法规格请查看[非对称密钥生成和转换规格：ECC](crypto-a
 
 ## 指定非压缩点数据转换为压缩点数据
 
-1. 指定uint8_t类型的ECC非压缩点数据，调用[OH_CryptoEcPoint_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-asym-key-h.md#oh_cryptoecpoint_create)，构造[OH_CryptoEcPoint](../../reference/apis-crypto-architecture-kit/capi-crypto-asym-key-h.md#oh_cryptoecpoint)对象，用于生成点数据。
+1. 指定uint8_t类型的ECC非压缩点数据，调用[OH_CryptoEcPoint_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-asym-key-h.md#oh_cryptoecpoint_create)，构造[OH_CryptoEcPoint](../../reference/apis-crypto-architecture-kit/capi-oh-cryptoecpoint.md)对象，用于生成点数据。
 2. 调用[OH_CryptoEcPoint_Encode](../../reference/apis-crypto-architecture-kit/capi-crypto-asym-key-h.md#oh_cryptoecpoint_encode)，获取压缩点数据。
 
 ```C++
