@@ -1036,7 +1036,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
        photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
        // 设置最大选择数量
        photoSelectOptions.maxSelectNumber = 5;
-       let chooseFile: picker.PhotoSelectResult = await photoPicker.select(photoSelectOptions);
+       let chooseFile: photoAccessHelper.PhotoSelectResult = await photoPicker.select(photoSelectOptions);
        // 获取选择的文件列表
        result.handleFileList(chooseFile.photoUris);
      }
@@ -1879,6 +1879,7 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
     @State offsetX: number = 0;
     @State offsetY: number = 0;
     @State showMenu: boolean = false;
+    uiContext: UIContext = this.getUIContext();
 
     @Builder
     // 构建自定义菜单及触发功能接口
@@ -1991,7 +1992,7 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
             console.info(TAG, `x: ${this.offsetX}, y: ${this.offsetY}`);
             this.showMenu = true;
             this.offsetX = 0;
-            this.offsetY = Math.max(px2vp(event?.param.y() ?? 0) - 0, 0);
+            this.offsetY = Math.max(this.uiContext!.px2vp(event?.param.y() ?? 0) - 0, 0);
             return true;
           })
           .bindPopup(this.showMenu,
