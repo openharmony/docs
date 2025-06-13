@@ -152,12 +152,12 @@ struct RichTextExample {
   // xxx.ets
   @Entry
   @Component
-  struct RichtextComponent {
+  struct RichTextComponent {
 
     build() {
       Column() {
         // 通过$rawfile加载本地资源文件。
-        Richtext($rawfile("index.html"))
+        RichText($rawfile("index.html"))
       }
     }
   }
@@ -171,12 +171,12 @@ struct RichTextExample {
   // xxx.ets
   @Entry
   @Component
-  struct RichtextComponent {
+  struct RichTextComponent {
 
     build() {
       Column() {
         // 通过resource协议加载本地资源文件。
-        Richtext("resource://rawfile/index.html#home")
+        RichText("resource://rawfile/index.html#home")
       }
     }
   }
