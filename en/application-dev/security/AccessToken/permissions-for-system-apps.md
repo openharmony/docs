@@ -4937,7 +4937,7 @@ Allow an application to grant URI access permissions to the target application a
 
 ## ohos.permission.FILE_ACCESS_FOR_PRIVATE_SPACE
 
-Allow an application to mount the sandboxes conditionally.
+Allow private users to access the public directory data of main user.
 
 **Permission level**：system_core
 
