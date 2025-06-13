@@ -23,12 +23,12 @@ ts文档
 
 ## 导入模块
 
-```ts
+```js
 import { SplitLayout } from '@kit.ArkUI'
 ```
 ### 无标签
 
-```typescript
+```cangjie
 import { SplitLayout } from '@kit.ArkUI'
 ```
 
@@ -36,20 +36,20 @@ import { SplitLayout } from '@kit.ArkUI'
 
 无
 
-``Typescript
+``c
 import { SplitLayout } from '@kit.ArkUI'
 ```
 
 ## 属性
 不支持[通用属性空格替换ts-universal-attributes-size.md)
 
-``TypeScript
+```c++
 import { SplitLayout } from '@kit.ArkUI'
 ```
 
 ## SplitLayout
 
-```
+```java
 SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, tertiaryText?: string, container: ()&nbsp;=&gt;&nbsp;void })
 ```
 
