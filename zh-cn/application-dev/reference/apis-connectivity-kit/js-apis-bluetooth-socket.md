@@ -516,14 +516,14 @@ sppReadAsync(clientSocket: number): Promise&lt;ArrayBuffer&gt;
 
 ```js
 import { socket } from '@kit.ConnectivityKit';
-import { AsyncCallback,BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 let buffer = new ArrayBuffer(1024);
 let data = new Uint8Array(buffer);
 let flag = 1;
 while (flag) {
   try {
-    socket.sppReadAsync(clientNumber).then(outBuffer => {
+    socket.sppReadAsync(clientNumber).then((outBuffer: ArrayBuffer) => {
       buffer = outBuffer;
     });
     if (buffer != null) {
