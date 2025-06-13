@@ -1,5 +1,12 @@
 # 基础类型定义
 
+```JAVASCRIPT
+  let dataAbilityPredicates = new dataAbility.DataAbilityPredicates()
+  dataAbilityPredicates.equalTo("NAME", "Rose")
+  // EMPLOYEE是使用关系型数据库创建的表。
+  let predicates = dataAbility.createRdbPredicates("EMPLOYEE", dataAbilityPredicates)
+```
+
 ## 概述
 
 >**说明：**
@@ -8,7 +15,47 @@
 
 **起始版本：** 7
 
+```TYPESCRIPT
+  let dataAbilityPredicates = new dataAbility.DataAbilityPredicates()
+  dataAbilityPredicates.equalTo("NAME", "Rose")
+  // EMPLOYEE是使用关系型数据库创建的表。
+  let predicates = dataAbility.createRdbPredicates("EMPLOYEE", dataAbilityPredicates)
+```
+
+### C
+
+```C
+  let dataAbilityPredicates = new dataAbility.DataAbilityPredicates()
+  dataAbilityPredicates.equalTo("NAME", "Rose")
+  // EMPLOYEE是使用关系型数据库创建的表。
+  let predicates = dataAbility.createRdbPredicates("EMPLOYEE", dataAbilityPredicates)
+```
+### Cangjie
+
+```Cangjie
+  let dataAbilityPredicates = new dataAbility.DataAbilityPredicates()
+  dataAbilityPredicates.equalTo("NAME", "Rose")
+  // EMPLOYEE是使用关系型数据库创建的表。
+  let predicates = dataAbility.createRdbPredicates("EMPLOYEE", dataAbilityPredicates)
+```
+
+### JAVA
+
+```JAVA
+  let dataAbilityPredicates = new dataAbility.DataAbilityPredicates()
+  dataAbilityPredicates.equalTo("NAME", "Rose")
+  // EMPLOYEE是使用关系型数据库创建的表。
+  let predicates = dataAbility.createRdbPredicates("EMPLOYEE", dataAbilityPredicates)
+```
+
 ## Resource
+
+```C++
+  let dataAbilityPredicates = new dataAbility.DataAbilityPredicates()
+  dataAbilityPredicates.equalTo("NAME", "Rose")
+  // EMPLOYEE是使用关系型数据库创建的表。
+  let predicates = dataAbility.createRdbPredicates("EMPLOYEE", dataAbilityPredicates)
+```
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
