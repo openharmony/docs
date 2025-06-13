@@ -4913,3 +4913,17 @@
 **支持设备**：General
 
 **起始版本**：20
+
+## ohos.permission.FILE_ACCESS_FOR_PRIVATE_SPACE
+
+允许应用挂载主空间公共目录至应用沙箱。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | Tablet
+
+**起始版本**：20
