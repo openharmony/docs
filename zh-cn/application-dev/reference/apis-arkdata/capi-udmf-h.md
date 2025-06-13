@@ -1123,7 +1123,7 @@ int OH_UdmfData_GetRecordCount(OH_UdmfData* data)
 
 | 参数项 | 描述 |
 | -- | -- |
-| 表示指向统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)实例的指针。 |  |
+| [OH_UdmfData](capi-oh-udmfdata.md)* data | 表示指向统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)实例的指针。|
 
 **返回：**
 
