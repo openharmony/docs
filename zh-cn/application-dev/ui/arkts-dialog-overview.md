@@ -15,6 +15,8 @@
 > 不建议在非前台状态下，调用弹窗显示接口。
 >
 > 系统弹窗由系统弹出，出于安全考虑，不支持自定义样式。
+>
+> 系统弹窗出现时，调用非系统弹窗的显示接口（例如：promptAction的openCustomDialog、CustomDialogController的open等），禁止该类弹窗显示。
 
 ## 使用场景
 
