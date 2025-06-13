@@ -1639,6 +1639,7 @@ SymbolSpan样式选项。
 | wordBreak<sup>12+</sup> |  [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置断行规则。 <br />默认值：WordBreak.BREAK_WORD <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | lineBreakStrategy<sup>12+</sup> | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 否 | 设置折行规则。 <br />默认值：LineBreakStrategy.GREEDY<br />在wordBreak不等于breakAll的时候生效，不支持连字符。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | paragraphSpacing<sup>19+</sup> | number | 否    | 设置段落间距大小。<br/>单位：fp<br/>段落间距默认大小为0。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
+| textVerticalAlign<sup>20+</sup> | [TextVerticalAlign](ts-text-common.md#textverticalalign) |  否  | 设置文本段落在垂直方向的对齐方式。<br/>默认值：TextVerticalAlign.BASELINE <br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
 
@@ -3107,6 +3108,7 @@ struct Index {
             },
             paragraphStyle: {
               textAlign: TextAlign.Start,
+              textVerticalAlign：TextVerticalAlign.BASELINE,
               leadingMargin: 16
             }
           })

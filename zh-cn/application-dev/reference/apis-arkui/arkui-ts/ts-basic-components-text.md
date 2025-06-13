@@ -66,6 +66,24 @@ textAlign(value: TextAlign)
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
 | value  | [TextAlign](ts-appendix-enums.md#textalign) | 是   | 文本段落在水平方向的对齐方式。<br/>默认值：TextAlign.Start<br/>Wearable设备上默认值为：TextAlign.Center |
 
+### textVerticalAlign<sup>20+</sup>
+
+textVerticalAlign(textVerticalAlign: Optional\<TextVerticalAlign>)
+
+设置文本段落在垂直方向的对齐方式。
+
+与[halfLeading](#halfleading12)同时配置时，halfLeading不生效。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                        | 必填 | 说明                                                       |
+| ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
+| textVerticalAlign  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextVerticalAlign](ts-text-common.md#textverticalalign)> | 否   | 文本段落在垂直方向的对齐方式。<br/>默认值：TextVerticalAlign.BASELINE |
+
 ### textOverflow
 
 textOverflow(options: TextOverflowOptions)
@@ -2280,3 +2298,33 @@ struct TextExample16 {
 ```
 
 ![textOptimizeTrailingSpace](figures/textOptimizeTrailingSpace.PNG)
+
+### 示例17（文本垂直对齐）
+
+该示例通过textVerticalAlign属性展示了文本如何设置文本垂直对齐效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextExample14 {
+  build() {
+    Column({ space: 10 }) {
+      Text() {
+        Span("Hello")
+          .fontSize(50)
+        ImageSpan($r('app.media.app_icon'))
+          .width(30).height(30)
+          .verticalAlign(ImageSpanAlignment.FOLLOW_PARAGRAPH)
+        Span("World")
+      }
+      .textVerticalAlign(TextVerticalAlign.CENTER)
+      .borderWidth(1)
+    }
+    .alignItems(HorizontalAlign.Center)
+    .width("100%")
+  }
+}
+```
+
+![textVerticalAlign](figures/textVerticalAlign.png)
