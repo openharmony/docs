@@ -78,7 +78,7 @@ close(): void
 
 ### 示例1（加载图片）
 
-通过ImageBitMap加载本地图片。
+通过ImageBitmap加载本地图片。
 
   ```ts
   // xxx.ets
