@@ -4,6 +4,8 @@
 
 您所创建的同一优先级任务的执行顺序可以由您决定，任务真实执行的顺序与您调用任务池API提供的任务执行接口顺序一致。任务默认优先级是MEDIUM。
 
+ArkTS1.2内存天然共享，无需使用 `@Sendable` 装饰器。
+
 文档中涉及到的各种任务概念：
 - 任务组任务：对应为[TaskGroup](#taskgroup)任务。
 - 串行队列任务：对应为[SequenceRunner](#sequencerunner)任务。
