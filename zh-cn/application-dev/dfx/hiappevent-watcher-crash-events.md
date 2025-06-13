@@ -21,7 +21,7 @@
 | 名称    | 类型   | 说明                       |
 | ------- | ------ | ------------------------- |
 | time     | number | 事件触发时间，单位为毫秒。 |
-| crash_type | string | 崩溃类型。支持NativeCrash（native代码异常）和JsError（js代码异常）两种崩溃类型。问题分析请分别参考[CppCrash分析指南](cppcrash-guidelines.md)和[JSCrash分析指南](jscrash-guidelines.md)。|
+| crash_type | string | 崩溃类型。支持NativeCrash（native代码异常）和JsError（js代码异常）两种崩溃类型。问题分析请分别参考[CppCrash（NativeCrash）分析指南](cppcrash-guidelines.md)和[JsCrash（JsError）分析指南](jscrash-guidelines.md)。|
 | foreground | boolean | 应用是否处于前台状态。true表示应用处于前台状态；false表示应用处于后台状态。 |
 | bundle_version | string | 应用版本。 |
 | bundle_name | string | 应用名称。 |
