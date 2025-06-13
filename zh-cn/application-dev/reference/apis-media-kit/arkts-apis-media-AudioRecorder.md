@@ -1,4 +1,4 @@
-# 废弃的Interfaces (AudioRecorder，deprecated)
+# 废弃的Interface (AudioRecorder，deprecated)
 
 > **说明：**
 > 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder](arkts-apis-media-AVRecorder.md)替代。

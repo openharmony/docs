@@ -5580,7 +5580,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | artist     | string                  | 否   | 是   | 播放列表媒体专辑作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
 | fdSrc     | media.AVFileDescriptor        | 否   | 是   | 播放列表媒体本地文件的句柄。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
 | dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | 否   | 是   | 播放列表数据源描述。         |
-| pcmSrc<sup>20+</sup>     | boolean        | 否   | 是   | 播放列表是否使用PCM数据源。true表示使用PCM数据源，false表示不使用PCM数据源。         |
+| pcmSrc<sup>20+</sup>     | boolean        | 否   | 是   | 播放列表是否使用PCM数据源。true表示使用PCM数据源，false表示不使用PCM数据源。<br>由于设备限制，暂时无法使用，将在后续版本提供支持。         |
 | drmScheme<sup>12+</sup>     | string        | 否   | 是   | 播放列表媒体支持的DRM方案，由uuid表示。       |
 | duration     | number                  | 否   | 是   | 播放列表媒体播放时长。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
 | startPosition     | number                  | 否   | 是   | 播放列表媒体起始播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
