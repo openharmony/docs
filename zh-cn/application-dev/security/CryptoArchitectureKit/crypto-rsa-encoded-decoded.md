@@ -65,7 +65,7 @@
     let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
     asyKeyGenerator.convertPemKey(null, priKeyPkcs1EncodingStr, "123456")
       .then(keyPair => {
-        let pirKey = keyPair.priKey;
+        let priKey = keyPair.priKey;
         if (priKey) {
           console.info('convertPemKey success.');
         }
