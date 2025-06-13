@@ -178,7 +178,7 @@
   }
   ```
   
-- 在UIAbility的onCreate生命周期中监听call事件所需的方法，然后在对应方法中调用[updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform)接口刷新卡片。
+- 在UIAbility的onCreate生命周期中监听call事件所需的方法，然后在对应方法中调用[updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderupdateform)接口刷新卡片。
   
   ```ts
   import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
