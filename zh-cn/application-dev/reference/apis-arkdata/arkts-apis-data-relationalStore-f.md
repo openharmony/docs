@@ -620,23 +620,23 @@ getInsertSqlInfo(table: string, values: ValuesBucket, conflict?: ConflictResolut
 
 | **错误码ID** | **错误信息**             |
 |-----------|---------------------|
-| 14800001       | Invalid args. |
+| 14800001       | Invalid args. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
 
 
 **示例：**
 
 ```ts
 import { relationalStore } from '@kit.ArkData'; // 导入模块
-const bucket: relationStore.ValuesBucket = {
+const bucket: relationalStore.ValuesBucket = {
   name: "Logitech",
   age: 18,
   sex: "man",
   desc: "asserter"
 };
-const sqlInfo: relationStore.SqlInfo = relationStore.getInsertSqlInfo(
+const sqlInfo: relationalStore.SqlInfo = relationalStore.getInsertSqlInfo(
   "USER",
   bucket,
-  relationStore.ConflictResolution.ON_CONFLICT_NONE
+  relationalStore.ConflictResolution.ON_CONFLICT_NONE
 );
 ```
 
@@ -668,7 +668,7 @@ getUpdateSqlInfo(predicates: RdbPredicates, values: ValuesBucket, conflict?: Con
 
 | **错误码ID** | **错误信息**             |
 |-----------|---------------------|
-| 14800001       | Invalid arguments. |
+| 14800001       | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
 
 
 **示例：**
@@ -676,17 +676,17 @@ getUpdateSqlInfo(predicates: RdbPredicates, values: ValuesBucket, conflict?: Con
 ```ts
 import { relationalStore } from '@kit.ArkData'; // 导入模块
 
-const bucket: relationStore.ValuesBucket = {
+const bucket: relationalStore.ValuesBucket = {
   name: "Logitech",
   age: 18,
   sex: "man",
   desc: "asserter"
 };
 const predicates = new relationalStore.RdbPredicates("users");
-const sqlInfo: relationStore.SqlInfo = relationStore.getUpdateSqlInfo(
+const sqlInfo: relationalStore.SqlInfo = relationalStore.getUpdateSqlInfo(
   predicates,
   bucket,
-  relationStore.ConflictResolution.ON_CONFLICT_NONE
+  relationalStore.ConflictResolution.ON_CONFLICT_NONE
 );
 ```
 
@@ -716,7 +716,7 @@ getDeleteSqlInfo(predicates: RdbPredicates): SqlInfo
 
 | **错误码ID** | **错误信息**             |
 |-----------|---------------------|
-| 14800001       | Invalid args. |
+| 14800001       | Invalid args. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
 
 
 **示例：**
@@ -727,7 +727,7 @@ import { relationalStore } from '@kit.ArkData'; // 导入模块
 const predicates = new relationalStore.RdbPredicates("users");
 predicates.equalTo("tableName", "a");
 predicates.notEqualTo("age", 18);
-const sqlInfo: relationStore.SqlInfo = relationStore.getDeleteSqlInfo(predicates);
+const sqlInfo: relationalStore.SqlInfo = relationalStore.getDeleteSqlInfo(predicates);
 ```
 
 ## relationalStore.getQuerySqlInfo<sup>20+</sup>
@@ -757,7 +757,7 @@ getQuerySqlInfo(predicates: RdbPredicates, columns: Array\<string>): SqlInfo
 
 | **错误码ID** | **错误信息**             |
 |-----------|---------------------|
-| 14800001       | Invalid arguments. |
+| 14800001       | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause.|
 
 
 **示例：**
@@ -768,5 +768,5 @@ import { relationalStore } from '@kit.ArkData'; // 导入模块
 const predicates = new relationalStore.RdbPredicates("users");
 predicates.notEqualTo("age", 18);
 predicates.equalTo("name", "zhangsan");
-const sqlInfo: relationStore.SqlInfo = relationStore.getQuerySqlInfo(predicates);
+const sqlInfo: relationalStore.SqlInfo = relationalStore.getQuerySqlInfo(predicates);
 ```
