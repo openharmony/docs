@@ -175,7 +175,7 @@ type AVRecorderState = 'idle' | 'prepared' | 'started' | 'paused' | 'stopped' | 
 | 'paused'   | 录制暂停。此时可以调用[AVRecorder.resume()](arkts-apis-media-AVRecorder.md#resume9)方法继续录制，进入started状态。也可以调用[AVRecorder.stop()](arkts-apis-media-AVRecorder.md#stop9)方法结束录制，进入stopped状态。 |
 | 'stopped'  | 录制停止。此时可以调用[AVRecorder.prepare()](arkts-apis-media-AVRecorder.md#prepare9)方法设置录制参数，重新进入prepared状态。 |
 | 'released' | 录制资源释放。此时不能再进行任何操作。在任何其他状态下，均可以通过调用[AVRecorder.release()](arkts-apis-media-AVRecorder.md#release9)方法进入released状态。 |
-| 'error'    | 错误状态。当AVRecorder实例发生不可逆错误，会转换至当前状态。切换至error状态时会伴随[AVRecorder.on('error')事件](arkts-apis-media-AVRecorder.md#onerror9)，该事件会上报详细错误原因。在error状态时，用户需要调用[AVRecorder.reset()](arkts-apis-media-AVRecorder.md#reset9)方法重置AVRecorder实例，或者调用[AVRecorder.release()](arkts-apis-media-AVRecorder.md)方法释放资源。 |
+| 'error'    | 错误状态。当AVRecorder实例发生不可逆错误，会转换至当前状态。切换至error状态时会伴随[AVRecorder.on('error')事件](arkts-apis-media-AVRecorder.md#onerror9)，该事件会上报详细错误原因。在error状态时，用户需要调用[AVRecorder.reset()](arkts-apis-media-AVRecorder.md#reset9)方法重置AVRecorder实例，或者调用[AVRecorder.release()](arkts-apis-media-AVRecorder.md#release9)方法释放资源。 |
 
 ## OnAVRecorderStateChangeHandler<sup>12+</sup>
 
