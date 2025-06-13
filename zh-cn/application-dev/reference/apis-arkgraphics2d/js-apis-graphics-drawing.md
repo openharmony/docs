@@ -314,7 +314,7 @@ set(src: Path): void
 
 | 参数名   | 类型                                         | 必填 | 说明                            |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
-| path | [Path](#path) | 是   | 用于更新的路径。                 |
+| src | [Path](#path) | 是   | 用于更新的路径。                 |
 
 **示例：**
 
@@ -1449,7 +1449,7 @@ getSegment(forceClosed: boolean, start: number, stop: number, startWithMoveTo: b
 | start | number | 是   | 表示与路径起始点的距离，距离路径起始点start距离的位置即为截取路径片段的起始点，小于0时会被视作0，大于等于stop时会截取失败。该参数为浮点数。               |
 | stop | number | 是   | 表示与路径起始点的距离，距离路径起始点stop距离的位置即为截取路径片段的终点，小于等于start时会截取失败，大于路径长度时会被视作路径长度。该参数为浮点数。                  |
 | startWithMoveTo | boolean | 是   | 表示是否在目标路径执行[moveTo](#moveto)移动到截取路径片段的起始点位置。true表示执行，false表示不执行。                |
-| dst | number | [Path](#path)   | 目标路径，截取成功时会将得到的路径片段追加到目标路径上，截取失败时不做改变。               |
+| dst | [Path](#path) | 是   | 目标路径，截取成功时会将得到的路径片段追加到目标路径上，截取失败时不做改变。               |
 
 **返回值：**
 
@@ -4055,7 +4055,7 @@ static createBlendImageFilter(mode: BlendMode, background: ImageFilter, foregrou
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 25900001 | Parameter error.Possible causes: Incorrect parameter range. |
+| 25900001 | Parameter error.Possible causes: 1.Incorrect parameter range; 2.Incorrect parameter types.|
 
 **示例：**
 
@@ -4129,6 +4129,14 @@ static createFromColorFilter(colorFilter: ColorFilter, imageFilter?: ImageFilter
 | 类型                  | 说明           |
 | --------------------- | -------------- |
 | [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.|
 
 **示例：**
 
