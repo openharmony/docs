@@ -13,12 +13,11 @@
         - [卡片页面能力说明](arkts-ui-widget-page-overview.md)
         - [卡片使用动效能力](arkts-ui-widget-page-animation.md)
         - [卡片使用自定义绘制能力](arkts-ui-widget-page-custom-drawing.md)
-      - ArkTS卡片页面交互<!--arkts-ui-widget-event-->
-        - [ArkTS卡片页面交互概述](arkts-ui-widget-event-overview.md)
-        - [message事件交互](arkts-ui-widget-event-formextensionability.md)
-        - [router事件交互](arkts-ui-widget-event-router.md)
-        - [call事件交互](arkts-ui-widget-event-call.md)
-        - [通过router或call事件刷新卡片内容](arkts-ui-widget-event-uiability.md)
+      - 开发卡片事件<!--arkts-ui-widget-event-->
+        - [卡片事件能力说明](arkts-ui-widget-event-overview.md)
+        - [拉起卡片提供方的UIAbility(router事件)](arkts-ui-widget-event-router.md)
+        - [拉起卡片提供方的UIAbility到后台(call事件)](arkts-ui-widget-event-call.md)
+        - [通过message事件刷新卡片内容](arkts-ui-widget-event-formextensionability.md)
       - ArkTS卡片页面刷新<!--arkts-ui-widget-interaction-->
         - [ArkTS卡片页面刷新概述](arkts-ui-widget-interaction-overview.md)
         - [ArkTS卡片主动刷新](arkts-ui-widget-active-refresh.md)
