@@ -19,15 +19,15 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 | warn(domain: number, tag: string, format: string, ...args: any[]) | 输出WARN级别日志。表示存在警告。 |
 | error(domain: number, tag: string, format: string, ...args: any[]) | 输出ERROR级别日志。表示存在错误。 |
 | fatal(domain: number, tag: string, format: string, ...args: any[]) | 输出FATAL级别日志。表示出现致命错误、不可恢复错误。 |
-| setMinLogLevel(level: LogLevel) | 设置应用日志打印的最低日志级别，进程在打印日志时，需要同时校验该日志级别和全局日志级别，所以设置的日志级别不能低于全局日志级别，[全局日志级别](hilog.md#查看和设置日志级别)默认为Info。|
+| setMinLogLevel(level: LogLevel) | 设置应用日志打印的最低日志级别，进程在打印日志时，需要同时校验该日志级别和全局日志级别，所以设置的日志级别不能低于全局日志级别。|
+
+<!--RP2-->
+> **说明：**
+>
+> 全局日志级别，默认为info, 可参考[查看和设置日志级别](hilog.md#查看和设置日志级别)
+<!--RP2End-->
 
 ### 参数解析
-
-> **说明：**
-> 
-> - isLoggable()和具体日志打印接口使用的domain和tag应保持一致。
-> 
-> - isLoggable()使用的level，应和具体日志打印接口级别保持一致。
 
 - **domain**：用于指定输出日志所对应的业务领域，取值范围为0x0000~0xFFFF，开发者可以根据需要进行自定义。
 
@@ -54,6 +54,20 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 <!--DelEnd-->
 
 - **args**：可以为0个或多个参数，是格式字符串中参数类型对应的参数列表。参数的数量、类型必须与格式字符串中的标识一一对应。
+
+> **说明：**
+> 
+> - isLoggable()和具体日志打印接口使用的domain和tag应保持一致。
+> 
+> - isLoggable()使用的level，应和具体日志打印接口级别保持一致。
+>
+> - isLoggable()返回值：如果指定的domain、tag、level日志可以打印则返回true；否则返回false。
+>
+>   debug应用：不做日志级别管控，所有级别日志都能够正常打印出来；
+>
+>   release应用：按照全局日志级别管控，当日志的级别不低于全局日志级别时，才能正常打印出来；
+>
+>   调试过程中，可手动修改日志级别，参考：[查看和设置日志级别](hilog.md#查看和设置日志级别)。
 
 ## 约束与限制
 
