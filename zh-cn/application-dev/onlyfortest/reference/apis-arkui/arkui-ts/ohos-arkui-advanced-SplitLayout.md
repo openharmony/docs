@@ -1,5 +1,16 @@
 # SplitLayout
 
+ts文档
+
+**示例：**
+
+  ```TS
+  let dataAbilityPredicates = new dataAbility.DataAbilityPredicates()
+  dataAbilityPredicates.equalTo("NAME", "Rose")
+  // EMPLOYEE是使用关系型数据库创建的表。
+  let predicates = dataAbility.createRdbPredicates("EMPLOYEE", dataAbilityPredicates)
+  ```
+
 ## 概述
 上下结构布局介绍了常用的页面布局样式。主要分为上下文本和上下图文两种类型。
 
@@ -12,22 +23,35 @@
 
 ## 导入模块
 
-```
+```ts
 import { SplitLayout } from '@kit.ArkUI'
 ```
+### 无标签
 
+```typescript
+import { SplitLayout } from '@kit.ArkUI'
+```
 
 ## 子组件
 
 无
 
+``Typescript
+import { SplitLayout } from '@kit.ArkUI'
+```
+
 ## 属性
 不支持[通用属性空格替换ts-universal-attributes-size.md)
 
+``TypeScript
+import { SplitLayout } from '@kit.ArkUI'
+```
 
 ## SplitLayout
 
+```
 SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, tertiaryText?: string, container: ()&nbsp;=&gt;&nbsp;void })
+```
 
 **装饰器类型：**@Component
 
