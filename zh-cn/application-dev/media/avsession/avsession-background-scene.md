@@ -43,7 +43,7 @@
   同时需要注意正确处理音频焦点，系统预设了默认的音频焦点策略，根据音频流的类型及启动的先后顺序，对所有播放和录制音频流进行统一管理。在应用播放或录制音频的过程中，若有其他音频流申请焦点，系统会根据焦点策略进行焦点处理。若判定本音频流的焦点有变化，系统会自动执行一些必要操作（如暂停、继续、降低音量、恢复音量等），并通过音频焦点事件（InterruptEvent）通知应用。详细内容请参考[处理音频焦点变化](../audio/audio-playback-concurrency.md#处理音频焦点变化)。<br>
   开发指导请参考[使用AudioRenderer开发音频播放功能](../audio/using-audiorenderer-for-playback.md)。
 
-- AVPlayer：使用AVPlayer可以实现端到端播放原始媒体资源。如果要实现后台播放或熄屏播放，需要接入AVSession和申请长时任务，避免播放被系统强制中断。[AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9)可通过audioInterruptMode属性设置焦点管理策略，该策略默认使用SHARE_MODE共享焦点模式。<br>
+- AVPlayer：使用AVPlayer可以实现端到端播放原始媒体资源。如果要实现后台播放或熄屏播放，需要接入AVSession和申请长时任务，避免播放被系统强制中断。[AVPlayer](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md)可通过audioInterruptMode属性设置焦点管理策略，该策略默认使用SHARE_MODE共享焦点模式。<br>
   开发指导请参考[使用AVPlayer播放音频(ArkTS)](../media/using-avplayer-for-playback.md)。
 
 ### 接入AVSession

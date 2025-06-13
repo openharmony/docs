@@ -34,7 +34,7 @@
 | -------- | -------- |
 | typedef bool(\* [ArkUI_OnWillDismissEvent](_ark_u_i___native_module.md#arkui_onwilldismissevent)) (int32_t reason) | 弹窗关闭的回调函数。  |
 | typedef struct [ArkUI_DialogDismissEvent](_ark_u_i___native_module.md#arkui_dialogdismissevent) [ArkUI_DialogDismissEvent](_ark_u_i___native_module.md#arkui_dialogdismissevent) | 定义弹窗关闭事件对象。  |
-| typedef struct [ArkUI_CustomDialogOptions](_ark_u_i___native_module.md#arkui_customdialogoptions) [ArkUI_CustomDialogOptions](_ark_u_i___native_module.md#arkui_customdialogoptions) | 定义自定义弹窗的内容对象。  |
+| typedef struct [ArkUI_CustomDialogOptions](_ark_u_i___native_module.md#arkui_customdialogoptions) [ArkUI_CustomDialogOptions](_ark_u_i___native_module.md#arkui_customdialogoptions) | 定义自定义弹窗的内容对象。<br/>**起始版本：** 19  |
 
 
 ### 枚举

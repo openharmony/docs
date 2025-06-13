@@ -858,7 +858,7 @@ getEncoded(): DataBlob
 
 > **说明：**
 >
-> RSA算法使用密钥参数生成私钥时，私钥对象不支持getEncoded。
+> RSA算法使用密钥参数生成私钥时，私钥对象支持getEncoded。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

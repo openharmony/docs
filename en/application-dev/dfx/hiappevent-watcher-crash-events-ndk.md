@@ -1,14 +1,14 @@
 # Subscribing to Crash Events (C/C++)
 
-## Available APIs
+## Introduction
 
-For details about how to use the APIs (such as parameter usage restrictions and value ranges), see [HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent).
+The following describes how to subscribe to application crash events by using the C/C++ APIs provided by HiAppEvent. For details about how to use the APIs (such as parameter restrictions and value ranges), see [HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent).
 
 > **NOTE**
 >
 > The C/C++ APIs can be used to subscribe to JsError and NativeCrash events.
 
-**Subscription APIs**
+### Subscription APIs
 
 | API                                                      | Description                                        |
 | ------------------------------------------------------------ | -------------------------------------------- |
@@ -16,6 +16,8 @@ For details about how to use the APIs (such as parameter usage restrictions and 
 | int OH_HiAppEvent_RemoveWatcher (HiAppEvent_Watcher \*watcher) | Removes a watcher to unsubscribe from application events.|
 
 ## How to Develop
+
+### Adding an Event Watcher
 
 The following describes how to subscribe to the crash event triggered by a button click.
 
@@ -51,7 +53,7 @@ The following describes how to subscribe to the crash event triggered by a butto
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libhiappevent_ndk.z.so)
    ```
 
-3. Import the dependency files to the **napi_init.cpp** file, and define **LOG_TAG**.
+3. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**.
 
    ```c++
    #include "napi/native_api.h"
@@ -129,8 +131,8 @@ The following describes how to subscribe to the crash event triggered by a butto
          return {};
      }
      ```
-     
-   - Watcher of the onTrigger type:
+
+   - Watcher of the **onTrigger** type:
 
      In the **napi_init.cpp** file, define the methods related to the watcher of the OnTrigger type.
 
@@ -244,32 +246,50 @@ The following describes how to subscribe to the crash event triggered by a butto
    })
    ```
 
-8. In DevEco Studio, click the **Run** button to run the project. Then, click the **appCrash** button to trigger a crash event. After a crash occurs, the system uses different stack backtracking methods to generate crash logs based on the crash type (JsError or NativeCrash) and then invokes callback. The NativeCrash stack backtracking takes about 2s. In practice, the duration depends on the number of service threads and the duration of inter-process communication. JsError triggers in-process stack backtracking, and NativeCrash triggers out-of-process stack backtracking. Therefore, NativeCrash stack backtracking is more time-consuming than JsError stack backtracking. You can subscribe to crash events so that the stack backtracking result is asynchronously reported without blocking the current service.
+8. In DevEco Studio, click the **Run** button to run the project. Then, click the **appCrash** button to trigger a crash event. The system generates crash logs based on the crash type (**JsError** or **NativeCrash**) and executes callback.
 
-9. If the application does not capture the crash event, the application exits after the system crashes. When the application is restarted, HiAppEvent reports the crash event to the registered watcher.
-<br>If the application captures the crash event. HiAppEvent reports the event before the application exits in the following scenarios:
-<br>&emsp;&emsp;Scenario 1: The application does not exit during exception handling. For example, when [errorManger.on](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror) is used to capture JsError, the application registers the NativeCrash signal processing function and does not exit.<br>&emsp;&emsp;Scenario 2: Exception handling takes a long time, and the application exit time is delayed.
-<br>After HiAppEvent reports the event, you can view the processing logs of the system event data in the **Log** window.
+**JsError** is collected within the process and triggers a callback quickly. **NativeCrash** is collected outside the process and typically takes about 2 seconds on average to trigger a callback. The time required depends on the number of service threads and the time needed for inter-process communication. The collected fault information is reported asynchronously, which does not block the current service.
 
-   ```text
-   HiAppEvent eventInfo.domain=OS
-   HiAppEvent eventInfo.name=APP_CRASH
-   HiAppEvent eventInfo.eventType=1
-   HiAppEvent eventInfo.params.time=1502032265088
-   HiAppEvent eventInfo.params.crash_type=JsError
-   HiAppEvent eventInfo.params.foreground=1
-   HiAppEvent eventInfo.params.bundle_version=1.0.0
-   HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
-   HiAppEvent eventInfo.params.pid=19237
-   HiAppEvent eventInfo.params.uid=20010043
-   HiAppEvent eventInfo.params.uuid=cc0f062e1b28c1fd2c817fafab5e8ca3207925b4bdd87c43ed23c60029659e01
-   HiAppEvent eventInfo.params.exception={"message":"Unexpected Text in JSON","name":"SyntaxError","stack":"at anonymous (entry/src/main/ets/pages/Index.ets:16:11)"}
-   HiAppEvent eventInfo.params.hilog.size=110
-   HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_CRASH_1502032265211_19237.log"]
-   HiAppEvent eventInfo.params.log_over_limit=0
-   ```
+### Checking Whether a Watcher Subscribes to Crash Events
 
-10. Remove the event watcher.
+Depending on whether an application proactively captures crash events, callbacks are triggered for the events at different times. You need to check whether crash events are subscribed to at these different times.
+
+#### Application Not Proactively Capturing Crash Events
+
+If an application does not proactively capture the crash event, the application exits after the system crashes. When the application is restarted, HiAppEvent reports the crash event to the registered watcher.
+
+#### Application Proactively Capturing Crash Events
+
+If an application proactively captures the crash event, HiAppEvent triggers a callback before the application exits. The following are examples:
+
+1. The application does not exit during exception handling.
+When [errorManager.on](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror) is used to capture the **JsError** crash event, a callback is triggered before the application exits. When the application proactively registers the [crash signal](cppcrash-guidelines.md#signals-that-generate-cppcrash-logs) processing function but does not proactively exit, the **NativeCrash** crash event triggers a callback before the application exits.
+
+2. Exception handling takes a long time, and the application exit time is delayed.
+
+In the development and debugging phase, after HiAppEvent reports a crash event, you can view the event information in the **HiLog** window of DevEco Studio.
+
+```text
+HiAppEvent eventInfo.domain=OS
+HiAppEvent eventInfo.name=APP_CRASH
+HiAppEvent eventInfo.eventType=1
+HiAppEvent eventInfo.params.time=1502032265088
+HiAppEvent eventInfo.params.crash_type=JsError
+HiAppEvent eventInfo.params.foreground=1
+HiAppEvent eventInfo.params.bundle_version=1.0.0
+HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
+HiAppEvent eventInfo.params.pid=19237
+HiAppEvent eventInfo.params.uid=20010043
+HiAppEvent eventInfo.params.uuid=cc0f062e1b28c1fd2c817fafab5e8ca3207925b4bdd87c43ed23c60029659e01
+HiAppEvent eventInfo.params.exception={"message":"Unexpected Text in JSON","name":"SyntaxError","stack":"at anonymous (entry/src/main/ets/pages/Index.ets:16:11)"}
+HiAppEvent eventInfo.params.hilog.size=110
+HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_CRASH_1502032265211_19237.log"]
+HiAppEvent eventInfo.params.log_over_limit=0
+```
+
+### Removing and Destroying an Event Watcher
+
+1. Remove the event watcher.
 
     ```c++
     static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
@@ -279,7 +299,7 @@ The following describes how to subscribe to the crash event triggered by a butto
     }
     ```
 
-11. Destroy the event watcher.
+2. Destroy the event watcher.
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {

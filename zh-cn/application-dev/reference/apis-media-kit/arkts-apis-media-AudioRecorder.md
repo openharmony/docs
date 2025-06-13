@@ -1,4 +1,4 @@
-# 废弃的Interfaces (AudioRecorder，deprecated)
+# 废弃的Interface (AudioRecorder, deprecated)
 
 > **说明：**
 > 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder](arkts-apis-media-AVRecorder.md)替代。
@@ -26,7 +26,7 @@ prepare(config: AudioRecorderConfig): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |

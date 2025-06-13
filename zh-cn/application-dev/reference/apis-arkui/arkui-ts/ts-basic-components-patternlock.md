@@ -183,7 +183,7 @@ activateCircleStyle(options: Optional\<CircleStyleOptions\>)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| options  | [CircleStyleOptions](#circlestyleoptions12对象说明) | 是   | 宫格圆点在“激活”状态的背景圆环样式。|
+| options  | Optional\<[CircleStyleOptions](#circlestyleoptions12对象说明)\> | 是   | 宫格圆点在“激活”状态的背景圆环样式。|
 
 ### CircleStyleOptions<sup>12+</sup>对象说明
 

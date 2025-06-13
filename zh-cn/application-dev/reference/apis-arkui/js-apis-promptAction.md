@@ -189,6 +189,10 @@ closeToast(toastId: number): void
 | levelUniqueId<sup>15+</sup>       | number | 否   | 设置页面级弹窗需要显示的层级下的[节点 uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)。<br/>取值范围：大于等于0的数字。<br />**说明：**<br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | immersiveMode<sup>15+</sup>       | [ImmersiveMode](#immersivemode15枚举说明) | 否   | 设置页面内弹窗蒙层效果。<br />**说明：**<br />- 默认值：ImmersiveMode.DEFAULT <br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | levelOrder<sup>18+</sup>       | [LevelOrder](#levelorder18) | 否   | 设置弹窗显示的顺序。<br />**说明：**<br />- 默认值：LevelOrder.clamp(0) <br />- 不支持动态刷新顺序。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| onWillAppear<sup>20+</sup> | Callback&lt;void&gt; | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。 <br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| onDidAppear<sup>20+</sup> | Callback&lt;void&gt; | 否 | 弹窗弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br />2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br />3.快速点击弹出，关闭弹窗时，onWillDisappear在onDidAppear前生效。<br/>4.弹窗入场动效未完成时彻底关闭弹窗，动效打断，onDidAppear不会触发。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| onWillDisappear<sup>20+</sup> | Callback&lt;void&gt; | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br /> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| onDidDisappear<sup>20+</sup> | Callback&lt;void&gt; | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## ShowDialogSuccessResponse
 
@@ -873,6 +877,73 @@ try {
 
 ![zh-cn_image_0002_showinsubwindow](figures/zh-cn_image_0002_showinsubwindow.jpg)
 
+以下示例展示了弹窗生命周期的相关接口的使用方法。
+
+```ts
+// xxx.ets
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct DialogExample {
+  @State log:string = 'Log information:';
+  build() {
+    Column() {
+      Button('showdialog')
+        .width(200)
+        .height(60)
+        .margin(20)
+        .fontSize(16)
+        .onClick(() => {
+          this.showCustomDialog();
+        })
+      Text(this.log).fontSize(30).margin({ top: 200 })
+    }.width('100%').margin({ top: 5 })
+  }
+
+  showCustomDialog() {
+    try {
+      this.getUIContext().getPromptAction().showDialog({
+        title: '操作确认',
+        message: '您确定要执行此操作吗？',
+        alignment: DialogAlignment.Bottom,
+        buttons: [
+          {
+            text: '取消',
+            color: '#999999'
+          },
+          {
+            text: '确定',
+            color: '#007DFF'
+          }
+        ],
+        onDidAppear: () => {
+          this.log += '# onDidAppear'
+          console.info("prompAction,is onDidAppear!")
+        },
+        onDidDisappear: () => {
+          this.log += '# onDidDisappear'
+          console.info("prompAction,is onDidDisappear!")
+        },
+        onWillAppear: () => {
+          this.log = 'Log information:#onWillAppear'
+          console.info("prompAction,is onWillAppear!")
+        },
+        onWillDisappear: () => {
+          this.log += '# onWillDisappear'
+          console.info("prompAction,is onWillDisappear!")
+        },
+      })
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`捕获到异常: ${err.code}, ${err.message}`);
+    }
+  }
+}
+```
+
+![zh-cn_image_0002_lifecycle](figures/zh-cn_image_0002_lifecycle.gif)
+
 
 
 ## promptAction.showActionMenu<sup>(deprecated)</sup>
@@ -907,7 +978,7 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | Internal error.                                              |
 
-**示例：**
+**示例：1**
 
 ```ts
 import { promptAction } from '@kit.ArkUI';
@@ -941,6 +1012,81 @@ try {
 ```
 
 ![zh-cn_image_0005](figures/zh-cn_image_0005.gif)
+
+**示例：2**
+
+该示例为showActionMenu配置生命周期回调。
+
+```ts
+import { promptAction } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State isShown: boolean = false
+  @State textColor: Color = Color.Black
+  @State blueColor: Color = Color.Blue
+
+  @State onWillAppear: boolean = false
+  @State onDidAppear: boolean = false
+  @State onWillDisappear: boolean = false
+  @State onDidDisappear: boolean = false
+  build() {
+    Column({ space: 50 }) {
+      Text('onWillAppear').fontColor(this.onWillAppear ? this.blueColor : this.textColor)
+      Text('onDidAppear').fontColor(this.onDidAppear ? this.blueColor : this.textColor)
+      Text('onWillDisappear').fontColor(this.onWillDisappear ? this.blueColor : this.textColor)
+      Text('onDidDisappear').fontColor(this.onDidDisappear ? this.blueColor : this.textColor)
+      Button('click')
+        .width(200)
+        .height(100)
+        .margin(100)
+        .fontColor(this.textColor)
+        .onClick(() => {
+          promptAction.showActionMenu({
+            title: 'showActionMenu Title Info',
+            buttons: [
+              {
+                text: 'item1',
+                color: '#666666'
+              },
+              {
+                text: 'item2',
+                color: '#000000'
+              },
+            ],
+            onWillAppear:() => {
+              console.info("promptAction menu cycle life onWillAppear");
+                  this.onWillAppear = true;
+            },
+            onDidAppear:() => {
+              console.info("promptAction menu cycle life onDidAppear");
+                  this.onDidAppear = true;
+            },
+            onWillDisappear:() => {
+              this.isShown = false;
+              console.info("promptAction menu cycle life onWillDisappear");
+                  this.onWillDisappear = true;
+            },
+            onDidDisappear:() => {
+              console.info("promptAction menu cycle life onDidDisappear");
+                  this.onDidDisappear = true;
+            }
+          })
+            .then(data => {
+              console.info('showActionMenu success, click button: ' + data.index);
+            })
+            .catch((err: Error) => {
+              console.info('showActionMenu error: ' + err);
+            })
+        })
+    }
+    .width('100%')
+  }
+}
+```
+
+![zh-cn_image_0008](figures/zh-cn_image_0008.gif)
 
 ## promptAction.showActionMenu<sup>(deprecated)</sup>
 

@@ -96,7 +96,7 @@
 
 ## 更新菜单样式
 
-通过[updateMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#updatemenu18)可以更新菜单的样式。支持全量更新和增量更新其菜单样式，不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear和aboutToDisappear。
+通过[updateMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#updatemenu18)可以更新菜单的样式。支持全量更新和增量更新其菜单样式，不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear、onWillAppear、onDidAppear、onWillDisappear和onDidDisappear。
    
    ```ts
    promptAction.updateMenu(contentNode, {

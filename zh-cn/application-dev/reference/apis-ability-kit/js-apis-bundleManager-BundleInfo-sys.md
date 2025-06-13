@@ -8,6 +8,12 @@
 >
 > 当前页面仅包含本模块的系统接口，其他公开接口参见（[BundleInfo](js-apis-bundleManager-bundleInfo.md)）。
 
+## 导入模块
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+```
+
 ## DynamicIconInfo
 
 应用的动态图标信息。

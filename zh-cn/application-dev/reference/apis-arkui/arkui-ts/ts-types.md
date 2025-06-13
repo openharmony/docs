@@ -472,7 +472,7 @@
 
 | 名称            | 类型定义                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| CustomBuilder | ()&nbsp;=&gt;&nbsp;any \| void | 生成用户自定义组件，在使用时结合@Builder使用。具体用法见[@Builder](../../../ui/state-management/arkts-builder.md#builder)。 |
+| CustomBuilder | ()&nbsp;=&gt;&nbsp;any \| void | 生成用户自定义组件，在使用时结合[@Builder](../../../ui/state-management/arkts-builder.md)使用。 |
 
 ## MarkStyle<sup>10+</sup>对象说明
 
@@ -999,19 +999,6 @@ setTextSelection选中文字时的配置。
 | ------------------- | ------- | ------------------------------------------------------------ |
 | thresholdPercentage | number  | thresholdPercentage是可输入字符数占最大字符限制的百分比值。字符计数器显示的样式为当前输入字符数/最大字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。thresholdPercentage值的有效值区间为[1,100]，数值为小数时，向下取整，如果设置的number超出有效值区间内，不显示字符计数器。thresholdPercentage设置为undefined，显示字符计数器，但此参数不生效。 |
 | highlightBorder     | boolean | 如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。如果用户设置显示字符计数器同时thresholdPercentage参数数值在有效区间内，那么当输入字符数超过最大字符数时，边框和计数器下标将变成红色。如果此参数为true，则显示红色边框。计数器默认显示红色边框。 |
-
-
-## MaxLinesOptions<sup>20+</sup>对象说明
-
-配置TextArea组件，文本超长时显示效果。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 参数名              | 类型    | 必填  | 说明                                                         |
-| ------------------- | ------- | ------- | ------------------------------------------------------------ |
-| overflowMode |[MaxLinesMode](ts-appendix-enums.md#maxlinesmode20)  | 否  | overflowMode 可配置 TextArea组件的非内联模式。当超出设置的 maxLines 最大行数时，会启用滚动效果。需同时配置[textOverflow](ts-basic-components-textarea.md#textoverflow12)，且仅当 [textOverflow](ts-basic-components-textarea.md#textoverflow12)为None或Clip 时，MaxLinesMode 才能生效。默认情况下，MaxLinesMode的值为Clip，超出 maxLines 后文本会被截断。 |
 
 ## ChainWeightOptions<sup>14+</sup>对象说明
 

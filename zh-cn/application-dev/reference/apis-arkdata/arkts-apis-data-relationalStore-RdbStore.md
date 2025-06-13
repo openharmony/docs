@@ -4940,7 +4940,7 @@ try {
 
 ### off('sqliteErrorOccurred')<sup>20+</sup>
 
-off(event: 'sqliteErrorOccurred', observer: Callback&lt;ExceptionMessage&gt;): void
+off(event: 'sqliteErrorOccurred', observer?: Callback&lt;ExceptionMessage&gt;): void
 
 停止记录SQL执行过程中的异常日志。
 
@@ -4951,7 +4951,7 @@ off(event: 'sqliteErrorOccurred', observer: Callback&lt;ExceptionMessage&gt;): v
 | 参数名       | 类型                              | 必填 | 说明                                |
 | ------------ |---------------------------------| ---- |-----------------------------------|
 | event        | string                          | 是   | 取消订阅事件名称，取值为'sqliteErrorOccurred'，记录SQL语句执行过程中的错误信息。 |
-| observer     | Callback&lt;[ExceptionMessage](arkts-apis-data-relationalStore-i.md#exceptionmessage20)&gt; | 是   | 回调函数。该参数存在，则取消指定Callback监听回调，否则取消该event事件的所有监听回调。  |
+| observer     | Callback&lt;[ExceptionMessage](arkts-apis-data-relationalStore-i.md#exceptionmessage20)&gt; | 否   | 回调函数。该参数存在，则取消指定Callback监听回调，否则取消该event事件的所有监听回调。  |
 
 **错误码：**
 
@@ -5722,8 +5722,8 @@ rekey(cryptoParam?: CryptoParam): Promise\<void>
 | ------------ | ----------------------------------------------------------------------------------- |
 | 801          | Capability not supported.                                                           |
 | 14800001     | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause.|
-| 14800011     | Database corrupted.                                                                 |
-| 14800014     | Already closed.                                                                     |
+| 14800011     | Failed to open the database because it is corrupted.                                |
+| 14800014     | The RdbStore or ResultSet is already closed.                                        |
 | 14800015     | The database does not respond.                                                      |
 | 14800021     | SQLite: Generic error.                                                              |
 | 14800023     | SQLite: Access permission denied.                                                   |

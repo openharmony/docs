@@ -22,7 +22,7 @@
 
 **参考链接**
 
-[容器嵌套滚动样例](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#示例2)
+[容器嵌套滚动样例](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#示例2嵌套滚动实现方式一)
 
 
 ## 如何实现一个组件不停地旋转(API 9)

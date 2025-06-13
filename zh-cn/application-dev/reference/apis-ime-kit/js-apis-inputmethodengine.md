@@ -4755,7 +4755,7 @@ try {
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -- | -------- |
 | NONE | 0 | 不进行任何首字母大写处理。|
 | SENTENCES | 1 | 每个句子的首字母大写。|

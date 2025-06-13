@@ -55,7 +55,7 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 | 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
+| 1600020  | The application is not allowed to send notifications due to permission settings. |
 | 2300007  | Network unreachable.                              |
 
 **示例：**
@@ -134,7 +134,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 | 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
+| 1600020  | The application is not allowed to send notifications due to permission settings. |
 | 2300007  | Network unreachable.                              |
 
 **示例：**
@@ -2778,7 +2778,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600012  | No memory space.                          |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
+| 1600020  | The application is not allowed to send notifications due to permission settings. |
 | 2300007  | Network unreachable.                              |
 
 **示例：**
@@ -2860,7 +2860,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600012  | No memory space.                          |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
+| 1600020  | The application is not allowed to send notifications due to permission settings. |
 | 2300007  | Network unreachable.                              |
 
 **示例：**
@@ -2937,7 +2937,7 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 | 1600012  | No memory space.                          |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
+| 1600020  | The application is not allowed to send notifications due to permission settings. |
 | 2300007  | Network unreachable.                              |
 
 **示例：**

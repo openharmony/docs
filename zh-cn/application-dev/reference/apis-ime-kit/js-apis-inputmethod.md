@@ -48,7 +48,7 @@ import { inputMethod } from '@kit.IMEKit';
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -- | -------- |
 | NONE | 0 | 不进行任何首字母大写处理。|
 | SENTENCES | 1 | 每个句子的首字母大写。|
@@ -327,7 +327,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| 是 | 目标输入法子类型。 |
+| target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#ohosinputmethodsubtype-输入法子类型)| 是 | 目标输入法子类型。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当输入法子类型切换成功，err为undefined，data为true；否则为错误对象。|
 
 **错误码：**
@@ -395,7 +395,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-|target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| 是 | 目标输入法子类型。 |
+|target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#ohosinputmethodsubtype-输入法子类型)| 是 | 目标输入法子类型。 |
 
 **返回值：**
 
@@ -460,7 +460,7 @@ getCurrentInputMethodSubtype(): InputMethodSubtype
 
 | 类型                                         | 说明                     |
 | -------------------------------------------- | ------------------------ |
-| [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype) | 返回当前输入法子类型对象。 |
+| [InputMethodSubtype](./js-apis-inputmethod-subtype.md#ohosinputmethodsubtype-输入法子类型) | 返回当前输入法子类型对象。 |
 
 **示例：**
 
@@ -486,7 +486,7 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 |inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| 是 | 目标输入法。 |
-|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| 是 | 目标输入法子类型。 |
+|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#ohosinputmethodsubtype-输入法子类型)| 是 | 目标输入法子类型。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当输入法和子类型切换成功，err为undefined，data为获取到的切换子类型结果true；否则为错误对象。 |
 
 **错误码：**
@@ -545,7 +545,7 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 |inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| 是 | 目标输入法。 |
-|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| 是 | 目标输入法子类型。 |
+|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#ohosinputmethodsubtype-输入法子类型)| 是 | 目标输入法子类型。 |
 
 **返回值：**
 
@@ -739,7 +739,6 @@ Enter键的功能类型。
 | enterKeyType<sup>10+</sup>  | [EnterKeyType](#enterkeytype10) | 否 | 否 | Enter键功能类型。|
 | placeholder<sup>20+</sup> | string | 否 | 是 | 编辑框设置的占位符信息。 <br/>- 编辑框设置占位符信息时，长度不超过255个字符（如果超出将会自动截断为255个字符），用于提示或引导用户输入临时性文本或符号。（例如：提示输入项为"必填"或"非必填"的输入结果反馈。）<br/>- 编辑框没有设置占位符信息时，默认为空字符串。<br/>- 该字段在调用[attach](#attach10)时提供给输入法应用。|
 | abilityName<sup>20+</sup> | string | 否 | 是 | 编辑框设置的ability名称。<br/>- 编辑框设置ability名称时，长度不超过127个字符（如果超出将会自动截断为127个字符）。<br/>- 编辑框未设置ability名称时，默认为空字符串。<br/>- 该字段在调用绑定[attach](#attach10)时提供给输入法应用。|
-| capitalizeMode<sup>20+</sup> | [CapitalizeMode](#capitalizemode20) | 否 | 是 | 编辑框设置大小写模式。如果没有设置或设置非法值，默认不进行任何首字母大写处理。|
 
 ## TextConfig<sup>10+</sup>
 
@@ -754,6 +753,7 @@ Enter键的功能类型。
 | selection<sup>10+</sup>  | [Range](#range10) | 否 | 是 | 文本选中的范围。|
 | windowId<sup>10+</sup>  | number | 否 | 是 | 编辑框所在的窗口Id。|
 | newEditBox<sup>20+</sup> | boolean | 否 | 是 | 表示是否为新编辑框。true表示新编辑框，false表示非新编辑框。 |
+| capitalizeMode<sup>20+</sup> | [CapitalizeMode](#capitalizemode20) | 否 | 是 | 编辑框设置大小写模式。如果没有设置或设置非法值，默认不进行任何首字母大写处理。|
 
 ## CursorInfo<sup>10+</sup>
 
@@ -2177,7 +2177,7 @@ recvMessage(msgHandler?: MessageHandler): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-let messageHandler: inputmethod.MessageHandler = {
+let messageHandler: inputMethod.MessageHandler = {
     onTerminated(): void {
         console.info('OnTerminated.');
     },
@@ -2592,7 +2592,7 @@ on(type: 'moveCursor', callback: (direction: Direction) => void): void
 | 参数名   | 类型 | 必填 | 说明   |
 | -------- | ------ | ---- | ------ |
 | type     | string | 是   | 设置监听类型，固定取值为'moveCursor'。 |
-| callback | callback: (direction: [Direction<sup>10+</sup>](#direction10)) => void | 是   | 回调函数，返回光标信息。<br/>根据返回的光标移动方向，改变光标位置，如光标向上或向下。  |
+| callback | (direction: [Direction](#direction10)) => void | 是   | 回调函数，返回光标信息。<br/>根据返回的光标移动方向，改变光标位置，如光标向上或向下。  |
 
 **错误码：**
 
@@ -2653,7 +2653,7 @@ on(type: 'handleExtendAction', callback: (action: ExtendAction) => void): void
 | 参数名   | 类型  | 必填 | 说明   |
 | -------- | ------ | ---- | -------- |
 | type     | string    | 是   | 设置监听类型，固定取值为'handleExtendAction'。 |
-| callback | callback: (action: [ExtendAction](#extendaction10)) => void | 是   | 回调函数，返回扩展编辑操作类型。<br/>根据传入的扩展编辑操作类型，做相应的操作，如剪切、复制等。|
+| callback | (action: [ExtendAction](#extendaction10)) => void | 是   | 回调函数，返回扩展编辑操作类型。<br/>根据传入的扩展编辑操作类型，做相应的操作，如剪切、复制等。|
 
 **错误码：**
 
@@ -3247,7 +3247,7 @@ on(type: 'imeChange', callback: (inputMethodProperty: InputMethodProperty, input
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | 是   | 设置监听类型，固定取值为'imeChange'。 |
-| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | 是 | 回调函数，返回输入法属性对象及子类型对象。 |
+| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#ohosinputmethodsubtype-输入法子类型)) => void  | 是 | 回调函数，返回输入法属性对象及子类型对象。 |
 
 **示例：**
 
@@ -3275,7 +3275,7 @@ off(type: 'imeChange', callback?: (inputMethodProperty: InputMethodProperty, inp
 | 参数名   | 类型    | 必填 | 说明          |
 | -------- | --------- | ---- | --------------- |
 | type     | string    | 是   | 设置监听类型，固定取值为'imeChange'。 |
-| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | 否 | 回调函数，返回取消订阅的输入法属性对象及子类型对象。 |
+| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#ohosinputmethodsubtype-输入法子类型)) => void  | 否 | 回调函数，返回取消订阅的输入法属性对象及子类型对象。 |
 
 **示例：**
 
@@ -3296,7 +3296,7 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 | 参数名   | 类型                                               | 必填 | 说明                   |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
 | inputMethodProperty | [InputMethodProperty](#inputmethodproperty8)| 是 | 输入法应用。 |
-| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>&gt; | 是 | 回调函数，返回指定输入法应用的所有子类型。 |
+| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#ohosinputmethodsubtype-输入法子类型)>&gt; | 是 | 回调函数，返回指定输入法应用的所有子类型。 |
 
 **错误码：**
 
@@ -3352,7 +3352,7 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 
 | 类型                                                        | 说明                   |
 | ----------------------------------------------------------- | ---------------------- |
-| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>> | Promise对象，返回指定输入法应用的所有子类型。 |
+| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#ohosinputmethodsubtype-输入法子类型)>> | Promise对象，返回指定输入法应用的所有子类型。 |
 
 **错误码：**
 
@@ -3400,7 +3400,7 @@ listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSub
 
 | 参数名   | 类型                                               | 必填 | 说明                   |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>&gt; | 是   | 回调函数，返回当前输入法应用的所有子类型。 |
+| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#ohosinputmethodsubtype-输入法子类型)>&gt; | 是   | 回调函数，返回当前输入法应用的所有子类型。 |
 
 **错误码：**
 
@@ -3443,7 +3443,7 @@ listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 
 | 类型                                                        | 说明                   |
 | ----------------------------------------------------------- | ---------------------- |
-| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>> | Promise对象，返回当前输入法应用的所有子类型。 |
+| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#ohosinputmethodsubtype-输入法子类型)>> | Promise对象，返回当前输入法应用的所有子类型。 |
 
 **错误码：**
 

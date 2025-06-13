@@ -1,4 +1,4 @@
-# Interfaces (AudioManager)
+# Interface (AudioManager)
 
 > **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -155,7 +155,7 @@ getVolumeManager(): AudioVolumeManager
 
 | 类型                                      | 说明                          |
 |-----------------------------------------| ----------------------------- |
-| [AudioVolumeManager](arkts-apis-audio-AudioVolumeManager.md#interfaces-audiovolumemanager) | AudioVolumeManager实例。 |
+| [AudioVolumeManager](arkts-apis-audio-AudioVolumeManager.md) | AudioVolumeManager实例。 |
 
 **示例：**
 
@@ -177,7 +177,7 @@ getStreamManager(): AudioStreamManager
 
 | 类型                                         | 说明                          |
 |--------------------------------------------| ----------------------------- |
-| [AudioStreamManager](arkts-apis-audio-AudioStreamManager.md#interfaces-audiostreammanager) | AudioStreamManager实例。 |
+| [AudioStreamManager](arkts-apis-audio-AudioStreamManager.md) | AudioStreamManager实例。 |
 
 **示例：**
 
@@ -199,7 +199,7 @@ getRoutingManager(): AudioRoutingManager
 
 | 类型                                       | 说明                          |
 |------------------------------------------| ----------------------------- |
-| [AudioRoutingManager](arkts-apis-audio-AudioRoutingManager.md#class-audioroutingmanager) | AudioRoutingManager实例。 |
+| [AudioRoutingManager](arkts-apis-audio-AudioRoutingManager.md) | AudioRoutingManager实例。 |
 
 **示例：**
 
@@ -221,7 +221,7 @@ getSessionManager(): AudioSessionManager
 
 | 类型                                           | 说明                          |
 |----------------------------------------------| ----------------------------- |
-| [AudioSessionManager](arkts-apis-audio-AudioSessionManager.md#class-audiosessionmanager) | AudioSessionManager实例。 |
+| [AudioSessionManager](arkts-apis-audio-AudioSessionManager.md) | AudioSessionManager实例。 |
 
 **示例：**
 
@@ -243,7 +243,7 @@ getSpatializationManager(): AudioSpatializationManager
 
 | 类型                                       | 说明                          |
 |------------------------------------------| ----------------------------- |
-| [AudioSpatializationManager](arkts-apis-audio-AudioSpatializationManager.md#class-audiospatializationmanager) | AudioSpatializationManager实例。 |
+| [AudioSpatializationManager](arkts-apis-audio-AudioSpatializationManager.md) | AudioSpatializationManager实例。 |
 
 **示例：**
 

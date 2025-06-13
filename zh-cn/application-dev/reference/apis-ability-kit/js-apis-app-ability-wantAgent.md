@@ -428,29 +428,33 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: WantAgent) {
   if (err) {
-    console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    console.error(`getWantAgent failed, code: ${err.code}, message: ${err.message}.`);
   } else {
     wantAgentData = data;
   }
   //getUid回调
   let getUidCallback = (err: BusinessError, data: number) => {
     if (err) {
-      console.error(`getUid failed! ${err.code} ${err.message}`);
+      console.error(`getUid failed, err code: ${err.code}, err msg: ${err.message}.`);
     } else {
-      console.info(`getUid ok! ${JSON.stringify(data)}`);
+      console.info(`getUid ok, data: ${JSON.stringify(data)}.`);
     }
   }
   try {
     wantAgent.getUid(wantAgentData, getUidCallback);
   } catch (err) {
-    console.error(`getUid failed! ${err.code} ${err.message}`);
+    let code = (err as BusinessError).code;
+    let msg = (err as BusinessError).message;
+    console.error(`getUid failed, err code: ${code}, err msg: ${msg}.`);
   }
 }
 
 try {
   wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch (err) {
-  console.error(`getWantAgent failed! ${err.code} ${err.message}`);
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`getWantAgent failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -526,25 +530,29 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: WantAgent) {
   if (err) {
-    console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    console.error(`getWantAgent failed, err code: ${err.code}, err msg: ${err.message}.`);
   } else {
     wantAgentData = data;
   }
   try {
     wantAgent.getUid(wantAgentData).then((data) => {
-      console.info(`getUid ok! ${JSON.stringify(data)}`);
+      console.info(`getUid ok, data: ${JSON.stringify(data)}.`);
     }).catch((err: BusinessError) => {
-      console.error(`getUid failed! ${err.code} ${err.message}`);
+      console.error(`getUid failed, err code: ${err.code}, err msg: ${err.message}.`);
     });
   } catch (err) {
-    console.error(`getUid failed! ${err.code} ${err.message}`);
+    let code = (err as BusinessError).code;
+    let msg = (err as BusinessError).message;
+    console.error(`getUid failed, err code: ${code}, err msg: ${msg}.`);
   }
 }
 
 try {
   wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch (err) {
-  console.error(`getWantAgent failed! ${err.code} ${err.message}`);
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`getWantAgent failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -615,29 +623,33 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: WantAgent) {
   if (err) {
-    console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    console.error(`getWantAgent failed, err code: ${err.code}, err msg: ${err.message}.`);
   } else {
     wantAgentData = data;
   }
   //cancel回调
   let cancelCallback = (err: BusinessError, data: void) => {
     if (err) {
-      console.error(`cancel failed! ${err.code} ${err.message}`);
+      console.error(`cancel failed, err code: ${err.code}, err msg: ${err.message}.`);
     } else {
-      console.info(`cancel ok!`);
+      console.info(`cancel sucecss.`);
     }
   }
   try {
     wantAgent.cancel(wantAgentData, cancelCallback);
   } catch (err) {
-    console.error(`cancel failed! ${err.code} ${err.message}`);
+    let code = (err as BusinessError).code;
+    let msg = (err as BusinessError).message;
+    console.error(`cancel failed, err code: ${code}, err msg: ${msg}.`);
   }
 }
 
 try {
   wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch (err) {
-  console.error(`getWantAgent failed! ${(err as BusinessError).code} ${(err as BusinessError).message}`);
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`getWantAgent failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -713,25 +725,29 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: WantAgent) {
   if (err) {
-    console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    console.error(`getWantAgent failed, err code: ${err.code}, err msg: ${err.message}.`);
   } else {
     wantAgentData = data;
   }
   try {
     wantAgent.cancel(wantAgentData).then((data) => {
-      console.info('cancel ok!');
+      console.info('cancel success.');
     }).catch((err: BusinessError) => {
-      console.error(`cancel failed! ${err.code} ${err.message}`);
+      console.error(`cancel failed, err code: ${err.code}, err msg: ${err.message}.`);
     });
   } catch (err) {
-    console.error(`cancel failed! ${err.code} ${err.message}`);
+    let code = (err as BusinessError).code;
+    let msg = (err as BusinessError).message;
+    console.error(`cancel failed, err code: ${code}, err msg: ${msg}.`);
   }
 }
 
 try {
   wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch (err) {
-  console.error(`getWantAgent failed! ${(err as BusinessError).code} ${(err as BusinessError).message}`);
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`getWantAgent failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -1150,8 +1166,6 @@ getOperationType(agent: WantAgent): Promise\<number>
 | 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantAgent object.|
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)
 
 **示例：**
 

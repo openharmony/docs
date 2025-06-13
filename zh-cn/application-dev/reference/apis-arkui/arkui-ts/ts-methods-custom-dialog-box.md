@@ -822,15 +822,15 @@ struct CustomDialogUser {
       })
       Button("show loading dialog").onClick(() => {
         //获取窗口对象
-        let windowClass = window.getLastWindow(getContext());
+        let windowClass = window.getLastWindow(this.getUIContext().getHostContext());
         windowClass.then(window => {
           //获取窗口信息，设置maskRect
           let properties = window.getWindowProperties();
           let maskRect = {
-            x: px2vp(properties.windowRect.left + 150),
-            y: px2vp(properties.windowRect.top + 350),
-            width: px2vp(properties.windowRect.width - 300),
-            height: px2vp(properties.windowRect.height - 700)
+            x: this.getUIContext().px2vp(properties.windowRect.left + 150),
+            y: this.getUIContext().px2vp(properties.windowRect.top + 350),
+            width: this.getUIContext().px2vp(properties.windowRect.width - 300),
+            height: this.getUIContext().px2vp(properties.windowRect.height - 700)
           } as Rectangle
           if (this.dialogController == null) {
             this.dialogController = new CustomDialogController({
@@ -879,7 +879,6 @@ struct CustomDialogUser {
 
 ```ts
 import window from '@ohos.window';
-import { LengthMetrics } from '@kit.ArkUI';
 
 @CustomDialog
 @Component
@@ -964,7 +963,7 @@ struct CustomDialogUser {
   })
 
   aboutToAppear(): void {
-    let windowClass = window.getLastWindow(getContext());
+    let windowClass = window.getLastWindow(this.getUIContext().getHostContext());
     windowClass.then(win => {
       this.windowClass = win;
       // 获取底部导航栏高度
@@ -1009,3 +1008,98 @@ struct CustomDialogUser {
 }
 ```
 ![zh-cn_image_custom](figures/dialog_keyboard_distance.gif)
+
+### 示例9（弹窗生命周期）
+
+该示例展示了弹窗生命周期的相关接口的使用方法。
+
+```ts
+// xxx.ets
+@CustomDialog
+struct CustomDialogExample1 {
+  controller?: CustomDialogController
+  cancel: () => void = () => {
+  }
+  confirm: () => void = () => {
+  }
+  build() {
+    Column() {
+      Text('允许访问相机？')
+        .fontSize(30)
+        .height(100)
+      Button('点我关闭弹窗')
+        .onClick(() => {
+          if (this.controller != undefined) {
+            this.controller.close()
+          }
+        })
+        .margin(20)
+    }
+  }
+}
+
+@Entry
+@Component
+struct Example3 {
+  @State log:string = 'Log information:';
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample1({
+      cancel: ()=> { this.onCancel() },
+      confirm: ()=> { this.onAccept() }
+    }),
+    cancel: this.existApp,
+    autoCancel: true,
+    alignment: DialogAlignment.Bottom,
+    onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+      console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
+      console.log("dialog onWillDismiss")
+      if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+        dismissDialogAction.dismiss()
+      }
+      if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+        dismissDialogAction.dismiss()
+      }
+    },
+    onDidAppear: () => {
+      this.log += '# onDidAppear'
+      console.info("CustomDialog,is onDidAppear!")
+    },
+    onDidDisappear: () => {
+      this.log += '# onDidDisappear'
+      console.info("CustomDialog,is onDidDisappear!")
+    },
+    onWillAppear: () => {
+      this.log = 'Log information:onWillAppear'
+      console.info("CustomDialog,is onWillAppear!")
+    },
+    onWillDisappear: () => {
+      this.log += '# onWillDisappear'
+      console.info("CustomDialog,is onWillDisappear!")
+    },
+    offset: { dx: 0, dy: -20 },
+    customStyle: false,
+  })
+  onCancel() {
+    console.info('CustomDialog Callback when the first button is clicked')
+  }
+
+  onAccept() {
+    console.info('CustomDialog Callback when the second button is clicked')
+  }
+
+  existApp() {
+    console.info('CustomDialog Click the callback in the blank area')
+  }
+  build() {
+    Column({ space: 5 }) {
+      Button('CustomDialog')
+        .onClick(() => {
+          this.dialogController?.open()
+        }).backgroundColor(0x317aff).height("88px")
+      Text(this.log).fontSize(30).margin({ top: 200 })
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![zh-cn_image_custom_lifecycle](figures/zh-cn_image_custom_lifecycle.gif)

@@ -1,7 +1,22 @@
 # Audio Kit（音频服务）
 
 - ArkTS API<!--audio-arkts-->
-  - [@ohos.multimedia.audio (音频管理)](js-apis-audio.md)
+  - @ohos.multimedia.audio (音频管理)<!--js-apis-audio-->
+    - [模块描述](arkts-apis-audio.md)
+    - [Functions](arkts-apis-audio-f.md)
+    - [Interface (AudioCapturer)](arkts-apis-audio-AudioCapturer.md)
+    - [Interface (AudioManager)](arkts-apis-audio-AudioManager.md)
+    - [Interface (AudioRenderer)](arkts-apis-audio-AudioRenderer.md)
+    - [Interface (AudioRoutingManager)](arkts-apis-audio-AudioRoutingManager.md)
+    - [Interface (AudioSessionManager)](arkts-apis-audio-AudioSessionManager.md)
+    - [Interface (AudioSpatializationManager)](arkts-apis-audio-AudioSpatializationManager.md)
+    - [Interface (AudioStreamManager)](arkts-apis-audio-AudioStreamManager.md)
+    - [Interface (AudioVolumeGroupManager)](arkts-apis-audio-AudioVolumeGroupManager.md)
+    - [Interface (AudioVolumeManager)](arkts-apis-audio-AudioVolumeManager.md)
+    - [Interfaces (其他)](arkts-apis-audio-i.md)
+    - [Enums](arkts-apis-audio-e.md)
+    - [Constants](arkts-apis-audio-c.md)
+    - [Types](arkts-apis-audio-t.md)
   - [@ohos.multimedia.audioHaptic (音振协同)](js-apis-audioHaptic.md)
   <!--Del-->
   - [@ohos.multimedia.audio (音频管理)(系统接口)](js-apis-audio-sys.md)

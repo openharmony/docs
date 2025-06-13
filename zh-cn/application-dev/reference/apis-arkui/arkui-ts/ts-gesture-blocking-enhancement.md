@@ -10,7 +10,7 @@
 
 shouldBuiltInRecognizerParallelWith(callback: ShouldBuiltInRecognizerParallelWithCallback): T
 
-提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件。
+提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件。此接口对应的capi接口为[setInnerGestureParallelTo](../_ark_u_i___native_gesture_a_p_i__1.md#setinnergestureparallelto)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -247,6 +247,16 @@ isFingerCountLimit(): boolean
 | 类型     | 说明        |
 | ------ | --------- |
 | boolean | 预设手势是否会检测触摸屏幕上手指识别数量。当绑定手势事件且会检测触摸屏幕上手指的数量时，返回true。当绑定手势事件且不会检测触摸屏幕上手指的数量时，返回false。 |
+
+### preventBegin<sup>20+</sup>
+
+preventBegin(): void
+
+阻止手势识别器参与手势处理。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## GestureRecognizerState
 
@@ -582,6 +592,46 @@ type GestureRecognizerJudgeBeginCallback = (event: BaseGestureEvent, current: Ge
 | 类型     | 说明        |
 | ------ | --------- |
 | [GestureJudgeResult](ts-gesture-customize-judge.md#gesturejudgeresult11) | 手势是否裁决成功的判定结果。 |
+
+## onTouchTestDone<sup>20+</sup>
+
+onTouchTestDone(callback: TouchTestDoneCallback): T
+
+提供在触摸测试结束后，指定手势识别器是否参与后续处理的能力。
+
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名        | 类型                    | 必填  | 说明                          |
+| ---------- | -------------------------- | ------- | ----------------------------- |
+| callback      | [TouchTestDoneCallback](#touchtestdonecallback20) | 是   |  回调函数，用于指定手势识别器是否参与后续处理。在触摸测试结束后，开始识别用户手势之前，会触发该回调来动态指定手势识别器是否参与手势处理。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
+## TouchTestDoneCallback<sup>20+</sup>
+
+type TouchTestDoneCallback = (event: BaseGestureEvent, recognizers: Array\<GestureRecognizer\>) => void
+
+动态指定手势识别器是否参与手势处理的回调事件类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| event | [BaseGestureEvent](./ts-gesture-customize-judge.md#basegestureevent对象说明) | 是   | 当前基础手势事件信息。 |
+| recognizers | Array\<[GestureRecognizer](#gesturerecognizer)\> | 是   | 触摸测试结束后，所有手势识别器对象。 |
 
 ## 示例
 
@@ -1137,3 +1187,93 @@ struct FatherControlChild {
 }
 ```
 ![example](figures/canceltouch.gif)
+
+ ### 示例5（自定义手势识别器是否参与手势处理）
+
+该示例通过配置onTouchTestDone指定手势识别器不参与后续手势处理，触发回调时，调用preventBegin()阻止手势识别器参与后续处理。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TouchTestDoneExample {
+  @State tagList: string[] = ['Null', 'Tap1', 'Tap2', 'Tap3', 'Tap4'];
+  @State tagId: number = 0;
+  @State textValue: string = '';
+
+  // 多层嵌套场景，为每一层的组件绑定一个Tap手势
+  build() {
+    Column() {
+      Column() {
+        Text('Tap1')
+          .margin(20)
+        Column() {
+          Text('Tap2')
+            .margin(20)
+          Column() {
+            Text('Tap3')
+              .margin(20)
+            Column() {
+              Text('Tap4')
+                .margin(20)
+            }
+            .backgroundColor('#D5D5D5')
+            .width('80%')
+            .height('80%')
+            .gesture(TapGesture().tag('Tap4').onAction(() => {
+              this.textValue = 'Tap4';
+            }))
+          }
+          .backgroundColor('#F7F7F7')
+          .width('80%')
+          .height('80%')
+          .gesture(TapGesture().tag('Tap3').onAction(() => {
+            this.textValue = 'Tap3';
+          }))
+        }
+        .backgroundColor('#707070')
+        .width('80%')
+        .height('80%')
+        .gesture(TapGesture().tag('Tap2').onAction(() => {
+          this.textValue = 'Tap2';
+        }))
+      }
+      .backgroundColor('#D5D5D5')
+      .width('80%')
+      .height('80%')
+      .gesture(TapGesture().tag('Tap1').onAction(() => {
+        this.textValue = 'Tap1';
+      }))
+      .onTouchTestDone((event, recognizers) => {
+        console.info('event is ' + JSON.stringify(event));
+        for (let i = 0; i < recognizers.length; i++) {
+          let recognizer = recognizers[i];
+          console.info('type is ' + JSON.stringify(recognizer.getType()))
+          // 根据tag的值屏蔽不同的手势识别器
+          if (recognizer.getTag() == this.tagList[this.tagId]) {
+            recognizer.preventBegin();
+          }
+        }
+      })
+
+      Text('Current Gesture: ' + this.textValue)
+        .margin(5)
+
+      Button('Click to change preventGesture')
+        .margin(5)
+        .onClick(() => {
+          this.tagId++;
+          this.tagId %= 5;
+        })
+      Text('Current prevent gesture tag: ' + this.tagList[this.tagId])
+        .margin(5)
+
+    }
+    .width('100%')
+    .height('100%')
+
+    // 示例gif中，点击Tap2和Tap1的重合区域，不调用preventBegin时，触发的为Tap2手势；调用preventBegin阻止Tap2时，触发的为Tap1手势
+  }
+}
+```
+![example](figures/touchTestDone.gif)

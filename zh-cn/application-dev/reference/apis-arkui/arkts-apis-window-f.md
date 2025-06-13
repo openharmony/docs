@@ -755,8 +755,9 @@ getGlobalWindowMode(displayId?: number): Promise&lt;number&gt;
 | 1300003 | This window manager service works abnormally. |
 | 1300016 | Parameter error. Possible cause: 1. Invalid parameter range. |
 
+**示例：**
 ```ts
-import { window } from '@ohos.window';
+import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {

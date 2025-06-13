@@ -1,7 +1,7 @@
 # Transferable对象（NativeBinding对象）
 
 
-Transferable对象，也称为NativeBinding对象，是指绑定C++对象的JS对象，主体功能由C++提供，其JS对象壳被分配在虚拟机本地堆（LocalHeap）。跨线程传输时复用同一个C++对象，相比于JS对象的拷贝模式，传输效率高。因此，可共享或转移的NativeBinding对象也被称为Transferable对象。
+Transferable对象，也称为NativeBinding对象，是指绑定C++对象的JS对象，主体功能由C++提供，其JS对象壳被分配在虚拟机本地堆（LocalHeap）。跨线程传输时复用同一个C++对象，相比于JS对象的拷贝模式，传输效率高。因此，可共享或转移的NativeBinding对象也被称为Transferable对象。开发者也可以自定义Transferable对象，详细示例请参考[自定义Native Transferable对象的多线程操作场景](napi-coerce-to-native-binding-object.md)。
 
 
 ## 共享模式

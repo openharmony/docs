@@ -5,6 +5,10 @@
 > **说明：**
 >
 > 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 事件分发流程可参考[多层级手势事件](../../../ui/arkts-gesture-events-multi-level-gesture.md#多层级手势事件)。
+>
+> 如需绑定手势事件可参考[绑定手势方法](./ts-gesture-settings.md)。
 
 ## onTouch
 
@@ -37,8 +41,8 @@ onTouch(event: (event: TouchEvent) => void): T
 | 名称                | 类型                                       | 描述           |
 | ------------------- | ---------------------------------------- | ------------ |
 | type                | [TouchType](ts-appendix-enums.md#touchtype)      | 触摸事件的类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。     |
-| touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部屏幕触点（多指）的信息，每个元素代表一个触点。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
-| changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 发生变化而产生事件的手指信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部屏幕触点（多指）的信息，每个元素代表一个触点。在使用该属性时，需要校验是否为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
+| changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 发生变化而产生事件的手指信息。在使用该属性时，需要校验是否为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | stopPropagation      | () => void | 阻塞事件冒泡。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | preventDefault<sup>12+</sup>      | () => void |  阻止默认事件。<br/> **说明：**&nbsp;该接口仅支持部分组件使用，当前支持组件：Hyperlink，不支持的组件使用时会抛出异常。暂不支持异步调用和提供Modifier接口。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
@@ -118,7 +122,7 @@ struct TouchExample {
     Column() {
       Button('Touch').height(40).width(100)
         .onTouch((event?: TouchEvent) => {
-          if(event){
+          if (event) {
             if (event.type === TouchType.Down) {
               this.eventType = 'Down'
             }
@@ -128,10 +132,15 @@ struct TouchExample {
             if (event.type === TouchType.Move) {
               this.eventType = 'Move'
             }
+            // 1.手指按住屏幕同时点击Home键返回桌面，此时会触发Cancel
+            // 2.折叠屏手机，应用在按住屏幕的情况下折叠手机切换到外屏，此时会触发Cancel
+            if (event.type === TouchType.Cancel) {
+              this.eventType = 'Cancel';
+            }
             this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
-            + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
-            + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
-            + event.target.area.width + '\nheight:' + event.target.area.height + '\ntargetDisplayId:' +
+              + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
+              + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
+              + event.target.area.width + '\nheight:' + event.target.area.height + '\ntargetDisplayId:' +
             event.targetDisplayId + '\npressedTime:' + event.touches[0].pressedTime + '\npressure:' +
             event.touches[0].pressure +
               '\nwidth:' + event.touches[0].width + '\nheight:' + event.touches[0].height
@@ -139,7 +148,7 @@ struct TouchExample {
         })
       Button('Touch').height(50).width(200).margin(20)
         .onTouch((event?: TouchEvent) => {
-          if(event){
+          if (event) {
             if (event.type === TouchType.Down) {
               this.eventType = 'Down'
             }
@@ -149,10 +158,15 @@ struct TouchExample {
             if (event.type === TouchType.Move) {
               this.eventType = 'Move'
             }
+            // 1.手指按住屏幕同时点击Home键返回桌面，此时会触发Cancel
+            // 2.折叠屏手机，应用在按住屏幕的情况下折叠手机切换到外屏，此时会触发Cancel
+            if (event.type === TouchType.Cancel) {
+              this.eventType = 'Cancel';
+            }
             this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
-            + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
-            + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
-            + event.target.area.width + '\nheight:' + event.target.area.height + '\ntargetDisplayId:' +
+              + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
+              + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
+              + event.target.area.width + '\nheight:' + event.target.area.height + '\ntargetDisplayId:' +
             event.targetDisplayId + '\npressedTime:' + event.touches[0].pressedTime + '\npressure:' +
             event.touches[0].pressure +
               '\nwidth:' + event.touches[0].width + '\nheight:' + event.touches[0].height

@@ -664,6 +664,92 @@ try {
 }
 ```
 
+## appControl.setDisposedRules<sup>20+</sup>
+
+setDisposedRules(disposedRuleConfigurations: Array\<DisposedRuleConfiguration\>): void
+
+批量设置指定应用或分身应用的拦截规则。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
+
+**参数：**
+
+| 参数名                     | 类型                                                         | 必填 | 说明                                                         |
+| -------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| disposedRuleConfigurations | Array<[DisposedRuleConfiguration](#disposedruleconfiguration20)> | 是   | 表示批量设置拦截规则的配置，包括待拦截应用的appId、分身应用索引及拦截规则。每次设置拦截规则的数组的最大数量为1000。<br/>**说明：**<br/>1.如果数组中存在appId和appIndex相同的DisposedRuleConfiguration时，后面的DisposedRuleConfiguration会覆盖前面的。<br/>2.如果应用已设置过拦截规则，重新为该应用设置拦截规则，会覆盖之前的。appld和applndex一致则表示同一应用。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 202      | Permission denied. A non-system application is not allowed to call a system API. |
+| 801      | Capability not supported.                                    |
+| 17700005 | The specified app ID is invalid.                             |
+| 17700061 | AppIndex is not in the valid range.                          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { appControl, Want, bundleManager } from '@kit.AbilityKit';
+
+let want: Want = {
+  bundleName: 'com.example.myapplication',
+  moduleName: 'entry',
+  abilityName: 'EntryAbility'
+};
+let elementName: bundleManager.ElementName = {
+  bundleName: 'com.example.myapplication',
+  moduleName: 'entry',
+  abilityName: 'EntryAbility'
+};
+let rule: appControl.DisposedRule = {
+  want: want,
+  componentType: appControl.ComponentType.UI_ABILITY,
+  disposedType: appControl.DisposedType.BLOCK_APPLICATION,
+  controlType: appControl.ControlType.ALLOWED_LIST,
+  elementList: [
+    elementName
+  ],
+  priority: 100
+};
+
+let disposedRuleConfiguration: appControl.DisposedRuleConfiguration = {
+  appId: 'com.example.myapplication_BInGTMPMdc6v55s/UFIJHL5NLREXjOuxm/DsyMhlFmLAZC9/Gk+ruqS9OZr/dvFuaIaQQL1pKolvzK/zYNHvJ/I=',
+  appIndex: 0,
+  disposedRule: rule,
+};
+
+let disposedRuleConfigurations: Array<appControl.DisposedRuleConfiguration> = [];
+disposedRuleConfigurations.push(disposedRuleConfiguration);
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('setDisposedRules', { type: ButtonType.Normal })
+          .onClick(() => {
+            try {
+              appControl.setDisposedRules(disposedRuleConfigurations);
+            } catch (error) {
+              let message = (error as BusinessError).message;
+              console.error('setDisposedRules failed ' + message);
+            }
+          });
+      }
+    }
+  }
+}
+```
+
 ## appControl.setUninstallDisposedRule<sup>15+</sup>
 
 setUninstallDisposedRule(appIdentifier: string, rule: UninstallDisposedRule, appIndex:? number): void
@@ -910,3 +996,17 @@ try {
 | 名称    | 值   | 说明                 |
 | ------- | ---- | -------------------- |
 | EXTENSION | 1    | 服务扩展能力类型。 |
+
+## DisposedRuleConfiguration<sup>20+</sup>
+
+标识批量设置拦截规则的配置。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
+
+ **系统接口：** 此接口为系统接口。
+
+| 名称         | 类型                            | 只读 | 可选 | 说明                                                         |
+| ------------ | ------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| appId        | string                          | 否   | 否   | 要被设置拦截规则应用的appId或appIdentifier。appld和appldentifier可以标识同一个应用，因此针对同一应用如果用appldentifier设置拦截规则，可以覆盖之前采用appld设置的，反之同理。<br/>**说明：**<br/>appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](https://gitee.com/openharmony/docs/blob/0a11b273485103fe78df3910fa607c2359ff5b2c/zh-cn/application-dev/reference/apis-ability-kit/js-apis-appControl-sys.md#获取应用的appid和appidentifier)。<br/>appIdentifier也是应用的唯一标识，是AppGallery Connect创建应用时分配的[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)，为云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。获取方法参见[获取应用的appidentifier](https://gitee.com/openharmony/docs/blob/0a11b273485103fe78df3910fa607c2359ff5b2c/zh-cn/application-dev/reference/apis-ability-kit/js-apis-appControl-sys.md#获取应用的appid和appidentifier)。 |
+| appIndex     | number                          | 否   | 否   | 表示分身应用的索引，默认值为0。<br/> appIndex为0时，表示设置主应用的拦截规则。appIndex大于0时，表示设置指定分身应用的拦截规则。 |
+| disposedRule | [DisposedRule](#disposedrule11) | 否   | 否   | 表示对应用的拦截规则，包括拦截时将拉起能力的类型等。         |

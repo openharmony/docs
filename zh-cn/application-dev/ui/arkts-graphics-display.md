@@ -278,29 +278,37 @@ DrawableDescriptor是ArkUI提供的一种高级图片抽象机制，它通过将
    @State pixelMapDesc: PixelMapDrawableDescriptor | null = null;
    @State layeredDesc: LayeredDrawableDescriptor | null = null;
    @State animatedDesc: AnimatedDrawableDescriptor | null = null;
-   
+
    // 动画配置
    private animationOptions: AnimationOptions = {
-       duration: 1000, // 总时长1秒
-       iterations: -1  // 无限循环
+     duration: 1000, // 总时长1秒
+     iterations: -1  // 无限循环
    };
    
    async aboutToAppear() {
-       const resManager = getContext().resourceManager;
-       // 创建普通DrawableDescriptor
-       this.pixmapDesc = (await resManager.getDrawableDescriptor($r('app.media.app_icon').id)) as DrawableDescriptor;
-       // 创建PixelMapDrawableDescriptor
-       const pixelMap = await this.getPixmapFromMedia($r('app.media.app_icon'));
-       this.pixelMapDesc = new PixelMapDrawableDescriptor(pixelMap);
-       // 创建分层图标
-       const foreground = await this.getDrawableDescriptor($r('app.media.foreground'));
-       const background = await this.getDrawableDescriptor($r('app.media.background'));
-       this.layeredDesc = new LayeredDrawableDescriptor(foreground, background);
-       // 创建动画图片（需加载多张图片）
-       const frame1 = await this.getPixmapFromMedia($r('app.media.startIcon'));
-       const frame2 = await this.getPixmapFromMedia($r('app.media.app_icon'));
-       const frame3 = await this.getPixmapFromMedia($r('app.media.background'));
+     const resManager = this.getUIContext().getHostContext()?.resourceManager;
+     if (!resManager) {
+       return;
+     }
+     // 创建普通DrawableDescriptor
+     let pixmapDescResult = resManager.getDrawableDescriptor($r('app.media.app_icon').id);
+     if (pixmapDescResult) {
+       this.pixmapDesc = pixmapDescResult as DrawableDescriptor;
+     }
+     // 创建PixelMapDrawableDescriptor
+     const pixelMap = await this.getPixmapFromMedia($r('app.media.app_icon'));
+     this.pixelMapDesc = new PixelMapDrawableDescriptor(pixelMap);
+     // 创建分层图标
+     const foreground = await this.getDrawableDescriptor($r('app.media.foreground'));
+     const background = await this.getDrawableDescriptor($r('app.media.background'));
+     this.layeredDesc = new LayeredDrawableDescriptor(foreground, background);
+     // 创建动画图片（需加载多张图片）
+     const frame1 = await this.getPixmapFromMedia($r('app.media.startIcon'));
+     const frame2 = await this.getPixmapFromMedia($r('app.media.app_icon'));
+     const frame3 = await this.getPixmapFromMedia($r('app.media.background'));
+     if (frame1 && frame2 && frame3) {
        this.animatedDesc = new AnimatedDrawableDescriptor([frame1, frame2, frame3], this.animationOptions);
+     }
    }
    ```
 
@@ -310,12 +318,15 @@ DrawableDescriptor是ArkUI提供的一种高级图片抽象机制，它通过将
 
    ```ts
    // 辅助方法：从资源获取PixelMap
-   private async getPixmapFromMedia(resource: Resource): Promise<image.PixelMap> {
-     const unit8Array = await getContext().resourceManager.getMediaContent({
+   private async getPixmapFromMedia(resource: Resource): Promise<image.PixelMap | undefined> {
+     const unit8Array = await this.getUIContext().getHostContext()?.resourceManager.getMediaContent({
        bundleName: resource.bundleName,
        moduleName: resource.moduleName,
        id: resource.id
      });
+     if (!unit8Array) {
+       return undefined;
+     }
      const imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength));
      const pixelMap = await imageSource.createPixelMap({
        desiredPixelFormat: image.PixelMapFormat.RGBA_8888
@@ -325,9 +336,12 @@ DrawableDescriptor是ArkUI提供的一种高级图片抽象机制，它通过将
    }
    
    // 辅助方法：获取DrawableDescriptor
-   private async getDrawableDescriptor(resource: Resource): Promise<DrawableDescriptor> {
-     const resManager = getContext().resourceManager;
-     return (await resManager.getDrawableDescriptor(resource.id)) as DrawableDescriptor;
+   private async getDrawableDescriptor(resource: Resource): Promise<DrawableDescriptor | undefined> {
+     const resManager = this.getUIContext().getHostContext()?.resourceManager;
+     if (!resManager) {
+       return undefined;
+     }
+     return (resManager.getDrawableDescriptor(resource.id)) as DrawableDescriptor;
    }
    ```
 

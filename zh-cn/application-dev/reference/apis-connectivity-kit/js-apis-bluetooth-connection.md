@@ -51,7 +51,7 @@ type ProfileUuids = constant.ProfileUuids
 
 | 类型                  | 说明                  |
 | ------------------- | ------------------- |
-| [constant.ProfileUuids](js-apis-bluetooth-constant.md#profileuuids) | 蓝牙Profile协议的UUID。 |
+| [constant.ProfileUuids](js-apis-bluetooth-constant.md#profileuuids12) | 蓝牙Profile协议的UUID。 |
 
 
 ## MajorClass

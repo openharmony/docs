@@ -91,7 +91,7 @@
 | int32_t [OH_NativeXComponent_AttachNativeRootNode](#oh_nativexcomponent_attachnativerootnode) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | 将通过ArkUI的Native接口创建出来的UI组件挂载到当前XComponent上。  |
 | int32_t [OH_NativeXComponent_DetachNativeRootNode](#oh_nativexcomponent_detachnativerootnode) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | 将ArkUI的Native组件从当前XComponent上卸载.  |
 | int32_t [OH_NativeXComponent_RegisterUIInputEventCallback](#oh_nativexcomponent_registeruiinputeventcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type), [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type) | 为此OH_NativeXComponent实例注册UI输入事件回调，并使能收到UI输入事件时回调此函数。  |
-| int32_t [OH_NativeXComponent_RegisterOnTouchInterceptCallback](#oh_nativexcomponent_registerontouchinterceptcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [HitTestMode](_ark_u_i___native_module.md#hittestmode)(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event)) | 为此OH_NativeXComponent实例注册自定义事件拦截回调，并使能在做触摸测试时回调此函数。  |
+| int32_t [OH_NativeXComponent_RegisterOnTouchInterceptCallback](#oh_nativexcomponent_registerontouchinterceptcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_HitTestMode](_ark_u_i___event_module.md#hittestmode)(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event)) | 为此OH_NativeXComponent实例注册自定义事件拦截回调，并使能在做触摸测试时回调此函数。  |
 | int32_t [OH_NativeXComponent_SetNeedSoftKeyboard](#oh_nativexcomponent_setneedsoftkeyboard) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, bool isNeedSoftKeyboard) | 为此OH_NativeXComponent实例设置是否需要软键盘。  |
 | int32_t [OH_NativeXComponent_RegisterSurfaceShowCallback](#oh_nativexcomponent_registersurfaceshowcallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册Surface显示回调，该回调在应用从后台返回前台后触发。 |
 | int32_t [OH_NativeXComponent_RegisterSurfaceHideCallback](#oh_nativexcomponent_registersurfacehidecallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册Surface隐藏回调，该回调在应用从前台来到后台后触发。 |
@@ -2488,7 +2488,7 @@ int32_t OH_ArkUI_XComponent_SetExpectedFrameRateRange(
 
 > **说明：**
 >
-> 此接口中传入的XComponent组件实例需要由[ArkUI NDK接口](../../ui/ndk-access-the-arkts-page.md)创建或通过[NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md#nativexcomponentparameters)构造。
+> 此接口中传入的XComponent组件实例需要由[ArkUI NDK接口](../../ui/ndk-access-the-arkts-page.md)创建或通过[NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md#nativexcomponentparameters19)构造。
 >
 > 传入参数中的[OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md)对象的[min](#min)成员的值需要小于等于[max](#max)成员的值，同时[expected](#expected)成员的值应大于等于[min](#min)成员的值且小于等于[max](#max)成员的值。
 
@@ -2522,7 +2522,7 @@ int32_t OH_ArkUI_XComponent_RegisterOnFrameCallback(ArkUI_NodeHandle node,
 
 > **说明：**
 >
-> 此接口中传入的XComponent组件实例需要由[ArkUI NDK接口](../../ui/ndk-access-the-arkts-page.md)创建或通过[NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md#nativexcomponentparameters)构造。
+> 此接口中传入的XComponent组件实例需要由[ArkUI NDK接口](../../ui/ndk-access-the-arkts-page.md)创建或通过[NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md#nativexcomponentparameters19)构造。
 
 **返回：**
 
@@ -2552,7 +2552,7 @@ int32_t OH_ArkUI_XComponent_UnregisterOnFrameCallback(ArkUI_NodeHandle node)
 
 > **说明：**
 >
-> 此接口中传入的XComponent组件实例需要由[ArkUI NDK接口](../../ui/ndk-access-the-arkts-page.md)创建或通过[NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md#nativexcomponentparameters)构造。
+> 此接口中传入的XComponent组件实例需要由[ArkUI NDK接口](../../ui/ndk-access-the-arkts-page.md)创建或通过[NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md#nativexcomponentparameters19)构造。
 
 **返回：**
 
@@ -2583,7 +2583,7 @@ int32_t OH_ArkUI_XComponent_SetNeedSoftKeyboard(ArkUI_NodeHandle node, bool need
 
 > **说明：**
 >
-> 此接口中传入的XComponent组件实例需要由[ArkUI NDK接口](../../ui/ndk-access-the-arkts-page.md)创建或通过[NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md#nativexcomponentparameters)构造。
+> 此接口中传入的XComponent组件实例需要由[ArkUI NDK接口](../../ui/ndk-access-the-arkts-page.md)创建或通过[NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md#nativexcomponentparameters19)构造。
 >
 > XComponent组件默认的needSoftKeyboard值为false。
 
@@ -2615,7 +2615,7 @@ ArkUI_AccessibilityProvider* OH_ArkUI_AccessibilityProvider_Create(ArkUI_NodeHan
 
 > **说明：**
 >
-> 此接口中传入的XComponent组件实例需要由[ArkUI NDK接口](../../ui/ndk-access-the-arkts-page.md)创建或通过[NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md#nativexcomponentparameters)构造。
+> 此接口中传入的XComponent组件实例需要由[ArkUI NDK接口](../../ui/ndk-access-the-arkts-page.md)创建或通过[NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md#nativexcomponentparameters19)构造。
 
 **返回：**
 

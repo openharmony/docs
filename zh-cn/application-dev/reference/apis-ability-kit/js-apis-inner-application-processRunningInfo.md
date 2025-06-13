@@ -17,12 +17,12 @@ import appManager from '@ohos.application.appManager';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| pid | number | 是 | 否 | 进程ID。 |
-| uid | number | 是 | 否 | 用户ID。 |
-| processName | string | 是 | 否 | 进程名称。 |
-| bundleNames | Array&lt;string&gt; | 是 | 否 | 进程中所有运行的Bundle名称。 |
+| pid | number | 否 | 否 | 进程ID。 |
+| uid | number | 否 | 否 | 用户ID。 |
+| processName | string | 否 | 否 | 进程名称。 |
+| bundleNames | Array&lt;string&gt; | 否 | 否 | 进程中所有运行的Bundle名称。 |
 
 ## 使用说明
 
@@ -34,7 +34,7 @@ import appManager from '@ohos.application.appManager';
 import { BusinessError } from '@ohos.base';
 
 appManager.getProcessRunningInfos().then((data) => {
-    console.log(`success: ${JSON.stringify(data)}`);
+    console.info(`success: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
     console.error(`failed: ${JSON.stringify(error)}`);
 });
