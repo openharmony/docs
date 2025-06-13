@@ -168,7 +168,7 @@ getInputSurface(callback: AsyncCallback\<string>): void
 
 应当注意，填入的视频数据需要携带时间戳（单位ns）和buffersize。时间戳的起始时间请以系统启动时间为基准。
 
-需在[prepare()](#prepare9-2)事件成功触发后，才能调用getInputSurface()方法。
+需在[prepare()](#prepare9-1)事件成功触发后，才能调用getInputSurface()方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -341,7 +341,7 @@ start(callback: AsyncCallback\<void>): void
 
 异步方式开始视频录制。通过注册回调函数获取返回值。
 
-纯音频录制需在[prepare()](#prepare9-2)事件成功触发后，才能调用start方法。纯视频录制，音视频录制需在[getInputSurface()](#getinputsurface9)事件成功触发后，才能调用start方法。
+纯音频录制需在[prepare()](#prepare9-1)事件成功触发后，才能调用start方法。纯视频录制，音视频录制需在[getInputSurface()](#getinputsurface9)事件成功触发后，才能调用start方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -501,7 +501,7 @@ resume(callback: AsyncCallback\<void>): void
 
 异步方式恢复视频录制。通过注册回调函数获取返回值。
 
-需要在[pause()](#pause9)事件成功触发后，才能调用resume方法。
+需要在[pause()](#pause9-1)事件成功触发后，才能调用resume方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -581,9 +581,9 @@ stop(callback: AsyncCallback\<void>): void
 
 异步方式停止视频录制。通过注册回调函数获取返回值。
 
-需要在[start()](#start9)或[pause()](#pause9)事件成功触发后，才能调用stop方法。
+需要在[start()](#start9)或[pause()](#pause9-1)事件成功触发后，才能调用stop方法。
 
-纯音频录制时，需要重新调用[prepare()](#prepare9-2)接口才能重新录制。纯视频录制，音视频录制时，需要重新调用[prepare()](#prepare9-2)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
+纯音频录制时，需要重新调用[prepare()](#prepare9-1)接口才能重新录制。纯视频录制，音视频录制时，需要重新调用[prepare()](#prepare9-1)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -665,7 +665,7 @@ reset(callback: AsyncCallback\<void>): void
 
 异步方式重置音视频录制。通过注册回调函数获取返回值。
 
-纯音频录制时，需要重新调用[prepare()](#prepare9-2)接口才能重新录制。纯视频录制，音视频录制时，需要重新调用[prepare()](#prepare9-2)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
+纯音频录制时，需要重新调用[prepare()](#prepare9-1)接口才能重新录制。纯视频录制，音视频录制时，需要重新调用[prepare()](#prepare9-1)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -1057,7 +1057,7 @@ getAVRecorderConfig(callback: AsyncCallback\<AVRecorderConfig>): void
 
 异步方式获取实时的配置参数。通过注册回调函数获取返回值。
 
-只能在[prepare()](#prepare9-2)接口调用后调用。
+只能在[prepare()](#prepare9-1)接口调用后调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -1196,7 +1196,7 @@ avRecorder.off('stateChange');
 
 on(type: 'error', callback: ErrorCallback): void
 
-订阅AVRecorder的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVRecorderState](arkts-apis-media-t.md#avrecorderstate9)也切至error状态，用户需要通过[reset()](#reset9-2)或者[release()](#release9-2)退出录制操作。
+订阅AVRecorder的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVRecorderState](arkts-apis-media-t.md#avrecorderstate9)也切至error状态，用户需要通过[reset()](#reset9-1)或者[release()](#release9-1)退出录制操作。
 
 用户只能订阅一个错误事件的回调方法，当用户重复订阅时，以最后一次订阅的回调接口为准。
 
@@ -1322,7 +1322,7 @@ avRecorder.off('audioCapturerChange');
 
 on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset>): void
 
-订阅媒体资源回调事件，当[FileGenerationMode](arkts-apis-media-e.md#filegenerationmode12)枚举设置为系统创建媒体文件时，会在[stop](#stop9-2)操作结束后把[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)对象回调给应用。
+订阅媒体资源回调事件，当[FileGenerationMode](arkts-apis-media-e.md#filegenerationmode12)枚举设置为系统创建媒体文件时，会在[stop](#stop9-1)操作结束后把[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)对象回调给应用。
 
 当用户重复订阅时，以最后一次订阅的回调接口为准。
 
