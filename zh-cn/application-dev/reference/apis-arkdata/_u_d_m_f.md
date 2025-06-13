@@ -3535,11 +3535,13 @@ int OH_UdmfData_GetRecordCount (OH_UdmfData* data)
 
 获取统一数据对象[OH_UdmfData](#oh_udmfdata)中包含的所有记录数量。
 
+**起始版本：** 13
+
 **参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| 表示指向统一数据对象{ |  | 
+| data | 表示指向统一数据对象[OH_UdmfData](#oh_udmfdata)实例的指针。 | 
 
 
 ### OH_UdmfData_GetRecords()
