@@ -175,13 +175,13 @@ try {
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
-| 名称        | 类型   | 可读   | 可写   | 说明      |
+| 名称        | 类型   | 只读   | 可选   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
-| preKeys    | Array\<number>   | 是    | 否 | 前置按键集合，数量范围[0, 4]，前置按键无顺序要求。<br>如组合按键Ctrl+Alt+A中，Ctrl+Alt称为前置按键。 |
-| finalKey             | number  | 是    |  否 | 最终按键，此项必填，最终按键触发上报回调函数。<br>如组合按键Ctrl+Alt+A中，A称为最终按键按键。 |
-| isFinalKeyDown       | boolean | 是    |  否 | 最终按键状态。<br>ture表示按键按下，false表示按键抬起。 |
-| finalKeyDownDuration | number  | 是    |  否 | 最终按键保持按下持续时间，单位：μs。<br>当finalKeyDownDuration为0时，立即触发回调函数。<br>当finalKeyDownDuration大于0时，isFinalKeyDown为true，则最终按键按下超过设置时长后触发回调函数；isFinalKeyDown为false，则最终按键按下到抬起时间小于设置时长时触发回调函数。   |
-| isRepeat<sup>18+</sup> | boolean  | 是      | 否      | 是否上报重复的按键事件。true表示上报，false表示不上报，若不填默认为true。 |
+| preKeys    | Array\<number>   | 否    | 否 | 前置按键集合，数量范围[0, 4]，前置按键无顺序要求。<br>如组合按键Ctrl+Alt+A中，Ctrl+Alt称为前置按键。 |
+| finalKey             | number  | 否    |  否 | 最终按键，此项必填，最终按键触发上报回调函数。<br>如组合按键Ctrl+Alt+A中，A称为最终按键按键。 |
+| isFinalKeyDown       | boolean | 否    |  否 | 最终按键状态。<br>ture表示按键按下，false表示按键抬起。 |
+| finalKeyDownDuration | number  | 否    |  否 | 最终按键保持按下持续时间，单位：μs。<br>当finalKeyDownDuration为0时，立即触发回调函数。<br>当finalKeyDownDuration大于0时，isFinalKeyDown为true，则最终按键按下超过设置时长后触发回调函数；isFinalKeyDown为false，则最终按键按下到抬起时间小于设置时长时触发回调函数。   |
+| isRepeat<sup>18+</sup> | boolean  | 否      | 否      | 是否上报重复的按键事件。true表示上报，false表示不上报，若不填默认为true。 |
 
 ## shieldMode<sup>11+</sup>
 
