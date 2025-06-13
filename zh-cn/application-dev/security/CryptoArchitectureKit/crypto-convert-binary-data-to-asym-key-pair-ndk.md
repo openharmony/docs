@@ -71,7 +71,7 @@ static OH_Crypto_ErrCode doTestDataCovertAsymKey()
 
 对应的算法规格请查看[非对称密钥生成和转换规格：ECC](crypto-asym-key-generation-conversion-spec.md#ecc)。
 
-1. 获取ECC公钥或私钥二进制数据，封装成[Crypto_DataBlob](../../reference/apis-crypto-architecture-kit/capi-crypto-common-h.md#crypto_datablob)。
+1. 获取ECC公钥或私钥二进制数据，封装成[Crypto_DataBlob](../../reference/apis-crypto-architecture-kit/capi-crypto-datablob-h.md)。
 
    公钥和私钥可单独传入，此处示例传入公钥和私钥。
 
