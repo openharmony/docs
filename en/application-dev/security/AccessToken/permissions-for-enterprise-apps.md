@@ -368,3 +368,20 @@ User 1 is a user who supports third-party applications running in singleton mode
 **Supported devices**: PC/2in1
 
 **Valid since**：20
+
+## ohos.permission.SET_NET_EXT_ATTRIBUTE
+
+Allows an application to set network-specific extended attributes.
+
+With this permission, the application can specify whether a network is identified as internal or external.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: PC/2in1
+
+**Valid since**：20
