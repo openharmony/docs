@@ -4,7 +4,9 @@
 
 >  **说明：**
 >
->  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 该组件不建议开发者在动效过程中修改属性数据。
 
 
 ## 子组件
@@ -44,7 +46,7 @@ DatePicker(options?: DatePickerOptions)
 >  **说明：**
 >
 >  Date的使用请参考[TimePickerOptions](ts-basic-components-timepicker.md)。  
->  在DatePicker组件滑动过程中修改DatePickerOptions中的属性（start、end、selected）,会导致这些属性无法生效。
+>  在DatePicker组件滑动过程中修改DatePickerOptions中的属性（start、end、selected、mode），会导致这些属性无法生效。
 
 
 ## DatePickerMode<sup>18+</sup>枚举说明
@@ -342,15 +344,15 @@ onDateChange(callback: Optional\<Callback\<Date>>)
 @Entry
 @Component
 struct DatePickerExample {
-  @State isLunar: boolean = false
-  private selectedDate: Date = new Date('2021-08-08')
+  @State isLunar: boolean = false;
+  private selectedDate: Date = new Date('2021-08-08');
 
   build() {
     Column() {
       Button('切换公历农历')
         .margin({ top: 30, bottom: 30 })
         .onClick(() => {
-          this.isLunar = !this.isLunar
+          this.isLunar = !this.isLunar;
         })
       DatePicker({
         start: new Date('1970-1-1'),
@@ -359,8 +361,8 @@ struct DatePickerExample {
       })
         .lunar(this.isLunar)
         .onDateChange((value: Date) => {
-          this.selectedDate = value
-          console.info('select current date is: ' + value.toString())
+          this.selectedDate = value;
+          console.info('select current date is: ' + value.toString());
         })
 
     }.width('100%')
@@ -379,7 +381,7 @@ struct DatePickerExample {
 @Entry
 @Component
 struct DatePickerExample {
-  private selectedDate: Date = new Date('2021-08-08')
+  private selectedDate: Date = new Date('2021-08-08');
 
   build() {
     Column() {
@@ -392,8 +394,8 @@ struct DatePickerExample {
         .textStyle({ color: '#ff182431', font: { size: '18fp', weight: FontWeight.Normal } })
         .selectedTextStyle({ color: '#ff0000FF', font: { size: '26fp', weight: FontWeight.Regular, family: "HarmonyOS Sans", style: FontStyle.Normal } })
         .onDateChange((value: Date) => {
-          this.selectedDate = value
-          console.info('select current date is: ' + value.toString())
+          this.selectedDate = value;
+          console.info('select current date is: ' + value.toString());
         })
 
     }.width('100%')
@@ -412,13 +414,13 @@ struct DatePickerExample {
 @Entry
 @Component
 struct DatePickerExample {
-  @State isLunar: boolean = false
-  private selectedDate: Date = new Date('2025-01-15')
+  @State isLunar: boolean = false;
+  private selectedDate: Date = new Date('2025-01-15');
   @State datePickerModeList: (DatePickerMode)[] = [
     DatePickerMode.DATE,
     DatePickerMode.YEAR_AND_MONTH,
     DatePickerMode.MONTH_AND_DAY,
-  ]
+  ];
   @State datePickerModeIndex: number = 0;
 
   build() {
@@ -426,7 +428,7 @@ struct DatePickerExample {
       Button('切换公历农历')
         .margin({ top: 30, bottom: 30 })
         .onClick(() => {
-          this.isLunar = !this.isLunar
+          this.isLunar = !this.isLunar;
         })
       DatePicker({
         start: new Date('1970-1-1'),
@@ -436,15 +438,15 @@ struct DatePickerExample {
       })
         .lunar(this.isLunar)
         .onDateChange((value: Date) => {
-          this.selectedDate = value
-          console.info('select current date is: ' + value.toString())
+          this.selectedDate = value;
+          console.info('select current date is: ' + value.toString());
         })
 
       Button('mode :' + this.datePickerModeIndex).margin({ top: 20 })
         .onClick(() => {
-          this.datePickerModeIndex++
+          this.datePickerModeIndex++;
           if(this.datePickerModeIndex >= this.datePickerModeList.length){
-            this.datePickerModeIndex = 0
+            this.datePickerModeIndex = 0;
           }
         })
     }.width('100%')

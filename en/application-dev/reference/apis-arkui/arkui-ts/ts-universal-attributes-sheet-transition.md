@@ -22,7 +22,7 @@ Binds a sheet to the component, which is displayed when the component is touched
 
 | Name | Type                                       | Mandatory| Description                                                        |
 | ------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isShow  | Optional\<boolean\>                          | Yes  | Whether to display the sheet.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).<br>Since API version 18, this parameter supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).|
+| isShow  | Optional\<boolean\>                          | Yes  | Whether to display the sheet.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).<br>Since API version 18, this parameter supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).|
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Content of the sheet.                                        |
 | options | [SheetOptions](#sheetoptions)               | No  | Optional attributes of the sheet.                                  |
 
@@ -30,7 +30,7 @@ Binds a sheet to the component, which is displayed when the component is touched
 >
 > 1. When no two-way binding is set up for the **isShow** parameter, closing the sheet by dragging does not change the parameter value.
 >
-> 2. To synchronize the value of the **isShow** parameter with the sheet UI state, set up a two-way binding for **isShow** through [$$](../../../quick-start/arkts-two-way-sync.md). Since API version 18, this parameter supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).
+> 2. To synchronize the value of the **isShow** parameter with the sheet UI state, set up a two-way binding for **isShow** through [$$](../../../ui/state-management/arkts-two-way-sync.md). Since API version 18, this parameter supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).
 >
 > 3. In scenarios where a sheet with a single detent is dragged upwards or a sheet with multiple detents is shifted to another detent by swiping up, the display area is updated after the drag ends or the shift is completed.
 >

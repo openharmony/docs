@@ -12,6 +12,8 @@
 
 操作菜单 (showActionMenu)、对话框 (showDialog)、列表选择弹出框 (ActionSheet)、警告弹出框 (AlertDialog)可以设置isModal为false变成非模态弹窗。
 
+操作菜单 (showActionMenu)、对话框 (showDialog)、列表选择弹出框 (ActionSheet)和警告弹出框 (AlertDialog)不支持设置内容区的字体样式，如字体颜色、大小换行等操作，如需自定义样式，建议使用[不依赖UI组件的全局自定义弹出框](arkts-uicontext-custom-dialog.md)或者[基础自定义弹出框](./arkts-common-components-custom-dialog.md)。
+
 ## 操作菜单 (showActionMenu)
 
 操作菜单通过UIContext中的getPromptAction方法获取到PromptAction对象，再通过该对象调用[showActionMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#showactionmenu11)接口实现，支持在回调或开发者自定义类中使用。
@@ -94,8 +96,8 @@ try {
 
 ### 生命周期
 
-弹窗提供了生命周期函数用于通知用户该弹窗的生命周期。
-生命周期的触发顺序可看各组件API参考。
+弹窗提供了生命周期函数，用于通知用户该弹窗的生命周期。
+生命周期的触发顺序可参考各组件API。
 
 | 名称            |类型| 说明                       |
 | ----------------- | ------ | ---------------------------- |
@@ -108,7 +110,7 @@ try {
 
 日历选择器弹窗提供日历视图，包含年、月和星期信息，通过[CalendarPickerDialog](../reference/apis-arkui/arkui-ts/ts-methods-calendarpicker-dialog.md)接口实现。开发者可调用show函数，定义并弹出日历选择器弹窗。
 
-日历选择器弹窗的弹出依赖UI的执行上下文，不可在UI上下文不明确的地方使用，具体约束参见[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)说明。
+日历选择器弹窗的弹出依赖UI的执行上下文，不可在[UI上下文不明确](./arkts-global-interface.md)的地方使用，具体约束参见[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)说明。
 
 通过配置 acceptButtonStyle、cancelButtonStyle可以实现自定义按钮样式。
 
@@ -117,7 +119,7 @@ try {
 @Entry
 @Component
 struct CalendarPickerDialogExample {
-  private selectedDate: Date = new Date('2024-04-23')
+  private selectedDate: Date = new Date('2024-04-23');
 
   build() {
     Column() {
@@ -141,7 +143,7 @@ struct CalendarPickerDialogExample {
             },
             onAccept: (date: Date)=>{
               // 当弹出框再次弹出时显示选中的是上一次确定的日期
-              this.selectedDate = date
+              this.selectedDate = date;
             }
           })
         })
@@ -158,7 +160,7 @@ struct CalendarPickerDialogExample {
 
 日期滑动选择器弹窗通过UIContext中的[showDatePickerDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showdatepickerdialog)接口实现。
 
-弹窗中配置lunarSwitch、showTime为true时，展示切换农历的开关以及时间，当checkbox被选中时，显示农历。当按下确定按钮时，弹窗会通过onDateAccept返回目前所选中的日期。如需弹窗再次弹出时显示选中的是上一次确定的日期，就要在回调中重新给selectTime进行赋值。
+弹窗中配置lunarSwitch、showTime为true时，会展示切换农历的开关和时间，当checkbox被选中时，会显示农历。当按下确定按钮时，弹窗会通过onDateAccept返回目前所选中的日期。如需弹窗再次弹出时显示选中的是上一次确定的日期，就要在回调中重新给selectTime进行赋值。
 
 ```ts
 @Entry
@@ -178,10 +180,10 @@ struct DatePickerDialogExample {
             lunarSwitch: true,
             showTime: true,
             onDateAccept: (value: Date) => {
-              this.selectTime = value
-              console.info("DatePickerDialog:onAccept()" + JSON.stringify(value))
+              this.selectTime = value;
+              console.info("DatePickerDialog:onAccept()" + JSON.stringify(value));
             },
-          })
+          });
         })
     }.width('100%').margin({ top: 5 })
   }
@@ -268,7 +270,7 @@ struct TimePickerDialogExample {
               backgroundColor: '#f7f7f7',
               borderRadius: 10
             }
-          })
+          });
         })
     }.width('100%').margin({ top: 5 })
   }
@@ -284,7 +286,7 @@ struct TimePickerDialogExample {
 
 文本滑动选择器弹窗通过UIContext中的[showTextPickerDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showtextpickerdialog)接口实现。
 
-该示例通过设置range的参数类型为TextCascadePickerRangeContent[]类型实现3列文本选择器弹窗。当按下确定按钮时，弹窗会通过onAccept返回目前所选中文本和索引值。如需弹窗再次弹出时显示选中的是上一次确定的文本，就要在回调中重新给select进行赋值。
+该示例通过设置range的参数类型为TextCascadePickerRangeContent[]，实现3列文本选择器弹窗。当按下确定按钮时，弹窗会通过onAccept返回目前所选中文本和索引值。如需弹窗再次弹出时显示选中的是上一次确定的文本，就要在回调中重新给select进行赋值。
 
 ```ts
 @Entry
@@ -306,7 +308,7 @@ struct TextPickerDialogExample {
       children: [{ text: '哈尔滨市', children: [{ text: '道里区' }, { text: '道外区' }, { text: '南岗区' }] },
         { text: '牡丹江市', children: [{ text: '东安区' }, { text: '西安区' }, { text: '爱民区' }] }]
     }
-  ]
+  ];
   private select : number  = 0;
   build() {
     Column() {
@@ -319,7 +321,7 @@ struct TextPickerDialogExample {
             onAccept: (value: TextPickerResult) => {
               this.select = value.index as number
             }
-          })
+          });
         })
     }.width('100%').margin({ top: 5 })
   }
@@ -334,7 +336,7 @@ struct TextPickerDialogExample {
 
 列表选择器弹窗通过UIContext中的[showActionSheet](../reference/apis-arkui/js-apis-arkui-UIContext.md#showactionsheet)接口实现。
 
-该示例通过配置width、height、transition等接口定义了弹窗的样式以及弹出动效。
+该示例通过配置width、height、transition等接口，定义了弹窗的样式以及弹出动效。
 
 ```ts
 @Entry
@@ -364,7 +366,7 @@ struct showActionSheetExample {
             confirm: {
               value: 'Confirm button',
               action: () => {
-                console.info('Get Alert Dialog handled')
+                console.info('Get Alert Dialog handled');
               }
             },
             alignment: DialogAlignment.Center,
@@ -382,11 +384,11 @@ struct showActionSheetExample {
               {
                 title: 'pears',
                 action: () => {
-                  console.log('pears')
+                  console.log('pears');
                 }
               }
             ]
-          })
+          });
         })
     }.width('100%').margin({ top: 5 })
   }
@@ -397,14 +399,14 @@ struct showActionSheetExample {
 
 ## 警告弹窗 (AlertDialog)
 
-需要向用户提问或得到用户的许可时，可使用警告弹窗。
+向用户提问或得到用户的许可时，使用警告弹窗。
 
 * 警告弹窗用来提示重要信息，但会中断当前任务，尽量提供必要的信息和有用的操作。
 * 避免仅使用警告弹窗提供信息，用户不喜欢被信息丰富但不可操作的警告打断。
 
 警告弹窗通过UIContext中的[showAlertDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showalertdialog)接口实现。
 
-该示例通过配置width、height、transition等接口定义了多个按钮弹窗的样式以及弹出动效。
+该示例通过配置width、height、transition等接口，定义了多个按钮弹窗的样式以及弹出动效。
 
 ```ts
 @Entry
@@ -432,7 +434,7 @@ struct showAlertDialogExample {
               buttons: [{
                 value: 'cancel',
                 action: () => {
-                  console.info('Callback when the first button is clicked')
+                  console.info('Callback when the first button is clicked');
                 }
               },
                 {
@@ -441,11 +443,11 @@ struct showAlertDialogExample {
                   style: DialogButtonStyle.HIGHLIGHT,
                   value: 'ok',
                   action: () => {
-                    console.info('Callback when the second button is clicked')
+                    console.info('Callback when the second button is clicked');
                   }
                 }],
             }
-          )
+          );
         })
     }.width('100%').margin({ top: 5 })
   }

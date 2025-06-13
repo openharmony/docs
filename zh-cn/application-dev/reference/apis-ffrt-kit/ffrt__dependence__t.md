@@ -18,8 +18,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ffrt_dependence_type_t](_f_f_r_t.md#ffrt_dependence_type_t) [type](#type) | 依赖类型  | 
-| const void \* [ptr](#ptr) | 依赖数据地址  | 
+| [ffrt_dependence_type_t](_f_f_r_t.md#ffrt_dependence_type_t) [type](#type) | 依赖类型。  | 
+| const void \* [ptr](#ptr) | 依赖数据地址。  | 
 
 
 ## 结构体成员变量说明
@@ -31,7 +31,7 @@
 const void* ffrt_dependence_t::ptr
 ```
 **描述**
-依赖数据地址
+依赖数据地址。
 
 
 ### type
@@ -40,4 +40,4 @@ const void* ffrt_dependence_t::ptr
 ffrt_dependence_type_t ffrt_dependence_t::type
 ```
 **描述**
-依赖类型
+依赖类型。

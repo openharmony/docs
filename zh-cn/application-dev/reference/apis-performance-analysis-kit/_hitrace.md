@@ -7,7 +7,9 @@ hiTraceMeter为开发者提供系统性能打点接口。
 
 开发者通过在自己的业务逻辑中的关键代码位置调用HiTraceMeter系统跟踪提供的API接口，能够有效进行关键执行流程耗时度量和问题定位。
 
-hitraceChain为开发者提供跨线程、跨进程的分布式跟踪能力。 HiTraceChain支持在业务执行流程中，生成和传递唯一跟踪标识，在业务流程中输出的各类调试信息中（包括应用事件、系统事件、日志等）携带该跟踪标识。 在调试、问题定位过程中，开发人员可以通过该唯一跟踪标识将本次业务流程端到端的各类信息快速关联起来。
+hitraceChain为开发者提供跨线程、跨进程的分布式跟踪能力。
+
+HiTraceChain支持在业务执行流程中，生成和传递唯一跟踪标识，在业务流程中输出的各类调试信息中（包括应用事件、系统事件、日志等）携带该跟踪标识。 在调试、问题定位过程中，开发人员可以通过该唯一跟踪标识将本次业务流程端到端的各类信息快速关联起来。
 
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
@@ -39,7 +41,7 @@ hitraceChain为开发者提供跨线程、跨进程的分布式跟踪能力。 H
 | typedef enum [HiTrace_Version](#hitrace_version) [HiTrace_Version](#hitrace_version) | HiTrace版本号。  | 
 | typedef enum [HiTrace_Flag](#hitrace_flag) [HiTrace_Flag](#hitrace_flag) | HiTrace标志位。  | 
 | typedef enum [HiTrace_Tracepoint_Type](#hitrace_tracepoint_type) [HiTrace_Tracepoint_Type](#hitrace_tracepoint_type) | HiTrace打点类型。  | 
-| typedef enum [HiTrace_Communication_Mode](#hitrace_communication_mode) [HiTrace_Communication_Mode](#hitrace_communication_mode) | HiTrace通信模式枚举。  | 
+| typedef enum [HiTrace_Communication_Mode](#hitrace_communication_mode) [HiTrace_Communication_Mode](#hitrace_communication_mode) | HiTrace通信模式枚举。  |
 | typedef struct [HiTraceId](_hi_trace_id.md) [HiTraceId](_hi_trace_id.md) | 系统跟踪Id。 | 
 
 
@@ -86,25 +88,13 @@ hitraceChain为开发者提供跨线程、跨进程的分布式跟踪能力。 H
 | void [OH_HiTrace_CountTrace](#oh_hitrace_counttrace) (const char \*name, int64_t count) | 用于跟踪给定整数变量名和整数值。  | 
 
 
-### 变量
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| uint64_t [HiTraceId::valid](#valid): 1 | HiTraceId是否有效。  | 
-| uint64_t [HiTraceId::ver](#ver): 3 | HiTraceId的版本号。  | 
-| uint64_t [HiTraceId::chainId](#chainid): 60 | HiTraceId的链Id。  | 
-| uint64_t [HiTraceId::flags](#flags): 12 | HiTraceId的标志位。  | 
-| uint64_t [HiTraceId::spanId](#spanid): 26 | HiTraceId的当前跨度号。  | 
-| uint64_t [HiTraceId::parentSpanId](#parentspanid): 26 | HiTraceId的父跨度号。  | 
-
-
 ## 类型定义说明
 
 
 ### HiTrace_Communication_Mode
 
 ```
-typedef enum HiTrace_Communication_Mode HiTrace_Communication_Mode
+typedef enum HiTrace_Communication_ModeHiTrace_Communication_Mode
 ```
 **描述**
 HiTrace通信模式枚举。
@@ -248,7 +238,7 @@ HiTrace版本号。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| HITRACE_VER_1 | 版本1<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_VER_1 | 版本1。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
 
 
 ### HiTraceId_Valid
@@ -286,7 +276,7 @@ HiTraceId OH_HiTrace_BeginChain (const char * name, int flags )
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -323,14 +313,17 @@ void OH_HiTrace_CountTrace (const char * name, int64_t count )
 
 多次执行该接口可以跟踪给定整数变量在不同时刻的数值变化。
 
+
+**系统能力：** SystemCapability.HiviewDFX.HiTrace
+
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | name | 整数变量跟踪的名字，不必与真实变量名相同。  | 
-| count | 整数数值，一般可以传入整数变量。 | 
+| count | 整数值。 | 
 
 
 ### OH_HiTrace_CreateSpan()
@@ -366,7 +359,7 @@ void OH_HiTrace_EnableFlag (const HiTraceId * id, HiTrace_Flag flag )
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -399,11 +392,14 @@ void OH_HiTrace_FinishAsyncTrace (const char * name, int32_t taskId )
 
 在异步操作完成后如回调函数中调用，进行结束打点。
 
-和OH_HiTrace_StartAsyncTrace配对使用，参数name和taskId必须与异步跟踪的开始打点接口OH_HiTrace_StartAsyncTrace的对应参数值一致。
+和OH_HiTrace_StartAsyncTrace配对使用，参数name和taskId必须与异步跟踪的开始打点接口的对应参数值保持一致。
+
+
+**系统能力：** SystemCapability.HiviewDFX.HiTrace
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -414,12 +410,15 @@ void OH_HiTrace_FinishAsyncTrace (const char * name, int32_t taskId )
 ### OH_HiTrace_FinishTrace()
 
 ```
-void OH_HiTrace_FinishTrace (void )
+void OH_HiTrace_FinishTrace(void)
 ```
 **描述**
 标记一个同步跟踪耗时任务的结束。
 
-必须和OH_HiTrace_StartTrace配对使用。跟踪数据解析时，和其前执行流程中最近的OH_HiTrace_StartTrace进行匹配。
+必须和OH_HiTrace_StartTrace配对使用。跟踪解析时，和其前执行流程中最近的OH_HiTrace_StartTrace进行匹配。
+
+
+**系统能力：** SystemCapability.HiviewDFX.HiTrace
 
 **起始版本：** 10
 
@@ -436,7 +435,7 @@ uint64_t OH_HiTrace_GetChainId (const HiTraceId * id)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -459,7 +458,7 @@ int OH_HiTrace_GetFlags (const HiTraceId * id)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -501,7 +500,7 @@ uint64_t OH_HiTrace_GetParentSpanId (const HiTraceId * id)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -524,7 +523,7 @@ uint64_t OH_HiTrace_GetSpanId (const HiTraceId * id)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -547,7 +546,7 @@ void OH_HiTrace_IdFromBytes (HiTraceId * id, const uint8_t * pIdArray, int len )
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -568,7 +567,7 @@ int OH_HiTrace_IdToBytes (const HiTraceId * id, uint8_t * pIdArray, int len )
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -593,7 +592,7 @@ void OH_HiTrace_InitId (HiTraceId * id)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -614,7 +613,7 @@ HiTraceId结构体的某标志是否置位。
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -640,7 +639,7 @@ HiTraceId结构体是否有效。
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -663,7 +662,7 @@ void OH_HiTrace_SetChainId (HiTraceId * id, uint64_t chainId )
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -683,7 +682,7 @@ void OH_HiTrace_SetFlags (HiTraceId * id, int flags )
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -705,7 +704,7 @@ void OH_HiTrace_SetId (const HiTraceId * id)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -724,7 +723,7 @@ void OH_HiTrace_SetParentSpanId (HiTraceId * id, uint64_t parentSpanId )
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -744,7 +743,7 @@ void OH_HiTrace_SetSpanId (HiTraceId * id, uint64_t spanId )
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -760,17 +759,20 @@ void OH_HiTrace_StartAsyncTrace (const char * name, int32_t taskId )
 **描述**
 标记一个异步跟踪耗时任务的开始。
 
-用于在异步操作前调用进行开始打点，异步跟踪开始和结束数据由于不是顺序发生的，所以解析时需要通过一个唯一的taskId进行识别，这个taskId作为异步接口的参数传入。
+用于在异步操作前调用进行开始打点，异步跟踪开始和结束数据由于不是顺序发生的，所以解析时需要通过一个唯一的taskId进行识别。
 
-和OH_HiTrace_FinishAsyncTrace配对使用，参数name和taskId相同的这两个接口调用匹配成一个异步跟踪耗时任务。
+必须和OH_HiTrace_FinishAsyncTrace配对使用，参数name和taskId相同的开始与结束打点相匹配，构成一个异步跟踪耗时任务。
 
-如果有多个相同name的任务需要跟踪或者对同一个任务跟踪多次，并且任务同时被执行，则每次调用startTrace的taskId不相同。
+如果有多个相同name的任务需要跟踪或者对同一个任务跟踪多次，并且任务同时被执行，则每次调用的taskId不相同。
 
 如果具有相同name的任务是串行执行的，则taskId可以相同。
 
+
+**系统能力：** SystemCapability.HiviewDFX.HiTrace
+
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -781,16 +783,21 @@ void OH_HiTrace_StartAsyncTrace (const char * name, int32_t taskId )
 ### OH_HiTrace_StartTrace()
 
 ```
-void OH_HiTrace_StartTrace (const char * name)
+void OH_HiTrace_StartTrace(const char *name)
 ```
 **描述**
 标记一个同步跟踪耗时任务的开始。
 
-同步跟踪打点接口OH_HiTrace_StartTrace和OH_HiTrace_FinishTrace必须配对使用。 OH_HiTrace_StartTrace和OH_HiTrace_FinishTrace函数对可以以嵌套模式使用，跟踪数据解析时使用栈式数据结构进行匹配。
+同步跟踪打点接口OH_HiTrace_StartTrace和OH_HiTrace_FinishTrace必须配对使用。
+
+OH_HiTrace_StartTrace和OH_HiTrace_FinishTrace函数对可以嵌套使用，跟踪解析时使用栈式数据结构进行匹配。
+
+
+**系统能力：** SystemCapability.HiviewDFX.HiTrace
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -811,7 +818,7 @@ void OH_HiTrace_Tracepoint (HiTrace_Communication_Mode mode, HiTrace_Tracepoint_
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -819,60 +826,3 @@ void OH_HiTrace_Tracepoint (HiTrace_Communication_Mode mode, HiTrace_Tracepoint_
 | type | 跟踪信息类型，见[HiTrace_Tracepoint_Type](#hitrace_tracepoint_type)。  | 
 | id | 需要打印的跟踪ID，见[HiTraceId](_hi_trace_id.md)。  | 
 | fmt | 需要打印的自定义信息。 | 
-
-
-## 变量说明
-
-
-### chainId
-
-```
-uint64_t HiTraceId::chainId
-```
-**描述**
-HiTraceId的链Id。
-
-
-### flags
-
-```
-uint64_t HiTraceId::flags
-```
-**描述**
-HiTraceId的标志位。
-
-
-### parentSpanId
-
-```
-uint64_t HiTraceId::parentSpanId
-```
-**描述**
-HiTraceId的父跨度号。
-
-
-### spanId
-
-```
-uint64_t HiTraceId::spanId
-```
-**描述**
-HiTraceId的当前跨度号。
-
-
-### valid
-
-```
-uint64_t HiTraceId::valid
-```
-**描述**
-HiTraceId是否有效。
-
-
-### ver
-
-```
-uint64_t HiTraceId::ver
-```
-**描述**
-HiTraceId的版本号。

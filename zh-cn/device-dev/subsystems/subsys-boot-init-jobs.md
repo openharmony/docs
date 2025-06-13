@@ -82,7 +82,7 @@ job就是命令集合，jobs管理就是对要执行的一组命令集合进行�
    | mount_fstab | mount_fstab fstab.test<br>如：mount_fstab /vendor/etc/fstab.test| 按照fstab挂载分区的命令。<br>系统类型：标准系统 |
    | umount_fstab | umount_fstab  fstab.test<br>如：umount_fstab  /vendor/etc/fstab.test | 按照fstab卸载分区的命令。<br>系统类型：标准系统 |
    | restorecon | restorecon file or dir<br>如：restorecon /file | 重新加载selinux 的context。<br>系统类型：标准系统 |
-   | stopAllServices | stopAllServices [bool]<br>如：stopAllServices false 或 stopAllServices | 停止所有服务, 最长响应时间默认10毫秒。<br>系统类型：标准系统 |
+   | stopAllServices | stopAllServices [bool]<br>如：stopAllServices false 或 stopAllServices | 停止所有服务，最长响应时间默认10毫秒。<br>系统类型：标准系统 |
    | umount |umount path<br>如：umount /vendor | 卸载已经挂载的硬件设备 。<br>系统类型：标准系统 |
    | sync | 如：sync&nbsp; | 同步写入数据到磁盘。sync后有且仅有一个空格。<br>系统类型：标准系统 |
    | timer_start | timer_start serviceName<br>如：timer_start console | 启动服务计时器。<br>系统类型：标准系统 |

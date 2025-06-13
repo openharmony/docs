@@ -1,8 +1,8 @@
-# Using hiTraceChain (C/C++)
+# Using HiTraceChain (C/C++)
 
 ## Overview
 
-hiTraceChain is a lightweight implementation of the cloud-based distributed call chain tracing on the device side. It allows the calls made in a service process to be traced, helping locating issues across threads, processes, and devices. With hiTraceChain, a unique ID is generated for a service process, passed throughout the service process, and associated with various output information (including application events, system time, and logs). During debugging and fault locating, you can use this unique ID to quickly correlate various information related to the service process. hiTraceChain provides APIs to implement call chain tracing throughout a service process. This can help you quickly obtain the run log for the call chain of a service process and locate faults across devices, processes, and threads.
+HiTraceChain is a lightweight implementation of the cloud-based distributed call chain tracing on the device side. It allows the calls made in a service process to be traced, helping locating issues across threads, processes, and devices. With hiTraceChain, a unique ID is generated for a service process, passed throughout the service process, and associated with various output information (including application events, system time, and logs). During debugging and fault locating, you can use this unique ID to quickly correlate various information related to the service process. hiTraceChain provides APIs to implement call chain tracing throughout a service process. This can help you quickly obtain the run log for the call chain of a service process and locate faults across devices, processes, and threads.
 
 ## Available APIs
 
@@ -35,16 +35,15 @@ The APIs for distributed call chain tracing are provided by the **hiTraceChain**
 
 ## Example
 
-1. Create a native C++ application in DevEco Studio. The project created by default contains the **index.ets** file, and a **hello.cpp** or **napi_init.cpp** file is generated in the **entry\src\main\cpp** directory. In this example, the generated file is **hello.cpp**.
-    The code of **index.ets** is as follows. The function **testNapi.add()** defined in **hello.cpp** is called in **onClick()**.
+1. Create a native C++ application in DevEco Studio. The project created by default contains the **index.ets** file, and a **hello.cpp** or **napi_init.cpp** file is generated in the **entry\src\main\cpp** directory. In this example, the generated file is **hello.cpp**. The code of **index.ets** is as follows. The function **testNapi.add()** defined in **hello.cpp** is called in **onClick()**.
     ```
     import hilog from '@ohos.hilog';
-    import testNapi from 'libentry.so'
+    import testNapi from 'libentry.so';
 
     @Entry
     @Component
     struct Index {
-        @State message: string = 'Hello World'
+        @State message: string = 'Hello World';
 
         build() {
             Row() {
@@ -66,19 +65,19 @@ The APIs for distributed call chain tracing are provided by the **hiTraceChain**
 
     ```
    // CMakeLists.txt
-   # Minimum version of CMake.
+   #the minimum version of CMake.
    cmake_minimum_required(VERSION 3.4.1)
    project(MyApplication)
-   
+
    set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
-   
+
    include_directories(${NATIVERENDER_ROOT_PATH}
                        ${NATIVERENDER_ROOT_PATH}/include)
    add_library(entry SHARED hello.cpp)
    target_link_libraries(entry PUBLIC libace_napi.z.so libhitrace_ndk.z.so)
    ```
 
-3. Include the hiTrace header file in the **hello.cpp** file. 
+3. Include the hiTrace header file in the **hello.cpp** file.
 
     ```c++
     #include "hitrace/trace.h"
@@ -91,7 +90,7 @@ The APIs for distributed call chain tracing are provided by the **hiTraceChain**
     #include "hitrace/trace.h"
     static napi_value Add(napi_env env, napi_callback_info info)
     {
-        // Start distributed tracing. 
+        // Start distributed tracing.
         OH_HiTrace_BeginChain("hitraceTest", HITRACE_FLAG_DEFAULT);
         // Stop distributed tracing. (This is for reference only. Set the start and stop points to match your case.)
         OH_HiTrace_EndChain();

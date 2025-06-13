@@ -44,7 +44,7 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
 
 1. 调用OH_FileUri_GetUriFromPath接口，在接口中malloc的内存需要在使用完后释放，因此需要free对应的内存。示例代码如下所示：
 
-   ```c
+    ```c
     #include <cstring>
 
     void OH_FileUri_GetUriFromPathExample() {
@@ -59,11 +59,11 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
             free(uriResult);
         }
     }    
-   ```
+    ```
 
 2. 调用OH_FileUri_GetPathFromUri通过URi转成对应的path，在接口中malloc的内存需要在使用完后释放，因此需要free对应的内存。示例代码如下所示：
 
-   ```c
+    ```c
     #include <cstring>
 
     void OH_FileUri_GetPathFromUriExample() {
@@ -78,11 +78,11 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
             free(pathResult);
         }
     }
-   ```
+    ```
 
 3. 调用OH_FileUri_GetFullDirectoryUri获取uri所在路径的uri，在接口中malloc的内存需要在使用完后释放，因此需要free对应的内存。示例代码如下所示：
 
-   ```c
+    ```c
     #include <cstring>
     
     void OH_FileUri_GetFullDirectoryUriExample() {
@@ -97,7 +97,7 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
             free(uriResult);
         }
     }
-   ```
+    ```
 
 4. 可以调用OH_FileUri_IsValidUri接口进行uri格式验证。 示例代码如下所示：
 
@@ -111,10 +111,10 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
         printf("The URI is valid? falgs=%d", falgs);
     }
    ```
-   
+
 5. 调用OH_FileUri_GetFileName获取uri中的文件名称，在接口中malloc的内存需要在使用完后释放，因此需要free对应的内存。示例代码如下所示：
 
-   ```c
+    ```c
     #include <cstring>
     
     void OH_FileUri_GetFileNameExample() {
@@ -129,5 +129,4 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
             free(uriResult);
         }
     }
-   ```
-
+    ```

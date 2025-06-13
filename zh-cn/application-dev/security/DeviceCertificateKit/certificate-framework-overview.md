@@ -13,7 +13,7 @@
 
 在开发具体的功能前，开发者需要先了解证书领域的一些基本概念。包括但不限于：
 
-数字证书、数字证书标准X.509（本指导中的"X509"均代指的是X.509）、证书链、TBS（To Be Signed）、CRL（Certificate Revoked List）。
+数字证书、数字证书标准X.509（本指导中的“X509”均代指X.509）、证书链、TBS（To Be Signed）、CRL（Certificate Revoked List）。
 
 ## 证书规格
 

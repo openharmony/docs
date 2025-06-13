@@ -1101,7 +1101,7 @@ download(table: string, gid: string, prefix: string, assets: Array&lt;CloudAsset
 
 | 类型                                                         | 说明                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------- |
-| Promise&lt;Array&lt;[Result](resultt)&lt;[CloudAsset](#cloudasset)&gt;&gt;&gt; | Promise对象，返回资产下载结果，包含资产ID和资产哈希值。 |
+| Promise&lt;Array&lt;[Result](#resultt)&lt;[CloudAsset](#cloudasset)&gt;&gt;&gt; | Promise对象，返回资产下载结果，包含资产ID和资产哈希值。 |
 
 **示例：**
 

@@ -1,7 +1,6 @@
 # @ohos.systemParameterEnhance (系统参数)(系统接口)
 
-系统参数（SystemParameter）是为各系统服务提供的简单易用的键值对访问接口，各个系统服务可以定义系统参数来描述该服务的状态信息，或者通过系统参数来改变系统服务的行为。其基本操作原语为get和set，通过get可以查询系统参数的值，通过set可以修改系统参数的值。
-详细的系统参数设计原理及定义可参考[系统参数](../../../device-dev/subsystems/subsys-boot-init-sysparam.md)。
+系统参数（SystemParameter）是为各系统服务提供的简单易用的键值对访问接口，各个系统服务可以定义系统参数来描述该服务的状态信息，或者通过系统参数来改变系统服务的行为。其基本操作原语为get和set，通过get可以查询系统参数的值，通过set可以修改系统参数的值。详细的系统参数设计原理及定义可参考[系统参数](../../../device-dev/subsystems/subsys-boot-init-sysparam.md)。
 
 > **说明：**
 >
@@ -54,7 +53,7 @@ try {
     let info: string = systemParameterEnhance.getSync("const.ohos.apiversion");
     console.log(JSON.stringify(info));
 } catch(e) {
-    console.log("getSync unexpected error: " + e);
+    console.error("getSync unexpected error: " + e);
 }
 ```
 
@@ -94,10 +93,10 @@ try {
     if (err == undefined) {
         console.log("get test.parameter.key value success:" + data)
     } else {
-        console.log(" get test.parameter.key value err:" + err.code)
+        console.error(" get test.parameter.key value err:" + err.code)
     }});
 } catch(e) {
-    console.log("get unexpected error: " + e);
+    console.error("get unexpected error: " + e);
 }
 ```
 
@@ -138,11 +137,11 @@ try {
         if (err == undefined) {
             console.log("get test.parameter.key value success:" + data)
         } else {
-            console.log(" get test.parameter.key value err:" + err.code)
+            console.error(" get test.parameter.key value err:" + err.code)
         }
     });
 } catch(e) {
-    console.log("get unexpected error:" + e)
+    console.error("get unexpected error:" + e)
 }
 ```
 
@@ -188,10 +187,10 @@ try {
     p.then((value: string) => {
         console.log("get test.parameter.key success: " + value);
     }).catch((err: BusinessError) => {
-        console.log("get test.parameter.key error: " + err.code);
+        console.error("get test.parameter.key error: " + err.code);
     });
 } catch(e) {
-    console.log("get unexpected error: " + e);
+    console.error("get unexpected error: " + e);
 }
 ```
 
@@ -229,7 +228,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
     systemParameterEnhance.setSync("test.parameter.key", "default");
 } catch(e) {
-    console.log("set unexpected error: " + e);
+    console.error("set unexpected error: " + e);
 }
 ```
 
@@ -270,10 +269,10 @@ try {
     if (err == undefined) {
         console.log("set test.parameter.key value success :" + data)
     } else {
-        console.log("set test.parameter.key value err:" + err.code)
+        console.error("set test.parameter.key value err:" + err.code)
     }});
 } catch(e) {
-    console.log("set unexpected error: " + e);
+    console.error("set unexpected error: " + e);
 }
 ```
 
@@ -319,9 +318,9 @@ try {
     p.then((value: void) => {
         console.log("set test.parameter.key success: " + value);
     }).catch((err: BusinessError) => {
-        console.log(" set test.parameter.key error: " + err.code);
+        console.error(" set test.parameter.key error: " + err.code);
     });
 } catch(e) {
-    console.log("set unexpected error: " + e);
+    console.error("set unexpected error: " + e);
 }
 ```

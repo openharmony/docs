@@ -1,6 +1,5 @@
 # \@Observed装饰器和\@ObjectLink装饰器：嵌套类对象属性变化
 
-
 上文所述的装饰器（包括[\@State](./arkts-state.md)、[\@Prop](./arkts-prop.md)、[\@Link](./arkts-link.md)、[\@Provide和\@Consume](./arkts-provide-and-consume.md)装饰器）仅能观察到第一层的变化，但是在实际应用开发中，应用会根据开发需要，封装自己的数据模型。对于多层嵌套的情况，比如二维数组，或者数组项class，或者class的属性是class，他们的第二层的属性变化是无法观察到的。这就引出了\@Observed/\@ObjectLink装饰器。
 
 \@Observed/\@ObjectLink配套使用是用于嵌套场景的观察，主要是为了弥补装饰器仅能观察一层的能力限制，开发者最好对装饰器的基本观察能力有一定的了解，再来对比阅读该文档。建议提前阅读：[\@State](./arkts-state.md)的基本用法。
@@ -49,10 +48,9 @@ this.objLink= ...
 >
 > \@ObjectLink装饰的变量不能被赋值，如果要使用赋值操作，请使用[@Prop](arkts-prop.md)。
 >
-> - \@Prop装饰的变量和数据源的关系是是单向同步，\@Prop装饰的变量在本地拷贝了数据源，所以它允许本地更改，如果父组件中的数据源有更新，\@Prop装饰的变量本地的修改将被覆盖。
+> - \@Prop装饰的变量和数据源的关系是单向同步，\@Prop装饰的变量在本地拷贝了数据源，所以它允许本地更改，如果父组件中的数据源有更新，\@Prop装饰的变量本地的修改将被覆盖。
 >
-> - \@ObjectLink装饰的变量和数据源的关系是双向同步，\@ObjectLink装饰的变量相当于指向数据源的指针。禁止对\@ObjectLink装饰的变量赋值，如果一旦发生\@ObjectLink装饰的变量的赋值，则同步链将被打断。因为\@ObjectLink装饰的变量通过数据源（Object）引用来初始化。对于实现双向数据同步的@ObjectLink，赋值相当于更新父组件中的数组项或者class的属性，TypeScript/JavaScript不能实现，会发生运行时报错。
-
+> - \@ObjectLink装饰的变量和数据源的关系是双向同步，\@ObjectLink装饰的变量相当于指向数据源的指针。禁止对\@ObjectLink装饰的变量赋值，如果发生\@ObjectLink装饰的变量的赋值，则同步链将被打断。
 
 ## 变量的传递/访问规则说明
 
@@ -190,7 +188,7 @@ struct Parent {
 
    a. \@Observed装饰的class的实例会被不透明的代理对象包装，代理了class上的属性的setter和getter方法。
 
-   b. 子组件中\@ObjectLink装饰的从父组件初始化，接收被\@Observed装饰的class的实例，\@ObjectLink的包装类会将自己注册给\@Observed class。
+   b. 子组件中\@ObjectLink装饰的变量从父组件初始化，接收被\@Observed装饰的class的实例，\@ObjectLink的包装类会将自己注册给\@Observed class。这里的注册行为指的是，\@ObjectLink包装类会向\@Observed实例提供自身的引用，让\@Observed实例将其添加到依赖列表中，以便属性变化时能通知到它。
 
 2. 属性更新：当\@Observed装饰的class属性改变时，会执行到代理的setter和getter，然后遍历依赖它的\@ObjectLink包装类，通知数据更新。
 
@@ -201,7 +199,7 @@ struct Parent {
 
 2. \@ObjectLink装饰器不能在\@Entry装饰的自定义组件中使用。
 
-3. \@ObjectLink装饰的变量类型需要为显式的被@Observed装饰的类，如果未指定类型，或其不是\@Observed装饰的class，编译期会报错。
+3. \@ObjectLink装饰的变量类型需要为显式的被\@Observed装饰的类，如果未指定类型，或其不是\@Observed装饰的class，编译期会报错。
 
   ```ts
   @Observed
@@ -874,7 +872,7 @@ struct SetSampleNestedChild {
 
 ## ObjectLink支持联合类型
 
-@ObjectLink支持@Observed装饰类和undefined或null组成的联合类型，在下面的示例中，count类型为Source | Data | undefined，点击父组件Parent中的Button改变count的属性或者类型，Child中也会对应刷新。
+\@ObjectLink支持\@Observed装饰类和undefined或null组成的联合类型，在下面的示例中，count类型为Source | Data | undefined，点击父组件Parent中的Button改变count的属性或者类型，Child中也会对应刷新。
 
 ```ts
 @Observed
@@ -963,9 +961,9 @@ struct Child {
 
 ## 常见问题
 
-### 在子组件中给@ObjectLink装饰的变量赋值
+### 在子组件中给\@ObjectLink装饰的变量赋值
 
-在子组件中给@ObjectLink装饰的变量赋值是不允许的。
+在子组件中给\@ObjectLink装饰的变量赋值是不允许的。
 
 【反例】
 
@@ -1378,11 +1376,11 @@ struct ParentComp {
 
 对于Text('Parent: incr counter[0].counter')的onClick事件，this.counter[0].incrSubCounter(10)调用incrSubCounter方法使SubCounter的counter值增加10，UI同步刷新。
 
-但是，在Text('Parent: set.counter to 10')的onClick中调用this.counter[0].setSubCounter(10)，SubCounter的counter值却无法重置为10。
+然而，在Text('Parent: set.counter to 10')的onClick中调用this.counter[0].setSubCounter(10)时，SubCounter的counter值无法重置为10。
 
 incrSubCounter和setSubCounter都是同一个SubCounter的函数。在第一个点击处理时调用incrSubCounter可以正确更新UI，而第二个点击处理调用setSubCounter时却没有更新UI。实际上incrSubCounter和setSubCounter两个函数都不能触发Text('${this.value.subCounter.counter}')的更新，因为\@ObjectLink value : ParentCounter仅能观察其代理ParentCounter的属性，对于this.value.subCounter.counter是SubCounter的属性，无法观察到嵌套类的属性。
 
-但是，第一个click事件调用this.counter[0].incrCounter()将CounterComp自定义组件中\@ObjectLink value: ParentCounter标记为已更改。此时触发Text('${this.value.subCounter.counter}')的更新。 如果在第一个点击事件中删除this.counter[0].incrCounter()，也无法更新UI。
+另外，第一个click事件调用this.counter[0].incrCounter()将CounterComp自定义组件中的\@ObjectLink value: ParentCounter标记为已更改，会触发Text('${this.value.subCounter.counter}')的更新。如果在第一个点击事件中删除this.counter[0].incrCounter()，则无法更新UI。
 
 【正例】
 
@@ -1634,6 +1632,7 @@ struct ParentComp {
 ```ts
 @Component
 struct CounterComp {
+  // @Prop对对象进行本地拷贝，导致与父组件对象不共享
   @Prop value: ParentCounter = new ParentCounter(0);
   @Prop subValue: SubCounter = new SubCounter(0);
   build() {
@@ -1641,11 +1640,13 @@ struct CounterComp {
       Text(`this.subValue.counter: ${this.subValue.counter}`)
         .fontSize(20)
         .onClick(() => {
+          // 修改本地拷贝对象，UI刷新
           this.subValue.counter += 7;
         })
       Text(`this.value.counter：increase 7 `)
         .fontSize(20)
         .onClick(() => {
+          // 由于经过拷贝，修改无法触发UI刷新
           this.value.incrSubCounter(7);
         })
       Divider().height(2)
@@ -1777,9 +1778,9 @@ struct ParentComp {
 
 ![zh-cn_image_0000001653949465](figures/zh-cn_image_0000001653949465.png)
 
-### 在@Observed装饰类的构造函数中延时更改成员变量
+### 在\@Observed装饰类的构造函数中延时更改成员变量
 
-在状态管理中，使用@Observed装饰类后，会给该类使用一层“代理”进行包装。当在组件中改变该类的成员变量时，会被该代理进行拦截，在更改数据源中值的同时，也会将变化通知给绑定的组件，从而实现观测变化与触发刷新。
+在状态管理中，使用\@Observed装饰类后，会给该类使用一层“代理”进行包装。当在组件中改变该类的成员变量时，会被该代理进行拦截，在更改数据源中值的同时，也会将变化通知给绑定的组件，从而实现观测变化与触发刷新。
 
 当开发者在类的构造函数中对成员变量进行赋值或者修改时，此修改不会经过代理（因为是直接对数据源中的值进行修改），也就无法被观测到。所以，如果开发者在类的构造函数中使用定时器修改类中的成员变量，即使该修改成功执行了，也不会触发UI的刷新。
 
@@ -1871,7 +1872,7 @@ struct Index {
 
 上文的示例代码将定时器修改移入到组件内，此时界面显示时会先显示“renderClass的值为：false”。待定时器触发时，renderClass的值改变，触发[@Watch](./arkts-watch.md)回调，此时界面刷新显示“renderClass的值为：true”，日志输出“renderClass的值被更改为：true”。
 
-因此，更推荐开发者在组件中对@Observed装饰的类成员变量进行修改实现刷新。
+因此，更推荐开发者在组件中对\@Observed装饰的类成员变量进行修改实现刷新。
 
 ### \@ObjectLink数据源更新时机
 
@@ -1962,7 +1963,7 @@ struct Child {
 
 - 日志5：下一次vsync信号触发Child更新，@ObjectLink @Watch('onChange02') per: Person被更新，触发其\@Watch方法，此时@ObjectLink @Watch('onChange02') per: Person为新值Jack。
 
-\@Prop父子同步原理同\@ObjectLink一致。
+\@Prop父子同步原理与\@ObjectLink一致。
 
 当clickEvent中更改this.info.person.name时，修改会立刻生效，此时日志4打印的值是Jack。
 
@@ -1980,7 +1981,7 @@ Child({
 
 ### 使用a.b(this.object)形式调用，不会触发UI刷新
 
-在build方法内，当@Observed与@ObjectLink联合装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原始对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法或者使用this调用组件内部方法，修改组件中的this.weather.temperature时，UI不会刷新。
+在build方法内，当\@Observed与\@ObjectLink联合装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原始对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法或者使用this调用组件内部方法，修改组件中的this.weather.temperature时，UI不会刷新。
 
 【反例】
 

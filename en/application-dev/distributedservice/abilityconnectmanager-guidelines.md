@@ -74,7 +74,7 @@ You have logged in to devices A and B with the same HUAWEI ID and the two device
 ### Setting Up the Environment
 
 1. Download and install DevEco Studio on the PC. For details, see [Downloading Software](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-software-download-V5) and [Installing DevEco Studio](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-software-install-V5). The DevEco Studio version must be 4.1 or later.
-2. Update the public-SDK to API 18 or later. For details about how to update the SDK, see [OpenHarmony SDK Upgrade Assistant]( ../tools/openharmony_sdk_upgrade_assistant.md).
+2. Update the public-SDK to API 18 or later.
 3. Connect device A and device B to the PC using USB cables.
 4. Enable Bluetooth on device A and device B to implement networking.
 

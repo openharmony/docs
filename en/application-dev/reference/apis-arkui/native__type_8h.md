@@ -36,7 +36,6 @@ Defines the common types for the native module.
 | struct  [ArkUI_ScaleOptions](_ark_u_i___scale_options.md) | Defines the scaling options for component transition. | 
 | struct  [ArkUI_RotationOptions](_ark_u_i___rotation_options.md) | Defines the rotation options for component transition. | 
 
-
 ### Types
 
 | Name| Description| 
@@ -63,7 +62,6 @@ Defines the common types for the native module.
 | typedef struct [ArkUI_CustomSpanDrawInfo](_ark_u_i___native_module.md#arkui_customspandrawinfo) [ArkUI_CustomSpanDrawInfo](_ark_u_i___native_module.md#arkui_customspandrawinfo) | Defines a struct for the drawing information of a custom span. | 
 | typedef struct [ArkUI_SwiperIndicator](_ark_u_i___native_module.md#arkui_swiperindicator) [ArkUI_SwiperIndicator](_ark_u_i___native_module.md#arkui_swiperindicator) | Defines the navigation indicator style of the **Swiper** component. | 
 | typedef struct [ArkUI_StyledString_Descriptor](_ark_u_i___native_module.md#arkui_styledstring_descriptor) [ArkUI_StyledString_Descriptor](_ark_u_i___native_module.md#arkui_styledstring_descriptor) | Defines a struct for the styled string descriptor object supported by the text component. | 
-| typedef struct [ArkUI_SnapshotOptions ](_ark_u_i___node_component_snapshot.md#ArkUI_SnapshotOptions) [ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) | Defines a struct for the component snapshot options. | 
 | typedef struct [ArkUI_VisibleAreaEventOptions ](_ark_u_i___native_module.md#arkui_visibleareaeventoptions) [ArkUI_VisibleAreaEventOptions](_ark_u_i___native_module.md#arkui_visibleareaeventoptions) | Defines the parameters for visible area change events.| 
 
 ### Enums
@@ -357,9 +355,6 @@ Defines the common types for the native module.
 | void [OH_ArkUI_ActiveChildrenInfo_Destroy](_ark_u_i___native_module.md#oh_arkui_activechildreninfo_destroy) (ArkUI_ActiveChildrenInfo \*handle) | Destroys an **ActiveChildrenInfo** instance. | 
 | [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) [OH_ArkUI_ActiveChildrenInfo_GetNodeByIndex](_ark_u_i___native_module.md#oh_arkui_activechildreninfo_getnodebyindex) (ArkUI_ActiveChildrenInfo \*handle, int32_t index) | Obtains the child node at the specified index in the specified **ActiveChildrenInfo** instance. | 
 | int32_t [OH_ArkUI_ActiveChildrenInfo_GetCount](_ark_u_i___native_module.md#oh_arkui_activechildreninfo_getcount) (ArkUI_ActiveChildrenInfo \*handle) | Obtains the number of nodes in the specified **ActiveChildrenInfo** instance. | 
-| ArkUI_SnapshotOptions* [OH_ArkUI_CreateSnapshotOptions](_ark_u_i___node_component_snapshot.md#OH_ArkUI_CreateSnapshotOptions) () |  Creates a snapshot options object. | 
-| void [OH_ArkUI_DestroySnapshotOptions](_ark_u_i___node_component_snapshot.md#OH_ArkUI_DestroySnapshotOptions) ([ArkUI_SnapshotOptions](_ark_u_i___node_component_snapshot#ArkUI_SnapshotOptions)* snapshotOptions) | Destroys a snapshot options object. | 
-| int32_t [OH_ArkUI_ActiveChildrenInfo_GetCount](_ark_u_i___node_component_snapshot.md#OH_ArkUI_SnapshotOptions_SetScale) ([ArkUI_SnapshotOptions](_ark_u_i___node_component_snapshot#ArkUI_SnapshotOptions)* snapshotOptions, float scale) | Sets the scale property in the snapshot options. | 
 | [ArkUI_VisibleAreaEventOptions](_ark_u_i___native_module.md#arkui_visibleareaeventoptions) \* [OH_ArkUI_VisibleAreaEventOptions_Create](_ark_u_i___native_module.md#oh_arkui_visibleareaeventoptions_create) (void) | Creates an instance of visible area change event parameters | 
 | void [OH_ArkUI_VisibleAreaEventOptions_Dispose](_ark_u_i___native_module.md#oh_arkui_visibleareaeventoptions_dispose) (ArkUI_VisibleAreaEventOptions \*option) | Disposes of an instance of visible area change event parameters. | 
 | int32_t [OH_ArkUI_VisibleAreaEventOptions_SetRatios](_ark_u_i___native_module.md#oh_arkui_visibleareaeventoptions_setratios) ([ArkUI_VisibleAreaEventOptions](_ark_u_i___native_module.md#arkui_visibleareaeventoptions) \*option, float\* value, int32_t size) | Sets the threshold ratios for visible area changes. | 

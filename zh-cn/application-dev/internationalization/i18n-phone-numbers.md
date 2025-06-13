@@ -8,7 +8,7 @@
 
 ## 开发步骤
 
-电话号码格式化通过[PhoneNumberFormat](../reference/apis-localization-kit/js-apis-i18n.md#phonenumberformat8)的[format](../reference/apis-localization-kit/js-apis-i18n.md#format8)接口实现，具体开发步骤如下。
+电话号码格式化通过[PhoneNumberFormat](../reference/apis-localization-kit/js-apis-i18n.md#phonenumberformat8)的[format](../reference/apis-localization-kit/js-apis-i18n.md#format8)接口实现，具体开发步骤如下：
 
 1. 导入模块。
    ```ts
@@ -17,7 +17,7 @@
 
 2. 创建PhoneNumberFormat对象。
 
-   构造函数支通过PhoneNumberFormatOptions设置不同的电话号码格式，具体请参考表1。
+   构造函数支持通过PhoneNumberFormatOptions设置不同的电话号码格式，具体请参考表1。
 
    ```ts
    let phoneNumberFormat: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat(country: string, options?: PhoneNumberFormatOptions);

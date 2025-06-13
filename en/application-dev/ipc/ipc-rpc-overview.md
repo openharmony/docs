@@ -25,7 +25,7 @@ IPC and RPC use the client-server model, where the client process obtains the pr
 
 As shown in the following figure, the stub registers system abilities (SAs) with the system ability manager (SAMgr), which manages the SAs and provides APIs for clients. To communicate with an SA, the client must obtain the proxy object of the SA from SAMgr and communicate with the SA through the proxy object. The IPC depends on the Binder driver, while the RPC depends on the DSoftBus driver.
 
-![IPC & RPC communication mechanisms](figures/IPC_RPC_communication.PNG)
+![IPC & RPC communication mechanisms](figures/IPC_RPC_communication.png)
 
 
 ## Constraints

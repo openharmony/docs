@@ -18,7 +18,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| uint32_t [storage](#storage) [(ffrt_task_attr_storage_size+sizeof(uint32_t) - 1)/sizeof(uint32_t)] | 任务属性所占空间  | 
+| uint32_t [storage](#storage) [(ffrt_task_attr_storage_size+sizeof(uint32_t) - 1)/sizeof(uint32_t)] | 任务属性所占空间。  | 
 
 
 ## 结构体成员变量说明
@@ -30,4 +30,4 @@
 uint32_t ffrt_task_attr_t::storage[(ffrt_task_attr_storage_size+sizeof(uint32_t) - 1)/sizeof(uint32_t)]
 ```
 **描述**
-任务属性所占空间
+任务属性所占空间。

@@ -13,7 +13,7 @@ The **oh_window.h** file declares the window management APIs. You can use the AP
 
 **Since**: 15
 
-**Related module**: [WindowManager_NativeModule](_window_manager___native_module.md)
+**Related module**: [WindowManager](_window_manager___native_module.md)
 
 
 ## Summary
@@ -37,3 +37,5 @@ The **oh_window.h** file declares the window management APIs. You can use the AP
 | int32_t [OH_WindowManager_SetWindowPrivacyMode](_window_manager___native_module.md#oh_windowmanager_setwindowprivacymode) (int32_t windowId, bool isPrivacy) | Sets whether to enable privacy mode for a window. |
 | int32_t [OH_WindowManager_GetWindowProperties](_window_manager___native_module.md#oh_windowmanager_getwindowproperties) (int32_t windowId, [WindowManager_WindowProperties](_window_manager___window_properties.md) \*windowProperties) | Obtains the properties of a window.|
 | int32_t [OH_WindowManager_Snapshot](_window_manager___native_module.md#oh_windowmanager_snapshot) (int32_t windowId, OH_PixelmapNative \*pixelMap) | Obtains the snapshot of a window.|
+| int32_t [OH_WindowManager_GetAllWindowLayoutInfoList](_window_manager___native_module.md#oh_windowmanager_getallwindowlayoutinfolist) (int64_t displayId, [WindowManager_Rect](_window_manager___rect.md) \*\*windowLayoutInfoList, size_t \*windowLayoutInfoSize) | Obtains the layout information array of all windows visible on a display. The layout information is arranged based on the current window stacking order, and the topmost window in the hierarchy is at index 0 of the array.  | 
+| void [OH_WindowManager_ReleaseAllWindowLayoutInfoList](_window_manager___native_module.md#oh_windowmanager_releaseallwindowlayoutinfolist) ([WindowManager_Rect](_window_manager___rect.md) \*windowLayoutInfoList) | Releases the memory occupied by a window layout information array.  | 

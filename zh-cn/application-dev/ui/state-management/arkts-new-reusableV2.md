@@ -316,7 +316,7 @@ struct ReusableV2Component {
     this.info.age++;
   }
   onRender(): string {
-    console.log('info.age onRender')
+    console.log('info.age onRender');
     return this.info.age.toString();
   }
   build() {
@@ -552,61 +552,9 @@ struct ReusableV2Component {
 }
 ```
 
-### 在Repeat组件non-virtualScroll场景的each属性中使用
+### 在Repeat组件中使用
 
-Repeat组件non-virtualScroll场景中，会在删除/创建子树时触发回收/复用。
-
-```ts
-@Entry
-@ComponentV2
-struct Index {
-  @Local simpleList: number[] = [1, 2, 3, 4, 5];
-  @Local condition: boolean = true;
-  build() {
-    Column() {
-      Button('删除/创建Repeat').onClick(()=>{this.condition=!this.condition;})
-      Button('增加元素').onClick(()=>{this.simpleList.push(this.simpleList.length+1);})
-      Button('删除元素').onClick(()=>{this.simpleList.pop();})
-      Button('更改元素').onClick(()=>{this.simpleList[0]++;})
-      if (this.condition) {
-        List({ space: 10 }) {
-          Repeat(this.simpleList)
-            .each((obj: RepeatItem<number>) => {
-              ListItem() {
-                Column() {
-                  ReusableV2Component({ num: obj.item })
-                }
-              }
-            })
-        }
-      }
-    }
-  }
-}
-@ReusableV2
-@ComponentV2
-struct ReusableV2Component {
-  @Require @Param num: number;
-  aboutToAppear() {
-    console.log('ReusableV2Component aboutToAppear');
-  }
-  aboutToRecycle() {
-    console.log('ReusableV2Component aboutToRecycle');
-  }
-  aboutToReuse() {
-    console.log('ReusableV2Component aboutToReuse');
-  }
-  build() {
-    Column() {
-      Text(`${this.num}`)
-    }
-  }
-}
-```
-
-### 在Repeat组件virtualScroll场景的each属性中使用
-
-Repeat组件virtualScroll场景中，将会优先使用Repeat组件的缓存池，正常滑动场景、更新场景不涉及组件的回收与复用。当Repeat的缓存池需要扩充时将会向自定义组件要求新的子组件，此时如果复用池中有可复用的节点，将会进行复用。
+Repeat组件懒加载场景中，将会优先使用Repeat组件的缓存池，正常滑动场景、更新场景不涉及组件的回收与复用。当Repeat的缓存池需要扩充时将会向自定义组件要求新的子组件，此时如果复用池中有可复用的节点，将会进行复用。
 
 下面的例子中，先点击`改变condition`会让3个节点进入复用池，而后向下滑动List组件时，可以观察到日志输出`ReusableV2Component aboutToReuse`，表明Repeat可以使用自定义组件的复用池填充自己的缓存池。
 
@@ -666,10 +614,62 @@ struct ReusableV2Component {
 }
 ```
 
+### 在Repeat组件非懒加载场景的each属性中使用
+
+Repeat组件非懒加载场景中，会在删除/创建子树时触发回收/复用。
+
+```ts
+@Entry
+@ComponentV2
+struct Index {
+  @Local simpleList: number[] = [1, 2, 3, 4, 5];
+  @Local condition: boolean = true;
+  build() {
+    Column() {
+      Button('删除/创建Repeat').onClick(()=>{this.condition=!this.condition;})
+      Button('增加元素').onClick(()=>{this.simpleList.push(this.simpleList.length+1);})
+      Button('删除元素').onClick(()=>{this.simpleList.pop();})
+      Button('更改元素').onClick(()=>{this.simpleList[0]++;})
+      if (this.condition) {
+        List({ space: 10 }) {
+          Repeat(this.simpleList)
+            .each((obj: RepeatItem<number>) => {
+              ListItem() {
+                Column() {
+                  ReusableV2Component({ num: obj.item })
+                }
+              }
+            })
+        }
+      }
+    }
+  }
+}
+@ReusableV2
+@ComponentV2
+struct ReusableV2Component {
+  @Require @Param num: number;
+  aboutToAppear() {
+    console.log('ReusableV2Component aboutToAppear');
+  }
+  aboutToRecycle() {
+    console.log('ReusableV2Component aboutToRecycle');
+  }
+  aboutToReuse() {
+    console.log('ReusableV2Component aboutToReuse');
+  }
+  build() {
+    Column() {
+      Text(`${this.num}`)
+    }
+  }
+}
+```
+
 ### 在ForEach组件中使用
 >**说明：**
 >
->推荐开发者使用Repeat组件的non-virtualScroll场景代替ForEach组件
+>推荐开发者使用Repeat组件的非懒加载场景代替ForEach组件
 
 下面的例子中使用了ForEach组件渲染了数个可复用组件，由于每次点击`点击修改`按钮时key值都会发生变化，因此从第二次点击开始都会触发回收与复用（由于ForEach先判断有无可复用节点时复用池仍未初始化，因此第一次点击会创建新的节点，而后初始化复用池同时回收节点）。
 
@@ -714,7 +714,7 @@ struct ReusableV2Component {
 ### 在LazyForEach组件中使用
 >**说明：**
 >
->推荐开发者使用Repeat组件的virtualScroll场景代替LazyForEach组件
+>推荐开发者使用Repeat组件的懒加载场景代替LazyForEach组件
 
 下面的例子中使用了LazyForEach渲染了数个可复用组件，在滑动时可以先观察到组件创建，直到预加载节点全部创建完成之后，再滑动则触发复用和回收。
 
@@ -845,16 +845,16 @@ struct Index {
 struct ChildComponent {
   @Param @Require data: string;
   aboutToAppear(): void {
-    console.log('ChildComponent aboutToAppear', this.data)
+    console.log('ChildComponent aboutToAppear', this.data);
   }
   aboutToDisappear(): void {
-    console.log('ChildComponent aboutToDisappear', this.data)
+    console.log('ChildComponent aboutToDisappear', this.data);
   }
   aboutToReuse(): void {
-    console.log('ChildComponent aboutToReuse', this.data) // 复用时触发
+    console.log('ChildComponent aboutToReuse', this.data); // 复用时触发
   }
   aboutToRecycle(): void {
-    console.log('ChildComponent aboutToRecycle', this.data) // 回收时触发
+    console.log('ChildComponent aboutToRecycle', this.data); // 回收时触发
   }
   build() {
     Row() {

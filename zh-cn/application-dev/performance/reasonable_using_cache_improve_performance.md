@@ -5,6 +5,7 @@
 随着应用功能的日益丰富与复杂化，数据加载效率成为了衡量应用性能的重要指标。不合理的加载策略往往导致用户面临长时间的等待，这不仅损害了用户体验，还可能引发用户流失。因此，合理运用缓存技术变得尤为重要。  
 系统提供了[Preferences](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/data-persistence-by-preferences-V5)、[数据库](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/data-persistence-by-rdb-store-V5)、[文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-file-fs-V5)、[AppStorage](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-appstorage-V5)等缓存方式，开发者可以对应用数据先进行缓存，再次加载数据时优先展示缓存数据，减少加载时间，从而提升用户体验。  
 本文将介绍以下内容，来帮助开发者通过缓存技术提升应用的冷启动速度、预下载网络图片减少Image白块时长，避免卡顿感：
+
 - [冷启动首页时，缓存网络数据](#场景1缓存网络数据)。
 - [冷启动首页时，缓存地址数据](#场景2缓存地址数据)。
 - [预下载网络图片数据](#场景3预下载图片数据)。
@@ -131,7 +132,7 @@ struct Index {
    * @returns
    */
   async saveImage(buffer: ArrayBuffer | string): Promise<void> {
-    const context = getContext(this) as common.UIAbilityContext;
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     const filePath: string = context.cacheDir + '/test.jpg';
     AppStorage.set('net_picture', filePath);
     const file = await fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
@@ -157,7 +158,7 @@ struct Index {
   }
 
   async aboutToAppear(): Promise<void> {
-    const context = getContext(this) as common.UIAbilityContext;
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     const atManager = abilityAccessCtrl.createAtManager();
     await atManager.requestPermissionsFromUser(context, PERMISSIONS);
     this.useCachePic(); // 从本地缓存获取数据
@@ -228,8 +229,6 @@ import { geoLocationManager } from '@kit.LocationKit'; // 位置服务模块。�
 const MYLOCATION = 'myLocation';
 // 定义获取模糊位置的权限
 const PERMISSIONS: Array<Permissions> = ['ohos.permission.APPROXIMATELY_LOCATION'];
-// 获取上下文信息
-const context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
 // 初始化PersistentStorage。PersistentStorage用于持久化存储选定的AppStorage属性
 PersistentStorage.persistProp(MYLOCATION, '');
 
@@ -238,6 +237,8 @@ PersistentStorage.persistProp(MYLOCATION, '');
 struct Index {
   // 创建状态变量@StorageLink(MYLOCATION) myLocation，和AppStorage中MYLOCATION双向绑定
   @StorageLink(MYLOCATION) myLocation: string = '';
+  // 获取上下文信息
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   aboutToAppear() {
     // ApiDataTime表示从getCurrentLocation接口获取位置信息的性能打点起始位置。
@@ -250,13 +251,13 @@ struct Index {
     if (cacheData !== '') {
       // 缓存中有位置信息，则从缓存中直接获取位置信息，并结束性能打点
       hiTraceMeter.finishTrace("CacheDataTime", 1);
-      AlertDialog.show({
+      this.getUIContext().showAlertDialog({
         message: 'AppStorage:' + cacheData,
         alignment: DialogAlignment.Center
       });
     } else {
       // 缓存中没有位置信息，则从接口获取位置信息
-      this.apiGetLocation(PERMISSIONS, context);
+      this.apiGetLocation(PERMISSIONS, this.context);
     }
   }
 
@@ -287,7 +288,7 @@ struct Index {
               let locationData = JSON.stringify(result);
               // 保存到本地缓存
               AppStorage.setOrCreate(MYLOCATION, JSON.stringify(locationData));
-              AlertDialog.show({
+              this.getUIContext().showAlertDialog({
                 message: 'getCurrentLocation:' + locationData,
                 alignment: DialogAlignment.Center
               });
@@ -300,7 +301,7 @@ struct Index {
           }
         } else {
           // 如果用户未授权，提示用户授权。
-          AlertDialog.show({
+          this.getUIContext().showAlertDialog({
             message: '用户未授权，请到系统设置中打开应用的位置权限后再试。',
             alignment: DialogAlignment.Center
           });
@@ -317,7 +318,7 @@ struct Index {
       Button('clear cache').onClick(() => {
         // 清除AppStorage缓存中的位置信息
         this.myLocation = '';
-        AlertDialog.show({
+        this.getUIContext().showAlertDialog({
           message: 'cache cleared',
           alignment: DialogAlignment.Center
         });
@@ -424,10 +425,6 @@ import { image } from '@kit.ImageKit';
 import { common } from '@kit.AbilityKit';
 import { httpRequest } from '../utils/NetRequest';
 
-// 获取应用文件路径
-let context = getContext(this) as common.UIAbilityContext;
-let filesDir = context.filesDir;
-let fileUrl = filesDir + '/xxx.png'; // 当使用实际网络地址时，需填入实际地址的后缀。
 let para: Record<string, PixelMap | undefined> = { 'imageData': undefined };
 let localStorage: LocalStorage = new LocalStorage(para);
 
@@ -436,10 +433,11 @@ let localStorage: LocalStorage = new LocalStorage(para);
 struct MainPage {
   @State childNavStack: NavPathStack = new NavPathStack();
   @LocalStorageLink('imageData') imageData: PixelMap | undefined = undefined;
+  @State fileUrl: string = '';
 
   getPixMap() { // 从应用沙箱里读取文件
     try {
-      let file = fs.openSync(fileUrl, fs.OpenMode.READ_WRITE); // 以同步方法打开文件
+      let file = fs.openSync(this.fileUrl, fs.OpenMode.READ_WRITE); // 以同步方法打开文件
       const imageSource: image.ImageSource = image.createImageSource(file.fd);
       const options: image.InitializationOptions = {
         'alphaType': 0, // 透明度
@@ -458,7 +456,11 @@ struct MainPage {
   }
 
   aboutToAppear(): void {
-    httpRequest(); // 在父组件提前发起网络请求
+    // 获取应用文件路径
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    let filesDir = context.filesDir;
+    this.fileUrl = filesDir + '/xxx.png'; // 当使用实际网络地址时，需填入实际地址的后缀。
+    httpRequest(context); // 在父组件提前发起网络请求
   }
 
   build() {
@@ -491,12 +493,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 
-// 获取应用文件路径
-let context = getContext(this) as common.UIAbilityContext;
-let filesDir = context.filesDir;
-let fileUrl = filesDir + '/xxx.png'; // 当使用实际网络地址时，需填入实际地址的后缀。
-
-export async function httpRequest() {
+export async function httpRequest(context: common.UIAbilityContext) {
+  // 获取应用文件路径
+  let filesDir = context.filesDir;
+  let fileUrl = filesDir + '/xxx.png'; // 当使用实际网络地址时，需填入实际地址的后缀。
   fs.access(fileUrl, fs.AccessModeType.READ).then((res) => { // 检查文件是否存在
     if (!res) { // 如沙箱里不存在地址，重新请求网络图片资源
       http.createHttp()
@@ -510,7 +510,7 @@ export async function httpRequest() {
             if (http.ResponseCode.OK === data.responseCode) {
               const imageData: ArrayBuffer = data.result as ArrayBuffer;
               // 保存图片到应用沙箱
-              readWriteFileWithStream(imageData);
+              readWriteFileWithStream(fileUrl, imageData);
             }
           }
         )
@@ -519,7 +519,7 @@ export async function httpRequest() {
 }
 
 // 写入到沙箱
-async function readWriteFileWithStream(imageData: ArrayBuffer): Promise<void> {
+async function readWriteFileWithStream(fileUrl: string, imageData: ArrayBuffer): Promise<void> {
   let outputStream = fs.createStreamSync(fileUrl, 'w+');
   await outputStream.write(imageData);
   outputStream.closeSync();

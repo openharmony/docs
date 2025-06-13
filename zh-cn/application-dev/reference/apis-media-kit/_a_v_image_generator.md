@@ -17,7 +17,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [avimage_generator.h](avimage__generator_8h.md) | 定义AVImageGenerator接口。使用AVImageGenerator提供的Native API从视频资源中获取指定时间视频帧。  | 
+| [avimage_generator.h](avimage__generator_8h.md) | 定义AVImageGenerator接口。使用其Native API从视频资源中获取指定时间点视频帧。  | 
 | [avimage_generator_base.h](avimage__generator__base_8h.md) | 定义AVImageGenerator的枚举。  | 
 
 
@@ -25,25 +25,25 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct [OH_AVImageGenerator](#oh_avimagegenerator) [OH_AVImageGenerator](#oh_avimagegenerator) | 定义OH_AVImageGenerator类型。  | 
-| typedef enum [OH_AVImageGenerator_QueryOptions](#oh_avimagegenerator_queryoptions-1) [OH_AVImageGenerator_QueryOptions](#oh_avimagegenerator_queryoptions) | 指定时间点与视频帧对应关系的枚举。  | 
+| typedef struct [OH_AVImageGenerator](#oh_avimagegenerator) [OH_AVImageGenerator](#oh_avimagegenerator) | 定义OH_AVImageGenerator类型，用于生成指定时间点视频帧。  | 
+| typedef enum [OH_AVImageGenerator_QueryOptions](#oh_avimagegenerator_queryoptions-1) [OH_AVImageGenerator_QueryOptions](#oh_avimagegenerator_queryoptions) | 指定时间点与视频帧对应关系的枚举类型。  | 
 
 
 ### 枚举
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVImageGenerator_QueryOptions](#oh_avimagegenerator_queryoptions-1) {<br> OH_AVIMAGE_GENERATOR_QUERY_NEXT_SYNC = 0,<br>  OH_AVIMAGE_GENERATOR_QUERY_PREVIOUS_SYNC = 1, <br> OH_AVIMAGE_GENERATOR_QUERY_CLOSEST_SYNC = 2, <br> OH_AVIMAGE_GENERATOR_QUERY_CLOSEST = 3 } | 指定时间点与视频帧对应关系的枚举。  | 
+| [OH_AVImageGenerator_QueryOptions](#oh_avimagegenerator_queryoptions-1) {<br> OH_AVIMAGE_GENERATOR_QUERY_NEXT_SYNC = 0,<br>  OH_AVIMAGE_GENERATOR_QUERY_PREVIOUS_SYNC = 1, <br> OH_AVIMAGE_GENERATOR_QUERY_CLOSEST_SYNC = 2, <br> OH_AVIMAGE_GENERATOR_QUERY_CLOSEST = 3 } | 指定时间点与视频帧对应关系的枚举类型。  | 
 
 
 ### 函数
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVImageGenerator](#oh_avimagegenerator) \* [OH_AVImageGenerator_Create](#oh_avimagegenerator_create) (void) | 创建OH_AVImageGenerator实例。  | 
+| [OH_AVImageGenerator](#oh_avimagegenerator) \* [OH_AVImageGenerator_Create](#oh_avimagegenerator_create) (void) | 创建OH_AVImageGenerator实例，用于生成指定时间点视频帧。  | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVImageGenerator_SetFDSource](#oh_avimagegenerator_setfdsource) ([OH_AVImageGenerator](#oh_avimagegenerator) \*generator, int32_t fd, int64_t offset, int64_t size) | 通过媒体文件描述设置数据源。  | 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVImageGenerator_FetchFrameByTime](#oh_avimagegenerator_fetchframebytime) ([OH_AVImageGenerator](#oh_avimagegenerator) \*generator, int64_t timeUs, [OH_AVImageGenerator_QueryOptions](#oh_avimagegenerator_queryoptions) options, OH_PixelmapNative \*\*pixelMap) | 从视频资源中获取特定时间的视频帧。  | 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVImageGenerator_Release](#oh_avimagegenerator_release) ([OH_AVImageGenerator](#oh_avimagegenerator) \*generator) | 释放用于OH_AVImageGenerator的资源以及销毁OH_AVImageGenerator对象。  | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVImageGenerator_FetchFrameByTime](#oh_avimagegenerator_fetchframebytime) ([OH_AVImageGenerator](#oh_avimagegenerator) \*generator, int64_t timeUs, [OH_AVImageGenerator_QueryOptions](#oh_avimagegenerator_queryoptions) options, OH_PixelmapNative \*\*pixelMap) | 从视频资源中获取指定时间点视频帧。  | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVImageGenerator_Release](#oh_avimagegenerator_release) ([OH_AVImageGenerator](#oh_avimagegenerator) \*generator) | 释放用于OH_AVImageGenerator的资源以及销毁OH_AVImageGenerator实例。  | 
 
 
 ## 类型定义说明
@@ -55,7 +55,7 @@
 typedef struct OH_AVImageGenerator OH_AVImageGenerator
 ```
 **描述**
-定义OH_AVImageGenerator类型。
+定义OH_AVImageGenerator类型，用于生成指定时间点视频帧。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
 
@@ -68,7 +68,7 @@ typedef struct OH_AVImageGenerator OH_AVImageGenerator
 typedef enum OH_AVImageGenerator_QueryOptions OH_AVImageGenerator_QueryOptions
 ```
 **描述**
-指定时间点与视频帧对应关系的枚举。
+指定时间点与视频帧对应关系的枚举类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
 
@@ -84,7 +84,7 @@ typedef enum OH_AVImageGenerator_QueryOptions OH_AVImageGenerator_QueryOptions
 enum OH_AVImageGenerator_QueryOptions
 ```
 **描述**
-指定时间点与视频帧对应关系的枚举。
+指定时间点与视频帧对应关系的枚举类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
 
@@ -107,7 +107,7 @@ enum OH_AVImageGenerator_QueryOptions
 OH_AVImageGenerator* OH_AVImageGenerator_Create(void)
 ```
 **描述**
-创建OH_AVImageGenerator实例。
+创建OH_AVImageGenerator实例，用于生成指定时间点视频帧。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
 
@@ -115,7 +115,7 @@ OH_AVImageGenerator* OH_AVImageGenerator_Create(void)
 
 **返回：**
 
-如果创建成功返回指向OH_AVImageGenerator实例的指针，否则返回空指针。
+创建成功时返回指向OH_AVImageGenerator实例的指针，否则返回空指针。
 
 可能的失败原因：HstEngineFactory未能创建AVMetadataHelperEngine。
 
@@ -126,7 +126,7 @@ OH_AVImageGenerator* OH_AVImageGenerator_Create(void)
 OH_AVErrCode OH_AVImageGenerator_FetchFrameByTime(OH_AVImageGenerator* generator, int64_t timeUs, OH_AVImageGenerator_QueryOptions options, OH_PixelmapNative** pixelMap)
 ```
 **描述**
-从视频资源中获取特定时间的视频帧。
+从视频资源中获取指定时间点视频帧。
 
 此函数必须在[SetFDSource](#oh_avimagegenerator_setfdsource)之后调用。
 
@@ -147,9 +147,9 @@ OH_AVErrCode OH_AVImageGenerator_FetchFrameByTime(OH_AVImageGenerator* generator
 
 AV_ERR_OK：执行成功。
 
-AV_ERR_INVALID_VAL：输入generator为空指针或者输入参数无效。
+AV_ERR_INVALID_VAL：输入的generator为空指针或参数无效。
 
-AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+AV_ERR_OPERATE_NOT_PERMIT：操作被禁止。
 
 AV_ERR_UNSUPPORTED_FORMAT：格式不支持。
 
@@ -161,7 +161,7 @@ AV_ERR_NO_MEMORY：内部内存分配失败。
 OH_AVErrCode OH_AVImageGenerator_Release(OH_AVImageGenerator* generator)
 ```
 **描述**
-释放用于OH_AVImageGenerator的资源以及销毁OH_AVImageGenerator对象。
+释放用于OH_AVImageGenerator的资源以及销毁OH_AVImageGenerator实例。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
 
@@ -179,7 +179,7 @@ OH_AVErrCode OH_AVImageGenerator_Release(OH_AVImageGenerator* generator)
 
 AV_ERR_OK：执行成功。
 
-AV_ERR_INVALID_VAL：输入generator为空指针或者输入参数无效。
+AV_ERR_INVALID_VAL：输入的generator为空指针或参数无效。。
 
 
 ### OH_AVImageGenerator_SetFDSource()
@@ -209,8 +209,8 @@ OH_AVErrCode OH_AVImageGenerator_SetFDSource(OH_AVImageGenerator* generator, int
 
 AV_ERR_OK：执行成功。
 
-AV_ERR_INVALID_VAL：输入generator为空指针或者输入参数无效。
+AV_ERR_INVALID_VAL：输入的generator为空指针或参数无效。
 
-AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+AV_ERR_OPERATE_NOT_PERMIT：操作被禁止。
 
 AV_ERR_NO_MEMORY：内部内存分配失败。

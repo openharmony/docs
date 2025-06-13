@@ -39,7 +39,7 @@ DataPanel(options: DataPanelOptions)
 | 名称            | 类型   | 必填  | 说明 |
 | ----------------- | -------- | ----- | -------- |
 | values            | number[]   | 是    | 数据值列表，最多包含9个数据，大于9个数据则取前9个数据。若数据值小于0则置为0。 |
-| max               | number     | 否    |   -&nbsp;max大于0，表示数据的最大值。<br/>-&nbsp;max小于等于0，max等于value数组各项的和，按比例显示。<br/>默认值：100 |
+| max               | number     | 否    |   -&nbsp;max大于0时，表示数据的最大值。<br/>-&nbsp;max小于等于0时，max等于value数组各项的和，按比例显示。<br/>默认值：100 |
 | type<sup>8+</sup> | [DataPanelType](#datapaneltype8枚举说明) | 否 | 数据面板的类型（不支持动态修改）。<br/>默认值：DataPanelType.Circle |
 
 
@@ -65,7 +65,7 @@ DataPanel(options: DataPanelOptions)
 
 closeEffect(value: boolean)
 
-设置关闭数据占比图表旋转动效和投影效果。若未设置[trackShadow属性](#trackshadow10)，则该属性控制投影效果的开关，开启投影的效果为投影的默认效果。若设置trackShadow属性，则由trackShadow属性值控制投影效果的开关。
+设置是否关闭数据占比图表旋转动效和投影效果。若未设置[trackShadow属性](#trackshadow10)，则由该属性控制投影效果的开关，开启投影的效果为投影的默认效果。若设置了trackShadow属性，则由trackShadow属性值控制投影效果的开关。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -109,7 +109,7 @@ trackBackgroundColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                                         |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 底板颜色。<br/>默认值：'#08182431'，格式为十六进制ARGB值，前俩位代表透明度。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 底板颜色。<br/>默认值：'#08182431'，格式为十六进制ARGB值，前两位代表透明度。 |
 
 ### strokeWidth<sup>10+</sup>
 
@@ -141,7 +141,7 @@ trackShadow(value: DataPanelShadowOptions)
 
 | 参数名 | 类型                                                        | 必填 | 说明                                                  |
 | ------ | ----------------------------------------------------------- | ---- | ----------------------------------------------------- |
-| value  | [DataPanelShadowOptions](#datapanelshadowoptions10对象说明) | 是   | 投影样式。<br/>**说明：** <br/>设置null为不开启投影。 |
+| value  | [DataPanelShadowOptions](#datapanelshadowoptions10对象说明) | 是   | 投影样式。<br/>**说明：** <br/>设置为null时，不开启投影。 |
 
 ### contentModifier<sup>12+</sup>
 
@@ -157,7 +157,7 @@ contentModifier(modifier: ContentModifier\<DataPanelConfiguration>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                             |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [ContentModifier\<DataPanelConfiguration>](#datapanelconfiguration12对象说明) | 是   | 在DataPanel组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+| modifier  | [ContentModifier\<DataPanelConfiguration>](#datapanelconfiguration12对象说明) | 是   | 在DataPanel组件上，定制内容区的方法。<br/>modifier： 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
 
 ## DataPanelShadowOptions<sup>10+</sup>对象说明

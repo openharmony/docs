@@ -228,6 +228,9 @@ type GetItemMainSizeByIndex = (index: number) => number
 ## 属性
 
 除支持[通用属性](ts-component-general-attributes.md)和[滚动组件通用属性](ts-container-scrollable-common.md#属性)外，还支持以下属性：
+> **说明：** 
+>
+> WaterFlow组件使用通用属性[clip<sup>12+</sup>](ts-universal-attributes-sharp-clipping.md#clip12)和通用属性[clip<sup>18+</sup>](ts-universal-attributes-sharp-clipping.md#clip18)时默认值都为true。
 
 ### columnsTemplate
 
@@ -235,7 +238,7 @@ columnsTemplate(value: string)
 
 设置当前瀑布流组件布局列的数量，不设置时默认1列。
 
-例如，'1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。
+例如，'1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第1列占1份，第2列占1份，第3列占2份。
 
 可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数，其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、%或有效数字，默认单位为vp，使用方法参见示例2。
 
@@ -255,7 +258,7 @@ rowsTemplate(value: string)
 
 设置当前瀑布流组件布局行的数量，不设置时默认1行。
 
-例如，'1fr 1fr 2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。
+例如，'1fr 1fr 2fr'是将父组件分3行，将父组件允许的高分为4等份，第1行占1份，第2行占1份，第3行占2份。
 
 可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数，其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、%或有效数字，默认单位为vp。
 
@@ -462,7 +465,7 @@ onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain
 
 瀑布流开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，瀑布流将按照返回值的实际滑动量进行滑动。
 
-触发该事件的条件：手指拖动WaterFlow、WaterFlow惯性划动时每帧开始时触发；WaterFlow超出边缘回弹、使用滚动控制器和拖动滚动条的滚动不会触发。
+触发该事件的条件：手指拖动WaterFlow、WaterFlow惯性划动时每帧开始时触发；WaterFlow超出边缘回弹、调用除fling接口外的其他滚动控制接口和拖动滚动条的滚动不会触发。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -633,6 +636,25 @@ export class WaterFlowDataSource implements IDataSource {
   public reload(): void {
     this.dataArray.splice(1, 1);
     this.dataArray.splice(3, 2);
+    this.notifyDataReload();
+  }
+
+  // 在数据尾部增加count个元素
+  public addNewItems(count: number): void {
+    let len = this.dataArray.length;
+    for (let i = 0; i < count; i++) {
+      this.dataArray.push(this.dataArray[len - 1] + i + 1);
+      this.notifyDataAdd(this.dataArray.length - 1);
+    }
+  }
+
+  // 刷新所有元素
+  public refreshItems(): void {
+    let newDataArray: number[] = [];
+    for (let i = 0; i < 100; i++) {
+      newDataArray.push(this.dataArray[0] + i + 1000);
+    }
+    this.dataArray = newDataArray;
     this.notifyDataReload();
   }
 }
@@ -860,21 +882,21 @@ struct WaterFlowDemo {
     onGetItemMainSizeByIndex: (index: number) => {
       return this.itemHeightArray[index % 100];
     }
-  }
+  };
   twoColumnSection: SectionOptions = {
     itemsCount: 2,
     crossCount: 2,
     onGetItemMainSizeByIndex: (index: number) => {
       return 100;
     }
-  }
+  };
   lastSection: SectionOptions = {
     itemsCount: 20,
     crossCount: 2,
     onGetItemMainSizeByIndex: (index: number) => {
       return this.itemHeightArray[index % 100];
     }
-  }
+  };
 
   // 计算FlowItem高度
   getSize() {
@@ -926,7 +948,7 @@ struct WaterFlowDemo {
               onGetItemMainSizeByIndex: (index: number) => {
                 return this.itemHeightArray[index % 100];
               }
-            }
+            };
             let oldLength: number = this.sections.length();
             this.sections.splice(0, oldLength, [newSection]);
           })
@@ -1064,10 +1086,10 @@ struct WaterFlowDemo {
   private itemWidthArray: number[] = [];
   private itemHeightArray: number[] = [];
   @State columns: number = 2;
-  @State waterflowScale: number = 1;
+  @State waterFlowScale: number = 1;
   @State imageScale: number = 1;
   @State waterFlowOpacity: number = 1;
-  @State waterflowSnapshot: image.PixelMap | undefined = undefined;
+  @State waterFlowSnapshot: image.PixelMap | undefined = undefined;
   private columnChanged: boolean = false;
   private oldColumn: number = this.columns;
   private pinchTime: number = 0;
@@ -1116,7 +1138,7 @@ struct WaterFlowDemo {
 
       Stack() {
         // 用于展示缩放前的WaterFlow截图
-        Image(this.waterflowSnapshot)
+        Image(this.waterFlowSnapshot)
           .width('100%')
           .height('100%')
           .scale({
@@ -1144,8 +1166,8 @@ struct WaterFlowDemo {
         .layoutWeight(1)
         .opacity(this.waterFlowOpacity)
         .scale({
-          x: this.waterflowScale,
-          y: this.waterflowScale,
+          x: this.waterFlowScale,
+          y: this.waterFlowScale,
           centerX: 0,
           centerY: 0
         })
@@ -1161,7 +1183,7 @@ struct WaterFlowDemo {
                   console.info('error:' + JSON.stringify(error));
                   return;
                 }
-                this.waterflowSnapshot = pixmap;
+                this.waterFlowSnapshot = pixmap;
               })
             })
             .onActionUpdate((event: GestureEvent) => {
@@ -1174,28 +1196,28 @@ struct WaterFlowDemo {
               }
               this.pinchTime = event.timestamp;
 
-              this.waterflowScale = event.scale;
+              this.waterFlowScale = event.scale;
               this.imageScale = event.scale;
               // 根据缩放比例设置WaterFlow透明度
-              this.waterFlowOpacity = (this.waterflowScale > 1) ? (this.waterflowScale - 1) : (1 - this.waterflowScale);
+              this.waterFlowOpacity = (this.waterFlowScale > 1) ? (this.waterFlowScale - 1) : (1 - this.waterFlowScale);
               this.waterFlowOpacity *= 3;
               if (!this.columnChanged) {
                 this.changeColumns(event.scale);
               }
               // 限制缩放比例避免出现空白
               if (this.columnChanged) {
-                this.waterflowScale = this.imageScale * this.columns / this.oldColumn;
+                this.waterFlowScale = this.imageScale * this.columns / this.oldColumn;
                 if (event.scale < 1) {
-                  this.waterflowScale = this.waterflowScale > 1 ? this.waterflowScale : 1;
+                  this.waterFlowScale = this.waterFlowScale > 1 ? this.waterFlowScale : 1;
                 } else {
-                  this.waterflowScale = this.waterflowScale < 1 ? this.waterflowScale : 1;
+                  this.waterFlowScale = this.waterFlowScale < 1 ? this.waterFlowScale : 1;
                 }
               }
             })
             .onActionEnd((event: GestureEvent) => {
               // 离手做动画归位
               this.getUIContext()?.animateTo({ duration: 300 }, () => {
-                this.waterflowScale = 1;
+                this.waterFlowScale = 1;
                 this.waterFlowOpacity = 1;
               })
               // 记录当前列数
@@ -1433,3 +1455,87 @@ struct Index {
 ```
 
 ![waterFlow_footerContent](figures/waterFlow_footerContent.gif)
+
+### 示例8（WaterFlow组件实现下拉刷新）
+
+该示例通过Refresh组件和WaterFlow组件，实现了下拉刷新瀑布流组件数据源。
+
+<!--code_no_check-->
+```ts
+// Index.ets
+import { WaterFlowDataSource } from './WaterFlowDataSource';
+
+@Entry
+@Component
+struct WaterFlowDemo {
+  @State minSize: number = 80;
+  @State maxSize: number = 180;
+  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
+  @State isRefreshing: boolean = false;
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource();
+  scroller: Scroller = new Scroller();
+  private itemWidthArray: number[] = [];
+  private itemHeightArray: number[] = [];
+
+  // 计算FlowItem宽/高
+  getSize() {
+    let ret = Math.floor(Math.random() * this.maxSize);
+    return (ret > this.minSize ? ret : this.minSize);
+  }
+
+  // 设置FlowItem宽/高数组
+  setItemSizeArray() {
+    for (let i = 0; i < 100; i++) {
+      this.itemWidthArray.push(this.getSize());
+      this.itemHeightArray.push(this.getSize());
+    }
+  }
+
+  aboutToAppear() {
+    this.setItemSizeArray();
+  }
+
+  build() {
+    Column({ space: 2 }) {
+      Refresh({ refreshing: $$this.isRefreshing }) {
+        WaterFlow({ scroller: this.scroller }) {
+          LazyForEach(this.dataSource, (item: number) => {
+            FlowItem() {
+              Column() {
+                Text('N' + item).fontSize(12).height('16')
+              }
+            }
+            .width('100%')
+            .height(this.itemHeightArray[item % 100])
+            .backgroundColor(this.colors[item % 5])
+          }, (item: string) => item)
+        }
+        .columnsTemplate('repeat(auto-fill,80)')
+        .columnsGap(10)
+        .rowsGap(5)
+        .height('90%')
+        .edgeEffect(EdgeEffect.Spring, { alwaysEnabled: true })
+        .onReachEnd(() => {
+          // 触底加载数据
+          setTimeout(() => {
+            this.dataSource.addNewItems(100);
+          }, 1000)
+        })
+      }
+      .onStateChange((refreshStatus: RefreshStatus) => {
+        // 下拉刷新数据
+        if (refreshStatus === RefreshStatus.Done) {
+          this.dataSource.refreshItems();
+        }
+      })
+      .onRefreshing(() => {
+        setTimeout(() => {
+          this.isRefreshing = false;
+        }, 1000)
+      })
+    }
+  }
+}
+```
+
+![waterFlow_refresh](figures/waterFlow_refresh.gif)

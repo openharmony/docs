@@ -209,7 +209,7 @@
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_UnregisterCallback](#oh_cameramanager_unregistercallback) ([Camera_Manager](#camera_manager) \*cameraManager, [CameraManager_Callbacks](_camera_manager___callbacks.md) \*callback) | 注销相机状态更改事件回调。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_RegisterTorchStatusCallback](#oh_cameramanager_registertorchstatuscallback) ([Camera_Manager](#camera_manager) \*cameraManager, [OH_CameraManager_TorchStatusCallback](#oh_cameramanager_torchstatuscallback) torchStatusCallback) | 注册手电筒状态变更事件回调。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_UnregisterTorchStatusCallback](#oh_cameramanager_unregistertorchstatuscallback) ([Camera_Manager](#camera_manager) \*cameraManager, [OH_CameraManager_TorchStatusCallback](#oh_cameramanager_torchstatuscallback) torchStatusCallback) | 注销手电筒状态变更事件回调。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetSupportedCameras](#oh_cameramanager_getsupportedcameras) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Device](_camera___device.md) \*\*cameras, uint32_t \*size) | 获取支持相机的描述。 | 
+| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetSupportedCameras](#oh_cameramanager_getsupportedcameras) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Device](_camera___device.md) \*\*cameras, uint32_t \*size) | 获取支持指定的相机设备对象。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_DeleteSupportedCameras](#oh_cameramanager_deletesupportedcameras) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Device](_camera___device.md) \*cameras, uint32_t size) | 删除支持的相机。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetSupportedCameraOutputCapability](#oh_cameramanager_getsupportedcameraoutputcapability) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Device](_camera___device.md) \*camera, [Camera_OutputCapability](_camera___output_capability.md) \*\*cameraOutputCapability) | 查询指定相机在指定模式下支持的输出能力。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetSupportedCameraOutputCapabilityWithSceneMode](#oh_cameramanager_getsupportedcameraoutputcapabilitywithscenemode) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Device](_camera___device.md) \*camera, [Camera_SceneMode](#camera_scenemode) sceneMode, [Camera_OutputCapability](_camera___output_capability.md) \*\*cameraOutputCapability) | 查询指定相机在指定模式下支持的输出能力。 | 
@@ -1695,9 +1695,9 @@ enum Camera_Connection
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| CAMERA_CONNECTION_BUILT_IN | 内置摄像头。 | 
-| CAMERA_CONNECTION_USB_PLUGIN | 使用USB连接的摄像头。 | 
-| CAMERA_CONNECTION_REMOTE | 远程摄像头。 | 
+| CAMERA_CONNECTION_BUILT_IN | 内置相机。 | 
+| CAMERA_CONNECTION_USB_PLUGIN | 使用USB连接的相机。 | 
+| CAMERA_CONNECTION_REMOTE | 远程相机。 | 
 
 
 ### Camera_ErrorCode
@@ -1880,7 +1880,7 @@ enum Camera_MetadataObjectType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| FACE_DETECTION | 人脸检测。 | 
+| FACE_DETECTION | metadata对象类型，用于人脸检测。<br> 检测点应在0-1坐标系内，该坐标系左上角为(0，0)，右下角为(1，1)。<br> 此坐标系以设备充电口在右侧时的横向设备方向为基准。<br>例如应用的预览界面布局以设备充电口在下侧时的竖向方向为基准，<br>布局宽高为(w，h)， 返回点为(x，y)，则转换后的坐标点为(1-y，x)。 | 
 
 
 ### Camera_Position
@@ -2241,7 +2241,7 @@ Camera_ErrorCode OH_CameraInput_Open(Camera_Input* cameraInput)
 
 - CAMERA_CONFLICT_CAMERA：因冲突而无法使用相机。
 
-- CAMERA_DEVICE_DISABLED：由于安全原因禁用了摄像头。
+- CAMERA_DEVICE_DISABLED：由于安全原因禁用了相机。
 
 - CAMERA_SERVICE_FATAL_ERROR：如果相机服务出现致命错误。
 
@@ -2275,7 +2275,7 @@ Camera_ErrorCode OH_CameraInput_OpenConcurrentCameras(Camera_Input* cameraInput,
 
 - CAMERA_CONFLICT_CAMERA：如果不能使用相机会导致冲突。
 
-- CAMERA_DEVICE_DISABLED：如果由于安全原因禁用了摄像头。
+- CAMERA_DEVICE_DISABLED：如果由于安全原因禁用了相机。
 
 - CAMERA_SERVICE_FATAL_ERROR：如果相机服务出现致命错误。
 
@@ -2297,7 +2297,7 @@ Camera_ErrorCode OH_CameraInput_OpenSecureCamera(Camera_Input* cameraInput, uint
 | 名称 | 描述 | 
 | -------- | -------- |
 | cameraInput | 要打开的[Camera_Input](#camera_input)实例。 | 
-| secureSeqId | 表示安全摄像头的序列值。 | 
+| secureSeqId | 表示安全相机的序列值。 | 
 
 **返回：**
 
@@ -2309,7 +2309,7 @@ Camera_ErrorCode OH_CameraInput_OpenSecureCamera(Camera_Input* cameraInput, uint
 
 - CAMERA_CONFLICT_CAMERA：因冲突而无法使用相机。
 
-- CAMERA_DEVICE_DISABLED：由于安全原因禁用了摄像头。
+- CAMERA_DEVICE_DISABLED：由于安全原因禁用了相机。
 
 - CAMERA_SERVICE_FATAL_ERROR：如果相机服务出现致命错误。
 
@@ -2842,7 +2842,7 @@ Camera_ErrorCode OH_CameraManager_GetCameraConcurrentInfos(Camera_Manager* camer
 
 **描述**
 
-获取指定相机的并发信息，返回空表示不支持并发。
+获取指定相机的并发信息。
 
 **起始版本：** 18
 
@@ -2850,11 +2850,11 @@ Camera_ErrorCode OH_CameraManager_GetCameraConcurrentInfos(Camera_Manager* camer
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| cameraManager | 相机管理器实例[Camera_Manager](#camera_manager)。 | 
-| camera | 用于查询的[Camera_Device](_camera___device.md)数组。 | 
+| camera | 用于查询的[Camera_Device](_camera___device.md)相机设备列表，推荐设置为包含[OH_CameraManager_GetCameraDevice](#oh_cameramanager_getcameradevice)获取的前置与后置两个相机设备的相机设备列表。 | 
+| deviceSize | 用于查询的相机设备列表长度, 必须设置为2（表示前置与后置两个用于并发的相机设备）。 | 
 | deviceSize | 用于查询的相机数组长度。 | 
-| cameraConcurrentInfo | 查询到的相机并发能力数组[Camera_ConcurrentInfo](_camera___concurrent_info.md)。 | 
-| infoSize | 查询到的相机并发能力数组长度。 | 
+| cameraConcurrentInfo | 查询到的相机并发能力数组[Camera_ConcurrentInfo](_camera___concurrent_info.md)，作为入参应当默认设置为空。如果相机支持并发，cameraConcurrentInfo会被赋值为查询到的相机并发能力数组[Camera_ConcurrentInfo](_camera___concurrent_info.md)。 如果相机不支持并发，不会对cameraConcurrentInfo进行更改，并且返回错误码[Camera_ErrorCode](#camera_errorcode-1)中的CAMERA_SERVICE_FATAL_ERROR。 | 
+| infoSize | 查询到的相机并发能力数组长度，作为入参应当默认设置为0。如果相机支持并发，infoSize会被赋值为查询到的相机并发能力数组长度。如果相机不支持并发，不会对infoSize进行更改，并且返回错误码[Camera_ErrorCode](#camera_errorcode-1)中的CAMERA_SERVICE_FATAL_ERROR。 | 
 
 **返回：**
 
@@ -2864,7 +2864,7 @@ Camera_ErrorCode OH_CameraManager_GetCameraConcurrentInfos(Camera_Manager* camer
 
 - CAMERA_INVALID_ARGUMENT：如果参数丢失或参数类型不正确。
 
-- CAMERA_SERVICE_FATAL_ERROR：如果相机服务出现致命错误。
+- CAMERA_SERVICE_FATAL_ERROR：如果相机服务出现致命错误，或者相机不支持并发。
 
 
 ### OH_CameraManager_GetCameraDevice()
@@ -2968,7 +2968,7 @@ Camera_ErrorCode OH_CameraManager_GetSupportedCameras(Camera_Manager* cameraMana
 
 **描述**
 
-获取支持相机的描述。
+获取支持指定的相机设备对象。
 
 **起始版本：** 11
 

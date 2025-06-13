@@ -13,6 +13,8 @@ For details about the development guide, see step 4 in surface mode or step 3 in
 
 **Related module**: [CodecBase](_codec_base.md)
 
+**Header file**: [native_avcodec_base.h](native__avcodec__base_8h.md)
+
 
 ## Summary
 

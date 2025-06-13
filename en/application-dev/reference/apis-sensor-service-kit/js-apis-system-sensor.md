@@ -426,7 +426,7 @@ Obtains the wearing state of a wearable device.
 
 | Name | Type                                           | Mandatory| Description                      |
 | ------- | ----------------------------------------------- | ---- | -------------------------- |
-| options | [GetOnBodyStateOptions](#getonbodystateoptions) | Yes  | Type of data to return.|
+| options | [GetOnBodyStateOptions](#getonbodystateoptions) | Yes  | Options for obtaining the wearing state of a wearable device.|
 
 **Example**
 
@@ -727,7 +727,7 @@ Defines the type of data to return for a subscription to the wearing state chang
 
 ## OnBodyStateResponse 
 
-Defines the wearing state.
+Specifies whether the device is worn.
 
 **System capability**: SystemCapability.Sensors.Sensor.Lite
 
@@ -737,7 +737,7 @@ Defines the wearing state.
 
 ## GetOnBodyStateOptions
 
- Defines the type of data to return for obtaining the wearing state.
+ Defines the options for obtaining the wearing state of a wearable device.
 
 **System capability**: SystemCapability.Sensors.Sensor.Lite
 

@@ -866,9 +866,6 @@ Provides UI capabilities of ArkUI on the native side, such as UI component creat
 | int32_t [OH_ArkUI_GetGestureParam_duration](#oh_arkui_getgestureparam_duration) (ArkUI_GestureRecognizer \*recognizer, int\* duration) | Obtains the minimum duration required to trigger a long press by a gesture recognizer.|
 | int32_t [OH_ArkUI_GetGestureParam_angle](#oh_arkui_getgestureparam_angle) (ArkUI_GestureRecognizer \*recognizer, double\* angle) | Obtains the minimum angle change required for a rotation gesture to be recognized by a gesture recognizer.|
 | int32_t [OH_ArkUI_GetGestureParam_distanceThreshold](#oh_arkui_getgestureparam_distancethreshold) (ArkUI_GestureRecognizer \*recognizer, double\* distanceThreshold) | Obtains the movement threshold for gestures to be recognized by a gesture recognizer.|
-|int32_t [OH_ArkUI_DragEvent_RequestDragEndPending](#oh_arkui_dragevent_requestdragendpending)([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent)\* event, int32_t* requestIdentify); | Requests a delayed execution of the end of the drag and drop operation.|
-|int32_t [OH_ArkUI_NotifyDragResult](#oh_arkui_notifydragresult)(int32_t requestIdentify, [ArkUI_DragResult](#arkui_dragresult) \* result); | Notifies the system of the drag result.|
-|int32_t [OH_ArkUI_NotifyDragEndPendingDone](#oh_arkui_notifydragendpendingdone)(int32_t requestIdentify);| Notifies that the drag delay execution is complete.|
 
 
 ## Macro Description
@@ -17913,84 +17910,6 @@ Obtains the movement threshold for gestures to be recognized by a gesture recogn
 
 Returns **ARKUI_ERROR_CODE_NO_ERROR** if the operation is successful.
 Returns **ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED** if the gesture recognizer type is not supported.
-
-
-### OH_ArkUI_DragEvent_RequestDragEndPending()
-
-```
-int32_t OH_ArkUI_DragEvent_RequestDragEndPending(ArkUI_DragEvent* event, int32_t* requestIdentify)
-```
-**Description**
-
-Requests a delayed execution of the end of the drag and drop operation. When the system notifies the application of a drop event, this API can be called to explicitly inform the system that a delay is needed before the drag result can be processed. The system will defer the end of the drag and drop operation and wait for the application to return the drag result through the **OH_ArkUI_NotifyDragResult** API. This is typically used when the drag data is processed in a background thread to avoid blocking the main thread for an extended period, ensuring that the drag source receives an accurate result at the end of the drag operation. However, the system will not wait indefinitely; the maximum timeout is 2 seconds. If the **OH_ArkUI_NotifyDragResult** notification is not received within this time, the drag and drop operation will be forcibly terminated, and the drag source will be notified of the failure.
-
-**Since**: 18
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| event | Pointer to an **ArkUI_DragEvent** object. | 
-| requestIdentify | Unique identifier for this delayed drop operation.| 
-
-
-**Returns**
-
-Returns **ARKUI_ERROR_CODE_NO_ERROR** if the operation is successful.
-Returns **ARKUI_ERROR_CODE_PARAM_INVALID** if a parameter error occurs.
-Returns **ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED** if the API is not called during the drop phase.
-
-
-
-### OH_ArkUI_NotifyDragResult()
-
-```
-int32_t OH_ArkUI_NotifyDragResult(int32_t requestIdentify, ArkUI_DragResult result)
-```
-**Description**
-
-Notifies the system of the drag result.
-
-**Since**: 18
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| requestIdentify | Unique identifier for this delayed drop operation.|
-| result | Drag result.| 
-
-
-**Returns**
-
-Returns **ARKUI_ERROR_CODE_NO_ERROR** if the operation is successful.
-Returns **ARKUI_ERROR_CODE_PARAM_INVALID** if a parameter error occurs.
-Returns **ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED** if the API is not called during the drop phase.
-
-
-### OH_ArkUI_NotifyDragEndPendingDone()
-
-```
-int32_t OH_ArkUI_NotifyDragEndPendingDone(int32_t requestIdentify)
-```
-**Description**
-
-Notifies the system that the delayed drag and drop operation has been completed.
-
-**Since**: 18
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| requestIdentify | Unique identifier for this delayed drop operation.|
-
-
-**Returns**
-
-Returns **ARKUI_ERROR_CODE_NO_ERROR** if the operation is successful.
-Returns **ARKUI_ERROR_CODE_PARAM_INVALID** if a parameter error occurs.
-Returns **ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED** if the API is not called during the drop phase.
 
 ### OH_ArkUI_TextPickerRangeContentArray_Create()
 

@@ -1,14 +1,14 @@
 # 分析AppFreeze（应用无响应）
 
-用户在使用应用时会出现点击没反应、应用无响应等情况，其超过一定时间限制后即被定义为应用无响应(appfreeze)。系统提供了检测应用无响应的机制，并生成appfreeze日志供应用开发分析。
+用户在使用应用时，如果出现点击无反应或应用无响应等情况，并且持续时间超过一定限制，就会被定义为应用无响应（appfreeze）。系统会检测应用无响应，并生成appfreeze日志，供应用开发者分析。
 
 > **说明：**
-> 
-> 本文仅适用于Stage模型下的应用使用。且在根据本文分析日志前，需要开发者对JS在系统中运行情况、C++程序堆栈信息有相关基础知识，并对应用相关的子系统有一定了解。
+>
+> 本文仅适用于Stage模型下的应用。在根据本文分析日志前，开发者需要具备JS在系统中运行情况、C++程序堆栈信息的相关基础知识，并对应用相关的子系统有一定了解。
 
 ## 应用无响应检测能力点
 
-目前应用无响应检测从以下维度检测，应用开发者了解其原理对定位和分析appfreeze故障非常有帮助。
+目前应用无响应检测从以下三个维度检测，了解其原理有助于应用开发者定位和分析appfreeze故障。
 
 | 故障类型 | 说明 |
 | -------- | -------- |
@@ -18,9 +18,9 @@
 
 ### THREAD_BLOCK_6S 应用主线程卡死超时
 
-该故障出现表示当前应用主线程有卡死或者执行任务过多的情况，影响任务执行的流畅度和体验。
+发生该故障，表示当前应用主线程有卡死或者执行任务过多的情况，影响应用的流畅度和体验。
 
-该事件的检测原理是：应用的watchdog线程定期向主线程插入判活检测，并在自己线程插入超时上报机制。当判活检测超过3s没有被执行，会上报THREAD_BLOCK_3S警告事件；超过6s依然没有被执行，会上报THREAD_BLOCK_6S主线程卡死事件。两个事件匹配生成THREAD_BLOCK的应用无响应日志。
+检测原理：应用的watchdog线程定期向主线程插入判活检测任务。如果判活检测超过3s未被执行，将上报THREAD_BLOCK_3S告警事件；如果超过6s仍未被执行，将上报THREAD_BLOCK_6S主线程卡死事件。两个事件匹配生成THREAD_BLOCK的应用无响应日志。
 
 检测原理如下图：
 
@@ -28,9 +28,9 @@
 
 ### APP_INPUT_BLOCK 用户输入响应超时
 
-该故障是指用户的点击事件超过一定时间限制未得到响应，严重影响当前用户体验。
+该故障是指点击事件超过5s未得到响应。
 
-该事件的检测原理是：用户点击应用的按钮时，输入系统会向应用侧发送点击事件，但超时未收到应用侧的响应反馈回执，则上报该故障。
+检测原理：用户点击应用时，输入系统会向应用侧发送点击事件；应用侧的响应反馈回执超时，则上报该故障。
 
 检测原理如下图：
 
@@ -40,15 +40,15 @@
 
 生命周期切换超时分为[Ability生命周期](../application-models/uiability-lifecycle.md#uiability组件生命周期)切换超时和[PageAbility生命周期](../application-models/pageability-lifecycle.md#pageability的生命周期)切换超时。
 
-该故障出现在生命周期切换的过程中，影响当前应用内Ability的切换或者不同PageAbility之间的切换。
+该故障发生在生命周期切换过程中，影响应用内Ability的切换或者不同PageAbility之间的切换。
 
-该事件的检测原理是：通过获取不同生命周期切换的过程，在生命周期切换开始的位置向watchdog线程插入超时任务，在生命周期切换完成之后移除超时任务，固定时间内未成功移除将上报故障。
+检测原理是：在生命周期切换开始的位置向watchdog线程插入超时任务，切换完成之后移除超时任务，固定时间内未成功移除任务将上报故障。
 
-生命周期切换超时由LIFECYCLE_HALF_TIMEOUT和LIFECYCLE_TIMEOUT两个事件组合而成。LIFECYCLE_HALF_TIMEOUT作为LIFECYCLE_TIMEOUT的警告事件，抓取binder等信息。
+生命周期切换超时由LIFECYCLE_HALF_TIMEOUT和LIFECYCLE_TIMEOUT两个事件组合而成。LIFECYCLE_HALF_TIMEOUT作为LIFECYCLE_TIMEOUT的告警事件，抓取binder等信息。
 
 ![appfreeze_20230308145164](figures/appfreeze_20230308145164.png)
 
-不同的生命周期，超时的时间不一样：
+不同的生命周期，对应的超时时间各不相同。具体如下表所示：
 
 | 生命周期 | 超时时间 |
 | -------- | -------- |
@@ -61,9 +61,9 @@
 
 ## 应用无响应日志分析
 
-应用无响应(appfreeze)故障需要结合应用无响应日志和流水hilog日志一起分析。
+应用无响应（appfreeze）故障需要结合应用无响应日志和流水hilog日志进行分析。
 
-当前示例仅提供一个分析方法，请开发者根据具体问题具体分析。
+当前提供一个故障分析示例，请开发者根据具体问题具体分析。
 
 应用无响应日志主要分以下几个模块信息：
 
@@ -72,63 +72,69 @@
 | 字段 | 说明 |
 | -------- | -------- |
 | Reason | 应用无响应原因，与[应用无响应检测能力点](#应用无响应检测能力点)对应。 |
-| PID | 发生故障时候的pid，可以用于在流水日志中搜索相关进程信息。 |
+| PID | 发生故障时候的pid。 |
 | PACKAGE_NAME | 应用进程包名。 |
 
 ```
-============================================================
-Device info:OpenHarmony 3.2
-Build info:OpenHarmony 4.0.5.3
-Module name:com.xxx.xxx
+Generated by HiviewDFX@OpenHarmony
+================================================================
+Device info:OpenHarmony 3.2
+Build info:OpenHarmony 5.1.0.59
+Fingerprint:9f232fb5053c092144eedaa39ceecd67a6997db69467973b4d5fe786f184374d
+Module name:com.example.freeze
 Version:1.0.0
-Pid:1561
-Uid:20010039
-Reason:LIFECYCLE_TIMEOUT
-sysfreeze:LIFECYCLE_TIMEOUT LIFECYCLE_TIMEOUT at 20230317170653
+VersionCode:1000000
+PreInstalled:No
+Foreground:Yes
+Pid:2212
+Uid:20010044
+Reason:THREAD_BLOCK_6S
+appfreeze: com.example.freeze THREAD_BLOCK_6S at 20170817192244
+DisplayPowerInfo:powerState:UNKNOWN
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 DOMAIN:AAFWK
-STRINGID:LIFECYCLE_TIMEOUT
-TIMESTAMP:2023/XX/XX/XX-XX:XX:XX:XX
-PID:1561
-UID:20010039
-PACKAGE_NAME:com.xxx.xxx
-PROCESS_NAME:com.xxx.xxx
-MSG:ablity:EntryAbility background timeout
+STRINGID:THREAD_BLOCK_6S
+TIMESTAMP:2017/08/17-19:22:44:952
+PID:2212
+UID:20010044
+PACKAGE_NAME:com.example.freeze
+PROCESS_NAME:com.example.freeze
+*******************************************
 ```
 
 ### 日志主干通用信息
 
-以上三种日志都包含以下几部分信息，可以通过搜索“主要信息字段”在日志中找到对应的位置：
+三种Appfreeze事件都包含以下几部分信息。可以通过搜索相关“主要信息字段”的内容，在日志中找到对应的位置。具体信息如下：
 
 | 主要信息字段 | 说明 |
 | -------- | -------- |
-| EVENTNAME | 应用无响应原因，或者组成卡死检测的不同事件。 |
+| EVENTNAME | 组成卡死检测事件。 |
 | TIMESTAMP | 发生故障时上报事件的时刻，可以根据[应用无响应检测能力点](#应用无响应检测能力点)中说明的超时时间，在相应流水日志中缩小查看日志的时间范围。 |
-| PID | 发生故障时候的pid，可以与发生时间和超时时间配合用于在流水日志中搜索相关进程信息。 |
+| PID | 发生故障时候的pid。 |
 | PACKAGE_NAME | 应用进程包名。 |
 | MSG | 发生故障时dump信息或者说明信息，后面具体说明。 |
-| BinderCatcher | 进程与其他系统进程间通信的调用信息，显示调用等待时间长的情况。 |
-| PeerBinder Stacktrace | 当前进程相关的对端进程有卡死，会抓取对端的进程堆栈。 |
-| cpuusage | 当前时间段整机CPU使用情况。 |
-| memory | 当前时间当前进程的内存使用情况。 |
+| BinderCatcher | 进程间通信的调用信息，显示调用等待时间长的情况。 |
+| PeerBinder Stacktrace | 故障进程相关的对端进程有卡死，会抓取对端的进程堆栈。 |
+| cpuusage | 故障时间段整机CPU使用情况。 |
+| memory | 故障时间设备内存使用情况。 |
 
 > **说明：**
 >
-> 在整机高负载的情况下，采用低开销方式获取调用栈的情况，可能损失函数名称和build-id信息。
+> 在整机高负载情况下，采用低开销方式获取调用栈时，可能损失函数名称和build-id信息；获取用户栈失败时，build-id会为空。
 
-MSG字段信息主要包括卡死上报的原因，以及当前应用主线程的队列中任务堆积信息。
+MSG字段包含卡死上报的原因和当前应用主线程的队列的任务堆积信息。
 
-主线程队列中任务堆积信息包括：
+主线程队列中任务堆积信息如下：
 
-- 当前正在运行的任务以及任务启动的时间：如果跟当前日志上报的时间相差很大，则当前运行的任务就是卡死的主要任务事件。
+- 当前正在运行的任务及其启动时间：如果跟当前日志上报的时间相差很大，则该任务很可能就是卡死的主要原因。
 
-- 历史任务时间：可判断是否由于历史任务过多且每一个任务执行都占一定时间，导致当前的新任务运行时无法及时响应。
+- 历史任务时间：判断历史任务数量是否过多以及每个任务执行是否耗时过长导致当前新任务无法及时响应。
 
 - 堆积中还没有执行的任务。
 
 **当前进程堆栈示例：**
 
-通过搜索pid对应的数字找到应用栈信息。以下堆栈示例表明窗口通过IPC向系统发送事件时，停留在IPC通信阶段。
+通过搜索pid找到应用栈信息。以下堆栈示例显示，窗口通过IPC向系统发送事件时，停留在IPC通信阶段。
 
 ```
 OpenStacktraceCatcher -pid==1561 packageName is com.example.myapplication
@@ -166,17 +172,17 @@ Tid:1561,Name:i.myapplication
 
 **BinderCatcher信息示例：**
 
-通过搜索pid对应的数字找到当前进程与哪个进程在通信，同步的通信等待的时长。
+通过搜索pid，了解当前进程与哪个进程在通信及其同步通信的等待时长。
 
-示例表明当前1561进程向685进程请求通信，等待超过10s没有得到响应。
+示例表明，当前1561进程向685进程请求通信，等待超过10s未收到响应。
 
 ```
 PeerBinderCatcher -pid==1561 Layer_==0
 
 
 BinderCatcher --
-    1561:1561 to 685:0 code 0 Wait:10.366245919 s
-    1329:1376 to 487:794 code 0 Wait:0.12070041 s
+    1561:1561 to 685:0 code 0 Wait:10.366245919 s,  ns:-1:-1 to -1:-1, debug:1561:1561 to 685:0, active_code:0 active_thread:0, pending_async_proc=0
+    1329:1376 to 487:794 code 0 Wait:0.12070041 s,  ns:-1:-1 to -1:-1, debug:1329:1376 to 487:794, active_code:0 active_thread:0, pending_async_proc=0
 
 pid   context  request  started  max  ready free_async_space
 1561   binder    0       3       16     4       520192
@@ -188,12 +194,10 @@ pid   context  request  started  max  ready free_async_space
 
 **PeerBinder Stacktrace信息示例：**
 
-示例表明对端卡死进程685的堆栈信息。
+示例展示了对端卡死进程685的堆栈信息。
 
 ```
-PeerBinder Stacktrace --
-
-PeerBinderCatcher start catcher stacktrace for pid 685
+Binder catcher stacktrace, type is peer, pid : 685
 Result: 0 ( no error )
 Timestamp:2017-08-0817:06:55.000
 Pid:685
@@ -260,116 +264,144 @@ Total            34675    67068     16844    1912     19044      0      0       
 
 ### 日志主干特异性信息(应用主线程卡死超时)
 
-Reason是THREAD_BLOCK_6S的日志。根据前面的[应用主线程卡死超时](#thread_block_6s-应用主线程卡死超时)的原理可知，THREAD_BLOCK由THREAD_BLOCK_3S和THREAD_BLOCK_6S两部分组成。将两部分日志对比分析，可更准确的判断是卡死还是执行任务过多造成无法响应的情况。
+Reason是THREAD_BLOCK_6S的日志。根据[应用主线程卡死超时](#thread_block_6s-应用主线程卡死超时)的原理可知，THREAD_BLOCK由THREAD_BLOCK_3S和THREAD_BLOCK_6S组成。将两部分日志对比分析，可更准确的判断是卡死还是执行任务过多造成无法响应的情况。
 
-THREAD_BLOCK_3S在日志的前部分，THREAD_BLOCK_6S在THREAD_BLOCK_3S后面写入。可以通过EVENTNAME字段搜索两个事件在日志中的位置。
+在日志的前部分写入THREAD_BLOCK_3S，随后写入THREAD_BLOCK_6S。可以通过搜索EVENTNAME字段来定位两个事件在日志中的位置。
 
-两个事件中都包含MSG字段，该字段在应用主线程卡死超时故障中写入了当前主线程处理队列的信息，可查看在两个时间点中主线程事件处理队列排队情况。
+两个事件均包含MSG字段，该字段记录了应用主线程卡死超时时主线程处理队列的信息。通过对比MSG字段，可以查看两个时间点中主线程事件处理队列的排队情况。
 
-示例日志显示了在Low priority的队列中05:06:18.145的事件一直在处理，THREAD_BLOCK_3S和THREAD_BLOCK_6S的队列都显示其存在。这说明主线程卡死不是任务过多情况。
+以下示例日志显示，在07:22:40.931时，VIP priority的队列中的事件一直在处理，同时THREAD_BLOCK_3S和THREAD_BLOCK_6S的队列也存在该事件。这说明主线程卡死并非由于任务过多。
 
-由于THREAD_BLOCK_6S是主线程卡死，进程堆栈信息只需要关注主线程的堆栈(主线程线程号跟进程号相同)。当前示例日志主线程堆栈显示通过ArkUI控件到JS运行，说明卡死在Js代码中。3S和6S都是这个位置的堆栈，说明JS有卡死，但原因排除任务过多导致。
+由于THREAD_BLOCK_6S是主线程卡死，因此只需要关注主线程的堆栈（主线程线程号跟进程号相同）。以下示例日志中显示，主线程堆栈从ArkUI控件到JS运行，表明卡死在JS代码中。3S和6S堆栈位置相同，说明JS有卡死，但并非由于任务过多。
 
 THREAD_BLOCK_3S：
 
 ```
-start time:2017/08/08-17:06:24:380
-DOMAIN = AAFWK EVENTNAME THREAD_BLOCK_3S
-TIMESTAMP = 2017/08/08-17:06:24:363
-PID = 1561
-UID = 20010039
-TID = 1566
-PACKAGE_NAME com.example.myapplication
-PROCESS_NAME com.example.myapplication
-eventLog_action pb:1 eventLog_interval 10
-MSG = App main thread is not response!EventHandler dump begin curTime:2017-08-08 05:06:24.362
-  Event runner (Thread name =Thread ID 1561)is running
-  Current Running:start at 2017-08-08 05:06:18.145,Event send thread 1561,send time =2017-08-08 05:06:18.145,handle time =2017-08-08 05:
-  Immediate priority event queue information:
-  Total size of Immediate events 0
-  High priority event queue information:
-  No.1 Event send thread 1561,send time 2017-08-08 05:06:18.039,handle time 2017-08-08 05:06:21.539,task name [anr_handler.cpp(Send Total size of High events 1)]
-  Low priority event queue information:
-  No.1:Event{send thread=1566,send time=2017-08-0805:06:21.062,handle time=2017-08-0805:06:21.062,id=1}
-  Total size of Low events 1
-  Idle priority event queue information:
-  Total size of Idle events 0
-  Total event size :2
+start time: 2017/08/17-19:22:42:022
+DOMAIN = AAFWK
+EVENTNAME = THREAD_BLOCK_3S
+TIMESTAMP = 2017/08/17-19:22:42:10
+PID = 2212
+UID = 20010044
+TID = 2212
+PACKAGE_NAME = com.example.freeze
+PROCESS_NAME = com.example.freeze
+eventLog_action = ffrt,t,GpuStack,cmd:m,hot
+eventLog_interval = 10
+MSG = 
+Fault time:2017/08/17-19:22:40
+App main thread is not response!
 
- Timestamp: 2017-08-0817:06:24.4142447784
- Pid: 1561
- Uid: 20010039
- Process name: com.example.myapplication
- Tid:1561 Name:i.myapplication
-   at anonymous entry (D:/project/MyApplication_test/entry/build/default/intermediates/loader_out/default/ets,pages/Index_.js:0:1)
-   #00 pc 0017909c /system/lib/libark_jsruntime.so
-   #01 pc 00177ebb /system/lib/libark_jsruntime.so
-   #02 pc 0024b4bb /system/lib/libark_jsruntime.so
-   #03 pc 00fbed23 /system/lib/libace.z.so
-   #04 pc 00d8208f /system/lib/libace.z.so
-   ...
+Main handler dump start time: 2017-08-17 19:22:40.932
+mainHandler dump is:
+ EventHandler dump begin curTime: 2017-08-17 07:22:40.932
+ Event runner (Thread name = , Thread ID = 2212) is running
+ Current Running: start at 2017-08-17 07:22:34.930, Event { send thread = 2212, send time = 2017-08-17 07:22:29.932, handle time = 2017-08-17 07:22:34.929, trigger time = 2017-08-17 07:22:34.930, task name = uv_timer_task, caller = [ohos_loop_handler.cpp(OnTriggered:72)] }
+ History event queue information:
+ No. 0 : Event { send thread = 2212, send time = 2017-08-17 07:22:29.864, handle time = 2017-08-17 07:22:29.864, trigger time = 2017-08-17 07:22:29.864, completeTime time = 2017-08-17 07:22:29.865, priority = VIP, task name = MMITask }
+ No. 1 : Event { send thread = 2212, send time = 2017-08-17 07:22:29.814, handle time = 2017-08-17 07:22:29.865, trigger time = 2017-08-17 07:22:29.865, completeTime time = 2017-08-17 07:22:29.865, priority = Low, task name = ArkUIIdleTask }
+ No. 2 : Event { send thread = 2212, send time = 2017-08-17 07:22:29.869, handle time = 2017-08-17 07:22:29.869, trigger time = 2017-08-17 07:22:29.869, completeTime time = 2017-08-17 07:22:29.870, priority = VIP, task name = MMITask }
+ ......
+ VIP priority event queue information:
+ No.1 : Event { send thread = 2486, send time = 2017-08-17 07:22:37.931, handle time = 2017-08-17 07:22:37.931, id = 1, caller = [watchdog.cpp(Timer:208)] }
+ No.2 : Event { send thread = 2486, send time = 2017-08-17 07:22:40.931, handle time = 2017-08-17 07:22:40.931, id = 1, caller = [watchdog.cpp(Timer:208)] }
+ Total size of VIP events : 2
+ Immediate priority event queue information:
+ Total size of Immediate events : 0
+ High priority event queue information:
+ Total size of High events : 0
+ Low priority event queue information:
+ Total size of Low events : 0
+ Idle priority event queue information:
+ Total size of Idle events : 0
+ Total event size : 2
+Main handler dump end time: 2017-08-17 19:22:40.934
+
+Catche stack trace start time: 2017-08-17 19:22:41.098
+
+Tid:2212, Name:.example.freeze
+#00 pc 001d0d1e /system/lib/platformsdk/libark_jsruntime.so(panda::BytecodeInst<(panda::BytecodeInstMode)0>::Size(panda::BytecodeInst<(panda::BytecodeInstMode)0>::Format)+6)(ec51476a00bfde9c6d68b983a483d1ee)
+#01 pc 0024b011 /system/lib/platformsdk/libark_jsruntime.so(panda::ecmascript::EcmaInterpreter::RunInternal(panda::ecmascript::JSThread*, unsigned char const*, unsigned long long*)+1824)(ec51476a00bfde9c6d68b983a483d1ee)
+#02 pc 0024a75d /system/lib/platformsdk/libark_jsruntime.so(panda::ecmascript::EcmaInterpreter::Execute(panda::ecmascript::EcmaRuntimeCallInfo*)+1084)(ec51476a00bfde9c6d68b983a483d1ee)
+#03 pc 002e78e5 /system/lib/platformsdk/libark_jsruntime.so(panda::ecmascript::JSFunction::Call(panda::ecmascript::EcmaRuntimeCallInfo*)+392)(ec51476a00bfde9c6d68b983a483d1ee)
+#04 pc 00427fbb /system/lib/platformsdk/libark_jsruntime.so(panda::FunctionRef::CallForNapi(panda::ecmascript::EcmaVM const*, panda::JSValueRef*, panda::JSValueRef* const*, int)+1382)(ec51476a00bfde9c6d68b983a483d1ee)
+#05 pc 000502a1 /system/lib/platformsdk/libace_napi.z.so(napi_call_function+156)(394b2e21899459da15b9fe3f1c3188f0)
+......
 ```
 
 THREAD_BLOCK_6S：
 ```
-start time: 2017/08/08-17:06:27:299
+start time: 2017/08/17-19:22:44:962
 DOMAIN = AAFWK
-EVENTNAME THREAD_BLOCK_6S
-TIMESTAMP = 2017/08/08-17:06:27:292
-PID = 1561
-UID = 20010039
-TID = 1566
-PACKAGE_NAME com.example.myapplication
-PROCESS NAME com.example.myapplication eventLog_action cmd:c,cmd:m,tr,k:SysRqFile
-eventLog_interval 10
-MSG = App main thread is not response!EventHandler dump begin curTime:2017-08-08 05:06:27.291
-  Event runner (Thread name =Thread ID =1561)is running
-  Current Running:start at 2017-08-08 05:06:18.144, Event {send thread 1561,send time =2017-08-08 05:06:18.145,handle time =2017-08-08 05:
-  Immediate priority event queue information:
-  Total size of Immediate events 0
-  High priority event queue information:
-  No.1 Event send thread 1561,send time 2017-08-08 05:06:18.039,handle time 2017-08-08 05:06:21.539,task name [arr_handler.cpp(Se Total size of High events 1
-  Low priority event queue information:
-  No.1:Event{send thread=1566,send time=2017-08-0805:06:21.062,handle time=2017-08-0805:06:21.062,id=1}
-  No.2 Event send thread 1566,send time 2017-08-08 05:06:24.369,handle time 2017-08-08 05:06:24.369,id =1
-  Total size of Low events 2
-  Idle priority event queue information:
-  Total size of Idle events 0
-  Total event size 3
+EVENTNAME = THREAD_BLOCK_6S
+TIMESTAMP = 2017/08/17-19:22:44:952
+PID = 2212
+UID = 20010044
+TID = 2212
+PACKAGE_NAME = com.example.freeze
+PROCESS_NAME = com.example.freeze
+eventLog_action = t,cmd:c,cmd:cci,cmd:m,cmd:dam,tr,k:SysRqFile,hot
+eventLog_interval = 10
+MSG = 
+Fault time:2017/08/17-19:22:43
+App main thread is not response!
 
-Timestamp:2017-08-0817:0k:27,4142447784
-Pid:1561
-Uid:20010039
-Process name:com.example.myapplication
-Tid:1561 Name:i.myapplication
-  at anonymous entry (D:/project/MyApplication_test/entry/build/default/intermediates/loader_out/default/ets/pages/Index_.js:0:1)
-  #00 pc 00178dcc /system/lib/libark_jsruntime.so
-  #01 pc 00177ebb /system/lib/libark_jsruntime.so
-  #02 pc 0024b4bb /system/lib/libark_jsruntime.so(panda:FunctionRef:Call(panda:ecmascript:EcmaVM const*,panda:Local<panda:JSValueRef>,par
-  #03 pc 00fbed23 /system/lib/libace.z.so
-  #04 pc 00d8208f /system/lib/libace.z.so
-  #05 pc 00d7af1b /system/lib/libace.z.so
+Main handler dump start time: 2017-08-17 19:22:43.932
+mainHandler dump is:
+ EventHandler dump begin curTime: 2017-08-17 07:22:43.932
+ Event runner (Thread name = , Thread ID = 2212) is running
+ Current Running: start at 2017-08-17 07:22:34.930, Event { send thread = 2212, send time = 2017-08-17 07:22:29.933, handle time = 2017-08-17 07:22:34.930, trigger time = 2017-08-17 07:22:34.930, task name = uv_timer_task, caller = [ohos_loop_handler.cpp(OnTriggered:72)] }
+ History event queue information:
+ No. 0 : Event { send thread = 2212, send time = 2017-08-17 07:22:29.864, handle time = 2017-08-17 07:22:29.864, trigger time = 2017-08-17 07:22:29.864, completeTime time = 2017-08-17 07:22:29.865, priority = VIP, task name = MMITask }
+ No. 1 : Event { send thread = 2212, send time = 2017-08-17 07:22:29.814, handle time = 2017-08-17 07:22:29.865, trigger time = 2017-08-17 07:22:29.865, completeTime time = 2017-08-17 07:22:29.865, priority = Low, task name = ArkUIIdleTask }
+ No. 2 : Event { send thread = 2212, send time = 2017-08-17 07:22:29.869, handle time = 2017-08-17 07:22:29.869, trigger time = 2017-08-17 07:22:29.870, completeTime time = 2017-08-17 07:22:29.870, priority = VIP, task name = MMITask }
+ .......
+ VIP priority event queue information:
+ No.1 : Event { send thread = 2486, send time = 2017-08-17 07:22:37.931, handle time = 2017-08-17 07:22:37.931, id = 1, caller = [watchdog.cpp(Timer:208)] }
+ No.2 : Event { send thread = 2486, send time = 2017-08-17 07:22:40.931, handle time = 2017-08-17 07:22:40.931, id = 1, caller = [watchdog.cpp(Timer:208)] }
+ No.3 : Event { send thread = 2486, send time = 2017-08-17 07:22:43.932, handle time = 2017-08-17 07:22:43.932, id = 1, caller = [watchdog.cpp(Timer:208)] }
+ Total size of VIP events : 3
+ Immediate priority event queue information:
+ Total size of Immediate events : 0
+ High priority event queue information:
+ Total size of High events : 0
+ Low priority event queue information:
+ Total size of Low events : 0
+ Idle priority event queue information:
+ Total size of Idle events : 0
+ Total event size : 3
+Main handler dump end time: 2017-08-17 19:22:43.934
+
+Catche stack trace start time: 2017-08-17 19:22:44.061
+
+Tid:2212, Name:.example.freeze
+#00 pc 0024afea /system/lib/platformsdk/libark_jsruntime.so(panda::ecmascript::EcmaInterpreter::RunInternal(panda::ecmascript::JSThread*, unsigned char const*, unsigned long long*)+1786)(ec51476a00bfde9c6d68b983a483d1ee)
+#01 pc 0024a75d /system/lib/platformsdk/libark_jsruntime.so(panda::ecmascript::EcmaInterpreter::Execute(panda::ecmascript::EcmaRuntimeCallInfo*)+1084)(ec51476a00bfde9c6d68b983a483d1ee)
+#02 pc 002e78e5 /system/lib/platformsdk/libark_jsruntime.so(panda::ecmascript::JSFunction::Call(panda::ecmascript::EcmaRuntimeCallInfo*)+392)(ec51476a00bfde9c6d68b983a483d1ee)
+#03 pc 00427fbb /system/lib/platformsdk/libark_jsruntime.so(panda::FunctionRef::CallForNapi(panda::ecmascript::EcmaVM const*, panda::JSValueRef*, panda::JSValueRef* const*, int)+1382)(ec51476a00bfde9c6d68b983a483d1ee)
+#04 pc 000502a1 /system/lib/platformsdk/libace_napi.z.so(napi_call_function+156)(394b2e21899459da15b9fe3f1c3188f0)
+......
 ```
 
-再结合流水日志查看当前应用侧是在执行哪块代码。
+结合流水日志，查看当前应用执行的代码部分。
 
-一般情况下可以查看以上[通用日志信息](#日志主干通用信息)内容，判断是否存在对端通信卡死，整机CPU消耗很高导致当前应用响应不过来，内存泄漏，内存非常多导致任务无法运行的情况。
+通常可以查看[通用日志信息](#日志主干通用信息)内容，判断是否存在以下情况：对端通信卡死、整机CPU消耗过高导致当前应用响应迟缓、内存泄漏或内存不足导致任务无法运行。
 
 ### 日志主干特异性信息(用户输入响应超时)
 
-Reason是APP_INPUT_BLOCK，表明用户点击事件超过5s没有得到反馈。
+Reason是APP_INPUT_BLOCK的日志，表明用户点击事件超过5s没有得到反馈。
 
-MSG信息是这个事件的说明：用户的输入没有得到响应。
+MSG信息是这个事件的说明：用户的输入未得到响应。
 
-APP_INPUT_BLOCK的日志信息可以参考[通用日志信息](#日志主干通用信息)进行分析。需特别说明的是，一般情况下用户输入无响应大概率主线程也会卡死。可以结合两个日志的三个堆栈、两个BinderCatcher信息，进行对比查看。如果没有主线程卡死的日志，说明有可能在输入事件之前有大量的细碎的其他事件，细碎的事件不足以卡死主线程，但是数量比较多导致用户的输入事件响应不过来。
+APP_INPUT_BLOCK的日志信息可以参考[通用日志信息](#日志主干通用信息)进行分析。需特别说明的是，用户输入无响应时，主线程通常会卡死。可以结合日志堆栈和BinderCatcher信息分析。如果没有主线程卡死的日志，说明在输入事件之前可能存在大量细碎的其他事件，这些事件不足以导致主线程卡死，但数量较多，影响用户的输入事件的响应。
 
 ### 日志主干特异性信息(生命周期切换超时)
 
-Reason是LIFECYCLE_TIMEOUT的日志与上文THREAD_BLOCK_6S和THREAD_BLOCK_3S一样都是有两个事件。分别是LIFECYCLE_HALF_TIMEOUT和LIFECYCLE_TIMEOUT。
+Reason是LIFECYCLE_TIMEOUT的日志。与上文THREAD_BLOCK_6S和THREAD_BLOCK_3S一样有两个事件：LIFECYCLE_HALF_TIMEOUT和LIFECYCLE_TIMEOUT。
 
-MSG说明当前是什么生命周期的超时。
+示例中的MSG说明表示生命周期超时类型。
 
-示例可以看出，LIFECYCLE_TIMEOUT的可以看出Ability在切换后台的时候超时，可以按照上面[生命周期切换超时](#生命周期切换超时)的超时时间来找流水日志等信息。
+示例显示LIFECYCLE_TIMEOUT的原因是Ability后台切换超时，可按照[生命周期切换超时](#生命周期切换超时)的超时时间来找流水日志等信息。
 
 LIFECYCLE_TIMEOUT：
 
@@ -384,7 +416,7 @@ PROCESS_NAME:com.example.myapplication
 MSG:ability:EntryAbility background timeout
 ```
 
-其他的日志信息可以参考[通用日志信息](#日志主干通用信息)进行分析。需要特别说明的是，一般情况下生命周期切换大概率主线程也会卡死。可以结合两个日志的三个堆栈、两个BinderCatcher信息，进行对比查看。
+参考[通用日志信息](#日志主干通用信息)分析其他日志信息。特别说明：大多数情况下，生命周期切换时主线程会卡死。可以结合两个日志的堆栈和BinderCatcher信息对比查看。
 
 ## 应用退出
 
@@ -398,7 +430,7 @@ MSG:ability:EntryAbility background timeout
 
 ## 定位步骤与思路
 
-定位应用无响应问题，首先需要开发者获取相关日志，再通过日志记录的问题基本信息，结合hilog日志和trace来定位出无响应问题的发生的具体位置。
+定位应用无响应问题，首先需要开发者获取相关日志，再根据日志记录的问题基本信息，结合hilog日志和trace来定位出无响应问题的发生的具体位置。
 
 ### 获取日志
 
@@ -406,7 +438,7 @@ MSG:ability:EntryAbility background timeout
 
 - 方式一：通过DevEco Studio获取日志。
 
-    DevEco Studio会收集设备的故障日志并归档到FaultLog下。具体可参考[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-fault-log)。
+    DevEco Studio会收集设备故障日志并归档到FaultLog下。具体可参考[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-fault-log)。
 
 - 方式二：通过hiAppEvent接口订阅。
 
@@ -415,7 +447,7 @@ MSG:ability:EntryAbility background timeout
 <!--Del-->
 - 方式三：设备ROOT模式下通过shell获取日志。
 
-    应用无响应日志是以appfreeze-开头，生成在”设备/data/log/faultlog/faultlogger/”路径下。该日志文件名格式为“appfreeze-应用包名-应用UID-毫秒级时间.log”。
+    应用无响应日志以appfreeze-开头，生成在设备“/data/log/faultlog/faultlogger/”路径下。文件名格式为“appfreeze-应用包名-应用UID-毫秒级时间.log”。
 
     ![appfreeze_2024111501](figures/appfreeze_2024111501.png)
 <!--DelEnd-->
@@ -467,17 +499,17 @@ PROCESS NAME:com.xxx.xxx
 
 **说明：**
 
-1、THREAD_BLOCK_3S / LIFECYCLE_HALF_TIMEOUT 的检测时长是相应THREAD_BLOCK_6S / LIFECYCLE_TIMEOUT的一半，warning 级别，不会单独上报日志；THREAD_BLOCK_6S / LIFECYCLE_TIMEOUT 是 error 级别，整合了本身和其一半检测时长故障的日志一同上报；
+1、THREAD_BLOCK_3S/LIFECYCLE_HALF_TIMEOUT的检测时长是相应THREAD_BLOCK_6S/LIFECYCLE_TIMEOUT的一半，warning级别，不会单独上报日志；THREAD_BLOCK_6S/LIFECYCLE_TIMEOUT是error级别，整合了本身和其一半检测时长故障的日志一同上报；
 
-2、前台应用发生THREAD_BLOCK_3S后即可触发后续THREAD_BLOCK_6S事件；
+2、前台应用发生THREAD_BLOCK_3S后，即可触发后续THREAD_BLOCK_6S事件；
 
-3、后台应用存在计数器 backgroundReportCount_ = 0，发生THREAD_BLOCK_3S后 +1 累计到 5 次后才会上报 （即连续发生5次 THREAD_BLOCK_3S 事件，计数不清零，才会上报THREAD_BLOCK_6S 事件，可知后台应用THREAD_BLOCK_3S 与THREAD_BLOCK_6S 检测时长依次为 18s 与 21s</samll>。
+3、后台应用存在计数器 backgroundReportCount_，初始化或主线程卡死恢复时赋值为0，当发THREAD_BLOCK事件后，判断计数器是否达到5决定此次事件是否继续上报（大于等于5就进行上报），判断之后计数器均加1。可知后台应用THREAD_BLOCK_3S与THREAD_BLOCK_6S检测时长依次为18s与21s。
 
-通过故障上报时间点往前推检测时长可得到故障发生的具体时间。
+根据故障上报时间，向前推检测时长，可得到故障发生的具体时间。
 
 ### 查看 eventHandler 信息
 
-开发者可以通过 “mainHandler dump is” 关键字搜索日志中的 eventHandler dump 信息。
+开发者可以通过“mainHandler dump is”关键字搜索日志中的eventHandler dump信息。
 
 1、dump begin curTime & Current Running。
 
@@ -489,9 +521,9 @@ mainHandler dump is:
  --> trigger time--> 任务开始运行的时间
 ```
 
-当前任务运行时长 = dump begin curTime - trigger time, 如示例中当前任务运行达到27s。
+当前任务运行时长 = dump begin curTime - trigger time, 如示例中当前任务运行时长达到27s。
 
-若任务运行时长 > 故障检测时长，表示当前正在运行的任务是导致应用卡死的任务，需对该任务进行排查。
+若任务运行时长 > 故障检测时长，表示当前正在运行的任务可能导致应用卡死，需排查该任务。
 
 若任务运行时长较小，表示当前任务仅是检测时间区间内主线程运行的任务之一，主要耗时不一定是该任务，建议优先查看近期耗时最长任务（History event queue information中）。该情形多为线程繁忙导致的watchdog无法调度执行。
 
@@ -508,7 +540,7 @@ mainHandler dump is:
  No. 5 : Event { send thread = 35852, send time = 2024-08-08 12:17:16.629, handle time = 2024-08-08 12:17:16.629, trigger time = 2024-08-08 12:17:16.629, completeTime time = , priority = Low, task name =  }
 ```
 
-可以从历史任务队列中寻找故障发生时间区间内较为耗时的任务。其中CompleteTime time 为空的任务是当前任务。  
+可以从历史任务队列中寻找故障发生时间区间内较为耗时的任务。其中CompleteTime time为空的任务是当前任务。  
 任务运行耗时 = CompleteTime time - trigger time。  
 筛选出耗时较高的任务，排查其运行情况。
 
@@ -516,24 +548,20 @@ mainHandler dump is:
 
 ```
  VIP priority event queue information:
- No. 1 : Event { send thread = 3205, send time = 2024-08-07 04:11:15.407, handle time = 2024-08-07 04:11:15.407, task name = ArkUIWindowInjectPointerEvent, caller = [task_runner_adapter_impl.cpp(PostTask:33)]}
- No. 2 : Event { send thread = 3205, send time = 2024-08-07 04:11:15.407, handle time = 2024-08-07 04:11:15.407, task name = ArkUIWindowInjectPointerEvent, caller = [task_runner_adapter_impl.cpp(PostTask:33)]}
- No. 3 : Event { send thread = 3205, send time = 2024-08-07 04:11:15.407, handle time = 2024-08-07 04:11:15.407, task name = ArkUIWindowInjectPointerEvent, caller = [task_runner_adapter_impl.cpp(PostTask:33)]}
- No. 4 : Event { send thread = 3961, send time = 2024-08-07 04:11:15.408, handle time = 2024-08-07 04:11:15.408, task name = MMI::OnPointerEvent, caller = [input_manager_impl.cpp (OnPointerEvent:493)]}
- No. 5 : Event { send thread = 3205, send time = 2024-08-07 04:11:15.408, handle time = 2024-08-07 04:11:15.408, task name = ArkUIWindowInjectPointerEvent, caller = [task_runner_adapter_impl.cpp(PostTask:33)]}
- No. 6 : Event { send thread = 3205, send time = 2024-08-07 04:11:15.409, handle time = 2024-08-07 04:11:15.409, task name = ArkUIWindowInjectPointerEvent, caller = [task_runner_adapter_impl.cpp(PostTask:33)]}
- No. 7 : Event { send thread = 3205, send time = 2024-08-07 04:11:15.409, handle time = 2024-08-07 04:11:15.409, task name = ArkUIWindowInjectPointerEvent, caller = [task_runner_adapter_impl.cpp(PostTask:33)]}
- No. 8 : Event { send thread = 3205, send time = 2024-08-07 04:11:15.409, handle time = 2024-08-07 04:11:15.409, task name = ArkUIWindowInjectPointerEvent, caller = [task_runner_adapter_impl.cpp(PostTask:33)]}
- No. 9 : Event { send thread = 3205, send time = 2024-08-07 04:11:15.410, handle time = 2024-08-07 04:11:15.410, task name = ArkUIWindowInjectPointerEvent, caller = [task_runner_adapter_impl.cpp(PostTask:33)]}
+ No.1 : Event { send thread = 2486, send time = 2017-08-17 07:22:37.931, handle time = 2017-08-17 07:22:37.931, id = 1, caller = [watchdog.cpp(Timer:208)] }
+ No.2 : Event { send thread = 2486, send time = 2017-08-17 07:22:40.931, handle time = 2017-08-17 07:22:40.931, id = 1, caller = [watchdog.cpp(Timer:208)] }
+ No.3 : Event { send thread = 2486, send time = 2017-08-17 07:22:43.932, handle time = 2017-08-17 07:22:43.932, id = 1, caller = [watchdog.cpp(Timer:208)] }
  ...
 ```
 
+watchdog任务位于优先级队列中，观察发现该任务的发送时间间隔约为3s。
+
+对比其他优先级事件，观察watchdog任务在队列中的移动情况。
+
 为保障第一时间响应用户，用户输入事件传递链中的任务都属于高优先级任务。此任务事件队列均由系统创建，通常记录用户输入->屏幕->窗口->ArkUI->应用的传输过程，与三方应用事件无关，开发者无需额外关注。
 
-4、High priority event queue information。
-
 ```
- High priority event queue information:
+ VIP priority event queue information:
  No. 1 : Event { send thread = 35862, send time = 2024-08-08 12:17:25.526, handle time = 2024-08-08 12:17:25.526, id = 1, caller = [watchdog.cpp(Timer:156)]}
  No. 2 : Event { send thread = 35862, send time = 2024-08-08 12:17:28.526, handle time = 2024-08-08 12:17:28.526, id = 1, caller = [watchdog.cpp(Timer:156)]}
  No. 3 : Event { send thread = 35862, send time = 2024-08-08 12:17:31.526, handle time = 2024-08-08 12:17:31.526, id = 1, caller = [watchdog.cpp(Timer:156)]}
@@ -544,13 +572,9 @@ mainHandler dump is:
  Total size of High events : 7
 ```
 
-watchdog 任务位于此优先级队列中，观察 watchdog 任务队列发现其是每隔 3s 发送一次。
-
-对比 warning/block 事件，观察 watchdog 任务在队列中的移动情况。
-
 warning:
 ```
- High priority event queue information:
+ VIP priority event queue information:
  No. 1 : Event { send thread = 35862, send time = 2024-08-08 12:17:25.526, handle time = 2024-08-08 12:17:25.526, id = 1, caller = [watchdog.cpp(Timer:156)]}
  No. 2 : Event { send thread = 35862, send time = 2024-08-08 12:17:28.526, handle time = 2024-08-08 12:17:28.526, id = 1, caller = [watchdog.cpp(Timer:156)]}
  No. 3 : Event { send thread = 35862, send time = 2024-08-08 12:17:31.526, handle time = 2024-08-08 12:17:31.526, id = 1, caller = [watchdog.cpp(Timer:156)]}
@@ -560,7 +584,7 @@ warning:
 
 block:
 ```
- High priority event queue information:
+ VIP priority event queue information:
  No. 1 : Event { send thread = 35862, send time = 2024-08-08 12:17:25.526, handle time = 2024-08-08 12:17:25.526, id = 1, caller = [watchdog.cpp(Timer:156)]}
  No. 2 : Event { send thread = 35862, send time = 2024-08-08 12:17:28.526, handle time = 2024-08-08 12:17:28.526, id = 1, caller = [watchdog.cpp(Timer:156)]}
  No. 3 : Event { send thread = 35862, send time = 2024-08-08 12:17:31.526, handle time = 2024-08-08 12:17:31.526, id = 1, caller = [watchdog.cpp(Timer:156)]}
@@ -569,15 +593,16 @@ block:
   Total size of High events : 5
 ```
 
-以上示例中可发现 block 队列相比于 warning 队列更长了，而对应的第一个任务没有发生变化，可能存在两种情况：
+以上示例中可发现block队列比于warning队列更长，而对应的第一个任务没有发生变化，可能存在两种情况：
+
 - 当前正在运行的任务卡死阻塞，导致其他任务一直未被调度执行；
-- 更高优先级队列中任务堆积，导致位于较低优先级队列中的 watchdog 任务未被调度执行。
+- 更高优先级队列中任务堆积，导致位于较低优先级队列中的watchdog任务未被调度执行。
 
 ### 查看 stack 信息
 
-通过得到的 Pid、Tid 查看对应的 stack，存在以下几种情况：
+通过得到的Pid、Tid查看对应的stack，存在以下几种情况：
 
-1、有明确卡死堆栈信息。
+1、有明确的卡死堆栈信息。
 
 ```
 Tid:3025, Name: xxx
@@ -595,9 +620,16 @@ Tid:3025, Name: xxx
 # 11 at query (entry/build/default/cache/default/default@CompileArkTS/esmodule/release/datamanager/datawrapper/src/main/ets/database/RdbManager.ts:188:1)
 ```
 
-so 明确等锁卡死，通过反编译获取对应代码行，排查代码上下文解决 bug。
+so明确等锁卡死，通过反编译获取对应代码行，排查代码上下文解决bug。
 
-2、卡在 ipc 请求。
+故障调用栈支持Native栈帧和JS栈帧，以上堆栈中第10、11层堆栈是JS栈帧。具体格式如下：
+ ```text
+# 10 at parseResultSet (entry/build/default/cache/default/default@CompileArkTS/esmodule/release/datamanager/datawrapper/src/main/ets/database/RdbManager.ts:266:1)
+            ^                                                                                                                                       ^
+          函数名                                                                                                                                文件行列号位置
+ ```
+
+2、卡在ipc请求。
 
 ```
 Tid:53616, Name:xxx
@@ -616,9 +648,9 @@ Tid:53616, Name:xxx
 # 12 pc 0000000000034408 /system/lib64/platformsdk/libace_napi.z.so(panda::JSValueRef ArkNativeFunctionCallBack<true>(panda::JsiRuntimeCallInfo*)+220)(f271f536a588ef9d0dc5328c70fce511)
 ```
 
-3、warning/error 栈一致，栈顶为业务同步执行代码。
+3、warning/error栈一致，栈顶为业务同步执行代码。
 
-warning/error 栈均为：
+warning/error栈均为：
 
 ```
 Tid:14727, Name:xxx
@@ -635,11 +667,11 @@ Tid:14727, Name:xxx
 # 10 pc 00000000000b4214 /system/lib64/platformsdk/libnative_rdb.z.so(OHOS::NativeRdb::SqliteSharedResultSet::ExecuteForSharedBlock(OHOS::AppDataFwk::SharedBlock*, int, int, bool)+236)(5e8443def4695e8c791e5f847035ad9f)
 ```
 
-结合 [trace](#结合-trace)进一步确认，排查调用的单一栈顶函数逻辑是否执行超时。
+结合[trace](#结合-trace)进一步确认，排查调用的单一栈顶函数逻辑是否执行超时。
 
-4、 瞬时栈，warning/error 栈不一致。
+4、 瞬时栈，warning/error栈不一致。
 
-warning 栈：
+warning栈：
 
 ```
 Tid:3108, Name:xxx
@@ -656,7 +688,7 @@ Tid:3108, Name:xxx
 # 10 pc 000000000002efdc /system/lib64/platformsdk/libglobal_resmgr.z.so(OHOS::Global::Resource::HapManager::AddResource(char const*, unsigned int const&)+52)(5c4263e737507b4a8f2ee7196a152dbd)
 ```
 
-error 栈：
+error栈：
 
 ```
 Tid:3108, xxx
@@ -673,22 +705,26 @@ Tid:3108, xxx
 # 10 pc 00000000002d6e14 /system/lib64/module/arkcompiler/stub.an(RTStub_AsmInterpreterEntry+208)
 ```
 
-此时栈是在线程的运行过程中抓的，没有规律，说明线程未卡死；线程繁忙场景，需结合 [trace](#结合-trace) 和 hilog 判断应用具体运行场景，针对场景进行优化。
+此时栈是在线程的运行过程中捕获的，没有规律，说明线程未卡死；线程繁忙场景，需结合[trace](#结合-trace)和hilog判断应用具体运行场景，针对该场景进行优化。
 
 ### 查看 binder 信息
 
-binder信息抓取时机：存在半周期检测的故障类型是在warning事件产生后获取；其他则在block事件后获取。
+binder信息抓取时机：存在半周期检测的故障类型是在warning事件产生后获取；其他故障在block事件后获取。
 
 1、获取binder调用链。
 
 ```
 PeerBinderCatcher -- pid==35854 layer_ == 1
+
 BinderCatcher --
-    35854:35854 to 52462:52462 code 3 wait:27.185154163 s frz_state:3          -> 35854:35854 to 52462:53462 code 3 wait:27.185154163 s
+
+    35854:35854 to 52462:52462 code 3 wait:27.185154163 s frz_state:3,  ns:-1:-1 to -1:-1, debug:35854:35854 to 52462:52462, active_code:0 active_thread:0, pending_async_proc=0
     ...
-    52462:52462 to 1386:0 code 13 wait:24.733640622 s frz_state:3              -> 52462:52462 to 1386:0 code 13 wait:24.733640622 s
+    52462:52462 to 1386:0 code 13 wait:24.733640622 s frz_state:3,  ns:-1:-1 to -1:-1, debug:35854:35854 to 52462:52462, active_code:0 active_thread:0, pending_async_proc=0
+async 1590:14743 to 1697:0 code 4 wait:124.733640622 s frz_state:1,  ns:-1:-1 to -1:-1, debug:1590:14743 to 1697:0, active_code:-1 active_thread:0, pending_async_proc=1590
+    ...
 ```
-以上示例为参考：从故障进程的主线程出发，存在 35854:35854 -> 52462:52462 -> 1386:0 的调用链关系，结合对端进程堆栈信息排查对端阻塞原因。
+以上示例中：从故障进程的主线程出发，存在35854:35854->52462:52462->1386:0的调用链关系，结合对端进程堆栈信息排查对端阻塞原因。
 
 2、线程号为0。
 
@@ -712,13 +748,13 @@ pid     context     request   started    max     ready   fre
 1474     binder      0          2        16       4         520192
 ```
 
-可以看到此时 1386 进程处于 ready 态的线程为 0，验证了上述说法。此情况说明该进程的其他ipc线程可能全部被阻塞了，需要分析排查为什么其他ipc线程不释放。常见场景为：某一ipc线程持锁阻塞，导致其他线程等锁卡死。
+可以看到1386进程处于ready态的线程数为0，验证了上述说法。此情况表明进程的其他ipc线程可能全部被阻塞，需要分析排查其他ipc线程不释放的原因。常见场景为：某一ipc线程持锁阻塞，导致其他线程等锁卡死。
 
-另一种情况为 free_async_space 消耗殆尽，导致新的ipc线程没有足够的 buffer 空间完成请求。值得说明的是，同步和异步请求都会消耗该值，常见场景为：某短时间段内大批量异步请求。
+另一种情况为free_async_space消耗殆尽，导致新的ipc线程没有足够的buffer空间完成请求。值得说明的是，同步和异步请求都会消耗该值，常见场景为：某短时间段内大批量异步请求。
 
 3、waitTime过小。
 
-waitTime 表示的是本次ipc通信时长，如果该值远小于故障检测时长，我们有理由确认本次ipc请求并不是卡死的根本原因。  
+waitTime表示的是本次ipc通信时长，如果该值远小于故障检测时长，则本次ipc请求并不是卡死的根本原因。
 一种典型的场景是：应用侧主线程在短时间内多次ipc请求，总请求时长过长导致故障。
 
 排查方向：
@@ -727,10 +763,10 @@ waitTime 表示的是本次ipc通信时长，如果该值远小于故障检测�
 
 4、无调用关系，栈为ipc栈。
 
-确定是否为瞬时栈，即warning/block栈是否一致，可能场景是：warning为ipc栈，block栈为其他瞬时栈，表明抓取binder时ipc请求已经结束，本次ipc请求耗时并不长。  
+确定是否为瞬时栈，即warning/block栈是否一致，可能场景：warning为ipc栈，block栈为其他瞬时栈，表明抓取binder时ipc请求已经结束，本次ipc请求耗时较短。
 需要提到的是：binder信息并不是在发生故障时刻实时获取的，有一定的延迟性；对于存在半周期检测的故障类型来说，binder抓取比较准确，绝大多数都可以在故障时间段内完成采集；而其他故障类型在上报存在延迟的情况下可能抓取到非现场binder。
 
-当然，结合 [trace](#结合-trace) 分析更能直观查看binder的耗时情况。
+结合[trace](#结合-trace)分析更能直观查看binder的耗时情况。
 
 ### 结合 hilog
 
@@ -740,11 +776,11 @@ waitTime 表示的是本次ipc通信时长，如果该值远小于故障检测�
 
 ![appfreeze_2024061401](figures/appfreeze_2024061401.png)
 
-2、抓栈（signal: 35）。
+2、抓栈（signal:35）。
 
 ![appfreeze_2024061402](figures/appfreeze_2024061402.png)
 
-3、后台应用检测（5次后上报），21s 左右。
+3、后台应用检测（5次后上报），21s左右。
 
 ![appfreeze_2024061403](figures/appfreeze_2024061403.png)
 
@@ -752,15 +788,15 @@ waitTime 表示的是本次ipc通信时长，如果该值远小于故障检测�
 
 ![appfreeze_2024061404](figures/appfreeze_2024061404.png)
 
-5、APPFREEZE kill 卡死应用。
+5、APPFREEZE kill卡死应用。
 
 ![appfreeze_2024061405](figures/appfreeze_2024061405.png)
 
 #### 一般分析步骤
 
-根据故障日志确定上报[时间点](#获取故障发生时间点)，再根据具体场景下的故障类型推断卡死开始发生的时间点，查看对应时间段的hilog日志，分析日志得出应用对应线程运行状态：
+根据故障日志确定上报[时间点](#获取故障发生时间点)，再根据具体场景下的故障类型推断卡死开始的时间点，查看对应时间段的hilog日志，分析日志得出应用对应线程运行状态：
 
-- 应用日志完全无打应输出：卡死在最后日志打印的接口调用处。
+- 应用日志完全无打印输出：卡死在最后日志打印的接口调用处。
 
    ![appfreeze_2024061406](figures/appfreeze_2024061406.png)
 
@@ -768,7 +804,7 @@ waitTime 表示的是本次ipc通信时长，如果该值远小于故障检测�
 
    ![appfreeze_2024061407](figures/appfreeze_2024061407.png)
 
-   例如上图案例：APP_INPUT_BLOCK 类型在 07:24:08.167 上报，应用主线程在 07:24:01.581 后就没有打印了，可排查是否为 FormManagerService:
+   例如上图案例：APP_INPUT_BLOCK类型在07:24:08.167上报，应用主线程在07:24:01.581后无打印，可排查是否为FormManagerService:
 
    [form_mgr_proxy.cpp(GetFormsInfoByApp:1128)] 中的逻辑超时。
 
@@ -776,11 +812,11 @@ waitTime 表示的是本次ipc通信时长，如果该值远小于故障检测�
 
    ![appfreeze_2024061408](figures/appfreeze_2024061408.png)
 
-   例如上图案例：进程在被 APP_FREEZE 杀死前在大量输出，对应的 ImageEffect 领域需排查此日志是否正常。
+   例如上图案例：进程在被 APP_FREEZE 杀死前在大量输出，对应的ImageEffect领域需排查此日志是否正常。
 
 ### 结合 trace
 
-存在以下可能：
+存在以下可能的情况：
 
 1、进程每一小段业务时间并不长，但是较长时间段运行非常密集，占满了主线程。
 
@@ -788,7 +824,7 @@ waitTime 表示的是本次ipc通信时长，如果该值远小于故障检测�
 
 ![appfreeze_2024061410](figures/appfreeze_2024061410.png)
 
-上图案例为：PriviewArea::updateShotComponent（更新组件） -> animator （执行动画）-> 密集的动画执行过程达 9.2s；
+上图案例为：PriviewArea::updateShotComponent（更新组件）->animator（执行动画）->密集的动画执行过程达9.2s；
 
 线程繁忙地循环执行某业务，分析每一小段业务：
 
@@ -796,11 +832,11 @@ waitTime 表示的是本次ipc通信时长，如果该值远小于故障检测�
 
 - 符合业务场景，分析每一小段业务是否耗时超过预期，性能为何不满足设计规格。
 
-2、进程执行某一函数接口超时。
+2、进程执行某个函数接口超时。
 
 ![appfreeze_2024061411](figures/appfreeze_2024061411.png)
 
-上图案例为：OHOS::AppExecFwk::FormMgrAdapter::GetFormsInfoByApp 接口执行时长达到 8s。
+上图案例为：OHOS::AppExecFwk::FormMgrAdapter::GetFormsInfoByApp接口执行时长达到8s。
 
 ## 分析案例
 
@@ -808,28 +844,28 @@ waitTime 表示的是本次ipc通信时长，如果该值远小于故障检测�
 
 #### 背景/原理
 
-xxxservice 上报 THREAD_BLOCK_6S 的 appfreeze 问题。
+xxxservice上报THREAD_BLOCK_6S的appfreeze问题。
 
 #### 错误代码案例
 
-第4行加锁，第6行函数返回失败后，第6行直接返回未解锁，导致其他线程一直等锁。
+代码中通过mutex_.lock()加锁，但是在返回失败情况下未解锁，会导致其他线程一直等锁。
 
 ```cpp
 int xxx()
 {
-    ...
+    //...
     mutex_.lock();
     AIContext aiContext;
     if (ConvertRpcHandle2AIContext(inputs[0], aiContext) != aicp::SUCCESS) {
         return FAILED;
     }
-    ...
+    //...
 }
 ```
 
 #### 影响/报错
 
-后台应用卡死，用户无感知，但是相关功能不可用。
+后台应用卡死时，用户无感知，但相关功能将不可用。
 
 #### 定位思路
 
@@ -840,7 +876,7 @@ appfreeze: com.example.hmsapp.xxx THREAD_BLOCK_6S at 20240408082432
 DisplayPowerInfo:powerState:AWAKE
 ```
 
-从 Foreground 值可看出该应用此时处于后台，可推断出当真正的 3s 事件上报上来时，后台应用已卡 **18s** 前。
+从Foreground值可看出，应用此时处于后台。当真正的3s事件上报上来时，后台应用已卡**18s**前。
 
 ```
 Module name:com.xxx.xxx.xxx
@@ -853,8 +889,8 @@ Uid:20020029
 Reason:THREAD_BLOCK_6S
 ```
 
-THREAD_BLOCK_3S 上报的时间为 08:24:29:612；  
-THREAD_BLOCK_6S 上报的时间为 08:24:32:638；相隔 3s 符合预期。
+THREAD_BLOCK_3S上报的时间为08:24:29:612；  
+THREAD_BLOCK_6S上报的时间为08:24:32:638，相隔3s符合预期。
 
 ```
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -876,7 +912,7 @@ PACKAGE_NAME = com.xxx.xxx.xxx
 PROCESS_NAME = com.xxx.xxx.xxx
 ```
 
-3s 上报时会去抓取此时的 EventHandler 信息，时间为 08:24:29.413，符合预期上报的原因为：App main thread is not response! 主线程无响应，当前正在运行的任务开始时间为 08:24:01.514。
+3s上报时会抓取此时的EventHandler信息，时间为08:24:29.413，符合预期上报的原因为：App main thread is not response! 主线程无响应，当前正在运行的任务开始时间为08:24:01.514。
 
 ```
 MSG = 
@@ -888,11 +924,11 @@ mainHandler dump is:
  Current Running: start at 2024-04-08 08:24:01.514, Event { send thread = 43675, send time = 2024-04-08 08:24:01.514, handle time = 2024-04-08 08:24:01.514, task name = uvLoopTask }
 ```
 
-watchdog 任务位于高优先级队列（High priority event queue），如下图可发现：每隔 3s 就会抛一个任务到主线程去，符合预期。
+watchdog 任务位于高优先级队列（High priority event queue），如下图可发现：每隔3s就会抛一个任务到主线程去，符合预期。
 
-THREAD_BLOCK_3S、THREAD_BLOCK_6S 的队列一致，6s 较 3s 多了一个 event。
+THREAD_BLOCK_3S、THREAD_BLOCK_6S的队列一致，6s队列较3s队列多了一个event。
 
-最早的一个 event send time 为 **08:24:11.388**，与 3s 上报上来的时间 08:24:29:612 刚好差 18s，符合预期。
+最早的一个event send time为**08:24:11.388**，与3s上报上来的时间08:24:29:612刚好差18s，符合预期。
 
 ```
  High priority event queue information:
@@ -905,11 +941,11 @@ THREAD_BLOCK_3S、THREAD_BLOCK_6S 的队列一致，6s 较 3s 多了一个 event
  No.7 : Event { send thread = 43679, send time = 2024-04-08 08:24:29.412, handle time = 2024-04-08 08:24:29.412, id = 1, caller = [watchdog.cpp(Timer:139)] }
 ```
 
-以上可总结：应用**主线程从 08:24:01.514 开始运行本次任务，第一次 3s 检测开始时间为 08:24:11.388，真正开始卡住的时间在 08:24:11 左右。**
+以上可总结：应用**主线程从08:24:01.514开始运行本次任务，第一次3s检测开始时间为08:24:11.388，真正开始卡住的时间在08:24:11左右。**
 
-查看主线程栈：从 xxx_request_client.so -> libsamgr_proxy.z.so -> libipc_core.z.so(OHOS::BinderConnector::WriteBinder)
+查看主线程栈：从xxx_request_client.so->libsamgr_proxy.z.so->libipc_core.z.so(OHOS::BinderConnector::WriteBinder)
 
-可知：**此时主线程发起了一个 ipc 请求，对端进程未返回导致卡死，如下堆栈所示。**
+可知：**此时，主线程发起了一个ipc请求，对端进程未返回导致卡死，堆栈如下所示：**
 
 ```
 Tid:43675, Name:xxx
@@ -935,29 +971,30 @@ Tid:43675, Name:xxx
 # 19 pc 0000000000002944 xxx_rpc_client.so(xxx::xxx::RpcRequestClient::RpcRequestClient()+224)(02343ed2fff69759d408b23eaf69fcde)
 ```
 
-查看 binderCatcher：**此时 43675 的主线程正在与 979 进程通信，抓 binder 时已经卡了 27s。**
+查看binderCatcher：**此时43675的主线程正在与979进程通信，抓binder时已经卡了27s。**
 
 ```
 PeerBinderCatcher -- pid==43675 layer_ == 1
+
 BinderCatcher --
-    43675:43675 to 979:0 code 5f475249 wait:27.104545829 s frz_state:1  --> binder通信等待了27s
-    57187:39147 to 28644:30753 code 0 wait:0.337894271 s frz_state:3
-    57187:39151 to 28644:28652 code 7 wait:0.531140625 s frz_state:3
-    57187:39150 to 28644:31297 code 0 wait:0.976419270 s frz_state:3
-    57187:38979 to 28644:32554 code 0 wait:0.22108334 s frz_state:3
-    57187:39149 to 28644:30754 code 0 wait:0.534261979 s frz_state:3
-    57187:38949 to 28644:31301 code 0 wait:0.977779166 s frz_state:3
-    57187:39172 to 28644:35667 code 0 wait:1.47387500 s frz_state:3
-    57187:39173 to 28644:28822 code 0 wait:0.565389063 s frz_state:3
-    1477:1676 to 1408:2026 code 17 wait:0.0 s frz_state:3
-    628:8136 to 979:0 code 2 wait:13166.722870859 s frz_state:1
+
+    43675:43675 to 979:0 code 5f475249 wait:27.104545829 s frz_state:1,  ns:-1:-1 to -1:-1, debug:35854:35854 to 52462:52462, active_code:0 active_thread:0, pending_async_proc=0  --> binder通信等待了27s
+    57187:39147 to 28644:30753 code 0 wait:0.337894271 s frz_state:3,  ns:-1:-1 to -1:-1, debug:57187:39147 to 28644:30753, active_code:0 active_thread:0, pending_async_proc=0
+    57187:39151 to 28644:28652 code 7 wait:0.531140625 s frz_state:3,  ns:-1:-1 to -1:-1, debug:57187:39151 to 28644:28652, active_code:0 active_thread:0, pending_async_proc=0
+    57187:39150 to 28644:31297 code 0 wait:0.976419270 s frz_state:3,  ns:-1:-1 to -1:-1, debug:57187:39150 to 28644:31297, active_code:0 active_thread:0, pending_async_proc=0
+    57187:38979 to 28644:32554 code 0 wait:0.22108334 s frz_state:3,  ns:-1:-1 to -1:-1, debug:57187:38979 to 28644:32554, active_code:0 active_thread:0, pending_async_proc=0
+    57187:39149 to 28644:30754 code 0 wait:0.534261979 s frz_state:3,  ns:-1:-1 to -1:-1, debug:57187:39149 to 28644:30754, active_code:0 active_thread:0, pending_async_proc=0
+    57187:38949 to 28644:31301 code 0 wait:0.977779166 s frz_state:3,  ns:-1:-1 to -1:-1, debug:57187:38949 to 28644:31301, active_code:0 active_thread:0, pending_async_proc=0
+    57187:39172 to 28644:35667 code 0 wait:1.47387500 s frz_state:3,  ns:-1:-1 to -1:-1, debug:57187:39172 to 28644:35667, active_code:0 active_thread:0, pending_async_proc=0
+    57187:39173 to 28644:28822 code 0 wait:0.565389063 s frz_state:3,  ns:-1:-1 to -1:-1, debug:57187:39173 to 28644:28822, active_code:0 active_thread:0, pending_async_proc=0
+    1477:1676 to 1408:2026 code 17 wait:0.0 s frz_state:3,  ns:-1:-1 to -1:-1, debug:1477:1676 to 1408:2026, active_code:0 active_thread:0, pending_async_proc=0
+    628:8136 to 979:0 code 2 wait:13166.722870859 s frz_state:1,  ns:-1:-1 to -1:-1, debug:628:8136 to 979:0, active_code:0 active_thread:0, pending_async_proc=0
 ```
 
-查看 979 进程主线程栈：xxxserver 在等待锁释放。**该问题即为典型的锁使用不当，导致的等锁卡死。**
+查看979进程主线程栈：xxxserver在等待锁释放。**该问题即为典型的锁使用不当，导致的等锁卡死。**
 
 ```
-PeerBinder Stacktrace --
-PeerBinderCatcher start catcher stacktrace for pid : 979
+Binder catcher stacktrace, type is peer, pid : 979
 Result: 0 ( no error )
 Timestamp:2024-04-08 08:24:29.000
 Pid:979
@@ -981,20 +1018,20 @@ Tid:979, Name:xxxserver
 # 13 pc 00000000000a3b58 /system/lib/ld-musl-aarch64.so.1(libc_start_main_stage2+64)(91b804d2409a13f27463debe9e19fb5d)
 ```
 
-反编译即可确定对应卡锁代码行，结合上下文检测锁的使用。
+反编译后，确定对应卡锁代码行，结合上下文检测锁的使用。
 
 #### 修改方法
 
 ```cpp
 int xxx()
 {
-    ...
+    //...
     mutex_.lock();
     AIContext aiContext;
     if (ConvertRpcHandle2AIContext(inputs[0], aiContext) != aicp::SUCCESS) {
         return FAILED;
     }
-    ...
+    //...
 }
 ```
 
@@ -1003,19 +1040,22 @@ int xxx()
 ```cpp
 int xxx()
 {
-    ...
+    //...
+    mutex_.lock();
     AIContext aiContext;
     if (ConvertRpcHandle2AIContext(inputs[0], aiContext) != aicp::SUCCESS) {
+        mutex_.unlock();
         return FAILED;
     }
-    mutex_.lock();
-    ...
+    //...
+    mutex_.unlock();
+    //...
 }
 ```
 
 结合上下文，合理调整锁的使用。
 
-#### 推荐建议（问题总结）
+#### 建议（问题总结）
 
 1、多线程交互时需要格外注意时序、死锁问题。
 
@@ -1023,39 +1063,39 @@ int xxx()
 
 #### 背景
 
-用户在切换主题时突然卡死，有 sceneboard 的 appfreeze 问题上报。
+用户在切换主题时突然卡死，有sceneboard的appfreeze问题上报。
 
-该问题为线程繁忙导致卡死。
+该问题由线程繁忙引起，导致其卡死。
 
 #### 错误代码实例
 
-对于组件的刷新复用，是通过组件的 key 值来控制的，当页面更新时，若组件的 key 不变，会复用之前的组件；若 key 值变化，会更新组件及其子组件。
+组件的刷新复用通过其key值控制。页面更新时，key值不变复用之前的组件，key值变化更新组件及其子组件。
 
-该函数用户生成桌面组件的 key，关联有 themeStyle，当用户在桌面连续切换主题时，导致组件反复全量刷新，导致卡死。
+该函数用于生成桌面组件的key，并与themeStyle关联，当用户在桌面连续切换主题时，组件反复全量刷新，导致卡死。
 
 ```ts
 private getForeachKey(item: xxx): string {
-    ...
+    //...
     return `${item.xxx2}${item.xxx2}...${item.themeStyle}`;
 }
 ```
 
 #### 影响
 
-用户在合一桌面切换主题时页面高概率卡死，点击无响应，而后闪退到锁屏界面。
+用户在合一桌面切换主题时，页面高概率卡死，点击无响应，然后闪退到锁屏界面。
 
-严重影响用户使用体验。
+严重影响用户体验。
 
 #### 定位思路
 
 提取故障关键信息。
 
 ```
-appfreeze: com.example.sceneboard APP_INPUT_BLOCK at 20240319022527
+appfreeze: com.example.sceneboard APP_INPUT_BLOCK at 202403144059
 DisplayPowerInfo:powerState:AWAKE
 ```
 
-APP_INPUT_BLOCK 是事件上报的时间为 **14:40:59:440**。
+APP_INPUT_BLOCK 事件上报时间为 **14:40:59:440**。
 
 ```
 DOMAIN:AAFWK
@@ -1068,7 +1108,7 @@ PROCESS_NAME:com.example.sceneboard
 ```
 
 上报的原因是：User input does not respond! 用户输入事件没有响应。  
-可以看到当前是在主线程上(Thread ID == Pid)，正在运行的任务从 **14:40:53.499** 开始运行，直到 Fault time **14:40:58** 都还没有运行完。
+可以看到，当前任务在主线程（Thread ID == Pid）上运行，任务从**14:40:53.499**开始运行，直到Fault time**14:40:58**仍未运行完。
 
 ```
 MSG = 
@@ -1080,9 +1120,9 @@ mainHandler dump is:
  Current Running: start at 2024-03-14 02:40:53.499, Event { send thread = 2918, send time = 2024-03-14 02:40:53.499, handle time = 2024-03-14 02:40:53.499, task name =  }
 ```
 
-用户输入事件需要第一时间响应，所以同 watchdog 一样都在 High priority event queue。
+用户输入事件需要第一时间响应，所以同watchdog一样都在High priority event queue。
 
-可以看到此时已经有 200+ 的 input event 在队列中阻塞住没有处理了。
+可以看出队列中已经有200+的input event阻塞中未被处理。
 
 ```
  High priority event queue information:
@@ -1113,10 +1153,10 @@ mainHandler dump is:
  No.205 : Event { send thread = 3370, send time = 2024-03-14 02:40:56.305, handle time = 2024-03-14 02:40:56.305, task name = , caller = [input_manager_impl.cpp(OnPointerEvent:465)] }
 ```
 
-从逻辑来看，input event 触发应用主线程任务开始执行，但是 6s 还没有执行完，没有反馈，导致 ANR 超时；  
-因此我们只需要关心 input 触发了应用执行什么任务，该任务为什么会执行超时即可。
+从逻辑上看，input event触发应用主线程任务开始执行，但是6s还没有执行完，导致ANR超时；
+因此，只需要关注input触发应用执行的具体任务，及对应任务执行超时的原因。
 
-主线程栈：此时运行时状态，栈顶的 ark_jsruntime GetCurrentThreadId 也不是持锁阻塞或耗时很长函数，抓到的栈为瞬时栈，没有参考意义。
+主线程栈：此时运行时状态，栈顶的ark_jsruntime.so中的GetCurrentThreadId并非持锁阻塞或耗时很长的函数，抓到的栈为瞬时栈，没有参考意义。
 
 ```
 Tid:2918, Name:example.sceneboard
@@ -1140,31 +1180,31 @@ Tid:2918, Name:example.sceneboard
 
 接下来排查流水日志：
 
-首先找到上报 APP_INPUT_BLOCK 的时间点，大概在 13:40:59.448 左右，且从这里我们可以看到在事件上报完后，dfx 将卡死的 scb 杀掉。
+首先找到上报APP_INPUT_BLOCK的时间点，大约在13:40:59.448。事件上报完后，dfx将卡死的scb杀掉。
 
 ![appfreeze_2024061412](figures/appfreeze_2024061412.png)
 
-往前推 6s 左右，可以看到在 14:40:53.498 左右，有一个点击事件发给了 scb。
+往前推6s左右，可以看到在14:40:53.498左右，有一个点击事件发给了scb。
 
 ![appfreeze_2024061413](figures/appfreeze_2024061413.png)
 
-在这之间的 6s 存在大量的 scb 日志，判断是在做更新渲染。
+这之间的6s存在大量的scb日志，判断是在进行更新渲染。
 
 ![appfreeze_2024061414](figures/appfreeze_2024061414.png)
 
-看下对应时间点的 trace：
+查看对应时间点的trace：
 
 ![appfreeze_2024061415](figures/appfreeze_2024061415.png)
 
-发现 scb 主线程被占满，确实很繁忙。选择耗时较长的任务，是 **CustomNodeUpdate SwiperPage**，后续就需要排查为啥这个组件里一直在做刷新。
+发现scb主线程被占满，非常繁忙。耗时较长的任务是**CustomNodeUpdate SwiperPage**，后续需排查该组件里为何一直在刷新。
 
-根据对应领域排查后发现：swiperPage上把 themeStyle 加入到了 key 里面，key 变了就会走控件新建流程。
+对应领域排查后发现：swiperPage上将themeStyle加入到了key里面，key变化就会触发控件新建流程。
 
-即当用户切换主题或者切换图标风格时，会造成桌面上控件的全量新建，导致主线程繁忙，导致输入事件未响应。
+当切换主题或者切换图标风格时，桌面上控件会全量新建，使得主线程繁忙，导致输入事件未响应。
 
 #### 修改方法
 
-仅当切换桌面组件风格时，才触发桌面组件的刷新，缩小刷新范围。
+仅在切换桌面组件风格时，才触发桌面组件的刷新，缩小刷新范围。
 
 ```ts
 + if (!CheckEmptyUtils.isEmpty(themeStyleInfo.iconResourcePath) &&
@@ -1186,16 +1226,16 @@ Tid:2918, Name:example.sceneboard
 
 #### 错误代码实例
 
-循环中同步获取云图。
+在循环中同步获取云图。
 
 ```ts
 public static xxxFunction(fileUris: string[]): void {
-    ...
+    //...
     for (const fileuril of fileUrils) {
         let file = fs.openSync(fileUri, fs.OpenMode.READ_ONLY);
-        ...
+        //...
     }
-    ...
+    //...
 }
 ```
 
@@ -1205,13 +1245,13 @@ public static xxxFunction(fileUris: string[]): void {
 
 #### 定位思路
 
-以 notepad LIFECYCLE_TIMEOUT 为例，提取故障关键信息：
+以notepad LIFECYCLE_TIMEOUT为例，提取故障关键信息：
 
 ```
  sysfreeze: LIFECYCLE_TIMEOUT LIFECYCLE_TIMEOUT at 20240201100459
 ```
 
-查看 MSG 信息：**foreground timeout，对应时长为 5s**。
+查看MSG信息：**foreground timeout，对应时长为 5s**。
 
 ```
 MSG = 
@@ -1223,8 +1263,8 @@ client:
 312522; AbilityThread::ScheduleAbilityTransaction; the foreground lifecycle.
 ```
 
-LIFECYCLE_HALF_TIMEOUT 上报时间为 **10:04:57:538**；  
-LIFECYCLE_TIMEOUT 上报时间为 **10:04:59:965**；相隔 2.5s 左右，符合预期。
+LIFECYCLE_HALF_TIMEOUT 上报时间为**10:04:57:538**；  
+LIFECYCLE_TIMEOUT 上报时间为**10:04:59:965**；相隔约2.5s，符合预期。
 
 ```
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -1247,7 +1287,7 @@ PACKAGE_NAME = com.example.notepad
 PROCESS_NAME = com.example.notepad
 ```
 
-任务开始的时间为 **10:04:54.798**，离 LIFECYCLE_HALF_TIMEOUT 相隔 2.5s 左右，符合预期。
+任务开始的时间为**10:04:54.798**，离LIFECYCLE_HALF_TIMEOUT相隔约2.5s，符合预期。
 
 ```
 mainHandler dump is:
@@ -1264,7 +1304,7 @@ mainHandler dump is:
  ...
 ```
 
-看对应的堆栈信息：libfs.z.so -> libdatashare_consumer.z.so -> libipc_core.z.so。
+查看对应的堆栈信息：libfs.z.so->libdatashare_consumer.z.so->libipc_core.z.so。
 
 ```
 Tid:18083, Name:ei.example.notepad
@@ -1285,21 +1325,22 @@ Tid:18083, Name:ei.example.notepad
 # 14 pc 0000000000132e48 /system/lib64/module/arkcompiler/stub.an
 ```
 
-通过 binder 可以看出在与 5235 进程通信，时长大于 2.5s，符合预期。
+通过binder可以看出与5235进程通信时长大于2.5s，符合预期。
 
 ```
 PeerBinderCatcher -- pid==18083 layer_ == 1
+
 BinderCatcher --
-    18083:18083 to 5235:7437 code 2 wait:2.723147396 s
-    3462:3840 to 4956:4958 code 8 wait:261.213830169 s
-    3462:3621 to 4956:4981 code 8 wait:273.550283291 s
+
+    18083:18083 to 5235:7437 code 2 wait:2.723147396 s,  ns:-1:-1 to -1:-1, debug:18083:18083 to 5235:7437, active_code:0 active_thread:0, pending_async_proc=0
+    3462:3840 to 4956:4958 code 8 wait:261.213830169 s,  ns:-1:-1 to -1:-1, debug:3462:3840 to 4956:4958, active_code:0 active_thread:0, pending_async_proc=0
+    3462:3621 to 4956:4981 code 8 wait:273.550283291 s,  ns:-1:-1 to -1:-1, debug:3462:3621 to 4956:4981, active_code:0 active_thread:0, pending_async_proc=0
 ```
 
-5235 为媒体库进程，该堆栈无有效信息。
+5235是媒体库进程，该堆栈无有效信息。
 
 ```
-PeerBinder Stacktrace --
-PeerBinderCatcher start catcher stacktrace for pid : 5235
+Binder catcher stacktrace, type is peer, pid : 5235
 Result: 0 ( no error )
 Timestamp:2024-02-01 10:04:57.000
 Pid:5235
@@ -1327,28 +1368,28 @@ Tid:5235, Name:edialibrarydata
 # 18 pc 000000000001106c /system/bin/appspawn(_start_c+76)(7b715884c45cfe57b22df46fdaeeca88)
 ```
 
-以上可以得到信息：应用通过文件系统 Open::Sync 同步通过 uri 加载文件，调用到 datashare 请求媒体库文件数据。
+以上可以得到信息：应用通过文件系统Open::Sync同步通过uri加载文件，调用datashare请求媒体库文件数据。
 
-查看对应时间点的流水信息：进程调用 datashare 加载云图后卡死，与堆栈信息吻合。
+查看对应时间点的流水信息：进程调用datashare加载云图后卡死，与堆栈信息吻合。
 
 ![appfreeze_2024061416](figures/appfreeze_2024061416.png)
 
 查看具体代码：
 
-在循环中同步加载 fileUri ，这种明显是不合理的，当弱网或者同时加载大量数据的条件下，极易出现卡死情况，应用侧需要整改。
+在循环中同步加载fileUri是不合理的，当弱网环境或者同时加载大量数据时，极易出现卡死情况，应用侧需进行整改。
 
 #### 修改方法
 
-同步加载改为异步加载，并用标志位来标识是否加载完，用户界面展示加载中效果。
+同步加载改为异步加载，并使用标志位标识是否加载完毕，用户界面展示加载中效果。
 
 ```ts
 public static xxxFunction(fileUris: string[]): void {
-    ...
+    //...
     for (const fileuril of fileUrils) {
         let file = fs.openSync(fileUri, fs.OpenMode.READ_ONLY);
-        ...
+        //...
     }
-    ...
+    //...
 }
 ```
 
@@ -1356,18 +1397,17 @@ public static xxxFunction(fileUris: string[]): void {
 
 ```ts
 public static async xxxFunction(fileUris: string[]): void {
-    ...
+    //...
     AppStorage.setOrCreate<boolean>('isLoadingPic', true); --> 用于页面 load 效果展示
     for (const fileuril of fileUrils) {
         let file = await fs.open(fileUri, fs.OpenMode.READ_ONLY);
-        ...
+        //...
     }
-    ...
+    //...
 }
 ```
 
 #### 推荐建议（问题总结）
 
-1、请求云侧数据需要验证充分，有网、弱网、无网场景下；
-
+1、请求云侧数据需要验证充分，包括有网、弱网和无网场景下；  
 2、不要在应用生命周期函数中做耗时操作。

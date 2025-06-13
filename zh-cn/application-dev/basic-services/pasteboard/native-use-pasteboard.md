@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-剪贴板为开发者提供数据的复制粘贴能力。支持对纯文本、超本文、URI等内容的操作。
+剪贴板为开发者提供数据的复制粘贴能力。支持对纯文本、超文本、URI等内容的操作。
 
 ## 基本概念
 
@@ -120,7 +120,7 @@
    ```c
    // 1. 创建一个剪贴板实例
    OH_Pasteboard* pasteboard = OH_Pasteboard_Create();
-   // 2. 判断剪贴板中有是否有文本类型数据
+   // 2. 判断剪贴板中是否有文本类型数据
    bool hasPlainTextData = OH_Pasteboard_HasType(pasteboard, "text/plain");
    if (hasPlainTextData) {
      // 3. 从剪贴板中获取统一类型数据OH_UdmfData

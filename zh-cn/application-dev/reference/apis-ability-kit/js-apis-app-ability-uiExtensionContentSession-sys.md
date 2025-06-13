@@ -1,6 +1,6 @@
 # @ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)(系统接口)
 
-UIExtensionContentSession是[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)加载界面内容时创建的实例对象，当UIExtensionComponent控件拉起指定的UIExtensionAbility时，UIExtensionAbility会创建UIExtensionContentSession对象，并通过[onSessionCreate](js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate)回调传递给开发者。一个UIExtensionComponent控件对应一个UIExtensionContentSession对象，提供界面加载，结果通知等方法。每个UIExtensionAbility的UIExtensionContentSession之间互不影响，可以各自进行操作。
+UIExtensionContentSession是[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)加载界面内容时创建的实例对象，当UIExtensionComponent控件拉起指定的UIExtensionAbility时，UIExtensionAbility会创建UIExtensionContentSession对象，并通过[onSessionCreate](js-apis-app-ability-uiExtensionAbility.md#onsessioncreate)回调传递给开发者。一个UIExtensionComponent控件对应一个UIExtensionContentSession对象，提供界面加载，结果通知等方法。每个UIExtensionAbility的UIExtensionContentSession之间互不影响，可以各自进行操作。
 
 > **说明：**
 >
@@ -16,7 +16,9 @@ UIExtensionContentSession是[UIExtensionAbility](js-apis-app-ability-uiExtension
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 ```
 
-## UIExtensionContentSession.sendData
+## UIExtensionContentSession
+
+### sendData
 
 sendData(data: Record\<string, Object>): void
 
@@ -47,13 +49,12 @@ sendData(data: Record\<string, Object>): void
 ```ts
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  private storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
@@ -77,7 +78,7 @@ struct Index {
 }
 ```
 
-## UIExtensionContentSession.setReceiveDataCallback
+### setReceiveDataCallback
 
 setReceiveDataCallback(callback: (data: Record\<string, Object>) => void): void
 
@@ -108,20 +109,19 @@ setReceiveDataCallback(callback: (data: Record\<string, Object>) => void): void
 ```ts
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
       Button('SendData')
         .onClick(() => {
           this.session?.setReceiveDataCallback((data: Record<string, Object>) => {
-            console.info(`Successed in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
+            console.info(`Succeeded in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
           });
         })
     }
@@ -131,7 +131,7 @@ struct Index {
 }
 ```
 
-## UIExtensionContentSession.setReceiveDataForResultCallback<sup>11+</sup>
+### setReceiveDataForResultCallback<sup>11+</sup>
 
 setReceiveDataForResultCallback(callback: (data: Record<string, Object>) => Record<string, Object>): void
 
@@ -146,7 +146,7 @@ setReceiveDataForResultCallback(callback: (data: Record<string, Object>) => Reco
 
 | 参数名 | 类型 | 必填 | 说明             |
 | -------- | -------- | -------- |----------------|
-| callback | (data: { [key: string]: Object }) => { [key: string]: Object } | 是 | 回调函数，返回带返回值的接收的数据。 |
+| callback | (data: Record\<string, Object>) => Record\<string, Object> | 是 | 回调函数，返回带返回值的接收的数据。 |
 
 **错误码：**
 
@@ -163,20 +163,19 @@ setReceiveDataForResultCallback(callback: (data: Record<string, Object>) => Reco
 ```ts
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
       Button('SetReceiveDataForResultCallback')
         .onClick(() => {
           this.session?.setReceiveDataForResultCallback((data: Record<string, Object>) => {
-            console.info(`Successed in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
+            console.info(`Succeeded in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
             return data;
           });
         })
@@ -187,7 +186,7 @@ struct Index {
 }
 ```
 
-## UIExtensionContentSession.startAbility
+### startAbility
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
@@ -232,7 +231,6 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -250,7 +248,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbility, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbility`);
+      console.info(`Succeeded in startAbility`);
     })
   }
 
@@ -258,7 +256,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.startAbility
+### startAbility
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
@@ -302,7 +300,6 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -324,7 +321,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbility, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbility`);
+      console.info(`Succeeded in startAbility`);
     })
   }
 
@@ -332,7 +329,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.startAbility
+### startAbility
 
 startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
@@ -383,7 +380,6 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -402,7 +398,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 
     session.startAbility(want, starOptions)
       .then(() => {
-        console.info(`Successed in startAbility`);
+        console.info(`Succeeded in startAbility`);
       })
       .catch((err: BusinessError) => {
         console.error(`Failed to startAbility, code: ${err.code}, msg: ${err.message}`);
@@ -413,16 +409,16 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.startAbilityForResult
+### startAbilityForResult
 
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 启动一个Ability，在Ability终止后返回结果给调用方。使用callback异步回调。
 
 Ability的终止方式包括以下几种情况：
- - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方，异常信息中resultCode为-1。
- - 如果被启动的Ability模式是单实例模式，不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其他调用方返回异常信息，异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式，不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其他调用方返回异常信息，异常信息中resultCode为-1。
 
 > **说明：**
 >
@@ -463,7 +459,6 @@ Ability的终止方式包括以下几种情况：
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -481,7 +476,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbilityForResult, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbilityForResult, data: ${JSON.stringify(data)}`);
+      console.info(`Succeeded in startAbilityForResult, data: ${JSON.stringify(data)}`);
     })
   }
 
@@ -489,16 +484,16 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.startAbilityForResult
+### startAbilityForResult
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 启动一个Ability，在Ability终止后返回结果给调用方。使用callback异步回调。
 
 Ability的终止方式包括以下几种情况：
- - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方，异常信息中resultCode为-1。
- - 如果被启动的Ability模式是单实例模式，不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其他调用方返回异常信息，异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式，不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其他调用方返回异常信息，异常信息中resultCode为-1。
 
 > **说明：**
 >
@@ -538,7 +533,6 @@ Ability的终止方式包括以下几种情况：
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -560,7 +554,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbilityForResult, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbilityForResult, data: ${JSON.stringify(data)}`);
+      console.info(`Succeeded in startAbilityForResult, data: ${JSON.stringify(data)}`);
     })
   }
 
@@ -568,16 +562,16 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.startAbilityForResult
+### startAbilityForResult
 
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
 启动一个Ability，在Ability终止后返回结果给调用方。使用Promise异步回调。
 
 Ability的终止方式包括以下几种情况：
- - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方，异常信息中resultCode为-1。
- - 如果被启动的Ability模式是单实例模式，不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其他调用方返回异常信息，异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式，不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其他调用方返回异常信息，异常信息中resultCode为-1。
 
 > **说明：**
 >
@@ -625,7 +619,6 @@ Ability的终止方式包括以下几种情况：
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -644,7 +637,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 
     session.startAbilityForResult(want, starOptions)
       .then((data: common.AbilityResult) => {
-        console.info(`Successed in startAbilityForResult, data: ${JSON.stringify(data)}`);
+        console.info(`Succeeded in startAbilityForResult, data: ${JSON.stringify(data)}`);
       })
       .catch((err: BusinessError) => {
         console.error(`Failed to startAbilityForResult, code: ${err.code}, msg: ${err.message}`);
@@ -655,11 +648,11 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.setWindowBackgroundColor
+### setWindowBackgroundColor
 
 setWindowBackgroundColor(color: string): void
 
-设置UIExtensionAbility加载界面的背景色。该接口需要在[loadContent()](js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionloadcontent)调用生效后使用。
+设置UIExtensionAbility加载界面的背景色。该接口需要在[loadContent()](js-apis-app-ability-uiExtensionContentSession.md#loadcontent)调用生效后使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -710,7 +703,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
+### startAbilityAsCaller<sup>11+</sup>
 
 startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
@@ -750,7 +743,6 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -773,7 +765,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbilityAsCaller, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbilityAsCaller`);
+      console.info(`Succeeded in startAbilityAsCaller`);
     })
   }
 
@@ -781,7 +773,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
+### startAbilityAsCaller<sup>11+</sup>
 
 startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void
 
@@ -820,7 +812,6 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -847,7 +838,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbilityAsCaller, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbilityAsCaller`);
+      console.info(`Succeeded in startAbilityAsCaller`);
     })
   }
 
@@ -855,7 +846,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
+### startAbilityAsCaller<sup>11+</sup>
 
 startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 
@@ -901,7 +892,6 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -925,7 +915,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 
     session.startAbilityAsCaller(localWant, startOptions)
       .then(() => {
-        console.info(`Successed in startAbilityAsCaller`);
+        console.info(`Succeeded in startAbilityAsCaller`);
       })
       .catch((err: BusinessError) => {
         console.error(`Failed to startAbilityAsCaller, code: ${err.code}, msg: ${err.message}`);
@@ -936,7 +926,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.getUIExtensionHostWindowProxy<sup>11+</sup>
+### getUIExtensionHostWindowProxy<sup>11+</sup>
 
 getUIExtensionHostWindowProxy(): uiExtensionHost.UIExtensionHostWindowProxy
 

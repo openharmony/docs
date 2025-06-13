@@ -65,7 +65,7 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<v
 
 **错误码**：
 
-在打补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_APPLY_RESULT](../apis-basic-services-kit/common_event/commonEvent-definitions.md#common_event_quick_fix_apply_result9)的参数返回给应用开发者。
+在打补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_APPLY_RESULT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_quick_fix_apply_result)的参数返回给应用开发者。
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
@@ -90,7 +90,7 @@ try {
     if (error) {
       console.error( `applyQuickFix failed with error: ${error}`);
     } else {
-      console.info( 'applyQuickFix success');
+      console.info(`applyQuickFix success`);
     }
   });
 } catch (paramError) {
@@ -124,7 +124,7 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
 
 **错误码**：
 
-在打补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_APPLY_RESULT](../apis-basic-services-kit/common_event/commonEvent-definitions.md#common_event_quick_fix_apply_result9)的参数返回给应用开发者。
+在打补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_APPLY_RESULT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_quick_fix_apply_result)的参数返回给应用开发者。
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
@@ -146,7 +146,7 @@ let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
 
 try {
   quickFixManager.applyQuickFix(hapModuleQuickFixFiles).then(() => {
-    console.info('applyQuickFix success');
+    console.info(`applyQuickFix success`);
   }).catch((error: BusinessError) => {
     console.error(`applyQuickFix err: ${error}`);
   });
@@ -298,10 +298,12 @@ revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
 ```ts
 import { quickFixManager } from '@kit.AbilityKit';
 
-let bundleName = "com.example.myapplication";
+let bundleName = 'com.example.myapplication';
 
 quickFixManager.revokeQuickFix(bundleName, (err) => {
-  console.info("revokeQuickFix " + bundleName + " " + JSON.stringify(err));
+  if (err.code) {
+    console.error(`revokeQuickFix ${bundleName} failed, err code: ${err.code}, err msg: ${err.message}.`);
+  }
 });
 ```
 
@@ -349,11 +351,11 @@ revokeQuickFix(bundleName: string): Promise\<void>;
 import { quickFixManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let bundleName = "com.example.myapplication";
+let bundleName = 'com.example.myapplication';
 
 quickFixManager.revokeQuickFix(bundleName).then(() => {
-  console.info("revokeQuickFix " + bundleName +" ok");
+  console.info(`revokeQuickFix ${bundleName} success.`);
 }).catch((err: BusinessError) => {
-  console.info("revokeQuickFix " + bundleName +" failed, error code is ", JSON.stringify((err)));
+  console.error(`revokeQuickFix ${bundleName} failed, err code: ${err.code}, err msg: ${err.message}.`);
 });
 ```

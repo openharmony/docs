@@ -5,7 +5,11 @@
 
 Provides model-related APIs for model creation and inference. These APIs are non-thread-safe.
 
+**File to include**: <mindspore/model.h>
+
 **Library**: libmindspore_lite_ndk.so
+
+**System capability**: SystemCapability.Ai.MindSpore
 
 **Since**: 9
 

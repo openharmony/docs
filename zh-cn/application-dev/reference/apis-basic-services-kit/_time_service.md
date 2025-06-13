@@ -36,7 +36,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [TimeService_ErrCode](#timeservice_errcode) [OH_TimeService_GetTimeZone](#oh_timeservice_gettimezone) (char \*timeZone, uint32_t len) | 获取当前系统时区。 | 
+| [TimeService_ErrCode](#timeservice_errcode) [OH_TimeService_GetTimeZone](#oh_timeservice_gettimezone) (char \*timeZone, uint32_t len) | 获取当前系统时区信息。 | 
 
 
 ## 类型定义说明
@@ -83,23 +83,23 @@ enum TimeService_ErrCode
 ### OH_TimeService_GetTimeZone()
 
 ```
-TimeService_ErrCode OH_TimeService_GetTimeZone (char * timeZone, uint32_t len )
+TimeService_ErrCode OH_TimeService_GetTimeZone (char * timeZone, uint32_t len)
 ```
 
 **描述**
 
-获取当前系统时区。
+获取系统当前时区。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| timeZone | 时区ID字符数组，成功时写入当前系统时区ID字符串，失败时写入空字符串，字符串以'\0'结尾。 | 
-| len | 时区ID字符数组分配的内存大小，当前时区字符串没有最大长度规格，建议申请足够多的内存，至少不能低于31字节。 | 
+| timeZone | 时区ID字符数组，成功时写入当前系统时区ID字符串，失败时写入空字符串。字符串以'\0'结尾。 | 
+| len | 时区ID字符数组分配的内存大小，当前时区字符串没有最大长度规格，必须申请至少31字节的内存。 | 
 
 **返回：**
 

@@ -120,28 +120,28 @@
      wordBreak:text.WordBreak.NORMAL
    };
    let fontCollection = text.FontCollection.getGlobalInstance() 
-   let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection)
+   let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection)
    ```
 
 4. 将textStyle1添加到段落样式中，再添加文字。
 
    ```ts
    let str:string = "模块描述\n"
-   ParagraphGraphBuilder.pushStyle(textStyle1);
-   ParagraphGraphBuilder.addText(str);
+   paragraphBuilder.pushStyle(textStyle1);
+   paragraphBuilder.addText(str);
    ```
 
 5. 将textStyle2添加到段落样式中，再添加文字。
 
    ```ts
-   ParagraphGraphBuilder.pushStyle(textStyle2);
-   ParagraphGraphBuilder.addText(str);
+   paragraphBuilder.pushStyle(textStyle2);
+   paragraphBuilder.addText(str);
    ```
 
 6. 生成段落，用于后续绘制使用。
 
    ```ts
-   let paragraph = ParagraphGraphBuilder.build()
+   let paragraph = paragraphBuilder.build()
    ```
 
 效果展示如下：

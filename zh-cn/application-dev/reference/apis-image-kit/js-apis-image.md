@@ -1,12 +1,32 @@
 # @ohos.multimedia.image (图片处理)
 
-本模块提供图片解码、图片编码、图片编辑和处理、图片接收等能力，包括创建PixelMap、读取图像像素数据、读取区域内的图片数据等。
-
 > **说明：**
 >
 > - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > - 从API version 12开始，本模块接口支持在ArkTS卡片中使用。
+
+本模块提供图片的解码、编码、编辑、元数据处理和图片接收等能力。
+
+本模块包含以下基础类：
+
+- [ImageSource](#imagesource)类，提供获取[图片信息](#imageinfo)、将图片解码为PixelMap或Picture、读取和修改[图片属性](#propertykey7)的能力。[支持解码的图片格式](#属性-2)包括png、jpeg、bmp、gif、webp、dng、heic<sup>12+</sup>。
+
+- [ImagePacker](#imagepacker)类，提供将图片编码为压缩后的数据流或文件的能力。编码前需获取图片的ImageSource、PixelMap或Picture作为输入。[支持编码的图片格式](#属性-3)包括jpeg、webp、png、heic<sup>12+</sup>、gif<sup>18+</sup>。
+
+- [PixelMap](#pixelmap7)类，位图对象，包含像素数据以及[图片信息](#imageinfo)。可用于读取或写入像素数据，进行裁剪、缩放、平移、旋转、镜像等操作，并可直接传给[Image组件](../apis-arkui/arkui-ts/ts-basic-components-image.md)用于显示。还提供了获取和设置图片色域、HDR元数据的方法。
+
+- [Picture](#picture13)类，多图对象，由主图、辅助图和元数据组成。其中，主图包含了主要图像信息；辅助图用于存储与主图相关的附加信息；元数据用于存储与图片相关的其他信息。Picture提供获取主图、合成HDR图、获取辅助图、设置辅助图、获取元数据、设置元数据等方法。
+
+- [AuxiliaryPicture](#auxiliarypicture13)类，辅助图一般用于辅助主图进行特殊信息的展示，使图像包含更丰富的信息。目前支持的辅助图的类型可参考[AuxiliaryPictureType](#auxiliarypicturetype13)。
+
+- [Metadata](#metadata13)类，用于存储图像的元数据。目前支持的元数据类型可参考[MetadataType](#metadatatype13)。包含EXIF元数据和水印裁剪图元数据，它们都是以Key-Value的形式存储的，EXIF元数据的Key可参考[PropertyKey](#propertykey7)，水印裁剪图元数据的Key可参考[FragmentPropertyKey](#fragmentmappropertykey13)。
+
+- [ImageReceiver](#imagereceiver9)类，作为图片的消费者，用于从Surface中接收、读取图片。
+
+- [ImageCreator](#imagecreator9)类，作于图片的生产者，用于将图片写入到Surface中。
+
+- [Image](#image9)类，供ImageReceiver和ImageCreator使用，用于传输图片对象，它的实际内容由生产者决定。如相机预览流提供的Image对象存储了YUV数据，相机拍照提供的Image对象存储了JPEG文件。
 
 ## 导入模块
 
@@ -47,8 +67,7 @@ createPicture(mainPixelmap : PixelMap): Picture
 ```ts
 import { image } from '@kit.ImageKit';
 
-async function CreatePicture() {
-  const context = getContext();
+async function CreatePicture(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("test.jpg");
   let ops: image.SourceOptions = {
@@ -60,7 +79,7 @@ async function CreatePicture() {
   if (pictureObj != null) {
     console.info('Create picture succeeded');
   } else {
-    console.info('Create picture failed');
+    console.error('Create picture failed');
   }
 }
 ```
@@ -92,7 +111,7 @@ createPictureFromParcel(sequence: rpc.MessageSequence): Picture
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
-| 62980097 | IPC error.                                                   |
+| 62980097 |  IPC error. Possible cause: 1.IPC communication failed. 2. Image upload exception. 3. Decode process exception. 4. Insufficient memory.                                        |
 
 **示例：**
 
@@ -112,7 +131,7 @@ class MySequence implements rpc.Parcelable {
       console.info('Marshalling success !');
       return true;
     } else {
-      console.info('Marshalling failed !');
+      console.error('Marshalling failed !');
       return false;
     }
   }
@@ -127,8 +146,7 @@ class MySequence implements rpc.Parcelable {
   }
 }
 
-async function Marshalling_UnMarshalling() {
-  const context = getContext();
+async function Marshalling_UnMarshalling(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("test.jpg");
   let ops: image.SourceOptions = {
@@ -146,7 +164,7 @@ async function Marshalling_UnMarshalling() {
     // unmarshalling.
     data.readParcelable(ret);
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
@@ -249,14 +267,14 @@ createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | Operation failed.|
-| 62980097 | IPC error.|
+| 62980096 | Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.|
+| 62980097 | IPC error. Possible cause: 1.IPC communication failed. 2. Image upload exception. 3. Decode process exception. 4. Insufficient memory.|
 | 62980115 | Invalid input parameter.|
 | 62980105 | Failed to get the data.|
 | 62980177 | Abnormal API environment.|
 | 62980178 | Failed to create the PixelMap.|
 | 62980179 | Abnormal buffer size.|
-| 62980180 | FD mapping failed.|
+| 62980180 | FD mapping failed. Possible cause: 1. Size and address does not match. 2. Memory map in memalloc failed.|
 | 62980246 | Failed to read the PixelMap.|
 
 **示例：**
@@ -844,7 +862,7 @@ async function GetMainPixelmap() {
       });
     }
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
@@ -869,8 +887,8 @@ getHdrComposedPixelmap(): Promise\<PixelMap>
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 7600901  | Unknown error.         |
-| 7600201  | Unsupported operation. |
+| 7600901  | Inner unknown error. Please check the logs for detailed information. |
+| 7600201  | Unsupported operation. e.g.,1. The picture does not has a gainmap. 2. MainPixelMap's allocator type is not DMA. |
 
 **示例：**
 
@@ -892,7 +910,7 @@ async function GetHdrComposedPixelmap() {
       });
     }
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
@@ -926,7 +944,7 @@ async function GetGainmapPixelmap() {
         if (imageInfo != null) {
           console.info('GetGainmapPixelmap information height:' + imageInfo.size.height + ' width:' + imageInfo.size.width);
         } else {
-          console.info('GainPixelmap is null');
+          console.error('GainPixelmap is null');
         }
       }).catch((error: BusinessError) => {
         console.error(funcName, 'Failed error.code: ${error.code} ,error.message: ${error.message}');
@@ -935,7 +953,7 @@ async function GetGainmapPixelmap() {
       console.info('GainPixelmap is null');
     }
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
@@ -968,8 +986,7 @@ setAuxiliaryPicture(type: AuxiliaryPictureType, auxiliaryPicture: AuxiliaryPictu
 ```ts
 import { image } from '@kit.ImageKit';
 
-async function SetAuxiliaryPicture() {
-  const context = getContext();
+async function SetAuxiliaryPicture(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("hdr.jpg");//需要支持hdr的图片。
   let ops: image.SourceOptions = {
@@ -981,7 +998,7 @@ async function SetAuxiliaryPicture() {
   if (auxPicture != null) {
     console.info('Create picture succeeded');
   } else {
-    console.info('Create picture failed');
+    console.error('Create picture failed');
   }
 
   if (pictureObj != null) {
@@ -1063,7 +1080,7 @@ setMetadata(metadataType: MetadataType, metadata: Metadata): Promise\<void>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 7600202  | Unsupported metadata. Possible causes: Unsupported metadata type. |
+| 7600202  | Unsupported metadata. Possible causes: 1. Unsupported metadata type. 2. The metadata type does not match the auxiliary picture type. |
 
 **示例：**
 
@@ -1071,8 +1088,7 @@ setMetadata(metadataType: MetadataType, metadata: Metadata): Promise\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-async function SetPictureObjMetadata() {
-  const exifContext = getContext();
+async function SetPictureObjMetadata(exifContext: Context) {
   const exifResourceMgr = exifContext.resourceManager;
   const exifRawFile = await exifResourceMgr.getRawFileContent("exif.jpg");//含有exif metadata的图片。
   let exifOps: image.SourceOptions = {
@@ -1084,7 +1100,7 @@ async function SetPictureObjMetadata() {
   if (exifPictureObj != null) {
     console.info('Create picture succeeded');
   } else {
-    console.info('Create picture failed');
+    console.error('Create picture failed');
   }
 
   if (pictureObj != null) {
@@ -1096,7 +1112,7 @@ async function SetPictureObjMetadata() {
       console.error('Failed to set metadata. error.code: ' +JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
     });
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
@@ -1128,7 +1144,7 @@ getMetadata(metadataType: MetadataType): Promise\<Metadata>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 7600202  | Unsupported metadata. Possible causes: Unsupported metadata type. |
+| 7600202  | Unsupported metadata. Possible causes: 1. Unsupported metadata type. 2. The metadata type does not match the auxiliary picture type. |
 
 **示例：**
 
@@ -1142,10 +1158,10 @@ async function GetPictureObjMetadataProperties() {
     if (pictureObjMetaData != null) {
       console.info('get picture metadata success');
     } else {
-      console.info('get picture metadata is failed');
+      console.error('get picture metadata is failed');
     }
   } else {
-    console.info(" pictureObj is null");
+    console.error(" pictureObj is null");
   }
 }
 ```
@@ -1171,7 +1187,7 @@ marshalling(sequence: rpc.MessageSequence): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 62980097 | IPC error.                                                   |
+| 62980097 | IPC error. Possible cause: 1.IPC communication failed. 2. Image upload exception. 3. Decode process exception. 4. Insufficient memory.                                                   |
 
 **示例：**
 
@@ -1191,7 +1207,7 @@ class MySequence implements rpc.Parcelable {
       console.info('Marshalling success !');
       return true;
     } else {
-      console.info('Marshalling failed !');
+      console.error('Marshalling failed !');
       return false;
     }
   }
@@ -1216,7 +1232,7 @@ async function Marshalling_UnMarshalling() {
     // unmarshalling.
     data.readParcelable(ret);
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
@@ -1241,10 +1257,10 @@ async function Release() {
     if (pictureObj.getMainPixelmap() == null) {
       console.info(funcName, 'Success !');
     } else {
-      console.info(funcName, 'Failed !');
+      console.error(funcName, 'Failed !');
     }
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
@@ -1296,8 +1312,9 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
-async function ReadPixelsToBuffer() {
+async function ReadPixelsToBuffer(pixelMap : image.PixelMap) {
   const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
   if (pixelMap != undefined) {
     pixelMap.readPixelsToBuffer(readBuffer).then(() => {
@@ -1332,8 +1349,9 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
-async function ReadPixelsToBuffer() {
+async function ReadPixelsToBuffer(pixelMap : image.PixelMap) {
   const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
   if (pixelMap != undefined) {
     pixelMap.readPixelsToBuffer(readBuffer, (error: BusinessError, res: void) => {
@@ -1379,8 +1397,9 @@ readPixelsToBufferSync(dst: ArrayBuffer): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
-async function ReadPixelsToBufferSync() {
+async function ReadPixelsToBufferSync(pixelMap : image.PixelMap) {
   const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
   if (pixelMap != undefined) {
     pixelMap.readPixelsToBufferSync(readBuffer);
@@ -1422,8 +1441,9 @@ RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
-async function ReadPixelsRGBA() {
+async function ReadPixelsRGBA(pixelMap : image.PixelMap) {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4。
     offset: 0,
@@ -1439,7 +1459,7 @@ async function ReadPixelsRGBA() {
   }
 }
 
-async function ReadPixelsYUV() {
+async function ReadPixelsYUV(pixelMap : image.PixelMap) {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(6),  // 6为需要创建的像素buffer大小，取值为：height * width *1.5。
     offset: 0,
@@ -1485,8 +1505,9 @@ RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
-async function ReadPixelsRGBA() {
+async function ReadPixelsRGBA(pixelMap : image.PixelMap) {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4。
     offset: 0,
@@ -1505,7 +1526,7 @@ async function ReadPixelsRGBA() {
   }
 }
 
-async function ReadPixelsYUV() {
+async function ReadPixelsYUV(pixelMap : image.PixelMap) {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(6), // 6为需要创建的像素buffer大小，取值为：height * width *1.5。
     offset: 0,
@@ -1555,7 +1576,7 @@ readPixelsSync(area: PositionArea): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function ReadPixelsSync() {
+async function ReadPixelsSync(pixelMap : image.PixelMap) {
   const area : image.PositionArea = {
     pixels: new ArrayBuffer(8),
     offset: 0,
@@ -2670,7 +2691,7 @@ clone(): Promise\<PixelMap>
 | 62980102 | Image malloc abnormal. This status code is thrown when an error occurs during the process of copying data. |
 | 62980103 | Image YUV And ASTC types are not supported. |
 | 62980104 | Image initialization abnormal. This status code is thrown when an error occurs during the process of createing empty pixelmap. |
-| 62980106 | The image data is to large.This status code is thrown when an error occurs during the process of checking size. |
+| 62980106 | The image data is to large. This status code is thrown when an error occurs during the process of checking size. |
 
 **示例：**
 
@@ -2712,14 +2733,14 @@ cloneSync(): PixelMap
 | 62980102 | Image malloc abnormal. This status code is thrown when an error occurs during the process of copying data. |
 | 62980103 | Image YUV And ASTC types are not supported. |
 | 62980104 | Image initialization abnormal. This status code is thrown when an error occurs during the process of createing empty pixelmap. |
-| 62980106 | The image data is to large.This status code is thrown when an error occurs during the process of checking size. |
+| 62980106 | The image data is to large. This status code is thrown when an error occurs during the process of checking size. |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async Demo() {
+async function Demo(pixelMap: image.PixelMap) {
   if (pixelMap != undefined) {
     try {
       let clonedPixelMap = pixelMap.cloneSync();
@@ -3340,8 +3361,8 @@ async function ApplyColorSpace() {
   let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
   let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
-    pixelMap.applyColorSpace(targetColorSpace, (err: BusinessError) => {
-      if (err) {
+    pixelMap.applyColorSpace(targetColorSpace, (error: BusinessError) => {
+      if (error) {
         console.error(`Failed to apply color space for pixelmap object, error code is ${error}`);
         return;
       } else {
@@ -3430,9 +3451,12 @@ toSdr(): Promise\<void>
 import image from '@ohos.multimedia.image';
 import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'hdr.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-let img = getContext().resourceManager.getMediaContentSync($r('app.media.hdr'));
+let img = context.resourceManager.getMediaContentSync($r('app.media.hdr'));
 let imageSource = image.createImageSource(img.buffer.slice(0));
 let decodingOptions: image.DecodingOptions = {
   desiredDynamicRange: image.DecodingDynamicRange.AUTO
@@ -3447,7 +3471,7 @@ if (pixelmap != undefined) {
     console.error(`Failed to set sdr. code is ${err.code}, message is ${err.message}`);
   });
 } else {
-  console.info('Failed to create pixelMap.');
+  console.error('Failed to create pixelMap.');
 }
 ```
 
@@ -3480,16 +3504,20 @@ getMetadata(key: HdrMetadataKey): HdrMetadataValue
 | 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.          |
 | 501 | Resource unavailable.          |
 | 62980173 | The DMA memory does not exist.          |
-| 62980302 | Memory copy failed.          |
+| 62980302 | Memory copy failed. Possibly caused by invalid metadata value.          |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 import image from '@ohos.multimedia.image';
 
+
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 'app.media.test'需要替换为本地hdr图片。
-let img = getContext().resourceManager.getMediaContentSync($r('app.media.test'));
+let img = context.resourceManager.getMediaContentSync($r('app.media.test'));
 let imageSource = image.createImageSource(img.buffer.slice(0));
 let decodingOptions: image.DecodingOptions = {
   desiredDynamicRange: image.DecodingDynamicRange.AUTO
@@ -3501,10 +3529,10 @@ if (pixelmap != undefined) {
     let staticMetadata = pixelmap.getMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA);
     console.info("getmetadata:" + JSON.stringify(staticMetadata));
   } catch (e) {
-    console.info('pixelmap create failed' + e);
+    console.error('pixelmap create failed' + e);
   }
 } else {
-  console.info('Failed to create pixelMap.');
+  console.error('Failed to create pixelMap.');
 }
 ```
 
@@ -3538,7 +3566,7 @@ setMetadata(key: HdrMetadataKey, value: HdrMetadataValue): Promise\<void>
 | 401|  Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.         |
 | 501 | Resource unavailable.          |
 | 62980173 | The DMA memory does not exist.          |
-| 62980302 | Memory copy failed.          |
+| 62980302 | Memory copy failed. Possibly caused by invalid metadata value.         |
 
 **示例：**
 
@@ -3618,7 +3646,7 @@ struct Demo {
   @State pixelMap: PixelMap | undefined = undefined;
   // 主线程方法。
   private loadImageFromThread(): void {
-    const resourceMgr = getContext(this).resourceManager;
+    const resourceMgr = this.getUIContext().getHostContext()?.resourceManager;
     // 此处‘example.jpg’仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
     resourceMgr.getRawFd('example.jpg').then(rawFileDescriptor => {
       taskpool.execute(loadPixelMap, rawFileDescriptor).then(pixelMap => {
@@ -3657,7 +3685,7 @@ marshalling(sequence: rpc.MessageSequence): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 62980115 | Invalid image parameter.              |
-| 62980097 | IPC error.             |
+| 62980097 | IPC error. Possible cause: 1.IPC communication failed. 2. Image upload exception. 3. Decode process exception. 4. Insufficient memory.            |
 
 **示例：**
 
@@ -3744,8 +3772,8 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 62980115 | Invalid image parameter.              |
-| 62980097 | IPC error.              |
-| 62980096 | The operation failed.         |
+| 62980097 | IPC error. Possible cause: 1.IPC communication failed. 2. Image upload exception. 3. Decode process exception. 4. Insufficient memory.              |
+| 62980096 | Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.         |
 
 **示例：**
 
@@ -3955,6 +3983,7 @@ setMemoryNameSync(name: string): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401 | Parameter error. Possible causes: 1.The length of the input parameter is too long. 2.Parameter verification failed. |
+| 501 | Resource unavailable. |
 | 62980286 | Memory format not supported. |
 
 **示例：**
@@ -4000,7 +4029,10 @@ createImageSource(uri: string): ImageSource
 **示例：**
 
 ```ts
-const context: Context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'test.jpg'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
 const path: string = context.filesDir + "/test.jpg";
 const imageSourceApi: image.ImageSource = image.createImageSource(path);
@@ -4034,8 +4066,11 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
+
 let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
-const context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'test.png'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
 const path: string = context.filesDir + "/test.png";
 let imageSourceApi: image.ImageSource = image.createImageSource(path, sourceOptions);
@@ -4067,8 +4102,10 @@ createImageSource(fd: number): ImageSource
 
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
-const context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
 let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
@@ -4104,9 +4141,11 @@ createImageSource(fd: number, options: SourceOptions): ImageSource
 
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
-const context: Context = getContext();
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 const filePath: string = context.filesDir + "/test.jpg";
 let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
@@ -4205,8 +4244,10 @@ createImageSource(rawfile: resourceManager.RawFileDescriptor, options?: SourceOp
 
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
+import { common } from '@kit.AbilityKit';
 
-const context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 获取resourceManager资源管理器。
 const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
@@ -4248,7 +4289,10 @@ CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 **示例：**
 
 ```ts
-const context: Context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')); // 获取图像资源。
 // 此处'app.media.startIcon'仅作示例，请开发者自行替换，否则imageArray创建失败会导致后续无法正常执行。
 let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2);  // 分片。
@@ -4293,7 +4337,10 @@ CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 **示例：**
 
 ```ts
-const context: Context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')) // 获取图像资源。
 // 此处'app.media.startIcon'仅作示例，请开发者自行替换，否则imageArray创建失败会导致后续无法正常执行。
 let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2);  // 分片。
@@ -4451,9 +4498,11 @@ getImageInfoSync(index?: number): ImageInfo
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { image } from '@kit.ImageKit';
 
-const context: Context = getContext();
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
 let imageSource = image.createImageSource(filePath);
@@ -4495,17 +4544,17 @@ getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<stri
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;              |
-| 62980096 | The operation failed.             |
+| 62980096 | Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980103 | The image data is not supported.         |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
 | 62980112 | The image format does not match.       |
-| 62980113 | Unknown image format.        |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter.      |
 | 62980116| Failed to decode the image.            |
 | 62980118 | Failed to create the image plugin.   |
 | 62980122 | Failed to decode the image header.   |
-| 62980123| Images in EXIF format are not supported.             |
+| 62980123| The image does not support EXIF decoding. |
 | 62980135| The EXIF value is invalid.             |
 
 **示例：**
@@ -4655,9 +4704,9 @@ getImageProperties(key: Array&#60;PropertyKey&#62;): Promise<Record<PropertyKey,
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;     |
-| 62980096| The operation failed.             |
+| 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980110| The image source data is incorrect.            |
-| 62980113| Unknown image format.            |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980116| Failed to decode the image.            |
 
 **示例：**
@@ -4962,7 +5011,7 @@ createPicture(options?: DecodingOptionsForPicture): Promise\<Picture>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified.2.Incorrect parameter types; 3.Parameter verification failed. |
-| 7700301  | Decode failed.                                               |
+| 7700301  | Failed to decode image.                                      |
 
 **示例：**
 
@@ -4977,7 +5026,7 @@ async function CreatePicture() {
   if (pictureObj != null) {
     console.info('Create picture succeeded');
   } else {
-    console.info('Create picture failed');
+    console.error('Create picture failed');
   }
 }
 ```
@@ -4987,6 +5036,8 @@ async function CreatePicture() {
 createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 
 通过图片解码参数创建PixelMap对象。
+
+从API version 15开始，推荐使用[createPixelMapUsingAllocator](#createpixelmapusingallocator15)，该接口可以指定输出pixelMap的内存类型[AllocatorType](#allocatortype15)，详情请参考[申请图片解码内存(ArkTS)](../../media/image/image-allocator-type.md)。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -5024,6 +5075,8 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 
 通过默认参数创建PixelMap对象，使用callback形式返回结果。
 
+从API version 15开始，推荐使用[createPixelMapUsingAllocator](#createpixelmapusingallocator15)，该接口可以指定输出pixelMap的内存类型[AllocatorType](#allocatortype15)，详情请参考[申请图片解码内存(ArkTS)](../../media/image/image-allocator-type.md)。
+
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -5055,6 +5108,8 @@ imageSourceApi.createPixelMap((err: BusinessError, pixelMap: image.PixelMap) => 
 createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): void
 
 通过图片解码参数创建PixelMap对象。
+
+从API version 15开始，推荐使用[createPixelMapUsingAllocator](#createpixelmapusingallocator15)，该接口可以指定输出pixelMap的内存类型[AllocatorType](#allocatortype15)，详情请参考[申请图片解码内存(ArkTS)](../../media/image/image-allocator-type.md)。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -5099,6 +5154,8 @@ createPixelMapSync(options?: DecodingOptions): PixelMap
 
 通过图片解码参数同步创建PixelMap对象。
 
+从API version 15开始，推荐使用[createPixelMapUsingAllocatorSync](#createpixelmapusingallocatorsync15)，该接口可以指定输出pixelMap的内存类型[AllocatorType](#allocatortype15)，详情请参考[申请图片解码内存(ArkTS)](../../media/image/image-allocator-type.md)。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
@@ -5116,9 +5173,11 @@ createPixelMapSync(options?: DecodingOptions): PixelMap
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { image } from '@kit.ImageKit';
 
-const context: Context = getContext();
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
 let imageSource = image.createImageSource(filePath);
@@ -5136,7 +5195,7 @@ let pixelmap = imageSource.createPixelMapSync(decodingOptions);
 if (pixelmap != undefined) {
   console.info('Succeeded in creating pixelMap object.');
 } else {
-  console.info('Failed to create pixelMap.');
+  console.error('Failed to create pixelMap.');
 }
 ```
 
@@ -5169,16 +5228,16 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| The operation failed.              |
+| 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980099 | The shared memory data is abnormal. |
 | 62980101 | The image data is abnormal. |
 | 62980103| The image data is not supported.             |
-| 62980106 | The image is too large. |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980109 | Failed to crop the image. |
 | 62980110| The image source data is incorrect.             |
 | 62980111| The image source data is incomplete.           |
 | 62980112 | The image format does not match. |
-| 62980113 | Unknown image format. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter. |
 | 62980116 | Failed to decode the image. |
 | 62980118| Failed to create the image plugin.             |
@@ -5203,7 +5262,7 @@ let decodeOpts: image.DecodingOptions = {
 imageSourceApi.createPixelMapList(decodeOpts).then((pixelMapList: Array<image.PixelMap>) => {
   console.info('Succeeded in creating pixelMapList object.');
 }).catch((err: BusinessError) => {
-  console.error(`Failed to create pixelMapList object, error code is ${error}`);
+  console.error(`Failed to create pixelMapList object, error code is ${err}`);
 })
 ```
 
@@ -5230,16 +5289,16 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | The operation failed.             |
+| 62980096 | Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980099 | The shared memory data is abnormal.  |
 | 62980101 | The image data is abnormal.          |
 | 62980103 | The image data is not supported.         |
-| 62980106 | The image is too large.              |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980109 | Failed to crop the image.            |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
 | 62980112 | The image format does not match.       |
-| 62980113 | Unknown image format.        |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter.      |
 | 62980116 | Failed to decode the image.         |
 | 62980118 | Failed to create the image plugin.   |
@@ -5255,7 +5314,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 imageSourceApi.createPixelMapList((err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
   if (err) {
-    console.error(`Failed to create pixelMapList object, error code is ${error}`);
+    console.error(`Failed to create pixelMapList object, error code is ${err}`);
   } else {
     console.info('Succeeded in creating pixelMapList object.');
   }
@@ -5286,16 +5345,16 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | The operation failed.            |
+| 62980096 | Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.            |
 | 62980099 | The shared memory data is abnormal.  |
 | 62980101 | The image data is abnormal.         |
 | 62980103 | The image data is not supported.        |
-| 62980106 | The image is too large.              |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980109 | Failed to crop the image.           |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
 | 62980112 | The image format does not match.        |
-| 62980113 | Unknown image format.         |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter.      |
 | 62980116 | Failed to decode the image.         |
 | 62980118 | Failed to create the image plugin.  |
@@ -5319,7 +5378,7 @@ let decodeOpts: image.DecodingOptions = {
 };
 imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
   if (err) {
-    console.error(`Failed to create pixelMapList object, error code is ${error}`);
+    console.error(`Failed to create pixelMapList object, error code is ${err}`);
   } else {
     console.info('Succeeded in creating pixelMapList object.');
   }
@@ -5330,7 +5389,7 @@ imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList:
 
 createPixelMapUsingAllocator(options?: DecodingOptions, allocatorType?: AllocatorType): Promise\<PixelMap\>
 
-使用指定的分配器根据图像解码参数异步创建PixelMap对象。使用Promise返回对象。
+使用指定的分配器根据图像解码参数异步创建PixelMap对象。使用Promise异步回调。接口使用详情请参考[申请图片解码内存(ArkTS)](../../media/image/image-allocator-type.md)。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -5354,20 +5413,22 @@ createPixelMapUsingAllocator(options?: DecodingOptions, allocatorType?: Allocato
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types;3.Parameter verification failed. |
-| 7700101  | Bad source.                                                  |
+| 7700101  | Bad source. e.g.,1. Image has invalid width or height. 2. Image source incomplete. 3. Read image data failed. 4. Codec create failed. |
 | 7700102  | Unsupported mimetype.                                        |
-| 7700103  | Image too large.                                             |
+| 7700103  | Image too large.  This status code is thrown when an error occurs during the process of checking size. |
 | 7700201  | Unsupported allocator type, e.g., use share memory to decode a HDR image as only DMA supported hdr metadata. |
 | 7700203  | Unsupported options, e.g., cannot convert image into desired pixel format. |
-| 7700301  | Decode failed.                                               |
-| 7700302  | Memory allocation failed.                                    |
+| 7700301  | Failed to decode image.                                      |
+| 7700302  | Failed to allocate memory.                                   |
 
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import image from '@ohos.multimedia.image';
 
-const context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
 let imageSource = image.createImageSource(filePath);
@@ -5380,11 +5441,11 @@ let decodingOptions: image.DecodingOptions = {
   cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
   index: 0
 };
-let pixelmap = await imageSource.createPixelMapUsingAllocator(decodingOptions, image.AllocatorType.AUTO);
+let pixelmap = imageSource.createPixelMapUsingAllocator(decodingOptions, image.AllocatorType.AUTO);
 if (pixelmap != undefined) {
   console.info('Succeeded in creating pixelMap object.');
 } else {
-  console.info('Failed to create pixelMap.');
+  console.error('Failed to create pixelMap.');
 }
 ```
 
@@ -5392,7 +5453,7 @@ if (pixelmap != undefined) {
 
 createPixelMapUsingAllocatorSync(options?: DecodingOptions, allocatorType?: AllocatorType): PixelMap
 
-根据指定的分配器同步创建一个基于图像解码参数的PixelMap对象。
+根据指定的分配器同步创建一个基于图像解码参数的PixelMap对象。接口使用详情请参考[申请图片解码内存(ArkTS)](../../media/image/image-allocator-type.md)。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -5416,20 +5477,22 @@ createPixelMapUsingAllocatorSync(options?: DecodingOptions, allocatorType?: Allo
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types;3.Parameter verification failed. |
-| 7700101  | Bad source.                                                  |
+| 7700101  | Bad source. e.g.,1. Image has invalid width or height. 2. Image source incomplete. 3. Read image data failed. 4. Codec create failed. |
 | 7700102  | Unsupported mimetype.                                        |
-| 7700103  | Image too large.                                             |
+| 7700103  | Image too large.  This status code is thrown when an error occurs during the process of checking size. |
 | 7700201  | Unsupported allocator type, e.g., use share memory to decode a HDR image as only DMA supported hdr metadata. |
 | 7700203  | Unsupported options, e.g., cannot convert image into desired pixel format. |
-| 7700301  | Decode failed.                                               |
-| 7700302  | Memory allocation failed.                                    |
+| 7700301  | Failed to decode image.                                      |
+| 7700302  | Failed to allocate memory.                                   |
 
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import image from '@ohos.multimedia.image';
 
-const context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
 let imageSource = image.createImageSource(filePath);
@@ -5446,7 +5509,7 @@ let pixelmap = imageSource.createPixelMapUsingAllocatorSync(decodingOptions, ima
 if (pixelmap != undefined) {
   console.info('Succeeded in creating pixelMap object.');
 } else {
-  console.info('Failed to create pixelMap.');
+  console.error('Failed to create pixelMap.');
 }
 ```
 
@@ -5470,11 +5533,11 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| The operation failed.              |
+| 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980110| The image source data is incorrect.             |
 | 62980111| The image source data is incomplete.            |
 | 62980112 | The image format does not match. |
-| 62980113| Unknown image format. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter. |
 | 62980116| Failed to decode the image. |
 | 62980118| Failed to create the image plugin. |
@@ -5516,11 +5579,11 @@ getDelayTimeList(): Promise<Array\<number>>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | The operation failed.             |
+| 62980096 | Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
 | 62980112 | The image format does not match.        |
-| 62980113 | Unknown image format.         |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter.      |
 | 62980116 | Failed to decode the image.          |
 | 62980118 | Failed to create the image plugin.  |
@@ -5560,11 +5623,11 @@ getFrameCount(callback: AsyncCallback\<number>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| The operation failed.              |
+| 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980110| The image source data is incorrect. |
 | 62980111| The image source data is incomplete. |
 | 62980112| The image format does not match. |
-| 62980113| Unknown image format. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115| Invalid image parameter. |
 | 62980116| Failed to decode the image. |
 | 62980118| Failed to create the image plugin. |
@@ -5605,11 +5668,11 @@ getFrameCount(): Promise\<number>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | The operation failed.             |
+| 62980096 | Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
 | 62980112 | The image format does not match.        |
-| 62980113 | Unknown image format.         |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter.      |
 | 62980116 | Failed to decode the image.          |
 | 62980118 | Failed to create the image plugin.   |
@@ -5648,7 +5711,7 @@ getDisposalTypeList(): Promise\<Array\<number>>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | The operation failed.      |
+| 62980096 | Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.      |
 | 62980101 | The image data is abnormal. |
 | 62980137 | Invalid media operation.        |
 | 62980149 | Invalid MIME type for the image source.      |
@@ -5780,11 +5843,11 @@ packToData(source: ImageSource, options: PackingOption): Promise\<ArrayBuffer>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401 | If the parameter is invalid. |
-| 62980096| The Operation failed.              |
+| 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
-| 62980106 | The image is too large. |
-| 62980113 | Unknown image format. |
-| 62980119 | If encoder occur error during encoding.             |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
+| 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
 | 62980172 | Failed to encode icc. |
 | 62980252 | Failed to create surface. |
@@ -5798,9 +5861,11 @@ packToData(source: ImageSource, options: PackingOption): Promise\<ArrayBuffer>
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const context: Context = getContext();
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
 const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
@@ -5847,11 +5912,11 @@ packToData(source: PixelMap, options: PackingOption): Promise\<ArrayBuffer>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401 | If the parameter is invalid. |
-| 62980096| The Operation failed.              |
+| 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
-| 62980106 | The image is too large. |
-| 62980113 | Unknown image format. |
-| 62980119 | If encoder occur error during encoding.             |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
+| 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
 | 62980172 | Failed to encode icc. |
 | 62980252 | Failed to create surface. |
@@ -5913,8 +5978,7 @@ packing(picture: Picture, options: PackingOption): Promise\<ArrayBuffer>
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-async function Packing() {
-  const context = getContext();
+async function Packing(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("test.jpg");
   let ops: image.SourceOptions = {
@@ -5969,22 +6033,24 @@ packToDataFromPixelmapSequence(pixelmapSequence: Array\<PixelMap>, options: Pack
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 7800201  | Unsupported options.                                         |
-| 7800301  | Encoding failed.                                               |
+| 7800201  | Unsupported packing options.                                 |
+| 7800301  | Failed to encode image.                                      |
 
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import image from "@ohos.multimedia.image";
 
-const context = getContext();
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const resourceMgr = context.resourceManager;
 // 此处'moving_test.gif'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
-const fileData = await resourceMgr.getRawFileContent('moving_test.gif');
+const fileData = resourceMgr.getRawFileContent('moving_test.gif');
 const color = fileData.buffer;
 let imageSource = image.createImageSource(color);
-let pixelMapList = await imageSource.createPixelMapList();
+let pixelMapList = imageSource.createPixelMapList();
 let ops: image.PackingOptionsForSequence = {
   frameCount: 3,  // 指定GIF编码中的帧数为3。
   delayTimeList: [10, 10, 10],  // 指定GIF编码中3帧的延迟时间分别为100ms、100ms、100ms。
@@ -6025,9 +6091,11 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const context: Context = getContext();
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
 const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
@@ -6072,9 +6140,11 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const context: Context = getContext();
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
 const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
@@ -6269,12 +6339,12 @@ packToFile(source: ImageSource, fd: number, options: PackingOption, callback: As
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| The Operation failed.              |
+| 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
-| 62980106 | The image is too large. |
-| 62980113 | Unknown image format. |
-| 62980115 | If the parameter is invalid. |
-| 62980119 | If encoder occur error during encoding.             |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
+| 62980115 | Invalid input parameter. |
+| 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
 | 62980172 | Failed to encode icc. |
 | 62980252 | Failed to create surface. |
@@ -6282,10 +6352,12 @@ packToFile(source: ImageSource, fd: number, options: PackingOption, callback: As
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-const context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'test.png'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
 const path: string = context.filesDir + "/test.png";
 const imageSourceApi: image.ImageSource = image.createImageSource(path);
@@ -6330,12 +6402,12 @@ packToFile (source: ImageSource, fd: number, options: PackingOption): Promise\<v
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| The Operation failed.              |
+| 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
-| 62980106 | The image is too large. |
-| 62980113 | Unknown image format. |
-| 62980115 | If the parameter is invalid. |
-| 62980119 | If encoder occur error during encoding.             |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
+| 62980115 | Invalid input parameter. |
+| 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
 | 62980172 | Failed to encode icc. |
 | 62980252 | Failed to create surface. |
@@ -6343,10 +6415,12 @@ packToFile (source: ImageSource, fd: number, options: PackingOption): Promise\<v
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-const context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 //此处'test.png'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
 const path: string = context.filesDir + "/test.png";
 const imageSourceApi: image.ImageSource = image.createImageSource(path);
@@ -6387,12 +6461,12 @@ packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: Asy
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| The Operation failed.              |
+| 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
-| 62980106 | The image is too large. |
-| 62980113 | Unknown image format. |
-| 62980115 | If the parameter is invalid. |
-| 62980119 | If encoder occur error during encoding.             |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
+| 62980115 | Invalid input parameter. |
+| 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
 | 62980172 | Failed to encode icc. |
 | 62980252 | Failed to create surface. |
@@ -6400,12 +6474,14 @@ packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: Asy
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
 const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
 let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
-const context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.filesDir + "/pixel_map.jpg";
 image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
   let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
@@ -6425,7 +6501,7 @@ image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
 
 packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void>
 
-指定编码参数，将PixelM直接编码进文件。使用Promise形式返回结果。
+指定编码参数，将PixelMap直接编码进文件。使用Promise形式返回结果。
 
 > **注意：**
 > 接口如果返回62980115错误码，表明参数异常，可能是PixelMap对象被提前释放了。需要调用方排查，在该方法调用结束后再释放PixelMap对象。
@@ -6452,12 +6528,12 @@ packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| The Operation failed.              |
+| 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
-| 62980106 | The image is too large. |
-| 62980113 | Unknown image format. |
-| 62980115 | If the parameter is invalid. |
-| 62980119 | If encoder occur error during encoding.             |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
+| 62980115 | Invalid input parameter. |
+| 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
 | 62980172 | Failed to encode icc. |
 | 62980252 | Failed to create surface. |
@@ -6465,12 +6541,14 @@ packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
 const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
 let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
-const context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.filesDir + "/pixel_map.jpg";
 image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
   let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
@@ -6523,8 +6601,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-async function PackToFile() {
-  const context = getContext();
+async function PackToFile(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("test.jpg");
   let ops: image.SourceOptions = {
@@ -6537,7 +6614,6 @@ async function PackToFile() {
   let funcName = "PackToFile";
   const imagePackerApi: image.ImagePacker = image.createImagePacker();
   if (imagePackerApi != null) {
-    const context: Context = getContext();
     const filePath: string = context.filesDir + "/test.jpg";
     let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
     let packOpts: image.PackingOption = {
@@ -6584,17 +6660,19 @@ packToFileFromPixelmapSequence(pixelmapSequence: Array\<PixelMap>, fd: number, o
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 7800201  | Unsupported options.                                         |
-| 7800301  | Encoding failed.                                               |
+| 7800201  | Unsupported packing options.                                 |
+| 7800301  | Failed to encode image.                                      |
 
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import fs from '@ohos.file.fs';
 import image from "@ohos.multimedia.image";
 
-const context = getContext();
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const resourceMgr = context.resourceManager;
 // 此处'moving_test.gif'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
 const fileData = await resourceMgr.getRawFileContent('moving_test.gif');
@@ -6653,9 +6731,8 @@ createAuxiliaryPicture(buffer: ArrayBuffer, size: Size, type: AuxiliaryPictureTy
 ```ts
 import { image } from '@kit.ImageKit';
 
-async function CreateAuxiliaryPicture() {
+async function CreateAuxiliaryPicture(context: Context) {
   let funcName = "CreateAuxiliaryPicture";
-  const context = getContext();
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); //需要支持hdr的图片。
   let auxBuffer: ArrayBuffer = rawFile.buffer as ArrayBuffer;
@@ -6717,8 +6794,7 @@ writePixelsFromBuffer(data: ArrayBuffer): Promise\<void>
 ```ts
 import { image } from '@kit.ImageKit';
 
-async function WritePixelsFromBuffer() {
-  const context = getContext();
+async function WritePixelsFromBuffer(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); //需要支持hdr的图片。
   let ops: image.SourceOptions = {
@@ -6767,8 +6843,7 @@ readPixelsToBuffer(): Promise\<ArrayBuffer>
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-async function ReadPixelsToBuffer() {
-  const context = getContext();
+async function ReadPixelsToBuffer(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); //需要支持hdr的图片。
   let ops: image.SourceOptions = {
@@ -6814,7 +6889,7 @@ async function GetAuxiliaryPictureType() {
     let type: image.AuxiliaryPictureType = auxPictureObj.getType();
     console.info('Success get auxiliary picture type ' +  JSON.stringify(type));
   } else {
-    console.info('Failed get auxiliary picture type ');
+    console.error('Failed get auxiliary picture type ');
   }
 }
 ```
@@ -6855,8 +6930,7 @@ setMetadata(metadataType: MetadataType, metadata: Metadata): Promise\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-async function SetAuxPictureObjMetadata() {
-  const exifContext = getContext();
+async function SetAuxPictureObjMetadata(exifContext: Context) {
   const exifResourceMgr = exifContext.resourceManager;
   const exifRawFile = await exifResourceMgr.getRawFileContent("exif.jpg");//图片包含exif metadata。
   let exifOps: image.SourceOptions = {
@@ -6868,7 +6942,7 @@ async function SetAuxPictureObjMetadata() {
   if (exifPictureObj != null) {
     console.info('Create picture succeeded');
   } else {
-    console.info('Create picture failed');
+    console.error('Create picture failed');
   }
 
   if (auxPictureObj != null) {
@@ -6880,7 +6954,7 @@ async function SetAuxPictureObjMetadata() {
       console.error('Set metadata failed.error.code: ${error.code}, error.message: ${error.message}');
     });
   } else {
-    console.info('AuxPictureObjMetaData is null');
+    console.error('AuxPictureObjMetaData is null');
   }
 }
 ```
@@ -6926,10 +7000,10 @@ async function GetAuxPictureObjMetadata() {
     if (auxPictureObjMetaData != null) {
       console.info('Get auxpictureobj Metadata success' );
     } else {
-      console.info('Get auxpictureobj Metadata failed');
+      console.error('Get auxpictureobj Metadata failed');
     }
   } else {
-    console.info('Get auxpictureobj is null.');
+    console.error('Get auxpictureobj is null.');
   }
 }
 ```
@@ -6961,7 +7035,7 @@ async function GetAuxiliaryPictureInfo() {
       ' rowStride: ' +  auxinfo.rowStride +  ' pixelFormat: ' + auxinfo.pixelFormat +
       ' colorSpace: ' +  auxinfo.colorSpace);
   } else {
-    console.info('Get auxiliary picture information failed');
+    console.error('Get auxiliary picture information failed');
   }
 }
 ```
@@ -7029,10 +7103,10 @@ async function Release() {
     if (auxPictureObj.getType() == null) {
       console.info(funcName, 'Success !');
     } else {
-      console.info(funcName, 'Failed !');
+      console.error(funcName, 'Failed !');
     }
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
@@ -7080,8 +7154,7 @@ getProperties(key: Array\<string>): Promise\<Record\<string, string | null>>
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-async function GetProperties() {
-  const context = getContext();
+async function GetProperties(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); //图片包含exif metadata。
   let ops: image.SourceOptions = {
@@ -7096,10 +7169,10 @@ async function GetProperties() {
     await metaData.getProperties(["ImageWidth", "ImageLength"]).then((data2) => {
       console.info('Get properties ',JSON.stringify(data2));
     }).catch((error: BusinessError) => {
-      console.info('Get properties failed error.code: ' +JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
+      console.error('Get properties failed error.code: ' +JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
     });
   } else {
-    console.info('Metadata is null.');
+    console.error('Metadata is null.');
   }
 }
 ```
@@ -7139,8 +7212,7 @@ setProperties(records: Record\<string, string | null>): Promise\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-async function SetProperties() {
-  const context = getContext();
+async function SetProperties(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); //图片包含exif metadata。
   let ops: image.SourceOptions = {
@@ -7162,7 +7234,7 @@ async function SetProperties() {
       console.error('Failed to set metadata Properties. code is ${error.code}, message is ${error.message}');
     })
   } else {
-    console.info('AuxPictureObj metadata is null. ');
+    console.error('AuxPictureObj metadata is null. ');
   }
 }
 ```
@@ -7187,8 +7259,7 @@ getAllProperties(): Promise\<Record<string, string | null>>
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-async function GetAllProperties() {
-  const context = getContext();
+async function GetAllProperties(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); //图片包含exif metadata。
   let ops: image.SourceOptions = {
@@ -7208,7 +7279,7 @@ async function GetAllProperties() {
       console.error('Get metadata all properties failed error.code: ' +JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
     });
   } else {
-    console.info('Metadata is null.');
+    console.error('Metadata is null.');
   }
 }
 ```
@@ -7242,8 +7313,7 @@ clone(): Promise\<Metadata>
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-async function clone() {
-  const context = getContext();
+async function clone(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); //图片包含exif metadata。
   let ops: image.SourceOptions = {
@@ -7262,7 +7332,7 @@ async function clone() {
       console.error('Clone new_metadata failed.', JSON.stringify(err));
     });
   } else {
-    console.info('Metadata is null.');
+    console.error('Metadata is null.');
   }
 }
 ```
@@ -7271,7 +7341,7 @@ async function clone() {
 
 createImageReceiver(size: Size, format: ImageFormat, capacity: number): ImageReceiver
 
-通过图片大小、图片格式、容量创建ImageReceiver实例。
+通过图片大小、图片格式、容量创建ImageReceiver实例。ImageReceiver做为图片的接收方、消费者，它的参数属性实际上不会对接收到的图片产生影响。图片属性的配置应在发送方、生产者进行，如相机预览流[createPreviewOutput](../apis-camera-kit/js-apis-camera.md#createpreviewoutput)。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -7279,7 +7349,7 @@ createImageReceiver(size: Size, format: ImageFormat, capacity: number): ImageRec
 
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
-| size    | [Size](#size)  | 是   | 图像的默认大小。       |
+| size    | [Size](#size)  | 是   | 图像的默认大小。该参数不会影响接收到的图片大小，实际返回大小由生产者决定，如相机。       |
 | format   | [ImageFormat](#imageformat9) | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG，实际返回格式由生产者决定，如相机）。             |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
@@ -7311,7 +7381,7 @@ let receiver: image.ImageReceiver = image.createImageReceiver(size, image.ImageF
 
 createImageReceiver(width: number, height: number, format: number, capacity: number): ImageReceiver
 
-通过宽、高、图片格式、容量创建ImageReceiver实例。
+通过宽、高、图片格式、容量创建ImageReceiver实例。ImageReceiver做为图片的接收方、消费者，它的参数属性实际上不会对接收到的图片产生影响。图片属性的配置应在发送方、生产者进行，如相机预览流[createPreviewOutput](../apis-camera-kit/js-apis-camera.md#createpreviewoutput)。
 
 > **说明：**
 >
@@ -7323,8 +7393,8 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
-| width    | number | 是   | 图像的默认宽度。单位：像素。       |
-| height   | number | 是   | 图像的默认高度。单位：像素。       |
+| width    | number | 是   | 图像的默认宽度。单位：像素。该参数不会影响接收到的图片宽度，实际宽度由生产者决定，如相机。       |
+| height   | number | 是   | 图像的默认高度。单位：像素。该参数不会影响接收到的图片高度，实际高度由生产者决定，如相机。       |
 | format   | number | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG，实际返回格式由生产者决定，如相机）。  |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
@@ -7342,7 +7412,7 @@ let receiver: image.ImageReceiver = image.createImageReceiver(8192, 8, image.Ima
 
 ## ImageReceiver<sup>9+</sup>
 
-图像接收类，用于获取组件surface id，接收最新的图片和读取下一张图片，以及释放ImageReceiver实例。
+图像接收类，用于获取组件surface id，接收最新的图片和读取下一张图片，以及释放ImageReceiver实例。ImageReceiver做为图片的接收方、消费者，它的参数属性实际上不会对接收到的图片产生影响。图片属性的配置应在发送方、生产者进行，如相机预览流[createPreviewOutput](../apis-camera-kit/js-apis-camera.md#createpreviewoutput)。
 
 在调用以下方法前需要先创建ImageReceiver实例。
 
@@ -7352,9 +7422,9 @@ let receiver: image.ImageReceiver = image.createImageReceiver(8192, 8, image.Ima
 
 | 名称     | 类型                         | 可读 | 可写 | 说明               |
 | -------- | ---------------------------- | ---- | ---- | ------------------ |
-| size     | [Size](#size)                | 是   | 否   | 图片大小。         |
+| size     | [Size](#size)                | 是   | 否   | 图片大小。该参数不会影响接收到的图片大小，实际返回大小由生产者决定，如相机。         |
 | capacity | number                       | 是   | 否   | 同时访问的图像数。 |
-| format   | [ImageFormat](#imageformat9) | 是   | 否   | 图像格式。         |
+| format   | [ImageFormat](#imageformat9) | 是   | 否   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG，实际返回格式由生产者决定，如相机）        |
 
 ### getReceivingSurfaceId<sup>9+</sup>
 
@@ -8028,7 +8098,7 @@ getComponent(componentType: ComponentType): Promise\<Component>
 
 | 参数名        | 类型                             | 必填 | 说明             |
 | ------------- | -------------------------------- | ---- | ---------------- |
-| componentType | [ComponentType](#componenttype9) | 是   | 图像的组件类型。（目前仅支持 ComponentType:JPEG，实际返回格式由生产者决定，如相机） |
+| componentType | [ComponentType](#componenttype9) | 是   | 图像的组件类型。（目前仅支持 ComponentType:JPEG，实际返回格式由生产者决定，如相机）。 |
 
 **返回值：**
 
@@ -8338,8 +8408,8 @@ PixelMap的初始化选项。
 
 | 名称    | 类型   | 只读 | 可选 | 说明                                                |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | 否   | 否   | 目标格式。</br>当前只支持"image/jpeg"、"image/webp"、"image/png"和"image/heic(或者image/heif)"<sup>12+</sup>（不同硬件设备支持情况不同）。<br>**说明：** 因为jpeg不支持透明通道，若使用带透明通道的数据编码jpeg格式，透明色将变为黑色。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| quality | number | 否   | 否   | 编码中设定输出图片质量的参数，该参数仅对JPEG图片和HEIF图片生效。取值范围为0-100。0质量最低，100质量最高，质量越高生成图片所占空间越大。WebP、PNG等图片均为无损编码。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| format  | string | 否   | 否   | 目标格式。</br>当前只支持"image/jpeg"、"image/webp"、"image/png"和"image/heic(或者image/heif)"<sup>12+</sup>、"image/sdr_astc4x4"<sup>18+</sup>、"image/sdr_sut_superfast_4x4"<sup>18+</sup>（不同硬件设备支持情况不同）。<br>**说明：** 因为jpeg不支持透明通道，若使用带透明通道的数据编码jpeg格式，透明色将变为黑色。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| quality | number | 否   | 否   | 1. 编码中设定输出图片质量的参数，该参数仅对JPEG图片和HEIF图片生效。取值范围为0-100。0质量最低，100质量最高，质量越高生成图片所占空间越大。WebP、PNG等图片均为无损编码。<br> 2.sdr_astc_4x4编码中，可以设定输出图片质量的参数，可选参数：92、85。<br>3. sut编码中，设定输出图片质量可选参数：92。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | bufferSize<sup>9+</sup> | number | 否   | 是   | 接收编码数据的缓冲区大小，单位为Byte。如果不设置大小，默认为25M。如果编码图片超过25M，需要指定大小。bufferSize需大于编码后图片大小。使用[packToFile](#packtofile11)不受此参数限制。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 否   | 是   | 目标动态范围。默认值为SDR。 |
 | needsPackProperties<sup>12+</sup> | boolean | 否   | 是   | 是否需要编码图片属性信息，例如EXIF。true表示需要，false表示不需要。默认值为false。 |
@@ -8354,7 +8424,7 @@ PixelMap的初始化选项。
 | ------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
 | frameCount    | number         | 否   | 否   | GIF编码中指定的帧数。                                        |
 | delayTimeList | Array\<number> | 否   | 否   | GIF编码中设定每帧输出图像的延迟时间，取值需大于0。<br>- 单位为10毫秒。例如，取值为10时，实际单帧延迟是100毫秒。<br>- 如果长度小于frameCount，不足的部分将使用delayTimeList中的最后一个值进行填充。 |
-| disposalTypes | Array\<number> | 否   | 是   | GIF编码中设定输出图片帧过渡模式的参数，可取值如下：<br>- 0：不需要任何操作。<br>- 1：保持图形不变。<br>- 2：恢复背景色。<br>- 3：恢复到之前的状态。 |
+| disposalTypes | Array\<number> | 否   | 是   | GIF编码中设定每帧输出图像的帧过渡模式，如果长度小于frameCount，不足的部分将使用disposalTypes中的最后一个值进行填充，可取值如下：<br>- 0：不需要任何操作。<br>- 1：保持图形不变。<br>- 2：恢复背景色。<br>- 3：恢复到之前的状态。 |
 | loopCount     | number         | 否   | 是   | 表示在GIF编码中输出图片循环播放次数，取值范围为[0，65535]。<br>0表示无限循环；若无此字段，则表示不循环播放。 |
 
 ## ImagePropertyOptions<sup>11+</sup>
@@ -8618,7 +8688,7 @@ PixelMap的初始化选项。
 | 名称          | 类型                             | 只读 | 可选 | 说明         |
 | ------------- | -------------------------------- | ---- | ---- | ------------ |
 | componentType | [ComponentType](#componenttype9) | 是   | 否   | 组件类型。   |
-| rowStride     | number                           | 是   | 否   | 行距。读取相机预览流数据时，需要考虑按stride进行读取，具体用法见[ArkTS双路预览示例](../../media/camera/camera-dual-channel-preview.md)。       |
+| rowStride     | number                           | 是   | 否   | 行距。读取相机预览流数据时，需要按stride进行读取，使用详情请参考[相机预览花屏解决方案](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-deal-stride-solution)。       |
 | pixelStride   | number                           | 是   | 否   | 像素间距。   |
 | byteBuffer    | ArrayBuffer                      | 是   | 否   | 组件缓冲区。 |
 
@@ -8648,6 +8718,16 @@ PixelMap的初始化选项。
 ## CropAndScaleStrategy<sup>18+</sup>
 
 枚举，裁剪与缩放的先后策略。
+
+如果在配置解码选项[DecodingOptions](#decodingoptions7)时，未填入参数cropAndScaleStrategy，并且同时设置了参数desiredRegion和desiredSize，由于系统对于不同图片格式采用的解码算法不同，最终解码效果将略有差异。
+
+例如原始图片大小为200x200，传入desiredSize:{width: 150, height: 150}，desiredRegion:{x: 0, y: 0, width: 100, height: 100}，即预期解码原图左上角1/4区域，最终将pixelMap大小缩放至150x150返回。
+
+对于jpeg、webp图片（部分dng图片解码时会优先解码图片中的jpeg预览图，在此场景下也会被视为jpeg图片格式）会先进行下采样，例如按照7/8下采样，再基于175x175的图片大小进行区域裁剪，因此最终的区域内容稍大于原图的左上角1/4区域。
+
+对于svg图片，由于是矢量图，可以任意缩放不损失清晰度，在解码时会根据desiredSize与原图Size的比例选择缩放比例，在基于缩放后的图片大小进行区域裁剪，因此最终返回的解码区域会有所差异。
+
+针对该场景，建议在解码选项同时设置了desiredRegion与desiredSize时，参数cropAndScaleStrategy应传入CROP_FIRST保证效果一致。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 

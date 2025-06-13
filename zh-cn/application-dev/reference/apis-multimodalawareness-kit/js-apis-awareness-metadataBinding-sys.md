@@ -11,13 +11,13 @@
 
 ## 导入模块
 ```ts
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 ```
 
 ## encodeImage(image.PixelMap, string)
 encodeImage(srcImage: image.PixelMap, metadata: string): Promise<image.PixelMap>;  
 在图片中加入信息  
-**系统能力**：SystemCapability.MultimodalAwarness.metadataBinding
+**系统能力**：SystemCapability.MultimodalAwareness.metadataBinding
 **系统API**：此接口为系统接口
 
 **参数**：
@@ -36,17 +36,19 @@ encodeImage(srcImage: image.PixelMap, metadata: string): Promise<image.PixelMap>
 | -------- | ------------------------------------------------------------ |
 |   202    | Permission check failed. A non-system application uses the system API.|
 |32100001  | Internal handling failed. File creation failed.|
-|32100002  | Encode process fail.|
+|32100002  | Encode process fail. Possible causes: 1. Image processing error; 2. Channel coding error.|
 
 **示例**：
 
 ```ts
 import image from '@ohos.multimedia.image';
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let captureImage: image.PixelMap | undefined;
-metadataBinding.encodeImage(metadata, srcImage).then((pixelMap : image.PixelMap) =>{
+let captureImage: image.PixelMap | undefined = undefined;
+let metadata: string = "";
+let srcImage: image.PixelMap | undefined = undefined;
+metadataBinding.encodeImage(srcImage, metadata).then((pixelMap: image.PixelMap) =>{
 	captureImage = pixelMap;
 }).catch((error:BusinessError)=>{
 	console.error("encode image error" + error);
@@ -57,14 +59,14 @@ metadataBinding.encodeImage(metadata, srcImage).then((pixelMap : image.PixelMap)
 function decodeImage(encodedImage: image.PixelMap): Promise\<string\>
 解析图片中携带的信息。
 
-**系统能力**：SystemCapability.MultimodalAwarness.metadataBinding
+**系统能力**：SystemCapability.MultimodalAwareness.metadataBinding
 **系统API**：此接口为系统接口
 
 **参数**：  
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| srcImage     | PixelMap                           | 是   | 带有信息的图片。 |
+| encodedImage     | PixelMap                           | 是   | 带有信息的图片。 |
 |Promise|Promise\<string\>|是|回调函数，返回从图片解析出的信息。|
 
 **错误码**：  
@@ -75,16 +77,18 @@ function decodeImage(encodedImage: image.PixelMap): Promise\<string\>
 | -------- | ------------------------------------------------------------ |
 |   202    | Permission check failed. A non-system application uses the system API.|
 |32100001  | Internal handling failed. File read failed.|
-|32100003  | Decode process fail.|
+|32100003  | Decode process fail. Possible causes: 1. Image is not an encoded Image; 2. Image destroyed, decoding failed.|
 
 **示例：**  
 ```ts
 import image from '@ohos.multimedia.image';
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let encodeImage: image.PixelMap | undefined;
-metadataBinding.decodeImage(srcImage).then((metadata : string) =>{
+let encodeImage: image.PixelMap | undefined = undefined;
+let captrueMetadata: string = "";
+metadataBinding.decodeImage(encodeImage).then((metadata: string) =>{
+	captrueMetadata = metadata;
 }).catch((error:BusinessError)=>{
 	console.error("decode image error" + error);
 }); 
@@ -93,7 +97,7 @@ metadataBinding.decodeImage(srcImage).then((metadata : string) =>{
 ## notifyMetadataBindingEvent(string)
 notifyMetadataBindingEvent(metadata: string): void；
 推送待嵌入的信息给调用编码接口的应用或服务。
-**系统能力**：SystemCapability.MultimodalAwarness.metadataBinding
+**系统能力**：SystemCapability.MultimodalAwareness.metadataBinding
 **系统API**：此接口为系统接口
 
 **参数**：  
@@ -113,12 +117,11 @@ notifyMetadataBindingEvent(metadata: string): void；
 **示例**：
 
 ```ts
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let bundleName:string = '';
-metadataBinding.notifyMetadataBindingEvent(metadata).then((metadata : string) =>{
-}).catch((error:BusinessError)=>{
-  console.error("get metadata error" + error);
+let metadata:string = '';
+metadataBinding.notifyMetadataBindingEvent(metadata).catch((error: BusinessError)=>{
+  console.error("notify metadata error" + error);
 });
 ```

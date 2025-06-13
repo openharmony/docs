@@ -200,7 +200,7 @@ GLTF模型加载示例。 <br/>
 @Entry
 @Component
 struct Index {
-  scene: SceneOptions = { scene: $rawfile('gltf/DamageHemlt/glTF/DamagedHelmet.gltf'), modelType: ModelType.SURFACE};
+  scene: SceneOptions = { scene: $rawfile('gltf/DamagedHelmet/glTF/DamagedHelmet.gltf'), modelType: ModelType.SURFACE};
   build() {
     Row() {
       Column() {
@@ -217,7 +217,7 @@ struct Index {
 自定义渲染示例。 <br/>
 
 ```ts
-import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+import { AnimatorResult } from '@kit.ArkUI';
 
 class EngineTime {
   totalTimeUs = 0;
@@ -240,8 +240,8 @@ function TickFrame() {
 @Entry
 @Component
 struct Index {
-  scene: SceneOptions = { scene: $rawfile('gltf/DamageHemlt/glTF/DamagedHelmet.gltf'), modelType: ModelType.SURFACE};
-  backAnimator: AnimatorResult = animator.create({
+  scene: SceneOptions = { scene: $rawfile('gltf/DamagedHelmet/glTF/DamagedHelmet.gltf'), modelType: ModelType.SURFACE};
+  backAnimator: AnimatorResult = this.getUIContext().createAnimator({
     duration: 2000,
     easing: "ease",
     delay: 0,
@@ -253,10 +253,10 @@ struct Index {
   });
   @State timeDelta: number[] = [1.0, 2.0];
   create() {
-    this.backAnimator.onfinish = () => {
+    this.backAnimator.onFinish = () => {
       console.log('backAnimator onfinish');
     }
-    this.backAnimator.onframe = value => {
+    this.backAnimator.onFrame = (value: number) => {
       TickFrame();
       this.timeDelta[0] = engineTime.deltaTimeUs;
     }

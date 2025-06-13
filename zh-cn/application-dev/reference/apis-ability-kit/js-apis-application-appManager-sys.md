@@ -1,4 +1,5 @@
 # @ohos.application.appManager (appManager)(系统接口)
+<!--deprecated_code_no_check-->
 
 appManager模块提供App管理的能力，包括查询当前是否处于稳定性测试场景、查询是否为ram受限设备、获取应用程序的内存大小、获取有关运行进程的信息等。
 
@@ -225,7 +226,7 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 应用Bundle名称。 |
-| accountId | number | 是 | 系统账号的账号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
+| accountId | number | 是 | 系统账号的账号ID，详情参考[getOsAccountCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated)。 |
 
 **返回值：**
 
@@ -272,7 +273,7 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 应用Bundle名称。 |
-| accountId | number | 是 | 系统账号的账号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
+| accountId | number | 是 | 系统账号的账号ID，详情参考[getOsAccountCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated)。 |
 | callback | AsyncCallback\<void\> | 是 | 回调函数，当切断account进程成功，err为undefined，否则为错误对象。 |
 
 **示例：**

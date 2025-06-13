@@ -1,20 +1,18 @@
 # ArkTS语言介绍
 
-ArkTS是一种为构建高性能应用而设计的编程语言。ArkTS在继承TypeScript语法的基础上进行了优化，以提供更高的性能和开发效率。
+ArkTS是一种设计用于构建高性能应用的编程语言。它在继承TypeScript语法的基础上进行了优化，以提供更高的性能和开发效率。
 
 随着移动设备在人们的日常生活中变得越来越普遍，许多编程语言在设计之初没有考虑到移动设备，导致应用的运行缓慢、低效、功耗大，针对移动环境的编程语言优化需求也越来越大。ArkTS是专为解决这些问题而设计的，聚焦于提高运行效率。
 
-目前流行的编程语言TypeScript是在JavaScript基础上通过添加类型定义扩展而来的，而ArkTS则是TypeScript的进一步扩展。TypeScript深受开发者的喜爱，因为它提供了一种更结构化的JavaScript编码方法。ArkTS旨在保持TypeScript的大部分语法，为现有的TypeScript开发者实现无缝过渡，让移动开发者快速上手ArkTS。
+TypeScript是在JavaScript基础上通过添加类型定义扩展而来的，ArkTS则是TypeScript的进一步扩展。TypeScript提供了一种更结构化的JavaScript编码方法，深受开发者喜爱。ArkTS保持了TypeScript的大部分语法，旨在为现有的TypeScript开发者实现无缝过渡，帮助移动开发者快速上手。
 
 ArkTS的一大特性是它专注于低运行时开销。ArkTS对TypeScript的动态类型特性施加了更严格的限制，以减少运行时开销，提高执行效率。通过取消动态类型特性，ArkTS代码能更有效地被运行前编译和优化，从而实现更快的应用启动和更低的功耗。
 
-与JavaScript的互通性是ArkTS语言设计中的关键考虑因素。鉴于许多移动应用开发者希望重用其TypeScript和JavaScript代码和库，ArkTS提供了与JavaScript的无缝互通，使开发者可以很容易地将JavaScript代码集成到他们的应用中。这意味着开发者可以利用现有的代码和库进行ArkTS开发。
+ArkTS语言设计中关键考虑了与JavaScript的互通性。许多移动应用开发者希望重用TypeScript和JavaScript代码及库，因此ArkTS提供与JavaScript的无缝互通，使开发者可以轻松集成JavaScript代码到应用中，充分利用现有代码和库进行ArkTS开发。
 
-为了确保应用开发的最佳体验，ArkTS提供对方舟开发框架ArkUI的声明式语法和其他特性的支持。由于此部分特性不在既有TypeScript的范围内，因此我们在《ArkUI支持》一章中提供了详细的ArkUI示例。
+本教程将指导开发者了解ArkTS的核心功能、语法和最佳实践，助力开发者使用ArkTS高效构建高性能的移动应用。
 
-本教程将指导开发者了解ArkTS的核心功能、语法和最佳实践，使开发者能够使用ArkTS高效构建高性能的移动应用。
-
-如需更详细了解ArkTS语言，可见[ArkTS具体指南](../arkts-utils/arkts-overview.md)<!--RP1--><!--RP1End-->。
+如需详细了解ArkTS语言，请参阅[ArkTS具体指南](../arkts-utils/arkts-overview.md)<!--RP1--><!--RP1End-->。
 
 ## 基本知识
 
@@ -24,7 +22,7 @@ ArkTS通过声明引入变量、常量、函数和类型。
 
 #### 变量声明
 
-以关键字`let`开头的声明引入变量，该变量在程序执行期间可以具有不同的值。
+使用关键字`let`声明的变量可以在程序执行期间具有不同的值。
 
 ```typescript
 let hi: string = 'hello';
@@ -33,7 +31,7 @@ hi = 'hello, world';
 
 #### 常量声明
 
-以关键字`const`开头的声明引入只读常量，该常量只能被赋值一次。
+使用关键字`const`声明的只读常量只能被赋值一次。
 
 ```typescript
 const hello: string = 'hello';
@@ -45,7 +43,7 @@ const hello: string = 'hello';
 
 由于ArkTS是一种静态类型语言，所有数据的类型都必须在编译时确定。
 
-但是，如果一个变量或常量的声明包含了初始值，那么开发者就不需要显式指定其类型。ArkTS规范中列举了所有允许自动推断类型的场景。
+如果变量或常量的声明包含了初始值，开发者就不需要显式指定其类型，因为ArkTS规范中列举了所有允许自动推断类型的场景。
 
 以下示例中，两条声明语句都是有效的，两个变量都是`string`类型：
 
@@ -60,7 +58,7 @@ let hi2 = 'hello, world';
 
 基本数据类型包括`number`、`string`等简单类型，它们可以准确地表示单一的数据类型。基本类型确保数据在存储和访问时是直接的，比较时直接比较其值。
 
-ArkTS中的引用类型如对象、数组和函数等，是通过引用访问的复杂数据结构。对象和数组可以包含多个值或键值对，函数则可以封装可执行的代码逻辑。引用类型在内存中通过指针访问数据，修改引用会影响原始数据。
+ArkTS中的引用类型包括对象、数组和函数等复杂数据结构。这些类型通过引用访问数据，对象和数组可以包含多个值或键值对，函数则可以封装可执行的代码逻辑。引用类型在内存中通过指针访问数据，修改引用会影响原始数据。
 
 #### `number`类型
 
@@ -70,17 +68,17 @@ ArkTS提供`number`类型，任何整数和浮点数都可以被赋给此类型�
 
 整数字面量包括以下类别：
 
-* 由数字序列组成的十进制整数。例如：`0`、`117`、`-345`
-* 以0x（或0X）开头的十六进制整数，可以包含数字（0-9）和字母a-f或A-F。例如：`0x1123`、`0x00111`、`-0xF1A7`
-* 以0o（或0O）开头的八进制整数，只能包含数字（0-7）。例如：`0o777`
-* 以0b（或0B）开头的二进制整数，只能包含数字0和1。例如：`0b11`、`0b0011`、`-0b11`
+* 十进制整数，由数字序列组成。例如：`0`、`117`、`-345`
+* 十六进制整数，以0x（或0X）开头，包含数字（0-9）和字母a-f或A-F。例如：`0x1123`、`0x00111`、`-0xF1A7`
+* 八进制整数，以0o（或0O）开头，只能包含数字（0-7）。例如：`0o777`
+* 二进制整数，以0b（或0B）开头，只能包含数字0和1。例如：`0b11`、`0b0011`、`-0b11`
 
-浮点字面量包括以下：
+浮点字面量包括以下部分：
 
-* 十进制整数，可为有符号数（即，前缀为“+”或“-”）
-* 小数点（“.”）
-* 小数部分（由十进制数字字符串表示）
-* 以“e”或“E”开头的指数部分，后跟有符号（即，前缀为“+”或“-”）或无符号整数
+* 十进制整数，可为有符号数（前缀为“+”或“-”）。
+* 小数点（“.”）。
+* 小数部分（由十进制数字字符串表示）。
+* 指数部分，以“e”或“E”开头，后跟有符号（前缀为“+”或“-”）或无符号整数。
 
 示例：
 
@@ -130,7 +128,7 @@ if (isDone) {
 
 #### `string`类型
 
-`string`代表字符序列；可以使用转义字符来表示字符。
+`string`类型代表字符序列；可以使用转义字符来表示字符。
 
 字符串字面量由单引号（'）或双引号（"）之间括起来的零个或多个字符组成。字符串字面量还有一特殊形式，是用反向单引号（\`）括起来的模板字面量。
 
@@ -155,12 +153,17 @@ let instance: Class <void>
 
 #### `Object`类型
 
-`Object`类型是所有引用类型的基类型。任何值，包括基本类型的值（它们会被自动装箱），都可以直接被赋给`Object`类型的变量。`object`类型则用于表示除基本类型外的类型。
+`Object`类型是所有引用类型的基类型。任何值，包括基本类型的值，都可以直接被赋给`Object`类型的变量（基本类型值会被自动装箱）。`Object`类型用于表示除基本类型外的类型。
+```typescript
+let o1: Object = 'Alice';
+let o2: Object = ['a','b'];
+let o3: Object = 1;
+```
 
 #### `array`类型
 
-`array`，即数组，是由可赋值给数组声明中指定的元素类型的数据组成的对象。
-数组可由数组复合字面量（即用方括号括起来的零个或多个表达式的列表，其中每个表达式为数组中的一个元素）来赋值。数组的长度由数组中元素的个数来确定。数组中第一个元素的索引为0。
+`array`类型，即数组，是由可赋值给数组声明中指定的元素类型的数据组成的对象。
+数组可由数组复合字面量赋值。数组复合字面量是用方括号括起来的零个或多个表达式列表，每个表达式为数组中的一个元素。数组的长度由数组中元素的个数确定。数组中第一个元素的索引为0。
 
 以下示例将创建包含三个元素的数组：
 
@@ -170,7 +173,7 @@ let names: string[] = ['Alice', 'Bob', 'Carol'];
 
 #### `enum`类型
 
-`enum`类型，又称枚举类型，是预先定义的一组命名值的值类型，其中命名值又称为枚举常量。
+`enum`类型，即枚举类型，是预先定义的一组命名值的值类型，其中命名值又称为枚举常量。
 使用枚举常量时必须以枚举类型名称为前缀。
 
 ```typescript
@@ -178,7 +181,7 @@ enum ColorSet { Red, Green, Blue }
 let c: ColorSet = ColorSet.Red;
 ```
 
-常量表达式可以用于显式设置枚举常量的值。
+常量表达式用于显式设置枚举常量的值。
 
 ```typescript
 enum ColorSet { White = 0xFF, Grey = 0x7F, Black = 0x00 }
@@ -202,12 +205,14 @@ class Frog {
   name: string = 'frog';
   // ...
 }
-type Animal = Cat | Dog | Frog | number;
+type Animal = Cat | Dog | Frog | number | string | null | undefined;
 // Cat、Dog、Frog是一些类型（类或接口）
 
 let animal: Animal = new Cat();
 animal = new Frog();
 animal = 42;
+animal = 'dog';
+animal = undefined;
 // 可以将类型为联合类型的变量赋值为任何组成类型的有效值
 ```
 
@@ -246,16 +251,18 @@ type NullableObject = Object | null;
 
 赋值运算符`=`，使用方式如`x=y`。
 
-复合赋值运算符将赋值与运算符组合在一起，其中`x op = y`等于`x = x op y`。
+复合赋值运算符将赋值与运算符组合在一起，例如：`a += b` 等价于 `a = a + b`，
 
-复合赋值运算符列举如下：`+=`、`-=`、`*=`、`/=`、`%=`、`<<=`、`>>=`、`>>>=`、`&=`、`|=`、`^=`。
+其中的 `+=` 即为复合赋值运算符
+
+复合赋值运算符包括：`+=`、`-=`、`*=`、`/=`、`%=`、`<<=`、`>>=`、`>>>=`、`&=`、`|=`、`^=`。
 
 #### 比较运算符
 
 | 运算符| 说明                                                 |
 | -------- | ------------------------------------------------------------ |
-| `===`    | 如果两个操作数严格相等（对于不同类型的操作数认为是不相等的），则返回true。 |
-| `!==`    | 如果两个操作数严格不相等（对于不同类型的操作数认为是不相等的），则返回true。 |
+| `===`    | 如果两个操作数严格相等（对于不同类型的操作数认为是不相等的，如string和number），则返回true。 |
+| `!==`    | 如果两个操作数严格不相等（对于不同类型的操作数认为是不相等的，如string和number），则返回true。 |
 | `==`     | 如果两个操作数相等，则返回true。 |
 | `!=`     | 如果两个操作数不相等，则返回true。    |
 | `>`      | 如果左操作数大于右操作数，则返回true。 |
@@ -263,9 +270,20 @@ type NullableObject = Object | null;
 | `<`      | 如果左操作数小于右操作数，则返回true。    |
 | `<=`     | 如果左操作数小于或等于右操作数，则返回true。 |
 
+`===`与`==`的区别：
+```typescript
+    let a:Object=1;
+    let b:Object='1';
+    // == 只比较值相等
+    console.log(a == b); // true
+    // === 比较值和类型都相等
+    console.log(a === b); // false
+```
+
+
 #### 算术运算符
 
-一元运算符为`-`、`+`、`--`、`++`。
+一元运算符包括：`-`、`+`、`--`、`++`。
 
 二元运算符列举如下：
 
@@ -316,7 +334,7 @@ if (condition1) {
 }
 ```
 
-条件表达式可以是任何类型。但是对于`boolean`以外的类型，会进行隐式类型转换：
+条件表达式可以是任何类型，非`boolean`类型会进行隐式类型转换：
 
 ```typescript
 let s1 = 'Hello';
@@ -332,7 +350,7 @@ if (s2.length != 0) {
 
 #### `Switch`语句
 
-使用`switch`语句来执行与`switch`表达式值匹配的代码块。
+使用`switch`语句执行与`switch`表达式值匹配的代码块。
 
 `switch`语句如下所示：
 
@@ -364,7 +382,7 @@ switch (expression) {
 
 #### 条件表达式
 
-条件表达式由第一个表达式的布尔值来决定返回其它两个表达式中的哪一个。
+条件表达式根据第一个表达式的布尔值来返回其他两个表达式之一。
 
 示例如下：
 
@@ -378,6 +396,19 @@ condition ? expression1 : expression2
 
 ```typescript
 let message = Math.random() > 0.5 ? 'Valid' : 'Failed';
+```
+
+`condition`如果是非bool值则会进行隐式转换。
+
+示例：
+
+```typescript
+    console.log('a' ? 'true' : 'false'); // true
+    console.log('' ? 'true' : 'false'); // false
+    console.log(1 ? 'true' : 'false'); // true
+    console.log(0 ? 'true' : 'false'); // false
+    console.log(null ? 'true' : 'false'); // false
+    console.log(undefined ? 'true' : 'false'); // false
 ```
 
 #### `For`语句
@@ -411,11 +442,11 @@ for (let i = 0; i < 10; i += 2) {
 
 #### `For-of`语句
 
-使用`for-of`语句可遍历数组或字符串。示例如下：
+使用`for-of`语句可遍历数组、Set、Map、字符串等可迭代的类型。示例如下：
 
 ```typescript
-for (forVar of expression) {
-  statements
+for (forVar of IterableExpression) {
+  // process forVar
 }
 ```
 
@@ -423,7 +454,7 @@ for (forVar of expression) {
 
 ```typescript
 for (let ch of 'a string object') {
-  /* process ch */
+  console.log(ch);
 }
 ```
 
@@ -569,6 +600,7 @@ function processData(s: string) {
     // 异常处理
     // ...
   } finally {
+    // 无论是否发生异常都会执行的代码
     if (error != null) {
       console.log(`Error caught: input='${s}', message='${error.message}'`);
     }
@@ -582,7 +614,11 @@ function processData(s: string) {
 
 函数声明引入一个函数，包含其名称、参数列表、返回类型和函数体。
 
-以下示例是一个简单的函数，包含两个`string`类型的参数，返回类型为`string`：
+以下示例是一个简单的函数和它的语法语义说明：
+
+1.参数类型标注：x: string, y: string 显式声明参数类型为字符串。
+
+2.返回值类型：: string 指定函数返回值为字符串类型。
 
 ```typescript
 function add(x: string, y: string): string {
@@ -619,7 +655,7 @@ multiply(2, 3); // 返回2*3
 
 ### Rest参数
 
-函数的最后一个参数可以是rest参数。rest参数的格式为`...restArgs`。rest参数允许函数接收一个由剩余实参组成的数组，用于处理不定数量的参数输入。
+函数的最后一个参数可以是rest参数。rest参数的格式为`...restArgs`。rest参数允许函数接收一个由剩余实参组成的数组，类型为任意指定类型，用于处理不定数量的参数输入。
 
 ```typescript
 function sum(...numbers: number[]): number {
@@ -660,6 +696,17 @@ function hi2(): void { console.log('hi'); }
 
 如果函数中定义的变量与外部作用域中已有实例同名，则函数内的局部变量定义将覆盖外部定义。
 
+```typescript
+let outerVar = 'I am outer ';
+
+function func() {
+    let outerVar = 'I am inside';
+    console.log(outerVar); // 输出: I am inside
+}
+
+func();
+```
+
 ### 函数调用
 
 调用函数以执行其函数体，实参值会赋值给函数的形参。
@@ -677,12 +724,12 @@ function join(x: string, y: string): string {
 
 ```typescript
 let x = join('hello', 'world');
-console.log(x);
+console.log(x); // 输出: hello world
 ```
 
 ### 函数类型
 
-函数类型通常用于定义回调：
+函数类型通常用于定义回调函数：
 
 ```typescript
 type trigFunc = (x: number) => number // 这是一个函数类型
@@ -704,7 +751,7 @@ let sum = (x: number, y: number): number => {
 }
 ```
 
-箭头函数的返回类型可以省略；省略时，返回类型通过函数体推断。
+箭头函数的返回类型可以省略，此时返回类型由函数体推断。
 
 表达式可以指定为箭头函数，使表达更简短，因此以下两种表达方式是等价的：
 
@@ -733,7 +780,7 @@ z(); // 返回：2
 
 ### 函数重载
 
-我们可以通过编写重载，指定函数的不同调用方式。具体方法为，为同一个函数写入多个同名但签名不同的函数头，函数实现紧随其后。
+可以通过编写重载，指定函数的不同调用方式。具体方法是，为同一个函数写入多个同名但签名不同的函数头，函数实现紧随其后。
 
 ```typescript
 function foo(x: number): void;            /* 第一个函数定义 */
@@ -745,7 +792,7 @@ foo(123);     //  OK，使用第一个定义
 foo('aa'); // OK，使用第二个定义
 ```
 
-不允许重载函数有相同的名字以及参数列表，否则将会编译报错。
+不允许重载函数有相同的名字和参数列表，否则将导致编译错误。
 
 ## 类
 
@@ -811,9 +858,9 @@ class Person {
 }
 
 let p1 = new Person('Alice', 25);
-p1.name;
+p1.name; // Alice
 let p2 = new Person('Bob', 28);
-p2.getName();
+p2.getName(); // Bob
 ```
 
 #### 静态字段
@@ -837,7 +884,7 @@ Person.numberOfPersons;
 
 #### 字段初始化
 
-为了减少运行时的错误和获得更好的执行性能，
+为了减少运行时错误并提高执行性能，
 ArkTS要求所有字段在声明时或者构造函数中显式初始化。这和标准TS中的`strictPropertyInitialization`模式一样。
 
 以下代码是在ArkTS中不合法的代码。
@@ -884,7 +931,7 @@ let jack = new Person();
 jack.getName().length; // 0, 没有运行时异常
 ```
 
-接下来的代码展示了如果`name`的值可以是`undefined`，那么应该如何写代码。
+接下来的代码展示了当`name`的值可以是`undefined`时，应该如何编写代码。
 
 ```typescript
 class Person {
@@ -947,7 +994,7 @@ p.age = -42; // 设置无效age值会抛出错误
 
 以下示例说明了实例方法的工作原理。
 
-`calculateArea`方法通过将高度乘以宽度来计算矩形的面积：
+`calculateArea`方法计算矩形面积：
 
 ```typescript
 class RectangleSize {
@@ -1126,7 +1173,7 @@ class Point {
 let p = new Point();
 ```
 
-在这种情况下，默认构造函数使用字段类型的默认值来初始化实例中的字段。
+在这种情况下，默认构造函数使用字段类型的默认值初始化实例中的字段。
 
 #### 派生类的构造函数
 
@@ -1147,7 +1194,7 @@ class Square extends RectangleSize {
 
 #### 构造函数重载签名
 
-我们可以通过编写重载签名，指定构造函数的不同调用方式。具体方法为，为同一个构造函数写入多个同名但签名不同的构造函数头，构造函数实现紧随其后。
+可以通过编写重载签名，指定构造函数的不同调用方式。具体方法是，为同一个构造函数写入多个同名但签名不同的构造函数头，构造函数实现紧随其后。
 
 ```typescript
 class C {
@@ -1264,7 +1311,7 @@ let map: Record<string, number> = {
 map['John']; // 25
 ```
 
-类型`K`可以是字符串类型或数值类型，而`V`可以是任何类型。
+类型`K`可以是字符串类型或数值类型(不包括bigint)，而`V`可以是任何类型。
 
 ```typescript
 interface PersonInfo {
@@ -1279,9 +1326,9 @@ let map: Record<string, PersonInfo> = {
 
 ### 抽象类 
 
-带有修饰符abstract的类称为抽象类。抽象类可用于表示一组更具体的概念所共有的概念。
+带有`abstract`修饰符的类称为抽象类。抽象类可用于表示一组更具体的概念所共有的概念。
 
-如果尝试创建抽象类的实例，则会发生编译时的错误：
+尝试创建抽象类的实例会导致编译错误：
 
 ```typescript
 abstract class X {
@@ -1309,11 +1356,13 @@ class Derived extends Base {
     super(p); 
   }
 }
+
+let x = new Derived(666);
 ```
 
 #### 抽象方法
 
-带有abstract修饰符的方法称为抽象方法，抽象方法可以被声明但不能被实现。
+带有`abstract`修饰符的方法称为抽象方法，抽象方法可以被声明但不能被实现。
 
 只有抽象类内才能有抽象方法，如果非抽象类具有抽象方法，则会发生编译时错误：
 
@@ -1411,7 +1460,7 @@ class StyledRectangle implements Style {
 
 ### 接口继承
 
-接口可以继承其他接口，如下面的示例所示：
+接口可以继承其他接口，示例如下：
 
 ```typescript
 interface Style {
@@ -1431,13 +1480,54 @@ interface ExtendedStyle extends Style {
 抽象类与接口都无法实例化。抽象类是类的抽象，抽象类用来捕捉子类的通用特性，接口是行为的抽象。在ArkTS中抽象类与接口的区别如下：
 
 * 一个类只能继承一个抽象类，而一个类可以实现一个或多个接口；
+```typescript
+// Bird类继承Animal抽象类并实现多个接口CanFly、CanSwim
+class Bird extends Animal implements CanFly, CanSwim {
+  // ...  
+}
+```
 * 接口中不能含有静态代码块以及静态方法，而抽象类可以有静态代码块和静态方法；
+```typescript
+interface MyInterface {
+    // 错误：接口中不能包含静态成员
+    static staticMethod(): void; 
+
+    // 错误：接口中不能包含静态代码块
+    static { console.log("static") }; 
+} 
+
+abstract class MyAbstractClass {
+    // 正确：抽象类可以有静态方法
+    static staticMethod(): void { console.log("static");}
+
+    // 正确：抽象类可以有静态代码块
+    static { console.log("static initialization block");}
+}
+```
 * 抽象类里面可以有方法的实现，但是接口完全都是抽象的，不存在方法的实现；
+```typescript
+abstract class MyAbstractClass {
+   // 正确：抽象类里面可以有方法的实现
+   func(): void { console.log("func");}
+}
+interface MyInterface {
+   // 错误：接口完全都是抽象的，不存在方法的实现
+   func(): void { console.log("func");}
+}
+```
 * 抽象类可以有构造函数，而接口不能有构造函数。
+```typescript
+abstract class MyAbstractClass {
+  constructor(){}  // 正确：抽象类可以有构造函数
+}
+interface MyInterface {
+  constructor(); // 错误：接口中不能有构造函数
+}
+```
 
 ## 泛型类型和函数
 
-泛型类型和函数允许创建的代码在各种类型上运行，而不仅支持单一类型。
+泛型类型和函数支持代码在多种类型上运行，而不仅限于单一类型。
 
 ### 泛型类和接口
 
@@ -1508,17 +1598,17 @@ function last<T>(x: T[]): T {
 
 ```typescript
 // 显式设置的类型实参
-last<string>(['aa', 'bb']);
-last<number>([1, 2, 3]);
+let res: string = last<string>(['aa', 'bb']);
+let res: number = last<number>([1, 2, 3]);
 
 // 隐式设置的类型实参
 // 编译器根据调用参数的类型来确定类型实参
-last([1, 2, 3]);
+let res: number = last([1, 2, 3]);
 ```
 
 ### 泛型默认值
 
-泛型类型的类型参数可以设置默认值。这样可以不指定实际的类型实参，而只使用泛型类型名称。下面的示例展示了类和函数的这一点。
+泛型类型的类型参数可以设置默认值，这样无需指定实际类型实参，直接使用泛型类型名称即可。以下示例展示了类和函数的这一特性。
 
 ```typescript
 class SomeType {}
@@ -1538,7 +1628,7 @@ foo<number>();
 
 ## 空安全
 
-默认情况下，ArkTS中的所有类型都是不可为空的，因此类型的值不能为空。这类似于TypeScript的严格空值检查模式（`strictNullChecks`），但规则更严格。
+默认情况下，ArkTS中的所有类型都不允许为空，这类似于TypeScript的(`strictNullChecks`)模式，但规则更严格。
 
 在下面的示例中，所有行都会导致编译时错误：
 
@@ -1561,7 +1651,7 @@ if (x != null) { /* do something */ }
 
 后缀运算符`!`可用于断言其操作数为非空。
 
-应用于可空类型的值时，它的编译时类型变为非空类型。例如，类型将从`T | null`更改为`T`：
+应用于可空类型的值时，编译时类型变为非空类型。例如，类型从`T | null`变为`T`：
 
 ```typescript
 class A {
@@ -1580,7 +1670,7 @@ function foo(a: A | null) {
 
 换句话说，`a ?? b`等价于三元运算符`(a != null && a != undefined) ? a : b`。
 
-在以下示例中，`getNick`方法如果设置了昵称，则返回昵称；否则，返回空字符串：
+在以下示例中，`getNick`方法返回已设置的昵称，若未设置则返回空字符串。
 
 ```typescript
 class Person {
@@ -1594,7 +1684,7 @@ class Person {
 
 ### 可选链
 
-在访问对象属性时，如果该属性是`undefined`或者`null`，可选链运算符会返回`undefined`。
+访问对象属性时，如果属性是`undefined`或`null`，可选链运算符返回`undefined`。
 
 ```typescript
 class Person {
@@ -1616,11 +1706,11 @@ class Person {
 }
 ```
 
-**说明**：`getSpouseNick`的返回类型必须为`string | null | undefined`，因为该方法可能返回`null`或者`undefined`。
+**说明**：`getSpouseNick`的返回类型必须为`string | null | undefined`，因为该方法在某些情况下会返回`null`或`undefined`。
 
 可选链可以任意长，可以包含任意数量的`?.`运算符。
 
-在以下示例中，如果一个`Person`的实例有不为空的`spouse`属性，且`spouse`有不为空的`nick`属性，则输出`spouse.nick`。否则，输出`undefined`：
+在以下示例中，如果`Person`实例的`spouse`属性不为空，并且`spouse`的`nick`属性也不为空时，输出`spouse.nick`。否则，输出`undefined`。
 
 ```typescript
 class Person {
@@ -1706,7 +1796,7 @@ X // 编译时错误：'X'不可见
 
 #### 动态导入
 应用开发的有些场景中，如果希望根据条件导入模块或者按需导入模块，可以使用动态导入代替静态导入。
-import()语法通常称为动态导入（dynamic import），是一种类似函数的表达式，用来动态导入模块。以这种方式调用，将返回一个promise。
+import()语法被称为动态导入（dynamic import），是一种类似函数的表达式，用于动态导入模块。调用这种方式，会返回一个promise。
 如下例所示，import(modulePath)可以加载模块并返回一个promise，该promise resolve为一个包含其所有导出的模块对象。该表达式可以在代码中的任意位置调用。
 
 ```typescript
@@ -1799,14 +1889,3 @@ function foo(arg1: number) {
 
 * 调用实例方法的对象
 * 正在构造的对象
-
-## ArkUI支持
-
-本节演示ArkTS为创建图形用户界面（GUI）程序提供的机制。ArkUI基于TypeScript提供了一系列扩展能力，以声明式地描述应用程序的GUI以及GUI组件间的交互。
-
-
-### ArkUI示例
-
-[MVVM代码示例](../ui/state-management/arkts-mvvm.md#代码示例)提供了一个完整的基于ArkUI的应用程序，以展示其GUI编程功能。
-
-有关ArkUI功能的更多详细信息，请参见ArkUI[基本语法概述](../ui//state-management/arkts-basic-syntax-overview.md)。

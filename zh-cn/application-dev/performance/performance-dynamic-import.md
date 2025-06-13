@@ -19,7 +19,7 @@
 1. 创建子页面，添加一个Web组件，并加载一个在线的H5页面。
 
    ```
-   import { webview } from '@kit.ArkWeb'
+   import { webview } from '@kit.ArkWeb';
    
    @Builder
    export function buildPage() {
@@ -47,7 +47,7 @@
 2. 在主页面的Navigation中添加上一步创建的web组件作为子页面。
 
    ```
-   import { WebViewPage } from './WebViewPage'
+   import { WebViewPage } from './WebViewPage';
    
    @Entry
    @Component
@@ -67,7 +67,7 @@
            Column() {
              Button('加载页面')
                .onClick(() => {
-                 this.pageStack.pushPath({ name: "" })
+                 this.pageStack.pushPath({ name: "" });
                })
                .margin({
                  top:30
@@ -112,7 +112,7 @@ export struct Page2 {
           .onClick(async () => {
             import('./WebViewPage').then((result: ESObject) => {
               this.page = result.buildPage;
-              this.pageStack.pushPath({ name: '' })
+              this.pageStack.pushPath({ name: '' });
             })
           })
           .margin({

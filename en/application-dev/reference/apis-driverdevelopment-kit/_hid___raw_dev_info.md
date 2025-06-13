@@ -9,6 +9,8 @@ Defines the raw device information.
 
 **Related module**: [HID DDK](_hid_ddk.md)
 
+**Header file**: [hid_ddk_types.h](hid__ddk__types_8h.md)
+
 
 ## Summary
 

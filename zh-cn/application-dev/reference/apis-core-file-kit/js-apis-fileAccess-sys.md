@@ -145,8 +145,9 @@ createFileAccessHelper(context: Context, wants: Array&lt;Want&gt;) : FileAccessH
   import { BusinessError } from '@ohos.base';
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
-  let context = getContext(this) as common.UIAbilityContext;
-  function createFileAccessHelper01() {
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
+  function createFileAccessHelper01(context: common.UIAbilityContext) {
     let fileAccessHelper: fileAccess.FileAccessHelper;
     // wantInfos 从getFileAccessAbilityInfo()获取
     let wantInfos: Array<Want> = [
@@ -201,8 +202,9 @@ createFileAccessHelper(context: Context) : FileAccessHelper
   ```ts
   import { BusinessError } from '@ohos.base';
   import common from '@ohos.app.ability.common';
-  let context = getContext(this) as common.UIAbilityContext;
-  function createFileAccessHelper02() {
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
+  function createFileAccessHelper02(context: common.UIAbilityContext) {
     let fileAccessHelperAllServer: fileAccess.FileAccessHelper;
     // 创建连接系统内所有配置fileAccess的文件管理类服务的helper对象
     try {
@@ -256,7 +258,7 @@ listFile(filter?: Filter) : FileIterator
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | -- | -- |
-| filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象。  |
+| filter | [Filter](js-apis-file-fs.md#filter10) | 否 | 过滤器对象。  |
 
 **返回值：**
 
@@ -316,7 +318,7 @@ scanFile(filter?: Filter) : FileIterator;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | -- | -- |
-| filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象。  |
+| filter | [Filter](js-apis-file-fs.md#filter10) | 否 | 过滤器对象。  |
 
 **返回值：**
 
@@ -428,7 +430,7 @@ listFile(filter?: Filter) : FileIterator
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | -- | -- |
-| filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象。  |
+| filter | [Filter](js-apis-file-fs.md#filter10) | 否 | 过滤器对象。  |
 
 **返回值：**
 
@@ -488,7 +490,7 @@ scanFile(filter?: Filter) : FileIterator
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | -- | -- |
-| filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象。  |
+| filter | [Filter](js-apis-file-fs.md#filter10) | 否 | 过滤器对象。  |
 
 **返回值：**
 

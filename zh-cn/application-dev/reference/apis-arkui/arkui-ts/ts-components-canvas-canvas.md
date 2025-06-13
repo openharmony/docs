@@ -4,7 +4,7 @@
 
 > **说明：** 
 >
->  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 子组件
 
@@ -73,7 +73,7 @@ onReady(event: VoidCallback)
 
 Canvas组件初始化完成时或者Canvas组件发生大小变化时的事件回调。
 
-当该事件被触发时画布被清空，该事件之后Canvas组件宽高确定且可获取，可使用Canvas相关API进行绘制。当Canvas组件仅发生位置变化时，只触发[onAreaChange](ts-universal-component-area-change-event.md#onAreaChange)事件，不触发onReady事件。[onAreaChange](ts-universal-component-area-change-event.md#onAreaChange)事件在onReady事件后触发。
+当该事件被触发时画布被清空，该事件之后Canvas组件宽高确定且可获取，可使用Canvas相关API进行绘制。当Canvas组件仅发生位置变化时，只触发[onAreaChange](ts-universal-component-area-change-event.md#onareachange)事件，不触发onReady事件。[onAreaChange](ts-universal-component-area-change-event.md#onareachange)事件在onReady事件后触发。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -98,8 +98,8 @@ Canvas组件初始化完成时或者Canvas组件发生大小变化时的事件�
 @Entry
 @Component
 struct CanvasExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -127,7 +127,7 @@ struct CanvasExample {
 @Entry
 @Component
 struct CanvasExample {
-  private context: DrawingRenderingContext = new DrawingRenderingContext()
+  private context: DrawingRenderingContext = new DrawingRenderingContext();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {

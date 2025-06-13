@@ -11,6 +11,7 @@ Parameter
 
 **Related module**: [Netstack](netstack.md)
 
+**Header file**: [net_websocket_type.h](net__websocket__type_8h.md#net_websocket_typeh)
 
 ## Summary
 
@@ -19,4 +20,4 @@ Parameter
 
 | Name| Description| 
 | -------- | -------- |
-| [WebSocket_Header](_web_socket___header.md) \* **headers** | Header information.| 
+| [WebSocket_Header](_web_socket___header.md) \* headers | Header information.| 

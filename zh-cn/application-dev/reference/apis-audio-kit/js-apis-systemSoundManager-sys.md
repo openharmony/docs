@@ -232,7 +232,7 @@ toneAttrs.getUri();
 
 ### getCustomizedType<sup>12+</sup>
 
-getCustomizedType(): string
+getCustomizedType(): ToneCustomizedType
 
 获取铃声自定义类型。
 
@@ -295,7 +295,7 @@ toneAttrs.setCategory(categoryValue);
 
 ### getCategory<sup>12+</sup>
 
-getCategory(): string
+getCategory(): number
 
 获取铃声类别。
 
@@ -555,7 +555,7 @@ let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSo
 
 setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType, callback: AsyncCallback&lt;void&gt;): void
 
-设置系统铃声uri，使用callback方式异步返回结果。
+设置系统铃声uri。使用callback异步回调。
 
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[setRingtoneUri](#setringtoneuri11)替代。
@@ -571,7 +571,7 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType, callback
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)   | 是   | 当前应用的上下文。           |
 | uri      | string                                   | 是   | 被设置的系统铃声的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
 | type     | [RingtoneType](#ringtonetype)            | 是   | 被设置的系统铃声的类型。     |
-| callback | AsyncCallback&lt;void&gt;                | 是   | 回调返回设置成功或失败。     |
+| callback | AsyncCallback&lt;void&gt;                | 是   | 回调函数。当设置系统铃声uri成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -579,7 +579,8 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType, callback
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri。
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
 
@@ -597,7 +598,7 @@ systemSoundManagerInstance.setSystemRingtoneUri(context, uri, type, (err: Busine
 
 setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType): Promise&lt;void&gt;
 
-设置系统铃声uri，使用Promise方式异步返回结果。
+设置系统铃声uri。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[setRingtoneUri](#setringtoneuri11)替代。
@@ -618,7 +619,7 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType): Promise
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise回调返回设置成功或失败。   |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -626,7 +627,8 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType): Promise
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri。
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
 
@@ -642,7 +644,7 @@ systemSoundManagerInstance.setSystemRingtoneUri(context, uri, type).then(() => {
 
 getSystemRingtoneUri(context: Context, type: RingtoneType, callback: AsyncCallback&lt;string&gt;): void
 
-获取系统铃声uri，使用callback方式异步返回结果。
+获取系统铃声uri。使用callback异步回调。
 
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[getRingtoneUri](#getringtoneuri11)替代。
@@ -657,7 +659,7 @@ getSystemRingtoneUri(context: Context, type: RingtoneType, callback: AsyncCallba
 | -------- |-----------------------------------------------------------------------| ---- | ------------------------ |
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)   | 是   | 当前应用的上下文。         |
 | type     | [RingtoneType](#ringtonetype)                                         | 是   | 待获取的系统铃声的类型。    |
-| callback | AsyncCallback&lt;string&gt;                                           | 是   | 回调返回获取的系统铃声uri。 |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。当获取系统铃声uri成功，err为undefined，data为获取到的系统铃声uri；否则为错误对象。 |
 
 **示例：**
 
@@ -665,7 +667,8 @@ getSystemRingtoneUri(context: Context, type: RingtoneType, callback: AsyncCallba
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
@@ -682,7 +685,7 @@ systemSoundManagerInstance.getSystemRingtoneUri(context, type, (err: BusinessErr
 
 getSystemRingtoneUri(context: Context, type: RingtoneType): Promise&lt;string&gt;
 
-获取系统铃声uri，使用Promise方式异步返回结果。
+获取系统铃声uri。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[getRingtoneUri](#getringtoneuri11)替代。
@@ -702,7 +705,7 @@ getSystemRingtoneUri(context: Context, type: RingtoneType): Promise&lt;string&gt
 
 | 类型                | 说明                                |
 | ------------------- | ---------------------------------- |
-| Promise&lt;string&gt; | Promise回调返回获取的系统铃声uri。 |
+| Promise&lt;string&gt; | Promise对象，返回获取的系统铃声uri。 |
 
 **示例：**
 
@@ -710,7 +713,8 @@ getSystemRingtoneUri(context: Context, type: RingtoneType): Promise&lt;string&gt
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
@@ -725,7 +729,7 @@ systemSoundManagerInstance.getSystemRingtoneUri(context, type).then((value: stri
 
 getSystemRingtonePlayer(context: Context, type: RingtoneType, callback: AsyncCallback&lt;RingtonePlayer&gt;): void
 
-获取系统铃声播放器，使用callback方式异步返回结果。
+获取系统铃声播放器。使用callback异步回调。
 
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[getRingtonePlayer](#getringtoneplayer11)替代。
@@ -740,7 +744,7 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType, callback: AsyncCal
 | -------- | -----------------------------------------| ---- | --------------------------- |
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)  | 是   | 当前应用的上下文。            |
 | type     | [RingtoneType](#ringtonetype)            | 是   | 待获取播放器的系统铃声的类型。 |
-| callback | AsyncCallback&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | 是 | 回调返回获取的系统铃声播放器。 |
+| callback | AsyncCallback&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | 是 | 回调函数。当获取系统铃声播放器成功，err为undefined，data为获取到的系统铃声播放器；否则为错误对象。 |
 
 **示例：**
 
@@ -748,7 +752,8 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType, callback: AsyncCal
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
 let systemRingtonePlayer: systemSoundManager.RingtonePlayer | undefined = undefined;
 
@@ -767,7 +772,7 @@ systemSoundManagerInstance.getSystemRingtonePlayer(context, type, (err: Business
 
 getSystemRingtonePlayer(context: Context, type: RingtoneType): Promise&lt;RingtonePlayer&gt;
 
-获取系统铃声播放器，使用Promise方式异步返回结果。
+获取系统铃声播放器。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[getRingtonePlayer](#getringtoneplayer11)替代。
@@ -787,7 +792,7 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType): Promise&lt;Ringto
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | Promise回调返回获取的系统铃声播放器。 |
+| Promise&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | Promise对象，返回获取的系统铃声播放器。 |
 
 **示例：**
 
@@ -795,7 +800,8 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType): Promise&lt;Ringto
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
 let systemRingtonePlayer: systemSoundManager.RingtonePlayer | undefined = undefined;
 
@@ -812,7 +818,7 @@ systemSoundManagerInstance.getSystemRingtonePlayer(context, type).then((value: s
 
 setRingtoneUri(context: BaseContext, uri: string, type: RingtoneType): Promise&lt;void&gt;
 
-设置系统铃声uri，使用Promise方式异步返回结果。
+设置系统铃声uri。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -830,7 +836,7 @@ setRingtoneUri(context: BaseContext, uri: string, type: RingtoneType): Promise&l
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise回调返回设置成功或失败。   |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -848,7 +854,8 @@ setRingtoneUri(context: BaseContext, uri: string, type: RingtoneType): Promise&l
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: common.BaseContext = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri。
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
 
@@ -864,7 +871,7 @@ systemSoundManagerInstance.setRingtoneUri(context, uri, type).then(() => {
 
 getRingtoneUri(context: BaseContext, type: RingtoneType): Promise&lt;string&gt;
 
-获取系统铃声uri，使用Promise方式异步返回结果。
+获取系统铃声uri。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -881,7 +888,7 @@ getRingtoneUri(context: BaseContext, type: RingtoneType): Promise&lt;string&gt;
 
 | 类型                | 说明                                |
 | ------------------- | ---------------------------------- |
-| Promise&lt;string&gt; | Promise回调返回获取的系统铃声uri。 |
+| Promise&lt;string&gt; | Promise对象，返回获取的系统铃声uri。 |
 
 **错误码：**
 
@@ -899,7 +906,8 @@ getRingtoneUri(context: BaseContext, type: RingtoneType): Promise&lt;string&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: common.BaseContext = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
@@ -914,7 +922,7 @@ systemSoundManagerInstance.getRingtoneUri(context, type).then((value: string) =>
 
 getRingtonePlayer(context: BaseContext, type: RingtoneType): Promise&lt;RingtonePlayer&gt;
 
-获取系统铃声播放器，使用Promise方式异步返回结果。
+获取系统铃声播放器。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -931,7 +939,7 @@ getRingtonePlayer(context: BaseContext, type: RingtoneType): Promise&lt;Ringtone
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | Promise回调返回获取的系统铃声播放器。 |
+| Promise&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | Promise对象，返回获取的系统铃声播放器。 |
 
 **错误码：**
 
@@ -948,7 +956,8 @@ getRingtonePlayer(context: BaseContext, type: RingtoneType): Promise&lt;Ringtone
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: common.BaseContext = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
 let systemRingtonePlayer: systemSoundManager.RingtonePlayer | undefined = undefined;
 
@@ -965,7 +974,7 @@ systemSoundManagerInstance.getRingtonePlayer(context, type).then((value: systemS
 
 setSystemToneUri(context: BaseContext, uri: string, type: SystemToneType): Promise&lt;void&gt;
 
-设置系统提示音uri，使用Promise方式异步返回结果。
+设置系统提示音uri。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -983,7 +992,7 @@ setSystemToneUri(context: BaseContext, uri: string, type: SystemToneType): Promi
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise回调返回设置成功或失败。   |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1001,7 +1010,8 @@ setSystemToneUri(context: BaseContext, uri: string, type: SystemToneType): Promi
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: common.BaseContext = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri。
 let type: systemSoundManager.SystemToneType = systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_SIM_CARD_0;
 
@@ -1017,7 +1027,7 @@ systemSoundManagerInstance.setSystemToneUri(context, uri, type).then(() => {
 
 getSystemToneUri(context: BaseContext, type: SystemToneType): Promise&lt;string&gt;
 
-获取系统提示音uri，使用Promise方式异步返回结果。
+获取系统提示音uri。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1034,7 +1044,7 @@ getSystemToneUri(context: BaseContext, type: SystemToneType): Promise&lt;string&
 
 | 类型                | 说明                                |
 | ------------------- | ---------------------------------- |
-| Promise&lt;string&gt; | Promise回调返回获取的系统提示音uri。 |
+| Promise&lt;string&gt; | Promise对象，返回获取的系统提示音uri。 |
 
 **错误码：**
 
@@ -1052,7 +1062,8 @@ getSystemToneUri(context: BaseContext, type: SystemToneType): Promise&lt;string&
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: common.BaseContext = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let type: systemSoundManager.SystemToneType = systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_SIM_CARD_0;
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
@@ -1067,7 +1078,7 @@ systemSoundManagerInstance.getSystemToneUri(context, type).then((value: string) 
 
 getSystemTonePlayer(context: BaseContext, type: SystemToneType): Promise&lt;SystemTonePlayer&gt;
 
-获取系统提示音播放器，使用Promise方式异步返回结果。
+获取系统提示音播放器。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1084,7 +1095,7 @@ getSystemTonePlayer(context: BaseContext, type: SystemToneType): Promise&lt;Syst
 
 | 类型                                                                                               | 说明                            |
 |--------------------------------------------------------------------------------------------------| ------------------------------- |
-| Promise&lt;[SystemTonePlayer](js-apis-inner-multimedia-systemTonePlayer-sys.md#systemtoneplayer)&gt; | Promise回调返回获取的系统提示音播放器。 |
+| Promise&lt;[SystemTonePlayer](js-apis-inner-multimedia-systemTonePlayer-sys.md#systemtoneplayer)&gt; | Promise对象，返回获取的系统提示音播放器。 |
 
 **错误码：**
 
@@ -1101,7 +1112,8 @@ getSystemTonePlayer(context: BaseContext, type: SystemToneType): Promise&lt;Syst
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: common.BaseContext = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let type: systemSoundManager.SystemToneType = systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_SIM_CARD_0;
 let systemTonePlayer: systemSoundManager.SystemTonePlayer | undefined = undefined;
 
@@ -1118,7 +1130,7 @@ systemSoundManagerInstance.getSystemTonePlayer(context, type).then((value: syste
 
 getDefaultRingtoneAttrs(context: BaseContext, type: RingtoneType): Promise&lt;ToneAttrs&gt;
 
-获取系统铃声的属性，使用Promise方式异步返回结果。
+获取系统铃声的属性。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1133,9 +1145,9 @@ getDefaultRingtoneAttrs(context: BaseContext, type: RingtoneType): Promise&lt;To
 
 **返回值：**
 
-| 类型                                       | 说明                  |
-|------------------------------------------|---------------------|
-| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise回调返回系统铃声的属性。 |
+| 类型                                                                                               | 说明                            |
+|--------------------------------------------------------------------------------------------------| ------------------------------- |
+| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise对象，返回系统铃声的属性。 |
 
 **错误码：**
 
@@ -1153,7 +1165,8 @@ getDefaultRingtoneAttrs(context: BaseContext, type: RingtoneType): Promise&lt;To
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: common.BaseContext = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
@@ -1168,7 +1181,7 @@ systemSoundManagerInstance.getDefaultRingtoneAttrs(context, type).then((value: s
 
 getRingtoneAttrList(context: BaseContext, type: RingtoneType): Promise&lt;ToneAttrsArray&gt;
 
-获取系统铃声的属性列表，使用Promise方式异步返回结果。
+获取系统铃声的属性列表。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1183,9 +1196,9 @@ getRingtoneAttrList(context: BaseContext, type: RingtoneType): Promise&lt;ToneAt
 
 **返回值：**
 
-| 类型                                                 | 说明                    |
-|----------------------------------------------------|-----------------------|
-| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise回调返回系统铃声的属性列表。 |
+| 类型                                                                                               | 说明                            |
+|--------------------------------------------------------------------------------------------------| ------------------------------- |
+| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise对象，返回系统铃声的属性列表。 |
 
 **错误码：**
 
@@ -1203,7 +1216,8 @@ getRingtoneAttrList(context: BaseContext, type: RingtoneType): Promise&lt;ToneAt
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: common.BaseContext = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
@@ -1218,7 +1232,7 @@ systemSoundManagerInstance.getRingtoneAttrList(context, type).then((value: syste
 
 getDefaultSystemToneAttrs(context: BaseContext, type: SystemToneType): Promise&lt;ToneAttrs&gt;
 
-获取系统提示音的属性，使用Promise方式异步返回结果。
+获取系统提示音的属性。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1235,7 +1249,7 @@ getDefaultSystemToneAttrs(context: BaseContext, type: SystemToneType): Promise&l
 
 | 类型                                      | 说明                   |
 |-----------------------------------------|----------------------|
-| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise回调返回系统提示音的属性。 |
+| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise对象，返回系统提示音的属性。 |
 
 **错误码：**
 
@@ -1253,7 +1267,8 @@ getDefaultSystemToneAttrs(context: BaseContext, type: SystemToneType): Promise&l
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: common.BaseContext = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let type: systemSoundManager.SystemToneType = systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_SIM_CARD_0;
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
@@ -1268,7 +1283,7 @@ systemSoundManagerInstance.getDefaultSystemToneAttrs(context, type).then((value:
 
 getSystemToneAttrList(context: BaseContext, type: SystemToneType): Promise&lt;ToneAttrsArray&gt;
 
-获取系统提示音的属性列表，使用Promise方式异步返回结果。
+获取系统提示音的属性列表。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1285,7 +1300,7 @@ getSystemToneAttrList(context: BaseContext, type: SystemToneType): Promise&lt;To
 
 | 类型                                                | 说明                     |
 |---------------------------------------------------|------------------------|
-| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise回调返回系统提示音的属性列表。 |
+| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise对象，返回系统提示音的属性列表。 |
 
 **错误码：**
 
@@ -1303,7 +1318,8 @@ getSystemToneAttrList(context: BaseContext, type: SystemToneType): Promise&lt;To
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: common.BaseContext = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let type: systemSoundManager.SystemToneType = systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_SIM_CARD_0;
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
@@ -1318,7 +1334,7 @@ systemSoundManagerInstance.getSystemToneAttrList(context, type).then((value: sys
 
 getDefaultAlarmToneAttrs(context: BaseContext): Promise&lt;ToneAttrs&gt;
 
-获取系统闹铃的属性，使用Promise方式异步返回结果。
+获取系统闹铃的属性。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1334,7 +1350,7 @@ getDefaultAlarmToneAttrs(context: BaseContext): Promise&lt;ToneAttrs&gt;
 
 | 类型                                      | 说明                  |
 |-----------------------------------------|---------------------|
-| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise回调返回系统闹铃的属性。 |
+| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise对象，返回系统闹铃的属性。 |
 
 **错误码：**
 
@@ -1352,7 +1368,8 @@ getDefaultAlarmToneAttrs(context: BaseContext): Promise&lt;ToneAttrs&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: common.BaseContext = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getDefaultAlarmToneAttrs(context).then((value: systemSoundManager.ToneAttrs) => {
@@ -1366,7 +1383,7 @@ systemSoundManagerInstance.getDefaultAlarmToneAttrs(context).then((value: system
 
 setAlarmToneUri(context: Context, uri: string): Promise&lt;void&gt;
 
-设置系统闹铃uri，使用Promise方式异步返回结果。
+设置系统闹铃uri。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1383,7 +1400,7 @@ setAlarmToneUri(context: Context, uri: string): Promise&lt;void&gt;
 
 | 类型                | 说明                   |
 | ------------------- |----------------------|
-| Promise&lt;void&gt; | Promise回调返回设置成功或失败。  |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -1391,7 +1408,8 @@ setAlarmToneUri(context: Context, uri: string): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri。
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
@@ -1406,7 +1424,7 @@ systemSoundManagerInstance.setAlarmToneUri(context, uri).then(() => {
 
 getAlarmToneUri(context: Context): Promise&lt;string&gt;
 
-获取系统当前闹铃uri，使用Promise方式异步返回结果。
+获取系统当前闹铃uri。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1422,7 +1440,7 @@ getAlarmToneUri(context: Context): Promise&lt;string&gt;
 
 | 类型                    | 说明                    |
 |-----------------------|-----------------------|
-| Promise&lt;string&gt; | Promise回调返回系统当前闹铃uri。 |
+| Promise&lt;string&gt; | Promise对象，返回系统当前闹铃uri。 |
 
 **示例：**
 
@@ -1430,7 +1448,8 @@ getAlarmToneUri(context: Context): Promise&lt;string&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getAlarmToneUri(context).then((value: string) => {
@@ -1444,7 +1463,7 @@ systemSoundManagerInstance.getAlarmToneUri(context).then((value: string) => {
 
 getAlarmToneAttrList(context: BaseContext): Promise&lt;ToneAttrsArray&gt;
 
-获取全部闹铃属性列表，使用Promise方式异步返回结果。
+获取全部闹铃属性列表。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1460,7 +1479,7 @@ getAlarmToneAttrList(context: BaseContext): Promise&lt;ToneAttrsArray&gt;
 
 | 类型                                                 | 说明                   |
 |----------------------------------------------------|----------------------|
-| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise回调返回全部闹铃属性列表。 |
+| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise对象，返回全部闹铃属性列表。 |
 
 **错误码：**
 
@@ -1478,7 +1497,8 @@ getAlarmToneAttrList(context: BaseContext): Promise&lt;ToneAttrsArray&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: common.BaseContext = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getAlarmToneAttrList(context).then((value: systemSoundManager.ToneAttrsArray) => {
@@ -1492,7 +1512,7 @@ systemSoundManagerInstance.getAlarmToneAttrList(context).then((value: systemSoun
 
 openAlarmTone(context: Context, uri: string): Promise&lt;number&gt;
 
-打开闹铃文件，使用Promise方式异步返回结果。
+打开闹铃文件。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1509,11 +1529,11 @@ openAlarmTone(context: Context, uri: string): Promise&lt;number&gt;
 
 | 类型                    | 说明             |
 |-----------------------|----------------|
-| Promise&lt;number&gt; | Promise回调返回fd。 |
+| Promise&lt;number&gt; | Promise对象，返回fd。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)、[媒体服务错误码](../apis-media-kit/errorcode-media.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
@@ -1528,7 +1548,8 @@ openAlarmTone(context: Context, uri: string): Promise&lt;number&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri。
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
@@ -1543,7 +1564,7 @@ systemSoundManagerInstance.openAlarmTone(context, uri).then((value: number) => {
 
 close(fd: number): Promise&lt;void&gt;
 
-关闭闹铃文件，使用Promise方式异步返回结果。
+关闭闹铃文件。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -1559,7 +1580,7 @@ close(fd: number): Promise&lt;void&gt;
 
 | 类型                  | 说明             |
 |---------------------|----------------|
-| Promise&lt;void&gt; | Promise回调返回设置成功或失败。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1577,7 +1598,8 @@ close(fd: number): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let fd = 50; // 需更改为目标铃声的fd。
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
@@ -1592,7 +1614,9 @@ systemSoundManagerInstance.close(fd).then(() => {
 
 addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, externalUri: string): Promise&lt;string&gt;
 
-通过铃音uri将自定义铃音添加到铃音库，使用Promise方式异步返回结果。
+通过铃音uri将自定义铃音添加到铃音库。使用Promise异步回调。
+
+**需要权限：** ohos.permission.WRITE_RINGTONE
 
 **系统接口：** 该接口为系统接口。
 
@@ -1602,7 +1626,7 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, externalUri: string
 
 | 参数名 | 类型        | 必填 | 说明            |
 |-----|-----------| ---- |---------------|
-| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。     |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。     |
 | toneAttr  | ToneAttrs | 是   | 铃音属性。         |
 | externalUri  | string    | 是   | 外部存储器中的铃音uri。 |
 
@@ -1610,7 +1634,7 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, externalUri: string
 
 | 类型                    | 说明                      |
 |-----------------------|-------------------------|
-| Promise&lt;string&gt; | Promise回调返回铃音在铃音库中的uri。 |
+| Promise&lt;string&gt; | Promise对象，返回铃音在铃音库中的uri。 |
 
 **错误码：**
 
@@ -1630,7 +1654,8 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, externalUri: string
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let title = 'test'; // 需更改为实际名称。
 let fileName = 'displayName_test'; // 需更改为实际文件名。
 let categoryValue = systemSoundManager.TONE_CATEGORY_ALARM;
@@ -1654,7 +1679,9 @@ systemSoundManagerInstance.addCustomizedTone(context, toneAttrs, path).then((val
 
 addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, fd: number, offset?: number, length?: number): Promise&lt;string&gt;
 
-通过文件描述符fd将自定义铃音添加到铃音库，使用Promise方式异步返回结果。
+通过文件描述符fd将自定义铃音添加到铃音库。使用Promise异步回调。
+
+**需要权限：** ohos.permission.WRITE_RINGTONE
 
 **系统接口：** 该接口为系统接口。
 
@@ -1664,7 +1691,7 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, fd: number, offset?
 
 | 参数名 | 类型        | 必填 | 说明                                                                     |
 |-----|-----------|----|------------------------------------------------------------------------|
-| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是  | 当前应用的上下文。                                                              |
+| context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是  | 当前应用的上下文。                                                              |
 | toneAttr | [ToneAttrs](#toneattrs12) | 是  | 铃音属性。                                                                  |
 | fd  | number    | 是  | 文件描述符，可通过[fs.open](../apis-core-file-kit/js-apis-file-fs.md#fsopen)获取。 |
 | offset | number    | 否  | 读取数据的偏移量（以字节为单位）。默认情况下为0。                                              |
@@ -1674,7 +1701,7 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, fd: number, offset?
 
 | 类型                    | 说明                      |
 |-----------------------|-------------------------|
-| Promise&lt;string&gt; | Promise回调返回铃音在铃音库中的uri。 |
+| Promise&lt;string&gt; | Promise对象，返回铃音在铃音库中的uri。 |
 
 **错误码：**
 
@@ -1694,7 +1721,8 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, fd: number, offset?
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let title = 'test'; // 需更改为实际名称。
 let fileName = 'displayName_test'; // 需更改为实际文件名。
 let categoryValue = systemSoundManager.TONE_CATEGORY_ALARM;
@@ -1720,7 +1748,9 @@ systemSoundManagerInstance.addCustomizedTone(context, toneAttrs, fd, offset, len
 
 removeCustomizedTone(context: BaseContext, uri: string): Promise&lt;void&gt;
 
-从铃音库中删除自定义铃音，使用Promise方式异步返回结果。
+从铃音库中删除自定义铃音。使用Promise异步回调。
+
+**需要权限：** ohos.permission.WRITE_RINGTONE
 
 **系统接口：** 该接口为系统接口。
 
@@ -1730,14 +1760,14 @@ removeCustomizedTone(context: BaseContext, uri: string): Promise&lt;void&gt;
 
 | 参数名 | 类型        | 必填 | 说明                                                                                                      |
 |-----|-----------| ---- |---------------------------------------------------------------------------------------------------------|
-| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。                                                                                               |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。                                                                                               |
 | uri  | string    | 是   | 铃音uri，可通过[addCustomizedTone](#addcustomizedtone12)或[getAlarmToneAttrList](#getalarmtoneattrlist12)等方法获取。 |
 
 **返回值：**
 
 | 类型                  | 说明                    |
 |---------------------|-----------------------|
-| Promise&lt;void&gt; | Promise回调返回设置成功或失败。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1757,7 +1787,8 @@ removeCustomizedTone(context: BaseContext, uri: string): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri。
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
@@ -1772,7 +1803,7 @@ systemSoundManagerInstance.removeCustomizedTone(context, uri).then(() => {
 
 getToneHapticsSettings(context: BaseContext, type: ToneHapticsType): Promise&lt;ToneHapticsSettings&gt;
 
-获取系统铃音的振动设置，使用Promise方式异步返回结果。
+获取系统铃音的振动设置。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1782,18 +1813,18 @@ getToneHapticsSettings(context: BaseContext, type: ToneHapticsType): Promise&lt;
 
 | 参数名 | 类型        | 必填 | 说明                                                                          |
 |-----|-----------| ---- |----------------------------------------------------------------------------------|
-| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。   |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。   |
 | type  | [ToneHapticsType](#tonehapticstype14)    | 是   | 待获取系统铃音的振动类型。 |
 
 **返回值：**
 
 | 类型                  | 说明                    |
 |---------------------|-----------------------|
-| Promise&lt;[ToneHapticsSettings](#tonehapticssettings14)&gt; | Promise回调返回铃声的振动设置。 |
+| Promise&lt;[ToneHapticsSettings](#tonehapticssettings14)&gt; | Promise对象，返回铃声的振动设置。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)、[媒体服务错误码](../apis-media-kit/errorcode-media.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
 
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
@@ -1808,7 +1839,8 @@ getToneHapticsSettings(context: BaseContext, type: ToneHapticsType): Promise&lt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: common.BaseContext = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let type: systemSoundManager.ToneHapticsType = systemSoundManager.ToneHapticsType.CALL_SIM_CARD_0;
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
@@ -1823,7 +1855,7 @@ systemSoundManagerInstance.getToneHapticsSettings(context, type).then((value: sy
 
 setToneHapticsSettings(context: BaseContext, type: ToneHapticsType, settings: ToneHapticsSettings): Promise&lt;void&gt;
 
-设置系统铃音的振动，使用Promise方式异步返回结果。
+设置系统铃音的振动。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1833,7 +1865,7 @@ setToneHapticsSettings(context: BaseContext, type: ToneHapticsType, settings: To
 
 | 参数名 | 类型        | 必填 | 说明                                                                          |
 |-----|-----------| ---- |----------------------------------------------------------------------------------|
-| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。   |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。   |
 | type  | [ToneHapticsType](#tonehapticstype14)    | 是   | 被设置的系统铃音的振动类型。 |
 | settings  | [ToneHapticsSettings](#tonehapticssettings14)    | 是   | 被设置的系统铃音的振动设置。 |
 
@@ -1841,11 +1873,11 @@ setToneHapticsSettings(context: BaseContext, type: ToneHapticsType, settings: To
 
 | 类型                  | 说明                    |
 |---------------------|-----------------------|
-| Promise&lt;void&gt; | Promise回调返回设置成功或失败。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)、[媒体服务错误码](../apis-media-kit/errorcode-media.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
 
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
@@ -1861,7 +1893,8 @@ setToneHapticsSettings(context: BaseContext, type: ToneHapticsType, settings: To
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: common.BaseContext = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let type: systemSoundManager.ToneHapticsType = systemSoundManager.ToneHapticsType.CALL_SIM_CARD_0;
 let toneHapticsSettings: systemSoundManager.ToneHapticsSettings = {
   mode: systemSoundManager.ToneHapticsMode.NON_SYNC,
@@ -1880,7 +1913,7 @@ systemSoundManagerInstance.setToneHapticsSettings(context, type, toneHapticsSett
 
 getToneHapticsList(context: BaseContext, isSynced: boolean): Promise&lt;ToneHapticsAttrsArray&gt;
 
-获取同步或者非同步的系统铃音的振动属性列表，使用Promise方式异步返回结果。
+获取同步或者非同步的系统铃音的振动属性列表。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1890,18 +1923,18 @@ getToneHapticsList(context: BaseContext, isSynced: boolean): Promise&lt;ToneHapt
 
 | 参数名 | 类型        | 必填 | 说明                                                                          |
 |-----|-----------| ---- |----------------------------------------------------------------------------------|
-| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。   |
-| isSynced  | boolean    | 是   | 待获取的振动是否与某个铃音同步。 |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。   |
+| isSynced  | boolean    | 是   | 表示待获取的振动是否与某个铃音同步。true表示同步，false表示不同步。 |
 
 **返回值：**
 
 | 类型                  | 说明                    |
 |---------------------|-----------------------|
-| Promise&lt;[ToneHapticsAttrsArray](#tonehapticsattrsarray14)&gt; | Promise回调返回同步或者非同步的系统铃音的振动属性列表。 |
+| Promise&lt;[ToneHapticsAttrsArray](#tonehapticsattrsarray14)&gt; | Promise对象，返回同步或者非同步的系统铃音的振动属性列表。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)、[媒体服务错误码](../apis-media-kit/errorcode-media.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
 
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
@@ -1916,7 +1949,8 @@ getToneHapticsList(context: BaseContext, isSynced: boolean): Promise&lt;ToneHapt
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: common.BaseContext = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getToneHapticsList(context, false).then((value: systemSoundManager.ToneHapticsAttrsArray) => {
@@ -1930,7 +1964,7 @@ systemSoundManagerInstance.getToneHapticsList(context, false).then((value: syste
 
 getHapticsAttrsSyncedWithTone(context: BaseContext, toneUri: string): Promise&lt;ToneHapticsAttrs&gt;
 
-获取与指定铃音同步的振动属性，使用Promise方式异步返回结果。
+获取与指定铃音同步的振动属性。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1940,18 +1974,18 @@ getHapticsAttrsSyncedWithTone(context: BaseContext, toneUri: string): Promise&lt
 
 | 参数名 | 类型        | 必填 | 说明                                                                          |
 |-----|-----------| ---- |----------------------------------------------------------------------------------|
-| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。   |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。   |
 | toneUri  | string    | 是   | 待获取同步振动的系统铃声Uri,可通过[getRingtoneAttrList](#getringtoneattrlist12)或[getSystemToneAttrList](#getsystemtoneattrlist12)等获取。 |
 
 **返回值：**
 
 | 类型                  | 说明                    |
 |---------------------|-----------------------|
-| Promise&lt;[ToneHapticsAttrs](#tonehapticsattrs14)&gt; | Promise回调返回与指定铃音同步的振动属性。 |
+| Promise&lt;[ToneHapticsAttrs](#tonehapticsattrs14)&gt; | Promise对象，返回与指定铃音同步的振动属性。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)、[媒体服务错误码](../apis-media-kit/errorcode-media.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
 
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
@@ -1967,7 +2001,8 @@ getHapticsAttrsSyncedWithTone(context: BaseContext, toneUri: string): Promise&lt
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: common.BaseContext = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let toneUri: string = '/data/storage/el2/base/RingTone/alarms/test.ogg'; // 需更改为实际铃音uri。
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
@@ -1982,7 +2017,7 @@ systemSoundManagerInstance.getHapticsAttrsSyncedWithTone(context, toneUri).then(
 
 openToneHaptics(context: Context, hapticsUri: string): Promise&lt;number&gt;
 
-打开系统铃音的振动，使用Promise方式异步返回结果。
+打开系统铃音的振动。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1999,11 +2034,11 @@ openToneHaptics(context: Context, hapticsUri: string): Promise&lt;number&gt;
 
 | 类型                    | 说明             |
 |-----------------------|----------------|
-| Promise&lt;number&gt; | Promise回调返回fd。 |
+| Promise&lt;number&gt; | Promise对象，返回fd。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)、[媒体服务错误码](../apis-media-kit/errorcode-media.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
@@ -2019,7 +2054,8 @@ openToneHaptics(context: Context, hapticsUri: string): Promise&lt;number&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let hapticsUri = '/data/storage/el2/base/haptics/synchronized/alarms/test.json'; // 需更改为目标统铃音的振动的uri。
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();

@@ -13,6 +13,10 @@ reuseId(id: string)
 
 复用标识，用于划分自定义组件的复用组。
 
+>  **说明：**
+>
+> 根据不同场景灵活设置reuseId，实现最佳复用效果。最佳实践请参考[组件复用-使用reuseId标记布局发生变化的组件](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-component-reuse#section1239555818211)。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -25,7 +29,7 @@ reuseId(id: string)
 
 ## 示例
 
-该示例通过reused标识自定义组件的复用组。
+该示例通过reuseId标识自定义组件的复用组。
 
 ```ts
 // xxx.ets

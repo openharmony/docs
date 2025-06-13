@@ -46,9 +46,13 @@ IsolatedComponent(options: IsolatedOptions)
 
 创建IsolatedComponent组件，用于显示受限worker运行的Abc。
 
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名                | 参数类型                                                   | 必填 | 参数描述           |
+| 参数名                | 参数类型                                                   | 必填 | 说明           |
 | --------------------- | ---------------------------------------------------------- | ---- | ------------------ |
 | options | [IsolatedOptions](#isolatedoptions)                | 是   | 需要传递的构造项。 |
 
@@ -57,7 +61,7 @@ IsolatedComponent(options: IsolatedOptions)
 
 **参数：**
 
-| 参数名               | 参数类型                                 | 必填 | 参数描述                                                                                                      |
+| 参数名               | 参数类型                                 | 必填 | 说明                                                                                                      |
 | ----                 | ---------------------------------------- | ---- | ---------------                                                                                               |
 | want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md)                                  | 是   | 要加载的Abc信息。 |
 | worker | [RestrictedWorker](../../apis-arkts/js-apis-worker-sys.md#restrictedworker11)       | 是   | 运行Abc的受限worker。 |
@@ -79,11 +83,15 @@ onError(callback:ErrorCallback)
 
 被拉起的Ability扩展在运行过程中发生异常时触发本回调。可通过回调参数中的code、name和message获取错误信息并做处理。
 
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名                       | 类型   | 说明                                                         |
-| ---------------------------- | ------ | ------------------------------------------------------------ |
-| callback                        | [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback) | 报错信息。    |
+| 参数名                | 参数类型                                                   | 必填 | 说明           |
+| --------------------- | ---------------------------------------------------------- | ---- | ------------------ |
+| callback | [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)                | 是   | 报错信息。 |
 
 ## 示例（加载IsolatedComponent）
 
@@ -107,7 +115,7 @@ onError(callback:ErrorCallback)
 - 示例应用中`EntryAbility(UIAbility)`加载首页文件`ets/pages/Index.ets`的内容如下：
   ```ts
   import { worker } from '@kit.ArkTS';
-  import { bundleManager } from '@kit.AbilityKit';
+  import { bundleManager, common } from '@kit.AbilityKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   // 对abc文件进行校验，并拷贝到指定沙箱路径下
@@ -133,6 +141,7 @@ onError(callback:ErrorCallback)
     @State resourcePath: string = "";
     @State abcPath: string = "";
     @State entryPoint: string = "";
+    @State context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     // abc文件名
     private fileName: string = "modules";
     // abc文件所属应用的bundleName
@@ -145,7 +154,7 @@ onError(callback:ErrorCallback)
         Column() {
           // 1.调用verifyAbc接口校验abc文件
           Button("verifyAbc").onClick(() => {
-            let abcFilePath = `${getContext(this).filesDir}/${this.fileName}.abc`;
+            let abcFilePath = `${this.context.filesDir}/${this.fileName}.abc`;
             console.log("abcFilePath: " + abcFilePath);
             VerifyAbc([abcFilePath], false);
           }).height(100).width(100)
@@ -154,9 +163,9 @@ onError(callback:ErrorCallback)
           Button("showIsolatedComponent").onClick(() => {
             if (!this.isShow) {
               // 资源路径
-              this.resourcePath = `${getContext(this).filesDir}/${this.fileName}.hap`;
+              this.resourcePath = `${this.context.filesDir}/${this.fileName}.hap`;
               // abc文件校验后的沙箱路径
-              this.abcPath = `/abcs${getContext(this).filesDir}/${this.fileName}`;
+              this.abcPath = `/abcs${this.context.filesDir}/${this.fileName}`;
               // 需要显示页面的入口路径
               this.entryPoint = `${this.bundleName}/entry/ets/pages/extension`;
               this.isShow = true;

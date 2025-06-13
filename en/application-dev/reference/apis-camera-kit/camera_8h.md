@@ -41,6 +41,7 @@ The **camera.h** file declares the basic concepts of the camera.
 | struct  [Camera_SmoothZoomInfo](_camera___smooth_zoom_info.md) | Describes the smooth zoom information.| 
 | struct  [Camera_CaptureStartInfo](_camera___capture_start_info.md) | Describes the capture start information.| 
 | struct  [Camera_FrameShutterEndInfo](_camera___frame_shutter_end_info.md) | Describes the frame shutter end information during capture.| 
+| struct  [Camera_ConcurrentInfo](_camera___concurrent_info.md) | Describes the camera's concurrency information.| 
 
 
 ### Types
@@ -67,7 +68,7 @@ The **camera.h** file declares the basic concepts of the camera.
 | typedef enum [Camera_SmoothZoomMode](_o_h___camera.md#camera_smoothzoommode) [Camera_SmoothZoomMode](_o_h___camera.md#camera_smoothzoommode) | Defines an enum for the smooth zoom modes.| 
 | typedef enum [Camera_PreconfigType](_o_h___camera.md#camera_preconfigtype) [Camera_PreconfigType](_o_h___camera.md#camera_preconfigtype) | Defines an enum for the preconfigured photo resolution types.| 
 | typedef enum [Camera_PreconfigRatio](_o_h___camera.md#camera_preconfigratio) [Camera_PreconfigRatio](_o_h___camera.md#camera_preconfigratio) | Defines an enum for the preconfigured photo aspect ratios.| 
-| typedef enum [Camera_HostDeviceType](_o_h___camera.md#camera_hostdevicetype)[Camera_HostDeviceType](_o_h___camera.md#camera_hostdevicetype) | Defines an enum for the remote device types.| 
+| typedef enum [Camera_HostDeviceType](_o_h___camera.md#camera_hostdevicetype) [Camera_HostDeviceType](_o_h___camera.md#camera_hostdevicetype) | Defines an enum for the remote device types.| 
 | typedef struct [Camera_Size](_camera___size.md) [Camera_Size](_o_h___camera.md#camera_size) | Defines a struct for the parameters related to the size.| 
 | typedef struct [Camera_Profile](_camera___profile.md) [Camera_Profile](_o_h___camera.md#camera_profile) | Defines a struct for the profile of the camera stream.| 
 | typedef struct [Camera_FrameRateRange](_camera___frame_rate_range.md) [Camera_FrameRateRange](_o_h___camera.md#camera_frameraterange) | Defines a struct for the frame rate range.| 
@@ -86,6 +87,8 @@ The **camera.h** file declares the basic concepts of the camera.
 | typedef struct [Camera_SmoothZoomInfo](_camera___smooth_zoom_info.md) [Camera_SmoothZoomInfo](_o_h___camera.md#camera_smoothzoominfo) | Defines a struct for the smooth zoom information.| 
 | typedef struct [Camera_CaptureStartInfo](_camera___capture_start_info.md) [Camera_CaptureStartInfo](_o_h___camera.md#camera_capturestartinfo) | Defines a struct for the capture start information.| 
 | typedef struct [Camera_FrameShutterEndInfo](_camera___frame_shutter_end_info.md) [Camera_FrameShutterEndInfo](_o_h___camera.md#camera_frameshutterendinfo) | Defines a struct for the frame shutter end information during capture.| 
+| typedef enum [Camera_ConcurrentType](_o_h___camera.md#camera_concurrenttype-1) [Camera_ConcurrentType](_o_h___camera.md#camera_concurrenttype) | Defines an enum for the camera's concurrency types.| 
+| typedef struct [Camera_ConcurrentInfo](_camera___concurrent_info.md) [Camera_ConcurrentInfo](_o_h___camera.md#camera_concurrentinfo) | Defines a struct for the camera's concurrency information.| 
 
 
 ### Enums
@@ -113,6 +116,7 @@ The **camera.h** file declares the basic concepts of the camera.
 | [Camera_PreconfigRatio](_o_h___camera.md#camera_preconfigratio-1) {<br>PRECONFIG_RATIO_1_1 = 0,<br>PRECONFIG_RATIO_4_3 = 1,<br>PRECONFIG_RATIO_16_9 = 2 } | Enumerates the preconfigured photo aspect ratios.| 
 | [Camera_HostDeviceType](_o_h___camera.md#camera_hostdevicetype) {<br>HOST_DEVICE_TYPE_UNKNOWN_TYPE = 0,<br>HOST_DEVICE_TYPE_PHONE = 0x0E,<br>HOST_DEVICE_TYPE_TABLET = 0x11 } | Enumerates the remote device types.| 
 | [Camera_QualityPrioritization](_o_h___camera.md#camera_qualityprioritization) { [HIGH_QUALITY](_o_h___camera.md) = 0, [POWER_BALANCE](_o_h___camera.md) = 1 } | Enumerates the priority levels for video recording quality.| 
+| [Camera_ConcurrentType](_o_h___camera.md#camera_concurrenttype-1) {<br>CAMERA_CONCURRENT_TYPE_LIMITED_CAPABILITY = 0,<br>CAMERA_CONCURRENT_TYPE_FULL_CAPABILITY = 1 } | Enumerates the camera's concurrency types.| 
 
 
 ### Functions

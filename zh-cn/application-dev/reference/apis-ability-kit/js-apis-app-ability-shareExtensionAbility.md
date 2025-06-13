@@ -1,9 +1,9 @@
-# @ohos.app.ability.ShareExtensionAbility (分享模板服务扩展能力)
+# @ohos.app.ability.ShareExtensionAbility (分享详情页扩展能力)
 
-ShareExtensionAbility是为开发者提供分享操作业务模板，继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。ShareExtension为人们提供了一种通过应用程序、社交媒体帐户和其他服务共享当前上下文信息的便捷方式。各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
+ShareExtensionAbility继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)，为开发者提供分享详情页扩展能力。该模块支持开发者创建接收分享内容的分享详情页面，将应用入口展示于系统分享面板的推荐应用区域。各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
 
 > **说明：**
-> 
+>
 > 本模块首批接口从API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 本模块接口仅可在Stage模型下使用。

@@ -83,7 +83,7 @@ import { window } from '@kit.ArkUI';
 
 // 1.开发者使能取色功能
 // 2.调用窗口实例获取对应的窗口id
-window.getLastWindow(getContext(), (error: BusinessError, windowClass: window.Window) => {
+window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, windowClass: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -103,7 +103,7 @@ window.getLastWindow(getContext(), (error: BusinessError, windowClass: window.Wi
   }
 });
 // 4.取色结束
-window.getLastWindow(getContext(), (error: BusinessError, windowClass: window.Window) => {
+window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, windowClass: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;

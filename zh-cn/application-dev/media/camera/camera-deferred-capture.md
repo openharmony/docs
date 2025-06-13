@@ -25,7 +25,6 @@
    ```ts
    import { camera } from '@kit.CameraKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   import { common } from '@kit.AbilityKit';
    import { photoAccessHelper } from '@kit.MediaLibraryKit';
    ```
 
@@ -35,7 +34,7 @@
 
    ```ts
    function getPhotoOutput(cameraManager: camera.CameraManager, 
-                           cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
+     cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
      let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
      if (!photoProfilesArray) {
        console.error("createOutput photoProfilesArray == null || undefined");
@@ -45,7 +44,7 @@
        photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to createPhotoOutput. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to createPhotoOutput. error: ${err}`);
      }
      return photoOutput;
    }
@@ -59,27 +58,28 @@
    > 不建议开发者同时注册photoAvailable和photoAssetAvailable。
 
    ```ts
-   function photoAssetAvailableCallback(err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void {
-     if (err) {
-       console.error(`photoAssetAvailable error: ${JSON.stringify(err)}.`);
-       return;
-     }
-     console.info('photoOutPutCallBack photoAssetAvailable');
-     // 开发者可通过photoAsset调用媒体库相关接口，自定义处理图片。
-     // 处理方式一：调用媒体库落盘接口保存一阶段图，二阶段图就绪后媒体库会主动帮应用替换落盘图片。
-     mediaLibSavePhoto(photoAsset);
-     // 处理方式二：调用媒体库接口请求图片并注册一阶段图或二阶段图buffer回调，自定义使用。
-     mediaLibRequestBuffer(photoAsset);
+   function getPhotoAccessHelper(context: Context): photoAccessHelper.PhotoAccessHelper {
+     let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+     return phAccessHelper;
    }
 
-   function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void {
-     photoOutput.on('photoAssetAvailable', photoAssetAvailableCallback);
+   function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput, context: Context): void {
+     photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset) => {
+       if (err) {
+         console.error(`photoAssetAvailable error: ${err}.`);
+         return;
+       }
+       console.info('photoOutPutCallBack photoAssetAvailable');
+       // 开发者可通过photoAsset调用媒体库相关接口，自定义处理图片。
+       // 处理方式一：调用媒体库落盘接口保存一阶段图，二阶段图就绪后媒体库会主动帮应用替换落盘图片。
+       mediaLibSavePhoto(photoAsset, getPhotoAccessHelper(context));
+       // 处理方式二：调用媒体库接口请求图片并注册一阶段图或二阶段图buffer回调，自定义使用。
+       mediaLibRequestBuffer(photoAsset, context);
+     });
    }
 
-   let context = getContext(this);
-   let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-   async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): Promise<void> {
+   async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset,
+     phAccessHelper: photoAccessHelper.PhotoAccessHelper): Promise<void> {
      try {
        let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
        assetChangeRequest.saveCameraPhoto();
@@ -101,7 +101,7 @@
      }
    }
 
-   async function mediaLibRequestBuffer(photoAsset: photoAccessHelper.PhotoAsset) {
+   async function mediaLibRequestBuffer(photoAsset: photoAccessHelper.PhotoAsset, context: Context) {
      let requestOptions: photoAccessHelper.RequestOptions = {
        // 按照业务需求配置回图模式。
        // FAST_MODE：仅接收一阶段低质量图回调。

@@ -81,7 +81,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
         };
     ```
 
-2. log_type设置1：采集调用栈，触发检测的阈值用户自定义。需要配置采样栈相关的参数，具体参数如下：
+2. log_type设置1：采集调用栈，触发检测的阈值用户自定义。**log_type=1，必须配置采样栈相关的5个参数**，具体参数如下：
 
     （1）sample_interval：主线程超时采样检测间隔。系统根据开发者设置的interval进行超时检测判断，并使用该interval作为周期性任务检测的间隔。范围：[50, 500]，单位：ms。默认值：150ms。
 
@@ -123,7 +123,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
         };
     ```
 
-## 主线程超时事件规格
+## 主线程超时事件日志规格
 
 1. 日志老化规格。
 
@@ -191,9 +191,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 4. trace规格简介。
 
-    trace文件大小约为1-5M左右。
-
-    可结合可视化工具进行trace分析，解析trace文件参考：[SmartPerf编译部署指导文档](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/ide/README_zh.md)。
+    trace文件大小约为1-5M左右。trace文件可以通过[HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具进行可视化分析。工具下载链接：[developtools_smartperf_host官方发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。。
 
     trace文件说明参考：[web端加载trace说明](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_systemtrace.md)。
 

@@ -6,7 +6,7 @@ The Display module provides APIs for managing displays, such as obtaining inform
 >
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohso.display (Display)](js-apis-display.md).
+> - This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.display (Display)](js-apis-display.md).
 
 ## Modules to Import
 
@@ -154,7 +154,7 @@ try {
 ## display.setFoldDisplayMode<sup>10+</sup>
 setFoldDisplayMode(mode: FoldDisplayMode): void
 
-Sets the display mode of the foldable device.
+Sets the display mode of the foldable device. This API is unavailable for 2-in-1 devices.
 
 **System API**: This is a system API.
 
@@ -224,6 +224,123 @@ try {
   display.setFoldStatusLocked(locked);
 } catch (exception) {
   console.error('Failed to change the fold status locked mode. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.addVirtualScreenBlocklist<sup>18+</sup>
+addVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
+
+Adds windows to the list of windows that are not allowed to be displayed during casting. This API takes effect only for the main window of an application or system windows. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                                      | Mandatory| Description                                                   |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| windowIds     | Array\<number>    | Yes  | List of window IDs. If a child window ID is passed in, it will not take effect. The window ID is an integer greater than 0. You are advised to call [getWindowProperties()](js-apis-window.md#getwindowproperties9) to obtain the window ID.|
+
+**Return value**
+
+| Type| Description|
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.|
+| 801     | Capability not supported.Function addVirtualScreenBlocklist can not work correctly due to limited device capabilities. |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display, window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // ...
+    let windowId = windowStage.getMainWindowSync().getWindowProperties().id;
+    let windowIds = [windowId];
+
+    let promise = display.addVirtualScreenBlocklist(windowIds);
+    promise.then(() => {
+      console.info('Succeeded in adding virtual screen blocklist.');
+    }).catch((err: BusinessError) => {
+      console.error('Failed to add virtual screen blocklist. Code: ' + JSON.stringify(err));
+    })
+  }
+}
+```
+
+## display.removeVirtualScreenBlocklist<sup>18+</sup>
+removeVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
+
+Removes windows from the list of windows that are not allowed to be displayed during casting. This API takes effect only for the main window of an application or system windows. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                                      | Mandatory| Description                                                   |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| windowIds     | Array\<number>    | Yes  | List of window IDs. If a child window ID is passed in, it will not take effect. The window ID is an integer greater than 0. You are advised to call [getWindowProperties()](js-apis-window.md#getwindowproperties9) to obtain the window ID.|
+
+**Return value**
+
+| Type| Description|
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.|
+| 801     | Capability not supported.Function removeVirtualScreenBlocklist can not work correctly due to limited device capabilities. |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display, window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // ...
+    let windowId = windowStage.getMainWindowSync().getWindowProperties().id;
+    let windowIds = [windowId];
+
+    let promise = display.addVirtualScreenBlocklist(windowIds);
+    promise.then(() => {
+      console.info('Succeeded in adding virtual screen blocklist.');
+    }).catch((err: BusinessError) => {
+      console.error('Failed to add virtual screen blocklist. Code: ' + JSON.stringify(err));
+    })
+
+    promise = display.removeVirtualScreenBlocklist(windowIds);
+    promise.then(() => {
+      console.info('Succeeded in removing virtual screen blocklist.');
+    }).catch((err: BusinessError) => {
+      console.error('Failed to remove virtual screen blocklist. Code: ' + JSON.stringify(err));
+    })
+  }
 }
 ```
 

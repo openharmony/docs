@@ -37,6 +37,8 @@
     - [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md)
 - 错误码<!--background-tasks-arkts-errcode-->
   - [backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)
+  <!--Del-->
   - [DeviceUsageStatistics错误码](errorcode-DeviceUsageStatistics.md)
+  <!--DelEnd-->
   - [reminderAgentManager错误码](errorcode-reminderAgentManager.md)
   - [workScheduler错误码](errorcode-workScheduler.md)

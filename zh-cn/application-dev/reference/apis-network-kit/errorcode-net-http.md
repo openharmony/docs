@@ -182,8 +182,9 @@ Failed to write the received data to the disk or application.
 
 **可能原因**
 
-1、应用没有写文件权限或待下载的文件超过5M。
-2、上一次请求数据未接受完毕便调用destroy销毁导致接收数据不完整。
+1.应用没有写文件权限或待下载的文件超过5M。
+
+2.上一次请求数据未接受完毕便调用destroy销毁导致接收数据不完整。
 
 **处理步骤**
 
@@ -201,7 +202,7 @@ Upload failed.
 
 **可能原因**
 
-文件过大或者网络问题。对于FTP，服务器通常会拒绝STOR命令。错误缓冲区通常包含服务器的解释。
+文件过大或者网络问题，对于FTP，服务器通常会拒绝STOR命令，错误缓冲区通常包含服务器的解释。
 
 **处理步骤**
 
@@ -547,17 +548,17 @@ It is not allowed to access this domain.
 
 **处理步骤**
 
-可参考[配置服务器域名文档](https://developer.huawei.com/consumer/cn/doc/atomic-guides-V5/agc-help-harmonyos-server-domain-V5)完成服务器域名相关配置。
+可参考配置服务器域名文档完成服务器域名相关配置。
 
-## 2300999 未知错误
+## 2300999 内部错误
 
 **错误信息**
 
-Unknown error.
+Internal error.
 
 **错误描述**
 
-未知错误。
+内部错误。
 
 **可能原因**
 

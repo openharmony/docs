@@ -60,7 +60,7 @@
            // 写到媒体库文件中。
            await fileIo.write(file.fd, media);
            await fileIo.close(file.fd);
-           promptAction.showToast({ message: '已保存至相册！' });
+           promptAction.openToast({ message: '已保存至相册！' });
          });
      }
      catch (error) {
@@ -84,11 +84,11 @@
              .padding({top: 12, bottom: 12, left: 24, right: 24})
              .onClick((event: ClickEvent, result: SaveButtonOnClickResult) => {
                if (result === SaveButtonOnClickResult.SUCCESS) {
-                 const context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+                 const context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
                  // 免去权限申请和权限请求等环节，获得临时授权，保存对应图片。
                  savePhotoToGallery(context);
                } else {
-                 promptAction.showToast({ message: '设置权限失败！' })
+                 promptAction.openToast({ message: '设置权限失败！' })
                }
              })
          }

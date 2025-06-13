@@ -398,11 +398,11 @@ Releases the DNS query result.
 
 **201**: no permission.
 
-**401**: parameter error.
+**401**: invalid parameter.
 
 **2100002**: failed to connect to the service.
 
-**2100003**: internal error.
+2100003 - Internal error.
 
 **Required permissions**:
 
@@ -439,11 +439,11 @@ Obtains the DNS result using **netId**.
 
 **201**: no permission.
 
-**401**: parameter error.
+**401**: invalid parameter.
 
 **2100002**: failed to connect to the service.
 
-**2100003**: internal error.
+2100003 - Internal error.
 
 **Required permissions**:
 
@@ -476,11 +476,11 @@ Obtains all activated data networks.
 
 **201**: no permission.
 
-**401**: parameter error.
+**401**: invalid parameter.
 
 **2100002**: failed to connect to the service.
 
-**2100003**: internal error.
+2100003 - Internal error.
 
 **Required permissions**:
 
@@ -514,11 +514,11 @@ Obtains the link information of a data network.
 
 **201**: no permission.
 
-**401**: parameter error.
+**401**: invalid parameter.
 
 **2100002**: failed to connect to the service.
 
-**2100003**: internal error.
+2100003 - Internal error.
 
 **Required permissions**:
 
@@ -551,11 +551,11 @@ Obtains the default network proxy.
 
 **201**: no permission.
 
-**401**: parameter error.
+**401**: invalid parameter.
 
 **2100002**: failed to connect to the service.
 
-**2100003**: internal error.
+2100003 - Internal error.
 
 
 ### OH_NetConn_GetDefaultNet()
@@ -584,11 +584,11 @@ Obtains the default activated data network.
 
 **201**: no permission.
 
-**401**: parameter error.
+**401**: invalid parameter.
 
 **2100002**: failed to connect to the service.
 
-**2100003**: internal error.
+2100003 - Internal error.
 
 **Required permissions**:
 
@@ -622,11 +622,11 @@ Obtains the capabilities of a data network.
 
 **201**: no permission.
 
-**401**: parameter error.
+**401**: invalid parameter.
 
 **2100002**: failed to connect to the service.
 
-**2100003**: internal error.
+2100003 - Internal error.
 
 **Required permissions**:
 
@@ -659,11 +659,11 @@ Checks whether a default activated data network is available.
 
 **201**: no permission.
 
-**401**: parameter error.
+**401**: invalid parameter.
 
 **2100002**: failed to connect to the service.
 
-**2100003**: internal error.
+2100003 - Internal error.
 
 **Required permissions**:
 
@@ -696,11 +696,11 @@ Checks whether metering is enabled for the default data network.
 
 **201**: no permission.
 
-**401**: parameter error.
+**401**: invalid parameter.
 
 **2100002**: failed to connect to the service.
 
-**2100003**: internal error.
+2100003 - Internal error.
 
 **Required permissions**:
 
@@ -737,11 +737,11 @@ Registers a custom DNS resolver.
 
 **201**: no permission.
 
-**401**: parameter error.
+**401**: invalid parameter.
 
 **2100002**: failed to connect to the service.
 
-**2100003**: internal error.
+2100003 - Internal error.
 
 **Required permissions**:
 
@@ -772,11 +772,11 @@ Unregisters a custom DNS resolver.
 
 **201**: no permission.
 
-**401**: parameter error.
+**401**: invalid parameter.
 
 **2100002**: failed to connect to the service.
 
-**2100003**: internal error.
+2100003 - Internal error.
 
 **Required permissions**:
 
@@ -809,11 +809,11 @@ Registers a custom DNS resolver.
 
 **201**: no permission.
 
-**401**: parameter error.
+**401**: invalid parameter.
 
 **2100002**: failed to connect to the service.
 
-**2100003**: internal error.
+2100003 - Internal error.
 
 **Required permissions**:
 
@@ -840,11 +840,11 @@ Unregisters a custom DNS resolver.
 
 **201**: no permission.
 
-**401**: parameter error.
+**401**: invalid parameter.
 
 **2100002**: failed to connect to the service.
 
-**2100003**: internal error.
+2100003 - Internal error.
 
 **Required permissions**:
 
@@ -876,11 +876,11 @@ Binds a socket to the specified network.
 
 **0**: success.
 
-**401**: parameter error.
+**401**: invalid parameter.
 
 **2100002**: failed to connect to the service.
 
-**2100003**: internal error.
+2100003 - Internal error.
 
 
 ### OH_NetConn_SetAppHttpProxy()
@@ -907,7 +907,7 @@ Sets the application-level proxy configuration.
 
 **0**: success.
 
-**401**: parameter error.
+**401**: invalid parameter.
 
 
 ### OH_NetConn_RegisterAppHttpProxyCallback()
@@ -935,7 +935,7 @@ Registers a callback for application-level proxy changes.
 
 **0**: success.
 
-**401**: parameter error.
+**401**: invalid parameter.
 
 
 ### OH_NetConn_UnregisterAppHttpProxyCallback()
@@ -988,11 +988,11 @@ Registers a callback to for status changes of the specified network.
 
 **201**: no permission.
 
-**401**: parameter error.
+**401**: invalid parameter.
 
 **2100002**: failed to connect to the service.
 
-**2100003**: internal error.
+2100003 - Internal error.
 
 **2101008**: The callback has been registered.
 
@@ -1030,11 +1030,11 @@ Registers a callback to for status changes of the default network.
 
 **201**: no permission.
 
-**401**: parameter error.
+**401**: invalid parameter.
 
 **2100002**: failed to connect to the service.
 
-**2100003**: internal error.
+2100003 - Internal error.
 
 **2101008**: The callback has been registered.
 
@@ -1071,11 +1071,11 @@ Unregisters the callback for network status changes.
 
 **201**: no permission.
 
-**401**: parameter error.
+**401**: invalid parameter.
 
 **2100002**: failed to connect to the service.
 
-**2100003**: internal error.
+2100003 - Internal error.
 
 **2101007**: The corresponding callback is not found.
 

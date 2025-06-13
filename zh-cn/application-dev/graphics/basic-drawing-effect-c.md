@@ -127,14 +127,15 @@
       width指线宽的像素值。
 
    - 可使用OH_Drawing_PenSetAntiAlias()接口设置画笔抗锯齿，以使图形绘制边缘更平滑。
+
       ```c++
-      OH_Drawing_PenSetAntiAlias(pen, true)；
+      OH_Drawing_PenSetAntiAlias(pen, true);
       ```
 
    - 可使用OH_Drawing_PenSetCap()接口设置画笔线帽样式。
 
       ```c++
-      OH_Drawing_PenSetCap(pen, OH_Drawing_PenLineCapStyle)；
+      OH_Drawing_PenSetCap(pen, OH_Drawing_PenLineCapStyle);
       ```
 
       OH_Drawing_PenLineCapStyle线帽样式可选分类对应如下：
@@ -148,7 +149,7 @@
    - 可使用OH_Drawing_PenSetJoin()接口设置画笔转角样式。
 
       ```c++
-      OH_Drawing_PenSetJoin(pen, OH_Drawing_PenLineJoinStyle)；
+      OH_Drawing_PenSetJoin(pen, OH_Drawing_PenLineJoinStyle);
       ```
 
       OH_Drawing_PenLineJoinStyle转角样式可选分类对应如下：
@@ -171,3 +172,11 @@
    ```c++
    OH_Drawing_PenDestroy(pen); 
    ```
+
+<!--RP1-->
+## 相关实例
+
+针对Drawing(C/C++)的开发，有以下相关实例可供参考：
+
+- [NDKGraphicsDraw (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKGraphicsDraw)
+<!--RP1End-->

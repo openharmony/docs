@@ -47,13 +47,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  private storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
@@ -108,20 +107,19 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
       Button('SendData')
         .onClick(() => {
           this.session?.setReceiveDataCallback((data: Record<string, Object>) => {
-            console.info(`Successed in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
+            console.info(`Succeeded in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
           });
         })
     }
@@ -146,7 +144,7 @@ Sets a callback with a return value to receive data from the UIExtensionComponen
 
 | Name| Type| Mandatory| Description            |
 | -------- | -------- | -------- |----------------|
-| callback | (data: { [key: string]: Object }) => { [key: string]: Object } | Yes| Callback used to return the received data with a return value.|
+| callback | (data: Record\<string, Object>) => Record\<string, Object> | Yes| Callback used to return the received data with a return value.|
 
 **Error codes**
 
@@ -163,20 +161,19 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
       Button('SetReceiveDataForResultCallback')
         .onClick(() => {
           this.session?.setReceiveDataForResultCallback((data: Record<string, Object>) => {
-            console.info(`Successed in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
+            console.info(`Succeeded in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
             return data;
           });
         })
@@ -232,7 +229,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -250,7 +246,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbility, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbility`);
+      console.info(`Succeeded in startAbility`);
     })
   }
 
@@ -302,7 +298,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -324,7 +319,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbility, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbility`);
+      console.info(`Succeeded in startAbility`);
     })
   }
 
@@ -383,7 +378,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -402,7 +396,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 
     session.startAbility(want, starOptions)
       .then(() => {
-        console.info(`Successed in startAbility`);
+        console.info(`Succeeded in startAbility`);
       })
       .catch((err: BusinessError) => {
         console.error(`Failed to startAbility, code: ${err.code}, msg: ${err.message}`);
@@ -463,7 +457,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -481,7 +474,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbilityForResult, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbilityForResult, data: ${JSON.stringify(data)}`);
+      console.info(`Succeeded in startAbilityForResult, data: ${JSON.stringify(data)}`);
     })
   }
 
@@ -538,7 +531,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -560,7 +552,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbilityForResult, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbilityForResult, data: ${JSON.stringify(data)}`);
+      console.info(`Succeeded in startAbilityForResult, data: ${JSON.stringify(data)}`);
     })
   }
 
@@ -625,7 +617,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -644,7 +635,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 
     session.startAbilityForResult(want, starOptions)
       .then((data: common.AbilityResult) => {
-        console.info(`Successed in startAbilityForResult, data: ${JSON.stringify(data)}`);
+        console.info(`Succeeded in startAbilityForResult, data: ${JSON.stringify(data)}`);
       })
       .catch((err: BusinessError) => {
         console.error(`Failed to startAbilityForResult, code: ${err.code}, msg: ${err.message}`);
@@ -750,7 +741,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -773,7 +763,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbilityAsCaller, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbilityAsCaller`);
+      console.info(`Succeeded in startAbilityAsCaller`);
     })
   }
 
@@ -820,7 +810,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -847,7 +836,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbilityAsCaller, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbilityAsCaller`);
+      console.info(`Succeeded in startAbilityAsCaller`);
     })
   }
 
@@ -901,7 +890,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -925,7 +913,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 
     session.startAbilityAsCaller(localWant, startOptions)
       .then(() => {
-        console.info(`Successed in startAbilityAsCaller`);
+        console.info(`Succeeded in startAbilityAsCaller`);
       })
       .catch((err: BusinessError) => {
         console.error(`Failed to startAbilityAsCaller, code: ${err.code}, msg: ${err.message}`);

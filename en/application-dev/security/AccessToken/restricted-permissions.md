@@ -28,18 +28,6 @@ Modify the **"bundle-info"** &gt; **"apl"** field in the file.
 
 ## Restricted Permissions
 
-### ohos.permission.kernel.DISABLE_GOTPLT_RO_PROTECTION
-
-Allows an application to disable the read-only protection on the .got.plt.
-
-<!--RP22--><!--RP22End-->
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Valid since**: 17
-
 ### ohos.permission.SYSTEM_FLOAT_WINDOW
 
 Allows an application to be displayed in a floating window on top of other applications.
@@ -488,6 +476,18 @@ With this permission, the application can call APIs to perform virtual screen ma
 
 **Valid since**: 16
 
+### ohos.permission.kernel.DISABLE_GOTPLT_RO_PROTECTION
+
+Allows an application to disable the read-only protection on .got.plt.
+
+<!--RP22--><!--RP22End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 17
+
 ### ohos.permission.USE_FRAUD_APP_PICKER
 
 Allows an application to use the fraud app Picker to obtain application information.
@@ -525,4 +525,3 @@ This permission is required for the applications that need to use private networ
 **Authorization mode**: system_grant
 
 **Valid since**: 16
-

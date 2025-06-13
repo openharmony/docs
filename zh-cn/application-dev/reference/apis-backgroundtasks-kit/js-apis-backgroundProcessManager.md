@@ -27,7 +27,11 @@ setProcessPriority(pid: number, priority: ProcessPriority): Promise&lt;void&gt;
 | pid      | number                              | 是    | 需要被压制子进程的进程号，[OH_Ability_StartNativeChildProcess](../apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess)接口创建子进程后的pid参数，即为子进程进程号。 |
 | priority | [ProcessPriority](#processpriority) | 是    | 压制档位。                                                                                                                         |
 
+**返回值**：
 
+| 类型             | 说明               |
+| -------------- | ---------------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -65,6 +69,12 @@ resetProcessPriority(pid: number): Promise&lt;void&gt;
 | 参数名      | 类型                 | 必填   | 说明                                                                                                                        |
 |----------|--------------------| ---- |---------------------------------------------------------------------------------------------------------------------------|
 | pid      | number             | 是    | 子进程的进程号，[OH_Ability_StartNativeChildProcess](../apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess)接口创建子进程后的pid参数，即为子进程进程号。 |
+
+**返回值**：
+
+| 类型             | 说明               |
+| -------------- | ---------------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例**：
 

@@ -8,7 +8,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将设备管理应用激活后调用，实现相应功能。
+> 本模块接口仅对设备管理应用开放，且调用接口前需激活设备管理应用，具体请参考[MDM Kit开发指南](../../mdm/mdm-kit-guide.md)。
 
 ## 导入模块
 
@@ -37,7 +37,7 @@ uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 
 | 类型                | 说明                                                         |
 | ------------------- | ------------------------------------------------------------ |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。当指定设备管理应用卸载用户证书失败时会抛出错误对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当卸载用户证书失败时会抛出错误对象。 |
 
 **错误码**：
 
@@ -56,11 +56,12 @@ uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let aliasStr = "certName"
+let aliasStr = "certName";
 securityManager.uninstallUserCertificate(wantTemp, aliasStr).then(() => {
   console.info(`Succeeded in uninstalling user certificate.`);
 }).catch((err: BusinessError) => {
@@ -106,16 +107,18 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 **示例：**
 
 ```ts
-import { Want } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 let certFileArray: Uint8Array = new Uint8Array();
-// 在MainAbility的onCreate回调函数中初始化Context变量
-// 把测试文件test.cer放入rawfile目录
-getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
+// The variable context needs to be initialized in MainAbility's onCreate callback function
+// test.cer needs to be placed in the rawfile directory
+const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+context.resourceManager.getRawFileContent("test.cer").then((value) => {
   certFileArray = value;
   securityManager.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" })
     .then((result) => {
@@ -124,8 +127,8 @@ getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
     console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
   })
 }).catch((err: BusinessError) => {
-  console.error(`Failed to get row file content. message: ${err.message}`);
-  return
+  console.error(`Failed to get raw file content. message: ${err.message}`);
+  return;
 });
 ```
 
@@ -167,16 +170,18 @@ installUserCertificate(admin: Want, certificate: CertBlob, accountId: number): s
 **示例：**
 
 ```ts
-import { Want } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 let certFileArray: Uint8Array = new Uint8Array();
 let accountId: number = 100;
-// 在MainAbility的onCreate回调函数中初始化Context变量
-// 把测试文件test.cer放入rawfile目录
-getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
+// The variable context needs to be initialized in MainAbility's onCreate callback function
+// test.cer needs to be placed in the rawfile directory
+const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+context.resourceManager.getRawFileContent("test.cer").then((value) => {
   certFileArray = value;
   try {
     let result: string = securityManager.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" }, accountId);
@@ -190,7 +195,7 @@ getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
 
 getUserCertificates(admin: Want, accountId: number): Array&lt;string&gt;
 
-获取指定系统账户下的用户证书。
+获取指定系统账户下的用户证书信息。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -223,6 +228,7 @@ getUserCertificates(admin: Want, accountId: number): Array&lt;string&gt;
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -240,7 +246,7 @@ try {
 
 getSecurityStatus(admin: Want, item: string): string
 
-获取安全策略信息。
+获取当前设备安全策略信息。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -274,6 +280,7 @@ getSecurityStatus(admin: Want, item: string): string
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -319,6 +326,7 @@ setPasswordPolicy(admin: Want, policy: PasswordPolicy): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -374,6 +382,7 @@ getPasswordPolicy(admin: Want): PasswordPolicy
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -420,6 +429,7 @@ setAppClipboardPolicy(admin: Want, tokenId: number, policy: ClipboardPolicy): vo
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -471,6 +481,7 @@ getAppClipboardPolicy(admin: Want, tokenId?: number): string
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -619,6 +630,7 @@ setWatermarkImage(admin: Want, bundleName: string, source: string | image.PixelM
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -667,6 +679,7 @@ cancelWatermarkImage(admin: Want, bundleName: string, accountId: number): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

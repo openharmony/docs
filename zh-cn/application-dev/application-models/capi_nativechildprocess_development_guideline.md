@@ -294,7 +294,7 @@ libchild_process.so
 
 | 名称                                                                                                                                                                                                                                                                                                                                | 描述                                                                                    |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| [NativeChildProcess_Args](../reference/apis-ability-kit/c-apis-ability-childprocess.md#nativechildprocess_args)* [OH_Ability_GetCurrentChildProcessArgs](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess)() | 返回子进程自身的启动参数。 |
+| [NativeChildProcess_Args](../reference/apis-ability-kit/c-apis-ability-childprocess.md#nativechildprocess_args)* [OH_Ability_GetCurrentChildProcessArgs](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_getcurrentchildprocessargs)() | 返回子进程自身的启动参数。 |
 
 ### 开发步骤
 
@@ -313,7 +313,7 @@ libchild_process.so
 
 **获取启动参数**
 
-[OH_Ability_StartNativeChildProcess](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess)创建子进程后，子进程内的任意so和任意子线程可以通过调用[OH_Ability_GetCurrentChildProcessArgs](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess)()获取到子进程的启动参数[NativeChildProcess_Args](../reference/apis-ability-kit/c-apis-ability-childprocess.md#nativechildprocess_args)，便于操作相关的文件描述符。
+[OH_Ability_StartNativeChildProcess](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess)创建子进程后，子进程内的任意so和任意子线程可以通过调用[OH_Ability_GetCurrentChildProcessArgs](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_getcurrentchildprocessargs)()获取到子进程的启动参数[NativeChildProcess_Args](../reference/apis-ability-kit/c-apis-ability-childprocess.md#nativechildprocess_args)，便于操作相关的文件描述符。
 
 ```c++
 #include <AbilityKit/native_child_process.h>

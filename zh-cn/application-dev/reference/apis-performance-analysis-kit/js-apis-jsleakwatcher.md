@@ -25,7 +25,7 @@ enable(isEnable: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| isEnable | boolean | 是 | 是否使能jsLeakWatcher。 |
+| isEnable | boolean | 是 | 是否使能jsLeakWatcher。true：使能jsleakwatcher；false：不使能jsleakwatcher。 |
 
 **示例：**
 
@@ -108,6 +108,6 @@ dump(filePath: string): Array&lt;string&gt;
 **示例：**
 
 ```js
-let context = getContext(this);
-let files:Array<string> = jsLeakWatcher.dump(context.filesDir);
+let context = this.getUIContext().getHostContext();
+let files: Array<string> = jsLeakWatcher.dump(context?.filesDir);
 ```

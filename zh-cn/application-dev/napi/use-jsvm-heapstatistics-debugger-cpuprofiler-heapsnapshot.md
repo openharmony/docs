@@ -71,6 +71,11 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(getVM())JS";
 ```
 
+预计的输出结果：
+```
+JSVM OH_JSVM_GetVM: success
+```
+
 ### OH_JSVM_GetHeapStatistics
 
 返回一组虚拟机堆的统计数据。
@@ -131,6 +136,22 @@ static JSVM_PropertyDescriptor descriptor[] = {
 
 ```c++
 const char *srcCallNative = R"JS(getHeapStatistics())JS";
+```
+预计的输出结果：
+```
+JSVM API heap totalHeapSize: 1597440
+JSVM API heap totalHeapSizeExecutable: 0
+JSVM API heap totalPhysicalSize: 1323008
+JSVM API heap totalAvailableSize: 1519203688
+JSVM API heap usedHeapSize: 178256
+JSVM API heap heapSizeLimit: 1518338048
+JSVM API heap mallocedMemory: 32848
+JSVM API heap externalMemory: 0
+JSVM API heap peakMallocedMemory: 40960
+JSVM API heap numberOfNativeContexts: 1
+JSVM API heap numberOfDetachedContexts: 0
+JSVM API heap totalGlobalHandlesSize: 8192
+JSVM API heap usedGlobalHandlesSize: 32
 ```
 
 以下接口的示例代码可以参考链接：

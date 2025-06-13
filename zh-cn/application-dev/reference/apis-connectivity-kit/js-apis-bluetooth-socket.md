@@ -110,7 +110,7 @@ let acceptClientSocket = (code: BusinessError, number: number) => {
     return;
   } else {
     clientNumber = number; // 获取的clientNumber用作客户端后续读/写操作socket的id。
-    console.info('sppListen success, serverNumber = ' + clientNumber);
+    console.info('sppListen success, clientNumber = ' + clientNumber);
   }
 }
 try {
@@ -156,15 +156,15 @@ sppConnect(deviceId: string, options: SppOptions, callback: AsyncCallback&lt;num
 **示例：**
 
 ```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let clientSocket = (code: BusinessError, number: number) => {
   if (code) {
-    console.error('sppListen error, code is ' + code);
+    console.error('sppConnect  error, code is ' + code);
     return;
   } else {
-    // 获取的number用作客户端后续读/写操作socket的id。
-    console.info('bluetooth serverSocket Number: ' + number);
+    // 获取的number用作客户端后续读/写操作的socket id。
+    console.info('bluetooth clientSocket Number: ' + number);
   }
 }
 let sppOption:socket.SppOptions = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
@@ -454,7 +454,6 @@ sppWriteAsync(clientSocket: number, data: ArrayBuffer): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
-|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.              |
 |801 | Capability not supported.          |
 |2901054 | IO error. |
 |2900099 | Operation failed. |
@@ -462,13 +461,15 @@ sppWriteAsync(clientSocket: number, data: ArrayBuffer): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { socket } from '@kit.ConnectivityKit'
+import { socket } from '@kit.ConnectivityKit';
 import { AsyncCallback,BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 let arrayBuffer = new ArrayBuffer(8);
 let data = new Uint8Array(arrayBuffer);
 try {
-    await socket.sppWriteAsync(clientNumber, arrayBuffer);
+    socket.sppWriteAsync(clientNumber, arrayBuffer).then(() => {
+      console.info("sppWrite success");
+    });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -507,7 +508,6 @@ sppReadAsync(clientSocket: number): Promise&lt;ArrayBuffer&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
-|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.              |
 |801 | Capability not supported.          |
 |2901054 | IO error. |
 |2900099 | Operation failed. |
@@ -515,18 +515,19 @@ sppReadAsync(clientSocket: number): Promise&lt;ArrayBuffer&gt;
 **示例：**
 
 ```js
-import { socket } from '@kit.ConnectivityKit'
+import { socket } from '@kit.ConnectivityKit';
 import { AsyncCallback,BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 let buffer = new ArrayBuffer(1024);
-let data = new Uint8Array(arrayBuffer);
+let data = new Uint8Array(buffer);
 let flag = 1;
 while (flag) {
   try {
-    buffer = await socket.sppReadAsync(this.clientNumber);
+    socket.sppReadAsync(clientNumber).then(outBuffer => {
+      buffer = outBuffer;
+    });
     if (buffer != null) {
       console.info('sppRead success, data = ' + JSON.stringify(buffer));
-      printArrayBuffer(buffer);
     } else {
       console.error('sppRead error, data is null');
     }
@@ -544,11 +545,11 @@ while (flag) {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称     | 类型                | 可读   | 可写   | 说明          |
+| 名称     | 类型                | 只读   | 可选   | 说明          |
 | ------ | ------------------- | ---- | ---- | ----------- |
-| uuid   | string              | 是    | 是    | spp单据的uuid。 |
-| secure | boolean             | 是    | 是    | 是否是安全通道。true表示是安全通道，false表示非安全通道。    |
-| type   | [SppType](#spptype)            | 是    | 是    | Spp链路类型。    |
+| uuid   | string              | 否    | 否    | spp单据的uuid。 |
+| secure | boolean             | 否    | 否    | 是否是安全通道。true表示是安全通道，false表示非安全通道。    |
+| type   | [SppType](#spptype)            | 否    | 否    | Spp链路类型。    |
 
 
 ## SppType

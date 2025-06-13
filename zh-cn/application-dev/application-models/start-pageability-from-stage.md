@@ -22,7 +22,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 @Entry
 @Component
 struct Page_StartFAModel {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Column() {
@@ -65,7 +65,6 @@ UIAbility通过startAbilityForResult启动PageAbility与UIAbility的代码一样
 import { common, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { promptAction } from '@kit.ArkUI';
 
 const TAG: string = '[Page_StartFAModel]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -73,7 +72,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 @Entry
 @Component
 struct Page_StartFAModel {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Column() {
@@ -91,7 +90,7 @@ struct Page_StartFAModel {
             this.context.startAbilityForResult(want).then((result) => {
               hilog.info(DOMAIN_NUMBER, TAG, 'Ability verify result: ' + JSON.stringify(result));
               if (result !== null) {
-                promptAction.showToast({
+                this.getUIContext().getPromptAction().showToast({
                   message: JSON.stringify(result)
                 });
               }
@@ -143,7 +142,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
       this.context.startAbility(wantFA).then(() => {
         hilog.info(DOMAIN_NUMBER, TAG, 'Start Ability successfully.');
       }).catch((error: BusinessError) => {
-        hilog.info(DOMAIN_NUMBER, TAG, `Ability failed: ${JSON.stringify(error)}`);
+        hilog.error(DOMAIN_NUMBER, TAG, `Ability failed: ${JSON.stringify(error)}`);
       });
     }
   };

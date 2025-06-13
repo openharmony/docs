@@ -193,9 +193,8 @@ The authentication token has expired. The interval between the time when the Aut
 **Solution**
 
 Initiate authentication again and issue a valid token.
-<!--DelEnd-->
 
-## 12700001 Failed to Enroll Faces
+## 12700001 Face Enrollment Failed
 
 **Error Message**
 
@@ -211,3 +210,4 @@ Operation failed.
 **Solution**
 
 Call the API again later or restart the device.
+<!--DelEnd-->

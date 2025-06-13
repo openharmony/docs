@@ -237,9 +237,9 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力**: SystemCapability.Security.AccessToken
+**系统能力：** SystemCapability.Security.AccessToken
 
 **参数：**
 
@@ -268,7 +268,7 @@ import { abilityAccessCtrl, Context, PermissionRequestResult, common } from '@ki
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let context: Context = getContext(this) as common.UIAbilityContext;
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult) => {
   if (err) {
     console.error(`requestPermissionsFromUser fail, err->${JSON.stringify(err)}`);
@@ -295,9 +295,9 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力**: SystemCapability.Security.AccessToken
+**系统能力：** SystemCapability.Security.AccessToken
 
 **参数：**
 
@@ -331,7 +331,7 @@ import { abilityAccessCtrl, Context, PermissionRequestResult, common } from '@ki
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let context: Context = getContext(this) as common.UIAbilityContext;
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((data: PermissionRequestResult) => {
   console.info('data:' + JSON.stringify(data));
   console.info('data permissions:' + data.permissions);
@@ -356,9 +356,9 @@ requestPermissionOnSetting(context: Context, permissionList: Array&lt;Permission
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力**: SystemCapability.Security.AccessToken
+**系统能力：** SystemCapability.Security.AccessToken
 
 **参数：**
 
@@ -393,7 +393,7 @@ import { abilityAccessCtrl, Context, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let context: Context = getContext(this) as common.UIAbilityContext;
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 atManager.requestPermissionOnSetting(context, ['ohos.permission.CAMERA']).then((data: Array<abilityAccessCtrl.GrantStatus>) => {
   console.info('data:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
@@ -415,9 +415,9 @@ requestGlobalSwitch(context: Context, type: SwitchType): Promise&lt;boolean&gt;
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力**: SystemCapability.Security.AccessToken
+**系统能力：** SystemCapability.Security.AccessToken
 
 **参数：**
 
@@ -451,7 +451,7 @@ import { abilityAccessCtrl, Context, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let context: Context = getContext(this) as common.UIAbilityContext;
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 atManager.requestGlobalSwitch(context, abilityAccessCtrl.SwitchType.CAMERA).then((data: Boolean) => {
   console.info('data:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
@@ -647,7 +647,7 @@ type PermissionRequestResult = _PermissionRequestResult
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -663,7 +663,7 @@ type Context = _Context
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Security.AccessToken
 

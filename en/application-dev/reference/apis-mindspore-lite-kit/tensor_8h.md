@@ -5,13 +5,15 @@
 
 Provides tensor-related APIs, which can be used to create tensors and modify tensor information. These APIs are non-thread-safe.
 
-**Since**
+**File to include**: <mindspore/tensor.h>
 
-9
+**Library**: libmindspore_lite_ndk.so
 
-**Related Modules**
+**System capability**: SystemCapability.Ai.MindSpore
 
-[MindSpore](_mind_spore.md)
+**Since**: 9
+
+**Related module**: [MindSpore](_mind_spore.md)
 
 
 ## Summary
@@ -22,7 +24,7 @@ Provides tensor-related APIs, which can be used to create tensors and modify ten
 | Name| Description|
 | -------- | -------- |
 | [OH_AI_TensorHandle](_mind_spore.md#oh_ai_tensorhandle) | Defines the handle of a tensor object.|
-| [OH_AI_AllocatorHandle](_mind_spore.md#oh_ai_allocatorhandle) | Handle of the memory allocator.|
+| [OH_AI_AllocatorHandle](_mind_spore.md#oh_ai_allocatorhandle) | Defines the handle of the memory allocator.|
 
 
 ### Functions

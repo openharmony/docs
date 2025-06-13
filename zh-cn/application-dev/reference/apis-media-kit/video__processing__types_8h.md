@@ -32,7 +32,7 @@
 | -------- | -------- |
 | typedef struct [OH_VideoProcessing](_video_processing.md#oh_videoprocessing ) [OH_VideoProcessing](_video_processing.md#oh_videoprocessing) | 定义视频处理对象。 | 
 | typedef struct NativeWindow [OHNativeWindow](_video_processing.md#ohnativewindow) | 定义NativeWindow对象。 | 
-| typedef struct [OH_AVFormat](_video_processing.md#oh_avformat-1) [OH_AVFormat](_video_processing.md#oh_avformat) | 定义OH_AVFormat对象。 | 
+| typedef struct [OH_AVFormat](_video_processing.md#oh_avformat) [OH_AVFormat](_video_processing.md#oh_avformat) | 定义OH_AVFormat对象。 | 
 | typedef struct [VideoProcessing_ColorSpaceInfo](_video_processing___color_space_info.md) [VideoProcessing_ColorSpaceInfo](_video_processing.md#videoprocessing_colorspaceinfo) | 视频颜色空间信息数据结构。 | 
 | typedef enum [VideoDetailEnhancer_QualityLevel](_video_processing.md#videodetailenhancer_qualitylevel-1) [VideoDetailEnhancer_QualityLevel](_video_processing.md#videodetailenhancer_qualitylevel) | 用于细节增强的质量等级。 | 
 | typedef enum [VideoProcessing_ErrorCode](_video_processing.md#videoprocessing_errorcode-1) [VideoProcessing_ErrorCode](_video_processing.md#videoprocessing_errorcode) | 视频处理错误码。 | 
@@ -47,9 +47,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [VideoDetailEnhancer_QualityLevel](_video_processing.md#videodetailenhancer_qualitylevel-1) {<br/>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_NONE,<br/>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_LOW,<br/>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_MEDIUM,<br/>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_HIGH } | 用于细节增强的质量等级。 | 
+| [VideoDetailEnhancer_QualityLevel](_video_processing.md#videodetailenhancer_qualitylevel-1) {<br/>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_NONE,<br/>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_LOW,<br/>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_MEDIUM,<br/>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_HIGH<br/>} | 用于细节增强的质量等级。 | 
 | [VideoProcessing_ErrorCode](_video_processing.md#videoprocessing_errorcode-1) {<br/>VIDEO_PROCESSING_SUCCESS,<br/>VIDEO_PROCESSING_ERROR_INVALID_PARAMETER = 401,<br/>VIDEO_PROCESSING_ERROR_UNKNOWN = 29210001,<br/>VIDEO_PROCESSING_ERROR_INITIALIZE_FAILED,<br/>VIDEO_PROCESSING_ERROR_CREATE_FAILED,<br/>VIDEO_PROCESSING_ERROR_PROCESS_FAILED,<br/>VIDEO_PROCESSING_ERROR_UNSUPPORTED_PROCESSING,<br/>VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED,<br/>VIDEO_PROCESSING_ERROR_NO_MEMORY,<br/>VIDEO_PROCESSING_ERROR_INVALID_INSTANCE,<br/>VIDEO_PROCESSING_ERROR_INVALID_VALUE<br/>} | 视频处理错误码。 | 
-| [VideoProcessing_State](_video_processing.md#videoprocessing_state-1) {<br/>VIDEO_PROCESSING_STATE_RUNNING,<br/>VIDEO_PROCESSING_STATE_STOPPED } | 视频处理状态。 | 
+| [VideoProcessing_State](_video_processing.md#videoprocessing_state-1) {<br/>VIDEO_PROCESSING_STATE_RUNNING,<br/>VIDEO_PROCESSING_STATE_STOPPED<br/>} | 视频处理状态。 | 
 
 
 ### 变量

@@ -75,8 +75,8 @@ export const createArray: () => number[];
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_array:%{public}s', JSON.stringify(testNapi.createArray()));
 ```
@@ -117,8 +117,8 @@ export const createArrayWithLength: (length: number) => void[];
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let array = testNapi.createArrayWithLength(6);
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_array_with_length:%{public}d', array.length);
@@ -165,8 +165,8 @@ export const getArrayLength: (arr: Array<any>) => number | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 const arr = [0, 1, 2, 3, 4, 5];
 hilog.info(0x0000, 'testTag', 'Test Node-API get_array_length:%{public}d', testNapi.getArrayLength(arr));
@@ -213,8 +213,8 @@ export const isArray: <T>(data: Array<T> | T) => boolean | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   let value = new Array<number>(1);
   let data = "123";
@@ -269,8 +269,8 @@ export const napiSetElement: <T>(arr: Array<T>, index: number, value: T) => void
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 let arr = [10, 20, 30];
 testNapi.napiSetElement<number | string>(arr, 1, 'newElement');
 testNapi.napiSetElement<number | string>(arr, 2, 50);
@@ -325,8 +325,8 @@ export const napiGetElement: <T>(arr: Array<T>, index: number) => number | strin
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 interface MyObject {
   first: number;
@@ -383,8 +383,8 @@ export const napiHasElement: <T>(arr: Array<T>, index: number) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let arr = [10, 'hello', null, 'world'];
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_element arr[0]: %{public}s', testNapi.napiHasElement<number | string | null>(arr, 0));
@@ -430,8 +430,8 @@ ArkTS侧示例代码
 
 ```ts
 // 需要同时导入前文示例代码中的napiHasElement、napiGetElement接口
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let arr = [10, 'hello', null, 'world'];
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_element arr[0]: %{public}s', testNapi.napiHasElement<number | string | null>(arr, 0));
@@ -527,8 +527,8 @@ export const createTypedArray: <T>(type: TypedArrayTypes) => T;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 // 传递要创建的类型值
 let typedArray = testNapi.createTypedArray<Int8Array>(testNapi.TypedArrayTypes["INT8_ARRAY"]);
@@ -613,8 +613,8 @@ export const isTypedarray: (data: Object) => boolean | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   let value = new Uint8Array([1, 2, 3, 4]);
   let data = "123";
@@ -693,8 +693,8 @@ export const getTypedarrayInfo: <T>(typeArray: T, infoType: number) => ArrayBuff
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 // 传入TypedArray类型数据。TypedArray是一种用来描述二进制数据的类数组数据视图，没有直接构造器，可以用其子类构造类数组
 // TypedArray的子类有: Int8Array Uint8Array Uint8ClampedArray Int16Array Int32Array等
@@ -768,8 +768,8 @@ export const createDataView: (arraybuffer:ArrayBuffer) => DataView | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 const arrayBuffer = new ArrayBuffer(16);
 const dataView = testNapi.createDataView(arrayBuffer) as DataView;
@@ -819,8 +819,8 @@ export const isDataView: (date: DataView | string) => boolean | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   let buffer = new ArrayBuffer(16);
   let dataView = new DataView(buffer);
@@ -893,8 +893,8 @@ export const getDataViewInfo: (dataView: DataView, infoType: number) => ArrayBuf
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 // 创建一个ArrayBuffer
 let arrayBuffer = new Int8Array([2, 5]).buffer;

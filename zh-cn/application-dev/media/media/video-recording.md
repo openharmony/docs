@@ -30,8 +30,8 @@
 
 > **说明：**
 >
-> AVRecorder只负责视频数据的处理，需要与视频数据采集模块配合才能完成视频录制。视频数据采集模块需要通过Surface将视频数据传递给AVRecorder进行数据处理。当前常用的数据采集模块为相机模块，具体请参考[相机-录像](../camera/camera-recording.md)。
-> 文件的创建与存储，请参考[应用文件访问与管理](../../file-management/app-file-access.md)，默认存储在应用的沙箱路径之下，如需存储至图库，请使用[安全控件保存媒体资源](../medialibrary/photoAccessHelper-savebutton.md)对沙箱内文件进行存储。
+> AVRecorder只负责视频数据的处理，需要与视频数据采集模块配合才能完成视频录制。视频数据采集模块需要通过Surface将视频数据传递给AVRecorder进行数据处理。当前主流的数据采集模块为相机模块，详细实现请参考[相机-录像](../camera/camera-recording.md)。
+> 关于文件的创建与存储操作，请参考[应用文件访问与管理](../../file-management/app-file-access.md)，默认存储在应用的沙箱路径之下，如需存储至图库，请使用[安全控件保存媒体资源](../medialibrary/photoAccessHelper-savebutton.md)对沙箱内文件进行存储。
 
 
 AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis-media-kit/js-apis-media.md#avrecorder9)。
@@ -88,7 +88,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
    ```ts
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   import { fileIo as fs } form '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
 
    let avProfile: media.AVRecorderProfile = {
      fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4。
@@ -99,7 +99,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
      videoFrameRate : 30 // 视频帧率。
    };
 
-   const context: Context = getContext(this); // 参考应用文件访问与管理。
+   const context: Context = this.getUIContext().getHostContext()!; // 参考应用文件访问与管理。
    let filePath: string = context.filesDir + '/example.mp4';
    let videoFile: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
    let fileFd = videoFile.fd; // 获取文件fd。
@@ -160,10 +160,11 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 
 const TAG = 'VideoRecorderDemo:';
-export class VideoRecorderDemo {
+export class VideoRecorderDemo extends CustomComponent {
   private context: Context;
   constructor() {
-    this.context = getContext(this);
+    super();
+    this.context = this.getUIContext().getHostContext()!;
   }
   private avRecorder: media.AVRecorder | undefined = undefined;
   private videoOutSurfaceId: string = "";

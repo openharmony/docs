@@ -517,7 +517,7 @@ The code snippet below shows how to find a proper frame rate configuration based
 ```c++
 constexpr int32_t width = 1920;
 constexpr int32_t height = 1080;
-int32_t frameRate = 120;
+double frameRate = 120;
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 // 1. Check whether the video size to be configured can reach the ideal frame rate.
 bool isSupported = OH_AVCapability_AreVideoSizeAndFrameRateSupported(capability, width, height, frameRate);
@@ -534,7 +534,7 @@ if (!isSupported) {
 // 3. Set the video size and frame rate.
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
 OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, width, height);
-if (!OH_AVFormat_SetIntValue(format, OH_MD_KEY_FRAME_RATE, frameRate)) {
+if (!OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate)) {
    // Handle exceptions.
 }
 if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {

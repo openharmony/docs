@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 > 从API version 11开始，该接口支持在原子化服务中使用。
 
 ## 子组件
@@ -206,7 +206,7 @@ strokeOpacity(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明                       |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 区域透明度。<br/>默认值：1 |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 边框透明度。<br/>默认值：1 |
 
 ### strokeWidth
 

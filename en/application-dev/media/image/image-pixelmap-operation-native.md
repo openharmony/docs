@@ -1,6 +1,6 @@
-# Using Image to Process PixelMap Data
+# PixelMap Operation
 
-You will learn how to use native image APIs to process images.
+This topic describes how to use native image APIs to perform PixelMap operations.
 
 ## How to Develop
 

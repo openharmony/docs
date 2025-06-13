@@ -11,6 +11,8 @@ The OH_AVRange struct describes the value range, which contains the minimum valu
 
 **Related module**: [AVCapability](_a_v_capability.md)
 
+**Header file**: [native_avcapability.h](native__avcapability_8h.md)
+
 
 ## Summary
 

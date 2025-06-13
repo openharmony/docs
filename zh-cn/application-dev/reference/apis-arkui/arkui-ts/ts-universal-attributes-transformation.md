@@ -4,11 +4,11 @@
 
 > **说明：**
 >
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## rotate
 
-rotate(value: RotateOptions)
+rotate(value: RotateOptions): T
 
 设置组件旋转。
 
@@ -22,11 +22,17 @@ rotate(value: RotateOptions)
 
 | 参数名 | 类型                                    | 必填 | 说明                                                         |
 | ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [RotateOptions](#rotateoptions对象说明) | 是   | 可使组件在以组件左上角为坐标原点的坐标系中进行旋转（坐标系如下图所示）。其中，(x,&nbsp;y,&nbsp;z）指定一个矢量，作为旋转轴。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>默认值: 在x、y、z都不指定时，x、y、z的默认值分别为0、0、1。指定了x、y、z任何一个值时，x、y、z中未指定的值默认为0。<br/>{<br/>centerX:&nbsp;'50%',<br/>centerY:&nbsp;'50%'<br/>centerZ:&nbsp;0,<br/>perspective:&nbsp;0<br/>}<br/>单位：vp<br/>![coordinates](figures/coordinates.png)<br/>centerZ、perspective从API version 10开始支持在ArkTS卡片中使用。 |
+| value  | [RotateOptions](#rotateoptions对象说明) | 是   | 可使组件在以组件左上角为坐标原点的坐标系中进行旋转（坐标系如下图所示）。其中，(x,&nbsp;y,&nbsp;z）指定一个矢量，作为旋转轴。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>默认值: 在x、y、z都不指定时，x、y、z的默认值分别为0、0、1。指定了x、y、z任何一个值时，x、y、z中未指定的值默认为0。<br/>{<br/>centerX:&nbsp;'50%',<br/>centerY:&nbsp;'50%',<br/>centerZ:&nbsp;0,<br/>perspective:&nbsp;0<br/>}<br/>单位：vp<br/>![coordinates](figures/coordinates.png)<br/>centerZ、perspective从API version 10开始支持在ArkTS卡片中使用。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
 
 ## rotate<sup>18+</sup>
 
-rotate(options: Optional\<RotateOptions>)
+rotate(options: Optional\<RotateOptions>): T
 
 设置组件旋转。与[rotate](#rotate)相比，options参数新增了对undefined类型的支持。
 
@@ -40,11 +46,17 @@ rotate(options: Optional\<RotateOptions>)
 
 | 参数名  | 类型                                               | 必填 | 说明                                                         |
 | ------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | Optional\<[RotateOptions](#rotateoptions对象说明)> | 是   | 可使组件在以组件左上角为坐标原点的坐标系中进行旋转（坐标系如下图所示）。其中，(x,&nbsp;y,&nbsp;z）指定一个矢量，作为旋转轴。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>默认值: 在x、y、z都不指定时，x、y、z的默认值分别为0、0、1。指定了x、y、z任何一个值时，x、y、z中未指定的值默认为0。<br/>{<br/>centerX:&nbsp;'50%',<br/>centerY:&nbsp;'50%'<br/>centerZ:&nbsp;0,<br/>perspective:&nbsp;0<br/>}<br/>单位：vp<br/>![coordinates](figures/coordinates.png)<br/>centerZ、perspective从API version 10开始支持在ArkTS卡片中使用。<br/>当options的值为undefined时，恢复为无旋转效果。 |
+| options | Optional\<[RotateOptions](#rotateoptions对象说明)> | 是   | 可使组件在以组件左上角为坐标原点的坐标系中进行旋转（坐标系如下图所示）。其中，(x,&nbsp;y,&nbsp;z）指定一个矢量，作为旋转轴。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>默认值: 在x、y、z都不指定时，x、y、z的默认值分别为0、0、1。指定了x、y、z任何一个值时，x、y、z中未指定的值默认为0。<br/>{<br/>centerX:&nbsp;'50%',<br/>centerY:&nbsp;'50%',<br/>centerZ:&nbsp;0,<br/>perspective:&nbsp;0<br/>}<br/>单位：vp<br/>![coordinates](figures/coordinates.png)<br/>centerZ、perspective从API version 10开始支持在ArkTS卡片中使用。<br/>当options的值为undefined时，恢复为无旋转效果。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
 
 ## translate
 
-translate(value: TranslateOptions)
+translate(value: TranslateOptions): T
 
 设置组件平移。
 
@@ -60,9 +72,15 @@ translate(value: TranslateOptions)
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [TranslateOptions](#translateoptions对象说明) | 是   | 可使组件在以组件左上角为坐标原点的坐标系中进行移动（坐标系如下图所示）。其中，x，y，z的值分别表示在对应轴移动的距离，值为正时表示向对应轴的正向移动，值为负时表示向对应轴的反向移动。移动距离支持数字和字符串（比如'10px'，‘10%’）两种类型。<br/>默认值:<br/>{<br/>x:&nbsp;0,<br/>y:&nbsp;0,<br/>z:&nbsp;0<br/>}<br/>单位：vp<br/>![coordinates](figures/coordinates.png)<br/>**说明：**<br/>z轴方向移动时由于观察点位置不变，z的值接近观察点组件会有放大效果，远离则缩小。<br/>![coordinateNode](figures/coordinateNote.png) |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## translate<sup>18+</sup>
 
-translate(translate: Optional\<TranslateOptions>)
+translate(translate: Optional\<TranslateOptions>): T
 
 设置组件平移。与[translate](#translate)相比，translate参数新增了对undefined类型的支持。
 
@@ -78,9 +96,15 @@ translate(translate: Optional\<TranslateOptions>)
 | --------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | translate | Optional\<[TranslateOptions](#translateoptions对象说明)> | 是   | 可使组件在以组件左上角为坐标原点的坐标系中进行移动（坐标系如下图所示）。其中，x，y，z的值分别表示在对应轴移动的距离，值为正时表示向对应轴的正向移动，值为负时表示向对应轴的反向移动。移动距离支持数字和字符串（比如'10px'，‘10%’）两种类型。<br/>默认值:<br/>{<br/>x:&nbsp;0,<br/>y:&nbsp;0,<br/>z:&nbsp;0<br/>}<br/>单位：vp<br/>![coordinates](figures/coordinates.png)<br/>**说明：**<br/>z轴方向移动时由于观察点位置不变，z的值接近观察点组件会有放大效果，远离则缩小。<br/>![coordinateNode](figures/coordinateNote.png)<br/>当translate的值为undefined时，恢复为无平移效果。 |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## scale
 
-scale(value: ScaleOptions)
+scale(value: ScaleOptions): T
 
 设置组件缩放。
 
@@ -96,9 +120,15 @@ scale(value: ScaleOptions)
 | ------ | ------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [ScaleOptions](#scaleoptions对象说明) | 是   | 可以分别设置X轴、Y轴、Z轴的缩放比例，默认值为1，同时可以通过centerX和centerY设置缩放的中心点。<br/>默认值:<br/>{<br/>x:&nbsp;1,<br/>y:&nbsp;1,<br/>z:&nbsp;1,<br/>centerX:'50%',<br/>centerY:'50%'<br/>} |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## scale<sup>18+</sup>
 
-scale(options: Optional\<ScaleOptions>)
+scale(options: Optional\<ScaleOptions>): T
 
 设置组件缩放。与[scale](#scale)相比，options参数新增了对undefined类型的支持。
 
@@ -114,9 +144,15 @@ scale(options: Optional\<ScaleOptions>)
 | ------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | options | Optional\<[ScaleOptions](#scaleoptions对象说明)> | 是   | 可以分别设置X轴、Y轴、Z轴的缩放比例，默认值为1，同时可以通过centerX和centerY设置缩放的中心点。<br/>默认值:<br/>{<br/>x:&nbsp;1,<br/>y:&nbsp;1,<br/>z:&nbsp;1,<br/>centerX:'50%',<br/>centerY:'50%'<br/>}<br/>当options的值为undefined时，恢复为无缩放效果。 |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## transform
 
-transform(value: object)
+transform(value: object): T
 
 设置组件的变换矩阵。
 
@@ -130,9 +166,15 @@ transform(value: object)
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | object | 是   | 设置当前组件的变换矩阵。object当前仅支持[Matrix4Transit](../js-apis-matrix4.md)矩阵对象类型。 |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## transform<sup>18+</sup>
 
-transform(transform: Optional\<object>)
+transform(transform: Optional\<object>): T
 
 设置组件的变换矩阵。与[transform](#transform)相比，transform参数新增了对undefined类型的支持。
 
@@ -146,6 +188,12 @@ transform(transform: Optional\<object>)
 | ------ | --------------------------------------- | ---- | ------------------------ |
 | transform | Optional\<object> |  | 设置当前组件的变换矩阵。object当前仅支持[Matrix4Transit](../js-apis-matrix4.md)矩阵对象类型。<br/>当transform的值为undefined时，恢复为单位矩阵的效果。 |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## RotateOptions对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -154,9 +202,9 @@ transform(transform: Optional\<object>)
 
 | 名称                      | 类型                       | 必填 | 说明                                                         |
 | ------------------------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| x                         | number                     | 否   | 旋转轴向量x坐标。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| y                         | number                     | 否   | 旋转轴向量y坐标。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| z                         | number                     | 否   | 旋转轴向量z坐标。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| x                         | number                     | 否   | 旋转轴向量x坐标。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| y                         | number                     | 否   | 旋转轴向量y坐标。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| z                         | number                     | 否   | 旋转轴向量z坐标。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。|
 | angle                     | number&nbsp;\|&nbsp;string | 是   | 旋转角度。取值为正时相对于旋转轴方向顺时针转动，取值为负时相对于旋转轴方向逆时针转动。取值可为string类型，如'90deg'。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | centerX                   | number&nbsp;\|&nbsp;string | 否   | 变换中心点x轴坐标。表示组件变换中心点（即锚点）的x方向坐标。<br/>单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | centerY                   | number&nbsp;\|&nbsp;string | 否   | 变换中心点y轴坐标。表示组件变换中心点（即锚点）的y方向坐标。<br/>单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
@@ -275,13 +323,13 @@ struct Index {
         Button('change prep')
           .margin({ top: 100 })
           .onClick(() => {
-            animateTo({
+            this.getUIContext()?.animateTo({
               duration: 2000,
               curve: Curve.EaseIn,
               iterations: 1,
               playMode: PlayMode.Normal,
               onFinish: () => {
-                console.info('play end')
+                console.info('play end');
               }
             }, () => {
               this.prep = 500 // 组件视距从10变换到500
@@ -302,7 +350,7 @@ struct Index {
 该示例通过设置rotate和transform为不同的参数实现相同的旋转效果。
 
 ```ts
-import { matrix4 } from '@kit.ArkUI'
+import { matrix4 } from '@kit.ArkUI';
 
 @Entry
 @Component

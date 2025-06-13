@@ -83,7 +83,7 @@ You can subscribe to broadcast events to observe the insertion and removal of ex
         let volId: string = data.parameters.id;
         volumeManager.getVolumeById(volId, (error: BusinessError, vol: volumeManager.Volume) => {
           if (error) {
-            console.error('volumeManager getVolumeById failed for ' + JSON.stringify(error));
+            console.error(`volumeManager getVolumeById failed, Error code: ${error.code}, message: ${error.message}`);
           } else {
             console.info('volumeManager getVolumeById successfully, the volume state is ' + vol.state);
           }

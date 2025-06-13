@@ -1679,21 +1679,36 @@ getAVCastController(sessionId: string, callback: AsyncCallback\<AVCastController
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { avSession } from '@kit.AVSessionKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
 
-let currentAVSession: avSession.AVSession | undefined = undefined;
-let tag = "createNewSession";
-let context: Context = getContext(this);
-let sessionId: string = "";  // 供后续函数入参使用。
+  build() { 
+    Column() {
+        Text(this.message)
+          .onClick(()=>{
+            let currentAVSession: avSession.AVSession | undefined = undefined;
+            let tag = "createNewSession";
+            let context = this.getUIContext().getHostContext() as Context;
+            let sessionId: string = "";  // 供后续函数入参使用。
 
-let aVCastController: avSession.AVCastController;
-avSession.getAVCastController(sessionId , (err: BusinessError, avcontroller: avSession.AVCastController) => {
-  if (err) {
-    console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    aVCastController = avcontroller;
-    console.info('getAVCastController : SUCCESS ');
+            let aVCastController: avSession.AVCastController;
+            avSession.getAVCastController(sessionId , (err: BusinessError, avcontroller: avSession.AVCastController) => {
+            if (err) {
+                console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
+            } else {
+                aVCastController = avcontroller;
+                console.info('getAVCastController : SUCCESS ');
+            }
+            });
+          })
+      }
+    .width('100%')
+    .height('100%')
   }
-});
+}
 ```
 
 ## avSession.getAVCastController<sup>10+</sup>
@@ -1737,19 +1752,34 @@ getAVCastController(sessionId: string): Promise\<AVCastController>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { avSession } from '@kit.AVSessionKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
 
-let currentAVSession: avSession.AVSession | undefined = undefined;
-let tag = "createNewSession";
-let context: Context = getContext(this);
-let sessionId: string = "";  // 供后续函数入参使用。
+  build() { 
+    Column() {
+        Text(this.message)
+          .onClick(()=>{
+            let currentAVSession: avSession.AVSession | undefined = undefined;
+            let tag = "createNewSession";
+            let context = this.getUIContext().getHostContext() as Context;
+            let sessionId: string = "";  // 供后续函数入参使用。
 
-let aVCastController: avSession.AVCastController;
-avSession.getAVCastController(sessionId).then((avcontroller: avSession.AVCastController) => {
-  aVCastController = avcontroller;
-  console.info('getAVCastController : SUCCESS');
-}).catch((err: BusinessError) => {
-  console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
-});
+            let aVCastController: avSession.AVCastController;
+            avSession.getAVCastController(sessionId).then((avcontroller: avSession.AVCastController) => {
+            aVCastController = avcontroller;
+            console.info('getAVCastController : SUCCESS');
+            }).catch((err: BusinessError) => {
+            console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
+            });
+          })
+      }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## avSession.startCasting<sup>10+</sup>
@@ -2125,6 +2155,12 @@ setDisplaySurface(surfaceId: string): Promise\<void>
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                         |
+| -------- | --------------------------------------------------- | ---- | ---------------------------- |
+| surfaceId | string | 是   | 设置播放的surfaceId。 |
 
 **返回值：**
 

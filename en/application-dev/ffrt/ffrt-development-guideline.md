@@ -340,10 +340,11 @@ The following describes how to use the native APIs provided by FFRT to create pa
     int a = 0;
     // ******Parallel task******
     // Submit the parallel task without obtaining a handle.
-    ffrt_submit_base(ffrt_create_function_wrapper(OnePlusForTest, NULL, &a), NULL, NULL, &attr);
+    ffrt_submit_base(
+        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a, ffrt_function_kind_general), NULL, NULL, &attr);
     // Submit the parallel task and obtain a handle.
     ffrt_task_handle_t task = ffrt_submit_h_base(
-        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a), NULL, NULL, &attr);
+        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a, ffrt_function_kind_general), NULL, NULL, &attr);
 
     // ******Serial queue task******
     // Submit the serial queue task without obtaining a handle.
@@ -361,7 +362,7 @@ The following describes how to use the native APIs provided by FFRT to create pa
     ffrt_queue_wait(handle);
     ```
 
-6. Destroy the resources after the task is submitted.
+6. (Optional) If a task does not need to be destroyed, you can submit the task through a simplified API.
 
     ```cpp
     // ******Destroy the parallel task******
@@ -382,7 +383,7 @@ The following describes how to use the native APIs provided by FFRT to create pa
 - Use pure functions and encapsulate them to express each step of the process.
 - There is no global data access.
 - There is no internal state reserved.
-- Use `ffrt_submit_base()` to submit a function in asynchronous mode for execution.
+- Call the `ffrt_submit_base()` API to submit a function in asynchronous mode.
 - Use `in_deps` and `out_deps` of `ffrt_submit_base()` to specify the data objects to be accessed by the function and the access mode.
 - Programmers use the `in_deps` and `out_deps` parameters to express task dependencies to ensure the correctness of program execution.
 
@@ -555,7 +556,7 @@ A deadlock may occur when the mutex of the standard library is used in the FFRT 
 
 ### Using FFRT C API
 
-Native Development Kit (NDK) is a toolset provided by HarmonyOS SDK. It offers native APIs that allow you to implement key application functions using C or C++ code.
+Native Development Kit (NDK) is a toolset provided by the system. It offers native APIs that allow you to implement key application functions using C or C++ code.
 
 The FFRT C APIs have been integrated into the NDK. You can directly use the corresponding API in DevEco IDE.
 
@@ -577,7 +578,7 @@ The FFRT deployment depends on the FFRT dynamic library `libffrt.so` and a group
 
 ![image](figures/ffrt_figure7.png)
 
-To use FFRT C++ APIs, you need to use the FFRT third-party library [@ppd/ffrt](https://ohpm.openharmony.cn/#/en/detail/@ppd%2Fffrt), which is a C++ API library officially maintained by FFRT.
+To use FFRT C++ APIs, you need to use the third-party library [@ppd/ffrt](https://ohpm.openharmony.cn/#/en/detail/@ppd%2Fffrt), which is officially maintained by FFRT.
 
 Run the following command in the module directory to install the third-party library:
 
@@ -587,7 +588,7 @@ ohpm install @ppd/ffrt
 
 You can also configure the dependencies in the `oh-package.json5` file so that the third-party library can be automatically downloaded and installed through DevEco Studio.
 
-Add dependencies to the `CMakeLists.txt` file:
+Add the dependency to the `CMakeLists.txt` file.
 
 ```txt
 target_link_libraries(<target_name> PUBLIC libffrt.z.so ffrt::ffrtapi)
@@ -603,5 +604,4 @@ Use the FFRT C++ API in the code.
 #include "ffrt/cpp/shared_mutex.h"
 #include "ffrt/cpp/sleep.h"
 ```
-
  <!--no_check--> 

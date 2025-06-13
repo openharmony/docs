@@ -6,7 +6,9 @@
 >
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
+> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../../ui/arkts-global-interface.md)的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
+>
+> 该组件不支持在Wearable设备上使用。
 
 ## CalendarPickerDialog
 
@@ -24,7 +26,7 @@ static show(options?: CalendarDialogOptions)
 
 | 参数名  | 类型                                                    | 必填 | 说明                       |
 | ------- | ------------------------------------------------------- | ---- | -------------------------- |
-| options | [CalendarDialogOptions](#calendardialogoptions对象说明) | 否   | 配置日历选择器弹窗的参数。 |
+| options | [CalendarDialogOptions](#calendardialogoptions对象说明) | 否   | 配置日历选择器弹窗参数。 |
 
 ## CalendarDialogOptions对象说明
 
@@ -45,8 +47,8 @@ static show(options?: CalendarDialogOptions)
 | onDidDisappear<sup>12+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange)>>onWillDisappear>>onDidDisappear。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onWillAppear<sup>12+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange)>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | onWillDisappear<sup>12+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange)>>onWillDisappear>>onDidDisappear。<br />2.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| shadow<sup>12+</sup>              | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明) | 否   | 设置弹窗背板的阴影。<br /> 当设备为2in1时，默认场景下获焦阴影值为ShadowStyle.OUTER_FLOATING_MD，失焦为ShadowStyle.OUTER_FLOATING_SM                 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| enableHoverMode<sup>14+</sup>     | boolean | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| shadow<sup>12+</sup>              | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明) | 否   | 设置弹窗背板的阴影。<br /> 当设备为2in1时，默认场景下，获焦时阴影值为ShadowStyle.OUTER_FLOATING_MD，失焦时为ShadowStyle.OUTER_FLOATING_SM。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| enableHoverMode<sup>14+</sup>     | boolean | 否   | 是否响应悬停态。<br />默认值：false。false表示不响应悬停，true表示响应悬停。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 | hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 
 > **说明：**
@@ -57,49 +59,49 @@ static show(options?: CalendarDialogOptions)
 
 ### 示例1（设置弹窗背板）
 
-该示例通过backgroundColor、backgroundBlurStyle、shadow设置弹窗背板。
+该示例通过backgroundColor、backgroundBlurStyle、shadow设置日历选择器弹窗背板。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct CalendarPickerDialogExample {
-  private selectedDate: Date = new Date('2024-04-23')
+  private selectedDate: Date = new Date('2024-04-23');
 
   build() {
     Column() {
       Button("Show CalendarPicker Dialog")
         .margin(20)
         .onClick(() => {
-          console.info("CalendarDialog.show")
+          console.info("CalendarDialog.show");
           CalendarPickerDialog.show({
             selected: this.selectedDate,
             backgroundColor: Color.Gray,
             backgroundBlurStyle: BlurStyle.NONE,
             shadow: ShadowStyle.OUTER_FLOATING_SM,
             onAccept: (value) => {
-              this.selectedDate = value
-              console.info("calendar onAccept:" + JSON.stringify(value))
+              this.selectedDate = value;
+              console.info("calendar onAccept:" + JSON.stringify(value));
             },
             onCancel: () => {
-              console.info("calendar onCancel")
+              console.info("calendar onCancel");
             },
             onChange: (value) => {
-              console.info("calendar onChange:" + JSON.stringify(value))
+              console.info("calendar onChange:" + JSON.stringify(value));
             },
             onDidAppear: () => {
-              console.info("calendar onDidAppear")
+              console.info("calendar onDidAppear");
             },
             onDidDisappear: () => {
-              console.info("calendar onDidDisappear")
+              console.info("calendar onDidDisappear");
             },
             onWillAppear: () => {
-              console.info("calendar onWillAppear")
+              console.info("calendar onWillAppear");
             },
             onWillDisappear: () => {
-              console.info("calendar onWillDisappear")
+              console.info("calendar onWillDisappear");
             }
-          })
+          });
         })
     }.width('100%')
   }
@@ -110,21 +112,21 @@ struct CalendarPickerDialogExample {
 
 ### 示例2（自定义按钮样式）
 
-该示例通过配置 acceptButtonStyle、cancelButtonStyle实现自定义按钮样式。
+该示例通过配置 acceptButtonStyle、cancelButtonStyle实现自定义日历选择器弹窗按钮样式。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct CalendarPickerDialogExample {
-  private selectedDate: Date = new Date()
+  private selectedDate: Date = new Date();
 
   build() {
     Column() {
       Button("Show CalendarPicker Dialog")
         .margin(20)
         .onClick(() => {
-          console.info("CalendarDialog.show")
+          console.info("CalendarDialog.show");
           CalendarPickerDialog.show({
             selected: this.selectedDate,
             acceptButtonStyle: {
@@ -152,10 +154,10 @@ struct CalendarPickerDialogExample {
               borderRadius: 10
             },
             onAccept: (value) => {
-              this.selectedDate = value
-              console.info("calendar onAccept:" + JSON.stringify(value))
+              this.selectedDate = value;
+              console.info("calendar onAccept:" + JSON.stringify(value));
             }
-          })
+          });
         })
     }.width('100%')
   }
@@ -179,33 +181,33 @@ struct CalendarPickerDialogExample {
       Button("Show CalendarPicker Dialog")
         .margin(20)
         .onClick(() => {
-          console.info("CalendarDialog.show")
+          console.info("CalendarDialog.show");
           CalendarPickerDialog.show({
             selected: this.selectedDate,
             onAccept: (value) => {
-              console.info("calendar onAccept:" + JSON.stringify(value))
+              console.info("calendar onAccept:" + JSON.stringify(value));
             },
             onCancel: () => {
-              console.info("calendar onCancel")
+              console.info("calendar onCancel");
             },
             onChange: (value) => {
-              console.info("calendar onChange:" + JSON.stringify(value))
+              console.info("calendar onChange:" + JSON.stringify(value));
             },
             onDidAppear: () => {
-              console.info("calendar onDidAppear")
+              console.info("calendar onDidAppear");
             },
             onDidDisappear: () => {
-              console.info("calendar onDidDisappear")
+              console.info("calendar onDidDisappear");
             },
             onWillAppear: () => {
-              console.info("calendar onWillAppear")
+              console.info("calendar onWillAppear");
             },
             onWillDisappear: () => {
-              console.info("calendar onWillDisappear")
+              console.info("calendar onWillDisappear");
             },
             enableHoverMode: true,
             hoverModeArea: HoverModeAreaType.TOP_SCREEN,
-          })
+          });
         })
     }.width('100%')
   }
@@ -223,22 +225,22 @@ struct CalendarPickerDialogExample {
 @Entry
 @Component
 struct CalendarPickerDialogExample {
-  private selectedDate: Date = new Date('2024-04-23')
+  private selectedDate: Date = new Date('2024-04-23');
 
   build() {
     Column() {
       Button("Show CalendarPicker Dialog")
         .margin(20)
         .onClick(() => {
-          console.info("CalendarDialog.show")
+          console.info("CalendarDialog.show");
           CalendarPickerDialog.show({
             selected: this.selectedDate,
             hintRadius: 1,
             onAccept: (value) => {
-              this.selectedDate = value
-              console.info("calendar onAccept:" + JSON.stringify(value))
+              this.selectedDate = value;
+              console.info("calendar onAccept:" + JSON.stringify(value));
             }
-          })
+          });
         })
     }.width('100%')
   }
@@ -256,9 +258,9 @@ struct CalendarPickerDialogExample {
 @Entry
 @Component
 struct CalendarPickerDialogExample {
-  private selectedDate: Date = new Date('2025-01-01')
-  private startDate: Date = new Date('2024-01-10')
-  private endDate: Date = new Date('2025-1-10')
+  private selectedDate: Date = new Date('2025-01-01');
+  private startDate: Date = new Date('2024-01-10');
+  private endDate: Date = new Date('2025-1-10');
 
   build() {
     Column() {
@@ -266,12 +268,12 @@ struct CalendarPickerDialogExample {
       Button("Show CalendarPicker Dialog")
         .margin(20)
         .onClick(() => {
-          console.info("CalendarDialog.show")
+          console.info("CalendarDialog.show");
           CalendarPickerDialog.show({
             start: this.startDate,
             end: this.endDate,
             selected: this.selectedDate,
-          })
+          });
         })
     }.width('100%').margin({ top: 350 })
   }

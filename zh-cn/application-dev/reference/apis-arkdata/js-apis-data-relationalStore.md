@@ -2,7 +2,7 @@
 
 关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。支持通过[ResultSet.getSendableRow](#getsendablerow12)方法获取Sendable数据，进行跨线程传递。
 
-为保证插入并读取数据成功，建议一条数据不要超过2M。超出该大小，插入成功，读取失败。
+为保证插入并读取数据成功，建议一条数据不超过2MB。如果数据超过2MB，插入操作将成功，读取操作将失败。
 
 大数据量场景下查询数据可能会导致耗时长甚至应用卡死，如有相关操作可参考文档[批量数据写数据库场景](../../arkts-utils/batch-database-operations-guide.md)，且有建议如下：
 - 单次查询数据量不超过5000条。
@@ -655,7 +655,7 @@ console.info("custom tokenizer supported on current platform: " + customTypeSupp
 
 ## CryptoParam<sup>14+</sup>
 
-数据库加密参数配置。此配置只有在StoreConfig的encrypt选项设置为真时才有效。
+数据库加密参数配置。此配置只有在StoreConfig的encrypt选项设置为true时有效。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1110,7 +1110,7 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 | ---------------- | ---- | ------------------------ |
 | DEFERRED       | 0    | 表示创建一个DEFERRED类型的事务对象，该类型的事务对象在创建时只会关闭自动提交而不会真正开始事务，只有在首次读或写操作时会真正开始一个读或写事务。   |
 | IMMEDIATE | 1    | 表示创建一个IMMEDIATE类型的事务对象，该类型的事务对象在创建时会真正开始一个写事务；如果有别的写事务未提交，则会创建失败，返回错误码14800024。 |
-| EXCLUSIVE      | 2    | 表示创建一个EXCLUSIVE类型的事务对象，该类型的事务在WAL模式下和IMMEDIATE相同，但在其它日志模式下能够防止事务期间有其它连接读取数据库。 |
+| EXCLUSIVE      | 2    | 表示创建一个EXCLUSIVE类型的事务对象，该类型的事务在WAL模式下和IMMEDIATE相同，但在其他日志模式下能够防止事务期间有其他连接读取数据库。 |
 
 ## TransactionOptions<sup>14+</sup>
 
@@ -1995,7 +1995,7 @@ distinct(): RdbPredicates
 
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "Rose").distinct();
+predicates.equalTo("NAME", "Rose").distinct(); // 对NAME列值为Rose的结果集去重
 ```
 
 ### limitAs
@@ -2037,7 +2037,7 @@ predicates.equalTo("NAME", "Rose").limitAs(3);
 
 offsetAs(rowOffset: number): RdbPredicates
 
-设置谓词查询结果返回的起始位置。需要同步调用limitAs接口指定查询数量，否则将无查询结果。如需查询指定偏移位置后的所有行，limitAs接口调用需传参数-1。
+设置谓词查询结果返回的起始位置。需要同步调用limitAs接口指定查询数量，否则将无查询结果。如需查询指定偏移位置后的所有行，limitAs接口入参需小于等于0。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2045,7 +2045,7 @@ offsetAs(rowOffset: number): RdbPredicates
 
 | 参数名    | 类型   | 必填 | 说明                               |
 | --------- | ------ | ---- | ---------------------------------- |
-| rowOffset | number | 是   | 返回结果的起始位置，取值应为正整数。结果集指针起始位置为0，传入值小于等于0时，查询结果将从0下标位置返回。 |
+| rowOffset | number | 是   | 指定查询结果的起始位置，默认初始位置为结果集的最前端。当rowOffset为负数时，起始位置为结果集的最前端。当rowOffset超出结果集最后位置时，查询结果为空。 |
 
 **返回值**：
 
@@ -2339,7 +2339,7 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
-      securityLevel: relationalStore.SecurityLevel.S3,
+      securityLevel: relationalStore.SecurityLevel.S3
     };
 
     const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB, IDENTITY UNLIMITED INT, ASSETDATA ASSET, ASSETSDATA ASSETS, FLOATARRAY floatvector(128))';
@@ -2419,19 +2419,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 if (store != undefined) {
@@ -2502,19 +2502,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 if (store != undefined) {
@@ -2592,19 +2592,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 if (store != undefined) {
@@ -2680,19 +2680,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 if (store != undefined) {
@@ -2768,19 +2768,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 if (store != undefined) {
@@ -2851,7 +2851,7 @@ const valuesBucket: relationalStore.ValuesBucket = {
   "NAME": 'hangman',
   "AGE": 18,
   "SALARY": 100.5,
-  "CODES": new Uint8Array([1, 2, 3]),
+  "CODES": new Uint8Array([1, 2, 3])
 };
 const sendableValuesBucket = sendableRelationalStore.toSendableValuesBucket(valuesBucket);
 
@@ -2928,19 +2928,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -3025,19 +3025,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -3120,19 +3120,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -3217,19 +3217,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -3313,19 +3313,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -3395,19 +3395,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -3480,19 +3480,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -3571,19 +3571,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -3661,19 +3661,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -3751,19 +3751,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -3995,7 +3995,7 @@ query(predicates: RdbPredicates, callback: AsyncCallback&lt;ResultSet&gt;):void
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 if (store != undefined) {
-  (store as relationalStore.RdbStore).query(predicates, (err, resultSet) => {
+  (store as relationalStore.RdbStore).query(predicates, async (err, resultSet) => {
     if (err) {
       console.error(`Query failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -4048,7 +4048,7 @@ query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCa
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 if (store != undefined) {
-  (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], (err, resultSet) => {
+  (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], async (err, resultSet) => {
     if (err) {
       console.error(`Query failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -4108,7 +4108,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 if (store != undefined) {
-  (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
+  (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then(async (resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
     while (resultSet.goToNextRow()) {
@@ -4242,7 +4242,7 @@ try {
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
 if (store != undefined && deviceId != undefined) {
-  (store as relationalStore.RdbStore).remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
+  (store as relationalStore.RdbStore).remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then(async (resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
     while (resultSet.goToNextRow()) {
@@ -4322,7 +4322,7 @@ try {
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
 if (store != undefined && deviceId != undefined) {
-  (store as relationalStore.RdbStore).remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
+  (store as relationalStore.RdbStore).remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then(async (resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
     while (resultSet.goToNextRow()) {
@@ -4344,7 +4344,7 @@ if (store != undefined && deviceId != undefined) {
 
 querySql(sql: string, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用callback异步回调。
+根据指定SQL语句查询数据库中的数据，SQL语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用callback异步回调。
 
 [向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；扩展语法有<->（计算相似度）和<=>（计算余弦距离），支持在聚合函数（max、min）中使用，不支持在聚合函数（sum、avg、count）和基础函数（random、abs、upper、lower、length）中使用。
 
@@ -4376,7 +4376,7 @@ querySql(sql: string, callback: AsyncCallback&lt;ResultSet&gt;):void
 
 ```ts
 if (store != undefined) {
-  (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'", (err, resultSet) => {
+  (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'", async (err, resultSet) => {
     if (err) {
       console.error(`Query failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -4416,7 +4416,7 @@ let resultSet2 = await store.querySql(querySql2);
 
 querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用callback异步回调。
+根据指定SQL语句查询数据库中的数据，SQL语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用callback异步回调。
 
 [向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；扩展语法有<->（计算相似度）和<=>（计算余弦距离），支持在聚合函数（max、min）中使用，不支持在聚合函数（sum、avg、count）和基础函数（random、abs、upper、lower、length）中使用。
 
@@ -4447,7 +4447,7 @@ querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&
 
 ```ts
 if (store != undefined) {
-  (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], (err, resultSet) => {
+  (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], async (err, resultSet) => {
     if (err) {
       console.error(`Query failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -4471,7 +4471,7 @@ if (store != undefined) {
 
 querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt;
 
-根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用Promise异步回调。
+根据指定SQL语句查询数据库中的数据，SQL语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用Promise异步回调。
 
 [向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；扩展语法有<->（计算相似度）和<=>（计算余弦距离），支持在聚合函数（max、min）中使用，不支持在聚合函数（sum、avg、count）和基础函数（random、abs、upper、lower、length）中使用。
 
@@ -4511,7 +4511,7 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 import { BusinessError } from '@kit.BasicServicesKit';
 
 if (store != undefined) {
-  (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'").then((resultSet: relationalStore.ResultSet) => {
+  (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'").then(async (resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
     while (resultSet.goToNextRow()) {
@@ -4542,7 +4542,7 @@ let resultSet = await store.querySql(querySql, [vectorValue, 1, vectorValue, vec
 
 querySqlSync(sql: string, bindArgs?: Array&lt;ValueType&gt;):ResultSet
 
-根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个。对query同步接口获得的resultSet进行操作时，若逻辑复杂且循环次数过多，可能造成freeze问题，建议将此步骤放到[taskpool](../apis-arkts/js-apis-taskpool.md)线程中执行。
+根据指定SQL语句查询数据库中的数据，SQL语句中的各种表达式和操作符之间的关系操作符号不超过1000个。对query同步接口获得的resultSet进行操作时，若逻辑复杂且循环次数过多，可能造成freeze问题，建议将此步骤放到[taskpool](../apis-arkts/js-apis-taskpool.md)线程中执行。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -5241,7 +5241,7 @@ if (store != undefined) {
     'NAME': value1,
     'AGE': value2,
     'SALARY': value3,
-    'CODES': value4,
+    'CODES': value4
   };
   (store as relationalStore.RdbStore).insert("test", valueBucket);
   (store as relationalStore.RdbStore).commit();
@@ -5424,7 +5424,7 @@ if (store != undefined) {
     'NAME': value1,
     'AGE': value2,
     'SALARY': value3,
-    'CODES': value4,
+    'CODES': value4
   };
   (store as relationalStore.RdbStore).insert("test", valueBucket);
   (store as relationalStore.RdbStore).commit();
@@ -5550,7 +5550,7 @@ if (store != undefined) {
       'NAME': value1,
       'AGE': value2,
       'SALARY': value3,
-      'CODES': value4,
+      'CODES': value4
     };
     (store as relationalStore.RdbStore).insert("test", valueBucket);
     (store as relationalStore.RdbStore).commit();
@@ -5877,7 +5877,7 @@ setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 
 | 参数名   | 类型                      | 必填 | 说明                   |
 | -------- | ------------------------- | ---- | ---------------------- |
-| tables   | Array&lt;string&gt;       | 是   | 要设置的分布式数据库表表名。 |
+| tables   | Array&lt;string&gt;       | 是   | 要设置的分布式数据库的表名。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 指定callback回调函数。 |
 
 **错误码：**
@@ -5919,7 +5919,7 @@ if (store != undefined) {
 
 | 参数名 | 类型                     | 必填 | 说明                     |
 | ------ | ------------------------ | ---- | ------------------------ |
-| tables | Array&lt;string&gt; | 是   | 要设置的分布式数据库表表名。 |
+| tables | Array&lt;string&gt; | 是   | 要设置的分布式数据库的表名。 |
 
 **返回值**：
 
@@ -5966,9 +5966,9 @@ setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, callbac
 
 | 参数名   | 类型                                  | 必填 | 说明                         |
 | -------- | ------------------------------------- | ---- | ---------------------------- |
-| tables   | Array&lt;string&gt;                   | 是   | 要设置的分布式数据库表表名。 |
-| type     | [DistributedType](#distributedtype10) | 是   | 表的分布式类型。             |
-| callback | AsyncCallback&lt;void&gt;             | 是   | 指定callback回调函数。       |
+| tables   | Array&lt;string&gt;                   | 是   | 要设置的分布式数据库的表名。  |
+| type     | [DistributedType](#distributedtype10) | 是   | 表的分布式类型。        |
+| callback | AsyncCallback&lt;void&gt;             | 是   | 指定callback回调函数。 |
 
 **错误码：**
 
@@ -6009,10 +6009,10 @@ setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, config:
 **参数：**
 
 | 参数名      | 类型                                  | 必填  | 说明              |
-| -------- | ----------------------------------- | --- | --------------- |
-| tables   | Array&lt;string&gt;                 | 是   | 要设置的分布式数据库表表名。     |
-| type     | [DistributedType](#distributedtype10) | 是   | 表的分布式类型。 |
-| config | [DistributedConfig](#distributedconfig10) | 是 | 表的分布式配置信息。 |
+| -------- | ----------------------------------- | --- |-----------------|
+| tables   | Array&lt;string&gt;                 | 是   | 要设置的分布式数据库的表名。  |
+| type     | [DistributedType](#distributedtype10) | 是   | 表的分布式类型。        |
+| config | [DistributedConfig](#distributedconfig10) | 是 | 表的分布式配置信息。      |
 | callback | AsyncCallback&lt;void&gt;           | 是   | 指定callback回调函数。 |
 
 **错误码：**
@@ -6055,11 +6055,11 @@ if (store != undefined) {
 
 **参数：**
 
-| 参数名 | 类型                                      | 必填 | 说明                                                         |
-| ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| tables | Array&lt;string&gt;                       | 是   | 要设置的分布式数据库表表名。                                 |
+| 参数名 | 类型                                      | 必填 | 说明                                                              |
+| ------ | ----------------------------------------- | ---- |-----------------------------------------------------------------|
+| tables | Array&lt;string&gt;                       | 是   | 要设置的分布式数据库的表名。                                                  |
 | type   | [DistributedType](#distributedtype10)     | 否   | 表的分布式类型。默认值是relationalStore.DistributedType.DISTRIBUTED_DEVICE。 |
-| config | [DistributedConfig](#distributedconfig10) | 否   | 表的分布式配置信息。不传入时默认autoSync为false，即只支持手动同步。 |
+| config | [DistributedConfig](#distributedconfig10) | 否   | 表的分布式配置信息。不传入时默认autoSync为false，即只支持手动同步。                        |
 
 **返回值**：
 
@@ -6677,7 +6677,7 @@ try {
     'name': value1,
     'age': value2,
     'salary': value3,
-    'blobType': value4,
+    'blobType': value4
   };
 
   if (store != undefined) {
@@ -6842,7 +6842,7 @@ try {
     'NAME': value1,
     'AGE': value2,
     'SALARY': value3,
-    'CODES': value4,
+    'CODES': value4
   };
   if (store != undefined) {
     (store as relationalStore.RdbStore).insert('test', valueBucket);
@@ -7346,9 +7346,9 @@ attach(fullPath: string, attachName: string, waitTime?: number) : Promise&lt;num
 
 数据库文件来自文件，且此API不支持附加加密数据库。调用attach接口后，数据库切换为非WAL模式，性能会存在一定的劣化。
 
-attach的时候，数据库会切换为非WAL模式，切换模式需要确保所有的ResultSet都已经Close，所有的写操作已经结束，否则会报错14800015。
+attach时，数据库会切换为非WAL模式，切换模式需要确保所有的ResultSet都已经Close，所有的写操作已经结束，否则会报错14800015。
 
-attach不能并发调用，可能出现未响应情况，报错14800015，需要重试。
+attach不能并发调用，否则可能出现未响应情况并报错14800015，需要重试。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7416,11 +7416,11 @@ attach(context: Context, config: StoreConfig, attachName: string, waitTime?: num
 
 将一个当前应用的数据库附加到当前数据库中，以便在SQL语句中可以直接访问附加数据库中的数据。
 
-此API不支持加密数据库附加非加密数据库的场景。调用attach接口后，数据库切换为非WAL模式，性能会存在一定的劣化。
+此API不支持加密数据库附加非加密数据库。调用attach接口后，数据库切换为非WAL模式，性能会存在一定的劣化。
 
-attach的时候，数据库会切换为非WAL模式，切换模式需要确保所有的ResultSet都已经Close，所有的写操作已经结束，否则会报错14800015。
+attach时，数据库会切换为非WAL模式，切换模式需要确保所有的ResultSet都已经Close，所有的写操作已经结束，否则会报错14800015。
 
-attach不能并发调用，可能出现未响应情况，报错14800015，需要重试。除此之外，attach附加加密数据库时，可能受到并发的影响，出现解密失败的情况，报错14800011，需要显式指定加密参数并重试。
+attach不能并发调用，否则可能出现未响应情况并报错14800015，需要重试。除此之外，attach附加加密数据库时，可能受到并发的影响，出现解密失败的情况，报错14800011，需要显式指定加密参数并重试。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7479,7 +7479,7 @@ let attachStore: relationalStore.RdbStore | undefined = undefined;
 
 const STORE_CONFIG1: relationalStore.StoreConfig = {
   name: "rdbstore1.db",
-  securityLevel: relationalStore.SecurityLevel.S3,
+  securityLevel: relationalStore.SecurityLevel.S3
 };
 
 relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
@@ -7508,7 +7508,7 @@ let attachStore: relationalStore.RdbStore | undefined = undefined;
 const STORE_CONFIG2: relationalStore.StoreConfig = {
   name: "rdbstore2.db",
   encrypt: true,
-  securityLevel: relationalStore.SecurityLevel.S3,
+  securityLevel: relationalStore.SecurityLevel.S3
 };
 
 relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
@@ -7782,7 +7782,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 if (store != undefined) {
-  (store as relationalStore.RdbStore).queryLockedRow(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
+  (store as relationalStore.RdbStore).queryLockedRow(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then(async (resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
     while (resultSet.goToNextRow()) {
@@ -7840,63 +7840,7 @@ if (store != undefined) {
 
 提供通过查询数据库生成的数据库结果集的访问方法。结果集是指用户调用关系型数据库查询接口之后返回的结果集合，提供了多种灵活的数据访问方式，以便用户获取各项数据。
 
-### 使用说明
-
-首先需要获取resultSet对象。
-
-**示例：**
-
-```ts
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { window } from '@kit.ArkUI';
-
-let store: relationalStore.RdbStore | undefined = undefined;
-
-class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    const STORE_CONFIG: relationalStore.StoreConfig = {
-      name: "RdbTest.db",
-      securityLevel: relationalStore.SecurityLevel.S3,
-    };
-
-    relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
-      store = rdbStore;
-      const asset: relationalStore.Asset = {
-        name: "name",
-        uri: "uri",
-        createTime: "createTime",
-        modifyTime: "modifyTime",
-        size: "size",
-        path: "path",
-      };
-      const assets: relationalStore.Assets = [asset];
-      const valueBucket: relationalStore.ValuesBucket = {
-        "NAME": "hello world",
-        "AGE": 3,
-        "SALARY": 0.5,
-        "CODES": new Uint8Array([1, 2, 3]),
-        "IDENTITY":100n,
-        "ASSETDATA":asset,
-        "ASSETSDATA":assets,
-        "FLOATARRAY":new Float32Array([1.5, 2.5]),
-      };
-      (store as relationalStore.RdbStore).insertSync("EMPLOYEE", valueBucket);
-      let resultSet: relationalStore.ResultSet | undefined = undefined;
-      let predicates: relationalStore.RdbPredicates = new relationalStore.RdbPredicates("EMPLOYEE");
-      let columns: Array<string> = ["ID", "NAME", "AGE", "SALARY", "CODES", "IDENTITY", "ASSETDATA", "ASSETSDATA", "FLOATARRAY"];
-      await (store as relationalStore.RdbStore).query(predicates, columns).then(async (result: relationalStore.ResultSet) => {
-        resultSet = result;
-        console.info(`resultSet columnNames: ${resultSet.columnNames}`);
-        console.info(`resultSet columnCount: ${resultSet.columnCount}`);
-      });
-      console.info('Get RdbStore successfully.');
-    }).catch((err: BusinessError) => {
-      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-    })
-  }
-}
-```
+下列API示例中，都需先使用[query](#query14)、[querySql](#querysql14)、[remoteQuery](#remotequery-1)、[queryLockedRow](#querylockedrow12)中任一方法获取到ResultSet实例，再通过此实例调用对应方法。
 
 ### 属性
 
@@ -8464,7 +8408,7 @@ if (resultSet != undefined) {
 
 getValue(columnIndex: number): ValueType
 
-获取当前行中指定列的值，值类型如果是ValueType指定的任意类型，则会以对应类型返回指定类的值，否则返回14800000。
+获取当前行中指定列的值，如果值类型是ValueType中指定的任意类型，返回指定类型的值，否则返回14800000。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -8898,7 +8842,7 @@ if (resultSet != undefined) {
 
 getRows(maxCount: number, position?: number): Promise<Array\<ValuesBucket>>
 
-从结果集中获取指定数量的数据，使用Promise异步回调。禁止与[ResultSet](#resultset)的其它接口并发调用，否则获取的数据可能非预期。
+从结果集中获取指定数量的数据，使用Promise异步回调。禁止与[ResultSet](#resultset)的其他接口并发调用，否则获取的数据可能非预期。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -8973,15 +8917,15 @@ async function proccessRows(resultSet: relationalStore.ResultSet) {
 
 getSendableRow(): sendableRelationalStore.ValuesBucket
 
-获取当前行数据的sendable形式，用于跨线程传递使用。
+获取当前行数据的sendable形式，用于跨线程传递。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **返回值：**
 
-| 类型                                                                                           | 说明                                           |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| [sendableRelationalStore.ValuesBucket](./js-apis-data-sendableRelationalStore.md#valuesbucket) | 当前行数据的sendable形式，用于跨线程传递使用。 |
+| 类型                                                                                           | 说明                                         |
+| ---------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| [sendableRelationalStore.ValuesBucket](./js-apis-data-sendableRelationalStore.md#valuesbucket) | 当前行数据的sendable形式，用于跨线程传递。 |
 
 **错误码：**
 
@@ -9011,7 +8955,11 @@ getSendableRow(): sendableRelationalStore.ValuesBucket
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
+import { window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
+import { relationalStore } from '@kit.ArkData';
 import { taskpool } from '@kit.ArkTS';
 import type ctx from '@ohos.app.ability.common';
 import { sendableRelationalStore } from '@kit.ArkData';
@@ -9036,9 +8984,9 @@ async function getDataByName(name: string, context: ctx.UIAbilityContext) {
   }
 }
 
-class EntryAbility extends UIAbility {
+export default class EntryAbility extends UIAbility {
   async onWindowStageCreate(windowStage: window.WindowStage) {
-    const task = new taskpool.Task(getDataByName, 'Lisa', getContext());
+    const task = new taskpool.Task(getDataByName, 'Lisa', this.context);
     const sendableValuesBucket = await taskpool.execute(task) as sendableRelationalStore.ValuesBucket;
 
     if (sendableValuesBucket) {
@@ -9135,7 +9083,7 @@ if (resultSet != undefined) {
 
 提供以事务方式管理数据库的方法。事务对象是通过[createTransaction](#createtransaction14)接口创建的，不同事务对象之间的操作是隔离的，不同类型事务的区别见[TransactionType](#transactiontype14) 。
 
-当前关系型数据库同一时刻只支持一个写事务，所以如果当前[RdbStore](#rdbstore)存在写事务未释放，创建IMMEDIATE或EXCLUSIVE事务会返回14800024错误码。如果是创建的DEFERRED事务，则可能在首次使用DEFERRED事务调用写操作时返回14800024错误码。通过IMMEDIATE或EXCLUSIVE创建写事务或者DEFERRED事务升级到写事务之后，[RdbStore](#rdbstore)的写操作也会返回14800024错误码。
+当前关系型数据库同一时刻仅支持一个写事务，所以如果当前[RdbStore](#rdbstore)存在写事务未释放，创建IMMEDIATE或EXCLUSIVE事务会返回14800024错误码。如果是创建的DEFERRED事务，则可能在首次使用DEFERRED事务调用写操作时返回14800024错误码。通过IMMEDIATE或EXCLUSIVE创建写事务或者DEFERRED事务升级到写事务之后，[RdbStore](#rdbstore)的写操作也会返回14800024错误码。
 
 当事务并发量较高且写事务持续时间较长时，返回14800024错误码的次数可能会变多，开发者可以通过减少事务占用时长减少14800024出现的次数，也可以通过重试的方式处理14800024错误码。
 
@@ -9154,7 +9102,7 @@ class EntryAbility extends UIAbility {
   async onWindowStageCreate(windowStage: window.WindowStage) {
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
-      securityLevel: relationalStore.SecurityLevel.S3,
+      securityLevel: relationalStore.SecurityLevel.S3
     };
 
     await relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
@@ -9180,7 +9128,7 @@ class EntryAbility extends UIAbility {
 
 commit(): Promise&lt;void&gt;
 
-提交已执行的SQL语句。如果是使用异步接口执行sql语句，请确保异步接口执行完成之后再调用commit接口，否则可能会丢失SQL操作。调用commit接口之后，该Transaction对象及创建的ResultSet对象都会被关闭。
+提交已执行的SQL语句。如果是使用异步接口执行sql语句，请确保异步接口执行完成之后再调用commit接口，否则可能会丢失SQL操作。调用commit接口之后，该Transaction对象及创建的ResultSet对象都将被关闭。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -9219,7 +9167,7 @@ if (store != undefined) {
     'NAME': value1,
     'AGE': value2,
     'SALARY': value3,
-    'CODES': value4,
+    'CODES': value4
   };
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     transaction.execute("DELETE FROM TEST WHERE age = ? OR age = ?", ["18", "20"]).then(() => {
@@ -9338,19 +9286,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 if (store != undefined) {
@@ -9425,19 +9373,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 if (store != undefined) {
@@ -9519,19 +9467,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -9613,19 +9561,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -9712,19 +9660,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -9810,19 +9758,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -9899,19 +9847,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
@@ -9989,19 +9937,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -10196,7 +10144,7 @@ predicates.equalTo("NAME", "Rose");
 
 if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    transaction.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
+    transaction.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then(async (resultSet: relationalStore.ResultSet) => {
       console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
       // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
       while (resultSet.goToNextRow()) {
@@ -10265,7 +10213,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 
 if (store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
+  (store as relationalStore.RdbStore).createTransaction().then(async (transaction: relationalStore.Transaction) => {
     try {
       let resultSet: relationalStore.ResultSet = (transaction as relationalStore.Transaction).querySync(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
       console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
@@ -10294,7 +10242,7 @@ if (store != undefined) {
 
 querySql(sql: string, args?: Array&lt;ValueType&gt;): Promise&lt;ResultSet&gt;
 
-根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用Promise异步回调。
+根据指定SQL语句查询数据库中的数据，SQL语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -10334,7 +10282,7 @@ querySql(sql: string, args?: Array&lt;ValueType&gt;): Promise&lt;ResultSet&gt;
 ```ts
 if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    transaction.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'").then((resultSet: relationalStore.ResultSet) => {
+    transaction.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'").then(async (resultSet: relationalStore.ResultSet) => {
       console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
       // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
       while (resultSet.goToNextRow()) {
@@ -10361,7 +10309,7 @@ if (store != undefined) {
 
 querySqlSync(sql: string, args?: Array&lt;ValueType&gt;): ResultSet
 
-根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个。对query同步接口获得的resultSet进行操作时，若逻辑复杂且循环次数过多，可能造成freeze问题，建议将此步骤放到[taskpool](../apis-arkts/js-apis-taskpool.md)线程中执行。
+根据指定SQL语句查询数据库中的数据，SQL语句中的各种表达式和操作符之间的关系操作符号不超过1000个。对query同步接口获得的resultSet进行操作时，若逻辑复杂且循环次数过多，可能造成freeze问题，建议将此步骤放到[taskpool](../apis-arkts/js-apis-taskpool.md)线程中执行。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -10400,7 +10348,7 @@ querySqlSync(sql: string, args?: Array&lt;ValueType&gt;): ResultSet
 
 ```ts
 if (store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
+  (store as relationalStore.RdbStore).createTransaction().then(async (transaction: relationalStore.Transaction) => {
     try {
       let resultSet: relationalStore.ResultSet = (transaction as relationalStore.Transaction).querySqlSync("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'");
       console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);

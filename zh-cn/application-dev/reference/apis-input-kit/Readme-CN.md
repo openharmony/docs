@@ -11,11 +11,11 @@
   - [@ohos.multimodalInput.pointer (鼠标指针)](js-apis-pointer.md)
   - [@ohos.multimodalInput.touchEvent (触摸输入事件)](js-apis-touchevent.md)
   - [@ohos.multimodalInput.infraredEmitter (红外管理)](js-apis-infraredemitter.md)
-  - [@ohos.multimodalInput.inputConsumer (组合按键)](js-apis-inputconsumer.md)
+  - [@ohos.multimodalInput.inputConsumer (全局快捷键)](js-apis-inputconsumer.md)
   <!--Del-->
   - [@ohos.multimodalInput.pointer (鼠标指针)(系统接口)](js-apis-pointer-sys.md)
-  - [@ohos.multimodalInput.shortKey(快捷键)(系统接口)](js-apis-shortKey-sys.md)
-  - [@ohos.multimodalInput.inputConsumer-sys (组合按键)(系统接口)](js-apis-inputconsumer-sys.md)
+  - [@ohos.multimodalInput.shortKey (系统预置全局快捷键)(系统接口)](js-apis-shortKey-sys.md)
+  - [@ohos.multimodalInput.inputConsumer (全局快捷键)(系统接口)](js-apis-inputconsumer-sys.md)
   - [@ohos.multimodalInput.inputDevice (输入设备)(系统接口)](js-apis-inputdevice-sys.md)
   - [@ohos.multimodalInput.inputEventClient (输入事件注入)(系统接口)](js-apis-inputeventclient-sys.md)
   - [@ohos.multimodalInput.inputMonitor (输入监听)(系统接口)](js-apis-inputmonitor-sys.md)
@@ -34,7 +34,10 @@
     - [Input_DeviceListener](_input___device_listener.md)
     - [Input_InterceptorEventCallback](_input___interceptor_event_callback.md)
 - 错误码<!--input-arkts-errcode-->
-  - [键鼠穿越管理错误码](errorcode-multimodalinput.md)
+  <!--Del-->
+  - [键鼠穿越管理错误码](errorcode-cooperator.md)
+  - [按键前置监听错误码](errorcode-inputmonitor.md)
+  <!--DelEnd-->
   - [全局快捷键管理错误码](errorcode-inputconsumer.md)
-  - [按键前置监听错误码](errorcode-inputkeymonitor.md)
   - [输入设备错误码](errorcode-inputdevice.md)
+  - [鼠标指针错误码](errorcode-pointer.md)

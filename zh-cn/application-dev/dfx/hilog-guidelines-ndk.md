@@ -100,25 +100,24 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 
 > **注意**
 >
-> 回调函数里面不允许再调用hilog接口打印日志，不然会死循环。
+> 在回调函数中禁止递归调用hilog接口，否则会导致循环调用问题。
 
 ```c++
 #include "hilog/log.h"
-static constexpr OHOS::HiviewDFX::HiLogLabel LABEL = {LOG_CORE, 0xD003200, "MY_TAG"};
 
 // 回调函数，开发者自定义的日志处理函数
 void MyHiLog(const LogType type, const LogLevel level, const unsigned int domain, const char *tag, const char *msg)
 {
     // user-defined to handle your log, such as redirect/filter
-    // 注意: 回调函数里面不允许再调用hilog接口打印日志，不然会死循环
+    // 注意: 在回调函数中禁止递归调用hilog接口，否则会导致循环调用问题。
 }
 
 static void Test(void)
 {
    // 1.注册回调接口
-    OH_LOG_SetCallback(MyHiLog);
+   OH_LOG_SetCallback(MyHiLog);
     
    // 2.调用hilog接口打印日志，日志内容会输出到hilog，同时通过回调返回给MyHiLog，开发者可以在MyHiLog中自行处理日志
-   HiLog::Info(LABEL, "hello world");
+   OH_LOG_INFO(LOG_APP, "hello world");
 }
 ```

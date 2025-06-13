@@ -57,7 +57,7 @@
 
 
 ### 联系人
-[Contacts Kit](../contacts/contacts-intro.md)提供联系人Picker（Contacts Picker），用于拉起联系人应用，读取联系人数据人。详见[选择联系人](../contacts/contacts-intro.md#选择联系人)。
+[Contacts Kit](../contacts/contacts-intro.md)提供联系人Picker（Contacts Picker），用于拉起联系人应用，读取联系人数据人。详见[选择联系人](../contacts/contacts-intro.md#使用picker选择联系人)。
 
 <!--RP2-->
 ### 相机

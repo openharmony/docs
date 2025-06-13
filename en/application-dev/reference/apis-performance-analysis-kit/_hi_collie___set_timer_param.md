@@ -9,6 +9,7 @@ Defines the input parameters of the **OH_HiCollie_SetTimer** function.
 
 **Related module**: [HiCollie](_hi_collie.md)
 
+**Header file**: [hicollie.h](hicollie_8h.md)
 
 ## Summary
 
@@ -17,10 +18,10 @@ Defines the input parameters of the **OH_HiCollie_SetTimer** function.
 
 | Name| Description| 
 | -------- | -------- |
-| const char \* [name](#name) | Timer task name. | 
+| const char \* [name](#name) | Timer task name. It must be a non-empty string.| 
 | unsigned int [timeout](#timeout) | Task timeout threshold, in seconds. | 
-| [OH_HiCollie_Callback](_hi_collie.md#oh_hicollie_callback) [func](#func) | Callback executed when a timeout occurs. | 
-| void \* [arg](#arg) | Parameters of the callback. | 
+| [OH_HiCollie_Callback](_hi_collie.md#oh_hicollie_callback) [func](#func) | Callback executed when a timeout occurs. If this callback is not used, **nullptr** can be passed. | 
+| void \* [arg](#arg) | Parameter of the callback, which is a void pointer. | 
 | [HiCollie_Flag](_hi_collie.md#hicollie_flag) [flag](#flag) | Execution to be performed when a timeout occurs. For details, see [HiCollie_Flag](_hi_collie.md#hicollie_flag). | 
 
 

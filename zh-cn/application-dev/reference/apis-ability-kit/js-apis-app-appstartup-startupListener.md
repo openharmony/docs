@@ -1,4 +1,4 @@
-# @ohos.app.appstartup.StartupListener
+# @ohos.app.appstartup.StartupListener (启动框架任务监听器)
 
 
 本模块提供监听启动任务的能力。

@@ -59,8 +59,8 @@ export const getModuleFileName: () => string | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let filename = testNapi.getModuleFileName();
 hilog.info(0x0000, 'testTag', 'Test Node-API node_api_get_module_file_name:%{public}s', filename);
@@ -105,8 +105,8 @@ export const strictEquals : (lhs: string, rhs: string | number) => boolean | voi
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   let lhs = "123";
   let rhs = "123";

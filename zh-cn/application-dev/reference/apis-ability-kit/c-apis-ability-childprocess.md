@@ -27,7 +27,7 @@
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
 | typedef enum Ability_NativeChildProcess_ErrCode [Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)                        | 定义Native子进程模块错误码。 |
 | typedef void(\* [OH_Ability_OnNativeChildProcessStarted](#oh_ability_onnativechildprocessstarted)) (int errCode, OHIPCRemoteProxy \*remoteProxy) | 定义通知子进程启动结果的回调函数。 |
-| typedef struct [NativeChildProcess_Fd](#nativechildprocess_fdlist) | 定义子进程文件描述符记录。 |
+| typedef struct [NativeChildProcess_Fd](#nativechildprocess_fd) | 定义子进程文件描述符记录。 |
 | typedef struct [NativeChildProcess_FdList](#nativechildprocess_fdlist) | 定义子进程文件描述符记录链表。 |
 | typedef struct [NativeChildProcess_Args](#nativechildprocess_args) | 定义启动子进程入参。 |
 

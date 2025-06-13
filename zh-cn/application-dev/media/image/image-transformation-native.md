@@ -119,13 +119,13 @@ EXTERN_C_END
 2. 打开src\main\ets\pages\index.ets, 导入"libentry.so"(根据工程名生成)；调用Native接口，传入JS的资源对象。示例如下：
 
     ```js
-    import testNapi from 'libentry.so'
+    import testNapi from 'libentry.so';
     import { image } from '@kit.ImageKit';
 
     @Entry
     @Component
     struct Index {
-    @State message: string = 'IMAGE'
+    @State message: string = 'IMAGE';
     @State _PixelMap : image.PixelMap | undefined = undefined;
 
     build() {
@@ -136,7 +136,7 @@ EXTERN_C_END
             .fontWeight(FontWeight.Bold)
             .onClick(() => {
                 const color : ArrayBuffer = new ArrayBuffer(96);
-                let opts: image.InitializationOptions = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
+                let opts: image.InitializationOptions = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } };
                 image.createPixelMap(color, opts)
                 .then( (pixelmap : image.PixelMap) => {
                     this._PixelMap = pixelmap;

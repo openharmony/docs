@@ -39,6 +39,8 @@
     - Buffer模式下，开发者通过OH_VideoEncoder_PushInputBuffer接口输入数据；Surface模式下，开发者应在编码器就绪前调用OH_VideoEncoder_GetSurface接口，获取OHNativeWindow用于传递视频数据。
     - Buffer模式下，开发者通过OH_AVBuffer中的attr传入结束flag，编码器读取到尾帧后，停止编码；Surface模式下，需要调用OH_VideoEncoder_NotifyEndOfStream接口通知编码器输入流结束。
 
+4. Surface模式的数据流转性能优于Buffer模式。
+
 两种模式的开发步骤详细说明请参考：[Surface模式](#surface模式)和[Buffer模式](#buffer模式)。
 
 ## 状态机调用关系
@@ -505,7 +507,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理。
     }
     // 将编码完成帧数据buffer写入到对应输出文件中。
-    outputFile->write(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(bufferInfo->buffer)), info.size);
+    uint8_t *addr = OH_AVBuffer_GetAddr(bufferInfo->buffer);
+    if (addr == nullptr) {
+       // 异常处理 
+    }
+    outputFile->write(reinterpret_cast<char *>(addr), info.size);
     // 释放已完成写入的数据，index为对应输出队列下标
     ret = OH_VideoEncoder_FreeOutputBuffer(videoEnc, bufferInfo->index);
     if (ret != AV_ERR_OK) {
@@ -802,10 +808,19 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理。
     }
     // 写入图像数据。
-    if (widthStride == width) {
+    int32_t frameSize = 0;
+    if (widthStride == width && heightStride == height) {
+        frameSize = width * height * 3 / 2; // NV12像素格式下，每帧数据大小的计算公式
+        int32_t capacity = OH_AVBuffer_GetCapacity(bufferInfo->buffer);
+        if (frameSize > capacity) {
+            // 异常处理。
+        }
         // 处理文件流得到帧的长度，再将需要编码的数据写入到对应index的buffer中。
-        int32_t frameSize = width * height * 3 / 2; // NV12像素格式下，每帧数据大小的计算公式。
-        inputFile->read(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(bufferInfo->buffer)), frameSize);
+        uint8_t *addr = OH_AVBuffer_GetAddr(bufferInfo->buffer);
+        if (addr == nullptr) {
+           // 异常处理 
+        }
+        inputFile->read(reinterpret_cast<char *>(addr), frameSize);
     } else {
         // 如果跨距不等于宽，需要开发者按照跨距进行偏移，具体可参考以下示例。
     }
@@ -957,7 +972,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理。
     }
     // 将编码完成帧数据buffer写入到对应输出文件中。
-    outputFile->write(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(bufferInfo->buffer)), info.size);
+    uint8_t *addr = OH_AVBuffer_GetAddr(bufferInfo->buffer);
+    if (addr == nullptr) {
+       // 异常处理 
+    }
+    outputFile->write(reinterpret_cast<char *>(addr), info.size);
     // 释放已完成写入的数据，index为对应输出队列的下标。
     ret = OH_VideoEncoder_FreeOutputBuffer(videoEnc, bufferInfo->index);
     if (ret != AV_ERR_OK) {

@@ -11,8 +11,9 @@ To use location services, turn on the Location switch on your device. If the swi
 
 ## Applying for Permissions
 
-For details, see [Applying for Location Permissions](../../device/location/location-guidelines.md#applying-for-location-permissions).
-
+<!--RP2-->
+For details, see [Applying for Location Permissions](../../device/location/location-permission-guidelines.md#how-to-develop).
+<!--RP2End-->
 
 ## Modules to Import
 
@@ -127,6 +128,7 @@ Defines a continuous location request.
 | -------- | -------- | -------- | -------- | -------- |
 | interval | number | No| No| Time interval at which location information is reported, in seconds. The specified value must be greater than or equal to **0**. The default value is **1**. If this parameter is set to **0**, there is no limitation on the location reporting interval.|
 | locationScenario | [UserActivityScenario](#useractivityscenario12) &#124; [PowerConsumptionScenario](#powerconsumptionscenario12) | No| No| Location scenario. For details, see [UserActivityScenario](#useractivityscenario12) and [PowerConsumptionScenario](#powerconsumptionscenario12).|
+| sportsType<sup>18+</sup> | [SportsType](#sportstype18) | No| Yes| Sports type.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 
 ## SingleLocationRequest<sup>12+</sup>
@@ -447,7 +449,7 @@ Enumerates error codes in a continuous location request.
 | -------- | -------- | -------- |
 | LOCATING_FAILED_DEFAULT   | -1 |  Unknown type. This is the default value.|
 | LOCATING_FAILED_LOCATION_PERMISSION_DENIED   | -2 | Failed to verify the **ohos.permission.APPROXIMATELY_LOCATION** or **ohos.permission.LOCATION** permission.|
-| LOCATING_FAILED_BACKGROUND_PERMISSION_DENIED    | -3 | Failed to verify the location permission when the application is running in the background. For details about how to apply for the location permission, see [Applying for Location Permissions](../../device/location/location-guidelines.md#applying-for-location-permissions).|
+| LOCATING_FAILED_BACKGROUND_PERMISSION_DENIED    | -3 | Failed to verify the location permission when the application is running in the background. <!--RP3-->For details about how to apply for the location permission, see [Applying for Location Permissions](../../device/location/location-permission-guidelines.md#how-to-develop).<!--RP3End-->|
 | LOCATING_FAILED_LOCATION_SWITCH_OFF    | -4 | Location switch turned off.|
 | LOCATING_FAILED_INTERNET_ACCESS_FAILURE    | -5 | Network access denied.|
 
@@ -481,6 +483,21 @@ Defines the Bluetooth scan result.
 | data | ArrayBuffer | Yes| Yes| Advertising packets sent by the device.|
 | deviceName | string | Yes| No| Name of the device detected.|
 | connectable | boolean | Yes| No| Whether the discovered device is connectable. The value **true** means the discovered device is connectable, and the value **false** means the opposite.|
+
+
+## SportsType<sup>18+</sup>
+
+Enumerates sports types.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Location.Location.Core
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| RUNNING   | 1 |  Running.|
+| WALKING    | 2 | Walking.|
+| CYCLING     | 3 | Cycling.|
 
 
 ## geoLocationManager.on('locationChange')
@@ -573,7 +590,6 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.off('locationChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
-|3301100 | The location switch is off.                                                 |
 
 **Example**
 

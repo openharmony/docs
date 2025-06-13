@@ -6,6 +6,8 @@
 >
 > 从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
+> UIObserver仅能监听到本进程内的相关信息，不支持获取<!--Del-->[UIExtensionComponent](../../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)等<!--DelEnd-->跨进程场景的信息。
+
 
 ## 导入模块
 
@@ -118,7 +120,7 @@ ScrollEvent滚动信息。
 | id           | string                                             | 是   | 滚动组件的id。                               |
 | uniqueId           | number                                             | 是   | 滚动组件的uniqueId。                               |
 | scrollEvent    | [ScrollEventType](#scrolleventtype12)                | 是   | 滚动事件的类型。                             |
-| offset       | number                                             | 是   | 滚动组件的当前偏移量。                        |
+| offset       | number                                             | 是   | 滚动组件的当前偏移量。                   |
 
 ## ObserverOptions<sup>12+</sup>
 
@@ -933,7 +935,7 @@ on(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, callback
 // uiObserver.off('navDestinationSwitch', UIAbilityContext, callback)
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { uiObserver, window } from '@kit.ArkUI';
-import { hilog } from "@kit.PerformanceAnalysisKit"
+import { hilog } from "@kit.PerformanceAnalysisKit";
 
 function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)

@@ -32,7 +32,7 @@ A constructor used to create a **ComponentContent** object.
 | Name   | Type                                     | Mandatory| Description                              |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
 | uiContext | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating the node.|
-| builder  | [WrappedBuilder\<[]>](../../quick-start/arkts-wrapBuilder.md) | Yes  |   **WrappedBuilder** object that encapsulates a builder function that has no parameters.|
+| builder  | [WrappedBuilder\<[]>](../../ui/state-management/arkts-wrapBuilder.md) | Yes  |   **WrappedBuilder** object that encapsulates a builder function that has no parameters.|
 
 ### constructor
 
@@ -49,7 +49,7 @@ A constructor used to create a **ComponentContent** object.
 | Name   | Type                                     | Mandatory| Description                              |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
 | uiContext | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating the node.|
-| builder  | [WrappedBuilder\<[T]>](../../quick-start/arkts-wrapBuilder.md) | Yes  |   **WrappedBuilder** object that encapsulates a builder function that has parameters.|
+| builder  | [WrappedBuilder\<[T]>](../../ui/state-management/arkts-wrapBuilder.md) | Yes  |   **WrappedBuilder** object that encapsulates a builder function that has parameters.|
 | args     |     T     |   Yes  |   Parameters of the builder function encapsulated in the **WrappedBuilder** object.|
 
 ### constructor
@@ -67,7 +67,7 @@ A constructor used to create a **ComponentContent** object.
 | Name   | Type                                     | Mandatory| Description                              |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
 | uiContext | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating the node.|
-| builder  | [WrappedBuilder\<[T]>](../../quick-start/arkts-wrapBuilder.md) | Yes  |   **WrappedBuilder** object that encapsulates a builder function that has parameters.|
+| builder  | [WrappedBuilder\<[T]>](../../ui/state-management/arkts-wrapBuilder.md) | Yes  |   **WrappedBuilder** object that encapsulates a builder function that has parameters.|
 | args     |     T     |   Yes  |   Parameters of the builder function encapsulated in the **WrappedBuilder** object.|
 | options | [BuildOptions](./js-apis-arkui-builderNode.md#buildoptions12)                                                    | Yes  |  Build options, which determine whether to support the behavior of nesting **@Builder** within **@Builder**.                                        |
 

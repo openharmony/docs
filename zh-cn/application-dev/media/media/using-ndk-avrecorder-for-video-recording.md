@@ -280,13 +280,13 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
    OH_AVRecorder_Stop(g_avRecorder);
    ```
 10. 重置资源，调用OH_AVRecorder_Reset()重新进入idle状态，允许重新配置录制参数。
-   ```
-   OH_AVRecorder_Reset(g_avRecorder);
-   ```
+      ```
+      OH_AVRecorder_Reset(g_avRecorder);
+      ```
 11. 销毁实例，调用OH_AVRecorder_Release()进入released状态，退出录制，释放视频数据输入源相关资源，例如相机资源。
-   ```
-   OH_AVRecorder_Release(g_avRecorder);
-   ```
+      ```
+      OH_AVRecorder_Release(g_avRecorder);
+      ```
 
 
 ## 完整示例

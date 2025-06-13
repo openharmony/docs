@@ -28,7 +28,7 @@ Canvas是图形绘制的核心，本章中提到的所有绘制操作（包括�
 1. 从XComponent对应的NativeWindow中获取BufferHandle对象。NativeWindow相关的API请参考[_native_window](../reference/apis-arkgraphics2d/_native_window.md)。
 
    ```c++
-   uint64_t widht, height;
+   uint64_t width, height;
    OHNativeWindow *nativeWindow;    // NativeWindow及其宽高需要从XComponent获取
    int32_t usage = NATIVEBUFFER_USAGE_CPU_READ | NATIVEBUFFER_USAGE_CPU_WRITE | NATIVEBUFFER_USAGE_MEM_DMA;
    int ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, SET_USAGE, usage);
@@ -209,7 +209,7 @@ GPU后端Canvas指画布是基于GPU进行绘制的，GPU的并行计算能力�
    }
    ```
 
-4. 创建GPU后端Cnavas。GPU后端Canvas需要借助Surface对象来获取，需先创建surface，surface的API请参考[drawing_surface.h](../reference/apis-arkgraphics2d/drawing__surface_8h.md)。通过OH_Drawing_GpuContextCreateFromGL接口创建绘图上下文，再将这个上下文作为参数创建surface，最后通过OH_Drawing_SurfaceGetCanvas接口从surface中获取到canvas。
+4. 创建GPU后端Canvas。GPU后端Canvas需要借助Surface对象来获取，需先创建surface，surface的API请参考[drawing_surface.h](../reference/apis-arkgraphics2d/drawing__surface_8h.md)。通过OH_Drawing_GpuContextCreateFromGL接口创建绘图上下文，再将这个上下文作为参数创建surface，最后通过OH_Drawing_SurfaceGetCanvas接口从surface中获取到canvas。
 
    ```c++
    // 设置宽高（按需设定）
@@ -258,3 +258,11 @@ GPU后端Canvas指画布是基于GPU进行绘制的，GPU的并行计算能力�
       mEGLDisplay = NULL;
    }
    ```
+
+<!--RP1-->
+## 相关实例
+
+针对Drawing(C/C++)的开发，有以下相关实例可供参考：
+
+- [NDKGraphicsDraw (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKGraphicsDraw)
+<!--RP1End-->

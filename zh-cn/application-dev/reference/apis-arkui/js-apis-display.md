@@ -45,6 +45,7 @@ import { display } from '@kit.ArkUI';
 | PORTRAIT_INVERTED | 2 | 表示设备当前以反向竖屏方式显示。|
 | LANDSCAPE_INVERTED | 3 | 表示设备当前以反向横屏方式显示。|
 
+<<<<<<< HEAD
 >**说明：**<br>
 > 设备充电口朝下时为竖屏，每顺时针旋转90度，Orientation值加1。
 
@@ -64,6 +65,8 @@ import { display } from '@kit.ArkUI';
 | EXTEND | 3 | 表示设备当前为扩展显示模式。|
 | ALONE | 4 | 表示设备当前为异源显示模式。|
 
+=======
+>>>>>>> bca1fb08ba0f51f7f2017d88d19c9e4cc458a09f
 ## FoldStatus<sup>10+</sup>
 
 当前可折叠设备的折叠状态枚举。如果是双折轴设备，则在充电口朝下的状态下，从右到左分别是折轴一和折轴二。
@@ -131,10 +134,10 @@ import { display } from '@kit.ArkUI';
 
 | 名称   | 类型 | 可读 | 可写 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | 是   | 是   | 矩形区域的左边界，单位为px，该参数应为整数。 |
-| top    | number   | 是   | 是   | 矩形区域的上边界，单位为px，该参数应为整数。 |
-| width  | number   | 是   | 是   | 矩形区域的宽度，单位为px，该参数应为整数。   |
-| height | number   | 是   | 是   | 矩形区域的高度，单位为px，该参数应为整数。   |
+| left   | number   | 是   | 是   | 矩形区域的左边界，单位为px，该参数为整数。 |
+| top    | number   | 是   | 是   | 矩形区域的上边界，单位为px，该参数为整数。 |
+| width  | number   | 是   | 是   | 矩形区域的宽度，单位为px，该参数为整数。   |
+| height | number   | 是   | 是   | 矩形区域的高度，单位为px，该参数为整数。   |
 
 ## WaterfallDisplayAreaRects<sup>9+</sup>
 
@@ -174,8 +177,8 @@ import { display } from '@kit.ArkUI';
 | 名称                        | 类型      | 只读 | 可选 | 说明               |
 | --------------------------- | ------------- | ---- | ---- | ------------------ |
 | foldDisplayMode             | [FoldDisplayMode](#folddisplaymode10) | 是   | 否   | 折叠设备的显示模式。 |
-| physicalWidth   | number | 是 | 否 | 折叠设备的宽度，单位为px，该参数应为大于0的整数。|
-| physicalHeight  | number | 是 | 否 | 折叠设备的高度，单位为px，该参数应为大于0的整数。|
+| physicalWidth   | number | 是 | 否 | 折叠设备的宽度，单位为px，该参数为大于0的整数。|
+| physicalHeight  | number | 是 | 否 | 折叠设备的高度，单位为px，该参数为大于0的整数。|
 
 ## ScreenShape<sup>18+</sup>
 
@@ -459,7 +462,7 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 | 参数名 | 类型 | 必填 | 说明                                                                                                                              |
 | -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------------------------|
 | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
-| callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的显示设备的id，该参数应为整数。                                                                                                     |
+| callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的显示设备的id，该参数为整数。                                                                                                     |
 
 **错误码：**
 
@@ -496,7 +499,7 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
-| callback | Callback&lt;number&gt; | 否 | 需要取消注册的回调函数。返回监听到的显示设备的id，该参数应为整数。若无此参数，则取消注册当前type类型事件监听的所有回调函数。 |
+| callback | Callback&lt;number&gt; | 否 | 需要取消注册的回调函数。返回监听到的显示设备的id，该参数为整数。若无此参数，则取消注册当前type类型事件监听的所有回调函数。 |
 
 **错误码：**
 
@@ -587,7 +590,7 @@ console.info('Succeeded in obtaining fold status. Data: ' + JSON.stringify(data)
 ## display.getFoldDisplayMode<sup>10+</sup>
 getFoldDisplayMode(): FoldDisplayMode
 
-获取可折叠设备的显示模式。
+获取可折叠设备的显示模式，不适用于2in1设备。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -925,7 +928,7 @@ ret = display.isCaptured();
 
 on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): void
 
-开启折叠设备屏幕显示模式变化的监听。
+开启折叠设备屏幕显示模式变化的监听，不适用于2in1设备。
 
 本接口监听设备屏幕显示模式的变化，如果要监听设备物理折叠状态的变化，需要使用[display.on('foldStatusChange')](#displayonfoldstatuschange10)接口。
 
@@ -970,7 +973,7 @@ display.on('foldDisplayModeChange', callback);
 
 off(type: 'foldDisplayModeChange', callback?: Callback&lt;FoldDisplayMode&gt;): void
 
-关闭折叠设备屏幕显示模式变化的监听。
+关闭折叠设备屏幕显示模式变化的监听，不适用于2in1设备。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1354,14 +1357,21 @@ display.makeUnique(screenId).then(() => {
 
 | 名称 | 类型 | 只读 | 可选 | 说明                                                                                                            |
 | -------- | -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------|
-| id | number | 是 | 否 | 显示设备的id号，该参数应为大于等于0的整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                             |
+| id | number | 是 | 否 | 显示设备的id号，该参数为大于等于0的整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                             |
 | name | string | 是 | 否 | 显示设备的名称。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                      |
 | alive | boolean | 是 | 否 | 显示设备是否启用。true表示设备启用，false表示设备未启用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                     |
 | state | [DisplayState](#displaystate) | 是 | 否 | 显示设备的状态。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                      |
+<<<<<<< HEAD
 | refreshRate | number | 是 | 否 | 显示设备的刷新率，该参数应为整数，单位为hz。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                             |
 | rotation | number | 是 | 否 | 显示设备的屏幕顺时针旋转角度。<br>值为0时，表示显示设备屏幕顺时针旋转为0°；(此时设备充电口朝下)<br>值为1时，表示显示设备屏幕顺时针旋转为90°；<br>值为2时，表示显示设备屏幕顺时针旋转为180°；<br>值为3时，表示显示设备屏幕顺时针旋转为270°。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | width | number | 是 | 否 | 显示设备的屏幕宽度，单位为px，该参数应为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
 | height | number | 是 | 否 | 显示设备的屏幕高度，单位为px，该参数应为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
+=======
+| refreshRate | number | 是 | 否 | 显示设备的刷新率，该参数为整数，单位为hz。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                             |
+| rotation | number | 是 | 否 | 显示设备的屏幕顺时针旋转角度。<br>值为0时，表示显示设备屏幕顺时针旋转为0°；<br>值为1时，表示显示设备屏幕顺时针旋转为90°；<br>值为2时，表示显示设备屏幕顺时针旋转为180°；<br>值为3时，表示显示设备屏幕顺时针旋转为270°。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| width | number | 是 | 否 | 显示设备的屏幕宽度，单位为px，该参数为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
+| height | number | 是 | 否 | 显示设备的屏幕高度，单位为px，该参数为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
+>>>>>>> bca1fb08ba0f51f7f2017d88d19c9e4cc458a09f
 | densityDPI | number | 是 | 否 | 显示设备屏幕的物理像素密度，表示每英寸上的像素点数。该参数为浮点数，单位为px。一般取值160.0、480.0等，实际能取到的值取决于不同设备设置里提供的可选值。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                   |
 | orientation<sup>10+</sup> | [Orientation](#orientation10) | 是 | 否 | 表示屏幕当前显示的方向。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                  |
 | densityPixels | number | 是 | 否 | 显示设备逻辑像素的密度，代表物理像素与逻辑像素的缩放系数，计算方式为：![densityPixels](figures/densityPixels.jpg)<br>该参数为浮点数，受densityDPI范围限制，取值范围在[0.5，4.0]。一般取值1.0、3.0等，实际取值取决于不同设备提供的densityDPI。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                  |
@@ -1373,10 +1383,6 @@ display.makeUnique(screenId).then(() => {
 | availableWidth<sup>12+</sup> | number | 是 | 否 | 2in1设备上屏幕的可用区域宽度，单位为px，该参数为大于0的整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 | availableHeight<sup>12+</sup> | number | 是 | 否 | 2in1设备上屏幕的可用区域高度，单位为px，该参数为大于0的整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 | screenShape<sup>18+</sup> | [ScreenShape](#screenshape18) | 是 | 是 | 显示设备的屏幕形状，默认值为RECTANGLE。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 
-| sourceMode<sup>18+</sup> | [DisplaySourceMode](#displaysourcemode18) | 是 | 是 | 屏幕显示内容的显示模式枚举。<br/>**系统能力：** SystemCapability.Window.SessionManager <br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                    |
-| x<sup>18+</sup> | number | 是 | 是 | 屏幕左上角相对于原点的x轴坐标，原点为主屏左上角，单位为px，该参数为整数。<br/>**系统能力：** SystemCapability.Window.SessionManager<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                    |
-| y<sup>18+</sup> | number | 是 | 是 | 屏幕左上角相对于原点的y轴坐标，原点为主屏左上角，单位为px，该参数为整数。<br/>**系统能力：** SystemCapability.Window.SessionManager<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                    |
-
 
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
@@ -1461,6 +1467,8 @@ getAvailableArea(): Promise&lt;Rect&gt;
 
 获取当前设备屏幕的可用区域，使用Promise异步回调。
 
+仅支持2in1设备。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -1504,6 +1512,8 @@ try {
 on(type: 'availableAreaChange', callback: Callback&lt;Rect&gt;): void
 
 开启当前设备屏幕的可用区域监听。当前设备屏幕有可用区域变化时，触发回调函数，返回可用区域。
+
+仅支持2in1设备。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1549,6 +1559,8 @@ try {
 off(type: 'availableAreaChange', callback?: Callback&lt;Rect&gt;): void
 
 关闭当前设备屏幕可用区域变化的监听。
+
+仅支持2in1设备。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

@@ -1,4 +1,4 @@
-# @ohos.app.ability.ChildProcessArgs
+# @ohos.app.ability.ChildProcessArgs (子进程参数)
 
 传递到子进程的参数。[childProcessManager](js-apis-app-ability-childProcessManager.md)启动子进程时，可以通过ChildProcessArgs传递参数到子进程中。
 
@@ -14,7 +14,7 @@
 import { ChildProcessArgs } from '@kit.AbilityKit';
 ```
 
-## 属性
+## ChildProcessArgs
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -30,18 +30,35 @@ import { ChildProcessArgs } from '@kit.AbilityKit';
 ```ts
 // 主进程中:
 import { common, ChildProcessArgs, childProcessManager } from '@kit.AbilityKit';
-import fs from '@ohos.file.fs';
+import { fileIo } from '@kit.CoreFileKit';
 
-let context = getContext(this) as common.UIAbilityContext;
-let path = context.filesDir + "/test.txt";
-let file = fs.openSync(path, fs.OpenMode.READ_ONLY | fs.OpenMode.CREATE);
-let args: ChildProcessArgs = {
-  entryParams: "testParam",
-  fds: {
-    "key1": file.fd
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Text('Click')
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+            let path = context.filesDir + "/test.txt";
+            let file = fileIo.openSync(path, fileIo.OpenMode.READ_ONLY | fileIo.OpenMode.CREATE);
+            let args: ChildProcessArgs = {
+              entryParams: "testParam",
+              fds: {
+                "key1": file.fd
+              }
+            };
+            childProcessManager.startArkChildProcess("entry/./ets/process/DemoProcess.ets", args);
+          });
+      }
+      .width('100%')
+    }
+    .height('100%')
   }
-};
-childProcessManager.startArkChildProcess("entry/./ets/process/DemoProcess.ets", args);
+}
 ```
 
 ```ts

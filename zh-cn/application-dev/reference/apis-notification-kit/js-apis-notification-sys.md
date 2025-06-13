@@ -305,7 +305,7 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 
 | 参数名       | 类型                      | 必填 | 说明             |
 | ---------- | ------------------------- | ---- | ---------------- |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber)    | 是   | 通知订阅对象。     |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md)    | 是   | 通知订阅对象。     |
 | info       | [NotificationSubscribeInfo](js-apis-inner-notification-notificationSubscribeInfo-sys.md#notificationsubscribeinfo) | 是   | 通知订阅信息。 |
 | callback   | AsyncCallback\<void\>     | 是   | 订阅动作回调函数。 |
 
@@ -351,7 +351,7 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 
 | 参数名       | 类型                   | 必填 | 说明             |
 | ---------- | ---------------------- | ---- | ---------------- |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber) | 是   | 通知订阅对象。     |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md) | 是   | 通知订阅对象。     |
 | callback   | AsyncCallback\<void\>  | 是   | 订阅动作回调函数。 |
 
 **示例：**
@@ -392,7 +392,7 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 
 | 参数名       | 类型                      | 必填 | 说明         |
 | ---------- | ------------------------- | ---- | ------------ |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber)    | 是   | 通知订阅对象。 |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md)    | 是   | 通知订阅对象。 |
 | info       | [NotificationSubscribeInfo](js-apis-inner-notification-notificationSubscribeInfo-sys.md#notificationsubscribeinfo) | 否   | 通知订阅信息，默认为空。   |
 
 **返回值：**
@@ -436,7 +436,7 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 
 | 参数名       | 类型                   | 必填 | 说明                 |
 | ---------- | ---------------------- | ---- | -------------------- |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber) | 是   | 通知订阅对象。         |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md) | 是   | 通知订阅对象。         |
 | callback   | AsyncCallback\<void\>  | 是   | 取消订阅动作回调函数。 |
 
 **示例：**
@@ -477,7 +477,7 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 
 | 参数名       | 类型                   | 必填 | 说明         |
 | ---------- | ---------------------- | ---- | ------------ |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber) | 是   | 通知订阅对象。 |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md) | 是   | 通知订阅对象。 |
 
 **返回值：**
 
@@ -1231,7 +1231,7 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
-| hashCode | string                | 是   | 通知唯一ID。可以通过[onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onconsume)回调的入参[SubscribeCallbackData](#subscribecallbackdata)获取其内部[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)对象中的hashCode。 |
+| hashCode | string                | 是   | 通知唯一ID。可以通过[onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onconsume)回调的入参[SubscribeCallbackData](js-apis-inner-notification-notificationSubscriber-sys.md#subscribecallbackdata)获取其内部[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)对象中的hashCode。 |
 | reason   | [RemoveReason](#removereason-deprecated) | 是   | 通知删除原因。         |
 | callback | AsyncCallback\<void\> | 是   | 删除指定通知回调函数。 |
 

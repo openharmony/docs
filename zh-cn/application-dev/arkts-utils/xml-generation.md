@@ -16,7 +16,7 @@ XML还可以作为消息传递格式，在分布式系统中用于不同节点�
 
 ## 开发步骤
 
-XML模块提供XmlSerializer类来生成XML数据，输入为固定长度的Arraybuffer或DataView对象，该对象用于存放生成的XML数据。
+XML模块提供XmlSerializer类来生成XML数据，输入为固定长度的ArrayBuffer或DataView对象，该对象用于存放生成的XML数据。
 
 通过调用不同的方法来写入不同的内容，如startElement(name: string)写入元素开始标记，setText(text: string)写入标签值。
 
@@ -28,12 +28,12 @@ XML模块的API接口可以参考[@ohos.xml](../reference/apis-arkts/js-apis-xml
    import { xml, util } from '@kit.ArkTS';
    ```
 
-2. 创建缓冲区，构造XmlSerializer对象。可以基于Arraybuffer构造XmlSerializer对象，也可以基于DataView构造XmlSerializer对象。
+2. 创建缓冲区，构造XmlSerializer对象。可以基于ArrayBuffer构造XmlSerializer对象，也可以基于DataView构造XmlSerializer对象。
 
    ```ts
-   // 方式1：基于Arraybuffer构造XmlSerializer对象
+   // 方式1：基于ArrayBuffer构造XmlSerializer对象
    let arrayBuffer: ArrayBuffer = new ArrayBuffer(2048); // 创建一个2048字节的缓冲区
-   let serializer: xml.XmlSerializer = new xml.XmlSerializer(arrayBuffer); // 基于Arraybuffer构造XmlSerializer对象
+   let serializer: xml.XmlSerializer = new xml.XmlSerializer(arrayBuffer); // 基于ArrayBuffer构造XmlSerializer对象
 
    // 方式2：基于DataView构造XmlSerializer对象
    // let arrayBuffer: ArrayBuffer = new ArrayBuffer(2048); 
@@ -62,7 +62,7 @@ XML模块的API接口可以参考[@ohos.xml](../reference/apis-arkts/js-apis-xml
    serializer.endElement();
    ```
 
-4. 使用Uint8Array操作Arraybuffer，调用TextDecoder对Uint8Array解码后输出。
+4. 使用Uint8Array操作ArrayBuffer，调用TextDecoder对Uint8Array解码后输出。
 
    ```ts
    let uint8Array: Uint8Array = new Uint8Array(arrayBuffer); // 使用Uint8Array读取arrayBuffer的数据

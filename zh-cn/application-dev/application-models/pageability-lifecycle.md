@@ -1,7 +1,7 @@
 # PageAbility的生命周期
 
 
-PageAbility生命周期是PageAbility被调度到INACTIVE、ACTIVE、BACKGROUND等各个状态的统称。PageAbility生命周期流转及状态说明见如下图1、表1所示。
+PageAbility生命周期是PageAbility被调度到INACTIVE、ACTIVE、BACKGROUND等各个状态的统称。PageAbility生命周期流转及状态说明如图1、表1所示。
 
   **图1** PageAbility生命周期流转
 

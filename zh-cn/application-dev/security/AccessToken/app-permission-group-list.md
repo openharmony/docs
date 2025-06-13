@@ -132,6 +132,10 @@
 
 - [ohos.permission.READ_PASTEBOARD](restricted-permissions.md#ohospermissionread_pasteboard)
 
+## 截屏
+
+- [ohos.permission.CUSTOM_SCREEN_CAPTURE](permissions-for-all-user.md#ohospermissioncustom_screen_capture)
+
 ## 文件夹
 
 > **说明：**

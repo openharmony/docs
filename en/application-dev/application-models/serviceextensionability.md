@@ -206,19 +206,19 @@ To manually create a ServiceExtensionAbility in the DevEco Studio project, perfo
 A system application uses the [startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) method to start a background service. The [onRequest()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonrequest) callback is invoked, through which the background service receives the [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) object passed by the caller. After the background service is started, its lifecycle is independent of the client. In other words, even if the client is destroyed, the background service remains alive. Therefore, the background service must be stopped by calling [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextterminateself) when its work is complete. Alternatively, another component can call [stopServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#abilitycontextstopserviceextensionability) to stop the background service.
 
 > **NOTE**
+>
 > **startServiceExtensionAbility()**, **stopServiceExtensionAbility()**, and **terminateSelf()** provided by the **ServiceExtensionContext** class are system APIs and cannot be called by third-party applications.
 
 1. Start a new [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) in a system application. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
 
     ```ts
     import { common, Want } from '@kit.AbilityKit';
-    import { promptAction } from '@kit.ArkUI';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
     const TAG: string = '[Page_ServiceExtensionAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
-    
+
     @Entry
     @Component
     struct Page_ServiceExtensionAbility {
@@ -231,7 +231,7 @@ A system application uses the [startServiceExtensionAbility()](../reference/apis
                 //...
               }
               .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
                 let want: Want = {
                   deviceId: '',
                   bundleName: 'com.samples.stagemodelabilitydevelop',
@@ -240,7 +240,7 @@ A system application uses the [startServiceExtensionAbility()](../reference/apis
                 context.startServiceExtensionAbility(want).then(() => {
                   hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting ServiceExtensionAbility.');
                   // The background service is started.
-                  promptAction.showToast({
+                  this.getUIContext().getPromptAction().showToast({
                     message: 'SuccessfullyStartBackendService'
                   });
                 }).catch((err: BusinessError) => {
@@ -261,13 +261,12 @@ A system application uses the [startServiceExtensionAbility()](../reference/apis
 
     ```ts
     import { common, Want } from '@kit.AbilityKit';
-    import { promptAction } from '@kit.ArkUI';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { BusinessError } from '@kit.BasicServicesKit';
-    
+
     const TAG: string = '[Page_ServiceExtensionAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
-    
+
     @Entry
     @Component
     struct Page_ServiceExtensionAbility {
@@ -280,7 +279,7 @@ A system application uses the [startServiceExtensionAbility()](../reference/apis
                 //...
               }
               .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
                 let want: Want = {
                   deviceId: '',
                   bundleName: 'com.samples.stagemodelabilitydevelop',
@@ -288,7 +287,7 @@ A system application uses the [startServiceExtensionAbility()](../reference/apis
                 };
                 context.stopServiceExtensionAbility(want).then(() => {
                   hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in stopping ServiceExtensionAbility.');
-                  promptAction.showToast({
+                  this.getUIContext().getPromptAction().showToast({
                     message: 'SuccessfullyStoppedAStartedBackendService'
                   });
                 }).catch((err: BusinessError) => {
@@ -309,13 +308,12 @@ A system application uses the [startServiceExtensionAbility()](../reference/apis
 
     ```ts
     import { common } from '@kit.AbilityKit';
-    import { promptAction } from '@kit.ArkUI';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
     const TAG: string = '[Page_ServiceExtensionAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
-    
+
     @Entry
     @Component
     struct Page_ServiceExtensionAbility {
@@ -328,11 +326,11 @@ A system application uses the [startServiceExtensionAbility()](../reference/apis
                 //...
               }
               .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
                 context.terminateSelf().then(() => {
                   hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in terminating self.');
                   // The background service is stopped.
-                  promptAction.showToast({
+                  this.getUIContext().getPromptAction().showToast({
                     message: 'SuccessfullyStopStartedBackendService'
                   });
                 }).catch((err: BusinessError) => {
@@ -368,7 +366,6 @@ The ServiceExtensionAbility returns an [IRemoteObject](../reference/apis-ipc-kit
   ```ts
   import { common, Want } from '@kit.AbilityKit';
   import { rpc } from '@kit.IPCKit';
-  import { promptAction } from '@kit.ArkUI';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   // The client needs to import idl_service_ext_proxy.ts provided by the server to the local project.
   import IdlServiceExtProxy from '../IdlServiceExt/idl_service_ext_proxy';
@@ -418,11 +415,11 @@ The ServiceExtensionAbility returns an [IRemoteObject](../reference/apis-ipc-kit
               //...
             }
             .onClick(() => {
-              let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+              let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
               // The ID returned after the connection is set up must be saved. The ID will be used for disconnection.
               connectionId = context.connectServiceExtensionAbility(want, options);
               // The background service is connected.
-              promptAction.showToast({
+              this.getUIContext().getPromptAction().showToast({
                 message: 'SuccessfullyConnectBackendService'
               });
               // connectionId = context.connectAbility(want, options);
@@ -442,13 +439,12 @@ The ServiceExtensionAbility returns an [IRemoteObject](../reference/apis-ipc-kit
   
   ```ts
   import { common } from '@kit.AbilityKit';
-  import { promptAction } from '@kit.ArkUI';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   const TAG: string = '[Page_ServiceExtensionAbility]';
   const DOMAIN_NUMBER: number = 0xFF00;
-  
+
   let connectionId: number;
   @Entry
   @Component
@@ -462,12 +458,12 @@ The ServiceExtensionAbility returns an [IRemoteObject](../reference/apis-ipc-kit
               //...
             }
             .onClick(() => {
-              let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+              let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
               // connectionId is returned when connectServiceExtensionAbility is called and needs to be manually maintained.
               context.disconnectServiceExtensionAbility(connectionId).then(() => {
                 hilog.info(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility success');
                 // The background service is disconnected.
-                promptAction.showToast({
+                this.getUIContext().getPromptAction().showToast({
                   message: 'SuccessfullyDisconnectBackendService'
                 });
               }).catch((error: BusinessError) => {
@@ -482,7 +478,6 @@ The ServiceExtensionAbility returns an [IRemoteObject](../reference/apis-ipc-kit
       //...
     }
   }
-
   ```
 
 ## Communication Between the Client and Server

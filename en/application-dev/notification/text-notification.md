@@ -16,8 +16,6 @@ The following table describes the APIs for notification publishing. You specify 
 | Name| Description|
 | -------- | -------- |
 | publish(request:&nbsp;NotificationRequest,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | Publishes a notification.                |
-| cancel(id:&nbsp;number,&nbsp;label:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | Cancels a notification.          |
-| cancelAll(callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | Cancels all notifications published by the application.|
 
 
 ## How to Develop
@@ -34,7 +32,7 @@ The following table describes the APIs for notification publishing. You specify 
    ```
 
 2. Create a **NotificationRequest** object and publish a progress notification.
-   - A normal text notification consists of the **title**, **text**, and **additionalText** parameters, of which **title** and **text** are mandatory. The value of these parameters contains less than 200 bytes. Excess content will be truncated.
+   - A normal text notification consists of the **title**, **text**, and **additionalText** fields. For details, see [NotificationBasicContent](../reference/apis-notification-kit/js-apis-inner-notification-notificationContent.md#notificationbasiccontent).
      
       ```ts
       let notificationRequest: notificationManager.NotificationRequest = {
@@ -58,7 +56,7 @@ The following table describes the APIs for notification publishing. You specify 
       ```
 
 
-   - In addition to the parameters in the normal text notification, the multi-line text notification provides the **lines**, **briefText**, and **longTitle** parameters. The value of these parameters contains less than 200 bytes. Excess content will be truncated. By default, a multi-line notification looks in the same way as a normal text notification. When expanded, the notification displays the title and content specified in **longTitle** and **lines**, respectively.
+   - In addition to the fields in the normal text notification, the multi-line text notification provides the **lines**, **briefText**, and **longTitle** fields. For details, see [NotificationMultiLineContent](../reference/apis-notification-kit/js-apis-inner-notification-notificationContent.md#notificationmultilinecontent).
      
       ```ts
       let notificationRequest: notificationManager.NotificationRequest = {
@@ -70,7 +68,7 @@ The following table describes the APIs for notification publishing. You specify 
             text: 'test_text',
             briefText: 'test_briefText',
             longTitle: 'test_longTitle',
-            lines: ['line_01', 'line_02', 'line_03', 'line_04'],
+            lines: ['line_01', 'line_02', 'line_03'],
           }
         }
       };
@@ -83,14 +81,3 @@ The following table describes the APIs for notification publishing. You specify 
         hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in publishing notification.');
       });
       ```
-3. Delete the notification.
-
-   ```ts
-    notificationManager.cancel(1, (err: BusinessError) => {
-      if (err) {
-        hilog.error(DOMAIN_NUMBER, TAG, `Failed to cancel notification. Code is ${err.code}, message is ${err.message}`);
-        return;
-      }
-      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in cancel notification.');
-    });
-   ```

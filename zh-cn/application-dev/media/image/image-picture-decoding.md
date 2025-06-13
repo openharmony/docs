@@ -1,6 +1,6 @@
 # 使用ImageSource完成多图对象解码
 
-图片解码指将所支持格式的图片文件解码成统一的[Picture](image-overview.md)。当前支持的图片文件格式包括JPEG、HEIF。
+将所支持格式的图片文件解码成[Picture](image-overview.md)。当前支持的图片文件格式包括JPEG、HEIF。
 
 ## 开发步骤
 
@@ -16,63 +16,60 @@
    - 方法一：通过沙箱路径直接获取。该方法仅适用于应用沙箱中的图片。更多细节请参考[获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。应用沙箱的介绍及如何向应用沙箱推送文件，请参考[文件管理](../../file-management/app-sandbox-directory.md)。
 
       ```ts
-      const context : Context = getContext(this);
-      const filePath : string = context.cacheDir + '/test.jpg';
+      function getFilePath(context: Context): string {
+        const filePath: string = context.cacheDir + '/test.jpg';
+        return filePath;
+      }
       ```
 
-   - 方法二：通过沙箱路径获取图片的文件描述符。具体请参考[file.fs API参考文档](../../reference/apis-core-file-kit/js-apis-file-fs.md)。该方法需要先导入\@kit.CoreFileKit模块。
+   - 方法二：通过沙箱路径获取图片的文件描述符。具体请参考[file.fs API参考文档](../../reference/apis-core-file-kit/js-apis-file-fs.md)。该方法需要导入\@kit.CoreFileKit模块。
 
       ```ts
-      import { fileIo } from '@kit.CoreFileKit';
+      import { fileIo as fs } from '@kit.CoreFileKit';
+
+      function getFileFd(context: Context): number | undefined {
+        const filePath: string = context.cacheDir + '/test.jpg';
+        const file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
+        const fd: number = file?.fd;
+        return fd;
+      }
       ```
 
-      然后调用fileIo.openSync()获取文件描述符。
-  
+   - 方法三：通过资源管理器获取资源文件的ArrayBuffer。具体请参考[资源管理器API参考文档](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfilecontent9-1)。该方法需要导入\@kit.LocalizationKit模块。
+
       ```ts
-      const context = getContext(this);
-      const filePath = context.cacheDir + '/test.jpg';
-      const file : fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE);
-      const fd : number = file?.fd;
+      import { resourceManager } from '@kit.LocalizationKit';
+
+      async function getFileBuffer(context: Context): Promise<ArrayBuffer | undefined> {
+         try {
+            const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+            // 获取资源文件内容，返回Uint8Array。
+            const fileData: Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
+            // 转为ArrayBuffer并返回。
+            const buffer: ArrayBuffer = fileData.buffer.slice(0);
+            return buffer;
+         } catch (error) {
+            console.error("Failed to get RawFileContent");
+            return undefined;
+         }
+      }
       ```
 
-   - 方法三：通过资源管理器获取资源文件的ArrayBuffer。具体请参考[ResourceManager API参考文档](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfilecontent9-1)。
-
+   - 方法四：通过资源管理器获取资源文件的RawFileDescriptor。具体请参考[资源管理器API参考文档](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9-1)。该方法需要导入\@kit.LocalizationKit模块。
       ```ts
-      const context : Context = getContext(this);
-      // 获取resourceManager资源管理器。
-      const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
-      ```
+      import { resourceManager } from '@kit.LocalizationKit';
 
-      不同模型获取资源管理器的方式不同，获取资源管理器后，再调用resourceMgr.getRawFileContent()获取资源文件的ArrayBuffer。
-
-      ```ts
-      resourceMgr.getRawFileContent('test.jpg').then((fileData : Uint8Array) => {
-         console.log("Succeeded in getting RawFileContent")
-         // 获取图片的ArrayBuffer。
-         const buffer = fileData.buffer.slice(0);
-      }).catch((err : BusinessError) => {
-         console.error("Failed to get RawFileContent")
-      });
-      
-      ```
-
-   - 方法四：通过资源管理器获取资源文件的RawFileDescriptor。具体请参考[ResourceManager API参考文档](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9-1)。
-
-      ```ts
-      const context : Context = getContext(this);
-      // 获取resourceManager资源管理器。
-      const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
-      ```
-
-      不同模型获取资源管理器的方式不同，获取资源管理器后，再调用resourceMgr.getRawFd()获取资源文件的RawFileDescriptor。
-
-      ```ts
-      
-      resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor : resourceManager.RawFileDescriptor) => {
-         console.log("Succeeded in getting RawFileDescriptor")
-      }).catch((err : BusinessError) => {
-         console.error("Failed to get RawFileDescriptor")
-      });
+      async function getRawFd(context: Context): Promise<resourceManager.RawFileDescriptor | undefined> {
+         try {
+            const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+            const rawFileDescriptor: resourceManager.RawFileDescriptor = await resourceMgr.getRawFd('test.jpg');
+            console.info('Successfully got RawFileDescriptor');
+            return rawFileDescriptor;
+         } catch (error) {
+            console.error('Failed to get RawFileDescriptor:');
+            return undefined;
+         }
+      }
       ```
 
 3. 创建ImageSource实例。
@@ -103,47 +100,45 @@
       const imageSource : image.ImageSource = image.createImageSource(rawFileDescriptor);
       ```
 
-4. 设置解码参数DecodingOptions，解码获取picture多图对象。
+4. 设置解码参数DecodingOptions，解码获取picture多图对象。并对picture进行操作，如获取辅助图等。对于picture和辅助图的操作具体请参考[Image API参考文档](../../reference/apis-image-kit/js-apis-image.md#picture13)。
 
    设置期望的format进行解码：
       ```ts
       import { BusinessError } from '@kit.BasicServicesKit';
-      import image from '@kit.ImageKit';
-      let img = await getContext(this).resourceManager.getMediaContent($r('app.media.picture'));
-      let imageSource:image.ImageSource = image.createImageSource(img.buffer.slice(0));
+      import { image } from '@kit.ImageKit';
+      // 创建ImageSource，请选择3中合适的方法替换。
+      let fd : number = 0;
+      let imageSource : image.ImageSource = image.createImageSource(fd);
+      // 配置解码选项参数。
       let options: image.DecodingOptionsForPicture = {
          desiredAuxiliaryPictures: [image.AuxiliaryPictureType.GAINMAP] // GAINMAP为需要解码的辅助图类型。
       };
       // 创建picture。
       imageSource.createPicture(options).then((picture: image.Picture) => {
-         console.log("Create picture succeeded.")
+         console.info("Create picture succeeded.");
+         let type: image.AuxiliaryPictureType = image.AuxiliaryPictureType.GAINMAP;
+         let auxPicture: image.AuxiliaryPicture | null = picture.getAuxiliaryPicture(type);
+         // 获取辅助图信息。
+         if(auxPicture != null) {
+            let auxinfo: image.AuxiliaryPictureInfo = auxPicture.getAuxiliaryPictureInfo();
+            console.info('GetAuxiliaryPictureInfo Type: ' + auxinfo.auxiliaryPictureType +
+               ' height: ' + auxinfo.size.height + ' width: ' + auxinfo.size.width +
+               ' rowStride: ' +  auxinfo.rowStride +  ' pixelFormat: ' + auxinfo.pixelFormat +
+               ' colorSpace: ' +  auxinfo.colorSpace);
+            // 将辅助图数据读到ArrayBuffer。
+            auxPicture.readPixelsToBuffer().then((pixelsBuffer: ArrayBuffer) => {
+               console.info('Read pixels to buffer success.');
+            }).catch((error: BusinessError) => {
+               console.error('Read pixels to buffer failed error.code: ' + JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
+            });
+            auxPicture.release();
+         }
       }).catch((err: BusinessError) => {
-         console.error("Create picture failed.")
+         console.error("Create picture failed.");
       });
       ```
 
-5. 对picture进行操作，如获取辅助图等。对于picture和辅助图的操作具体请参考[Image API参考文档](../../reference/apis-image-kit/js-apis-image.md#picture13)。
-
-   ```ts
-   // 获取辅助图对象。
-   let type: image.AuxiliaryPictureType = image.AuxiliaryPictureType.GAINMAP;
-   let auxPicture: image.AuxiliaryPicture | null = picture.getAuxiliaryPicture(type);
-   // 获取辅助图信息。
-   let auxinfo: image.AuxiliaryPictureInfo = auxPicture.getAuxiliaryPictureInfo();
-   console.info('GetAuxiliaryPictureInfo Type: ' + auxinfo.auxiliaryPictureType +
-      ' height: ' + auxinfo.size.height + ' width: ' + auxinfo.size.width +
-      ' rowStride: ' +  auxinfo.rowStride +  ' pixelFormat: ' + auxinfo.pixelFormat +
-      ' colorSpace: ' +  auxinfo.colorSpace);
-   // 将辅助图数据读到ArrayBuffer。
-   auxPicture.readPixelsToBuffer().then((pixelsBuffer: ArrayBuffer) => {
-      console.info('Read pixels to buffer success.');
-   }).catch((error: BusinessError) => {
-      console.error('Read pixels to buffer failed error.code: ' + JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
-   });
-   auxPicture.release();
-   ```
-
-6. 释放picture。
+5. 释放picture。
 
    ```ts
    picture.release();

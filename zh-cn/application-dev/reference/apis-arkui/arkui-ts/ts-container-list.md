@@ -4,12 +4,13 @@
 
 > **说明：**
 >
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
 
-仅支持[ListItem](ts-container-listitem.md)、[ListItemGroup](ts-container-listitemgroup.md)子组件，支持渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）。
+仅支持[ListItem](ts-container-listitem.md)、[ListItemGroup](ts-container-listitemgroup.md)子组件和自定义组件。自定义组件在List下使用时，建议使用ListItem或ListItemGroup作为自定组件的顶层组件，不建议给自定义组件设置属性和事件方法。
+支持渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）。
 
 > **说明：**
 >
@@ -179,7 +180,7 @@ editMode(value: boolean)
 
 设置当前List组件是否处于可编辑模式。可参考[示例3](#示例3设置编辑模式)实现删除选中的list项。
 
-从API version9开始废弃不再使用，无替代接口。
+从API version 9开始废弃不再使用，无替代接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -539,7 +540,7 @@ ListItemGroup吸顶或吸底效果枚举。
 
 | 名称     | 类型     | 必填 | 说明                   |
 | ------- | -------- | ---- | ---------------------- |
-| strokeWidth<sup>7+</sup> | [Length](ts-types.md#length) | 是   | 分割线的线宽。<br/>**说明：** <br/>设置为负数，百分比，或者大于等于List内容区长度时，按0处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| strokeWidth<sup>7+</sup> | [Length](ts-types.md#length) | 是   | 分割线的线宽。<br/>单位：vp<br/>**说明：** <br/>设置为负数，百分比，或者大于等于List内容区长度时，按0处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | color<sup>7+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否   | 分割线颜色。<br/>默认值：0x08000000<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | startMargin<sup>7+</sup> | [Length](ts-types.md#length) | 否   | 分割线与列表侧边起始端的距离。<br/>默认值：0 <br/>单位：vp<br/>**说明：** <br/>设置为负数或者百分比时，按默认值处理。<br/>endMargin + startMargin 超过列宽度后startMargin和endMargin均会被置0。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | endMargin<sup>7+</sup> | [Length](ts-types.md#length) | 否   | 分割线与列表侧边结束端的距离。<br/>默认值：0 <br/>单位：vp<br/> **说明：** <br/>设置为负数或者百分比时，按默认值处理。<br/>endMargin + startMargin 超过列宽度后startMargin和endMargin均会被置0。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
@@ -554,7 +555,7 @@ onItemDelete(event: (index: number) => boolean)
 
 当List组件在编辑模式时，点击ListItem右边出现的删除按钮时触发。
 
-从API version9开始废弃不再使用，无替代接口。
+从API version 9开始废弃不再使用，无替代接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -632,7 +633,7 @@ onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain
 
 当listDirection的值为Axis.Vertical时，返回垂直方向滑动量，当listDirection的值为Axis.Horizontal时，返回水平方向滑动量。
 
-触发该事件的条件：手指拖动List、List惯性划动时每帧开始时触发；List超出边缘回弹、使用滚动控制器和拖动滚动条的滚动不会触发。
+触发该事件的条件：手指拖动List、List惯性划动时每帧开始时触发；List超出边缘回弹、调用除fling接口外的其他滚动控制接口和拖动滚动条的滚动不会触发。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -657,7 +658,7 @@ onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain
 
 onScrollStart(event: () => void)
 
-列表滑动开始时触发。手指拖动列表或列表的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画开始时会触发该事件
+列表滑动开始时触发。手指拖动列表或列表的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画开始时会触发该事件。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -787,7 +788,7 @@ onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, 
 | event       | [ItemDragInfo](ts-container-scrollable-common.md#itemdraginfo对象说明) | 是   | 拖拽点的信息。 |
 | itemIndex   | number                                                    | 是   | 拖拽起始位置。 |
 | insertIndex | number                                                    | 是   | 拖拽插入位置。 |
-| isSuccess   | boolean                                                   | 是   | 是否成功释放   |
+| isSuccess   | boolean                                                   | 是   | 是否成功释放。返回值为true时列表元素成功释放，返回值为false时列表元素没有成功释放。   |
 
 
 ### onScroll<sup>(deprecated)</sup>
@@ -858,7 +859,7 @@ List组件的滚动控制器，通过它控制List组件的滚动，仅支持一
 ### 导入对象
 
 ```
-listScroller: ListScroller = new ListScroller()
+listScroller: ListScroller = new ListScroller();
 ```
 
 
@@ -1005,6 +1006,10 @@ type OnScrollVisibleContentChangeCallback = (start: VisibleListContentInfo, end:
 
 有子组件划入或划出List显示区域时触发。
 
+start和end的index同时返回-1，代表List从有数据变成空的List。
+
+start和end的index同时返回0，代表List内只有一个子组件。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1052,7 +1057,7 @@ type OnScrollVisibleContentChangeCallback = (start: VisibleListContentInfo, end:
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   build() {
     Column() {
@@ -1071,20 +1076,20 @@ struct ListExample {
       .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 }) // 每行之间的分界线
       .edgeEffect(EdgeEffect.Spring) // 边缘效果设置为Spring
       .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
-        console.info('first' + firstIndex)
-        console.info('last' + lastIndex)
-        console.info('center' + centerIndex)
+        console.info('first' + firstIndex);
+        console.info('last' + lastIndex);
+        console.info('center' + centerIndex);
       })
       .onScrollVisibleContentChange((start: VisibleListContentInfo, end: VisibleListContentInfo) => {
         console.log(' start index: ' + start.index +
                     ' start item group area: ' + start.itemGroupArea +
-                    ' start index in group: ' + start.itemIndexInGroup)
+                    ' start index in group: ' + start.itemIndexInGroup);
         console.log(' end index: ' + end.index +
                     ' end item group area: ' + end.itemGroupArea +
-                    ' end index in group: ' + end.itemIndexInGroup)
+                    ' end index in group: ' + end.itemIndexInGroup);
       })
       .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
-        console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset)
+        console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset);
       })
       .width('90%')
     }
@@ -1107,8 +1112,8 @@ struct ListExample {
 @Entry
 @Component
 struct ListLanesExample {
-  @State arr: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"]
-  @State alignListItem: ListItemAlign = ListItemAlign.Start
+  @State arr: string[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19'];
+  @State alignListItem: ListItemAlign = ListItemAlign.Start;
 
   build() {
     Column() {
@@ -1127,20 +1132,20 @@ struct ListLanesExample {
         }, (item: string) => item)
       }
       .height(300)
-      .width("90%")
+      .width('90%')
       .friction(0.6)
       .border({ width: 3, color: Color.Red })
       .lanes({ minLength: 40, maxLength: 40 })
       .alignListItem(this.alignListItem)
       .scrollBar(BarState.Off)
 
-      Button("点击更改alignListItem:" + this.alignListItem).onClick(() => {
+      Button('点击更改alignListItem:' + this.alignListItem).onClick(() => {
         if (this.alignListItem == ListItemAlign.Start) {
-          this.alignListItem = ListItemAlign.Center
+          this.alignListItem = ListItemAlign.Center;
         } else if (this.alignListItem == ListItemAlign.Center) {
-          this.alignListItem = ListItemAlign.End
+          this.alignListItem = ListItemAlign.End;
         } else {
-          this.alignListItem = ListItemAlign.Start
+          this.alignListItem = ListItemAlign.Start;
         }
       })
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
@@ -1159,8 +1164,8 @@ struct ListLanesExample {
 @Entry
 @Component
 struct ListExample {
-  @State arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  @State editFlag: boolean = false
+  @State arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  @State editFlag: boolean = false;
 
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
@@ -1179,14 +1184,14 @@ struct ListExample {
                   .flexShrink(1)
                 if (this.editFlag) {
                   Button() {
-                    Text("delete").fontSize(16)
+                    Text('delete').fontSize(16)
                   }.width('30%').height(40)
                   .onClick(() => {
                     if (index != undefined) {
-                      console.info(this.arr[index] + 'Delete')
-                      this.arr.splice(index, 1)
-                      console.info(JSON.stringify(this.arr))
-                      this.editFlag = false
+                      console.info(this.arr[index] + 'Delete');
+                      this.arr.splice(index, 1);
+                      console.info(JSON.stringify(this.arr));
+                      this.editFlag = false;
                     }
                   }).stateEffect(true)
                 }
@@ -1200,7 +1205,7 @@ struct ListExample {
 
       Button('edit list')
         .onClick(() => {
-          this.editFlag = !this.editFlag
+          this.editFlag = !this.editFlag;
         }).margin({ top: 5, left: 20 })
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
   }
@@ -1217,12 +1222,12 @@ struct ListExample {
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = []
-  private scrollerForList: Scroller = new Scroller()
+  private arr: number[] = [];
+  private scrollerForList: Scroller = new Scroller();
 
   aboutToAppear() {
     for (let i = 0; i < 20; i++) {
-      this.arr.push(i)
+      this.arr.push(i);
     }
   }
   build() {
@@ -1270,17 +1275,17 @@ struct ListExample {
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = []
-  private scroller: ListScroller = new ListScroller()
-  @State listSpace: number = 10
-  @State listChildrenSize: ChildrenMainSize = new ChildrenMainSize(100)
+  private arr: number[] = [];
+  private scroller: ListScroller = new ListScroller();
+  @State listSpace: number = 10;
+  @State listChildrenSize: ChildrenMainSize = new ChildrenMainSize(100);
   aboutToAppear(){
     // 初始化数据源。
     for (let i = 0; i < 10; i++) {
-      this.arr.push(i)
+      this.arr.push(i);
     }
     // 前5个item的主轴大小不是默认大小100，因此需要通过ChildrenMainSize通知List。
-    this.listChildrenSize.splice(0, 5, [300, 300, 300, 300, 300])
+    this.listChildrenSize.splice(0, 5, [300, 300, 300, 300, 300]);
   }
   build() {
     Column() {
@@ -1304,18 +1309,18 @@ struct ListExample {
       .alignListItem(ListItemAlign.Center)
       Row(){
         Button() { Text('item size + 50') }.onClick(()=>{
-          this.listChildrenSize.childDefaultSize += 50
+          this.listChildrenSize.childDefaultSize += 50;
         }).height('50%').width('30%')
         Button() { Text('item size - 50') }.onClick(()=>{
           if (this.listChildrenSize.childDefaultSize === 0) {
-            return
+            return;
           }
-          this.listChildrenSize.childDefaultSize -= 50
+          this.listChildrenSize.childDefaultSize -= 50;
         }).height('50%').width('30%')
         Button() { Text('scrollTo (0, 310)') }.onClick(()=>{
           // 310: 跳转到item 1顶部与List顶部平齐的位置。
           // 如果不设置childrenMainSize，item高度不一致时scrollTo会不准确。
-          this.scroller.scrollTo({xOffset: 0, yOffset: 310})
+          this.scroller.scrollTo({xOffset: 0, yOffset: 310});
         }).height('50%').width('30%')
       }.height('20%')
     }
@@ -1350,26 +1355,26 @@ struct ListItemGroupExample {
       title: '星期四',
       projects: ['美术', '音乐', '体育']
     }
-  ]
-  private scroller: ListScroller = new ListScroller()
-  @State listIndexInfo: VisibleListContentInfo = {index: -1}
-  @State mess:string = "null"
-  @State itemBackgroundColorArr: boolean[] = [false]
+  ];
+  private scroller: ListScroller = new ListScroller();
+  @State listIndexInfo: VisibleListContentInfo = {index: -1};
+  @State mess:string = 'null';
+  @State itemBackgroundColorArr: boolean[] = [false];
   @Builder
   itemHead(text: string) {
     Text(text)
       .fontSize(20)
       .backgroundColor(0xAABBCC)
-      .width("100%")
+      .width('100%')
       .padding(10)
   }
 
   @Builder
   itemFoot(num: number) {
-    Text('共' + num + "节课")
+    Text('共' + num + '节课')
       .fontSize(16)
       .backgroundColor(0xAABBCC)
-      .width("100%")
+      .width('100%')
       .padding(5)
   }
 
@@ -1381,7 +1386,7 @@ struct ListItemGroupExample {
             ForEach(item.projects, (project: string, subIndex: number) => {
               ListItem() {
                 Text(project)
-                  .width("100%")
+                  .width('100%')
                   .height(100)
                   .fontSize(20)
                   .textAlign(TextAlign.Center)
@@ -1399,16 +1404,16 @@ struct ListItemGroupExample {
         PanGesture()
           .onActionUpdate((event: GestureEvent) => {
             if (event.fingerList[0] != undefined && event.fingerList[0].localX != undefined && event.fingerList[0].localY != undefined) {
-              this.listIndexInfo  = this.scroller.getVisibleListContentInfo(event.fingerList[0].localX, event.fingerList[0].localY)
+              this.listIndexInfo  = this.scroller.getVisibleListContentInfo(event.fingerList[0].localX, event.fingerList[0].localY);
               let itemIndex:string = 'undefined';
               if (this.listIndexInfo.itemIndexInGroup != undefined ) {
-                itemIndex = this.listIndexInfo.itemIndexInGroup.toString()
+                itemIndex = this.listIndexInfo.itemIndexInGroup.toString();
                 if (this.listIndexInfo.index != undefined && this.listIndexInfo.index >= 0 &&
                   this.listIndexInfo.itemIndexInGroup >= 0 ) {
                   this.itemBackgroundColorArr[this.listIndexInfo.index * 3 + this.listIndexInfo.itemIndexInGroup] = true;
                 }
               }
-              this.mess = 'index:' + this.listIndexInfo.index.toString() + ' itemIndex:' + itemIndex
+              this.mess = 'index:' + this.listIndexInfo.index.toString() + ' itemIndex:' + itemIndex;
             }
           }))
       .gesture(
@@ -1443,8 +1448,8 @@ import { LengthMetrics } from '@kit.ArkUI'
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-  scrollerForList: Scroller = new Scroller()
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+  scrollerForList: Scroller = new Scroller();
   build() {
     Column() {
 
@@ -1478,8 +1483,8 @@ struct ListExample {
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-  scrollerForList: Scroller = new Scroller()
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+  scrollerForList: Scroller = new Scroller();
   build() {
     Column() {
       List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {

@@ -1,6 +1,6 @@
 # ComponentContent
 
-ComponentContent表示组件内容的实体封装，其对象支持在非UI组件中创建与传递，便于开发者对弹窗类组件进行解耦封装。ComponentContent底层使用了BuilderNode，相关使用规格参考[BuilderNode](js-apis-arkui-builderNode.md)。
+ComponentContent表示组件内容的实体封装，其对象支持在非UI组件中创建与传递，便于开发者对弹窗类组件进行解耦封装。其底层使用了BuilderNode，具体使用规格参考[BuilderNode](js-apis-arkui-builderNode.md)。
 
 > **说明：**
 >
@@ -31,7 +31,7 @@ ComponentContent的构造函数。
 
 | 参数名    | 类型                                      | 必填 | 说明                               |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
-| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需要的UI上下文。 |
 | builder  | [WrappedBuilder\<[]>](../../ui/state-management/arkts-wrapBuilder.md) | 是   |   封装不带参builder函数的WrappedBuilder对象。 |
 
 ### constructor
@@ -73,7 +73,7 @@ ComponentContent的构造函数。
 
 **示例：**
 ``` ts
-import { ComponentContent, NodeContent, typeNode } from "@kit.ArkUI"
+import { ComponentContent, NodeContent, typeNode } from "@kit.ArkUI";
 
 interface ParamsInterface {
   text: string;
@@ -102,7 +102,7 @@ function buildText(params: ParamsInterface) {
 @Entry
 @Component
 struct Index {
-  @State message: string = "HELLO"
+  @State message: string = "HELLO";
   private content: NodeContent = new NodeContent();
 
   build() {
@@ -117,7 +117,7 @@ struct Index {
                 text: this.message, func: () => {
                   return "FUNCTION"
                 }
-              }, { nestingBuilderSupported: true }))
+              }, { nestingBuilderSupported: true }));
             this.content.addFrameNode(column);
           })
         ContentSlot(this.content)
@@ -154,7 +154,7 @@ update(args: T): void
 import { ComponentContent } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -173,7 +173,7 @@ function buildText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -231,7 +231,7 @@ const TEST_TAG: string = "Reuse+Recycle";
 
 class MyDataSource {
   private dataArray: string[] = [];
-  private listener: DataChangeListener | null = null
+  private listener: DataChangeListener | null = null;
 
   public totalCount(): number {
     return this.dataArray.length;
@@ -413,7 +413,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -425,14 +425,14 @@ function buildText(params: Params) {
     Text(params.text)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
-      .margin({bottom: 36})
+      .margin({ bottom: 36 })
   }.backgroundColor('#FFF0F0F0')
 }
 
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -447,7 +447,7 @@ struct Index {
                 setTimeout(() => {
                   promptAction.closeCustomDialog(contentNode)
                     .then(() => {
-                      console.info('customdialog closed.')
+                      console.info('customdialog closed.');
                       if (contentNode !== null) {
                         contentNode.dispose();   //释放contentNode
                       }
@@ -480,7 +480,7 @@ updateConfiguration(): void
 
 > **说明：**
 >
-> updateConfiguration接口功能为通知对象更新，更新所使用的系统环境由当前的系统环境变化。
+> updateConfiguration接口用于通知对象更新当前的系统环境变化。
 
 **示例：**
 ```ts

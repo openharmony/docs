@@ -6,7 +6,7 @@
 
 若在上述任一过程中发生错误，客户端会收到error事件的回调。
 
-websocket支持心跳检测机制，在客户端和服务端建立WebSocket连接之后，每间隔一段时间会客户端会发送Ping帧给服务器，服务器收到后应立即回复Pong帧。
+websocket支持心跳检测机制，在客户端和服务端建立WebSocket连接之后，每间隔30秒客户端会发送Ping帧给服务器，服务器收到后应立即回复Pong帧，且不支持开发者关闭该机制。
 
 ## 接口说明
 
@@ -52,7 +52,7 @@ ws.on('open', (err: BusinessError, value: Object) => {
     if (!err) {
       console.log("Message send successfully");
     } else {
-      console.log("Failed to send the message. Err:" + JSON.stringify(err));
+      console.error("Failed to send the message. Err:" + JSON.stringify(err));
     }
   });
 });
@@ -64,7 +64,7 @@ ws.on('message', (err: BusinessError, value: string | ArrayBuffer) => {
       if (!err) {
         console.log("Connection closed successfully");
       } else {
-        console.log("Failed to close the connection. Err: " + JSON.stringify(err));
+        console.error("Failed to close the connection. Err: " + JSON.stringify(err));
       }
     });
   }
@@ -73,13 +73,13 @@ ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
   console.log("on close, code is " + value.code + ", reason is " + value.reason);
 });
 ws.on('error', (err: BusinessError) => {
-  console.log("on error, error:" + JSON.stringify(err));
+  console.error("on error, error:" + JSON.stringify(err));
 });
 ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
   if (!err) {
     console.log("Connected successfully");
   } else {
-    console.log("Connection failed. Err:" + JSON.stringify(err));
+    console.error("Connection failed. Err:" + JSON.stringify(err));
   }
 });
 ```

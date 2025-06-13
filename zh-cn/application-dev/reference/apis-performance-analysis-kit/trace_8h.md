@@ -7,67 +7,17 @@ HiTraceMeter模块打点接口定义，通过这些接口实现性能打点相�
 
 用户态tarce格式使用竖线 `|` 作为分隔符，所以通过HiTraceMeter接口传递的字符串类型参数应避免包含该字符，防止trace解析异常。
 
-使用示例：
-
-同步时间片跟踪事件：
-
-
-```
-OH_HiTrace_StartTrace("hitraceTest");
-OH_HiTrace_FinishTrace();
-```
-
-结果输出：
-
-
-```
-<...>-1668 (----—) [003] .... 135.059377: tracing_mark_write: B|1668|H:hitraceTest
-<...>-1668 (----—) [003] .... 135.059415: tracing_mark_write: E|1668|
-```
-
-异步时间片跟踪事件：
-
-
-```
-OH_HiTrace_StartAsyncTrace("hitraceTest", 123);
-OH_HiTrace_FinishAsyncTrace("hitraceTest", 123);
-```
-
-结果输出：
-
-
-```
-<...>-2477 (----—) [001] .... 396.427165: tracing_mark_write: S|2477|H:hitraceTest 123
-<...>-2477 (----—) [001] .... 396.427196: tracing_mark_write: F|2477|H:hitraceTest 123
-```
-
-整数值跟踪事件：
-
-
-```
-OH_HiTrace_CountTrace("hitraceTest", 500);
-```
-
-结果输出：
-
-
-```
-<...>-2638 (----—) [002] .... 458.904382: tracing_mark_write: C|2638|H:hitraceTest 500
-```
+用户态trace总长度限制512字符，超过的部分将会被截断。
 
 **库：** libhitrace_ndk.z.so
 
-**引用文件：**
+**引用文件：** &lt;hitrace/trace.h&gt;
 
-&lt;hitrace/trace.h&gt;
+**系统能力：** SystemCapability.HiviewDFX.HiTrace
 
-**起始版本：**
+**起始版本：** 10
 
-10
-
-**相关模块：**
-
-[Hitrace](_hitrace.md)
+**相关模块：** [Hitrace](_hitrace.md)
 
 
 ## 汇总
@@ -96,11 +46,11 @@ OH_HiTrace_CountTrace("hitraceTest", 500);
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [HiTraceId_Valid](_hitrace.md#hitraceid_valid) { HITRACE_ID_INVALID = 0, HITRACE_ID_VALID = 1 } | HiTraceId是否有效标志。  | 
-| [HiTrace_Version](_hitrace.md#hitrace_version) { HITRACE_VER_1 = 0 } | HiTrace版本号。  | 
-| [HiTrace_Flag](_hitrace.md#hitrace_flag) {<br/>HITRACE_FLAG_DEFAULT = 0, HITRACE_FLAG_INCLUDE_ASYNC = 1 &lt;&lt; 0, HITRACE_FLAG_DONOT_CREATE_SPAN = 1 &lt;&lt; 1, HITRACE_FLAG_TP_INFO = 1 &lt;&lt; 2,<br/>HITRACE_FLAG_NO_BE_INFO = 1 &lt;&lt; 3, HITRACE_FLAG_DONOT_ENABLE_LOG = 1 &lt;&lt; 4, HITRACE_FLAG_FAULT_TRIGGER = 1 &lt;&lt; 5, HITRACE_FLAG_D2D_TP_INFO = 1 &lt;&lt; 6<br/>} | HiTrace标志位。  | 
-| [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) {<br/>HITRACE_TP_CS = 0, HITRACE_TP_CR = 1, HITRACE_TP_SS = 2, HITRACE_TP_SR = 3,<br/>HITRACE_TP_GENERAL = 4<br/>} | HiTrace打点类型。  | 
-| [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) { HITRACE_CM_DEFAULT = 0, HITRACE_CM_THREAD = 1, HITRACE_CM_PROCESS = 2, HITRACE_CM_DEVICE = 3 } | HiTrace通信模式枚举。  | 
+| [HiTraceId_Valid](_hitrace.md#hitraceid_valid) {<br/>HITRACE_ID_INVALID = 0, <br/>HITRACE_ID_VALID = 1<br/>} | HiTraceId是否有效标志。  | 
+| [HiTrace_Version](_hitrace.md#hitrace_version) {<br/>HITRACE_VER_1 = 0<br/>} | HiTrace版本号。  | 
+| [HiTrace_Flag](_hitrace.md#hitrace_flag) {<br/>HITRACE_FLAG_DEFAULT = 0, <br/>HITRACE_FLAG_INCLUDE_ASYNC = 1 &lt;&lt; 0, <br/>HITRACE_FLAG_DONOT_CREATE_SPAN = 1 &lt;&lt; 1, <br/>HITRACE_FLAG_TP_INFO = 1 &lt;&lt; 2,<br/>HITRACE_FLAG_NO_BE_INFO = 1 &lt;&lt; 3, <br/>HITRACE_FLAG_DONOT_ENABLE_LOG = 1 &lt;&lt; 4, <br/>HITRACE_FLAG_FAULT_TRIGGER = 1 &lt;&lt; 5, <br/>HITRACE_FLAG_D2D_TP_INFO = 1 &lt;&lt; 6<br/>} | HiTrace标志位。  | 
+| [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) {<br/>HITRACE_TP_CS = 0, <br/>HITRACE_TP_CR = 1, <br/>HITRACE_TP_SS = 2, <br/>HITRACE_TP_SR = 3,<br/>HITRACE_TP_GENERAL = 4<br/>} | HiTrace打点类型。  | 
+| [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) {<br/>HITRACE_CM_DEFAULT = 0, <br/>HITRACE_CM_THREAD = 1, <br/>HITRACE_CM_PROCESS = 2, <br/>HITRACE_CM_DEVICE = 3<br/>} | HiTrace通信模式枚举。  | 
 
 
 ### 函数

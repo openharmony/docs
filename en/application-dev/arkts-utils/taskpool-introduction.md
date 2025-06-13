@@ -30,7 +30,7 @@ With TaskPool, you can encapsulate tasks in the host thread and submit the tasks
 
 - Promises cannot be transferred across threads. If TaskPool returns a Promise in the pending or rejected state, a failure message is returned. For a Promise in the fulfilled state, TaskPool parses the returned result. If the result can be transferred across threads, a success message is returned.
 
-- [AppStorage](../quick-start/arkts-appstorage.md) cannot be used in TaskPool worker threads.
+- [AppStorage](../ui/state-management/arkts-appstorage.md) cannot be used in TaskPool worker threads.
 
 - TaskPool allows you to package tasks in the host thread and submit them to the task queue. While it can theoretically handle an unlimited number of tasks, the actual task execution is influenced by the task priority and the availability of system resources. Once the Worker threads reach their maximum capacity, the efficiency of task execution might be compromised.
 

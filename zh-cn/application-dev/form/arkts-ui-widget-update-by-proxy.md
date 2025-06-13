@@ -21,9 +21,9 @@
 1. 卡片提供方在卡片提供方的配置文件`form_config.json`中配置`dataProxyEnabled`字段为`true`，以开启卡片代理刷新功能。
 > **说明：**
 >
-> 卡片代理刷新开启后，[定时刷新](arkts-ui-widget-update-by-time.md)和[下次刷新](arkts-ui-widget-update-by-time.md)失效。
+> 卡片代理刷新开启后，[定时刷新](arkts-ui-widget-update-by-time.md)失效。
 
-2. 卡片提供方在[onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onaddform)回调中，把数据提供方定义的`key + subscriberId`返回给卡片管理服务。
+2. 卡片提供方在[onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonaddform)回调中，把数据提供方定义的`key + subscriberId`返回给卡片管理服务。
 
 3. 卡片管理服务解析卡片提供方的订阅信息，并向数据管理服务注册订阅实例。
 

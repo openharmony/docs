@@ -31,7 +31,7 @@ getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -47,7 +47,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getIfaceRxBytes("wlan0", (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
@@ -75,7 +75,7 @@ getIfaceRxBytes(nic: string): Promise\<number>;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -113,7 +113,7 @@ getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -129,7 +129,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getIfaceTxBytes("wlan0", (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
@@ -157,7 +157,7 @@ getIfaceTxBytes(nic: string): Promise\<number>;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -194,7 +194,7 @@ getCellularRxBytes(callback: AsyncCallback\<number>): void;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
@@ -209,7 +209,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getCellularRxBytes((error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
@@ -231,7 +231,7 @@ getCellularRxBytes(): Promise\<number>;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
@@ -267,7 +267,7 @@ getCellularTxBytes(callback: AsyncCallback\<number>): void;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
@@ -282,7 +282,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getCellularTxBytes((error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
@@ -304,7 +304,7 @@ getCellularTxBytes(): Promise\<number>;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
@@ -342,7 +342,7 @@ getAllRxBytes(callback: AsyncCallback\<number>): void;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service. |
 | 2100003   | System internal error.                       |
@@ -356,7 +356,7 @@ import { statistics } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 statistics.getAllRxBytes((error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
@@ -380,7 +380,7 @@ getAllRxBytes(): Promise\<number>;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
@@ -417,7 +417,7 @@ getAllTxBytes(callback: AsyncCallback\<number>): void;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
@@ -431,7 +431,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getAllTxBytes((error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
@@ -455,7 +455,7 @@ getAllTxBytes(): Promise\<number>;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
@@ -491,7 +491,7 @@ getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -506,7 +506,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getUidRxBytes(20010038, (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
@@ -534,7 +534,7 @@ getUidRxBytes(uid: number): Promise\<number>;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -571,7 +571,7 @@ getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -586,7 +586,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getUidTxBytes(20010038, (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
@@ -614,7 +614,7 @@ getUidTxBytes(uid: number): Promise\<number>;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -652,7 +652,7 @@ getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number\>): void;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
@@ -667,7 +667,7 @@ import { statistics } from '@kit.NetworkKit';
 
 let sockfd = 50; // 实际开发中需要先根据自己创建的socket获取到
 statistics.getSockfdRxBytes(sockfd, (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
@@ -696,7 +696,7 @@ getSockfdRxBytes(sockfd: number): Promise\<number\>;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
@@ -736,7 +736,7 @@ getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number\>): void;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
@@ -751,7 +751,7 @@ import { statistics } from '@kit.NetworkKit';
 
 let sockfd = 50; // 实际开发中需要先根据自己创建的socket获取到
 statistics.getSockfdTxBytes(sockfd, (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
@@ -780,7 +780,7 @@ getSockfdTxBytes(sockfd: number): Promise\<number\>;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |

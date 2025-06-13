@@ -340,10 +340,11 @@ FFRT任务的调度和执行过程中，利用了OH系统的Trace打点能力，
     int a = 0;
     // ******并行任务******
     // 提交不带handle返回值的并行任务
-    ffrt_submit_base(ffrt_create_function_wrapper(OnePlusForTest, NULL, &a), NULL, NULL, &attr);
+    ffrt_submit_base(
+        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a, ffrt_function_kind_general), NULL, NULL, &attr);
     // 提交带handle返回值的并行任务
     ffrt_task_handle_t task = ffrt_submit_h_base(
-        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a), NULL, NULL, &attr);
+        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a, ffrt_function_kind_general), NULL, NULL, &attr);
 
     // ******串行任务******
     // 提交不返回handle的串行队列任务
@@ -551,13 +552,13 @@ FFRT任务中使用标准库的互斥锁可能发生死锁，需要更换为FFRT
     }
     ```
 
-## Using FFRT in DevEco IDE
+## Using FFRT in DevEco Studio
 
 ### Using FFRT C API
 
-NDK（Native Development Kit）是HarmonyOS SDK提供的Native API的集合，方便开发者使用C或C++语言实现应用的关键功能。
+NDK（Native Development Kit）是系统提供的Native API的集合，方便开发者使用C或C++语言实现应用的关键功能。
 
-FFRT C API已集成在NDK中，在DevEco IDE中可以直接使用对应的接口。
+FFRT C API已集成在NDK中，在DevEco Studio中可以直接使用对应的接口。
 
 ```cpp
 #include "ffrt/type_def.h"
@@ -585,7 +586,7 @@ FFRT的部署依赖FFRT动态库`libffrt.so`和一组头文件，其中动态库
 ohpm install @ppd/ffrt
 ```
 
-也可以直接在`oh-package.json5`文件中配置对应的依赖，由IDE自动进行三方库下载安装。
+也可以直接在`oh-package.json5`文件中配置对应的依赖，由DevEco Studio自动进行三方库下载安装。
 
 同时在模块`CMakeLists.txt`文件中添加依赖：
 

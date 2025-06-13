@@ -11,8 +11,11 @@
 1. 使用视频播放的AVPlayer实例设置外挂字幕资源。
 
    ```ts
-   let context = getContext(this) as common.UIAbilityContext;
-   let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt');
+   private context: Context | undefined;
+   constructor(context: Context) {
+     this.context = context; // this.getUIContext().getHostContext();
+   }
+   let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.srt');
 
    avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length);
 
@@ -52,6 +55,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 export class AVPlayerSubtitleDemo {
   private avPlayer: media.AVPlayer | undefined = undefined;
+  private context: Context | undefined;
+  constructor(context: Context) {
+    this.context = context; // this.getUIContext().getHostContext();
+  }
   // 注册avplayer回调函数。
   setAVPlayerCallback(avPlayer: media.AVPlayer) {
     // error回调监听函数,当avPlayer在操作过程中出现错误时调用reset接口触发重置流程。
@@ -93,8 +100,7 @@ export class AVPlayerSubtitleDemo {
     // 创建回调函数。
     this.setAVPlayerCallback(this.avPlayer);
 
-    let context = getContext(this) as common.UIAbilityContext;
-    let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt');
+    let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.srt');
 
     this.avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length);
   }

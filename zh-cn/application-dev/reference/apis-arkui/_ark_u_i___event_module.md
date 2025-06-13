@@ -261,7 +261,7 @@ enum ArkUI_ModifierKeyName
 | ARKUI_MODIFIER_KEY_CTRL  | Ctrl.  | 
 | ARKUI_MODIFIER_KEY_SHIFT  | Shift.  | 
 | ARKUI_MODIFIER_KEY_ALT  | Alt.  | 
-| ARKUI_MODIFIER_KEY_FN  | Fn.  | 
+| ARKUI_MODIFIER_KEY_FN  | Fn（仅调试使用，通常不上报Fn状态）.  | 
 
 
 ### ArkUI_UIInputEvent_Type
@@ -1396,7 +1396,7 @@ int64_t OH_ArkUI_UIInputEvent_GetEventTime (const ArkUI_UIInputEvent * event)
 ```
 **描述：**
 
-获取UI输入事件发生的时间。
+获取UI输入事件发生的时间。单位：ns。
 
 **起始版本：** 12
 
@@ -1426,9 +1426,9 @@ int32_t OH_ArkUI_UIInputEvent_GetPressedKeys (const ArkUI_UIInputEvent * event, 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| event | ArkUI_UIInputEvent事件指针。  | 
-| pressedKeyCodes | 输出参数，表示所有按下键的数组，指向的内存空间需要调用者申请。  | 
-| length | 作为输入参数表示传入的pressedKeyCodes数组长度，作为输出参数表示实际按下按键的个数。  | 
+| event | ArkUI_UIInputEvent事件指针。| 
+| pressedKeyCodes | 输出参数，表示所有按下键的数组，指向的内存空间需要调用者申请。| 
+| length | 作为输入参数表示传入的pressedKeyCodes数组长度，作为输出参数表示实际按下按键的个数。| 
 
 **返回：**
 
@@ -1521,7 +1521,7 @@ double OH_ArkUI_FocusAxisEvent_GetAxisValue (const ArkUI_UIInputEvent * event，
 
 **返回：**
 
-返回焦点轴事件的轴值，如果参数异常则返回0.0。
+返回焦点轴事件的轴值，表示手柄上摇杆推动或按键按下的程度，如果参数异常则返回0.0。
 
 
 ### OH_ArkUI_FocusAxisEvent_SetStopPropagation()

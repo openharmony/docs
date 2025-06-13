@@ -59,7 +59,7 @@ console.log(data);
 ### 修改全局对象
 **副作用产生场景**
 
-顶层代码或导入的模块可能会直接**操作全局变量**，从而改变全局状态，引发副作用。
+顶层代码或导入的模块可能会直接**操作全局变量**，改变全局状态，引发副作用。
 ```typescript
 // module.ets
 export let data1 = "data from module"
@@ -94,7 +94,7 @@ data from module
 ```
 **产生的副作用**
 
-模块加载时直接改变全局变量globalThis.someGlobalVar的值，**影响其他使用该变量的模块或代码**。
+模块加载时直接修改全局变量 `globalThis.someGlobalVar` 的值，**会影响其他依赖该变量的模块或代码**。
 
 **优化方式**
 
@@ -139,7 +139,7 @@ data from module
 ### 修改应用级ArkUI组件的状态变量信息
 **副作用产生场景**
 
-顶层代码或导入的模块可能会直接**修改应用级ArkUI组件的状态变量信息**，从而改变全局状态，引发副作用。
+顶层代码或导入的模块可能会直接**修改应用级ArkUI组件的状态变量信息**，改变全局状态，引发副作用。
 ```typescript
 // module.ets
 export let data = "data from module"
@@ -174,7 +174,7 @@ test200
 ```
 **产生的副作用**
 
-模块加载时直接改变AppStorage中SomeAppStorageVar的值，**影响其他使用该变量的模块或代码**。
+模块加载时直接修改AppStorage中SomeAppStorageVar的值，**会影响其他依赖该变量的模块或代码**。
 
 ArkUI组件的状态变量信息可以通过一些应用级接口修改，详见[ArkUI状态管理接口文档](../ui/state-management/arkts-state-management-overview.md)。
 
@@ -217,7 +217,7 @@ test100
 ### 修改内置全局变量或原型链（ArkTS内禁止修改对象原型与内置方法）
 **副作用产生场景**
 
-某些第三方库或框架可能会修改内置的全局对象或原型链，以便在较旧的浏览器或运行环境中支持现代的JavaScript特性。这可能会影响其他代码的运行。
+为支持现代JavaScript特性在旧浏览器或运行环境中运行，第三方库或框架可能修改内置的全局对象或原型链，这会影响其他代码的执行。
 ```typescript
 // modifyPrototype.ts
 export let data = "data from modifyPrototype"
@@ -264,7 +264,7 @@ Stacktrace:
 ```
 **产生的副作用**
 
-由于模块间相互依赖，模块的执行顺序可能导致导出的内容为空或未定义，影响代码的逻辑流。
+由于模块间相互依赖，模块的执行顺序可能导致导出的内容未定义，影响代码的逻辑流，具体报错信息为：“变量名 is not initialized”。
 
 **优化方式**
 

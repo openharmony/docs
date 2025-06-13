@@ -11,7 +11,7 @@ The **Tabs** component is a container component that allows users to switch betw
 
 ## Child Components
 
-Custom components cannot be used as child components. Only the [TabContent](ts-container-tabcontent.md) child component is allowed, with support for [if/else](../../../quick-start/arkts-rendering-control-ifelse.md) and [ForEach](../../../quick-start/arkts-rendering-control-foreach.md) rendering control. In addition, the **if/else** and **ForEach** statements support **TabContent** components only, but not custom components.
+Custom components cannot be used as child components. Only the [TabContent](ts-container-tabcontent.md) child component is allowed, with support for [if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md) and [ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md) rendering control. In addition, the **if/else** and **ForEach** statements support **TabContent** components only, but not custom components.
 
 >  **NOTE**
 >
@@ -45,7 +45,7 @@ Provides parameters for configuring the **Tabs** component, including tab positi
 | Name        | Type                             | Mandatory  | Description                                    |
 | ----------- | --------------------------------- | ---- | ---------------------------------------- |
 | barPosition<sup>7+</sup> | [BarPosition](#barposition)| No   | Position of the **Tabs** component.<br>Default value: **BarPosition.Start**<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
-| index<sup>7+</sup>       | number                            | No   | Index of the currently displayed tab.<br>Default value: **0**<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>The value ranges from 0 to the number of **TabContent** nodes minus 1.<br>When the tab is switched by changing the index, the tab switching animation does not take effect. When **changeIndex** of **TabController** is used for tab switching, the tab switching animation is enabled by default. You can disable the animation by setting **animationDuration** to **0**.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).<br>When the **Tabs** component is rebuilt, system resources are switched (for example, system font or theme changes), or component attributes change, the **Tab** component will switch to the one specified by **index**. To prevent this behavior, you are advised to use two-way binding.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| index<sup>7+</sup>       | number                            | No   | Index of the currently displayed tab.<br>Default value: **0**<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>The value ranges from 0 to the number of **TabContent** nodes minus 1.<br>When the tab is switched by changing the index, the tab switching animation does not take effect. When **changeIndex** of **TabController** is used for tab switching, the tab switching animation is enabled by default. You can disable the animation by setting **animationDuration** to **0**.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).<br>When the **Tabs** component is rebuilt, system resources are switched (for example, system font or theme changes), or component attributes change, the **Tab** component will switch to the one specified by **index**. To prevent this behavior, you are advised to use two-way binding.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | controller<sup>7+</sup>  | [TabsController](#tabscontroller) | No   | Tab controller.<br>**Atomic service API**: This API can be used in atomic services since API version 11.        |
 | barModifier<sup>15+</sup>  | [CommonModifier](#commonmodifier15) | No   | [Universal attributes](ts-component-general-attributes.md) of the tab bar.<br>**NOTE**<br>If this parameter is dynamically set to **undefined**, the current state will be preserved, and universal attributes will not be reset.<br>If the setting switches from one **CommonModifier** to another, overlapping attributes will be overwritten, while non-overlapping attributes will coexist without resetting the attributes of the previous **CommonModifier**.<br>The [barWidth](#barwidth), [barHeight](#barheight), [barBackgroundColor](#barbackgroundcolor10), [barBackgroundBlurStyle](#barbackgroundblurstyle15), and [barBackgroundEffect] (#barbackgroundeffect15) attributes of **Tabs** will overwrite the [width](ts-universal-attributes-size.md#width), [height](ts-universal-attributes-size.md#height), [backgroundColor](ts-universal-attributes-background.md#backgroundcolor18), [backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle18), and [backgroundEffect](ts-universal-attributes-background.md#backgroundeffect18) attributes of **CommonModifier**.<br>The [align](ts-universal-attributes-location.md#align) attribute works only in [BarMode.Scrollable](#barmode10-1) mode. In addition, for a horizontal **Tabs** component, it only takes effect when [nonScrollableLayoutStyle](#scrollablebarmodeoptions10) is set to an invalid value or is not set.<br>When set to the bottom tab style, [tabBar](ts-container-tabcontent.md#tabbar18) attribute of the [TabContent](ts-container-tabcontent.md) component does not support the dragging feature.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
@@ -507,7 +507,7 @@ This event is triggered when any of the following conditions is met:
 
 2. The [Controller](#tabscontroller) API is called.
 
-3. The attribute value is updated using a [state variable](../../../quick-start/arkts-state.md).
+3. The attribute value is updated using a [state variable](../../../ui/state-management/arkts-state.md).
 
 4. A tab is clicked.
 
@@ -650,7 +650,7 @@ This event is triggered under the following conditions:
 
 2. The API of [TabsController](#tabscontroller) is called.
 
-3. The attribute value is updated using a [state variable](../../../quick-start/arkts-state.md).
+3. The attribute value is updated using a [state variable](../../../ui/state-management/arkts-state.md).
 
 4. A tab is clicked.
 
@@ -680,7 +680,7 @@ This event is triggered under the following conditions:
 
 2. The API of [TabsController](#tabscontroller) is called.
 
-3. The attribute value is updated using a [state variable](../../../quick-start/arkts-state.md).
+3. The attribute value is updated using a [state variable](../../../ui/state-management/arkts-state.md).
 
 4. A tab is clicked.
 

@@ -6,13 +6,13 @@
 
 > **说明：**
 >
-> 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 导入模块
 
 ```
-import { TipsDialog, SelectDialog, ConfirmDialog, AlertDialog, LoadingDialog, CustomContentDialog } from '@kit.ArkUI'
+import { TipsDialog, SelectDialog, ConfirmDialog, AlertDialog, LoadingDialog, CustomContentDialog } from '@kit.ArkUI';
 ```
 
 
@@ -157,12 +157,17 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 | contentBuilder      | () => void                                                   | 是   | @BuilderParam | 弹出框内容。                                                 |
 | primaryTitle        | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -  | 弹出框标题。 <br/> **说明：** 标题超过两行会显示“...”。                                                 |
 | secondaryTitle      | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -  | 弹出框辅助文本。<br/> **说明：** 辅助文本超过两行会显示“...”。                                              |
-| localizedContentAreaPadding | [LocalizedPadding](ts-types.md#LocalizedPadding)     | 否   | -  | 弹出框内容区内边距。                                         |
+| localizedContentAreaPadding | [LocalizedPadding](ts-types.md#localizedpadding12)     | 否   | -  | 弹出框内容区内边距。                                         |
 | contentAreaPadding  | [Padding](ts-types.md#padding)                               | 否   | -  | 弹出框内容区内边距。设置了localizedContentAreaPadding属性时该属性不生效。|
 | buttons             | [ButtonOptions](#buttonoptions)[]                     | 否   | -  | 弹出框操作区按钮，最多支持4个按钮。                          |
 | theme | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | -  | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。 |
 | themeColorMode | [ThemeColorMode](ts-container-with-theme.md#themecolormode10枚举说明) | 否 | - | 自定义弹窗深浅色模式。 |
 
+>  **说明：**
+>
+> 当弹框高度不足时，触发全局滚动的规格为contentBuilder被压缩，压缩至小于100vp时启动全局滚动。
+>
+> CustomContentDialog内容区的滚动需由开发者自定义，内容区自定义滚动必须配合属性nestedScroll，nestedScroll({ scrollForward: NestedScrollMode.PARALLEL, scrollBackward: NestedScrollMode.PARALLEL })
 
 ## PopoverDialog<sup>14+</sup>
 
@@ -280,7 +285,7 @@ struct Index {
 纯列表弹出框，包含selectedIndex、radioContent等内容。
 
 ```ts
-import { SelectDialog } from '@kit.ArkUI'
+import { SelectDialog } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -346,7 +351,7 @@ struct Index {
 文本与勾选弹出框，包含content、checkTips等内容。
 
 ```ts
-import { ConfirmDialog } from '@kit.ArkUI'
+import { ConfirmDialog } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -408,7 +413,7 @@ struct Index {
 纯文本弹出框，包含primaryTitle、secondaryTitle、content等内容。
 
 ```ts
-import { AlertDialog } from '@kit.ArkUI'
+import { AlertDialog } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -462,7 +467,7 @@ struct Index {
 进度条弹出框，包含content等内容。
 
 ```ts
-import { LoadingDialog } from '@kit.ArkUI'
+import { LoadingDialog } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -502,7 +507,7 @@ struct Index {
 自定义主题风格弹出框，包含content、theme等内容。
 
 ```ts
-import { CustomColors, CustomTheme, LoadingDialog } from '@kit.ArkUI'
+import { CustomColors, CustomTheme, LoadingDialog } from '@kit.ArkUI';
 
 class CustomThemeImpl implements CustomTheme {
   colors?: CustomColors;
@@ -558,7 +563,7 @@ struct Index {
 自定义深浅色模式弹出框，包含content、themeColorMode等内容。
 
 ```ts
-import { LoadingDialog } from '@kit.ArkUI'
+import { LoadingDialog } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -599,7 +604,7 @@ struct Index {
 支持自定义内容弹出框，包含contentBuilder、buttons等内容。
 
 ```ts
-import { CustomContentDialog } from '@kit.ArkUI'
+import { CustomContentDialog } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -717,7 +722,7 @@ struct Index {
 设置默认获焦按钮弹出框（以AlertDialog为例），包含defaultFocus等内容。
 
 ```ts
-import { AlertDialog } from '@kit.ArkUI'
+import { AlertDialog } from '@kit.ArkUI';
 
 @Entry
 @Component

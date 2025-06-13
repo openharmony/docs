@@ -8,7 +8,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将设备管理应用激活后调用，实现相应功能。
+> 本模块接口仅对设备管理应用开放，且调用接口前需激活设备管理应用，具体请参考[MDM Kit开发指南](../../mdm/mdm-kit-guide.md)。
 >
 > 全局通用限制类策略由restrictions统一提供，若要全局禁用Wi-Fi，请参考[@ohos.enterprise.restrictions（限制类策略）](js-apis-enterprise-restrictions.md)。
 
@@ -22,7 +22,7 @@ import { wifiManager } from '@kit.MDMKit';
 
 isWifiActiveSync(admin: Want): boolean
 
-查询设备Wi-Fi开启状态。
+查询当前设备Wi-Fi开启状态。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -74,7 +74,7 @@ try {
 
 setWifiProfileSync(admin: Want, profile: WifiProfile): void
 
-为设备配置Wi-Fi，使连接到指定网络。
+为当前设备配置Wi-Fi，使连接到指定网络。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -87,7 +87,7 @@ setWifiProfileSync(admin: Want, profile: WifiProfile): void
 | 参数名  | 类型                                                    | 必填 | 说明                   |
 | ------- | ------------------------------------------------------- | ---- | ---------------------- |
 | admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
-| profile | [WifiProfile](#wifiprofile)                             | 是   | WLAN配置信息。         |
+| profile | [WifiProfile](#wifiprofile)                             | 是   | Wi-Fi配置信息。         |
 
 **错误码**：
 
@@ -105,6 +105,7 @@ setWifiProfileSync(admin: Want, profile: WifiProfile): void
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -125,7 +126,7 @@ try {
 
 ## WifiProfile
 
-WLAN配置信息。
+Wi-Fi配置信息。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 

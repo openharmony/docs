@@ -68,13 +68,13 @@ getOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): voi
     accountAbility.getOsAccountDistributedInfo(
       (err: BusinessError, data: distributedAccount.DistributedInfo) => {
         if (err) {
-          console.log('getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+          console.error('getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
         } else {
           console.log('distributed information: ' + JSON.stringify(data));
         }
       });
   } catch (err) {
-    console.log('getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+    console.error('getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -110,10 +110,10 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
     accountAbility.getOsAccountDistributedInfo().then((data: distributedAccount.DistributedInfo) => {
         console.log('distributed information: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
-        console.log('getOsAccountDistributedInfo exception: '  + JSON.stringify(err));
+        console.error('getOsAccountDistributedInfo exception: '  + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+    console.error('getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -144,7 +144,7 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
   accountAbility.queryOsAccountDistributedInfo(
     (err: BusinessError, data: distributedAccount.DistributedInfo) => {
       if (err) {
-        console.log('queryOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+        console.error('queryOsAccountDistributedInfo exception: ' + JSON.stringify(err));
       } else {
         console.log('distributed information: ' + JSON.stringify(data));
       }
@@ -179,7 +179,7 @@ queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
   accountAbility.queryOsAccountDistributedInfo().then((data: distributedAccount.DistributedInfo) => {
       console.log('distributed information: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-      console.log('queryOsAccountDistributedInfo exception: '  + JSON.stringify(err));
+      console.error('queryOsAccountDistributedInfo exception: '  + JSON.stringify(err));
   });
   ```
 
@@ -220,13 +220,13 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
   try {
     accountAbility.setOsAccountDistributedInfo(accountInfo, (err: BusinessError) => {
       if (err) {
-        console.log('setOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+        console.error('setOsAccountDistributedInfo exception: ' + JSON.stringify(err));
       } else {
         console.log('setOsAccountDistributedInfo successfully');
       }
     });
   } catch (err) {
-      console.log('setOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+      console.error('setOsAccountDistributedInfo exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -273,10 +273,10 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
     accountAbility.setOsAccountDistributedInfo(accountInfo).then(() => {
         console.log('setOsAccountDistributedInfo successfully');
     }).catch((err: BusinessError) => {
-        console.log('setOsAccountDistributedInfo exception: '  + JSON.stringify(err));
+        console.error('setOsAccountDistributedInfo exception: '  + JSON.stringify(err));
     });
   } catch (err) {
-      console.log('setOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+      console.error('setOsAccountDistributedInfo exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -310,7 +310,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo, (err: BusinessError) => {
     if (err) {
-      console.log('queryOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+      console.error('queryOsAccountDistributedInfo exception: ' + JSON.stringify(err));
     } else {
       console.log('queryOsAccountDistributedInfo successfully');
     }
@@ -351,7 +351,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
   accountAbility.updateOsAccountDistributedInfo(accountInfo).then(() => {
       console.log('updateOsAccountDistributedInfo successfully');
    }).catch((err: BusinessError) => {
-      console.log('updateOsAccountDistributedInfo exception: '  + JSON.stringify(err));
+      console.error('updateOsAccountDistributedInfo exception: '  + JSON.stringify(err));
   });
   ```
 

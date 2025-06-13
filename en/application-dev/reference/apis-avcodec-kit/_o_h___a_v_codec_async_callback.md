@@ -9,6 +9,8 @@ The **OH_AVCodecAsyncCallback** struct defines all the asynchronous callback fun
 
 **Related module**: [CodecBase](_codec_base.md)
 
+**Header file**: [native_avcodec_base.h](native__avcodec__base_8h.md)
+
 **Since**: 9
 
 **Deprecated from**: 11

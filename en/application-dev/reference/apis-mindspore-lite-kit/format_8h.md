@@ -5,13 +5,15 @@
 
 Declares tensor data formats.
 
-**Since**
+**File to include**: <mindspore/format.h>
 
-9
+**Library**: libmindspore_lite_ndk.so
 
-**Related module**
+**System capability**: SystemCapability.Ai.MindSpore
 
-[MindSpore](_mind_spore.md)
+**Since**: 9
+
+**Related module**: [MindSpore](_mind_spore.md)
 
 
 ## Summary

@@ -92,3 +92,11 @@
    绘制效果如下：
 
    ![Screenshot_20241225200426678](figures/Screenshot_20241225200426678.jpg)
+
+<!--RP1-->
+## 相关实例
+
+针对Drawing(C/C++)的开发，有以下相关实例可供参考：
+
+- [NDKGraphicsDraw (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKGraphicsDraw)
+<!--RP1End-->

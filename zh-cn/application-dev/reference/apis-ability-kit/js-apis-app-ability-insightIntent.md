@@ -1,4 +1,4 @@
-# @ohos.app.ability.insightIntent (insightIntent)
+# @ohos.app.ability.insightIntent (意图调用基础能力)
 
 本模块提供意图调用基础能力。
 

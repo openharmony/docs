@@ -1,10 +1,13 @@
 # 实现属性动画
 
 
-通过可动画属性改变引起UI上产生的连续视觉效果，即为属性动画。属性动画是最基础易懂的动画，ArkUI提供三种属性动画接口[animateTo](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md)、[animation](../reference/apis-arkui/arkui-ts/ts-animatorproperty.md)和[keyframeAnimateTo](../reference/apis-arkui/arkui-ts/ts-keyframeAnimateTo.md)驱动组件属性按照动画曲线等动画参数进行连续的变化，产生属性动画。
+通过可动画属性改变引起UI上产生的连续视觉效果，即为属性动画。属性动画是最基础易懂的动画，ArkUI提供三种动画接口[animateTo](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md)、[animation](../reference/apis-arkui/arkui-ts/ts-animatorproperty.md)和[keyframeAnimateTo](../reference/apis-arkui/arkui-ts/ts-keyframeAnimateTo.md)驱动组件属性按照动画曲线等动画参数进行连续的变化，产生属性动画。
 
+> **说明：**
+>
+> 本章节讨论的属性动画不是狭义的[属性动画接口](../reference/apis-arkui/arkui-ts/ts-animatorproperty.md)，而是通过给定新的可动画属性终值，对属性产生动画的方式。
 
-| 属性动画接口 | 作用域 | 原理 | 使用场景 |
+| 动画接口 | 作用域 | 原理 | 使用场景 |
 | -------- | -------- | -------- | -------- |
 | animateTo | 闭包内改变属性引起的界面变化。<br/>作用于出现消失转场。 | 通用函数，对闭包前界面和闭包中的状态变量引起的界面之间的差异做动画。<br/>支持多次调用，支持嵌套。 | 适用对多个可动画属性配置相同动画参数的动画。<br/>需要嵌套使用动画的场景。 |
 | animation | 组件通过属性接口绑定的属性变化引起的界面变化。 | 识别组件的可动画属性变化，自动添加动画。<br/>组件的接口调用是从下往上执行，animation只会作用于在其之上的属性调用。<br/>组件可以根据调用顺序对多个属性设置不同的animation。 | 适用于对多个可动画属性配置不同参数动画的场景。 |
@@ -21,7 +24,7 @@ animateTo(value: AnimateParam, event: () => void): void
 
 > **说明：**
 > 
-> 直接使用animateTo可能导致实例不明确的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-window.md#getuicontext10)获取[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)实例，并使用[animateTo](../reference/apis-arkui/js-apis-arkui-UIContext.md#animateto)调用绑定实例的animateTo。
+> 直接使用animateTo可能导致[UI上下文不明确](./arkts-global-interface.md)的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-window.md#getuicontext10)获取[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)实例，并使用[animateTo](../reference/apis-arkui/js-apis-arkui-UIContext.md#animateto)调用绑定实例的animateTo。
 
 ```ts
 import { curves } from '@kit.ArkUI';
@@ -182,12 +185,7 @@ struct KeyframeAnimateToDemo {
       .onClick(() => {
         // 第三步：调用keyframeAnimateTo接口
         this.getUIContext()?.keyframeAnimateTo({
-          iterations: 1,
-          expectedFrameRateRange: {
-            min: 10,
-            max: 120,
-            expected: 60,
-          }
+          iterations: 1
         }, [
           {
             // 第一段关键帧动画时长为800ms，组件一顺时针旋转90度，组件二的透明度变从1变为0.6，组件二的translate从0位移到50
@@ -230,7 +228,7 @@ struct KeyframeAnimateToDemo {
 ![keyframeAnimateTo1](figures/keyframeAnimateTo1.gif)
 
 > **说明：**
-> - 在对组件的位置大小的变化做动画的时候，由于布局属性的改变会触发测量布局，性能开销大。[scale](../reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale)属性的改变不会触发测量布局，性能开销小。因此，在组件位置大小持续发生变化的场景，如跟手触发组件大小变化的场景，推荐适用scale。
+> - 在对组件的位置大小的变化做动画的时候，由于布局属性的改变会触发测量布局，性能开销大。[scale](../reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale)属性的改变不会触发测量布局，性能开销小。因此，在组件位置大小持续发生变化的场景，如跟手触发组件大小变化的场景，推荐使用scale。
 > 
 > - 属性动画应该作用于始终存在的组件，对于将要出现或者将要消失的组件的动画应该使用[转场动画](arkts-transition-overview.md)。
 > 

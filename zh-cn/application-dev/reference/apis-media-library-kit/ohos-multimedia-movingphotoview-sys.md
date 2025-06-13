@@ -53,9 +53,8 @@
 import { photoAccessHelper, MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
 import { PixelMapFormat, DynamicRangeMode } from '@ohos.multimedia.movingphotoview';
 
-let context = getContext(this)
 let data: photoAccessHelper.MovingPhoto
-async function loading() {
+async function loading(context: Context) {
   try {
     // 需要确保imageFileUri和videoFileUri对应的资源在应用沙箱存在
     let imageFileUri = 'file://{bundleName}/data/storage/el2/base/haps/entry/files/xxx.jpg';
@@ -72,8 +71,9 @@ struct Index {
   controller: MovingPhotoViewController = new MovingPhotoViewController();
   format: undefined | PixelMapFormat = PixelMapFormat.YCBCR_P010;
   mode: undefined | DynamicRangeMode = DynamicRangeMode.HIGH;
+  private uiContext: UIContext = this.getUIContext()
   aboutToAppear(): void {
-    loading()
+    loading(this.uiContext.getHostContext()!)
   }
 
   build() {

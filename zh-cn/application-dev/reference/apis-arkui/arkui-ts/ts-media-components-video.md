@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。<br/>
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。<br/>
 >  Video组件只提供简单的视频播放功能，无法支撑复杂的视频播控场景。复杂开发场景推荐使用[AVPlayer播控API](../../apis-media-kit/js-apis-media.md#avplayer9)和[XComponent](ts-basic-components-xcomponent.md)组件开发。
 
 ## 权限列表
@@ -401,7 +401,7 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 ## VideoController
 
-一个VideoController对象可以控制一个或多个video，可用视频播放实例请参考[@ohos.multimedia.media](../../apis-media-kit/js-apis-media.md)。
+一个VideoController对象可以控制一个或多个Video，可用视频播放实例请参考[@ohos.multimedia.media](../../apis-media-kit/js-apis-media.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -457,7 +457,7 @@ stop()
 
 reset(): void
 
-video组件重置AVPlayer。显示当前帧，再次播放时从头开始播放。
+Video组件重置AVPlayer。显示当前帧，再次播放时从头开始播放。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -477,7 +477,7 @@ setCurrentTime(value: number)
 
 | 参数名   | 类型   | 必填   | 说明           |
 | ----- | ------ | ---- | -------------- |
-| value | number | 是    | 视频播放进度位置，取值范围：[0, [duration](ts-media-components-video.md#preparedinfo18对象说明)]，单位：秒。 |
+| value | number | 是    | 视频播放进度位置，取值范围：[0, [duration](ts-media-components-video.md#preparedinfo18对象说明)]，单位：秒。<br/>从API version 8开始，支持设置视频的跳转模式，详见[setCurrentTime<sup>8+</sup>](#setcurrenttime8)。|
 
 ### requestFullscreen
 
@@ -546,14 +546,14 @@ setCurrentTime(value: number, seekMode: SeekMode)
 @Entry
 @Component
 struct VideoCreateComponent {
-  @State videoSrc: Resource = $rawfile('video1.mp4')
-  @State previewUri: Resource = $r('app.media.poster1')
-  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
-  @State isAutoPlay: boolean = false
-  @State showControls: boolean = true
-  @State isShortcutKeyEnabled: boolean = false
-  @State showFirstFrame: boolean = false
-  controller: VideoController = new VideoController()
+  @State videoSrc: Resource = $rawfile('video1.mp4');
+  @State previewUri: Resource = $r('app.media.poster1');
+  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
+  @State isAutoPlay: boolean = false;
+  @State showControls: boolean = true;
+  @State isShortcutKeyEnabled: boolean = false;
+  @State showFirstFrame: boolean = false;
+  controller: VideoController = new VideoController();
 
   build() {
     Column() {
@@ -677,14 +677,14 @@ interface FullscreenObject {
 @Entry
 @Component
 struct ImageAnalyzerExample {
-  @State videoSrc: Resource = $rawfile('video1.mp4')
-  @State previewUri: Resource = $r('app.media.poster1')
-  @State showControls: boolean = true
-  controller: VideoController = new VideoController()
+  @State videoSrc: Resource = $rawfile('video1.mp4');
+  @State previewUri: Resource = $r('app.media.poster1');
+  @State showControls: boolean = true;
+  controller: VideoController = new VideoController();
   config: ImageAnalyzerConfig = {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
   }
-  private aiController: ImageAnalyzerController = new ImageAnalyzerController()
+  private aiController: ImageAnalyzerController = new ImageAnalyzerController();
   private options: ImageAIOptions = {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT],
     aiController: this.aiController

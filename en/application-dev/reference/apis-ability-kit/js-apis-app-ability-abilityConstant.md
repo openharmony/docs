@@ -1,6 +1,6 @@
 # @ohos.app.ability.AbilityConstant (AbilityConstant)
 
-The **AbilityConstant** module defines the UIAbility-related enums, including the initial launch reasons, reasons for the last exit, ability continuation results, and window modes.
+The AbilityConstant module defines the UIAbility-related enums, including the initial launch reasons, reasons for the last exit, ability continuation results, and window modes.
 
 > **NOTE**
 > 
@@ -70,7 +70,7 @@ Enumerates the reasons for the last exit. You can use it together with the value
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | Unknown reason.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | ABILITY_NOT_RESPONDING<sup>(deprecated)</sup> | 1    | The ability does not respond.<br>**NOTE**<br>This enum is supported since API version 9 and deprecated since API version 10. You are advised to use **APP_FREEZE**.|
-| NORMAL | 2    | The ability exits normally because the user closes the application.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| NORMAL | 2    | The ability exits normally because the user closes the application.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**NOTE**: If the application process is terminated using methods not provided by Ability Kit, such as calling [process.exit()](../apis-arkts/js-apis-process.md#processexitdeprecated) or using the **kill** command, the reason for the last exit is also reported as **NORMAL**.|
 | CPP_CRASH<sup>10+</sup>  | 3    | The ability exits due to abnormal signals on the local host.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | JS_ERROR<sup>10+</sup>  | 4    | The ability exits due to a JS_ERROR fault triggered when an application has a JS syntax error that is not captured by developers.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | APP_FREEZE<sup>10+</sup>  | 5    | The ability exits because watchdog detects that the application is frozen.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|

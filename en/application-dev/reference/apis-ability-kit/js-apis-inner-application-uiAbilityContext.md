@@ -639,32 +639,49 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-```ts
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+1. The following is an example of calling **terminateSelf** to terminate a UIAbility. By default, the application retains the snapshot in the recent tasks list.
 
-export default class EntryAbility extends UIAbility {
-  onForeground() {
-    try {
-      this.context.terminateSelf((err: BusinessError) => {
-        if (err.code) {
-          // Process service logic errors.
-          console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
-          return;
+    ```ts
+    import { UIAbility } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    export default class EntryAbility extends UIAbility {
+      onForeground() {
+        try {
+          this.context.terminateSelf((err: BusinessError) => {
+            if (err.code) {
+              // Process service logic errors.
+              console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
+              return;
+            }
+            // Carry out normal service processing.
+            console.info('terminateSelf succeed');
+          });
+        } catch (err) {
+          // Capture the synchronization parameter error.
+          let code = (err as BusinessError).code;
+          let message = (err as BusinessError).message;
+          console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
         }
-        // Carry out normal service processing.
-        console.info('terminateSelf succeed');
-      });
-    } catch (err) {
-      // Capture the synchronization parameter error.
-      let code = (err as BusinessError).code;
-      let message = (err as BusinessError).message;
-      console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+      }
     }
-  }
-}
-```
+    ```
 
+2. (Optional) To remove the mission from Recents (that is, not to retain the snapshot in the recent tasks list) when terminating the UIAbility, set the **removeMissionAfterTerminate** field to **true** in the [module.json5](../../quick-start/module-configuration-file.md) file.
+
+    ```json
+    { 
+      "module": { 
+        // ... 
+        "abilities": [
+          {
+            // ...
+            "removeMissionAfterTerminate": true
+          }
+        ]
+      }
+    }
+    ```
 
 ## UIAbilityContext.terminateSelf
 
@@ -699,32 +716,49 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 **Example**
 
-```ts
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+1. The following is an example of calling **terminateSelf** to terminate a UIAbility. By default, the application retains the snapshot in the recent tasks list.
 
-export default class EntryAbility extends UIAbility {
-  onForeground() {
-    try {
-      this.context.terminateSelf()
-        .then(() => {
-          // Carry out normal service processing.
-          console.info('terminateSelf succeed');
-        })
-        .catch((err: BusinessError) => {
-          // Process service logic errors.
-          console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
-        });
-    } catch (err) {
-      // Capture the synchronization parameter error.
-      let code = (err as BusinessError).code;
-      let message = (err as BusinessError).message;
-      console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+    ```ts
+    import { UIAbility } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    export default class EntryAbility extends UIAbility {
+      onForeground() {
+        try {
+          this.context.terminateSelf()
+            .then(() => {
+              // Carry out normal service processing.
+              console.info('terminateSelf succeed');
+            })
+            .catch((err: BusinessError) => {
+              // Process service logic errors.
+              console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
+            });
+        } catch (err) {
+          // Capture the synchronization parameter error.
+          let code = (err as BusinessError).code;
+          let message = (err as BusinessError).message;
+          console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+        }
+      }
     }
-  }
-}
-```
+    ```
 
+2. (Optional) To remove the mission from Recents (that is, not to retain the snapshot in the recent tasks list) when terminating the UIAbility, set the **removeMissionAfterTerminate** field to **true** in the [module.json5](../../quick-start/module-configuration-file.md) file.
+
+    ```json
+    {
+      "module": {
+        // ...
+        "abilities": [
+          {
+            // ...
+            "removeMissionAfterTerminate": true
+          }
+        ]
+      }
+    }
+    ```
 
 ## UIAbilityContext.terminateSelfWithResult
 
@@ -1873,7 +1907,7 @@ struct Index {
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
             context.showAbility().then(() => {
               console.log(`showAbility success`);
@@ -1971,7 +2005,7 @@ struct Index {
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
             context.hideAbility().then(() => {
               console.log(`hideAbility success`);
@@ -2069,7 +2103,7 @@ struct Index {
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
             context.moveAbilityToBackground().then(() => {
               console.log(`moveAbilityToBackground success.`);
@@ -2244,7 +2278,7 @@ struct Index {
     RelativeContainer() {
       Button("Call StartAbilityForResult")
         .onClick(() => {
-          let context = getContext(this) as common.UIAbilityContext;
+          let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
           let link: string = 'https://www.example.com';
           let openLinkOptions: OpenLinkOptions = {
             appLinkingOnly: true,
@@ -2338,7 +2372,7 @@ struct Index {
 
         Button("Call StartAbilityForResult")
           .onClick(() => {
-            let context: common.UIAbilityContext = getContext() as common.UIAbilityContext;
+            let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
             let want: Want = {
               bundleName: 'com.example.demo2',
               abilityName: 'EntryAbility'
@@ -2532,7 +2566,7 @@ struct Index {
         Button('start ability')
           .enabled(true)
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             let startWant: Want = {
               bundleName: 'com.acts.uiserviceextensionability',
               abilityName: 'UiServiceExtAbility',
@@ -2625,7 +2659,7 @@ struct UIServiceExtensionAbility {
 
   async myConnect() {
     // Obtain the context.
-    let context = getContext(this) as common.UIAbilityContext;
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     let startWant: Want = {
       deviceId: '',
       bundleName: 'com.example.myapplication',
@@ -2742,7 +2776,7 @@ struct UIServiceExtensionAbility {
   }
 
   myDisconnectUIServiceExtensionAbility() {
-    let context = getContext(this) as common.UIAbilityContext;
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     try {
       // Disconnect from the UIServiceExtensionAbility.
@@ -2837,6 +2871,77 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+
+## UIAbilityContext.revokeDelegator<sup>17+</sup>
+
+revokeDelegator() : Promise&lt;void&gt;
+
+When the first UIAbility launched under a module needs to redirect to another UIAbility, the target UIAbility is known as the DelegatorAbility. For details about how to set up the DelegatorAbility, see step 1 in the example provided for this API.
+
+Once the DelegatorAbility has completed its specific operations, you can use this API to revert to the first UIAbility. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> After the API is successfully called, the [Window](../apis-arkui/js-apis-window.md) API within the DelegatorAbility becomes invalid.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type               | Description                                  |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 801 | Capability not support. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000065 | The API can be called only when the ability is running in the foreground. |
+| 16000084 | Only allow DelegatorAbility to call the method once. |
+| 16000085 | The interaction process between Ability and Window encountered an error. |
+
+**Example**
+
+1. Set a DelegatorAbility.
+
+    Configure **abilitySrcEntryDelegator** and **abilityStageSrcEntryDelegator** in the [module.json5](../../quick-start/module-configuration-file.md) file. When the first UIAbility of the module is cold started, the system preferentially starts the UIAbility specified by **abilitySrcEntryDelegator**.
+    > **NOTE**
+    >
+    >  - If the UIAbility is started by calling [startAbilityByCall](#uiabilitycontextstartabilitybycall), the system ignores **abilitySrcEntryDelegator** and **abilityStageSrcEntryDelegator** configured in the [module.json5](../../quick-start/module-configuration-file.md) file.
+    >  - The module name specified by **abilityStageSrcEntryDelegator** must be different from the current module name.
+    ```json
+    {
+      "module": {
+        // ...
+        "abilityStageSrcEntryDelegator": "xxxModuleName",
+        "abilitySrcEntryDelegator": "xxxAbilityName",
+        // ...
+      }
+    }
+    ```
+
+2. Revoke the DelegatorAbility.
+
+    ```ts
+    import { UIAbility } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    export default class DelegatorAbility extends UIAbility {
+      onForeground() {
+        // After the DelegatorAbility completes the specific operation, call revokeDelegator to revert to the first UIAbility.
+        this.context.revokeDelegator().then(() => {
+          console.info('revokeDelegator success');
+        }).catch((err: BusinessError) => {
+          console.error(`revokeDelegator failed, code is ${err.code}, message is ${err.message}`);
+        });
+      }
+    }
+    ```
 
 ## UIAbilityContext.setColorMode<sup>18+</sup>
 

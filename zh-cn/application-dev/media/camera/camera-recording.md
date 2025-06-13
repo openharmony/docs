@@ -126,7 +126,7 @@
        await avRecorder.start();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`avRecorder start error: ${JSON.stringify(err)}`);
+       console.error(`avRecorder start error: ${err}`);
      }
    }
    ```
@@ -141,7 +141,7 @@
        await avRecorder.stop();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`avRecorder stop error: ${JSON.stringify(err)}`);
+       console.error(`avRecorder stop error: ${err}`);
      }
      videoOutput.stop((err: BusinessError) => {
        if (err) {

@@ -34,7 +34,7 @@ Registers a listener to observe the mission status.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type     | string   | Yes      | Name of the target mission.|
+  | type     | string   | Yes      | Name of the target mission. The value is fixed at **'mission'**, indicating the system mission status listener.|
   | listener | [MissionListener](js-apis-inner-application-missionListener-sys.md) | Yes| Mission status listener to register.|
 
 **Error codes**
@@ -136,7 +136,7 @@ Deregisters a mission status listener.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type     | string   | Yes      | Name of the target mission.|
+  | type     | string   | Yes      | Name of the target mission. The value is fixed at **'mission'**, indicating the system mission status listener.|
   | listenerId | number | Yes| Index of the mission status listener to deregister. It is returned by **on()**.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
@@ -234,7 +234,7 @@ Deregisters a mission status listener. This API uses a promise to return the res
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type     | string   | Yes      | Name of the target mission.|
+  | type     | string   | Yes      | Name of the target mission. The value is fixed at **'mission'**, indicating the system mission status listener.|
   | listenerId | number | Yes| Index of the mission status listener to deregister. It is returned by **on()**.|
 
 **Return value**
@@ -1370,7 +1370,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   missionManager.getMissionInfos("", 10, (error: BusinessError, missionInfos: Array<missionManager.MissionInfo>) => {
     if (error.code) {
-      console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+      console.error(`getMissionInfos failed, error code: ${error.code}, error msg: ${error.message}.`);
       return;
     }
     if (missionInfos.length < 1) {
@@ -1438,7 +1438,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   missionManager.getMissionInfos("", 10, (error: BusinessError, missionInfos: Array<missionManager.MissionInfo>) => {
     if (error.code) {
-      console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+      console.error(`getMissionInfos failed, error code: ${error.code}, error msg: ${error.message}.`);
       return;
     }
     if (missionInfos.length < 1) {
@@ -1511,7 +1511,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   missionManager.getMissionInfos("", 10, (error: BusinessError, missionInfos: Array<missionManager.MissionInfo>) => {
     if (error.code) {
-      console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+      console.error(`getMissionInfos failed, error code: ${error.code}, error msg: ${error.message}`);
       return;
     }
     if (missionInfos.length < 1) {
@@ -1525,7 +1525,7 @@ try {
       }
     }
     missionManager.moveMissionsToForeground(toShows, toShows[0]).then(() => {
-      console.log("moveMissionsToForeground is called" );
+      console.log(`moveMissionsToForeground is called`);
     });
   });
 } catch (paramError) {
@@ -1574,7 +1574,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   missionManager.getMissionInfos("", 10, (error: BusinessError, missionInfos: Array<missionManager.MissionInfo>) => {
     if (error.code) {
-      console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+      console.error(`getMissionInfos failed, error code: ${error.code}, error msg: ${error.message}`);
       return;
     }
 
@@ -1643,7 +1643,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   missionManager.getMissionInfos("", 10, (error: BusinessError, missionInfos: Array<missionManager.MissionInfo>) => {
     if (error.code) {
-      console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+      console.error(`getMissionInfos failed, error code: ${error.code}, error msg: ${error.message}`);
       return;
     }
 
@@ -1654,7 +1654,7 @@ try {
       }
     }
     missionManager.moveMissionsToBackground(toHides).then((hideRes: Array<number>) => {
-      console.log("moveMissionsToBackground is called, res: "+ JSON.stringify(hideRes));
+      console.log(`moveMissionsToBackground is called, res: ${JSON.stringify(hideRes)}`);
     });
   });
 } catch (paramError) {

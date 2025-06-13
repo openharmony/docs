@@ -25,15 +25,16 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 ### 使用接口判断是否是Number Object
 
 cpp部分代码
-
 ```cpp
+#include <string>
+
 static JSVM_Value WrapperObject(JSVM_Env env, JSVM_CallbackInfo info) {
     JSVM_VM vm;
     OH_JSVM_GetVM(env, &vm);
 
     JSVM_HandleScope handleScope;
     OH_JSVM_OpenHandleScope(env, &handleScope);
-    string src = R"JS(new Number(42))JS";
+    std::string src = R"JS(new Number(42))JS";
     JSVM_Value jsSrc;
     JSVM_Script script;
     JSVM_Value result;

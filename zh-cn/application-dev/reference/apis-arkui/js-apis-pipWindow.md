@@ -1,12 +1,12 @@
 # @ohos.PiPWindow (画中画窗口)
 
-该模块提供画中画基础功能，包括判断当前系统是否开启画中画功能，以及创建画中画控制器用于启动、停止画中画等。主要用于视频播放、视频通话或视频会议场景下，以小窗（画中画）模式呈现内容。
+该模块提供画中画基础功能，包括判断当前系统是否支持画中画功能，以及创建画中画控制器用于启动或停止画中画等。适用于视频播放、视频通话或视频会议场景下，以小窗（画中画）模式呈现内容。
 
 > **说明：**
 >
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 
-> 需要在支持SystemCapability.Window.SessionManager能力的系统上使用该模块，<!--RP1-->参考[系统能力SystemCapability使用指南](../syscap.md)<!--RP1End-->。
+> 该模块应在支持SystemCapability.Window.SessionManager能力的系统上使用，<!--RP1-->参考[系统能力SystemCapability使用指南](../syscap.md)<!--RP1End-->。
 
 ## 导入模块
 
@@ -18,7 +18,7 @@ import { PiPWindow } from '@kit.ArkUI';
 
 isPiPEnabled(): boolean
 
-用于判断当前系统是否支持画中画功能。
+判断当前系统是否支持画中画功能。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -28,7 +28,7 @@ isPiPEnabled(): boolean
 
 | 类型       | 说明                                  |
 |----------|-------------------------------------|
-| boolean  | 当前系统是否开启画中画功能。true表示支持，false则表示不支持。 |
+| boolean  | 当前系统是否支持画中画功能。true表示支持，false则表示不支持。 |
 
 **示例：**
 
@@ -72,7 +72,8 @@ create(config: PiPConfiguration): Promise&lt;PiPController&gt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { BuilderNode, FrameNode, NodeController, Size, UIContext } from '@kit.ArkUI';
+import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 class Params {
   text: string = '';
@@ -127,8 +128,9 @@ let contentHeight: number = 600; // 假设当前内容高度600px。
 let para: Record<string, number> = { 'PropA': 47 };
 let localStorage: LocalStorage = new LocalStorage(para);
 let res: boolean = localStorage.setOrCreate('PropB', 121);
+let ctx = this.getUIContext().getHostContext() as common.UIAbilityContext; //请在组件内获取context，确保this.getUIContext().getHostContext()返回的结果为UIAbilityContext
 let config: PiPWindow.PiPConfiguration = {
-  context: getContext(this),
+  context: ctx,
   componentController: mXComponentController,
   navigationId: navId,
   templateType: PiPWindow.PiPTemplateType.VIDEO_PLAY,
@@ -136,11 +138,11 @@ let config: PiPWindow.PiPConfiguration = {
   contentHeight: contentHeight,
   controlGroups: [PiPWindow.VideoPlayControlGroup.VIDEO_PREVIOUS_NEXT],
   customUIController: nodeController, // 可选，如果需要在画中画显示内容上方展示自定义UI，可设置该参数。
-  localStorage: localStorage, // 可选，如果需要跟踪主窗实例，可设置此参数。
+  localStorage: localStorage // 可选，如果需要跟踪主窗实例，可设置此参数。
 };
 
-let promise : Promise<PiPWindow.PiPController> = PiPWindow.create(config);
-promise.then((data : PiPWindow.PiPController) => {
+let promise: Promise<PiPWindow.PiPController> = PiPWindow.create(config);
+promise.then((data: PiPWindow.PiPController) => {
   pipController = data;
   console.info(`Succeeded in creating pip controller. Data:${data}`);
 }).catch((err: BusinessError) => {
@@ -184,30 +186,29 @@ create(config: PiPConfiguration, contentNode: typeNode.XComponent): Promise&lt;P
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { PiPWindow, UIContext } from '@kit.ArkUI';
-import { typeNode } from '@ohos.arkui.node';
+import { PiPWindow, typeNode, UIContext } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 let pipController: PiPWindow.PiPController | undefined = undefined;
 let xComponentController: XComponentController = new XComponentController();
-let context: UIContext | undefined = undefined; // 可传入UIContext或在布局中通过this.getUIContext()为context赋有效值
-let xComponent = typeNode.createNode(context, 'XComponent');
-xComponent.initialize({
-  id:'xcomponent',
-  type:XComponentType.SURFACE,
-  controller:xComponentController
-});
+let ctx = this.getUIContext().getHostContext() as common.UIAbilityContext; //请在组件内获取context，确保this.getUIContext().getHostContext()返回的结果为UIAbilityContextgetUIContext()方法获取并缓存UIContext实例
+let options: XComponentOptions = {
+  type: XComponentType.SURFACE,
+  controller: xComponentController
+}
+let xComponent = typeNode.createNode(this.getUIContext(), 'XComponent', options);
 let contentWidth: number = 800; // 假设当前内容宽度800px。
 let contentHeight: number = 600; // 假设当前内容高度600px。
 let config: PiPWindow.PiPConfiguration = {
-  context: getContext(this),
+  context: ctx,
   componentController: xComponentController,
   templateType: PiPWindow.PiPTemplateType.VIDEO_PLAY,
   contentWidth: contentWidth,
   contentHeight: contentHeight
 };
 
-let promise : Promise<PiPWindow.PiPController> = PiPWindow.create(config, xComponent);
-promise.then((data : PiPWindow.PiPController) => {
+let promise: Promise<PiPWindow.PiPController> = PiPWindow.create(config, xComponent);
+promise.then((data: PiPWindow.PiPController) => {
   pipController = data;
   console.info(`Succeeded in creating pip controller. Data:${data}`);
 }).catch((err: BusinessError) => {
@@ -225,13 +226,13 @@ promise.then((data : PiPWindow.PiPController) => {
 |---------------------|----------------------------------------------------------------------------|-----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | context             | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 表示上下文环境。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                  |
 | componentController | [XComponentController](arkui-ts/ts-basic-components-xcomponent.md#xcomponentcontroller) | 是   | 表示原始[XComponent](arkui-ts/ts-basic-components-xcomponent.md)控制器。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                      |
-| navigationId        | string                                                                     | 否   | 当前page导航id。<br/>1、UIAbility使用[Navigation](arkui-ts/ts-basic-components-navigation.md)管理页面，需要设置Navigation控件的id属性，并将该id设置给画中画控制器，确保还原场景下能够从画中画窗口恢复到原页面。<br/>2、UIAbility使用[Router](js-apis-router.md)管理页面时，无需设置navigationId。<br/>3、UIAbility只有单页面时，无需设置navigationId，还原场景下也能够从画中画窗口恢复到原页面。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| templateType        | [PiPTemplateType](#piptemplatetype)                                        | 否   | 模板类型，用以区分视频播放、视频通话或视频会议。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                  |
+| navigationId        | string                                                                     | 否   | 当前page导航id，不传值则默认不需要缓存页面。<br/>1、UIAbility使用[Navigation](arkui-ts/ts-basic-components-navigation.md)管理页面，需要设置Navigation控件的id属性，并将该id设置给画中画控制器，确保还原场景下能够从画中画窗口恢复到原页面。<br/>2、UIAbility使用[Router](js-apis-router.md)管理页面时，无需设置navigationId。<br/>3、UIAbility只有单页面时，无需设置navigationId，还原场景下也能够从画中画窗口恢复到原页面。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| templateType        | [PiPTemplateType](#piptemplatetype)                                        | 否   | 模板类型，用以区分视频播放、视频通话或视频会议，不传值则默认为视频播放模板。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                  |
 | contentWidth        | number                                                                     | 否   | 原始内容宽度，单位为px。用于确定画中画窗口比例。当[使用typeNode的方式](#pipwindowcreate12)创建PiPController时，不传值则默认为1920。当[不使用typeNode的方式](#pipwindowcreate)创建PiPController时，不传值则默认为[XComponent](arkui-ts/ts-basic-components-xcomponent.md)组件的宽度。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                 |
-| contentHeight       | number                                                                     | 否   | 原始内容高度，单位为px。用于确定画中画窗口比例。用于确定画中画窗口比例。当[使用typeNode的方式](#pipwindowcreate12)创建PiPController时，不传值则默认为1080。当[不使用typeNode的方式](#pipwindowcreate)创建PiPController时，不传值则默认为[XComponent](arkui-ts/ts-basic-components-xcomponent.md)组件的高度。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                 |
-| controlGroups<sup>12+</sup>       | Array<[PiPControlGroup](#pipcontrolgroup12)>                               | 否   | 画中画控制面板的可选控件组列表，应用可以对此进行配置以决定是否显示。如果应用没有配置，面板将显示基础控件（如视频播放控件组的播放/暂停控件）；如果应用选择配置，则最多可以选择三个控件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                 |
-| customUIController<sup>12+</sup>      | [NodeController](js-apis-arkui-nodeController.md)           | 否   | 用于实现在画中画界面内容上方展示自定义UI功能。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                           |
-| localStorage<sup>17+</sup>      | [LocalStorage](../../ui/state-management/arkts-localstorage.md)           | 否   | 页面级别的UI状态存储单元，多实例下可用来跟踪主窗实例。<br/>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                           |
+| contentHeight       | number                                                                     | 否   | 原始内容高度，单位为px。用于确定画中画窗口比例。当[使用typeNode的方式](#pipwindowcreate12)创建PiPController时，不传值则默认为1080。当[不使用typeNode的方式](#pipwindowcreate)创建PiPController时，不传值则默认为[XComponent](arkui-ts/ts-basic-components-xcomponent.md)组件的高度。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                 |
+| controlGroups<sup>12+</sup>       | Array<[PiPControlGroup](#pipcontrolgroup12)>                               | 否   | 画中画控制面板的可选控件组列表，应用可以对此进行配置以决定是否显示。应用未配置时，面板显示基础控件（如视频播放控件组的播放/暂停控件）；应用选择配置时，则最多可以选择三个控件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                 |
+| customUIController<sup>12+</sup>      | [NodeController](js-apis-arkui-nodeController.md)           | 否   | 用于实现在画中画界面内容上方展示自定义UI功能，不传值则默认不使用自定义UI功能。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                           |
+| localStorage<sup>17+</sup>      | [LocalStorage](../../ui/state-management/arkts-localstorage.md)           | 否   | 页面级别的UI状态存储单元。多实例下可用来跟踪主窗实例的UI状态存储对象，不传值则无法通过画中画窗口获取主窗的UI状态存储对象。<br/>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                           |
 
 ## PiPWindowSize<sup>15+</sup>
 
@@ -606,7 +607,7 @@ promise.then(() => {
 
 setAutoStartEnabled(enable: boolean): void
 
-设置是否需要在返回桌面时自动启动画中画。
+设置是否在返回桌面时自动启动画中画，默认不自动拉起。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -661,7 +662,7 @@ pipController.updateContentSize(width, height);
 ### updatePiPControlStatus<sup>12+</sup>
 updatePiPControlStatus(controlType: PiPControlType, status: PiPControlStatus): void
 
-更新控制面板控件功能状态。
+更新画中画控制面板控件功能状态。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -812,7 +813,7 @@ try {
 
 on(type: 'stateChange', callback: (state: PiPState, reason: string) => void): void
 
-开启画中画生命周期状态的监听。
+开启画中画生命周期状态的监听，建议在不需要使用时关闭监听，否则可能存在内存泄漏。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -882,7 +883,7 @@ pipController.off('stateChange');
 
 on(type: 'controlPanelActionEvent', callback: ControlPanelActionEventCallback): void
 
-开启画中画控制面板控件动作事件的监听。推荐使用[on('controlEvent')](#oncontrolevent12)来开启画中画控制面板控件动作事件的监听。
+开启画中画控制面板控件动作事件的监听，建议在不需要使用时关闭监听，否则可能存在内存泄漏。推荐使用[on('controlEvent')](#oncontrolevent12)来开启画中画控制面板控件动作事件的监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -930,7 +931,7 @@ pipController.on('controlPanelActionEvent', (event: PiPWindow.PiPActionEventType
 
 on(type: 'controlEvent', callback: Callback&lt;ControlEventParam&gt;): void
 
-开启画中画控制面板控件动作事件的监听。
+开启画中画控制面板控件动作事件的监听，建议在不需要使用时关闭监听，否则可能存在内存泄漏。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1023,7 +1024,7 @@ pipController.off('controlEvent', () => {});
 
 on(type: 'pipWindowSizeChange', callback: Callback&lt;PiPWindowSize&gt;): void
 
-开启画中画窗口尺寸变化事件的监听。
+开启画中画窗口尺寸变化事件的监听，建议在不需要使用时关闭监听，否则可能存在内存泄漏。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 

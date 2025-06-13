@@ -5,7 +5,11 @@
 
 提供了模型相关接口，可以用于模型创建、模型推理等，该接口是非线程安全的。
 
+**引用文件：** <mindspore/model.h>
+
 **库：** libmindspore_lite_ndk.so
+
+**系统能力：** SystemCapability.Ai.MindSpore
 
 **起始版本：** 9
 

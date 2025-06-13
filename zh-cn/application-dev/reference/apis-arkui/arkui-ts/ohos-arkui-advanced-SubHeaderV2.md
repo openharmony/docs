@@ -18,7 +18,7 @@
 ## 导入模块
 
 ```ts
-import { SubHeader } from '@kit.ArkUI'
+import { SubHeader } from '@kit.ArkUI';
 ```
 
 
@@ -187,8 +187,8 @@ type SubHeaderV2SelectOnSelect = (selectedIndex: number, selectedContent?: strin
 
 | 类型            | 说明                                          |
 |:--------------|:--------------------------------------------|
-| selectIndex   | 下拉菜单选中某一项的回调类型。表示选中项的索引。 |
-| selectContent | 下拉菜单选中某一项的回调类型。表示选中项的值。|
+| selectedIndex   | 下拉菜单选中某一项的回调类型。表示选中项的索引。 |
+| selectedContent | 下拉菜单选中某一项的回调类型。表示选中项的值。|
 
 ## SubHeaderV2OperationType
 
@@ -309,7 +309,7 @@ import {
   SubHeaderV2OperationItem,
   Prompt,
   TextModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -368,7 +368,7 @@ import {
   SubHeaderV2OperationItem,
   Prompt,
   TextModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -419,7 +419,7 @@ import {
   SubHeaderV2Title,
   SubHeaderV2Select,
   Prompt
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -496,7 +496,7 @@ import {
   SubHeaderV2Title,
   Prompt,
   SymbolGlyphModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -540,7 +540,7 @@ import {
   SubHeaderV2Select,
   Prompt,
   SymbolGlyphModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -623,7 +623,7 @@ import {
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
   Prompt
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -681,7 +681,7 @@ import {
   SubHeaderV2Title,
   Prompt,
   TextModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -732,7 +732,7 @@ import {
   SubHeaderV2IconType,
   SubHeaderV2Select,
   Prompt
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -828,7 +828,7 @@ import {
   SubHeaderV2OperationItem,
   Prompt,
   TextModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2

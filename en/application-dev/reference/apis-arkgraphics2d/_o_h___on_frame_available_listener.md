@@ -9,6 +9,7 @@ The **OH_OnFrameAvailableListener** struct describes an **OH_NativeImage** liste
 
 **Related module**: [OH_NativeImage](_o_h___native_image.md)
 
+**Header file**: [native_image.h](native__image_8h.md)
 
 ## Summary
 

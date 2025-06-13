@@ -1331,7 +1331,7 @@ struct Index {
         Button('start ability')
           .enabled(true)
           .onClick(() => {
-            let context = getContext(this) as common.UIExtensionContext;
+            let context = this.getUIContext().getHostContext() as common.UIExtensionContext;
             let startWant: Want = {
               bundleName: 'com.acts.uiserviceextensionability',
               abilityName: 'UiServiceExtAbility',
@@ -1415,7 +1415,7 @@ struct Page_UIServiceExtensionAbility {
       Row() {
         //...
       }.onClick(() => {
-        const context = getContext(this) as common.UIExtensionContext;
+        const context = this.getUIContext().getHostContext() as common.UIExtensionContext;
         const want: Want = {
           deviceId: '',
           bundleName: 'com.example.myapplication',
@@ -1490,7 +1490,7 @@ struct Page_UIServiceExtensionAbility {
       Row() {
         //...
       }.onClick(() => {
-        const context = getContext(this) as common.UIExtensionContext;
+        const context = this.getUIContext().getHostContext() as common.UIExtensionContext;
         // this.uiServiceProxy is the proxy object saved during connection.
         context.disconnectUIServiceExtensionAbility(this.uiServiceProxy).then(() => {
           console.log('disconnectUIServiceExtensionAbility success');

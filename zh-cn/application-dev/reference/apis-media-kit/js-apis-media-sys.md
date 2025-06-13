@@ -36,6 +36,7 @@ createVideoRecorder(callback: AsyncCallback\<VideoRecorder>): void
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
+| 202  | Not system App. |
 | 5400101  | No memory. Return by callback. |
 
 **示例：**
@@ -116,6 +117,12 @@ reportAVScreenCaptureUserChoice(sessionId: number, choice: string): Promise\<voi
 | sessionId | number | 是   | AVScreenCapture服务会话Id，会由AVScreenCapture拉起隐私弹窗时传给应用。 |
 | choice    | string | 是   | 用户的选择内容，包含是否同意录屏、选择的屏幕Id和窗口Id。可见示例中JsonData样例。|
 
+**返回值：**
+
+| 类型             | 说明                             |
+| ---------------- | -------------------------------- |
+| Promise\<void> | 异步返回函数执行结果。 |
+
 **错误码：**
 
 | 错误码ID | 错误信息                                    |
@@ -130,9 +137,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 class JsonData {
-  public choice: string = 'true'
-  public displayId: number | null = -1
-  public missionId: number | null = -1
+  public choice: string = 'true';
+  public displayId: number | null = -1;
+  public missionId: number | null = -1;
 }
 let sessionId: number = 0; // 替换成拉起此进程的sessionId。
 
@@ -326,7 +333,7 @@ isWatermarkSupported(): Promise\<boolean>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<boolean> | 获取是否支持水印的Promise返回值。 |
+| Promise\<boolean> | 获取是否支持水印的Promise返回值，支持水印：true，不支持水印：false。 |
 
 **示例：**
 
@@ -389,6 +396,16 @@ avRecorder.setWatermark(watermark, watermarkConfig).then(() => {
   console.error(`Failed to setWatermark and catch error is ${error.message}`);
 });
 ```
+
+## AVRecorderProfile<sup>9+</sup>
+
+音视频录制的配置文件。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+| 名称             | 类型                                         | 必填 | 说明                                                         |
+| ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| enableStableQualityMode<sup>18+</sup>            | boolean                        | 否   | 视频录制是否选择稳定质量模式，选择视频录制时选填，enableStableQualityMode默认为false。设置为true时，启用视频编码策略以实现质量稳定的编码。<br>**系统接口：** 该接口为系统接口|
 
 ## VideoRecorder<sup>9+</sup>
 
@@ -1247,7 +1264,7 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 
 | 名称               | 类型                                   | 可读 | 可写 | 说明             |
 | ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
-| isSystemScreenRecorderWorking<sup>18+</sup> | bool | 是   | 否   | 系统录屏是否处于录屏状态。 |
+| isSystemScreenRecorderWorking<sup>18+</sup> | boolean | 是   | 否   | 系统录屏是否处于录屏状态。 |
 
 ### on('systemScreenRecorder')<sup>18+</sup>
 

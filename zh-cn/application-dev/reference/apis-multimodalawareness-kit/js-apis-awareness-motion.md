@@ -1,4 +1,4 @@
-# @ohos.mulitmodalawareness.motion (动作感知)
+# @ohos.multimodalawareness.motion (动作感知)
 
 本模块，提供对用户行为、动作的感知能力，包括用户的手势、动作等。
 
@@ -17,7 +17,7 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 
 触控操作手状态信息。
 
-**系统能力**：SystemCapability.MultimodalAwarness.Motion
+**系统能力**：SystemCapability.MultimodalAwareness.Motion
 
 | 名称                | 值   | 说明                   |
 | ------------------- | ---- | ---------------------- |
@@ -36,7 +36,7 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
-**系统能力**：SystemCapability.MultimodalAwarness.Motion
+**系统能力**：SystemCapability.MultimodalAwareness.Motion
 
 **参数**：
 
@@ -85,7 +85,7 @@ off(type: 'operatingHandChanged', callback?: Callback&lt;OperatingHandStatus&gt;
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
-**系统能力**：SystemCapability.MultimodalAwarness.Motion
+**系统能力**：SystemCapability.MultimodalAwareness.Motion
 
 **参数**：
 
@@ -130,7 +130,7 @@ getRecentOperatingHandStatus(): OperatingHandStatus;
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
-**系统能力**：SystemCapability.MultimodalAwarness.Motion
+**系统能力**：SystemCapability.MultimodalAwareness.Motion
 
 **返回值**：
 

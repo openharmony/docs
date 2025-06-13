@@ -26,9 +26,15 @@ import { camera } from '@kit.CameraKit';
 | PROFESSIONAL_PHOTO<sup>12+</sup>        | 5      | 专业拍照模式。**系统接口：** 此接口为系统接口。             |
 | PROFESSIONAL_VIDEO<sup>12+</sup>        | 6      | 专业录像模式。**系统接口：** 此接口为系统接口。             |
 | SLOW_MOTION_VIDEO<sup>12+</sup>        | 7   | 慢动作模式。**系统接口：** 此接口为系统接口。  |
+| MACRO_PHOTO<sup>12+</sup>        | 8   | 微距拍照模式。**系统接口：** 此接口为系统接口。  |
+| MACRO_VIDEO<sup>12+</sup>        | 9   | 微距录像模式。**系统接口：** 此接口为系统接口。  |
+| LIGHT_PAINTING_PHOTO<sup>12+</sup>        | 10   | 光绘摄影模式。**系统接口：** 此接口为系统接口。  |
 | HIGH_RESOLUTION_PHOTO<sup>12+</sup>        | 11     | 高像素拍照模式。 **系统接口：** 此接口为系统接口。          |
+| QUICK_SHOT_PHOTO<sup>12+</sup>        | 13   | 闪拍模式。**系统接口：** 此接口为系统接口。  |
+| APERTURE_VIDEO<sup>12+</sup>        | 14   | 大光圈录像模式。**系统接口：** 此接口为系统接口。  |
 | PANORAMA_PHOTO<sup>12+</sup>        | 15     | 全景拍照模式。 **系统接口：** 此接口为系统接口。          |
 | TIME_LAPSE_PHOTO<sup>12+</sup>        | 16     | 延时摄影模式。 **系统接口：** 此接口为系统接口。          |
+| FLUORESCENCE_PHOTO<sup>13+</sup>        | 17   | 荧光图片模式。**系统接口：** 此接口为系统接口。  |
 
 ## SlowMotionStatus<sup>12+</sup>
 
@@ -114,7 +120,7 @@ lcd闪光灯信息项。
 
 ### createDepthDataOutput<sup>13+</sup>
 
-createDepthDataOutput(profile: Profile): DepthDataOutput
+createDepthDataOutput(profile: DepthProfile): DepthDataOutput
 
 创建深度输出对象，同步返回结果。
 
@@ -126,7 +132,7 @@ createDepthDataOutput(profile: Profile): DepthDataOutput
 
 | 参数名     | 类型                                             | 必填 | 说明                              |
 | -------- | ----------------------------------------------- | ---- | ------------------------------- |
-| profile  | [Profile](js-apis-camera.md#profile)                             | 是   | 支持的预览配置信息，通过[getSupportedOutputCapability](js-apis-camera.md#getsupportedoutputcapability11)接口获取。|
+| profile  | [DepthProfile](#depthprofile13)                             | 是   | 支持的预览配置信息，通过[getSupportedOutputCapability](js-apis-camera.md#getsupportedoutputcapability11)接口获取。|
 
 **返回值：**
 
@@ -136,10 +142,11 @@ createDepthDataOutput(profile: Profile): DepthDataOutput
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)和[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 202                    |  Not System Application.               |
 | 7400101                |  Parameter missing or parameter type incorrect.               |
 | 7400201                |  Camera service fatal error.               |
 
@@ -149,7 +156,7 @@ createDepthDataOutput(profile: Profile): DepthDataOutput
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function createDepthDataOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager): camera.DepthDataOutput | undefined {
-  let profile: camera.Profile = cameraOutputCapability.depthProfiles[0];
+  let profile: camera.DepthProfile = cameraOutputCapability.depthProfiles[0];
   let depthDataOutput: camera.DepthDataOutput | undefined = undefined;
   try {
     depthDataOutput = cameraManager.createDepthDataOutput(profile);
@@ -177,6 +184,14 @@ isCameraMuteSupported(): boolean
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | boolean    | 返回true表示相机可以被禁用，返回false表示相机不能被禁用。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202             |  Permission verification failed. A non-system application calls a system API.    |
 
 **示例：**
 
@@ -232,6 +247,16 @@ muteCameraPersistent(mute: boolean, type: PolicyType): void
 | mute     | boolean                     |  是  | 禁用相机。true为禁用；false为解除禁用。                   |
 | type     | [PolicyType](#policytype12) |  是  | 策略类型。请使用[PolicyType](#policytype12)里面支持的类型 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)和[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 201               |  Permission denied.                     |
+| 202               |  Not System Application.                |
+| 7400101           |  Parameter missing or parameter type incorrect.  |
+
 **示例：**
 
 ```ts
@@ -255,7 +280,7 @@ on(type: 'cameraMute', callback: AsyncCallback\<boolean\>): void
 
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
-| type     | string          | 是   | 监听事件，固定为'cameraMute'，系统相机摄像头开关，cameraManager对象获取成功后可监听。系统设置打开或禁用相机会触发该事件并返回状态。 |
+| type     | string          | 是   | 监听事件，固定为'cameraMute'，系统相机开关，cameraManager对象获取成功后可监听。系统设置打开或禁用相机会触发该事件并返回状态。 |
 | callback | AsyncCallback\<boolean> | 是   | 回调函数，用于获取禁用状态变化信息，返回true为开启状态，返回false为禁用状态。               |
 
 **示例：**
@@ -291,7 +316,7 @@ off(type: 'cameraMute', callback?: AsyncCallback\<boolean\>): void
 
 | 参数名     | 类型             | 必填 | 说明                                                      |
 | -------- | --------------- | ---- |---------------------------------------------------------|
-| type     | string          | 是   | 监听事件，固定为'cameraMute'，系统相机摄像头开关，cameraManager对象获取成功后可监听。 |
+| type     | string          | 是   | 监听事件，固定为'cameraMute'，系统相机开关，cameraManager对象获取成功后可监听。 |
 | callback | AsyncCallback\<boolean> | 否   | 回调函数，可选参数，返回true为开启状态，返回false为禁用状态，有就是匹配on('cameraMute') callback（callback对象不可是匿名函数）。                  |
 
 **示例：**
@@ -421,6 +446,14 @@ prelaunch(): void
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202 | Not System Application. |
+
 **示例：**
 
 ```ts
@@ -440,7 +473,7 @@ function preLaunch(context: common.BaseContext): void {
 
 ### createDeferredPreviewOutput
 
-createDeferredPreviewOutput(profile: Profile): PreviewOutput
+createDeferredPreviewOutput(profile?: Profile): PreviewOutput
 
 创建延迟预览输出对象，在配流时替代普通的预览输出对象加入数据流。
 
@@ -452,7 +485,7 @@ createDeferredPreviewOutput(profile: Profile): PreviewOutput
 
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
-| profile | [Profile](js-apis-camera.md#profile) | 是 | 相机预览流的配置文件。 |
+| profile | [Profile](js-apis-camera.md#profile) | 否 | 相机预览流的配置文件。 |
 
 **返回值：**
 
@@ -485,7 +518,7 @@ function getDeferredPreviewOutput(context: common.BaseContext, previewProfile: c
 
 preSwitchCamera(cameraId: string): void
 
-预切换摄像头，提升摄像头启动速度。
+预切换相机，提升相机启动速度。
 
 **系统接口：** 此接口为系统接口。
 
@@ -525,7 +558,7 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 ```
 
 ## CameraOcclusionDetectionResult<sup>12+</sup>
-摄像头模组被遮挡状态。
+相机模组被遮挡状态。
 
 **系统接口：** 此接口为系统接口。
 
@@ -701,7 +734,7 @@ release(): void
 **示例：**
 
 ```ts
-function releaseDepthData(depthData: camera.DepthData): void {
+async function releaseDepthData(depthData: camera.DepthData): Promise<void> {
   await depthData.release();
 }
 ```
@@ -882,7 +915,7 @@ function callback(depthDataOutputError: BusinessError): void {
 }
 
 function registerDepthDataOutputError(depthDataOutput: camera.DepthDataOutput): void {
-  depthDataOutput.on('error', callback)
+  depthDataOutput.on('error', callback);
 }
 ```
 
@@ -908,6 +941,176 @@ off(type: 'error', callback?: ErrorCallback): void
 ```ts
 function unregisterDepthDataOutputError(depthDataOutput: camera.DepthDataOutput): void {
   depthDataOutput.off('error');
+}
+```
+
+## DepthFusionQuery<sup>14+</sup>
+
+深度融合查询类。
+
+### isDepthFusionSupported<sup>14+</sup>
+
+isDepthFusionSupported(): boolean
+
+查询是否支持深度融合，通过返回值获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| boolean | 表示是否支持深度融合。true表示支持深度融合，false表示不支持深度融合。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202             | Not System Application. |
+| 7400103         | Session not config, only throw in session usage.     |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isDepthFusionSupported(DepthFusionQuery: camera.DepthFusionQuery): void {
+  try {
+    let isSupperted: boolean = DepthFusionQuery.isDepthFusionSupported();
+    console.info('Promise returned to indicate that isDepthFusionSupported method execution success.');
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion query  isDepthFusionSupported, error code: ${err.code}.`);
+  }
+}
+
+```
+### getDepthFusionThreshold<sup>14+</sup>
+
+getDepthFusionThreshold(): Array\<number\>
+
+获取深度融合阈值，通过返回值获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| Array\<number\> | 深度融合的阈值范围。       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202             | Not System Application. |
+| 7400103         | Session not config, only throw in session usage.      |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getDepthFusionThreshold(DepthFusionQuery: camera.DepthFusionQuery): void {
+  try {
+    let threshold: Array<number> = DepthFusionQuery.getDepthFusionThreshold();
+    console.info('Promise returned to indicate that getDepthFusionThreshold method execution success.');
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion query  getDepthFusionThreshold, error code: ${err.code}.`);
+  }
+}
+```
+## DepthFusion<sup>14+</sup>
+
+深度融合类。继承[DepthFusionQuery](js-apis-camera-sys.md#depthfusionquery14)。
+
+### isDepthFusionEnabled<sup>14+</sup>
+
+isDepthFusionEnabled(): boolean
+
+检测深度融合功能是否已启用，通过返回值获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| boolean | 表示是否开启深度融合。true表示开启深度融合，false表示未开启深度融合。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202             | Not System Application. |
+| 7400103         | Session not config.      |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isDepthFusionEnabled(DepthFusion: camera.DepthFusion): void {
+  try {
+    let isEnable: boolean = DepthFusion.isDepthFusionEnabled();
+    console.info('Promise returned to indicate that isDepthFusionEnabled method execution success.');
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion isDepthFusionEnabled, error code: ${err.code}.`);
+  };
+}
+```
+
+### enableDepthFusion<sup>14+</sup>
+
+enableDepthFusion(enabled: boolean): void
+
+启用深度融合功能。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型      | 必填 | 说明                                  |
+| -------- | ---------- | --- | ------------------------------------ |
+| enabled  | boolean    | 是   | 使能深度融合。true表示使能，false表示不使能。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                                           |
+|---------|------------------------------------------------|
+| 202     | Not System Application.                        |
+| 7400101 | Parameter missing or parameter type incorrect. |
+| 7400103 | Session not config.                            |
+| 7400201 | Camera service fatal error.                    |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function enableDepthFusion(DepthFusion: camera.DepthFusion): void {
+  try {
+    let enabled: boolean = true;
+    DepthFusion.enableDepthFusion(enabled);
+    console.info('Promise returned to indicate that enableDepthFusion method execution success.');
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion enableDepthFusion, error code: ${err.code}.`);
+  };
 }
 ```
 
@@ -978,10 +1181,11 @@ addDeferredSurface(surfaceId: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)和[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 202                    |  Permission verification failed. A non-system application calls a system API.     |
 | 7400101                |  Parameter missing or parameter type incorrect.        |
 
 **示例：**
@@ -1032,6 +1236,8 @@ isSketchSupported(): boolean
 **示例：**
 
 ```ts
+import  { camera } from '@kit.CameraKit';
+
 function isSketchSupported(previewOutput: camera.PreviewOutput): boolean {
   try {
     let isSupported: boolean = previewOutput.isSketchSupported();
@@ -2518,8 +2724,8 @@ isSceneFeatureSupported(type: SceneFeatureType): boolean
 **示例：**
 
 ```ts
-function isSceneFeatureSupported(photoSession: camera.PhotoSession, featureType: camera.SceneFeatureType): boolean {
-  let isSupported: boolean = photoSession.isSceneFeatureSupported(featureType);
+function isSceneFeatureSupported(photoSessionForSys: camera.PhotoSessionForSys, featureType: camera.SceneFeatureType): boolean {
+  let isSupported: boolean = photoSessionForSys.isSceneFeatureSupported(featureType);
   return isSupported;
 }
 ```
@@ -2626,17 +2832,20 @@ getZoomPointInfos(): Array\<ZoomPointInfo\>
 **示例：**
 
 ```ts
+import  { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function getZoomPointInfos(): Array<ZoomPointInfo> {
+function getZoomPointInfos(session: camera.PhotoSessionForSys): Array<camera.ZoomPointInfo> {
+  let zoomPointInfos: Array<camera.ZoomPointInfo> = [];
   try {
-    let zoomPointInfos: Array<ZoomPointInfo> = sessionExtendsZoom.getZoomPointInfos();
-	return zoomPointInfos;
+    zoomPointInfos = session.getZoomPointInfos();
+    return zoomPointInfos;
   } catch (error) {
-    // 失败返回错误码error.code并处理。
+    // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
     console.error(`The getZoomPointInfos call failed. error code: ${err.code}`);
   }
+  return zoomPointInfos;
 }
 ```
 
@@ -3746,6 +3955,19 @@ function unregisterLcdFlashStatus(photoSession: camera.PhotoSession): void {
 | trackingMode   | [FocusTrackingMode](#focustrackingmode15) | 否   | 否   | 跟踪模式。 |
 | trackingRegion | [Rect](js-apis-camera.md#rect)            | 否   | 否   | 跟踪区域。 |
 
+## LightStatus<sup>18+</sup>
+
+枚举，相机光线状态（通过VideoSessionForSys.[on('lightStatusChange')](#onlightstatuschange18)接口获取）。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称           | 值   | 说明    |
+|--------------| ---- |-------|
+| NORMAL       | 0    | 光线正常。 |
+| INSUFFICIENT | 1    | 光线偏暗。 |
+
 ## VideoSessionForSys<sup>11+</sup>
 
 VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro, Aperture, ColorReservation
@@ -3986,6 +4208,104 @@ off(type: 'focusTrackingInfoAvailable', callback?: Callback\<FocusTrackingInfo\>
 ```ts
 function unregisterFocusTrakingInfoChanged(session: camera.VideoSessionForSys): void {
   session.off('focusTrackingInfoAvailable');
+}
+```
+
+### on('lightStatusChange')<sup>18+</sup>
+
+on(type: 'lightStatusChange', callback: AsyncCallback\<LightStatus\>): void
+
+监听相机获取光线状态。使用Callback方式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数**：
+
+| 参数名   | 类型                                             | 必填 | 说明                                                                              |
+| -------- |------------------------------------------------| ---- |---------------------------------------------------------------------------------|
+| type     | string                                         | 是   | 监听事件，固定为'lightStatusChange'。<br>'lightStatusChange'：VideoSessionForSys创建成功时可监听。 |
+| callback | AsyncCallback\<[LightStatus](#lightstatus18)\> | 是   | 回调函数，用于获取当前光线状态信息。                                                              |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function handleLightStatusCallback(err: BusinessError, lightStatus: camera.LightStatus) : void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`lightStatus: ${lightStatus}`);
+}
+
+function handleLightStatusOn(mSession: camera.VideoSessionForSys): void {
+  console.info('handleLightStatusOn');
+  try {
+    mSession.on('lightStatusChange', handleLightStatusCallback);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`handleLightStatusOn err:${err}`);
+  }
+}
+```
+
+### off('lightStatusChange')<sup>18+</sup>
+
+off(type: 'lightStatusChange', callback?: AsyncCallback\<LightStatus\>): void
+
+注销监听相机获取光线状态。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数**：
+
+| 参数名   | 类型                                             | 必填 | 说明                                                                               |
+| -------- |------------------------------------------------|----|----------------------------------------------------------------------------------|
+| type     | string                                         | 是  | 监听事件，固定为'lightStatusChange'。<br>'lightStatusChange'：当VideoSessionForSys创建成功时，可监听。 |
+| callback | AsyncCallback\<[LightStatus](#lightstatus18)\> | 否  | 回调函数，可选，有就是匹配on('lightStatusChange') callback（callback对象不可是匿名函数）。                |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function LightStatusCallback(err: BusinessError, lightStatus: camera.LightStatus) : void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`lightStatus: ${lightStatus}`);
+}
+
+function handleLightStatusOff(mSession: camera.VideoSessionForSys): void {
+  console.info('handleLightStatusOff');
+  try {
+    mSession.on('lightStatusChange', LightStatusCallback);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`handleLightStatusOff err:${err}`);
+  }
 }
 ```
 
@@ -5316,7 +5636,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function isExposureMeteringModeSupported(professionalPhotoSession: camera.ProfessionalPhotoSession): boolean {
   let isSupported: boolean = false;
   try {
-    isSupported = professionalPhotoSession.isExposureModeSupported(camera.ExposureMeteringMode.CENTER);
+    isSupported = professionalPhotoSession.isExposureMeteringModeSupported(camera.ExposureMeteringMode.CENTER);
   } catch (error) {
     // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
@@ -6417,7 +6737,7 @@ function getWhiteBalance(professionalPhotoSession: camera.ProfessionalPhotoSessi
 
 ProfessionalPhotoSession extends Session, AutoExposure, ManualExposure, Focus, ManualFocus, WhiteBalance, ManualIso, Flash, Zoom, ColorEffect, Aperture
 
-专业拍照会话类，继承自[Session](js-apis-camera.md#session12)，用于设置专业拍照会话的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+专业拍照会话类，继承自[Session](js-apis-camera.md#session11)，用于设置专业拍照会话的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
 ### on('error')<sup>12+</sup>
 
@@ -6935,7 +7255,7 @@ function unregisterLuminationInfoEvent(professionalPhotoSession: camera.Professi
 
 ProfessionalVideoSession extends Session, AutoExposure, ManualExposure, Focus, ManualFocus, WhiteBalance, ManualIso, Flash, Zoom, ColorEffect, Aperture
 
-专业录像模式会话类，继承自[Session](js-apis-camera.md#session12)，用于设置专业录像模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+专业录像模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置专业录像模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
 ### on('error')<sup>12+</sup>
 
@@ -7970,10 +8290,11 @@ enableLcdFlash(enabled: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)和[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 202                    | Not System Application. |
 | 7400103                |  Session not config.                                   |
 
 **示例：**
@@ -8037,7 +8358,7 @@ TryAE参数信息，TryAE是指延时摄影时硬件会根据环境光照变化�
 
 TimeLapsePhotoSession extends Session, Focus, ManualFocus, AutoExposure, ManualExposure, ManualIso, WhiteBalance, Zoom, ColorEffect
 
-延时摄影会话类，继承自[Session](js-apis-camera.md#session12)，用于设置延时摄影会话的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+延时摄影会话类，继承自[Session](js-apis-camera.md#session11)，用于设置延时摄影会话的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
 ### on('error')<sup>12+</sup>
 

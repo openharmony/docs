@@ -156,7 +156,7 @@ path.lineTo(cX, cY);
 path.lineTo(dX, dY);
 path.lineTo(eX, eY);
 // 闭合形状，path绘制完毕
-path.close()
+path.close();
 
 // 创建画笔对象
 let pen = new drawing.Pen();
@@ -271,3 +271,11 @@ canvas.detachBrush();
 ```
 
 ![zh-cn_image_0000002158584406](figures/zh-cn_image_0000002158584406.png)
+
+<!--RP1-->
+## 相关实例
+
+针对Drawing(ArkTS)的开发，有以下相关实例可供参考：
+
+- [ArkTSGraphicsDraw (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/ArkTSGraphicsDraw)
+<!--RP1End-->

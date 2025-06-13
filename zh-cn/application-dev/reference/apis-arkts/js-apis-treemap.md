@@ -8,7 +8,7 @@ TreeMap和[HashMap](js-apis-hashmap.md)相比，HashMap依据键的hashCode存�
 
 **推荐使用场景：** 一般需要存储有序键值对的场景，可以使用TreeMap。
 
-文档中存在泛型的使用，涉及以下泛型标记符：
+文档使用了泛型，涉及以下泛型标记符：
 
 - K：Key，键
 
@@ -54,6 +54,13 @@ TreeMap的构造函数，支持通过比较函数对元素进行升序或降序�
 | -------- | -------- | -------- | -------- |
 | comparator | function | 否 | 用户自定义的比较函数，可通过比较关系对元素进行排序。默认值为hole（一个空白占位符），表示不提供比较函数。 |
 
+comparator的参数说明：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------| ---- | ----- | -- |
+| firstValue | K | 是 | 前一项元素。 |
+| secondValue | K | 是 | 后一项元素。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
@@ -77,10 +84,15 @@ treeMap.set("aa","3");
 treeMap.set("dd","1");
 treeMap.set("cc","2");
 treeMap.set("bb","4");
-let numbers = Array.from(treeMap.keys())
+let numbers = Array.from(treeMap.keys());
 for (let item of numbers) {
-  console.log("treeMap:" + item);
+  console.info("treeMap: " + item);
 }
+// 输出结果：
+// treeMap: dd
+// treeMap: cc
+// treeMap: bb
+// treeMap: aa
 ```
 
 ```ts
@@ -97,7 +109,7 @@ for (let item of numbers) {
  }
  ts1.set(entry1, "0");
  ts1.set(entry2, "1");
- console.log("treeMap: ", ts1.length);
+ console.info("length: " + ts1.length); // length: 2
 
 ```
 
@@ -106,7 +118,7 @@ for (let item of numbers) {
 
 isEmpty(): boolean
 
-判断该容器是否为空。
+判断容器是否为空。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -130,7 +142,7 @@ isEmpty(): boolean
 
 ```ts
 let treeMap : TreeMap<number, number> = new TreeMap();
-let result = treeMap.isEmpty();
+let result = treeMap.isEmpty(); // result: true
 ```
 
 
@@ -138,7 +150,7 @@ let result = treeMap.isEmpty();
 
 hasKey(key: K): boolean
 
-判断此容器中是否含有该指定key。
+判断容器中是否包含指定key。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -169,7 +181,7 @@ hasKey(key: K): boolean
 ```ts
 let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
-let result = treeMap.hasKey("squirrel");
+let result = treeMap.hasKey("squirrel"); // result: true
 ```
 
 
@@ -177,7 +189,7 @@ let result = treeMap.hasKey("squirrel");
 
 hasValue(value: V): boolean
 
-判断此容器中是否含有该指定value。
+判断容器中是否包含该指定value。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -208,7 +220,7 @@ hasValue(value: V): boolean
 ```ts
 let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
-let result = treeMap.hasValue(123);
+let result = treeMap.hasValue(123); // result: true
 ```
 
 
@@ -216,7 +228,7 @@ let result = treeMap.hasValue(123);
 
 get(key: K): V
 
-获取指定key所对应的value，为空时返回undefined。
+获取指定key所对应的value，若为空则返回undefined。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -249,6 +261,7 @@ let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.get("sparrow");
+console.info("result:", result); // result: 356
 ```
 
 
@@ -256,7 +269,7 @@ let result = treeMap.get("sparrow");
 
 getFirstKey(): K
 
-获取容器中排序第一的key，为空时返回undefined。
+获取容器中排序第一的key，若为空则返回undefined。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -283,6 +296,7 @@ let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.getFirstKey();
+console.info("result:", result); // result: sparrow
 ```
 
 
@@ -290,7 +304,7 @@ let result = treeMap.getFirstKey();
 
 getLastKey(): K
 
-获取容器中排序最后的key，为空时返回undefined。
+获取容器中排序最后的key，若为空则返回undefined。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -317,6 +331,7 @@ let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.getLastKey();
+console.info("result:", result); // result: squirrel
 ```
 
 
@@ -355,8 +370,12 @@ let map : TreeMap<string, number> = new TreeMap();
 map.set("demo", 12);
 map.setAll(treeMap); // 将treeMap中的所有元素添加到map中
 map.forEach((value ?: number, key ?: string) : void => {
-  console.log("value" + value, "key" + key); // 打印结果 12 demo、356 sparrow、123 squirrel
+  console.log("value: " + value, "key: " + key); 
 })
+// 输出结果:
+// value: 12 key: demo
+// value: 356 key: sparrow
+// value: 123 key: squirrel
 ```
 
 
@@ -381,7 +400,7 @@ set(key: K, value: V): Object
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Object | 返回添加后的treeMap。 |
+| Object | 返回添加后的TreeMap。 |
 
 **错误码：**
 
@@ -396,7 +415,7 @@ set(key: K, value: V): Object
 
 ```ts
 let treeMap : TreeMap<string, number> = new TreeMap();
-treeMap.set("squirrel", 123);
+treeMap.set("squirrel", 123); // 添加数据
 ```
 
 
@@ -436,7 +455,7 @@ remove(key: K): V
 let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
-let result = treeMap.remove("sparrow");
+let result = treeMap.remove("sparrow"); // 删除数据
 ```
 
 
@@ -444,7 +463,7 @@ let result = treeMap.remove("sparrow");
 
 getLowerKey(key: K): K
 
-获取容器中等于key或者比传入key排序靠前一位的key，为空时返回undefined。
+获取容器中小于对比key值的最大键，如果不存在小于对比key值的键值，则返回undefined。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -473,11 +492,13 @@ getLowerKey(key: K): K
 **示例：**
 
 ```ts
-let treeMap : TreeMap<string, number> = new TreeMap();
-treeMap.set("squirrel", 123);
-treeMap.set("sparrow", 356);
-treeMap.set("gander", 356);
-let result = treeMap.getLowerKey("sparrow");
+let treeMap : TreeMap<number, string> = new TreeMap();
+treeMap.set(1, 'one');
+treeMap.set(2, 'two');
+treeMap.set(3, 'three');
+treeMap.set(4, 'four');
+let result = treeMap.getLowerKey(3);
+console.info("result:", result); // result: 2
 ```
 
 
@@ -485,7 +506,7 @@ let result = treeMap.getLowerKey("sparrow");
 
 getHigherKey(key: K): K
 
-获取容器中等于key或者比传入key排序靠后一位的key，为空时返回undefined。
+获取容器中大于对比key值的最小键，如果不存在大于对比key值的键值，则返回undefined。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -514,11 +535,13 @@ getHigherKey(key: K): K
 **示例：**
 
 ```ts
-let treeMap : TreeMap<string, number> = new TreeMap();
-treeMap.set("squirrel", 123);
-treeMap.set("sparrow", 356);
-treeMap.set("gander", 356);
-let result = treeMap.getHigherKey("sparrow");
+let treeMap : TreeMap<number, string> = new TreeMap();
+treeMap.set(1, 'one');
+treeMap.set(2, 'two');
+treeMap.set(3, 'three');
+treeMap.set(4, 'four');
+let result = treeMap.getHigherKey(3);
+console.info("result:", result); // result: 4
 ```
 
 ### replace
@@ -558,6 +581,7 @@ replace(key: K, newValue: V): boolean
 let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("sparrow", 123);
 let result = treeMap.replace("sparrow", 357);
+console.info("sparrow:", treeMap.get("sparrow")); // sparrow: 357
 ```
 
 
@@ -565,7 +589,7 @@ let result = treeMap.replace("sparrow", 357);
 
 clear(): void
 
-清除容器中的所有元素，并把length置为0。
+清除容器中的所有元素，并将length置为0。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -586,6 +610,8 @@ let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 treeMap.clear();
+let result = treeMap.isEmpty();
+console.info("result:", result); // result: true
 ```
 
 
@@ -593,7 +619,7 @@ treeMap.clear();
 
 keys(): IterableIterator&lt;K&gt;
 
-返回包含此映射中包含的键的新迭代器对象。
+返回包含此映射中所有键的新迭代器对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -622,9 +648,12 @@ treeMap.set("sparrow", 356);
 let it = treeMap.keys();
 let t: IteratorResult<string> = it.next();
 while(!t.done) {
-  console.log("TreeMap " + t.value);
-  t = it.next()
+  console.info("TreeMap:", t.value);
+  t = it.next();
 }
+// 输出结果：
+// TreeMap: sparrow
+// TreeMap: squirrel
 ```
 
 
@@ -661,9 +690,12 @@ treeMap.set("sparrow", 356);
 let it = treeMap.values();
 let t: IteratorResult<number> = it.next();
 while(!t.done) {
-  console.log("TreeMap" + t.value);
-  t = it.next()
+  console.info("TreeMap:", t.value);
+  t = it.next();
 }
+// 输出结果：
+// TreeMap: 356
+// TreeMap: 123
 ```
 
 
@@ -671,7 +703,7 @@ while(!t.done) {
 
 forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object): void
 
-通过回调函数来遍历实例对象上的元素以及元素对应的下标。
+通过回调函数来遍历实例对象上的元素及其下标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -707,8 +739,11 @@ let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("sparrow", 123);
 treeMap.set("gull", 357);
 treeMap.forEach((value ?: number, key ?: string) : void => {
-  console.log("value:" + value, "key:" + key);
+  console.info("value: " + value, "key: " + key);
 });
+// 输出结果：
+// value: 357 key: gull
+// value: 123 key: sparrow
 ```
 ```ts
  // 不建议在forEach中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
@@ -754,10 +789,14 @@ treeMap.set("sparrow", 356);
 let it = treeMap.entries();
 let t: IteratorResult<Object[]> = it.next();
 while(!t.done) {
-  console.log("TreeMap" + t.value);
+  console.info("TreeMap:", t.value);
   t = it.next()
 }
+// 输出结果：
+// TreeMap: sparrow,356
+// TreeMap: squirrel,123
 ```
+
 ```ts
  // 不建议在entries中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
  let treeMap : TreeMap<string, number> = new TreeMap();
@@ -773,7 +812,7 @@ while(!t.done) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
-返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -803,19 +842,28 @@ treeMap.set("sparrow", 356);
 let it = treeMap.entries();
 let t: IteratorResult<Object[]> = it.next();
 while(!t.done) {
-  console.log("TreeMap" + t.value);
-  t = it.next()
+  console.info("TreeMap:", t.value);
+  t = it.next();
 }
+// 输出结果：
+// TreeMap: sparrow,356
+// TreeMap: squirrel,123
 
 // 使用方法二：
- let iter = treeMap[Symbol.iterator]();
- let temp: IteratorResult<Object[]> = iter.next();
- while(!temp.done) {
-   console.log("key:" + temp.value[0]);
-   console.log("value:" + temp.value[1]);
-   temp = iter.next();
- }
+let iter = treeMap[Symbol.iterator]();
+let temp: IteratorResult<Object[]> = iter.next();
+while(!temp.done) {
+  console.info("key:", temp.value[0]);
+  console.info("value:", temp.value[1]);
+  temp = iter.next();
+}
+// 输出结果：
+// key: sparrow
+// value: 356
+// key: squirrel
+// value: 123
 ```
+
 ```ts
  // 不建议在Symbol.iterator中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
  let treeMap : TreeMap<string, number> = new TreeMap();

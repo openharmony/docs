@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从 API version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 
@@ -28,7 +28,7 @@ addColorStop(offset: number, color: string): void
 | color  | string | 是  | 设置渐变的颜色。颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中string类型说明。</br>未按格式设置颜色无渐变效果。 |
 
 
-## 示例
+**示例：**
 
 通过addColorStop设置渐变断点值，包括偏移和颜色。
 
@@ -37,8 +37,8 @@ addColorStop(offset: number, color: string): void
   @Entry
   @Component
   struct AddColorStop {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {

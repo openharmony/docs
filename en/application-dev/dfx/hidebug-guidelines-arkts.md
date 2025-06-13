@@ -1,6 +1,6 @@
 # Using HiDebug (ArkTS)
 
-HiDebug provides APIs for system debugging, which allow you to obtain the information of static heap memory (native heap) and proportional set size (PSS) occupied by the application process, export VM memory slices, and collect VM CPU profiling data.
+HiDebug provides multiple methods for debugging and profiling applications. With these methods, you can obtain memory, CPU, GPU, and GC data, collect process trace and profiler data, and dump VM heap snapshots. Since most APIs of this module are both performance-consuming and time-consuming, and are defined based on the HiDebug module, you are advised to use these APIs only during the application debugging and profiling phases. If the APIs are required in other scenarios, evaluate the impact of the APIs on application performance.
 
 ## Available APIs
 
@@ -34,7 +34,7 @@ HiDebug provides APIs for system debugging, which allow you to obtain the inform
 | hidebug.getGraphicsMemorySync      | Obtains the size of the GPU memory synchronously.                   |
 | hidebug.dumpJsRawHeapData          | Dumps the original heap snapshot of the VM for the calling thread.                 |
 
-For details about how to use HiDebug, see the API Reference (../reference/apis-performance-analysis-kit/js-apis-hidebug.md).
+For details about how to use HiDebug, see the [API Reference](../reference/apis-performance-analysis-kit/js-apis-hidebug.md).
 
 ## How to Develop
 
@@ -51,9 +51,9 @@ The following describes how to add a button in the application and click the but
    ```ts
    import { hidebug } from '@kit.PerformanceAnalysisKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   function testHidebug(event?: ClickEvent) {
+   function testHiDebug(event?: ClickEvent) {
      try {
-       console.info(`getSystemCpuUsage: ${hidebug.getSystemCpuUsage()}`)
+       console.info(`getSystemCpuUsage: ${hidebug.getSystemCpuUsage()}`);
      } catch (error) {
        console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
      }
@@ -66,7 +66,7 @@ The following describes how to add a button in the application and click the but
    @Entry
    @Component
    struct Index {
-     @State message: string = 'Hello World'
+     @State message: string = 'Hello World';
 
      build() {
        Row() {
@@ -74,7 +74,7 @@ The following describes how to add a button in the application and click the but
            Text(this.message)
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
-             .onClick(testHidebug);// Add a click event.
+             .onClick(testHiDebug);// Add a click event.
          }
          .width('100%')
        }

@@ -68,6 +68,7 @@ AtomicServiceNavigation({
 
 ## TitleOptions
 标题栏选项。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -75,7 +76,7 @@ AtomicServiceNavigation({
 | 名称 | 类型 | 必填 | 说明 |
 | --------------- | ------ | ---- | ---------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 标题栏背景颜色。 |
-| isBlurEnabled | boolean | 否 | 标题栏是否模糊，默认为true。 |
+| isBlurEnabled | boolean | 否 | 标题栏是否模糊，默认值：true，表示标题栏模糊。 |
 | barStyle | [BarStyle](ts-basic-components-navigation.md#barstyle12枚举说明)  | 否 | 标题栏样式属性设置。 |
 | titleBarType<sup>18+</sup> | [TitleBarType](#titlebartype18) | 否 | 设置标题栏类型。默认值为TitleBarType.ROUND_ICON。 |
 | titleIcon<sup>18+</sup> | [Resource](ts-types.md#resource) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 设置标题栏的图标。默认值为$r('sys.color.ohos_id_color_titlebar_icon')。 |
@@ -106,7 +107,7 @@ type NavDestinationBuilder = (name: string, param?: Object) => void
 | 参数名 | 类型 | 必填 | 描述 |
 | --------------- | ------ | ---- | ---------- |
 | name | string | 是 | [NavDestination](ts-basic-components-navdestination.md)页面名称。 |
-| param | Object | 是 | [NavDestination](ts-basic-components-navdestination.md)页面详细参数。 |
+| param | Object | 否 | [NavDestination](ts-basic-components-navdestination.md)页面详细参数。 |
 
 ## MixMode<sup>18+</sup>
 背景色颜色混合模式的可选项。
@@ -180,8 +181,8 @@ type NavDestinationBuilder = (name: string, param?: Object) => void
 AtomicServiceNavigation的基础样式，并展示渐变色背景。
 
 ```ts
-import { AtomicServiceNavigation, NavDestinationBuilder, AtomicServiceTabs, TabBarOptions, TabBarPosition } from '@kit.ArkUI';
-import { MixMode, GradientAlpha, BackgroundTheme} from '@ohos.atomicservice.AtomicServiceNavigation'
+import { AtomicServiceNavigation, MixMode, GradientAlpha, BackgroundTheme} from '@kit.ArkUI';
+import { AtomicServiceTabs, TabBarOptions, TabBarPosition} from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {

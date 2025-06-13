@@ -45,7 +45,7 @@ transmitInfrared(infraredFrequency: number, pattern: Array&lt;number&gt;): void
 try {
   infraredEmitter.transmitInfrared(38000, [100, 200, 300, 400]);
 } catch (error) {
-  console.log(`transmitInfrared failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`transmitInfrared failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -80,7 +80,7 @@ try {
   let frequencies = infraredEmitter.getInfraredFrequencies();
   console.log(`frequencies: ${JSON.stringify(frequencies)}`);
 } catch (error) {
-  console.log(`Get infrared frequencies failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get infrared frequencies failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 

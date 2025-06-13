@@ -1,10 +1,10 @@
 # NodeContainer
 
-基础组件，不支持尾随添加子节点。组件接受一个[NodeController](../js-apis-arkui-nodeController.md)的实例接口。需要NodeController组合使用。
+基础组件，用于挂载自定义节点（如[FrameNode](../js-apis-arkui-frameNode.md)或[BuilderNode](../js-apis-arkui-builderNode.md)），并通过[NodeController](../js-apis-arkui-nodeController.md)动态控制节点的上树和下树。不支持尾随添加子节点。组件接受一个[NodeController](../js-apis-arkui-nodeController.md)的实例接口。需要NodeController组合使用。
 
 > **说明：**
 >
-> 该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 该组件下仅支持挂载自定义节点[FrameNode](../js-apis-arkui-frameNode.md)或者是[BuilderNode](../js-apis-arkui-builderNode.md)中获取的根节点FrameNode。
 > 不支持挂载查询获得的系统组件[代理节点](../js-apis-arkui-frameNode.md#ismodifiable12)。
@@ -12,6 +12,9 @@
 > 当前不支持使用[动态属性设置](./ts-universal-attributes-attribute-modifier.md)。
 >
 > 该组件下的节点树构建中会使用UI实例[UIContext](../js-apis-arkui-UIContext.md)，当实例切换时可能会因为实例不匹配而出现问题，因此该组件当前不支持跨实例的节点复用。
+>
+> 该组件未销毁时，不会主动触发挂载节点的下树。
+
 ## 子组件
 
 不支持子组件。

@@ -19,7 +19,7 @@
 | 名称          | 类型          | 默认值  | 必填   | 描述                                       |
 | ----------- | ----------- | ---- | ---- | ---------------------------------------- |
 | clockconfig | ClockConfig | -    | 是    | Clock的图片资源和样式设置，包括日间时段（6:00-18:00）和夜间时段（18:00-次日6:00）两套资源和样式设置。<br/>其中每套资源和样式包括表盘资源、时针指针资源、分针指针资源、秒针指针资源四张图和相应时间段的表盘数字颜色。<br/>日间资源为必填项。夜间资源可不填，不填时默认会复用日间资源用作夜间时段的显示。<br/>仅支持动态更新整个Object，不支持动态更新Object里的内容。<br/>建议使用PNG资源作为Clock组件的图片资源。<br/>不支持使用SVG资源作为Clock组件的图片资源。 |
-| showdigit   | boolean     | true | 否    | 是否由Clock组件绘制表盘数字。<br/>该属性为true时，请留意clockconfig中digitRadiusRatio和digitSizeRatio参数与表盘的匹配情况。<br/>由Clock组件绘制的表盘数字支持国际化。 |
+| showdigit   | boolean     | true | 否    | 是否由Clock组件绘制表盘数字。<br/>true表示由Clock组件绘制表盘数字，false表示不由Clock组件绘制表盘数字。<br/>该属性为true时，请留意clockconfig中digitRadiusRatio和digitSizeRatio参数与表盘的匹配情况。<br/>由Clock组件绘制的表盘数字支持国际化。 |
 | hourswest   | number      | -    | 否    | 时钟的时区偏移值，时区为标准时区减去hourswest。<br/>有效范围为[-12,&nbsp;12]，其中负值范围表示东时区，比如东八区对应的是-8。不设置默认采用系统时间所在的时区。 |
 
   **表1** ClockConfig
@@ -31,7 +31,7 @@
 | minuteHand       | &lt;string&gt; | -               | 是    | 日间时段的分针资源路径。<br/>- 分针图片的高度须与表盘资源高度相同。<br/>- 分针图片的宽高比建议在0.062。<br/>- 分针图片上指针的旋转中心须处于分针图片的中心（对角线交点）。<br/>-&nbsp;夜间时段的分针资源请调整minuteHandNight参数。 |
 | secondHand       | &lt;string&gt; | -               | 是    | 日间时段的秒针资源路径。<br/>- &nbsp;秒针图片的高度须与表盘资源高度相同。<br/>-&nbsp;秒针图片的宽高比建议在0.062。<br/>-&nbsp;秒针图片上指针的旋转中心须处于秒针图片的中心（对角线交点）。<br/>- 夜间时段的秒针资源请调整secondHandNightSrc参数。 |
 | digitColor       | &lt;color&gt;  | \#FF000000      | 否    | 日间时段（6:00-18:00）的表盘文本颜色。                 |
-| digitColorNight  | &lt;color&gt;  | 与digitColor保持一致 | 否    | 夜间时段（18:00-次日6:00）的表盘文本颜色。<br/>- 该属性未设置时，取digitColor的值作为digitColorNight的值（digitColor被设置时，取digitColor被设置的值）。<br/>- 请注意缺省状态下使用digitClor的值作为digitColorNight的值时，夜间时段表盘文本颜色与夜间时段表盘背景（faceNight）的颜色配合问题。 |
+| digitColorNight  | &lt;color&gt;  | 与digitColor保持一致 | 否    | 夜间时段（18:00-次日6:00）的表盘文本颜色。<br/>- 该属性未设置时，取digitColor的值作为digitColorNight的值（digitColor被设置时，取digitColor被设置的值）。<br/>- 请注意缺省状态下使用digitColor的值作为digitColorNight的值时，夜间时段表盘文本颜色与夜间时段表盘背景（faceNight）的颜色配合问题。 |
 | faceNight        | &lt;string&gt; | -               | 否    | 夜间时段的表盘资源路径。<br/>未设置时使用face的资源路径作为夜间时段的表盘资源路径。 |
 | hourHandNight    | &lt;string&gt; | -               | 否    | 夜间时段的时针资源路径。<br/>未设置时使用hourHand的资源路径作为夜间时段的时针资源路径。 |
 | minuteHandNight  | &lt;string&gt; | -               | 否    | 夜间时段的分针资源路径。<br/>设置时使用minuteHand的资源路径作为夜间时段的分针资源路径。 |

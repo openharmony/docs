@@ -35,6 +35,8 @@ target_link_libraries(sample PUBLIC libohfileio.so)
 **Adding the Header File**
 
 ```c++
+#include <cstdio>
+#include <cstring>
 #include <filemanagement/fileio/oh_fileio.h>
 ```
 
@@ -55,5 +57,5 @@ Call **OH_FileIO_GetFileLocation** to obtain the location of a file. <br>Example
         } else {
             printf("GetFileLocation failed, error code is %d", ret);
         }
-    }    
+    }
    ```

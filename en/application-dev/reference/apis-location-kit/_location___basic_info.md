@@ -9,6 +9,7 @@ Defines the struct for the basic location information.
 
 **Related module**: [Location](_location.md)
 
+**Header file**: [oh_location_type.h](oh__location__type_8h.md)
 
 ## Summary
 
@@ -41,6 +42,7 @@ Defines the struct for the basic location information.
 double Location_BasicInfo::accuracy
 ```
 **Description**
+
 Location accuracy, in meters.
 
 
@@ -50,6 +52,7 @@ Location accuracy, in meters.
 double Location_BasicInfo::altitude
 ```
 **Description**
+
 Location altitude, in meters.
 
 
@@ -59,6 +62,7 @@ Location altitude, in meters.
 double Location_BasicInfo::altitudeAccuracy
 ```
 **Description**
+
 Height accuracy, in meters.
 
 
@@ -68,6 +72,7 @@ Height accuracy, in meters.
 double Location_BasicInfo::direction
 ```
 **Description**
+
 Direction information. The value ranges from 0 to 360, in degrees.
 
 
@@ -77,6 +82,7 @@ Direction information. The value ranges from 0 to 360, in degrees.
 double Location_BasicInfo::directionAccuracy
 ```
 **Description**
+
 Direction accuracy. The value ranges from 0 to 360, in degrees.
 
 
@@ -86,6 +92,7 @@ Direction accuracy. The value ranges from 0 to 360, in degrees.
 double Location_BasicInfo::latitude
 ```
 **Description**
+
 Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude. The value ranges from –90 to 90. Only the WGS84 coordinate system is supported.
 
 
@@ -95,6 +102,7 @@ Latitude information. A positive value indicates north latitude, and a negative 
 Location_SourceType Location_BasicInfo::locationSourceType
 ```
 **Description**
+
 Source of the location result. For details, see [Location_SourceType](_location.md#location_sourcetype).
 
 
@@ -104,6 +112,7 @@ Source of the location result. For details, see [Location_SourceType](_location.
 double Location_BasicInfo::longitude
 ```
 **Description**
+
 Longitude information. A positive value indicates east longitude, and a negative value indicates west longitude. The value ranges from -180 to 180. Only the WGS84 coordinate system is supported.
 
 
@@ -113,6 +122,7 @@ Longitude information. A positive value indicates east longitude, and a negative
 double Location_BasicInfo::speed
 ```
 **Description**
+
 Speed, in m/s.
 
 
@@ -122,6 +132,7 @@ Speed, in m/s.
 double Location_BasicInfo::speedAccuracy
 ```
 **Description**
+
 Speed accuracy, in m/s.
 
 
@@ -131,6 +142,7 @@ Speed accuracy, in m/s.
 int64_t Location_BasicInfo::timeForFix
 ```
 **Description**
+
 Location timestamp in the UTC format.
 
 
@@ -140,6 +152,7 @@ Location timestamp in the UTC format.
 int64_t Location_BasicInfo::timeSinceBoot
 ```
 **Description**
+
 Location timestamp since boot.
 
 
@@ -149,4 +162,5 @@ Location timestamp since boot.
 int64_t Location_BasicInfo::uncertaintyOfTimeSinceBoot
 ```
 **Description**
+
 Uncertainty of the location timestamp.

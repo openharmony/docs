@@ -9,6 +9,8 @@ Defines the read/write operation request.
 
 **Related module**: [SCSI Peripheral DDK](_s_c_s_i.md)
 
+**Header file**: [scsi_peripheral_types.h](scsi__peripheral__types_8h.md)
+
 
 ## Summary
 

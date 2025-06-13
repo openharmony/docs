@@ -31,6 +31,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 ```
 
 You can use the APIs related to video frame retrieval by including the header files [avimage_generator.h](../../reference/apis-media-kit/avimage__generator_8h.md), [avimage_generator_base.h](../../reference/apis-media-kit/avimage__generator__base_8h.md), and [native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md).
+
 Read [AVImageGenerator](../../reference/apis-media-kit/_a_v_image_generator.md) for the API reference.
 
 1. Call [OH_AVImageGenerator_Create()](../../reference/apis-media-kit/_a_v_image_generator.md#oh_avimagegenerator_create) to create an instance.
@@ -39,11 +40,11 @@ Read [AVImageGenerator](../../reference/apis-media-kit/_a_v_image_generator.md) 
 
 3. Call [OH_AVImageGenerator_FetchFrameByTime()](../../reference/apis-media-kit/_a_v_image_generator.md#oh_avimagegenerator_fetchframebytime) to obtain the video frame at a specified time, which is an **OH_PixelmapNative** object.
    
-> When the object is no longer required, call **OH_PixelmapNative_Release** to release the object. For details, see [Image_NativeModule](../../reference/apis-image-kit/_image___native_module.md).
-   
+   When the object is no longer required, call **OH_PixelmapNative_Release** to release the object. For details, see [Image_NativeModule](../../reference/apis-image-kit/_image___native_module.md).
+
 4. Call [OH_AVImageGenerator_Release()](../../reference/apis-media-kit/_a_v_image_generator.md#oh_avimagegenerator_release) to destroy the instance and release resources.
 
-## Sample Code
+## Development Example
 
 Refer to the sample code below to set the file descriptor and obtain the video frame of a video at the specified time.
 

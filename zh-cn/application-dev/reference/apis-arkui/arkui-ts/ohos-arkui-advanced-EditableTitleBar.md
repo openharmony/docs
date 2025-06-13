@@ -6,7 +6,7 @@
 
 > **说明：**
 >
-> 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 该组件不支持在Wearable设备上使用。
 
@@ -14,7 +14,7 @@
 ## 导入模块
 
 ```
-import { EditableTitleBar } from '@kit.ArkUI'
+import { EditableTitleBar } from '@kit.ArkUI';
 ```
 
 
@@ -46,8 +46,8 @@ EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitle
 | onCancel | ()&nbsp;=&gt;&nbsp;void | 否 | - | 当左侧按钮类型为&nbsp;Cancel，触发取消时的动作闭包。<br />默认值：() => void。<br />从API version 12开始，当左侧按钮类型为&nbsp;Back，触发返回时的动作闭包。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                |
 | options<sup>12+</sup> | [EditableTitleBarOptions](#editabletitlebaroptions12) | 是 | - | 标题样式。<br />默认值：<br />{<br />safeAreaTypes: [SafeAreaType.SYSTEM],<br />safeAreaEdges: [SafeAreaEdge.TOP], <br />backgroundColor: '#00000000'<br />}。<br/>**说明：** 未使用@Require装饰，构造时不强制校验参数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | contentMargin<sup>12+</sup> | [LocalizedMargin](ts-types.md#localizedmargin12) | 否 | @Prop | 标题栏外边距，不支持设置负数。<br />默认值：<br /> {start: LengthMetrics.resource(`$r('sys.float.margin_left')`), end: LengthMetrics.resource(`$r('sys.float.margin_right')`)}。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                               |
-| leftIconDefaultFocus<sup>18+</sup> | boolean  | 否 | - | 左侧图标是否为默认焦点。<br />默认值：false <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                                                                                               |
-| saveIconDefaultFocus<sup>18+</sup> | boolean  | 否 | - | 保存图标是否为默认焦点。<br />默认值：false <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                                                                                               |
+| leftIconDefaultFocus<sup>18+</sup> | boolean  | 否 | - | 左侧图标是否为默认焦点。<br />默认值：false，表示不是默认焦点。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                                                                                               |
+| saveIconDefaultFocus<sup>18+</sup> | boolean  | 否 | - | 保存图标是否为默认焦点。<br />默认值：false，表示不是默认焦点。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                                                                                               |
 
 > **说明：**
 > 
@@ -167,7 +167,7 @@ struct Index {
 该示例主要演示EditableTitleBar设置背景模糊、头像；取消右侧保存图标及自定义标题栏外边距的效果。
 
 ```ts
-import { EditableLeftIconType, EditableTitleBar, LengthMetrics, Prompt, router } from '@kit.ArkUI';
+import { EditableLeftIconType, EditableTitleBar, LengthMetrics, Prompt } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -207,7 +207,7 @@ struct Index {
           subtitle: '副标题',
           isSaveIconRequired: false,
           onCancel: () => {
-            router.back();
+            this.getUIContext()?.getRouter()?.back();
           },
         })
         Divider().height(2).color(0xCCCCCC);
@@ -227,7 +227,7 @@ struct Index {
           isSaveIconRequired: false,
           // 点击左侧Back图标，触发的动作。
           onCancel: () => {
-            router.back();
+            this.getUIContext()?.getRouter()?.back();
           },
         })
         Divider().height(2).color(0xCCCCCC);
@@ -256,7 +256,7 @@ struct Index {
             }
           ],
           onCancel: () => {
-            router.back();
+            this.getUIContext()?.getRouter()?.back();
           },
         })
       }
@@ -271,7 +271,7 @@ struct Index {
 该示例通过设置标题栏的右侧自定义按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
 ```ts
 
-import { Prompt, router, EditableLeftIconType, EditableTitleBar } from '@kit.ArkUI';
+import { Prompt, EditableLeftIconType, EditableTitleBar } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -317,7 +317,7 @@ struct Index1 {
             }
           ],
           onCancel: () => {
-            router.back();
+            this.getUIContext()?.getRouter()?.back();
           },
         })
         Divider().height(2).color(0xCCCCCC)
@@ -326,7 +326,7 @@ struct Index1 {
   }
 }
 ```
-![/zh-cn_image_editabletitlebar_example03](figures/zh-cn_image_editabletitlebar_example03.png)
+![zh-cn_image_editabletitlebar_example03](figures/zh-cn_image_editabletitlebar_example03.png)
 
 ### 示例4（左侧图标设置为默认焦点）
 该示例通过设置标题栏属性leftIconDefaultFocus使左侧图标默认获焦。
@@ -354,13 +354,13 @@ struct Index {
   }
 }
 ```
-![/editabletitlebarDefaultFocus01](figures/editabletitlebarDefaultFocus01.png)
+![editabletitlebarDefaultFocus01](figures/editabletitlebarDefaultFocus01.png)
 
 ### 示例5（右侧自定义图标设置为默认焦点）
 该示例通过设置标题栏右侧图标属性defaultFocus使右侧图标默认获焦。
 ```ts
 
-import { Prompt, EditableLeftIconType, EditableTitleBar, router } from '@kit.ArkUI';
+import { Prompt, EditableLeftIconType, EditableTitleBar } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -390,7 +390,7 @@ struct Index {
           }
         ],
         onCancel: () => {
-          router.back();
+          this.getUIContext()?.getRouter()?.back();
         },
       })
     }
@@ -399,7 +399,7 @@ struct Index {
   }
 }
 ```
-![/editabletitlebarDefaultFocus02](figures/editabletitlebarDefaultFocus02.png)
+![editabletitlebarDefaultFocus02](figures/editabletitlebarDefaultFocus02.png)
 
 ### 示例6（设置Symbol类型图标）
 

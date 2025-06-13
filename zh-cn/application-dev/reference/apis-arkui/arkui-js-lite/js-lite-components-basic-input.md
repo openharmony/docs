@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 该组件从从API version 4 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 4 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -17,7 +17,7 @@
 | 名称 | 类型 | 默认值 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
 | type | string | <br/>button | 否 | input组件类型，可选值为button，checkbox，radio。<br/>button，checkbox，radio不支持动态修改。可选值定义如下：<br/>-&nbsp;button：定义可点击的按钮。<br/>-&nbsp;checkbox：定义多选框。<br/>-&nbsp;radio：定义单选按钮，允许在多个拥有相同name值的选项中选中其中一个。 |
-| checked | boolean | false | 否 | 当前组件是否选中，仅type为checkbox和radio生效。 |
+| checked | boolean | false | 否 | 当前组件是否选中，true表示选中，false表示未选中。仅type为checkbox和radio生效。 |
 | name | string | - | 否 | input组件的名称。 |
 | value | string | - | 否 | input组件的value值，当类型为radio时必填且相同name值的选项该值唯一。 |
 | id | string | - | 否 | 组件的唯一标识。 |

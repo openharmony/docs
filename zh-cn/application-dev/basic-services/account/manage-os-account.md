@@ -111,7 +111,7 @@ accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: osA
    let newName: string = 'Tom';
    accountManager.setOsAccountName(localId, newName, (err: BusinessError) => {
      if (err) {
-       console.log('setOsAccountName failed, error: ' + JSON.stringify(err));
+       console.error('setOsAccountName failed, error: ' + JSON.stringify(err));
      } else {
        console.log('setOsAccountName successfully');
      }
@@ -149,7 +149,7 @@ accountManager.activateOsAccount(localId, (err: BusinessError)=>{
 let localId: number = 101;
 accountManager.removeOsAccount(localId, (err: BusinessError)=>{
   if (err) {
-      console.log('removeOsAccount failed, error: ' + JSON.stringify(err));
+      console.error('removeOsAccount failed, error: ' + JSON.stringify(err));
   } else {
       console.log('removeOsAccount successfully');
   }

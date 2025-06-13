@@ -401,14 +401,14 @@ type ArcScrollIndexHandler = (start: number, end: number, center: number) => voi
 
 ```ts
 // xxx.ets
-import { ComponentContent, LengthMetrics } from "@kit.ArkUI";
-import { UIContext } from '@kit.ArkUI';
+import { ComponentContent, LengthMetrics } from '@kit.ArkUI';
+import { UIContext, CircleShape } from '@kit.ArkUI';
 import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute } from '@kit.ArkUI';
 
 @Builder
 function buildText() {
   Column() {
-    Text("header")
+    Text('header')
       .fontSize('60px')
       .fontWeight(FontWeight.Bold)
   }.margin(0)
@@ -433,7 +433,7 @@ struct Index {
       .justifyContent(FlexAlign.Center)
       .width(this.watchSize)
       .height(this.watchSize)
-      .clip(new Circle({ width: '100%', height: '100%' }))
+      .clipShape(new CircleShape({ width: '100%', height: '100%' }))
       .backgroundColor(Color.White)
 
       ArcList({ initialIndex: 0, header: this.tabBar1 }) {

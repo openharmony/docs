@@ -6,8 +6,8 @@ HiCollie模块对外提供函数执行时间超长的检测机制。
 
 | 接口名                          | 描述                              |
 | ------------------------------  | --------------------------------- |
-| OH_HiCollie_SetTimer | 启动函数执行时长检测定时器。调用耗时的函数或代码块之前，应该使用此函数。          |
-| OH_HiCollie_CancelTimer | 取消函数执行时长检测定时器。调用耗时的函数或代码块之后，应该使用此函数。       |
+| OH_HiCollie_SetTimer | 注册定时器，用于检测函数或代码块执行是否超过自定义时间。<br/>结合OH_HiCollie_CancelTimer接口配套使用，应在调用耗时的函数之前使用。|
+| OH_HiCollie_CancelTimer | 取消定时器。<br/>结合OH_HiCollie_SetTimer接口配套使用，执行函数或代码块后使用，OH_HiCollie_CancelTimer通过id将该任务取消；<br/>若未在自定义时间内取消，则执行回调函数，在特定自定义超时动作下，生成故障日志。|
 
 - API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiCollie](../reference/apis-performance-analysis-kit/_hi_collie.md)。
 - 函数执行时间超长故障日志以syswarning-开头，生成在”设备/data/log/faultlog/faultlogger/”路径下。文件名格式为“syswarning-应用包名-应用UID-秒级时间.log”。
@@ -77,7 +77,7 @@ HiCollie模块对外提供函数执行时间超长的检测机制。
    static napi_value Init(napi_env env, napi_value exports)
    {
        napi_property_descriptor desc[] = {
-           { "testHiCollieTimerNdk", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default, nullptr }      // 将TestHiCollieTimerNdk注册为ArkTS接口
+           { "TestHiCollieTimerNdk", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default, nullptr }      // 将TestHiCollieTimerNdk注册为ArkTS接口
       };
        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
        return exports;
@@ -103,26 +103,26 @@ HiCollie模块对外提供函数执行时间超长的检测机制。
 4. 编辑"index.d.ts"文件，定义ArkTS接口：
 
    ```ts
-   export const testHiCollieTimerNdk: () => void;
+   export const TestHiCollieTimerNdk: () => void;
    ```
 
 5. 编辑"Index.ets"文件：
 
    ```ts
-   import testNapi from 'libentry.so'
+   import testNapi from 'libentry.so';
    
    @Entry
    @Component
    struct Index {
-     @State message: string = 'Hello World'
+     @State message: string = 'Hello World';
    
      build() {
        Row() {
          Column() {
-           Button("testHiCollieTimerNdk")
+           Button("TestHiCollieTimerNdk")
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
-             .onClick(testNapi.testHiCollieTimerNdk);  //添加点击事件，触发testHiCollieTimerNdk方法。
+             .onClick(testNapi.TestHiCollieTimerNdk);  //添加点击事件，触发TestHiCollieTimerNdk方法。
          }
          .width('100%')
        }
@@ -131,7 +131,7 @@ HiCollie模块对外提供函数执行时间超长的检测机制。
    }
    ```
 
-6. 点击IDE界面中的运行按钮，运行应用工程:
+6. 点击DevEco Studio界面中的运行按钮，运行应用工程:
 
 7. 在DevEco Studio的底部，切换到“Log->HiLog”窗口，设置日志的过滤条件为“testTag”:
    
