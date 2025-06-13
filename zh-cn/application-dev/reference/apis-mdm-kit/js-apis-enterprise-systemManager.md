@@ -456,7 +456,7 @@ setAutoUnlockAfterReboot(admin: Want, isAllowed: boolean): void
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
-| isAllowed | boolean | 是 | 表示是否支持重启自动解锁，true表示支持重启自动解锁，false表示不支持重启自动解锁，默认值为false。 |
+| isAllowed | boolean | 是 | true表示开启重启自动解锁，false表示不开启重启自动解锁。 |
 
 **错误码**：
 
@@ -490,7 +490,7 @@ try {
 
 getAutoUnlockAfterReboot(admin: Want): boolean
 
-获取是否支持重启自动解锁。
+获取是否开启重启自动解锁。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -506,7 +506,7 @@ getAutoUnlockAfterReboot(admin: Want): boolean
 
 | 类型   | 说明                                |
 | ------ | ----------------------------------- |
-| boolean | 表示是否支持重启自动解锁，true表示支持重启自动解锁，false表示不支持重启自动解锁，默认值为false。 |
+| boolean | 返回true表示开启重启自动解锁，false表示不开启重启自动解锁。 |
 
 **错误码**：
 
