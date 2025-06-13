@@ -4667,7 +4667,7 @@ async test()
 
 on(event: 'perfStat', observer: Callback&lt;SqlExecutionInfo&gt;): void
 
-订阅SQL统计信息。使用[createTransaction](#createtransaction14)action创建的事务进行相关操作（[Transaction](arkts-apis-data-relationalStore-Transaction.md)），只会在事务结束（COMMIT/ROLLBACK）时通知一次统计信息。
+订阅SQL统计信息。使用[createTransaction](#createtransaction14)创建的事务进行相关操作（[Transaction](arkts-apis-data-relationalStore-Transaction.md)），只会在事务结束（COMMIT/ROLLBACK）时通知一次统计信息。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
