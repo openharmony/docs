@@ -2748,6 +2748,83 @@ struct Index {
   }
 }
 ```
+### setPixelRoundMode<sup>18+</sup>
+
+setPixelRoundMode(mode: PixelRoundMode): void
+
+配置当前页面的像素取整模式。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型         | 必填   | 说明   |
+| -------- | ---------- | ---- | ---- |
+| mode | [PixelRoundMode](./arkui-ts/ts-appendix-enums.md#pixelroundmode18)| 是    | 像素取整模式。<br />默认值：PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIContext } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
+      uiContext.setPixelRoundMode(PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH);
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
+  }
+```
+
+### getPixelRoundMode<sup>18+</sup>
+
+getPixelRoundMode(): PixelRoundMode
+
+获取当前页面的像素取整模式。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型         | 说明   |
+| ---------- | ---- |
+| [PixelRoundMode](./arkui-ts/ts-appendix-enums.md#pixelroundmode18)| 当前页面的像素取整模式。|
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIContext } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+      console.info("pixelRoundMode : " + uiContext.getPixelRoundMode().valueOf());
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
+  }
+```
 ## Font
 
 以下API需先使用UIContext中的[getFont()](#getfont)方法获取到Font对象，再通过该对象调用对应方法。
@@ -10728,79 +10805,3 @@ struct Index {
   }
 }
 ```
-## setPixelRoundMode<sup>18+</sup>
-
-setPixelRoundMode(mode: PixelRoundMode): void
-
-配置当前页面的像素取整模式。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名      | 类型         | 必填   | 说明   |
-| -------- | ---------- | ---- | ---- |
-| mode | [PixelRoundMode](./arkui-ts/ts-appendix-enums.md#pixelroundmode18)| 是    | 像素取整模式。<br />默认值：PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH |
-
-**示例：**
-
-```ts
-// EntryAbility.ets
-import { UIContext } from '@kit.ArkUI';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
-onWindowStageCreate(windowStage: window.WindowStage) {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-
-    windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
-      uiContext.setPixelRoundMode(PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH);
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
-  }
-```
-
-## getPixelRoundMode<sup>18+</sup>
-
-getPixelRoundMode(): PixelRoundMode
-
-获取当前页面的像素取整模式。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型         | 说明   |
-| ---------- | ---- |
-| [PixelRoundMode](./arkui-ts/ts-appendix-enums.md#pixelroundmode18)| 当前页面的像素取整模式。|
-
-**示例：**
-
-```ts
-// EntryAbility.ets
-import { UIContext } from '@kit.ArkUI';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
-onWindowStageCreate(windowStage: window.WindowStage) {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-
-    windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
-      console.info("pixelRoundMode : " + uiContext.getPixelRoundMode().valueOf());
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
-  }
