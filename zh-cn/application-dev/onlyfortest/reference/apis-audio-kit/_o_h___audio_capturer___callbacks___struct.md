@@ -2,9 +2,23 @@
 
 概述非第一个二级标题，不满足打标要求，因此topic下的api-info == null
 
+```C
+int32_t  *OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnError  OH_AudioCapturer *capturer, void *userData, OH_AudioStream_Result error 
+```
+
 ## 汇总
 
 相关汇总内容
+
+```javaScript
+int32_t  *OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnError  OH_AudioCapturer *capturer, void *userData, OH_AudioStream_Result error 
+```
+
+### typescript
+
+```typeScript
+int32_t  *OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnError  OH_AudioCapturer *capturer, void *userData, OH_AudioStream_Result error 
+```
 
 ## 概述
 
