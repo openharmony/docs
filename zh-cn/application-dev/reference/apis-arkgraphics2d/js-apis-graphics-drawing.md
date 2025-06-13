@@ -10297,8 +10297,6 @@ import { drawing } from '@kit.ArkGraphics2D';
 
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
-    pen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
-    pen.setStrokeWidth(10);
     let region = new drawing.Region();
     region.setRect(100, 100, 200, 200);
     let isEmpty = region.isEmpty();
