@@ -1529,7 +1529,7 @@ type HttpProxy = connection.HttpProxy
 
 网络全局代理配置信息。
 
-**系统能力**：SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack.Core
 
 |       类型       |            说明             |
 | ---------------- | --------------------------- |
