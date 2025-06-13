@@ -1090,7 +1090,7 @@ get gestureEvent(): UIGestureEvent
 
 onDraw?(context: DrawContext): void
 
-FrameNode的自绘制方法，该方法会在FrameNode进行内容绘制时被调用。调用该接口只改变绘制的内容，不会影响节点绘制的触发逻辑和时机。
+FrameNode的自绘制方法，该方法会重写默认绘制方法，在FrameNode进行内容绘制时被调用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
