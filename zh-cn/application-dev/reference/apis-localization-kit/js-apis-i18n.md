@@ -2664,60 +2664,9 @@ static getThreeLetterRegion(locale: string): string
   }
   ```
 
-### getUnicodeWrappedFilePath<sup>20+</sup>
-
-static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: Intl.Locale): string
-
-对文件路径进行本地化处理。<br>例如，将/data/out/tmp本地化处理后生成tmp/out/data/。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Global.I18n
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                     |
-| ------ | ------ | ---- | ------------------------ |
-| path | string | 是   | 待处理的路径，如：/data/out/tmp。 |
-| delimiter | string | 否   | 路径分隔符，默认值：/。 |
-| locale | [Intl.Locale](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale) | 否   | 区域对象，默认值：系统区域对象。 |
-
-**返回值：**
-
-| 类型     | 说明                  |
-| ------ | ------------------- |
-| string | 本地化处理后的文件路径。如果区域对象表示的语言是镜像语言，则处理后的文件路径包含方向控制符，保证文件路径镜像显示。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 890001   | Invalid parameter. Possible causes: Parameter verification failed. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  let path: string = '/data/out/tmp';
-  let delimiter: string = '/';
-  let locale: Intl.Locale = new Intl.Locale('ar');
-  let mirrorPath: string =
-    i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale); // mirrorPath显示为: 'tmp/out/data/'
-} catch (error) {
-  let err: BusinessError = error as BusinessError;
-  console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${err.code}, message: ${err.message}.`);
-}
-```
-
-### getUnicodeWrappedFilePath<sup>(deprecated)</sup>
+### getUnicodeWrappedFilePath<sup>18+</sup>
 
 static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl.Locale): string
-
-从API version 18开始支持，从API version 20开始废弃，建议使用[getUnicodeWrappedFilePath](#getunicodewrappedfilepath20)替代。
 
 对文件路径进行本地化处理。<br>例如，将/data/out/tmp本地化处理后生成tmp/out/data/。
 
@@ -3031,57 +2980,11 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 | name            | string           |   是    | 节假日的本地名称，例如Sacrifice Feast（宰牲节）的土耳其语名称为Kurban Bayrami。      |
 
 
-## i18n.getSimpleDateTimeFormatByPattern<sup>20+</sup>
-
-getSimpleDateTimeFormatByPattern(pattern: string, locale?: Intl.Locale): SimpleDateTimeFormat
-
-通过模式字符串获取SimpleDateTimeFormat对象。与[getSimpleDateTimeFormatBySkeleton](#i18ngetsimpledatetimeformatbyskeleton20)接口获取的对象在格式化后显示差异请参考[SimpleDateTimeFormat.format](#format18)的示例。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Global.I18n
-
-**参数：**
-
-| 参数名    | 类型     | 必填   | 说明                                       |
-| ------- | ----------- | ----- | ---------------------------------------- |
-| pattern | string      | 是    | 合法的模式字符串，支持[日期字段符号表](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)中Field Patterns值的自由组合。同时，pattern支持传入自定义文本，文本内容以`''`标识。 |
-| locale  | [Intl.Locale](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale) | 否    | 区域对象。默认值：系统区域对象。 |
-
-**返回值：**
-
-| 类型                     | 说明    |
-| ---------------------- | ----- |
-| [SimpleDateTimeFormat](#simpledatetimeformat18) | SimpleDateTimeFormat对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
-
-**示例：**
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  let locale: Intl.Locale = new Intl.Locale('zh-Hans-CN');
-  let formatter: i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("'month('M')'", locale);
-} catch (error) {
-  let err: BusinessError = error as BusinessError;
-  console.error(`call i18n.getSimpleDateTimeFormatByPattern failed, error code: ${err.code}, message: ${err.message}.`);
-}
-```
-
-## i18n.getSimpleDateTimeFormatByPattern<sup>(deprecated)</sup>
+## i18n.getSimpleDateTimeFormatByPattern<sup>18+</sup>
 
 getSimpleDateTimeFormatByPattern(pattern: string, locale?: intl.Locale): SimpleDateTimeFormat
 
-从API version 18开始支持，从API version 20开始废弃，建议使用[getSimpleDateTimeFormatByPattern](#i18ngetsimpledatetimeformatbypattern20)替代。
-
-通过模式字符串获取SimpleDateTimeFormat对象。与[getSimpleDateTimeFormatBySkeleton](#i18ngetsimpledatetimeformatbyskeletondeprecated)接口获取的对象在格式化后显示差异请参考[SimpleDateTimeFormat.format](#format18)的示例。
+通过模式字符串获取SimpleDateTimeFormat对象。与getSimpleDateTimeFormatBySkeleton接口获取的对象在格式化后显示差异请参考[SimpleDateTimeFormat](#simpledatetimeformat18)。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -3091,8 +2994,8 @@ getSimpleDateTimeFormatByPattern(pattern: string, locale?: intl.Locale): SimpleD
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------- | ----------- | ----- | ---------------------------------------- |
-| pattern | string      | 是    | 合法的模式字符串，支持[日期字段符号表](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)中Field Patterns值的自由组合。同时，pattern支持传入自定义文本，文本内容以`''`标识。 |
-| locale  | [intl.Locale](./js-apis-intl.md#localedeprecated) | 否    | 区域对象。默认值：系统区域对象。 |
+| pattern | string      | 是    | 合法的模式字符串，支持的字符及含义请参考[日期字段符号表](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)。同时，pattern支持传入自定义文本，文本内容以`''`标识。 |
+| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 区域对象。默认值：系统区域对象。 |
 
 **返回值：**
 
@@ -3122,57 +3025,11 @@ try {
 }
 ```
 
-## i18n.getSimpleDateTimeFormatBySkeleton<sup>20+</sup>
-
-getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: Intl.Locale): SimpleDateTimeFormat
-
-通过框架字符串获取SimpleDateTimeFormat对象。与[getSimpleDateTimeFormatByPattern](#i18ngetsimpledatetimeformatbypattern20)接口获取的对象在格式化后显示差异请参考[SimpleDateTimeFormat.format](#format18)的示例。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Global.I18n
-
-**参数：**
-
-| 参数名    | 类型     | 必填   | 说明                                       |
-| ------- | ----------- | ----- | ---------------------------------------- |
-| skeleton | string      | 是    | 合法的框架字符串，支持[日期字段符号表](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)中Field Patterns值的自由组合。skeleton不支持传入自定义文本。 |
-| locale  | [Intl.Locale](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale) | 否    | 区域对象。默认值：系统区域对象。 |
-
-**返回值：**
-
-| 类型                     | 说明    |
-| ---------------------- | ----- |
-| [SimpleDateTimeFormat](#simpledatetimeformat18) | SimpleDateTimeFormat对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
-
-**示例：**
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  let locale: Intl.Locale = new Intl.Locale('zh-Hans-CN');
-  let formatter: i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatBySkeleton('yMd', locale);
-} catch (error) {
-  let err: BusinessError = error as BusinessError;
-  console.error(`call i18n.getSimpleDateTimeFormatBySkeleton failed, error code: ${err.code}, message: ${err.message}.`);
-}
-```
-
-## i18n.getSimpleDateTimeFormatBySkeleton<sup>(deprecated)</sup>
+## i18n.getSimpleDateTimeFormatBySkeleton<sup>18+</sup>
 
 getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleDateTimeFormat
 
-从API version 18开始支持，从API version 20开始废弃，建议使用[getSimpleDateTimeFormatBySkeleton](#i18ngetsimpledatetimeformatbyskeleton20)替代。
-
-通过框架字符串获取SimpleDateTimeFormat对象。与[getSimpleDateTimeFormatByPattern](#i18ngetsimpledatetimeformatbypatterndeprecated)接口获取的对象在格式化后显示差异请参考[SimpleDateTimeFormat.format](#format18)的示例。
+通过框架字符串获取SimpleDateTimeFormat对象。与getSimpleDateTimeFormatByPattern接口获取的对象在格式化后显示差异请参考[SimpleDateTimeFormat](#simpledatetimeformat18)。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -3182,8 +3039,8 @@ getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: intl.Locale): Simpl
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------- | ----------- | ----- | ---------------------------------------- |
-| skeleton | string      | 是    | 合法的框架字符串，支持[日期字段符号表](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)中Field Patterns值的自由组合。skeleton不支持传入自定义文本。 |
-| locale  | [intl.Locale](./js-apis-intl.md#localedeprecated) | 否    | 区域对象。默认值：系统区域对象。 |
+| skeleton | string      | 是    | 合法的框架字符串，支持的字符及含义请参考[日期字段符号表](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)。skeleton不支持传入自定义文本。 |
+| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 区域对象。默认值：系统区域对象。 |
 
 **返回值：**
 
@@ -3260,56 +3117,9 @@ format(date: Date): string
   }
   ```
 
-
-## i18n.getSimpleNumberFormatBySkeleton<sup>20+</sup>
-
-getSimpleNumberFormatBySkeleton(skeleton: string, locale?: Intl.Locale): SimpleNumberFormat
-
-通过框架字符串获取SimpleNumberFormat对象。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Global.I18n
-
-**参数：**
-
-| 参数名    | 类型     | 必填   | 说明                                       |
-| ------- | ----------- | ----- | ---------------------------------------- |
-| skeleton | string      | 是    | 合法的框架字符串，支持的字符及含义请参考[Number Skeletons](https://unicode-org.github.io/icu/userguide/format_parse/numbers/skeletons.html#number-skeletons)。 |
-| locale  | [Intl.Locale](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale) | 否    | 区域对象。默认值：系统区域对象。 |
-
-**返回值：**
-
-| 类型                     | 说明    |
-| ---------------------- | ----- |
-| [SimpleNumberFormat](#simplenumberformat18) | SimpleNumberFormat对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
-
-**示例：**
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  let locale: Intl.Locale = new Intl.Locale('zh-Hans-CN');
-  let formatter: i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton('%', locale);
-} catch (error) {
-  let err: BusinessError = error as BusinessError;
-  console.error(`call SimpleDateTimeFormat.getSimpleNumberFormatBySkeleton failed, error code: ${err.code}, message: ${err.message}.`);
-}
-```
-
-## i18n.getSimpleNumberFormatBySkeleton<sup>(deprecated)</sup>
+## i18n.getSimpleNumberFormatBySkeleton<sup>18+</sup>
 
 getSimpleNumberFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleNumberFormat
-
-从API version 18开始支持，从API version 20开始废弃，建议使用[getSimpleNumberFormatBySkeleton](#i18ngetsimplenumberformatbyskeleton20)替代。
 
 通过框架字符串获取SimpleNumberFormat对象。
 
@@ -3322,7 +3132,7 @@ getSimpleNumberFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleN
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------- | ----------- | ----- | ---------------------------------------- |
 | skeleton | string      | 是    | 合法的框架字符串，支持的字符及含义请参考[Number Skeletons](https://unicode-org.github.io/icu/userguide/format_parse/numbers/skeletons.html#number-skeletons)。 |
-| locale  | [intl.Locale](./js-apis-intl.md#localedeprecated) | 否    | 区域对象。默认值：系统区域对象。 |
+| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 区域对象。默认值：系统区域对象。 |
 
 **返回值：**
 
