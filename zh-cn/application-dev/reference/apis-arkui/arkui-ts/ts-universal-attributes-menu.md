@@ -851,8 +851,9 @@ struct Index {
             .margin(100)
             .fontSize(30)
             .bindContextMenu(this.MyMenu, ResponseType.LongPress,
-              { preview: MenuPreviewMode.IMAGE,
-                previewBorderRadius:50
+              {
+                preview: MenuPreviewMode.IMAGE,
+                previewBorderRadius: 50
               })
             .backgroundColor("#ff7fcdff")
         }
