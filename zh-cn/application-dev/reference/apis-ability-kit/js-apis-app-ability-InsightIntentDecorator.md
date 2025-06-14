@@ -2,7 +2,7 @@
 
 InsightIntentDecorator模块提供了几类意图装饰器。通过装饰类或方法可以将应用的功能定义为意图，并集成到智能问答、智能搜索、智能推荐等AI入口。
 
-- [@InsightIntentLink](#insightintentlink)装饰器：使用该装饰器装饰当前应用的uri链接，可以将该uri链接定义为意图，便于AI入口通过意图快速跳转到当前应用。该装饰器支持的参数参见[LinkIntentDecoratorInfo](#functionintentdecoratorinfo)。
+- [@InsightIntentLink](#insightintentlink)装饰器：使用该装饰器装饰当前应用的uri链接，可以将该uri链接定义为意图，便于AI入口通过意图快速跳转到当前应用。该装饰器支持的参数参见[LinkIntentDecoratorInfo](#linkintentdecoratorinfo)。
 - [@InsightIntentPage](#insightintentpage)装饰器：使用该装饰器装饰当前应用的Page页面，可以将该Page页面定义为意图，便于AI入口通过意图快速跳转到当前Page页面。该装饰器支持的参数参见[PageIntentDecoratorInfo](#pageintentdecoratorinfo)。
 - [@InsightIntentFunction](#insightintentfunction)装饰器与[@InsightIntentFunctionMethod](#insightintentfunctionmethod)装饰器：两者必须组合使用。使用[@InsightIntentFunction](#insightintentfunction)装饰器来装饰类，同时使用[@InsightIntentFunctionMethod](#insightintentfunctionmethod)装饰器来装饰类中的静态函数，可以将对应的静态函数定义为意图，便于AI入口能够快速执行此函数。
 - [@InsightIntentEntry](#insightintententry)装饰器：使用该装饰器装饰一个继承自[InsightIntentEntryExecutor](./js-apis-app-ability-InsightIntentEntryExecutor.md)的类，并配置拉起Ability时支持的执行模式，便于AI入口拉起绑定的Ability组件时，执行对应的意图操作。该装饰器支持的参数参见[EntryIntentDecoratorInfo](#entryintentdecoratorinfo)。
