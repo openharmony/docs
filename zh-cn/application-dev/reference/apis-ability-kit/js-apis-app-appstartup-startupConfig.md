@@ -1,4 +1,4 @@
-# @ohos.app.appstartup.StartupConfig
+# @ohos.app.appstartup.StartupConfig (启动框架配置信息)
 
 本模块提供启动任务的配置接口。
 

@@ -1,4 +1,4 @@
-# @ohos.app.ability.OpenLinkOptions (OpenLinkOptions)
+# @ohos.app.ability.OpenLinkOptions (openLink的可选参数)
 
 OpenLinkOptions可以作为[openLink()](js-apis-inner-application-uiAbilityContext.md#openlink12)的入参，用于标识是否仅打开AppLinking和传递键值对可选参数。
 
