@@ -218,7 +218,6 @@ function destroy() : void {
 | mipMapMode | [SamplerFilter](#samplerfilter20) | 否 | 是 | mipmap过滤模式，控制纹理贴图在多层不同分辨率之间的采样方式，默认值为LINEAR。 |
 | addressModeU | [SamplerAddressMode](#sampleraddressmode20) | 否 | 是 | 纹理贴图U方向（水平）的采样方式，默认值为REPEAT。 |
 | addressModeV | [SamplerAddressMode](#sampleraddressmode20) | 否 | 是 | 纹理贴图V方向（垂直）的采样方式，默认值为REPEAT。 |
-| addressModeW | [SamplerAddressMode](#sampleraddressmode20) | 否 | 是 | 纹理贴图W方向（深度）的采样方式，默认值为REPEAT。 |
 
 ## SubMesh
 子网格类型。
