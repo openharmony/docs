@@ -4913,3 +4913,17 @@
 **支持设备**：General
 
 **起始版本**：20
+
+## ohos.permission.ACCESS_DFX_LOG_DIR
+
+允许应用访问LOG群组的目录。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：General
+
+**起始版本**：20
