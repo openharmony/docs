@@ -16,14 +16,15 @@ ArkTS卡片开放了使用动画效果的能力，支持[显式动画](../refere
 >
 >静态卡片不支持使用动效能力。
 
-### 1.组件自身动效
-以下示例代码实现了按钮旋转的动画效果：  
+## 组件自身动效
+以下示例代码使用[animation](../reference/apis-arkui/arkui-ts/ts-animatorproperty.md)接口实现了按钮旋转的动画效果。 
+
 ![WidgetAnimation](figures/WidgetAnimation.gif)
 
 
 
 ```ts
-//widgetcard.ets
+// entry/src/main/ets/widget/pages/WidgetCard.ets
 @Entry
 @Component
 struct AnimationCard {
@@ -47,19 +48,13 @@ struct AnimationCard {
   }
 }
 ```
-### 2.组件转场动效
-以下示例代码实现了同一TransitionEffect来实现图片的出现与消失的动画效果：
-<<<<<<< HEAD
+## 组件转场动效
+以下示例代码使用[transition](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md)接口实现了在卡片内图片出现与消失的动画效果。
+
 ![WidgetAnimation](figures/WidgetTransitionAnimation.gif)
 
 ```ts
-//widgetcard.ets
-=======
-![WidgetAnimation](figures/transitionComponent2.gif)
-
-```ts
-// xxx.ets
->>>>>>> d6fef84536a750830535c83130d4efed86d2bc80
+// entry/src/main/ets/widget/pages/WidgetCard.ets
 @Entry
 @Component
 struct TransitionEffectExample1 {
