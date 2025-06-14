@@ -1,4 +1,4 @@
-# 页面和自定义组件生命周期
+# router页面和自定义组件生命周期
 
 在开始之前，我们先明确自定义组件和页面的关系：
 
@@ -7,8 +7,11 @@
 - 页面：即应用的UI页面。可以由一个或者多个自定义组件组成，@Entry装饰的自定义组件为页面的入口组件，即页面的根节点，一个页面有且仅能有一个\@Entry。只有被\@Entry装饰的组件才可以调用页面的生命周期。
 
 
-页面生命周期，即被\@Entry装饰的组件生命周期，提供以下生命周期接口：
+[router](../../reference/apis-arkui/js-apis-router.md)页面生命周期，即被[\@Entry](../../../application-dev/ui/state-management/arkts-create-custom-components.md#entry)装饰的组件生命周期，提供以下生命周期接口：
 
+> **说明：**
+>
+> 当前router接口已不推荐使用，此处为更直观体现页面和自定义组件生命周期之间的时序关系，才使用router进行页面路由跳转。Navigation相关的时序关系参考[页面生命周期](../arkts-navigation-navigation.md#页面生命周期)。
 
 - [onPageShow](../../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)：页面每次显示时触发一次，包括路由过程、应用进入前台等场景。
 
@@ -67,10 +70,6 @@
 不建议在生命周期`aboutToDisappear`中使用`async await`。如果在此生命周期中使用异步操作（如 Promise 或回调方法），自定义组件将被保留在Promise的闭包中，直到回调方法执行完毕，这会阻止自定义组件的垃圾回收。
 
 以下示例展示了生命周期的调用时机：
-
-> **说明：**
->
-> 当前router接口已不推荐使用，此处为更直观体现页面和自定义组件生命周期之间的时序关系，才使用router进行页面路由跳转。Navigation相关的时序关系参考[页面生命周期](../arkts-navigation-navigation.md#页面生命周期)。
 
 ```ts
 // Index.ets
