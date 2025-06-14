@@ -81,6 +81,24 @@ PageIntentInfo继承自[IntentDecoratorInfo](./js-apis-app-ability-InsightIntent
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+## EntityInfo<sup>20+<sup>
+
+EntityInfo继承自[IntentEntityDecoratorInfo](./js-apis-app-ability-InsightIntentDecorator.md#intententitydecoratorinfo)，用于描述[@InsightIntentEntity](./js-apis-app-ability-InsightIntentDecorator.md#insightintententity)装饰器定义的意图实体的信息。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- |-------- |
+| className | string | 是 | 否 | 表示[@InsightIntentEntity](./js-apis-app-ability-InsightIntentDecorator.md#insightintententity)装饰器修饰的类名。 |
+| entityId | string | 是 | 否 | 表示意图实体的ID。 |
+| entityCategory | string | 是 | 否 | 表示意图实体类别。 |
+| parameters | string | 是 | 否 | 表示意图实体参数的数据格式声明，用于意图调用时定义实体参数的数据格式。 |
+| parentClassName | string | 是 | 否 | 表示[@InsightIntentEntity](./js-apis-app-ability-InsightIntentDecorator.md#insightintententity)装饰器修饰的类的父类名。 |
+
 ## InsightIntentInfo<sup>20+<sup>
 
 意图信息，表示设备中意图的具体参数配置。
@@ -107,17 +125,19 @@ PageIntentInfo继承自[IntentDecoratorInfo](./js-apis-app-ability-InsightIntent
 | intentType | string | 是 | 否 | 表示通过意图装饰器定义的意图类型。 |
 | subIntentInfo | [LinkIntentInfo](#linkintentinfo20) \| [PageIntentInfo](#pageintentinfo20) \| [FunctionIntentInfo](#functionintentinfo20) | 是 | 否 | 表示特定意图装饰器的意图信息。 |
 | parameters | Record<string, Object> | 是 | 否 | 表示意图参数的数据格式声明，用于意图调用时定义入参的数据格式。 |
+| entities | Array&lt;[EntityInfo](#entityinfo20)&gt; | 是 | 否 | 表示意图包含的实体信息。 |
 
 ## GetInsightIntentFlag<sup>20+<sup>
 
-意图信息（[InsightIntentInfo](#insightintentinfo20)）的标识，用于[getAllInsightIntentInfo](#insightintentdrivergetinsightintentinfobybundlename20)、[getInsightIntentInfoByBundleName](#insightintentdrivergetinsightintentinfobybundlename20)和[getInsightIntentInfoByIntentName](#insightintentdrivergetinsightintentinfobyintentname20)接口查询全量意图信息或者简要意图信息。
+意图信息（[InsightIntentInfo](#insightintentinfo20)）的标识，用于[getAllInsightIntentInfo](#insightintentdrivergetinsightintentinfobybundlename20)、[getInsightIntentInfoByBundleName](#insightintentdrivergetinsightintentinfobybundlename20)和[getInsightIntentInfoByIntentName](#insightintentdrivergetinsightintentinfobyintentname20)接口查询意图信息。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| GET_FULL_INSIGHT_INTENT | 1 | 查询[InsightIntentInfo](#insightintentinfo20)中的全部信息。 |
-| GET_SUMMARY_INSIGHT_INTENT | 2 | 查询[InsightIntentInfo](#insightintentinfo20)中的部分信息，具体差异见表1。 |
+| GET_FULL_INSIGHT_INTENT | 0x00000001 | 查询[InsightIntentInfo](#insightintentinfo20)中的除entities以外的全量意图信息，详见下表。查询entities信息需要使用GET_ENTITY_INFO。 |
+| GET_SUMMARY_INSIGHT_INTENT | 0x00000002 | 查询[InsightIntentInfo](#insightintentinfo20)中的简要意图信息，详见下表。 |
+| GET_ENTITY_INFO | 0x00000004 | 查询[EntityInfo](#entityinfo20)的信息，不可单独使用，必选结合GET_FULL_INSIGHT_INTENT或者GET_SUMMARY_INSIGHT_INTENT使用。例如`GET_FULL_INSIGHT_INTENT \| GET_ENTITY_INFO`。 |
 
 **表1** 全量意图信息与简要意图信息差别
    
@@ -137,6 +157,7 @@ PageIntentInfo继承自[IntentDecoratorInfo](./js-apis-app-ability-InsightIntent
 | intentType | 是 | 是 |
 | subIntentInfo | 是 | 是 |
 | parameters | 是 | 是 |
+| entities | 否 | 否 |
 
 ## insightIntentDriver.execute
 
@@ -344,7 +365,7 @@ getAllInsightIntentInfo(intentFlags: number): Promise<Array\<[InsightIntentInfo]
 
   async function getInfos() {
     try {
-      insightIntentDriver.getAllInsightIntentInfo(insightIntentDriver.GetInsightIntentFlag.GET_FULL_INSIGHT_INTENT).then((data) => {
+      insightIntentDriver.getAllInsightIntentInfo(insightIntentDriver.GetInsightIntentFlag.GET_FULL_INSIGHT_INTENT | insightIntentDriver.GetInsightIntentFlag.GET_ENTITY_INFO).then((data) => {
         hilog.info(0x0000, 'testTag', 'getAllInsightIntentInfo return %{public}s', JSON.stringify(data));
       }).catch((err: BusinessError) => {
         hilog.info(0x0000, 'testTag', 'getAllInsightIntentInfo errCode: %{public}d', err.code);
@@ -403,7 +424,7 @@ getInsightIntentInfoByBundleName(bundleName: string, intentFlags: number): Promi
   async function getInfosByBundleName() {
     try {
       let bundleName = "com.example.intent"; // 开发者需自行修改为实际包名
-      insightIntentDriver.getInsightIntentInfoByBundleName(bundleName, insightIntentDriver.GetInsightIntentFlag.GET_FULL_INSIGHT_INTENT).then((data) => {
+      insightIntentDriver.getInsightIntentInfoByBundleName(bundleName, insightIntentDriver.GetInsightIntentFlag.GET_FULL_INSIGHT_INTENT | insightIntentDriver.GetInsightIntentFlag.GET_ENTITY_INFO).then((data) => {
         hilog.info(0x0000, 'testTag', 'getInsightIntentInfoByBundleName return %{public}s', JSON.stringify(data));
       }).catch((err: BusinessError) => {
         hilog.info(0x0000, 'testTag', 'getInsightIntentInfoByBundleName errCode: %{public}d', err.code);
@@ -467,7 +488,7 @@ getInsightIntentInfoByIntentName(bundleName: string, moduleName: string, intentN
       let moduleName = "entry"; // 开发者需自行修改为实际模块名
       let intentName = "play"; // 开发者需自行修改为实际意图名
       insightIntentDriver.getInsightIntentInfoByIntentName(
-        bundleName, moduleName, intentName, insightIntentDriver.GetInsightIntentFlag.GET_FULL_INSIGHT_INTENT)
+        bundleName, moduleName, intentName, insightIntentDriver.GetInsightIntentFlag.GET_FULL_INSIGHT_INTENT | insightIntentDriver.GetInsightIntentFlag.GET_ENTITY_INFO)
       .then((data) => {
         hilog.info(0x0000, 'testTag', 'getInsightIntentInfoByIntentName return %{public}s', JSON.stringify(data));
       }).catch((err: BusinessError) => {
