@@ -17466,8 +17466,8 @@ int32_t OH_ArkUI_RegisterLayoutCallbackOnNodeHandle (ArkUI_NodeHandle node, void
 
 **返回：**
 
-ARKUI_ERROR_CODE_NO_ERROR 成功。
-ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。
 
 
 ### OH_ArkUI_RegisterDrawCallbackOnNodeHandle()
@@ -17491,8 +17491,8 @@ int32_t OH_ArkUI_RegisterDrawCallbackOnNodeHandle (ArkUI_NodeHandle node, void* 
 
 **返回：**
 
-ARKUI_ERROR_CODE_NO_ERROR 成功。
-ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。
 
 
 ### OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle()
@@ -17514,8 +17514,8 @@ int32_t OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle (ArkUI_NodeHandle node)
 
 **返回：**
 
-ARKUI_ERROR_CODE_NO_ERROR 成功。
-ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。
 
 
 ### OH_ArkUI_UnregisterDrawCallbackOnNodeHandle()
@@ -17537,8 +17537,8 @@ int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle (ArkUI_NodeHandle node)
 
 **返回：**
 
-ARKUI_ERROR_CODE_NO_ERROR 成功。
-ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。
 
 
 ### OH_ArkUI_ProgressLinearStyleOption_Create
