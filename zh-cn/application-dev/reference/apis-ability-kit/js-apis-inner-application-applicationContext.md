@@ -1035,13 +1035,15 @@ struct Index {
 
 setSupportedProcessCache(isSupported : boolean): void
 
-应用设置自身是否支持缓存后快速启动。仅支持主线程调用。
+设置当前应用的进程是否支持缓存后快速启动。仅支持主线程调用。
+
+该接口仅对单个进程实例生效，不同进程实例互不影响。应用进程实例销毁后，已设置的状态不保留，需要重新设置。
 
 > **说明：**
->
+> - 当前仅支持2in1、phone设备。
 > - 该接口仅表示应用自身是否为缓存后快速启动做好了准备，还需综合其他条件来判断最终是否为应用启用快速启动。
-> - 该接口设置的缓存支持状态对单个应用进程实例生效，不同进程实例互不影响。应用进程实例销毁后，已设置的状态不保留，可以重新设置。
-> - 如果需要支持缓存后快速启动，则需要在同一进程中所有[AbilityStage](../../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)的`onCreate()`生命周期中调用该接口、且入参均配置为“true”。
+> - 为了确保该接口在进程退出前生效，调用时机应尽量提前。建议在[AbilityStage](../../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)的`onCreate()`中调用该接口。
+> - 在同一进程多次调用该接口时，会以最后一次调用的结果为准。当存在多个AbilityStage时，为了确保结果符合预期，需要在各个AbilityStage中分别调用该接口并配置相同的取值。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
