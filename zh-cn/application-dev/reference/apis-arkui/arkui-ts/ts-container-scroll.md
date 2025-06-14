@@ -230,7 +230,7 @@ initialOffset(value: OffsetOptions)
 | Horizontal | 仅支持水平方向滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | Vertical   | 仅支持竖直方向滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | None       | 不可滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| Free<sup>(deprecated) </sup> | 支持竖直或水平方向滚动。<br/> 从API version 9开始废弃。|
+| Free<sup>(deprecated) </sup> | 支持竖直或水平方向滚动。<br/> 从API version 9开始废弃，无替代接口。|
 
 ## ScrollSnapOptions<sup>10+</sup>对象说明
 
