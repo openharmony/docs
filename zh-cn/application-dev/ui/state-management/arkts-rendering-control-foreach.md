@@ -525,6 +525,7 @@ struct ForEachSort {
 - 基本类型数组的数据项没有唯一`ID`属性。如果使用数据项作为键值，必须确保数据项无重复。对于数据源会变化的场景，建议将基本类型数组转换为具有唯一`ID`属性的Object类型数组，再使用唯一`ID`属性作为键值。
 - 对于以上限制规则，`index`参数存在的意义为：index是开发者保证键值唯一性的最终手段；对数据项进行修改时，由于`itemGenerator`中的`item`参数是不可修改的，所以须用index索引值对数据源进行修改，进而触发UI重新渲染。
 - ForEach在下列容器组件 [List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../../reference/apis-arkui/arkui-ts/ts-container-waterflow.md) 内使用的时候，不要与[LazyForEach](./arkts-rendering-control-lazyforeach.md) 混用。 以List为例，同时包含ForEach、LazyForEach的情形是不推荐的。
+- 在大量子组件的的场景下，ForEach可能会导致卡顿。请考虑使用[LazyForEach](./arkts-rendering-control-lazyforeach.md)替代。最佳实践请参考[使用懒加载优化性能](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-lazyforeach-optimization)。
 - 当数组项为对象类型时，不建议用内容相同的数组项替换旧项。若数组项发生变更但键值未变，会导致[数据变化不渲染](#数据变化不渲染)。
 ## 不推荐案例
 
