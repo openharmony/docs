@@ -274,73 +274,6 @@ onDestroy(): void | Promise&lt;void&gt;
   }
   ```
 
-
-### onWillForeground<sup>20+</sup>
-
-onWillForeground(): void
-
-UIAbility生命周期回调，应用转到前台前触发，在[onForeground](#onforeground)前被调用。可在该回调中实现采集应用开始进入前台的时间。如果与[onDidForeground](#ondidforeground20)配合使用，还可以统计出从应用开始进入前台到切换至前台状态的耗时。
-
-同步接口，不支持异步回调。
-
-**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
-
-**示例：**
-
-```ts
-import { UIAbility } from '@kit.AbilityKit';
-import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-
-  onWillForeground(): void {
-    // 应用开始进入前台事件打点
-    let eventParams: Record<string, number> = { 'xxxx': 100 };
-    let eventInfo: hiAppEvent.AppEventInfo = {
-      // 事件领域定义
-      domain: "lifecycle",
-      // 事件名称定义
-      name: "onwillforeground",
-      // 事件类型定义
-      eventType: hiAppEvent.EventType.BEHAVIOR,
-      // 事件参数定义
-      params: eventParams,
-    };
-    hiAppEvent.write(eventInfo).then(() => {
-      hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`);
-    }).catch((err: BusinessError) => {
-      hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`);
-    });
-  }
-  // ...
-
-  onDidForeground(): void {
-    // 应用进入前台后事件打点
-    let eventParams: Record<string, number> = { 'xxxx': 100 };
-    let eventInfo: hiAppEvent.AppEventInfo = {
-      // 事件领域定义
-      domain: "lifecycle",
-      // 事件名称定义
-      name: "ondidforeground",
-      // 事件类型定义
-      eventType: hiAppEvent.EventType.BEHAVIOR,
-      // 事件参数定义
-      params: eventParams,
-    };
-    hiAppEvent.write(eventInfo).then(() => {
-      hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`);
-    }).catch((err: BusinessError) => {
-      hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`);
-    });
-  }
-}
-```
-
-
 ### onForeground
 
 onForeground(): void
@@ -368,67 +301,6 @@ export default class MyUIAbility extends UIAbility {
 }
 ```
 
-
-### onDidForeground<sup>20+</sup>
-
-onDidForeground(): void
-
-UIAbility生命周期回调，应用转到前台后触发，在[onForeground](#onforeground)后被调用，可在该回调中实现应用切换到前台后的时间打点。如果与[onWillForeground](#onwillforeground20)配合使用，还可以统计出从应用开始进入前台到切换至前台状态的耗时。
-
-同步接口，不支持异步回调。
-
-**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
-
-**示例：**
-
-参考[onWillForeground](#onwillforeground20)。
-
-
-### onWillBackground<sup>20+</sup>
-
-onWillBackground(): void
-
-UIAbility生命周期回调，当应用从前台转到后台前触发，在[onBackground](#onbackground)前被调用。可在该回调中实现数据打点，例如，打点应用运行过程中发生的故障信息、统计信息、安全信息、用户行为信息等。
-
-同步接口，不支持异步回调。
-
-**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
-
-**示例：**
-
-```ts
-import { UIAbility } from '@kit.AbilityKit';
-import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class MyUIAbility extends UIAbility {
-  onWillBackground(): void {
-    let eventParams: Record<string, number | string> = {
-      "int_data": 100,
-      "str_data": "strValue",
-    };
-    // 打点应用故障信息
-    hiAppEvent.write({
-      domain: "test_domain",
-      name: "test_event",
-      eventType: hiAppEvent.EventType.FAULT,
-      params: eventParams,
-    }, (err: BusinessError) => {
-      if (err) {
-        hilog.error(0x0000, 'testTag', `hiAppEvent code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      hilog.info(0x0000, 'testTag', `hiAppEvent success to write event`);
-    });
-  }
-}
-```
-
-
 ### onBackground
 
 onBackground(): void
@@ -451,70 +323,6 @@ export default class MyUIAbility extends UIAbility {
   onBackground() {
     // UIAbility回到后台
     hilog.info(0x0000, 'testTag', `onBackground`);
-  }
-}
-```
-
-
-### onDidBackground<sup>20+</sup>
-
-onDidBackground(): void
-
-UIAbility生命周期回调，当应用从前台转到后台后触发，在[onBackground](#onbackground)之后被调用。可在该回调中实现应用进入后台之后的资源释放操作，如进入后台后停止音频播放等。
-
-同步接口，不支持异步回调。
-
-**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
-
-**示例：**
-
-```ts
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { audio } from '@kit.AudioKit';
-
-export default class MyUIAbility extends UIAbility {
-  static audioRenderer: audio.AudioRenderer;
-  // ...
-  onForeground(): void {
-    let audioStreamInfo: audio.AudioStreamInfo = {
-      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率。
-      channels: audio.AudioChannel.CHANNEL_2, // 通道。
-      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式。
-      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式。
-    };
-
-    let audioRendererInfo: audio.AudioRendererInfo = {
-      usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
-      rendererFlags: 0 // 音频渲染器标志。
-    };
-
-    let audioRendererOptions: audio.AudioRendererOptions = {
-      streamInfo: audioStreamInfo,
-      rendererInfo: audioRendererInfo
-    };
-
-    // 在前台时申请audioRenderer，用于播放PCM（Pulse Code Modulation）音频数据
-    audio.createAudioRenderer(audioRendererOptions).then((data) => {
-      MyUIAbility.audioRenderer = data;
-      hilog.info(0x0000, 'testTag', `AudioRenderer Created : Success : Stream Type: SUCCESS.`);
-    }).catch((err: BusinessError) => {
-      hilog.error(0x0000, 'testTag', `AudioRenderer Created : F : ${JSON.stringify(err)}.`);
-    });
-  }
-
-  onDidBackground() {
-    // 转到后台后，释放audioRenderer资源
-    MyUIAbility.audioRenderer.release((err: BusinessError) => {
-      if (err) {
-        hilog.error(0x0000, 'testTag', `AudioRenderer release failed, error: ${JSON.stringify(err)}.`);
-      } else {
-        hilog.info(0x0000, 'testTag',  `AudioRenderer released.`);
-      }
-    });
   }
 }
 ```
@@ -775,7 +583,7 @@ onPrepareToTerminate(): boolean
 >
 > - 回调时机：当用户通过点击应用窗口右上角的关闭按钮、或者通过Dock栏/托盘右键退出应用时，可以使用该回调。
 >
-> - 从API version 15开始，当[UIAbility.onPrepareToTerminateAsync](#onpreparetoterminateasync15)实现时，本回调函数将不执行。当[AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#abilitystageonprepareterminationasync15)或[AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15)实现时，在dock栏或系统托盘处右键点击关闭，本回调函数将不执行。
+> - 从API version 15开始，当[UIAbility.onPrepareToTerminateAsync](#onpreparetoterminateasync15)实现时，本回调函数将不执行。当[AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#onprepareterminationasync15)或[AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#onpreparetermination15)实现时，在dock栏或系统托盘处右键点击关闭，本回调函数将不执行。
 > - 如果应用本身或者所使用的三方框架注册了[window.WindowStage.on('windowStageClose')](../apis-arkui/arkts-apis-window-WindowStage.md#onwindowstageclose14)监听，本回调函数将不执行。
 
 **需要权限**：ohos.permission.PREPARE_APP_TERMINATE
@@ -838,7 +646,7 @@ onPrepareToTerminateAsync(): Promise\<boolean>
 >
 > - 回调时机：当用户通过点击应用窗口右上角的关闭按钮、或者通过Dock栏/托盘右键退出应用时，可以使用该回调。
 >
-> - 当[AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#abilitystageonprepareterminationasync15)或[AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15)实现时，在dock栏或系统托盘处右键点击关闭，本回调函数将不执行。
+> - 当[AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#onprepareterminationasync15)或[AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#onpreparetermination15)实现时，在dock栏或系统托盘处右键点击关闭，本回调函数将不执行。
 > - 如果应用本身或者所使用的三方框架注册了[window.WindowStage.on('windowStageClose')](../apis-arkui/arkts-apis-window-WindowStage.md#onwindowstageclose14)监听，本回调函数将不执行。
 >
 > - 若异步回调内发生crash，按超时处理，执行等待超过10秒未响应，UIAbility将被强制关闭。

@@ -1,6 +1,6 @@
 # @ohos.app.ability.ActionExtensionAbility (自定义服务扩展能力)
 
-ActionExtensionAbility是为开发者提供的自定义操作业务模板，继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。ActionExtension主要用于查看宿主应用中的内容以及对其进行对应处理。例如，添加一个书签、将选中的文本翻译成其他语言、在当前页面编辑图像等。各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
+ActionExtensionAbility是为开发者提供的自定义操作业务模板，继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。ActionExtensionAbility主要用于实现宿主应用的内容查看及交互处理功能。例如，添加一个书签、将选中的文本翻译成其他语言、在当前页面编辑图像等。各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
 
 > **说明：**
 > 
@@ -18,7 +18,9 @@ ActionExtensionAbility是为开发者提供的自定义操作业务模板，继�
 import { ActionExtensionAbility } from '@kit.AbilityKit';
 ```
 
-## 属性
+## ActionExtensionAbility
+
+### 属性
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -26,7 +28,7 @@ import { ActionExtensionAbility } from '@kit.AbilityKit';
 | -------- | -------- | -------- | -------- | -------- |
 | context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | 否 | 否 | 上下文。 |
 
-## ActionExtensionAbility.onCreate
+### onCreate
 
 onCreate(): void
 
@@ -38,7 +40,7 @@ ActionExtensionAbility创建时回调，执行初始化业务逻辑操作。
 
 参见[创建ActionExtensionAbility](#创建actionextensionability)。
 
-## ActionExtensionAbility.onSessionCreate
+### onSessionCreate
 
 onSessionCreate(want: Want, session: UIExtensionContentSession): void
 
@@ -57,7 +59,7 @@ onSessionCreate(want: Want, session: UIExtensionContentSession): void
 
 参见[创建ActionExtensionAbility](#创建actionextensionability)。
 
-## ActionExtensionAbility.onForeground
+### onForeground
 
 onForeground(): void
 
@@ -69,7 +71,7 @@ ActionExtensionAbility生命周期回调，当ActionExtensionAbility从后台转
 
 参见[创建ActionExtensionAbility](#创建actionextensionability)。
 
-## ActionExtensionAbility.onBackground
+### onBackground
 
 onBackground(): void
 
@@ -81,7 +83,7 @@ ActionExtensionAbility生命周期回调，当ActionExtensionAbility从前台转
 
 参见[创建ActionExtensionAbility](#创建actionextensionability)。
 
-## ActionExtensionAbility.onSessionDestroy
+### onSessionDestroy
 
 onSessionDestroy(session: UIExtensionContentSession): void
 
@@ -99,7 +101,7 @@ onSessionDestroy(session: UIExtensionContentSession): void
 
 参见[创建ActionExtensionAbility](#创建actionextensionability)。
 
-## ActionExtensionAbility.onDestroy
+### onDestroy
 
 onDestroy(): void | Promise&lt;void&gt;
 
