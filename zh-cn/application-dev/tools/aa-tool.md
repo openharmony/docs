@@ -515,7 +515,7 @@ aa process -b <bundleName> -a <abilityName> [-m <moduleName>] [-p <perf-cmd>] [-
 
 ## onMemoryLevel回调命令（send-memory-level）
 
-从API version 20开始，开发者可以通过该命令来调试应用的[onMemoryLevel](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonmemorylevel)生命周期。通过在参数中指定进程的pid和内存使用级别来触发该进程的onMemoryLevel生命周期回调。
+从API version 20开始，开发者可以通过该命令来调试应用的[onMemoryLevel](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onmemorylevel)生命周期。通过在参数中指定进程的pid和内存使用级别来触发该进程的onMemoryLevel生命周期回调。
 
 ```bash
 # 触发onMemoryLevel回调
