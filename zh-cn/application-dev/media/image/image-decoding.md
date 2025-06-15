@@ -1,10 +1,10 @@
 # 使用ImageSource完成图片解码
 
-将所支持格式的图片文件解码成[PixelMap](../../reference/apis-image-kit/js-apis-image.md#pixelmap7)，以便在应用或系统中显示或处理图片。当前支持的图片文件格式包括JPEG、PNG、GIF、WebP、BMP、SVG、ICO、DNG、HEIF。不同硬件设备的支持情况可能不同 。
+将所支持格式的图片文件解码成[PixelMap](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md)，以便在应用或系统中显示或处理图片。当前支持的图片文件格式包括JPEG、PNG、GIF、WebP、BMP、SVG、ICO、DNG、HEIF。不同硬件设备的支持情况可能不同 。
 
 ## 开发步骤
 
-图片解码相关API的详细介绍请参见：[图片解码接口说明](../../reference/apis-image-kit/js-apis-image.md#imagesource)。
+图片解码相关API的详细介绍请参见：[图片解码接口说明](../../reference/apis-image-kit/arkts-apis-image-ImageSource.md)。
 
 1. 全局导入Image模块。
 

@@ -180,7 +180,7 @@ sendImage(sessionId:&nbsp;number,&nbsp;image:&nbsp;image.PixelMap,&nbsp;quality?
 | 参数名       | 类型                                      | 必填   | 说明    |
 | --------- | --------------------------------------- | ---- | ----- |
 | sessionId | number | 是    | 表示协同会话ID。 |
-| image | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 表示图片信息。 |
+| image | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 表示图片信息。 |
 | quality | number | 否    | 表示图像压缩质量（取值范围为0到100，默认值为30）。 |
 
 **返回值：**
