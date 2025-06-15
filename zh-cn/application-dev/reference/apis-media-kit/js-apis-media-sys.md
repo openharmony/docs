@@ -459,7 +459,7 @@ setMetadata(metadata: Record\<string, string\>): void
 
 给AVRecorder的录制文件中设置自定义meta数据。
 
-只有当[prepare()](arkts-apis-media-AVRecorder.md#prepare9-1)事件成功触发后，并在调用[stop()](arkts-apis-media-AVRecorder.md#stop9-)方法之前，才能调用setMetadata方法。
+只有当[prepare()](arkts-apis-media-AVRecorder.md#prepare9-1)事件成功触发后，并在调用[stop()](arkts-apis-media-AVRecorder.md#stop9)方法之前，才能调用setMetadata方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
