@@ -136,7 +136,7 @@ enhanceDetail(sourceImage: image.PixelMap, width: number, height: number, level?
 
 |  参数名 | 类型  | 必填  | 说明  |
 | :------------ | :------------ | :------------ | :------------ |
-|  sourceImage | [image.PixelMap](js-apis-image.md#pixelmap7)  | 是  | 输入图像。  |
+|  sourceImage | [image.PixelMap](arkts-apis-image-PixelMap.md)  | 是  | 输入图像。  |
 |  width |  number | 是  | 目标宽度（单位为像素，px）。  |
 |  height |  number | 是  |  目标高度（单位为像素，px）。 |
 |  level | [QualityLevel](#qualitylevel)| 否  |  算法档位（HIGH、MEDIUM、LOW、NONE），默认为NONE。 |
@@ -145,7 +145,7 @@ enhanceDetail(sourceImage: image.PixelMap, width: number, height: number, level?
 
 |  类型 | 说明  |
 | ------------ | ------------ |
-| Promise\<[image.PixelMap](js-apis-image.md#pixelmap7)\>  |  异步方法返回PixelMap的Promise实例。 |
+| Promise\<[image.PixelMap](arkts-apis-image-PixelMap.md)\>  |  异步方法返回PixelMap的Promise实例。 |
 
 **错误码：**
 
@@ -180,7 +180,7 @@ enhanceDetail(sourceImage: image.PixelMap, scale: number, level?: QualityLevel):
 
 |  参数名 | 类型  | 必填  | 说明  |
 | :------------ | :------------ | :------------ | :------------ |
-|  sourceImage | [image.PixelMap](js-apis-image.md#pixelmap7)  | 是  | 输入图像。  |
+|  sourceImage | [image.PixelMap](arkts-apis-image-PixelMap.md)  | 是  | 输入图像。  |
 |  scale |  number |  是 |  目标缩放比例。 |
 |  level | [QualityLevel](#qualitylevel)| 否  |  算法档位（HIGH、MEDIUM、LOW、NONE），默认为NONE。 |
 
@@ -188,7 +188,7 @@ enhanceDetail(sourceImage: image.PixelMap, scale: number, level?: QualityLevel):
 
 |  类型 | 说明  |
 | ------------ | ------------ |
-| Promise\<[image.PixelMap](js-apis-image.md#pixelmap7)\>  |  异步方法返回PixelMap的Promise实例。 |
+| Promise\<[image.PixelMap](arkts-apis-image-PixelMap.md)\>  |  异步方法返回PixelMap的Promise实例。 |
 
 **错误码：**
 
@@ -223,7 +223,7 @@ enhanceDetailSync(sourceImage: image.PixelMap, width: number, height: number, le
 
 |  参数名 | 类型  | 必填  | 说明  |
 | :------------ | :------------ | :------------ | :------------ |
-|  sourceImage | [image.PixelMap](js-apis-image.md#pixelmap7)  | 是  | 输入图像。  |
+|  sourceImage | [image.PixelMap](arkts-apis-image-PixelMap.md)  | 是  | 输入图像。  |
 |  width |  number | 是  | 目标宽度（单位为像素，px）。  |
 |  height |  number | 是 |  目标高度（单位为像素，px）。 |
 |  level | [QualityLevel](#qualitylevel)| 否  |  算法档位（HIGH、MEDIUM、LOW、NONE），默认为NONE。 |
@@ -232,7 +232,7 @@ enhanceDetailSync(sourceImage: image.PixelMap, width: number, height: number, le
 
 |  类型 | 说明  |
 | ------------ | ------------ |
-| [image.PixelMap](js-apis-image.md#pixelmap7)  |  成功同步返回PixelMap对象。 |
+| [image.PixelMap](arkts-apis-image-PixelMap.md)  |  成功同步返回PixelMap对象。 |
 
 **错误码：**
 
@@ -269,7 +269,7 @@ enhanceDetailSync(sourceImage: image.PixelMap, scale: number, level?: QualityLev
 
 |  参数名 | 类型  | 必填  | 说明  |
 | :------------ | :------------ | :------------ | :------------ |
-|  sourceImage | [image.PixelMap](js-apis-image.md#pixelmap7)  | 是  | 输入图像。  |
+|  sourceImage | [image.PixelMap](arkts-apis-image-PixelMap.md)  | 是  | 输入图像。  |
 |  scale |  number |  是 |  目标缩放比例。 |
 |  level | [QualityLevel](#qualitylevel)| 否  |  算法档位（HIGH、MEDIUM、LOW、NONE），默认为NONE。 |
 
@@ -277,7 +277,7 @@ enhanceDetailSync(sourceImage: image.PixelMap, scale: number, level?: QualityLev
 
 |  类型 | 说明  |
 | ------------ | ------------ |
-| [image.PixelMap](js-apis-image.md#pixelmap7)  |  成功同步返回PixelMap对象。 |
+| [image.PixelMap](arkts-apis-image-PixelMap.md)  |  成功同步返回PixelMap对象。 |
 
 **错误码：**
 

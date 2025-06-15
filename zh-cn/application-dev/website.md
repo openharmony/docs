@@ -4548,8 +4548,24 @@
         - [DRM错误码](reference/apis-drm-kit/errorcode-drm.md)
     - Image Kit（图片处理服务）<!--image-api-->
       - ArkTS API<!--image-arkts-->
-        - [@ohos.multimedia.image (图片处理)](reference/apis-image-kit/js-apis-image.md)
+        - @ohos.multimedia.image (图片处理)<!--js-apis-image-->
+          - [模块描述](reference/apis-image-kit/arkts-apis-image.md)
+          - [Functions](reference/apis-image-kit/arkts-apis-image-f.md)
+          - [Interface (AuxiliaryPicture)](reference/apis-image-kit/arkts-apis-image-AuxiliaryPicture.md)
+          - [Interface (Image)](reference/apis-image-kit/arkts-apis-image-Image.md)
+          - [Interface (ImageCreator)](reference/apis-image-kit/arkts-apis-image-ImageCreator.md)
+          - [Interface (ImagePacker)](reference/apis-image-kit/arkts-apis-image-ImagePacker.md)
+          - [Interface (ImageReceiver)](reference/apis-image-kit/arkts-apis-image-ImageReceiver.md)
+          - [Interface (ImageSource)](reference/apis-image-kit/arkts-apis-image-ImageSource.md)
+          - [Interface (Metadata)](reference/apis-image-kit/arkts-apis-image-Metadata.md)
+          - [Interface (Picture)](reference/apis-image-kit/arkts-apis-image-Picture.md)
+          - [Interface (PixelMap)](reference/apis-image-kit/arkts-apis-image-PixelMap.md)
+          - [Interfaces (其他)](reference/apis-image-kit/arkts-apis-image-i.md)
+          - [Enums](reference/apis-image-kit/arkts-apis-image-e.md)
+          - [Types](reference/apis-image-kit/arkts-apis-image-t.md)
+          - [SVG标签说明](reference/apis-image-kit/arkts-apis-image-svg-tag.md)
         - [@ohos.multimedia.sendableImage (基于Sendable对象的图片处理)](reference/apis-image-kit/js-apis-sendableImage.md)
+        - [@ohos.multimedia.videoProcessingEngine (视频处理引擎)](reference/apis-image-kit/js-apis-videoProcessingEngine.md)
         <!--Del-->
         - [@ohos.multimedia.image (图片处理)(系统接口)](reference/apis-image-kit/js-apis-image-sys.md)
         <!--DelEnd-->
@@ -4643,6 +4659,7 @@
           - [OH_ImageProcessing](reference/apis-image-kit/capi-oh-imageprocessing.md)
       - 错误码<!--image-arkts-errcode-->
         - [Image错误码](reference/apis-image-kit/errorcode-image.md)
+        - [视频处理引擎错误码](reference/apis-image-kit/errorcode-videoprocessingengine.md)
     - Media Kit（媒体服务）<!--media-api-->
       - ArkTS API<!--media-arkts-->
         - @ohos.multimedia.media (媒体服务)<!--js-apis-media-->
