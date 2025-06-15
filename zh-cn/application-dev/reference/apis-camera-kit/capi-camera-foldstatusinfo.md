@@ -5,7 +5,6 @@
 折叠状态信息。
 
 **起始版本：** 13
-* version 1.0
 
 **相关模块：** [OH_Camera](capi-oh-camera.md)
 
@@ -17,7 +16,7 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| Camera_Device** supportedCameras | 相机实例列表。 |
+| [Camera_Device](capi-camera-device.md)** supportedCameras | 相机实例列表。 |
 | uint32_t cameraSize | 相机列表数量。 |
 | [Camera_FoldStatus](capi-camera-h.md#camera_foldstatus) foldStatus | 当前折叠状态。 |
 

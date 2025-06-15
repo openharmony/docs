@@ -2,7 +2,7 @@
 
 ## 概述
 
-元数据输出对象。<br> 可以使用{@link OH_CameraManager_CreateMetadataOutput}方法创建指针。
+元数据输出对象。<br> 可以使用[OH_CameraManager_CreateMetadataOutput](capi-camera-manager-h.md#oh_cameramanager_createmetadataoutput)方法创建指针。
 
 **起始版本：** 11
 

@@ -41,7 +41,7 @@
 | [Camera_FoldStatusInfo](capi-camera-foldstatusinfo.md) | Camera_FoldStatusInfo | 折叠状态信息。 |
 | [Camera_AutoDeviceSwitchStatusInfo](capi-camera-autodeviceswitchstatusinfo.md) | Camera_AutoDeviceSwitchStatusInfo | 自动设备切换状态信息。 |
 | [Camera_ConcurrentInfo](capi-camera-concurrentinfo.md) | Camera_ConcurrentInfo | 相机并发能力信息。 |
-| [Camera_Manager](capi-camera-manager.md) | Camera_Manager | 相机管理器对象。<br> 可以使用{@link OH_Camera_GetCameraManager}方法创建指针。 |
+| [Camera_Manager](capi-camera-manager.md) | Camera_Manager | 相机管理器对象。<br> 可以使用[OH_Camera_GetCameraManager](#oh_camera_getcameramanager)方法创建指针。 |
 
 ### 枚举
 
@@ -144,7 +144,7 @@ enum Camera_SceneMode
 | -- | -- |
 | NORMAL_PHOTO = 1 | 普通相机模式。 |
 | NORMAL_VIDEO = 2 | 普通视频模式。 |
-| SECURE_PHOTO = 12 |  |
+| SECURE_PHOTO = 12 | 安全相机模式。 |
 
 ### Camera_Position
 
@@ -572,13 +572,13 @@ Camera_ErrorCode OH_Camera_GetCameraManager(Camera_Manager** cameraManager)
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_Manager** cameraManager | 如果方法调用成功，将创建Camera_Manager实例。 |
+| [Camera_Manager](capi-camera-manager.md)** cameraManager | 如果方法调用成功，将创建Camera_Manager实例。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | CAMERA_OK：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。<br>         CAMERA_SERVICE_FATAL_ERROR：相机服务出现致命错误。 |
+| [Camera_ErrorCode](#camera_errorcode) | CAMERA_OK：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。<br>         CAMERA_SERVICE_FATAL_ERROR：相机服务出现致命错误。 |
 
 ### OH_Camera_DeleteCameraManager()
 
@@ -597,12 +597,12 @@ Camera_ErrorCode OH_Camera_DeleteCameraManager(Camera_Manager* cameraManager)
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_Manager* cameraManager | 要删除的Camera_Manager实例。 |
+| [Camera_Manager](capi-camera-manager.md)* cameraManager | 要删除的Camera_Manager实例。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | CAMERA_OK：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。<br>         CAMERA_SERVICE_FATAL_ERROR：相机服务出现致命错误。 |
+| [Camera_ErrorCode](#camera_errorcode) | CAMERA_OK：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。<br>         CAMERA_SERVICE_FATAL_ERROR：相机服务出现致命错误。 |
 
 

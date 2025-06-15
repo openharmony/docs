@@ -21,7 +21,7 @@
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [MetadataOutput_Callbacks](capi-metadataoutput-callbacks.md) | MetadataOutput_Callbacks | 元数据输出的回调。 |
-| [Camera_MetadataOutput](capi-camera-metadataoutput.md) | Camera_MetadataOutput | 元数据输出对象。<br> 可以使用{@link OH_CameraManager_CreateMetadataOutput}方法创建指针。 |
+| [Camera_MetadataOutput](capi-camera-metadataoutput.md) | Camera_MetadataOutput | 元数据输出对象。<br> 可以使用[OH_CameraManager_CreateMetadataOutput](capi-camera-manager-h.md#oh_cameramanager_createmetadataoutput)方法创建指针。 |
 
 ### 函数
 
@@ -54,7 +54,7 @@ typedef void (*OH_MetadataOutput_OnMetadataObjectAvailable)(Camera_MetadataOutpu
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_MetadataOutput* metadataOutput | 传递回调的元数据输出实例。 |
+| [Camera_MetadataOutput](capi-camera-metadataoutput.md)* metadataOutput | 传递回调的元数据输出实例。 |
 | [Camera_MetadataObject](capi-camera-metadataobject.md)* metadataObject | 回调传递的元数据实例信息。 |
 |  uint32_t size | 元数据对象的大小。 |
 
@@ -75,8 +75,8 @@ typedef void (*OH_MetadataOutput_OnError)(Camera_MetadataOutput* metadataOutput,
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_MetadataOutput* metadataOutput | 传递回调的元数据输出实例。 |
-|  Camera_ErrorCode errorCode | 元数据输出的错误码。 |
+| [Camera_MetadataOutput](capi-camera-metadataoutput.md)* metadataOutput | 传递回调的元数据输出实例。 |
+|  [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) errorCode | 元数据输出的错误码。 |
 
 **参考：**
 
@@ -99,7 +99,7 @@ Camera_ErrorCode OH_MetadataOutput_RegisterCallback(Camera_MetadataOutput* metad
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_MetadataOutput* metadataOutput | 元数据输出实例。 |
+| [Camera_MetadataOutput](capi-camera-metadataoutput.md)* metadataOutput | 元数据输出实例。 |
 | [MetadataOutput_Callbacks](capi-metadataoutput-callbacks.md)* callback | 要注册的元数据输出回调。 |
 
 **返回：**
@@ -125,7 +125,7 @@ Camera_ErrorCode OH_MetadataOutput_UnregisterCallback(Camera_MetadataOutput* met
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_MetadataOutput* metadataOutput | 元数据输出实例。 |
+| [Camera_MetadataOutput](capi-camera-metadataoutput.md)* metadataOutput | 元数据输出实例。 |
 | [MetadataOutput_Callbacks](capi-metadataoutput-callbacks.md)* callback | 要注销的元数据输出回调。 |
 
 **返回：**
@@ -151,7 +151,7 @@ Camera_ErrorCode OH_MetadataOutput_Start(Camera_MetadataOutput* metadataOutput)
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_MetadataOutput* metadataOutput | 要启动的元数据输出实例。 |
+| [Camera_MetadataOutput](capi-camera-metadataoutput.md)* metadataOutput | 要启动的元数据输出实例。 |
 
 **返回：**
 
@@ -176,7 +176,7 @@ Camera_ErrorCode OH_MetadataOutput_Stop(Camera_MetadataOutput* metadataOutput)
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_MetadataOutput* metadataOutput | 要停止的元数据输出实例。 |
+| [Camera_MetadataOutput](capi-camera-metadataoutput.md)* metadataOutput | 要停止的元数据输出实例。 |
 
 **返回：**
 
@@ -201,7 +201,7 @@ Camera_ErrorCode OH_MetadataOutput_Release(Camera_MetadataOutput* metadataOutput
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_MetadataOutput* metadataOutput | 要释放的元数据输出实例。 |
+| [Camera_MetadataOutput](capi-camera-metadataoutput.md)* metadataOutput | 要释放的元数据输出实例。 |
 
 **返回：**
 

@@ -18,6 +18,6 @@
 | -- | -- |
 | [Camera_MetadataObjectType](capi-camera-h.md#camera_metadataobjecttype) type | 元数据对象类型。 |
 | int64_t timestamp | 元数据对象时间戳（以毫秒为单位）。 |
-| Camera_Rect* boundingBox | 检测到的元数据对象的轴对齐边界框。 |
+| [Camera_Rect](capi-camera-rect.md)* boundingBox | 检测到的元数据对象的轴对齐边界框。 |
 
 

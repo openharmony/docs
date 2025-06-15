@@ -21,7 +21,7 @@
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [CameraInput_Callbacks](capi-camerainput-callbacks.md) | CameraInput_Callbacks | 相机输入错误事件的回调。 |
-| [Camera_Input](capi-camera-input.md) | Camera_Input | 相机输入对象。可以使用{@link OH_CameraManager_CreateCameraInput}方法创建指针。 |
+| [Camera_Input](capi-camera-input.md) | Camera_Input | 相机输入对象。可以使用[OH_CameraManager_CreateCameraInput](capi-camera-manager-h.md#oh_cameramanager_createcamerainput)方法创建指针。 |
 
 ### 函数
 
@@ -55,8 +55,8 @@ typedef void (*OH_CameraInput_OnError)(const Camera_Input* cameraInput, Camera_E
 
 | 参数项 | 描述 |
 | -- | -- |
-| const Camera_Input* cameraInput | 传递回调的Camera_Input。 |
-|  Camera_ErrorCode errorCode | 相机输入的Camera_ErrorCode。 |
+| const [Camera_Input](capi-camera-input.md)* cameraInput | 传递回调的Camera_Input。 |
+|  [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) errorCode | 相机输入的Camera_ErrorCode。 |
 
 **参考：**
 
@@ -79,7 +79,7 @@ Camera_ErrorCode OH_CameraInput_RegisterCallback(Camera_Input* cameraInput, Came
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_Input* cameraInput | Camera_Input实例。 |
+| [Camera_Input](capi-camera-input.md)* cameraInput | Camera_Input实例。 |
 | [CameraInput_Callbacks](capi-camerainput-callbacks.md)* callback | 要注册的相机输入更改事件回调。 |
 
 **返回：**
@@ -105,7 +105,7 @@ Camera_ErrorCode OH_CameraInput_UnregisterCallback(Camera_Input* cameraInput, Ca
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_Input* cameraInput | Camera_Input实例。 |
+| [Camera_Input](capi-camera-input.md)* cameraInput | Camera_Input实例。 |
 | [CameraInput_Callbacks](capi-camerainput-callbacks.md)* callback | 要注销的相机输入更改事件回调。 |
 
 **返回：**
@@ -131,7 +131,7 @@ Camera_ErrorCode OH_CameraInput_Open(Camera_Input* cameraInput)
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_Input* cameraInput | 要打开的Camera_Input实例。 |
+| [Camera_Input](capi-camera-input.md)* cameraInput | 要打开的Camera_Input实例。 |
 
 **返回：**
 
@@ -156,7 +156,7 @@ Camera_ErrorCode OH_CameraInput_OpenSecureCamera(Camera_Input* cameraInput, uint
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_Input* cameraInput | 要打开的Camera_Input实例。 |
+| [Camera_Input](capi-camera-input.md)* cameraInput | 要打开的Camera_Input实例。 |
 | uint64_t* secureSeqId | 表示安全摄像头的序列值。 |
 
 **返回：**
@@ -182,7 +182,7 @@ Camera_ErrorCode OH_CameraInput_OpenConcurrentCameras(Camera_Input* cameraInput,
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_Input* cameraInput | 要打开的Camera_Input实例。 |
+| [Camera_Input](capi-camera-input.md)* cameraInput | 要打开的Camera_Input实例。 |
 | [Camera_ConcurrentType](capi-camera-h.md#camera_concurrenttype) type | 指定并发类型。 |
 
 **返回：**
@@ -208,7 +208,7 @@ Camera_ErrorCode OH_CameraInput_Close(Camera_Input* cameraInput)
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_Input* cameraInput | 要关闭的Camera_Input实例。 |
+| [Camera_Input](capi-camera-input.md)* cameraInput | 要关闭的Camera_Input实例。 |
 
 **返回：**
 
@@ -233,7 +233,7 @@ Camera_ErrorCode OH_CameraInput_Release(Camera_Input* cameraInput)
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_Input* cameraInput | 要释放的Camera_Input实例。 |
+| [Camera_Input](capi-camera-input.md)* cameraInput | 要释放的Camera_Input实例。 |
 
 **返回：**
 

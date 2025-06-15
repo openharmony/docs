@@ -21,7 +21,7 @@
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [PreviewOutput_Callbacks](capi-previewoutput-callbacks.md) | PreviewOutput_Callbacks | 用于预览输出的回调。 |
-| [Camera_PreviewOutput](capi-camera-previewoutput.md) | Camera_PreviewOutput | 预览输出对象。<br> 可以使用{@link OH_CameraManager_CreatePreviewOutput}方法创建指针。 |
+| [Camera_PreviewOutput](capi-camera-previewoutput.md) | Camera_PreviewOutput | 预览输出对象。<br> 可以使用[OH_CameraManager_CreatePreviewOutput](capi-camera-manager-h.md#oh_cameramanager_createpreviewoutput)方法创建指针。 |
 
 ### 函数
 
@@ -63,7 +63,7 @@ typedef void (*OH_PreviewOutput_OnFrameStart)(Camera_PreviewOutput* previewOutpu
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PreviewOutput* previewOutput | 传递回调的预览输出实例。 |
+| [Camera_PreviewOutput](capi-camera-previewoutput.md)* previewOutput | 传递回调的预览输出实例。 |
 
 ### OH_PreviewOutput_OnFrameEnd()
 
@@ -82,7 +82,7 @@ typedef void (*OH_PreviewOutput_OnFrameEnd)(Camera_PreviewOutput* previewOutput,
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PreviewOutput* previewOutput | 传递回调的预览输出实例。 |
+| [Camera_PreviewOutput](capi-camera-previewoutput.md)* previewOutput | 传递回调的预览输出实例。 |
 |  int32_t frameCount | 回调传递的帧计数。 |
 
 ### OH_PreviewOutput_OnError()
@@ -102,8 +102,8 @@ typedef void (*OH_PreviewOutput_OnError)(Camera_PreviewOutput* previewOutput, Ca
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PreviewOutput* previewOutput | 传递回调的预览输出实例。 |
-|  Camera_ErrorCode errorCode | 预览输出的错误码。 |
+| [Camera_PreviewOutput](capi-camera-previewoutput.md)* previewOutput | 传递回调的预览输出实例。 |
+|  [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) errorCode | 预览输出的错误码。 |
 
 **参考：**
 
@@ -126,7 +126,7 @@ Camera_ErrorCode OH_PreviewOutput_RegisterCallback(Camera_PreviewOutput* preview
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PreviewOutput* previewOutput | 预览输出实例。 |
+| [Camera_PreviewOutput](capi-camera-previewoutput.md)* previewOutput | 预览输出实例。 |
 | [PreviewOutput_Callbacks](capi-previewoutput-callbacks.md)* callback | 要注册的预览输出更改事件回调。 |
 
 **返回：**
@@ -152,7 +152,7 @@ Camera_ErrorCode OH_PreviewOutput_UnregisterCallback(Camera_PreviewOutput* previ
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PreviewOutput* previewOutput | 预览输出实例。 |
+| [Camera_PreviewOutput](capi-camera-previewoutput.md)* previewOutput | 预览输出实例。 |
 | [PreviewOutput_Callbacks](capi-previewoutput-callbacks.md)* callback | 要注销的预览输出更改事件回调。 |
 
 **返回：**
@@ -178,7 +178,7 @@ Camera_ErrorCode OH_PreviewOutput_Start(Camera_PreviewOutput* previewOutput)
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PreviewOutput* previewOutput | 要启动的预览输出实例。 |
+| [Camera_PreviewOutput](capi-camera-previewoutput.md)* previewOutput | 要启动的预览输出实例。 |
 
 **返回：**
 
@@ -203,7 +203,7 @@ Camera_ErrorCode OH_PreviewOutput_Stop(Camera_PreviewOutput* previewOutput)
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PreviewOutput* previewOutput | 要停止的预览输出实例。 |
+| [Camera_PreviewOutput](capi-camera-previewoutput.md)* previewOutput | 要停止的预览输出实例。 |
 
 **返回：**
 
@@ -228,7 +228,7 @@ Camera_ErrorCode OH_PreviewOutput_Release(Camera_PreviewOutput* previewOutput)
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PreviewOutput* previewOutput | 要释放的预览输出实例。 |
+| [Camera_PreviewOutput](capi-camera-previewoutput.md)* previewOutput | 要释放的预览输出实例。 |
 
 **返回：**
 
@@ -253,7 +253,7 @@ Camera_ErrorCode OH_PreviewOutput_GetActiveProfile(Camera_PreviewOutput* preview
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PreviewOutput* previewOutput | 提供当前预览输出配置文件的预览输出实例。 |
+| [Camera_PreviewOutput](capi-camera-previewoutput.md)* previewOutput | 提供当前预览输出配置文件的预览输出实例。 |
 | [Camera_Profile](capi-camera-profile.md)** profile | 如果方法调用成功，将记录当前的预览输出配置文件。 |
 
 **返回：**
@@ -304,7 +304,7 @@ Camera_ErrorCode OH_PreviewOutput_GetPreviewRotation(Camera_PreviewOutput* previ
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PreviewOutput* previewOutput | 用于获取预览旋转角度的预览输出实例。 |
+| [Camera_PreviewOutput](capi-camera-previewoutput.md)* previewOutput | 用于获取预览旋转角度的预览输出实例。 |
 | int displayRotation | 当前显示的旋转角度。 |
 | [Camera_ImageRotation](capi-camera-h.md#camera_imagerotation)* imageRotation | 预览旋转角度结果。 |
 
@@ -331,7 +331,7 @@ Camera_ErrorCode OH_PreviewOutput_SetPreviewRotation(Camera_PreviewOutput* previ
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PreviewOutput* previewOutput | 用于设置预览旋转角度的预览输出实例。 |
+| [Camera_PreviewOutput](capi-camera-previewoutput.md)* previewOutput | 用于设置预览旋转角度的预览输出实例。 |
 | [Camera_ImageRotation](capi-camera-h.md#camera_imagerotation) previewRotation | 预览的显示旋转角度。 |
 | bool isDisplayLocked | 显示器状态，true表示显示器被锁定。 |
 
@@ -358,7 +358,7 @@ Camera_ErrorCode OH_PreviewOutput_GetSupportedFrameRates(Camera_PreviewOutput* p
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PreviewOutput* previewOutput | 传递支持的帧率列表的预览输出实例。 |
+| [Camera_PreviewOutput](capi-camera-previewoutput.md)* previewOutput | 传递支持的帧率列表的预览输出实例。 |
 | [Camera_FrameRateRange](capi-camera-frameraterange.md)** frameRateRange | 如果方法调用成功，将记录支持的预览输出帧率列表。 |
 | uint32_t* size | 如果方法调用成功，将记录支持的预览输出帧率列表大小。 |
 
@@ -385,7 +385,7 @@ Camera_ErrorCode OH_PreviewOutput_DeleteFrameRates(Camera_PreviewOutput* preview
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PreviewOutput* previewOutput | 预览输出实例。 |
+| [Camera_PreviewOutput](capi-camera-previewoutput.md)* previewOutput | 预览输出实例。 |
 | [Camera_FrameRateRange](capi-camera-frameraterange.md)* frameRateRange | 要删除的帧率列表。 |
 
 **返回：**
@@ -411,7 +411,7 @@ Camera_ErrorCode OH_PreviewOutput_SetFrameRate(Camera_PreviewOutput* previewOutp
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PreviewOutput* previewOutput | 要设置帧率的预览输出实例。 |
+| [Camera_PreviewOutput](capi-camera-previewoutput.md)* previewOutput | 要设置帧率的预览输出实例。 |
 | int32_t minFps | 要设置的最小值。 |
 | int32_t maxFps | 要设置的最大值。 |
 
@@ -438,7 +438,7 @@ Camera_ErrorCode OH_PreviewOutput_GetActiveFrameRate(Camera_PreviewOutput* previ
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PreviewOutput* previewOutput | 传递当前预览输出帧率的预览输出实例。 |
+| [Camera_PreviewOutput](capi-camera-previewoutput.md)* previewOutput | 传递当前预览输出帧率的预览输出实例。 |
 | [Camera_FrameRateRange](capi-camera-frameraterange.md)* frameRateRange | 如果方法调用成功，则将记录当前的[Camera_FrameRateRange](capi-camera-frameraterange.md)。 |
 
 **返回：**

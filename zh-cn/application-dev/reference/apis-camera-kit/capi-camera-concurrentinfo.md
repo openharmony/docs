@@ -18,8 +18,8 @@
 | -- | -- |
 | [Camera_Device](capi-camera-device.md) camera | 相机实例。 |
 | [Camera_ConcurrentType](capi-camera-h.md#camera_concurrenttype) type | 相机并发状态。 |
-| Camera_SceneMode* sceneModes | 相机并发支持的模式。 |
-| Camera_OutputCapability* outputCapabilities | 相机输出能力集。 |
+| [Camera_SceneMode](capi-camera-h.md#camera_scenemode)* sceneModes | 相机并发支持的模式。 |
+| [Camera_OutputCapability](capi-camera-outputcapability.md)* outputCapabilities | 相机输出能力集。 |
 | uint32_t modeAndCapabilitySize | 相机输出能力集大小。 |
 
 

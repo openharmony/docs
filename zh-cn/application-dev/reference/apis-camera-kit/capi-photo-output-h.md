@@ -21,7 +21,7 @@
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [PhotoOutput_Callbacks](capi-photooutput-callbacks.md) | PhotoOutput_Callbacks | 拍照输出的回调。 |
-| [Camera_PhotoOutput](capi-camera-photooutput.md) | Camera_PhotoOutput | 拍照输出对象。<br> 可以使用{@link OH_CameraManager_CreatePhotoOutput}方法创建指针。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md) | Camera_PhotoOutput | 拍照输出对象。<br> 可以使用[OH_CameraManager_CreatePhotoOutput](capi-camera-manager-h.md#oh_cameramanager_createphotooutput)方法创建指针。 |
 
 ### 函数
 
@@ -55,7 +55,7 @@
 | [Camera_ErrorCode OH_PhotoOutput_UnregisterPhotoAvailableCallback(Camera_PhotoOutput* photoOutput,OH_PhotoOutput_PhotoAvailable callback)](#oh_photooutput_unregisterphotoavailablecallback) | - | 注销输出照片可用回调。 |
 | [Camera_ErrorCode OH_PhotoOutput_RegisterPhotoAssetAvailableCallback(Camera_PhotoOutput* photoOutput,OH_PhotoOutput_PhotoAssetAvailable callback)](#oh_photooutput_registerphotoassetavailablecallback) | - | 注册输出照片资源可用回调。 |
 | [Camera_ErrorCode OH_PhotoOutput_UnregisterPhotoAssetAvailableCallback(Camera_PhotoOutput* photoOutput,OH_PhotoOutput_PhotoAssetAvailable callback)](#oh_photooutput_unregisterphotoassetavailablecallback) | - | 注销输出照片资源可用回调。 |
-| [Camera_ErrorCode OH_PhotoOutput_Capture(Camera_PhotoOutput* photoOutput)](#oh_photooutput_capture) | - | 拍摄照片。<br> 必须在{@link OH_PreviewOutput_Release}之前调用，否则会导致无法拍照。 |
+| [Camera_ErrorCode OH_PhotoOutput_Capture(Camera_PhotoOutput* photoOutput)](#oh_photooutput_capture) | - | 拍摄照片。<br> 必须在[OH_PreviewOutput_Release](capi-preview-output-h.md#oh_previewoutput_release)之前调用，否则会导致无法拍照。 |
 | [Camera_ErrorCode OH_PhotoOutput_Capture_WithCaptureSetting(Camera_PhotoOutput* photoOutput,Camera_PhotoCaptureSetting setting)](#oh_photooutput_capture_withcapturesetting) | - | 使用捕获设置捕获拍照。 |
 | [Camera_ErrorCode OH_PhotoOutput_Release(Camera_PhotoOutput* photoOutput)](#oh_photooutput_release) | - | 释放拍照输出。 |
 | [Camera_ErrorCode OH_PhotoOutput_IsMirrorSupported(Camera_PhotoOutput* photoOutput, bool* isSupported)](#oh_photooutput_ismirrorsupported) | - | 检查是否支持镜像拍照。 |
@@ -84,7 +84,7 @@ typedef void (*OH_PhotoOutput_OnFrameStart)(Camera_PhotoOutput* photoOutput)
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 传递回调的拍照输出实例。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 传递回调的拍照输出实例。 |
 
 ### OH_PhotoOutput_OnFrameShutter()
 
@@ -103,8 +103,8 @@ typedef void (*OH_PhotoOutput_OnFrameShutter)(Camera_PhotoOutput* photoOutput, C
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 传递回调的拍照输出实例。 |
-|  Camera_FrameShutterInfo* info | 回调传递的帧快门回调信息。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 传递回调的拍照输出实例。 |
+| [Camera_FrameShutterInfo](capi-camera-frameshutterinfo.md)* info | 回调传递的帧快门回调信息。 |
 
 ### OH_PhotoOutput_OnFrameEnd()
 
@@ -123,7 +123,7 @@ typedef void (*OH_PhotoOutput_OnFrameEnd)(Camera_PhotoOutput* photoOutput, int32
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 传递回调的拍照输出实例。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 传递回调的拍照输出实例。 |
 |  int32_t frameCount | 回调传递的帧计数。 |
 
 ### OH_PhotoOutput_OnError()
@@ -143,8 +143,8 @@ typedef void (*OH_PhotoOutput_OnError)(Camera_PhotoOutput* photoOutput, Camera_E
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 传递回调的拍照输出实例。 |
-|  Camera_ErrorCode errorCode | 拍照输出的错误码。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 传递回调的拍照输出实例。 |
+|  [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) errorCode | 拍照输出的错误码。 |
 
 **参考：**
 
@@ -167,7 +167,7 @@ typedef void (*OH_PhotoOutput_CaptureEnd)(Camera_PhotoOutput* photoOutput, int32
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 传递回调的拍照输出实例。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 传递回调的拍照输出实例。 |
 |  int32_t frameCount | 回调传递的帧数。 |
 
 ### OH_PhotoOutput_CaptureStartWithInfo()
@@ -187,8 +187,8 @@ typedef void (*OH_PhotoOutput_CaptureStartWithInfo)(Camera_PhotoOutput* photoOut
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 传递回调的拍照输出实例。 |
-|  Camera_CaptureStartInfo* Info | 回调传递的拍照开始信息。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 传递回调的拍照输出实例。 |
+|  [Camera_CaptureStartInfo](capi-camera-capturestartinfo.md)* Info | 回调传递的拍照开始信息。 |
 
 ### OH_PhotoOutput_OnFrameShutterEnd()
 
@@ -207,8 +207,8 @@ typedef void (*OH_PhotoOutput_OnFrameShutterEnd)(Camera_PhotoOutput* photoOutput
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 传递回调的拍照输出实例。 |
-|  Camera_FrameShutterInfo* Info | 回调传递的帧快门回调信息。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 传递回调的拍照输出实例。 |
+| [Camera_FrameShutterInfo](capi-camera-frameshutterinfo.md)* info | 回调传递的帧快门回调信息。 |
 
 ### OH_PhotoOutput_CaptureReady()
 
@@ -227,7 +227,7 @@ typedef void (*OH_PhotoOutput_CaptureReady)(Camera_PhotoOutput* photoOutput)
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 传递回调的拍照输出实例。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 传递回调的拍照输出实例。 |
 
 ### OH_PhotoOutput_EstimatedCaptureDuration()
 
@@ -246,7 +246,7 @@ typedef void (*OH_PhotoOutput_EstimatedCaptureDuration)(Camera_PhotoOutput* phot
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 传递回调的拍照输出实例。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 传递回调的拍照输出实例。 |
 |  int64_t duration | 回调传递的预计拍照时间。 |
 
 ### OH_PhotoOutput_PhotoAvailable()
@@ -266,8 +266,8 @@ typedef void (*OH_PhotoOutput_PhotoAvailable)(Camera_PhotoOutput* photoOutput, O
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 传递回调的拍照输出实例。 |
-|  OH_PhotoNative* photo | 回调传递的OH_PhotoNative。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 传递回调的拍照输出实例。 |
+|  [OH_PhotoNative](capi-oh-photonative.md)* photo | 回调传递的OH_PhotoNative。 |
 
 ### OH_PhotoOutput_PhotoAssetAvailable()
 
@@ -286,8 +286,8 @@ typedef void (*OH_PhotoOutput_PhotoAssetAvailable)(Camera_PhotoOutput* photoOutp
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 传递回调的拍照输出实例。 |
-|  OH_MediaAsset* photoAsset | 回调传递的媒体资源。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 传递回调的拍照输出实例。 |
+|  [OH_MediaAsset](../apis-media-library-kit/capi-oh-mediaasset.md)* photoAsset | 回调传递的媒体资源。 |
 
 ### OH_PhotoOutput_RegisterCallback()
 
@@ -306,7 +306,7 @@ Camera_ErrorCode OH_PhotoOutput_RegisterCallback(Camera_PhotoOutput* photoOutput
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 拍照输出实例。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 拍照输出实例。 |
 | [PhotoOutput_Callbacks](capi-photooutput-callbacks.md)* callback | 要注册的拍照输出更改事件回调。 |
 
 **返回：**
@@ -332,7 +332,7 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterCallback(Camera_PhotoOutput* photoOutp
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 拍照输出实例。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 拍照输出实例。 |
 | [PhotoOutput_Callbacks](capi-photooutput-callbacks.md)* callback | 要注销的拍照输出更改事件回调。 |
 
 **返回：**
@@ -358,8 +358,8 @@ Camera_ErrorCode OH_PhotoOutput_RegisterCaptureStartWithInfoCallback(Camera_Phot
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 拍照输出实例。 |
-| [OH_PhotoOutput_CaptureStartWithInfo](capi-photo-output-h.md#oh_photooutput_capturestartwithinfo) callback | 要注册的拍照开始事件回调。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 拍照输出实例。 |
+| [OH_PhotoOutput_CaptureStartWithInfo](#oh_photooutput_capturestartwithinfo) callback | 要注册的拍照开始事件回调。 |
 
 **返回：**
 
@@ -384,7 +384,7 @@ Camera_ErrorCode OH_PhotoOutput_GetPhotoRotation(Camera_PhotoOutput* photoOutput
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 用于获取照片旋转角度的拍照输出实例。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 用于获取照片旋转角度的拍照输出实例。 |
 | int deviceDegree | 当前设备旋转角度。 |
 | [Camera_ImageRotation](capi-camera-h.md#camera_imagerotation)* imageRotation | 照片旋转角度的结果。 |
 
@@ -411,8 +411,8 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterCaptureStartWithInfoCallback(Camera_Ph
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 拍照输出实例。 |
-| [OH_PhotoOutput_CaptureStartWithInfo](capi-photo-output-h.md#oh_photooutput_capturestartwithinfo) callback | 要注销的拍照开始事件回调。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 拍照输出实例。 |
+| [OH_PhotoOutput_CaptureStartWithInfo](#oh_photooutput_capturestartwithinfo) callback | 要注销的拍照开始事件回调。 |
 
 **返回：**
 
@@ -437,8 +437,8 @@ Camera_ErrorCode OH_PhotoOutput_RegisterCaptureEndCallback(Camera_PhotoOutput* p
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 拍照输出实例。 |
-| [OH_PhotoOutput_CaptureEnd](capi-photo-output-h.md#oh_photooutput_captureend) callback | 要注册的拍照结束事件回调。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 拍照输出实例。 |
+| [OH_PhotoOutput_CaptureEnd](#oh_photooutput_captureend) callback | 要注册的拍照结束事件回调。 |
 
 **返回：**
 
@@ -463,8 +463,8 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterCaptureEndCallback(Camera_PhotoOutput*
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 拍照输出实例。 |
-| [OH_PhotoOutput_CaptureEnd](capi-photo-output-h.md#oh_photooutput_captureend) callback | 要注销的拍照结束事件回调。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 拍照输出实例。 |
+| [OH_PhotoOutput_CaptureEnd](#oh_photooutput_captureend) callback | 要注销的拍照结束事件回调。 |
 
 **返回：**
 
@@ -489,8 +489,8 @@ Camera_ErrorCode OH_PhotoOutput_RegisterFrameShutterEndCallback(Camera_PhotoOutp
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 拍照输出实例。 |
-| [OH_PhotoOutput_OnFrameShutterEnd](capi-photo-output-h.md#oh_photooutput_onframeshutterend) callback | 要注册的拍照曝光结束事件回调。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 拍照输出实例。 |
+| [OH_PhotoOutput_OnFrameShutterEnd](#oh_photooutput_onframeshutterend) callback | 要注册的拍照曝光结束事件回调。 |
 
 **返回：**
 
@@ -515,8 +515,8 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterFrameShutterEndCallback(Camera_PhotoOu
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 拍照输出实例。 |
-| [OH_PhotoOutput_OnFrameShutterEnd](capi-photo-output-h.md#oh_photooutput_onframeshutterend) callback | 要注销的拍照曝光结束事件回调。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 拍照输出实例。 |
+| [OH_PhotoOutput_OnFrameShutterEnd](#oh_photooutput_onframeshutterend) callback | 要注销的拍照曝光结束事件回调。 |
 
 **返回：**
 
@@ -541,8 +541,8 @@ Camera_ErrorCode OH_PhotoOutput_RegisterCaptureReadyCallback(Camera_PhotoOutput*
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 拍照输出实例。 |
-| [OH_PhotoOutput_CaptureReady](capi-photo-output-h.md#oh_photooutput_captureready) callback | 要注册的拍照就绪事件回调。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 拍照输出实例。 |
+| [OH_PhotoOutput_CaptureReady](#oh_photooutput_captureready) callback | 要注册的拍照就绪事件回调。 |
 
 **返回：**
 
@@ -567,8 +567,8 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterCaptureReadyCallback(Camera_PhotoOutpu
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 拍照输出实例。 |
-| [OH_PhotoOutput_CaptureReady](capi-photo-output-h.md#oh_photooutput_captureready) callback | 要注销的拍照就绪事件回调。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 拍照输出实例。 |
+| [OH_PhotoOutput_CaptureReady](#oh_photooutput_captureready) callback | 要注销的拍照就绪事件回调。 |
 
 **返回：**
 
@@ -593,8 +593,8 @@ Camera_ErrorCode OH_PhotoOutput_RegisterEstimatedCaptureDurationCallback(Camera_
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 拍照输出实例。 |
-| [OH_PhotoOutput_EstimatedCaptureDuration](capi-photo-output-h.md#oh_photooutput_estimatedcaptureduration) callback | 要注册的预计拍照时间事件回调。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 拍照输出实例。 |
+| [OH_PhotoOutput_EstimatedCaptureDuration](#oh_photooutput_estimatedcaptureduration) callback | 要注册的预计拍照时间事件回调。 |
 
 **返回：**
 
@@ -619,8 +619,8 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterEstimatedCaptureDurationCallback(Camer
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 拍照输出实例。 |
-| [OH_PhotoOutput_EstimatedCaptureDuration](capi-photo-output-h.md#oh_photooutput_estimatedcaptureduration) callback | 要注销的预计拍照时间事件回调。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 拍照输出实例。 |
+| [OH_PhotoOutput_EstimatedCaptureDuration](#oh_photooutput_estimatedcaptureduration) callback | 要注销的预计拍照时间事件回调。 |
 
 **返回：**
 
@@ -645,8 +645,8 @@ Camera_ErrorCode OH_PhotoOutput_RegisterPhotoAvailableCallback(Camera_PhotoOutpu
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 拍照输出实例。 |
-| [OH_PhotoOutput_PhotoAvailable](capi-photo-output-h.md#oh_photooutput_photoavailable) callback | 要注册的输出照片可用回调。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 拍照输出实例。 |
+| [OH_PhotoOutput_PhotoAvailable](#oh_photooutput_photoavailable) callback | 要注册的输出照片可用回调。 |
 
 **返回：**
 
@@ -671,8 +671,8 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterPhotoAvailableCallback(Camera_PhotoOut
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 拍照输出实例。 |
-| [OH_PhotoOutput_PhotoAvailable](capi-photo-output-h.md#oh_photooutput_photoavailable) callback | 要注销的输出照片可用回调。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 拍照输出实例。 |
+| [OH_PhotoOutput_PhotoAvailable](#oh_photooutput_photoavailable) callback | 要注销的输出照片可用回调。 |
 
 **返回：**
 
@@ -697,8 +697,8 @@ Camera_ErrorCode OH_PhotoOutput_RegisterPhotoAssetAvailableCallback(Camera_Photo
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 拍照输出实例。 |
-| [OH_PhotoOutput_PhotoAssetAvailable](capi-photo-output-h.md#oh_photooutput_photoassetavailable) callback | 要注册的输出照片资源可用回调。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 拍照输出实例。 |
+| [OH_PhotoOutput_PhotoAssetAvailable](#oh_photooutput_photoassetavailable) callback | 要注册的输出照片资源可用回调。 |
 
 **返回：**
 
@@ -723,8 +723,8 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterPhotoAssetAvailableCallback(Camera_Pho
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 拍照输出实例。 |
-| [OH_PhotoOutput_PhotoAssetAvailable](capi-photo-output-h.md#oh_photooutput_photoassetavailable) callback | 要注销的输出照片资源可用回调。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 拍照输出实例。 |
+| [OH_PhotoOutput_PhotoAssetAvailable](#oh_photooutput_photoassetavailable) callback | 要注销的输出照片资源可用回调。 |
 
 **返回：**
 
@@ -740,7 +740,7 @@ Camera_ErrorCode OH_PhotoOutput_Capture(Camera_PhotoOutput* photoOutput)
 
 **描述**
 
-拍摄照片。<br> 必须在{@link OH_PreviewOutput_Release}之前调用，否则会导致无法拍照。
+拍摄照片。<br> 必须在[OH_PreviewOutput_Release](capi-preview-output-h.md#oh_previewoutput_release)之前调用，否则会导致无法拍照。
 
 **起始版本：** 11
 
@@ -749,7 +749,7 @@ Camera_ErrorCode OH_PhotoOutput_Capture(Camera_PhotoOutput* photoOutput)
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 用于捕获拍照的拍照输出实例。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 用于捕获拍照的拍照输出实例。 |
 
 **返回：**
 
@@ -774,7 +774,7 @@ Camera_ErrorCode OH_PhotoOutput_Capture_WithCaptureSetting(Camera_PhotoOutput* p
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 用于捕获拍照的拍照输出实例。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 用于捕获拍照的拍照输出实例。 |
 | [Camera_PhotoCaptureSetting](capi-camera-photocapturesetting.md) setting | 用于捕获拍照的[Camera_PhotoCaptureSetting](capi-camera-photocapturesetting.md)。 |
 
 **返回：**
@@ -800,7 +800,7 @@ Camera_ErrorCode OH_PhotoOutput_Release(Camera_PhotoOutput* photoOutput)
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 要释放的拍照输出实例。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 要释放的拍照输出实例。 |
 
 **返回：**
 
@@ -825,7 +825,7 @@ Camera_ErrorCode OH_PhotoOutput_IsMirrorSupported(Camera_PhotoOutput* photoOutpu
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 拍照输出实例，用于检查是否支持镜像。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 拍照输出实例，用于检查是否支持镜像。 |
 | bool* isSupported | 是否支持镜像的结果。 |
 
 **返回：**
@@ -851,7 +851,7 @@ Camera_ErrorCode OH_PhotoOutput_EnableMirror(Camera_PhotoOutput* photoOutput, bo
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 拍照输出实例，用于确认是否启用镜像拍照。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 拍照输出实例，用于确认是否启用镜像拍照。 |
 | bool enabled | 是否启用动态照片镜像拍照的结果，true为开启动态照片镜像拍照，false为关闭动态照片镜像拍照。 |
 
 **返回：**
@@ -877,7 +877,7 @@ Camera_ErrorCode OH_PhotoOutput_GetActiveProfile(Camera_PhotoOutput* photoOutput
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 传递当前配置文件的拍照输出实例。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 传递当前配置文件的拍照输出实例。 |
 | [Camera_Profile](capi-camera-profile.md)** profile | 如果方法调用成功，将记录照片输出配置文件。 |
 
 **返回：**
@@ -928,7 +928,7 @@ Camera_ErrorCode OH_PhotoOutput_IsMovingPhotoSupported(Camera_PhotoOutput* photo
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 用于检查是否支持动态照片的拍照输出实例。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 用于检查是否支持动态照片的拍照输出实例。 |
 | bool* isSupported | 是否支持动态照片的结果。 |
 
 **返回：**
@@ -956,7 +956,7 @@ Camera_ErrorCode OH_PhotoOutput_EnableMovingPhoto(Camera_PhotoOutput* photoOutpu
 
 | 参数项 | 描述 |
 | -- | -- |
-| Camera_PhotoOutput* photoOutput | 用于启用或禁用动态照片的拍照输出实例。 |
+| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 用于启用或禁用动态照片的拍照输出实例。 |
 | bool enabled | 是否启用动态照片。 |
 
 **返回：**

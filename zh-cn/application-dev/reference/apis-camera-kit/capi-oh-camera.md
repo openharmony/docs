@@ -4,9 +4,24 @@
 
 为相机模块提供C接口的定义。
 
+开发者可根据实际的开发需求，参考对应的开发指南及样例：
+
+- [相机管理](../../media/camera/native-camera-device-management.md)
+- [设备输入](../../media/camera/native-camera-device-input.md)
+- [会话管理](../../media/camera/native-camera-session-management.md)
+- [预览](../../media/camera/native-camera-preview.md)
+- [预览流二次处理](../../media/camera/native-camera-preview-imageReceiver.md)
+- [拍照](../../media/camera/native-camera-shooting.md)
+- [分段式拍照](../../media/camera/native-camera-deferred-capture.md)
+- [录像](../../media/camera/native-camera-recording.md)
+- [元数据](../../media/camera/native-camera-metadata.md)
+- [手电筒使用](../../media/camera/native-camera-torch-use.md)
+<!--RP1--><!--RP1End-->
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **起始版本：** 11
+
 ## 文件汇总
 
 | 名称 | 描述 |
