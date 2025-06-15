@@ -18,7 +18,9 @@ ShareExtensionAbility继承自[UIExtensionAbility](js-apis-app-ability-uiExtensi
 import { ShareExtensionAbility } from '@kit.AbilityKit';
 ```
 
-## 属性
+## ShareExtensionAbility
+
+### 属性
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -26,7 +28,7 @@ import { ShareExtensionAbility } from '@kit.AbilityKit';
 | -------- | -------- | -------- | -------- | -------- |
 | context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | 否 | 是 | 上下文。 |
 
-## ShareExtensionAbility.onCreate
+### onCreate
 
 onCreate(): void
 
@@ -38,7 +40,7 @@ ShareExtensionAbility创建时回调，执行初始化业务逻辑操作。
 
 参见[创建ShareExtensionAbility](#创建shareextensionability)。
 
-## ShareExtensionAbility.onSessionCreate
+### onSessionCreate
 
 onSessionCreate(want: Want, session: UIExtensionContentSession): void
 
@@ -57,7 +59,7 @@ onSessionCreate(want: Want, session: UIExtensionContentSession): void
 
 参见[创建ShareExtensionAbility](#创建shareextensionability)。
 
-## ShareExtensionAbility.onForeground
+### onForeground
 
 onForeground(): void
 
@@ -69,7 +71,7 @@ ShareExtensionAbility生命周期回调，当ShareExtensionAbility从后台转�
 
 参见[创建ShareExtensionAbility](#创建shareextensionability)。
 
-## ShareExtensionAbility.onBackground
+### onBackground
 
 onBackground(): void
 
@@ -81,7 +83,7 @@ ShareExtensionAbility生命周期回调，当ShareExtensionAbility从前台转�
 
 参见[创建ShareExtensionAbility](#创建shareextensionability)。
 
-## ShareExtensionAbility.onSessionDestroy
+### onSessionDestroy
 
 onSessionDestroy(session: UIExtensionContentSession): void
 
@@ -99,7 +101,7 @@ onSessionDestroy(session: UIExtensionContentSession): void
 
 参见[创建ShareExtensionAbility](#创建shareextensionability)。
 
-## ShareExtensionAbility.onDestroy
+### onDestroy
 
 onDestroy(): void | Promise&lt;void&gt;
 
