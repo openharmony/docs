@@ -75,7 +75,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 1. 建立检索条件，用于获取图片资源。
 2. 调用[PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-1)接口获取图片资源。
 3. 调用[FetchResult.getFirstObject](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一张图片。
-4. 调用PhotoAsset.getThumbnail获取图片的缩略图的[PixelMap](../../reference/apis-image-kit/js-apis-image.md#pixelmap7)。
+4. 调用PhotoAsset.getThumbnail获取图片的缩略图的[PixelMap](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md)。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';

@@ -695,13 +695,13 @@ getThumbnail(size?: image.Size): Promise&lt;image.PixelMap&gt;
 
 | 参数名 | 类型                                                  | 必填 | 说明         |
 | ------ | ----------------------------------------------------- | ---- | ------------ |
-| size   | [image.Size](../apis-image-kit/js-apis-image.md#size) | 否   | 缩略图尺寸。 |
+| size   | [image.Size](../apis-image-kit/arkts-apis-image-i.md#size) | 否   | 缩略图尺寸。 |
 
 **返回值：**
 
 | 类型                                                         | 说明                                |
 | ------------------------------------------------------------ | ----------------------------------- |
-| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise对象，返回缩略图的PixelMap。 |
+| Promise&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Promise对象，返回缩略图的PixelMap。 |
 
 **错误码：**
 

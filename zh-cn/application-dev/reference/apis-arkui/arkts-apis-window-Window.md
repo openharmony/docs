@@ -5351,7 +5351,7 @@ snapshot(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 | 参数名      | 类型                      | 必填 | 说明                 |
 | ----------- | ------------------------- | ---- | -------------------- |
-| callback    | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 回调函数。  |
+| callback    | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是   | 回调函数。  |
 
 **错误码：**
 
@@ -5392,7 +5392,7 @@ snapshot(): Promise&lt;image.PixelMap&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise对象。返回当前窗口截图。 |
+| Promise&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Promise对象。返回当前窗口截图。 |
 
 **错误码：**
 
@@ -5431,7 +5431,7 @@ Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIConten
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 返回当前窗口截图。 |
+| [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 返回当前窗口截图。 |
 
 **错误码：**
 
@@ -5472,7 +5472,7 @@ snapshotIgnorePrivacy(): Promise&lt;image.PixelMap&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise对象。返回当前窗口截图。 |
+| Promise&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Promise对象。返回当前窗口截图。 |
 
 **错误码：**
 

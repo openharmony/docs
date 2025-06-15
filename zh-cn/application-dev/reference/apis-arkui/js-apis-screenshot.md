@@ -50,7 +50,7 @@ import { screenshot } from '@kit.ArkUI';
 | 名称                 | 类型          | 必填 | 说明                                                         |
 | -------------------- | ------------- | ---- | ------------------------------------------------------------ |
 | pickRect             | [Rect](#rect) | 是   | 表示截取图像的区域。                       |
-| pixelMap             | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | 是   | 表示截取的图像PixelMap对象。 |
+| pixelMap             | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)  | 是   | 表示截取的图像PixelMap对象。 |
 
 ## screenshot.pick
 
@@ -119,7 +119,7 @@ capture(options?: CaptureOption): Promise&lt;image.PixelMap&gt;
 
 | 类型                          | 说明                                            |
 | ----------------------------- | ----------------------------------------------- |
-| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise对象。返回一个PixelMap对象。 |
+| Promise&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Promise对象。返回一个PixelMap对象。 |
 
 **错误码：**
 

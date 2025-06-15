@@ -1,8 +1,24 @@
 # Image Kit（图片处理服务）
 
 - ArkTS API<!--image-arkts-->
-  - [@ohos.multimedia.image (图片处理)](js-apis-image.md)
+  - @ohos.multimedia.image (图片处理)<!--js-apis-image-->
+    - [模块描述](arkts-apis-image.md)
+    - [Functions](arkts-apis-image-f.md)
+    - [Interface (AuxiliaryPicture)](arkts-apis-image-AuxiliaryPicture.md)
+    - [Interface (Image)](arkts-apis-image-Image.md)
+    - [Interface (ImageCreator)](arkts-apis-image-ImageCreator.md)
+    - [Interface (ImagePacker)](arkts-apis-image-ImagePacker.md)
+    - [Interface (ImageReceiver)](arkts-apis-image-ImageReceiver.md)
+    - [Interface (ImageSource)](arkts-apis-image-ImageSource.md)
+    - [Interface (Metadata)](arkts-apis-image-Metadata.md)
+    - [Interface (Picture)](arkts-apis-image-Picture.md)
+    - [Interface (PixelMap)](arkts-apis-image-PixelMap.md)
+    - [Interfaces (其他)](arkts-apis-image-i.md)
+    - [Enums](arkts-apis-image-e.md)
+    - [Types](arkts-apis-image-t.md)
+    - [SVG标签说明](arkts-apis-image-svg-tag.md)
   - [@ohos.multimedia.sendableImage (基于Sendable对象的图片处理)](js-apis-sendableImage.md)
+  - [@ohos.multimedia.videoProcessingEngine (视频处理引擎)](js-apis-videoProcessingEngine.md)
   <!--Del-->
   - [@ohos.multimedia.image (图片处理)(系统接口)](js-apis-image-sys.md)
   <!--DelEnd-->
@@ -96,3 +112,4 @@
     - [OH_ImageProcessing](capi-oh-imageprocessing.md)
 - 错误码<!--image-arkts-errcode-->
   - [Image错误码](errorcode-image.md)
+  - [视频处理引擎错误码](errorcode-videoprocessingengine.md)

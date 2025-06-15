@@ -423,7 +423,7 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| favicon | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 接收到的favicon图标的PixelMap对象。 |
+| favicon | [PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是 | 接收到的favicon图标的PixelMap对象。 |
 
 ## OnPageVisibleEvent<sup>12+</sup>
 

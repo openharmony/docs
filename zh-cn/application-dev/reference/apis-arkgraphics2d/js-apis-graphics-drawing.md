@@ -1629,7 +1629,7 @@ constructor(pixelmap: image.PixelMap)
 
 | 参数名   | 类型                                         | 必填 | 说明           |
 | -------- | -------------------------------------------- | ---- | -------------- |
-| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 构造函数入参。 |
+| pixelmap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是   | 构造函数入参。 |
 
 **错误码：**
 
@@ -2092,7 +2092,7 @@ drawImage(pixelmap: image.PixelMap, left: number, top: number, samplingOptions?:
 
 | 参数名   | 类型                                         | 必填 | 说明                            |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
-| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 图片的PixelMap。                  |
+| pixelmap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是   | 图片的PixelMap。                  |
 | left     | number                                       | 是   | 图片位置的左上角x轴坐标，该参数为浮点数。 |
 | top      | number                                       | 是   | 图片位置的左上角y轴坐标，该参数为浮点数。 |
 | samplingOptions<sup>12+</sup>  | [SamplingOptions](#samplingoptions12)  | 否  | 采样选项对象，默认为不使用任何参数构造的原始采样选项对象。 |
@@ -2137,7 +2137,7 @@ drawImageRect(pixelmap: image.PixelMap, dstRect: common2D.Rect, samplingOptions?
 
 | 参数名   | 类型                                         | 必填 | 说明                            |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
-| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 图片的PixelMap。                 |
+| pixelmap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是   | 图片的PixelMap。                 |
 | dstRect     | [common2D.Rect](js-apis-graphics-common2D.md#rect)                               | 是   | 矩形对象，用于指定画布上图片的绘制区域。 |
 | samplingOptions     | [SamplingOptions](#samplingoptions12)                           | 否   | 采样选项对象，默认为不使用任何参数构造的原始采样选项对象。 |
 
@@ -2181,7 +2181,7 @@ drawImageRectWithSrc(pixelmap: image.PixelMap, srcRect: common2D.Rect, dstRect: 
 
 | 参数名   | 类型                                         | 必填 | 说明                            |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
-| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 图片的PixelMap。                 |
+| pixelmap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是   | 图片的PixelMap。                 |
 | srcRect     | [common2D.Rect](js-apis-graphics-common2D.md#rect)                               | 是   | 矩形对象，用于指定图片的待绘制区域。 |
 | dstRect     | [common2D.Rect](js-apis-graphics-common2D.md#rect)                               | 是   | 矩形对象，用于指定画布上图片的绘制区域。 |
 | samplingOptions     | [SamplingOptions](#samplingoptions12)                           | 否   | 采样选项对象，默认为不使用任何参数构造的原始采样选项对象。 |
@@ -2348,7 +2348,7 @@ drawPixelMapMesh(pixelmap: image.PixelMap, meshWidth: number, meshHeight: number
 
 | 参数名      | 类型            | 必填 | 说明                            |
 | ----------- | -------------  | ---- | ------------------------------- |
-| pixelmap    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 用于绘制网格的像素图。 |
+| pixelmap    | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是   | 用于绘制网格的像素图。 |
 | meshWidth   | number         | 是   | 网格中的列数，大于0的整数。 |
 | meshHeight  | number         | 是   | 网格中的行数，大于0的整数。 |
 | vertices    | Array\<number> | 是   | 顶点数组，指定网格的绘制位置，浮点数组，大小必须为((meshWidth+1) * (meshHeight+1) + vertOffset) * 2。 |
@@ -3859,7 +3859,7 @@ drawImageNine(pixelmap: image.PixelMap, center: common2D.Rect, dstRect: common2D
 
 | 参数名 | 类型    | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| pixelmap   | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 用于绘制网格的像素图。 |
+| pixelmap   | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是   | 用于绘制网格的像素图。 |
 | center    | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 分割图像的中心矩形。矩形四条边所在的直线将图像分成了9个部分。 |
 | dstRect  | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 在画布上绘制的目标矩形区域。 |
 | filterMode | [FilterMode](#filtermode12) | 是   | 过滤模式。 |
@@ -3907,7 +3907,7 @@ drawImageLattice(pixelmap: image.PixelMap, lattice: Lattice, dstRect: common2D.R
 
 | 参数名 | 类型    | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| pixelmap   | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 用于绘制网格的像素图。 |
+| pixelmap   | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是   | 用于绘制网格的像素图。 |
 | lattice  | [Lattice](#lattice12) | 是   | 矩形网格对象。 |
 | dstRect    | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 目标矩形区域。 |
 | filterMode | [FilterMode](#filtermode12) | 是   | 过滤模式。 |
@@ -3998,7 +3998,7 @@ static createFromImage(pixelmap: image.PixelMap, srcRect?: common2D.Rect | null,
 
 | 参数名          | 类型    | 必填 | 说明                                                        |
 | --------------- | ------- | ---- | ----------------------------------------------------------- |
-| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | 是   | 图片对象。 |
+| pixelmap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)  | 是   | 图片对象。 |
 | srcRect      | [common2D.Rect](js-apis-graphics-common2D.md#rect) \| null           | 否   | 可选参数，默认为空。图片要被此滤波器使用的像素区域，如果为空，则使用pixelmap全部区域。 |
 | dstRect      | [common2D.Rect](js-apis-graphics-common2D.md#rect) \| null           | 否   | 可选参数，默认为空。要进行渲染的区域，如果为空，则和srcRect保持一致。 |
 
@@ -10439,7 +10439,7 @@ static createImageShader(pixelmap: image.PixelMap, tileX: TileMode, tileY: TileM
 
 | 参数名 | 类型                                               | 必填 | 说明           |
 | ------ | -------------------------------------------------- | ---- | -------------- |
-| pixelmap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | 是   | 进行采样的图片对象。 |
+| pixelmap  | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)  | 是   | 进行采样的图片对象。 |
 | tileX   | [TileMode](#tilemode12)  | 是   | 水平方向的平铺模式。 |
 | tileY   | [TileMode](#tilemode12)  | 是   | 竖直方向的平铺模式。 |
 | samplingOptions     | [SamplingOptions](#samplingoptions12)                           | 是   | 图片采样参数。 |
