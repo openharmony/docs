@@ -33,7 +33,7 @@
   <!--Del--> 
   - [卡片使用方开发指导（仅对系统应用开放）](widget-host-development-guide.md)
   <!--DelEnd-->
-- JS卡片开发
+- JS卡片开发<!--form-js-ui-->
   - [JS卡片概述](js-ui-widget-overview.md)
   - [JS卡片开发指导（Stage模型）](js-ui-widget-development.md)
   - [JS卡片开发指导（FA模型）](widget-development-fa.md)
