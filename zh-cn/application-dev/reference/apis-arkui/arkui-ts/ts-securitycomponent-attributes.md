@@ -416,7 +416,7 @@ align(alignType: Alignment): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| alignType | [Alignment](ts-appendix-enums.md#alignment) |是 |安全控件图标文本的对齐方式，图标文本作为整体在控件背托范围内进行对齐，UX显示受[padding](ts-securitycomponent-attributes.md#padding)影响，在padding生效的基础上进行指定方式对齐。<br/>默认值：Alignment.Center。|
+| alignType | [Alignment](ts-appendix-enums.md#alignment) |是 |安全控件图标文本的对齐方式。图标文本作为整体在控件背托范围内进行对齐，UX显示受[padding](ts-securitycomponent-attributes.md#padding)影响，在padding生效的基础上进行指定方式对齐。<br/>默认值：Alignment.Center。|
 
 **返回值：**
 
