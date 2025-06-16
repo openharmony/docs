@@ -34,11 +34,12 @@
   - [E类加密数据库的使用](encrypted_estore_guidelines.md)
 - 跨应用数据共享<!--cross-app-data-share-->
   - [跨应用数据共享概述](data-share-overview.md)
-  <!--Del-->
-  - 一对多跨应用数据共享（仅对系统应用开放）<!--one-to-many-data-share-->
-    - [通过DataShareExtensionAbility实现数据共享](share-data-by-datashareextensionability.md)
-    - [通过数据管理服务实现数据共享静默访问](share-data-by-silent-access.md)
-  <!--DelEnd-->
+  - 一对多跨应用数据共享<!--one-to-many-data-share-->
+    <!--Del-->
+    - [通过DataShareExtensionAbility实现数据共享（仅对系统应用开放）](share-data-by-datashareextensionability.md)
+    - [通过数据管理服务实现数据共享静默访问（仅对系统应用开放）](share-data-by-silent-access.md)
+    <!--DelEnd-->
+    - [应用间配置共享](share-config.md)
   - 多对多跨应用数据共享<!--many-to-many-data-share-->
     - [通过标准化数据通路实现数据共享 (ArkTS)](unified-data-channels.md)
     - [通过标准化数据通路实现数据共享 (C/C++)](unified-data-channels-c.md)
