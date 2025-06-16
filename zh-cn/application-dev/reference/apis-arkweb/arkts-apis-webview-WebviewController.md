@@ -687,7 +687,7 @@ struct WebComponent {
 
 backward(): void
 
-按照历史栈，后退一个页面。一般结合[accessBackward](accessbackward)一起使用。
+按照历史栈，后退一个页面。一般结合[accessBackward](arkts-apis-webview-WebviewController.md#accessbackward)一起使用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
