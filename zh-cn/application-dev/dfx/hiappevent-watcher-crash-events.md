@@ -78,18 +78,18 @@
 
 | 名称    | 类型   | 说明                       |
 | ------- | ------ | ------------------------- |
-| file | string | 文件名称。也可能是匿名内存映射，例如 [heap]、[stack] 等。 |
+| file | string | 文件名称。|
 | symbol | string | 函数名称。**名称长度超过256字节时将被删除，防止超长字符串引起未知问题。** |
 | buildId | string | 文件唯一标识。**文件可能没有buildId，请参考[CppCrash分析指南崩溃日志内容说明](cppcrash-guidelines.md#崩溃日志内容说明)**。 |
-| pc | string | 在文件内的偏移字节数。 |
-| offset | number | 在函数内偏移字节数。 |
+| pc | string | 程序执行的指令在文件内的偏移十六进制字节数。 |
+| offset | number | 程序执行的指令在函数内偏移字节数。|
 
 #### Js帧frame字段说明
 
 | 名称    | 类型   | 说明                       |
 | ------- | ------ | ------------------------- |
 | file | string | 文件名。 |
-| packageName | string | 模块包名。 |
-| symbol | string | 函数名。 |
+| packageName | string | 模块的包名。 |
+| symbol | string | 函数名称。 |
 | line | number | 异常所在代码行号。 |
 | column | number | 异常所在代码列号。 |
