@@ -2569,9 +2569,9 @@ enum ArkUI_ErrorCode
 | ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE  | 组件事件中参数长度超限。  |
 | ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID  | 组件事件中不存在该数据。  |
 | ARKUI_ERROR_CODE_NODE_EVENT_NO_RETURN  | 组件事件不支持返回值。  |
-| ARKUI_ERROR_CODE_NODE_INDEX_INVALID  | 传入的索引值非法。  |
-| ARKUI_ERROR_CODE_GET_INFO_FAILED  | 查询路由导航信息失败。  |
-| ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR  | 传入的buffer size异常。  |
+| ARKUI_ERROR_CODE_NODE_INDEX_INVALID = 106200  | 传入的索引值非法。<br/>错误码的详细介绍请参见[导航错误码](../apis-arkui/errorcode-router.md#106200-传入的索引值非法)。  |
+| ARKUI_ERROR_CODE_GET_INFO_FAILED = 106201  | 查询路由导航信息失败。 <br/>错误码的详细介绍请参见[导航错误码](../apis-arkui/errorcode-router.md#106201-查询路由导航信息失败)。 |
+| ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR = 106202  | 传入的buffer size异常。 <br/>错误码的详细介绍请参见[导航错误码](../apis-arkui/errorcode-router.md#106202-传入的buffer-size异常)。 |
 | ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE  | 传入的节点未挂载到组件树上。<br/>起始版本：15  |
 | ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE  | 当前节点无法获得焦点。<br/>起始版本：15  |
 | ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR  | 当前节点对应的祖先节点中存在无法获焦节点。<br/>起始版本：15  |
@@ -8147,7 +8147,8 @@ int32_t OH_ArkUI_NodeUtils_GetAttachedNodeHandleById(const char* id, ArkUI_NodeH
 
 **返回：**
 
-返回错误码。ARKUI_ERROR_CODE_NO_ERROR代表成功，ARKUI_ERROR_CODE_PARAM_INVALID代表函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 方法参数异常。</br >
 
 ### OH_ArkUI_NodeUtils_GetNodeHandleByUniqueId()
 
@@ -17775,10 +17776,10 @@ int32_t OH_ArkUI_RunTaskInScope(ArkUI_ContextHandle uiContext, void* userData, v
 
 **返回：**
 
-[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。
-[ARKUI_ERROR_CODE_CAPI_INIT_ERROR](_ark_u_i___native_module.md#arkui_errorcode) CAPI初始化错误。
-[ARKUI_ERROR_CODE_UI_CONTEXT_INVALID](_ark_u_i___native_module.md#arkui_errorcode) UIContext对象无效。
-[ARKUI_ERROR_CODE_CALLBACK_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 回调函数无效。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
+[ARKUI_ERROR_CODE_CAPI_INIT_ERROR](_ark_u_i___native_module.md#arkui_errorcode) CAPI初始化错误。</br >
+[ARKUI_ERROR_CODE_UI_CONTEXT_INVALID](_ark_u_i___native_module.md#arkui_errorcode) UIContext对象无效。</br >
+[ARKUI_ERROR_CODE_CALLBACK_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 回调函数无效。</br >
 
 
 ### OH_ArkUI_ProgressLinearStyleOption_Create
