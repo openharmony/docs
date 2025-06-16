@@ -1,7 +1,7 @@
 # P2P模式开发指南
 
 ## 简介
-P2P模式，主要提供了WLAN设备的一种点对点连接技术，它可以在两台sta之间直接建立TCP/IP连接，并不需要ap的参与。
+P2P模式，主要提供了WLAN设备的一种点对点连接技术，它可以在两台STA之间直接建立TCP/IP连接，并不需要AP的参与。
 
 ## 场景介绍
 主要场景有：
@@ -42,9 +42,9 @@ P2P模式，主要提供了WLAN设备的一种点对点连接技术，它可以�
 ```ts
 import { wifiManager } from '@kit.ConnectivityKit';
 
-// 创建群组，将当前设备当做go使用时，需要该步骤
-// netId：-1表示创建临时组，下次和已连接过的设备连接，需要重新进行go协商，以及WPS密钥协商;
-//        -2表示创建永久组，下次和已连接过的设备连接，不需要重新进行go和WPS密钥协商;
+// 创建群组，将当前设备当做GO使用时，需要该步骤
+// netId：-1表示创建临时组，下次和已连接过的设备连接，需要重新进行GO协商，以及WPS密钥协商;
+//        -2表示创建永久组，下次和已连接过的设备连接，不需要重新进行GO和WPS密钥协商;
 
 let recvP2pPersistentGroupChangeFunc = () => {
 	console.info("p2p persistent group change receive event");
@@ -123,7 +123,7 @@ let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
 					groupName:"",
 					goBand:0,
 				}
-				// 执行P2P连接，作为go时不能主动发起连接
+				// 执行P2P连接，作为GO时不能主动发起连接
 				wifiManager.p2pConnect(config);
 			}
 		}
