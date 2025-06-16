@@ -948,10 +948,10 @@ The launch want is not found.
 Launch Want不存在。
 
 **可能原因**<br/>
-应用没有Ability，或者没有entities配置为entity.system.home和actions配置为action.system.home的Ability。
+应用没有Ability，或者没有entities配置为entity.system.home和actions配置为ohos.want.action.home的Ability。
 
 **处理步骤**<br/>
-应用需要有entities配置为entity.system.home并且actions配置为action.system.home的Ability。
+应用需要有entities配置为entity.system.home并且actions配置为ohos.want.action.home的Ability。
 
 <!--Del-->
 ## 17700073 由于设备上存在具有相同包名称但不同签名信息的应用程序，导致安装失败
