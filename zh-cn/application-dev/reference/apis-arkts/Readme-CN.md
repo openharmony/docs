@@ -32,6 +32,7 @@
   - [@ohos.worker (启动一个Worker)(系统接口)](js-apis-worker-sys.md)
   <!--DelEnd-->
   - [@ohos.xml (xml解析与生成)](js-apis-xml.md)
+  - [@ohos.transfer (系统对象转换工具)](js-apis-transfer.md)
   - 已停止维护的接口<!--arkts-arkts-dep-->
     - [@ohos.util.Vector (线性容器Vector)](js-apis-vector.md)
 - 错误码<!--arkts-arkts-errcode-->

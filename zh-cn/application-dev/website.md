@@ -2317,6 +2317,7 @@
         <!--Del-->
         - [@ohos.worker (启动一个Worker)(系统接口)](reference/apis-arkts/js-apis-worker-sys.md)
         <!--DelEnd-->
+        - [@ohos.transfer (系统对象转换工具)](reference/apis-arkts/js-apis-transfer.md)
         - [@ohos.xml (xml解析与生成)](reference/apis-arkts/js-apis-xml.md)
         - 已停止维护的接口<!--arkts-arkts-dep-->
           - [@ohos.util.Vector (线性容器Vector)](reference/apis-arkts/js-apis-vector.md)
