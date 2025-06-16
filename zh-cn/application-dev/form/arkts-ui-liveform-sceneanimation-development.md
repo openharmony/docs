@@ -164,6 +164,17 @@ struct MyLiveFormPage {
     ...
 ```
 
+同时在 main_pages.json 文件中声明互动卡片页面
+
+```ts
+// entry/src/main/resources/base/profile/main_pages.json
+{
+  "src": [
+    "pages/Index",
+    "myliveformextensionability/pages/MyLiveFormPage"
+  ]
+}
+```
 
 ### 卡片非激活态UI开发
 
