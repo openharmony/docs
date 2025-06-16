@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import { inputConsumer } from '@kit.InputKit';
+import { inputConsumer, KeyEvent } from '@kit.InputKit';
 ```
 
 ## 接口说明
@@ -30,7 +30,7 @@ import { inputConsumer } from '@kit.InputKit';
 在电子书或新闻阅读应用中，用户希望通过音量键控制翻页（例如：音量加键向下翻页，音量减键向上翻页）。在相机或扫码类应用中，用户按音量键可直接拍照，而不跳转系统相机应用。
 
 ```js
-import { inputConsumer } from '@kit.InputKit';
+import { inputConsumer, KeyEvent } from '@kit.InputKit';
 //应用开启
 try {
   let options: inputConsumer.KeyPressedConfig = {
