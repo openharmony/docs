@@ -9,7 +9,7 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 ## 约束限制
 
 - HAR不支持在设备上单独安装或运行，只能作为应用模块的依赖项被引用。
-- HAR不支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件。从API version 14开始，支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md)组件。
+- HAR不支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件。从API version 14开始，支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md)组件，配置UIAbility的方法参考[在模块中添加Ability](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-add-new-ability#section18658758104318)，拉起HAR中UIAbility的方式与[启动应用内的UIAbility](../application-models/uiability-intra-device-interaction.md)方法相同。
 > **说明：**
 >
 > 如果使用[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability)接口拉起HAR中的UIAbility，接口参数中的moduleName取值需要为依赖该HAR的[HAP](hap-package.md)/[HSP](in-app-hsp.md)的moduleName。
