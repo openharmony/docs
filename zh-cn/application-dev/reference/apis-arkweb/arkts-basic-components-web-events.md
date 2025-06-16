@@ -1482,7 +1482,7 @@ onSslErrorEvent(callback: OnSslErrorEventCallback)
               secondaryButton: {
                 value: 'cancel',
                 action: () => {
-                  // 注：true表示停止加载页面，停留在当前页面，使用false表示继续加载页面，并展示错误页面
+                  // true表示停止加载页面，停留在当前页面，使用false表示继续加载页面，并展示错误页面
                   event.handler.handleCancel(true);
                 }
               },

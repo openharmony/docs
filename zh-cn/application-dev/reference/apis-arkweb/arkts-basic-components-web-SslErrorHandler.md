@@ -36,7 +36,7 @@ handleConfirm(): void
 
 handleCancel(abortLoading: boolean): void
 
-通知Web组件取消此请求,并根据参数决定是否停止加载。
+通知Web组件取消此请求，并根据参数abortLoading决定是否停止加载。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
