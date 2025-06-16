@@ -290,8 +290,8 @@ $ wukong focus -s 10 -i 1000 -a 0.28 -t 0.72 -c 100
 
 执行完测试指令后，会自动生成测试结果，测试结果输出根路径如下：
 
-- 2022/9/22之前的IDE版本，结果存放路径为：/data/local/wukong/report/xxxxxxxx_xxxxxx/
-- 2022/9/22之后的IDE版本，结果存放路径为：/data/local/tmp/wukong/report/xxxxxxxx_xxxxxx/
+- 2022/9/22之前的DevEco Studio版本，结果存放路径为：/data/local/wukong/report/xxxxxxxx_xxxxxx/
+- 2022/9/22之后的DevEco Studio版本，结果存放路径为：/data/local/tmp/wukong/report/xxxxxxxx_xxxxxx/
 
 ### 测试报告文件目录
 

@@ -863,7 +863,7 @@ hdc shell uitest start-daemon
 
 1. 检查用例代码逻辑，确保即使断言失败场景认可走到done函数，保证用例执行结束。
 
-2. 可在IDE中Run/Debug Configurations中修改用例执行超时配置参数，避免用例执行超时。
+2. 可在DevEco Studio中Run/Debug Configurations中修改用例执行超时配置参数，避免用例执行超时。
 
 3. 检查用例代码逻辑，断言结果，确保断言Pass。
 ### UI测试用例常见问题
