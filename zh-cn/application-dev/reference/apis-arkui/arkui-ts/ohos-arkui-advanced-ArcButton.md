@@ -115,8 +115,8 @@ ArcButton的默认样式或自定义样式参数。
 | fontStyle           | [FontStyle](ts-appendix-enums.md#fontstyle)                  | 否  | 弧形按钮文本样式。<br/>默认值：FontStyle.Normal              |
 | fontFamily          | string \| [Resource](ts-types.md#resource)                   |否  | 弧形按钮字体名。                                             |
 | fontMargin          | [LocalizedMargin](ts-types.md#localizedmargin12)             | 否  | 弧形按钮文本边距。<br/>默认值：{start:24vp, top: 10vp,end: 24vp, bottom:16vp } |
-| onTouch             | [Callback](ts-types.md#voidcallback12)&lt; [TouchEvent](ts-universal-events-touch.md#touchevent)&gt; | 否   | 弧形按钮手指触摸动作触发该回调。                             |
-| onClick             | [Callback](ts-types.md#voidcallback12)&lt;[ClickEvent](ts-universal-events-click.md#clickevent)) &gt; | 否   | 弧形按钮点击动作触发该回调。                                 |
+| onTouch             | [Callback](ts-types.md#voidcallback12)&lt; [TouchEvent](ts-universal-events-touch.md#touchevent对象说明)&gt; | 否   | 弧形按钮手指触摸动作触发该回调。                             |
+| onClick             | [Callback](ts-types.md#voidcallback12)&lt;[ClickEvent](ts-universal-events-click.md#clickevent对象说明)) &gt; | 否   | 弧形按钮点击动作触发该回调。                                 |
 
 ## ArcButtonPosition
 
