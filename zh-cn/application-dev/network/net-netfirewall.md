@@ -23,8 +23,8 @@
 3. 支持限制特定应用对特定IP、特定协议、特定端口的网络通信。
 4. 支持拦截规则下发后立即生效（此点针对TCP协议：需断开已有被拦截的TCP连接）。
 - 针对域名联网访问控制支持拦截
-1. 支持限制应用对特定域名的DNS解析能力（仅限制非加密标准DNS协议，不限制加密、私标DNS协议）。
-2. 支持限制特地应用对特定域名的DNS解析能力（仅限制非加密标准DNS协议，不限制加密、私标DNS协议）。
+1. 支持限制应用对特定域名的DNS解析能力（仅限制非加密标准DNS协议，不限制加密、私有DNS协议）。
+2. 支持限制特定应用对特定域名的DNS解析能力（仅限制非加密标准DNS协议，不限制加密、私有DNS协议）。
 3. 支持拦截规则下发后立即生效（此点针对TCP协议：需断开已有被拦截的TCP连接）。
 <!--Del-->
 - 联网访问控制支持可追溯
@@ -148,8 +148,8 @@ netFirewall.addNetFirewallRule(ipRule).then((result: number) => {
 
 1. 设备通过硬件接口，插入网线。
 2. 从@kit.NetworkKit中导入netFirewall命名空间。
-3. 用户态调用setNetFirewallPolicy方法，打开防火墙。
-4. 用户态通过addNetFirewallRule方法，添加防火墙规则。
+3. 调用setNetFirewallPolicy方法，打开防火墙。
+4. 通过addNetFirewallRule方法，添加防火墙规则。
 
 ```ts
 // 从@kit.NetworkKit中导入netFirewall命名空间
