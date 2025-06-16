@@ -1,4 +1,4 @@
-# Introduction to Crypto Architecture Kit
+# About This Kit
 
 Crypto Architecture Kit provides cryptographic functionalities, such as encryption and decryption, signing and signature verification, message authentication code (MAC) generation, hash computation, random number generation, and key derivation.
 

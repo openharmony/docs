@@ -1,4 +1,4 @@
-# Introduction to Asset Store Kit
+# About This Kit
 
 Asset Store Kit provides a set of asset store service (ASSET) APIs, which implement secure storage and management of sensitive data less than 1024 bytes in size, including passwords, app tokens, and other critical data (such as bank card numbers).
 
