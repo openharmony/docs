@@ -224,9 +224,9 @@
         - [通过向量数据库实现数据持久化 (C/C++)](database/native-vector-store-guidelines.md)
       - 同应用跨设备数据同步（分布式）<!--distributed-data-sync-->
         - [同应用跨设备数据同步概述](database/sync-app-data-across-devices-overview.md)
-        - [键值型数据库跨设备数据同步](database/data-sync-of-kv-store.md)
-        - [关系型数据库跨设备数据同步](database/data-sync-of-rdb-store.md)
-        - [分布式数据对象跨设备数据同步](database/data-sync-of-distributed-data-object.md)
+        - [键值型数据库跨设备数据同步 (ArkTS)](database/data-sync-of-kv-store.md)
+        - [关系型数据库跨设备数据同步 (ArkTS)](database/data-sync-of-rdb-store.md)
+        - [分布式数据对象跨设备数据同步 (ArkTS)](database/data-sync-of-distributed-data-object.md)
       - 数据可靠性与安全性<!--data-reliability-security-->
         - [数据可靠性与安全性概述](database/data-reliability-security-overview.md)
         - [数据库备份与恢复（ArkTS）](database/data-backup-and-restore.md)
@@ -235,18 +235,19 @@
         - [数据库加密（C/C++）](database/native-data-encryption.md)
         - [基于设备分类和数据分级的访问控制（ArkTS）](database/access-control-by-device-and-data-level.md)
         - [基于设备分类和数据分级的访问控制（C/C++）](database/native-access-control-by-device-and-data-level.md)
-        - [E类加密数据库的使用](database/encrypted_estore_guidelines.md)
+        - [E类加密数据库的使用 (ArkTS)](database/encrypted_estore_guidelines.md)
       - 跨应用数据共享<!--cross-app-data-share-->
         - [跨应用数据共享概述](database/data-share-overview.md)
         <!--Del-->
-        - 一对多跨应用数据共享（仅对系统应用开放）<!--one-to-many-data-share-->
-          - [通过DataShareExtensionAbility实现数据共享](database/share-data-by-datashareextensionability.md)
-          - [通过数据管理服务实现数据共享静默访问](database/share-data-by-silent-access.md)
+        - 一对多跨应用数据共享<!--one-to-many-data-share-->
+          - [通过DataShareExtensionAbility实现数据共享 (ArkTS)(仅对系统应用开放)](database/share-data-by-datashareextensionability.md)
+          - [通过数据管理服务实现数据共享静默访问 (ArkTS)(仅对系统应用开放)](database/share-data-by-silent-access.md)
         <!--DelEnd-->
+          - [应用间配置共享 (ArkTS)](database/share-config.md)
         - 多对多跨应用数据共享<!--many-to-many-data-share-->
           - [通过标准化数据通路实现数据共享 (ArkTS)](database/unified-data-channels.md)
           - [通过标准化数据通路实现数据共享 (C/C++)](database/unified-data-channels-c.md)
-      - [应用数据向量化](database/aip-data-intelligence-embedding.md) 
+      - [应用数据向量化 (ArkTS)](database/aip-data-intelligence-embedding.md) 
       - [SQLite调试工具](database/sqlite-database-debug-tool.md)
       - [ArkData术语](database/data-terminology.md)
     - ArkTS（方舟编程语言）<!--arkts-->
