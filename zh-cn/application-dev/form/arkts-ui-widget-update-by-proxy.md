@@ -5,6 +5,7 @@
 ## 实现原理
 
 **图1** 代理刷新运行原理
+
 ![UpdateWidgetByProxyPrinciple](figures/UpdateWidgetByProxyPrinciple.png)
 
 如图1，与[ArkTS卡片实现原理图](arkts-form-overview.md#实现原理)相比，卡片代理刷新原理新增了数据管理服务和数据提供方。
@@ -21,7 +22,7 @@
 1. 卡片提供方在卡片提供方的配置文件`form_config.json`中配置`dataProxyEnabled`字段为`true`，以开启卡片代理刷新功能。
 > **说明：**
 >
-> 卡片代理刷新开启后，[定时刷新](arkts-ui-widget-update-by-time.md)失效。
+> 卡片代理刷新开启后，[定时刷新](arkts-ui-widget-passive-refresh.md#卡片定时刷新)失效。
 
 2. 卡片提供方在[onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonaddform)回调中，把数据提供方定义的`key + subscriberId`返回给卡片管理服务。
 
@@ -36,9 +37,9 @@
 
 数据提供方提供的共享数据有两种类型：
 
-- 过程数据，不会一直存储，有老化期，所有应用都可以订阅。
+- 过程数据：不会一直存储，有老化期，所有应用都可以订阅。
 
-- 持久化数据，仅系统应用可以订阅。
+- 持久化数据：仅系统应用可以订阅。
 
 相应的卡片代理刷新配置有所不同，下面分别介绍具体开发方式。
 <!--Del-->
@@ -130,7 +131,7 @@
   }
   ```
 
-## 卡片提供方开发步骤（持久化数据，仅对系统应用开放）
+## 卡片提供方开发步骤（持久化数据）
 - 配置form_config.json文件中的`dataProxyEnabled`字段为`true`，以启用卡片代理刷新功能。
   ```json
   {
