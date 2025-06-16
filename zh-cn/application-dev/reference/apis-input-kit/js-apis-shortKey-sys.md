@@ -43,16 +43,29 @@ setKeyDownDuration(businessKey: string, delay: number, callback: AsyncCallback&l
 **示例**：
 
 ```js
-try {
-  shortKey.setKeyDownDuration("businessId", 500, (error) => {
-    if (error) {
-      console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { shortKey } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            shortKey.setKeyDownDuration("businessId", 500, (error) => {
+              if (error) {
+                console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`Set key down duration success`);
+            });
+          } catch (error) {
+            console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`Set key down duration success`);
-  });
-} catch (error) {
-  console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -89,12 +102,25 @@ setKeyDownDuration(businessKey: string, delay: number): Promise&lt;void&gt;
 **示例**：
 
 ```js
-try {
-  shortKey.setKeyDownDuration("businessId", 500).then(() => {
-    console.log(`Set key down duration success`);
-  });
-} catch (error) {
-  console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { shortKey } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            shortKey.setKeyDownDuration("businessId", 500).then(() => {
+              console.log(`Set key down duration success`);
+            });
+          } catch (error) {
+            console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
