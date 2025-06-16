@@ -148,13 +148,13 @@ const TAG: string = '[Extension] ';
 @Component
 struct UIServiceExtensionAbility {
   comProxy: common.UIServiceProxy | null = null;
-  // 链接时的回调接口
+  // 连接时的回调接口
   dataCallBack: common.UIServiceExtensionConnectCallback = {
     onData: (data: Record<string, Object>) => {
       console.info(`${TAG} dataCallBack received data: ${JSON.stringify(data)}.`);
     },
     onDisconnect: () => {
-      // 链接断链后的触发
+      // 连接断链后的触发
       console.info(`${TAG} dataCallBack onDisconnect.`);
       this.comProxy = null;
     }
@@ -187,9 +187,9 @@ struct UIServiceExtensionAbility {
   myConnectUIServiceExtensionAbility() {
     // 获取上下文
     let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-    // 断开链接的UIServiceExtensionAbility
+    // 断开连接的UIServiceExtensionAbility
     try {
-      // this.comProxy在链接成功后保存
+      // this.comProxy在连接成功后保存
       context.disconnectUIServiceExtensionAbility(this.comProxy).then(() => {
         console.info(`${TAG} disconnectUIServiceExtensionAbility success.`);
       }).catch((err: Error) => {
