@@ -90,6 +90,33 @@
 
 **取值：** "usual.event.SHORTCUT_CHANGED"
 
+
+### COMMON_EVENT_KIOSK_MODE_ON<sup>20+</sup>
+
+进入Kiosk模式时，事件通知服务将触发并发布系统公共事件。此事件仅由系统发送。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** usual.event.KIOSK_MODE_ON
+
+
+### COMMON_EVENT_KIOSK_MODE_OFF<sup>20+</sup>
+
+退出Kiosk模式时，事件通知服务将触发并发布系统公共事件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** usual.event.KIOSK_MODE_OFF
+
+
 ## Background Tasks Kit 
 
 ### COMMON_EVENT_DEVICE_IDLE_EXEMPTION_LIST_UPDATED<sup>10+<sup>
