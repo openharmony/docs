@@ -18,7 +18,7 @@
 | -------- | -------- |
 | [onNetworkAvailable](#onnetworkavailable) | 网络可用回调。 |
 | [onNetCapabilitiesChange](#onnetcapabilitieschange) | 网络能力集变更回调。 |
-| [onConnetionProperties](#onconnetionproperties) | 网络连接属性变更回调。 |
+| [onConnectionProperties](#onConnectionProperties) | 网络连接属性变更回调。 |
 | [onNetLost](#onnetlost) | 网络断开回调。 |
 | [onNetUnavailable](#onnetunavailable) | 网络不可用回调，在指定的超时时间内网络未激活时触发该回调，如果未设置超时时间则不会触发该回调。 |
 
@@ -67,10 +67,10 @@ typedef void (*OH_NetConn_NetCapabilitiesChange)(NetConn_NetHandle *netHandle, N
 | netHandle | [NetHandle](js-apis-net-connection.md#nethandle) | 网络句柄。 |
 | netCapabilities | [NetCapabilities](js-apis-net-connection.md#netcapabilities)| 网络能力集。 |
 
-### onConnetionProperties
+### onConnectionProperties
 
 ```
-typedef void (*OH_NetConn_NetConnectionPropertiesChange)(NetConn_NetHandle *netHandle, NetConn_ConnectionProperties *connConnetionProperties)
+typedef void (*OH_NetConn_NetConnectionPropertiesChange)(NetConn_NetHandle *netHandle, NetConn_ConnectionProperties *connConnectionProperties)
 ```
 
 **描述**
@@ -86,7 +86,7 @@ typedef void (*OH_NetConn_NetConnectionPropertiesChange)(NetConn_NetHandle *netH
 | 名称 | 类型 | 描述 |
 | -------- | -------- | -------- |
 | netHandle |[NetHandle](js-apis-net-connection.md#nethandle) | 网络句柄。 |
-| connConnetionProperties | [ConnectionProperties](js-apis-net-connection.md#connectionproperties)| 网络连接属性。 |
+| connConnectionProperties | [ConnectionProperties](js-apis-net-connection.md#connectionproperties)| 网络连接属性。 |
 
 ### onNetLost
 
