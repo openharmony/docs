@@ -105,7 +105,7 @@ bool OH_ArkWeb_RegisterScrollCallback(const char* webTag, ArkWeb_OnScrollCallbac
 | 参数项 | 描述 |
 | -- | -- |
 | const char* webTag | Web组件的名称。 |
-| [ArkWeb_OnScrollCallback](capi-arkweb-javascriptobject.md#arkweb_onscrollcallback) callback | 页面滚动时的回调函数。 |
+| [ArkWeb_OnScrollCallback](capi-arkweb-type-h.md#arkweb_onscrollcallback) callback | 页面滚动时的回调函数。 |
 | void* userData | 用户自定义的数据。 |
 
 **返回：**
