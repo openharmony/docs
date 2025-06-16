@@ -19,7 +19,7 @@ This operation is frequent and time consuming. If the camera captures data too q
    function collectFrame() {
       // Collect and process data.
       // Simulate the processing task, which is time consuming.
-      et t = new Date().getTime()
+      let t = new Date().getTime()
       while (new Date().getTime() - t < 30000) {
         continue;
       }

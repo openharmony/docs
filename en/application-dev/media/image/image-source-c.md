@@ -6,7 +6,7 @@ This topic describes how to create an ImageSource object, obtain the width and h
 
 ### Adding a Link Library
 
-Open the **src/main/cpp/CMakeLists.txt** file of the native project, add **libimage_source.so**, **libpixelmap.so**, and and **libhilog_ndk.z.so** (on which the log APIs depend) to the **target_link_libraries** dependency.
+Open the **src/main/cpp/CMakeLists.txt** file of the native project, add **libimage_source.so**, **libpixelmap.so**, and **libhilog_ndk.z.so** (on which the log APIs depend) to the **target_link_libraries** dependency.
 
 ```txt
 target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libpixelmap.so)

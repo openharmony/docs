@@ -39,10 +39,10 @@ Sendable objects can be frozen, making them read-only and preventing any additio
            .fontSize(50)
            .fontWeight(FontWeight.Bold)
            .onClick(() => {
-             let gConifg = new GlobalConfig();
-             gConifg.init();
+             let gConfig = new GlobalConfig();
+             gConfig.init();
              const workerInstance = new worker.ThreadWorker('entry/ets/workers/Worker.ets', { name: "Worker1" });
-             workerInstance.postMessage(gConifg);
+             workerInstance.postMessage(gConfig);
            })
        }
        .height('100%')

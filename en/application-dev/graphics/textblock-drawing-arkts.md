@@ -43,7 +43,7 @@ const font = new drawing.Font();
 // Set the font scale.
 font.setSize(100);
 // Create a TextBlob object.
-const textBlob = drawing.TextBlob.makeFromString("Hello world", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+const textBlob = drawing.TextBlob.makeFromString('Hello world', font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
 // Draw a TextBlob.
 canvas.drawTextBlob(textBlob, 200, 300);
 ```
@@ -74,7 +74,7 @@ font.setSize(100);
 // Add the stroke effect.
 canvas.attachPen(pen);
 // Create a TextBlob object.
-const textBlob = drawing.TextBlob.makeFromString("Hello world", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+const textBlob = drawing.TextBlob.makeFromString('Hello world', font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
 // Draw a TextBlob.
 canvas.drawTextBlob(textBlob, 200, 300);
 // Remove the stroke effect.
@@ -107,10 +107,10 @@ const font = new drawing.Font();
 // Set the font scale.
 font.setSize(200);
 // Create a TextBlob.
-const textBlob = drawing.TextBlob.makeFromString("Hello world", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+const textBlob = drawing.TextBlob.makeFromString('Hello world', font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
 // Draw a TextBlob.
 canvas.drawTextBlob(textBlob, 100, 300);
-// Remove the padding effect.
+// Remove the filling effect.
 canvas.detachBrush();
 ```
 

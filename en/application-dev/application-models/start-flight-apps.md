@@ -13,7 +13,7 @@ If the **type** field in **startAbilityByType** is set to **flight**, two intent
     | Name       | Type  | Mandatory| Description                                                        |
     | ------------- | ------ | ---- | ------------------------------------------------------------ |
     | sceneType     | number | No  | Intent scene, which indicates the purpose of the current request. The default value is **1**. In scenarios of flight query by flight number, set it to **1** or leave it empty.                    |
-    | flightNo      | string | Yes  | Flight number, which is a two-digit code of the airline company plus a dight.|
+    | flightNo      | string | Yes  | Flight number, which is a two-digit code of the airline company plus a digit.|
     | departureDate | string | No  | Flight departure date, in the format of YYYY-MM-DD.                                    |
 
 - Flight query by origin and destination
@@ -133,7 +133,7 @@ If the **type** field in **startAbilityByType** is set to **flight**, two intent
     
         | Name              | Type  | Mandatory| Description                                                |
         | -------------------- | ------ | ---- | ---------------------------------------------------- |
-        | flightNo           | string | Yes  | Flight number, which is a two-digit code of the airline company plus a dight.                                            |
+        | flightNo           | string | Yes  | Flight number, which is a two-digit code of the airline company plus a digit.                                            |
         | departureDate       | string | No  | Flight departure date, in the format of YYYY-MM-DD. If this field is left blank, it indicates the current day.                                            |
     
     - Flight query by origin and destination
