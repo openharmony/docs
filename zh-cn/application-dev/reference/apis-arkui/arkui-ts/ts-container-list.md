@@ -14,6 +14,9 @@
 
 > **说明：**
 >
+>
+> 如果在处理大量子组件时遇到卡顿问题，请考虑采用懒加载、缓存列表项、动态预加载、组件复用和布局优化等方法来进行优化。最佳实践请参考[优化长列表加载慢丢帧问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-best-practices-long-list)。
+>
 > List的子组件的索引值计算规则：
 >
 > - 按子组件的顺序依次递增。
