@@ -962,7 +962,7 @@ try {
 
 当前窗口实例，窗口管理器管理的基本单元。
 
-下列API示例中都需先使用[getLastWindow()](arkts-apis-window-f.md#windowgetlastwindow9)、[createWindow()](arkts-apis-window-f.md#windowcreatewindow9)、[findWindow()](arkts-apis-window-f.md#windowfindwindow9)中的任一方法获取到Window实例（windowClass），再通过此实例调用对应方法。
+下列API示例中都需先使用[getLastWindow()](js-apis-window.md#windowgetlastwindow9)、[createWindow()](js-apis-window.md#windowcreatewindow9)、[findWindow()](js-apis-window.md#windowfindwindow9)中的任一方法获取到Window实例（windowClass），再通过此实例调用对应方法。
 
 ### hide<sup>7+</sup>
 
