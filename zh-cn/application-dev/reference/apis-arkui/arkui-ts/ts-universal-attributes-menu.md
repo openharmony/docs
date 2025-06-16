@@ -666,7 +666,7 @@ struct MenuExample {
 }
 ```
 
-![zh-cn_image_0000001174582862](figures/preview-symbol.jpeg)
+![preview-symbol](figures/preview-symbol.png)
 
 ### 示例10（设置一镜到底动效）
 
