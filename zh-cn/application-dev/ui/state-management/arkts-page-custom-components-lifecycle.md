@@ -8,7 +8,7 @@
 
 > **说明：**
 >
-> 当前router接口已不推荐使用，推荐使用Navigation来实现路由转场，Navigation相关的时序关系参考[Navigation页面生命周期](../arkts-navigation-navigation.md#页面生命周期)。
+> 当前router接口已不推荐使用，推荐使用Navigation实现路由跳转，Navigation页面的生命周期参考[Navigation页面生命周期](../arkts-navigation-navigation.md#页面生命周期)。
 
 [router](../../reference/apis-arkui/js-apis-router.md)页面生命周期，即被[\@Entry](../../../application-dev/ui/state-management/arkts-create-custom-components.md#entry)装饰的组件生命周期，提供以下生命周期接口：
 
