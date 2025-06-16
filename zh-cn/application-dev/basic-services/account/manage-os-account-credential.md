@@ -24,8 +24,8 @@
 | PIN_SIX    | 10000 | 表示6位凭证。       |
 | PIN_NUMBER | 10001 | 表示自定义数字凭证。 |
 | PIN_MIXED  | 10002 | 表示自定义混合凭据。 |
-| FACE_2D    | 20000 | 表示2D 人脸凭证。   |
-| FACE_3D    | 20001 | 表示3D 人脸凭证。   |
+| FACE_2D    | 20000 | 表示2D人脸凭证。   |
+| FACE_3D    | 20001 | 表示3D人脸凭证。   |
 | FINGERPRINT_CAPACITIVE<sup>10+</sup>    | 30000 | 表示电容式指纹。   |
 | FINGERPRINT_OPTICAL<sup>10+</sup>    | 30001 | 表示光学指纹。   |
 | FINGERPRINT_ULTRASONIC<sup>10+</sup>    | 30002 | 表示超声波指纹。   |
