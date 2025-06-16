@@ -30,7 +30,7 @@ abstract class Content {
 |OH_ArkUI_NodeContentEvent_GetNodeContentHandle(ArkUI_NodeContentEvent* event)|获取触发上下树事件的Content对象。|
 |OH_ArkUI_NodeContent_SetUserData(ArkUI_NodeContentHandle content, void* userData)|在Content上设置用户自定义属性。|
 |OH_ArkUI_NodeContent_GetUserData(ArkUI_NodeContentHandle content)|在Content上获取用户自定义属性。|
-|typedef enum {<br>   NOTE_CONTENT_EVENT_ON_ATTACH_TO_WINDOW = 0,<br>   NOTE_CONTENT_EVENT_ON_DETACH_FROM_WINDOW = 1,<br>} ArkUI_NodeContentEventType|Content上会触发的上树和下树事件类型。|
+|typedef enum {<br>   NODE_CONTENT_EVENT_ON_ATTACH_TO_WINDOW = 0,<br>   NODE_CONTENT_EVENT_ON_DETACH_FROM_WINDOW = 1,<br>} ArkUI_NodeContentEventType|Content上会触发的上树和下树事件类型。|
 
 ## 开发实现
 
@@ -117,9 +117,9 @@ napi_value Manager::CreateNativeNode(napi_env env, napi_callback_info info) {
 auto nodeContentEvent = [](ArkUI_NodeContentEvent *event) {
     ArkUI_NodeContentHandle content = OH_ArkUI_NodeContentEvent_GetNodeContentHandle(event);
     // 针对不同content需要额外做的逻辑
-    if (OH_ArkUINodeContentEvent_GetEventType(event) = NODE_CONTENT_EVENT_ON_ATTACH_TO_WINDOW) {
+    if (OH_ArkUI_NodeContentEvent_GetEventType(event) == NODE_CONTENT_EVENT_ON_ATTACH_TO_WINDOW) {
         // ContentSlot上树时需要触发的逻辑
-    } else if (OH_ArkUINodeContentEvent_GetEventType(event) = NODE_CONTENT_EVENT_ON_DETACH_FROM_WINDOW) {
+    } else if (OH_ArkUI_NodeContentEvent_GetEventType(event) == NODE_CONTENT_EVENT_ON_DETACH_FROM_WINDOW) {
         // ContentSlot下树时需要触发的逻辑
     };
 };
@@ -130,7 +130,7 @@ OH_ArkUI_NodeContent_RegisterCallback(nodeContentHandle_, nodeContentEvent);
 #### 添加子组件
 
 ```c++
-ArkUINodeHandle component;
+ArkUI_NodeHandle component;
 component = CreateNodeHandle();
 // 将组件添加到nodeContent管理器中
 OH_ArkUI_NodeContent_AddNode(nodeContentHandle_, component);
@@ -139,7 +139,7 @@ OH_ArkUI_NodeContent_AddNode(nodeContentHandle_, component);
 #### 插入子组件
 
 ```c++
-ArkUINodeHandle component;
+ArkUI_NodeHandle component;
 component = CreateNodeHandle();
 // 将组件插入nodeContent管理器对应位置
 OH_ArkUI_NodeContent_InsertNode(nodeContentHandle_, component, position);
