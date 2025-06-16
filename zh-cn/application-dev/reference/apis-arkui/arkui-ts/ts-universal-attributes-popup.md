@@ -7,6 +7,8 @@
 >  - 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 >  - Popup气泡的显示状态在onStateChange事件回调中反馈，其显隐与组件的创建或销毁无强对应关系。
+>
+>  - Popup气泡的高度为当前窗口高度 - 上下安全区域高度（状态栏、导航条）- 80vp。
 
 ## bindPopup
 
@@ -22,8 +24,8 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| show   | boolean                                                      | 是   | 弹窗显示状态，值为true时弹出菜单，值为false时关闭菜单，默认值为false，隐藏弹窗。Popup弹窗必须等待页面全部构建完成才能展示，因此show不能在页面构建中设置为true，否则会导致Popup弹窗显示位置及形状错误。该参数从API version 13开始支持[!!语法](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。 |
-| popup  | [PopupOptions](#popupoptions类型说明)&nbsp;\|&nbsp;[CustomPopupOptions](#custompopupoptions8类型说明)<sup>8+</sup> | 是   | 配置弹出弹窗的参数。                                         |
+| show   | boolean                                                      | 是   | 气泡显示状态，值为true时弹出气泡，值为false时关闭气泡，默认值为false，隐藏气泡。Popup气泡必须等待页面全部构建完成才能展示，因此show不能在页面构建中设置为true，否则会导致Popup气泡显示位置及形状错误。该参数从API version 13开始支持[!!语法](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。 |
+| popup  | [PopupOptions](#popupoptions类型说明)&nbsp;\|&nbsp;[CustomPopupOptions](#custompopupoptions8类型说明)<sup>8+</sup> | 是   | 配置弹出气泡的参数。                                         |
 
 **返回值：** 
 
@@ -73,8 +75,8 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 
 | 名称      | 类型                                       | 必填 |说明                                                       |
 | --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| textColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置弹窗信息文本颜色。                                       |
-| font      | [Font](ts-types.md#font)                   | 否   | 设置弹窗信息字体属性。<br/>**说明：** <br/>不支持设置family。 |
+| textColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置气泡信息文本颜色。                                       |
+| font      | [Font](ts-types.md#font)                   | 否   | 设置气泡信息字体属性。<br/>**说明：** <br/>不支持设置family。 |
 
 ## DismissPopupAction<sup>12+</sup>类型说明
 
@@ -187,7 +189,7 @@ type PopupStateChangeCallback = (event: PopupStateChangeParam) => void;
 
 | 参数名      | 类型                                       | 必填 | 说明                                                         |
 | --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| event  | [PopupStateChangeParam](#popupstatechangeparam18类型说明) | 是   | 弹窗当前的显示状态。                                       |
+| event  | [PopupStateChangeParam](#popupstatechangeparam18类型说明) | 是   | 气泡当前的显示状态。                                       |
 
 ## PopupMaskType<sup>18+</sup>类型说明
 
