@@ -1907,3 +1907,62 @@ struct Index {
   }
 }
 ```
+
+### 示例14（滚动到指定位置）
+
+该示例通过scrollToIndex接口，实现了Grid组件滚动到指定位置。
+
+```ts
+import { GridDataSource } from './GridDataSource';
+@Entry
+@Component
+struct GridScrollToIndexSample {
+  numbers: GridDataSource = new GridDataSource([]);
+  scroller: Scroller = new Scroller();
+  aboutToAppear(): void {
+    let list: string[] = [];
+    for (let i = 0; i < 10; i++) {
+      for (let j = 0; j < 10; j++) {
+        list.push((i * 5 + j  + 1).toString());
+      }
+    }
+    this.numbers =  new GridDataSource(list);
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Button('scrollToIndex')
+        .onClick(() => { // 滚动到对应的位置
+          this.scroller.scrollToIndex(25, true, ScrollAlign.START);
+        })
+      Grid(this.scroller) {
+        LazyForEach(this.numbers, (day: string) => {
+          GridItem() {
+            Text(day)
+              .fontSize(16)
+              .backgroundColor(0xF9CF93)
+              .width('100%')
+              .height(80)
+              .textAlign(TextAlign.Center)
+          }
+        }, (index: number) => index.toString())
+      }
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(10)
+      .friction(0.6)
+      .enableScrollInteraction(true)
+      .supportAnimation(false)
+      .multiSelectable(false)
+      .edgeEffect(EdgeEffect.Spring)
+      .scrollBar(BarState.On)
+      .scrollBarColor(Color.Grey)
+      .scrollBarWidth(4)
+      .width('90%')
+      .backgroundColor(0xFAEEE0)
+      .height(300)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+![grid_scrollToIndex](figures/gridScrollToIndex.gif)
