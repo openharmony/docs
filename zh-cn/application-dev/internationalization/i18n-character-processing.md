@@ -184,7 +184,7 @@ let breakText: string = iterator.getLineBreakText(); // breakText = 'Apple is my
 
 ### 文件路径镜像处理
 
-文件路径镜像处理是指传入镜像语言时，对文件路径字符串进行本地化处理，实现镜像语言下文件路径的镜像显示效果。使用I18NUtil类的[getUnicodeWrappedFilePath](../reference/apis-localization-kit/js-apis-i18n.md#getunicodewrappedfilepath20)接口可以实现文件路径镜像处理，具体开发步骤如下：
+文件路径镜像处理是指传入镜像语言时，对文件路径字符串进行本地化处理，实现镜像语言下文件路径的镜像显示效果。使用I18NUtil类的[getUnicodeWrappedFilePath](../reference/apis-localization-kit/js-apis-i18n.md#getunicodewrappedfilepath18)接口可以实现文件路径镜像处理，具体开发步骤如下：
 
 1. 导入模块。
    ```ts
