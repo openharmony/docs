@@ -241,6 +241,18 @@ struct WidgetCard {
 }
 ```
 
+同时在 main_pages.json 文件中声明互动卡片页面
+
+```ts
+// entry/src/main/resources/base/profile/main_pages.json
+{
+  "src": [
+    "pages/Index",
+    "myliveformextensionability/pages/MyLiveFormPage"
+  ]
+}
+```
+
 ### 互动卡片动效实现
 
 1. 触发互动卡片动效
