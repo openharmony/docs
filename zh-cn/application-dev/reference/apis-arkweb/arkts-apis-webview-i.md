@@ -91,7 +91,7 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 | id | string | 否 | snapshot的id。|
 | status | boolean | 否 |  snapshot的状态，正常为true，失败为false，获取全量绘制结果失败，返回size的长宽都为0，map为空。|
 | size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | 否 | web绘制的真实尺寸，number类型，单位vp。|
-| imagePixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否 | 全量绘制结果image.pixelMap格式。|
+| imagePixelMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 全量绘制结果image.pixelMap格式。|
 
 ## OfflineResourceMap<sup>12+</sup>
 
@@ -168,7 +168,7 @@ WebViewController与Web组件的绑定状态。
 
 | 名称          | 类型                                   | 只读 | 可选 | 说明                         |
 | ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
-| icon          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 否   | 历史页面图标的PixelMap对象。 |
+| icon          | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是   | 否   | 历史页面图标的PixelMap对象。 |
 | historyUrl    | string                                 | 否   | 否   | 历史记录项的url地址。        |
 | historyRawUrl | string                                 | 否   | 否   | 历史记录项的原始url地址。    |
 | title         | string                                 | 否   | 否   | 历史记录项的标题。           |

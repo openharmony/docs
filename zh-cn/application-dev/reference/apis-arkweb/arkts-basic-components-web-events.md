@@ -1,6 +1,6 @@
 # 事件
 
-通用事件仅支持[onAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear)、[onDisAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear)、[onBlur](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur)、[onFocus](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus)、[onDragEnd](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend)、[onDragEnter](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter)、[onDragStart](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)、[onDragMove](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove)、[onDragLeave](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave)、[onDrop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop)、[onHover](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onhover)、[onMouse](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse)、[onKeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#onkeyevent)、[onTouch](../apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)、[onVisibleAreaChange](../apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)。
+通用事件仅支持[onAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear)、[onDisAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear)、[onBlur](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur)、[onFocus](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus)、[onDragEnd](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend10)、[onDragEnter](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter)、[onDragStart](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)、[onDragMove](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove)、[onDragLeave](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave)、[onDrop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop)、[onHover](../apis-arkui/arkui-ts/ts-universal-events-hover.md#onhover)、[onMouse](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse)、[onKeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#onkeyevent)、[onTouch](../apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)、[onVisibleAreaChange](../apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)。
 
 > **说明：**
 >
@@ -1036,7 +1036,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
        photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
        // 设置最大选择数量
        photoSelectOptions.maxSelectNumber = 5;
-       let chooseFile: picker.PhotoSelectResult = await photoPicker.select(photoSelectOptions);
+       let chooseFile: photoAccessHelper.PhotoSelectResult = await photoPicker.select(photoSelectOptions);
        // 获取选择的文件列表
        result.handleFileList(chooseFile.photoUris);
      }
@@ -1839,6 +1839,7 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
     @State offsetX: number = 0;
     @State offsetY: number = 0;
     @State showMenu: boolean = false;
+    uiContext: UIContext = this.getUIContext();
 
     @Builder
     // 构建自定义菜单及触发功能接口
@@ -1951,7 +1952,7 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
             console.info(TAG, `x: ${this.offsetX}, y: ${this.offsetY}`);
             this.showMenu = true;
             this.offsetX = 0;
-            this.offsetY = Math.max(px2vp(event?.param.y() ?? 0) - 0, 0);
+            this.offsetY = Math.max(this.uiContext!.px2vp(event?.param.y() ?? 0) - 0, 0);
             return true;
           })
           .bindPopup(this.showMenu,

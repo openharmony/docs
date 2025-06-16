@@ -83,7 +83,7 @@ NFC标签读写应用开发者根据业务需要，可以选择实现前台读�
               "entity.system.home"
             ],
             "actions": [
-              "action.system.home",
+              "ohos.want.action.home",
 
               // actions必须包含"ohos.nfc.tag.action.TAG_FOUND"
               "ohos.nfc.tag.action.TAG_FOUND"
@@ -246,7 +246,7 @@ export default class EntryAbility extends UIAbility {
               "entity.system.home"
             ],
             "actions": [
-              "action.system.home",
+              "ohos.want.action.home",
 
               // actions必须包含"ohos.nfc.tag.action.TAG_FOUND"
               "ohos.nfc.tag.action.TAG_FOUND"

@@ -123,6 +123,7 @@
 | int32_t [OH_ArkUI_UIInputEvent_GetTargetDisplayId](#oh_arkui_uiinputevent_gettargetdisplayid) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取发生UI输入事件的屏幕ID。 | 
 | int32_t [OH_ArkUI_AxisEvent_SetPropagation](#oh_arkui_axisevent_setpropagation)(const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, bool propagation) | 设置是否激活轴事件冒泡。|
 | int32_t [OH_ArkUI_AxisEvent_GetScrollStep](#oh_arkui_axisevent_getscrollstep)(const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取鼠标滚轮轴滚动步长配置。|
+| ArkUI_ErrorCode [OH_ArkUI_UIInputEvent_GetLatestStatus](#oh_arkui_uiinputevent_getlateststatus)() | 调用该方法获取最近一次UIInput相关方法的执行情况。通常情况下不需要使用该方法，仅在返回值结果不确定是否异常时使用。<br>**起始版本：** 20 |
 
 
 ## 类型定义说明
@@ -2125,3 +2126,26 @@ int32_t OH_ArkUI_AxisEvent_GetScrollStep (const ArkUI_UIInputEvent * event)
 **返回：**
 
 返回鼠标滚轮轴滚动步长配置。
+
+### OH_ArkUI_UIInputEvent_GetLatestStatus()
+```
+ArkUI_ErrorCode OH_ArkUI_UIInputEvent_GetLatestStatus()
+```
+**描述：**
+
+调用该方法获取最近一次UIInput相关方法的执行情况。通常情况下不需要使用该方法，仅在返回值结果不确定是否异常时使用。
+以下是一个使用示例（对于返回的float类型，0.0并不代表错误，因此可以进一步使用GetLatestStatus方法来确认是否发生异常）。
+```
+float x = OH_ArkUI_PointerEvent_GetX(event);
+if (ARKUI_ERROR_CODE_NO_ERROR != OH_Arkui_UIInputEvent_GetlatestStatus()) {
+    // error
+    return;
+}
+```
+系统将在每次执行UIInput相关函数时主动清空上一次函数调用的状态，以确保每次通过该接口获取的均为最近一次的状态。
+
+**起始版本：** 20
+
+**返回：**
+
+返回最近一次调用UIInput方法产生的结果代码。

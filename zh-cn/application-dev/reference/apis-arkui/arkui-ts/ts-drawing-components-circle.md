@@ -177,7 +177,7 @@ strokeMiterLimit(value: number | string)
 
 strokeOpacity(value: number | string | Resource)
 
-设置边框透明度，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0，其余异常值按1.0处理 。
+设置边框透明度，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0，其余异常值按1.0处理。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -219,7 +219,7 @@ antiAlias(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                  |
 | ------ | ------- | ---- | ------------------------------------- |
-| value  | boolean | 是   | 是否开启抗锯齿效果。<br/>true：开启抗锯齿；false：关闭抗锯齿。<br/>默认值：true |
+| value  | boolean | 是   | 是否开启抗锯齿效果。<br/>-true：开启抗锯齿。<br/>-false：关闭抗锯齿。<br/>默认值：true |
 
 ## 示例
 

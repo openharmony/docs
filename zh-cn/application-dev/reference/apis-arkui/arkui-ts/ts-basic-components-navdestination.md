@@ -163,7 +163,7 @@ backButtonIcon(value: ResourceStr | PixelMap | SymbolGlyphModifier)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[SymbolGlyphModifier<sup>12+</sup>](ts-universal-attributes-attribute-modifier.md)  | 是   | 标题栏返回键图标。 |
+| value  | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)&nbsp;\|&nbsp;[SymbolGlyphModifier<sup>12+</sup>](ts-universal-attributes-attribute-modifier.md)  | 是   | 标题栏返回键图标。 |
 
 ### backButtonIcon<sup>19+</sup>
 
@@ -184,7 +184,7 @@ backButtonIcon(icon: ResourceStr | PixelMap | SymbolGlyphModifier, accessibility
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| icon  | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)  | 是   | 标题栏返回键图标。 |
+| icon  | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)&nbsp;\|&nbsp;[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)  | 是   | 标题栏返回键图标。 |
 | accessibilityText | [ResourceStr](ts-types.md#resourcestr) | 否 | 返回键无障碍播报内容。</br>默认值：系统语言是中文时为“返回”，系统语言是英文时为“back”。 |
 
 ### menus<sup>12+</sup>

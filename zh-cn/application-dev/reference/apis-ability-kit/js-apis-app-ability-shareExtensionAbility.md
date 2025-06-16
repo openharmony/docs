@@ -156,7 +156,7 @@ ShareExtensionAbility生命周期回调，在销毁时回调，执行资源清�
         }
       }
       onForeground() {
-        console.info(TAG, `ononForeground`);
+        console.info(TAG, `onForeground`);
       }
       onBackground() {
         console.info(TAG, `onBackground`);

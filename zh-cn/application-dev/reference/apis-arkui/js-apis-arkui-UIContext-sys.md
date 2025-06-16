@@ -395,7 +395,7 @@ getWithRange(start: NodeIdentity, end: NodeIdentity, isStartRect: boolean, optio
 
 | 类型                            | 说明       |
 | -------- | -------- |
-| image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 截图返回的结果。 |
+| image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 截图返回的结果。 |
 
 **错误码：** 
 

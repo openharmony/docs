@@ -5537,13 +5537,13 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | author          | string                  | 否   | 是   | 专辑作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
 | avQueueName<sup>12+</sup>       | string                  | 否   | 是   | 歌单（歌曲列表）名称。                                                               |
 | avQueueId<sup>11+</sup>       | string                  | 否   | 是   | 歌单（歌曲列表）唯一标识Id。                                                               |
-| avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 是   | 歌单（歌曲列表）封面图。<br>图片的像素数据或者图片路径地址（本地路径或网络路径）。应用通过setAVMetadata设置图片数据。<br>- 设置的数据类型为PixelMap时，通过getAVMetadata获取的将为PixelMap。<br>- 设置为url图片路径，获取的为url图片路径。  |
+| avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) &#124; string | 否   | 是   | 歌单（歌曲列表）封面图。<br>图片的像素数据或者图片路径地址（本地路径或网络路径）。应用通过setAVMetadata设置图片数据。<br>- 设置的数据类型为PixelMap时，通过getAVMetadata获取的将为PixelMap。<br>- 设置为url图片路径，获取的为url图片路径。  |
 | album           | string                  | 否   | 是   | 专辑名称。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
 | writer          | string                  | 否   | 是   | 词作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
 | composer        | string                  | 否   | 是   | 作曲者。                                                                |
 | duration        | number                  | 否   | 是   | 媒体时长，单位毫秒（ms）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                  |
-| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 是   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。应用通过setAVMetadata设置图片数据。<br>- 设置的数据类型为PixelMap时，通过getAVMetadata获取的将为PixelMap。<br>- 设置为url图片路径，获取的为url图片路径。  <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                             |
-| bundleIcon<sup>18+</sup>      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 是   | 应用图标图片的像素数据。只读类型，不从应用侧设置。|
+| mediaImage      | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) &#124; string | 否   | 是   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。应用通过setAVMetadata设置图片数据。<br>- 设置的数据类型为PixelMap时，通过getAVMetadata获取的将为PixelMap。<br>- 设置为url图片路径，获取的为url图片路径。  <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                             |
+| bundleIcon<sup>18+</sup>      | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是   | 是   | 应用图标图片的像素数据。只读类型，不从应用侧设置。|
 | publishDate     | Date                    | 否   | 是   | 发行日期。                                                             |
 | subtitle        | string                  | 否   | 是   | 子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
 | description     | string                  | 否   | 是   | 媒体描述。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
@@ -5649,7 +5649,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
 | name            | string                  | 否    | 来电人姓名（别名）。    |                                                                                                                      
 | phoneNumber     | string                  | 否    | 来电电话号码。            |                                                   
-| avatar          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)          | 否    | 来电人头像。            |                                                   
+| avatar          | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)          | 否    | 来电人头像。            |                                                   
 
 ## AVCallState<sup>11+</sup>
 

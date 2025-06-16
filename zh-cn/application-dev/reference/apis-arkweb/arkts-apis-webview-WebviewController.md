@@ -687,7 +687,7 @@ struct WebComponent {
 
 backward(): void
 
-按照历史栈，后退一个页面。一般结合[accessBackward](accessbackward)一起使用。
+按照历史栈，后退一个页面。一般结合[accessBackward](arkts-apis-webview-WebviewController.md#accessbackward)一起使用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3393,7 +3393,7 @@ getFavicon(): image.PixelMap
 
 | 类型                                   | 说明                            |
 | -------------------------------------- | ------------------------------- |
-| [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 页面favicon图标的PixelMap对象。 |
+| [PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 页面favicon图标的PixelMap对象。 |
 
 **错误码：**
 

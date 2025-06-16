@@ -441,6 +441,10 @@ enableScrollInteraction(value: boolean)
 | ------ | ------- | ---- | ----------------------------------- |
 | value  | boolean | 是   | 是否支持滚动手势。设置为true时可以通过手指或者鼠标滚动，设置为false时无法通过手指或者鼠标滚动，但不影响控制器[Scroller](ts-container-scroll.md#scroller)的滚动接口。<br/>默认值：true |
 
+> **说明：** 
+>
+> 组件无法通过鼠标按下拖动操作进行滚动。
+
 ### nestedScroll<sup>10+</sup>
 
 nestedScroll(value: NestedScrollOptions)
@@ -696,7 +700,7 @@ Grid初始化时会触发一次，Grid滚动到起始位置时触发一次。Gri
 
 onReachEnd(event: () => void)
 
-网格到达末尾位置时触发。
+网格到达末尾位置时触发。不满一屏并且最后一个子组件末端在Grid内时触发。
 
 Grid边缘效果为弹簧效果时，划动经过末尾位置时触发一次，回弹回末尾位置时再触发一次。
 
@@ -708,7 +712,19 @@ Grid边缘效果为弹簧效果时，划动经过末尾位置时触发一次，�
 
 onScrollFrameBegin(event: (offset: number, state:  ScrollState) => { offsetRemain: number })
 
-网格开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，网格将按照返回值的实际滑动量进行滑动。
+该接口回调时，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，网格将按照返回值的实际滑动量进行滑动。
+
+满足以下任一条件时触发该事件：
+
+1. 用户交互（如手指滑动、键鼠操作等）触发滚动。
+2. Grid惯性滚动。
+3. 调用[fling](ts-container-scroll.md#fling12)接口触发滚动。
+
+不触发该事件的条件：
+
+1. 调用除[fling](ts-container-scroll.md#fling12)接口外的其他滚动控制接口。
+2. 越界回弹。
+3. 拖动滚动条。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2006,3 +2022,61 @@ struct Index {
   }
 }
 ```
+### 示例14（滚动到指定位置）
+
+该示例通过scrollToIndex接口，实现了Grid组件滚动到指定位置。
+
+```ts
+import { GridDataSource } from './GridDataSource';
+@Entry
+@Component
+struct GridScrollToIndexSample {
+  numbers: GridDataSource = new GridDataSource([]);
+  scroller: Scroller = new Scroller();
+  aboutToAppear(): void {
+    let list: string[] = [];
+    for (let i = 0; i < 10; i++) {
+      for (let j = 0; j < 10; j++) {
+        list.push((i * 5 + j  + 1).toString());
+      }
+    }
+    this.numbers =  new GridDataSource(list);
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Button('scrollToIndex')
+        .onClick(() => { // 滚动到对应的位置
+          this.scroller.scrollToIndex(25, true, ScrollAlign.START);
+        })
+      Grid(this.scroller) {
+        LazyForEach(this.numbers, (day: string) => {
+          GridItem() {
+            Text(day)
+              .fontSize(16)
+              .backgroundColor(0xF9CF93)
+              .width('100%')
+              .height(80)
+              .textAlign(TextAlign.Center)
+          }
+        }, (index: number) => index.toString())
+      }
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(10)
+      .friction(0.6)
+      .enableScrollInteraction(true)
+      .supportAnimation(false)
+      .multiSelectable(false)
+      .edgeEffect(EdgeEffect.Spring)
+      .scrollBar(BarState.On)
+      .scrollBarColor(Color.Grey)
+      .scrollBarWidth(4)
+      .width('90%')
+      .backgroundColor(0xFAEEE0)
+      .height(300)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+![grid_scrollToIndex](figures/gridScrollToIndex.gif)

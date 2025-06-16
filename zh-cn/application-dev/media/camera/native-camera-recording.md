@@ -4,7 +4,7 @@
 
 ## 开发步骤
 
-详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/_o_h___camera.md)。
+详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/capi-oh-camera.md)。
 
 1. 导入NDK接口，接口中提供了相机相关的属性和方法，导入方法如下。
      
@@ -55,7 +55,7 @@
 
 5. 开始录像。
    
-   通过videoOutput的[OH_VideoOutput_Start()](../../reference/apis-camera-kit/_o_h___camera.md#oh_videooutput_start)方法启动录像输出流。
+   通过videoOutput的[OH_VideoOutput_Start()](../../reference/apis-camera-kit/capi-video-output-h.md#oh_videooutput_start)方法启动录像输出流。
 
    ```c++
    // 启动录像输出流。
@@ -71,7 +71,7 @@
 
 6. 停止录像。
      
-   通过videoOutput的[OH_VideoOutput_Stop()](../../reference/apis-camera-kit/_o_h___camera.md#oh_videooutput_stop)方法停止录像输出流。
+   通过videoOutput的[OH_VideoOutput_Stop()](../../reference/apis-camera-kit/capi-video-output-h.md#oh_videooutput_stop)方法停止录像输出流。
 
    ```c++
    // 停止录像输出流。
@@ -108,7 +108,7 @@
   }
   ```
 
-- 通过注册固定的error回调函数获取监听录像输出错误结果，callback返回预览输出接口使用错误时对应的错误码，错误码类型参见[Camera_ErrorCode](../../reference/apis-camera-kit/_o_h___camera.md#camera_errorcode-1)。
+- 通过注册固定的error回调函数获取监听录像输出错误结果，callback返回预览输出接口使用错误时对应的错误码，错误码类型参见[Camera_ErrorCode](../../reference/apis-camera-kit/capi-camera-h.md#camera_errorcode)。
     
   ```c++
   void VideoOutputOnError(Camera_VideoOutput* videoOutput, Camera_ErrorCode errorCode)

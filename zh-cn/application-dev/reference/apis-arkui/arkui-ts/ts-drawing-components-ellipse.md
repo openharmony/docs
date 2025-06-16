@@ -104,7 +104,7 @@ stroke(value: ResourceColor)
 
 strokeDashArray(value: Array&lt;any&gt;)
 
-设置边框间隙，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。取值范围≥0，异常值按照默认值处理。
+设置边框间隙，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。取值范围应为≥0，异常值按照默认值处理。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -176,7 +176,7 @@ strokeLineJoin(value: LineJoinStyle)
 
 strokeMiterLimit(value: number | string)
 
-设置斜接长度与边框宽度比值的极限值，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。Ellipse组件无法设置尖角图形，该属性设置无效。
+设置斜接长度与边框宽度比值的极限值，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。Ellipse组件不支持设置尖角图形，该属性设置无效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

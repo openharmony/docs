@@ -861,7 +861,7 @@ ShadowOptions对象中不支持fill字段。
 
 | 名称           | 类型              | 只读   | 可选   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
-| value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  是  |  否  | 获取属性字符串的图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| value  | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) |  是  |  否  | 获取属性字符串的图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | size  | [SizeOptions](ts-types.md#sizeoptions) |  是  |  是  | 获取属性字符串的图片尺寸。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>返回number类型值的单位为`px`。 |
 | verticalAlign  | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) |  是  |  是  | 获取属性字符串的图片对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) |  是  |  是  | 获取属性字符串的图片缩放类型。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -936,7 +936,7 @@ type ColorFilterType = ColorFilter | DrawingColorFilter
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  是  | 设置图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| value | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) |  是  | 设置图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 设置图片大小。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>size的默认值与objectFit的值有关，不同的objectFit的值对应size的默认值不同。比如当objectFit的值为Cover时，图片高度为组件高度减去组件上下的内边距，图片宽度为组件宽度减去组件左右的内边距。 |
 | verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | 否   | 设置图片基于文本的对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>默认值：ImageSpanAlignment.BOTTOM |
 | objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>默认值：ImageFit.Cover |

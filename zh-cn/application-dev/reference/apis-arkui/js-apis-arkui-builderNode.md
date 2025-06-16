@@ -9,6 +9,13 @@
 > 如果在跨页面复用BuilderNode时显示异常，可参考[跨页面复用注意事项](../../ui/arkts-user-defined-arktsNode-builderNode.md#跨页面复用注意事项)。
 > 
 > 当前不支持在预览器中使用BuilderNode。
+> 
+> BuilderNode下的自定义组件支持使用[@Prop](../../ui/state-management/arkts-prop.md)装饰器，不支持使用[@Reusable](../../ui/state-management/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../ui/state-management/arkts-link.md)、[@Provide](../../ui/state-management/arkts-provide-and-consume.md)、[@Consume](../../ui/state-management/arkts-provide-and-consume.md)装饰器。
+> 
+> 从API version 12开始，自定义组件支持接收[LocalStorage](../../ui/state-management/arkts-localstorage.md)实例。可以通过[传递LocalStorage实例](../../ui/state-management/arkts-localstorage.md#自定义组件接收localstorage实例)来使用LocalStorage相关的装饰器[@LocalStorageProp](../../ui/state-management/arkts-localstorage.md#localstorageprop)、[@LocalStorageLink](../../ui/state-management/arkts-localstorage.md#localstoragelink)。
+> 
+> 其余装饰器行为未定义，不建议使用。
+
 
 ## 导入模块
 
@@ -86,8 +93,7 @@ constructor(uiContext: UIContext, options?: RenderOptions)
 build(builder: WrappedBuilder\<Args>, arg?: Object): void
 
 依照传入的对象创建组件树，并持有组件树的根节点。无状态的UI方法[@Builder](../../ui/state-management/arkts-builder.md)最多拥有一个根节点。
-支持自定义组件。不支持自定义组件使用[@Reusable](../../ui/state-management/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../ui/state-management/arkts-link.md)、[@Provide](../../ui/state-management/arkts-provide-and-consume.md)、[@Consume](../../ui/state-management/arkts-provide-and-consume.md)等装饰器，来同步BuilderNode挂载的页面与BuilderNode中自定义组件的状态。
-从API version 12开始，自定义组件支持接收[LocalStorage](../../ui/state-management/arkts-localstorage.md)实例。可以通过[传递LocalStorage实例](../../ui/state-management/arkts-localstorage.md#自定义组件接收localstorage实例)来使用LocalStorage相关的装饰器[@LocalStorageProp](../../ui/state-management/arkts-localstorage.md#localstorageprop)、[@LocalStorageLink](../../ui/state-management/arkts-localstorage.md#localstoragelink)。
+支持自定义组件。
 
 > **说明**
 > 
@@ -108,41 +114,12 @@ build(builder: WrappedBuilder\<Args>, arg?: Object): void
 | builder | [WrappedBuilder\<Args>](../../ui/state-management/arkts-wrapBuilder.md) | 是   | 创建对应节点树的时候所需的无状态UI方法[@Builder](../../ui/state-management/arkts-builder.md)。 |
 | arg     | Object                                                          | 否   | builder的入参。当前仅支持一个入参，且入参对象类型与@Builder定义的入参类型保持一致。                                          |
 
-
-### BuildOptions<sup>12+</sup>
-
-build的可选参数。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称          | 类型                                   | 必填 | 说明                                                         |
-| ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| nestingBuilderSupported |boolean | 否   | 是否支持Builder嵌套Builder进行使用。其中，false表示Builder使用的入参一致，true表示Builder使用的入参不一致。默认值：false<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| localStorage<sup>20+</sup> |[LocalStorage](../../ui/state-management/arkts-localstorage.md) | 否   | 给当前builderNode设置localStorage，挂载在此builderNode下的自定义组件共享该localStorage，如果自定义组件构造函数同时也传入localStorage，优先使用构造函数中传入的localStorage。默认值：null<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务
-
-### InputEventType<sup>20+</sup>
-
-type InputEventType = TouchEvent | MouseEvent | AxisEvent
-
-postInputEvent的参数，定义用于透传的输入事件类型。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 类型 | 说明                                   |
-| ------------- | -------------------------------------- |
-| [TouchEvent](arkui-ts/ts-universal-events-touch.md#touchevent对象说明)  | 触摸事件。 | 
-| [MouseEvent](arkui-ts/ts-universal-mouse-key.md#mouseevent对象说明)  | 鼠标事件。 |
-| [AxisEvent](arkui-ts/ts-universal-events-axis.md#axisevent)  | 轴事件。 |
-
 ### build<sup>12+</sup>
 
 build(builder: WrappedBuilder\<Args>, arg: Object, options: [BuildOptions](#buildoptions12)): void
 
 依照传入的对象创建组件树，并持有组件树的根节点。无状态的UI方法[@Builder](../../ui/state-management/arkts-builder.md)最多拥有一个根节点。
-支持自定义组件。不支持自定义组件使用[@Reusable](../../ui/state-management/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../ui/state-management/arkts-link.md)、[@Provide](../../ui/state-management/arkts-provide-and-consume.md)、[@Consume](../../ui/state-management/arkts-provide-and-consume.md)等装饰器用于当前页面与自定义组件的状态同步。
-从API version 12开始，自定义组件支持接收[LocalStorage](../../ui/state-management/arkts-localstorage.md)实例。可以通过[传递LocalStorage实例](../../ui/state-management/arkts-localstorage.md#自定义组件接收localstorage实例)来使用LocalStorage相关的装饰器[@LocalStorageProp](../../ui/state-management/arkts-localstorage.md#localstorageprop)、[@LocalStorageLink](../../ui/state-management/arkts-localstorage.md#localstoragelink)。
+支持自定义组件。
 
 > **说明**
 > 
@@ -222,6 +199,32 @@ struct Index {
 }
 ```
 
+### BuildOptions<sup>12+</sup>
+
+build的可选参数。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 类型                                   | 必填 | 说明                                                         |
+| ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| nestingBuilderSupported |boolean | 否   | 是否支持Builder嵌套Builder进行使用。其中，false表示Builder使用的入参一致，true表示Builder使用的入参不一致。默认值：false<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| localStorage<sup>20+</sup> |[LocalStorage](../../ui/state-management/arkts-localstorage.md) | 否   | 给当前builderNode设置localStorage，挂载在此builderNode下的自定义组件共享该localStorage，如果自定义组件构造函数同时也传入localStorage，优先使用构造函数中传入的localStorage。默认值：null<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务
+
+### InputEventType<sup>20+</sup>
+
+type InputEventType = TouchEvent | MouseEvent | AxisEvent
+
+postInputEvent的参数，定义用于透传的输入事件类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明                                   |
+| ------------- | -------------------------------------- |
+| [TouchEvent](arkui-ts/ts-universal-events-touch.md#touchevent对象说明)  | 触摸事件。 | 
+| [MouseEvent](arkui-ts/ts-universal-mouse-key.md#mouseevent对象说明)  | 鼠标事件。 |
+| [AxisEvent](arkui-ts/ts-universal-events-axis.md#axisevent)  | 轴事件。 |
 
 ### getFrameNode
 
@@ -680,13 +683,11 @@ struct MyComponent {
 
 dispose(): void
 
-立即释放当前BuilderNode。当BuilderNode对象调用dispose接口之后，不仅BuilderNode对象与后端实体节点解除引用关系，BuilderNode中的FrameNode与RenderNode也会同步和实体节点解除引用关系。
+立即释放当前BuilderNode对象对[实体节点](../../ui/arkts-user-defined-node.md#基本概念)的引用关系。关于BuilderNode的解绑场景请参见[节点解绑](../../ui/arkts-user-defined-arktsNode-builderNode.md#解除实体节点引用关系)。
 
 > **说明：**
 >
-> 当BuilderNode对象调用dispose之后，不仅BuilderNode对象与后端实体节点解除引用关系，BuilderNode中的FrameNode与RenderNode也会同步和实体节点解除引用关系。
->
-> 若前端对象BuilderNode无法释放，容易导致内存泄漏。建议在不再需要对该BuilderNode对象进行操作时，开发者应主动调用dispose释放后端节点，以减少引用关系的复杂性，降低内存泄漏的风险。
+> 当BuilderNode对象调用dispose之后，会与后端实体节点解除引用关系。若前端对象BuilderNode无法释放，容易导致内存泄漏。建议在不再需要对该BuilderNode对象进行操作时，开发者主动调用dispose释放后端节点，以减少引用关系的复杂性，降低内存泄漏的风险。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -777,7 +778,7 @@ struct Index {
 
 reuse(param?: Object): void
 
-传递reuse事件到BuilderNode中的自定义组件。
+触发BuilderNode中的自定义组件的复用。组件复用请参见[@Reusable装饰器：组件复用](../../ui/state-management/arkts-reusable.md)。关于BuilderNode的解绑场景请参见[节点解绑](../../ui/arkts-user-defined-arktsNode-builderNode.md#解除实体节点引用关系)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -793,7 +794,8 @@ reuse(param?: Object): void
 
 recycle(): void
 
-传递recycle事件到BuilderNode中的自定义组件。
+- 触发BuilderNode中自定义组件的回收。自定义组件的回收是组件复用机制中的环节，具体信息请参见[@Reusable装饰器：组件复用](../../ui/state-management/arkts-reusable.md)。
+- BuilderNode通过reuse和recycle完成其内外自定义组件之间的复用事件传递，具体使用场景请参见[节点复用能力](../../ui/arkts-user-defined-arktsNode-builderNode.md#节点复用能力)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1209,6 +1211,7 @@ import { InputEventType } from '@ohos.arkui.node';
 
 class Params {
   text: string = "this is a text"
+  uiContext: UIContext | null = null
 }
 @Builder
 function ButtonBuilder(params: Params) {
@@ -1222,7 +1225,7 @@ function ButtonBuilder(params: Params) {
       .height("30%")
       .offset({x: 100, y: 100})
       .onMouse((event) => {
-        let promptAction: PromptAction = this.getUIContext().getPromptAction();
+        let promptAction: PromptAction = params.uiContext!.getPromptAction();
         promptAction.showToast({
           message: 'onMouse',
           duration: 3000
@@ -1239,7 +1242,7 @@ class MyNodeController extends NodeController {
   private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(ButtonBuilder);
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new BuilderNode(uiContext);
-    this.rootNode.build(this.wrapBuilder, { text: "This is a string" })
+    this.rootNode.build(this.wrapBuilder, { text: "This is a string", uiContext })
     return this.rootNode.getFrameNode();
   }
 
@@ -1302,6 +1305,7 @@ import { InputEventType } from '@ohos.arkui.node';
 
 class Params {
   text: string = "this is a text"
+  uiContext: UIContext | null = null
 }
 @Builder
 function ButtonBuilder(params: Params) {
@@ -1315,7 +1319,7 @@ function ButtonBuilder(params: Params) {
       .height("30%")
       .offset({x: 100, y: 100})
       .onTouch((event) => {
-        let promptAction: PromptAction = this.getUIContext().getPromptAction();
+        let promptAction: PromptAction = params.uiContext!.getPromptAction();
         promptAction.showToast({
           message: 'onTouch',
           duration: 3000
@@ -1332,7 +1336,7 @@ class MyNodeController extends NodeController {
   private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(ButtonBuilder);
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new BuilderNode(uiContext);
-    this.rootNode.build(this.wrapBuilder, { text: "This is a string" })
+    this.rootNode.build(this.wrapBuilder, { text: "This is a string", uiContext })
     return this.rootNode.getFrameNode();
   }
 
@@ -1406,6 +1410,7 @@ import { InputEventType } from '@ohos.arkui.node';
 
 class Params {
   text: string = "this is a text"
+  uiContext: UIContext | null = null
 }
 @Builder
 function ButtonBuilder(params: Params) {
@@ -1419,7 +1424,7 @@ function ButtonBuilder(params: Params) {
       .height("30%")
       .offset({x: 100, y: 100})
       .onAxisEvent((event) => {
-        let promptAction: PromptAction = this.getUIContext().getPromptAction();
+        let promptAction: PromptAction = params.uiContext!.getPromptAction();
         promptAction.showToast({
           message: 'onAxisEvent',
           duration: 3000
@@ -1436,7 +1441,7 @@ class MyNodeController extends NodeController {
   private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(ButtonBuilder);
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new BuilderNode(uiContext);
-    this.rootNode.build(this.wrapBuilder, { text: "This is a string" })
+    this.rootNode.build(this.wrapBuilder, { text: "This is a string", uiContext })
     return this.rootNode.getFrameNode();
   }
 
@@ -1536,113 +1541,110 @@ struct Index {
   }
 }
 ```
-### 示例5（检验命令式节点是否有效）
+### 示例5（检验BuilderNode是否有效）
 
-该示例演示了释放节点前后分别使用isDisposed接口验证节点的状态，释放节点前节点调用isDisposed接口返回true，释放节点后节点调用isDisposed接口返回false。
+该示例演示了BuilderNode释放节点前后分别使用isDisposed接口验证节点的状态，释放节点前节点调用isDisposed接口返回true，释放节点后节点调用isDisposed接口返回false。
 
 ```ts
-import {
-  RenderNode,
-  FrameNode,
-  NodeController,
-  BuilderNode,
-  ComponentContent,
-  PromptAction,
-  NodeAdapter,
-  typeNode
-} from "@kit.ArkUI";
+import { RenderNode, FrameNode, NodeController, BuilderNode } from "@kit.ArkUI";
 
-@Builder
-function buildText() {
-  Text("IsDisposed")
-    .textAlign(TextAlign.Center)
+@Component
+struct TestComponent {
+  build() {
+    Column() {
+      Text('This is a BuilderNode.')
+        .fontSize(25)
+        .fontWeight(FontWeight.Bold)
+    }
     .width('100%')
-    .height('100%')
-    .fontSize(30)
+    .height(30)
+    .backgroundColor(Color.Gray)
+  }
+
+  aboutToAppear() {
+    console.error('aboutToAppear');
+  }
+
+  aboutToDisappear() {
+    console.error('aboutToDisappear');
+  }
 }
 
-class MyNodeAdapter extends NodeAdapter {
+@Builder
+function buildComponent() {
+  TestComponent()
 }
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
   private builderNode: BuilderNode<[]> | null = null;
-  private renderNode: RenderNode | null = null;
-  private frameNode: FrameNode | null = null;
-  nodeAdapter: MyNodeAdapter | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
     this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 200, height: 100 } });
-    this.builderNode.build(new WrappedBuilder(buildText));
+    this.builderNode.build(new WrappedBuilder(buildComponent));
 
     const rootRenderNode = this.rootNode!.getRenderNode();
     if (rootRenderNode !== null) {
-      rootRenderNode.size = { width: 200, height: 200 };
+      rootRenderNode.size = { width: 300, height: 300 };
       rootRenderNode.backgroundColor = 0xffd5d5d5;
       rootRenderNode.appendChild(this.builderNode!.getFrameNode()!.getRenderNode());
-      this.renderNode = new RenderNode();
-      rootRenderNode.appendChild(this.renderNode);
-      this.frameNode = new FrameNode(uiContext);
-      this.rootNode.appendChild(this.frameNode);
-
-
-      let listNode = typeNode.createNode(uiContext, "List");
-      listNode.initialize({ space: 3 });
-      this.rootNode.appendChild(listNode);
-      this.nodeAdapter = new MyNodeAdapter();
-      NodeAdapter.attachNodeAdapter(this.nodeAdapter, listNode);
     }
 
     return this.rootNode;
   }
 
-  disposeTest() {
-    if (this.frameNode !== null && this.nodeAdapter !== null && this.builderNode !== null && this.renderNode !== null) {
-      console.log(`jerry before BuilderNode dispose: isDisposed=`, this.builderNode.isDisposed());
+  dispose() {
+    if (this.builderNode !== null) {
       this.builderNode.dispose();
-      console.log(`jerry after BuilderNode dispose: isDisposed=`, this.builderNode.isDisposed());
-      console.log(`jerry before FrameNode dispose: isDisposed=`, this.frameNode.isDisposed());
-      this.frameNode.dispose();
-      console.log(`jerry after FrameNode dispose: isDisposed=`, this.frameNode.isDisposed());
-      console.log(`jerry before RenderNode dispose: isDisposed=`, this.renderNode.isDisposed());
-      this.renderNode.dispose();
-      console.log(`jerry after RenderNode dispose: isDisposed=`, this.renderNode.isDisposed());
-      console.log(`jerry before NodeAdapter dispose: isDisposed=`, this.nodeAdapter.isDisposed());
-      this.nodeAdapter.dispose();
-      console.log(`jerry after NodeAdapter dispose: isDisposed=`, this.nodeAdapter.isDisposed());
+    }
+  }
+
+  isDisposed() : string{
+    if (this.builderNode !== null) {
+      if (this.builderNode.isDisposed()) {
+        return 'builderNode isDisposed is true';
+      }
+      else {
+        return 'builderNode isDisposed is false';
+      }
+    }
+    return 'builderNode is null';
+  }
+
+  removeBuilderNode() {
+    const rootRenderNode = this.rootNode!.getRenderNode();
+    if (rootRenderNode !== null && this.builderNode !== null && this.builderNode.getFrameNode() !== null) {
+      rootRenderNode.removeChild(this.builderNode!.getFrameNode()!.getRenderNode());
     }
   }
 }
+
 @Entry
 @Component
 struct Index {
+  @State text: string = ''
   private myNodeController: MyNodeController = new MyNodeController();
-  private promptAction: PromptAction | null = null;
-  private contentNode: ComponentContent<[]> | null = null;
 
   build() {
     Column({ space: 4 }) {
       NodeContainer(this.myNodeController)
-      Button('OpenDialog')
+      Button('BuilderNode dispose')
         .onClick(() => {
-          let uiContext = this.getUIContext();
-          this.promptAction = uiContext.getPromptAction();
-          this.contentNode = new ComponentContent(uiContext, wrapBuilder(buildText));
-          this.promptAction.openCustomDialog(this.contentNode);
+          this.myNodeController.removeBuilderNode();
+          this.myNodeController.dispose();
+          this.text = '';
         })
-        .width(120)
-        .height(40)
-      Button('DisposeTest')
+        .width(200)
+        .height(50)
+      Button('BuilderNode isDisposed')
         .onClick(() => {
-          this.myNodeController.disposeTest();
-          this.promptAction?.closeCustomDialog(this.contentNode);
-          console.log(`jerry before ComponentContent dispose: isDisposed=`, this.contentNode?.isDisposed());
-          this.contentNode?.dispose();
-          console.log(`jerry after ComponentContent dispose: isDisposed=`, this.contentNode?.isDisposed());
+          this.text = this.myNodeController.isDisposed();
         })
-        .width(120)
-        .height(40)
+        .width(200)
+        .height(50)
+      Text(this.text)
+        .fontSize(25)
     }
     .width('100%')
     .height('100%')
@@ -1650,4 +1652,4 @@ struct Index {
 }
 ```
 
-![isDisposed](figures/isDisposed.gif)
+![isDisposed](figures/builderNode_isDisposed.gif)

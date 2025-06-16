@@ -5,7 +5,7 @@
 > **说明：**
 >
 > 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> 如果在处理大量子组件时遇到卡顿问题，请考虑采用懒加载、缓存列表项、动态预加载、组件复用和布局优化等方法来进行优化。最佳实践请参考[优化长列表加载慢丢帧问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-best-practices-long-list)。
+
 
 
 ## 子组件
@@ -14,6 +14,8 @@
 支持通过渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）动态生成子组件，更推荐使用LazyForEach或Repeat以优化性能。
 
 > **说明：**
+>
+> 如果在处理大量子组件时遇到卡顿问题，请考虑采用懒加载、缓存列表项、动态预加载、组件复用和布局优化等方法来进行优化。最佳实践请参考[优化长列表加载慢丢帧问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-best-practices-long-list)。
 >
 > List的子组件的索引值计算规则：
 >
@@ -364,6 +366,10 @@ enableScrollInteraction(value: boolean)
 | ------ | ------- | ---- | ----------------------------------- |
 | value  | boolean | 是   | 是否支持滚动手势。设置为true时可以通过手指或者鼠标滚动，设置为false时无法通过手指或者鼠标滚动，但不影响控制器[Scroller](ts-container-scroll.md#scroller)的滚动接口。<br/>默认值：true |
 
+> **说明：** 
+>
+> 组件无法通过鼠标按下拖动操作进行滚动。
+
 ### nestedScroll<sup>10+</sup>
 
 nestedScroll(value: NestedScrollOptions)
@@ -660,7 +666,7 @@ List初始化时如果initialIndex为0会触发一次，List滚动到起始位�
 
 onReachEnd(event: () => void)
 
-列表到达末尾位置时触发。
+列表到达末尾位置时触发。不满一屏并且最后一个子组件末端在List内时触发。
 
 List边缘效果为弹簧效果时，划动经过末尾位置时触发一次，回弹回末尾位置时再触发一次。
 
@@ -674,11 +680,21 @@ List边缘效果为弹簧效果时，划动经过末尾位置时触发一次，�
 
 onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain: number })
 
-列表开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，列表将按照返回值的实际滑动量进行滑动。
+该接口回调时，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，列表将按照返回值的实际滑动量进行滑动。
 
 当listDirection的值为Axis.Vertical时，返回垂直方向滑动量，当listDirection的值为Axis.Horizontal时，返回水平方向滑动量。
 
-触发该事件的条件：手指拖动List、List惯性划动时每帧开始时触发；List超出边缘回弹、调用除fling接口外的其他滚动控制接口和拖动滚动条的滚动不会触发。
+满足以下任一条件时触发该事件：
+
+1. 用户交互（如手指滑动、键鼠操作等）触发滚动。
+2. List惯性滚动。
+3. 调用[fling](ts-container-scroll.md#fling12)接口触发滚动。
+
+不触发该事件的条件：
+
+1. 调用除[fling](ts-container-scroll.md#fling12)接口外的其他滚动控制接口。
+2. 越界回弹。
+3. 拖动滚动条。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

@@ -49,6 +49,10 @@ openToast(options: ShowToastOptions): Promise&lt;number&gt;
 
 **示例：**
 
+> **说明：**
+> 
+> 直接使用openToast可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用UIContext中的getPromptAction方法获取到PromptAction对象，再通过该对象调用[openToast](js-apis-arkui-UIContext.md#opentoast18)实现。
+
 ```ts
 import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -121,6 +125,10 @@ closeToast(toastId: number): void
 | 103401   | Cannot find the toast.                                       |
 
 **示例：**
+
+> **说明：**
+> 
+> 直接使用closeToast可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用UIContext中的getPromptAction方法获取到PromptAction对象，再通过该对象调用[openToast](js-apis-arkui-UIContext.md#closetoast18)实现。
 
 示例请看[promptAction.openToaset18](#promptactionopentoast18)的示例。
 
@@ -481,7 +489,7 @@ type DialogOptionsShadow = ShadowOptions&nbsp;\|&nbsp;ShadowStyle
 | dialogTransition<sup>19+</sup>          | [TransitionEffect](arkui-ts/ts-transition-animation-component.md#transitioneffect10对象说明) | 否   | 设置弹窗内容显示的过渡效果。默认无动效。<br />**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 | maskTransition<sup>19+</sup>          | [TransitionEffect](arkui-ts/ts-transition-animation-component.md#transitioneffect10对象说明) | 否   | 设置蒙层显示的过渡效果。默认无动效。<br />**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 | onDidAppear<sup>12+</sup> | () => void | 否 | 弹窗弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。<br />2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br />3.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。<br />4. 当弹窗入场动效未完成时关闭弹窗，该回调不会触发。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| onDidDisappear<sup>12+</sup> | () => void | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| onDidDisappear<sup>12+</sup> | () => void | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。 <br/>当弹窗退场动画未完成时（例如：同时触发弹窗关闭和页面切换），该回调不会触发。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | onWillAppear<sup>12+</sup> | () => void | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onWillDisappear<sup>12+</sup> | () => void | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。<br />2.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | keyboardAvoidMode<sup>12+</sup> | [KeyboardAvoidMode](./arkui-ts/ts-types.md#keyboardavoidmode12枚举说明) | 否 | 用于设置弹窗是否在拉起软键盘时进行自动避让。<br/>默认值：KeyboardAvoidMode.DEFAULT<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -645,7 +653,7 @@ showToast(options: ShowToastOptions): void
 
 > **说明：**
 >
-> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showToast](js-apis-arkui-UIContext.md#showtoast)。
+> 从API version 18开始废弃，且直接使用showToast可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showToast](js-apis-arkui-UIContext.md#showtoast)。
 >
 > 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
 
@@ -713,7 +721,7 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 
 > **说明：**
 >
-> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showDialog](js-apis-arkui-UIContext.md#showdialog-1)。
+> 从API version 18开始废弃，且直接使用showDialog可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showDialog](js-apis-arkui-UIContext.md#showdialog-1)。
 >
 > 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
 
@@ -779,7 +787,7 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 
 > **说明：**
 >
-> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showDialog](js-apis-arkui-UIContext.md#showdialog)。
+> 从API version 18开始废弃，且直接使用showDialog可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showDialog](js-apis-arkui-UIContext.md#showdialog)。
 >
 > 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
 
@@ -954,7 +962,7 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 
 > **说明：**
 >
-> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showActionMenu](js-apis-arkui-UIContext.md#showactionmenu11)。
+> 从API version 18开始废弃，且直接使用showActionMenu可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showActionMenu](js-apis-arkui-UIContext.md#showactionmenu11)。
 >
 > 从API version 11开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
 
@@ -1096,7 +1104,7 @@ showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse
 
 > **说明：**
 >
-> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showActionMenu](js-apis-arkui-UIContext.md#showactionmenu)。
+> 从API version 18开始废弃，且直接使用showActionMenu可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showActionMenu](js-apis-arkui-UIContext.md#showactionmenu)。
 >
 > 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
 
@@ -1167,7 +1175,7 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 
 > **说明：**
 >
-> 从API version 11开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[openCustomDialog](js-apis-arkui-UIContext.md#opencustomdialog12-1)。
+> 从API version 11开始支持，从API version 18开始废弃，且直接使用openCustomDialog可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[openCustomDialog](js-apis-arkui-UIContext.md#opencustomdialog12-1)。
 >
 > 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
 
@@ -1451,7 +1459,7 @@ closeCustomDialog(dialogId: number): void
 
 > **说明：**
 >
-> 从API version 11开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[closeCustomDialog](js-apis-arkui-UIContext.md#closecustomdialog12-1)。
+> 从API version 11开始支持，从API version 18开始废弃，且直接使用closeCustomDialog可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[closeCustomDialog](js-apis-arkui-UIContext.md#closecustomdialog12-1)。
 >
 > 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
 

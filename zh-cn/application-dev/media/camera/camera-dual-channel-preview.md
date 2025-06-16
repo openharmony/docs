@@ -53,7 +53,7 @@
     }
     ```
 
-3. 注册监听处理预览流每帧图像数据：通过ImageReceiver组件中imageArrival事件监听获取底层返回的图像数据，详细的API说明请参考[Image API参考](../../reference/apis-image-kit/js-apis-image.md)。
+3. 注册监听处理预览流每帧图像数据：通过ImageReceiver组件中imageArrival事件监听获取底层返回的图像数据，详细的API说明请参考[Image API参考](../../reference/apis-image-kit/arkts-apis-image-ImageReceiver.md)。
 
     ```ts
     function onImageArrival(receiver: image.ImageReceiver): void {
@@ -107,7 +107,7 @@
     }
     ```
 
-    通过 [image.Component](../../reference/apis-image-kit/js-apis-image.md#component9) 解析图片buffer数据参考：
+    通过 [image.Component](../../reference/apis-image-kit/arkts-apis-image-i.md#component9) 解析图片buffer数据参考：
 
     > **注意：**
     > 需要确认图像的宽width是否与行距rowStride一致，如果不一致可参考以下方式处理：

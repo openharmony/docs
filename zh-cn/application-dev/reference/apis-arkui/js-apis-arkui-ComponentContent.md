@@ -595,113 +595,71 @@ isDisposed(): boolean
 **示例：**
 
 ```ts
-import {
-  RenderNode,
-  FrameNode,
-  NodeController,
-  BuilderNode,
-  ComponentContent,
-  PromptAction,
-  NodeAdapter,
-  typeNode
-} from "@kit.ArkUI";
+import { BusinessError } from '@kit.BasicServicesKit';
+import { ComponentContent } from '@kit.ArkUI';
+
+class Params {
+  text: string = "";
+  constructor(text: string) {
+    this.text = text;
+  }
+}
 
 @Builder
-function buildText() {
-  Text("IsDisposed")
-    .textAlign(TextAlign.Center)
-    .width('100%')
-    .height('100%')
-    .fontSize(30)
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({ bottom: 36 })
+  }.backgroundColor('#FFF0F0F0')
 }
 
-class MyNodeAdapter extends NodeAdapter {
-}
-
-class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-  private builderNode: BuilderNode<[]> | null = null;
-  private renderNode: RenderNode | null = null;
-  private frameNode: FrameNode | null = null;
-  nodeAdapter: MyNodeAdapter | null = null;
-
-  makeNode(uiContext: UIContext): FrameNode | null {
-    this.rootNode = new FrameNode(uiContext);
-    this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 200, height: 100 } });
-    this.builderNode.build(new WrappedBuilder(buildText));
-
-    const rootRenderNode = this.rootNode!.getRenderNode();
-    if (rootRenderNode !== null) {
-      rootRenderNode.size = { width: 200, height: 200 };
-      rootRenderNode.backgroundColor = 0xffd5d5d5;
-      rootRenderNode.appendChild(this.builderNode!.getFrameNode()!.getRenderNode());
-      this.renderNode = new RenderNode();
-      rootRenderNode.appendChild(this.renderNode);
-      this.frameNode = new FrameNode(uiContext);
-      this.rootNode.appendChild(this.frameNode);
-
-
-      let listNode = typeNode.createNode(uiContext, "List");
-      listNode.initialize({ space: 3 });
-      this.rootNode.appendChild(listNode);
-      this.nodeAdapter = new MyNodeAdapter();
-      NodeAdapter.attachNodeAdapter(this.nodeAdapter, listNode);
-    }
-
-    return this.rootNode;
-  }
-
-  disposeTest() {
-    if (this.frameNode !== null && this.nodeAdapter !== null && this.builderNode !== null && this.renderNode !== null) {
-      console.log(`jerry before BuilderNode dispose: isDisposed=`, this.builderNode.isDisposed());
-      this.builderNode.dispose();
-      console.log(`jerry after BuilderNode dispose: isDisposed=`, this.builderNode.isDisposed());
-      console.log(`jerry before FrameNode dispose: isDisposed=`, this.frameNode.isDisposed());
-      this.frameNode.dispose();
-      console.log(`jerry after FrameNode dispose: isDisposed=`, this.frameNode.isDisposed());
-      console.log(`jerry before RenderNode dispose: isDisposed=`, this.renderNode.isDisposed());
-      this.renderNode.dispose();
-      console.log(`jerry after RenderNode dispose: isDisposed=`, this.renderNode.isDisposed());
-      console.log(`jerry before NodeAdapter dispose: isDisposed=`, this.nodeAdapter.isDisposed());
-      this.nodeAdapter.dispose();
-      console.log(`jerry after NodeAdapter dispose: isDisposed=`, this.nodeAdapter.isDisposed());
-    }
-  }
-}
 @Entry
 @Component
 struct Index {
-  private myNodeController: MyNodeController = new MyNodeController();
-  private promptAction: PromptAction | null = null;
-  private contentNode: ComponentContent<[]> | null = null;
+  @State message: string = "hello";
+  @State beforeDispose: string = ''
+  @State afterDispose: string = ''
 
   build() {
-    Column({ space: 4 }) {
-      NodeContainer(this.myNodeController)
-      Button('OpenDialog')
-        .onClick(() => {
-          let uiContext = this.getUIContext();
-          this.promptAction = uiContext.getPromptAction();
-          this.contentNode = new ComponentContent(uiContext, wrapBuilder(buildText));
-          this.promptAction.openCustomDialog(this.contentNode);
-        })
-        .width(120)
-        .height(40)
-      Button('DisposeTest')
-        .onClick(() => {
-          this.myNodeController.disposeTest();
-          this.promptAction?.closeCustomDialog(this.contentNode);
-          console.log(`jerry before ComponentContent dispose: isDisposed=`, this.contentNode?.isDisposed());
-          this.contentNode?.dispose();
-          console.log(`jerry after ComponentContent dispose: isDisposed=`, this.contentNode?.isDisposed());
-        })
-        .width(120)
-        .height(40)
+    Row() {
+      Column() {
+        Button("click me")
+          .onClick(() => {
+            let uiContext = this.getUIContext();
+            let promptAction = uiContext.getPromptAction();
+            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
+            promptAction.openCustomDialog(contentNode);
+
+            setTimeout(() => {
+              promptAction.closeCustomDialog(contentNode)
+                .then(() => {
+                  console.info('customDialog closed.');
+                  if (contentNode !== null) {
+                    this.beforeDispose = contentNode.isDisposed() ? 'before dispose componentContent isDisposed is true' : 'before dispose componentContent isDisposed is false';
+                    contentNode.dispose();   //释放contentNode
+                    this.afterDispose = contentNode.isDisposed() ? 'after dispose componentContent isDisposed is true' : 'after dispose componentContent isDisposed is false';
+                  }
+                }).catch((error: BusinessError) => {
+                let message = (error as BusinessError).message;
+                let code = (error as BusinessError).code;
+                console.error(`closeCustomDialog args error code is ${code}, message is ${message}`);
+              })
+            }, 1000);     //1秒后自动关闭
+          })
+        Text(this.beforeDispose)
+          .fontSize(25)
+          .margin({ top: 10, bottom: 10 })
+        Text(this.afterDispose)
+          .fontSize(25)
+      }
+      .width('100%')
+      .height('100%')
     }
-    .width('100%')
     .height('100%')
   }
 }
 ```
 
-![](figures/isDisposed.gif)
+![](figures/component_content_isDisposed.gif)

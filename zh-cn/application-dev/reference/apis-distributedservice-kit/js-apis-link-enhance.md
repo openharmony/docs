@@ -42,7 +42,7 @@ createServer(name:&nbsp;string):&nbsp;Server
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
 | 32390203      | Duplicate server name.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Invalid parameter.  |
 
 **示例：**
 
@@ -94,7 +94,7 @@ createConnection(deviceId:&nbsp;string,&nbsp;name:&nbsp;string):&nbsp;Connection
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Invalid parameter.  |
 
 **示例：**
 
@@ -240,7 +240,7 @@ linkEnhanceStart(name: string) {
 ```
 ### on('connectionAccepted')
 
-on(type:&nbsp;'connectionAccepted',&nbsp;Callback&lt;Connection&gt;):&nbsp;void
+on(type: 'connectionAccepted', callback: Callback&lt;Connection&gt;): void
 
 创建服务成功后，注册connectionAccepted事件的回调监听，等待对端连接。使用callback异步回调。
 
@@ -260,7 +260,7 @@ on(type:&nbsp;'connectionAccepted',&nbsp;Callback&lt;Connection&gt;):&nbsp;void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Invalid parameter.  |
 
 **示例：**
 
@@ -290,7 +290,7 @@ linkEnhanceStart(name: string) {
 ```
 ### off('connectionAccepted')
 
-off(type:&nbsp;'connectionAccepted',&nbsp;Callback&lt;Connection&gt;):&nbsp;void
+off(type: 'connectionAccepted', callback?: Callback&lt;Connection&gt;): void
 
 取消注册connectionAccepted事件的回调监听。使用callback异步回调。
 
@@ -301,7 +301,7 @@ off(type:&nbsp;'connectionAccepted',&nbsp;Callback&lt;Connection&gt;):&nbsp;void
 | 参数名       | 类型                                    | 必填   | 说明    |
 | --------- | ------------------------------------- | ---- | ----- |
 | type | string  | 是    |   事件回调类型，支持的事件为'connectionAccepted'，收到对端连接，触发该事件。   |
-| callback | Callback&lt;[Connection](#connection)&gt; | 是    | 注册的回调函数。[Connection](#connection)返回的连接对象。 |
+| callback | Callback&lt;[Connection](#connection)&gt; | 否    | 注册的回调函数。[Connection](#connection)返回的连接对象。 |
 
 **错误码：**
 
@@ -310,7 +310,7 @@ off(type:&nbsp;'connectionAccepted',&nbsp;Callback&lt;Connection&gt;):&nbsp;void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Invalid parameter.  |
 
 **示例：**
 
@@ -342,7 +342,7 @@ linkEnhanceStart(name: string) {
 
 ### on('serverStopped')
 
-on(type:&nbsp;'serverStopped',&nbsp;Callback&lt;Connection&gt;):&nbsp;void
+on(type: 'serverStopped', callback: Callback&lt;Connection&gt;): void
 
 在创建服务成功后，注册serverStopped回调，监听服务异常停止。使用callback异步回调。
 
@@ -362,7 +362,7 @@ on(type:&nbsp;'serverStopped',&nbsp;Callback&lt;Connection&gt;):&nbsp;void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Invalid parameter.  |
 
 **示例：**
 
@@ -394,7 +394,7 @@ linkEnhanceStart(name: string) {
 
 ### off('serverStopped')
 
-off(type:&nbsp;'serverStopped',&nbsp;Callback&lt;Connection&gt;):&nbsp;void
+off(type: 'serverStopped', callback?: Callback&lt;Connection&gt;): void
 
 取消注册serverStopped事件的回调监听。使用callback异步回调。
 
@@ -405,7 +405,7 @@ off(type:&nbsp;'serverStopped',&nbsp;Callback&lt;Connection&gt;):&nbsp;void
 | 参数名       | 类型                                    | 必填   | 说明    |
 | --------- | ------------------------------------- | ---- | ----- |
 | type | string  | 是    |   事件回调类型，支持的事件为'serverStopped'，底层服务异常时触发。   |
-| callback | Callback&lt;number&gt; | 是    | 注册的回调函数，number为返回的错误码。 |
+| callback | Callback&lt;number&gt; | 否    | 注册的回调函数，number为返回的错误码。 |
 
 **错误码：**
 
@@ -414,7 +414,7 @@ off(type:&nbsp;'serverStopped',&nbsp;Callback&lt;Connection&gt;):&nbsp;void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Invalid parameter.  |
 
 **示例：**
 
@@ -683,7 +683,7 @@ sendData(data:&nbsp;ArrayBuffer):&nbsp;void
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
 | 32390205 | Connection is not ready. |
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Invalid parameter.  |
 | 32390300 | Internal error. |
 
 **示例：**
@@ -718,7 +718,7 @@ linkEnhanceConnect(peerDeviceId: string) {
 
 ### on('connectResult')
 
-on(type:&nbsp;'connectResult',&nbsp;callback:&nbsp;Callback&lt;ConnectResult&gt;):&nbsp;void
+on(type: 'connectResult', callback: Callback&lt;ConnectResult&gt;): void
 
 注册connect事件的回调监听，通过回调函数获取连接结果。使用callback进行异步回调。
 
@@ -740,7 +740,7 @@ on(type:&nbsp;'connectResult',&nbsp;callback:&nbsp;Callback&lt;ConnectResult&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Invalid parameter.|
 
 **示例：**
 
@@ -771,7 +771,7 @@ linkEnhanceConnect(peerDeviceId: string) {
 
 ### off('connectResult')
 
-off(type:&nbsp;'connectResult',&nbsp;callback:&nbsp;Callback&lt;ConnectResult&gt;):&nbsp;void
+off(type: 'connectResult', callback?: Callback&lt;ConnectResult&gt;): void
 
 取消connect事件的回调监听，使用callback异步回调。
 
@@ -784,7 +784,7 @@ off(type:&nbsp;'connectResult',&nbsp;callback:&nbsp;Callback&lt;ConnectResult&gt
 | 参数名       | 类型                                    | 必填   | 说明    |
 | --------- | ------------------------------------- | ---- | ----- |
 | type | string  | 是    |   事件回调类型，支持的事件为'connectResult'，完成`connect()`调用，触发该事件。   |
-| callback | Callback&lt;[ConnectResult](#connectresult)&gt; | 是    | 注册的回调函数。    |
+| callback | Callback&lt;[ConnectResult](#connectresult)&gt; | 否    | 注册的回调函数。    |
 
 **错误码：**
 
@@ -793,7 +793,7 @@ off(type:&nbsp;'connectResult',&nbsp;callback:&nbsp;Callback&lt;ConnectResult&gt
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Invalid parameter. |
 
 **示例：**
 
@@ -823,7 +823,7 @@ linkEnhanceConnect(peerDeviceId: string) {
 
 ### on('disconnected')
 
-on(type:&nbsp;'disconnected',&nbsp;callback:&nbsp;Callback&lt;number&gt;):&nbsp;void
+on(type: 'disconnected', callback: Callback&lt;number&gt;): void
 
 注册disconnected事件的回调监听，连接被动断开或者底层异常断开时触发该事件。使用callback异步回调。
 
@@ -845,7 +845,7 @@ on(type:&nbsp;'disconnected',&nbsp;callback:&nbsp;Callback&lt;number&gt;):&nbsp;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Invalid parameter.|
 
 **示例：**
 
@@ -872,7 +872,7 @@ linkEnhanceConnect(peerDeviceId: string) {
 
 ### off('disconnected')
 
-off(type:&nbsp;'disconnected',&nbsp;callback:&nbsp;Callback&lt;number&gt;):&nbsp;void
+off(type: 'disconnected', callback?: Callback&lt;number&gt;): void
 
 取消注册disconnected事件的回调监听。连接被动断开或底层异常断开时触发该事件，使用callback异步回调。
 
@@ -885,7 +885,7 @@ off(type:&nbsp;'disconnected',&nbsp;callback:&nbsp;Callback&lt;number&gt;):&nbsp
 | 参数名       | 类型                                    | 必填   | 说明    |
 | --------- | ------------------------------------- | ---- | ----- |
 | type | string  | 是    |   事件回调类型，支持的事件为'disconnected'，连接被动断开或底层异常断开时，触发该事件。   |
-| callback | Callback&lt;number&gt; | 是    | 注册的回调函数。number为返回的错误码。   |
+| callback | Callback&lt;number&gt; | 否   | 注册的回调函数。number为返回的错误码。   |
 
 **错误码：**
 
@@ -894,7 +894,7 @@ off(type:&nbsp;'disconnected',&nbsp;callback:&nbsp;Callback&lt;number&gt;):&nbsp
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Invalid parameter. |
 
 **示例：**
 
@@ -925,7 +925,7 @@ linkEnhanceConnect(peerDeviceId: string) {
 
 ### on('dataReceived')
 
-on(type:&nbsp;'dataReceived',&nbsp;Callback&lt;ArrayBuffer&gt;):&nbsp;void
+on(type: 'dataReceived', callback: Callback&lt;ArrayBuffer&gt;): void
 
 注册dataReceived事件的回调监听。使用callback异步回调。
 
@@ -947,7 +947,7 @@ on(type:&nbsp;'dataReceived',&nbsp;Callback&lt;ArrayBuffer&gt;):&nbsp;void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Invalid parameter.  |
 
 **示例：**
 
@@ -974,7 +974,7 @@ linkEnhanceConnect(peerDeviceId: string) {
 ```
 ### off('dataReceived')
 
-on(type:&nbsp;'dataReceived',&nbsp;Callback&lt;ArrayBuffer&gt;):&nbsp;void
+on(type: 'dataReceived', callback?: Callback&lt;ArrayBuffer&gt;): void
 
 取消dataReceived事件的回调监听，使用callback异步回调。
 
@@ -987,7 +987,7 @@ on(type:&nbsp;'dataReceived',&nbsp;Callback&lt;ArrayBuffer&gt;):&nbsp;void
 | 参数名       | 类型                                    | 必填   | 说明    |
 | --------- | ------------------------------------- | ---- | ----- |
 | type | string  | 是    |   事件回调类型，支持的事件为'dataReceived'，收到数据时，触发该事件。   |
-| callback | Callback&lt;[ArrayBuffer](../../arkts-utils/arraybuffer-object.md)&gt; | 是    | 注册的回调函数。 |
+| callback | Callback&lt;[ArrayBuffer](../../arkts-utils/arraybuffer-object.md)&gt; | 否    | 注册的回调函数。 |
 
 **错误码：**
 
@@ -996,7 +996,7 @@ on(type:&nbsp;'dataReceived',&nbsp;Callback&lt;ArrayBuffer&gt;):&nbsp;void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 32390206 | Invalid parameter.  |
 
 **示例：**
 
