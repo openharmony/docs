@@ -10,7 +10,7 @@ Sendable objects are designed to be shareable across threads, maintaining a cons
 
 Unlike other ArkTS objects, Sendable objects must have a fixed type at runtime.
 
-When multiple concurrent instances attempt to update Sendable data at the same time, data races occurs, such as multithreaded operations on [ArkTS shared container](arkts-collections-introduction.md). To address data race issues between concurrent instances and manage the timing of multithreaded data processing, ArkTS introduces the mechanisms of [asynchronous lock](arkts-async-lock-introduction.md) and [asynchronous waiting](arkts-condition-variable-introduction.md). Additionally, objects can be frozen using the [object freezing interface](sendable-freeze.md), making them read-only and thereby eliminating the risk of data races.
+When multiple concurrent instances attempt to update Sendable data at the same time, data races occur, such as multithreaded operations on [ArkTS shared container](arkts-collections-introduction.md). To address data race issues between concurrent instances and manage the timing of multithreaded data processing, ArkTS introduces the mechanisms of [asynchronous lock](arkts-async-lock-introduction.md) and [asynchronous waiting](arkts-condition-variable-introduction.md). Additionally, objects can be frozen using the [object freezing interface](sendable-freeze.md), making them read-only and thereby eliminating the risk of data races.
 
 Sendable objects offer efficient communication between concurrent instances by means of pass by reference. They are generally suitable for scenarios where large custom objects need to be transferred between threads, such as when a child thread reads data from a database and returns it to the main thread.
 

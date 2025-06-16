@@ -40,7 +40,7 @@ brush.setBlendMode(drawing.BlendMode.PLUS);
 canvas.attachBrush(brush);
 // Draw a circle (source pixel).
 canvas.drawCircle(600, 600, 300);
-// Remove the padding effect.
+// Remove the filling effect.
 canvas.detachBrush();
 ```
 
@@ -129,7 +129,7 @@ canvas.attachBrush(brush);
 let rect: common2D.Rect = { left: 100, top: 100, right: 900, bottom: 900 };
 // Draw a rectangle.
 canvas.drawRect(rect);
-// Remove the padding effect.
+// Remove the filling effect.
 canvas.detachBrush();
 ```
 
@@ -158,7 +158,7 @@ canvas.attachBrush(brush);
 let rect: common2D.Rect = { left: 100, top: 100, right: 900, bottom: 900 };
 // Draw a rectangle.
 canvas.drawRect(rect);
-// Remove the padding effect.
+// Remove the filling effect.
 canvas.detachBrush();
 ```
 
@@ -187,7 +187,7 @@ canvas.attachBrush(brush);
 let rect: common2D.Rect = { left: 100, top: 100, right: 900, bottom: 900 };
 // Draw a rectangle.
 canvas.drawRect(rect);
-// Remove the padding effect.
+// Remove the filling effect.
 canvas.detachBrush();
 ```
 
@@ -264,7 +264,7 @@ canvas.attachBrush(brush);
 let rect: common2D.Rect = { left: 300, top: 300, right: 900, bottom: 900 };
 // Draw a rectangle.
 canvas.drawRect(rect);
-// Remove the padding effect.
+// Remove the filling effect.
 canvas.detachBrush();
 ```
 

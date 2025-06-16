@@ -1,7 +1,7 @@
 # Starting a Local PageAbility
 
 
-The capabilities related to the PageAbility are provided through the **featureAbility** class. For example, **startAbility()** in **featureAbility** is used to the PageAbility.
+The capabilities related to the PageAbility are provided through the **featureAbility** class. For example, **startAbility()** in **featureAbility** is used to start the PageAbility.
 
 **Table 1** featureAbility APIs
 

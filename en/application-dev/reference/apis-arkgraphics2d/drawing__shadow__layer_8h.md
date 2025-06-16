@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **, which is an enumerated value of** file declares the functions related to the shadow in the drawing module.
+The **drawing_shadow_layer.h** file declares the functions related to the shadow in the drawing module.
 
 **File to include**: &lt;native_drawing/drawing_shadow_layer.h&gt;
 
