@@ -14,7 +14,7 @@
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 @Entry
@@ -26,7 +26,7 @@ struct Index {
   async function example(){
     try {
       this.outputText = '支持的类型为：\n';
-      //参数为1表示获取支持的图片类型格式，参数为2表示获取支持的视频类型格式。
+      // 参数为1表示获取支持的图片类型格式，参数为2表示获取支持的视频类型格式。
       let imageFormat  = await phAccessHelper.getSupportedPhotoFormats(1);
       let result = "";
       for (let i = 0; i < imageFormat.length; i++) {
@@ -117,7 +117,7 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
