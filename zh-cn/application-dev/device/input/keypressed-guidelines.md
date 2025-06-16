@@ -40,7 +40,7 @@ try {
   }
   //订阅按键按下事件
   inputConsumer.on('keyPressed', options, (event: KeyEvent) => {
-    console.log(`Subscribe success ${JSON.stringify(event)}`);
+    console.info(`Subscribe success ${JSON.stringify(event)}`);
   });
   //此处应用可定义典型场景如音量键翻页或应用内拍照功能
 } catch (error) {
@@ -50,7 +50,7 @@ try {
 try {
   // 取消指定回调函数
   inputConsumer.off('keyPressed', (event: KeyEvent) => {
-    console.log(`Unsubscribe success ${JSON.stringify(event)}`);
+    console.info(`Unsubscribe success ${JSON.stringify(event)}`);
   });
   // 取消当前已订阅的所有回调函数
   inputConsumer.off("keyPressed");
