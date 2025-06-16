@@ -1,0 +1,205 @@
+# Interface (AudioLoopback)
+
+> **说明：**
+> 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
+提供音频返听的相关接口。
+
+在使用AudioLoopback的接口之前，需先通过[createAudioLoopback](arkts-apis-audio-f.md#audiocreateaudioloopback20)获取AudioLoopback实例。
+
+## getStatus<sup>20+</sup>
+
+getStatus(): Promise<AudioLoopbackStatus\>
+
+获取音频返听状态。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型                                              | 说明                                |
+| :------------------------------------------------ | :---------------------------------- |
+| Promise<[AudioLoopbackStatus](arkts-apis-audio-e.md#audioloopbackstatus20)\> | Promise对象，返回音频返听状态。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioLoopback.getStatus().then((status: audio.AudioLoopbackStatus) => {
+  console.info(`AudioLoopback: Status: ${status}`);
+}).catch((err: BusinessError) => {
+  console.error(`AudioLoopback: Status :ERROR: ${err}`);
+})
+```
+
+## setVolume<sup>20+</sup>
+
+setVolume(volume: number): Promise&lt;void&gt;
+
+设置音频返听的音量。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名     | 类型    | 必填   | 说明                 |
+| ---------- | ------- | ------ | ------------------- |
+| volume     | number  | 是     | 音量值范围为[0.0, 1.0]。 |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioLoopback.setVolume(0.5).then(() => {
+  console.info('setVolume Success!');
+}).catch((err: BusinessError) => {
+  console.error(`setVolume Fail: ${err}`);
+});
+```
+
+## on('statusChange')<sup>20+</sup>
+
+on(type: 'statusChange', callback: Callback<AudioLoopbackStatus\>): void
+
+监听返听状态变化事件（当AudioLoopback的状态发生变化时触发）。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                        |
+| :------- | :------------------------- | :--- | :------------------------------------------ |
+| type     | string                     | 是   | 事件回调类型，支持的事件为'statusChange'，当AudioLoopback的状态发生变化时，触发该事件。 |
+| callback | Callback\<[AudioLoopbackStatus](arkts-apis-audio-e.md#audioloopbackstatus20)> | 是   | 回调函数，返回当前音频返听的状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+audioLoopback.on('statusChange', (status: audio.AudioLoopbackStatus) => {
+  if (status == audio.AudioLoopbackStatus.UNAVAILABLE_DEVICE) {
+    console.info('audio loopback status is: UNAVAILABLE_DEVICE');
+  } else if (status == audio.AudioLoopbackStatus.UNAVAILABLE_SCENE) {
+    console.info('audio loopback status is: UNAVAILABLE_SCENE');
+  } else if (status == audio.AudioLoopbackStatus.AVAILABLE_IDLE) {
+    console.info('audio loopback status is: AVAILABLE_IDLE');
+  } else if (status == audio.AudioLoopbackStatus.AVAILABLE_RUNNING) {
+    console.info('audio loopback status is: AVAILABLE_RUNNING');
+  }
+});
+```
+
+## off('statusChange')<sup>20+</sup>
+
+off(type: 'statusChange', callback?: Callback&lt;AudioLoopbackStatus&gt;): void
+
+取消监听音频状态事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                |
+| :----- | :----- | :--- | :-------------------------------------------------- |
+| type   | string | 是   | 事件回调类型，支持的事件为'statusChange'，当取消监听音频状态事件时，触发该事件。 |
+| callback | Callback\<[AudioLoopbackStatus](arkts-apis-audio-e.md#audioloopbackstatus20)> | 否 | 回调函数，返回当前音频返听的状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听。
+audioLoopback.off('statusChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let statusChangeCallback = (status: audio.AudioLoopbackStatus) => {
+  if (status == audio.AudioLoopbackStatus.UNAVAILABLE_DEVICE) {
+    console.info('audio loopback status is: UNAVAILABLE_DEVICE');
+  } else if (status == audio.AudioLoopbackStatus.UNAVAILABLE_SCENE) {
+    console.info('audio loopback status is: UNAVAILABLE_SCENE');
+  } else if (status == audio.AudioLoopbackStatus.AVAILABLE_IDLE) {
+    console.info('audio loopback status is: AVAILABLE_IDLE');
+  } else if (status == audio.AudioLoopbackStatus.AVAILABLE_RUNNING) {
+    console.info('audio loopback status is: AVAILABLE_RUNNING');
+  }
+};
+
+audioLoopback.on('statusChange', statusChangeCallback);
+
+audioLoopback.off('statusChange', statusChangeCallback);
+```
+
+## enable<sup>20+</sup>
+
+enable(enable: boolean): Promise<boolean\>
+
+启用或禁用音频返听器。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                |
+| :----- | :----- | :--- | :-------------------------------------------------- |
+| enable   | boolean | 是   | true表示启用音频返听器，false表示禁用音频返听器。 |
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<boolean> | Promise对象，true表示启用或禁用音频返听器成功。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------|
+|     201 | Permission denied.             |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioLoopback.enable(true).then((isSuccess) => {
+  if (isSuccess) {
+    console.info('audio loopback enable success');
+  } else {
+    console.info('audio loopback enable fail');
+  }
+}).catch((err: BusinessError) => {
+  console.error(`ERROR: ${err}`);
+});
+```
