@@ -53,13 +53,13 @@ try {
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 //监听鼠标按下，按下callbackreturn true
 try {
   inputMonitor.off('mouse', callback);//关闭监听鼠标事件
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor off failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor off failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```

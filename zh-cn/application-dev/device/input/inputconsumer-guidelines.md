@@ -41,14 +41,14 @@ let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabK
 try {
   inputConsumer.on("key", keyOption, callback);//订阅系统快捷键
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 //应用关闭
 try {
   inputConsumer.off("key", keyOption, callback);//取消订阅系统快捷键
   console.log(`Unsubscribe success`);
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 
 let leftCtrlKey = 2072;
@@ -65,13 +65,13 @@ inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOption
 try {
   inputConsumer.on("hotkeyChange", hotkeyOption, hotkeyCallback);//订阅应用快捷键
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 //应用关闭
 try {
   inputConsumer.off("hotkeyChange", hotkeyOption, hotkeyCallback);//取消订阅应用快捷键
   console.log(`Unsubscribe success`);
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```

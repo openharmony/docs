@@ -40,13 +40,13 @@ import { pointer } from '@kit.InputKit';
 try {
   pointer.setPointerVisible(false, (error: Error) => {
     if (error) {
-      console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set pointer visible success.`);
   });
 } catch (error) {
-  console.log(`The mouse pointer hide attributes is failed. ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`The mouse pointer hide attributes is failed. ${JSON.stringify(error, [`code`, `message`])}`);
 }
 
 // 3.应用退出全屏播放
@@ -54,13 +54,13 @@ try {
 try {
   pointer.setPointerVisible(true, (error: Error) => {
     if (error) {
-      console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set pointer visible success.`);
   });
 } catch (error) {
-  console.log(`Set pointer visible failed, ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set pointer visible failed, ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -99,7 +99,7 @@ window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError
       console.log(`Successfully set mouse pointer style`);
     });
   } catch (error) {
-    console.log(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${JSON.stringify(`message`)}`);
+    console.error(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${JSON.stringify(`message`)}`);
   }
 });
 // 4.取色结束
@@ -119,7 +119,7 @@ window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError
       console.log(`Successfully set mouse pointer style`);
     });
   } catch (error) {
-    console.log(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${JSON.stringify(`message`)}`);
+    console.error(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${JSON.stringify(`message`)}`);
   }
 });
 ```

@@ -62,6 +62,6 @@ try {
     });
   });
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
