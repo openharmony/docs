@@ -31,7 +31,7 @@
   - [数据库加密（C/C++）](native-data-encryption.md)
   - [基于设备分类和数据分级的访问控制（ArkTS）](access-control-by-device-and-data-level.md)
   - [基于设备分类和数据分级的访问控制（C/C++）](native-access-control-by-device-and-data-level.md)
-  - [E类加密数据库的使用](encrypted_estore_guidelines.md)
+  - [E类加密数据库的使用 (ArkTS)](encrypted_estore_guidelines.md)
 - 跨应用数据共享<!--cross-app-data-share-->
   - [跨应用数据共享概述](data-share-overview.md)
   - 一对多跨应用数据共享<!--one-to-many-data-share-->
