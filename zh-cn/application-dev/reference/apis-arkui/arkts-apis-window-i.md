@@ -287,7 +287,7 @@
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | curve    | [WindowAnimationCurve](arkts-apis-window-e.md#windowanimationcurve20)           | 是   | 动画曲线类型。                                               |
 | duration | number                                                    | 否   | 动画播放的时长，单位毫秒（ms）。<br/>默认值：0，最大值：3000。<br/>根据动画曲线类型决定是否必填。 |
-| param    | [WindowAnimationCurveParam](arkts-apis-window-i.md#windowanimationcurveparam20) | 否   | 动画曲线参数，根据动画曲线类型决定是否必填。                 |
+| param    | [WindowAnimationCurveParam](arkts-apis-window-t.md#windowanimationcurveparam20) | 否   | 动画曲线参数，根据动画曲线类型决定是否必填。                 |
 
 ## WindowInfo<sup>18+</sup>
 
