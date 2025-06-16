@@ -46,7 +46,7 @@ aboutToDisappear函数在自定义组件析构销毁时执行。不允许在abou
 
 onPageShow?(): void
 
-router路由页面（仅[\@Entry](../../../../application-dev/ui/state-management/arkts-create-custom-components.md#entry)装饰的自定义组件）每次显示时触发一次，包括路由跳转过程、应用进入前台等场景。
+router路由页面（仅[\@Entry](../../../../application-dev/ui/state-management/arkts-create-custom-components.md#entry)装饰的自定义组件）每次显示时触发一次，包括路由跳转、应用进入前台等场景。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -56,7 +56,7 @@ router路由页面（仅[\@Entry](../../../../application-dev/ui/state-managemen
 
 onPageHide?(): void
 
-router路由页面（仅[\@Entry](../../../../application-dev/ui/state-management/arkts-create-custom-components.md#entry)装饰的自定义组件）每次隐藏时触发一次，包括路由跳转过程、应用进入后台等场景。
+router路由页面（仅[\@Entry](../../../../application-dev/ui/state-management/arkts-create-custom-components.md#entry)装饰的自定义组件）每次隐藏时触发一次，包括路由跳转、应用进入后台等场景。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
