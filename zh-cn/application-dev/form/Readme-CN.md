@@ -42,7 +42,7 @@
     <!--Del-->
     - [场景动效类型互动卡片开发指导（系统应用）](arkts-ui-liveform-sceneanimation-development-sys.md)
     <!--DelEnd-->
-- JS卡片开发
+- JS卡片开发<!--form-js-ui-->
   - [JS卡片概述](js-ui-widget-overview.md)
   - [JS卡片开发指导（Stage模型）](js-ui-widget-development.md)
   - [JS卡片开发指导（FA模型）](widget-development-fa.md)
