@@ -629,5 +629,3 @@ struct Index {
 原理为使用一个duration为0的[animateToImmediately](../../reference/apis-arkui/arkui-ts/ts-explicit-animatetoimmediately.md)将额外的修改先刷新，再执行原来的动画达成预期的效果。
 
 ![arkts-new-local-animateTo-2](figures/arkts-new-local-animateTo-2.gif)
-
-建议在状态管理V2中谨慎使用animateTo接口。
