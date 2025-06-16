@@ -75,7 +75,7 @@ HCE应用开发者根据业务需要，可以选择实现前台刷卡或者后�
               "entity.system.home"
             ],
             "actions": [
-              "action.system.home",
+              "ohos.want.action.home",
 
               // actions必须包含"ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
               "ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
@@ -202,7 +202,7 @@ export default class EntryAbility extends UIAbility {
               "entity.system.home"
             ],
             "actions": [
-              "action.system.home",
+              "ohos.want.action.home",
 
               // actions必须包含"ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
               "ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
