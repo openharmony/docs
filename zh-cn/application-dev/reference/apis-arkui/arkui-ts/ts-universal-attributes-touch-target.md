@@ -51,6 +51,8 @@ responseRegion(value: Array&lt;Rectangle&gt; | Rectangle): T
   >  width和height只能设置正值百分比。width：'100%'表示热区宽度设置为该组件本身的宽度。比如组件本身宽度是100vp，那么'100%'表示热区宽度也为100vp。height：'100%'表示热区高度设置为该组件本身的高度。
   >
   >  百分比相对于组件自身宽高进行计算。
+  >
+  >  当父组件设置[clip](ts-universal-attributes-sharp-clipping.md#clip12)(true)时，子组件的响应会受到父组件触摸热区的影响，不在父组件触摸热区内的子组件无法响应手势和事件。
 
 
 ## 示例
