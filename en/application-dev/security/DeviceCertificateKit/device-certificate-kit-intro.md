@@ -1,4 +1,4 @@
-# Introduction to Device Certificate Kit
+# About This Kit
 
 Device Certificate Kit provides the [certificate framework](#certificate-framework) and [certificate management](#certificate-management) capabilities for developers.
 
