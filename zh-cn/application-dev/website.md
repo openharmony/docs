@@ -217,7 +217,7 @@
         - [应用数据持久化概述](database/app-data-persistence-overview.md)
         - [通过用户首选项实现数据持久化 (ArkTS)](database/data-persistence-by-preferences.md)
         - [通过用户首选项实现数据持久化 (C/C++)](database/preferences-guidelines.md)
-        - [通过键值型数据库实现数据持久化](database/data-persistence-by-kv-store.md)
+        - [通过键值型数据库实现数据持久化 (ArkTS)](database/data-persistence-by-kv-store.md)
         - [通过关系型数据库实现数据持久化（ArkTS）](database/data-persistence-by-rdb-store.md)
         - [通过关系型数据库实现数据持久化（C/C++）](database/native-relational-store-guidelines.md)
         - [通过向量数据库实现数据持久化 (ArkTS)](database/data-persistence-by-vector-store.md)
