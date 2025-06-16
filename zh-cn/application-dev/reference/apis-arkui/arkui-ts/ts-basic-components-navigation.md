@@ -376,7 +376,7 @@ navBarWidthRange(value: [Dimension, Dimension])
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 是   | 导航栏最小和最大宽度。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432，如果只设置一个值，则未设置的值按照默认值计算。<br/>单位：vp |
+| value | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 是   | 导航栏最小和最大宽度。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432，未正确设置的值按照默认值计算。<br/>单位：vp |
 
 ### minContentWidth<sup>10+</sup>
 
@@ -2182,8 +2182,9 @@ export struct PageTwo {
 }
 ```
 
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
+
 ```json
-// 在src/main目录下的工程配置文件module.json5中的module字段里配置 "routerMap": "$profile:route_map"
 // src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
@@ -2529,6 +2530,7 @@ export struct PageTwo {
 ```ts
 // CustomNavigationUtils.ets
 // 自定义接口，用来保存某个页面相关的转场动画回调和参数
+// src/main/pages/CustomNavigationUtils.ets
 export interface AnimateCallback {
   finish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
   start: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
@@ -2664,8 +2666,8 @@ export class CustomTransition {
   }
 }
 ```
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
 ```json
-// 在src/main目录下的工程配置文件module.json5中的module字段里配置 "routerMap": "$profile:route_map"
 // src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
@@ -2951,8 +2953,8 @@ export struct PageTwo {
   }
 }
 ```
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
 ```json
-// 在src/main目录下的工程配置文件module.json5中的module字段里配置 "routerMap": "$profile:route_map"
 // src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
@@ -3279,8 +3281,8 @@ export function PageOneBuilder(name: string) {
   .title(name)
 }
 ```
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
 ```json
-// 在src/main目录下的工程配置文件module.json5中的module字段里配置 "routerMap": "$profile:route_map"
 // src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
@@ -3390,8 +3392,8 @@ struct NavigationExample2 {
   }
 }
 ```
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
 ```json
-// 在src/main目录下的工程配置文件module.json5中的module字段里配置 "routerMap": "$profile:route_map"
 // src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
@@ -3509,8 +3511,8 @@ struct NavigationExample3 {
   }
 }
 ```
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
 ```json
-// 在src/main目录下的工程配置文件module.json5中的module字段里配置 "routerMap": "$profile:route_map"
 // src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
@@ -4242,8 +4244,8 @@ export struct PageContainer {
 ```
 ```ts
 // CustomNavigationUtils.ts 工具类，用来管理所有页面的自定义动画参数注册和获取等
-
 // 自定义接口，用来保存某个页面相关的转场动画回调和参数
+// src/main/pages/CustomNavigationUtils.ts
 export interface AnimateCallback {
   start: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
   finish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
@@ -4290,9 +4292,8 @@ export class CustomTransition {
   }
 }
 ```
-
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
 ```json
-// 在src/main目录下的工程配置文件module.json5中的module字段里配置 "routerMap": "$profile:route_map"
 // src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
@@ -4318,8 +4319,8 @@ export class CustomTransition {
 
 该示例主要展示Navigation工具栏的自适应能力的启用及关闭。
 
+工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中配置 {"orientation": "landscape"}
 ```ts
-// 工程配置文件module.json5中配置 {"orientation": "landscape"}
 import { SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
