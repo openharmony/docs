@@ -627,7 +627,7 @@ chainMode(direction: Axis, style: ChainStyle): T
 
 minFontScale(scale: number | Resource): T
 
-设置文本最小的字体缩放倍数。
+设置文本最小的字体缩小倍数。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -637,7 +637,7 @@ minFontScale(scale: number | Resource): T
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最小的字体缩放倍数。<br/>取值范围：[0, 1]。<br/>**说明：** <br/>设置的值小于0时，按值为0处理，即缩小不受限制；设置的值大于1，按值为1处理，即缩小不生效；取值范围外为异常值，默认不生效。 |
+| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最小的字体缩小倍数。<br/>取值范围：[0, 1]。<br/>**说明：** <br/>设置的值小于0时，按值为0处理，即缩小不受限制；设置的值大于1，按值为1处理，即缩小不生效；取值范围外为异常值，默认不生效。 |
 
 **返回值：**
 
@@ -649,7 +649,7 @@ minFontScale(scale: number | Resource): T
 
 maxFontScale(scale: number | Resource): T
 
-设置文本最大的字体缩放倍数。
+设置文本最大的字体放大倍数。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -659,7 +659,7 @@ maxFontScale(scale: number | Resource): T
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最大的字体缩放倍数。<br/>取值范围：[1, +∞)。<br/>**说明：** <br/>设置的值小于1时，按值为1处理，异常值默认不生效。 |
+| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最大的字体放大倍数。<br/>取值范围：[1, +∞)。<br/>**说明：** <br/>设置的值小于1时，按值为1处理，异常值默认不生效。 |
 
 **返回值：**
 
