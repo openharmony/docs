@@ -6,7 +6,7 @@
 
    如何生成RSA非对称密钥对，开发者可参考下文示例，并结合[非对称密钥生成和转换规格：RSA](crypto-asym-key-generation-conversion-spec.md#rsa)和[随机生成非对称密钥对](crypto-generate-asym-key-pair-randomly.md)理解，参考文档与当前示例可能存在入参差异，请在阅读时注意区分。
 
-2. 传入参数[KeyEncodingConfig](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#keyencodingconfig18)，参数PKCS1/PCKS8，调用[prikey.getEncodedPem](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencodedpem18)生成编码后的私钥字符串。
+2. 传入参数[KeyEncodingConfig](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#keyencodingconfig18)，参数PKCS1/PKCS8，调用[prikey.getEncodedPem](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencodedpem18)生成编码后的私钥字符串。
 
 **解码**
 
