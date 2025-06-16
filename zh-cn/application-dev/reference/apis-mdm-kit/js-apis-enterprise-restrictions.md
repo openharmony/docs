@@ -383,7 +383,7 @@ setUserRestriction(admin: Want, settingsItem: string, restricted: boolean): void
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
 | settingsItem  | string                                                  | 是   | 设置项名称。<br/>- setApn：apn设置项。 |
-| restricted | boolean                                                 | 是   | 是否限制。true表示限制更改，false表示允许更改。                       |
+| restricted | boolean                                                 | 是   | 是否限制更改某设置项。true表示限制更改，false表示允许更改。                       |
 
 **错误码**：
 
