@@ -227,6 +227,7 @@ import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故setValue方法将更新该数据项的值)。
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (status) => {
   console.log('Callback return whether value is set.');
@@ -267,6 +268,7 @@ import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故setValue方法将更新该数据项的值)。
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
   console.log('Callback return whether value is set.');
@@ -318,6 +320,7 @@ import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故setValue方法将更新该数据项的值)。
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', settings.domainName.DEVICE_SHARED).then((status) => {
   console.log(`callback:return whether value is set.`)
@@ -349,6 +352,7 @@ getValue(context: Context, name: string, callback: AsyncCallback\<string>): void
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, value) => {
   if (err) {
@@ -389,6 +393,7 @@ getValue(context: Context, name: string): Promise\<string>
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
   console.log(`promise:value -> ${value}`)
@@ -430,6 +435,7 @@ import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故getValue方法将更新该数据项的值)。
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED).then((value) => {
   console.log(`Promise:value -> ${value}`);
@@ -468,6 +474,7 @@ import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 // 获取数据项亮度的值(该数据项在数据库中已存在)。
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
 ```
@@ -509,6 +516,7 @@ import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在)。
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100',  settings.domainName.DEVICE_SHARED);
 ```
@@ -550,6 +558,7 @@ import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故setValueSync方法将更新该数据项的值)。
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
 ```
@@ -602,6 +611,7 @@ import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故setValueSync方法将更新该数据项的值)。
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', settings.domainName.DEVICE_SHARED);
 ```
@@ -638,6 +648,7 @@ registerKeyObserver(context: Context, name: string, domainName: string, observer
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, (err, val) => {
   if (err) {
@@ -679,6 +690,7 @@ unregisterKeyObserver(context: Context, name: string, domainName: string): boole
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let ret = settings.unregisterKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS,  settings.domainName.DEVICE_SHARED);
 ```
@@ -722,6 +734,7 @@ import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 // 跳转网络管理器设置页面。
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.openNetworkManagerSettings(context).then((status) => {
   console.log(`callback:return whether setings is open.`)
@@ -745,7 +758,6 @@ enableAirplaneMode(enable: boolean, callback: AsyncCallback\<void>): void
 
 **示例**：
 
-<!--code_no_check-->
 ```js
 let isEnabled :boolean = true;
 settings.enableAirplaneMode(isEnabled, (err:Error) => {
@@ -779,7 +791,6 @@ enableAirplaneMode(enable: boolean): Promise\<void>
 
 **示例**：
 
-<!--code_no_check-->
 ```js
 let isEnabled :boolean = true;
 settings.enableAirplaneMode(isEnabled).then(() => {
@@ -805,7 +816,6 @@ canShowFloating(callback: AsyncCallback\<boolean>): void
 
 **示例**：
 
-<!--code_no_check-->
 ```js
 settings.canShowFloating((err:Error, status: boolean) => {
   if (err) {
@@ -832,7 +842,6 @@ canShowFloating(): Promise\<boolean>
 
 **示例**：
 
-<!--code_no_check-->
 ```js
 settings.canShowFloating().then((status:boolean) => {
     console.log('Checks whether a specified application can show as float window.');
@@ -861,7 +870,6 @@ getUriSync(name: string): string
 
 **示例**：
 
-<!--code_no_check-->
 ```js
 // 获取数据项的URI。
 let uriVar:string = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
@@ -888,7 +896,6 @@ getURI(name: string, callback: AsyncCallback\<object>): void
 
 **示例**：
 
-<!--code_no_check-->
 ```js
 settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS, (uri:string) => {
     console.log(`callback:uri -> ${JSON.stringify(uri)}`)
@@ -921,7 +928,6 @@ getURI(name: string): Promise\<object>
 
 **示例**：
 
-<!--code_no_check-->
 ```js
 settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS).then((uri:string) => {
     console.log(`promise:uri -> ${JSON.stringify(uri)}`)
@@ -954,7 +960,6 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCall
 
 **示例**：
 
-<!--code_no_check-->
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -998,7 +1003,6 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>
 
 **示例**：
 
-<!--code_no_check-->
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -1039,7 +1043,6 @@ getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: strin
 
 **示例**：
 
-<!--code_no_check-->
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -1084,7 +1087,6 @@ setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string):
 
 **示例**：
 
-<!--code_no_check-->
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
