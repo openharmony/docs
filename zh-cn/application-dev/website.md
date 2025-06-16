@@ -249,7 +249,6 @@
           - [通过标准化数据通路实现数据共享 (ArkTS)](database/unified-data-channels.md)
           - [通过标准化数据通路实现数据共享 (C/C++)](database/unified-data-channels-c.md)
       - [应用数据向量化](database/aip-data-intelligence-embedding.md) 
-      - [RelationalStore开发指导 (C/C++)](database/native-relational-store-guidelines.md)
       - [SQLite调试工具](database/sqlite-database-debug-tool.md)
       - [ArkData术语](database/data-terminology.md)
     - ArkTS（方舟编程语言）<!--arkts-->
