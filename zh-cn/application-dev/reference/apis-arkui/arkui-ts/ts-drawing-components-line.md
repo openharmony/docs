@@ -157,7 +157,7 @@ strokeDashArray(value: Array&lt;any&gt;)
 
 ### strokeDashOffset
 
-strokeDashOffset(value: number | string)
+strokeDashOffset(value: number&nbsp;|&nbsp;string)
 
 设置边框绘制起点的偏移量，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
@@ -195,7 +195,7 @@ strokeLineCap(value: LineCapStyle)
 
 strokeLineJoin(value: LineJoinStyle)
 
-设置边框拐角绘制样式，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。Line组件无法形成拐角，该属性设置无效。
+设置边框拐角绘制样式，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。Line组件不支持拐角，该属性设置无效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -213,7 +213,7 @@ strokeLineJoin(value: LineJoinStyle)
 
 strokeMiterLimit(value: number | string)
 
-设置锐角绘制成斜角的极限值，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。Line组件无法设置锐角图形，该属性设置无效。
+设置锐角绘制成斜角的极限值，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。Line组件不支持设置锐角图形，该属性设置无效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

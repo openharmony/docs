@@ -270,7 +270,7 @@ Service timeout.
 
 **错误信息**
 
-Redirection to a third-party application is not allowed in API version 11 or later.
+Redirection to a third-party application is not allowed in API version greater than 11.
 
 **错误描述**
 
@@ -948,6 +948,78 @@ The caller is not an atomic service.
 **处理步骤**
 
 检查是否成功创建了AbilityDelegatorRegistry实例。
+
+## 16000110 当前应用不在Kiosk模式的列表内
+
+**错误信息**
+
+Current application is not in kiosk app list, can not exit kiosk mode.
+
+**错误描述**
+
+当前应用不在EDM配置的支持Kiosk模式的应用列表内，尝试进入或退出Kiosk模式时，将返回错误码。
+
+**可能原因**
+
+应用不在EDM配置的支持Kiosk模式的应用列表内。
+
+**处理步骤**
+
+检查应用是否在EDM配置的支持Kiosk模式的应用列表内。
+
+## 16000111 已经有应用进入了Kiosk模式
+
+**错误信息**
+
+System is already in kiosk mode, can not enter again.
+
+**错误描述**
+
+当前系统已有应用进入Kiosk模式，调用方尝试进入时将返回错误码。
+
+**可能原因**
+
+已经有应用进入Kiosk模式。
+
+**处理步骤**
+
+检查系统内是否存在应用已经进入Kiosk模式。
+
+## 16000112 当前系统没有应用进入Kiosk模式
+
+**错误信息**
+
+Current application is not in kiosk mode, can not exit.
+
+**错误描述**
+
+如果系统中没有应用进入Kiosk模式，尝试退出Kiosk模式时将返回错误码。
+
+**可能原因**
+
+当前系统没有应用进入Kiosk模式。
+
+**处理步骤**
+
+检查当前系统是否有应用进入Kiosk模式。
+
+## 16000113 当前Ability不在前台
+
+**错误信息**
+
+Current ability is not in foreground.
+
+**错误描述**
+
+当Ability未处于前台状态时，尝试执行需在前台进行的操作将返回错误码。
+
+**可能原因**
+
+当前Ability没有处于前台。
+
+**处理步骤**
+
+检查当前Ability是否处于前台状态。
 
 ## 16000151 无效wantAgent对象
 

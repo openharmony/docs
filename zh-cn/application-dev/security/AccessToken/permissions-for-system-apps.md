@@ -4676,8 +4676,6 @@
 
 **起始版本**：19
 
-**起始版本**：17
-
 ## ohos.permission.READ_PARENT_CONTROL_DATA
 
 允许应用读取家长管控网站的配置。
@@ -4907,6 +4905,20 @@
 允许应用以调用方的身份将URI访问权限授权给目标应用。
 
 **权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：General
+
+**起始版本**：20
+
+## ohos.permission.ACCESS_DFX_LOG_DIR
+
+允许应用访问LOG群组的目录。
+
+**权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
 

@@ -386,3 +386,20 @@
 **支持设备**：PC/2in1
 
 **起始版本**：20
+
+## ohos.permission.SET_NET_EXT_ATTRIBUTE
+
+允许应用设置网络扩展属性。
+
+获取该权限后，应用可以通过API为网络设置扩展属性以标识网络是内部网络还是外部网络。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：PC/2in1
+
+**起始版本**：20

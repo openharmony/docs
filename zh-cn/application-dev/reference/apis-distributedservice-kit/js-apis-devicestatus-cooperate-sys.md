@@ -684,6 +684,58 @@ try {
 }
 ```
 
+## cooperate.activateCooperateWithOptions<sup>20+</sup>
+
+activateCooperateWithOptions(targetNetworkId: string, inputDeviceId: number,
+    cooperateOptions?: CooperateOptions ): Promise&lt;void&gt;
+
+启动键鼠穿越，使用选项开始屏幕跳转。
+
+**需要权限**：ohos.permission.COOPERATE_MANAGER
+
+**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
+
+**参数**：
+
+| 参数名    | 类型   | 必填 | 说明                     |
+| --------- | ------ | ---- | ------------------------ |
+| targetNetworkId | string | 是   | 键鼠穿越目标设备描述符。 |
+| inputDeviceId   | number | 是   |  发起穿越操作的输入设备ID。   |
+|cooperateOptions | [CooperateOptions](#cooperateoptions20) | 否   | 穿越可选控制参数，控制穿出点位置。 |
+
+**返回值：**
+
+| 参数                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+| 20900001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status. |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@ohos.base';
+let targetNetworkId = "networkId";
+let inputDeviceId = 0;
+try {
+ cooperate.activateCooperateWithOptions(targetNetworkId, inputDeviceId).then(() => {
+    console.info(`activateCooperateWithOptions success.`);
+  }, (error: BusinessError) => {
+    console.error(`activateCooperateWithOptions, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  });
+} catch (error) {
+  console.error(`activateCooperateWithOptions, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
 
 
 ## CooperateMessage<sup>11+</sup>
@@ -744,6 +796,18 @@ try {
 | displayWidth  | number         | 是   | 否   | 鼠标所在屏幕宽度，单位：px。 |
 | displayHeight | number         | 是   | 否   | 鼠标所在屏幕高度，单位：px。 |
 
+
+## CooperateOptions<sup>20+</sup>
+
+ 键鼠穿越可选控制参数，控制穿出点位置。
+
+**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
+
+| 名称      | 类型           | 只读 | 可选 | 说明                     |
+| --------- | -------------- | ---- | ---- | ------------------------ |
+| displayX      | number         | 否   | 否   | 鼠标X坐标位置。 |
+| displayY      | number         | 否   | 否   | 鼠标Y坐标位置。 |
+| displayId     | number         | 否   | 否   | 对端设备屏幕标识。 |
 
 ## cooperate.prepare<sup>(deprecated)</sup>
 

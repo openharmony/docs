@@ -1064,11 +1064,11 @@ Preferences.flush()保存并刷新文件内容。
 
 * 获取音频模块
   * 使用媒体库接口进行音视频的扫描，获取音视频详细信息，重命名和删除操作，使用PixelMap方法读取或写入图像数据以及获取图像信息。
-  * 接口参考：[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md)，[@ohos.prompt](reference/apis-arkui/js-apis-prompt.md)
+  * 接口参考：[@ohos.multimedia.image](reference/apis-image-kit/arkts-apis-image.md)，[@ohos.prompt](reference/apis-arkui/js-apis-prompt.md)
 
 * 音频，视频操作模块
   * 使用媒体服务进行音视频播放，暂停，seek等操作，其中AudioPlayer方法播放音频，VideoPlayer方法播放视频。
-  * 接口参考：[@ohos.multimedia.media](reference/apis-arkui/js-apis-display.md)，[@ohos.multimedia.audio](reference/apis-audio-kit/js-apis-audio.md)
+  * 接口参考：[@ohos.multimedia.media](reference/apis-arkui/js-apis-display.md)，[@ohos.multimedia.audio](reference/apis-audio-kit/arkts-apis-audio.md)
 
 * 设备适配模块
   * 使用屏幕管理接口获取设备宽度进行适配。
@@ -1187,7 +1187,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要使用@ohos.multimedia.media中的AVRecorder接口实现了录制功能；另外辅助使用@ohos.multimedia.medialibrary接口，实现了创建录制文件功能，接口使用以及权限获取详见媒体库管理。使用@ohos.multimedia.camera接口，实现了相机预览及出流功能，接口使用以及权限获取详见[相机管理](reference/apis-camera-kit/js-apis-camera.md)。
+本示例主要使用@ohos.multimedia.media中的AVRecorder接口实现了录制功能；另外辅助使用@ohos.multimedia.medialibrary接口，实现了创建录制文件功能，接口使用以及权限获取详见媒体库管理。使用@ohos.multimedia.camera接口，实现了相机预览及出流功能，接口使用以及权限获取详见[相机管理](reference/apis-camera-kit/arkts-apis-camera.md)。
 
 ##### 使用
 
@@ -1199,7 +1199,7 @@ Preferences.flush()保存并刷新文件内容。
 
 * 录控功能接口调用实现参考工程目录中的音频录制页面和视频录制页面
   * 调用create()、prepare()、getInputSurface()、start()、pause()、resume()、stop()、reset()、release()接口实现录制器的创建、准备、录控操作、重置、销毁实例等功能；
-  * 视频录制调用Camera接口实现相机出流功能配合视频录制功能，相机的实现方法参考自相机接口[@ohos.multimedia.camera](reference/apis-camera-kit/js-apis-camera.md)
+  * 视频录制调用Camera接口实现相机出流功能配合视频录制功能，相机的实现方法参考自相机接口[@ohos.multimedia.camera](reference/apis-camera-kit/arkts-apis-camera.md)
 * 调用MediaLibrary实现创建录制，实现方法参考@ohos.multimedia.medialibrary接口说明
 
 ##### 约束与限制
@@ -1331,7 +1331,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了音频的相关功能，使用[@ohos.multimedia.audio](reference/apis-audio-kit/js-apis-audio.md)等接口实现音频的发声设备的切换与查询、音频焦点、音效的查询与设置以及音频录制等功能。
+本示例主要展示了音频的相关功能，使用[@ohos.multimedia.audio](reference/apis-audio-kit/arkts-apis-audio.md)等接口实现音频的发声设备的切换与查询、音频焦点、音效的查询与设置以及音频录制等功能。
 
 ##### 使用
 
@@ -1393,7 +1393,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-该示例通过[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md)和[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)接口实现获取图片，以及图片裁剪分割的功能。
+该示例通过[@ohos.multimedia.image](reference/apis-image-kit/arkts-apis-image.md)和[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)接口实现获取图片，以及图片裁剪分割的功能。
 
 ##### 使用
 
@@ -1406,7 +1406,7 @@ Preferences.flush()保存并刷新文件内容。
 
 + 游戏中图片裁剪分割的效果实现在ImageModel中:
   + 获取本地图片：首先使用getMediaLibrary获取媒体库实例，然后使用getFileAssets方法获取文件资源，最后使用getAllObject获取检索结果中的所有文件资产方便展示；
-  + 裁剪图片准备：裁剪图片需要使用[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md)接口，裁剪前需要申请图片编辑权限，使用[requestPermissionsFromUser](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)申请;
+  + 裁剪图片准备：裁剪图片需要使用[@ohos.multimedia.image](reference/apis-image-kit/arkts-apis-image.md)接口，裁剪前需要申请图片编辑权限，使用[requestPermissionsFromUser](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)申请;
   + 图片编辑：首先使用createImagePacker创建ImagePacker实例，然后使用fileAsset.open打开文件，调用createImageSource接口创建ImageSource实例方便操作图片，接下来使用getImageInfo方法获取图片大小便于分割，最后使用createPixelMap方法传入每一份的尺寸参数完成图片裁剪。
 
 ##### 约束与限制
@@ -1421,7 +1421,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用 [TextArea](reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md) 实现多文本输入，使用 [@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md) 依赖系统的图库引用，实现在相册中获取图片，使用 [@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md) 生成pixelMap，使用pixelMap的scale()，crop()，rotate()接口实现对图片的缩放，裁剪，旋转功能。 使用[@ohos.effectKit](reference/apis-arkgraphics2d/js-apis-effectKit.md) 生成effectKit,使用effectKit.getHighestSaturationColor() 接口实现对图片的高亮调节。添加文字/贴纸，利用组件的组合编辑素材大小和位置，再使用OffscreenCanvasRenderingContext2D进行离屏绘制保存。
+本示例使用 [TextArea](reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md) 实现多文本输入，使用 [@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md) 依赖系统的图库引用，实现在相册中获取图片，使用 [@ohos.multimedia.image](reference/apis-image-kit/arkts-apis-image.md) 生成pixelMap，使用pixelMap的scale()，crop()，rotate()接口实现对图片的缩放，裁剪，旋转功能。 使用[@ohos.effectKit](reference/apis-arkgraphics2d/js-apis-effectKit.md) 生成effectKit,使用effectKit.getHighestSaturationColor() 接口实现对图片的高亮调节。添加文字/贴纸，利用组件的组合编辑素材大小和位置，再使用OffscreenCanvasRenderingContext2D进行离屏绘制保存。
 
 ##### 使用
 
@@ -1497,7 +1497,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用[相册管理](reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)、[相机管理](reference/apis-camera-kit/js-apis-camera.md)、[图片处理](reference/apis-image-kit/js-apis-image.md)、[文件管理](reference/apis-core-file-kit/js-apis-fileio.md)展示二维码扫描功能，包括相机扫描解析二维码和从相册中选择二维码图片解析。
+本示例使用[相册管理](reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)、[相机管理](reference/apis-camera-kit/arkts-apis-camera.md)、[图片处理](reference/apis-image-kit/arkts-apis-image.md)、[文件管理](reference/apis-core-file-kit/js-apis-fileio.md)展示二维码扫描功能，包括相机扫描解析二维码和从相册中选择二维码图片解析。
 
 ##### 使用
 
@@ -1510,11 +1510,10 @@ Preferences.flush()保存并刷新文件内容。
 + 相机功能在CameraServices中
     + 获取相机实例：首先使用getCameraManager方法获取相机管理器，然后使用getSupportedCameras方法得到设备列表；
     + 打开相机：使用createCameraInput方法创建CameraInput实例，调用open方法打开相机；
-    + 获取相机输出流：使用getSupportedOutputCapability查询相机设备在模式下支持的输出能力，然后使用createPreviewOutput创建相机输出流，使用[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md#getreceivingsurfaceid9)接口的createPhotoOutput方法创建相片输出流；
+    + 获取相机输出流：使用getSupportedOutputCapability查询相机设备在模式下支持的输出能力，然后使用createPreviewOutput创建相机输出流，使用[@ohos.multimedia.image](reference/apis-image-kit/arkts-apis-image-ImageReceiver.md#getreceivingsurfaceid9)接口的createPhotoOutput方法创建相片输出流；
     + 获取相片输出：首先使用createCaptureSession方法创建**捕获会话**的实例，然后使用beginConfig方法配置会话，接下来使用addInput方法添加一个摄像头输入流，使用addOutput添加一个摄像头和相机照片的输出流，使用commitConfig方法提交会话配置后，调用start方法开始捕获相片输出。
 + 二维码解析功能在QRCodeParser中
-    + 拍照获取图片：使用(
-      cameraService.imageReceiver.on)[reference/apis-image-kit/js-apis-image.md#on9]接收图片时注册回调，然后调用readNextImage获取处理图片的操作，然后使用getComponent方法根据图像的组件类型从图像中获取组件缓存，然后将获取到的ArrayBuffer写入指定文件中，返回文件uri，然后通过[ImageBitmap](reference/apis-arkui/arkui-ts/ts-components-canvas-imagebitmap.md)将uri转化为ImageBitMap格式，具体文件写入方式参考[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)。
+    + 拍照获取图片：使用[cameraService.imageReceiver.on](reference/apis-image-kit/arkts-apis-image-ImageReceiver.md#on9)接收图片时注册回调，然后调用readNextImage获取处理图片的操作，然后使用getComponent方法根据图像的组件类型从图像中获取组件缓存，然后将获取到的ArrayBuffer写入指定文件中，返回文件uri，然后通过[ImageBitmap](reference/apis-arkui/arkui-ts/ts-components-canvas-imagebitmap.md)将uri转化为ImageBitMap格式，具体文件写入方式参考[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)。
     + 打开相册选取图片：首先需要使用[startAbilityForResult](reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilityforresult)启动相册，将选到的图片通过ImageBitmap转化为ImageBitmap格式。
     + 图片解析：使用[CanvasRenderingContext2D](reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md)的getImageData方法创建ImageData对象将相册中获取到的图片转化为util8格式的图片，然后调用jsQR库解析图片中的二维码。
 
@@ -1530,7 +1529,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用[audio](reference/apis-audio-kit/js-apis-audio.md)相关接口实现音频录制和播放的功能，使用[@ohos.filemanagement.userFileManager](reference/apis-core-file-kit/js-apis-userFileManager-sys.md)实现音频文件的管理。
+本示例使用[audio](reference/apis-audio-kit/arkts-apis-audio.md)相关接口实现音频录制和播放的功能，使用[@ohos.filemanagement.userFileManager](reference/apis-core-file-kit/js-apis-userFileManager-sys.md)实现音频文件的管理。
 
 ##### 使用
 
@@ -1547,15 +1546,15 @@ Preferences.flush()保存并刷新文件内容。
 * 本示例分为三个模块：
     * 录音页面模块
         * 使用FileAsset提供封装文件属性的方法，createAudioPlayer同步方式创建音频播放实例实现录音，暂停录音功能
-        * 参考接口：[audio](reference/apis-audio-kit/js-apis-audio.md)，[@ohos.router](reference/apis-arkui/js-apis-router.md)，[@ohos.filemanagement.userFileManager](reference/apis-core-file-kit/js-apis-userFileManager-sys.md)，[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)，[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)，[@ohos.window](reference/apis-arkui/arkts-apis-window.md)，[@ohos.promptAction](reference/apis-arkui/js-apis-promptAction.md)，[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)
+        * 参考接口：[audio](reference/apis-audio-kit/arkts-apis-audio.md)，[@ohos.router](reference/apis-arkui/js-apis-router.md)，[@ohos.filemanagement.userFileManager](reference/apis-core-file-kit/js-apis-userFileManager-sys.md)，[@ohos.multimedia.media](reference/apis-media-kit/arkts-apis-media.md)，[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)，[@ohos.window](reference/apis-arkui/arkts-apis-window.md)，[@ohos.promptAction](reference/apis-arkui/js-apis-promptAction.md)，[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)
 
     * 录音列表模块
         * getMediaLibraryAPI访问媒体数据信息，renameCallBack，renameDialogController方法对录音进行重命名，deleteFile，deleteDialogShow方法删除某条录音。
-        * 参考接口：[@ohos.router](reference/apis-arkui/js-apis-router.md)，[@ohos.filemanagement.userFileManager](reference/apis-core-file-kit/js-apis-userFileManager-sys.md)，[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)，[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)，[@ohos.window](reference/apis-arkui/arkts-apis-window.md)，[@ohos.promptAction](reference/apis-arkui/js-apis-promptAction.md)，[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)
+        * 参考接口：[@ohos.router](reference/apis-arkui/js-apis-router.md)，[@ohos.filemanagement.userFileManager](reference/apis-core-file-kit/js-apis-userFileManager-sys.md)，[@ohos.multimedia.media](reference/apis-media-kit/arkts-apis-media.md)，[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)，[@ohos.window](reference/apis-arkui/arkts-apis-window.md)，[@ohos.promptAction](reference/apis-arkui/js-apis-promptAction.md)，[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)
 
     * 播放模块
         * createAudioPlayer方法创建音频播放实例，onPageShow方法播放音频，onPageHide方法暂停播放音频。
-        * 参考接口：[@ohos.router](reference/apis-arkui/js-apis-router.md)，[@ohos.filemanagement.userFileManager](reference/apis-core-file-kit/js-apis-userFileManager-sys.md)，[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)，[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)
+        * 参考接口：[@ohos.router](reference/apis-arkui/js-apis-router.md)，[@ohos.filemanagement.userFileManager](reference/apis-core-file-kit/js-apis-userFileManager-sys.md)，[@ohos.multimedia.media](reference/apis-media-kit/arkts-apis-media.md)，[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)
 
 ##### 约束与限制
 
@@ -1569,7 +1568,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-视频播放的主要工作是将视频数据转码并输出到设备进行播放，同时管理播放任务。本文将对视频播放全流程、视频切换、视频循环播放等场景开发进行介绍说明。 本示例主要展示了播放本地视频和网络视频相关功能,使用 [@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md#bufferinginfotype8),[@ohos.resourceManager](reference/apis-localization-kit/js-apis-resource-manager.md),[@ohos.wifiManager](reference/apis-connectivity-kit/js-apis-wifiManager.md)等接口,实现了视频播放、暂停、调节倍速、切换视频的功能。
+视频播放的主要工作是将视频数据转码并输出到设备进行播放，同时管理播放任务。本文将对视频播放全流程、视频切换、视频循环播放等场景开发进行介绍说明。 本示例主要展示了播放本地视频和网络视频相关功能,使用 [@ohos.multimedia.media](reference/apis-media-kit/arkts-apis-media-e.md#bufferinginfotype8),[@ohos.resourceManager](reference/apis-localization-kit/js-apis-resource-manager.md),[@ohos.wifiManager](reference/apis-connectivity-kit/js-apis-wifiManager.md)等接口,实现了视频播放、暂停、调节倍速、切换视频的功能。
 
 ##### 使用
 
@@ -1634,7 +1633,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了音频通话相关的功能，使用[@ohos.multimedia.audio](reference/apis-audio-kit/js-apis-audio.md) 、[@ohos.net.socket](reference/apis-network-kit/js-apis-socket.md) 等接口，实现音频录制和渲染，音频数据网络传输等功能。
+本示例主要展示了音频通话相关的功能，使用[@ohos.multimedia.audio](reference/apis-audio-kit/arkts-apis-audio.md) 、[@ohos.net.socket](reference/apis-network-kit/js-apis-socket.md) 等接口，实现音频录制和渲染，音频数据网络传输等功能。
 
 ##### 使用
 
@@ -2701,7 +2700,7 @@ Preferences.flush()保存并刷新文件内容。
 ##### 基本原理
 
 * 该示例使用startBackgroundRunning方法向系统申请长时任务，stopBackgroundRunning方法向系统申请取消长时任务，getWantAgent方法创建一个WantAgent，createAudioPlayer方法创建一个视频播放实例，createAVSession方法创建一个会话对象，fileIo.open方法打开文件等接口实现后台音乐播放。
-* 接口参考：[@ohos.resourceschedule.backgroundTaskManager](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)，[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)，[@ohos.multimedia.avsession](reference/apis-avsession-kit/js-apis-avsession.md)，[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md)，[@ohos.app.ability.wantAgent](reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)
+* 接口参考：[@ohos.resourceschedule.backgroundTaskManager](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)，[@ohos.multimedia.media](reference/apis-media-kit/arkts-apis-media.md)，[@ohos.multimedia.avsession](reference/apis-avsession-kit/js-apis-avsession.md)，[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md)，[@ohos.app.ability.wantAgent](reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)
 
 ##### 约束与限制
 
@@ -3500,7 +3499,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用应用上下文Context接口 [@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)和媒体服务接口[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)，展示多HAP开发，简单介绍了多HAP的使用场景，应用包含了一个entry HAP和两个feature HAP，两个feature HAP分别提供了音频和视频播放组件，entry中使用了音频和视频播放组件。 三个模块需要安装三个hap包，最终会在设备上安装一个主entry的hap包。
+本示例使用应用上下文Context接口 [@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)和媒体服务接口[@ohos.multimedia.media](reference/apis-media-kit/arkts-apis-media.md)，展示多HAP开发，简单介绍了多HAP的使用场景，应用包含了一个entry HAP和两个feature HAP，两个feature HAP分别提供了音频和视频播放组件，entry中使用了音频和视频播放组件。 三个模块需要安装三个hap包，最终会在设备上安装一个主entry的hap包。
 
 ##### 使用
 
@@ -3723,7 +3722,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用图片处理能力接口[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md)以及文件存储管理能力接口[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md) 。展示一个仿聊天类应用，使用静态布局搭建了不同的页面。为了优化内存与性能体验，在部分list场景使用了懒加载。
+本示例使用图片处理能力接口[@ohos.multimedia.image](reference/apis-image-kit/arkts-apis-image.md)以及文件存储管理能力接口[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md) 。展示一个仿聊天类应用，使用静态布局搭建了不同的页面。为了优化内存与性能体验，在部分list场景使用了懒加载。
 
 ##### 使用
 
@@ -3848,7 +3847,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用权限管理能力[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)、相机模块能力接口[@ohos.multimedia.camera](reference/apis-camera-kit/js-apis-camera.md)、图片处理接口[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md)、音视频相关媒体业务能力接口[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)、用户数据管理接口[@ohos.filemanagement.userFileManager](reference/apis-core-file-kit/js-apis-userFileManager-sys.md)、设备信息能力接口[@ohos.deviceInfo](reference/apis-basic-services-kit/js-apis-device-info.md)、文件存储管理能力接口[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md)、弹窗能力接口[@ohos.prompt](reference/apis-arkui/js-apis-prompt.md)，展示如何在eTS中调用相机拍照和录像，以及如何使用媒体库接口进行媒体文件的增、删、改、查操作。
+本示例使用权限管理能力[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)、相机模块能力接口[@ohos.multimedia.camera](reference/apis-camera-kit/arkts-apis-camera.md)、图片处理接口[@ohos.multimedia.image](reference/apis-image-kit/arkts-apis-image.md)、音视频相关媒体业务能力接口[@ohos.multimedia.media](reference/apis-media-kit/arkts-apis-media.md)、用户数据管理接口[@ohos.filemanagement.userFileManager](reference/apis-core-file-kit/js-apis-userFileManager-sys.md)、设备信息能力接口[@ohos.deviceInfo](reference/apis-basic-services-kit/js-apis-device-info.md)、文件存储管理能力接口[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md)、弹窗能力接口[@ohos.prompt](reference/apis-arkui/js-apis-prompt.md)，展示如何在eTS中调用相机拍照和录像，以及如何使用媒体库接口进行媒体文件的增、删、改、查操作。
 
 ##### 使用
 
@@ -4121,7 +4120,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用与用户进行交互的Ability的能力接口[@ohos.ability.featureAbility](reference/apis-ability-kit/js-apis-ability-featureAbility.md)、文件存储管理能力接口[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md)、屏幕属性接口[@ohos.display](reference/apis-arkui/js-apis-display.md)、媒体查询接口[@ohos.mediaquery](reference/apis-arkui/js-apis-mediaquery.md)、分布式数据管理接口[@ohos.data.distributedData](reference/apis-arkdata/js-apis-distributed-data.md)、音视频相关媒体业务能力接口[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)、分布式设备管理能力接口(设备管理)[@ohos.distributedHardware.deviceManager](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md)，实现设备之间的kvStore对象的数据传输交互。通过AudioPlayer实现音频播放能力，调用分布式数据各个接口，应用程序可将数据保存到分布式数据库中，并可对分布式数据库中的数据进行增/删/改/查等各项操作。
+本示例使用与用户进行交互的Ability的能力接口[@ohos.ability.featureAbility](reference/apis-ability-kit/js-apis-ability-featureAbility.md)、文件存储管理能力接口[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md)、屏幕属性接口[@ohos.display](reference/apis-arkui/js-apis-display.md)、媒体查询接口[@ohos.mediaquery](reference/apis-arkui/js-apis-mediaquery.md)、分布式数据管理接口[@ohos.data.distributedData](reference/apis-arkdata/js-apis-distributed-data.md)、音视频相关媒体业务能力接口[@ohos.multimedia.media](reference/apis-media-kit/arkts-apis-media.md)、分布式设备管理能力接口(设备管理)[@ohos.distributedHardware.deviceManager](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md)，实现设备之间的kvStore对象的数据传输交互。通过AudioPlayer实现音频播放能力，调用分布式数据各个接口，应用程序可将数据保存到分布式数据库中，并可对分布式数据库中的数据进行增/删/改/查等各项操作。
 
 ##### 使用
 
@@ -4348,7 +4347,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 ##### 介绍
 
-本示例使用与用户进行交互的Ability的能力接口[@ohos.ability.featureAbility](reference/apis-ability-kit/js-apis-ability-featureAbility.md)、文件存储管理能力接口[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md)、屏幕属性接口[@ohos.display](reference/apis-arkui/js-apis-display.md)、媒体查询接口[@ohos.mediaquery](reference/apis-arkui/js-apis-mediaquery.md)、分布式数据管理接口[@ohos.data.distributedData](reference/apis-arkdata/js-apis-distributed-data.md)、音视频相关媒体业务能力接口[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)、分布式设备管理能力接口(设备管理)[@ohos.distributedHardware.deviceManager](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md)，实现设备之间的kvStore对象的数据传输交互。通过AudioPlayer实现音频播放能力，调用分布式数据各个接口，应用程序可将数据保存到分布式数据库中，并可对分布式数据库中的数据进行增/删/改/查等各项操作。
+本示例使用与用户进行交互的Ability的能力接口[@ohos.ability.featureAbility](reference/apis-ability-kit/js-apis-ability-featureAbility.md)、文件存储管理能力接口[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md)、屏幕属性接口[@ohos.display](reference/apis-arkui/js-apis-display.md)、媒体查询接口[@ohos.mediaquery](reference/apis-arkui/js-apis-mediaquery.md)、分布式数据管理接口[@ohos.data.distributedData](reference/apis-arkdata/js-apis-distributed-data.md)、音视频相关媒体业务能力接口[@ohos.multimedia.media](reference/apis-media-kit/arkts-apis-media.md)、分布式设备管理能力接口(设备管理)[@ohos.distributedHardware.deviceManager](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md)，实现设备之间的kvStore对象的数据传输交互。通过AudioPlayer实现音频播放能力，调用分布式数据各个接口，应用程序可将数据保存到分布式数据库中，并可对分布式数据库中的数据进行增/删/改/查等各项操作。
 
 ##### 使用
 
@@ -4452,7 +4451,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 本示例主要展示了应用数据跨端迁移的能力，通过跨端迁移的能力实现了一个简单的随手记应用，可以响应系统迁移事件，控制应用的迁移能力、是否迁移页面栈以及迁移后是否退出源端等。同时实现了数据迁移以及ArkUI控件的迁移。
 
-本示例使用了权限管理接口[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)、分布式数据对象接口[@ohos.data.distributedDataObject](reference/apis-arkdata/js-apis-data-distributedobject.md)、基础文件操作接口[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md) 、相册管理模块接口[@ohos.file.photoAccessHelper](reference/apis-core-file-kit/js-apis-fileAccess-sys.md)、图片处理接口[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md)等接口，通过分布式数据对象以及分布式文件两种方式实现了图片数据的流转迁移。
+本示例使用了权限管理接口[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)、分布式数据对象接口[@ohos.data.distributedDataObject](reference/apis-arkdata/js-apis-data-distributedobject.md)、基础文件操作接口[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md) 、相册管理模块接口[@ohos.file.photoAccessHelper](reference/apis-core-file-kit/js-apis-fileAccess-sys.md)、图片处理接口[@ohos.multimedia.image](reference/apis-image-kit/arkts-apis-image.md)等接口，通过分布式数据对象以及分布式文件两种方式实现了图片数据的流转迁移。
 
 ##### 使用
 
@@ -4482,7 +4481,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 * 使用getImage()方法获取从图库中选择的图片资源PixelMap类型，首先使用photoAccessHelper.getPhotoAccessHelper(context)获取相册管理模块的实例，使用phAccessHelper.getAssets()获取图片资源,使用photoAsset.getThumbnail()获取所选的图片的PixelMap类型数据。接口参考：[ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper.md) 
 
-* 在对端设备上迁移显示笔记页内容时，在aboutToAppear()钩子中调用readFromDistributedFile()读取分布式路径里存储的图片文件。首先以同步方法fs.accessSync(filePath)检查分布式路径下文件是否存在，通过image.createImageSource(filePath)传入的uri创建ImageSource实例imageSourceApi,通过imageSourceApi.createPixelMap()来创建PixelMap 并负责流转后展示。接口参考：[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md)
+* 在对端设备上迁移显示笔记页内容时，在aboutToAppear()钩子中调用readFromDistributedFile()读取分布式路径里存储的图片文件。首先以同步方法fs.accessSync(filePath)检查分布式路径下文件是否存在，通过image.createImageSource(filePath)传入的uri创建ImageSource实例imageSourceApi,通过imageSourceApi.createPixelMap()来创建PixelMap 并负责流转后展示。接口参考：[@ohos.multimedia.image](reference/apis-image-kit/arkts-apis-image.md)
 
 ##### 约束与限制
 
@@ -5108,37 +5107,6 @@ return formInfo.FormState.READY }。
 
 ### 应用模型
 
-#### AccessibilityExtensionAbility示例
-
-##### 介绍
-
-本示例展示了[AccessibilityExtensionAbility](accessibility/accessibilityextensionability.md)的简单应用，使用多个辅助功能接口，启动或关闭无障碍扩展服务，实现了一些快捷的交互方式。
-
-##### 使用
-
-1. 在启动无障碍扩展服务前，需退出当前应用保证界面节点正常生成；
-2. 启动关闭无障碍扩展服务可参考[AccessibilityExtensionAbility开发指南](accessibility/accessibilityextensionability.md), 服务连接状态将显示在屏幕上;
-3. 启动无障碍扩展服务后，在设备屏幕上绘画右划后再下划的手势`rightThenDown`获取当前界面全部节点，之后绘画左划后再下划的手势`leftThenDown`打印所有节点的指定信息；
-4. 在设备屏幕上绘画左划手势`left`对按钮`获焦`进行聚焦，之后可通过绘画右划手势`right`取消对按钮聚焦；
-5. 在设备屏幕上绘画下划手势`down`，触发对按钮`未点击/已点击`的点击动作。
-
-##### 基本原理
-
-* 获取界面元素、查询元素指定信息、通过text查找元素和获取元素执行指定动作的功能封装在AccessibilityManager：
-  * 使用 [getWindowRootElement()](reference/apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext.md#accessibilityextensioncontextgetwindowrootelement) 获取界面根节点；
-  * 获取元素属性值：使用AccessibilityUtils.getAttributeValue()；
-  * 获取界面所有元素：基于获取的根元素，使用AccessibilityUtils.createElementArray()获取界面所有元素；
-  * 打印界面元素指定信息：使用AccessibilityUtils.getElementWantedInfo()获取元素指定的信息；
-  * 寻找指定元素：使用AccessibilityUtils.findElementByKey()。
-
-##### 约束与限制
-
-开发语言：ArkTS
-
-配套版本：API9版本SDK，版本号：3.2.11.9
-
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/AccessibilityExtAbility)
-
 #### EnterpriseAdminExtensionAbility的创建与使用
 
 ##### 介绍
@@ -5236,7 +5204,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例通过调用系统任务管理的能力，使用[@ohos.application.missionManager](reference/apis-ability-kit/js-apis-application-missionManager-sys.md) 、[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md) 等接口完成对系统任务执行锁定、解锁、清理、切换到前台等操作。
+本示例通过调用系统任务管理的能力，使用[@ohos.application.missionManager](reference/apis-ability-kit/js-apis-application-missionManager-sys.md) 、[@ohos.multimedia.image](reference/apis-image-kit/arkts-apis-image.md) 等接口完成对系统任务执行锁定、解锁、清理、切换到前台等操作。
 
 ##### 使用
 
@@ -5746,7 +5714,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例使用[@ohos.screen](reference/apis-arkui/js-apis-screen-sys.md)管理屏幕的一些基础能力，包括获取屏幕对象，监听屏幕变化，创建和销毁虚拟屏幕等。[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)和[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)完成视频编码并保存到文件中。[@ohos.display](reference/apis-arkui/js-apis-display.md)捕捉屏幕显示图像帧，展示设备屏幕（含音频）录制功能。屏幕录制的主要工作是通过创建一个虚拟屏，捕获屏幕显示图形帧，完成视频编码并保存到文件中，帮助OEM设备厂家系统应用实现屏幕录制功能，也可以通过此应用抓取屏幕帧用于问题复现录制。
+本示例使用[@ohos.screen](reference/apis-arkui/js-apis-screen-sys.md)管理屏幕的一些基础能力，包括获取屏幕对象，监听屏幕变化，创建和销毁虚拟屏幕等。[@ohos.multimedia.media](reference/apis-media-kit/arkts-apis-media.md)和[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)完成视频编码并保存到文件中。[@ohos.display](reference/apis-arkui/js-apis-display.md)捕捉屏幕显示图像帧，展示设备屏幕（含音频）录制功能。屏幕录制的主要工作是通过创建一个虚拟屏，捕获屏幕显示图形帧，完成视频编码并保存到文件中，帮助OEM设备厂家系统应用实现屏幕录制功能，也可以通过此应用抓取屏幕帧用于问题复现录制。
 
 ##### 使用
 
@@ -5763,7 +5731,7 @@ return formInfo.FormState.READY }。
 ##### 基本原理
 
 * 该示例通过Screen方法获取屏幕实例，createVirtualScreen方法创建一个虚拟屏，getAllScreens方法获取获取所有的屏幕，makeMirror方法将屏幕设置为镜像模式，setVirtualScreenSurface方法设置虚拟屏幕的surface，display接口捕获屏幕显示图形帧，media，mediaLibrary接口完成视频编码并保存到文件中，帮助OEM设备厂家系统应用实现屏幕录制功能。
-* 接口参考：[@ohos.screen](reference/apis-arkui/js-apis-screen-sys.md)，[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)，[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)，[@ohos.display](reference/apis-arkui/js-apis-display.md)
+* 接口参考：[@ohos.screen](reference/apis-arkui/js-apis-screen-sys.md)，[@ohos.multimedia.media](reference/apis-media-kit/arkts-apis-media.md)，[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)，[@ohos.display](reference/apis-arkui/js-apis-display.md)
 
 ##### 约束与限制
 

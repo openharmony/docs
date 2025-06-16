@@ -54,7 +54,7 @@ auto-stretch模式只支持track-size为一个有效列宽值，并且track-size
 
 ### columnsGap
 
-columnsGap(value: Length)
+columnsGap(value: LengthMetrics): T
 
 设置列与列的间距。设置为小于0的值时，按默认值显示。
 
@@ -68,9 +68,15 @@ columnsGap(value: Length)
 | ------ | ---------------------------- | ---- | ---------------------------- |
 | value  |  [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 列与列的间距。<br/>默认值：0vp |
 
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前LazyVGridLayout组件。 |
+
 ### rowsGap
 
-rowsGap(value: Length)
+rowsGap(value: LengthMetrics): T
 
 设置行与行的间距。设置为小于0的值时，按默认值显示。
 
@@ -83,6 +89,12 @@ rowsGap(value: Length)
 | 参数名 | 类型                         | 必填 | 说明                         |
 | ------ | ---------------------------- | ---- | ---------------------------- |
 | value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 行与行的间距。<br/>默认值：0vp |
+
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前LazyVGridLayout组件。 |
 
 ## 事件
 

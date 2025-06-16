@@ -57,30 +57,44 @@ export default class MyLiveFormExtensionAbility extends LiveFormExtensionAbility
 
 ```ts
 // entry/src/main/ets/myliveformextensionability/pages/MyLiveFormPage.ets
-import { UIExtensionContentSession } from '@kit.AbilityKit';
 import { formInfo, formProvider } from '@kit.FormKit';
 import { Constants } from '../../common/Constants';
 
 const ANIMATION_RECT_SIZE: number = 100;
 const END_SCALE: number = 1.5;
 const END_TRANSLATE: number = -300;
-let storageForMyLiveFormPage = LocalStorage.getShared();
 
-@Entry(storageForMyLiveFormPage)
+@Entry
 @Component
 struct MyLiveFormPage {
   @State columnScale: number = 1.0;
   @State columnTranslate: number = 0.0;
 
-  private session: UIExtensionContentSession | undefined =
-    storageForMyLiveFormPage?.get<UIExtensionContentSession>('session');
-  private formId: string | undefined = storageForMyLiveFormPage?.get<string>('formId');
-  private formRect: formInfo.Rect | undefined = storageForMyLiveFormPage?.get<formInfo.Rect>('formRect');
-  private formBorderRadius: number | undefined = storageForMyLiveFormPage?.get<number>('borderRadius');
+  private uiContext: UIContext | undefined = undefined;
+  private storageForMyLiveFormPage: LocalStorage | undefined = undefined;
+  private formId: string | undefined = undefined;
+  private formRect: formInfo.Rect | undefined = undefined;
+  private formBorderRadius: number | undefined = undefined;
+
+  aboutToAppear(): void {
+    this.uiContext = this.getUIContext();
+    if (!this.uiContext) {
+      console.warn("no uiContext");
+      return;
+    }
+    this.initParams();
+  }
+
+  private initParams(): void {
+    this.storageForMyLiveFormPage = this.uiContext?.getSharedLocalStorage();
+    this.formId = this.storageForMyLiveFormPage?.get<string>('formId');
+    this.formRect = this.storageForMyLiveFormPage?.get<formInfo.Rect>('formRect');
+    this.formBorderRadius = this.storageForMyLiveFormPage?.get<number>('borderRadius');
+  }
 
   // 执行动效
   private runAnimation(): void {
-    animateTo({
+    this.uiContext?.animateTo({
       duration: Constants.OVERFLOW_DURATION,
       curve: Curve.Ease
     }, () => {
@@ -114,9 +128,14 @@ struct MyLiveFormPage {
           this.runAnimation();
         })
 
+      // 点击按钮，调用 formProvider.cancelOverflow 接口，打断当前破框动效，卡片切换为非激活态
       Button('强制取消动效')
         .backgroundColor(Color.Grey)
         .onClick(() => {
+          if (!this.formId) {
+            console.log('MyLiveFormPage formId is empty, cancel overflow failed');
+            return;
+          }
           console.log('MyLiveFormPage cancel overflow animation');
           formProvider.cancelOverflow(this.formId);
         })
@@ -227,7 +246,7 @@ struct WidgetCard {
 
 1. 触发互动卡片动效
 
-在加桌时，互动卡片可以通过[onUpdateForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonupdateform)生命周期回调中的wantParams参数获取卡片实际尺寸。卡片提供方以此计算动效申请范围，坐标计算时，以上图A点为（0,0）点，计算矩形EFGH对应参数，单位为vp。
+在加桌时，互动卡片可以通过[onUpdateForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonupdateform)生命周期回调中的wantParams参数获取卡片实际尺寸。卡片提供方以此计算动效申请范围，单位为vp。计算规则具体请参考[互动卡片请求参数约束](arkts-ui-liveform-sceneanimation-overview.md#请求参数约束)
 
 ```ts
 // entry/src/main/ets/entryformability/EntryFormAbility.ets
@@ -255,8 +274,8 @@ export default class EntryFormAbility extends FormExtensionAbility {
   private saveFormSize(formId: string, wantParams: Record<string, Object>) {
     let width = 0;
     let height = 0;
-    width = wantParams[formInfo.FormParam.FORM_WIDTH_VP_KEY] as number;
-    height = wantParams[formInfo.FormParam.FORM_HEIGHT_VP_KEY] as number;
+    width = wantParams['ohos.extra.param.key.form_width_vp'] as number;
+    height = wantParams['ohos.extra.param.key.form_height_vp'] as number;
     console.log(`onUpdateForm, formId: ${formId}, size:[${width}, ${height}]`);
     let promise: Promise<preferences.Preferences> = preferences.getPreferences(this.context, DB_NAME);
 
@@ -370,4 +389,5 @@ export class Constants {
 ```
 
 ## 实现效果
+以下是按照本文档代码示例开发而成的效果demo，demo执行动效时，点击按钮，将调用 [formProvider.cancelOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovidercanceloverflow20) 接口，打断当前破框动效，卡片切换为非激活态。
 ![live-form-base-demo.gif](figures/live-form-base-demo.gif)

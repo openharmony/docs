@@ -12,7 +12,7 @@
 
 ## stateStyles
 
-stateStyles(value: StateStyles)
+stateStyles(value: StateStyles): T
 
 设置组件不同状态的样式。
 
@@ -26,9 +26,15 @@ stateStyles(value: StateStyles)
 
 | 参数名 | 类型                                | 必填 | 说明                     |
 | ------ | ----------------------------------- | ---- | ------------------------ |
-| value  | [StateStyles](#statestyles接口说明) | 是   | 设置组件不同状态的样式。 |
+| value  | [StateStyles](#statestyles) | 是   | 设置组件不同状态的样式。 |
 
-## StateStyles接口说明
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
+## StateStyles
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

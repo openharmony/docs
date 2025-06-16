@@ -54,7 +54,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -143,7 +143,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -242,7 +242,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -337,7 +337,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -428,7 +428,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -531,7 +531,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -652,13 +652,13 @@ export default class ShareExtAbility extends ShareExtensionAbility {
     let options: common.ConnectOptions = {
       onConnect(elementName, remote) {
         commRemote = remote;
-        console.info('onConnect...')
+        console.info('onConnect...');
       },
       onDisconnect(elementName) {
-        console.info('onDisconnect...')
+        console.info('onDisconnect...');
       },
       onFailed(code) {
-        console.info('onFailed...')
+        console.error(`onFailed, err code: ${code}.`);
       }
     };
     let connection: number;
@@ -1232,30 +1232,26 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 import { ShareExtensionAbility, Want, UIExtensionContentSession, OpenLinkOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function log(info: string) {
-  console.error(`MyUIExtension:: ${JSON.stringify(info)}`);
-}
-
 export default class ShareExtAbility extends ShareExtensionAbility {
   onCreate() {
-    log(`UIExtAbility onCreate`);
+    console.info(`UIExtAbility onCreate`);
   }
 
   onForeground() {
-    log(`UIExtAbility onForeground`);
+    console.info(`UIExtAbility onForeground`);
   }
 
   onBackground() {
-    log(`UIExtAbility onBackground`);
+    console.info(`UIExtAbility onBackground`);
   }
 
   onDestroy() {
-    log(`UIExtAbility onDestroy`);
+    console.info(`UIExtAbility onDestroy`);
   }
 
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    log(`UIExtAbility onSessionCreate`);
-    log(`UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`);
+    console.info(`UIExtAbility onSessionCreate`);
+    console.info(`UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`);
     let record: Record<string, UIExtensionContentSession> = {
       'session': session
     };
@@ -1271,24 +1267,26 @@ export default class ShareExtAbility extends ShareExtensionAbility {
         link,
         openLinkOptions,
         (err, result) => {
-          log(`openLink callback error.code: ${JSON.stringify(err)}`);
-          log(`openLink callback result: ${JSON.stringify(result.resultCode)}`);
-          log(`openLink callback result data: ${JSON.stringify(result.want)}`);
+          if (err) {
+            console.error(`openLink callback failed, err code: ${err.code}, err msg: ${err.message}.`);
+            return;
+          }
+          console.info(`openLink success, resule code: ${result.resultCode} result data: ${result.want}.`);
         }
       ).then(() => {
-        log(`open link success.`);
+        console.info(`open link success.`);
       }).catch((err: BusinessError) => {
-        log(`open link failed, errCode ${JSON.stringify(err.code)}`);
+        console.error(`open link failed, err code: ${err.code}, err msg: ${err.message}.`);
       });
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let msg = (err as BusinessError).message;
+      console.error(`openLink failed, err code: ${code}, err msg: ${msg}.`);
     }
-    catch (e) {
-      log(`exception occured, errCode ${JSON.stringify(e.code)}`);
-    }
-
   }
 
   onSessionDestroy(session: UIExtensionContentSession) {
-    log(`UIExtAbility onSessionDestroy`);
+    console.info(`UIExtAbility onSessionDestroy`);
   }
 }
 ```
@@ -1363,12 +1361,14 @@ struct Index {
             try {
               // 启动UIServiceExtensionAbility
               context.startUIServiceExtensionAbility(startWant).then(() => {
-                console.log('startUIServiceExtensionAbility success');
+                console.info(`startUIServiceExtensionAbility success.`);
               }).catch((error: BusinessError) => {
-                console.log('startUIServiceExtensionAbility error', JSON.stringify(error));
+                console.error(`startUIServiceExtensionAbility failed, err code: ${error.code}, err msg: ${error.message}.`);
               })
             } catch (err) {
-              console.log('startUIServiceExtensionAbility failed', JSON.stringify(err));
+              let code = (err as BusinessError).code;
+              let msg = (err as BusinessError).message;
+              console.error(`startUIServiceExtensionAbility failed, err code: ${code}, err msg: ${msg}.`);
             }
           })
       }
@@ -1448,18 +1448,18 @@ struct Page_UIServiceExtensionAbility {
         // 定义回调
         const callback: common.UIServiceExtensionConnectCallback = {
           onData: (data: Record<string, Object>): void => {
-            console.log('onData:', JSON.stringify(data));
+            console.info(`onData, data: ${JSON.stringify(data)}.`);
           },
           onDisconnect: (): void => {
-            console.log('onDisconnect');
+            console.info(`onDisconnect`);
           }
         };
         // 连接UIServiceExtensionAbility
         context.connectUIServiceExtensionAbility(want, callback).then((uiServiceProxy: common.UIServiceProxy) => {
           this.uiServiceProxy = uiServiceProxy;
-          console.log('connectUIServiceExtensionAbility success');
+          console.info(`connectUIServiceExtensionAbility success`);
         }).catch((error: BusinessError) => {
-          console.log('connectUIServiceExtensionAbility failed', JSON.stringify(error));
+          console.error(`connectUIServiceExtensionAbility failed, err code: ${error.code}, err msg: ${error.message}.`);
         })
       })
     }
@@ -1517,9 +1517,9 @@ struct Page_UIServiceExtensionAbility {
         const context = this.getUIContext().getHostContext() as common.UIExtensionContext;
         // this.uiServiceProxy是连接时保存的proxy对象
         context.disconnectUIServiceExtensionAbility(this.uiServiceProxy).then(() => {
-          console.log('disconnectUIServiceExtensionAbility success');
+          console.info(`disconnectUIServiceExtensionAbility success.`);
         }).catch((error: BusinessError) => {
-          console.log('disconnectUIServiceExtensionAbility failed', JSON.stringify(error));
+          console.info(`disconnectUIServiceExtensionAbility failed, err code: ${error.code}, err msg: ${error.message}.`);
         })
       })
     }

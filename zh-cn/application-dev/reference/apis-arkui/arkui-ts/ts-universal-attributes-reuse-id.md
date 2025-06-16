@@ -15,7 +15,7 @@ reuseId(id: string)
 
 >  **说明：**
 >
-> 根据不同场景灵活设置reuseId，实现最佳复用效果。最佳实践请参考[组件复用场景与方法详解](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-component-reuse-scenarios-methods)。
+> 根据不同场景灵活设置reuseId，实现最佳复用效果。最佳实践请参考[组件复用-使用reuseId标记布局发生变化的组件](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-component-reuse#section1239555818211)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

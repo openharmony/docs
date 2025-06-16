@@ -224,7 +224,7 @@ onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configura
 
 | 名称      | 类型                                     | 必填   | 描述                                |
 | --------- | ---------------------------------------- | ---- | --------------------------------- |
-| pixelMap  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 否    | 设置拖拽过程中显示的图片。 |
+| pixelMap  | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 否    | 设置拖拽过程中显示的图片。 |
 | builder   | [CustomBuilder](ts-types.md#custombuilder8) | 否    | 拖拽过程中显示自定义组件，如果设置了pixelMap，则忽略此值。<br /> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](ts-basic-components-image.md#syncload8)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。|
 | extraInfo | string                                   | 否    | 拖拽项的描述。                           |
 
@@ -267,32 +267,260 @@ onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configura
 | useCustomDropAnimation<sup>10+</sup> | boolean | 当拖拽结束时，是否禁用系统默认落位动效。<br/>应用可将该值设定为true来禁用系统默认落位动效，并实现自己的自定义落位动效。<br/>当不配置或设置为false时，系统默认落位动效生效，当松手位置的控件可接收拖拽的数据时，落位为缩小消失动效，若不可接收数据，则为放大消失动效。<br/>当未禁用系统默认落位动效情况下，应用不应再实现自定义动效，以避免动效上的冲突。|
 |dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | 切换复制和剪贴模式的角标显示状态。 |
 
-### 方法
+### setData<sup>10+</sup>
+
+setData(unifiedData: UnifiedData)
+
+向DragEvent中设置拖拽相关数据。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 返回值类型                            | 描述                           |
-| ----------- | ------------------------------- | ------------------------------ |
-| setData(unifiedData: [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata))<sup>10+</sup>       | void   | 向DragEvent中设置拖拽相关数据。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| getData()<sup>10+</sup> | [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 从DragEvent中获取拖拽相关数据。数据获取结果请参考错误码说明。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| getSummary()<sup>10+</sup> | [Summary](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#summary) | 从DragEvent中获取拖拽相关数据的简介。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| setResult(dragRect: [DragResult](#dragresult10枚举说明))<sup>10+</sup> | void | 向DragEvent中设置拖拽结果。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| getResult()<sup>10+</sup> | [DragResult](#dragresult10枚举说明) | 从DragEvent中获取拖拽结果。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| getPreviewRect()<sup>10+</sup> | [Rectangle](ts-universal-attributes-touch-target.md#rectangle对象说明) | 获取拖拽跟手图相对于当前窗口的位置，以及跟手图尺寸信息，单位VP，其中x和y代表跟手图左上角的窗口坐标，width和height代表跟手图的尺寸。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| getVelocityX()<sup>10+</sup> | number | 获取当前拖拽的x轴方向拖动速度。坐标轴原点为屏幕左上角，单位为vp，分正负方向速度，从左往右为正，反之为负。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| getVelocityY()<sup>10+</sup> | number | 获取当前拖拽的y轴方向拖动速度。坐标轴原点为屏幕左上角，单位为vp，分正负方向速度，从上往下为正，反之为负。 |
-| getVelocity()<sup>10+</sup> | number | 获取当前拖拽的主方向拖动速度。为xy轴方向速度的平方和的算术平方根。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| getWindowX()<sup>10+</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| getWindowY()<sup>10+</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| getDisplayX()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的x轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| getDisplayY()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => boolean | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\|'Alt'\|'Shift'。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
-| startDataLoading(options: [DataSyncOptions](#datasyncoptions15))<sup>15+</sup> | string | 异步获取拖拽数据，并通知开发者当前数据同步进度，仅支持在onDrop阶段使用。数据传输过程中可使用[cancelDataLoading](../js-apis-arkui-UIContext.md#canceldataloading15)接口取消。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
-| getX()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。<br>从API version 10开始不再维护，建议使用getWindowX()代替。 |
-| getY()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br>从API version 10开始不再维护，建议使用getWindowY()代替。 |
-| getDisplayId()<sup>20+</sup> | number | 获取当前拖拽事件发生时所在的屏幕ID，不支持当eventType为NODE_ON_DRAG_END时获取。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| getDragSource()<sup>20+</sup> | string | 获取拖起方包名。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| isRemote()<sup>20+</sup> | boolean | 获取是否是跨设备拖拽，跨设备拖拽时为true。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| 参数名      | 类型                                                         | 必填 | 说明             |
+| ----------- | ------------------------------------------------------------ | ---- | ---------------- |
+| unifiedData | [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 是   | 拖拽相关的数据。 |
+
+### getData<sup>10+</sup>
+
+getData(): UnifiedData
+
+获取拖拽相关数据。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 从DragEvent中获取拖拽相关数据。数据获取结果请参考错误码说明。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[drag-event(拖拽事件)](../errorcode-drag-event.md)错误码。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 190001    | Data not found.|
+| 190002    | Data error. |
+
+### getSummary<sup>10+</sup>
+
+getSummary(): Summary
+
+获取拖拽相关数据的简介。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型                                                         | 说明                                  |
+| ------------------------------------------------------------ | ------------------------------------- |
+| [Summary](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#summary) | 从DragEvent中获取拖拽相关数据的简介。 |
+
+### setResult<sup>10+</sup>
+
+setResult(dragResult: DragResult)
+
+向DragEvent中设置拖拽结果。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名     | 类型                                | 必填 | 说明       |
+| ---------- | ----------------------------------- | ---- | ---------- |
+| dragResult | [DragResult](#dragresult10枚举说明) | 是   | 拖拽结果。 |
+
+### getResult<sup>10+</sup>
+
+getResult(): DragResult
+
+获取拖拽结果。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型                                | 说明                          |
+| ----------------------------------- | ----------------------------- |
+| [DragResult](#dragresult10枚举说明) | 从DragEvent中获取的拖拽结果。 |
+
+### getPreviewRect<sup>10+</sup>
+
+getPreviewRect(): Rectangle
+
+获取拖拽跟手图相对于当前窗口的位置，以及跟手图尺寸信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [Rectangle](ts-universal-attributes-touch-target.md#rectangle对象说明) | 拖拽跟手图相对于当前窗口的位置，以及跟手图尺寸信息，单位vp，其中x和y代表跟手图左上角的窗口坐标，width和height代表跟手图的尺寸。 |
+
+### getVelocityX<sup>10+</sup>
+
+getVelocityX(): number
+
+获取当前拖拽的x轴方向拖动速度。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| number | 当前拖拽的x轴方向拖动速度。坐标轴原点为屏幕左上角，单位为vp，分正负方向速度，从左往右为正，反之为负。 |
+
+### getVelocityY<sup>10+</sup>
+
+getVelocityY(): number
+
+获取当前拖拽的y轴方向拖动速度。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| number | 当前拖拽的y轴方向拖动速度。坐标轴原点为屏幕左上角，单位为vp，分正负方向速度，从上往下为正，反之为负。 |
+
+### getVelocity<sup>10+</sup>
+
+getVelocity(): number
+
+获取当前拖拽的主方向拖动速度。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| number | 当前拖拽的主方向拖动速度。为xy轴方向速度的平方和的算术平方根。 |
+
+### getWindowX<sup>10+</sup>
+
+getWindowX(): number
+
+获取拖拽点相对于窗口左上角的x轴坐标。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型   | 说明                                            |
+| ------ | ----------------------------------------------- |
+| number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。 |
+
+### getWindowY<sup>10+</sup>
+
+getWindowY(): number
+
+获取拖拽点相对于窗口左上角的y轴坐标。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型   | 说明                                            |
+| ------ | ----------------------------------------------- |
+| number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。 |
+
+### getDisplayX<sup>10+</sup>
+
+getDisplayX(): number
+
+获取当前拖拽点相对于屏幕左上角的x轴坐标。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型   | 说明                                            |
+| ------ | ----------------------------------------------- |
+| number | 当前拖拽点相对于屏幕左上角的x轴坐标，单位为vp。 |
+
+### getDisplayY<sup>10+</sup>
+
+getDisplayY(): number
+
+获取当前拖拽点相对于屏幕左上角的y轴坐标。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型   | 说明                                            |
+| ------ | ----------------------------------------------- |
+| number | 当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。 |
+
+### getModifierKeyState<sup>12+</sup>
+
+getModifierKeyState?(keys: Array<string\>): boolean
+
+获取功能键按压状态。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型                | 必填 | 说明                                                         |
+| ------ | ------------------- | ---- | ------------------------------------------------------------ |
+| keys   | Array&lt;string&gt; | 是   | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\| 'Alt' \| 'Shift'。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 401       | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
+
+**返回值：** 
+
+| 类型    | 说明                                                  |
+| ------- | ----------------------------------------------------- |
+| boolean | 是否被按下，返回true表示被按下，返回false表示未被按下 |
+
+### startDataLoading<sup>15+</sup>
+
+startDataLoading(options: DataSyncOptions): string
+
+异步获取拖拽数据，并通知开发者当前数据同步进度，仅支持在onDrop阶段使用。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名  | 类型                                  | 必填 | 说明                                                         |
+| ------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [DataSyncOptions](#datasyncoptions15) | 是   | 拖拽数据。数据传输过程中可使用[cancelDataLoading](../js-apis-arkui-UIContext.md#canceldataloading15)接口取消。 |
 
 **错误码：**
 
@@ -301,9 +529,89 @@ onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configura
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 401       | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
-| 190001    | Data not found.|
-| 190002    | Data error. |
 | 190003    | Operation not allowed for current pharse. |
+
+**返回值：** 
+
+| 类型   | 说明                               |
+| ------ | ---------------------------------- |
+| string | 拖拽数据的标识，用于区分每次拖拽。 |
+
+### getDisplayId<sup>20+</sup>
+
+getDisplayId(): number
+
+获取当前拖拽事件发生时所在的屏幕ID，不支持当eventType为NODE_ON_DRAG_END时获取。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型   | 说明                             |
+| ------ | -------------------------------- |
+| number | 当前拖拽事件发生时所在的屏幕ID。 |
+
+### getDragSource<sup>20+</sup>
+
+getDragSource(): string
+
+获取拖起方包名。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型   | 说明           |
+| ------ | -------------- |
+| string | 拖起方的包名。 |
+
+### isRemote<sup>20+</sup>
+
+isRemote(): boolean
+
+获取是否是跨设备拖拽，跨设备拖拽时为true。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 是否是跨设备拖拽，返回true表示是跨设备拖拽，返回false表示不是跨设备拖拽。 |
+
+### getX<sup>(deprecated)</sup>
+
+getX(): number
+
+当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。从API version 10开始不再维护，建议使用[getWindowX()](#getwindowx10)代替。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型   | 说明                                                |
+| ------ | --------------------------------------------------- |
+| number | 返回当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。 |
+
+### getY<sup>(deprecated)</sup>
+
+getY(): number
+
+当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。从API version 10开始不再维护，建议使用[getWindowY()](#getwindowy10)代替。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型   | 说明                                                |
+| ------ | --------------------------------------------------- |
+| number | 返回当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。 |
 
 ## DragResult<sup>10+</sup>枚举说明
 

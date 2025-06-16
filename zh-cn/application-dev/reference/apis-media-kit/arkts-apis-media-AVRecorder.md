@@ -1,4 +1,4 @@
-# Interfaces (AVRecorder)
+# Interface (AVRecorder)
 
 > **说明：**
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -168,7 +168,7 @@ getInputSurface(callback: AsyncCallback\<string>): void
 
 应当注意，填入的视频数据需要携带时间戳（单位ns）和buffersize。时间戳的起始时间请以系统启动时间为基准。
 
-需在[prepare()](#prepare9-2)事件成功触发后，才能调用getInputSurface()方法。
+需在[prepare()](#prepare9)事件成功触发后，才能调用getInputSurface()方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -180,7 +180,7 @@ getInputSurface(callback: AsyncCallback\<string>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
@@ -225,7 +225,7 @@ getInputSurface(): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
@@ -271,7 +271,7 @@ updateRotation(rotation: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
@@ -316,7 +316,7 @@ setWillMuteWhenInterrupted(muteWhenInterrupted: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
@@ -341,7 +341,7 @@ start(callback: AsyncCallback\<void>): void
 
 异步方式开始视频录制。通过注册回调函数获取返回值。
 
-纯音频录制需在[prepare()](#prepare9-2)事件成功触发后，才能调用start方法。纯视频录制，音视频录制需在[getInputSurface()](#getinputsurface9)事件成功触发后，才能调用start方法。
+纯音频录制需在[prepare()](#prepare9)事件成功触发后，才能调用start方法。纯视频录制，音视频录制需在[getInputSurface()](#getinputsurface9)事件成功触发后，才能调用start方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -501,7 +501,7 @@ resume(callback: AsyncCallback\<void>): void
 
 异步方式恢复视频录制。通过注册回调函数获取返回值。
 
-需要在[pause()](#pause9-2)事件成功触发后，才能调用resume方法。
+需要在[pause()](#pause9)事件成功触发后，才能调用resume方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -581,9 +581,9 @@ stop(callback: AsyncCallback\<void>): void
 
 异步方式停止视频录制。通过注册回调函数获取返回值。
 
-需要在[start()](#start9)或[pause()](#pause9-2)事件成功触发后，才能调用stop方法。
+需要在[start()](#start9)或[pause()](#pause9)事件成功触发后，才能调用stop方法。
 
-纯音频录制时，需要重新调用[prepare()](#prepare9-2)接口才能重新录制。纯视频录制，音视频录制时，需要重新调用[prepare()](#prepare9-2)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
+纯音频录制时，需要重新调用[prepare()](#prepare9)接口才能重新录制。纯视频录制，音视频录制时，需要重新调用[prepare()](#prepare9)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -665,7 +665,7 @@ reset(callback: AsyncCallback\<void>): void
 
 异步方式重置音视频录制。通过注册回调函数获取返回值。
 
-纯音频录制时，需要重新调用[prepare()](#prepare9-2)接口才能重新录制。纯视频录制，音视频录制时，需要重新调用[prepare()](#prepare9-2)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
+纯音频录制时，需要重新调用[prepare()](#prepare9)接口才能重新录制。纯视频录制，音视频录制时，需要重新调用[prepare()](#prepare9)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -825,7 +825,7 @@ getCurrentAudioCapturerInfo(callback: AsyncCallback\<audio.AudioCapturerChangeIn
 
 | 参数名   | 类型                                                         | 必填 | 说明                                 |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------ |
-| callback | AsyncCallback\<[audio.AudioCapturerChangeInfo](../apis-audio-kit/js-apis-audio.md#audiocapturerchangeinfo9)> | 是   | 回调函数。当获取音频采集参数成功时，err为undefined，data为获取到的audio.AudioCapturerChangeInfo，否则为错误对象。 |
+| callback | AsyncCallback\<[audio.AudioCapturerChangeInfo](../apis-audio-kit/arkts-apis-audio-i.md#audiocapturerchangeinfo9)> | 是   | 回调函数。当获取音频采集参数成功时，err为undefined，data为获取到的audio.AudioCapturerChangeInfo，否则为错误对象。 |
 
 **错误码**：
 
@@ -868,7 +868,7 @@ getCurrentAudioCapturerInfo(): Promise\<audio.AudioCapturerChangeInfo>
 
 | 类型                                                         | 说明                                              |
 | ------------------------------------------------------------ | ------------------------------------------------- |
-| Promise\<[audio.AudioCapturerChangeInfo](../apis-audio-kit/js-apis-audio.md#audiocapturerchangeinfo9)> | Promise对象，返回获取的当前音频采集参数。 |
+| Promise\<[audio.AudioCapturerChangeInfo](../apis-audio-kit/arkts-apis-audio-i.md#audiocapturerchangeinfo9)> | Promise对象，返回获取的当前音频采集参数。 |
 
 **错误码**：
 
@@ -1057,7 +1057,7 @@ getAVRecorderConfig(callback: AsyncCallback\<AVRecorderConfig>): void
 
 异步方式获取实时的配置参数。通过注册回调函数获取返回值。
 
-只能在[prepare()](#prepare9-2)接口调用后调用。
+只能在[prepare()](#prepare9)接口调用后调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -1069,7 +1069,7 @@ getAVRecorderConfig(callback: AsyncCallback\<AVRecorderConfig>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -1112,7 +1112,7 @@ getAVRecorderConfig(): Promise\<AVRecorderConfig>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -1196,7 +1196,7 @@ avRecorder.off('stateChange');
 
 on(type: 'error', callback: ErrorCallback): void
 
-订阅AVRecorder的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVRecorderState](arkts-apis-media-t.md#avrecorderstate9)也切至error状态，用户需要通过[reset()](#reset9-2)或者[release()](#release9-2)退出录制操作。
+订阅AVRecorder的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVRecorderState](arkts-apis-media-t.md#avrecorderstate9)也切至error状态，用户需要通过[reset()](#reset9)或者[release()](#release9)退出录制操作。
 
 用户只能订阅一个错误事件的回调方法，当用户重复订阅时，以最后一次订阅的回调接口为准。
 
@@ -1276,7 +1276,7 @@ on(type: 'audioCapturerChange', callback: Callback<audio.AudioCapturerChangeInfo
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   |录音配置变化的回调类型，支持的事件：'audioCapturerChange'。 |
-| callback | Callback<[audio.AudioCapturerChangeInfo](../apis-audio-kit/js-apis-audio.md#audiocapturerchangeinfo9)> | 是 | 变化后的录音配置全量信息。|
+| callback | Callback<[audio.AudioCapturerChangeInfo](../apis-audio-kit/arkts-apis-audio-i.md#audiocapturerchangeinfo9)> | 是 | 变化后的录音配置全量信息。|
 
 **错误码：**
 
@@ -1310,7 +1310,7 @@ off(type: 'audioCapturerChange', callback?: Callback<audio.AudioCapturerChangeIn
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 录音配置变化的回调类型，支持的事件：'audioCapturerChange'。 |
-| callback | Callback<[audio.AudioCapturerChangeInfo](../apis-audio-kit/js-apis-audio.md#audiocapturerchangeinfo9)> | 否 | 变化后的录音配置全量信息。<br/>从API version 12开始支持此参数。|
+| callback | Callback<[audio.AudioCapturerChangeInfo](../apis-audio-kit/arkts-apis-audio-i.md#audiocapturerchangeinfo9)> | 否 | 变化后的录音配置全量信息。<br/>从API version 12开始支持此参数。|
 
 **示例：**
 
@@ -1322,7 +1322,7 @@ avRecorder.off('audioCapturerChange');
 
 on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset>): void
 
-订阅媒体资源回调事件，当[FileGenerationMode](arkts-apis-media-e.md#filegenerationmode12)枚举设置为系统创建媒体文件时，会在[stop](#stop9-2)操作结束后把[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)对象回调给应用。
+订阅媒体资源回调事件，当[FileGenerationMode](arkts-apis-media-e.md#filegenerationmode12)枚举设置为系统创建媒体文件时，会在[stop](#stop9)操作结束后把[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)对象回调给应用。
 
 当用户重复订阅时，以最后一次订阅的回调接口为准。
 

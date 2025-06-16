@@ -77,7 +77,7 @@ setMessageAccessAuthorization(deviceId: string, authorization: AccessAuthorizati
 | 参数名      | 类型     | 必填   | 说明                                  |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | 是    | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| authorization | [AccessAuthorization](js-apis-bluetooth-constant-sys.md#AccessAuthorization) | 是    | 表示访问权限枚举值。 |
+| authorization | [AccessAuthorization](js-apis-bluetooth-constant-sys.md#accessauthorization11) | 是    | 表示访问权限枚举值。 |
 
 **返回值：**
 
@@ -136,7 +136,7 @@ getMessageAccessAuthorization(deviceId: string): Promise&lt;AccessAuthorization&
 
 | 类型                                              | 说明                |
 | ------------------------------------------------- | ------------------- |
-| Promise&lt;[AccessAuthorization](js-apis-bluetooth-constant-sys.md#AccessAuthorization)&gt; | 以Promise的形式返回结果。如果成功，err为undefined，否则为错误对象。 |
+| Promise&lt;[AccessAuthorization](js-apis-bluetooth-constant-sys.md#accessauthorization11)&gt; | 以Promise的形式返回结果。如果成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 

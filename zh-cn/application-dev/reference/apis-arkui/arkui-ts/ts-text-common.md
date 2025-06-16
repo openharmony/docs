@@ -994,3 +994,57 @@ constructor(color: ResourceColor)
 | ACCESSIBILITY | 10 | 无障碍接口。 |
 | COLLABORATION | 11 | 跨端拍照。 |
 | STYLUS | 12 | 手写笔。 |
+
+## MaxLinesOptions<sup>20+</sup>对象说明
+
+配置TextArea组件，文本超长时的显示效果。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称              | 类型    | 必填  | 说明                                                         |
+| ------------------- | ------- | ------- | ------------------------------------------------------------ |
+| overflowMode | [MaxLinesMode](#maxlinesmode20)  | 否  | `overflowMode`可配置TextArea组件的非内联模式。当超出设置的`maxLines`最大行数时，会启用滚动效果。需同时配置[`textOverflow`](ts-basic-components-textarea.md#textoverflow12)，且仅当`textOverflow`为None或Clip时，`MaxLinesMode`才能生效。默认情况下，`MaxLinesMode`的值为Clip，超出`maxLines`后文本会被截断。 |
+
+## MaxLinesMode<sup>20+</sup>
+
+TextArea组件在文本超长时显示效果。默认值为CLIP，按最大行截断显示。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                   | 值  | 说明                  |
+| --------------------- | -------  | ------------------- |
+| CLIP                  | 0  | 文本超长时按最大行截断显示。 |
+| SCROLL                | 1  | 文本超长时可滚动显示。 |
+
+## LineSpacingOptions<sup>20+</sup>对象说明
+
+设置文本的行间距，是否仅在行与行之间生效。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 名称 | 类型                                                         | 必填 | 说明             |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
+| onlyBetweenLines  | boolean | 否   | 文本的行间距是否仅在行与行之间生效。<br/>当设置为true时，行间距仅适用于行与行之间，首行上方和尾行下方无额外的行间距。当设置为false时，首行上方和尾行下方均会存在行间距。<br/>默认值：false |
+
+## TextVerticalAlign<sup>20+</sup>
+
+文本垂直对齐的方式。默认值BASELINE，沿基线对齐。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         |  值          | 说明                  |
+| --------------------- | -------------------| ------------------- |
+| BASELINE |  0          | 对齐文本基线。 |
+| BOTTOM   |  1          | 对齐文本底部。 |
+| CENTER   |  2          | 垂直居中对齐。 |
+| TOP      |  3          | 对齐文本顶部。 |

@@ -2303,6 +2303,7 @@ struct WebComponent {
 </html>
 ```
 
+<!--code_no_check-->
 ```js
 //xxx.js
 var h5Port;
@@ -3392,7 +3393,7 @@ getFavicon(): image.PixelMap
 
 | 类型                                   | 说明                            |
 | -------------------------------------- | ------------------------------- |
-| [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 页面favicon图标的PixelMap对象。 |
+| [PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 页面favicon图标的PixelMap对象。 |
 
 **错误码：**
 
@@ -3845,7 +3846,7 @@ getBackForwardEntries(): BackForwardList
 
 | 类型                                | 说明                        |
 | ----------------------------------- | --------------------------- |
-| [BackForwardList](./arkts-apis-webview-i.md#backforwardlist) | 当前Webview的历史信息列表。 |
+| [BackForwardList](./arkts-apis-webview-BackForwardList.md) | 当前Webview的历史信息列表。 |
 
 **错误码：**
 
@@ -4672,7 +4673,7 @@ static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: numb
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
 | 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048.                                                 |
-| 171000013| The number of preconnect sockets is invalid.                                                 |
+| 17100013 | The number of preconnect sockets is invalid.                                                 |
 
 **示例：**
 
@@ -8636,7 +8637,7 @@ struct Index {
 
 getScrollOffset(): ScrollOffset
 
-获取网页当前的滚动偏移量。
+获取网页当前的滚动偏移量（包含过滚动偏移量）。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8644,7 +8645,7 @@ getScrollOffset(): ScrollOffset
 
 | 类型                            | 说明                   |
 | :------------------------------ | ---------------------- |
-| [ScrollOffset](./arkts-apis-webview-i.md#scrolloffset13) | 网页当前的滚动偏移量。 |
+| [ScrollOffset](./arkts-apis-webview-i.md#scrolloffset13) | 网页当前的滚动偏移量（包含过滚动偏移量）。 |
 
 **示例：**
 
@@ -8698,6 +8699,74 @@ struct WebComponent {
     .height('100%')
   }
 }
+```
+
+## getPageOffset<sup>20+</sup>
+
+getPageOffset(): ScrollOffset
+
+获取网页当前的滚动偏移量（不包含过滚动偏移量）。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值**
+
+| 类型                            | 说明                   |
+| :------------------------------ | ---------------------- |
+| [ScrollOffset](./arkts-apis-webview-i.md#scrolloffset13) | 网页当前的滚动偏移量（不包含过滚动偏移量）。 |
+
+**示例：**
+
+```ts
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .onScroll((event) => {
+          console.log("getPageOffset x:" + this.controller.getPageOffset().x + ",y:" +
+          this.controller.getPageOffset().y);
+        })
+    }
+  }
+}
+```
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .blue {
+          background-color: lightblue;
+        }
+        .green {
+          background-color: lightgreen;
+        }
+        .blue, .green {
+         font-size:16px;
+         height:200px;
+         text-align: center;       /* 水平居中 */
+         line-height: 200px;       /* 垂直居中（值等于容器高度） */
+        }
+    </style>
+</head>
+<body>
+<div class="blue" >webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+</body>
+</html>
 ```
 
 ## getLastHitTest<sup>18+</sup>

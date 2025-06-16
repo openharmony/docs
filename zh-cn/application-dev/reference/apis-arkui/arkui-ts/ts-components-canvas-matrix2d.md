@@ -1,6 +1,6 @@
 # Matrix2D
 
-矩阵对象，可以对矩阵进行缩放、旋转、平移等变换。
+矩阵对象，可以对矩阵进行缩放、旋转和平移等变换。
 
 >  **说明：**
 > 
@@ -87,7 +87,7 @@ struct Parameter {
 
 identity(): Matrix2D
 
-创建一个单位矩阵。
+创建单位矩阵。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -138,7 +138,7 @@ struct Identity {
 
 invert(): Matrix2D
 
-得到当前矩阵的逆矩阵。
+获取当前矩阵的逆矩阵。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -191,7 +191,7 @@ struct Invert {
 ![matrix-invert.png](figures/matrix-invert.png)
 
 
-### multiply<sup>(deprecated) </sup>
+### multiply<sup>(deprecated)</sup>
 
 multiply(other?: Matrix2D): Matrix2D
 
@@ -213,7 +213,7 @@ multiply(other?: Matrix2D): Matrix2D
 | --------------------- | -------------- |
 | [Matrix2D](#matrix2d) | 相乘结果矩阵。 |
 
-### rotate<sup>(deprecated) </sup>
+### rotate<sup>(deprecated)</sup>
 
 rotate(rx?: number, ry?: number): Matrix2D
 
@@ -278,7 +278,7 @@ struct Rotate {
 
 rotate(degree: number, rx?: number, ry?: number): Matrix2D
 
-以旋转点为中心、对当前矩阵进行右乘旋转运算。
+以旋转点为中心，对当前矩阵进行右乘旋转运算。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 

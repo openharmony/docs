@@ -48,7 +48,7 @@ ChipGroup({
 | chipGroupSpace  | [ChipGroupSpaceOptions](#chipgroupspaceoptions) | 否   | @Prop | 左右内边距以及chip与chip之间的间距。参考[ChipGroupSpaceOptions](#chipgroupspaceoptions)类型。<br/>为undefined时，chipGroupSpace走默认值。 |
 | chipGroupPadding  | [ChipGroupPaddingOptions](#chipgrouppaddingoptions) | 否   | @Prop | chipGroup的上下内边距，以便控制整体高度。参考[ChipGroupPaddingOptions](#chipgrouppaddingoptions)类型。<br/>为undefined时，chipGroupPadding走默认值。 |
 | onChange        | Callback\<Array\<number>>  | 否   | -  | chip状态改变时的回调方法。<br/>为undefined时，表示解绑事件。                                                                |
-| suffix          | ()=>void                                        | 否   | @BuilderParam | 最右侧的builder，由使用者自定义，使用时需引入[IconGroupSuffix](#icongroupsuffix)接口。<br/>默认值：不传入的情况，没有suffix。 |
+| suffix          | Callback\<void\>                                        | 否   | @BuilderParam | 最右侧的builder，由使用者自定义，使用时需引入[IconGroupSuffix](#icongroupsuffix)接口。<br/>默认值：不传入的情况，没有suffix。 |
 
 > **说明：**
 >

@@ -9,7 +9,7 @@
 1. 当 audioBitrate 或 audioChannels 为 0 时，不录制音频。
 2. 当 videoFrameWidth 或 videoFrameHeight 为 0 时，不录制视频。
 
-各参数的范围请参见[AVRecorderProfile](js-apis-media.md#avrecorderprofile9)。
+各参数的范围请参见[AVRecorderProfile](arkts-apis-media-i.md#avrecorderprofile9)。
 
 **起始版本：** 18
 

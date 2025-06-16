@@ -1412,7 +1412,7 @@ async function Release() {
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称              | 类型    | 可读 | 可写 | 说明                       |
+| 名称              | 类型    | 只读 | 可选 | 说明                       |
 | -----------------| ------- | ---- | ---- | -------------------------- |
 | isEditable        | boolean | 是   | 否   | true表示图像像素可被编辑，false表示不可被编辑。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | isStrideAlignment<sup>11+</sup> | boolean | 是   | 否   | true表示图像内存为DMA内存，false表示非DMA内存。 |
@@ -3580,6 +3580,7 @@ toSdr(): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import image from '@ohos.multimedia.image';
 import resourceManager from '@ohos.resourceManager';
@@ -3641,6 +3642,7 @@ getMetadata(key: HdrMetadataKey): HdrMetadataValue
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -3756,6 +3758,7 @@ pixelmap在跨线程传输时，断开原线程的引用。适用于需立即释
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 import image from '@ohos.multimedia.image';
 import taskpool from '@ohos.taskpool';
 
@@ -3774,11 +3777,13 @@ async function loadPixelMap(rawFileDescriptor: number): Promise<PixelMap> {
   return pixelMap;
 }
 
+@Component
 struct Demo {
   @State pixelMap: PixelMap | undefined = undefined;
   // 主线程方法。
   private loadImageFromThread(): void {
-    const resourceMgr = this.getUIContext().getHostContext()?.resourceManager;
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    const resourceMgr = context.resourceManager;
     // 此处‘example.jpg’仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
     resourceMgr.getRawFd('example.jpg').then(rawFileDescriptor => {
       taskpool.execute(loadPixelMap, rawFileDescriptor).then(pixelMap => {
@@ -3792,6 +3797,9 @@ struct Demo {
         }
       });
     });
+  }
+  build() {
+    // ...
   }
 }
 ```
@@ -4160,6 +4168,7 @@ createImageSource(uri: string): ImageSource
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 
@@ -4197,6 +4206,7 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 
@@ -4232,6 +4242,7 @@ createImageSource(fd: number): ImageSource
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
@@ -4271,6 +4282,7 @@ createImageSource(fd: number, options: SourceOptions): ImageSource
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
@@ -4374,6 +4386,7 @@ createImageSource(rawfile: resourceManager.RawFileDescriptor, options?: SourceOp
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { common } from '@kit.AbilityKit';
@@ -4420,6 +4433,7 @@ CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 
@@ -4468,6 +4482,7 @@ CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 
@@ -4501,7 +4516,7 @@ ImageSource类，用于获取图片相关信息。在调用ImageSource的方法�
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
-| 名称             | 类型           | 可读 | 可写 | 说明                                                         |
+| 名称             | 类型           | 只读 | 可选 | 说明                                                         |
 | ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
 | supportedFormats | Array\<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，bmp，gif，webp，dng，heic<sup>12+</sup>（不同硬件设备支持情况不同）。 |
 
@@ -4629,6 +4644,7 @@ getImageInfoSync(index?: number): ImageInfo
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 import { image } from '@kit.ImageKit';
@@ -4893,6 +4909,7 @@ getImagePropertySync(key:PropertyKey): string
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { image } from '@kit.ImageKit';
 import { common } from '@kit.AbilityKit';
@@ -5360,6 +5377,7 @@ createPixelMapSync(options?: DecodingOptions): PixelMap
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 import { image } from '@kit.ImageKit';
@@ -5611,6 +5629,7 @@ createPixelMapUsingAllocator(options?: DecodingOptions, allocatorType?: Allocato
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 import image from '@ohos.multimedia.image';
@@ -5675,6 +5694,7 @@ createPixelMapUsingAllocatorSync(options?: DecodingOptions, allocatorType?: Allo
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 import image from '@ohos.multimedia.image';
@@ -5990,8 +6010,8 @@ getImageSourceSupportedFormats(): string[]
 **示例：**
 
 ```ts
-import image from '@kit.ImageKit';
-GetImageSourceSupportedFormats() {
+import { image } from '@kit.ImageKit';
+function GetImageSourceSupportedFormats() {
     let formats = image.getImageSourceSupportedFormats();
     console.info('formats:', formats);
 }
@@ -6027,7 +6047,7 @@ const imagePackerApi: image.ImagePacker = image.createImagePacker();
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
-| 名称             | 类型           | 可读 | 可写 | 说明                       |
+| 名称             | 类型           | 只读 | 可选 | 说明                       |
 | ---------------- | -------------- | ---- | ---- | -------------------------- |
 | supportedFormats | Array\<string> | 是   | 否   | 图片编码支持的格式 jpeg、webp、png、heic<sup>12+</sup>（不同硬件设备支持情况不同）。 |
 
@@ -6072,6 +6092,7 @@ packToData(source: ImageSource, options: PackingOption): Promise\<ArrayBuffer>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6250,6 +6271,7 @@ packToDataFromPixelmapSequence(pixelmapSequence: Array\<PixelMap>, options: Pack
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
@@ -6302,6 +6324,7 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6351,6 +6374,7 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6563,6 +6587,7 @@ packToFile(source: ImageSource, fd: number, options: PackingOption, callback: As
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6626,6 +6651,7 @@ packToFile (source: ImageSource, fd: number, options: PackingOption): Promise\<v
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6685,6 +6711,7 @@ packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: Asy
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6752,6 +6779,7 @@ packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6877,6 +6905,7 @@ packToFileFromPixelmapSequence(pixelmapSequence: Array\<PixelMap>, fd: number, o
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
@@ -6925,8 +6954,8 @@ getImagePackerSupportedFormats(): string[]
 **示例：**
 
 ```ts
-import image from '@kit.ImageKit';
-GetImagePackerSupportedFormats() {
+import { image } from '@kit.ImageKit';
+function GetImagePackerSupportedFormats() {
     let formats = image.getImagePackerSupportedFormats();
     console.info('formats:', formats);
 }
@@ -7656,7 +7685,7 @@ let receiver: image.ImageReceiver = image.createImageReceiver(8192, 8, image.Ima
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
-| 名称     | 类型                         | 可读 | 可写 | 说明               |
+| 名称     | 类型                         | 只读 | 可选 | 说明               |
 | -------- | ---------------------------- | ---- | ---- | ------------------ |
 | size     | [Size](#size)                | 是   | 否   | 图片大小。该参数不会影响接收到的图片大小，实际返回大小由生产者决定，如相机。         |
 | capacity | number                       | 是   | 否   | 同时访问的图像数。 |
@@ -8021,7 +8050,7 @@ let creator: image.ImageCreator = image.createImageCreator(8192, 8, image.ImageF
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
-| 名称     | 类型                         | 可读 | 可写 | 说明               |
+| 名称     | 类型                         | 只读 | 可选 | 说明               |
 | -------- | ---------------------------- | ---- | ---- | ------------------ |
 | capacity | number                       | 是   | 否   | 同时访问的图像数。 |
 | format   | [ImageFormat](#imageformat9) | 是   | 否   | 图像格式。         |
@@ -8286,7 +8315,7 @@ creator.release().then(() => {
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称     | 类型               | 可读 | 可写 | 说明                                               |
+| 名称     | 类型               | 只读 | 可选 | 说明                                               |
 | -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
 | clipRect | [Region](#region8) | 是   | 是   | 要裁剪的图像区域。                                 |
 | size     | [Size](#size)      | 是   | 否   | 图像大小。如果image对象所存储的是相机预览流数据，即YUV图像数据，那么获取到的size中的宽高分别对应YUV图像的宽高； 如果image对象所存储的是相机拍照流数据，即JPEG图像，由于已经是编码后的文件，size中的宽等于JPEG文件大小，高等于1。image对象所存储的数据是预览流还是拍照流，取决于应用将receiver中的surfaceId传给相机的previewOutput还是captureOutput。相机预览与拍照最佳实践请参考[双路预览(ArkTS)](../../media/camera/camera-dual-channel-preview.md)与[拍照实现方案(ArkTS)](../../media/camera/camera-shooting-case.md)。                                |
@@ -8644,7 +8673,7 @@ PixelMap的初始化选项。
 
 | 名称    | 类型   | 只读 | 可选 | 说明                                                |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | 否   | 否   | 目标格式。</br>当前只支持"image/jpeg"、"image/webp"、"image/png"和"image/heic(或者image/heif)"<sup>12+</sup>、"image/sdr_astc4x4"<sup>18+</sup>、"image/sdr_sut_superfast_4x4"<sup>18+</sup>（不同硬件设备支持情况不同）。<br>**说明：** 因为jpeg不支持透明通道，若使用带透明通道的数据编码jpeg格式，透明色将变为黑色。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| format  | string | 否   | 否   | 目标格式。</br>当前只支持"image/jpeg"、"image/webp"、"image/png"和"image/heic(或者image/heif)"<sup>12+</sup>、"image/sdr_astc_4x4"<sup>18+</sup>、"image/sdr_sut_superfast_4x4"<sup>18+</sup>（不同硬件设备支持情况不同）。<br>**说明：** 因为jpeg不支持透明通道，若使用带透明通道的数据编码jpeg格式，透明色将变为黑色。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | quality | number | 否   | 否   | 1. 编码中设定输出图片质量的参数，该参数仅对JPEG图片和HEIF图片生效。取值范围为0-100。0质量最低，100质量最高，质量越高生成图片所占空间越大。WebP、PNG等图片均为无损编码。<br> 2.sdr_astc_4x4编码中，可以设定输出图片质量的参数，可选参数：92、85。<br>3. sut编码中，设定输出图片质量可选参数：92。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | bufferSize<sup>9+</sup> | number | 否   | 是   | 接收编码数据的缓冲区大小，单位为Byte。如果不设置大小，默认为25M。如果编码图片超过25M，需要指定大小。bufferSize需大于编码后图片大小。使用[packToFile](#packtofile11)不受此参数限制。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 否   | 是   | 目标动态范围。默认值为SDR。 |
@@ -8671,8 +8700,8 @@ PixelMap的初始化选项。
 
 | 名称         | 类型   | 只读 | 可选 | 说明         |
 | ------------ | ------ | ---- | ---- | ------------ |
-| index        | number | 是   | 是   | 图片序号。默认值为0。   |
-| defaultValue | string | 是   | 是   | 默认属性值。默认值为空。 |
+| index        | number | 否   | 是   | 图片序号。默认值为0。   |
+| defaultValue | string | 否   | 是   | 默认属性值。默认值为空。 |
 
 ## GetImagePropertyOptions<sup>(deprecated)</sup>
 

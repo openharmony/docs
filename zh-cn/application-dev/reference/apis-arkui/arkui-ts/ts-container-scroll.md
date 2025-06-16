@@ -151,6 +151,10 @@ enableScrollInteraction(value: boolean)
 | ------ | ------- | ---- | ----------------------------------- |
 | value  | boolean | 是   | 是否支持滚动手势。设置为true时可以通过手指或者鼠标滚动，设置为false时无法通过手指或者鼠标滚动，但不影响控制器[Scroller](ts-container-scroll.md#scroller)的滚动接口。<br/>默认值：true |
 
+> **说明：** 
+>
+> 组件无法通过鼠标按下拖动操作进行滚动。
+
 ### nestedScroll<sup>10+</sup>
 
 nestedScroll(value: NestedScrollOptions)
@@ -665,7 +669,9 @@ scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign, options?: Sc
 
 >  **说明：**
 >
->  仅支持ArcList、Grid、List、WaterFlow组件。
+> 1.仅支持ArcList、Grid、List、WaterFlow组件。
+>
+> 2.在LazyForEach、ForEach、Repeat刷新数据源时，需确保在数据刷新完成之后再调用此接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

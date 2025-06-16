@@ -2,6 +2,16 @@
 
 滑动手势事件，当滑动的最小距离达到设定的最小值时触发滑动手势事件。
 
+以下场景可以触发滑动手势：
+
+| 触发方式              | 输入源类型           | 输入设备类型            | 备注                              | 
+|----------------------|---------------------|------------------------|-----------------------------------|
+| 手指按下滑动。          | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9).Finger   | [SourceType](ts-gesture-settings.md#sourcetype枚举说明8).TouchScreen | axisVertical和axisHorizontal均为0。 |
+| 鼠标左键按下滑动。      | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9).Mouse    | [SourceType](ts-gesture-settings.md#sourcetype枚举说明8).Mouse        | axisVertical和axisHorizontal均为0。 |
+| 鼠标滚轮滚动。          | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9).Mouse    | [SourceType](ts-gesture-settings.md#sourcetype枚举说明8).Mouse        | axisVertical或axisHorizontal不为0。 |
+| 触摸板按下左键后滑动。  | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9).TouchPad  | [SourceType](ts-gesture-settings.md#sourcetype枚举说明8).Unknown     | axisVertical和axisHorizontal均为0。 |
+| 触摸板双指滑动。       | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9).TouchPad  | [SourceType](ts-gesture-settings.md#sourcetype枚举说明8).Unknown      | axisVertical或axisHorizontal不为0。 |
+
 >  **说明：**
 >
 >  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
@@ -19,8 +29,8 @@ PanGesture(value?: { fingers?: number, direction?: PanDirection, distance?: numb
 | -------- | -------- | -------- | -------- |
 | fingers | number | 否 | 用于指定触发滑动的最少手指数，最小为1指，&nbsp;最大取值为10指。<br/>默认值：1<br/>取值范围：[1,10]<br/>**说明：** <br/>当设置的值小于1或不设置时，会被转化为默认值。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | direction | [PanDirection](#pandirection枚举说明) | 否 | 用于指定触发滑动的手势方向，此枚举值支持逻辑与(&amp;)和逻辑或（\|）运算。<br/>默认值：PanDirection.All。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| distance | number | 否 | 用于指定触发滑动手势事件的最小滑动距离，单位为vp。<br/>取值范围：[0, +∞)<br/>手写笔默认值：8，其余输入源默认值：5<br/>**说明：**<br/>[Tabs组件](ts-container-tabs.md)滑动与该滑动手势事件同时存在时，可将distance值设为1，使滑动更灵敏，避免造成事件错乱。<br/>当设定的值小于0时，按默认值处理。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| isFingerCountLimited<sup>15+</sup> | boolean | 否 | 是否检查触摸屏幕的手指数量。若触摸屏幕的手指数量不等于设置的触发滑动的最少手指数（即上述fingers参数），手势将不会被识别。只有当触摸屏幕的手指数等于设置的触发滑动的最少手指数，并且滑动距离达到阈值时，手势才能被成功识别。<br>对于已成功识别的手势，后续改变触摸屏幕的手指数量不会引发[onActionUpdate](ts-basic-gestures-pangesture.md#事件)事件，但可以触发[onActionEnd](ts-basic-gestures-pangesture.md#事件)事件。<br>默认值：false。表示不检查手指数量。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| distance | number | 否 | 用于指定触发滑动手势事件的最小滑动距离，单位为vp。<br/>取值范围：[0, +∞)<br/>手写笔默认值：8，其余输入源默认值：5<br/>**说明：**<br/>[Tabs组件](ts-container-tabs.md)滑动与该滑动手势事件同时存在时，可将distance值设为1，使滑动更灵敏，避免造成事件错乱。<br/>当设定的值小于0时，按默认值处理。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>从API version 19开始，手写笔默认值为8，单位为vp。|
+| isFingerCountLimited<sup>15+</sup> | boolean | 否 | 是否检查触摸屏幕的手指数量。若触摸屏幕的手指数量不等于设置的触发滑动的最少手指数（即上述fingers参数），手势将不会被识别。只有当触摸屏幕的手指数等于设置的触发滑动的最少手指数，并且滑动距离达到阈值时，手势才能被成功识别。<br>对于已成功识别的手势，后续改变触摸屏幕的手指数量不会引发[onActionUpdate](ts-basic-gestures-pangesture.md#事件)事件，但可以触发[onActionEnd](ts-basic-gestures-pangesture.md#事件)事件。<br>true：检查触摸屏幕的手指数量。<br>false：不检查触摸屏幕的手指数量。<br>默认值：false<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | distanceMap<sup>19+</sup> |  Map<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9), number> | 否 | 用于指定不同输入源触发拖动手势事件的最小拖动距离，单位为vp。<br/>手写笔默认值：8，其余输入源默认值：5<br/>取值范围：[0, +∞)，当设定的值小于0时，按默认值处理。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
 
 ## PanDirection枚举说明
@@ -108,7 +118,7 @@ struct PanGestureExample {
   @State offsetY: number = 0;
   @State positionX: number = 0;
   @State positionY: number = 0;
-  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right })
+  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right });
 
   build() {
     Column() {
@@ -125,26 +135,28 @@ struct PanGestureExample {
       .gesture(
       PanGesture(this.panOption)
         .onActionStart((event: GestureEvent) => {
-          console.info('Pan start')
+          console.info('Pan start');
+          console.info('Pan start timeStamp is: ' + event.timestamp);
         })
         .onActionUpdate((event: GestureEvent) => {
           if (event) {
-            this.offsetX = this.positionX + event.offsetX
-            this.offsetY = this.positionY + event.offsetY
+            this.offsetX = this.positionX + event.offsetX;
+            this.offsetY = this.positionY + event.offsetY;
           }
         })
         .onActionEnd((event: GestureEvent) => {
-          this.positionX = this.offsetX
-          this.positionY = this.offsetY
-          console.info('Pan end')
+          this.positionX = this.offsetX;
+          this.positionY = this.offsetY;
+          console.info('Pan end');
+          console.info('Pan end timeStamp is: ' + event.timestamp);
         })
       )
 
       Button('修改PanGesture触发条件')
         .onClick(() => {
           // 将PanGesture手势事件触发条件改为双指以任意方向滑动
-          this.panOption.setDirection(PanDirection.All)
-          this.panOption.setFingers(2)
+          this.panOption.setDirection(PanDirection.All);
+          this.panOption.setFingers(2);
         })
     }
   }

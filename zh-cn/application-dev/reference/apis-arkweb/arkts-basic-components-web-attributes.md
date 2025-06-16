@@ -2549,6 +2549,7 @@ struct WebComponent {
   @State previewImage: Resource | string | undefined = undefined;
   @State previewWidth: number = 0;
   @State previewHeight: number = 0;
+  uiContext: UIContext = this.getUIContext();
 
   @Builder
   MenuBuilder() {
@@ -2587,8 +2588,8 @@ struct WebComponent {
               if (event.param.getLinkUrl()) {
                 return false;
               }
-              this.previewWidth = px2vp(event.param.getPreviewWidth());
-              this.previewHeight = px2vp(event.param.getPreviewHeight());
+              this.previewWidth = this.uiContext!.px2vp(event.param.getPreviewWidth());
+              this.previewHeight = this.uiContext!.px2vp(event.param.getPreviewHeight());
               if (event.param.getSourceUrl().indexOf("resource://rawfile/") == 0) {
                 this.previewImage = $rawfile(event.param.getSourceUrl().substr(19));
               } else {
@@ -2858,7 +2859,7 @@ enableDataDetector(enable: boolean)
 设置是否识别网页文本特殊实体。该接口依赖设备底层具备文本识别能力，否则设置无效。
 
 当enableDataDetector设置为true，同时不设置dataDetectorConfig属性时，默认识别所有类型的实体，所识别实体的color和decoration会被更改为如下样式：
-
+<!--code_no_check-->
 ```ts
 color: '#ff007dff'
 decoration:{

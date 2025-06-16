@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import freeInstall from '@ohos.bundle.freeInstall';
+import { freeInstall } from '@kit.AbilityKit';
 ```
 
 ## 权限列表
@@ -84,7 +84,7 @@ setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: Upg
 **示例：**
 
 ```js
-import freeInstall from '@ohos.bundle.freeInstall';
+import { freeInstall } from '@kit.AbilityKit';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
 let upgradeFlag = freeInstall.UpgradeFlag.SINGLE_UPGRADE;
@@ -143,7 +143,7 @@ setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: Upg
 **示例：**
 
 ```js
-import freeInstall from '@ohos.bundle.freeInstall';
+import { freeInstall } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
@@ -195,7 +195,7 @@ isHapModuleRemovable(bundleName: string, moduleName: string, callback: AsyncCall
 **示例：**
 
 ```js
-import freeInstall from '@ohos.bundle.freeInstall';
+import { freeInstall } from '@kit.AbilityKit';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
 try {
@@ -252,7 +252,7 @@ isHapModuleRemovable(bundleName: string, moduleName: string): Promise\<boolean>
 **示例：**
 
 ```js
-import freeInstall from '@ohos.bundle.freeInstall';
+import { freeInstall } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
@@ -302,7 +302,7 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag, callback:
 **示例：**
 
 ```js
-import freeInstall from '@ohos.bundle.freeInstall';
+import { freeInstall } from '@kit.AbilityKit';
 let bundleName = 'com.example.myapplication';
 let bundlePackFlag = freeInstall.BundlePackFlag.GET_PACK_INFO_ALL;
 try {
@@ -357,7 +357,7 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\
 **示例：**
 
 ```js
-import freeInstall from '@ohos.bundle.freeInstall';
+import { freeInstall } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 let bundleName = 'com.example.myapplication';
 let bundlePackFlag = freeInstall.BundlePackFlag.GET_PACK_INFO_ALL;
@@ -403,7 +403,7 @@ getDispatchInfo(callback: AsyncCallback\<DispatchInfo>): void
 **示例：**
 
 ```js
-import freeInstall from '@ohos.bundle.freeInstall';
+import { freeInstall } from '@kit.AbilityKit';
 try {
     freeInstall.getDispatchInfo((err, data) => {
         if (err) {
@@ -448,7 +448,7 @@ getDispatchInfo(): Promise\<DispatchInfo>
 **示例：**
 
 ```js
-import freeInstall from '@ohos.bundle.freeInstall';
+import { freeInstall } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 try {
     freeInstall.getDispatchInfo().then(data => {

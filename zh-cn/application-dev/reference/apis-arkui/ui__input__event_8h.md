@@ -122,3 +122,4 @@
 | float [OH_ArkUI_UIInputEvent_GetEventTargetGlobalPositionY](_ark_u_i___event_module.md#oh_arkui_uiinputevent_geteventtargetglobalpositiony) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event) | 获取事件命中的组件的全局Y坐标。  | 
 | bool [OH_ArkUI_HoverEvent_IsHovered](_ark_u_i___event_module.md#oh_arkui_hoverevent_ishovered) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event) | 获取鼠标是否悬浮在当前组件上。  | 
 | int32_t [OH_ArkUI_UIInputEvent_GetModifierKeyStates](_ark_u_i___event_module.md#oh_arkui_uiinputevent_getmodifierkeystates) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, uint64_t keys) | 获取UI输入事件的功能键按压状态。  | 
+| ArkUI_ErrorCode [OH_ArkUI_UIInputEvent_GetLatestStatus](_ark_u_i___event_module.md#oh_arkui_uiinputevent_getlateststatus)() | 调用该方法获取最近一次UIInput相关方法的执行情况。通常情况下不需要使用该方法，仅在返回值结果不确定是否异常时使用。<br>**起始版本：** 20 |

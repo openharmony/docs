@@ -543,7 +543,7 @@ struct Index {
     * service ------ 数据服务
       * app.ts ------ 服务入口
       * LoginViewModel ----- 登录页ViewModel
-      * xxxModel ------ 其他页ViewModel
+      * xxxViewModel ------ 其他页ViewModel
 
 ### 分层设计技巧
 

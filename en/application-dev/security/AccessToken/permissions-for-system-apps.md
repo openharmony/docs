@@ -4934,3 +4934,17 @@ Allow an application to grant URI access permissions to the target application a
 **Supported devices**: General
 
 **Valid since**：20
+
+## ohos.permission.ACCESS_DFX_LOG_DIR
+
+Allows a system application to access /data/log/ directory.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**：General
+
+**Valid since**：20

@@ -770,10 +770,10 @@ getIntervalSinceLastInput(): Promise&lt;number&gt;
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称        | 类型   | 可读   | 可写   | 说明      |
+| 名称        | 类型   | 只读   | 可选   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
-| type     | [ChangedType](#changedtype9)| 是 | 否 | 输入设备插入或者移除。|
-| deviceId | number                      | 是 | 否 | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。 |
+| type     | [ChangedType](#changedtype9)| 否 | 否 | 输入设备插入或者移除。|
+| deviceId | number                      | 否 | 否 | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。 |
 
 ## InputDeviceData
 
@@ -781,18 +781,18 @@ getIntervalSinceLastInput(): Promise&lt;number&gt;
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称        | 类型   | 可读   | 可写   | 说明      |
+| 名称        | 类型   | 只读   | 可选   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
-| id                   | number                                 | 是 | 否 | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
-| name                 | string                                 | 是 | 否 | 输入设备的名称。                                             |
-| sources              | Array&lt;[SourceType](#sourcetype9)&gt; | 是 | 否 | 输入设备支持的输入能力。一个输入设备可以同时具备多种输入能力，如有的键盘上附带触摸板，则此设备有键盘和触摸板两种输入能力。 |
-| axisRanges           | Array&lt;[AxisRange](#axisrange)&gt;  | 是 | 否 | 输入设备的轴信息。                                           |
-| bus<sup>9+</sup>     | number                                 | 是 | 否 | 输入设备的总线类型，该值以输入设备上报为准。             |
-| product<sup>9+</sup> | number                                 | 是 | 否 | 输入设备的产品信息。                                         |
-| vendor<sup>9+</sup>  | number                                 | 是 | 否 | 输入设备的厂商信息。                                         |
-| version<sup>9+</sup> | number                                 | 是 | 否 | 输入设备的版本信息。                                         |
-| phys<sup>9+</sup>    | string                                 | 是 | 否 | 输入设备的物理地址。                                         |
-| uniq<sup>9+</sup>    | string                                 | 是 | 否 | 输入设备的唯一标识。                                         |
+| id                   | number                                 | 否 | 否 | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
+| name                 | string                                 | 否 | 否 | 输入设备的名称。                                             |
+| sources              | Array&lt;[SourceType](#sourcetype9)&gt; | 否 | 否 | 输入设备支持的输入能力。一个输入设备可以同时具备多种输入能力，如有的键盘上附带触摸板，则此设备有键盘和触摸板两种输入能力。 |
+| axisRanges           | Array&lt;[AxisRange](#axisrange)&gt;  | 否 | 否 | 输入设备的轴信息。                                           |
+| bus<sup>9+</sup>     | number                                 | 否 | 否 | 输入设备的总线类型，该值以输入设备上报为准。             |
+| product<sup>9+</sup> | number                                 | 否 | 否 | 输入设备的产品信息。                                         |
+| vendor<sup>9+</sup>  | number                                 | 否 | 否 | 输入设备的厂商信息。                                         |
+| version<sup>9+</sup> | number                                 | 否 | 否 | 输入设备的版本信息。                                         |
+| phys<sup>9+</sup>    | string                                 | 否 | 否 | 输入设备的物理地址。                                         |
+| uniq<sup>9+</sup>    | string                                 | 否 | 否 | 输入设备的唯一标识。                                         |
 
 ## AxisType<sup>9+</sup>
 
@@ -820,15 +820,15 @@ type AxisType = 'touchmajor' | 'touchminor' | 'orientation' | 'x' | 'y' | 'press
 
 **系统能力**： SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称        | 类型   | 可读   | 可写   | 说明      |
+| 名称        | 类型   | 只读   | 可选   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
-| source                  | [SourceType](#sourcetype9) | 是 | 否 | 轴的输入能力。 |
-| axis                    | [AxisType](#axistype9)    | 是 | 否 | 轴的类型。    |
-| max                     | number                    | 是 | 否 | 轴的最大值。   |
-| min                     | number                    | 是 | 否 | 轴的最小值。   |
-| fuzz<sup>9+</sup>       | number                    | 是 | 否 | 轴的模糊值。   |
-| flat<sup>9+</sup>       | number                    | 是 | 否 | 轴的基准值。   |
-| resolution<sup>9+</sup> | number                    | 是 | 否 | 轴的分辨率。   |
+| source                  | [SourceType](#sourcetype9) | 否 | 否 | 轴的输入能力。 |
+| axis                    | [AxisType](#axistype9)    | 否 | 否 | 轴的类型。    |
+| max                     | number                    | 否 | 否 | 轴的最大值。   |
+| min                     | number                    | 否 | 否 | 轴的最小值。   |
+| fuzz<sup>9+</sup>       | number                    | 否 | 否 | 轴的模糊值。   |
+| flat<sup>9+</sup>       | number                    | 否 | 否 | 轴的基准值。   |
+| resolution<sup>9+</sup> | number                    | 否 | 否 | 轴的分辨率。   |
 
 ## SourceType<sup>9+</sup>
 

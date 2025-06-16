@@ -859,7 +859,7 @@ distinct(): RdbPredicates
 
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "Rose").distinct();
+predicates.equalTo("NAME", "Rose").distinct(); // 对NAME列值为Rose的结果集去重
 ```
 
 ### limitAs
@@ -1178,7 +1178,7 @@ having(conditions:string, args?: Array\<ValueType>): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 14800001       | Invalid args. Possible causes: 1. conditions are empty;  2. missing GROUP BY clause. |
+| 14800001       | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
 
 **示例1：**
 

@@ -696,7 +696,7 @@ stopBackPress(isStopped: Optional\<boolean>)
 
 ### enableAutoSpacing<sup>20+</sup>
 
-enableAutoSpacing(enable: Optional\<boolean>)
+enableAutoSpacing(enabled: Optional\<boolean>)
 
 设置是否开启中文与西文的自动间距。
 
@@ -708,7 +708,7 @@ enableAutoSpacing(enable: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| enable | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
+| enabled | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
 
 ## IconOptions<sup>10+</sup>对象说明
 

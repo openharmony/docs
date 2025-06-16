@@ -30,7 +30,7 @@ on(type:&nbsp;'collaborateEvent',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nb
 | --------- | ------------------------------------- | ---- | ----- |
 | type | string  | 是    |   表示事件回调类型，支持的事件类型为'collaborateEvent'，完成`collaborateEvent()`调用，触发该事件。   |
 | sessionId | number  | 是    | 表示创建的协同会话ID。    |
-| callback | Callback&lt;[CollaborateEventInfo](js-apis-distributed-abilityConnectionManager.md#CollaborateEventInfo)&gt; | 是    | 表示注册的回调函数。    |
+| callback | Callback&lt;[CollaborateEventInfo](js-apis-distributed-abilityConnectionManager.md#collaborateeventinfo)&gt; | 是    | 表示注册的回调函数。    |
 
 **错误码：**
 
@@ -107,7 +107,7 @@ off(type:&nbsp;'collaborateEvent',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&
 | --------- | ------------------------------------- | ---- | ----- |
 | type | string  | 是    |   表示事件回调类型，支持的事件类型为'collaborateEvent'。    |
 | sessionId | number  | 是    | 表示创建的协同会话ID。    |
-| callback | Callback&lt;[CollaborateEventInfo](js-apis-distributed-abilityConnectionManager.md#CollaborateEventInfo)&gt; | 否    | 表示注册的回调函数。如果传入该参数，则关闭该监听。如果未传入该参数，则取消所有'collaborateEvent'事件监听。    |
+| callback | Callback&lt;[CollaborateEventInfo](js-apis-distributed-abilityConnectionManager.md#collaborateeventinfo)&gt; | 否    | 表示注册的回调函数。如果传入该参数，则关闭该监听。如果未传入该参数，则取消所有'collaborateEvent'事件监听。    |
 
 **错误码：**
 
@@ -180,7 +180,7 @@ sendImage(sessionId:&nbsp;number,&nbsp;image:&nbsp;image.PixelMap,&nbsp;quality?
 | 参数名       | 类型                                      | 必填   | 说明    |
 | --------- | --------------------------------------- | ---- | ----- |
 | sessionId | number | 是    | 表示协同会话ID。 |
-| image | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 表示图片信息。 |
+| image | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 表示图片信息。 |
 | quality | number | 否    | 表示图像压缩质量（取值范围为0到100，默认值为30）。 |
 
 **返回值：**

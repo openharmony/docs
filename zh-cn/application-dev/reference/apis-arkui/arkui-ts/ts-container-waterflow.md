@@ -231,6 +231,8 @@ type GetItemMainSizeByIndex = (index: number) => number
 > **说明：** 
 >
 > WaterFlow组件使用通用属性[clip<sup>12+</sup>](ts-universal-attributes-sharp-clipping.md#clip12)和通用属性[clip<sup>18+</sup>](ts-universal-attributes-sharp-clipping.md#clip18)时默认值都为true。
+>
+> WaterFlow组件内容裁剪模式[ContentClipMode<sup>14+</sup>枚举说明](ts-container-scrollable-common.md#contentclipmode14枚举说明)为ContentClipMode.CONTENT_ONLY，padding区域会被裁剪不显示。
 
 ### columnsTemplate
 
@@ -365,6 +367,10 @@ enableScrollInteraction(value: boolean)
 | 参数名 | 类型    | 必填 | 说明                                |
 | ------ | ------- | ---- | ----------------------------------- |
 | value  | boolean | 是   | 是否支持滚动手势。设置为true时可以通过手指或者鼠标滚动，设置为false时无法通过手指或者鼠标滚动，但不影响控制器[Scroller](ts-container-scroll.md#scroller)的滚动接口。<br/>默认值：true |
+
+> **说明：** 
+>
+> 组件无法通过鼠标按下拖动操作进行滚动。
 
 ### nestedScroll<sup>10+</sup>
 

@@ -254,16 +254,14 @@
 
 软键盘窗口信息。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称   | 类型   | 必填 | 说明                                       |
 | ------ | ------ | ---- | ------------------------------------------ |
-| beginRect | [Rect](arkts-apis-window-i.md#rect7)  | 是 | 动画开始前软键盘的位置和大小。 |
-| endRect | [Rect](arkts-apis-window-i.md#rect7)  | 是 | 动画结束后软键盘的位置和大小。 |
-| animated<sup>20+</sup> | boolean  | 否 | 当前是否有显示/隐藏动画，true表示有动画，false表示没有。 |
-| config<sup>20+</sup> | [WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20)  | 否 | 动画配置信息。 |
+| beginRect<sup>18+</sup> | [Rect](arkts-apis-window-i.md#rect7)  | 是 | 动画开始前软键盘的位置和大小。<br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| endRect<sup>18+</sup> | [Rect](arkts-apis-window-i.md#rect7)  | 是 | 动画结束后软键盘的位置和大小。<br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| animated<sup>20+</sup> | boolean  | 否 | 当前是否有显示/隐藏动画，true表示有动画，false表示没有。<br> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| config<sup>20+</sup> | [WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20)  | 否 | 动画配置信息。<br> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## ShowWindowOptions<sup>20+</sup>
 

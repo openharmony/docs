@@ -1,4 +1,4 @@
-# 废弃的Interfaces (VideoPlayer，deprecated)
+# 废弃的Interface (VideoPlayer, deprecated)
 
 > **说明：**
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer](arkts-apis-media-AVPlayer.md)替代。
@@ -15,7 +15,7 @@
 | fdSrc<sup>9+</sup>              | [AVFileDescriptor](arkts-apis-media-i.md#avfiledescriptor9)                 | 否   | 否   | 视频媒体文件描述，使用场景：应用中的视频资源被连续存储在同一个文件中。<br/>**使用示例**：<br/>假设一个连续存储的音乐文件: <br/>视频1(地址偏移:0，字节长度:100)<br/>视频2(地址偏移:101，字节长度:50)<br/>视频3(地址偏移:151，字节长度:150)<br/>1. 播放视频1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }<br/>2. 播放视频2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }<br/>3. 播放视频3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }<br/>假设是一个独立的视频文件: 请使用src=fd://xx <br/> |
 | loop<sup>8+</sup>               | boolean                                                | 否   | 否   | 视频循环播放属性，设置为'true'表示循环播放。                 |
 | videoScaleType<sup>9+</sup>     | [VideoScaleType](arkts-apis-media-e.md#videoscaletype9)                     | 否   | 是   | 视频缩放模式。默认值为VIDEO_SCALE_TYPE_FIT。                                               |
-| audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9) | 否   | 是   | 音频焦点模型。                                               |
+| audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](../apis-audio-kit/arkts-apis-audio-e.md#interruptmode9) | 否   | 是   | 音频焦点模型。                                               |
 | currentTime<sup>8+</sup>        | number                                                 | 是   | 否   | 视频的当前播放位置，单位为毫秒（ms）。                       |
 | duration<sup>8+</sup>           | number                                                 | 是   | 否   | 视频时长，单位为毫秒（ms），返回-1表示直播模式。             |
 | state<sup>8+</sup>              | [VideoPlayState](arkts-apis-media-t.md#videoplaystatedeprecated)                    | 是   | 否   | 视频播放的状态。                                             |
@@ -930,7 +930,7 @@ videoPlayer.on('videoSizeChanged', (width: number, height: number) => {
 
 on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
 
-监听音频焦点变化事件，参考[audio.InterruptEvent](../apis-audio-kit/js-apis-audio.md#interruptevent9)。
+监听音频焦点变化事件，参考[audio.InterruptEvent](../apis-audio-kit/arkts-apis-audio-i.md#interruptevent9)。
 
 > **说明：**
 > 从API version 9开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('audioInterrupt')](arkts-apis-media-AVPlayer.md#onaudiointerrupt9)替代。

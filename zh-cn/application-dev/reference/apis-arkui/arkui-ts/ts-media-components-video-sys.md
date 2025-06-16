@@ -24,4 +24,4 @@ surfaceBackgroundColor(color: ColorMetrics)
 
 | 参数名 |       类型    | 必填 |           说明                |
 | ------ | ------------ | ---- | ---------------------------- |
-| color  | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 是   | 设置Video组件中surfacenode的背景色，只支持黑色和透明色两种，设置其他颜色会按照黑色生效。<br/>默认值：Color.Black |
+| color  | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 是   | 设置Video组件中surfacenode的背景色，仅支持黑色和透明色两种。其他颜色设置将默认为黑色。<br/>默认值：Color.Black |

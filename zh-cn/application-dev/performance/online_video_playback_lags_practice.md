@@ -2,7 +2,7 @@
 
 ## 概述
 
-在观看在线视频时，流畅播放是至关重要的。当使用[AVPlayer](../reference/apis-media-kit/js-apis-media.md#avplayer9)+[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)渲染播放在线视频时，有时会遇到在线视频播放卡顿的问题。这种情况可能是设备网络环境较差或需要加载高码率片源，导致视频缓冲时间不足，造成在线视频播放卡顿。当视频缓冲时间不足时，设备需要不断地从服务器上下载视频数据，这会导致视频播放卡顿或者停止播放。为了解决这个问题，通过合理地设置[preferredBufferDuration](../reference/apis-media-kit/js-apis-media.md#playbackstrategy12)属性可以增加视频缓冲时间，从而确保视频播放的流畅性。
+在观看在线视频时，流畅播放是至关重要的。当使用[AVPlayer](../reference/apis-media-kit/arkts-apis-media-AVPlayer.md)+[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)渲染播放在线视频时，有时会遇到在线视频播放卡顿的问题。这种情况可能是设备网络环境较差或需要加载高码率片源，导致视频缓冲时间不足，造成在线视频播放卡顿。当视频缓冲时间不足时，设备需要不断地从服务器上下载视频数据，这会导致视频播放卡顿或者停止播放。为了解决这个问题，通过合理地设置[preferredBufferDuration](../reference/apis-media-kit/arkts-apis-media-i.md#playbackstrategy12)属性可以增加视频缓冲时间，从而确保视频播放的流畅性。
 
 ## 实现原理
 
@@ -39,7 +39,7 @@
 
 ### 开发流程
 
-[setMediaSource](../reference/apis-media-kit/js-apis-media.md#setmediasource12)中的preferredBufferDuration是AVPlayer的一个属性，用于设置播放器的缓冲区大小。AVPlayer会根据preferredBufferDuration属性的值来决定缓冲区的大小。preferredBufferDuration属性的实现原理是通过设置缓冲区大小来保证播放的流畅性和稳定性，在线视频播放流程如下：
+[setMediaSource](../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#setmediasource12)中的preferredBufferDuration是AVPlayer的一个属性，用于设置播放器的缓冲区大小。AVPlayer会根据preferredBufferDuration属性的值来决定缓冲区的大小。preferredBufferDuration属性的实现原理是通过设置缓冲区大小来保证播放的流畅性和稳定性，在线视频播放流程如下：
 
 1. 首先，当AVPlayer开始播放时，它会从服务器请求数据，并将其存储到内存中的缓冲区中。
 2. 当缓冲区存储量达到播放的标准时，才可以从缓冲区读取下载数据，从而进行视频播放。
@@ -55,7 +55,7 @@
 | ------------------ | -------------------- |
 | 20MB               | 5MB ~ 20MB           |
 
-AVPlayer支持用户自定义缓冲区大小，可通过[setMediaSource](../reference/apis-media-kit/js-apis-media.md#setmediasource12)接口设置PlaybackStrategy中的preferredBufferDuration，自定义缓冲区大小。preferredBufferDuration的单位为秒，缓冲区大小将设置为preferredBufferDuration * 1MB。如：preferredBufferDuration设置为20秒，缓冲区大小将设置为20MB。示例可参考[视频播放](../media/media/video-playback.md)。缓冲区的大小是根据资源文件的大小来设置的，缓冲区大小需要大于整个媒体文件大小。如果媒体文件大小超过用户自定义缓冲区最大值20MB，此时可将缓冲区设置为最大值20MB。
+AVPlayer支持用户自定义缓冲区大小，可通过[setMediaSource](../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#setmediasource12)接口设置PlaybackStrategy中的preferredBufferDuration，自定义缓冲区大小。preferredBufferDuration的单位为秒，缓冲区大小将设置为preferredBufferDuration * 1MB。如：preferredBufferDuration设置为20秒，缓冲区大小将设置为20MB。示例可参考[视频播放](../media/media/video-playback.md)。缓冲区的大小是根据资源文件的大小来设置的，缓冲区大小需要大于整个媒体文件大小。如果媒体文件大小超过用户自定义缓冲区最大值20MB，此时可将缓冲区设置为最大值20MB。
 
 ```
 import { media } from '@kit.MediaKit';

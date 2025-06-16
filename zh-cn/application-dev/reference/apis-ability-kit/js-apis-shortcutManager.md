@@ -50,7 +50,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // 请替换为module.json5配置文件中的shortcuts标签下实际配置的shortcutId字段
 shortcutManager.setShortcutVisibleForSelf("shortcut_id", false)
   .then(() => {
-    console.log("setShortcutVisibleForSelf success");
+    console.info("setShortcutVisibleForSelf success");
   }).catch((err: BusinessError) => {
   console.error("setShortcutVisibleForSelf errData is errCode:${err.code}  message:${err.message}");
 });
@@ -78,7 +78,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 shortcutManager.getAllShortcutInfoForSelf()
   .then((data: shortcutManager.ShortcutInfo[]) => {
-    console.log("getAllShortcutInfoForSelf shortcut data is" + JSON.stringify(data));
+    console.info("getAllShortcutInfoForSelf shortcut data is" + JSON.stringify(data));
   }).catch((err: BusinessError) => {
     console.error("getAllShortcutInfoForSelf errData is errCode:${err.code}  message:${err.message}");
   });

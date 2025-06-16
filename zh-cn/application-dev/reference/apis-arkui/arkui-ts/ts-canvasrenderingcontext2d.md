@@ -50,7 +50,7 @@ RenderingContextSettings(antialias?: boolean)
 
 ### LengthMetricsUnit<sup>12+</sup>
 
-用来配置CanvasRenderingContext2D对象的单位模式，默认单位模式为LengthMetricsUnit.DEFAULT，对应默认单位vp，配置后无法动态更改，详细说明见[LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12)。
+用来配置CanvasRenderingContext2D对象的单位模式，默认单位模式为LengthMetricsUnit.DEFAULT，对应默认单位vp，配置后无法动态更改。详细说明见[LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12)。
 
 **示例：**
 
@@ -126,7 +126,7 @@ struct LengthMetricsUnitDemo {
 
 > **说明：**
 >
-> fillStyle、shadowColor与 strokeStyle 中string类型格式为 'rgb(255, 255, 255)'，'rgba(255, 255, 255, 1.0)'，'\#FFFFFF'。
+> fillStyle、shadowColor与 strokeStyle 中string类型格式为`rgb(255, 255, 255)`、`rgba(255, 255, 255, 1.0)`或者`#FFFFFF`。
 
 
 ### fillStyle
@@ -1552,7 +1552,7 @@ lineTo(x: number, y: number): void
 
 closePath(): void
 
-结束当前路径形成一个封闭路径。
+结束当前路径，形成一个封闭路径。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -1657,7 +1657,7 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
 
 bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number, y: number): void
 
-创建三次贝赛尔曲线的路径。
+创建三次贝塞尔曲线的路径。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -1712,7 +1712,7 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 
 quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 
-创建二次贝赛尔曲线的路径。
+创建二次贝塞尔曲线的路径。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -2696,7 +2696,7 @@ setTransform(transform?: Matrix2D): void
 
 | 参数名  | 类型 | 必填 | 说明  |
 | --------- | ---------------------------------------- | ---- | ----- |
-| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 否 | 变换矩阵。<br>默认值：null |
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md#matrix2d) | 否 | 变换矩阵。<br>默认值：null |
 
 **示例：**
 
@@ -2757,7 +2757,7 @@ getTransform(): Matrix2D
 
 | 类型                                       | 说明    |
 | ---------------------------------------- | ----- |
-| [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 矩阵对象。 |
+| [Matrix2D](ts-components-canvas-matrix2d.md#matrix2d) | 矩阵对象。 |
 
 **示例：**
 
@@ -2871,7 +2871,7 @@ drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number): void
 
 | 参数名  | 类型  | 必填  | 说明 |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
+| image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
 | dx    | number                                   | 是  | 绘制区域左上角在x轴的位置。<br>默认单位：vp|
 | dy    | number                                   | 是  | 绘制区域左上角在y轴的位置。<br>默认单位：vp|
 
@@ -2889,7 +2889,7 @@ drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number, dw: number, dh:
 
 | 参数名  | 类型  | 必填  | 说明 |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
+| image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
 | dx    | number                                   | 是  | 绘制区域左上角在x轴的位置。<br>默认单位：vp|
 | dy    | number                                   | 是  | 绘制区域左上角在y轴的位置。<br>默认单位：vp|
 | dw    | number                                   | 是  | 绘制区域的宽度。当绘制区域的宽度和裁剪图像的宽度不一致时，将图像宽度拉伸或压缩为绘制区域的宽度。<br>默认单位：vp |
@@ -2909,7 +2909,7 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
 
 | 参数名  | 类型  | 必填  | 说明 |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
+| image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
 | sx    | number                                   | 是  | 裁切源图像时距离源图像左上角的x坐标值。<br>image类型为ImageBitmap时，默认单位：vp<br>image类型为PixelMap时，API version 18前，默认单位：px；API version 18及以后，默认单位：vp |
 | sy    | number                                   | 是  | 裁切源图像时距离源图像左上角的y坐标值。<br>image类型为ImageBitmap时，默认单位：vp<br>image类型为PixelMap时，API version 18前，默认单位：px；API version 18及以后，默认单位：vp  |
 | sw    | number                                   | 是  | 裁切源图像时需要裁切的宽度。<br>image类型为ImageBitmap时，默认单位：vp<br>image类型为PixelMap时，API version 18前，默认单位：px；API version 18及以后，默认单位：vp  |
@@ -3003,7 +3003,7 @@ createImageData(imageData: ImageData): ImageData
 
 getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
-以当前canvas指定区域内的像素创建[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)对象，该接口存在内存拷贝行为，高耗时，应避免频繁使用。
+以当前canvas指定区域内的像素创建[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)对象，该接口存在内存拷贝行为，高耗时，应避免频繁使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3022,7 +3022,7 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 | 类型                                       | 说明            |
 | ---------------------------------------- | ------------- |
-| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 新的PixelMap对象。 |
+| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 新的PixelMap对象。 |
 
 **示例：**
 
@@ -3063,7 +3063,7 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 setPixelMap(value?: PixelMap): void
 
-将当前传入[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)对象绘制在画布上。setPixelMap示例同getPixelMap。
+将当前传入[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)对象绘制在画布上。setPixelMap示例同getPixelMap。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3073,7 +3073,7 @@ setPixelMap(value?: PixelMap): void
 
 | 参数名   | 类型     | 必填   | 说明 |
 | ---- | ------ | ---- | --------------- |
-|  value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 否 | 包含像素值的PixelMap对象<br>默认值：null |
+|  value  | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 包含像素值的PixelMap对象<br>默认值：null |
 
 ### getImageData
 
@@ -3478,7 +3478,7 @@ toDataURL(type?: string, quality?: any): string
 
 restore(): void
 
-对保存的绘图上下文进行恢复。
+恢复保存的绘图上下文。
 
 > **说明：**
 >
@@ -3814,7 +3814,7 @@ off(type: 'onAttach', callback?: () => void): void
 | 参数名 | 类型      | 必填 | 说明                                                                   |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
 | type   | string | 是   | 取消订阅CanvasRenderingContext2D与Canvas组件发生绑定的回调。 |
-| callback   | () => void | 否   | 为空代表取消所有订阅CanvasRenderingContext2D与Canvas组件发生绑定后触发的回调。<br>非空代表取消订阅发生绑定对应的回调。 |
+| callback   | () => void | 否   | 为空表示取消所有订阅CanvasRenderingContext2D与Canvas组件发生绑定后触发的回调。<br>非空则取消订阅发生绑定对应的回调。 |
 
 ### off('onDetach')<sup>13+</sup>
 
@@ -3921,7 +3921,7 @@ struct AttachDetachExample {
 
 startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
-配置AI分析并启动AI分析功能，使用前需先[启用图像AI分析能力](ts-components-canvas-canvas.md#enableanalyzer12)。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>未执行完重复调用该方法会触发错误回调。示例代码同stopImageAnalyzer。
+配置并启动AI分析功能，使用前需先[启用图像AI分析能力](ts-components-canvas-canvas.md#enableanalyzer12)。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>未执行完重复调用该方法会触发错误回调。示例代码同stopImageAnalyzer。
 
 > **说明：**
 > 

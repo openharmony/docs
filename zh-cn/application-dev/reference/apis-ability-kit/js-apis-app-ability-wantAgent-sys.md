@@ -28,7 +28,7 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                            |
 | -------- | --------------------- | ---- | ------------------------------- |
-| agent    | WantAgent             | 是   | WantAgent对象。                   |
+| agent    | [WantAgent](js-apis-app-ability-wantAgent.md#wantagent)             | 是   | WantAgent对象。                   |
 | callback | AsyncCallback\<[Want](js-apis-app-ability-want.md)\> | 是   | 获取WantAgent对象want的回调方法。 |
 
 **错误码：**
@@ -127,7 +127,7 @@ getWant(agent: WantAgent): Promise\<Want\>
 
 | 参数名  | 类型      | 必填 | 说明          |
 | ----- | --------- | ---- | ------------- |
-| agent | WantAgent | 是   | WantAgent对象。 |
+| agent | [WantAgent](js-apis-app-ability-wantAgent.md#wantagent) | 是   | WantAgent对象。 |
 
 **返回值：**
 
@@ -310,7 +310,7 @@ triggerAsync(agent: WantAgent, triggerInfo: TriggerInfo, context: Context): Prom
 
 | 参数名        | 类型                          | 必填 | 说明                            |
 | ----------- | ----------------------------- | ---- | ------------------------------- |
-| agent       | [WantAgent](js-apis-app-ability-wantAgent.md#WantAgent)                    | 是   | WantAgent对象。                   |
+| agent       | [WantAgent](js-apis-app-ability-wantAgent.md#wantagent)                    | 是   | WantAgent对象。                   |
 | triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                   | 是   | TriggerInfo对象。                 |
 | context     | [Context](js-apis-inner-application-context.md) | 是   |  请求触发WantAgent的UIAbility/ExtensionAbility的Context。|
 

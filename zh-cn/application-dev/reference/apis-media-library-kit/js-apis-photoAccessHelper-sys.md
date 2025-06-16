@@ -1714,7 +1714,7 @@ getKeyFrameThumbnail(beginFrameTimeMs: number, type: ThumbnailType): Promise<ima
 
 | 类型                            | 说明                    |
 | ----------------------------- | --------------------- |
-| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise对象，返回缩略图的PixelMap。若获取不到，默认返回封面帧 |
+| Promise&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Promise对象，返回缩略图的PixelMap。若获取不到，默认返回封面帧 |
 
 **错误码：**
 
@@ -2484,7 +2484,7 @@ getExif(): Promise&lt;string&gt;
 
 返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
 
-此接口中获取的Exif标签信息是由[image](../apis-image-kit/js-apis-image.md)模块提供。Exif标签详细信息请参考[image.PropertyKey](../apis-image-kit/js-apis-image.md#propertykey7)。
+此接口中获取的Exif标签信息是由[image](../apis-image-kit/arkts-apis-image.md)模块提供。Exif标签详细信息请参考[image.PropertyKey](../apis-image-kit/arkts-apis-image-e.md#propertykey7)。
 
 **注意**：此接口返回的是Exif标签组成的json格式的字符串，完整Exif信息由all_exif与[PhotoKeys.USER_COMMENT](#photokeys)组成，fetchColumns需要传入这两个字段。
 
@@ -2548,7 +2548,7 @@ getExif(callback: AsyncCallback&lt;string&gt;): void
 
 返回jpg格式图片Exif标签组成的json格式的字符串，使用callback方式返回异步结果。
 
-此接口中获取的Exif标签信息是由[image](../apis-image-kit/js-apis-image.md)模块提供。Exif标签详细信息请参考[image.PropertyKey](../apis-image-kit/js-apis-image.md#propertykey7)。
+此接口中获取的Exif标签信息是由[image](../apis-image-kit/arkts-apis-image.md)模块提供。Exif标签详细信息请参考[image.PropertyKey](../apis-image-kit/arkts-apis-image-e.md#propertykey7)。
 
 **注意**：此接口返回的是Exif标签组成的json格式的字符串，完整Exif信息由all_exif与[PhotoKeys.USER_COMMENT](#photokeys)组成，fetchColumns需要传入这两个字段。
 
@@ -3552,7 +3552,7 @@ requestPhoto(callback: AsyncCallback&lt;image.PixelMap&gt;): string
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是    | Callback对象，返回获取的缩略图，调用2次。 |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是    | Callback对象，返回获取的缩略图，调用2次。 |
 
 **返回值：**
 
@@ -3619,7 +3619,7 @@ requestPhoto(options: RequestPhotoOptions, callback: AsyncCallback&lt;image.Pixe
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
 | options | [RequestPhotoOptions](#requestphotooptions11) | 是    | 获取资源缩略图的选项。 |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是    | Callback对象，返回获取的缩略图，根据选项的设置可能调用超过1次。 |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是    | Callback对象，返回获取的缩略图，根据选项的设置可能调用超过1次。 |
 
 **返回值：**
 
@@ -7968,7 +7968,7 @@ async function example(context: Context) {
 
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| size           | [image.Size](../apis-image-kit/js-apis-image.md#size) | 否  | 获取缩略图的尺寸。  |
+| size           | [image.Size](../apis-image-kit/arkts-apis-image-i.md#size) | 否  | 获取缩略图的尺寸。  |
 | requestPhotoType    | [RequestPhotoType](#requestphototype11) | 否  | 获取的操作类型。  |
 
 ## PhotoCreationSource<sup>18+</sup>
@@ -8355,3 +8355,13 @@ async function example(context: Context) {
 |taskStatus       |[CloudMediaAssetTaskStatus](#cloudmediaassettaskstatus14)  |是 | 云端媒体资产下载任务状态。 |
 |taskInfo          |string  |是 | 下载资产的的总个数和总大小(byte)，以及未下载的总个数和总大小(byte)。  |
 |errorCode       |[CloudMediaTaskPauseCause](#cloudmediataskpausecause14)  |是 | 云端媒体资产下载任务暂停类型。 |
+
+## RecommendationType<sup>11+</sup>
+
+枚举，推荐的图片类型。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- | ---- |
+| COLOR_STYLE_PHOTO<sup>18+</sup> |  12 | 推荐风格 **系统接口**：此接口为系统接口。|
