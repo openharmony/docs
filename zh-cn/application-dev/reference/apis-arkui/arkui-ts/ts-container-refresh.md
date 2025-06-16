@@ -159,8 +159,8 @@ Refresh刷新状态枚举。
 | 名称       | 值       | 说明                 |
 | -------- | -------- | -------------------- |
 | Inactive | 0 | 默认未下拉状态。             |
-| Drag     | 1 | 下拉中，下拉距离小于刷新距离。      |
-| OverDrag | 2 | 下拉中，下拉距离超过刷新距离。      |
+| Drag     | 1 | 下拉中，下拉距离小于刷新距离。<br/>若此时松手，组件进入Inactive状态；若此时继续下拉使下拉距离超过刷新距离，组件进入OverDrag状态。   |
+| OverDrag | 2 | 下拉中，下拉距离超过刷新距离。<br/>若此时松手，组件进入Refresh状态；若此时上滑使下拉距离小于刷新距离，组件进入Drag状态。      |
 | Refresh  | 3 | 下拉结束，回弹至刷新距离，进入刷新中状态。 |
 | Done     | 4 | 刷新结束，返回初始状态（顶部）。     |
 
@@ -181,6 +181,15 @@ struct RefreshExample {
 
   build() {
     Column() {
+      Row() {
+        Button('开始刷新').onClick(() => {
+          this.isRefreshing = true;
+        })
+        Button('停止刷新').onClick(() => {
+          this.isRefreshing = false;
+        })
+      }
+
       Refresh({ refreshing: $$this.isRefreshing }) {
         List() {
           ForEach(this.arr, (item: string) => {
@@ -364,7 +373,7 @@ struct RefreshExample {
 
 ```ts
 // xxx.ets
-import { ComponentContent } from '@ohos.arkui.node';
+import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
   refreshStatus: RefreshStatus = RefreshStatus.Inactive;
@@ -457,7 +466,7 @@ struct RefreshExample {
 
 ```ts
 // xxx.ets
-import { ComponentContent } from '@ohos.arkui.node';
+import { ComponentContent } from '@kit.ArkUI';
 
 @Builder
 function customRefreshingContent() {
