@@ -417,7 +417,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ### 查看和设置日志级别
 
-#### 查看日志级别
+#### 查看全局日志级别
 
    ```shell
    $ param get hilog.loggable.global
