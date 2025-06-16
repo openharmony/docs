@@ -221,6 +221,7 @@ setValue(context: Context, name: string, value: string, callback: AsyncCallback\
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -260,6 +261,7 @@ setValue(context: Context, name: string, value: string): Promise\<boolean>
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -310,6 +312,7 @@ setValue(context: Context, name: string, value: string, domainName: string): Pro
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -341,6 +344,7 @@ getValue(context: Context, name: string, callback: AsyncCallback\<string>): void
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -380,6 +384,7 @@ getValue(context: Context, name: string): Promise\<string>
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -419,6 +424,7 @@ getValue(context: Context, name: string, domainName: string): Promise\<string>
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -456,6 +462,7 @@ getValueSync(context: Context, name: string, defValue: string): string
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -496,6 +503,7 @@ getValueSync(context: Context, name: string, defValue: string, domainName: strin
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -536,6 +544,7 @@ setValueSync(context: Context, name: string, value: string): boolean
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -587,6 +596,7 @@ setValueSync(context: Context, name: string, value: string, domainName: string):
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -623,6 +633,7 @@ registerKeyObserver(context: Context, name: string, domainName: string, observer
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -663,6 +674,7 @@ unregisterKeyObserver(context: Context, name: string, domainName: string): boole
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -704,6 +716,7 @@ openNetworkManagerSettings(context: Context): Promise\<boolean>
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -732,6 +745,7 @@ enableAirplaneMode(enable: boolean, callback: AsyncCallback\<void>): void
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 let isEnabled :boolean = true;
 settings.enableAirplaneMode(isEnabled, (err:Error) => {
@@ -765,6 +779,7 @@ enableAirplaneMode(enable: boolean): Promise\<void>
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 let isEnabled :boolean = true;
 settings.enableAirplaneMode(isEnabled).then(() => {
@@ -790,6 +805,7 @@ canShowFloating(callback: AsyncCallback\<boolean>): void
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 settings.canShowFloating((err:Error, status: boolean) => {
   if (err) {
@@ -816,6 +832,7 @@ canShowFloating(): Promise\<boolean>
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 settings.canShowFloating().then((status:boolean) => {
     console.log('Checks whether a specified application can show as float window.');
@@ -844,6 +861,7 @@ getUriSync(name: string): string
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 // 获取数据项的URI。
 let uriVar:string = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
@@ -870,6 +888,7 @@ getURI(name: string, callback: AsyncCallback\<object>): void
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS, (uri:string) => {
     console.log(`callback:uri -> ${JSON.stringify(uri)}`)
@@ -902,6 +921,7 @@ getURI(name: string): Promise\<object>
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS).then((uri:string) => {
     console.log(`promise:uri -> ${JSON.stringify(uri)}`)
@@ -934,6 +954,7 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCall
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -977,6 +998,7 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -1017,6 +1039,7 @@ getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: strin
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -1061,6 +1084,7 @@ setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string):
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
