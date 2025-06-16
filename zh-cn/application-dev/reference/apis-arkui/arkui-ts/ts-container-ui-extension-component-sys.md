@@ -65,7 +65,7 @@ UIExtensionAbility连接完成时的回调，之后可使用proxy向被拉起的
 **参数：**
 
 | 参数名                       | 类型   | 必填 | 说明                                                         |
-| ---------------------------- | ------ | ------------------------------------------------------------ |
+| ---------------------------- | ------ | ------ | ------------------------------------------------------------ |
 | proxy                        | UIExtensionProxy | 否 | 用于向对端Ability发送数据。                          |
 
 ### onReceive
@@ -81,7 +81,7 @@ onReceive(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#cal
 **参数：**
 
 | 参数名                       | 类型   | 必填 | 说明                                                         |
-| ---------------------------- | ------ | ------------------------------------------------------------ |
+| ---------------------------- | ------ | ------ | ------------------------------------------------------------ |
 | data                        | { [key: string]: Object } | 否 | 收到来自对端Ability的数据。                 |
 
 ### onResult<sup>(deprecated)</sup>
@@ -126,7 +126,7 @@ onRelease(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#cal
 **参数：**
 
 | 参数名                       | 类型   | 必填 |说明                                                         |
-| ---------------------------- | ------ | ------------------------------------------------------------ |
+| ---------------------------- | ------ | ------ | ------------------------------------------------------------ |
 | releaseCode                        | number | 否 | 对端Ability销毁时的code，0为正常销毁，1为异常销毁。                          |
 
 ### onError
@@ -142,7 +142,7 @@ onError(callback:[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#e
 **参数：**
 
 | 参数名                       | 类型   | 必填 | 说明                                                         |
-| ---------------------------- | ------ | ------------------------------------------------------------ |
+| ---------------------------- | ------ | ------ | ------------------------------------------------------------ |
 | err                        | [BusinessError](../../apis-basic-services-kit/js-apis-base.md#businesserror) | 否 | 报错信息。    |
 
 ### onTerminated<sup>12+<sup>
@@ -154,7 +154,7 @@ onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 **参数：**
 
 | 参数名   | 类型   | 必填 |说明                                                                                     |
-| -------  | ------ | ---------------------------------------------------------------------------------------- |
+| -------  | ------ | ------ | ---------------------------------------------------------------------------------------- |
 | callback | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](#terminationinfo12)> | 否 | 回调函数，入参用于接收UIExtensionAbility的返回结果，类型为[TerminationInfo](#terminationinfo12)。 |
 
 > **说明：**
@@ -190,7 +190,7 @@ onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                             | 值 |描述             |
-| -------------------------------- | --------------- |
+| -------------------------------- | ---- | --------------- |
 | FOLLOW_HOST_DPI                  | 0 |表示DPI跟随宿主。 |
 | FOLLOW_UI_EXTENSION_ABILITY_DPI  | 1 |表示DPI跟随UIExtensionAbility。 |
 
