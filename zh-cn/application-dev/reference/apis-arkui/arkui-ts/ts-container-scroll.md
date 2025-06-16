@@ -258,15 +258,23 @@ initialOffset(value: OffsetOptions)
 
 onScrollFrameBegin(event: OnScrollFrameBeginCallback)
 
-每帧开始滚动时触发，事件参数传入即将发生的滚动量，事件处理函数中可根据应用场景计算实际需要的滚动量并作为事件处理函数的返回值返回，Scroll将按照返回值的实际滚动量进行滚动。
+该接口回调时，事件参数传入即将发生的滚动量，事件处理函数中可根据应用场景计算实际需要的滚动量并作为事件处理函数的返回值返回，Scroll将按照返回值的实际滚动量进行滚动。
 
 支持offsetRemain为负值。
 
 若通过onScrollFrameBegin事件和scrollBy方法实现容器嵌套滚动，需设置子滚动节点的EdgeEffect为None。如Scroll嵌套List滚动时，List组件的edgeEffect属性需设置为EdgeEffect.None。
 
-触发该事件的条件：
+满足以下任一条件时触发该事件：
 
-1、滚动组件触发滚动时触发，包括键鼠操作等其他触发滚动的输入设置。<br/>2、调用除fling接口外的其他滚动控制接口时不触发。<br/>3、越界回弹不触发。<br/>4、拖动滚动条不触发。
+1. 用户交互（如手指滑动、键鼠操作等）触发滚动。
+2. Scroll惯性滚动。
+3. 调用[fling](#fling12)接口触发滚动。
+
+不触发该事件的条件：
+
+1. 调用除[fling](#fling12)接口外的其他滚动控制接口。
+2. 越界回弹。
+3. 拖动滚动条。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
