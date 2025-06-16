@@ -43,7 +43,7 @@ try {
       console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
-    console.log(`Set pointer visible success.`);
+    console.info(`Set pointer visible success.`);
   });
 } catch (error) {
   console.error(`The mouse pointer hide attributes is failed. ${JSON.stringify(error, [`code`, `message`])}`);
@@ -57,7 +57,7 @@ try {
       console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
-    console.log(`Set pointer visible success.`);
+    console.info(`Set pointer visible success.`);
   });
 } catch (error) {
   console.error(`Set pointer visible failed, ${JSON.stringify(error, [`code`, `message`])}`);
@@ -90,13 +90,13 @@ window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError
   }
   let windowId = windowClass.getWindowProperties().id;
   if (windowId < 0) {
-    console.log(`Invalid windowId`);
+    console.info(`Invalid windowId`);
     return;
   }
   try {
     // 3.设置鼠标光标样式为取色器样式
     pointer.setPointerStyle(windowId, pointer.PointerStyle.COLOR_SUCKER).then(() => {
-      console.log(`Successfully set mouse pointer style`);
+      console.info(`Successfully set mouse pointer style`);
     });
   } catch (error) {
     console.error(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${JSON.stringify(`message`)}`);
@@ -110,13 +110,13 @@ window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError
   }
   let windowId = windowClass.getWindowProperties().id;
   if (windowId < 0) {
-    console.log(`Invalid windowId`);
+    console.info(`Invalid windowId`);
     return;
   }
   try {
     // 5.设置鼠标光标样式为默认样式
     pointer.setPointerStyle(windowId, pointer.PointerStyle.DEFAULT).then(() => {
-      console.log(`Successfully set mouse pointer style`);
+      console.info(`Successfully set mouse pointer style`);
     });
   } catch (error) {
     console.error(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${JSON.stringify(`message`)}`);

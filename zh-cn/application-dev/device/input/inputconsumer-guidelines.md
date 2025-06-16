@@ -34,7 +34,7 @@ import { inputConsumer } from '@kit.InputKit';
 let leftAltKey = 2045;
 let tabKey = 2049;
 let callback = (keyOptions: inputConsumer.KeyOptions) => {
-  console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
+  console.info(`keyOptions: ${JSON.stringify(keyOptions)}`);
 }
 //应用开启
 let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
@@ -46,7 +46,7 @@ try {
 //应用关闭
 try {
   inputConsumer.off("key", keyOption, callback);//取消订阅系统快捷键
-  console.log(`Unsubscribe success`);
+  console.info(`Unsubscribe success`);
 } catch (error) {
   console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
@@ -54,12 +54,12 @@ try {
 let leftCtrlKey = 2072;
 let zKey = 2042;
 let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
-  console.log(`keyOptions: ${JSON.stringify(hotkeyOptions)}`);
+  console.info(`keyOptions: ${JSON.stringify(hotkeyOptions)}`);
 }
 let hotkeyOption: inputConsumer.HotkeyOptions = {preKeys: [leftCtrlKey], finalKey: zKey, isRepeat: false};
 //在订阅全局快捷键之前，需要先获取所有系统快捷键，查询需要订阅的快捷键是否存在于系统快捷键列表中，避免冲突
 inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOptions>) => {//获取所有系统快捷键
-  console.log(`List of system hotkeys : ${JSON.stringify(data)}`);
+  console.info(`List of system hotkeys : ${JSON.stringify(data)}`);
 });
 //应用开启
 try {
@@ -70,7 +70,7 @@ try {
 //应用关闭
 try {
   inputConsumer.off("hotkeyChange", hotkeyOption, hotkeyCallback);//取消订阅应用快捷键
-  console.log(`Unsubscribe success`);
+  console.info(`Unsubscribe success`);
 } catch (error) {
   console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }

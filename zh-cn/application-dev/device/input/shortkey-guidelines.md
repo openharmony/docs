@@ -30,7 +30,7 @@ try {
       console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
-    console.log(`Set key down duration success`);
+    console.info(`Set key down duration success`);
   });
 } catch (error) {
   console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
