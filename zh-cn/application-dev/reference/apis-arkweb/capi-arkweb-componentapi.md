@@ -40,6 +40,14 @@ void (*onControllerAttached)(const char* webTag, ArkWeb_OnComponentCallback call
 
 当Controller成功绑定到Web组件时触发该回调。
 
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const char* webTag | Web组件名称。 |
+| ArkWeb_OnComponentCallback callback | onControllerAttached的回调函数。 |
+|  void* userData | 用户自定义数据。 |
+
 ### onPageBegin()
 
 ```
@@ -49,6 +57,14 @@ void (*onPageBegin)(const char* webTag, ArkWeb_OnComponentCallback callback, voi
 **描述：**
 
 网页开始加载时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const char* webTag | Web组件名称。 |
+| ArkWeb_OnComponentCallback callback | onPageBegin的回调函数。 |
+|  void* userData | 用户自定义数据。 |
 
 ### onPageEnd()
 
@@ -60,6 +76,14 @@ void (*onPageEnd)(const char* webTag, ArkWeb_OnComponentCallback callback, void*
 
 网页加载完成时触发该回调，且只在主frame触发。
 
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const char* webTag | Web组件名称。 |
+| ArkWeb_OnComponentCallback callback | onPageEnd的回调函数。 |
+|  void* userData | 用户自定义数据。 |
+
 ### onDestroy()
 
 ```
@@ -69,4 +93,12 @@ void (*onDestroy)(const char* webTag, ArkWeb_OnComponentCallback callback, void*
 **描述：**
 
 当前Web组件销毁时触发该回调。
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const char* webTag | Web组件名称。 |
+| ArkWeb_OnComponentCallback callback | onDestroy的回调函数。 |
+|  void* userData | 用户自定义数据。 |
 
