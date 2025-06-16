@@ -8463,7 +8463,7 @@ startMoving(): Promise&lt;void&gt;
 
 开始移动窗口，使用Promise异步回调。
 
-仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标或触摸点移动。
+仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#ontouch)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标或触摸点移动。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
@@ -8533,7 +8533,7 @@ startMoving(offsetX: number, offsetY: number): Promise&lt;void&gt;
 
 在同应用内窗口分合后，且鼠标保持按下状态直接移动新窗口，如果此时鼠标快速移动，窗口移动时鼠标可能会在窗口外。可以使用本接口指定窗口移动时鼠标在窗口内的位置，先移动窗口到鼠标位置，再开始移动窗口。
 
-仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标移动。
+仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#ontouch)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标移动。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
