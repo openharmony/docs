@@ -1,7 +1,7 @@
 # P2P模式开发指南
 
 ## 简介
-P2P模式，主要提供了wlan设备的一种点对点连接技术，它可以在两台STA之间直接建立TCP/IP连接，并不需要AP的参与。
+P2P模式，主要提供了WLAN设备的一种点对点连接技术，它可以在两台sta之间直接建立TCP/IP连接，并不需要ap的参与。
 
 ## 场景介绍
 主要场景有：
@@ -33,8 +33,8 @@ P2P模式，主要提供了wlan设备的一种点对点连接技术，它可以�
 ## 主要场景开发步骤
 
 ### 创建/删除P2P群组
-1. import需要的WI-FI模块。
-2. 开启设备的WI-FI。
+1. import需要的Wi-Fi模块。
+2. 开启设备的Wi-Fi。
 3. 需要SystemCapability.Communication.WiFi.P2P系统能力。
 4. 创建/删除P2P群组。
 5. 示例代码：
@@ -42,9 +42,9 @@ P2P模式，主要提供了wlan设备的一种点对点连接技术，它可以�
 ```ts
 import { wifiManager } from '@kit.ConnectivityKit';
 
-// 创建群组，将当前设备当做GO使用时，需要该步骤
-// netId：-1表示创建临时组，下次和已连接过的设备连接，需要重新进行GO协商，以及wps密钥协商;
-//        -2表示创建永久组，下次和已连接过的设备连接，不需要重新进行GO和wps密钥协商;
+// 创建群组，将当前设备当做go使用时，需要该步骤
+// netId：-1表示创建临时组，下次和已连接过的设备连接，需要重新进行go协商，以及WPS密钥协商;
+//        -2表示创建永久组，下次和已连接过的设备连接，不需要重新进行go和WPS密钥协商;
 
 let recvP2pPersistentGroupChangeFunc = () => {
 	console.info("p2p persistent group change receive event");
@@ -78,8 +78,8 @@ try {
 6. 错误码请参见[WIFI错误码](../../reference/apis-connectivity-kit/errorcode-wifi.md)。
 
 ### 建立P2P连接
-1. import需要的WI-FI模块。
-2. 开启设备的WI-FI。
+1. import需要的Wi-Fi模块。
+2. 开启设备的Wi-Fi。
 3. 需要SystemCapability.Communication.WiFi.P2P系统能力。
 4. 注册"p2pPeerDeviceChange"事件回调，并在回调实现中执行P2P连接。
 5. 开始P2P设备发现。
@@ -123,7 +123,7 @@ let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
 					groupName:"",
 					goBand:0,
 				}
-				// 执行P2P连接，作为GO时不能主动发起连接
+				// 执行P2P连接，作为go时不能主动发起连接
 				wifiManager.p2pConnect(config);
 			}
 		}
