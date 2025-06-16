@@ -585,6 +585,7 @@
           - [通过XComponent接入无障碍](ui/ndk-accessibility-xcomponent.md)
           - [自定义绘制](ui/arkts-user-defined-draw.md)
           - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ui/ndk-embedded-component.md)
+          - [在NDK中保证多实例场景功能正常](ui/ndk-scope-task.md)
       - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
         - [UI开发 (兼容JS的类Web开发范式)概述](ui/ui-js-overview.md)
         - 框架说明<!--js-framework-overview-->
@@ -1284,11 +1285,12 @@
         - [Input Kit简介](device/input/input-overview.md)
         - [输入设备开发指导](device/input/inputdevice-guidelines.md)
         - [鼠标光标开发指导](device/input/pointerstyle-guidelines.md)
+        - [按键拦截监听开发指导](device/input/keypressed-guidelines.md)        
         <!--Del-->
         - [输入监听开发指导](device/input/inputmonitor-guidelines.md)
         - [事件注入开发指导](device/input/inputeventclient-guidelines.md)
-        - [组合按键开发指导](device/input/inputconsumer-guidelines.md)
-        - [快捷键开发指导](device/input/shortkey-guidelines.md)
+        - [全局快捷键开发指导](device/input/inputconsumer-guidelines.md)
+        - [系统预置全局快捷键开发指导](device/input/shortkey-guidelines.md)
         <!--DelEnd-->
         - [事件监听开发指导（C/C++）](device/input/monitor-guidelines.md)
         - [事件拦截开发指导（C/C++）](device/input/interceptor-guidelines.md)
@@ -2495,6 +2497,7 @@
           - [@ohos.pluginComponent (PluginComponentManager)](reference/apis-arkui/js-apis-plugincomponent.md)
           - [@ohos.promptAction (弹窗)](reference/apis-arkui/js-apis-promptAction.md)
           - [@ohos.router (页面路由)(不推荐)](reference/apis-arkui/js-apis-router.md)
+          - [@ohos.uiAppearance (用户界面外观)](reference/apis-arkui/js-apis-uiappearance.md)
           - [getContext](reference/apis-arkui/js-apis-getContext.md)
           - [postCardAction](reference/apis-arkui/js-apis-postCardAction.md)
           <!--Del-->
@@ -3202,9 +3205,7 @@
           - [Canvas错误码](reference/apis-arkui/errorcode-canvas.md)
           - [自定义节点错误码](reference/apis-arkui/errorcode-node.md)
           - [UIExtension错误码](reference/apis-arkui/errorcode-uiextension.md)
-          <!--Del-->
           - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
-          <!--DelEnd-->
           - [NodeAdapter错误码](reference/apis-arkui/errorcode-nodeadapter.md)
         - UI编译<!--arkui-compile-arkts-errcode-->
           - [编译错误码](reference/apis-arkui/_ark_ui_compile.md)
