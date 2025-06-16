@@ -760,9 +760,9 @@ enum Input_KeyCode
 | KEYCODE_NUMPAD_EQUALS  | 小键盘按键'='。 | 
 | KEYCODE_NUMPAD_LEFT_PAREN  | 小键盘按键'('。 | 
 | KEYCODE_NUMPAD_RIGHT_PAREN  | 小键盘按键')'。 | 
-| KEYCODE_DAGGER_CLICK  | 智能手表dagger单击键。<br/>起始版本： 18。 | 
-| KEYCODE_DAGGER_DOUBLE_CLICK  | 智能手表dagger双击键。<br/>起始版本： 18。 | 
-| KEYCODE_DAGGER_LONG_PRESS  | 智能手表dagger长按键。<br/>起始版本： 18。 | 
+| KEYCODE_DAGGER_CLICK  | 智能手表智感窗按键单击。<br/>起始版本： 18。 | 
+| KEYCODE_DAGGER_DOUBLE_CLICK  | 智能手表智感窗按键双击。<br/>起始版本： 18。 | 
+| KEYCODE_DAGGER_LONG_PRESS  | 智能手表智感窗按键长按。<br/>起始版本： 18。 | 
 
 
 ### Input_KeyEventAction
