@@ -186,7 +186,7 @@
         photoProfile = cameraOutputCapability->photoProfiles[0];
 
         if (cameraOutputCapability->videoProfiles == nullptr) {
-            OH_LOG_ERROR(LOG_APP, "videorofiles == null");
+            OH_LOG_ERROR(LOG_APP, "videoProfiles == null");
             return;
         }
         // 预览流宽高比要与录像流的宽高比一致，如果录制的是hdr视频，请筛选支持hdr的Camera_VideoProfile。
