@@ -521,7 +521,7 @@ onScrollIndex(event: (first: number, last: number) => void)
 
 **说明：** 
 
-> 当WaterFlow中列表为空时，使用不同的WaterFlowOptions参数onScrollIndex事件的返回值存在差异，具体参考下表：
+> 当WaterFlow列表为空时，使用不同的WaterFlowOptions参数会导致onScrollIndex事件的返回值有所不同。具体差异请参见下表：
 
 | layoutMode | sections | first | last |
 | --- | --- | --- | --- |
