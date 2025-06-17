@@ -226,6 +226,7 @@
       - [wantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)
       <!--Del-->
       - [TriggerInfo(系统接口)](js-apis-inner-wantAgent-triggerInfo-sys.md)
+      - [wantAgentInfo(系统接口)](js-apis-inner-wantAgent-wantAgentInfo-sys.md)
       <!--DelEnd-->
   - 已停止维护的接口<!--ability-arkts-dep-->
     - [@ohos.ability.dataUriUtils (DataUriUtils模块)](js-apis-ability-dataUriUtils.md)
