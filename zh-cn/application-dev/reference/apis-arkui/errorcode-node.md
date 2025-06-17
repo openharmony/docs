@@ -59,3 +59,37 @@ Parameter error. Possible causes: 1. The component type of the node is incorrect
 **处理步骤**
 
 调整传入的参数值，或是提前进行判断。
+
+## 106103 对应的操作不支持ArkTS创建的节点
+
+**错误信息**
+
+The corresponding operation does not support nodes created by ArkTS.
+
+**错误描述**
+
+对应的操作不支持ArkTS创建的节点。
+
+**可能原因**
+
+当前操作不支持ArkTS创建的节点。
+
+**处理步骤**
+
+传入非ArkTS创建的节点。
+
+## 106203 传入的节点未挂载到组件树上
+
+**错误信息**
+
+**错误描述**
+
+传入的节点未挂载到组件树上。
+
+**可能原因**
+
+当前传入的节点未挂载到组件树上。
+
+**处理步骤**
+
+调整函数调用时机，确保传入的节点已挂载到组件树上。
