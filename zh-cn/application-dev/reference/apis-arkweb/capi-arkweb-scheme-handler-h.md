@@ -12,6 +12,8 @@
 
 **相关模块：** [Web](capi-web.md)
 
+**相关示例：** <!--RP1-->[ArkWebSchemeHandler](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkWeb/ArkWebSchemeHandler)<!--RP1End-->
+
 ## 汇总
 
 ### 结构体
