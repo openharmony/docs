@@ -586,7 +586,7 @@ stopVibration(callback: AsyncCallback&lt;void&gt;): void
 
 ## vibrator.stopVibration<sup>10+</sup>
 
-stopVibration(param?: VibratorInfoParam): Promise&lt;void&gt;
+stopVibration(): Promise&lt;void&gt;
 
 停止所有模式的马达振动。使用promise异步回调。
 
@@ -595,12 +595,6 @@ stopVibration(param?: VibratorInfoParam): Promise&lt;void&gt;
 **原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
-
-**参数**：
-
-| 参数名   | 类型                                                         | 必填 | 说明                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| param     | [VibratorInfoParam](#vibratorinfoparam)                       | 否   | 指出需要控制的设备和振动器信息              |
 
 **返回值**：
 
@@ -635,6 +629,41 @@ stopVibration(param?: VibratorInfoParam): Promise&lt;void&gt;
      console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
    }
    ```
+
+## vibrator.stopVibration<sup>19+</sup>
+
+stopVibration(param?: VibratorInfoParam): Promise&lt;void&gt;
+
+不传参默认停止所有模式的马达振动，也可传递参数停止指定设备马达振动。使用promise异步回调。
+
+**需要权限**：ohos.permission.VIBRATE
+
+**原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
+**参数**：
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| param     | [VibratorInfoParam](#vibratorinfoparam19)                       | 否   | 指出需要控制的设备和振动器信息              |
+
+**返回值**：
+
+| 类型                | 说明          |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | Promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 14600101 | Device operation failed. |
+
+**示例**：
 
   ```ts
    import { vibrator } from '@kit.SensorServiceKit';
@@ -876,10 +905,10 @@ getEffectInfoSync(effectId: string, param?: VibratorInfoParam): EffectInfo;
 
 **参数**：
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| effectId | string | 是   | 待确认的预置振动效果。 |
-| param     | [VibratorInfoParam](#vibratorinfoparam)                       | 否   | 指出需要控制的设备和振动器信息              |
+| 参数名   | 类型                                                         | 必填 | 说明                          |
+| -------- | ------------------------------------------------------------ | ---- |-----------------------------|
+| effectId | string | 是   | 待确认的预置振动效果。                 |
+| param     | [VibratorInfoParam](#vibratorinfoparam19)                       | 否   | 指出需要查询的设备和马达信息，默认查询的是本地设备。 |
 
 **错误码**：
 
@@ -893,7 +922,7 @@ getEffectInfoSync(effectId: string, param?: VibratorInfoParam): EffectInfo;
 
 | 类型    | 说明                                                      |
 | ------- | --------------------------------------------------------- |
-| [EffectInfo](#effectinfo) | 该信息包括指示是否支持该效果。 |
+| [EffectInfo](#effectinfo19) | 该信息包括指示是否支持该效果。 |
 
 
 **示例**：
@@ -922,9 +951,9 @@ getVibratorInfoSync(param?: VibratorInfoParam): Array&lt;VibratorInfo&gt;;
 
 **参数**：
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| param     | [VibratorInfoParam](#vibratorinfoparam)                       | 否   | 指出需要控制的设备和振动器信息              |
+| 参数名   | 类型                                      | 必填 | 说明             |
+| -------- |-----------------------------------------| ---- |----------------|
+| param     | [VibratorInfoParam](#vibratorinfoparam19) | 否   | 指出需要控制的设备和马达信息 |
 
 **错误码**：
 
@@ -936,9 +965,9 @@ getVibratorInfoSync(param?: VibratorInfoParam): Array&lt;VibratorInfo&gt;;
 
 **返回值**：
 
-| 类型    | 说明                                                      |
-| ------- | --------------------------------------------------------- |
-| [VibratorInfo](#vibratorinfo) | 振动器设备的信息。 |
+| 类型                            | 说明                                                      |
+|-------------------------------| --------------------------------------------------------- |
+| [VibratorInfo](#vibratorinfo19) | 振动器设备的信息。 |
 
 
 **示例**：
@@ -961,7 +990,7 @@ getVibratorInfoSync(param?: VibratorInfoParam): Array&lt;VibratorInfo&gt;;
 
 on(type: 'vibratorStateChange', callback: Callback&lt;VibratorStatusEvent&gt;): void
 
-注册一个回调函数，以便在发生马达插入或拔出事件时调用。
+注册一个回调函数，在马达上线或下线时触发回调；
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -970,7 +999,7 @@ on(type: 'vibratorStateChange', callback: Callback&lt;VibratorStatusEvent&gt;): 
 | 参数名   | 类型                                                         | 必填 | 说明                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | 'vibratorStateChange'                       | 是   | 监听类型，该值固定为vibratorStateChange。              |
-| callback | Callback&lt;[VibratorStatusEvent](#vibratorstatusevent)&gt; | 是   | 回调函数，回调参数数据为VibratorStatusEvent。 |
+| callback | Callback&lt;[VibratorStatusEvent](#vibratorstatusevent19)&gt; | 是   | 回调函数，回调参数数据为VibratorStatusEvent。 |
 
 **错误码**：
 
@@ -1006,7 +1035,7 @@ on(type: 'vibratorStateChange', callback: Callback&lt;VibratorStatusEvent&gt;): 
 
 off(type: 'vibratorStateChange', callback?: Callback&lt;VibratorStatusEvent&gt;): void
 
-注销可控马达插入或拔出事件的回调函数。
+注销马达上线或下线事件的回调函数。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -1015,7 +1044,7 @@ off(type: 'vibratorStateChange', callback?: Callback&lt;VibratorStatusEvent&gt;)
 | 参数名   | 类型                                                         | 必填 | 说明                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | 'vibratorStateChange'                       | 是   | 监听类型，该值固定为vibratorStateChange。              |
-| callback | Callback&lt;[VibratorStatusEvent](#VibratorStatusEvent)&gt; | 否   | 回调函数，回调参数数据为VibratorStatusEvent，不填此参数则为注销所有callback |
+| callback | Callback&lt;[VibratorStatusEvent](#vibratorstatusevent19)&gt; | 否   | 回调函数，回调参数数据为VibratorStatusEvent，不填此参数则为注销所有callback |
 
 **错误码**：
 
@@ -1048,58 +1077,58 @@ off(type: 'vibratorStateChange', callback?: Callback&lt;VibratorStatusEvent&gt;)
    ```
 
 
-## VibratorStatusEvent
+## VibratorStatusEvent<sup>19+</sup>
 
 震动设备上下线事件信息
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
 
-| 名称 | 类型    | 说明                                                       |
-| ---- | ------ | ---------------------------------------------------------- |
-| timestamp    | number  | 报告事件的时间戳。 |
-| deviceId    | number   | 设备的ID。 |
-| vibratorCount    | number   | 设备上的振动器数量。 |
-| isVibratorOnline    | boolean  | 指示设备的联机和脱机状态，true表示在线，false表示脱机。 |
+| 名称 | 类型    | 说明                               |
+| ---- | ------ |----------------------------------|
+| timestamp    | number  | 报告事件的时间戳。                        |
+| deviceId    | number   | 设备的ID。                           |
+| vibratorCount    | number   | 设备上的马达的数量。                       |
+| isVibratorOnline    | boolean  | 指示设备的上线和下线状态，true表示上线，false表示下线。 |
 
 
-## VibratorInfoParam
+## VibratorInfoParam<sup>19+</sup>
 
-设备上振动器的参数。默认情况下，VibratorInfoParam可能默认为查询或控制本地默认可控马达
+设备上振动器的参数。默认情况下，VibratorInfoParam默认为查询或控制本地默认马达
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
 
-| 名称 | 类型   | 只读 | 可选 | 说明                                                       |
-| ---- | ------ | ---- | ---- | ---------------------------------------------------------- |
-| deviceId    | number | 否   | 是   | 设备的ID。 |
-| vibratorId    | number | 否   | 是   | 振动器ID。 |
+| 名称 | 类型   | 只读 | 可选 | 说明                       |
+| ---- | ------ | ---- | ---- |--------------------------|
+| deviceId    | number | 否   | 是   | 设备的ID：默认值为-1，控制的为本地设备。   |
+| vibratorId    | number | 否   | 是   | 马达ID：默认值为-1，控制的是该设备的全部马达 |
 
 
 
-## EffectInfo
+## EffectInfo<sup>19+</sup>
 
 是否支持预制效果信息的结果
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
 
-| 名称 | 类型    | 说明                                                       |
-| ---- | ------  | ---------------------------------------------------------- |
-| isEffectSupported   | boolean | 预制效果是否支持。 |
+| 名称 | 类型    | 说明         |
+| ---- | ------  |------------|
+| isEffectSupported   | boolean | 预制效果是否支持，true表示支持，false表示不支持。 |
 
 
-## VibratorInfo
+## VibratorInfo<sup>19+</sup>
 
 表示系统中振动器设备的信息。
 
-| 名称 | 类型    | 说明                                                       |
-| ---- | ------ |  ---------------------------------------------------------- |
-| deviceId    | number | 设备ID。 |
-| vibratorId    | number | 振动器ID。 |
-| deviceName    | string | 设备名称。 |
+| 名称 | 类型    | 说明        |
+| ---- | ------ |-----------|
+| deviceId    | number | 设备ID。     |
+| vibratorId    | number | 马达ID。     |
+| deviceName    | string | 设备名称。     |
 | isHdHapticSupported    | boolean | 是否支持高清振动。 |
-| isLocalVibrator    | boolean | 是否为本地设备。 |
+| isLocalVibrator    | boolean | 是否为本地设备。  |
 
 
 ## vibrator.isHdHapticSupported<sup>12+</sup>
@@ -1506,12 +1535,11 @@ build(): VibratorPattern;
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称  | 类型             | 必填 | 说明                                                         |
-| ----- | ---------------- | ---- | ------------------------------------------------------------ |
-| id    | number           | 否   | 振动器ID， 默认值为0。                                       |
-| deviceId    | number           | 否   | 设备ID。                                       | 
-| usage | [Usage](#usage9) | 是   | 马达振动的使用场景。默认值为'unknown'，取值范围只允许在[Usage](#usage9)提供的类型中选取。 |
-| systemUsage     | boolean        | 否   | 是否绕过系统。                                       |
+| 名称                     | 类型             | 必填 | 说明                                                         |
+|------------------------| ---------------- | ---- | ------------------------------------------------------------ |
+| id                     | number           | 否   | 振动器ID， 默认值为0。                                       |
+| deviceId<sup>19+</sup> | number           | 否   | 设备ID。                                       | 
+| usage                  | [Usage](#usage9) | 是   | 马达振动的使用场景。默认值为'unknown'，取值范围只允许在[Usage](#usage9)提供的类型中选取。 |
 
 ## Usage<sup>9+</sup>
 

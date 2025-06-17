@@ -111,9 +111,9 @@
 
    ![输入图片说明](figures/003.png)
 
-5. 取消持续监听。
+5. 取消持续监听
 
-    取消所有监听
+    取消持续监听，此场景下未订阅而取消监听为异常行为，需处理异常。
     ```ts
     sensor.off(sensor.SensorId.ACCELEROMETER);
     ```
@@ -125,7 +125,7 @@
 
 6. 动态传感器状态的监听
 
-    注册监听, SensorStatusEvent 会返回事件时间戳、传感器ID、传感器索引、是否在线、设备id、设备名称等值。
+    注册监听, SensorStatusEvent 会返回事件时间戳、传感器ID、传感器索引、上线或下线、设备id、设备名称等值。
     ```ts
     sensor.on('sensorStatusChange', (data: sensor.SensorStatusEvent) => {
           console.log(`timestamp: ${data.timestamp},
