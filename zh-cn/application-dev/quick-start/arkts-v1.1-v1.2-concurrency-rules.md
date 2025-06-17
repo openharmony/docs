@@ -130,7 +130,7 @@ let array = new Array<number>();
 
 **级别：** error
 
-新增对象天然共享特性，不再依赖Sendable特性，ASON可直接更改为JSON，且删除ArkTSUtils.前缀。
+新增对象天然共享特性，不再依赖Sendable特性，ASON.stringify()方法调用可直接更改为JSON.stringify()，且删除ArkTSUtils.前缀。
 
 **ArkTS1.1**
 ```typescript
