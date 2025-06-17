@@ -74,7 +74,7 @@ try {
 let clientNumber = 1; // 注意：该值需要的是客户端发起连接时，异步callback获取到的客户端socket id，此处是伪代码id
 
 // 定义接收数据的回调函数
-function read = (dataBuffer: ArrayBuffer) => {
+function read(dataBuffer: ArrayBuffer) {
   let data = new Uint8Array(dataBuffer);
   console.info('client data: ' + JSON.stringify(data));
 }
@@ -93,7 +93,7 @@ try {
 let clientNumber = 1; // 注意：该值需要的是客户端发起连接时，异步callback获取到的客户端socket id，此处是伪代码id
 
 // 定义接收数据的回调函数
-function read = (dataBuffer: ArrayBuffer) => {
+function read(dataBuffer: ArrayBuffer) {
   let data = new Uint8Array(dataBuffer);
   console.info('client data: ' + JSON.stringify(data));
 }
@@ -128,7 +128,7 @@ let option: socket.SppOptions = {
 };
 
 // 创建服务端监听socket，将在蓝牙子系统中注册该UUID服务
-socket.sppListen("示例", option, (err, num: number) => {
+socket.sppListen("demonstration", option, (err, num: number) => {
   if (err) {
     console.error('sppListen errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
   } else {
@@ -180,7 +180,7 @@ try {
 let clientNumber = 1; // 注意：该值需要的是服务端监听连接时，异步callback获取到的客户端socket id，此处是伪代码id
 
 // 定义接收数据的回调函数
-read = (dataBuffer: ArrayBuffer) => {
+read(dataBuffer: ArrayBuffer) {
   let data = new Uint8Array(dataBuffer);
   console.info('client data: ' + JSON.stringify(data));
 }
@@ -200,7 +200,7 @@ try {
 let clientNumber = 1; // 注意：该值需要的是服务端监听连接时，异步callback获取到的客户端socket id，此处是伪代码id
 
 // 定义接收数据的回调函数
-function read = (dataBuffer: ArrayBuffer) => {
+function read(dataBuffer: ArrayBuffer) {
   let data = new Uint8Array(dataBuffer);
   console.info('client data: ' + JSON.stringify(data));
 }
@@ -227,7 +227,7 @@ try {
 let serverNumber = 1; // 注意：该值需要的是创建服务端套接字时，异步callback获取到的服务端socket id，此处是伪代码id
 
 // 定义接收数据的回调函数
-function read = (dataBuffer: ArrayBuffer) => {
+function read(dataBuffer: ArrayBuffer) {
   let data = new Uint8Array(dataBuffer);
   console.info('client data: ' + JSON.stringify(data));
 }
@@ -293,7 +293,7 @@ class SppClientManager {
   }
 
   // 定义接收数据的回调函数
-  read = (dataBuffer: ArrayBuffer) => {
+  read(dataBuffer: ArrayBuffer) {
     let data = new Uint8Array(dataBuffer);
     console.info('client data: ' + JSON.stringify(data));
   };
@@ -351,7 +351,7 @@ class SppServerManager {
     };
 
     // 创建服务端监听socket，将在蓝牙子系统中注册该UUID服务
-    socket.sppListen("示例", option, (err, num: number) => {
+    socket.sppListen("demonstration", option, (err, num: number) => {
       if (err) {
         console.error('sppListen errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
       } else {
@@ -389,7 +389,7 @@ class SppServerManager {
   }
 
   // 定义接收数据的回调函数
-  read = (dataBuffer: ArrayBuffer) => {
+  read(dataBuffer: ArrayBuffer) {
     let data = new Uint8Array(dataBuffer);
     console.info('client data: ' + JSON.stringify(data));
   };
