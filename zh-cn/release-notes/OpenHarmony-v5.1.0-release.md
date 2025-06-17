@@ -302,8 +302,8 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 | -------- | -------- | -------- |
 | OpenHarmony | 5.1.0 Release | NA | 
 | Public SDK | Ohos_sdk_public 5.1.0.107 (API Version 18 Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 | 
-| HUAWEI DevEco Studio（可选） | 5.1.0 Release | OpenHarmony应用开发推荐使用。<br/>*待发布* | 
-| HUAWEI DevEco Device Tool（可选） | 4.0 Release | OpenHarmony智能设备集成开发环境推荐使用。 | 
+| HUAWEI DevEco Studio（可选） | 5.1.0 Release | OpenHarmony应用开发推荐使用。<br />[请点击这里获取](https://developer.huawei.com/consumer/cn/download/)。 | 
+| HUAWEI DevEco Device Tool（可选） | 4.0 Release | OpenHarmony智能设备集成开发环境推荐使用。<br />[请点击这里获取](https://device.harmonyos.com/cn/develop/ide#download)。 | 
 
 
 ## 源码获取
@@ -414,3 +414,5 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 | IC22OQ | 进程com.ohos.note下的RSRenderThread线程小概率出现因libskia_canvaskit.z.so导致的cppcrash。  | 备忘录应用异常，重启可恢复。 | 2025年5月15日 | 
 | IC4ZPS | 执行XTS测试时，ActslocationErrorCodeApiTest测试套因RK3568开发板位置服务不支持Geofence能力导致执行结果出现失败项。  | 该问题已在master解决，可通过增加配置项处理。<br/>配置方式可参考https://gitee.com/openharmony/vendor_hihope/pulls/1505 | 2025年4月30日 | 
 | IC57IO | 桌面->右上角下划进入控制中心->点击控制中心飞行模式，该操作按钮功能失效。  | 该问题已在master解决，可手动修改代码规避。<br/>处理方式可参考https://gitee.com/openharmony/distributeddatamgr_datamgr_service/pulls/2967 | 2025年4月30日 | 
+
+<!--no_check-->
