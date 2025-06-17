@@ -38,7 +38,7 @@ SwipeRefresher ({content?: string, isLoading: boolean})
 | Name| Type| Mandatory| Decorator| Description                                                                |
 | -------- | -------- | -------- | -------- |--------------------------------------------------------------------|
 | content | string | No| \@Prop | Text displayed when the content is loaded.<br>The default value is an empty string.<br>**NOTE**<br>If the text is longer than the column width, it will be truncated.                                        |
-| isLoading | boolean | If yes, | \@Prop | Whether content is being loaded.<br> The value **true** means that content is being loaded,<br> and **false** means the opposite.|
+| isLoading | boolean | Yes | \@Prop | Whether content is being loaded.<br> The value **true** means that content is being loaded,<br> and **false** means the opposite.|
 
 ## Events
 The [universal events](ts-component-general-events.md) are not supported.
