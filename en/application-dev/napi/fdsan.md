@@ -78,13 +78,13 @@ void fdsan_exchange_owner_tag(int fd, uint64_t expected_tag, uint64_t new_tag);
 
 Locate the **FdEntry** based on the file descriptor and check whether the value of **close_tag** is the same as that of **expected_tag**. If yes, you can change the value of **FdEntry** with the value of **new_tag** passed in.
 
-If the value of **close_tag** is not the same as that of **expected_tag**, an error occurs.
+If the value of **close_tag** is not the same as that of **expected_tag**, an error occurs. Perform error handling.
 
 **Parameters**
 
 | Name                      | Type              | Description                                                        |
 | -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `fd` | int | File descriptor, which serves as an index of **FdEntry**.|
+| `fd` | int | FD, which serves as an index of **FdEntry**.|
 | `expected_tag` | uint64_t | Expected value of the tag.    |
 | `new_tag` | uint64_t | New value of the tag.  |
 
@@ -103,7 +103,7 @@ Locate the **FdEntry** based on the file descriptor. If **close_tag** is the sam
 
 | Name                      | Type              | Description                                                        |
 | -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `fd` | int | File descriptor to close.|
+| `fd` | int | FD to close.|
 | `tag` | uint64_t | Expected tag.    |
 
 **Return value**<br>Returns **0** if the file descriptor is closed; returns **-1** otherwise.
@@ -146,7 +146,7 @@ uint64_t fdsan_get_tag_value(uint64_t tag);
 ```
 **Description**<br>Obtains the owner value based on the given tag.
 
-The value contained in a tag can be obtained via offset calculation .
+The value contained in a tag can be obtained via offset calculation.
 
 **Parameters**
 
@@ -164,7 +164,7 @@ Use fdsan to detect a double-close problem.
 void good_write()
 {
     sleep(1);
-    int fd = open(DEV_NULL_FILE, O_RDONLY);
+    int fd = open(DEV_NULL_FILE, O_RDWR);
     sleep(3);
     ssize_t ret = write(fd, "fdsan test\n", 11);
     if (ret == -1) {
@@ -175,7 +175,7 @@ void good_write()
 
 void bad_close()
 {
-    int fd = open(DEV_NULL_FILE, O_RDONLY);
+    int fd = open(DEV_NULL_FILE, O_RDWR);
     close(fd);
     sleep(2);
     // This close is expected to be detected by fdsan.
@@ -219,7 +219,7 @@ The **fopen**, **fdopen**, **opendir**, and **fdopendir** APIs in libc have inte
 void good_write()
 {
     // fopen is protected by fdsan. Use fopen to replace open. 
-    // int fd = open(TEMP_FILE, O_RDONLY);
+    // int fd = open(TEMP_FILE, O_RDWR);
     FILE *f = fopen(TEMP_FILE, "w+");
     if (f == NULL) {
         printf("fopen failed errno=%d\n", errno);
@@ -234,7 +234,7 @@ void good_write()
     fclose(f);
 }
 ```
-
+#### Log Information
 Each file descriptor returned by **fopen** has a tag. When the file descriptor is closed by **close**, fdsan checks whether the file descriptor matches the tag. If the file descriptor does not match the tag, related log information is displayed by default. The log information for the preceding code is as follows:
 
 ```
@@ -322,7 +322,7 @@ OpenFiles:
 
 You can also implement APIs with fdsan by using **fdsan_exchange_owner_tag** and **fdsan_close_with_tag**. The former can be used to set a tag for a file descriptor; the latter can be used to check the tag when a file is closed.
 
-Example:
+The following is an example:
 
 ```cpp
 #include <errno.h>
@@ -419,7 +419,7 @@ You can use the implemented API in the following code to detect and prevent file
 
 void good_write()
 {
-    // int fd = open(DEV_NULL_FILE, O_RDONLY);
+    // int fd = open(DEV_NULL_FILE, O_RDWR);
     fdsan_fd fd(open(TEMP_FILE, O_CREAT | O_RDWR));
     if (fd.get() == -1) {
         printf("fopen failed errno=%d\n", errno);
@@ -433,4 +433,9 @@ void good_write()
 }
 ```
 
-When the application is executed, the double-close problem of another thread can be detected. You can also set **error_level** to **fatal** so that fdsan can proactively crash after detecting a crash.
+When the application is executed, the double-close problem of another thread can be detected. For details, see <a href="#log-information">Log Information</a>. You can also set **error_level** to **fatal** so that fdsan can proactively crash after detecting a crash.
+
+## Signal Safety of the close Function
+In the POSIX standard, the **close** function is defined as a async-signal-safe function, which can be safely called in the signal handler. However, in the system implementation integrated with the File Descriptor Sanitizer (fdsan) mechanism, the **close** function is no longer signal-safe.
+
+This is because the implementation of fdsan depends on the mmap system call, which is not a signal-safe function. Therefore, instead of using **close()** in the signal handler, you can use the system call to implement the same functionality.

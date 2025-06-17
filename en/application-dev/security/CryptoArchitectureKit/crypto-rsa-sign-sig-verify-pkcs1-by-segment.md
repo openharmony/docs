@@ -1,11 +1,8 @@
 # Signing and Signature Verification by Segment with an RSA Key Pair (PKCS1 Mode) (ArkTS)
 
-
 For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify-overview.md#rsa).
 
-
 **Signing**
-
 
 1. Call [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) and [AsyKeyGenerator.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-1) to generate a 1024-bit RSA key pair (**KeyPair**) with two primes. The **KeyPair** instance consists of a public key (**PubKey**) and a private key (**PriKey**).
    
@@ -15,26 +12,19 @@ For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify
 
 3. Call [Sign.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-3) to initialize the **Sign** instance with the private key (**PriKey**).
 
-4. Set the data length to be passed in each time to 64 bytes, and call [Sign.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-3) multiple times to pass in the data to be signed.
-   
-   Currently, the amount of data to be passed in by a single **Sign.update()** is not limited. You can determine how to pass in data based on the data volume.
-   
+4. Set the data length to be passed in each time to 64 bytes, and call [Sign.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-3) multiple times to pass in the data to be signed.<br>Currently, the amount of data to be passed in by a single **Sign.update()** is not limited. You can determine how to pass in data based on the data volume.
+
 5. Call [Sign.sign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#sign-1) to generate a signature.
 
-
 **Signature Verification**
-
 
 1. Call [cryptoFramework.createVerify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateverify) with the string parameter **'RSA1024|PKCS1|SHA256'** to create a **Verify** instance. The string parameter must be the same as that used to create the **Sign** instance.
 
 2. Call [Verify.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-5) to initialize the **Verify** instance using the public key (**PubKey**).
 
-3. Call [Verify.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-5) to pass in the data to be verified.
-   
-   Currently, the amount of data to be passed in by a single **Verify.update()** is not limited. You can determine how to pass in data based on the data volume.
-   
-4. Call [Verify.verify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#verify-1) to verify the data signature.
+3. Call [Verify.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-5) to pass in the data to be verified.<br>Currently, the amount of data to be passed in by a single **Verify.update()** is not limited. You can determine how to pass in data based on the data volume.
 
+4. Call [Verify.verify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#verify-1) to verify the data signature.
 
 - Example (using asynchronous APIs):
 

@@ -1,11 +1,8 @@
 # Encryption and Decryption with an AES Symmetric Key (GCM Mode) (ArkTS)
 
-
 For details about the algorithm specifications, see [AES](crypto-sym-encrypt-decrypt-spec.md#aes).
 
-
 **Encryption**
-
 
 1. Call [cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator) and [SymKeyGenerator.generateSymKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkey-1) to generate a 128-bit AES symmetric key (**SymKey**).
    
@@ -20,7 +17,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
    Currently, the amount of data to be passed in by a single **Cipher.update** is not limited. You can determine how to pass in data based on the data volume.
 
    - If a small amount of data is to be encrypted, you can use **Cipher.doFinal** immediately after **Cipher.init**.
-   - If a large amount of data is to be encrypted, you can call **Cipher.update** multiple times to pass in the data by segment.
+   - If a large amount of data is to be encrypted, you can call **Cipher.update** multiple times to [pass in the data by segment](crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md).
 
 5. Call [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to obtain the encrypted data.
    - If data has been passed in by **Cipher.update**, pass in **null** in the **data** parameter of **Cipher.doFinal**.
@@ -28,7 +25,6 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 
 6. Obtain [GcmParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#gcmparamsspec).authTag as the authentication information for decryption.
    In GCM mode, **authTag** must be of 16 bytes. It is used as the authentication information during decryption. In the example, **authTag** is of 16 bytes.
-
 
 **Decryption**
 
@@ -39,7 +35,6 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 3. Call [Cipher.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-1) to pass in the data to be decrypted (ciphertext).
 
 4. Call [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to obtain the decrypted data.
-
 
 - Example (using asynchronous APIs):
 

@@ -4,10 +4,8 @@ Node-API中的napi_call_threadsafe_function_with_priority接口的功能是从�
 ## 函数说明
 
 ```cpp
-napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function func,
-                                                        void *data,
-                                                        napi_task_priority priority,
-                                                        bool isTail);
+napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function func, void *data,
+                                                        napi_task_priority priority, bool isTail);
 ```
 
 | 参数            | 说明          |
@@ -154,10 +152,10 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
 
     ```ts
     // index.ets
-    import testNapi from 'libentry.so'
-
+    import testNapi from 'libentry.so';
+    
     let callback = (a: number, b: number) : number => {
-        console.info('result is ' + (a + b))
+        console.info('result is ' + (a + b));
         return a + b;
     }
     testNapi.callThreadSafeWithPriority(callback);

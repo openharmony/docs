@@ -2,7 +2,7 @@
 
 用于渲染并管理Native层使用C-API创建的组件。
 
-支持混合模式开发，当容器是ArkTS组件，子组件在Native侧创建时，推荐使用ContentSlot占位组件。
+支持混合模式开发。当容器为ArkTS组件，且子组件在Native侧创建时，推荐使用ContentSlot占位组件。
 
 ## 接口
 
@@ -30,39 +30,39 @@ abstract class Content {
 |OH_ArkUI_NodeContentEvent_GetNodeContentHandle(ArkUI_NodeContentEvent* event)|获取触发上下树事件的Content对象。|
 |OH_ArkUI_NodeContent_SetUserData(ArkUI_NodeContentHandle content, void* userData)|在Content上设置用户自定义属性。|
 |OH_ArkUI_NodeContent_GetUserData(ArkUI_NodeContentHandle content)|在Content上获取用户自定义属性。|
-|typedef enum {<br>   NOTE_CONTENT_EVENT_ON_ATTACH_TO_WINDOW = 0,<br>   NOTE_CONTENT_EVENT_ON_DETACH_FROM_WINDOW = 1,<br>} ArkUI_NodeContentEventType|Content上会触发的上树和下树两种事件类型。|
+|typedef enum {<br>   NOTE_CONTENT_EVENT_ON_ATTACH_TO_WINDOW = 0,<br>   NOTE_CONTENT_EVENT_ON_DETACH_FROM_WINDOW = 1,<br>} ArkUI_NodeContentEventType|Content上会触发的上树和下树事件类型。|
 
 ## 开发实现
 
 ### ArkTS侧代码实现
 
 ```ts
-import { nativeNode } from 'libNativeNode.so' // 开发者自己实现的so
-import { NodeContent } from '@kit.ArkUI'
+import { nativeNode } from 'libNativeNode.so'; // 开发者自己实现的so
+import { NodeContent } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Parent {
-    private nodeContent: Content = new NodeContent();
+  private nodeContent: Content = new NodeContent();
 
-    aboutToAppear() {
-        // 通过C-API创建节点，并添加到管理器nodeContent上
-        nativeNode.createNativeNode(this.nodeContent);
-    }
+  aboutToAppear() {
+    // 通过C-API创建节点，并添加到管理器nodeContent上
+    nativeNode.createNativeNode(this.nodeContent);
+  }
 
-    build() {
-        Column() {
-            // 显示nodeContent管理器里存放的Native侧的组件
-            ContentSlot(this.nodeContent)
-        }
+  build() {
+    Column() {
+      // 显示nodeContent管理器里存放的Native侧的组件
+      ContentSlot(this.nodeContent)
     }
+  }
 }
 ```
 
 ### Native侧代码实现
 Napi的基础开发知识请查看以下文档：[开发导读](../../napi/ndk-development-overview.md)。
 
-本章节仅描述实现ContentSlot相关逻辑代码。创建C侧组件，具体请查看[使用NDK接口构建UI](../../ui/ndk-build-ui-overview.md)。
+本章节描述实现ContentSlot相关逻辑代码。创建C侧组件的具体步骤，请参阅[使用NDK接口构建UI](../ndk-build-ui-overview.md)。
 
 ```c++
 #include "napi/native_api.h"

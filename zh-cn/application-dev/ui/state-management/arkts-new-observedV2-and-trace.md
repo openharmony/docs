@@ -20,6 +20,7 @@
 - 在继承类中，父类或子类中的属性property被\@Trace装饰且该property所在类被\@ObservedV2装饰时，才具有触发UI刷新的能力。
 - 未被\@Trace装饰的属性用在UI中无法感知到变化，也无法触发UI刷新。
 - \@ObservedV2的类实例目前不支持使用JSON.stringify进行序列化。
+- 使用\@ObservedV2与\@Trace装饰器的类，需通过new操作符实例化后，才具备被观测变化的能力。
 
 ## 状态管理V1版本对嵌套类对象属性变化直接观测的局限性
 
@@ -66,7 +67,7 @@ struct Index {
 }
 ```
 
-上述代码中，点击Text组件增加age的值时，不会触发UI刷新。因为在现有的状态管理框架下，无法观测到嵌套类中属性age的值变化。V1版本的解决方案是使用[\@ObjectLink装饰器](arkts-observed-and-objectlink.md)与自定义组件的方式实现观测。
+在上述代码中，点击Text组件增加age的值时，不会触发UI刷新。原因在于现有的状态管理框架无法观测到嵌套类中属性age的值变化。V1版本的解决方案是使用[\@ObjectLink装饰器](arkts-observed-and-objectlink.md)与自定义组件来实现观测。
 
 ```ts
 @Observed
@@ -381,6 +382,7 @@ struct Index {
 ```
 
 - \@ObservedV2的类实例目前不支持使用JSON.stringify进行序列化。
+- 使用\@ObservedV2与\@Trace装饰器的类，需通过new操作符实例化后，才具备被观测变化的能力。
 
 ## 使用场景
 

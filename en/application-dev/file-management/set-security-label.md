@@ -6,32 +6,32 @@ The security capabilities vary with devices. For example, small embedded devices
 
 For details about APIs, see [ohos.file.securityLabel](../reference/apis-core-file-kit/js-apis-file-securityLabel.md).
 
-**Table 1** Security level APIs
+Table 1 Security level APIs
 
-| API| Description| Category| Synchronous Programming| Asynchronous Programming| 
+| API| Description| Category| Synchronous Programming| Asynchronous Programming|
 | -------- | -------- | -------- | -------- | -------- |
-| setSecurityLabel | Sets a security level for a file.| Method| Supported| Supported| 
-| getSecurityLabel | Obtains the security level of a file.| Method| Supported| Supported| 
+| setSecurityLabel | Sets a security level for a file.| Method| Supported| Supported|
+| getSecurityLabel | Obtains the security level of a file.| Method| Supported| Supported|
 
 > **NOTE**
 >
-> - In distributed networking, a device can view the files that have a higher security level but cannot access them.
+> 1. In distributed networking, a device can view the files that have a higher security level but cannot access them.
 >
-> - The default security level of the distributed file system data is S3. Applications can set the security level of files.
+> 2. The default security level of the distributed file system data is S3. Applications can set the security level of files.
 
 ## Development Example
 
 Obtain the sandbox path of a file and set the data security level. For details about how to obtain the context, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
-  
+
 ```ts
 import { securityLabel } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-// Obtain the sandbox path of the file.
-let context = getContext(this) as common.UIAbilityContext; // Obtain UIAbilityContext.
+// Obtain the sandbox path of the file where the device data level is to be obtained. Ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let pathDir = context.filesDir;
 let filePath = pathDir + '/test.txt';
 

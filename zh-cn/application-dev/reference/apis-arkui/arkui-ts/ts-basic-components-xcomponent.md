@@ -1,10 +1,10 @@
 # XComponent
 
-提供用于图形绘制和媒体数据写入的Surface，XComponent负责将其嵌入到视图中，支持应用自定义Surface位置和大小。具体指南请参考[自定义渲染 (XComponent)文档](../../../ui/napi-xcomponent-guidelines.md)。
+提供用于图形绘制和媒体数据写入的[Surface](../../../ui/napi-xcomponent-guidelines.md#自绘制原理说明)，XComponent负责将其嵌入到视图中，支持应用自定义Surface位置和大小。具体指南请参考[自定义渲染 (XComponent)文档](../../../ui/napi-xcomponent-guidelines.md)。
 
 > **说明：**
 >
-> 该组件从API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -12,21 +12,21 @@
 
 ## 接口
 
-### XComponent<sup>18+</sup>
+### XComponent<sup>19+</sup>
 
 XComponent(params: NativeXComponentParameters)
 
-在native侧获取XComponent节点实例、注册XComponent持有的Surface的生命周期回调和触摸、鼠标、按键等组件事件回调。
+在Native侧获取XComponent节点实例、注册XComponent持有的Surface的生命周期回调和触摸、鼠标、按键等组件事件回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名  | 类型                                | 必填 | 说明                           |
 | ------- | --------------------------------------- | ---- | ------------------------------ |
-| params | [NativeXComponentParameters](#nativexcomponentparameters18) | 是   | 定义XComponent的具体配置参数。 |
+| params | [NativeXComponentParameters](#nativexcomponentparameters19) | 是   | 定义XComponent的具体配置参数。 |
 
 ### XComponent<sup>12+</sup>
 
@@ -38,7 +38,7 @@ XComponent(options: XComponentOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名  | 类型                                | 必填 | 说明                           |
 | ------- | --------------------------------------- | ---- | ------------------------------ |
@@ -56,7 +56,7 @@ XComponent(value: {id: string, type: XComponentType, libraryname?: string, contr
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:** 
+**参数：** 
 
 | 参数名      | 类型                                      | 必填 | 说明                                                         |
 | ----------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -75,7 +75,7 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:** 
+**参数：** 
 
 | 参数名      | 类型                                      | 必填 | 说明                                                         |
 | ----------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -97,12 +97,13 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 | type | [XComponentType](ts-appendix-enums.md#xcomponenttype10)         | 是   | 用于指定XComponent组件类型。 |
 | controller | [XComponentController](#xcomponentcontroller) | 是 | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
 | imageAIOptions | [ImageAIOptions](ts-image-common.md#imageaioptions) | 否 | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
+| screenId<sup>17+</sup> | number | 否 | 屏幕的id。 |
 
-## NativeXComponentParameters<sup>18+</sup>
+## NativeXComponentParameters<sup>19+</sup>
 
-定义XComponent的具体配置参数。这种方式创建的XComponent可以对应的[FrameNode](../js-apis-arkui-frameNode.md)可以传递到native侧使用NDK接口构建UI的方式[监听组件事件](../../../ui/ndk-listen-to-component-events.md)以及进行surface生命周期相关的设置。
+定义XComponent的具体配置参数。这种方式创建的XComponent可以对应的[FrameNode](../js-apis-arkui-frameNode.md)可以传递到Native侧使用NDK接口构建UI的方式[监听组件事件](../../../ui/ndk-listen-to-component-events.md)以及进行surface生命周期相关的设置。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -210,7 +211,7 @@ onLoad(callback: OnNativeLoadCallback )
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名   | 类型   | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
@@ -218,7 +219,7 @@ onLoad(callback: OnNativeLoadCallback )
 
 > **说明：**
 > 
-> 使用自定义组件节点创建XComponent组件时，因为onLoad回调触发时机早于[onSurfaceCreated](#onsurfacecreated12),所以在onLoad回调中调用[getXComponentSurfaceId](#getxcomponentsurfaceid9)获取surfaceId会失败，建议在[onSurfaceCreated](#onsurfacecreated12)回调中获取。
+> 使用自定义组件节点创建XComponent组件时，因为onLoad回调触发时机早于[onSurfaceCreated](#onsurfacecreated12)，所以在onLoad回调中调用[getXComponentSurfaceId](#getxcomponentsurfaceid9)获取surfaceId会失败，建议在[onSurfaceCreated](#onsurfacecreated12)回调中获取。
 
 ### onDestroy
 
@@ -230,7 +231,7 @@ onDestroy(event: VoidCallback )
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名   | 类型   | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
@@ -246,7 +247,7 @@ XComponent持有的Surface创建后回调事件。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名   | 类型   | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
@@ -269,7 +270,7 @@ constructor()
 XComponentController的构造函数。
 
 ```ts
-xcomponentController: XComponentController = new XComponentController()
+xcomponentController: XComponentController = new XComponentController();
 ```
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -280,13 +281,13 @@ xcomponentController: XComponentController = new XComponentController()
 
 getXComponentSurfaceId(): string
 
-获取XComponent对应Surface的ID，供@ohos接口使用，使用方式可参考[相机管理](../../apis-camera-kit/js-apis-camera.md)，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
+获取XComponent对应Surface的ID，供@ohos接口使用，使用方式可参考[相机管理](../../apis-camera-kit/arkts-apis-camera.md)，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**返回值:**
+**返回值：**
 
 | 类型     | 描述                      |
 | ------ | ----------------------- |
@@ -299,11 +300,11 @@ setXComponentSurfaceSize(value: {surfaceWidth: number, surfaceHeight: number}): 
 
 设置XComponent持有Surface的宽度和高度，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
-该接口从API Version 12开始废弃，建议使用[setXComponentSurfaceRect](#setxcomponentsurfacerect12)替代。
+该接口从API version 12开始废弃，建议使用[setXComponentSurfaceRect](#setxcomponentsurfacerect12)替代。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名           | 类型   | 必填   | 说明                      |
 | ------------- | ------ | ---- | ----------------------- |
@@ -321,7 +322,7 @@ getXComponentContext(): Object
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**返回值:**
+**返回值：**
 
 | 类型   | 描述                                                         |
 | ------ | ------------------------------------------------------------ |
@@ -337,7 +338,7 @@ setXComponentSurfaceRect(rect: SurfaceRect): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名 | 类型                             | 必填 | 说明                              |
 | ------ | ------------------------------------ | ---- | --------------------------------- |
@@ -361,7 +362,7 @@ getXComponentSurfaceRect(): SurfaceRect
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**返回值:**
+**返回值：**
 
 | 类型                                 | 描述                                  |
 | ------------------------------------ | ------------------------------------- |
@@ -377,7 +378,7 @@ onSurfaceCreated(surfaceId: string): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名    | 类型 | 必填 | 说明                                              |
 | --------- | -------- | ---- | ------------------------------------------------- |
@@ -397,7 +398,7 @@ onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名    | 类型                              | 必填 | 说明                                                    |
 | --------- | ------------------------------------- | ---- | ------------------------------------------------------- |
@@ -418,7 +419,7 @@ onSurfaceDestroyed(surfaceId: string): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名    | 类型 | 必填 | 说明                                              |
 | --------- | -------- | ---- | ------------------------------------------------- |
@@ -457,7 +458,7 @@ startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[AI分析类库错误码](../errorcode-image-analyzer.md)。
+以下错误码的详细介绍请参见[AI分析类库错误码](errorcode-image-analyzer.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | -------------------------------------------- |
@@ -490,7 +491,7 @@ setXComponentSurfaceRotation(rotationOptions: SurfaceRotationOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名 | 类型                             | 必填 | 说明                              |
 | ------ | ------------------------------------ | ---- | --------------------------------- |
@@ -516,11 +517,65 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**返回值:**
+**返回值：**
 
 | 类型                                 | 描述                                  |
 | ------------------------------------ | ------------------------------------- |
 | [SurfaceRotationOptions](#surfacerotationoptions12对象说明) | 获取XComponent持有Surface在屏幕旋转时是否锁定方向的设置。 |
+
+### lockCanvas<sup>20+</sup>
+
+lockCanvas(): DrawingCanvas | null
+
+返回可用于向XComponent上绘制内容的画布对象。具体绘制方法请参考[Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas)。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+| 类型                                 | 说明                                  |
+| ------------------------------------ | ------------------------------------- |
+| [DrawingCanvas](#drawingcanvas12对象说明) \| null | 可用于向XComponent区域绘制的画布对象或者空对象null。 |
+
+> **说明：**
+>
+> 如果当前XComponent状态无法获取画布对象则将返回null。原因通常为：
+>
+> 1. XComponent持有的Surface未创建完成（可通过设置[onLoad](#onload)/[onSurfaceCrearted](#onsurfacecreated12)回调来确定，此回调触发时，Surface已创建完成）。
+>
+> 2. 之前已经调用过lockCanvas来获取过画布对象，且该画布对象未调用[unlockCanvasAndPost](#unlockcanvasandpost20)去释放。
+>
+> 只支持TEXTURE和SURFACE模式。
+>
+> 使用此接口后，同时在NDK侧获取NativeWindow并调用相关接口进行绘制，可能出现缓冲区竞争和上下文冲突而发生绘制画面错误等异常，因此不允许使用。
+>
+> 此接口需要和[unlockCanvasAndPost](#unlockcanvasandpost20)接口配对使用，具体参考[示例3使用画布对象在XComponent上绘制内容](#示例3使用画布对象在xcomponent上绘制内容)。
+
+### unlockCanvasAndPost<sup>20+</sup>
+
+unlockCanvasAndPost(canvas: DrawingCanvas): void
+
+将画布对象中的内容绘制在XComponent区域，并释放该画布对象。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| canvas | [DrawingCanvas](#drawingcanvas12对象说明) | 是 | 之前调用lockCanvas方法返回的画布对象。 |
+
+> **说明：**
+>
+> 1. 画布对象调用unlockCanvasAndPost释放后，不可再使用该画布对象。
+>
+> 2. 只支持TEXTURE和SURFACE模式。
+>
+> 3. 使用此接口后，同时在NDK侧获取NativeWindow并调用相关接口进行绘制，可能出现缓冲区竞争和上下文冲突而发生绘制画面错误等异常，因此不允许使用。
+>
+> 4. 此接口需要和[lockCanvas](#lockcanvas20)接口配对使用，具体参考[示例3使用画布对象在XComponent上绘制内容](#示例3使用画布对象在xcomponent上绘制内容)。
 
 ## SurfaceRotationOptions<sup>12+</sup>对象说明
 
@@ -555,6 +610,20 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 > 
 > surfaceWidth和surfaceHeight属性的取值都不可超过8192px，否则会导致渲染异常。
 
+## DrawingCanvas<sup>12+</sup>对象说明
+
+type DrawingCanvas = Canvas
+
+可用于向XComponent上绘制内容的画布对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) | 返回一个Canvas对象。 |
+
 ## 示例
 
 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
@@ -564,16 +633,16 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 
 使用enableAnalyzer属性开启图像AI分析功能。可通过XComponentController控制开始、停止图形AI分析。
 
-<!--Del-->
+<!--RP1-->
 > **说明：**
 >
 > 本示例画图逻辑具体实现（和nativeRender相关的函数实现）可以参考[ArkTSXComponent示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)
-<!--DelEnd-->
+<!--RP1End-->
 
 ```ts
 // xxx.ets
 import { BusinessError } from '@kit.BasicServicesKit';
-import nativeRender from 'libnativerender.so';
+import nativeRender from 'libnativerender.so';// 开发者自己实现的so，详见上述说明。
 
 class CustomXComponentController extends XComponentController {
   onSurfaceCreated(surfaceId: string): void {
@@ -604,51 +673,25 @@ struct XComponentExample {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT],
     aiController: this.aiController
   };
-  @State xcWidth: string = "320px";
-  @State xcHeight: string = "480px";
+  @State xcWidth: string = "720px";
+  @State xcHeight: string = "720px";
   @State currentStatus: string = "index";
 
   build() {
     Column({ space: 5 }) {
-      Button("change size")
-        .onClick(() => {
-          this.xcWidth = "640px";
-          this.xcHeight = "720px";
-        })
-      Button('start AI analyze')
-        .onClick(() => {
-          this.xComponentController.startImageAnalyzer(this.config)
-            .then(() => {
-              console.log("analysis complete");
-            })
-            .catch((error: BusinessError) => {
-              console.log("error code: " + error.code);
-            })
-        })
-      Button('stop AI analyze')
-        .onClick(() => {
-          this.xComponentController.stopImageAnalyzer();
-        })
-      Button('get analyzer types')
-        .onClick(() => {
-          this.aiController.getImageAnalyzerSupportTypes();
-        })
-      Button('Draw Star')
-        .fontSize('16fp')
-        .fontWeight(500)
-        .margin({ bottom: 24 })
-        .onClick(() => {
-          let surfaceId = this.xComponentController.getXComponentSurfaceId();
-          this.xComponentController.getXComponentSurfaceRect();
-          nativeRender.DrawPattern(BigInt(surfaceId));
-          let hasDraw: boolean = false;
-          if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
-            hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
-          }
-          if (hasDraw) {
-            this.currentStatus = "draw star";
-          }
-        })
+      Row() {
+        Text('Native XComponent Sample')
+          .fontSize('24fp')
+          .fontWeight(500)
+          .margin({
+            left: 24,
+            top: 12
+          })
+      }
+      .margin({ top: 24 })
+      .width('100%')
+      .height(56)
+
       XComponent({
         type: XComponentType.SURFACE,
         controller: this.xComponentController,
@@ -657,50 +700,175 @@ struct XComponentExample {
         .width(this.xcWidth)
         .height(this.xcHeight)
         .enableAnalyzer(true)
+        .onClick(() => {
+          let surfaceId = this.xComponentController.getXComponentSurfaceId();
+          nativeRender.ChangeColor(BigInt(surfaceId));
+          let hasChangeColor: boolean = false;
+          if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
+            hasChangeColor = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasChangeColor;
+          }
+          if (hasChangeColor) {
+            this.currentStatus = "change color";
+          }
+        })
       Text(this.currentStatus)
         .fontSize('24fp')
         .fontWeight(500)
+      Column() {
+        Button('start AI analyze')
+          .onClick(() => {
+            this.xComponentController.startImageAnalyzer(this.config)
+              .then(() => {
+                console.log("analysis complete");
+              })
+              .catch((error: BusinessError) => {
+                console.log("error code: " + error.code);
+              })
+          })
+          .margin(2)
+        Button('stop AI analyze')
+          .onClick(() => {
+            this.xComponentController.stopImageAnalyzer();
+          })
+          .margin(2)
+        Button('get analyzer types')
+          .onClick(() => {
+            this.aiController.getImageAnalyzerSupportTypes();
+          })
+          .margin(2)
+        Button('Draw Star')
+          .fontSize('16fp')
+          .fontWeight(500)
+          .margin({ bottom: 24 })
+          .onClick(() => {
+            let surfaceId = this.xComponentController.getXComponentSurfaceId();
+            this.xComponentController.getXComponentSurfaceRect();
+            nativeRender.DrawPattern(BigInt(surfaceId));
+            let hasDraw: boolean = false;
+            if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
+              hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
+            }
+            if (hasDraw) {
+              this.currentStatus = "draw star";
+            }
+          })
+          .margin(2)
+      }.justifyContent(FlexAlign.Center)
     }
     .width("100%")
   }
 }
 ```
-<!--RP1--><!--RP1End-->
+![AI示例运行图](./figures/AIXComponent.gif)
+
 
 ### 示例2（在surface旋转过程中锁定）
 
 通过setXComponentSurfaceRotation设置surface在屏幕旋转过程中锁定方向，不跟随屏幕进行旋转。
 
+> **说明：**
+>
+> 本示例画图逻辑具体实现（和nativeRender相关的函数实现）可以参考<!--RP2-->[ArkTSXComponent示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)<!--RP2End-->
+
 ```ts
 // xxx.ets
+import nativeRender from 'libnativerender.so';
+
+class MyXComponentController extends XComponentController {
+  onSurfaceCreated(surfaceId: string): void {
+    console.log(`onSurfaceCreated surfaceId: ${surfaceId}`);
+    nativeRender.SetSurfaceId(BigInt(surfaceId));
+  }
+
+  onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {
+    console.log(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}}`);
+    nativeRender.ChangeSurface(BigInt(surfaceId), rect.surfaceWidth, rect.surfaceHeight);
+  }
+
+  onSurfaceDestroyed(surfaceId: string): void {
+    console.log(`onSurfaceDestroyed surfaceId: ${surfaceId}`);
+    nativeRender.DestroySurface(BigInt(surfaceId));
+  }
+}
+
 @Entry
 @Component
 struct Index {
   @State isLock: boolean = true;
   @State xc_width: number = 500;
   @State xc_height: number = 700;
-  myXComponentController: XComponentController = new XComponentController();
+  myXComponentController: XComponentController = new MyXComponentController();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
       XComponent({
-        id: 'xComponentId',
+        id: "XComponent",
         type: XComponentType.SURFACE,
-        libraryname: 'nativerender',
         controller: this.myXComponentController
       })
-      .width(this.xc_width)
-      .height(this.xc_height)
-      .onLoad(() => {
-        let surfaceRotation: SurfaceRotationOptions = { lock: this.isLock };
-        this.myXComponentController.setXComponentSurfaceRotation(surfaceRotation);
-        console.log("Surface getXComponentSurfaceRotation lock = " +
+        .onLoad(() => {
+          let surfaceRotation: SurfaceRotationOptions = { lock: this.isLock };
+          this.myXComponentController.setXComponentSurfaceRotation(surfaceRotation);
+          console.log("Surface getXComponentSurfaceRotation lock = " +
           this.myXComponentController.getXComponentSurfaceRotation().lock);
-      })
+        })
+        .width(this.xc_width)
+        .height(this.xc_height)
+      Button("Draw")
+        .onClick(() => {
+          let surfaceId = this.myXComponentController.getXComponentSurfaceId();
+          nativeRender.DrawPattern(BigInt(surfaceId));
+        })
     }
-    .width('100%')
-    .height('100%')
   }
 }
 ```
 
+### 示例3（使用画布对象在XComponent上绘制内容）
+
+应用调用lockCanvas返回画布对象，然后通过画布对象调用对应的绘制接口，最后调用unlockCanvasAndPost在XComponent上绘制内容。
+
+```ts
+// xxx.ets
+import { drawing } from '@kit.ArkGraphics2D';
+
+@Entry
+@Component
+struct Index {
+  private xcController: XComponentController = new XComponentController();
+  private mCanvas: DrawingCanvas | null = null;
+
+  build() {
+    Column() {
+      XComponent({ type: XComponentType.SURFACE, controller: this.xcController })
+        .width("80%")
+        .height("80%")
+        .onLoad(() => {
+          this.mCanvas = this.xcController.lockCanvas();
+          if (this.mCanvas) {
+            this.mCanvas.drawColor(255, 240, 250, 255); // 每次绘制前必须完全重绘整个XComponent区域,可以调用此方法实现
+            const brush = new drawing.Brush(); // 创建画刷对象
+            brush.setColor({ // 设置画刷的颜色
+              alpha: 255,
+              red: 39,
+              green: 135,
+              blue: 217
+            });
+            this.mCanvas.attachBrush(brush); // 绑定画刷到画布上
+            this.mCanvas.drawRect({ // 绘制一个矩形
+              left: 300,
+              right: 800,
+              top: 100,
+              bottom: 800
+            });
+            this.mCanvas.detachBrush(); // 将画刷与画布解绑
+            this.xcController.unlockCanvasAndPost(this.mCanvas);
+          }
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+![DrawingCanvas示例图](./figures/DrawingCanvas.PNG)

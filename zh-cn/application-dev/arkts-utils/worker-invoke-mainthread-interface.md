@@ -1,10 +1,10 @@
 # Worker同步调用宿主线程的接口
 
-如果一个接口在主线程中已经实现了，Worker需要调用该接口，那么可以使用下面这种方式实现。
+如果一个接口已在宿主线程中实现，Worker可以通过以下方式调用该接口。
 
-下面以Worker同步调用宿主线程接口为例进行说明。
+以下示例展示了Worker如何同步调用宿主线程的接口。
 
-1. 首先，在宿主线程实现需要调用的接口，并且创建Worker对象，在Worker上注册需要调用的接口。
+1. 首先，在宿主线程实现需要调用的接口，并创建Worker对象，在Worker对象上注册需要调用的对象。
 
    ```ts
    // IconItemSource.ets
@@ -18,6 +18,7 @@
      }
    }
    ```
+   <!-- @[implement_child_thread_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/IconItemSource.ets) -->
 
    ```ts
    // WorkerCallGlobalUsage.ets
@@ -51,8 +52,9 @@
    workerInstance.registerGlobalCallObject("picData", picData);
    workerInstance.postMessage("run setUp in picData");
    ```
+   <!-- @[create_worker_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/WorkerCallGlobalUsage.ets) -->
 
-2. 然后，在Worker中通过callGlobalCallObjectMethod接口就可以调用宿主线程中的setUp()方法了。
+2. 然后，在Worker中通过callGlobalCallObjectMethod接口可以调用宿主线程中的setUp()方法。
 
    ```ts
    // Worker.ets
@@ -67,3 +69,4 @@
      console.error("worker: error code is " + error.code + " error message is " + error.message);
    }
    ```
+   <!-- @[call_main_method](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/workers/Worker.ets) -->

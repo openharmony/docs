@@ -13,7 +13,7 @@ JSVM-API中提供操作private属性能力的接口。
 | 接口                                    | 功能说明                       |
 |----------------------------------------|--------------------------------|
 | OH_JSVM_CreateDataReference            | 在JSVM中创建一个带有指定引用计数的数据引用 |
-| OH_JSVM_GetReferenceData               | 检查指定的引用是否有效,返回该引用关联的JavaScript数据,无效result设置为NULL|
+| OH_JSVM_GetReferenceData               | 检查指定的引用是否有效, 返回该引用关联的JavaScript数据, 无效result设置为NULL|
 | OH_JSVM_CreatePrivate                  | 创建一个js private key对象。   |
 | OH_JSVM_SetPrivate                     | 为传入的object设置一个private属性。   |
 | OH_JSVM_GetPrivate                     | 为传入的object获取private key对应的private属性。   |

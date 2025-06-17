@@ -1,11 +1,10 @@
 # Encryption and Decryption with a 3DES Symmetric Key (ECB Mode) (ArkTS)
 
-
 For details about the algorithm specifications, see [3DES](crypto-sym-encrypt-decrypt-spec.md#3des).
 
+## How to Develop
 
 **Encryption**
-
 
 1. Call [cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator) and [SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1) to generate a 192-bit 3DES symmetric key (**SymKey**).
    
@@ -28,7 +27,6 @@ For details about the algorithm specifications, see [3DES](crypto-sym-encrypt-de
    - If data has been passed in by **Cipher.update**, pass in **null** in the **data** parameter of **Cipher.doFinal**.
    - The output of **Cipher.doFinal** may be **null**. To avoid exceptions, always check whether the result is **null** before accessing specific data.
 
-
 **Decryption**
 
 1. Call [cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher) with the string parameter **'3DES192|ECB|PKCS7'** to create a **Cipher** instance for decryption. The key type is **3DES192**, block cipher mode is **ECB**, and the padding mode is **PKCS7**.
@@ -39,6 +37,12 @@ For details about the algorithm specifications, see [3DES](crypto-sym-encrypt-de
 
 4. Call [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to obtain the decrypted data.
 
+## Example
+
+If the cipher mode is ECB, you do not need to set encryption and decryption parameters.
+
+If the cipher mode is CBC, CTR, OFB, or CFB, you must set the IV and modify the parameters when the **Cipher** instance is generated and initialized during encryption and decryption. For details about how to set the IV, see [Setting the IV](#setting-the-iv).
+
 - Example (using asynchronous APIs):
 
   ```ts
@@ -47,6 +51,7 @@ For details about the algorithm specifications, see [3DES](crypto-sym-encrypt-de
 
   // Encrypt the message.
   async function encryptMessagePromise(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
+    // If CBC, CTR, OFB, or CFB is used, modify the cipher mode and set the IV.
     let cipher = cryptoFramework.createCipher('3DES192|ECB|PKCS7');
     await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null);
     let encryptData = await cipher.doFinal(plainText);
@@ -54,6 +59,7 @@ For details about the algorithm specifications, see [3DES](crypto-sym-encrypt-de
   }
   // Decrypt the message.
   async function decryptMessagePromise(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
+    // If CBC, CTR, OFB, or CFB is used, modify the cipher mode and set the IV.
     let decoder = cryptoFramework.createCipher('3DES192|ECB|PKCS7');
     await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, null);
     let decryptData = await decoder.doFinal(cipherText);
@@ -90,6 +96,7 @@ For details about the algorithm specifications, see [3DES](crypto-sym-encrypt-de
 
   // Encrypt the message.
   function encryptMessage(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
+    // If CBC, CTR, OFB, or CFB is used, modify the cipher mode and set the IV.
     let cipher = cryptoFramework.createCipher('3DES192|ECB|PKCS7');
     cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null);
     let encryptData = cipher.doFinalSync(plainText);
@@ -97,6 +104,7 @@ For details about the algorithm specifications, see [3DES](crypto-sym-encrypt-de
   }
   // Decrypt the message.
   function decryptMessage(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
+    // If CBC, CTR, OFB, or CFB is used, modify the cipher mode and set the IV.
     let decoder = cryptoFramework.createCipher('3DES192|ECB|PKCS7');
     decoder.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, null);
     let decryptData = decoder.doFinalSync(cipherText);
@@ -123,4 +131,25 @@ For details about the algorithm specifications, see [3DES](crypto-sym-encrypt-de
       console.error('decrypt failed');
     }
   }
+  ```
+
+### Setting the IV
+
+The following example demonstrates how to set the IV when the CBC mode is used.
+
+If CBC, CTR, OFB, or CFB mode is used, set the IV in the same way. If ECB mode is used, you do not need to set the decryption parameters.
+
+  ```ts
+  function genIvParamsSpec() {
+    let ivBlob = generateRandom (8); // The IV for 3DES CBC, CFB, OFB, or CTR is of 8 bytes.
+    let ivParamsSpec: cryptoFramework.IvParamsSpec = {
+      algName: "IvParamsSpec",
+      iv: ivBlob
+    };
+    return ivParamsSpec;
+  }
+  let iv = genIvParamsSpec();
+  let cipher = cryptoFramework.createCipher('3DES192|CBC|PKCS7');
+  cipher.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, iv);
+  // This code snippet only shows the differences between CBC, CTR, OFB, and CFB modes. For details about other processes, see the related development examples.
   ```

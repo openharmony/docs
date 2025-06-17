@@ -1,4 +1,4 @@
-# @ohos.continuation.continuationManager (continuationManager)
+# @ohos.continuation.continuationManager (流转/协同管理)
 
 continuationManager模块提供了流转/协同入口管理服务能力，包括连接/取消流转管理服务，注册/解注册设备连接变化监听，拉起设备选择模块，更新连接状态。
 

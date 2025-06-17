@@ -933,3 +933,21 @@ Incorrect encoding format, only support utf-8.
 **处理步骤**
 
 修改编码格式为utf-8。
+
+## 10200068 引用已释放或分离的ArrayBuffer
+
+**错误信息**
+
+The underlying ArrayBuffer is null or detach.
+
+**错误描述**
+
+使用了已释放或分离的ArrayBuffer。
+
+**可能原因**
+
+ArrayBuffer已分离，或者ArrayBuffer为空。
+
+**处理步骤**
+
+调用时，确保使用的ArrayBuffer是可用的。无法保证时，需要捕获异常。

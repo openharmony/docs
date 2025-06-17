@@ -1,7 +1,7 @@
 # PageAbility组件配置
 
 
-PageAbility的相关配置在config.json配置文件的"module"对象的"abilities"对象中，"icon"属性表示Ability图标资源文件的索引，"lable"属性表示Ability对用户显示的名称，"skills"属性表示Ability能够接收的want的特征。
+PageAbility的相关配置在config.json配置文件的"module"对象的"abilities"对象中，"icon"属性表示Ability图标资源文件的索引，"label"属性表示Ability对用户显示的名称，"skills"属性表示Ability能够接收的want的特征。
 
 
   **表1** PageAbility部分配置项说明

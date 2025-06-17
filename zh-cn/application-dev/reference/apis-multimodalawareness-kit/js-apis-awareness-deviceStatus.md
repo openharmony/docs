@@ -38,7 +38,7 @@
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                           | 是   | 事件类型。type为“steadyStandingDetect”，表示设备静止姿态（支架态）感知。 |
-| callback | Callback&lt;[SteadyStandingStatus](#SteadyStandingStatus)&gt; | 是   | 回调函数，返回设备静止姿态感知（支架态）状态信息。|
+| callback | Callback&lt;[SteadyStandingStatus](#steadystandingstatus)&gt; | 是   | 回调函数，返回设备静止姿态感知（支架态）状态信息。|
 
 **错误码**：
 
@@ -49,7 +49,7 @@
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
 | 32500001 | Service exception. |
-| 32500002 | Subscribe Failed. |
+| 32500002 | Subscription failed. |
 
 **示例**：
 
@@ -76,7 +76,7 @@ off(type: 'steadyStandingDetect', callback?: Callback&lt;SteadyStandingStatus&gt
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                           | 是   | 事件类型。type为“steadyStandingDetect”，表示设备静止姿态（支架态）感知。 |
-| callback | Callback&lt;[SteadyStandingStatus](#SteadyStandingStatus)&gt; | 是   | 回调函数，返回设备静止姿态感知（支架态）状态信息。|
+| callback | Callback&lt;[SteadyStandingStatus](#steadystandingstatus)&gt; | 否   | 回调函数，返回设备静止姿态感知（支架态）状态信息。|
 
 **错误码**：
 
@@ -87,7 +87,7 @@ off(type: 'steadyStandingDetect', callback?: Callback&lt;SteadyStandingStatus&gt
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
 | 32500001 | Service exception. |
-| 32500003 | Unsubscribe Failed. |
+| 32500003 | Unsubscription failed. |
 
 **示例**：
 

@@ -351,3 +351,11 @@ canvas.detachPen();
 | 原始图 | 设置模糊效果后的效果图 |
 | -------- | -------- |
 | ![Screenshot_20241130170911500](figures/Screenshot_20241130170911500.jpg) | ![Screenshot_20241130170826458](figures/Screenshot_20241130170826458.jpg) |
+
+<!--RP1-->
+## 相关实例
+
+针对Drawing(ArkTS)的开发，有以下相关实例可供参考：
+
+- [ArkTSGraphicsDraw (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/ArkTSGraphicsDraw)
+<!--RP1End-->

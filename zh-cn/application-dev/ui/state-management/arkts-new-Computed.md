@@ -1,6 +1,6 @@
 # \@Computed装饰器：计算属性
 
-\@Computed装饰器：计算属性，在被计算的值变化的时候，只会计算一次。主要应用于解决UI多次重用该属性从而重复计算导致的性能问题。
+\@Computed装饰器：计算属性，当被计算的属性变化时，只会计算一次。这解决了UI多次重用该属性导致的重复计算和性能问题。
 
 
 状态变量的变化可以触发其关联\@Computed的重新计算。在阅读本文档前，建议提前阅读：[\@ComponentV2](./arkts-new-componentV2.md)，[\@ObservedV2和\@Trace](./arkts-new-observedV2-and-trace.md)，[\@Local](./arkts-new-local.md)。
@@ -31,7 +31,7 @@ get varName(): T {
 | 支持类型           | getter访问器。 |
 | 从父组件初始化      | 禁止。 |
 | 可初始化子组件      | \@Param。  |
-| 被执行的时机        | \@ComponentV2被初始化时，计算属性会被触发计算。当被计算的值改变的时候，计算属性也会发生计算。 |
+| 被执行的时机        | \@ComponentV2被初始化时，计算属性会被触发计算。当被计算的值发生变化时，计算属性会重新计算。 |
 |是否允许赋值         | @Computed装饰的属性是只读的，不允许赋值，详情见[使用限制](#使用限制)。 |
 
 ## 使用限制
@@ -93,7 +93,7 @@ get varName(): T {
       Scroll() {
         Column({ space: 3 }) {
           Text(`${this.count}`)
-          // 错误写法，@Computed装饰的属性方法是只读的，无法和双向绑定连用
+          // 错误写法，@Computed装饰的属性是只读的，无法与双向绑定连用。
           Child({ double: this.double!! })
         }
       }
@@ -102,7 +102,7 @@ get varName(): T {
   ```
 
 - \@Computed为状态管理V2提供的能力，只能在\@ComponentV2和\@ObservedV2中使用。
-- 多个\@Computed一起使用时，警惕循环求解。
+- 多个\@Computed一起使用时，警惕循环求解，以防止计算过程中的死循环。
 
   ```ts
   @Local a : number = 1;
@@ -159,9 +159,9 @@ struct Index {
 }
 ```
 
-但是需要注意，计算属性本身是有性能开销的，实际应用开发中：
-- 如果是上面这种简单计算，可以不使用计算属性。
-- 如果在视图中只使用一次，也可以不使用计算属性，建议直接求解。
+计算属性本身会带来性能开销，在实际应用开发中需要注意：
+- 对于简单的计算逻辑，可以不使用计算属性。
+- 如果计算逻辑在视图中仅使用一次，则不使用计算属性，直接求解。
 
 2. 在\@ObservedV2装饰的类中使用计算属性。
 - 点击Button改变lastName，触发\@Computed fullName重新计算，且只被计算一次。
@@ -199,9 +199,9 @@ struct Index {
 ```
 
 ### \@Computed装饰的属性可以被\@Monitor监听变化
-下面的例子展示了使用计算属性求解fahrenheit和kelvin。
-- 点击“-”，celsius-- -> fahrenheit -> kelvin --> kelvin改变触发onKelvinMonitor。
-- 点击“+”，celsius++ -> fahrenheit -> kelvin --> kelvin改变触发onKelvinMonitor。
+如何使用计算属性求解fahrenheit和kelvin。示例如下：
+- 点击“-”，celsius-- -> fahrenheit -> kelvin --> kelvin变化时调用onKelvinMonitor。
+- 点击“+”，celsius++ -> fahrenheit -> kelvin --> kelvin变化时调用onKelvinMonitor。
 
 ```ts
 @Entry
@@ -250,8 +250,8 @@ struct MyView {
 ### \@Computed装饰的属性可以初始化\@Param
 下面的例子使用\@Computed初始化\@Param。
 - 点击`Button('-')`和`Button('+')`改变商品数量，`quantity`是被\@Trace装饰的，其改变时可以被观察到的。
-- `quantity`的改变触发`total`和`qualifiesForDiscount`重新计算，计算商品总价和是否可以享有优惠。
-- `total`和`qualifiesForDiscount`的改变触发子组件`Child`对应Text组件刷新。
+- `quantity`的改变会触发`total`和`qualifiesForDiscount`重新计算，计算商品总价和是否可以享有优惠。
+- `total`和`qualifiesForDiscount`的改变会触发子组件`Child`对应Text组件刷新。
 
 ```ts
 @ObservedV2

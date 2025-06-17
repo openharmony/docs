@@ -12,7 +12,6 @@ During the MD operation, you can [pass in all the data at a time](#generating-an
 
 The following provides examples of MD operations with different data passing methods.
 
-
 ### Generating an MD by Passing In Full Data
 
 1. Call [cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd) with the MD algorithm **SHA256** to create a message digest (**Md**) instance.
@@ -29,11 +28,11 @@ The following provides examples of MD operations with different data passing met
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
-  async function doMd() {
+  async function doSha256() {
     let mdAlgName = "SHA256"; // Algorithm to use.
     let message = 'mdTestMessage'; // Message to be digested.
     let md = cryptoFramework.createMd(mdAlgName);
-    // If the data to be processed is short, use update() to pass in the full data at a time. The amount of data to be passed in by a single **update()** operation is not limited.
+    // If there is a small amount of data to be processed, call update() to pass in all the data at a time. The amount of data to be passed in by a single update() call is not limited.
     await md.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
     let mdResult = await md.digest();
     console.info('Md result:' + mdResult.data);
@@ -48,11 +47,11 @@ The following provides examples of MD operations with different data passing met
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
-  function doMdBySync() {
+  function doSha256BySync() {
     let mdAlgName = "SHA256"; // Algorithm to use.
     let message = 'mdTestMessage'; // Message to be digested.
     let md = cryptoFramework.createMd(mdAlgName);
-    // If the data to be processed is short, use update() to pass in the full data at a time. The amount of data to be passed in by a single **update()** operation is not limited.
+    // If there is a small amount of data to be processed, call update() to pass in all the data at a time. The amount of data to be passed in by a single update() call is not limited.
     md.updateSync({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
     let mdResult = md.digestSync();
     console.info('[Sync]:Md result:' + mdResult.data);
@@ -77,7 +76,7 @@ The following provides examples of MD operations with different data passing met
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
-  async function doLoopMd() {
+  async function doLoopSha256() {
     let mdAlgName = "SHA256"; // Algorithm to use.
     let md = cryptoFramework.createMd(mdAlgName);
     // In this example, the message is of 43 bytes. After decoded in UTF-8 format, the message is also of 43 bytes.
@@ -102,7 +101,7 @@ The following provides examples of MD operations with different data passing met
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
-  function doLoopMdBySync() {
+  function doLoopSha256BySync() {
     let mdAlgName = "SHA256"; // Algorithm to use.
     let md = cryptoFramework.createMd(mdAlgName);
     // In this example, the message is of 43 bytes. After decoded in UTF-8 format, the message is also of 43 bytes.

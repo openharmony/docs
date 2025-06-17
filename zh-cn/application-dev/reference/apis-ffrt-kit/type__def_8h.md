@@ -30,7 +30,9 @@
 | struct&nbsp;&nbsp;[ffrt_queue_attr_t](ffrt__queue__attr__t.md) | 串行队列属性结构。  | 
 | struct&nbsp;&nbsp;[ffrt_condattr_t](ffrt__condattr__t.md) | FFRT条件变量属性结构。  | 
 | struct&nbsp;&nbsp;[ffrt_mutexattr_t](ffrt__mutexattr__t.md) | FFRT锁属性结构。  | 
+| struct&nbsp;&nbsp;[ffrt_rwlockattr_t](ffrt__rwlockattr__t.md) | FFRT读写锁属性结构。  | 
 | struct&nbsp;&nbsp;[ffrt_mutex_t](ffrt__mutex__t.md) | FFRT互斥锁结构。  | 
+| struct&nbsp;&nbsp;[ffrt_rwlock_t](ffrt__rwlock__t.md) | FFRT读写锁结构。  | 
 | struct&nbsp;&nbsp;[ffrt_cond_t](ffrt__cond__t.md) | FFRT条件变量结构。  | 
 
 
@@ -56,4 +58,4 @@
 | [ffrt_function_kind_t](_f_f_r_t.md#ffrt_function_kind_t) { <br/>ffrt_function_kind_general, <br/>ffrt_function_kind_queue<br/> } | 任务类型。  | 
 | [ffrt_dependence_type_t](_f_f_r_t.md#ffrt_dependence_type_t) { <br/>ffrt_dependence_data, <br/>ffrt_dependence_task<br/> } | 依赖类型。  |
 | [ffrt_error_t](_f_f_r_t.md#ffrt_error_t) {<br/>ffrt_error = -1, <br/>ffrt_success = 0, <br/>ffrt_error_nomem = ENOMEM, <br/>ffrt_error_timedout = ETIMEDOUT,<br/>ffrt_error_busy = EBUSY, <br/>ffrt_error_inval = EINVAL<br/>} | FFRT错误码。  | 
-| [ffrt_mutex_type](_f_f_r_t.md#ffrt_mutex_type) {<br/>ffrt_mutex_normal = 0, <br/>ffrt_mutex_recursive = 2, <br/>ffrt_mutex_default = ffrt_mutex_normal <br/>} | mutex类型枚举。  | 
+| [ffrt_mutex_type](_f_f_r_t.md#ffrt_mutex_type) {<br/>ffrt_mutex_normal = 0, <br/>ffrt_mutex_recursive = 2, <br/>ffrt_mutex_default = ffrt_mutex_normal <br/>} | 互斥锁类型枚举。  | 

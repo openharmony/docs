@@ -11,7 +11,13 @@ To avoid unexpected behavior, ensure that every member variable of the struct is
 
 **Since**: 10
 
+**Deprecated from**: 18
+
+**Substitute**: [OH_AudioCapturer_OnReadDataCallback](_o_h_audio.md#oh_audiocapturer_onreaddatacallback), [OH_AudioCapturer_OnDeviceChangeCallback](_o_h_audio.md#oh_audiocapturer_ondevicechangecallback), [OH_AudioCapturer_OnInterruptCallback](_o_h_audio.md#oh_audiocapturer_oninterruptcallback), and [OH_AudioCapturer_OnErrorCallback](_o_h_audio.md#oh_audiocapturer_onerrorcallback)
+
 **Related module**: [OHAudio](_o_h_audio.md)
+
+**Header file**: [native_audiostream_base.h](native__audiostream__base_8h.md)
 
 
 ## Summary
@@ -44,6 +50,12 @@ int32_t (*OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnError)(OH_AudioC
 
 Defines a function pointer to the callback function used to process audio recording errors.
 
+**Since**: 10
+
+**Deprecated from**: 18
+
+**Substitute**: [OH_AudioCapturer_OnErrorCallback](_o_h_audio.md#oh_audiocapturer_onerrorcallback)
+
 **Parameters**
 
 | Name| Description| 
@@ -62,6 +74,12 @@ int32_t (*OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnInterruptEvent)(
 **Description**
 
 Defines a function pointer to the callback function used to process audio recording interruption events.
+
+**Since**: 10
+
+**Deprecated from**: 18
+
+**Substitute**: [OH_AudioCapturer_OnInterruptCallback](_o_h_audio.md#oh_audiocapturer_oninterruptcallback)
 
 **Parameters**
 
@@ -85,6 +103,12 @@ Defines a function pointer to the callback function used to read audio data.
 
 The callback function is used only to read audio data. Do not call AudioCapturer APIs in it.
 
+**Since**: 10
+
+**Deprecated from**: 18
+
+**Substitute**: [OH_AudioCapturer_OnReadDataCallback](_o_h_audio.md#oh_audiocapturer_onreaddatacallback)
+
 **Parameters**
 
 | Name| Description| 
@@ -104,6 +128,12 @@ int32_t (*OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnStreamEvent)(OH_
 **Description**
 
 Defines a function pointer to the callback function used to process audio recording stream events.
+
+**Since**: 10
+
+**Deprecated from**: 18
+
+**Substitute**: [OH_AudioCapturer_OnDeviceChangeCallback](_o_h_audio.md#oh_audiocapturer_ondevicechangecallback)
 
 **Parameters**
 

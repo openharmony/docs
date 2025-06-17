@@ -4,11 +4,13 @@
 
 VPN，即虚拟专用网络（Virtual Private Network），是在公用网络上建立专用网络的一种技术。在VPN网络中，任意两个节点间的连接并非依赖传统专用网络所需要的端到端的物理链路，而是构建在公用网络服务商提供的平台（如Internet）之上的逻辑网络。用户数据在这一逻辑链路中进行传输。
 
-OpenHarmony为开发者提供了用于创建VPN的API解决方案。本文将指导您如何开发自己的VPN客户端。
+OpenHarmony为开发者提供了用于创建VPN的API解决方案。当前提供三方VPN能力主要用于创建虚拟网卡及配置VPN路由信息，连接隧道过程及内部连接的协议需要应用内部自行实现。本文将指导您如何开发自己的VPN客户端。
 
 > **说明：**
 >
 > 为了保证应用的运行效率，所有API调用都是异步的，对于异步调用的API均提供了Promise的方式，以下示例均采用Promise方式，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
+
+完整的JS API说明以及示例代码请参考：[VPN扩展应用API](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
 
 ## VPN应用的显示体验
 
@@ -22,16 +24,15 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。本文将指
 - 用于手动启动和停止连接的控件。
 - 当VPN启动连接时，在通知栏显示VPN应用的连接状态或提供网络统计信息 (如连接时长、流量等) 。点击该通知能够将您的VPN应用调入前台。
 
-## 接口说明
 
-完整的JS API说明以及示例代码请参考：[VPN扩展应用API](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
+## 开发步骤
 
-## 创建VPN Extension Ability
+### 创建VPN Extension Ability
 
 如果想使您的应用支持VPN能力，首先您需要创建一个继承于VpnExtensionAbility的extensionAbilities。
 
 ```ts
-// 举例：在应用的module.json5中定义MyVpnExtAbility
+// 举例：在应用的module.json5中定义MyVpnExtAbility。
 "extensionAbilities": [
   {
     "name": "MyVpnExtAbility",
@@ -48,14 +49,13 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。本文将指
 
 接下来您需要在创建的VpnExtensionAbility中实现VPN的配置、启动和停止操作：
 
-- 建立一个VPN的网络隧道，以TCP隧道为例（参考本文下方VPN Demo示例工程文件[vpn_client](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Connectivity/VPN/entry/src/main/cpp/vpn_client.cpp)的TcpConnect()方法）；
-- 通过VpnConnection.[protect](../reference/apis-network-kit/js-apis-net-vpnExtension.md#protect)保护前一步建立的TCP隧道；
+- 建立一个VPN的网络隧道，以UDP隧道为例（参考本文下方VPN Demo示例工程文件[napi_init](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case/entry/src/main/cpp/napi_init.cpp)的UdpConnect()方法）；
+- 通过VpnConnection.[protect](../reference/apis-network-kit/js-apis-net-vpnExtension.md#protect)保护前一步建立的UDP隧道；
 - 构建VPN Config参数，参考[VPN Config参数说明](#vpn-config参数说明)；
 - 通过VpnConnection.[create](../reference/apis-network-kit/js-apis-net-vpnExtension.md#create)建立VPN网络连接；
 - 处理虚拟网卡的数据，如：读写操作。
 
-
-## 启动VPN Extension Ability
+### 启动VPN Extension Ability
 
 当VPN应用启动VPN连接时，需要调用startVpnExtensionAbility接口，携带需要启动的VpnExtensionAbility信息，其中bundleName需要与您的VPN应用bundleName一致，abilityName为您在前面创建的VpnExtensionAbility名。您可参考如下示例：
 
@@ -63,7 +63,6 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。本文将指
 import { common, Want } from '@kit.AbilityKit';
 import { vpnExtension } from '@kit.NetworkKit';
 
-let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
   deviceId: "",
   bundleName: "com.example.myvpndemo",
@@ -97,7 +96,7 @@ struct Index {
 
 
 
-## 停止VPN Extension Ability
+### 停止VPN Extension Ability
 
 当VPN应用需要停止VPN连接时，需要调用stopVpnExtensionAbility接口，携带需要停止的VpnExtensionAbility信息。系统会对调用方做权限校验，stopVpnExtensionAbility的调用方应用必须获取了用户的VPN信任授权，且只允许停止应用自己启动的VpnExtensionAbility，所以接口传入的参数中bundleName需要与您的VPN应用bundleName一致，abilityName为指定停止VPN的VpnExtensionAbility名。
 
@@ -107,7 +106,6 @@ struct Index {
 import { common, Want } from '@kit.AbilityKit';
 import { vpnExtension } from '@kit.NetworkKit';
 
-let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
   deviceId: "",
   bundleName: "com.example.myvpndemo",
@@ -177,10 +175,10 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 | dnsAddresses        | Array\<string\>                                              | 否   | DNS服务器地址信息。配置后VPN白名单的应用访问网络时使用这些DNS服务器，不配置则使用系统分配的DNS服务器地址。 |
 | searchDomains       | Array\<string\>                                              | 否   | DNS的搜索域列表。                                            |
 | mtu                 | number                                                       | 否   | 最大传输单元MTU值(单位：字节)。                               |
-| isIPv4Accepted      | boolean                                                      | 否   | 是否支持IPV4，默认值为true。                                 |
-| isIPv6Accepted      | boolean                                                      | 否   | 是否支持IPV6，默认值为false。                                |
-| isInternal          | boolean                                                      | 否   | 是否支持内置VPN，默认值为false。                             |
-| isBlocking          | boolean                                                      | 否   | 是否阻塞模式，默认值为false。                                |
+| isIPv4Accepted      | boolean                                                      | 否   | 是否支持IPV4，默认值为true。true：支持IPV4；false：不支持IPV4。                                 |
+| isIPv6Accepted      | boolean                                                      | 否   | 是否支持IPV6，默认值为false。true：支持IPV6；false：不支持IPV6。                                |
+| isInternal          | boolean                                                      | 否   | 是否支持内置VPN，默认值为false。true：支持内置VPN；false：不支持内置VPN。                             |
+| isBlocking          | boolean                                                      | 否   | 是否阻塞模式，默认值为false。true：是阻塞模式；false：不是阻塞模式。                                |
 | trustedApplications | Array\<string\>                                              | 否   | VPN生效的应用白名单信息，string类型表示的包名。              |
 | blockedApplications | Array\<string\>                                              | 否   | 不生效VPN的应用黑名单信息，string类型表示的包名。            |
 
@@ -190,7 +188,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 import { vpnExtension} from '@kit.NetworkKit';
 
 let vpnConfig: vpnExtension.VpnConfig = {
-  // 配置VPN虚拟网卡的IP地址
+  // 配置VPN虚拟网卡的IP地址。
   addresses: [{
     address: {
       address:'192.x.x.5',
@@ -198,9 +196,9 @@ let vpnConfig: vpnExtension.VpnConfig = {
     },
     prefixLength:24
   }],
-  // 配置路由参数
+  // 配置路由参数。
   routes: [{
-    // VPN虚拟网卡接口名固定为“vpn-tun”
+    // VPN虚拟网卡接口名固定为“vpn-tun”。
     interface: 'vpn-tun',
     destination: {
       address: {
@@ -218,13 +216,13 @@ let vpnConfig: vpnExtension.VpnConfig = {
     hasGateway: false,
     isDefaultRoute: false,
   }],
-  // 配置最大传输单元值
+  // 配置最大传输单元值。
   mtu: 1400,
-  // 配置VPN使用的DNS服务器，
+  // 配置VPN使用的DNS服务器。
   dnsAddresses: ['223.x.x.5', '223.x.x.6'],
-  // VPN生效白名单的应用
+  // VPN生效白名单的应用。
   trustedApplications: ['com.test.browser'],
-  // 不生效VPN黑名单的应用
+  // 不生效VPN黑名单的应用。
   blockedApplications: ['com.test.games'],
 }
 let context: vpnExtension.VpnExtensionContext;
@@ -241,7 +239,7 @@ function vpnCreate(){
 
 ## VPN Demo示例
 
-OpenHarmony开源项目包含一个名为[VPN](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/VPN)的示例应用。此应用展示了如何设置和连接 VPN 服务。
+OpenHarmony开源项目包含一个名为[VPN](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case)的示例应用。此应用展示了如何设置和连接 VPN 服务。
 
 
 

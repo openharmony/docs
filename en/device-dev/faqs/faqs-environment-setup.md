@@ -5,11 +5,11 @@
 
 ### hb Installation
 
-#### Garbled Characters and Segmentation Faults
+#### Garbled Characters and segmentation Faults
 
 - **Symptom**
 
-  After the **python3 -m pip install --user ohos-build** command is executed, garbled characters and segmentation faults occur.
+  Garbled characters and segmentation faults occur during the execution of the **python3 -m pip install --user ohos-build** command.
 
 
 - **Possible Causes**
@@ -25,7 +25,7 @@
   ```
 
 
-#### "cannot import 'sysconfig' from 'distutils'"
+#### cannot import 'sysconfig' from 'distutils'
 
 - **Symptom**
 
@@ -38,14 +38,14 @@
 
 - **Solution**
 
-  Run the following command to install **distutils**:
+  Install **distutils**.
 
   ```
   sudo apt-get install python3.8-distutils
   ```
 
 
-#### "module 'platform' has no attribute 'linux_distribution'"
+#### module 'platform' has no attribute 'linux\_distribution'
 
 - **Symptom**
 
@@ -67,7 +67,7 @@
   ```
 
 
-#### "Could not find a version that satisfies the requirement ohos-build"
+#### Could not find a version that satisfies the requirement ohos-build
 
 - **Symptom**
 
@@ -79,22 +79,20 @@
   The installation fails due to poor network connectivity.
 
 - **Solution**
-  
-  1. Check that your computer has a good network connection. If the network connection is unstable, rectify the network fault and reinstall hb.
-
+  1. Ensure that your computer has a good network connection. If the network connection is unstable, rectify the network fault and reinstall hb.
   2. If the network is functional, run the following commands to install hb by specifying a temporary PyPI source:
 
      ```
      python3 -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple ohos-build
      ```
 
-### Python 3 Installation
+### Python3 Installation
 
-#### "configure: error: no acceptable C compiler found in $PATH"
+#### configure: error: no acceptable C compiler found in $PATH
 
 - **Symptom**
 
-  The following informaton is displayed during the Python 3 installation process:
+  The following error occurs during Python 3 installation:
 
   ```
   configure: error: no acceptable C compiler found in $PATH. See 'config.log' for more details
@@ -111,11 +109,11 @@
   2. Install Python 3.
 
 
-#### "-bash: make: command not found"
+#### -bash: make: command not found
 
 - **Symptom**
 
-  The following information is displayed during the Python 3 installation process:
+  The following error occurs during Python 3 installation:
 
   ```
   -bash: make: command not found
@@ -132,11 +130,11 @@
   2. Install Python 3.
 
 
-#### "zlib not available"
+#### zlib Not Available
 
 - **Symptom**
 
-  The following information is displayed during the Python 3 installation process:
+  The following error occurs during Python 3 installation:
 
   ```
   zipimport.ZipImportError: can't decompress data; zlib not available
@@ -148,37 +146,29 @@
 
 - **Solution**
 
-  1. Install zlib online or offline.
+  Method 1: Run the **apt-get install zlib** command to install zlib online.
 
-     Online installation:
+  Method 2: If the software source does not contain zlib, download zlib from http://www.zlib.net/.
 
-     Run the **apt-get install zlib** command to install zlib online.
+  ![](figures/download-zlib.png)
 
-     Offline installation:
+  Run the following command to install zlib:
 
-     1. Download zlib from http://www.zlib.net/.
-  
-        ![](figures/download-zlib.png)
-  
-     2. Run the following command to install zlib:
-  
-        ```
-         # tar xvf zlib-1.2.11.tar.gz
-           # cd zlib-1.2.11
-           # ./configure
-           # make && make install
-        ```
-  
-        ​     
-  
-  2. Install Python 3.
+  ```
+  # tar xvf zlib-1.2.11.tar.gz
+  # cd zlib-1.2.11
+  # ./configure
+  # make && make install
+  ```
+
+  Install Python 3.
 
 
-#### "No module named '_ctypes'"
+#### No module named'\_ctypes'
 
 - **Symptom**
 
-  The following information is displayed during the Python 3 installation process:
+  The following error occurs during Python 3 installation:
 
   ```
   ModuleNotFoundError: No module named '_ctypes'
@@ -192,12 +182,12 @@
 
 - **Solution**
 
-  1. Run the **apt-get install libffi\* -y** command to install libffi and libffi-devel online.
+  1. Run the **apt-get install libffi* -y** command to install libffi and libffi-devel online.
 
   2. Install Python 3.
 
 
-### lsb_release Error During kconfiglib Installation
+### lsb_release Error Occurred During kconfiglib Installation
 
 - **Symptom**
 
@@ -213,14 +203,14 @@
 
 - **Solution**
 
-  Run **find / -name lsb_release** to locate lsb_release, and delete it, for example, run **sudo rm -rf /usr/bin/lsb_release**.
+  Run **find / -name lsb_release** to locate lsb_release and delete it, for example, **sudo rm -rf /usr/bin/lsb_release**.
 
 
-### "ImportError: No module named apt_pkg"
+### ImportError: No module named apt\_pkg
 
 - **Symptom**
 
-  When an unidentifiable command is executed on the Linux server, the following information is displayed:<br>ImportError: No module named apt_pkg
+  The message "ImportError: No module named apt\_pkg" is displayed when an unidentifiable command is executed on the Linux server.
 
 
 - **Possible Causes**
@@ -244,16 +234,16 @@
 - **Solution**
 
   1. Go to the OpenHarmony root directory.
-  
+   
      Check that the root directory has a **.repo** folder, which is usually hidden. If the **.repo** folder does not exist, decompress the obtained source code package again to obtain complete source code.
-  
+   
   2. Run the **repo init** command to initialize the source code repository information.
 
      In the command, *branch* indicates the branch name, for example, **master** or **OpenHarmony-3.2-Beta3**.
      ```shell
      repo init -u https://gitee.com/openharmony/manifest -b branch --no-repo-verify
      ```
-
+ 
   3. Download and update the source code file.
 
      ```shell
@@ -261,7 +251,7 @@
      repo forall -c 'pwd;git lfs pull'
      ```
      To keep the working directory clean, run the following command:
-  
+   
      >![icon-note.gif](public_sys-resources/icon-caution.gif) **CAUTION**<br>
      >This command will reset the local workspace and delete files or directories that are not managed by gitee. Exercise caution when performing this operation.
      ```shell
@@ -273,5 +263,5 @@
      ```shell
      bash build/prebuilts_download.sh
      ```
-  
+   
    

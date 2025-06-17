@@ -1,6 +1,6 @@
 # @ohos.net.ethernet (以太网连接管理)
 
-以太网连接管理主要提供有线网络能力，提供获取有线网络的IP地址等信息。
+本模块提供以太网连接管理能力，包括有线网络能力、获取有线网络的IP地址等信息。
 
 > **说明：**
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -28,7 +28,7 @@ type HttpProxy = connection.HttpProxy
 
 getMacAddress(): Promise\<Array\<MacAddressInfo>>
 
-获取所有以太网网卡名称及MAC地址信息，使用Promise方式作为异步方法。
+获取所有以太网网卡名称及对应网卡的MAC地址信息，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_ETHERNET_LOCAL_MAC
 
@@ -68,5 +68,5 @@ ethernet.getMacAddress().then((data: Array<ethernet.MacAddressInfo>) => {
 
 | 名称         | 类型                    | 必填 | 说明                                                 |
 | ------------ | ----------------------- | --- | ---------------------------------------------------- |
-| iface        | string                  |  是 | 以太网卡名称。                                        |
-| macAddress       | string                |  是 | 以太网卡MAC地址信息。 |
+| iface        | string                  |  是 | 以太网网卡名称。                                        |
+| macAddress       | string                |  是 | 以太网网卡MAC地址信息。 |

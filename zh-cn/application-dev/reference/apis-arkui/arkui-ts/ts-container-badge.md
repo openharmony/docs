@@ -14,6 +14,7 @@
 >  **说明：**
 >
 >  子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)和[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)）。
+>  自定义组件宽高默认为0，需要给其设置宽高，否则标记组件将不显示。
 
 
 ## 接口
@@ -58,7 +59,7 @@ Badge(value: BadgeParamWithString)
 
 ## BadgeParam对象说明
 
-包含创建Badge组件的基础参数。
+包含用于创建Badge组件的基础参数。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -84,8 +85,8 @@ BadgeParamWithNumber继承自[BadgeParam](#badgeparam对象说明)，具有Badge
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| count | number | 是 | 设置提醒消息数。<br/>**说明：** <br/>小于等于0且小于maxCount时不显示信息标记。<br/>取值范围：[-2147483648,2147483647]，超出范围时会加上或减去4294967296，使得值仍在范围内，非整数时会舍去小数部分取整数部分，如5.5取5。 |
-| maxCount | number | 否 | 最大消息数，超过最大消息时仅显示maxCount+。<br/>默认值：99<br/>取值范围：[-2147483648,2147483647]，超出范围时会加上或减去4294967296，使得值仍在范围内，非整数时会舍去小数部分取整数部分，如5.5取5。 |
+| count | number | 是 | 设置提醒消息数。<br/>**说明：** <br/>当该值小于等于0且小于maxCount时不显示信息标记。<br/>取值范围：[-2147483648,2147483647]。超出范围时会加上或减去4294967296，使得值仍在范围内，非整数时会舍去小数部分取整数部分，如5.5取5。 |
+| maxCount | number | 否 | 最大消息数，超过最大消息时仅显示maxCount+。<br/>默认值：99<br/>取值范围：[-2147483648,2147483647]。超出范围时会加上或减去4294967296，使得值仍在范围内，非整数时会舍去小数部分取整数部分，如5.5取5。 |
 
 ## BadgeParamWithString对象说明
 
@@ -99,7 +100,7 @@ BadgeParamWithString继承自[BadgeParam](#badgeparam对象说明)，具有Badge
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | [ResourceStr<sup>20+</sup>](ts-types.md#resourcestr) | 是 | 提示内容的文本字符串。 |
+| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 提示内容的文本字符串。<br/>**说明：** <br/>从API version 20开始，支持ResourceStr类型。 |
 
 ## BadgePosition枚举说明
 
@@ -124,12 +125,12 @@ BadgeParamWithString继承自[BadgeParam](#badgeparam对象说明)，具有Badge
 | 名称                      | 类型                                                         | 必填 | 说明                                                         |
 | ------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | color                     | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 文本颜色。<br/>默认值：Color.White<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| fontSize                  | number&nbsp;\|&nbsp;[ResourceStr<sup>20+</sup>](ts-types.md#resourcestr)                                   | 否   | 文本大小。string类型仅支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。<br/>默认值：10<br/>单位：fp<br/>取值范围：大于0，小于0时取默认值。<br/>**说明：** <br/>不支持设置百分比。从API version 20开始，支持ResourceStr类型。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| badgeSize                 | number&nbsp;\|&nbsp;[ResourceStr<sup>20+</sup>](ts-types.md#resourcestr)                                   | 否   | Badge的大小。string类型支持number类型取值的字符串形式，可以附带单位，例如"16"、"16vp"。<br/>默认值：16<br/>单位：vp<br/>取值范围：大于0，小于0时取默认值。<br/>**说明：** <br/>不支持设置百分比。当设置为非法值时，按照默认值处理。从API version 20开始，支持ResourceStr类型。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| fontSize                  | number&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)                                   | 否   | 文本大小。string类型仅支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。<br/>默认值：10<br/>单位：fp<br/>取值范围：大于0；取值为0时不显示文本，取值小于0时取默认值。<br/>**说明：** <br/>不支持设置百分比，当设置为百分比时，按照默认值处理。从API version 20开始，支持ResourceStr类型。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| badgeSize                 | number&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)                                   | 否   | Badge的大小。string类型支持number类型取值的字符串形式，可以附带单位，例如"16"、"16vp"。<br/>默认值：16<br/>单位：vp<br/>取值范围：大于0；取值为0时不显示Badge，取值小于0时取默认值。<br/>**说明：** <br/>不支持设置百分比，当设置为百分比时，按照默认值处理。从API version 20开始，支持ResourceStr类型。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | badgeColor                | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | Badge的颜色。<br/>默认值：Color.Red<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| fontWeight<sup>10+</sup>  | number \|[FontWeight](ts-appendix-enums.md#fontweight) \|&nbsp;[ResourceStr<sup>20+</sup>](ts-types.md#resourcestr) | 否   | 设置文本的字体粗细。number类型取值范围：[100, 900]，取值间隔为100。默认值为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal<br/>**说明：** <br/>不支持设置百分比。从API version 20开始，支持ResourceStr类型。 |
+| fontWeight<sup>10+</sup>  | number \|[FontWeight](ts-appendix-enums.md#fontweight) \|&nbsp;[ResourceStr](ts-types.md#resourcestr) | 否   | 设置文本的字体粗细。number类型取值范围：[100, 900]，取值间隔为100。默认值为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal<br/>**说明：** <br/>不支持设置百分比，当设置为百分比时，按照默认值处理。从API version 20开始，支持ResourceStr类型。 |
 | borderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 底板描边颜色。<br/>默认值：Color.Red                         |
-| borderWidth<sup>10+</sup> | [Length](ts-types.md#length)                                 | 否   | 底板描边粗细。<br/>默认值：1<br/>单位：vp<br/>**说明：** <br/>不支持设置百分比。 |
+| borderWidth<sup>10+</sup> | [Length](ts-types.md#length)                                 | 否   | 底板描边粗细。<br/>默认值：1<br/>单位：vp<br/>**说明：** <br/>不支持设置百分比，当设置为百分比时，按照默认值处理。 |
 
 ## 属性
 
@@ -309,7 +310,7 @@ struct BadgeExample {
 @Entry
 @Component
 struct Index {
-  @State badgeCount: number = 1
+  @State badgeCount: number = 1;
 
   build() {
     Column({ space: 40 }) {
@@ -325,10 +326,10 @@ struct Index {
       .width(55)
 
       Button('count 0').onClick(() => {
-        this.badgeCount = 0
+        this.badgeCount = 0;
       })
       Button('count 1').onClick(() => {
-        this.badgeCount = 1
+        this.badgeCount = 1;
       })
     }
     .margin({ top: 20 })

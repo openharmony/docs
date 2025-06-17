@@ -3,13 +3,15 @@
 
 ## 概述
 
-FileUri提供了关于文件uri的基本操作，将uri转换成对应的沙箱路径path、将应用沙箱路径path转换成对应应用的uri、获取uri所在目录路径的uri等接口能力，方便应用对文件分享业务中uri的访问。
+提供uri和路径path之间的相互转换，目录uri获取，以及uri的有效性校验的方法。
 
 **库：** libohfileuri.so
 
+**系统能力：** SystemCapability.FileManagement.AppFileService
+
 **起始版本：** 12
 
-**相关模块：**[Fileuri](fileuri.md)
+**相关模块：**[FileUri](fileuri.md)
 
 
 ## 汇总

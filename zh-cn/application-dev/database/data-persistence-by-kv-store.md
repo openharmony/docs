@@ -1,4 +1,4 @@
-# 通过键值型数据库实现数据持久化
+# 通过键值型数据库实现数据持久化（ArkTS）
 
 
 ## 场景介绍
@@ -34,22 +34,22 @@
 
 ## 开发步骤
 
-1. 若要使用键值型数据库，首先要获取一个KVManager实例，用于管理数据库对象。示例代码如下所示：
+1. 若要使用键值型数据库，首先要使用createKVManager()方法获取一个KVManager实例，用于管理数据库对象。示例代码如下所示：
 
    Stage模型示例：
 
-     
+
    ```js
    // 导入模块
    import { distributedKVStore } from '@kit.ArkData';
-   
+
    // Stage模型
    import { window } from '@kit.ArkUI';
    import { UIAbility } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   
+
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
-   
+
    export default class EntryAbility extends UIAbility {
      onCreate() {
        let context = this.context;
@@ -62,30 +62,30 @@
          kvManager = distributedKVStore.createKVManager(kvManagerConfig);
          console.info('Succeeded in creating KVManager.');
          // 继续创建获取数据库
+         if (kvManager !== undefined) {
+           kvManager = kvManager as distributedKVStore.KVManager;
+          //进行后续操作
+          //...
+         }
        } catch (e) {
          let error = e as BusinessError;
          console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
        }
      }
    }
-   if (kvManager !== undefined) {
-      kvManager = kvManager as distributedKVStore.KVManager;
-     //进行后续操作
-     //...
-   }
    ```
 
    FA模型示例：
 
-     
+
    ```js
    // 导入模块
    import { distributedKVStore } from '@kit.ArkData';
-   
+
    // FA模型
    import { featureAbility } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   
+
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
    let context = featureAbility.getContext(); // 获取context
    const kvManagerConfig: distributedKVStore.KVManagerConfig = {
@@ -108,11 +108,29 @@
 
    ```
 
-2. 创建并获取键值数据库。示例代码如下所示：
-     
+2. 使用getKVStore()方法创建并获取键值数据库。示例代码如下所示：
+
    ```js
    let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
    try {
+     let child1 = new distributedKVStore.FieldNode('id');
+     child1.type = distributedKVStore.ValueType.INTEGER;
+     child1.nullable = false;
+     child1.default = '1';
+     let child2 = new distributedKVStore.FieldNode('name');
+     child2.type = distributedKVStore.ValueType.STRING;
+     child2.nullable = false;
+     child2.default = 'zhangsan';
+
+     let schema = new distributedKVStore.Schema();
+     schema.root.appendChild(child1);
+     schema.root.appendChild(child2);
+     schema.indexes = ['$.id', '$.name'];
+     // 0表示COMPATIBLE模式，1表示STRICT模式。
+     schema.mode = 1;
+     // 支持在检查Value时，跳过skip指定的字节数，且取值范围为[0,4M-2]。
+     schema.skip = 0;
+
      const options: distributedKVStore.Options = {
        createIfMissing: true,
        encrypt: false,
@@ -121,6 +139,8 @@
        // kvStoreType不填时，默认创建多设备协同数据库
        kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
        // 多设备协同数据库：kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
+       schema: schema,
+       // schema未定义可以不填，定义方法请参考上方schema示例。
        securityLevel: distributedKVStore.SecurityLevel.S3
      };
      kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
@@ -131,23 +151,38 @@
        console.info('Succeeded in getting KVStore.');
        kvStore = store;
        // 请确保获取到键值数据库实例后，再进行相关数据操作
+       if (kvStore !== undefined) {
+         kvStore = kvStore as distributedKVStore.SingleKVStore;
+           //进行后续操作
+           //...
+       }
      });
    } catch (e) {
      let error = e as BusinessError;
      console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
    }
-   if (kvStore !== undefined) {
-     kvStore = kvStore as distributedKVStore.SingleKVStore;
-       //进行后续操作
-       //...
+   ```
+
+3. 使用on()方法订阅分布式数据变化，如需关闭订阅分布式数据变化，调用[off('dataChange')](../reference/apis-arkdata/js-apis-distributedKVStore.md#offdatachange)关闭。示例代码如下所示：
+
+   ```ts
+   try {
+     kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_ALL, (data) => {
+       console.info(`dataChange callback call data: ${data}`);
+     });
+   } catch (e) {
+     let error = e as BusinessError;
+     console.error(`An unexpected error occurred. code:${error.code},message:${error.message}`);
    }
    ```
 
-3. 调用put()方法向键值数据库中插入数据。示例代码如下所示：
-     
+4. 调用put()方法向键值数据库中插入数据。示例代码如下所示：
+
    ```js
+   kvStore = kvStore as distributedKVStore.SingleKVStore;
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-   const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
+   // 如果未定义Schema则Value可以传其他符合要求的值。
+   const VALUE_TEST_STRING_ELEMENT = '{"id":0, "name":"lisi"}';
    try {
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
@@ -166,10 +201,11 @@
    >
    > 当Key值存在时，put()方法会修改其值，否则新增一条数据。
 
-4. 调用get()方法获取指定键的值。示例代码如下所示：
-     
+5. 调用get()方法获取指定键的值。示例代码如下所示：
+
    ```js
    try {
+     kvStore = kvStore as distributedKVStore.SingleKVStore;
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
          console.error(`Failed to put data. Code:${err.code},message:${err.message}`);
@@ -191,10 +227,11 @@
    }
    ```
 
-5. 调用delete()方法删除指定键值的数据。示例代码如下所示：
-     
+6. 调用delete()方法删除指定键值的数据。示例代码如下所示：
+
    ```js
    try {
+     kvStore = kvStore as distributedKVStore.SingleKVStore;
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
          console.error(`Failed to put data. Code:${err.code},message:${err.message}`);
@@ -216,10 +253,12 @@
    }
    ```
 
-6. 通过storeId的值关闭指定的分布式键值数据库。示例代码如下所示：
-     
+7. 调用closeKVStore()方法通过storeId的值关闭指定的分布式键值数据库。示例代码如下所示：
+
     ```js
     try {
+      // appId为应用的bundleName
+      kvManager = kvManager as distributedKVStore.KVManager;
       kvStore = undefined;
       kvManager.closeKVStore('appId', 'storeId', (err: BusinessError)=> {
         if (err) {
@@ -234,20 +273,24 @@
     }
     ```
 
-7. 通过storeId的值删除指定的分布式键值数据库。示例代码如下所示：
-     
+8. 调用deleteKVStore()方法通过storeId的值删除指定的分布式键值数据库。示例代码如下所示：
+
     ```js
     try {
+      // appId为应用的bundleName
+      kvManager = kvManager as distributedKVStore.KVManager;
       kvStore = undefined;
       kvManager.deleteKVStore('appId', 'storeId', (err: BusinessError)=> {
         if (err) {
-          console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
+          console.error(`Failed to delete KVStore.code is ${err.code},message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in closing KVStore');
+        console.info('Succeeded in deleting KVStore');
       });
     } catch (e) {
       let error = e as BusinessError;
       console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
     }
     ```
+
+<!--RP1--><!--RP1End-->

@@ -21,7 +21,6 @@ The **Supported Type** column in the following table lists the algorithm to be u
 | HASH | SM3 | 10+ | 
 | HASH | MD5 | 12+ | 
 
-
 ## CMAC
 
 A Cipher-based Message Authentication Code (‌CMAC) is a type of cryptographic checksum used to ensure data integrity and authenticity.

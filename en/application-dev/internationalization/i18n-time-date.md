@@ -8,9 +8,9 @@ Time and date formatting includes date and time formatting, relative time format
 
 ## Constraints
 
-1. The date format and time format must be set at the same time. If the time format, but not the date format, is set, only the time is displayed; if the date format, but not the time format, is set, only the date is displayed.
+1. **dateStyle** and **timeStyle** must be set simultaneously. If only **timeStyle** is set, only the time is displayed. If only **dateStyle** is set, only the date is displayed.
 
-2. If the date or time format is specified, setting of the year, month, day, hour, minute, second, and weekday formats is not supported. If the date or time format is not set, the year, month, day, hour, minute, second, and weekday formats can be set independently.
+2. If **dateStyle** or **timeStyle** is present, you are not allowed to specify the year, month, day, hour, minute, second, and workday formats. If **dateStyle** and **timeStyle** are not present, you can set the year, month, day, hour, minute, second, and workday formats independently.
 
 ## How to Develop
 
@@ -24,12 +24,12 @@ Date and time formatting is implemented by the [format](../reference/apis-locali
    ```
 
 2. Create a **DateTimeFormat** object.
-   Pass in a locale or locale list. If a locale list is passed, the first valid locale is used. If you do not pass in any locale, the current system locale will be used.
+   Pass a single locale ID or a list of locale IDs. If a list of locale IDs is passed, the first valid locale is used. If no locale is passed, the current system locale ID is used.
    You can use **DateTimeOptions** to set different date and time formats. For details, see Table 1 to Table 10.
 
    ```ts
    let dateFormat: intl.DateTimeFormat = new intl.DateTimeFormat(locale: string | Array<string>, options?: DateTimeOptions);
-   let dateFormat: intl.DateTimeFormat = new intl.DateTimeFormat(); // Do not pass in the locale.
+   let dateFormat: intl.DateTimeFormat = new intl.DateTimeFormat(); // Do not pass the locale parameter.
    ```
 
 3. Format the date and time.
@@ -48,11 +48,11 @@ Date and time formatting is implemented by the [format](../reference/apis-locali
 
 **Date and Time Formatting Options**
 
-The following uses 13:04:00 and 00:25:00 on September 17, 2021 and locales **zh-CN** and **en** as examples to illustrate the values and display results of [DateTimeOptions](../reference/apis-localization-kit/js-apis-intl.md#datetimeoptions).
+The following uses 13:04:00 and 00:25:00 on September 17, 2021 and locale IDs **zh-CN** and **en** as examples to illustrate the values and display results of [DateTimeOptions](../reference/apis-localization-kit/js-apis-intl.md#datetimeoptions).
 
 **Table 1** Date display format (dateStyle)
 
-| Value  | Description                                   | 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 13:04:00 for Locale en|
+| Value  | Description                                   | 2021-09-17 13:04:00 for Locale ID zh-CN| 2021-09-17 13:04:00 for Locale ID en|
 | ------ | --------------------------------------- | ------------------------------------------  | ---------------------------------------- |
 | full   | Complete date display, including the year, month, day, and week.| 2021年9月17日星期五                         | Friday, September 17, 2021               |
 | long   | Long date display, including the year, month, and day.    | 2021年9月17日                               | September 17, 2021                       |
@@ -61,7 +61,7 @@ The following uses 13:04:00 and 00:25:00 on September 17, 2021 and locales **zh-
 
 **Table 2** Time display format (timeStyle)
 
-| Value  | Description| 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 13:04:00 for Locale en|
+| Value  | Description| 2021-09-17 13:04:00 for Locale ID zh-CN| 2021-09-17 13:04:00 for Locale ID en|
 | ------ | ------------- | -------- | -------- |
 | full   | Complete time display, including the time zone and time accurate to seconds.| 中国标准时间 13:04:00 | 13:04:00 China Standard Time |
 | long   | Long time display, including the time zone expressed in the format of GMT + time zone offset and time accurate to seconds.| GMT+8 13:04:00 | 13:04:00 GMT+8 |
@@ -70,14 +70,14 @@ The following uses 13:04:00 and 00:25:00 on September 17, 2021 and locales **zh-
 
 **Table 3** Year display format (year)
 
-| Value| Description| 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 13:04:00 for Locale en|
+| Value| Description| 2021-09-17 13:04:00 for Locale ID zh-CN| 2021-09-17 13:04:00 for Locale ID en|
 | -------- | --------- | -------- | -------- |
 | numeric | Complete year| 2021年| 2021 |
 | 2-digit | 2-digit year display| 21年| 21 |
 
 **Table 4** Weekday display format (weekday)
 
-| Value| Description| 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 13:04:00 for Locale en|
+| Value| Description| 2021-09-17 13:04:00 for Locale ID zh-CN| 2021-09-17 13:04:00 for Locale ID en|
 | -------- | ------- | -------- | -------- |
 | long | Long weekday display| 星期五| Friday |
 | short | Short weekday display.| 周五| Fri |
@@ -85,7 +85,7 @@ The following uses 13:04:00 and 00:25:00 on September 17, 2021 and locales **zh-
 
 **Table 5** Hour cycle format (hourCycle)
 
-| Value| Description           | 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 00:25:00 for Locale zh-CN|
+| Value| Description           | 2021-09-17 13:04:00 for Locale ID zh-CN| 2021-09-17 00:25:00 for Locale ID zh-CN|
 | --- | --------------- | -------------------------------------------- | ------------------------------------------- |
 | h11 | Use of 0-11 to indicate the hour| 下午1:04                                    |  上午0:25                                   |
 | h12 | Use of 1-12 to indicate the hour| 下午1:04                                    |  上午12:25                                  |
@@ -99,7 +99,7 @@ The following uses 13:04:00 and 00:25:00 on September 17, 2021 and locales **zh-
 
 **Table 6** Hour cycle format (hourCycle)
 
-| Value| Description           | 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 00:25:00 for Locale zh-CN|
+| Value| Description           | 2021-09-17 13:04:00 for Locale ID zh-CN| 2021-09-17 00:25:00 for Locale ID zh-CN|
 | --- | --------------- | -------------------------------------------- | ------------------------------------------- |
 | h11 | Use of 1-24 to indicate the hour| 下午13:04                                   |  上午24:25                                  |
 | h12 | Use of 1-12 to indicate the hour| 下午1:04                                    |  上午12:25                                  |
@@ -112,7 +112,7 @@ The following uses 13:04:00 and 00:25:00 on September 17, 2021 and locales **zh-
 
 **Table 7** Month format (month)
 
-| Value| Description| 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 13:04:00 for Locale en|
+| Value| Description| 2021-09-17 13:04:00 for Locale ID zh-CN| 2021-09-17 13:04:00 for Locale ID en|
 | -------- | --------- | -------- | -------- |
 | numeric | Display of the month as a number| 9月| 9 |
 | 2-digit | Display of the month in two digits| 09月| 09 |
@@ -122,14 +122,14 @@ The following uses 13:04:00 and 00:25:00 on September 17, 2021 and locales **zh-
 
 **Table 8** Localized representation of time zone names (timeZoneName)
 
-| Value | Description               | 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 13:04:00 for Locale en|
+| Value | Description               | 2021-09-17 13:04:00 for Locale ID zh-CN| 2021-09-17 13:04:00 for Locale ID en|
 | ----- | ------------------ | -------------------------------------------- | ---------------------------------------- |
 | long  | Long time zone name| 中国标准时间                                 | China Standard Time                      |
 | short | Short time zone name| GMT+8                                        | GMT+8                                    |
 
 **Table 9** Era display format (era)
 
-| Value| Description| 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 13:04:00 for Locale en|
+| Value| Description| 2021-09-17 13:04:00 for Locale ID zh-CN| 2021-09-17 13:04:00 for Locale ID en|
 | -------- | ------ | -------- | -------- |
 | long | Long epoch display| 公元| Anno Domini |
 | short | Short epoch display| 公元| AD |
@@ -137,7 +137,7 @@ The following uses 13:04:00 and 00:25:00 on September 17, 2021 and locales **zh-
 
 **Table 10** Time period format (dayPeriod)
 
-| Value| Description| 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 13:04:00 for Locale en|
+| Value| Description| 2021-09-17 13:04:00 for Locale ID zh-CN| 2021-09-17 13:04:00 for Locale ID en|
 | -------- | ------ | -------- | -------- |
 | long | Long time period display| 下午| in the afternoon |
 | short | Short time period display| 下午| in the afternoon |
@@ -242,14 +242,14 @@ Relative time formatting is implemented by the [format](../reference/apis-locali
 
 **Relative Time Formatting Options**
 
-The following uses the relative time **one day ago** and locales **fr-FR** and **en-GB** as an example to show different values of [RelativeTimeFormatInputOptions](../reference/apis-localization-kit/js-apis-intl.md#relativetimeformatinputoptions8) and corresponding display effects.
+The following uses the relative time **one day ago** and locale IDs **fr-FR** and **en-GB** as an example to show different values of [RelativeTimeFormatInputOptions](../reference/apis-localization-kit/js-apis-intl.md#relativetimeformatinputoptions8) and corresponding display effects.
 
 **Table 11** Numeric representation (numeric)
 
 | Value  | Description                                         | Display Effect (fr-FR)| Display Effect (en-GB)|
 | ------ | -------------------------------------------- | -------------- | --------------- |
 | always | Use of a number to indicate the relative time                        | il y a 1 jour  | 1 day ago       |
-| auto   | Use of a phrase or value based on the locale to indicate the relative time| hier           | yesterday       |
+| auto   | Use of a phrase or value based on the locale ID to indicate the relative time| hier           | yesterday       |
 
 **Table 12** Relative time style (style)
 

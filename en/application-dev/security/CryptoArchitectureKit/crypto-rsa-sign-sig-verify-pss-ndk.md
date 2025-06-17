@@ -1,8 +1,6 @@
 # Signature Verification with an RSA Key Pair (PSS Mode) (C/C++)
 
-
 For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify-overview.md#rsa).
-
 
 ## Adding the Dynamic Library in the CMake Script
 ```txt
@@ -11,19 +9,15 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 ## How to Develop
 
-
 1. Call [OH_CryptoVerify_Create](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_create) with the string parameter **'RSA2048|PSS|SHA256|MGF1_SHA256'** to create a **Verify** instance. As indicated by the string parameter, the asymmetric key type is **RSA2048**, the padding mode is **PSS**, the MD algorithm is **SHA256**, and mask algorithm is **MGF1_SHA256**.
 
 2. Call [OH_CryptoVerify_SetParam](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_setparam) to set parameters. The parameter values must be the same as those set for signing.
 
 3. Call [OH_CryptoVerify_Init](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_init) to initialize the **Verify** instance by using the public key (**OH_CryptoPubKey**).
 
-4. Call [OH_CryptoVerify_Update](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_update) to pass in the data to be verified.
-   
-   Currently, the amount of data to be passed in by a single **OH_CryptoVerify_Update** is not limited. You can determine how to pass in data based on the data volume. If a small amount of data is to be verified, you can directly call **OH_CryptoVerify_Final** after **OH_CryptoVerify_Init()**.
-   
-5. Call [OH_CryptoVerify_Final](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_final) to verify the signature.
+4. Call [OH_CryptoVerify_Update](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_update) to pass in the data to be verified.<br>Currently, the amount of data to be passed in by a single **OH_CryptoVerify_Update** is not limited. You can determine how to pass in data based on the data volume. If a small amount of data is to be verified, you can directly call **OH_CryptoVerify_Final** after **OH_CryptoVerify_Init()**.
 
+5. Call [OH_CryptoVerify_Final](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_final) to verify the signature.
 
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"

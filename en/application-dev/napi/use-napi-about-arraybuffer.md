@@ -7,11 +7,10 @@
 ## Basic Concepts
 
 - **ArrayBuffer**: An **ArrayBuffer** object represents a generic, fixed-length buffer of raw binary data. The **ArrayBuffer** content cannot be directly operated. Instead, you need to use a **TypedArray** or **DataView** object to interpret the buffer data in specific formats. **ArrayBuffer** is used to process a large amount of binary data, such as files and network data packets.
-- Lifecycle and memory management: When using Node-API to process **ArrayBuffer** objects, note that the lifecycle of the created **arrayBufferPtr** is managed by the engine and cannot be deleted by users. Otherwise, a double free error may occur.
 
 ## Available APIs
 
-The following table lists the APIs used to manipulate data of the **ArrayBuffer** type.  
+The following table lists the APIs used to manipulate data of the **ArrayBuffer** type.
 
 | API| Description|
 | -------- | -------- |
@@ -64,8 +63,8 @@ export const isArrayBuffer: <T>(arrayBuffer: T) => boolean | void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   let value = new ArrayBuffer(1);
   let data = "123";
@@ -75,6 +74,10 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_is_arraybuffer error: %{public}s', error.message);
 }
 ```
+
+Log output:
+Test Node-API napi_is_arraybuffer: true
+Test Node-API napi_is_arraybuffer: false
 
 ### napi_get_arraybuffer_info
 
@@ -114,7 +117,8 @@ static napi_value GetArrayBufferInfo(napi_env env, napi_callback_info info)
     napi_create_uint32(env, byteLength, &byteLengthValue);
     napi_set_named_property(env, result, "byteLength", byteLengthValue);
     napi_value bufferData;
-    napi_create_arraybuffer(env, byteLength, &data, &bufferData);
+    void *newData = nullptr;
+    napi_create_arraybuffer(env, byteLength, &newData, &bufferData);
     napi_set_named_property(env, result, "buffer", bufferData);
     return result;
 }
@@ -126,7 +130,7 @@ API declaration:
 // index.d.ts
 export class ArrayBufferInfo {
   byteLength: number;
-  buffer: Object;
+  buffer: ArrayBuffer;
 }
 export const getArrayBufferInfo: (data: ArrayBuffer) => ArrayBufferInfo | void;
 ```
@@ -134,12 +138,15 @@ export const getArrayBufferInfo: (data: ArrayBuffer) => ArrayBufferInfo | void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 const buffer = new ArrayBuffer(10);
 hilog.info(0x0000, 'testTag', 'Test Node-API get_arrayBuffer_info:%{public}s ', JSON.stringify(testNapi.getArrayBufferInfo(buffer)));
 ```
+
+Log output:
+Test Node-API get_arrayBuffer_info:{"byteLength":10,"buffer":{}}
 
 ### napi_detach_arraybuffer
 
@@ -193,8 +200,8 @@ export const isDetachedArrayBuffer: (arrayBuffer: ArrayBuffer) => boolean;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   const bufferArray = new ArrayBuffer(8);
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_detached_arraybuffer one: %{public}s', testNapi.isDetachedArrayBuffer(bufferArray));
@@ -203,6 +210,10 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_is_detached_arraybuffer error: %{public}s', error.message);
 }
 ```
+
+Log output:
+Test Node-API napi_is_detached_arraybuffer one: false
+Test Node-API napi_is_detached_arraybuffer two: true
 
 ### napi_create_arraybuffer
 
@@ -250,8 +261,8 @@ export const createArrayBuffer: (size: number) => ArrayBuffer;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_arraybuffer:%{public}s', testNapi.createArrayBuffer(10).toString());
 ```
@@ -264,3 +275,10 @@ add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
 target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 ```
+
+Log output:
+Test Node-API napi_create_arraybuffer:[object ArrayBuffer]
+
+## NOTE
+
+- Lifecycle and memory management: When using Node-API to process **ArrayBuffer** objects, note that the lifecycle of the buffer data segment of the **void*** type is managed by the engine and [cannot be deleted by users. Otherwise, a double free error may occur](napi-guidelines.md#avoiding-releasing-the-obtained-buffer-repeatedly).

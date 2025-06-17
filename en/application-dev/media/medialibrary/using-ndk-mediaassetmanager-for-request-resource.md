@@ -16,8 +16,7 @@ Add the dynamic library in the CMake script.
 target_link_libraries(sample PUBLIC libmedia_asset_manager.so)
 ```
 
-Import [media_asset_manager.h](../../reference/apis-media-library-kit/media__asset__manager__capi_8h.md) and [media_asset_base_capi.h](../../reference/apis-media-library-kit/media__asset__base__capi_8h.md) header files.
-For details about the APIs, see [MediaAssetManager API](../../reference/apis-media-library-kit/_media_asset_manager.md).
+Include the [media_asset_manager_capi.h](../../reference/apis-media-library-kit/capi-media-asset-manager-capi-h.md) and [media_asset_base_capi.h](../../reference/apis-media-library-kit/capi-media-asset-base-capi-h.md) header files to use the APIs of MediaAssetManager. For details about the APIs, see [MediaAssetManager APIs](../../reference/apis-media-library-kit/capi-mediaassetmanager.md).
 
 > **NOTE**<br>
 > The application must have the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Before You Start](photoAccessHelper-preparation.md).
@@ -79,7 +78,7 @@ int main()
 
             // Call CancelRequest() to cancel the request being processed.
             // Note that OH_MediaAssetManager_CancelRequest is optional.
-            bool ret = OH_MediaAssetManager_CancelRequest(manager, requestId);
+            bool ret = OH_MediaAssetManager_CancelRequest(manager, requestIdStruct);
         }
     }
     return 0;

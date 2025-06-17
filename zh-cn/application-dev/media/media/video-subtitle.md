@@ -6,105 +6,74 @@
 
 ## 开发步骤及注意事项
 
-详细的API说明请参考[AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9)
+详细的API说明请参考[AVPlayer](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md)
 
 1. 使用视频播放的AVPlayer实例设置外挂字幕资源。
 
    ```ts
-   let context = getContext(this) as common.UIAbilityContext;
-   let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt');
+    import media from '@ohos.multimedia.media';
+    // 类成员定义avPlayer和context。
+    private avPlayer: media.AVPlayer | null = null;
+    private context: common.UIAbilityContext | undefined = undefined;
+    
+    // 在业务函数中（示例工程函数名为avSetupVideoAndSubtitle）：
+    // 创建avPlayer实例对象。
+    this.avPlayer = await media.createAVPlayer();
 
-   avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length);
+    // 设定视频源（此处省略）。
 
-   // 或者使用addSubtitleFromUrl接口。
-   let fdUrl:string = "http://xxx.xxx.xxx.xxx:xx/xx/index.srt" ;
-   avPlayer.addSubtitleFromUrl(fdUrl);
+    // 设定字幕。
+    let fileDescriptorSub = await this.context.resourceManager.getRawFd('xxx.srt');
+    this.avPlayer.addSubtitleFromFd(fileDescriptorSub.fd, fileDescriptorSub.offset, fileDescriptorSub.length);
    ```
 
 2. 使用视频播放的AVPlayer实例注册字幕回调函数。
 
    ```ts
-   avPlayer.on('subtitleUpdate', (info: media.SubtitleInfo) => {
-     if (!!info) {
-       let text = (!info.text) ? '' : info.text;
-       let startTime = (!info.startTime) ? 0 : info.startTime;
-       let duration = (!info.duration) ? 0 : info.duration;
-       console.info('subtitleUpdate info: text=' + text + ' startTime=' + startTime +' duration=' + duration);
-     } else {
-       console.info('subtitleUpdate info is null');
-     }
-   });
+    // 类成员定义用来显示的字幕字符串。
+    @State subtitle: string = '';
+
+    // 字幕回调函数。
+    this.avPlayer.on('subtitleUpdate', (info: media.SubtitleInfo) => {
+      if (!!info) {
+        let text = (!info.text) ? '' : info.text;
+        let startTime = (!info.startTime) ? 0 : info.startTime;
+        let duration = (!info.duration) ? 0 : info.duration;
+        console.info(`${this.tag}: subtitleUpdate info: text=${text} startTime=${startTime} duration=${duration}`);
+        this.subtitle = text;
+      } else {
+        console.info(`${this.tag}: subtitleUpdate info is null`);
+      }
+    });
    ```
 
 3. (可选)当需要不显示字幕的时候，使用视频播放的AVPlayer实例注销字幕回调函数。
 
    ```ts
-   avPlayer.off('subtitleUpdate');
+    this.avPlayer?.off('subtitleUpdate');
    ```
 
 
-## 完整示例
+## 运行完整示例
 
-```ts
-import { media } from '@kit.MediaKit';
-import { common } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+1. 新建工程，下载[示例工程](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVPlayer/AVPlayerArkTSSubtitle)，并将示例工程的以下资源复制到对应目录。
+    ```
+    AVPlayerArkTSSubtitle
+    entry/src/main/ets/
+    └── pages
+        └── Index.ets (播放界面)
+    entry/src/main/resources/
+    ├── base
+    │   ├── element
+    │   │   ├── color.json
+    │   │   ├── float.json
+    │   │   └── string.json
+    │   └── media
+    │       ├── ic_video_play.svg  (播放键图片资源)
+    │       └── ic_video_pause.svg (暂停键图片资源)
+    └── rawfile
+        ├── test1.mp4 （视频资源）
+        └── test1.srt （字幕资源）
+    ```
 
-export class AVPlayerSubtitleDemo {
-  private avPlayer: media.AVPlayer | undefined = undefined;
-  // 注册avplayer回调函数。
-  setAVPlayerCallback(avPlayer: media.AVPlayer) {
-    // error回调监听函数,当avPlayer在操作过程中出现错误时调用reset接口触发重置流程。
-    avPlayer.on('error', (err: BusinessError) => {
-      console.error(`Invoke avPlayer failed, code is ${err.code}, message is ${err.message}`);
-      avPlayer.reset(); // 调用reset重置资源，触发idle状态。
-    });
-    // 注册字幕回调函数。
-    avPlayer.on('subtitleUpdate', (info: media.SubtitleInfo) => {
-      if (info) {
-        let text = (!info.text) ? '' : info.text;
-        let startTime = (!info.startTime) ? 0 : info.startTime;
-        let duration = (!info.duration) ? 0 : info.duration;
-        console.info('subtitleUpdate info: text=' + text + ' startTime=' + startTime +' duration=' + duration);
-      } else {
-        console.info('subtitleUpdate info is null');
-      }
-    });
-  }
-
-  // 以下demo为使用资源管理接口获取打包在HAP内的媒体资源文件并通过url属性设置。
-  async avPlayerSubtitleUrlDemo() {
-    // 创建avPlayer实例对象。
-    this.avPlayer = await media.createAVPlayer();
-    // 设置视频信息。
-    // 创建回调函数。
-    this.setAVPlayerCallback(this.avPlayer);
-
-    let fdUrl:string = "http://xxx.xxx.xxx.xxx:xx/xx/index.srt";
-
-    this.avPlayer.addSubtitleFromUrl(fdUrl);
-  }
-
-  // 以下demo为使用资源管理接口获取打包在HAP内的媒体资源文件并通过FromFd属性设置。
-  async avPlayerSubtitleFromFdDemo() {
-    // 创建avPlayer实例对象。
-    this.avPlayer = await media.createAVPlayer();
-    // 设置视频信息。
-    // 创建回调函数。
-    this.setAVPlayerCallback(this.avPlayer);
-
-    let context = getContext(this) as common.UIAbilityContext;
-    let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt');
-
-    this.avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length);
-  }
-
-  // 注销字幕回调函数。
-  async avPlayerSubtitleOffDemo() {
-    if(this.avPlayer) {
-      this.avPlayer.off('subtitleUpdate');
-    }
-  }
-
-}
-```
+2. 编译新建工程并运行。

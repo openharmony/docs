@@ -2,6 +2,10 @@
 
 Sendable对象支持冻结操作，冻结后的对象变成只读对象，不能增删改属性，因此在多个并发实例间访问均不需要加锁，可以通过调用[Object.freeze](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze)接口冻结对象。
 
+> **说明：**
+> 
+> 不支持在.ets文件中使用Object.freeze接口。
+
 ## 使用示例
 
 1. 提供ts文件封装Object.freeze方法。
@@ -12,8 +16,9 @@ Sendable对象支持冻结操作，冻结后的对象变成只读对象，不能
      Object.freeze(obj);
    }
    ```
+   <!-- @[provide_encapsulate_method](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/helper.ts) -->
 
-2. 通过调用freeze方法冻结对象，并将对象发送给子线程。
+2. 调用freeze方法冻结对象，然后将对象发送到子线程。
 
    ```ts
    // Index.ets
@@ -39,10 +44,10 @@ Sendable对象支持冻结操作，冻结后的对象变成只读对象，不能
            .fontSize(50)
            .fontWeight(FontWeight.Bold)
            .onClick(() => {
-             let gConifg = new GlobalConfig();
-             gConifg.init();
+             let gConfig = new GlobalConfig();
+             gConfig.init();
              const workerInstance = new worker.ThreadWorker('entry/ets/workers/Worker.ets', { name: "Worker1" });
-             workerInstance.postMessage(gConifg);
+             workerInstance.postMessage(gConfig);
            })
        }
        .height('100%')
@@ -50,6 +55,7 @@ Sendable对象支持冻结操作，冻结后的对象变成只读对象，不能
      }
    }
    ```
+   <!-- @[freeze_obj_send_child_thread](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/SendableFreeze.ets) -->
 
 3. 子线程不加锁直接操作对象。
 
@@ -64,3 +70,4 @@ Sendable对象支持冻结操作，冻结后的对象变成只读对象，不能
      // 使用gConfig对象
    }
    ```
+   <!-- @[directly_operate_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/workers/Worker.ets) -->

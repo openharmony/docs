@@ -3,7 +3,7 @@
 
 ## 概述
 
-描述ArkUI XComponent持有的surface和触摸事件，该事件可用于EGL/OpenGLES和媒体数据输入，并显示在ArkUI XComponent上，具体使用请参考[Native XComponent](../../ui/napi-xcomponent-guidelines.md)。
+描述ArkUI XComponent持有的Surface和触摸事件，该事件可用于EGL/OpenGLES和媒体数据输入，并显示在ArkUI XComponent上，具体使用请参考[Native XComponent](../../ui/napi-xcomponent-guidelines.md)。
 
 > **说明：**
 >
@@ -27,7 +27,7 @@
 | [OH_NativeXComponent_TouchPoint](_o_h___native_x_component___touch_point.md) | 触摸事件中触摸点的信息。          |
 | [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md) | 触摸事件。                 |
 | [OH_NativeXComponent_MouseEvent](_o_h___native_x_component___mouse_event.md) | 鼠标事件。                 |
-| [OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md) | 注册surface生命周期和触摸事件回调。 |
+| [OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md) | 注册Surface生命周期和触摸事件回调。 |
 | [OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md) | 注册鼠标事件的回调。            |
 | [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md) | 定义期望帧率范围。  |
 
@@ -37,9 +37,13 @@
 | 名称                                       | 描述                                   |
 | ---------------------------------------- | ------------------------------------ |
 | [OH_NativeXComponent](#oh_nativexcomponent) | 提供封装的OH_NativeXComponent实例。          |
-| [OH_NativeXComponent_Callback](#oh_nativexcomponent_callback) | 注册surface生命周期和触摸事件回调。                |
+| [OH_NativeXComponent_Callback](#oh_nativexcomponent_callback) | 注册Surface生命周期和触摸事件回调。                |
 | [OH_NativeXComponent_MouseEvent_Callback](#oh_nativexcomponent_mouseevent_callback) | 注册鼠标事件的回调。                           |
 | [OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent) | 提供封装的OH_NativeXComponent_KeyEvent实例。 |
+| [OH_NativeXComponent_ExtraMouseEventInfo](#oh_nativexcomponent_extramouseeventinfo) | 提供封装的扩展的鼠标事件信息实例。|
+| [OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback) | 定义Surface生命周期回调函数。|
+| [OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder) | 提供封装的OH_ArkUI_SurfaceHolder实例。|
+| [OHNativeWindow](#ohnativewindow) | 提供封装的NativeWindow实例。|
 
 
 ### 枚举
@@ -62,8 +66,8 @@
 | 名称                                       | 描述                                     |
 | ---------------------------------------- | -------------------------------------- |
 | [OH_NativeXComponent_GetXComponentId](#oh_nativexcomponent_getxcomponentid)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;char&nbsp;\*id,&nbsp;uint64_t&nbsp;\*size) | 获取ArkUI&nbsp;XComponent的id。            |
-| [OH_NativeXComponent_GetXComponentSize](#oh_nativexcomponent_getxcomponentsize)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;const&nbsp;void&nbsp;\*window,&nbsp;uint64_t&nbsp;\*width,&nbsp;uint64_t&nbsp;\*height) | 获取ArkUI&nbsp;XComponent持有的surface的大小。  |
-| [OH_NativeXComponent_GetXComponentOffset](#oh_nativexcomponent_getxcomponentoffset)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;const&nbsp;void&nbsp;\*window,&nbsp;double&nbsp;\*x,&nbsp;double&nbsp;\*y) | 获取XComponent持有的surface相对其父组件左顶点的偏移量。 |
+| [OH_NativeXComponent_GetXComponentSize](#oh_nativexcomponent_getxcomponentsize)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;const&nbsp;void&nbsp;\*window,&nbsp;uint64_t&nbsp;\*width,&nbsp;uint64_t&nbsp;\*height) | 获取ArkUI&nbsp;XComponent持有的Surface的大小。  |
+| [OH_NativeXComponent_GetXComponentOffset](#oh_nativexcomponent_getxcomponentoffset)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;const&nbsp;void&nbsp;\*window,&nbsp;double&nbsp;\*x,&nbsp;double&nbsp;\*y) | 获取XComponent持有的Surface相对其父组件左顶点的偏移量。 |
 | [OH_NativeXComponent_GetTouchEvent](#oh_nativexcomponent_gettouchevent)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;const&nbsp;void&nbsp;\*window,&nbsp;[OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md)&nbsp;\*touchEvent) | 获取ArkUI&nbsp;XComponent调度的触摸事件。        |
 | [OH_NativeXComponent_GetTouchPointToolType](#oh_nativexcomponent_gettouchpointtooltype)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;uint32_t&nbsp;pointIndex,&nbsp;[OH_NativeXComponent_TouchPointToolType](#oh_nativexcomponent_touchpointtooltype)&nbsp;\*toolType) | 获取ArkUI&nbsp;XComponent触摸点工具类型。        |
 | [OH_NativeXComponent_GetTouchPointTiltX](#oh_nativexcomponent_gettouchpointtiltx)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;uint32_t&nbsp;pointIndex,&nbsp;float&nbsp;\*tiltX) | 获取ArkUI&nbsp;XComponent触摸点倾斜与X轴角度。     |
@@ -84,26 +88,56 @@
 | [OH_NativeXComponent_SetExpectedFrameRateRange](#oh_nativexcomponent_setexpectedframeraterange) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md) \*range) | 设置期望帧率范围。                                           |
 | [OH_NativeXComponent_RegisterOnFrameCallback](#oh_nativexcomponent_registeronframecallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, uint64_t timestamp, uint64_t targetTimestamp)) | 为此OH_NativeXComponent实例注册显示更新回调，并使能每帧回调此函数。 |
 | [OH_NativeXComponent_UnregisterOnFrameCallback](#oh_nativexcomponent_unregisteronframecallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component) | 为此OH_NativeXComponent实例取消注册回调函数，并关闭每帧回调此函数。 |
-| int32_t [OH_NativeXComponent_AttachNativeRootNode](#oh_nativexcomponent_attachnativerootnode) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | 将通过ArkUI的native接口创建出来的UI组件挂载到当前XComponent上。  |
-| int32_t [OH_NativeXComponent_DetachNativeRootNode](#oh_nativexcomponent_detachnativerootnode) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | 将ArkUI的native组件从当前XComponent上卸载.  |
+| int32_t [OH_NativeXComponent_AttachNativeRootNode](#oh_nativexcomponent_attachnativerootnode) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | 将通过ArkUI的Native接口创建出来的UI组件挂载到当前XComponent上。  |
+| int32_t [OH_NativeXComponent_DetachNativeRootNode](#oh_nativexcomponent_detachnativerootnode) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | 将ArkUI的Native组件从当前XComponent上卸载。  |
 | int32_t [OH_NativeXComponent_RegisterUIInputEventCallback](#oh_nativexcomponent_registeruiinputeventcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type), [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type) | 为此OH_NativeXComponent实例注册UI输入事件回调，并使能收到UI输入事件时回调此函数。  |
-| int32_t [OH_NativeXComponent_RegisterOnTouchInterceptCallback](#oh_nativexcomponent_registerontouchinterceptcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [HitTestMode](_ark_u_i___native_module.md#hittestmode)(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event)) | 为此OH_NativeXComponent实例注册自定义事件拦截回调，并使能在做触摸测试时回调此函数。  |
+| int32_t [OH_NativeXComponent_RegisterOnTouchInterceptCallback](#oh_nativexcomponent_registerontouchinterceptcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_HitTestMode](_ark_u_i___event_module.md#hittestmode)(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event)) | 为此OH_NativeXComponent实例注册自定义事件拦截回调，并使能在做触摸测试时回调此函数。  |
 | int32_t [OH_NativeXComponent_SetNeedSoftKeyboard](#oh_nativexcomponent_setneedsoftkeyboard) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, bool isNeedSoftKeyboard) | 为此OH_NativeXComponent实例设置是否需要软键盘。  |
-| int32_t [OH_NativeXComponent_RegisterSurfaceShowCallback](#oh_nativexcomponent_registersurfaceshowcallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册surface显示回调，该回调在应用从后台返回前台后触发。 |
-| int32_t [OH_NativeXComponent_RegisterSurfaceHideCallback](#oh_nativexcomponent_registersurfacehidecallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册surface隐藏回调，该回调在应用从前台来到后台后触发。 |
+| int32_t [OH_NativeXComponent_RegisterSurfaceShowCallback](#oh_nativexcomponent_registersurfaceshowcallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册Surface显示回调，该回调在应用从后台返回前台后触发。 |
+| int32_t [OH_NativeXComponent_RegisterSurfaceHideCallback](#oh_nativexcomponent_registersurfacehidecallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册Surface隐藏回调，该回调在应用从前台来到后台后触发。 |
 | int32_t [OH_NativeXComponent_GetTouchEventSourceType](#oh_nativexcomponent_gettoucheventsourcetype) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, int32_t pointId, [OH_NativeXComponent_EventSourceType](#oh_nativexcomponent_eventsourcetype) \*sourceType) | 获取ArkUI XComponent触摸事件的输入设备类型。  |
 | [OH_NativeXComponent](#oh_nativexcomponent) \* [OH_NativeXComponent_GetNativeXComponent](#oh_nativexcomponent_getnativexcomponent) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 基于Native接口创建的组件实例获取OH_NativeXComponent类型的指针。  |
 | int32_t [OH_NativeXComponent_GetNativeAccessibilityProvider](#oh_nativexcomponent_getnativeaccessibilityprovider)([OH_NativeXComponent](#oh_nativexcomponent)* component, [ArkUI_AccessibilityProvider](./arkui_native_interface_accessibility.md#arkui_accessibilityprovider)** handle); | 基于NativeXComponent实例获取的ArkUI_AccessibilityProvider类型的指针。 |
 | int32_t [OH_NativeXComponent_RegisterKeyEventCallbackWithResult](#oh_nativexcomponent_registerkeyeventcallbackwithresult) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, bool(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, void \*window)) | 为此OH_NativeXComponent实例注册有返回值的按键事件回调。  | 
-|int32_t [OH_ArkUI_XComponent_StartImageAnalyzer](#oh_arkui_xcomponent_startimageanalyzer) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void \*userData,void (\*callback)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_XComponent_ImageAnalyzerState](#arkui_xcomponent_imageanalyzerstate) statusCode, void \*userData))|为此XComponent实例开始图像AI分析。|
-|int32_t [OH_ArkUI_XComponent_StopImageAnalyzer](#oh_arkui_xcomponent_stopimageanalyzer)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node)|为此XComponent实例停止图像AI分析。|
+|int32_t [OH_ArkUI_XComponent_StartImageAnalyzer](#oh_arkui_xcomponent_startimageanalyzer) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void \*userData,void (\*callback)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_XComponent_ImageAnalyzerState](#arkui_xcomponent_imageanalyzerstate) statusCode, void \*userData))|为此XComponent组件实例开始图像AI分析。|
+|int32_t [OH_ArkUI_XComponent_StopImageAnalyzer](#oh_arkui_xcomponent_stopimageanalyzer)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node)|为此XComponent组件实例停止图像AI分析。|
+|[OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* [OH_ArkUI_SurfaceCallback_Create](#oh_arkui_surfacecallback_create)()|创建OH_ArkUI_SurfaceCallback对象。|
+|void [OH_ArkUI_SurfaceCallback_Dispose](#oh_arkui_surfacecallback_dispose)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback)|销毁OH_ArkUI_SurfaceCallback对象。|
+|[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* [OH_ArkUI_SurfaceHolder_Create](#oh_arkui_surfaceholder_create)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node)|创建XComponent组件的OH_ArkUI_SurfaceHolder对象。|
+|void [OH_ArkUI_SurfaceHolder_Dispose](#oh_arkui_surfaceholder_dispose)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder)|销毁OH_ArkUI_SurfaceHolder对象。|
+|int32_t [OH_ArkUI_SurfaceHolder_SetUserData](#oh_arkui_surfaceholder_setuserdata)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder, void* userData)|向OH_ArkUI_SurfaceHolder实例存储自定义数据。|
+|void* [OH_ArkUI_SurfaceHolder_GetUserData](#oh_arkui_surfaceholder_getuserdata)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder)|获取OH_ArkUI_SurfaceHolder实例存储的自定义数据。|
+|void [OH_ArkUI_SurfaceCallback_SetSurfaceCreatedEvent](#oh_arkui_surfacecallback_setsurfacecreatedevent)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback, void (\*onSurfaceCreated)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)\* surfaceHolder))|设置Surface生命周期回调中的创建回调事件。|
+|void [OH_ArkUI_SurfaceCallback_SetSurfaceChangedEvent](#oh_arkui_surfacecallback_setsurfacechangedevent)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback, void (\*onSurfaceChanged)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)\* surfaceHolder, uint64_t width, uint64_t height))|设置Surface生命周期回调中的大小改变回调事件。|
+|void [OH_ArkUI_SurfaceCallback_SetSurfaceDestroyedEvent](#oh_arkui_surfacecallback_setsurfacedestroyedevent)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback, void (\*onSurfaceDestroyed)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)\* surfaceHolder))|设置Surface生命周期回调中的销毁回调事件。|
+|int32_t [OH_ArkUI_SurfaceHolder_AddSurfaceCallback](#oh_arkui_surfaceholder_addsurfacecallback)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder, [OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback)|添加Surface生命周期回调到OH_ArkUI_SurfaceHolder实例。|
+|int32_t [OH_ArkUI_SurfaceHolder_RemoveSurfaceCallback](#oh_arkui_surfaceholder_removesurfacecallback)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder, [OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback)|删除OH_ArkUI_SurfaceHolder实例的先前添加的Surface生命周期回调。|
+|[OHNativeWindow](#ohnativewindow)* [OH_ArkUI_XComponent_GetNativeWindow](#oh_arkui_xcomponent_getnativewindow)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder)|获取OH_ArkUI_SurfaceHolder实例关联的NativeWindow。|
+|int32_t [OH_ArkUI_XComponent_SetAutoInitialize](#oh_arkui_xcomponent_setautoinitialize)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, bool autoInitialize)|设置XComponent组件是否需要自动初始化Surface的标志位。|
+|int32_t [OH_ArkUI_XComponent_Initialize](#oh_arkui_xcomponent_initialize)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node)|初始化XComponent组件持有的Surface。|
+|int32_t [OH_ArkUI_XComponent_Finalize](#oh_arkui_xcomponent_finalize)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node)|销毁XComponent组件持有的Surface。|
+|int32_t [OH_ArkUI_XComponent_IsInitialized](#oh_arkui_xcomponent_isinitialized)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, bool* isInitialized)|获取XComponent组件是否已经初始化Surface的标志位。|
+|int32_t [OH_NativeXComponent_GetExtraMouseEventInfo](#oh_nativexcomponent_getextramouseeventinfo)([OH_NativeXComponent](#oh_nativexcomponent)* component, [OH_NativeXComponent_ExtraMouseEventInfo](#oh_nativexcomponent_extramouseeventinfo)** extraMouseEventInfo)| 从此OH_NativeXComponent实例中获取扩展的鼠标事件信息。|
+|int32_t [OH_NativeXComponent_GetMouseEventModifierKeyStates](#oh_nativexcomponent_getmouseeventmodifierkeystates)([OH_NativeXComponent_ExtraMouseEventInfo](#oh_nativexcomponent_extramouseeventinfo)* extraMouseEventInfo, uint64_t* keys)|从OH_NativeXComponent_ExtraMouseEventInfo实例中获取功能键按压状态信息。|
+|int32_t [OH_NativeXComponent_GetKeyEventModifierKeyStates](#oh_nativexcomponent_getkeyeventmodifierkeystates)([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)* keyEvent, uint64_t* keys)|从按键事件中获取功能键按压状态信息。|
+|int32_t [OH_NativeXComponent_GetKeyEventNumLockState](#oh_nativexcomponent_getkeyeventnumlockstate)([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)* keyEvent, bool* isNumLockOn) | 从按键事件中获取NumLock（小键盘锁定）键的状态信息。|
+|int32_t [OH_NativeXComponent_GetKeyEventCapsLockState](#oh_nativexcomponent_getkeyeventcapslockstate)([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)* keyEvent, bool* isCapsLockOn)| 从按键事件中获取CapsLock（大写锁定）键的状态信息。|
+|int32_t [OH_NativeXComponent_GetKeyEventScrollLockState](#oh_nativexcomponent_getkeyeventscrolllockstate)([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)* keyEvent, bool* isScrollLockOn) | 从按键事件中获取ScrollLock（滚动锁定）键的状态信息。|
+|int32_t [OH_ArkUI_XComponent_SetExpectedFrameRateRange](#oh_arkui_xcomponent_setexpectedframeraterange)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md) range)|为此XComponent组件实例设置期望帧率。|
+|int32_t [OH_ArkUI_XComponent_RegisterOnFrameCallback](#oh_arkui_xcomponent_registeronframecallback)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node,void (*callback)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, uint64_t timestamp, uint64_t targetTimestamp))|为此XComponent组件实例注册帧回调函数。|
+|int32_t [OH_ArkUI_XComponent_UnregisterOnFrameCallback](#oh_arkui_xcomponent_unregisteronframecallback)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node)|为此XComponent组件实例取消注册帧回调函数。|
+|int32_t [OH_ArkUI_XComponent_SetNeedSoftKeyboard](#oh_arkui_xcomponent_setneedsoftkeyboard)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, bool needSoftKeyboard) | 为此XComponent组件实例设置是否需要软键盘。|
+|[ArkUI_AccessibilityProvider](_o_h___native_x_component.md#oh_arkui_accessibilityprovider_create)* [OH_ArkUI_AccessibilityProvider_Create](#oh_arkui_accessibilityprovider_create)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 基于此XComponent组件实例创建ArkUI_AccessibilityProvider实例。|
+|void [OH_ArkUI_AccessibilityProvider_Dispose](#oh_arkui_accessibilityprovider_dispose)([ArkUI_AccessibilityProvider](_o_h___native_x_component.md#oh_arkui_accessibilityprovider_create)* provider)|销毁由NDK接口[OH_ArkUI_AccessibilityProvider_Create](#oh_arkui_accessibilityprovider_create)创建的[ArkUI_AccessibilityProvider](arkui_native_interface_accessibility.md#arkui_accessibilityprovider)实例。|
+|void [OH_ArkUI_SurfaceCallback_SetSurfaceShowEvent](#oh_arkui_surfacecallback_setsurfaceshowevent)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback,void (\*onSurfaceShow)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder))|为此OH_ArkUI_SurfaceCallback实例设置Surface显示回调。|
+|void [OH_ArkUI_SurfaceCallback_SetSurfaceHideEvent](#oh_arkui_surfacecallback_setsurfacehideevent)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback,void (\*onSurfaceHide)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder))|为此OH_ArkUI_SurfaceCallback实例设置Surface隐藏回调。|
 
 ### 变量
 
 | 名称                                       | 描述                             |
 | ---------------------------------------- | ------------------------------ |
-| **OH_XCOMPONENT_ID_LEN_MAX**&nbsp;=&nbsp;128 | ArkUI&nbsp;XComponent的id最大长度。  |
-| **OH_MAX_TOUCH_POINTS_NUMBER**&nbsp;=&nbsp;10 | 触摸事件中的可识别的触摸点个数最大值。            |
+| [OH_XCOMPONENT_ID_LEN_MAX](#oh_xcomponent_id_len_max)&nbsp;=&nbsp;128 | ArkUI&nbsp;XComponent的id最大长度。  |
+| [OH_MAX_TOUCH_POINTS_NUMBER](#oh_max_touch_points_number)&nbsp;=&nbsp;10 | 触摸事件中的可识别的触摸点个数最大值。            |
 | [OH_NativeXComponent_TouchPoint::id](#id-12)&nbsp;=&nbsp;0 | 手指的唯一标识符。                      |
 | [OH_NativeXComponent_TouchPoint::screenX](#screenx-13)&nbsp;=&nbsp;0.0 | 触摸点相对于XComponent所在应用窗口左上角的x坐标。 |
 | [OH_NativeXComponent_TouchPoint::screenY](#screeny-13)&nbsp;=&nbsp;0.0 | 触摸点相对于XComponent所在应用窗口左上角的y坐标。 |
@@ -127,15 +161,15 @@
 | [OH_NativeXComponent_TouchEvent::touchPoints](#touchpoints)&nbsp;[OH_MAX_TOUCH_POINTS_NUMBER] | 当前触摸点的数组。                      |
 | [OH_NativeXComponent_TouchEvent::numPoints](#numpoints)&nbsp;=&nbsp;0 | 当前接触点的数量。                      |
 | [OH_NativeXComponent_MouseEvent::x](#x-33)&nbsp;=&nbsp;0.0 | 点击触点相对于当前组件左上角的x轴坐标。           |
-| [OH_NativeXComponent_MouseEvent::y](#y-33)=&nbsp;0.0 | 点击触点相对于当前组件左上角的y轴坐标。           |
-| [OH_NativeXComponent_MouseEvent::screenX](#screenx-33)=&nbsp;0.0 | 点击触点相对于屏幕左上角的x轴坐标。             |
-| [OH_NativeXComponent_MouseEvent::screenY](#screeny-33)=&nbsp;0.0 | 点击触点相对于屏幕左上角的y轴坐标。             |
-| [OH_NativeXComponent_MouseEvent::timestamp](#timestamp)=&nbsp;0 | 当前鼠标事件的时间戳。                    |
-| [OH_NativeXComponent_MouseEvent::action](#action)=&nbsp;[OH_NativeXComponent_MouseEventAction::OH_NATIVEXCOMPONENT_MOUSE_NONE](#oh_nativexcomponent_mouseeventaction) | 当前鼠标事件动作。                      |
-| [OH_NativeXComponent_MouseEvent::button](#button)=&nbsp;[OH_NativeXComponent_MouseEventButton::OH_NATIVEXCOMPONENT_NONE_BUTTON](#oh_nativexcomponent_mouseeventbutton) | 鼠标事件按键。                        |
-| [OH_NativeXComponent_Callback::OnSurfaceCreated](#onsurfacecreated) | 创建surface时调用。                  |
-| [OH_NativeXComponent_Callback::OnSurfaceChanged](#onsurfacechanged) | 当surface改变时调用。                 |
-| [OH_NativeXComponent_Callback::OnSurfaceDestroyed](#onsurfacedestroyed) | 当surface被销毁时调用。                |
+| [OH_NativeXComponent_MouseEvent::y](#y-33)&nbsp;=&nbsp;0.0 | 点击触点相对于当前组件左上角的y轴坐标。           |
+| [OH_NativeXComponent_MouseEvent::screenX](#screenx-33)&nbsp;=&nbsp;0.0 | 点击触点相对于屏幕左上角的x轴坐标。             |
+| [OH_NativeXComponent_MouseEvent::screenY](#screeny-33)&nbsp;=&nbsp;0.0 | 点击触点相对于屏幕左上角的y轴坐标。             |
+| [OH_NativeXComponent_MouseEvent::timestamp](#timestamp)&nbsp;=&nbsp;0 | 当前鼠标事件的时间戳。                    |
+| [OH_NativeXComponent_MouseEvent::action](#action)&nbsp;=&nbsp;[OH_NativeXComponent_MouseEventAction::OH_NATIVEXCOMPONENT_MOUSE_NONE](#oh_nativexcomponent_mouseeventaction) | 当前鼠标事件动作。                      |
+| [OH_NativeXComponent_MouseEvent::button](#button)&nbsp;=&nbsp;[OH_NativeXComponent_MouseEventButton::OH_NATIVEXCOMPONENT_NONE_BUTTON](#oh_nativexcomponent_mouseeventbutton) | 鼠标事件按键。                        |
+| [OH_NativeXComponent_Callback::OnSurfaceCreated](#onsurfacecreated) | 创建Surface时调用。                  |
+| [OH_NativeXComponent_Callback::OnSurfaceChanged](#onsurfacechanged) | 当Surface改变时调用。                 |
+| [OH_NativeXComponent_Callback::OnSurfaceDestroyed](#onsurfacedestroyed) | 当Surface被销毁时调用。                |
 | [OH_NativeXComponent_Callback::DispatchTouchEvent](#dispatchtouchevent) | 当触摸事件被触发时调用。                   |
 | [OH_NativeXComponent_MouseEvent_Callback::DispatchMouseEvent](#dispatchmouseevent) | 当鼠标事件被触发时调用。                   |
 | [OH_NativeXComponent_MouseEvent_Callback::DispatchHoverEvent](#dispatchhoverevent) | 当悬停事件被触发时调用。                   |
@@ -167,7 +201,7 @@ typedef struct OH_NativeXComponent_Callback OH_NativeXComponent_Callback
 
 **描述:**
 
-注册surface生命周期和触摸事件回调。
+注册Surface生命周期和触摸事件回调。
 
 **起始版本：**
 
@@ -202,6 +236,82 @@ typedef struct OH_NativeXComponent_MouseEvent_Callback OH_NativeXComponent_Mouse
 **起始版本：**
 
 9
+
+
+### OH_ArkUI_SurfaceCallback
+
+```
+typedef struct OH_ArkUI_SurfaceCallback OH_ArkUI_SurfaceCallback
+```
+
+**描述：**
+
+定义Surface生命周期回调函数。
+
+> **说明：**
+>
+> 此类型的具体定义并不直接暴露。可调用[OH_ArkUI_SurfaceCallback_Create](#oh_arkui_surfacecallback_create)接口以创建此类型实例，可调用[OH_ArkUI_SurfaceCallback_Dispose](#oh_arkui_surfacecallback_dispose)接口以销毁此类型实例。
+
+**起始版本：**
+
+19
+
+
+### OH_ArkUI_SurfaceHolder
+
+```
+typedef struct OH_ArkUI_SurfaceHolder OH_ArkUI_SurfaceHolder
+```
+
+**描述：**
+
+提供封装的OH_ArkUI_SurfaceHolder实例。
+
+> **说明：**
+>
+> 此类型的具体定义并不直接暴露。可调用[OH_ArkUI_SurfaceHolder_Create](#oh_arkui_surfaceholder_create)接口以创建此类型实例，可调用[OH_ArkUI_SurfaceHolder_Dispose](#oh_arkui_surfaceholder_dispose)接口以销毁此类型实例。
+
+**起始版本：**
+
+19
+
+
+### OHNativeWindow
+
+```
+typedef struct NativeWindow OHNativeWindow
+```
+
+**描述：**
+
+提供封装的NativeWindow实例。
+
+> **说明：**
+>
+> 此类型的具体定义并不直接暴露。可调用[OH_ArkUI_XComponent_GetNativeWindow](#oh_arkui_xcomponent_getnativewindow)接口以获取此类型实例
+
+**起始版本：**
+
+19
+
+
+### OH_NativeXComponent_ExtraMouseEventInfo
+
+```
+typedef struct OH_NativeXComponent_ExtraMouseEventInfo OH_NativeXComponent_ExtraMouseEventInfo
+```
+
+**描述：**
+
+提供封装的扩展的鼠标事件信息实例。
+
+> **说明：**
+>
+> 此类型的具体定义并不直接暴露。可调用[OH_NativeXComponent_GetMouseEventModifierKeyStates](#oh_nativexcomponent_getmouseeventmodifierkeystates)接口以获取该类型实例中的内容。
+
+**起始版本：**
+
+20
 
 
 ## 枚举类型说明
@@ -364,7 +474,7 @@ enum OH_NativeXComponent_KeyCode
 | KEY_EQUALS                   | 按键'='                       |
 | KEY_LEFT_BRACKET             | 按键'['                       |
 | KEY_RIGHT_BRACKET            | 按键']'                       |
-| KEY_BACKSLASH                | 按键'\'                       |
+| KEY_BACKSLASH                | 按键'\\'                       |
 | KEY_SEMICOLON                | 按键';'                       |
 | KEY_APOSTROPHE               | 按键'''&nbsp;(单引号)            |
 | KEY_SLASH                    | 按键'/'                       |
@@ -633,7 +743,7 @@ enum OH_NativeXComponent_MouseEventAction
 
 | 枚举值                               | 描述               |
 | --------------------------------- | ---------------- |
-| OH_NATIVEXCOMPONENT_MOUSE_NONE    | 无效鼠标事件&nbsp;。    |
+| OH_NATIVEXCOMPONENT_MOUSE_NONE    | 无效鼠标事件。    |
 | OH_NATIVEXCOMPONENT_MOUSE_PRESS   | 鼠标按键按下时触发鼠标事件。   |
 | OH_NATIVEXCOMPONENT_MOUSE_RELEASE | 鼠标按键松开时触发鼠标事件。   |
 | OH_NATIVEXCOMPONENT_MOUSE_MOVE    | 鼠标在屏幕上移动时触发鼠标事件。 |
@@ -699,7 +809,7 @@ enum OH_NativeXComponent_TouchPointToolType
 
 **描述:**
 
-触摸点工具类型
+触摸点工具类型。
 
 | 枚举值                                    | 描述       |
 | -------------------------------------- | -------- |
@@ -748,7 +858,7 @@ int32_t OH_NativeXComponent_AttachNativeRootNode (OH_NativeXComponent * componen
 ```
 **描述：**
 
-将通过ArkUI的native接口创建出来的UI组件挂载到当前XComponent上。
+将通过ArkUI的Native接口创建出来的UI组件挂载到当前XComponent上。
 
 **起始版本：** 12
 
@@ -757,7 +867,7 @@ int32_t OH_NativeXComponent_AttachNativeRootNode (OH_NativeXComponent * componen
 | 名称 | 描述 |
 | -------- | -------- |
 | component | 表示指向OH_NativeXComponent实例的指针。  |
-| root | 指向Native接口创建的组件实例的指针。  |
+| root | 表示指向Native接口创建的组件实例的指针。  |
 
 **返回：**
 
@@ -773,7 +883,7 @@ int32_t OH_NativeXComponent_DetachNativeRootNode (OH_NativeXComponent * componen
 ```
 **描述：**
 
-将ArkUI的native组件从当前XComponent上卸载.
+将ArkUI的Native组件从当前XComponent上卸载。
 
 **起始版本：** 12
 
@@ -782,7 +892,7 @@ int32_t OH_NativeXComponent_DetachNativeRootNode (OH_NativeXComponent * componen
 | 名称 | 描述 |
 | -------- | -------- |
 | component | 表示指向OH_NativeXComponent实例的指针。  |
-| root | 指向Native接口创建的组件实例的指针。  |
+| root | 表示指向Native接口创建的组件实例的指针。  |
 
 **返回：**
 
@@ -956,15 +1066,15 @@ int32_t OH_NativeXComponent_GetMouseEvent (OH_NativeXComponent * component, cons
 
 **描述:**
 
-获取ArkUI XComponent调度的鼠标事件
+获取ArkUI XComponent调度的鼠标事件。
 
 **参数:**
 
 | 名称         | 描述                            |
 | ---------- | ----------------------------- |
 | component  | 表示指向OH_NativeXComponent实例的指针。 |
-| window     | 表示NativeWindow句柄              |
-| mouseEvent | 指示指向当前鼠标事件的指针。                |
+| window     | 表示NativeWindow句柄。              |
+| mouseEvent | 表示指向当前鼠标事件的指针。                |
 
 **返回:**
 
@@ -1012,7 +1122,7 @@ int32_t OH_NativeXComponent_GetTouchEvent (OH_NativeXComponent * component, cons
 | ---------- | ----------------------------- |
 | component  | 表示指向OH_NativeXComponent实例的指针。 |
 | window     | 表示NativeWindow句柄。             |
-| touchEvent | 指示指向当前触摸事件的指针。                |
+| touchEvent | 表示指向当前触摸事件的指针。                |
 
 **返回:**
 
@@ -1227,8 +1337,8 @@ int32_t OH_NativeXComponent_GetXComponentId (OH_NativeXComponent * component, ch
 | 名称      | 描述                                                         |
 | --------- | ------------------------------------------------------------ |
 | component | 表示指向OH_NativeXComponent实例的指针。                      |
-| id        | 指示用于保存此OH_NativeXComponent实例的ID的字符缓冲区。&nbsp;请注意，空终止符将附加到字符缓冲区，因此字符缓冲区的大小应至少比真实id长度大一个单位。&nbsp;建议字符缓冲区的大小为[OH_XCOMPONENT_ID_LEN_MAX&nbsp;+&nbsp;1]。 |
-| size      | 指示指向id长度的指针，用于接收id的长度信息。                 |
+| id        | 表示用于保存此OH_NativeXComponent实例的ID的字符缓冲区。&nbsp;请注意，空终止符将附加到字符缓冲区，因此字符缓冲区的大小应至少比真实id长度大一个单位。&nbsp;建议字符缓冲区的大小为[OH_XCOMPONENT_ID_LEN_MAX&nbsp;+&nbsp;1]。 |
+| size      | 表示指向id长度的指针，用于接收id的长度信息。                 |
 
 **返回:**
 
@@ -1247,7 +1357,7 @@ int32_t OH_NativeXComponent_GetXComponentOffset (OH_NativeXComponent * component
 
 **描述:**
 
-获取ArkUI XComponent持有的surface相对其父组件左顶点的偏移量。
+获取ArkUI XComponent持有的Surface相对其父组件左顶点的偏移量。
 
 **参数:**
 
@@ -1255,8 +1365,8 @@ int32_t OH_NativeXComponent_GetXComponentOffset (OH_NativeXComponent * component
 | --------- | ----------------------------- |
 | component | 表示指向OH_NativeXComponent实例的指针。 |
 | window    | 表示NativeWindow句柄。             |
-| x         | 指示指向当前surface相对于XComponent父组件左顶点x坐标的指针。         |
-| y         | 指示指向当前surface相对于XComponent父组件左顶点y坐标的指针。         |
+| x         | 表示指向当前Surface相对于XComponent父组件左顶点x坐标的指针。         |
+| y         | 表示指向当前Surface相对于XComponent父组件左顶点y坐标的指针。         |
 
 **返回:**
 
@@ -1275,7 +1385,7 @@ int32_t OH_NativeXComponent_GetXComponentSize (OH_NativeXComponent * component, 
 
 **描述:**
 
-获取ArkUI XComponent持有的surface的大小。
+获取ArkUI XComponent持有的Surface的大小。
 
 **参数:**
 
@@ -1283,8 +1393,8 @@ int32_t OH_NativeXComponent_GetXComponentSize (OH_NativeXComponent * component, 
 | --------- | ----------------------------- |
 | component | 表示指向OH_NativeXComponent实例的指针。 |
 | window    | 表示NativeWindow句柄。             |
-| width     | 指示指向当前surface宽度的指针。           |
-| height    | 指示指向当前surface高度的指针。           |
+| width     | 表示指向当前Surface宽度的指针。           |
+| height    | 表示指向当前Surface高度的指针。           |
 
 **返回:**
 
@@ -1310,7 +1420,7 @@ int32_t OH_NativeXComponent_RegisterBlurEventCallback (OH_NativeXComponent * com
 | 名称        | 描述                            |
 | --------- | ----------------------------- |
 | component | 表示指向OH_NativeXComponent实例的指针。 |
-| callback  | 指示指向失焦事件回调的指针。                |
+| callback  | 表示指向失焦事件回调的指针。 <br> - window: 表示NativeWindow句柄。               |
 
 **返回:**
 
@@ -1336,7 +1446,7 @@ int32_t OH_NativeXComponent_RegisterCallback (OH_NativeXComponent * component, O
 | 名称        | 描述                            |
 | --------- | ----------------------------- |
 | component | 表示指向OH_NativeXComponent实例的指针。 |
-| callback  | 指示指向surface生命周期和触摸事件回调的指针。    |
+| callback  | 表示指向Surface生命周期和触摸事件回调的指针。    |
 
 **返回:**
 
@@ -1362,7 +1472,7 @@ int32_t OH_NativeXComponent_RegisterFocusEventCallback (OH_NativeXComponent * co
 | 名称        | 描述                            |
 | --------- | ----------------------------- |
 | component | 表示指向OH_NativeXComponent实例的指针。 |
-| callback  | 指示指向获焦事件回调的指针。                |
+| callback  | 表示指向获焦事件回调的指针。 <br> - window: 表示NativeWindow句柄。               |
 
 **返回:**
 
@@ -1388,7 +1498,7 @@ int32_t OH_NativeXComponent_RegisterKeyEventCallback (OH_NativeXComponent * comp
 | 名称        | 描述                            |
 | --------- | ----------------------------- |
 | component | 表示指向OH_NativeXComponent实例的指针。 |
-| callback  | 指示指向按键事件回调的指针。                |
+| callback  | 表示指向按键事件回调的指针。 <br> - window: 表示NativeWindow句柄。               |
 
 **返回:**
 
@@ -1414,7 +1524,7 @@ int32_t OH_NativeXComponent_RegisterKeyEventCallbackWithResult (OH_NativeXCompon
 | 名称        | 描述                            |
 | --------- | ----------------------------- |
 | component | 表示指向OH_NativeXComponent实例的指针。 |
-| callback  | 指示指向按键事件回调的指针。                |
+| callback  | 表示指向按键事件回调的指针。 <br> - window: 表示NativeWindow句柄。 |
 
 **返回:**
 
@@ -1440,7 +1550,7 @@ int32_t OH_NativeXComponent_RegisterMouseEventCallback (OH_NativeXComponent * co
 | 名称        | 描述                            |
 | --------- | ----------------------------- |
 | component | 表示指向OH_NativeXComponent实例的指针。 |
-| callback  | 指示指向鼠标事件回调的指针。                |
+| callback  | 表示指向鼠标事件回调的指针。                |
 
 **返回:**
 
@@ -1464,9 +1574,7 @@ int32_t OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent* compon
 | 名称 | 描述 |
 | -------- | -------- |
 | component | 表示指向OH_NativeXComponent实例的指针。  |
-| callback | 指示指向显示更新回调的指针。  |
-| timestamp | 当前帧到达的时间（单位：纳秒）。 |
-| targetTimestamp | 下一帧预期到达的时间（单位：纳秒）。 |
+| callback | 表示指向显示更新回调的指针。 <br> - timestamp: 当前帧到达的时间（单位：纳秒）。 <br> - targetTimestamp: 下一帧预期到达的时间（单位：纳秒）。 |
 
 **返回：**
 
@@ -1484,6 +1592,7 @@ int32_t OH_NativeXComponent_RegisterOnTouchInterceptCallback (OH_NativeXComponen
 **描述：**
 
 为此OH_NativeXComponent实例注册自定义事件拦截回调，并使能在做触摸测试时回调此函数。
+通过该回调获取到的事件对象不支持UIInput相关信息操作接口，建议切换为通过注册native node上的NODE_ON_TOUCH_INTERCEPT通用事件来支持。
 
 **起始版本：** 12
 
@@ -1492,7 +1601,7 @@ int32_t OH_NativeXComponent_RegisterOnTouchInterceptCallback (OH_NativeXComponen
 | 名称 | 描述 |
 | -------- | -------- |
 | component | 表示指向OH_NativeXComponent实例的指针。  |
-| callback | 指示指向自定义事件拦截回调的指针。  |
+| callback | 表示指向自定义事件拦截回调的指针。 <br> - event: 表示指向UI输入事件的指针。 |
 
 **返回：**
 
@@ -1505,7 +1614,7 @@ int32_t OH_NativeXComponent_RegisterUIInputEventCallback (OH_NativeXComponent * 
 ```
 **描述：**
 
-为此OH_NativeXComponent实例注册UI输入事件回调，并使能收到UI输入事件时回调此函数。
+为此OH_NativeXComponent实例注册UI输入事件回调，并使能收到UI输入事件时回调此函数。当前仅支持轴事件。
 
 **起始版本：** 12
 
@@ -1514,8 +1623,8 @@ int32_t OH_NativeXComponent_RegisterUIInputEventCallback (OH_NativeXComponent * 
 | 名称 | 描述 |
 | -------- | -------- |
 | component | 表示指向OH_NativeXComponent实例的指针。  |
-| callback | 指示指向UI输入事件回调的指针。  |
-| type | 指示当前UI输入事件的类型。  |
+| callback | 表示指向UI输入事件回调的指针。 <br> - event: 表示指向UI输入事件的指针。  |
+| type | 表示当前UI输入事件的类型。  |
 
 **返回：**
 
@@ -1602,14 +1711,14 @@ int32_t OH_NativeXComponent_RegisterSurfaceShowCallback (OH_NativeXComponent * c
 
 **描述:**
 
-为此OH_NativeXComponent实例注册surface显示回调，该回调在应用从后台返回前台后触发。
+为此OH_NativeXComponent实例注册Surface显示回调，该回调在应用窗口已经从后台回到前台时触发。
 
 **参数:**
 
 | 名称        | 描述                            |
 | --------- | ----------------------------- |
 | component | 表示指向OH_NativeXComponent实例的指针。 |
-| callback  | 指示指向surface显示回调的指针。                |
+| callback  | 表示指向Surface显示回调的指针。 <br> - window: 表示NativeWindow句柄。               |
 
 **返回:**
 
@@ -1627,14 +1736,14 @@ int32_t OH_NativeXComponent_RegisterSurfaceHideCallback (OH_NativeXComponent * c
 
 **描述:**
 
-为此OH_NativeXComponent实例注册surface隐藏回调，该回调在应用从前台来到后台后触发。
+为此OH_NativeXComponent实例注册Surface隐藏回调，该回调在应用窗口已经从前台进入后台时触发。
 
 **参数:**
 
 | 名称        | 描述                            |
 | --------- | ----------------------------- |
 | component | 表示指向OH_NativeXComponent实例的指针。 |
-| callback  | 指示指向surface隐藏回调的指针。                |
+| callback  | 指示指向surface隐藏回调的指针。 <br> - window: 表示NativeWindow句柄。               |
 
 **返回:**
 
@@ -1647,7 +1756,7 @@ int32_t OH_NativeXComponent_RegisterSurfaceHideCallback (OH_NativeXComponent * c
 ### OH_NativeXComponent_GetTouchEventSourceType()
 
 ```
-int32_t OH_NativeXComponent_GetTouchEventSourceType (OH_NativeXComponent* component, int32_t pointId, OH_NativeXComponent_EventSourceType* sourceType);
+int32_t OH_NativeXComponent_GetTouchEventSourceType (OH_NativeXComponent* component, int32_t pointId, OH_NativeXComponent_EventSourceType* sourceType)
 ```
 
 **描述:**
@@ -1660,7 +1769,7 @@ int32_t OH_NativeXComponent_GetTouchEventSourceType (OH_NativeXComponent* compon
 | --------- | ----------------------------- |
 | component | 表示指向OH_NativeXComponent实例的指针。 |
 | pointId  | 表示触摸点的id。<br/>**说明：**<br/>仅当传入的id为触发该touch事件的触点id时，可正确返回输入设备类型，否则返回OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER。 |
-| sourceType  | 指示指向返回设备类型的指针。 |
+| sourceType  | 表示指向返回设备类型的指针。 |
 
 **返回:**
 
@@ -1678,7 +1787,7 @@ OH_NATIVEXCOMPONENT_RESULT_FAILED - 其他错误。
 
 ```
 int32_t OH_NativeXComponent_GetNativeAccessibilityProvider(
-    OH_NativeXComponent* component, ArkUI_AccessibilityProvider** handle);
+    OH_NativeXComponent* component, ArkUI_AccessibilityProvider** handle)
 ```
 
 **描述:**
@@ -1690,7 +1799,7 @@ int32_t OH_NativeXComponent_GetNativeAccessibilityProvider(
 | 名称      | 描述                                    |
 | --------- | --------------------------------------- |
 | component | 表示指向OH_NativeXComponent实例的指针。 |
-| handle    | 返回无障碍接入句柄指针。                |
+| handle    | 表示指向ArkUI_AccessibilityProvider实例的指针。                |
 
 **返回:**
 
@@ -1708,62 +1817,875 @@ OH_NATIVEXCOMPONENT_RESULT_FAILED - 其他错误。
 
 ```
 int32_t OH_ArkUI_XComponent_StartImageAnalyzer(ArkUI_NodeHandle node, void* userData,
-    void (*callback)(ArkUI_NodeHandle node, ArkUI_XComponent_ImageAnalyzerState statusCode, void* userData));
+    void (*callback)(ArkUI_NodeHandle node, ArkUI_XComponent_ImageAnalyzerState statusCode, void* userData))
 ```
 
 **描述：**
 
-为此由[ArkUI NDK接口](../../ui/ndk-access-the-arkts-page.md)创建的XComponent实例开始图像AI分析，使用前需先使能图像AI分析能力。该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。图像AI分析状态刷新时，将会触发传入的回调函数。
+为此XComponent组件实例开始图像AI分析，使用前需先使能图像AI分析能力。
+
+**起始版本：**
+
+18
 
 **参数：**
 
 | 名称      | 描述                                    |
 | --------- | --------------------------------------- |
-| node | 表示指向[ArkUI NDK接口](../../ui/ndk-access-the-arkts-page.md)创建的XComponent组件实例的指针。 |
+| node | 表示XComponent组件实例。 |
 | userData    | 表示开发者需要在回调函数执行时获取的数据的指针。                |
-|callback| 表示图像AI分析状态刷新时触发的回调函数。|
-|statusCode|回调函数的入参之一，表示当前的图像分析状态。|
+|callback| 表示图像AI分析状态刷新时触发的回调函数。 <br> - statusCode: 回调函数的入参之一，表示当前的图像分析状态。 |
 
 > **说明：**
 >
 > 该接口发起的图像AI分析过程为异步执行，接口返回后，并不代表图像AI分析已经产生分析内容。
+> 
+> 该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，以避免出现画面和分析内容不一致的情况。
+>
+> 图像AI分析状态刷新时，将会触发传入的回调函数。
 
 **返回：**
 
-ARKUI_ERROR_CODE_NO_ERROR - 成功。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
 
-ARKUI_ERROR_CODE_PARAM_INVALID - 参数异常。
-
-**起始版本：**
-
-18
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
 
 ### OH_ArkUI_XComponent_StopImageAnalyzer()
 
 ```
-int32_t OH_ArkUI_XComponent_StopImageAnalyzer(ArkUI_NodeHandle node);
+int32_t OH_ArkUI_XComponent_StopImageAnalyzer(ArkUI_NodeHandle node)
 ```
 
 **描述：**
 
-为此由[ArkUI NDK接口](../../ui/ndk-access-the-arkts-page.md)创建的XComponent实例停止图像AI分析。停止图像AI分析功能后，图像AI分析展示的内容将被销毁。
+为此XComponent组件实例停止图像AI分析。
+
+**起始版本：**
+
+18
 
 **参数：**
 
 | 名称      | 描述                                    |
 | --------- | --------------------------------------- |
-| node | 表示指向[ArkUI NDK接口](../../ui/ndk-access-the-arkts-page.md)创建的XComponent组件实例的指针。 |
+| node | 表示XComponent组件实例。 |
+
+> **说明：**
+>
+> 停止图像AI分析功能后，图像AI分析展示的内容将被销毁。
 
 **返回：**
 
-ARKUI_ERROR_CODE_NO_ERROR - 成功。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
 
-ARKUI_ERROR_CODE_PARAM_INVALID - 参数异常。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+### OH_ArkUI_SurfaceCallback_Create()
+
+```
+OH_ArkUI_SurfaceCallback* OH_ArkUI_SurfaceCallback_Create()
+```
+
+**描述：**
+
+创建[OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)对象。
 
 **起始版本：**
 
-18
+19
 
+**返回：**
+
+返回创建的[OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)对象的指针。
+
+### OH_ArkUI_SurfaceCallback_Dispose()
+
+```
+void OH_ArkUI_SurfaceCallback_Dispose(OH_ArkUI_SurfaceCallback* callback)
+```
+
+**描述：**
+
+销毁[OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)对象。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| callback | 表示指向需要销毁的[OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)对象的指针。 |
+
+### OH_ArkUI_SurfaceHolder_Create()
+
+```
+OH_ArkUI_SurfaceHolder* OH_ArkUI_SurfaceHolder_Create(ArkUI_NodeHandle node)
+```
+
+**描述：**
+
+创建XComponent组件的[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)对象。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| node | 表示指向Native接口创建的XComponent组件实例的指针。  |
+
+**返回：**
+
+返回被创建的[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)对象的指针。
+
+### OH_ArkUI_SurfaceHolder_Dispose()
+
+```
+void OH_ArkUI_SurfaceHolder_Dispose(OH_ArkUI_SurfaceHolder* surfaceHolder)
+```
+
+**描述：**
+
+销毁[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)对象。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| surfaceHolder |  表示指向需要销毁的[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例的指针。 |
+
+### OH_ArkUI_SurfaceHolder_SetUserData()
+
+```
+int32_t OH_ArkUI_SurfaceHolder_SetUserData(OH_ArkUI_SurfaceHolder* surfaceHolder, void* userData)
+```
+
+**描述：**
+
+向[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例存储自定义数据。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| surfaceHolder |  表示指向存储自定义数据的[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例的指针。 |
+| userData |  表示指向要存储的自定义数据的指针。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+### OH_ArkUI_SurfaceHolder_GetUserData()
+
+```
+void* OH_ArkUI_SurfaceHolder_GetUserData(OH_ArkUI_SurfaceHolder* surfaceHolder);
+```
+
+**描述：**
+
+获取[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例存储的自定义数据。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| surfaceHolder |  表示指向存储自定义数据的[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例的指针。 |
+
+**返回：**
+
+返回自定义数据。
+
+### OH_ArkUI_SurfaceCallback_SetSurfaceCreatedEvent()
+
+```
+void OH_ArkUI_SurfaceCallback_SetSurfaceCreatedEvent(OH_ArkUI_SurfaceCallback* callback, void (*onSurfaceCreated)(OH_ArkUI_SurfaceHolder* surfaceHolder))
+```
+
+**描述：**
+
+设置Surface生命周期回调中的创建回调事件。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| callback |  表示指向Surface生命周期回调的指针。 |
+| onSurfaceCreated |  表示声明Surface创建时会触发的回调事件。 <br> - surfaceHolder: 表示指向[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例的指针。 |
+
+### OH_ArkUI_SurfaceCallback_SetSurfaceChangedEvent()
+
+```
+void OH_ArkUI_SurfaceCallback_SetSurfaceChangedEvent(OH_ArkUI_SurfaceCallback* callback, void (*onSurfaceChanged)(OH_ArkUI_SurfaceHolder* surfaceHolder, uint64_t width, uint64_t height))
+```
+
+**描述：**
+
+设置Surface生命周期回调中的大小改变回调事件。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| callback |  表示指向Surface生命周期回调的指针。 |
+| onSurfaceChanged |  表示声明Surface大小改变时会触发的回调事件。 <br> - surfaceHolder: 表示指向[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例的指针。 <br> - width: 表示Surface大小变化后的宽度。 <br> - height: 表示Surface大小变化后的高度。 |
+
+### OH_ArkUI_SurfaceCallback_SetSurfaceDestroyedEvent()
+
+```
+void OH_ArkUI_SurfaceCallback_SetSurfaceDestroyedEvent(OH_ArkUI_SurfaceCallback* callback, void (*onSurfaceDestroyed)(OH_ArkUI_SurfaceHolder* surfaceHolder))
+```
+
+**描述：**
+
+设置Surface生命周期回调中的销毁回调事件。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| callback |  表示指向Surface生命周期回调的指针。 |
+| onSurfaceDestroyed |  表示声明Surface销毁时会触发的回调事件。 <br> - surfaceHolder: 表示指向[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例的指针。 |
+
+### OH_ArkUI_SurfaceHolder_AddSurfaceCallback()
+
+```
+int32_t OH_ArkUI_SurfaceHolder_AddSurfaceCallback(OH_ArkUI_SurfaceHolder* surfaceHolder, OH_ArkUI_SurfaceCallback* callback)
+```
+
+**描述：**
+
+添加Surface生命周期回调到[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| surfaceHolder |  表示指向[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例的指针。 |
+| callback |  表示指向新回调的指针。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+### OH_ArkUI_SurfaceHolder_RemoveSurfaceCallback()
+
+```
+int32_t OH_ArkUI_SurfaceHolder_RemoveSurfaceCallback(OH_ArkUI_SurfaceHolder* surfaceHolder, OH_ArkUI_SurfaceCallback* callback)
+```
+
+**描述：**
+
+删除[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例先前添加的Surface生命周期回调。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| surfaceHolder |  表示指向需要销毁的[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例的指针。 |
+| callback |  表示指向需要删除的回调的指针。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+### OH_ArkUI_XComponent_GetNativeWindow()
+
+```
+OHNativeWindow* OH_ArkUI_XComponent_GetNativeWindow(OH_ArkUI_SurfaceHolder* surfaceHolder)
+```
+
+**描述：**
+
+获取[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例关联的NativeWindow。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| surfaceHolder |  表示指向[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例的指针。 |
+
+**返回：**
+
+返回OH_ArkUI_SurfaceHolder实例关联的NativeWindow。
+
+### OH_ArkUI_XComponent_SetAutoInitialize()
+
+```
+int32_t OH_ArkUI_XComponent_SetAutoInitialize(ArkUI_NodeHandle node, bool autoInitialize)
+```
+
+**描述：**
+
+设置XComponent组件是否需要自动初始化Surface的标志位。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| node |  表示指向XComponent组件实例的指针。 |
+| autoInitialize |  表示XComponent组件是否需要自动初始化Surface。如果autoInitialize值是true，OnSurfaceCreated回调会在挂树时被触发，OnSurfaceDestroyed回调会在下树时被触发。autoInitialize默认值是true。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+### OH_ArkUI_XComponent_Initialize()
+
+```
+int32_t OH_ArkUI_XComponent_Initialize(ArkUI_NodeHandle node)
+```
+
+**描述：**
+
+初始化XComponent组件持有的Surface。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| node |  表示指向XComponent组件实例的指针。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+[ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - XComponent持有的Surface已经被初始化。
+
+### OH_ArkUI_XComponent_Finalize()
+
+```
+int32_t OH_ArkUI_XComponent_Finalize(ArkUI_NodeHandle node)
+```
+
+**描述：**
+
+销毁XComponent组件持有的Surface。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| node |  表示指向XComponent组件实例的指针。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+[ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - XComponent持有的Surface已经被销毁。
+
+### OH_ArkUI_XComponent_IsInitialized()
+
+```
+int32_t OH_ArkUI_XComponent_IsInitialized(ArkUI_NodeHandle node, bool* isInitialized)
+```
+
+**描述：**
+
+获取XComponent组件是否已经初始化的标志位。
+
+**起始版本：**
+
+19
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| node |  表示指向XComponent组件实例的指针。 |
+| isInitialized |  表示XComponent组件是否已经初始化Surface。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+### OH_NativeXComponent_GetExtraMouseEventInfo()
+
+```
+int32_t OH_NativeXComponent_GetExtraMouseEventInfo(OH_NativeXComponent* component, OH_NativeXComponent_ExtraMouseEventInfo** extraMouseEventInfo)
+```
+
+**描述：**
+
+从此[OH_NativeXComponent](#oh_nativexcomponent)实例中获取扩展的鼠标事件信息。
+
+**起始版本：**
+
+20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| component | 表示指向[OH_NativeXComponent](#oh_nativexcomponent)实例的指针。  |
+| extraMouseEventInfo | 表示指向[OH_NativeXComponent_ExtraMouseEventInfo](#oh_nativexcomponent_extramouseeventinfo)类型指针的地址。  |
+
+> **说明：**
+>
+> 此接口应在鼠标事件回调函数的作用域中调用，不应在鼠标事件回调函数的作用域之外调用此接口或使用OH_NativeXComponent_ExtraMouseEventInfo实例。
+>
+> 对于调用此接口获取的OH_NativeXComponent_ExtraMouseEventInfo类型的指针，不能调用delete语句将其销毁。
+>
+> 传入此接口的component参数或extraMouseEventInfo参数为空指针时，为传入参数异常情况。
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+### OH_NativeXComponent_GetMouseEventModifierKeyStates()
+
+```
+int32_t OH_NativeXComponent_GetMouseEventModifierKeyStates(OH_NativeXComponent_ExtraMouseEventInfo* extraMouseEventInfo, uint64_t* keys)
+```
+
+**描述：**
+
+从[OH_NativeXComponent_ExtraMouseEventInfo](#oh_nativexcomponent_extramouseeventinfo)实例中获取功能键按压状态信息。
+
+**起始版本：**
+
+20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| extraMouseEventInfo | 表示指向扩展的鼠标事件信息实例的指针。  |
+| keys | 用于接收功能键按压状态信息的64位无符号整数的地址。  |
+
+> **说明：**
+>
+> 调用此接口获取的功能键按状态信息存储在一个64位无符号整数中，应使用[ArkUI_ModifierKeyName](./_ark_u_i___event_module.md#arkui_modifierkeyname)类型的枚举值与获取的64位无符号整数进行与（&）位运算操作来获取某一功能按键的按压状态，位运算的结果为0表示该功能键未按下，位运算的结果为1表示该功能键按下。
+>
+> 传入此接口的component参数或keys参数为空指针时，为传入参数异常情况。
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+### OH_NativeXComponent_GetKeyEventModifierKeyStates()
+
+```
+int32_t OH_NativeXComponent_GetKeyEventModifierKeyStates(OH_NativeXComponent_KeyEvent* keyEvent, uint64_t* keys)
+```
+
+**描述：**
+
+从按键事件中获取功能键按压状态。
+
+**起始版本：**
+
+20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| keyEvent | 表示指向按键事件的指针。  |
+| keys | 用于接收功能键按压状态信息的64位无符号整数的地址。  |
+
+> **说明：**
+>
+> 调用此接口获取的功能键按状态信息存储在一个64位无符号整数中，应使用[ArkUI_ModifierKeyName](./_ark_u_i___event_module.md#arkui_modifierkeyname)类型的枚举值与获取的64位无符号整数进行与（&）位运算操作来获取某一功能按键的按压状态，位运算的结果为0表示该功能键未按下，位运算的结果为1表示该功能键按下。
+>
+> 传入此接口的keyEvent参数或keys参数为空指针时，为传入参数异常情况。
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+### OH_NativeXComponent_GetKeyEventNumLockState()
+
+```
+int32_t OH_NativeXComponent_GetKeyEventNumLockState(OH_NativeXComponent_KeyEvent* keyEvent, bool* isNumLockOn)
+```
+
+**描述：**
+
+从按键事件中获取NumLock（小键盘锁定）键的状态信息。
+
+**起始版本：**
+
+20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| keyEvent | 表示指向按键事件的指针。  |
+| isNumLockOn | 用于接收NumLock（小键盘锁定）键状态的bool类型变量的地址。  |
+
+> **说明：**
+>
+> 调用此接口获取的NumLock（小键盘锁定）键状态信息存储在一个bool类型变量中，其值为true时表示NumLock（小键盘锁定）键处于生效状态，其值为false时表示NumLock（小键盘锁定）键处于未生效状态。
+>
+> 传入此接口的keyEvent参数或isNumLockOn参数为空指针时，为传入参数异常情况。
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+### OH_NativeXComponent_GetKeyEventCapsLockState()
+
+```
+int32_t OH_NativeXComponent_GetKeyEventCapsLockState(OH_NativeXComponent_KeyEvent* keyEvent, bool* isCapsLockOn)
+```
+
+**描述：**
+
+从按键事件中获取CapsLock（大写锁定）键的状态信息。
+
+**起始版本：**
+
+20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| keyEvent | 表示指向按键事件的指针。  |
+| isCapsLockOn | 用于接收CapsLock（大写锁定）键状态的bool类型变量的地址。  |
+
+> **说明：**
+>
+> 调用此接口获取的CapsLock（大写锁定）键状态信息存储在一个bool类型变量中，其值为true时表示CapsLock（大写锁定）键处于生效状态，其值为false时表示CapsLock（大写锁定）键处于未生效状态。
+>
+> 传入此接口的keyEvent参数或isCapsLockOn参数为空指针时，为传入参数异常情况。
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+### OH_NativeXComponent_GetKeyEventScrollLockState()
+
+```
+int32_t OH_NativeXComponent_GetKeyEventScrollLockState(OH_NativeXComponent_KeyEvent* keyEvent, bool* isScrollLockOn)
+```
+
+**描述：**
+
+从按键事件中获取ScrollLock（滚动锁定）键的状态信息。
+
+**起始版本：**
+
+20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| keyEvent | 表示指向按键事件的指针。  |
+| isScrollLockOn | 表示用于接收ScrollLock（滚动锁定）键状态的bool类型变量的地址。  |
+
+> **说明：**
+>
+> 调用此接口获取的ScrollLock（滚动锁定）键状态信息存储在一个bool类型变量中，其值为true时表示ScrollLock（滚动锁定）键处于生效状态，其值为false时表示ScrollLock（滚动锁定）键处于未生效状态。
+>
+> 传入此接口的keyEvent参数或isScrollLockOn参数为空指针时，为传入参数异常情况。
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+### OH_ArkUI_XComponent_SetExpectedFrameRateRange()
+
+```
+int32_t OH_ArkUI_XComponent_SetExpectedFrameRateRange(
+    ArkUI_NodeHandle node, OH_NativeXComponent_ExpectedRateRange range)
+```
+
+**描述：**
+
+为此XComponent组件实例设置期望帧率。
+
+**起始版本：**
+
+20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| node | 表示XComponent组件实例。  |
+| range | 表示[OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md)类型的期望帧率信息对象。  |
+
+> **说明：**
+>
+> 此接口中传入的XComponent组件实例需要由[ArkUI NDK接口](../../ui/ndk-access-the-arkts-page.md)创建或通过[NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md#nativexcomponentparameters19)构造。
+>
+> 传入参数中的[OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md)对象的[min](#min)成员的值需要小于等于[max](#max)成员的值，同时[expected](#expected)成员的值应大于等于[min](#min)成员的值且小于等于[max](#max)成员的值。
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+### OH_ArkUI_XComponent_RegisterOnFrameCallback()
+
+```
+int32_t OH_ArkUI_XComponent_RegisterOnFrameCallback(ArkUI_NodeHandle node,
+    void (*callback)(ArkUI_NodeHandle node, uint64_t timestamp, uint64_t targetTimestamp))
+```
+
+**描述：**
+
+为此XComponent组件实例注册帧回调函数。
+
+**起始版本：**
+
+20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| node | 表示XComponent组件实例。  |
+| callback | 表示执行帧回调函数的指针。 <br> - timestamp: 当前帧到达的时间（单位：纳秒）。<br> - targetTimestamp: 下一帧预期到达的时间（单位：纳秒）。    |
+
+> **说明：**
+>
+> 此接口中传入的XComponent组件实例需要由[ArkUI NDK接口](../../ui/ndk-access-the-arkts-page.md)创建或通过[NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md#nativexcomponentparameters19)构造。
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+### OH_ArkUI_XComponent_UnregisterOnFrameCallback()
+
+```
+int32_t OH_ArkUI_XComponent_UnregisterOnFrameCallback(ArkUI_NodeHandle node)
+```
+
+**描述：**
+
+为此XComponent组件实例取消注册帧回调函数。
+
+**起始版本：**
+
+20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| node | 表示XComponent组件实例。  |
+
+> **说明：**
+>
+> 此接口中传入的XComponent组件实例需要由[ArkUI NDK接口](../../ui/ndk-access-the-arkts-page.md)创建或通过[NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md#nativexcomponentparameters19)构造。
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+### OH_ArkUI_XComponent_SetNeedSoftKeyboard()
+
+```
+int32_t OH_ArkUI_XComponent_SetNeedSoftKeyboard(ArkUI_NodeHandle node, bool needSoftKeyboard)
+```
+
+**描述：**
+
+为此XComponent组件实例设置是否需要软键盘。
+
+**起始版本：**
+
+20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| node | 表示XComponent组件实例。  |
+|needSoftKeyboard|表示是否需要软键盘。|
+
+> **说明：**
+>
+> 此接口中传入的XComponent组件实例需要由[ArkUI NDK接口](../../ui/ndk-access-the-arkts-page.md)创建或通过[NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md#nativexcomponentparameters19)构造。
+>
+> XComponent组件默认的needSoftKeyboard值为false。
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 执行成功。
+
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 传入参数异常。
+
+### OH_ArkUI_AccessibilityProvider_Create()
+
+```
+ArkUI_AccessibilityProvider* OH_ArkUI_AccessibilityProvider_Create(ArkUI_NodeHandle node)
+```
+
+**描述：**
+
+基于此XComponent实例创建[ArkUI_AccessibilityProvider](arkui_native_interface_accessibility.md#arkui_accessibilityprovider)实例。
+
+**起始版本：**
+
+20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| node | 表示XComponent组件实例。  |
+
+> **说明：**
+>
+> 此接口中传入的XComponent组件实例需要由[ArkUI NDK接口](../../ui/ndk-access-the-arkts-page.md)创建或通过[NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md#nativexcomponentparameters19)构造。
+
+**返回：**
+
+[ArkUI_AccessibilityProvider](arkui_native_interface_accessibility.md#arkui_accessibilityprovider)类型的指针。
+
+### OH_ArkUI_AccessibilityProvider_Dispose()
+
+```
+void OH_ArkUI_AccessibilityProvider_Dispose(ArkUI_AccessibilityProvider* provider)
+```
+
+**描述：**
+
+销毁由Native接口[OH_ArkUI_AccessibilityProvider_Create](#oh_arkui_accessibilityprovider_create)创建的[ArkUI_AccessibilityProvider](arkui_native_interface_accessibility.md#arkui_accessibilityprovider)实例。
+
+**起始版本：**
+
+20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| provider | 表示由Native接口[OH_ArkUI_AccessibilityProvider_Create](#oh_arkui_accessibilityprovider_create)创建的[ArkUI_AccessibilityProvider](arkui_native_interface_accessibility.md#arkui_accessibilityprovider)实例。  |
+
+### OH_ArkUI_SurfaceCallback_SetSurfaceShowEvent()
+
+```
+void OH_ArkUI_SurfaceCallback_SetSurfaceShowEvent(
+    OH_ArkUI_SurfaceCallback* callback,
+    void (*onSurfaceShow)(OH_ArkUI_SurfaceHolder* surfaceHolder))
+```
+
+**描述：**
+
+为此[OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)实例设置Surface显示回调。
+
+**起始版本：**
+
+20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| callback | 表示指向[OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)实例的指针。 |
+|onSurfaceShow|表示Surface显示回调函数指针。<br> - surfaceHolder：表示指向[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例的指针。|
+
+### OH_ArkUI_SurfaceCallback_SetSurfaceHideEvent()
+
+```
+void OH_ArkUI_SurfaceCallback_SetSurfaceHideEvent(
+    OH_ArkUI_SurfaceCallback* callback,
+    void (*onSurfaceHide)(OH_ArkUI_SurfaceHolder* surfaceHolder))
+```
+
+**描述：**
+
+为此[OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)实例设置Surface隐藏回调。
+
+**起始版本：**
+
+20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| callback | 表示指向[OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)实例的指针。 |
+|onSurfaceHide|表示Surface隐藏回调函数指针。<br> - surfaceHolder：表示指向[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例的指针。|
 
 <!--  -->
 
@@ -1859,6 +2781,13 @@ void(* OH_NativeXComponent_MouseEvent_Callback::DispatchHoverEvent) (OH_NativeXC
 
 当悬停事件被触发时调用。
 
+**参数:**
+
+| 名称        | 描述                            |
+| --------- | ----------------------------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 |
+| isHover  | 表示鼠标或手写笔是否悬浮在组件上，进入时为true，离开时为false。 |
+
 **起始版本：**
 
 8
@@ -1895,6 +2824,13 @@ void(* OH_NativeXComponent_Callback::DispatchTouchEvent) (OH_NativeXComponent *c
 **描述:**
 
 当触摸事件被触发时调用。
+
+**参数:**
+
+| 名称        | 描述                            |
+| --------- | ----------------------------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 |
+| window  | 表示NatievWindow句柄。              |
 
 **起始版本：**
 
@@ -2080,7 +3016,7 @@ float OH_NativeXComponent_TouchEvent::screenX = 0.0
 
 **描述:**
 
-触摸点相对于所在应用窗口左上角的x坐标。
+触摸点相对于XComponent所在应用窗口左上角的x坐标。
 
 **起始版本：**
 
@@ -2095,7 +3031,7 @@ float OH_NativeXComponent_MouseEvent::screenX
 
 **描述:**
 
-点击触点相对于所在应用屏幕左上角的x轴坐标。
+点击触点相对于XComponent所在应用屏幕左上角的x轴坐标。
 
 **起始版本：**
 
@@ -2185,7 +3121,7 @@ long long OH_NativeXComponent_TouchPoint::timeStamp = 0
 
 **描述:**
 
-当前触摸事件的时间戳。
+当前触摸事件的时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。
 
 **起始版本：**
 
@@ -2200,7 +3136,7 @@ long long OH_NativeXComponent_TouchEvent::timeStamp = 0
 
 **描述:**
 
-当前触摸事件的时间戳。
+当前触摸事件的时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。
 
 **起始版本：**
 
@@ -2215,7 +3151,7 @@ int64_t OH_NativeXComponent_MouseEvent::timestamp
 
 **描述:**
 
-当前鼠标事件的时间戳。
+当前鼠标事件的时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。
 
 **起始版本：**
 

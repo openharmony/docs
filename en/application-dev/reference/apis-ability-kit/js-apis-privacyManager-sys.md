@@ -419,7 +419,7 @@ If a PID is specified, the privacy service responds by process. when the process
 | Name         | Type  | Mandatory| Description                                 |
 | -------------- | ------ | ---- | ------------------------------------ |
 | tokenID        | number | Yes  | Token ID of the caller, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | Permissions | Yes  | Permission to use. For details, see [Permissions for All Applications](../../security/AccessToken/app-permissions.md).|
+| permissionName | Permissions | Yes  | Permission to use. For details, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
 | pid            | number | No  | PID of the caller. The default value is **-1**, which indicates that the privacy service does not respond based on the process lifecycle.|
 | usedType       | [PermissionUsedType](#permissionusedtype12) | No| Sensitive permission access mode. The default value is **NORMAL_TYPE**.|
 

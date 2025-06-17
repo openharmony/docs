@@ -1,4 +1,4 @@
-# @ohos.app.ability.EnvironmentCallback (EnvironmentCallback)
+# @ohos.app.ability.EnvironmentCallback (系统环境变化监听器)
 
 EnvironmentCallback模块提供应用上下文ApplicationContext对系统环境变化监听回调的能力。
 

@@ -14,9 +14,9 @@ import { errorManager } from '@kit.AbilityKit';
 
 ## ErrorObserver.onUnhandledException
 
-onUnhandledException(errMsg: string): void;
+onUnhandledException(errMsg: string): void
 
-Called when an unhandled exception occurs in the JS runtime.
+Called when an uncaught exception occurs in the application.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -49,9 +49,9 @@ try {
 
 ## ErrorObserver.onException<sup>10+</sup>
 
-onException?(errObject: Error): void;
+onException?(errObject: Error): void
 
-Called when an exception occurs during the application running.
+Called when the application encounters an exception and reports it to the JavaScript layer.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 该组件从从API version 4 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 4 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -16,7 +16,7 @@
 
 | 名称                  | 类型                       | 默认值   | 必填 | 描述                                                         |
 | --------------------- | -------------------------- | -------- | ---- | ------------------------------------------------------------ |
-| images                | Array&lt;ImageFrame&gt;    | -        | 是   | 设置图片帧信息集合。每一帧的帧信息包含图片路径、图片大小和图片位置信息。目前支持以下图片格式：png、jpg和bmp。ImageFrame的详细说明请见表1。<br/>**说明：**<br/>1.使用时需要使用数据绑定的方式，如images&nbsp;=&nbsp;{{images}}，js中声明相应变量：images:&nbsp;[{src:&nbsp;"/common/heart-rate01.png"},&nbsp;{src:&nbsp;"/common/heart-rate02.png"}]。<br/>2.部分轻量级设备不支持原图片格式的解析。所以，在应用编译阶段，图片会被直接编译为可解析的位图（总字节数约：图片长x宽x4），并打包在应用安装包里，这会增加安装包的大小。因此，在使用图片资源时，应尽量控制图片的分辨率，尺寸越大的图片对于空间的占用越明显。 |
+| images                | Array&lt;ImageFrame&gt;    | -        | 是   | 设置图片帧信息集合。每一帧的帧信息包含图片路径、图片大小和图片位置信息。目前支持以下图片格式：png、jpg和bmp。ImageFrame的详细说明请见表1。<br/>**说明：**<br/>1.使用时需要使用数据绑定的方式，如images&nbsp;=&nbsp;{{images}}。js中声明相应变量：images:&nbsp;[{src:&nbsp;"/common/heart-rate01.png"},&nbsp;{src:&nbsp;"/common/heart-rate02.png"}]。<br/>2.部分轻量级设备不支持原图片格式的解析。所以，在应用编译阶段，图片会被直接编译为可解析的位图（总字节数约：图片长x宽x4），并打包在应用安装包里，这会增加安装包的大小。因此，在使用图片资源时，应尽量控制图片的分辨率，尺寸越大的图片对于空间的占用越明显。 |
 | iteration             | number&nbsp;\|&nbsp;string | infinite | 否   | 设置帧动画播放次数。number表示固定次数，infinite枚举表示无限次数播放。 |
 | reverse               | boolean                    | false    | 否   | 设置播放顺序。false表示从第1张图片播放到最后1张图片；&nbsp;true表示从最后1张图片播放到第1张图片。 |
 | fixedsize             | boolean                    | true     | 否   | 设置图片大小是否固定为组件大小。&nbsp;true表示图片大小与组件大小一致，此时设置图片的width&nbsp;、height&nbsp;、top&nbsp;和left属性是无效的。false表示每一张图片的&nbsp;width&nbsp;、height&nbsp;、top和left属性都要单独设置。 |
@@ -75,7 +75,7 @@
 | pause    | -    | 暂停播放图片帧动画。                               |
 | stop     | -    | 停止播放图片帧动画。                               |
 | resume   | -    | 继续播放图片帧。                                 |
-| getState | -    | 获取播放状态。可能值有：<br/>-&nbsp;playing：播放中<br/>-&nbsp;paused：已暂停<br/>-&nbsp;stopped：已停止。 |
+| getState | -    | 获取播放状态。可能值有：<br/>-&nbsp;playing：播放中<br/>-&nbsp;paused：已暂停<br/>-&nbsp;stopped：已停止  |
 
 
 ## 示例

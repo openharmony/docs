@@ -25,7 +25,7 @@ USB串口配置管理中，波特率、数据位、校验位和停止位是串�
 
 - 停止位（Stop Bit）
 
-  停止位位于数据帧末尾，是逻辑高电平信号，用于标识一个字符（数据包）传输的结束 。典型长度有1位、1.5位和2位（实际开发中1位最常用，1.5位和2位多用于抗干扰场景）。其核心作用是为接收端提供时序同步容错空间，并确保数据完整性。
+  停止位位于数据帧末尾，是逻辑高电平信号，用于标识一个字符（数据包）传输的结束。典型长度有1位和2位（实际开发中1位最常用，2位多用于抗干扰场景）。其核心作用是为接收端提供时序同步容错空间，并确保数据完整性。
 
 
 ## 环境准备
@@ -45,6 +45,10 @@ USB串口配置管理中，波特率、数据位、校验位和停止位是串�
 
 开发者可以通过上述接口获取和设置串口的配置：
 
+> **说明：** 
+>
+> 以下示例代码只是获取和设置串口的配置的必要流程，需要放入具体的方法中执行。
+
 1. 导入模块。
 
     ```ts
@@ -57,9 +61,9 @@ USB串口配置管理中，波特率、数据位、校验位和停止位是串�
     ```ts
     // 获取连接主设备的USB设备列表
     let portList: serial.SerialPort[] = serial.getPortList();
-    console.info('usbSerial portList: ' + JSON.stringify(portList));
+    console.info(`usbSerial portList: ${portList}`);
     if (portList === undefined || portList.length === 0) {
-      console.info('usbSerial portList is empty');
+      console.error('usbSerial portList is empty');
       return;
     }
     ```
@@ -73,7 +77,7 @@ USB串口配置管理中，波特率、数据位、校验位和停止位是串�
       await serial.requestSerialRight(portId).then(result => {
         if(!result) {
           // 没有访问设备的权限且用户不授权则退出
-          console.info('usbSerial user is not granted the operation permission');
+          console.error('The user does not have permission to perform this operation');
           return;
         }
       });
@@ -85,9 +89,9 @@ USB串口配置管理中，波特率、数据位、校验位和停止位是串�
     ```ts
     try {
       serial.open(portId)
-      console.info('open usbSerial success, portId: ' + portId);
+      console.info(`open usbSerial success, portId: ${portId}`);
     } catch (error) {
-      console.error('open usbSerial error, ' + JSON.stringify(error));
+      console.error(`open usbSerial error： ${error}`);
     }
     ```
 
@@ -100,10 +104,10 @@ USB串口配置管理中，波特率、数据位、校验位和停止位是串�
       if (attribute === undefined) {
         console.error('getAttribute usbSerial error, attribute is undefined');
       } else {
-        console.info('getAttribute usbSerial success, attribute: ' + JSON.stringify(attribute));
+        console.info(`getAttribute usbSerial success, attribute: ${attribute}`);
       }
     } catch (error) {
-      console.error('getAttribute usbSerial error, ' + JSON.stringify(error));
+      console.error(`getAttribute usbSerial error: ${error}`);
     }
    
     // 设置串口配置
@@ -115,9 +119,9 @@ USB串口配置管理中，波特率、数据位、校验位和停止位是串�
         stopBits: serial.StopBits.STOPBIT_1
       }
       serial.setAttribute(portId, attribute);
-      console.info('setAttribute usbSerial success, attribute: ' + JSON.stringify(attribute));
+      console.info(`setAttribute usbSerial success, attribute: ${attribute}`);
     } catch (error) {
-      console.error('setAttribute usbSerial error, ' + JSON.stringify(error));
+      console.error(`setAttribute usbSerial error: ${error}`);
     }
     ```
 

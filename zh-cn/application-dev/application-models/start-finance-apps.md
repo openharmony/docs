@@ -19,28 +19,47 @@ startAbilityByType接口中type字段为finance，对应的wantParam参数：
 2. 构造接口参数并调用startAbilityByType接口。
 
     ```ts
-    let context = getContext(this) as common.UIAbilityContext;
-    let wantParam: Record<string, Object> = {
-      'sceneType': 1,
-      "bankCardNo": '123456789'
-    };
-    let abilityStartCallback: common.AbilityStartCallback = {
-      onError: (code: number, name: string, message: string) => {
-        console.log(`onError code ${code} name: ${name} message: ${message}`);
-      },
-      onResult: (result)=>{
-        console.log(`onResult result: ${JSON.stringify(result)}`);
-      }
-    }
-    
-    context.startAbilityByType("finance", wantParam, abilityStartCallback, 
-        (err) => {
-            if (err) {
-                console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-            } else {
-                console.log(`success`);
+    @Entry
+    @Component
+    struct Index {
+        @State hideAbility: string = 'hideAbility'
+
+        build() {
+            Row() {
+                Column() {
+                    Text(this.hideAbility)
+                        .fontSize(30)
+                        .fontWeight(FontWeight.Bold)
+                        .onClick(() => {
+                            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+                            let wantParam: Record<string, Object> = {
+                                'sceneType': 1,
+                                "bankCardNo": '123456789'
+                            };
+                            let abilityStartCallback: common.AbilityStartCallback = {
+                                onError: (code: number, name: string, message: string) => {
+                                    console.log(`onError code ${code} name: ${name} message: ${message}`);
+                                },
+                                onResult: (result) => {
+                                    console.log(`onResult result: ${JSON.stringify(result)}`);
+                                }
+                            }
+
+                            context.startAbilityByType("finance", wantParam, abilityStartCallback,
+                                (err) => {
+                                    if (err) {
+                                        console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+                                    } else {
+                                        console.log(`success`);
+                                    }
+                                });
+                        });
+                }
+                .width('100%')
             }
-    });
+            .height('100%')
+        }
+    }
     ```
     效果示例图：
     
@@ -65,13 +84,13 @@ startAbilityByType接口中type字段为finance，对应的wantParam参数：
               {
               "uris": [
                   {
-                  "scheme": "finance", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
+                  "scheme": "finance", // 这里仅示意，应用需确保这里声明的uri能被外部正常拉起
                   "host": "transfer",
                   "path": "",
                   "linkFeature": "Transfer" // 声明应用支持转账汇款功能
                   },
                   {
-                  "scheme": "finance", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
+                  "scheme": "finance", // 这里仅示意，应用需确保这里声明的uri能被外部正常拉起
                   "host": "credit_card_repayment",
                   "path": "",
                   "linkFeature": "CreditCardRepayment" // 声明应用支持信用卡还款功能

@@ -6,7 +6,7 @@
 >
 > 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。 
+> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md)的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。 
 
 ## 导入模块
 
@@ -206,7 +206,7 @@ struct Utils {
         .key("image_01")
       Button('getRectangleById')
       .onClick(() => {
-        this.value = JSON.stringify(componentUtils.getRectangleById("image_01")) // 建议使用this.getUIContext().getComponentUtils()接口
+        this.value = JSON.stringify(this.getUIContext().getComponentUtils().getRectangleById("image_01")) // 建议使用this.getUIContext().getComponentUtils()接口
       }).margin(10).id('onClick')
       Text(this.value)
         .margin(20)

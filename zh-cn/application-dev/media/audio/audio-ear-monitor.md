@@ -16,7 +16,7 @@
 
 ### 创建音频录制
 
-通过OHAudio提供OH_AudioStreamBuilder接口，遵循构造器设计模式，构建录制音频流。指定对应的[OH_AudioStream_Type](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_type), 设置为AUDIOSTREAM_TYPE_CAPTURER。
+通过OHAudio提供OH_AudioStreamBuilder接口，遵循构造器设计模式，构建录制音频流。指定对应的[OH_AudioStream_Type](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_type), 设置为AUDIOSTREAM_TYPE_CAPTURER。
 
 ```cpp
 OH_AudioStreamBuilder* builder;
@@ -25,7 +25,7 @@ OH_AudioStreamBuilder_Create(&builder, AUDIOSTREAM_TYPE_CAPTURER);
 
 ### 创建音频播放
 
-通过OHAudio提供OH_AudioStreamBuilder接口，遵循构造器设计模式，构建播放音频流。指定对应的[OH_AudioStream_Type](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_type), AUDIOSTREAM_TYPE_RENDERER。
+通过OHAudio提供OH_AudioStreamBuilder接口，遵循构造器设计模式，构建播放音频流。指定对应的[OH_AudioStream_Type](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_type), AUDIOSTREAM_TYPE_RENDERER。
 
 ```cpp
 OH_AudioStreamBuilder* builder;
@@ -36,7 +36,7 @@ OH_AudioStreamBuilder_Create(&builder, AUDIOSTREAM_TYPE_RENDERER);
 
 为了实现更好的耳返功能，需要使得音频从录制到播放保持较低的时延，当设备支持低时延通路时，开发者需要使用低时延模式来进行录制和播放。
 
-在创建音频录制构造器时调用[OH_AudioStreamBuilder_SetLatencyMode()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setlatencymode)设置低时延模式，播放和录制均按如下方式设置为低时延模式。
+在创建音频录制构造器时调用[OH_AudioStreamBuilder_SetLatencyMode()](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_setlatencymode)设置低时延模式，播放和录制均按如下方式设置为低时延模式。
 
 ```cpp
 OH_AudioStream_LatencyMode latencyMode = AUDIOSTREAM_LATENCY_MODE_FAST;
@@ -230,11 +230,11 @@ OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
 
 | 接口                                                     | 说明         |
 | ------------------------------------------------------------ | ------------ |
-| OH_AudioStream_Result [OH_AudioRenderer_Start](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_start)(OH_AudioRenderer* renderer) | 开始播放。     |
-| OH_AudioStream_Result [OH_AudioRenderer_Pause](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_pause)(OH_AudioRenderer* renderer) | 暂停播放。     |
-| OH_AudioStream_Result [OH_AudioRenderer_Stop](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_stop)(OH_AudioRenderer* renderer) | 停止播放。     |
-| OH_AudioStream_Result [OH_AudioRenderer_Flush](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_flush)(OH_AudioRenderer* renderer) | 释放缓存数据。 |
-| OH_AudioStream_Result [OH_AudioRenderer_Release](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_release)(OH_AudioRenderer* renderer) | 释放播放实例。 |
+| OH_AudioStream_Result [OH_AudioRenderer_Start](../../reference/apis-audio-kit/capi-native-audiorenderer-h.md#oh_audiorenderer_start)(OH_AudioRenderer* renderer) | 开始播放。     |
+| OH_AudioStream_Result [OH_AudioRenderer_Pause](../../reference/apis-audio-kit/capi-native-audiorenderer-h.md#oh_audiorenderer_pause)(OH_AudioRenderer* renderer) | 暂停播放。     |
+| OH_AudioStream_Result [OH_AudioRenderer_Stop](../../reference/apis-audio-kit/capi-native-audiorenderer-h.md#oh_audiorenderer_stop)(OH_AudioRenderer* renderer) | 停止播放。     |
+| OH_AudioStream_Result [OH_AudioRenderer_Flush](../../reference/apis-audio-kit/capi-native-audiorenderer-h.md#oh_audiorenderer_flush)(OH_AudioRenderer* renderer) | 释放缓存数据。 |
+| OH_AudioStream_Result [OH_AudioRenderer_Release](../../reference/apis-audio-kit/capi-native-audiorenderer-h.md#oh_audiorenderer_release)(OH_AudioRenderer* renderer) | 释放播放实例。 |
 
 ### 释放构造器
 

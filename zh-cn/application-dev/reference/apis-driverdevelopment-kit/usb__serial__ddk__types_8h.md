@@ -1,4 +1,4 @@
-# usb_serial_ddk_types.h
+# usb_serial_types.h
 
 
 ## 概述
@@ -7,9 +7,9 @@
 
 **库：** libusb_serial.z.so
 
-**引用文件：**&lt;serial/usb_serial_ddk_types.h&gt;
+**引用文件：**&lt;serial/usb_serial_types.h&gt;
 
-**系统能力：** SystemCapability.Driver.SERIAL.Extension
+**系统能力：** SystemCapability.Driver.UsbSerial.Extension
 
 **起始版本：** 18
 

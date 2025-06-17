@@ -33,7 +33,7 @@
 
 |                                  接口名                                             | 描述                                                         |
 | ----------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| hasVoiceCapability(): boolean;                                                      | 判断是否具有语音功能。                                        |
+| hasVoiceCapability(): boolean;                                                      | 判断是否具有语音功能，默认false。<br/>-true：是<br/>-false：否                                        |
 |<!--DelRow--> dialCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void;                 | 拨号。该接口为系统接口。                                      |
 | makeCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void;                 | 转到拨号屏幕，显示被叫号码。                                  |
 
@@ -64,7 +64,7 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
     if (isSupport) {
         // 如果设备支持呼叫能力，调用以下接口进行拨号
         call.dialCall("13xxxx", (err: BusinessError) => {
-            console.log(`callback: dial call err->${JSON.stringify(err)}`);
+            console.error(`callback: dial call err->${JSON.stringify(err)}`);
         })
 
         // 订阅通话业务状态变化（可选）
@@ -101,7 +101,7 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
             if (!err) {
                 console.log("make call success.");
             } else {
-                console.log("make call fail, err is:" + JSON.stringify(err));
+                console.error("make call fail, err is:" + JSON.stringify(err));
             }
         });
         // 订阅通话业务状态变化（可选）

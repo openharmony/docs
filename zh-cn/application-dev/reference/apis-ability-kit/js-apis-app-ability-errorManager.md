@@ -1,4 +1,4 @@
-# @ohos.app.ability.errorManager (ErrorManager)
+# @ohos.app.ability.errorManager (错误观测管理)
 
 ErrorManager模块提供对错误观察器的注册和注销的能力。
 
@@ -102,7 +102,7 @@ on(type: 'globalErrorOccurred', observer: GlobalObserver): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 16200001 | If the caller is invalid. |
+| 16200001 | The caller has been released. |
 
 **示例：**
     
@@ -153,8 +153,8 @@ off(type: 'globalErrorOccurred', observer?: GlobalObserver): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 16200001 | If the caller is invalid. |
-| 16300004 | If the observer does not exist |
+| 16200001 | The caller has been released. |
+| 16300004 | The observer does not exist. |
 
 **示例：**
     
@@ -348,7 +348,7 @@ on(type: 'globalUnhandledRejectionDetected', observer: GlobalObserver): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 16200001 | If the caller is invalid. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -398,7 +398,7 @@ on(type: 'unhandledRejection', observer: UnhandledRejectionObserver): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 16200001 | If the caller is invalid. |
+| 16200001 | The caller has been released. |
 
 **示例：**
     
@@ -522,8 +522,8 @@ off(type: 'globalUnhandledRejectionDetected', observer?: GlobalObserver): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 16200001 | If the caller is invalid. |
-| 16300004 | If the observer does not exist. |
+| 16200001 | The caller has been released. |
+| 16300004 | The observer does not exist. |
 
 **示例：**
     
@@ -575,8 +575,8 @@ off(type: 'unhandledRejection', observer?: UnhandledRejectionObserver): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 16200001 | If the caller is invalid. |
-| 16300004 | If the observer does not exist. |
+| 16200001 | The caller has been released. |
+| 16300004 | The observer does not exist. |
 
 **示例：**
     
@@ -652,7 +652,7 @@ off(type: 'freeze', observer?: FreezeObserver): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
-| 16300004 | If the observer does not exist. |
+| 16300004 | The observer does not exist. |
 
 **示例：**
     
@@ -757,7 +757,7 @@ type GlobalObserver = (reason: GlobalError) => void
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 | 名称  | 值  | 说明   |
 | ---- | --- | ------ |

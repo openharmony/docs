@@ -125,7 +125,7 @@ ArkUI提供了WaterFlow容器组件，用于构建瀑布流布局。WaterFlow组
 
 ```ts
 // 通过状态变量设置列数，可以按需修改触发布局更新
-@State columns: number = 2
+@State columns: number = 2;
 
 @Reusable
 @Component
@@ -312,4 +312,5 @@ struct WaterFlowDemo {
 
 针对瀑布流开发，有以下实例可供参考：
 
-[主页瀑布流实现](https://gitee.com/harmonyos-cases/cases/blob/master/CommonAppDevelopment/feature/functionalscenes/README.md)
+- [主页瀑布流实现](https://gitee.com/harmonyos-cases/cases/blob/master/CommonAppDevelopment/feature/functionalscenes/README.md)
+- [WaterFlow示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/ScrollableComponent/entry/src/main/ets/pages/waterFlow)

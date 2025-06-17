@@ -58,7 +58,9 @@ Describes the multi-line text notification. This API is inherited from [Notifica
 
 > **NOTE**
 >
-> The display effect depends on the device capability and notification center UI style.
+> - When the multi-line text notification and another notification form a group notification, the group notification is displayed as a [normal text notification](#notificationbasiccontent) by default. After the group notification is expanded, the value of **longTitle** is used as the title, and the value of **lines** is used as the multi-line text content.<br>When the multi-line text notification is displayed independently, the value of **longTitle** is used as the title, and the value of **lines** is used as the multi-line text content.
+>
+> - The display effect depends on the device capability and notification center UI style.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -66,7 +68,7 @@ Describes the multi-line text notification. This API is inherited from [Notifica
 | -------------- | --------------- | --- | --- | -------------------------------- |
 | briefText      | string          | No | No | Brief text of the notification. It cannot be empty or exceed 1024 bytes. Excess content will be truncated.|
 | longTitle      | string          | No | No | Title of the notification in the expanded state. It cannot be empty or exceed 1024 bytes. Excess content will be truncated.|
-| lines          | Array\<string\> | No | No | Multi-line text of the notification. It cannot exceed 1024 bytes. Excess content will be truncated.                 |
+| lines          | Array\<string\> | No | No | Multi-line text of a notification. A maximum of three lines are supported, and each line cannot exceed 1024 bytes. Excess content will be truncated.                 |
 
 
 ## NotificationPictureContent
@@ -83,7 +85,7 @@ Describes the picture-attached notification. This API is inherited from [Notific
 | -------------- | -------------------------------------------- | ---- | --- |------------------------------------|
 | briefText      | string                                       |  No | No | Brief text of the notification. It cannot be empty or exceed 1024 bytes. Excess content will be truncated.|
 | expandedTitle  | string                                       |  No | No | Title of the notification in the expanded state. It cannot be empty or exceed 1024 bytes. Excess content will be truncated.   |
-| picture        | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  No | No | Picture content of the notification. (The total number of bytes of image pixels cannot exceed 2 MB.)|
+| picture        | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  No | No | Picture content of the notification. The total number of bytes of image pixels cannot exceed 2 MB. |
 
 
 ## NotificationSystemLiveViewContent
@@ -135,9 +137,9 @@ Describes the notification timing information.
 | Name          | Type             | Read Only| Optional| Description                            |
 | -------------- | ---------------- | --- | --- | -------------------------------- |
 | initialTime    | number           | No | Yes | Start time, in milliseconds.               |
-| isCountDown    | boolean          | No | Yes | Whether to count down.                    |
-| isPaused       | boolean          | No | Yes | Whether to pause the progress.                      |
-| isInTitle      | boolean          | No | Yes | Whether the time is displayed in the title.          |
+| isCountDown    | boolean          | No | Yes | Whether to count down. The default value is **false**.<br> - **true**: Yes.<br> - **false**: No.|
+| isPaused       | boolean          | No | Yes | Whether to pause the progress. The default value is **false**.<br> - **true**: Yes.<br> - **false**: No.  |
+| isInTitle      | boolean          | No | Yes | Whether the time is displayed in the title. The default value is **false**.<br> - **true**: Yes.<br> - **false**: No.|
 
 **Example**:
 
@@ -162,4 +164,4 @@ Describes the notification progress.
 | -------------- | --------------- | --- | --- | -------------------------------- |
 | maxValue        | number         | No | Yes | Maximum progress value.                      |
 | currentValue    | number         | No | Yes | Current progress value.                      |
-| isPercentage    | boolean        | No | Yes | Whether to show the progress in percentage.                  |
+| isPercentage    | boolean        | No | Yes | Whether to show the progress in percentage. The default value is **false**.<br> - **true**: Yes.<br> - **false**: No.|

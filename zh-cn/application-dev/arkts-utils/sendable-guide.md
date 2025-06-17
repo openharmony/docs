@@ -1,13 +1,13 @@
 # Sendable使用场景
-Sendable对象可以在不同并发实例间通过引用传递。通过引用传递方式传输对象相比序列化方式更加高效，同时不会丢失class上携带的成员方法。因此，Sendable主要可以解决两个场景的问题：
+Sendable对象在不同并发实例间默认的传递方式为引用传递，相比序列化方式更高效，同时不会丢失class上携带的成员方法。因此，Sendable可以解决两个关键场景的问题：
 
-- 跨并发实例传输大数据（例如可能达到100KB以上的数据）。
+- 跨并发实例传输大数据（例如达到100KB以上的数据）。
 
 - 跨并发实例传递带方法的class实例对象。
 
 ## 跨并发实例传输大数据场景
 
-由于跨并发实例序列化的开销随着数据量线性增长，因此当传输数据量较大时（100KB数据大约1ms传输耗时），跨并发实例的拷贝开销大，影响应用性能。引用传递方式传输对象可提升性能。
+由于跨并发实例序列化的开销随数据量线性增长，因此当传输数据量较大时（100KB的数据传输耗时约为1ms），跨并发实例的拷贝开销会影响应用性能。使用引用传递方式传输对象可提升性能。
 
 **示例：**
 
@@ -72,6 +72,7 @@ struct Index {
   }
 }
 ```
+<!-- @[across_concurrent_instance_transfer_large_data ](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableScenarios/bigdata/src/main/ets/pages/Index.ets) -->
 
 ```ts
 // sendable.ets
@@ -102,12 +103,12 @@ export class Test {
   }
 }
 ```
+<!-- @[across_concurrent_instance_transfer_large_data ](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableScenarios/bigdata/src/main/ets/pages/sendable.ets) -->
 
 
 ## 跨并发实例传递带方法的class实例对象
 
-由于序列化传输实例对象时会丢失方法，在必须调用实例方法的场景中，需使用引用传递方式进行开发。在数据处理过程中有需要解析的数据，可使用[ASON工具](ason-parsing-generation.md)进行数据解析。
-
+由于序列化传输实例对象时会丢失方法，因此在需要调用实例方法时，需使用引用传递方式。在数据处理过程中有需要解析的数据，可使用[ASON工具](ason-parsing-generation.md)解析。
 
 **示例：**
 
@@ -166,6 +167,7 @@ struct Index {
   }
 }
 ```
+<!-- @[across_concurrent_instance_pass_class_method](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableScenarios/crossconcurrency/src/main/ets/pages/Index.ets) -->
 
 ```ts
 // sendable.ets
@@ -199,3 +201,4 @@ export class SendableTestClass {
   }
 }
 ```
+<!-- @[across_concurrent_instance_pass_class_method](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableScenarios/crossconcurrency/src/main/ets/pages/sendable.ets) -->

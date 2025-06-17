@@ -7,8 +7,7 @@ With these APIs, you can customize the handling of critical errors in the JS eng
 
 ## Basic Concepts
 
-JSVM-API provides APIs for handling the following errors:
-
+JSVM-API provides APIs for handling the following errors: 
 - Out-of-memory (OOM) error: You can use JSVM-API to register an OOM handler with a JSVM. When the JSVM encounters insufficient memory, the system will throw an OOM error and call the registered OOM error handler to perform cleanup or logging operations.
 - Fatal error: You can use JSVM-API to register a fatal error handler with a JSVM. When the JSVM encounters a fatal error, for example, an unrecoverable error while running JS code, the system will throw a fatal error and call the registered handler to output additional log information or report the error instead of allowing the application to crash.
 - Promise rejection without a catch handler: You can use JSVM-API to register a promise rejection handler with a JSVM. When a promise in JS is rejected without being caught by a catch handler, the system will throw a Promise Reject error and call the registered handler to handle the promise rejection.
@@ -32,6 +31,7 @@ Call **OH_JSVM_SetHandlerForOOMError** to set a function for handling the OOM er
 
 ```cpp
 #include <csetjmp>
+#include <vector>
 
 static jmp_buf buf;
 static bool oomHandlerFinished = false;
@@ -97,6 +97,7 @@ Call **OH_JSVM_SetHandlerForFatalError** to set a function for handling the fata
 
 ```cpp
 #include <csetjmp>
+#include <vector>
 
 static jmp_buf buf;
 static bool fatalHandlerFinished = false;

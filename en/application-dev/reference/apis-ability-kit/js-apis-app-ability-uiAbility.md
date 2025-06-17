@@ -215,15 +215,15 @@ class MyUIAbility extends UIAbility {
 ```
 
 
-## UIAbility.onWillForeground<sup>18+</sup>
+## UIAbility.onWillForeground<sup>20+</sup>
 
 onWillForeground(): void
 
-Triggered just before the application transitions to the foreground. It is called before [onForeground](#uiabilityonforeground). It can be used to capture the moment when the application starts to transition to the foreground. When paired with [onDidForeground](#uiabilityondidforeground18), it can also measure the duration from the application's initial foreground entry to its full transition into the foreground state.
+Triggered just before the application transitions to the foreground. It is called before [onForeground](#uiabilityonforeground). It can be used to capture the moment when the application starts to transition to the foreground. When paired with [onDidForeground](#uiabilityondidforeground20), it can also measure the duration from the application's initial foreground entry to its full transition into the foreground state.
 
 This API returns the result synchronously and does not support asynchronous callback.
 
-**Atomic service API**: This API can be used in atomic services since API version 18.
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -251,9 +251,9 @@ export default class EntryAbility extends UIAbility {
       params: eventParams,
     };
     hiAppEvent.write(eventInfo).then(() => {
-      hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`)
+      hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`);
     }).catch((err: BusinessError) => {
-      hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
+      hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`);
     });
   }
   // ...
@@ -272,9 +272,9 @@ export default class EntryAbility extends UIAbility {
       params: eventParams,
     };
     hiAppEvent.write(eventInfo).then(() => {
-      hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`)
+      hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`);
     }).catch((err: BusinessError) => {
-      hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
+      hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`);
     });
   }
 }
@@ -285,7 +285,7 @@ export default class EntryAbility extends UIAbility {
 
 onForeground(): void
 
-Triggered when the application transitions from the background to the foreground. It is called between [onWillForeground](#uiabilityonwillbackground18) and [onDidForeground](#uiabilityondidforeground18). It can be used to request system resources required, for example, requesting location services when the application transitions to the foreground.
+Triggered when the application transitions from the background to the foreground. It is called between [onWillForeground](#uiabilityonwillbackground20) and [onDidForeground](#uiabilityondidforeground20). It can be used to request system resources required, for example, requesting location services when the application transitions to the foreground.
 
 This API returns the result synchronously and does not support asynchronous callback.
 
@@ -306,24 +306,24 @@ class MyUIAbility extends UIAbility {
 ```
 
 
-## UIAbility.onDidForeground<sup>18+</sup>
+## UIAbility.onDidForeground<sup>20+</sup>
 
 onDidForeground(): void
 
-Triggered after the application has transitioned to the foreground. It is called after [onForeground](#uiabilityonforeground). It can be used to capture the moment when the application fully transitions to the foreground. When paired with [onWillForeground](#uiabilityonwillforeground18), it can also measure the duration from the application's initial foreground entry to its full transition into the foreground state.
+Triggered after the application has transitioned to the foreground. It is called after [onForeground](#uiabilityonforeground). It can be used to capture the moment when the application fully transitions to the foreground. When paired with [onWillForeground](#uiabilityonwillforeground20), it can also measure the duration from the application's initial foreground entry to its full transition into the foreground state.
 
 This API returns the result synchronously and does not support asynchronous callback.
 
-**Atomic service API**: This API can be used in atomic services since API version 18.
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Example**
 
-For details, see [onWillForeground](#uiabilityonwillforeground18).
+For details, see [onWillForeground](#uiabilityonwillforeground20).
 
 
-## UIAbility.onWillBackground<sup>18+</sup>
+## UIAbility.onWillBackground<sup>20+</sup>
 
 onWillBackground(): void
 
@@ -331,7 +331,7 @@ Triggered just when the application transitions to the background. It is called 
 
 This API returns the result synchronously and does not support asynchronous callback.
 
-**Atomic service API**: This API can be used in atomic services since API version 18.
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -370,7 +370,7 @@ class MyUIAbility extends UIAbility {
 
 onBackground(): void
 
-Triggered when the application transitions from the foreground to the background. It is called between [onWillBackground](#uiabilityonwillbackground18) and [onDidBackground](#uiabilityondidbackground18). It can be used to release resources when the UI is no longer visible, for example, stopping location services.
+Triggered when the application transitions from the foreground to the background. It is called between [onWillBackground](#uiabilityonwillbackground20) and [onDidBackground](#uiabilityondidbackground20). It can be used to release resources when the UI is no longer visible, for example, stopping location services.
 
 This API returns the result synchronously and does not support asynchronous callback.
 
@@ -391,7 +391,7 @@ class MyUIAbility extends UIAbility {
 ```
 
 
-## UIAbility.onDidBackground<sup>18+</sup>
+## UIAbility.onDidBackground<sup>20+</sup>
 
 onDidBackground(): void
 
@@ -399,7 +399,7 @@ Triggered after the application has transitioned to the background. It is called
 
 This API returns the result synchronously and does not support asynchronous callback.
 
-**Atomic service API**: This API can be used in atomic services since API version 18.
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -407,29 +407,46 @@ This API returns the result synchronously and does not support asynchronous call
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
-import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { audio } from '@kit.AudioKit';
 
 class MyUIAbility extends UIAbility {
   static audioRenderer: audio.AudioRenderer;
   // ...
   onForeground(): void {
+    let audioStreamInfo: audio.AudioStreamInfo = {
+      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // Sampling rate.
+      channels: audio.AudioChannel.CHANNEL_2, // Channel.
+      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // Sampling format.
+      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
+    };
+
+    let audioRendererInfo: audio.AudioRendererInfo = {
+      usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
+      rendererFlags: 0 // AudioRenderer flag.
+    };
+
+    let audioRendererOptions: audio.AudioRendererOptions = {
+      streamInfo: audioStreamInfo,
+      rendererInfo: audioRendererInfo
+    };
+
     // Request an AudioRenderer in the foreground to play Pulse Code Modulation (PCM) audio data.
     audio.createAudioRenderer(audioRendererOptions).then((data) => {
-      EntryAbility.audioRenderer = data;
-      console.info('AudioRenderer Created : Success : Stream Type: SUCCESS');
+      MyUIAbility.audioRenderer = data;
+      console.info(`AudioRenderer Created : Success : Stream Type: SUCCESS.`);
     }).catch((err: BusinessError) => {
-      console.error(`AudioRenderer Created : ERROR : ${err}`);
+      console.error(`AudioRenderer Created : F : ${JSON.stringify(err)}.`);
     });
   }
 
   onDidBackground() {
     // Release the AudioRenderer after transitioning to the background.
-    audioRenderer.release((err: BusinessError) => {
+    MyUIAbility.audioRenderer.release((err: BusinessError) => {
       if (err) {
-        console.error('AudioRenderer release failed');
+        console.error(`AudioRenderer release failed, error: ${JSON.stringify(err)}.`);
       } else {
-        console.info('AudioRenderer released.');
+        console.info(`AudioRenderer released.`);
       }
     });
   }

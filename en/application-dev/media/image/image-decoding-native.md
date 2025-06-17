@@ -1,6 +1,6 @@
-# Using Image to Decode Images
+# Image Decoding
 
-Image decoding refers to the process of decoding an archived image in a supported format into a [PixelMap](image-overview.md) for image display or [processing](image-transformation.md). Currently, the following image formats are supported: JPEG, PNG, GIF, WebP, BMP, SVG, ICO, DNG, and HEIF (depending on the hardware).
+Image decoding refers to the process of decoding an image in a supported format into a [PixelMap](image-overview.md) for image display or [processing](image-transformation.md). Currently, the following image formats are supported: JPEG, PNG, GIF, WebP, BMP, SVG, ICO, DNG, and HEIF (depending on the hardware).
 
 ## How to Develop
 

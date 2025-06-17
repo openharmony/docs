@@ -5,7 +5,7 @@
 
 The **loop.h** file declares the loop interfaces in C.
 
-**File to include**: &lt;ffrt/condition_variable.h&gt;
+**File to include**: &lt;ffrt/loop.h&gt;
 
 **Library**: libffrt.z.so
 

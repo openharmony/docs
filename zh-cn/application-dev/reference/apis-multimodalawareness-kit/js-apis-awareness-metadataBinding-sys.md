@@ -11,13 +11,13 @@
 
 ## 导入模块
 ```ts
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 ```
 
 ## encodeImage(image.PixelMap, string)
 encodeImage(srcImage: image.PixelMap, metadata: string): Promise<image.PixelMap>;  
 在图片中加入信息  
-**系统能力**：SystemCapability.MultimodalAwarness.metadataBinding
+**系统能力**：SystemCapability.MultimodalAwareness.metadataBinding
 **系统API**：此接口为系统接口
 
 **参数**：
@@ -36,13 +36,13 @@ encodeImage(srcImage: image.PixelMap, metadata: string): Promise<image.PixelMap>
 | -------- | ------------------------------------------------------------ |
 |   202    | Permission check failed. A non-system application uses the system API.|
 |32100001  | Internal handling failed. File creation failed.|
-|32100002  | Encode process fail.|
+|32100002  | Encoding failed. Possible causes: 1. Image processing error; 2. Channel coding error.|
 
 **示例**：
 
 ```ts
 import image from '@ohos.multimedia.image';
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let captureImage: image.PixelMap | undefined = undefined;
@@ -59,7 +59,7 @@ metadataBinding.encodeImage(srcImage, metadata).then((pixelMap: image.PixelMap) 
 function decodeImage(encodedImage: image.PixelMap): Promise\<string\>
 解析图片中携带的信息。
 
-**系统能力**：SystemCapability.MultimodalAwarness.metadataBinding
+**系统能力**：SystemCapability.MultimodalAwareness.metadataBinding
 **系统API**：此接口为系统接口
 
 **参数**：  
@@ -76,13 +76,13 @@ function decodeImage(encodedImage: image.PixelMap): Promise\<string\>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 |   202    | Permission check failed. A non-system application uses the system API.|
-|32100001  | Internal handling failed. File read failed.|
-|32100003  | Decode process fail.|
+|32100001  | Internal handling failed. File creation failed.|
+|32100003  | Decoding failed. Possible causes: 1. Image not encoded; 2. Image destroyed.|
 
 **示例：**  
 ```ts
 import image from '@ohos.multimedia.image';
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let encodeImage: image.PixelMap | undefined = undefined;
@@ -97,7 +97,7 @@ metadataBinding.decodeImage(encodeImage).then((metadata: string) =>{
 ## notifyMetadataBindingEvent(string)
 notifyMetadataBindingEvent(metadata: string): void；
 推送待嵌入的信息给调用编码接口的应用或服务。
-**系统能力**：SystemCapability.MultimodalAwarness.metadataBinding
+**系统能力**：SystemCapability.MultimodalAwareness.metadataBinding
 **系统API**：此接口为系统接口
 
 **参数**：  
@@ -112,12 +112,12 @@ notifyMetadataBindingEvent(metadata: string): void；
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|32100001|Internal handling failed. Obtain metadata failed.|
+|32100001|Internal handling failed. File creation failed.|
 
 **示例**：
 
 ```ts
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let metadata:string = '';

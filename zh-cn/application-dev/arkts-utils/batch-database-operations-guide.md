@@ -6,9 +6,9 @@
 
 通过ArkTS提供的TaskPool能力，可以将数据库操作任务移到子线程中，实现如下。
 
-1. 创建多个子任务，支持数据库创建、插入、查询、清除等操作。
+1. 创建多个子任务，支持数据库的创建、插入、查询和清除等操作。
 
-2. UI主线程调用子任务完成增删改查等数据库操作。
+2. UI主线程调用子任务，完成数据库的增删改查等操作。
 
 ```ts
 // Index.ets
@@ -105,7 +105,7 @@ struct Index {
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
         .onClick(async () => {
-          let context = getContext(this);
+          let context : Context = this.getUIContext().getHostContext() as Context;
 
           // 数据准备
           const count = 5
@@ -138,12 +138,13 @@ struct Index {
   }
 }
 ```
+<!-- @[taskpool_frequently_operate_database](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/UsingSendable.ets) -->
 
 ## 使用Sendable进行大容量数据库操作
 
-由于数据库数据跨线程传递存在耗时，当数据量较大时，仍然会占用UI主线程，推荐采用Sendable封装数据库数据，降低跨线程开销。
+由于数据库数据跨线程传递存在耗时，数据量较大时会占用UI主线程。推荐使用Sendable封装数据库数据，以降低跨线程开销。
 
-1. 定义数据库中的数据格式，可采用Sendable，减少跨线程耗时。
+1. 定义数据库中的数据格式，可以使用Sendable，以减少跨线程操作的耗时。
 
    ```ts
    // SharedValuesBucket.ets
@@ -169,6 +170,7 @@ struct Index {
      }
    }
    ```
+   <!-- @[define_data_format](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/SharedValuesBucket.ets) -->
 
 2. UI主线程发起，在子线程进行数据的增删改查等操作。
 
@@ -274,7 +276,7 @@ struct Index {
              middle: { anchor: '__container__', align: HorizontalAlign.Center }
            })
            .onClick(async () => {
-             let context = getContext(this);
+             let context : Context = this.getUIContext().getHostContext() as Context;
    
              // 数据准备
              const count = 5
@@ -308,10 +310,12 @@ struct Index {
      }
    }
    ```
+   <!-- @[operate_child_thread_data](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/UsingTaskPool.ets) -->
 
 ## 复杂类实例对象使用Sendable进行大容量数据库操作
 
-普通类实例对象的属性可持有Sendable类实例对象。<br/>
+普通类实例对象的属性可持有Sendable类实例对象。
+
 对于复杂的普通类实例对象，可以先将相应数据库数据字段封装为Sendable类实例对象，再由普通类实例对象持有，从而降低跨线程开销。
 
 1. 定义数据库中的数据格式，可采用Sendable，减少跨线程耗时。
@@ -492,7 +496,7 @@ struct Index {
              middle: { anchor: '__container__', align: HorizontalAlign.Center }
            })
            .onClick(async () => {
-             let context = getContext(this);
+             let context : Context = this.getUIContext().getHostContext() as Context;
              let material = initMaterial();
              await taskpool.execute(create, context);
              await taskpool.execute(insert, context, material.getBuckets());

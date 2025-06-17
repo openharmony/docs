@@ -38,9 +38,10 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
+#include <fstream>
+
 // Define OH_JSVM_GetValueBigintWords.
-static JSVM_Value GetValueBigintWords(JSVM_Env env, JSVM_CallbackInfo info)
-   {
+static JSVM_Value GetValueBigintWords(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
@@ -85,7 +86,7 @@ const char* srcCallNative = R"JS(getValueBigintWords(BigInt(5555555555555555)))J
 **Expected output**
 ```ts
 OH_JSVM_GetValueBigintWords wordCount:1.
-OH_JSVM_GetValueBigintWords signBit: 1.
+OH_JSVM_GetValueBigintWords signBit: 0.
 ```
 
 ### OH_JSVM_CreateBigintWords

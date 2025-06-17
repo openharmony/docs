@@ -10,7 +10,7 @@
 
 - 开发工具及配置：
 
-  DevEco Studio作为驱动开发工具，是进行驱动开发必备条件之一，开发者可以使用该工具进行开发、调试、打包等操作。请[下载安装](https://developer.huawei.com/consumer/cn/download/)该工具，并参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-tools-overview-V14)中的[创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-create-new-project-V14)进行基本的操作验证，保证DevEco Studio可正常运行。
+  DevEco Studio作为驱动开发工具，是进行驱动开发必备条件之一，开发者可以使用该工具进行开发、调试、打包等操作。请[下载安装](https://developer.huawei.com/consumer/cn/download/)该工具，并参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-tools-overview)中的[创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-create-new-project)进行基本的操作验证，保证DevEco Studio可正常运行。
 
 
 - SDK版本配置：
@@ -20,13 +20,13 @@
 
 - HDC配置：
 
-  HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命令行工具，通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)。
+  HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命令行工具，通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/hdc)。
 
 ### 搭建环境
 
 - 在PC上安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，要求版本在4.1及以上。
 - 将public-SDK更新到API 16或以上，更新SDK的具体操作可参见[更新指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
-- PC安装HDC工具（HarmonyOS Device Connector），通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)。
+- PC安装HDC工具，通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc)。
 - 用USB线缆将搭载OpenHarmony的设备连接到PC。
 
 ## 开发指导
@@ -44,6 +44,10 @@
 
 主机（Host）连接设备（Device），通过`usbSubmitTransfer`接口进行数据传输。以下步骤描述了如何使用中断传输方式来传输数据：
 
+> **说明：** 
+>
+> 以下示例代码只是使用中断传输方式来传输数据的必要流程，需要放入具体的方法中执行。在实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
+
 1. 导入模块。
 
     ```ts
@@ -56,9 +60,9 @@
     ```ts
     // 获取连接主设备的USB设备列表
     let usbDevices: Array<usbManager.USBDevice> = usbManager.getDevices();
-    console.info('usbDevices: ', JSON.stringify(usbDevices));
+    console.info(`usbDevices: ${usbDevices}`);
     if(usbDevices.length === 0) {
-      console.info('usbDevices is empty');
+      console.error('usbDevices is empty');
       return;
     }
     ```
@@ -72,7 +76,7 @@
       await usbManager.requestRight(usbDevice.name).then(result => {
         if(!result) {
           // 没有访问设备的权限且用户不授权则退出
-          console.info('user is not granted the operation permission');
+          console.error('The user does not have permission to perform this operation');
           return;
         }
       });
@@ -137,13 +141,13 @@
      };
    
      transferParams.callback = (err: Error, callBackData: usbManager.SubmitTransferCallback) => {
-       console.info('callBackData = ' + JSON.stringify(callBackData));
-       console.info('transfer success，result = ' + transferParams.buffer.toString());
+       console.info(`callBackData = ${callBackData}`);
+       console.info(`transfer success，result = ${transferParams.buffer}`);
      }
      usbManager.usbSubmitTransfer(transferParams);
      console.info('USB transfer request submitted.');
    } catch (error) {
-     console.error('USB transfer failed:', error);
+     console.error(`USB transfer failed: ${error}`);
    }
    ```
 

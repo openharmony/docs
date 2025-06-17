@@ -2,7 +2,7 @@
 
 ## Use Cases
 
-Users in different locales use different calendars. To be specific, the Gregorian calendar is used in most locales, whereas calendars such as the lunar, Islamic, and Hebrew calendars are used in some other locales. What's more, the date and time on the calendar also vary according to the time zone and DST. Therefore, the system should allow users to choose calendars that comply with their local habits. This is made real with the complete set of APIs provided by the [Calendar](../reference/apis-localization-kit/js-apis-i18n.md#calendar8) class. Besides setting the calendar type, date (year, month, and day), time zone, start date of a week, minimum number of days in the first week of a year, users can even determine whether a day is a weekend on the calendar and calculate the day difference between two dates. During application development, you can choose functions that suit your needs in a flexible manner.
+Users in different locales use different calendars. To be specific, the Gregorian calendar is used in most locales, whereas calendars such as the lunar, Islamic, and Hebrew calendars are used in some other locales. The time and date on the calendar are calculated based on the calendar and may vary according to the time zone and DST. Therefore, the system should allow users to choose calendars that comply with their local habits. This is made real with the complete set of APIs provided by the [Calendar](../reference/apis-localization-kit/js-apis-i18n.md#calendar8) class. Besides setting the calendar type, date (year, month, and day), time zone, start date of a week, and minimum number of days in the first week of a year, users can even determine whether a day is a weekend on the calendar and calculate the day difference between two dates. During application development, you can choose functions that suit your needs in a flexible manner.
 
 ## How to Develop
 
@@ -59,10 +59,10 @@ The following illustrates how to view the lunar calendar date corresponding to t
    let daysDifference: number = calendar.compareDays(new Date(2023, 10, 15)); // daysDifference = -3
    ```
 
-3. Obtain the lunar calendar date corresponding to the Gregorian calendar date.
+3. Obtain the lunar calendar date corresponding to a Gregorian calendar date.
    ```ts
    let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans', 'chinese');
-   // Pass the Gregorian calendar information to the Calendar object, with the date and time being 2023.07.25 08:00:00.
+   // Pass the Gregorian calendar date to the Calendar object, with the date and time being 2023.07.25 08:00:00.
    calendar.setTime(new Date(2023, 6, 25, 8, 0, 0));
    // Obtain the year, month, and day of the lunar calendar.
    let year: number = calendar.get('year'); // year = 40 indicates the age of the trunk branch. The value ranges from 1 to 60.
@@ -70,7 +70,7 @@ The following illustrates how to view the lunar calendar date corresponding to t
    let day: number = calendar.get('date'); // day = 8 indicates the eighth day.
    ```
 
-**Table 1** Supported calendar types
+**Table 1** List of supported calendars
 
 | Type| Name| 
 | -------- | -------- |

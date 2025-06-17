@@ -35,16 +35,15 @@ HiTraceChain是基于云计算分布式跟踪调用链思想，在端侧业务�
 
 ## 开发示例
 
-1. 在Deveco Studio新建Native C++应用，默认生成的项目中包含index.ets文件，在entry\src\main\cpp目录下会自动生成一个cpp文件(hello.cpp或napi_init.cpp，本示例以hello.cpp文件名为例)。
-    index.ets代码如下，onClick中调用了testNapi的add函数，该函数在hello.cpp中定义。
+1. 在Deveco Studio新建Native C++应用，默认生成的项目中包含index.ets文件，在entry\src\main\cpp目录下会自动生成一个cpp文件（hello.cpp或napi_init.cpp，本示例以hello.cpp文件名为例）。index.ets代码如下，onClick中调用了testNapi的add函数，该函数在hello.cpp中定义。
     ```
     import hilog from '@ohos.hilog';
-    import testNapi from 'libentry.so'
+    import testNapi from 'libentry.so';
 
     @Entry
     @Component
     struct Index {
-        @State message: string = 'Hello World'
+        @State message: string = 'Hello World';
 
         build() {
             Row() {

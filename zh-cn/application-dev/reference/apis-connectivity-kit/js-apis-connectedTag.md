@@ -12,7 +12,7 @@
 import { connectedTag } from '@kit.ConnectivityKit';
 ```
 
-## connectedTag.init
+## connectedTag.init<sup>(deprecated)</sup>
 
 init(): boolean
 
@@ -20,7 +20,7 @@ init(): boolean
 
 > **说明：**
 >
-> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[initialize](#connectedtaginitialize9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[initialize](#connectedtaginitialize9)替代。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -30,7 +30,7 @@ init(): boolean
 
 | **类型** | **说明** |
 | -------- | -------- |
-| boolean | true:初始化成功。&nbsp;<br>false:初始化失败。 |
+| boolean | true：初始化成功。&nbsp;<br>false：初始化失败。 |
 
 ## connectedTag.initialize<sup>9+</sup>
 
@@ -52,11 +52,15 @@ initialize(): void
 |801 | Capability not supported.          |
 |3200101 | Connected NFC tag running state is abnormal in service. |
 
-## connectedTag.uninit
+## connectedTag.uninit<sup>(deprecated)</sup>
 
 uninit(): boolean
 
 卸载有源标签芯片资源。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[uninitialize](#connectedtaguninitialize9)替代。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -66,7 +70,7 @@ uninit(): boolean
 
 | **类型** | **说明** |
 | -------- | -------- |
-| boolean | true:卸载操作成功。&nbsp;<br>false:卸载操作失败。 |
+| boolean | true：卸载操作成功。&nbsp;<br>false：卸载操作失败。 |
 
 ## connectedTag.uninitialize<sup>9+</sup>
 
@@ -88,11 +92,15 @@ uninitialize(): void
 |801 | Capability not supported.          |
 |3200101 | Connected NFC tag running state is abnormal in service. |
 
-## connectedTag.readNdefTag
+## connectedTag.readNdefTag<sup>(deprecated)</sup>
 
 readNdefTag(): Promise&lt;string&gt;
 
 读取有源标签内容，使用promise方式作为异步方法。
+
+> **说明：**
+>
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[connectedTag.read](#connectedtagread9)替代。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -113,7 +121,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 connectedTag.readNdefTag().then((data) => {
     console.log("connectedTag readNdefTag Promise data = " + data);
 }).catch((err: BusinessError)=> {
-    console.log("connectedTag readNdefTag Promise err: " + err);
+    console.error("connectedTag readNdefTag Promise err: " + err);
 });
 ```
 
@@ -152,15 +160,19 @@ import { BusinessError } from '@kit.BasicServicesKit';
 connectedTag.read().then((data) => {
     console.log("connectedTag read Promise data = " + data);
 }).catch((err: BusinessError)=> {
-    console.log("connectedTag read Promise err: " + err);
+    console.error("connectedTag read Promise err: " + err);
 });
 ```
 
-## connectedTag.readNdefTag
+## connectedTag.readNdefTag<sup>(deprecated)</sup>
 
 readNdefTag(callback: AsyncCallback&lt;string&gt;): void
 
 读取有源标签内容，使用AsyncCallback方式作为异步方法。
+
+> **说明：**
+>
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[connectedTag.read](#connectedtagread9)替代。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -179,7 +191,7 @@ import { connectedTag } from '@kit.ConnectivityKit';
 
 connectedTag.readNdefTag((err, data)=> {
     if (err) {
-        console.log("connectedTag readNdefTag AsyncCallback err: " + err);
+        console.error("connectedTag readNdefTag AsyncCallback err: " + err);
     } else {
         console.log("connectedTag readNdefTag AsyncCallback data: " + data);
     }
@@ -219,18 +231,22 @@ import { connectedTag } from '@kit.ConnectivityKit';
 
 connectedTag.read((err, data)=> {
     if (err) {
-        console.log("connectedTag read AsyncCallback err: " + err);
+        console.error("connectedTag read AsyncCallback err: " + err);
     } else {
         console.log("connectedTag read AsyncCallback data: " + data);
     }
 });
 ```
 
-## connectedTag.writeNdefTag
+## connectedTag.writeNdefTag<sup>(deprecated)</sup>
 
 writeNdefTag(data: string): Promise&lt;void&gt;
 
 写入内容到有源标签，使用promise方式作为异步方法。
+
+> **说明：**
+>
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[connectedTag.write](#connectedtagwrite9)替代。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -256,9 +272,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let rawData = "010203"; // change it to be correct.
 connectedTag.writeNdefTag(rawData).then(() => {
-    console.log("connectedTag writeNdefTag Promise success.");
+    console.log("connectedTag.writeNdefTag Promise success.");
 }).catch((err: BusinessError)=> {
-    console.log("connectedTag writeNdefTag Promise err: " + err);
+    console.error("connectedTag.writeNdefTag Promise err: " + err);
 });
 ```
 
@@ -303,17 +319,21 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let rawData = [0x01, 0x02, 0x03]; // change it to be correct.
 connectedTag.write(rawData).then(() => {
-    console.log("connectedTag write NdefTag Promise success.");
+    console.log("connectedTag.writeNdefTag Promise success.");
 }).catch((err: BusinessError)=> {
-    console.log("connectedTag write NdefTag Promise err: " + err);
+    console.error("connectedTag.writeNdefTag Promise err: " + err);
 });
 ```
 
-## connectedTag.writeNdefTag
+## connectedTag.writeNdefTag<sup>(deprecated)</sup>
 
 writeNdefTag(data: string, callback: AsyncCallback&lt;void&gt;): void
 
 写入内容到有源标签，使用AsyncCallback方式作为异步方法。
+
+> **说明：**
+>
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[connectedTag.write](#connectedtagwrite9)替代。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -334,9 +354,9 @@ import { connectedTag } from '@kit.ConnectivityKit';
 let rawData = "010203"; // change it to be correct.
 connectedTag.writeNdefTag(rawData, (err)=> {
     if (err) {
-        console.log("connectedTag writeNdefTag AsyncCallback err: " + err);
+        console.error("connectedTag.writeNdefTag AsyncCallback err: " + err);
     } else {
-        console.log("connectedTag writeNdefTag AsyncCallback success.");
+        console.log("connectedTag.writeNdefTag AsyncCallback success.");
     }
 });
 ```
@@ -377,9 +397,9 @@ import { connectedTag } from '@kit.ConnectivityKit';
 let rawData = [0x01, 0x02, 0x03]; // change it to be correct.
 connectedTag.write(rawData, (err)=> {
     if (err) {
-        console.log("connectedTag write NdefTag AsyncCallback err: " + err);
+        console.error("connectedTag.writeNdefTag AsyncCallback err: " + err);
     } else {
-        console.log("connectedTag write NdefTag AsyncCallback success.");
+        console.log("connectedTag.writeNdefTag AsyncCallback success.");
     }
 });
 ```

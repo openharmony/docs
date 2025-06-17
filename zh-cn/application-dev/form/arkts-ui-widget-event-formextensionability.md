@@ -1,6 +1,6 @@
-# 通过message事件刷新卡片内容
+# 卡片传递消息给应用（message事件）
 
-在卡片页面中可以通过[postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction)接口触发message事件拉起FormExtensionAbility，然后由FormExtensionAbility刷新卡片内容，下面是这种刷新方式的简单示例。
+在卡片页面中可以通过[postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction)接口触发message事件拉起FormExtensionAbility，通过onFormEvent接口回调通知，以完成点击卡片控件后传递消息给应用的功能，然后由FormExtensionAbility刷新卡片内容，下面是这种刷新方式的简单示例。
 
 > **说明：**
 >
@@ -62,7 +62,7 @@
   }
   ```
   
-- 在FormExtensionAbility的onFormEvent生命周期中调用[updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform)接口刷新卡片。
+- 在FormExtensionAbility的onFormEvent生命周期中调用[updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderupdateform)接口刷新卡片。
   
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -74,7 +74,7 @@
   
   export default class EntryFormAbility extends FormExtensionAbility {
     onFormEvent(formId: string, message: string): void {
-      // Called when a specified message event defined by the form provider is triggered.
+      // 当卡片提供方的postCardAction接口的message事件被触发时调用
       hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
   
       class FormDataClass {
@@ -82,6 +82,7 @@
         detail: string = 'Description update success.'; // 和卡片布局中对应
       }
   
+      // 请根据业务替换为实际刷新的卡片数据
       let formData = new FormDataClass();
       let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
       formProvider.updateForm(formId, formInfo).then(() => {

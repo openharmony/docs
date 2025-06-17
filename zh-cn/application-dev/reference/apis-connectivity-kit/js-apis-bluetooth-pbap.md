@@ -19,13 +19,13 @@ import { pbap } from '@kit.ConnectivityKit';
 
 type BaseProfile = baseProfile.BaseProfile
 
-基础Profile接口定义
+基础Profile接口定义。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md#baseprofile) | 基础Profile接口定义。 |
+| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md#ohosbluetoothbaseprofile-蓝牙baseprofile模块) | 基础Profile接口定义。 |
 
 
 ## pbap.createPbapServerProfile
@@ -40,7 +40,7 @@ createPbapServerProfile(): PbapServerProfile
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| PbapServerProfile | 返回该profile的实例。 |
+|PbapServerProfile | 返回该profile的实例。 |
 
 **错误码**：
 

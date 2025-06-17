@@ -46,7 +46,7 @@
 | end                | &lt;time&gt; | 2100-12-31 | 否    | 设置日期选择器的结束时间，格式为&nbsp;YYYY-MM-DD。        |
 | selected           | string       | 当前日期       | 否    | 设置日期选择器弹窗的默认取值，格式为&nbsp;YYYY-MM-DD，该取值表示选择器弹窗界面的默认选择值。 |
 | value              | string       | -          | 是    | 设置日期选择器的值。                               |
-| lunar<sup>5+</sup> | boolean      | false      | 否    | 设置日期选择器弹窗界面是否为农历展示。                      |
+| lunar<sup>5+</sup> | boolean      | false      | 否    | 设置日期选择器是否为农历展示。<br/>默认值：false，表示设置日期选择器是公历展示。                      |
 | lunarswitch        | boolean      | false      | 否    | 设置日期选择器是否显示农历开关。当值为true时，显示农历开关，点击农历开关可切换公历和农历。当值为false时，不显示农历开关。<br/>当lunarswitch=true且lunar=true时，开关按钮处于被选中状态。 |
 
 
@@ -56,7 +56,7 @@
 
 | 名称            | 类型      | 默认值                                 | 必填   | 描述                                       |
 | ------------- | ------- | ----------------------------------- | ---- | ---------------------------------------- |
-| containsecond | boolean | false                               | 否    | 设置时间选择器是否包含秒。                            |
+| containsecond | boolean | false                               | 否    | 设置时间选择器是否包含秒。 <br/>默认值：false，表示设置时间选择器不包含秒。                           |
 | selected      | string  | 当前时间                                | 否    | 设置时间选择器弹窗的默认取值，格式为&nbsp;HH:mm；当包含秒时，格式为HH:mm:ss，<br/>该取值表示选择器弹窗界面的默认选择值。 |
 | value         | string  | -                                   | 否    | 设置时间选择器的值。                               |
 | hours         | number  | 24<sup>1-4</sup><br/>-<sup>5+</sup> | 否    | 设置时间选择器采用的时间格式，可选值：<br/>-&nbsp;12：按照12小时制显示，用上午和下午进行区分；<br/>-&nbsp;24：按照24小时制显示。<br/>从API Version 5开始，默认值会依据系统当前所选地区和语言选择当地习惯的小时制(12小时制或24小时制)。 |
@@ -71,7 +71,7 @@
 | selected           | string  | 当前日期时间                              | 否    | 设置日期时间选择器弹窗的默认取值，有两种可选格式。<br/>-&nbsp;月日时分：MM-DD-HH-mm<br/>-&nbsp;年月日时分：YYYY-MM-DD-HH-mm<br/>不设置年时，默认使用当前年，该取值表示选择器弹窗界面的默认选择值。 |
 | value              | string  | -                                   | 是    | 设置日期时间选择器的值。                             |
 | hours              | number  | 24<sup>1-4</sup><br/>-<sup>5+</sup> | 否    | 设置日期时间选择器采用的时间格式，可选值：<br/>-&nbsp;12：按照12小时制显示，用上午和下午进行区分；<br/>-&nbsp;24：按照24小时制显示。<br/>从API Version 5开始，默认值会依据系统当前所选地区和语言选择当地习惯的小时制(12小时制或24小时制)。 |
-| lunar<sup>5+</sup> | boolean | false                               | 否    | 设置日期时间选择器弹窗界面是否为农历展示。                    |
+| lunar<sup>5+</sup> | boolean | false                               | 否    | 设置日期时间选择器是否为农历展示。<br/>默认值：false，表示设置日期选择器为公历展示。                    |
 | lunarswitch        | boolean | false                               | 否    | 设置日期选择器是否显示农历开关。当值为true时，显示农历开关，点击农历开关可切换公历和农历。当值为false时，不显示农历开关。<br/>当lunarswitch=true且lunar=true时，开关按钮处于被选中状态。 |
 
 
@@ -95,7 +95,7 @@
 | -------------------------- | -------------------------- | ---------- | ---- | ---------------------------------------- |
 | text-color                 | &lt;color&gt;              | -          | 否    | 选择器的文本颜色。                                |
 | font-size                  | &lt;length&gt;             | -          | 否    | 选择器的文本尺寸。                                |
-| allow-scale                | boolean                    | true       | 否    | 选择器的文本尺寸是否跟随系统设置字体缩放尺寸进行放大缩小。<br/>如果在config描述文件中针对ability配置了fontSize的config-changes标签，则应用不会重启而直接生效。 |
+| allow-scale                | boolean                    | true       | 否    | 选择器的文本尺寸是否跟随系统设置字体缩放尺寸进行放大缩小。<br/>如果在config描述文件中针对ability配置了fontSize的config-changes标签，则应用不会重启而直接生效。<br/>默认值：true，表示选择器的文本尺寸跟随系统设置字体缩放尺寸进行放大缩小。 |
 | letter-spacing             | &lt;length&gt;             | 0          | 否    | 选择器的字符间距。见[text组件的letter-spacing样式属性](js-components-basic-text.md#样式)。 |
 | text-decoration            | string                     | -          | 否    | 选择器的文本修饰。见[text组件的text-decoration样式属性](js-components-basic-text.md#样式)。 |
 | font-style                 | string                     | normal     | 否    | 选择器的字体样式。见[text组件的font-style样式属性](js-components-basic-text.md#样式)。 |

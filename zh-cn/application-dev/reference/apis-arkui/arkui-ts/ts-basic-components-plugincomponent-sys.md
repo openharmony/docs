@@ -20,9 +20,13 @@ PluginComponent(options: PluginComponentOptions)
 
 创建插件组件，用于显示外部应用提供的UI。
 
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名  | 参数类型                                                     | 必填 | 参数描述                                                     |
+| 参数名  | 参数类型                                                     | 必填 | 说明                                                     |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | options | [PluginComponentOptions](#plugincomponentoptions18类型说明) | 是   | 定义用于构造插件组件的选项。 |
 
@@ -50,11 +54,11 @@ PluginComponent(options: PluginComponentOptions)
 * 1.使用绝对路径进行资源提供：source字段填写模板绝对路径，bundleName不需要填写。仅适用于不需要加载资源的单独模板页面，不建议使用。
 * 2.通过应用包进行资源提供：bundleName字段需要填写应用包名；source字段填写相对hap包的模板相对路径，对于多hap场景，通过“相对路径&模块名称”的方式进行hap包的确认。
 
-  例如：{source：'pages/PluginProviderExample.ets&entry', bundleName:'com.example.provider'}
+  例如：{source: 'pages/PluginProviderExample.ets&entry', bundleName: 'com.example.provider'}
 
   仅对FA模型支持source字段填写AbilityName、bundleName字段填写应用包名的方式进行资源提供。
 
-  例如：{source：'plugin', bundleName:'com.example.provider'}
+  例如：{source: 'plugin', bundleName: 'com.example.provider'}
 
 
 ## 事件
@@ -65,7 +69,7 @@ PluginComponent(options: PluginComponentOptions)
 
 ### onComplete
 
-onComplete(callback:&nbsp;VoidCallback)
+onComplete(callback:&nbsp;VoidCallback\<void\>)
 
 组件加载完成时触发回调。
 
@@ -73,9 +77,15 @@ onComplete(callback:&nbsp;VoidCallback)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名  | 类型                                                     | 必填 | 说明                                                     |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | [VoidCallback](../../apis-basic-services-kit/js-apis-base.md#callback) \<void> | 是   | 回调函数，组件加载完成时触发的回调。 |
+
 ### onError
 
-onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
+onError(callback:&nbsp;PluginErrorCallback)
 
 组件加载错误时触发回调。
 
@@ -120,7 +130,7 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
 使用方应用的`bundleName`为"com.example.user"，包含一个页面。
 - `EntryAbility(UIAbility)`加载入口页面文件`ets/pages/Index.ets`，`Index.ets`内容如下：
   ```ts
-  import plugin from "./plugin_component"
+  import plugin from "./plugin_component";
 
   interface Info {
     errcode: number,
@@ -141,8 +151,8 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
           .height(100)
           .margin({ top: 20 })
           .onClick(() => {
-            plugin.onListener()
-            console.log("Button('Register Push Listener')")
+            plugin.onListener();
+            console.log("Button('Register Push Listener')");
           })
         Button('Request')
           .fontSize(50)
@@ -150,8 +160,8 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
           .height(100)
           .margin({ top: 20 })
           .onClick(() => {
-            plugin.Request()
-            console.log("Button('Request')")
+            plugin.Request();
+            console.log("Button('Request')");
           })
         PluginComponent({
           // 提供方
@@ -159,10 +169,10 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
           data: { 'countDownStartValue': 'new countDownStartValue' }
         }).size({ width: 500, height: 350 })
           .onComplete(() => {
-            console.log("onComplete")
+            console.log("onComplete");
           })
           .onError((info: Info) => {
-            console.log("onComplete" + info.errcode + ":" + info.msg)
+            console.log("onComplete" + info.errcode + ":" + info.msg);
           })
       }
       .width('100%')
@@ -191,12 +201,12 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
 提供方应用的`bundleName`为"com.example.provider"，包含一个页面。
 - `EntryAbility(UIAbility)`加载入口页面文件`ets/pages/Index.ets`，`Index.ets`内容如下：
   ```ts
-  import plugin from "./plugin_component"
+  import plugin from "./plugin_component";
 
   @Entry
   @Component
   struct PluginProviderExample {
-    @State message: string = 'no click!'
+    @State message: string = 'no click!';
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -206,8 +216,8 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
           .height(100)
           .margin({ top: 20 })
           .onClick(() => {
-            plugin.onListener()
-            console.log("Button('Register Request Listener')")
+            plugin.onListener();
+            console.log("Button('Register Request Listener')");
           })
         Button('Push')
           .fontSize(30)
@@ -215,9 +225,9 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
           .height(100)
           .margin({ top: 20 })
           .onClick(() => {
-            plugin.Push()
-            this.message = "Button('Push')"
-            console.log("Button('Push')")
+            plugin.Push();
+            this.message = "Button('Push')";
+            console.log("Button('Push')");
           })
         Text(this.message)
           .height(150)

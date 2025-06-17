@@ -66,7 +66,8 @@ class B{
 export default new B()
 ```
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The page routing stack supports a maximum of 32 pages.
 
 

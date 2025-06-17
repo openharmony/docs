@@ -3,7 +3,7 @@
 
 ## 概述
 
-定义多列带联动能力的滑动数据选择器的输入结构体。
+定义多列联动滑动数据选择器的结构体。
 
 **起始版本：** 12
 
@@ -18,9 +18,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| const char \* [text](#text) | 文本信息。  | 
-| const [ARKUI_TextPickerRangeContent](_a_r_k_u_i___text_picker_range_content.md) \* [children](#children) | 联动数据。  | 
-| int32_t [size](#size) | 联动数据数组大小。  | 
+| const char \* [text](#text) | 文本信息。| 
+| const [ARKUI_TextPickerRangeContent](_a_r_k_u_i___text_picker_range_content.md) \* [children](#children) | 联动数据。| 
+| int32_t [size](#size) | 联动数据数组大小。| 
 
 
 ## 结构体成员变量说明

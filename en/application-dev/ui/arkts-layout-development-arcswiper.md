@@ -291,4 +291,3 @@ struct SwiperCustomAnimationExample {
   }
 }
 ```
-<!--no_check-->

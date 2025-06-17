@@ -8,11 +8,11 @@
 
 如果要实现双路预览，即将拍照流改为预览流，将拍照流中的surface改为预览流的surface，通过ImageReceiver的surface创建previewOutput，其余流程与拍照流和预览流一致。
 
-详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/js-apis-camera.md)。
+详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/arkts-apis-camera.md)。
 
 ## 约束与限制
 
-- 暂不支持动态添加流，即不能在没有调用[session.stop](../../reference/apis-camera-kit/js-apis-camera.md#stop11)的情况下，调用[addOutput](../../reference/apis-camera-kit/js-apis-camera.md#addoutput11)添加流。
+- 暂不支持动态添加流，即不能在没有调用[session.stop](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#stop11)的情况下，调用[addOutput](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#addoutput11)添加流。
 - 对ImageReceiver组件获取到的图像数据处理后，需要将对应的图像Buffer释放，确保Surface的BufferQueue正常轮转。
 
 ## 调用流程
@@ -29,10 +29,17 @@
 
 ### 用于处理图像的第一路预览流
 
-1. 获取第一路预览流SurfaceId：创建ImageReceiver对象，通过ImageReceiver对象可获取其SurfaceId。
+1. 导入依赖，本篇文档需要用到图片和相机框架等相关依赖包。
 
     ```ts
     import { image } from '@kit.ImageKit';
+    import { camera } from '@kit.CameraKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    ```
+
+2. 获取第一路预览流SurfaceId：创建ImageReceiver对象，通过ImageReceiver对象可获取其SurfaceId。
+
+    ```ts
     let imageWidth: number = 1920; // 请使用设备支持profile的size的宽。
     let imageHeight: number = 1080; // 请使用设备支持profile的size的高。
 
@@ -46,12 +53,9 @@
     }
     ```
 
-2. 注册监听处理预览流每帧图像数据：通过ImageReceiver组件中imageArrival事件监听获取底层返回的图像数据，详细的API说明请参考[Image API参考](../../reference/apis-image-kit/js-apis-image.md)。
+3. 注册监听处理预览流每帧图像数据：通过ImageReceiver组件中imageArrival事件监听获取底层返回的图像数据，详细的API说明请参考[Image API参考](../../reference/apis-image-kit/arkts-apis-image-ImageReceiver.md)。
 
     ```ts
-    import { BusinessError } from '@kit.BasicServicesKit';
-    import { image } from '@kit.ImageKit';
-
     function onImageArrival(receiver: image.ImageReceiver): void {
       // 注册imageArrival监听。
       receiver.on('imageArrival', () => {
@@ -103,7 +107,7 @@
     }
     ```
 
-    通过 [image.Component](../../reference/apis-image-kit/js-apis-image.md#component9) 解析图片buffer数据参考：
+    通过 [image.Component](../../reference/apis-image-kit/arkts-apis-image-i.md#component9) 解析图片buffer数据参考：
 
     > **注意：**
     > 需要确认图像的宽width是否与行距rowStride一致，如果不一致可参考以下方式处理：
@@ -150,11 +154,12 @@ struct example {
   surfaceId:string = '';
   imageWidth: number = 1920;
   imageHeight: number = 1080;
+  private uiContext: UIContext = this.getUIContext();
 
   build() {
     XComponent({
       id: 'componentId',
-      type: 'surface',
+      type: XComponentType.SURFACE,
       controller: this.xComponentCtl
     })
       .onLoad(async () => {
@@ -163,8 +168,8 @@ struct example {
         // 使用surfaceId创建预览流，开启相机，组件实时渲染每帧预览流数据。
       })
       // surface的宽、高设置与XComponent组件的宽、高设置相反，或使用.renderFit(RenderFit.RESIZE_CONTAIN)自动填充显示无需设置宽、高。
-      .width(px2vp(this.imageHeight))
-      .height(px2vp(this.imageWidth))
+      .width(this.uiContext.px2vp(this.imageHeight))
+      .height(this.uiContext.px2vp(this.imageWidth))
   }
 }
 ```
@@ -177,22 +182,21 @@ struct example {
 
 ```ts
 function createDualPreviewOutput(cameraManager: camera.CameraManager, previewProfile: camera.Profile,
-session: camera.Session,
-imageReceiverSurfaceId: string, xComponentSurfaceId: string): void {
-    // 使用imageReceiverSurfaceId创建第一路预览。
-    let previewOutput1 = cameraManager.createPreviewOutput(previewProfile, imageReceiverSurfaceId);
-    if (!previewOutput1) {
-    console.error('createPreviewOutput1 error');
-    }
-    // 使用xComponentSurfaceId创建第二路预览。
-    let previewOutput2 = cameraManager.createPreviewOutput(previewProfile, xComponentSurfaceId);
-    if (!previewOutput2) {
-    console.error('createPreviewOutput2 error');
-    }
-    // 添加第一路预览流输出。
-    session.addOutput(previewOutput1);
-    // 添加第二路预览流输出。
-    session.addOutput(previewOutput2);
+  session: camera.Session, imageReceiverSurfaceId: string, xComponentSurfaceId: string): void {
+  // 使用imageReceiverSurfaceId创建第一路预览。
+  let previewOutput1 = cameraManager.createPreviewOutput(previewProfile, imageReceiverSurfaceId);
+  if (!previewOutput1) {
+  console.error('createPreviewOutput1 error');
+  }
+  // 使用xComponentSurfaceId创建第二路预览。
+  let previewOutput2 = cameraManager.createPreviewOutput(previewProfile, xComponentSurfaceId);
+  if (!previewOutput2) {
+  console.error('createPreviewOutput2 error');
+  }
+  // 添加第一路预览流输出。
+  session.addOutput(previewOutput1);
+  // 添加第二路预览流输出。
+  session.addOutput(previewOutput2);
 }
 ```
 
@@ -204,6 +208,7 @@ imageReceiverSurfaceId: string, xComponentSurfaceId: string): void {
 import { camera } from '@kit.CameraKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -220,6 +225,26 @@ struct Index {
   private previewOutput1: camera.PreviewOutput | undefined = undefined;
   private previewOutput2: camera.PreviewOutput | undefined = undefined;
   private session: camera.VideoSession | undefined = undefined;
+  private uiContext: UIContext = this.getUIContext();
+  private context: Context | undefined = this.uiContext.getHostContext();
+  private cameraPermission: Permissions = 'ohos.permission.CAMERA'; // 申请权限相关问题可参考本篇开头的申请相关权限文档
+  @State isShow: boolean = false;
+
+  async requestPermissionsFn(): Promise<void> {
+    let atManager = abilityAccessCtrl.createAtManager();
+    if (this.context) {
+      let res = await atManager.requestPermissionsFromUser(this.context, [this.cameraPermission]);
+      for (let i =0; i < res.permissions.length; i++) {
+        if (this.cameraPermission.toString() === res.permissions[i] && res.authResults[i] === 0) {
+          this.isShow = true;
+        }
+      }
+    }
+  }
+
+  aboutToAppear(): void {
+    this.requestPermissionsFn();
+  }
 
   onPageShow(): void {
     console.info('onPageShow');
@@ -310,20 +335,23 @@ struct Index {
 
   build() {
     Column() {
-      XComponent({
-        id: 'componentId',
-        type: 'surface',
-        controller: this.xComponentCtl
-      })
-        .onLoad(async () => {
-          console.info('onLoad is called');
-          this.xComponentSurfaceId = this.xComponentCtl.getXComponentSurfaceId(); // 获取组件surfaceId。
-          // 初始化相机，组件实时渲染每帧预览流数据。
-          this.initCamera()
+      if (this.isShow) {
+        XComponent({
+          id: 'componentId',
+          type: XComponentType.SURFACE,
+          controller: this.xComponentCtl
         })
-        .width(px2vp(this.imageHeight))
-        .height(px2vp(this.imageWidth))
-    }.justifyContent(FlexAlign.Center)
+          .onLoad(async () => {
+            console.info('onLoad is called');
+            this.xComponentSurfaceId = this.xComponentCtl.getXComponentSurfaceId(); // 获取组件surfaceId。
+            // 初始化相机，组件实时渲染每帧预览流数据。
+            this.initCamera()
+          })
+          .width(this.uiContext.px2vp(this.imageHeight))
+          .height(this.uiContext.px2vp(this.imageWidth))
+      }
+    }
+    .justifyContent(FlexAlign.Center)
     .height('100%')
     .width('100%')
   }
@@ -333,7 +361,7 @@ struct Index {
     console.info(`initCamera imageReceiverSurfaceId:${this.imageReceiverSurfaceId} xComponentSurfaceId:${this.xComponentSurfaceId}`);
     try {
       // 获取相机管理器实例。
-      this.cameraManager = camera.getCameraManager(getContext(this));
+      this.cameraManager = camera.getCameraManager(this.context);
       if (!this.cameraManager) {
         console.error('initCamera getCameraManager');
       }
@@ -349,7 +377,7 @@ struct Index {
       }
       // 打开相机。
       await this.cameraInput.open().catch((err: BusinessError) => {
-        console.error(`initCamera open fail: ${JSON.stringify(err)}`);
+        console.error(`initCamera open fail: ${err}`);
       })
       // 获取相机device支持的profile。
       let capability: camera.CameraOutputCapability =
@@ -390,7 +418,7 @@ struct Index {
       // 开始启动已配置的输入输出流。
       await this.session.start();
     } catch (error) {
-      console.error(`initCamera fail: ${JSON.stringify(error)}`);
+      console.error(`initCamera fail: ${error}`);
     }
   }
 
@@ -409,7 +437,7 @@ struct Index {
       // 释放会话。
       await this.session?.release();
     } catch (error) {
-      console.error(`initCamera fail: ${JSON.stringify(error)}`);
+      console.error(`initCamera fail: ${error}`);
     }
   }
 }

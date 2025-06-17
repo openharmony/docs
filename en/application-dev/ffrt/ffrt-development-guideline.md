@@ -208,12 +208,12 @@ The following describes how to use the native APIs provided by FFRT to create pa
 
     ```cpp
     #include "ffrt/task.h"
-    #include "ffrt/type_def.h"
-    #include "ffrt/condition_variable.h"
-    #include "ffrt/loop.h"
     #include "ffrt/mutex.h"
-    #include "ffrt/queue.h"
+    #include "ffrt/shared_mutex.h"
+    #include "ffrt/condition_variable.h"
     #include "ffrt/sleep.h"
+    #include "ffrt/queue.h"
+    #include "ffrt/loop.h"
     #include "ffrt/timer.h"
     ```
 
@@ -263,11 +263,11 @@ The following describes how to use the native APIs provided by FFRT to create pa
         ffrt_function_t func;
         ffrt_function_t after_func;
         void* arg;
-    } c_function_t;
+    } ffrt_function_wrapper_t;
 
     static inline void ffrt_exec_function_wrapper(void* t)
     {
-       c_function_t* f = (c_function_t *)t;
+       ffrt_function_wrapper_t* f = (ffrt_function_wrapper_t *)t;
        if (f->func) {
            f->func(f->arg);
        }
@@ -275,20 +275,20 @@ The following describes how to use the native APIs provided by FFRT to create pa
 
     static inline void ffrt_destroy_function_wrapper(void* t)
     {
-        c_function_t* f = (c_function_t *)t;
+        ffrt_function_wrapper_t* f = (ffrt_function_wrapper_t *)t;
         if (f->after_func) {
             f->after_func(f->arg);
         }
     }
 
     #define FFRT_STATIC_ASSERT(cond, msg) int x(int static_assertion_##msg[(cond) ? 1 : -1])
-    static inline ffrt_function_header_t *ffrt_create_function_wrapper(const ffrt_function_t func,
-        const ffrt_function_t after_func, void *arg)
+    static inline ffrt_function_header_t *ffrt_create_function_wrapper(ffrt_function_t func,
+        ffrt_function_t after_func, void* arg, ffrt_function_kind_t kind)
     {
-        FFRT_STATIC_ASSERT(sizeof(c_function_t) <= ffrt_auto_managed_function_storage_size,
+        FFRT_STATIC_ASSERT(sizeof(ffrt_function_wrapper_t) <= ffrt_auto_managed_function_storage_size,
             size_of_function_must_be_less_than_ffrt_auto_managed_function_storage_size);
 
-        c_function_t* f = (c_function_t *)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_general);
+        ffrt_function_wrapper_t* f = (ffrt_function_wrapper_t *)ffrt_alloc_auto_managed_function_storage_base(kind);
         f->header.exec = ffrt_exec_function_wrapper;
         f->header.destroy = ffrt_destroy_function_wrapper;
         f->func = func;
@@ -340,18 +340,19 @@ The following describes how to use the native APIs provided by FFRT to create pa
     int a = 0;
     // ******Parallel task******
     // Submit the parallel task without obtaining a handle.
-    ffrt_submit_base(ffrt_create_function_wrapper(OnePlusForTest, NULL, &a), NULL, NULL, &attr);
+    ffrt_submit_base(
+        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a, ffrt_function_kind_general), NULL, NULL, &attr);
     // Submit the parallel task and obtain a handle.
     ffrt_task_handle_t task = ffrt_submit_h_base(
-        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a), NULL, NULL, &attr);
+        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a, ffrt_function_kind_general), NULL, NULL, &attr);
 
     // ******Serial queue task******
     // Submit the serial queue task without obtaining a handle.
-    ffrt_queue_submit(queue_handle, ffrt_create_function_wrapper(OnePlusForTest, nullptr, &a,
-        ffrt_function_kind_queue), nullptr);
+    ffrt_queue_submit(queue_handle,
+        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a, ffrt_function_kind_queue), NULL);
     // Submit the serial queue task and obtain a handle.
     ffrt_task_handle_t handle = ffrt_queue_submit_h(queue_handle,
-        ffrt_create_function_wrapper(OnePlusForTest, nullptr, &a, ffrt_function_kind_queue), nullptr);
+        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a, ffrt_function_kind_queue), NULL);
 
     // Call wait if you need to wait for the execution result.
     const std::vector<ffrt_dependence_t> wait_deps = {{ffrt_dependence_task, task}};
@@ -361,7 +362,32 @@ The following describes how to use the native APIs provided by FFRT to create pa
     ffrt_queue_wait(handle);
     ```
 
-6. Destroy the resources after the task is submitted.
+6. (Optional) If a task does not need to be destroyed, you can submit the task through a simplified API.
+
+    ```cpp
+    int a = 0;
+    // If the after_func function pointer in step 3 is NULL, you can use the simplified API to submit a task to avoid redundant task structure encapsulation.
+    // ******Parallel task******
+    // Submit a parallel task without a handle through a simplified API.
+    ffrt_submit_f(OnePlusForTest, &a, NULL, NULL, &attr);
+    // Submit a parallel task with a handle through a simplified API.
+    ffrt_task_handle_t task = ffrt_submit_h_f(OnePlusForTest, &a, NULL, NULL, &attr);
+
+    // ******Serial queue task******
+    // Submit a serial queue task that does not return a handle through a simplified API.
+    ffrt_queue_submit_f(queue_handle, OnePlusForTest, &a, NULL);
+    // Submit a serial queue task with a handle through a simplified API.
+    ffrt_task_handle_t handle = ffrt_queue_submit_h_f(queue_handle, OnePlusForTest, &a, NULL);
+
+    // Call wait if you need to wait for the execution result.
+    const std::vector<ffrt_dependence_t> wait_deps = {{ffrt_dependence_task, task}};
+    ffrt_deps_t wait{static_cast<uint32_t>(wait_deps.size()), wait_deps.data()};
+    ffrt_wait_deps(&wait);
+
+    ffrt_queue_wait(handle);
+    ```
+
+7. Destroy the resources after the task is submitted.
 
     ```cpp
     // ******Destroy the parallel task******
@@ -382,7 +408,7 @@ The following describes how to use the native APIs provided by FFRT to create pa
 - Use pure functions and encapsulate them to express each step of the process.
 - There is no global data access.
 - There is no internal state reserved.
-- Use `ffrt_submit_base()` to submit a function in asynchronous mode for execution.
+- Call the `ffrt_submit_base()` or `ffrt_submit_f()` API to submit a function in asynchronous mode.
 - Use `in_deps` and `out_deps` of `ffrt_submit_base()` to specify the data objects to be accessed by the function and the access mode.
 - Programmers use the `in_deps` and `out_deps` parameters to express task dependencies to ensure the correctness of program execution.
 
@@ -555,20 +581,20 @@ A deadlock may occur when the mutex of the standard library is used in the FFRT 
 
 ### Using FFRT C API
 
-Native Development Kit (NDK) is a toolset provided by HarmonyOS SDK. It offers native APIs that allow you to implement key application functions using C or C++ code.
+Native Development Kit (NDK) is a toolset provided by the system. It offers native APIs that allow you to implement key application functions using C or C++ code.
 
 The FFRT C APIs have been integrated into the NDK. You can directly use the corresponding API in DevEco IDE.
 
-```cpp
-#include "ffrt/type_def.h"
+```c
 #include "ffrt/task.h"
-#include "ffrt/queue.h"
-#include "ffrt/condition_variable.h"
 #include "ffrt/mutex.h"
 #include "ffrt/shared_mutex.h"
+#include "ffrt/condition_variable.h"
 #include "ffrt/sleep.h"
+#include "ffrt/queue.h"
 #include "ffrt/loop.h"
 #include "ffrt/timer.h"
+#include "ffrt/type_def.h"
 ```
 
 ### Using FFRT C++ API
@@ -577,7 +603,7 @@ The FFRT deployment depends on the FFRT dynamic library `libffrt.so` and a group
 
 ![image](figures/ffrt_figure7.png)
 
-To use FFRT C++ APIs, you need to use the FFRT third-party library [@ppd/ffrt](https://ohpm.openharmony.cn/#/en/detail/@ppd%2Fffrt), which is a C++ API library officially maintained by FFRT.
+To use FFRT C++ APIs, you need to use the third-party library [@ppd/ffrt](https://ohpm.openharmony.cn/#/en/detail/@ppd%2Fffrt), which is officially maintained by FFRT.
 
 Run the following command in the module directory to install the third-party library:
 
@@ -587,19 +613,27 @@ ohpm install @ppd/ffrt
 
 You can also configure the dependencies in the `oh-package.json5` file so that the third-party library can be automatically downloaded and installed through DevEco Studio.
 
-Add dependencies to the `CMakeLists.txt` file:
+Add the header file search path and link dependency to the `CMakeLists.txt` file.
 
-```txt
-target_link_libraries(<target_name> PUBLIC libffrt.z.so ffrt::ffrtapi)
+```cmake
+# ${MODULES_PATH} indicates the installation path of the third-party library. You need to define the path or replace it with an absolute or relative path.
+include_directories(${MODULES_PATH}/@ppd/ffrt/include)
+target_link_libraries(${TARGET_NAME} PUBLIC libffrt.z.so)
 ```
 
 Use the FFRT C++ API in the code.
 
 ```cpp
+// include all C or C++ header files
+#include "ffrt/ffrt.h"
+
+// include specified header files
 #include "ffrt/cpp/task.h"
-#include "ffrt/cpp/queue.h"
-#include "ffrt/cpp/condition_variable.h"
 #include "ffrt/cpp/mutex.h"
 #include "ffrt/cpp/shared_mutex.h"
+#include "ffrt/cpp/condition_variable.h"
 #include "ffrt/cpp/sleep.h"
+#include "ffrt/cpp/queue.h"
 ```
+
+ <!--no_check--> 

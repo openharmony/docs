@@ -3,12 +3,13 @@
 
 ## Overview
 
-Defines the parameters of the service thread jank event detection. Note that these parameters are deprecated in API version 12 and reserved for extension only.
+Defines the parameters of the jank event detection. Note that this struct is supported since API 12.
 
 **Since**: 12
 
 **Related module**: [HiCollie](_hi_collie.md)
 
+**Header file**: [hicollie.h](hicollie_8h.md)
 
 ## Summary
 

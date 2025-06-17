@@ -11,7 +11,7 @@ ImageEffect提供了一系列接口用于图像的编辑。开发者可以通过
 
 ## 接口说明
 
-详细的接口说明请参考[ImageEffect](../../reference/apis-image-kit/_image_effect.md)。
+详细的接口说明请参考[ImageEffect](../../reference/apis-image-kit/capi-imageeffect.md)。
 
 ## 开发步骤
 
@@ -106,7 +106,7 @@ target_link_libraries(entry PUBLIC
 
     以相机预览场景为例来说明OHNativeWindow输入场景。XComponent组件为相机预览流提供的SurfaceId，可在native c++层将SurfaceId转换成OHNativeWindow，下面提供一份代码示例。
     XComponent模块的具体使用方法请参考[XComponent组件参考](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
-    NativeWindow模块的具体使用方法请参考[OHNativeWindow](../../reference/apis-arkgraphics2d/_native_window.md)。
+    NativeWindow模块的具体使用方法请参考[OHNativeWindow](../../reference/apis-arkgraphics2d/capi-nativewindow.md)。
     Camera的具体使用方法请参考[Camera预览参考](../camera/native-camera-preview.md)。
 
     (1) 在xxx.ets中添加一个XComponent组件。

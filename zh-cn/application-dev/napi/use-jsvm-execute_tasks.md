@@ -63,7 +63,7 @@ static JSVM_Value ConsoleInfo(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
     JSVM_Value args[1];
     char log[256] = "";
-    size_t logLength;
+    size_t logLength = 0;
     JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
 
     OH_JSVM_GetValueStringUtf8(env, args[0], log, 255, &logLength);
@@ -131,6 +131,7 @@ static int32_t TestJSVM() {
 }
 
 ```
+<!-- @[oh_jsvm_pump_message_loop_and_perform_microtask_checkpoint](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/pumpmessageloop/src/main/cpp/hello.cpp) -->
 预期输出结果
 ```
 JSVM API TEST: Called with instance [object Object]
@@ -165,7 +166,7 @@ static int SetMicrotaskPolicy(JSVM_VM vm, JSVM_Env env) {
     CHECK_RET(OH_JSVM_GetGlobal(env, &global));
     JSVM_Value hasEvaluateMicrotask;
     CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "evaluateMicrotask", &hasEvaluateMicrotask));
-    bool val;
+    bool val = false;
     CHECK_RET(OH_JSVM_GetValueBool(env, hasEvaluateMicrotask, &val));
 
     OH_LOG_INFO(LOG_APP, "Policy :JSVM_MICROTASK_AUTO, evaluateMicrotask : %{public}d", val);

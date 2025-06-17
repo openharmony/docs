@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **native_avmuxer.h** file declares the native APIs used for audio and video muxing.
+The **native_avmuxer.h** file declares the native APIs used for audio and video multiplexing.
 
 **Library**: libnative_media_avmuxer.so
 

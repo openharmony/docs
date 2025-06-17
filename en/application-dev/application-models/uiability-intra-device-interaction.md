@@ -35,7 +35,7 @@ Assume that your application has two UIAbility components: EntryAbility and Func
     @Entry
     @Component
     struct Page_UIAbilityComponentsInteractive {
-      private context = getContext(this) as common.UIAbilityContext;
+      private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
       build() {
         Column() {
@@ -111,7 +111,7 @@ Assume that your application has two UIAbility components: EntryAbility and Func
           //...
           Button('FuncAbilityB')
             .onClick(() => {
-              let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+              let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
               // context is the UIAbilityContext of the UIAbility instance to stop.
               context.terminateSelf((err) => {
                 if (err.code) {
@@ -142,7 +142,6 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
     ```ts
     import { common, Want } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { promptAction } from '@kit.ArkUI';
     import { BusinessError } from '@kit.BasicServicesKit';
 
     const TAG: string = '[Page_UIAbilityComponentsInteractive]';
@@ -160,7 +159,7 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
                 //...
               }
               .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
                 const RESULT_CODE: number = 1001;
                 let want: Want = {
                   deviceId: '', // An empty deviceId indicates the local device.
@@ -178,7 +177,7 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
                     let info = data.want?.parameters?.info;
                     hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(info) ?? '');
                     if (info !== null) {
-                      promptAction.showToast({
+                      this.getUIContext().getPromptAction().showToast({
                         message: JSON.stringify(info)
                       });
                     }
@@ -219,7 +218,7 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
                 //...
               }
               .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
                 const RESULT_CODE: number = 1001;
                 let abilityResult: common.AbilityResult = {
                   resultCode: RESULT_CODE,
@@ -254,7 +253,6 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
     ```ts
     import { common, Want } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { promptAction } from '@kit.ArkUI';
     import { BusinessError } from '@kit.BasicServicesKit';
 
     const TAG: string = '[Page_UIAbilityComponentsInteractive]';
@@ -272,7 +270,7 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
                 //...
               }
               .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
                 const RESULT_CODE: number = 1001;
 
                 let want: Want = {
@@ -291,7 +289,7 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
                     let info = data.want?.parameters?.info;
                     hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(info) ?? '');
                     if (info !== null) {
-                      promptAction.showToast({
+                      this.getUIContext().getPromptAction().showToast({
                         message: JSON.stringify(info)
                       });
                     }
@@ -351,7 +349,7 @@ struct Page_UIAbilityComponentsInteractive {
             //...
           }
           .onClick(() => {
-            let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
             let want: Want = {
               deviceId: '', // An empty deviceId indicates the local device.
               bundleName: 'com.samples.stagemodelabilityinteraction',
@@ -559,7 +557,7 @@ struct Page_UIAbilityComponentsInteractive {
             //...
           }
           .onClick(() => {
-            let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
             let want: Want = {
               deviceId: '', // An empty deviceId indicates the local device.
               bundleName: 'com.samples.stagemodelabilitydevelop',
@@ -684,27 +682,27 @@ For the CalleeAbility, implement the callback to receive data and the methods to
 
     ```ts
     import { rpc } from '@kit.IPCKit';
-    
+
     class MyParcelable {
       num: number = 0;
       str: string = '';
-    
+
       constructor(num: number, string: string) {
         this.num = num;
         this.str = string;
       }
-    
+
       mySequenceable(num: number, string: string): void {
         this.num = num;
         this.str = string;
       }
-    
+
       marshalling(messageSequence: rpc.MessageSequence): boolean {
         messageSequence.writeInt(this.num);
         messageSequence.writeString(this.str);
         return true;
       }
-    
+
       unmarshalling(messageSequence: rpc.MessageSequence): boolean {
         this.num = messageSequence.readInt();
         this.str = messageSequence.readString();
@@ -722,55 +720,55 @@ For the CalleeAbility, implement the callback to receive data and the methods to
     import { AbilityConstant, UIAbility, Want, Caller } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { rpc } from '@kit.IPCKit';
-    
+
     const MSG_SEND_METHOD: string = 'CallSendMsg';
     const DOMAIN_NUMBER: number = 0xFF00;
     const TAG: string = '[CalleeAbility]';
-    
+
     class MyParcelable {
       num: number = 0;
       str: string = '';
-    
+
       constructor(num: number, string: string) {
         this.num = num;
         this.str = string;
       }
-    
+
       mySequenceable(num: number, string: string): void {
         this.num = num;
         this.str = string;
       }
-    
+
       marshalling(messageSequence: rpc.MessageSequence): boolean {
         messageSequence.writeInt(this.num);
         messageSequence.writeString(this.str);
         return true;
       }
-    
+
       unmarshalling(messageSequence: rpc.MessageSequence): boolean {
         this.num = messageSequence.readInt();
         this.str = messageSequence.readString();
         return true;
       }
     }
-    
+
     function sendMsgCallback(data: rpc.MessageSequence): rpc.Parcelable {
       hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'CalleeSortFunc called');
-    
+
       // Obtain the parcelable data sent by the CallerAbility.
       let receivedData: MyParcelable = new MyParcelable(0, '');
       data.readParcelable(receivedData);
       hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `receiveData[${receivedData.num}, ${receivedData.str}]`);
       let num: number = receivedData.num;
-    
+
       // Process the data.
       // Return the parcelable data result to the CallerAbility.
       return new MyParcelable(num + 1, `send ${receivedData.str} succeed`) as rpc.Parcelable;
     }
-    
+
     export default class CalleeAbility extends UIAbility {
       caller: Caller | undefined;
-    
+
       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
         try {
           this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
@@ -778,7 +776,7 @@ For the CalleeAbility, implement the callback to receive data and the methods to
           hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`);
         }
       }
-    
+
       releaseCall(): void {
         try {
           if (this.caller) {
@@ -790,7 +788,7 @@ For the CalleeAbility, implement the callback to receive data and the methods to
           hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `caller release failed with ${error}`);
         }
       }
-    
+
       onDestroy(): void {
         try {
           this.callee.off(MSG_SEND_METHOD);
@@ -820,17 +818,16 @@ For the CalleeAbility, implement the callback to receive data and the methods to
     ```ts
     import { common, Want, Caller } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { promptAction } from '@kit.ArkUI';
     import { BusinessError } from '@kit.BasicServicesKit';
-    
+
     const TAG: string = '[Page_UIAbilityComponentsInteractive]';
     const DOMAIN_NUMBER: number = 0xFF00;
-    
+
     @Entry
     @Component
     struct Page_UIAbilityComponentsInteractive {
       caller: Caller | undefined = undefined;
-    
+
       // Register the onRelease() listener of the CallerAbility.
       private regOnRelease(caller: Caller): void {
         hilog.info(DOMAIN_NUMBER, TAG, `caller is ${caller}`);
@@ -845,7 +842,7 @@ For the CalleeAbility, implement the callback to receive data and the methods to
           hilog.error(DOMAIN_NUMBER, TAG, `Failed to caller register on release. Code is ${code}, message is ${message}`);
         }
       };
-    
+
       build() {
         Column() {
           // ...
@@ -856,7 +853,7 @@ For the CalleeAbility, implement the callback to receive data and the methods to
                 // ...
               }
               .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
                 let want: Want = {
                   bundleName: 'com.samples.stagemodelabilityinteraction',
                   abilityName: 'CalleeAbility',
@@ -874,7 +871,7 @@ For the CalleeAbility, implement the callback to receive data and the methods to
                   else {
                     hilog.info(DOMAIN_NUMBER, TAG, 'get caller success');
                     this.regOnRelease(caller);
-                    promptAction.showToast({
+                    this.getUIContext().getPromptAction().showToast({
                       message: 'CallerSuccess'
                     });
                     try {

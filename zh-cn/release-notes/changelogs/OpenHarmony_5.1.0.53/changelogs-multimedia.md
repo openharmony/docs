@@ -12,6 +12,7 @@
 **变更影响**
 
 此变更涉及应用适配。
+当音频设备上下线时，会向应用上报某个类型的音频设备上线。应用也可以通过接口主动查询可用的设备类型。针对API18以前的应用，系统的行为保持不变。针对API18及以后的应用，USB型的设备识别和上报发生了如下变更：
 TS接口
 | 平台 | 变更前 | 变更后 |
 | --- | ----- | ----- |
@@ -34,9 +35,25 @@ NDK接口
 
 **变更的接口/组件**
 
-TS：@ohos.multimedia.audio.d.ts中DeviceType的USB_HEADSET接口。
+本次变更后，当单输入或者单输出的USB音频设备接入系统后，如下接口返回的设备类型发生变化：
 
-NDK: native_audio_device_base.h中OH_AudioDevice_Type的AUDIO_DEVICE_USB_HEADSET接口。
+@ohos.multimedia.audio.d.ts中的ArkTS API：
+
+| 类  | 接口  |
+|---|---|
+| audio.AudioRoutingManager  |  getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback\<AudioDeviceDescriptors>): void |
+| audio.AudioRoutingManager  |  getDevices(deviceFlag: DeviceFlag): Promise\<AudioDeviceDescriptors> |
+| audio.AudioRoutingManager  |  getDevicesSync(deviceFlag: DeviceFlag): AudioDeviceDescriptors |
+| audio.AudioRoutingManager  |  getAvailableDevices(deviceUsage: DeviceUsage): AudioDeviceDescriptors |
+| audio.AudioRoutingManager  |  on(type: 'availableDeviceChange', deviceUsage: DeviceUsage, callback: Callback\<DeviceChangeAction>): void |
+| audio.AudioRoutingManager  |  off(type: 'availableDeviceChange', callback?: Callback\<DeviceChangeAction>): void |
+
+native_audio_routing_manager.h中的C API：
+
+| 接口 |
+|--|
+| OH_AudioCommon_Result OH_AudioRoutingManager_GetDevices(OH_AudioRoutingManager *audioRoutingManager, OH_AudioDevice_Flag deviceFlag, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray) |
+| OH_AudioCommon_Result OH_AudioRoutingManager_GetAvailableDevices(OH_AudioRoutingManager *audioRoutingManager, OH_AudioDevice_Usage deviceUsage, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray) |
 
 **适配指导**
 

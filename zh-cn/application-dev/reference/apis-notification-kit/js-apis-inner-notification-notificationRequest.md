@@ -12,7 +12,7 @@
 
 | 名称                            | 类型                                                    |  只读 | 可选 | 说明                                                                    |
 |-------------------------------| -------------------------------------------------------- | ----- | --- |-----------------------------------------------------------------------|
-| content                       | [NotificationContent](js-apis-inner-notification-notificationContent.md#notificationcontent)   |   否  | 否  | 通知内容。                                                                 |
+| content                       | [NotificationContent](js-apis-inner-notification-notificationContent.md#notificationcontent-1)   |   否  | 否  | 通知内容。                                                                 |
 | id                            | number                                                   |   否  | 是  | 通知ID，默认为0。当相同通知ID存在时，将更新该通知的内容。                                                                 |
 | slotType<sup>(deprecated)</sup> | [notification.SlotType](./js-apis-notification.md#slottype)    |   否  | 是  | 通知渠道类型。<br>从API version 11开始不再维护，建议使用notificationSlotType代替。                        |
 | notificationSlotType<sup>11+</sup> | [notificationManager.SlotType](js-apis-notificationManager.md#slottype) |   否  | 是  | 通知渠道类型，默认为OTHER_TYPES。                        |
@@ -34,8 +34,8 @@
 | badgeIconStyle                | number                                                   |   否  | 是  | 通知角标类型。预留能力，暂未支持。                                                     |
 | showDeliveryTime              | boolean                                                  |   否  | 是  | 是否显示分发时间。预留能力，暂未支持。                                                             |
 | actionButtons                 | Array\<[NotificationActionButton](js-apis-inner-notification-notificationActionButton.md)\>             |   否  | 是  | 通知按钮，默认一条通知中最多包含两个按钮。从API version 16开始，支持`wearable`设备，`wearable`设备中一条通知中最多包含三个按钮。                                                          |
-| smallIcon                     | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)             |   否  | 是  | 通知小图标。可选字段，图标像素的总字节数不超过192KB（图标像素的总字节数通过[getPixelBytesNumber](../apis-image-kit/js-apis-image.md#getpixelbytesnumber7)获取），建议图标像素长宽为128*128。实际显示效果依赖于设备能力和通知中心UI样式。                                                 |
-| largeIcon                     | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)             |   否  | 是  | 通知大图标。可选字段，图标像素的总字节数不超过192KB（图标像素的总字节数通过[getPixelBytesNumber](../apis-image-kit/js-apis-image.md#getpixelbytesnumber7)获取），建议图标像素长宽为128*128。实际显示效果依赖于设备能力和通知中心UI样式。                                                 |
+| smallIcon                     | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)             |   否  | 是  | 通知小图标。可选字段，图标像素的总字节数不超过192KB（图标像素的总字节数通过[getPixelBytesNumber](../apis-image-kit/arkts-apis-image-PixelMap.md#getpixelbytesnumber7)获取），建议图标像素长宽为128*128。实际显示效果依赖于设备能力和通知中心UI样式。                                                 |
+| largeIcon                     | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)             |   否  | 是  | 通知大图标。可选字段，图标像素的总字节数不超过192KB（图标像素的总字节数通过[getPixelBytesNumber](../apis-image-kit/arkts-apis-image-PixelMap.md#getpixelbytesnumber7)获取），建议图标像素长宽为128*128。实际显示效果依赖于设备能力和通知中心UI样式。                                                 |
 | creatorBundleName             | string                                                   |   是  | 是  | 创建通知的包名。                                                              |
 | creatorUid                    | number                                                   |   是  | 是  | 创建通知的UID。                                                             |
 | creatorPid                    | number                                                   |   是  | 是  | 创建通知的PID。                                                             |
@@ -44,7 +44,7 @@
 | groupName<sup>8+</sup>         | string                                                   |   否  | 是  | 组通知名称。默认为空。                                                                |
 | template<sup>8+</sup>          | [NotificationTemplate](./js-apis-inner-notification-notificationTemplate.md) |   否  | 是  | 通知模板。                                                                 |
 | distributedOption<sup>8+</sup> | [DistributedOptions](#distributedoptions8)                |   否  | 是  | 分布式通知的选项。预留能力，暂未支持。                                                             |
-| notificationFlags<sup>8+</sup> | [NotificationFlags](js-apis-inner-notification-notificationFlags.md#notificationflags)                   |   是  | 是  | 获取NotificationFlags。                                                  |
+| notificationFlags<sup>8+</sup> | [NotificationFlags](js-apis-inner-notification-notificationFlags.md)                   |   是  | 是  | 获取NotificationFlags。                                                  |
 | removalWantAgent<sup>9+</sup>  | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md)            |   否  | 是  | 当移除通知时，通知将被重定向到的WantAgent实例。<br>当前不支持跳转UIAbility，只支持发布公共事件（即[actionType](../apis-ability-kit/js-apis-inner-wantAgent-wantAgentInfo.md)取值为4）。                                          |
 | badgeNumber<sup>9+</sup>       | number                                                   |   否  | 是  | 应用程序图标上显示的通知数，该数量累计展示。<br>当`badgeNumber`取值小于或等于0时，将忽略本次角标设定。<br>当角标累加设定个数取值大于99时，通知角标将显示99+。<br>例如，应用发布3条通知，`badgeNumber`依次设置为2、0、3，应用将依次展示为2、2、5。|
 | appMessageId<sup>12+</sup>       | string                                                   |   否  | 是  | 应用发送通知携带的唯一标识字段, 用于通知去重。如果同一应用通过本地和云端等不同途径发布携带相同appMessageId的通知，设备只展示一条消息，之后收到的重复通知会被静默去重，不展示、不提醒。去重标识仅在通知发布的24小时内有效，超过24小时或者设备重启失效。
@@ -52,12 +52,12 @@
 
 ## DistributedOptions<sup>8+</sup>
 
-描述分布式选项。预留能力，暂未支持。
+描述跨设备协同选项。预留能力，暂未支持。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 | 名称                   | 类型            | 只读 | 可选 | 说明                               |
 | -----------------------| -------------- | ---- | ---- | --------------------------------- |
-| isDistributed          | boolean        | 否   | 是   | 是否为分布式通知。                  |
+| isDistributed          | boolean        | 否   | 是   | 是否支持跨设备协同通知。<br/> - true：支持跨设备协同通知。<br/> - false：不支持跨设备协同通知。                  |
 | supportDisplayDevices  | Array\<string> | 否   | 是   | 可以同步通知到的设备列表。           |
 | supportOperateDevices  | Array\<string> | 否   | 是   | 可以打开通知的设备列表。             |

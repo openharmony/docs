@@ -1,7 +1,7 @@
 # ComposeListItem
 
 
-列表包含一系列相同宽度的列表项。内容包括适合连续、多行呈现同类数据的组合，例如图片和文本。
+该组件用于呈现一系列宽度相同的列表项，适用于展示连续、多行的同类数据组合（如图片与文本）。
 
 
 > **说明：**
@@ -147,7 +147,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 该示例实现了带有主标题、副标题、描述、右侧按钮及文本的简单列表项。
 ```ts
 // 该示例主要演示该组件的基础功能使用，包含左侧右侧元素的情况
-import { IconType, ComposeListItem, promptAction } from '@kit.ArkUI';
+import { IconType, ComposeListItem } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -168,7 +168,9 @@ struct ComposeListItemExample {
               icon: {
                 value: $r('sys.media.ohos_app_icon'),
                 action: () => {
-                  promptAction.showToast({ message: 'icon' });
+                  this.getUIContext().getPromptAction().showToast({
+                    message: 'icon'
+                  });
                 } },
               text: '右侧文本'
             })
@@ -184,7 +186,7 @@ struct ComposeListItemExample {
 ### 示例2（设置右侧不同元素自定义播报）
 该示例通过设置属性accessibilityText、accessibilityDescription、accessibilityLevel，实现右侧图标、按钮、单选框自定义屏幕朗读播报文本。
 ```ts
-import { IconType, ComposeListItem, promptAction } from '@kit.ArkUI';
+import { IconType, ComposeListItem } from '@kit.ArkUI';
 @Entry
 @Component
 struct ComposeListItemExample {
@@ -243,7 +245,9 @@ struct ComposeListItemExample {
               icon: {
                 value: $r('sys.media.ohos_app_icon'),
                 action: () => {
-                  promptAction.showToast({ message: 'icon' });
+                this.getUIContext().getPromptAction().showToast({
+                    message: 'icon'
+                  });
                 },
                 accessibilityText: '这是一个icon', // 该icon屏幕朗读播报文本为‘这是一个icon’
                 accessibilityDescription: '单指双击即可弹出', // 该icon屏幕朗读播报描述为'单指双击即可弹出'
@@ -264,7 +268,7 @@ struct ComposeListItemExample {
 该示例通过设置ContentItem、OperateItem、OperateIcon的属性symbolStyle，展示了自定义Symbol类型图标。
 
 ```ts
-import { IconType, ComposeListItem, promptAction, SymbolGlyphModifier } from '@kit.ArkUI';
+import { IconType, ComposeListItem, SymbolGlyphModifier } from '@kit.ArkUI';
 @Entry
 @Component
 struct ComposeListItemExample {
@@ -318,7 +322,9 @@ struct ComposeListItemExample {
                 value: $r('sys.symbol.car'),
                 symbolStyle: new SymbolGlyphModifier($r('sys.symbol.heart')).fontColor([Color.Orange]),
                 action: () => {
-                  promptAction.showToast({ message: 'icon' });
+                  this.getUIContext().getPromptAction().showToast({
+                    message: 'icon'
+                  });
                 }
               }
             })

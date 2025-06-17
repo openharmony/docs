@@ -18,7 +18,7 @@ To begin with, it is important to understand the following basic concepts:
 | OH_JSVM_NewInstance   | Creates an instance from the given constructor.|
 | OH_JSVM_GetNewTarget  | Obtains the meta property **new.target** of a function.|
 | OH_JSVM_DefineClass   | Defines a JS class and associated functions within a C/C++ addon. It allows you to define a constructor, methods, and properties that can be accessed from JS.|
-| OH_JSVM_Wrap           | Wraps a native instance in a JS object. You can use **OH_JSVM_Unwrap()** to retrieve the native instance later.|
+| OH_JSVM_Wrap           | Wraps a native instance in a JS object. You can use **OH_JSVM_Unwrap()** to unwrap the native instance later.|
 | OH_JSVM_Unwrap         | Unwraps the native instance that is previously encapsulated in a JS object.|
 | OH_JSVM_RemoveWrap     | Removes the wrapping after the native instance is unwrapped from a JS object.|
 |OH_JSVM_DefineClassWithOptions | Defines a JS class with the given class name, constructor, properties, callback handler, and parent class. The **DefineClassOptions** parameter specifies whether to set a property proxy for the defined class, reserve the internal-field slot, and set a callback when the class is called as a function.|
@@ -36,6 +36,7 @@ CPP code:
 ```cpp
 // hello.cpp
 #include <string.h>
+#include <fstream>
 
 std::string ToString(JSVM_Env env, JSVM_Value val) {
     JSVM_Value jsonString;
@@ -322,6 +323,7 @@ JSVM deref_item
 - **JSVM_DEFINE_CLASS_WITH_PROPERTY_HANDLER**: sets a listener property for the created class and sets a callback to be invoked when it is called as a function.
 #### CPP Code
 ```c++
+#include <string>
 static JSVM_PropertyHandlerConfigurationStruct propertyCfg{
   nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr
 };
@@ -373,10 +375,10 @@ JSVM_Value Run(JSVM_Env env, const char *s)
     JSVM_CALL(OH_JSVM_CreateStringUtf8(env, s, JSVM_AUTO_LENGTH, &str));
     // 2. Convert JS_String to JS_Script.
     JSVM_Script script;
-    OH_JSVM_CompileScript(jsvm_env, str, nullptr, JSVM_AUTO_LENGTH,   false, nullptr, &script);
+    OH_JSVM_CompileScript(env, str, nullptr, JSVM_AUTO_LENGTH,   false, nullptr, &script);
     // 3. Execute JS_Script.
     JSVM_Value result;
-    OH_JSVM_RunScript(jsvm_env, script, &result);
+    OH_JSVM_RunScript(env, script, &result);
     return result;
 }
 
@@ -395,7 +397,8 @@ static JSVM_Value TestDefineClassWithOptions(JSVM_Env env, JSVM_CallbackInfo inf
         OH_JSVM_GetCbInfo(env, info, nullptr, nullptr, &thisVar, nullptr);
         return thisVar;
     };
-    JSVM_Value fooVal = Str(env, "bar");
+    JSVM_Value fooVal;
+    OH_JSVM_CreateStringUtf8(env, "bar", JSVM_AUTO_LENGTH, &fooVal);
     JSVM_PropertyDescriptor des[2];
     des[0] = {
         .utf8name = "foo",

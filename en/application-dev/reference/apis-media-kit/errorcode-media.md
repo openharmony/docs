@@ -135,6 +135,24 @@ Another process occupies the audio focus.
 
 Destroy the current instance and check whether another process is recording. If you can stop the other process, you can create the current instance again.
 
+## 5400108 Parameter Value Out of Range
+
+**Error Message**
+
+The parameter check failed, parameter value out of range.
+
+**Description**
+
+The parameter check fails because the value is beyond the allowable range.
+
+**Possible Causes**
+
+The value of the parameter exceeds the expected range.
+
+**Solution**
+
+Adjust the parameter value to fall within the acceptable range.
+
 ## 5411001 Failed to Parse or Connect to the Server Address
 
 **Error Message**
@@ -309,7 +327,7 @@ The SSL connection fails.
 
 **Error Message**
 
-SSL server cert needed.
+SSL server cert untrusted.
 
 **Description**
 
@@ -360,3 +378,39 @@ The media source or device does not support the seek operation in SEEK_CONTINUOU
 **Solution**
 
 1. This error code informs the client about the behavior when seeking is not supported in SEEK_CONTINUOUS mode. The client does not need to handle this.
+
+## 5410003 Super Resolution Is Not Supported
+
+**Error Message**
+
+super resolution not supported.
+
+**Description**
+
+The media source or device does not support super resolution.
+
+**Possible Causes**
+
+Super resolution is available only for non-HDR and non-DRM videos with a resolution of 1080p or lower. If the media source does not meet the super resolution requirements or the current device does not support super resolution, this error is reported when an API related to super resolution is called.
+
+**Solution**
+
+Do not call super resolution related APIs for the media source on the current device.
+
+## 5410004 Super Resolution Is Not Enabled
+
+**Error Message**
+
+super resolution not enabled.
+
+**Description**
+
+Super resolution is not enabled. As a result, super resolution related APIs are unavailable.
+
+**Possible Causes**
+
+Super resolution is not enabled by using [PlaybackStrategy](./js-apis-media.md#playbackstrategy12).
+
+**Solution**
+
+Enable super resolution before calling related APIs.

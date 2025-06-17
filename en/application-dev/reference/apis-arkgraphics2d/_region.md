@@ -9,6 +9,7 @@ The **Region** struct describes the rectangle (dirty region) where the content i
 
 **Related module**: [NativeWindow](_native_window.md)
 
+**Header file**: [external_window.h](external__window_8h.md)
 
 ## Summary
 

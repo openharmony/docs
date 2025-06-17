@@ -10,7 +10,7 @@
 >
 > - 页面路由需要在页面渲染完成之后才能调用，在onInit和onReady生命周期中页面还处于渲染阶段，禁止调用页面路由方法。
 >
-> - 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
+> - 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md)的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
 >
 > - 如果使用传入callback形式的[pushUrl](js-apis-arkui-UIContext.md#pushurl-1)或[pushNamedRoute](js-apis-arkui-UIContext.md#pushnamedroute-1)接口，callback中通过[getLength](js-apis-arkui-UIContext.md#getlength)等接口获取的栈信息为中间态的栈信息，可能与栈操作完全结束后，再通过[getLength](js-apis-arkui-UIContext.md#getlength)等接口获取的栈信息不一致。
 
@@ -68,20 +68,20 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -138,20 +138,20 @@ pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -215,20 +215,20 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -286,20 +286,20 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -362,10 +362,10 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -421,10 +421,10 @@ replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -489,10 +489,10 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1:string
+  data1:string;
 
   constructor(str:string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -549,10 +549,10 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -616,20 +616,20 @@ pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -688,20 +688,20 @@ pushNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;)
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -765,16 +765,16 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&g
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
     this.data1 = str
@@ -836,20 +836,20 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCal
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -912,10 +912,10 @@ replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -971,10 +971,10 @@ replaceNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&g
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -1039,10 +1039,10 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -1099,10 +1099,10 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: Async
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -1468,7 +1468,7 @@ this.getUIContext().getRouter().getParams();
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | url    | string | 是   | 表示目标页面的url，可以用以下两种格式：<br/>-&nbsp;页面绝对路径，由配置文件中pages列表提供，例如：<br/>&nbsp;&nbsp;-&nbsp;pages/index/index<br/>&nbsp;&nbsp;-&nbsp;pages/detail/detail<br/>-&nbsp;特殊值，如果url的值是"/"，则跳转到首页，首页默认为页面跳转配置项src数组的第一个数据项。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | params | Object | 否   | 表示路由跳转时要同时传递到目标页面的数据，切换到其他页面时，当前接收的数据失效。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。<br/>**说明：** <br/>params参数不能传递方法和系统接口返回的对象（例如，媒体接口定义和返回的PixelMap对象）。建议开发者提取系统接口返回的对象中需要被传递的基础类型属性，自行构造object类型对象进行传递。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| recoverable<sup>14+</sup> | boolean | 否   | 表示对应的页面是否可恢复，默认为true，表示可恢复。<br/>**说明：** <br/> 当应用退到后台，并且在未来的某个时间点，由于系统资源限制等原因被系统杀死，如果某个页面被设置成可恢复，那么该应用再次被拉到前台后系统可以恢复出页面，详细说明请参考[UIAbility备份恢复](../../application-models/ability-recover-guideline.md)。 |
+| recoverable<sup>14+</sup> | boolean | 否   | 表示对应的页面是否可恢复，默认为true。当为true时，表示可恢复，当为false时，表示不可恢复。<br/>**说明：** <br/> 当应用退到后台，并且在未来的某个时间点，由于系统资源限制等原因被系统杀死，如果某个页面被设置成可恢复，那么该应用再次被拉到前台后系统可以恢复出页面，详细说明请参考[UIAbility备份恢复](../../application-models/ability-recover-guideline.md)。 |
 
   > **说明：**
   > 页面路由栈支持的最大Page数量为32。
@@ -1494,7 +1494,7 @@ this.getUIContext().getRouter().getParams();
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | name   | string | 是   | 表示目标命名路由页面的name。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br/>**系统能力：** SystemCapability.ArkUI.ArkUI.Full |
 | params | Object | 否   | 表示路由跳转时要同时传递到目标页面的数据。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。 <br/>**说明：** <br/>params参数不能传递方法和系统接口返回的对象（例如，媒体接口定义和返回的PixelMap对象）。建议开发者提取系统接口返回的对象中需要被传递的基础类型属性，自行构造object类型对象进行传递。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.ArkUI.ArkUI.Full  |
-| recoverable<sup>14+</sup> | boolean | 否   | 表示对应的页面是否可恢复，默认为true，表示可恢复。<br/>**说明：** <br/> 当应用退到后台，并且在未来的某个时间点，由于系统资源限制等原因被系统杀死，如果某个页面被设置成可恢复，那么该应用再次被拉到前台后系统可以恢复出页面，详细说明请参考[UIAbility备份恢复](../../application-models/ability-recover-guideline.md)。 <br/>**系统能力：** SystemCapability.ArkUI.ArkUI.Lite |
+| recoverable<sup>14+</sup> | boolean | 否   | 表示对应的页面是否可恢复，默认为true。当为true时，表示可恢复，当为false时，表示不可恢复。<br/>**说明：** <br/> 当应用退到后台，并且在未来的某个时间点，由于系统资源限制等原因被系统杀死，如果某个页面被设置成可恢复，那么该应用再次被拉到前台后系统可以恢复出页面，详细说明请参考[UIAbility备份恢复](../../application-models/ability-recover-guideline.md)。 <br/>**系统能力：** SystemCapability.ArkUI.ArkUI.Lite |
 
 ## 完整示例
 
@@ -1532,30 +1532,30 @@ export default {
 
 > **说明：**
 > 
-> 直接使用router可能导致实例不明确的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
+> 直接使用router可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
 
 <!--deperecated_code_no_check-->
 ```ts
 // 通过router.pushUrl跳转至目标页携带params参数
 import { router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 定义传递参数的类
 class innerParams {
-  array: number[]
+  array: number[];
 
   constructor(tuple: number[]) {
-    this.array = tuple
+    this.array = tuple;
   }
 }
 
 class routerParams {
-  text: string
-  data: innerParams
+  text: string;
+  data: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.text = str
-    this.data = new innerParams(tuple)
+    this.text = str;
+    this.data = new innerParams(tuple);
   }
 }
 
@@ -1568,7 +1568,7 @@ struct Index {
       params: new routerParams('这是第一页的值', [12, 45, 78])
     }
     // 建议使用this.getUIContext().getRouter().pushUrl()
-    router.pushUrl(options)
+    this.getUIContext().getRouter().pushUrl(options)
       .then(() => {
         console.error(`pushUrl finish`);
       })
@@ -1604,31 +1604,31 @@ struct Index {
 import { router } from '@kit.ArkUI';
 
 class innerParams {
-  array: number[]
+  array: number[];
 
   constructor(tuple: number[]) {
-    this.array = tuple
+    this.array = tuple;
   }
 }
 
 class routerParams {
-  text: string
-  data: innerParams
+  text: string;
+  data: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.text = str
-    this.data = new innerParams(tuple)
+    this.text = str;
+    this.data = new innerParams(tuple);
   }
 }
 
 @Entry
 @Component
 struct Second {
-  private content: string = "这是第二页"
+  private content: string = "这是第二页";
   // 建议使用this.getUIContext().getRouter().getParams()
-  @State text: string = (this.getUIContext().getRouter().getParams() as routerParams).text
-  @State data: object = (this.getUIContext().getRouter().getParams() as routerParams).data
-  @State secondData: string = ''
+  @State text: string = (this.getUIContext().getRouter().getParams() as routerParams).text;
+  @State data: object = (this.getUIContext().getRouter().getParams() as routerParams).data;
+  @State secondData: string = '';
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1638,7 +1638,7 @@ struct Second {
       Text(this.text)
         .fontSize(30)
         .onClick(() => {
-          this.secondData = (this.data['array'][1]).toString()
+          this.secondData = (this.data['array'][1]).toString();
         })
         .margin({ top: 20 })
       Text(`第一页传来的数值:${this.secondData}`)
@@ -1673,20 +1673,20 @@ push(options: RouterOptions): void
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -1716,10 +1716,10 @@ replace(options: RouterOptions): void
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 

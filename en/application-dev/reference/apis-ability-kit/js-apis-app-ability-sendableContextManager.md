@@ -16,7 +16,9 @@ For example, when transferring sendable data from the main thread to a child thr
 - Conversion from SendableContext to Context for the child thread to use the sendable data.
 
 The Context here is different from that created by [createModuleContext](./js-apis-app-ability-application.md#applicationcreatemodulecontext12). The differences are as follows:
-- Context involved in the conversion: ArkTS concurrent instances hold different application-side Context instances that correspond to the same underlying Context object. When the Context properties and methods in an instance are modified, the Context properties and methods in the related instances are modified accordingly. The eventHub attribute in the Context instance is special. The eventHub objects in different instances are independent from each other and cannot be used across ArkTS instances.
+- Context involved in the conversion: ArkTS concurrent instances hold different application-side Context instances that correspond to the same underlying Context object. When the Context properties and methods in an instance are modified, the Context properties and methods in the related instances are modified accordingly. The eventHub attribute in the Context instance is special. The eventHub objects in different instances are independent from each other and cannot be used across ArkTS instances. If you want to use [EventHub](./js-apis-inner-application-eventHub.md) to transfer data across instances, call [setEventHubMultithreadingEnabled](#sendablecontextmanagerseteventhubmultithreadingenabled20) to enable the cross-thread data transfer feature.
+
+
 - Context created using [createModuleContext](./js-apis-app-ability-application.md#applicationcreatemodulecontext12): ArkTS concurrent instances hold different application-side Context objects that correspond to different underlying Context objects.
 
 ## Constraints
@@ -49,7 +51,7 @@ let sendableContext: sendableContextManager.SendableContext;
 
 ## sendableContextManager.convertFromContext
 
-convertFromContext(context: common.Context): SendableContext;
+convertFromContext(context: common.Context): SendableContext
 
 Converts a **Context** object to a **SendableContext** object.
 
@@ -61,7 +63,13 @@ Converts a **Context** object to a **SendableContext** object.
 
 | Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
-| context | common.Context | Yes| **Context** object, which supports the base class **Context** and the child classes **ApplicationContext**, **AbilityStageContext**, and **UIAbilityContext**.|
+| context | [common.Context](js-apis-inner-application-context.md) | Yes| Context object. The Context base class, and its child classes [ApplicationContext](js-apis-inner-application-applicationContext.md), [AbilityStageContext](js-apis-inner-application-abilityStageContext.md), and [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) are supported.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| SendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) object.|
 
 **Error codes**
 
@@ -122,6 +130,12 @@ Converts a **SendableContext** object to a **Context** object.
 | Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
 | sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | Yes| **SendableContext** object.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| common.Context | [Context](js-apis-inner-application-context.md) object.|
 
 **Error codes**
 
@@ -228,6 +242,12 @@ Converts a **SendableContext** object to an **ApplicationContext** object.
 | Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
 | sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | Yes| **SendableContext** object.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| common.ApplicationContext | [ApplicationContext](js-apis-inner-application-applicationContext.md) object.|
 
 **Error codes**
 
@@ -336,6 +356,12 @@ Converts a **SendableContext** object to an **AbilityStageContext** object.
 | ------- | ------- | ------- | ------- |
 | sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | Yes| **SendableContext** object.|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| common.AbilityStageContext | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) object.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -441,6 +467,12 @@ Converts a **SendableContext** object to a **UIAbilityContext** object.
 | ------- | ------- | ------- | ------- |
 | sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | Yes| **SendableContext** object.|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| common.UIAbilityContext | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) object.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -528,4 +560,129 @@ workerPort.onmessageerror = (e: MessageEvents) => {
 workerPort.onerror = (e: ErrorEvent) => {
   hilog.info(0x0000, 'testTag', '%{public}s', 'onerror');
 }
+```
+## sendableContextManager.setEventHubMultithreadingEnabled<sup>20+<sup>
+
+setEventHubMultithreadingEnabled(context: common.Context, enabled: boolean): void
+
+Enables the cross-thread data transfer feature of [EventHub](./js-apis-inner-application-eventHub.md) in a [Context](js-apis-inner-application-context.md) object.
+
+> **NOTE**
+> 
+> - When multiple Context objects communicate, you need to call this API to set each Context object to support EventHub cross-thread data transfer.
+> - Before this API is called, data is passed by reference. After this API is called, data is passed through serialization, which means that the data of the sender thread is independent of that of the receiver thread.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**Parameters**
+
+| Name | Type          | Mandatory| Description                                                        |
+| ------- | -------------- | ---- | ------------------------------------------------------------ |
+| context | [common.Context](js-apis-inner-application-context.md) | Yes  | Context object. For details about the serialization data types supported by Eventhub, see [Sequenceable Data Types](../apis-arkts/js-apis-taskpool.md#sequenceable-data-types). The data size cannot exceed 16 MB.|
+| enabled  | boolean        | Yes  | Whether to enable the cross-thread data transfer feature. The value **true** means to enable the feature, and **false** means the opposite.                               |
+
+**Example**
+
+Enable the cross-thread data transfer feature of [EventHub](./js-apis-inner-application-eventHub.md) in a [Context](./js-apis-inner-application-context.md) object in the main thread, convert the Context object to a [SenableContext](js-apis-inner-application-sendableContext.md) object, and send the SendableContext object to the [Worker](../apis-arkts/js-apis-worker.md) thread.
+
+```ts
+import { common, sendableContextManager } from '@kit.AbilityKit';
+import { worker } from '@kit.ArkTS';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
+
+@Sendable
+export class SendableObject {
+  constructor(sendableContext: sendableContextManager.SendableContext, contextName: string) {
+    this.sendableContext = sendableContext;
+    this.contextName = contextName;
+  }
+
+  sendableContext: sendableContextManager.SendableContext;
+  contextName: string;
+}
+
+@Entry
+@Component
+struct Index {
+  @State context: common.Context | undefined = this.getUIContext().getHostContext();
+  worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/Worker.ets');
+
+  aboutToAppear(): void {
+    let context: common.Context = this.context as common.Context;
+    context.eventHub.on('event1', this.eventFunc);
+    context.eventHub.emit('event1', 'xingming', 22);
+  }
+
+  eventFunc(name: string, age: number) {
+    hilog.info(DOMAIN, 'testTag', 'name %{public}s age %{public}d', name, age);
+  }
+
+  build() {
+    Column() {
+      Row() {
+        Button('thread 1')
+          .size({ width: 100, height: 100 })
+          .onClick(() => {
+            if (this.context == undefined) {
+              return;
+            }
+            sendableContextManager.setEventHubMultithreadingEnabled(this.context, true);
+            let sendableContext: sendableContextManager.SendableContext =
+              sendableContextManager.convertFromContext(this.context);
+            let object: SendableObject = new SendableObject(sendableContext, 'BaseContext');
+            this.worker1.postMessageWithSharedSendable(object);
+          })
+      }
+    }
+  }
+}
+```
+
+After receiving the [SendableContext](js-apis-inner-application-sendableContext.md) object in the [Worker](../apis-arkts/js-apis-worker.md) thread, convert it to a [Context](./js-apis-inner-application-context.md) object. Then, enable the cross-thread data transfer feature of [EventHub](./js-apis-inner-application-eventHub.md) in the Context object in the Worker thread, and send a message back to the main thread using this feature.
+
+```ts
+import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
+import { common, sendableContextManager } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
+
+@Sendable
+export class SendableObject {
+  constructor(sendableContext: sendableContextManager.SendableContext, contextName: string) {
+    this.sendableContext = sendableContext;
+    this.contextName = contextName;
+  }
+
+  sendableContext: sendableContextManager.SendableContext;
+  contextName: string;
+}
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+
+workerPort.onmessage = (e: MessageEvents) => {
+  let object: SendableObject = e.data;
+  let sendableContext: sendableContextManager.SendableContext = object.sendableContext;
+  if (object.contextName == 'BaseContext') {
+    try {
+      let context: common.Context = sendableContextManager.convertToContext(sendableContext);
+      sendableContextManager.setEventHubMultithreadingEnabled(context, true);
+      context.eventHub.emit('event1', 'xingming', 40);
+    } catch (error) {
+      hilog.error(DOMAIN, 'testTag', 'convertToContext failed %{public}s', JSON.stringify(error));
+    }
+  }
+};
+
+workerPort.onmessageerror = (e: MessageEvents) => {
+  hilog.error(DOMAIN, 'testTag', '%{public}s', 'onmessageerror');
+};
+
+workerPort.onerror = (e: ErrorEvent) => {
+  hilog.error(DOMAIN, 'testTag', '%{public}s', 'onerror');
+};
 ```

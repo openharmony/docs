@@ -554,9 +554,15 @@ class MyFrameNode extends FrameNode {
   public width: number = 100;
   public offsetY: number = 0;
   private space: number = 1;
+  uiContext: UIContext;
+
+  constructor(uiContext: UIContext) {
+    super(uiContext);
+    this.uiContext = uiContext;
+  }
 
   onMeasure(constraint: LayoutConstraint): void {
-    let sizeRes: Size = { width: vp2px(100), height: vp2px(100) };
+    let sizeRes: Size = { width: this.uiContext.vp2px(100), height: this.uiContext.vp2px(100) };
     for (let i = 0; i < this.getChildrenCount(); i++) {
       let child = this.getChild(i);
       if (child) {
@@ -575,8 +581,8 @@ class MyFrameNode extends FrameNode {
       let child = this.getChild(i);
       if (child) {
         child.layout({
-          x: vp2px(100),
-          y: vp2px(this.offsetY)
+          x: this.uiContext.vp2px(100),
+          y: this.uiContext.vp2px(this.offsetY)
         });
         let layoutPosition = child.getLayoutPosition();
         console.log("child position:" + JSON.stringify(layoutPosition));

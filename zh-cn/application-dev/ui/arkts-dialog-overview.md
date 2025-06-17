@@ -11,6 +11,12 @@
 > **说明：** 
 >
 > 当前模态弹窗通过设置指定属性变成非模态，例如AlertDialog，可以设置[isModal](../reference//apis-arkui/arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparam对象说明)为false变成非模态，其他弹窗详见API说明。
+>
+> 不建议在非前台状态下，调用弹窗显示接口。
+>
+> 系统弹窗由系统弹出，出于安全考虑，不支持自定义样式。
+>
+> 系统弹窗出现时，调用非系统弹窗的显示接口（例如：promptAction的openCustomDialog、CustomDialogController的open等），禁止该类弹窗显示。
 
 ## 使用场景
 

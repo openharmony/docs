@@ -12,7 +12,7 @@ ArkData provides data storage, management, and sync capabilities. For example, y
 
 - Data sync: provides data sync across devices. For example, distributed data objects support sharing of memory objects across devices, and distributed databases support database access across devices.
 
-The database stores created by an application are saved to the application sandbox directory. When the application is uninstalled, the database stores are automatically deleted.
+The database files created by an application are saved to the application sandbox directory. When the application is uninstalled, the database files are automatically deleted.
 
 
 ## Working Principles

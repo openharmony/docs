@@ -11,7 +11,7 @@ ChipGroup高级组件，提供操作块群组，用于对文件或者资源内�
 ## 导入模块
 
 ```typescript
-import { ChipSize, ChipGroup } from '@kit.ArkUI'
+import { ChipSize, ChipGroup } from '@kit.ArkUI';
 ```
 
 ## 子组件
@@ -45,16 +45,16 @@ ChipGroup({
 | itemStyle       | [ChipItemStyle](#chipitemstyle)                 | 否   | @Prop | chip的style属性，比如颜色，大小等，参考[ChipItemStyle](#chipitemstyle)类型。<br/>为undefined时，ChipGroup中的Chip式样为默认值。                 |
 | selectedIndexes | Array&lt;number&gt;                             | 否   | @Prop | 被选中chip的索引。<br/>为undefined时，默认第一个Chip被选中。                                            |
 | multiple        | boolean                                         | 否   | @Prop | true：支持多个chip被选中；false：只能是单个chip被选中。<br/>默认值：false<br/>为undefined时，multiple走默认值。                     |
-| chipGroupSpace  | [ChipGroupSpaceOptions](#chipgroupspaceoptions) | 否   | @Prop | 左右内边距，和chip与chip之间的间距。参考[ChipGroupSpaceOptions](#chipgroupspaceoptions)类型。<br/>为undefined时，chipGroupSpace走默认值。 |
+| chipGroupSpace  | [ChipGroupSpaceOptions](#chipgroupspaceoptions) | 否   | @Prop | 左右内边距以及chip与chip之间的间距。参考[ChipGroupSpaceOptions](#chipgroupspaceoptions)类型。<br/>为undefined时，chipGroupSpace走默认值。 |
 | chipGroupPadding  | [ChipGroupPaddingOptions](#chipgrouppaddingoptions) | 否   | @Prop | chipGroup的上下内边距，以便控制整体高度。参考[ChipGroupPaddingOptions](#chipgrouppaddingoptions)类型。<br/>为undefined时，chipGroupPadding走默认值。 |
-| onChange        | Callback\<Array\<number>>  | 否   | -  | chip状态改变时候的回调方法。<br/>为undefined时，表示解绑事件。                                                                |
-| suffix          | ()=>void                                        | 否   | @BuilderParam | 最右侧的builder，由使用者自定义，使用时候需引入[IconGroupSuffix](#icongroupsuffix)接口。<br/>默认值：不传入的情况，没有suffix。 |
+| onChange        | Callback\<Array\<number>>  | 否   | -  | chip状态改变时的回调方法。<br/>为undefined时，表示解绑事件。                                                                |
+| suffix          | Callback\<void\>                                        | 否   | @BuilderParam | 最右侧的builder，由使用者自定义，使用时需引入[IconGroupSuffix](#icongroupsuffix)接口。<br/>默认值：不传入的情况，没有suffix。 |
 
 > **说明：**
 >
-> 1. 针对selectedIndexes和multiple接口，multiple等于false的时候，当没有传入selectedIndexes时候，默认是第一个chip被选中，当传入的selectedIndexes有一个以上的元素时候，默认第一个索引的chip被选中。
+> 1. 针对selectedIndexes和multiple接口，multiple等于false时，当没有传入selectedIndexes时，默认是第一个chip被选中，当传入的selectedIndexes有一个以上的元素时，默认第一个索引的chip被选中。
 >
-> 2. 针对suffix接口，使用时候需要引入IconGroupSuffix接口，不传入的情况，没有suffix。
+> 2. 针对suffix接口，使用时需要引入IconGroupSuffix接口，不传入的情况，没有suffix。
 >
 > 3. 关于图标填充色（fillColor以及activedFillColor）的设置，跟随字体颜色（fontColor）保持一致。若想两者颜色不同，则需要在传入[ChipGroupSpaceOptions](#chipgroupspaceoptions)时，使用prefixSymbol。
 
@@ -71,7 +71,7 @@ ChipGroupItemOptions定义每个chip的非共通属性。
 | label        | [LabelOptions](#labeloptions) | 是   | 文本属性。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                            |
 | suffixIcon<sup>(deprecated)</sup>   | [IconOptions](#iconoptions) | 否   | 后缀Image图标属性。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。**说明：** 从API version 12开始支持，从API version 14开始废弃，建议使用suffixImageIcon替代。|
 | suffixSymbol | [ChipSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsymbolglyphoptions12) | 否   | 后缀SymbolGlyph图标属性。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。             |
-| allowClose   | boolean                       | 否   | 删除图标是否显示。<br/>默认值：false。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| allowClose   | boolean                       | 否   | 是否显示删除图标。true表示显示删除图标，false表示不显示删除图标。默认为false。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 | suffixImageIcon<sup>14+</sup> | [SuffixImageIconOptions](#suffiximageiconoptions14) | 否 | 后缀Image图标属性。<br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 | suffixSymbolOptions<sup>14+</sup> | [ChipSuffixSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsuffixsymbolglyphoptions14) | 否 | 后缀Symbol图标属性。<br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 | closeOptions<sup>14+</sup> | [CloseOptions](ohos-arkui-advanced-Chip.md#closeoptions14) | 否 | 默认删除图标的无障碍朗读功能属性。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
@@ -81,7 +81,7 @@ ChipGroupItemOptions定义每个chip的非共通属性。
 
 >**说明：**
 >
->suffixIcon有传入参数时，allowClose不生效，suffixIcon没有传入参数时，allowClose决定是否显示删除图标。
+>suffixIcon有传入值时，allowClose不生效，suffixIcon没有传入值时，allowClose决定是否显示删除图标。
 
 ## ChipItemStyle
 
@@ -101,13 +101,13 @@ ChipItemStyle定义了chip的共通属性。
 
 > **说明：**
 >
-> 1.操作块的大小可以是两种类型，一种是ChipSize，为方便使用，有两种尺寸可选分别是NORMAL和SMALL；另一种是SizeOptions。
+> 1. 操作块的大小可以是两种类型，一种是ChipSize，为方便使用，有两种尺寸可选分别是NORMAL和SMALL；另一种是SizeOptions。
 >
-> 2.backgroundColor、selectedBackgroundColor赋值undefined时，显示默认背景颜色，赋值非法值时，背景色透明。
+> 2. backgroundColor、selectedBackgroundColor赋值undefined时，显示默认背景颜色，赋值非法值时，背景色透明。
 
 ## ChipGroupSpaceOptions
 
-ChipGroupSpaceOptions 定义了chipGroup左右内边距，以及chip与chip直接的间距。
+ChipGroupSpaceOptions 定义了chipGroup左右内边距，以及chip与chip之间的间距。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -130,7 +130,7 @@ ChipGroupPaddingOptions 定义了chipGroup上下内边距，以便控制chipGrou
 | 名称   | 类型            | 必填 | 说明                                                      |
 | ------ | -------------- | ---- | ------------------------------------------------            |
 | top    | [Length](ts-types.md#length)         | 是   | chipGroup的上方内边距（不支持百分比）。<br/>默认值：14<br/>为undefined时，top走默认值。        |
-| bottom | [Length](ts-types.md#length)         | 是   | chipGroup的上方内边距（不支持百分比）。<br/>默认值：14<br/>为undefined时，bottom走默认值。         |
+| bottom | [Length](ts-types.md#length)         | 是   | chipGroup的下方内边距（不支持百分比）。<br/>默认值：14<br/>为undefined时，bottom走默认值。         |
 
 ## SuffixImageIconOptions<sup>14+</sup>
 
@@ -228,7 +228,7 @@ Label定义图标的共通属性。
 该示例实现了无最右侧的builder时效果。
 
 ```typescript
-import { ChipSize, ChipGroup } from '@kit.ArkUI'
+import { ChipSize, ChipGroup } from '@kit.ArkUI';
 
 @Entry
 @Preview
@@ -299,7 +299,7 @@ struct Index {
 该示例通过配置suffix实现最右侧的自定义组件效果。
 
 ```typescript
-import { ChipSize, ChipGroup, IconGroupSuffix  } from '@kit.ArkUI'
+import { ChipSize, ChipGroup, IconGroupSuffix  } from '@kit.ArkUI';
 
 @Entry
 @Preview
@@ -389,7 +389,7 @@ struct Index {
 ### 示例3（设置Symbol类型图标）
 该示例实现了IconGroupSuffix及ChipGroup传入SymbolGlyph资源。
 ```typescript
-import { ChipSize, ChipGroup, IconGroupSuffix, SymbolGlyphModifier } from '@kit.ArkUI'
+import { ChipSize, ChipGroup, IconGroupSuffix, SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
 @Preview

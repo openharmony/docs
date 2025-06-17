@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import freeInstall from '@ohos.bundle.freeInstall';
+import { freeInstall } from '@kit.AbilityKit';
 ```
 
 ## 权限列表
@@ -66,7 +66,7 @@ setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: Upg
 | bundleName  | string                      | 是   | 应用Bundle名称。     |
 | moduleName  | string                      | 是   | 应用程序模块名称。           |
 | upgradeFlag | [UpgradeFlag](#upgradeflag) | 是   | 仅供内部系统使用标志位。       |
-| callback    | AsyncCallback\<void>        | 是   | 回调函数。当函数调用成功，err为null，否则为错误对象。 |
+| callback    | AsyncCallback\<void>        | 是   | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)。当函数调用成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -84,7 +84,7 @@ setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: Upg
 **示例：**
 
 ```js
-import freeInstall from '@ohos.bundle.freeInstall';
+import { freeInstall } from '@kit.AbilityKit';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
 let upgradeFlag = freeInstall.UpgradeFlag.SINGLE_UPGRADE;
@@ -143,7 +143,7 @@ setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: Upg
 **示例：**
 
 ```js
-import freeInstall from '@ohos.bundle.freeInstall';
+import { freeInstall } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
@@ -177,7 +177,7 @@ isHapModuleRemovable(bundleName: string, moduleName: string, callback: AsyncCall
 | ---------- | ---------------------- | ---- | --------------------------------------------- |
 | bundleName | string                 | 是   | 应用Bundle名称。                      |
 | moduleName | string                 | 是   | 应用程序模块名称。                            |
-| callback   | AsyncCallback\<boolean> | 是   | 回调函数。返回true表示可以移除；返回false表示不可移除。 |
+| callback   | AsyncCallback\<boolean> | 是   | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)。返回true表示可以移除；返回false表示不可移除。 |
 
 **错误码：**
 
@@ -195,7 +195,7 @@ isHapModuleRemovable(bundleName: string, moduleName: string, callback: AsyncCall
 **示例：**
 
 ```js
-import freeInstall from '@ohos.bundle.freeInstall';
+import { freeInstall } from '@kit.AbilityKit';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
 try {
@@ -252,7 +252,7 @@ isHapModuleRemovable(bundleName: string, moduleName: string): Promise\<boolean>
 **示例：**
 
 ```js
-import freeInstall from '@ohos.bundle.freeInstall';
+import { freeInstall } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
@@ -285,7 +285,7 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag, callback:
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName     | string                                                       | 是   | 应用Bundle名称。                                             |
 | bundlePackFlag | [BundlePackFlag](#bundlepackflag)                            | 是   | 指示要查询的应用包标志。                                     |
-| callback       | AsyncCallback<[BundlePackInfo](js-apis-bundleManager-BundlePackInfo-sys.md)> | 是   | 回调函数。当函数调用成功，err为null，data为获取到的BundlePackInfo信息。否则为错误对象。 |
+| callback       | AsyncCallback<[BundlePackInfo](js-apis-bundleManager-BundlePackInfo-sys.md)> | 是   | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)。当函数调用成功，err为null，data为获取到的BundlePackInfo信息。否则为错误对象。 |
 
 **错误码：**
 
@@ -302,7 +302,7 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag, callback:
 **示例：**
 
 ```js
-import freeInstall from '@ohos.bundle.freeInstall';
+import { freeInstall } from '@kit.AbilityKit';
 let bundleName = 'com.example.myapplication';
 let bundlePackFlag = freeInstall.BundlePackFlag.GET_PACK_INFO_ALL;
 try {
@@ -357,7 +357,7 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\
 **示例：**
 
 ```js
-import freeInstall from '@ohos.bundle.freeInstall';
+import { freeInstall } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 let bundleName = 'com.example.myapplication';
 let bundlePackFlag = freeInstall.BundlePackFlag.GET_PACK_INFO_ALL;
@@ -388,7 +388,7 @@ getDispatchInfo(callback: AsyncCallback\<DispatchInfo>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[DispatchInfo](js-apis-bundleManager-dispatchInfo-sys.md)> | 是   | 回调函数。当函数调用成功，err为null，data为获取到的[DispatchInfo](js-apis-bundleManager-dispatchInfo-sys.md)信息。否则为错误对象。 |
+| callback | AsyncCallback<[DispatchInfo](js-apis-bundleManager-dispatchInfo-sys.md)> | 是   | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)。当函数调用成功，err为null，data为获取到的[DispatchInfo](js-apis-bundleManager-dispatchInfo-sys.md)信息。否则为错误对象。 |
 
 **错误码：**
 
@@ -403,7 +403,7 @@ getDispatchInfo(callback: AsyncCallback\<DispatchInfo>): void
 **示例：**
 
 ```js
-import freeInstall from '@ohos.bundle.freeInstall';
+import { freeInstall } from '@kit.AbilityKit';
 try {
     freeInstall.getDispatchInfo((err, data) => {
         if (err) {
@@ -448,7 +448,7 @@ getDispatchInfo(): Promise\<DispatchInfo>
 **示例：**
 
 ```js
-import freeInstall from '@ohos.bundle.freeInstall';
+import { freeInstall } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 try {
     freeInstall.getDispatchInfo().then(data => {

@@ -17,7 +17,7 @@ Syscall Handler的具体实现在kernel/liteos_a/syscall/los_syscall.c中OsArmA3
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 系统调用提供基础的用户态程序与内核的交互功能，不建议开发者直接使用系统调用接口，推荐使用内核提供的对外POSIX接口，若需要新增系统调用接口，详见开发指导。
 > 
-> - 内核向用户态提供的系统调用接口清单[详见](https://gitee.com/openharmony/kernel_liteos_a/blob/master/syscall/syscall_lookup.h)，内核相应的系统调用对接函数清单[详见](https://gitee.com/openharmony/kernel_liteos_a/blob/master/syscall/los_syscall.h)。
+> - 内核向用户态提供的系统调用接口清单详见[syscall_lookup.h](https://gitee.com/openharmony/kernel_liteos_a/blob/master/syscall/syscall_lookup.h)，内核相应的系统调用对接函数清单详见[los_syscall.h](https://gitee.com/openharmony/kernel_liteos_a/blob/master/syscall/los_syscall.h)。
 
 ## 开发指导
 
@@ -37,8 +37,9 @@ Syscall Handler的具体实现在kernel/liteos_a/syscall/los_syscall.c中OsArmA3
 
 **示例代码**：
 
-1. 在LibC库syscall.h.in中新增系统调用号
-     如下所示，其中__NR_new_syscall_sample为新增系统调用号：
+1. 在LibC库syscall.h.in中新增系统调用号。
+     
+   如下所示，其中__NR_new_syscall_sample为新增系统调用号：
      
    ```
    ...
@@ -82,7 +83,8 @@ Syscall Handler的具体实现在kernel/liteos_a/syscall/los_syscall.c中OsArmA3
    }
    ```
 
-3. 在内核系统调用头文件中新增系统调用号
+3. 在内核系统调用头文件中新增系统调用号。
+
    如下所示，在third_party/musl/porting/liteos_a/kernel/include/bits/syscall.h文件中，__NR_new_syscall_sample为新增系统调用号。
     
    ```
@@ -128,7 +130,8 @@ Syscall Handler的具体实现在kernel/liteos_a/syscall/los_syscall.c中OsArmA3
    ...
    ```
 
-4. 在内核中新增内核该系统调用对应的处理函数
+4. 在内核中新增内核该系统调用对应的处理函数。
+
    如下所示，在kernel/liteos_a/syscall/los_syscall.h中，SysNewSyscallSample为新增系统调用的内核处理函数声明：
  
    ```
@@ -145,7 +148,7 @@ Syscall Handler的具体实现在kernel/liteos_a/syscall/los_syscall.c中OsArmA3
    ...
    ```
 
-     新增的系统调用的内核处理函数实现如下：
+   新增的系统调用的内核处理函数实现如下：
      
    ```
    include "los_printf.h"

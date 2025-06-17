@@ -20,18 +20,20 @@ import { ServiceExtensionAbility } from '@kit.AbilityKit';
 
 无
 
-## 属性
+## ServiceExtensionAbility
+
+### 属性
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统接口**：此接口为系统接口。
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext-sys.md)  | 是 | 否 | ServiceExtension的上下文环境，继承自ExtensionContext。 |
+| context | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext-sys.md)  | 否 | 否 | ServiceExtension的上下文环境，继承自ExtensionContext。 |
 
 
-## ServiceExtensionAbility.onCreate
+### onCreate
 
 onCreate(want: Want): void;
 
@@ -54,13 +56,13 @@ import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
 
 class ServiceExt extends ServiceExtensionAbility {
   onCreate(want: Want) {
-    console.log(`onCreate, want: ${want.abilityName}`);
+    console.info(`onCreate, want: ${want.abilityName}`);
   }
 }
 ```
 
 
-## ServiceExtensionAbility.onDestroy
+### onDestroy
 
 onDestroy(): void;
 
@@ -77,13 +79,13 @@ import { ServiceExtensionAbility } from '@kit.AbilityKit';
 
 class ServiceExt extends ServiceExtensionAbility {
   onDestroy() {
-    console.log('onDestroy');
+    console.info('onDestroy');
   }
 }
 ```
 
 
-## ServiceExtensionAbility.onRequest
+### onRequest
 
 onRequest(want: Want, startId: number): void;
 
@@ -107,13 +109,13 @@ import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
 
 class ServiceExt extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
-    console.log('onRequest, want: ${want.abilityName}');
+    console.info('onRequest, want: ${want.abilityName}');
   }
 }
 ```
 
 
-## ServiceExtensionAbility.onConnect
+### onConnect
 
 onConnect(want: Want): rpc.RemoteObject | Promise<rpc.RemoteObject>;
 
@@ -133,7 +135,7 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
 
 | 类型 | 说明 |
 | -------- | -------- |
-| rpc.RemoteObject | 一个RemoteObject对象，用于客户端和服务端进行通信。 |
+| [rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject) \| Promise\<[rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)> | 返回RemoteObject对象或带有RemoteObject对象的Promise对象，用于客户端和服务端进行通信。 |
 
 **示例：**
 
@@ -150,7 +152,7 @@ class StubTest extends rpc.RemoteObject{
 }
 class ServiceExt extends ServiceExtensionAbility {
   onConnect(want: Want) {
-    console.log('onConnect , want: ${want.abilityName}');
+    console.info('onConnect , want: ${want.abilityName}');
     return new StubTest('test');
   }
 }
@@ -175,14 +177,14 @@ async function getDescriptor() {
 }
 class ServiceExt extends ServiceExtensionAbility {
   async onConnect(want: Want) {
-    console.log(`onConnect , want: ${want.abilityName}`);
+    console.info(`onConnect , want: ${want.abilityName}`);
     let descriptor = await getDescriptor();
     return new StubTest(descriptor);
   }
 }
 ```
 
-## ServiceExtensionAbility.onDisconnect
+### onDisconnect
 
 onDisconnect(want: Want): void | Promise\<void>;
 
@@ -198,6 +200,12 @@ Extension的生命周期回调，客户端执行断开连接服务时回调。
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **示例：**
 
 ```ts
@@ -205,7 +213,7 @@ import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
 
 class ServiceExt extends ServiceExtensionAbility {
   onDisconnect(want: Want) {
-    console.log('onDisconnect, want: ${want.abilityName}');
+    console.info('onDisconnect, want: ${want.abilityName}');
   }
 }
 ```
@@ -217,13 +225,13 @@ import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
 
 class ServiceExt extends ServiceExtensionAbility {
   async onDisconnect(want: Want) {
-    console.log('onDisconnect, want: ${want.abilityName}');
+    console.info('onDisconnect, want: ${want.abilityName}');
     // 调用异步函数...
   }
 }
 ```
 
-## ServiceExtensionAbility.onReconnect
+### onReconnect
 
 onReconnect(want: Want): void;
 
@@ -246,12 +254,12 @@ import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
 
 class ServiceExt extends ServiceExtensionAbility {
   onReconnect(want: Want) {
-    console.log('onReconnect, want: ${want.abilityName}');
+    console.info('onReconnect, want: ${want.abilityName}');
   }
 }
 ```
 
-## ServiceExtensionAbility.onConfigurationUpdate
+### onConfigurationUpdate
 
 onConfigurationUpdate(newConfig: Configuration): void;
 
@@ -274,12 +282,12 @@ import { ServiceExtensionAbility, Configuration } from '@kit.AbilityKit';
 
 class ServiceExt extends ServiceExtensionAbility {
   onConfigurationUpdate(newConfig: Configuration) {
-    console.log(`onConfigurationUpdate, config: ${JSON.stringify(newConfig)}`);
+    console.info(`onConfigurationUpdate, config: ${JSON.stringify(newConfig)}`);
   }
 }
 ```
 
-## ServiceExtensionAbility.onDump
+### onDump
 
 onDump(params: Array\<string>): Array\<string>;
 
@@ -295,6 +303,12 @@ onDump(params: Array\<string>): Array\<string>;
 | -------- | -------- | -------- | -------- |
 | params | Array\<string> | 是 | 表示命令形式的参数。|
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Array\<string> | 表示转存客户端信息数组。 |
+
 **示例：**
     
 ```ts
@@ -302,9 +316,8 @@ import { ServiceExtensionAbility } from '@kit.AbilityKit';
 
 class ServiceExt extends ServiceExtensionAbility {
   onDump(params: Array<string>) {
-    console.log(`dump, params: ${JSON.stringify(params)}`);
+    console.info(`dump, params: ${JSON.stringify(params)}`);
     return ['params'];
   }
 }
 ```
-

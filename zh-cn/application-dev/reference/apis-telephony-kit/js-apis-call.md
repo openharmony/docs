@@ -228,7 +228,7 @@ makeCall\(context: Context, phoneNumber: string\): Promise\<void\>
 
 | 参数名      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| context | Context | 是   | 应用上下文Context |
+| context | Context | 是   | 应用上下文Context。 |
 | phoneNumber | string | 是   | 电话号码。 |
 
 **返回值：**
@@ -249,10 +249,15 @@ makeCall\(context: Context, phoneNumber: string\): Promise\<void\>
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 // 获取context
-let context = getContext(this) as Context;
+let context = this.getUIContext().getHostContext() as Context;
 // 从API15开始支持tel格式电话号码，如："tel:13xxxx"
 call.makeCall(context, "138xxxxxxxx").then(() => {
     console.log(`makeCall success`);

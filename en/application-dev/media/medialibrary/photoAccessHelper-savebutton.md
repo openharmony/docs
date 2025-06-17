@@ -1,6 +1,6 @@
 # Saving Media Assets
 
-When users wish to save images, videos, or similar files to Gallery, it is not necessary for the application to request the ohos.permission.WRITE_IMAGEVIDEO permission. Instead, the application can use the [SaveButton](#creating-a-media-asset-using-savebutton) or [authorization pop-up](#saving-a-media-asset-using-an-authorization-pop-up) to save the media assets to Gallery.
+To save images, videos, or similar files to Gallery, it is not necessary for the application to request the ohos.permission.WRITE_IMAGEVIDEO permission. Instead, the application can use the [SaveButton](#creating-a-media-asset-using-savebutton) or [authorization pop-up](#saving-a-media-asset-using-an-authorization-pop-up) to save the media assets to Gallery.
 
 ## Obtaining Supported Resource Formats for Saving
 
@@ -12,8 +12,10 @@ Call [phAccessHelper.getSupportedPhotoFormats](../../reference/apis-media-librar
 
 ```ts
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { common } from '@kit.AbilityKit';
 
-let context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 @Entry
 @Component
@@ -55,6 +57,7 @@ This following walks you through on how to create an image using the **SaveButto
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -72,7 +75,7 @@ struct Index {
           .onClick(async (event, result: SaveButtonOnClickResult) => {
              if (result == SaveButtonOnClickResult.SUCCESS) {
                try {
-                 let context = getContext();
+                 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
                  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
                  // Ensure that the asset specified by fileUri exists.
                  let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
@@ -102,7 +105,7 @@ This following walks you through on how to save an image using an authorization 
 
 **How to Develop**
 
-1. Specify the URI of the [application file](../../file-management/app-file-access.md) in the application sandbox.
+1. Specify the URI of the [application file](../../file-management/app-file-access.md) to be saved to the media library. (The file must be in the application sandbox.)
 2. Set parameters such as the file name extension, image file type, title (optional) and image subtype (optional) of the image to save.
 3. Call [showAssetsCreationDialog](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#showassetscreationdialog12) to obtain the target [media file URI](../../file-management/user-file-uri-intro.md#media-file-uri) through an authorization pop-up.
 4. Write the image content from the application sandbox directory to the file specified by the target URI in the media library.
@@ -110,8 +113,10 @@ This following walks you through on how to save an image using an authorization 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { fileIo } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
-let context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {

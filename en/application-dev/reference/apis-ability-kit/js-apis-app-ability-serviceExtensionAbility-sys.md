@@ -133,7 +133,7 @@ Called following **onCreate()** when a ServiceExtensionAbility is started by cal
 
 | Type| Description|
 | -------- | -------- |
-| rpc.RemoteObject | A **RemoteObject** object used for communication between the server and client.|
+| [rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject) \| Promise\<[rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)> | **RemoteObject** object or Promise used to return a **RemoteObject** object, which is used for communication between the client and server.|
 
 **Example**
 
@@ -197,6 +197,12 @@ Called when a client is disconnected from this ServiceExtensionAbility.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md)| Yes| Want information related to this ServiceExtensionAbility, including the ability name and bundle name.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -294,6 +300,12 @@ Dumps the client information.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | params | Array\<string> | Yes| Parameters in the form of a command.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Array\<string> | Array of client information.|
 
 **Example**
     

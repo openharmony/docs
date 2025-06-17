@@ -7,7 +7,7 @@
 
 ## 开发步骤
 
-详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/_o_h___camera.md)。
+详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/capi-oh-camera.md)。
 
 1. 导入NDK接口，接口中提供了相机相关的属性和方法，导入方法如下。
 
@@ -22,6 +22,7 @@
    #include "napi/native_api.h"
    #include <ohcamera/camera.h>
    #include <ohcamera/photo_output.h>
+   #include <ohcamera/camera_manager.h>
    #include <multimedia/media_library/media_asset_manager_capi.h>
    #include <multimedia/media_library/media_asset_change_request_capi.h>
    #include <multimedia/media_library/media_access_helper_capi.h>

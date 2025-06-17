@@ -156,7 +156,7 @@ ActionExtensionAbility生命周期回调，在ActionExtensionAbility销毁时回
         }
       }
       onForeground() {
-        console.info(TAG, `ononForeground`);
+        console.info(TAG, `onForeground`);
       }
       onBackground() {
         console.info(TAG, `onBackground`);

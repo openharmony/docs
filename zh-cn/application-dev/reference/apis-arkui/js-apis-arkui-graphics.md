@@ -326,11 +326,11 @@ struct Index {
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| [PX](arkui-ts/ts-types.md#px10) | 0 | 长度类型，用于描述以px像素单位为单位的长度。 |
-| [VP](arkui-ts/ts-types.md#vp10) | 1 | 长度类型，用于描述以vp像素单位为单位的长度。 |
-| [FP](arkui-ts/ts-types.md#fp10) | 2 | 长度类型，用于描述以fp像素单位为单位的长度。 |
-| [PERCENT](arkui-ts/ts-types.md#percentage10) | 3 | 长度类型，用于描述以%像素单位为单位的长度。 |
-| [LPX](arkui-ts/ts-types.md#lpx10) | 4 | 长度类型，用于描述以lpx像素单位为单位的长度。 |
+| PX | 0 | 长度类型，用于描述以px像素单位为单位的长度。 |
+| VP | 1 | 长度类型，用于描述以vp像素单位为单位的长度。 |
+| FP | 2 | 长度类型，用于描述以fp像素单位为单位的长度。 |
+| PERCENT | 3 | 长度类型，用于描述以%像素单位为单位的长度。 |
+| LPX | 4 | 长度类型，用于描述以lpx像素单位为单位的长度。 |
 
 ## SizeT\<T><sup>12+</sup>
 
@@ -360,7 +360,7 @@ struct Index {
 
 ## LengthMetrics<sup>12+</sup>
 
-用于设置长度属性，当长度单位为[PERCENT](arkui-ts/ts-types.md#percentage10)时，值为1表示100%。
+用于设置长度属性，当长度单位为PERCENT时，值为1表示100%。
 
 ### 属性
 
@@ -460,7 +460,7 @@ static fp(value: number): LengthMetrics
 
 static percent(value: number): LengthMetrics
 
-用于生成单位为PERCENT的长度属性。
+用于生成单位为PERCENT的长度属性，值为1表示100%。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -470,7 +470,7 @@ static percent(value: number): LengthMetrics
 
 | 参数名 | 类型          | 必填 | 说明         |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | 是   | 长度属性的值。<br/>取值范围：[0, 100] |
+| value   | number | 是   | 长度属性的值。<br/>取值范围：[0, 1] |
 
 **返回值：**
 
@@ -583,6 +583,32 @@ static rgba(red: number, green: number, blue: number, alpha?: number): ColorMetr
 | 类型          | 说明             |
 | ------------- | ---------------- |
 | [ColorMetrics](#colormetrics12) | ColorMetrics 类的实例。 |
+
+### colorWithSpace<sup>20+</sup>
+
+static colorWithSpace(colorSpace: ColorSpace, red: number, green: number, blue: number, alpha?: number): ColorMetrics
+
+使用[ColorSpace](./arkui-ts/ts-appendix-enums.md#colorspace20)和rgba格式颜色实例化ColorMetrics类。仅部分属性支持在display-p3色彩空间中设置颜色。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| colorSpace   | [ColorSpace](./arkui-ts/ts-appendix-enums.md#colorspace20) | 是   | 颜色空间，用于指定颜色的色彩空间。 |
+| red   | number | 是   | 颜色的R分量（红色），值是0~1的浮动数值。 |
+| green | number | 是   | 颜色的G分量（绿色），值是0~1的浮动数值。 |
+| blue  | number | 是   | 颜色的B分量（蓝色），值是0~1的浮动数值。 |
+| alpha | number | 否   | 颜色的A分量（透明度），值是0.0~1.0的浮点数，默认值为1.0，不透明。|
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [ColorMetrics](#colormetrics12) | ColorMetrics类的实例。|
 
 ### resourceColor<sup>12+</sup>
 
@@ -738,7 +764,7 @@ function getBlendColor(baseColor: ResourceColor): ColorMetrics {
     //可能返回的arkui子系统错误码有401和180003
     sourceColor = ColorMetrics.resourceColor(baseColor).blendColor(ColorMetrics.resourceColor("#19000000"));
   } catch (error) {
-    console.log("getBlendColor failed, code = " + (error as BusinessError).code + ", message = " +
+    console.error("getBlendColor failed, code = " + (error as BusinessError).code + ", message = " +
     (error as BusinessError).message);
     sourceColor = ColorMetrics.resourceColor("#19000000");
   }
@@ -772,7 +798,7 @@ struct ColorMetricsSample {
 | 名称        | 类型 | 可读 | 可写 | 说明                   |
 | ----------- | ---- | ---- | ---- | ---------------------- |
 | topLeft     | T    | 是   | 是   | 左上边框的圆角属性。   |
-| topRight    | T    | 是   | 是   | 右上上边框的圆角属性。 |
+| topRight    | T    | 是   | 是   | 右上边框的圆角属性。 |
 | bottomLeft  | T    | 是   | 是   | 左下边框的圆角属性。   |
 | bottomRight | T    | 是   | 是   | 右下边框的圆角属性。   |
 
@@ -855,7 +881,7 @@ type Rect = common2D.Rect
 
 | 名称                                                         | 类型   | 可读 | 可写 | 说明                                                         |
 | ------------------------------------------------------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| [commands](./arkui-ts/ts-drawing-components-path.md#commands-1) | string | 是   | 是   | 路径绘制的指令字符串。像素单位的转换方法请参考[像素单位转换](./arkui-ts/ts-pixel-units.md#像素单位转换)。<br/>单位：px |
+| [commands](./arkui-ts/ts-drawing-components-path.md#commands) | string | 是   | 是   | 路径绘制的指令字符串。像素单位的转换方法请参考[像素单位转换](./arkui-ts/ts-pixel-units.md#像素单位转换)。<br/>单位：px |
 
 ## ShapeMask<sup>12+</sup>
 
@@ -892,21 +918,20 @@ setRectShape(rect: Rect): void
 ```ts
 import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
-const mask = new ShapeMask();
-mask.setRectShape({ left: 0, right: vp2px(150), top: 0, bottom: vp2px(150) });
-mask.fillColor = 0X55FF0000;
-
-const renderNode = new RenderNode();
-renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
-renderNode.backgroundColor = 0XFF00FF00;
-renderNode.shapeMask = mask;
-
-
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
+
+    const mask = new ShapeMask();
+    mask.setRectShape({ left: 0, right: uiContext.vp2px(150), top: 0, bottom: uiContext.vp2px(150) });
+    mask.fillColor = 0X55FF0000;
+
+    const renderNode = new RenderNode();
+    renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
+    renderNode.backgroundColor = 0XFF00FF00;
+    renderNode.shapeMask = mask;
 
     const rootRenderNode = this.rootNode.getRenderNode();
     if (rootRenderNode !== null) {
@@ -951,30 +976,29 @@ setRoundRectShape(roundRect: RoundRect): void
 ```ts
 import { RenderNode, FrameNode, NodeController, ShapeMask,RoundRect} from '@kit.ArkUI';
 
-const mask = new ShapeMask();
-const roundRect: RoundRect = {
-  rect: { left: 0, top: 0, right: vp2px(150), bottom: vp2px(150) },
-  corners: {
-    topLeft: { x: 32, y: 32 },
-    topRight: { x: 32, y: 32 },
-    bottomLeft: { x: 32, y: 32 },
-    bottomRight: { x: 32, y: 32 }
-  }
-}
-mask.setRoundRectShape(roundRect);
-mask.fillColor = 0X55FF0000;
-
-const renderNode = new RenderNode();
-renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
-renderNode.backgroundColor = 0XFF00FF00;
-renderNode.shapeMask = mask;
-
-
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
+
+    const mask = new ShapeMask();
+    const roundRect: RoundRect = {
+      rect: { left: 0, top: 0, right: uiContext.vp2px(150), bottom: uiContext.vp2px(150) },
+      corners: {
+        topLeft: { x: 32, y: 32 },
+        topRight: { x: 32, y: 32 },
+        bottomLeft: { x: 32, y: 32 },
+        bottomRight: { x: 32, y: 32 }
+      }
+    }
+    mask.setRoundRectShape(roundRect);
+    mask.fillColor = 0X55FF0000;
+
+    const renderNode = new RenderNode();
+    renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
+    renderNode.backgroundColor = 0XFF00FF00;
+    renderNode.shapeMask = mask;
 
     const rootRenderNode = this.rootNode.getRenderNode();
     if (rootRenderNode !== null) {
@@ -1019,21 +1043,20 @@ setCircleShape(circle: Circle): void
 ```ts
 import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
-const mask = new ShapeMask();
-mask.setCircleShape({ centerY: vp2px(75), centerX: vp2px(75), radius: vp2px(75) });
-mask.fillColor = 0X55FF0000;
-
-const renderNode = new RenderNode();
-renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
-renderNode.backgroundColor = 0XFF00FF00;
-renderNode.shapeMask = mask;
-
-
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
+
+    const mask = new ShapeMask();
+    mask.setCircleShape({ centerY: uiContext.vp2px(75), centerX: uiContext.vp2px(75), radius: uiContext.vp2px(75) });
+    mask.fillColor = 0X55FF0000;
+
+    const renderNode = new RenderNode();
+    renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
+    renderNode.backgroundColor = 0XFF00FF00;
+    renderNode.shapeMask = mask;
 
     const rootRenderNode = this.rootNode.getRenderNode();
     if (rootRenderNode !== null) {
@@ -1078,21 +1101,20 @@ setOvalShape(oval: Rect): void
 ```ts
 import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
-const mask = new ShapeMask();
-mask.setOvalShape({ left: 0, right: vp2px(150), top: 0, bottom: vp2px(100) });
-mask.fillColor = 0X55FF0000;
-
-const renderNode = new RenderNode();
-renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
-renderNode.backgroundColor = 0XFF00FF00;
-renderNode.shapeMask = mask;
-
-
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
+
+    const mask = new ShapeMask();
+    mask.setOvalShape({ left: 0, right: uiContext.vp2px(150), top: 0, bottom: uiContext.vp2px(100) });
+    mask.fillColor = 0X55FF0000;
+
+    const renderNode = new RenderNode();
+    renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
+    renderNode.backgroundColor = 0XFF00FF00;
+    renderNode.shapeMask = mask;
 
     const rootRenderNode = this.rootNode.getRenderNode();
     if (rootRenderNode !== null) {
@@ -1487,8 +1509,8 @@ struct Index {
             rect: {
               left: 0,
               top: 0,
-              right: vp2px(150),
-              bottom: vp2px(150)
+              right: this.getUIContext().vp2px(150),
+              bottom: this.getUIContext().vp2px(150)
             },
             corners: {
               topLeft: { x: 32, y: 32 },
@@ -1635,9 +1657,9 @@ struct Index {
         .onClick(() => {
           renderNode.shapeClip.setOvalShape({
             left: 0,
-            right: vp2px(150),
+            right: this.getUIContext().vp2px(150),
             top: 0,
-            bottom: vp2px(100)
+            bottom: this.getUIContext().vp2px(100)
           });
           renderNode.shapeClip = renderNode.shapeClip;
         })
@@ -1910,7 +1932,7 @@ borderRadiuses(all: number): BorderRadiuses
 
 | 参数名 | 类型   | 必填 | 说明       |
 | ------ | ------ | ---- | ---------- |
-| all    | number | 是   | 边框圆角。<br/>单位：vp<br/>取值范围：[0, +∞)] |
+| all    | number | 是   | 边框圆角。<br/>单位：vp<br/>取值范围：[0, +∞) |
 
 **返回值：**
 

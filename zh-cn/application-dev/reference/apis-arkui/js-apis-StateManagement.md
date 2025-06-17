@@ -66,7 +66,7 @@ static&nbsp;connect\<T extends object\>( </br >
 
 | 类型                                   | 说明                                                         |
 | -------------------------------------- | ------------------------------------------------------------ |
-| T | 创建或获取AppStorageV2数据成功时，返回数据；否则返回undefined。 |
+| T \| undefined | 创建或获取AppStorageV2数据成功时，返回数据；否则返回undefined。 |
 
 **示例：**
 
@@ -201,6 +201,7 @@ static globalConnect\<T extends object\>(type: ConnectOptions\<T\>): T | undefin
 > 9、EL5加密要想生效，需要开发者在module.json中配置字段ohos.permission.PROTECT_SCREEN_LOCK_DATA，使用说明见[声明权限](../../security/AccessToken/declare-permissions.md)。
 
 **示例：**
+仅供开发者了解globalConnect用法，完整使用需开发者自己写出@Entry组件。
 
 <!--code_no_check-->
 ```ts
@@ -221,16 +222,26 @@ export class Sample {
 }
 
 // key不传入尝试用为type的name作为key，加密参数不传入默认加密等级为EL2
-@Local p: Sample = PersistenceV2.globalConnect({type: Sample, defaultCreator:() => new Sample()})!;
+const p: Sample = PersistenceV2.globalConnect({ type: Sample, defaultCreator: () => new Sample() })!;
 
 // 使用key:global1连接，传入加密等级为EL1
-@Local p1: Sample = PersistenceV2.globalConnect({type: Sample, key:'global1', defaultCreator:() => new Sample(), areaMode: contextConstant.AreaMode.EL1})!;
+const p1: Sample = PersistenceV2.globalConnect({
+  type: Sample,
+  key: 'global1',
+  defaultCreator: () => new Sample(),
+  areaMode: contextConstant.AreaMode.EL1
+})!;
 
 // 使用key:global2连接，使用构造函数形式，加密参数不传入默认加密等级为EL2
-@Local p2: Sample = PersistenceV2.globalConnect({type: Sample, key: 'global2', defaultCreator:() => new Sample()})!;
+const p2: Sample = PersistenceV2.globalConnect({ type: Sample, key: 'global2', defaultCreator: () => new Sample() })!;
 
 // 使用key:global3连接，直接写加密数值，范围只能在0-4，否则运行会crash,例如加密设置为EL3
-@Local p3: Sample = PersistenceV2.globalConnect({type: Sample, key:'global3', defaultCreator:() => new Sample(), areaMode: 3})!;
+const p3: Sample = PersistenceV2.globalConnect({
+  type: Sample,
+  key: 'global3',
+  defaultCreator: () => new Sample(),
+  areaMode: 3
+})!;
 
 ```
 
@@ -410,13 +421,13 @@ struct Index {
 }
 ```
 
-### enableV2Compatibility<sup>18+</sup>
+### enableV2Compatibility<sup>19+</sup>
 
 static enableV2Compatibility\<T extends object\>(source: T): T
 
 使V1的状态变量能够在\@ComponentV2中观察，主要应用于状态管理V1、V2混用场景。详见[状态管理V1V2混用文档](../../ui/state-management/arkts-v1-v2-mixusage.md)。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -474,14 +485,14 @@ struct CompV2 {
 }
 ```
 
-### makeV1Observed<sup>18+</sup>
+### makeV1Observed<sup>19+</sup>
 static makeV1Observed\<T extends object\>(source: T): T
 
 将不可观察的对象包装成状态管理V1可观察的对象，其能力等同于@Observed，可初始化@ObjectLink。
 
-该接口可搭配[enableV2Compatibility](#enablev2compatibility18)应用于状态管理V1和V2混用场景，详见[状态管理V1V2混用文档](../../ui/state-management/arkts-v1-v2-mixusage.md)。
+该接口可搭配[enableV2Compatibility](#enablev2compatibility19)应用于状态管理V1和V2混用场景，详见[状态管理V1V2混用文档](../../ui/state-management/arkts-v1-v2-mixusage.md)。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

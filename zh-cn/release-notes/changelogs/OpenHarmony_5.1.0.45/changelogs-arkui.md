@@ -1,6 +1,6 @@
 # ArkUI子系统Changelog
 
-## cl.arkui.1 带标题栏窗口应用内菜单弹出位置变更
+## cl.arkui.1 V1和V2组件冻结能力增强
 
 **访问级别**
 
@@ -8,54 +8,15 @@
 
 **变更原因**
 
-对于带标题栏窗口使用非子窗的Menu组件场景，菜单默认弹出位置调整，UX体验更佳。
-
-
-**变更影响**
-
-此变更不涉及应用适配。
-
-变更前：带标题栏窗口应用内弹出菜单位置偏移4vp，菜单没有和按钮对齐。
-
-变更后：带标题栏窗口应用内弹出菜单位置正确，菜单和按钮对齐。
-
-| 变更前 | 变更后 |
-|---------|---------|
-|  ![变更前](figures/menu-item-4vp-before.png)       |  ![变更后](figures/menu-item-4vp-after.png)       |
-
-**起始API Level**
-
-API 11
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.45开始。
-
-**变更的接口/组件**
-
-Menu组件。
-
-**适配指导**
-
-Menu UX默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
-
-## cl.arkui.2 Repeat VirtualScroll 支持二级缓存冻结
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-开发者使用Repeat VirtualScroll，进入二级缓存（复用池）中的组件是为了通过更新其各项属性后作为新组件使用，在更新成为新组件之前不应该被刷新。
+开发者使用组件冻结功能后，以下场景冻结功能实际未生效：支持冻结的组件嵌套使用的解冻场景、V2自定义组件的解冻场景、Repeat VirtualScroll的复用场景。
 
 **变更影响**
 
-此变更不涉及应用适配。
+此变更涉及应用适配。
 
-变更前：启用组件冻结，状态变量改动会触发二级缓存中的组件刷新，并执行@Monitor对应方法。 
+变更前：启用组件冻结，组件冻结实际功能未生效，因此在组件嵌套使用的解冻场景、V2自定义组件的冻结场景、Repeat VirtualScroll的复用场景，其相关的状态变量能够刷新、@Watch/@Monitor方法会执行。
 
-变更后：启用组件冻结，状态变量改动不会触发二级缓存中的组件刷新，不执行@Monitor对应方法。
+变更后：启用组件冻结，组件冻结实际功能会生效，在组件嵌套使用的解冻场景、V2自定义组件的冻结场景、Repeat VirtualScroll的复用场景，其相关的状态变量不再刷新、@Watch/@Monitor方法不会执行。
 
 举例说明，执行以下用例：
 
@@ -136,11 +97,11 @@ struct ChildComponent {
 
 **变更的接口/组件**
 
-Repeat freezeWhenInactive。
+freezeWhenInactive。
 
 **适配指导**
 
-展示效果不变，@Monitor监听属性变化执行方法次数会减少。如果需要刷新缓存中的数据，可以关闭组件冻结。
+展示效果不变，组件冻结生效后，@Monitor/@Watch将不再执行。如果需要刷新缓存中的数据，可以关闭组件冻结。
 
 ```ts
 // 关闭组件冻结，freezeWhenInactive设置为false
@@ -163,14 +124,13 @@ struct ChildComponent {
   }
 }
 ```
+示例中仅展示了Repeat VirtualScroll的复用场景，其他场景如下：
 
-在API version 18中，同时优化了组件冻结以下功能特性的行为表现：
+- 组件嵌套使用的解冻场景：在组件冻结开启之后，明确了节点解冻的范围，子组件的非屏上节点不会再被父组件解冻，例子可见[Navigation和TabContent的混用](../../../application-dev/ui/state-management/arkts-custom-components-freeze.md#navigation和tabcontent的混用)。
 
-- 在组件冻结开启之后，明确了节点解冻的范围，子组件的非屏上节点不会再被父组件解冻，例子可见[Navigation和TabContent的混用](../../../application-dev/ui/state-management/arkts-custom-components-freeze.md#navigation和tabcontent的混用)。
+- V2自定义组件的冻结场景：在状态管理V2组件冻结从父组件激活冻结状态的场景中，如果仅子组件开启了冻结，父组件未开启冻结，子组件也能冻结。例子可见[仅子组件开启组件冻结](../../../application-dev/ui/state-management/arkts-custom-components-freezeV2.md#仅子组件开启组件冻结)。
 
-- 在状态管理V2组件冻结从父组件激活冻结状态的场景中，如果仅子组件开启了冻结，父组件未开启冻结，子组件也能冻结。例子可见[仅子组件开启组件冻结](../../../application-dev/ui/state-management/arkts-custom-components-freezeV2.md#仅子组件开启组件冻结)。
-
-## cl.arkui.3 ImageSpan组件borderRadius边框圆角属性Modifier设置变更
+## cl.arkui.2 ImageSpan组件borderRadius边框圆角属性Modifier设置变更
 
 **访问级别**
 
@@ -204,7 +164,7 @@ ImageSpanModifier接口的borderRadius属性
 
 无需应用适配，变更后ImageSpan组件的borderRadius边框圆角在Modifier接口设置生效，效果与开发者实际设置的圆角值显示一致。
 
-## cl.arkui.4 Search组件回车键类型为EnterKeyType.NEW_LINE（换行）时onSubmit回调中执行keepEditableState()函数，参数缺省时的行为变更
+## cl.arkui.3 Search组件回车键类型为EnterKeyType.NEW_LINE（换行）时onSubmit回调中执行keepEditableState()函数，参数缺省时的行为变更
 
 **访问级别**
 
@@ -263,7 +223,7 @@ struct EnterKeyTypeIsNewLineDemo {
 }
 ```
 
-## cl.arkui.5 TextInput/TextArea组件border属性dashGap、dashWidth参数Modifier设置变更
+## cl.arkui.4 TextInput/TextArea组件border属性dashGap、dashWidth参数Modifier设置变更
 
 **访问级别**
 

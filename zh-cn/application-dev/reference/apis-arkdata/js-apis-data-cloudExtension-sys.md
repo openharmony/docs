@@ -162,8 +162,8 @@ import { cloudExtension } from '@kit.ArkData';
 | TEXT                                               | 3    | 文本类型。                             |
 | BOOL                                               | 4    | 布尔类型。                             |
 | BLOB                                               | 5    | 二进制大对象类型，可以存储二进制文件。 |
-| [ASSET](js-apis-data-relationalStore.md#asset10)   | 6    | 资产类型。                             |
-| [ASSETS](js-apis-data-relationalStore.md#assets10) | 7    | 资产列表类型。                         |
+| [ASSET](arkts-apis-data-relationalStore-i.md#asset10)   | 6    | 资产类型。                             |
+| [ASSETS](arkts-apis-data-relationalStore-t.md#assets10) | 7    | 资产列表类型。                         |
 
 ## Field
 
@@ -1101,7 +1101,7 @@ download(table: string, gid: string, prefix: string, assets: Array&lt;CloudAsset
 
 | 类型                                                         | 说明                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------- |
-| Promise&lt;Array&lt;[Result](resultt)&lt;[CloudAsset](#cloudasset)&gt;&gt;&gt; | Promise对象，返回资产下载结果，包含资产ID和资产哈希值。 |
+| Promise&lt;Array&lt;[Result](#resultt)&lt;[CloudAsset](#cloudasset)&gt;&gt;&gt; | Promise对象，返回资产下载结果，包含资产ID和资产哈希值。 |
 
 **示例：**
 

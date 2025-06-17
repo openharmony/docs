@@ -102,7 +102,7 @@ Blank组件的父组件未设置宽度时，min参数的使用效果。
 struct BlankExample {
   build() {
     Column({ space: 20 }) {
-      // blank父组件不设置宽度时，Blank失效，可以通过设置min最小宽度填充固定宽度
+      // Blank父组件不设置宽度时，Blank失效，可以通过设置min最小宽度填充固定宽度
       Row() {
         Text('Bluetooth').fontSize(18)
         Blank().color(Color.Yellow)

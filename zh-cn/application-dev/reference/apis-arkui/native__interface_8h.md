@@ -30,7 +30,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkUI_NativeAPIVariantKind](_ark_u_i___native_module.md#arkui_nativeapivariantkind) { [ARKUI_NATIVE_NODE](_ark_u_i___native_module.md), [ARKUI_NATIVE_DIALOG](_ark_u_i___native_module.md), [ARKUI_NATIVE_GESTURE](_ark_u_i___native_module.md), [ARKUI_NATIVE_ANIMATE](_ark_u_i___native_module.md) } | 定义Native接口集合类型。  | 
+| [ArkUI_NativeAPIVariantKind](_ark_u_i___native_module.md#arkui_nativeapivariantkind) { ARKUI_NATIVE_NODE, ARKUI_NATIVE_DIALOG, ARKUI_NATIVE_GESTURE, ARKUI_NATIVE_ANIMATE } | 定义Native接口集合类型。  | 
 
 
 ### 函数

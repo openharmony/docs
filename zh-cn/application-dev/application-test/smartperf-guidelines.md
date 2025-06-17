@@ -27,7 +27,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 2. Device-daemon端执行需连接硬件设备，Device-hap端需在有屏幕设备使用。
 
-3.<!--RP2-->Device-daemon端执行前需完成[hdc环境配置](https://gitee.com/openharmony/developtools_hdc)。<!--RP2End--> 
+3. <!--RP2-->Device-daemon端执行前需完成[hdc环境配置](https://gitee.com/openharmony/developtools_hdc)。<!--RP2End--> 
 
 <!--RP3-->
 ## SmartPerf Device-hap端
@@ -68,7 +68,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
   ```
   C:\Users\issusser>hdc shell
-  #
+  $
   ```
 
 #### 拉起和查看daemon进程
@@ -76,18 +76,18 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   C:\Users\issusser>hdc shell
   // 拉起daemon进程
-  # SP_daemon 
+  $ SP_daemon 
   // 查看daemon进程是否存在
-  # ps -ef | grep SP_daemon
-  root          1584     1 0 21:50:05 ?     00:00:00 SP_daemon
-  root          1595  1574 3 21:51:02 pts/0 00:00:00 grep SP_daemon
-  #
+  $ ps -ef | grep SP_daemon
+  shell          1584     1 0 21:50:05 ?     00:00:00 SP_daemon
+  shell          1595  1574 3 21:51:02 pts/0 00:00:00 grep SP_daemon
+  $
   ```
 
 #### 执行和查看帮助命令
 
   ```
-  # SP_daemon --help
+  $ SP_daemon --help
   OpenHarmony performance testing tool SmartPerf command-line version
    Usage: SP_daemon [options] [arguments]
     
@@ -109,6 +109,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     -VIEW           set layler, for example: -VIEW DisplayNode
     -OUT            set csv output path.
     -d              get device DDR information
+    -ci             get cpu instructions and cycles
     -screen         get screen resolution
     -deviceinfo     get device information
     -server         start a process to listen to the socket message of the start and stop commands
@@ -143,7 +144,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     
     
     command exec finished!
-   #
+   $
   ```
 
 ### 基础采集
@@ -155,6 +156,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 | -N    |是| 设置采集次数，一秒采集一次。    |
 | -PKG  |否| 设置包名。                |
 | -c    |否| 采集cpu的频点和使用率。<br>设置应用包名时，采集整机和应用CPU信息。 <br>不设置应用包名时，采集整机CPU信息。     |
+| -ci    |否| 采集cpu的指令数。<br>设置应用包名时，采集整机和应用CPU指令数。 <br>不设置应用包名时，采集整机CPU指令数。     |
 | -g    |否| 采集gpu的频点和负载信息。   |
 | -f    |否| 采集指定应用的fps以及屏幕刷新率，必须设置应用包名。        |
 | -t    |否| 采集GPU温度、系统芯片温度。           |
@@ -170,7 +172,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - 采集2次整机CPU大中小核频率、各核使用率
 
   ```
-    # SP_daemon -N 2 -c
+    $ SP_daemon -N 2 -c
 
     order:0 timestamp=1501839064260
     order:1 TotalcpuUsage=0.502513
@@ -221,13 +223,13 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     ...
 
     command exec finished!
-    #
+    $
   ```
 
 - 采集2次整机CPU大中小核频率、各核使用率以及进程CPU使用率、负载
 
   ```
-    # SP_daemon -N 2 -PKG ohos.samples.ecg -c
+    $ SP_daemon -N 2 -PKG ohos.samples.ecg -c
 
 
 
@@ -286,7 +288,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     ...
 
     command exec finished!
-    #
+    $
   ```
 
   >**说明**
@@ -296,7 +298,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - 采集1次整机GPU频率和负载
  
   ```
-    # SP_daemon -N 1 -g
+    $ SP_daemon -N 1 -g
     
     
     
@@ -305,13 +307,13 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     order:2 gpuLoad=38.000000
     
     command exec finished!
-    #
+    $
   ```
 
 - 采集2次整机温度
 
   ```
-    # SP_daemon -N 2 -t
+    $ SP_daemon -N 2 -t
 
     order:0 timestamp=1502720711191
     order:1 gpu-thermal=42500.000000
@@ -323,13 +325,13 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     order:2 soc-thermal=42.500000
 
     command exec finished!
-    #
+    $
   ```
 
 - 采集2次整机内存
 
   ```
-    # SP_daemon -N 2 -r
+    $ SP_daemon -N 2 -r
     order:0 timestamp=1705041562521
     order:1 memAvailable=7339224
     order:2 memFree=7164708
@@ -341,13 +343,13 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     order:3 memTotal=11641840
 
     command exec finished!
-    #
+    $
   ```
 
 - 采集1次整机和指定应用进程内存
 
   ```
-    # SP_daemon -N 1 -PKG ohos.samples.ecg -r
+    $ SP_daemon -N 1 -PKG ohos.samples.ecg -r
 
     order:0 timestamp=1720427095197
     order:1 arktsHeapPss=17555
@@ -371,17 +373,46 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 
     command exec finished!
-    #
+    $
   ```
   >**说明**
   >
   >- 使用该命令采集时需进入被测应用内。
   >- 该命令集成了历史版本-m的数据（arktsHeapPss、gpuPss、graphicPss...）。
 
+- 采集1次整机cpu指令数
+
+  ```
+    $ SP_daemon -N 1 -ci
+
+    order:0 cycles per instruction=4.098151
+    order:1 hw-cpu-cycles=190604622.000000
+    order:2 hw-instructions=46509906.000000
+    order:3 timestamp=1609502927840
+    command exec finished!
+    $
+  ```
+
+- 采集1次整机和指定应用cpu指令数
+
+  ```
+    $ SP_daemon -N 1 -PKG ohos.samples.ecg -ci
+
+    order:0 cycles per instruction=4.121963
+    order:1 hw-cpu-cycles=190092457.000000
+    order:2 hw-instructions=46116973.000000
+    order:3 timestamp=1609502995191
+    command exec finished!
+    $
+  ```
+  >**说明**
+  >
+  >- 使用该命令采集时需进入被测应用内。
+
 - 采集2次截图
 
   ```
-    # SP_daemon -N 2 -snapshot
+    $ SP_daemon -N 2 -snapshot
 
     order:0 timestamp=1501837609657
     order:1 capture=data/local/tmp/capture/screenCap_1501837609657.png
@@ -391,7 +422,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     order:1 capture=NA
 
     command exec finished!
-    #
+    $
   ```
   >**说明**
   >
@@ -406,7 +437,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - 采集2次网络速率
 
   ```
-    # SP_daemon -N 2 -net
+    $ SP_daemon -N 2 -net
 
     order:0 timestamp=1705041904832
     order:1 networkDown=0
@@ -417,13 +448,13 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     order:2 networkUp=2004
 
     command exec finished!
-    #
+    $
   ```
 
 - 采集5次指定应用帧率
 
   ```
-    # SP_daemon -N 5 -PKG ohos.samples.ecg -f
+    $ SP_daemon -N 5 -PKG ohos.samples.ecg -f
 
     order:0 timestamp=1705306472232
     order:1 fps=43
@@ -437,7 +468,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     ...
 
     command exec finished!
-    #
+    $
   ```
   >**说明**
   >
@@ -448,7 +479,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - 采集10次指定图层帧率
 
   ```
-    # SP_daemon -N 10 -VIEW DisplayNode -f
+    $ SP_daemon -N 10 -VIEW DisplayNode -f
     order:0 timestamp=1705306822850
     order:1 fps=15
     order:2 fpsJitters=876291843;;8314062;;8308334;;8314583;;8310417;;8308333;;8326042;;8314583;;8292708;;8492709;;8143750;;8340104;;8294271;;8302604;;8297396
@@ -461,7 +492,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     ...
 
     command exec finished!
-    #
+    $
   ```
   >**说明**
   >
@@ -474,19 +505,19 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - 采集1次DDR信息
 
   ```
-    # SP_daemon -N 1 -d
+    $ SP_daemon -N 1 -d
     
     order:0 timestamp=1710916175201
     order:1 ddrFrequency=1531000000
     
     command exec finished!
-    #
+    $
   ```
 
 - 全量采集示例1，采集整机信息，包括cpu、gpu、温度、内存信息、DDR信息、网络速率、屏幕截图
  
   ```
-    # SP_daemon -N 10 -c -g -t -r -d -net -snapshot
+    $ SP_daemon -N 10 -c -g -t -r -d -net -snapshot
 
     order:0 timestamp=1501837838664
     order:1 TotalcpuUsage=0.751880
@@ -548,13 +579,13 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     ...
 
     command exec finished!
-    #
+    $
   ```
 
 - 全量采集示例2，采集指定应用信息，包括cpu、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图
  
   ```
-    # SP_daemon -N 10 -PKG ohos.samples.ecg -c -g -t -f -r -d -net -snapshot
+    $ SP_daemon -N 10 -PKG ohos.samples.ecg -c -g -t -f -r -d -net -snapshot
 
     order:0 timestamp=1501837949706
     order:1 ProcAppName=ohos.samples.ecg
@@ -640,7 +671,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     ...
 
     command exec finished!
-    #
+    $
   ```
 
   >**说明**
@@ -661,21 +692,21 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   
    ```
    开始采集
-   # SP_daemon -start -c
+   $ SP_daemon -start -c
    SP_daemon Collection begins
     
     
    command exec finished!
-   #
+   $
       
    结束采集
-   # SP_daemon -stop
+   $ SP_daemon -stop
    SP_daemon Collection ended
    Output Path: data/local/tmp/smartperf/1/t_index_info.csv
     
     
    command exec finished!
-   #
+   $
    ```
    >**说明**
    >
@@ -695,10 +726,10 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
     ```
     C:\Users\issusser>hdc shell
-    # cd data/local/tmp
+    $ cd data/local/tmp
     # ls
     data.csv
-    #
+    $
     ```
 
   - 导出文件
@@ -716,52 +747,55 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
     | 数据项    | 说明             |备注|
     | :-----| :--------------------- |:-----|
-    | cpuFrequency      | CPU大中小核频率。        |单位：Hz|
-    | cpuUasge          | CPU各核使用率。          |%|
-    | cpuidleUsage      | CPU空闲态使用率。        |%| 
-    | cpuioWaitUsage    | 等待I/O的使用率。        |%|
-    | cpuirqUsage       | 硬中断的使用率。         |%|  
-    | cpuniceUsage      | 低优先级用户态使用率。    |%|
-    | cpusoftIrqUsage   | 软中断的使用率。         |%| 
-    | cpusystemUsage    | 系统/内核态使用率。      |%|
-    | cpuuserUsage      | 用户态使用率。           |%| 
-    | ProcId            | 进程id。                |-|
-    | ProcAppName       | app包名。                |-| 
-    | ProcCpuLoad       | 进程CPU负载占比。        |%|
-    | ProcCpuUsage      | 进程CPU使用率。          |%| 
-    | ProcUCpuUsage     | 进程用户态CPU使用率。     |%|
-    | ProcSCpuUsage     | 进程内核态CPU使用率。     |%| 
-    | gpuFrequ          | 整机GPU的频率。          |%|
-    | gpuLoad           | 整机GPU的负载占比。      |%|
-    | currentNow        | 当前读到的电流值。       |单位：mA| 
-    | voltageNow        | 当前读到的电压值。       |单位：μV| 
-    | fps               | 每秒帧数。              |单位：fps|
-    | fpsJitters        | 每一帧绘制间隔。        |单位：ns|
-    | refreshrate       | 屏幕刷新率。            |单位：Hz|
-    | networkDown       | 下行速率。              |单位：byte/s|
-    | networkUp         | 上行速率。              |单位：byte/s|
-    | ddrFrequency      | DDR频率。               |单位：Hz|
-    | gpu-thermal       | GPU温度。              |单位：°C|
-    | soc-thermal       | 系统芯片温度。          |单位：°C|
-    | memAvailable      | 整机可用内存。         |单位：KB|
-    | memFree           | 整机空闲内存。         |单位：KB|
-    | memTotal          | 整机总内存。           |单位：KB|
-    | pss               | 进程实际使用内存。      |单位：KB|
-    | sharedClean       | 共享的未改写页面。      |单位：KB|
-    | sharedDirty       | 共享的已改写页面。      |单位：KB|
-    | priviateClean     | 私有的未改写页面。      |单位：KB|
-    | privateDirty      | 私有的已改写页面。      |单位：KB|
-    | swapTotal         | 总的交换内存。          |单位：KB|
-    | swapPss           | 交换的pss内存。        |单位：KB|
-    | HeapSize          | 堆内存大小。           |单位：KB|
-    | HeapAlloc         | 可分配的堆内存大小。    |单位：KB|
-    | HeapFree          | 剩余的堆内存大小。      |单位：KB|
-    | gpuPss            | 使用的gpu内存大小。     |单位：KB|
-    | graphicPss        | 使用的图形内存大小。     |单位：KB|
-    | arktsHeapPss      | 使用的arkts内存大小。    |单位：KB|
-    | nativeHeapPss     | 使用的native内存大小。   |单位：KB|
-    | stackPss          | 使用的栈内存大小。       |单位：KB|
-    | timeStamp         | 当前时间戳。            |对应采集时间| 
+    | cpuFrequency            | CPU大中小核频率。        |单位：Hz|
+    | cpuUasge                | CPU各核使用率。          |%|
+    | cpuidleUsage            | CPU空闲态使用率。        |%| 
+    | cpuioWaitUsage          | 等待I/O的使用率。        |%|
+    | cpuirqUsage             | 硬中断的使用率。         |%|  
+    | cpuniceUsage            | 低优先级用户态使用率。    |%|
+    | cpusoftIrqUsage         | 软中断的使用率。         |%| 
+    | cpusystemUsage          | 系统/内核态使用率。      |%|
+    | cpuuserUsage            | 用户态使用率。           |%| 
+    | ProcId                  | 进程id。                |-|
+    | ProcAppName             | app包名。                |-| 
+    | ProcCpuLoad             | 进程CPU负载占比。        |%|
+    | ProcCpuUsage            | 进程CPU使用率。          |%| 
+    | ProcUCpuUsage           | 进程用户态CPU使用率。     |%|
+    | ProcSCpuUsage           | 进程内核态CPU使用率。     |%| 
+    | gpuFrequ                | 整机GPU的频率。          |%|
+    | gpuLoad                 | 整机GPU的负载占比。      |%|
+    | hw-instructions         | 执行的指令数。          |-|
+    | cycles per instruction  | 每条指令的平均周期数。    |单位：ns|
+    | hw-cpu-cycles           | CPU时钟周期数。          |单位：ns|
+    | currentNow              | 当前读到的电流值。       |单位：mA| 
+    | voltageNow              | 当前读到的电压值。       |单位：μV| 
+    | fps                     | 每秒帧数。              |单位：fps|
+    | fpsJitters              | 每一帧绘制间隔。        |单位：ns|
+    | refreshrate             | 屏幕刷新率。            |单位：Hz|
+    | networkDown             | 下行速率。              |单位：byte/s|
+    | networkUp               | 上行速率。              |单位：byte/s|
+    | ddrFrequency            | DDR频率。               |单位：Hz|
+    | gpu-thermal             | GPU温度。              |单位：°C|
+    | soc-thermal             | 系统芯片温度。          |单位：°C|
+    | memAvailable            | 整机可用内存。         |单位：KB|
+    | memFree                 | 整机空闲内存。         |单位：KB|
+    | memTotal                | 整机总内存。           |单位：KB|
+    | pss                     | 进程实际使用内存。      |单位：KB|
+    | sharedClean             | 共享的未改写页面。      |单位：KB|
+    | sharedDirty             | 共享的已改写页面。      |单位：KB|
+    | priviateClean           | 私有的未改写页面。      |单位：KB|
+    | privateDirty            | 私有的已改写页面。      |单位：KB|
+    | swapTotal               | 总的交换内存。          |单位：KB|
+    | swapPss                 | 交换的pss内存。        |单位：KB|
+    | HeapSize                | 堆内存大小。           |单位：KB|
+    | HeapAlloc               | 可分配的堆内存大小。    |单位：KB|
+    | HeapFree                | 剩余的堆内存大小。      |单位：KB|
+    | gpuPss                  | 使用的gpu内存大小。     |单位：KB|
+    | graphicPss              | 使用的图形内存大小。     |单位：KB|
+    | arktsHeapPss            | 使用的arkts内存大小。    |单位：KB|
+    | nativeHeapPss           | 使用的native内存大小。   |单位：KB|
+    | stackPss                | 使用的栈内存大小。       |单位：KB|
+    | timeStamp               | 当前时间戳。            |对应采集时间| 
 
 ### 场景化采集
 
@@ -779,7 +813,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - 应用响应时延（命令仅支持RK）
 
   ```
-   # SP_daemon -editor responseTime ohos.samples.ecg ohtest
+   $ SP_daemon -editor responseTime ohos.samples.ecg ohtest
    time:544ms
 
    command exec finished!
@@ -791,7 +825,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - 应用完成时延（命令仅支持RK）
 
   ```
-   # SP_daemon -editor completeTime ohos.samples.ecg ohtest
+   $ SP_daemon -editor completeTime ohos.samples.ecg ohtest
    time:677ms
 
    command exec finished!
@@ -803,7 +837,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - validator获取应用页面帧率
 
   ```
-   # SP_daemon -editor fpsohtest
+   $ SP_daemon -editor fpsohtest
    set num:10 successfps:0|1726909713442fps:97|1726909714442fps:113|1726909715442fps:116|1726909716442fps:116|1726909717442fps:118|1726909718442fps:114|1726909719442fps:114|1726909720442fps:115|1726909721442fps:118|1726909722442SP_daemon exec finished!
   ```
   >**说明**
@@ -830,12 +864,12 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - 获取屏幕分辨率
 
   ```
-   # SP_daemon -screen
+   $ SP_daemon -screen
    activeMode: 720x1280, refreshrate=69
     
     
    command exec finished!
-   #
+   $
   ```
   >**说明**
   >
@@ -844,7 +878,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - 获取设备信息
 
   ```
-   # SP_daemon -deviceinfo
+   $ SP_daemon -deviceinfo
    abilist: default
    activeMode: 720x1280
    board: hw
@@ -864,17 +898,17 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    version: OpenHarmony 5.1.0.46
     
    command exec finished!
-   #
+   $
   ```
 
 - 启动一个进程来监听start和stop命令的socket消息
 
   ```
-   # SP_daemon -server
-   #
-   # pidof SP_daemon
+   $ SP_daemon -server
+   $
+   $ pidof SP_daemon
    7024
-   #
+   $
   ```
   >**说明**
   >
@@ -883,15 +917,15 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - 清除SP_daemon进程ID
 
   ```
-   # pidof SP_daemon
+   $ pidof SP_daemon
    2725   
-   # SP_daemon -clear
+   $ SP_daemon -clear
     
     
    command exec finished!
-   #
-   # pidof SP_daemon
-   #
+   $
+   $ pidof SP_daemon
+   $
   ```
   >**说明**
   >
@@ -900,7 +934,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - validator用于获取当前页面帧率
 
   ```
-   # SP_daemon -ohtestfps 10
+   $ SP_daemon -ohtestfps 10
    set num:10 success
    fps:1|1501926684532
    fps:18|1501926685532
@@ -913,7 +947,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    fps:42|1501926692532
    fps:41|1501926693532
    SP_daemon exec finished!
-   #
+   $
   ```
   >**说明**
   >
@@ -923,7 +957,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - 启动一个进程来监听editor工具的socket消息
 
   ```
-   # SP_daemon -editorServer
+   $ SP_daemon -editorServer
     
     
    command exec finished!
@@ -933,7 +967,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - 获取电池电量
 
   ```
-   # SP_daemon -recordcapacity
+   $ SP_daemon -recordcapacity
    recordTime: 1726903063
    recordPower: 5502
   ```
@@ -946,7 +980,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - 采集当前界面fps
 
   ```
-    # SP_daemon -profilerfps 10
+    $ SP_daemon -profilerfps 10
     set num:10 success
     fps:0|1711692357278
     fps:0|1711692358278
@@ -959,7 +993,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     fps:26|1711692365278
     fps:53|1711692366278
     SP_daemon exec finished!
-    #
+    $
   ```
   >**说明**
   >
@@ -968,7 +1002,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - fps分段采集
 
   ```
-    # SP_daemon -profilerfps 100 -sections 10
+    $ SP_daemon -profilerfps 100 -sections 10
     set num:100 success
     fps:0|1711692393278
     fps:0|1711692394278
@@ -989,7 +1023,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     ...
 
     SP_daemon exec finished!
-    #
+    $
   ```
   >**说明**
   >

@@ -1,24 +1,25 @@
 # HSP
 
-HSP（Harmony Shared Package）是动态共享包，可以包含代码、C++库、资源和配置文件，通过HSP可以实现代码和资源的共享。HSP不支持独立发布，而是跟随其宿主应用的APP包一起发布，与宿主应用同进程，具有相同的包名和生命周期。
+HSP（Harmony Shared Package）是动态共享包，包含代码、C++库、资源和配置文件，通过HSP可以实现代码和资源的共享。HSP不支持独立发布，而是跟随宿主应用的APP包一起发布，与宿主应用同进程，具有相同的包名和生命周期。
 > **说明：**
 > 
-> 应用内HSP：在编译过程中与应用包名（bundleName）强耦合，只能给某个特定的应用使用。
+> 应用内HSP：在编译过程中与应用包名（bundleName）强耦合，只能给某个特定的应用使用，本页面介绍应用内HSP。
 > 
-> [集成态HSP](integrated-hsp.md)：构建、发布过程中，不与特定的应用包名耦合；使用时，工具链支持自动将集成态HSP的包名替换成宿主应用包名，并且会重新签名生成一个新的HSP包，作为宿主应用的安装包，这个新的HSP也属于应用内HSP。
+> [集成态HSP](integrated-hsp.md)：构建、发布过程中，不与特定的应用包名耦合；使用时，工具链支持自动将集成态HSP的包名替换成宿主应用包名，并且会重新签名生成一个新的HSP包，作为宿主应用的安装包，这个新的HSP也属于宿主应用HAP的应用内HSP。
 
 ## 使用场景
-- 多个HAP/HSP共用的代码和资源放在同一个HSP中，可以提高代码、资源的可重用性和可维护性，同时编译打包时也只保留一份HSP代码和资源，能够有效控制应用包大小。
+- 多个HAP/HSP共用的代码和资源放在同一个HSP中，可以提高代码、资源的可重用性和可维护性，同时编译打包时也只保留一份HSP代码和资源，能够控制应用包的大小。
 
-- HSP在运行时按需加载，有助于提升应用性能。
+- HSP在运行时[按需加载](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-modular-design#section28312051291)，有助于提升应用性能。
 
 - 同一个组织内部的多个应用之间，可以使用集成态HSP实现代码和资源的共享。
 
 ## 约束限制
 
-- HSP不支持在设备上单独安装/运行，需要与依赖该HSP的HAP一起安装/运行。HAP的版本号须大于等于HSP版本号。
-- HSP支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件和[UIAbility](../application-models/uiability-overview.md)组件，但不支持具有入口能力的ExtensionAbility或UIAbility（即skill标签配置了entity.system.home和ohos.want.action.home）。
-- HSP可以依赖其他HAR或HSP，但不支持循环依赖，也不支持依赖传递。
+- HSP不支持在设备上单独安装/运行，需要与依赖该HSP的HAP一起安装/运行。从API version 18开始，HAP的版本号须大于等于HSP版本号。API version 17及之前版本，HSP的版本号必须与HAP版本号一致。
+- 从API version 14开始HSP支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md#声明配置)组件，但不支持具有入口能力的UIAbility（即skill标签配置了entity.system.home和ohos.want.action.home）。配置UIAbility的方法参考[模块中添加UIAbility](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-add-new-ability#section18658758104318)，HSP中UIAbility的启动方式与[应用内启动UIAbility](../application-models/uiability-intra-device-interaction.md)方法相同。API version 13及之前版本，不支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md#声明配置)组件。
+- 从API version 18开始HSP支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件，但不支持具有入口能力的ExtensionAbility（即skill标签配置了entity.system.home和ohos.want.action.home）。HSP中配置ExtensionAbility的方法参考[模块中添加ExtensionAbility](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-add-new-ability#section18891639459)。 API version 17及之前版本，不支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件。
+- HSP可以依赖其他HAR或HSP，也可以被HAP或者HSP依赖集成，但不支持循环依赖，也不支持依赖传递。
 
 > **说明：**
 > 
@@ -28,7 +29,7 @@ HSP（Harmony Shared Package）是动态共享包，可以包含代码、C++库�
 
 
 ## 创建
-通过DevEco Studio创建一个HSP模块，详见[创建HSP模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-hsp-V13#section7717162312546)，我们以创建一个名为`library`的HSP模块为例。基本的工程目录结构如下：
+通过DevEco Studio创建一个HSP模块，详见[创建HSP模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hsp#section7717162312546)，以创建一个名为`library`的HSP模块为例。基本的工程目录结构如下：
 ```
 MyApplication
 ├── library
@@ -69,7 +70,7 @@ export struct MyTitleBar {
   }
 }
 ```
-对外暴露的接口，需要在入口文件`index.ets`中声明：
+在入口文件 `index.ets` 中声明对外暴露的接口。
 ```ts
 // library/index.ets
 export { MyTitleBar } from './src/main/ets/components/MyTitleBar';
@@ -94,7 +95,7 @@ export function minus(a: number, b: number): number {
   return a - b;
 }
 ```
-对外暴露的接口，需要在入口文件`index.ets`中声明：
+在入口文件 `index.ets` 中声明对外暴露的接口。
 ```ts
 // library/index.ets
 export { Log, add, minus } from './src/main/ets/utils/test';
@@ -111,7 +112,7 @@ export function nativeMulti(a: number, b: number): number {
 }
 ```
 
-对外暴露的接口，需要在入口文件`index.ets`中声明：
+在入口文件 `index.ets` 中声明对外暴露的接口。
 ```ts
 // library/index.ets
 export { nativeMulti } from './src/main/ets/utils/nativeTest';
@@ -120,7 +121,7 @@ export { nativeMulti } from './src/main/ets/utils/nativeTest';
 ### 通过$r访问HSP中的资源
 在组件中，经常需要使用字符串、图片等资源。HSP中的组件需要使用资源时，一般将其所用资源放在HSP包内，而非放在HSP的使用方处，以符合高内聚低耦合的原则。
 
-在工程中，常通过`$r`/`$rawfile`的形式引用应用资源。可以用`$r`/`$rawfile`访问本模块`resources`目录下的资源，如访问`resources`目录下定义的图片`src/main/resources/base/media/example.png`时，可以用`$r("app.media.example")`。有关`$r`/`$rawfile`的详细使用方式，请参阅文档[资源分类与访问](./resource-categories-and-access.md)中“资源访问-应用资源”小节。
+在工程中，常通过`$r`/`$rawfile`的形式引用应用资源。可以用`$r`/`$rawfile`访问本模块`resources`目录下的资源，如访问`resources`目录下定义的图片`src/main/resources/base/media/example.png`时，可以用`$r("app.media.example")`。有关`$r`/`$rawfile`的使用方式，请参阅文档[资源分类与访问](./resource-categories-and-access.md)中“资源访问-应用资源”小节。
 
 不推荐使用相对路径的方式，容易引用错误路径。例如：
 当要引用上述同一图片资源时，在HSP模块中使用`Image("../../resources/base/media/example.png")`，实际上该`Image`组件访问的是HSP调用方（如`entry`）下的资源`entry/src/main/resources/base/media/example.png`。
@@ -157,7 +158,7 @@ export class ResManager{
 }
 ```
 
-对外暴露的接口，需要在入口文件`index.ets`中声明：
+在入口文件 `index.ets` 中声明对外暴露的接口。
 ```ts
 // library/index.ets
 export { ResManager } from './src/main/ets/ResManager';
@@ -170,7 +171,7 @@ export { ResManager } from './src/main/ets/ResManager';
 介绍如何引用HSP中的接口，以及如何通过页面路由实现HSP的pages页面跳转与返回。
 
 ### 引用HSP中的接口
-要使用HSP中的接口，首先需要在使用方的oh-package.json5中配置对它的依赖，详见[引用动态共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-har-import-V13)。
+要使用HSP中的接口，首先需要在使用方的 `oh-package.json5` 文件中配置对它的依赖。具体配置方法请参考[引用动态共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har-import)。
 依赖配置成功后，就可以像使用HAR一样调用HSP的对外接口了。例如，上面的library已经导出了下面这些接口：
 
 ```ts
@@ -259,10 +260,7 @@ struct Index {
         .padding({ left: 12, right: 12, top: 4, bottom: 4 })
         .onClick(() => {
           // 先通过当前上下文获取hsp模块的上下文，再获取hsp模块的resourceManager，然后再调用resourceManager的接口获取资源
-          getContext()
-            .createModuleContext('library')
-            .resourceManager
-            .getStringValue(ResManager.getDesc())
+          this.getUIContext()?.getHostContext()?.resourceManager.getStringValue(ResManager.getDesc())
             .then(value => {
               console.log('getStringValue is ' + value);
               this.message = 'getStringValue is ' + value;

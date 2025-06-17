@@ -23,7 +23,7 @@ Before using JSVM-API to create and obtain numbers, you need to understand the f
 | OH_JSVM_CreateInt32     | Creates a JS number object from a C Int32_t object.|
 | OH_JSVM_CreateUint32    | Creates a JS number object from a C Uint32_t object.|
 | OH_JSVM_CreateInt64     | Creates a JS number object from a C Int64_t object.|
-| OH_JSVM_CreateDouble    | Creates a JS number object from a C Double object. |
+| OH_JSVM_CreateDouble    | Creates a JS number object from a C double object. |
 
 ## Example
 
@@ -31,7 +31,7 @@ If you are just starting out with JSVM-API, see [JSVM-API Development Process](u
 
 ### OH_JSVM_GetValueUint32
 
-Use **OH_JSVM_GetValueUint32** to obtain a 32-bit unsigned integer from a JS number.
+Use **OH_JSVM_GetValueUint32** to obtain a C uint32 value from a JS value.
 
 CPP code:
 
@@ -159,7 +159,7 @@ static JSVM_Value GetValueInt64(JSVM_Env env, JSVM_CallbackInfo info)
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM GetValueInt64 fail");
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM GetValueInt64 success: %{public}d", result64);
+        OH_LOG_INFO(LOG_APP, "JSVM GetValueInt64 success: %{public}ld", result64);
     }
     return args[0];
 }
@@ -336,7 +336,7 @@ JSVM CreateUInt32 success: 26
 
 ### OH_JSVM_CreateInt64
 
-Use **OH_JSVM_CreateInt64** to create a JS number of the int64 type.
+Use **OH_JSVM_CreateInt64** to create a JS number of the int64 type. You are advised to use the **BigInt** API to indicate the large JS number.
 
 CPP code:
 
@@ -349,8 +349,6 @@ CPP code:
 // Define OH_JSVM_CreateInt64.
 static JSVM_Value CreateInt64(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // int64 represents a 64-bit signed integer, ranging from -2^63 to 2^63 - 1, that is, -9223372036854775808 to 9223372036854775807.
-    // 
     int64_t value = 2147483648;
     // Create a JS Int64 number.
     JSVM_Value result = nullptr;

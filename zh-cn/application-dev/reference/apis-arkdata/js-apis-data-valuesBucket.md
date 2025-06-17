@@ -23,6 +23,8 @@ type ValueType = number | string | boolean
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
+**原子化服务API：**  从API version 20开始，该接口支持在原子化服务中使用。
+
 | 类型    | 说明                 |
 | ------- | -------------------- |
 | number  | 表示字段类型为数字。   |

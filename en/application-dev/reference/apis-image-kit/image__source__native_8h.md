@@ -7,6 +7,8 @@ The **image_source_native.h** file declares the APIs for image decoding.
 
 **Library**: libimage_source.so
 
+**File to include**: &lt;multimedia/image_framework/image/image_source_native.h&gt;
+
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 **Since**: 12
@@ -22,7 +24,7 @@ The **image_source_native.h** file declares the APIs for image decoding.
 | Name| Description| 
 | -------- | -------- |
 | typedef struct [OH_ImageSourceNative](_image___native_module.md#oh_imagesourcenative) [OH_ImageSourceNative](_image___native_module.md#oh_imagesourcenative) | Defines a struct for the image source, which is used to perform operations related to an image source.| 
-| typedef struct [OH_ImageSource_Info](_image___native_module.md#oh_imagesource_info) [OH_ImageSource_Info](_image___native_module.md#oh_imagesource_info) | Defines a struct for the image source information, which is created by calling [OH_ImageSourceInfo_Create](_image___native_module.md#oh_imagesourceinfo_create).| 
+| typedef struct [OH_ImageSource_Info](_image___native_module.md#oh_imagesource_info) [OH_ImageSource_Info](_image___native_module.md#oh_imagesource_info) | Defines a struct for the image source information, which is used in [OH_ImageSourceInfo_Create](_image___native_module.md#oh_imagesourceinfo_create).| 
 | typedef struct [OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) [OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) | Defines a struct for decoding options, which are used in [OH_ImageSourceNative_CreatePixelmap](_image___native_module.md#oh_imagesourcenative_createpixelmap).| 
 
 
@@ -32,6 +34,7 @@ The **image_source_native.h** file declares the APIs for image decoding.
 | -------- | -------- |
 | [IMAGE_ALLOCATOR_TYPE](_image___native_module.md#image_allocator_type) {<br>IMAGE_ALLOCATOR_TYPE_AUTO = 0,<br>IMAGE_ALLOCATOR_TYPE_DMA = 1,<br>IMAGE_ALLOCATOR_TYPE_SHARE_MEMORY = 2 } | Enumerates the types of allocators used to allocate PixelMap memory.| 
 | [IMAGE_DYNAMIC_RANGE](_image___native_module.md#image_dynamic_range) {<br>IMAGE_DYNAMIC_RANGE_AUTO = 0,<br>IMAGE_DYNAMIC_RANGE_SDR = 1,<br>IMAGE_DYNAMIC_RANGE_HDR = 2<br>} | Enumerates the desired dynamic range for decoding.| 
+| [Image_CropAndScaleStrategy](_image___native_module.md#image_cropandscalestrategy) {<br>IMAGE_CROP_AND_SCALE_STRATEGY_SCALE_FIRST = 1,<br>IMAGE_CROP_AND_SCALE_STRATEGY_CROP_FIRST = 2 } | Enumerates the cropping and scaling strategies when **desiredSize** and **desiredRegion** are both specified.| 
 
 
 ### Functions
@@ -56,6 +59,8 @@ The **image_source_native.h** file declares the APIs for image decoding.
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_DecodingOptions_SetDesiredRegion](_image___native_module.md#oh_decodingoptions_setdesiredregion) ([OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) \*options, [Image_Region](_image___region.md) \*desiredRegion) | Sets the region to decode.| 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_DecodingOptions_GetDesiredDynamicRange](_image___native_module.md#oh_decodingoptions_getdesireddynamicrange) ([OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) \*options, int32_t \*desiredDynamicRange) | Obtains the desired dynamic range configured during decoding.| 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_DecodingOptions_SetDesiredDynamicRange](_image___native_module.md#oh_decodingoptions_setdesireddynamicrange) ([OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) \*options, int32_t desiredDynamicRange) | Sets the desired dynamic range during decoding.| 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_DecodingOptions_SetCropAndScaleStrategy](_image___native_module.md#oh_decodingoptions_setcropandscalestrategy) ([OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) \*options, int32_t cropAndScaleStrategy) | Sets the cropping and scaling strategy used during decoding.| 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_DecodingOptions_GetCropAndScaleStrategy](_image___native_module.md#oh_decodingoptions_getcropandscalestrategy) ([OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) \*options, int32_t \*cropAndScaleStrategy) | Obtains the cropping and scaling strategy used during decoding.| 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_DecodingOptions_Release](_image___native_module.md#oh_decodingoptions_release) ([OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) \*options) | Releases the pointer to an **OH_DecodingOptions** object.| 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_ImageSourceNative_CreateFromUri](_image___native_module.md#oh_imagesourcenative_createfromuri) (char \*uri, size_t uriSize, [OH_ImageSourceNative](_image___native_module.md#oh_imagesourcenative) \*\*res) | Creates the pointer to an **OH_ImageSourceNative** object based on a URI.| 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_ImageSourceNative_CreateFromFd](_image___native_module.md#oh_imagesourcenative_createfromfd) (int32_t fd, [OH_ImageSourceNative](_image___native_module.md#oh_imagesourcenative) \*\*res) | Creates the pointer to an **OH_ImageSourceNative** object based on a file descriptor.| 

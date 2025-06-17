@@ -2,13 +2,13 @@
 
 ## 场景介绍
 
-剪贴板为开发者提供数据的复制粘贴能力。支持对纯文本、超本文、URI等内容的操作。
+剪贴板为开发者提供数据的复制粘贴能力。支持对纯文本、超文本、URI等内容的操作。
 
 ## 基本概念
 
 - **OH_PasteboardObserver**：剪贴板数据变更观察者对象，用以监听剪贴板数据变更事件。
 - **OH_Pasteboard**：剪贴板对象，用来进行查询、写入等操作。
-- **OH_UdmfData**：统一数据对象，详见[UDMF开发指导 (C/C++)](../../database/native-unified-data-management-framework-guidelines.md)。
+- [**OH_UdmfData**](../../reference/apis-arkdata/capi-oh-udmfdata.md#oh_udmfdata)：统一数据对象。
 
 ## 约束限制
 
@@ -21,7 +21,7 @@
 
 ## 接口说明
 
-详细接口见[Pasteboard文档](../../reference/apis-basic-services-kit/_pasteboard.md)。
+详细接口见[Pasteboard文档](../../reference/apis-basic-services-kit/capi-pasteboard.md)。
 
 | 接口名称                                                     | 描述                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------- |
@@ -120,7 +120,7 @@
    ```c
    // 1. 创建一个剪贴板实例
    OH_Pasteboard* pasteboard = OH_Pasteboard_Create();
-   // 2. 判断剪贴板中有是否有文本类型数据
+   // 2. 判断剪贴板中是否有文本类型数据
    bool hasPlainTextData = OH_Pasteboard_HasType(pasteboard, "text/plain");
    if (hasPlainTextData) {
      // 3. 从剪贴板中获取统一类型数据OH_UdmfData

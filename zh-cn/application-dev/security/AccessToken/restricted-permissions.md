@@ -150,7 +150,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 允许应用访问公共目录下Desktop目录及子目录。
 
 <!--RP15-->
-当前仅2in1设备应用可申请此权限。
+当前仅2in1设备和平板上的应用可申请此权限。
 <!--RP15End-->
 
 **权限级别**：system_basic
@@ -473,13 +473,11 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **授权方式**：系统授权（system_grant）
 
-**起始版本**：16
+**起始版本**：18
 
 ### ohos.permission.MANAGE_APN_SETTING
 
 允许应用读取或设置APN信息。
-
-当应用需要使用专网APN信息时可申请此权限。
 
 <!--RP38--><!--RP38End-->
 
@@ -488,6 +486,20 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **授权方式**：系统授权（system_grant）
 
 **起始版本**：16
+
+### ohos.permission.GET_WIFI_LOCAL_MAC
+
+允许应用获取本机的Wi-Fi设备的MAC地址。
+
+<!--RP43--><!--RP43End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：8
+
+**变更信息**：API 8-15该权限仅向系统应用开放；从API 16开始，在PC/2in1设备上面向普通应用开放，在其余设备上仍仅面向系统应用开放。
 
 ### ohos.permission.kernel.ALLOW_USE_JITFORT_INTERFACE
 
@@ -525,6 +537,25 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：18
 
+## ohos.permission.ACCESS_DDK_DRIVERS
+
+允许扩展外设驱动客户端绑定到扩展外设驱动服务端。
+
+该权限针对扩展外设客户端绑定到扩展外设服务端权限校验，具体规则：
+
+1. 外设扩展驱动客户端权限声明中的value字段中描述的目标扩展驱动服务端已上架或一并上架。
+2. 被申请目标扩展驱动服务端对外提供能力与扩展外设驱动客户端业务诉求一致。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**携带额外数据**：是，配置方法请见[Driver Development Kit开发指导](../../device/driver/externaldevice-guidelines.md#应用签名)。
+
+**起始版本**：18
+
 ### ohos.permission.kernel.SUPPORT_PLUGIN
 
 允许主体应用安装插件。
@@ -535,7 +566,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **授权方式**：系统授权（system_grant）
 
-**起始版本**：18
+**起始版本**：19
 
 ### ohos.permission.CUSTOM_SANDBOX
 
@@ -559,6 +590,46 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+**起始版本**：20
+
+### ohos.permission.CUSTOMIZE_SAVE_BUTTON
+
+允许应用自定义保存控件的图标和文本。
+
+<!--RP41--><!--RP41End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+### ohos.permission.GET_ABILITY_INFO
+
+允许应用根据URI查询Ability信息。
+
+<!--RP42--><!--RP42End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**支持设备**: PC/2in1
+
+**起始版本**：20
+
+## ohos.permission.ACCESS_FIDO2_ONLINEAUTH
+
+允许应用使用通行密钥服务的NDK。
+
+<!--RP45--><!--RP45End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**支持设备**：Phone | PC/2in1 | Tablet
 
 **起始版本**：20

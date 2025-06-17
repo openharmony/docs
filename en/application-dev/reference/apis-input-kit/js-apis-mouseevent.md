@@ -99,7 +99,7 @@ Defines the mouse event.
 | windowY        | number      | Yes   | No   | Vertical coordinate of the mouse pointer in the window.                              |
 | rawDeltaX      | number      | Yes   | No   | Horizontal coordinate offset relative to the previous reported mouse pointer position.|
 | rawDeltaY      | number      | Yes   | No   | Vertical coordinate offset relative to the previous reported mouse pointer position.                         |
-| button         | [Button](#button)      | Yes   | No   | Mouse button.                              
+| button         | [Button](#button)      | Yes   | No   | Mouse button.                      |        
 | pressedButtons | [Button](#button)[]    | Yes   | No   | Button being pressed.                             |
 | axes           | [AxisValue](#axisvalue)[] | Yes   | No   | All axis data contained in the event.                              |
 | pressedKeys    | [KeyCode](js-apis-keycode.md#keycode)[]   | Yes   | No   | List of pressed keys.                           |

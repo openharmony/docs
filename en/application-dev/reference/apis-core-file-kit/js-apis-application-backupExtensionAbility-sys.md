@@ -13,9 +13,10 @@ The **BackupExtensionAbility** module provides extended backup and restore capab
 ```ts
 import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
 ```
-  ### getBackupInfo<sup>12+</sup>
 
-getBackupInfo(): string;
+### getBackupInfo<sup>12+</sup>
+
+getBackupInfo(): string
 
 Obtains backup information. This API is called when the caller queries application data. You need to implement the operation for querying application data.
 
@@ -24,7 +25,6 @@ Obtains backup information. This API is called when the caller queries applicati
 **Example**
 
   ```ts
-
   class BackupExt extends BackupExtensionAbility {
     getBackupInfo(): string {
       console.log(`getBackupInfo ok`);

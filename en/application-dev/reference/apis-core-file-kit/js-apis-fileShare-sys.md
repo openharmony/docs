@@ -50,7 +50,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   ```ts
   import { wantConstant } from '@kit.AbilityKit';
   import { BusinessError } from '@kit.BasicServicesKit';
-  let uri: string = 'file://docs/storage/Users/currentUser/Document/1.txt';  // You are advised to use the system API to generate a URI using fileUri.getUriFromPath("Sandbox path");
+  let uri: string = 'file://docs/storage/Users/currentUser/Document/1.txt';  // You are advised to use the system API fileUri.getUriFromPath("Sandbox path") to generate a URI.;
   let bundleName: string = 'com.demo.test';
   try {
     fileShare.grantUriPermission(uri, bundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION |
@@ -128,9 +128,9 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 checkPathPermission(tokenID: number, policies: Array&lt;PathPolicyInfo&gt;, policyType: PolicyType): Promise&lt;Array&lt;boolean&gt;&gt;
 
-Checks whether the selected files or folders have temporary or persistent permissions. This API uses a promise to return the result.
+Checks whether the selected files or directories have temporary or persistent permissions. This API uses a promise to return the result.
 
-**Required permission**: ohos.permission.CHECK_SANDBOX_POLICY
+**Required permissions**: ohos.permission.CHECK_SANDBOX_POLICY
 
 **System API**: This is a system API.
 
@@ -148,7 +148,7 @@ Checks whether the selected files or folders have temporary or persistent permis
 
 |Type|Description|
 | ------ | ------ |
-| Promise&lt;Array&lt;boolean&gt;&gt; | Promise used to return the result. The value **true** means that a policy type is used. Otherwise, **false** is returned.|
+| Promise&lt;Array&lt;boolean&gt;&gt; | Promise used to return the result. The value **true** means that a policy type is used; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -191,6 +191,71 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     }
     catch (error) {
       console.info(error.code + 'checkPathPermission error' + error.message);
+    }
+  }
+  ```
+
+## fileShare.grantUriPermission<sup>20+</sup>
+
+grantUriPermission(policies: Array&lt;PolicyInfo&gt;, targetBundleName: string, appCloneIndex: number): Promise&lt;void&gt;
+
+Grants temporary permissions on a file to an application. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.AppFileService.FolderAuthorization
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- |-------| -------- |----------|
+| policies| Array&lt;[PathPolicyInfo](js-apis-fileShare.md#pathpolicyinfo15)> | Yes| Array of permission policies. The maximum number of policies is 500.|
+| targetBundleName| string | Yes| Bundle name of the target application.|
+| appCloneIndex| number | Yes| Index of the cloned application. The value **0** indicates the application itself.|
+
+**Return value**
+
+|Type|Description|
+| ------ | ------ |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID   | Error Message      |
+|----------| --------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | The caller is not a system application.|
+| 801      | Capability not supported. |
+| 13900001      | Operation not permitted. |
+| 13900011      | Out of memory. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileShare } from '@kit.CoreFileKit';
+  
+  async function grantUriPermissionExample() {
+    try {
+      let uri = "file://docs/storage/Users/currentUser/Documents/1.txt";
+      let policyInfo: fileShare.PolicyInfo = {
+        uri: uri,
+        operationMode: fileShare.OperationMode.CREATE_MODE | fileShare.OperationMode.READ_MODE,
+      };
+      let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+
+      fileShare.grantUriPermission(policies, "com.example.myapplicationtest", 0).then(() => {
+      }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
+        console.error("grantUriPermission failed. Code: " +
+        err.code + ", message: " + err.message);
+      });
+    }
+    catch (error) {
+      console.info('grantUriPermission error, Code: ' + error.code + ', message: ' + error.message);
     }
   }
   ```

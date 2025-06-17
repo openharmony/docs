@@ -13,7 +13,7 @@
 
 ## 拖拽流程
 
-拖拽流程包含手势拖拽流程和鼠标拖拽流程，可帮助开发者理解回调事件触发的时机。
+拖拽流程包含手势拖拽流程和鼠标拖拽流程，有助于开发者理解回调事件触发的时机。
 
 ### ​手势拖拽流程
 
@@ -33,13 +33,13 @@
 | ---------------- | ------------------------|
 | [onDragStart](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart) | 拖出的组件产生拖出动作时，该回调触发。<br>该回调可以感知拖拽行为的发起，开发者可以在onDragStart方法中设置拖拽过程中传递的数据，并自定义拖拽的背板图像。建议开发者采用pixelmap的方式来返回背板图像，避免使用customBuilder，因为后者可能会带来额外的性能开销。|
 | [onDragEnter](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter) | 当拖拽操作的拖拽点进入组件的范围时，如果该组件监听了[onDrop](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop)事件，此回调将会被触发。|
-| [onDragMove](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove) | 当拖拽点在组件范围内移动时，如果该组件监听了onDrop事件，此回调将会被触发。<br>在这一过程中，可以通过调用[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent)中的setResult方法来影响系统在部分场景下的外观表现：<br>1. 设置DragResult.DROP\_ENABLED。<br>2. 设置DragResult.DROP\_DISABLED。|
+| [onDragMove](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove) | 当拖拽点在组件范围内移动时，如果该组件监听了onDrop事件，此回调将会被触发。<br>在这一过程中，可以通过调用[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent7)中的setResult方法来影响系统在部分场景下的外观表现：<br>1. 设置DragResult.DROP\_ENABLED。<br>2. 设置DragResult.DROP\_DISABLED。|
 | [onDragLeave](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave) | 当拖拽点移出组件范围时，如果该组件监听了onDrop事件，此回调将会被触发。<br>在以下两种情况下，系统默认不会触发onDragLeave事件：<br>1. 父组件移动到子组件。<br>2. 目标组件与当前组件布局有重叠。<br>API version 12开始可通过[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md)中的[setDragEventStrictReportingEnabled](../reference/apis-arkui/js-apis-arkui-UIContext.md#setdrageventstrictreportingenabled12)方法严格触发onDragLeave事件。|
-| [onDrop](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop) | 当用户在组件范围内释放拖拽操作时，此回调会被触发。开发者需在此回调中通过DragEvent的setResult方法来设置拖拽结果，否则在拖出方组件的onDragEnd方法中，通过getResult方法获取的将只是默认的处理结果DragResult.DRAG\_FAILED。<br>此回调是开发者干预系统默认拖入处理行为的关键点，系统会优先执行开发者定义的onDrop回调。通过在onDrop回调中调用setResult方法，开发者可以告知系统如何处理被拖拽的数据。<br>1. 设置 DragResult.DRAG\_SUCCESSFUL，数据完全由开发者自己处理，系统不进行处理。<br>2. 设置DragResult.DRAG\_FAILED，数据不再由系统继续处理。<br>3. 设置DragResult.DRAG\_CANCELED，系统也不需要进行数据处理。<br>4. 设置DragResult.DROP\_ENABLED或DragResult.DROP\_DISABLED会被忽略，等同于设置DragResult.DRAG\_FAILED。|
-| [onDragEnd](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend) | 当用户释放拖拽时，拖拽活动终止，发起拖出动作的组件将触发该回调函数。|
+| [onDrop](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop) | 当用户在组件范围内释放拖拽操作时，此回调会被触发。开发者需在此回调中通过DragEvent的setResult方法来设置拖拽结果，否则在拖出方组件的onDragEnd方法中，通过getResult方法获取的将只是默认的处理结果DragResult.DRAG\_FAILED。<br>此回调是开发者干预系统默认拖入处理行为的关键点，系统会优先执行开发者定义的onDrop回调。通过在onDrop回调中调用setResult方法，开发者可以告知系统如何处理被拖拽的数据。<br>1. 设置 DragResult.DRAG\_SUCCESSFUL，数据完全由开发者自己处理，系统不进行处理。<br>2. 设置DragResult.DRAG\_FAILED，数据不再由系统继续处理。<br>3. 设置DragResult.DRAG\_CANCELED，系统也不需要进行数据处理。<br>4. 设置DragResult.DROP\_ENABLED或DragResult.DROP\_DISABLED会被忽略，等同于设置DragResult.DRAG\_SUCCESSFUL。|
+| [onDragEnd](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend10) | 当用户释放拖拽时，拖拽活动终止，发起拖出动作的组件将触发该回调函数。|
 | [onPreDrag](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#onpredrag12) | 当触发拖拽事件的不同阶段时，绑定此事件的组件会触发该回调函数。<br>开发者可利用此方法，在拖拽开始前的不同阶段，根据[PreDragStatus](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#predragstatus12枚举说明)枚举准备相应数据。<br>1. ACTION\_DETECTING\_STATUS：拖拽手势启动阶段。按下50ms时触发。<br>2. READY\_TO\_TRIGGER\_DRAG\_ACTION：拖拽准备完成，可发起拖拽阶段。按下500ms时触发。<br>3. PREVIEW\_LIFT\_STARTED：拖拽浮起动效发起阶段。按下800ms时触发。<br>4. PREVIEW\_LIFT\_FINISHED：拖拽浮起动效结束阶段。浮起动效完全结束时触发。<br>5. PREVIEW\_LANDING\_STARTED：拖拽落回动效发起阶段。落回动效发起时触发。<br>6. PREVIEW\_LANDING\_FINISHED：拖拽落回动效结束阶段。落回动效结束时触发。<br>7. ACTION\_CANCELED\_BEFORE\_DRAG：拖拽浮起落位动效中断。已满足READY_TO_TRIGGER_DRAG_ACTION状态后，未达到动效阶段，手指抬起时触发。|
 
-[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent)支持的get方法可用于获取拖拽行为的详细信息，下表展示了在相应的拖拽回调中，这些get方法是否能够返回有效数据。
+[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent7)支持的get方法可用于获取拖拽行为的详细信息，下表展示了在相应的拖拽回调中，这些get方法是否能够返回有效数据。
 | 回调事件 | onDragStart | onDragEnter | onDragMove | onDragLeave | onDrop | onDragEnd |
 | - | - | - | - | - | - | - |
 | getData         |—|—|—|—| 支持 |—|
@@ -52,7 +52,7 @@
 | getX/Y          | 支持 | 支持 | 支持 | 支持 | 支持 |—|
 | behavior        |—|—|—|—|—| 支持 |
 
-[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent)支持相关set方法向系统传递信息，这些信息部分会影响系统对UI或数据的处理方式。下表列出了set方法应该在回调的哪个阶段执行才会被系统接受并处理。
+[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent7)支持相关set方法向系统传递信息，这些信息部分会影响系统对UI或数据的处理方式。下表列出了set方法应该在回调的哪个阶段执行才会被系统接受并处理。
 | 回调事件 | onDragStart | onDragEnter | onDragMove | onDragLeave | onDrop |
 | - | - | - | - | - | - |
 | useCustomDropAnimation |—|—|—|—| 支持 |
@@ -109,7 +109,7 @@
 
     ```ts
     .parallelGesture(LongPressGesture().onAction(() => {
-       promptAction.showToast({ duration: 100, message: 'Long press gesture trigger' });
+       this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Long press gesture trigger' });
     }))
     ```
 
@@ -125,7 +125,7 @@
     })
     ```
    
-   pixmap的生成可以调用[componentSnapshot.createFromBuilder](../reference/apis-arkui/js-apis-arkui-componentSnapshot.md#componentsnapshotcreatefrombuilder)函数来实现。
+   pixmap的生成可以调用[componentSnapshot.createFromBuilder](../reference/apis-arkui/js-apis-arkui-componentSnapshot.md#componentsnapshotcreatefrombuilderdeprecated)函数来实现。
 
       ```ts
       @Builder
@@ -249,9 +249,9 @@
     .onDragEnd((event) => {
         // onDragEnd里取到的result值在接收方onDrop设置
       if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-        promptAction.showToast({ duration: 100, message: 'Drag Success' });
+        this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Drag Success' });
       } else if (event.getResult() === DragResult.DRAG_FAILED) {
-        promptAction.showToast({ duration: 100, message: 'Drag failed' });
+        this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Drag failed' });
       }
     })
     ```
@@ -345,7 +345,7 @@ struct Index {
             .visibility(this.imgState)
             // 绑定平行手势，可同时触发应用自定义长按手势
             .parallelGesture(LongPressGesture().onAction(() => {
-              promptAction.showToast({ duration: 100, message: 'Long press gesture trigger' });
+              this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Long press gesture trigger' });
             }))
             .onDragStart((event) => {
               let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
@@ -366,9 +366,9 @@ struct Index {
             .onDragEnd((event) => {
               // onDragEnd里取到的result值在接收方onDrop设置
               if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-                promptAction.showToast({ duration: 100, message: 'Drag Success' });
+                this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Drag Success' });
               } else if (event.getResult() === DragResult.DRAG_FAILED) {
-                promptAction.showToast({ duration: 100, message: 'Drag failed' });
+                this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Drag failed' });
               }
             })
         }
@@ -469,7 +469,7 @@ struct Index {
     })
     ```
 
-   截图的获取可以在选中组件时通过调用componentSnapshot中的[get](../reference/apis-arkui/js-apis-arkui-componentSnapshot.md#componentsnapshotget-1)方法获取。以下示例通过获取组件对应id的方法进行截图。
+   截图的获取可以在选中组件时通过调用componentSnapshot中的[componentSnapshot.get](../reference/apis-arkui/js-apis-arkui-componentSnapshot.md#componentsnapshotgetdeprecated)方法获取。以下示例通过获取组件对应id的方法进行截图。
 
     ```ts
     @State previewData: DragItemInfo[] = []
@@ -847,7 +847,7 @@ struct DropAnimationExample {
 
 3. 拖拽数据提前准备。
 
-   在onPreDrag中可以提前接收到准备发起拖拽的信号，若数据量较大，此时可以事先准备数据。
+   在onPreDrag中可以提前接收到准备发起拖拽的信号。若数据量较大，此时可以事先准备数据。
 
     ```ts
     .onPreDrag((status: PreDragStatus) => {
@@ -1041,4 +1041,323 @@ struct GridEts {
 }
 ```
 ![patchDataProcess](figures/patchDataProcess.gif)
+
+
+## 支持悬停检测
+Spring Loading，即拖拽悬停检测（又叫弹簧加载）是拖拽操作的一项增强功能，允许用户在拖动过程中通过悬停在目标上自动触发视图跳转，提供了使用的便利性。建议在所有支持页面切换的区域均实现该功能。
+
+以下为常见的适合支持该功能的场景：
+
+- 在文件管理器中，拖动文件并悬停在文件夹上时，文件夹可以自动打开。
+- 在桌面启动器中，拖动文件并悬停在应用程序图标上时，应用程序可以自动打开。
+
+除了实现视图切换跳转功能，该能力也可用于特定视图的激活。例如，在用户将一段文本拖拽至按钮上停留后，可激活一个文本输入框。用户随后可将所拖拽文本移动至该输入框上方释放，触发搜索结果展示，实现单手高效完成整个操作。
+
+![drag spring loading example](figures/drag_springloading-01.png)
+
+### 触发原理
+
+要实现这些能力，需要在组件上注册onDragSpringLoading接口，并传入一个用于处理拖拽悬停触发通知的回调。使用该接口后，该组件将如同注册了onDrop接口的组件一样，成为一个可拖入目标，并且遵循与onDrop相同的命中检测规则，即：在悬停位置下方，仅有一个组件可以接收拖拽事件响应，并且总是首个被检测到的组件
+
+Spring Loading的整个过程包含三个阶段：悬停检测 -> 回调通知 -> 结束。在结束之前，如果用户重新开始移动，会自动中断Spring Loading，并通知应用取消。如果在悬停检测期间移动，且尚未进入Spring Loading状态，则不会触发取消通知。
+
+![drag spring loading pharse](figures/drag_springloading-02.png)
+
+应用通过回调接收当前的状态，动态改变UI显示，从而达到用户提醒的效果。
+
+| 状态   | 含义                                                                                              | 建议处理方式                                                                               |
+| :----- | :------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------------- |
+| BEGIN  | 用户已经在本组件上方悬停不动维持了一段时间，开始进入 Spring Loading 状态                          | 修改背景色或改变组件尺寸，强化提醒用户继续保持悬停不动。                                   |
+| UPDATE | 用户继续维持不动，系统周期性下发刷新通知，默认3次                                                 | 通过通知中携带的sequence是否为奇偶数，来决定是否重置UI显示，以此达到周期性变化的提醒效果。 |
+| END    | 用户已保持悬停不动足够多的时间，整个Spring Loading检测与触发完整结束                              | 进行页面跳转或视图切换。                                                                   |
+| CANCEL | 悬停进入BEGIN状态后，用户重新移动或其他情况打断了悬停检测，无法再进行整个Spring Loading状态的触发 | 重置和恢复UI显示，取消视图切换相关的状态和逻辑。                                           |
+
+>**说明**
+>
+>1. 在同一个组件内持续保持不动，整个Spring Loading仅会触发一轮，不会重复触发，直到拖离当前组件后再重新进入。
+>2. 同一个组件上即可以实现Spring Loading，也可以实现onDrop/onDragEnter等拖拽事件。
+
+
+### 触发自定义
+
+可以自定义修改Spring Loading检测参数，动态决定是否继续触发。
+
+1.触发参数自定义
+
+  onDragSpringLoading接口还提供了一个可选参数configuration供应用自定义静止检测时长以及触发间隔与次数等配置，可以通过此参数来个性化定义Spring   Loading触发条件。但绝大数多情况下，不需要进行修改，使用系统默认配置即可。
+  
+  configuration参数必须在检测开始前准备就绪。系统一旦启动Spring Loading检测过程，将不再从该参数读取配置。然而，可以通过回调中传入的context对象中的updateCon  figuration方法动态更新配置。此动态更新仅对当前触发有效，不会影响通过configuration的配置。
+  
+  推荐使用默认配置，或通过onDragSpringLoading接口的configuration配置固定参数。在绝大多数情况下，无需在Spring   Loading过程中动态修改这些检测参数。但若需针对不同的拖拽数据类型提供不同的用户提示效果，则可考虑使用此功能。
+
+  >**说明**
+  >
+  >不要设置过长的时间间隔和过多的触发次数，这对于用户提醒通常没有意义。
+
+2.动态终止
+
+  当系统检测到用户悬停足够时长，回调onDragSpringLoading接口设置到回调函数时，有机会决定即将出现的Spring Loading通知是否继续，这发生在需要观察用户拖拽的数据类型并与自身业务逻辑结合的情况下。
+
+  以下是一段伪代码示例：
+  ```typescript
+    .onDragSpringLoading((context: DragSpringLoadingContext)=>{
+      // 检查当前的状态
+      if (context.state == DragSpringLoadingState.BEGIN) {
+        // 检查用户所拖拽的数据类型是否自己能够处理的
+        boolean isICanHandle = false;
+        let dataSummary = context?.dragInfos?.dataSummary;
+        if (dataSummary != undefined) {
+          for (const [type, size] of dataSummary) {
+            if (type === "general.plain-text") { // 只能处理纯文本类型
+              isICanHandle = true;
+              break;
+            }
+          }
+        }
+        // 如果数据无法处理，直接终止Spring Loading
+        if (!isICanHandle) {
+          context.abort();
+          return;
+        }
+      }
+    })
+  ```
+
+3.禁用Spring Loading
+
+  如果不再需要该组件上响应任何Spring Loading事件，则可以通过传递null给onDragSpringLoading来明确关闭响应。
+
+  ```typescript
+    .onDragSpringLoading(null)
+  ```
+
+### 实现示例
+
+下面通过实现搜索设备的简单示例来展示如何通过`onDragSpringLoading`实现提醒和视图切换。
+
+1.准备一些组件
+
+  为了简化示例，准备一个可拖出文字的组件以供用户拖出待搜索的文字，并添加一个按钮控件，用于响应Spring Loading来进一步激活视图。被激活的视图通过`bindSheet`实现，内部配置有一个输入框控件用于接收拖拽文本，以及一个文本组件用于展示搜索结果。
+
+  ```typescript
+    build() {
+      Column() {
+        Column() {
+          Text('双击文字选择后拖出: \n     DeviceName')
+            .fontSize(30)
+            .copyOption(CopyOptions.InApp) // 开启copyOption之后，文本组件即可支持选择内容进行拖拽
+        }.padding({bottom:30})
+  
+        Button('搜索设备').width('80%').height('80vp').fontSize(30)
+          .bindSheet($$this.isShowSheet, this.SheetBuilder(), {
+            detents: [SheetSize.MEDIUM, SheetSize.LARGE, 600],
+            preferType: SheetType.BOTTOM,
+            title: { title: '搜索设备' },
+          })
+      }.width('100%').height('100%')
+      .justifyContent(FlexAlign.Center)
+    }
+  ```
+2.实现SheetBuilder
+
+  实现半模态弹框的UI界面。
+
+  ```typescript
+    @Builder
+    SheetBuilder() {
+      Column() {
+        // 输入框
+        TextInput({placeholder: '拖入此处'})
+          .width('80%').borderWidth(1).borderColor(Color.Black)
+          .onChange((value: string)=>{
+            if (value.length == 0) {
+              this.isSearchDone = false;
+              return;
+            }
+            // 此处简化处理，直接显示固定搜索结果
+            this.isSearchDone = true;
+        })
+        if (this.isSearchDone) {
+          Text(this.searchResult).fontSize(30)
+        }
+      }.width('100%').height('100%')
+    }
+  ```
+
+3.为Button控件添加进入和离开的响应
+
+  为了达到提醒效果，为目标组件也增加`onDragEnter`和`onDragLeave`的处理。当用户拖拽文字进入到组件范围时，变化背景色，以提醒用户在此处停留。
+
+  ```typescript
+    .onDragEnter(()=>{
+      // 当用户拖拽进入按钮范围，即提醒用户，此处可处理数据
+      this.buttonBackgroundColor = this.reminderColor
+    })
+    .onDragLeave(()=>{
+      // 当用户拖拽离开按钮范围，恢复UI
+      this.buttonBackgroundColor = this.normalColor
+    })
+  ```
+
+4.实现Spring Loading响应
+
+  实现一个Spring Loading的响应函数，处理所有状态，如下：
+
+  ```typescript
+  handleSpringLoading(context: dragController.SpringLoadingContext) {
+      // BEGIN 状态时检查拖拽数据类型
+      if (context.state == dragController.DragSpringLoadingState.BEGIN) {
+        // 进行必要判断，决定是否要终止触发
+        return;
+      }
+      if (context.state == dragController.DragSpringLoadingState.UPDATE) {
+        // 刷新提醒
+        return;
+      }
+      // 处理Spring Loading结束，触发视图切换
+      if (context.state == dragController.DragSpringLoadingState.END) {
+        // 视图激活或跳转
+        return;
+      }
+      // 处理CANCEL状态，复原UI
+      if (context.state == dragController.DragSpringLoadingState.CANCEL) {
+        // 恢复状态与UI
+        return;
+      }
+    }
+  ```
+
+**完整代码如下**
+
+  ```typescript
+  import { dragController } from '@kit.ArkUI';
+  import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+  
+  @Entry
+  @ComponentV2
+  struct Index {
+    @Local isShowSheet: boolean = false;
+    private searchResult: string = '搜索结果：\n  设备 1\n  设备 2\n  设备 3\n  ... ...';
+    @Local isSearchDone: boolean = false;
+    private  reminderColor: Color = Color.Green;
+    private normalColor: Color = Color.Blue;
+    @Local buttonBackgroundColor: Color = this.normalColor;
+  
+    @Builder
+    SheetBuilder() {
+      Column() {
+        // 输入框
+        TextInput({placeholder: '拖入此处'})
+          .width('80%').borderWidth(1).borderColor(Color.Black).padding({bottom: 5})
+          .onChange((value: string)=>{
+            if (value.length == 0) {
+              this.isSearchDone = false;
+              return;
+            }
+            // 此处简化处理，直接显示固定搜索结果
+            this.isSearchDone = true;
+          })
+        if (this.isSearchDone) {
+          Text(this.searchResult).fontSize(20).textAlign(TextAlign.Start).width('80%')
+        }
+      }.width('100%').height('100%')
+    }
+  
+    // 检查拖拽数据类型是否包含所希望的plain-text
+    checkDataType(dataSummary: unifiedDataChannel.Summary | undefined): boolean {
+      let summary = dataSummary?.summary;
+      if (summary == undefined) {
+        return false;
+      }
+  
+      let dataSummaryObjStr: string = JSON.stringify(summary);
+      let dataSummaryArray: Array<Array<string>> = JSON.parse(dataSummaryObjStr);
+      let isDataTypeMatched: boolean = false;
+      dataSummaryArray.forEach((record: Array<string>) => {
+        if (record[0] == 'general.plain-text') {
+          isDataTypeMatched = true;
+        }
+      });
+      return isDataTypeMatched;
+    }
+  
+    // 处理BEGIN状态
+    handleBeginState(context: dragController.SpringLoadingContext): boolean {
+      // 检查用户所拖拽的数据类型是否自己能够处理的
+      if (this.checkDataType(context?.dragInfos?.dataSummary)) {
+        return true;
+      }
+      // 如果数据无法处理，直接终止Spring Loading
+      context.abort();
+      return false;
+    }
+  
+    // Spring Loading处理入口
+    handleSpringLoading(context: dragController.SpringLoadingContext) {
+      // BEGIN 状态时检查拖拽数据类型
+      if (context.state == dragController?.DragSpringLoadingState.BEGIN) {
+        if (this.handleBeginState(context)) {
+          // 我们已经在onDragEnter时刷新了提醒色，进入Spring Loading状态时，恢复UI，提醒用户继续保持不动
+          this.buttonBackgroundColor = this.normalColor;
+        }
+        return;
+      }
+      if (context.state == dragController?.DragSpringLoadingState.UPDATE) {
+        // 奇数次UPDATE通知刷新提醒UI，偶数次复原UI
+        if (context.currentNotifySequence % 2 != 0) {
+          this.buttonBackgroundColor = this.reminderColor;
+        } else {
+          this.buttonBackgroundColor = this.normalColor;
+        }
+        return;
+      }
+      // 处理Spring Loading结束，触发视图切换
+      if (context.state == dragController?.DragSpringLoadingState.END) {
+        this.isShowSheet = true;
+        return;
+      }
+      // 处理CANCEL状态，复原UI
+      if (context.state == dragController?.DragSpringLoadingState.CANCEL) {
+        this.buttonBackgroundColor = this.normalColor;
+        return;
+      }
+    }
+  
+    build() {
+      Column() {
+        Column() {
+          Text('双击文字选择后拖出: \n     DeviceName')
+            .fontSize(30)
+            .copyOption(CopyOptions.InApp) // 开启copyOption之后，文本组件即可支持选择内容进行拖拽
+        }.padding({bottom:30})
+  
+        Button('搜索设备').width('80%').height('80vp').fontSize(30)
+          .bindSheet($$this.isShowSheet, this.SheetBuilder(), {
+            detents: [SheetSize.MEDIUM, SheetSize.LARGE, 600],
+            preferType: SheetType.BOTTOM,
+            title: { title: '搜索设备' },
+          })
+          .allowDrop([uniformTypeDescriptor.UniformDataType.PLAIN_TEXT])
+          .backgroundColor(this.buttonBackgroundColor)
+          .onDragEnter(()=>{
+            // 当用户拖拽进入按钮范围，即提醒用户，此处是可以处理数据的
+            this.buttonBackgroundColor = this.reminderColor
+          })
+          .onDragLeave(()=>{
+            // 当用户拖拽离开按钮范围，恢复UI
+            this.buttonBackgroundColor = this.normalColor
+          })
+          .onDragSpringLoading((context: dragController.SpringLoadingContext)=>{
+            this.handleSpringLoading(context);
+          })
+      }.width('100%').height('100%')
+      .justifyContent(FlexAlign.Center)
+    }
+  }
+```
+
+**运行效果**
+
+![drag spring loading sample gif](figures/spring-loading-record.gif)
+
 <!--RP1--><!--RP1End-->

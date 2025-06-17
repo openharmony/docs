@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 该组件从从API version 4 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 4 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -17,9 +17,9 @@
 | 名称 | 类型 | 默认值 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
 | index | number | 0 | 否 | 当前在容器中显示的子组件的索引值。 |
-| loop | boolean | true | 否 | 是否开启循环轮播。 |
+| loop | boolean | true | 否 | 是否开启循环轮播。true为开启循环，false为不开启循环。 |
 | duration | number | - | 否 | 子组件切换的动画时长。 |
-| vertical | boolean | false | 否 | 是否为纵向滑动，纵向滑动时采用纵向的指示器。<br/>不支持动态修改。 |
+| vertical | boolean | false | 否 | 是否为纵向滑动，纵向滑动时采用纵向的指示器。true为纵向滑动，false为水平滑动。<br/>不支持动态修改。 |
 | id | string | - | 否 | 组件的唯一标识。 |
 | style | string | - | 否 | 组件的样式声明。 |
 | class | string | - | 否 | 组件的样式类，用于引用样式表。 |
@@ -54,22 +54,27 @@
 | display | string | flex | 否 | 确定一个元素所产生的框的类型，可选值为：<br/>-&nbsp;flex：弹性布局。<br/>-&nbsp;none：不渲染此元素。 |
 | [left\|top] | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>6+</sup> | - | 否 | left\|top确定元素的偏移位置。<br/>-&nbsp;left属性规定元素的左边缘。该属性定义了定位元素左外边距边界与其包含块左边界之间的偏移。<br/>-&nbsp;top属性规定元素的顶部边缘。该属性定义了一个定位元素的上外边距边界与其包含块上边界之间的偏移。 |
 
+## 方法
+
+| 名称 | 参数 | 描述 |
+| -------- | -------- | -------- |
+| rotation | {&nbsp;focus:&nbsp;boolean&nbsp;} | 控制swiper是否请求旋转表冠的焦点。设置focus参数为true，swiper将获取旋转表冠的焦点，允许用户通过旋转表冠来滚动选择器中的选项；设置为false将释放旋转表冠的焦点。|
 
 ## 示例
 
 
 ```html
 <!-- xxx.hml -->
-<swiper class="container" index="{{index}}">
-  <div class="swiper-item primary-item">
-    <text>1</text>
-  </div>
-  <div class="swiper-item warning-item">
-    <text>2</text>
-  </div>
-  <div class="swiper-item success-item">
-    <text>3</text>
-  </div>
+<swiper class="container" index="{{index}}" ref="swiperObj">
+    <div class="swiper-item primary-item">
+        <text>1</text>
+    </div>
+    <div class="swiper-item warning-item">
+        <text>2</text>
+    </div>
+    <div class="swiper-item success-item">
+        <text>3</text>
+    </div>
 </swiper>
 ```
 
@@ -103,9 +108,12 @@
 ```js
 /* xxx.js */
 export default {
-  data: {
-    index: 1
-  }
+    data: {
+        index: 1
+    },
+    onShow() {
+        this.$refs.swiperObj.rotation({focus: true});
+    }
 }
 ```
 

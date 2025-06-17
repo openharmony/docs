@@ -4,9 +4,9 @@
 启动组件是指一切启动或连接应用组件的行为：
 
 
-- 启动[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)、ServiceExtensionAbility、DataShareExtensionAbility，如使用[startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)、startServiceExtensionAbility()、[startAbilityByCall()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)、[openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)等相关接口。
+- 启动[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)、ServiceExtensionAbility、DataShareExtensionAbility，如使用[startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability)、startServiceExtensionAbility()、[startAbilityByCall()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall)、[openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#openlink12)等相关接口。
 
-- 连接ServiceExtensionAbility、DataShareExtensionAbility，如使用[connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)、createDataShareHelper()等相关接口。
+- 连接ServiceExtensionAbility、DataShareExtensionAbility，如使用[connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability)、createDataShareHelper()等相关接口。
 
 ## 组件启动总体规则
 
@@ -46,7 +46,7 @@
 
 - 启动ServiceExtensionAbility、DataShareExtensionAbility。
 
-- 通过[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口启动UIAbility。
+- 通过[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口启动UIAbility。
 
 ![startup-rule](figures/component-startup-inner-stage.png)
 
@@ -59,6 +59,6 @@
 
 - 启动ServiceExtensionAbility、DataShareExtensionAbility。
 
-- 通过[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口启动UIAbility。
+- 通过[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口启动UIAbility。
 
 ![component-startup-rules](figures/component-startup-inter-stage.png)

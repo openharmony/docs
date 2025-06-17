@@ -24,9 +24,9 @@ import fileAccess from '@ohos.file.fileAccess';
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-| 名称 | 类型                        | 只读 | 可写 | 说明                                                      |
+| 名称 | 类型                        | 只读 | 可选 | 说明                                                      |
 | ---- | --------------------------- | ---- | ---- | --------------------------------------------------------- |
-| DEVICES_URI<sup>11+</sup>  | string | 是   | 否   | 监听设备上线，下线通知，作为注册监听的URI。                    |
+| DEVICES_URI<sup>11+</sup>  | string | 否   | 否   | 监听设备上线，下线通知，作为注册监听的URI。                    |
 
 ## fileAccess.getFileAccessAbilityInfo
 
@@ -145,8 +145,9 @@ createFileAccessHelper(context: Context, wants: Array&lt;Want&gt;) : FileAccessH
   import { BusinessError } from '@ohos.base';
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
-  let context = getContext(this) as common.UIAbilityContext;
-  function createFileAccessHelper01() {
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
+  function createFileAccessHelper01(context: common.UIAbilityContext) {
     let fileAccessHelper: fileAccess.FileAccessHelper;
     // wantInfos 从getFileAccessAbilityInfo()获取
     let wantInfos: Array<Want> = [
@@ -201,8 +202,9 @@ createFileAccessHelper(context: Context) : FileAccessHelper
   ```ts
   import { BusinessError } from '@ohos.base';
   import common from '@ohos.app.ability.common';
-  let context = getContext(this) as common.UIAbilityContext;
-  function createFileAccessHelper02() {
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
+  function createFileAccessHelper02(context: common.UIAbilityContext) {
     let fileAccessHelperAllServer: fileAccess.FileAccessHelper;
     // 创建连接系统内所有配置fileAccess的文件管理类服务的helper对象
     try {
@@ -230,15 +232,15 @@ createFileAccessHelper(context: Context) : FileAccessHelper
 
 ### 属性
 
-| 名称 | 类型   | 只读 | 可写 | 说明     |
+| 名称 | 类型   | 只读 | 可选 | 说明     |
 | ------ | ------ | -------- | ------ | -------- |
-| uri | string | 是 | 否 | 文件(夹)的uri。 |
+| uri | string | 否 | 否 | 文件(夹)的uri。 |
 | relativePath<sup>10+</sup> | string | 是 | 否 | 文件(夹)的相对路径。 |
-| fileName | string | 是 | 否 | 文件(夹)的名称。 |
-| mode | number | 是 | 否 | 文件(夹)的权限信息。 |
-| size | number | 是 | 否 |  文件(夹)的大小。 |
-| mtime | number | 是 | 否 |  文件(夹)的修改时间。 |
-| mimeType | string | 是 | 否 |  文件(夹)的媒体资源类型。 |
+| fileName | string | 否 | 否 | 文件(夹)的名称。 |
+| mode | number | 否 | 否 | 文件(夹)的权限信息。 |
+| size | number | 否 | 否 |  文件(夹)的大小。 |
+| mtime | number | 否 | 否 |  文件(夹)的修改时间。 |
+| mimeType | string | 否 | 否 |  文件(夹)的媒体资源类型。 |
 
 ### listFile
 
@@ -256,7 +258,7 @@ listFile(filter?: Filter) : FileIterator
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | -- | -- |
-| filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象。  |
+| filter | [Filter](js-apis-file-fs.md#filter10) | 否 | 过滤器对象。  |
 
 **返回值：**
 
@@ -316,7 +318,7 @@ scanFile(filter?: Filter) : FileIterator;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | -- | -- |
-| filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象。  |
+| filter | [Filter](js-apis-file-fs.md#filter10) | 否 | 过滤器对象。  |
 
 **返回值：**
 
@@ -404,13 +406,13 @@ next() : { value: FileInfo, done: boolean }
 
 ### 属性
 
-| 名称 | 类型   | 只读 | 可写 | 说明     |
+| 名称 | 类型   | 只读 | 可选 | 说明     |
 | ------ | ------ | -------- | ------ | -------- |
-| deviceType | number | 是 | 否 |设备类型。 |
-| uri | string | 是 | 否 | 设备根目录Uri。 |
-| relativePath<sup>10+</sup> | string | 是 | 否 | 根目录的相对路径。 |
-| displayName | string | 是 | 否 | 设备名称。 |
-| deviceFlags | number | 是 | 否 | 设备支持的能力。 |
+| deviceType | number | 否 | 否 |设备类型。 |
+| uri | string | 否 | 否 | 设备根目录Uri。 |
+| relativePath<sup>10+</sup> | string | 否 | 否 | 根目录的相对路径。 |
+| displayName | string | 否 | 否 | 设备名称。 |
+| deviceFlags | number | 否 | 否 | 设备支持的能力。 |
 
 ### listFile
 
@@ -428,7 +430,7 @@ listFile(filter?: Filter) : FileIterator
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | -- | -- |
-| filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象。  |
+| filter | [Filter](js-apis-file-fs.md#filter10) | 否 | 过滤器对象。  |
 
 **返回值：**
 
@@ -488,7 +490,7 @@ scanFile(filter?: Filter) : FileIterator
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | -- | -- |
-| filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象。  |
+| filter | [Filter](js-apis-file-fs.md#filter10) | 否 | 过滤器对象。  |
 
 **返回值：**
 
@@ -1626,7 +1628,7 @@ async function getQuery02() {
       let fileInfo = await fileAccessHelper.getFileInfoFromRelativePath(imageFileRelativePath);
       fileAccessHelper.query(fileInfo.uri, jsonStrSingleRelativepath, (err: BusinessError, queryResult: string) => {
         if (err) {
-          console.log("query_file_single faf query Failed, errCode:" + err.code + ", errMessage:" + err.message);
+          console.error(`query_file_single faf query Failed, code is ${err.code}, message is ${err.message}`);
           return;
         }
         console.log("query_file_single faf query, queryResult.relative_path: " + JSON.parse(queryResult).relative_path);
@@ -2597,12 +2599,12 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-| 名称      | 类型   | 只读 | 可写 | 说明                |
+| 名称      | 类型   | 只读 | 可选 | 说明                |
 | --------- | ------ | ---- | ---- | ----------------- |
-| sourceUri | string | 是   | 否   | 源文件(夹) uri。                                         |
-| destUri   | string | 是   | 否   | 产生冲突的目标文件的 uri。如果非冲突导致的错误，则为空。 |
-| errCode   | number | 是   | 否   | 错误码。                                                 |
-| errMsg    | string | 是   | 否   | 错误信息。                                               |
+| sourceUri | string | 否   | 否   | 源文件(夹) uri。                                         |
+| destUri   | string | 否   | 否   | 产生冲突的目标文件的 uri。如果非冲突导致的错误，则为空。 |
+| errCode   | number | 否   | 否   | 错误码。                                                 |
+| errMsg    | string | 否   | 否   | 错误信息。                                               |
 
 ## OPENFLAGS
 
@@ -2662,10 +2664,10 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-| 名称 | 类型                        | 只读 | 可写 | 说明                                                      |
+| 名称 | 类型                        | 只读 | 可选 | 说明                                                      |
 | ---- | --------------------------- | ---- | ---- | --------------------------------------------------------- |
-| type | [NotifyType](#notifytype10) | 是   | 否   | 变更的通知类型。                                            |
-| uris | Array&lt;string&gt;         | 是   | 否   | 所变更文件的uri集合，目前仅支持单条通知，后序支持多条通知。 |
+| type | [NotifyType](#notifytype10) | 否   | 否   | 变更的通知类型。                                            |
+| uris | Array&lt;string&gt;         | 否   | 否   | 所变更文件的uri集合，目前仅支持单条通知，后序支持多条通知。 |
 
 ## MoveResult<sup>11+</sup>
 
@@ -2677,9 +2679,9 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-| 名称      | 类型   | 只读 | 可写 | 说明                                                         |
+| 名称      | 类型   | 只读 | 可选 | 说明                                                         |
 | --------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| sourceUri | string | 是   | 否   | 源文件(夹) uri。                                               |
-| destUri   | string | 是   | 否   | 产生冲突的目标文件的 uri。如果非冲突导致的错误，则为空。     |
-| errCode   | number | 是   | 否   | 错误码。接口抛出错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。 |
-| errMsg    | string | 是   | 否   | 错误信息。                                                   |
+| sourceUri | string | 否   | 否   | 源文件(夹) uri。                                               |
+| destUri   | string | 否   | 否   | 产生冲突的目标文件的 uri。如果非冲突导致的错误，则为空。     |
+| errCode   | number | 否   | 否   | 错误码。接口抛出错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。 |
+| errMsg    | string | 否   | 否   | 错误信息。                                                   |

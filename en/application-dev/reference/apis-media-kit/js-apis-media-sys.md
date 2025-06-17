@@ -37,6 +37,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
+| 202  | Not system App. |
 | 5400101  | No memory. Return by callback. |
 
 **Example**
@@ -132,9 +133,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 class JsonData {
-  public choice: string = 'true'
-  public displayId: number | null = -1
-  public missionId: number | null = -1
+  public choice: string = 'true';
+  public displayId: number | null = -1;
+  public missionId: number | null = -1;
 }
 let sessionId: number = 0; // Use the ID of the session that starts the process.
 
@@ -184,6 +185,62 @@ try {
 } catch (err) {
   console.error(`getScreenCaptureMonitor failed, error message:${err.message}`);
 }
+```
+
+## media.createParallelSoundPool<sup>20+</sup>
+
+createParallelSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): Promise\<SoundPool>
+
+Creates a **SoundPool** instance. This API uses a promise to return the result.
+
+If a **SoundPool** instance created using [createSoundPool](js-apis-media.md#mediacreatesoundpool10) is used to play the same sound again, it stops the current audio and restarts the audio. However, if the instance is created using **createParallelSoundPool**, it keeps playing the first audio and starts the new one alongside it.
+
+**System capability**: SystemCapability.Multimedia.Media.SoundPool
+
+**Parameters**
+
+| Name  | Type                                           | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| maxStreams | number | Yes  | Maximum number of streams that can be played by the **SoundPool** instance. The value is an integer ranging from 1 to 32.|
+| audioRenderInfo | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)  | Yes  | Audio renderer parameters.|
+
+**Return value**
+
+| Type                                     | Description                                                        |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| Promise<[SoundPool](js-apis-inner-multimedia-soundPool.md)> | Promise used to return the result. If the operation is successful, a **SoundPool** instance is returned; otherwise, **null** is returned. The instance is used for loading and playback.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                     |
+| -------- | ----------------------------- |
+| 5400101  | No memory. Return by promise. |
+| 202| System API error. Return by promise. |
+
+**Example**
+
+```js
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags : 0
+}
+
+media.createParallelSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
+  if (soundpool_ != null) {
+    soundPool = soundpool_;
+    console.info('Succceeded in creating SoundPool');
+  } else {
+    console.error('Failed to create SoundPool');
+  }
+}, (error: BusinessError) => {
+  console.error(`soundpool catchCallback, error message:${error.message}`);
+});
 ```
 
 ## PixelMapParams<sup>11+</sup>
@@ -328,7 +385,7 @@ This API can be called after the [prepare()](js-apis-media.md#prepare9-3), [star
 
 | Type            | Description                            |
 | ---------------- | -------------------------------- |
-| Promise\<boolean> | Promise used to return the check result.|
+| Promise\<boolean> | Promise used to return the check result. The value **true** means that the device supports the hardware digital watermark, and **false** means the opposite.|
 
 **Example**
 
@@ -391,6 +448,60 @@ avRecorder.setWatermark(watermark, watermarkConfig).then(() => {
   console.error(`Failed to setWatermark and catch error is ${error.message}`);
 });
 ```
+
+### setMetadata<sup>18+</sup>
+setMetadata(metadata: Record\<string, string\>): void
+
+Sets custom metadata for the recording file of AVRecorder.
+
+This API can be called only after the [prepare()](js-apis-media.md#prepare9-3) event is successfully triggered and before the [stop()](js-apis-media.md#stop9-3) API is called.
+
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description                                                               |
+| -------- | -------------------- | ---- |-------------------------------------------------------------------|
+| metadata | [Record<string, string>]  | Yes  | Tag and value of the metadata in key-value pairs.<br>- The first string is the tag.<br>- The second string is the value.|
+
+**Return value**
+
+| Type           | Description       |
+| --------------- |-----------|
+| void | No result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message           |
+|-------|-----------------|
+| 202   | Not System App. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let meta : Record<string, string> = {
+   'com.openharmony.userdefine':'10',
+   'com.openharmony.userdefine2':'20'
+};
+
+avRecorder.setMetadata(meta);
+```
+
+## AVRecorderProfile<sup>9+</sup>
+
+Describes the audio and video recording profile.
+
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
+
+| Name            | Type                                        | Mandatory| Description                                                        |
+| ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| enableStableQualityMode<sup>18+</sup>            | boolean                        | No  | Whether to enable stable quality mode for video recording. This parameter is optional for video recording. The default value is **false**. If this parameter is set to **true**, the system will use a video encoding strategy designed to maintain stable quality.<br>**System API**: This is a system API.|
 
 ## VideoRecorder<sup>9+</sup>
 
@@ -1249,7 +1360,7 @@ A class that provides APIs to query and monitor the system screen recorder statu
 
 | Name              | Type                                  | Readable| Writable| Description            |
 | ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
-| isSystemScreenRecorderWorking<sup>18+</sup> | bool | Yes  | No  | Whether the system screen recorder is working.|
+| isSystemScreenRecorderWorking<sup>18+</sup> | boolean | Yes  | No  | Whether the system screen recorder is working.|
 
 ### on('systemScreenRecorder')<sup>18+</sup>
 
@@ -1330,3 +1441,17 @@ Enumerates the states available for the system screen recorder.
 | ------------------------ | --------------- | ------------------------------------------------------------ |
 | SCREENCAPTURE_STARTED       | 0   | The system screen recorder starts screen capture.                      |
 | SCREENCAPTURE_STOPPED        | 1    | The system screen recorder stops screen capture.|
+
+## enableDeviceLevelCapture<sup>20+</sup>
+
+Specifies whether to capture the entire screen or half of the screen when the foldable PC is in the folded state.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**System API**: This is a system API.
+
+**enableDeviceLevelCapture** is an optional parameter in the **AVScreenCaptureStrategy** API. Its default value is **false**.
+
+| Name                     | Type   | Mandatory| Description|
+| ------------------------ | ------- | ---- | ---- |
+| enableDeviceLevelCapture | boolean | No  | The value **true** means to capture the entire screen when the foldable PC is folded, and **false** means to capture half of the screen.|

@@ -5,15 +5,15 @@ ArkTS侧支持的基本数据类型：number、string、二进制类型数据、
 
 该模块提供以下关系型数据库相关的常用功能：
 
-- [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)：数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
-- [RdbStore](#rdbstore)：提供管理关系数据库（RDB）方法的接口。
-- [ResultSet](js-apis-data-relationalStore.md#resultset)：提供用户调用关系型数据库查询接口之后返回的结果集合。
+- [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)：数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
+- [RdbStore](arkts-apis-data-relationalStore-RdbStore.md#rdbstore)：提供管理关系数据库（RDB）方法的接口。
+- [ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)：提供用户调用关系型数据库查询接口之后返回的结果集合。
 
 > **说明：**
 > 
 > - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.data.relationalStore (关系型数据库)](js-apis-data-relationalStore.md)。
+> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.data.relationalStore (关系型数据库)](arkts-apis-data-relationalStore.md)。
 
 ## 导入模块
 
@@ -70,7 +70,8 @@ import { relationalStore } from '@kit.ArkData';
 ## RdbStore
 
 提供管理关系型数据库（RDB）的接口。
-在使用以下相关接口前，请使用[executeSql](js-apis-data-relationalStore.md#executesql)接口初始化数据库表结构和相关数据。
+
+在使用以下相关接口前，请使用[executeSql](arkts-apis-data-relationalStore-RdbStore.md#executesql)接口初始化数据库表结构和相关数据。
 
 ### update
 
@@ -89,7 +90,7 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | table      | string                                                       | 是   | 指定的目标表名。                                             |
-| values     | [ValuesBucket](js-apis-data-relationalStore.md#valuesbucket)                                | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
+| values     | [ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket)                                | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的更新条件。                |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 指定的callback回调方法。返回受影响的行数。                   |
 
@@ -102,10 +103,10 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 | 202       | Permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -182,7 +183,7 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | table      | string                                                       | 是   | 指定的目标表名。                                             |
-| values     | [ValuesBucket](js-apis-data-relationalStore.md#valuesbucket)                                | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
+| values     | [ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket)                                | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的更新条件。                |
 
 **返回值**：
@@ -200,10 +201,10 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 | 202       | Permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -291,10 +292,10 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callb
 | 202       | Permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -362,10 +363,10 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promi
 | 202       | Permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -416,7 +417,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, callba
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | table      | string                                                       | 是   | 指定的目标表名。                                            |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的查询条件。               |
-| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -427,7 +428,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, callba
 | 202       | Permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
 
 **示例：**
@@ -477,7 +478,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 | table      | string                                                       | 是   | 指定的目标表名。                                            |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的查询条件。               |
 | columns    | Array&lt;string&gt;                                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。            |
-| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -488,7 +489,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 | 202       | Permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
 
 **示例：**
@@ -543,7 +544,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 
 | 类型                                                    | 说明                                               |
 | ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
+| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -554,7 +555,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 | 202       | Permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
 
 **示例：**
@@ -594,7 +595,7 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 >
 > 从API version 18开始，手动执行端云同步时，设置谓词条件时新增支持指定资产下载能力。此时，同步模式需要设置为`relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST`。
 >
-> 谓词中支持使用主键（必填）和资产（可选）作为同步条件：选择资产作为同步条件时，谓词仅支持[equalTo](js-apis-data-relationalStore.md#equalto)；指定资产的数量较多时（最多支持指定50个资产），建议谓词中仅使用主键作为同步条件。
+> 谓词中支持使用主键（必填）和资产（可选）作为同步条件：选择资产作为同步条件时，谓词仅支持[equalTo](arkts-apis-data-relationalStore-RdbPredicates.md#equalto)；指定资产的数量较多时（最多支持指定50个资产），建议谓词中仅使用主键作为同步条件。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -604,9 +605,9 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 
 | 参数名         | 类型                             | 必填 | 说明                            |
 |-------------|--------------------------------| ---- |-------------------------------|
-| mode        | [SyncMode](js-apis-data-relationalStore.md#syncmode)          | 是   | 表示数据库的同步模式。                   |
-| predicates  | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)                  | 是   | 表示同步数据的谓词条件。                  |
-| progress    | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#progressdetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。           |
+| mode        | [SyncMode](arkts-apis-data-relationalStore-e.md#syncmode)          | 是   | 表示数据库的同步模式。                   |
+| predicates  | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)                  | 是   | 表示同步数据的谓词条件。                  |
+| progress    | Callback&lt;[ProgressDetails](arkts-apis-data-relationalStore-i.md#progressdetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。           |
 | callback    | AsyncCallback&lt;void&gt;      | 是   | 指定的callback回调函数，用于向调用者发送同步结果。 |
 
 **错误码：**
@@ -618,7 +619,7 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 | 202       | if permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type. 6.The callback must be a function.|
 | 801       | Capability not supported.  |
-| 14800014  | Already closed.      |
+| 14800014  | The RdbStore or ResultSet is already closed.      |
 
 **示例1：手动同步，同步模式为云端同步到本地设备**
 
@@ -677,7 +678,7 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 >
 > 从API version 18开始，手动执行端云同步时，设置谓词条件时新增支持指定资产下载能力。此时，同步模式需要设置为`relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST`。
 >
-> 谓词中支持使用主键（必填）和资产（可选）作为同步条件：选择资产作为同步条件时，谓词仅支持[equalTo](js-apis-data-relationalStore.md#equalto)；指定资产的数量较多时（最多支持指定50个资产），建议谓词中仅使用主键作为同步条件。
+> 谓词中支持使用主键（必填）和资产（可选）作为同步条件：选择资产作为同步条件时，谓词仅支持[equalTo](arkts-apis-data-relationalStore-RdbPredicates.md#equalto)；指定资产的数量较多时（最多支持指定50个资产），建议谓词中仅使用主键作为同步条件。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -687,9 +688,9 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 
 | 参数名        | 类型                              | 必填 | 说明                  |
 |------------|---------------------------------| ---- |---------------------|
-| mode       | [SyncMode](js-apis-data-relationalStore.md#syncmode)           | 是   | 表示数据库的同步模式。         |
-| predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)                   | 是   | 表示同步数据的谓词条件。                |
-| progress   | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#progressdetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。 |
+| mode       | [SyncMode](arkts-apis-data-relationalStore-e.md#syncmode)           | 是   | 表示数据库的同步模式。         |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)                   | 是   | 表示同步数据的谓词条件。                |
+| progress   | Callback&lt;[ProgressDetails](arkts-apis-data-relationalStore-i.md#progressdetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。 |
 
 **返回值**：
 
@@ -706,7 +707,7 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 | 202       | if permission verification failed, application which is not a system application uses system API.  |
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type. |
 | 801       | Capability not supported.       |
-| 14800014  | Already closed.      |
+| 14800014  | The RdbStore or ResultSet is already closed.      |
 
 **示例1：手动同步，同步模式为云端同步到本地设备**
 
@@ -767,14 +768,14 @@ querySharingResource(predicates: RdbPredicates, columns?: Array&lt;string&gt;): 
 
 | 参数名   | 类型                                                  | 必填 | 说明                                               |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
-| predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates) | 是   | 表示查询的谓词条件。    |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | 表示查询的谓词条件。    |
 | columns    | Array&lt;string&gt;      | 否   | 表示要查找的列字段名。此参数不填时，返回的结果集中只包含共享资源标识字段。 |
 
 **返回值：**
 
 | 参数名    | 说明                                               |
 | -------- | ------------------------------------------------- |
-| Promise&lt;[ResultSet](#resultset)&gt; | Promise对象，返回查询的结果集。   |
+| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | Promise对象，返回查询的结果集。   |
 
 **错误码：**
 
@@ -785,10 +786,10 @@ querySharingResource(predicates: RdbPredicates, columns?: Array&lt;string&gt;): 
 | 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s)! 2. The RdbStore must be not nullptr. 3. The predicates must be an RdbPredicates. 4. The columns must be a string array. |
 | 801       | Capability not supported.       |
 | 14800000  | Inner error.                      |
-| 14800011  | Database corrupted.           |
-| 14800014  | Already closed.                        |
+| 14800011  | Failed to open the database because it is corrupted.           |
+| 14800014  | The RdbStore or ResultSet is already closed.                        |
 | 14800015  | The database does not respond.          |
-| 14800021  | SQLite: Generic error.             |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.             |
 | 14800022  | SQLite: Callback routine requested an abort.          |
 | 14800023  | SQLite: Access permission denied.         |
 | 14800024  | SQLite: The database file is locked.         |
@@ -840,8 +841,8 @@ querySharingResource(predicates: RdbPredicates, callback: AsyncCallback&lt;Resul
 
 | 参数名   | 类型                                                  | 必填 | 说明                                               |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
-| predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)              | 是   | 表示查询的谓词条件。           |
-| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 回调函数。返回查询的结果集。 |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)              | 是   | 表示查询的谓词条件。           |
+| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | 是   | 回调函数。返回查询的结果集。 |
 
 **错误码：**
 
@@ -852,10 +853,10 @@ querySharingResource(predicates: RdbPredicates, callback: AsyncCallback&lt;Resul
 | 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s)! 2. The RdbStore must be not nullptr. 3. The predicates must be an RdbPredicates. 4. The columns must be a string array. |
 | 801       | Capability not supported.                 |
 | 14800000  | Inner error.          |
-| 14800011  | Database corrupted.       |
-| 14800014  | Already closed.      |
+| 14800011  | Failed to open the database because it is corrupted.       |
+| 14800014  | The RdbStore or ResultSet is already closed.      |
 | 14800015  | The database does not respond.        |
-| 14800021  | SQLite: Generic error.        |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.        |
 | 14800022  | SQLite: Callback routine requested an abort.         |
 | 14800023  | SQLite: Access permission denied.                    |
 | 14800024  | SQLite: The database file is locked.            |
@@ -908,9 +909,9 @@ querySharingResource(predicates: RdbPredicates, columns: Array&lt;string&gt;, ca
 
 | 参数名   | 类型                                                  | 必填 | 说明                                               |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
-| predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates) | 是   | 表示查询的谓词条件。           |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | 表示查询的谓词条件。           |
 | columns    | Array&lt;string&gt;              | 是   | 表示要查找的列字段名。           |
-| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt;  | 是   | 回调函数。返回查询的结果集。 |
+| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt;  | 是   | 回调函数。返回查询的结果集。 |
 
 **错误码：**
 
@@ -921,10 +922,10 @@ querySharingResource(predicates: RdbPredicates, columns: Array&lt;string&gt;, ca
 | 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s)! 2. The RdbStore must be not nullptr. 3. The predicates must be an RdbPredicates. 4. The columns must be a string array. |
 | 801       | Capability not supported.       |
 | 14800000  | Inner error.            |
-| 14800011  | Database corrupted.         |
-| 14800014  | Already closed.          |
+| 14800011  | Failed to open the database because it is corrupted.         |
+| 14800014  | The RdbStore or ResultSet is already closed.          |
 | 14800015  | The database does not respond.          |
-| 14800021  | SQLite: Generic error.           |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.           |
 | 14800022  | SQLite: Callback routine requested an abort.    |
 | 14800023  | SQLite: Access permission denied.     |
 | 14800024  | SQLite: The database file is locked.     |
@@ -1068,11 +1069,11 @@ restore(): Promise&lt;void&gt;
 |-----------| ------------------------------------------------------------ |
 | 202       | Permission verification failed, application which is not a system application uses system API. |
 | 14800000  | Inner error. |
-| 14800010  | Invalid database path. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800010  | Failed to open or delete the database by an invalid database path. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -1135,10 +1136,10 @@ getFloat32Array(columnIndex: number): Float32Array
 |-----------| ------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | The capability is not supported because the database is not a vector DB. |
-| 14800011  | Database corrupted. |
-| 14800013  | Column out of bounds. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800013  | Resultset is empty or column index is out of bounds. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |

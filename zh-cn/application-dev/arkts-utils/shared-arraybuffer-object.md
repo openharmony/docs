@@ -7,7 +7,7 @@ SharedArrayBuffer内部包含一块Native内存，其JS对象壳被分配在虚�
 
 ## 使用示例
 
-这里提供了一个简单示例，使用TaskPool传递一个Int32Array对象，具体实现如下：
+这里提供了一个示例，使用TaskPool传递Int32Array对象，实现如下：
 
 ```ts
 import { taskpool } from '@kit.ArkTS';
@@ -31,3 +31,4 @@ setTimeout(() => {
   Atomics.notify(int32, 0, 1);
 }, 1000);
 ```
+<!-- @[example_pass_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/CommunicationObjects/entry/src/main/ets/managers/SharedArrayBufferObject.ets) -->

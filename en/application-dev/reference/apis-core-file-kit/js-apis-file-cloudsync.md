@@ -89,8 +89,8 @@ Represents information about the download progress of a cloud file.
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | state | [State](#state11) | Yes  | File download state.|
-| processed | number | Yes  | Size of the data downloaded.|
-| size | number | Yes  | Size of the cloud file.|
+| processed | number | Yes  | Size of the downloaded data, in bytes. The value ranges from 0 to 9223372036854775807.|
+| size | number | Yes  | Size of the current cloud file, in bytes. The value ranges from 0 to 9223372036854775807.|
 | uri | string | Yes  | URI of the cloud file.|
 | error | [DownloadErrorType](#downloaderrortype11) | Yes  | Download error type.|
 
@@ -114,7 +114,6 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes:Incorrect parameter types. |
 
 **Example**
@@ -144,8 +143,6 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
@@ -173,7 +170,7 @@ Unregisters all listeners for the device-cloud sync progress.
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | event | string | Yes  | Event type. The value is **progress**, which indicates the sync progress event.|
-| callback | Callback\<[SyncProgress](#syncprogress12)> |  No  | Callback used to return the sync progress information.|
+| callback | Callback\<[SyncProgress](#syncprogress12)> |  No  | Callback used to return the sync progress. The default value is null.|
 
 **Error codes**
 
@@ -181,8 +178,6 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
@@ -220,8 +215,6 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes:Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 22400001  | Cloud status not ready. |
@@ -267,8 +260,6 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 22400001  | Cloud status not ready. |
@@ -312,8 +303,6 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes:Incorrect parameter types. |
 | 13600001  | IPC error. |
 
@@ -352,8 +341,6 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
@@ -392,8 +379,6 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes:Incorrect parameter types. |
 | 13600001  | IPC error. |
 
@@ -432,8 +417,6 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
@@ -583,6 +566,18 @@ Starts to download a file from the Drive Kit to the local device. This API uses 
 | --------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 13600001  | IPC error. |
+| 13900002 | No such file or directory. |
+| 13900025 | No space left on device. |
+| 14000002 | Invalid uri. |
+
 **Example**
 
   ```ts
@@ -607,18 +602,6 @@ Starts to download a file from the Drive Kit to the local device. This API uses 
     console.error("start download failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
-
-**Error codes**
-
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
-
-| ID                    | Error Message       |
-| ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 13600001  | IPC error. |
-| 13900002 | No such file or directory. |
-| 13900025 | No space left on device. |
-| 14000002 | Invalid uri. |
 
 ### start<sup>11+</sup>
 
@@ -789,7 +772,7 @@ Subscribes to the change of a file.
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | uri | string | Yes  | URI of the file to download.|
-| recursion | boolean | Yes  | Whether to subscribe to the change of the sub-folders and files of the given URI. The value **true** means to subscribe to the change of the sub-folders and files of the given URI; the value **false** means to subscribe to only the change of the given URI.|
+| recursion | boolean | Yes  | Whether to listen for the change of the URI, subfiles, and subdirectories. The value **true** means to listen for the change of the URI, subfiles, and subdirectories; the value **false** means to only listen for the change of the URI.|
 | callback | Callback&lt;[ChangeData](#changedata12)&gt; | Yes  | Callback used to return the changed data.|
 
 **Error codes**
@@ -798,7 +781,6 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13900001  | Operation not permitted. |
 | 13900002  | No such file or directory. |
@@ -811,7 +793,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   import { fileUri } from '@kit.CoreFileKit';
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
-  let onCallback1 = (changeData: ChangeData) => {
+  let onCallback1 = (changeData: cloudSync.ChangeData) => {
     if (changeData.type == cloudSync.NotifyType.NOTIFY_ADDED) {
       //file had added, do something
     } else if (changeData.type== cloudSync.NotifyType.NOTIFY_DELETED) {
@@ -820,7 +802,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   }
   cloudSync.registerChange(uri, false, onCallback1);
   // Unregister the listener.
-  cloudSync.unRegisterChange(uri);
+  cloudSync.unregisterChange(uri);
   ```
 
 ## cloudSync.unregisterChange<sup>12+</sup>
@@ -843,7 +825,6 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13900001  | Operation not permitted. |
 | 13900002  | No such file or directory. |
@@ -856,7 +837,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   import { fileUri } from '@kit.CoreFileKit';
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
-  let onCallback1 = (changeData: ChangeData) => {
+  let onCallback1 = (changeData: cloudSync.ChangeData) => {
     if (changeData.type == cloudSync.NotifyType.NOTIFY_ADDED) {
       //file had added, do something
     } else if (changeData.type== cloudSync.NotifyType.NOTIFY_DELETED) {
@@ -865,7 +846,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   }
   cloudSync.registerChange(uri, false, onCallback1);
   // Unregister the listener.
-  cloudSync.unRegisterChange(uri);
+  cloudSync.unregisterChange(uri);
   ```
 
 ## NotifyType<sup>12+</sup>
@@ -890,5 +871,5 @@ Represents the data change information.
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | type | [NotifyType](#notifytype12) | Yes  | Type of the data change.|
-| isDirectory | Array&lt;boolean&gt; | Yes  | Whether the URIs with data changed are of folders.|
+| isDirectory | Array&lt;boolean&gt; | Yes  | Whether the URIs with data changed are of directories. The value **true** means the URIs are of directories; the value **false** means the opposite.|
 | uris | Array&lt;string&gt; | Yes  | URIs of the files changed.|

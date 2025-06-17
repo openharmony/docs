@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 15开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 15开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## onFocusAxisEvent
 
@@ -20,7 +20,7 @@ onFocusAxisEvent(event: Callback\<FocusAxisEvent>): T
 
 | 参数名 | 类型                          | 必填 | 说明               |
 | ------ | ----------------------------- | ---- | ------------------ |
-| event  | [FocusAxisEvent](#focusaxisevent对象说明) | 是   | 获得FocusAxisEvent对象。 |
+| event  | Callback\<[FocusAxisEvent](#focusaxisevent对象说明)> | 是   | 获得FocusAxisEvent对象。 |
 
 **返回值：**
 

@@ -11,6 +11,7 @@ The **OhosImageSourceOps** struct defines the image source options. It is used i
 
 **Related module**: [Image](image.md)
 
+**Header file**: [image_source_mdk.h](image__source__mdk_8h.md)
 
 ## Summary
 

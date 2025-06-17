@@ -19,12 +19,12 @@ The **HapModuleInfo** module defines the HAP module information. A third-party a
 | labelId                           | number                                                       | Yes  | No  | ID of the module label.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | description                       | string                                                       | Yes  | No  | Module description.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | descriptionId                     | number                                                       | Yes  | No  | ID of the module description.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| mainElementName                   | string                                                       | Yes  | No  | Name of the main ability.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| mainElementName                   | string                                                       | Yes  | No  | Name of the UIAbility or ExtensionAbility that serves as the entry of the current module.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | abilitiesInfo                     | Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>         | Yes  | No  | Ability information. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_ABILITY** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | extensionAbilitiesInfo            | Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)> | Yes  | No  | ExtensionAbility information. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | metadata                          | Array\<[Metadata](js-apis-bundleManager-metadata.md)>               | Yes  | No  | Metadata of the ability. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_METADATA** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| deviceTypes                       | Array\<string>                                               | Yes  | No  | Types of devices where the module can run.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| installationFree                  | boolean                                                      | Yes  | No  | Whether installation-free is supported for the module. The value **true** means that installation-free is supported, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| deviceTypes                       | Array\<string>                                               | Yes  | No  | Types of devices that can run the module.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| installationFree                  | boolean                                                      | Yes  | No  | Whether the module supports the installation-free freature. Installation-free means that the module does not need to be explicitly installed through an app market. The value **true** means that the module supports installation-free, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | hashValue                         | string                                                       | Yes  | No  | Hash value of the module.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | type                              | [bundleManager.ModuleType](js-apis-bundleManager.md#moduletype)            | Yes  | No  | Type of the module.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | preloads                          | Array\<[PreloadItem](#preloaditem)>                          | Yes  | No  | Preloaded modules in the atomic service.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -32,27 +32,27 @@ The **HapModuleInfo** module defines the HAP module information. A third-party a
 | fileContextMenuConfig<sup>11+</sup>     | string                                                       | Yes  | No  | File menu configuration of the module. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_MENU** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | routerMap<sup>12+</sup>           | Array\<[RouterItem](#routeritem12)>                            | Yes  | No  | [Router table configuration of the module](../../quick-start/module-configuration-file.md#routermap). The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_ROUTER_MAP** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | codePath<sup>12+</sup>            | string                                                       | Yes  | No  | Installation path of the module.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| nativeLibraryPath<sup>12+</sup>     | string                                                       | Yes  | No  | Local library file path of a HAP module in the application.                   |
+| nativeLibraryPath<sup>12+</sup>     | string                                                       | Yes  | No  | Local library file path of the module in the application.                   |
 
 ## PreloadItem
 
 Describes the preloaded module information in the atomic service.
 
- **Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-|moduleName | string         | Yes  | No  | Name of the module automatically preloaded by the system.|
+|moduleName | string         | Yes  | No  | Module name.|
 
 ## Dependency
 
 Describes the information about the dynamic shared library on which the module depends.
 
- **Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name       | Type  | Read-Only| Optional| Description                  |
 | ----------- | ------ | ---- | ---- | ---------------------- |
@@ -64,9 +64,9 @@ Describes the information about the dynamic shared library on which the module d
 
 Describes the router table configuration of the module.
 
- **Atomic service API**: This API can be used in atomic services since API version 12.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name          | Type  | Read-Only| Optional| Description                  |
 | ------------- | ------ | ---- | ---- | ---------------------- |

@@ -108,7 +108,7 @@ let colorSpace: colorSpaceManager.ColorSpaceManager;
 try {
     colorSpace = colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB);
 } catch (err) {
-    console.log(`Failed to create SRGB colorSpace. Cause: ` + JSON.stringify(err));
+    console.error(`Failed to create SRGB colorSpace. Cause: ` + JSON.stringify(err));
 }
 ```
 
@@ -160,7 +160,7 @@ try {
     let gamma = 2.2;
     colorSpace = colorSpaceManager.create(primaries, gamma);
 } catch (err) {
-    console.log(`Failed to create colorSpace with customized primaries and gamma. Cause: ` + JSON.stringify(err));
+    console.error(`Failed to create colorSpace with customized primaries and gamma. Cause: ` + JSON.stringify(err));
 }
 ```
 
@@ -198,7 +198,7 @@ getColorSpaceName(): ColorSpace
 try {
     let spaceName = colorSpace.getColorSpaceName();
 } catch (err) {
-    console.log(`Fail to get colorSpace's name. Cause: ` + JSON.stringify(err));
+    console.error(`Fail to get colorSpace's name. Cause: ` + JSON.stringify(err));
 }
 ```
 
@@ -230,7 +230,7 @@ getWhitePoint(): Array\<number\>
 try {
     let point = colorSpace.getWhitePoint();
 } catch (err) {
-    console.log(`Failed to get white point. Cause: ` + JSON.stringify(err));
+    console.error(`Failed to get white point. Cause: ` + JSON.stringify(err));
 }
 ```
 
@@ -262,6 +262,6 @@ getGamma(): number
 try {
     let gamma = colorSpace.getGamma();
 } catch (err) {
-    console.log(`Failed to get gamma. Cause: ` + JSON.stringify(err));
+    console.error(`Failed to get gamma. Cause: ` + JSON.stringify(err));
 }
 ```

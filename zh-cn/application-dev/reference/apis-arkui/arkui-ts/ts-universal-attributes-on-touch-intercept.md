@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## onTouchIntercept
@@ -19,7 +19,7 @@ onTouchIntercept(callback: Callback<TouchEvent, HitTestMode>)
 
 | 参数名        | 参数类型                    | 必填  | 参数描述                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| callback      | Callback<[TouchEvent](ts-universal-events-touch.md#touchevent对象说明), [HitTestMode](ts-universal-attributes-hit-test-behavior.md#HitTestMode枚举说明)> | 是     |  给组件绑定自定义事件拦截回调，并使能在做触摸测试时回调此函数。 |
+| callback      | Callback<[TouchEvent](ts-universal-events-touch.md#touchevent对象说明), [HitTestMode](ts-universal-attributes-hit-test-behavior.md#hittestmode枚举说明)> | 是     |  给组件绑定自定义事件拦截回调，并使能在做触摸测试时回调此函数。通过返回值设置组件的[触摸碰撞测试模式](ts-universal-attributes-hit-test-behavior.md)。 |
 
 
 ## 示例
@@ -35,30 +35,37 @@ struct Index {
     return true;
   }
 
-  build(){
-    Row(){
-      Column(){
+  build() {
+    Row() {
+      Column() {
         Text("hello world")
           .backgroundColor(Color.Blue)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-          .onClick(()=>{
+          .onClick(() => {
             console.log("Text click");
           })
       }
       .width(400)
       .height(300)
       .backgroundColor(Color.Pink)
-      .onClick(()=>{
+      .onClick(() => {
         console.log("Column click");
       })
       // 调用onTouchIntercept修改该组件的HitTestMode属性
-      .onTouchIntercept((event : TouchEvent) => {
+      .onTouchIntercept((event: TouchEvent) => {
         console.log("OnTouchIntercept + " + JSON.stringify(event));
-        if (this.isPolygon(event)) {
-          return HitTestMode.None
+        // 使用touches时需要先校验是否为空
+        if (event && event.touches) {
+          let touches = event.touches;
+          for(let i = 0; touches[i] != null; i++) {
+            console.info('onTouchIntercept touches:', JSON.stringify(touches[i]));
+          }
         }
-        return HitTestMode.Default
+        if (this.isPolygon(event)) {
+          return HitTestMode.None;
+        }
+        return HitTestMode.Default;
       })
     }
     .width('100%')

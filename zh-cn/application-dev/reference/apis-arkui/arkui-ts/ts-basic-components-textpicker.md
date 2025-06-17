@@ -4,7 +4,9 @@
 
 >  **说明：**
 >
->  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 该组件不建议开发者在动效过程中修改属性数据。
 
 
 ## 子组件
@@ -36,10 +38,10 @@ TextPicker(options?: TextPickerOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| range | string[]&nbsp;\|&nbsp;string[] []<sup>10+</sup> \| [Resource](ts-types.md#resource类型)&nbsp;\|<br/>[TextPickerRangeContent](#textpickerrangecontent10对象说明)[]<sup>10+</sup>&nbsp;\|&nbsp;[TextCascadePickerRangeContent](#textcascadepickerrangecontent10对象说明)[]<sup>10+</sup> | 是 | 选择器的数据选择列表。不可设置为空数组，若设置为空数组，则不显示；若动态变化为空数组，则保持当前正常值显示。<br/>**说明**：单列数据选择器使用string[]，Resource，TextPickerRangeContent[]类型。<br/>多列数据选择器使用string[][]类型。 <br/>多列联动数据选择器使用TextCascadePickerRangeContent[]类型。<br/>Resource类型只支持[strarray.json](../../../quick-start/resource-categories-and-access.md#资源组目录)。<br>range的类型及列数不可以动态修改。|
+| range | string[]&nbsp;\|&nbsp;string[] []<sup>10+</sup> \| [Resource](ts-types.md#resource)&nbsp;\|<br/>[TextPickerRangeContent](#textpickerrangecontent10对象说明)[]<sup>10+</sup>&nbsp;\|&nbsp;[TextCascadePickerRangeContent](#textcascadepickerrangecontent10对象说明)[]<sup>10+</sup> | 是 | 选择器的数据选择列表。不可设置为空数组，若设置为空数组，则不显示；若动态变化为空数组，则保持当前正常值显示。<br/>**说明**：单列数据选择器使用string[]，Resource，TextPickerRangeContent[]类型。<br/>多列数据选择器使用string[][]类型。 <br/>多列联动数据选择器使用TextCascadePickerRangeContent[]类型。<br/>Resource类型只支持[strarray.json](../../../quick-start/resource-categories-and-access.md#资源组目录)。<br>range的类型及列数不可以动态修改。|
 | selected | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 否 | 设置默认选中项在数组中的索引值，索引从0开始。<br/>默认值：0 <br/>**说明**：单列数据选择器使用number类型。<br/>多列、多列联动数据选择器使用number[]类型。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。|
-| value | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 否 | 设置默认选中项的值，优先级低于selected。<br/>默认值：第一个元素值<br/>**说明**：只有显示文本列表时该值有效。显示图片或图片加文本的列表时，该值无效。 <br/>单列数据选择器使用string类型。<br/>多列、多列联动数据选择器使用string[]类型。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。|
-| columnWidths<sup>18+</sup> | LengthMetrics[] | 否 | 设置每一个选择项列宽。<br/>默认值：每一个选择项列宽相等<br/>**说明**：如果文本长度大于列宽时，文本被截断。 |
+| value | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)[] | 否 | 设置默认选中项的值，优先级低于selected。<br/>默认值：第一个元素值<br/>从API version 20开始，支持Resource类型。<br/> **说明**：只有显示文本列表时该值有效。显示图片或图片加文本的列表时，该值无效。 <br/>单列数据选择器使用[ResourceStr](ts-types.md#resourcestr)类型。<br/>多列、多列联动数据选择器使用[ResourceStr](ts-types.md#resourcestr)[]类型。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。|
+| columnWidths<sup>18+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)[] | 否 | 设置每一个选择项列宽。<br/>默认值：每一个选择项列宽相等。<br/>**说明**：如果文本长度大于列宽时，文本被截断。<br/>支持Undefined和Null，不支持Undefined[]和Null[]。 |
 
 ## TextPickerRangeContent<sup>10+</sup>对象说明
 
@@ -71,8 +73,8 @@ TextPicker(options?: TextPickerOptions)
 | 名称        | 类型                                 | 必填 | 说明                                                         |
 | ----------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | strokeWidth | [Dimension](ts-types.md#dimension10) | 否   | 分割线的线宽（默认单位vp），也可指定单位为px，不支持"百分比"类型。<br/>取值范围：strokeWidth小于0取默认值，最大不得超过列高的一半。<br/>默认值：2.0px |
-| startMargin | [Dimension](ts-types.md#dimension10) | 否   | 分割线与TextPicker侧边起始端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。<br/>取值范围：startMargin小于0无效，最大不得超过TextPicker列宽。<br/>默认值：0 |
-| endMargin   | [Dimension](ts-types.md#dimension10) | 否   | 分割线与TextPicker侧边结束端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。<br/>取值范围：startMargin小于0无效，最大不得超过TextPicker列宽。<br/>默认值：0 |
+| startMargin | [Dimension](ts-types.md#dimension10) | 否   | 分割线与TextPicker侧边起始端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。<br/>取值范围：startMargin小于0时无效，最大值不得超过TextPicker列宽。<br/>默认值：0 |
+| endMargin   | [Dimension](ts-types.md#dimension10) | 否   | 分割线与TextPicker侧边结束端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。<br/>取值范围：endMargin小于0时无效，最大值不得超过TextPicker列宽。<br/>默认值：0 |
 | color       | [ResourceColor](ts-types.md#resourcecolor)  | 否   | 分割线的颜色。<br/>默认值：'#33000000'
 
 ## 属性
@@ -93,7 +95,7 @@ defaultPickerItemHeight(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                   |
 | ------ | -------------------------- | ---- | ---------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | Picker各选择项的高度。number类型取值范围：[0, +∞]，string类型仅支持number类型取值的字符串形式，例如"56"。<br />默认值：选中项56vp，非选中项36vp。<br />**说明：**<br />设置该参数后，选中项与非选中项的高度均为所设置的值。 |
+| value  | number&nbsp;\|&nbsp;string | 是   | Picker各选择项的高度。number类型取值范围：[0, +∞)，string类型仅支持number类型取值的字符串形式，例如"56"。<br />默认值：选中项56vp，非选中项36vp。<br />**说明：**<br />设置该参数后，选中项与非选中项的高度均为所设置的值。 |
 
 ### defaultPickerItemHeight<sup>18+</sup>
 
@@ -109,13 +111,13 @@ defaultPickerItemHeight(height: Optional\<number | string>)
 
 | 参数名 | 类型                       | 必填 | 说明                   |
 | ------ | -------------------------- | ---- | ---------------------- |
-| height  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;string> | 是   | Picker各选择项的高度。number类型取值范围：[0, +∞]，string类型仅支持number类型取值的字符串形式，例如"56"。<br/>默认值：选中项56vp，非选中项36vp。<br />**说明：**<br />设置该参数后，选中项与非选中项的高度均为所设置的值。<br/>当height的值为undefined时，维持上次取值。 |
+| height  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;string> | 是   | Picker各选择项的高度。number类型取值范围：[0, +∞)，string类型仅支持number类型取值的字符串形式，例如"56"。<br/>默认值：选中项56vp，非选中项36vp。<br />**说明：**<br />设置该参数后，选中项与非选中项的高度均为所设置的值。<br/>当height的值为undefined时，维持上次取值。 |
 
 ### disappearTextStyle<sup>10+</sup>
 
 disappearTextStyle(value: PickerTextStyle)
 
-设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。
+设置所有选项中最上和最下两个选项的文本颜色、字号和字体粗细。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -179,7 +181,7 @@ textStyle(style: Optional\<PickerTextStyle>)
 
 selectedTextStyle(value: PickerTextStyle)
 
-设置选中项的文本颜色、字号、字体粗细。
+设置选中项的文本颜色、字号、字体粗细。Wearable设备不支持设置该属性。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -221,7 +223,7 @@ selectedIndex(value: number | number[])
 
 | 参数名 | 类型                         | 必填 | 说明                         |
 | ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | number&nbsp;\|&nbsp;number[] | 是   | 默认选中项在数组中的索引值，索引从0开始。<br/>默认值：0 <br/>当value的值为undefined时，默认值与[options](#textpickeroptions对象说明)中的selected值保持一致，如果[options](#textpickeroptions对象说明)中的selected值为undefined，则默认值为0。<br/> |
+| value  | number&nbsp;\|&nbsp;number[] | 是   | 默认选中项在数组中的索引值，索引从0开始。<br/>默认值：0 <br/>当value的值为undefined时，默认值与[options](#textpickeroptions对象说明)中的selected值保持一致。如果[options](#textpickeroptions对象说明)中的selected值为undefined，则默认值为0。<br/> |
 
 ### selectedIndex<sup>18+</sup>
 
@@ -310,7 +312,7 @@ startMargin + endMargin 超过组件宽度后startMargin和endMargin会被置0�
 
 gradientHeight(value: Dimension)
 
-设置渐隐效果高度，不设置该属性则显示默认渐隐效果。
+设置渐隐效果的高度。若未设置该属性，则显示默认渐隐效果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -338,10 +340,6 @@ gradientHeight(height: Optional\<Dimension>)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | height  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Dimension](ts-types.md#dimension10)> | 是   | 内容区上下边缘的渐隐高度（支持百分比，100%为TextPicker高度的一半即最大值），设置为0时不显示渐隐效果，负数等非法值显示默认渐隐效果。默认值为36vp。<br/>当height的值为undefined时，默认值为36vp。 |
 
-> **说明：**
->
-> 该组件不建议开发者在动效过程中修改属性数据。
-
 ### disableTextStyleAnimation<sup>15+</sup>
 
 disableTextStyleAnimation(disabled: boolean)
@@ -362,7 +360,7 @@ disableTextStyleAnimation(disabled: boolean)
 
 defaultTextStyle(style: TextPickerTextStyle)
 
-设置关闭滑动过程中文本样式变化动效时，各个选项文本的样式。
+设置关闭滑动过程中文本样式变化动效时，各个选项文本的样式。仅当[disableTextStyleAnimation](#disabletextstyleanimation15)为true时生效。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -372,11 +370,7 @@ defaultTextStyle(style: TextPickerTextStyle)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [TextPickerTextStyle](#textpickertextstyle15类型说明) | 是   | 设置关闭滑动过程中文本样式变化动效时的各个选项文本的样式，仅当disableTextStyleAnimation为true时生效。<br/>默认值：与[Text](ts-basic-components-text.md)组件默认值相同。 |
-
-> **说明：**
->
-> 该组件不建议开发者在动效过程中修改属性数据。
+| style  | [TextPickerTextStyle](#textpickertextstyle15类型说明) | 是   | 设置关闭滑动过程中文本样式变化动效时的各个选项文本的样式。<br/>默认值：与[Text](ts-basic-components-text.md)组件默认值相同。 |
 
 ### enableHapticFeedback<sup>18+</sup>
 
@@ -418,7 +412,20 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 >  **说明：**
 >
->  用于穿戴设备圆形屏幕使用。组件响应[表冠事件](ts-universal-events-crown.md)，需要先获取焦点。
+>  用于圆形屏幕的穿戴设备。组件响应[表冠事件](ts-universal-events-crown.md)，需要先获取焦点。
+
+### selectedBackgroundStyle<sup>20+</sup>
+selectedBackgroundStyle(style: Optional\<PickerBackgroundStyle>)
+
+设置选中项的背景样式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名   | 类型                                     | 必填   | 说明                      |
+| ----- | ---------------------------------------- | ---- | ------------------------- |
+| style | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerBackgroundStyle](#pickerbackgroundstyle20)> | 是    | 选中项背景的颜色和边框圆角半径，多列模式时会同时设置所有列的选中项背景的颜色和圆角半径。<br/>默认值：<br/>{ <br/>color: '#0C182431'<br/>borderRadius: { value:24 unit:1 }<br/>}|
 
 ## 事件
 
@@ -428,7 +435,7 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 onChange(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[],&nbsp;index:&nbsp;number&nbsp;\|&nbsp;number[])&nbsp;=&gt;&nbsp;void)
 
-滑动选中TextPicker文本内容后，触发该回调。当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
+滑动TextPicker文本内容后，选项归位至选中项位置时，触发该回调。当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -446,6 +453,8 @@ onChange(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[],&nbsp;index:&n
 onChange(callback: Optional\<OnTextPickerChangeCallback>)
 
 滑动TextPicker文本内容后，选项归位至选中项位置时，触发该回调。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
+
+回调会在滑动动画结束后触发，如果需要快速获取索引值变化，建议使用[onEnterSelectedArea](#onenterselectedarea18)接口。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -497,7 +506,7 @@ onScrollStop(callback: Optional\<TextPickerScrollStopCallback>)
 
 onEnterSelectedArea(callback: TextPickerEnterSelectedAreaCallback)
 
-滑动TextPicker过程中，选项进入分割线区域内，触发该回调。
+滑动[TextPicker](#textpicker)过程中，选项进入分割线区域内，触发该回调。
 
 与onChange事件的差别在于，该事件的触发时机早于onChange事件，当当前滑动列滑动距离超过选中项高度的一半时，选项此时已经进入分割线区域内，会触发该事件。
 
@@ -550,7 +559,7 @@ onCancel(callback: () => void)
 | ----- | ---------------------------------------- | ---- | ------------------------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否    | 文本颜色。                     |
 | font  | [Font](ts-types.md#font)                 | 否    | 文本样式。 |
-| minFontSize  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 文本最小显示字号，与maxFontSize配合使用，当设置minFontSize与maxFontSize时，font中的size设置不生效，默认最大行数为1，默认自适应高度方式为MIN_FONT_SIZE_FIRST。                     |
+| minFontSize  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 文本最小显示字号，与maxFontSize配合使用。设置minFontSize与maxFontSize时，font中的size不生效。默认最大行数为1，自适应高度方式为MIN_FONT_SIZE_FIRST。                     |
 | maxFontSize  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 文本最大显示字号。                     |
 |  overflow   |   [TextOverflow](ts-appendix-enums.md#textoverflow) | 否    | 文本截断方式，设置为MARQUEE时不生效。                     |
 
@@ -558,7 +567,7 @@ onCancel(callback: () => void)
 
 type OnTextPickerChangeCallback = (value: string | string[], index: number | number[]) => void
 
-滑动选中TextPicker文本内容后，触发该回调。当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
+滑动选中[TextPicker](#textpicker)文本内容后，触发该回调。当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -598,7 +607,7 @@ type TextPickerScrollStopCallback = (value: string | string[], index: number | n
 
 type TextPickerEnterSelectedAreaCallback = (value: string | string[], index: number | number[]) => void
 
-滑动过程中选项进入分割线区域内，触发该回调。
+滑动[TextPicker](#textpicker)过程中，选项进入分割线区域内，触发该回调。
 
 在多列联动场景中，不建议使用该回调，由于该回调标识的是滑动过程中选项进入分割线区域内的节点，而跟随变化的选项并不涉及滑动，因此，回调的返回值中，仅当前滑动列的值会正常变化，其余未滑动列的值保持不变。
 
@@ -615,6 +624,20 @@ type TextPickerEnterSelectedAreaCallback = (value: string | string[], index: num
 | value  | string&nbsp;\|&nbsp;string[] | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
 | index  | number&nbsp;\|&nbsp;number[] | 是   | 当前选中项的索引值，索引从0开始。多列的情况，index为数组类型。 |
 
+## PickerBackgroundStyle<sup>20+</sup>
+
+选择器选项背景样式，包括选项背景颜色和选项边框圆角半径。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                              |
+| ------ | ------------------------------------- | ---- | ------------------------------------------------- |
+| color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 选项背景颜色，默认值为'#0C182431'。   |
+| borderRadius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) &nbsp;\|&nbsp; [BorderRadiuses](ts-types.md#borderradiuses9) &nbsp;\|&nbsp; [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | 否   | 选项边框圆角半径。LengthMetrics类型的value参数同时作用于四个圆角半径大小，unit参数用于设置单位；BorderRadiuses类型可以设置四个不同值的圆角半径，所有单位固定为VP。LocalizedBorderRadiuses类型可以设置四个不同值的圆角半径，并且可以单独设置每个圆角的单位。默认值为{ value:24 unit:1 }，即四个圆角半径均为24VP。 |
 ## 示例
 
 ### 示例1（设置选择器列数）
@@ -623,19 +646,19 @@ type TextPickerEnterSelectedAreaCallback = (value: string | string[], index: num
 
 ```ts
 // xxx.ets
-import { LengthMetrics } from '@kit.ArkUI'
+import { LengthMetrics } from '@kit.ArkUI';
 class bottom {
-  bottom:number = 50
+  bottom:number = 50;
 }
-let bott:bottom = new bottom()
+let bott:bottom = new bottom();
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private apfruits: string[] = ['apple1', 'apple2', 'apple3', 'apple4']
-  private orfruits: string[] = ['orange1', 'orange2', 'orange3', 'orange4']
-  private pefruits: string[] = ['peach1', 'peach2', 'peach3', 'peach4']
-  private multi: string[][] = [this.apfruits, this.orfruits, this.pefruits]
+  private select: number = 1;
+  private apfruits: string[] = ['apple1', 'apple2', 'apple3', 'apple4'];
+  private orfruits: string[] = ['orange1', 'orange2', 'orange3', 'orange4'];
+  private pefruits: string[] = ['peach1', 'peach2', 'peach3', 'peach4'];
+  private multi: string[][] = [this.apfruits, this.orfruits, this.pefruits];
   private cascade: TextCascadePickerRangeContent[] = [
     {
       text: '辽宁省',
@@ -652,56 +675,56 @@ struct TextPickerExample {
       children: [{ text: '哈尔滨市', children: [{ text: '道里区' }, { text: '道外区' }, { text: '南岗区' }] },
         { text: '牡丹江市', children: [{ text: '东安区' }, { text: '西安区' }, { text: '爱民区' }] }]
     }
-  ]
+  ];
   private singleColumnWidths: LengthMetrics[] = [
     LengthMetrics.percent(50)
-  ]
+  ];
 
   private multipleColumnWidths: LengthMetrics[] = [
     LengthMetrics.vp(100),
     LengthMetrics.vp(200),
     LengthMetrics.vp(100)
-  ]
+  ];
 
   private cascadeColumnWidths: LengthMetrics[] = [
     LengthMetrics.percent(20),
     LengthMetrics.percent(30),
     LengthMetrics.percent(50)
-  ]
+  ];
   build() {
     Column() {
 
       TextPicker({ range: this.apfruits, selected: this.select, columnWidths: this.singleColumnWidths })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         }).margin(bott)
         .onEnterSelectedArea((value: string | string[], index: number | number[]) => {
-          console.info('Picker item enter selected area, value: ' + value + ', index: ' + index)
+          console.info('Picker item enter selected area, value: ' + value + ', index: ' + index);
         })
 
       TextPicker({ range: this.multi, columnWidths: this.multipleColumnWidths })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('TextPicker 多列:onChange ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+          console.info('TextPicker 多列:onChange ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index));
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('TextPicker 多列:onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+          console.info('TextPicker 多列:onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index));
         }).margin(bott)
         .onEnterSelectedArea((value: string | string[], index: number | number[]) => {
-          console.info('TextPicker 多列:onEnterSelectedArea ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+          console.info('TextPicker 多列:onEnterSelectedArea ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index));
         })
 
       TextPicker({ range: this.cascade, columnWidths: this.cascadeColumnWidths })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('TextPicker 多列联动:onChange ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+          console.info('TextPicker 多列联动:onChange ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index));
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('TextPicker 多列联动:onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+          console.info('TextPicker 多列联动:onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index));
         })
         .onEnterSelectedArea((value: string | string[], index: number | number[]) => {
-          console.info('TextPicker 多列联动:onEnterSelectedArea ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+          console.info('TextPicker 多列联动:onEnterSelectedArea ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index));
         })
     }
   }
@@ -719,8 +742,8 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  private select: number = 1;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
@@ -730,10 +753,10 @@ struct TextPickerExample {
         value: this.fruits[this.select]
       })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
         .disappearTextStyle({ color: Color.Red, font: { size: 15, weight: FontWeight.Lighter } })
         .textStyle({ color: Color.Black, font: { size: 20, weight: FontWeight.Normal } })
@@ -757,17 +780,17 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  private select: number = 1;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
@@ -788,17 +811,17 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  private select: number = 1;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
@@ -824,17 +847,17 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  private select: number = 1;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
@@ -856,18 +879,18 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  private select: number = 1;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: this.select })
         .defaultPickerItemHeight(60)
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
     }.width('100%').height('100%')
   }
@@ -879,25 +902,25 @@ struct TextPickerExample {
 
 ### 示例7（设置循环滚动）
 
-该示例使用canLoop设置TextPicker是否循环滚动。
+该示例通过配置canLoop设置TextPicker是否循环滚动。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct TextPickerExample {
-  @State isLoop: boolean = false
-  private select: number = 1
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  @State isLoop: boolean = false;
+  private select: number = 1;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
         .canLoop(this.isLoop)
 
@@ -906,7 +929,7 @@ struct TextPickerExample {
 
         Toggle({ type: ToggleType.Switch, isOn: false })
           .onChange((isOn: boolean) => {
-            this.isLoop = isOn
+            this.isLoop = isOn;
           })
       }.position({ x: '60%', y: '40%' })
 
@@ -926,17 +949,17 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: 1 })
         .selectedIndex(2)
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
     }.width('100%').height('100%')
   }
@@ -947,15 +970,15 @@ struct TextPickerExample {
 
 ### 示例9（设置禁用文本样式变化动效与对应文本样式）
 
-该示例通过配置disableTextStyleAnimation、defaultTextStyle实现文本选择器禁用文本样式变化动效与此时的文本样式。
+该示例通过配置disableTextStyleAnimation、defaultTextStyle实现文本选择器禁用文本样式变化动效与此时的文本样式设置。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private fruits: string[] = ['AAAAA', 'BBBBBBBBBBBBB', 'CCCC', 'DDDDDDDD', 'EEE']
+  private select: number = 1;
+  private fruits: string[] = ['AAAAA', 'BBBBBBBBBBBBB', 'CCCC', 'DDDDDDDD', 'EEE'];
 
   build() {
     Column() {
@@ -979,3 +1002,65 @@ struct TextPickerExample {
 ```
 
 ![textpicker](figures/TextPickerDemo9.jpeg)
+
+### 示例10（设置选中项背景样式）
+
+该示例通过配置selectedBackgroundStyle实现文本选择器选中项的背景样式。
+
+```ts
+// xxx.ets
+import { TextPickerModifier } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct TextPickerExample {
+  private showText1: string [] =
+    ['Text1', 'Text1', 'Text1', 'Text1']
+  private showText2: string[] [] =
+    [
+      ['Text2', 'Text2', 'Text2', 'Text2'],
+      ['Text3', 'Text3', 'Text3', 'Text3']
+    ]
+  private textPickerModifier: TextPickerModifier = new TextPickerModifier()
+    .selectedBackgroundStyle({
+      borderRadius: {
+        topLeft:8,
+        topRight:8,
+        bottomLeft:8,
+        bottomRight:8
+      },
+      color: "#FFFFEEF6"
+    })
+  build() {
+    Column() {
+      Row() {
+        TextPicker({ range: this.showText1 })
+          .selectedBackgroundStyle({
+            color:"#FFD5D5D5",
+            borderRadius: { value:0, unit :1 }
+          })
+        Column()
+          .width("10%")
+        TextPicker({ range: this.showText1 })
+          .selectedBackgroundStyle({
+            color:"#FFE3F8F9",
+            borderRadius: {
+              topStart: { value:5, unit:1 },
+              topEnd: { value:10, unit:1 },
+              bottomStart: { value:15, unit:1 },
+              bottomEnd: { value:20, unit:1 },
+            }
+          })
+      }
+      Row()
+        .height("10%")
+      Row() {
+        TextPicker({ range: this.showText2 })
+          .attributeModifier(this.textPickerModifier)
+      }
+    }.height('100%')
+  }
+}
+```
+
+![textpicker](figures/TextPickerDemo10.gif)

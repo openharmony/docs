@@ -1,6 +1,6 @@
 # @ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)
 
-UIExtensionContentSession是[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)加载界面内容时创建的实例对象，当UIExtensionComponent控件拉起指定的UIExtensionAbility时，UIExtensionAbility会创建UIExtensionContentSession对象，并通过[onSessionCreate](js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate)回调传递给开发者。一个UIExtensionComponent控件对应一个UIExtensionContentSession对象，提供界面加载，结果通知等方法。每个UIExtensionAbility的UIExtensionContentSession之间互不影响，可以各自进行操作。
+UIExtensionContentSession是[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)加载界面内容时创建的实例对象，当UIExtensionComponent控件拉起指定的UIExtensionAbility时，UIExtensionAbility会创建UIExtensionContentSession对象，并通过[onSessionCreate](js-apis-app-ability-uiExtensionAbility.md#onsessioncreate)回调传递给开发者。一个UIExtensionComponent控件对应一个UIExtensionContentSession对象，提供界面加载，结果通知等方法。每个UIExtensionAbility的UIExtensionContentSession之间互不影响，可以各自进行操作。
 
 > **说明：**
 >
@@ -14,7 +14,9 @@ UIExtensionContentSession是[UIExtensionAbility](js-apis-app-ability-uiExtension
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 ```
 
-## UIExtensionContentSession.loadContent
+## UIExtensionContentSession
+
+### loadContent
 
 loadContent(path: string, storage?: LocalStorage): void
 
@@ -41,9 +43,10 @@ loadContent(path: string, storage?: LocalStorage): void
 **示例：**
 
 ```ts
-import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { UIExtensionContentSession, ShareExtensionAbility, Want } from '@kit.AbilityKit';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   // ...
 
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
@@ -56,11 +59,11 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.loadContentByName<sup>18+</sup>
+### loadContentByName<sup>18+</sup>
 
 loadContentByName(name: string, storage?: LocalStorage): void
 
-为[UIExtensionAbility](./js-apis-app-ability-uiExtensionAbility.md)加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，支持通过[LocalStorage](../../ui/state-management/arkts-localstorage.md)传递状态属性给被加载的页面。该接口用于开发者在UIExtensionAbility的[onSessionCreate](./js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate)生命周期加载命名路由页面。
+为[UIExtensionAbility](./js-apis-app-ability-uiExtensionAbility.md)加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，支持通过[LocalStorage](../../ui/state-management/arkts-localstorage.md)传递状态属性给被加载的页面。该接口用于开发者在UIExtensionAbility的[onSessionCreate](./js-apis-app-ability-uiExtensionAbility.md#onsessioncreate)生命周期加载命名路由页面。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -73,22 +76,22 @@ loadContentByName(name: string, storage?: LocalStorage): void
 
 **错误码：**
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------ | ------ |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
 
 **示例：**
 
 UIExtensionAbility的实现：
 ```ts
-import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { UIExtensionContentSession, ShareExtensionAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import './pages/UIExtensionPage'; // 导入命名路由页面，示例代码以“./pages/UIExtensionPage.ets”文件为例，在实际代码开发过程中修改为真实路径和文件名称。
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   // 其他生命周期和实现
 
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
@@ -118,7 +121,7 @@ import { UIExtensionContentSession } from '@kit.AbilityKit';
 @Component
 struct UIExtensionPage {
   @State message: string = 'Hello world';
-  storage: LocalStorage | undefined = LocalStorage.getShared();
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined = this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
@@ -135,7 +138,7 @@ struct UIExtensionPage {
 }
 ```
 
-## UIExtensionContentSession.terminateSelf
+### terminateSelf
 
 terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
@@ -163,13 +166,12 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
@@ -180,10 +182,10 @@ struct Index {
               console.error(`Failed to terminate self, code: ${err.code}, msg: ${err.message}`);
               return;
             }
-            console.info(`Successed in terminating self.`);
+            console.info(`Succeeded in terminating self.`);
           });
 
-          storage.clear();
+          this.storage?.clear();
         })
     }
     .height('100%')
@@ -192,7 +194,7 @@ struct Index {
 }
 ```
 
-## UIExtensionContentSession.terminateSelf
+### terminateSelf
 
 terminateSelf(): Promise&lt;void&gt;
 
@@ -212,13 +214,12 @@ terminateSelf(): Promise&lt;void&gt;
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
@@ -226,13 +227,13 @@ struct Index {
         .onClick(() => {
           this.session?.terminateSelf()
             .then(() => {
-              console.info(`Successed in terminating self.`);
+              console.info(`Succeeded in terminating self.`);
             })
             .catch((err: BusinessError) => {
               console.error(`Failed to terminate self, code: ${err.code}, msg: ${err.message}`);
             });
 
-          storage.clear();
+          this.storage?.clear();
         })
     }
     .height('100%')
@@ -241,7 +242,7 @@ struct Index {
 }
 ```
 
-## UIExtensionContentSession.terminateSelfWithResult
+### terminateSelfWithResult
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void
 
@@ -270,13 +271,12 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 import { UIExtensionContentSession, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
@@ -297,10 +297,10 @@ struct Index {
               console.error(`Failed to terminate self with result, code: ${err.code}, msg: ${err.message}`);
               return;
             }
-            console.info(`Successed in terminating self with result.`);
+            console.info(`Succeeded in terminating self with result.`);
           });
 
-          storage.clear();
+          this.storage?.clear();
         })
     }
     .height('100%')
@@ -309,7 +309,7 @@ struct Index {
 }
 ```
 
-## UIExtensionContentSession.terminateSelfWithResult
+### terminateSelfWithResult
 
 terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
@@ -343,13 +343,12 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 import { UIExtensionContentSession, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
@@ -367,13 +366,13 @@ struct Index {
 
           this.session?.terminateSelfWithResult(abilityResult)
             .then(() => {
-              console.info(`Successed in terminating self with result.`);
+              console.info(`Succeeded in terminating self with result.`);
             })
             .catch((err: BusinessError) => {
               console.error(`Failed to terminate self with result, code: ${err.code}, msg: ${err.message}`);
             });
 
-          storage.clear();
+          this.storage?.clear();
         })
     }
     .height('100%')
@@ -382,7 +381,7 @@ struct Index {
 }
 ```
 
-## UIExtensionContentSession.setWindowPrivacyMode
+### setWindowPrivacyMode
 
 setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
@@ -416,10 +415,11 @@ setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { UIExtensionContentSession, ShareExtensionAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   // ...
 
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
@@ -427,7 +427,7 @@ export default class UIExtAbility extends UIExtensionAbility {
     try {
       session.setWindowPrivacyMode(isPrivacyMode)
         .then(() => {
-          console.info(`Successed in setting window to privacy mode.`);
+          console.info(`Succeeded in setting window to privacy mode.`);
         })
         .catch((err: BusinessError) => {
           console.error(`Failed to set window to privacy mode, code: ${err.code}, msg: ${err.message}`);
@@ -443,7 +443,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.setWindowPrivacyMode
+### setWindowPrivacyMode
 
 setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -472,10 +472,11 @@ setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;
 **示例：**
 
 ```ts
-import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { UIExtensionContentSession, ShareExtensionAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   // ...
 
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
@@ -486,7 +487,7 @@ export default class UIExtAbility extends UIExtensionAbility {
           console.error(`Failed to set window to privacy mode, code: ${err.code}, msg: ${err.message}`);
           return;
         }
-        console.info(`Successed in setting window to privacy mode.`);
+        console.info(`Succeeded in setting window to privacy mode.`);
       });
     } catch (e) {
       let code = (e as BusinessError).code;
@@ -499,7 +500,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
+### startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>): void
@@ -529,10 +530,11 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 **示例：**
 
 ```ts
-import { UIExtensionContentSession, UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { UIExtensionContentSession, ShareExtensionAbility, Want, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   // ...
 
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
@@ -553,7 +555,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbilityByType, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbilityByType`);
+      console.info(`Succeeded in startAbilityByType`);
     });
   }
 
@@ -561,7 +563,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
+### startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback): Promise\<void>
@@ -596,10 +598,11 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 **示例：**
 
 ```ts
-import { UIExtensionContentSession, UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { UIExtensionContentSession, ShareExtensionAbility, Want, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   // ...
 
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
@@ -617,7 +620,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 
     session.startAbilityByType('test', wantParams, abilityStartCallback)
       .then(() => {
-        console.info(`Successed in startAbilityByType`);
+        console.info(`Succeeded in startAbilityByType`);
       })
       .catch((err: BusinessError) => {
         console.error(`Failed to startAbilityByType, code: ${err.code}, msg: ${err.message}`);
@@ -628,7 +631,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.getUIExtensionWindowProxy<sup>12+</sup>
+### getUIExtensionWindowProxy<sup>12+</sup>
 
 getUIExtensionWindowProxy(): uiExtension.WindowProxy
 
@@ -657,13 +660,12 @@ getUIExtensionWindowProxy(): uiExtension.WindowProxy
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 import uiExtension from '@ohos.arkui.uiExtension';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Extension {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   @State message: string = 'EmbeddedUIExtensionAbility Index';
-  private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+  private session: UIExtensionContentSession | undefined = this.storage?.get<UIExtensionContentSession>('session');
   private extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
 
   aboutToAppear(): void {

@@ -130,7 +130,7 @@
      */
     let keyAlias = 'test_sm4_key_alias';
     let cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string'; // 明文数据。
-    let IV = '1234567890123456';
+    let IV = '1234567890123456'; // 此处为样例代码，实际使用需采用随机值。
     let handle = 0;
     let cipherText: Uint8Array; // 加密后的密文数据。
     
@@ -268,10 +268,10 @@
     ```ts
     import { huks } from "@kit.UniversalKeystoreKit";
     import { userAuth } from '@kit.UserAuthenticationKit';
-    import { BusinessError } from "@kit.BasicServicesKit"
+    import { BusinessError } from "@kit.BasicServicesKit";
     
     let keyAlias = 'test_sm4_key_alias';
-    let IV = '1234567890123456';
+    let IV = '1234567890123456'; // 此处为样例代码，实际使用需采用随机值。
     let handle = 0;
     let cipherText: Uint8Array; // 密文数据。
     /*

@@ -38,13 +38,13 @@ Called when the visible area of the component changes.
 >
 >- It does not support visibility change calculations for nodes that are not in the component tree. For example, preloaded nodes or custom nodes mounted using the [overlay](ts-universal-attributes-overlay.md#overlay) capability.
 
-## onVisibleAreaApproximateChange<sup>18+</sup>
+## onVisibleAreaApproximateChange<sup>17+</sup>
 
 onVisibleAreaApproximateChange(options: VisibleAreaEventOptions, event: VisibleAreaChangeCallback | undefined): void
 
-Called to set the callback parameters for the [onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange) event and restrict its execution interval.
+Called to set the callback parameters for the [onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange) event to restrict its execution interval.
 
-**Atomic service API**: This API can be used in atomic services since API version 18.
+**Atomic service API**: This API can be used in atomic services since API version 17.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

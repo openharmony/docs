@@ -1,4 +1,4 @@
-# @ohos.app.ability.continueManager (continueManager)
+# @ohos.app.ability.continueManager (跨端迁移)
 
 continueManager提供了应用跨端迁移的管理能力，如获取应用跨端迁移过程中快速拉起目标应用的结果。
 
@@ -34,11 +34,10 @@ on(type: 'prepareContinue', context: Context, callback: AsyncCallback&lt;Continu
 
 **错误码：**
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[DistributedSchedule错误码](errorcode-DistributedSchedule.md)。
+以下错误码详细介绍请参考[DistributedSchedule错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 16300501 | the system ability work abnormally. |
 
 **示例**：
@@ -80,7 +79,7 @@ export default class MigrationAbility extends UIAbility {
 
 ## continueManager.off
 
-off(type: 'prepareContinue', context: Context, callback: AsyncCallback&lt;ContinueResultInfo&gt;): void
+off(type: 'prepareContinue', context: Context, callback?: AsyncCallback&lt;ContinueResultInfo&gt;): void
 
 在应用快速拉起时，注销回调函数，不再获取快速拉起结果。使用callback异步回调。
 
@@ -96,15 +95,14 @@ off(type: 'prepareContinue', context: Context, callback: AsyncCallback&lt;Contin
   | -------- |------------------------------------| -------- |--------------------------------------|
 | type | string                             | 是 | 固定值：prepareContinue。                 |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)                            | 是 | Ability的Context。                     |
-| callback | AsyncCallback&lt;[ContinueResultInfo](js-apis-app-ability-continueManager.md#continueresultinfo)&gt; | 是 | 回调函数。当回调函数注销成功，err为undefined，ContinueResultInfo为获回调函数注销结果。否则为错误对象。 |
+| callback | AsyncCallback&lt;[ContinueResultInfo](js-apis-app-ability-continueManager.md#continueresultinfo)&gt; | 否 | 回调函数。当回调函数注销成功，err为undefined，ContinueResultInfo为获回调函数注销结果。否则为错误对象。 |
 
 **错误码：**
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[DistributedSchedule错误码](errorcode-DistributedSchedule.md)。
+以下错误码详细介绍请参考[DistributedSchedule错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID    | 错误信息 |
 |----------| -------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 16300501 | the system ability work abnormally. |
 
 **示例**：

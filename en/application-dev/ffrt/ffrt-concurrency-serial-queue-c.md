@@ -24,8 +24,7 @@ The example simplifies the logic for handling exceptions and ensuring thread sec
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include "ffrt/queue.h"
-#include "ffrt/task.h"
+#include "ffrt/ffrt.h"
 
 typedef struct {
     FILE *logFile;          // Pointer to a log file.
@@ -110,7 +109,7 @@ void logger_log(logger_t *logger, const char *message)
         return;
     }
 
-    ffrt_queue_submit(logger->queue, ffrt_create_function_wrapper(write_task, NULL, messageCopy), NULL);
+    ffrt_queue_submit_f(logger->queue, write_task, messageCopy, NULL);
 }
 
 int main()
@@ -136,58 +135,20 @@ int main()
 }
 ```
 
-C-style FFRT construction requires additional encapsulation using common code and is irrelevant to specific service scenarios.
-
-```c
-typedef struct {
-    ffrt_function_header_t header;
-    ffrt_function_t func;
-    ffrt_function_t after_func;
-    void* arg;
-} c_function_t;
-
-static inline void ffrt_exec_function_wrapper(void* t)
-{
-    c_function_t* f = (c_function_t *)t;
-    if (f->func) {
-        f->func(f->arg);
-    }
-}
-
-static inline void ffrt_destroy_function_wrapper(void* t)
-{
-    c_function_t* f = (c_function_t *)t;
-    if (f->after_func) {
-        f->after_func(f->arg);
-    }
-}
-
-#define FFRT_STATIC_ASSERT(cond, msg) int x(int static_assertion_##msg[(cond) ? 1 : -1])
-static inline ffrt_function_header_t *ffrt_create_function_wrapper(const ffrt_function_t func,
-    const ffrt_function_t after_func, void *arg)
-{
-    FFRT_STATIC_ASSERT(sizeof(c_function_t) <= ffrt_auto_managed_function_storage_size,
-        size_of_function_must_be_less_than_ffrt_auto_managed_function_storage_size);
-
-    c_function_t* f = (c_function_t *)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_queue);
-    f->header.exec = ffrt_exec_function_wrapper;
-    f->header.destroy = ffrt_destroy_function_wrapper;
-    f->func = func;
-    f->after_func = after_func;
-    f->arg = arg;
-    return (ffrt_function_header_t *)f;
-}
-```
-
 ## Available APIs
 
 The main FFRT APIs involved in the preceding example are as follows:
 
-| Name                                                            | Description                          |
-| ---------------------------------------------------------------- | ------------------------------ |
-| [ffrt_queue_create](ffrt-api-guideline-c.md#ffrt_queue_create)   | Creates a queue.                    |
-| [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_destroy) | Destroys a queue.                    |
-| [ffrt_queue_submit](ffrt-api-guideline-c.md#ffrt_queue_submit)   | Submits a task to a queue.|
+| Name                                                              | Description                |
+| ------------------------------------------------------------------ | -------------------- |
+| [ffrt_queue_create](ffrt-api-guideline-c.md#ffrt_queue_create)     | Creates a queue.          |
+| [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_destroy)   | Destroys a queue.          |
+| [ffrt_queue_submit_f](ffrt-api-guideline-c.md#ffrt_queue_submit_f) | Submits a task to a queue.|
+
+> **NOTE**
+>
+> - For details about how to use FFRT C++ APIs, see [Using FFRT C++ APIs](ffrt-development-guideline.md#using-ffrt-c-api-1).
+> - When using FFRT C or C++ APIs, you can use the FFRT C++ API third-party library to simplify the header file inclusion, that is, use the `#include "ffrt/ffrt.h"` header file to include statements.
 
 ## Constraints
 

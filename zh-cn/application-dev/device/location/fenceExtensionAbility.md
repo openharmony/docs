@@ -12,8 +12,8 @@
 接口详情参见[FenceExtensionAbility](../../reference/apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md)。
 | 接口 | 描述 |
 | ---- | ---- |
-| onFenceStatusChange(transition: geoLocationManager.GeofenceTransition, additions: Record&lt;string, string&gt;): void  | 接收系统通知的地理围栏事件，根据围栏事件类型和数据进行相应处理。 |
-| onDestroy(): void | 接收FenceExtensionAbility的销毁事件并处理，会在FenceExtensionAbility销毁前回调。 |
+| [onFenceStatusChange(transition: geoLocationManager.GeofenceTransition, additions: Record&lt;string, string&gt;): void](../../reference/apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md#onfencestatuschange)  | 接收系统通知的地理围栏事件，根据围栏事件类型和数据进行相应处理。 |
+| [onDestroy(): void](../../reference/apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md#ondestroy) | 接收FenceExtensionAbility的销毁事件并处理，会在FenceExtensionAbility销毁前回调。 |
 
 ## 开发步骤
 

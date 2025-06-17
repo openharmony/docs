@@ -36,7 +36,7 @@ vertical(value: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
@@ -54,7 +54,7 @@ color(value: ResourceColor)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                       | 必填 | 说明                                  |
 | ------ | ------------------------------------------ | ---- | ------------------------------------- |
@@ -72,7 +72,7 @@ strokeWidth(value: number | string)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                       | 必填 | 说明                                                         |
 | ------ | -------------------------- | ---- | ------------------------------------------------------------ |
@@ -90,7 +90,7 @@ lineCap(value: LineCapStyle)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                              | 必填 | 说明                                             |
 | ------ | ------------------------------------------------- | ---- | ------------------------------------------------ |
@@ -140,7 +140,12 @@ struct DividerExample {
               .fontColor('#007DFF')
               .fontWeight(500)
               .backgroundColor(Color.Transparent)
-            Divider().vertical(true).height(22).color('#182431').opacity(0.6).margin({ left: 8, right: 8 })
+            Divider()
+              .vertical(true)
+              .height(22)
+              .color('#182431')
+              .opacity(0.6)
+              .margin({ left: 8, right: 8 })
             Button('Button')
               .width(136)
               .height(22)

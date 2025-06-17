@@ -14,7 +14,7 @@
        console.info('openPopup success');
      })
      .catch((err: BusinessError) => {
-       console.info('openPopup error: ' + err.code + ' ' + err.message);
+       console.error('openPopup error: ' + err.code + ' ' + err.message);
      })
    ```
 
@@ -57,7 +57,7 @@
        buttons: [{
          text: 'confirm',
          action: () => {
-           console.info('confirm button click')
+           console.info('confirm button click');
          },
          fontSize: 15,
          fontColor: Color.Black,
@@ -65,7 +65,7 @@
          {
            text: 'cancel',
            action: () => {
-             console.info('cancel button click')
+             console.info('cancel button click');
            },
            fontSize: 15,
            fontColor: Color.Black
@@ -106,13 +106,13 @@
        console.info('updatePopup success');
      })
      .catch((err: BusinessError) => {
-       console.info('updatePopup error: ' + err.code + ' ' + err.message);
+       console.error('updatePopup error: ' + err.code + ' ' + err.message);
      })
    ```
 
 ## 关闭气泡
 
-通过[closePopup](../reference/apis-arkui/js-apis-arkui-UIContext.md#closepopup18)可以关闭气泡。
+通过调用[closePopup](../reference/apis-arkui/js-apis-arkui-UIContext.md#closepopup18)可以关闭气泡。
    
    ```ts
    promptAction.closePopup(contentNode)
@@ -120,7 +120,7 @@
        console.info('closePopup success');
      })
      .catch((err: BusinessError) => {
-       console.info('closePopup error: ' + err.code + ' ' + err.message);
+       console.error('closePopup error: ' + err.code + ' ' + err.message);
      })
    ```
 
@@ -144,7 +144,7 @@ export class PromptActionClass {
   private contentNode: ComponentContent<Object> | null = null;
   private options: PopupCommonOptions | null = null;
   private target: TargetInfo | null = null;
-  private isPartialUpdate: boolean = false
+  private isPartialUpdate: boolean = false;
 
   public setPromptAction(promptAction: PromptAction) {
     this.promptAction = promptAction;
@@ -173,7 +173,7 @@ export class PromptActionClass {
           console.info('openPopup success');
         })
         .catch((err: BusinessError) => {
-          console.info('openPopup error: ' + err.code + ' ' + err.message);
+          console.error('openPopup error: ' + err.code + ' ' + err.message);
         })
     }
   }
@@ -185,7 +185,7 @@ export class PromptActionClass {
           console.info('closePopup success');
         })
         .catch((err: BusinessError) => {
-          console.info('closePopup error: ' + err.code + ' ' + err.message);
+          console.error('closePopup error: ' + err.code + ' ' + err.message);
         })
     }
   }
@@ -197,7 +197,7 @@ export class PromptActionClass {
           console.info('updatePopup success');
         })
         .catch((err: BusinessError) => {
-          console.info('updatePopup error: ' + err.code + ' ' + err.message);
+          console.error('updatePopup error: ' + err.code + ' ' + err.message);
         })
     }
   }
@@ -211,7 +211,7 @@ import { PromptActionClass } from "library";
 import { ComponentContent, PromptAction } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
+  text: string = "";
   promptActionClass: PromptActionClass = new PromptActionClass();
 
   constructor(text: string, promptActionClass: PromptActionClass) {
@@ -232,13 +232,13 @@ function buildText(params: Params) {
       .onClick(() => {
         params.promptActionClass.updatePopup({
           enableArrow: false,
-        })
+        });
       })
     Button('Close')
       .margin({ top: 10 })
       .width(100)
       .onClick(() => {
-        params.promptActionClass.closePopup()
+        params.promptActionClass.closePopup();
       })
   }.width(130).height(150)
 }
@@ -246,7 +246,7 @@ function buildText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
   private uiContext: UIContext = this.getUIContext();
   private promptAction: PromptAction = this.uiContext.getPromptAction();
   private promptActionClass: PromptActionClass = new PromptActionClass();

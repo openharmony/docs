@@ -1,4 +1,4 @@
-# Input Consumer Error Codes
+# Global Shortcut Key Error Codes
 
 > **NOTE**
 >
@@ -20,7 +20,7 @@ This error code is reported if the shortcut key has been registered by a system 
 
 **Solution**
 
-1. Call **inputConsumer.getAllSystemHotkeys** to query all registered shortcut keys and use any available shortcut keys.
+1. You can call [getAllSystemHotkeys](js-apis-inputconsumer.md#inputconsumergetallsystemhotkeys) to query all system shortcut keys.
 
 ## 4200003 Shortcut Key Already Registered by a Third-party Application
 

@@ -24,7 +24,7 @@ Creates an image or video asset with the specified file name. This API uses an a
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>API version 18 and later:  \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>API version 18 and later: \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -43,6 +43,10 @@ The file name must comply with the following specifications:
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 14000001 is returned, refer to [PhotoKeys](#photokeys) to learn about the format and length requirements of the file name.
+
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
@@ -53,6 +57,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 async function example() {
@@ -78,7 +84,7 @@ Creates an image or video asset with the specified file name. This API uses a pr
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>API version 18 and later:  \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>API version 18 and later: \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -102,6 +108,10 @@ The file name must comply with the following specifications:
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 14000001 is returned, refer to [PhotoKeys](#photokeys) to learn about the format and length requirements of the file name.
+
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
@@ -112,6 +122,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 async function example() {
@@ -127,27 +139,6 @@ async function example() {
 }
 ```
 
-## PhotoSelectOptions
-
-Defines additional options for selecting media assets from Gallery. It inherits from **BaseSelectOptions**. It is used to start the picker of the corresponding user ID space.
-
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| userId<sup>18+</sup> | number  | No  | ID of the user space to access. The default value is **-1**.<br>To use it as a parameter of [PhotoViewPicker.select](js-apis-photoAccessHelper.md#select), request the permission ohos.permission.INTERACTA_CROSS_LOCAL_ACCOUNTS.<br>**System API**: This is a system API.|
-
-**Example**
-
-```ts
-  private photoPicker() {
-    let picker = new photoAccessHelper.PhotoViewPicker();
-    let option = new photoAccessHelper.PhotoSelectOptions();
-    option.userId = 101;
-    picker.select(option);
-  }
-```
-
 ### createAsset
 
 createAsset(displayName: string, options: PhotoCreateOptions, callback: AsyncCallback&lt;PhotoAsset&gt;): void
@@ -157,7 +148,7 @@ Creates an image or video asset with the specified file name and options. This A
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>API version 18 and later:  \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>API version 18 and later: \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -177,6 +168,10 @@ The file name must comply with the following specifications:
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 14000001 is returned, refer to [PhotoKeys](#photokeys) to learn about the format and length requirements of the file name.
+
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
@@ -187,6 +182,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 async function example() {
@@ -215,7 +212,7 @@ Creates an image or video asset with the specified file name and options. This A
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>API version 18 and later:  \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>API version 18 and later: \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -240,6 +237,10 @@ The file name must comply with the following specifications:
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 14000001 is returned, refer to [PhotoKeys](#photokeys) to learn about the format and length requirements of the file name.
+
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
@@ -250,6 +251,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 async function example() {
@@ -276,7 +279,7 @@ Creates an album. This API uses an asynchronous callback to return the result.
 
 The album name must meet the following requirements:
 - The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -301,16 +304,20 @@ The album name must meet the following requirements:
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
-| 13900015       |  File exists.         |
+| 13900015       |  The file name already exists.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 async function example() {
@@ -334,7 +341,7 @@ Creates an album. This API uses a promise to return the result.
 
 The album name must meet the following requirements:
 - The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -364,16 +371,20 @@ The album name must meet the following requirements:
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
-| 13900015       |  File exists.         |
+| 13900015       |  The file name already exists.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -418,6 +429,8 @@ Ensure that the albums to be deleted exist. Only user albums can be deleted.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
@@ -427,6 +440,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -487,6 +502,8 @@ Ensure that the albums to be deleted exist. Only user albums can be deleted.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
@@ -496,6 +513,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -539,7 +558,7 @@ Obtains hidden albums based on the specified display mode and retrieval options.
 | -------- | ------------------------ | ---- | ------------------------- |
 | mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden albums. |
 | options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)         | Yes  |  Options for retrieving the hidden albums. |
-| callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | Callback used to return the result.|
+| callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  |  Callback used to return the result.|
 
 **Error codes**
 
@@ -553,6 +572,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -610,6 +631,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -693,6 +716,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -772,16 +797,20 @@ Deletes media assets. This API uses an asynchronous callback to return the resul
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
-| 14000002       | Invalid uri.         |
+| 14000002 |  The uri format is incorrect or does not exist.         |
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -845,16 +874,20 @@ Deletes media assets. This API uses a promise to return the result. The deleted 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
-| 14000002       | Invalid uri.         |
+| 14000002 |  The uri format is incorrect or does not exist.         |
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -906,6 +939,8 @@ Obtains the index of an image or video in an album. This API uses an asynchronou
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202     |  Called by non-system application.         |
@@ -915,6 +950,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -984,6 +1021,8 @@ Obtains the index of an image or video in an album. This API uses a promise to r
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202     |  Called by non-system application.         |
@@ -993,6 +1032,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1063,6 +1104,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1130,6 +1173,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1190,6 +1235,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1247,6 +1294,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1306,6 +1355,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | Internal system error.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 async function example() {
@@ -1371,6 +1422,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 async function example() {
   console.info('grantPhotoUriPermissionDemo');
@@ -1380,7 +1433,7 @@ async function example() {
     let result = await phAccessHelper.grantPhotoUriPermission(tokenId,
         'file://media/Photo/1/IMG_datetime_0001/displayName.jpg',
         photoAccessHelper.PhotoPermissionType.TEMPORARY_READ_IMAGEVIDEO,
-        photoAccessHelper.HideSensitiveType.HIDE_LOCATION_AND_SHOTING_PARM);
+        photoAccessHelper.HideSensitiveType.HIDE_LOCATION_AND_SHOOTING_PARAM);
 
     console.info('grantPhotoUriPermission success, result=' + result);
   } catch (err) {
@@ -1429,6 +1482,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 async function example() {
   console.info('grantPhotoUrisPermissionDemo');
@@ -1441,7 +1496,7 @@ async function example() {
     let tokenId = 502334412;
     let result = await phAccessHelper.grantPhotoUrisPermission(tokenId, uris,
         photoAccessHelper.PhotoPermissionType.TEMPORARY_READ_IMAGEVIDEO,
-        photoAccessHelper.HideSensitiveType.HIDE_LOCATION_AND_SHOTING_PARM);
+        photoAccessHelper.HideSensitiveType.HIDE_LOCATION_AND_SHOOTING_PARAM);
 
     console.info('grantPhotoUrisPermission success, result=' + result);
   } catch (err) {
@@ -1474,7 +1529,7 @@ Cancels the permission for accessing an URI from an application. This API uses a
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;number&gt; | Promise used to return the result. The value **0** means the operation is successful; the value  **-1** means the opposite.|
+| Promise&lt;number&gt; | Promise used to return the result. The value **0** means the operation is successful, and the value **-1** means the opposite.|
 
 **Error codes**
 
@@ -1488,6 +1543,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | Internal system error.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 async function example() {
@@ -1522,7 +1579,7 @@ Starts asset analysis.
 
 | Name   | Type               | Mandatory| Description                                                        |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| type      | number              | Yes  | Smart analysis type.                                    |
+| type      | [AnalysisType](#analysistype11) | Yes  | Smart analysis type.                                    |
 | assetUris | Array&lt;string&gt; | No  | Array of asset URIs.<br>- If this parameter is specified, only the given assets are analyzed.<br>- If this parameter is left blank, full analysis is performed.|
 
 **Return value**
@@ -1543,12 +1600,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
 async function example() {
   console.info('startAssetAnalysisDemo');
-
   try {
-    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
     let uris = ["file://media/Photo/14/IMG_1729066473_013/IMG_20241016_122253.jpg",
                 "file://media/Photo/68/IMG_1729033213_018/IMG_20241016_100082.jpg"];
     let taskId = await phAccessHelper.startAssetAnalysis(photoAccessHelper.AnalysisType.ANALYSIS_SEARCH_INDEX,
@@ -1601,6 +1664,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | Internal system error.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 async function example() {
@@ -1667,16 +1732,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 import { common }  from '@kit.AbilityKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
 async function example() {
   try{
     console.info('getKeyFrameThumbnail demo');
-    let context = getContext(this) as common.UIAbilityContext;
     let phAccessHelper:photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
     predicates.equalTo(photoAccessHelper.PhotoKeys.PHOTO_TYPE, photoAccessHelper.PhotoType.VIDEO);
@@ -1735,7 +1804,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 import {photoAccessHelper} from '@kit.MediaLibraryKit';
-const context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -1805,7 +1877,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 import {photoAccessHelper} from '@kit.MediaLibraryKit';
-const context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -1876,7 +1951,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import {photoAccessHelper} from '@kit.MediaLibraryKit';
-const context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -1893,6 +1971,135 @@ async function example() {
   });
 }
 ```
+
+
+### getAlbumsByIds<sup>18+</sup>
+
+getAlbumsByIds(albumIds: Array&lt;number&gt;): Promise&lt;Map&lt;number, Album&gt;&gt;
+
+Obtains album information by album IDs. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**Parameters**
+
+| Name   | Type               | Mandatory| Description                                                        |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| albumIds  | Array&lt;number&gt;              | Yes  | Array of album IDs.                                    |
+
+**Return value**
+
+| Type                 | Description                       |
+| --------------------- | --------------------------- |
+| Promise&lt;Map&lt;number, Album&gt;&gt; | Promise used to return the map object that contains the album information.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 202      | Called by non-system application.                            |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 14000011       | Internal system error.         |
+
+**Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
+```ts
+async function example() {
+  console.info('startGetAlbumsByIdsDemo');
+
+  try {
+    // Obtain the sandbox URIs of the images or videos to be saved to the media library.
+    let albumIds: Array<number> = [
+      12 //Use the actual album ID.
+    ];
+    let map: Map<number, photoAccessHelper.Album> = await phAccessHelper.getAlbumsByIds(albumIds);
+    console.info('getAlbumsByIds success, size is ' + map.size);
+  } catch (err) {
+    console.error('getAlbumsByIds failed, errCode is ' + err.code + ', errMsg is ' + err.message);
+  }
+}
+```
+
+### createAssetsForAppWithAlbum<sup>18+</sup>
+
+createAssetsForAppWithAlbum(source: PhotoCreationSource, albumUri: string, isAuthorized: boolean, photoCreationConfigs: Array&lt;PhotoCreationConfig&gt;): Promise&lt;Array&lt;string&gt;&gt;
+
+Creates assets for the current application or other applications in the specified source or user album. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**Parameters**
+
+| Name   | Type               | Mandatory| Description                                                        |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| source  | [PhotoCreationSource](#photocreationsource18)         | Yes  | Application information provided to create assets on behalf of the application.                                    |
+| albumUri  | string             | Yes  | URI of the album.                                    |
+| isAuthorized  |  boolean              | Yes  | Whether to authorize other applications. The value **true** means that the permission is authorized, and **false** means the opposite.                                    |
+| PhotoCreationConfigs| Array\<[PhotoCreationConfig](js-apis-photoAccessHelper.md#photocreationconfig12)> | Yes| Configuration for creating (saving) the media assets in the media library.|
+
+**Return value**
+
+| Type                 | Description                       |
+| --------------------- | --------------------------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the URIs of the media asset files in the media library.<br>The target application (identified by **appid**) can write the media assets based on the URIs without requesting the write permission. If the URIs fail to be generated, a batch creation error code will be returned.<br>The error code **-3006** means that there are invalid characters; **-2004** means that the image type does not match the file name extension; **-203** means that the file operation is abnormal.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 202      | Called by non-system application.                            |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 14000011       | Internal system error.         |
+
+**Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
+```ts
+async function example() {
+  console.info('createAssetsForAppWithAlbumDemo.');
+
+  try {
+    let source: photoAccessHelper.PhotoCreationSource = {
+      bundleName: 'testBundleName',
+      appName: 'testAppName',
+      appId: 'testAppId',
+      tokenId: 537197950,
+    }
+    let albumUri: string = 'file://media/PhotoAlbum/10';
+    let isAuthorized: boolean = true;
+    let photoCreationConfigs: Array<photoAccessHelper.PhotoCreationConfig> = [
+      {
+        title: 'test',
+        fileNameExtension: 'jpg',
+        photoType: photoAccessHelper.PhotoType.IMAGE,
+        subtype: photoAccessHelper.PhotoSubtype.DEFAULT,
+      }
+    ];
+    let desFileUris: Array<string> = await phAccessHelper.createAssetsForAppWithAlbum(source, albumUri, isAuthorized, photoCreationConfigs);
+    console.info('createAssetsForAppWithAlbum success, data is ' + desFileUris);
+  } catch (err) {
+    console.error(`createAssetsForAppWithAlbum failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ## PhotoAsset
 
 Provides APIs for encapsulating file asset attributes.
@@ -1926,6 +2133,8 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202     |  Called by non-system application.         |
@@ -1935,6 +2144,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 async function example() {
@@ -1986,6 +2197,8 @@ Opens this file asset. This API uses a promise to return the result.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202     |  Called by non-system application.         |
@@ -1995,6 +2208,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 async function example() {
@@ -2042,6 +2257,8 @@ Favorites or unfavorites this file. This API uses an asynchronous callback to re
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
@@ -2051,6 +2268,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2106,6 +2325,8 @@ Favorites or unfavorites this file asset. This API uses a promise to return the 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
@@ -2115,6 +2336,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2166,6 +2389,8 @@ Private files are stored in the private album. After obtaining private files fro
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
@@ -2175,6 +2400,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2232,6 +2459,8 @@ Private files are stored in the private album. After obtaining private files fro
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
@@ -2241,6 +2470,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2292,6 +2523,8 @@ The EXIF information obtained are provided by the [image](../apis-image-kit/js-a
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
@@ -2301,6 +2534,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2352,6 +2587,8 @@ The EXIF data obtained are provided by the [image](../apis-image-kit/js-apis-ima
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
@@ -2361,6 +2598,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2427,6 +2666,8 @@ Sets user comment information of an image or video. This API uses a promise to r
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
@@ -2436,6 +2677,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2487,6 +2730,8 @@ Sets user comment information of an image or video. This API uses an asynchronou
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
@@ -2496,6 +2741,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2560,25 +2807,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 async function example() {
   try {
     console.info('setPendingCallbackDemo');
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
     let photoAsset = await phAccessHelper.createAsset(testFileName);
-    let fd = await photoAsset.open('rw');
     photoAsset.setPending(true, async (err) => {
       if (err !== undefined) {
         console.error(`setPending(true) failed with error: ${err.code}, ${err.message}`);
         return;
       }
-      // write photo buffer in fd.
+      // add asset resource.
       photoAsset.setPending(false, async (err) => {
         if (err !== undefined) {
           console.error(`setPending(false) failed with error: ${err.code}, ${err.message}`);
           return;
         }
-        await photoAsset.close(fd);
       });
     });
   } catch (err) {
@@ -2628,17 +2875,17 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 async function example() {
   try {
     console.info('setPendingPromiseDemo');
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
     let photoAsset = await phAccessHelper.createAsset(testFileName);
-    let fd = await photoAsset.open('rw');
     await photoAsset.setPending(true);
-    // write photo buffer in fd.
+    // add asset resource.
     photoAsset.setPending(false);
-    await photoAsset.close(fd);
   } catch (err) {
     console.error(`setPendingPromiseDemo failed with error: ${err.code}, ${err.message}`);
   }
@@ -2675,6 +2922,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011   | System inner fail.        |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2738,6 +2987,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2795,6 +3046,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011   | System inner fail.        |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2856,6 +3109,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2910,6 +3165,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2962,6 +3219,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011   | System inner fail.        |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3020,6 +3279,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -3077,6 +3338,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011   | System inner fail.        |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3148,6 +3411,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -3203,6 +3468,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011   | System inner fail.        |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3263,6 +3530,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -3322,6 +3591,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011   | System inner fail.        |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3388,6 +3659,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
@@ -3451,6 +3724,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011   | System inner fail.        |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3517,6 +3792,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -3568,9 +3845,12 @@ Obtains the ArrayBuffer of a file thumbnail by specifying its type. This API use
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 202      | Called by non-system application. |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -3581,7 +3861,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 import {photoAccessHelper} from '@kit.MediaLibraryKit';
-const context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -3613,6 +3896,8 @@ Provides APIs to manage albums.
 | Name          | Type   | Read-Only  | Optional | Description  |
 | ------------ | ------ | ---- | ---- | ------- |
 | lpath<sup>18+</sup>    | string | Yes   | Yes  | Virtual path of the album.<br>**System API**: This is a system API.|
+| dateAdded<sup>18+</sup>    | number | Yes   | Yes  | Time when the album was added.<br>**System API**: This is a system API.|
+| dateModified<sup>18+</sup>    | number | Yes   | Yes  | Time when the album was modified.<br>**System API**: This is a system API.|
 
 ### recoverAssets<sup>(deprecated)</sup>
 
@@ -3641,6 +3926,8 @@ Recovers image or video assets from the trash. Before the operation, ensure that
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
@@ -3650,6 +3937,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3711,6 +4000,8 @@ Recovers image or video assets from the trash. Before the operation, ensure that
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
@@ -3720,6 +4011,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3777,6 +4070,8 @@ Deletes image or video assets from the trash. Before the operation, ensure that 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
@@ -3786,6 +4081,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3849,6 +4146,8 @@ Deletes image or video assets from the trash. Before the operation, ensure that 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
@@ -3858,6 +4157,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3915,6 +4216,8 @@ Sets the album cover. This API uses an asynchronous callback to return the resul
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
@@ -3924,6 +4227,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3987,6 +4292,8 @@ Sets the album cover. This API uses a promise to return the result.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 13900012 is returned, follow the instructions provided in [Before You Start](../../media/medialibrary/photoAccessHelper-preparation.md).
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
@@ -3995,6 +4302,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4087,7 +4396,7 @@ Creates an asset change request with the specified file name.
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>API version 18 and later:  \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>API version 18 and later: \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -4111,6 +4420,8 @@ The file name must comply with the following specifications:
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
+If error code 14000001 is returned, refer to [PhotoKeys](#photokeys) to learn about the format and length requirements of the file name.
+
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
@@ -4119,6 +4430,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 async function example() {
@@ -4164,6 +4477,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4216,6 +4531,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -4266,6 +4583,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4318,6 +4637,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4379,6 +4700,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 class PhotoProxyImpl implements photoAccessHelper.PhotoProxy {
   // Implement PhotoProxy.
@@ -4428,6 +4751,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011 |  System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4480,6 +4805,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 async function example(asset: photoAccessHelper.PhotoAsset) {
   console.info('setCameraShotKeyDemo');
@@ -4523,6 +4850,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000016       | Operation Not Support.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 async function example(asset: photoAccessHelper.PhotoAsset) {
@@ -4573,9 +4902,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { photoAccessHelper } from '@kit.MediaLibraryKit';;
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
 
-const context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -4643,9 +4974,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 struct Index {
-  public context = getContext(this);
+  // Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+  public context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   public phAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
 
   async function example() {
@@ -4662,62 +4995,6 @@ struct Index {
     } catch (err) {
       console.error(`deleteAssetsPermanentlyDemo failed with error: ${err.code}, ${err.message}`);
     }
-  }
-}
-```
-
-### setDisplayName<sup>18+</sup>
-
-setDisplayName(displayName: string): void
-
-Sets the file name (including the file name extension) of a media asset.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-**Parameters**
-
-| Name       | Type     | Mandatory  | Description                                |
-| ---------- | ------- | ---- | ---------------------------------- |
-| displayName | string | Yes  | File name of the media asset (including the file name extension).<br>The name must meet the following requirements:<br>- The file name extension must be included.<br>- The file name (excluding the file name extension) cannot exceed 255 characters.<br>- The file name cannot contain invalid characters, such as \ / : * ?" < > \| |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 14000011       | Internal system error.         |
-
-**Example**
-
-```ts
-import { dataSharePredicates } from '@kit.ArkData';
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
-
-const context = getContext(this);
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
-  console.info('setDisplayNameDemo');
-  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption: photoAccessHelper.FetchOptions = {
-    fetchColumns: [],
-    predicates: predicates
-  };
-  try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-    let asset = await fetchResult.getFirstObject();
-    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
-    let newDisplayName: string = 'newDisplayName.jpg';
-    assetChangeRequest.setDisplayName(newDisplayName);
-    await phAccessHelper.applyChanges(assetChangeRequest);
-    console.info('apply setDisplayName successfully');
-  } catch (err) {
-    console.error(`apply setDisplayName failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -4757,6 +5034,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.          |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4801,6 +5080,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4853,6 +5134,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -4904,6 +5187,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -4927,6 +5212,59 @@ async function example() {
 }
 ```
 
+### setIsRecentShow<sup>18+</sup>
+
+setIsRecentShow(isRencentShow: boolean): void
+
+Sets whether this asset is displayed in the **Recent** list.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| isRencentShow | boolean | Yes  | Whether this asset is displayed in the **Recent** list. The value **true** means this asset is displayed in the **Recent** list, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011       | System inner fail.         |
+
+**Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function example() {
+  console.info('setIsRecentShowDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
+  let assetsChangeRequest: photoAccessHelper.MediaAssetsChangeRequest = new photoAccessHelper.MediaAssetsChangeRequest(photoAssetList);
+  assetsChangeRequest.setIsRecentShow(true);
+  phAccessHelper.applyChanges(assetsChangeRequest).then(() => {
+    console.info('apply setIsRecentShow successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`apply setIsRecentShow failed with error: ${err.code}, ${err.message}`);
+  });
+}
+```
+
 ## MediaAlbumChangeRequest<sup>11+</sup>
 
 Provides APIs for managing the media album change request.
@@ -4941,7 +5279,7 @@ Creates a **MediaAlbumChangeRequest** instance.
 
 The album name must comply with the following specifications:
 - The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -4973,6 +5311,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011   | System inner fail.        |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 async function example() {
@@ -5028,6 +5368,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -5076,6 +5418,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -5132,6 +5476,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000016 |  Operation Not Support.     |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -5193,6 +5539,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -5250,6 +5598,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -5304,6 +5654,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ``` ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -5348,6 +5700,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ``` ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -5400,6 +5754,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000016       | Operation Not support.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ``` ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -5462,6 +5818,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ``` ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -5520,6 +5878,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
+
 ```ts
 async function example() {
   console.info('placeBeforeDemo');
@@ -5562,6 +5922,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011 | System inner fail.            |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -5654,6 +6016,13 @@ Obtains specific information about the **Highlights** album.
 | ---------- | ------- | ---- | ---------------------------------- |
 | type       | [HighlightAlbumInfoType](#highlightalbuminfotype12) | Yes   | Type of the album information to obtain.|
 
+
+**Return value**
+
+| Type                       | Description          |
+| --------------------------- | -------------- |
+| Promise&lt;string&gt; | Promise used to return the album information.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
@@ -5712,6 +6081,12 @@ Obtains the ArrayBuffer for caching the specified asset.
 | ---------- | ------- | ---- | ---------------------------------- |
 | resourceUri       | string | Yes   | URI of the asset to cache.|
 
+**Return value**
+
+| Type                       | Description          |
+| --------------------------- | -------------- |
+| Promise&lt;ArrayBuffer&gt; | Promise used to return the ArrayBuffer.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
@@ -5769,6 +6144,12 @@ Sets the user behavior data for the **Highlights** album.
 | type       | [HighlightUserActionType](#highlightuseractiontype12) | Yes   | Type of the user behavior data to set.|
 | actionData | number | Yes   | Behavior data.|
 
+**Return value**
+
+| Type                       | Description          |
+| --------------------------- | -------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
@@ -5814,7 +6195,7 @@ Sets the subtitle for this **Highlights** album instance.
 
 The subtitle must meet the following requirements:
 
-- The subtitle cannot exceed 255 characters.
+- The subtitle string contains 0 to 255 characters.
 - The subtitle cannot contain any of the following characters:<br> . \ / : * ? " ' ` < > | { } [ ]
 - The subtitle is case-insensitive.
 
@@ -5845,11 +6226,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 async function example() {
   try {
     console.info('setSubTitle');
-    let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
     let albumFetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: new dataSharePredicates.DataSharePredicates()
@@ -5911,11 +6296,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 async function example() {
   try {
     console.info('deleteHighlightAlbums');
-    let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
     let albumFetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: new dataSharePredicates.DataSharePredicates()
@@ -5928,7 +6318,7 @@ async function example() {
     }
     let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     albumFetchResult.close();
-    let result = await photoAccessHelper.HighlightAlbum.deleteHighlightAlbums(getContext(this), [highlightAlbum]);
+    let result = await photoAccessHelper.HighlightAlbum.deleteHighlightAlbums(context, [highlightAlbum]);
     console.info('deleteHighlightAlbums success');
   } catch (err) {
     console.error(`deleteHighlightAlbums with error: ${err}`);
@@ -5971,10 +6361,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { common } from '@kit.AbilityKit';s
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 async function example() {
   console.info('MediaAnalysisAlbumChangeRequest constructorDemo');
-  let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+  let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
   let albumFetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: new dataSharePredicates.DataSharePredicates()
@@ -6026,11 +6420,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 async function example() {
   try {
     console.info('setOrderPosition');
-    let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
     let albumFetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: new dataSharePredicates.DataSharePredicates()
@@ -6101,10 +6499,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 async function example() {
   console.info('AnalysisAlbum constructorDemo');
-  let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+  let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
   let albumFetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: new dataSharePredicates.DataSharePredicates()
@@ -6160,11 +6562,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 async function example() {
   try {
     console.info('getOrderPosition');
-    let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
     let albumFetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: new dataSharePredicates.DataSharePredicates()
@@ -6218,6 +6624,12 @@ Obtains a cloud enhancement instance.
 | -------- | ------------------------- | ---- | ---------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
 
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| [CloudEnhancement](#cloudenhancement13) | A cloud enhancement instance.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
@@ -6232,6 +6644,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 async function example() {
   console.info('getCloudEnhancementInstanceDemo');
@@ -6273,6 +6689,12 @@ Submits cloud enhancement tasks.
 | photoAssets | Array<[PhotoAsset](#photoasset)> | Yes  | [PhotoAsset](#photoasset) to enhance.|
 | hasCloudWatermark | boolean | Yes  | Whether to add a cloud enhancement watermark to the enhanced images.|
 
+**Return value**
+
+| Type                 | Description        |
+| ------------------- | ---------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
@@ -6285,6 +6707,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011 | Internal system error.            |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -6330,6 +6754,12 @@ Submits cloud enhancement tasks.
 | hasCloudWatermark | boolean | Yes  | Whether to add a cloud watermark to the enhanced image. The value **true** means to add the watermark, and **false** means the opposite.|
 | triggerMode | number | No  | Trigger mode of the cloud enhancement task.<br>**- 0**: manually triggered.<br>**- 1**: automatically triggered.<br>The default value is **0**.|
 
+**Return value**
+
+| Type                 | Description        |
+| ------------------- | ---------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
@@ -6342,6 +6772,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011 | Internal system error.            |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -6386,6 +6818,12 @@ Prioritizes a cloud enhancement task.
 | -------- | ------------------------- | ---- | ---------- |
 | photoAsset | [PhotoAsset](#photoasset) | Yes  | [PhotoAsset](#photoasset) whose cloud enhancement priority needs to be escalated.|
 
+**Return value**
+
+| Type                 | Description        |
+| ------------------- | ---------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
@@ -6398,6 +6836,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011 | Internal system error.            |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -6443,6 +6883,12 @@ Cancels cloud enhancement tasks.
 | -------- | ------------------------- | ---- | ---------- |
 | photoAssets | Array<[PhotoAsset](#photoasset)> | Yes  | Array of [PhotoAssets](#photoasset) whose cloud enhancement tasks are to be canceled.|
 
+**Return value**
+
+| Type                 | Description        |
+| ------------------- | ---------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
@@ -6455,6 +6901,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011 | Internal system error.            |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -6492,6 +6940,12 @@ Cancels all cloud enhancement tasks.
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**Return value**
+
+| Type                 | Description        |
+| ------------------- | ---------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -6538,6 +6992,12 @@ Queries information about a cloud enhancement task.
 | -------- | ------------------------- | ---- | ---------- |
 | photoAsset | [PhotoAsset](#photoasset) | Yes  | [PhotoAsset](#photoasset) whose cloud enhancement task information is to be queried.|
 
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise<[CloudEnhancementTaskState](#cloudenhancementtaskstate13)> | Promise used to return the information about the cloud enhancement task.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
@@ -6550,6 +7010,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011 | Internal system error.            |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -6615,6 +7077,12 @@ Synchronizes the cloud enhancement task status.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
+**Return value**
+
+| Type                 | Description        |
+| ------------------- | ---------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
@@ -6660,6 +7128,12 @@ Obtains the photo after cloud enhancement.
 | -------- | ------------------------- | ---- | ---------- |
 | photoAsset | [PhotoAsset](#photoasset) | Yes  | [PhotoAsset](#photoasset) whose cloud enhancement photo is to be obtained.|
 
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise<[PhotoAsset](#photoasset)> | Promise used to return the photo after cloud enhancement.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
@@ -6672,6 +7146,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011 | Internal system error.            |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -6718,6 +7194,12 @@ Sets the attributes for deferred video enhancement.
 | videoEnhancementType       | [VideoEnhancementType](#videoenhancementtype13) | Yes   | Type of video enhancement.|
 | photoId | string | Yes   | Photo ID of the image.|
 
+**Return value**
+
+| Type                 | Description        |
+| ------------------- | ---------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
@@ -6730,6 +7212,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000016 | Operation Not Support.            |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 async function example(asset: photoAccessHelper.PhotoAsset) {
@@ -6773,6 +7257,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011 | Internal system error                                        |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -6843,7 +7329,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-const context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
 async function example() {
   console.info('getCloudMediaAssetManagerInstanceDemo');
   try {
@@ -6893,7 +7383,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-const context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
 async function example() {
   console.info('startDownloadCloudMediaDemo');
   try {
@@ -6936,7 +7430,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-const context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
 async function example() {
   console.info('pauseDownloadCloudMediaDemo');
   try {
@@ -6979,7 +7477,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-const context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
 async function example() {
   console.info('cancelDownloadCloudMediaDemo');
   try {
@@ -7029,7 +7531,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-const context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
 async function example() {
   console.info('retainCloudMediaAssetDemo');
   try {
@@ -7072,7 +7578,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-const context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
 async function example() {
   console.info('getCloudMediaAssetStatusDemo');
   try {
@@ -7088,6 +7598,27 @@ async function example() {
     console.error(`getCloudMediaAssetStatusDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
+```
+
+## PhotoSelectOptions
+
+Defines additional options for selecting media assets from Gallery. It inherits from **BaseSelectOptions**. It is used to start the picker of the corresponding user ID space.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| userId<sup>18+</sup> | number  | No  | ID of the user space to access. The default value is **-1**.<br>To use it as a parameter of [PhotoViewPicker.select](js-apis-photoAccessHelper.md#select), request the permission ohos.permission.INTERACTA_CROSS_LOCAL_ACCOUNTS.<br>**System API**: This is a system API.|
+
+**Example**
+
+```ts
+  private photoPicker() {
+    let picker = new photoAccessHelper.PhotoViewPicker();
+    let option = new photoAccessHelper.PhotoSelectOptions();
+    option.userId = 101;
+    picker.select(option);
+  }
 ```
 
 ## PhotoSubtype
@@ -7169,6 +7700,9 @@ Defines the key information about an image or video file.
 | CE_AVAILABLE<sup>13+</sup>  | 'ce_available' | Cloud enhancement identifier. <br>**System API**: This is a system API.|
 | SUPPORTED_WATERMARK_TYPE<sup>14+</sup>  | 'supported_watermark_type' | Editable watermark identifier. <br>**System API**: This is a system API.|
 | IS_CE_AUTO<sup>18+</sup>  | 'is_auto' | Specifies whether automatic cloud enhancement is supported. <br>**System API**: This is a system API.|
+| OWNER_ALBUM_ID<sup>18+</sup>  | 'owner_album_id' | ID of the album to which the photo belongs.<br>**System API**: This is a system API.|
+| IS_RECENT_SHOW<sup>18+</sup>  | 'is_recent_show' | Whether the asset is displayed in the **Recent** list. <br>**System API**: This is a system API.|
+| SUM_SIZE<sup>19+</sup>  | 'sum(size)' | Total size of files. When **SUM_SIZE** is filled in **fetchColumns**, only the first asset is obtained, and the property includes the total size of all assets. <br>**System API**: This is a system API.|
 
 ## AlbumKeys
 
@@ -7180,6 +7714,7 @@ Enumerates the album keys.
 | --------------------------------- | -------------------- | ----------------------------------------------------- |
 | ALBUM_LPATH<sup>18+</sup>          | 'lpath'                 | Virtual path of the album.<br>**System API**: This is a system API.           |
 | BUNDLE_NAME<sup>18+</sup>          | 'bundle_name'                 | Bundle name of the album.<br>**System API**: This is a system API.           |
+| DATE_MODIFIED<sup>18+</sup>        | 'date_modified'         | Timestamp when the album was modified, in milliseconds.<br>**System API**: This is a system API.           |
 
 ## HiddenPhotosDisplayMode<sup>11+</sup>
 
@@ -7219,6 +7754,21 @@ Defines the options for obtaining the thumbnail of an image or video.
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | size           | [image.Size](../apis-image-kit/js-apis-image.md#size) | No | Size of the thumbnail to obtain. |
 | requestPhotoType    | [RequestPhotoType](#requestphototype11) | No | Operation to perform. |
+
+## PhotoCreationSource<sup>18+</sup>
+
+Defines the application information provided to create assets on behalf of the application.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name                  | Type               | Read-Only| Optional| Description                                             |
+| ---------------------- | ------------------- | ---- | ---- | ------------------------------------------------ |
+| bundleName           | string | Yes | Yes |Bundle name of the target application. |
+| appName    | string | Yes | Yes |Name of the target application. |
+| appId    | string | Yes | Yes |ID of the target application. |
+| tokenId    | number | Yes | Yes |Token ID of the target application. |
 
 ## RequestOptions<sup>11+</sup>
 

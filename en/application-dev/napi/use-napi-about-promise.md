@@ -41,7 +41,7 @@ CPP code:
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value IsPromise(napi_env env, napi_callback_info info) 
+static napi_value IsPromise(napi_env env, napi_callback_info info)
 {
     napi_value argv[1] = {nullptr};
     size_t argc = 1;
@@ -72,8 +72,8 @@ export const isPromise: <T>(value: T) => boolean;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = Promise.resolve();
 // Return true if the object passed in is a promise; return false otherwise.
@@ -119,6 +119,8 @@ CPP code:
 ```cpp
 #include "napi/native_api.h"
 
+static constexpr int INT_ARG_2 = 2; // Input parameter index.
+
 static napi_value CreatePromise(napi_env env, napi_callback_info info)
 {
     // The deferred object is used to delay the execution of a function for a certain period of time.
@@ -139,7 +141,7 @@ static napi_value CreatePromise(napi_env env, napi_callback_info info)
     return returnIsPromise;
 }
 
-static napi_value ResolveRejectDeferred(napi_env env, napi_callback_info info) 
+static napi_value ResolveRejectDeferred(napi_env env, napi_callback_info info)
 {
     // Obtain and parse parameters.
     size_t argc = 3;
@@ -147,7 +149,7 @@ static napi_value ResolveRejectDeferred(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     // The first parameter is the data to be passed to Resolve(), the second parameter is the data to be passed to reject(), and the third parameter is the Promise state.
     bool status;
-    napi_get_value_bool(env, args[2], &status);
+    napi_get_value_bool(env, args[INT_ARG_2], &status);
     // Create a Promise object.
     napi_deferred deferred = nullptr;
     napi_value promise = nullptr;
@@ -178,8 +180,8 @@ export const resolveRejectDeferred: (resolve: string, reject: string, status: bo
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 // Create a promise. Return true if the operation is successful, and return false otherwise.
 hilog.info(0x0000, 'Node-API', 'napi_create_promise %{public}s', testNapi.createPromise());

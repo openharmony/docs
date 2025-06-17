@@ -64,20 +64,16 @@ An incorrect server domain name is configured for the atomic service.
 
 Configure a correct server domain name for the atomic service. For details, see [Network Connection Management](https://developer.huawei.com/consumer/en/doc/atomic-guides-V5/atomic-net-connection-manager-V5).
 
-## 2302999 Unknown WebSocket Errors
+## 2302999 Internal Error
 
 **Error Message**
 
-Websocket other unknown error.
+Internal error.
 
 **Description**
 
-This error code is reported if other unknown WebSocket errors occur.
+This error code is reported if an internal error occurs.
 
 **Possible Causes**
 
 Other system faults occur.
-
-**Solution**
-
-Contact technical support.

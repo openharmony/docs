@@ -3,7 +3,7 @@
 
 ## Overview
 
-The CodecBase module provides the variables, attributes, and functions for basic audio and video muxing, demuxing, encoding, and decoding.
+The CodecBase module provides the variables, attributes, and functions for basic audio and video multiplexing, demultiplexing, encoding, and decoding.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -30,12 +30,12 @@ The table below lists the media codec formats. The type is a constant string.
 | [OH_AVCODEC_MIMETYPE_VIDEO_HEVC](#oh_avcodec_mimetype_video_hevc) | MIME type of the HEVC (H.265) video codec.                   |
 | [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | MIME type of the AVC (H.264) video codec.                    |
 | [OH_AVCODEC_MIMETYPE_VIDEO_H263](#oh_avcodec_mimetype_video_h263) | MIME type of the H.263 video codec.                    |
-| [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](#oh_avcodec_mimetype_video_mpeg4) | MIME type of the MPEG4 video encoder, which is used only for muxing MPEG4 video streams. (This function is deprecated in API version 11.)|
+| [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](#oh_avcodec_mimetype_video_mpeg4) | MIME type of the MPEG4 video encoder, which is used only for multiplexing MPEG4 video streams. (This function is deprecated in API version 11.)|
 | [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2](#oh_avcodec_mimetype_video_mpeg4_part2) | MIME type of the MPEG4 Part 2 video codec.|
 | [OH_AVCODEC_MIMETYPE_VIDEO_MPEG2](#oh_avcodec_mimetype_video_mpeg2) | MIME type of the MPEG2 video codec.|
-| [OH_AVCODEC_MIMETYPE_IMAGE_JPG](#oh_avcodec_mimetype_image_jpg) | MIME type of the JPG image encoder, which is used only for muxing JPG covers.      |
-| [OH_AVCODEC_MIMETYPE_IMAGE_PNG](#oh_avcodec_mimetype_image_png) | MIME type of the PNG image encoder, which is used only for muxing PNG covers.      |
-| [OH_AVCODEC_MIMETYPE_IMAGE_BMP](#oh_avcodec_mimetype_image_bmp) | MIME type of the BMP image encoder, which is used only for muxing BMP covers.      |
+| [OH_AVCODEC_MIMETYPE_IMAGE_JPG](#oh_avcodec_mimetype_image_jpg) | MIME type of the JPG image encoder, which is used only for multiplexing JPG covers.      |
+| [OH_AVCODEC_MIMETYPE_IMAGE_PNG](#oh_avcodec_mimetype_image_png) | MIME type of the PNG image encoder, which is used only for multiplexing PNG covers.      |
+| [OH_AVCODEC_MIMETYPE_IMAGE_BMP](#oh_avcodec_mimetype_image_bmp) | MIME type of the BMP image encoder, which is used only for multiplexing BMP covers.      |
 | [OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT](#oh_avcodec_mimetype_subtitle_webvtt) |MIME type of the WEBVTT subtitle demuxer.                        |
 | [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](#oh_avcodec_mimetype_subtitle_srt) |MIME type of the SRT subtitle demuxer.                        |
 
@@ -128,11 +128,11 @@ The table below lists the audio-dedicated key-value pairs.
 | [OH_MD_KEY_AUDIO_OBJECT_NUMBER](#oh_md_key_audio_object_number) | Number of audio objects. The value type is int32_t. This key is used only for Audio Vivid decoding. This key is optional.           |
 | [OH_MD_KEY_AUDIO_VIVID_METADATA](#oh_md_key_audio_vivid_metadata) | Audio Vivid metadata. The value type is uint8_t\*. This key is used only for Audio Vivid decoding. This key is optional.    |
 
-The table below lists the key-value pairs dedicated for muxing and demuxing.
+The table below lists the key-value pairs dedicated for multiplexing and demultiplexing.
 
 | Name                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [OH_MD_KEY_VIDEO_IS_HDR_VIVID](#oh_md_key_video_is_hdr_vivid) | Whether the video track in a media file is HDR Vivid. The value type is int32_t. This key is used for both muxing and demuxing. This key is optional. |
+| [OH_MD_KEY_VIDEO_IS_HDR_VIVID](#oh_md_key_video_is_hdr_vivid) | Whether the video track in a media file is HDR Vivid. The value type is int32_t. This key is used for both multiplexing and demultiplexing. This key is optional. |
 | [OH_MD_KEY_START_TIME](#oh_md_key_start_time) | Start time of the first frame in a media file, measured in microseconds. The value type is int64_t. This key is optional.           |
 | [OH_MD_KEY_TRACK_START_TIME](#oh_md_key_track_start_time) | Start time of the track, measured in microseconds. The value type is int64_t. This key is optional.           |
 | [OH_MD_KEY_TRACK_TYPE](#oh_md_key_track_type)                | Track type in a media file. The value type is int32_t. For details, see [OH_MediaType](#oh_mediatype-1). This key is optional.|
@@ -164,7 +164,7 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | Name| Description|
 | -------- | -------- |
 | [avcodec_audio_channel_layout.h](avcodec__audio__channel__layout_8h.md) | Declares the enums used for audio encoding and decoding.|
-| [native_avcodec_base.h](native__avcodec__base_8h.md) | Declares the native APIs used for basic audio and video muxing, demuxing, encoding, and decoding.|
+| [native_avcodec_base.h](native__avcodec__base_8h.md) | Declares the native APIs used for basic audio and video multiplexing, demultiplexing, encoding, and decoding.|
 
 
 ### Structs
@@ -265,12 +265,12 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_HEVC](#oh_avcodec_mimetype_video_hevc) | Pointer to the key that describes the MIME type of the HEVC (H.265) video codec.|
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | Pointer to the key that describes the MIME type of the AVC (H.264) video codec.|
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_H263](#oh_avcodec_mimetype_video_h263) | Pointer to the key that describes the MIME type of the H.263 video codec.                    |
-| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](#oh_avcodec_mimetype_video_mpeg4) | Pointer to the key that describes the MIME type of the MPEG4 video encoder, which is used only for muxing MPEG4 video streams. (This function is deprecated in API version 11.)|
+| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](#oh_avcodec_mimetype_video_mpeg4) | Pointer to the key that describes the MIME type of the MPEG4 video encoder, which is used only for multiplexing MPEG4 video streams. (This function is deprecated in API version 11.)|
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG2](#oh_avcodec_mimetype_video_mpeg2) | Pointer to the key that describes the MIME type of MPEG2 video codec.                       |
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2](#oh_avcodec_mimetype_video_mpeg4_part2) | Pointer to the key that describes the MIME type of MPEG4 Part 2 video codec.        |
-| const char \* [OH_AVCODEC_MIMETYPE_IMAGE_JPG](#oh_avcodec_mimetype_image_jpg) | Pointer to the key that describes the MIME type of the JPG image encoder, which is used only for muxing JPG covers.|
-| const char \* [OH_AVCODEC_MIMETYPE_IMAGE_PNG](#oh_avcodec_mimetype_image_png) | Pointer to the key that describes the MIME type of the PNG image encoder, which is used only for muxing PNG covers.|
-| const char \* [OH_AVCODEC_MIMETYPE_IMAGE_BMP](#oh_avcodec_mimetype_image_bmp) | Pointer to the key that describes the MIME type of the BMP image encoder, which is used only for muxing BMP covers.|
+| const char \* [OH_AVCODEC_MIMETYPE_IMAGE_JPG](#oh_avcodec_mimetype_image_jpg) | Pointer to the key that describes the MIME type of the JPG image encoder, which is used only for multiplexing JPG covers.|
+| const char \* [OH_AVCODEC_MIMETYPE_IMAGE_PNG](#oh_avcodec_mimetype_image_png) | Pointer to the key that describes the MIME type of the PNG image encoder, which is used only for multiplexing PNG covers.|
+| const char \* [OH_AVCODEC_MIMETYPE_IMAGE_BMP](#oh_avcodec_mimetype_image_bmp) | Pointer to the key that describes the MIME type of the BMP image encoder, which is used only for multiplexing BMP covers.|
 | const char \* [OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT](#oh_avcodec_mimetype_subtitle_webvtt) |Pointer to the key that describes the MIME type of the WEBVTT subtitle demuxer.                |
 | const char \* [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](#oh_avcodec_mimetype_subtitle_srt) |Pointer to the key that describes the MIME type of the SRT subtitle demuxer.                        |
 | const char \* [OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT](#oh_feature_property_key_video_encoder_max_ltr_frame_count) | Pointer to the key that describes the maximum number of LTR frames obtained during video encoding. The value type is int32_t. |
@@ -334,7 +334,7 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | const char \* [OH_MD_KEY_SETUP_HEADER](#oh_md_key_setup_header) | Pointer to the key that describes the Vorbis setup header. The value type is uint8_t. This key applies only to Vorbis decoders.|
 | const char \* [OH_MD_KEY_AUDIO_OBJECT_NUMBER](#oh_md_key_audio_object_number) | Pointer to the key that describes the number of audio objects. The value type is int32_t. This key is used only for Audio Vivid decoding.|
 | const char \* [OH_MD_KEY_AUDIO_VIVID_METADATA](#oh_md_key_audio_vivid_metadata) | Pointer to the key that describes the Audio Vivid metadata. The value type is uint8_t\*. This key is used only for Audio Vivid decoding.|
-| const char \* [OH_MD_KEY_VIDEO_IS_HDR_VIVID](#oh_md_key_video_is_hdr_vivid) | Pointer to the key that describes whether the video track in a media file is HDR Vivid. The value type is int32_t. This key is used for both muxing and demuxing.|
+| const char \* [OH_MD_KEY_VIDEO_IS_HDR_VIVID](#oh_md_key_video_is_hdr_vivid) | Pointer to the key that describes whether the video track in a media file is HDR Vivid. The value type is int32_t. This key is used for both multiplexing and demultiplexing.|
 | const char \* [OH_MD_KEY_START_TIME](#oh_md_key_start_time) | Pointer to the key that describes the start time of the first frame in a media file, measured in microseconds. The value type is int64_t.    |
 | const char \* [OH_MD_KEY_TRACK_START_TIME](#oh_md_key_track_start_time) | Pointer to the key that describes the start time of the track, measured in microseconds. The value type is int64_t.    |
 | const char \* [OH_MD_KEY_TRACK_TYPE](#oh_md_key_track_type) | Pointer to the key that describes the track type in a media file. The value type is int32_t. For details, see [OH_MediaType](#oh_mediatype-1).|
@@ -1938,7 +1938,7 @@ const char* OH_AVCODEC_MIMETYPE_IMAGE_BMP
 
 **Description**
 
-Pointer to the key that describes the MIME type of the BMP image encoder, which is used only for muxing BMP covers.
+Pointer to the key that describes the MIME type of the BMP image encoder, which is used only for multiplexing BMP covers.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1953,7 +1953,7 @@ const char* OH_AVCODEC_MIMETYPE_IMAGE_JPG
 
 **Description**
 
-Pointer to the key that describes the MIME type of the JPG image encoder, which is used only for muxing JPG covers.
+Pointer to the key that describes the MIME type of the JPG image encoder, which is used only for multiplexing JPG covers.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1968,7 +1968,7 @@ const char* OH_AVCODEC_MIMETYPE_IMAGE_PNG
 
 **Description**
 
-Pointer to the key that describes the MIME type of the PNG image encoder, which is used only for muxing PNG covers.
+Pointer to the key that describes the MIME type of the PNG image encoder, which is used only for multiplexing PNG covers.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2058,7 +2058,7 @@ const char* OH_AVCODEC_MIMETYPE_VIDEO_MPEG4
 
 **Description**
 
-Pointer to the key that describes the MIME type of the MPEG4 video encoder, which is used only for muxing MPEG4 video streams.
+Pointer to the key that describes the MIME type of the MPEG4 video encoder, which is used only for multiplexing MPEG4 video streams.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -3085,7 +3085,7 @@ const char* OH_MD_KEY_VIDEO_IS_HDR_VIVID
 
 **Description**
 
-Pointer to the key that describes whether the video track in a media file is HDR Vivid. The value type is int32_t. This key is used for both muxing and demuxing.
+Pointer to the key that describes whether the video track in a media file is HDR Vivid. The value type is int32_t. This key is used for both multiplexing and demultiplexing.
 
 The value **1** means the HDR Vivid video track, and **0** means other cases.
 
@@ -3232,7 +3232,7 @@ When the decoded output stream<!--RP2--><!--RP2End--> changes, the height can be
 
 The width and height parsed from the **OH_AVFormat** instance are aligned, which are different from **OH_MD_KEY_WIDTH** and **OH_MD_KEY_HEIGHT** set by calling **Configure**.
 
-For details about the image arrangement and usage examples of **width**, **height**, **wStride**, and **hStride**, see step 8 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md#buffer-input) or step 10 in buffer mode in [Video Decoding](../../media/avcodec/video-decoding.md#buffer-output).
+For details about the image arrangement and usage examples of **width**, **height**, **wStride**, and **hStride**, see step 8 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md#buffer-input) or step 11 in buffer mode in [Video Decoding](../../media/avcodec/video-decoding.md#buffer-output).
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -3255,7 +3255,7 @@ When the decoded output stream<!--RP2--><!--RP2End--> changes, the width can be 
 
 The width and height parsed from the **OH_AVFormat** instance are aligned, which are different from **OH_MD_KEY_WIDTH** and **OH_MD_KEY_HEIGHT** set by calling **Configure**.
 
-For details about the image arrangement and usage examples of **width**, **height**, **wStride**, and **hStride**, see step 8 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md#buffer-input) or step 10 in buffer mode in [Video Decoding](../../media/avcodec/video-decoding.md#buffer-output).
+For details about the image arrangement and usage examples of **width**, **height**, **wStride**, and **hStride**, see step 8 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md#buffer-input) or step 11 in buffer mode in [Video Decoding](../../media/avcodec/video-decoding.md#buffer-output).
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -3277,7 +3277,7 @@ The height of the U/V plane can be calculated based on the color format, but it 
 
 For details, see step 3 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md#buffer-input).
 
-For details about the image arrangement and usage examples of **width**, **height**, **wStride**, and **hStride**, see step 8 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md#buffer-input) or step 10 in buffer mode in [Video Decoding](../../media/avcodec/video-decoding.md#buffer-output).
+For details about the image arrangement and usage examples of **width**, **height**, **wStride**, and **hStride**, see step 8 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md#buffer-input) or step 11 in buffer mode in [Video Decoding](../../media/avcodec/video-decoding.md#buffer-output).
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -3299,7 +3299,7 @@ For the YUV420 format, the stride corresponds to the Y plane. The stride of the 
 
 For details, see step 3 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md#buffer-input).
 
-For details about the image arrangement and usage examples of **width**, **height**, **wStride**, and **hStride**, see step 8 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md#buffer-input) or step 10 in buffer mode in [Video Decoding](../../media/avcodec/video-decoding.md#buffer-output).
+For details about the image arrangement and usage examples of **width**, **height**, **wStride**, and **hStride**, see step 8 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md#buffer-input) or step 11 in buffer mode in [Video Decoding](../../media/avcodec/video-decoding.md#buffer-output).
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 

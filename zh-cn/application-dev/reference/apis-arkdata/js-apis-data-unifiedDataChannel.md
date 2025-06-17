@@ -39,13 +39,13 @@ type GetDelayData = (type: string) => UnifiedData
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 作为延迟封装的标识。 |
+| type | string | 是 | 作为延迟数据类型的标识。 |
 
 **返回值：**
 
 | 类型                                     | 说明                      |
 | ---------------------------------------- |-------------------------|
-| [UnifiedData](#unifieddata) | 当延迟封装触发时，返回一个UnifiedData对象。 |
+| [UnifiedData](#unifieddata) | 当延迟回调触发时，返回一个UnifiedData对象。 |
 
 **示例：**
 
@@ -87,7 +87,7 @@ type ValueType = number | string | boolean | image.PixelMap | Want | ArrayBuffer
 | number | 表示number的类型。 |
 | string | 表示string的类型。 |
 | boolean | 表示boolean的类型。 |
-| image.PixelMap | 表示[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)的类型。 |
+| image.PixelMap | 表示[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)的类型。 |
 | Want | 表示[Want](../apis-ability-kit/js-apis-app-ability-want.md)的类型。 |
 | ArrayBuffer | 表示ArrayBuffer的类型。 |
 | object | 表示object的类型。 |
@@ -402,7 +402,7 @@ let types = unifiedData.getTypes();
 
 ## Summary
 
-描述某一统一数据对象的数据摘要，包括所含数据类型及大小。
+描述统一数据对象的数据摘要，包括数据类型和大小。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -437,7 +437,7 @@ let unifiedRecord = new unifiedDataChannel.UnifiedRecord();
 
 constructor(type: string, value: ValueType)
 
-用于创建指定类型和值的数据记录。<br/>当参数value为[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_PIXEL_MAP的值；<br/>当参数value为[Want](../apis-ability-kit/js-apis-app-ability-want.md)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_WANT的值。
+用于创建指定类型和值的数据记录。<br/>当参数value为[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_PIXEL_MAP的值；<br/>当参数value为[Want](../apis-ability-kit/js-apis-app-ability-want.md)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_WANT的值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -617,7 +617,7 @@ unifiedData.addRecord(record);
 
 getEntry(type: string): ValueType
 
-通过数据类型获取当前数据记录中的数据内容。
+通过数据类型获取数据记录中的数据内容。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -760,7 +760,7 @@ for (let i = 0; i < records.length; i++) {
 
 getTypes(): Array\<string\>
 
-获取当前数据记录中数据的所有类型集合。可通过UnifiedRecord数据记录对象调用本接口，能查询出此记录中数据的所有类型集合，包括使用[addEntry](#addentry15)函数添加的数据类型。
+获取数据记录中数据的所有类型集合。可通过UnifiedRecord数据记录对象调用本接口，查询出此记录中数据的所有类型集合，包括使用[addEntry](#addentry15)函数添加的数据类型。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -822,7 +822,7 @@ for (let i = 0; i < records.length; i++) {
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -845,7 +845,7 @@ let unifiedData = new unifiedDataChannel.UnifiedData(text);
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -866,7 +866,7 @@ text.abstract = 'This is abstract';
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -887,7 +887,7 @@ HTML类型数据，是[Text](#text)的子类，用于描述超文本标记语言
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -908,7 +908,7 @@ File类型数据，是[UnifiedRecord](#unifiedrecord)的子类，也是文件类
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -944,7 +944,7 @@ export default class EntryAbility extends UIAbility {
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -975,7 +975,7 @@ export default class EntryAbility extends UIAbility {
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1006,7 +1006,7 @@ export default class EntryAbility extends UIAbility {
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1037,7 +1037,7 @@ export default class EntryAbility extends UIAbility {
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1068,7 +1068,7 @@ SystemDefinedRecord是[UnifiedRecord](#unifiedrecord)的子类，也是OpenHarmo
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1093,7 +1093,7 @@ let unifiedData = new unifiedDataChannel.UnifiedData(sdr);
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1127,7 +1127,7 @@ let unifiedData = new unifiedDataChannel.UnifiedData(form);
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1159,11 +1159,11 @@ let unifiedData = new unifiedDataChannel.UnifiedData(appItem);
 
 ## SystemDefinedPixelMap
 
-与系统侧定义的[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)数据类型对应的图片数据类型，是[SystemDefinedRecord](#systemdefinedrecord)的子类，仅保存PixelMap的二进制数据。
+与系统侧定义的[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)数据类型对应的图片数据类型，是[SystemDefinedRecord](#systemdefinedrecord)的子类，仅保存PixelMap的二进制数据。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1176,31 +1176,31 @@ import { image } from '@kit.ImageKit'; // PixelMap类定义所在模块
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const color = new ArrayBuffer(96); // 创建pixelmap对象
+const color = new ArrayBuffer(96); // 创建pixelMap对象
 let opts: image.InitializationOptions = {
   editable: true, pixelFormat: 3, size: {
     height: 4, width: 6
   }
 }
-image.createPixelMap(color, opts, (error, pixelmap) => {
+image.createPixelMap(color, opts, (error, pixelMap) => {
   if (error) {
-    console.error('Failed to create pixelmap.');
+    console.error('Failed to create pixelMap.');
   } else {
-    console.info('Succeeded in creating pixelmap.');
-    let arrayBuf = new ArrayBuffer(pixelmap.getPixelBytesNumber());
-    pixelmap.readPixelsToBuffer(arrayBuf);
+    console.info('Succeeded in creating pixelMap.');
+    let arrayBuf = new ArrayBuffer(pixelMap.getPixelBytesNumber());
+    pixelMap.readPixelsToBuffer(arrayBuf);
     let u8Array = new Uint8Array(arrayBuf);
-    let sdpixel = new unifiedDataChannel.SystemDefinedPixelMap();
-    sdpixel.rawData = u8Array;
-    let unifiedData = new unifiedDataChannel.UnifiedData(sdpixel);
+    let sdPixel = new unifiedDataChannel.SystemDefinedPixelMap();
+    sdPixel.rawData = u8Array;
+    let unifiedData = new unifiedDataChannel.UnifiedData(sdPixel);
 
     // 从unifiedData中读取pixelMap类型的record
     let records = unifiedData.getRecords();
     for (let i = 0; i < records.length; i++) {
       if (records[i].getType() === uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP) {
-        let pixelmapRecord = records[i] as unifiedDataChannel.SystemDefinedPixelMap;
-        let newArraybuf = pixelmapRecord.rawData.buffer;
-        pixelmap.writeBufferToPixels(newArraybuf).then(() => {
+        let pixelMapRecord = records[i] as unifiedDataChannel.SystemDefinedPixelMap;
+        let newArrayBuf = pixelMapRecord.rawData.buffer;
+        pixelMap.writeBufferToPixels(newArrayBuf).then(() => {
           console.info('Succeeded in writing data from buffer to a pixelMap');
         }).catch((error: BusinessError) => {
           console.error(`Failed to write data from a buffer to a PixelMap. code is ${error.code}, message is ${error.message}`);
@@ -1217,7 +1217,7 @@ ApplicationDefinedRecord是[UnifiedRecord](#unifiedrecord)的子类，也是应�
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1243,13 +1243,27 @@ UDMF已经支持的数据通路枚举类型。其主要用途是标识各种UDMF
 | 名称       | 值         | 说明      |
 |----------|-----------|---------|
 | DATA_HUB | 'DataHub' | 公共数据通路。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| DRAG<sup>14+</sup> | 'Drag' | 拖拽类型数据通道。<br/>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| DRAG<sup>14+</sup> | 'Drag' | 拖拽类型数据通道。<br/>**模型约束：** 此接口仅可在Stage模型下使用。<br/>**适用场景：** 适用于在拖拽场景下使用UDMF来跨应用数据共享。 |
+| SYSTEM_SHARE<sup>20+</sup> | 'SystemShare' | 系统分享类型数据通道。<br/>**模型约束：** 此接口仅可在Stage模型下使用。<br/>**适用场景：** 适用于在系统分享场景下使用UDMF来跨应用数据共享。 |
+| PICKER<sup>20+</sup> | 'Picker' | Picker类型数据通道。<br/>**模型约束：** 此接口仅可在Stage模型下使用。<br/>**适用场景：** 适用于在Picker选择器场景下使用UDMF来跨应用数据共享。 |
+| MENU<sup>20+</sup> | 'Menu' | 菜单类型数据通道。<br/>**模型约束：** 此接口仅可在Stage模型下使用。<br/>**适用场景：** 适用于在右键菜单场景下使用UDMF来跨应用数据共享。 |
+
+## Visibility<sup>20+</sup> 
+
+表示数据的可见性等级枚举。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+| 名称          | 值   | 说明                          |
+| ------------- | ---- |------------------------------|
+| ALL           | 0    | 可见性等级，所有应用可见。<br/>**模型约束：** 此接口仅可在Stage模型下使用。     |
+| OWN_PROCESS   | 1    | 可见性等级，仅数据提供者可见。<br/>**模型约束：** 此接口仅可在Stage模型下使用。  |
 
 ## Options
 
-type Options = { intention?: Intention; key?: string; }
-
-UDMF提供的数据操作接口可选项，包含intention和key两个可选参数。当对应接口不需要此参数时可不填，具体要求参照方法接口的参数说明。
+UDMF提供的数据操作接口包含三个可选参数：intention、key和visibility。如果接口不需要这些参数，可以不填，具体要求请参阅该接口的参数说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1259,6 +1273,7 @@ UDMF提供的数据操作接口可选项，包含intention和key两个可选参�
 | --------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | intention | [Intention](#intention) | 否   | 表示数据操作相关的数据通路类型。                             |
 | key       | string                  | 否   | UDMF中数据对象的唯一标识符，可通过[insertData](#unifieddatachannelinsertdata)接口的返回值获取。<br>由udmf:/、intention、bundleName和groupId四部分组成，以'/'连接，比如：udmf://DataHub/com.ohos.test/0123456789。<br>其中udmf:/固定，DataHub为对应枚举的取值，com.ohos.test为包名，0123456789为随机生成的groupId。 |
+| visibility<sup>20+</sup> | [Visibility](#visibility20) | 否   | 表示数据的可见性等级。只在写入数据的时候填写才生效，若不填写默认是Visibility.ALL。  |
 
 ## FileConflictOptions<sup>15+</sup>
 
@@ -1313,7 +1328,7 @@ UDMF提供的数据操作接口可选项，包含intention和key两个可选参�
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
-| 名称     | 类型                                  | 可读 | 可写 | 说明                                                             |
+| 名称     | 类型                                  | 只读 | 可选 | 说明                                                             |
 | -------- |-------------------------------------| ---- | ---- |----------------------------------------------------------------|
 | progress | number                              | 是   | 否   | 系统上报拖拽任务进度百分比。取值范围为[-1-100]的整数，其中-1时代表本次获取数据失败，100时表示本次获取数据完成。 |
 | status | [ListenerStatus](#listenerstatus15) | 是   | 否   | 系统上报拖拽任务的状态码。                                                  |
@@ -1341,7 +1356,26 @@ type DataProgressListener = (progressInfo: ProgressInfo, data: UnifiedData | nul
 
 具体使用示例可见[拖拽异步获取数据](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#示例3拖拽异步获取数据)。
 
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 名称                   | 类型                                              | 必填 | 说明                                                                                                                                                 |
+|----------------------|-------------------------------------------------| ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
+| progressIndicator    | [ProgressIndicator](#progressindicator15)       | 是 | 定义进度条指示选项，可选择是否采用系统默认进度显示。<br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。                                                                                                                         |
+| dataProgressListener | [DataProgressListener](#dataprogresslistener15) | 是 | 表示获取统一数据时的进度和数据监听器。<br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。                                                                                                                                |
+| destUri              | string                                          | 否 | 拷贝文件的目标路径。若不支持文件处理，则不需要设置此参数,默认为空；若支持文件处理，须设置一个已经存在的目录。若应用涉及复杂文件处理策略或需要区分文件多路径存储，建议不设置此参数，由应用自行完成文件copy处理。不填写时获取到到的uri为源端路径URI，填写后获取到的uri为目标路径uri。<br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| fileConflictOptions  | [FileConflictOptions](#fileconflictoptions15)   | 否   | 定义文件拷贝冲突时的选项，默认为OVERWRITE。<br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。                                                                                                                         |
+| acceptableInfo<sup>20+</sup>  | [DataLoadInfo](#dataloadinfo20)   | 否   | 定义接收方对数据类型和数据记录数量的接收能力。延迟加载场景下，发送方可根据此信息生成并返回更合适的数据内容。默认为空，不提供接收方数据接收能力。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。   |
+
+## DataLoadInfo<sup>20+</sup>
+
+用于描述被加载数据的类型与数量。
+
+- 在**数据发送方**中使用，表示实际可提供的数据范围，必须设置该字段。
+- 在**数据接收方**中使用，表示期望加载的数据类型与数量，可根据需要设置该字段。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -1349,10 +1383,45 @@ type DataProgressListener = (progressInfo: ProgressInfo, data: UnifiedData | nul
 
 | 名称                   | 类型                                              | 必填 | 说明                                                                                                                                                 |
 |----------------------|-------------------------------------------------| ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
-| progressIndicator    | [ProgressIndicator](#progressindicator15)       | 是 | 定义进度条指示选项，可选择是否采用系统默认进度显示。                                                                                                                         |
-| dataProgressListener | [DataProgressListener](#dataprogresslistener15) | 是 | 表示获取统一数据时的进度和数据监听器。                                                                                                                                |
-| destUri              | string                                          | 否 | 拷贝文件的目标路径。若不支持文件处理，则不需要设置此参数,默认为空；若支持文件处理，须设置一个已经存在的目录。若应用涉及复杂文件处理策略或需要区分文件多路径存储，建议不设置此参数，由应用自行完成文件copy处理。不填写时获取到到的uri为源端路径URI，填写后获取到的uri为目标路径uri。|
-| fileConflictOptions  | [FileConflictOptions](#fileconflictoptions15)   | 否   | 定义文件拷贝冲突时的选项，默认为OVERWRITE。                                                                                                                         |
+| types    | Set\<string\>       | 否 | 表示数据类型集合，默认为空集合。                                                                                                                         |
+| recordCount | number | 否 | 表示期望或可提供的最大数据记录数，默认为0。该参数应为大于或等于0的整数。                             |
+
+## DataLoadHandler<sup>20+</sup>
+
+type DataLoadHandler = (acceptableInfo?: DataLoadInfo) => UnifiedData | null
+
+用于延迟加载数据的处理函数。支持数据发送方根据接收方传入的信息，动态生成数据，实现更灵活、精准的数据交互策略。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名      | 类型                            | 必填    | 说明           |
+|----------|-------------------------------|-------|--------------|
+| acceptableInfo | [DataLoadInfo](#dataloadinfo20) | 否     | 表示数据接收方可以接收的数据类型和数量，默认为空。 |
+
+**返回值：**
+
+| 类型                    | 说明                                |
+|-----------------------|-----------------------------------|
+| [UnifiedData](#unifieddata) \| null | 当延迟处理函数触发时，返回UnifiedData或null。 |
+
+## DataLoadParams<sup>20+</sup>
+
+用于在延迟加载场景下描述发送方的数据加载策略。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 名称                   | 类型                                              | 必填 | 说明                                                                                                                                                 |
+|----------------------|-------------------------------------------------| ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
+| loadHandler    | [DataLoadHandler](#dataloadhandler20)       | 是 | 表示用于延迟加载数据的处理函数。             |
+| dataLoadInfo | [DataLoadInfo](#dataloadinfo20) | 是 | 用于描述当前发送方可生成的数据类型及数量信息。              |
 
 ## unifiedDataChannel.insertData
 
@@ -1643,7 +1712,7 @@ queryData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&
 | 参数名      | 类型                                                            | 必填 | 说明                                                                                                                                                               |
 |----------|---------------------------------------------------------------|----|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | options  | [Options](#options)                                           | 是  | 配置项参数，key和intention均为可选，根据传入的参数做相应的校验以返回不同的值。                                                                                                                    |
-| callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | 是  | 回调函数，返回查询到的所有数据。<br>如果options中填入的是key，则返回key对应的数据。<br>如果options中填入的是intention，则返回intention下所有数据。<br>如intention和key均填写了，取两者查询数据的交集，与options只填入key的获取结果一致；如没有交集报错。 |
+| callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | 是  | 回调函数，返回查询到的所有数据。<br>如果options中填入的是key，则返回key对应的数据；<br>如果options中填入的是intention，则返回intention下所有数据。<br>如intention和key均填写了，取两者查询数据的交集，与options只填入key的获取结果一致；如没有交集报错。 |
 
 **错误码：**
 
@@ -1891,9 +1960,9 @@ setAppShareOptions(intention: Intention, shareOptions: ShareOptions): void
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 201          | Permission denied. Interface caller does not have permission "ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION". |
+| 201          | Permission verification failed. The application does not have the permission required to call the API. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 20400001     | Settings already exist.                                      |
+| 20400001     | Settings already exist. To reconfigure, remove the existing sharing options.       |
 
 **示例：**
 
@@ -1932,7 +2001,7 @@ removeAppShareOptions(intention: Intention): void
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 201          | Permission denied. Interface caller does not have permission "ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION". |
+| 201          | Permission verification failed. The application does not have the permission required to call the API. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**

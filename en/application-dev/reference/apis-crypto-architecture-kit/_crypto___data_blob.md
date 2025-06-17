@@ -9,13 +9,15 @@ Defines the data used for encryption and decryption.
 
 **Related module**: [CryptoCommonApi](_crypto_common_api.md)
 
+**Header file**: [crypto_common.h](crypto__common_8h.md)
+
 
 ## Summary
 
 
 ### Member Variables
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | uint8_t \* [data](#data) | Pointer to the data. | 
 | size_t [len](#len) | Length of the data. | 

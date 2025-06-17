@@ -39,7 +39,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID             | Error Message                          |
 | --------------------- | ---------------------------------- |
-| 401 | Parameter error. Possible causes: <br>1. Mandatory parameters are left unspecified. <br>    2. Incorrect parameter types. <br>3. Invalid parameter value.|
+| 401 | Invalid parameter value.     |
 |3120001| Service connection failed. |
 |3120002| System internal error.     |
 
@@ -81,7 +81,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID             | Error Message                          |
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied.           |
-| 401 | Parameter error. Possible causes: <br>1. Mandatory parameters are left unspecified. <br>    2. Incorrect parameter types. <br>3. Invalid parameter value.|
+| 401 | Invalid parameter value.     |
 | 801 | Capability not supported.    |
 |3120001| Service connection failed. |
 |3120002| System internal error.     |

@@ -20,12 +20,12 @@
 
 ### 接口说明
 
-详细的API参考说明，请参考[Camera API文档](../../reference/apis-camera-kit/js-apis-camera.md)。
+详细的API参考说明，请参考[Camera API文档](../../reference/apis-camera-kit/arkts-apis-camera.md)。
 
 | 接口 | 说明 |
 | ---- | ---- |
 | createDeferredPreviewOutput(profile: Profile): Promise\<PreviewOutput> | 创建延迟预览输出对象，在配流时替代普通的预览输出对象加入数据流。 |
-| addDeferredSurface(surfaceId: string): Promise\<void> | 配置延迟预览的Surface，可以在[session.commitConfig](../../reference/apis-camera-kit/js-apis-camera.md#commitconfig11)配流和[session.start](../../reference/apis-camera-kit/js-apis-camera.md#start11)启流之后运行。 |
+| addDeferredSurface(surfaceId: string): Promise\<void> | 配置延迟预览的Surface，可以在[session.commitConfig](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#commitconfig11)配流和[session.start](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#start11)启流之后运行。 |
 
 ### 开发示例
 
@@ -65,17 +65,17 @@ async function preview(baseContext: common.BaseContext, cameraInfo: camera.Camer
 
 ### 接口说明
 
-详细的API参考说明，请参考[Camera API文档](../../reference/apis-camera-kit/js-apis-camera.md)。
+详细的API参考说明，请参考[Camera API文档](../../reference/apis-camera-kit/arkts-apis-camera.md)。
 
 | 接口 | 说明 |
 | ---- | ---- |
-| isQuickThumbnailSupported() : boolean | 是否支持快速缩略图。 |
+| isQuickThumbnailSupported() : boolean | 是否支持快速缩略图，true表示支持，false表示不支持。 |
 | enableQuickThumbnail(enabled:bool): void | 使能/去使能快速缩略图。 |
 | on(type: 'quickThumbnail', callback: AsyncCallback\<image.PixelMap>): void | 相机缩略图监听回调。 |
 
 > **说明：**
 >
-> - [isQuickThumbnailSupported](../../reference/apis-camera-kit/js-apis-camera-sys.md#isquickthumbnailsupported)及[enableQuickThumbnail](../../reference/apis-camera-kit/js-apis-camera-sys.md#enablequickthumbnail)接口的调用需要在[addOutput](../../reference/apis-camera-kit/js-apis-camera.md#addoutput11)、[addInput](../../reference/apis-camera-kit/js-apis-camera.md#addinput11)后，[commitConfig](../../reference/apis-camera-kit/js-apis-camera.md#commitconfig11)之前。
+> - [isQuickThumbnailSupported](../../reference/apis-camera-kit/js-apis-camera-sys.md#isquickthumbnailsupported)及[enableQuickThumbnail](../../reference/apis-camera-kit/js-apis-camera-sys.md#enablequickthumbnail)接口的调用需要在[addOutput](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#addoutput11)、[addInput](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#addinput11)后，[commitConfig](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#commitconfig11)之前。
 > - on接口需要在[enableQuickThumbnail(true)](../../reference/apis-camera-kit/js-apis-camera-sys.md#enablequickthumbnail)之后生效。
 
 ### 开发示例
@@ -136,11 +136,11 @@ function showOrSavePicture(pixelMap: image.PixelMap): void {
 
 ### 接口说明
 
-详细的API参考说明，请参考[Camera API文档](../../reference/apis-camera-kit/js-apis-camera.md)。
+详细的API参考说明，请参考[Camera API文档](../../reference/apis-camera-kit/arkts-apis-camera.md)。
 
 | 接口 | 说明 |
 | ---- | ---- |
-| isPrelaunchSupported(camera: CameraDevice) : boolean |  判断指定cameraDevice是否支持预热启动。 |
+| isPrelaunchSupported(camera: CameraDevice) : boolean |  判断指定cameraDevice是否支持预热启动，true表示支持，false表示不支持。 |
 | setPrelaunchConfig(prelaunchConfig: PrelaunchConfig) : void | 配置相机预热参数。 |
 | prelaunch() : void | 用户点击系统相机图标，拉起相机应用的同时调用，下发预热请求，使能相机预热启动。 |
 

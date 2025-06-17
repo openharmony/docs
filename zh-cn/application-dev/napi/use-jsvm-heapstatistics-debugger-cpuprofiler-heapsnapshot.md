@@ -70,6 +70,17 @@ static JSVM_PropertyDescriptor descriptor[] = {
 ```c++
 const char *srcCallNative = R"JS(getVM())JS";
 ```
+<!-- @[oh_jsvm_get_vm](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/getvm/src/main/cpp/hello.cpp) -->
+
+预计的输出结果：
+```
+JSVM OH_JSVM_GetVM: success
+```
+
+预计的输出结果：
+```
+JSVM OH_JSVM_GetVM: success
+```
 
 ### OH_JSVM_GetHeapStatistics
 
@@ -131,6 +142,23 @@ static JSVM_PropertyDescriptor descriptor[] = {
 
 ```c++
 const char *srcCallNative = R"JS(getHeapStatistics())JS";
+```
+<!-- @[oh_jsvm_get_heap_statistics](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/getheapstatistics/src/main/cpp/hello.cpp) -->
+预计的输出结果：
+```
+JSVM API heap totalHeapSize: 1597440
+JSVM API heap totalHeapSizeExecutable: 0
+JSVM API heap totalPhysicalSize: 1323008
+JSVM API heap totalAvailableSize: 1519203688
+JSVM API heap usedHeapSize: 178256
+JSVM API heap heapSizeLimit: 1518338048
+JSVM API heap mallocedMemory: 32848
+JSVM API heap externalMemory: 0
+JSVM API heap peakMallocedMemory: 40960
+JSVM API heap numberOfNativeContexts: 1
+JSVM API heap numberOfDetachedContexts: 0
+JSVM API heap totalGlobalHandlesSize: 8192
+JSVM API heap usedGlobalHandlesSize: 32
 ```
 
 以下接口的示例代码可以参考链接：

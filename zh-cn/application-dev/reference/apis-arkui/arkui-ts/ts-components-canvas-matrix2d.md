@@ -1,10 +1,10 @@
 # Matrix2D
 
-矩阵对象，可以对矩阵进行缩放、旋转、平移等变换。
+矩阵对象，可以对矩阵进行缩放、旋转和平移等变换。
 
 >  **说明：**
 > 
-> 从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从 API version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 接口
 
@@ -20,7 +20,7 @@ Matrix2D(unit?: LengthMetricsUnit)
 
 | 参数名 | 类型 | 必填 | 说明                              |
 | ------ | -------- | ---- | ------------------------------------- |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否   | 用来配置Matrix2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT。|
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否   | 用来配置Matrix2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT|
 
 ## 属性
 
@@ -36,8 +36,8 @@ Matrix2D(unit?: LengthMetricsUnit)
 | scaleY         | number | 否 | 是 | 垂直缩放系数。           |
 | rotateX       | number | 否 | 是 | 水平倾斜系数。           |
 | rotateY       | number | 否 | 是 | 垂直倾斜系数。           |
-| translateX | number | 否 | 是 | 水平平移距离。<br>默认单位：vp。 |
-| translateY | number | 否 | 是 | 垂直平移距离。<br>默认单位：vp。 |
+| translateX | number | 否 | 是 | 水平平移距离。<br>默认单位：vp |
+| translateY | number | 否 | 是 | 垂直平移距离。<br>默认单位：vp |
 
 >  **说明：**
 >  
@@ -50,9 +50,9 @@ Matrix2D(unit?: LengthMetricsUnit)
 @Entry
 @Component
 struct Parameter {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix: Matrix2D = new Matrix2D()
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private matrix: Matrix2D = new Matrix2D();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -87,7 +87,7 @@ struct Parameter {
 
 identity(): Matrix2D
 
-创建一个单位矩阵。
+创建单位矩阵。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -108,9 +108,9 @@ identity(): Matrix2D
 @Entry
 @Component
 struct Identity {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix: Matrix2D = new Matrix2D()
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private matrix: Matrix2D = new Matrix2D();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -138,7 +138,7 @@ struct Identity {
 
 invert(): Matrix2D
 
-得到当前矩阵的逆矩阵。
+获取当前矩阵的逆矩阵。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -159,9 +159,9 @@ invert(): Matrix2D
 @Entry
 @Component
 struct Invert {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix: Matrix2D = new Matrix2D()
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private matrix: Matrix2D = new Matrix2D();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -191,7 +191,7 @@ struct Invert {
 ![matrix-invert.png](figures/matrix-invert.png)
 
 
-### multiply<sup>(deprecated) </sup>
+### multiply<sup>(deprecated)</sup>
 
 multiply(other?: Matrix2D): Matrix2D
 
@@ -205,7 +205,7 @@ multiply(other?: Matrix2D): Matrix2D
 
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
-| other | Matrix2D | 否 | 目标矩阵。<br>默认值：null。 |
+| other | Matrix2D | 否 | 目标矩阵。<br>默认值：null |
 
 **返回值：**
 
@@ -213,7 +213,7 @@ multiply(other?: Matrix2D): Matrix2D
 | --------------------- | -------------- |
 | [Matrix2D](#matrix2d) | 相乘结果矩阵。 |
 
-### rotate<sup>(deprecated) </sup>
+### rotate<sup>(deprecated)</sup>
 
 rotate(rx?: number, ry?: number): Matrix2D
 
@@ -227,8 +227,8 @@ rotate(rx?: number, ry?: number): Matrix2D
 
 | 参数名 | 类型   | 必填 | 说明                          |
 | ---- | ------ | ---- | -------------------------------- |
-| rx   | number | 否   | 旋转点的水平方向坐标。<br>默认单位：vp。 |
-| ry   | number | 否   | 旋转点的垂直方向坐标。<br>默认单位：vp。 |
+| rx   | number | 否   | 旋转点的水平方向坐标。<br>默认单位：vp |
+| ry   | number | 否   | 旋转点的垂直方向坐标。<br>默认单位：vp |
 
 **返回值：**
 
@@ -243,9 +243,9 @@ rotate(rx?: number, ry?: number): Matrix2D
 @Entry
 @Component
 struct Rotate {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix: Matrix2D = new Matrix2D()
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private matrix: Matrix2D = new Matrix2D();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -264,7 +264,6 @@ struct Rotate {
           this.matrix.rotate(5, 5)
           this.context.setTransform(this.matrix)
           this.context.fillRect(50, 110, 50, 50)
-        })
     }
     .width('100%')
     .height('100%')
@@ -279,7 +278,7 @@ struct Rotate {
 
 rotate(degree: number, rx?: number, ry?: number): Matrix2D
 
-以旋转点为中心、对当前矩阵进行右乘旋转运算。
+以旋转点为中心，对当前矩阵进行右乘旋转运算。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -291,9 +290,9 @@ rotate(degree: number, rx?: number, ry?: number): Matrix2D
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| degree | number | 是  | 旋转角度。顺时针方向为正角度，可以通过 degree * Math.PI / 180 将角度转换为弧度值。<br>默认单位：弧度。|
-| rx     | number | 否  | 旋转点的水平方向坐标。<br>默认单位：vp。<br>默认值：0。    |
-| ry     | number | 否  | 旋转点的垂直方向坐标。<br>默认单位：vp。<br>默认值：0。    |
+| degree | number | 是  | 旋转角度。顺时针方向为正角度，可以通过 degree * Math.PI / 180 将角度转换为弧度值。<br>默认单位：弧度|
+| rx     | number | 否  | 旋转点的水平方向坐标。<br>默认单位：vp<br>默认值：0    |
+| ry     | number | 否  | 旋转点的垂直方向坐标。<br>默认单位：vp<br>默认值：0    |
 
 **返回值：**
 
@@ -308,9 +307,9 @@ rotate(degree: number, rx?: number, ry?: number): Matrix2D
 @Entry
 @Component
 struct Rotate {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix: Matrix2D = new Matrix2D()
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private matrix: Matrix2D = new Matrix2D();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -356,8 +355,8 @@ translate(tx?: number, ty?: number): Matrix2D
 
 | 参数名 | 类型   | 必填 | 说明                  |
 | ---- | ------ | ---- | ---------------------------- |
-| tx   | number | 否   | 水平方向平移距离。<br>默认单位：vp。<br>默认值：0。 |
-| ty   | number | 否   | 垂直方向平移距离。<br>默认单位：vp。<br>默认值：0。 |
+| tx   | number | 否   | 水平方向平移距离。<br>默认单位：vp<br>默认值：0 |
+| ty   | number | 否   | 垂直方向平移距离。<br>默认单位：vp<br>默认值：0 |
 
 **返回值：**
 
@@ -372,9 +371,9 @@ translate(tx?: number, ty?: number): Matrix2D
 @Entry
 @Component
 struct Translate {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix: Matrix2D = new Matrix2D()
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private matrix: Matrix2D = new Matrix2D();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -420,8 +419,8 @@ scale(sx?: number, sy?: number): Matrix2D
 
 | 参数 | 类型   | 必填 | 描述               |
 | ---- | ------ | ---- | ------------------ |
-| sx   | number | 否   | 水平缩放比例系数。<br>默认值：1.0。 |
-| sy   | number | 否   | 垂直缩放比例系数。<br>默认值：1.0。 |
+| sx   | number | 否   | 水平缩放比例系数。<br>默认值：1.0 |
+| sy   | number | 否   | 垂直缩放比例系数。<br>默认值：1.0 |
 
 **返回值：**
 
@@ -436,9 +435,9 @@ scale(sx?: number, sy?: number): Matrix2D
 @Entry
 @Component
 struct Scale {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix: Matrix2D = new Matrix2D()
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private matrix: Matrix2D = new Matrix2D();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {

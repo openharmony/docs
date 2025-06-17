@@ -9,13 +9,13 @@
 ![mission-record](figures/mission-record.png)
 
 - 页面栈的形成（下面2/3/5/6步骤为页面跳转，由ArkUI管理）
-  1. 点击桌面图标（[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)）启动UIAbility1，UIAbility1的初始页面为Page1。
+  1. 点击桌面图标（[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability)）启动UIAbility1，UIAbility1的初始页面为Page1。
 
   2. 点击Page1页面按钮（[Navigator](../reference/apis-arkui/arkui-ts/ts-container-navigator.md)）跳转到Page2页面。
 
   3. 点击Page2页面按钮（[Navigator](../reference/apis-arkui/arkui-ts/ts-container-navigator.md)）跳转到Page3页面。
 
-  4. 点击Page3页面按钮（[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)）跳转到UIAbility2，UIAbility2的初始页面为PageA。
+  4. 点击Page3页面按钮（[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability)）跳转到UIAbility2，UIAbility2的初始页面为PageA。
 
   5. 点击PageA页面按钮（[Navigator](../reference/apis-arkui/arkui-ts/ts-container-navigator.md)）跳转到PageB页面。
 

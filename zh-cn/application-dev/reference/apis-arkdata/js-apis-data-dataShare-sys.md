@@ -10,7 +10,7 @@
 >
 > - 本模块接口仅可在Stage模型下使用。
 >
-> - 本模块订阅RDB数据变更的接口on('rdbDataChange')的回调支持不大于200KB数据的传输。
+> - 本模块订阅RDB数据变更的接口on('rdbDataChange')的回调支持不大于10M数据的传输。
 
 
 ## 导入模块
@@ -45,31 +45,36 @@ createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700010 | The DataShareHelper is not initialized successfully. |
+| 15700010 | The DataShareHelper fails to be initialized. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
-import { UIAbility } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
-let context = getContext(UIAbility);
-try {
-  dataShare.createDataShareHelper(context, uri, (err:BusinessError, data:dataShare.DataShareHelper) => {
-    if (err !== undefined) {
-      console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
-      return;
-    }
-    console.info("createDataShareHelper succeed, data : " + data);
-    dataShareHelper = data;
-  });
-} catch (err) {
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    let uri = ("datashare:///com.samples.datasharetest.DataShare");
+    let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+    let context = this.context;
+    try {
+      dataShare.createDataShareHelper(context, uri, (err:BusinessError, data:dataShare.DataShareHelper) => {
+        if (err !== undefined) {
+          console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+          return;
+        }
+        console.info("createDataShareHelper succeed, data : " + data);
+        dataShareHelper = data;
+      });
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
+    };
+  };
 };
 ```
 
@@ -98,31 +103,36 @@ createDataShareHelper(context: Context, uri: string, options: DataShareHelperOpt
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700010 | The DataShareHelper is not initialized successfully. |
+| 15700010 | The DataShareHelper fails to be initialized. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
-import { UIAbility } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
-let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
-let context = getContext(UIAbility);
-try {
-  dataShare.createDataShareHelper(context, uri, {isProxy : true}, (err:BusinessError, data:dataShare.DataShareHelper) => {
-    if (err !== undefined) {
-      console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
-      return;
-    }
-    console.info("createDataShareHelper succeed, data : " + data);
-    dataShareHelper = data;
-  });
-} catch (err) {
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
+    let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+    let context = this.context;
+    try {
+      dataShare.createDataShareHelper(context, uri, {isProxy : true}, (err:BusinessError, data:dataShare.DataShareHelper) => {
+        if (err !== undefined) {
+          console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+          return;
+        }
+        console.info("createDataShareHelper succeed, data : " + data);
+        dataShareHelper = data;
+      });
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
+    };
+  };
 };
 ```
 ## dataShare.createDataShareHelper
@@ -157,29 +167,34 @@ createDataShareHelper(context: Context, uri: string, options?: DataShareHelperOp
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700010 | The DataShareHelper is not initialized successfully. |
+| 15700010 | The DataShareHelper fails to be initialized. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
-import { UIAbility } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
-let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
-let context = getContext(UIAbility);
-try {
-  dataShare.createDataShareHelper(context, uri, {isProxy : true}).then((data: dataShare.DataShareHelper) => {
-    console.info("createDataShareHelper succeed, data : " + data);
-    dataShareHelper = data;
-  }). catch((err: BusinessError) => {
-    console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
-  });
-} catch (err) {
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
+    let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+    let context = this.context;
+    try {
+      dataShare.createDataShareHelper(context, uri, {isProxy : true}).then((data: dataShare.DataShareHelper) => {
+        console.info("createDataShareHelper succeed, data : " + data);
+        dataShareHelper = data;
+      }). catch((err: BusinessError) => {
+        console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+      });
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
+    };
+  };
 };
 ```
 
@@ -215,22 +230,27 @@ enableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700011 | The URI is not exist. |
+| 15700011 | The URI does not exist. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
-import { UIAbility } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = ("datashare:///com.acts.datasharetest/entry/DB00/TBL00?Proxy=true");
-let context = getContext(UIAbility);
-dataShare.enableSilentProxy(context, uri).then(() => {
-  console.info("enableSilentProxy succeed");
-}). catch((err: BusinessError) => {
-  console.error(`enableSilentProxy error: code: ${err.code}, message: ${err.message} `);
-});
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    let uri = ("datashare:///com.acts.datasharetest/entry/DB00/TBL00?Proxy=true");
+    let context = this.context;
+    dataShare.enableSilentProxy(context, uri).then(() => {
+      console.info("enableSilentProxy succeed");
+    }). catch((err: BusinessError) => {
+      console.error(`enableSilentProxy error: code: ${err.code}, message: ${err.message} `);
+    });
+  };
+};
 ```
 
 ## dataShare.disableSilentProxy<sup>11+</sup>
@@ -265,22 +285,28 @@ disableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700011 | The URI does not exist. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
-import { UIAbility } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = ("datashare:///com.acts.datasharetest/entry/DB00/TBL00?Proxy=true");
-let context = getContext(UIAbility);
-dataShare.disableSilentProxy(context, uri).then(() => {
-  console.info("disableSilentProxy succeed");
-}). catch((err: BusinessError) => {
-  console.error(`disableSilentProxy error: code: ${err.code}, message: ${err.message} `);
-});
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    let uri = ("datashare:///com.acts.datasharetest/entry/DB00/TBL00?Proxy=true");
+    let context = this.context;
+    dataShare.disableSilentProxy(context, uri).then(() => {
+      console.info("disableSilentProxy succeed");
+    }). catch((err: BusinessError) => {
+      console.error(`disableSilentProxy error: code: ${err.code}, message: ${err.message} `);
+    });
+  };
+};
+
 ```
 
 ## DataShareHelperOptions<sup>10+</sup>
@@ -319,7 +345,7 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 
 ## RdbDataChangeNode<sup>10+</sup>
 
-订阅/取消订阅RDB数据变更的结果，回调支持传输不大于200KB的数据。
+订阅/取消订阅RDB数据变更的结果，回调支持传输不大于10M的数据。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -435,6 +461,7 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -475,6 +502,7 @@ on(event: 'dataChange', type:SubscriptionType, uri: string, callback: AsyncCallb
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -482,7 +510,7 @@ on(event: 'dataChange', type:SubscriptionType, uri: string, callback: AsyncCallb
 
 <!--code_no_check-->
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.acts.datasharetest");
 export function callback(error:BusinessError, ChangeInfo:dataShare.ChangeInfo) {
@@ -515,6 +543,7 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -555,6 +584,7 @@ off(event: 'dataChange', type:SubscriptionType, uri: string, callback?: AsyncCal
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -562,7 +592,7 @@ off(event: 'dataChange', type:SubscriptionType, uri: string, callback?: AsyncCal
 
 <!--code_no_check-->
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.acts.datasharetest");
 export function callback(error:BusinessError, ChangeInfo:dataShare.ChangeInfo) {
@@ -596,8 +626,9 @@ addTemplate(uri: string, subscriberId: string, template: Template): void
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700011 | The URI is not exist.|
+| 15700011 | The URI does not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -616,7 +647,7 @@ let template: dataShare.Template = {
   },
   scheduler : "select remindTimer(time) from TBL00",
   update : "update TBL00 set cityColumn = 'visited' where cityColumn = 'someCity'"
-}
+};
 if (dataShareHelper != undefined) {
   (dataShareHelper as dataShare.DataShareHelper).addTemplate(uri, subscriberId, template);
 }
@@ -643,8 +674,9 @@ delTemplate(uri: string, subscriberId: string): void
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700011 | The URI is not exist.|
+| 15700011 | The URI does not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -662,7 +694,7 @@ let template: dataShare.Template = {
     key2 : value2,
   },
   scheduler : "select remindTimer(time) from TBL00"
-}
+};
 if (dataShareHelper != undefined) {
   (dataShareHelper as dataShare.DataShareHelper).addTemplate(uri, subscriberId, template);
   (dataShareHelper as dataShare.DataShareHelper).delTemplate(uri, subscriberId);
@@ -698,13 +730,14 @@ on(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, cal
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let onCallback: (err: BusinessError, node: dataShare.RdbDataChangeNode) => void = (err: BusinessError, node:dataShare.RdbDataChangeNode): void => {
   console.info("onCallback " + JSON.stringify(node.uri));
@@ -751,6 +784,7 @@ off(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, ca
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -793,13 +827,14 @@ on(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string,
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let onPublishCallback: (err: BusinessError, node: dataShare.PublishedDataChangeNode) => void = (err: BusinessError, node:dataShare.PublishedDataChangeNode): void => {
   console.info("onPublishCallback node bundleName " + JSON.stringify(node.bundleName));
@@ -850,13 +885,14 @@ off(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let offCallback: (err: BusinessError, node: dataShare.PublishedDataChangeNode) => void = (err: BusinessError, node:dataShare.PublishedDataChangeNode): void => {
   console.info("**** Observer off callback ****");
@@ -891,14 +927,15 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, c
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700012 | The data area is not exist.|
+| The URI does not exist. | The data area does not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let arrayBuffer = new ArrayBuffer(1);
 let version = 1;
@@ -938,8 +975,9 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, callback: AsyncCal
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700012 | The data area is not exist.|
+| The URI does not exist. | The data area does not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -987,8 +1025,9 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version?: number):
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700012 | The data area is not exist.|
+| The URI does not exist. | The data area does not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -1024,18 +1063,19 @@ getPublishedData(bundleName: string, callback: AsyncCallback&lt;Array&lt;Publish
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700012 | The data area is not exist.|
+| 15700012 | The data area does not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let publishCallback: (err: BusinessError, data: Array<dataShare.PublishedItem>) => void = (err: BusinessError, result: Array<dataShare.PublishedItem>): void => {
   console.info("**** Observer publish callback ****");
-}
+};
 if (dataShareHelper != undefined) {
   (dataShareHelper as dataShare.DataShareHelper).getPublishedData("com.acts.ohos.data.datasharetest", publishCallback);
 }
@@ -1067,8 +1107,9 @@ getPublishedData(bundleName: string): Promise&lt;Array&lt;PublishedItem&gt;&gt;
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700012 | The data area is not exist.|
+| The URI does not exist. | The data area does not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -1101,14 +1142,15 @@ insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;):
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let key1: string = "name";
@@ -1121,7 +1163,7 @@ const valueBucket: ValuesBucket = {
   key1: value1,
   key2: value2,
   key3: value3,
-}
+};
 try {
   if (dataShareHelper != undefined) {
     (dataShareHelper as dataShare.DataShareHelper).insert(uri, valueBucket, (err: BusinessError, data: number) => {
@@ -1166,14 +1208,15 @@ insert(uri: string, value: ValuesBucket): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
-import { ValuesBucket } from '@kit.ArkData'
+import { BusinessError } from '@kit.BasicServicesKit';
+import { ValuesBucket } from '@kit.ArkData';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let key1: string = "name";
@@ -1186,7 +1229,7 @@ const valueBucket: ValuesBucket = {
   key1: value1,
   key2: value2,
   key3: value3,
-}
+};
 try {
   if (dataShareHelper != undefined) {
     (dataShareHelper as dataShare.DataShareHelper).insert(uri, valueBucket).then((data: number) => {
@@ -1224,14 +1267,15 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callbac
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
 ```ts
-import { dataSharePredicates } from '@kit.ArkData'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
@@ -1280,14 +1324,15 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates): Promis
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
 ```ts
-import { dataSharePredicates } from '@kit.ArkData'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
@@ -1330,14 +1375,15 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
 ```ts
-import { dataSharePredicates, DataShareResultSet } from '@kit.ArkData'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { dataSharePredicates, DataShareResultSet } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
@@ -1388,14 +1434,15 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
 ```ts
-import { dataSharePredicates, DataShareResultSet } from '@kit.ArkData'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { dataSharePredicates, DataShareResultSet } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
@@ -1439,29 +1486,30 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
 ```ts
-import { dataSharePredicates, ValuesBucket } from '@kit.ArkData'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { dataSharePredicates, ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 let key1: string = "name";
-let value1: string = "roe1"
+let value1: string = "roe1";
 let key2: string = "age";
-let value2: number = 21
+let value2: number = 21;
 let key3: string = "salary";
 let value3: number = 20.5;
 const va: ValuesBucket = {
   key1: value1,
   key2: value2,
   key3: value3,
-}
+};
 try {
   if (dataShareHelper != undefined) {
     (dataShareHelper as dataShare.DataShareHelper).update(uri, da, va, (err: BusinessError, data: number) => {
@@ -1507,29 +1555,30 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
 ```ts
-import { dataSharePredicates, ValuesBucket } from '@kit.ArkData'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { dataSharePredicates, ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 let key1: string = "name";
-let value1: string = "roe1"
+let value1: string = "roe1";
 let key2: string = "age";
-let value2: number = 21
+let value2: number = 21;
 let key3: string = "salary";
 let value3: number = 20.5;
 const va: ValuesBucket = {
   key1: value1,
   key2: value2,
   key3: value3,
-}
+};
 try {
   if (dataShareHelper != undefined) {
     (dataShareHelper as dataShare.DataShareHelper).update(uri, da, va).then((data: number) => {
@@ -1571,6 +1620,7 @@ batchUpdate(operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt;): Pro
 
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------ |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700000 | Inner error.                         |
 | 15700013 | The DataShareHelper instance is already closed. |
@@ -1578,8 +1628,8 @@ batchUpdate(operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt;): Pro
 **示例：**
 
 ```ts
-import { dataSharePredicates, ValuesBucket } from '@kit.ArkData'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { dataSharePredicates, ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let record: Record<string, Array<dataShare.UpdateOperation>> = {};
 let operations1: Array<dataShare.UpdateOperation> = [];
@@ -1589,22 +1639,22 @@ let pre1: dataSharePredicates.DataSharePredicates = new dataSharePredicates.Data
 pre1.equalTo("name", "ZhangSan");
 let vb1: ValuesBucket = {
   "name": "ZhangSan1",
-}
+};
 let operation1: dataShare.UpdateOperation = {
   values: vb1,
   predicates: pre1
-}
+};
 operations1.push(operation1);
 
 let pre2: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
 pre2.equalTo("name", "ZhangSan2");
 let vb2: ValuesBucket = {
   "name": "ZhangSan3",
-}
+};
 let operation2: dataShare.UpdateOperation = {
   values: vb2,
   predicates: pre2
-}
+};
 operations2.push(operation2);
 record["uri1"] = operations1;
 record["uri2"] = operations2;
@@ -1616,7 +1666,7 @@ try {
       let a = Object.entries(data);
       for (let i = 0; i < a.length; i++) {
         let key = a[i][0];
-        let values = a[i][1]
+        let values = a[i][1];
         console.info(`Update uri:${key}`);
         for (const value of values) {
           console.info(`Update result:${value}`);
@@ -1655,18 +1705,19 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallb
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let key1: string = "name";
-let value11: string = "roe11"
+let value11: string = "roe11";
 let key2: string = "age";
 let value21: number = 21;
 let key3: string = "salary";
@@ -1675,7 +1726,7 @@ let valuesBucket1: ValuesBucket = {
   key1: value11,
   key2: value21,
   key3: value31,
-}
+};
 let vbs = new Array(valuesBucket1);
 try {
   if (dataShareHelper != undefined) {
@@ -1721,18 +1772,19 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&g
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let key1: string = "name";
-let value11: string = "roe11"
+let value11: string = "roe11";
 let key2: string = "age";
 let value21: number = 21;
 let key3: string = "salary";
@@ -1741,7 +1793,7 @@ let valuesBucket1: ValuesBucket = {
   key1: value11,
   key2: value21,
   key3: value31,
-}
+};
 let vbs = new Array(valuesBucket1);
 try {
   if (dataShareHelper != undefined) {
@@ -1753,7 +1805,7 @@ try {
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error(`batchInsert error: code: ${code}, message: ${message} `);
 };
 ```
@@ -1778,6 +1830,7 @@ close(): Promise &lt;void&gt;
 
 | 错误码ID | 错误信息     |
 | -------- | ------------ |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 15700000 | Inner error. |
 
 **示例：**
@@ -1809,13 +1862,14 @@ normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 if (dataShareHelper != undefined) {
@@ -1855,13 +1909,14 @@ normalizeUri(uri: string): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 if (dataShareHelper != undefined) {
@@ -1894,13 +1949,14 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 if (dataShareHelper != undefined) {
@@ -1940,13 +1996,14 @@ denormalizeUri(uri: string): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 if (dataShareHelper != undefined) {
@@ -1979,6 +2036,7 @@ notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Mandatory parameters are left unspecified.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -2019,6 +2077,7 @@ notifyChange(uri: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Mandatory parameters are left unspecified.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -2057,13 +2116,14 @@ notifyChange(data: ChangeInfo): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData'
+import { ValuesBucket } from '@kit.ArkData';
 
 let dsUri = ("datashare:///com.acts.datasharetest");
 let bucket1: ValuesBucket = {"name": "LiSi"};

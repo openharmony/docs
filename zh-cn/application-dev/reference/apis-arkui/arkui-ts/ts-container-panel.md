@@ -1,12 +1,13 @@
 # Panel
+<!--deprecated_code_no_check-->
 
 可滑动面板，提供一种轻量的内容展示窗口，方便在不同尺寸中切换。
 
 >  **说明：**
 >
->  从API Version 12 开始，该组件不再维护，推荐使用通用属性[bindSheet](ts-universal-attributes-sheet-transition.md)。
+>  从API version 12开始，该组件不再维护，推荐使用通用属性[bindSheet](ts-universal-attributes-sheet-transition.md)。
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件

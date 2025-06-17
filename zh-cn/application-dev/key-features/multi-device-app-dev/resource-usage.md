@@ -73,7 +73,7 @@ base目录与限定词目录下面可以创建资源组目录（包括element、
 在工程中，通过 "$r('app.type.name')" 的形式引用应用资源。app代表是应用内resources目录中定义的资源；type 代表资源类型（或资源的存放位置），可以取 color、float、string、plural和media，name代表资源命名，由开发者添加资源时确定。
 
 > **说明：**
-> 可以查看[声明式范式访问应用资源](../../quick-start/resource-categories-and-access.md#应用资源)，了解资源访问的更多细节。
+> 可以查看[声明式范式访问应用资源](../../quick-start/resource-categories-and-access.md#资源分类与访问)，了解资源访问的更多细节。
 
 
 ### 示例

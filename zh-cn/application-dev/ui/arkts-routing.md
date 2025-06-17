@@ -16,9 +16,9 @@
 
 Router模块提供了两种跳转模式，分别是[pushUrl](../reference/apis-arkui/js-apis-arkui-UIContext.md#pushurl)和[replaceUrl](../reference/apis-arkui/js-apis-arkui-UIContext.md#replaceurl)。这两种模式决定了目标页面是否会替换当前页。
 
-- router.pushUrl：目标页面不会替换当前页，而是压入页面栈。这样可以保留当前页的状态，并且可以通过返回键或者调用[back](../reference/apis-arkui/js-apis-arkui-UIContext.md#back)方法返回到当前页。
+- pushUrl：目标页面不会替换当前页，而是压入页面栈。这样可以保留当前页的状态，并且可以通过返回键或者调用[back](../reference/apis-arkui/js-apis-arkui-UIContext.md#back)方法返回到当前页。
 
-- router.replaceUrl：目标页面会替换当前页，并销毁当前页。这样可以释放当前页的资源，并且无法返回到当前页。
+- replaceUrl：目标页面会替换当前页，并销毁当前页。这样可以释放当前页的资源，并且无法返回到当前页。
 
 >**说明：** 
 >
@@ -33,22 +33,12 @@ Router模块提供了两种跳转模式，分别是[pushUrl](../reference/apis-a
 
 - Single：单实例模式。如果目标页面的url已经存在于页面栈中，则会将离栈顶最近的同url页面移动到栈顶，该页面成为新建页。如果目标页面的url在页面栈中不存在同url页面，则按照默认的多实例模式进行跳转。
 
-在使用Router相关功能之前，需要在代码中先导入Router模块。
-
-
-```ts
-import { promptAction, router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
-```
-
 - 场景一：有一个主页（Home）和一个详情页（Detail），希望从主页点击一个商品，跳转到详情页。同时，需要保留主页在页面栈中，以便返回时恢复状态。这种场景下，可以使用pushUrl方法，并且使用Standard实例模式（或者省略）。
 
   ```ts
-  import { router } from '@kit.ArkUI';
-
   // 在Home页面中
-  function onJumpClick(): void {
-    router.pushUrl({
+  onJumpClick(): void {
+    this.getUIContext().getRouter().pushUrl({
       url: 'pages/Detail' // 目标url
     }, router.RouterMode.Standard, (err) => {
       if (err) {
@@ -67,11 +57,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 - 场景二：有一个登录页（Login）和一个个人中心页（Profile），希望从登录页成功登录后，跳转到个人中心页。同时，销毁登录页，在返回时直接退出应用。这种场景下，可以使用replaceUrl方法，并且使用Standard实例模式（或者省略）。
 
   ```ts
-  import { router } from '@kit.ArkUI';
-
   // 在Login页面中
-  function onJumpClick(): void {
-    router.replaceUrl({
+  onJumpClick(): void {
+    this.getUIContext().getRouter().replaceUrl({
       url: 'pages/Profile' // 目标url
     }, router.RouterMode.Standard, (err) => {
       if (err) {
@@ -90,11 +78,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 - 场景三：有一个设置页（Setting）和一个主题切换页（Theme），希望从设置页点击主题选项，跳转到主题切换页。同时，需要保证每次只有一个主题切换页存在于页面栈中，在返回时直接回到设置页。这种场景下，可以使用pushUrl方法，并且使用Single实例模式。
 
   ```ts
-  import { router } from '@kit.ArkUI';
-
   // 在Setting页面中
-  function onJumpClick(): void {
-    router.pushUrl({
+  onJumpClick(): void {
+    this.getUIContext().getRouter().pushUrl({
       url: 'pages/Theme' // 目标url
     }, router.RouterMode.Single, (err) => {
       if (err) {
@@ -109,11 +95,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 - 场景四：有一个搜索结果列表页（SearchResult）和一个搜索结果详情页（SearchDetail），希望从搜索结果列表页点击某一项结果，跳转到搜索结果详情页。同时，如果该结果已经被查看过，则不需要再新建一个详情页，而是直接跳转到已经存在的详情页。这种场景下，可以使用replaceUrl方法，并且使用Single实例模式。
 
   ```ts
-  import { router } from '@kit.ArkUI';
-
   // 在SearchResult页面中
-  function onJumpClick(): void {
-    router.replaceUrl({
+  onJumpClick(): void {
+    this.getUIContext().getRouter().replaceUrl({
       url: 'pages/SearchDetail' // 目标url
     }, router.RouterMode.Single, (err) => {
       if (err) {
@@ -131,8 +115,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 
 ```ts
-import { router } from '@kit.ArkUI';
-
 class DataModelInfo {
   age: number = 0;
 }
@@ -142,7 +124,7 @@ class DataModel {
   info: DataModelInfo | null = null;
 }
 
-function onJumpClick(): void {
+onJumpClick(): void {
   // 在Home页面中
   let paramsInfo: DataModel = {
     id: 123,
@@ -151,7 +133,7 @@ function onJumpClick(): void {
     }
   };
 
-  router.pushUrl({
+  this.getUIContext().getRouter().pushUrl({
     url: 'pages/Detail', // 目标url
     params: paramsInfo // 添加params属性，传递自定义参数
   }, (err) => {
@@ -169,18 +151,18 @@ function onJumpClick(): void {
 
 ```ts
 class InfoTmp {
-  age: number = 0
+  age: number = 0;
 }
 
 class RouTmp {
   id: object = () => {
-  }
-  info: InfoTmp = new InfoTmp()
+  };
+  info: InfoTmp = new InfoTmp();
 }
 
 const params: RouTmp = this.getUIContext().getRouter().getParams() as RouTmp; // 获取传递过来的参数对象
-const id: object = params.id // 获取id属性的值
-const age: number = params.info.age // 获取age属性的值
+const id: object = params.id; // 获取id属性的值
+const age: number = params.info.age; // 获取age属性的值
 ```
 
 
@@ -192,7 +174,7 @@ const age: number = params.info.age // 获取age属性的值
 
 ![router-back-to-home](figures/router-back-to-home.gif)
 
-直接使用router可能导致实例不明确的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
+直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md)的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
 
 可以使用以下几种方式返回页面：
 
@@ -220,7 +202,7 @@ const age: number = params.info.age // 获取age属性的值
 
   ```ts
   this.getUIContext().getRouter().back({
-    url: 'myPage' //myPage为返回的命名路由页面别名
+    url: 'myPage' // myPage为返回的命名路由页面别名
   });
   ```
 
@@ -244,20 +226,20 @@ const age: number = params.info.age // 获取age属性的值
 
   ```ts
   this.getUIContext().getRouter().back({
-    url: 'myPage', //myPage为返回的命名路由页面别名
+    url: 'myPage', // myPage为返回的命名路由页面别名
     params: {
       info: '来自Home页'
     }
   });
   ```
 
-  这种方式不仅可以返回到指定页面，还可以在返回的同时传递自定义参数信息。这些参数信息可以在目标页面中通过调用router.getParams方法进行获取和解析。
+  这种方式不仅可以返回到指定页面，还可以在返回的同时传递自定义参数信息。这些参数信息可以在目标页面中通过调用[getParams](../reference/apis-arkui/js-apis-arkui-UIContext.md#getparams)方法进行获取和解析。
 
-在目标页面中，在需要获取参数的位置调用router.getParams方法即可，例如在[onPageShow](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)生命周期回调中：
+在目标页面中，在需要获取参数的位置调用[getParams](../reference/apis-arkui/js-apis-arkui-UIContext.md#getparams)方法即可，例如在[onPageShow](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)生命周期回调中：
 
 > **说明：**
 > 
-> 直接使用router可能导致实例不明确的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
+> 直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md)的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
 
 ```ts
 @Entry
@@ -278,9 +260,9 @@ struct Home {
 
 >**说明：**
 >
->当使用router.back方法返回到指定页面时，原栈顶页面（包括）到指定页面（不包括）之间的所有页面栈都将从栈中弹出并销毁。
+>当使用back方法返回到指定页面时，原栈顶页面（包括）到指定页面（不包括）之间的所有页面栈都将从栈中弹出并销毁。
 >
-> 另外，如果使用router.back方法返回到原来的页面，原页面不会被重复创建，因此使用\@State声明的变量不会重复声明，也不会触发页面的aboutToAppear生命周期回调。如果需要在原页面中使用返回页面传递的自定义参数，可以在需要的位置进行参数解析。例如，在onPageShow生命周期回调中进行参数解析。
+> 另外，如果使用back方法返回到原来的页面，原页面不会被重复创建，因此使用\@State声明的变量不会重复声明，也不会触发页面的aboutToAppear生命周期回调。如果需要在原页面中使用返回页面传递的自定义参数，可以在需要的位置进行参数解析。例如，在onPageShow生命周期回调中进行参数解析。
 
 
 ## 页面返回前增加一个询问框
@@ -298,7 +280,7 @@ struct Home {
 
 为了实现这个功能，可以使用页面路由Router模块提供的两个方法：[showAlertBeforeBackPage](../reference/apis-arkui/js-apis-arkui-UIContext.md#showalertbeforebackpage)和[back](../reference/apis-arkui/js-apis-arkui-UIContext.md#back)来实现这个功能。
 
-直接使用router可能导致实例不明确的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
+直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md)的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
 
 如果想要在目标界面开启页面返回询问框，需要在调用[back](../reference/apis-arkui/js-apis-arkui-UIContext.md#back)方法之前，通过调用[showAlertBeforeBackPage](../reference/apis-arkui/js-apis-arkui-UIContext.md#showalertbeforebackpage)方法设置返回询问框的信息。例如，在支付页面中定义一个返回按钮的点击事件处理函数：
 
@@ -313,8 +295,8 @@ function onBackClick(): void {
       message: '您还没有完成支付，确定要返回吗？' // 设置询问框的内容
     });
   } catch (err) {
-    let message = (err as BusinessError).message
-    let code = (err as BusinessError).code
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
     console.error(`Invoke showAlertBeforeBackPage failed, code is ${code}, message is ${message}`);
   }
 
@@ -328,13 +310,13 @@ function onBackClick(): void {
 message：string类型，表示询问框的内容。
 如果调用成功，则会在目标界面开启页面返回询问框；如果调用失败，则会抛出异常，并通过err.code和err.message获取错误码和错误信息。
 
-当用户点击“返回”按钮时，会弹出确认对话框，询问用户是否确认返回。选择“取消”将停留在当前页目标页面；选择“确认”将触发this.getUIContext().getRouter().back方法，并根据参数决定如何执行跳转。
+当用户点击“返回”按钮时，会弹出确认对话框，询问用户是否确认返回。选择“取消”将停留在当前页目标页面；选择“确认”将触发[back](../reference/apis-arkui/js-apis-arkui-UIContext.md#back)方法，并根据参数决定如何执行跳转。
 
 ### 自定义询问框
 
 自定义询问框的方式，可以使用弹窗[showDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showdialog-1)或者自定义弹窗实现。这样可以让应用界面与系统默认询问框有所区别，提高应用的用户体验度。本文以弹窗为例，介绍如何实现自定义询问框。
 
-直接使用router可能导致实例不明确的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
+直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md)的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
 
 在事件回调中，调用弹窗的[showDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showdialog-1)方法：
 
@@ -342,9 +324,9 @@ message：string类型，表示询问框的内容。
 import { promptAction} from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function onBackClick() {
+onBackClick() {
   // 弹出自定义的询问框
-  promptAction.showDialog({
+  this.getUIContext().getPromptAction().showDialog({
     message: '您还没有完成支付，确定要返回吗？',
     buttons: [
       {
@@ -367,14 +349,14 @@ function onBackClick() {
       this.getUIContext().getRouter().back();
     }
   }).catch((err: Error) => {
-    let message = (err as BusinessError).message
-    let code = (err as BusinessError).code
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
     console.error(`Invoke showDialog failed, code is ${code}, message is ${message}`);
   })
 }
 ```
 
-当用户点击“返回”按钮时，会弹出自定义的询问框，询问用户是否确认返回。选择“取消”将停留在当前页目标页面；选择“确认”将触发router.back方法，并根据参数决定如何执行跳转。
+当用户点击“返回”按钮时，会弹出自定义的询问框，询问用户是否确认返回。选择“取消”将停留在当前页目标页面；选择“确认”将触发[back](../reference/apis-arkui/js-apis-arkui-UIContext.md#back)方法，并根据参数决定如何执行跳转。
 
 ## 命名路由
 
@@ -441,8 +423,8 @@ struct Index {
               }
             })
           } catch (err) {
-            let message = (err as BusinessError).message
-            let code = (err as BusinessError).code
+            let message = (err as BusinessError).message;
+            let code = (err as BusinessError).code;
             console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
           }
         })

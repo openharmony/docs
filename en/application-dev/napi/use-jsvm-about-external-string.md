@@ -19,14 +19,15 @@ By using JSVM-API, you can create JS strings directly in the memory allocated fo
 
 If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in manipulating external strings.
 
-### Creating and Using External Strings
+### Determining a Number Object
 
 CPP code:
 
 ```cpp
-
+#include <cstring>
+#include <string>
 static char stringLatin1[] = "hello";
-static char16_t stringUTF16[] = "world";
+static char16_t stringUTF16[] = u"world";
 
 static JSVM_Value testExternalString(JSVM_Env env, JSVM_CallbackInfo info) {
     JSVM_VM vm;
@@ -38,16 +39,16 @@ static JSVM_Value testExternalString(JSVM_Env env, JSVM_CallbackInfo info) {
     bool copied = true;
     char buf[10];
     OH_JSVM_CreateExternalStringLatin1(env, stringLatin1, strlen(stringLatin1), nullptr, nullptr,
-                                       &jsStrLatin1, &copied)
-    OH_JSVM_GetValueStringUTF8(env, jsStrLatin1, buf, 10, nullptr);
+                                       &jsStrLatin1, &copied);
+    OH_JSVM_GetValueStringUtf8(env, jsStrLatin1, buf, 10, nullptr);
     OH_LOG_INFO(LOG_APP, "created latin1 string is : %{public}s\n", buf);
     // If the value of copied is true, the external string fails to be created. Otherwise, the external string is created successfully.
     OH_LOG_INFO(LOG_APP, "create external string failed : %{public}d\n", copied);
     copied = true;
     JSVM_Value jsStrUTF16 = nullptr;
-    OH_JSVM_CreateExternalStringUtf16(env, stringLatin1, std::char_traits<char16_t>::length(stringUTF16),
-                                      nullptr, nullptr, &jsStrUTF16, &copied)
-    OH_JSVM_GetValueStringUTF8(env, jsStrUTF16, buf, 10, nullptr);
+    OH_JSVM_CreateExternalStringUtf16(env, stringUTF16, std::char_traits<char16_t>::length(stringUTF16),
+                                      nullptr, nullptr, &jsStrUTF16, &copied);
+    OH_JSVM_GetValueStringUtf8(env, jsStrUTF16, buf, 10, nullptr);
     OH_LOG_INFO(LOG_APP, "created utf16 string is : %{public}s\n", buf);
     // If the value of copied is true, the external string fails to be created. Otherwise, the external string is created successfully.
     OH_LOG_INFO(LOG_APP, "create external string failed : %{public}d\n", copied);

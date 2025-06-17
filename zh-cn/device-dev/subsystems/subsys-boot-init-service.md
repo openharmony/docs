@@ -53,7 +53,7 @@
    | gid | socket节点文件的组ID。此项配置仅对如AF_UNIX地址族等有实体节点文件的socket类型有效。|
    | option | socket的可选配置。在调用setsockopt接口时传入设置，目前支持的option选项有SOCKET_OPTION_PASSCRED、SOCKET_OPTION_RCVBUFFORCE、SOCK_CLOEXEC和SOCK_NONBLOCK。|
 
-  - init服务启动控制(仅标准系统以上提供)<a name = "section56901555918">
+  - init服务启动控制(仅标准系统以上提供)
 
     init会根据用户的服务配置，把服务分成三类，在不同的阶段并行启动。
 
@@ -61,7 +61,7 @@
     - “normal”类型：默认配置，对应系统中的普通服务，该类服务在“post-init"阶段启动。
     - “condition”类型：必须通过启动命令启动，通过在jobs中添加“start xxxx”来启动对应服务。
 
-  - init服务支持命令执行(仅标准系统以上提供)<a name="section56901555919"></a>
+  - init服务支持命令执行(仅标准系统以上提供)
 
     init提供服务命令执行能力，在服务执行的不同阶段执行不同的命令。
 

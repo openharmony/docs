@@ -10,6 +10,8 @@
 
 ## 属性
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称        | 参数类型                                                     | 描述                                                         |
 | ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | useSizeType<sup>(deprecated) </sup> | {<br/>xs?:&nbsp;number&nbsp;\|&nbsp;{&nbsp;span:&nbsp;number,&nbsp;offset:&nbsp;number&nbsp;},<br/>sm?:&nbsp;number&nbsp;\|&nbsp;{&nbsp;span:&nbsp;number,&nbsp;offset:&nbsp;number&nbsp;},<br/>md?:&nbsp;number&nbsp;\|&nbsp;{&nbsp;span:&nbsp;number,&nbsp;offset:&nbsp;number&nbsp;},<br/>lg?:&nbsp;number&nbsp;\|&nbsp;{&nbsp;span:&nbsp;number,&nbsp;offset:&nbsp;number&nbsp;}<br/>} | 设置在特定设备宽度类型下的占用列数和偏移列数，span:&nbsp;占用列数;&nbsp;offset:&nbsp;偏移列数。<br/>当值为number类型时，仅设置列数，&nbsp;当格式如{"span":&nbsp;1,&nbsp;"offset":&nbsp;0}时，指同时设置占用列数与偏移列数。<br/>-&nbsp;xs:&nbsp;指设备宽度类型为SizeType.XS时的占用列数和偏移列数。<br/>-&nbsp;sm:&nbsp;指设备宽度类型为SizeType.SM时的占用列数和偏移列数。<br/>-&nbsp;md:&nbsp;指设备宽度类型为SizeType.MD时的占用列数和偏移列数。<br/>-&nbsp;lg:&nbsp;指设备宽度类型为SizeType.LG时的占用列数和偏移列数。<br/>该属性从API version 9开始废弃，推荐使用新组件[GridCol](ts-container-gridcol.md)、[GridRow](ts-container-gridrow.md)。 |

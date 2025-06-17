@@ -18,7 +18,7 @@ HiAppEvent提供接口用于订阅系统卡死事件。
 | process_name | string | 应用的进程名称。 |
 | pid | number | 应用的进程id。|
 | uid | number | 应用的用户id。 |
-| uuid | string | 故障id。 |
+| uuid | string | 根据故障信息生成的故障特征码，用于标识特征相同的崩溃故障。 |
 | exception | object | 异常信息，详见exception属性。 |
 | hilog | string[] | 日志信息。|
 | event_handler | string[] | 主线程未处理消息。 |
@@ -52,8 +52,8 @@ HiAppEvent提供接口用于订阅系统卡死事件。
 | symbol | string | 函数名称。**在整机高负载的情况下，采用低开销方式获取调用栈的情况，可能损失函数名称。** |
 | file | string | 文件名。 |
 | buildId | string | 文件唯一标识。**在整机高负载的情况下，采用低开销方式获取调用栈的情况，可能损失build-id信息。** |
-| pc | string | pc寄存器地址。 |
-| offset | number | 函数偏移量。 |
+| pc | string | 程序执行的指令在文件内的偏移十六进制字节数。|
+| offset | number | 程序执行的指令在函数内偏移字节数。|
 
 **frame属性(JS帧)：**
 
@@ -62,8 +62,8 @@ HiAppEvent提供接口用于订阅系统卡死事件。
 | file | string | 文件名。 |
 | packageName | string | 模块的包名。 |
 | symbol | string | 函数名称。 |
-| column | number | 异常所在行。 |
-| line | number | 异常所在列。 |
+| line | number | 异常所在代码行号。 |
+| column | number | 异常所在代码列号。|
 
 **memory属性：**
 

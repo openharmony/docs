@@ -6,7 +6,7 @@ The multimodal module provides applications with the ability to create and delet
 
 ## Available APIs
 
-The following table lists the APIs for event interception. For details, see [Input](../../reference/apis-input-kit/input.md).
+The following table lists the APIs for event interception. For details, see [Input](../../reference/apis-input-kit/capi-input.md).
 
 | API | Description|
 | ------------------------------------------------------------ | -------------------------- |

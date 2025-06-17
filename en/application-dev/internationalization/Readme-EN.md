@@ -8,7 +8,7 @@
         - [System Language and Region Setting](i18n-system-language-region.md)
         - [Preferred Language Setting](i18n-preferred-language.md)
         <!--Del-->
-        - [Setting User Preferences (for System Applications Only)](i18n-user-preferences.md)
+        - [User Preference Setting (for System Applications Only)](i18n-user-preferences.md)
         <!--DelEnd-->
     - [Date and Time Formatting](i18n-time-date.md)
     - [Number and Unit of Measurement Formatting](i18n-numbers-weights-measures.md)
@@ -23,6 +23,7 @@
         - [Sorting by Indexes](i18n-sorting-index.md)
     - [Character Processing](i18n-character-processing.md)
     - Name Localization<!--i18n-name-localization-->
+        - [Overview](i18n-display-overview.md)
         - [Language and Locale Name Localization](i18n-language-region-display.md)
         - [Time Zone Name Localization](i18n-time-zone-display.md)
 - Application Localization<!--i10n-->

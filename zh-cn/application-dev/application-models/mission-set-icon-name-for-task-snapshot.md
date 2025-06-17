@@ -7,7 +7,7 @@
 图1 UIAbility对应的任务快照   
 ![](figures/mission-list-recent.png)
 
-也可以使用[`UIAbilityContext.setMissionIcon()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextsetmissionicon)和[`UIAbilityContext.setMissionLabel()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel)方法，根据需要自定义任务快照的图标和名称。例如，对于UIAbility的多实例启动模式，可以根据不同的功能配置相应的任务快照的图标和名称。
+也可以使用[`UIAbilityContext.setMissionIcon()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#setmissionicon)和[`UIAbilityContext.setMissionLabel()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#setmissionlabel)方法，根据需要自定义任务快照的图标和名称。例如，对于UIAbility的多实例启动模式，可以根据不同的功能配置相应的任务快照的图标和名称。
 
 本文将从以下两个方面介绍。
 
@@ -16,7 +16,7 @@
 
 ## 设置任务快照的图标（仅对系统应用开放）
 
-通过调用[`UIAbilityContext.setMissionIcon()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextsetmissionicon)方法修改任务快照的图标。
+通过调用[`UIAbilityContext.setMissionIcon()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#setmissionicon)方法修改任务快照的图标。
 
 示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。示例中的`pixelMap`的获取方式请参见[图片解码](../media/image/image-decoding.md)。
 
@@ -50,7 +50,7 @@ context.setMissionIcon(pixelMap, (err: BusinessError) => {
 
 ## 设置任务快照的名称
 
-通过调用[`UIAbilityContext.setMissionLabel()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel)方法修改任务快照的名称。
+通过调用[`UIAbilityContext.setMissionLabel()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#setmissionlabel)方法修改任务快照的名称。
 
 ```ts
 import { common } from '@kit.AbilityKit';

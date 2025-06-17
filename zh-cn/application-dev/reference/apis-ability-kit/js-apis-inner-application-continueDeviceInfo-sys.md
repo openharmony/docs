@@ -13,10 +13,10 @@
 
 **系统接口**：此接口为系统接口。
 
-| 名称       | 类型   | 可读   | 可写   | 说明      |
+| 名称       | 类型   | 只读   | 可选   | 说明      |
 | -------- | ------ | ---- | ---- | ------- |
-| srcDeviceId | string | 是    | 是    | 表示任务迁移源设备ID。 |
-| dstDeviceId | string | 是    | 是    | 表示任务迁移目标设备ID。 |
-| missionId | number | 是    | 是    | 表示任务ID。 |
-| wantParam | Record<string, Object> | 是    | 是    | 表示扩展参数。 |
+| srcDeviceId | string | 否    | 否    | 表示任务迁移源设备ID。 |
+| dstDeviceId | string | 否    | 否    | 表示任务迁移目标设备ID。 |
+| missionId | number | 否    | 否    | 表示任务ID。 |
+| wantParam | Record<string, Object> | 否    | 否    | 表示扩展参数。 |
 

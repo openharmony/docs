@@ -6,7 +6,7 @@ The Display module provides APIs for managing displays, such as obtaining inform
 >
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohso.display (Display)](js-apis-display.md).
+> - This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.display (Display)](js-apis-display.md).
 
 ## Modules to Import
 
@@ -18,7 +18,7 @@ import { display } from '@kit.ArkUI';
 
 hasPrivateWindow(displayId: number): boolean
 
-Checks whether there is a visible privacy window on a display. The privacy window can be set by calling [setWindowPrivacyMode()](js-apis-window.md#setwindowprivacymode9). The content in the privacy window cannot be captured or recorded.
+Checks whether there is a visible privacy window on a display. The privacy window can be set by calling [setWindowPrivacyMode()](arkts-apis-window-Window.md#setwindowprivacymode9). The content in the privacy window cannot be captured or recorded.
 
 **System API**: This is a system API.
 
@@ -154,7 +154,7 @@ try {
 ## display.setFoldDisplayMode<sup>10+</sup>
 setFoldDisplayMode(mode: FoldDisplayMode): void
 
-Sets the display mode of the foldable device.
+Sets the display mode of the foldable device. This API is unavailable for 2-in-1 devices.
 
 **System API**: This is a system API.
 
@@ -186,6 +186,44 @@ try {
   display.setFoldDisplayMode(mode);
 } catch (exception) {
   console.error('Failed to change the fold display mode. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.setFoldDisplayMode<sup>19+</sup>
+setFoldDisplayMode(mode: FoldDisplayMode, reason: string): void
+
+Sets the display mode of the foldable device, with the reason for the change specified. This API is unavailable for 2-in-1 devices.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                                      | Mandatory| Description                                                   |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| mode     | [FoldDisplayMode](js-apis-display.md#folddisplaymode10)    | Yes  | Display mode.|
+| reason     | string    | No  | Reason for changing the display mode. If this parameter is not set, an empty string is used by default.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import { display } from '@kit.ArkUI';
+
+try {
+  let mode: display.FoldDisplayMode = display.FoldDisplayMode.FOLD_DISPLAY_MODE_MAIN;
+  display.setFoldDisplayMode(mode, 'backSelfie');
+} catch (exception) {
+  console.error(`Failed to change the fold display mode. Code: ${exception}`);
 }
 ```
 
@@ -224,6 +262,123 @@ try {
   display.setFoldStatusLocked(locked);
 } catch (exception) {
   console.error('Failed to change the fold status locked mode. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.addVirtualScreenBlocklist<sup>18+</sup>
+addVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
+
+Adds windows to the list of windows that are not allowed to be displayed during casting. This API takes effect only for the main window of an application or system windows. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                                      | Mandatory| Description                                                   |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| windowIds     | Array\<number>    | Yes  | List of window IDs. If a child window ID is passed in, it will not take effect. The window ID is an integer greater than 0. You are advised to call [getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9) to obtain the window ID.|
+
+**Return value**
+
+| Type| Description|
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.|
+| 801     | Capability not supported.Function addVirtualScreenBlocklist can not work correctly due to limited device capabilities. |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display, window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // ...
+    let windowId = windowStage.getMainWindowSync().getWindowProperties().id;
+    let windowIds = [windowId];
+
+    let promise = display.addVirtualScreenBlocklist(windowIds);
+    promise.then(() => {
+      console.info('Succeeded in adding virtual screen blocklist.');
+    }).catch((err: BusinessError) => {
+      console.error('Failed to add virtual screen blocklist. Code: ' + JSON.stringify(err));
+    })
+  }
+}
+```
+
+## display.removeVirtualScreenBlocklist<sup>18+</sup>
+removeVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
+
+Removes windows from the list of windows that are not allowed to be displayed during casting. This API takes effect only for the main window of an application or system windows. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                                      | Mandatory| Description                                                   |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| windowIds     | Array\<number>    | Yes  | List of window IDs. If a child window ID is passed in, it will not take effect. The window ID is an integer greater than 0. You are advised to call [getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9) to obtain the window ID.|
+
+**Return value**
+
+| Type| Description|
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.|
+| 801     | Capability not supported.Function removeVirtualScreenBlocklist can not work correctly due to limited device capabilities. |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display, window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // ...
+    let windowId = windowStage.getMainWindowSync().getWindowProperties().id;
+    let windowIds = [windowId];
+
+    let promise = display.addVirtualScreenBlocklist(windowIds);
+    promise.then(() => {
+      console.info('Succeeded in adding virtual screen blocklist.');
+    }).catch((err: BusinessError) => {
+      console.error('Failed to add virtual screen blocklist. Code: ' + JSON.stringify(err));
+    })
+
+    promise = display.removeVirtualScreenBlocklist(windowIds);
+    promise.then(() => {
+      console.info('Succeeded in removing virtual screen blocklist.');
+    }).catch((err: BusinessError) => {
+      console.error('Failed to remove virtual screen blocklist. Code: ' + JSON.stringify(err));
+    })
+  }
 }
 ```
 

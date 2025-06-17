@@ -2,7 +2,7 @@
 
 对于需要使用进程单例的场景，例如不同并发实例间需要数据保持一致的全局配置项业务，可以采用共享模块来实现。
 
-如下示例实现了只有Wi-Fi打开且用户登录后才能下载的业务功能，具体步骤如下。
+以下示例展示了只有在Wi-Fi打开且用户登录的情况下才能进行下载的业务功能，具体步骤如下。
 
 1. 编写全局配置文件。
 
@@ -61,6 +61,7 @@
    
    export let config = new Config()
    ```
+   <!-- @[global_config](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/Config.ets) -->
 
 2. UI主线程及子线程访问全局配置项。
 
@@ -175,3 +176,4 @@
      }
    }
    ```
+   <!-- @[access_global_config](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/GlobalConfigurationGuide.ets) -->

@@ -9,6 +9,7 @@ The OH_AudioSession_DeactivatedEvent struct describes the event indicating that 
 
 **Related module**: [OHAudio](_o_h_audio.md)
 
+**Header file**: [native_audio_session_manager.h](native__audio__session__manager_8h.md)
 
 ## Summary
 

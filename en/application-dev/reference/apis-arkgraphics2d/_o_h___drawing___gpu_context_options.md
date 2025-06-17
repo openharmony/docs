@@ -9,6 +9,9 @@ The OH_Drawing_GpuContextOptions struct describes the options about the GPU cont
 
 **Related module**: [Drawing](_drawing.md)
 
+**Header file**: [drawing_gpu_context.h](drawing__gpu__context_8h.md)
+
+**Deprecated**: from API version 18
 
 ## Summary
 
