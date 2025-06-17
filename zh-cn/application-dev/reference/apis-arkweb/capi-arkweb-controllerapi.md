@@ -99,7 +99,7 @@ ArkWeb_WebMessagePortPtr* (*createWebMessagePorts)(const char* webTag, size_t* s
 
 **参数：**
 
-| 参数项 | 描述： |
+| 参数项 | 描述 |
 | -- | -- |
 | const char* webTag | Web组件名称。 |
 |  size_t* size | 出参，端口数量。 |
@@ -122,7 +122,7 @@ void (*destroyWebMessagePorts)(ArkWeb_WebMessagePortPtr** ports, size_t size)
 
 **参数：**
 
-| 参数项           | 描述：                |
+| 参数项           | 描述                |
 |---------------|--------------------|
 | [ArkWeb_WebMessagePortPtr](capi-arkweb-webmessageport8h.md)** ports | 发送Message端口结构体指针数组。 |
 | size_t size   | 端口数量。              |
@@ -139,7 +139,7 @@ ArkWeb_ErrorCode (*postWebMessage)(const char* webTag, const char* name, ArkWeb_
 
 **参数：**
 
-| 参数项 | 描述： |
+| 参数项 | 描述 |
 | -- | -- |
 | const char* webTag | Web组件名称。 |
 |  const char* name | 发送给HTML的消息名称。 |
@@ -185,10 +185,32 @@ void (*registerJavaScriptProxyEx)(const char* webTag, const ArkWeb_ProxyObjectWi
 
 **参数：**
 
-| 参数项 | 描述： |
+| 参数项 | 描述 |
 | -- | -- |
 | const char* webTag | Web组件名称。 |
 |  const [ArkWeb_ProxyObjectWithResult](capi-arkweb-proxyobjectwithresult.md)* proxyObject | 注册的对象。 |
 | const char* permission | json格式字符串，默认值为空。该字符串用来配置JSBridge的权限限制，可以配置对象和方法级别。 |
+
+### registerAsyncJavaScriptProxyEx()
+
+```
+void (*registerAsyncJavaScriptProxyEx)(const char* webTag, const ArkWeb_ProxyObject* proxyObject, const char* permission)
+```
+
+**描述：**
+
+注入JavaScript对象到window对象中，并在window对象中调用该对象的异步方法。
+
+**起始版本：** 18
+
+**参数：**
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| webTag | Web组件名称。  | 
+| proxyObject | 注册的对象。  | 
+| permission | json格式字符串，默认值为空。该字符串用来配置JSBridge的权限限制，可以配置对象和方法级别。 | 
 
 
