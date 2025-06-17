@@ -33,7 +33,6 @@
     - [OH_AudioSession_Strategy](_o_h___audio_session___strategy.md)
 - 错误码<!--audio-arkts-errcode-->
   - [Audio错误码](errorcode-audio.md)
-
   <!--Del-->
   - [Ringtone错误码](errorcode-ringtone.md)
   <!--DelEnd-->
