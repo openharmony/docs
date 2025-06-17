@@ -1,6 +1,6 @@
 # Key Derivation Overview and Algorithm Specifications
 
-A key derivation function (KDF) is a cryptographic algorithm that derives one or more secrete keys from a secret value by using a pseudorandom function (PRF). It can be used to stretch keys into longer keys or to obtain keys in the required format.
+A key derivation function (KDF) is a cryptographic algorithm that derives one or more secret keys from a secret value by using a pseudorandom function (PRF). It can be used to stretch keys into longer keys or to obtain keys in the required format.
 
 ## PBKDF2
 
@@ -8,7 +8,7 @@ Password-Based Key Derivation Function (PBKDF) is a key derivation function with
 
 PBKDF2 applies a PRF, such as an [HMAC](crypto-compute-hmac.md), to an input password together with a salt value, and repeats the process multiple times to generate a derived key.
 
-When creating a **kDF** instance, you need to specify the algorithm specifications in a string parameter. The string parameter consists of the KDF algorithm and HMAC algorithm with a vertical bar (|) in between.
+When creating a **KDF** instance, you need to specify the algorithm specifications in a string parameter. The string parameter consists of the KDF algorithm and HMAC algorithm with a vertical bar (|) in between.
 | KDF Algorithm| HMAC Algorithm| String Parameter| API Version|
 | -------- | -------- | -------- | -------- |
 | PBKDF2 | SHA1 | PBKDF2\|SHA1 | 11+ |
@@ -28,7 +28,7 @@ The HKDF has three modes:
 - **EXPAND_ONLY**: expands the PRK to a key of the specified length.
 - **EXTRACT_AND_EXPAND**: generates a PRK from the IKM and salt, and expands it to a key of the specified length. 
 
-When creating a **kDF** instance, you need to specify the algorithm specifications in a string parameter. The string parameter consists of the KDF algorithm, HMAC algorithm, and mode with a vertical bar (|) in between.
+When creating a **KDF** instance, you need to specify the algorithm specifications in a string parameter. The string parameter consists of the KDF algorithm, HMAC algorithm, and mode with a vertical bar (|) in between.
 | KDF Algorithm| HMAC Algorithm| Mode| String Parameter| API Version|
 | -------- | -------- | -------- | -------- | -------- |
 | HKDF | SHA1 | [EXPAND_ONLY\|EXTRACT_ONLY\|EXTRACT_AND_EXPAND] | HKDF\|SHA1 | 12+ |

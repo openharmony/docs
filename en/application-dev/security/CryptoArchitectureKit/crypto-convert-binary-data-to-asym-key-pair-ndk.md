@@ -20,7 +20,7 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 For details about the algorithm specifications, see [RSA](crypto-asym-key-generation-conversion-spec.md#rsa).
 
-1. Obtain the binary data of the RSA public key or private key and encapsulates the data into [Crypto_DataBlob](../../reference/apis-crypto-architecture-kit/_crypto_common_api.md#crypto_datablob).
+1. Obtain the binary data of the RSA public key or private key and encapsulate the data into [Crypto_DataBlob](../../reference/apis-crypto-architecture-kit/_crypto_common_api.md#crypto_datablob).
 
    Either the public key or private key can be passed in. In this example, the public key is passed in.
 
@@ -73,7 +73,7 @@ static OH_Crypto_ErrCode doTestDataCovertAsymKey()
 
 For details about the algorithm specifications, see [ECC](crypto-asym-key-generation-conversion-spec.md#ecc).
 
-1. Obtain the binary data of the ECC public key or private key and encapsulates the data into [Crypto_DataBlob](../../reference/apis-crypto-architecture-kit/_crypto_common_api.md#crypto_datablob).
+1. Obtain the binary data of the ECC public key or private key and encapsulate the data into [Crypto_DataBlob](../../reference/apis-crypto-architecture-kit/_crypto_common_api.md#crypto_datablob).
 
    Either the public key or private key can be passed in. In the following example, the public key and private key are passed in separately.
 
