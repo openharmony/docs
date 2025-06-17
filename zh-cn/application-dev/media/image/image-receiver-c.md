@@ -183,7 +183,7 @@ static void ImageReceiverNativeCTest()
 }
 
 // 在合适时机释放ImageReceiverNative相关资源。
-static void ImaggReceiverRelease()
+static void ImageReceiverRelease()
 {
     // 关闭被 OH_ImageReceiverNative_On 开启的回调事件。
     errCode = OH_ImageReceiverNative_Off(receiver);
