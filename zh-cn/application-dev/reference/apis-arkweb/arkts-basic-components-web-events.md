@@ -3516,6 +3516,7 @@ onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
     @State eventType: string = '';
     controller: webview.WebviewController = new webview.WebviewController();
     private nodeController: MyNodeController = new MyNodeController();
+    uiContext: UIContext = this.getUIContext();
 
     build() {
       Column() {
@@ -3528,8 +3529,8 @@ onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
                 this.nodeController.setRenderOption({
                   surfaceId: embed.surfaceId as string,
                   renderType: NodeRenderType.RENDER_TYPE_TEXTURE,
-                  width: px2vp(embed.info?.width),
-                  height: px2vp(embed.info?.height)
+                  width: this.uiContext!.px2vp(embed.info?.width),
+                  height: this.uiContext!.px2vp(embed.info?.height)
                 });
                 this.nodeController.rebuild();
               }
@@ -4018,6 +4019,7 @@ onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
     @State embedVisibility: string = '';
     controller: webview.WebviewController = new webview.WebviewController();
     private nodeController: MyNodeController = new MyNodeController();
+    uiContext: UIContext = this.getUIContext();
 
     build() {
       Column() {
@@ -4030,8 +4032,8 @@ onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
                 this.nodeController.setRenderOption({
                   surfaceId: embed.surfaceId as string,
                   renderType: NodeRenderType.RENDER_TYPE_TEXTURE,
-                  width: px2vp(embed.info?.width),
-                  height: px2vp(embed.info?.height)
+                  width: this.uiContext!.px2vp(embed.info?.width),
+                  height: this.uiContext!.px2vp(embed.info?.height)
                 });
                 this.nodeController.rebuild();
               }
