@@ -11,7 +11,7 @@
 
 domStorageAccess(domStorageAccess: boolean)
 
-设置是否开启文档对象模型存储接口（DOM Storage API）权限。
+设置是否开启文档对象模型存储接口（DOM Storage API）权限，默认未开启。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
