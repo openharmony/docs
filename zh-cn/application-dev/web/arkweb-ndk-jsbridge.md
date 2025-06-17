@@ -196,7 +196,7 @@
 
 ### 应用侧调用前端页面函数
 
-使用[runJavaScript](../reference/apis-arkweb/capi-arkweb-controllerapi.md#runjavascriptx)调用前端页面函数。
+使用[runJavaScript](../reference/apis-arkweb/capi-arkweb-controllerapi.md#runjavascript)调用前端页面函数。
 
   ```c++
   // 构造runJS执行的结构体
