@@ -371,7 +371,7 @@ try {
 
 setUserRestriction(admin: Want, settingsItem: string, restricted: boolean): void
 
-限制指定用户更改设备上的某设置项。
+设置用户针对指定配置项的更改策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_USER_RESTRICTION
 
@@ -383,7 +383,7 @@ setUserRestriction(admin: Want, settingsItem: string, restricted: boolean): void
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
 | settingsItem  | string                                                  | 是   | 设置项名称。<br/>- setApn：apn设置项。 |
-| restricted | boolean                                                 | 是   | 是否限制更改某设置项。true表示限制更改，false表示允许更改。                       |
+| restricted | boolean                                                 | 是   | 是否限制更改。true表示限制更改，false表示允许更改。                       |
 
 **错误码**：
 
