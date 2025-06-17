@@ -743,18 +743,13 @@
         - [使用crashpad收集Web组件崩溃信息](web/web-crashpad.md)
         - [定位与解决Web白屏问题](web/web-white-screen.md)
     - Background Tasks Kit（后台任务开发服务）<!--background-task-kit-->
-      <!--Del-->
-      - 后台任务管理 <!--background-task-management--><!--DelEnd-->
-        - [Background Tasks Kit简介](task-management/background-task-overview.md)
-        - [短时任务(ArkTS)](task-management/transient-task.md)
-        - [短时任务(C/C++)](task-management/native-transient-task.md)
-        - [长时任务(ArkTS)](task-management/continuous-task.md)
-        - [延迟任务(ArkTS)](task-management/work-scheduler.md)
-        - [代理提醒(ArkTS)](task-management/agent-powered-reminder.md)
-        <!--Del-->
-        - [能效资源申请(ArkTS)（仅对系统特权应用开放）](task-management/efficiency-resource-request.md)
-        <!--DelEnd-->
-      <!--Del-->
+      - [Background Tasks Kit简介](task-management/background-task-overview.md)
+      - [短时任务(ArkTS)](task-management/transient-task.md)
+      - [短时任务(C/C++)](task-management/native-transient-task.md)
+      - [长时任务(ArkTS)](task-management/continuous-task.md)
+      - [延迟任务(ArkTS)](task-management/work-scheduler.md)
+      - [代理提醒(ArkTS)](task-management/agent-powered-reminder.md)<!--Del-->
+      - [能效资源申请(ArkTS)（仅对系统特权应用开放）](task-management/efficiency-resource-request.md)
       - 设备使用信息统计（仅对系统应用开放）<!--device-usage-statistics-->
         - [设备使用信息统计概述](device-usage-statistics/device-usage-statistics-overview.md)
         - [设备使用信息统计开发指导](device-usage-statistics/device-usage-statistics-use-guide.md)
