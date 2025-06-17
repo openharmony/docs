@@ -49,7 +49,7 @@
 
 下面以应用中相机Shot2See场景为例，通过单段式拍照和分段式拍照的性能功耗对比，来展示两者的性能差异。
 
-**单段式拍照：**
+### 单段式拍照
 
 单段式拍照使用了`on(type:'photoAvailable',callback:AsyncCallback<Photo>):void`接口注册了全质量图的监听，默认不使能分段式拍照。具体操作步骤如下所示：
 
@@ -249,7 +249,7 @@
      .height(Constants.EIGHTY_PERCENT)
    ```
 
-**分段式拍照：**
+### 分段式拍照
 
 分段式拍照是应用下发拍照任务后，系统将分多阶段上报不同质量的图片。在第一阶段，系统快速上报低质量图，应用通过`on(type:'photoAssetAvailable',callback:AsyncCallback<PhotoAsset>):void`接口会收到一个PhotoAsset对象，通过该对象可调用媒体库接口，读取图片或落盘图片。在第二阶段，分段式子服务会根据系统压力以及定制化场景进行调度，将后处理好的原图回传给媒体库，替换低质量图。具体操作步骤如下所示：
 
