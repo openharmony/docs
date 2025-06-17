@@ -248,8 +248,7 @@
         - 多对多跨应用数据共享<!--many-to-many-data-share-->
           - [通过标准化数据通路实现数据共享 (ArkTS)](database/unified-data-channels.md)
           - [通过标准化数据通路实现数据共享 (C/C++)](database/unified-data-channels-c.md)
-      - [应用数据向量化 (ArkTS)](database/aip-data-intelligence-embedding.md) 
-      - [SQLite调试工具](database/sqlite-database-debug-tool.md)
+      - [应用数据向量化 (ArkTS)](database/aip-data-intelligence-embedding.md)
       - [ArkData术语](database/data-terminology.md)
     - ArkTS（方舟编程语言）<!--arkts-->
       - [ArkTS简介](arkts-utils/arkts-overview.md)
