@@ -33,7 +33,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 ## 开发步骤
 
-下文将展示如何在应用内增加一个按钮，并单击该按钮以调用HiCollie Ndk接口。
+下文展示在应用内增加按钮并调用HiCollie Ndk接口的方法。
 
 1. 新建Native C++工程，目录结构如下：
 
@@ -174,7 +174,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
   #include <unistd.h>
   
   #undef LOG_TAG
-  #define LOG_TAG "StruckTest"
+  #define LOG_TAG "StuckTest"
 
   // 检查当前线程是否正常执行：1-正常，0-卡死
   const int64_t CHECK_BUSSINESS_THREAD_IS_ALIVE = 1;
@@ -278,7 +278,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
   #include <unistd.h>
   
   #undef LOG_TAG
-  #define LOG_TAG "StruckTest"
+  #define LOG_TAG "StuckTest"
 
   // 检查当前线程是否正常执行， 1-正常， 0-卡死
   const int64_t CHECK_BUSSINESS_THREAD_IS_ALIVE = 1;
