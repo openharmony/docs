@@ -21,7 +21,7 @@
 | int32_t [posX](#posx) | 窗口的x轴，单位为px，该参数为整数。 |
 | int32_t [posY](#posy) | 窗口的y轴，单位为px，该参数为整数。 |
 | uint32_t [width](#width) | 窗口的宽度，单位为px，该参数为整数。 |
-| uint32_t [height](#height) | 窗户的高度，单位为px，该参数为整数。 |
+| uint32_t [height](#height) | 窗口的高度，单位为px，该参数为整数。 |
 
 
 ## 结构体成员变量说明
@@ -35,7 +35,7 @@ uint32_t WindowManager_Rect::height
 
 **描述**
 
-窗户的高度，单位为px，该参数为整数。
+窗口的高度，单位为px，该参数为整数。
 
 
 ### posX
