@@ -4951,7 +4951,7 @@ Allows a system application to access /data/log/ directory.
 
 ## ohos.permission.FILE_ACCESS_FOR_PRIVATE_SPACE
 
-Allow private users to access the public directory data of main user.
+Allows the private space application to mount public directories from the main space into the application sandbox.
 
 **Permission level**：system_core
 
