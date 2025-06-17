@@ -1430,6 +1430,12 @@ setWakeupHapInfo(info: WakeupHapInfo): Promise\<void\>
 
 **系统能力：** SystemCapability.AI.IntelligentVoice.Core
 
+**参数：**
+
+| 参数名     | 类型                              | 必填 | 说明                                          |
+| -------- | -------------------------------- | --- | ------------------------------------------- |
+| info     | [WakeupHapInfo](#wakeuphapinfo)                           | 是   | 唤醒hap信息。 |
+
 **返回值：**
 
 | 类型                                             | 说明                           |
