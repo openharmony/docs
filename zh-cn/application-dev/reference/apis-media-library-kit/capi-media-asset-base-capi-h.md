@@ -171,6 +171,7 @@ enum MediaLibrary_ImageFileType
 | 枚举项 | 描述 |
 | -- | -- |
 | MEDIA_LIBRARY_IMAGE_JPEG = 1 | JPEG类型。 |
+| MEDIA_LIBRARY_FILE_VIDEO = 3 | MPEG类型。<br>**起始版本：** 19 |
 
 ### MediaLibrary_MediaQuality
 
