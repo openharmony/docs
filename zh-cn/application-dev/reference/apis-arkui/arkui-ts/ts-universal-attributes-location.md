@@ -82,7 +82,7 @@ direction(value: Direction): T
 
 position(value: Position | Edges | LocalizedEdges): T
 
-绝对定位，确定子组件相对父组件的位置。
+绝对定位，确定子组件相对父组件内容区的位置。父组件内容区的大小为父组件大小减去border、padding、safeAreaPadding提供给子组件可布局的内容区域大小。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -94,7 +94,7 @@ position(value: Position | Edges | LocalizedEdges): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position) \| [Edges<sup>12+</sup>](ts-types.md#edges12) \| [LocalizedEdges<sup>12+</sup>](ts-types.md#localizededges12) | 是   | 绝对定位，确定子组件相对父组件的位置。当父容器为Row/Column/Flex时，设置position的子组件不占位。<br/>Position类型基于父组件左上角确定位置;Edges类型基于父组件四边确定位置，top/left/right/bottom分别为组件各边距离父组件相应边的边距，通过边距来确定组件相对于父组件的位置；LocalizedEdges类型基于父组件四边确定位置，支持镜像模式。<br/>适用于置顶显示、悬浮按钮等组件在父容器中位置固定的场景。<br/>不支持在宽高为零的布局容器上设置。<br/>当父容器为[RelativeContainer](ts-container-relativecontainer.md)，且子组件设置了alignRules属性，则子组件的position属性不生效。 |
+| value  | [Position](ts-types.md#position) \| [Edges<sup>12+</sup>](ts-types.md#edges12) \| [LocalizedEdges<sup>12+</sup>](ts-types.md#localizededges12) | 是   | 绝对定位，确定子组件相对父组件内容区的位置。当父容器为Row/Column/Flex时，设置position的子组件不占位。<br/>Position类型基于父组件内容区左上角确定位置；Edges类型基于父组件内容区四边确定位置，top/left/right/bottom分别为组件各边距离父组件内容区相应边的边距，通过边距来确定组件相对于父组件内容区的位置；LocalizedEdges类型基于父组件内容区四边确定位置，支持镜像模式。<br/>适用于置顶显示、悬浮按钮等组件在父容器中位置固定的场景。<br/>不支持在宽高为零的布局容器上设置。<br/>当父容器为[RelativeContainer](ts-container-relativecontainer.md)，且子组件设置了alignRules属性时，子组件的position属性不生效。 |
 
 **返回值：**
 
