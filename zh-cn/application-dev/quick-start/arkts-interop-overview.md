@@ -78,7 +78,7 @@ export function foo(arg) {
 // file2.ets ArkTS1.2
 // 加载模块
 let module: ESValue = ESValue.load('./file1')
-let foo ESValue = module.getProperty('foo')
+let foo: ESValue = module.getProperty('foo')
 let A: ESValue = module.getProperty('A')
 // 实例化
 let aa: ESValue = A.instantiate()

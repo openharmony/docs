@@ -71,7 +71,7 @@ export function foo2(a: number, b: number): number {
 import { func, foo1, foo2 } from "file1";
 func();
 foo1();
-foo(1.5, 2.5);
+foo2(1.5, 2.5);
 ```
 
 #### 对象方法调用
@@ -81,7 +81,7 @@ foo(1.5, 2.5);
 ```typescript
 // file1.ets ArkTS1.2
 export class A {
-  function log() {
+  log() {
     console.log(123)
   }
 }
@@ -91,18 +91,18 @@ class B {
 export class C extends B {
   override foo() : void { console.log('D.foo') }
 }
-interface interA {
+interface InterA {
   foo: () => void;
 }
 export let itA: InterA = {
-  foo: () => { console.log('interface log')) }
+  foo: () => { console.log('interface log') }
 }
 export let arr = new Array<number>(1, 2, 3);
 
 // file2.ets ArkTS1.1
 import { A, C, itA, arr } from 'file1'
 let a = new A()
-a.foo()
+a.log()
 let c = new C()
 c.foo()  // Output: D.foo
 itA.foo()
@@ -231,7 +231,7 @@ export function foo2(a: number, b: number): number {
 import { func, foo1, foo2 } from "file1";
 func();
 foo1();
-foo(1.5, 2.5);
+foo2(1.5, 2.5);
 ```
 
 #### 对象方法调用
@@ -241,7 +241,7 @@ foo(1.5, 2.5);
 ```typescript
 // file1.ts
 export class A {
-  function log() {
+  log() {
     console.log(123)
   }
 }
@@ -251,7 +251,7 @@ class B {
 export class C extends B {
   override foo() : void { console.log('D.foo') }
 }
-interface interA {
+interface InterA {
   foo: () => void;
 }
 export let itA: InterA = {
@@ -262,7 +262,7 @@ export let arr = new Array<number>(1, 2, 3);
 // file2.ets ArkTS.12
 import { A, C, itA, arr } from 'file1'
 let a = new A()
-a.foo()
+a.log()
 let c = new C()
 c.foo()  // Output: D.foo
 itA.foo()
@@ -2946,7 +2946,11 @@ eaw.stop();
 // file1.ets ArkTS1.1
 export let function foo() {}
 export async function bar() {}
-export let p = new Promise<number>(...)
+export let p = new Promise<number>((resolve, reject) => {
+  setTimeout(() => {
+    resolve(42);
+  }, 1000);
+});
 // file2.ets ArkTS1.2
 import {foo, bar, A, p} from 'file1'
 async function baz() {
