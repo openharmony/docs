@@ -905,6 +905,87 @@ The caller is not an atomic service.
 
 当前应用不支持调用该接口。
 
+<!--Del-->
+## 16000091 根据key获取文件URI数据失败
+
+**错误信息**
+
+Failed to get the file URI from the key.
+
+**错误描述**
+
+根据key获取文件URI失败。
+
+**可能原因**
+
+1. key为空。
+2. key不属于当前调用方。
+3. key不属于特定业务的数据通路。
+4. key对应UDMF中写入的数据不全为文件URI。
+
+**处理步骤**
+
+1. 确保key是由调用方创建的。
+2. 确保key属于特定业务的数据通路。参考[UDMF数据通路](../apis-arkdata/js-apis-data-unifiedDataChannel.md#intention)。
+3. 确保创建key时在UDMF中写入的数据都为文件URI。
+
+## 16000092 无权限授权URI
+
+**错误信息**
+
+No permission to authorize the URI.
+
+**错误描述**
+
+无权限授权URI。
+
+**可能原因**
+
+创建key时写入的URI存在无权限授权的URI。
+
+**处理步骤**
+
+确保创建key时写入的URI均为有权限授权的URI。
+
+## 16000093 调用方的token ID无效
+
+**错误信息**
+
+The caller token ID is invalid.
+
+**错误描述**
+
+调用方的token ID无效。
+
+**可能原因**
+
+系统未找到callerTokenId对应的应用。
+
+**处理步骤**
+
+检查callerTokenId对应的应用是否安装。
+
+## 16000094 目标应用的token ID无效
+
+**错误信息**
+
+The target token ID is invalid.
+
+**错误描述**
+
+目标应用的token ID无效。
+
+**可能原因**
+
+1. 系统未找到targetTokenId对应的应用。
+2. targetTokenId与callerTokenId是同一应用。
+
+**处理步骤**
+
+1. 确保传入的targetTokenId对应的应用已安装。
+2. 确保callerTokenId与targetTokenId不是同一应用。
+<!--DelEnd-->
+
 ## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
 
 **错误信息**
