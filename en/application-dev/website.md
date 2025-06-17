@@ -1345,10 +1345,12 @@
           - [hisysevent](dfx/hisysevent.md)
           - [uinput](dfx/uinput.md)
         <!--DelEnd-->
+      <!--Del-->
       - Test Kit<!--test-kit-->
         - [arkXtest User Guide](application-test/arkxtest-guidelines.md)
         - [SmartPerf User Guide](application-test/smartperf-guidelines.md)
         - [wukong User Guide](application-test/wukong-guidelines.md)
+      <!--DelEnd-->
       - Debugging Commands<!--debugging-commands-->
         - [Ability Assistant](tools/aa-tool.md)
         - [Bundle Manager](tools/bm-tool.md)
