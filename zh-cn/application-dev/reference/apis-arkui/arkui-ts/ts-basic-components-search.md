@@ -1963,6 +1963,8 @@ struct SearchExample {
 
 ```ts
 // xxx.ets
+import { LengthMetrics } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct SearchExample {
@@ -1971,20 +1973,26 @@ struct SearchExample {
       Column() {
         Text('stroke feature').fontSize(9).fontColor(0xCCCCCC)
 
-        Search({value: 'This is the text without stroke setting'})
-          .width('80%').height(90).borderWidth(1)
-          .minFontSize(60)
-          .maxFontSize(60)
-        Search({value: 'This is the text with the stroke setting'})
-          .width('80%').height(90).borderWidth(1)
-          .minFontSize(60)
-          .maxFontSize(60)
+        Search({ value: 'Text without stroke' })
+          .width('100%')
+          .height(60)
+          .borderWidth(1)
+          .minFontSize(40)
+          .maxFontSize(40)
+        Search({ value: 'Text with stroke' })
+          .width('100%')
+          .height(60)
+          .borderWidth(1)
+          .minFontSize(40)
+          .maxFontSize(40)
           .strokeWidth(LengthMetrics.px(-3.0))
           .strokeColor(Color.Red)
-        Search({value: 'This is the text with the stroke setting'})
-          .width('80%').height(90).borderWidth(1)
-          .minFontSize(60)
-          .maxFontSize(60)
+        Search({ value: 'Text with stroke' })
+          .width('100%')
+          .height(60)
+          .borderWidth(1)
+          .minFontSize(40)
+          .maxFontSize(40)
           .strokeWidth(LengthMetrics.px(3.0))
           .strokeColor(Color.Red)
       }.height('90%')
