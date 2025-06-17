@@ -526,13 +526,13 @@ onScrollIndex(event: (first: number, last: number) => void)
 
 **说明：** 
 
-> 当WaterFlow中列表为空时，不同布局模式下onScrollIndex事件的返回值存在差异，具体参考下表：
+> 当WaterFlow中列表为空时，使用不同的WaterFlowOptions参数onScrollIndex事件的返回值存在差异，具体参考下表：
 
-| 布局模式 | layoutMode | sections 配置 | first 值 | last 值 |
-| --- | --- | --- | --- | --- |
-| 基础模式 | ALWAYS_TOP_DOWN | 无 | 0 | 0 |
-| 非滑窗分组模式 | ALWAYS_TOP_DOWN | 有 | 0 | -1 |
-| 滑窗模式 | SLIDING_WINDOW | 可选 | 1000000 | -1 |
+| layoutMode | sections | first | last |
+| --- | --- | --- | --- |
+| ALWAYS_TOP_DOWN | 无 | 0 | 0 |
+| ALWAYS_TOP_DOWN | 有 | 0 | -1 |
+| SLIDING_WINDOW | 可选 | 1000000 | -1 |
 
 
 ## UIWaterFlowEvent<sup>19+</sup>
