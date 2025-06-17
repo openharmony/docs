@@ -476,6 +476,7 @@
     - [ArkUI_NativeAnimateAPI_1](_ark_u_i___native_animate_a_p_i__1.md)
     - [ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md)
     - [ArkUI_NativeDialogAPI_2](_ark_u_i___native_dialog_a_p_i__2.md)
+    - [ArkUI_NativeDialogAPI_3](_ark_u_i___native_dialog_a_p_i__3.md)
     - [ArkUI_NativeGestureAPI_1](_ark_u_i___native_gesture_a_p_i__1.md)
     - [ArkUI_NativeGestureAPI_2](_ark_u_i___native_gesture_a_p_i__2.md)
     - [ArkUI_NativeNodeAPI_1](_ark_u_i___native_node_a_p_i__1.md)
@@ -520,10 +521,10 @@
     - [属性字符串错误码](errorcode-styled-string.md)
     - [UI上下文错误码](errorcode-uicontext.md)
     - [交互事件错误码](errorcode-event.md)
+    - [NodeAdapter错误码](errorcode-nodeadapter.md)
     <!--Del-->
     - [用户界面外观服务错误码](errorcode-uiappearance.md)
     - [UIExtension错误码](errorcode-uiextension.md)
-    - [NodeAdapter错误码](errorcode-nodeadapter.md)
     <!--DelEnd-->
   - 图形图像<!--arkui-graphics-images-arkts-errcode-->
     - [屏幕错误码](errorcode-display.md)
