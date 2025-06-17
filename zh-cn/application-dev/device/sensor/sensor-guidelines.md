@@ -13,10 +13,10 @@
 | 名称 | 描述 |
 | -------- | -------- |
 | sensor.on(sensorId, callback:AsyncCallback&lt;Response&gt;, options?: Options): void | 持续监听传感器数据变化。 |
-| sensor.on(type: 'sensorStatusChange', callback: Callback&lt;SensorStatusEvent&gt;): void | 监听传感器状态变化，callback返回传感器状态事件数据。 |
+| sensor.on(type: 'sensorStatusChange', callback: Callback&lt;SensorStatusEvent&gt;): void | 监听传感器动态上下线的状态变化，callback返回传感器状态事件数据。 |
 | sensor.once(sensorId, callback:AsyncCallback&lt;Response&gt;): void | 获取一次传感器数据变化。 |
 | sensor.off(sensorId, sensorInfoParam?: SensorInfoParam, callback?:AsyncCallback&lt;void&gt;): void | 注销传感器数据的监听。 |
-| sensor.off(type: 'sensorStatusChange', callback?: Callback&lt;SensorStatusEvent&gt;): void | 注销传感器状态变化的监听。 |
+| sensor.off(type: 'sensorStatusChange', callback?: Callback&lt;SensorStatusEvent&gt;): void | 注销传感器动态上下线的状态变化的监听。 |
 | sensor.getSensorList(callback: AsyncCallback\<Array\<Sensor>>): void| 获取设备上的所有传感器信息。 |
 
 
@@ -54,7 +54,7 @@
     ```ts
     try {
       const deviceId = 1;
-      // 第一个参数deviceId 非必填
+      // 第一个参数deviceId 非必填，默认查询的为本地设备
       const sensorList: sensor.Sensor[] = sensor.getSensorListByDeviceSync(deviceId);
       console.log(`sensorList length: ${sensorList.length}`);
       console.log(`sensorList: ${JSON.stringify(sensorList)}`);
