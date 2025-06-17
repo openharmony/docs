@@ -4953,7 +4953,7 @@ Allows a system application to access /data/log/ directory.
 
 Allows the private space application to mount public directories from the main space into the application sandbox.
 
-**Permission level**：system_core
+**Permission level**：system_basic
 
 **Authorization mode**：system_grant
 
