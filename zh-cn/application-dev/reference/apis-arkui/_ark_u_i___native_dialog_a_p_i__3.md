@@ -467,7 +467,7 @@ int32_t (*enableHoverMode)(ArkUI_NativeDialogHandle handle, bool enableHoverMode
 | 名称 | 描述 | 
 | -------- | -------- |
 | handle | 指向自定义弹窗控制器的指针。  | 
-| enableHoverMode | 是否相应悬停态，默认false。true表示响应悬停态，false表示不响应悬停态。  |
+| enableHoverMode | 是否响应悬停态，默认false。true表示响应悬停态，false表示不响应悬停态。  |
 
 **注解：**
 

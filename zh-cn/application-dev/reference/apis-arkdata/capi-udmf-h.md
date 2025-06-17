@@ -41,7 +41,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [UDMF_KEY_BUFFER_LEN (512)](#) | - | 统一数据对象唯一标识符最小空间长度。 |
+| [UDMF_KEY_BUFFER_LEN (512)](#udmf_key_buffer_len) | - | 统一数据对象唯一标识符最小空间长度。 |
 | [typedef void (\*OH_Udmf_DataProgressListener)(OH_Udmf_ProgressInfo* progressInfo, OH_UdmfData* data)](#oh_udmf_dataprogresslistener) | OH_Udmf_DataProgressListener | 定义获取进度信息和数据的监听回调函数。<br>使用时需要判断数据是否返回空指针。只有当进度达到100%时，才会返回数据。 |
 | [OH_UdmfData* OH_UdmfData_Create()](#oh_udmfdata_create) | - | 创建统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)指针及实例对象。当不再需要使用指针时，请使用[OH_UdmfData_Destroy](capi-udmf-h.md#oh_udmfdata_destroy)销毁实例对象，否则会导致内存泄漏。 |
 | [void OH_UdmfData_Destroy(OH_UdmfData* pThis)](#oh_udmfdata_destroy) | - | 销毁统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)指针指向的实例对象。 |
@@ -1697,7 +1697,7 @@ int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData, c
 | -- | -- |
 | [Udmf_Intention](#udmf_intention) intention | 表示数据通路类型[Udmf_Intention](capi-udmf-h.md#udmf_intention)。 |
 | [OH_UdmfData](capi-oh-udmfdata.md)* unifiedData | 表示统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)数据。 |
-| key表示成功将数据设置到数据库后对应数据的唯一标识符。 |  |
+| key | 表示成功将数据设置到数据库后对应数据的唯一标识符。 |
 | unsigned int keyLen | 表示唯一标识符参数的空间大小，内存大小不小于512字节。 |
 
 **返回：**

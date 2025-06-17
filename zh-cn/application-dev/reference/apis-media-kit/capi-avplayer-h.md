@@ -14,6 +14,8 @@
 
 **相关模块：** [AVPlayer](capi-avplayer.md)
 
+**相关示例：** [AVPlayerNDKVideo](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVPlayer/AVPlayerNDK)
+
 ## 汇总
 
 ### 结构体
