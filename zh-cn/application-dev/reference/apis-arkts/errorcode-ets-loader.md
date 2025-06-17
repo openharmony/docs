@@ -59,7 +59,7 @@ Kit `${moduleRequest}` 在ArkTS SDK中没有对应的配置文件。
 **处理步骤**
 
 1. 请确保Kit的API与SDK一致，并且Kit的API没有被本地修改。
-2. 有关Kit API的更多详细信息，请参考<!--RP1-->[开发说明](../development-intro.md)。<!--RP1End-->
+2. 有关Kit API的更多详细信息，请参考<!--RP1-->[开发说明](../development-intro-api.md)。<!--RP1End-->
 
 ## 10311005 导入Kit标识符错误
 
@@ -97,7 +97,7 @@ Identifier `${this.importName}` comes from `${this.symbol.source}` which can not
 **处理步骤**
 
 1. 请确保Kit的API与SDK一致，并且Kit的API没有被本地修改。
-2. 有关Kit API的更多详细信息，请参考<!--RP1-->[开发说明](../development-intro.md)。<!--RP1End-->
+2. 有关Kit API的更多详细信息，请参考<!--RP1-->[开发说明](../development-intro-api.md)。<!--RP1End-->
 
 ## 10311007 Kit命名空间导入或导出错误
 
