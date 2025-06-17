@@ -1011,6 +1011,22 @@ onWillChange的回调时序晚于onWillInsert、onWillDelete，早于onDidInsert
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | callback  | Callback\<[EditableTextChangeValue](ts-text-common.md#editabletextchangevalue15), boolean> | 是   | 在文本内容将要发生变化时的回调。<br/>返回true时，表示正常修改。返回false时，表示拦截此次触发。 |
 
+### onWillAttachIME<sup>20+</sup>
+
+onWillAttachIME(callback: Callback\<IMEClient>)
+
+在搜索框将要绑定输入法前触发该回调。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[IMEClient](ts-text-common.md#imeclient20对象说明)> | 是   | 在搜索框将要绑定输入法前触发该回调。 |
+
 ## SearchController
 
 Search组件的控制器继承自[TextContentControllerBase](ts-types.md#textcontentcontrollerbase10)。

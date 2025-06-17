@@ -585,6 +585,7 @@
           - [通过XComponent接入无障碍](ui/ndk-accessibility-xcomponent.md)
           - [自定义绘制](ui/arkts-user-defined-draw.md)
           - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ui/ndk-embedded-component.md)
+          - [在NDK中保证多实例场景功能正常](ui/ndk-scope-task.md)
       - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
         - [UI开发 (兼容JS的类Web开发范式)概述](ui/ui-js-overview.md)
         - 框架说明<!--js-framework-overview-->
@@ -797,51 +798,51 @@
         - [跨设备文件拷贝](file-management/file-copy-across-devices.md)
     - Form Kit（卡片开发服务）<!--form-kit-->
       - [Form Kit简介](form/formkit-overview.md)
-      - 服务卡片开发指导（Stage模型）<!--arkts-ui-widget-stage-->
-        - 开发基于ArkTS UI的卡片<!--arkts-ui-widget-->
-          - [ArkTS卡片概述](form/arkts-form-overview.md)
-          - ArkTS卡片开发指导<!--arkts-ui-widget-dev-->
-            - [创建ArkTS卡片](form/arkts-ui-widget-creation.md)
-            - [配置卡片的配置文件](form/arkts-ui-widget-configuration.md)
-            - [卡片生命周期管理](form/arkts-ui-widget-lifecycle.md)
-            - 开发卡片页面<!--arkts-ui-widget-page-->
-              - [卡片页面能力说明](form/arkts-ui-widget-page-overview.md)
-              - [卡片使用动效能力](form/arkts-ui-widget-page-animation.md)
-              - [卡片使用自定义绘制能力](form/arkts-ui-widget-page-custom-drawing.md)
-            - 开发卡片事件<!--arkts-ui-widget-event-->
-              - [卡片事件能力说明](form/arkts-ui-widget-event-overview.md)
-              - [拉起卡片提供方的UIAbility(router事件)](form/arkts-ui-widget-event-router.md)
-              - [拉起卡片提供方的UIAbility到后台(call事件)](form/arkts-ui-widget-event-call.md)
-              - [通过message事件刷新卡片内容](form/arkts-ui-widget-event-formextensionability.md)
-              - [通过router或call事件刷新卡片内容](form/arkts-ui-widget-event-uiability.md)
-            - ArkTS卡片页面刷新<!--arkts-ui-widget-interaction-->
-              - [ArkTS卡片页面刷新概述](form/arkts-ui-widget-interaction-overview.md)
-              - [ArkTS卡片主动刷新](form/arkts-ui-widget-active-refresh.md)
-              - [ArkTS卡片被动刷新](form/arkts-ui-widget-passive-refresh.md)
-              <!--Del-->
-              - [卡片代理刷新](form/arkts-ui-widget-update-by-proxy.md)
-              <!--DelEnd-->
-              - [刷新本地图片和网络图片](form/arkts-ui-widget-image-update.md)
-              - [根据卡片状态刷新不同内容](form/arkts-ui-widget-update-by-status.md)
+      - ArkTS卡片开发（推荐）<!--arkts-ui-widget-->
+        - [ArkTS卡片概述](form/arkts-form-overview.md)
+        - [创建ArkTS卡片](form/arkts-ui-widget-creation.md)
+        - [配置ArkTS卡片的配置文件](form/arkts-ui-widget-configuration.md)
+        - [管理ArkTS卡片生命周期](form/arkts-ui-widget-lifecycle.md)
+        - ArkTS卡片提供方开发指导<!--arkts-ui-widget-page-->
+          - ArkTS卡片UI界面开发<!--arkts-ui-widget-page-->
+            - [ArkTS卡片界面开发概述](form/arkts-ui-widget-page-overview.md)
+            - [ArkTS卡片为组件添加动效](form/arkts-ui-widget-page-animation.md)
+            - [ArkTS卡片使用画布组件绘制自定义图形](form/arkts-ui-widget-page-custom-drawing.md)
+          - ArkTS卡片页面交互<!--arkts-ui-widget-event-->
+            - [ArkTS卡片页面交互概述](form/arkts-ui-widget-event-overview.md)
+            - [router事件交互](form/arkts-ui-widget-event-router.md)
+            - [call事件交互](form/arkts-ui-widget-event-call.md)
+            - [message事件交互](form/arkts-ui-widget-event-formextensionability.md)
+          - ArkTS卡片页面刷新<!--arkts-ui-widget-interaction-->
+            - [ArkTS卡片页面刷新概述](form/arkts-ui-widget-interaction-overview.md)
+            - [ArkTS卡片主动刷新](form/arkts-ui-widget-active-refresh.md)
+            - [ArkTS卡片被动刷新](form/arkts-ui-widget-passive-refresh.md)
+            <!--Del-->
+            - [卡片代理刷新](form/arkts-ui-widget-update-by-proxy.md)
+            <!--DelEnd-->
+            - [刷新本地图片和网络图片](form/arkts-ui-widget-image-update.md)
+            - [根据卡片状态刷新不同内容](form/arkts-ui-widget-update-by-status.md)
           - ArkTS卡片页面编辑<!--arkts-ui-widget-edit-->
             - [ArkTS卡片页面编辑交互概述](form/arkts-ui-widget-event-formeditextensionability-overview.md)
             - [编辑刷新卡片页面内容](form/arkts-ui-widget-event-formeditextensionability.md)
           - 应用内请求卡片加桌<!--arkts-ui-widget-add-->
             - [应用内拉起卡片管理加桌](form/arkts-ui-widget-open-formmanager.md)
-          <!--Del-->
-          - [卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
-          <!--DelEnd-->
-        - 互动卡片开发
+        <!--Del--> 
+        - [ArkTS卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
+        <!--DelEnd-->
+        - 互动卡片开发<!--arkts-ui-liveform-->
           - [互动卡片概述](form/arkts-ui-liveform-overview.md)
           - [趣味交互类型互动卡片开发指导](form/arkts-ui-liveform-funinteraction-development.md)
-          - 场景动效类型互动卡片
+          - 场景动效类型互动卡片<!--arkts-ui-liveform-sceneanimation-->
             - [场景动效类型互动卡片概述](form/arkts-ui-liveform-sceneanimation-overview.md)
             - [场景动效类型互动卡片开发指导](form/arkts-ui-liveform-sceneanimation-development.md)
             <!--Del-->
             - [场景动效类型互动卡片开发指导（系统应用）](form/arkts-ui-liveform-sceneanimation-development-sys.md)
             <!--DelEnd-->
-        - [开发基于JS UI的卡片](form/js-ui-widget-development.md)
-      - [JS卡片开发指导（FA模型）](form/widget-development-fa.md)
+      - JS卡片开发<!--form-js-ui-->
+        - [JS卡片概述](form/js-ui-widget-overview.md)
+        - [JS卡片开发指导（Stage模型）](form/js-ui-widget-development.md)
+        - [JS卡片开发指导（FA模型）](form/widget-development-fa.md)
     - IME Kit（输入法开发服务）<!--ime-kit-->
       - [IME Kit简介](inputmethod/ime-kit-intro.md)
       - [实现一个输入法应用](inputmethod/inputmethod-application-guide.md)
@@ -2496,6 +2497,7 @@
           - [@ohos.pluginComponent (PluginComponentManager)](reference/apis-arkui/js-apis-plugincomponent.md)
           - [@ohos.promptAction (弹窗)](reference/apis-arkui/js-apis-promptAction.md)
           - [@ohos.router (页面路由)(不推荐)](reference/apis-arkui/js-apis-router.md)
+          - [@ohos.uiAppearance (用户界面外观)](reference/apis-arkui/js-apis-uiappearance.md)
           - [getContext](reference/apis-arkui/js-apis-getContext.md)
           - [postCardAction](reference/apis-arkui/js-apis-postCardAction.md)
           <!--Del-->
@@ -2746,6 +2748,7 @@
           - [属性字符串](reference/apis-arkui/arkui-ts/ts-universal-styled-string.md)
           - [文本组件公共接口](reference/apis-arkui/arkui-ts/ts-text-common.md)
           <!--Del-->
+          - [文本组件公共接口 (系统接口)](reference/apis-arkui/arkui-ts/ts-text-common-sys.md)
           - [TextInput (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-textinput-sys.md)
           - [属性字符串 (系统接口)](reference/apis-arkui/arkui-ts/ts-universal-styled-string-sys.md)
           <!--DelEnd-->
@@ -3203,9 +3206,7 @@
           - [Canvas错误码](reference/apis-arkui/errorcode-canvas.md)
           - [自定义节点错误码](reference/apis-arkui/errorcode-node.md)
           - [UIExtension错误码](reference/apis-arkui/errorcode-uiextension.md)
-          <!--Del-->
           - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
-          <!--DelEnd-->
           - [NodeAdapter错误码](reference/apis-arkui/errorcode-nodeadapter.md)
         - UI编译<!--arkui-compile-arkts-errcode-->
           - [编译错误码](reference/apis-arkui/_ark_ui_compile.md)

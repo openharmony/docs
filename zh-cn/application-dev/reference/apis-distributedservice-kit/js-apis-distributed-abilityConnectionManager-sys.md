@@ -550,10 +550,10 @@ stopStream(sessionId:&nbsp;number):&nbsp;void
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 名称       | 类型   | 可读   | 可写   | 必填   | 说明      |
-| -------- | ------ | ---- | ---- | ---- | ------- |
-| eventType | [CollaborateEventType](#collaborateeventtype) | 是    | 否    | 是    | 表示协作事件的类型。 |
-| eventMsg | string | 是    | 否    | 否    | 表示协作事件的协作消息。 |
+| 名称       | 类型   | 只读 | 可选 | 说明      |
+| -------- | ------ | ---- | ---- | ------- |
+| eventType | [CollaborateEventType](#collaborateeventtype) | 否    | 否   | 表示协作事件的类型。 |
+| eventMsg | string | 否    | 是   | 表示协作事件的协作消息。 |
 
 ## StreamParam
 
@@ -561,12 +561,12 @@ stopStream(sessionId:&nbsp;number):&nbsp;void
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 名称       | 类型    | 可读   | 可写   | 必填   | 说明          |
-| -------- | ------ | ---- | ---- | ---- | ----------- |
-| name  | string   | 是    | 否    | 是    |   表示流传输的名称（接收端必须与发送端一致）。 |
-| role  | [StreamRole](#streamrole)     | 是    | 否    | 是    |   表示流传输的方式（可以是接收流或发送流）。 |
-| bitrate  | number   | 是    | 否    | 否    |   表示视频比特率（仅在发送端有效，默认值为80000）。 |
-| colorSpaceConversionTarget  | [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)     | 是    | 否    | 否    |  表示转换的目标色彩空间。 |
+| 名称       | 类型    | 只读 | 可选 | 说明          |
+| -------- | ------ | ---- | ---- | ----------- |
+| name  | string   | 否    | 否 |   表示流传输的名称（接收端必须与发送端一致）。 |
+| role  | [StreamRole](#streamrole)     | 否    | 否   |   表示流传输的方式（可以是接收流或发送流）。 |
+| bitrate  | number   | 否    | 是   |   表示视频比特率（仅在发送端有效，默认值为80000）。 |
+| colorSpaceConversionTarget  | [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)     | 否    | 是   |  表示转换的目标色彩空间。 |
 
 ## SurfaceParam
 
@@ -574,13 +574,13 @@ Surface配置参数。
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 名称       | 类型   | 可读   | 可写   | 必填   | 说明      |
-| -------- | ------ | ---- | ---- | ---- | ------- |
-| width | number | 是    | 否    | 是    | 表示编码宽度。必须在流启动前设置，流启动后到停止前均无法更新。如需更新需要将流停止后重新配置。 |
-| height | number | 是    | 否    | 是   | 表示编码长度。必须在流启动前设置，流启动后到停止前均无法更新。如需更新需要将流停止后重新配置。 |
-| format | [VideoPixelFormat](#videopixelformat) | 是    | 否    | 否    | 表示视频像素格式，此选项必须在发送端配置。 |
-| rotation | number | 是    | 否    | 否    | 表示视频的旋转角度（取值范围为{0, 90, 180, 270}，默认值为0）。 |
-| flip | [FlipOptions](#flipoptions) | 是    | 否    | 否    | 表示视频是否反转。 |
+| 名称       | 类型   | 只读 | 可选 | 说明      |
+| -------- | ------ | ---- | ---- | ------- |
+| width | number | 否    | 否   | 表示编码宽度。必须在流启动前设置，流启动后到停止前均无法更新。如需更新需要将流停止后重新配置。 |
+| height | number | 否    | 否  | 表示编码长度。必须在流启动前设置，流启动后到停止前均无法更新。如需更新需要将流停止后重新配置。 |
+| format | [VideoPixelFormat](#videopixelformat) | 否    | 是   | 表示视频像素格式，此选项必须在发送端配置。 |
+| rotation | number | 否    | 是   | 表示视频的旋转角度（取值范围为{0, 90, 180, 270}，默认值为0）。 |
+| flip | [FlipOptions](#flipoptions) | 否    | 是   | 表示视频是否反转。 |
 
 ## CollaborateEventType
 
@@ -644,16 +644,16 @@ Surface配置参数。
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 名称       | 类型    | 可读   | 可写   | 说明          |
+| 名称       | 类型    | 只读  | 可选  | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
-| image  | image.PixelMap | 是    | 否    |   表示接收的图片。 |
+| image  | image.PixelMap | 否   | 是   |   表示接收的图片。 |
 
 ## StartOptionParams
 
 启动选项参数的枚举。
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
- 
+
 | 名称|  值 | 说明 |
 |-------|-------|-------|
 | START_IN_BACKGROUND | 1 |表示将对端应用启动至后台。|

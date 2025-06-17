@@ -323,6 +323,24 @@ fillColor(color: ResourceColor|ColorContent)
 | ------ | ------------------------------------------ | ---- | -------------- |
 | color  | [ResourceColor](ts-types.md#resourcecolor)\|[ColorContent](#colorcontent15) | 是   | 设置填充颜色。 <br/>**说明：**<br/> 默认不对组件进行填充。当传入异常值时，系统将使用默认的主题色：浅色模式下为黑色，深色模式下为白色。 |
 
+### fillColor<sup>20+</sup>
+
+fillColor(color: ResourceColor|ColorContent|ColorMetrics)
+
+设置填充颜色，设置后填充颜色会覆盖在图片上。仅对svg图源生效，设置后会替换svg图片中所有可绘制元素的填充颜色。如需对png图片进行修改颜色，可以使用[colorFilter](#colorfilter9)。如果想重置填充颜色可以传入[ColorContent](#colorcontent15)类型。支持通过传入[ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)类型设置P3色域颜色值，可在支持高色域的设备上获得更丰富的色彩表现。
+
+当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明           |
+| ------ | ------------------------------------------ | ---- | -------------- |
+| color  | [ResourceColor](ts-types.md#resourcecolor)\|[ColorContent](#colorcontent15)\|[ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 是   | 设置填充颜色。 <br/>**说明：**<br/> 默认不对组件进行填充。当传入异常值时，系统将使用默认的主题色：浅色模式下为黑色，深色模式下为白色。 |
+
 ### autoResize
 
 autoResize(value: boolean)
@@ -1863,3 +1881,55 @@ struct OrientationExample {
 ```
 
 ![orientation](figures/orientation.png)
+
+### 示例21（动态切换SVG图片的填充颜色）
+
+通过按钮切换不同色域下的颜色值，动态改变SVG图片的填充颜色效果，以展示ColorMetrics的使用方式和显示差异。
+
+```ts
+import { ColorMetrics } from '@kit.ArkUI';
+@Entry
+@Component
+struct fillColorMetricsDemo {
+  @State p3Red: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.DISPLAY_P3, 1, 0, 0);
+  @State sRGBRed: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.SRGB, 1, 0, 0);
+  @State p3Green: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.DISPLAY_P3, 0, 1 ,0);
+  @State sRGBGreen: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.SRGB, 0, 1 ,0);
+  @State p3Blue: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.DISPLAY_P3, 0, 0, 1);
+  @State sRGBBlue: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.SRGB, 0, 0, 1);
+  @State colorArray: (Color|undefined|ColorMetrics|ColorContent)[] = [
+    this.p3Red, this.sRGBRed, this.p3Green, this.sRGBGreen, this.p3Blue,
+    this.sRGBBlue, ColorContent.ORIGIN, Color.Gray, undefined
+  ]
+  @State colorArrayStr: string[] = [
+    "P3 Red", "SRGB Red", "P3 Green", "SRGB Green",
+    "P3 Blue", "SRGB Blue", "ColorContent.ORIGIN", "Gray", "undefined"
+  ]
+  @State arrayIdx: number = 0
+  build() {
+    Column() {
+      Text("FillColor is " + this.colorArrayStr[this.arrayIdx])
+      Image($r('app.media.svgExample'))
+        .width(110).height(110).margin(15)
+        .fillColor(this.colorArray[this.arrayIdx])
+      Button("ChangeFillColor")
+        .onClick(()=>{
+          this.arrayIdx = (this.arrayIdx + 1) % this.colorArray.length
+        })
+      Divider()
+      Text("FillColor is SRGB Red")
+      Image($r('app.media.svgExample'))
+        .width(110).height(110).margin(15)
+        .fillColor(this.sRGBRed)
+      Text("FillColor is SRGB Green")
+      Image($r('app.media.svgExample'))
+        .width(110).height(110).margin(15)
+        .fillColor(this.sRGBGreen)
+      Text("FillColor is SRGB Blue")
+      Image($r('app.media.svgExample'))
+        .width(110).height(110).margin(15)
+        .fillColor(this.sRGBBlue)
+    }
+  }
+}
+```
