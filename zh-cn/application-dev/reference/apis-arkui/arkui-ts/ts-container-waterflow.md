@@ -524,6 +524,15 @@ onScrollIndex(event: (first: number, last: number) => void)
 | first  | number | 是   | 当前显示的瀑布流起始位置的索引值。<br/>取值范围：[0, 子节点总数-1] |
 | last   | number | 是   | 当前显示的瀑布流终止位置的索引值。<br/>取值范围：[0, 子节点总数-1] |
 
+当WaterFlow列表为空时，使用不同的WaterFlowOptions参数会导致onScrollIndex事件的返回值有所不同。具体差异请参见下表：
+
+| layoutMode | sections | first | last |
+| --- | --- | --- | --- |
+| ALWAYS_TOP_DOWN | 无 | 0 | 0 |
+| ALWAYS_TOP_DOWN | 有 | 0 | -1 |
+| SLIDING_WINDOW | 可选 | 1000000 | -1 |
+
+
 ## 示例
 
 ### 示例1（使用基本瀑布流）
