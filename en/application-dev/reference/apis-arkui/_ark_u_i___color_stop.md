@@ -9,6 +9,7 @@ Defines the gradient color stop structure.
 
 **Related module**: [ArkUI_NativeModule](_ark_u_i___native_module.md)
 
+**Header file**: [native_type.h](native__type_8h.md)
 
 ## Summary
 
@@ -34,7 +35,6 @@ const uint32_t* ArkUI_ColorStop::colors
 
 Color array.
 
-
 ### size
 
 ```
@@ -44,7 +44,6 @@ int ArkUI_ColorStop::size
 
 Length of the array.
 
-
 ### stops
 
 ```
@@ -53,4 +52,3 @@ float* ArkUI_ColorStop::stops
 **Description**
 
 Position array.
-<!--no_check-->

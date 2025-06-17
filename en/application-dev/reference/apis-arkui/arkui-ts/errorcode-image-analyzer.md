@@ -8,7 +8,7 @@
 
 **Error Message**
 
-AI analysis is unsupported.
+Image analysis feature is unsupported.
 
 **Description**
 
@@ -22,11 +22,11 @@ An unsupported API is called.
 
 N/A
 
-## 110002 AI Image Analysis in Progress
+## 110002 AI Image Analysis Already in Progress
 
 **Error Message**
 
-AI analysis is ongoing.
+Image analysis is currently being executed.
 
 **Description**
 
@@ -34,7 +34,25 @@ This error code is reported when **startImageAnalyzer()** is called while the pr
 
 **Possible Causes**
 
-The API is called at a wrong time.
+The API is called at an incorrect time.
+
+**Solution**
+
+N/A
+
+## 110003 AI Image Analysis Terminated
+
+**Error Message**
+
+Image analysis is stopped.
+
+**Description**
+
+This error code is reported when **stopImageAnalyzer()** interrupts an ongoing analysis operation initiated by **startImageAnalyzer()**.
+
+**Possible Causes**
+
+The API is called at an incorrect time.
 
 **Solution**
 

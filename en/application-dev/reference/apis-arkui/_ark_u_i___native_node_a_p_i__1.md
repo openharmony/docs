@@ -11,6 +11,7 @@ The APIs related to the native node must be called in the main thread.
 
 **Related module**: [ArkUI_NativeModule](_ark_u_i___native_module.md)
 
+**Header file**: [native_node.h](native__node_8h.md)
 
 ## Summary
 

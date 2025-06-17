@@ -9,6 +9,7 @@ Defines the scaling options for component transition.
 
 **Related module**: [ArkUI_NativeModule](_ark_u_i___native_module.md)
 
+**Header file**: [native_type.h](native__type_8h.md)
 
 ## Summary
 
@@ -36,7 +37,6 @@ float ArkUI_ScaleOptions::centerX
 
 X coordinate of the center point.
 
-
 ### centerY
 
 ```
@@ -45,7 +45,6 @@ float ArkUI_ScaleOptions::centerY
 **Description**
 
 Y coordinate of the center point.
-
 
 ### x
 
@@ -56,7 +55,6 @@ float ArkUI_ScaleOptions::x
 
 Scale ratio along the x-axis.
 
-
 ### y
 
 ```
@@ -65,7 +63,6 @@ float ArkUI_ScaleOptions::y
 **Description**
 
 Scale ratio along the y-axis.
-
 
 ### z
 
