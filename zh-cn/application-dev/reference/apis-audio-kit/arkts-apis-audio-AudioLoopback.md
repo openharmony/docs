@@ -7,6 +7,8 @@
 
 在使用AudioLoopback的接口之前，需先通过[createAudioLoopback](arkts-apis-audio-f.md#audiocreateaudioloopback20)获取AudioLoopback实例。
 
+当启用音频返听时，系统会创建低时延渲染器与低时延采集器，实现低时延耳返功能。采集的音频直接通过内部路由返回到渲染器。对于渲染器，其音频焦点策略与STREAM_USAGE_MUSIC相匹配。对于采集器，其音频焦点策略与SOURCE_TYPE_MIC相匹配。输入输出设备由系统自动选择。如果当前输入或输出不支持低时延，则音频返听无法启用。在运行过程中，如果音频焦点被另一个音频流抢占，或者输入或者输出设备切换到不支持低时延的设备，则系统会自动禁用音频返听。
+
 ## getStatus<sup>20+</sup>
 
 getStatus(): Promise<AudioLoopbackStatus\>
