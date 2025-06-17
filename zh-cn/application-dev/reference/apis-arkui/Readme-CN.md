@@ -555,6 +555,7 @@
     - [注册节点渲染状态监听错误码](errorcode-node-render-monitor.md)
     - [交互事件错误码](errorcode-event.md)
     - [Canvas错误码](errorcode-canvas.md)
+    - [自定义节点错误码](errorcode-node.md)
     - [UIExtension错误码](errorcode-uiextension.md)
     - [NodeAdapter错误码](errorcode-nodeadapter.md)
     <!--Del-->
