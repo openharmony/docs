@@ -14,6 +14,8 @@
 
 **相关模块：** [AVScreenCapture](capi-avscreencapture.md)
 
+**相关示例：** [NativeAvScreenCapture](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample)
+
 ## 汇总
 
 ### 函数
