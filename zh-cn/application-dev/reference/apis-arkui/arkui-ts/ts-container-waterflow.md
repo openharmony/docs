@@ -19,7 +19,8 @@
 >  WaterFlow子组件的visibility属性设置为None时不显示，但该子组件周围的columnsGap、rowsGap、margin仍会生效。
 >  在涉及大量子组件的情况下，建议采用懒加载、缓存数据、组件复用、固定宽高以及布局优化等方法，以提升性能和减少内存占用。最佳实践请参考[优化瀑布流加载慢丢帧问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-waterflow-performance-optimization)。
 >
-> 纵向布局时，WaterFlow组件采用“最小高度优先”的放置规则，即每个子项会放入当前高度最小的列中。
+> 纵向布局时，WaterFlow组件采用“最小高度优先”的放置规则，即每个子组件会放入当前高度最小的列中。
+>
 > 若多个列的高度相同，优先放入最左边的列。在RTL模式下，优先放入最右边的列。
 
 
