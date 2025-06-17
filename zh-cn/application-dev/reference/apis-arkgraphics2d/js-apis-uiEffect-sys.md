@@ -683,7 +683,58 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   let mask = uiEffect.Mask.createPixelMapMask(pixelMap, srcRect, dstRect, fillColor);
 })
 ```
+### createRadialGradientMask<sup>20+</sup>
+static createRadialGradientMask(center: common2D.Point, radiusX: number, radiusY: number, values: Array<[number, number]>): Mask
 
+通过输入椭圆中心点的位置、长短轴和形状参数创建椭圆遮罩效果[Mask](#mask20)实例，具体的效果由输入的参数决定。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名  | 类型                                      | 必填 | 说明                       |
+| ------- | ---------------------------------------- | ---- | ------------------------- |
+| center | [common2D.Point](js-apis-graphics-common2D.md#point12)  | 是 | 设置椭圆的中心点，[0, 0]为屏幕左上角，[1, 1]为屏幕的右下角。<br/>取值范围[-10, 10]，可取浮点数，超出边界会在实现时自动截断。 |
+| radiusX | number  | 是 | 设置椭圆的长轴，半径为1等于屏幕的高度。<br/>取值范围[0, 10]，可取浮点数，超出边界会在实现时自动截断。 |
+| radiusY | number  | 是 | 设置椭圆的短轴，半径为1等于屏幕的高度。<br/>取值范围[0, 10]，可取浮点数，超出边界会在实现时自动截断。 |
+| values | Array<[number, number]>     | 是 | 数组中保存的二元数组表示梯度：[RGBA颜色, 位置]。RGBA颜色四通道使用相同的值，可看作一个灰度值；位置表示沿径向方向向外时RGBA颜色对应的分布位置；RGBA颜色与位置的取值范围均为[0, 1]，可取浮点数，小于0的转为0，大于1的转为1。<br/>位置参数值须严格递增，Array数组中二元数组个数必须大于等于2，二元数组中的元素不能为空，否则该椭圆分布效果不生效。 |
+
+**返回值：**
+
+| 类型                          | 说明                                               |
+| ----------------------------- | ------------------------------------------------- |
+| [Mask](#mask20) | 返回椭圆形状的径向分布效果的灰度Mask。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import uiEffect from '@ohos.graphics.uiEffect'
+// values: [[1.0, 0.5], [1.0, 1.0]] => color0: 1.0; color1: 1.0; position0: 0.5; position1: 1.0
+let mask = uiEffect.Mask.createRadialGradientMask({x: 0.0, y: 0.0}, 0.5, 0.5, [[1.0, 0.5], [1.0, 1.0]]);
+@Entry
+@Component
+struct RadialGradientMaskExample {
+  build() {
+    Stack() {
+      Image('test.jpg')
+      Column()
+        .width('100%')
+        .height('100%')
+        // Mask作为Filter的入参实现对应的效果，该效果中Mask是在屏幕左上角的四分之一圆环
+        .backgroundFilter(uiEffect.createFilter().edgeLight(1.0, null, mask))
+    }
+  }
+}
+```
 ## BrightnessBlenderParam
 BrightnessBlender参数列表。
 
