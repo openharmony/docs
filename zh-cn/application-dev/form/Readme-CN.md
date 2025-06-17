@@ -1,6 +1,6 @@
 # Form Kit（卡片开发服务）<!--form-kit-->
 - [Form Kit简介](formkit-overview.md)
-- ArkTS卡片开发（推荐）<!--arkts-ui-widget-->
+- ArkTS卡片开发（推荐）<!--arkts-ui-->
   - [ArkTS卡片概述](arkts-form-overview.md)
   - [创建ArkTS卡片](arkts-ui-widget-creation.md)
   - [配置ArkTS卡片的配置文件](arkts-ui-widget-configuration.md)
