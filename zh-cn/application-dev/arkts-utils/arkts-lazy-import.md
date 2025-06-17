@@ -188,7 +188,7 @@
     ```
     执行结果：
     ```typescript
-        ReferenceError: c is not initaliized
+        ReferenceError: c is not initialized
              at func_main_0 (A.ets:2:13)
     ```
 
@@ -211,9 +211,9 @@
         at func_main_0 (A_ns.js:2:13)
     ```
 
-### 开发者需要评估使用延迟加载存在的影响
+### 开发者应评估使用延迟加载可能产生的影响
 
-- 不依赖该模块的执行的副作用（如初始化全局变量，挂载globalThis等）。可参考：[模块加载副作用及优化](./arkts-module-side-effects.md)。
+- 不依赖该模块执行的副作用（如初始化全局变量，挂载globalThis等）。可参考：[模块加载副作用及优化](./arkts-module-side-effects.md)。
 - 使用导出对象时，触发延迟加载的耗时导致对应特性的功能劣化。
 - 使用lazy特性导致模块未执行，从而引发bug。
 
