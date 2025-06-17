@@ -160,7 +160,7 @@ JS Crash故障日志中，StackTrace字段存放的是JS Crash异常的调用栈
     Error name:Error
     Error message:JSERROR
     Sourcecode:
-                    throw new ErrOr("JSERROR");
+                    throw new Error("JSERROR");
                           ^
     Stacktrace:
         at anonymous entry (entry/src/main/ets/pages/Index.ets:13:19)
@@ -187,7 +187,7 @@ JS Crash故障日志中，StackTrace字段存放的是JS Crash异常的调用栈
     Error message:JSERROR
     Stacktrace:
     Cannot get SourceMap info, dump raw stack:
-        at anonymous entry (entry/src/main/ets/paqes/Index.ts:49:49)
+        at anonymous entry (entry/src/main/ets/pages/Index.ts:49:49)
     ```
 
 3. 异常代码调用栈包含SourceMap is not initialized yet，表示因SourceMap转换非常耗时，改为通过异步线程去进行初始化，导致会出现SourceMap没初始化完成就有异常产生的情况。针对这种情况增加这行日志来提示开发者。eTS栈对应编译后产物中代码行号，可通过超链接跳转到对应错误代码行。如下样例所示。
@@ -199,7 +199,7 @@ JS Crash故障日志中，StackTrace字段存放的是JS Crash异常的调用栈
     Timestamp:xxxx-xx-xx xx:xx:xx.xxx
     Module name:com.xxx.xxx
     Version:1.0.0
-    Versioncode:1000000
+    VersionCode:1000000
     PreInstalled:No
     Foreground:Yes
     Pid:6042
@@ -240,7 +240,7 @@ JS Crash故障日志中，StackTrace字段存放的是JS Crash异常的调用栈
     SourceMap is not initialized yet
     #01 pc 000000000028ba3b /system/lib64/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
     #02 pc 00000000001452ff /system/lib64/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
-    #03 pC 0000000000144c9f /system/lib64/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
+    #03 pc 0000000000144c9f /system/lib64/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
     #04 pc 00000000001c617b /system/lib64/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
     #05 pc 00000000004c3cb7 /system/lib64/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
     #06 pc 00000000004c045f /system/lib64/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
@@ -384,7 +384,7 @@ throw new Error("TEST JS ERROR")
 
     ```text
     Error name:Error
-    Error message:BussinessError 2501000: Operation failed.
+    Error message:BusinessError 2501000: Operation failed.
     Error code:2501000
     Stacktrace:
     Cannot get SourceMap info, dump raw stack:
@@ -423,7 +423,7 @@ throw new Error("TEST JS ERROR")
 
 4. 修改方案
 
-    通过分析wifiManager.on源码，得知该函数内存在部分场景会抛出内容为BussinessError 2501000: Operation failed.的JS异常，对于此类问题，识别当前业务异常不会导致当前程序无法运行下去，考虑使用try-catch机制对异常进行捕获处理。具体的修改方法可参考如下:
+    通过分析wifiManager.on源码，得知该函数内存在部分场景会抛出内容为BusinessError 2501000: Operation failed.的JS异常，对于此类问题，识别当前业务异常不会导致当前程序无法运行下去，考虑使用try-catch机制对异常进行捕获处理。具体的修改方法可参考如下:
 
     ```ts
     onStart(): void {
