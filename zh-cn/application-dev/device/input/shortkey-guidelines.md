@@ -27,13 +27,13 @@ import { shortKey } from '@kit.InputKit';
 try {
   shortKey.setKeyDownDuration("screenshot", 500, (error) => {//设置截屏应用screenshot延迟时间为5秒（500毫秒）
     if (error) {
-      console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
-    console.log(`Set key down duration success`);
+    console.info(`Set key down duration success`);
   });
 } catch (error) {
-  console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 

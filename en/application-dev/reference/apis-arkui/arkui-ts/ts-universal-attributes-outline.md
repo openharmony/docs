@@ -1,6 +1,6 @@
 # Outline
 
-You can set outline attributes for components. Drawn outside the component, the outline does not affect the component's layout or increases its size.
+You can set outline attributes for components. Drawn outside the component, the outline does not affect the component's layout or increase its size.
 
 ![outlineTest](figures/outlineTest.PNG)
 
