@@ -6,7 +6,7 @@
   - [配置ArkTS卡片的配置文件](arkts-ui-widget-configuration.md)
   - [管理ArkTS卡片生命周期](arkts-ui-widget-lifecycle.md)
   - [ArkTS卡片进程模型](arkts-ui-widget-process.md)
-  - ArkTS卡片提供方开发指导<!--arkts-ui-widget-page-->
+  - ArkTS卡片提供方开发指导<!--arkts-ui-widget-->
     - ArkTS卡片UI界面开发<!--arkts-ui-widget-page-->
       - [ArkTS卡片界面开发概述](arkts-ui-widget-page-overview.md)
       - [ArkTS卡片为组件添加动效](arkts-ui-widget-page-animation.md)
