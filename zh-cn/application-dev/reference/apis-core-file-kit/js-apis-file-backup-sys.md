@@ -1626,19 +1626,16 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
 
 **示例：**
 
   ```ts
-  import { fileIo, backup} from '@kit.CoreFilekit';
+  import { fileIo, backup} from '@kit.CoreFileKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  sessionBackup?: backup.SessionBackup;
-
-  async cleanBundleTempDir(bundleName: string) {
+  async function cleanBundleTempDir(bundleName: string) {
     try {
-      let res = await this.sessionBackup.cleanBundleTempDir(bundleName);
+      let res = await sessionBackup.cleanBundleTempDir(bundleName);
       if (res) {
         console.info(`cleanBundleTempDir succeeded.`);
       } else {
@@ -1674,8 +1671,8 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
-      this.cleanBundleTempDir(bundleName);
-    }
+      cleanBundleTempDir(bundleName);
+    },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
         console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
@@ -1693,7 +1690,7 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
       console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
-  this.sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
+  let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
   ```
 
 ## SessionRestore
@@ -2814,19 +2811,16 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
 
 **示例：**
 
   ```ts
-  import { fileIo, backup} from '@kit.CoreFilekit';
+  import { fileIo, backup} from '@kit.CoreFileKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  sessionRestore?: backup.SessionRestore;
-
-  async cleanBundleTempDir(bundleName: string) {
+  async function cleanBundleTempDir(bundleName: string) {
     try {
-      let res = await this.sessionRestore.cleanBundleTempDir(bundleName);
+      let res = await sessionRestore.cleanBundleTempDir(bundleName);
       if (res) {
         console.info(`cleanBundleTempDir succeeded.`);
       } else {
@@ -2862,8 +2856,8 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
-      this.cleanBundleTempDir(bundleName);
-    }
+      cleanBundleTempDir(bundleName);
+    },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
         console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
@@ -2881,7 +2875,7 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
       console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
-  this.sessionRestore = new backup.SessionRestore(generalCallbacks); //  创建恢复流程
+  let sessionRestore = new backup.SessionRestore(generalCallbacks); //  创建恢复流程
   ```
 
 ## IncrementalBackupSession<sup>12+</sup>
@@ -3705,19 +3699,16 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
 
 **示例：**
 
   ```ts
-  import { fileIo, backup} from '@kit.CoreFilekit';
+  import { fileIo, backup} from '@kit.CoreFileKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  incrementalBackupSession?: backup.IncrementalBackupSession;
-
-  async cleanBundleTempDir(bundleName: string) {
+  async function cleanBundleTempDir(bundleName: string) {
     try {
-      let res = await this.incrementalBackupSession.cleanBundleTempDir(bundleName);
+      let res = await incrementalBackupSession.cleanBundleTempDir(bundleName);
       if (res) {
         console.info(`cleanBundleTempDir succeeded.`);
       } else {
@@ -3753,8 +3744,8 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
-      this.cleanBundleTempDir(bundleName);
-    }
+      cleanBundleTempDir(bundleName);
+    },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
         console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
@@ -3772,5 +3763,5 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
       console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
-  this.incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); //  创建增量备份流程
+  let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); //  创建增量备份流程
   ```
