@@ -4930,7 +4930,7 @@
 
 ## ohos.permission.FILE_ACCESS_FOR_PRIVATE_SPACE
 
-允许隐私空间挂载著空间公共目录到应用沙箱。
+允许隐私空间挂载主空间公共目录到应用沙箱。
 
 **权限级别**：system_core
 
