@@ -196,7 +196,7 @@ sqlite>.tables
 - 在 sqlite> 提示符下，输入以下SQL语句插入单条数据：
 
   ```sql
-  INSERT INTO COMPANY (ID, NAME, AGE, ADDRESS, SALARY) VALUES (1, '张三', 28, '北京市朝阳区', 8000.00);
+  INSERT INTO COMPANY (ID, NAME, AGE, ADDRESS, SALARY) VALUES (1, '张三', 28, '北京市朝阳区', 20000.5);
   ```
 
   通过SQL语句`SELECT * FROM 表的名称`可获取表的完整信息，具体如下：
