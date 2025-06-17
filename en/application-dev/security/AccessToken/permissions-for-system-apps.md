@@ -4959,6 +4959,6 @@ Allows the private space application to mount public directories from the main s
 
 **Enable via ACL**：true
 
-**Supported devices**: General
+**Supported devices**: Phone | Tablet
 
 **Valid since**：20
