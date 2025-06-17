@@ -302,8 +302,8 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 | -------- | -------- | -------- |
 | OpenHarmony | 5.1.0 Release | NA | 
 | Public SDK | Ohos_sdk_public 5.1.0.107 (API Version 18 Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 | 
-| HUAWEI DevEco Studio（可选） | 5.1.0 Release | OpenHarmony应用开发推荐使用。<br/>*待发布* | 
-| HUAWEI DevEco Device Tool（可选） | 4.0 Release | OpenHarmony智能设备集成开发环境推荐使用。 | 
+| HUAWEI DevEco Studio（可选） | 5.1.0 Release | OpenHarmony应用开发推荐使用。<br />[请点击这里获取](https://developer.huawei.com/consumer/cn/download/)。 | 
+| HUAWEI DevEco Device Tool（可选） | 4.0 Release | OpenHarmony智能设备集成开发环境推荐使用。<br />[请点击这里获取](https://device.harmonyos.com/cn/develop/ide#download)。 | 
 
 
 ## 源码获取
