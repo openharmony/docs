@@ -157,6 +157,9 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime)                | 编解码器[MIME](#媒体编解码格式)类型的键，值类型为string。该键是可选的。         |
 | [OH_MD_KEY_VIDEO_SAR](#oh_md_key_video_sar)                  | 样本长宽比的键，值类型为double。 |
 | [OH_MD_KEY_CREATION_TIME](#oh_md_key_creation_time)          | 媒体文件创建时间的元数据，值类型为string。 |
+| [OH_MD_KEY_REFERENCE_TRACK_IDS](#oh_md_key_reference_track_ids)      | 轨道之间的引用关系的键，值类型为int32_t*。 |
+| [OH_MD_KEY_TRACK_REFERENCE_TYPE](#oh_md_key_track_reference_type)    | 轨道引用类型的键，值类型为string。 |
+| [OH_MD_KEY_TRACK_DESCRIPTION](#oh_md_key_track_description)          | 轨道标识的键，值类型为string。 |
 
 
 ## 汇总
@@ -362,6 +365,9 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime) | 编解码器[MIME](#媒体编解码格式)类型的键，值类型为string。 |
 | const char \* [OH_MD_KEY_VIDEO_SAR](#oh_md_key_video_sar) | 样本长宽比的键，值类型为double。 |
 | const char \* [OH_MD_KEY_CREATION_TIME](#oh_md_key_creation_time) | 媒体文件创建时间的元数据，值类型为string。 |
+| const char \* [OH_MD_KEY_REFERENCE_TRACK_IDS](#oh_md_key_reference_track_ids)      | 轨道之间的引用关系的键，值类型为int32_t*。 |
+| const char \* [OH_MD_KEY_TRACK_REFERENCE_TYPE](#oh_md_key_track_reference_type)    | 轨道引用类型的键，值类型为string。 |
+| const char \* [OH_MD_KEY_TRACK_DESCRIPTION](#oh_md_key_track_description)          | 轨道标识的键，值类型为string。 |
 
 
 ## 类型定义说明
@@ -1333,6 +1339,7 @@ enum OH_MediaType
 | MEDIA_TYPE_AUD  | 音频轨。   | 
 | MEDIA_TYPE_VID  | 视频轨。   | 
 | MEDIA_TYPE_SUBTITILE  | 字幕轨。 <br>**起始版本：** 12   |
+| MEDIA_TYPE_AUXILIARY = 6  | 辅助轨。 <br>**起始版本：** 20   |
 
 ### OH_MPEG2Level
 
@@ -3192,3 +3199,42 @@ const char* OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
 **起始版本：** 18
+
+
+### OH_MD_KEY_REFERENCE_TRACK_IDS
+
+```
+const char* OH_MD_KEY_REFERENCE_TRACK_IDS
+```
+**描述**
+轨道之间引用关系的键，值类型为int32_t*。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 20
+
+
+### OH_MD_KEY_TRACK_REFERENCE_TYPE
+
+```
+const char* OH_MD_KEY_TRACK_REFERENCE_TYPE
+```
+**描述**
+轨道引用类型的键，值类型为string。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 20
+
+
+### OH_MD_KEY_TRACK_DESCRIPTION
+
+```
+const char* OH_MD_KEY_TRACK_DESCRIPTION
+```
+**描述**
+轨道标识的键，值类型为string。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 20

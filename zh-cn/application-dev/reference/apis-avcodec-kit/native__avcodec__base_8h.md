@@ -200,3 +200,6 @@
 | const char \* [OH_MD_KEY_VIDEO_SAR](_codec_base.md#oh_md_key_video_sar)            | 样本长宽比的键，值类型为double。 |
 | const char \* [OH_MD_KEY_CREATION_TIME](_codec_base.md#oh_md_key_creation_time) | 媒体文件创建时间的元数据，值类型为string。 |
 | const char \* [OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR](_codec_base.md#oh_md_key_video_decoder_output_enable_vrr) | 解码器是否打开视频可变帧率功能的键，值类型为int32_t。 |
+| const char \* [OH_MD_KEY_REFERENCE_TRACK_IDS](_codec_base.md#oh_md_key_reference_track_ids)      | 轨道之间的引用关系的键，值类型为int32_t*。 |
+| const char \* [OH_MD_KEY_TRACK_REFERENCE_TYPE](_codec_base.md#oh_md_key_track_reference_type)    | 轨道引用类型的键，值类型为string。 |
+| const char \* [OH_MD_KEY_TRACK_DESCRIPTION](_codec_base.md#oh_md_key_track_description)          | 轨道标识的键，值类型为string。 |

@@ -47,6 +47,7 @@
 | bool [OH_AVFormat_SetDoubleValue](_core.md#oh_avformat_setdoublevalue) (struct [OH_AVFormat](_core.md#oh_avformat) \*format, const char \*key, double value) | 对OH_AVFormat的key赋double类型的值。 | 
 | bool [OH_AVFormat_SetStringValue](_core.md#oh_avformat_setstringvalue) (struct [OH_AVFormat](_core.md#oh_avformat) \*format, const char \*key, const char \*value) | 对OH_AVFormat的key赋string类型的值。 | 
 | bool [OH_AVFormat_SetBuffer](_core.md#oh_avformat_setbuffer) (struct [OH_AVFormat](_core.md#oh_avformat) \*format, const char \*key, const uint8_t \*addr, size_t size) | 将指定长度的数据块写入OH_AVFormat。 | 
+| bool [OH_AVFormat_SetIntBuffer](_core.md#oh_avformat_setintbuffer) (struct [OH_AVFormat](_core.md#oh_avformat) \*format, const char \*key, const int32_t \*addr, size_t size) | 将int32_t类型的数据块写入OH_AVFormat。 | 
 | bool [OH_AVFormat_GetIntValue](_core.md#oh_avformat_getintvalue) (struct [OH_AVFormat](_core.md#oh_avformat) \*format, const char \*key, int32_t \*out) | 从OH_AVFormat的key获取int类型的值。 | 
 | bool [OH_AVFormat_GetLongValue](_core.md#oh_avformat_getlongvalue) (struct [OH_AVFormat](_core.md#oh_avformat) \*format, const char \*key, int64_t \*out) | 从OH_AVFormat的key获取long类型的值。 | 
 | bool [OH_AVFormat_GetFloatValue](_core.md#oh_avformat_getfloatvalue) (struct [OH_AVFormat](_core.md#oh_avformat) \*format, const char \*key, float \*out) | 从OH_AVFormat的key获取float类型的值。 | 
