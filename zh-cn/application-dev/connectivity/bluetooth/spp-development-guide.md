@@ -69,12 +69,12 @@ try {
 ```
 
 **2.2 接收数据**<br>
-待客户端和服务端建立的连接建立成功后，即可接收服务端的数据。通过订阅接口读取数据[socket.on('sppRead')](../../reference/apis-connectivity-kit/js-apis-bluetooth-socket.md#socketonsppread)实现。
+待客户端和服务端建立的连接建立成功后，即可接收服务端的数据。通过订阅读取数据接口[socket.on('sppRead')](../../reference/apis-connectivity-kit/js-apis-bluetooth-socket.md#socketonsppread)实现。
 ```ts
 let clientNumber = 1; // 注意：该值需要的是客户端发起连接时，异步callback获取到的客户端socket id，此处是伪代码id
 
 // 定义接收数据的回调函数
-function read = (dataBuffer: ArrayBuffer) => {
+function read(dataBuffer: ArrayBuffer) {
   let data = new Uint8Array(dataBuffer);
   console.info('client data: ' + JSON.stringify(data));
 }
@@ -93,7 +93,7 @@ try {
 let clientNumber = 1; // 注意：该值需要的是客户端发起连接时，异步callback获取到的客户端socket id，此处是伪代码id
 
 // 定义接收数据的回调函数
-function read = (dataBuffer: ArrayBuffer) => {
+function read(dataBuffer: ArrayBuffer) {
   let data = new Uint8Array(dataBuffer);
   console.info('client data: ' + JSON.stringify(data));
 }
@@ -175,12 +175,12 @@ try {
 ```
 
 **3.2 接收数据**<br>
-待服务端和客户端的连接建立成功后，即可接收客户端的数据。通过订阅接口读取数据[socket.on('sppRead')](../../reference/apis-connectivity-kit/js-apis-bluetooth-socket.md#socketonsppread)实现
+待服务端和客户端的连接建立成功后，即可接收客户端的数据。通过订阅读取数据接口[socket.on('sppRead')](../../reference/apis-connectivity-kit/js-apis-bluetooth-socket.md#socketonsppread)实现
 ```ts
 let clientNumber = 1; // 注意：该值需要的是服务端监听连接时，异步callback获取到的客户端socket id，此处是伪代码id
 
 // 定义接收数据的回调函数
-read = (dataBuffer: ArrayBuffer) => {
+read(dataBuffer: ArrayBuffer) {
   let data = new Uint8Array(dataBuffer);
   console.info('client data: ' + JSON.stringify(data));
 }
@@ -200,7 +200,7 @@ try {
 let clientNumber = 1; // 注意：该值需要的是服务端监听连接时，异步callback获取到的客户端socket id，此处是伪代码id
 
 // 定义接收数据的回调函数
-function read = (dataBuffer: ArrayBuffer) => {
+function read(dataBuffer: ArrayBuffer) {
   let data = new Uint8Array(dataBuffer);
   console.info('client data: ' + JSON.stringify(data));
 }
@@ -227,7 +227,7 @@ try {
 let serverNumber = 1; // 注意：该值需要的是创建服务端套接字时，异步callback获取到的服务端socket id，此处是伪代码id
 
 // 定义接收数据的回调函数
-function read = (dataBuffer: ArrayBuffer) => {
+function read(dataBuffer: ArrayBuffer) {
   let data = new Uint8Array(dataBuffer);
   console.info('client data: ' + JSON.stringify(data));
 }
