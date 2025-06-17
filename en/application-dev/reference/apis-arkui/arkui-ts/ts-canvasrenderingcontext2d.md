@@ -2620,7 +2620,7 @@ Resets the current transformation to the identity matrix, and then creates a new
 
 | Name | Type| Mandatory| Description |
 | --------- | ---------------------------------------- | ---- | ----- |
-| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | No| Transformation matrix.<br>Default value: **null**|
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md#matrix2d) | No| Transformation matrix.<br>Default value: **null**|
 
 **Example**
 

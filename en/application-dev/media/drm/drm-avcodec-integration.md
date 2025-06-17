@@ -133,7 +133,7 @@ target_link_libraries(sample PUBLIC libnative_drm.so)
     }
     ```
 
-    If required, set the audio decryption configuration by following step 4 in [Audio Decoding](../avcodec/audio-decoding.md#how-to-develop), and set the video decryption configuration by following step 4 in [Surface Output in Video Decoding](../avcodec/video-decoding.md#surface-mode) or step 4 in [Buffer Output in Video Decoding](../avcodec/video-decoding.md#buffer-mode).
+    If required, set the audio decryption configuration by following step 4 in [Audio Decoding](../avcodec/audio-decoding.md#how-to-develop), and set the video decryption configuration by following step 4 in [Surface Output in Video Decoding](../avcodec/video-decoding.md#surface-output) or step 4 in [Buffer Output in Video Decoding](../avcodec/video-decoding.md#buffer-output).
 
 7. Destroy the MediaKeySession instance.
 
