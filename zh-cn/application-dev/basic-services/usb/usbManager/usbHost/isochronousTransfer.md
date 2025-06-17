@@ -91,23 +91,23 @@
    let usbInterfaces: usbManager.USBInterface[] = [];
    let usbInterface: usbManager.USBInterface | undefined = undefined
    let usbEndpoints: usbManager.USBEndpoint[] = [];
-   let usbEndprint: usbManager.USBEndpoint | undefined = undefined
+   let usbEndpoint: usbManager.USBEndpoint | undefined = undefined
    for (let i = 0; i < usbConfigs.length; i++) {
      usbInterfaces = usbConfigs[i].interfaces;
      for (let i = 0; i < usbInterfaces.length; i++) {
        usbEndpoints = usbInterfaces[i].endpoints;
-       usbEndprint = usbEndpoints.find((value) => {
+       usbEndpoint = usbEndpoints.find((value) => {
          // direction为请求方向，0表示写入数据，128表示读取数据
          return value.direction === 128 && value.type === usbManager.UsbEndpointTransferType.TRANSFER_TYPE_ISOCHRONOUS;
        })
-       if (usbEndprint !== undefined) {
+       if (usbEndpoint !== undefined) {
          usbInterface = usbInterfaces[i];
          break;
        }
      }
    }
-   if (usbEndprint === undefined) {
-     console.error(`get usbEndprint error`)
+   if (usbEndpoint === undefined) {
+     console.error(`get usbEndpoint error`)
      return;
    }
    ```
@@ -123,7 +123,7 @@
     }
 
     // 传输类型类型为“实时传输”时，需设置设备接口。设置成功返回0，注册失败返回其他错误码。
-    if (this.type === usbManager.UsbEndpointTransferType.TRANSFER_TYPE_ISOCHRONOUS) {
+    if (usbEndpoint.type === usbManager.UsbEndpointTransferType.TRANSFER_TYPE_ISOCHRONOUS) {
       let setInterfaceResult = usbManager.setInterface(devicePipe, usbInterface);
       if (setInterfaceResult !== 0) {
         console.error(`setInterfaceResult error = ${setInterfaceResult}`)
@@ -140,7 +140,7 @@
      let transferParams: usbManager.UsbDataTransferParams = {
        devPipe: devicePipe,
        flags: usbManager.UsbTransferFlags.USB_TRANSFER_SHORT_NOT_OK,
-       endpoint: usbEndprint.address,
+       endpoint: usbEndpoint.address,
        type: usbManager.UsbEndpointTransferType.TRANSFER_TYPE_ISOCHRONOUS,
        timeout: 2000,
        length: 10,
