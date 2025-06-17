@@ -293,7 +293,7 @@ class SppClientManager {
   }
 
   // 定义接收数据的回调函数
-  read(dataBuffer: ArrayBuffer) {
+  read = (dataBuffer: ArrayBuffer) => {
     let data = new Uint8Array(dataBuffer);
     console.info('client data: ' + JSON.stringify(data));
   };
@@ -389,7 +389,7 @@ class SppServerManager {
   }
 
   // 定义接收数据的回调函数
-  read(dataBuffer: ArrayBuffer) {
+  read = (dataBuffer: ArrayBuffer) => {
     let data = new Uint8Array(dataBuffer);
     console.info('client data: ' + JSON.stringify(data));
   };
