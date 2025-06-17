@@ -311,7 +311,7 @@ struct Index {
 
 ![zh-cn_image_0000001174582862](figures/normal-symbol.png)
 
-## 示例3（设置分割线样式）
+### 示例3（设置分割线样式）
 
 该示例通过设置menuItemGroupDivider属性实现分割线样式。
 

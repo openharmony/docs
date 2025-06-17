@@ -469,9 +469,19 @@ onReachEnd(event: () => void)
 
 onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain: number; })
 
-瀑布流开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，瀑布流将按照返回值的实际滑动量进行滑动。
+该接口回调时，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，瀑布流将按照返回值的实际滑动量进行滑动。
 
-触发该事件的条件：手指拖动WaterFlow、WaterFlow惯性划动时每帧开始时触发；WaterFlow超出边缘回弹、调用除fling接口外的其他滚动控制接口和拖动滚动条的滚动不会触发。
+满足以下任一条件时触发该事件：
+
+1. 用户交互（如手指滑动、键鼠操作等）触发滚动。
+2. WaterFlow惯性滚动。
+3. 调用[fling](ts-container-scroll.md#fling12)接口触发滚动。
+
+不触发该事件的条件：
+
+1. 调用除[fling](ts-container-scroll.md#fling12)接口外的其他滚动控制接口。
+2. 越界回弹。
+3. 拖动滚动条。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
