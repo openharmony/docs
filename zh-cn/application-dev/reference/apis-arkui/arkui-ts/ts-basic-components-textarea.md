@@ -2249,6 +2249,8 @@ struct TextAreaExample {
 
 ```ts
 // xxx.ets
+import { LengthMetrics } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct TextAreaExample {
@@ -2257,14 +2259,23 @@ struct TextAreaExample {
       Column() {
         Text('stroke feature').fontSize(9).fontColor(0xCCCCCC)
 
-        TextArea({text: 'StrokeSet123'})
-          .width('80%').height(90).borderWidth(1).fontSize(40)
-        TextArea({text: 'StrokeSet123'})
-          .width('80%').height(90).borderWidth(1).fontSize(40)
+        TextArea({ text: 'Text without stroke' })
+          .width('100%')
+          .height(60)
+          .borderWidth(1)
+          .fontSize(40)
+        TextArea({ text: 'Text with stroke' })
+          .width('100%')
+          .height(60)
+          .borderWidth(1)
+          .fontSize(40)
           .strokeWidth(LengthMetrics.px(-3.0))
           .strokeColor(Color.Red)
-        TextArea({text: 'StrokeSet123'})
-          .width('80%').height(90).borderWidth(1).fontSize(40)
+        TextArea({ text: 'Text with stroke' })
+          .width('100%')
+          .height(60)
+          .borderWidth(1)
+          .fontSize(40)
           .strokeWidth(LengthMetrics.px(3.0))
           .strokeColor(Color.Red)
       }.height('90%')
