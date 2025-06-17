@@ -14,7 +14,7 @@
 import { StartOptions } from '@kit.AbilityKit';
 ```
 
-## Properties
+## StartOptions
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

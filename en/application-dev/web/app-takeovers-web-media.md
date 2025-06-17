@@ -138,7 +138,7 @@ The native media player needs to implement the [NativeMediaPlayerBridge](../refe
 
 When an application takes over the media playback on web pages, you need to draw the native media player component and video images on the surface provided by the ArkWeb kernel. Then the ArkWeb kernel combines the surface with the web page and displays it on the screen.
 
-This process is the same as that of [Rendering and Drawing XComponent+AVPlayer and Button Components at the Same Layer](web-same-layer.md#)
+This process is the same as that of [Rendering and Drawing XComponent+AVPlayer and Button Components at the Same Layer](web-same-layer.md)
 
 1. In the application startup phase, **UIContext** must be saved so that it can be used in subsequent rendering and drawing processes at the same layer.
 

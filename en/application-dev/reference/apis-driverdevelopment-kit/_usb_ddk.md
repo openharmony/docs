@@ -37,7 +37,7 @@ Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous 
 | [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) | Configuration descriptor.|
 | [UsbRequestPipe](_usb_request_pipe.md) | Request pipe.|
 | [UsbDeviceMemMap](_usb_device_mem_map.md) | Device memory map created by calling [OH_Usb_CreateDeviceMemMap()](#oh_usb_createdevicememmap). A buffer using the device memory map can provide better performance.|
-| [Usb_DeviceArray](_usb_device_array.md) | Defines the device ID list, which is used to store the device IDs and device quantity obtained using [OH_Usb_GetDevices()](oh_usb_getdevices16).|
+| [Usb_DeviceArray](_usb_device_array.md) | Defines the device ID list, which is used to store the device IDs and device quantity obtained using [OH_Usb_GetDevices()](#oh_usb_getdevices).|
 
 ### Enums
 
