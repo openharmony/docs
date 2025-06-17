@@ -1012,6 +1012,8 @@
           - [Certificate Chain Development](security/DeviceCertificateKit/create-verify-certchain-object.md)
         - Certificate Management<!--certmanager-->
           - [Certificate Management Overview](security/DeviceCertificateKit/certManager-overview.md)
+          - [Application Certificate Credential Development](security/DeviceCertificateKit/certManager-private-credential-guidelines.md)
+          - [CA Certificate Development](security/DeviceCertificateKit/certManager-ca-certs-guidelines.md)
           - [Certificate Management Dialog Box Development](security/DeviceCertificateKit/certManagerDialog-guidelines.md)
       - Universal Keystore Kit<!--huks-kit-->
         - [Introduction to Universal Keystore Kit](security/UniversalKeystoreKit/huks-overview.md)
@@ -1683,6 +1685,7 @@
         - [Using the MindSpore Lite Engine for On-Device Training (C/C++)](ai/mindspore/mindspore-lite-train-guidelines.md)
       - [Using MindSpore Lite for Image Classification (ArkTS)](ai/mindspore/mindspore-guidelines-based-js.md)
       - [Using MindSpore Lite for Image Classification (C/C++)](ai/mindspore/mindspore-guidelines-based-native.md)
+      - [Using MindSpore Lite for Speech Recognition (C/C++)](ai/mindspore/mindspore-asr-based-native.md)
     - Neural Network Runtime Kit<!--neural-network-runtime-kit-->
       - [Introduction to Neural Network Runtime Kit](ai/nnrt/Neural-Network-Runtime-Kit-Introduction.md)
       - [Connecting the Neural Network Runtime to an AI Inference Framework](ai/nnrt/neural-network-runtime-guidelines.md)
@@ -2928,7 +2931,7 @@
           - [promptAction Error Codes](reference/apis-arkui/errorcode-promptAction.md)
           - [Router Error Codes](reference/apis-arkui/errorcode-router.md)
           - [Drag Event Error Codes](reference/apis-arkui/errorcode-drag-event.md)
-          - [AI Image Analyzer Error Codes](reference/apis-arkui/errorcode-image-analyzer.md)
+          - [AI Image Analyzer Error Codes](reference/apis-arkui/arkui-ts/errorcode-image-analyzer.md)
           - [Focus Error Codes](reference/apis-arkui/errorcode-focus.md)
           - [System Resource Error Codes](reference/apis-arkui/errorcode-system-resource.md)
           - [Sheet Error Codes](reference/apis-arkui/errorcode-bindSheet.md)
