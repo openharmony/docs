@@ -21,6 +21,8 @@ An **ISendable** object is an instance of the Object type in ArkTS.
 
 **ISendable** is mainly used when you want to customize the sendable data structure. Container types in the ArkTS common library implicitly inherit and implement **ISendable**.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Example**
 
 ```ts
