@@ -39,6 +39,8 @@ HUKS向应用提供密钥库能力，支持密钥管理和密钥的密码学操�
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_FinishSession](#oh_huks_finishsession) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*handle, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*inData, struct [OH_Huks_Blob](_o_h___huks___blob.md) \*outData) | 结束密钥会话并进行相应的密钥操作，输出处理数据。  | 
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_AbortSession](#oh_huks_abortsession) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*handle, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet) | 取消密钥会话。  | 
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_ListAliases](#oh_huks_listaliases) (const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, struct [OH_Huks_KeyAliasSet](_o_h___huks___key_alias_set.md) \*\*outData) | 批量查询密钥别名集。  | 
+| struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_WrapKey](#oh_huks_wrapkey)(const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, struct [OH_Huks_Blob](_o_h___huks___blob.md) \*wrappedKey) | 导出由特定密钥加密的封装密钥。 |
+| struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_UnwrapKey](#oh_huks_unwrapkey)(const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, struct [OH_Huks_Blob](_o_h___huks___blob.md) \*wrappedKey) | 导入由特定密钥加密的封装密钥。 |
 
 
 ## 函数说明
@@ -429,3 +431,95 @@ struct OH_Huks_Result OH_Huks_UpdateSession (const struct OH_Huks_Blob * handle,
 [OH_Huks_FinishSession](#oh_huks_finishsession)
 
 [OH_Huks_AbortSession](#oh_huks_abortsession)
+
+### OH_Huks_WrapKey()
+
+```
+struct OH_Huks_Result OH_Huks_WrapKey(const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_Blob *wrappedKey)
+```
+
+**描述**
+导出由特定密钥加密的封装密钥。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| keyAlias | 表示要导出的密钥别名。 | 
+| paramSet | 表示加密导出密钥的参数集。 | 
+| wrappedKey | 表示要导出的封装好的密钥。 | 
+
+**返回：**
+
+[OH_Huks_ErrCode](_huks_type_api.md#oh_huks_errcode)：
+
+OH_HUKS_SUCCESS：操作成功。
+
+OH_HUKS_ERR_CODE_NOT_SUPPORTED_API：接口不支持。
+
+OH_HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT：获取密钥参数失败。
+
+OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT：密钥参数无效。
+
+OH_HUKS_ERR_CODE_FILE_OPERATION_FAIL：删除或者写文件失败。
+
+OH_HUKS_ERR_CODE_COMMUNICATION_FAIL：IPC通信失败。
+
+OH_HUKS_ERR_CODE_CRYPTO_FAIL：加密引擎失败。
+
+OH_HUKS_ERR_CODE_INTERNAL_ERROR：发生系统错误。
+
+OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY：内存不足。
+
+OH_HUKS_ERR_CODE_INVALID_ARGUMENT：密钥别名、参数集或者封装密钥不合法。
+
+### OH_Huks_UnwrapKey()
+
+```
+struct OH_Huks_Result OH_Huks_UnwrapKey(const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_Blob *wrappedKey)
+```
+
+**描述**
+导出由特定密钥加密的封装密钥。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| keyAlias | 表示要导入的密钥别名。在服务进程中，别名必须唯一。否则，密钥将被覆盖。 | 
+| paramSet | 表示加密导入密钥的参数集。 | 
+| wrappedKey | 表示要导入的封装好的密钥。 | 
+
+**返回：**
+
+[OH_Huks_ErrCode](_huks_type_api.md#oh_huks_errcode)：
+
+OH_HUKS_SUCCESS：操作成功。
+
+OH_HUKS_ERR_CODE_NOT_SUPPORTED_API：接口不支持。
+
+OH_HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT：获取密钥参数失败。
+
+OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT：密钥参数无效。
+
+OH_HUKS_ERR_CODE_FILE_OPERATION_FAIL：删除或者写文件失败。
+
+OH_HUKS_ERR_CODE_COMMUNICATION_FAIL：IPC通信失败。
+
+OH_HUKS_ERR_CODE_CRYPTO_FAIL：加密引擎失败。
+
+OH_HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED：认证令牌信息校验失败。
+
+OH_HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED：认证令牌校验失败。
+
+OH_HUKS_ERR_CODE_KEY_AUTH_TIME_OUT：认证令牌超时。
+
+OH_HUKS_ERR_CODE_INTERNAL_ERROR：发生系统错误。
+
+OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY：内存不足。
+
+OH_HUKS_ERR_CODE_INVALID_ARGUMENT：密钥别名、参数集或者封装密钥不合法。
