@@ -1153,6 +1153,7 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 >
 > - 跨导航操作（如loadUrl）时，JavaScript状态将不再保留。例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
 > - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
+> - 目前不支持传递对象，支持传递结构体。
 > - 执行异步方法无法获取返回值，需要根据具体情境判断是否使用同步或异步方式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -1244,6 +1245,7 @@ runJavaScript(script: string): Promise\<string>
 >
 > - 跨导航操作（如loadUrl）时，JavaScript状态 将不再保留，例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
 > - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
+> - 目前不支持传递对象，支持传递结构体。
 > - 执行异步方法无法获取返回值，需要根据具体情境判断是否使用同步或异步方式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
