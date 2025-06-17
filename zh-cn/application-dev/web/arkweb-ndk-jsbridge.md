@@ -20,7 +20,7 @@
 ## 使用Native接口实现JSBridge通信（推荐）
 原先，Native同步接口不支持返回值，其返回类型固定为void。然而，为满足业务扩展需求，自API version 16起，引入了替代接口，支持bool、string和buffer类型的返回值。
 
-另外针对同步接口[registerJavaScriptProxyEx](../reference/apis-arkweb/capi-arkweb-controllerapi.md#registerjavascriptproxyex)和异步接口[registerAsyncJavaScriptProxyEx](../reference/apis-arkweb/capi-arkweb-controllerapi.md#registerjavascriptproxyex)，新增了参数[permission](#前端页面调用应用侧函数)字段，用于调用权限控制。
+另外针对同步接口[registerJavaScriptProxyEx](../reference/apis-arkweb/capi-arkweb-controllerapi.md#registerjavascriptproxyex)和异步接口[registerAsyncJavaScriptProxyEx](../reference/apis-arkweb/capi-arkweb-controllerapi.md#registerasyncjavascriptproxyex)，新增了参数[permission](#前端页面调用应用侧函数)字段，用于调用权限控制。
 
 ### 接口替代关系
 

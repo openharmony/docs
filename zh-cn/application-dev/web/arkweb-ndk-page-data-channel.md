@@ -54,7 +54,7 @@ ArkWeb Native侧需先获取API结构体，才能调用结构体里的Native API
 
 ### 完整示例
 
-在调用API前建议通过[ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#宏定义)校验该函数结构体是否有对应函数指针，避免SDK与设备ROM不匹配导致crash问题。[createWebMessagePorts](../reference/apis-arkweb/capi-arkweb-controllerapi.md#createwebmessageports)、[postWebMessage](../reference/apis-arkweb/capi-arkweb-controllerapi.md#postwebmessage)、[close](../reference/apis-arkweb/capi-arkweb-controllerapi.md#registerjavascriptproxyex)需运行在UI线程。
+在调用API前建议通过[ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#宏定义)校验该函数结构体是否有对应函数指针，避免SDK与设备ROM不匹配导致crash问题。[createWebMessagePorts](../reference/apis-arkweb/capi-arkweb-controllerapi.md#createwebmessageports)、[postWebMessage](../reference/apis-arkweb/capi-arkweb-controllerapi.md#postwebmessage)、[close](../reference/apis-arkweb/capi-arkweb-webmessageportapi.md#close)需运行在UI线程。
 
 * 前端页面代码
 
