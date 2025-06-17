@@ -14128,7 +14128,7 @@ int32_t OH_ArkUI_SetDragEventStrictReportWithContext (ArkUI_ContextHandle uiCont
 | 名称 | 描述 | 
 | -------- | -------- |
 | uiContext | UI实例指针。  | 
-| enabled | 是否开启严格上报。  | 
+| enabled | 是否开启严格上报。true表示开启严格上报，false表示关闭严格上报。| 
 
 **返回：**
 
@@ -14151,7 +14151,7 @@ int32_t OH_ArkUI_SetDragEventStrictReportWithNode (ArkUI_NodeHandle node, bool e
 | 名称 | 描述 | 
 | -------- | -------- |
 | node | 组件节点指针。  | 
-| enabled | 是否开启严格上报。  | 
+| enabled | 是否开启严格上报。true表示开启严格上报，false表示关闭严格上报。| 
 
 **返回：**
 
@@ -14174,7 +14174,7 @@ int32_t OH_ArkUI_SetGestureRecognizerEnabled (ArkUI_GestureRecognizer * recogniz
 | 名称 | 描述 | 
 | -------- | -------- |
 | recognizer | 手势识别器指针。  | 
-| enabled | 使能状态。  | 
+| enabled | 使能状态。true表示使能，false表示无法使能。| 
 
 **返回：**
 
@@ -14194,7 +14194,7 @@ int32_t OH_ArkUI_SetGestureRecognizerLimitFingerCount (ArkUI_GestureRecognizer *
 | 名称 | 描述 | 
 | -------- | -------- |
 | recognizer | 手势识别器指针。  | 
-| limitFingerCount | 是否检查触摸屏幕的手指数量。  | 
+| limitFingerCount | 是否检查触摸屏幕的手指数量。true表示检查手指数量，false表示不检查手指数量。| 
 
 **返回：**
 
@@ -14243,7 +14243,7 @@ int32_t OH_ArkUI_SetNodeDraggable (ArkUI_NodeHandle node, bool enabled )
 | 名称 | 描述 | 
 | -------- | -------- |
 | node | 组件节点指针。  | 
-| enabled | 是否支持拖出。  | 
+| enabled | 是否支持拖出。true表示支持拖出，false表示不支持拖出。| 
 
 **返回：**
 
