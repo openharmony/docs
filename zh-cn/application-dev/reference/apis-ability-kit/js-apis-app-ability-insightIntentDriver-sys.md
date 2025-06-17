@@ -52,7 +52,6 @@ import { insightIntentDriver } from '@kit.AbilityKit';
 | PAGE | @InsightIntentPage | [@InsightIntentPage](./js-apis-app-ability-InsightIntentDecorator.md#insightintentpage)类型装饰器。 |
 | ENTRY | @InsightIntentEntry | [@InsightIntentEntry](./js-apis-app-ability-InsightIntentDecorator.md#insightintententry)类型装饰器。 |
 | FUNCTION | @InsightIntentFunctionMethod | [@InsightIntentFunctionMethod](./js-apis-app-ability-InsightIntentDecorator.md#insightintentfunctionmethod)类型装饰器。 |
-| FORM | @InsightIntentForm | [@InsightIntentForm](./js-apis-app-ability-InsightIntentDecorator.md#insightintentform)类型装饰器。 |
 
 ## LinkIntentInfo<sup>20+<sup>
 
