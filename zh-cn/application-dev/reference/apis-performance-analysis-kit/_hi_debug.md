@@ -5,7 +5,7 @@
 
 提供调试功能。
 
-本模块函数可用于获取cpu uage、memory、heap、capture trace等。
+本模块函数可用于获取cpu usage、memory、heap、capture trace等。
 
 **起始版本：** 12
 
@@ -879,7 +879,7 @@ double OH_HiDebug_GetAppCpuUsage ()
 
 **返回：**
 
-返回进程的CPU使用率百分比。如果返回结果为0，可能的原因是当前应用的cpu使用率过低。
+返回进程的CPU使用率百分比。如果返回结果为0，可能因当前应用的CPU使用率过低导致。
 
 
 ### OH_HiDebug_GetAppMemoryLimit()
@@ -898,7 +898,7 @@ void OH_HiDebug_GetAppMemoryLimit (HiDebug_MemoryLimit * memoryLimit)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| memoryLimit | 表示指向[HiDebug_MemoryLimit](_hi_debug___memory_limit.md)。 经过该函数调用，如果结构体里的数据为空，说明调用失败。 | 
+| memoryLimit | 表示指向[HiDebug_MemoryLimit](_hi_debug___memory_limit.md)。 函数调用后，若结构体数据为空，则表明调用失败。 | 
 
 
 ### OH_HiDebug_GetAppNativeMemInfo()
@@ -917,7 +917,7 @@ void OH_HiDebug_GetAppNativeMemInfo (HiDebug_NativeMemInfo * nativeMemInfo)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| nativeMemInfo | 表示指向[HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md)。 经过该函数调用，如果结构体里的数据为空，说明调用失败。 | 
+| nativeMemInfo | 表示指向[HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md)。 函数调用后，若结构体数据为空，则表明调用失败。 | 
 
 
 ### OH_HiDebug_GetAppThreadCpuUsage()
@@ -934,7 +934,7 @@ HiDebug_ThreadCpuUsagePtr OH_HiDebug_GetAppThreadCpuUsage ()
 
 **返回：**
 
-返回所有线程CPU使用情况，见[HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr)。 如果返回的结果是null，可能的原因是未获取到线程相关的数据。
+返回所有线程CPU使用情况，见[HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr)。 若返回结果为null，可能因未获取到线程相关数据所致。
 
 
 ### OH_HiDebug_GetGraphicsMemory()
@@ -997,7 +997,7 @@ void OH_HiDebug_GetSystemMemInfo (HiDebug_SystemMemInfo * systemMemInfo)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| systemMemInfo | 表示指向[HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md)。 经过该函数调用，如果结构体里的数据为空，说明调用失败。 | 
+| systemMemInfo | 表示指向[HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md)。 函数调用后，若结构体数据为空，则表明调用失败。 | 
 
 
 ### OH_HiDebug_StartAppTraceCapture()
