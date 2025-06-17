@@ -55,7 +55,7 @@ enum OH_Crypto_ErrCode
 | CRYPTO_INVALID_PARAMS = 401 | 输入参数不合法。 |
 | CRYPTO_NOT_SUPPORTED = 801 | 不支持的函数或算法。 |
 | CRYPTO_MEMORY_ERROR = 17620001 | 内存错误。 |
-| CRYPTO_OPERTION_ERROR = 17630001 | 表示加解密操作错误。 |
+| CRYPTO_OPERATION_ERROR = 17630001 | 表示加解密操作错误。 |
 
 ### Crypto_CipherMode
 
