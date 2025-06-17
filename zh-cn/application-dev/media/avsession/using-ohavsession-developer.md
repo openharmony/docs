@@ -27,7 +27,7 @@ target_link_libraries(entry PUBLIC libohavsession.so)
 
    ```c++
    OH_AVSession* avsession;
-   OH_AVSession_Create(SESSION_TYPE_AUDIO, "testsession", "com.example. application",   "MainAbility", &avsession);
+   OH_AVSession_Create(SESSION_TYPE_AUDIO, "testsession", "com.example.application",   "MainAbility", &avsession);
    ```
  
    `AVSession_Type`包含如下四种类型：
@@ -73,7 +73,7 @@ target_link_libraries(entry PUBLIC libohavsession.so)
    OH_AVMetadataBuilder_GenerateAVMetadata(builder, &ohMetadata);
    ```
    
-   在不使用AVMetadta之后，开发者应该执行OH_AVMetadataBuilder_Destroy接口来销毁元数 据，且不要继续使用。
+   在不使用AVMetadata之后，开发者应该执行OH_AVMetadataBuilder_Destroy接口来销毁元数据，且不要继续使用。
    
    ```c++
    OH_AVMetadata_Destroy(ohMetadata);
@@ -82,7 +82,7 @@ target_link_libraries(entry PUBLIC libohavsession.so)
 
 3. 跟随媒体播放状态的变化，及时更新媒体播放状态。
 
-   媒体播放状态，包含状态值、播放位置、播放速度、收藏状态等，可以按需使用对应的接口进行 设置。
+   媒体播放状态，包含状态值、播放位置、播放速度、收藏状态等，可以按需使用对应的接口进行设置。
    
    ```c++
    AVSession_ErrCode ret = AV_SESSION_ERR_SUCCESS;
@@ -147,7 +147,7 @@ target_link_libraries(entry PUBLIC libohavsession.so)
    |OH_AVSession_RegisterRewindCallback(OH_AVSession* avsession, OH_AVSessionCallback_OnRewind   callback, void* userData) | 注册快退的回调。     |
    |OH_AVSession_RegisterSeekCallback(OH_AVSession* avsession, OH_AVSessionCallback_OnSeek   callback, void* userData) | 注册跳转的回调。  |
    |OH_AVSession_RegisterToggleFavoriteCallback(OH_AVSession* avsession,   OH_AVSessionCallback_OnToggleFavorite callback, void* userData) | 注册收藏的回调。  |
-5. 音视频应用在退出，并且不需要继续播放时，及时取消监听以及销毁媒体会话释放资源。示例代码如下所示 ：
+5. 音视频应用在退出，并且不需要继续播放时，及时取消监听以及销毁媒体会话释放资源。示例代码如下所示：
  
    ```c++
    OH_AVSession_Destroy(avsession);
