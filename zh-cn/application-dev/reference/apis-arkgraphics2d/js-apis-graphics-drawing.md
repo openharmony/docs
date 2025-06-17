@@ -995,7 +995,7 @@ console.info("test contains: " + path.contains(0, 0));
 console.info("test contains: " + path.contains(60, 60));
 ```
 
-### setLastPoint<sub>20+</sup>
+### setLastPoint<sup>20+</sup>
 
 setLastPoint(x: number, y: number): void
 
