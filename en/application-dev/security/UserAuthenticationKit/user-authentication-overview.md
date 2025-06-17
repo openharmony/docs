@@ -1,4 +1,4 @@
-# About This Kit
+# Introduction to User Authentication Kit
 
 User Authentication Kit provides the user authentication capabilities based on the lock screen password, facial characteristics, and fingerprint registered with a device.
 

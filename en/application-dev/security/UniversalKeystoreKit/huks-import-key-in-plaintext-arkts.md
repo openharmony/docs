@@ -131,7 +131,7 @@ let properties: Array<huks.HuksParam> = [
   {
     // This tag indicates the type of the key to be imported.
     tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
-    // The value here means to import a key parit. To import a public key, set value to HUKS_KEY_TYPE_PUBLIC_KEY.
+    // The value here means to import a key pair. To import a public key, set value to HUKS_KEY_TYPE_PUBLIC_KEY.
     value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
   },
 ]
