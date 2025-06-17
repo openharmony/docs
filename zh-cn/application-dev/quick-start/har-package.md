@@ -43,8 +43,7 @@ Index.ets文件是HAR导出声明文件的入口，HAR需要导出的接口，�
 ```
 > **说明：**
 > 
-> HAR在和宿主应用一起编译时，会把HAR的代码直接编译到宿主应用中，HAR包是一个编译中间态产物，不是最终的运行实体。
-> 运行时，HAR运行的身份信息是其宿主应用，系统会以宿主应用的版本做行为区分。如果需要在HAR中区分宿主应用的版本做不同的行为区分，可以调用[getBundleInfoForSelf](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-bundlemanager#bundlemanagergetbundleinfoforself)接口，获取宿主应用的targetVersion，然后根据不同的targetVersion，做不同的逻辑处理。
+> HAR在和宿主应用一起编译时，会把HAR的代码直接编译到宿主应用中，HAR包是一个编译中间态产物，不是最终的运行实体。运行时，HAR运行的身份信息是其宿主应用，系统会以宿主应用的版本做行为区分。如果需要在HAR中区分宿主应用的版本做不同的行为区分，可以调用[getBundleInfoForSelf](../reference/apis-ability-kit/js-apis-bundlemanager#bundlemanagergetbundleinfoforself)接口，获取宿主应用的targetVersion，然后根据不同的targetVersion，做不同的逻辑处理。
 
 ### 导出ArkUI组件
 通过`export`导出ArkUI组件，示例如下：
