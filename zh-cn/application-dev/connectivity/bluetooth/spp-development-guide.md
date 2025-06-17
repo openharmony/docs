@@ -128,7 +128,7 @@ let option: socket.SppOptions = {
 };
 
 // 创建服务端监听socket，将在蓝牙子系统中注册该UUID服务
-socket.sppListen("示例", option, (err, num: number) => {
+socket.sppListen("demonstration", option, (err, num: number) => {
   if (err) {
     console.error('sppListen errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
   } else {
@@ -351,7 +351,7 @@ class SppServerManager {
     };
 
     // 创建服务端监听socket，将在蓝牙子系统中注册该UUID服务
-    socket.sppListen("示例", option, (err, num: number) => {
+    socket.sppListen("demonstration", option, (err, num: number) => {
       if (err) {
         console.error('sppListen errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
       } else {
