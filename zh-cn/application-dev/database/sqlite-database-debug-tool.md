@@ -196,7 +196,7 @@ sqlite>.tables
 - 在 sqlite> 提示符下，输入以下SQL语句插入单条数据：
 
   ```sql
-  INSERT INTOCOMPANY(name, age,) VALUES ('张三', 25);
+  INSERT INTO COMPANY (ID, NAME, AGE, ADDRESS, SALARY) VALUES (1, '张三', 28, '北京市朝阳区', 8000.00);
   ```
 
   通过SQL语句`SELECT * FROM 表的名称`可获取表的完整信息，具体如下：
@@ -210,7 +210,7 @@ sqlite>.tables
 - 输入以下SQL语句`INSERT INTOCOMPANY(字段)values()`语句插入多条数据：
 
   ```sql
-  sqlite> INSERT INTOCOMPANY(ID, NAME, AGE, ADDRESS, SALARY)
+  sqlite> INSERT INTO COMPANY(ID, NAME, AGE, ADDRESS, SALARY)
      ...> VALUES
      ...> (3, '王五', 25, '广州市天河区', 18000.75),
      ...> (4, '赵六', 40, '深圳市南山区', 30000.25);
