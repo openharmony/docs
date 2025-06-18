@@ -1294,7 +1294,7 @@ bundle.getNameForUid(uid, (err, data) => {
 
 getAbilityIcon(bundleName: string, abilityName: string): Promise\<image.PixelMap>
 
-通过bundleName和abilityName获取对应Icon的[PixelMap](../apis-image-kit/js-apis-image.md)，使用Promise异步回调。
+通过bundleName和abilityName获取对应Icon的[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)，使用Promise异步回调。
 
 获取调用方自己的信息时不需要权限。
 
@@ -1316,7 +1316,7 @@ SystemCapability.BundleManager.BundleFramework
 **返回值：**
 | 类型                  | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ |
-| Promise\<image.PixelMap> | 返回值为[PixelMap](../apis-image-kit/js-apis-image.md)。 |
+| Promise\<image.PixelMap> | 返回值为[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)。 |
 
 **示例：**
 
@@ -1341,7 +1341,7 @@ bundle.getAbilityIcon(bundleName, abilityName)
 
 getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<image.PixelMap>): void
 
-通过bundleName和abilityName获取对应Icon的[PixelMap](../apis-image-kit/js-apis-image.md)，使用callback异步回调。
+通过bundleName和abilityName获取对应Icon的[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)，使用callback异步回调。
 
 获取调用方自己的信息时不需要权限。
 
@@ -1360,7 +1360,7 @@ SystemCapability.BundleManager.BundleFramework
 | ----------- | ---------------------------------------- | ---- |-------------------------------------------------|
 | bundleName  | string                                   | 是    | 要查询的应用Bundle名称。                                |
 | abilityName | string                                   | 是    | 要查询的Ability组件名。                                 |
-| callback   | AsyncCallback\<image.PixelMap> | 是   | 程序启动作为入参的回调函数，返回指定[PixelMap](../apis-image-kit/js-apis-image.md)。 |
+| callback   | AsyncCallback\<image.PixelMap> | 是   | 程序启动作为入参的回调函数，返回指定[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)。 |
 
 **示例：**
 

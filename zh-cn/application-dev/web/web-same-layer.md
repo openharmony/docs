@@ -433,6 +433,61 @@ display，position，z-index，visibility，opacity, background-color，backgrou
     }
     ```
 
+7. 同层渲染鼠标事件
+
+   开启该功能后，在同层渲染的区域进行下述动作时，ArkWeb内核会触发[onNativeEmbedMouseEvent](../reference/apis-arkweb/arkts-basic-components-web-events.md#onnativeembedmouseevent20)注册的回调函数：
+
+   - 使用鼠标左键、中键、右键进行点击或长按。
+   - 使用触摸板进行对应鼠标左键、中键、右键点击长按的操作。
+
+   开发者则需要调用[onNativeEmbedMouseEvent](../reference/apis-arkweb/arkts-basic-components-web-events.md#onnativeembedmouseevent20)来监听同层渲染同层渲染区域的鼠标事件。
+
+    ```ts
+    build() {
+      Row() {
+        Column() {
+          Stack() {
+            ForEach(this.componentIdArr, (componentId: string) => {
+              NodeContainer(this.nodeControllerMap.get(componentId))
+                .position(this.positionMap.get(componentId))
+                .width(this.widthMap.get(componentId))
+                .height(this.heightMap.get(componentId))
+            }, (embedId: string) => embedId)
+            // Web组件加载本地text.html页面。
+            Web({src: $rawfile("text.html"), controller: this.browserTabController})
+              // 配置同层渲染开关开启。
+              .enableNativeEmbedMode(true)
+                // 获取embed标签的生命周期变化数据。
+              .onNativeEmbedLifecycleChange((embed) => {
+                // 生命周期变化实现
+              })
+              .onNativeEmbedGestureEvent((touch) => {
+                // 处理同层渲染手势事件
+              })
+              .onNativeEmbedMouseEvent((mouse) => {
+                console.log("NativeEmbed onNativeEmbedMouseEvent" + JSON.stringify(mouse.mouseEvent));
+                this.componentIdArr.forEach((componentId: string) => {
+                  let nodeController = this.nodeControllerMap.get(componentId);
+                  // 将获取到的同层区域的事件发送到该区域embedId对应的nodeController上
+                  if(nodeController?.getEmbedId() == mouse.embedId) {
+                    let ret = nodeController?.postInputEvent(mouse.touchEvent)
+                    if(ret) {
+                      console.log("onNativeEmbedMouseEvent success " + componentId);
+                    } else {
+                      console.log("onNativeEmbedMouseEvent fail " + componentId);
+                    }
+                    if(mouse.result) {
+                      // 通知Web组件鼠标事件消费结果
+                      mouse.result.setMouseEventResult(ret);
+                    }
+                  }
+                })
+              })
+          }
+        }
+      }
+    }
+    ```
 **完整示例：**
 
 使用前请在module.json5中添加网络权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
@@ -527,6 +582,10 @@ display，position，z-index，visibility，opacity, background-color，backgrou
 
     postEvent(event: TouchEvent | undefined): boolean {
       return this.rootNode?.postTouchEvent(event) as boolean
+    }
+
+    postInputEvent(event: MouseEvent | undefined): boolean {
+      return this.rootNode?.postInputEvent(event) as boolean
     }
   }
 
@@ -651,6 +710,25 @@ display，position，z-index，visibility，opacity, background-color，backgrou
                   }
                 })
               })
+              .onNativeEmbedMouseEvent((mouse) => {
+                console.log("NativeEmbed onNativeEmbedMouseEvent" + JSON.stringify(mouse.mouseEvent));
+                this.componentIdArr.forEach((componentId: string) => {
+                  let nodeController = this.nodeControllerMap.get(componentId);
+                  // 将获取到的同层区域的事件发送到该区域embedId对应的nodeController上
+                  if(nodeController?.getEmbedId() == mouse.embedId) {
+                    let ret = nodeController?.postInputEvent(mouse.mouseEvent)
+                    if(ret) {
+                      console.log("onNativeEmbedMouseEvent success " + componentId);
+                    } else {
+                      console.log("onNativeEmbedMouseEvent fail " + componentId);
+                    }
+                    if(mouse.result) {
+                      // 通知Web组件鼠标事件消费结果
+                      mouse.result.setMouseEventResult(ret);
+                    }
+                  }
+                })
+              })
           }
         }
       }
@@ -739,6 +817,10 @@ display，position，z-index，visibility，opacity, background-color，backgrou
 
     postEvent(event: TouchEvent | undefined) : boolean {
       return this.rootNode?.postTouchEvent(event) as boolean
+    }
+
+    postInputEvent(event: MouseEvent | undefined): boolean {
+      return this.rootNode?.postInputEvent(event) as boolean
     }
   }
 
@@ -864,6 +946,25 @@ display，position，z-index，visibility，opacity, background-color，backgrou
                     if (touch.result) {
                       // 通知Web组件手势事件消费结果
                       touch.result.setGestureEventResult(ret);
+                    }
+                  }
+                })
+              })
+              .onNativeEmbedMouseEvent((mouse) => {
+                console.log("NativeEmbed onNativeEmbedMouseEvent" + JSON.stringify(mouse.mouseEvent));
+                this.componentIdArr.forEach((componentId: string) => {
+                  let nodeController = this.nodeControllerMap.get(componentId);
+                  // 将获取到的同层区域的事件发送到该区域embedId对应的nodeController上
+                  if(nodeController?.getEmbedId() == mouse.embedId) {
+                    let ret = nodeController?.postInputEvent(mouse.mouseEvent)
+                    if(ret) {
+                      console.log("onNativeEmbedMouseEvent success " + componentId);
+                    } else {
+                      console.log("onNativeEmbedMouseEvent fail " + componentId);
+                    }
+                    if(mouse.result) {
+                      // 通知Web组件鼠标事件消费结果
+                      mouse.result.setMouseEventResult(ret);
                     }
                   }
                 })

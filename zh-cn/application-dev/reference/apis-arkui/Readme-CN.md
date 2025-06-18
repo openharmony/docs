@@ -24,6 +24,7 @@
     - [@ohos.pluginComponent (PluginComponentManager)](js-apis-plugincomponent.md)
     - [@ohos.promptAction (弹窗)](js-apis-promptAction.md)
     - [@ohos.router (页面路由)(不推荐)](js-apis-router.md)
+    - [@ohos.uiAppearance (用户界面外观)](js-apis-uiappearance.md)
     - [getContext](js-apis-getContext.md)
     - [postCardAction](js-apis-postCardAction.md)
     <!--Del-->
@@ -274,6 +275,7 @@
     - [属性字符串](arkui-ts/ts-universal-styled-string.md)
     - [文本组件公共接口](arkui-ts/ts-text-common.md)
     <!--Del-->
+    - [文本组件公共接口 (系统接口)](arkui-ts/ts-text-common-sys.md)
     - [TextInput (系统接口)](arkui-ts/ts-basic-components-textinput-sys.md)
     - [属性字符串 (系统接口)](arkui-ts/ts-universal-styled-string-sys.md)
     - [RichEditor(系统接口)](arkui-ts/ts-basic-components-richeditor-sys.md)
@@ -557,9 +559,7 @@
     - [Canvas错误码](errorcode-canvas.md)
     - [自定义节点错误码](errorcode-node.md)   
     - [UIExtension错误码](errorcode-uiextension.md)
-    <!--Del-->
     - [用户界面外观服务错误码](errorcode-uiappearance.md)
-    <!--DelEnd-->
     - [NodeAdapter错误码](errorcode-nodeadapter.md)
   - 图形图像<!--arkui-graphics-images-arkts-errcode-->
     - [屏幕错误码](errorcode-display.md)

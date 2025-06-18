@@ -1,11 +1,12 @@
 # 使用ImageReceiver完成图片接收
+
 图片接收类ImageReceiver用于获取组件surface id，接收最新的图片和读取下一张图片，以及释放ImageReceiver实例。<br/>
 > **说明：**
->- Receiver作为消费者，需要有对应的生产者提供数据才能实现完整功能。常见的生产者是相机的拍照流或预览流。<br/>
+> Receiver作为消费者，需要有对应的生产者提供数据才能实现完整功能。常见的生产者是相机的拍照流或预览流。<br/>
 
 ImageReceiver可以接收相机预览流中的图片，实现[双路预览](../camera/camera-dual-channel-preview.md)。<br/>
 
-ImageReceiver信息相关API的详细介绍请参见[API参考](../../reference/apis-image-kit/js-apis-image.md#imagereceiver9)。
+ImageReceiver信息相关API的详细介绍请参见[API参考](../../reference/apis-image-kit/arkts-apis-image-ImageReceiver.md)。
 
 ## 开发步骤
 
@@ -28,7 +29,7 @@ ImageReceiver信息相关API的详细介绍请参见[API参考](../../reference/
     }
     ```
 
-2. 注册监听处理预览流每帧图像数据：通过ImageReceiver组件中imageArrival事件监听获取底层返回的图像数据，详细的API说明请参考[Image API参考](../../reference/apis-image-kit/js-apis-image.md)。
+2. 注册监听处理预览流每帧图像数据：通过ImageReceiver组件中imageArrival事件监听获取底层返回的图像数据，详细的API说明请参考[Image API参考](../../reference/apis-image-kit/arkts-apis-image-ImageReceiver.md)。
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -86,7 +87,7 @@ ImageReceiver信息相关API的详细介绍请参见[API参考](../../reference/
     ```
 
 
-    通过 [image.Component](../../reference/apis-image-kit/js-apis-image.md#component9) 解析图片buffer数据参考：
+    通过 [image.Component](../../reference/apis-image-kit/arkts-apis-image-i.md#component9) 解析图片buffer数据参考：
 
     > **注意：**
     > 需要确认图像的宽width是否与行距rowStride一致，如果不一致可参考以下方式处理：

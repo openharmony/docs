@@ -69,8 +69,8 @@ static OH_Crypto_ErrCode doTestRsaPssSignSeg() {
       OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
       return ret;
    }
-   res = OH_CryptoSign_Final(sign, nullptr, &signData);
-   if (res != CRYPTO_SUCCESS) {
+   ret = OH_CryptoSign_Final(sign, nullptr, &signData);
+   if (ret != CRYPTO_SUCCESS) {
       OH_CryptoSign_Destroy(sign);
       OH_CryptoKeyPair_Destroy(keyPair);
       OH_CryptoAsymKeyGenerator_Destroy(keyCtx);

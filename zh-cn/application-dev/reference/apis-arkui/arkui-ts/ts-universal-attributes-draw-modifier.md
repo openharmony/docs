@@ -34,7 +34,11 @@ AlphabetIndexer、Badge、Blank、Button、CalendarPicker、Checkbox、CheckboxG
 
 ## DrawModifier
 
-DrawModifier可设置前景(drawFront)、内容(drawContent)和背景(drawBehind)的绘制方法，还提供主动触发重绘的方法invalidate。每个DrawModifier实例只能设置到一个组件上，禁止进行重复设置。
+DrawModifier可设置前景(drawForeground)、内容前景(drawFront)、内容(drawContent)和内容背景(drawBehind)的绘制方法，还提供主动触发重绘的方法[invalidate](#invalidate)。每个DrawModifier实例只能设置到一个组件上，禁止进行重复设置。
+
+自定义层级示例图
+
+![drawModifier.gif](figures/drawModifier.png)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -44,7 +48,7 @@ DrawModifier可设置前景(drawFront)、内容(drawContent)和背景(drawBehind
 
 drawFront?(drawContext: DrawContext): void
 
-自定义绘制前景的接口，若重载该方法则可进行前景的自定义绘制。
+自定义绘制内容前景的接口，若重载该方法则可进行内容前景的自定义绘制。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -88,6 +92,21 @@ drawBehind?(drawContext: DrawContext): void
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
 | drawContext | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | 是   | 图形绘制上下文。 |
 
+### drawForeground<sup>20+</sup>
+
+drawForeground?(drawContext: DrawContext): void
+
+自定义绘制前景的接口，若重载该方法则可进行前景的自定义绘制。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| drawContext | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | 是   | 图形绘制上下文。 |
 
 ### invalidate
 
@@ -100,6 +119,8 @@ invalidate(): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## 示例
+
+### 示例1（通过DrawModifier进行自定义绘制）
 
 通过DrawModifier对Text组件进行自定义绘制。
 
@@ -284,3 +305,64 @@ struct DrawModifierExample {
 ```
 
 ![drawModifier.gif](figures/drawModifier.gif)
+
+### 示例2（通过DrawModifier对容器的前景进行自定义绘制）
+
+通过DrawModifier对Column容器的前景进行自定义绘制。
+
+```ts
+// xxx.ets
+import { drawing } from '@kit.ArkGraphics2D';
+
+class MyForegroundDrawModifier extends DrawModifier {
+  public scaleX: number = 3;
+  public scaleY: number = 3;
+  uiContext: UIContext;
+
+  constructor(uiContext: UIContext) {
+    super();
+    this.uiContext = uiContext;
+  }
+
+  drawForeground(context: DrawContext): void {
+    const brush = new drawing.Brush();
+    brush.setColor({
+      alpha: 255,
+      red: 0,
+      green: 50,
+      blue: 100
+    });
+    context.canvas.attachBrush(brush);
+    const halfWidth = context.size.width / 2;
+    const halfHeight = context.size.width / 2;
+    context.canvas.drawRect({
+      left: this.uiContext.vp2px(halfWidth - 30 * this.scaleX),
+      top: this.uiContext.vp2px(halfHeight - 30 * this.scaleY),
+      right: this.uiContext.vp2px(halfWidth + 30 * this.scaleX),
+      bottom: this.uiContext.vp2px(halfHeight + 30 * this.scaleY)
+    });
+  }
+}
+
+@Entry
+@Component
+struct DrawModifierExample {
+  private foregroundModifier: MyForegroundDrawModifier = new MyForegroundDrawModifier(this.getUIContext());
+
+  build() {
+    Column() {
+      Text('此文本是子节点')
+        .fontSize(36)
+        .width('100%')
+        .height('100%')
+        .textAlign(TextAlign.Center)
+    }
+    .margin(100)
+    .height(300)
+    .backgroundColor(0x87CEEB)
+    .drawModifier(this.foregroundModifier)
+  }
+}
+
+```
+![drawForeground.png](figures/drawForeground.png)

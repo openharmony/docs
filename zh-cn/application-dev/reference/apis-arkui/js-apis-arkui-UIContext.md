@@ -4963,6 +4963,138 @@ off(type: 'nodeRenderState', nodeIdentity: NodeIdentity, callback?: NodeRenderSt
 
 参考[on('nodeRenderState')](#onnoderenderstate20)接口示例。
 
+### addGlobalGestureListener<sup>20+</sup>
+
+addGlobalGestureListener(type: GestureListenerType, option: GestureObserverConfigs, callback: GestureListenerCallback): void
+
+注册回调函数以监听手势触发信息。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型         | 必填 | 说明          |
+| -------- | ----------- | ---- | ----------- |
+| type     | [GestureListenerType](#gesturelistenertype20)     | 是   |要监听的手势类型。  |
+| option | [GestureObserverConfigs](#gestureobserverconfigs20) | 是   |  绑定全局监听器时的配置选项。  |
+| callback | [GestureListenerCallback](#gesturelistenercallback20) | 是   |  手势状态更新时的回调函数。  |  
+
+### removeGlobalGestureListener<sup>20+</sup>
+
+removeGlobalGestureListener(type: GestureListenerType, callback?: GestureListenerCallback): void
+
+移除某一手势监听器类型的回调函数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型     | 必填 | 说明       |
+| -------- | ---------- | ---- | --------- |
+| type     | [GestureListenerType](#gesturelistenertype20)    | 是   | 要移除监听器的事件类型。 |
+| callback | [GestureListenerCallback](#gesturelistenercallback20) | 否   | 待移除的回调函数（未提供时将清除该手势类型的所有回调）。   |  
+
+**示例：**
+
+该示例通过全局监听器实时追踪平移手势的触发阶段、触点ID和手指数量，并在可视化日志区显示手势开始/结束事件及详细触点信息。
+
+```ts
+
+// xxx.ets
+
+import { GestureListenerType, GestureActionPhase, GestureTriggerInfo } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Gesture';
+  @State logs: string[] = [];
+  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right });
+  private panCallback = (info: GestureTriggerInfo) => {
+    let current = info.current;
+    this.addLog(`Phase: ${info.currentPhase}`);
+    this.addLog(`ID: ${info.event.target.id}`);
+    this.addLog(`FingerCount: ${current.getFingerCount()}`);
+    this.addLog('------------------------');
+  };
+
+  private addLog(log: string) {
+    this.logs.unshift(`[${new Date().toLocaleTimeString()}] ${log}`);
+    if (this.logs.length > 50) {
+      this.logs.pop();
+    }
+  }
+
+  build() {
+    Column() {
+      Row({ space: 20 }) {
+        Text(this.message)
+          .width(400)
+          .height(80)
+          .fontSize(23)
+      }
+      .id('test row')
+      .margin(15)
+      .width(400)
+      .height(150)
+      .borderWidth(2)
+      .gesture(PanGesture({ direction: PanDirection.Left | PanDirection.Right })
+        .onActionStart((event: GestureEvent) => {
+          this.addLog('Pan手势开始');
+        })
+        .onActionEnd((event: GestureEvent) => {
+          this.addLog('Pan手势结束');
+        }))
+
+      Row() {
+        Button('添加PAN监听')
+          .onClick(() => {
+            this.addLog('添加PAN全局监听');
+            let observer = this.getUIContext().getUIObserver();
+            observer.addGlobalGestureListener(
+              GestureListenerType.PAN,
+              { actionPhases: [GestureActionPhase.WILL_START, GestureActionPhase.WILL_END] }, this.panCallback);
+          })
+
+        Button('取消PAN监听')
+          .onClick(() => {
+            this.addLog('取消PAN全局监听');
+            let observer = this.getUIContext().getUIObserver();
+            observer.removeGlobalGestureListener(2, this.panCallback);
+          })
+      }
+      .margin(10)
+      .height(60)
+
+      // 日志显示区域
+      Scroll() {
+        Column() {
+          ForEach(this.logs, (log: string) => {
+            Text(log)
+              .fontSize(20)
+              .textAlign(TextAlign.Start)
+              .width('100%')
+              .margin({ bottom: 8 })
+          }, (log: string) => log)
+        }
+        .width('100%')
+        .padding(15)
+      }
+      .height(200)
+      .border({ width: 1, color: '#CCCCCC' })
+      .margin(10)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+![example](figures/pangesture_uiobserver_listener.gif)
+
 ## NodeIdentity<sup>20+</sup>
 type NodeIdentity = string | number
 
@@ -5005,6 +5137,79 @@ type NodeRenderStateChangeCallback = (state: NodeRenderState, node?: FrameNode) 
 | -------- | ------- | -------- |
 | ABOUT_TO_RENDER_IN | 0 | 该节点已挂载到渲染树上，一般将会在下一帧被渲染。一般情况下可被看见，但会被渲染并不等同于一定可见。 |
 | ABOUT_TO_RENDER_OUT | 1 | 该节点已从渲染树中删除，一般下一帧不会被渲染，用户将不会看到此节点。 |
+
+## GestureListenerCallback<sup>20+</sup>
+
+type GestureListenerCallback = (info: GestureTriggerInfo) => void
+
+定义了用于在UIObserver中监控特定手势触发信息的回调类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型              | 必填 | 说明                                |
+| ------- | ----------------- | ---- | --------------------------------- |
+| info   | [GestureTriggerInfo](#gesturetriggerinfo20)     | 是   |  交互触发的手势详情。 |
+
+## GestureActionPhase<sup>20+</sup>
+
+此枚举类型表示手势回调触发阶段，对应gesture.d.ts中定义的动作回调，但不同手势类型支持的阶段不同（如SwipeGesture仅包含WILL_START枚举值）。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 值   | 说明       |
+| ------ | ---- | ---------- |
+| WILL_START | 0 | 手势已被系统成功识别，action-start/action回调将立即执行。 |
+|  WILL_END | 1 | 表示手势已被判定为结束状态（通常发生在用户抬起手指终止交互时），action-end回调将立即执行。 |
+
+## GestureListenerType<sup>20+</sup>
+
+此枚举类型用于指定需要监控的手势类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 值   | 说明       |
+| ------ | ---- | ---------- |
+| TAP | 0 | 点击手势。 |
+| LONG_PRESS | 1 | 长按手势。 |
+| PAN  | 2 | 平移手势。 |
+| PINCH | 3 | 捏合手势。 |
+| SWIPE | 4| 滑动手势。 |
+| ROTATION| 5 | 旋转手势。 |
+
+## GestureTriggerInfo<sup>20+</sup>
+
+特定手势回调函数触发时的信息。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型   | 必填       |说明       |
+| ------ | ---- | ---------- |---------- |
+| event | [GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明)   |是       |手势事件对象。 |
+| current | [GestureRecognizer](arkui-ts/ts-gesture-blocking-enhancement.md#gesturerecognizer)    |是      |手势识别器对象。可从中获取手势的详细信息，但请勿在本地保留此对象，因为当节点释放后该对象可能失效。 |
+| currentPhase  | [GestureActionPhase](#gestureactionphase20) |是      | 手势动作回调阶段。|
+| node  | [FrameNode](js-apis-arkui-frameNode.md#framenode) |否      |触发手势的节点。默认值为null，表示没有触发手势的节点。 |
+
+## GestureObserverConfigs<sup>20+</sup>
+
+该参数用于指定需要监听的手势回调阶段（传入空数组将无效），仅当手势触发指定阶段时才会发送通知。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型   | 必填       |说明       |
+| ------ | ---- | ---------- |---------- |
+|  actionPhases | Array\<[GestureActionPhase](#gestureactionphase20)\>    |是       |手势事件对象。 |
 
 ## PanListenerCallback<sup>19+</sup>
 type PanListenerCallback = (event: GestureEvent, current: GestureRecognizer, node?: FrameNode) => void
@@ -10254,7 +10459,7 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: componentSnap
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | id       | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。<br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。 |
-| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。                                         |
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是   | 截图返回结果的回调。                                         |
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **错误码：** 
@@ -10326,7 +10531,7 @@ get(id: string, options?: componentSnapshot.SnapshotOptions): Promise<image.Pixe
 
 | 类型                                                         | 说明             |
 | ------------------------------------------------------------ | ---------------- |
-| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
+| Promise&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 截图返回的结果。 |
 
 **错误码：** 
 
@@ -10394,7 +10599,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8)         | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。      |
-| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是   | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
 | delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒 <br/> 取值范围：[0, +∞)，小于0时按默认值处理。 |
 | checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12) | 否    | 截图相关的自定义参数。 |
@@ -10493,7 +10698,7 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 
 | 类型                                                         | 说明             |
 | ------------------------------------------------------------ | ---------------- |
-| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
+| Promise&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 截图返回的结果。 |
 
 **错误码：** 
 
@@ -10563,7 +10768,7 @@ struct ComponentSnapshotExample {
 
 getSync(id: string, options?: componentSnapshot.SnapshotOptions): image.PixelMap
 
-获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。同步等待截图完成返回[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)。
+获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。同步等待截图完成返回[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)。
 
 > **说明：**
 >
@@ -10584,7 +10789,7 @@ getSync(id: string, options?: componentSnapshot.SnapshotOptions): image.PixelMap
 
 | 类型                            | 说明       |
 | ----------------------------- | -------- |
-| image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 截图返回的结果。 |
+| image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 截图返回的结果。 |
 
 **错误码：** 
 
@@ -10655,7 +10860,7 @@ getWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOptions): 
 
 | 类型                                                         | 说明             |
 | ------------------------------------------------------------ | ---------------- |
-| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
+| Promise&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 截图返回的结果。 |
 
 **错误码：** 
 
@@ -10732,7 +10937,7 @@ struct SnapshotExample {
 
 getSyncWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOptions): image.PixelMap
 
-获取已加载的组件的截图，传入组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)，找到对应组件进行截图。同步等待截图完成返回[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)。
+获取已加载的组件的截图，传入组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)，找到对应组件进行截图。同步等待截图完成返回[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)。
 
 > **说明：**
 >
@@ -10753,7 +10958,7 @@ getSyncWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOption
 
 | 类型                            | 说明       |
 | ----------------------------- | -------- |
-| image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 截图返回的结果。 |
+| image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 截图返回的结果。 |
 
 **错误码：** 
 

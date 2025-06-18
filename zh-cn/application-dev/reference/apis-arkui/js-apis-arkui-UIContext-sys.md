@@ -367,6 +367,70 @@ struct Index {
 }
 ```
 
+### setKeyboardAppearanceConfig<sup>20+</sup>
+
+setKeyboardAppearanceConfig(uniqueId: number, config: KeyboardAppearanceConfig): void
+
+设置键盘样式，包括模糊效果和流光效果，仅在沉浸式模式下生效，沉浸式定义可参见[KeyboardAppearance枚举说明](../apis-arkui/arkui-ts/ts-text-common.md#keyboardappearance15枚举说明)。其中，流光效果依赖于模糊效果，若需启用流光效果，则需同时开启模糊效果，最终显示效果取决于输入法处理。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型    | 必填   | 说明      |
+| --- | --- | --- | --- |
+| uniqueId | number | 是 | 组件节点对应的UniqueId。取值范围大于等于0。 |
+| config | [KeyboardAppearanceConfig](../apis-arkui/arkui-ts/ts-text-common-sys.md#keyboardappearanceconfig) | 是 | 键盘样式配置参数。|
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The caller is not a system application. |
+
+输入框和搜索框组件设置键盘样式使用示例：
+
+```ts
+@Entry
+@Component
+struct IMEGradient {
+  textInputController: TextInputController = new TextInputController();
+  searchController: SearchController = new SearchController();
+
+  build() {
+    Column() {
+      TextInput({ controller: this.textInputController})
+        .margin(10)
+        .border({ width: 1 })
+        .onWillAttachIME((client) => {
+          this.getUIContext().setKeyboardAppearanceConfig(client.nodeId,
+            {
+              gradientMode: KeyboardGradientMode.LINEAR_GRADIENT,
+              fluidLightMode: KeyboardFluidLightMode.BACKGROUND_FLUID_LIGHT
+            })
+        })
+        .keyboardAppearance(KeyboardAppearance.IMMERSIVE)
+
+      Search({ controller: this.searchController })
+        .margin(10)
+        .border({ width: 1 })
+        .onWillAttachIME((client) => {
+          this.getUIContext().setKeyboardAppearanceConfig(client.nodeId,
+            {
+              gradientMode: KeyboardGradientMode.LINEAR_GRADIENT,
+              fluidLightMode: KeyboardFluidLightMode.BACKGROUND_FLUID_LIGHT
+            })
+        })
+        .keyboardAppearance(KeyboardAppearance.IMMERSIVE)
+    }.width('100%').height('100%').justifyContent(FlexAlign.Center)
+  }
+}
+```
+
 ## ComponentSnapshot<sup>12+</sup>
 
 以下API需先使用UIContext中的[getComponentSnapshot()](js-apis-arkui-UIContext.md#getcomponentsnapshot12)方法获取ComponentSnapshot对象，再通过此实例调用对应方法。
@@ -395,7 +459,7 @@ getWithRange(start: NodeIdentity, end: NodeIdentity, isStartRect: boolean, optio
 
 | 类型                            | 说明       |
 | -------- | -------- |
-| image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 截图返回的结果。 |
+| image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 截图返回的结果。 |
 
 **错误码：** 
 

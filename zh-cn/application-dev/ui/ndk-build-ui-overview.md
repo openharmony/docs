@@ -69,6 +69,7 @@ ArkUI NDK接口能力主要包括：
 | [自定义绘制](arkts-user-defined-draw.md) | 介绍了如何使用自定义绘制能力，实现自定义内容的绘制。 |
 | [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ndk-embedded-component.md) | 介绍了如何在Native侧通过EmbeddedComponent拉起EmbeddedUIExtensionAbility。主要用于有进程隔离需求的模块化开发场景。 |
 | [使用文本](ndk-styled-string.md) | 介绍了Text组件对字体引擎文本的渲染显示和如何监听输入框文本相关的事件。 |
+| [在NDK中保证多实例场景功能正常](ndk-scope-task.md) | 介绍了如何在NDK多线程场景中保证接口调用的功能正常。 |
 
 
 ## 注意事项
