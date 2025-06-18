@@ -3296,7 +3296,7 @@ Obtains all subtypes of a specified input method. This API uses an asynchronous 
 | Name  | Type                                              | Mandatory| Description                  |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
 | inputMethodProperty | [InputMethodProperty](#inputmethodproperty8)| Yes| Input method.|
-| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#ohosinputmethodsubtype-Input-method-subtype)>&gt;| Yes| Callback used to return all subtypes of the specified input method.|
+| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#ohosinputmethodsubtype-input-method-subtype)>&gt;| Yes| Callback used to return all subtypes of the specified input method.|
 
 **Error codes**
 
@@ -3352,7 +3352,7 @@ Obtains all subtypes of a specified input method. This API uses a promise to ret
 
 | Type                                                       | Description                  |
 | ----------------------------------------------------------- | ---------------------- |
-| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#ohosinputmethodsubtype-Input-method-subtype)>>| Promise used to return all subtypes of the specified input method.|
+| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#ohosinputmethodsubtype-input-method-subtype)>>| Promise used to return all subtypes of the specified input method.|
 
 **Error codes**
 
@@ -3400,7 +3400,7 @@ Obtains all subtypes of this input method. This API uses an asynchronous callbac
 
 | Name  | Type                                              | Mandatory| Description                  |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#ohosinputmethodsubtype-Input-method-subtype)>&gt;| Yes  | Callback used to return all subtypes of the current input method.|
+| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#ohosinputmethodsubtype-input-method-subtype)>&gt;| Yes  | Callback used to return all subtypes of the current input method.|
 
 **Error codes**
 
@@ -3443,7 +3443,7 @@ Obtains all subtypes of this input method. This API uses a promise to return the
 
 | Type                                                       | Description                  |
 | ----------------------------------------------------------- | ---------------------- |
-| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#ohosinputmethodsubtype-Input-method-subtype)>>| Promise used to return all subtypes of the current input method.|
+| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#ohosinputmethodsubtype-input-method-subtype)>>| Promise used to return all subtypes of the current input method.|
 
 **Error codes**
 
