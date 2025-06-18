@@ -305,7 +305,7 @@ java -jar app_packing_tool.jar --mode res --entrycard-path <path> --pack-info-pa
 
 >**说明：**
 >
-> - 在API version 16之前，App打包时要求所有HAP/HSP的minCompatibleVersionCode、targetAPIVersion和minAPIVersion一致。
+> - 在API version 16之前，App打包时要求所有HAP/HSP的minCompatibleVersionCode、targetAPIVersion一致。
 > - 在API version 20之前，App打包时要求所有HAP/HSP的minAPIVersion一致。
 
 **打包App时的压缩规则：** 打包App时，对release模式的HAP、HSP包会进行压缩，对debug模式的HAP、HSP包不会压缩。
