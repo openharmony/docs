@@ -1236,7 +1236,7 @@ getValueForFlutter(columnIndex: number): ValueType
 
 | 参数名      | 类型   | 必填 | 说明                    |
 | ----------- | ------ | ---- | ----------------------- |
-| columnIndex | number | 是   | 指定的列索引，从0开始。 |
+| columnIndex | number | 是   | 指定的列索引，从0开始的整数。 |
 
 **返回值：**
 
@@ -1246,7 +1246,7 @@ getValueForFlutter(columnIndex: number): ValueType
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。其中，14800011错误码处理可参考[数据库备份与恢复](../../database/data-backup-and-restore.md)。
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。其中，14800011错误码处理可参考[数据库备份与恢复](../../database/data-backup-and-restore.md)。
 
 | **错误码ID** | **错误信息**     |
 |-----------|---------|
@@ -1274,7 +1274,7 @@ if (resultSet != undefined) {
 
 getRowForFlutter(): ValuesBucket
 
-获取指定行中所有列的值，如果当前行中某列的值超出number的值范围，则返回字符串类型。
+获取指定行中所有列的值，如果当前行中某列的值超出number的取值范围，则返回字符串类型。
 
 接口仅用于Flutter。
 
