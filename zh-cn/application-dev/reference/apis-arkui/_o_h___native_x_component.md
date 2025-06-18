@@ -1996,7 +1996,7 @@ void OH_ArkUI_SurfaceCallback_SetSurfaceCreatedEvent(OH_ArkUI_SurfaceCallback* c
 ### OH_ArkUI_SurfaceCallback_SetSurfaceChangedEvent()
 
 ```
-void OH_ArkUI_SurfaceCallback_SetSurfaceCreatedEvent(OH_ArkUI_SurfaceCallback* callback, void (*onSurfaceChanged)(OH_ArkUI_SurfaceHolder* surfaceHolder, uint64_t width, uint64_t heigh))
+void OH_ArkUI_SurfaceCallback_SetSurfaceChangedEvent(OH_ArkUI_SurfaceCallback* callback, void (*onSurfaceChanged)(OH_ArkUI_SurfaceHolder* surfaceHolder, uint64_t width, uint64_t height))
 ```
 
 **描述：**
@@ -2012,12 +2012,12 @@ void OH_ArkUI_SurfaceCallback_SetSurfaceCreatedEvent(OH_ArkUI_SurfaceCallback* c
 | 名称      | 描述                                    |
 | --------- | --------------------------------------- |
 | callback |  表示指向Surface生命周期回调的指针。 |
-| onSurfaceChanged |  表示声明Surface大小改变时会触发的回调事件。 <br> - surfaceHolder: 表示指向[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例的指针。 |
+| onSurfaceChanged |  表示声明Surface大小改变时会触发的回调事件。 <br> - surfaceHolder: 表示指向[OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)实例的指针。 <br> - width: 表示Surface大小变化后的宽度。 <br> - height: 表示Surface大小变化后的高度。 |
 
 ### OH_ArkUI_SurfaceCallback_SetSurfaceDestroyedEvent()
 
 ```
-void OH_ArkUI_SurfaceCallback_SetSurfaceCreatedEvent(OH_ArkUI_SurfaceCallback* callback, void (*onSurfaceDestroyed)(OH_ArkUI_SurfaceHolder* surfaceHolder))
+void OH_ArkUI_SurfaceCallback_SetSurfaceDestroyedEvent(OH_ArkUI_SurfaceCallback* callback, void (*onSurfaceDestroyed)(OH_ArkUI_SurfaceHolder* surfaceHolder))
 ```
 
 **描述：**

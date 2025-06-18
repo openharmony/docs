@@ -218,7 +218,7 @@ accessibilityRole(role: AccessibilityRoleType)
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| role | [AccessibilityRoleType](ts-universal-attributes-accessibility.md#AccessibilityRoleType18) | 是   | 屏幕朗读播报的组件类型，如按钮、图表。具体类型可由开发者自定义。 |
+| role | [AccessibilityRoleType](ts-universal-attributes-accessibility.md#accessibilityroletype18枚举说明) | 是   | 屏幕朗读播报的组件类型，如按钮、图表。具体类型可由开发者自定义。 |
 
 ## onAccessibilityFocus<sup>18+</sup>
 
@@ -236,7 +236,7 @@ onAccessibilityFocus(callback: AccessibilityFocusCallback)
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| callback | [AccessibilityFocusCallback](ts-universal-attributes-accessibility.md#AccessibilityFocusCallback18) | 是   | 向注册回调函数方通知当前获焦、失焦状态。 |
+| callback | [AccessibilityFocusCallback](ts-universal-attributes-accessibility.md#accessibilityfocuscallback18) | 是   | 向注册回调函数方通知当前获焦、失焦状态。 |
 
 ## AccessibilityFocusCallback<sup>18+</sup>
 

@@ -26,7 +26,7 @@ PageAbility生命周期是PageAbility被调度到INACTIVE、ACTIVE、BACKGROUND�
 
 | 接口名 | 接口描述 |
 | -------- | -------- |
-| onCreate() | Ability第一次启动创建Ability时调用onCreate方法，开发者可以在该方法里做一些应用初始化工作。 |
+| onCreate() | Ability第一次启动时调用onCreate方法，开发者可以在该方法里做一些应用初始化工作。 |
 | onDestroy() | 应用退出，销毁Ability对象前调用onDestroy方法，开发者可以在该方法里做一些回收资源、清空缓存等应用退出前的准备工作。 |
 | onActive() | Ability切换到前台，并且已经获取焦点时调用onActive方法。 |
 | onInactive() | Ability失去焦点时调用onInactive方法，Ability在进入后台状态时会先失去焦点，再进入后台。 |

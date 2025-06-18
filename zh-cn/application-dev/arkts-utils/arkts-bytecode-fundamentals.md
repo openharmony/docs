@@ -13,13 +13,13 @@
 
 |     术语      |      说明        |
 |   ----------  |    ----------   |
-|  acc         |	accumulator，累加器，方舟字节码中一个特殊的寄存器。   |
-|  bit	|  一个比特，本文中用位表示。   |
-|  hole	|  还未进行初始化的对象或变量。   |
+|  acc         |	accumulator，累加器，方舟字节码中一个特殊的寄存器，用于存储大多数指令的默认输入或输出值。   |
+|  bit	|  比特，本文中用位表示。   |
+|  hole	|  尚未初始化的对象或变量。   |
 |  id	|  index，索引，是string id/method id/literal id的总称。   |
-|  string id	|  string index，16位的数字，用于索引到对应的字符串。   |
-|  method id	|  method index，16位的数字，用于索引到对应的方法。   |
-|  literal id  |     literal index，16位的数字，用于索引到对应的字面量数组。   |
+|  string id	|  string index，字符串索引，16位的数字，用于索引到对应的字符串。   |
+|  method id	|  method index，方法索引，16位的数字，用于索引到对应的方法。   |
+|  literal id  |     literal index，字面量索引，16位的数字，用于索引到对应的字面量数组。   |
 |  lexical environment	|  词法环境，用来存放闭包变量的语义环境。   |
 |  lexical variable	|  词法变量，词法环境中所存的闭包变量。   |
 

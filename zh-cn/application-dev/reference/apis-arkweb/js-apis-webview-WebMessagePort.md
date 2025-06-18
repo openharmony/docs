@@ -20,7 +20,7 @@
 
 postMessageEvent(message: WebMessage): void
 
-发送[WebMessage](./js-apis-webview-t.md#webmessage)类型消息给HTML5侧，必须先调用[onMessageEvent](#onmessageevent9)，否则会发送失败。完整示例代码参考[postMessage](./js-apis-webview-WebviewController.md#postmessage)。
+发送[WebMessage](./js-apis-webview-t.md#webmessage)类型消息给HTML5侧，必须先调用[onMessageEvent](#onmessageevent)，否则会发送失败。完整示例代码参考[postMessage](./js-apis-webview-WebviewController.md#postmessage)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

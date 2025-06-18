@@ -666,7 +666,7 @@ struct MenuExample {
 }
 ```
 
-![zh-cn_image_0000001174582862](figures/preview-symbol.jpeg)
+![preview-symbol](figures/preview-symbol.png)
 
 ### 示例10（设置一镜到底动效）
 
@@ -851,8 +851,9 @@ struct Index {
             .margin(100)
             .fontSize(30)
             .bindContextMenu(this.MyMenu, ResponseType.LongPress,
-              { preview: MenuPreviewMode.IMAGE,
-                previewBorderRadius:50
+              {
+                preview: MenuPreviewMode.IMAGE,
+                previewBorderRadius: 50
               })
             .backgroundColor("#ff7fcdff")
         }

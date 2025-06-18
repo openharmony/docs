@@ -8,7 +8,7 @@
   - [请求自绘制内容绘制帧率](displaysync-xcomponent.md)
   - [NativeDisplaySoloist开发指导 (C/C++)](displaysoloist-native-guidelines.md)
 - [过度绘制调试使用指导](overdraw-dfx-guidelines.md)
-- 图形绘制与显示<!--graphic-drawing-->
+- 图形绘制与显示<!--graphic-drawing-and-display-->
   - [图形绘制与显示开发概述](graphic-drawing-overview.md)
   - 画布的获取与绘制结果的显示<!--canvas-get-result-draw-->
     - [画布的获取与绘制结果的显示（ArkTS）](canvas-get-result-draw-arkts.md)
@@ -49,6 +49,6 @@
       - [复杂文本绘制与显示（C/C++）](complex-text-c.md)
 - [NativeBuffer开发指导 (C/C++)](native-buffer-guidelines.md)
 - [NativeImage开发指导 (C/C++)](native-image-guidelines.md)
-- [NativeVsync开发指导 (C/C++)](native-vsync-guidelines.md)
+- [NativeVSync开发指导 (C/C++)](native-vsync-guidelines.md)
 - [NativeWindow开发指导 (C/C++)](native-window-guidelines.md)
 - [图形开发术语](graphic-term.md)

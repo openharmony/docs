@@ -276,4 +276,4 @@ soundpool支持的格式与底层一致，支持的格式可以参考文档：[�
 **参考资料**
 
 1. [scale](../reference/apis-image-kit/js-apis-image.md#scale9)
-2. [packing](../reference/apis-image-kit/js-apis-image.md#packing)
+2. [packing](../reference/apis-image-kit/js-apis-image.md#packing13)

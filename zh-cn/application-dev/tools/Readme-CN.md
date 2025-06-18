@@ -18,7 +18,7 @@
 <!--Del-->
 - [acm工具](acm-tool.md)
 <!--DelEnd-->
-- 命令行工具
+- 命令行工具<!--command-line-utilities-->
   - [toybox工具](toybox.md)
   - [mediatool工具](mediatool.md)
   - [devicedebug工具](devicedebug-tool.md)

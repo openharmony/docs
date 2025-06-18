@@ -128,7 +128,7 @@ type SaveButtonCallback = (event: ClickEvent, result: SaveButtonOnClickResult, e
 
 ## 属性
 
-不支持通用属性，仅继承[安全控件通用属性](ts-securitycomponent-attributes.md#属性)。
+不支持通用属性，仅继承[安全控件通用属性](ts-securitycomponent-attributes.md)。
 
 ## 事件
 

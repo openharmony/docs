@@ -1,6 +1,6 @@
 # Using Toasts (Toast)
 
-A toast is a temporary window provides brief feedback or status information to users. It typically appears at the bottom or top of the screen for a short duration before automatically disappearing. The main purpose of a toast is to provide concise and non-intrusive information, avoiding disruption to the user's current workflow.
+A toast is a temporary window that provides brief feedback or status information to users. It typically appears at the bottom or top of the screen for a short duration before automatically disappearing. The main purpose of a toast is to provide concise and non-intrusive information, avoiding disruption to the user's current workflow.
 
 
 You can use the [getPromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#getpromptaction) method in [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext) to obtain the [PromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#promptaction) object associated with the current UI context, and then use the object to call [showToast](../reference/apis-arkui/js-apis-arkui-UIContext.md#showtoast) to create and display a toast.
@@ -32,7 +32,7 @@ Before displaying a TOP_MOST toast, a full-screen subwindow is created (the size
 | Item| DEFAULT | TOP_MOST |
 | --- | --- | --- |
 | Subwindow creation | No| Yes|
-| Layer order| The toast is is displayed within the main window, with the same layer level as the main window, generally low.| The toast is displayed in a subwindow, generally higher than the main window, higher than other dialog box components, but lower than the soft keyboard and permission request dialog box.|
+| Layer order| The toast is displayed within the main window, with the same layer level as the main window, generally low.| The toast is displayed in a subwindow, generally higher than the main window, higher than other dialog box components, but lower than the soft keyboard and permission request dialog box.|
 | Soft keyboard avoidance| The toast always moves up the soft keyboard when it is displayed.| The toast avoids the keyboard only if the toast is blocked, and after avoidance, the distance between the bottom of the toast and the soft keyboard is 80 vp.|
 | UIExtension layout| The toast is aligned with UIExtension as the main window, with alignment consistent with UIExtension.| The toast is aligned with the host window as the main window, with alignment consistent with the host window.|
 

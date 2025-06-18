@@ -31,7 +31,7 @@
         - [主线程超时事件介绍](hiappevent-watcher-mainthreadjank-events.md)
         - [订阅主线程超时事件（ArkTS）](hiappevent-watcher-mainthreadjank-events-arkts.md)
         - [订阅主线程超时事件（C/C++）](hiappevent-watcher-mainthreadjank-events-ndk.md)
-      - 任务执行超时事件
+      - 任务执行超时事件<!--app-hicollie-events-->
         - [任务执行超时事件介绍](hiappevent-watcher-apphicollie-events.md)
         - [订阅任务执行超时事件（C/C++）](hiappevent-watcher-apphicollie-events-ndk.md)
   <!--Del-->

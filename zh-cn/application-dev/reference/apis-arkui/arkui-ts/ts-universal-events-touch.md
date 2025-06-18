@@ -122,7 +122,7 @@ struct TouchExample {
     Column() {
       Button('Touch').height(40).width(100)
         .onTouch((event?: TouchEvent) => {
-          if (event) {
+          if (event && event.sourceTool === SourceTool.Finger) {
             if (event.type === TouchType.Down) {
               this.eventType = 'Down'
             }
