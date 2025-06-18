@@ -4900,6 +4900,20 @@
 
 **起始版本**：20
 
+## ohos.permission.ACCESS_TVCOOPERATION
+
+允许系统应用接入协同服务。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：TV
+
+**起始版本**：20
+
 ## ohos.permission.GRANT_URI_PERMISSION_AS_CALLER
 
 允许应用以调用方的身份将URI访问权限授权给目标应用。
