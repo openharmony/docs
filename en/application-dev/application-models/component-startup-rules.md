@@ -4,7 +4,7 @@
 Component startup refers to the behavior of starting or connecting to an application component.
 
 
-- Start the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md), ServiceExtensionAbility, and DataShareExtensionAbility components. For example, you can use [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability), **startServiceExtensionAbility()**, [startAbilityByCall()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall), and [openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12).
+- Start the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md), ServiceExtensionAbility, and DataShareExtensionAbility components. For example, you can use [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability), **startServiceExtensionAbility()**, [startAbilityByCall()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall), and [openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#openlink12).
 
 - Connect to the ServiceExtensionAbility and DataShareExtensionAbility components. For example, you can use [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) and **createDataShareHelper()**.
 

@@ -1564,7 +1564,7 @@ When **typeNode** is used to create nodes such as **Text**, **Image**, **Select*
 
 **Example**
 
-For details, see [Example of Customizing a Node of a Specific Type](#example-of-customizing-a node-of-a-specific-type).
+For details, see [Example of Customizing a Node of a Specific Type](#example-of-customizing-a-node-of-a-specific-type).
 
 ### Text<sup>12+</sup>
 type Text = TypedFrameNode&lt;TextInterface, TextAttribute&gt;

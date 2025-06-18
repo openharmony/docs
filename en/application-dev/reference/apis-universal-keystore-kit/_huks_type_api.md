@@ -13,7 +13,7 @@ Defines the macros, enums, structs, and error codes used by OpenHarmony Universa
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description| 
 | -------- | -------- |

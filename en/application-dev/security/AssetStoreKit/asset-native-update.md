@@ -1,4 +1,4 @@
-# Update an Asset (C/C++)
+# Updating an Asset (C/C++)
 
 ## Available APIs
 

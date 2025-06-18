@@ -32,7 +32,7 @@ The **video_processing_types.h** file declares the video processing types.
 | -------- | -------- |
 | typedef struct [OH_VideoProcessing](_video_processing.md#oh_videoprocessing ) [OH_VideoProcessing](_video_processing.md#oh_videoprocessing) | Defines a struct for the video processing object.| 
 | typedef struct NativeWindow [OHNativeWindow](_video_processing.md#ohnativewindow) | Defines a struct for the NativeWindow object.| 
-| typedef struct [OH_AVFormat](_video_processing.md#oh_avformat-1) [OH_AVFormat](_video_processing.md#oh_avformat) | Defines a struct for the OH_AVFormat object.| 
+| typedef struct [OH_AVFormat](_video_processing.md#oh_avformat) [OH_AVFormat](_video_processing.md#oh_avformat) | Defines a struct for the OH_AVFormat object.| 
 | typedef struct [VideoProcessing_ColorSpaceInfo](_video_processing___color_space_info.md) [VideoProcessing_ColorSpaceInfo](_video_processing.md#videoprocessing_colorspaceinfo) | Defines a struct for the color space information of video processing.| 
 | typedef enum [VideoDetailEnhancer_QualityLevel](_video_processing.md#videodetailenhancer_qualitylevel-1) [VideoDetailEnhancer_QualityLevel](_video_processing.md#videodetailenhancer_qualitylevel) | Defines an enum for the quality levels for detail enhancement.| 
 | typedef enum [VideoProcessing_ErrorCode](_video_processing.md#videoprocessing_errorcode-1) [VideoProcessing_ErrorCode](_video_processing.md#videoprocessing_errorcode) | Defines an enum for the video processing error codes.| 

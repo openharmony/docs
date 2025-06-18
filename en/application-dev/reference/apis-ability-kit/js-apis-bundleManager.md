@@ -1484,7 +1484,7 @@ Defines the metadata of a module.
 
 | Type                                                        | Description          |
 | ------------------------------------------------------------ | -------------- |
-| [_ModuleMetadata](js-apis-bundleManager-applicationInfo.md#ModuleMetadata10) | Metadata of the module.|
+| [_ModuleMetadata](js-apis-bundleManager-applicationInfo.md#modulemetadata10) | Metadata of the module.|
 
 ## Metadata
 

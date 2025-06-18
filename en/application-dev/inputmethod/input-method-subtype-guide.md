@@ -29,7 +29,7 @@ The input method subtypes allow the input method to switch to a specific mode or
    }
    ```
    
-2. Configure the subtype fields. For details about the fields, see [InputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod-subtype.md#inputmethodsubtype). Make sure your configuration is in strict compliance with the configuration file and field specifications. For details about how to configure the **locale** field, see [BCP 47](https://tools.ietf.org/html/bcp47).
+2. Configure the subtype fields. For details about the fields, see [InputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod-subtype.md). Make sure your configuration is in strict compliance with the configuration file and field specifications. For details about how to configure the **locale** field, see [BCP 47](https://tools.ietf.org/html/bcp47).
    ```
    {
      "subtypes": [

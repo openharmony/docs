@@ -48,7 +48,7 @@ tabIndex(index: number): T
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| index  | number | 是   | 自定义组件tab键走焦能力。若有配置了tabIndex大于0的组件，则tab键走焦只会在tabIndex大于0的组件内按照tabIndex的值从小到大并循环依次走焦。若没有配置tabIndex大于0的组件，则tabIndex等于0的组件按照组件预设的走焦规则走焦。<br />[UiExtension](../js-apis-arkui-uiExtension.md)组件未适配tabIndex，在含有[UiExtension](../js-apis-arkui-uiExtension.md)组件的页面使用tabIndex会导致走焦错乱。<br />- tabIndex >= 0：表示元素是可聚焦的，并且可以通过tab键走焦来访问到该元素。<br />- tabIndex < 0（通常是tabIndex = -1）：表示元素是可聚焦的，但是不能通过tab键走焦来访问到该元素。<br/>默认值：0 <br/> **说明：**<br/> tabIndex与focusScopeId不能混用。
+| index  | number | 是   | 自定义组件tab键走焦能力。若有配置了tabIndex大于0的组件，则tab键走焦只会在tabIndex大于0的组件内按照tabIndex的值从小到大并循环依次走焦。若没有配置tabIndex大于0的组件，则tabIndex等于0的组件按照组件预设的走焦规则走焦。<br />[UiExtension](../js-apis-arkui-uiExtension.md)组件未适配tabIndex，在含有[UiExtension](../js-apis-arkui-uiExtension.md)组件的[层级页面](../../../ui/arkts-common-events-focus-event.md#基础概念)使用tabIndex会导致走焦错乱。<br />- tabIndex >= 0：表示元素是可聚焦的，并且可以通过tab键走焦来访问到该元素。<br />- tabIndex < 0（通常是tabIndex = -1）：表示元素是可聚焦的，但是不能通过tab键走焦来访问到该元素。<br/>默认值：0 <br/> **说明：**<br/> tabIndex与focusScopeId不能混用。
 |
 
 **返回值：**
@@ -61,7 +61,11 @@ tabIndex(index: number): T
 
 defaultFocus(value: boolean): T
 
-设置当前组件是否为当前页面上的默认焦点。
+设置当前组件是否为当前[层级页面](../../../ui/arkts-common-events-focus-event.md#基础概念)上的默认焦点。
+
+>  **说明：**
+>
+>  可以设置默认焦点的页面指的是支持页面路由或是弹窗类的容器组件，例如Page、NaviDestination、NavBar、PopUp、Dialog等。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -71,7 +75,7 @@ defaultFocus(value: boolean): T
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 设置当前组件是否为当前页面上的默认焦点，仅在初次创建的页面第一次进入时生效。<br/>默认值：false<br/>**说明：** <br/>值为true则表示为默认焦点，值为false时无效。<br/>若页面内无任何组件设置defaultFocus(true)，API version 11及之前，页面的默认焦点是当前页面上首个可获焦的非容器组件，API version 11之后，页面的默认焦点就是页面的根容器。<br/>若某页面内有多个组件设置了defaultFocus(true)，则以组件树深度遍历找到的第一个组件为默认焦点。 |
+| value  | boolean | 是   | 设置当前组件是否为当前[层级页面](../../../ui/arkts-common-events-focus-event.md#基础概念)上的默认焦点，仅在初次创建的[层级页面](../../../ui/arkts-common-events-focus-event.md#基础概念)第一次进入时生效。<br/>默认值：false<br/>**说明：** <br/>值为true则表示为默认焦点，值为false时无效。<br/>若[层级页面](../../../ui/arkts-common-events-focus-event.md#基础概念)内无任何组件设置defaultFocus(true)，API version 11及之前，[层级页面](../../../ui/arkts-common-events-focus-event.md#基础概念)的默认焦点是当前[层级页面](../../../ui/arkts-common-events-focus-event.md#基础概念)上首个可获焦的非容器组件，API version 11之后，[层级页面](../../../ui/arkts-common-events-focus-event.md#基础概念)的默认焦点就是[层级页面](../../../ui/arkts-common-events-focus-event.md#基础概念)的根容器。<br/>若某[层级页面](../../../ui/arkts-common-events-focus-event.md#基础概念)内有多个组件设置了defaultFocus(true)，则以组件树深度遍历找到的第一个组件为默认焦点。 |
 
 **返回值：**
 
@@ -155,7 +159,8 @@ focusBox(style: FocusBoxStyle): T
 
 requestFocus(value: string): boolean
 
-方法语句中可使用的全局接口，调用此接口可以主动让焦点转移至参数指定的组件上，非当前帧生效，在下一帧才生效。直接使用focusControl可能导致[UI上下文不明确](../../../ui/arkts-global-interface.md)的问题，建议使用FocusController中的[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)。
+方法语句中可使用的全局接口，调用此接口可以主动让焦点在下一帧渲染时转移至参数指定的组件上。
+如果需要指定组件立刻获焦，推荐使用FocusController中的焦点同步转移接口[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -200,7 +205,7 @@ focusScopePriority(scopeId: string, priority?: FocusPriority): T
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | scopeId  | string | 是   | 当前组件设置的获焦优先级生效的容器组件的id标识。<br/>**说明：** <br/>1.当前组件必须在scopeId所标识的容器内，或其所属容器在scopeId所标识的容器内。<br/>2.组件不可重复设置多个优先级。<br/>3.设置了focusScopeId的容器组件不可设置优先级。 |
-| priority  | [FocusPriority](#focuspriority12)  | 否   | 获焦优先级。<br/>**说明：** <br/>未设置priority时，默认为AUTO优先级。<br/>优先级对走焦以及获焦组件的影响：<br/>1.容器整体获焦（层级页面切换/焦点切换到焦点组/容器组件使用requestFocus申请焦点）时，若容器内存在优先级为PREVIOUS的组件，则优先级为PREVIOUS的组件获焦，否则，由容器内上次获焦的组件获焦。<br/>2.容器非整体获焦（非焦点组场景下使用tab键/方向键走焦）时，若容器为首次获焦，则容器内优先级最高的组件获焦，若容器非首次获焦，不考虑优先级按照位置顺序走焦。 |
+| priority  | [FocusPriority](#focuspriority12)  | 否   | 获焦优先级。<br/>**说明：** <br/>未设置priority时，默认为AUTO优先级。<br/>优先级对走焦以及获焦组件的影响：<br/>1.容器整体获焦（[层级页面](../../../ui/arkts-common-events-focus-event.md#基础概念)切换/焦点切换到焦点组/容器组件使用requestFocus申请焦点）时，若容器内存在优先级为PREVIOUS的组件，则优先级为PREVIOUS的组件获焦，否则，由容器内上次获焦的组件获焦。<br/>2.容器非整体获焦（非焦点组场景下使用tab键/方向键走焦）时，若容器为首次获焦，则容器内优先级最高的组件获焦，若容器非首次获焦，不考虑优先级按照位置顺序走焦。 |
 
 **返回值：**
 
@@ -247,7 +252,7 @@ focusScopeId(id: string, isGroup?: boolean): T
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| id  | string | 是   | 设置当前容器组件的id标识。<br/>**说明：** <br/>单个层级页面下，id标识全局唯一，不可重复。 |
+| id  | string | 是   | 设置当前容器组件的id标识。<br/>**说明：** <br/>单个[层级页面](../../../ui/arkts-common-events-focus-event.md#基础概念)下，id标识全局唯一，不可重复。 |
 | isGroup  | boolean | 否   | 设置当前容器组件是否为焦点组。true表示容器组件为焦点组，false表示容器组件不是焦点组。默认值为false。<br/>**说明：** <br/>焦点组不可嵌套，不可重复配置。<br/> 焦点组不能和tabIndex混用。<br/>配置焦点组的目的是使得容器及容器内的元素可以按照焦点组规则走焦。焦点组走焦规则：<br/>1.焦点组容器内只能通过方向键走焦，tab键会使焦点跳出焦点组容器。<br/>2.通过方向键使焦点从焦点组容器外切换到焦点组容器内时，若焦点组容器内存在优先级为PREVIOUS的组件，则优先级为PREVIOUS的组件获焦，否则，由焦点组容器内上次获焦的组件获焦。|
 
 **返回值：**
@@ -268,7 +273,7 @@ focusScopeId(id: string, isGroup?: boolean, arrowStepOut?: boolean): T
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| id  | string | 是   | 设置当前容器组件的id标识。<br/>**说明：** <br/>单个层级页面下，id标识全局唯一，不可重复。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| id  | string | 是   | 设置当前容器组件的id标识。<br/>**说明：** <br/>单个[层级页面](../../../ui/arkts-common-events-focus-event.md#基础概念)下，id标识全局唯一，不可重复。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | isGroup  | boolean | 否   | 设置当前容器组件是否为焦点组。true表示容器组件为焦点组，false表示容器组件不是焦点组。默认值为false。<br/>**说明：** <br/>焦点组不可嵌套，不可重复配置。<br/> 焦点组不能和tabIndex混用。<br/>配置焦点组的目的是使得容器及容器内的元素可以按照焦点组规则走焦。焦点组走焦规则：<br/>1.焦点组容器内只能通过方向键走焦，tab键会使焦点跳出焦点组容器。<br/>2.通过方向键使焦点从焦点组容器外切换到焦点组容器内时，若焦点组容器内存在优先级为PREVIOUS的组件，则优先级为PREVIOUS的组件获焦，否则，由焦点组容器内上次获焦的组件获焦。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | arrowStepOut<sup>14+</sup>  | boolean | 否   | 设置能否使用方向键走焦出当前焦点组。true表示可以使用方向键走焦出当前焦点组，false表示不能使用方向键走焦出当前焦点组。默认值为true。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
@@ -292,7 +297,7 @@ tabStop(isTabStop: boolean): T
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isTabStop  | boolean | 是   | 设置当前容器组件是否为走焦可停留容器。true表示当前容器组件为走焦可停留容器，false表示当前容器组件不是走焦可停留容器。<br/>**说明：** <br/>1.配置tabStop需要确保是容器组件且有可获焦的孩子组件，默认容器组件不能直接获焦。<br/> 2.通过[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)请求焦点，如果是容器组件且配置tabStop，焦点能够停留在容器组件，如果未配置tabStop，即使整条焦点链上有配置了tabStop的组件，该组件依然能获取到焦点。<br/>3.配置tabStop的容器不允许嵌套超过2层。<br/>tabStop走焦规则：<br/>1.通过tab键和方向键走焦，焦点会停留在配置了tabStop的组件上，如果焦点停留在配置了tabStop的容器内部时，可以走焦到容器内部的下一个可获焦组件，如果焦点停留在配置了tabStop的容器外部时，可以走焦到容器外的下一个可获焦组件。<br/>2.当焦点停留在tabStop上时，按Enter键可以走焦到内部第一个可获焦组件，按ESC能够将焦点退回到不超过当前层级页面根容器的上一个配置了tabStop的组件，按空格键可以响应该容器的onClick事件。<br/>3.不建议根容器配置tabStop。如果根容器配置了tabStop，通过[clearFocus](../js-apis-arkui-UIContext.md#clearfocus12)将焦点清理到根容器，再按Enter键会重新走回内部上一次获焦组件，通过ESC键将焦点清理到根容器，再按Enter键会走焦到内部第一个可获焦组件。|
+| isTabStop  | boolean | 是   | 设置当前容器组件是否为走焦可停留容器。true表示当前容器组件为走焦可停留容器，false表示当前容器组件不是走焦可停留容器。<br/>**说明：** <br/>1.配置tabStop需要确保是容器组件且有可获焦的孩子组件，默认容器组件不能直接获焦。<br/> 2.通过[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)请求焦点，如果是容器组件且配置tabStop，焦点能够停留在容器组件，如果未配置tabStop，即使整条焦点链上有配置了tabStop的组件，该组件依然能获取到焦点。<br/>3.配置tabStop的容器不允许嵌套超过2层。<br/>tabStop走焦规则：<br/>1.通过tab键和方向键走焦，焦点会停留在配置了tabStop的组件上，如果焦点停留在配置了tabStop的容器内部时，可以走焦到容器内部的下一个可获焦组件，如果焦点停留在配置了tabStop的容器外部时，可以走焦到容器外的下一个可获焦组件。<br/>2.当焦点停留在tabStop上时，按Enter键可以走焦到内部第一个可获焦组件，按ESC能够将焦点退回到不超过当前[层级页面](../../../ui/arkts-common-events-focus-event.md#基础概念)根容器的上一个配置了tabStop的组件，按空格键可以响应该容器的onClick事件。<br/>3.不建议根容器配置tabStop。如果根容器配置了tabStop，通过[clearFocus](../js-apis-arkui-UIContext.md#clearfocus12)将焦点清理到根容器，再按Enter键会重新走回内部上一次获焦组件，通过ESC键将焦点清理到根容器，再按Enter键会走焦到内部第一个可获焦组件。|
 
 **返回值：**
 
@@ -349,7 +354,7 @@ nextFocus(nextStep: Optional\<FocusMovement>): T
 
 ### 示例1（设置组件获焦和走焦的效果）
 
-该示例通过配置defaultFocus可以使绑定的组件成为页面创建后首次获焦的焦点，配置groupDefaultFocus可以使绑定的组件成为tabIndex容器创建后首次获焦的焦点，配置focusOnTouch可以使绑定的组件点击后立即获焦。
+该示例通过配置defaultFocus可以使绑定的组件成为[层级页面](../../../ui/arkts-common-events-focus-event.md#基础概念)创建后首次获焦的焦点，配置groupDefaultFocus可以使绑定的组件成为tabIndex容器创建后首次获焦的焦点，配置focusOnTouch可以使绑定的组件点击后立即获焦。
 
 ```ts
 // focusTest.ets
@@ -426,7 +431,7 @@ struct FocusableExample {
               this.inputValue = value
             })
             .width(156)
-            .defaultFocus(true)             // 该TextInput组件为页面的初始默认焦点
+            .defaultFocus(true)             // 该TextInput组件为层级页面的初始默认焦点
           Button('Group3')
             .width(165)
             .height(40)

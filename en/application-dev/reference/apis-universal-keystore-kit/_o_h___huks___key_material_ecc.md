@@ -9,6 +9,8 @@ Defines the structure of an Elliptic Curve Cryptography (ECC) key.
 
 **Related module**: [HuksTypeApi](_huks_type_api.md)
 
+**Header file**: [native_huks_type.h](native__huks__type_8h.md)
+
 
 ## Summary
 

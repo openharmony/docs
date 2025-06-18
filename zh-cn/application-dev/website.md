@@ -794,22 +794,16 @@
         - [跨设备文件拷贝](file-management/file-copy-across-devices.md)
     - Form Kit（卡片开发服务）<!--form-kit-->
       - [Form Kit简介](form/formkit-overview.md)
-      - ArkTS卡片开发（推荐）<!--arkts-ui-widget-->
+      - ArkTS卡片开发（推荐）<!--arkts-ui-->
         - [ArkTS卡片概述](form/arkts-form-overview.md)
-        - ArkTS卡片开发指导<!--arkts-ui-widget-dev-->
-          - [创建ArkTS卡片](form/arkts-ui-widget-creation.md)
-          - [配置卡片的配置文件](form/arkts-ui-widget-configuration.md)
-          - [卡片生命周期管理](form/arkts-ui-widget-lifecycle.md)
-          - 开发卡片页面<!--arkts-ui-widget-page-->
-            - [卡片页面能力说明](form/arkts-ui-widget-page-overview.md)
-            - [卡片使用动效能力](form/arkts-ui-widget-page-animation.md)
-            - [卡片使用自定义绘制能力](form/arkts-ui-widget-page-custom-drawing.md)
-          - 开发卡片事件<!--arkts-ui-widget-event-->
-            - [卡片事件能力说明](form/arkts-ui-widget-event-overview.md)
-            - [拉起卡片提供方的UIAbility(router事件)](form/arkts-ui-widget-event-router.md)
-            - [拉起卡片提供方的UIAbility到后台(call事件)](form/arkts-ui-widget-event-call.md)
-            - [通过message事件刷新卡片内容](form/arkts-ui-widget-event-formextensionability.md)
-            - [通过router或call事件刷新卡片内容](form/arkts-ui-widget-event-uiability.md)
+        - [创建ArkTS卡片](form/arkts-ui-widget-creation.md)
+        - [配置ArkTS卡片的配置文件](form/arkts-ui-widget-configuration.md)
+        - [管理ArkTS卡片生命周期](form/arkts-ui-widget-lifecycle.md)
+        - ArkTS卡片提供方开发指导<!--arkts-ui-widget-->
+          - ArkTS卡片UI界面开发<!--arkts-ui-widget-page-->
+            - [ArkTS卡片界面开发概述](form/arkts-ui-widget-page-overview.md)
+            - [ArkTS卡片为组件添加动效](form/arkts-ui-widget-page-animation.md)
+            - [ArkTS卡片使用画布组件绘制自定义图形](form/arkts-ui-widget-page-custom-drawing.md)
           - ArkTS卡片页面刷新<!--arkts-ui-widget-interaction-->
             - [ArkTS卡片页面刷新概述](form/arkts-ui-widget-interaction-overview.md)
             - [ArkTS卡片主动刷新](form/arkts-ui-widget-active-refresh.md)
@@ -819,15 +813,21 @@
             <!--DelEnd-->
             - [刷新本地图片和网络图片](form/arkts-ui-widget-image-update.md)
             - [根据卡片状态刷新不同内容](form/arkts-ui-widget-update-by-status.md)
-        - ArkTS卡片页面编辑<!--arkts-ui-widget-edit-->
-          - [ArkTS卡片页面编辑交互概述](form/arkts-ui-widget-event-formeditextensionability-overview.md)
-          - [编辑刷新卡片页面内容](form/arkts-ui-widget-event-formeditextensionability.md)
-        - 应用内请求卡片加桌<!--arkts-ui-widget-add-->
-          - [应用内拉起卡片管理加桌](form/arkts-ui-widget-open-formmanager.md)
-        <!--Del-->
-        - [卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
+          - ArkTS卡片页面交互<!--arkts-ui-widget-event-->
+            - [ArkTS卡片页面交互概述](form/arkts-ui-widget-event-overview.md)
+            - [卡片跳转到应用页面（router事件）](form/arkts-ui-widget-event-router.md)
+            - [卡片拉起应用UIAbility到后台（call事件）](form/arkts-ui-widget-event-call.md)
+            - [卡片传递消息给应用（message事件）](form/arkts-ui-widget-event-formextensionability.md)
+            - [通过router或call事件刷新卡片内容](form/arkts-ui-widget-event-uiability.md)
+          - ArkTS卡片页面编辑<!--arkts-ui-widget-edit-->
+            - [ArkTS卡片页面编辑交互概述](form/arkts-ui-widget-event-formeditextensionability-overview.md)
+            - [编辑刷新卡片页面内容](form/arkts-ui-widget-event-formeditextensionability.md)
+          - 应用内请求卡片加桌<!--arkts-ui-widget-add-->
+            - [应用内拉起卡片管理加桌](form/arkts-ui-widget-open-formmanager.md)
+        <!--Del--> 
+        - [ArkTS卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
         <!--DelEnd-->
-      - JS卡片开发
+      - JS卡片开发<!--form-js-ui-->
         - [JS卡片概述](form/js-ui-widget-overview.md)
         - [JS卡片开发指导（Stage模型）](form/js-ui-widget-development.md)
         - [JS卡片开发指导（FA模型）](form/widget-development-fa.md)
@@ -1267,11 +1267,12 @@
         - [Input Kit简介](device/input/input-overview.md)
         - [输入设备开发指导](device/input/inputdevice-guidelines.md)
         - [鼠标光标开发指导](device/input/pointerstyle-guidelines.md)
+        - [按键拦截监听开发指导](device/input/keypressed-guidelines.md) 
         <!--Del-->
         - [输入监听开发指导](device/input/inputmonitor-guidelines.md)
         - [事件注入开发指导](device/input/inputeventclient-guidelines.md)
-        - [组合按键开发指导](device/input/inputconsumer-guidelines.md)
-        - [快捷键开发指导](device/input/shortkey-guidelines.md)
+        - [全局快捷键开发指导](device/input/inputconsumer-guidelines.md)
+        - [系统预置全局快捷键开发指导](device/input/shortkey-guidelines.md)
         <!--DelEnd-->
         - [事件监听开发指导（C/C++）](device/input/monitor-guidelines.md)
         - [事件拦截开发指导（C/C++）](device/input/interceptor-guidelines.md)
@@ -4268,6 +4269,7 @@
       - ArkTS API<!--image-arkts-->
         - [@ohos.multimedia.image (图片处理)](reference/apis-image-kit/js-apis-image.md)
         - [@ohos.multimedia.sendableImage (基于Sendable对象的图片处理)](reference/apis-image-kit/js-apis-sendableImage.md)
+        - [@ohos.multimedia.videoProcessingEngine (视频处理引擎)](reference/apis-image-kit/js-apis-videoProcessingEngine.md)
         <!--Del-->
         - [@ohos.multimedia.image (图片处理)(系统接口)](reference/apis-image-kit/js-apis-image-sys.md)
         <!--DelEnd-->
@@ -4332,6 +4334,7 @@
           - [ImageProcessing_ColorSpaceInfo](reference/apis-image-kit/_image_processing___color_space_info.md)
       - 错误码<!--image-arkts-errcode-->
         - [Image错误码](reference/apis-image-kit/errorcode-image.md)
+        - [视频处理引擎错误码](reference/apis-image-kit/errorcode-videoprocessingengine.md)
     - Media Kit（媒体服务）<!--media-api-->
       - ArkTS API<!--media-arkts-->
         - [@ohos.multimedia.media (媒体服务)](reference/apis-media-kit/js-apis-media.md)

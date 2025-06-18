@@ -27,7 +27,7 @@ You can refer to the corresponding development guide and samples based on your d
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description| 
 | -------- | -------- |

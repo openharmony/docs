@@ -11,7 +11,7 @@ Provides C APIs for the network protocol stack module.
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description| 
 | -------- | -------- |
@@ -422,7 +422,7 @@ Adds the header information to the client request.
 
 **Returns**
 
-Returns **0** if the operation is successful. For details about the error codes, see [WebSocket Error Codes](#errorcode-net-webSocket.md).
+Returns **0** if the operation is successful. For details about the error codes, see [OH_WebSocket_ErrCode](#websocket_errcode).
 
 
 
@@ -448,7 +448,7 @@ Lets the WebSocket client proactively close the connection.
 
 **Returns**
 
-Returns **0** if the operation is successful. For details about the error codes, see [WebSocket Error Codes](#errorcode-net-webSocket.md).
+Returns **0** if the operation is successful. For details about the error codes, see [OH_WebSocket_ErrCode](#websocket_errcode).
 
 **Required Permissions**
 
@@ -477,7 +477,7 @@ Connects the WebSocket client to the server.
 
 **Returns**
 
-Returns **0** if the operation is successful. For details about the error codes, see [WebSocket Error Codes](#errorcode-net-webSocket.md).
+Returns **0** if the operation is successful. For details about the error codes, see [OH_WebSocket_ErrCode](#websocket_errcode).
 
 **Required Permissions**
 
@@ -531,7 +531,7 @@ Releases the context and resources of the WebSocket connection.
 
 **Returns**
 
-Returns **0** if the operation is successful. For details about the error codes, see [WebSocket Error Codes](#errorcode-net-webSocket.md).
+Returns **0** if the operation is successful. For details about the error codes, see [OH_WebSocket_ErrCode](#websocket_errcode).
 
 **Required Permissions**
 
@@ -562,7 +562,7 @@ Sends data from the WebSocket client to the server.
 
  
 
-Returns **0** if the operation is successful. For details about the error codes, see [WebSocket Error Codes](#errorcode-net-webSocket.md).
+Returns **0** if the operation is successful. For details about the error codes, see [OH_WebSocket_ErrCode](#websocket_errcode).
 
 **Required Permissions**
 

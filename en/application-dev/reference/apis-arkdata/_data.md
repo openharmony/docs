@@ -13,7 +13,7 @@ Data (distributed data manager) supports persistence of various structured data 
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description|
 | -------- | -------- |

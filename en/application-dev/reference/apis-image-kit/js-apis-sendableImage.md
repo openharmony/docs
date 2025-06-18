@@ -1739,7 +1739,7 @@ Creates an **ImageSource** instance based on a given URI.
 
 | Name| Type  | Mandatory| Description                              |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>The following formats are supported: .jpg, .png, .gif, .bmp, .webp, .dng [SVG](./js-apis-image.md#svg), and ico.|
+| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>The following formats are supported: .jpg, .png, .gif, .bmp, .webp, .dng [SVG](./js-apis-image.md#svg-tags), and ico.|
 
 **Return value**
 

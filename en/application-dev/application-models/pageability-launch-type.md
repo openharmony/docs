@@ -30,7 +30,7 @@ You can set **launchType** in the **config.json** file to configure the launch t
 ```
 
 
-When the PageAbility is started in multiton mode or it is started in singleton mode for the first time, the [PageAbility lifecycle callbacks](pageability-lifecycle.md#table13118194914476) are triggered. When it is not started for the first time in singleton mode, the **onNewWant()** callback (as described in the table below) is triggered, but the **onCreate()** callback is not.
+When the PageAbility is started in multiton mode or it is started in singleton mode for the first time, the [PageAbility lifecycle callbacks](pageability-lifecycle.md) are triggered. When it is not started for the first time in singleton mode, the **onNewWant()** callback (as described in the table below) is triggered, but the **onCreate()** callback is not.
 
 
 **Table 2** Callbacks specific to the singleton mode

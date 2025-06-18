@@ -22,7 +22,7 @@ The following figure shows the effect of the **SaveButton** component.
 
 ## How to Develop
 
-For example, to save the image in the dialog box shown above, the application only needs to use the image saving feature for a short period of time in the foreground. In this case, you can the **SaveButton** component to obtain temporary permission to save the image without requesting the related permission for the application.
+For example, to save the image in the dialog box shown above, the application only needs to use the image saving feature for a short period of time in the foreground. In this case, you can use the **SaveButton** component to obtain temporary permission to save the image without requesting the related permission for the application.
 
 1. Import the dependencies.
    

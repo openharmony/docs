@@ -11,6 +11,12 @@
 > API version 10开始支持@Reusable，支持在ArkTS中使用。
 >
 > 关于组件复用的原理与使用、优化方法、适用场景，请参考最佳实践[组件复用最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-component-reuse)。
+>
+>\@Reusable标识之后，在上下树时底层会调用该组件的[aboutToReuse的生命周期](../../../application-dev/reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoreuse10)和[aboutToRecycle的生命周期](../../../application-dev/reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttorecycle10)，因此实现复用时，我们大部分的代码都在这两个生命周期方法中。
+>
+> 如果一个组件里可复用的组件不止一个，可以使用[reuseId](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse-id.md)来区分不同结构的复用组件。
+>
+
 
 ## 限制条件
 

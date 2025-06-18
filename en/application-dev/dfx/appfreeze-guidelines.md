@@ -383,7 +383,7 @@ Tid:2212, Name:.example.freeze
 ......
 ```
 
-Based on the HiLog logs and [General Information in the Log Body](general-information-in-the-log-body), you can check whether the running code of the application
+Based on the HiLog logs, you can check whether the running code of the application
 
 has the following problems: suspended peer communication, slow application response due to high CPU usage, and task execution failure due to memory leaks or insufficient memory.
 

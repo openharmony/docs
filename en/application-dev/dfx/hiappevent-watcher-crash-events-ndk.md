@@ -263,7 +263,7 @@ If an application does not proactively capture the crash event, the application 
 If an application proactively captures the crash event, HiAppEvent triggers a callback before the application exits. The following are examples:
 
 1. The application does not exit during exception handling.
-When [errorManager.on](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror) is used to capture the **JsError** crash event, a callback is triggered before the application exits. When the application proactively registers the [crash signal](cppcrash-guidelines.md#signals-that-generate-cppcrash-logs) processing function but does not proactively exit, the **NativeCrash** crash event triggers a callback before the application exits.
+When [errorManager.on](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror) is used to capture the **JsError** crash event, a callback is triggered before the application exits. When the application proactively registers the [crash signal](cppcrash-guidelines.md#c-crash-signals) processing function but does not proactively exit, the **NativeCrash** crash event triggers a callback before the application exits.
 
 2. Exception handling takes a long time, and the application exit time is delayed.
 
