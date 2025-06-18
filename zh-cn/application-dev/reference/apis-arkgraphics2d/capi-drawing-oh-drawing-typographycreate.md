@@ -9,4 +9,3 @@
 **相关模块：** [Drawing](capi-drawing.md)
 
 **所在头文件：** [drawing_text_declaration.h](capi-drawing-text-declaration-h.md)
-

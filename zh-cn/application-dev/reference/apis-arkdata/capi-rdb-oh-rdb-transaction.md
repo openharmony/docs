@@ -2,7 +2,7 @@
 
 ## 概述
 
-定义[OH_Rdb_Transaction](capi-oh-rdb-transaction.md)结构类型。
+定义[OH_Rdb_Transaction](capi-rdb-oh-rdb-transaction.md)结构类型。
 
 **起始版本：** 18
 
