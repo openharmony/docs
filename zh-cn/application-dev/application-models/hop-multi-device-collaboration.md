@@ -19,6 +19,7 @@
 多端协同流程如下图所示。
 
   **图1** 多端协同流程图  
+
 ![hop-multi-device-collaboration](figures/hop-multi-device-collaboration.png)
 
 
@@ -79,29 +80,29 @@
         let list = dmClass.getAvailableDeviceListSync();
         hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(dmClass), JSON.stringify(list));
         if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
-          hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
+          hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
           return;
         }
         if (list.length === 0) {
-          hilog.info(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
+          hilog.error(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
           return;
         }
         return list[0].networkId;
       } else {
-        hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
+        hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
         return;
       }
     }
     ```
 
-4. 设置目标组件参数，调用[startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口，启动[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)或[ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)。
+4. 设置目标组件参数，调用[startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability)接口，启动[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)或[ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)。
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { Want, common } from '@kit.AbilityKit';
     import { distributedDeviceManager } from '@kit.DistributedServiceKit';
-    import { PromptAction } from '@kit.ArkUI';
+    import { promptAction } from '@kit.ArkUI';
 
     const TAG: string = '[Page_CollaborateAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -112,16 +113,16 @@
         let list = dmClass.getAvailableDeviceListSync();
         hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(dmClass), JSON.stringify(list));
         if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
-          hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
+          hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
           return;
         }
         if (list.length === 0) {
-          hilog.info(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
+          hilog.error(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
           return;
         }
         return list[0].networkId;
       } else {
-        hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
+        hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
         return;
       }
     };
@@ -149,7 +150,7 @@
                 };
                 // context为发起端UIAbility的AbilityContext
                 this.context.startAbility(want).then(() => {
-                  promptAction.showToast({
+                  promptAction.openToast({
                     message: 'SuccessfulCollaboration'
                   });
                 }).catch((err: BusinessError) => {
@@ -166,7 +167,7 @@
     }
     ```
 
-5. 当设备A发起端应用不需要设备B上的[ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)时，可调用[stopServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstopserviceextensionability-1)接口退出。（该接口不支持[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的退出，UIAbility由用户手动通过任务管理退出）
+5. 当设备A发起端应用不需要设备B上的[ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)时，可调用[stopServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#stopserviceextensionability-1)接口退出。（该接口不支持[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的退出，UIAbility由用户手动通过任务管理退出）
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -183,16 +184,16 @@
         let list = dmClass.getAvailableDeviceListSync();
         hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(dmClass), JSON.stringify(list));
         if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
-          hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
+          hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
           return;
         }
         if (list.length === 0) {
-          hilog.info(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
+          hilog.error(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
           return;
         }
         return list[0].networkId;
       } else {
-        hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
+        hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
         return;
       }
     };
@@ -245,14 +246,14 @@
 
 2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/AccessToken/request-user-authorization.md)。
 
-3. 在发起端设置目标组件参数，调用[startAbilityForResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult)接口启动目标端UIAbility，异步回调中的data用于接收目标端UIAbility停止自身后返回给调用方UIAbility的信息。getRemoteDeviceId方法参照[通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据](#通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据)。
+3. 在发起端设置目标组件参数，调用[startAbilityForResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilityforresult)接口启动目标端UIAbility，异步回调中的data用于接收目标端UIAbility停止自身后返回给调用方UIAbility的信息。getRemoteDeviceId方法参照[通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据](#通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据)。
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { Want, common } from '@kit.AbilityKit';
     import { distributedDeviceManager } from '@kit.DistributedServiceKit';
-    import { PromptAction } from '@kit.ArkUI';
+    import { promptAction } from '@kit.ArkUI';
 
     const DOMAIN_NUMBER: number = 0xFF00;
     const TAG: string = '[Page_CollaborateAbility]';
@@ -263,16 +264,16 @@
         let list = dmClass.getAvailableDeviceListSync();
         hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(dmClass), JSON.stringify(list));
         if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
-          hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
+          hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
           return;
         }
         if (list.length === 0) {
-          hilog.info(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
+          hilog.error(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
           return;
         }
         return list[0].networkId;
       } else {
-        hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
+        hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
         return;
       }
     };
@@ -301,7 +302,7 @@
                 // 退出由startAbility接口启动的ServiceExtensionAbility
                 this.context.stopServiceExtensionAbility(want).then(() => {
                   hilog.info(DOMAIN_NUMBER, TAG, 'stop service extension ability success')
-                  promptAction.showToast({
+                  promptAction.openToast({
                     message: 'SuccessfullyStop'
                   });
                 }).catch((err: BusinessError) => {
@@ -318,7 +319,7 @@
     }
     ```
 
-4. 在目标端[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)任务完成后，调用[terminateSelfWithResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法，将数据返回给发起端的UIAbility。
+4. 在目标端[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)任务完成后，调用[terminateSelfWithResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)方法，将数据返回给发起端的UIAbility。
 
     ```ts
     import { common } from '@kit.AbilityKit';
@@ -378,7 +379,7 @@
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { Want, common } from '@kit.AbilityKit';
     import { distributedDeviceManager } from '@kit.DistributedServiceKit';
-    import { PromptAction } from '@kit.ArkUI';
+    import { promptAction } from '@kit.ArkUI';
 
     const TAG: string = '[Page_CollaborateAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -389,16 +390,16 @@
         let list = dmClass.getAvailableDeviceListSync();
         hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(dmClass), JSON.stringify(list));
         if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
-          hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
+          hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
           return;
         }
         if (list.length === 0) {
-          hilog.info(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
+          hilog.error(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
           return;
         }
         return list[0].networkId;
       } else {
-        hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
+        hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
         return;
       }
     };
@@ -432,7 +433,7 @@
                     let info = data.want?.parameters?.info;
                     hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(info) ?? '');
                     if (info !== null) {
-                      promptAction.showToast({
+                      promptAction.openToast({
                         message: JSON.stringify(info)
                       });
                     }
@@ -454,7 +455,7 @@
 
 ## 通过跨设备连接ServiceExtensionAbility组件实现多端协同
 
-系统应用可以通过[connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)跨设备连接一个服务，实现跨设备远程调用。比如：分布式游戏场景，平板作为遥控器，智慧屏作为显示器。
+系统应用可以通过[connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability)跨设备连接一个服务，实现跨设备远程调用。比如：分布式游戏场景，平板作为遥控器，智慧屏作为显示器。
 
 
 ### 接口说明
@@ -537,16 +538,16 @@
         let list = dmClass.getAvailableDeviceListSync();
         hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(dmClass), JSON.stringify(list));
         if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
-          hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
+          hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
           return;
         }
         if (list.length === 0) {
-          hilog.info(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
+          hilog.error(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
           return;
         }
         return list[0].networkId;
       } else {
-        hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
+        hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
         return;
       }
     }
@@ -586,13 +587,13 @@
 
     getRemoteDeviceId方法参照[通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据](#通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据)。
 
-5. 断开连接。调用[disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability)断开与后台服务的连接。
+5. 断开连接。调用[disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectserviceextensionability)断开与后台服务的连接。
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { common } from '@kit.AbilityKit';
-    import { PromptAction } from '@kit.ArkUI';
+    import { promptAction } from '@kit.ArkUI';
 
     let connectionId: number;
     const TAG: string = '[Page_CollaborateAbility]';
@@ -616,7 +617,7 @@
                 this.context.disconnectServiceExtensionAbility(connectionId).then(() => {
                   hilog.info(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility success');
                   // 成功断连后台服务
-                  promptAction.showToast({
+                  promptAction.openToast({
                     message: 'SuccessfullyDisconnectBackendService'
                   })
                 }).catch((error: BusinessError) => {
@@ -664,7 +665,7 @@
 
 3. 创建被调用端UIAbility。
 
-     被调用端[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)需要实现指定方法的数据接收回调函数、数据的序列化及反序列化方法。在需要接收数据期间，通过[on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeon)接口注册监听，无需接收数据时通过[off](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeoff)接口解除监听。
+     被调用端[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)需要实现指定方法的数据接收回调函数、数据的序列化及反序列化方法。在需要接收数据期间，通过[on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#on)接口注册监听，无需接收数据时通过[off](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#off)接口解除监听。
 
     1. 配置UIAbility的启动模式。
         配置[module.json5](../quick-start/module-configuration-file.md)，将CalleeAbility配置为单实例"singleton"。
@@ -725,8 +726,8 @@
           };
         }
         ```
-    4. 实现[Callee.on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeon)监听及[Callee.off](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeoff)解除监听。
-          如下示例在Ability的[onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)注册MSG_SEND_METHOD监听，在[onDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityondestroy)取消监听，收到序列化数据后作相应处理并返回。应用开发者根据实际业务需要做相应处理。
+    4. 实现[Callee.on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#on)监听及[Callee.off](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#off)解除监听。
+          如下示例在Ability的[onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate)注册MSG_SEND_METHOD监听，在[onDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#ondestroy)取消监听，收到序列化数据后作相应处理并返回。应用开发者根据实际业务需要做相应处理。
            
         ```ts
         import { AbilityConstant, UIAbility, Want, Caller } from '@kit.AbilityKit';
@@ -799,7 +800,7 @@
               }
               hilog.info(DOMAIN_NUMBER, TAG, 'caller release succeed');
             } catch (error) {
-              hilog.info(DOMAIN_NUMBER, TAG, `caller release failed with ${error}`);
+              hilog.error(DOMAIN_NUMBER, TAG, `caller release failed with ${error}`);
             }
           }
 
@@ -823,14 +824,14 @@
         import { UIAbility } from '@kit.AbilityKit';
         ```
     2. 获取Caller通信接口。
-        Ability的context属性实现了[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)方法，用于获取指定通用组件的[Caller](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#caller)通信接口。如下示例通过this.context获取Ability实例的context属性，使用startAbilityByCall拉起[Callee](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callee)被调用端并获取Caller通信接口，注册Caller的[onRelease](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleronrelease)和[onRemoteStateChange](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleronremotestatechange10)监听。应用开发者根据实际业务需要做相应处理。
+        Ability的context属性实现了[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall)方法，用于获取指定通用组件的[Caller](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#caller)通信接口。如下示例通过this.context获取Ability实例的context属性，使用startAbilityByCall拉起[Callee](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callee)被调用端并获取Caller通信接口，注册Caller的[onRelease](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onrelease)和[onRemoteStateChange](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onremotestatechange10)监听。应用开发者根据实际业务需要做相应处理。
 
         ```ts
         import { BusinessError } from '@kit.BasicServicesKit';
         import { Caller, common } from '@kit.AbilityKit';
         import { hilog } from '@kit.PerformanceAnalysisKit';
         import { distributedDeviceManager } from '@kit.DistributedServiceKit';
-        import { PromptAction } from '@kit.ArkUI';
+        import { promptAction } from '@kit.ArkUI';
 
 
         const TAG: string = '[Page_CollaborateAbility]';
@@ -843,16 +844,16 @@
             let list = dmClass.getAvailableDeviceListSync();
             hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(dmClass), JSON.stringify(list));
             if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
-              hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
+              hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
               return;
             }
             if (list.length === 0) {
-              hilog.info(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
+              hilog.error(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
               return;
             }
             return list[0].networkId;
           } else {
-            hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
+            hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
             return;
           }
         };
@@ -888,7 +889,7 @@
                           hilog.info(DOMAIN_NUMBER, TAG, `remote caller onRelease is called ${msg}`);
                         });
                         hilog.info(DOMAIN_NUMBER, TAG, 'remote caller register OnRelease succeed');
-                        promptAction.showToast({
+                        promptAction.openToast({
                           message: 'CallerSuccess'
                         });
                         // 注册caller的协同场景下跨设备组件状态变化监听通知
@@ -897,7 +898,7 @@
                             hilog.info(DOMAIN_NUMBER, TAG, 'Remote state changed ' + str);
                           });
                         } catch (error) {
-                          hilog.info(DOMAIN_NUMBER, TAG, `Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
+                          hilog.error(DOMAIN_NUMBER, TAG, `Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
                         }
                       }
                     }).catch((error: BusinessError) => {
@@ -917,7 +918,7 @@
         getRemoteDeviceId方法参照[通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据](#通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据)。
    
 5. 向被调用端UIAbility发送约定序列化数据。
-    1. 向被调用端发送Parcelable数据有两种方式，一种是不带返回值，一种是获取被调用端返回的数据，method以及序列化数据需要与被调用端协商一致。如下示例调用[Call](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callercall)接口，向[Callee](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callee)被调用端发送数据。
+    1. 向被调用端发送Parcelable数据有两种方式，一种是不带返回值，一种是获取被调用端返回的数据，method以及序列化数据需要与被调用端协商一致。如下示例调用[Call](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#call)接口，向[Callee](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callee)被调用端发送数据。
       
         ```ts
         import { UIAbility, Caller } from '@kit.AbilityKit';
@@ -966,13 +967,13 @@
                 await this.caller.call(MSG_SEND_METHOD, msg);
               }
             } catch (error) {
-              hilog.info(DOMAIN_NUMBER, TAG, `caller call failed with ${error}`);
+              hilog.error(DOMAIN_NUMBER, TAG, `caller call failed with ${error}`);
             }
           }
           // ...
         }
         ```
-    2. 如下示例调用[CallWithResult](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callercallwithresult)接口，向Callee被调用端发送待处理的数据originMsg，并将’CallSendMsg’方法处理完毕的数据赋值给backMsg。
+    2. 如下示例调用[CallWithResult](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callwithresult)接口，向Callee被调用端发送待处理的数据originMsg，并将’CallSendMsg’方法处理完毕的数据赋值给backMsg。
       
         ```ts
         import { UIAbility, Caller } from '@kit.AbilityKit';
@@ -1029,7 +1030,7 @@
                 hilog.info(DOMAIN_NUMBER, TAG, `caller result is [${result.num}, ${result.str}]`);
               }
             } catch (error) {
-              hilog.info(DOMAIN_NUMBER, TAG, `caller callWithResult failed with ${error}`);
+              hilog.error(DOMAIN_NUMBER, TAG, `caller callWithResult failed with ${error}`);
             }
           }
           // ...
@@ -1038,7 +1039,7 @@
    
 6. 释放Caller通信接口。
 
-    [Caller](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#caller)不再使用后，应用开发者可以通过[release](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callerrelease)接口释放Caller。
+    [Caller](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#caller)不再使用后，应用开发者可以通过[release](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#release)接口释放Caller。
 
       ```ts
       import { UIAbility, Caller } from '@kit.AbilityKit';
@@ -1058,7 +1059,7 @@
             }
             hilog.info(DOMAIN_NUMBER, TAG, 'caller release succeed');
           } catch (error) {
-            hilog.info(DOMAIN_NUMBER, TAG, `caller release failed with ${error}`);
+            hilog.error(DOMAIN_NUMBER, TAG, `caller release failed with ${error}`);
           }
         }
       }

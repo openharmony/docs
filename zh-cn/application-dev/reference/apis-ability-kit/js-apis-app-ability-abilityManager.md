@@ -1,10 +1,10 @@
-# @ohos.app.ability.abilityManager (AbilityManager)
+# @ohos.app.ability.abilityManager (Ability信息管理)
 
 AbilityManager模块提供获取Ability相关信息和运行状态信息的能力。
 
 > **说明：**
 >
-> 本模块首批接口从API version 14开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 
 ## 导入模块
 
@@ -12,8 +12,7 @@ AbilityManager模块提供获取Ability相关信息和运行状态信息的能�
 import { abilityManager } from '@kit.AbilityKit';
 ```
 
-
-## AbilityState
+## AbilityState<sup>14+</sup>
 
 Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)返回Ability的状态。
 
@@ -73,3 +72,15 @@ try {
   console.error(`getAbilityRunningInfos fail, error code: ${JSON.stringify(code)}, error msg: ${JSON.stringify(msg)}`);
 }
 ```
+
+## AbilityRunningInfo<sup>14+</sup>
+
+type AbilityRunningInfo = _AbilityRunningInfo
+
+Ability运行的相关信息和状态的定义。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | ---- |
+| [_AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md) | Ability运行的相关信息和状态的定义。 |

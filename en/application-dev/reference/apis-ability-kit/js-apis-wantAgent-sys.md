@@ -1,4 +1,5 @@
 # @ohos.wantAgent (WantAgent) (System API)
+<!--deprecated_code_no_check-->
 
 The **WantAgent** module provides APIs for creating and comparing **WantAgent** objects, and obtaining the user ID and bundle name of a **WantAgent** object.
 

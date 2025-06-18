@@ -37,6 +37,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
+| 202  | Not system App. |
 | 5400101  | No memory. Return by callback. |
 
 **Example**
@@ -132,9 +133,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 class JsonData {
-  public choice: string = 'true'
-  public displayId: number | null = -1
-  public missionId: number | null = -1
+  public choice: string = 'true';
+  public displayId: number | null = -1;
+  public missionId: number | null = -1;
 }
 let sessionId: number = 0; // Use the ID of the session that starts the process.
 
@@ -328,7 +329,7 @@ This API can be called after the [prepare()](js-apis-media.md#prepare9-3), [star
 
 | Type            | Description                            |
 | ---------------- | -------------------------------- |
-| Promise\<boolean> | Promise used to return the check result.|
+| Promise\<boolean> | Promise used to return the check result. The value **true** means that the device supports the hardware digital watermark, and **false** means the opposite.|
 
 **Example**
 
@@ -391,6 +392,16 @@ avRecorder.setWatermark(watermark, watermarkConfig).then(() => {
   console.error(`Failed to setWatermark and catch error is ${error.message}`);
 });
 ```
+
+## AVRecorderProfile<sup>9+</sup>
+
+Describes the audio and video recording profile.
+
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
+
+| Name            | Type                                        | Mandatory| Description                                                        |
+| ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| enableStableQualityMode<sup>18+</sup>            | boolean                        | No  | Whether to enable stable quality mode for video recording. This parameter is optional for video recording. The default value is **false**. If this parameter is set to **true**, the system will use a video encoding strategy designed to maintain stable quality.<br>**System API**: This is a system API.|
 
 ## VideoRecorder<sup>9+</sup>
 
@@ -1249,7 +1260,7 @@ A class that provides APIs to query and monitor the system screen recorder statu
 
 | Name              | Type                                  | Readable| Writable| Description            |
 | ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
-| isSystemScreenRecorderWorking<sup>18+</sup> | bool | Yes  | No  | Whether the system screen recorder is working.|
+| isSystemScreenRecorderWorking<sup>18+</sup> | boolean | Yes  | No  | Whether the system screen recorder is working.|
 
 ### on('systemScreenRecorder')<sup>18+</sup>
 
@@ -1330,3 +1341,4 @@ Enumerates the states available for the system screen recorder.
 | ------------------------ | --------------- | ------------------------------------------------------------ |
 | SCREENCAPTURE_STARTED       | 0   | The system screen recorder starts screen capture.                      |
 | SCREENCAPTURE_STOPPED        | 1    | The system screen recorder stops screen capture.|
+

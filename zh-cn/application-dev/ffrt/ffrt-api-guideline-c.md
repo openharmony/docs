@@ -795,7 +795,7 @@ typedef struct {
 ##### ffrt_queue_attr_init
 
 ```c
-int ffrt_queue_attr_init(ffrt_queue_attr_t* attr)
+int ffrt_queue_attr_init(ffrt_queue_attr_t* attr);
 ```
 
 参数
@@ -813,7 +813,7 @@ int ffrt_queue_attr_init(ffrt_queue_attr_t* attr)
 ##### ffrt_queue_attr_destroy
 
 ```c
-void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr)
+void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr);
 ```
 
 参数
@@ -827,7 +827,7 @@ void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr)
 ##### ffrt_queue_attr_set_qos
 
 ```c
-void ffrt_queue_attr_set_qos(ffrt_queue_attr_t* attr, ffrt_qos_t qos)
+void ffrt_queue_attr_set_qos(ffrt_queue_attr_t* attr, ffrt_qos_t qos);
 ```
 
 参数
@@ -842,7 +842,7 @@ void ffrt_queue_attr_set_qos(ffrt_queue_attr_t* attr, ffrt_qos_t qos)
 ##### ffrt_queue_attr_get_qos
 
 ```c
-ffrt_qos_t ffrt_queue_attr_get_qos(const ffrt_queue_attr_t* attr)
+ffrt_qos_t ffrt_queue_attr_get_qos(const ffrt_queue_attr_t* attr);
 ```
 
 参数
@@ -860,7 +860,7 @@ ffrt_qos_t ffrt_queue_attr_get_qos(const ffrt_queue_attr_t* attr)
 ##### ffrt_queue_attr_set_timeout
 
 ```c
-void ffrt_queue_attr_set_timeout(ffrt_queue_attr_t* attr, uint64_t timeout_us)
+void ffrt_queue_attr_set_timeout(ffrt_queue_attr_t* attr, uint64_t timeout_us);
 ```
 
 参数
@@ -875,7 +875,7 @@ void ffrt_queue_attr_set_timeout(ffrt_queue_attr_t* attr, uint64_t timeout_us)
 ##### ffrt_queue_attr_get_timeout
 
 ```c
-uint64_t ffrt_queue_attr_get_timeout(const ffrt_queue_attr_t* attr)
+uint64_t ffrt_queue_attr_get_timeout(const ffrt_queue_attr_t* attr);
 ```
 
 参数
@@ -893,7 +893,7 @@ uint64_t ffrt_queue_attr_get_timeout(const ffrt_queue_attr_t* attr)
 ##### ffrt_queue_attr_set_callback
 
 ```c
-void ffrt_queue_attr_set_callback(ffrt_queue_attr_t* attr, ffrt_function_header_t* f)
+void ffrt_queue_attr_set_callback(ffrt_queue_attr_t* attr, ffrt_function_header_t* f);
 ```
 
 参数
@@ -908,7 +908,7 @@ void ffrt_queue_attr_set_callback(ffrt_queue_attr_t* attr, ffrt_function_header_
 ##### ffrt_queue_attr_get_callback
 
 ```c
-ffrt_function_header_t* ffrt_queue_attr_get_callback(const ffrt_queue_attr_t* attr)
+ffrt_function_header_t* ffrt_queue_attr_get_callback(const ffrt_queue_attr_t* attr);
 ```
 
 参数
@@ -926,7 +926,7 @@ ffrt_function_header_t* ffrt_queue_attr_get_callback(const ffrt_queue_attr_t* at
 ##### ffrt_queue_attr_set_max_concurrency
 
 ```c
-void ffrt_queue_attr_set_max_concurrency(ffrt_queue_attr_t* attr, const int max_concurrency)
+void ffrt_queue_attr_set_max_concurrency(ffrt_queue_attr_t* attr, const int max_concurrency);
 ```
 
 参数
@@ -941,7 +941,7 @@ void ffrt_queue_attr_set_max_concurrency(ffrt_queue_attr_t* attr, const int max_
 ##### ffrt_queue_attr_get_max_concurrency
 
 ```c
-int ffrt_queue_attr_get_max_concurrency(const ffrt_queue_attr_t* attr)
+int ffrt_queue_attr_get_max_concurrency(const ffrt_queue_attr_t* attr);
 ```
 
 参数
@@ -1001,7 +1001,7 @@ typedef void* ffrt_queue_t;
 ##### ffrt_queue_create
 
 ```c
-ffrt_queue_t ffrt_queue_create(ffrt_queue_type_t type, const char* name, const ffrt_queue_attr_t* attr)
+ffrt_queue_t ffrt_queue_create(ffrt_queue_type_t type, const char* name, const ffrt_queue_attr_t* attr);
 ```
 
 参数
@@ -1021,7 +1021,7 @@ ffrt_queue_t ffrt_queue_create(ffrt_queue_type_t type, const char* name, const f
 ##### ffrt_queue_destroy
 
 ```c
-void ffrt_queue_destroy(ffrt_queue_t queue)
+void ffrt_queue_destroy(ffrt_queue_t queue);
 ```
 
 参数
@@ -1035,7 +1035,7 @@ void ffrt_queue_destroy(ffrt_queue_t queue)
 ##### ffrt_queue_submit
 
 ```c
-void ffrt_queue_submit(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)
+void ffrt_queue_submit(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr);
 ```
 
 参数
@@ -1051,7 +1051,7 @@ void ffrt_queue_submit(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt
 ##### ffrt_queue_submit_h
 
 ```c
-ffrt_task_handle_t ffrt_queue_submit_h(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)
+ffrt_task_handle_t ffrt_queue_submit_h(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr);
 ```
 
 参数
@@ -1071,7 +1071,7 @@ ffrt_task_handle_t ffrt_queue_submit_h(ffrt_queue_t queue, ffrt_function_header_
 ##### ffrt_queue_wait
 
 ```c
-void ffrt_queue_wait(ffrt_task_handle_t handle)
+void ffrt_queue_wait(ffrt_task_handle_t handle);
 ```
 
 参数
@@ -1085,7 +1085,7 @@ void ffrt_queue_wait(ffrt_task_handle_t handle)
 ##### ffrt_queue_cancel
 
 ```c
-int ffrt_queue_cancel(ffrt_task_handle_t handle)
+int ffrt_queue_cancel(ffrt_task_handle_t handle);
 ```
 
 参数

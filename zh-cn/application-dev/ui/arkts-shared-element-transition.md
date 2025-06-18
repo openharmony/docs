@@ -69,7 +69,7 @@ struct Index {
         // 当点击了某个post后，会使其余的post消失下树
         if (!this.isExpand || this.selectedIndex === index) {
           Column() {
-            Post({ data: postData, selecteIndex: this.selectedIndex, index: index })
+            Post({ data: postData, selectedIndex: this.selectedIndex, index: index })
           }
           .width('100%')
           // 对出现消失的post添加透明度转场和位移转场效果
@@ -86,7 +86,7 @@ struct Index {
 
 @Component
 export default struct  Post {
-  @Link selecteIndex: number;
+  @Link selectedIndex: number;
 
   @Prop data: PostData;
   @Prop index: number;
@@ -139,8 +139,8 @@ export default struct  Post {
     .alignItems(HorizontalAlign.Start)
     .padding({ left: 10, top: 10 })
     .onClick(() => {
-      this.selecteIndex = -1;
-      this.selecteIndex = this.index;
+      this.selectedIndex = -1;
+      this.selectedIndex = this.index;
       this.getUIContext()?.animateTo({
         duration: 350,
         curve: Curve.Friction
@@ -177,7 +177,7 @@ export default struct  Post {
 
 ```ts
 // Index.ets
-import { createPostNode, getPostNode, PostNode } from "../PostNode"
+import { createPostNode, getPostNode, PostNode } from "./PostNode";
 import { componentUtils, curves, UIContext } from '@kit.ArkUI';
 
 @Entry
@@ -453,10 +453,9 @@ function PostBuilder(data: Data) {
       offsetX: 20,
       offsetY: 10
     })
-
 }
 
-class __InternalValue__{
+class __InternalValue__ {
   flag:boolean =false;
 };
 
@@ -540,7 +539,7 @@ export const deleteNode = (id: string) => {
 
 ### 结合Navigation使用
 
-可以利用[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)的自定义导航转场动画能力（[customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11)，可参考Navigation[示例3](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例3)）实现一镜到底动效。共享元素转场期间，组件由消失页面迁移至出现页面。
+可以利用[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)的自定义导航转场动画能力（[customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11)，可参考Navigation[示例3](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例3设置可交互转场动画)）实现一镜到底动效。共享元素转场期间，组件由消失页面迁移至出现页面。
 
 以展开收起缩略图的场景为例，实现步骤为：
 
@@ -752,7 +751,7 @@ export function PageTwoBuilder() {
 @Component
 export struct PageTwo {
   @State pageInfos: NavPathStack = new NavPathStack();
-  @State AnimationProperties: AnimationProperties = new AnimationProperties();
+  @State AnimationProperties: AnimationProperties = new AnimationProperties(this.getUIContext());
   @State myNodeController: MyNodeController | undefined = new MyNodeController(false);
 
   private pageId: number = -1;
@@ -957,7 +956,7 @@ export class AnimationProperties {
       initTranslateX = this.uiContext.px2vp(cardItemInfo_px.left - (WindowUtils.windowWidth_px - cardItemInfo_px.width) / 2);
       initClipWidth = '100%';
       initClipHeight = this.uiContext.px2vp((cardItemInfo_px.height) / initScale);
-      initTranslateY = this.uiContext.px2vp(cardItemInfo_px.top - ((vp2px(initClipHeight) - vp2px(initClipHeight) * initScale) / 2));
+      initTranslateY = this.uiContext.px2vp(cardItemInfo_px.top - ((this.uiContext.vp2px(initClipHeight) - this.uiContext.vp2px(initClipHeight) * initScale) / 2));
     } else {
       initTranslateY = this.uiContext.px2vp(cardItemInfo_px.top - (WindowUtils.windowHeight_px - cardItemInfo_px.height) / 2);
       initClipHeight = '100%';

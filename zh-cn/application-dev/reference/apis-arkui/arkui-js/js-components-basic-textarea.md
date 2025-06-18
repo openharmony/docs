@@ -25,14 +25,14 @@
 | placeholder                      | string                  | -      | 否   | 多行文本框的提示文本内容。                                   |
 | maxlength                        | number                  | -      | 否   | 多行文本框可输入的最多字符数量。                             |
 | headericon                       | string                  | -      | 否   | 在文本输入前的图标展示，该图标不支持点击事件，图标格式为jpg，png和svg。 |
-| extend                           | boolean                 | false  | 否   | 文本框是否支持可扩展，设置可扩展属性后文本框高度可以跟随文字自适应。 |
+| extend                           | boolean                 | false  | 否   | 文本框是否支持可扩展，true表示文本框支持可扩展，false表示文本框不支持可扩展。设置可扩展属性后文本框高度可以跟随文字自适应。 |
 | value<sup>5+</sup>               | string                  | -      | 否   | 多行文本框的内容。                                           |
-| showcounter<sup>5+</sup>         | boolean                 | false  | 否   | 文本框是否需要开启计数下标功能，需要配合maxlength一起使用。  |
+| showcounter<sup>5+</sup>         | boolean                 | false  | 否   | 文本框是否需要开启计数下标功能，需要配合maxlength一起使用。true表示文本框开启计数下标，false表示文本框不开启计数下标。  |
 | menuoptions<sup>5+</sup>         | Array&lt;MenuOption&gt; | -      | 否   | 设置文本选择弹框点击更多按钮之后显示的菜单项。               |
-| autofocus<sup>6+</sup>           | boolean                 | false  | 否   | 是否自动获焦。                                               |
+| autofocus<sup>6+</sup>           | boolean                 | false  | 否   | 是否自动获焦。true表示文本框自动获焦，false表示文本框不自动获焦。                                               |
 | selectedstart<sup>6+</sup>       | number                  | -1     | 否   | 开始选择文本时初始选择位置。                                 |
 | selectedend<sup>6+</sup>         | number                  | -1     | 否   | 开始选择文本时结尾选择位置。                                 |
-| softkeyboardenabled<sup>6+</sup> | boolean                 | true   | 否   | 编辑时是否弹出系统软键盘。                                   |
+| softkeyboardenabled<sup>6+</sup> | boolean                 | true   | 否   | 编辑时是否弹出系统软键盘。true表示编辑时弹出系统软键盘，false表示不弹出。                                   |
 
 **表1** MenuOption<sup>5+</sup>
 
@@ -50,7 +50,7 @@
 | ------------------------ | -------------------------- | ---------- | ---- | ---------------------------------------- |
 | color                    | &lt;color&gt;              | \#e6000000 | 否    | 多行文本框的文本颜色。                              |
 | font-size                | &lt;length&gt;             | 16px       | 否    | 多行文本框的文本尺寸。                              |
-| allow-scale              | boolean                    | true       | 否    | 多行文本框的文本尺寸是否跟随系统设置字体缩放尺寸进行放大缩小。<br/>如果在config描述文件中针对ability配置了fontSize的config-changes标签，则应用不会重启而直接生效。 |
+| allow-scale              | boolean                    | true       | 否    | 多行文本框的文本尺寸是否跟随系统设置字体缩放尺寸进行放大缩小。true表示跟随系统放大缩小，false表示不跟随系统放大缩小。<br/>如果在config描述文件中针对ability配置了fontSize的config-changes标签，则应用不会重启而直接生效。 |
 | placeholder-color        | &lt;color&gt;              | \#99000000 | 否    | 多行文本框的提示文本颜色，type为text\|email\|date\|time\|number\|password时生效。 |
 | font-weight              | number&nbsp;\|&nbsp;string | normal     | 否    | 多行文本框的字体粗细，见[text组件font-weight的样式属性](js-components-basic-text.md#样式)。 |
 | font-family              | string                     | sans-serif | 否    | 多行文本框的字体列表，用逗号分隔，每个字体用字体名或者字体族名设置。列表中第一个系统中存在的或者通过[自定义字体](js-components-common-customizing-font.md)指定的字体，会被选中作为文本的字体。 |

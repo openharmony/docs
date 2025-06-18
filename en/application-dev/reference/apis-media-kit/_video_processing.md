@@ -32,9 +32,9 @@ The VideoProcessing module provides the APIs for video processing. It provides v
 
 | Name| Description| 
 | -------- | -------- |
-| typedef struct [OH_VideoProcessing](#oh_videoprocessing-1) [OH_VideoProcessing](#oh_videoprocessing) | Defines a struct for the video processing object.| 
+| typedef struct [OH_VideoProcessing](#oh_videoprocessing) [OH_VideoProcessing](#oh_videoprocessing) | Defines a struct for the video processing object.| 
 | typedef struct NativeWindow [OHNativeWindow](#ohnativewindow) | Defines a struct for the NativeWindow object.| 
-| typedef struct [OH_AVFormat](#oh_avformat-1) [OH_AVFormat](#oh_avformat) | Defines a struct for the OH_AVFormat object.| 
+| typedef struct [OH_AVFormat](#oh_avformat) [OH_AVFormat](#oh_avformat) | Defines a struct for the OH_AVFormat object.| 
 | typedef struct [VideoProcessing_ColorSpaceInfo](_video_processing___color_space_info.md) [VideoProcessing_ColorSpaceInfo](#videoprocessing_colorspaceinfo) | Defines a struct for the color space information of video processing.| 
 | typedef enum [VideoDetailEnhancer_QualityLevel](#videodetailenhancer_qualitylevel-1) [VideoDetailEnhancer_QualityLevel](#videodetailenhancer_qualitylevel) | Defines an enum for the quality levels for detail enhancement.| 
 | typedef enum [VideoProcessing_ErrorCode](#videoprocessing_errorcode-1) [VideoProcessing_ErrorCode](#videoprocessing_errorcode) | Defines an enum for the video processing error codes.| 
@@ -49,9 +49,9 @@ The VideoProcessing module provides the APIs for video processing. It provides v
 
 | Name| Description| 
 | -------- | -------- |
-| [VideoDetailEnhancer_QualityLevel](#videodetailenhancer_qualitylevel-1) {<br>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_NONE,<br>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_LOW,<br>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_MEDIUM,<br>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_HIGH } | Enumerates the quality levels for detail enhancement.| 
+| [VideoDetailEnhancer_QualityLevel](#videodetailenhancer_qualitylevel-1) {<br>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_NONE,<br>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_LOW,<br>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_MEDIUM,<br>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_HIGH<br>} | Enumerates the quality levels for detail enhancement.| 
 | [VideoProcessing_ErrorCode](#videoprocessing_errorcode-1) {<br>VIDEO_PROCESSING_SUCCESS,<br>VIDEO_PROCESSING_ERROR_INVALID_PARAMETER = 401,<br>VIDEO_PROCESSING_ERROR_UNKNOWN = 29210001,<br>VIDEO_PROCESSING_ERROR_INITIALIZE_FAILED,<br>VIDEO_PROCESSING_ERROR_CREATE_FAILED,<br>VIDEO_PROCESSING_ERROR_PROCESS_FAILED,<br>VIDEO_PROCESSING_ERROR_UNSUPPORTED_PROCESSING,<br>VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED,<br>VIDEO_PROCESSING_ERROR_NO_MEMORY,<br>VIDEO_PROCESSING_ERROR_INVALID_INSTANCE,<br>VIDEO_PROCESSING_ERROR_INVALID_VALUE<br>} | Enumerates the video processing error codes.| 
-| [VideoProcessing_State](#videoprocessing_state-1) {<br>VIDEO_PROCESSING_STATE_RUNNING,<br>VIDEO_PROCESSING_STATE_STOPPED } | Enumerates the video processing states.| 
+| [VideoProcessing_State](#videoprocessing_state-1) {<br>VIDEO_PROCESSING_STATE_RUNNING,<br>VIDEO_PROCESSING_STATE_STOPPED<br>} | Enumerates the video processing states.| 
 
 
 ### Functions

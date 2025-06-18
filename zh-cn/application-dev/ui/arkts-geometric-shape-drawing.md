@@ -47,7 +47,7 @@ viewPort(value: { x?: number | string, y?: number | string, width?: number | str
 
 形状视口viewport指定用户空间中的一个矩形，该矩形映射到为关联的SVG元素建立的视区边界。viewport属性的值包含x、y、width和height四个可选参数，x和y表示视区的左上角坐标，width和height表示其尺寸。
 
-以下3个示例讲解viewport具体用法：
+以下三个示例讲解viewport具体用法：
 
 - 通过形状视口对图形进行放大与缩小。
 
@@ -153,7 +153,7 @@ viewPort(value: { x?: number | string, y?: number | string, width?: number | str
 
 ## 自定义样式
 
-绘制组件支持通过各种属性对组件样式进行更改。
+绘制组件支持通过各种属性更改组件样式。
 
 - 通过fill可以设置组件填充区域颜色。
 

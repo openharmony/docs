@@ -9,6 +9,7 @@ Defines the rotation options for component transition.
 
 **Related module**: [ArkUI_NativeModule](_ark_u_i___native_module.md)
 
+**Header file**: [native_type.h](native__type_8h.md)
 
 ## Summary
 
@@ -39,7 +40,6 @@ float ArkUI_RotationOptions::angle
 
 Rotation angle.
 
-
 ### centerX
 
 ```
@@ -48,7 +48,6 @@ float ArkUI_RotationOptions::centerX
 **Description**
 
 X-coordinate of the center point.
-
 
 ### centerY
 
@@ -59,7 +58,6 @@ float ArkUI_RotationOptions::centerY
 
 Y-coordinate of the center point.
 
-
 ### centerZ
 
 ```
@@ -68,7 +66,6 @@ float ArkUI_RotationOptions::centerZ
 **Description**
 
 Z-axis anchor, that is, the z-component of the 3D rotation center point.
-
 
 ### perspective
 
@@ -79,7 +76,6 @@ float ArkUI_RotationOptions::perspective
 
 Distance from the user to the z=0 plane.
 
-
 ### x
 
 ```
@@ -89,7 +85,6 @@ float ArkUI_RotationOptions::x
 
 X-component of the rotation vector.
 
-
 ### y
 
 ```
@@ -98,7 +93,6 @@ float ArkUI_RotationOptions::y
 **Description**
 
 Y-component of the rotation vector.
-
 
 ### z
 

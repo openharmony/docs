@@ -81,7 +81,7 @@ import { worker, MessageEvents } from '@kit.ArkTS';
 const workerPort = worker.workerPort;
 
 workerPort.onmessage = (e : MessageEvents) : void => {
-  console.info("worker:: This is worker thread.")
+  console.info("worker:: This is worker thread.");
   //console.info("worker:: worker tid: " + process.tid) // 执行process.tid，宿主线程会有对应的TypeError报出。
 }
 ```

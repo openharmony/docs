@@ -78,7 +78,7 @@ task5(OUT A);
 
 ```c
 #include <stdio.h>
-#include "ffrt/task.h"
+#include "ffrt/ffrt.h"
 
 static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t after_func,
     void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
@@ -140,6 +140,11 @@ int main()
 
     // 等待所有任务完成
     ffrt_wait();
+
+    ffrt_task_handle_destroy(hTaskA);
+    ffrt_task_handle_destroy(hTaskB);
+    ffrt_task_handle_destroy(hTaskC);
+    ffrt_task_handle_destroy(hTaskD);
     return 0;
 }
 ```
@@ -285,6 +290,11 @@ Fibonacci(5) is 5
 | [ffrt_submit_base](ffrt-api-guideline-c.md#ffrt_submit_base)     | 提交任务调度执行。                     |
 | [ffrt_submit_h_base](ffrt-api-guideline-c.md#ffrt_submit_h_base) | 提交任务调度执行并返回任务句柄。       |
 | [ffrt_wait_deps](ffrt-api-guideline-c.md#ffrt_wait_deps)         | 等待依赖的任务完成，当前任务开始执行。 |
+
+> **说明：**
+>
+> - 如何使用FFRT C++ API详见：[FFRT C++接口三方库使用指导](ffrt-development-guideline.md#using-ffrt-c-api-1)。
+> - 使用FFRT C接口或C++接口时，都可以通过FFRT C++接口三方库简化头文件包含，即使用`#include "ffrt/ffrt.h"`头文件包含语句。
 
 ## 约束限制
 

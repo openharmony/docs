@@ -65,6 +65,12 @@ void(* ArkWeb_ControllerAPI::deleteJavaScriptRegister) (const char *webTag, cons
 
 删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。
 
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| webTag | Web组件名称。  | 
+| objName | JavaScript对象名称。  | 
 
 ### destroyWebMessagePorts
 
@@ -130,7 +136,7 @@ void(* ArkWeb_ControllerAPI::refresh) (const char *webTag)
 ```
 **描述：**
 
-刷新当前网页。
+刷新当前网页。刷新的同时会清理页面栈，导致当前页面无法前进后退。
 
 
 ### registerAsyncJavaScriptProxy

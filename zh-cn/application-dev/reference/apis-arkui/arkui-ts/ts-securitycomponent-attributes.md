@@ -174,7 +174,7 @@ fontWeight(value: number | FontWeight | string): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string |是 |安全控件上文字粗细，number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Medium。|
+| value | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string |是 |安全控件上文字粗细，number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>如果控件未设置fontWeight，文字粗细将默认设置为FontWeight.Medium；如果value入参为非法值，文字粗细将被设置为FontWeight.Normal。|
 
 **返回值：**
 
@@ -416,7 +416,7 @@ align(alignType: Alignment): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| alignType | [Alignment](ts-appendix-enums.md#alignment) |是 |安全控件图标文本的对齐方式，图标文本作为整体在控件背托范围内进行对齐，UX显示受[padding](ts-securitycomponent-attributes.md#padding)影响。<br/>默认值：Alignment.Center。|
+| alignType | [Alignment](ts-appendix-enums.md#alignment) |是 |安全控件图标文本的对齐方式，图标文本作为整体在控件背托范围内进行对齐，UX显示受[padding](ts-securitycomponent-attributes.md#padding)影响，在padding生效的基础上进行指定方式对齐。<br/>默认值：Alignment.Center。|
 
 **返回值：**
 
@@ -438,7 +438,7 @@ textIconSpace(value: Dimension): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [Dimension](ts-types.md#dimension10) |是 |安全控件中图标和文字的间距。从API 14开始，若设置值为负值，则使用默认值。<br/>默认值：4vp。|
+| value | [Dimension](ts-types.md#dimension10) |是 |安全控件中图标和文字的间距。不支持设置百分比字符串。从API 14开始，若设置值为负值，则使用默认值。<br/>默认值：4vp。|
 
 **返回值：**
 
@@ -590,7 +590,7 @@ id(description: string): T
 
 **参数：**
 
-| 名称   | 类型      | 必填 | 说明                       |
+| 参数名   | 类型      | 必填 | 说明                       |
 | ------ | -------- | -----|---------------------- |
 | description | string   |  是  | 组件的唯一标识，唯一性由使用者保证。<br>默认值：''。<br/> |
 
@@ -684,7 +684,7 @@ minFontSize(minSize: number | string | Resource): T
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。 |
+| minSize  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。 |
 
 **返回值：**
 
@@ -708,7 +708,7 @@ maxFontSize(maxSize: number | string | Resource): T
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
+| maxSize  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
 
 **返回值：**
 
@@ -730,7 +730,7 @@ maxLines(line: number): T
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| value  | number | 是   | 文本的最大行数。<br/>取值范围：[1, +∞)。<br/>**说明：** <br/>设置的值小于1时，按默认值100000处理。 |
+| line  | number | 是   | 文本的最大行数。<br/>取值范围：[1, +∞)。<br/>**说明：** <br/>设置的值小于1时，按默认值100000处理。 |
 
 **返回值：**
 
@@ -746,15 +746,17 @@ heightAdaptivePolicy(policy: TextHeightAdaptivePolicy): T
 
 通过文本自适应高度的方式，实现文本大小自适应。
 
+安全控件文本以[maxFontSize](#maxfontsize18)的值进行布局，如果可以完整显示文本，则无需进行自适应调节，该接口设置不生效，否则按指定文本自适应高度的方式进行调节，具体自适应调节规格如下：
+
 当设置为TextHeightAdaptivePolicy.MAX_LINES_FIRST时，优先使用[maxLines](#maxlines18)属性来调整文本高度。如果使用maxLines属性的布局大小超过了布局约束，则尝试在[minFontSize](#minfontsize18)和[maxFontSize](#maxfontsize18)的范围内缩小字体以显示更多文本，如果此时仍不能完整显示文本信息，安全控件会自适应调整高度以使得文本完整显示。
 
 当设置为TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST时，优先使用[minFontSize](#minfontsize18)属性来调整文本高度。如果使用minFontSize属性可以将文本布局在一行中，则尝试在minFontSize和[maxFontSize](#maxfontsize18)的范围内增大字体并使用最大可能的字体大小；如果使用minFontSize属性无法将文本布局在一行中，则尝试使用[maxLines](#maxlines18)属性进行布局，如果此时仍不能完整显示文本信息，安全控件会自适应调整高度以使得文本完整显示。
 
 当设置为TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST时，优先使用布局约束来调整文本高度。如果布局大小超过布局约束，则尝试在[minFontSize](#minfontsize18)和[maxFontSize](#maxfontsize18)的范围内缩小字体以满足布局约束。如果将字体大小缩小到minFontSize后，布局大小仍然超过布局约束，则删除超过布局约束的行；如果设置了[maxLines](#maxlines18)属性，布局后行数不超过maxlines值（可能存在横向截断）；如果未设置maxlines属性值，布局后的行数不限制。
 
-当布局无需调整即可完整显示文本时，控件文本不涉及自适应调节。
-
 安全控件文字未完全显示时，点击不授权。
+
+具体效果请见[示例](#示例3)。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -764,7 +766,7 @@ heightAdaptivePolicy(policy: TextHeightAdaptivePolicy): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 是   | 文本自适应高度的方式。<br/>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST。 |
+| policy  | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 是   | 文本自适应高度的方式。<br/>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST。 |
 
 **返回值：**
 
@@ -786,7 +788,7 @@ enabled(respond: boolean): T
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 值为true表示组件可交互，响应点击等操作。<br/>值为false表示组件不可交互，不响应点击等操作。<br/>默认值：true。 |
+| respond  | boolean | 是   | 值为true表示组件可交互，响应点击等操作。<br/>值为false表示组件不可交互，不响应点击等操作。<br/>默认值：true。 |
 
 **返回值：**
 
@@ -838,7 +840,7 @@ enabled(respond: boolean): T
 
 ### 示例1
 
-设置SecurityComponent基础属性，生成一个保存控件
+设置SecurityComponent基础属性，生成一个保存控件。
 
 ```ts
 @Entry
@@ -890,7 +892,7 @@ struct Index {
 
 ### 示例2
 
-以容器和容器内组件作为锚点进行布局
+以容器和容器内组件作为锚点进行布局。
 
 ```ts
 @Entry
@@ -959,3 +961,342 @@ struct Index {
 ```
 
 ![SaveBotton_alignRules_1.png](figures/SaveBotton_alignRules_1.png)
+
+### 示例3
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Scroll() {
+        Column({ space: 10 }) {
+          Column({ space: 10 }) {
+            Row() {
+              Text('FontSize = 20，图例：').fontSize(20)
+              Text('快速保存图片').fontSize(20).fontColor(Color.Blue)
+            }.width('100%')
+
+            Row() {
+              Text('FontSize = 10，图例：').fontSize(20)
+              Text('快速保存图片').fontSize(10).fontColor(Color.Blue)
+            }.width('100%')
+          }.width('100%')
+
+          Flex({ wrap: FlexWrap.Wrap }) {
+            Column() {
+              Row() {
+                Text('heightAdaptivePolicy = MIN_FONT_SIZE_FIRST').fontSize(16).fontWeight(FontWeight.Bold)
+              }
+            }.height(40)
+
+            Column() {
+              Column({ space: 10 }) {
+                Row() {
+                  Text('无需自适应调节')
+                }.width('90%')
+
+                //当前布局无需调整即可完整显示文本，文本无需自适应调节。
+                SaveButton({
+                  text: SaveDescription.QUICK_SAVE_TO_GALLERY, buttonType: ButtonType.Normal
+                })
+                  .maxFontSize(20)
+                  .minFontSize(10)
+                  .maxLines(6)
+                  .heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
+                  .width(120)
+                  .height(20)
+                  .padding(0)
+                  .borderRadius(10)
+              }
+            }.width('50%').height(90).backgroundColor(0x10000000)
+
+            Column() {
+              Column({ space: 10 }) {
+                Row() {
+                  Text('优先减少字号')
+                }.width('90%')
+
+                // 当前布局无法完整显示文字，优先缩小fontSize，缩小后可以一行显示。
+                SaveButton({
+                  text: SaveDescription.QUICK_SAVE_TO_GALLERY, buttonType: ButtonType.Normal
+                })
+                  .maxFontSize(20)
+                  .minFontSize(10)
+                  .maxLines(6)
+                  .heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
+                  .width(60)
+                  .height(20)
+                  .padding(0)
+                  .borderRadius(10)
+              }
+            }.width('50%').height(90).backgroundColor(0x30000000)
+
+            Column() {
+              Column({ space: 10 }) {
+                Row() {
+                  Text('先减小字号，再换行')
+                }.width('90%')
+
+                // 当前布局无法完整显示文字，优先缩小fontSize，缩小后仍然无法完整显示，尝试使用maxLines属性换行布局。
+                // 由于高度不足以完整显示，自动调整高度使文本完整显示。
+                SaveButton({
+                  text: SaveDescription.QUICK_SAVE_TO_GALLERY, buttonType: ButtonType.Normal
+                })
+                  .maxFontSize(20)
+                  .minFontSize(10)
+                  .maxLines(6)
+                  .heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
+                  .width(20)
+                  .height(20)
+                  .padding(0)
+                  .borderRadius(10)
+              }
+            }.width('50%').height(90).backgroundColor(0x30000000)
+
+            Column() {
+              Column({ space: 10 }) {
+                Row() {
+                  Text('减小字号+换行，文字被截断')
+                }.width('90%')
+
+                // 当前布局无法完整显示文字，优先缩小fontSize，缩小后仍然无法完整显示，尝试使用maxLines属性换行布局。
+                // 由于maxlines属性为3，只能显示三行，所以文字被截断。
+                // 由于高度不足以完整显示，自动调整高度使文本完整显示。
+                SaveButton({
+                  text: SaveDescription.QUICK_SAVE_TO_GALLERY, buttonType: ButtonType.Normal
+                })
+                  .maxFontSize(20)
+                  .minFontSize(10)
+                  .maxLines(3)
+                  .heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
+                  .width(10)
+                  .height(20)
+                  .padding(0)
+                  .borderRadius(10)
+              }
+            }.width('50%').height(90).backgroundColor(0x10000000)
+          }.width('100%')
+
+          Flex({ wrap: FlexWrap.Wrap }) {
+            Column() {
+              Row() {
+                Text('heightAdaptivePolicy = MAX_LINES_FIRST').fontSize(16).fontWeight(FontWeight.Bold)
+              }
+            }.height(40)
+
+            Column() {
+              Column({ space: 10 }) {
+                Row() {
+                  Text('无需自适应调节')
+                }.width('90%')
+
+                //当前布局无需调整即可完整显示文本，文本无需自适应调节。
+                SaveButton({
+                  text: SaveDescription.QUICK_SAVE_TO_GALLERY, buttonType: ButtonType.Normal
+                })
+                  .maxFontSize(20)
+                  .minFontSize(10)
+                  .maxLines(6)
+                  .heightAdaptivePolicy(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
+                  .width(120)
+                  .height(20)
+                  .padding(0)
+                  .borderRadius(10)
+              }
+            }.width('50%').height(90).backgroundColor(0x10000000)
+
+            Column() {
+              Column({ space: 10 }) {
+                Row() {
+                  Text('优先换行')
+                }.width('90%')
+
+                // 当前布局无法完整显示文字，优先使用maxlines属性换行布局，换行后可以完整显示。
+                // 由于高度不足以完整显示，自动调整高度使文本完整显示。
+                SaveButton({
+                  text: SaveDescription.QUICK_SAVE_TO_GALLERY, buttonType: ButtonType.Normal
+                })
+                  .maxFontSize(20)
+                  .minFontSize(10)
+                  .maxLines(6)
+                  .heightAdaptivePolicy(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
+                  .width(60)
+                  .height(20)
+                  .padding(0)
+                  .borderRadius(10)
+              }
+            }.width('50%').height(90).backgroundColor(0x30000000)
+
+            Column() {
+              Column({ space: 10 }) {
+                Row() {
+                  Text('先换行，再减小字号')
+                }.width('90%')
+
+                // 当前布局无法完整显示文字，优先使用maxlines属性换行布局，换行后仍然无法完整显示，缩小fontSize尝试布局，缩小字体后可以完整显示。
+                // 由于高度不足以完整显示，自动调整高度使文本完整显示。
+                SaveButton({
+                  text: SaveDescription.QUICK_SAVE_TO_GALLERY, buttonType: ButtonType.Normal
+                })
+                  .maxFontSize(20)
+                  .minFontSize(10)
+                  .maxLines(3)
+                  .heightAdaptivePolicy(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
+                  .width(20)
+                  .height(20)
+                  .padding(0)
+                  .borderRadius(10)
+              }
+            }.width('50%').height(90).backgroundColor(0x30000000)
+
+            Column() {
+              Column({ space: 10 }) {
+                Row() {
+                  Text('换行+减小字号，文字被截断')
+                }.width('90%')
+
+                // 当前布局无法完整显示文字，优先使用maxlines属性换行布局，换行后仍然无法完整显示，缩小fontSize尝试布局。
+                // 由于minFontSize属性为10，每行只能显示一个字，所以文字被截断。
+                // 由于高度不足以完整显示，自动调整高度使文本完整显示。
+                SaveButton({
+                  text: SaveDescription.QUICK_SAVE_TO_GALLERY, buttonType: ButtonType.Normal
+                })
+                  .maxFontSize(20)
+                  .minFontSize(10)
+                  .maxLines(3)
+                  .heightAdaptivePolicy(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
+                  .width(10)
+                  .height(20)
+                  .padding(0)
+                  .borderRadius(10)
+              }
+            }.width('50%').height(90).backgroundColor(0x10000000)
+          }.width('100%')
+
+          Flex({ wrap: FlexWrap.Wrap }) {
+
+            Column() {
+              Row() {
+                Text('heightAdaptivePolicy = LAYOUT_CONSTRAINT_FIRST').fontSize(16).fontWeight(FontWeight.Bold)
+              }
+            }.height(40)
+
+            Column() {
+              Column({ space: 10 }) {
+                Row() {
+                  Text('无需自适应调节')
+                }.width('90%')
+
+                //当前布局无需调整即可完整显示文本，文本无需自适应调节。
+                SaveButton({
+                  text: SaveDescription.QUICK_SAVE_TO_GALLERY, buttonType: ButtonType.Normal
+                })
+                  .maxFontSize(20)
+                  .minFontSize(10)
+                  .maxLines(6)
+                  .heightAdaptivePolicy(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
+                  .width(120)
+                  .height(20)
+                  .padding(0)
+                  .borderRadius(10)
+              }
+            }.width('50%').height(90).backgroundColor(0x10000000)
+
+            Column() {
+              Column({ space: 10 }) {
+                Row() {
+                  Text('不改变布局约束，优先减小字号')
+                }.width('90%')
+
+                // 当前布局无法完整显示文字，优先缩小fontSize，缩小后可以一行显示。
+                SaveButton({
+                  text: SaveDescription.QUICK_SAVE_TO_GALLERY, buttonType: ButtonType.Normal
+                })
+                  .maxFontSize(20)
+                  .minFontSize(10)
+                  .maxLines(6)
+                  .heightAdaptivePolicy(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
+                  .width(60)
+                  .height(20)
+                  .padding(0)
+                  .borderRadius(10)
+              }
+            }.width('50%').height(90).backgroundColor(0x30000000)
+
+            Column() {
+              Column({ space: 10 }) {
+                Row() {
+                  Text('不改变布局约束，先减小字号再换行')
+                }.width('90%')
+
+                // 当前布局无法完整显示文字，优先缩小fontSize，缩小后无法完整显示，使用maxlines属性进行换行布局。布局后可以完整显示。
+                // LAYOUT_CONSTRAINT_FIRST模式下安全控件高度不支持自适应调整。
+                SaveButton({
+                  text: SaveDescription.QUICK_SAVE_TO_GALLERY, buttonType: ButtonType.Normal
+                })
+                  .maxFontSize(20)
+                  .minFontSize(10)
+                  .maxLines(6)
+                  .heightAdaptivePolicy(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
+                  .width(20)
+                  .height(40)
+                  .padding(0)
+                  .borderRadius(10)
+              }
+            }.width('50%').height(90).backgroundColor(0x30000000)
+
+            Column() {
+              Column({ space: 10 }) {
+                Row() {
+                  Text(`Maxlines不够\n文字被截断`)
+                }.width('90%')
+
+                // 当前布局无法完整显示文字，优先缩小fontSize，缩小后无法完整显示，但由于height只能显示一行，所以文字被截断。
+                // LAYOUT_CONSTRAINT_FIRST模式下安全控件高度不支持自适应调整。
+                SaveButton({
+                  text: SaveDescription.QUICK_SAVE_TO_GALLERY, buttonType: ButtonType.Normal
+                })
+                  .maxFontSize(20)
+                  .minFontSize(10)
+                  .maxLines(2)
+                  .heightAdaptivePolicy(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
+                  .width(20)
+                  .height(40)
+                  .padding(0)
+                  .borderRadius(10)
+              }
+            }.width('25%').height(90).backgroundColor(0x10000000)
+
+            Column() {
+              Column({ space: 10 }) {
+                Row() {
+                  Text(`高度不够\n文字被截断`)
+                }.width('90%')
+
+                // 当前布局无法完整显示文字，优先缩小fontSize，缩小后无法完整显示，但由于height只能显示一行，所以文字被截断。
+                // LAYOUT_CONSTRAINT_FIRST模式下安全控件高度不支持自适应调整。
+                SaveButton({
+                  text: SaveDescription.QUICK_SAVE_TO_GALLERY, buttonType: ButtonType.Normal
+                })
+                  .maxFontSize(20)
+                  .minFontSize(10)
+                  .maxLines(6)
+                  .heightAdaptivePolicy(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
+                  .width(20)
+                  .height(20)
+                  .padding(0)
+                  .borderRadius(10)
+              }
+            }.width('25%').height(90).backgroundColor(0x20000000)
+          }.width('100%')
+
+        }.width('100%')
+      }.width('100%').margin({ top: 10, left: 10, right: 10 })
+    }
+  }
+}
+```
+
+![security_component_demo_shot.jpg](figures/security_component_demo_shot.jpg)

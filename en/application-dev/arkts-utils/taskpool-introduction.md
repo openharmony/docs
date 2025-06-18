@@ -14,7 +14,7 @@ With TaskPool, you can encapsulate tasks in the host thread and submit the tasks
 
 - Functions implementing tasks must be decorated with [\@Concurrent](#concurrent-decorator) and are supported only in .ets files.
 
-- Starting from API version 11, when passing instances with methods across concurrent instances, the class must be decorated with [@Sendable](arkts-sendable.md#sendable) and are supported only in .ets files.
+- Starting from API version 11, when passing instances with methods across concurrent instances, the class must be decorated with [@Sendable](arkts-sendable.md#sendable-decorator) and are supported only in .ets files.
 
 - A task function must finish the execution in a TaskPool worker thread within 3 minutes (excluding the time used for Promise or async/await asynchronous call, such as the duration of I/O tasks like network download and file read/write operation). Otherwise, it is forcibly terminated.
 
@@ -30,7 +30,7 @@ With TaskPool, you can encapsulate tasks in the host thread and submit the tasks
 
 - Promises cannot be transferred across threads. If TaskPool returns a Promise in the pending or rejected state, a failure message is returned. For a Promise in the fulfilled state, TaskPool parses the returned result. If the result can be transferred across threads, a success message is returned.
 
-- [AppStorage](../quick-start/arkts-appstorage.md) cannot be used in TaskPool worker threads.
+- [AppStorage](../ui/state-management/arkts-appstorage.md) cannot be used in TaskPool worker threads.
 
 - TaskPool allows you to package tasks in the host thread and submit them to the task queue. While it can theoretically handle an unlimited number of tasks, the actual task execution is influenced by the task priority and the availability of system resources. Once the Worker threads reach their maximum capacity, the efficiency of task execution might be compromised.
 

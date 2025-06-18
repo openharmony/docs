@@ -4,6 +4,37 @@
 
 应用通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。
 
+<!--RP1-->
+
+<!--RP1End-->
+
+当前HTTP请求支持的场景如下，以下功能对应的选项可以在HTTP请求的[HttpResponseOptions](../reference/apis-network-kit/js-apis-http.md#httprequestoptions)中进行设置：
+
+| 功能分类     | 功能名称                           |功能描述                      | 开始支持的版本         |
+| ----------- | -----------------------------------|-----------------------------|------------------------|
+| 基础功能     | 设置请求方式。                      | 支持GET、POST、HEAD、PUT、DELETE、TRACE、CONNECT、OPTIONS方法，默认为GET。  |  API version 6  |
+| 基础功能     | 设置请求额外数据。                 | 支持发送请求时同步携带额外数据，默认无此字段。 | API version 6    |
+| 基础功能     | 设置读取超时时间。                 | 该参数设置的是从请求开始到请求结束的总时间，包括DNS解析、连接建立、传输等。单位为毫秒（ms），默认为60000ms。 |  API version 6   |
+| 基础功能     | 设置连接超时时间。                 | 该参数设置的是连接超时时间。单位为毫秒（ms），默认为60000ms。 |  API version 6   |
+| 基础功能     | 设置HTTP请求头。                  | 当请求方式为"POST" "PUT" "DELETE" 或者""时，默认{'content-Type': 'application/json'}， 否则默认{'content-Type': 'application/x-www-form-urlencoded'}。 |  API version 6   |
+| 基础功能     | 设置响应数据类型。                | 可以指定HTTP响应数据的类型，默认无此字段。如果设置了此参数，系统将优先返回指定的类型。 |  API version 9   |
+| 基础功能     | 设置请求并发优先级。              |  指定HTTP/HTTPS请求并发优先级，值越大优先级越高，范围[1,1000]，默认为1。|  API version 9   |
+| 基础功能     | 设置是否使用缓存。                | 可以指定是否使用缓存，默认为true，请求时优先读取缓存。 缓存跟随当前进程生效。新缓存会替换旧缓存，设置为false表示不使用缓存。 |  API version 9   |
+| 基础功能     | 设置使用协议类型。                 | 默认值由系统自动指定，用户可以指定为HTTP 1.1、HTTP 2、HTTP 3协议版本。 |  API version 9   |
+| 代理设置     | 设置HTTP请求代理。                 | 是否使用HTTP代理，默认为false，不使用代理，设置为true表示使用HTTP代理，此时会使用系统默认代理，也支持自定义网络代理。 |  API version 10  |
+| 证书验证     | 设置CA证书路径。                   | 如果设置了此参数，系统将使用用户指定路径的CA证书（开发者需保证该路径下CA证书的可访问性），否则将使用系统预设CA证书。 | API version 10    |
+| 证书验证     | 设置支持传输客户端证书。            | 支持传输客户端证书，包括证书路径、证书类型、证书密钥路径和密码信息。 | API version 11    |
+| 基础功能     | 设置下载起始位置和结束位置。         | 指定客户端要获取的数据范围，通常用户下载文件。 |  API version 11  |
+| 基础功能     | 设置需要上传的数据字段表单列表。        |设置多部分表单数据，通常用于上传文件。 |  API version 11   |
+| DNS设置      | 设置使用HTTPS协议的服务器进行DNS解析。  | 设置使用HTTPS协议的服务器进行DNS解析。- 参数必须以以下格式进行URL编码:"https://host:port/path"。 | API version 11    |
+| DNS设置     | 设置指定的DNS服务器进行DNS解析。         | 设置指定的DNS服务器进行DNS解析。- 可以设置多个DNS解析服务器，最多3个服务器。如果有3个以上，只取前3个。- 服务器必须是IPV4或者IPV6地址。 |  API version 11   |
+| 基础功能     | 设置响应消息的最大字节限制。            | 响应消息的最大字节限制。默认值为5\*1024\*1024，以字节为单位。最大值为100\*1024\*1024，以字节为单位。 |   API version 11  |
+| 证书验证     | 设置动态设置证书锁定配置。             | 动态设置证书锁定配置，可以传入单个或多个证书PIN码。 |   API version 12  |
+| 证书验证     | 设置解析目标域名时限定地址类型。        | 指定在解析目标域名时的地址类型，可以设置为跟随系统网络配置，强制仅使用IPV4地址进行解析或者强制仅使用IPV6地址进行解析。 |  API version 15   |
+| 证书验证     | 设置跳过SSL证书校验。                     | 可以设置跳过SSL证书校验流程。 | API version 18    |
+| 证书验证     | 设置证书校验的版本和加密套件。             | 自定义证书校验版本和加密套件。 |  API version 18  |
+| 证书验证     | 设置安全连接期间的服务器身份验证配置信息。        | 设置安全连接期间的服务器身份验证配置。 |  API version 18   |
+
 ## 接口说明
 
 HTTP数据请求功能主要由http模块提供。
@@ -32,7 +63,7 @@ HTTP数据请求功能主要由http模块提供。
 | on\('dataSendProgress'\)<sup>11+</sup>        | 订阅HTTP网络请求数据发送进度事件。  |
 | off\('dataSendProgress'\)<sup>11+</sup>       | 取消订阅HTTP网络请求数据发送进度事件。 |
 
-## request接口开发步骤
+## 发起HTTP一般数据请求
 
 1. 从@kit.NetworkKit中导入http命名空间。
 2. 调用createHttp()方法，创建一个HttpRequest对象。
@@ -42,8 +73,11 @@ HTTP数据请求功能主要由http模块提供。
 6. 调用该对象的off()方法，取消订阅http响应头事件。
 7. 当该请求使用完毕时，调用destroy()方法主动销毁。
 
-**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，[请参见获取UIAbility的上下文消息](http://gitee.com/openharmony/docs/blob/222f8d93e6f0056409aac096e041df3fdd8ae5ec/zh-cn/application-dev/application-models/uiability-usage.md)。
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 // 引入包名
 import { http } from '@kit.NetworkKit';
@@ -118,7 +152,7 @@ httpRequest.request(
 );
 ```
 
-## requestInStream接口开发步骤
+## 发起HTTP流式传输请求
 
 1. 从@kit.NetworkKit中导入http命名空间。
 2. 调用createHttp()方法，创建一个HttpRequest对象。
@@ -193,7 +227,7 @@ httpRequest.requestInStream("EXAMPLE_URL", streamInfo).then((data: number) => {
   // 当该请求使用完毕时，调用destroy方法主动销毁
   httpRequest.destroy();
 }).catch((err: Error) => {
-  console.info("requestInStream ERROR : err = " + JSON.stringify(err));
+  console.error("requestInStream ERROR : err = " + JSON.stringify(err));
 });
 ```
 
@@ -241,7 +275,7 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 
 ### JSON配置文件示例
 
-预置应用级证书的配置例子如下：
+预置应用级证书的配置例子如下（具体配置路径可参考[网络连接安全配置](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-network-ca-security#section5454123841911)）：
 
 ```json
 {
@@ -309,7 +343,7 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 |trust-anchors              | array           |受信任的CA。可以包含任意个item。item必须包含1个certificates。|
 |certificates               | string          |CA证书路径。 |
 |domains                    | array           |域。可以包含任意个item。item必须包含1个name(string：指示域名)，可以包含0或者1个include-subdomains。|
-|include-subdomains         | boolean         |指示规则是否适用于子域。 |
+|include-subdomains         | boolean         |指示规则是否适用于子域。true：指示规则适用于子域；false：指示规则不适用于子域。 |
 |pin-set                    | object          |证书公钥哈希设置。必须包含1个pin，可以包含0或者1个expiration。|
 |expiration                 | string          |指示证书公钥哈希的过期时间。 |
 |pin                        | array           |证书公钥哈希。可以包含任意个item。item必须包含1个digest-algorithm，item必须包含1个digest。|

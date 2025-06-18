@@ -46,7 +46,7 @@ libnative_window.so
     1. 在xxx.ets中添加一个XComponent组件。
 
         ```ts
-        XComponent({ id: 'xcomponentId', type: 'surface', libraryname: 'entry'})
+        XComponent({ id: 'xcomponentId', type: XComponentType.SURFACE, libraryname: 'entry'})
             .width(360)
             .height(360)
         ```

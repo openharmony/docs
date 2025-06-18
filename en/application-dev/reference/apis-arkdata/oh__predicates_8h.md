@@ -36,4 +36,4 @@ Defines the predicates for RDB stores.
 
 | Name| Description|
 | -------- | -------- |
-| [OH_OrderType](_r_d_b.md#oh_ordertype-1) { ASC = 0, DESC = 1 } | Enumerates the sorting types.|
+| [OH_OrderType](_r_d_b.md#oh_ordertype) { ASC = 0, DESC = 1 } | Enumerates the sorting types.|

@@ -81,7 +81,7 @@ onAttach?(): void
 
 > **说明：**
 >
-> 回调时机参考[onAttach](arkui-ts/ts-universal-events-show-hide.md#onattach)。
+> 回调时机参考[onAttach](arkui-ts/ts-universal-events-show-hide.md#onattach12)。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -95,7 +95,7 @@ onDetach?(): void
 
 > **说明：**
 >
-> 回调时机参考[onDetach](arkui-ts/ts-universal-events-show-hide.md#ondetach)。
+> 回调时机参考[onDetach](arkui-ts/ts-universal-events-show-hide.md#ondetach12)。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -210,7 +210,7 @@ rebuild(): void
 > **说明：**
 > 由于rebuild方法为应用主动调用的方法，且该操作与UI相关。需要开发者自行保证调用该接口时UI上下文有效，即与绑定的NodeContainer保持UI上下文一致。
 >
-> 监听回调等UI上下文不明确时，可以通过[UIContext](./js-apis-arkui-UIContext.md)的[runScopedTask](./js-apis-arkui-UIContext.md#runscopedtask)方法明确调用时的UI上下文。
+> 监听回调等[UI上下文不明确](../../ui/arkts-global-interface.md)时，可以通过[UIContext](./js-apis-arkui-UIContext.md)的[runScopedTask](./js-apis-arkui-UIContext.md#runscopedtask)方法明确调用时的UI上下文。
 
 ## 示例
 

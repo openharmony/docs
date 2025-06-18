@@ -6,12 +6,12 @@
 线性布局（LinearLayout）是开发中最常用的布局，通过线性容器[Row](../reference/apis-arkui/arkui-ts/ts-container-row.md)和[Column](../reference/apis-arkui/arkui-ts/ts-container-column.md)构建。线性布局是其他布局的基础，其子元素在线性方向上（水平方向和垂直方向）依次排列。线性布局的排列方向由所选容器组件决定，Row容器内子元素按照水平方向排列，Column容器内子元素按照垂直方向排列。根据不同的排列方向，开发者可选择使用Row或Column容器创建线性布局。
 
 
-  **图1** Column容器内子元素排列示意图  
+  **图1** Column容器内子元素排列示意图
 
 ![arrangement-child-elements-column](figures/arrangement-child-elements-column.png)
 
 
-  **图2** Row容器内子元素排列示意图  
+  **图2** Row容器内子元素排列示意图
 
 ![arrangement-child-elements-row](figures/arrangement-child-elements-row.png)
 
@@ -36,7 +36,7 @@
 
 ### Column容器内排列方向上的间距
 
-  **图3** Column容器内排列方向的间距图  
+  **图3** Column容器内排列方向的间距图
 
 ![arrangement-direction-column](figures/arrangement-direction-column.png)
 
@@ -55,7 +55,7 @@ Column({ space: 20 }) {
 
 ### Row容器内排列方向上的间距
 
-  **图4** Row容器内排列方向的间距图  
+  **图4** Row容器内排列方向的间距图
 
 ![arrangement-direction-row](figures/arrangement-direction-row.png)
 

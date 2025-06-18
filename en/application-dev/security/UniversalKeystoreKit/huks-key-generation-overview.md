@@ -41,7 +41,7 @@ The key management service specifications include mandatory specifications and o
 > **NOTE**<br>
 > The DH algorithm uses the FFDHE named safe prime groups.
 
-**Specifications for Mimi-System Devices**
+**Specifications for Mini-System Devices**
 
 <!--Del-->
 Before implementing the specifications for mini-system devices, determine whether your device supports the related specifications.

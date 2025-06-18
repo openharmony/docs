@@ -130,12 +130,12 @@ requestByTaskPool(): void {
   // 创建任务项
   let task: taskpool.Task = new taskpool.Task(this.getInfoFromHttp);
   try {
-  // 执行网络加载函数
-  taskpool.execute(task, taskpool.Priority.HIGH).then((res: string[]) => {
-});
-} catch (err) {
-  logger.error(TAG, "failed, " + (err as BusinessError).toString());
-}
+    // 执行网络加载函数
+    taskpool.execute(task, taskpool.Priority.HIGH).then((res: string[]) => {
+    });
+  } catch (err) {
+    logger.error(TAG, "failed, " + (err as BusinessError).toString());
+  }
 }
 ```
 #### 高频程度&收益（5满分）
@@ -275,11 +275,11 @@ Web({ src: 'https://www.example.com', controller: this.controller })
 ```typescript
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.info("EntryAbility onCreate")
+    console.info("EntryAbility onCreate");
     // 在 Web 组件初始化之前，通过此接口加载 Web 引擎的动态库文件，以提高启动性能。
     setTimeout(() => {
       // 这里使用setTimeout来实现延迟运行
-      web_webview.WebviewController.initializeWebEngine()
+      web_webview.WebviewController.initializeWebEngine();
     }, 200)
     console.info("EntryAbility onCreate done");
   }
@@ -628,11 +628,11 @@ import promptAction from '@ohos.promptAction';
 @Component
 struct ViewA {
   aboutToAppear(): void {
-    hilog.info(0x101, 'tag', 'Index.ets aboutToAppear')  // 无具体业务逻辑的日志
+    hilog.info(0x101, 'tag', 'Index.ets aboutToAppear');  // 无具体业务逻辑的日志
   }
 
   aboutToDisappear(): void{
-    hilog.info(0x101, 'tag', 'Index.ets aboutToDisappear') // 无具体业务逻辑的日志
+    hilog.info(0x101, 'tag', 'Index.ets aboutToDisappear'); // 无具体业务逻辑的日志
   }
 
   /**
@@ -773,13 +773,13 @@ struct ViewA {
         .backgroundColor('#182431')
         .margin({ bottom: 40 })
         .onStart(() => {
-          console.info('Marquee animation complete onStart')
+          console.info('Marquee animation complete onStart');
         })
         .onBounce(() => {
-          console.info('Marquee animation complete onBounce')
+          console.info('Marquee animation complete onBounce');
         })
         .onFinish(() => {
-          console.info('Marquee animation complete onFinish')
+          console.info('Marquee animation complete onFinish');
         })
     }.width("100%")
   }

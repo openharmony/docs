@@ -661,7 +661,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.setAppNet(netHandle).then(() => {
     console.log("success");
   }).catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   })
 });
 ```
@@ -1133,7 +1133,7 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.isDefaultNetMetered((error: BusinessError, data: boolean) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log('data: ' + data);
 });
 ```
@@ -1242,7 +1242,7 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.hasDefaultNet((error: BusinessError, data: boolean) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log('data: ' + data);
 });
 ```
@@ -1355,7 +1355,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.reportNetConnected(netHandle, (error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 });
 ```
@@ -1767,7 +1767,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 connection.removeCustomDnsRule("xxxx").then(() => {
     console.log("success");
 }).catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
 })
 ```
 
@@ -1850,7 +1850,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 connection.clearCustomDnsRules().then(() => {
     console.log("success");
 }).catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
 })
 ```
 
@@ -1937,6 +1937,8 @@ register(callback: AsyncCallback\<void>): void
 
 订阅指定网络状态变化的通知。
 
+**注意：** 使用完register接口后需要及时调用unregister取消注册。
+
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -1970,7 +1972,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let netCon: connection.NetConnection = connection.createNetConnection();
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2009,7 +2011,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let netCon: connection.NetConnection = connection.createNetConnection();
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2041,7 +2043,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // 订阅网络可用事件。调用register后，才能接收到此事件通知
@@ -2051,7 +2053,7 @@ netCon.on('netAvailable', (data: connection.NetHandle) => {
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2081,7 +2083,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // 订阅网络阻塞状态事件。调用register后，才能接收到此事件通知
@@ -2091,7 +2093,7 @@ netCon.on('netBlockStatusChange', (data: connection.NetBlockStatusInfo) => {
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2123,7 +2125,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // 订阅网络能力变化事件。调用register后，才能接收到此事件通知
@@ -2133,7 +2135,7 @@ netCon.on('netCapabilitiesChange', (data: connection.NetCapabilityInfo) => {
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2163,7 +2165,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // 订阅网络连接信息变化事件。调用register后，才能接收到此事件通知
@@ -2173,7 +2175,7 @@ netCon.on('netConnectionPropertiesChange', (data: connection.NetConnectionProper
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2205,7 +2207,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // 订阅网络丢失事件。调用register后，才能接收到此事件通知
@@ -2215,7 +2217,7 @@ netCon.on('netLost', (data: connection.NetHandle) => {
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2247,7 +2249,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // 订阅网络不可用事件。调用register后，才能接收到此事件通知
@@ -2257,7 +2259,7 @@ netCon.on('netUnavailable', () => {
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2324,7 +2326,7 @@ interface Data {
               port:8080,
               family:1} as socket.NetAddress, (error: Error) => {
       if (error) {
-        console.log('bind fail');
+        console.error('bind fail');
         return;
       }
       netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
@@ -2418,7 +2420,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
               port:8080,
               family:1} as socket.NetAddress, (error: Error) => {
       if (error) {
-        console.log('bind fail');
+        console.error('bind fail');
         return;
       }
       netHandle.bindSocket(tcp).then(() => {
@@ -2729,15 +2731,16 @@ let config: wifiManager.WifiDeviceConfig = {
   securityType: wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
 };
 // 通过wifiManager.addCandidateConfig获取注册WLAN的networkId
-let networkId: number = await wifiManager.addCandidateConfig(config);
-let netConnectionWlan = connection.createNetConnection({
-  netCapabilities: {
-    bearerTypes: [connection.NetBearType.BEARER_WIFI]
-  },
-  bearerPrivateIdentifier: `${networkId}`
-});
-netConnectionWlan.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+wifiManager.addCandidateConfig(config,(error,networkId) => {
+ let netConnectionWlan = connection.createNetConnection({
+   netCapabilities: {
+     bearerTypes: [connection.NetBearType.BEARER_WIFI]
+   },
+   bearerPrivateIdentifier: `${networkId}`
+ });
+ netConnectionWlan.register((error: BusinessError) => {
+   console.error(JSON.stringify(error));
+ });
 });
 ```
 
@@ -2867,8 +2870,6 @@ type TCPSocket = socket.TCPSocket
 
 获取一个TCPSocket对象。
 
-**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 |       类型       |            说明             |
@@ -2880,8 +2881,6 @@ type TCPSocket = socket.TCPSocket
 type UDPSocket = socket.UDPSocket
 
 获取一个UDPSocket对象。
-
-**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 

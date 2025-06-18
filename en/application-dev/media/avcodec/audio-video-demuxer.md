@@ -174,7 +174,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    DRM_MediaKeySystemInfo mediaKeySystemInfo;
    OH_AVDemuxer_GetMediaKeySystemInfo(demuxer, &mediaKeySystemInfo);
    ```
-   After obtaining and parsing DRM information, create [MediaKeySystem and MediaKeySession](../drm/drm-c-dev-guide.md) instances of the corresponding DRM scheme to obtain a media key. If required, set the audio decryption configuration by following step 4 in [Audio Decoding](audio-decoding.md#how-to-develop), and set the video decryption configuration by following step 5 in [Surface Output in Video Decoding](video-decoding.md#surface-mode) or step 4 in [Buffer Output in Video Decoding](video-decoding.md#buffer-mode).
+   After obtaining and parsing DRM information, create [MediaKeySystem and MediaKeySession](../drm/drm-c-dev-guide.md) instances of the corresponding DRM scheme to obtain a media key. If required, set the audio decryption configuration by following step 4 in [Audio Decoding](audio-decoding.md#how-to-develop), and set the video decryption configuration by following step 5 in [Surface Output in Video Decoding](video-decoding.md#surface-output) or step 4 in [Buffer Output in Video Decoding](video-decoding.md#buffer-output).
 
 5. Obtain file information.
 
@@ -293,47 +293,57 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    | AVCODEC_BUFFER_FLAGS_CODEC_DATA | Frame containing parameter set information.|
    | AVCODEC_BUFFER_FLAGS_DISCARD  | Frames that can be discarded.|
 
+   The **OH_AVDemuxer_ReadSampleBuffer** function can be time-consuming, particularly due to file I/O operations. You are advised to call this function in asynchronous mode.
    ```c++
-   // Create a buffer based on the specified size to store the data obtained after demultiplexing.
-   // It is recommended that the buffer size be greater than the size of the stream to be obtained. In the example, the buffer size is set to the size of a single frame.
-   OH_AVBuffer *buffer = OH_AVBuffer_Create(w * h * 3 >> 1);
-   if (buffer == nullptr) {
-      printf("build buffer failed");
-      return;
-   }
-   OH_AVCodecBufferAttr info;
-   bool videoIsEnd = false;
-   bool audioIsEnd = false;
-   int32_t ret;
-   while (!audioIsEnd || !videoIsEnd) {
-      // Before calling OH_AVDemuxer_ReadSampleBuffer, call OH_AVDemuxer_SelectTrackByID to select the track from which the demuxer reads data.
-      // Note:
-      // For AVI format, since the container standard does not support encapsulating timestamp information, the demultiplexed frames do not contain PTS information. The caller needs to calculate display timestamps based on the frame rate and the display order of the decoded frames.
-      // Obtain the audio sample.
-      if(!audioIsEnd) {
-         ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, audioTrackIndex, buffer);
-         if (ret == AV_ERR_OK) {
-            // Obtain and process the audio sample in the buffer.
-            OH_AVBuffer_GetBufferAttr(buffer, &info);
-            printf("audio info.size: %d\n", info.size);
-            if (info.flags == OH_AVCodecBufferFlags::AVCODEC_BUFFER_FLAGS_EOS) {
-               audioIsEnd = true;
-            }
-         }
+   // Define a processing function for each thread.
+   void ReadTrackSamples(OH_AVFormatDemuxer *demuxer, int trackIndex, int buffer_size, 
+                         std::atomic<bool>& isEnd, std::atomic<bool>& threadFinished)
+   {
+      // Create a buffer.
+      OH_AVBuffer *buffer = OH_AVBuffer_Create(buffer_size);
+      if (buffer == nullptr) {
+         printf("Create buffer failed for track %d\n", trackIndex);
+         threadFinished.store(true);
+         return;
       }
-      if(!videoIsEnd) {
-         ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, videoTrackIndex, buffer);
+      OH_AVCodecBufferAttr info;
+      int32_t ret;
+
+      while (!isEnd.load()) {
+         ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, trackIndex, buffer);
          if (ret == AV_ERR_OK) {
-            // Obtain and process the video sample in the buffer.
-            OH_AVBuffer_GetBufferAttr(buffer, &info);
-            printf("video info.size: %d\n", info.size);
-            if (info.flags == OH_AVCodecBufferFlags::AVCODEC_BUFFER_FLAGS_EOS) {
-               videoIsEnd = true;
-            }
+               OH_AVBuffer_GetBufferAttr(buffer, &info);
+               printf("Track %d sample size: %d\n", trackIndex, info.size);
+               // Check the EOS flag.
+               if (info.flags == OH_AVCodecBufferFlags::AVCODEC_BUFFER_FLAGS_EOS) {
+                  isEnd.store(true);
+               }
+               // Process the buffer data (decode the data as required).
+         } else {
+               printf("Read sample failed for track %d\n", trackIndex);
          }
+         // Destroy the buffer.
+         OH_AVBuffer_Destroy(buffer);
+         buffer = nullptr;
       }
+      threadFinished.store(true);
    }
-   OH_AVBuffer_Destroy(buffer);
+
+   // Calculate the buffer size based on your requirements.
+   int audioBufferSize = 4096; // Typical audio buffer size.
+   int videoBufferSize = w * h * 3 >> 1; // Raw video buffer size.
+
+   // Create atomic variables for thread communication.
+   std::atomic<bool> audioIsEnd{false}, videoIsEnd{false}; // Specify whether the stream ends.
+   std::atomic<bool> audioThreadFinished{false}, videoThreadFinished{false}; // Specify whether the thread is paused.
+
+   // Create a thread.
+   std::thread audioThread(ReadTrackSamples, demuxer, audioTrackIndex, audioBufferSize, 
+                           std::ref(audioIsEnd), std::ref(audioThreadFinished));
+   std::thread videoThread(ReadTrackSamples, demuxer, videoTrackIndex, videoBufferSize, 
+                           std::ref(videoIsEnd), std::ref(videoThreadFinished));
+   audioThread.join();
+   videoThread.join();
    ```
 
 10. Destroy the demuxer instance.

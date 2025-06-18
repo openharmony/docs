@@ -3,15 +3,16 @@
 
 ## Overview
 
-The **Image** module enables access to image APIs.
+The Image module enables access to image APIs.
 
 You can refer to the corresponding development guide and samples based on your development requirements.
 
-- [Using Image to Decode Images](../../media/image/image-decoding-native.md)
-- [Using Image to Receive Images](../../media/image/image-receiver-native.md)
-- [Using Image to Transform Images](../../media/image/image-transformation-native.md)
-- [Using PixelMap to Process PixelMap Data](../../media/image/image-pixelmap-operation-native.md)
-- [Using Image to Encode Images](../../media/image/image-encoding-native.md)
+- [Image Decoding](../../media/image/image-decoding-native.md)
+- [Image Encoding](../../media/image/image-encoding-native.md)
+- [Image Transformation](../../media/image/image-transformation-native.md)
+- [PixelMap Operations](../../media/image/image-pixelmap-operation-native.md)
+- [Image Receiving](../../media/image/image-receiver-native.md)
+
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -642,7 +643,7 @@ UnAccessPixels
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -672,7 +673,7 @@ Obtains the information about a **PixelMap** object and stores the information t
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -704,7 +705,7 @@ Obtains [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md) of an **Image
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -742,7 +743,7 @@ Obtains the format of an **ImageNative** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -782,7 +783,7 @@ Obtains [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md) of 
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -849,7 +850,7 @@ Creates an **ImageReceiver** object at the application layer.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -900,7 +901,7 @@ Obtains the capacity of the image receiver through an [ImageReceiverNative](#ima
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -939,7 +940,7 @@ Obtains the format of the image receiver through an [ImageReceiverNative](#image
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -979,7 +980,7 @@ Obtains the receiver ID through an [ImageReceiverNative](#imagereceivernative) o
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1024,7 +1025,7 @@ Obtains the size of the image receiver through an [ImageReceiverNative](#imagere
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1090,7 +1091,7 @@ Registers an [OH_Image_Receiver_On_Callback](#oh_image_receiver_on_callback) cal
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1139,7 +1140,7 @@ Obtains the latest image through an [ImageReceiverNative](#imagereceivernative) 
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1194,7 +1195,7 @@ Obtains the next image through an [ImageReceiverNative](#imagereceivernative) ob
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1243,7 +1244,7 @@ Releases an [ImageReceiverNative](#imagereceivernative) object. Note: This funct
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1279,7 +1280,7 @@ Releases an **ImageNative** object. Note: This function is not used to release a
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1317,7 +1318,7 @@ If the [ImageNative](image.md#imagenative) object stores the camera preview stre
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1355,7 +1356,7 @@ Obtains an **ImagePacker** object at the JavaScript native layer.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1414,7 +1415,7 @@ Packs a **PixelMap** object or an **ImagePacker** object at the JavaScript nativ
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1458,7 +1459,7 @@ Packs a **PixelMap** object or an **ImagePacker** object at the JavaScript nativ
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1503,7 +1504,7 @@ It is parsed by calling [OH_ImagePacker_InitNative](#oh_imagepacker_initnative).
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1540,7 +1541,7 @@ Creates an **ImageSource** object at the JavaScript native layer based on the sp
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1608,7 +1609,7 @@ Creates an **ImageSource** object at the JavaScript native layer based on the sp
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1646,7 +1647,7 @@ Creates an **ImageSource** object at the JavaScript native layer based on the sp
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1684,7 +1685,7 @@ Creates an **ImageSource** object at the JavaScript native layer based on the sp
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1723,7 +1724,7 @@ Creates an **ImageSource** object at the JavaScript native layer based on the sp
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1766,7 +1767,7 @@ Creates an **ImageSource** object at the JavaScript native layer based on the sp
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1833,7 +1834,7 @@ Creates an **ImageSource** object of the incremental type at the JavaScript nati
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1870,7 +1871,7 @@ Decodes an **ImageSourceNative** object to obtain a **PixelMap** object at the J
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1958,7 +1959,7 @@ Decodes an **ImageSourceNative** object to obtain all **PixelMap** objects at th
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2048,7 +2049,7 @@ Obtains the delay time list from an **ImageSourceNative** object (such as GIF im
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2112,7 +2113,7 @@ Obtains the number of frames from an **ImageSourceNative** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2177,7 +2178,7 @@ Obtains image source information from an **ImageSourceNative** object by index.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2243,7 +2244,7 @@ Obtains the value of an image property from an **ImageSourceNative** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2306,7 +2307,7 @@ Obtains all supported decoding formats.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2375,7 +2376,7 @@ Modifies the value of an image property of an **ImageSourceNative** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2438,7 +2439,7 @@ Releases an **ImageSourceNative** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2564,7 +2565,7 @@ Obtains the memory address of a **NativePixelMap** object and locks the memory.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2631,7 +2632,7 @@ Creates a **PixelMap** object that contains only alpha channel information.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2716,7 +2717,7 @@ Creates a **PixelMap** object. Currently, only BGRA input streams are supported.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2803,7 +2804,7 @@ Creates a **PixelMap** object. Currently, only BGRA input streams are supported.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2853,7 +2854,7 @@ Crops a **NativePixelMap** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2924,7 +2925,7 @@ Flips a **NativePixelMap** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2989,7 +2990,7 @@ Obtains the number of bytes per row of a **NativePixelMap** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -3027,7 +3028,7 @@ Obtains the pixel density of a **NativePixelMap** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -3069,7 +3070,7 @@ Obtains the image information of a **NativePixelMap** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -3137,7 +3138,7 @@ Checks whether a **NativePixelMap** object is editable.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -3199,7 +3200,7 @@ Checks whether a **NativePixelMap** object supports alpha channels.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -3241,7 +3242,7 @@ Rotates a **NativePixelMap** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -3312,7 +3313,7 @@ Scales a **NativePixelMap** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -3385,7 +3386,7 @@ Scales an image based on the specified antialiasing level, width, and height.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -3428,7 +3429,7 @@ Sets an alpha channel for a **NativePixelMap** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -3465,7 +3466,7 @@ Sets the pixel density for a **NativePixelMap** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -3503,7 +3504,7 @@ Sets the opacity for a **NativePixelMap** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -3544,7 +3545,7 @@ Translates a **NativePixelMap** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -3609,7 +3610,7 @@ Unlocks the memory of a **NativePixelMap** object. This function is used with [O
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode-1).
+For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -3793,7 +3794,7 @@ int32_t OhosImageSourceInfo::density
 
 **Description**
 
-Defines the image density of the image source. It is set in [OH_ImageSource_Create](#oh_imagesource_create).
+Defines the density of the image source. It is set in [OH_ImageSource_Create](#oh_imagesource_create).
 
 **Since**: 10
 
@@ -3870,7 +3871,7 @@ uint32_t OhosImageDecodingOps::index
 
 **Description**
 
-Defines the index of the output PixelMap.
+Defines the index for decoding an image source. The default value is **0**, indicating the first frame. For single-frame images, the index is always **0**. For multi-frame images such as GIF images, the value ranges from 0 to N-1, where N indicates the (N-1)th frame.
 
 **Since**: 10
 

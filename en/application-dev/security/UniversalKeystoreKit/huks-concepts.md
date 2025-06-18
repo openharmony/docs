@@ -6,7 +6,7 @@ Familiarity with the following concepts is helpful because they are used through
 
 ## TEE
 
-Trusted Execution Environment (TEE) is a secure area of a main processor of a smartphone, tablet, or a mobile device. Any date in the TEE cannot be read or tampered with by any code outside it. The TEE provides a secure execution environment for trusted applications (TAs) to ensure end-to-end security by features, such as isolated execution, integrity of applications, confidentiality of their assets, and data access permissions.
+Trusted Execution Environment (TEE) is a secure area of a main processor of a smartphone, tablet, or a mobile device. Any data in the TEE cannot be read or tampered with by any code outside it. The TEE provides a secure execution environment for trusted applications (TAs) to ensure end-to-end security by features, such as isolated execution, integrity of applications, confidentiality of their assets, and data access permissions.
 
 
 ## Key Material Format
@@ -103,7 +103,7 @@ let rsa2048KeyPairMaterial = new Uint8Array([
 
 When a public key is exported or imported, the key material is encapsulated in the DER format defined in X.509.
 
-The following is ECC public key in EDR format:
+The following is ECC public key in DER format:
 
 ```
 let eccP256PubKey = new Uint8Array([

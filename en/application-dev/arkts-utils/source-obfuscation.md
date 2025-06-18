@@ -90,7 +90,7 @@ The following figure shows a simplified compilation process.
 
 You can enable the obfuscation feature in the **build-profile.json5** file of the module so that the source code can be automatically obfuscated during compilation and packaging.
 
-During obfuscation, the tool reads the obfuscation switch. If the switch is enabled, it parses the obfuscation configuration file, merges rules according to the [merging strategies](#obfuscation-rule merging-strategies), applies obfuscation to intermediate files (generated after syntax conversion), and writes the obfuscated files to the **build** directory. You can verify the obfuscation effect by examining the output in the **build** directory.
+During obfuscation, the tool reads the obfuscation switch. If the switch is enabled, it parses the obfuscation configuration file, merges rules according to the [merging strategies](#obfuscation-rule-merging-strategies), applies obfuscation to intermediate files (generated after syntax conversion), and writes the obfuscated files to the **build** directory. You can verify the obfuscation effect by examining the output in the **build** directory.
 
 Before using obfuscation, you are advised to learn about the capabilities of [obfuscation options](source-obfuscation.md#obfuscation-options) and [retention options](source-obfuscation.md#retention-options), and select the appropriate capabilities for your needs.
 
@@ -910,7 +910,7 @@ entry
 
 **Which file names should be retained?**
 
-1. When **require** is used to import file paths, the path should be retained. This is because ArkTS does not support [CommonJS](../arkts-utils/module-principle.md#commonjs module) syntax.
+1. When **require** is used to import file paths, the path should be retained. This is because ArkTS does not support [CommonJS](../arkts-utils/module-principle.md#commonjs-module) syntax.
 
    ```
    const module1 = require('./file1')   // file1 should be retained.

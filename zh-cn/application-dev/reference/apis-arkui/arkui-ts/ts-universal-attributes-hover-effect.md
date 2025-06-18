@@ -4,11 +4,11 @@
 
 >  **说明：**
 >
-> 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## hoverEffect
 
-hoverEffect(value: HoverEffect)
+hoverEffect(value: HoverEffect): T
 
 设置组件的鼠标悬浮态显示效果。
 
@@ -20,8 +20,13 @@ hoverEffect(value: HoverEffect)
 
 | 参数名 | 类型                                             | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [HoverEffect](ts-appendix-enums.md#hovereffect8) | 是   | 设置当前组件悬停态下的悬浮效果。<br/>默认值：HoverEffect.Auto |
+| value  | [HoverEffect](ts-appendix-enums.md#hovereffect8) | 是   | 设置当前组件悬浮态下的悬浮效果。<br/>默认值：HoverEffect.Auto |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## 示例
 

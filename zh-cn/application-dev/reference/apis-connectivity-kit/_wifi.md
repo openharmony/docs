@@ -1,9 +1,9 @@
-# Wifi
+# WiFi
 
 
 ## 概述
 
-提供用于查询WIFI开关状态的功能。
+提供用于查询WiFi开关状态的功能。
 
 **起始版本：** 13
 
@@ -15,28 +15,28 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [oh_wifi.h](oh__wifi_8h.md) | 定义查询WIFI开关状态的接口。<br>**引用文件：** \<ConnectivityKit\/wifi\/oh_wifi.h\> | 
+| [oh_wifi.h](oh__wifi_8h.md) | 定义查询WiFi开关状态的接口。<br>**引用文件：** \<ConnectivityKit\/wifi\/oh_wifi.h\> | 
 
 
 ### 类型定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef enum [Wifi_ResultCode](#wifi_resultcode) [Wifi_ResultCode](#wifi_resultcode) | 定义WIFI接口返回值的错误码。 | 
+| typedef enum [Wifi_ResultCode](#wifi_resultcode) [Wifi_ResultCode](#wifi_resultcode) | 定义WiFi接口返回值的错误码。 | 
 
 
 ### 枚举
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Wifi_ResultCode](#wifi_resultcode) {<br/>WIFI_SUCCESS = 0,<br/>WIFI_PERMISSION_DENIED = 201,<br/>WIFI_INVALID_PARAM = 401,<br/>WIFI_NOT_SUPPORTED = 801,<br/>WIFI_OPERATION_FAILED = 2501000<br/>} | 定义WIFI接口返回值的错误码。 | 
+| [Wifi_ResultCode](#wifi_resultcode) {<br/>WIFI_SUCCESS = 0,<br/>WIFI_PERMISSION_DENIED = 201,<br/>WIFI_INVALID_PARAM = 401,<br/>WIFI_NOT_SUPPORTED = 801,<br/>WIFI_OPERATION_FAILED = 2501000<br/>} | 定义WiFi接口返回值的错误码。 | 
 
 
 ### 函数
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Wifi_ResultCode](#wifi_resultcode) [OH_Wifi_IsWifiEnabled](#oh_wifi_iswifienabled) (bool \*enabled) | 查询WIFI开关是否开启。 | 
+| [Wifi_ResultCode](#wifi_resultcode) [OH_Wifi_IsWifiEnabled](#oh_wifi_iswifienabled) (bool \*enabled) | 查询WiFi开关是否开启。 | 
 
 
 ## 类型定义说明
@@ -50,7 +50,7 @@ typedef enum Wifi_ResultCode Wifi_ResultCode
 
 **描述**
 
-定义WIFI接口返回值的错误码。
+定义WiFi接口返回值的错误码。
 
 **起始版本：** 13
 
@@ -66,7 +66,7 @@ enum Wifi_ResultCode
 
 **描述**
 
-定义WIFI接口返回值的错误码。
+定义WiFi接口返回值的错误码。
 
 **起始版本：** 13
 
@@ -90,7 +90,7 @@ Wifi_ResultCode OH_Wifi_IsWifiEnabled (bool * enabled)
 
 **描述**
 
-查询WIFI开关是否开启。
+查询WiFi开关是否开启。
 
 **起始版本：** 13
 
@@ -98,13 +98,13 @@ Wifi_ResultCode OH_Wifi_IsWifiEnabled (bool * enabled)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| enabled | bool类型的指针，用于接收WIFI开关状态值。<br/>等于true表示WIFI开关开启，false表示WIFI开关关闭。<br/>需要传入非空指针，否则会返回错误。 | 
+| enabled | bool类型的指针，用于接收WiFi开关状态值。<br/>等于true表示WiFi开关开启，false表示WiFi开关开启。<br/>需要传入非空指针，否则会返回错误。 | 
 
 **返回：**
 
 返回操作结果，详细定义参见[Wifi_ResultCode](#wifi_resultcode)。
 
-WIFI_SUCCESS 查询WIFI开关状态成功。
+WIFI_SUCCESS 查询WiFi开关状态成功。
 
 WIFI_INVALID_PARAM 入参是空指针。
 

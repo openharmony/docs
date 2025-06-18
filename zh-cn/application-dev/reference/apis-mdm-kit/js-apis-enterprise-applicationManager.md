@@ -8,7 +8,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将设备管理应用激活后调用，实现相应功能。
+> 本模块接口仅对设备管理应用开放，且调用接口前需激活设备管理应用，具体请参考[MDM Kit开发指南](../../mdm/mdm-kit-guide.md)。
 >
 
 ## 导入模块
@@ -52,6 +52,7 @@ addDisallowedRunningBundlesSync(admin: Want, appIds: Array\<string>, accountId?:
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -70,7 +71,7 @@ try {
 
 removeDisallowedRunningBundlesSync(admin: Want, appIds:  Array\<string>, accountId?: number): void
 
-指定当前/指定用户下的设备管理应用在应用运行黑名单中移除应用。
+将应用从当前/指定用户下的应用运行黑名单中移除。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -101,6 +102,7 @@ removeDisallowedRunningBundlesSync(admin: Want, appIds:  Array\<string>, account
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -119,7 +121,7 @@ try {
 
 getDisallowedRunningBundlesSync(admin: Want, accountId?: number): Array&lt;string>
 
-获取当前用户下的应用运行黑名单。
+获取当前/指定用户下的应用运行黑名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -138,7 +140,7 @@ getDisallowedRunningBundlesSync(admin: Want, accountId?: number): Array&lt;strin
 
 | 类型                | 说明                             |
 | ------------------- | -------------------------------- |
-| Array&lt;string&gt; | 返回当前用户下的应用运行黑名单。 |
+| Array&lt;string&gt; | 返回当前/指定用户下的应用运行黑名单。 |
 
 **错误码**：
 
@@ -155,13 +157,14 @@ getDisallowedRunningBundlesSync(admin: Want, accountId?: number): Array&lt;strin
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 try {
-  let result: Array<string> = applicationManager.getDisallowedRunningBundlesSync(wantTemp)
+  let result: Array<string> = applicationManager.getDisallowedRunningBundlesSync(wantTemp);
   console.info(`Succeeded in getting disallowed running bundles, result : ${JSON.stringify(result)}`);
 } catch (err) {
   console.error(`Failed to get disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
@@ -183,7 +186,7 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 | 参数名        | 类型                                                         | 必填 | 说明                                   |
 | ------------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。                         |
-| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用。数组长度上限长度为10。 |
+| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用。数组长度上限为10。 |
 
 **错误码**：
 
@@ -360,6 +363,7 @@ addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number): v
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -409,6 +413,7 @@ removeKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number)
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -463,6 +468,7 @@ getKeepAliveApps(admin: Want, accountId: number): Array&lt;string>
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

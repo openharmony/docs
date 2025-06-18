@@ -269,13 +269,13 @@ import { webview } from '@kit.ArkWeb';
 @Entry
 @Component
 struct Index1 {
-  controller: webview.WebviewController = new webview.WebviewController();
+  webviewController: webview.WebviewController = new webview.WebviewController();
   
   build() {
     Column() {
       //已经预启动Render进程 
       Button("跳转到Web页面").onClick(()=>{
-       this.getUIContext().getRouter().pushUrl({url: "pages/index2"});
+        this.getUIContext().getRouter().pushUrl({url: "pages/index2"});
       })
         .width('100%')
         .height('100%')
@@ -291,12 +291,12 @@ import { webview } from '@kit.ArkWeb';
 @Entry
 @Component
 struct index2 {
-  controller: webview.WebviewController = new webview.WebviewController();
+  webviewController: webview.WebviewController = new webview.WebviewController();
   
   build() {
     Row() {
       Column() {
-        Web({src: 'https://www.example.com', controller: this.controller})
+        Web({src: 'https://www.example.com', controller: this.webviewController})
           .width('100%')
           .height('100%')
       }
@@ -317,7 +317,7 @@ struct index2 {
 >
 > 1. 预渲染Web页面时，需要明确加载的资源。
 > 2. 由于该方案会将不可见的后台Web设置为Active状态，建议不要预渲染包含自动播放音视频的页面。应用开发者请自行检查和管理页面行为。
-> 3. 预渲染的网页会在后台不断进行渲染，建议在预渲染完成后立即停止渲染，以防止发热和功耗问题。可以参考以下示例，使用 [onFirstMeaningfulPaint](../reference/apis-arkweb/ts-basic-components-web.md#onfirstmeaningfulpaint12) 来确定停止时机，该接口适用于http和https网页。
+> 3. 预渲染的网页会在后台不断进行渲染，建议在预渲染完成后立即停止渲染，以防止发热和功耗问题。可以参考以下示例，使用 [onFirstMeaningfulPaint](../reference/apis-arkweb/ts-basic-components-web-events.md#onfirstmeaningfulpaint12) 来确定停止时机，该接口适用于http和https网页。
 
 ```ts
 // 载体Ability
@@ -380,7 +380,7 @@ export class myNodeController extends NodeController {
   // 必须要重写的方法，用于构建节点数、返回节点挂载在对应NodeContainer中
   // 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新
   makeNode(uiContext: UIContext): FrameNode | null {
-    console.info(" uicontext is undifined : "+ (uiContext === undefined));
+    console.info(" uicontext is undefined : "+ (uiContext === undefined));
     if (this.rootnode != null) {
       // 返回FrameNode节点
       return this.rootnode.getFrameNode();

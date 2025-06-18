@@ -24,5 +24,5 @@ The AVPlayerCallback struct contains the set of the **OH_AVPlayerOnInfo** and **
 
 | Name| Description| 
 | -------- | -------- |
-| [onInfo](_a_v_player.md#oninfo) | AVPlayer process information. For details, see [OH_AVPlayerOnInfo](_a_v_player.md#oh_avplayeroninfo).| 
-| [onError](_a_v_player.md#onerror) | AVPlayer error information. For details, see [OH_AVPlayerOnError](_a_v_player.md#oh_avplayeronerror).| 
+| onInfo | AVPlayer process information. For details, see [OH_AVPlayerOnInfo](_a_v_player.md#oh_avplayeroninfo).| 
+| onError | AVPlayer error information. For details, see [OH_AVPlayerOnError](_a_v_player.md#oh_avplayeronerror).| 

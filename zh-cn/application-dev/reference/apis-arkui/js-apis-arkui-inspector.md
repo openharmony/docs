@@ -4,13 +4,13 @@
 
 > **说明：**
 >
-> 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
 
 <!--deprecated_code_no_check-->
 ```ts
-import { inspector } from '@kit.ArkUI'
+import { inspector } from '@kit.ArkUI';
 ```
 
 ## inspector.createComponentObserver<sup>(deprecated)</sup>
@@ -82,7 +82,7 @@ off(type: 'layout', callback?: () => void): void
 | 参数名   | 类型   | 必填 | 说明 |
 | -------- | ------ | ---- | -------------------------------------------- |
 | type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。 |
-| callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。|
+| callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和[on](#on)方法中的callback为相同对象时才能取消回调成功。|
 
 ### on
 
@@ -116,7 +116,7 @@ off(type: 'draw', callback?: () => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。 |
-| callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和on方法中的callback为相同对象时才能取消回调成功。 |
+| callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和[on](#on-1)方法中的callback为相同对象时才能取消回调成功。 |
 
 **示例：**
 

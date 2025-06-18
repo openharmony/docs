@@ -91,12 +91,12 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 5. 编辑"Index.ets"文件，给文本Text组件添加一个点击事件，示例代码如下：
 
    ```ts
-   import testNapi from 'libentry.so'
+   import testNapi from 'libentry.so';
    
    @Entry
    @Component
    struct Index {
-     @State message: string = 'Hello World'
+     @State message: string = 'Hello World';
    
      build() {
        Row() {

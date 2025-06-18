@@ -185,7 +185,7 @@ visibility(value: Visibility)
 
 onAcquired(callback:&nbsp;Callback[\<FormCallbackInfo>](#formcallbackinfo12))&nbsp;
 
-获取到卡片后触发，返回卡片的id。
+获取到卡片后触发的回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -195,13 +195,13 @@ onAcquired(callback:&nbsp;Callback[\<FormCallbackInfo>](#formcallbackinfo12))&nb
 
 | 参数名 | 类型                                | 必填 | 说明       |
 | ------ | ----------------------------------- | ---- | ---------- |
-| callback | [FormCallbackInfo](#formcallbackinfo12) | 是   | 卡片的id。 |
+| callback | Callback<[FormCallbackInfo](#formcallbackinfo12)> | 是   | 回调函数，获得FormCallbackInfo对象。 |
 
 ### onError<sup>18+</sup>
 
 onError(callback: Callback\<ErrorInformation\>)
 
-组件加载错误回调。
+卡片加载错误触发的回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -217,7 +217,7 @@ onError(callback: Callback\<ErrorInformation\>)
 
 onRouter(callback: Callback\<object\>)
 
-组件路由事件回调，返回[routerEvent](../js-service-widget-ui/js-service-widget-syntax-hml.md#事件绑定)中的信息。
+卡片点击回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -227,13 +227,13 @@ onRouter(callback: Callback\<object\>)
 
 | 参数名  | 类型 | 必填 | 说明                                                         |
 |------| - | ---- | ------------------------------------------------------------ |
-| callback | Callback\<object\>  | 是   | [routerEvent](../js-service-widget-ui/js-service-widget-syntax-hml.md#事件绑定)中的信息。 |
+| callback | Callback\<object\>  | 是   | 获得[routerEvent](../js-service-widget-ui/js-service-widget-syntax-hml.md#事件绑定)对象。 |
 
 ### onUninstall
 
 onUninstall(callback:&nbsp;Callback[\<FormCallbackInfo>](#formcallbackinfo12))&nbsp;
 
-组件卸载回调，返回卸载卡片的id。
+卡片卸载回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -243,13 +243,13 @@ onUninstall(callback:&nbsp;Callback[\<FormCallbackInfo>](#formcallbackinfo12))&n
 
 | 参数名      | 类型                                | 必填 | 说明       |
 |----------| ----------------------------------- | ---- | ---------- |
-| callback | [FormCallbackInfo](#formcallbackinfo12) | 是   | 卡片的id。 |
+| callback | Callback<[FormCallbackInfo](#formcallbackinfo12)> | 是   | 回调函数，获得FormCallbackInfo对象。 |
 
 ### onLoad<sup>18+</sup>
 
 onLoad(callback: VoidCallback)
 
-组件加载回调，返回加载卡片的id。
+卡片加载回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -259,7 +259,23 @@ onLoad(callback: VoidCallback)
 
 | 参数名      | 类型                                | 必填 | 说明       |
 |----------| ----------------------------------- | ---- | ---------- |
-| callback | [VoidCallback](ts-types.md#voidcallback12) | 是   | 卡片的id。 |
+| callback | [VoidCallback](ts-types.md#voidcallback12) | 是   | 无返回值。 |
+
+### onUpdate<sup>18+</sup>
+
+onUpdate(callback:&nbsp;Callback[\<FormCallbackInfo>](#formcallbackinfo12))&nbsp;
+
+卡片内容更新回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型                                | 必填 | 说明       |
+|----------| ----------------------------------- | ---- | ---------- |
+| callback | Callback<[FormCallbackInfo](#formcallbackinfo12)> | 是   | 回调函数，获得FormCallbackInfo对象。 |
 
 ## 示例
 
@@ -309,6 +325,9 @@ struct CardExample {
           } else {
             this.formId = form.id.toString();
           }
+        })
+        .onUpdate((form: FormCallbackInfo)=>{
+          console.log(`form update done : ${JSON.stringify(form)}`);
         })
     }
     .width('100%')

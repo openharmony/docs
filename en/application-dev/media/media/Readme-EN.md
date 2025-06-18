@@ -22,6 +22,7 @@
   - Video Transcoding<!--media-transcoder-arkts-->
     - [Using AVTranscoder to Transcode Videos (ArkTS)](using-avtranscoder-for-transcodering.md)
     - [Creating an Asynchronous Thread for AVTranscoder Video Transcoding (ArkTS)](avtranscoder-practice.md)
+    - [FAQs About Transcoding](avtranscoder-faq.md)
 - Media Development (C/C++)<!--media-kit-dev--c-->
   - Playback<!--media-playback-c-->
     - [Using AVPlayer to Play Audio (C/C++)](using-ndk-avplayer-for-playback.md)

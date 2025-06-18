@@ -22,14 +22,14 @@
 | 名称                             | 类型      | 默认值    | 必填   | 描述                                       |
 | ------------------------------ | ------- | ------ | ---- | ---------------------------------------- |
 | index                          | number  | 0      | 否    | 当前在容器中显示的子组件的索引值。                        |
-| autoplay                       | boolean | false  | 否    | 子组件是否自动播放，自动播放状态下，导航点不可操作<sup>5+</sup>。  |
+| autoplay                       | boolean | false  | 否    | 子组件是否自动播放，自动播放状态下，导航点不可操作<sup>5+</sup>。true为自动轮播，false为不自动轮播。  |
 | interval                       | number  | 3000   | 否    | 使用自动播放时播放的时间间隔，单位为ms。                    |
-| indicator                      | boolean | true   | 否    | 是否启用导航点指示器，默认true。                       |
-| digital<sup>5+</sup>           | boolean | false  | 否    | 是否启用数字导航点，默认为false。<br/>必须设置indicator时才能生效数字导航点。 |
+| indicator                      | boolean | true   | 否    | 是否启用导航点指示器，默认true。true为启用导航点指示器，false为不启用导航点指示器。                       |
+| digital<sup>5+</sup>           | boolean | false  | 否    | 是否启用数字导航点，默认为false。true为启用数字导航点，false为不启用数字导航点。<br/>必须设置indicator时才能生效数字导航点。 |
 | indicatordisabled<sup>5+</sup> | boolean | false  | 否    | 指示器是否禁止用户手势操作，设置为true时，指示器不会响应用户的点击拖拽。   |
-| loop                           | boolean | true   | 否    | 是否开启循环滑动。                                |
+| loop                           | boolean | true   | 否    | 是否开启循环滑动。true为开启循环，false为不开启循环。                  |
 | duration                       | number  | -      | 否    | 子组件切换的动画时长。                              |
-| vertical                       | boolean | false  | 否    | 是否为纵向滑动，纵向滑动时采用纵向的指示器。                   |
+| vertical                       | boolean | false  | 否    | 是否为纵向滑动，纵向滑动时采用纵向的指示器。true为纵向滑动，false为水平滑动。                   |
 | cachedsize<sup>7+</sup>        | number  | -1     | 否    | swiper延迟加载时item最少缓存数量。-1表示全部缓存。          |
 | scrolleffect<sup>7+</sup>      | string  | spring | 否    | 滑动效果。目前支持如下：<br/>-&nbsp;spring：弹性物理动效，滑动到边缘后可以根据初始速度或通过触摸事件继续滑动一段距离，松手后回弹。<br/>-&nbsp;fade：渐隐物理动效，滑动到边缘后展示一个波浪形的渐隐，根据速度和滑动距离的变化渐隐也会发生一定的变化。<br/>-&nbsp;none：滑动到边缘后无效果。<br/>该属性仅在loop属性为false时生效。 |
 

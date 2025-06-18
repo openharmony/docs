@@ -4,13 +4,13 @@
 
 >  **说明：**
 >
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## visibility
 
-visibility(value: Visibility)
+visibility(value: Visibility): T
 
-控制组件的显隐。
+控制组件的显示或隐藏。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -24,10 +24,16 @@ visibility(value: Visibility)
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Visibility](ts-appendix-enums.md#visibility) | 是   | 控制当前组件显示或隐藏。根据具体场景需要可使用[条件渲染](../../../ui/state-management/arkts-rendering-control-ifelse.md)代替。<br/>默认值：Visibility.Visible |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 
 ## 示例
 
- 该示例通过visibility配置不同的值实现不同的显隐控制效果。
+ 该示例通过配置visibility的不同值，实现不同的显隐控制效果。
 
 ```ts
 // xxx.ets

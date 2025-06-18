@@ -296,7 +296,7 @@ AbilityBase_ErrorCode OH_AbilityBase_SetWantUri(AbilityBase_Want* want, const ch
 
 Sets **uri** in Want. For details about **uri**, see [uri in Want](js-apis-app-ability-want.md).
 
-**Valid since**: 18
+**Since**: 17
 
 **Parameters**
 
@@ -321,7 +321,7 @@ AbilityBase_ErrorCode OH_AbilityBase_GetWantUri(AbilityBase_Want* want, char* ur
 
 Obtains **uri** set in Want. For details about **uri**, see [uri in Want](js-apis-app-ability-want.md).
 
-**Valid since**: 18
+**Since**: 17
 
 **Parameters**
 
@@ -347,7 +347,7 @@ AbilityBase_ErrorCode OH_AbilityBase_SetWantInt32Param(AbilityBase_Want* want, c
 
 Sets a value of the int32_t type in Want.
 
-**Valid since**: 18
+**Since**: 17
 
 **Parameters**
 
@@ -373,7 +373,7 @@ AbilityBase_ErrorCode OH_AbilityBase_GetWantInt32Param(AbilityBase_Want* want, c
 
 Obtains a value of the int32_t type set in Want.
 
-**Valid since**: 18
+**Since**: 17
 
 **Parameters**
 
@@ -400,7 +400,7 @@ AbilityBase_ErrorCode OH_AbilityBase_SetWantBoolParam(AbilityBase_Want* want, co
 
 Sets a value of the bool type in Want.
 
-**Valid since**: 18
+**Since**: 17
 
 **Parameters**
 
@@ -426,7 +426,7 @@ AbilityBase_ErrorCode OH_AbilityBase_GetWantBoolParam(AbilityBase_Want* want, co
 
 Obtains a value of the bool type set in Want.
 
-**Valid since**: 18
+**Since**: 17
 
 **Parameters**
 
@@ -452,7 +452,7 @@ AbilityBase_ErrorCode OH_AbilityBase_SetWantDoubleParam(AbilityBase_Want* want, 
 
 Sets a value of the double type in Want.
 
-**Valid since**: 18
+**Since**: 17
 
 **Parameters**
 
@@ -478,7 +478,7 @@ AbilityBase_ErrorCode OH_AbilityBase_GetWantDoubleParam(AbilityBase_Want* want, 
 
 Obtains a value of the double type set in Want.
 
-**Valid since**: 18
+**Since**: 17
 
 **Parameters**
 

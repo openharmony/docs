@@ -2119,7 +2119,7 @@ taskGroup.addTask(task);
 
 ## SequenceRunner <sup>11+</sup>
 
-Implements a serial queue, in which all tasks are executed in sequence. Before calling any APIs in **SequenceRunner**, you must use [constructor](#constructor11-3) to create a **SequenceRunner** instance.
+Implements a serial queue, in which all tasks are executed in sequence.
 
 ### constructor<sup>11+</sup>
 

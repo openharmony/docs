@@ -287,16 +287,16 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
    OH_AVRecorder_Stop(g_avRecorder);
    ```
 10. Call **OH_AVRecorder_Reset()** to reset the resources. The AVRecorder enters the **idle** state. In this case, you can reconfigure the recording parameters.
-   ```
-   OH_AVRecorder_Reset(g_avRecorder);
-   ```
+      ```
+      OH_AVRecorder_Reset(g_avRecorder);
+      ```
 11. Call **OH_AVRecorder_Release()** to release the resources. The AVRecorder enters the **released** state. In addition, release the video data input source resources (camera resources in this example).
-   ```
-   OH_AVRecorder_Release(g_avRecorder);
-   ```
+      ```
+      OH_AVRecorder_Release(g_avRecorder);
+      ```
 
 
-## Sample Code
+## Development Example
 
 Refer to the sample code below to complete the process of creating a recorder instance, preparing for, starting, pausing, resuming, and stopping recording, resetting the recording state, and releasing the recording resources.
 
@@ -441,7 +441,7 @@ Refer to the sample code below to complete the process of creating a recorder in
       config->url = const_cast<char *>(fileUrl.c_str());
 
       // 1.2 Set the callbacks.
-      // State callback.
+      // Callback triggered when the state changes.
       OH_AVRecorder_SetStateCallback(g_avRecorder, OnStateChange, nullptr);
 
       // Callback triggered when an error occurs.

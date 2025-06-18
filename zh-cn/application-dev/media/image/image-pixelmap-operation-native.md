@@ -231,7 +231,7 @@ EXTERN_C_END
                 .width(100)
                 .height(100)
                 .onClick(() => {
-                    console.log("com.example.native_ndk_api10 button click in");
+                    console.info("com.example.native_ndk_api10 button click in");
                     this._pixelMap = testNapi.createPixelMapTest();
                     testNapi.transform(this._pixelMap);
                 })

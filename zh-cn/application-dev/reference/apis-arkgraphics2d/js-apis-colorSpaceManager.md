@@ -61,16 +61,16 @@ import { colorSpaceManager } from '@kit.ArkGraphics2D';
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.ColorManager.Core
 
-| 名称                          | 类型 | 可读 | 可写 | 说明                                                         |
+| 名称                          | 类型 | 只读 | 可选 | 说明                                                         |
 | ---------------------------- | -------- | ---- | ---- | ----------------------------------------------------- |
-| redX                         | number   | 是   | 是   | 标准红色在色彩空间的x坐标值。 |
-| redY                         | number   | 是   | 是   | 标准红色在色彩空间的y坐标值。 |
-| greenX                       | number   | 是   | 是   | 标准绿色在色彩空间的x坐标值。 |
-| greenY                       | number   | 是   | 是   | 标准绿色在色彩空间的y坐标值。 |
-| blueX                        | number   | 是   | 是   | 标准蓝色在色彩空间的x坐标值。 |
-| blueY                        | number   | 是   | 是   | 标准蓝色在色彩空间的y坐标值。 |
-| whitePointX                  | number   | 是   | 是   | 标准白色在色彩空间的x坐标值。 |
-| whitePointY                  | number   | 是   | 是   | 标准白色在色彩空间的y坐标值。 |
+| redX                         | number   | 否   | 否   | 标准红色在色彩空间的x坐标值。 |
+| redY                         | number   | 否   | 否   | 标准红色在色彩空间的y坐标值。 |
+| greenX                       | number   | 否   | 否   | 标准绿色在色彩空间的x坐标值。 |
+| greenY                       | number   | 否   | 否   | 标准绿色在色彩空间的y坐标值。 |
+| blueX                        | number   | 否   | 否   | 标准蓝色在色彩空间的x坐标值。 |
+| blueY                        | number   | 否   | 否   | 标准蓝色在色彩空间的y坐标值。 |
+| whitePointX                  | number   | 否   | 否   | 标准白色在色彩空间的x坐标值。 |
+| whitePointY                  | number   | 否   | 否   | 标准白色在色彩空间的y坐标值。 |
 
 ## colorSpaceManager.create
 
@@ -108,7 +108,7 @@ let colorSpace: colorSpaceManager.ColorSpaceManager;
 try {
     colorSpace = colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB);
 } catch (err) {
-    console.log(`Failed to create SRGB colorSpace. Cause: ` + JSON.stringify(err));
+    console.error(`Failed to create SRGB colorSpace. Cause: ` + JSON.stringify(err));
 }
 ```
 
@@ -160,7 +160,7 @@ try {
     let gamma = 2.2;
     colorSpace = colorSpaceManager.create(primaries, gamma);
 } catch (err) {
-    console.log(`Failed to create colorSpace with customized primaries and gamma. Cause: ` + JSON.stringify(err));
+    console.error(`Failed to create colorSpace with customized primaries and gamma. Cause: ` + JSON.stringify(err));
 }
 ```
 
@@ -198,7 +198,7 @@ getColorSpaceName(): ColorSpace
 try {
     let spaceName = colorSpace.getColorSpaceName();
 } catch (err) {
-    console.log(`Fail to get colorSpace's name. Cause: ` + JSON.stringify(err));
+    console.error(`Fail to get colorSpace's name. Cause: ` + JSON.stringify(err));
 }
 ```
 
@@ -230,7 +230,7 @@ getWhitePoint(): Array\<number\>
 try {
     let point = colorSpace.getWhitePoint();
 } catch (err) {
-    console.log(`Failed to get white point. Cause: ` + JSON.stringify(err));
+    console.error(`Failed to get white point. Cause: ` + JSON.stringify(err));
 }
 ```
 
@@ -262,6 +262,6 @@ getGamma(): number
 try {
     let gamma = colorSpace.getGamma();
 } catch (err) {
-    console.log(`Failed to get gamma. Cause: ` + JSON.stringify(err));
+    console.error(`Failed to get gamma. Cause: ` + JSON.stringify(err));
 }
 ```

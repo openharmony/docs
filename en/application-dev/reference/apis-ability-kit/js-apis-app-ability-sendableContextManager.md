@@ -49,7 +49,7 @@ let sendableContext: sendableContextManager.SendableContext;
 
 ## sendableContextManager.convertFromContext
 
-convertFromContext(context: common.Context): SendableContext;
+convertFromContext(context: common.Context): SendableContext
 
 Converts a **Context** object to a **SendableContext** object.
 
@@ -61,7 +61,13 @@ Converts a **Context** object to a **SendableContext** object.
 
 | Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
-| context | common.Context | Yes| **Context** object, which supports the base class **Context** and the child classes **ApplicationContext**, **AbilityStageContext**, and **UIAbilityContext**.|
+| context | [common.Context](js-apis-inner-application-context.md) | Yes| Context object. The Context base class, and its child classes [ApplicationContext](js-apis-inner-application-applicationContext.md), [AbilityStageContext](js-apis-inner-application-abilityStageContext.md), and [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) are supported.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| SendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) object.|
 
 **Error codes**
 
@@ -122,6 +128,12 @@ Converts a **SendableContext** object to a **Context** object.
 | Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
 | sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | Yes| **SendableContext** object.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| common.Context | [Context](js-apis-inner-application-context.md) object.|
 
 **Error codes**
 
@@ -228,6 +240,12 @@ Converts a **SendableContext** object to an **ApplicationContext** object.
 | Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
 | sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | Yes| **SendableContext** object.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| common.ApplicationContext | [ApplicationContext](js-apis-inner-application-applicationContext.md) object.|
 
 **Error codes**
 
@@ -336,6 +354,12 @@ Converts a **SendableContext** object to an **AbilityStageContext** object.
 | ------- | ------- | ------- | ------- |
 | sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | Yes| **SendableContext** object.|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| common.AbilityStageContext | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) object.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -440,6 +464,12 @@ Converts a **SendableContext** object to a **UIAbilityContext** object.
 | Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
 | sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | Yes| **SendableContext** object.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| common.UIAbilityContext | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) object.|
 
 **Error codes**
 

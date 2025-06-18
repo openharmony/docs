@@ -6,6 +6,12 @@
 > 
 > 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+## 使用场景
+
+在使用[taskpool](../../arkts-utils/taskpool-introduction.md)进行多线程计算时，因为对跨线程传递的数据类型限制，关系型数据库常规的ValuesBucket、Asset、Assets数据存储容器不能直接用于跨线程传递。
+
+本模块提供了相应的类型转换工具函数，以便在常规数据存储容器和支持跨线程传递的数据存储容器之间进行类型转换，用于跨线程传递。
+
 ## 导入模块
 
 ```ts
@@ -306,3 +312,105 @@ type NonSendableAsset = relationalStore.Asset
 | 类型                                                               | 说明                           |
 | ------------------------------------------------------------------ | ------------------------------ |
 | [relationalStore.Asset](./js-apis-data-relationalStore.md#asset10) | 非并发场景的资产附件数据存储。 |
+
+## 跨线程传递使用示例
+
+调用taskpool执行数据插入时，主线程调用toSendableValuesBucket方法将数据转为跨线程传递类型，传入taskpool处理。
+
+调用taskpool执行数据查询时，调用ResultSet的getSendableRow方法，获取可跨线程传递的数据行返回主线程，主线程中调用fromSendableValuesBucket方法，转为常规ValuesBucket执行后续处理。
+
+```ts
+// Index.ets
+import { relationalStore, sendableRelationalStore } from '@kit.ArkData';
+import { taskpool } from '@kit.ArkTS';
+
+@Concurrent
+async function insert(context: Context, dataItem: sendableRelationalStore.ValuesBucket) {
+  const CONFIG: relationalStore.StoreConfig = {
+    name: "Store.db",
+    securityLevel: relationalStore.SecurityLevel.S3,
+  };
+
+  let store = await relationalStore.getRdbStore(context, CONFIG);
+  console.info(`Get store successfully!`);
+
+  const CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS test (" +
+    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+    "name TEXT NOT NULL, " +
+    "age INTEGER, " +
+    "salary REAL, " +
+    "blobType BLOB)";
+  await store.executeSql(CREATE_TABLE_SQL);
+  console.info(`Create table test successfully!`);
+
+  // 数据插入
+  const rowId = await store.insertSync("test", dataItem);
+  await store.close();
+  return rowId;
+}
+
+@Concurrent
+async function queryByName(context: Context, name: string) {
+  const CONFIG: relationalStore.StoreConfig = {
+    name: "Store.db",
+    securityLevel: relationalStore.SecurityLevel.S3,
+  };
+
+  let store = await relationalStore.getRdbStore(context, CONFIG);
+  console.info(`Get store successfully!`);
+
+  const predicates = new relationalStore.RdbPredicates("test");
+  predicates.equalTo("name", name);
+
+  const resultSet = await store.query(predicates);
+  if (resultSet.rowCount > 0 && resultSet.goToFirstRow()) {
+    // 获取可用于跨线程传递的ValuesBucket返回查询结果
+    return resultSet.getSendableRow();
+  }
+  return null;
+}
+
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    RelativeContainer() {
+      Text(this.message)
+        .id('HelloWorld')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+        .alignRules({
+          center: { anchor: '__container__', align: VerticalAlign.Center },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+        .onClick(async () => {
+          let context: Context = this.getUIContext().getHostContext() as Context;
+
+          const item: relationalStore.ValuesBucket = {
+            name: "zhangsan",
+            age: 20,
+            salary: 5000
+          }
+          // 调用toSendableValuesBucket转换数据，用于跨线程传递。
+          const sendableItem = sendableRelationalStore.toSendableValuesBucket(item);
+          const insertRowId = await taskpool.execute(insert, context, sendableItem) as number;
+          console.log(`Insert data success, row id is: ${insertRowId}`);
+
+          const rowData = await taskpool.execute(queryByName, context, "zhangsan");
+          if (rowData) {
+            const row =
+              sendableRelationalStore.fromSendableValuesBucket(rowData as sendableRelationalStore.ValuesBucket);
+            console.log(`Query success, name is ${row['name']}, age is ${row['age']}.`);
+          } else {
+            console.log(`Query failed.`)
+          }
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```

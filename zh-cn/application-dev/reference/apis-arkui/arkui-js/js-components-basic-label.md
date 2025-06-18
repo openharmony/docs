@@ -32,7 +32,7 @@
 | ----------------- | -------------------------- | ---------- | ---- | ---------------------------------------- |
 | color             | &lt;color&gt;              | #e5000000  | 否    | 设置文本的颜色。                                 |
 | font-size         | &lt;length&gt;             | 30px       | 否    | 设置文本的尺寸。                                 |
-| allow-scale       | boolean                    | true       | 否    | 文本尺寸是否跟随系统设置字体缩放尺寸进行放大缩小。<br/>如果需要支持动态生效，请参看config描述文件中config-changes标签。 |
+| allow-scale       | boolean                    | true       | 否    | 文本尺寸是否跟随系统设置字体缩放尺寸进行放大缩小。true表示跟随系统放大缩小，false表示不跟随系统放大缩小。<br/>如果需要支持动态生效，请参看config描述文件中config-changes标签。 |
 | letter-spacing    | &lt;length&gt;             | 0px        | 否    | 设置文本的字符间距。                               |
 | font-style        | string                     | normal     | 否    | 设置文本的字体样式，可选值为：<br/>-&nbsp;normal：标准的字体样式；<br/>-&nbsp;italic：斜体的字体样式。 |
 | font-weight       | number&nbsp;\|&nbsp;string | normal     | 否    | 设置文本的字体粗细，number类型取值[100,&nbsp;900]，默认为400，取值越大，字体越粗。<br/>number取值必须为100的整数倍。<br/>string类型取值支持如下四个值：lighter、normal、bold、bolder。 |

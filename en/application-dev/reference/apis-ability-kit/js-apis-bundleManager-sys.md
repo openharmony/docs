@@ -30,7 +30,7 @@ For details about the APL, see [Basic Concepts in the Permission Mechanism](../.
 
 Enumerates the bundle flags, which indicate the type of bundle information to obtain.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name                                         | Value        | Description                                                        |
 | --------------------------------------------- | ---------- | ------------------------------------------------------------ |
@@ -1188,7 +1188,7 @@ Obtains the ability information based on the given Want list, ability flags, and
 
 | Type                                                        | Description                                |
 | ------------------------------------------------------------ | ------------------------------------ |
-| Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)> | An array of ability information.|
+| Promise<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | Promise used to return the information in the format of Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>.|
 
 **Error codes**
 
@@ -1252,9 +1252,9 @@ Obtains the ExtensionAbility information based on the given Want, ExtensionAbili
 | Name               | Type                                                        | Mandatory| Description                                                        |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want                  | Want                                                         | Yes  | Want containing the bundle name to query.                      |
-| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager-sys.md#extensionabilitytype)                | Yes  | Type of the ExtensionAbility.                                |
+| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype)                | Yes  | Type of the ExtensionAbility.                                |
 | extensionAbilityFlags | [number](#extensionabilityflag)                              | Yes  | Type of the ExtensionAbility information to obtain.   |
-| userId                | number                                                       | Yes  | User ID.                                                |
+| userId                | number                                                       | Yes  | User ID, which can be obtained by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).                                                |
 | callback              | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of ExtensionAbility information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -1317,7 +1317,7 @@ Obtains the ExtensionAbility information based on the given Want, ExtensionAbili
 | Name               | Type                                                        | Mandatory| Description                                                        |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want                  | Want                                                         | Yes  | Want containing the bundle name to query.                      |
-| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager-sys.md#extensionabilitytype)                | Yes  | Type of the ExtensionAbility.                                |
+| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype)                | Yes  | Type of the ExtensionAbility.                                |
 | extensionAbilityFlags | [number](#extensionabilityflag)                              | Yes  | Type of the ExtensionAbility information to obtain.   |
 | callback              | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of ExtensionAbility information obtained. Otherwise, **err** is an error object.|
 
@@ -1379,7 +1379,7 @@ Obtains the ExtensionAbility information based on the given Want, ExtensionAbili
 | Name               | Type                                         | Mandatory| Description                                                     |
 | --------------------- | --------------------------------------------- | ---- | --------------------------------------------------------- |
 | want                  | Want                                          | Yes  | Want containing the bundle name to query.                   |
-| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager-sys.md#extensionabilitytype) | Yes  | Type of the ExtensionAbility.                             |
+| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | Yes  | Type of the ExtensionAbility.                             |
 | extensionAbilityFlags | [number](#extensionabilityflag)               | Yes  | Type of the ExtensionAbility information to obtain.|
 | userId                | number                                        | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.                                             |
 
@@ -1459,7 +1459,7 @@ try {
 
 queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: ExtensionAbilityType, extensionAbilityFlags: number, userId?: number): Array\<ExtensionAbilityInfo>
 
-Obtains the ExtensionAbility information based on the given want, ExtensionAbility type, ExtensionAbility flags, and user ID. This API returns the result synchronously.
+Obtains the ExtensionAbility information based on the given Want, ExtensionAbility type, ExtensionAbility flags, and user ID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -1472,7 +1472,7 @@ Obtains the ExtensionAbility information based on the given want, ExtensionAbili
 | Name               | Type                                         | Mandatory| Description                                                     |
 | --------------------- | --------------------------------------------- | ---- | --------------------------------------------------------- |
 | want                  | Want                                          | Yes  | Want containing the bundle name to query.                   |
-| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager-sys.md#extensionabilitytype) | Yes  | Type of the ExtensionAbility.                             |
+| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | Yes  | Type of the ExtensionAbility.                             |
 | extensionAbilityFlags | [number](#extensionabilityflag)               | Yes  | Type of the ExtensionAbility information to obtain.|
 | userId                | number                                        | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.                                             |
 
@@ -4440,7 +4440,7 @@ try {
 
 queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: string, extensionAbilityFlags: number, userId?: number): Array\<ExtensionAbilityInfo>
 
-Obtains the ExtensionAbility information based on the given want, ExtensionAbility type, ExtensionAbility flags, and user ID. This API returns the result synchronously.
+Obtains the ExtensionAbility information based on the given Want, ExtensionAbility type, ExtensionAbility flags, and user ID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -5302,7 +5302,7 @@ Obtains the bundle information of an application or an application clone based o
 
 | Name    | Type  | Mandatory| Description                      |
 | ---------- | ------ | ---- | ---------------------------|
-|    bundleName     | number |  Yes |       Bundle name.     |
+|    bundleName     | string |  Yes |       Bundle name.     |
 |    appIndex     | number |  Yes |       Index of the application clone.<br>The value **0** means to obtain the bundle information of the main application. A value greater than 0 means to obtain the bundle information of the application clone.     |
 |    [bundleFlags](js-apis-bundleManager.md#bundleflag)     | number |  Yes |       Type of the bundle information to obtain.   |
 |    userId     | number |  No |       User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.     |
@@ -5365,7 +5365,7 @@ Obtains all the bundle information of applications and application clones based 
 
 | Name    | Type  | Mandatory| Description                      |
 | ---------- | ------ | ---- | ---------------------------|
-|    bundleName     | number |  Yes |       Bundle name.     |
+|    bundleName     | string |  Yes |       Bundle name.     |
 |    [bundleFlags](js-apis-bundleManager.md#bundleflag)     | number |  Yes |       Type of the bundle information to obtain.   |
 |    userId     | number |  No |       User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.     |
 
@@ -5498,7 +5498,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 17700080 | The source paths are invalid. |
 | 17700081 | The destination path is invalid. |
 | 17700082 | User authentication failed. |

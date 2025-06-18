@@ -5,9 +5,13 @@
 
 可以通过使用[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#promptaction)对象，再通过该对象调用[showToast](../reference/apis-arkui/js-apis-arkui-UIContext.md#showtoast)创建并显示文本提示框。
 
+> **说明：** 
+>
+> 为了安全考虑，例如Toast恶意遮挡其他页面，Toast只能显示在当前的UI实例中，应用退出后，不会单独显示在桌面上。
+
 ## 使用建议
 
- - 合理使用弹出场景，而不是频繁的提醒用户。
+ - 合理使用弹出场景，避免过度提醒用户。
 
     可以针对以下常用场景使用即时反馈操作，例如，当用户执行某个操作时及时结果反馈，用来提示用户操作是否成功或失败；或是当应用程序的状态发生变化时提供状态更新等。
 
@@ -58,7 +62,7 @@ struct Index {
           duration: 2000,
           showMode: promptAction.ToastShowMode.DEFAULT,
           bottom: 80
-        })
+        });
       })
 
       Button() {
@@ -74,7 +78,7 @@ struct Index {
           duration: 2000,
           showMode: promptAction.ToastShowMode.TOP_MOST,
           bottom: 85
-        })
+        });
       })
     }
   }
@@ -86,14 +90,14 @@ struct Index {
 适用于短时间内提示框自动消失的场景。
 
 ```ts
-import { LengthMetrics, PromptAction } from '@kit.ArkUI';
+import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct toastExample {
-  private uiContext: UIContext = this.getUIContext()
-  private promptAction: PromptAction = this.uiContext.getPromptAction()
+  private uiContext: UIContext = this.getUIContext();
+  private promptAction: PromptAction = this.uiContext.getPromptAction();
 
   build() {
     Column() {
@@ -103,10 +107,10 @@ struct toastExample {
             this.promptAction.showToast({
               message: 'Hello World',
               duration: 2000
-            });
+            })
           } catch (error) {
-            let message = (error as BusinessError).message
-            let code = (error as BusinessError).code
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
             console.error(`showToast args error code is ${code}, message is ${message}`);
           };
         })
@@ -129,8 +133,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct toastExample {
   @State toastId: number = 0;
-  private uiContext: UIContext = this.getUIContext()
-  private promptAction: PromptAction = this.uiContext.getPromptAction()
+  private uiContext: UIContext = this.getUIContext();
+  private promptAction: PromptAction = this.uiContext.getPromptAction();
 
   build() {
     Column() {

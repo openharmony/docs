@@ -50,7 +50,7 @@ Column(options?: ColumnOptions | ColumnOptionsV2)
 
 ## ColumnOptions<sup>14+</sup>对象说明
 
-用于构造Column组件时设置子组件间距属性。
+设置Column组件的子组件间距属性。
 
 **卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
 
@@ -60,11 +60,11 @@ Column(options?: ColumnOptions | ColumnOptionsV2)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| space<sup>7+</sup> | string&nbsp;\|&nbsp;number | 否 | 纵向布局元素垂直方向间距。<br/>space为负数或者[justifyContent](ts-container-column.md#justifycontent8)设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>默认值：0<br/>单位：vp<br/>**说明：**<br/>space取值是大于等于0的数字，或者可以转换为数字的字符串。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| space<sup>7+</sup> | string&nbsp;\|&nbsp;number | 否 | 纵向布局元素垂直方向间距。<br/>space为负数或者[justifyContent](ts-container-column.md#justifycontent8)设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时，space不生效。<br/>默认值：0<br/>单位：vp<br/>**说明：**<br/>space取值是大于等于0的数字，或者可以转换为数字的字符串。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## ColumnOptionsV2<sup>18+</sup>对象说明
 
-用于构造Column组件时设置子组件间距属性。间距类型SpaceType支持number、string或Resource类型。
+设置Column组件的子组件间距属性。间距类型SpaceType支持number、string或Resource类型。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -74,13 +74,13 @@ Column(options?: ColumnOptions | ColumnOptionsV2)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| space | [SpaceType](#spacetype18) | 否 | 纵向布局元素垂直方向间距。<br/>space为负数或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>默认值：0，单位vp<br/>**说明：** <br/>space取值是大于等于0的数字，或者可以转换为数字的字符串，或者可以转换为数字的Resource类型数据。 |
+| space | [SpaceType](#spacetype18) | 否 | 纵向布局元素垂直方向间距。<br/>space为负数或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时，space不生效。<br/>默认值：0，单位vp<br/>**说明：** <br/>space取值是大于等于0的数字，或者可以转换为数字的字符串，或者可以转换为数字的Resource类型数据。 |
 
 ## SpaceType<sup>18+</sup>
 
 type SpaceType = string | number | Resource
 
-描述Row、Column组件构造函数中space支持的数据类型，取值类型为下表类型中的并集。
+Column组件构造函数中space支持的数据类型，取值类型为下表类型中的并集。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -143,7 +143,7 @@ justifyContent(value: FlexAlign)
 
 reverse(isReversed: Optional\<boolean\>)
 
-设置子组件在主轴（即竖直方向）上的排列是否反转。
+设置子组件在垂直方向上的排列是否反转。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -155,7 +155,7 @@ reverse(isReversed: Optional\<boolean\>)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                       |
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
-| isReversed  | Optional\<boolean\> | 是   | 子组件在主轴（即竖直方向）上的排列是否反转。<br/>默认值：true |
+| isReversed  | Optional\<boolean\> | 是   | 子组件垂直方向的排列是否反转。<br/>默认值：true，设置true表示子组件在垂直方向上反转排列，设置false表示子组件在垂直方向上正序排列。 |
 
 >  **说明：**
 >

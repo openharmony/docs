@@ -1,6 +1,6 @@
 # @ohos.file.sendablePhotoAccessHelper (基于Sendable对象的相册管理模块)
 
-该模块基于[Sendable](../../arkts-utils/arkts-sendable.md)对象，提供相册管理模块能力，包括创建相册以及访问、修改相册中的媒体数据信息等。
+该模块基于[Sendable](../../arkts-utils/arkts-sendable.md)对象，提供相册管理功能，包括创建相册和访问、修改相册中的媒体数据。
 
 > **说明：**
 >
@@ -92,6 +92,8 @@ getAssets(options: photoAccessHelper.FetchOptions): Promise&lt;FetchResult&lt;Ph
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -154,6 +156,8 @@ getBurstAssets(burstKey: string, options: photoAccessHelper.FetchOptions): Promi
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -194,7 +198,7 @@ async function example() {
 
 createAsset(photoType: PhotoType, extension: string, options?: photoAccessHelper.CreateOptions): Promise&lt;string&gt;
 
-指定待创建的文件类型、后缀和创建选项，创建图片或视频资源，使用Promise方式返回结果。
+指定文件类型、后缀和创建选项，创建图片或视频资源，使用Promise方式返回结果。
 
 此接口在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
 
@@ -229,6 +233,8 @@ createAsset(photoType: PhotoType, extension: string, options?: photoAccessHelper
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 <!--code_no_check-->
 ```ts
@@ -288,6 +294,8 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: photoAccessHelper.Fe
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 <!--code_no_check-->
 ```ts
@@ -354,6 +362,8 @@ getAlbums(options: photoAccessHelper.FetchOptions): Promise&lt;FetchResult&lt;Al
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -408,6 +418,8 @@ release(): Promise&lt;void&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 async function example() {
@@ -437,9 +449,9 @@ async function example() {
 
 | 名称        | 类型                    | 只读 | 可选 | 说明                                                         |
 | ----------- | ----------------------- | ---- | ---- | ------------------------------------------------------------ |
-| uri<sup>12+</sup>         | string                  | 是   | 否   | 媒体文件资源uri（如：file://media/Photo/1/IMG_datetime_0001/displayName.jpg），详情参见用户文件uri介绍中的[媒体文件uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。 |
-| photoType<sup>12+</sup>   | [PhotoType](#phototype) | 是   | 否   | 媒体文件类型。                                               |
-| displayName<sup>12+</sup> | string                  | 是   | 否   | 显示文件名，包含后缀名。字符串长度为1~255。                                     |
+| uri<sup>12+</sup>         | string                  | 是   | 否   | 媒体文件资源uri（如：file://media/Photo/1/IMG_datetime_0001/displayName.jpg），详情参见用户文件uri介绍中的[媒体文件uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| photoType   | [PhotoType](#phototype) | 是   | 否   | 媒体文件类型。                                               |
+| displayName | string                  | 是   | 否   | 显示文件名，包含后缀名。字符串长度为1~255。                                     |
 
 ### convertToPhotoAsset
 
@@ -465,6 +477,8 @@ convertToPhotoAsset():  photoAccessHelper.PhotoAsset
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 <!--code_no_check-->
 ```ts
@@ -519,6 +533,8 @@ get(member: string): photoAccessHelper.MemberType
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -567,6 +583,8 @@ set(member: string, value: string): void
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 <!--code_no_check-->
 ```ts
@@ -620,6 +638,8 @@ commitModify(): Promise&lt;void&gt;
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 <!--code_no_check-->
 ```ts
@@ -683,6 +703,8 @@ getThumbnail(size?: image.Size): Promise&lt;image.PixelMap&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -737,6 +759,8 @@ getCount(): number
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -779,6 +803,8 @@ isAfterLast(): boolean
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -812,13 +838,15 @@ close(): void
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+详细错误码请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 <!--code_no_check-->
 ```ts
@@ -866,6 +894,8 @@ getFirstObject(): Promise&lt;T&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -909,6 +939,8 @@ getNextObject(): Promise&lt;T&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -951,6 +983,8 @@ getLastObject(): Promise&lt;T&gt;
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 <!--code_no_check-->
 ```ts
@@ -1001,6 +1035,8 @@ getObjectByPosition(index: number): Promise&lt;T&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1042,6 +1078,8 @@ getAllObjects(): Promise&lt;Array&lt;T&gt;&gt;
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 <!--code_no_check-->
 ```ts
@@ -1086,8 +1124,6 @@ convertToPhotoAlbum(): photoAccessHelper.Album
 
 将Sendable类型Album转换为非Sendable类型Album。
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
-
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | 类型                    | 说明                                                      |
@@ -1104,6 +1140,8 @@ convertToPhotoAlbum(): photoAccessHelper.Album
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 <!--code_no_check-->
 ```ts
@@ -1168,6 +1206,8 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1221,6 +1261,8 @@ commitModify(): Promise&lt;void&gt;
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 <!--code_no_check-->
 ```ts

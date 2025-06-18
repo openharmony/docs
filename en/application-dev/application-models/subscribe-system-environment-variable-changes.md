@@ -30,7 +30,7 @@ You can subscribe to system environment variable changes in the following ways:
     @Entry
     @Component
     struct Index {
-      private context = getContext(this) as common.UIAbilityContext;
+      private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
       private callbackId: number = 0; // ID of the subscription for system environment variable changes.
 
       subscribeConfigurationUpdate(): void {
@@ -81,7 +81,7 @@ You can subscribe to system environment variable changes in the following ways:
     @Entry
     @Component
     struct Index {
-      private context = getContext(this) as common.UIAbilityContext;
+      private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
       private callbackId: number = 0; // ID of the subscription for system environment variable changes.
 
       unsubscribeConfigurationUpdate() {

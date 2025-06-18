@@ -28,7 +28,7 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
   //设置回调之后，调用photoOutput的capture方法，就会将拍照的buffer回传到回调中。
   photoOutput.on('photoAvailable', (errCode: BusinessError, photo: camera.Photo): void => {
     console.info('getPhoto start');
-    console.info(`err: ${errCode}`);
+    console.error(`err: ${errCode}`);
     if (errCode || photo === undefined) {
       console.error('getPhoto failed');
       return;

@@ -3,7 +3,7 @@
 
 ## 概述
 
-应用启动时通常需要执行一系列初始化启动任务，如果将启动任务都放在应用主模块（即entry类型的[Module](../quick-start/application-package-overview.md#module类型)）的[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)组件的[onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)生命周期中，那么只能在主线程中依次执行，不但影响应用的启动速度，而且当启动任务过多时，任务之间复杂的依赖关系还会使得代码难以维护。
+应用启动时通常需要执行一系列初始化启动任务，如果将启动任务都放在应用主模块（即entry类型的[Module](../quick-start/application-package-overview.md#module类型)）的[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)组件的[onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate)生命周期中，那么只能在主线程中依次执行，不但影响应用的启动速度，而且当启动任务过多时，任务之间复杂的依赖关系还会使得代码难以维护。
 
 AppStartup提供了一种简单高效的应用启动方式，可以支持任务的异步启动，加快应用启动速度。同时，通过在一个配置文件中统一设置多个启动任务的执行顺序以及依赖关系，让执行启动任务的代码变得更加简洁清晰、容易维护。
 
@@ -236,7 +236,7 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
     let onCompletedCallback = (error: BusinessError<void>) => {
       hilog.info(0x0000, 'testTag', `onCompletedCallback`);
       if (error) {
-        hilog.info(0x0000, 'testTag', 'onCompletedCallback: %{public}d, message: %{public}s', error.code, error.message);
+        hilog.error(0x0000, 'testTag', 'onCompletedCallback: %{public}d, message: %{public}s', error.code, error.message);
       } else {
         hilog.info(0x0000, 'testTag', `onCompletedCallback: success.`);
       }
@@ -257,8 +257,8 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
 
 上述操作中已完成启动框架配置文件、启动参数的配置，还需要在每个功能组件对应的启动任务文件中，通过实现[StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)来添加启动任务。其中，需要用到下面的两个方法：
 
-- [init](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md#startuptaskinit)：启动任务初始化。当该任务依赖的启动任务全部执行完毕，即onDependencyCompleted完成调用后，才会执行init方法对该任务进行初始化。
-- [onDependencyCompleted](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md#startuptaskondependencycompleted)：当前任务依赖的启动任务执行完成时，调用该方法。
+- [init](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md#init)：启动任务初始化。当该任务依赖的启动任务全部执行完毕，即onDependencyCompleted完成调用后，才会执行init方法对该任务进行初始化。
+- [onDependencyCompleted](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md#ondependencycompleted)：当前任务依赖的启动任务执行完成时，调用该方法。
 
 
 下面以[startup_config.json](#定义启动框架配置文件)中的StartupTask_001.ets文件为例，示例代码如下。开发者需要分别为每个待初始化功能组件添加启动任务。
@@ -291,7 +291,7 @@ export default class StartupTask_001 extends StartupTask {
  
  ### （可选）HSP与HAR中使用启动框架
  
- 通常大型应用会有多个[HSP](../quick-start/har-package.md)和[HAR](../quick-start/in-app-hsp.md)，本节将提供一个应用示例，以展示如何在HSP包和HAR包中使用启动框架。该示例应用包括两个HSP包（hsp1、hsp2）和一个HAR包（har1），并且包含启动任务和so预加载任务。
+ 通常大型应用会有多个[HSP](../quick-start/in-app-hsp.md)和[HAR](../quick-start/har-package.md)，本节将提供一个应用示例，以展示如何在HSP包和HAR包中使用启动框架。该示例应用包括两个HSP包（hsp1、hsp2）和一个HAR包（har1），并且包含启动任务和so预加载任务。
  
  开发步骤如下：
 
@@ -402,20 +402,19 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    let startParams = ["StartupTask_005", "StartupTask_006"];
+    let startParams = ['StartupTask_005', 'StartupTask_006'];
     try {
       startupManager.run(startParams).then(() => {
-        console.log('StartupTest startupManager run then, startParams = ');
+        console.log(`StartupTest startupManager run then, startParams = ${JSON.stringify(startParams)}.`);
       }).catch((error: BusinessError) => {
-        console.info('StartupTest promise catch error, error = ' + JSON.stringify(error));
-        console.info('StartupTest promise catch error, startParams = '
-          + JSON.stringify(startParams));
+        console.error(`StartupTest promise catch error, error = ${JSON.stringify(error)}.`);
+        console.error(`StartupTest promise catch error, startParams = ${JSON.stringify(startParams)}.`);
       })
     } catch (error) {
-      let errMsg = JSON.stringify(error);
-      let errCode: number = error.code;
-      console.log('Startup catch error , errCode= ' + errCode);
-      console.log('Startup catch error ,error= ' + errMsg);
+      let errMsg = (error as BusinessError).message;
+      let errCode = (error as BusinessError).code;
+      console.error(`Startup catch error, errCode= ${errCode}.`);
+      console.error(`Startup catch error, errMsg= ${errMsg}.`);
     }
   }
 

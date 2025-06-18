@@ -9,6 +9,12 @@
 > 如果在跨页面复用BuilderNode时显示异常，可参考[跨页面复用注意事项](../../ui/arkts-user-defined-arktsNode-builderNode.md#跨页面复用注意事项)。
 > 
 > 当前不支持在预览器中使用BuilderNode。
+> 
+> BuilderNode下的自定义组件支持使用[@Prop](../../ui/state-management/arkts-prop.md)装饰器，不支持使用[@Reusable](../../ui/state-management/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../ui/state-management/arkts-link.md)、[@Provide](../../ui/state-management/arkts-provide-and-consume.md)、[@Consume](../../ui/state-management/arkts-provide-and-consume.md)装饰器。
+> 
+> 从API version 12开始，自定义组件支持接收[LocalStorage](../../ui/state-management/arkts-localstorage.md)实例。可以通过[传递LocalStorage实例](../../ui/state-management/arkts-localstorage.md#自定义组件接收localstorage实例)来使用LocalStorage相关的装饰器[@LocalStorageProp](../../ui/state-management/arkts-localstorage.md#localstorageprop)、[@LocalStorageLink](../../ui/state-management/arkts-localstorage.md#localstoragelink)。
+> 
+> 其余装饰器行为未定义，不建议使用。
 
 ## 导入模块
 
@@ -86,8 +92,7 @@ constructor(uiContext: UIContext, options?: RenderOptions)
 build(builder: WrappedBuilder\<Args>, arg?: Object): void
 
 依照传入的对象创建组件树，并持有组件树的根节点。无状态的UI方法[@Builder](../../ui/state-management/arkts-builder.md)最多拥有一个根节点。
-支持自定义组件。不支持自定义组件使用[@Reusable](../../ui/state-management/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../ui/state-management/arkts-link.md)、[@Provide](../../ui/state-management/arkts-provide-and-consume.md)、[@Consume](../../ui/state-management/arkts-provide-and-consume.md)等装饰器，来同步BuilderNode挂载的页面与BuilderNode中自定义组件的状态。
-从API version 12开始，自定义组件支持接收[LocalStorage](../../ui/state-management/arkts-localstorage.md)实例。可以通过[传递LocalStorage实例](../../ui/state-management/arkts-localstorage.md#自定义组件接收localstorage实例)来使用LocalStorage相关的装饰器[@LocalStorageProp](../../ui/state-management/arkts-localstorage.md#localstorageprop)、[@LocalStorageLink](../../ui/state-management/arkts-localstorage.md#localstoragelink)。
+支持自定义组件。
 
 > **说明**
 > 
@@ -108,26 +113,12 @@ build(builder: WrappedBuilder\<Args>, arg?: Object): void
 | builder | [WrappedBuilder\<Args>](../../ui/state-management/arkts-wrapBuilder.md) | 是   | 创建对应节点树的时候所需的无状态UI方法[@Builder](../../ui/state-management/arkts-builder.md)。 |
 | arg     | Object                                                          | 否   | builder的入参。当前仅支持一个入参，且入参对象类型与@Builder定义的入参类型保持一致。                                          |
 
-
-### BuildOptions<sup>12+</sup>
-
-build的可选参数。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称          | 类型                                   | 必填 | 说明                                                         |
-| ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| nestingBuilderSupported |boolean | 否   | 是否支持Builder嵌套Builder进行使用。其中，false表示Builder使用的入参一致，true表示Builder使用的入参不一致。默认值:false。                                          |
-
 ### build<sup>12+</sup>
 
 build(builder: WrappedBuilder\<Args>, arg: Object, options: [BuildOptions](#buildoptions12)): void
 
 依照传入的对象创建组件树，并持有组件树的根节点。无状态的UI方法[@Builder](../../ui/state-management/arkts-builder.md)最多拥有一个根节点。
-支持自定义组件。不支持使用自定义组件使用[@Reusable](../../ui/state-management/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../ui/state-management/arkts-link.md)、[@Provide](../../ui/state-management/arkts-provide-and-consume.md)、[@Consume](../../ui/state-management/arkts-provide-and-consume.md)等装饰器用于当前页面与自定义组件的状态同步。
-从API version 12开始，自定义组件支持接收[LocalStorage](../../ui/state-management/arkts-localstorage.md)实例。可以通过[传递LocalStorage实例](../../ui/state-management/arkts-localstorage.md#自定义组件接收localstorage实例)来使用LocalStorage相关的装饰器[@LocalStorageProp](../../ui/state-management/arkts-localstorage.md#localstorageprop)、[@LocalStorageLink](../../ui/state-management/arkts-localstorage.md#localstoragelink)。
+支持自定义组件。
 
 > **说明**
 > 
@@ -179,7 +170,7 @@ function buildText(params: ParamsInterface) {
 @Entry
 @Component
 struct Index {
-  @State message: string = "HELLO"
+  @State message: string = "HELLO";
   private content: NodeContent = new NodeContent();
 
   build() {
@@ -190,7 +181,7 @@ struct Index {
             let buildNode = new BuilderNode<[ParamsInterface]>(this.getUIContext());
             buildNode.build(wrapBuilder<[ParamsInterface]>(buildText), {
               text: this.message, func: () => {
-                return "FUNCTION"
+                return "FUNCTION";
               }
             }, { nestingBuilderSupported: true });
             this.content.addFrameNode(buildNode.getFrameNode());
@@ -207,6 +198,17 @@ struct Index {
 }
 ```
 
+### BuildOptions<sup>12+</sup>
+
+build的可选参数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 类型                                   | 必填 | 说明                                                         |
+| ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| nestingBuilderSupported |boolean | 否   | 是否支持Builder嵌套Builder进行使用。其中，false表示Builder使用的入参一致，true表示Builder使用的入参不一致。默认值:false。                                          |
 
 ### getFrameNode
 
@@ -232,7 +234,7 @@ BuilderNode作为NodeContainer的根节点返回。
 import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -259,7 +261,7 @@ class TextNodeController extends NodeController {
 
   makeNode(context: UIContext): FrameNode | null {
     this.textNode = new BuilderNode(context);
-    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message))
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
 
     return this.textNode.getFrameNode();
   }
@@ -268,7 +270,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -294,7 +296,7 @@ BuilderNode的FrameNode挂到其它FrameNode下。
 import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -336,7 +338,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -362,7 +364,7 @@ BuilderNode的RenderNode挂到其它RenderNode下。由于RenderNode不传递布
 import { NodeController, BuilderNode, FrameNode, UIContext, RenderNode } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -410,7 +412,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -449,7 +451,7 @@ update(arg: Object): void
 import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -490,13 +492,13 @@ class TextNodeController extends NodeController {
   private message: string = "";
 
   constructor(message: string) {
-    super()
-    this.message = message
+    super();
+    this.message = message;
   }
 
   makeNode(context: UIContext): FrameNode | null {
     this.textNode = new BuilderNode(context);
-    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message))
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
     return this.textNode.getFrameNode();
   }
 
@@ -510,7 +512,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
   private textNodeController: TextNodeController = new TextNodeController(this.message);
   private count = 0;
 
@@ -581,7 +583,7 @@ OffsetA为buildNode相对于父组件的偏移量，可以通过FrameNode中的[
 import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 
 class Params {
-  text: string = "this is a text"
+  text: string = "this is a text";
 }
 
 @Builder
@@ -610,7 +612,7 @@ class MyNodeController extends NodeController {
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new BuilderNode(uiContext);
-    this.rootNode.build(this.wrapBuilder, { text: "this is a string" })
+    this.rootNode.build(this.wrapBuilder, { text: "this is a string" });
     return this.rootNode.getFrameNode();
   }
 
@@ -665,13 +667,11 @@ struct MyComponent {
 
 dispose(): void
 
-立即释放当前BuilderNode。当BuilderNode对象调用dispose接口之后，不仅BuilderNode对象与后端实体节点解除引用关系，BuilderNode中的FrameNode与RenderNode也会同步和实体节点解除引用关系。
+立即释放当前BuilderNode对象对[实体节点](../../ui/arkts-user-defined-node.md#基本概念)的引用关系。关于BuilderNode的解绑场景请参见[节点解绑](../../ui/arkts-user-defined-arktsNode-builderNode.md#解除实体节点引用关系)。
 
 > **说明：**
 >
-> 当BuilderNode对象调用dispose之后，不仅BuilderNode对象与后端实体节点解除引用关系，BuilderNode中的FrameNode与RenderNode也会同步和实体节点解除引用关系。
->
-> 若前端对象BuilderNode无法释放，容易导致内存泄漏。建议在不再需要对该BuilderNode对象进行操作时，开发者应主动调用dispose释放后端节点，以减少引用关系的复杂性，降低内存泄漏的风险。
+> 当BuilderNode对象调用dispose之后，会与后端实体节点解除引用关系。若前端对象BuilderNode无法释放，容易导致内存泄漏。建议在不再需要对该BuilderNode对象进行操作时，开发者主动调用dispose释放后端节点，以减少引用关系的复杂性，降低内存泄漏的风险。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -762,7 +762,7 @@ struct Index {
 
 reuse(param?: Object): void
 
-传递reuse事件到BuilderNode中的自定义组件。
+触发BuilderNode中的自定义组件的复用。组件复用请参见[@Reusable装饰器：组件复用](../../ui/state-management/arkts-reusable.md)。关于BuilderNode的解绑场景请参见[节点解绑](../../ui/arkts-user-defined-arktsNode-builderNode.md#解除实体节点引用关系)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -778,7 +778,8 @@ reuse(param?: Object): void
 
 recycle(): void
 
-传递recycle事件到BuilderNode中的自定义组件。
+- 触发BuilderNode中自定义组件的回收。自定义组件的回收是组件复用机制中的环节，具体信息请参见[@Reusable装饰器：组件复用](../../ui/state-management/arkts-reusable.md)。
+- BuilderNode通过reuse和recycle完成其内外自定义组件之间的复用事件传递，具体使用场景请参见[节点复用能力](../../ui/arkts-user-defined-arktsNode-builderNode.md#节点复用能力)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -791,7 +792,7 @@ const TEST_TAG: string = "Reuse+Recycle";
 
 class MyDataSource {
   private dataArray: string[] = [];
-  private listener: DataChangeListener | null = null
+  private listener: DataChangeListener | null = null;
 
   public totalCount(): number {
     return this.dataArray.length;
@@ -963,7 +964,7 @@ struct Index {
 
 ### updateConfiguration<sup>12+</sup>
 
-updateConfiguration(): void  
+updateConfiguration(): void
 
 传递[系统环境变化](../apis-ability-kit/js-apis-app-ability-configuration.md)事件，触发节点的全量更新。
 
@@ -981,7 +982,7 @@ import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 import { AbilityConstant, Configuration, ConfigurationConstant, EnvironmentCallback } from '@kit.AbilityKit';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -1022,7 +1023,7 @@ class TextNodeController extends NodeController {
   private message: string = "";
 
   constructor(message: string) {
-    super()
+    super();
     this.message = message;
   }
 
@@ -1062,7 +1063,7 @@ function updateColorMode() {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
   private textNodeController: TextNodeController = new TextNodeController(this.message);
   private count = 0;
 
@@ -1075,7 +1076,7 @@ struct Index {
         console.log('onConfigurationUpdated ' + JSON.stringify(config));
         updateColorMode();
       }
-    }
+    };
     // 注册监听回调
     this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback);
     // 设置应用深浅色跟随系统

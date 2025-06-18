@@ -10,7 +10,7 @@
 >
 > 该模块不支持在[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)的文件声明处使用，即不能在UIAbility的生命周期中调用，需要在创建组件实例后使用。
 >
-> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](js-apis-arkui-UIContext.md#uicontext)说明。
+> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md)的地方使用，参见[UIContext](js-apis-arkui-UIContext.md#uicontext)说明。
 
 ## 导入模块
 
@@ -87,7 +87,7 @@ animator.create(options); // 建议使用 UIContext.createAnimator()接口
 
 ### create<sup>18+</sup>
 
-create(options: AnimatorOptions \| [SimpleAnimatorOptions](#simpleanimatoroptions18)): AnimatorResult
+create(options: AnimatorOptions \| SimpleAnimatorOptions): AnimatorResult
 
 创建animator动画结果对象（AnimatorResult）。与[create](#createdeprecated)相比，新增对[SimpleAnimatorOptions](#simpleanimatoroptions18)类型入参的支持。
 
@@ -237,7 +237,7 @@ try {
 
 ### reset<sup>18+</sup>
 
-reset(options: AnimatorOptions \| [SimpleAnimatorOptions](#simpleanimatoroptions18)): void
+reset(options: AnimatorOptions \| SimpleAnimatorOptions): void
 
 更新当前animator动画。与[reset](#reset9)相比，新增对[SimpleAnimatorOptions](#simpleanimatoroptions18)类型入参的支持。
 
@@ -303,7 +303,7 @@ animator.play();
 
 finish(): void
 
-结束动画。
+结束动画，会触发[onFinish](#onfinish12)回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -335,7 +335,7 @@ animator.pause();
 
 cancel(): void
 
-取消动画。
+取消动画，会触发[onCancel](#oncancel12)回调。此接口和[finish](#finish)接口功能上没有区别，仅触发的回调不同，建议使用finish接口结束动画。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -642,8 +642,8 @@ animator.update(options);
 | fill       | 'none' \| 'forwards' \| 'backwards' \| 'both'               | 是   | 动画执行后是否恢复到初始状态，动画执行后，动画结束时的状态（在最后一个关键帧中定义）将保留。<br/>'none'：在动画执行之前和之后都不会应用任何样式到目标上。<br/>'forwards'：在动画结束后，目标将保留动画结束时的状态（在最后一个关键帧中定义）。<br/>'backwards'：动画将在animation-delay期间应用第一个关键帧中定义的值。当animation-direction为'normal'或'alternate'时应用from关键帧中的值，当animation-direction为'reverse'或'alternate-reverse'时应用to关键帧中的值。<br/>'both'：动画将遵循forwards和backwards的规则，从而在两个方向上扩展动画属性。 |
 | direction  | 'normal' \| 'reverse' \| 'alternate' \| 'alternate-reverse' | 是   | 动画播放模式。<br/>'normal'： 动画正向循环播放。<br/>'reverse'： 动画反向循环播放。<br/>'alternate'：动画交替循环播放，奇数次正向播放，偶数次反向播放。<br/>'alternate-reverse'：动画反向交替循环播放，奇数次反向播放，偶数次正向播放。 |
 | iterations | number                                                      | 是   | 动画播放次数。设置为0时不播放，设置为-1时无限次播放，设置大于0时为播放次数。<br/>**说明:** 设置为除-1外其他负数视为无效取值，无效取值动画默认播放1次。 |
-| begin      | number                                                      | 是   | 动画插值起点。                                               |
-| end        | number                                                      | 是   | 动画插值终点。                                               |
+| begin      | number                                                      | 是   | 动画插值起点。<br/>**说明:** 会影响[onFrame](#onframe12)回调的入参值。                                               |
+| end        | number                                                      | 是   | 动画插值终点。<br/>**说明:** 会影响[onFrame](#onframe12)回调的入参值。                                               |
 
 ## SimpleAnimatorOptions<sup>18+</sup>
 
@@ -720,7 +720,7 @@ easing(curve: string): SimpleAnimatorOptions
 
 | 参数名     | 类型                                  | 必填   | 说明      |
 | ------- | ----------------------------------- | ---- | ------- |
-| curve | string | 是    | 设置animator动画插值曲线，具体说明参考[AnimatorOptions]。<br/>默认值：“ease” |
+| curve | string | 是    | 设置animator动画插值曲线，具体说明参考[AnimatorOptions](#animatoroptions)。<br/>默认值：“ease” |
 
 **返回值：** 
 
@@ -965,7 +965,7 @@ class DateT {
 
 <!--deprecated_code_no_check-->
 ```ts
-import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+import { AnimatorResult } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -977,20 +977,20 @@ struct AnimatorTest {
   @State hei: number = 100
 
   create() {
-    this.backAnimator = animator.create({
-      // 建议使用 this.getUIContext.createAnimator()接口
+    this.backAnimator = this.getUIContext().createAnimator({
+      // 建议使用 this.getUIContext().createAnimator()接口
       duration: 2000,
       easing: "ease",
       delay: 0,
       fill: "forwards",
       direction: "normal",
       iterations: 1,
-      begin: 100,
-      end: 200
+      begin: 100, //动画插值起点
+      end: 200 //动画插值终点
     })
     this.backAnimator.onFinish = () => {
       this.flag = true
-      console.info(this.TAG, 'backAnimator onfinish')
+      console.info(this.TAG, 'backAnimator onFinish')
     }
     this.backAnimator.onRepeat = () => {
       console.info(this.TAG, 'backAnimator repeat')
@@ -1005,8 +1005,10 @@ struct AnimatorTest {
   }
 
   aboutToDisappear() {
+    // 自定义组件消失时调用finish使未完成的动画结束，避免动画继续运行。
     // 由于backAnimator在onframe中引用了this, this中保存了backAnimator，
     // 在自定义组件消失时应该将保存在组件中的backAnimator置空，避免内存泄漏
+    this.backAnimator?.finish();
     this.backAnimator = undefined;
   }
 
@@ -1145,7 +1147,7 @@ struct AnimatorTest {
     )
     this.backAnimator.onFinish = ()=> {
       this.flag = true
-      console.info(this.TAG, 'backAnimator onfinish')
+      console.info(this.TAG, 'backAnimator onFinish')
     }
     this.backAnimator.onFrame = (value:number)=> {
       this.translate_ = value
@@ -1153,8 +1155,10 @@ struct AnimatorTest {
   }
 
   aboutToDisappear() {
-    // 由于backAnimator在onFrame中引用了this, this中保存了backAnimator，
+    // 自定义组件消失时调用finish使未完成的动画结束，避免动画继续运行。
+    // 由于backAnimator在onframe中引用了this, this中保存了backAnimator，
     // 在自定义组件消失时应该将保存在组件中的backAnimator置空，避免内存泄漏
+    this.backAnimator?.finish();
     this.backAnimator = undefined;
   }
 

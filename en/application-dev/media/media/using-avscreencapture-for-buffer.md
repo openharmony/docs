@@ -181,6 +181,7 @@ The selection page is also compatible with the following screen capture modes:
 3. OH_CAPTURE_HOME_SCREEN mode.
 
     The PC or 2-in-1 device does not display a picker dialog box. Instead, it displays a privacy dialog box to ask for user approval.
+    In this mode, the configured **videoCapInfo.displayId** does not take effect. The default display ID of the primary screen is used.
 
     ```c++
     // Configure the screen capture width and height in config_ based on the PC's or 2-in-1 device's resolution.
@@ -189,7 +190,6 @@ The selection page is also compatible with the following screen capture modes:
 
     // Set the screen capture mode to OH_CAPTURE_HOME_SCREEN and pass a display ID.
     config_.captureMode = OH_CAPTURE_HOME_SCREEN;
-    config_.videoInfo.videoCapInfo.displayId = 0;
     ```
 
 ## Detailed Description
@@ -257,13 +257,13 @@ This section describes how to set screen capture parameters, set callback functi
             // Process the event indicating that screen capture is interrupted by others.
         }
         if (stateCode == OH_SCREEN_CAPTURE_STATE_MIC_MUTED_BY_USER) {
-            // Process the event indicating that the user mutes the microphone during during screen capture.
+            // Process the event indicating that the user mutes the microphone during screen capture.
         }
         if (stateCode == OH_SCREEN_CAPTURE_STATE_MIC_UNMUTED_BY_USER) {
             // Process the event indicating that the user unmutes the microphone during screen capture.
         }
         if (stateCode == OH_SCREEN_CAPTURE_STATE_ENTER_PRIVATE_SCENE) {
-            // Process the event indicating that the application enter the privacy mode during screen capture.
+            // Process the event indicating that the application enters the privacy mode during screen capture.
         }
         if (stateCode == OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE) {
             // Process the event indicating that the application exits the privacy mode during screen capture.
@@ -361,7 +361,7 @@ This section describes how to set screen capture parameters, set callback functi
     }
     ```
 
-## Sample Code
+## Development Example
 
 Refer to the sample code below to implement screen capture using AVScreenCapture.
 
@@ -376,7 +376,6 @@ Currently, the buffer holds original streams, which can be encoded and saved in 
 > The encoding format is reserved and will be implemented in later versions.
 
 ```c++
-
 #include "napi/native_api.h"
 #include <multimedia/player_framework/native_avscreen_capture.h>
 #include <multimedia/player_framework/native_avscreen_capture_base.h>
@@ -412,13 +411,13 @@ void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
         // Process the event indicating that screen capture is interrupted by others.
     }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_MIC_MUTED_BY_USER) {
-        // Process the event indicating that the user mutes the microphone during during screen capture.
+        // Process the event indicating that the user mutes the microphone during screen capture.
     }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_MIC_UNMUTED_BY_USER) {
         // Process the event indicating that the user unmutes the microphone during screen capture.
     }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_ENTER_PRIVATE_SCENE) {
-        // Process the event indicating that the application enter the privacy mode during screen capture.
+        // Process the event indicating that the application enters the privacy mode during screen capture.
     }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE) {
         // Process the event indicating that the application exits the privacy mode during screen capture.
@@ -497,7 +496,8 @@ void OnDisplaySelected(struct OH_AVScreenCapture *capture, uint64_t displayId, v
 }
 
 struct OH_AVScreenCapture *capture;
-static napi_value Screencapture(napi_env env, napi_callback_info info) {
+// Call StartScreenCapture to start screen capture.
+static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
     // Obtain the window ID number[] from the JS side.
     std::vector<int> windowIdsExclude = {};
     size_t argc = 1;
@@ -580,15 +580,56 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // (Optional) Set the maximum frame rate for screen capture. Call the function after screen capture starts.
     // OH_AVScreenCapture_SetMaxVideoFrameRate(capture, 20);
 
-    sleep(10); // Capture the screen for 10s.
-    // Stop screen capture.
-    OH_AVScreenCapture_StopScreenCapture(capture);
-    // Release the AVScreenCapture instance.
-    OH_AVScreenCapture_Release(capture);
+    // Call StopScreenCapture to stop screen capture.
+    
     // Return the call result. In the example, only a random number is returned.
     napi_value sum;
     napi_create_double(env, 5, &sum);
 
     return sum;
 }
+
+// Call StopScreenCapture to stop screen capture.
+static napi_value StopScreenCapture(napi_env env, napi_callback_info info) {
+    if (IsCaptureStreamRunning && capture != nullptr) {
+        // Stop screen capture.
+        OH_AVScreenCapture_StopScreenCapture(capture);
+
+        // Release screen capture resources.
+        OH_AVScreenCapture_Release(capture);
+
+        // Clear other resources, such as closing the file.
+
+        // Set IsCaptureStreamRunning to false and the screen capture service instance to a null pointer.
+        IsCaptureStreamRunning = false;
+        capture = nullptr;
+    }
+    // Return the call result. In the example, only a random number is returned.
+    napi_value sum;
+    napi_create_double(env, 5, &sum);
+
+    return sum;
+}
+
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports) {
+    napi_property_descriptor desc[] = {
+        {"startScreenCapture", nullptr, StartScreenCapture, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"stopScreenCapture", nullptr, StopScreenCapture, nullptr, nullptr, nullptr, napi_default, nullptr}};
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+    return exports;
+}
+EXTERN_C_END
+
+static napi_module demoModule = {
+    .nm_version = 1,
+    .nm_flags = 0,
+    .nm_filename = nullptr,
+    .nm_register_func = Init,
+    .nm_modname = "entry",
+    .nm_priv = ((void *)0),
+    .reserved = {0},
+};
+
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
 ```

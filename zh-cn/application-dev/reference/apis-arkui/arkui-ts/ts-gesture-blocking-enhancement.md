@@ -10,7 +10,7 @@
 
 shouldBuiltInRecognizerParallelWith(callback: ShouldBuiltInRecognizerParallelWithCallback): T
 
-提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件。
+提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件。此接口对应的capi接口为[setInnerGestureParallelTo](../_ark_u_i___native_gesture_a_p_i__1.md#setinnergestureparallelto)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -19,7 +19,7 @@ shouldBuiltInRecognizerParallelWith(callback: ShouldBuiltInRecognizerParallelWit
 **参数：**
 | 参数名        | 参数类型                    | 必填  | 参数描述                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| callback      | [ShouldBuiltInRecognizerParallelWithCallback](#shouldbuiltinrecognizerparallelwithcallback) | 是   |  提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件，当该组件做触摸碰撞测试时，会触发用户定义的回调来形成手势并行关系。 |
+| callback      | [ShouldBuiltInRecognizerParallelWithCallback](#shouldbuiltinrecognizerparallelwithcallback) | 是   |  提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件，当该组件进行触摸碰撞测试时，会触发用户定义的回调来形成手势并行关系。 |
 
 **返回值：**
 
@@ -361,7 +361,7 @@ getDuration(): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 预设长按手势识别器触发长按最短时间阈值，单位为ms。<br/>取值范围：[0, +∞) |
+| number | 返回预设长按手势识别器触发长按最短时间阈值，单位为ms。<br/>取值范围：[0, +∞) |
 
 ## SwipeRecognizer<sup>18+</sup>
 
@@ -387,7 +387,7 @@ getVelocityThreshold(): number
 
 getDirection(): SwipeDirection
 
-返回预设滑动手势识别器触发滑动手势滑动方向阈值。
+返回预设滑动手势识别器触发滑动手势滑动方向。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -397,7 +397,7 @@ getDirection(): SwipeDirection
 
 | 类型     | 说明        |
 | ------ | --------- |
-| [SwipeDirection](./ts-basic-gestures-swipegesture.md#swipedirection枚举说明) | 预设滑动手势识别器触发滑动手势滑动方向阈值。 |
+| [SwipeDirection](./ts-basic-gestures-swipegesture.md#swipedirection枚举说明) | 预设滑动手势识别器触发滑动手势滑动方向。 |
 
 ## PinchRecognizer<sup>18+</sup>
 
@@ -445,7 +445,7 @@ onGestureRecognizerJudgeBegin(callback: GestureRecognizerJudgeBeginCallback, exp
 
 给组件绑定自定义手势识别器判定回调。
 
-新增exposeInnerGesture参数作为是否将回调暴露给ArkUI系统组合组件的内置组件的标识，当该标识置为true时，将回调暴露给ArkUI系统组合组件的内置组件。<br>
+新增exposeInnerGesture参数作为是否将回调暴露给ArkUI系统组合组件的内置组件的标识。当该标识置为true时，将回调暴露给ArkUI系统组合组件的内置组件。<br>
 对于不需要将回调暴露给ArkUI系统组合组件内置组件的场景，建议采用原有[onGestureRecognizerJudgeBegin](#ongesturerecognizerjudgebegin)接口。若要求将回调暴露给ArkUI系统组合组件的内置组件，建议使用该接口并将exposeInnerGesture设置为true。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
@@ -514,12 +514,12 @@ type GestureRecognizerJudgeBeginCallback = (event: BaseGestureEvent, current: Ge
 @Entry
 @Component
 struct FatherControlChild {
-  scroller: Scroller = new Scroller()
+  scroller: Scroller = new Scroller();
   scroller2: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  private childRecognizer: GestureRecognizer = new GestureRecognizer()
-  private currentRecognizer: GestureRecognizer = new GestureRecognizer()
-  private lastOffset: number = 0
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  private childRecognizer: GestureRecognizer = new GestureRecognizer();
+  private currentRecognizer: GestureRecognizer = new GestureRecognizer();
+  private lastOffset: number = 0;
 
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
@@ -573,7 +573,8 @@ struct FatherControlChild {
         for (let i = 0; i < others.length; i++) {
           let target = others[i].getEventTargetInfo();
           if (target) {
-            if (target.getId() == "inner" && others[i].isBuiltIn() && others[i].getType() == GestureControl.GestureType.PAN_GESTURE) { // 找到将要组成并行手势的识别器
+            if (target.getId() == "inner" && others[i].isBuiltIn() &&
+              others[i].getType() == GestureControl.GestureType.PAN_GESTURE) { // 找到将要组成并行手势的识别器
               this.currentRecognizer = current; // 保存当前组件的识别器
               this.childRecognizer = others[i]; // 保存将要组成并行手势的识别器
               return others[i]; // 返回将要组成并行手势的识别器
@@ -582,11 +583,13 @@ struct FatherControlChild {
         }
         return undefined;
       })
-      .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer, others: Array<GestureRecognizer>) => { // 在识别器即将要成功时，根据当前组件状态，设置识别器使能状态
+      .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
+        others: Array<GestureRecognizer>) => { // 在识别器即将要成功时，根据当前组件状态，设置识别器使能状态
         if (current) {
           let target = current.getEventTargetInfo();
           if (target) {
-            if (target.getId() == "outer" && current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
+            if (target.getId() == "outer" && current.isBuiltIn() &&
+              current.getType() == GestureControl.GestureType.PAN_GESTURE) {
               if (others) {
                 for (let i = 0; i < others.length; i++) {
                   let target = others[i].getEventTargetInfo() as ScrollableTargetInfo;
@@ -622,8 +625,9 @@ struct FatherControlChild {
       })
       .parallelGesture( // 绑定一个Pan手势作为动态控制器
         PanGesture()
-          .onActionUpdate((event: GestureEvent)=>{
-            if (this.childRecognizer.getState() != GestureRecognizerState.SUCCESSFUL || this.currentRecognizer.getState() != GestureRecognizerState.SUCCESSFUL) { // 如果识别器状态不是SUCCESSFUL，则不做控制
+          .onActionUpdate((event: GestureEvent) => {
+            if (this.childRecognizer.getState() != GestureRecognizerState.SUCCESSFUL ||
+              this.currentRecognizer.getState() != GestureRecognizerState.SUCCESSFUL) { // 如果识别器状态不是SUCCESSFUL，则不做控制
               return;
             }
             let target = this.childRecognizer.getEventTargetInfo() as ScrollableTargetInfo;
@@ -676,12 +680,13 @@ struct FatherControlChild {
 @Entry
 @Component
 struct Index {
-  @State currentIndex: number = 0
-  @State selectedIndex: number = 0
-  @State fontColor: string = '#182431'
-  @State selectedFontColor: string = '#007DFF'
-  innerSelectedIndex: number = 0 // 记录内层Tabs的索引
+  @State currentIndex: number = 0;
+  @State selectedIndex: number = 0;
+  @State fontColor: string = '#182431';
+  @State selectedFontColor: string = '#007DFF';
+  innerSelectedIndex: number = 0; // 记录内层Tabs的索引
   controller?: TabsController = new TabsController();
+
   @Builder
   tabBuilder(index: number, name: string) {
     Column() {
@@ -697,17 +702,20 @@ struct Index {
         .opacity(this.selectedIndex === index ? 1 : 0)
     }.width('100%')
   }
+
   build() {
     Column() {
       Tabs({ barPosition: BarPosition.Start, index: this.currentIndex, controller: this.controller }) {
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Green)
         }.tabBar(this.tabBuilder(0, 'green'))
+
         TabContent() {
           Tabs() {
             TabContent() {
               Column().width('100%').height('100%').backgroundColor(Color.Blue)
             }.tabBar(new SubTabBarStyle('blue'))
+
             TabContent() {
               Column().width('100%').height('100%').backgroundColor(Color.Pink)
             }.tabBar(new SubTabBarStyle('pink'))
@@ -737,6 +745,7 @@ struct Index {
             return GestureJudgeResult.CONTINUE;
           }, true)
         }.tabBar(this.tabBuilder(1, 'blue and pink'))
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Brown)
         }.tabBar(this.tabBuilder(2, 'brown'))

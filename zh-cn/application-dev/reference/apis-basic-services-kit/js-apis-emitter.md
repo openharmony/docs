@@ -36,7 +36,7 @@ on(event: InnerEvent, callback: Callback\<EventData\>): void
 **示例：**
 
 ```ts
-import { Callback} from '@kit.BasicServicesKit';
+import { Callback } from '@kit.BasicServicesKit';
 
 let innerEvent: emitter.InnerEvent = {
   eventId: 1
@@ -70,7 +70,7 @@ on(eventId: string, callback:  Callback\<EventData\>): void
 **示例：**
 
 ```ts
-import { Callback} from '@kit.BasicServicesKit';
+import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
   console.info(`eventData: ${JSON.stringify(eventData)}`);
@@ -99,7 +99,7 @@ on<T\>(eventId: string, callback:  Callback\<GenericEventData<T\>\>): void
 **示例：**
 
 ```ts
-import { Callback} from '@kit.BasicServicesKit';
+import { Callback } from '@kit.BasicServicesKit';
 
 @Sendable
 class Sample {
@@ -142,7 +142,7 @@ once(event: InnerEvent, callback: Callback\<EventData\>): void
 **示例：**
 
 ```ts
-import { Callback} from '@kit.BasicServicesKit';
+import { Callback } from '@kit.BasicServicesKit';
 
 let innerEvent: emitter.InnerEvent = {
   eventId: 1
@@ -175,7 +175,7 @@ once(eventId: string, callback: Callback\<EventData\>): void
 **示例：**
 
 ```ts
-import { Callback} from '@kit.BasicServicesKit';
+import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
   console.info(`eventData: ${JSON.stringify(eventData)}`);
@@ -204,7 +204,7 @@ once<T\>(eventId: string, callback: Callback\<GenericEventData<T\>\>): void
 **示例：**
 
 ```ts
-import { Callback} from '@kit.BasicServicesKit';
+import { Callback } from '@kit.BasicServicesKit';
 
 @Sendable
 class Sample {
@@ -299,7 +299,7 @@ off(eventId: number, callback: Callback\<EventData\>): void
 **示例：**
 
 ```ts
-import { Callback} from '@kit.BasicServicesKit';
+import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
   console.info(`eventData: ${JSON.stringify(eventData)}`);
@@ -331,7 +331,7 @@ off(eventId: string, callback: Callback\<EventData\>): void
 **示例：**
 
 ```ts
-import { Callback} from '@kit.BasicServicesKit';
+import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
   console.info(`eventData: ${JSON.stringify(eventData)}`);
@@ -363,7 +363,7 @@ off<T\>(eventId: string, callback: Callback\<GenericEventData<T\>\>): void
 **示例：**
 
 ```ts
-import { Callback} from '@kit.BasicServicesKit';
+import { Callback } from '@kit.BasicServicesKit';
 
 @Sendable
 class Sample {
@@ -580,7 +580,14 @@ getListenerCount(eventId: number | string): number
 
 | 参数名  | 类型           | 必填 | 说明     |
 | ------- | -------------- | ---- | -------- |
-| eventId | number \| string | 是   | 事件ID，string类型的eventId不支持空字符串。 |
+| eventId | number \| string | 是   | 事件ID，string类型的eventId取值为长度不超过10240字节的自定义字符串，且不可为空字符。 |
+
+**返回值：**
+
+| 类型     | 说明         |
+| ------- |------------|
+| number | 指定事件的订阅数。 |
+
 
 **示例：**
 

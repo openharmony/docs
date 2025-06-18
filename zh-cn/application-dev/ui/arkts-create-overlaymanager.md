@@ -1,6 +1,6 @@
 # 设置浮层（OverlayManager）
 
-**浮层（OverlayManager）** 用于将自定义的UI内容展示在页面（Page）之上，在Dialog、Popup、Menu、BindSheet、BindContentCover和Toast等组件之下，展示的范围为当前窗口安全区内。可适用于常驻悬浮等场景。
+浮层（OverlayManager）用于在页面（Page）之上展示自定义的UI内容，位于Dialog、Popup、Menu、BindSheet、BindContentCover和Toast等组件之下，展示范围为当前窗口的安全区内，适用于常驻悬浮等场景。
 
 ![image](figures/overlayManager.png)
 
@@ -11,7 +11,9 @@
 * OverlayManager上节点的层级在Page页面层级之上，在Dialog、Popup、Menu、BindSheet、BindContentCover和Toast等组件之下。
 * OverlayManager添加的节点显示和消失时没有默认动画。
 * OverlayManager上节点安全区域内外的绘制方式与Page一致，键盘避让方式与Page一致。
-* 与OverlayManager相关的属性推荐采用AppStorage来进行应用全局存储，以免切换页面后属性值发生变化从而导致业务错误。
+* 推荐使用AppStorage存储与OverlayManager相关的属性，以避免页面切换时属性值变化导致业务错误。
+* 当使用API version 18以下版本时，OverlayManager不支持侧滑（左滑/右滑）关闭，需在[onBackPress](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onbackpress)中添加OverlayManager关闭的逻辑。
+* OverlayManager中的事件机制优先被WrappedBuilder装饰的组件接收。若需实现浮层底部接收事件，可通过设置hitTestBehavior为HitTestMode.Transparent将事件传递至底层。
 
 ## 设置浮层
 

@@ -70,7 +70,7 @@ try {
   let eventUp: EventUp = { KeyEvent: backKeyUp }
   inputEventClient.injectEvent(eventUp);
 } catch (error) {
-  console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -131,7 +131,7 @@ try {
   let eventUp: EventUp = { keyEvent: backKeyUp }
   inputEventClient.injectKeyEvent(eventUp);
 } catch (error) {
-  console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 ## inputEventClient.injectMouseEvent<sup>11+</sup>
@@ -231,9 +231,8 @@ try {
 }
 
 catch (error) {
-  console.log(`Failed to inject MouseEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to inject MouseEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
-
 ```
 
 ## inputEventClient.injectTouchEvent<sup>11+</sup>
@@ -322,7 +321,7 @@ try {
   }
   inputEventClient.injectTouchEvent(touchEventDown);
 } catch (error) {
-  console.log(`Failed to inject touchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to inject touchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -369,12 +368,12 @@ try {
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
 
-| 名称        | 类型   | 可读   | 可写   | 说明      |
+| 名称        | 类型   | 只读   | 可选   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
-| isPressed       | boolean | 是    |  否 | 按键是否按下。<br>true表示按键按下，false表示按键抬起。   |
-| keyCode         | number  | 是    |  否 | 按键键码值。当前仅支持返回键/KEYCODE_BACK键。 |
-| keyDownDuration | number  | 是    |  否 | 按键按下持续时间，单位为微秒（μs）。           |
-| isIntercepted   | boolean | 是    |  否 | 按键是否可以被拦截。<br>true表示可以被拦截，false表示不可被拦截。 |
+| isPressed       | boolean | 否    |  否 | 按键是否按下。<br>true表示按键按下，false表示按键抬起。   |
+| keyCode         | number  | 否    |  否 | 按键键码值。当前仅支持返回键/KEYCODE_BACK键。 |
+| keyDownDuration | number  | 否    |  否 | 按键按下持续时间，单位为微秒（μs）。           |
+| isIntercepted   | boolean | 否    |  否 | 按键是否可以被拦截。<br>true表示可以被拦截，false表示不可被拦截。 |
 
 ## KeyEventData<sup>11+</sup>
 
@@ -392,9 +391,9 @@ try {
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
 
-| 名称        | 类型   | 可读   | 可写   | 说明      |
+| 名称        | 类型   | 只读   | 可选   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
-| mouseEvent | [MouseEvent](js-apis-mouseevent.md#mouseevent) | 是    |  否 | 鼠标注入描述信息。   |
+| mouseEvent | [MouseEvent](js-apis-mouseevent.md#mouseevent) | 否    |  否 | 鼠标注入描述信息。   |
 
 ## TouchEventData<sup>11+</sup>
 
@@ -402,6 +401,6 @@ try {
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
 
-| 名称        | 类型   | 可读   | 可写   | 说明      |
+| 名称        | 类型   | 只读   | 可选   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
-| touchEvent | [TouchEvent](js-apis-touchevent.md#touchevent) | 是    |  否 | 触摸屏注入描述信息。   |
+| touchEvent | [TouchEvent](js-apis-touchevent.md#touchevent) | 否    |  否 | 触摸屏注入描述信息。   |

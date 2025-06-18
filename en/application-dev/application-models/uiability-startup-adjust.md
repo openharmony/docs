@@ -29,7 +29,7 @@ This section describes how to switch from explicit Want mode to linking mode.
                 "uris": [
                   {
                     "scheme": "https",
-                    "host": "www.example.com",
+                    "host": "www.example.com"
                   }
                 ],
               "domainVerify": true
@@ -41,15 +41,14 @@ This section describes how to switch from explicit Want mode to linking mode.
     }
     ```
 
-2. Call [openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12) to trigger redirection. The redirected-to link and [options](../reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md) must be passed in, but the bundle name, module name, and ability name are not required. The system matches the application that meets the skills configuration based on the link.
+2. Call [openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#openlink12) to trigger redirection. The redirected-to link and [options](../reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md) must be passed in, but the bundle name, module name, and ability name are not required. The system matches the application that meets the skills configuration based on the link.
     - If **appLinkingOnly** in **options** is set to **true**, the target application must pass domain name verification (Internet connection required). A unique matching item or an unmatched result will be returned.
     - If **appLinkingOnly** in **options** is set to **false**, the system preferentially attempts to start the target application in App Linking mode. If no matching application is found, the system starts the application in Deep Linking mode.
 
     ```ts
-    import { common } from '@kit.AbilityKit';
-    import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
-    import { BusinessError } from '@ohos.base';
-    import hilog from '@ohos.hilog';
+    import { common, OpenLinkOptions } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
 
     const TAG: string = '[UIAbilityComponentsOpenLink]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -63,7 +62,7 @@ This section describes how to switch from explicit Want mode to linking mode.
           .height('5%')
           .margin({ bottom: '12vp' })
           .onClick(() => {
-            let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             // When using startAbility to explicitly start other UIAbilities, the openLink API is recommended.
             // let want: Want = {
             //   bundleName: "com.test.example",
@@ -129,7 +128,7 @@ This section describes how to switch from explicit Want mode to linking mode.
                 "uris": [
                   {
                     "scheme": "https",
-                    "host": "www.example.com",
+                    "host": "www.example.com"
                   }
                 ],
               "domainVerify": true
@@ -141,15 +140,14 @@ This section describes how to switch from explicit Want mode to linking mode.
     }
     ```
 
-2. Call [openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12) to trigger redirection. The redirected-to link and [options](../reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md) must be passed in, but the bundle name, module name, and ability name are not required. The system matches the application that meets the skills configuration based on the link. **AbilityResult** is transferred to the callback function through input parameters and returned to the caller application when the ability is terminated. The startup success or failure result is returned through a promise.<br>
+2. Call [openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#openlink12) to trigger redirection. The redirected-to link and [options](../reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md) must be passed in, but the bundle name, module name, and ability name are not required. The system matches the application that meets the skills configuration based on the link. **AbilityResult** is transferred to the callback function through input parameters and returned to the caller application when the ability is terminated. The startup success or failure result is returned through a promise.<br>
     - If **appLinkingOnly** in **options** is set to **true**, the target application must pass domain name verification (Internet connection required). A unique matching item or an unmatched result will be returned.
     - If **appLinkingOnly** in **options** is set to **false**, the system preferentially attempts to start the target application in App Linking mode. If no matching application is found, the system starts the application in Deep Linking mode.
 
     ```ts
-    import { common } from '@kit.AbilityKit';
-    import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
-    import { BusinessError } from '@ohos.base';
-    import hilog from '@ohos.hilog';
+    import { common, OpenLinkOptions } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
 
     const TAG: string = '[UIAbilityComponentsOpenLink]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -163,7 +161,7 @@ This section describes how to switch from explicit Want mode to linking mode.
           .height('5%')
           .margin({ bottom: '12vp' })
           .onClick(() => {
-            let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             // When using startAbility to explicitly start other UIAbilities, the openLink API is recommended.
             // let want: Want = {
             //   bundleName: "com.test.example",

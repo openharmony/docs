@@ -2,7 +2,6 @@
 
 The [AVPlayer](../../reference/apis-media-kit/_a_v_player.md#avplayer) is used to play raw media assets in an end-to-end manner. In this topic, you will learn how to use the AVPlayer to play a complete video.
 
-
 The full playback process includes creating an AVPlayer instance, setting callback functions, setting the media asset to play, setting playback parameters (volume, speed, and focus mode), setting the playback window, controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the AVPlayer instance.
 
 During application development, you can obtain the playback process information through the callbacks [OH_AVPlayerOnInfoCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeroninfocallback) and [OH_AVPlayerOnErrorCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeronerrorcallback) of the AVPlayer. If the application performs an operation when the AVPlayer is not in the given state, the system may throw an exception or generate other undefined behavior.
@@ -45,6 +44,7 @@ target_link_libraries(sample PUBLIC libhilog_ndk.z.so)
 ```
 
 You can use C/C++ APIs related to video playback by including the header files [avplayer.h](../../reference/apis-media-kit/avplayer_8h.md), [avpalyer_base.h](../../reference/apis-media-kit/avplayer__base_8h.md), and [native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md).
+
 Read [AVPlayer](../../reference/apis-media-kit/_a_v_player.md) for the API reference.
 
 1. Create an AVPlayer instance by calling [OH_AVPlayer_Create()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_create). The AVPlayer is initialized to the [AV_IDLE](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1) state.
@@ -75,7 +75,7 @@ Read [AVPlayer](../../reference/apis-media-kit/_a_v_player.md) for the API refer
 
 11. Exit the playback. Specifically, call [OH_AVPlayer_Release()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_release) to destroy the instance. The AVPlayer enters the [AV_RELEASED](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1) state and exits the playback. Further actions on the AVPlayer instance may lead to undefined behavior, such as the process crashing or the application terminating unexpectedly.
 
-## Sample Code
+## Development Example
 
 ```c++
 #include "napi/native_api.h"

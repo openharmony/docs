@@ -52,7 +52,7 @@
 | struct&nbsp;&nbsp;[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md) | 定义组件回调事件使用字符串参数的类型。  | 
 | struct&nbsp;&nbsp;[ArkUI_NativeNodeAPI_1](_ark_u_i___native_node_a_p_i__1.md) | ArkUI提供的Native侧Node类型接口集合。  | 
 | struct&nbsp;&nbsp;[ArkUI_ContextCallback](_ark_u_i___context_callback.md) | 事件回调类型。  | 
-| union&nbsp;&nbsp;[ArkUI_NumberValue](union_ark_u_i___number_value.md) | ArkUI在native侧的数字类型定义。  | 
+| union&nbsp;&nbsp;[ArkUI_NumberValue](union_ark_u_i___number_value.md) | ArkUI在Native侧的数字类型定义。  | 
 | struct&nbsp;&nbsp;[ARKUI_TextPickerRangeContent](_a_r_k_u_i___text_picker_range_content.md) | 定义单列滑动数据选择器支持图片资源的输入结构体。  | 
 | struct&nbsp;&nbsp;[ARKUI_TextPickerCascadeRangeContent](_a_r_k_u_i___text_picker_cascade_range_content.md) | 定义多列带联动能力的滑动数据选择器的输入结构体。  | 
 | struct&nbsp;&nbsp;[ArkUI_ColorStop](_ark_u_i___color_stop.md) | 定义渐变色结构。  | 
@@ -92,14 +92,16 @@
 | typedef struct [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) | 定义 DrawableDescriptor 对象。  | 
 | typedef struct [OH_PixelmapNative](#oh_pixelmapnative) \* [OH_PixelmapNativeHandle](#oh_pixelmapnativehandle) | 定义OH_PixelmapNative对象指针类型。  | 
 | typedef struct [ArkUI_AnimateOption](#arkui_animateoption) [ArkUI_AnimateOption](#arkui_animateoption) | 设置动画效果相关参数。  | 
+| typedef struct [ArkUI_Curve](#arkui_curve) [ArkUI_Curve](#arkui_curve) | 提供曲线的插值对象定义。  |
 | typedef struct ArkUI_Curve \* [ArkUI_CurveHandle](#arkui_curvehandle) | 定义曲线的插值对象指针定义。  | 
 | typedef struct [ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption) [ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption) | 定义关键帧动画参数对象。  | 
 | typedef struct [ArkUI_AnimatorOption](#arkui_animatoroption) [ArkUI_AnimatorOption](#arkui_animatoroption) | 定义animator动画参数对象。  | 
 | typedef struct ArkUI_Animator \* [ArkUI_AnimatorHandle](#arkui_animatorhandle) | 定义animator动画对象指针。  | 
+| typedef struct [ArkUI_AnimatorEvent](#arkui_animatorevent) [ArkUI_AnimatorEvent](#arkui_animatorevent) | 定义animator回调事件对象。  |
+| typedef struct [ArkUI_AnimatorOnFrameEvent](#arkui_animatoronframeevent) [ArkUI_AnimatorOnFrameEvent](#arkui_animatoronframeevent) | 定义animator接收到帧时回调对象。  |
 | typedef struct [ArkUI_TransitionEffect](#arkui_transitioneffect) [ArkUI_TransitionEffect](#arkui_transitioneffect) | 定义transition属性配置转场参数对象。  | 
 | typedef bool(\* [ArkUI_OnWillDismissEvent](#arkui_onwilldismissevent)) (int32_t reason) | 弹窗关闭的回调函数。  | 
 | typedef struct [ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) [ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) | 定义弹窗关闭事件对象。  | 
-| typedef struct [ArkUI_CustomDialogOptions ](#arkui_customdialogoptions) [ArkUI_CustomDialogOptions ](#arkui_customdialogoptions) | 定义自定义弹窗的内容对象。  | 
 | typedef uint32_t [ArkUI_GestureEventActionTypeMask](#arkui_gestureeventactiontypemask) | 定义手势事件类型集合。  | 
 | typedef uint32_t [ArkUI_GestureDirectionMask](#arkui_gesturedirectionmask) | 定义滑动手势方向集合。  | 
 | typedef ArkUI_GestureRecognizer \* [ArkUI_GestureRecognizerHandle](#arkui_gesturerecognizerhandle) | 提供手势识别器句柄类型对象定义。  | 
@@ -332,7 +334,7 @@
 | int32_t [OH_ArkUI_DragAction_SetPointerId](#oh_arkui_dragaction_setpointerid) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, int32_t pointer) | 设置手指ID，当屏幕上仅有一只手指在操作时，pointer ID 为 0；一般情况下，配置 0 即可。  | 
 | int32_t [OH_ArkUI_DragAction_SetPixelMaps](#oh_arkui_dragaction_setpixelmaps) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, [OH_PixelmapNative](#oh_pixelmapnative) \*pixelmapArray[], int32_t size) | 设置拖拽跟手图，只能使用 pixelmap 格式对象。  | 
 | int32_t [OH_ArkUI_DragAction_SetTouchPointX](#oh_arkui_dragaction_settouchpointx) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, float x) | 设置跟手点，相对于设置的第一个pixelmap的左上角。  | 
-| int32_t [OH_ArkUI_DragAction_SetTouchPointY](#oh_arkui_dragaction_settouchpointy) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, float y) | 设置跟手点,相对于设置的第一个pixelmap的左上角。  | 
+| int32_t [OH_ArkUI_DragAction_SetTouchPointY](#oh_arkui_dragaction_settouchpointy) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, float y) | 设置跟手点，相对于设置的第一个pixelmap的左上角。  | 
 | int32_t [OH_ArkUI_DragAction_SetData](#oh_arkui_dragaction_setdata) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, [OH_UdmfData](#oh_udmfdata) \*data) | 设置拖拽数据。  | 
 | int32_t [OH_ArkUI_DragAction_SetDragPreviewOption](#oh_arkui_dragaction_setdragpreviewoption) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, [ArkUI_DragPreviewOption](#arkui_dragpreviewoption) \*option) | 将构造的ArkUI_DragPreviewOption设置给ArkUI_DragAction。  | 
 | int32_t [OH_ArkUI_DragAction_RegisterStatusListener](#oh_arkui_dragaction_registerstatuslistener) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, void \*userData, void(\*listener)([ArkUI_DragAndDropInfo](#arkui_draganddropinfo) \*dragAndDropInfo, void \*userData)) | 注册拖拽状态监听回调，该回调可感知到拖拽已经发起或用户松手结束的状态，可通过该监听获取到落入方对数据的接收处理是否成功。  | 
@@ -395,7 +397,8 @@
 | int32_t [OH_ArkUI_AnimatorOption_SetKeyframeCurve](#oh_arkui_animatoroption_setkeyframecurve) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, [ArkUI_CurveHandle](#arkui_curvehandle) value, int32_t index) | 设置animator动画关键帧曲线类型。  | 
 | int32_t [OH_ArkUI_AnimatorOption_GetDuration](#oh_arkui_animatoroption_getduration) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画播放的时长。  | 
 | int32_t [OH_ArkUI_AnimatorOption_GetDelay](#oh_arkui_animatoroption_getdelay) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画延时播放时长。  | 
-| int32_t [OH_ArkUI_AnimatorOption_GetIterations](#oh_arkui_animatoroption_getiterations) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画播放次数。  | 
+| int32_t [OH_ArkUI_AnimatorOption_GetIterations](#oh_arkui_animatoroption_getiterations) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画播放次数。  |
+| [ArkUI_AnimationFillMode](#arkui_animationfillmode) [OH_ArkUI_AnimatorOption_GetFill](#oh_arkui_animatoroption_getfill) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画执行后是否恢复到初始状态。  | 
 | [ArkUI_AnimationDirection](#arkui_animationdirection) [OH_ArkUI_AnimatorOption_GetDirection](#oh_arkui_animatoroption_getdirection) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画播放方向。  | 
 | [ArkUI_CurveHandle](#arkui_curvehandle) [OH_ArkUI_AnimatorOption_GetCurve](#oh_arkui_animatoroption_getcurve) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画插值曲线。  | 
 | float [OH_ArkUI_AnimatorOption_GetBegin](#oh_arkui_animatoroption_getbegin) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画插值起点。  | 
@@ -557,11 +560,11 @@
 | void [OH_ArkUI_UnregisterSystemFontStyleChangeEvent](#oh_arkui_unregistersystemfontstylechangeevent) ([ArkUI_NodeHandle](#arkui_nodehandle) node) | 注销系统字体变更事件。  | 
 | float [OH_ArkUI_SystemFontStyleEvent_GetFontSizeScale](#oh_arkui_systemfontstyleevent_getfontsizescale) (const [ArkUI_SystemFontStyleEvent](#arkui_systemfontstyleevent) \*event) | 获取系统字体变更事件的字体大小值。  | 
 | float [OH_ArkUI_SystemFontStyleEvent_GetFontWeightScale](#oh_arkui_systemfontstyleevent_getfontweightscale) (const [ArkUI_SystemFontStyleEvent](#arkui_systemfontstyleevent) \*event) | 获取系统字体变更事件的字体粗细值。  | 
-| int32_t [OH_ArkUI_GetNodeHandleFromNapiValue](#oh_arkui_getnodehandlefromnapivalue) (napi_env env, napi_value frameNode, [ArkUI_NodeHandle](#arkui_nodehandle) \*handle) | 获取ArkTS侧创建的FrameNode节点对象映射到native侧的ArkUI_NodeHandle。  | 
-| int32_t [OH_ArkUI_GetContextFromNapiValue](#oh_arkui_getcontextfromnapivalue) (napi_env env, napi_value value, [ArkUI_ContextHandle](#arkui_contexthandle-12) \*context) | 获取ArkTS侧创建的UIContext对象映射到native侧的ArkUI_ContextHandle。  | 
-| int32_t [OH_ArkUI_GetNodeContentFromNapiValue](#oh_arkui_getnodecontentfromnapivalue) (napi_env env, napi_value value, [ArkUI_NodeContentHandle](#arkui_nodecontenthandle) \*content) | 获取ArkTS侧创建的NodeContent对象映射到native侧的ArkUI_NodeContentHandle。  | 
-| int32_t [OH_ArkUI_GetDrawableDescriptorFromNapiValue](#oh_arkui_getdrawabledescriptorfromnapivalue) (napi_env env, napi_value value, [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*\*drawableDescriptor) | 将ArkTS侧创建的DrawableDescriptor对象映射到native侧的ArkUI_DrawableDescriptor。  | 
-| int32_t [OH_ArkUI_GetDrawableDescriptorFromResourceNapiValue](#oh_arkui_getdrawabledescriptorfromresourcenapivalue) (napi_env env, napi_value value, [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*\*drawableDescriptor) | 将ArkTS侧创建的$r资源对象映射到native侧的ArkUI_DrawableDescriptor。  | 
+| int32_t [OH_ArkUI_GetNodeHandleFromNapiValue](#oh_arkui_getnodehandlefromnapivalue) (napi_env env, napi_value frameNode, [ArkUI_NodeHandle](#arkui_nodehandle) \*handle) | 获取ArkTS侧创建的FrameNode节点对象映射到Native侧的ArkUI_NodeHandle。  | 
+| int32_t [OH_ArkUI_GetContextFromNapiValue](#oh_arkui_getcontextfromnapivalue) (napi_env env, napi_value value, [ArkUI_ContextHandle](#arkui_contexthandle-12) \*context) | 获取ArkTS侧创建的UIContext对象映射到Native侧的ArkUI_ContextHandle。  | 
+| int32_t [OH_ArkUI_GetNodeContentFromNapiValue](#oh_arkui_getnodecontentfromnapivalue) (napi_env env, napi_value value, [ArkUI_NodeContentHandle](#arkui_nodecontenthandle) \*content) | 获取ArkTS侧创建的NodeContent对象映射到Native侧的ArkUI_NodeContentHandle。  | 
+| int32_t [OH_ArkUI_GetDrawableDescriptorFromNapiValue](#oh_arkui_getdrawabledescriptorfromnapivalue) (napi_env env, napi_value value, [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*\*drawableDescriptor) | 将ArkTS侧创建的DrawableDescriptor对象映射到Native侧的ArkUI_DrawableDescriptor。  | 
+| int32_t [OH_ArkUI_GetDrawableDescriptorFromResourceNapiValue](#oh_arkui_getdrawabledescriptorfromresourcenapivalue) (napi_env env, napi_value value, [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*\*drawableDescriptor) | 将ArkTS侧创建的$r资源对象映射到Native侧的ArkUI_DrawableDescriptor。  | 
 | [ArkUI_ErrorCode](#arkui_errorcode) [OH_ArkUI_GetNavigationId](#oh_arkui_getnavigationid) ([ArkUI_NodeHandle](#arkui_nodehandle) node, char \*buffer, int32_t bufferSize, int32_t \*writeLength) | 获取当前节点所在的Navigation组件的ID。  | 
 | [ArkUI_ErrorCode](#arkui_errorcode) [OH_ArkUI_GetNavDestinationName](#oh_arkui_getnavdestinationname) ([ArkUI_NodeHandle](#arkui_nodehandle) node, char \*buffer, int32_t bufferSize, int32_t \*writeLength) | 获取当前节点所在的NavDestination组件的名称。  | 
 | [ArkUI_ErrorCode](#arkui_errorcode) [OH_ArkUI_GetNavStackLength](#oh_arkui_getnavstacklength) ([ArkUI_NodeHandle](#arkui_nodehandle) node, int32_t \*length) | 根据给定索引值，获取当前节点所在的Navigation栈的长度。  | 
@@ -600,7 +603,7 @@
 | int32_t [OH_ArkUI_WaterFlowSectionOption_GetItemCount](#oh_arkui_waterflowsectionoption_getitemcount) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index) | 通过FlowItem分组配置信息获取对应索引下的FlowItem数量。  | 
 | void [OH_ArkUI_WaterFlowSectionOption_SetCrossCount](#oh_arkui_waterflowsectionoption_setcrosscount) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index, int32_t crossCount) | 设置布局栅格，纵向布局时为列数，横向布局时为行数。  | 
 | int32_t [OH_ArkUI_WaterFlowSectionOption_GetCrossCount](#oh_arkui_waterflowsectionoption_getcrosscount) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index) | 通过FlowItem分组配置信息获取对应索引下的布局栅格数。  | 
-| void [OH_ArkUI_WaterFlowSectionOption_SetColumnGap](#oh_arkui_waterflowsectionoption_setcolumngap) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*, int32_t index, float columnGap) | 设置分组的列间距。  | 
+| void [OH_ArkUI_WaterFlowSectionOption_SetColumnGap](#oh_arkui_waterflowsectionoption_setcolumngap) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index, float columnGap) | 设置分组的列间距。  | 
 | float [OH_ArkUI_WaterFlowSectionOption_GetColumnGap](#oh_arkui_waterflowsectionoption_getcolumngap) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index) | 通过FlowItem分组配置信息获取对应索引下的分组的列间距。  | 
 | void [OH_ArkUI_WaterFlowSectionOption_SetRowGap](#oh_arkui_waterflowsectionoption_setrowgap) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index, float rowGap) | 设置分组的行间距。  | 
 | float [OH_ArkUI_WaterFlowSectionOption_GetRowGap](#oh_arkui_waterflowsectionoption_getrowgap) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index) | 通过FlowItem分组配置信息获取对应索引下的分组的行间距。  | 
@@ -677,42 +680,6 @@
 | uint32_t [OH_ArkUI_SwiperIndicator_GetSelectedColor](#oh_arkui_swiperindicator_getselectedcolor) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | 获取被选中 Swiper 组件圆点导航指示器的颜色。  | 
 | int32_t [OH_ArkUI_SwiperIndicator_SetMaxDisplayCount](#oh_arkui_swiperindicator_setmaxdisplaycount) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, int32_t maxDisplayCount) | 设置圆点导航点指示器样式下，导航点显示个数的最大值。  | 
 | int32_t [OH_ArkUI_SwiperIndicator_GetMaxDisplayCount](#oh_arkui_swiperindicator_getmaxdisplaycount) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | 获取圆点导航点指示器样式下，导航点显示个数的最大值。  | 
-| [ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* [OH_ArkUI_SwiperDigitIndicator_Create](#oh_arkui_swiperdigitindicator_create)() | 创建 Swiper 组件的数字导航指示器。  | 
-| void [OH_ArkUI_SwiperDigitIndicator_SetStartPosition](#oh_arkui_swiperdigitindicator_setstartposition)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator, float value) | 设置数字导航指示器距离 Swiper 组件左边的距离，在从右至左显示的语言模式下，设置其距离 Swiper 组件右边的距离。  | 
-| float [OH_ArkUI_SwiperDigitIndicator_GetStartPosition](#oh_arkui_swiperdigitindicator_getstartposition)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator) | 获取数字导航指示器距离 Swiper 组件左边的距离，在从右至左显示的语言模式下，获取其距离 Swiper 组件右边的距离。  | 
-| void [OH_ArkUI_SwiperDigitIndicator_SetTopPosition](#oh_arkui_swiperdigitindicator_settopposition)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator, float value) | 设置数字导航指示器距离 Swiper 组件顶部的距离。 | 
-| float [OH_ArkUI_SwiperDigitIndicator_GetTopPosition](#oh_arkui_swiperdigitindicator_gettopposition)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator) | 获取数字导航指示器距离 Swiper 组件顶部的距离。  | 
-| void [OH_ArkUI_SwiperDigitIndicator_SetEndPosition](#oh_arkui_swiperdigitindicator_setendposition)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator, float value) | 设置数字导航指示器距离 Swiper 组件右边的距离，从右至左显示的语言模式下，设置其距离 Swiper 左边的距离。 | 
-| float [OH_ArkUI_SwiperDigitIndicator_GetEndPosition](#oh_arkui_swiperdigitindicator_getendposition)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator) | 获取数字导航指示器距离 Swiper 组件右边的距离，从右至左显示语言模式下，获取其距离 Swiper 组件左边的距离。  | 
-| void [OH_ArkUI_SwiperDigitIndicator_SetBottomPosition](#oh_arkui_swiperdigitindicator_setbottomposition)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator, float value) | 设置数字导航指示器距离 Swiper 组件底部的距离。 | 
-| float [OH_ArkUI_SwiperDigitIndicator_GetBottomPosition](#oh_arkui_swiperdigitindicator_getbottomposition)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator) | 获取数字导航指示器距离 Swiper 组件底部的距离。  | 
-| void [OH_ArkUI_SwiperDigitIndicator_SetFontColor](#oh_arkui_swiperdigitindicator_setfontcolor)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator, uint32_t color) | 设置 Swiper 组件数字导航指示器字体颜色。 | 
-| uint32_t [OH_ArkUI_SwiperDigitIndicator_GetFontColor](#oh_arkui_swiperdigitindicator_getfontcolor)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator) | 获取 Swiper 组件数字导航指示器字体颜色。  | 
-| void [OH_ArkUI_SwiperDigitIndicator_SetSelectedFontColor](#oh_arkui_swiperdigitindicator_setselectedfontcolor)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator, uint32_t selectedColor) | 设置被选中 Swiper 组件数字导航指示器字体颜色。 | 
-| uint32_t [OH_ArkUI_SwiperDigitIndicator_GetSelectedFontColor](#oh_arkui_swiperdigitindicator_getselectedfontcolor)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator) | 获取被选中 Swiper 组件数字导航指示器字体颜色。  | 
-| void [OH_ArkUI_SwiperDigitIndicator_SetFontSize](#oh_arkui_swiperdigitindicator_setfontsize)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator, float size) | 设置 Swiper 组件数字导航指示器字体大小。 | 
-| float [OH_ArkUI_SwiperDigitIndicator_GetFontSize](#oh_arkui_swiperdigitindicator_getfontsize)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator) | 获取 Swiper 组件数字导航指示器字体大小。  | 
-| void [OH_ArkUI_SwiperDigitIndicator_SetSelectedFontSize](#oh_arkui_swiperdigitindicator_setselectedfontsize)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator, float size) | 设置被选中 Swiper 组件数字导航指示器字体大小。 | 
-| float [OH_ArkUI_SwiperDigitIndicator_GetSelectedFontSize](#oh_arkui_swiperdigitindicator_getselectedfontsize)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator) | 获取被选中 Swiper 组件数字导航指示器字体大小。  | 
-| void [OH_ArkUI_SwiperDigitIndicator_SetFontWeight](#oh_arkui_swiperdigitindicator_setfontweight)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator, [ArkUI_FontWeight](#arkui_fontweight) fontWeight) | 设置 Swiper 组件数字导航指示器字体粗细属性。 | 
-| [ArkUI_FontWeight](#arkui_fontweight) [OH_ArkUI_SwiperDigitIndicator_GetFontWeight](#oh_arkui_swiperdigitindicator_getfontweight)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator) | 获取 Swiper 组件数字导航指示器字体粗细属性。  | 
-| void [OH_ArkUI_SwiperDigitIndicator_SetSelectedFontWeight](#oh_arkui_swiperdigitindicator_setselectedfontweight)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator, [ArkUI_FontWeight](#arkui_fontweight) selectedFontWeight) | 设置被选中 Swiper 组件数字导航指示器字体粗细属性。 | 
-| [ArkUI_FontWeight](#arkui_fontweight) [OH_ArkUI_SwiperDigitIndicator_GetSelectedFontWeight](#oh_arkui_swiperdigitindicator_getselectedfontweight)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator) | 获取被选中 Swiper 组件数字导航指示器字体粗细属性。  | 
-|void [OH_ArkUI_SwiperDigitIndicator_Dispose](#oh_arkui_swiperdigitindicator_dispose)() | 销毁Swiper组件的数字导航指示器指针。  | 
-| [ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)* [OH_ArkUI_SwiperArrowStyle_Create](#oh_arkui_swiperarrowstyle_create)() | 创建 Swiper 组件的导航箭头。  | 
-| void [OH_ArkUI_SwiperArrowStyle_SetShowBackground](#oh_arkui_swiperarrowstyle_setshowbackground)([ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)* indicator, int32_t showBackground) | 设置 Swiper 组件导航箭头底板是否显示。 | 
-| int32_t [OH_ArkUI_SwiperArrowStyle_GetShowBackground](#oh_arkui_swiperarrowstyle_getshowbackground)([ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)* indicator) | 获取 Swiper 组件导航箭头底板是否显示。  | 
-| void [OH_ArkUI_SwiperArrowStyle_SetShowSidebarMiddle](#oh_arkui_swiperarrowstyle_setshowsidebarmiddle)([ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)* indicator, int32_t showSidebarMiddle) | 设置 Swiper 组件导航箭头显示位置。 | 
-| int32_t [OH_ArkUI_SwiperArrowStyle_GetShowSidebarMiddle](#oh_arkui_swiperarrowstyle_getshowsidebarmiddle)([ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)* indicator) | 获取 Swiper 组件导航箭头显示位置。  | 
-| void [OH_ArkUI_SwiperArrowStyle_SetBackgroundSize](#oh_arkui_swiperarrowstyle_setbackgroundsize)([ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)* indicator, float backgroundSize) | 设置 Swiper 组件导航箭头底板大小。 | 
-| float [OH_ArkUI_SwiperArrowStyle_GetBackgroundSize](#oh_arkui_swiperarrowstyle_getbackgroundsize)([ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)* indicator) | 获取 Swiper 组件导航箭头底板大小。  | 
-| void [OH_ArkUI_SwiperArrowStyle_SetBackgroundColor](#oh_arkui_swiperarrowstyle_setbackgroundcolor)([ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)* indicator, uint32_t backgroundColor) | 设置 Swiper 组件导航箭头底板颜色。 | 
-| uint32_t [OH_ArkUI_SwiperArrowStyle_GetBackgroundColor](#oh_arkui_swiperarrowstyle_getbackgroundcolor)([ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)* indicator) | 获取 Swiper 组件导航箭头底板颜色。  | 
-| void [OH_ArkUI_SwiperArrowStyle_SetArrowSize](#oh_arkui_swiperarrowstyle_setarrowsize)([ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)* indicator, float arrowSize) | 设置 Swiper 组件导航箭头大小。 | 
-| float [OH_ArkUI_SwiperArrowStyle_GetArrowSize](#oh_arkui_swiperarrowstyle_getarrowsize)([ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)* indicator) | 获取 Swiper 组件导航箭头大小。  | 
-| void [OH_ArkUI_SwiperArrowStyle_SetArrowColor](#oh_arkui_swiperarrowstyle_setarrowcolor)([ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)* indicator, uint32_t arrowColor) | 设置 Swiper 组件导航箭头颜色。 | 
-| uint32_t [OH_ArkUI_SwiperArrowStyle_GetArrowColor](#oh_arkui_swiperarrowstyle_getarrowcolor)([ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)* indicator) | 获取 Swiper 组件导航箭头颜色。  | 
-|void [OH_ArkUI_SwiperArrowStyle_Dispose](#oh_arkui_swiperarrowstyle_dispose)() | 销毁 Swiper 组件的导航箭头指针。  | 
 | [ArkUI_ListItemSwipeActionItem](#arkui_listitemswipeactionitem) \* [OH_ArkUI_ListItemSwipeActionItem_Create](#oh_arkui_listitemswipeactionitem_create) () | 创建ListItemSwipeActionItem接口设置的配置项。  | 
 | void [OH_ArkUI_ListItemSwipeActionItem_Dispose](#oh_arkui_listitemswipeactionitem_dispose) ([ArkUI_ListItemSwipeActionItem](#arkui_listitemswipeactionitem) \*item) | 销毁ListItemSwipeActionItem实例。  | 
 | void [OH_ArkUI_ListItemSwipeActionItem_SetContent](#oh_arkui_listitemswipeactionitem_setcontent) ([ArkUI_ListItemSwipeActionItem](#arkui_listitemswipeactionitem) \*item, [ArkUI_NodeHandle](#arkui_nodehandle) node) | 设置ListItemSwipeActionItem的布局内容。  | 
@@ -814,7 +781,7 @@
 | int32_t [OH_ArkUI_RegisterDrawCallbackOnNodeHandle](#oh_arkui_registerdrawcallbackonnodehandle)([ArkUI_NodeHandle](#arkui_nodehandle) node, void\* userData, void (\*onDrawCompleted)(void\* userData))| 注册组件绘制完成回调方法。同一组件仅能注册一个绘制完成回调方法。  |
 | int32_t [OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle](#oh_arkui_unregisterlayoutcallbackonnodehandle)([ArkUI_NodeHandle](#arkui_nodehandle) node)| 取消注册组件布局完成回调方法。  |
 | int32_t [OH_ArkUI_UnregisterDrawCallbackOnNodeHandle](#oh_arkui_unregisterdrawcallbackonnodehandle)([ArkUI_NodeHandle](#arkui_nodehandle) node)| 取消注册组件绘制完成回调方法。  |
-| [ArkUI_TextChangeEvent](_ark_u_i___text_change_event.md) [OH_ArkUI_NodeEvent_GetTextChangeEvent](#oh_arkui_nodeevent_gettextchangeevent)([ArkUI_NodeEvent](#arkui_nodeevent-12) \*event) | 获取输入框内容改变（包括预上屏内容）事件的相关数据。  |
+| [ArkUI_TextChangeEvent](_ark_u_i___text_change_event.md) OH_ArkUI_NodeEvent_GetTextChangeEvent([ArkUI_NodeEvent](#arkui_nodeevent-12) \*event) | 获取输入框内容改变（包括预上屏内容）事件的相关数据。  |
 |[ArkUI_ErrorCode](_ark_u_i___native_module.md#arkui_errorcode)  OH_ArkUI_FocusRequest([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node); | 请求焦点。|
 | void OH_ArkUI_FocusClear([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) uiContext); | 将当前焦点清除到根容器节点。 |
 | void OH_ArkUI_FocusActivate([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) uiContext, bool isActive, bool isAutoInactive); | 设置当前界面的焦点激活态，获焦节点显示焦点框。|
@@ -941,6 +908,30 @@ typedef struct ArkUI_Animator* ArkUI_AnimatorHandle
 **起始版本：** 12
 
 
+### ArkUI_AnimatorEvent
+
+```
+typedef struct ArkUI_AnimatorEvent ArkUI_AnimatorEvent
+```
+**描述：**
+
+定义animator回调事件对象。
+
+**起始版本：** 12
+
+
+### ArkUI_AnimatorOnFrameEvent
+
+```
+typedef struct ArkUI_AnimatorOnFrameEvent ArkUI_AnimatorOnFrameEvent
+```
+**描述：**
+
+定义animator接收到帧时回调对象。
+
+**起始版本：** 12
+
+
 ### ArkUI_AnimatorOption
 
 ```
@@ -997,6 +988,18 @@ typedef struct ArkUI_Context* ArkUI_ContextHandle
 **描述：**
 
 定义ArkUI native UI的上下文实例对象指针定义。
+
+**起始版本：** 12
+
+
+### ArkUI_Curve
+
+```
+typedef struct ArkUI_Curve ArkUI_Curve
+```
+**描述：**
+
+提供曲线的插值对象定义。
 
 **起始版本：** 12
 
@@ -1059,17 +1062,6 @@ typedef struct ArkUI_DialogDismissEvent ArkUI_DialogDismissEvent
 定义弹窗关闭事件对象。
 
 **起始版本：** 12
-
-### ArkUI_CustomDialogOptions
-
-```
-typedef struct ArkUI_CustomDialogOptions ArkUI_CustomDialogOptions
-```
-**描述：**
-
-定义自定义弹窗的内容对象。
-
-**起始版本：** 16
 
 
 ### ArkUI_DragAction
@@ -1155,6 +1147,19 @@ typedef uint32_t ArkUI_GestureDirectionMask
 **起始版本：** 12
 
 
+### ArkUI_GestureEvent
+
+```
+typedef struct ArkUI_GestureEvent ArkUI_GestureEvent
+```
+
+**描述：**
+
+提供手势事件数据类型对象定义。
+
+**起始版本：** 12
+
+
 ### ArkUI_GestureEventActionTypeMask
 
 ```
@@ -1177,6 +1182,19 @@ typedef struct ArkUI_GestureEventTargetInfo ArkUI_GestureEventTargetInfo
 **描述：**
 
 提供手势事件目标信息类型对象定义。
+
+**起始版本：** 12
+
+
+### ArkUI_GestureRecognizer
+
+```
+typedef struct ArkUI_GestureRecognizer ArkUI_GestureRecognizer
+```
+
+**描述：**
+
+提供手势组件实例对象定义。
 
 **起始版本：** 12
 
@@ -1215,6 +1233,18 @@ typedef ArkUI_GestureRecognizerHandle* ArkUI_GestureRecognizerHandleArray
 提供手势识别器句柄类型数组对象定义。
 
 **起始版本：** 12
+
+
+### ArkUI_TouchRecognizer
+
+```
+typedef ArkUI_TouchRecognizer ArkUI_TouchRecognizer
+```
+**描述：**
+
+定义触摸识别器。
+
+**起始版本：** 15
 
 
 ### ArkUI_TouchRecognizerHandle
@@ -1528,27 +1558,6 @@ typedef struct ArkUI_SystemFontStyleEvent ArkUI_SystemFontStyleEvent
 
 **起始版本：** 12
 
-### ArkUI_SwiperDigitIndicator
-
-```
-typedef struct ArkUI_SwiperDigitIndicator ArkUI_SwiperDigitIndicator
-```
-**描述：**
-
-定义 Swiper 组件的数字导航指示器风格。
-
-**起始版本：** 18
-
-### ArkUI_SwiperArrowStyle
-
-```
-typedef struct ArkUI_SwiperArrowStyle ArkUI_SwiperArrowStyle
-```
-**描述：**
-
-定义 Swiper 组件的导航箭头风格。
-
-**起始版本：** 18
 
 ### ArkUI_TransitionEffect
 
@@ -1653,7 +1662,7 @@ typedef struct ArkUI_VisibleAreaEventOptions ArkUI_VisibleAreaEventOptions
 
 可见区域变化监听的参数。
 
-**起始版本：** 18
+**起始版本：** 17
 
 ### ArkUI_SnapshotOptions
 
@@ -2433,33 +2442,33 @@ enum ArkUI_ErrorCode
 | ARKUI_ERROR_CODE_PARAM_INVALID  | 参数错误。  | 
 | ARKUI_ERROR_CODE_CAPI_INIT_ERROR  | 接口初始化错误。<br/>起始版本：18  | 
 | ARKUI_ERROR_CODE_INTERNAL_ERROR  | 出现内部错误，例如内部环境错误导致失败，或者由于内部执行失败导致操作失败。<br/>起始版本：15  | 
-| ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID  | XComponent组件处于非法状态。<br/>起始版本：18  | 
-| ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED  | 组件不支持特定的属性或者事件。  | 
-| ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED  | 对应的操作不支持ArkTS创建的节点。  | 
-| ARKUI_ERROR_CODE_ADAPTER_NOT_BOUND  | 懒加载适配器未绑定到组件上。  | 
-| ARKUI_ERROR_CODE_ADAPTER_EXIST  | 适配器已存在。  | 
-| ARKUI_ERROR_CODE_CHILD_NODE_EXIST  | 对应节点已存在子节点，无法添加适配器。  | 
+| ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID = 103501 | 当前XComponent状态异常，方法调用失败。<br/>**起始版本：** 18  |
+| ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED = 106102  | 组件不支持特定的属性或者事件。<br/>错误码的详细介绍请参见[交互事件错误码](../apis-arkui/errorcode-event.md)。  |
+| ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED = 106103  | 对应的操作不支持ArkTS创建的节点。<br/>错误码的详细介绍请参见[自定义节点错误码](../apis-arkui/errorcode-node.md)。  |
+| ARKUI_ERROR_CODE_ADAPTER_NOT_BOUND = 106104 | 懒加载适配器未绑定到组件上，错误码详细参见[编译错误码](../apis-arkui/errorcode-nodeadapter.md#106104-适配器未绑定)。  |
+| ARKUI_ERROR_CODE_ADAPTER_EXIST = 106105 | 适配器已存在，错误码详细参见[编译错误码](../apis-arkui/errorcode-nodeadapter.md#106105-适配器已存在)。  |
+| ARKUI_ERROR_CODE_CHILD_NODE_EXIST = 106106 | 对应节点已存在子节点，无法添加适配器，错误码详细参见[编译错误码](../apis-arkui/errorcode-nodeadapter.md#106106-子节点已存在)。  |
 | ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE  | 组件事件中参数长度超限。  | 
 | ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID  | 组件事件中不存在该数据。  | 
 | ARKUI_ERROR_CODE_NODE_EVENT_NO_RETURN  | 组件事件不支持返回值。  | 
-| ARKUI_ERROR_CODE_NODE_INDEX_INVALID  | 传入的索引值非法。  | 
-| ARKUI_ERROR_CODE_GET_INFO_FAILED  | 查询路由导航信息失败。  | 
-| ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR  | 传入的buffer size异常。  | 
-| ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE  | 传入的节点未挂载到组件树上。<br/>起始版本：15  |
+| ARKUI_ERROR_CODE_NODE_INDEX_INVALID = 106200  | 传入的索引值非法。 <br/>错误码的详细介绍请参见[导航错误码](../apis-arkui/errorcode-router.md#106200-传入的索引值非法)。 | 
+| ARKUI_ERROR_CODE_GET_INFO_FAILED = 106201  | 查询路由导航信息失败。<br/>错误码的详细介绍请参见[导航错误码](../apis-arkui/errorcode-router.md#106201-查询路由导航信息失败)。  | 
+| ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR = 106202  | 传入的buffer size异常。<br/>错误码的详细介绍请参见[导航错误码](../apis-arkui/errorcode-router.md#106202-传入的buffer-size异常)。  | 
+| ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE = 106203  | 传入的节点未挂载到组件树上。<br/>错误码的详细介绍请参见[自定义节点错误码](../apis-arkui/errorcode-node.md)。<br/>起始版本：15  |
 | ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE  | 当前节点无法获得焦点。<br/>起始版本：15  | 
 | ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR  | 当前节点对应的祖先节点中存在无法获焦节点。<br/>起始版本：15  | 
 | ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT>  | 当前节点不存在。<br/>起始版本：15  | 
-| ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT  | 截图超时。<br/>起始版本：15  | 
-| ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER  | 非滚动类容器。  | 
-| ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH  | 存储区大小不足。  | 
-| ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT  | 该事件不是克隆事件。<br/>起始版本：15  | 
+| ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT = 160002  | 截图超时。<br/>错误码的详细介绍请参见[截图错误码](../apis-arkui/errorcode-snapshot.md)。<br/>起始版本：15  |
+| ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER = 180001  | 非滚动类容器。<br/>错误码的详细介绍请参见[交互事件错误码](../apis-arkui/errorcode-event.md)。  |
+| ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH = 180002  | 存储区大小不足。<br/>错误码的详细介绍请参见[交互事件错误码](../apis-arkui/errorcode-event.md)。  |
+| ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT = 180003  | 该事件不是克隆事件。<br/>错误码的详细介绍请参见[交互事件错误码](../apis-arkui/errorcode-event.md)。<br/>起始版本：15  | 
 | ARKUI_ERROR_CODE_POST_CLONED_COMPONENT_STATUS_ABNORMAL  | 组件状态异常。<br/>起始版本：15  | 
-| ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT  | 未命中可响应事件的组件。<br/>起始版本：15  | 
-| ARKUI_ERROR_CODE_INVALID_STYLED_STRING  | 无效的属性字符串。<br/>起始版本：14  | 
-| ARKUI_ERROR_CODE_UI_CONTEXT_INVALID  | 无效的UIContext对象。<br/>起始版本：18  | 
-| ARKUI_ERROR_CODE_CALLBACK_INVALID  | 无效的回调函数。<br/>起始版本：18  | 
-| ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED  | 不支持手势识别器类型。<br/>起始版本：18  | 
-| ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED  | 当前阶段不允许该操作。<br/>起始版本：18  | 
+| ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT = 180005  | 未命中可响应事件的组件。<br/>错误码的详细介绍请参见[交互事件错误码](../apis-arkui/errorcode-event.md)。<br/>起始版本：15  |
+| ARKUI_ERROR_CODE_INVALID_STYLED_STRING = 180101  | 无效的属性字符串。<br/>错误码的详细介绍请参见[属性字符串错误码](../apis-arkui/errorcode-styled-string.md#属性字符串错误码)。<br/>**起始版本：** 14  | 
+| ARKUI_ERROR_CODE_UI_CONTEXT_INVALID = 190001  | 无效的UIContext对象。<br/>错误码的详细介绍请参见[UI上下文错误码](../apis-arkui/errorcode-uicontext.md)。<br/>起始版本：18  |
+| ARKUI_ERROR_CODE_CALLBACK_INVALID = 190002  | 无效的回调函数。<br/>错误码的详细介绍请参见[UI上下文错误码](../apis-arkui/errorcode-uicontext.md)。<br/>起始版本：18  |
+| ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED = 180102  | 不支持手势识别器类型。<br/>错误码的详细介绍请参见[交互事件错误码](../apis-arkui/errorcode-event.md)。<br/>起始版本：18  |
+| ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED = 190004  | 当前阶段不允许该操作。<br/>错误码的详细介绍请参见[拖拽事件错误码](../apis-arkui/errorcode-drag-event.md)。<br/>起始版本：19  |
 
 
 ### ArkUI_FinishCallbackType
@@ -2844,7 +2853,7 @@ enum ArkUI_ImageSize
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_IMAGE_SIZE_AUTO  | 默认值，保持原图的比例不变。  | 
+| ARKUI_IMAGE_SIZE_AUTO  | 保持原图的比例不变。  | 
 | ARKUI_IMAGE_SIZE_COVER  | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。  | 
 | ARKUI_IMAGE_SIZE_CONTAIN  | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。  | 
 
@@ -3035,7 +3044,19 @@ enum ArkUI_KeyCode
 | ARKUI_KEYCODE_NUMPAD_EQUALS  | 小键盘按键'='  | 
 | ARKUI_KEYCODE_NUMPAD_LEFT_PAREN  | 小键盘按键'('  | 
 | ARKUI_KEYCODE_NUMPAD_RIGHT_PAREN  | 小键盘按键')'  | 
-
+| ARKUI_KEYCODE_BUTTON_A  | 游戏手柄按键'A'  |
+| ARKUI_KEYCODE_BUTTON_B  | 游戏手柄按键'B' |
+| ARKUI_KEYCODE_BUTTON_X  | 游戏手柄按键'X'  |
+| ARKUI_KEYCODE_BUTTON_Y  | 游戏手柄按键'Y'  |
+| ARKUI_KEYCODE_BUTTON_L1  | 游戏手柄按键'L1'  |
+| ARKUI_KEYCODE_BUTTON_R1  | 游戏手柄按键'R1'  |
+| ARKUI_KEYCODE_BUTTON_L2  | 游戏手柄按键'R2'  |
+| ARKUI_KEYCODE_BUTTON_R2  | 游戏手柄按键'L1'  |
+| ARKUI_KEYCODE_BUTTON_SELECT  | 游戏手柄按键'Select'  |
+| ARKUI_KEYCODE_BUTTON_START  | 游戏手柄按键'Start'  |
+| ARKUI_KEYCODE_BUTTON_MODE  | 游戏手柄按键'Mode'  |
+| ARKUI_KEYCODE_BUTTON_THUMBL  | 游戏手柄按键'THUMBL'  |
+| ARKUI_KEYCODE_BUTTON_THUMBR  | 游戏手柄按键'THUMBR'  |
 
 ### ArkUI_KeyEventType
 
@@ -3095,6 +3116,23 @@ enum ArkUI_KeyIntension
 | ARKUI_KEY_INTENTION_VOLUME_DOWN  | 音量降低  | 
 | ARKUI_KEY_INTENTION_CALL  | 接听电话  | 
 | ARKUI_KEY_INTENTION_CAMERA  | 拍照  | 
+
+
+### ArkUI_KeyProcessingMode
+
+```
+enum ArkUI_KeyProcessingMode
+```
+**描述：**
+
+当组件无法处理按键事件时，确定按键事件处理的优先级。
+
+**起始版本：** 15
+
+| 名称          | 描述        |
+| ----------- | --------- |
+| ARKUI_KEY_PROCESSING_MODE_FOCUS_NAVIGATION | 默认值，按键事件用于移动焦点。|
+| ARKUI_KEY_PROCESSING_MODE_FOCUS_ANCESTOR_EVENT |  按键事件向上传递给祖先组件。 |
 
 
 ### ArkUI_KeySourceType
@@ -3337,9 +3375,9 @@ enum ArkUI_NodeAttributeType
 | NODE_HIT_TEST_BEHAVIOR  | 触摸测试类型，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制当前组件的触摸测试类型，参数类型[ArkUI_HitTestMode](#arkui_hittestmode)，默认值为ARKUI_HIT_TEST_MODE_DEFAULT。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制当前组件的触摸测试类型，参数类型**ArkKUI_HitTestMode**，默认值为ARKUI_HIT_TEST_MODE_DEFAULT。 | 
 | NODE_POSITION  | 元素左上角相对于父容器左上角偏移位置，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：x轴坐标。<br/>.value[1].f32: y轴坐标。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：x轴坐标。<br/>.value[1].f32: y轴坐标。 | 
 | NODE_SHADOW  | 阴影效果属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置当前组件阴影效果，参数类型[ArkUI_ShadowStyle](#arkui_shadowstyle)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置当前组件阴影效果，参数类型[ArkUI_ShadowStyle](#arkui_shadowstyle)。 | 
-| NODE_CUSTOM_SHADOW  | 自定义阴影效果，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0]?.f32：阴影模糊半径，单位为vp；<br/>.value[1]?.i32：是否开启智能取色，0代表不开启，1代表开启，默认不开启；<br/>.value[2]?.f32：阴影X轴偏移量，单位为px；<br/>.value[3]?.f32：阴影Y轴偏移量，单位为px；<br/>.value[4]?.i32：阴影类型[ArkUI_ShadowType](#arkui_shadowtype)，默认值为ARKUI_SHADOW_TYPE_COLOR；<br/>.value[5]?.u32：阴影颜色，0xargb格式，形如 0xFFFF0000 表示红色；<br/>.value[6]?.u32：阴影是否内部填充，，0表示不填充，1表示填充；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：阴影模糊半径，单位为vp；<br/>.value[1].i32：是否开启智能取色；<br/>.value[2].f32：阴影X轴偏移量，单位为px；<br/>.value[3].f32：阴影Y轴偏移量，单位为px；<br/>.value[4].i32：阴影类型[ArkUI_ShadowType](#arkui_shadowtype)，默认值为ARKUI_SHADOW_TYPE_COLOR；<br/>.value[5].u32：阴影颜色，0xargb格式，形如 0xFFFF0000 表示红色；<br/>.value[6].u32：阴影是否内部填充，，0表示不填充，1表示填充； | 
+| NODE_CUSTOM_SHADOW  | 自定义阴影效果，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0]?.f32：阴影模糊半径，单位为vp；<br/>.value[1]?.i32：是否开启智能取色，0代表不开启，1代表开启，默认不开启；<br/>.value[2]?.f32：阴影X轴偏移量，单位为px；<br/>.value[3]?.f32：阴影Y轴偏移量，单位为px；<br/>.value[4]?.i32：阴影类型[ArkUI_ShadowType](#arkui_shadowtype)，默认值为ARKUI_SHADOW_TYPE_COLOR；<br/>.value[5]?.u32：阴影颜色，0xargb格式，形如 0xFFFF0000 表示红色；<br/>.value[6]?.u32：阴影是否内部填充，0表示不填充，1表示填充；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：阴影模糊半径，单位为vp；<br/>.value[1].i32：是否开启智能取色；<br/>.value[2].f32：阴影X轴偏移量，单位为px；<br/>.value[3].f32：阴影Y轴偏移量，单位为px；<br/>.value[4].i32：阴影类型[ArkUI_ShadowType](#arkui_shadowtype)，默认值为ARKUI_SHADOW_TYPE_COLOR；<br/>.value[5].u32：阴影颜色，0xargb格式，形如 0xFFFF0000 表示红色；<br/>.value[6].u32：阴影是否内部填充，0表示不填充，1表示填充； | 
 | NODE_BACKGROUND_IMAGE_SIZE  | 背景图片的宽高属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 表示图片的宽度值，取值范围[0,+∞)，单位为vp。<br/>.value[1].f32 表示图片的高度值，取值范围[0,+∞)，单位为vp。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 表示图片的宽度值，单位为vp。<br/>.value[1].f32 表示图片的高度值，单位为vp。 | 
-| NODE_BACKGROUND_IMAGE_SIZE_WITH_STYLE  | 背景图片的宽高样式属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示背景图片的宽高样式，取[ArkUI_ImageSize](#arkui_imagesize)枚举值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示背景图片的宽高样式，取[ArkUI_ImageSize](#arkui_imagesize)枚举值。 | 
+| NODE_BACKGROUND_IMAGE_SIZE_WITH_STYLE  | 背景图片的宽高样式属性，支持属性设置，属性重置，属性获取接口。默认值：ARKUI_IMAGE_SIZE_AUTO<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示背景图片的宽高样式，取[ArkUI_ImageSize](#arkui_imagesize)枚举值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示背景图片的宽高样式，取[ArkUI_ImageSize](#arkui_imagesize)枚举值。 | 
 | NODE_BACKGROUND_BLUR_STYLE  | 背景和内容之间的模糊属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示模糊类型，取[ArkUI_BlurStyle](#arkui_blurstyle)枚举值。<br/>.value[1]?.i32 表示深浅色模式，取[ArkUI_ColorMode](#arkui_colormode)枚举值。<br/>.value[2]?.i32 表示取色模式，取[ArkUI_AdaptiveColor](#arkui_adaptivecolor)枚举值。<br/>.value[3]?.f32 表示模糊效果程度，取[0.0,1.0]范围内的值。<br/>.value[4]?.f32 表示灰阶模糊起始边界。<br/>.value[5]?.f32 表示灰阶模糊终点边界。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示模糊类型，取[ArkUI_BlurStyle](#arkui_blurstyle)枚举值。<br/>.value[1].i32 表示深浅色模式，取[ArkUI_ColorMode](#arkui_colormode)枚举值。<br/>.value[2].i32 表示取色模式，取[ArkUI_AdaptiveColor](#arkui_adaptivecolor)枚举值。<br/>.value[3].f32 表示模糊效果程度，取[0.0,1.0]范围内的值。<br/>.value[4].f32 表示灰阶模糊起始边界。<br/>.value[5].f32 表示灰阶模糊终点边界。 | 
 | NODE_TRANSFORM_CENTER  | 图形变换和转场的中心点属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0]?.f32 表示中心点X轴坐标值，单位为vp<br/>.value[1]?.f32 表示中心点Y轴坐标，单位为vp<br/>.value[2]?.f32 表示中心点Z轴坐标，单位为vp<br/>.value[3]?.f32 表示中心点X轴坐标的百分比位置，如0.2表示百分之20的位置，该属性覆盖value[0].f32，默认值:0.5f。<br/>.value[4]?.f32 表示中心点Y轴坐标的百分比位置，如0.2表示百分之20的位置，该属性覆盖value[1].f32，默认值:0.5f。<br/>.value[5]?.f32 表示中心点Z轴坐标的百分比位置，如0.2表示百分之20的位置，该属性覆盖value[2].f32，默认值:0.0f。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 表示中心点X轴坐标，单位为vp<br/>.value[1].f32 表示中心点Y轴坐标，单位为vp<br/>.value[2].f32 表示中心点Z轴坐标，单位为vp<br/>注：如果设置坐标百分比位置，属性获取方法返回计算后的vp为单位的值。 | 
 | NODE_OPACITY_TRANSITION  | 转场时的透明度效果属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 表示起终点的透明度值<br/>.value[1].i32 表示动画时长，单位ms<br/>.value[2].i32 表示动画曲线类型，取[ArkUI_AnimationCurve](#arkui_animationcurve)枚举值<br/>.value[3]?.i32 表示动画延迟时长，单位ms<br/>.value[4]?.i32 表示动画播放次数<br/>.value[5]?.i32 表示动画播放模式，取[ArkUI_AnimationPlayMode](#arkui_animationplaymode)枚举值<br/>.value[6]?.f32 表示动画播放速度<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 表示起终点的透明度值<br/>.value[1].i32 表示动画时长，单位ms<br/>.value[2].i32 表示动画曲线类型，取[ArkUI_AnimationCurve](#arkui_animationcurve)枚举值<br/>.value[3].i32 表示动画延迟时长，单位ms<br/>.value[4].i32 表示动画播放次数<br/>.value[5].i32 表示动画播放模式，取[ArkUI_AnimationPlayMode](#arkui_animationplaymode)枚举值<br/>.value[6].f32 表示动画播放速度 | 
@@ -3370,7 +3408,7 @@ enum ArkUI_NodeAttributeType
 | NODE_FLEX_GROW  | 设置组件在父容器的剩余空间所占比例，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：父容器的剩余空间所占比例。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：父容器的剩余空间所占比例。 | 
 | NODE_FLEX_SHRINK  | 设置父容器压缩尺寸分配给此属性所在组件的比例，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：父容器压缩尺寸分配给此属性所在组件的比例数值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：父容器压缩尺寸分配给此属性所在组件的比例数值。 | 
 | NODE_FLEX_BASIS  | 设置组件的基准尺寸，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：组件在父容器主轴方向上的基准尺寸。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：组件在父容器主轴方向上的基准尺寸。 | 
-| NODE_ACCESSIBILITY_GROUP  | 无障碍组属性, 支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32：为1时表示该组件及其所有子组件为一整个可以选中的组件 无障碍服务将不再关注其子组件内容。参数类型为1或者0。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：为1时表示该组件及其所有子组件为一整个可以选中的组件 无障碍服务将不再关注其子组件内容。参数类型为1或者0。 | 
+| NODE_ACCESSIBILITY_GROUP  | 无障碍组属性，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32：为1时表示该组件及其所有子组件为一整个可以选中的组件 无障碍服务将不再关注其子组件内容。参数类型为1或者0。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：为1时表示该组件及其所有子组件为一整个可以选中的组件 无障碍服务将不再关注其子组件内容。参数类型为1或者0。 | 
 | NODE_ACCESSIBILITY_TEXT  | 无障碍文本属性，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string：无障碍文本。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：无障碍文本。 | 
 | NODE_ACCESSIBILITY_MODE  | 无障碍辅助服务模式，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32：辅助服务模式，参数类型[ArkUI_AccessibilityMode](#arkui_accessibilitymode)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：辅助服务模式，参数类型[ArkUI_AccessibilityMode](#arkui_accessibilitymode)。 | 
 | NODE_ACCESSIBILITY_DESCRIPTION  | 无障碍说明属性，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string：无障碍说明。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：无障碍说明。 | 
@@ -3417,12 +3455,12 @@ enum ArkUI_NodeAttributeType
 | NODE_FONT_WEIGHT  | 组件字体粗细属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：字体粗细样式[ArkUI_FontWeight](#arkui_fontweight)，默认值为ARKUI_FONT_WEIGHT_NORMAL；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：字体粗细样式[ArkUI_FontWeight](#arkui_fontweight)； | 
 | NODE_TEXT_LINE_HEIGHT  | 文本行高属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 表示lineHeight值，单位为fp<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 表示lineHeight值，单位为fp | 
 | NODE_TEXT_DECORATION  | 置文本装饰线样式及其颜色属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：文本装饰线类型[ArkUI_TextDecorationType](#arkui_textdecorationtype)，默认值为ARKUI_TEXT_DECORATION_TYPE_NONE；<br/>.value[1]?.u32：可选值，装饰线颜色，0xargb格式，形如 0xFFFF0000 表示红色；<br/>.value[2]?.i32：文本装饰线样式[ArkUI_TextDecorationStyle](#arkui_textdecorationstyle)；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：文本装饰线类型[ArkUI_TextDecorationType](#arkui_textdecorationtype)；<br/>.value[1].u32：装饰线颜色，0xargb格式。<br/>.value[2].i32：文本装饰线样式[ArkUI_TextDecorationStyle](#arkui_textdecorationstyle)； | 
-| NODE_TEXT_CASE  | 文本大小写属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示文本大小写类型<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示文本大小写类型 | 
+| NODE_TEXT_CASE  | 文本大小写属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：表示文本大小写类型[ArkUI_TextCase](#arkui_textcase)，默认值为ARKUI_TEXT_CASE_NORMAL。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：表示文本大小写类型[ArkUI_TextCase](#arkui_textcase)。 | 
 | NODE_TEXT_LETTER_SPACING  | 文本字符间距属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 表示字符间距值，单位为fp<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 表示字符间距值，单位为fp | 
 | NODE_TEXT_MAX_LINES  | 文本最大行数属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示最大行数<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示最大行数 | 
-| NODE_TEXT_ALIGN  | 文本水平对齐方式, 支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：表示文本水平对齐方式，取[ArkUI_TextAlignment](#arkui_textalignment)枚举值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：表示文本水平对齐方式，取[ArkUI_TextAlignment](#arkui_textalignment)枚举值。 | 
+| NODE_TEXT_ALIGN  | 文本水平对齐方式，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：表示文本水平对齐方式，取[ArkUI_TextAlignment](#arkui_textalignment)枚举值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：表示文本水平对齐方式，取[ArkUI_TextAlignment](#arkui_textalignment)枚举值。 | 
 | NODE_TEXT_OVERFLOW  | 文本超长时的显示方式属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：表示文本超长时的显示方式。{\@ArkUI_TextOverflow}<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：表示文本超长时的显示方式。{\@ArkUI_TextOverflow} | 
-| NODE_FONT_FAMILY  | Text字体列表属性，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string：字体字符串，多个用,分隔。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：字体字符串，多个用,分隔。 | 
+| NODE_FONT_FAMILY  | Text字体列表属性，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string：字体字符串，多个用“,”分隔。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：字体字符串，多个用“,”分隔。 | 
 | NODE_TEXT_COPY_OPTION  | 文本复制粘贴属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：复制粘贴方式[ArkUI_CopyOptions](#arkui_copyoptions)，默认值为ARKUI_COPY_OPTIONS_NONE；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：复制粘贴方式[ArkUI_CopyOptions](#arkui_copyoptions)。 | 
 | NODE_TEXT_BASELINE_OFFSET  | 文本基线的偏移量属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：偏移量数值，单位为fp；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：偏移量数值，单位为fp。 | 
 | NODE_TEXT_TEXT_SHADOW  | 文字阴影效果属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：阴影模糊半径，单位为vp；<br/>.value[1].i32：阴影类型[ArkUI_ShadowType](#arkui_shadowtype)，默认值为ARKUI_SHADOW_TYPE_COLOR；<br/>.value[2].u32：阴影颜色，0xargb格式，形如 0xFFFF0000 表示红色；<br/>.value[3].f32：阴影X轴偏移量，单位为vp；<br/>.value[4].f32：阴影Y轴偏移量，单位为vp；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：阴影模糊半径，单位为vp；<br/>.value[1].i32：阴影类型[ArkUI_ShadowType](#arkui_shadowtype)；<br/>.value[2].u32：阴影颜色，0xargb格式；<br/>.value[3].f32：阴影X轴偏移量，单位为vp；<br/>.value[4].f32：阴影Y轴偏移量，单位为vp； | 
@@ -3434,7 +3472,7 @@ enum ArkUI_NodeAttributeType
 | NODE_TEXT_WORD_BREAK  | 文本断行规则属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32: 参数类型[ArkUI_WordBreak](#arkui_wordbreak)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32: 参数类型[ArkUI_WordBreak](#arkui_wordbreak)。 | 
 | NODE_TEXT_ELLIPSIS_MODE  | 设置文本省略位置，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32: 参数类型[ArkUI_EllipsisMode](#arkui_ellipsismode)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32: 参数类型[ArkUI_EllipsisMode](#arkui_ellipsismode)。 | 
 | NODE_TEXT_LINE_SPACING  | 文本行间距属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 表示lineSpacing值，单位为fp<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 表示lineSpacing值，单位为fp | 
-| NODE_FONT_FEATURE  | 设置文本特性效果，设置NODE_FONT_FEATURE属性， NODE_FONT_FEATURE是 OpenType 字体的高级排版能力，<br/>如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持, 支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 符合文本特性格式的字符串，格式为normal \| &lt;feature-tag-value&gt;,<br/>&lt;feature-tag-value&gt;的格式为：&lt;string&gt; [ &lt;integer&gt; \| on \| off ],<br/>&lt;feature-tag-value&gt;的个数可以有多个，中间用','隔开,例如，使用等宽数字的输入格式为：ss01 on。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示文本特性的内容，多个文本特性之间使用逗号分隔。 | 
+| NODE_FONT_FEATURE  | 设置文本特性效果，设置NODE_FONT_FEATURE属性， NODE_FONT_FEATURE是 OpenType 字体的高级排版能力，<br/>如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 符合文本特性格式的字符串，格式为normal \| &lt;feature-tag-value&gt;,<br/>&lt;feature-tag-value&gt;的格式为：&lt;string&gt; [ &lt;integer&gt; \| on \| off ],<br/>&lt;feature-tag-value&gt;的个数可以有多个，中间用','隔开，例如，使用等宽数字的输入格式为：ss01 on。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示文本特性的内容，多个文本特性之间使用逗号分隔。 | 
 | NODE_TEXT_ENABLE_DATA_DETECTOR  | 设置使能文本识别。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：使能文本识别，默认值false。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：使能文本识别。 | 
 | NODE_TEXT_ENABLE_DATA_DETECTOR_CONFIG  | 设置文本识别配置。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0...].i32: 实体类型数组，参数类型[ArkUI_TextDataDetectorType](#arkui_textdatadetectortype)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0...].i32：实体类型数组，参数类型[ArkUI_TextDataDetectorType](#arkui_textdatadetectortype)。 | 
 | NODE_TEXT_SELECTED_BACKGROUND_COLOR  | 文本选中时的背景色属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：颜色数值，0xargb格式，形如 0xFFFF0000 表示红色。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：颜色数值，0xargb格式。 | 
@@ -3543,8 +3581,8 @@ enum ArkUI_NodeAttributeType
 | NODE_CHECKBOX_UNSELECT_COLOR  | CheckBox多选框非选中状态边框颜色，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].u32：边框颜色, 类型为0xargb，如0xFF1122FF。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：边框颜色, 类型为0xargb，如0xFF1122FF。 | 
 | NODE_CHECKBOX_MARK  | CheckBox多选框内部图标样式，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].u32：边框颜色, 类型为0xargb，如0xFF1122FF；<br/>.value[1]?.f32：可选，内部图标大小，单位vp；<br/>.value[2]?.f32：可选，内部图标粗细，单位vp，默认值2。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：边框颜色, 类型为0xargb，如0xFF1122FF；<br/>.value[1].f32：内部图标大小，单位vp；<br/>.value[2].f32：内部图标粗细，单位vp，默认值2。 | 
 | NODE_CHECKBOX_SHAPE  | CheckBox组件形状, 支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32：组件形状，参数类型[ArkUI_CheckboxShape](#arkui_checkboxshape)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：组件形状，参数类型[ArkUI_CheckboxShape](#arkui_checkboxshape)。 | 
-| NODE_CHECKBOX_NAME  | CheckBox名称设置, 支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string：多选框名称。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：多选框名称。<br/>起始版本：15 | 
-| NODE_CHECKBOX_GROUP  | CheckBox多选框所属群组的名称设置, 支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string：多选框所属群组的名称。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：多选框所属群组的名称。<br/>起始版本：15 | 
+| NODE_CHECKBOX_NAME  | CheckBox名称设置，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string：多选框名称。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：多选框名称。<br/>**起始版本：** 15 | 
+| NODE_CHECKBOX_GROUP  | CheckBox多选框所属群组的名称设置，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string：多选框所属群组的名称。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：多选框所属群组的名称。<br/>**起始版本：** 15 | 
 | NODE_XCOMPONENT_ID  | XComponent组件ID属性，支持属性设置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: ID的内容。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: ID的内容。 | 
 | NODE_XCOMPONENT_TYPE  | XComponent的类型，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：字体样式[ArkUI_XComponentType](#arkui_xcomponenttype)，默认值为ARKUI_XCOMPONENT_TYPE_SURFACE；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：字体样式[ArkUI_XComponentType](#arkui_xcomponenttype)。 | 
 | NODE_XCOMPONENT_SURFACE_SIZE  | 设置XComponent的宽高，支持属性设置和获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：宽数值，单位为px；<br/>.value[1].u32：高数值，单位为px；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：宽数值，单位为px；<br/>.value[1].u32：高数值，单位为px； | 
@@ -3583,9 +3621,9 @@ enum ArkUI_NodeAttributeType
 | NODE_CALENDAR_PICKER_TEXT_STYLE  | 设置日历选择器入口区的文本颜色、字号、字体粗细。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0]?.u32： 入口区的文本颜色。<br/>.value[1]?.f32： 入口区的文本字号，单位为fp。<br/>.value[2]?.i32： 入口区的文本字体粗细，参数类型[ArkUI_FontWeight](#arkui_fontweight)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32： 入口区的文本颜色。<br/>.value[1].f32： 入口区的文本字号，单位为fp。<br/>.value[2].i32： 入口区的文本字体粗细，参数类型[ArkUI_FontWeight](#arkui_fontweight)。 | 
 | NODE_CALENDAR_PICKER_START | 设置日历选择器的开始日期。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：开始日期字符串。<br/>设置开始日期格式："2025-02-14"。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：开始日期字符串。<br/>**起始版本：** 18 |
 | NODE_CALENDAR_PICKER_END  | 设置日历选择器的结束日期。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：结束日期字符串。<br/>设置结束日期格式："2025-02-27"。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：结束日期字符串。<br/>**起始版本：** 18 |
-| NODE_SLIDER_BLOCK_COLOR  | Slider滑块的颜色，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].u32：滑块的颜色, 类型为0xargb，如0xFF1122FF。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：滑块的颜色, 类型为0xargb，如0xFF1122FF。 | 
-| NODE_SLIDER_TRACK_COLOR  | Slider滑轨的背景颜色，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].u32：背景颜色, 类型为0xargb，如0xFF1122FF。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：背景颜色, 类型为0xargb，如0xFF1122FF。 | 
-| NODE_SLIDER_SELECTED_COLOR  | Slider滑轨的已滑动部分颜色，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].u32：已滑动部分颜色, 类型为0xargb，如0xFF1122FF。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：已滑动部分颜色, 类型为0xargb，如0xFF1122FF。 | 
+| NODE_SLIDER_BLOCK_COLOR  | Slider滑块的颜色，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].u32：滑块的颜色，类型为0xargb，如0xFF1122FF。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：滑块的颜色，类型为0xargb，如0xFF1122FF。 | 
+| NODE_SLIDER_TRACK_COLOR  | Slider滑轨的背景颜色，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].u32：背景颜色, 类型为0xargb，如0xFF1122FF。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：背景颜色，类型为0xargb，如0xFF1122FF。 | 
+| NODE_SLIDER_SELECTED_COLOR  | Slider滑轨的已滑动部分颜色，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].u32：已滑动部分颜色，类型为0xargb，如0xFF1122FF。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：已滑动部分颜色，类型为0xargb，如0xFF1122FF。 | 
 | NODE_SLIDER_SHOW_STEPS  | 设置是否显示步长刻度值，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32：是否显示步长刻度值，1表示显示，0表示不显示，默认值为0。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否显示步长刻度值，1表示显示，0表示不显示，默认值为0。 | 
 | NODE_SLIDER_BLOCK_STYLE  | Slider滑块形状参数，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32：形状参数。参数类型[ArkUI_SliderBlockStyle](#arkui_sliderblockstyle)。<br/>.string? 可选值，根据形状参数而定。<br/>ARKUI_SLIDER_BLOCK_STYLE_IMAGE: 滑块图片资源。如/pages/common/icon.png。<br/>ARKUI_SLIDER_BLOCK_STYLE_SHAPE: 滑块使用的自定义形状。<br/>共有5种类型：<br/>1.rect类型：<br/>.value[1].i32：裁剪类型，参数类型[ArkUI_ShapeType](#arkui_shapetype)，ARKUI_SHAPE_TYPE_RECTANGLE；<br/>.value[2].f32：矩形宽度；<br/>.value[3].f32：矩形高度；<br/>.value[4].f32：矩形圆角宽度；<br/>.value[5].f32：矩形圆角高度；<br/>2.circle类型：<br/>.value[1].i32：裁剪类型，参数类型[ArkUI_ShapeType](#arkui_shapetype)，ARKUI_SHAPE_TYPE_CIRCLE；<br/>.value[2].f32：圆形宽度；<br/>.value[3].f32：圆形高度；<br/>3.ellipse类型：<br/>.value[1].i32：裁剪类型，参数类型[ArkUI_ShapeType](#arkui_shapetype)，ARKUI_SHAPE_TYPE_ELLIPSE；<br/>.value[2].f32：椭圆形宽度；<br/>.value[3].f32：椭圆形高度；<br/>4.path类型：<br/>.value[1].i32：裁剪类型，参数类型[ArkUI_ShapeType](#arkui_shapetype)，ARKUI_SHAPE_TYPE_PATH；<br/>.value[2].f32：路径宽度；<br/>.value[3].f32：路径高度；<br/>.string：路径绘制的命令字符串；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：形状参数。参数类型[ArkUI_SliderBlockStyle](#arkui_sliderblockstyle)。<br/>.string? 可选值，根据形状参数而定。<br/>ARKUI_SLIDER_BLOCK_STYLE_IMAGE: 滑块图片资源。如/pages/common/icon.png。<br/>ARKUI_SLIDER_BLOCK_STYLE_SHAPE: 滑块使用的自定义形状。<br/>共有5种类型：<br/>1.rect类型：<br/>.value[1].i32：裁剪类型，参数类型[ArkUI_ShapeType](#arkui_shapetype)，ARKUI_SHAPE_TYPE_RECTANGLE；<br/>.value[2].f32：矩形宽度；<br/>.value[3].f32：矩形高度；<br/>.value[4].f32：矩形圆角宽度；<br/>.value[5].f32：矩形圆角高度；<br/>2.circle类型：<br/>.value[1].i32：裁剪类型，参数类型[ArkUI_ShapeType](#arkui_shapetype)，ARKUI_SHAPE_TYPE_CIRCLE；<br/>.value[2].f32：圆形宽度；<br/>.value[3].f32：圆形高度；<br/>3.ellipse类型：<br/>.value[1].i32：裁剪类型，参数类型[ArkUI_ShapeType](#arkui_shapetype)，ARKUI_SHAPE_TYPE_ELLIPSE；<br/>.value[2].f32：椭圆形宽度；<br/>.value[3].f32：椭圆形高度；<br/>4.path类型：<br/>.value[1].i32：裁剪类型，参数类型[ArkUI_ShapeType](#arkui_shapetype)，ARKUI_SHAPE_TYPE_PATH；<br/>.value[2].f32：路径宽度；<br/>.value[3].f32：路径高度；<br/>.string：路径绘制的命令字符串； | 
 | NODE_SLIDER_VALUE  | slider进度值，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].f32：进度值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：进度值。 | 
@@ -3598,15 +3636,15 @@ enum ArkUI_NodeAttributeType
 | NODE_SLIDER_TRACK_THICKNESS  | Slider滑块的滑轨粗细属性，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].f32：滑轨的粗细，单位为vp；当参数NODE_SLIDER_STYLE的值设置为ARKUI_SLIDER_STYLE_OUT_SET时为4.0vp，设置为ARKUI_SLIDER_STYLE_IN_SET时为20.0vp<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：滑轨的粗细，单位为vp； | 
 | NODE_SLIDER_ENABLE_HAPTIC_FEEDBACK | 设置是否开启触控反馈。支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 是否开启触控反馈。默认值：true，true表示开启触控反馈，false则表示不开启触控反馈。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 是否开启触控反馈。<br/>开启触控反馈时，需要在工程的module.json5的requestPermissions字段中增加"name": "ohos.permission.VIBRATE"，开启振动权限。 <br/>**起始版本：** 18 |
 | NODE_RADIO_CHECKED  | 设置单选框的选中状态，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32：单选框的选中状态，默认值false。 属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：单选框的选中状态。 | 
-| NODE_RADIO_STYLE  | 设置单选框选中状态和非选中状态的样式，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0]?.u32：开启状态底板颜色, 类型为0xargb，默认值为0xFF007DFF。<br/>.value[1]?.u32：关闭状态描边颜色, 类型为0xargb，默认值为0xFF182431。<br/>.value[2]?.u32：开启状态内部圆饼颜色, 类型为0xargb，默认值为0xFFFFFFFF。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：开启状态底板颜色, 类型为0xargb，默认值为0xFF007DFF。<br/>.value[1].u32：关闭状态描边颜色, 类型为0xargb，默认值为0xFF182431。<br/>.value[2].u32：开启状态内部圆饼颜色, 类型为0xargb，默认值为0xFFFFFFF。 | 
-| NODE_RADIO_VALUE  | 设置当前单选框的值，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 单选框的值.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 单选框的值. | 
+| NODE_RADIO_STYLE  | 设置单选框选中状态和非选中状态的样式，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0]?.u32：开启状态底板颜色，类型为0xargb，默认值为0xFF007DFF。<br/>.value[1]?.u32：关闭状态描边颜色, 类型为0xargb，默认值为0xFF182431。<br/>.value[2]?.u32：开启状态内部圆饼颜色，类型为0xargb，默认值为0xFFFFFFFF。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：开启状态底板颜色, 类型为0xargb，默认值为0xFF007DFF。<br/>.value[1].u32：关闭状态描边颜色, 类型为0xargb，默认值为0xFF182431。<br/>.value[2].u32：开启状态内部圆饼颜色, 类型为0xargb，默认值为0xFFFFFFF。 | 
+| NODE_RADIO_VALUE  | 设置当前单选框的值，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 单选框的值.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 单选框的值。| 
 | NODE_RADIO_GROUP  | 设置当前单选框的所属群组名称，相同group的Radio只能有一个被选中，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 当前单选框的所属群组名称.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 当前单选框的所属群组名称. | 
-| NODE_CHECKBOX_GROUP_NAME  | 设置多选框组名称，多个相同群组名称的CheckboxGroup，仅第一个CheckboxGroup生效，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 当前多选框组名称。<br/> 属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 多选框组名称。<br/>起始版本：15 | 
-| NODE_CHECKBOX_GROUP_SELECT_ALL  | 是否全选。设置是否全选。若同组的checkbox显式设置了select属性，则Checkbox的优先级高，支持属性设置，属性重置和属性获取。<br/>默认值：false<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32: 1表示选中，0表示未选中。<br/> 属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32: 1表示选中，0表示未选中。<br/>起始版本：15 | 
-| NODE_CHECKBOX_GROUP_SELECTED_COLOR  | 被选中或部分选中状态的颜色，支持属性设置，属性重置和属性获取。<br/>默认值：false<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].u32:多选框组被选中状态的颜色，类型为0xargb,如0xFF1122FF。<br/> 属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32:多选框组被选中状态的颜色，类型为0xargb,如0xFF1122FF。<br/>起始版本：15 | 
-| NODE_CHECKBOX_GROUP_UNSELECTED_COLOR  | 非选中状态多选框组颜色，支持属性设置，属性重置和属性获取。<br/>默认值：false<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].u32:边框颜色，类型为0xargb,如0xFF1122FF。<br/> 属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32:边框颜色，类型为0xargb,如0xFF1122FF。<br/>起始版本：15 | 
-| NODE_CHECKBOX_GROUP_MARK  | 多选框内部图标样式，支持属性设置，属性重置和属性获取。<br/>默认值：false<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].u32:边框颜色，类型为0xargb,如0xFF1122FF;<br/>.value[1]?.f32:可选，内部图标大小，单位vp;<br/>.value[2]?.f32:可选，内部图标粗细，单位vp,默认值2。<br/> 属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32:边框颜色，类型为0xargb,如0xFF1122FF;<br/>.value[1]?.f32:可选，内部图标大小，单位vp;<br/>.value[2]?.f32:可选，内部图标粗细，单位vp,默认值2。<br/>起始版本：15 | 
-| NODE_CHECKBOX_GROUP_SHAPE  | CheckboxGroup组件形状，支持属性设置，属性重置和属性获取。<br/>默认值：false<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32:组件形状，参数类型[ArkUI_CheckboxShape](#arkui_checkboxshape)。<br/> 属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32:组件形状，参数类型[ArkUI_CheckboxShape](#arkui_checkboxshape)。<br/>起始版本：15 | 
+| NODE_CHECKBOX_GROUP_NAME  | 设置多选框组名称，多个相同群组名称的CheckboxGroup，仅第一个CheckboxGroup生效，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 当前多选框组名称。<br/> 属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 多选框组名称。<br/>**起始版本：** 15 | 
+| NODE_CHECKBOX_GROUP_SELECT_ALL  | 是否全选。设置是否全选。若同组的checkbox显式设置了select属性，则Checkbox的优先级高，支持属性设置，属性重置和属性获取。<br/>默认值：false<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32: 1表示选中，0表示未选中。<br/> 属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32: 1表示选中，0表示未选中。<br/>**起始版本：** 15 | 
+| NODE_CHECKBOX_GROUP_SELECTED_COLOR  | 被选中或部分选中状态的颜色，支持属性设置，属性重置和属性获取。<br/>默认值：false<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].u32：多选框组被选中状态的颜色，类型为0xargb,如0xFF1122FF。<br/> 属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：多选框组被选中状态的颜色，类型为0xargb,如0xFF1122FF。<br/>**起始版本：** 15 | 
+| NODE_CHECKBOX_GROUP_UNSELECTED_COLOR  | 非选中状态多选框组颜色，支持属性设置，属性重置和属性获取。<br/>默认值：false<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].u32：边框颜色，类型为0xargb，如0xFF1122FF。<br/> 属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：边框颜色，类型为0xargb，如0xFF1122FF。<br/>**起始版本：** 15 | 
+| NODE_CHECKBOX_GROUP_MARK  | 多选框内部图标样式，支持属性设置，属性重置和属性获取。<br/>默认值：false<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].u32：边框颜色，类型为0xargb，如0xFF1122FF;<br/>.value[1]?.f32：可选，内部图标大小，单位vp;<br/>.value[2]?.f32：可选，内部图标粗细，单位vp，默认值2。<br/> 属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32:边框颜色，类型为0xargb，如0xFF1122FF;<br/>.value[1]?.f32：可选，内部图标大小，单位vp;<br/>.value[2]?.f32:可选，内部图标粗细，单位vp，默认值2。<br/>**起始版本：** 15 | 
+| NODE_CHECKBOX_GROUP_SHAPE  | CheckboxGroup组件形状，支持属性设置，属性重置和属性获取。<br/>默认值：false<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32：组件形状，参数类型[ArkUI_CheckboxShape](#arkui_checkboxshape)。<br/> 属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：组件形状，参数类型[ArkUI_CheckboxShape](#arkui_checkboxshape)。<br/>**起始版本：** 15 | 
 | NODE_STACK_ALIGN_CONTENT  | 设置子组件在容器内的对齐方式，支持属性设置，属性重置和属性获取接口。<br/>该属性与通用属性NODE_ALIGNMENT同时设置时，后设置的属性生效。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 对齐方式，数据类型[ArkUI_Alignment](#arkui_alignment)，默认值ARKUI_ALIGNMENT_CENTER。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 对齐方式，数据类型[ArkUI_Alignment](#arkui_alignment)。 | 
 | NODE_SCROLL_BAR_DISPLAY_MODE  | 设置滚动条状态，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 滚动条状态，数据类型[ArkUI_ScrollBarDisplayMode](#arkui_scrollbardisplaymode)，默认值ARKUI_SCROLL_BAR_DISPLAY_MODE_AUTO。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 滚动条状态，数据类型[ArkUI_ScrollBarDisplayMode](#arkui_scrollbardisplaymode)。 | 
 | NODE_SCROLL_BAR_WIDTH  | 设置滚动条的宽度，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32： 滚动条宽度，单位vp，默认值4。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32： 滚动条宽度，单位vp。 | 
@@ -3643,7 +3681,6 @@ enum ArkUI_NodeAttributeType
 | NODE_LIST_LANES | 设置List组件的布局列数或行数，支持属性设置，属性重置和属性获取接口。<br/>使用规则：<br/>lanes为指定的数量时，根据指定的数量与List组件的交叉轴尺寸除以列数作为列的宽度。<br/>设置了{minLength，maxLength}时，lanse的指定数量不会生效，实际会根据List组件的宽度自适应决定lanes数量（即列数），保证缩放过程中lane的宽度符合{minLength，maxLength}的限制，其中，minLength条件会被优先满足，即优先保证符合ListItem的交叉轴尺寸符合最小限制。如果父组件交叉轴方向尺寸约束为无穷大时，固定按一列排列，列宽度按显示区域内最大的ListItem计算。ListItemGroup在多列模式下也是独占一行，ListItemGroup中的ListItem按照List组件的lanes属性设置值来布局，计算列数会按照ListItemGroup的交叉轴尺寸计算。当ListItemGroup交叉轴尺寸与List交叉轴尺寸不一致时ListItemGroup中的列数与List中的列数可能不一样。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：设置list组件行数或列数（lanes）的数量，默认值为0。<br/>.value[1]?.f32：设置组件listItem的minLength，默认值为1，单位vp。<br/>.value[2]?.f32：设置组件listItem的maxLength，默认值为1，单位vp。<br/>.value[3]?.f32：设置组件listItem的列间距，当列数大于1时生效，默认值为1，单位vp。 <br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：list组件行列数的设定值，如果设置了{minLength，maxLength}时返回值为1。<br/>.value[1].f32：组件listItem的minLength，单位vp。<br/>.value[2].f32：组件listItem的maxLength，单位vp。<br/>.value[3].f32：组件listItem的列间距，单位vp。 | 
 | NODE_LIST_SCROLL_SNAP_ALIGN | 设置列表项滚动结束对齐效果。只支持ListItem等高情况下，设置列表项滚动结束对齐效果。触控板和鼠标滑动List结束后不支持对齐效果。对齐动画期间onWillScroll事件上报的滚动操作来源类型为ScrollSource.FLING。支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置列表项滚动结束对齐效果。数据类型[ArkUI_ScrollSnapAlign](#arkui_scrollsnapalign)，默认值ARKUI_SCROLL_SNAP_ALIGN_NONE。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置列表项滚动结束对齐效果。数据类型[ArkUI_ScrollSnapAlign](#arkui_scrollsnapalign)。 | 
 | NODE_LIST_MAINTAIN_VISIBLE_CONTENT_POSITION | 设置显示区域上方插入或删除数据时是否要保持可见内容位置不变。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置显示区域上方插入或删除数据时是否要保持可见内容位置不变。0表示显示区域上方插入或删除数据时可见内容位置会跟随变化，1表示显示区域上方插入或删除数据时可见内容位置不变。默认值为0。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置显示区域上方插入或删除数据时是否要保持可见内容位置不变。0表示显示区域上方插入或删除数据时可见内容位置会跟随变化，1表示显示区域上方插入或删除数据时可见内容位置不变。 | 
-| NODE_LIST_STACK_FROM_END | 设置List从末尾开始布局。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置List是否从末尾开始布局。0表示从顶部开始布局，1表示从末尾开始布局，默认值为0。<br/> 属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置List是否从末尾开始布局。0表示从顶部开始布局，1表示从末尾开始布局。|
 | NODE_SWIPER_LOOP  | Swiper是否开启循环，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制是否开启循环，0表示不循环，1表示循环，默认值为1。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制是否开启循环，0表示不循环，1表示循环，默认值为1。 | 
 | NODE_SWIPER_AUTO_PLAY  | Swiper子组件是否自动播放，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制子组件是否自动播放，0表示不自动播放，1表示自动播放，默认值为0。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制子组件是否自动播放，0表示不自动播放，1表示自动播放，默认值为0。 | 
 | NODE_SWIPER_SHOW_INDICATOR  | Swiper是否显示导航点指示器，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否显示导航点指示器，0表示不显示导航点指示器，1表示显示导航点指示器，默认值为1。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否显示导航点指示器，0表示不显示导航点指示器，1表示显示导航点指示器，默认值为1。 | 
@@ -3653,20 +3690,19 @@ enum ArkUI_NodeAttributeType
 | NODE_SWIPER_CURVE  | 设置Swiper的动画曲线，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置动画曲线参数，参数类型[ArkUI_AnimationCurve](#arkui_animationcurve)，默认值为ARKUI_CURVE_LINEAR。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置动画曲线参数，参数类型[ArkUI_AnimationCurve](#arkui_animationcurve)，默认值为ARKUI_CURVE_LINEAR。 | 
 | NODE_SWIPER_ITEM_SPACE  | 设置Swiper子组件与子组件之间间隙，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：子组件与子组件之间间隙数值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：子组件与子组件之间间隙数值。 | 
 | NODE_SWIPER_INDEX  | 设置Swiper当前在容器中显示的子组件的索引值，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：子组件的索引值。<br/>.value[1]?.i32：跳转动画模式，参数类型[ArkUI_SwiperAnimationMode](#arkui_swiperanimationmode)。仅当次调用有效。<br/>该参数自API 15开始支持。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：子组件的索引值。 | 
-| NODE_SWIPER_DISPLAY_COUNT  | 设置Swiper一页内元素显示个数，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：视窗内显示的子元素个数。<br/>.value[1]?.i32：是否按组翻页，0：按子元素翻页，1：视窗内显示的子元素按组翻页，默认值：0。<br/>.string?：此参数只能设置为“auto”。当设置为“auto”时，value[] 参数将被忽略。<br/>.起始版本：18<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：视窗内显示的子元素个数。<br/> .value[1].i32：是否按组翻页。<br/>起始版本：18|
+| NODE_SWIPER_DISPLAY_COUNT  | 设置Swiper一页内元素显示个数，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：视窗内显示的子元素个数。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：视窗内显示的子元素个数。 |
 | NODE_SWIPER_DISABLE_SWIPE  | 设置Swiper禁用组件滑动切换功能，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否禁用组件滑动切换功能，0表示不禁用滑动切换功能，1表示禁用滑动切换功能，默认值为0。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否禁用组件滑动切换功能，0表示不禁用滑动切换功能，1表示禁用滑动切换功能，默认值为0。 | 
-| NODE_SWIPER_SHOW_DISPLAY_ARROW  | 设置Swiper是否显示导航点箭头，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置是否显示导航点箭头，参数类型[ArkUI_SwiperArrow](#arkui_swiperarrow)，<br/>默认值为ARKUI_SWIPER_ARROW_HIDE。<br/> .?object：显示导航箭头时设置箭头样式，参数类型[ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)。<br/>起始版本：<br/>18 </br>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置是否显示导航点箭头，参数类型[ArkUI_SwiperArrow](#arkui_swiperarrow)，<br/>默认值为ARKUI_SWIPER_ARROW_HIDE。<br/> .object：箭头样式，参数类型[ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)。<br/>起始版本：<br/>18 |
+| NODE_SWIPER_SHOW_DISPLAY_ARROW  | 设置Swiper是否显示导航点箭头，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置是否显示导航点箭头，参数类型[ArkUI_SwiperArrow](#arkui_swiperarrow)，<br/>默认值为ARKUI_SWIPER_ARROW_HIDE。 </br>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置是否显示导航点箭头，参数类型[ArkUI_SwiperArrow](#arkui_swiperarrow)，<br/>默认值为ARKUI_SWIPER_ARROW_HIDE。 |
 | NODE_SWIPER_EDGE_EFFECT_MODE  | 设置Swiper的边缘滑动效果，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32: 边缘滑动效果，参数类型[ArkUI_EdgeEffect](#arkui_edgeeffect)，<br/>默认值为ARKUI_EDGE_EFFECT_SPRING。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32: 边缘滑动效果，参数类型[ArkUI_EdgeEffect](#arkui_edgeeffect)， | 
 | NODE_SWIPER_NODE_ADAPTER  | swiper组件适配器，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object：使用**ArkUI_NodeAdapter**对象作为适配器。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object：返回值格式为**ArkUI_NodeAdapter**。 | 
-| NODE_SWIPER_CACHED_COUNT  | swiper组件Adapter缓存数量，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：配合swiper组件Adapter使用，设置adapter中的缓存数量<br/>.value[1]?.i32：是否显示缓存节点，0：不显示，1：显示，默认值：0。<br/>起始版本：<br/>18<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：adapter中的缓存数量。<br/>.value[1].i32：是否显示缓存节点，0：不显示，1：显示。<br/>起始版本：<br/>18 |
+| NODE_SWIPER_CACHED_COUNT  | swiper组件Adapter缓存数量，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：配合swiper组件Adapter使用，设置adapter中的缓存数量<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：adapter中的缓存数量。 |
 | NODE_SWIPER_PREV_MARGIN  | 设置 Swiper 组件的前边距，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：前边距数值，单位为vp，默认值为0。<br/>.value[1]?.i32：是否忽略空白，1表示忽略空白，0表示不忽略空白。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：前边距数值，单位为vp。 .value[1].i32：是否忽略空白，1表示忽略空白，0表示不忽略空白。 | 
 | NODE_SWIPER_NEXT_MARGIN  | 设置 Swiper 组件的后边距，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：后边距数值，单位为vp，默认值为0。<br/>.value[1]?.i32：是否忽略空白，1表示忽略空白，0表示不忽略空白。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：后边距数值，单位为vp。 .value[1].i32：是否忽略空白，1表示忽略空白，0表示不忽略空白。 | 
-| NODE_SWIPER_INDICATOR  | 设置 Swiper 组件的导航指示器类型，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置导航指示器的类型，参数类型[ArkUI_SwiperIndicatorType](#arkui_swiperindicatortype)。<br/>.object：导航指示器的类型为ARKUI_SWIPER_INDICATOR_TYPE_DOT时参数类型[ArkUI_SwiperIndicator](#arkui_swiperindicator)。<br/> 导航指示器的类型为ARKUI_SWIPER_INDICATOR_TYPE_DIGIT时参数类型[ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)。<br/> 类型[ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)<br/>起始版本：<br/>18 <br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：导航指示器的类型，参数类型[ArkUI_SwiperIndicatorType](#arkui_swiperindicatortype)。<br/>.object：导航指示器的类型为ARKUI_SWIPER_INDICATOR_TYPE_DOT时参数类型[ArkUI_SwiperIndicator](#arkui_swiperindicator)。<br/> 导航指示器的类型为ARKUI_SWIPER_INDICATOR_TYPE_DIGIT时参数类型[ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)。<br/> 类型[ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)<br/>起始版本：<br/>18 |
+| NODE_SWIPER_INDICATOR  | 设置 Swiper 组件的导航指示器类型，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置导航指示器的类型，参数类型[ArkUI_SwiperIndicatorType](#arkui_swiperindicatortype)。<br/>.object：导航指示器的类型为ARKUI_SWIPER_INDICATOR_TYPE_DOT时参数类型[ArkUI_SwiperIndicator](#arkui_swiperindicator)。 <br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：导航指示器的类型，参数类型[ArkUI_SwiperIndicatorType](#arkui_swiperindicatortype)。<br/>.object：导航指示器的类型为ARKUI_SWIPER_INDICATOR_TYPE_DOT时参数类型[ArkUI_SwiperIndicator](#arkui_swiperindicator)。 |
 | NODE_SWIPER_NESTED_SCROLL  | 设置Swiper组件和父组件的嵌套滚动模式。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：Swiper组件和父组件的嵌套滚动模式，参数类型[ArkUI_SwiperNestedScrollMode](#arkui_swipernestedscrollmode)<br/>默认值为：ARKUI_SWIPER_NESTED_SRCOLL_SELF_ONLY<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：Swiper组件和父组件的嵌套滚动模式，参数类型[ArkUI_SwiperNestedScrollMode](#arkui_swipernestedscrollmode) | 
 | NODE_SWIPER_SWIPE_TO_INDEX  | 设置swiper组件翻至指定页面。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：指定页面在Swiper中的索引值。<br/>.value[1]?.i32：设置翻至指定页面时是否有动效。1表示有动效，0表示没有动效, 默认值：0。 | 
 | NODE_SWIPER_INDICATOR_INTERACTIVE  | 设置禁用组件导航点交互功能。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置禁用组件导航点交互功能，设置为true时表示导航点可交互，默认值true。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置禁用组件导航点交互功能。 | 
 | NODE_SWIPER_PAGE_FLIP_MODE  | 设置组件鼠标滚轮翻页模式。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置组件鼠标滚轮翻页模式，参数类型[ArkUI_PageFlipMode](#arkui_pageflipmode)。<br/>属性获取方法返回值[ArkUI_PageFlipMode](#arkui_pageflipmode)格式：<br/>.value[0].i32：鼠标滚轮翻页模式。<br/>起始版本：<br/>15 | 
-| NODE_SWIPER_AUTO_FILL  | 设置Swiper一页内元素显示个数根据元素最小宽度自适应，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：元素显示最小宽度，单位：vp。<br/> .value[1]?.i32：是否按组翻页，0：按子元素翻页，1：视窗内显示的子元素按组翻页，默认值：0。 <br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：元素显示最小宽度，单位：vp。<br/> .value[1].i32：是否按组翻页。<br/>起始版本：<br/>18 |
 | NODE_LIST_ITEM_SWIPE_ACTION  | 设置ListItem的划出组件，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object：使用[ArkUI_ListItemSwipeActionOption](#arkui_listitemswipeactionoption)对象构造。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object：使用[ArkUI_ListItemSwipeActionOption](#arkui_listitemswipeactionoption)对象构造。 | 
 | NODE_LIST_ITEM_GROUP_SET_HEADER  | 设置 ListItemGroup 头部组件，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object：使用[ArkUI_NodeHandle](#arkui_nodehandle)对象作为ListItemGroup头部组件。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object：使用[ArkUI_NodeHandle](#arkui_nodehandle)对象作为ListItemGroup头部组件。 | 
 | NODE_LIST_ITEM_GROUP_SET_FOOTER  | 设置 ListItemGroup 尾部组件，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object：使用[ArkUI_NodeHandle](#arkui_nodehandle)对象作为ListItemGroup尾部组件。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object：使用[ArkUI_NodeHandle](#arkui_nodehandle)对象作为ListItemGroup尾部组件。 | 
@@ -3684,8 +3720,8 @@ enum ArkUI_NodeAttributeType
 | NODE_REFRESH_OFFSET  | 设置触发刷新的下拉偏移量，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].f32：下拉偏移量，单位vp， 默认值：64vp。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：下拉偏移量，单位vp， 默认值：64vp。 | 
 | NODE_REFRESH_PULL_TO_REFRESH  | 设置当下拉距离超过refreshOffset时是否触发刷新，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32：是否触发刷新，true为触发刷新，false为不触发刷新。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否触发刷新，1为触发刷新，0为不触发刷新。 | 
 | NODE_WATER_FLOW_LAYOUT_DIRECTION  | 定义瀑布流组件布局主轴方向，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32 主轴方向，参数类型{\@Link ArkUI_FlexDirection}。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 主轴方向，参数类型{\@Link ArkUI_FlexDirection}。 | 
-| NODE_WATER_FLOW_COLUMN_TEMPLATE  | 设置当前瀑布流组件布局列的数量，不设置时默认1列，支持属性设置、重置和获取。 例如，'1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。 可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数， 其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、或有效数字，默认单位为vp。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 布局列的数量.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 布局列的数量. | 
-| NODE_WATER_FLOW_ROW_TEMPLATE  | 设置当前瀑布流组件布局行的数量，不设置时默认1行，支持属性设置、重置和获取。 例如，'1fr 1fr 2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。 可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数， 其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、或有效数字，默认单位为vp。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 布局行的数量.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 布局行的数量. | 
+| NODE_WATER_FLOW_COLUMN_TEMPLATE  | 设置当前瀑布流组件布局列的数量，不设置时默认1列，支持属性设置、重置和获取。 例如，'1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第1列占1份，第2列占1份，第3列占2份。 可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数， 其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、或有效数字，默认单位为vp。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 布局列的数量.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 布局列的数量. | 
+| NODE_WATER_FLOW_ROW_TEMPLATE  | 设置当前瀑布流组件布局行的数量，不设置时默认1行，支持属性设置、重置和获取。 例如，'1fr 1fr 2fr'是将父组件分3行，将父组件允许的高分为4等份，第1行占1份，第2行占1份，第3行占2份。 可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数， 其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、或有效数字，默认单位为vp。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 布局行的数量.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 布局行的数量. | 
 | NODE_WATER_FLOW_COLUMN_GAP  | 设置列与列的间距，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].f32: 列与列的间距, 单位vp.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 列与列的间距, 单位vp. | 
 | NODE_WATER_FLOW_ROW_GAP  | 设置行与行的间距，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].f32: 行与行的间距, 单位vp.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 行与行的间距, 单位vp. | 
 | NODE_WATER_FLOW_SECTION_OPTION  | 设置FlowItem分组配置信息，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32: 从0开始计算的索引，会转换为整数，表示要开始改变分组的位置.<br/>.object: 参数格式为{\@ArkUI_WaterFlowSectionOption}.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: 返回值格式为{\@ArkUI_WaterFlowSectionOption}. | 
@@ -3697,8 +3733,8 @@ enum ArkUI_NodeAttributeType
 | NODE_WATER_FLOW_LAYOUT_MODE  | 定义瀑布流组件布局模式，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].f32: 布局模式，参数类型[ArkUI_WaterFlowLayoutMode](_ark_u_i___native_module.md#arkui_waterflowlayoutmode)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 布局模式，参数类型[ArkUI_WaterFlowLayoutMode](_ark_u_i___native_module.md#arkui_waterflowlayoutmode)。 |
 | NODE_RELATIVE_CONTAINER_GUIDE_LINE  | 设置RelativeContaine容器内的辅助线，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContaine容器内的辅助线：<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContaine容器内的辅助线： | 
 | NODE_RELATIVE_CONTAINER_BARRIER  | 设置RelativeContaine容器内的屏障，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContaine容器内的辅助线：<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContaine容器内的屏障： | 
-| NODE_GRID_COLUMN_TEMPLATE  | 设置当前瀑布流组件布局列的数量，不设置时默认1列，支持属性设置、重置和获取。 例如，'1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。 可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数， 其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、或有效数字，默认单位为vp。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 布局列的数量.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 布局列的数量. | 
-| NODE_GRID_ROW_TEMPLATE  | 设置当前网格布局行的数量或最小行高值，不设置时默认1行，支持属性设置、重置和获取。 例如，'1fr 1fr 2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。 可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数， 其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、或有效数字，默认单位为vp。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 布局行的数量.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 布局行的数量. | 
+| NODE_GRID_COLUMN_TEMPLATE  | 设置当前瀑布流组件布局列的数量，不设置时默认1列，支持属性设置、重置和获取。 例如，'1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第1列占1份，第2列占1份，第3列占2份。 可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数， 其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、或有效数字，默认单位为vp。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 布局列的数量.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 布局列的数量. | 
+| NODE_GRID_ROW_TEMPLATE  | 设置当前网格布局行的数量或最小行高值，不设置时默认1行，支持属性设置、重置和获取。 例如，'1fr 1fr 2fr'是将父组件分3行，将父组件允许的高分为4等份，第1行占1份，第2行占1份，第3行占2份。 可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数， 其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、或有效数字，默认单位为vp。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 布局行的数量.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 布局行的数量. | 
 | NODE_GRID_COLUMN_GAP  | 设置列与列的间距，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].f32: 列与列的间距, 单位vp.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 列与列的间距, 单位vp. | 
 | NODE_GRID_ROW_GAP  | 设置行与行的间距，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].f32: 行与行的间距, 单位vp.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 行与行的间距, 单位vp. | 
 | NODE_GRID_NODE_ADAPTER  | grid组件适配器，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object：使用**ArkUI_NodeAdapter**对象作为适配器。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: 返回值格式为**ArkUI_NodeAdapter**. | 
@@ -3818,8 +3854,8 @@ enum ArkUI_NodeEventType
 | NODE_EVENT_ON_AREA_CHANGE  | 组件区域变化事件<br/>触发该事件的条件：组件区域变化时触发该回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含12个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32**：表示过去目标元素的宽度，类型为number，单位vp。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32**：表示过去目标元素的高度，类型为number，单位vp。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[2].f32**：表示过去目标元素左上角相对父元素左上角的位置的x轴坐标，类型为number，单位vp。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[3].f32**：表示过去目标元素左上角相对父元素左上角的位置的y轴坐标，类型为number，单位vp。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[4].f32**：表示过去目标元素目标元素左上角相对页面左上角的位置的x轴坐标，类型为number，单位vp。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[5].f32**：表示过去目标元素目标元素左上角相对页面左上角的位置的y轴坐标，类型为number，单位vp。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[6].f32**：表示最新目标元素的宽度，类型为number，单位vp。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[7].f32**：表示最新目标元素的高度，类型为number，单位vp。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[8].f32**：表示最新目标元素左上角相对父元素左上角的位置的x轴坐标，类型为number，单位vp。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[9].f32**：表示最新目标元素左上角相对父元素左上角的位置的y轴坐标，类型为number，单位vp。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[10].f32**：表示最新目标元素目标元素左上角相对页面左上角的位置的x轴坐标，类型为number，单位vp。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[11].f32**：表示最新目标元素目标元素左上角相对页面左上角的位置的y轴坐标，类型为number，单位vp。 | 
 | NODE_ON_FOCUS  | 获焦事件。<br/>触发该事件的条件：组件获焦时触发此回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中不包含参数。 | 
 | NODE_ON_BLUR  | 失去焦点事件。<br/>触发该事件的条件：组件失去焦点时触发此回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中不包含参数。 | 
-| NODE_ON_CLICK  | 组件点击事件。<br/>触发该事件的条件：组件被点击时触发此回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含12个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32**：点击位置相对于被点击元素原始区域左上角的X坐标，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32**：点击位置相对于被点击元素原始区域左上角的Y坐标，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[2].f32**：事件时间戳。触发事件时距离系统启动的时间间隔，单位微秒。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[3].i32**：事件输入设备，1表示鼠标，2表示触屏，4表示按键。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[4].f32**：点击位置相对于应用窗口左上角的X坐标，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[5].f32**：点击位置相对于应用窗口左上角的Y坐标，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[6].f32**：点击位置相对于应用屏幕左上角的X坐标，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[7].f32**：点击位置相对于应用屏幕左上角的Y坐标，单位px。 | 
-| NODE_ON_CLICK_EVENT | 组件点击事件。<br/>触发该事件的条件：组件被点击时触发此回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent)。 | 
+| NODE_ON_CLICK  | 组件点击事件。<br/>触发该事件的条件：组件被点击时触发此回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含8个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32**：点击位置相对于被点击元素原始区域左上角的X坐标，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32**：点击位置相对于被点击元素原始区域左上角的Y坐标，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[2].f32**：事件时间戳。触发事件时距离系统启动的时间间隔，单位微秒。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[3].i32**：事件输入设备，1表示鼠标，2表示触屏，4表示按键。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[4].f32**：点击位置相对于应用窗口左上角的X坐标，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[5].f32**：点击位置相对于应用窗口左上角的Y坐标，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[6].f32**：点击位置相对于应用屏幕左上角的X坐标，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[7].f32**：点击位置相对于应用屏幕左上角的Y坐标，单位px。 | 
+| NODE_ON_CLICK_EVENT | 组件点击事件。<br/>触发该事件的条件：组件被点击时触发此回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent)。<br/>起始版本：18。 | 
 | NODE_ON_TOUCH_INTERCEPT  | 组件自定义事件拦截。<br/>触发该事件的条件：组件被触摸时触发此回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent)。 | 
 | NODE_EVENT_ON_VISIBLE_AREA_CHANGE  | 组件可见区域变化事件。<br/>触发该事件的条件：组件可见面积与自身面积的比值接近设置的阈值时触发回调，注册事件前需先使用 NODE_VISIBLE_AREA_CHANGE_RATIO 配置阈值。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含2个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：组件可见面积与自身面积的比值与上次变化相比的情况，变大为1，变小为0。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32**：触发回调时组件可见面积与自身面积的比值。 | 
 | NODE_ON_HOVER  | 鼠标进入或退出组件事件。<br/>触发该事件的条件：鼠标进入或退出组件时触发回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含1个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：鼠标是否悬浮在组件上，鼠标进入时为1，退出时为0。 | 
@@ -3874,7 +3910,7 @@ enum ArkUI_NodeEventType
 | NODE_TEXT_AREA_ON_WILL_DELETE  | 定义在将要删除时，触发回调的枚举值。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)。<br/>通过OH_ArkUI_NodeEvent_GetNumberValue获取到index为0的value.f32：删除的值的位置信息。<br/>通过OH_ArkUI_NodeEvent_GetNumberValue获取到index为1的value.i32：删除值的方向，0为向后删除，1为向前删除。<br/>通过OH_ArkUI_NodeEvent_GetStringValue获取到index为0的buffer字符串：删除的值。<br/>返回<br/>在返回true时，表示正常插入，返回false时，表示不插入。<br/>可通过OH_ArkUI_NodeEvent_SetReturnNumberValue设置返回值。 | 
 | NODE_TEXT_AREA_ON_DID_DELETE  | 定义在删除完成时，触发回调的枚举值。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)。<br/>通过OH_ArkUI_NodeEvent_GetNumberValue获取到index为0的value.f32：删除的值的位置信息。<br/>通过OH_ArkUI_NodeEvent_GetNumberValue获取到index为1的value.i32：删除值的方向，0为向后删除，1为向前删除。<br/>通过OH_ArkUI_NodeEvent_GetStringValue获取到index为0的buffer字符串：删除的值。 | 
 | NODE_TEXT_AREA_ON_CHANGE_WITH_PREVIEW_TEXT  | 定义在文本内容（包含预上屏内容）改变时，触发回调的枚举值。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_TextChangeEvent](_ark_u_i___text_change_event.md)。<br/>[ArkUI_TextChangeEvent](_ark_u_i___text_change_event.md)中包含3个参数：<br/>**[ArkUI_TextChangeEvent.pStr](_ark_u_i___text_change_event.md#pstr)**：输入的文本内容。<br/>**[ArkUI_TextChangeEvent.pExtendStr](_ark_u_i___text_change_event.md#pextendstr)**：预上屏输入的文本内容。<br/>**[ArkUI_TextChangeEvent.number](_ark_u_i___text_change_event.md#number)**：预上屏文本插入的位置。<br/>**起始版本：** 15 | 
-| NODE_CHECKBOX_EVENT_ON_CHANGE  | 定义ARKUI_NODE_CHECKBOX当选中状态发生变化时，触发该回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**1:表示已选中, 0: 表示未选中 | 
+| NODE_CHECKBOX_EVENT_ON_CHANGE  | 定义ARKUI_NODE_CHECKBOX当选中状态发生变化时，触发该回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**1：表示已选中, 0: 表示未选中 | 
 | NODE_DATE_PICKER_EVENT_ON_DATE_CHANGE  | 定义ARKUI_NODE_DATE_PICKER列表组件的滚动触摸事件枚举值。<br/>触发该事件的条件：选择日期时触发该事件。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含3个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：表示选中时间的年。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32**：表示选中时间的月，取值范围：[0-11]。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[2].i32**：表示选中时间的天。 | 
 | NODE_TIME_PICKER_EVENT_ON_CHANGE  | 定义ARKUI_NODE_TIME_PICKER列表组件的滚动触摸事件枚举值。<br/>触发该事件的条件：选择时间时触发该事件。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含2个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：表示选中时间的时，取值范围：[0-23]。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32**：表示选中时间的分，取值范围：[0-59]。 | 
 | NODE_TEXT_PICKER_EVENT_ON_CHANGE  | 定义ARKUI_NODE_TEXT_PICKER列表组件的滚动触摸事件枚举值。<br/>触发该事件的条件 ：选择文本时触发该事件。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含1个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0...11].i32**表示选中数据的维度。 | 
@@ -3951,7 +3987,7 @@ enum ArkUI_NodeType
 | ARKUI_NODE_RADIO  | 单选框  | 
 | ARKUI_NODE_IMAGE_ANIMATOR  | 帧动画组件  | 
 | ARKUI_NODE_XCOMPONENT_TEXTURE  | TEXTURE类型XComponent。 <br> **起始版本：** 16  |
-| ARKUI_NODE_CHECKBOX_GROUP | 复选框组。 | 
+| ARKUI_NODE_CHECKBOX_GROUP | 复选框组。<br> **起始版本：** 15 | 
 | ARKUI_NODE_STACK  | 堆叠容器。  | 
 | ARKUI_NODE_SWIPER  | 翻页容器。  | 
 | ARKUI_NODE_SCROLL  | 滚动容器。  | 
@@ -5255,7 +5291,7 @@ int32_t OH_ArkUI_AccessibilityValue_GetCurrent (ArkUI_AccessibilityValue * value
 
 **返回：**
 
-基于范围组件的当前值, 默认为-1; 若函数参数异常，返回-1。
+基于范围组件的当前值，默认为-1；若函数参数异常，返回-1。
 
 
 ### OH_ArkUI_AccessibilityValue_GetMax()
@@ -5277,7 +5313,7 @@ int32_t OH_ArkUI_AccessibilityValue_GetMax (ArkUI_AccessibilityValue * value)
 
 **返回：**
 
-基于范围组件的最大值, 默认为-1; 若函数参数异常，返回-1。
+基于范围组件的最大值，默认为-1；若函数参数异常，返回-1。
 
 
 ### OH_ArkUI_AccessibilityValue_GetMin()
@@ -5299,7 +5335,7 @@ int32_t OH_ArkUI_AccessibilityValue_GetMin (ArkUI_AccessibilityValue * value)
 
 **返回：**
 
-基于范围组件的最小值, 默认为-1; 若函数参数异常，返回-1。
+基于范围组件的最小值，默认为-1；若函数参数异常，返回-1。
 
 
 ### OH_ArkUI_AccessibilityValue_GetText()
@@ -5321,7 +5357,7 @@ const char* OH_ArkUI_AccessibilityValue_GetText (ArkUI_AccessibilityValue * valu
 
 **返回：**
 
-组件的文本描述信息, 默认为空字符串; 若函数参数异常，返回空指针。
+组件的文本描述信息，默认为空字符串；若函数参数异常，返回空指针。
 
 
 ### OH_ArkUI_AccessibilityValue_SetCurrent()
@@ -5340,7 +5376,7 @@ void OH_ArkUI_AccessibilityValue_SetCurrent (ArkUI_AccessibilityValue * value, i
 | 名称 | 描述 | 
 | -------- | -------- |
 | value | 无障碍信息对象指针。  | 
-| current | 基于范围组件的当前值, 默认为-1。  | 
+| current | 基于范围组件的当前值，默认为-1。  | 
 
 
 ### OH_ArkUI_AccessibilityValue_SetMax()
@@ -5359,7 +5395,7 @@ void OH_ArkUI_AccessibilityValue_SetMax (ArkUI_AccessibilityValue * value, int32
 | 名称 | 描述 | 
 | -------- | -------- |
 | value | 无障碍信息对象指针。  | 
-| max | 基于范围组件的最大值, 默认为-1。  | 
+| max | 基于范围组件的最大值，默认为-1。  | 
 
 
 ### OH_ArkUI_AccessibilityValue_SetMin()
@@ -5378,7 +5414,7 @@ void OH_ArkUI_AccessibilityValue_SetMin (ArkUI_AccessibilityValue * value, int32
 | 名称 | 描述 | 
 | -------- | -------- |
 | value | 无障碍信息对象指针。  | 
-| min | 基于范围组件的最小值, 默认为-1。  | 
+| min | 基于范围组件的最小值，默认为-1。  | 
 
 
 ### OH_ArkUI_AccessibilityValue_SetText()
@@ -5397,7 +5433,7 @@ void OH_ArkUI_AccessibilityValue_SetText (ArkUI_AccessibilityValue * value, cons
 | 名称 | 描述 | 
 | -------- | -------- |
 | value | 无障碍信息对象指针。  | 
-| text | 组件的文本描述信息, 默认为空字符串。  | 
+| text | 组件的文本描述信息，默认为空字符串。  | 
 
 
 ### OH_ArkUI_ActiveChildrenInfo_Destroy()
@@ -7902,7 +7938,9 @@ int32_t OH_ArkUI_NodeUtils_GetWindowInfo(ArkUI_NodeHandle node, ArkUI_HostWindow
 
 **返回：**
 
-返回错误码。ARKUI_ERROR_CODE_NO_ERROR代表成功，ARKUI_ERROR_CODE_PARAM_INVALID代表函数参数异常，ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE代表节点未挂载到节点树上。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。</br >
+[ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE](_ark_u_i___native_module.md#arkui_errorcode) 节点未挂载到节点树上。</br >
 
 ### OH_ArkUI_HostWindowInfo_GetName()
 
@@ -7951,7 +7989,7 @@ int32_t OH_ArkUI_NodeUtils_MoveTo(ArkUI_NodeHandle node, ArkUI_NodeHandle target
 
 将节点移动到目标父节点下，作为子节点。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -7963,7 +8001,8 @@ int32_t OH_ArkUI_NodeUtils_MoveTo(ArkUI_NodeHandle node, ArkUI_NodeHandle target
 
 **返回：**
 
-返回错误码。ARKUI_ERROR_CODE_NO_ERROR代表成功，ARKUI_ERROR_CODE_PARAM_INVALID代表函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。</br >
 
 ### OH_ArkUI_NodeUtils_GetAttachedNodeHandleById()
 
@@ -8321,7 +8360,7 @@ int32_t OH_ArkUI_DialogDismissEvent_GetDismissReason (ArkUI_DialogDismissEvent *
 
 **返回：**
 
-关闭原因，异常情况返回-1。 DIALOG_DISMISS_BACK_PRESS 对应点击三键back、左滑/右滑、键盘ESC关闭。 DIALOG_DISMISS_TOUCH_OUTSIDE 点击遮障层时。 DIALOG_DISMISS_CLOSE_BUTTON 点击关闭按钮。 DIALOG_DISMISS_SLIDE_DOWN 下拉关闭。
+关闭原因，异常情况返回-1。 DIALOG_DISMISS_BACK_PRESS 对应点击三键back、侧滑（左滑/右滑）、键盘ESC关闭。 DIALOG_DISMISS_TOUCH_OUTSIDE 点击遮障层时。 DIALOG_DISMISS_CLOSE_BUTTON 点击关闭按钮。 DIALOG_DISMISS_SLIDE_DOWN 下拉关闭。
 
 ### OH_ArkUI_DialogDismissEvent_GetUserData()
 
@@ -8411,7 +8450,7 @@ int32_t OH_ArkUI_DragAction_RegisterStatusListener (ArkUI_DragAction * dragActio
 ```
 **描述：**
 
-注册拖拽状态监听回调,该回调可感知到拖拽已经发起或用户松手结束的状态, 可通过该监听获取到落入方对数据的接收处理是否成功。
+注册拖拽状态监听回调，该回调可感知到拖拽已经发起或用户松手结束的状态，可通过该监听获取到落入方对数据的接收处理是否成功。
 
 **起始版本：** 12
 
@@ -8421,11 +8460,11 @@ int32_t OH_ArkUI_DragAction_RegisterStatusListener (ArkUI_DragAction * dragActio
 | -------- | -------- |
 | dragAction | 拖拽行为对象。  | 
 | userData | 应用自定义数据。  | 
-| listener | 状态监听回调，回调触发时，系统会返回一个拖拽状态对象指针，该指针会在回调之行完成后被销毁，应用不应再持有。  | 
+| listener | 状态监听回调，回调触发时，系统会返回一个拖拽状态对象指针，该指针会在回调执行完成后被销毁，应用不应再持有。  | 
 
 **返回：**
 
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](#arkui_errorcode) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](#arkui_errorcode) 函数参数异常。
 
 
 ### OH_ArkUI_DragAction_SetData()
@@ -8551,7 +8590,7 @@ int32_t OH_ArkUI_DragAction_SetTouchPointY (ArkUI_DragAction * dragAction, float
 ```
 **描述：**
 
-设置跟手点,相对于设置的第一个pixelmap的左上角。
+设置跟手点，相对于设置的第一个pixelmap的左上角。
 
 **起始版本：** 12
 
@@ -8668,7 +8707,7 @@ int32_t OH_ArkUI_DragEvent_GetDataTypes (ArkUI_DragEvent * event, char * eventTy
 | 名称 | 描述 | 
 | -------- | -------- |
 | event | ArkUI_DragEvent事件指针。  | 
-| char | eventTypeArray 返回拖拽数据的类型列表，需要先自行创建字符串数组。  | 
+| eventTypeArray | 返回拖拽数据的类型列表，需要先自行创建字符串数组。  | 
 | length | 数组总长度，不应少于使用[OH_ArkUI_DragEvent_GetDataTypeCount](#oh_arkui_dragevent_getdatatypecount)获取到的数量。  | 
 | maxStrLen | 拖拽数据类型的最大字符串长度。  | 
 
@@ -9095,8 +9134,8 @@ int32_t OH_ArkUI_DragEvent_SetSuggestedDropOperation (ArkUI_DragEvent * event, A
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| proposal | 设置建议的数据处理方式。  | 
-| proposal | 角标显示状态的类型。  | 
+| event | ArkUI_DragEvent事件指针。  |
+| dropOperation | 角标显示状态的类型。  | 
 
 **返回：**
 
@@ -9160,7 +9199,7 @@ int32_t OH_ArkUI_DragPreviewOption_SetDefaultAnimationBeforeLiftingEnabled (ArkU
 | 名称 | 描述 | 
 | -------- | -------- |
 | option | 自定义参数。  | 
-| enabled | 是否开启默认点按效果。  | 
+| enabled | 是否开启默认点按效果。true表示开启默认点按效果，false表示不开启默认点按效果。  | 
 
 **返回：**
 
@@ -9183,7 +9222,7 @@ int32_t OH_ArkUI_DragPreviewOption_SetDefaultRadiusEnabled (ArkUI_DragPreviewOpt
 | 名称 | 描述 | 
 | -------- | -------- |
 | option | 自定义参数。  | 
-| enabled | 是否开启圆角效果显示。  | 
+| enabled | 是否开启圆角效果显示。true表示开启圆角效果显示，false表示不开启圆角效果显示。  | 
 
 **返回：**
 
@@ -9206,7 +9245,7 @@ int32_t OH_ArkUI_DragPreviewOption_SetDefaultShadowEnabled (ArkUI_DragPreviewOpt
 | 名称 | 描述 | 
 | -------- | -------- |
 | option | 自定义参数。  | 
-| enabled | 是否使用默认投影效果。  | 
+| enabled | 是否使用默认投影效果。true表示使用默认投影效果，false表示不使用默认投影效果。  | 
 
 **返回：**
 
@@ -9220,7 +9259,7 @@ int32_t OH_ArkUI_DragPreviewOption_SetNumberBadgeEnabled (ArkUI_DragPreviewOptio
 ```
 **描述：**
 
-设置跟手图背板是否显示角标,开启后,系统会根据拖拽数量自动进行角标显示。
+设置跟手图背板是否显示角标，开启后，系统会根据拖拽数量自动进行角标显示。
 
 **起始版本：** 12
 
@@ -9229,7 +9268,7 @@ int32_t OH_ArkUI_DragPreviewOption_SetNumberBadgeEnabled (ArkUI_DragPreviewOptio
 | 名称 | 描述 | 
 | -------- | -------- |
 | option | 自定义参数。  | 
-| enabled | 是否开启角标显示。  | 
+| enabled | 是否开启角标显示。true表示开启角标显示，false表示不开启角标显示。  | 
 
 **返回：**
 
@@ -9895,7 +9934,7 @@ int32_t OH_ArkUI_GetContextFromNapiValue (napi_env env, napi_value value, ArkUI_
 ```
 **描述：**
 
-获取ArkTS侧创建的UIContext对象映射到native侧的ArkUI_ContextHandle。
+获取ArkTS侧创建的UIContext对象映射到Native侧的ArkUI_ContextHandle。
 
 **起始版本：** 12
 
@@ -9919,7 +9958,7 @@ int32_t OH_ArkUI_GetDrawableDescriptorFromNapiValue (napi_env env, napi_value va
 ```
 **描述：**
 
-将ArkTS侧创建的DrawableDescriptor对象映射到native侧的ArkUI_DrawableDescriptor。
+将ArkTS侧创建的DrawableDescriptor对象映射到Native侧的ArkUI_DrawableDescriptor。
 
 **起始版本：** 12
 
@@ -9943,7 +9982,7 @@ int32_t OH_ArkUI_GetDrawableDescriptorFromResourceNapiValue (napi_env env, napi_
 ```
 **描述：**
 
-将ArkTS侧创建的$r资源对象映射到native侧的ArkUI_DrawableDescriptor。
+将ArkTS侧创建的$r资源对象映射到Native侧的ArkUI_DrawableDescriptor。
 
 **起始版本：** 12
 
@@ -10277,7 +10316,7 @@ int32_t OH_ArkUI_GetNodeContentFromNapiValue (napi_env env, napi_value value, Ar
 ```
 **描述：**
 
-获取ArkTS侧创建的NodeContent对象映射到native侧的ArkUI_NodeContentHandle。
+获取ArkTS侧创建的NodeContent对象映射到Native侧的ArkUI_NodeContentHandle。
 
 **起始版本：** 12
 
@@ -10301,7 +10340,7 @@ int32_t OH_ArkUI_GetNodeHandleFromNapiValue (napi_env env, napi_value frameNode,
 ```
 **描述：**
 
-获取ArkTS侧创建的FrameNode节点对象映射到native侧的ArkUI_NodeHandle。
+获取ArkTS侧创建的FrameNode节点对象映射到Native侧的ArkUI_NodeHandle。
 
 **起始版本：** 12
 
@@ -11156,8 +11195,8 @@ void OH_ArkUI_KeyEvent_SetConsumed (const ArkUI_UIInputEvent * event, bool isCon
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| event | ArkUI_UIInputEvent事件指针。  | 
-| isConsumed | 是否被消费。  | 
+| event | ArkUI_UIInputEvent事件指针。  |
+| isConsumed | 是否被消费。true表示事件被消费，false表示事件未被消费。  |
 
 
 ### OH_ArkUI_KeyEvent_StopPropagation()
@@ -11175,8 +11214,8 @@ void OH_ArkUI_KeyEvent_StopPropagation (const ArkUI_UIInputEvent * event, bool s
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| event | ArkUI_UIInputEvent事件指针。  | 
-| stopPropagation | 表示是否阻止事件冒泡。  | 
+| event | ArkUI_UIInputEvent事件指针。  |
+| stopPropagation | 表示是否阻止事件冒泡。true表示阻止事件冒泡，false表示不阻止事件冒泡。  |
 
 
 ### OH_ArkUI_KeyEvent_Dispatch()
@@ -11326,28 +11365,6 @@ int32_t OH_ArkUI_KeyframeAnimateOption_GetIterations (ArkUI_KeyframeAnimateOptio
 
 动画播放次数。
 
-### OH_ArkUI_KeyframeAnimateOption_GetExpectedFrameRate()
-
-```
-ArkUI_ExpectedFrameRateRange* OH_ArkUI_KeyframeAnimateOption_GetExpectedFrameRate(ArkUI_KeyframeAnimateOption* option)
-```
-**描述：**
-
-获取关键帧动画参数的期望帧率。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| option | 关键帧动画参数。  | 
-
-**返回：**
-
-关键帧动画参数的期望帧率。
-
-
 ### OH_ArkUI_KeyframeAnimateOption_RegisterOnEventCallback()
 
 ```
@@ -11481,31 +11498,6 @@ int32_t OH_ArkUI_KeyframeAnimateOption_SetIterations (ArkUI_KeyframeAnimateOptio
 **返回：**
 
 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
-
-### OH_ArkUI_KeyframeAnimateOption_SetExpectedFrameRate()
-
-```
-int32_t OH_ArkUI_KeyframeAnimateOption_SetExpectedFrameRate(
-    ArkUI_KeyframeAnimateOption* option, ArkUI_ExpectedFrameRateRange* frameRate)
-```
-**描述：**
-
-设置关键帧动画期望帧率。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| option | 关键帧动画参数。  | 
-| frameRate | 关键帧动画的期望帧率。  | 
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。
-ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
-
 
 ### OH_ArkUI_LayoutConstraint_Copy()
 
@@ -12339,7 +12331,7 @@ void OH_ArkUI_ListItemSwipeActionOption_SetEnd (ArkUI_ListItemSwipeActionOption 
 | 名称 | 描述 | 
 | -------- | -------- |
 | option | ListItemSwipeActionItem实例。  | 
-| builder | 布局信息。  | 
+| item | 布局信息。  | 
 
 
 ### OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChange()
@@ -12397,7 +12389,7 @@ void OH_ArkUI_ListItemSwipeActionOption_SetStart (ArkUI_ListItemSwipeActionOptio
 | 名称 | 描述 | 
 | -------- | -------- |
 | option | ListItemSwipeActionItem实例。  | 
-| builder | 布局信息。  | 
+| item | 布局信息。  | 
 
 
 ### OH_ArkUI_LongPress_GetRepeatCount()
@@ -12457,6 +12449,10 @@ ArkUI_NodeAdapterHandle OH_ArkUI_NodeAdapter_Create ()
 创建组件适配器对象。
 
 **起始版本：** 12
+
+**返回：**
+
+组件适配器对象。
 
 
 ### OH_ArkUI_NodeAdapter_Dispose()
@@ -12812,6 +12808,10 @@ void* OH_ArkUI_NodeAdapterEvent_GetUserData (ArkUI_NodeAdapterEvent * event)
 | 名称 | 描述 | 
 | -------- | -------- |
 | event | 适配器事件对象。  | 
+
+**返回：**
+
+用户自定义数据的指针。
 
 
 ### OH_ArkUI_NodeAdapterEvent_SetItem()
@@ -13414,7 +13414,7 @@ ArkUI_PreDragStatus OH_ArkUI_NodeEvent_GetPreDragStatus (ArkUI_NodeEvent * nodeE
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| node | ArkUI_NodeEvent节点对象。  | 
+| nodeEvent | ArkUI_NodeEvent节点对象。  | 
 
 **返回：**
 
@@ -14248,7 +14248,7 @@ int32_t OH_ArkUI_SetDragEventStrictReportWithContext (ArkUI_ContextHandle uiCont
 | 名称 | 描述 | 
 | -------- | -------- |
 | uiContext | UI实例指针。  | 
-| enabled | 是否开启严格上报。  | 
+| enabled | 是否开启严格上报。true表示开启严格上报，false表示关闭严格上报。| 
 
 **返回：**
 
@@ -14271,7 +14271,7 @@ int32_t OH_ArkUI_SetDragEventStrictReportWithNode (ArkUI_NodeHandle node, bool e
 | 名称 | 描述 | 
 | -------- | -------- |
 | node | 组件节点指针。  | 
-| enabled | 是否开启严格上报。  | 
+| enabled | 是否开启严格上报。true表示开启严格上报，false表示关闭严格上报。| 
 
 **返回：**
 
@@ -14294,7 +14294,7 @@ int32_t OH_ArkUI_SetGestureRecognizerEnabled (ArkUI_GestureRecognizer * recogniz
 | 名称 | 描述 | 
 | -------- | -------- |
 | recognizer | 手势识别器指针。  | 
-| enabled | 使能状态。  | 
+| enabled | 使能状态。true表示使能，false表示无法使能。| 
 
 **返回：**
 
@@ -14314,7 +14314,7 @@ int32_t OH_ArkUI_SetGestureRecognizerLimitFingerCount (ArkUI_GestureRecognizer *
 | 名称 | 描述 | 
 | -------- | -------- |
 | recognizer | 手势识别器指针。  | 
-| limitFingerCount | 是否检查触摸屏幕的手指数量。  | 
+| limitFingerCount | 是否检查触摸屏幕的手指数量。true表示检查手指数量，false表示不检查手指数量。| 
 
 **返回：**
 
@@ -14363,7 +14363,7 @@ int32_t OH_ArkUI_SetNodeDraggable (ArkUI_NodeHandle node, bool enabled )
 | 名称 | 描述 | 
 | -------- | -------- |
 | node | 组件节点指针。  | 
-| bool | 是否支持拖出。  | 
+| enabled | 是否支持拖出。true表示支持拖出，false表示不支持拖出。| 
 
 **返回：**
 
@@ -14491,8 +14491,8 @@ ArkUI_StyledString* OH_ArkUI_StyledString_Create (OH_Drawing_TypographyStyle * s
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| style | 指向OH_Drawing_TypographyStyle的指针，由**OH_Drawing_CreateTypographyStyle**获取。  | 
-| collection | 指向OH_Drawing_FontCollection的指针，由**OH_Drawing_CreateFontCollection**获取。  | 
+| style | 指向OH_Drawing_TypographyStyle的指针，由[**OH_Drawing_CreateTypographyStyle**](../apis-arkgraphics2d/_drawing.md#oh_drawing_createtypographystyle)获取。  | 
+| collection | 指向OH_Drawing_FontCollection的指针，由[**OH_Drawing_CreateFontCollection**](../apis-arkgraphics2d/_drawing.md#oh_drawing_createfontcollection)获取。  | 
 
 **返回：**
 
@@ -14847,694 +14847,6 @@ int32_t OH_ArkUI_SwiperIndicator_GetMaxDisplayCount (ArkUI_SwiperIndicator * ind
 
 导航点显示个数最大值，有效取值范围6-9。
 
-
-### OH_ArkUI_SwiperDigitIndicator_Create()
-
-```
-ArkUI_SwiperDigitIndicator *OH_ArkUI_SwiperDigitIndicator_Create()
-```
-**描述：**
-
-创建 Swiper 组件的数字导航指示器。
-
-**起始版本：** 18
-
-**返回：**
-
-数字导航指示器对象指针。
-
-### OH_ArkUI_SwiperDigitIndicator_SetStartPosition()
-
-```
-void OH_ArkUI_SwiperDigitIndicator_SetStartPosition(ArkUI_SwiperDigitIndicator* indicator, float value)
-```
-**描述：**
-
-设置数字导航指示器距离 Swiper 组件左边的距离，从右至左显示的语言模式下，设置其距离 Swiper 组件右边的距离。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| indicator | 数字导航指示器对象指针。  | 
-| value | 数字导航指示器距离Swiper组件左边的距离，从右至左显示的语言模式下，为其距离 Swiper 组件右边的距离。  | 
-
-### OH_ArkUI_SwiperDigitIndicator_GetStartPosition()
-
-```
-float OH_ArkUI_SwiperDigitIndicator_GetStartPosition(ArkUI_SwiperDigitIndicator* indicator)
-```
-**描述：**
-
-获取数字导航指示器距离 Swiper 组件左边的距离，从右至左显示的语言模式下，获取其距离 Swiper 组件右边的距离。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| indicator | 数字导航指示器对象指针。 | 
-
-**返回：**
-
-数字导航指示器距离 Swiper 组件左边的距离，从右至左显示的语言模式下，为其距离 Swiper 组件右边的距离。
-
-### OH_ArkUI_SwiperDigitIndicator_SetTopPosition()
-
-```
-void OH_ArkUI_SwiperDigitIndicator_SetTopPosition(ArkUI_SwiperDigitIndicator* indicator, float value)
-```
-**描述：**
-
-设置数字导航指示器距离 Swiper 组件顶部的距离。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| indicator | 数字导航指示器对象指针。  | 
-| value | 数字导航指示器距离Swiper组件顶部的距离。  | 
-
-### OH_ArkUI_SwiperDigitIndicator_GetTopPosition()
-
-```
-float OH_ArkUI_SwiperDigitIndicator_GetTopPosition(ArkUI_SwiperDigitIndicator* indicator)
-```
-**描述：**
-
-获取数字导航指示器距离 Swiper 组件顶部的距离。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| indicator | 数字导航指示器对象指针。 | 
-
-**返回：**
-
-数字导航指示器距离Swiper组件顶部的距离。
-
-### OH_ArkUI_SwiperDigitIndicator_SetEndPosition()
-
-```
-void OH_ArkUI_SwiperDigitIndicator_SetEndPosition(ArkUI_SwiperDigitIndicator* indicator, float value)
-```
-**描述：**
-
-设置数字导航指示器距离 Swiper 组件右边的距离，从右至左显示的语言模式下，设置其距离 Swiper 组件左边的距离。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| indicator | 数字导航指示器对象指针。  | 
-| value | 数字导航指示器距离Swiper组件右边的距离，从右至左显示的语言模式下，其距离 Swiper 组件左边的距离。  | 
-
-### OH_ArkUI_SwiperDigitIndicator_GetEndPosition()
-
-```
-float OH_ArkUI_SwiperDigitIndicator_GetEndPosition(ArkUI_SwiperDigitIndicator* indicator)
-```
-**描述：**
-
-获取数字导航指示器距离 Swiper 组件右边的距离，从右至左显示的语言模式下，获取其距离 Swiper 组件左边的距离。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| indicator | 数字导航指示器对象指针。 | 
-
-**返回：**
-
-数字导航指示器距离Swiper组件右边的距离，从右至左显示的语言模式下，其距离 Swiper 组件左边的距离。
-
-### OH_ArkUI_SwiperDigitIndicator_SetBottomPosition()
-
-```
-void OH_ArkUI_SwiperDigitIndicator_SetBottomPosition(ArkUI_SwiperDigitIndicator* indicator, float value)
-```
-**描述：**
-
-设置数字导航指示器距离 Swiper 组件底部的距离。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| indicator | 数字导航指示器对象指针。  | 
-| value | 数字导航指示器距离Swiper组件底部的距离。  | 
-
-### OH_ArkUI_SwiperDigitIndicator_GetBottomPosition()
-
-```
-float OH_ArkUI_SwiperDigitIndicator_GetBottomPosition(ArkUI_SwiperDigitIndicator* indicator)
-```
-**描述：**
-
-获取数字导航指示器距离 Swiper 组件底部的距离。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| indicator | 数字导航指示器对象指针。 | 
-
-**返回：**
-
-数字导航指示器距离Swiper组件底部的距离。
-
-### OH_ArkUI_SwiperDigitIndicator_SetFontColor()
-
-```
-void OH_ArkUI_SwiperDigitIndicator_SetFontColor(ArkUI_SwiperDigitIndicator* indicator, uint32_t color)
-```
-**描述：**
-
-设置 Swiper 组件数字导航指示器字体颜色。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| indicator | 数字导航指示器对象指针。  | 
-| color | 颜色类型，0xargb格式，形如 0xFFFF0000 表示红色。  | 
-
-### OH_ArkUI_SwiperDigitIndicator_GetFontColor()
-
-```
-uint32_t OH_ArkUI_SwiperDigitIndicator_GetFontColor(ArkUI_SwiperDigitIndicator* indicator)
-```
-**描述：**
-
-获取 Swiper 组件数字导航指示器字体颜色。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| indicator | 数字导航指示器对象指针。 | 
-
-**返回：**
-
-颜色类型，0xargb格式，形如 0xFFFF0000 表示红色。
-
-### OH_ArkUI_SwiperDigitIndicator_SetSelectedFontColor()
-
-```
-void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontColor(ArkUI_SwiperDigitIndicator* indicator, uint32_t selectedColor)
-```
-**描述：**
-
-设置被选中 Swiper 组件数字导航指示器字体颜色。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| indicator | 数字导航指示器对象指针。  | 
-| selectedColor | 颜色类型，0xargb格式，形如 0xFFFF0000 表示红色。  | 
-
-### OH_ArkUI_SwiperDigitIndicator_GetSelectedFontColor()
-
-```
-uint32_t OH_ArkUI_SwiperDigitIndicator_GetSelectedFontColor(ArkUI_SwiperDigitIndicator* indicator)
-```
-**描述：**
-
-获取被选中 Swiper 组件数字导航指示器字体颜色。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| indicator | 数字导航指示器对象指针。 | 
-
-**返回：**
-
-颜色类型，0xargb格式，形如 0xFFFF0000 表示红色。
-
-### OH_ArkUI_SwiperDigitIndicator_SetFontSize()
-
-```
-void OH_ArkUI_SwiperDigitIndicator_SetFontSize(ArkUI_SwiperDigitIndicator* indicator, float size)
-```
-**描述：**
-
-设置 Swiper 组件数字导航指示器字体大小。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| indicator | 数字导航指示器对象指针。  | 
-| size | 字体大小数值，单位为fp。  | 
-
-### OH_ArkUI_SwiperDigitIndicator_GetFontSize()
-
-```
-float OH_ArkUI_SwiperDigitIndicator_GetFontSize(ArkUI_SwiperDigitIndicator* indicator)
-```
-**描述：**
-
-获取 Swiper 组件数字导航指示器字体大小。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| indicator | 数字导航指示器对象指针。 | 
-
-**返回：**
-
-字体大小数值，单位为fp。
-
-### OH_ArkUI_SwiperDigitIndicator_SetSelectedFontSize()
-
-```
-void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontSize(ArkUI_SwiperDigitIndicator* indicator, float size)
-```
-**描述：**
-
-设置被选中 Swiper 组件数字导航指示器字体大小。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| indicator | 数字导航指示器对象指针。  | 
-| size | 字体大小数值，单位为fp。  | 
-
-### OH_ArkUI_SwiperDigitIndicator_GetSelectedFontSize()
-
-```
-float OH_ArkUI_SwiperDigitIndicator_GetSelectedFontSize(ArkUI_SwiperDigitIndicator* indicator)
-```
-**描述：**
-
-获取被选中 Swiper 组件数字导航指示器字体大小。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| indicator | 数字导航指示器对象指针。 | 
-
-**返回：**
-
-字体大小数值，单位为fp。
-
-### OH_ArkUI_SwiperDigitIndicator_SetFontWeight()
-
-```
-void OH_ArkUI_SwiperDigitIndicator_SetFontWeight(ArkUI_SwiperDigitIndicator* indicator, ArkUI_FontWeight fontWeight)
-```
-**描述：**
-
-设置 Swiper 组件数字导航指示器字体粗细属性。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| indicator | 数字导航指示器对象指针。  | 
-| fontWeight | 字体粗细样式[ArkUI_FontWeight](#arkui_fontweight)。  | 
-
-### OH_ArkUI_SwiperDigitIndicator_GetFontWeight()
-
-```
-ArkUI_FontWeight OH_ArkUI_SwiperDigitIndicator_GetFontWeight(ArkUI_SwiperDigitIndicator* indicator)
-```
-**描述：**
-
- 获取 Swiper 组件数字导航指示器字体粗细属性。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| indicator | 数字导航指示器对象指针。 | 
-
-**返回：**
-
-字体粗细样式[ArkUI_FontWeight](#arkui_fontweight)
-
-### OH_ArkUI_SwiperDigitIndicator_SetSelectedFontWeight()
-
-```
-void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontWeight(ArkUI_SwiperDigitIndicator* indicator, ArkUI_FontWeight fontWeight)
-```
-**描述：**
-
-设置被选中 Swiper 组件数字导航指示器字体粗细属性。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| indicator | 数字导航指示器对象指针。  | 
-| fontWeight | 字体粗细样式[ArkUI_FontWeight](#arkui_fontweight)。  | 
-
-### OH_ArkUI_SwiperDigitIndicator_GetSelectedFontWeight()
-
-```
-ArkUI_FontWeight OH_ArkUI_SwiperDigitIndicator_GetSelectedFontWeight(ArkUI_SwiperDigitIndicator* indicator)
-```
-**描述：**
-
- 获取被选中 Swiper 组件数字导航指示器字体粗细属性。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| indicator | 数字导航指示器对象指针。 | 
-
-**返回：**
-
-字体粗细样式[ArkUI_FontWeight](#arkui_fontweight)
-
-### OH_ArkUI_SwiperDigitIndicator_Dispose
-
-```
-void OH_ArkUI_SwiperDigitIndicator_Dispose(ArkUI_SwiperDigitIndicator* indicator)
-```
-**描述：**
-
-销毁 Swiper 组件的数字导航指示器指针。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| indicator | 数字导航指示器对象指针。  | 
-
-### OH_ArkUI_SwiperArrowStyle_Create()
-
-```
-ArkUI_SwiperArrowStyle *OH_ArkUI_SwiperArrowStyle_Create()
-```
-**描述：**
-
-创建 Swiper 组件的导航箭头。
-
-**起始版本：** 18
-
-**返回：**
-
-导航箭头对象指针。
-
-### OH_ArkUI_SwiperArrowStyle_SetShowBackground()
-
-```
-void OH_ArkUI_SwiperArrowStyle_SetShowBackground(ArkUI_SwiperArrowStyle *arrowStyle, int32_t showBackground)
-```
-**描述：**
-
-设置 Swiper 组件导航箭头底板是否显示。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| arrowStyle | 导航箭头对象指针。  | 
-| showBackground | 导航箭头底板是否显示，0：不显示，1：显示，默认值：0。  | 
-
-### OH_ArkUI_SwiperArrowStyle_GetShowBackground()
-
-```
-int32_t OH_ArkUI_SwiperArrowStyle_GetShowBackground(ArkUI_SwiperArrowStyle* arrowStyle)
-```
-**描述：**
-
- 获取 Swiper 组件导航箭头底板是否显示。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| arrowStyle | 导航箭头对象指针。 | 
-
-**返回：**
-
-导航箭头底板是否显示，0：不显示，1：显示。
-
-### OH_ArkUI_SwiperArrowStyle_SetShowSidebarMiddle()
-
-```
-void OH_ArkUI_SwiperArrowStyle_SetShowSidebarMiddle(ArkUI_SwiperArrowStyle *arrowStyle, int32_t showSidebarMiddle)
-```
-**描述：**
-
-设置 Swiper 组件导航箭头显示位置。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| arrowStyle | 导航箭头对象指针。  | 
-| showSidebarMiddle | 导航箭头显示位置，0：显示在导航指示器两侧，1：显示在Swiper组件两侧，默认值：0。  | 
-
-### OH_ArkUI_SwiperArrowStyle_GetShowSidebarMiddle()
-
-```
-int32_t OH_ArkUI_SwiperArrowStyle_GetShowSidebarMiddle(ArkUI_SwiperArrowStyle* arrowStyle)
-```
-**描述：**
-
-获取 Swiper 组件导航箭头显示位置。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| arrowStyle | 导航箭头对象指针。 | 
-
-**返回：**
-
-导航箭头显示位置，0：显示在导航指示器两侧，1：显示在Swiper组件两侧。
-
-### OH_ArkUI_SwiperArrowStyle_SetBackgroundSize()
-
-```
-void OH_ArkUI_SwiperArrowStyle_SetBackgroundSize(ArkUI_SwiperArrowStyle* arrowStyle, float backgroundSize)
-```
-**描述：**
-
-设置 Swiper 组件导航箭头底板大小。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| arrowStyle | 导航箭头对象指针。  | 
-| backgroundSize | 导航箭头底板大小，单位：vp。默认值：显示在导航指示器两侧24vp，显示在Swiper两侧32vp。  | 
-
-### OH_ArkUI_SwiperArrowStyle_GetBackgroundSize()
-
-```
-float OH_ArkUI_SwiperArrowStyle_GetBackgroundSize(ArkUI_SwiperArrowStyle* arrowStyle)
-```
-**描述：**
-
-获取 Swiper 组件导航箭头底板大小。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| arrowStyle | 导航箭头对象指针。 | 
-
-**返回：**
-
-导航箭头底板大小，单位：vp。
-
-### OH_ArkUI_SwiperArrowStyle_SetBackgroundColor()
-
-```
-void OH_ArkUI_SwiperArrowStyle_SetBackgroundColor(ArkUI_SwiperArrowStyle* arrowStyle, uint32_t backgroundColor)
-```
-**描述：**
-
-设置 Swiper 组件导航箭头底板颜色。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| arrowStyle | 导航箭头对象指针。  | 
-| backgroundColor | 导航箭头底板颜色，0xargb格式，形如 0xFFFF0000 表示红色。  | 
-
-### OH_ArkUI_SwiperArrowStyle_GetBackgroundColor()
-
-```
-uint32_t OH_ArkUI_SwiperArrowStyle_GetBackgroundColor(ArkUI_SwiperArrowStyle* arrowStyle)
-```
-**描述：**
-
-获取 Swiper 组件导航箭头底板颜色。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| arrowStyle | 导航箭头对象指针。 | 
-
-**返回：**
-
-导航箭头底板颜色，0xargb格式，形如 0xFFFF0000 表示红色。
-
-### OH_ArkUI_SwiperArrowStyle_SetArrowSize()
-
-```
-void OH_ArkUI_SwiperArrowStyle_SetArrowSize(ArkUI_SwiperArrowStyle* arrowStyle, float arrowSize)
-```
-**描述：**
-
-设置 Swiper 组件导航箭头大小。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| arrowStyle | 导航箭头对象指针。  | 
-| arrowSize |  导航箭头大小，单位：vp。默认值：显示在导航指示器两侧18vp，显示在Swiper两侧24vp。 显示导航箭头底板时，arrowSize固定为backgroundSize的3/4。 | 
-
-### OH_ArkUI_SwiperArrowStyle_GetArrowSize()
-
-```
-float OH_ArkUI_SwiperArrowStyle_GetArrowSize(ArkUI_SwiperArrowStyle* arrowStyle)
-```
-**描述：**
-
-获取 Swiper 组件导航箭头大小。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| arrowStyle | 导航箭头对象指针。 | 
-
-**返回：**
-
-导航箭头大小，单位：vp。
-
-### OH_ArkUI_SwiperArrowStyle_SetArrowColor()
-
-```
-void OH_ArkUI_SwiperArrowStyle_SetArrowColor(ArkUI_SwiperArrowStyle* arrowStyle, uint32_t arrowColor)
-```
-**描述：**
-
-设置 Swiper 组件导航箭头大小。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| arrowStyle | 导航箭头对象指针。  | 
-| arrowColor |  导航箭头颜色，0xargb格式，形如 0xFFFF0000 表示红色。 | 
-
-### OH_ArkUI_SwiperArrowStyle_GetArrowColor()
-
-```
-uint32_t OH_ArkUI_SwiperArrowStyle_GetArrowColor(ArkUI_SwiperArrowStyle* arrowStyle)
-```
-**描述：**
-
-获取 Swiper 组件导航箭头颜色。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| arrowStyle | 导航箭头对象指针。 | 
-
-**返回：**
-
-导航箭头颜色，0xargb格式，形如 0xFFFF0000 表示红色。
-
-### OH_ArkUI_SwiperArrowStyle_Dispose
-
-```
-void OH_ArkUI_SwiperArrowStyle_Dispose(ArkUI_SwiperArrowStyle* arrowStyle)
-```
-**描述：**
-
-销毁 Swiper 组件的导航箭头指针。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| arrowStyle | 导航箭头对象指针。  | 
 
 ### OH_ArkUI_SwiperIndicator_GetSelectedColor()
 
@@ -16265,7 +15577,7 @@ void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndexWithU
 ### OH_ArkUI_WaterFlowSectionOption_SetColumnGap()
 
 ```
-void OH_ArkUI_WaterFlowSectionOption_SetColumnGap (ArkUI_WaterFlowSectionOption * , int32_t index, float columnGap )
+void OH_ArkUI_WaterFlowSectionOption_SetColumnGap (ArkUI_WaterFlowSectionOption * option, int32_t index, float columnGap )
 ```
 **描述：**
 
@@ -16407,10 +15719,10 @@ int32_t OH_ArkUI_PostFrameCallback(ArkUI_ContextHandle uiContext, void* userData
 
 **返回：**
 
-ARKUI_ERROR_CODE_NO_ERROR 成功。
-ARKUI_ERROR_CODE_CAPI_INIT_ERROR CAPI初始化错误。
-ARKUI_ERROR_CODE_UI_CONTEXT_INVALID uiContext对象无效。
-ARKUI_ERROR_CODE_CALLBACK_INVALID 回调函数无效。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
+[ARKUI_ERROR_CODE_CAPI_INIT_ERROR](_ark_u_i___native_module.md#arkui_errorcode) CAPI初始化错误。</br >
+[ARKUI_ERROR_CODE_UI_CONTEXT_INVALID](_ark_u_i___native_module.md#arkui_errorcode) uiContext对象无效。</br >
+[ARKUI_ERROR_CODE_CALLBACK_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 回调函数无效。</br >
 
 
 ### OH_ArkUI_RegisterLayoutCallbackOnNodeHandle()
@@ -16434,8 +15746,8 @@ int32_t OH_ArkUI_RegisterLayoutCallbackOnNodeHandle (ArkUI_NodeHandle node, void
 
 **返回：**
 
-ARKUI_ERROR_CODE_NO_ERROR 成功。
-ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。
 
 
 ### OH_ArkUI_RegisterDrawCallbackOnNodeHandle()
@@ -16459,8 +15771,8 @@ int32_t OH_ArkUI_RegisterDrawCallbackOnNodeHandle (ArkUI_NodeHandle node, void* 
 
 **返回：**
 
-ARKUI_ERROR_CODE_NO_ERROR 成功。
-ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。
 
 
 ### OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle()
@@ -16482,8 +15794,8 @@ int32_t OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle (ArkUI_NodeHandle node)
 
 **返回：**
 
-ARKUI_ERROR_CODE_NO_ERROR 成功。
-ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。
 
 
 ### OH_ArkUI_UnregisterDrawCallbackOnNodeHandle()
@@ -16505,8 +15817,8 @@ int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle (ArkUI_NodeHandle node)
 
 **返回：**
 
-ARKUI_ERROR_CODE_NO_ERROR 成功。
-ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。
 
 
 ### OH_ArkUI_ProgressLinearStyleOption_Create
@@ -17301,3 +16613,144 @@ int32_t OH_ArkUI_SnapshotOptions_SetScale(ArkUI_SnapshotOptions* snapshotOptions
 
 ARKUI_ERROR_CODE_NO_ERROR 成功。
 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_AccessibilityValue_SetRangeMin
+
+```
+void OH_ArkUI_AccessibilityValue_SetRangeMin(ArkUI_AccessibilityValue* value, int32_t rangeMin)
+```
+
+**描述：**
+
+用于设置范围组件的无障碍最小值信息。
+
+当范围组件未设置无障碍最小值时，默认为-1。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称      | 描述                   |
+| --------- | ---------------------- |
+| value | 需要设置最小值的范围组件无障碍信息对象指针。   |
+| rangeMin       | 基于范围组件的最小值。              |
+
+
+### OH_ArkUI_AccessibilityValue_GetRangeMin
+
+```
+int32_t OH_ArkUI_AccessibilityValue_GetRangeMin(ArkUI_AccessibilityValue* value)
+```
+
+**描述：**
+
+用于获取范围组件的无障碍最小值信息。
+
+若函数参数异常或范围组件未设置最小值信息，返回默认值-1。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称      | 描述                   |
+| --------- | ---------------------- |
+| value | 需要获取最小值的范围组件无障碍信息对象指针。   |
+
+**返回：**
+
+范围组件的无障碍最小值。
+
+
+### OH_ArkUI_AccessibilityValue_SetRangeMax
+
+```
+void OH_ArkUI_AccessibilityValue_SetRangeMax(ArkUI_AccessibilityValue* value, int32_t rangeMax)
+```
+
+**描述：**
+
+用于设置范围组件的无障碍最大值信息。
+
+当范围组件未设置无障碍最大值时，默认为-1。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称      | 描述                   |
+| --------- | ---------------------- |
+| value | 需要设置最大值的范围组件无障碍信息对象指针。   |
+| rangeMin       | 基于范围组件的最大值。              |
+
+
+### OH_ArkUI_AccessibilityValue_GetRangeMax
+
+```
+int32_t OH_ArkUI_AccessibilityValue_GetRangeMax(ArkUI_AccessibilityValue* value)
+```
+
+**描述：**
+
+用于获取范围组件的无障碍最大值信息。
+
+若函数参数异常或范围组件未设置最大值信息，返回默认值-1。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称      | 描述                   |
+| --------- | ---------------------- |
+| value | 需要获取最大值的范围组件无障碍信息对象指针。   |
+
+**返回：**
+
+范围组件的无障碍最大值。
+
+
+### OH_ArkUI_AccessibilityValue_SetRangeCurrent
+
+```
+void OH_ArkUI_AccessibilityValue_SetRangeCurrent(ArkUI_AccessibilityValue* value, int32_t rangeCurrent)
+```
+
+**描述：**
+
+用于设置范围组件的无障碍当前值信息。
+
+当范围组件未设置无障碍当前值时，默认为-1。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称      | 描述                   |
+| --------- | ---------------------- |
+| value | 需要设置当前值的范围组件无障碍信息对象指针。   |
+| rangeCurrent       | 基于范围组件的当前值。              |
+
+
+### OH_ArkUI_AccessibilityValue_GetRangeCurrent
+
+```
+int32_t OH_ArkUI_AccessibilityValue_GetRangeCurrent(ArkUI_AccessibilityValue* value)
+```
+
+**描述：**
+
+用于获取范围组件的无障碍当前值信息。
+
+若函数参数异常或范围组件未设置当前值信息，返回默认值-1。
+
+**起始版本：** 18
+
+**参数：** 
+
+| 名称      | 描述                   |
+| --------- | ---------------------- |
+| value | 需要获取当前值的范围组件无障碍信息对象指针。   |
+
+**返回：**
+
+范围组件的无障碍当前值。

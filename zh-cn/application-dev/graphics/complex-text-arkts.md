@@ -55,18 +55,18 @@
 
    ```ts
    let fontCollection = text.FontCollection.getGlobalInstance();
-   let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+   let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
    // 更新文本样式
-   ParagraphGraphBuilder.pushStyle(myTextStyle);
+   paragraphBuilder.pushStyle(myTextStyle);
    // 添加文本
-   ParagraphGraphBuilder.addText("你好，世界");
+   paragraphBuilder.addText("你好，世界");
    ```
 
 5. 排版段落并进行文本绘制。
 
    ```ts
    // 生成段落
-   let paragraph = ParagraphGraphBuilder.build();
+   let paragraph = paragraphBuilder.build();
    // 布局
    paragraph.layoutSync(1250);
    // 绘制文本
@@ -108,13 +108,13 @@ class MyRenderNode extends RenderNode {
       textStyle: myTextStyle,
     };
     let fontCollection = text.FontCollection.getGlobalInstance();
-    let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+    let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
     // 更新文本样式
-    ParagraphGraphBuilder.pushStyle(myTextStyle);
+    paragraphBuilder.pushStyle(myTextStyle);
     // 添加文本
-    ParagraphGraphBuilder.addText("你好，世界");
+    paragraphBuilder.addText("你好，世界");
     // 生成段落
-    let paragraph = ParagraphGraphBuilder.build();
+    let paragraph = paragraphBuilder.build();
     // 布局
     paragraph.layoutSync(1250);
     // 绘制文本
@@ -127,9 +127,9 @@ const textNode = new MyRenderNode()
 // 定义newNode的像素格式
 textNode.frame = {
   x: 0,
-  y: 100,
-  width: 1250,
-  height: 800
+  y: 0,
+  width: 400,
+  height: 600
 }
 textNode.pivot = { x: 0.2, y: 0.8 }
 textNode.scale = { x: 1, y: 1 }
@@ -263,11 +263,11 @@ struct Font08 {
 
    ```ts
    let fontCollection = text.FontCollection.getGlobalInstance();
-   let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+   let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
    // 更新文本样式
-   ParagraphGraphBuilder.pushStyle(myTextStyle);
+   paragraphBuilder.pushStyle(myTextStyle);
    // 添加文本
-   ParagraphGraphBuilder.addText("Hello World Hello World Hello World Hello World Hello World Hello World " +
+   paragraphBuilder.addText("Hello World Hello World Hello World Hello World Hello World Hello World " +
      "Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World " +
      "Hello World Hello World Hello World Hello World Hello World ");
    ```
@@ -276,7 +276,7 @@ struct Font08 {
 
    ```ts
    // 生成段落
-   let paragraph = ParagraphGraphBuilder.build();
+   let paragraph = paragraphBuilder.build();
    // 布局
    paragraph.layoutSync(1250);
    // 绘制文本
@@ -320,15 +320,15 @@ class MyRenderNode extends RenderNode {
       wordBreak: text.WordBreak.BREAK_WORD
     };
     let fontCollection = text.FontCollection.getGlobalInstance();
-    let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+    let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
     // 更新文本样式
-    ParagraphGraphBuilder.pushStyle(myTextStyle);
+    paragraphBuilder.pushStyle(myTextStyle);
     // 添加文本
-    ParagraphGraphBuilder.addText("Hello World Hello World Hello World Hello World Hello World Hello World " +
+    paragraphBuilder.addText("Hello World Hello World Hello World Hello World Hello World Hello World " +
       "Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World " +
       "Hello World Hello World Hello World Hello World Hello World ");
     // 生成段落
-    let paragraph = ParagraphGraphBuilder.build();
+    let paragraph = paragraphBuilder.build();
     // 布局
     paragraph.layoutSync(1250);
     // 绘制文本
@@ -341,9 +341,9 @@ const textNode = new MyRenderNode()
 // 定义newNode的像素格式
 textNode.frame = {
   x: 0,
-  y: 100,
-  width: 1250,
-  height: 800
+  y: 0,
+  width: 400,
+  height: 600
 }
 textNode.pivot = { x: 0.2, y: 0.8 }
 textNode.scale = { x: 1, y: 1 }
@@ -542,7 +542,7 @@ struct Font08 {
 
    ```ts
    let fontCollection = text.FontCollection.getGlobalInstance();
-   let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+   let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
    
    // 初始化占位符对象
    let myPlaceholderSpan: text.PlaceholderSpan = {
@@ -553,19 +553,19 @@ struct Font08 {
      baselineOffset: 100//相比基线的偏移量。只有对齐策略是OFFSET_AT_BASELINE时生效
    };
    // 添加占位符
-   ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan)
+   paragraphBuilder.addPlaceholder(myPlaceholderSpan)
    
    // 更新文本样式
-   ParagraphGraphBuilder.pushStyle(myTextStyle);
+   paragraphBuilder.pushStyle(myTextStyle);
    // 添加文本
-   ParagraphGraphBuilder.addText("1/2 1/3 1/4 ");
+   paragraphBuilder.addText("1/2 1/3 1/4 ");
    ```
 
 5. 排版段落并进行文本绘制。
 
    ```ts
    //生成段落
-   let paragraph = ParagraphGraphBuilder.build();
+   let paragraph = paragraphBuilder.build();
    // 布局
    paragraph.layoutSync(1250);
    // 绘制文本
@@ -645,7 +645,7 @@ class MyRenderNode extends RenderNode {
     };
 
     let fontCollection = text.FontCollection.getGlobalInstance();
-    let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+    let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
 
     // 初始化占位符对象
     let myPlaceholderSpan: text.PlaceholderSpan = {
@@ -656,15 +656,15 @@ class MyRenderNode extends RenderNode {
       baselineOffset: 100//相比基线的偏移量。只有对齐策略是OFFSET_AT_BASELINE时生效
     };
     // 添加占位符
-    ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan)
+    paragraphBuilder.addPlaceholder(myPlaceholderSpan)
 
     // 更新文本样式
-    ParagraphGraphBuilder.pushStyle(myTextStyle);
+    paragraphBuilder.pushStyle(myTextStyle);
     // 添加文本
-    ParagraphGraphBuilder.addText("1/2 1/3 1/4 ");
+    paragraphBuilder.addText("1/2 1/3 1/4 ");
 
     // 生成段落
-    let paragraph = ParagraphGraphBuilder.build();
+    let paragraph = paragraphBuilder.build();
     // 布局
     paragraph.layoutSync(1250);
     // 绘制文本
@@ -688,9 +688,9 @@ const textNode = new MyRenderNode()
 // 定义newNode的像素格式
 textNode.frame = {
   x: 0,
-  y: 100,
-  width: 1250,
-  height: 800
+  y: 0,
+  width: 400,
+  height: 600
 }
 textNode.pivot = { x: 0.2, y: 0.8 }
 textNode.scale = { x: 1, y: 1 }

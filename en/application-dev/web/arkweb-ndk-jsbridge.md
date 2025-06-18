@@ -19,7 +19,7 @@ If an application is developed using ArkTS and C++ language, or if its architect
 ## Using Native APIs to Implement JSBridge Communication (Recommended)
 In the previous version, the return value of native synchronization APIs is fixed to void. With the continuous expansion of services, many service scenarios require APIs to provide return values to support synchronous calls. To meet this requirement, substitute APIs are introduced since API version 16. They support return values of the Boolean, string, and buffer types.
 
-In addition, the [permission](#permission) field is added for the synchronous API [registerJavaScriptProxyEx](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerjavascriptproxyex) and asynchronous API [registerAsyncJavaScriptProxyEx](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerasyncjavascriptproxyex) to control the calling permission.
+In addition, the [permission](#invoking-application-functions-on-the-frontend-page) field is added for the synchronous API [registerJavaScriptProxyEx](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerjavascriptproxyex) and asynchronous API [registerAsyncJavaScriptProxyEx](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerasyncjavascriptproxyex) to control the calling permission.
 
 ### Substitute APIs
 
@@ -74,7 +74,7 @@ In addition, the [permission](#permission) field is added for the synchronous AP
 
 ### Obtaining API Struct Using the Native API
 
-To invoke the native APIs, obtain the API structs on the ArkWeb native side first. You can use [OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi()) to obtain the native ArkWeb API, and use [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) and [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) to obtain function pointer structs based on the input parameter type. The [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) corresponds to the [web_webview.WebviewController API](../reference/apis-arkweb/js-apis-webview.md) on ArkTS, and the [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) corresponds to the [ArkWeb component API](../reference/apis-arkweb/ts-basic-components-web.md) on ArkTS.
+To invoke the native APIs, obtain the API structs on the ArkWeb native side first. You can use [OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi) to obtain the native ArkWeb API, and use [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) and [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) to obtain function pointer structs based on the input parameter type. The [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) corresponds to the [web_webview.WebviewController API](../reference/apis-arkweb/js-apis-webview.md) on ArkTS, and the [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) corresponds to the [ArkWeb component API](../reference/apis-arkweb/ts-basic-components-web.md) on ArkTS.
 
   ```c++
   static ArkWeb_ControllerAPI *controller = nullptr;
@@ -134,7 +134,7 @@ Use [registerJavaScriptProxyEx](../reference/apis-arkweb/_ark_web___controller_a
   // If the permission parameter is empty, permission control is not performed.
   controller->registerJavaScriptProxyEx(webTag, &proxyObject, /*permission*/"");
   ```
-  <a id="permission"></a>
+
   - The **permission** parameter is a JSON string as follows:
   ```json
   {
@@ -791,7 +791,7 @@ Use [runJavaScript](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#runj
 
 ### Obtaining API Struct Using the Native API
 
-To invoke the native APIs, obtain the API structs on the ArkWeb native side first. You can use [OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi()) to obtain the native ArkWeb API, and use [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) and [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) to obtain function pointer structs based on the input parameter type. The [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) corresponds to the [web_webview.WebviewController API](../reference/apis-arkweb/js-apis-webview.md) on ArkTS, and the [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) corresponds to the [ArkWeb component API](../reference/apis-arkweb/ts-basic-components-web.md) on ArkTS.
+To invoke the native APIs, obtain the API structs on the ArkWeb native side first. You can use [OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi) to obtain the native ArkWeb API, and use [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) and [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) to obtain function pointer structs based on the input parameter type. The [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) corresponds to the [web_webview.WebviewController API](../reference/apis-arkweb/js-apis-webview.md) on ArkTS, and the [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) corresponds to the [ArkWeb component API](../reference/apis-arkweb/ts-basic-components-web.md) on ArkTS.
 
   ```c++
   static ArkWeb_ControllerAPI *controller = nullptr;

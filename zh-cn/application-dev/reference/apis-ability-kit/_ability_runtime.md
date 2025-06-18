@@ -29,23 +29,23 @@
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) {<br>    ABILITY_RUNTIME_ERROR_CODE_NO_ERROR = 0,<br>    ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED = 201,<br>    ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID = 401,<br>    ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED = 801,<br>    ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY = 16000001,<br>    ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE = 16000002,<br>    ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED = 16000008,<br>    ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE = 16000009,<br>    ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST = 16000011,<br>    ABILITY_RUNTIME_ERROR_CODE_CONTROLLED = 16000012,<br>    ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED = 16000013,<br>    ABILITY_RUNTIME_ERROR_CODE_CROSS_APP = 16000018,<br>    ABILITY_RUNTIME_ERROR_CODE_INTERNAL = 16000050,<br>    ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY = 16000053,<br>    ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED = 16000067,<br>    ABILITY_RUNTIME_ERROR_CODE_MULTI_APP_NOT_SUPPORTED = 16000072,<br>    ABILITY_RUNTIME_ERROR_CODE_INVALID_APP_INSTANCE_KEY = 16000076,<br>    ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED = 16000077,<br>    ABILITY_RUNTIME_ERROR_MULTI_INSTANCE_NOT_SUPPORTED = 16000078,<br>    ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED = 16000079<br/>} | 定义元能力模块错误码。 |
 | [AbilityRuntime_AreaMode](#abilityruntime_areamode) {<br/>    ABILITY_RUNTIME_AREA_MODE_EL1 = 0,<br/>    ABILITY_RUNTIME_AREA_MODE_EL2 = 1,<br/>    ABILITY_RUNTIME_AREA_MODE_EL3 = 2,<br/>    ABILITY_RUNTIME_AREA_MODE_EL4 = 3,<br/>    ABILITY_RUNTIME_AREA_MODE_EL5 = 4<br/>} | 定义数据加密等级。     |
 | [AbilityRuntime_StartVisibility](#abilityruntime_startvisibility) {<br/>    ABILITY_RUNTIME_HIDE_UPON_START = 0,<br/>    ABILITY_RUNTIME_SHOW_UPON_START = 1<br/>} | 定义启动Ability时的窗口和dock栏图标显示模式。     |
-| [AbilityRuntime_WindowMode](#abilityruntime_supportedwindowmode) {<br/>    ABILITY_RUNTIME_WINDOW_MODE_UNDEFINED = 0,</br>    ABILITY_RUNTIME_WINDOW_MODE_FULL_SCREEN = 1<br/>} | 定义启动应用时支持的窗口模式。     |
+| [AbilityRuntime_WindowMode](#abilityruntime_windowmode) {<br/>    ABILITY_RUNTIME_WINDOW_MODE_UNDEFINED = 0,</br>    ABILITY_RUNTIME_WINDOW_MODE_FULL_SCREEN = 1<br/>} | 定义启动应用时支持的窗口模式。     |
 | [AbilityRuntime_SupportedWindowMode](#abilityruntime_supportedwindowmode) {<br/>    ABILITY_RUNTIME_SUPPORTED_WINDOW_MODE_FULL_SCREEN = 0,<br/>    ABILITY_RUNTIME_SUPPORTED_WINDOW_MODE_SPLIT = 1,<br/>    ABILITY_RUNTIME_SUPPORTED_WINDOW_MODE_FLOATING = 2<br/>} | 定义启动应用时支持的窗口模式。     |
 
 ### 函数
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetCacheDir](#oh_abilityruntime_applicationcontextgetcachedir)(char* buffer, int32_t bufferSize, int32_t* writeLength) | 获取应用级别的缓存目录。 |
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetAreaMode](#oh_abilityruntime_applicationcontextgetareamode)([AbilityRuntime_AreaMode](#abilityruntime_areamode)* areaMode) | 获取应用级别的数据加密等级。 |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetCacheDir](#oh_abilityruntime_applicationcontextgetcachedir)(char* buffer, int32_t bufferSize, int32_t* writeLength) | 获取本应用的应用级的缓存目录。 |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetAreaMode](#oh_abilityruntime_applicationcontextgetareamode)([AbilityRuntime_AreaMode](#abilityruntime_areamode)* areaMode) | 获取本应用的应用级的数据加密等级。 |
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetBundleName](#oh_abilityruntime_applicationcontextgetbundlename)(char* buffer, int32_t bufferSize, int32_t* writeLength) | 获取应用包名。 |
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetTempDir](#oh_abilityruntime_applicationcontextgettempdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | 获取应用级别的临时文件目录。 |
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetFilesDir](#oh_abilityruntime_applicationcontextgetfilesdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | 获取应用级别的通用文件目录。 |
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetDatabaseDir](#oh_abilityruntime_applicationcontextgetdatabasedir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | 获取应用级别的数据库文件目录。 |
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetPreferencesDir](#oh_abilityruntime_applicationcontextgetpreferencesdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | 获取应用级别的首选项文件目录。 |
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetBundleCodeDir](#oh_abilityruntime_applicationcontextgetbundlecodedir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | 获取应用级别的安装文件目录。 |
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetDistributedFilesDir](#oh_abilityruntime_applicationcontextgetdistributedfilesdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | 获取应用级别的分布式文件目录。 |
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetCloudFileDir](#oh_abilityruntime_applicationcontextgetcloudfiledir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | 获取应用级别的云文件目录。 |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetTempDir](#oh_abilityruntime_applicationcontextgettempdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | 获取本应用的应用级的临时文件目录。 |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetFilesDir](#oh_abilityruntime_applicationcontextgetfilesdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | 获取本应用的应用级的通用文件目录。 |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetDatabaseDir](#oh_abilityruntime_applicationcontextgetdatabasedir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | 获取本应用的应用级的数据库文件目录。 |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetPreferencesDir](#oh_abilityruntime_applicationcontextgetpreferencesdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | 获取本应用的应用级的首选项文件目录。 |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetBundleCodeDir](#oh_abilityruntime_applicationcontextgetbundlecodedir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | 获取本应用的应用级的安装文件目录。 |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetDistributedFilesDir](#oh_abilityruntime_applicationcontextgetdistributedfilesdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | 获取本应用的应用级的分布式文件目录。 |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetCloudFileDir](#oh_abilityruntime_applicationcontextgetcloudfiledir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | 获取本应用的应用级的云文件目录。 |
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_StartSelfUIAbility](#oh_abilityruntime_startselfuiability)([AbilityBase_Want](_ability_base.md#abilitybase_want) *want) | 启动当前应用的UIAbility。 |
 | [AbilityRuntime_StartOptions*](#abilityruntime_startoptions) [OH_AbilityRuntime_CreateStartOptions](#oh_abilityruntime_createstartoptions)(void) | 创建启动当前应用的UIAbility所需要的StartOptions结构体。 |
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_DestroyStartOptions](#oh_abilityruntime_destroystartoptions)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) **startOptions) | 销毁StartOptions结构体。 |
@@ -214,7 +214,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetCacheDir(char* b
 ```
 **描述**
 
-获取应用级别的缓存目录。
+获取本应用的应用级的缓存目录。
 
 **起始版本**：13
 
@@ -242,7 +242,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetAreaMode(Ability
 
 **描述**
 
-获取应用级别的数据加密等级。
+获取本应用的应用级的数据加密等级。
 
 **起始版本**：13
 
@@ -296,7 +296,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetTempDir(char* bu
 
 **描述**
 
-获取应用级别的临时文件目录。
+获取本应用的应用级的临时文件目录。
 
 **起始版本：** 16
 
@@ -324,7 +324,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetFilesDir(char* b
 
 **描述**
 
-获取应用级别的通用文件目录。
+获取本应用的应用级的通用文件目录。
 
 **起始版本：** 16
 
@@ -352,7 +352,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDatabaseDir(char
 
 **描述**
 
-获取应用级别的数据库文件目录。
+获取本应用的应用级的数据库文件目录。
 
 **起始版本：** 16
 
@@ -380,7 +380,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetPreferencesDir(c
 
 **描述**
 
-获取应用级别的首选项文件目录。
+获取本应用的应用级的首选项文件目录。
 
 **起始版本：** 16
 
@@ -408,7 +408,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetBundleCodeDir(ch
 
 **描述**
 
-获取应用级别的安装文件目录。
+获取本应用的应用级的安装文件目录。
 
 **起始版本：** 16
 
@@ -436,7 +436,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDistributedFiles
 
 **描述**
 
-获取应用级别的分布式文件目录。
+获取本应用的应用级的分布式文件目录。
 
 **起始版本：** 16
 
@@ -464,7 +464,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetCloudFileDir(cha
 
 **描述**
 
-获取应用级别的云文件目录。
+获取本应用的应用级的云文件目录。
 
 **起始版本：** 16
 
@@ -549,7 +549,7 @@ void startSelfUIAbilityTest()
 {
     AbilityBase_Element element;
     element.abilityName = const_cast<char*>("EntryAbility");
-    element.bundleName = const_cast<char*>("com.exampl.myapplication");
+    element.bundleName = const_cast<char*>("com.example.myapplication");
     element.moduleName = const_cast<char*>("entry");
     AbilityBase_Want* want = OH_AbilityBase_CreateWant(element);
 
@@ -653,7 +653,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsWindowMode(AbilityRunt
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | StartOptions结构体。                           |
-| windowMode     | 需要设置的窗口模式。                           |
+| windowMode     | 需要设置的窗口模式。取值范围参见[AbilityRuntime_WindowMode](_ability_runtime.md#abilityruntime_windowmode)。                           |
 
 **起始版本：** 17
 
@@ -701,7 +701,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsWindowMode(AbilityRunt
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | StartOptions结构体。                           |
-| windowMode     | 获取到的窗口模式。                           |
+| windowMode     | 获取到的窗口模式。取值范围参见[AbilityRuntime_WindowMode](_ability_runtime.md#abilityruntime_windowmode)。                           |
 
 **起始版本：** 17
 
@@ -841,7 +841,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsWithAnimation(AbilityR
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | StartOptions结构体。                           |
-| withAnimation     | 启动Ability时是否具有动画效果。                           |
+| withAnimation     | 启动Ability时是否具有动画效果。<br>**说明**：<br>true表示启动Ability时具有动画效果；<br>false表示启动Ability时不具有动画效果。</br>          |
 
 **起始版本：** 17
 
@@ -887,7 +887,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsWithAnimation(AbilityR
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | StartOptions结构体。                           |
-| withAnimation     | 启动Ability时是否具有动画效果。                           |
+| withAnimation     | 启动Ability时是否具有动画效果。<br>**说明**：<br>true表示启动Ability时具有动画效果；<br>false表示启动Ability时不具有动画效果。</br>                           |
 
 **起始版本：** 17
 
@@ -1389,7 +1389,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsStartVisibility(Abilit
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | StartOptions结构体。                           |
-| startVisibility     | 需要设置的显示模式。                           |
+| startVisibility     | 需要设置的显示模式。取值范围参见[AbilityRuntime_StartVisibility](#abilityruntime_startvisibility)。                           |
 
 **起始版本：** 17
 
@@ -1436,7 +1436,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsStartVisibility(Abilit
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | StartOptions结构体。                           |
-| startVisibility     | 获取到的显示模式。                           |
+| startVisibility     | 获取到的显示模式。取值范围参见[AbilityRuntime_StartVisibility](#abilityruntime_startvisibility)。                           |
 
 **起始版本：** 17
 
@@ -1644,7 +1644,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsSupportedWindowModes(A
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | StartOptions结构体。                           |
-| supportedWindowModes     | 需要设置的组件所支持的窗口模式。                           |
+| supportedWindowModes     | 需要设置的组件所支持的窗口模式。取值范围参见[AbilityRuntime_SupportedWindowMode](#abilityruntime_supportedwindowmode)。                           |
 | size     | 组件所支持的窗口模式的大小。                           |
 
 **起始版本：** 17
@@ -1700,7 +1700,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsSupportedWindowModes(A
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | StartOptions结构体。                           |
-| supportedWindowModes     | 获取到的组件所支持的窗口模式。                           |
+| supportedWindowModes     | 获取到的组件所支持的窗口模式。取值范围参见[AbilityRuntime_SupportedWindowMode](#abilityruntime_supportedwindowmode)。                           |
 | size     | 获取到的组件所支持的窗口模式的大小。                           |
 
 **起始版本：** 17
@@ -2207,7 +2207,7 @@ void demo()
 {
     AbilityBase_Element element;
     element.abilityName = const_cast<char*>("EntryAbility");
-    element.bundleName = const_cast<char*>("com.exampl.myapplication");
+    element.bundleName = const_cast<char*>("com.example.myapplication");
     element.moduleName = const_cast<char*>("entry");
     AbilityBase_Want* want = OH_AbilityBase_CreateWant(element);
     if (want == nullptr) {

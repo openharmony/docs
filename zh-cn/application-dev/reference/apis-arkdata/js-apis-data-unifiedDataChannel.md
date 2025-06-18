@@ -39,13 +39,13 @@ type GetDelayData = (type: string) => UnifiedData
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 作为延迟封装的标识。 |
+| type | string | 是 | 作为延迟数据类型的标识。 |
 
 **返回值：**
 
 | 类型                                     | 说明                      |
 | ---------------------------------------- |-------------------------|
-| [UnifiedData](#unifieddata) | 当延迟封装触发时，返回一个UnifiedData对象。 |
+| [UnifiedData](#unifieddata) | 当延迟回调触发时，返回一个UnifiedData对象。 |
 
 **示例：**
 
@@ -402,7 +402,7 @@ let types = unifiedData.getTypes();
 
 ## Summary
 
-描述某一统一数据对象的数据摘要，包括所含数据类型及大小。
+描述统一数据对象的数据摘要，包括数据类型和大小。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -617,7 +617,7 @@ unifiedData.addRecord(record);
 
 getEntry(type: string): ValueType
 
-通过数据类型获取当前数据记录中的数据内容。
+通过数据类型获取数据记录中的数据内容。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -760,7 +760,7 @@ for (let i = 0; i < records.length; i++) {
 
 getTypes(): Array\<string\>
 
-获取当前数据记录中数据的所有类型集合。可通过UnifiedRecord数据记录对象调用本接口，能查询出此记录中数据的所有类型集合，包括使用[addEntry](#addentry15)函数添加的数据类型。
+获取数据记录中数据的所有类型集合。可通过UnifiedRecord数据记录对象调用本接口，查询出此记录中数据的所有类型集合，包括使用[addEntry](#addentry15)函数添加的数据类型。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -822,7 +822,7 @@ for (let i = 0; i < records.length; i++) {
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -845,7 +845,7 @@ let unifiedData = new unifiedDataChannel.UnifiedData(text);
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -866,7 +866,7 @@ text.abstract = 'This is abstract';
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -887,7 +887,7 @@ HTML类型数据，是[Text](#text)的子类，用于描述超文本标记语言
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -908,7 +908,7 @@ File类型数据，是[UnifiedRecord](#unifiedrecord)的子类，也是文件类
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -944,7 +944,7 @@ export default class EntryAbility extends UIAbility {
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -975,7 +975,7 @@ export default class EntryAbility extends UIAbility {
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1006,7 +1006,7 @@ export default class EntryAbility extends UIAbility {
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1037,7 +1037,7 @@ export default class EntryAbility extends UIAbility {
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1068,7 +1068,7 @@ SystemDefinedRecord是[UnifiedRecord](#unifiedrecord)的子类，也是OpenHarmo
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1093,7 +1093,7 @@ let unifiedData = new unifiedDataChannel.UnifiedData(sdr);
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1127,7 +1127,7 @@ let unifiedData = new unifiedDataChannel.UnifiedData(form);
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1163,7 +1163,7 @@ let unifiedData = new unifiedDataChannel.UnifiedData(appItem);
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1176,31 +1176,31 @@ import { image } from '@kit.ImageKit'; // PixelMap类定义所在模块
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const color = new ArrayBuffer(96); // 创建pixelmap对象
+const color = new ArrayBuffer(96); // 创建pixelMap对象
 let opts: image.InitializationOptions = {
   editable: true, pixelFormat: 3, size: {
     height: 4, width: 6
   }
 }
-image.createPixelMap(color, opts, (error, pixelmap) => {
+image.createPixelMap(color, opts, (error, pixelMap) => {
   if (error) {
-    console.error('Failed to create pixelmap.');
+    console.error('Failed to create pixelMap.');
   } else {
-    console.info('Succeeded in creating pixelmap.');
-    let arrayBuf = new ArrayBuffer(pixelmap.getPixelBytesNumber());
-    pixelmap.readPixelsToBuffer(arrayBuf);
+    console.info('Succeeded in creating pixelMap.');
+    let arrayBuf = new ArrayBuffer(pixelMap.getPixelBytesNumber());
+    pixelMap.readPixelsToBuffer(arrayBuf);
     let u8Array = new Uint8Array(arrayBuf);
-    let sdpixel = new unifiedDataChannel.SystemDefinedPixelMap();
-    sdpixel.rawData = u8Array;
-    let unifiedData = new unifiedDataChannel.UnifiedData(sdpixel);
+    let sdPixel = new unifiedDataChannel.SystemDefinedPixelMap();
+    sdPixel.rawData = u8Array;
+    let unifiedData = new unifiedDataChannel.UnifiedData(sdPixel);
 
     // 从unifiedData中读取pixelMap类型的record
     let records = unifiedData.getRecords();
     for (let i = 0; i < records.length; i++) {
       if (records[i].getType() === uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP) {
-        let pixelmapRecord = records[i] as unifiedDataChannel.SystemDefinedPixelMap;
-        let newArraybuf = pixelmapRecord.rawData.buffer;
-        pixelmap.writeBufferToPixels(newArraybuf).then(() => {
+        let pixelMapRecord = records[i] as unifiedDataChannel.SystemDefinedPixelMap;
+        let newArrayBuf = pixelMapRecord.rawData.buffer;
+        pixelMap.writeBufferToPixels(newArrayBuf).then(() => {
           console.info('Succeeded in writing data from buffer to a pixelMap');
         }).catch((error: BusinessError) => {
           console.error(`Failed to write data from a buffer to a PixelMap. code is ${error.code}, message is ${error.message}`);
@@ -1217,7 +1217,7 @@ ApplicationDefinedRecord是[UnifiedRecord](#unifiedrecord)的子类，也是应�
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+**系统能力**： SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1243,13 +1243,13 @@ UDMF已经支持的数据通路枚举类型。其主要用途是标识各种UDMF
 | 名称       | 值         | 说明      |
 |----------|-----------|---------|
 | DATA_HUB | 'DataHub' | 公共数据通路。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| DRAG<sup>14+</sup> | 'Drag' | 拖拽类型数据通道。<br/>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| DRAG<sup>14+</sup> | 'Drag' | 拖拽类型数据通路。<br/>**模型约束：** 仅可在Stage模型下使用。 |
 
 ## Options
 
 type Options = { intention?: Intention; key?: string; }
 
-UDMF提供的数据操作接口可选项，包含intention和key两个可选参数。当对应接口不需要此参数时可不填，具体要求参照方法接口的参数说明。
+UDMF提供的数据操作接口包含两个可选参数：intention和key。如果接口不需要这些参数，可以不填，具体要求请参阅该接口的参数说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1313,7 +1313,7 @@ UDMF提供的数据操作接口可选项，包含intention和key两个可选参�
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
-| 名称     | 类型                                  | 可读 | 可写 | 说明                                                             |
+| 名称     | 类型                                  | 只读 | 可选 | 说明                                                             |
 | -------- |-------------------------------------| ---- | ---- |----------------------------------------------------------------|
 | progress | number                              | 是   | 否   | 系统上报拖拽任务进度百分比。取值范围为[-1-100]的整数，其中-1时代表本次获取数据失败，100时表示本次获取数据完成。 |
 | status | [ListenerStatus](#listenerstatus15) | 是   | 否   | 系统上报拖拽任务的状态码。                                                  |
@@ -1643,7 +1643,7 @@ queryData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&
 | 参数名      | 类型                                                            | 必填 | 说明                                                                                                                                                               |
 |----------|---------------------------------------------------------------|----|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | options  | [Options](#options)                                           | 是  | 配置项参数，key和intention均为可选，根据传入的参数做相应的校验以返回不同的值。                                                                                                                    |
-| callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | 是  | 回调函数，返回查询到的所有数据。<br>如果options中填入的是key，则返回key对应的数据。<br>如果options中填入的是intention，则返回intention下所有数据。<br>如intention和key均填写了，取两者查询数据的交集，与options只填入key的获取结果一致；如没有交集报错。 |
+| callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | 是  | 回调函数，返回查询到的所有数据。<br>如果options中填入的是key，则返回key对应的数据；<br>如果options中填入的是intention，则返回intention下所有数据。<br>如intention和key均填写了，取两者查询数据的交集，与options只填入key的获取结果一致；如没有交集报错。 |
 
 **错误码：**
 

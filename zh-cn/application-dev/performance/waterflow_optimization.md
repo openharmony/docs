@@ -69,10 +69,10 @@
       }
       // 触底加载数据  
       .onReachEnd(() => {
-        console.info("onReachEnd")
+        console.info("onReachEnd");
         setTimeout(() => {
-          this.dataSource.addNewItems(100)
-        }, 1000)
+          this.dataSource.addNewItems(100);
+        }, 1000);
       })
       .columnsTemplate("1fr 1fr")
       .columnsGap(10)
@@ -85,9 +85,9 @@
 
   // 在数据尾部增加count个元素
   public addNewItems(count: number): void {
-    let len = this.dataArray.length
+    let len = this.dataArray.length;
     for (let i = 0; i < count; i++) {
-      this.dataArray.push(this.dataArray.length)
+      this.dataArray.push(this.dataArray.length);
     }
     this.notifyDatasetChange([{ type: DataOperationType.ADD, index: len, count: count }]);
   }
@@ -122,7 +122,7 @@
           .onAppear(() => {
             // 即将触底时提前增加数据  
             if (item + 20 == this.dataSource.totalCount()) {
-              this.dataSource.addNewItems(100)
+              this.dataSource.addNewItems(100);
             }
           })
           .width('100%')
@@ -162,7 +162,7 @@
           .onAppear(() => {
             // 即将触底时提前增加数据  
             if (item + 20 == this.dataSource.totalCount()) {
-              this.dataSource.addNewItems(100)
+              this.dataSource.addNewItems(100);
             }
           })
           .width('100%')
@@ -181,7 +181,7 @@
 @Reusable
 @Component
 struct ResuableFlowItem {
-  @State item: number = 0
+  @State item: number = 0;
 
   // 从复用缓存中加入到组件树之前调用，可在此处更新组件的状态变量以展示正确的内容
   aboutToReuse(params) {

@@ -9,6 +9,7 @@ The OH_Drawing_FontAdjustInfo struct describes the information about a font weig
 
 **Related module**: [Drawing](_drawing.md)
 
+**Header file**: [drawing_text_typography.h](drawing__text__typography_8h.md)
 
 ## Summary
 

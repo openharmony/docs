@@ -191,9 +191,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 4. trace规格简介。
 
-    trace文件大小约为1-5M左右。
-
-    可结合可视化工具进行trace分析，解析trace文件参考：[SmartPerf编译部署指导文档](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/ide/README_zh.md)。
+    trace文件大小约为1-5M左右。trace文件可以通过[HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具进行可视化分析。工具下载链接：[developtools_smartperf_host官方发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。。
 
     trace文件说明参考：[web端加载trace说明](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_systemtrace.md)。
 

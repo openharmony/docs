@@ -955,8 +955,8 @@ startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | The system ability works abnormally. |
-| 19100016 | uri missing in want. |
-| 19100017 | displayName missing in want. |
+| 19100016 | The uri field is missing in the want parameter. |
+| 19100017 | The displayName field is missing in the want parameter. |
 
 **示例：**
 
@@ -1011,7 +1011,7 @@ setSandboxAppConfig(configInfo: string): Promise&lt;void&gt;
 | 19100001 | Invalid parameter value. |
 | 19100007 | No permission to call this API, which is available only for non-DLP sandbox applications. |
 | 19100011 | The system ability works abnormally. |
-| 19100018 | Not authorized application. |
+| 19100018 | The application is not authorized. |
 
 **示例：**
 
@@ -1048,7 +1048,7 @@ cleanSandboxAppConfig(): Promise&lt;void&gt;
 | 19100001 | Invalid parameter value. |
 | 19100007 | No permission to call this API, which is available only for non-DLP sandbox applications. |
 | 19100011 | The system ability works abnormally. |
-| 19100018 | Not authorized application. |
+| 19100018 | The application is not authorized. |
 
 **示例：**
 
@@ -1083,7 +1083,7 @@ getSandboxAppConfig(): Promise&lt;string&gt;
 | -------- | -------- |
 | 19100001 | Invalid parameter value. |
 | 19100011 | The system ability works abnormally. |
-| 19100018 | Not authorized application. |
+| 19100018 | The application is not authorized. |
 
 **示例：**
 

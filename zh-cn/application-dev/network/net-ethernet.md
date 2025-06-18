@@ -54,14 +54,14 @@ ethernet.getAllActiveIfaces().then((data: string[]) => {
     console.log("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
   }
 }).catch((error:BusinessError) => {
-  console.log("getAllActiveIfaces promise error = " + JSON.stringify(error));
+  console.error("getAllActiveIfaces promise error = " + JSON.stringify(error));
 });
 
 // isIfaceActive判断指定网口是否已激活
 ethernet.isIfaceActive("eth0").then((data: number) => {
   console.log("isIfaceActive promise = " + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-  console.log("isIfaceActive promise error = " + JSON.stringify(error));
+  console.error("isIfaceActive promise error = " + JSON.stringify(error));
 });
 
 // getIfaceConfig获取指定以太网的网络属性
@@ -73,7 +73,7 @@ ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => 
   console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
   console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
 }).catch((error: BusinessError) => {
-  console.log("getIfaceConfig promise error = " + JSON.stringify(error));
+  console.error("getIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
 
@@ -100,14 +100,14 @@ ethernet.getAllActiveIfaces().then((data: string[]) => {
     console.log("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
   }
 }).catch((error:BusinessError) => {
-  console.log("getAllActiveIfaces promise error = " + JSON.stringify(error));
+  console.error("getAllActiveIfaces promise error = " + JSON.stringify(error));
 });
 
 // isIfaceActive判断指定网口是否已激活
 ethernet.isIfaceActive("eth0").then((data: number) => {
   console.log("isIfaceActive promise = " + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-  console.log("isIfaceActive promise error = " + JSON.stringify(error));
+  console.error("isIfaceActive promise error = " + JSON.stringify(error));
 });
 
 // setIfaceConfig配置指定以太网的网络属性
@@ -125,7 +125,7 @@ const setConfigPromise = ethernet.setIfaceConfig("eth0", config);
 setConfigPromise.then(() => {
   console.log("setIfaceConfig promise ok");
 }).catch((error: BusinessError)  => {
-  console.log("setIfaceConfig promise error = " + JSON.stringify(error));
+  console.error("setIfaceConfig promise error = " + JSON.stringify(error));
 });
 
 // getIfaceConfig获取指定以太网的网络属性
@@ -137,7 +137,7 @@ ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => 
   console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
   console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
 }).catch((error: BusinessError) => {
-  console.log("getIfaceConfig promise error = " + JSON.stringify(error));
+  console.error("getIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
 

@@ -1,32 +1,12 @@
 # 自定义组件的自定义布局
 
-自定义组件的自定义布局用于通过数据计算的方式布局自定义组件内的子组件。
+自定义组件的自定义布局通过数据计算的方式布局自定义组件内的子组件。
 
 > **说明：**
 >
 > 本模块首批接口从API version 9开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
-## onPlaceChildren<sup>10+</sup>
-
-onPlaceChildren?(selfLayoutInfo: GeometryInfo, children: Array&lt;Layoutable&gt;, constraint: ConstraintSizeOptions):void
-
-ArkUI框架会在自定义组件布局时，将该自定义组件的子节点自身的尺寸范围通过onPlaceChildren传递给该自定义组件。不允许在onPlaceChildren函数中改变状态变量。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名            | 类型                                                         |必填| 说明               |
-|----------------|------------------------------------------------------------|---|------------------|
-| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            |是 |测量后的自身布局信息。         |
-| children       | Array&lt;[Layoutable](#layoutable10)&gt;                   |是 |测量后的子组件布局信息。         |
-| constraint     | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) |是 |父组件constraint信息。 |
-
-**示例：**
-
-示例请参考[自定义布局代码示例](#onmeasuresize10)。
+> 
+> 在自定义组件内实现onMeasureSize, onPlaceChildren任一方法即视为实现自定义布局，推荐同时实现两种方法，具体参数说明可见对应接口参数说明。
 
 ## onMeasureSize<sup>10+</sup>
 
@@ -42,15 +22,33 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 
 | 参数名         | 类型                                                       | 必填|说明                                                         |
 | -------------- | ---------------------------------------------------------- | ---|------------------------------------------------------------ |
-| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            | 是|测量后的自身布局信息。  <br/>**说明：** <br/>第一次布局时以自身设置的属性为准。                                    |
-| children       | Array&lt;[Measurable](#measurable10)&gt;                   | 是|测量后的子组件布局信息。<br/>**说明：** <br/>如果没有设置子组件的布局信息，子组件会维持上一次的布局信息，当子组件从来没有设置过尺寸时，尺寸默认为0。 |
-| constraint     | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 是|父组件constraint信息。                                       |
+| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            | 是|计算自定义组件大小后的自身布局信息。  <br/>**说明：** <br/>第一次布局时以自身设置的属性为准。                                    |
+| children       | Array&lt;[Measurable](#measurable10)&gt;                   | 是|计算子组件大小后的子组件布局信息。<br/>**说明：** <br/>如果没有设置子组件的布局信息，子组件会维持上一次的布局信息，当子组件从来没有设置过尺寸时，尺寸默认为0。 |
+| constraint     | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 是|自定义组件的布局约束信息。                                       |
 
 **返回值：** 
 
 | 类型                        | 说明           |
 | --------------------------- | -------------- |
 | [SizeResult](#sizeresult10) | 组件尺寸信息。 |
+
+## onPlaceChildren<sup>10+</sup>
+
+onPlaceChildren?(selfLayoutInfo: GeometryInfo, children: Array&lt;Layoutable&gt;, constraint: ConstraintSizeOptions):void
+
+ArkUI框架会在自定义组件确定位置时，将该自定义组件的子节点自身的尺寸范围通过onPlaceChildren传递给该自定义组件。不允许在onPlaceChildren函数中改变状态变量。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名            | 类型                                                         |必填| 说明               |
+|----------------|------------------------------------------------------------|---|------------------|
+| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            |是 |计算自定义组件大小后的自身布局信息。         |
+| children       | Array&lt;[Layoutable](#layoutable10)&gt;                   |是 |计算子组件大小后的子组件布局信息。         |
+| constraint     | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) |是 |自定义组件的布局约束信息。 |
 
 **示例一：**
 自定义布局代码示例。
@@ -221,7 +219,7 @@ struct CustomLayout {
 ![custom_layout_demo2.png](figures/custom_layout_demo2.png)
 
 **示例三：** 
-通过uniqueId获取子组件的[FrameNode](../js-apis-arkui-frameNode.md#framenode)  ，并调用FrameNode的API接口修改尺寸、背景颜色。
+通过uniqueId获取子组件的[FrameNode](../js-apis-arkui-frameNode.md#framenode)，并调用FrameNode的API接口修改尺寸、背景颜色。
 ```ts
 import { FrameNode, NodeController } from '@kit.ArkUI';
 @Entry
@@ -319,7 +317,7 @@ struct CustomLayout {
 
 | 名称         | 类型       | 只读|可选|  说明                                                      |
 |--------------|---------------------------------- | ------|-----------------------------------------------------|---------------------|
-| measureResult| [MeasureResult](#measureresult10)      |   否|否| 子组件测量后的尺寸信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>单位：vp     |
+| measureResult| [MeasureResult](#measureresult10) |   否|否| 子组件测量后的尺寸信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>单位：vp     |
 
 ### layout
 
@@ -341,7 +339,7 @@ layout(position: Position)
 
 getMargin() : DirectionalEdgesT\<number>
 
-调用此方法获得子组件的margin信息。
+调用此方法获取子组件的margin信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -357,7 +355,7 @@ getMargin() : DirectionalEdgesT\<number>
 
 getPadding() : DirectionalEdgesT\<number>
 
- 调用此方法获得子组件的padding信息。
+ 调用此方法获取子组件的padding信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -373,7 +371,7 @@ getPadding() : DirectionalEdgesT\<number>
 
 getBorderWidth() : DirectionalEdgesT\<number>
 
-调用此方法获得子组件的borderWidth信息。
+调用此方法获取子组件的borderWidth信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -407,7 +405,7 @@ getBorderWidth() : DirectionalEdgesT\<number>
 
  measure(constraint: ConstraintSizeOptions) : MeasureResult
 
- 调用此方法对子组件的尺寸范围进行限制。
+ 调用此方法限制子组件的尺寸范围。
 
  **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

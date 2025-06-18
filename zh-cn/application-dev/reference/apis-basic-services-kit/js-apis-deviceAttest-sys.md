@@ -45,7 +45,7 @@ import base from '@ohos.base';
 try {
     deviceAttest.getAttestStatus((error: base.BusinessError, value: deviceAttest.AttestResultInfo) => {
     if (typeof error != 'undefined') {
-        console.info("error code:" + error.code + " message:" + error.message);
+        console.error("error code:" + error.code + " message:" + error.message);
     } else {
         console.info("auth:" + value.authResult + " software:" + value.softwareResult + " ticket:" + value.ticket);
         console.info("versionIdResult:" + value.softwareResultDetail[0],
@@ -58,7 +58,7 @@ try {
 } catch (error) {
     let code: number = (error as base.BusinessError).code;
     let message: string = (error as base.BusinessError).message;
-    console.info("error code:" + code + " message:" + message);
+    console.error("error code:" + code + " message:" + message);
 }
 ```
 
@@ -98,12 +98,12 @@ try {
         " PCIDResult:" + value.softwareResultDetail[3],
         " reserver:" + value.softwareResultDetail[4]);
     }).catch((error: base.BusinessError) => {
-        console.info("error code:" + error.code + " message:" + error.message);
+        console.error("error code:" + error.code + " message:" + error.message);
     });
 } catch (error) {
     let code: number = (error as base.BusinessError).code;
     let message: string = (error as base.BusinessError).message;
-    console.info("error code:" + code + " message:" + message);
+    console.error("error code:" + code + " message:" + message);
 }
 ```
 
@@ -145,7 +145,7 @@ try {
 } catch (error) {
     let code: number = (error as base.BusinessError).code;
     let message: string = (error as base.BusinessError).message;
-    console.info("error code:" + code + " message:" + message);
+    console.error("error code:" + code + " message:" + message);
 }
 ```
 
@@ -155,12 +155,12 @@ try {
 
 **系统能力：** SystemCapability.XTS.DeviceAttest
 
-| 名称                  | 类型                  | 可读 | 可写 | 说明                   |
+| 名称                  | 类型                  | 只读 | 可选 | 说明                   |
 | --------------------- | --------------------- | ---- | ---- | ---------------------- |
-| authResult            | number               | 是   | 否   | 设备硬件信息校验结果。    |
-| softwareResult        | number               | 是   | 否   | 设备软件信息校验结果。    |
-| softwareResultDetail  | Array&lt;number&gt;  | 是   | 否   | 设备软件信息校验结果详细说明：<br/> - softwareResultDetail[0]：版本Id的校验结果。<br/>- softwareResultDetail[1]：安全补丁标签的校验结果。<br/>- softwareResultDetail[2]：版本Hash的校验结果。<br/>- softwareResultDetail[3]：系统能力集合的校验结果。<br/>- softwareResultDetail[4]：保留位。  |
-| ticket                | string               | 是   | 否   | 云侧下发的软证书。<br/>设备硬件信息校验结果通过后有值；校验结果失败，该值为空。        |
+| authResult            | number               | 否   | 否   | 设备硬件信息校验结果。    |
+| softwareResult        | number               | 否   | 否   | 设备软件信息校验结果。    |
+| softwareResultDetail  | Array&lt;number&gt;  | 否   | 否   | 设备软件信息校验结果详细说明：<br/> - softwareResultDetail[0]：版本Id的校验结果。<br/>- softwareResultDetail[1]：安全补丁标签的校验结果。<br/>- softwareResultDetail[2]：版本Hash的校验结果。<br/>- softwareResultDetail[3]：系统能力集合的校验结果。<br/>- softwareResultDetail[4]：保留位。  |
+| ticket                | string               | 否   | 否   | 云侧下发的软证书。<br/>设备硬件信息校验结果通过后有值；校验结果失败，该值为空。        |
 
 > **说明：**
 >

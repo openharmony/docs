@@ -43,9 +43,6 @@ import { formInfo } from '@kit.FormKit';
 | isDynamic<sup>10+</sup>      | boolean               | 是    | 否     | 卡片是否为动态卡片。<br/>仅ArkTS卡片区分动静态卡片，JS卡片均为动态卡片。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | transparencyEnabled<sup>11+</sup>      | boolean               | 是    | 否     | 卡片是否支持设置背景透明度。<br/>ArkTS卡片由用户配置决定是否支持，JS卡片均不支持。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | supportedShapes<sup>12+</sup>    | Array&lt;number&gt;      | 是    | 否     | 卡片支持的形状。具体可选形状参考[FormShape<sup>12+</sup>](#formshape12) <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-| <!--DelRow-->previewImages<sup>18+</sup> | Array&lt;number&gt; | 是 | 否 | 卡片预览图资源ID。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| <!--DelRow-->enableBlurBackground<sup>18+</sup>  | boolean               | 是    | 否     | 卡片是否使用模糊背板。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| <!--DelRow-->renderingMode<sup>18+</sup>|[RenderingMode](./js-apis-app-form-formInfo-sys.md#renderingmode18)|是|否|卡片渲染模式。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## FormType
 
@@ -110,7 +107,7 @@ import { formInfo } from '@kit.FormKit';
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
 | IDENTITY_KEY     | 'ohos.extra.param.key.form_identity'    | 卡片标识。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| DIMENSION_KEY      | 'ohos.extra.param.key.form_dimension'  | 卡片规格样式。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| DIMENSION_KEY      | 'ohos.extra.param.key.form_dimension'  | 卡片规格，规格尺寸参考[FormDimension](#formdimension)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | NAME_KEY       | 'ohos.extra.param.key.form_name'   | 卡片名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | MODULE_NAME_KEY        | 'ohos.extra.param.key.module_name'   | 卡片所属模块名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | WIDTH_KEY        | 'ohos.extra.param.key.form_width'   | 卡片宽度。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|

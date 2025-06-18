@@ -11,6 +11,8 @@ The OhosPixelMapCreateOps struct describes the options used for creating a Pixel
 
 **Related module**: [Image](image.md)
 
+**Header file**: [image_pixel_map_mdk.h](image__pixel__map__mdk_8h.md)
+
 
 ## Summary
 

@@ -1,4 +1,4 @@
-# @ohos.app.appstartup.StartupConfigEntry
+# @ohos.app.appstartup.StartupConfigEntry (启动框架配置)
 
 
 本模块提供应用启动框架配置的能力。

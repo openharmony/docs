@@ -76,7 +76,7 @@
    > **说明：**
    > 创建新PixelMap时，必须将`srcPixelFormat`指定为原PixelMap的像素格式，否则新PixelMap的图像会出现异常。
 
-     ```ts
+      ```ts
       /**
        *  复制（深拷贝）一个新的PixelMap
        *
@@ -102,7 +102,7 @@
         // 根据初始化选项和缓冲区数组，生成新PixelMap。
         return image.createPixelMapSync(buffer, options);
       }
-     ```
+      ```
 
 <!--RP1-->
 <!--RP1End-->

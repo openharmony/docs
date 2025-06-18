@@ -7,7 +7,7 @@
 下面以Worker响应"hello world"请求为例说明。
 
 
-1. 首先，创建一个执行多个任务的Worker。
+1. 首先，创建一个执行任务的Worker。
 
    ```ts
    // Worker.ets
@@ -22,7 +22,7 @@
    }
    ```
 
-2. 这里的宿主线程是UI主线程，在宿主线程中创建Worker对象，当点击Button时调用postMessage向Worker线程发送消息，通过Worker的onmessage方法接收Worker线程返回的数据。
+2. 这里的宿主线程是UI主线程，在宿主线程中创建Worker对象，当点击Button时调用postMessage方法向Worker线程发送消息，通过Worker的onmessage方法接收Worker线程返回的数据。
 
    ```ts
    // Index.ets

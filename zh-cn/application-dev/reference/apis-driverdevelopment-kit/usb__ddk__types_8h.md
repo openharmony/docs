@@ -5,13 +5,15 @@
 
 提供USB DDK中的枚举变量、结构体定义与宏定义。
 
-**起始版本：**
+**引用文件：** <usb/usb_ddk_types.h>
 
-10
+**库：** libusb_ndk.z.so
 
-**相关模块:**
+**系统能力：** SystemCapability.Driver.USB.Extension
 
-[USB DDK](_usb_ddk.md)
+**起始版本：** 10
+
+**相关模块：** [USB DDK](_usb_ddk.md)
 
 
 ## 汇总
@@ -32,7 +34,7 @@
 | [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) | 配置描述符。 |
 | [UsbRequestPipe](_usb_request_pipe.md) | 请求管道。 |
 | [UsbDeviceMemMap](_usb_device_mem_map.md) | 设备内存映射，通过[OH_Usb_CreateDeviceMemMap()](_usb_ddk.md#oh_usb_createdevicememmap)创建设备内存映射，使用内存映射后的缓冲区，获得更好的性能。 |
-| [Usb_DeviceArray](_usb_device_array.md) | 设备ID清单，用于存放[OH_Usb_GetDevices()](_usb_ddk.md#oh_usb_getdevices16)接口获取到的设备ID列表和设备数量。 |
+| [Usb_DeviceArray](_usb_device_array.md) | 设备ID清单，用于存放[OH_Usb_GetDevices()](_usb_ddk.md#oh_usb_getdevices)接口获取到的设备ID列表和设备数量。 |
 
 
 ### 类型定义
@@ -44,7 +46,7 @@
 | typedef struct [UsbDdkInterface](_usb_ddk_interface.md) [UsbDdkInterface](_usb_ddk.md#usbddkinterface) | USB接口。 |
 | typedef struct [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) [UsbDdkConfigDescriptor](_usb_ddk.md#usbddkconfigdescriptor) | 配置描述符。 |
 | typedef struct [UsbDeviceMemMap](_usb_device_mem_map.md) [UsbDeviceMemMap](_usb_ddk.md#usbdevicememmap) | 设备内存映射，通过[OH_Usb_CreateDeviceMemMap()](_usb_ddk.md#oh_usb_createdevicememmap)创建设备内存映射，使用内存映射后的缓冲区，获得更好的性能。 |
-| typedef struct [Usb_DeviceArray](_usb_device_array.md) [Usb_DeviceArray](_usb_ddk.md#usb_devicearray) | 设备ID清单，用于存放[OH_Usb_GetDevices()](_usb_ddk.md#oh_usb_getdevices16)接口获取到的设备ID列表和设备数量。 |
+| typedef struct [Usb_DeviceArray](_usb_device_array.md) [Usb_DeviceArray](_usb_ddk.md#usb_devicearray) | 设备ID清单，用于存放[OH_Usb_GetDevices()](_usb_ddk.md#oh_usb_getdevices)接口获取到的设备ID列表和设备数量。 |
 
 ### 枚举
 

@@ -310,9 +310,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"getValueBool", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 // 样例测试js
-const char *srcCallNative = R"JS(getValueBool("abc"))JS";
-const char *srcCallNative = R"JS(getValueBool(true))JS";
-const char *srcCallNative = R"JS(getValueBool(false))JS";
+const char *srcCallNative = R"JS(getValueBool("abc");
+                                 getValueBool(true);
+                                 getValueBool(false);)JS";
 ```
 
 预期结果

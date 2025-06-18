@@ -41,7 +41,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
                // 在BackupExtension.ets文件里自定义继承BackupExtensionAbility，重写其中的onBackup/onBackupEx和
                // onRestore/onRestoreEx方法，推荐使用onBackupEx/onRestoreEx。
                // 如果没有特殊要求可以空实现，则备份恢复服务会按照统一的备份恢复数据规则进行备份恢复。
-               "srcEntry": "./ets/BackupExtension/BackupExtension.ets", 
+               "srcEntry": "./ets/BackupExtension/BackupExtension.ets"
            }      
        ]
    }
@@ -86,7 +86,6 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
       }
       //onRestore
       async onRestore (bundleVersion : BundleVersion) {
-        hilog.info(0x0000, TAG, `onRestore ok ${JSON.stringify(bundleVersion)}`);
         hilog.info(0x0000, TAG, `onRestore end`);
       }
     }
@@ -105,7 +104,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
     class BackupExt extends BackupExtensionAbility {
       //onBackupEx
       async onBackupEx(backupInfo: string): Promise<string> {
-        console.log(`onBackupEx ok`);
+        console.info(`onBackupEx ok`);
         let errorInfo: ErrorInfo = {
           type: "ErrorInfo",
           errorCode: 0,
@@ -116,7 +115,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 
       // onRestoreEx
       async onRestoreEx(bundleVersion : BundleVersion, restoreInfo: string): Promise<string> {
-        console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
+        console.info(`onRestoreEx begin`);
         let errorInfo: ErrorInfo = {
           type: "ErrorInfo",
           errorCode: 0,
@@ -131,7 +130,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 
 | 属性名称             | 数据类型   | 必填 | 含义                                                         |
 | -------------------- | ---------- | ---- | ------------------------------------------------------------ |
-| allowToBackupRestore | 布尔值     | 是   | 是否允许备份恢复，默认为false。                              |
+| allowToBackupRestore | 布尔值     | 是   | 是否允许备份恢复，默认为false。true为允许备份恢复，false为不允许备份恢复。                              |
 | includes             | 字符串数组 | 否   | 应用沙箱中需要备份的文件和目录。<br>当模式串以非/开始时，表示一个相对于根路径的相对路径。<br>`includes`支持的路径清单列表如下述代码段内容所示，当配置`includes`时请确保配置路径范围包含在其中。<br>当`includes`已配置时，备份恢复框架会采用开发者配置的模式串，否则将会采用下述代码段内容作为默认值。 |
 | excludes             | 字符串数组 | 否   | `includes`中无需备份的例外项。格式同`includes`。<br>在配置`excludes`时，请确保其范围在`includes`的子集中。<br>当`excludes`已配置时，备份恢复框架会采用开发者配置的模式串，否则将会采用**空数组**作为默认值。 |
 | fullBackupOnly       | 布尔值     | 否   | 是否使用应用默认恢复目录，默认值为false。当值为true时，恢复数据时会通过临时路径进行缓存，临时路径可通过[backupDir](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md)获取。当值为false或者不配置该字段时，恢复数据会以'/'为根目录解压数据。 |

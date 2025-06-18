@@ -30,20 +30,17 @@
 | typedef struct [ArkUI_DragPreviewOption](_ark_u_i___native_module.md#arkui_dragpreviewoption) [ArkUI_DragPreviewOption](_ark_u_i___native_module.md#arkui_dragpreviewoption) | 设置拖拽跟手图的相关自定义参数。  | 
 | typedef struct [ArkUI_DragAction](_ark_u_i___native_module.md#arkui_dragaction) [ArkUI_DragAction](_ark_u_i___native_module.md#arkui_dragaction) | 拖拽行为，用于主动发起拖拽。  | 
 | typedef struct [ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo) [ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo) | 主动发起拖拽后，通过拖拽状态监听返回的系统拖拽相关数据。  | 
-| typedef struct [OH_UdmfData](_ark_u_i___native_module.md#oh_udmfdata) [OH_UdmfData](_ark_u_i___native_module.md#oh_udmfdata) | UDMF 统一数据定义。  | 
-| typedef struct [OH_PixelmapNative](_ark_u_i___native_module.md#oh_pixelmapnative) [OH_PixelmapNative](_ark_u_i___native_module.md#oh_pixelmapnative) | Pixelmap结构体类型，用于执行Pixelmap相关操作。  | 
-| typedef struct [OH_UdmfGetDataParams](_ark_u_i___native_module.md#oh_udmfgetdataparams) [OH_UdmfGetDataParams](_ark_u_i___native_module.md#oh_udmfgetdataparams) | 从UDMF获取数据时的参数。  | 
 
 
 ### 枚举
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkUI_DragResult](_ark_u_i___native_module.md#arkui_dragresult) { [ARKUI_DRAG_RESULT_SUCCESSFUL](_ark_u_i___native_module.md), [ARKUI_DRAG_RESULT_FAILED](_ark_u_i___native_module.md), [ARKUI_DRAG_RESULT_CANCELED](_ark_u_i___native_module.md) } | 拖拽结果定义，由数据接收方设置，并由系统传递给数据拖出方，拖出方可感知接收方对数据的处理结果。  | 
-| [ArkUI_DropOperation](_ark_u_i___native_module.md#arkui_dropoperation) { [ARKUI_DROP_OPERATION_COPY](_ark_u_i___native_module.md), [ARKUI_DROP_OPERATION_MOVE](_ark_u_i___native_module.md) } | 定义拖拽释放时的数据处理方式，可影响角标的显示。  | 
-| [ArkUI_PreDragStatus](_ark_u_i___native_module.md#arkui_predragstatus) {<br/>[ARKUI_PRE_DRAG_STATUS_UNKNOWN](_ark_u_i___native_module.md) = -1, [ARKUI_PRE_DRAG_STATUS_ACTION_DETECTING](_ark_u_i___native_module.md), [ARKUI_PRE_DRAG_STATUS_READY_TO_TRIGGER_DRAG](_ark_u_i___native_module.md), [ARKUI_PRE_DRAG_STATUS_PREVIEW_LIFT_STARTED](_ark_u_i___native_module.md),<br/>[ARKUI_PRE_DRAG_STATUS_PREVIEW_LIFT_FINISHED](_ark_u_i___native_module.md), [ARKUI_PRE_DRAG_STATUS_PREVIEW_LANDING_STARTED](_ark_u_i___native_module.md), [ARKUI_PRE_DRAG_STATUS_PREVIEW_LANDING_FINISHED](_ark_u_i___native_module.md), [ARKUI_PRE_DRAG_STATUS_CANCELED_BEFORE_DRAG](_ark_u_i___native_module.md)<br/>} | 定义拖拽发起前的长按交互阶段的变化状态。  | 
-| [ArkUI_DragPreviewScaleMode](_ark_u_i___native_module.md#arkui_dragpreviewscalemode) { [ARKUI_DRAG_PREVIEW_SCALE_AUTO](_ark_u_i___native_module.md), [ARKUI_DRAG_PREVIEW_SCALE_DISABLED](_ark_u_i___native_module.md) } | 拖拽预览缩放模式。  | 
-| [ArkUI_DragStatus](_ark_u_i___native_module.md#arkui_dragstatus) { [ArkUI_DRAG_STATUS_UNKNOWN](_ark_u_i___native_module.md), [ArkUI_DRAG_STATUS_STARTED](_ark_u_i___native_module.md), [ArkUI_DRAG_STATUS_ENDED](_ark_u_i___native_module.md) } | 拖拽状态。  | 
+| [ArkUI_DragResult](_ark_u_i___native_module.md#arkui_dragresult) { ARKUI_DRAG_RESULT_SUCCESSFUL, ARKUI_DRAG_RESULT_FAILED, ARKUI_DRAG_RESULT_CANCELED } | 拖拽结果定义，由数据接收方设置，并由系统传递给数据拖出方，拖出方可感知接收方对数据的处理结果。  | 
+| [ArkUI_DropOperation](_ark_u_i___native_module.md#arkui_dropoperation) { ARKUI_DROP_OPERATION_COPY, ARKUI_DROP_OPERATION_MOVE } | 定义拖拽释放时的数据处理方式，可影响角标的显示。  | 
+| [ArkUI_PreDragStatus](_ark_u_i___native_module.md#arkui_predragstatus) {<br/>ARKUI_PRE_DRAG_STATUS_UNKNOWN = -1, ARKUI_PRE_DRAG_STATUS_ACTION_DETECTING, ARKUI_PRE_DRAG_STATUS_READY_TO_TRIGGER_DRAG, ARKUI_PRE_DRAG_STATUS_PREVIEW_LIFT_STARTED,<br/>ARKUI_PRE_DRAG_STATUS_PREVIEW_LIFT_FINISHED, ARKUI_PRE_DRAG_STATUS_PREVIEW_LANDING_STARTED, ARKUI_PRE_DRAG_STATUS_PREVIEW_LANDING_FINISHED, ARKUI_PRE_DRAG_STATUS_CANCELED_BEFORE_DRAG<br/>} | 定义拖拽发起前的长按交互阶段的变化状态。  | 
+| [ArkUI_DragPreviewScaleMode](_ark_u_i___native_module.md#arkui_dragpreviewscalemode) { ARKUI_DRAG_PREVIEW_SCALE_AUTO = 0, ARKUI_DRAG_PREVIEW_SCALE_DISABLED } | 拖拽预览缩放模式。  | 
+| [ArkUI_DragStatus](_ark_u_i___native_module.md#arkui_dragstatus) { ArkUI_DRAG_STATUS_UNKNOWN = -1, ArkUI_DRAG_STATUS_STARTED, ArkUI_DRAG_STATUS_ENDED } | 拖拽状态。  | 
 
 
 ### 函数

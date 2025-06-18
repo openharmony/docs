@@ -77,7 +77,7 @@ let options: AnimatorOptions = {
   begin: 200.0,
   end: 400.0
 };
-animator.create(options); // You are advised to use UIContext.creatAnimator().
+animator.create(options); // You are advised to use UIContext.createAnimator().
 ```
 
 ### create<sup>18+</sup>
@@ -119,7 +119,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { Animator as animator, SimpleAnimatorOptions } from '@kit.ArkUI';
 let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).duration(2000);
-animator.create (options);// You are advised to use UIContext.creatAnimator().
+animator.create (options);// You are advised to use UIContext.createAnimator().
 ```
 
 ### createAnimator<sup>(deprecated)</sup>
@@ -963,7 +963,7 @@ struct AnimatorTest {
 
   create() {
     this.backAnimator = animator.create({
-      // You are advised to use this.getUIContext.creatAnimator().
+      // You are advised to use this.getUIContext.createAnimator().
       duration: 2000,
       easing: "ease",
       delay: 0,

@@ -8,7 +8,7 @@
 
 ## foregroundColor
 
-foregroundColor(value: ResourceColor | ColoringStrategy)
+foregroundColor(value: ResourceColor | ColoringStrategy): T
 
 设置组件的前景色。当组件未设置前景色，默认继承父组件。
 
@@ -22,9 +22,15 @@ foregroundColor(value: ResourceColor | ColoringStrategy)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[ColoringStrategy](ts-appendix-enums.md#coloringstrategy10) | 是   | 设置组件的前景颜色或者根据智能取色策略设置前景颜色。不支持属性动画。 |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## foregroundColor<sup>18+</sup>
 
-foregroundColor(color: Optional\<ResourceColor | ColoringStrategy>)
+foregroundColor(color: Optional\<ResourceColor | ColoringStrategy>): T
 
 设置组件的前景色。当组件未设置前景色，默认继承父组件。与[foregroundColor](#foregroundcolor)相比，color参数新增了对undefined类型的支持。
 
@@ -37,6 +43,12 @@ foregroundColor(color: Optional\<ResourceColor | ColoringStrategy>)
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | color  | Optional\<[ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[ColoringStrategy](ts-appendix-enums.md#coloringstrategy10)> | 是   | 设置组件的前景颜色或者根据智能取色策略设置前景颜色。不支持属性动画。<br/>当color的值为undefined时，维持之前取值。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
 
 ## 示例
 

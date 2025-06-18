@@ -18,9 +18,9 @@ import { VpnExtensionAbility } from '@kit.NetworkKit';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md) | 是 | 否 | VpnExtension的上下文环境，继承自ExtensionContext。 |
+| context | [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md) | 否 | 否 | VpnExtension的上下文环境，继承自ExtensionContext。 |
 
 ## VpnExtensionAbility.onCreate
 

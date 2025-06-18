@@ -13,11 +13,9 @@ Currently, <!--RP2-->distributed data objects can be used only in [cross-device 
 
 ## Basic Concepts
 
-- Distributed in-memory database<br>
-  The distributed in-memory database caches data in the memory so that applications can quickly access data without persisting data. If the database is closed, the data is not retained.
+- Distributed in-memory database<br>The distributed in-memory database caches data in the memory so that applications can quickly access the data. However, the data is not persisted. If the database is closed, the data is not retained.
 
-- Distributed data object<br>
-  A distributed data object is an encapsulation of the JS object type. Each distributed data object instance creates a data table in the in-memory database. The in-memory databases created for different applications are isolated from each other. Reading and writing a distributed data object are mapped to the **get** and **put** operations in the corresponding database, respectively.
+- Distributed data object<br>A distributed data object is an encapsulation of the JS object type. Each distributed data object instance creates a data table in the in-memory database. The in-memory databases created for different applications are isolated from each other. Reading and writing a distributed data object are mapped to the **get** and **put** operations in the corresponding database, respectively.
 
   The distributed data object has the following states in its lifecycle:
 
@@ -152,19 +150,19 @@ Most of the APIs for cross-device sync of distributed data objects are executed 
 
 1. Create a distributed data object in **onContinue()** for the application on the source device, and save data.
 
-    (1) Call **create()** to create a distributed data object instance.
+    1.1 Call **create()** to create a distributed data object instance.
 
-    (2) Call **genSessionId()** to generate a **sessionId**, call **setSessionId()** to set a **sessionId**, and add the **sessionId** to **wantParam**. The distributed data objects with the same **sessionId** can connect to the same network. 
+    1.2 Call **genSessionId()** to generate a **sessionId**, call **setSessionId()** to set a **sessionId**, and add the **sessionId** to **wantParam**. The distributed data objects with the same **sessionId** can connect to the same network. 
 
-    (3) Obtain the network ID from **wantParam** for the application on the target device and call **save()** with this network ID to save data to the target device.
+    1.3 Obtain the network ID from **wantParam** for the application on the target device and call **save()** with this network ID to save data to the target device.
 
 2. Create a distributed data object in **onCreate()** and **onNewWant()** for the application on the target device, and register a listener for the "restored" state.
 
-    (1) Call **create()** to create a distributed data object instance for the application on the target device.
+    2.1 Call **create()** to create a distributed data object instance for the application on the target device.
 
-    (2) Register a listener callback for the data recovery state. If "restored" is returned by the listener callback registered, the distributed data object of the target device has obtained the data transferred from the source device.
+    2.2 Register a listener callback for the data recovery state. If "restored" is returned by the listener callback registered, the distributed data object of the target device has obtained the data transferred from the source device.
 
-    (3) Obtain the **sessionId** of the source device from **want.parameters** and call **setSessionId** to set the same **sessionId** for the target device.
+    2.3 Obtain the **sessionId** of the source device from **want.parameters** and call **setSessionId** to set the same **sessionId** for the target device.
 
 > **NOTE**
 >
@@ -318,27 +316,27 @@ export default class EntryAbility extends UIAbility {
 
 1. Call **startAbilityByCall()** to start an ability on another device.
 
-    (1) Call **genSessionId()** to create a **sessionId** and obtain the network ID of the peer device through the distributed device management interface.
+    1.1 Call **genSessionId()** to create a **sessionId** and obtain the network ID of the peer device through the distributed device management interface.
 
-    (2) Assemble **want** and put **sessionId** into **want**.
+    1.2 Assemble **want** and put **sessionId** into **want**.
 
-    (3) Call **startAbilityByCall()** to start the peer ability.
+    1.3 Call **startAbilityByCall()** to start the peer ability.
 
 2. Create a distributed data object on the caller device and adds it to the network.
 
-   (1) Create a distributed data object instance.
+   2.1 Create a distributed data object instance.
 
-   (2) Register a listener callback for data changes.
+   2.2 Register a listener callback for data changes.
 
-   (3) Set a **sessionId** for the distributed data object and add it to the network.
+   2.3 Set a **sessionId** for the distributed data object and add it to the network.
 
 3. Create a distributed data object on the peer device and restore the data saved on the caller device.
 
-   (1) Create a distributed data object instance on the peer device.
+   3.1 Create a distributed data object instance on the peer device.
 
-   (2) Register a listener callback for data changes.
+   3.2 Register a listener callback for data changes.
 
-   (3) Obtain **sessionId** of the caller device from **want** and add the distributed data object instance to the network with the **sessionId**.
+   3.3 Obtain **sessionId** of the caller device from **want** and add the distributed data object instance to the network with the **sessionId**.
 
 > **NOTE**
 >
@@ -384,7 +382,6 @@ export default class EntryAbility extends UIAbility {
       console.error(TAG + 'call remote already');
       return;
     }
-    let context = getContext(this) as common.UIAbilityContext;
 
     // 1.1 Call genSessionId() to create a sessionId and call getRemoteDeviceId() to obtain the network ID of the peer device.
     sessionId = distributedDataObject.genSessionId();
@@ -408,7 +405,7 @@ export default class EntryAbility extends UIAbility {
     }
     try {
       // 1.3 Call startAbilityByCall() to start the peer ability.
-      context.startAbilityByCall(want).then((res) => {
+      this.context.startAbilityByCall(want).then((res) => {
         if (!res) {
           console.error(TAG + 'startAbilityByCall failed');
         }
@@ -430,11 +427,10 @@ export default class EntryAbility extends UIAbility {
       console.error(TAG + 'create dataObject already');
       return;
     }
-    let context = getContext(this) as common.UIAbilityContext;
 
     // 2.1 Create a distributed data object instance.
     let data = new Data('The title', 'The text');
-    dataObject = distributedDataObject.create(context, data);
+    dataObject = distributedDataObject.create(this.context, data);
 
     // 2.2 Register a listener callback for data changes.
     dataObject.on('change', (sessionId: string, fields: Array<string>) => {

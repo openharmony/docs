@@ -1,10 +1,10 @@
 # SVG标签说明
 
-SVG(Scalable Vector Graphics)是可缩放矢量图形，它是一种基于XML(可扩展标记语言)的图形格式，用于描述二维图形和图像。Image组件支持的SVG范围，为SVG1.1规范的部分功能。支持的标签以及属性如下：
+SVG（Scalable Vector Graphics）是可缩放矢量图形，它是一种基于XML（可扩展标记语言）的图形格式，用于描述二维图形和图像。Image组件支持的SVG范围，为SVG1.1规范的部分功能。支持的标签以及属性如下：
 
 ## 基础形状
 
-基础形状标签包括：\<rect\>、\<circle\>、\<ellipse\>、\<line\>、\<polyline\>、\<polygon\>、\<path\>
+基础形状标签包括：\<rect\>、\<circle\>、\<ellipse\>、\<line\>、\<polyline\>、\<polygon\>和\<path\>。
 
 >  **说明：**
 >
@@ -25,17 +25,17 @@ SVG(Scalable Vector Graphics)是可缩放矢量图形，它是一种基于XML(�
 
 ### 滤镜
 
-滤镜标签包括：\<filter\>、\<feOffset\>、\<feGaussianBlur\>、\<feBlend\>、\<feComposite\>、\<feColorMatrix\>、\<feFlood\>，其中\<filter\>定义滤镜范围，其它标签定义滤镜效果。
+滤镜标签包括：\<filter\>、\<feOffset\>、\<feGaussianBlur\>、\<feBlend\>、\<feComposite\>、\<feColorMatrix\>、\<feFlood\>。其中，\<filter\>定义滤镜范围，其它标签定义滤镜效果。
 
 | 元素 | 说明 | 特有属性 |
 | :-------- | :-------- | :-------- |
 | \<filter\> | 定义滤镜 | x：滤镜区域x轴偏移分量，默认值为0； <br>y：滤镜区域y轴偏移分量，默认值为0； <br>width：滤镜区域宽； <br>height：滤镜区域高。 |
-| \<feOffset\> | 定义沿x、y方向偏移距离 | in：滤镜原始输入（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result）;<br> result：经过滤镜处理之后的输出，可以作为下一个滤镜的输入，dx，dy。 |
-| \<feGaussianBlur\> | 定义高斯模糊效果 | in：滤镜原始输入（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result）;<br> result：经过滤镜处理之后的输出，可以作为下一个滤镜的输入，edgemode，stddeviation。 |
+| \<feOffset\> | 定义沿x、y方向偏移距离 | in：滤镜原始输入（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result）;<br> result：经过滤镜处理之后的输出，可以作为下一个滤镜的输入，dx和dy。 |
+| \<feGaussianBlur\> | 定义高斯模糊效果 | in：滤镜原始输入（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result）;<br> result：经过滤镜处理之后的输出，可以作为下一个滤镜的输入，edgemode和stddeviation。 |
 | \<feBlend\> | 定义两张输入图像混合模式 | in：滤镜原始输入（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result）;<br> result：经过滤镜处理之后的输出，可以作为下一个滤镜的输入；<br>in2：第二图源（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result），mode。 |
 | \<feComposite\> | 定义两张输入图像合成方式，<br>算法：result = k1 * in * in2 + k2 * in + k3 * in2 + k4 | in：滤镜原始输入（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result）；<br>in2：第二图源（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result），operator( over \| in \| out \| atop \| xor \| lighter \| arithmetic )，k1，k2，k3，k4。 |
 | \<feColorMatrix\> | 基于转换矩阵对颜色进行变换 | in：滤镜原始输入（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result）；<br> result：经过滤镜处理之后的输出，可以作为下一个滤镜的输入；<br>type ( matrix \| saturate \| hueRotate)、 values。 |
-| \<feFlood\> | 定义填充颜色和透明度 | in：滤镜原始输入（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result）；<br> result：经过滤镜处理之后的输出，可以作为下一个滤镜的输入；flood-color、flood-opacity。 |
+| \<feFlood\> | 定义填充颜色和透明度 | in：滤镜原始输入（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result）；<br> result：经过滤镜处理之后的输出，可以作为下一个滤镜的输入；flood-color和flood-opacity。 |
 
 ### 遮罩
 
@@ -64,8 +64,8 @@ SVG(Scalable Vector Graphics)是可缩放矢量图形，它是一种基于XML(�
 
 | 元素 | 说明 | 特有属性 |
 | :-------- | :-------- | :-------- |
-| \<linearGradient\> | 线性渐变 | x1，y1，x2，y2 |
-| \<radialGradient\> | 放射渐变 | fx，fy，cx，cy，r |
+| \<linearGradient\> | 线性渐变 | x1、y1、x2、y2 |
+| \<radialGradient\> | 放射渐变 | fx、fy、cx、cy、r |
 | \<stop\> | 色阶 | offset、stop-color |
 
 ## 静态图片
@@ -87,7 +87,7 @@ SVG(Scalable Vector Graphics)是可缩放矢量图形，它是一种基于XML(�
 ## 其它
 
 除了标识图形图像效果的标签，还支持分组等标签，分别有：
-\<svg\>、\<g\>、\<use\>、\<defs\>
+\<svg\>、\<g\>、\<use\>和\<defs\>
 
 | 元素 | 说明 | 特有属性 | 通用属性 |
 | :-------- | :-------- | :-------- | :-------- |
@@ -96,4 +96,6 @@ SVG(Scalable Vector Graphics)是可缩放矢量图形，它是一种基于XML(�
 | \<use\> | 复用已有元素 | x：x轴偏移分量；<br> y：y轴偏移分量；href：目标元素 | fill、fill-rule、fill-opacity、stroke、stroke-dasharray、stroke-dashoffset、stroke-opacity、stroke-width、stroke-linecap、stroke-linejoin、stroke-miterlimit、transform |
 | \<defs\> | 定义可复用对象 | | |
 
-**说明：** 当前支持的颜色值格式包括：#rgb、#rrggbb、rgb()、rgba()，以及常用颜色关键字（如：red、black、blue等）。
+>**说明：**  
+> 
+> 当前支持的颜色值格式包括#rgb、#rrggbb、rgb()、rgba()，以及常用颜色关键字（如red、black、blue等）。

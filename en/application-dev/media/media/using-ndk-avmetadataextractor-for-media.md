@@ -1,6 +1,6 @@
 # Using AVMetadataExtractor to Obtain Metadata (C/C++)
 
-You can use the AVMetadataExtractor to obtain metadata from a raw media asset. This topc walks you through on how to obtain the metadata of an audio asset. The process of obtaining the metadata of a video asset is similar. The only difference is that the process of obtaining the album cover is not required for a video asset, because no album cover is available in the video asset.
+You can use the AVMetadataExtractor to obtain metadata from a raw media asset. This topic walks you through on how to obtain the metadata of an audio asset. The process of obtaining the metadata of a video asset is similar. The only difference is that the process of obtaining the album cover is not required for a video asset, because no album cover is available in the video asset.
 
 The full process of obtaining the metadata of an audio asset includes creating an AVMetadataExtractor instance, setting resources, obtaining the metadata, obtaining the album cover, and releasing the instance.
 
@@ -41,26 +41,27 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 ```
 
 You can use the APIs related to metadata retrieval by including the header files [avmetadata_extractor.h](../../reference/apis-media-kit/avmetadata__extractor_8h.md), [avmetadata_extractor_base.h](../../reference/apis-media-kit/avmetadata__extractor__base_8h.md), and [native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md).
+
 Read [AVMetadataExtractor](../../reference/apis-media-kit/_a_v_metadata_extractor.md) for the API reference.
 
 1. Call [OH_AVMetadataExtractor_Create()](../../reference/apis-media-kit/_a_v_metadata_extractor.md#oh_avmetadataextractor_create) to create an instance.
 
 2. Call [OH_AVMetadataExtractor_SetFDSoucre()](../../reference/apis-media-kit/_a_v_metadata_extractor.md#oh_avmetadataextractor_setfdsource) to set the file descriptor of a video resource.
    
-> If different AVMetadataExtractor or [AVImageGenerator](../../reference/apis-media-kit/_a_v_image_generator.md) instances need to operate the same resource, the file descriptor needs to be opened for multiple times. Therefore, do not share a file descriptor.
-   
+   If different AVMetadataExtractor or [AVImageGenerator](../../reference/apis-media-kit/_a_v_image_generator.md) instances need to operate the same resource, the file descriptor needs to be opened for multiple times. Therefore, do not share a file descriptor.
+
 3. Call [OH_AVMetadataExtractor_FetchMetadata()](../../reference/apis-media-kit/_a_v_metadata_extractor.md#oh_avmetadataextractor_fetchmetadata) to obtain metadata.
    
-> First, call **OH_AVFormat_Create()** to create an **OH_AVFormat** object and obtain the metadata by accessing the key-value pairs of the object. When the object is no longer required, call **OH_AVFormat_Destroy** to release the object to prevent memory leakage. For details, see [OH_AVFormat](../../reference/apis-avcodec-kit/_core.md#oh_avformat).
-   
+   First, call **OH_AVFormat_Create()** to create an **OH_AVFormat** object and obtain the metadata by accessing the key-value pairs of the object. When the object is no longer required, call **OH_AVFormat_Destroy** to release the object to prevent memory leakage. For details, see [OH_AVFormat](../../reference/apis-avcodec-kit/_core.md#oh_avformat).
+
 4. (Optional) Call [OH_AVMetadataExtractor_FetchAlbumCover()](../../reference/apis-media-kit/_a_v_metadata_extractor.md#oh_avmetadataextractor_fetchalbumcover) to obtain the album cover.
    
-> When the object is no longer required, call **OH_PixelmapNative_Release** to release the object. For details, see [Image_NativeModule](../../reference/apis-image-kit/_image___native_module.md).
-   
+   When the object is no longer required, call **OH_PixelmapNative_Release** to release the object. For details, see [Image_NativeModule](../../reference/apis-image-kit/_image___native_module.md).
+
 5. Call [OH_AVMetadataExtractor_Release()](../../reference/apis-media-kit/_a_v_metadata_extractor.md#oh_avmetadataextractor_release) to destroy the instance and release resources.
 
 
-## Sample Code
+## Development Example
 
 Refer to the sample code below to set the file descriptor and obtain the metadata and album cover of an audio asset.
 

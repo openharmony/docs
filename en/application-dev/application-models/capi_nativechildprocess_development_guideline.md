@@ -284,3 +284,75 @@ libchild_process.so
         # ...
     )
     ```
+
+## Child Threads Obtaining Startup Parameters
+
+### When to Use
+
+Since API version 17, child processes can obtain startup parameters.
+
+### Available APIs
+
+| Name                                                                                                                                                                                                                                                                                                                               | Description                                                                                   |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| [NativeChildProcess_Args](../reference/apis-ability-kit/c-apis-ability-childprocess.md#nativechildprocess_args)* [OH_Ability_GetCurrentChildProcessArgs](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess)() | Returns the startup parameters of the child process.|
+
+### How to Develop
+
+
+**Linking Dynamic Libraries**
+
+```txt
+libchild_process.so
+```
+
+**Including Header Files**
+
+```c++
+#include <AbilityKit/native_child_process.h>
+```
+
+**Obtaining Startup Parameters**
+
+After a child process is created through [OH_Ability_StartNativeChildProcess](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess), it can call [OH_Ability_GetCurrentChildProcessArgs()](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess) to obtain the startup parameters [NativeChildProcess_Args](../reference/apis-ability-kit/c-apis-ability-childprocess.md#nativechildprocess_args) from any .so file or child thread, facilitating operations on related file descriptors.
+
+```c++
+#include <AbilityKit/native_child_process.h>
+#include <thread>
+
+extern "C" {
+
+void ThreadFunc()
+{
+    // Obtain the startup parameters of the child process.
+    NativeChildProcess_Args *args = OH_Ability_GetCurrentChildProcessArgs();
+    // If the startup parameters fail to be obtained, a null pointer is returned.
+    if (args == nullptr) {
+        return;
+    }
+    // Obtain the value of entryPrams in the startup parameters.
+    char *entryParams = args.entryParams;
+    // Obtain the FD list.
+    NativeChildProcess_Fd *current = args.fdList.head;
+    while (current != nullptr) {
+        char *fdName = current->fdName;
+        int32_t fd = current->fd;
+        current = current->next;
+        // Service logic
+    }
+}
+
+/**
+ * Entry function of a child process, which implements the service logic of the child process.
+ * args is the startup parameters of the child process.
+ */
+void Main(NativeChildProcess_Args args)
+{
+    // Service logic
+
+    // Create a thread.
+    std::thread tObj(ThreadFunc);
+}
+
+} // extern "C"
+```

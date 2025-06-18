@@ -45,7 +45,8 @@ struct Index {
   @State message: string = 'Hello World';
   // pixelMap对象声明，用于图片显示。
   @State pixelMap: image.PixelMap | undefined = undefined;
-  rootPath: string = getContext(this).getApplicationContext().filesDir;
+  context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  rootPath: string = this.context.getApplicationContext().filesDir;
   testFilename: string = '/cover.mp3';
 
   build() {
@@ -93,7 +94,8 @@ struct Index {
       let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
 
       // 设置fdSrc。
-      avMetadataExtractor.fdSrc = await getContext(this).resourceManager.getRawFd('cover.mp3');
+      let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+      avMetadataExtractor.fdSrc = await context.resourceManager.getRawFd('cover.mp3');
 
       // 获取元数据（callback模式）。
       avMetadataExtractor.fetchMetadata((error, metadata) => {
@@ -131,7 +133,8 @@ struct Index {
       // 创建AVMetadataExtractor对象。
       let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
       // 设置fdSrc。
-      avMetadataExtractor.fdSrc = await getContext(this).resourceManager.getRawFd('cover.mp3');
+      let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+      avMetadataExtractor.fdSrc = await context.resourceManager.getRawFd('cover.mp3');
 
       // 获取元数据（promise模式）。
       let metadata = await avMetadataExtractor.fetchMetadata();
@@ -172,7 +175,6 @@ struct Index {
   // 在以下demo中，使用fs文件系统打开沙箱地址获取媒体文件地址，设置dataSrc属性，获取音频元数据并打印。
   // 获取音频专辑封面并通过Image控件显示在屏幕上。
   async testFetchMetadataFromDataSrc() {
-    let context = getContext(this) as common.UIAbilityContext;
     // 通过UIAbilityContext获取沙箱地址filesDir（以Stage模型为例）。
     let fd: number = fs.openSync(this.rootPath + this.testFilename).fd;
     let fileSize: number = fs.statSync(this.rootPath + this.testFilename).size;

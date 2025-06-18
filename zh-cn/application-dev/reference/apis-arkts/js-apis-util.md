@@ -180,7 +180,7 @@ console.info("result = " + result);
 
 callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 
-对异步函数进行回调化处理，回调中第一个参数将是拒绝原因（如果Promise已解决，则为null），第二个参数是已解决的值。
+对异步函数进行回调化处理，回调中第一个参数是拒绝原因（如果Promise已解决，则为null），第二个参数是已解决的值。
 
 > **说明：**
 >
@@ -621,7 +621,7 @@ console.info('asp.msg is ' + asp.msg);
 util.Aspect.addBefore(MyClass, 'foo', false, (instance: MyClass, arg: string) => {
   console.info('arg is ' + arg);
   instance.msg = 'msg111';
-  console.info('msg is changed to ' + instance.msg)
+  console.info('msg is changed to ' + instance.msg);
 });
 
 result = asp.foo('123');
@@ -788,7 +788,7 @@ console.info('asp.msg is ' + asp.msg);
 // 输出结果：asp.msg is msg000
 
 util.Aspect.replace(MyClass, 'foo', false, (instance: MyClass, arg: string): string => {
-  console.info('execute instead')
+  console.info('execute instead');
   console.info('arg is ' + arg);
   instance.msg = 'msg111';
   console.info('msg is changed to ' + instance.msg);
@@ -817,7 +817,7 @@ TextDecoder用于将字节数组解码为字符串，支持utf-8、utf-16le/be�
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | 是 | 否 | 编码格式。<br/>-&nbsp;支持格式：utf-8、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、x-mac-cyrillic、gbk、gb18030、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、utf-16be、utf-16le、UTF-8、GBK、GB2312、gb2312、GB18030、iso-8859-1。 |
+| encoding | string | 是 | 否 | 编码格式。<br/>-&nbsp;支持格式：utf-8、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、x-mac-cyrillic、gbk、gb18030、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、utf-16be、utf-16le、gb2312、iso-8859-1。 |
 | fatal | boolean | 是 | 否 | 是否显示致命错误，true表示显示，false表示不显示。 |
 | ignoreBOM | boolean | 是 | 否 | 是否忽略BOM（byte order marker）标记，默认值为false，表示解码结果包含BOM标记。 |
 
@@ -855,6 +855,12 @@ static create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 | -------- | ------ | ---- | ------------------------------------------------ |
 | encoding | string | 否   | 编码格式，默认值是'utf-8'。                      |
 | options  | [TextDecoderOptions](#textdecoderoptions11) | 否   | 解码相关选项参数，存在两个属性fatal和ignoreBOM。|
+
+**返回值：**
+
+| 类型       | 说明               |
+| ---------- | ------------------ |
+| [TextDecoder](#textdecoder) | 返回一个TextDecoder对象。 |
 
 **错误码：**
 
@@ -1091,7 +1097,7 @@ TextEncoder将字符串编码为字节数组，支持多种编码格式。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | 是 | 否 |  编码格式。<br/>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-1、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、x-mac-cyrillic、utf-16be、utf-16le。 <br/>-&nbsp; 默认值是：'utf-8'。 |
+| encoding | string | 是 | 否 |  编码格式。<br/>-&nbsp;支持格式：utf-8、gb2312、gb18030、ibm866、iso-8859-1、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、x-mac-cyrillic、utf-16be、utf-16le。 <br/>-&nbsp; 默认值是：'utf-8'。 |
 
 
 ### constructor
@@ -1155,6 +1161,12 @@ static create(encoding?: string): TextEncoder
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ---- | ---- | ---- |
 | encoding | string | 否 | 编码格式，默认值为'utf-8'。 |
+
+**返回值：**
+
+| 类型       | 说明               |
+| ---------- | ------------------ |
+| [TextEncoder](#textencoder) | 返回一个TextEncoder对象。|
 
 **错误码：**
 

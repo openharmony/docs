@@ -30,7 +30,7 @@ ArcList() {
 
 ```ts
 // xxx.ets
-import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute, LengthMetrics } from "@kit.ArkUI";
+import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute, LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -168,7 +168,7 @@ struct SimpleContacts {
     new Contact('小王', $r("app.media.ic_contact")),
     new Contact('小李', $r("app.media.ic_contact")),
     new Contact('小明', $r("app.media.ic_contact"))
-  ]
+  ];
 
   build() {
     ArcList({ initialIndex: 2 }) {
@@ -343,6 +343,15 @@ ArcList() {
 在选中索引项时，根据此时选中项的索引值index，重新计算列表联系人对应的位置，然后通过列表绑定的滚动控制器arcListScroller的[scrollToIndex](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scrolltoindex)方法控制列表跳转到对应的联系人位置。弧形列表[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)可通过[scroller](../reference/apis-arkui/arkui-ts/ts-container-arclist.md#arklistoptions)参数绑定[Scroller](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scroller)（滚动控制器）。
 
 ```ts
+import {
+  ArcList,
+  ArcListAttribute,
+  ArcListItemAttribute,
+  ArcListItem,
+  ArcAlphabetIndexer,
+  ArcAlphabetIndexerAttribute
+} from '@kit.ArkUI';
+
 const alphabets = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K',
   'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 @Entry
@@ -364,12 +373,12 @@ struct ContactsArcList {
       })
 
       // 弧形索引条组件
-      ArcAlphabetIndexer({ arrayValue: alphabets })
+      ArcAlphabetIndexer({ arrayValue: alphabets, selected: this.selectedIndex })
         .selected(this.selectedIndex)
         .onSelect((index: number) => {
           // 选中索引项后，列表跳转到相应位置
-          this.selectedIndex = index
-          this.scrollerForList.scrollToIndex(this.selectedIndex - 1)
+          this.selectedIndex = index;
+          this.arcListScroller.scrollToIndex(this.selectedIndex - 1);
         })
     }
   }
@@ -405,9 +414,9 @@ struct ContactsArcList {
          playMode: PlayMode.Normal,
        }, () => {
          // this.contacts为列表数据源，可根据实际场景构造，indexOf方法可获取将被删除数据在数据源中的索引
-         let index = this.contacts.indexOf(item)
+         let index = this.contacts.indexOf(item);
          // 从数据源删除指定数据项
-         this.contacts.splice(index, 1)
+         this.contacts.splice(index, 1);
        })
      })
    }

@@ -1,11 +1,11 @@
 # Web组件对接软键盘
 
-开发者能够通过Web组件对接软键盘，来处理系统软键盘的显示与交互问题，同时实现软键盘的自定义功能。主要有以下场景。
+开发者能够通过Web组件对接软键盘，来处理系统软键盘的显示与交互问题，同时实现软键盘的自定义功能。主要有以下场景：
 
-- 拉起系统软键盘输入文字：用户在点击网页输入框时，会在屏幕下方弹出系统默认的软键盘（输入法），用户可以通过软键盘输入文字，输入的内容会显示在输入框中。
-- 自定义系统软键盘的回车键类型：应用指定网页输入框拉起不同类型的软键盘回车键。例如：确认、下一个、提交等。
-- 软键盘避让：在移动设备上，由于输入法通常固定在屏幕下半段，应用可设置不同的Web页面软键盘避让模式。例如：平移、调整大小、不避让等。
-- 自定义软键盘输入：在移动设备上，应用可以使用自绘制输入法在Web页面输入，以此替代系统软键盘。
+- 拉起系统软键盘输入文字：点击网页输入框时，屏幕下方将弹出系统默认的软键盘。开发者可以通过软键盘输入文字，输入的内容会显示在输入框中。
+- 自定义系统软键盘的回车键类型：设置不同的Web页面软键盘避让模式，例如：确认、下一个和提交。
+- 软键盘避让：在移动设备上，由于输入法通常固定在屏幕下半段，应用可设置不同的Web页面软键盘避让模式，来避让软键盘。例如：平移、调整大小和不避让。
+- 自定义软键盘输入：在移动设备上，可以使用自绘制输入法在Web页面输入，以此替代系统软键盘。
 
 
 
@@ -64,24 +64,64 @@
 
 >**说明：**
 >
->用户在点击网页输入框时，会在屏幕下方弹出系统默认的软键盘（输入法），并可进行文字输入上屏。
+>点击网页输入框时，屏幕下方将弹出系统默认的软键盘，开发者可以进行文字输入。
 >
->type属性更广泛，不仅影响键盘显示，还会影响输入验证和元素的外观。
+>type属性影响键盘显示、输入验证和元素外观。
 >
->inputmode主要用于优化移动设备上的键盘输入体验，不会改变input的基本行为或验证。
+>inputmode优化移动设备键盘输入体验，不影响基本行为或验证。
 
 
+## 软键盘自动弹出
+为提升用户体验，可以在页面完成加载后，输入框自动获焦并弹出软键盘。通过调用[showTextInput()](../reference/apis-ime-kit/js-apis-inputmethod.md#showtextinput10)设置软键盘自动弹出功能。
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>测试网页</title>
+  </head>
+  <body>
+    <h1>DEMO</h1>
+    <input type="text" id="input_a">
+  </body>
+</html>
+```
+
+```ts
+//Index.ets
+import { webview } from '@kit.ArkWeb';
+import { inputMethod } from '@kit.IMEKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+  build() {
+    Column() {
+      Web({ src: $rawfile("index.html"), controller: this.controller})
+        .onPageEnd(() => {
+          this.controller.runJavaScript(`document.getElementById('input_a').focus()`).then(() => {
+            setTimeout(() => {
+              inputMethod.getController().showTextInput();
+            }, 10);
+          });
+        });
+    }
+  }
+}
+```
 
 ## 设置软键盘避让模式
 
-在移动设备上，支持设置Web页面的软键盘避让模式。
+在移动设备上，支持设置Web页面的输入法避让模式。
 
-1. 在应用代码中设置UIContext的软键盘避让模式[setKeyboardAvoidMode()](../reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md#setkeyboardavoidmode11)情况下，ArkWeb组件可支持Resize和Offset两种模式。
+1. 在应用代码中设置UIContext的软键盘避让模式[setKeyboardAvoidMode()](../reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md#setkeyboardavoidmode11)。ArkWeb组件支持Resize和Offset两种模式。
 
 - Resize模式下，应用窗口高度可缩小避开软键盘，ArkWeb组件跟随ArkUI重新布局。
 - Offset模式下（以及默认模式），应用窗口高度不变，ArkWeb组件根据自身的避让模式进行避让。
 
-（1）在应用代码中设置UIContext的软键盘避让模式。
+（1）设置UIContext的软键盘避让模式。
 
 ```ts
 // EntryAbility.ets
@@ -103,7 +143,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
   });
 }
 ```
-（2）再在Web组件中拉起软键盘。
+（2）在Web组件中调起软键盘。
 
 ```html
 <!-- index.html -->
@@ -136,7 +176,7 @@ struct KeyboardAvoidExample {
   }
 }
 ```
-此时ArkWeb组件跟随ArkUI重新布局，效果如图1、图2所示。
+ArkWeb组件将跟随ArkUI重新布局，效果如图1和图2所示。
 
 **图1**  Web组件网页默认软键盘避让模式
 
@@ -146,7 +186,7 @@ struct KeyboardAvoidExample {
 
 ![arkui-keyboardavoid](figures/arkui-keyboardavoid.png)
 
-2.在UIContext的键盘避让模式为Offset模式情况下，应用可通过[WebKeyboardAvoidMode()](../reference/apis-arkweb/ts-basic-components-web.md#webkeyboardavoidmode12)设置ArkWeb组件的键盘避让模式。[Web组件的WebKeyboardAvoidMode()接口](../reference/apis-arkweb/ts-basic-components-web.md#webkeyboardavoidmode12)优先级高于W3C侧virtualKeyboard.overlayContens。
+2.在UIContext的键盘避让模式为Offset模式时，应用可通过[WebKeyboardAvoidMode()](../reference/apis-arkweb/ts-basic-components-web-e.md#webkeyboardavoidmode12)设置ArkWeb组件的键盘避让模式。Web组件的[WebKeyboardAvoidMode()](../reference/apis-arkweb/ts-basic-components-web-e.md#webkeyboardavoidmode12)接口优先级高于W3C侧virtualKeyboard.overlayContens。
 
 - RESIZE_VISUAL：仅调整可视视口的大小，而不调整布局视口的大小。
 - RESIZE_CONTENT：调整视觉视口和布局视口的大小。
@@ -158,7 +198,7 @@ struct KeyboardAvoidExample {
 >
 >布局视口指网页本身的宽度。
 
-（1）在应用代码中设置ArkWeb的软键盘避让模式。
+在应用代码中设置ArkWeb的软键盘避让模式。
 
 ```ts
 // Index.ets
@@ -178,32 +218,54 @@ struct KeyboardAvoidExample {
   }
 }
 ```
-此时ArkWeb组件根据自身的避让模式进行避让，效果如图3所示。
+ArkWeb组件根据避让模式进行避让，效果见图3。
 
 **图3**  Web组件网页自身软键盘避让模式
 
 ![web-keyboardavoid](figures/web-keyboardavoid.png)
 
-与其他Web组件行为的交叉场景：
+3.在软键盘弹出时，为使Web组件不发生避让行为，可通过调用[expandSafeArea()](../reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md#expandsafearea)设置Web组件扩展安全区域。更多详细示例可参考[网页中安全区域计算和避让适配](../web/web-safe-area-insets.md)。
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .width('100%').height('100%')
+          .expandSafeArea([SafeAreaType.KEYBOARD, SafeAreaType.SYSTEM])
+      }
+    }
+  }
+  ```
+
+
+与其他Web组件行为的交互场景：
 
 | 交叉场景         | 规格                                       |
 | ------------ | ---------------------------------------- |
-| 同层渲染         | 同层Web：软键盘避让行为与普通场景行为一致  同层系统组件：由ArkUI负责软键盘避让模式。 |
+| 同层渲染         | 同层Web：软键盘避让方式与普通场景相同。<br></div>同层系统组件：由ArkUI负责软键盘避让模式。 |
 | 离屏创建组件       | 默认使用与非离屏创建一致的软键盘避让模式 在上树前设置其他避让模式可需生效。   |
 | customDialog | customDialog自身避让。                        |
-| 折叠屏          | 软键盘避让行为与普通场景行为一致 软件键盘需跟随屏幕开合状态进展开合变化。    |
+| 折叠屏          | 软键盘避让行为与普通场景行为一致。软件键盘将根据屏幕开合状态进行调整。    |
 | 软键盘托管        | 软键盘避让行为与普通场景行为一致。                        |
-| Web嵌套滚动      | 嵌套滚动场景下不推荐使用Web软键盘避让，包括RESIZE_VISUAL与RESIZE_CONTENT。 |
+| Web嵌套滚动      | 在嵌套滚动场景下，建议不要使用Web软键盘避让，包括RESIZE_VISUAL和RESIZE_CONTENT。 |
 
 
 
 ## 拦截系统软键盘与自定义软键盘输入
 
-应用能够通过调用[onInterceptKeyboardAttach](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptkeyboardattach12)来拦截系统软键盘的弹出。在网页中，当可编辑元素如input标签即将触发软键盘显示时，[onInterceptKeyboardAttach](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptkeyboardattach12)会被回调。应用可利用此接口来控制软键盘的显示，包括使用系统默认软键盘、定制带有特定Enter键的软键盘，或是完全自定义软键盘。借助这一功能，开发者能够实现对软键盘的灵活管理。
+应用可以通过调用[onInterceptKeyboardAttach](../reference/apis-arkweb/ts-basic-components-web-events.md#oninterceptkeyboardattach12)标签即将触发软键盘显示时，[onInterceptKeyboardAttach](../reference/apis-arkweb/ts-basic-components-web-events.md#oninterceptkeyboardattach12)被回调。应用可以使用此接口控制软键盘的显示，包括系统默认软键盘、带有特定Enter键的软键盘，或完全自定义软键盘。借助这一功能，开发者能够实现对软键盘的灵活管理。
 
 - 使用系统默认软键盘
-- 使用定制Enter键的系统软键盘
-- 使用完全由应用自定义的软键盘
+- 使用带有定制Enter键的系统软键盘
+- 使用完全由应用程序自定义的软键盘
 
 ```ts
   // Index.ets
@@ -214,7 +276,7 @@ struct KeyboardAvoidExample {
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
-    webKeyboardController: WebKeyboardController = new WebKeyboardController()
+    webKeyboardController: WebKeyboardController = new WebKeyboardController();
     inputAttributeMap: Map<string, number> = new Map([
         ['UNSPECIFIED', inputMethodEngine.ENTER_KEY_TYPE_UNSPECIFIED],
         ['GO', inputMethodEngine.ENTER_KEY_TYPE_GO],
@@ -276,18 +338,18 @@ struct KeyboardAvoidExample {
           }
 
           // 保存WebKeyboardController，使用自定义键盘时候，需要使用该handler控制输入、删除、软键盘关闭等行为
-          this.webKeyboardController = KeyboardCallbackInfo.controller
-          let attributes: Record<string, string> = KeyboardCallbackInfo.attributes
+          this.webKeyboardController = KeyboardCallbackInfo.controller;
+          let attributes: Record<string, string> = KeyboardCallbackInfo.attributes;
           // 遍历attributes
-          let attributeKeys = Object.keys(attributes)
+          let attributeKeys = Object.keys(attributes);
           for (let i = 0; i < attributeKeys.length; i++) {
-            console.log('WebCustomKeyboard key = ' + attributeKeys[i] + ', value = ' + attributes[attributeKeys[i]])
+            console.log('WebCustomKeyboard key = ' + attributeKeys[i] + ', value = ' + attributes[attributeKeys[i]]);
           }
 
           if (attributes) {
             if (attributes['data-keyboard'] == 'customKeyboard') {
               // 根据html可编辑元素的属性，判断使用不同的软键盘，例如这里如果属性包含有data-keyboard，且值为customKeyboard，则使用自定义键盘
-              console.log('WebCustomKeyboard use custom keyboard')
+              console.log('WebCustomKeyboard use custom keyboard');
               option.useSystemKeyboard = false;
               // 设置自定义键盘builder
               option.customKeyboard = () => {
@@ -299,9 +361,9 @@ struct KeyboardAvoidExample {
             if (attributes['keyboard-return'] != undefined) {
               // 根据html可编辑元素的属性，判断使用不同的软键盘，例如这里如果属性包含有keyboard-return，使用系统键盘，并且指定系统软键盘enterKey类型
               option.useSystemKeyboard = true;
-              let enterKeyType: number | undefined = this.inputAttributeMap.get(attributes['keyboard-return'])
+              let enterKeyType: number | undefined = this.inputAttributeMap.get(attributes['keyboard-return']);
               if (enterKeyType != undefined) {
-                option.enterKeyType = enterKeyType
+                option.enterKeyType = enterKeyType;
               }
               return option;
             }
@@ -366,7 +428,7 @@ struct KeyboardAvoidExample {
     </html>
 ```
 
-ArkWeb自定义键盘示例效果如图4、图5、图6所示。
+ArkWeb自定义键盘的示例效果如图4、图5和图6所示。
 
 **图4**  ArkWeb自定义键盘数字键盘
 

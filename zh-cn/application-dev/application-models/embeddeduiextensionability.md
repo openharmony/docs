@@ -40,7 +40,7 @@ EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-k
     ```ts
     import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
-    const TAG: string = '[ExampleEmbeddedAbility]'
+    const TAG: string = '[ExampleEmbeddedAbility]';
 
     export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
       onCreate() {
@@ -91,12 +91,12 @@ EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-k
           Text(this.message)
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
-          Button("terminateSelfWithResult").fontSize(20).onClick(() => {
+          Button('terminateSelfWithResult').fontSize(20).onClick(() => {
             this.session?.terminateSelfWithResult({
               resultCode: 1,
               want: {
-                bundleName: "com.example.embeddeddemo",
-                abilityName: "ExampleEmbeddedAbility",
+                bundleName: 'com.example.embeddeddemo',
+                abilityName: 'ExampleEmbeddedAbility'
               }});
           })
         }.width('100%').height('100%')
@@ -141,8 +141,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 struct Index {
   @State message: string = 'Message: '
   private want: Want = {
-    bundleName: "com.example.embeddeddemo",
-    abilityName: "EmbeddedUIExtAbility",
+    bundleName: 'com.example.embeddeddemo',
+    abilityName: 'EmbeddedUIExtAbility',
     parameters: {
       'ohos.extension.processMode.hostInstance': 'true'
     }

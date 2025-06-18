@@ -38,10 +38,10 @@
 
 性能对比分析表：
 
-| **拍照实现方式** | **耗时(局限不同设备和场景，数据仅供参考)**  |
-|------------| ------- |
-| 单段式拍照      | 2.1s | 
-| 分段式拍照      | 741.3ms |
+| **拍照实现方式** | **耗时(局限不同设备和场景，数据仅供参考)** |
+|------------|--------------------------|
+| 单段式拍照      | 2.1s                     | 
+| 分段式拍照      | 741.3ms                  |
 
 优化思路：在需要加快Shot2See完成时延的场景下，使用相机框架开发的分段式拍照方案，加快第一段照片生成的速度。
 
@@ -49,7 +49,7 @@
 
 下面以应用中相机Shot2See场景为例，通过单段式拍照和分段式拍照的性能功耗对比，来展示两者的性能差异。
 
-**单段式拍照：**
+### 单段式拍照
 
 单段式拍照使用了`on(type:'photoAvailable',callback:AsyncCallback<Photo>):void`接口注册了全质量图的监听，默认不使能分段式拍照。具体操作步骤如下所示：
 
@@ -58,7 +58,7 @@
    ```typescript
    XComponent({
        id: 'componentId',
-       type: 'surface',
+       type: XComponentType.SURFACE,
        controller: this.mXComponentController
    })
     .onLoad(async () => {
@@ -248,11 +248,11 @@
      .height(Constants.EIGHTY_PERCENT)
    ```
 
-**分段式拍照：**
+### 分段式拍照
 
 分段式拍照是应用下发拍照任务后，系统将分多阶段上报不同质量的图片。在第一阶段，系统快速上报低质量图，应用通过`on(type:'photoAssetAvailable',callback:AsyncCallback<PhotoAsset>):void`接口会收到一个PhotoAsset对象，通过该对象可调用媒体库接口，读取图片或落盘图片。在第二阶段，分段式子服务会根据系统压力以及定制化场景进行调度，将后处理好的原图回传给媒体库，替换低质量图。具体操作步骤如下所示：
 
-由于分段是拍照和单段式拍照步骤1-步骤4相同，就不再进行赘述。
+由于分段式拍照和单段式拍照[步骤1](#场景示例)-步骤4相同，就不再进行赘述。
 
 5. 设置拍照[photoAssetAvailable](../reference/apis-camera-kit/js-apis-camera.md#onphotoassetavailable12)的回调来获取photoAsset，点击拍照按钮，触发此回调函数，然后执行handlePhotoAssetCb函数来完成photoAsset全局的存储并跳转到预览页面。注意:如果已经注册了photoAssetAvailable回调，并且在Session开始之后又注册了photoAvailable回调，会导致流被重启。不建议开发者同时注册photoAvailable和photoAssetAvailable。
 

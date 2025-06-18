@@ -159,8 +159,8 @@ Refresh刷新状态枚举。
 | 名称       | 值       | 说明                 |
 | -------- | -------- | -------------------- |
 | Inactive | 0 | 默认未下拉状态。             |
-| Drag     | 1 | 下拉中，下拉距离小于刷新距离。      |
-| OverDrag | 2 | 下拉中，下拉距离超过刷新距离。      |
+| Drag     | 1 | 下拉中，下拉距离小于刷新距离。<br/>若此时松手，组件进入Inactive状态；若此时继续下拉使下拉距离超过刷新距离，组件进入OverDrag状态。   |
+| OverDrag | 2 | 下拉中，下拉距离超过刷新距离。<br/>若此时松手，组件进入Refresh状态；若此时上滑使下拉距离小于刷新距离，组件进入Drag状态。      |
 | Refresh  | 3 | 下拉结束，回弹至刷新距离，进入刷新中状态。 |
 | Done     | 4 | 刷新结束，返回初始状态（顶部）。     |
 
@@ -176,11 +176,20 @@ Refresh刷新状态枚举。
 @Entry
 @Component
 struct RefreshExample {
-  @State isRefreshing: boolean = false
-  @State arr: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+  @State isRefreshing: boolean = false;
+  @State arr: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
   build() {
     Column() {
+      Row() {
+        Button('开始刷新').onClick(() => {
+          this.isRefreshing = true;
+        })
+        Button('停止刷新').onClick(() => {
+          this.isRefreshing = false;
+        })
+      }
+
       Refresh({ refreshing: $$this.isRefreshing }) {
         List() {
           ForEach(this.arr, (item: string) => {
@@ -197,7 +206,7 @@ struct RefreshExample {
           }, (item: string) => item)
         }
         .onScrollIndex((first: number) => {
-          console.info(first.toString())
+          console.info(first.toString());
         })
         .width('100%')
         .height('100%')
@@ -205,16 +214,16 @@ struct RefreshExample {
         .scrollBar(BarState.Off)
       }
       .onStateChange((refreshStatus: RefreshStatus) => {
-        console.info('Refresh onStatueChange state is ' + refreshStatus)
+        console.info('Refresh onStatueChange state is ' + refreshStatus);
       })
       .onOffsetChange((value: number) => {
-        console.info('Refresh onOffsetChange offset:' + value)
+        console.info('Refresh onOffsetChange offset:' + value);
       })
       .onRefreshing(() => {
         setTimeout(() => {
-          this.isRefreshing = false
+          this.isRefreshing = false;
         }, 2000)
-        console.log('onRefreshing test')
+        console.log('onRefreshing test');
       })
       .backgroundColor(0x89CFF0)
       .refreshOffset(64)
@@ -235,9 +244,9 @@ struct RefreshExample {
 @Entry
 @Component
 struct RefreshExample {
-  @State isRefreshing: boolean = false
-  @State promptText: string = "Refreshing..."
-  @State arr: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+  @State isRefreshing: boolean = false;
+  @State promptText: string = "Refreshing...";
+  @State arr: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
   build() {
     Column() {
@@ -257,7 +266,7 @@ struct RefreshExample {
           }, (item: string) => item)
         }
         .onScrollIndex((first: number) => {
-          console.info(first.toString())
+          console.info(first.toString());
         })
         .width('100%')
         .height('100%')
@@ -268,16 +277,16 @@ struct RefreshExample {
       .pullToRefresh(true)
       .refreshOffset(96)
       .onStateChange((refreshStatus: RefreshStatus) => {
-        console.info('Refresh onStatueChange state is ' + refreshStatus)
+        console.info('Refresh onStatueChange state is ' + refreshStatus);
       })
       .onOffsetChange((value: number) => {
-        console.info('Refresh onOffsetChange offset:' + value)
+        console.info('Refresh onOffsetChange offset:' + value);
       })
       .onRefreshing(() => {
         setTimeout(() => {
-          this.isRefreshing = false
+          this.isRefreshing = false;
         }, 2000)
-        console.log('onRefreshing test')
+        console.log('onRefreshing test');
       })
     }
   }
@@ -295,8 +304,8 @@ struct RefreshExample {
 @Entry
 @Component
 struct RefreshExample {
-  @State isRefreshing: boolean = false
-  @State arr: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+  @State isRefreshing: boolean = false;
+  @State arr: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
   @Builder
   customRefreshComponent() {
@@ -332,7 +341,7 @@ struct RefreshExample {
           }, (item: string) => item)
         }
         .onScrollIndex((first: number) => {
-          console.info(first.toString())
+          console.info(first.toString());
         })
         .width('100%')
         .height('100%')
@@ -343,13 +352,13 @@ struct RefreshExample {
       .pullToRefresh(true)
       .refreshOffset(64)
       .onStateChange((refreshStatus: RefreshStatus) => {
-        console.info('Refresh onStatueChange state is ' + refreshStatus)
+        console.info('Refresh onStatueChange state is ' + refreshStatus);
       })
       .onRefreshing(() => {
         setTimeout(() => {
-          this.isRefreshing = false
+          this.isRefreshing = false;
         }, 2000)
-        console.log('onRefreshing test')
+        console.log('onRefreshing test');
       })
     }
   }
@@ -364,10 +373,10 @@ struct RefreshExample {
 
 ```ts
 // xxx.ets
-import { ComponentContent } from '@ohos.arkui.node';
+import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
-  refreshStatus: RefreshStatus = RefreshStatus.Inactive
+  refreshStatus: RefreshStatus = RefreshStatus.Inactive;
 
   constructor(refreshStatus: RefreshStatus) {
     this.refreshStatus = refreshStatus;
@@ -393,15 +402,15 @@ function customRefreshingContent(params: Params) {
 @Entry
 @Component
 struct RefreshExample {
-  @State isRefreshing: boolean = false
-  @State arr: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
-  @State refreshStatus: RefreshStatus = RefreshStatus.Inactive
-  private contentNode?: ComponentContent<Object> = undefined
-  private params: Params = new Params(RefreshStatus.Inactive)
+  @State isRefreshing: boolean = false;
+  @State arr: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+  @State refreshStatus: RefreshStatus = RefreshStatus.Inactive;
+  private contentNode?: ComponentContent<Object> = undefined;
+  private params: Params = new Params(RefreshStatus.Inactive);
 
   aboutToAppear(): void {
-    let uiContext = this.getUIContext()
-    this.contentNode = new ComponentContent(uiContext, wrapBuilder(customRefreshingContent), this.params)
+    let uiContext = this.getUIContext();
+    this.contentNode = new ComponentContent(uiContext, wrapBuilder(customRefreshingContent), this.params);
   }
 
   build() {
@@ -422,7 +431,7 @@ struct RefreshExample {
           }, (item: string) => item)
         }
         .onScrollIndex((first: number) => {
-          console.info(first.toString())
+          console.info(first.toString());
         })
         .width('100%')
         .height('100%')
@@ -433,17 +442,17 @@ struct RefreshExample {
       .pullToRefresh(true)
       .refreshOffset(96)
       .onStateChange((refreshStatus: RefreshStatus) => {
-        this.refreshStatus = refreshStatus
-        this.params.refreshStatus = refreshStatus
+        this.refreshStatus = refreshStatus;
+        this.params.refreshStatus = refreshStatus;
         // 更新自定义组件内容
-        this.contentNode?.update(this.params)
-        console.info('Refresh onStatueChange state is ' + refreshStatus)
+        this.contentNode?.update(this.params);
+        console.info('Refresh onStatueChange state is ' + refreshStatus);
       })
       .onRefreshing(() => {
         setTimeout(() => {
-          this.isRefreshing = false
+          this.isRefreshing = false;
         }, 2000)
-        console.log('onRefreshing test')
+        console.log('onRefreshing test');
       })
     }
   }
@@ -457,7 +466,7 @@ struct RefreshExample {
 
 ```ts
 // xxx.ets
-import { ComponentContent } from '@ohos.arkui.node';
+import { ComponentContent } from '@kit.ArkUI';
 
 @Builder
 function customRefreshingContent() {
@@ -477,15 +486,15 @@ function customRefreshingContent() {
 @Entry
 @Component
 struct RefreshExample {
-  @State isRefreshing: boolean = false
-  @State arr: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
-  @State maxRefreshingHeight: number = 100.0
-  @State ratio: number = 1
-  private contentNode?: ComponentContent<Object> = undefined
+  @State isRefreshing: boolean = false;
+  @State arr: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+  @State maxRefreshingHeight: number = 100.0;
+  @State ratio: number = 1;
+  private contentNode?: ComponentContent<Object> = undefined;
 
   aboutToAppear(): void {
     let uiContext = this.getUIContext();
-    this.contentNode = new ComponentContent(uiContext, wrapBuilder(customRefreshingContent))
+    this.contentNode = new ComponentContent(uiContext, wrapBuilder(customRefreshingContent));
   }
 
   build() {
@@ -506,7 +515,7 @@ struct RefreshExample {
           }, (item: string) => item)
         }
         .onScrollIndex((first: number) => {
-          console.info(first.toString())
+          console.info(first.toString());
         })
         .width('100%')
         .height('100%')
@@ -519,16 +528,16 @@ struct RefreshExample {
       .refreshOffset(64)
       .onOffsetChange((offset: number) => {
         // 越接近最大距离，下拉跟手系数越小
-        this.ratio = 1 - Math.pow((offset / this.maxRefreshingHeight), 3)
+        this.ratio = 1 - Math.pow((offset / this.maxRefreshingHeight), 3);
       })
       .onStateChange((refreshStatus: RefreshStatus) => {
-        console.info('Refresh onStatueChange state is ' + refreshStatus)
+        console.info('Refresh onStatueChange state is ' + refreshStatus);
       })
       .onRefreshing(() => {
         setTimeout(() => {
-          this.isRefreshing = false
+          this.isRefreshing = false;
         }, 2000)
-        console.log('onRefreshing test')
+        console.log('onRefreshing test');
       })
     }
   }

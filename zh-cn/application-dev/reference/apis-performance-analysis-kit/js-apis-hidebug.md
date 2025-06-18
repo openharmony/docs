@@ -68,7 +68,7 @@ getNativeHeapFreeSize(): bigint
 
 | 类型   | 说明                            |
 | ------ | ----------------------------- |
-| bigint | 返回内存分配器持有的空闲的普通块所占用内存大小，单位为Byte。 |
+| bigint | 返回内存分配器统计的进程持有的空闲的普通块所占用内存大小，单位为Byte。 |
 
 **示例：**
 ```ts
@@ -482,7 +482,7 @@ startAppTraceCapture(tags: number[], flag: TraceFlag, limitSize: number) : strin
 
 该接口补充了[hitrace](../../dfx/hitrace.md)功能，开发者可通过该接口完成指定范围的trace自动化采集。由于该接口中trace采集过程中消耗的性能与需要采集的范围成正相关，建议开发者在使用该接口前，通过hitrace命令抓取应用的trace日志，从中筛选出所需trace采集的关键范围，以提高该接口性能。
 
-`startAppTraceCapture()`方法的调用需要与`[stopAppTraceCapture()](#hidebugstopapptracecapture12)`方法的调用一一对应，重复开启trace采集将导致接口调用异常，由于trace采集过程中会消耗较多性能，开发者应在完成采集后及时关闭。
+`startAppTraceCapture()`方法的调用需要与'[stopAppTraceCapture()](#hidebugstopapptracecapture12)'方法的调用一一对应，重复开启trace采集将导致接口调用异常，由于trace采集过程中会消耗较多性能，开发者应在完成采集后及时关闭。
 
 应用调用startAppTraceCapture接口启动采集trace，当采集的trace大小超过了limitSize，系统将自动调用stopAppTraceCapture接口停止采集。因此limitSize大小设置不当，将导致生成trace数据不足，无法满足故障分析。所以要求开发者根据实际情况，评估limitSize大小。
 
@@ -645,6 +645,8 @@ setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 设置应用的文件描述符数量、线程数量、JS内存或Native内存资源限制。
 
+主要应用场景在于构造内存泄漏故障，参见[订阅资源泄漏事件（ArkTS）](../../dfx/hiappevent-watcher-resourceleak-events-arkts.md)、[订阅资源泄漏事件（C/C++）](../../dfx/hiappevent-watcher-resourceleak-events-ndk.md)。
+
 > **注意：**
 >
 > 当设置的开发者选项开关打开并重启设备后，此功能有效。
@@ -655,11 +657,11 @@ setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 说明                                                         |
-| -------- | ------ | ---- | ------------------------------------------------------------ |
-| type | string |  是  | 泄漏资源类型，共四种：<br/>- pss_memory（native内存）<br/>- js_heap（js堆内存）<br/>- fd（文件描述符）<br/>- thread（线程）                                                                       |
+| 参数名   | 类型   | 必填 | 说明                                                                                                                                                                      |
+| -------- | ------ | ---- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| type | string |  是  | 泄漏资源类型，共四种：<br/>- pss_memory（native内存）<br/>- js_heap（js堆内存）<br/>- fd（文件描述符）<br/>- thread（线程）                                                                            |
 | value | number |  是  | 对应泄漏资源类型的最大值，范围：<br/>- pss_memory类型：`[1024, 4 * 1024 * 1024]`（单位：KB）<br/>- js_heap类型：`[85, 95]`（分配给JS堆内存上限的85%~95%）<br/>- fd类型：`[10, 10000]`<br/>- thread类型：`[1, 1000]` |
-| enableDebugLog | boolean |  是  | 是否启用外部调试日志，默认值为false。请仅在灰度版本中设置为true，因为收集调试日志会花费太多的cpu或内存。                                                                                     |
+| enableDebugLog | boolean |  是  | 是否启用外部调试日志。外部调试日志请仅在灰度版本（正式版本发布之前，先向一小部分用户推出的测试版本）中启用，因为收集调试日志会占用大量的cpu资源和内存资源，可能会引起应用流畅性问题。<br/>true：启用外部调试日志。<br/>false：禁用外部调试日志。                                     |
 
 **错误码：**
 
@@ -781,6 +783,12 @@ getVMRuntimeStat(item: string): number
 | 参数名   | 类型   | 必填 | 说明          |
 | -------- | ------ | ---- |-------------|
 | item | string | 是   | 需要获取GC信息的类型。 |
+
+**返回值：**
+
+| 类型     | 说明                        |
+|--------|---------------------------|
+| number | 系统GC统计信息，根据传入的参数，返回相应的信息。 |
 
 | 输入参数                         | 返回值说明          |
 |------------------------------|----------------|
@@ -959,15 +967,15 @@ GcStats包含以下键值信息：
 
 isDebugState(): boolean
 
-获取应用进程的调试状态。如果应用进程的Ark层或Native层处于调试状态，则返回true；否则返回false。
+获取应用进程的调试状态。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
 
-| 类型  | 说明                      |
-| ------ | -------------------------- |
-| boolean | 应用进程的调试状态。 |
+| 类型  | 说明                                                   |
+| ------ |------------------------------------------------------|
+| boolean | 应用进程的Ark层或Native层是否处于调试状态。true：处于调试状态。false：未处于调试状态。 |
 
 **示例**
 
@@ -1060,15 +1068,15 @@ dumpJsRawHeapData(needGC?: boolean): Promise&lt;string&gt;
 > **注意：**
 >
 > 系统通过该接口转存快照会消耗大量资源，因此严格限制了调用频率和次数。处理完生成的文件后，请立即删除。
-> 建议仅在应用的灰度测试版本中使用。在正式版本中不推荐使用，避免影响应用流畅性。
+> 建议仅在应用的灰度版本中使用。在正式版本中不推荐使用，避免影响应用流畅性。
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 参数名                     | 类型      | 必填 | 说明                                       |
-|-------------------------|---------|----|------------------------------------------|
-| needGC         | boolean | 否  | 转储堆快照时是否需要GC。默认为true。未填写时，转储前将触发GC。 |
+| 参数名                     | 类型      | 必填 | 说明                                          |
+|-------------------------|---------|----|---------------------------------------------|
+| needGC         | boolean | 否  | 转储堆快照前是否需要GC。true：需要GC。false：不需GC。默认值：true。 |
 
 **返回值：**
 

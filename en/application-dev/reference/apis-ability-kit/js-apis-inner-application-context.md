@@ -1,6 +1,6 @@
 # Context
 
-The Context module, inherited frome [BaseContext](js-apis-inner-application-baseContext.md), provides context for abilities or applications, including access to application-specific resources.
+The Context module, inherited from [BaseContext](js-apis-inner-application-baseContext.md), provides context for abilities or applications, including access to application-specific resources.
 
 > **NOTE**
 >

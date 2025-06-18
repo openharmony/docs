@@ -1,7 +1,7 @@
 # 使用列表
 
 
-ArkUI开发框架在NDK接口提供了列表组件，使用列表可以轻松高效地显示结构化、可滚动的信息。列表组件支持控制滚动位置、支持分组显示内容、持使用NodeAdapter实现懒加载以提升列表创建性能。
+ArkUI开发框架在NDK接口提供了列表组件，使用列表可以轻松高效地显示结构化、可滚动的信息。列表组件支持控制滚动位置、支持分组显示内容、支持使用NodeAdapter实现懒加载以提升列表创建性能。
 
 ## 创建列表
 
@@ -15,11 +15,11 @@ ArkUI开发框架在NDK接口提供了列表组件，使用列表可以轻松高
 
 ### NodeAdapter介绍 
 
-NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeadapterhandle)对象替代ArkTS侧的LazyForEach功能，用于按需生成子组件，NodeAdapter支持在List/ListItemGroup、Gird、WaterFlow、Swiper组件中使用。
+NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeadapterhandle)对象替代ArkTS侧的LazyForEach功能，用于按需生成子组件，NodeAdapter支持在List/ListItemGroup、Grid、WaterFlow、Swiper组件中使用。
 
 - 设置了NodeAdapter属性的节点，不再支持addChild等直接添加子组件的接口。子组件完全由NodeAdapter管理，使用属性方法设置NodeAdapter时，会判断父组件是否已经存在子节点，如果父组件已经存在子节点，则设置NodeAdapter操作失败，返回错误码。
 
-- NodeApdater通过相关事件通知开发者按需生成组件，类似组件事件机制，开发者使用NodeAdapter时要注册[事件监听器](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_nodeadapter_registereventreceiver)，在监听器事件中处理逻辑，相关事件通过[ArkUI_NodeAdapterEventType](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeadaptereventtype)定义。另外NodeAdapter不会主动释放不在屏幕内显示的组件对象，开发者需要在[NODE_ADAPTER_EVENT_ON_REMOVE_NODE_FROM_ADAPTER](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeadaptereventtype)事件中进行组件对象的释放，或者进行缓存复用。下图展示了典型列表滑动场景下的事件触发机制：
+- NodeAdapter通过相关事件通知开发者按需生成组件，类似组件事件机制，开发者使用NodeAdapter时要注册[事件监听器](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_nodeadapter_registereventreceiver)，在监听器事件中处理逻辑，相关事件通过[ArkUI_NodeAdapterEventType](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeadaptereventtype)定义。另外NodeAdapter不会主动释放不在屏幕内显示的组件对象，开发者需要在[NODE_ADAPTER_EVENT_ON_REMOVE_NODE_FROM_ADAPTER](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeadaptereventtype)事件中进行组件对象的释放，或者进行缓存复用。下图展示了典型列表滑动场景下的事件触发机制：
   ![zh-cn_image_0000001949769409](figures/zh-cn_image_0000001949769409.png)
 
 
@@ -205,7 +205,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
 
 ### 在列表中应用懒加载适配器 
 
-1. 在ArkUIListNode中添加SetLazyAdapter函数，给列表节设置NODE_LIST_NODE_ADAPTER属性，并将NodeAdapter作为属性入参传入。
+1. 在ArkUIListNode中添加SetLazyAdapter函数，给列表节点设置NODE_LIST_NODE_ADAPTER属性，并将NodeAdapter作为属性入参传入。
    ```c++
    // ArkUIListNode.h
    // 列表封装对象。
@@ -403,8 +403,8 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
     ```c++
     // ArkUIListItemNode.h 
     //提供列表项的封装类。 
-    #ifndef MYAPPLICATION ARKUISTACKNODE_H 
-    #define MYAPPLICATION ARKUISTACKNODE_H 
+    #ifndef MYAPPLICATION_ARKUISTACKNODE_H 
+    #define MYAPPLICATION_ARKUISTACKNODE_H 
     #include "ArkUINode.h" 
     namespace NativeModule{ 
     class ArkUIListItemNode : public ArkUINode { 
@@ -510,7 +510,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
         void RemoveItem(size_t index) { 
             //删除第index个数据。 
             data_.erase(data_.begin() + index); 
-            //如果index会导致可视区域元素发生可见性变化，则会回调NODE_ADAPTER_EVENT_ON_REMOVE_NODE_FROM_DAPTER事件删除元素， 
+            //如果index会导致可视区域元素发生可见性变化，则会回调NODE_ADAPTER_EVENT_ON_REMOVE_NODE_FROM_ADAPTER事件删除元素， 
             //根据是否有新增元素回调NODE_ADAPTER_EVENT_ON_GET_NODE_ID和NODE_ADAPTER_EVENT_ON_ADD_NODE_TO_ADAPTER事件。 
             OH_ArkUI_NodeAdapter_RemoveItem(handle_, index, 1); 
             //更新新的数量。 

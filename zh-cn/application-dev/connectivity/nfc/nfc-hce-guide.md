@@ -4,7 +4,7 @@
 近场通信(Near Field Communication，NFC)是一种短距高频的无线电技术，在13.56MHz频率运行，通信距离一般在10厘米距离内。HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安全单元芯片，电子设备上的应用程序模拟NFC卡片和NFC读卡器通信，实现NFC刷卡业务。
 
 ## 场景介绍
-应用程序模拟NFC卡片，和NFC读卡器通信完成NFC刷卡业务。从使用场景上，可以分成HCE应用前台刷卡，和HCE应用后台刷卡。
+应用程序模拟NFC卡片，和NFC读卡器通信完成NFC刷卡业务。从使用场景上，可以分成HCE应用前台刷卡和HCE应用后台刷卡。
 - HCE应用前台刷卡<br>
 前台刷卡是指在触碰NFC读卡器之前，用户先在电子设备上打开特定的应用程序，用户明确想使用所打开的应用程序和NFC读卡器进行刷卡操作。用户打开应用程序在前台，并且进入应用的刷卡页面之后，电子设备触碰NFC读卡器，只会把刷卡交易数据分发给前台应用。
 - HCE应用后台刷卡<br>
@@ -58,16 +58,6 @@ NFC卡模拟完整的JS API说明以及实例代码请参考：[NFC卡模拟接�
               // actions须包含"ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
               "ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
             ]
-          }
-        ],
-        "metadata": [
-          {
-            "name": "payment-aid",
-            "value": "A0000000031010" // 修改为正确的aid
-          },
-          {
-            "name": "other-aid",
-            "value": "A0000000031011" // 修改为正确的aid
           }
         ]
       }

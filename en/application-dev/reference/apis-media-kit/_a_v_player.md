@@ -1767,7 +1767,7 @@ const char* OH_PLAYER_BITRATE_ARRAY
 
 Pointer to the key for obtaining the bit rate array. The value is of the uint8_t byte array type. When this key is used to obtain information, you need to:
 - Use a pointer variable of the uint8_t type to store the bit rate list and use a variable of the size_t type to store the byte array length.
-- Allocate several storage spaces of the uint32_t type to receive the bit rate integer of the uint32_t type, which is converted from the uint8_t byte array. For details, see the **OHAVPlayerOnInfoCallback** function in [Sample Code](../../media/media/using-ndk-avplayer-for-playback.md#sample-code).
+- Allocate several storage spaces of the uint32_t type to receive the bit rate integer of the uint32_t type, which is converted from the uint8_t byte array. For details, see the **OHAVPlayerOnInfoCallback** function in [Sample Code](../../media/media/using-ndk-avplayer-for-playback.md#development-example).
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 

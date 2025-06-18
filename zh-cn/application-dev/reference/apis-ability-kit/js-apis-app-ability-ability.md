@@ -66,7 +66,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#memorylevel) | 是 | 当前内存使用级别。|
+| level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#memorylevel) | 是 | 当前内存使用级别。<br>**说明：**<br>不同产品的触发条件可能存在差异。以12G内存的标准设备为例：<br>- 当可用内存下降至1700M~1800M时，会触发取值为0的onMemoryLevel回调。<br>- 当可用内存下降至1600M~1700M时，会触发取值为1的onMemoryLevel回调。<br>- 当可用内存下降至1600M以下时，会触发取值为2的onMemoryLevel回调。|
 
 **示例：**
 

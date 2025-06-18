@@ -28,7 +28,7 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                            |
 | -------- | --------------------- | ---- | ------------------------------- |
-| agent    | WantAgent             | 是   | WantAgent对象。                   |
+| agent    | [WantAgent](js-apis-app-ability-wantAgent.md#wantagent)             | 是   | WantAgent对象。                   |
 | callback | AsyncCallback\<[Want](js-apis-app-ability-want.md)\> | 是   | 获取WantAgent对象want的回调方法。 |
 
 **错误码：**
@@ -81,7 +81,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
   if (err) {
-    console.info(`getWantAgent failed, code: ${err.code}, message: ${err.message}`);
+    console.error(`getWantAgent failed, code: ${err.code}, message: ${err.message}`);
   } else {
     wantAgentData = data;
   }
@@ -127,7 +127,7 @@ getWant(agent: WantAgent): Promise\<Want\>
 
 | 参数名  | 类型      | 必填 | 说明          |
 | ----- | --------- | ---- | ------------- |
-| agent | WantAgent | 是   | WantAgent对象。 |
+| agent | [WantAgent](js-apis-app-ability-wantAgent.md#wantagent) | 是   | WantAgent对象。 |
 
 **返回值：**
 
@@ -187,7 +187,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
   if (err) {
-    console.info(`getWantAgent failed, code: ${err.code}, message: ${err.message}`);
+    console.error(`getWantAgent failed, code: ${err.code}, message: ${err.message}`);
   } else {
     wantAgentData = data;
   }
@@ -277,7 +277,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 // 定义getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
   if (err) {
-    console.info(`Failed to call getWantAgentCallback. Code is ${err.code}. Message is ${err.message}.`);
+    console.error(`Failed to call getWantAgentCallback. Code is ${err.code}. Message is ${err.message}.`);
   } else {
     wantAgentData = data;
   }

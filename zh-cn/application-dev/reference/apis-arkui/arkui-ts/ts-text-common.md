@@ -26,8 +26,8 @@
 
 ### 导入对象
 以Text组件为例
-```
-controller: TextController = new TextController()
+```ts
+controller: TextController = new TextController();
 let layoutManager: LayoutManager = this.controller.getLayoutManager();
 ```
 
@@ -61,8 +61,8 @@ getGlyphPositionAtCoordinate(x: number, y: number): PositionWithAffinity
 
 | 参数名    | 类型   | 必填   | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| x | number | 是    | 相对于组件的横坐标。<br/>单位：px |
-| y | number | 是    | 相对于组件的纵坐标。<br/>单位：px |
+| x | number | 是    | 相对于组件的横坐标。<br/>单位：[px](ts-pixel-units.md#像素单位) |
+| y | number | 是    | 相对于组件的纵坐标。<br/>单位：[px](ts-pixel-units.md#像素单位) |
 
 **返回值：**
 
@@ -593,7 +593,7 @@ setCaretOffset(offset: number): boolean
 
 | 类型      | 说明        |
 | ------- | --------- |
-| boolean | 光标是否设置成功。 |
+| boolean | 光标是否设置成功。<br/>true表示光标设置成功，false表示设置失败。 |
 
 ### getPreviewText<sup>12+</sup>
 

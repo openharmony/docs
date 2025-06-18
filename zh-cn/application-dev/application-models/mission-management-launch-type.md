@@ -10,7 +10,7 @@
   **图1** 任务与singleton模式  
   ![mission-and-singleton](figures/mission-and-singleton.png)
   
-- multiton：多实例模式，每次调用[`startAbility()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法，都会在应用进程中创建一个该UIAbility实例。
+- multiton：多实例模式，每次调用[`startAbility()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability)方法，都会在应用进程中创建一个该UIAbility实例。
   
   **图2** 任务与multiton模式  
   ![mission-and-multiton](figures/mission-and-multiton.png)

@@ -23,11 +23,11 @@ Only the [ArcListItem](ts-container-arclistitem.md) component is supported.
 >
 > - The index increases in ascending order of child components. 
 >
-> - In the [if/else](../../../quick-start/arkts-rendering-control-ifelse.md) statement, only the child components for which the condition evaluates to true participate in the index calculation. 
+> - In the [if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md) statement, only the child components for which the condition evaluates to true participate in the index calculation. 
 >
-> - In the [ForEach](../../../quick-start/arkts-rendering-control-foreach.md) or [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md) statement, the indexes of all expanded subnodes are calculated. 
+> - In the [ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md) or [LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md) statement, the indexes of all expanded subnodes are calculated. 
 >
-> - If the values of [if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md) change, the indexes of subnodes are updated. 
+> - If the values of [if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md), [ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md), and [LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md) change, the indexes of subnodes are updated. 
 >
 > - Child components of **ArcList** whose [visibility](ts-universal-attributes-visibility.md#visibility) attribute is set to **Hidden** or **None** are still included in the index calculation. 
 

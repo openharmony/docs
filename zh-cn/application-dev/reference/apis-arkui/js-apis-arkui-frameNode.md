@@ -123,7 +123,7 @@ isModifiable(): boolean
 
 | 类型    | 说明                                                                                                                                  |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| boolean | 判断当前节点是否可修改。当返回false的时候，当前FrameNode不支持appendChild、insertChildAfter、removeChild、clearChildren的操作。 |
+| boolean | 判断当前节点是否可修改。<br/>true表示当前节点可修改，false表示当前节点不可修改。<br/>当节点为系统组件的代理节点或节点已经[dispose](#dispose12)时返回false。<br/>当返回false时，当前FrameNode不支持appendChild、insertChildAfter、removeChild、clearChildren、createAnimation、cancelAnimations的操作。 |
 
 **示例：**
 
@@ -383,7 +383,7 @@ getPreviousSibling(): FrameNode | null
 
 ### getParent<sup>12+</sup> 
 
-getParent(): FrameNode | null;
+getParent(): FrameNode | null
 
 获取当前FrameNode的父节点。
 
@@ -399,12 +399,12 @@ getParent(): FrameNode | null;
 
 **示例：**
 
-请参考[节点操作示例](#节点操作示例)。
+请参考[节点操作示例](#节点操作示例)和[获取根节点示例](#获取根节点示例)。
 
 
 ### getChildrenCount<sup>12+</sup> 
 
-  getChildrenCount(): number;
+getChildrenCount(): number
 
 获取当前FrameNode的子节点数量。
 
@@ -431,6 +431,8 @@ moveTo(targetParent: FrameNode, index?: number): void
 > **说明：**
 >
 > 当前仅支持以下类型的[TypedFrameNode](#typedframenode12)进行移动操作：[Stack](#stack12)、[XComponent](#xcomponent12)。对于其他类型的节点，移动操作不会生效。
+>
+> 当前仅支持根节点为以下类型组件的[BuilderNode](./js-apis-arkui-builderNode.md#buildernode-1)进行移动操作：[Stack](./arkui-ts/ts-container-stack.md)、[XComponent](./arkui-ts/ts-basic-components-xcomponent.md)、[EmbeddedComponent](./arkui-ts/ts-container-embedded-component.md)。对于其他类型的组件，移动操作不会生效。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -455,7 +457,7 @@ moveTo(targetParent: FrameNode, index?: number): void
 
 ### getPositionToWindow<sup>12+</sup> 
 
-  getPositionToWindow(): Position
+getPositionToWindow(): Position
 
 获取FrameNode相对于窗口的位置偏移，单位为VP。
 
@@ -496,7 +498,7 @@ getPositionToParent(): Position
 
 ### getPositionToScreen<sup>12+</sup> 
 
-  getPositionToScreen(): Position
+getPositionToScreen(): Position
 
 获取FrameNode相对于屏幕的位置偏移，单位为VP。
 
@@ -843,6 +845,10 @@ getInspectorInfo(): Object
 
 获取节点的结构信息，该信息和DevEco Studio内置<!--RP1-->ArkUI Inspector<!--RP1End-->工具里面的一致。
 
+> **说明：**
+>
+> getInspectorInfo接口用于获取所有节点的信息，作为调试接口使用，频繁调用会导致性能下降。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -852,6 +858,32 @@ getInspectorInfo(): Object
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
 | Object | 节点的结构信息。 |
+
+以查询Button组件节点为例获取到的Object结果部分值如下所示
+```json
+{
+    "$type": "Button",
+    "$ID": 44,
+    "type": "build-in",
+    "$rect": "[498.00, 468.00],[718.00,598.00]",
+    "$debugLine": "",
+    "$attrs": {
+        "borderStyle": "BorderStyle.Solid",
+        "borderColor": "#FF000000",
+        "borderWidth": "0.00vp",
+        "borderRadius": {
+            "topLeft": "65.00px",
+            "topRight": "65.00px",
+            "bottomLeft": "65.00px",
+            "bottomRight": "65.00px"
+        },
+        "border": "{\"style\":\"BorderStyle.Solid\",\"color\":\"#FF000000\",\"width\":\"0.00vp\",\"radius\":{\"topLeft\":\"65.00px\",\"topRight\":\"65.00px\",\"bottomLeft\":\"65.00px\",\"bottomRight\":\"65.00px\"},\"dashGap\":\"0.00vp\",\"dashWidth\":\"0.00vp\"}",
+        "outlineStyle": "OutlineStyle.SOLID",
+        "outlineColor": "#FF000000"
+    }
+}
+```
+以上返回结果的\$attrs字段会根据不同的组件类型具有不同的属性，具体可以参考<!--RP2-->[getInspectorInfo返回结果$attrs映射表.xlsx](./figures/getInspectorInfo%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%24attrs%E6%98%A0%E5%B0%84%E8%A1%A8.xlsx)<!--RP2End-->
 
 **示例：**
 
@@ -1058,7 +1090,7 @@ get gestureEvent(): UIGestureEvent
 
 onDraw?(context: DrawContext): void
 
-FrameNode的自绘制方法，该方法会在FrameNode进行内容绘制时被调用。
+FrameNode的自绘制方法，该方法会重写默认绘制方法，在FrameNode进行内容绘制时被调用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1541,7 +1573,7 @@ getCrossLanguageOptions(): CrossLanguageOptions
 
 recycle(): void
 
-子组件的回收方法。
+全局复用场景下，触发子组件回收，彻底释放FrameNode后端资源，以便于资源的重新复用，确保后端资源能够被有效回收并再次使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1555,7 +1587,7 @@ recycle(): void
 
 reuse(): void
 
-子组件的复用方法。
+全局复用场景下，触发子组件复用，实现FrameNode后端资源的复用，提升资源利用效率。为保证资源充足，可以在recycle之后使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -2259,7 +2291,7 @@ Blank类型的FrameNode节点类型。不允许添加子组件。
 | TypedFrameNode&lt;BlankInterface, BlankAttribute&gt; | 提供Blank类型FrameNode节点。<br/>**说明：**<br/> BlankInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Blank组件的构造函数类型。 <br/> BlankAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Blank组件的属性设置对象。 |
 
 ### createNode('Blank')<sup>12+</sup>
-createNode(context: UIContext, nodeType: 'Blank'): Blank;
+createNode(context: UIContext, nodeType: 'Blank'): Blank
 
 创建Blank类型的FrameNode节点。
 
@@ -2421,7 +2453,7 @@ TextInput类型的FrameNode节点类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -2464,7 +2496,7 @@ Button类型的FrameNode节点类型。以子组件模式创建允许添加一�
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                                                   | 说明                                                         |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
@@ -2507,7 +2539,7 @@ ListItemGroup类型的FrameNode节点类型。只允许添加ListItem类型子�
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -2550,7 +2582,7 @@ WaterFlow类型的FrameNode节点类型。只允许添加FlowItem类型子组件
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -2593,7 +2625,7 @@ FlowItem类型的FrameNode节点类型。允许添加一个子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                                                       | 说明                                                         |
 | ---------------------------------------------------------- | ------------------------------------------------------------ |
@@ -2636,7 +2668,7 @@ XComponent类型的FrameNode节点类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -2715,7 +2747,7 @@ QRCode类型的FrameNode节点类型。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -2758,7 +2790,7 @@ Badge类型的FrameNode节点类型。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -2801,7 +2833,7 @@ Grid类型的FrameNode节点类型。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -2844,7 +2876,7 @@ GridItem类型的FrameNode节点类型。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -2887,7 +2919,7 @@ TextClock类型的FrameNode节点类型。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -2930,7 +2962,7 @@ TextTimer类型的FrameNode节点类型。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -2973,7 +3005,7 @@ Marquee类型的FrameNode节点类型。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -3016,7 +3048,7 @@ TextArea类型的FrameNode节点类型。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -3059,7 +3091,7 @@ SymbolGlyph类型的FrameNode节点类型。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -3102,7 +3134,7 @@ Checkbox类型的FrameNode节点类型。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -3145,7 +3177,7 @@ CheckboxGroup类型的FrameNode节点类型。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -3188,7 +3220,7 @@ Rating类型的FrameNode节点类型。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -3231,7 +3263,7 @@ Radio类型的FrameNode节点类型。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -3274,7 +3306,7 @@ Slider类型的FrameNode节点类型。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -3317,7 +3349,7 @@ Select类型的FrameNode节点类型。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -3360,7 +3392,7 @@ Toggle类型的FrameNode节点类型。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
@@ -3606,7 +3638,7 @@ onGetChildId?(index: number): number
 
 onCreateChild?(index: number): FrameNode
 
-节点首次加载或新节点滑入时回调。
+节点首次加载或新节点滑入时回调。建议开发者在添加子组件时，遵循声明式组件中子组件的约束。例如，WaterFlow支持添加FlowItem子节点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3663,6 +3695,10 @@ onUpdateChild?(id: number, node: FrameNode): void
 static attachNodeAdapter(adapter: NodeAdapter, node: FrameNode): boolean
 
 给FrameNode绑定一个NodeAdapter。一个节点只能绑定一个NodeAdapter。已经绑定NodeAdapter的再次绑定会失败并返回false。
+
+> **说明：**
+>
+> 支持绑定的组件：Column、Row、Stack、GridRow、Flex、Swiper、RelativeContainer、List、ListItemGroup、WaterFlow、Grid。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3740,7 +3776,7 @@ struct FrameNodeTypeTest {
 
 ## 节点操作示例
 ```ts
-import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+import { NodeController, FrameNode, UIContext, typeNode } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const TEST_TAG: string = "FrameNode "
@@ -3767,6 +3803,8 @@ class MyNodeController extends NodeController {
       this.childList.push(childNode);
       this.frameNode.appendChild(childNode);
     }
+    let stackNode = typeNode.createNode(uiContext, "Stack");
+    this.frameNode.appendChild(stackNode);
     return this.rootNode;
   }
 
@@ -3847,7 +3885,7 @@ class MyNodeController extends NodeController {
   }
 
   moveFrameNode() {
-    const currentNode = this.frameNode!.getChild(4);
+    const currentNode = this.frameNode!.getChild(10);
     try {
       currentNode!.moveTo(this.rootNode, 0);
       if (this.rootNode!.getChild(0) === currentNode) {
@@ -4760,7 +4798,7 @@ export struct TrackNode {
   }
 
   aboutToAppear(): void {
-    // use onDidBuild later
+    // 稍后使用onDidBuild
   }
 
   aboutToDisappear(): void {
@@ -4901,7 +4939,7 @@ export class TrackManager {
   }
 
   updateVisibleInfo(track: TrackShadow): void {
-    // do something
+    // 更新埋点信息
   }
 
   dump(): void {
@@ -5330,14 +5368,14 @@ class MyNodeController extends NodeController {
     console.log("myButton on detach");
   }
 
-  //  onBind时复用
+  //  onBind时，子节点已经重新上树，此时调用reuse，保证子组件的能重新被复用。
   onBind(containerId: number): void {
     // 该方法触发子组件复用，全局复用场景下，复用FrameNode后端资源。
     this.rootNode?.reuse();
     console.log("myButton reuse");
   }
 
-  //  onUnbind时回收
+  //  onUnbind时，子节点已经完全下树，此时调用recycle，保证子组件的能完全被回收。
   onUnbind(containerId: number): void {
     // 该方法触发子组件的回收，全局复用场景下，回收FrameNode后端资源用于重新利用。
     this.rootNode?.recycle();
@@ -5384,4 +5422,56 @@ struct Index {
   }
 }
 
+```
+
+## 获取根节点示例
+
+该示例演示了如何通过FrameNode的[getParent](getparent)接口获取当前页面根节点。
+
+```ts
+@Component
+struct ChildView {
+  @State message: string = 'Hello World';
+
+  build() {
+    RelativeContainer() {
+      Text(this.message)
+        .id('HelloWorld')
+        .fontSize($r('app.float.page_text_font_size'))
+        .fontWeight(FontWeight.Bold)
+        .alignRules({
+          center: { anchor: '__container__', align: VerticalAlign.Center },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+        .onClick(() => {
+          // 通过id查询获得Text节点的FrameNode对象。不建议设置多个相同的id的节点。
+          let node = this.getUIContext().getFrameNodeById("HelloWorld");
+          console.log(`Find HelloWorld Tag:${node!.getNodeType()} id:${node!.getUniqueId()}`);
+          // 通过while循环遍历查询页面的根节点。如果当前节点为自定义组件，则会继续遍历其父节点。
+          while (node && node.getParent() && node.getParent()!.getUniqueId() > 0) {
+            node = node.getParent();
+            console.log(`Find FrameNode Tag:${node!.getNodeType()} id:${node!.getUniqueId()}`);
+          }
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    RelativeContainer() {
+      ChildView({ message: this.message })
+        .height('100%')
+        .width('100%')
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
 ```

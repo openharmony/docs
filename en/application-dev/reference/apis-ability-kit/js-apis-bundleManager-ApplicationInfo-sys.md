@@ -1,6 +1,6 @@
 # ApplicationInfo (System API)
 
-The ApplicationInfo module defines the application information. A third-party application can obtain its own application information through **bundleManager.getBundleInfoForSelf**, with at least **GETBUNDLEINFOWITHAPPLICATION** passed in to **bundleFlags**.
+The ApplicationInfo module defines the application information. A third-party application can obtain its own application information through [bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself), with **GET_BUNDLE_INFO_WITH_APPLICATION** passed in to [bundleFlags](js-apis-bundleManager.md#bundleflag).
 
 > **NOTE**
 >
@@ -16,7 +16,7 @@ The ApplicationInfo module defines the application information. A third-party ap
 
 | Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| flags<sup>12+</sup>    | number    | Yes  | Yes  | Status set between the current application and the current user. Each bit indicates a specific Boolean status.<br>**System API**: This property can be used in system APIs since API version 12.|
+| flags<sup>12+</sup>    | number    | Yes  | Yes  | Status set between the current application and the current user. Each bit indicates a specific Boolean status. For details about the values, see [ApplicationInfoFlag](js-apis-bundleManager-sys.md#applicationinfoflag12).<br>**System API**: This property can be used in system APIs since API version 12.|
 
 
 ## PreinstalledApplicationInfo<sup>12+<sup>

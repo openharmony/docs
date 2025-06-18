@@ -16,7 +16,7 @@ Bundle manager error.
 
 **可能原因**
 
-在调用getInputMethods、listCurrentInputMethodSubtype等接口获取输入法及子类型的时候，由于获取包管理服务异常时会报错。
+在调用getInputMethods、listCurrentInputMethodSubtype等接口获取输入法及子类型时，由于获取包管理服务异常会报错。
 
 **处理步骤**
 
@@ -38,7 +38,7 @@ Input method engine error.
 
 **处理步骤**
 
-查看输入法应用进程是否正常。例如再次在普通应用（微信、联系人等第三方应用）中点击对话框看键盘能否被正常拉起。
+检查输入法应用进程是否正常运行。例如：可在第三方应用中点击对话框，观察键盘是否能正常弹出。
 
 ## 12800003 客户端应用异常
 
@@ -52,13 +52,13 @@ Input method client error.
 
 **可能原因**
 
-1、三方应用客户端服务异常导致输入法应用与三方应用客户端断链。
-2、三方应用没有获得焦点。
+1. 三方应用客户端服务异常导致输入法应用与三方应用客户端断链。
+2. 三方应用没有获得焦点。
 
 **处理步骤**
 
-1、重新将输入法应用与三方应用进行绑定：将三方应用后台进程杀死，重新启动三方应用，通过点击对话框等方式触发输入法键盘的显示，若键盘正常显示，则问题解决。
-2、将三方应用置于前台且确保没有其他应用或者窗口覆盖。通过点击对话框等方式拉起键盘。
+1. 重新将输入法应用与三方应用进行绑定：将三方应用后台进程杀死，重新启动三方应用，通过点击对话框等方式触发输入法键盘的显示，若键盘正常显示，则问题解决。
+2. 将第三方应用切换至前台，并确保无其他应用或窗口遮挡。通过点击对话框等方式触发键盘弹出。
 
 ## 12800004 不是输入法应用
 
@@ -94,7 +94,7 @@ Configuration persistence error.
 
 **处理步骤**
 
-执行hdc shell param get persist.sys.default_ime查看默认输入法参数，若可查看，则系统参数配置模块正常，可重启设备进行尝试。
+执行命令`hdc shell param get persist.sys.default_ime`查看默认输入法参数。若参数可正常显示，则系统参数配置模块正常，建议重启设备后重试。
 
 ## 12800006 输入法控制器异常
 
@@ -148,7 +148,7 @@ Input method manager service error.
 
 **处理步骤**
 
-通过ps -A|grep inputmethod查看是否存在输入法服务的进程号，如果存在，则服务正常。
+执行命令`ps -A | grep inputmethod`检查输入法服务的进程号。若进程存在，则服务正常运行。
 
 ## 12800009 输入法客户端未绑定
 
@@ -166,7 +166,7 @@ Input method client detached.
 
 **处理步骤**
 
-先执行attach接口操作即可。
+需先执行`attach`接口操作。
 
 ## 12800010 不是系统配置的默认输入法
 
@@ -288,7 +288,7 @@ The edit mode need enable.
 
 **可能原因**
 
-输入法客户端绑定后退出了编辑状态。如：自绘控件调用Attach后又调用了[hideTextInput](js-apis-inputmethod.md#hidetextinput10)操作等。
+输入法客户端绑定后退出编辑状态。例如：自绘控件调用`Attach`后，又调用了[hideTextInput](js-apis-inputmethod.md#hidetextinput10)操作等。
 
 **处理步骤**
 

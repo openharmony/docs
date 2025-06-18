@@ -2,13 +2,13 @@
 
 ArkTS是一种设计用于构建高性能应用的编程语言。它在继承TypeScript语法的基础上进行了优化，以提供更高的性能和开发效率。
 
-随着移动设备在人们的日常生活中变得越来越普遍，许多编程语言在设计之初没有考虑到移动设备，导致应用的运行缓慢、低效、功耗大，针对移动环境的编程语言优化需求也越来越大。ArkTS是专为解决这些问题而设计的，聚焦于提高运行效率。
+许多编程语言在设计之初没有考虑到移动设备，导致应用的运行缓慢、低效、功耗大，随着移动设备在人们的日常生活中变得越来越普遍，针对移动环境的编程语言优化需求也越来越多。ArkTS是专为解决这些问题而设计的，聚焦于提高运行效率。
 
 TypeScript是在JavaScript基础上通过添加类型定义扩展而来的，ArkTS则是TypeScript的进一步扩展。TypeScript提供了一种更结构化的JavaScript编码方法，深受开发者喜爱。ArkTS保持了TypeScript的大部分语法，旨在为现有的TypeScript开发者实现无缝过渡，帮助移动开发者快速上手。
 
 ArkTS的一大特性是它专注于低运行时开销。ArkTS对TypeScript的动态类型特性施加了更严格的限制，以减少运行时开销，提高执行效率。通过取消动态类型特性，ArkTS代码能更有效地被运行前编译和优化，从而实现更快的应用启动和更低的功耗。
 
-ArkTS语言设计中关键考虑了与JavaScript的互通性。许多移动应用开发者希望重用TypeScript和JavaScript代码及库，因此ArkTS提供与JavaScript的无缝互通，使开发者可以轻松集成JavaScript代码到应用中，充分利用现有代码和库进行ArkTS开发。
+ArkTS语言设计中考虑了与TypeScript和JavaScript的互通性。许多移动应用开发者希望重用TypeScript和JavaScript代码及库，因此ArkTS提供与TypeScript和JavaScript的无缝互通，使开发者可以轻松集成TypeScript和JavaScript代码到应用中，充分利用现有代码和库进行ArkTS开发。
 
 本教程将指导开发者了解ArkTS的核心功能、语法和最佳实践，助力开发者使用ArkTS高效构建高性能的移动应用。
 
@@ -18,7 +18,7 @@ ArkTS语言设计中关键考虑了与JavaScript的互通性。许多移动应�
 
 ### 声明
 
-ArkTS通过声明引入变量、常量、函数和类型。
+ArkTS通过声明引入变量、常量、类型和函数。
 
 #### 变量声明
 
@@ -58,7 +58,7 @@ let hi2 = 'hello, world';
 
 基本数据类型包括`number`、`string`等简单类型，它们可以准确地表示单一的数据类型。基本类型确保数据在存储和访问时是直接的，比较时直接比较其值。
 
-ArkTS中的引用类型包括对象、数组和函数等复杂数据结构。这些类型通过引用访问数据，对象和数组可以包含多个值或键值对，函数则可以封装可执行的代码逻辑。引用类型在内存中通过指针访问数据，修改引用会影响原始数据。
+引用类型包括对象、数组和函数等复杂数据结构。这些类型通过引用访问数据，对象和数组可以包含多个值或键值对，函数则可以封装可执行的代码逻辑。引用类型在内存中通过指针访问数据，修改引用会影响原始数据。
 
 #### `number`类型
 
@@ -68,12 +68,12 @@ ArkTS提供`number`类型，任何整数和浮点数都可以被赋给此类型�
 
 整数字面量包括以下类别：
 
-* 十进制整数，由数字序列组成。例如：`0`、`117`、`-345`
-* 十六进制整数，以0x（或0X）开头，包含数字（0-9）和字母a-f或A-F。例如：`0x1123`、`0x00111`、`-0xF1A7`
-* 八进制整数，以0o（或0O）开头，只能包含数字（0-7）。例如：`0o777`
-* 二进制整数，以0b（或0B）开头，只能包含数字0和1。例如：`0b11`、`0b0011`、`-0b11`
+* 十进制整数，由数字序列组成。例如：`0`、`117`、`-345`。
+* 十六进制整数，以0x（或0X）开头，包含数字（0-9）和字母a-f或A-F。例如：`0x1123`、`0x00111`、`-0xF1A7`。
+* 八进制整数，以0o（或0O）开头，只能包含数字（0-7）。例如：`0o777`。
+* 二进制整数，以0b（或0B）开头，只能包含数字0和1。例如：`0b11`、`0b0011`、`-0b11`。
 
-浮点字面量包括以下部分：
+浮点数字面量包括以下部分：
 
 * 十进制整数，可为有符号数（前缀为“+”或“-”）。
 * 小数点（“.”）。
@@ -101,7 +101,7 @@ factorial(n3)  //  1
 factorial(n4)  //  9.33262154439441e+157 
 ```
 
-`number`类型在表示大整数时会造成精度丢失。在开发时可以按需使用`bigInt`类型来确保精度：
+`number`类型在表示大整数（即超过-9007199254740991~9007199254740991）时会造成精度丢失。在开发时可以按需使用`bigInt`类型来确保精度：
 
 ```typescript
 
@@ -128,7 +128,7 @@ if (isDone) {
 
 #### `string`类型
 
-`string`类型代表字符序列；可以使用转义字符来表示字符。
+`string`类型代表字符序列，可以使用转义字符来表示字符。
 
 字符串字面量由单引号（'）或双引号（"）之间括起来的零个或多个字符组成。字符串字面量还有一特殊形式，是用反向单引号（\`）括起来的模板字面量。
 
@@ -154,6 +154,11 @@ let instance: Class <void>
 #### `Object`类型
 
 `Object`类型是所有引用类型的基类型。任何值，包括基本类型的值，都可以直接被赋给`Object`类型的变量（基本类型值会被自动装箱）。`Object`类型用于表示除基本类型外的类型。
+```typescript
+let o1: Object = 'Alice';
+let o2: Object = ['a','b'];
+let o3: Object = 1;
+```
 
 #### `array`类型
 
@@ -185,7 +190,7 @@ let c: ColorSet = ColorSet.Black;
 
 #### `Union`类型
 
-`union`类型，即联合类型，是由多个类型组合成的引用类型。联合类型包含了变量可能的所有类型。
+`Union`类型，即联合类型，是由多个类型组合成的引用类型。联合类型包含了变量可能的所有类型。
 
 ```typescript
 class Cat {
@@ -200,16 +205,19 @@ class Frog {
   name: string = 'frog';
   // ...
 }
-type Animal = Cat | Dog | Frog | number;
+type Animal = Cat | Dog | Frog | number | string | null | undefined;
 // Cat、Dog、Frog是一些类型（类或接口）
 
 let animal: Animal = new Cat();
 animal = new Frog();
 animal = 42;
+animal = 'dog';
+animal = undefined;
 // 可以将类型为联合类型的变量赋值为任何组成类型的有效值
 ```
 
 可以用不同的机制获取联合类型中特定类型的值。
+
 示例：
 
 ```typescript
@@ -244,7 +252,9 @@ type NullableObject = Object | null;
 
 赋值运算符`=`，使用方式如`x=y`。
 
-复合赋值运算符将赋值与运算符组合在一起，其中`x op = y`等于`x = x op y`。
+复合赋值运算符将赋值与运算符组合在一起，例如：`a += b` 等价于 `a = a + b`，
+
+其中的 `+=` 即为复合赋值运算符
 
 复合赋值运算符包括：`+=`、`-=`、`*=`、`/=`、`%=`、`<<=`、`>>=`、`>>>=`、`&=`、`|=`、`^=`。
 
@@ -252,14 +262,25 @@ type NullableObject = Object | null;
 
 | 运算符| 说明                                                 |
 | -------- | ------------------------------------------------------------ |
-| `===`    | 如果两个操作数严格相等（对于不同类型的操作数认为是不相等的），则返回true。 |
-| `!==`    | 如果两个操作数严格不相等（对于不同类型的操作数认为是不相等的），则返回true。 |
+| `===`    | 如果两个操作数严格相等（对于不同类型的操作数认为是不相等的，如string和number），则返回true。 |
+| `!==`    | 如果两个操作数严格不相等（对于不同类型的操作数认为是不相等的，如string和number），则返回true。 |
 | `==`     | 如果两个操作数相等，则返回true。 |
 | `!=`     | 如果两个操作数不相等，则返回true。    |
 | `>`      | 如果左操作数大于右操作数，则返回true。 |
 | `>=`     | 如果左操作数大于或等于右操作数，则返回true。 |
 | `<`      | 如果左操作数小于右操作数，则返回true。    |
 | `<=`     | 如果左操作数小于或等于右操作数，则返回true。 |
+
+`===`与`==`的区别：
+```typescript
+    let a:Object=1;
+    let b:Object='1';
+    // == 只比较值相等
+    console.log(a == b); // true
+    // === 比较值和类型都相等
+    console.log(a === b); // false
+```
+
 
 #### 算术运算符
 
@@ -378,6 +399,19 @@ condition ? expression1 : expression2
 let message = Math.random() > 0.5 ? 'Valid' : 'Failed';
 ```
 
+`condition`如果是非bool值则会进行隐式转换。
+
+示例：
+
+```typescript
+    console.log('a' ? 'true' : 'false'); // true
+    console.log('' ? 'true' : 'false'); // false
+    console.log(1 ? 'true' : 'false'); // true
+    console.log(0 ? 'true' : 'false'); // false
+    console.log(null ? 'true' : 'false'); // false
+    console.log(undefined ? 'true' : 'false'); // false
+```
+
 #### `For`语句
 
 `for`语句会被重复执行，直到循环退出语句值为`false`。
@@ -409,11 +443,11 @@ for (let i = 0; i < 10; i += 2) {
 
 #### `For-of`语句
 
-使用`for-of`语句可遍历数组或字符串。示例如下：
+使用`for-of`语句可遍历数组、Set、Map、字符串等可迭代的类型。示例如下：
 
 ```typescript
-for (forVar of expression) {
-  statements
+for (forVar of IterableExpression) {
+  // process forVar
 }
 ```
 
@@ -421,7 +455,7 @@ for (forVar of expression) {
 
 ```typescript
 for (let ch of 'a string object') {
-  /* process ch */
+  console.log(ch);
 }
 ```
 
@@ -567,6 +601,7 @@ function processData(s: string) {
     // 异常处理
     // ...
   } finally {
+    // 无论是否发生异常都会执行的代码
     if (error != null) {
       console.log(`Error caught: input='${s}', message='${error.message}'`);
     }
@@ -621,7 +656,7 @@ multiply(2, 3); // 返回2*3
 
 ### Rest参数
 
-函数的最后一个参数可以是rest参数。rest参数的格式为`...restArgs`。rest参数允许函数接收一个由剩余实参组成的数组，用于处理不定数量的参数输入。
+函数的最后一个参数可以是rest参数。rest参数的格式为`...restArgs`。rest参数允许函数接收一个由剩余实参组成的数组，类型为任意指定类型，用于处理不定数量的参数输入。
 
 ```typescript
 function sum(...numbers: number[]): number {
@@ -662,6 +697,17 @@ function hi2(): void { console.log('hi'); }
 
 如果函数中定义的变量与外部作用域中已有实例同名，则函数内的局部变量定义将覆盖外部定义。
 
+```typescript
+let outerVar = 'I am outer ';
+
+function func() {
+    let outerVar = 'I am inside';
+    console.log(outerVar); // 输出: I am inside
+}
+
+func();
+```
+
 ### 函数调用
 
 调用函数以执行其函数体，实参值会赋值给函数的形参。
@@ -679,7 +725,7 @@ function join(x: string, y: string): string {
 
 ```typescript
 let x = join('hello', 'world');
-console.log(x);
+console.log(x); // 输出: hello world
 ```
 
 ### 函数类型
@@ -813,9 +859,9 @@ class Person {
 }
 
 let p1 = new Person('Alice', 25);
-p1.name;
+p1.name; // Alice
 let p2 = new Person('Bob', 28);
-p2.getName();
+p2.getName(); // Bob
 ```
 
 #### 静态字段
@@ -1266,7 +1312,7 @@ let map: Record<string, number> = {
 map['John']; // 25
 ```
 
-类型`K`可以是字符串类型或数值类型，而`V`可以是任何类型。
+类型`K`可以是字符串类型或数值类型(不包括bigint)，而`V`可以是任何类型。
 
 ```typescript
 interface PersonInfo {
@@ -1311,6 +1357,8 @@ class Derived extends Base {
     super(p); 
   }
 }
+
+let x = new Derived(666);
 ```
 
 #### 抽象方法
@@ -1433,9 +1481,50 @@ interface ExtendedStyle extends Style {
 抽象类与接口都无法实例化。抽象类是类的抽象，抽象类用来捕捉子类的通用特性，接口是行为的抽象。在ArkTS中抽象类与接口的区别如下：
 
 * 一个类只能继承一个抽象类，而一个类可以实现一个或多个接口；
+```typescript
+// Bird类继承Animal抽象类并实现多个接口CanFly、CanSwim
+class Bird extends Animal implements CanFly, CanSwim {
+  // ...  
+}
+```
 * 接口中不能含有静态代码块以及静态方法，而抽象类可以有静态代码块和静态方法；
+```typescript
+interface MyInterface {
+    // 错误：接口中不能包含静态成员
+    static staticMethod(): void; 
+
+    // 错误：接口中不能包含静态代码块
+    static { console.log("static") }; 
+} 
+
+abstract class MyAbstractClass {
+    // 正确：抽象类可以有静态方法
+    static staticMethod(): void { console.log("static");}
+
+    // 正确：抽象类可以有静态代码块
+    static { console.log("static initialization block");}
+}
+```
 * 抽象类里面可以有方法的实现，但是接口完全都是抽象的，不存在方法的实现；
+```typescript
+abstract class MyAbstractClass {
+   // 正确：抽象类里面可以有方法的实现
+   func(): void { console.log("func");}
+}
+interface MyInterface {
+   // 错误：接口完全都是抽象的，不存在方法的实现
+   func(): void { console.log("func");}
+}
+```
 * 抽象类可以有构造函数，而接口不能有构造函数。
+```typescript
+abstract class MyAbstractClass {
+  constructor(){}  // 正确：抽象类可以有构造函数
+}
+interface MyInterface {
+  constructor(); // 错误：接口中不能有构造函数
+}
+```
 
 ## 泛型类型和函数
 
@@ -1510,12 +1599,12 @@ function last<T>(x: T[]): T {
 
 ```typescript
 // 显式设置的类型实参
-last<string>(['aa', 'bb']);
-last<number>([1, 2, 3]);
+let res: string = last<string>(['aa', 'bb']);
+let res: number = last<number>([1, 2, 3]);
 
 // 隐式设置的类型实参
 // 编译器根据调用参数的类型来确定类型实参
-last([1, 2, 3]);
+let res: number = last([1, 2, 3]);
 ```
 
 ### 泛型默认值

@@ -162,7 +162,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct Index {
   handleSaveButtonClick: SaveButtonCallback =
-    async (event: ClickEvent, result: SaveButtonOnClickResult, error: BusinessError<void>) => {
+    async (event: ClickEvent, result: SaveButtonOnClickResult, error?: BusinessError<void>) => {
       if (result == SaveButtonOnClickResult.SUCCESS) {
         try {
           const context = this.getUIContext().getHostContext();
@@ -179,8 +179,8 @@ struct Index {
           console.error("error is " + JSON.stringify(error));
         }
       } else {
-        console.info("errCode: " + error.code);
-        console.info("errMessage: " + error.message);
+        console.error("errCode: " + error?.code);
+        console.error("errMessage: " + error?.message);
       }
     };
 

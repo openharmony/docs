@@ -50,6 +50,13 @@ TreeSet的构造函数，支持通过比较函数对元素进行升序或降序�
 | -------- | -------- | -------- | -------- |
 | comparator | function | 否 | 用户自定义的比较函数，可通过比较关系对元素进行排序。默认值为hole（一个空白占位符），表示不提供比较函数。|
 
+comparator的参数说明：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------| ---- | ----- | -- |
+| firstValue | T | 是 | 前一项元素。 |
+| secondValue | T | 是 | 后一项元素。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
@@ -73,7 +80,7 @@ treeSet.add("a");
 treeSet.add("c");
 treeSet.add("d");
 treeSet.add("b");
-let numbers = Array.from(treeSet.values())
+let numbers = Array.from(treeSet.values());
 for (let item of numbers) {
   console.log("TreeSet:" + item);
 }
@@ -665,7 +672,7 @@ for(let i = 0; i < 10; i++) {
 let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
-let numbers = Array.from(treeSet.values())
+let numbers = Array.from(treeSet.values());
 // 使用方法一：
 for (let item of numbers) {
   console.log("value:" + item);

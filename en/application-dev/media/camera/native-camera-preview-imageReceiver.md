@@ -9,7 +9,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 1. Import the NDK, which provides camera-related attributes and methods.
 
    ```c++
-    // Include the NDK header files.
+   // Include the NDK header files.
    #include <cstdlib>
    #include <hilog/log.h>
    #include <memory>
@@ -42,7 +42,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 
    ```c++
    void InitImageReceiver() {
-       OH_ImageReceiverOptions *options = nullptr;
+       OH_ImageReceiverOptions* options = nullptr;
        // Capture exceptions and check whether the instance is null. This example shows only the API call process.
        // Set image parameters.
        Image_ErrorCode errCode = OH_ImageReceiverOptions_Create(&options);
@@ -53,12 +53,12 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
        errCode = OH_ImageReceiverOptions_SetSize(options, imgSize);
        errCode = OH_ImageReceiverOptions_SetCapacity(options, capacity);
        // Create an OH_ImageReceiverNative instance.
-       OH_ImageReceiverNative *receiver = nullptr;
+       OH_ImageReceiverNative* receiver = nullptr;
        errCode = OH_ImageReceiverNative_Create(options, &receiver);
        // Obtain the Surface ID of the OH_ImageReceiverNative instance.
        uint64_t receiverSurfaceID = 0;
        errCode = OH_ImageReceiverNative_GetReceivingSurfaceId(receiver, &receiverSurfaceID);
-       OH_LOG_INFO(LOG_APP, "receiver surfaceID:%{public}%llu", receiverSurfaceID);
+       OH_LOG_INFO(LOG_APP, "receiver surfaceID:%{public}lu", receiverSurfaceID);
    }
    ```
 
@@ -69,13 +69,13 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 6. Register an ImageReceiver callback to listen for the image content reported by each frame.
 
    ```c++
-   OH_ImageReceiverNative *receiver; // Instance created in step 3.
+   OH_ImageReceiverNative* receiver; // Instance created in step 3.
 
    // Image callback. For details, see Media/Image Kit.
-   static void OnCallback(OH_ImageReceiverNative *receiver) {
+   static void OnCallback(OH_ImageReceiverNative* receiver) {
        OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer available.");
        // Capture exceptions and check whether the instance is null. This example shows only the API call process.
-       OH_ImageNative *image = nullptr;
+       OH_ImageNative* image = nullptr;
        // Obtain the image from the bufferQueue.
        Image_ErrorCode errCode = OH_ImageReceiverNative_ReadNextImage(receiver, &image);
        // Read the image width and height.
@@ -91,7 +91,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
        OH_ImageNative_GetComponentTypes(image, &types, &typeSize);
        uint32_t component = types[0];
        // Obtain the image buffer.
-       OH_NativeBuffer *imageBuffer = nullptr;
+       OH_NativeBuffer* imageBuffer = nullptr;
        errCode = OH_ImageNative_GetByteBuffer(image, component, &imageBuffer);
        size_t bufferSize = 0;
        errCode = OH_ImageNative_GetBufferSize(image, component, &bufferSize);
@@ -111,7 +111,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
            // The following uses the operation of removing the stride data as an example. Specifically, remove the stride data from the byteBuffer and obtain a new dstBuffer by means of copy.
            size_t dstBufferSize = size.width * size.height * 1.5; // Camera preview stream in NV21 format.
            std::unique_ptr<uint8_t[]> dstBuffer = std::make_unique<uint8_t[]>(dstBufferSize);
-           uint8_t *dstPtr = dstBuffer.get();
+           uint8_t* dstPtr = dstBuffer.get();
            for (int j = 0; j < size.height * 1.5; j++) {
                memcpy(dstPtr, srcBuffer, size.width);
                dstPtr += size.width;

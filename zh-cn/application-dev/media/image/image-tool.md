@@ -12,25 +12,21 @@ OpenHarmony目前仅支持对部分EXIF信息的查看和修改，具体支持�
 
 EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../../reference/apis-image-kit/js-apis-image.md#getimageproperty11)。
 
-1. 获取图片，创建ImageSource。
-
-   ```ts
-   // 导入相关模块包。
-   import { image } from '@kit.ImageKit';
-
-   // 获取沙箱路径创建ImageSource。
-   const fd : number = 0; // 获取需要被处理的图片的fd。
-   const imageSourceApi : image.ImageSource = image.createImageSource(fd);
-   ```
-
-2. 读取、编辑EXIF信息。
+获取图片，创建ImageSource。读取、编辑EXIF信息。示例代码如下：
 
     ```ts
+    // 导入相关模块包。
+    import { image } from '@kit.ImageKit';
     import { BusinessError } from '@kit.BasicServicesKit';
+
+    // 获取沙箱路径创建ImageSource。
+    const fd : number = 0; // 获取需要被处理的图片的fd。
+    const imageSourceApi : image.ImageSource = image.createImageSource(fd);
+
     // 读取EXIF信息，BitsPerSample为每个像素比特数。
-    let options : image.ImagePropertyOptions = { index: 0, defaultValue: '9999' }
+    let options : image.ImagePropertyOptions = { index: 0, defaultValue: 'This key has no value!' };
     imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options).then((data : string) => {
-        console.log('Succeeded in getting the value of the specified attribute key of the image.');
+        console.info('Succeeded in getting the value of the specified attribute key of the image.');
     }).catch((error : BusinessError) => {
         console.error('Failed to get the value of the specified attribute key of the image.');
     })

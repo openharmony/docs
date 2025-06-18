@@ -3,7 +3,7 @@
 
 ## 概述
 
-ArkUI在native侧的数字类型定义。
+ArkUI在Native侧的数字类型定义。
 
 **起始版本：** 12
 

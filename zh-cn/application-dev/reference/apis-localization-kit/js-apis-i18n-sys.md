@@ -22,7 +22,7 @@ import { i18n } from '@kit.LocalizationKit';
 
 static setSystemLanguage(language: string): void
 
-设置系统语言。当前调用该接口不支持系统界面语言的实时刷新。
+设置系统语言。
 
 若要监听系统语言变化，可以监听[事件](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED。
 
@@ -171,7 +171,7 @@ static setSystemLocale(locale: string): void
 
 static set24HourClock(option: boolean): void
 
-设置系统时间为24小时。
+设置系统时制是否为24小时制。
 
 **系统接口**：此接口为系统接口。
 
@@ -183,7 +183,7 @@ static set24HourClock(option: boolean): void
 
 | 参数名    | 类型      | 必填   | 说明                                       |
 | ------ | ------- | ---- | ---------------------------------------- |
-| option | boolean | 是    | true表示开启系统24小时制开关，false表示关闭系统24小时开关。 |
+| option | boolean | 是    | true表示设置系统时制为24小时制，false表示设置系统时制为12小时制。 |
 
 **错误码：**
 
@@ -199,7 +199,7 @@ static set24HourClock(option: boolean): void
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  // 将系统时间设置为24小时制
+  // 将系统时制设置为24小时制
   try {
     i18n.System.set24HourClock(true);
   } catch(error) {
@@ -212,7 +212,7 @@ static set24HourClock(option: boolean): void
 
 static addPreferredLanguage(language: string, index?: number): void
 
-在系统偏好语言列表中的指定位置添加偏好语言。
+在系统偏好语言列表的指定位置添加偏好语言。
 
 **系统接口**：此接口为系统接口。
 
@@ -256,7 +256,7 @@ static addPreferredLanguage(language: string, index?: number): void
 
 static removePreferredLanguage(index: number): void
 
-删除系统偏好语言列表中指定位置的偏好语言。
+从系统偏好语言列表中移除指定位置的偏好语言。
 
 **系统接口**：此接口为系统接口。
 
@@ -339,7 +339,7 @@ static setUsingLocalDigit(flag: boolean): void
 
 static setTemperatureType(type: TemperatureType): void
 
-设置用户偏好的温度单位。
+设置系统的温度单位。
 
 **系统接口**：此接口为系统接口。
 
@@ -383,7 +383,7 @@ static setTemperatureType(type: TemperatureType): void
 
 static setFirstDayOfWeek(type: WeekDay): void
 
-设置用户偏好的周起始日。
+设置系统的周起始日。
 
 **系统接口**：此接口为系统接口。
 
@@ -446,7 +446,7 @@ constructor()
 
 getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Array&lt;LocaleItem&gt;
 
-获取语言排序数组。
+获取排序后的语言信息列表。
 
 **系统接口**：此接口为系统接口。
 
@@ -456,14 +456,14 @@ getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Arr
 
 |   参数名  |      类型      | 必填 |     说明      |
 | --------- | ------------- | ---- | ------------- |
-| languages | Array&lt;string&gt; | 是   | 待排序语言列表，要求是合法的语言ID。|
+| languages | Array&lt;string&gt; | 是   | 待排序的语言列表，要求是合法的语言ID。|
 | options   | [SortOptions](#sortoptions10)   | 否   | 语言排序选项。 |
 
 **返回值：**
 
 |       类型        |         说明          |
 | ----------------- | -------------------- |
-| Array&lt;[LocaleItem](#localeitem10)&gt; | 排序后的语言列表信息。 |
+| Array&lt;[LocaleItem](#localeitem10)&gt; | 排序后的语言信息列表。 |
 
 **错误码：**
 
@@ -497,7 +497,7 @@ getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Arr
 
 getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&lt;LocaleItem&gt;
 
-获取国家或地区排序数组。
+获取排序后的国家或地区信息列表。
 
 **系统接口**：此接口为系统接口。
 
@@ -514,7 +514,7 @@ getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&l
 
 |       类型        |         说明          |
 | ----------------- | -------------------- |
-| Array&lt;[LocaleItem](#localeitem10)&gt; | 排序后的国家或地区列表信息。 |
+| Array&lt;[LocaleItem](#localeitem10)&gt; | 排序后的国家或地区信息列表。 |
 
 **错误码：**
 
@@ -547,7 +547,7 @@ getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&l
 
 static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 
-获取时区城市组合信息的数组。
+获取排序后的时区城市组合信息列表。
 
 **系统接口**：此接口为系统接口。
 
@@ -557,7 +557,7 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 
 |       类型        |         说明          |
 | ----------------- | -------------------- |
-| Array&lt;[TimeZoneCityItem](#timezonecityitem10)&gt; | 排序后的时区城市组合信息数组。 |
+| Array&lt;[TimeZoneCityItem](#timezonecityitem10)&gt; | 排序后的时区城市组合信息列表。 |
 
 **错误码：**
 
@@ -585,7 +585,7 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 
 ## LocaleItem<sup>10+</sup>
 
-SystemLocaleManager对语言或国家地区列表的排序结果信息项。
+语言或国家地区的组合信息。
 
 **系统接口**：此接口为系统接口。
 
@@ -600,7 +600,7 @@ SystemLocaleManager对语言或国家地区列表的排序结果信息项。
 
 ## TimeZoneCityItem<sup>10+</sup>
 
-时区城市组合信息。
+时区城市的组合信息。
 
 **系统接口**：此接口为系统接口。
 
@@ -643,4 +643,4 @@ SystemLocaleManager对语言或国家地区列表的排序结果信息项。
 | --------------- | --------------- | ---- | --------------------------------------- |
 | locale          | string          |  否  | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，如"zh-Hans-CN"。<br>默认值：系统当前区域ID。    |
 | isUseLocalName  | boolean         |  否  | true表示使用本地名称进行排序，false表示不使用本地名称进行排序。<br>若调用方法为getLanguageInfoArray，isUseLocalName属性默认值为true。<br>若调用方法为getRegionInfoArray，isUseLocalName属性默认值为false。                |
-| isSuggestedFirst | boolean        |  否  | true表示将推荐语言或国家地区在排序结果中置顶，false表示不将推荐语言或国家地区在排序结果中置顶。<br>isSuggestedFirst属性默认值为true。  |
+| isSuggestedFirst | boolean        |  否  | true表示将推荐语言或国家地区在排序结果中置顶，false表示不将推荐语言或国家地区在排序结果中置顶。<br>默认值：true。  |

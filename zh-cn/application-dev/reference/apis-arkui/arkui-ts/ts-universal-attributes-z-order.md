@@ -8,7 +8,7 @@
 
 ## zIndex
 
-zIndex(value: number)
+zIndex(value: number): T
 
 设置组件的堆叠顺序。
 
@@ -24,6 +24,11 @@ zIndex(value: number)
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | number | 是   | 同一容器中兄弟组件显示层级关系。zIndex值越大，显示层级越高，即zIndex值大的组件会覆盖在zIndex值小的组件上方。当不涉及新增或减少兄弟节点，动态改变zIndex时会在zIndex改变前层级顺序的基础上进行稳定排序。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## 示例
 
@@ -53,11 +58,11 @@ struct ZIndexExample {
   }
 }
 ```
-Stack容器内子组件不设置zIndex的效果
+Stack容器内子组件不设置zIndex的效果。
 
 ![nozindex.png](figures/nozindex.png)
 
-Stack容器子组件设置zIndex后效果
+Stack容器子组件设置zIndex后的效果。
 
 ![zindex.png](figures/zindex.png)
 
@@ -99,6 +104,6 @@ struct ZIndexExample {
 
 ![zIndex_1.png](figures/zIndex_1.png)
 
-点击Button动态修改zIndex，使Text1的zIndex大于Text2，层级发生改变。
+点击Button动态修改zIndex，使Text1的zIndex大于Text2，层级顺序发生改变。
 
 ![zIndex_2.png](figures/zIndex_2.png)

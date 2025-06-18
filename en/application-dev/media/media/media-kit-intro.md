@@ -158,7 +158,7 @@ In this figure, the numbers indicate the process where data is transferred to ex
 
 ### Supported Formats and Protocols
 
-Audio containers and codecs are domains specific to content creators. You are advised to use the mainstream playback formats, rather than custom ones to avoid playback failures and stutters. The system will not be affected by incompatibility issues. If such an issue occurs, you can exit playback.
+Audio containers, video containers, and audio codecs are domains specific to content creators. You are advised to use the mainstream playback formats, rather than custom ones to avoid playback failures and stutters. The system will not be affected by incompatibility issues. If such an issue occurs, you can exit playback.
 
 The table below lists the supported protocols.
 
