@@ -2638,8 +2638,8 @@ enum ArkUI_ErrorCode
 | ARKUI_ERROR_CODE_CAPI_INIT_ERROR  | 接口初始化错误。<br/>起始版本：18  |
 | ARKUI_ERROR_CODE_INTERNAL_ERROR  | 出现内部错误，例如内部环境错误导致失败，或者由于内部执行失败导致操作失败。<br/>起始版本：15  |
 | ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID = 103501  | 当前XComponent状态异常，方法调用失败。<br/>起始版本：19  |
-| ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED  | 组件不支持特定的属性或者事件。  |
-| ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED  | 对应的操作不支持ArkTS创建的节点。  |
+| ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED = 106102  | 组件不支持特定的属性或者事件。<br/>错误码的详细介绍请参见[交互事件错误码](../apis-arkui/errorcode-event.md)。  |
+| ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED = 106103  | 对应的操作不支持ArkTS创建的节点。<br/>错误码的详细介绍请参见[自定义节点错误码](../apis-arkui/errorcode-node.md)。  |
 | ARKUI_ERROR_CODE_ADAPTER_NOT_BOUND = 106104 | 懒加载适配器未绑定到组件上，错误码详细参见[编译错误码](../apis-arkui/errorcode-nodeadapter.md#106104-适配器未绑定)。  |
 | ARKUI_ERROR_CODE_ADAPTER_EXIST = 106105 | 适配器已存在，错误码详细参见[编译错误码](../apis-arkui/errorcode-nodeadapter.md#106105-适配器已存在)。  |
 | ARKUI_ERROR_CODE_CHILD_NODE_EXIST = 106106 | 对应节点已存在子节点，无法添加适配器，错误码详细参见[编译错误码](../apis-arkui/errorcode-nodeadapter.md#106106-子节点已存在)。  |
@@ -2649,7 +2649,7 @@ enum ArkUI_ErrorCode
 | ARKUI_ERROR_CODE_NODE_INDEX_INVALID = 106200  | 传入的索引值非法。<br/>错误码的详细介绍请参见[导航错误码](../apis-arkui/errorcode-router.md#106200-传入的索引值非法)。  |
 | ARKUI_ERROR_CODE_GET_INFO_FAILED = 106201  | 查询路由导航信息失败。 <br/>错误码的详细介绍请参见[导航错误码](../apis-arkui/errorcode-router.md#106201-查询路由导航信息失败)。 |
 | ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR = 106202  | 传入的buffer size异常。 <br/>错误码的详细介绍请参见[导航错误码](../apis-arkui/errorcode-router.md#106202-传入的buffer-size异常)。 |
-| ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE  | 传入的节点未挂载到组件树上。<br/>起始版本：15  |
+| ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE = 106203  | 传入的节点未挂载到组件树上。<br/>错误码的详细介绍请参见[自定义节点错误码](../apis-arkui/errorcode-node.md)。<br/>起始版本：15  |
 | ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE  | 当前节点无法获得焦点。<br/>起始版本：15  |
 | ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR  | 当前节点对应的祖先节点中存在无法获焦节点。<br/>起始版本：15  |
 | ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT>  | 当前节点不存在。<br/>起始版本：15  |
@@ -2660,8 +2660,8 @@ enum ArkUI_ErrorCode
 | ARKUI_ERROR_CODE_POST_CLONED_COMPONENT_STATUS_ABNORMAL  | 组件状态异常。<br/>起始版本：15  |
 | ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT = 180005  | 未命中可响应事件的组件。<br/>错误码的详细介绍请参见[交互事件错误码](../apis-arkui/errorcode-event.md)。<br/>起始版本：15  |
 | ARKUI_ERROR_CODE_INVALID_STYLED_STRING = 180101  | 无效的属性字符串。<br/>错误码的详细介绍请参见[属性字符串错误码](../apis-arkui/errorcode-styled-string.md#属性字符串错误码)。<br/>**起始版本：** 14  |
-| ARKUI_ERROR_CODE_UI_CONTEXT_INVALID  | 无效的UIContext对象。<br/>起始版本：18  |
-| ARKUI_ERROR_CODE_CALLBACK_INVALID  | 无效的回调函数。<br/>起始版本：18  |
+| ARKUI_ERROR_CODE_UI_CONTEXT_INVALID = 190001  | 无效的UIContext对象。<br/>错误码的详细介绍请参见[UI上下文错误码](../apis-arkui/errorcode-uicontext.md)。<br/>起始版本：18  |
+| ARKUI_ERROR_CODE_CALLBACK_INVALID = 190002  | 无效的回调函数。<br/>错误码的详细介绍请参见[UI上下文错误码](../apis-arkui/errorcode-uicontext.md)。<br/>起始版本：18  |
 | ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED = 180102  | 不支持手势识别器类型。<br/>错误码的详细介绍请参见[交互事件错误码](../apis-arkui/errorcode-event.md)。<br/>起始版本：18  |
 | ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED = 190004  | 当前阶段不允许该操作。<br/>错误码的详细介绍请参见[拖拽事件错误码](../apis-arkui/errorcode-drag-event.md)。<br/>起始版本：19  |
 
@@ -8168,7 +8168,9 @@ int32_t OH_ArkUI_NodeUtils_GetWindowInfo(ArkUI_NodeHandle node, ArkUI_HostWindow
 
 **返回：**
 
-返回错误码。ARKUI_ERROR_CODE_NO_ERROR代表成功，ARKUI_ERROR_CODE_PARAM_INVALID代表函数参数异常，ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE代表节点未挂载到节点树上。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。</br >
+[ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE](_ark_u_i___native_module.md#arkui_errorcode) 节点未挂载到节点树上。</br >
 
 ### OH_ArkUI_HostWindowInfo_GetName()
 
@@ -8229,7 +8231,8 @@ int32_t OH_ArkUI_NodeUtils_MoveTo(ArkUI_NodeHandle node, ArkUI_NodeHandle target
 
 **返回：**
 
-返回错误码。ARKUI_ERROR_CODE_NO_ERROR代表成功，ARKUI_ERROR_CODE_PARAM_INVALID代表函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。</br >
 
 ### OH_ArkUI_NodeUtils_GetAttachedNodeHandleById()
 
