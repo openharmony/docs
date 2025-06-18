@@ -24,3 +24,10 @@ class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
 }
 ```
 
+## EmbeddableUIAbilityContext
+
+WorkSchedulerExtensionContext是WorkSchedulerExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。
+
+**系统能力：** SystemCapability.ResourceSchedule.WorkScheduler
+
+**模型约束：** 本模块接口仅可在Stage模型下使用。
