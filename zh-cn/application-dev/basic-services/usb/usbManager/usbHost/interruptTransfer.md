@@ -91,22 +91,22 @@
    let usbInterfaces: usbManager.USBInterface[] = [];
    let usbInterface: usbManager.USBInterface | undefined = undefined
    let usbEndpoints: usbManager.USBEndpoint[] = [];
-   let usbEndprint: usbManager.USBEndpoint | undefined = undefined
+   let usbEndpoint: usbManager.USBEndpoint | undefined = undefined
    for (let i = 0; i < usbConfigs.length; i++) {
      usbInterfaces = usbConfigs[i].interfaces;
      for (let i = 0; i < usbInterfaces.length; i++) {
        usbEndpoints = usbInterfaces[i].endpoints;
-       usbEndprint = usbEndpoints.find((value) => {
+       usbEndpoint = usbEndpoints.find((value) => {
          return value.direction === 128 && value.type === usbManager.UsbEndpointTransferType.TRANSFER_TYPE_INTERRUPT;
        })
-       if (usbEndprint !== undefined) {
+       if (usbEndpoint !== undefined) {
          usbInterface = usbInterfaces[i];
          break;
        }
      }
    }
-   if (usbEndprint === undefined) {
-     console.error(`get usbEndprint error`)
+   if (usbEndpoint === undefined) {
+     console.error(`get usbEndpoint error`)
      return;
    }
    ```
@@ -130,7 +130,7 @@
      let transferParams: usbManager.UsbDataTransferParams = {
        devPipe: devicePipe,
        flags: usbManager.UsbTransferFlags.USB_TRANSFER_SHORT_NOT_OK,
-       endpoint: usbEndprint.address,
+       endpoint: usbEndpoint.address,
        type: usbManager.UsbEndpointTransferType.TRANSFER_TYPE_INTERRUPT,
        timeout: 2000,
        length: 10,
