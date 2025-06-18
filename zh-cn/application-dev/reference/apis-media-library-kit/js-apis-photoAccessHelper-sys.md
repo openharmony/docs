@@ -1571,8 +1571,6 @@ startAssetAnalysis(type: AnalysisType, assetUris?: Array&lt;string&gt;): Promise
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-import { common } from '@kit.AbilityKit';
-
 async function example(context: Context) {
   console.info('startAssetAnalysisDemo');
   try {
@@ -1764,8 +1762,6 @@ saveGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
-import {photoAccessHelper} from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('saveGalleryFormInfoDemo');
@@ -1833,8 +1829,6 @@ updateGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
-import {photoAccessHelper} from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('updateGalleryFormInfoDemo');
@@ -1903,8 +1897,6 @@ removeGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import {photoAccessHelper} from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('removeGalleryFormInfoDemo');
@@ -3787,7 +3779,6 @@ getThumbnailData(type: ThumbnailType): Promise&lt;ArrayBuffer&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getThumbnailDataDemo');
@@ -4810,7 +4801,6 @@ setSupportedWatermarkType(watermarkType: WatermarkType): void
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setSupportedWatermarkTypeDemo');
@@ -6420,7 +6410,6 @@ setSubTitle(title: string): void
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
 
 async function example(context: Context) {
   try {
@@ -6487,8 +6476,6 @@ static deleteHighlightAlbums(context: Context, albums: Array&lt;Album&gt;): Prom
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import { common } from '@kit.AbilityKit';
 
 async function example(context: Context) {
   try {
@@ -6549,7 +6536,6 @@ constructor(album: Album)
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';s
 
 async function example(context: Context) {
   console.info('MediaAnalysisAlbumChangeRequest constructorDemo');
@@ -6605,7 +6591,6 @@ setOrderPosition(assets: Array&lt;PhotoAsset&gt;, position: Array&lt;number&gt;)
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
 
 async function example(context: Context) {
   try {
@@ -6681,7 +6666,6 @@ constructor(album: Album)
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
 
 async function example(context: Context) {
   console.info('AnalysisAlbum constructorDemo');
@@ -6741,7 +6725,6 @@ getOrderPosition(assets: Array&lt;PhotoAsset&gt;): Promise&lt;Array&lt;number&gt
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
 
 async function example(context: Context) {
   try {
@@ -6820,7 +6803,6 @@ static getCloudEnhancementInstance(context: Context): CloudEnhancement
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
 
 async function example(context: Context) {
   console.info('getCloudEnhancementInstanceDemo');
@@ -7501,8 +7483,6 @@ static getCloudMediaAssetManagerInstance(context: Context): CloudMediaAssetManag
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
-
 async function example(context: Context) {
   console.info('getCloudMediaAssetManagerInstanceDemo');
   try {
@@ -7551,8 +7531,6 @@ startDownloadCloudMedia(downloadType: CloudMediaDownloadType): Promise&lt;void&g
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
-
 async function example(context: Context) {
   console.info('startDownloadCloudMediaDemo');
   try {
@@ -7594,8 +7572,6 @@ pauseDownloadCloudMedia(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
-
 async function example(context: Context) {
   console.info('pauseDownloadCloudMediaDemo');
   try {
@@ -7637,8 +7613,6 @@ cancelDownloadCloudMedia(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
-
 async function example(context: Context) {
   console.info('cancelDownloadCloudMediaDemo');
   try {
@@ -7687,8 +7661,6 @@ retainCloudMediaAsset(retainType: CloudMediaRetainType): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
-
 async function example(context: Context) {
   console.info('retainCloudMediaAssetDemo');
   try {
@@ -7730,8 +7702,6 @@ getCloudMediaAssetStatus(): Promise&lt;CloudMediaAssetStatus&gt;
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
-
 async function example(context: Context) {
   console.info('getCloudMediaAssetStatusDemo');
   try {
