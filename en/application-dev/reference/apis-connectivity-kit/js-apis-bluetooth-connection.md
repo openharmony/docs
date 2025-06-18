@@ -51,7 +51,7 @@ Defines the UUID of the Bluetooth profile.
 
 | Type                 | Description                 |
 | ------------------- | ------------------- |
-| [constant.ProfileUuids](js-apis-bluetooth-constant.md#profileuuids) | UUID of the Bluetooth profile.|
+| [constant.ProfileUuids](js-apis-bluetooth-constant.md#profileuuids12) | UUID of the Bluetooth profile.|
 
 
 ## MajorClass
