@@ -97,6 +97,7 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 | type | [XComponentType](ts-appendix-enums.md#xcomponenttype10)         | 是   | 用于指定XComponent组件类型。 |
 | controller | [XComponentController](#xcomponentcontroller) | 是 | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
 | imageAIOptions | [ImageAIOptions](ts-image-common.md#imageaioptions) | 否 | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
+| screenId<sup>17+</sup> | number | 否 | 屏幕的id。 |
 
 ## NativeXComponentParameters<sup>19+</sup>
 
@@ -524,7 +525,7 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 
 ### lockCanvas<sup>20+</sup>
 
-lockCanvas(): Canvas | null
+lockCanvas(): DrawingCanvas | null
 
 返回可用于向XComponent上绘制内容的画布对象。具体绘制方法请参考[Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas)。
 
@@ -535,7 +536,7 @@ lockCanvas(): Canvas | null
 **返回值：**
 | 类型                                 | 说明                                  |
 | ------------------------------------ | ------------------------------------- |
-| [Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) \| null | 可用于向XComponent区域绘制的画布对象或者空对象null。 |
+| [DrawingCanvas](#drawingcanvas12对象说明) \| null | 可用于向XComponent区域绘制的画布对象或者空对象null。 |
 
 > **说明：**
 >
@@ -553,7 +554,7 @@ lockCanvas(): Canvas | null
 
 ### unlockCanvasAndPost<sup>20+</sup>
 
-unlockCanvasAndPost(canvas: Canvas): void
+unlockCanvasAndPost(canvas: DrawingCanvas): void
 
 将画布对象中的内容绘制在XComponent区域，并释放该画布对象。
 
@@ -562,9 +563,9 @@ unlockCanvasAndPost(canvas: Canvas): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 名称 | 类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| canvas | [Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) | 是 | 之前调用lockCanvas方法返回的画布对象。 |
+| canvas | [DrawingCanvas](#drawingcanvas12对象说明) | 是 | 之前调用lockCanvas方法返回的画布对象。 |
 
 > **说明：**
 >
@@ -608,6 +609,20 @@ unlockCanvasAndPost(canvas: Canvas): void
 > surfaceWidth和surfaceHeight属性在未调用[setXComponentSurfaceRect](ts-basic-components-xcomponent.md#setxcomponentsurfacerect12)也未设置[border](ts-universal-attributes-border.md#border)和[padding](ts-universal-attributes-size.md#padding)等属性时，其取值大小为XComponent组件的大小。
 > 
 > surfaceWidth和surfaceHeight属性的取值都不可超过8192px，否则会导致渲染异常。
+
+## DrawingCanvas<sup>12+</sup>对象说明
+
+type DrawingCanvas = Canvas
+
+可用于向XComponent上绘制内容的画布对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) | 返回一个Canvas对象。 |
 
 ## 示例
 

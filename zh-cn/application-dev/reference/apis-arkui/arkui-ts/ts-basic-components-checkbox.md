@@ -567,7 +567,6 @@ struct CheckboxExample {
 
 ```ts
 // xxx.ets
-// xxx.ets
 @Entry
 @Component
 struct CheckboxExample {

@@ -222,7 +222,7 @@ hdc shell bm dump -n com.xxx.demo |grep versionCode
 
 ![示例图](figures/installed_hap_verisonCode.PNG)
 
-2. 新安装的应用查看版本，HAP或者HSP用IDE打开，查看里面module.json文件中的versionCode字段配置。
+2. 新安装的应用查看版本，HAP或者HSP用DevEco Studio打开，查看里面module.json文件中的versionCode字段配置。
 
 ![示例图](figures/hap_verisonCode.PNG)
 
@@ -921,7 +921,7 @@ The specified shortcut id is illegal.
 快捷方式id是不合法的。
 
 **可能原因**<br/>
-已经存在相同包名、分身索引、用户id和快捷方式id的快捷方式信息；传参对应的快捷方式id不存在，或快捷方式id为空字符串。
+调用添加快捷方式接口时，已经存在相同包名，分身索引，用户id和快捷方式id的快捷方式信息，或者快捷方式id为空字符串。
 
 **处理步骤**<br/>
 1. 检查包名或者快捷方式id是否正确。
@@ -948,10 +948,10 @@ The launch want is not found.
 Launch Want不存在。
 
 **可能原因**<br/>
-应用没有Ability，或者没有entities配置为entity.system.home和actions配置为action.system.home的Ability。
+应用没有Ability，或者没有entities配置为entity.system.home和actions配置为ohos.want.action.home的Ability。
 
 **处理步骤**<br/>
-应用需要有entities配置为entity.system.home并且actions配置为action.system.home的Ability。
+应用需要有entities配置为entity.system.home并且actions配置为ohos.want.action.home的Ability。
 
 <!--Del-->
 ## 17700073 由于设备上存在具有相同包名称但不同签名信息的应用程序，导致安装失败
