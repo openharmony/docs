@@ -59,6 +59,7 @@ The InputMethod module provides methods for using and developing input methods.
 | [InputMethod_TextInputType](#inputmethod_textinputtype) | Text input type.| 
 | [InputMethod_CommandValueType](#inputmethod_commandvaluetype) | Private data type.| 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) | Error code of the input method.| 
+| [InputMethod_RequestKeyboardReason](#inputmethod_requestkeyboardreason) | Reason for keyboard request.| 
 
 
 ### Enums
@@ -72,6 +73,7 @@ The InputMethod module provides methods for using and developing input methods.
 | [InputMethod_TextInputType](#inputmethod_textinputtype) {<br>IME_TEXT_INPUT_TYPE_NONE = -1,<br>IME_TEXT_INPUT_TYPE_TEXT = 0,<br>IME_TEXT_INPUT_TYPE_MULTILINE = 1,<br>IME_TEXT_INPUT_TYPE_NUMBER = 2,<br>IME_TEXT_INPUT_TYPE_PHONE = 3,<br>IME_TEXT_INPUT_TYPE_DATETIME = 4,<br>IME_TEXT_INPUT_TYPE_EMAIL_ADDRESS = 5,<br>IME_TEXT_INPUT_TYPE_URL = 6,<br>IME_TEXT_INPUT_TYPE_VISIBLE_PASSWORD = 7,<br>IME_TEXT_INPUT_TYPE_NUMBER_PASSWORD = 8,<br>IME_TEXT_INPUT_TYPE_SCREEN_LOCK_PASSWORD = 9,<br>IME_TEXT_INPUT_TYPE_USER_NAME = 10,<br>IME_TEXT_INPUT_TYPE_NEW_PASSWORD = 11,<br>IME_TEXT_INPUT_TYPE_NUMBER_DECIMAL = 12<br>} | Text input type.| 
 | [InputMethod_CommandValueType](#inputmethod_commandvaluetype) {<br>IME_COMMAND_VALUE_TYPE_NONE = 0,<br>IME_COMMAND_VALUE_TYPE_STRING = 1,<br>IME_COMMAND_VALUE_TYPE_BOOL = 2,<br>IME_COMMAND_VALUE_TYPE_INT32 = 3<br>} | Private data type.| 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) {<br>IME_ERR_OK = 0, IME_ERR_UNDEFINED = 1,<br>IME_ERR_PARAMCHECK = 401,<br>IME_ERR_PACKAGEMANAGER = 12800001,<br>IME_ERR_IMENGINE = 12800002,<br>IME_ERR_IMCLIENT = 12800003,<br>IME_ERR_CONFIG_PERSIST = 12800005,<br>IME_ERR_CONTROLLER = 12800006,<br>IME_ERR_SETTINGS = 12800007,<br>IME_ERR_IMMS = 12800008,<br>IME_ERR_DETACHED = 12800009,<br>IME_ERR_NULL_POINTER = 12802000,<br>IME_ERR_QUERY_FAILED = 12802001<br>} | Error code of the input method.| 
+| [InputMethod_RequestKeyboardReason](#inputmethod_requestkeyboardreason) {<br>IME_REQUEST_REASON_NONE = 0,<br>IME_REQUEST_REASON_MOUSE = 1,<br>IME_REQUEST_REASON_TOUCH = 2,<br>IME_REQUEST_REASON_OTHER = 20<br>} | Reason for keyboard request.| 
 
 
 ### Functions
@@ -79,8 +81,10 @@ The InputMethod module provides methods for using and developing input methods.
 | Name| Description| 
 | -------- | -------- |
 | [InputMethod_AttachOptions](#inputmethod_attachoptions) \* [OH_AttachOptions_Create](#oh_attachoptions_create) (bool showKeyboard) | Creates an [InputMethod_AttachOptions](#inputmethod_attachoptions) instance.| 
+| [InputMethod_AttachOptions](#inputmethod_attachoptions) \* [OH_AttachOptions_CreateWithRequestKeyboardReason](#oh_attachoptions_createwithrequestkeyboardreason) (bool showKeyboard, [InputMethod_RequestKeyboardReason](#inputmethod_requestkeyboardreason) requestKeyboardReason) | Creates an [InputMethod_AttachOptions](#inputmethod_attachoptions) instance.| 
 | void [OH_AttachOptions_Destroy](#oh_attachoptions_destroy) ([InputMethod_AttachOptions](#inputmethod_attachoptions) \*options) | Destroys an [InputMethod_AttachOptions](#inputmethod_attachoptions) instance.| 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_AttachOptions_IsShowKeyboard](#oh_attachoptions_isshowkeyboard) ([InputMethod_AttachOptions](#inputmethod_attachoptions) \*options, bool \*showKeyboard) | Obtains the configured value that indicates whether to display the keyboard from [InputMethod_AttachOptions](#inputmethod_attachoptions).| 
+| [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_AttachOptions_GetRequestKeyboardReason](#oh_attachoptions_getrequestkeyboardreason) ([InputMethod_AttachOptions](#inputmethod_attachoptions) \*options, int \*requestKeyboardReason) | Obtains the configured value that indicates whether to display the keyboard from [InputMethod_AttachOptions](#inputmethod_attachoptions).| 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_InputMethodController_Attach](#oh_inputmethodcontroller_attach) ([InputMethod_TextEditorProxy](#inputmethod_texteditorproxy) \*textEditorProxy, [InputMethod_AttachOptions](#inputmethod_attachoptions) \*options, [InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy) \*\*inputMethodProxy) | Binds an application to the input method service.| 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_InputMethodController_Detach](#oh_inputmethodcontroller_detach) ([InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy) \*inputMethodProxy) | Unbinds an application from the input method service.| 
 | [InputMethod_CursorInfo](#inputmethod_cursorinfo) \* [OH_CursorInfo_Create](#oh_cursorinfo_create) (double left, double top, double width, double height) | Creates an [InputMethod_CursorInfo](#inputmethod_cursorinfo) instance.| 
@@ -88,6 +92,7 @@ The InputMethod module provides methods for using and developing input methods.
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_CursorInfo_SetRect](#oh_cursorinfo_setrect) ([InputMethod_CursorInfo](#inputmethod_cursorinfo) \*cursorInfo, double left, double top, double width, double height) | Sets the cursor information.| 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_CursorInfo_GetRect](#oh_cursorinfo_getrect) ([InputMethod_CursorInfo](#inputmethod_cursorinfo) \*cursorInfo, double \*left, double \*top, double \*width, double \*height) | Obtains the cursor information.| 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_InputMethodProxy_ShowKeyboard](#oh_inputmethodproxy_showkeyboard) ([InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy) \*inputMethodProxy) | Displays the keyboard.| 
+| [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_InputMethodProxy_ShowTextInput](#oh_inputmethodproxy_showtextinput) ([InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy) \*inputMethodProxy, [InputMethod_AttachOptions](#inputmethod_attachoptions) \*options) | Displays text input.| 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_InputMethodProxy_HideKeyboard](#oh_inputmethodproxy_hidekeyboard) ([InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy) \*inputMethodProxy) | Hides the keyboard.| 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_InputMethodProxy_NotifySelectionChange](#oh_inputmethodproxy_notifyselectionchange) ([InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy) \*inputMethodProxy, char16_t text[], size_t length, int start, int end) | Notifies the change of the text selection area in the text box.| 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_InputMethodProxy_NotifyConfigurationChange](#oh_inputmethodproxy_notifyconfigurationchange) ([InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy) \*inputMethodProxy, [InputMethod_EnterKeyType](#inputmethod_enterkeytype) enterKey, [InputMethod_TextInputType](#inputmethod_textinputtype) textType) | Notifies the change of the text box configuration.| 
@@ -237,6 +242,19 @@ typedef enum InputMethod_ErrorCode InputMethod_ErrorCode
 Error code of the input method.
 
 **Since**: 12
+
+
+### InputMethod_RequestKeyboardReason
+
+```
+typedef enum InputMethod_RequestKeyboardReason InputMethod_RequestKeyboardReason
+```
+
+**Description**
+
+Describes the reason for keyboard request.
+
+**Since**: 15
 
 
 ### InputMethod_ExtendAction
@@ -474,7 +492,7 @@ Implement this function, set it to [InputMethod_TextEditorProxy](#inputmethod_te
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -643,7 +661,7 @@ Implement this function, set it to [InputMethod_TextEditorProxy](#inputmethod_te
 | Name| Description| 
 | -------- | -------- |
 | textEditorProxy | Pointer to the [InputMethod_TextEditorProxy](#inputmethod_texteditorproxy) instance to be set.| 
-| enterKeyType | Enter key type. For details, see [InputMethod_EnterKeyType](#inputmethod_enterkeytype).| 
+| enterKeyType | Enter key type. For details, see [InputMethod_EnterKeyType](#inputmethod_enterkeytype-1).| 
 
 
 ### OH_TextEditorProxy_SendKeyboardStatusFunc
@@ -834,6 +852,26 @@ Keyboard status.
 | IME_KEYBOARD_STATUS_SHOW | Visible.| 
 
 
+### InputMethod_RequestKeyboardReason
+
+```
+enum InputMethod_RequestKeyboardReason
+```
+
+**Description**
+
+Describes the reason for keyboard request.
+
+**Since**: 15
+
+| Value| Description| 
+| -------- | -------- |
+| IME_REQUEST_REASON_NONE | The keyboard request is triggered for no reason.| 
+| IME_REQUEST_REASON_MOUSE | The keyboard request is triggered by a mouse operation.|
+| IME_REQUEST_REASON_TOUCH | The keyboard request is triggered by a touch operation.| 
+| IME_REQUEST_REASON_OTHER | The keyboard request is triggered by other reasons.| 
+
+
 ### InputMethod_TextInputType
 
 ```
@@ -861,7 +899,7 @@ Text input type.
 | IME_TEXT_INPUT_TYPE_SCREEN_LOCK_PASSWORD | Lock screen password.| 
 | IME_TEXT_INPUT_TYPE_USER_NAME | Username.| 
 | IME_TEXT_INPUT_TYPE_NEW_PASSWORD | New password.| 
-| IME_TEXT_INPUT_TYPE_NUMBER_DECIMAL | NUMBER DECIMAL. | 
+| IME_TEXT_INPUT_TYPE_NUMBER_DECIMAL | Number with a decimal point.| 
 
 
 ## Function Description
@@ -884,6 +922,30 @@ Creates an [InputMethod_AttachOptions](#inputmethod_attachoptions) instance.
 | Name| Description| 
 | -------- | -------- |
 | showKeyboard | Indicates whether to display the keyboard.| 
+
+**Returns:**
+
+If the operation is successful, a pointer to the created [InputMethod_AttachOptions](#inputmethod_attachoptions) instance is returned. If the operation failed, **NULL** is returned, which may be caused by insufficient application address space.
+
+
+### OH_AttachOptions_CreateWithRequestKeyboardReason()
+
+```
+InputMethod_AttachOptions* OH_AttachOptions_CreateWithRequestKeyboardReason (bool showKeyboard, InputMethod_RequestKeyboardReason requestKeyboardReason)
+```
+
+**Description**
+
+Creates an [InputMethod_AttachOptions](#inputmethod_attachoptions) instance.
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| showKeyboard | Indicates whether to display the keyboard.| 
+| requestKeyboardReason | Reason for keyboard request. For details, see [InputMethod_RequestKeyboardReason](#inputmethod_requestkeyboardreason).| 
 
 **Returns:**
 
@@ -926,7 +988,37 @@ Obtains the configured value that indicates whether to display the keyboard from
 | Name| Description| 
 | -------- | -------- |
 | options | [InputMethod_AttachOptions](#inputmethod_attachoptions) instance whose value is read.| 
-| showKeyboard | Whether to display the keyboard during binding. **true**: The keyboard is displayed after the binding is complete. **false**: The keyboard is hidden after the binding is complete.| 
+| showKeyboard | Whether to display the keyboard during binding. The value **true** means that the keyboard is displayed after the binding is complete; the value **false** means that the keyboard is hidden after the binding is complete.| 
+
+**Returns:**
+
+An error code.
+
+**IME_ERR_OK** indicates the operation is successful.
+
+**The IME_ERR_NULL_POINTER** indicates an unexpected null pointer.
+
+For details about the error code, see [InputMethod_ErrorCode](#inputmethod_errorcode).
+
+
+### OH_AttachOptions_GetRequestKeyboardReason()
+
+```
+InputMethod_ErrorCode OH_AttachOptions_GetRequestKeyboardReason (InputMethod_AttachOptions * options, int * requestKeyboardReason )
+```
+
+**Description**
+
+Obtains the reason why the input method keyboard is displayed, from [InputMethod_AttachOptions](#inputmethod_attachoptions).
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| options | [InputMethod_AttachOptions](#inputmethod_attachoptions) instance whose value is read.| 
+| requestKeyboardReason |  Reason for keyboard request. For details, see [InputMethod_RequestKeyboardReason](#inputmethod_requestkeyboardreason).|  
 
 **Returns:**
 
@@ -1172,8 +1264,8 @@ Notifies the change of the text box configuration.
 | Name| Description| 
 | -------- | -------- |
 | inputMethodProxy | Pointer to the [InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy) instance. Call [OH_InputMethodController_Attach](#oh_inputmethodcontroller_attach) to obtain **inputMethodProxy**.| 
-| enterKey | Enter key type.| 
-| textType | Text box type.| 
+| enterKey | Enter key type. For details, see [InputMethod_EnterKeyType](#inputmethod_enterkeytype-1).| 
+| textType | Text box type. For details, see [InputMethod_TextInputType](#inputmethod_textinputtype-1).| 
 
 **Returns:**
 
@@ -1293,7 +1385,7 @@ Sends a private data command.
 | -------- | -------- |
 | inputMethodProxy | Pointer to the [InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy) instance. Call [OH_InputMethodController_Attach](#oh_inputmethodcontroller_attach) to obtain **inputMethodProxy**.| 
 | privateCommand | Private command, which is defined in [InputMethod_PrivateCommand](#inputmethod_privatecommand). The maximum size is 32 KB.| 
-| size | Size of the private command. Maximum size: 5.| 
+| size | Size of the private command. The maximum size is 5.| 
 
 **Returns:**
 
@@ -1331,6 +1423,44 @@ Displays the keyboard.
 | Name| Description| 
 | -------- | -------- |
 | inputMethodProxy | Pointer to the [InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy) instance. Call [OH_InputMethodController_Attach](#oh_inputmethodcontroller_attach) to obtain **inputMethodProxy**.| 
+
+**Returns:**
+
+An error code.
+
+**IME_ERR_OK** indicates the operation is successful.
+
+**IME_ERR_PARAMCHECK** indicates the parameter error.
+
+**IME_ERR_IMCLIENT** indicates the input method client error.
+
+**IME_ERR_IMMS** indicates the input method service error.
+
+**IME_ERR_DETACHED** indicates that no input method is bound.
+
+**The IME_ERR_NULL_POINTER** indicates an unexpected null pointer.
+
+For details about the error code, see [InputMethod_ErrorCode](#inputmethod_errorcode).
+
+
+### OH_InputMethodProxy_ShowTextInput()
+
+```
+InputMethod_ErrorCode OH_InputMethodProxy_ShowTextInput (InputMethod_InputMethodProxy * inputMethodProxy, InputMethod_AttachOptions *options)
+```
+
+**Description**
+
+Displays text input.
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| inputMethodProxy | Pointer to the [InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy) instance. Call [OH_InputMethodController_Attach](#oh_inputmethodcontroller_attach) to obtain **inputMethodProxy**.| 
+| options |  Pointer to the [InputMethod_AttachOptions](#inputmethod_attachoptions) instance, which is the option for binding.| 
 
 **Returns:**
 
@@ -1913,7 +2043,7 @@ Obtains the Enter function type of [InputMethod_TextConfig](#inputmethod_textcon
 | Name| Description| 
 | -------- | -------- |
 | config | Pointer to the [InputMethod_TextConfig](#inputmethod_textconfig) instance whose value is to be obtained.| 
-| enterKeyType | Enter function type of the text box.| 
+| enterKeyType | Enter key type of the text box. For details, see [InputMethod_EnterKeyType](#inputmethod_enterkeytype-1).| 
 
 **Returns:**
 
@@ -1943,7 +2073,7 @@ Obtains the text box type of [InputMethod_TextConfig](#inputmethod_textconfig).
 | Name| Description| 
 | -------- | -------- |
 | config | Pointer to the [InputMethod_TextConfig](#inputmethod_textconfig) instance whose value is to be obtained.| 
-| inputType | Input type of the text box.| 
+| inputType | Input type of the text box. For details, see [InputMethod_TextInputType](#inputmethod_textinputtype-1).| 
 
 **Returns:**
 
@@ -2093,7 +2223,7 @@ Sets the Enter function type for [InputMethod_TextConfig](#inputmethod_textconfi
 | Name| Description| 
 | -------- | -------- |
 | config | Pointer to the [InputMethod_TextConfig](#inputmethod_textconfig) instance to be set.| 
-| enterKeyType | Enter function type.| 
+| enterKeyType | Enter key type. For details, see [InputMethod_EnterKeyType](#inputmethod_enterkeytype-1).| 
 
 **Returns:**
 
@@ -2123,7 +2253,7 @@ Sets the text box type for [InputMethod_TextConfig](#inputmethod_textconfig).
 | Name| Description| 
 | -------- | -------- |
 | config | Pointer to the [InputMethod_TextConfig](#inputmethod_textconfig) instance to be set.| 
-| inputType | Input type of the text box.| 
+| inputType | Input type of the text box. For details, see [InputMethod_TextInputType](#inputmethod_textinputtype-1).| 
 
 **Returns:**
 
