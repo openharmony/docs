@@ -177,7 +177,8 @@
 | [ArkUI_NodeDirtyFlag](#arkui_nodedirtyflag) { NODE_NEED_MEASURE = 1, NODE_NEED_LAYOUT, NODE_NEED_RENDER } | 自定义组件调用&lt;b&gt;::markDirty是传递的脏区标识类型。  | 
 | [ArkUI_NodeCustomEventType](#arkui_nodecustomeventtype) {<br/>ARKUI_NODE_CUSTOM_EVENT_ON_MEASURE = 1 &lt;&lt; 0, ARKUI_NODE_CUSTOM_EVENT_ON_LAYOUT = 1 &lt;&lt; 1, ARKUI_NODE_CUSTOM_EVENT_ON_DRAW = 1 &lt;&lt; 2, ARKUI_NODE_CUSTOM_EVENT_ON_FOREGROUND_DRAW = 1 &lt;&lt; 3, ARKUI_NODE_CUSTOM_EVENT_ON_OVERLAY_DRAW = 1 &lt;&lt; 4, ARKUI_NODE_CUSTOM_EVENT_ON_DRAW_FRONT = 1 &lt;&lt; 5, ARKUI_NODE_CUSTOM_EVENT_ON_DRAW_BEHIND = 1 &lt;&lt; 6<br/>} | 定义自定义组件事件类型。  | 
 | [ArkUI_NodeAdapterEventType](#arkui_nodeadaptereventtype) {<br/>NODE_ADAPTER_EVENT_WILL_ATTACH_TO_NODE = 1, NODE_ADAPTER_EVENT_WILL_DETACH_FROM_NODE = 2, NODE_ADAPTER_EVENT_ON_GET_NODE_ID = 3, NODE_ADAPTER_EVENT_ON_ADD_NODE_TO_ADAPTER = 4,<br/>NODE_ADAPTER_EVENT_ON_REMOVE_NODE_FROM_ADAPTER = 5<br/>} | 定义节点适配器事件枚举值。  | 
-| [ArkUI_NodeContentEventType](#arkui_nodecontenteventtype) { NODE_CONTENT_EVENT_ON_ATTACH_TO_WINDOW = 0, NODE_CONTENT_EVENT_ON_DETACH_FROM_WINDOW = 1 } | 定义NodeContent事件类型。  | 
+| [ArkUI_NodeContentEventType](#arkui_nodecontenteventtype) { NODE_CONTENT_EVENT_ON_ATTACH_TO_WINDOW = 0, NODE_CONTENT_EVENT_ON_DETACH_FROM_WINDOW = 1 } | 定义NodeContent事件类型。  |
+| [ArkUI_InspectorErrorCode](#arkui_inspectorerrorcode) { ARKUI_INSPECTOR_NATIVE_RESULT_SUCCESSFUL = 0, ARKUI_INSPECTOR_NATIVE_RESULT_BAD_PARAMETER = 1 } | 定义Inspector错误码。  |
 | [ArkUI_Alignment](#arkui_alignment) {<br/>ARKUI_ALIGNMENT_TOP_START = 0, ARKUI_ALIGNMENT_TOP, ARKUI_ALIGNMENT_TOP_END, ARKUI_ALIGNMENT_START,<br/>ARKUI_ALIGNMENT_CENTER, ARKUI_ALIGNMENT_END, ARKUI_ALIGNMENT_BOTTOM_START, ARKUI_ALIGNMENT_BOTTOM,<br/>ARKUI_ALIGNMENT_BOTTOM_END<br/>} | 定义布局对齐枚举值。  | 
 | [ArkUI_ImageRepeat](#arkui_imagerepeat) { ARKUI_IMAGE_REPEAT_NONE = 0, ARKUI_IMAGE_REPEAT_X, ARKUI_IMAGE_REPEAT_Y, ARKUI_IMAGE_REPEAT_XY } | 定义图片重复铺设枚举值。  | 
 | [ArkUI_FontStyle](#arkui_fontstyle) { ARKUI_FONT_STYLE_NORMAL = 0, ARKUI_FONT_STYLE_ITALIC } | 定义字体样式枚举值。  | 
@@ -793,6 +794,12 @@
 | int32_t [OH_ArkUI_AccessibilityValue_GetMax](#oh_arkui_accessibilityvalue_getmax) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 获取无障碍最大值信息。  |
 | void [OH_ArkUI_AccessibilityValue_SetCurrent](#oh_arkui_accessibilityvalue_setcurrent) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value, int32_t current) | 设置无障碍当前值信息。  |
 | int32_t [OH_ArkUI_AccessibilityValue_GetCurrent](#oh_arkui_accessibilityvalue_getcurrent) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 获取无障碍当前值信息。  |
+| int32_t [OH_ArkUI_AccessibilityValue_SetRangeMin](#oh_arkui_accessibilityvalue_setrangemin) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 用于设置范围组件的无障碍最小值信息。  |
+| int32_t [OH_ArkUI_AccessibilityValue_GetRangeMin](#oh_arkui_accessibilityvalue_getrangemin) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 用于获取范围组件的无障碍最小值信息。  |
+| int32_t [OH_ArkUI_AccessibilityValue_SetRangeMax](#oh_arkui_accessibilityvalue_setrangemax) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 用于设置范围组件的无障碍最大值信息。  |
+| int32_t [OH_ArkUI_AccessibilityValue_GetRangeMax](#oh_arkui_accessibilityvalue_getrangemax) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 用于获取范围组件的无障碍最大值信息。  |
+| int32_t [OH_ArkUI_AccessibilityValue_SetRangeCurrent](#oh_arkui_accessibilityvalue_setrangecurrent) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 用于设置范围组件的无障碍当前值信息。  |
+| int32_t [OH_ArkUI_AccessibilityValue_GetRangeCurrent](#oh_arkui_accessibilityvalue_getrangecurrent) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 用于获取范围组件的无障碍当前值信息。  |
 | void [OH_ArkUI_AccessibilityValue_SetText](#oh_arkui_accessibilityvalue_settext) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value, const char \*text) | 设置无障碍文本描述信息。  |
 | const char \* [OH_ArkUI_AccessibilityValue_GetText](#oh_arkui_accessibilityvalue_gettext) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 获取无障碍文本描述信息。  |
 | [ArkUI_ImageAnimatorFrameInfo](#arkui_imageanimatorframeinfo) \* [OH_ArkUI_ImageAnimatorFrameInfo_CreateFromString](#oh_arkui_imageanimatorframeinfo_createfromstring) (char \*src) | 使用图片路径创建帧图片信息，图片格式为svg，png和jpg。  |
@@ -3897,6 +3904,21 @@ enum ArkUI_NodeContentEventType
 | NODE_CONTENT_EVENT_ON_ATTACH_TO_WINDOW  | 上树事件。  |
 | NODE_CONTENT_EVENT_ON_DETACH_FROM_WINDOW  | 下树事件。  |
 
+### ArkUI_InspectorErrorCode
+
+```
+enum ArkUI_InspectorErrorCode
+```
+**描述：**
+
+定义Inspector错误码。
+
+**起始版本：** 15
+
+| 枚举值 | 描述 |
+| -------- | -------- |
+| ARKUI_INSPECTOR_NATIVE_RESULT_SUCCESSFUL  | 成功。  |
+| ARKUI_INSPECTOR_NATIVE_RESULT_BAD_PARAMETER  | 参数错误。  |
 
 ### ArkUI_NodeCustomEventType
 
@@ -4109,6 +4131,7 @@ enum ArkUI_NodeType
 | ARKUI_NODE_GRID  | 网格容器。  |
 | ARKUI_NODE_GRID_ITEM  | 网格子组件。  |
 | ARKUI_NODE_CUSTOM_SPAN  | 自定义文本段落。  |
+| ARKUI_NODE_EMBEDDED_COMPONENT  | 同应用进程嵌入式组件。 <br> **起始版本：** 20  |
 
 
 ### ArkUI_ObjectFit
