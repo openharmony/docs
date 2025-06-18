@@ -650,7 +650,7 @@ struct Example2 {
     Column({ space: 5 }) {
       Button('AlertDialog')
         .onClick(() => {
-          AlertDialog.show({
+          this.getUIContext().showAlertDialog({
             title: 'AlertDialog',
             message: 'message',
             autoCancel: true,
@@ -682,7 +682,7 @@ struct Example2 {
               console.info("AlertDialog,is onWillDisappear!")
             }
           })
-        }).backgroundColor(0x317aff).height("88px")
+        }).backgroundColor(0x317aff).height("60vp")
       Text(this.log).fontSize(30).margin({ top: 200 })
     }.width('100%').margin({ top: 5 }).justifyContent(FlexAlign.SpaceAround)
   }
