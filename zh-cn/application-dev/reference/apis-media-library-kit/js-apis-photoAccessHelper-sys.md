@@ -1689,7 +1689,7 @@ getSharedPhotoAssets(options: FetchOptions): Array\<SharedPhotoAsset\>
 
 | 类型                    | 说明                |
 | ----------------------- | ------------------ |
-| Array\<[SharedPhotoAsset](#sharedphotoasset)\> | 返回共享的照片资产。 |
+| Array\<[SharedPhotoAsset](#sharedphotoasset13)\> | 返回共享的照片资产。 |
 
 **错误码：**
 
