@@ -88,11 +88,11 @@ export default class EntryAbility extends UIAbility {
 
 ## Implementing Application Redirection (Required for the Caller Application)
 
-The following uses three cases to describe how to use [openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12) and [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to implement application redirection and how to implement application redirection in the [Web component](../reference/apis-arkweb/ts-basic-components-web.md).
+The following uses three cases to describe how to use [openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#openlink12) and [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to implement application redirection and how to implement application redirection in the [Web component](../reference/apis-arkweb/ts-basic-components-web.md).
 
 ### Using openLink to Implement Application Redirection
 
-Pass in the URL of the target application into **link** of [openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12), and set **appLinkingOnly** in the **options** field to **false**.
+Pass in the URL of the target application into **link** of [openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#openlink12), and set **appLinkingOnly** in the **options** field to **false**.
 
 
 The sample code is as follows:

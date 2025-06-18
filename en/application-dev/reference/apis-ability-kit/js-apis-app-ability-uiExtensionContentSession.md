@@ -1,6 +1,6 @@
 # @ohos.app.ability.UIExtensionContentSession (UI Operation Class for ExtensionAbilities with UI)
 
-**UIExtensionContentSession** is an instance created when the [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md) loads UI content. When the UIExtensionComponent starts a UIExtensionAbility, the UIExtensionAbility creates a UIExtensionContentSession instance and returns it through the [onSessionCreate](js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate) callback. One UIExtensionComponent corresponds to one **UIExtensionContentSession** instance, which provides methods such as UI loading and result notification. The **UIExtensionContentSession** instances of multiple UIExtensionAbilities are operated separately.
+**UIExtensionContentSession** is an instance created when the [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md) loads UI content. When the UIExtensionComponent starts a UIExtensionAbility, the UIExtensionAbility creates a UIExtensionContentSession instance and returns it through the [onSessionCreate](js-apis-app-ability-uiExtensionAbility.md#sessioncreate) callback. One UIExtensionComponent corresponds to one **UIExtensionContentSession** instance, which provides methods such as UI loading and result notification. The **UIExtensionContentSession** instances of multiple UIExtensionAbilities are operated separately.
 
 > **NOTE**
 >
@@ -60,7 +60,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 
 loadContentByName(name: string, storage?: LocalStorage): void
 
-Loads a [named route](../../ui/arkts-routing.md#named-route) page for a [UIExtensionAbility](./js-apis-app-ability-uiExtensionAbility.md), with state properties passed to the page through [LocalStorage](../../ui/state-management/arkts-localstorage.md). This API is used to load a named route page in the [onSessionCreate](./js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate) lifecycle of the UIExtensionAbility.
+Loads a [named route](../../ui/arkts-routing.md#named-route) page for a [UIExtensionAbility](./js-apis-app-ability-uiExtensionAbility.md), with state properties passed to the page through [LocalStorage](../../ui/state-management/arkts-localstorage.md). This API is used to load a named route page in the [onSessionCreate](./js-apis-app-ability-uiExtensionAbility.md#onsessioncreate) lifecycle of the UIExtensionAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

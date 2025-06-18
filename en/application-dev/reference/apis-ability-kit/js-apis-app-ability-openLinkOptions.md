@@ -1,6 +1,6 @@
 # @ohos.app.ability.OpenLinkOptions (OpenLinkOptions)
 
-**OpenLinkOptions** can be used as an input parameter of [openLink()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12) to indicate whether to enable only App Linking and pass in optional parameters in the form of key-value pairs.
+**OpenLinkOptions** can be used as an input parameter of [openLink()](js-apis-inner-application-uiAbilityContext.md#openlink12) to indicate whether to enable only App Linking and pass in optional parameters in the form of key-value pairs.
 
 > **NOTE**
 >

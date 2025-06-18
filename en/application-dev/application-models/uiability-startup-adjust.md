@@ -41,7 +41,7 @@ This section describes how to switch from explicit Want mode to linking mode.
     }
     ```
 
-2. Call [openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12) to trigger redirection. The redirected-to link and [options](../reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md) must be passed in, but the bundle name, module name, and ability name are not required. The system matches the application that meets the skills configuration based on the link.
+2. Call [openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#openlink12) to trigger redirection. The redirected-to link and [options](../reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md) must be passed in, but the bundle name, module name, and ability name are not required. The system matches the application that meets the skills configuration based on the link.
     - If **appLinkingOnly** in **options** is set to **true**, the target application must pass domain name verification (Internet connection required). A unique matching item or an unmatched result will be returned.
     - If **appLinkingOnly** in **options** is set to **false**, the system preferentially attempts to start the target application in App Linking mode. If no matching application is found, the system starts the application in Deep Linking mode.
 
@@ -140,7 +140,7 @@ This section describes how to switch from explicit Want mode to linking mode.
     }
     ```
 
-2. Call [openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12) to trigger redirection. The redirected-to link and [options](../reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md) must be passed in, but the bundle name, module name, and ability name are not required. The system matches the application that meets the skills configuration based on the link. **AbilityResult** is transferred to the callback function through input parameters and returned to the caller application when the ability is terminated. The startup success or failure result is returned through a promise.<br>
+2. Call [openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#openlink12) to trigger redirection. The redirected-to link and [options](../reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md) must be passed in, but the bundle name, module name, and ability name are not required. The system matches the application that meets the skills configuration based on the link. **AbilityResult** is transferred to the callback function through input parameters and returned to the caller application when the ability is terminated. The startup success or failure result is returned through a promise.<br>
     - If **appLinkingOnly** in **options** is set to **true**, the target application must pass domain name verification (Internet connection required). A unique matching item or an unmatched result will be returned.
     - If **appLinkingOnly** in **options** is set to **false**, the system preferentially attempts to start the target application in App Linking mode. If no matching application is found, the system starts the application in Deep Linking mode.
 

@@ -28,7 +28,7 @@ import { common } from '@kit.AbilityKit';
 >
 > In the sample code provided in this topic, **this.context** is used to obtain the UIAbilityContext, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
-## UIAbilityContext.startAbility
+### startAbility
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
@@ -116,7 +116,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startAbility
+### startAbility
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 

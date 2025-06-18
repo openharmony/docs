@@ -104,7 +104,7 @@ struct Extension {
 }
 ```
 
-3. Add the ExtensionEvent file and use the **startFormEditSecondPage** method to invoke the [startSecondPage](../reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md#startsecondpage) method.
+3. Add the ExtensionEvent file and use the **startFormEditSecondPage** method to invoke the [startSecondPage](../reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md#formeditextensioncontextstartsecondpage) method.
 
 ```ts
 // src/main/ets/widget/pages/model/ExtensionEvent.ets
