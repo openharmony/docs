@@ -1096,7 +1096,7 @@ struct Example3 {
       Button('CustomDialog')
         .onClick(() => {
           this.dialogController?.open()
-        }).backgroundColor(0x317aff).height("88px")
+        }).backgroundColor(0x317aff).height("60vp")
       Text(this.log).fontSize(30).margin({ top: 200 })
     }.width('100%').margin({ top: 5 })
   }
