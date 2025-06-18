@@ -9,6 +9,8 @@ Defines the allowed data field types.
 
 **Related module**: [RDB](_r_d_b.md)
 
+**Header file**: [oh_value_object.h](oh__value__object_8h.md)
+
 
 ## Summary
 
