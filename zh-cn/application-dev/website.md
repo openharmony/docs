@@ -587,6 +587,7 @@
           - [通过XComponent接入无障碍](ui/ndk-accessibility-xcomponent.md)
           - [自定义绘制](ui/arkts-user-defined-draw.md)
           - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ui/ndk-embedded-component.md)
+          - [在NDK中保证多实例场景功能正常](ui/ndk-scope-task.md)
       - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
         - [UI开发 (兼容JS的类Web开发范式)概述](ui/ui-js-overview.md)
         - 框架说明<!--js-framework-overview-->
@@ -1206,23 +1207,25 @@
           - [分布式相机开发指南](distributedservice/camera-distributed.md)
       - Network Kit（网络服务）<!--network-kit-->
         - [Network Kit简介](network/net-mgmt-overview.md)
-        - Network Kit数据传输能力<!--network-kit-data-transmission-->
-            - [HTTP数据请求](network/http-request.md)
-            - [WebSocket连接](network/websocket-connection.md)
-            - [WebSocket连接(C/C++)](network/native-websocket-guidelines.md)
-            - [Socket连接](network/socket-connection.md)
-            - [MDNS](network/net-mdns.md)
-        - Network Kit网络管理能力<!--network-kit-network-management-->
-            - [网络连接管理](network/net-connection-manager.md)
-            - [NetConnection开发指导(C/C++)](network/native-netmanager-guidelines.md)
-            - [流量管理](network/net-statistics.md)
-            - [VPN应用开发指南](network/net-vpnExtension.md)
-            - [网络防火墙](network/net-netfirewall.md)
+        - 访问网络<!--network-kit-data-transmission-->
+            - [使用HTTP访问网络](network/http-request.md)
+            - [使用WebSocket访问网络](network/websocket-connection.md)
+            - [使用WebSocket访问网络(C/C++)](network/native-websocket-guidelines.md)
+            - [使用Socket访问网络](network/socket-connection.md)
+            - [使用MDNS访问局域网服务](network/net-mdns.md)
+        - 连接网络<!--network-kit-network-connecttion-->
+            - [管理网络连接](network/net-connection-manager.md)
+            - [管理网络连接(C/C++)](network/native-netmanager-guidelines.md)
+            - [连接VPN](network/net-vpnExtension.md)
+        - 管理网络<!--network-kit-network-management-->
+            - [统计网络流量消耗](network/net-statistics.md)
+            - [使用网络防火墙](network/net-netfirewall.md)
             <!--Del-->
             - [网络共享（仅对系统应用开放）](network/net-sharing.md)
-            - [以太网连接管理（仅对系统应用开放）](network/net-ethernet.md)
+            - [以太网连接管理（仅对系统应用开放）](network/net-ethernet.md)   
             - [VPN管理（仅对系统应用开放）](network/net-vpn.md)
             <!--DelEnd-->
+        - [Network Kit术语](network/network-terminology.md)
       - Telephony Kit（蜂窝通信服务）<!--telephony-kit-->
         - [Telephony Kit简介](telephony/telephony-overview.md)
         - [拨打电话](telephony/telephony-call.md)
