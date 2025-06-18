@@ -9,6 +9,7 @@ Defines a native API struct of the Web controller. Before calling the API, you a
 
 **Related module**: [Web](_web.md)
 
+**Header file**: [arkweb_type.h](arkweb__type_8h.md)
 
 ## Summary
 
@@ -64,6 +65,12 @@ void(* ArkWeb_ControllerAPI::deleteJavaScriptRegister) (const char *webTag, cons
 
 Pointer to the function used to delete a specific application JavaScript object that is registered with the window using **registerJavaScriptProxy**.
 
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| webTag | Name of a **Web** component. | 
+| objName | Name of a JavaScript object. | 
 
 ### destroyWebMessagePorts
 
@@ -95,7 +102,7 @@ Pointer to the function used to obtain the URL of the last frame that calls **Ja
 
 **Returns**
 
-URL of the last frame that invokes the **JavaScriptProxy**.
+URL of the last frame that calls **JavaScriptProxy**.
 
 
 ### postWebMessage
@@ -113,13 +120,13 @@ Pointer to the function used to send the message port to the HTML page.
 | -------- | -------- |
 | webTag | Name of a **Web** component. | 
 | name | Name of the message sent to the HTML page. | 
-| webMessagePorts | Pointer to the message port struct. | 
+| webMessagePorts | Pointer to the message port. | 
 | size | Number of ports. | 
 | url | URL of the page that receives the message. | 
 
 **Returns**
 
-  Returns [ARKWEB_SUCCESS](_web.md) if the operation is successful. Returns [ARKWEB_INVALID_PARAM](_web.md) if the parameter is invalid. Returns [ARKWEB_INIT_ERROR](_web.md) if the initialization fails, that is, the **Web** component bound to the **webTag** is not found.
+Error code. [ARKWEB_SUCCESS](_web.md#arkweb_errorcode-1) is returned if the operation is successful. [ARKWEB_INVALID_PARAM](_web.md#arkweb_errorcode-1) is returned if the parameter is invalid. [ARKWEB_INIT_ERROR](_web.md#arkweb_errorcode-1) is returned if the initialization fails, that is, the **Web** component bound to the **webTag** is not found.
 
 
 ### refresh
@@ -129,7 +136,7 @@ void(* ArkWeb_ControllerAPI::refresh) (const char *webTag)
 ```
 **Description**
 
-Pointer to the function used to refresh the web page.
+Pointer to the function used to refresh the web page. The page stack is cleared during the refresh. As a result, the current page cannot be navigated forward or backward.
 
 
 ### registerAsyncJavaScriptProxy
