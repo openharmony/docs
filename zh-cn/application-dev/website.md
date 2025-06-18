@@ -3846,7 +3846,7 @@
           - [@ohos.multimodalInput.mouseEvent (鼠标输入事件)](reference/apis-input-kit/js-apis-mouseevent.md)
           - [@ohos.multimodalInput.gestureEvent (手势事件)](reference/apis-input-kit/js-apis-multimodalinput-gestureevent.md)
           - [@ohos.multimodalInput.pointer (鼠标指针)](reference/apis-input-kit/js-apis-pointer.md)
-          - [@ohos.multimodalInput.touchEvent (触摸输入事件)](reference/apis-input-kit/js-apis-touchevent.md)
+          - [@ohos.multimodalInput.touchEvent (触屏输入事件)](reference/apis-input-kit/js-apis-touchevent.md)
           - [@ohos.multimodalInput.infraredEmitter (红外管理)](reference/apis-input-kit/js-apis-infraredemitter.md)
           - [@ohos.multimodalInput.inputConsumer (全局快捷键)](reference/apis-input-kit/js-apis-inputconsumer.md)
           <!--Del-->
