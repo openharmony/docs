@@ -1,9 +1,5 @@
 # USB服务<!--usb-->
 
-<!--Del-->
-- [USB服务简介](usb-overview.md)
-- [USB服务开发指导](usb-guidelines.md)
-<!--DelEnd-->
 - 开发USB服务<!--usb-dev-->
   - [USB服务开发概述](usbManager/usbHost-overview.md)
   - USB Host模式开发<!--usb-host-dev-->
