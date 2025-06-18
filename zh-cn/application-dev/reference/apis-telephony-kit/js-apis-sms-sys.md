@@ -1422,7 +1422,7 @@ getSmsSegmentsInfo\(slotId: number, message: string, force7bit: boolean, callbac
 | --------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | slotId    | number                                                       | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | message   | string                                                       | 是   | 消息。                                      |
-| force7bit | boolean                                                      | 是   | 是否使用7 bit编码。                          |
+| force7bit | boolean                                                      | 是   | 是否使用7 bit编码，默认false。<br/>-true：是<br/>-false：否                          |
 | callback  | AsyncCallback&lt;[SmsSegmentsInfo](#smssegmentsinfo8)&gt; | 是   | 指示用于获取短信短信息的回调函数。  |
 
 **错误码：**
@@ -1518,7 +1518,7 @@ isImsSmsSupported\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 | 参数名   | 类型                         | 必填 | 说明       |
 | -------- | ---------------------------- | ---- | ---------- |
 | slotId   | number                       | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 指示是否支持IMS发送SMS的回调函数。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 指示是否支持IMS发送SMS的回调函数，默认false。<br/>-true：是<br/>-false：否 |
 
 **错误码：**
 
