@@ -336,6 +336,21 @@
 
 **起始版本**：18
 
+## ohos.permission.kernel.AUTH_AUDIT_EVENT
+
+允许企业安全应用阻断安全审计事件。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
 ## ohos.permission.SUPPORT_APP_SERVICE_EXTENSION
 
 允许应用作为AppServiceExtension被拉起。
