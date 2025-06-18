@@ -318,7 +318,13 @@ onAcquireFormState?(want: Want): formInfo.FormState
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | want表示获取卡片状态的描述。描述包括Bundle名称、能力名称、模块名称、卡片名和卡片维度。 |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | want表示获取卡片状态的描述。描述包括Bundle名称、能力名称、模块名称、卡片名和卡片维度。
+
+**返回值：**
+
+| 类型                                                         | 说明                                                        |
+| ------------------------------------------------------------ | ----------------------------------------------------------- |
+| [formInfo.FormState](js-apis-app-form-formInfo-sys.md#FormState) | formBindingData.FormBindingData对象，卡片要显示的数据。  |
 
 **示例：**
 
