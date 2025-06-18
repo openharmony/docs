@@ -38,7 +38,7 @@
    #include <native_drawing/drawing_text_typography.h>
    ```
 
-2. 创建段落生成器PargraphBuilder，并设置段落样式。
+2. 创建段落生成器ParagraphBuilder，并设置段落样式。
 
    ```c++
    // 创建段落样式
