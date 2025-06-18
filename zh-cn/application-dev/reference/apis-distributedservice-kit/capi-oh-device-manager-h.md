@@ -6,7 +6,7 @@
 
 **引用文件：** <distributedhardware/device_manager/oh_device_manager.h>
 
-**库：** libnative_devicemanager.so
+**库：** libdevicemanager_ndk.so
 
 **系统能力：** SystemCapability.DistributedHardware.DeviceManager
 
