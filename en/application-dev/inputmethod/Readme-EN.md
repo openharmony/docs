@@ -7,3 +7,4 @@
 - [Setting Input Method Subtypes](input-method-subtype-guide.md)
 - [Using the Input Method in a Custom Edit Box (C/C++)](use-inputmethod-in-custom-edit-box-ndk.md)
 - [Immersive Mode of the Input Method Application](inputmethod-immersive-mode-guide.md)
+- [Managing the Input Method Using hdc Commands](inputmethod-hdc-commands-guide.md)

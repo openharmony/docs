@@ -29,7 +29,7 @@ The input method subtypes allow the input method to switch to a specific mode or
    }
    ```
    
-2. Configure the subtype fields. For details about the fields, see [InputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod-subtype.md#inputmethodsubtype). Make sure your configuration is in strict compliance with the configuration file and field specifications. For details about how to configure the **locale** field, see [BCP 47](https://tools.ietf.org/html/bcp47).
+2. Configure the subtype fields. For details, see [InputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod-subtype.md#ohosinputmethodsubtype-input-method-subtype). Make sure your configuration is in strict compliance with the configuration file and field specifications. For details about how to configure the **locale** field, see [i18n-locale-culture](.././internationalization/i18n-locale-culture.md#how-it-works).
    ```
    {
      "subtypes": [
@@ -83,5 +83,3 @@ The input method subtypes allow the input method to switch to a specific mode or
 1. To switch to another subtype of the current input method, call [switchCurrentInputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodswitchcurrentinputmethodsubtype9).
 
 2. To switch to a specified subtype of a specified input method, call [switchCurrentInputMethodAndSubtype](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodswitchcurrentinputmethodandsubtype9).
-
- <!--no_check--> 
