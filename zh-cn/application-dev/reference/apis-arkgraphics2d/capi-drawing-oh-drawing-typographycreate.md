@@ -2,7 +2,7 @@
 
 ## 概述
 
-用于创建[OH_Drawing_Typography](capi-oh-drawing-typography.md)。
+用于创建[OH_Drawing_Typography](capi-drawing-oh-drawing-typography.md)。
 
 **起始版本：** 8
 
