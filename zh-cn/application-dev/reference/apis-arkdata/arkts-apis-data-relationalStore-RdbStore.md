@@ -4633,7 +4633,7 @@ try {
       let sqliteCode = exceptionMessage.code;
       let sqliteMessage = exceptionMessage.message;
       let errSQL = exceptionMessage.sql;
-      console.info(`error log is ${sqliteCode}, errMessage is ${sqliteMessage}, errSQL is ${errSQL}`);
+      console.error(`error log is ${sqliteCode}, errMessage is ${sqliteMessage}, errSQL is ${errSQL}`);
     })
   }
 } catch (err) {
