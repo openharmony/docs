@@ -12,6 +12,7 @@ Declares the UI input event capabilities provided by ArkUI on the native side.
 
 
 ### Files
+
 | Name| Description| 
 | -------- | -------- |
 | [ui_input_event.h](ui__input__event_8h.md) | Provides ArkUI event definitions on the native side. | 
