@@ -2681,7 +2681,7 @@ Obtains the current transformation matrix being applied to the context.
 
 | Type                                      | Description   |
 | ---------------------------------------- | ----- |
-| [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | **Matrix2D** object.|
+| [Matrix2D](ts-components-canvas-matrix2d.md#matrix2d) | **Matrix2D** object.|
 
 **Example**
 
