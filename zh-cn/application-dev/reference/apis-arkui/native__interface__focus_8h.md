@@ -18,21 +18,11 @@
 
 ## 汇总
 
-### ArkUI_KeyProcessingMode
+### 枚举
 
-```
-enum ArkUI_KeyProcessingMode
-```
-**描述：**
-
-当组件无法处理按键事件时，确定按键事件处理的优先级。
-
-**起始版本：** 15
-
-| 名称          | 描述        |
-| ----------- | --------- |
-| ARKUI_KEY_PROCESSING_MODE_FOCUS_NAVIGATION | 默认值，按键事件用于移动焦点。|
-| ARKUI_KEY_PROCESSING_MODE_FOCUS_ANCESTOR_EVENT |  按键事件向上传递给祖先组件。 |
+| 名称 | 描述 | 
+| -------- | -------- |
+| [ArkUI_KeyProcessingMode](_ark_u_i___native_module.md#arkui_keyprocessingmode) { ARKUI_KEY_PROCESSING_MODE_FOCUS_NAVIGATION = 0, ARKUI_KEY_PROCESSING_MODE_FOCUS_ANCESTOR_EVENT } |当组件无法处理按键事件时，确定按键事件处理的优先级。 | 
 
 ### 函数
 
