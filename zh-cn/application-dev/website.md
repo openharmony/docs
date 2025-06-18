@@ -3097,6 +3097,7 @@
           - [属性字符串错误码](reference/apis-arkui/errorcode-styled-string.md)
           - [UI上下文错误码](reference/apis-arkui/errorcode-uicontext.md)
           - [交互事件错误码](reference/apis-arkui/errorcode-event.md)
+          - [自定义节点错误码](reference/apis-arkui/errorcode-node.md)
           - [NodeAdapter错误码](reference/apis-arkui/errorcode-nodeadapter.md)
           <!--Del-->
           - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
