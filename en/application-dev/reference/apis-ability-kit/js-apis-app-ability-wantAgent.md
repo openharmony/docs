@@ -1271,7 +1271,7 @@ Describes the data returned by the operation of proactive triggering a WantAgent
 | Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | info           | WantAgent                       | No| No  | WantAgent object that is triggered.      |
-| want           | [Want](js-apis-app-ability-want.md#properties)                           | No| No  | Existing Want that is triggered.    |
+| want           | [Want](js-apis-app-ability-want.md)                           | No| No  | Existing Want that is triggered.    |
 | finalCode      | number                          | No| No  | Request code that triggers the WantAgent object.|
 | finalData      | string                          | No| No  | Final data collected by the common event. |
 | extraInfo      | Record\<string, Object>            | No|Yes  | Extra information.              |

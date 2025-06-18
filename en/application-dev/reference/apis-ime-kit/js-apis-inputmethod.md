@@ -381,7 +381,7 @@ Switches to another subtype of this input method. This API uses a promise to ret
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-|target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Target input method subtype.|
+|target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md)| Yes| Target input method subtype.|
 
 **Return value**
 

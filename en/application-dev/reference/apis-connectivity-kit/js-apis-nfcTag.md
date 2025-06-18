@@ -350,7 +350,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 ## tag.getIsoDep<sup>9+</sup>
 
-getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isoDepTag9 )
+getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isodeptag9 )
 
 Obtains an **IsoDepTag** object, which allows access to the tags that use the IsoDep technology.
 

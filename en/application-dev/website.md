@@ -760,41 +760,34 @@
         - [Copying Files Across Devices](file-management/file-copy-across-devices.md)
     - Form Kit<!--form-kit-->
       - [Introduction to Form Kit](form/formkit-overview.md)
-      - Service Widget Development in Stage Model<!--arkts-ui-widget-stage-->
-        - Developing an ArkTS Widget<!--arkts-ui-widget-->
-          - [ArkTS Widget Working Principles](form/arkts-ui-widget-working-principles.md)
-          - [ArkTS Widget Related Modules](form/arkts-ui-widget-modules.md)
-          - ArkTS Widget Development<!--arkts-ui-widget-dev-->
-            - [Creating an ArkTS Widget](form/arkts-ui-widget-creation.md)
-            - [Configuring Widget Configuration Files](form/arkts-ui-widget-configuration.md)
-            - [Widget Lifecycle Management](form/arkts-ui-widget-lifecycle.md)
+      - ArkTS Widget Development (Recommended)<!--arkts-ui-->
+        - [Creating an ArkTS Widget](form/arkts-ui-widget-creation.md)
+        - [Configuring Widget Configuration Files](form/arkts-ui-widget-configuration.md)
+        - [Widget Lifecycle Management](form/arkts-ui-widget-lifecycle.md)
+        - ArkTS Widget Provider Development<!--arkts-ui-widget-->
             - Widget Page Development<!--arkts-ui-widget-page-->
               - [Widget Page Capability Overview](form/arkts-ui-widget-page-overview.md)
               - [Using Animations in the Widget](form/arkts-ui-widget-page-animation.md)
               - [Applying Custom Drawing in the Widget](form/arkts-ui-widget-page-custom-drawing.md)
-            - Widget Event Development<!--arkts-ui-widget-event-->
-              - [Widget Event Capability Overview](form/arkts-ui-widget-event-overview.md)
-              - [Launching the UIAbility of the Widget Provider Through the router Event](form/arkts-ui-widget-event-router.md)
-              - [Launching the UIAbility of the Widget Provider in the Background Through the call Event](form/arkts-ui-widget-event-call.md)
-              - [Updating Widget Content Through the message Event](form/arkts-ui-widget-event-formextensionability.md)
-              - [Updating Widget Content Through the router or call Event](form/arkts-ui-widget-event-uiability.md)
             - Widget Data Interaction<!--arkts-ui-widget-interaction-->
               - [Updating Widget Content](form/arkts-ui-widget-interaction-overview.md)
-              - [Interval-based Widget Updates](form/arkts-ui-widget-update-by-time.md)
-              - [Time-specific Widget Updates](form/arkts-ui-widget-update-by-time-point.md)
-              <!--Del-->
-              - [Updating Widget Content Through a Proxy](form/arkts-ui-widget-update-by-proxy.md)
-              - [Conditional Widget Updates](form/arkts-ui-widget-update-by-conditions.md)
-              - [Updating Widget Content by Widget Host (for System Applications Only)](form/arkts-ui-widget-content-update.md)
-              <!--DelEnd-->
-              - [Updating Local and Online Images in the Widget](form/arkts-ui-widget-image-update.md)
-              - [Updating Widget Content by State](form/arkts-ui-widget-update-by-status.md)
-          - Editing the ArkTS Widget Page<!--arkts-ui-widget-edit-->
+            <!--Del-->
+            - [Updating Widget Content Through a Proxy](form/arkts-ui-widget-update-by-proxy.md)
+            <!--DelEnd-->
+            - [Updating Local and Online Images in the Widget](form/arkts-ui-widget-image-update.md)
+            - [Updating Widget Content by State](form/arkts-ui-widget-update-by-status.md)
+          - ArkTS Widget Page Interaction<!--arkts-ui-widget-event-->
+            - [Widget Event Capability Overview](form/arkts-ui-widget-event-overview.md)
+            - [Launching the UIAbility of the Widget Provider Through the router Event](form/arkts-ui-widget-event-router.md)
+            - [Launching the UIAbility of the Widget Provider in the Background Through the call Event](form/arkts-ui-widget-event-call.md)
+            - [Updating Widget Content Through the message Event](form/arkts-ui-widget-event-formextensionability.md)
+            - [Updating Widget Content Through the router or call Event](form/arkts-ui-widget-event-uiability.md)
+          - ArkTS Widget Page Editing<!--arkts-ui-widget-edit-->
             - [Overview of ArkTS Widget Page Editing Interaction](form/arkts-ui-widget-event-formeditextensionability-overview.md)
             - [Editing and Updating the Widget Content](form/arkts-ui-widget-event-formeditextensionability.md)
-          <!--Del-->
-          - [Widget Host Development (for System Applications Only)](form/widget-host-development-guide.md)
-          <!--DelEnd-->
+        <!--Del--> 
+        - [Widget Host Development (for System Applications Only)](form/widget-host-development-guide.md)
+        <!--DelEnd-->
         - [Developing a JS Widget](form/js-ui-widget-development.md)
       - [Service Widget Development in FA Model](form/widget-development-fa.md)
     - IME Kit<!--ime-kit-->

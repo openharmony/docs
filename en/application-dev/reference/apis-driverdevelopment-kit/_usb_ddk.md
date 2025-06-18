@@ -66,7 +66,7 @@ Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous 
 | [OH_Usb_SendPipeRequestWithAshmem](#oh_usb_sendpiperequestwithashmem12) (const struct [UsbRequestPipe](_usb_request_pipe.md) \*pipe, [DDK_Ashmem](_ddk_ashmem.md) \*ashmem) | Sends a pipe request for the shared memory. This API returns the result synchronously. It applies to interrupt transfer and bulk transfer.|
 | [OH_Usb_CreateDeviceMemMap](#oh_usb_createdevicememmap) (uint64_t deviceId, size_t size, [UsbDeviceMemMap](_usb_device_mem_map.md) \*\*devMmap) | Creates a buffer. To avoid memory leakage, use [OH_Usb_DestroyDeviceMemMap()](#oh_usb_destroydevicememmap) to destroy a buffer after use.|
 | [OH_Usb_DestroyDeviceMemMap](#oh_usb_destroydevicememmap) ([UsbDeviceMemMap](_usb_device_mem_map.md) \*devMmap) | Destroys a buffer. To avoid resource leakage, destroy a buffer in time after use.|
-| [OH_Usb_GetDevices](#oh_usb_getdevices16) ([Usb_DeviceArray](_usb_device_array.md) \*devices) | Obtains the USB device ID list. Ensure that the input pointer is valid and the number of devices does not exceed 128. To prevent resource leakage, release the member memory after usage. Besides, make sure that the obtained USB device ID has been filtered by **vid** in the driver configuration information.|
+| [OH_Usb_GetDevices](#oh_usb_getdevices) ([Usb_DeviceArray](_usb_device_array.md) \*devices) | Obtains the USB device ID list. Ensure that the input pointer is valid and the number of devices does not exceed 128. To prevent resource leakage, release the member memory after usage. Besides, make sure that the obtained USB device ID has been filtered by **vid** in the driver configuration information.|
 
 #### deviceId Description
 
@@ -158,7 +158,7 @@ typedef struct Usb_DeviceArray usb_DeviceArray
 
 **Description**
 
-Defines the device ID list, which is used to store the device IDs and device quantity obtained using [OH_Usb_GetDevices()](_usb_ddk.md#oh_usb_getdevices16).
+Defines the device ID list, which is used to store the device IDs and device quantity obtained using [OH_Usb_GetDevices()](_usb_ddk.md#oh_usb_getdevices).
 
 **Since**: 10
 
@@ -599,7 +599,7 @@ Sends a pipe request for the shared memory. This API returns the result synchron
 - [USB_DDK_IO_FAILED](#usbddkerrcode): The device I/O operation fails.
 - [USB_DDK_TIMEOUT] (#usbddkerrcode): The request times out.
 
-### OH_Usb_GetDevices()<sup>16+</sup>
+### OH_Usb_GetDevices()
 
 
 ```
