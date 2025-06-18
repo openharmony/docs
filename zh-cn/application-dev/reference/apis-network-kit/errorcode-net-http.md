@@ -134,7 +134,7 @@ Access to the remote resource denied.
 
 排查请求内容。
 
-## 2300016 HTT2帧层错误
+## 2300016 HTTP2帧层错误
 
 **错误信息**
 
@@ -324,7 +324,7 @@ Failed to receive data from the peer.
 
 **错误描述**
 
-无法往从对端收到数据，接收网络数据失败。
+无法从对端收到数据，接收网络数据失败。
 
 **可能原因**
 
@@ -364,13 +364,13 @@ The specified SSL cipher cannot be used.
 
 **可能原因**
 
-client和sever协商的加密算法系统不支持。
+client和server协商的加密算法系统不支持。
 
 **处理步骤**
 
 抓包分析协商的算法。
 
-## 2300060 远程服务器SSL证书或SSH秘钥不正确
+## 2300060 远程服务器SSL证书或SSH密钥不正确
 
 **错误信息**
 
@@ -378,7 +378,7 @@ Invalid SSL peer certificate or SSH remote key.
 
 **错误描述**
 
-远程服务器SSL证书或SSH秘钥不正确。
+远程服务器SSL证书或SSH密钥不正确。
 
 **可能原因**
 
@@ -404,7 +404,7 @@ HTTP编码格式不正确。
 
 **处理步骤**
 
-排查服务器实现，目前仅支持gzip编码。
+排查服务器实现。目前仅支持gzip编码。
 
 ## 2300063 超出最大文件大小
 
