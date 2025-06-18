@@ -348,7 +348,7 @@ let a: ESValue = mod.getProperty('a')
 export class A {}
 
 // file2.ets ArkTS1.2
-let mod: ESValue = ESValue.load("js");
+let mod: ESValue = ESValue.load("./file1");
 let A: ESValue = module.getProperty("A");
 let a: ESValue = A.instantiate();  // 创建A的实例，这个实例被包装在a中
 ```
@@ -788,19 +788,11 @@ foo(new X()); // 运行时报错
 
 ```typescript
 // file1.ets
-export function foo(prx: ESValue) {
-  Object.getOwnPropertyDescriptor(prx, "a"); // not undefined
-  Object.getOwnPropertyDescriptors(prx); // not {}
+export function foo(prx: Object) {
   Object.getOwnPropertyNames(prx); // ['a']
   Object.hasOwn(prx, "a"); // true
-  Object.isExtensible(prx); // true
-  Object.isFrozen(prx); // false
-  Object.isSealed(prx); // false
   Object.keys(prx); // ['a']
-  Object.setPrototypeOf(prx, {}); // OK
   Object.values(prx); // [1]
-  prx.hasOwnProperty("a"); // true
-  prx.propertyIsEnumerable("a"); // true
 }
 
 // file2.ets
@@ -816,7 +808,7 @@ foo(new X());
 ```typescript
 // solution for Object.keys, case for Object.values is similar:
 // file0.ets  ArkTS1.2
-export function getKeys(prx: Object | ESValue): string[] | undefined {
+export function getKeys(prx: Any): string[] | undefined {
   if (prx instanceof Object) {
     return Object.keys(prx);
   }
@@ -825,7 +817,7 @@ export function getKeys(prx: Object | ESValue): string[] | undefined {
 
 // file1.ets ArkTS1.1
 import { getKeys } from "./file0";
-function myGetKeys(prx: ESValue) {
+function myGetKeys(prx: Object) {
   let ret = getKeys(prx);
   if (ret == undefined) {
     // prx is dynamic
@@ -834,19 +826,11 @@ function myGetKeys(prx: ESValue) {
   return ret;
 }
 export function foo(prx: Object) {
-  Object.getOwnPropertyDescriptor(prx, "a"); // undefined
-  Object.getOwnPropertyDescriptors(prx); // {}
   Object.getOwnPropertyNames(prx); // []
   Object.hasOwn(prx, "a"); // false
-  Object.isExtensible(prx); // false
-  Object.isFrozen(prx); // true
-  Object.isSealed(prx); // true
   Object.keys(prx); // []
-  myGetKeys(prx); // ['a']
-  Object.setPrototypeOf(prx, {}); // 运行时报错
+  myGetKeys(prx); // ["a"]
   Object.values(prx); // []
-  prx.hasOwnProperty("a"); // false
-  prx.propertyIsEnumerable("a"); // false
 }
 
 // file2.ets  ArkTS1.2
@@ -882,7 +866,7 @@ export class X {
 
 // file2.ets
 improt {X} from './file1'
-function foo(prx: ESValue) {
+function foo(prx: ESObject) {
  Reflect.apply(prx.getName, {a: 12}) // 12
  Reflect.defineProperty(prx, 'newField', {value: 7})  // true
  Reflect.deleteProperty(prx, 'a')  // true
@@ -900,14 +884,16 @@ foo(new X())
 ```typescript
 // solution for static ownKeys:
 // file0.ets ArkTS1.2
-export getOwnKeys(prx: Object | ESValue): string[] | undefined {
-  if (prx instanceof Object) { return Reflect.ownKeys(prx) }
+export getOwnKeys(prx: Any): string[] | undefined {
+  if (prx instanceof Object) {
+    return Reflect.ownKeys(prx)
+  }
   return undefined
 }
 
 // file1.ets ArkTS1.1
 import {getOwnKeys} from './file0'
-export function myOwnKeys(prx: ESValue) {
+export function myOwnKeys(prx: Object) {
   let ret = getOwnKeys(prx)
   if (ret == undefined) {  // prx is dynamic
     return Reflect.ownKeys(prx)
@@ -915,7 +901,7 @@ export function myOwnKeys(prx: ESValue) {
   return ret
 }
 
-export function foo(prx: ESValue) {
+export function foo(prx: ESObject) {
  Reflect.apply(prx.getName, {a: 12}) // 运行时报错
  Reflect.defineProperty(prx, 'newField', {value: 7})  // false
  Reflect.deleteProperty(prx, 'a')  // false
@@ -1180,11 +1166,16 @@ let item = obj[0];
 // file1.ts
 export let obj: SomeType;
 // 从ArkTS1.2看来，这个声明为
-// export let obj: ESValue
+// export let obj: Any
 
 // file2.ets ArkTS1.2
 import { obj } from "./file1";
-obj.setProperty("prop", ESValue.wrap(1));
+let esVal = ESValue.wrap(obj);
+let val = esVal.getProperty('prop');  // let val = obj.prop
+esVal.setProperty("prop", ESValue.wrap(1));  // obj.prop = 1
+esVal.invokeMethod('foo');  // obj.foo()
+esVal.invoke();  // obj()
+let item = esVal.getProperty(0);  // let item = obj[0]
 ```
 
 - 编译报错信息：
@@ -2530,9 +2521,9 @@ interface Person {
   name: string;
 }
 function foo(p: Person) {}
-// solution: function foo(p: ESValue) {}
+// solution: function foo(p: Any) {}
 let lambda = (p: Person) => {};
-// solution: let lambda = (p: ESValue) => {}
+// solution: let lambda = (p: Any) => {}
 
 handle.invoke(ESValue.wrap(foo));
 handle.invoke(ESValue.wrap(lambda));
