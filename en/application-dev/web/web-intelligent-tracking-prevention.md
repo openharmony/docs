@@ -3,7 +3,7 @@
 
 The **Web** component supports the intelligent tracking prevention feature. That is, when a tracking website is inserted into another web page as a third party, the network request sent by the website cannot carry cookies.
 
-- Call the [enableIntelligentTrackingPrevention](../reference/apis-arkweb/js-apis-webview-WebviewController.md#enableintelligenttrackingprevention12) API to enable or disable the intelligent tracking prevention feature of the **Web** component. By default, this functionality is disabled.
+- Call the **enableIntelligentTrackingPrevention** API to enable or disable the intelligent tracking prevention feature of the **Web** component. By default, this functionality is disabled.
 
   ```ts
   // xxx.ets
@@ -32,7 +32,7 @@ The **Web** component supports the intelligent tracking prevention feature. That
   }
   ```
 
-- Call the [isIntelligentTrackingPreventionEnabled](../reference/apis-arkweb/js-apis-webview-WebviewController.md#isintelligenttrackingpreventionenabled12) API to check whether the intelligent tracking prevention feature is enabled for the **Web** component.
+- Call the **isIntelligentTrackingPreventionEnabled** API to check whether the intelligent tracking prevention feature is enabled for the **Web** component.
 
   ```ts
   // xxx.ets
@@ -61,7 +61,7 @@ The **Web** component supports the intelligent tracking prevention feature. That
   }
   ```
 
-- Call the [onIntelligentTrackingPreventionResult](../reference/apis-arkweb/ts-basic-components-web-events.md#onintelligenttrackingpreventionresult12) API to return the blocked tracking domain name and the domain name of the triggered website to the application.
+- Call the **onIntelligentTrackingPreventionResult** API to return the blocked tracking domain name and the domain name of the triggered website to the application.
 
   ```ts
   // xxx.ets
@@ -96,7 +96,7 @@ The **Web** component supports the intelligent tracking prevention feature. That
 
 The intelligent tracking prevention feature provides a group of APIs for setting the list of domain names that bypass this feature. The domain name list set by these APIs applies to the application rather than a specific **Web** component.
 
-- Call the [addIntelligentTrackingPreventionBypassingList](../reference/apis-arkweb/js-apis-webview-WebviewController.md#addintelligenttrackingpreventionbypassinglist12) API to set the bypass domain name list.
+- Call the **addIntelligentTrackingPreventionBypassingList** API to set the bypass domain name list.
 
   ```ts
   // xxx.ets
@@ -125,7 +125,7 @@ The intelligent tracking prevention feature provides a group of APIs for setting
   }
   ```
 
-- Call the [removeIntelligentTrackingPreventionBypassingList](../reference/apis-arkweb/js-apis-webview-WebviewController.md#removeintelligenttrackingpreventionbypassinglist12) API to delete some domain names in the bypass list.
+- Call the **removeIntelligentTrackingPreventionBypassingList** API to delete some domain names in the bypass list.
 
   ```ts
   // xxx.ets
@@ -154,7 +154,7 @@ The intelligent tracking prevention feature provides a group of APIs for setting
   }
   ```
 
-- Call the [clearIntelligentTrackingPreventionBypassingList](../reference/apis-arkweb/js-apis-webview-WebviewController.md#clearintelligenttrackingpreventionbypassinglist12) API to clear the bypass domain name list.
+- Call the **clearIntelligentTrackingPreventionBypassingList** API to clear the bypass domain name list.
 
   ```ts
   // xxx.ets
@@ -176,5 +176,3 @@ The intelligent tracking prevention feature provides a group of APIs for setting
     }
   }
   ```
-
-<!--no_check-->
