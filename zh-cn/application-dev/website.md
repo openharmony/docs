@@ -1213,7 +1213,7 @@
             - [使用WebSocket访问网络(C/C++)](network/native-websocket-guidelines.md)
             - [使用Socket访问网络](network/socket-connection.md)
             - [使用MDNS访问局域网服务](network/net-mdns.md)
-        - 连接网络<!--network-kit-network-connecttion-->
+        - 连接网络<!--network-kit-network-connection-->
             - [管理网络连接](network/net-connection-manager.md)
             - [管理网络连接(C/C++)](network/native-netmanager-guidelines.md)
             - [连接VPN](network/net-vpnExtension.md)
@@ -1222,7 +1222,7 @@
             - [使用网络防火墙](network/net-netfirewall.md)
             <!--Del-->
             - [网络共享（仅对系统应用开放）](network/net-sharing.md)
-            - [以太网连接管理（仅对系统应用开放）](network/net-ethernet.md)   
+            - [以太网连接管理（仅对系统应用开放）](network/net-ethernet.md)
             - [VPN管理（仅对系统应用开放）](network/net-vpn.md)
             <!--DelEnd-->
         - [Network Kit术语](network/network-terminology.md)
