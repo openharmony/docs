@@ -513,7 +513,7 @@ After using this API, you need to call **free()** to release the memory of the s
 | -------- | -------- |
 | mgr | Pointer to the [NativeResourceManager](rawfile.md#nativeresourcemanager) object. You can obtain the pointer by using [OH_ResourceManager_InitNativeResourceManager](rawfile.md#oh_resourcemanager_initnativeresourcemanager). | 
 | resName | Resource name. | 
-| num | Quantity value (a floating point number), The string representation is obtained based on the current language's plural rules. | 
+| num | Quantity value (a floating point number), Its string representation is obtained based on the current language's plural rules. | 
 | resultValue | Result of writing **resultValue**. | 
 | ... | Variable representing formatted string resources. Supported types include const char\*, int, and float. | 
 
@@ -816,7 +816,7 @@ After using this API, you need to call **free()** to release the memory of the s
 | -------- | -------- |
 | mgr | Pointer to the [NativeResourceManager](rawfile.md#nativeresourcemanager) object. You can obtain the pointer by using [OH_ResourceManager_InitNativeResourceManager](rawfile.md#oh_resourcemanager_initnativeresourcemanager). | 
 | resId | Resource ID. | 
-| num | Quantity value (an integer). Its string representation is obtained based on the current language's plural rules. | 
+| num | Integer number Its string representation is obtained based on the current language's plural rules. | 
 | resultValue | Result of writing **resultValue**. | 
 | ... | Variable representing formatted string resources. Supported types include const char\*, int, and float. | 
 
@@ -854,7 +854,7 @@ After using this API, you need to call **free()** to release the memory of the s
 | -------- | -------- |
 | mgr | Pointer to the [NativeResourceManager](rawfile.md#nativeresourcemanager) object. You can obtain the pointer by using [OH_ResourceManager_InitNativeResourceManager](rawfile.md#oh_resourcemanager_initnativeresourcemanager). | 
 | resName | Resource name. | 
-| num | Quantity value (an integer). Its string representation is obtained based on the current language's plural rules. | 
+| num | Integer number Its string representation is obtained based on the current language's plural rules. | 
 | resultValue | Result of writing **resultValue**. | 
 | ... | Variable representing formatted string resources. Supported types include const char\*, int, and float. | 
 
@@ -1231,7 +1231,7 @@ After using this API, you need to call **free()** to release the memory of the s
 
 **Since**: 12
 
-**Deprecated version**: 18
+**Deprecated from**: 18
 
 **Substitute APIs**: [OH_ResourceManager_GetIntPluralString](#oh_resourcemanager_getintpluralstring)
 
@@ -1272,7 +1272,7 @@ After using this API, you need to call **free()** to release the memory of the s
 
 **Since**: 12
 
-**Deprecated version**: 18
+**Deprecated from**: 18
 
 **Substitute APIs**: [OH_ResourceManager_GetIntPluralStringByName](#oh_resourcemanager_getintpluralstringbyname)
 

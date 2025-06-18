@@ -6,7 +6,7 @@ USB Serial DDK is a development kit for USB drivers. This module provides USB Se
 
 Serial port communication is often used in industrial scenarios and some legacy devices, such as card issuers and ID card readers. By using the USB Serial DDK APIs, you can develop extended drivers for non-standard peripherals to implement extended functions for USB serial port devices.
 
-**System capability**: SystemCapability.Driver.SERIAL.Extension
+**System capability**: SystemCapability.Driver.UsbSerial.Extension
 
 **Since**: 18
 
@@ -18,8 +18,8 @@ Serial port communication is often used in industrial scenarios and some legacy 
 
 | Name| Description| 
 | -------- | -------- |
-| [usb_serial_ddk_api.h](usb__serial__ddk__api_8h.md) | Declares the USB Serial DDK APIs used by the host to access the serial port device.<br>**File to include**: &lt;serial/usb_serial_ddk_api.h&gt;<br>**Library**: libusb_serial.z.so| 
-| [usb_serial_ddk_types.h](usb__serial__ddk__types_8h.md) | Provides the enum variables, structures, and macros used in USB Serial DDK APIs.<br>**File to include**: &lt;serial/usb_serial_ddk_types.h&gt;<br>**Library**: libusb_serial.z.so| 
+| [usb_serial_api.h](usb__serial__ddk__api_8h.md) | Declares the USB Serial DDK APIs used by the host to access the serial port device.<br>**File to include**: &lt;serial/usb_serial_api.h&gt;<br>**Library**: libusb_serial.z.so| 
+| [usb_serial_types.h](usb__serial__ddk__types_8h.md) | Provides the enum variables, structures, and macros used in USB Serial DDK APIs.<br>**File to include**: &lt;serial/usb_serial_types.h&gt;<br>**Library**: libusb_serial.z.so| 
 
 
 ### Structs

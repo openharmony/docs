@@ -9,7 +9,7 @@ The **metadataBinding** module provides metadata binding–specific functions su
 
 ## Modules to Import
 ```ts
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 ```
 
 ## submitMetadata(string)
@@ -34,7 +34,7 @@ For details about the error codes, see [Metadata Binding Error Codes](errorcode-
 **Example**
 
 ```ts
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let metadata: string = "";
@@ -65,11 +65,11 @@ For details about the error codes, see [Metadata Binding Error Codes](errorcode-
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 |32100001|Internal handling failed. Service exception.|
-|32100004|Subscribe Failed.|
+|32100004|Subscribe Failed. Possible causes: 1. Abnormal system capability; 2. IPC communication abnormality; 3. Algorithm loading exception.|
 
 **Example** 
 ```ts
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName: string = '';
@@ -104,12 +104,12 @@ For details about the error codes, see [Metadata Binding Error Codes](errorcode-
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 |32100001|Internal handling failed. Service exception.|
-|32100005|Unsubscribe Failed.|
+|32100005|Unsubscribe Failed. Possible causes: 1. Abnormal system capability; 2. IPC communication abnormality.|
 
 **Example**
 
 ```ts
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName: string = '';

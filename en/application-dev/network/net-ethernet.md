@@ -12,7 +12,7 @@ The Ethernet Connection module allows a device to access the Internet through a 
 - Programming language: JS
 - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-## Scenario
+## Application Scenarios
 
 Typical application scenarios of Ethernet connection are as follows:
 
@@ -54,14 +54,14 @@ ethernet.getAllActiveIfaces().then((data: string[]) => {
     console.log("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
   }
 }).catch((error:BusinessError) => {
-  console.log("getAllActiveIfaces promise error = " + JSON.stringify(error));
+  console.error("getAllActiveIfaces promise error = " + JSON.stringify(error));
 });
 
 // Call isIfaceActive to check whether the specified network port is active.
 ethernet.isIfaceActive("eth0").then((data: number) => {
   console.log("isIfaceActive promise = " + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-  console.log("isIfaceActive promise error = " + JSON.stringify(error));
+  console.error("isIfaceActive promise error = " + JSON.stringify(error));
 });
 
 // Call getIfaceConfig to obtain the network attributes of the specified Ethernet network.
@@ -73,7 +73,7 @@ ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => 
   console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
   console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
 }).catch((error: BusinessError) => {
-  console.log("getIfaceConfig promise error = " + JSON.stringify(error));
+  console.error("getIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
 
@@ -100,14 +100,14 @@ ethernet.getAllActiveIfaces().then((data: string[]) => {
     console.log("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
   }
 }).catch((error:BusinessError) => {
-  console.log("getAllActiveIfaces promise error = " + JSON.stringify(error));
+  console.error("getAllActiveIfaces promise error = " + JSON.stringify(error));
 });
 
 // Call isIfaceActive to check whether the specified network port is active.
 ethernet.isIfaceActive("eth0").then((data: number) => {
   console.log("isIfaceActive promise = " + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-  console.log("isIfaceActive promise error = " + JSON.stringify(error));
+  console.error("isIfaceActive promise error = " + JSON.stringify(error));
 });
 
 // Call setIfaceConfig to configure the network attributes of the specified Ethernet network.
@@ -125,7 +125,7 @@ const setConfigPromise = ethernet.setIfaceConfig("eth0", config);
 setConfigPromise.then(() => {
   console.log("setIfaceConfig promise ok");
 }).catch((error: BusinessError)  => {
-  console.log("setIfaceConfig promise error = " + JSON.stringify(error));
+  console.error("setIfaceConfig promise error = " + JSON.stringify(error));
 });
 
 // Call getIfaceConfig to obtain the network attributes of the specified Ethernet network.
@@ -137,7 +137,7 @@ ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => 
   console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
   console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
 }).catch((error: BusinessError) => {
-  console.log("getIfaceConfig promise error = " + JSON.stringify(error));
+  console.error("getIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
 

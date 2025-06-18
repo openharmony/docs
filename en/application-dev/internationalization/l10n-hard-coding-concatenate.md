@@ -1,6 +1,6 @@
 # Hard Coding and Concatenation Prevention
 
-## Use Cases
+## When to Use
 
 A key part of localization is the translation of resource files. To improve the translation efficiency, avoid hard coding and concatenation during development.
 

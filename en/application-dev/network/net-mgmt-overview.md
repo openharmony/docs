@@ -11,6 +11,8 @@ Network Kit provides the following functions:
 - [Ethernet connection](net-ethernet.md): provides wired network capabilities, which allow you to set the IP address, subnet mask, gateway, and Domain Name System (DNS) server of a wired network.
 <!--DelEnd-->
 
+<!--RP1-->
+<!--RP1End-->
 
 ## Constraints
 

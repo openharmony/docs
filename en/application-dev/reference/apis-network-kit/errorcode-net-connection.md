@@ -113,8 +113,12 @@ This error code is reported if the number of network requests exceeds the maximu
 
 **Cause**
 
-The number of requests for activating a network or listening to network status changes has reached the maximum value.
+- The number of requests for activating a network or listening to network status changes has reached the maximum value.
+
+- The maximum number of 2.NetConnection.register interfaces has been reached.
 
 **Procedure**
 
-Locate the fault based on the "Over the max request number" log record.
+1. Locate the fault based on the "Over the max request number" log record.
+
+2. After using **NetConnection.register**, call **NetConnection.unregister** to cancel the registered listener in a timely manner.

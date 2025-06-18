@@ -22,7 +22,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 ## distributedDeviceManager.createDeviceManager
 
-createDeviceManager(bundleName: string): DeviceManager;
+createDeviceManager(bundleName: string): DeviceManager
 
 Creates a **DeviceManager** instance. The **DeviceManager** instance is the entry for invoking the APIs for distributed device management. It can be used to obtain information about trusted devices and local devices.
 
@@ -64,7 +64,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ## distributedDeviceManager.releaseDeviceManager
 
-releaseDeviceManager(deviceManager: DeviceManager): void;
+releaseDeviceManager(deviceManager: DeviceManager): void
 
 Releases a **DeviceManager** instance that is no longer used.
 
@@ -131,7 +131,7 @@ Provides APIs to obtain information about trusted devices and local devices. Bef
 
 ### getAvailableDeviceListSync
 
-getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
+getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;
 
 Obtains all trusted devices synchronously.
 
@@ -156,13 +156,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
-
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -172,7 +171,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
 
 ### getAvailableDeviceList
 
-getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt;): void;
+getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt;): void
 
 Obtains all trusted devices. This API uses an asynchronous callback to return the result.
 
@@ -197,13 +196,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
-
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.getAvailableDeviceList((err: BusinessError, data: Array<distributedDeviceManager.DeviceBasicInfo>) => {
       if (err) {
         console.error('getAvailableDeviceList errCode:' + err.code + ',errMessage:' + err.message);
@@ -219,7 +217,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
 
 ### getAvailableDeviceList
 
-getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;;
+getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;
 
 Obtains all trusted devices. This API uses a promise to return the result.
 
@@ -244,12 +242,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
-
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
-
+  let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
   dmInstance.getAvailableDeviceList().then((data: Array<distributedDeviceManager.DeviceBasicInfo>) => {
     console.log('get available device info: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
@@ -259,7 +255,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
 
 ### getLocalDeviceNetworkId
 
-getLocalDeviceNetworkId(): string;
+getLocalDeviceNetworkId(): string
 
 Obtains the network ID of the local device.
 
@@ -284,12 +280,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceNetworkId: string = dmInstance.getLocalDeviceNetworkId();
     console.log('local device networkId: ' + JSON.stringify(deviceNetworkId));
   } catch (err) {
@@ -300,7 +296,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
 
 ### getLocalDeviceName
 
-getLocalDeviceName(): string;
+getLocalDeviceName(): string
 
 Obtains the local device name.
 
@@ -325,12 +321,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceName: string = dmInstance.getLocalDeviceName();
     console.log('local device name: ' + JSON.stringify(deviceName));
   } catch (err) {
@@ -341,7 +337,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
 
 ### getLocalDeviceType
 
-getLocalDeviceType(): number;
+getLocalDeviceType(): number
 
 Obtains the local device type.
 
@@ -366,12 +362,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceType: number = dmInstance.getLocalDeviceType();
     console.log('local device type: ' + JSON.stringify(deviceType));
   } catch (err) {
@@ -382,7 +378,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
 
 ### getLocalDeviceId
 
-getLocalDeviceId(): string;
+getLocalDeviceId(): string
 
 Obtains the local device ID. The value is the result of obfuscating the udid-hash (hash value of the UDID), **appid**, and salt using the SHA-256 algorithm.
 
@@ -407,12 +403,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceId: string = dmInstance.getLocalDeviceId();
     console.log('local device id: ' + JSON.stringify(deviceId));
   } catch (err) {
@@ -423,7 +419,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
 
 ### getDeviceName
 
-getDeviceName(networkId: string): string;
+getDeviceName(networkId: string): string
 
 Obtains the device name based on the network ID of the specified device.
 
@@ -455,14 +451,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     // Network ID of the device, which can be obtained from the trusted device list.
     let networkId = 'xxxxxxx';
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceName: string = dmInstance.getDeviceName(networkId);
     console.log('device name: ' + JSON.stringify(deviceName)); 
   } catch (err) {
@@ -473,7 +469,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
 
 ### getDeviceType
 
-getDeviceType(networkId: string): number;
+getDeviceType(networkId: string): number
 
 Obtains the device type based on the network ID of the specified device.
 
@@ -505,14 +501,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     // Network ID of the device, which can be obtained from the trusted device list.
     let networkId = 'xxxxxxx';
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceType: number = dmInstance.getDeviceType(networkId);
     console.log('device type: ' + JSON.stringify(deviceType)); 
   } catch (err) {
@@ -523,7 +519,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
 
 ### startDiscovering
 
-startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptions?: {[key:&nbsp;string]:&nbsp;Object;} ): void;
+startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptions?: {[key:&nbsp;string]:&nbsp;Object;} ): void
 
 Starts to discover devices nearby. The discovery process takes 2 minutes. A maximum of 99 devices can be discovered. In Wi-Fi scenarios, only the devices in the same LAN can be discovered.
 
@@ -551,9 +547,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   interface DiscoverParam {
@@ -575,6 +570,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
   };
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.startDiscovering(discoverParam, filterOptions); // When devices are discovered, discoverSuccess is called to notify the application.
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -584,7 +580,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
 
 ### stopDiscovering
 
-stopDiscovering(): void;
+stopDiscovering(): void
 
 Stops device discovery.
 
@@ -603,12 +599,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.stopDiscovering();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -618,7 +614,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
 
 ### bindTarget
 
-bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , callback: AsyncCallback&lt;{deviceId: string;}>): void;
+bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , callback: AsyncCallback&lt;{deviceId: string;}>): void
 
 Binds a device.
 
@@ -647,9 +643,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
@@ -667,6 +662,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
   };
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.bindTarget(deviceId, bindParam, (err: BusinessError, data: Data) => {
       if (err) {
         console.error('bindTarget errCode:' + err.code + ',errMessage:' + err.message);
@@ -682,7 +678,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
 
 ### unbindTarget
 
-unbindTarget(deviceId: string): void;
+unbindTarget(deviceId: string): void
 
 Unbinds a device.
 
@@ -708,13 +704,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let deviceId = 'XXXXXXXX';
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.unbindTarget(deviceId);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -724,7 +720,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
 
 ### on('deviceStateChange')
 
-on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange; device: DeviceBasicInfo; }&gt;): void;
+on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange; device: DeviceBasicInfo; }&gt;): void
 
 Subscribes to the device state changes. The application (identified by the bundle name) will be notified when the device state changes.
 
@@ -750,8 +746,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
-
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -767,6 +761,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
   }
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.on('deviceStateChange', (data: Data) => {
       console.info('deviceStateChange on:' + JSON.stringify(data));
     });
@@ -778,7 +773,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
 
 ### off('deviceStateChange')
 
-off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChange; device: DeviceBasicInfo; }&gt;): void;
+off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChange; device: DeviceBasicInfo; }&gt;): void
 
 Unsubscribes from the device state changes.
 
@@ -791,7 +786,7 @@ Unsubscribes from the device state changes.
   | Name      | Type                                    | Mandatory  | Description                         |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
   | type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates device state changes.       |
-  | callback | Callback&lt;{&nbsp;action:&nbsp;[deviceStateChange](#devicestatechange);&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | No   | Callback to unregister.|
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChange](#devicestatechange);&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | No   | Callback to unregister.|
 
 **Error codes**
 
@@ -803,8 +798,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
 
 **Example**
-
-For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
 
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
@@ -821,6 +814,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
   }
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.off('deviceStateChange', (data: Data) => {
       console.info('deviceStateChange' + JSON.stringify(data));
     });
@@ -832,7 +826,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
 
 ### on('discoverSuccess')
 
-on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo; }&gt;): void;
+on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo; }&gt;): void
 
 Subscribes to the **'discoverSuccess'** event. The application will be notified when a device is successfully discovered.
 
@@ -858,8 +852,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
-
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -874,6 +866,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
   }
   
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.on('discoverSuccess', (data: Data) => {
       console.info('discoverSuccess:' + JSON.stringify(data));
     });
@@ -885,7 +878,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
 
 ### off('discoverSuccess')
 
-off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo; }&gt;): void;
+off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo; }&gt;): void
 
 Unsubscribes from the **'discoverSuccess'** event.
 
@@ -925,6 +918,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   }
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.off('discoverSuccess', (data: Data) => {
       console.info('discoverSuccess' + JSON.stringify(data));
     });
@@ -936,7 +930,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ### on('deviceNameChange')
 
-on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string; }&gt;): void;
+on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string; }&gt;): void
 
 Subscribes to device name changes. The application will be notified when the name of a device is changed.
 
@@ -962,9 +956,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
@@ -972,6 +965,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
   }
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.on('deviceNameChange', (data: Data) => {
       console.info('deviceNameChange on:' + JSON.stringify(data));
     });
@@ -983,7 +977,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
 
 ### off('deviceNameChange')
 
-off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string; }&gt;): void;
+off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string; }&gt;): void
 
 Unsubscribes from the device name changes.
 
@@ -1009,9 +1003,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
@@ -1019,6 +1012,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
   }
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.off('deviceNameChange', (data: Data) => {
       console.info('deviceNameChange' + JSON.stringify(data));
     });
@@ -1030,7 +1024,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
 
 ### on('discoverFailure')
 
-on(type: 'discoverFailure', callback: Callback&lt;{ reason: number; }&gt;): void;
+on(type: 'discoverFailure', callback: Callback&lt;{ reason: number; }&gt;): void
 
 Subscribes to the **'discoverFailure'** event. The application will be notified when a device fails to be discovered. 
 
@@ -1056,9 +1050,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
@@ -1066,6 +1059,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
   }
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.on('discoverFailure', (data: Data) => {
       console.info('discoverFailure on:' + JSON.stringify(data));
     });
@@ -1077,7 +1071,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
 
 ### off('discoverFailure')
 
-off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number; }&gt;): void;
+off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number; }&gt;): void
 
 Unsubscribes from the **'discoverFailure'** event.
 
@@ -1103,9 +1097,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
@@ -1113,6 +1106,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
   }
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.off('discoverFailure', (data: Data) => {
       console.info('discoverFailure' + JSON.stringify(data));
     });
@@ -1124,7 +1118,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
 
 ### on('serviceDie')
 
-on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
+on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void
 
 Subscribes to the dead events of the **DeviceManager** service. The application will be notified when the **DeviceManager** service is terminated unexpectedly. 
 
@@ -1150,12 +1144,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.on('serviceDie', () => {
       console.info('serviceDie on');
     });
@@ -1167,7 +1161,7 @@ For details about how to initialize `dmInstance` in the example, see [Creating a
 
 ### off('serviceDie')
 
-off(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
+off(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void
 
 Unsubscribes from the dead events of the **DeviceManager** service.
 
@@ -1193,12 +1187,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.off('serviceDie', () => {
       console.info('serviceDie off');
     });

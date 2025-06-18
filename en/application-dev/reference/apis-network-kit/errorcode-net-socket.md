@@ -397,7 +397,7 @@ Connection timed out.
 
 **Description**
 
-This error code is reported if the connection to the remote server cannot be set up for a long time.
+This error code is reported if the connection to the remote server fails to establish within the timeout period.
 
 **Cause**
 
@@ -405,7 +405,7 @@ It is probable that a server breakdown has occurred.
 
 **Procedure**
 
-Contact the peer end to rectify the fault.
+If the issue cannot be resolved locally, verify whether the remote server has encountered a fault.
 
 ## 2303501 Null SSL
 
@@ -459,7 +459,7 @@ When the send buffer is full, the underlying socket sends an **EWOUDLBLOCK** err
 
 **Procedure**
 
-Rectify the fault on the server side.
+Check the server status, and rectify the fault.
 
 ## 2303504 x509 Failed to Look Up the x509 Certificate
 

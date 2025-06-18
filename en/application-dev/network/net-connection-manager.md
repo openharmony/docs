@@ -1,6 +1,6 @@
 # Network Connection Management
 
-## Introduction
+## Overview
 
 The Network Connection Management module provides basic network management capabilities, including management of Wi-Fi/cellular/Ethernet connection priorities, network quality evaluation, subscription to network connection status changes, query of network connection information, and DNS resolution.
 
@@ -14,6 +14,7 @@ The Network Connection Management module provides basic network management capab
 - Consumer: a user of data networks, for example, an application or a system service.
 - Network probe: a mechanism used to detect the network availability to prevent the switch from an available network to an unavailable network. The probe type can be binding network detection, DNS detection, HTTP detection, or HTTPS detection.
 - Network selection: a mechanism used to select the optimal network when multiple networks coexist. It is triggered when the network status, network information, or network quality evaluation score changes.
+- Default network: network where the default route is located.
 
 ## **Constraints**
 

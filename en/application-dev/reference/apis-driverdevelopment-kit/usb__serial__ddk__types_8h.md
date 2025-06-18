@@ -1,4 +1,4 @@
-# usb_serial_ddk_types.h
+# usb_serial_types.h
 
 
 ## Overview
@@ -7,9 +7,9 @@ Provides the enum variables, structures, and macros used in USB Serial DDK APIs.
 
 **Library**: libusb_serial.z.so
 
-**File to include**: &lt;serial/usb_serial_ddk_types.h&gt;
+**File to include**: &lt;serial/usb_serial_types.h&gt;
 
-**System capability**: SystemCapability.Driver.SERIAL.Extension
+**System capability**: SystemCapability.Driver.UsbSerial.Extension
 
 **Since**: 18
 

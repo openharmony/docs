@@ -1,6 +1,6 @@
 # Character Processing
 
-## Use Cases
+## When to Use
 
 Character rules vary greatly in different languages, and it is usually difficult to extract expected information from the corresponding text. Character processing makes it possible to process text with similar logic under different language rules.
 
