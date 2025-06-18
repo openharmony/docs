@@ -103,3 +103,21 @@ Capability not supported. Failed to call the API due to limited device capabilit
 **处理步骤**
 
 应避免在该设备上使用此API，或在代码中通过判断来规避异常场景下应用在不同设备上运行所产生的影响。
+
+## 3800001 系统内部错误
+
+**错误信息**
+
+System internal error. An internal error occurred while the system was processing the API call.
+
+**错误描述**
+
+系统在处理该API调用时发生内部错误，未能完成预期操作。
+
+**可能原因**
+
+该错误通常是由于系统内部状态异常或执行逻辑出错导致，例如系统服务未就绪、系统模块崩溃、内存或资源异常等。
+
+**处理步骤**
+
+在调用前判断设备能力或添加异常捕获，以兼容不同设备行为。

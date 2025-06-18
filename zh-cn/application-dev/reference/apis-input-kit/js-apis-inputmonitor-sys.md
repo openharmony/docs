@@ -1272,7 +1272,7 @@ try {
 
 queryTouchEvents(count: number): Promise&lt;Array&lt;TouchEvent&gt;&gt;
 
-查询最近的触屏事件，最多支持查询 100 条事件。返回的触屏事件中仅包含以下有效信息：actionTime、sourceType、isInject、pressure、tiltX、tiltY。
+查询最近的触屏事件，最多支持查询 100 条事件，使用Promise异步回调。返回的触屏事件中仅包含以下有效信息：actionTime、sourceType、isInject、pressure、tiltX、tiltY。
 
 **需要权限：** ohos.permission.INPUT_MONITORING
 
@@ -1299,3 +1299,24 @@ queryTouchEvents(count: number): Promise&lt;Array&lt;TouchEvent&gt;&gt;
 | 201      | Permission denied.                                           |
 | 202      | Permission denied, non-system app called system api.         |
 | 3800001  | System internal error.                                       |
+
+**示例：**
+
+```js
+import { inputMonitor, TouchEvent } from '@kit.InputKit'
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  inputMonitor.queryTouchEvents(10).then((events: Array<TouchEvent>) => {
+    events.forEach((event, index) => {
+      console.info(`Touch event ${index}: actionTime=${event.actionTime}, sourceType=${event.sourceType}`);
+    });
+  }).catch((error: BusinessError) => {
+    console.error('queryTouchEvents promise error: ' + JSON.stringify(error));
+  });
+} catch (error) {
+  const code = (error as BusinessError).code;
+  const message = (error as BusinessError).message;
+  console.error(`queryTouchEvents failed, error code: ${code}, message: ${message}.`);
+}
+```
