@@ -15,7 +15,7 @@ For details about the development guide and sample, see [Media Data Demultiplexi
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description| 
 | -------- | -------- |

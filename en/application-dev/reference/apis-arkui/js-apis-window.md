@@ -10051,7 +10051,7 @@ Sets whether the main window or the child window is in full-screen mode. This AP
 
 > **NOTE**
 >
-> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setWindowSystemBarEnable()](#setwindowsystembarenable9-1) and [setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9-1) to implement the full-screen mode.
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setWindowSystemBarEnable()](#setwindowsystembarenable9) and [setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9) to implement the full-screen mode.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -10162,7 +10162,7 @@ Sets whether the main window layout or the child window layout is immersive. Thi
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9-1) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -10275,7 +10275,7 @@ The return value does not indicate that the status bar and <!--RP15-->three-butt
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setWindowSystemBarEnable()](#setwindowsystembarenable9-1) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setWindowSystemBarEnable()](#setwindowsystembarenable9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -10394,7 +10394,7 @@ This API does not take effect when it is called by a child window.
 
 > **NOTE**
 >
-> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setWindowSystemBarProperties()](#setwindowsystembarproperties9-1) instead.
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setWindowSystemBarProperties()](#setwindowsystembarproperties9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 

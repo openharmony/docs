@@ -11,7 +11,7 @@ Provides C APIs for the cellular data module.
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description|
 | -------- | -------- |
