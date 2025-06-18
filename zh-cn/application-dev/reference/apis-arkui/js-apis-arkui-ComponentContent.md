@@ -406,6 +406,10 @@ dispose(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+> **说明：**
+>
+> ComponentContent的组件在挂载时，调用dispose会触发组件的aboutToDisappear回调。
+
 **示例：** 
 
 ```ts
