@@ -192,8 +192,8 @@ import { window } from '@kit.ArkUI';
 
 | 名称     | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type    | [AnimationType](#animationtype20)           | 是   | 窗口动画类型。淡入动画在应用启动时生效，淡出动画仅在被打断时生效，非打断场景依然走默认动效。|
-| animationConifg    | [WindowAnimationConfig](#windowanimationconfig20) | 否   | 窗口动画参数配置。                 |
+| type    | [AnimationType](arkts-apis-window-e.md#animationtype20)           | 是   | 窗口动画类型。淡入动画在应用启动时生效，淡出动画仅在被打断时生效，非打断场景依然走默认动效。|
+| animationConifg    | [WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20) | 否   | 窗口动画参数配置。                 |
 
 ## window.minimizeAll<sup>9+</sup>
 minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
