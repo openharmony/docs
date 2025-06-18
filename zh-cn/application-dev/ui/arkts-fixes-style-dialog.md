@@ -14,6 +14,19 @@
 
 操作菜单 (showActionMenu)、对话框 (showDialog)、列表选择弹出框 (ActionSheet)和警告弹出框 (AlertDialog)不支持设置内容区的字体样式，如字体颜色、大小换行等操作，如需自定义样式，建议使用[不依赖UI组件的全局自定义弹出框](arkts-uicontext-custom-dialog.md)或者[基础自定义弹出框](./arkts-common-components-custom-dialog.md)。
 
+## 生命周期
+
+弹出框提供了生命周期函数，用于通知用户该弹出框的生命周期。生命周期的触发时序依次为：onWillAppear -> onDidAppear -> onWillDisappear -> onDidDisappear，也可参照各组件API。
+
+从API version 19开始，对话框（showDialog）、列表选择弹出框（ActionSheet）、警告弹出框（AlertDialog）支持以下生命周期。
+
+| 名称            |类型| 说明                       |
+| ----------------- | ------ | ---------------------------- |
+| onWillAppear    | Callback&lt;void&gt; | 弹出框显示动效前的事件回调。 |
+| onDidAppear    | Callback&lt;void&gt;  | 弹出框弹出后的事件回调。    |
+| onWillDisappear | Callback&lt;void&gt; | 弹出框退出动效前的事件回调。 |
+| onDidDisappear | Callback&lt;void&gt;  | 弹出框消失后的事件回调。    |
+
 ## 操作菜单 (showActionMenu)
 
 操作菜单通过UIContext中的getPromptAction方法获取到PromptAction对象，再通过该对象调用[showActionMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#showactionmenu11)接口实现，支持在回调或开发者自定义类中使用。
@@ -93,18 +106,6 @@ try {
 ## 选择器弹窗 (PickerDialog)
 
 选择器弹窗通常用于在用户进行某些操作（如点击按钮）时显示特定的信息或选项。
-
-### 生命周期
-
-弹窗提供了生命周期函数，用于通知用户该弹窗的生命周期。
-生命周期的触发顺序可参考各组件API。
-
-| 名称            |类型| 说明                       |
-| ----------------- | ------ | ---------------------------- |
-| onDidAppear    | () => void  | 弹窗弹出时的事件回调。  |
-| onDidDisappear |() => void  | 弹窗消失时的事件回调。  |
-| onWillAppear    | () => void | 弹窗显示动效前的事件回调。 |
-| onWillDisappear | () => void | 弹窗退出动效前的事件回调。 |
 
 ### 日历选择器弹窗 (CalendarPickerDialog)
 
