@@ -112,7 +112,7 @@ TypeDescriptor是类（[Class](#class)）名称的格式，由`'L'`、`'_'`、`C
 
 > **注意：**
 > 
-> 通过ForeignMethod的偏移量，可以找到适当的IndexHeader以解析`class_idx`。
+> 通过ForeignMethod的偏移量，可以找到偏移量所在的IndexHeader以解析`class_idx`。
 
 
 ### ClassIndex
@@ -184,7 +184,7 @@ ClassIndex结构的作用是通过名称快速地定位到Class的定义。
 
 > **注意：**
 > 
-> 通过Field的偏移量，可以找到适当的IndexHeader以解析`class_idx`和`type_idx`。
+> 通过Field的偏移量，可以找到偏移量所在的IndexHeader以解析`class_idx`和`type_idx`。
 
 
 ### FieldTag
@@ -219,7 +219,7 @@ ClassIndex结构的作用是通过名称快速地定位到Class的定义。
 
 > **注意：**
 > 
-> 通过Method的偏移量，可以找到适当的IndexHeader以解析`class_idx`。
+> 通过Method的偏移量，可以找到偏移量所在的IndexHeader以解析`class_idx`。
 
 
 ### MethodIndexData
@@ -315,7 +315,7 @@ MethodIndexData是一个无符号32位整数，划分为3个部分。
 
 > **注意：**
 > 
-> 通过Annotation的偏移量，可以找到适当的IndexHeader以解析`class_idx`。
+> 通过Annotation的偏移量，可以找到偏移量所在的IndexHeader以解析`class_idx`。
 
 
 ### AnnotationElementTag
