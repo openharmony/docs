@@ -792,3 +792,67 @@ struct RefreshExample {
 ```
 
 ![refresh_pulldownratio](figures/refresh_pulldownratio.gif)
+
+### 示例9（不满一屏场景实现下拉刷新）
+
+通过设置[edgeEffect](ts-container-scrollable-common.md#edgeeffect11)属性中的alwaysEnabled参数，可以在不满一屏的情况下实现Refresh组件的下拉刷新效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct RefreshExample {
+  @State isRefreshing: boolean = false;
+  @State alwaysEnabled: boolean = false;
+
+  build() {
+    Column() {
+      Refresh({ refreshing: $$this.isRefreshing }) {
+        Column() {
+          List() {
+            ListItem() {
+              Text('alwaysEnabled:' + this.alwaysEnabled)
+                .width('70%')
+                .height(80)
+                .fontSize(16)
+                .margin(10)
+                .textAlign(TextAlign.Center)
+                .borderRadius(10)
+                .backgroundColor(0xFFFFFF)
+                .onClick(() => {
+                  this.alwaysEnabled = !this.alwaysEnabled;
+                })
+            }
+          }
+          .width('100%')
+          .height('100%')
+          .alignListItem(ListItemAlign.Center)
+          .scrollBar(BarState.Auto)
+          // List组件内容大小小于组件自身且alwaysEnabled为false时，List不会响应手势，此时手势会被Column组件响应，不会产生下拉刷新效果
+          // alwaysEnabled设为true，List会响应手势并通过嵌套滚动带动Refresh组件产生下拉刷新效果
+          .edgeEffect(EdgeEffect.Spring, { alwaysEnabled: this.alwaysEnabled })
+        }
+        .gesture(
+          PanGesture({ direction: PanDirection.Vertical })
+        )
+      }
+      .onStateChange((refreshStatus: RefreshStatus) => {
+        console.info('Refresh onStatueChange state is ' + refreshStatus);
+      })
+      .onOffsetChange((value: number) => {
+        console.info('Refresh onOffsetChange offset:' + value);
+      })
+      .onRefreshing(() => {
+        setTimeout(() => {
+          this.isRefreshing = false;
+        }, 2000)
+      })
+      .backgroundColor(0x89CFF0)
+      .refreshOffset(64)
+      .pullToRefresh(true)
+    }
+  }
+}
+```
+
+![refresh_list_edgeEffect](figures/refresh_alwaysEnabled.gif)
