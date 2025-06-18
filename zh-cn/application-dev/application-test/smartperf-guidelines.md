@@ -177,7 +177,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 | -sections|否| 设置分段采集。          |
 
 ##### 使用示例
-- 设置包名采集1次应用线程数量
+- 设置包名，采集1次应用的线程数量
 
   ```
     $ SP_daemon -N 1 -PKG ohos.samples.ecg -threads
@@ -247,7 +247,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     $
   ```
 
-- 设置包名采集2次整机CPU大中小核频率、各核使用率以及进程CPU使用率、负载
+- 设置包名，采集2次整机CPU大中小核频率、各核使用率以及进程CPU使用率、负载
 
   ```
     $ SP_daemon -N 2 -PKG ohos.samples.ecg -c
@@ -286,7 +286,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     $
   ```
 
-- 设置进程ID采集2次整机CPU大中小核频率、各核使用率以及进程CPU使用率、负载
+- 设置进程ID，采集2次整机CPU大中小核频率、各核使用率以及进程CPU使用率、负载
 
   ```
     $ SP_daemon -N 2 -PID 18847 -c
@@ -377,7 +377,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     $
   ```
 
-- 设置包名采集1次整机和指定应用进程内存
+- 设置包名，采集1次整机和指定应用进程内存
 
   ```
     $ SP_daemon -N 1 -PKG ohos.samples.ecg -r
@@ -423,7 +423,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     $
   ```
 
-- 设置进程ID采集1次整机和指定应用进程内存
+- 设置进程ID，采集1次整机和指定应用进程内存
 
   ```
     $ SP_daemon -N 1 -PID 18847 -r
@@ -486,7 +486,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     $
   ```
 
-- 采集1次整机和指定应用cpu指令数
+- 设置包名，采集1次整机和指定应用cpu指令数
 
   ```
     $ SP_daemon -N 1 -PKG ohos.samples.ecg -ci
@@ -544,7 +544,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     $
   ```
 
-- 设置包名采集5次指定应用帧率
+- 设置包名，采集5次指定应用帧率
 
   ```
     $ SP_daemon -N 5 -PKG ohos.samples.ecg -f
@@ -563,26 +563,6 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     command exec finished!
     $
   ```
-
-- 采集5次指定应用帧率
-
-  ```
-    $ SP_daemon -N 5 -PKG ohos.samples.ecg -f
-
-    order:0 timestamp=1741415862598
-    order:1 fps=28
-    order:2                     fpsJitters=50192708;;16733855;;33466145;;33460938;;33468229;;33503125;;50156250;;16731250;;33458854;;33460417;;33462500;;33466667;;33461458;;33622396;;33307291;;50336980;;33302083;;16733854;;33464062;;33456771;;33467188;;50186979;;16728646;;33458854;;16736458;;33461459;;33448958;;33464062
-    order:3 refreshrate=60
-    ...
-
-    command exec finished!
-    $
-  ```
-  >**说明**
-  >
-  >- 使用该命令采集时需进入被测应用内，滑动或切换页面。
-  >- 在智能刷新率情况下，刷新率是实时变化的（一秒内可能存在多次变化），refreshrate取值是采集时刻（timestamp）的刷新率。
-
  
 - 采集10次指定图层帧率
 
@@ -690,7 +670,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     $
   ```
 
-- 全量采集示例2，设置包名采集指定应用信息，包括cpu、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图
+- 全量采集示例2，设置包名，采集指定应用信息，包括cpu、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图
  
   ```
     $ SP_daemon -N 10 -PKG ohos.samples.ecg -c -g -t -f -r -d -net -snapshot -threads
@@ -761,7 +741,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     $
   ```
 
-- 全量采集示例2，设置进程ID采集指定应用信息，包括cpu、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图
+- 全量采集示例2，设置进程ID，采集指定应用信息，包括cpu、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图
  
   ```
     $ SP_daemon -N 10 -PID 18847 -c -g -t -f -r -d -net -snapshot -threads
@@ -872,7 +852,8 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - 启停打印采集
 
    ```
-   开始采集（打印启停采集信息）
+   开始采集
+    //打印启停采集信息
     $ SP_daemon -start -c -print
     SP_daemon Collection begins
     
@@ -915,7 +896,8 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     command exec finished!
     $
       
-    结束采集（在启停打印时，需重新开启命令框执行此命令）
+    结束采集
+    //在启停打印时，需重新开启命令框执行此命令
     $ SP_daemon -stop
     SP_daemon Collection ended
     Output Path: data/local/tmp/smartperf/1/t_index_info.csv
