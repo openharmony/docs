@@ -5640,7 +5640,7 @@ struct Index {
 
 ## 获取根节点示例
 
-该示例演示了如何通过FrameNode的[getParent](getparent)接口获取当前页面根节点。
+该示例演示了如何通过FrameNode的[getParent](#getparent12)接口获取当前页面根节点。
 
 ```ts
 @Component
