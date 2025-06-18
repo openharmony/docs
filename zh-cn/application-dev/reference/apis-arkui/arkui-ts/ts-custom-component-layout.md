@@ -690,8 +690,8 @@ struct CustomLayoutText {
 
 ### 示例5（通过layout修改布局）
 通过layout修改布局。
-```ts
 <!--deprecated_code_no_check-->
+```ts
 // xxx.ets
 @Entry
 @Component

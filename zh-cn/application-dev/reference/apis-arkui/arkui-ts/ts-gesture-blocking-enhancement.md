@@ -337,7 +337,7 @@ getDistance(): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 当前拖动手势识别器触发的最小滑动距离。 |
+| number | 当前拖动手势识别器触发的最小滑动距离。单位：vp |
 
 ### getDistanceMap<sup>19+</sup>
 
@@ -353,7 +353,7 @@ getDistanceMap(): Map\<SourceTool, number\>
 
 | 类型     | 说明        |
 | ------ | --------- |
-| Map<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9), number> | 不同输入源的拖动手势识别器触发的最小滑动距离。 |
+| Map<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9), number> | 不同输入源的拖动手势识别器触发的最小滑动距离。滑动距离的单位：vp |
 
 ## TapRecognizer<sup>18+</sup>
 

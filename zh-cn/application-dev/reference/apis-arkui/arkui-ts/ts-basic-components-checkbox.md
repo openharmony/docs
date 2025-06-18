@@ -325,7 +325,7 @@ type OnCheckboxChangeCallback  = (value: boolean) => void
 | 名称 | 类型    |    只读    |    可选      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
 | name | string | 否 | 否 |当前多选框名称。 |
-| selected | boolean| 否 | 否 | 指示多选框是否被选中。</br>如果select属性没有设置默认值是false。</br>如果设置select属性，此值与设置select属性的值相同。 |
+| selected | boolean| 否 | 否 | 指示多选框是否被选中，值为true时，多选框被选中。值为false时，多选框未选中。</br>如果select属性没有设置默认值是false。</br>如果设置select属性，此值与设置select属性的值相同。 |
 | triggerChange |Callback\<boolean>| 否 | 否 |触发多选框选中状态变化。true表示从未选中变为选中，false表示从选中变为未选中。 |
 
 ## 示例
@@ -566,7 +566,6 @@ struct CheckboxExample {
 该示例通过选中checkbox以及checkboxGroup多选框来获取选中的信息。
 
 ```ts
-// xxx.ets
 // xxx.ets
 @Entry
 @Component

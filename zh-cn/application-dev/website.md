@@ -219,16 +219,16 @@
         - [应用数据持久化概述](database/app-data-persistence-overview.md)
         - [通过用户首选项实现数据持久化 (ArkTS)](database/data-persistence-by-preferences.md)
         - [通过用户首选项实现数据持久化 (C/C++)](database/preferences-guidelines.md)
-        - [通过键值型数据库实现数据持久化](database/data-persistence-by-kv-store.md)
+        - [通过键值型数据库实现数据持久化 (ArkTS)](database/data-persistence-by-kv-store.md)
         - [通过关系型数据库实现数据持久化（ArkTS）](database/data-persistence-by-rdb-store.md)
         - [通过关系型数据库实现数据持久化（C/C++）](database/native-relational-store-guidelines.md)
         - [通过向量数据库实现数据持久化 (ArkTS)](database/data-persistence-by-vector-store.md)
         - [通过向量数据库实现数据持久化 (C/C++)](database/native-vector-store-guidelines.md)
       - 同应用跨设备数据同步（分布式）<!--distributed-data-sync-->
         - [同应用跨设备数据同步概述](database/sync-app-data-across-devices-overview.md)
-        - [键值型数据库跨设备数据同步](database/data-sync-of-kv-store.md)
-        - [关系型数据库跨设备数据同步](database/data-sync-of-rdb-store.md)
-        - [分布式数据对象跨设备数据同步](database/data-sync-of-distributed-data-object.md)
+        - [键值型数据库跨设备数据同步 (ArkTS)](database/data-sync-of-kv-store.md)
+        - [关系型数据库跨设备数据同步 (ArkTS)](database/data-sync-of-rdb-store.md)
+        - [分布式数据对象跨设备数据同步 (ArkTS)](database/data-sync-of-distributed-data-object.md)
       - 数据可靠性与安全性<!--data-reliability-security-->
         - [数据可靠性与安全性概述](database/data-reliability-security-overview.md)
         - [数据库备份与恢复（ArkTS）](database/data-backup-and-restore.md)
@@ -237,20 +237,18 @@
         - [数据库加密（C/C++）](database/native-data-encryption.md)
         - [基于设备分类和数据分级的访问控制（ArkTS）](database/access-control-by-device-and-data-level.md)
         - [基于设备分类和数据分级的访问控制（C/C++）](database/native-access-control-by-device-and-data-level.md)
-        - [E类加密数据库的使用](database/encrypted_estore_guidelines.md)
+        - [E类加密数据库的使用 (ArkTS)](database/encrypted_estore_guidelines.md)
       - 跨应用数据共享<!--cross-app-data-share-->
         - [跨应用数据共享概述](database/data-share-overview.md)
         <!--Del-->
-        - 一对多跨应用数据共享（仅对系统应用开放）<!--one-to-many-data-share-->
-          - [通过DataShareExtensionAbility实现数据共享](database/share-data-by-datashareextensionability.md)
-          - [通过数据管理服务实现数据共享静默访问](database/share-data-by-silent-access.md)
+        - 一对多跨应用数据共享 (仅对系统应用开放)<!--one-to-many-data-share-->
+          - [通过DataShareExtensionAbility实现数据共享 (ArkTS)](database/share-data-by-datashareextensionability.md)
+          - [通过数据管理服务实现数据共享静默访问 (ArkTS)](database/share-data-by-silent-access.md)
         <!--DelEnd-->
         - 多对多跨应用数据共享<!--many-to-many-data-share-->
           - [通过标准化数据通路实现数据共享 (ArkTS)](database/unified-data-channels.md)
           - [通过标准化数据通路实现数据共享 (C/C++)](database/unified-data-channels-c.md)
-      - [应用数据向量化](database/aip-data-intelligence-embedding.md) 
-      - [RelationalStore开发指导 (C/C++)](database/native-relational-store-guidelines.md)
-      - [SQLite调试工具](database/sqlite-database-debug-tool.md)
+      - [应用数据向量化 (ArkTS)](database/aip-data-intelligence-embedding.md)
       - [ArkData术语](database/data-terminology.md)
     - ArkTS（方舟编程语言）<!--arkts-->
       - [ArkTS简介](arkts-utils/arkts-overview.md)
@@ -801,22 +799,16 @@
         - [跨设备文件拷贝](file-management/file-copy-across-devices.md)
     - Form Kit（卡片开发服务）<!--form-kit-->
       - [Form Kit简介](form/formkit-overview.md)
-      - ArkTS卡片开发（推荐）<!--arkts-ui-widget-->
+      - ArkTS卡片开发（推荐）<!--arkts-ui-->
         - [ArkTS卡片概述](form/arkts-form-overview.md)
-        - ArkTS卡片开发指导<!--arkts-ui-widget-dev-->
-          - [创建ArkTS卡片](form/arkts-ui-widget-creation.md)
-          - [配置卡片的配置文件](form/arkts-ui-widget-configuration.md)
-          - [卡片生命周期管理](form/arkts-ui-widget-lifecycle.md)
-          - 开发卡片页面<!--arkts-ui-widget-page-->
-            - [卡片页面能力说明](form/arkts-ui-widget-page-overview.md)
-            - [卡片使用动效能力](form/arkts-ui-widget-page-animation.md)
-            - [卡片使用自定义绘制能力](form/arkts-ui-widget-page-custom-drawing.md)
-          - 开发卡片事件<!--arkts-ui-widget-event-->
-            - [卡片事件能力说明](form/arkts-ui-widget-event-overview.md)
-            - [拉起卡片提供方的UIAbility(router事件)](form/arkts-ui-widget-event-router.md)
-            - [拉起卡片提供方的UIAbility到后台(call事件)](form/arkts-ui-widget-event-call.md)
-            - [通过message事件刷新卡片内容](form/arkts-ui-widget-event-formextensionability.md)
-            - [通过router或call事件刷新卡片内容](form/arkts-ui-widget-event-uiability.md)
+        - [创建ArkTS卡片](form/arkts-ui-widget-creation.md)
+        - [配置ArkTS卡片的配置文件](form/arkts-ui-widget-configuration.md)
+        - [管理ArkTS卡片生命周期](form/arkts-ui-widget-lifecycle.md)
+        - ArkTS卡片提供方开发指导<!--arkts-ui-widget-->
+          - ArkTS卡片UI界面开发<!--arkts-ui-widget-page-->
+            - [ArkTS卡片界面开发概述](form/arkts-ui-widget-page-overview.md)
+            - [ArkTS卡片为组件添加动效](form/arkts-ui-widget-page-animation.md)
+            - [ArkTS卡片使用画布组件绘制自定义图形](form/arkts-ui-widget-page-custom-drawing.md)
           - ArkTS卡片页面刷新<!--arkts-ui-widget-interaction-->
             - [ArkTS卡片页面刷新概述](form/arkts-ui-widget-interaction-overview.md)
             - [ArkTS卡片主动刷新](form/arkts-ui-widget-active-refresh.md)
@@ -826,24 +818,30 @@
             <!--DelEnd-->
             - [刷新本地图片和网络图片](form/arkts-ui-widget-image-update.md)
             - [根据卡片状态刷新不同内容](form/arkts-ui-widget-update-by-status.md)
-        - ArkTS卡片页面编辑<!--arkts-ui-widget-edit-->
-          - [ArkTS卡片页面编辑交互概述](form/arkts-ui-widget-event-formeditextensionability-overview.md)
-          - [编辑刷新卡片页面内容](form/arkts-ui-widget-event-formeditextensionability.md)
-        - 应用内请求卡片加桌<!--arkts-ui-widget-add-->
-          - [应用内拉起卡片管理加桌](form/arkts-ui-widget-open-formmanager.md)
-        <!--Del-->
-        - [卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
+          - ArkTS卡片页面交互<!--arkts-ui-widget-event-->
+            - [ArkTS卡片页面交互概述](form/arkts-ui-widget-event-overview.md)
+            - [卡片跳转到应用页面（router事件）](form/arkts-ui-widget-event-router.md)
+            - [卡片拉起应用UIAbility到后台（call事件）](form/arkts-ui-widget-event-call.md)
+            - [卡片传递消息给应用（message事件）](form/arkts-ui-widget-event-formextensionability.md)
+            - [通过router或call事件刷新卡片内容](form/arkts-ui-widget-event-uiability.md)
+          - ArkTS卡片页面编辑<!--arkts-ui-widget-edit-->
+            - [ArkTS卡片页面编辑交互概述](form/arkts-ui-widget-event-formeditextensionability-overview.md)
+            - [编辑刷新卡片页面内容](form/arkts-ui-widget-event-formeditextensionability.md)
+          - 应用内请求卡片加桌<!--arkts-ui-widget-add-->
+            - [应用内拉起卡片管理加桌](form/arkts-ui-widget-open-formmanager.md)
+        <!--Del--> 
+        - [ArkTS卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
         <!--DelEnd-->
-      - 互动卡片开发<!--arkts-ui-liveform-->
-        - [互动卡片概述](form/arkts-ui-liveform-overview.md)
-        - [趣味交互类型互动卡片开发指导](form/arkts-ui-liveform-funinteraction-development.md)
-        - 场景动效类型互动卡片<!--arkts-ui-liveform-sceneanimation-->
-          - [场景动效类型互动卡片概述](form/arkts-ui-liveform-sceneanimation-overview.md)
-          - [场景动效类型互动卡片开发指导](form/arkts-ui-liveform-sceneanimation-development.md)
-          <!--Del-->
-          - [场景动效类型互动卡片开发指导（系统应用）](form/arkts-ui-liveform-sceneanimation-development-sys.md)
-          <!--DelEnd-->
-      - JS卡片开发
+        - 互动卡片开发<!--arkts-ui-liveform-->
+          - [互动卡片概述](form/arkts-ui-liveform-overview.md)
+          - [趣味交互类型互动卡片开发指导](form/arkts-ui-liveform-funinteraction-development.md)
+          - 场景动效类型互动卡片<!--arkts-ui-liveform-sceneanimation-->
+            - [场景动效类型互动卡片概述](form/arkts-ui-liveform-sceneanimation-overview.md)
+            - [场景动效类型互动卡片开发指导](form/arkts-ui-liveform-sceneanimation-development.md)
+            <!--Del-->
+            - [场景动效类型互动卡片开发指导（系统应用）](form/arkts-ui-liveform-sceneanimation-development-sys.md)
+            <!--DelEnd-->
+      - JS卡片开发<!--form-js-ui-->
         - [JS卡片概述](form/js-ui-widget-overview.md)
         - [JS卡片开发指导（Stage模型）](form/js-ui-widget-development.md)
         - [JS卡片开发指导（FA模型）](form/widget-development-fa.md)
@@ -1314,11 +1312,12 @@
         - [Input Kit简介](device/input/input-overview.md)
         - [输入设备开发指导](device/input/inputdevice-guidelines.md)
         - [鼠标光标开发指导](device/input/pointerstyle-guidelines.md)
+        - [按键拦截监听开发指导](device/input/keypressed-guidelines.md)  
         <!--Del-->
         - [输入监听开发指导](device/input/inputmonitor-guidelines.md)
         - [事件注入开发指导](device/input/inputeventclient-guidelines.md)
-        - [组合按键开发指导](device/input/inputconsumer-guidelines.md)
-        - [快捷键开发指导](device/input/shortkey-guidelines.md)
+        - [全局快捷键开发指导](device/input/inputconsumer-guidelines.md)
+        - [系统预置全局快捷键开发指导](device/input/shortkey-guidelines.md)
         <!--DelEnd-->
         - [事件监听开发指导（C/C++）](device/input/monitor-guidelines.md)
         - [事件拦截开发指导（C/C++）](device/input/interceptor-guidelines.md)
@@ -1728,7 +1727,6 @@
       - [NativeImage开发指导 (C/C++)](graphics/native-image-guidelines.md)
       - [NativeVSync开发指导 (C/C++)](graphics/native-vsync-guidelines.md)
       - [NativeWindow开发指导 (C/C++)](graphics/native-window-guidelines.md)
-      - [GPU/CPU内存访问同步操作开发指南 (C/C++)](graphics/native-fence-guidelines.md)
       - [图形开发术语](graphics/graphic-term.md)
     - ArkGraphics 3D（方舟3D图形）<!--arkgraphics-3d-->
       - [ArkGraphics 3D简介](graphics3d/arkgraphics3D-overview.md)
@@ -2017,8 +2015,9 @@
 
 - API参考<!--api-reference-->
   - API参考概述<!--ref-overview-api-->
-    <!--Del-->
+    - [开发说明](reference/development-intro-api.md)
     - [系统能力SystemCapability使用指南](reference/syscap.md)
+    <!--Del-->
     - [系统能力SystemCapability列表](reference/syscap-list.md)
     <!--DelEnd-->
     - [通用错误码](reference/errorcode-universal.md)
@@ -2116,7 +2115,6 @@
           - [@ohos.bundle.defaultAppManager (默认应用管理)](reference/apis-ability-kit/js-apis-defaultAppManager.md)
           - [@ohos.bundle.launcherBundleManager (launcherBundleManager模块)](reference/apis-ability-kit/js-apis-launcherBundleManager.md)
           - [@ohos.bundle.overlay (overlay模块)](reference/apis-ability-kit/js-apis-overlay.md)
-          - [@ohos.bundle.shortcutManager (shortcutManager模块)](reference/apis-ability-kit/js-apis-shortcutManager.md)
           <!--Del-->
           - [@ohos.bundle.appControl (appControl模块)(系统接口)](reference/apis-ability-kit/js-apis-appControl-sys.md)
           - [@ohos.bundle.appDomainVerify (应用域名校验)(系统接口)](reference/apis-ability-kit/js-apis-appDomainVerify-sys.md)
@@ -3231,10 +3229,10 @@
           - [交互事件错误码](reference/apis-arkui/errorcode-event.md)
           - [Canvas错误码](reference/apis-arkui/errorcode-canvas.md)
           - [UIExtension错误码](reference/apis-arkui/errorcode-uiextension.md)
+          - [NodeAdapter错误码](reference/apis-arkui/errorcode-nodeadapter.md)
           <!--Del-->
           - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
           <!--DelEnd-->
-          - [NodeAdapter错误码](reference/apis-arkui/errorcode-nodeadapter.md)
         - UI编译<!--arkui-compile-arkts-errcode-->
           - [编译错误码](reference/apis-arkui/_ark_ui_compile.md)
         - 图形图像<!--arkui-graphics-images-arkts-errcode-->
@@ -4509,45 +4507,55 @@
         <!--DelEnd-->
       - C API<!--camera-c-->
         - 模块<!--camera-module-->
-          - [OH_Camera](reference/apis-camera-kit/_o_h___camera.md)
+          - [OH_Camera](reference/apis-camera-kit/capi-oh-camera.md)
         - 头文件<!--camera-headerfile-->
-          - [camera.h](reference/apis-camera-kit/camera_8h.md)
-          - [camera_device.h](reference/apis-camera-kit/camera__device_8h.md)
-          - [camera_input.h](reference/apis-camera-kit/camera__input_8h.md)
-          - [camera_manager.h](reference/apis-camera-kit/camera__manager_8h.md)
-          - [capture_session.h](reference/apis-camera-kit/capture__session_8h.md)
-          - [metadata_output.h](reference/apis-camera-kit/metadata__output_8h.md)
-          - [photo_native.h](reference/apis-camera-kit/photo__native_8h.md)
-          - [photo_output.h](reference/apis-camera-kit/photo__output_8h.md)
-          - [preview_output.h](reference/apis-camera-kit/preview__output_8h.md)
-          - [video_output.h](reference/apis-camera-kit/video__output_8h.md)
+          - [camera.h](reference/apis-camera-kit/capi-camera-h.md)
+          - [camera_device.h](reference/apis-camera-kit/capi-camera-device-h.md)
+          - [camera_input.h](reference/apis-camera-kit/capi-camera-input-h.md)
+          - [camera_manager.h](reference/apis-camera-kit/capi-camera-manager-h.md)
+          - [capture_session.h](reference/apis-camera-kit/capi-capture-session-h.md)
+          - [metadata_output.h](reference/apis-camera-kit/capi-metadata-output-h.md)
+          - [photo_native.h](reference/apis-camera-kit/capi-photo-native-h.md)
+          - [photo_output.h](reference/apis-camera-kit/capi-photo-output-h.md)
+          - [preview_output.h](reference/apis-camera-kit/capi-preview-output-h.md)
+          - [video_output.h](reference/apis-camera-kit/capi-video-output-h.md)
         - 结构体<!--camera-struct-->
-          - [Camera_CaptureEndInfo](reference/apis-camera-kit/_camera___capture_end_info.md)
-          - [Camera_CaptureStartInfo](reference/apis-camera-kit/_camera___capture_start_info.md)
-          - [Camera_ConcurrentInfo](reference/apis-camera-kit/_camera___concurrent_info.md)
-          - [Camera_Device](reference/apis-camera-kit/_camera___device.md)
-          - [Camera_FrameRateRange](reference/apis-camera-kit/_camera___frame_rate_range.md)
-          - [Camera_FrameShutterEndInfo](reference/apis-camera-kit/_camera___frame_shutter_end_info.md)
-          - [Camera_FrameShutterInfo](reference/apis-camera-kit/_camera___frame_shutter_info.md)
-          - [Camera_Location](reference/apis-camera-kit/_camera___location.md)
-          - [Camera_MetadataObject](reference/apis-camera-kit/_camera___metadata_object.md)
-          - [Camera_OutputCapability](reference/apis-camera-kit/_camera___output_capability.md)
-          - [Camera_PhotoCaptureSetting](reference/apis-camera-kit/_camera___photo_capture_setting.md)
-          - [Camera_Point](reference/apis-camera-kit/_camera___point.md)
-          - [Camera_Profile](reference/apis-camera-kit/_camera___profile.md)
-          - [Camera_Rect](reference/apis-camera-kit/_camera___rect.md)
-          - [Camera_Size](reference/apis-camera-kit/_camera___size.md)
-          - [Camera_SmoothZoomInfo](reference/apis-camera-kit/_camera___smooth_zoom_info.md)
-          - [Camera_StatusInfo](reference/apis-camera-kit/_camera___status_info.md)
-          - [Camera_TorchStatusInfo](reference/apis-camera-kit/_camera___torch_status_info.md)
-          - [Camera_VideoProfile](reference/apis-camera-kit/_camera___video_profile.md)
-          - [CameraInput_Callbacks](reference/apis-camera-kit/_camera_input___callbacks.md)
-          - [CameraManager_Callbacks](reference/apis-camera-kit/_camera_manager___callbacks.md)
-          - [CaptureSession_Callbacks](reference/apis-camera-kit/_capture_session___callbacks.md)
-          - [MetadataOutput_Callbacks](reference/apis-camera-kit/_metadata_output___callbacks.md)
-          - [PhotoOutput_Callbacks](reference/apis-camera-kit/_photo_output___callbacks.md)
-          - [PreviewOutput_Callbacks](reference/apis-camera-kit/_preview_output___callbacks.md)
-          - [VideoOutput_Callbacks](reference/apis-camera-kit/_video_output___callbacks.md)
+          - [Camera_Size](reference/apis-camera-kit/capi-camera-size.md)
+          - [Camera_Profile](reference/apis-camera-kit/capi-camera-profile.md)
+          - [Camera_FrameRateRange](reference/apis-camera-kit/capi-camera-frameraterange.md)
+          - [Camera_VideoProfile](reference/apis-camera-kit/capi-camera-videoprofile.md)
+          - [Camera_OutputCapability](reference/apis-camera-kit/capi-camera-outputcapability.md)
+          - [Camera_Device](reference/apis-camera-kit/capi-camera-device.md)
+          - [Camera_StatusInfo](reference/apis-camera-kit/capi-camera-statusinfo.md)
+          - [Camera_Point](reference/apis-camera-kit/capi-camera-point.md)
+          - [Camera_Location](reference/apis-camera-kit/capi-camera-location.md)
+          - [Camera_PhotoCaptureSetting](reference/apis-camera-kit/capi-camera-photocapturesetting.md)
+          - [Camera_FrameShutterInfo](reference/apis-camera-kit/capi-camera-frameshutterinfo.md)
+          - [Camera_CaptureEndInfo](reference/apis-camera-kit/capi-camera-captureendinfo.md)
+          - [Camera_Rect](reference/apis-camera-kit/capi-camera-rect.md)
+          - [Camera_MetadataObject](reference/apis-camera-kit/capi-camera-metadataobject.md)
+          - [Camera_TorchStatusInfo](reference/apis-camera-kit/capi-camera-torchstatusinfo.md)
+          - [Camera_SmoothZoomInfo](reference/apis-camera-kit/capi-camera-smoothzoominfo.md)
+          - [Camera_CaptureStartInfo](reference/apis-camera-kit/capi-camera-capturestartinfo.md)
+          - [Camera_FrameShutterEndInfo](reference/apis-camera-kit/capi-camera-frameshutterendinfo.md)
+          - [Camera_FoldStatusInfo](reference/apis-camera-kit/capi-camera-foldstatusinfo.md)
+          - [Camera_AutoDeviceSwitchStatusInfo](reference/apis-camera-kit/capi-camera-autodeviceswitchstatusinfo.md)
+          - [Camera_ConcurrentInfo](reference/apis-camera-kit/capi-camera-concurrentinfo.md)
+          - [Camera_Manager](reference/apis-camera-kit/capi-camera-manager.md)
+          - [CameraInput_Callbacks](reference/apis-camera-kit/capi-camerainput-callbacks.md)
+          - [Camera_Input](reference/apis-camera-kit/capi-camera-input.md)
+          - [CameraManager_Callbacks](reference/apis-camera-kit/capi-cameramanager-callbacks.md)
+          - [CaptureSession_Callbacks](reference/apis-camera-kit/capi-capturesession-callbacks.md)
+          - [Camera_CaptureSession](reference/apis-camera-kit/capi-camera-capturesession.md)
+          - [MetadataOutput_Callbacks](reference/apis-camera-kit/capi-metadataoutput-callbacks.md)
+          - [Camera_MetadataOutput](reference/apis-camera-kit/capi-camera-metadataoutput.md)
+          - [OH_PhotoNative](reference/apis-camera-kit/capi-oh-photonative.md)
+          - [PhotoOutput_Callbacks](reference/apis-camera-kit/capi-photooutput-callbacks.md)
+          - [Camera_PhotoOutput](reference/apis-camera-kit/capi-camera-photooutput.md)
+          - [PreviewOutput_Callbacks](reference/apis-camera-kit/capi-previewoutput-callbacks.md)
+          - [Camera_PreviewOutput](reference/apis-camera-kit/capi-camera-previewoutput.md)
+          - [VideoOutput_Callbacks](reference/apis-camera-kit/capi-videooutput-callbacks.md)
+          - [Camera_VideoOutput](reference/apis-camera-kit/capi-camera-videooutput.md)
       - 错误码<!--camera-arkts-errcode-->
         - [Camera错误码](reference/apis-camera-kit/errorcode-camera.md)
     - DRM Kit（数字版权保护服务）<!--drm-api-->
@@ -4579,6 +4587,7 @@
       - ArkTS API<!--image-arkts-->
         - [@ohos.multimedia.image (图片处理)](reference/apis-image-kit/js-apis-image.md)
         - [@ohos.multimedia.sendableImage (基于Sendable对象的图片处理)](reference/apis-image-kit/js-apis-sendableImage.md)
+        - [@ohos.multimedia.videoProcessingEngine (视频处理引擎)](reference/apis-image-kit/js-apis-videoProcessingEngine.md)
         <!--Del-->
         - [@ohos.multimedia.image (图片处理)(系统接口)](reference/apis-image-kit/js-apis-image-sys.md)
         <!--DelEnd-->
@@ -4672,6 +4681,7 @@
           - [OH_ImageProcessing](reference/apis-image-kit/capi-oh-imageprocessing.md)
       - 错误码<!--image-arkts-errcode-->
         - [Image错误码](reference/apis-image-kit/errorcode-image.md)
+        - [视频处理引擎错误码](reference/apis-image-kit/errorcode-videoprocessingengine.md)
     - Media Kit（媒体服务）<!--media-api-->
       - ArkTS API<!--media-arkts-->
         - @ohos.multimedia.media (媒体服务)<!--js-apis-media-->
@@ -4814,7 +4824,6 @@
           - [OH_NativeImage](reference/apis-arkgraphics2d/capi-oh-nativeimage.md)
           - [NativeVsync](reference/apis-arkgraphics2d/capi-nativevsync.md)
           - [NativeWindow](reference/apis-arkgraphics2d/capi-nativewindow.md)
-          - [NativeFence](reference/apis-arkgraphics2d/capi-nativefence.md)
         - 头文件<!--arkgraphics-headerfile-->
           - [buffer_common.h](reference/apis-arkgraphics2d/capi-buffer-common-h.md)
           - [native_buffer.h](reference/apis-arkgraphics2d/capi-native-buffer-h.md)
@@ -4868,7 +4877,6 @@
           - [buffer_handle.h](reference/apis-arkgraphics2d/capi-buffer-handle-h.md)
           - [external_window.h](reference/apis-arkgraphics2d/capi-external-window-h.md)
           - [graphic_error_code.h](reference/apis-arkgraphics2d/capi-graphic-error-code-h.md)
-          - [native_fence.h](reference/apis-arkgraphics2d/capi-native-fence-h.md)
         - 结构体<!--arkgraphics-struct-->
           - [OH_NativeBuffer_ColorXY](reference/apis-arkgraphics2d/capi-oh-nativebuffer-colorxy.md)
           - [OH_NativeBuffer_Smpte2086](reference/apis-arkgraphics2d/capi-oh-nativebuffer-smpte2086.md)
