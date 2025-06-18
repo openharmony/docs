@@ -1245,8 +1245,6 @@ getSupportedPhotoFormats(photoType: PhotoType): Promise&lt;Array&lt;string&gt;&g
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, photoTypeNumber: number){
   console.info('getSupportedPhotoFormatsDemo.');
 
