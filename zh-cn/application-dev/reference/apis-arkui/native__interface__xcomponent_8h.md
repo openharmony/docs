@@ -109,7 +109,7 @@
 |int32_t [OH_ArkUI_XComponent_SetAutoInitialize](_o_h___native_x_component.md#oh_arkui_xcomponent_setautoinitialize)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node,bool autoInitialize)|设置XComponent组件是否需要自动初始化的标志位。|
 |int32_t [OH_ArkUI_XComponent_Initialize](_o_h___native_x_component.md#oh_arkui_xcomponent_initialize)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node)|初始化XComponent组件持有的surface。|
 |int32_t [OH_ArkUI_XComponent_Finalize](_o_h___native_x_component.md#oh_arkui_xcomponent_finalize)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node)|销毁XComponent组件持有的surface。|
-|int32_t [OH_ArkUI_XComponent_IsInitialized](_o_h___native_x_component.md#oh_arkui_xcomponent_isinitialize)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, bool* isInitialized)|获取XComponent组件是否已经初始化的标志位。|
+|int32_t [OH_ArkUI_XComponent_IsInitialized](_o_h___native_x_component.md#oh_arkui_xcomponent_isinitialized)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, bool* isInitialized)|获取XComponent组件是否已经初始化的标志位。|
 
 ### 变量
 

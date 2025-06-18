@@ -236,7 +236,7 @@ onAccessibilityFocus(callback: AccessibilityFocusCallback)
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| callback | [AccessibilityFocusCallback](ts-universal-attributes-accessibility.md#AccessibilityFocusCallback18) | 是   | 向注册回调函数方通知当前获焦、失焦状态。 |
+| callback | [AccessibilityFocusCallback](ts-universal-attributes-accessibility.md#accessibilityfocuscallback18) | 是   | 向注册回调函数方通知当前获焦、失焦状态。 |
 
 ## AccessibilityFocusCallback<sup>18+</sup>
 
