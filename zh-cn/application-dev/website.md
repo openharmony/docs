@@ -796,12 +796,12 @@
         - [跨设备文件拷贝](file-management/file-copy-across-devices.md)
     - Form Kit（卡片开发服务）<!--form-kit-->
       - [Form Kit简介](form/formkit-overview.md)
-      - ArkTS卡片开发（推荐）<!--arkts-ui-widget-->
+      - ArkTS卡片开发（推荐）<!--arkts-ui-->
         - [ArkTS卡片概述](form/arkts-form-overview.md)
         - [创建ArkTS卡片](form/arkts-ui-widget-creation.md)
         - [配置ArkTS卡片的配置文件](form/arkts-ui-widget-configuration.md)
         - [管理ArkTS卡片生命周期](form/arkts-ui-widget-lifecycle.md)
-        - ArkTS卡片提供方开发指导<!--arkts-ui-widget-page-->
+        - ArkTS卡片提供方开发指导<!--arkts-ui-widget-->
           - ArkTS卡片UI界面开发<!--arkts-ui-widget-page-->
             - [ArkTS卡片界面开发概述](form/arkts-ui-widget-page-overview.md)
             - [ArkTS卡片为组件添加动效](form/arkts-ui-widget-page-animation.md)
