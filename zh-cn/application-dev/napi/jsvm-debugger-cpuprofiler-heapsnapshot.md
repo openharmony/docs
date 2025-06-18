@@ -52,7 +52,7 @@ static napi_value RunTest(napi_env env, napi_callback_info info)
 6. 转发端口。hdc fport tcp:9229 tcp:9225。转发开发者个人计算机侧端口9229到端侧端口9225。结果为"Forwardport result:OK"即可。
 7. 在chrome浏览器地址栏输入"localhost:9229/json"，回车。获取端口连接信息。拷贝"devtoolsFrontendUrl"字段url内容到地址栏，回车，进入DevTools源码页，将看到在应用中通过OH_JSVM_RunScript执行的JS源码，此时暂停在第一行JS源码处。(注："devtoolsFrontendUrl"字段url只支持使用Chrome、Edge浏览器打开，不支持使用Firefox、Safari等浏览器打开。)
 8. 用户可在源码页打断点，通过按钮发出各种调试命令控制JS代码执行，并查看变量。
-9.  调用OH_JSVM_CloseInspector关闭inspector，结束socket连接。
+9. 调用OH_JSVM_CloseInspector关闭inspector，结束socket连接。
 
 #### 示例代码
 JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
