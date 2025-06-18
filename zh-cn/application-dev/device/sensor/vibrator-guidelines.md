@@ -17,7 +17,7 @@
 | stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt; | 按照指定模式停止马达的振动，使用Promise异步回调。                                                |
 | stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): void | 按照指定模式停止马达的振动，使用Callback异步回调。                                               |
 | stopVibration(): Promise&lt;void&gt;                         | 停止所有模式的马达振动，使用Promise异步回调。                                                  |
-| stopVibration(param?: VibratorInfoParam): Promise&lt;void&gt; | 不传参则停止所有模式的马达振动，也可传参停止指定马达振动，使用Promise异步回调。                                 |
+| stopVibration(param?: VibratorInfoParam): Promise&lt;void&gt; | 不传参则停止本地设备所有马达的振动，也可传参停止指定马达振动，使用Promise异步回调。                                 |
 | stopVibration(callback: AsyncCallback&lt;void&gt;): void     | 停止所有模式的马达振动，使用Callback异步回调。                                                 |
 | isSupportEffect(effectId: string): Promise&lt;boolean&gt;    | 查询是否支持传入的参数effectId。返回true则表示支持，否则不支持，使用Promise异步回调。                        |
 | isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void | 查询是否支持传入的参数effectId。返回true则表示支持，否则不支持，使用Callback异步回调。                       |

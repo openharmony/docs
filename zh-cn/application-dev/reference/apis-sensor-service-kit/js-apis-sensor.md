@@ -3053,7 +3053,7 @@ try {
 }
 ```
 
-### sensorStatusChange
+### sensorStatusChange<sup>19+<sup>
 
 off(type: 'sensorStatusChange', callback?: Callback&lt;SensorStatusEvent&gt;): void
 

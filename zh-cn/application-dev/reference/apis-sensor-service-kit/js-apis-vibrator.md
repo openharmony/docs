@@ -609,7 +609,6 @@ stopVibration(): Promise&lt;void&gt;
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 14600101 | Device operation failed. |
 
 **示例**：
 
@@ -634,7 +633,7 @@ stopVibration(): Promise&lt;void&gt;
 
 stopVibration(param?: VibratorInfoParam): Promise&lt;void&gt;
 
-不传参默认停止所有模式的马达振动，也可传递参数停止指定设备马达振动。使用promise异步回调。
+不传参默认停止本地设备所有马达的振动，也可传递参数停止指定设备马达振动。使用promise异步回调。
 
 **需要权限**：ohos.permission.VIBRATE
 
@@ -945,23 +944,15 @@ getEffectInfoSync(effectId: string, param?: VibratorInfoParam): EffectInfo;
 
 getVibratorInfoSync(param?: VibratorInfoParam): Array&lt;VibratorInfo&gt;;
 
-检索有关一个或所有设备的马达信息列表。
+查询一个或所有设备的马达信息列表。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
 **参数**：
 
-| 参数名   | 类型                                      | 必填 | 说明             |
-| -------- |-----------------------------------------| ---- |----------------|
-| param     | [VibratorInfoParam](#vibratorinfoparam19) | 否   | 指出需要控制的设备和马达信息 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
-
-| 错误码ID | 错误信息                 |
-| -------- | ------------------------ |
-| 14600101 | Device operation failed. |
+| 参数名   | 类型                                      | 必填 | 说明                                |
+| -------- |-----------------------------------------| ---- |-----------------------------------|
+| param     | [VibratorInfoParam](#vibratorinfoparam19) | 否   | 指出需要控制的设备和马达信息,不传参默认查询所有设备所有马达的信息 |
 
 **返回值**：
 
