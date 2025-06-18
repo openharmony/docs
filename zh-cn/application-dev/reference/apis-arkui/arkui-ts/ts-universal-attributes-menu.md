@@ -171,7 +171,7 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 | hapticFeedbackMode<sup>18+</sup> | [HapticFeedbackMode](#hapticfeedbackmode18) | 否 | 菜单弹出时振动效果。<br/>默认值：HapticFeedbackMode.DISABLED，菜单弹出时不振动。<br />**说明：**<br />只有一级菜单可配置弹出时振动效果。<br />仅当应用具备ohos.permission.VIBRATE权限，且用户启用了触感反馈时才会生效。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | outlineWidth<sup>20+</sup> | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](ts-universal-attributes-outline.md#edgeoutlinewidths对象说明) | 否 | 设置菜单边框外描边宽度。<br />默认值：0vp<br />**说明：**<br />不支持百分比，若需要外描边效果outlineWidth为必填项。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | outlineColor<sup>20+</sup> | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-universal-attributes-outline.md#edgecolors对象说明) | 否 | 设置菜单边框外描边颜色。<br />**说明：**<br />默认值：'#19ffffff'<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| mask<sup>20+</sup> | boolean&nbsp;\|&nbsp;[MenuMaskType](#menumasktype20类型说明) | 否 | 设置菜单是否有蒙层及蒙层样式。如果设置为false，则没有蒙层；如果设置为true，则有蒙层；如果设置为MenuMaskType，则自定义蒙层的样式。<br/>默认值：使用bindContextMenu且配置预览图弹出菜单时默认值为true，其它情况默认值为false。<br>**说明：** <br/>2in1设备不生效。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| mask<sup>20+</sup> | boolean&nbsp;\|&nbsp;[MenuMaskType](#menumasktype20类型说明) | 否 | 设置菜单是否有蒙层及蒙层样式。如果设置为false，则没有蒙层；如果设置为true，则有蒙层；如果设置为MenuMaskType，则自定义蒙层的样式。<br/>默认值：菜单有预览图时默认显示蒙层，否则不显示。<br>**说明：** <br/>当设备配置不显示菜单蒙层时，该接口不生效。如当前在2in1设备上该接口不生效。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## MenuPreviewMode<sup>11+</sup>
 
@@ -248,7 +248,7 @@ type BorderRadiusType = [Length](ts-types.md#length) | [BorderRadiuses](ts-types
 
 | 名称      | 类型                                       | 必填 | 说明                                                         |
 | --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| color | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置蒙层颜色。<br/>默认值：0x33182431                                       |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置蒙层颜色。<br/>默认值：$r('sys.color.ohos_id_color_mask_thin')                                       |
 | backgroundBlurStyle | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否   | 设置蒙层模糊材质。<br/>默认值：BlurStyle.BACKGROUND_THIN                                       |
 
 ## 示例
@@ -880,3 +880,49 @@ struct Index {
 ```
 
 ![hoverScaleInterruption](figures/menuPreviewBorderRadius.jpg)
+
+### 示例16（设置菜单蒙层）
+
+该示例为bindMenu通过配置mask属性设置菜单蒙层。
+
+```ts
+import { SymbolGlyphModifier } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State startIconModifier: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_star'))
+  @State isShow: boolean = false;
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({
+        symbolStartIcon: this.startIconModifier,
+        content: "新建文件夹",
+      })
+      MenuItem({
+        symbolStartIcon: this.startIconModifier,
+        content: "排序方式",
+      })
+      MenuItem({
+        symbolStartIcon: this.startIconModifier,
+        content: "查看方式",
+      })
+    }
+  }
+
+  build() {
+    Button('bindMenu')
+      .position({ top: 80, left: 80 })
+      .onClick(() => {
+        this.isShow = !this.isShow;
+      })
+      .bindMenu(this.isShow, this.MyMenu, {
+        mask: { color: 'rgba(23,169,141,0.5)', backgroundBlurStyle: BlurStyle.Thin }
+      })
+  }
+}
+```
+
+![menuMask](figures/menuMask.jpg)
