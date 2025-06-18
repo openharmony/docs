@@ -1197,6 +1197,19 @@ typedef uint32_t ArkUI_GestureDirectionMask
 **起始版本：** 12
 
 
+### ArkUI_GestureEvent
+
+```
+typedef struct ArkUI_GestureEvent ArkUI_GestureEvent
+```
+
+**描述：**
+
+提供手势事件数据类型对象定义。
+
+**起始版本：** 12
+
+
 ### ArkUI_GestureEventActionTypeMask
 
 ```
@@ -1219,6 +1232,19 @@ typedef struct ArkUI_GestureEventTargetInfo ArkUI_GestureEventTargetInfo
 **描述：**
 
 提供手势事件目标信息类型对象定义。
+
+**起始版本：** 12
+
+
+### ArkUI_GestureRecognizer
+
+```
+typedef struct ArkUI_GestureRecognizer ArkUI_GestureRecognizer
+```
+
+**描述：**
+
+提供手势组件实例对象定义。
 
 **起始版本：** 12
 
@@ -1257,6 +1283,18 @@ typedef ArkUI_GestureRecognizerHandle* ArkUI_GestureRecognizerHandleArray
 提供手势识别器句柄类型数组对象定义。
 
 **起始版本：** 12
+
+
+### ArkUI_TouchRecognizer
+
+```
+typedef ArkUI_TouchRecognizer ArkUI_TouchRecognizer
+```
+**描述：**
+
+定义触摸识别器。
+
+**起始版本：** 15
 
 
 ### ArkUI_TouchRecognizerHandle
@@ -1695,7 +1733,7 @@ typedef struct ArkUI_VisibleAreaEventOptions ArkUI_VisibleAreaEventOptions
 
 可见区域变化监听的参数。
 
-**起始版本：** 18
+**起始版本：** 17
 
 
 ### ArkUI_TextPickerRangeContentArray
@@ -2543,7 +2581,7 @@ enum ArkUI_ErrorCode
 | ARKUI_ERROR_CODE_UI_CONTEXT_INVALID  | 无效的UIContext对象。<br/>起始版本：18  | 
 | ARKUI_ERROR_CODE_CALLBACK_INVALID  | 无效的回调函数。<br/>起始版本：18  | 
 | ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED = 180102  | 不支持手势识别器类型。<br/>错误码的详细介绍请参见[交互事件错误码](../apis-arkui/errorcode-event.md)。<br/>起始版本：18  |
-| ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED = 190004  | 当前阶段不允许该操作。<br/>错误码的详细介绍请参见[拖拽事件错误码](../apis-arkui/errorcode-drag-event.md)。<br/>起始版本：18  |
+| ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED = 190004  | 当前阶段不允许该操作。<br/>错误码的详细介绍请参见[拖拽事件错误码](../apis-arkui/errorcode-drag-event.md)。<br/>起始版本：19  |
 
 
 ### ArkUI_FinishCallbackType
@@ -3119,7 +3157,19 @@ enum ArkUI_KeyCode
 | ARKUI_KEYCODE_NUMPAD_EQUALS  | 小键盘按键'='  | 
 | ARKUI_KEYCODE_NUMPAD_LEFT_PAREN  | 小键盘按键'('  | 
 | ARKUI_KEYCODE_NUMPAD_RIGHT_PAREN  | 小键盘按键')'  | 
-
+| ARKUI_KEYCODE_BUTTON_A  | 游戏手柄按键'A'  |
+| ARKUI_KEYCODE_BUTTON_B  | 游戏手柄按键'B' |
+| ARKUI_KEYCODE_BUTTON_X  | 游戏手柄按键'X'  |
+| ARKUI_KEYCODE_BUTTON_Y  | 游戏手柄按键'Y'  |
+| ARKUI_KEYCODE_BUTTON_L1  | 游戏手柄按键'L1'  |
+| ARKUI_KEYCODE_BUTTON_R1  | 游戏手柄按键'R1'  |
+| ARKUI_KEYCODE_BUTTON_L2  | 游戏手柄按键'R2'  |
+| ARKUI_KEYCODE_BUTTON_R2  | 游戏手柄按键'L1'  |
+| ARKUI_KEYCODE_BUTTON_SELECT  | 游戏手柄按键'Select'  |
+| ARKUI_KEYCODE_BUTTON_START  | 游戏手柄按键'Start'  |
+| ARKUI_KEYCODE_BUTTON_MODE  | 游戏手柄按键'Mode'  |
+| ARKUI_KEYCODE_BUTTON_THUMBL  | 游戏手柄按键'THUMBL'  |
+| ARKUI_KEYCODE_BUTTON_THUMBR  | 游戏手柄按键'THUMBR'  |
 
 ### ArkUI_KeyEventType
 
@@ -3179,6 +3229,23 @@ enum ArkUI_KeyIntension
 | ARKUI_KEY_INTENTION_VOLUME_DOWN  | 音量降低  | 
 | ARKUI_KEY_INTENTION_CALL  | 接听电话  | 
 | ARKUI_KEY_INTENTION_CAMERA  | 拍照  | 
+
+
+### ArkUI_KeyProcessingMode
+
+```
+enum ArkUI_KeyProcessingMode
+```
+**描述：**
+
+当组件无法处理按键事件时，确定按键事件处理的优先级。
+
+**起始版本：** 15
+
+| 名称          | 描述        |
+| ----------- | --------- |
+| ARKUI_KEY_PROCESSING_MODE_FOCUS_NAVIGATION | 默认值，按键事件用于移动焦点。|
+| ARKUI_KEY_PROCESSING_MODE_FOCUS_ANCESTOR_EVENT |  按键事件向上传递给祖先组件。 |
 
 
 ### ArkUI_KeySourceType
@@ -3890,7 +3957,7 @@ enum ArkUI_NodeEventType
 | NODE_ON_FOCUS  | 获焦事件。<br/>触发该事件的条件：组件获焦时触发此回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中不包含参数。 | 
 | NODE_ON_BLUR  | 失去焦点事件。<br/>触发该事件的条件：组件失去焦点时触发此回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中不包含参数。 | 
 | NODE_ON_CLICK  | 组件点击事件。<br/>触发该事件的条件：组件被点击时触发此回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含8个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32**：点击位置相对于被点击元素原始区域左上角的X坐标，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32**：点击位置相对于被点击元素原始区域左上角的Y坐标，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[2].f32**：事件时间戳。触发事件时距离系统启动的时间间隔，单位微秒。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[3].i32**：事件输入设备，1表示鼠标，2表示触屏，4表示按键。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[4].f32**：点击位置相对于应用窗口左上角的X坐标，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[5].f32**：点击位置相对于应用窗口左上角的Y坐标，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[6].f32**：点击位置相对于应用屏幕左上角的X坐标，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[7].f32**：点击位置相对于应用屏幕左上角的Y坐标，单位px。 | 
-| NODE_ON_CLICK_EVENT | 组件点击事件。<br/>触发该事件的条件：组件被点击时触发此回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent)。 | 
+| NODE_ON_CLICK_EVENT | 组件点击事件。<br/>触发该事件的条件：组件被点击时触发此回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent)。<br/>起始版本：18。 | 
 | NODE_ON_TOUCH_INTERCEPT  | 组件自定义事件拦截。<br/>触发该事件的条件：组件被触摸时触发此回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent)。 | 
 | NODE_EVENT_ON_VISIBLE_AREA_CHANGE  | 组件可见区域变化事件。<br/>触发该事件的条件：组件可见面积与自身面积的比值接近设置的阈值时触发回调，注册事件前需先使用 NODE_VISIBLE_AREA_CHANGE_RATIO 配置阈值。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含2个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：组件可见面积与自身面积的比值与上次变化相比的情况，变大为1，变小为0。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32**：触发回调时组件可见面积与自身面积的比值。 | 
 | NODE_ON_HOVER  | 鼠标进入或退出组件事件。<br/>触发该事件的条件：鼠标进入或退出组件时触发回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含1个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：鼠标是否悬浮在组件上，鼠标进入时为1，退出时为0。 | 
