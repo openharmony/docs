@@ -1754,6 +1754,7 @@
           - [使用JSVM-API接口创建基本数据类型](napi/use-jsvm-basic-data-types.md)
         - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
           - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
+          - [JSVM 坚盾守护模式](napi/jsvm-secure-shield-mode.md)
           - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
             - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
             - [使用 code cache 加速编译](napi/use-jsvm-about-code-cache.md)
