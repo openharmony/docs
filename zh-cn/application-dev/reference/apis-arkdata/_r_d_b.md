@@ -957,6 +957,23 @@ enum Rdb_ConflictResolution
 | RDB_CONFLICT_IGNORE | 发生冲突时忽略冲突的数据，继续执行后续修改。 | 
 | RDB_CONFLICT_REPLACE | 发生冲突时，尝试删除后插入，如果还是冲突则等同于RDB_CONFLICT_ABORT。 | 
 
+### OH_OrderType
+
+```
+enum OH_OrderType
+```
+
+**描述**
+
+排序方式。
+
+**起始版本：** 10
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ASC | 升序排列。 | 
+| DESC | 降序排列。 | 
+
 ### OH_Rdb_ErrCode
 
 ```
