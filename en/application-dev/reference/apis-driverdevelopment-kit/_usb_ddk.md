@@ -14,7 +14,7 @@ Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous 
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description|
 | -------- | -------- |

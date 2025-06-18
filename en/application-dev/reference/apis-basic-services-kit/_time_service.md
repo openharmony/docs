@@ -11,7 +11,7 @@ Enables the application to obtain the time and time zone information.
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description|
 | -------- | -------- |

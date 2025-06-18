@@ -32,7 +32,7 @@
 - C APIs
   - Module
     - [Notification](capi-notification.md)
-  - Header File
+  - Header Files
     - [notification.h](notification_8h.md)
 - Error Codes
   - [Notification Error Codes](errorcode-notification.md)

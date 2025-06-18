@@ -13,7 +13,7 @@ Defines the OpenHarmony Universal KeyStore (HUKS) capabilities, including key ma
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description| 
 | -------- | -------- |
