@@ -18,5 +18,5 @@
 | -------------------------------------------- | ------------------------------------------------------------ |
 | char* groupName                              | 备用字体集所对应的字体集名称，如果值为空，表示可以使用备用字体集列表集所有的字体。 |
 | size_t fallbackInfoSize                      | 备用字体集数量。                                             |
-| [OH_Drawing_FontFallbackInfo](capi-oh-drawing-fontfallbackinfo.md)* fallbackInfoSet | 备用字体字体集列表。                                         |
+| [OH_Drawing_FontFallbackInfo](capi-drawing-oh-drawing-fontfallbackinfo.md)* fallbackInfoSet | 备用字体字体集列表。                                         |
 

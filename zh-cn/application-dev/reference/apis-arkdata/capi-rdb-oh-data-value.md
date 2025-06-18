@@ -2,7 +2,7 @@
 
 ## 概述
 
-定义[OH_Data_Value](capi-oh-data-value.md)结构类型。
+定义[OH_Data_Value](capi-rdb-oh-data-value.md)结构类型。
 
 **起始版本：** 18
 
