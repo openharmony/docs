@@ -4948,3 +4948,17 @@ Allows a system application to access /data/log/ directory.
 **Supported devices**：General
 
 **Valid since**：20
+
+## ohos.permission.FILE_ACCESS_FOR_PRIVATE_SPACE
+
+Allows the private space application to mount public directories from the main space into the application sandbox.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: Phone | Tablet
+
+**Valid since**：20
