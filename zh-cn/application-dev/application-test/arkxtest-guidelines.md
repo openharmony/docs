@@ -29,7 +29,7 @@
 
 ### 搭建环境
 
-DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.com/cn/develop/deveco-studio)，并进行相关的配置动作。
+DevEco Studio可参考其官网介绍进行[下载](https://developer.huawei.com/consumer/cn/download/)，并进行相关的配置动作。
 
 ### 新建和编写测试脚本
 
