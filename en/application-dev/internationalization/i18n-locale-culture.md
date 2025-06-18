@@ -8,7 +8,7 @@ In a broad sense, a locale uniquely identifies a specific geographical region by
 Regarding internationalization, a locale is an abstraction of a user group, including the user language, script (for example, simplified Chinese or traditional Chinese), country/region, and other cultural habits (for example, calendar and numeral system). Locales are the basis for an application to implement internationalization capabilities.
 
 
-## How to Develop
+## How It Works
 
 A locale consists of four parts: language, script, country/region, and extended parameters. The language is mandatory. For details, see Table 1. For supported extended parameters, see Table 2. For numeral systems corresponding to different languages, see Table 3. The Arabic numeral system is used for languages that are not listed in the table by default. 
 
