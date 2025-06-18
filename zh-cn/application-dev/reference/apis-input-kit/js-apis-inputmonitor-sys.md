@@ -1267,3 +1267,35 @@ try {
   console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+
+## inputMonitor.queryTouchEvents(number)<sup>20+</sup>
+
+queryTouchEvents(count: number): Promise&lt;Array&lt;TouchEvent&gt;&gt;
+
+查询最近的触屏事件，最多支持查询 100 条事件。返回的触屏事件中仅包含以下有效信息：actionTime、sourceType、isInject、pressure、tiltX、tiltY。
+
+**需要权限：** ohos.permission.INPUT_MONITORING
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**参数：**
+
+| 参数名   | 类型                                                      | 必填 | 说明                                                         |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| count     | number                                                    | 是   | 要查询的触摸事件数量。 |
+
+**返回值：**
+
+| 类型          | 说明                                |
+| :------------ | :---------------------------------- |
+| Promise&lt;Array&lt;[TouchEvent](js-apis-touchevent.md#touchevent)&gt;&gt; | Promise对象，返回查询到的触屏事件。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 202      | Permission denied, non-system app called system api.         |
+| 3800001  | System internal error.                                       |
