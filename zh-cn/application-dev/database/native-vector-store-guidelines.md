@@ -31,10 +31,10 @@
 | -------- | -------- |
 | int OH_Rdb_SetDbType(OH_Rdb_ConfigV2 *config, int dbType) | 设置数据库类型。 |
 | OH_Rdb_Store *OH_Rdb_CreateOrOpen(const OH_Rdb_ConfigV2 *config, int *errCode) | 获得一个相关的OH_Rdb_Store实例(调用OH_Rdb_SetDbType设置dbType为RDB_CAYLEY)，操作向量数据库。 |
-| int OH_Rdb_ExecuteV2(OH_Rdb_Store *store, const char *sql, const OH_Data_Values *args, OH_Data_Value **result) | 执行有返回值的SQL语句，用来执行写操作，支持参数绑定，语句中的各种表达式和操作符之间的关系操作符号(例如=、>、<)不超过1000个。。 |
+| int OH_Rdb_ExecuteV2(OH_Rdb_Store *store, const char *sql, const OH_Data_Values *args, OH_Data_Value **result) | 执行有返回值的SQL语句，用来执行写操作，支持参数绑定，语句中的各种表达式和操作符之间的关系操作符号(例如=、>、<)不超过1000个。 |
 | int OH_Rdb_ExecuteByTrxId(OH_Rdb_Store *store, int64_t trxId, const char *sql) | 使用指定的事务ID执行无返回值的SQL语句，事务ID为0时不使用事务。 |
 | OH_Cursor *OH_Rdb_ExecuteQuery(OH_Rdb_Store *store, const char *sql) | 根据指定SQL语句查询数据库中的数据。 |
-| OH_Cursor *OH_Rdb_ExecuteQueryV2(OH_Rdb_Store *store, const char *sql, const OH_Data_Values *args) | 根据指定SQL语句查询数据库中的数据，支持参数绑定，语句中的各种表达式和操作符之间的关系操作符号(例如=、>、<)不超过1000个。。 |
+| OH_Cursor *OH_Rdb_ExecuteQueryV2(OH_Rdb_Store *store, const char *sql, const OH_Data_Values *args) | 根据指定SQL语句查询数据库中的数据，支持参数绑定，语句中的各种表达式和操作符之间的关系操作符号(例如=、>、<)不超过1000个。 |
 | int OH_Rdb_DeleteStoreV2(const OH_Rdb_ConfigV2 *config) | 删除数据库。 |
 | int OH_Cursor_GetFloatVectorCount(OH_Cursor *cursor, int32_t columnIndex, size_t *length) | 获取当前行中指定列的浮点数数组大小。 |
 | int OH_Cursor_GetFloatVector(OH_Cursor *cursor, int32_t columnIndex, float *val, size_t inLen, size_t *outLen) | 以浮点数数组的形式获取当前行中指定列的值，其中inLen不能小于实际的数组大小。 |
@@ -120,7 +120,7 @@ libnative_rdb_ndk.z.so
 
    ```c
    // 不使用参数绑定修改数据
-   OH_Rdb_ExecuteV2(store_, "update test set data1 = '[5.1, 6.1] where id = 0;", nullptr, nullptr);
+   OH_Rdb_ExecuteV2(store_, "update test set data1 = '[5.1, 6.1]' where id = 0;", nullptr, nullptr);
 
    // 使用参数绑定修改数据
    float test1[2] = { 5.5, 6.6 };
