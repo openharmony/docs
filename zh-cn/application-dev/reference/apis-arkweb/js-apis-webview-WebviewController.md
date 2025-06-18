@@ -404,6 +404,16 @@ encoding如果为非base64（包括空值），则假定数据对安全URL字符
 
 data数据必须使用base64编码或将内容中的任何#字符编码为%23。否则#将被视为内容的结尾而剩余的文本将被用作文档片段标识符。
 
+> **说明：**
+>
+> - 若加载本地图片，可以给baseUrl或historyUrl任一参数赋值空格，详情请参考示例代码。
+>
+> - 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
+>
+> - 若html中的富文本中带有注入#等特殊字符，建议将baseUrl和historyUrl两个参数的值设置为"空格"。
+>
+> - 加载文字场景，需主动设置`<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">`避免文本字体大小不一致。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -415,14 +425,6 @@ data数据必须使用base64编码或将内容中的任何#字符编码为%23。
 | encoding   | string | 是   | 编码类型，具体为"base64"或者"URL"编码。                       |
 | baseUrl    | string | 否   | 指定的一个URL路径（"http"/"https"/"data"协议），并由Web组件赋值给`window.origin`。当加载大量html文件时，需设置为"data"。 |
 | historyUrl | string | 否   | 用作历史记录所使用的URL。非空时，历史记录以此URL进行管理。当baseUrl为空时，此属性无效。 |
-
-> **说明：**
->
-> - 若加载本地图片，可以给baseUrl或historyUrl任一参数赋值空格，详情请参考示例代码。
->
-> - 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
->
-> - 若html中的富文本中带有注入#等特殊字符，建议将baseUrl和historyUrl两个参数的值设置为"空格"。
 
 **错误码：**
 
@@ -687,7 +689,7 @@ struct WebComponent {
 
 backward(): void
 
-按照历史栈，后退一个页面。一般结合[accessBackward](js-apis-webview-WebviewController.md#accessbackward)一起使用。
+按照历史栈，后退一个页面。一般结合[accessBackward](#accessbackward)一起使用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1151,6 +1153,7 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 >
 > - 跨导航操作（如loadUrl）时，JavaScript状态将不再保留。例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
 > - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
+> - 目前不支持传递对象，支持传递结构体。
 > - 执行异步方法无法获取返回值，需要根据具体情境判断是否使用同步或异步方式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -1242,6 +1245,7 @@ runJavaScript(script: string): Promise\<string>
 >
 > - 跨导航操作（如loadUrl）时，JavaScript状态 将不再保留，例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
 > - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
+> - 目前不支持传递对象，支持传递结构体。
 > - 执行异步方法无法获取返回值，需要根据具体情境判断是否使用同步或异步方式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
