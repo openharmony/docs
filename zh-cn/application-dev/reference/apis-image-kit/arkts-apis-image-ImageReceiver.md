@@ -15,7 +15,7 @@
 | 名称     | 类型                         | 只读 | 可选 | 说明               |
 | -------- | ---------------------------- | ---- | ---- | ------------------ |
 | size     | [Size](arkts-apis-image-i.md#size)                | 是   | 否   | 图片大小。该参数不会影响接收到的图片大小，实际返回大小由生产者决定，如相机。         |
-| capacity | number                       | 是   | 否   | 同时访问的图像数。 |
+| capacity | number                       | 是   | 否   | 同时访问的图像数。该参数仅作为期望值，实际capacity由设备硬件决定。 |
 | format   | [ImageFormat](arkts-apis-image-e.md#imageformat9) | 是   | 否   | 图像格式，取值为[ImageFormat](arkts-apis-image-e.md#imageformat9)常量（目前仅支持 ImageFormat:JPEG，实际返回格式由生产者决定，如相机）        |
 
 ## getReceivingSurfaceId<sup>9+</sup>
