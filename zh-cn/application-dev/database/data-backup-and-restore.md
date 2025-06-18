@@ -108,7 +108,7 @@
        if (err) {
          console.error(`Fail to backup data.code:${err.code},message:${err.message}`);
        } else {
-         console.info('Succeeded in backupping data.');
+         console.info('Succeeded in backuping data.');
        }
      });
    } catch (e) {
@@ -171,7 +171,7 @@
 
 数据库操作或者存储过程中，有可能会因为各种原因发生非预期的数据库异常的情况，可以根据需要使用关系型数据库的备份能力，以便在数据库异常时，可靠高效地恢复数据保证业务数据正常使用。
 
-关系型数据库支持两种手动备份和自动备份（仅系统应用可用）两种方式。
+关系型数据库支持手动备份和自动备份（仅系统应用可用）两种方式。
 
 ### 手动备份
 

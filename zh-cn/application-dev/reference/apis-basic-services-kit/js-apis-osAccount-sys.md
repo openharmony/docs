@@ -182,7 +182,7 @@ isOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -233,7 +233,7 @@ isOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;bo
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -286,7 +286,7 @@ isOsAccountUnlocked(localId: number): Promise&lt;boolean&gt;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -783,7 +783,7 @@ getEnabledOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -984,7 +984,7 @@ createOsAccount(localName: string, type: OsAccountType, options?: CreateOsAccoun
 | --------- | ------------------------------- | ---- | ---------------------- |
 | localName | string                          | 是   | 创建的系统账号的名称。 |
 | type      | [OsAccountType](js-apis-osAccount.md#osaccounttype) | 是   | 创建的系统账号的类型。 |
-| options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | 否   | 创建系统账号的选项，默认为空。 <br/>从API version 12开始支持该可选参数。|
+| options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | 否   | 创建系统账号的选项，默认为空。<br/>从API version 12开始支持该可选参数。|
 
 **返回值：**
 
@@ -1157,7 +1157,7 @@ queryOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.GET_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.GET_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1199,7 +1199,7 @@ queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1248,7 +1248,7 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2094,7 +2094,7 @@ getOsAccountType(localId: number): Promise&lt;OsAccountType&gt;;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2958,7 +2958,7 @@ static registerInputer(authType: AuthType, inputer: IInputer): void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL 或 ohos.permission.MANAGE_USER_IDM
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL或ohos.permission.MANAGE_USER_IDM
 
 **参数：**
 
@@ -3005,7 +3005,7 @@ static unregisterInputer(authType: AuthType): void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL 或 ohos.permission.MANAGE_USER_IDM
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL或ohos.permission.MANAGE_USER_IDM
 
 **参数：**
 
@@ -4231,7 +4231,7 @@ isAuthenticationExpired(domainAccountInfo: DomainAccountInfo): Promise&lt;boolea
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -5215,16 +5215,16 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称         | 类型                         |  可读 | 可写 | 说明              |
+| 名称         | 类型                         |  只读 | 可选 | 说明              |
 | ------------ | ---------------------------- | ----- | -----|----------------- |
-| result       | number                       | 是    | 是   | 指示结果。         |
-| authSubType  | [AuthSubType](#authsubtype8) | 是    | 是   | 指示认证凭据子类型。|
-| remainTimes  | number                       | 是    | 是   | 指示剩余次数。     |
-| freezingTime | number                       | 是    | 是   | 指示冻结时间。     |
-| enrollmentProgress<sup>10+</sup> | string   | 是    | 是   | 指示录入进度，默认为空。 |
-| sensorInfo<sup>10+</sup> | string           | 是    | 是   | 指示传感器信息，默认为空。 |
-| nextPhaseFreezingTime<sup>12+</sup> | number | 是    | 是   | 指示下次冻结时间，默认为undefined。 |
-| credentialLength<sup>20+</sup> | number | 是    | 是   | 指示凭据长度，默认为undefined。查询生物信息等无定长属性的凭据时返回undefined。 |
+| result       | number                       | 否    | 否   | 指示结果。         |
+| authSubType  | [AuthSubType](#authsubtype8) | 否    | 否   | 指示认证凭据子类型。|
+| remainTimes  | number                       | 否    | 是   | 指示剩余次数。     |
+| freezingTime | number                       | 否    | 是   | 指示冻结时间。     |
+| enrollmentProgress<sup>10+</sup> | string   | 否    | 是   | 指示录入进度，默认为空。 |
+| sensorInfo<sup>10+</sup> | string           | 否    | 是   | 指示传感器信息，默认为空。 |
+| nextPhaseFreezingTime<sup>12+</sup> | number | 否    | 是   | 指示下次冻结时间，默认为undefined。 |
+| credentialLength<sup>20+</sup> | number | 否    | 是   | 指示凭据长度，默认为undefined。查询生物信息等无定长属性的凭据时返回undefined。 |
 
 ## AuthResult<sup>8+</sup>
 

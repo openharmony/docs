@@ -463,6 +463,41 @@ Text('点我')
   ```
   ![text_editmenuoptions](figures/text_editmenuoptions.gif)
 
+## 设置AI菜单
+
+Text组件通过[enableDataDetector](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#enabledatadetector11)和[dataDetectorConfig](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#datadetectorconfig11)属性实现AI菜单的显示。AI菜单的表现形式包括：单击AI实体（指可被识别的内容，包括地址、邮箱等）弹出菜单的实体识别选项，选中文本后，文本选择菜单与鼠标右键菜单中显示的实体识别选项。
+
+>  **说明：**
+>
+>  从API version 20开始，支持在文本选择菜单与鼠标右键菜单中显示实体识别选项。当[enableDataDetector](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#enabledatadetector11)设置为true，且[copyOption](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#copyoption9)设置为CopyOptions.LocalDevice时，该功能生效。菜单选项包括[TextMenuItemId](../reference/apis-arkui/arkui-ts/ts-text-common.md#textmenuitemid12)中的url(打开链接)、email(新建邮件)、phoneNumber(呼叫)、address(导航至该位置)、dateTime(新建日程提醒)。
+>
+>  该功能生效时，需选中范围内，包括一个完整的AI实体，才能展示对应的选项。
+
+- 如果需要单击AI实体弹出菜单的实体识别选项，可以配置[enableDataDetector](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#enabledatadetector11)为true。
+- 如果在单击的交互方式之外，还需要文本选择菜单与鼠标右键菜单中显示的实体识别选项，可以配置[enableDataDetector](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#enabledatadetector11)为true，且[copyOption](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#copyoption9)设置为CopyOptions.LocalDevice，具体示例如下所示：
+  ```ts
+  Text(
+    '电话号码：' + '(86) (755) ********' + '\n' +
+      '链接：' + 'www.********.com' + '\n' +
+      '邮箱：' + '***@example.com' + '\n' +
+      '地址：' + 'XX省XX市XX区XXXX' + '\n' +
+      '时间：' + 'XX年XX月XX日XXXX'
+  )
+    .fontSize(16)
+    .copyOption(CopyOptions.LocalDevice)
+    .enableDataDetector(true)// 使能实体识别
+    .dataDetectorConfig({
+      // 配置识别样式
+      // types可支持PHONE_NUMBER电话号码、URL链接、EMAIL邮箱、ADDRESS地址、DATE_TIME时间
+      // types设置为null或者[]时，识别所有类型的实体
+      types: [], onDetectResultUpdate: (result: string) => {
+      }
+    })
+  ```
+- 如果需要调整识别出的样式，可以通过[dataDetectorConfig](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#datadetectorconfig11)实现，具体可以参考[TextDataDetectorConfig](../reference/apis-arkui/arkui-ts/ts-text-common.md#textdatadetectorconfig11对象说明)配置项。
+- 如果需要调整菜单的位置，可以通过[editMenuOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#editmenuoptions12)实现，具体可以参考示例[文本扩展自定义菜单](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#示例12文本扩展自定义菜单)。 
+<!--RP2--><!--RP2End-->
+
 ## 场景示例
 
 该示例通过maxLines、textOverflow、textAlign、constraintSize属性展示了热搜榜的效果。
