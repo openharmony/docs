@@ -41,6 +41,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| struct&nbsp;&nbsp;[ArkUI_Node](_ark_u_i___margin.md) | 提供ArkUI native组件实例对象定义。|
+| struct&nbsp;&nbsp;[ArkUI_NativeDialog](_ark_ui__native_dialog.md)| 提供ArkUI在Native侧的自定义弹窗控制器对象定义。|
+| struct&nbsp;&nbsp;[ArkUI_Context](_ark_ui__context.md)| 提供ArkUI native UI的上下文实例对象定义。|
 | struct&nbsp;&nbsp;[ArkUI_ExpectedFrameRateRange](_ark_u_i___expected_frame_rate_range.md) | 设置动画的期望帧率。  | 
 | struct&nbsp;&nbsp;[ArkUI_AnimateCompleteCallback](_ark_u_i___animate_complete_callback.md) | 动画播放完成回调类型。  | 
 | struct&nbsp;&nbsp;[ArkUI_NativeAnimateAPI_1](_ark_u_i___native_animate_a_p_i__1.md) | ArkUI提供的Native侧动画接口集合。  | 
