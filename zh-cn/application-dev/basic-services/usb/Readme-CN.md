@@ -6,6 +6,6 @@
     - [USB控制传输](usbManager/usbHost/controlTransfer.md)
     - [USB中断传输](usbManager/usbHost/interruptTransfer.md)
     - [USB批量传输](usbManager/usbHost/bulkTransfer.md)
-    - [US实时传输](usbManager/usbHost/isochronousTransfer.md)
+    - [USB实时传输](usbManager/usbHost/isochronousTransfer.md)
 - [常见问题](faqs-usb.md)
 - [术语](usb-glossary.md)
