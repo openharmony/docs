@@ -335,6 +335,23 @@ enum ArkUI_InteractionHand
 | ARKUI_EVENT_HAND_LEFT  | 左手。  | 
 | ARKUI_EVENT_HAND_RIGHT  | 右手。  | 
 
+```
+anonymous enum
+```
+**描述：**
+
+定义轴事件的Action Code。
+
+**起始版本：** 15
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| UI_AXIS_EVENT_ACTION_NONE  | 无轴事件。 | 
+| UI_AXIS_EVENT_ACTION_BEGIN  | 轴事件开始。 | 
+| UI_AXIS_EVENT_ACTION_UPDATE  | 轴事件触发中。 | 
+| UI_AXIS_EVENT_ACTION_END  | 轴事件结束。  | 
+| UI_AXIS_EVENT_ACTION_CANCEL  | 轴事件取消。 | 
+
 
 ## 函数说明
 
