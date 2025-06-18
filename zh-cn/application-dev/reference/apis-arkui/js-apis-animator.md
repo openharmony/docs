@@ -87,7 +87,7 @@ animator.create(options); // 建议使用 UIContext.createAnimator()接口
 
 ### create<sup>18+</sup>
 
-create(options: AnimatorOptions \| [SimpleAnimatorOptions](#simpleanimatoroptions18)): AnimatorResult
+create(options: AnimatorOptions \| SimpleAnimatorOptions): AnimatorResult
 
 创建animator动画结果对象（AnimatorResult）。与[create](#createdeprecated)相比，新增对[SimpleAnimatorOptions](#simpleanimatoroptions18)类型入参的支持。
 
@@ -238,7 +238,7 @@ try {
 
 ### reset<sup>18+</sup>
 
-reset(options: AnimatorOptions \| [SimpleAnimatorOptions](#simpleanimatoroptions18)): void
+reset(options: AnimatorOptions \| SimpleAnimatorOptions): void
 
 更新当前animator动画。与[reset](#reset9)相比，新增对[SimpleAnimatorOptions](#simpleanimatoroptions18)类型入参的支持。
 
@@ -721,7 +721,7 @@ easing(curve: string): SimpleAnimatorOptions
 
 | 参数名     | 类型                                  | 必填   | 说明      |
 | ------- | ----------------------------------- | ---- | ------- |
-| curve | string | 是    | 设置animator动画插值曲线，具体说明参考[AnimatorOptions]。<br/>默认值：“ease” |
+| curve | string | 是    | 设置animator动画插值曲线，具体说明参考[AnimatorOptions](#animatoroptions)。<br/>默认值：“ease” |
 
 **返回值：** 
 
