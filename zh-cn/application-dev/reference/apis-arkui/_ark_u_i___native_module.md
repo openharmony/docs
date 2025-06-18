@@ -92,10 +92,13 @@
 | typedef struct [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) | 定义 DrawableDescriptor 对象。  | 
 | typedef struct [OH_PixelmapNative](#oh_pixelmapnative) \* [OH_PixelmapNativeHandle](#oh_pixelmapnativehandle) | 定义OH_PixelmapNative对象指针类型。  | 
 | typedef struct [ArkUI_AnimateOption](#arkui_animateoption) [ArkUI_AnimateOption](#arkui_animateoption) | 设置动画效果相关参数。  | 
+| typedef struct [ArkUI_Curve](#arkui_curve) [ArkUI_Curve](#arkui_curve) | 提供曲线的插值对象定义。  |
 | typedef struct ArkUI_Curve \* [ArkUI_CurveHandle](#arkui_curvehandle) | 定义曲线的插值对象指针定义。  | 
 | typedef struct [ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption) [ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption) | 定义关键帧动画参数对象。  | 
 | typedef struct [ArkUI_AnimatorOption](#arkui_animatoroption) [ArkUI_AnimatorOption](#arkui_animatoroption) | 定义animator动画参数对象。  | 
 | typedef struct ArkUI_Animator \* [ArkUI_AnimatorHandle](#arkui_animatorhandle) | 定义animator动画对象指针。  | 
+| typedef struct [ArkUI_AnimatorEvent](#arkui_animatorevent) [ArkUI_AnimatorEvent](#arkui_animatorevent) | 定义animator回调事件对象。  |
+| typedef struct [ArkUI_AnimatorOnFrameEvent](#arkui_animatoronframeevent) [ArkUI_AnimatorOnFrameEvent](#arkui_animatoronframeevent) | 定义animator接收到帧时回调对象。  |
 | typedef struct [ArkUI_TransitionEffect](#arkui_transitioneffect) [ArkUI_TransitionEffect](#arkui_transitioneffect) | 定义transition属性配置转场参数对象。  | 
 | typedef bool(\* [ArkUI_OnWillDismissEvent](#arkui_onwilldismissevent)) (int32_t reason) | 弹窗关闭的回调函数。  | 
 | typedef struct [ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) [ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) | 定义弹窗关闭事件对象。  | 
@@ -394,7 +397,8 @@
 | int32_t [OH_ArkUI_AnimatorOption_SetKeyframeCurve](#oh_arkui_animatoroption_setkeyframecurve) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, [ArkUI_CurveHandle](#arkui_curvehandle) value, int32_t index) | 设置animator动画关键帧曲线类型。  | 
 | int32_t [OH_ArkUI_AnimatorOption_GetDuration](#oh_arkui_animatoroption_getduration) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画播放的时长。  | 
 | int32_t [OH_ArkUI_AnimatorOption_GetDelay](#oh_arkui_animatoroption_getdelay) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画延时播放时长。  | 
-| int32_t [OH_ArkUI_AnimatorOption_GetIterations](#oh_arkui_animatoroption_getiterations) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画播放次数。  | 
+| int32_t [OH_ArkUI_AnimatorOption_GetIterations](#oh_arkui_animatoroption_getiterations) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画播放次数。  |
+| [ArkUI_AnimationFillMode](#arkui_animationfillmode) [OH_ArkUI_AnimatorOption_GetFill](#oh_arkui_animatoroption_getfill) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画执行后是否恢复到初始状态。  | 
 | [ArkUI_AnimationDirection](#arkui_animationdirection) [OH_ArkUI_AnimatorOption_GetDirection](#oh_arkui_animatoroption_getdirection) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画播放方向。  | 
 | [ArkUI_CurveHandle](#arkui_curvehandle) [OH_ArkUI_AnimatorOption_GetCurve](#oh_arkui_animatoroption_getcurve) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画插值曲线。  | 
 | float [OH_ArkUI_AnimatorOption_GetBegin](#oh_arkui_animatoroption_getbegin) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画插值起点。  | 
@@ -983,6 +987,30 @@ typedef struct ArkUI_Animator* ArkUI_AnimatorHandle
 **起始版本：** 12
 
 
+### ArkUI_AnimatorEvent
+
+```
+typedef struct ArkUI_AnimatorEvent ArkUI_AnimatorEvent
+```
+**描述：**
+
+定义animator回调事件对象。
+
+**起始版本：** 12
+
+
+### ArkUI_AnimatorOnFrameEvent
+
+```
+typedef struct ArkUI_AnimatorOnFrameEvent ArkUI_AnimatorOnFrameEvent
+```
+**描述：**
+
+定义animator接收到帧时回调对象。
+
+**起始版本：** 12
+
+
 ### ArkUI_AnimatorOption
 
 ```
@@ -1039,6 +1067,18 @@ typedef struct ArkUI_Context* ArkUI_ContextHandle
 **描述：**
 
 定义ArkUI native UI的上下文实例对象指针定义。
+
+**起始版本：** 12
+
+
+### ArkUI_Curve
+
+```
+typedef struct ArkUI_Curve ArkUI_Curve
+```
+**描述：**
+
+提供曲线的插值对象定义。
 
 **起始版本：** 12
 
