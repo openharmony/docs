@@ -99,7 +99,6 @@
 | typedef struct [ArkUI_TransitionEffect](#arkui_transitioneffect) [ArkUI_TransitionEffect](#arkui_transitioneffect) | 定义transition属性配置转场参数对象。  | 
 | typedef bool(\* [ArkUI_OnWillDismissEvent](#arkui_onwilldismissevent)) (int32_t reason) | 弹窗关闭的回调函数。  | 
 | typedef struct [ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) [ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) | 定义弹窗关闭事件对象。  | 
-| typedef struct [ArkUI_CustomDialogOptions ](#arkui_customdialogoptions) [ArkUI_CustomDialogOptions ](#arkui_customdialogoptions) | 定义自定义弹窗的内容对象。  | 
 | typedef uint32_t [ArkUI_GestureEventActionTypeMask](#arkui_gestureeventactiontypemask) | 定义手势事件类型集合。  | 
 | typedef uint32_t [ArkUI_GestureDirectionMask](#arkui_gesturedirectionmask) | 定义滑动手势方向集合。  | 
 | typedef ArkUI_GestureRecognizer \* [ArkUI_GestureRecognizerHandle](#arkui_gesturerecognizerhandle) | 提供手势识别器句柄类型对象定义。  | 
@@ -1016,17 +1015,6 @@ typedef struct ArkUI_DialogDismissEvent ArkUI_DialogDismissEvent
 定义弹窗关闭事件对象。
 
 **起始版本：** 12
-
-### ArkUI_CustomDialogOptions
-
-```
-typedef struct ArkUI_CustomDialogOptions ArkUI_CustomDialogOptions
-```
-**描述：**
-
-定义自定义弹窗的内容对象。
-
-**起始版本：** 16
 
 
 ### ArkUI_DragAction
