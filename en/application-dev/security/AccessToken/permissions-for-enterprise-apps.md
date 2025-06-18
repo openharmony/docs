@@ -333,7 +333,6 @@ Allows an enterprise security application to block security audit events.
 
 **Valid since**：20
 
-
 ## ohos.permission.SUPPORT_APP_SERVICE_EXTENSION
 
 Allows an application to be launched as an AppServiceExtension.
