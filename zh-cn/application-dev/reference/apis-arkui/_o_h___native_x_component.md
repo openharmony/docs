@@ -184,6 +184,10 @@ typedef struct OH_NativeXComponent_KeyEvent OH_NativeXComponent_KeyEvent
 
 提供封装的OH_NativeXComponent_KeyEvent实例。
 
+> **说明：**
+>
+> 此结构体可通过[OH_NativeXComponent_GetKeyEventAction](#oh_nativexcomponent_getkeyeventaction)，[OH_NativeXComponent_GetKeyEventCode](#oh_nativexcomponent_getkeyeventcode)，[OH_NativeXComponent_GetKeyEventDeviceId](#oh_nativexcomponent_getkeyeventdeviceid)，[OH_NativeXComponent_GetKeyEventSourceType](#oh_nativexcomponent_getkeyeventsourcetype)，[OH_NativeXComponent_GetKeyEventTimestamp](#oh_nativexcomponent_getkeyeventtimestamp)等接口获取结构体内的参数。
+
 **起始版本：**
 
 10
@@ -1996,7 +2000,7 @@ uint32_t OH_NativeXComponent_TouchEvent::numPoints = 0
 
 **描述:**
 
-当前接触点的数量。
+当前接触点的数量，值为1时为单指触摸，大于1时为多指触摸。
 
 **起始版本：**
 
