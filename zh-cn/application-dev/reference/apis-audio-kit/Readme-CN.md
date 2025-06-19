@@ -33,7 +33,7 @@
   - 头文件<!--audio-headerfile-->
     - [native_audiocapturer.h](capi-native-audiocapturer-h.md)
     - [native_audio_manager.h](capi-native-audio-manager-h.md)
-    - [native_audio_resource_manager.h](capi-native-audio-resource-manager-h.md)
+    - [native_audio_resource_manager.h]
     - [native_audio_routing_manager.h](capi-native-audio-routing-manager-h.md)
     - [native_audio_session_manager.h](capi-native-audio-session-manager-h.md)
     - [native_audio_stream_manager.h](capi-native-audio-stream-manager-h.md)
@@ -45,8 +45,8 @@
     - [native_audiostreambuilder.h](capi-native-audiostreambuilder-h.md)
   - 结构体<!--audio-struct-->
     - [OH_AudioManager](capi-oh-audiomanager.md)
-    - [OH_AudioResourceManager](capi-oh-audioresourcemanager.md)
-    - [OH_AudioWorkgroup](capi-oh-audioworkgroup.md)
+    - [OH_AudioResourceManager]
+    - [OH_AudioWorkgroup]
     - [OH_AudioRoutingManager](capi-oh-audioroutingmanager.md)
     - [OH_AudioSession_Strategy](capi-oh-audiosession-strategy.md)
     - [OH_AudioSession_DeactivatedEvent](capi-oh-audiosession-deactivatedevent.md)
