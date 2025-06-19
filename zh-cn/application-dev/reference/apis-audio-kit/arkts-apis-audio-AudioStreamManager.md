@@ -760,7 +760,7 @@ try {
 
 isAudioLoopbackSupported(mode: AudioLoopbackMode): boolean
 
-查询指定的音频返听模式是否支持。
+查询是否支持传入的音频返听模式。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -782,7 +782,7 @@ isAudioLoopbackSupported(mode: AudioLoopbackMode): boolean
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Parameter verification failed. |
+| 6800101 | Parameter verification failed.              |
 
 **示例：**
 

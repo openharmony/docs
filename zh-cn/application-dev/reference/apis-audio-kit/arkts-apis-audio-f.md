@@ -255,7 +255,18 @@ createAudioLoopback(mode: AudioLoopbackMode): Promise<AudioLoopback\>
 
 | 类型                                      | 说明                   |
 | ----------------------------------------- |----------------------|
-| Promise<[AudioLoopback](arkts-apis-audio-AudioLoopback.md)> | Promise对象，成功将返回音频返听器对象，异常将返回error对象：<br>错误码201：表示权限校验失败。<br>错误码801：表示不支持的API。<br>错误码6800101：表示参数为空或参数类型错误。<br>错误码6800104：表示不支持的返听模式。 |
+| Promise<[AudioLoopback](arkts-apis-audio-AudioLoopback.md)> | Promise对象，成功将返回音频返听器对象，异常将返回error对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------|
+|     201 | Permission denied.             |
+|     801 | Unsupported API.               |
+| 6800101 | Parameter verification failed. |
+| 6800104 | Loopback mode is unsupported.  |
 
 **示例：**
 

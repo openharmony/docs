@@ -5,11 +5,13 @@
 
 提供音频返听的相关接口。
 
-在使用AudioLoopback的接口之前，需先通过[createAudioLoopback](arkts-apis-audio-f.md#audiocreateaudioloopback20)获取AudioLoopback实例。
+在使用AudioLoopback的接口之前，需先通过[audio.createAudioLoopback](arkts-apis-audio-f.md#audiocreateaudioloopback20)获取AudioLoopback实例。
 
-当启用音频返听时，系统会创建低时延渲染器与低时延采集器，实现低时延耳返功能。采集的音频直接通过内部路由返回到渲染器。对于渲染器，其音频焦点策略与STREAM_USAGE_MUSIC相匹配。对于采集器，其音频焦点策略与SOURCE_TYPE_MIC相匹配。输入输出设备由系统自动选择。如果当前输入或输出不支持低时延，则音频返听无法启用。在运行过程中，如果音频焦点被另一个音频流抢占，或者输入或者输出设备切换到不支持低时延的设备，则系统会自动禁用音频返听。
+当启用音频返听时，系统会创建低时延渲染器与低时延采集器，实现低时延耳返功能。采集的音频直接通过内部路由返回到渲染器。对于渲染器，其音频焦点策略与[STREAM_USAGE_MUSIC](arkts-apis-audio-e.md#streamusage)相匹配。对于采集器，其音频焦点策略与[SOURCE_TYPE_MIC](arkts-apis-audio-e.md#sourcetype8)相匹配。
 
-## getStatus<sup>20+</sup>
+输入\输出设备由系统自动选择。如果当前输入\输出不支持低时延，则音频返听无法启用。在运行过程中，如果音频焦点被另一个音频流抢占，输入\输出设备切换到不支持低时延的设备，系统会自动禁用音频返听。
+
+## getStatus
 
 getStatus(): Promise<AudioLoopbackStatus\>
 
@@ -35,7 +37,7 @@ audioLoopback.getStatus().then((status: audio.AudioLoopbackStatus) => {
 })
 ```
 
-## setVolume<sup>20+</sup>
+## setVolume
 
 setVolume(volume: number): Promise&lt;void&gt;
 
@@ -53,7 +55,7 @@ setVolume(volume: number): Promise&lt;void&gt;
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -61,7 +63,7 @@ setVolume(volume: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Parameter verification failed. |
+| 6800101 | Parameter verification failed, form 0.0 to 1.0. |
 
 **示例：**
 
@@ -75,7 +77,7 @@ audioLoopback.setVolume(0.5).then(() => {
 });
 ```
 
-## on('statusChange')<sup>20+</sup>
+## on('statusChange')
 
 on(type: 'statusChange', callback: Callback<AudioLoopbackStatus\>): void
 
@@ -114,7 +116,7 @@ audioLoopback.on('statusChange', (status: audio.AudioLoopbackStatus) => {
 });
 ```
 
-## off('statusChange')<sup>20+</sup>
+## off('statusChange')
 
 off(type: 'statusChange', callback?: Callback&lt;AudioLoopbackStatus&gt;): void
 
@@ -161,7 +163,7 @@ audioLoopback.on('statusChange', statusChangeCallback);
 audioLoopback.off('statusChange', statusChangeCallback);
 ```
 
-## enable<sup>20+</sup>
+## enable
 
 enable(enable: boolean): Promise<boolean\>
 
@@ -173,17 +175,17 @@ enable(enable: boolean): Promise<boolean\>
 
 | 参数名 | 类型   | 必填 | 说明                                                |
 | :----- | :----- | :--- | :-------------------------------------------------- |
-| enable   | boolean | 是   | true表示启用音频返听器，false表示禁用音频返听器。 |
+| enable   | boolean | 是   | 表示是否启用音频返听器。true表示启用，false表示不启用。 |
 
 **返回值：**
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<boolean> | Promise对象，true表示启用或禁用音频返听器成功。 |
+| Promise\<boolean> | Promise对象。返回true表示功能执行成功；返回false表示功能执行失败。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------|

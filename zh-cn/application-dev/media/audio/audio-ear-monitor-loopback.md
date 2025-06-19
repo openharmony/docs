@@ -1,28 +1,32 @@
-# 使用AudioLoopback开发音频低时延返听功能
+# 使用AudioLoopback开发音频低时延耳返功能
 
-AudioLoopback<sup>20+</sup>是音频返听器，可将音频以更低时延的方式实时传输到耳机中，让用户可以实时听到自己或者其他相关声音。
+AudioLoopback是音频返听器，可将音频以更低时延的方式实时传输到耳机中，让用户可以实时听到自己或者其他的相关声音。
 
-常用于K歌类应用，将录制的人声和背景音乐实时送到耳机中，使用户通过反馈即时调整，获得更好的使用体验。
+常用于K歌类应用，将录制的人声和背景音乐实时传送到耳机中，使用户通过反馈即时进行调整，获得更好的使用体验。
 
-当启用音频返听时，系统会创建低时延渲染器与低时延采集器，实现低时延耳返功能。采集的音频直接通过内部路由返回到渲染器。对于渲染器，其音频焦点策略与STREAM_USAGE_MUSIC相匹配。对于采集器，其音频焦点策略与SOURCE_TYPE_MIC相匹配。输入输出设备由系统自动选择。如果当前输入或输出不支持低时延，则音频返听无法启用。在运行过程中，如果音频焦点被另一个音频流抢占，或者输入或者输出设备切换到不支持低时延的设备，则系统会自动禁用音频返听。
+当启用音频返听时，系统会创建低时延渲染器与低时延采集器，实现低时延耳返功能。采集的音频直接通过内部路由返回到渲染器。对于渲染器，其音频焦点策略与[STREAM_USAGE_MUSIC](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)相匹配。对于采集器，其音频焦点策略与[SOURCE_TYPE_MIC](../../reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8)相匹配。
+
+输入\输出设备由系统自动选择。如果当前输入\输出不支持低时延，则音频返听无法启用。在运行过程中，如果音频焦点被另一个音频流抢占，输入\输出设备切换到不支持低时延的设备，系统会自动禁用音频返听。
 
 ## 使用前提
 
-- 当前仅支持通过有线耳机实现低时延返听功能，音频由有线耳机采集并播放。
+- 当前仅支持通过有线耳机实现低时延返听功能，音频由有线耳机进行采集并播放。
 
-- 当前API version 20低功耗渲染器和低时延渲染器还不能并发。若要起渲染器，建议采用STREAM_USAGE_UNKNOWN，系统内决策用STREAM_USAGE_MUSIC创建普通渲染器。
+- 低功耗渲染器和低时延渲染器在API version 20不能实现并发。若要启用渲染器，建议采用[STREAM_USAGE_UNKNOWN](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)；系统内决策采用[STREAM_USAGE_MUSIC](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)创建普通渲染器。
 
 ## 开发指导
 
-使用AudioLoopback音频返听涉及到isAudioLoopbackSupported返听能力查询、AudioLoopback实例创建、返听音量设置、返听状态监听与返听启用禁用等。本开发指导将以一次启用返听的过程为例，向开发者讲解如何使用AudioLoopback进行音频返听，建议搭配[AudioLoopback的API说明](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md)阅读。
+使用AudioLoopback音频返听涉及到[isAudioLoopbackSupported](../../reference/apis-audio-kit/arkts-apis-audio-AudioStreamManager.md#isaudioloopbacksupported20)返听能力查询、AudioLoopback实例创建、返听音量设置、返听状态监听与返听启用禁用等。本开发指导将以一次启用返听的过程为例，向开发者讲解如何使用AudioLoopback进行音频返听，建议搭配[AudioLoopback的API说明](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md)阅读。
 
-下图展示了AudioLoopback的状态变化，在创建实例后，调用对应的方法可以进入指定的状态实现对应的行为。需要注意的是在确定的状态执行不合适的方法可能导致AudioLoopback发生错误，建议开发者在调用状态转换的方法前进行状态检查，避免程序运行产生预期以外的结果。
+下图展示了AudioLoopback的状态变化，在创建实例后，调用对应的方法可以进入指定的状态实现对应行为。
+
+需要注意的是在确定的状态执行不合适的方法可能导致AudioLoopback发生错误，建议开发者在调用状态转换的方法前进行状态检查，避免程序运行产生预期以外的结果。
 
 **图1** AudioLoopback状态变化示意图
 
 ![AudioLoopback status change](figures/audioloopback-status-change.png)
 
-使用on('statusChange')方法可以监听AudioLoopback的状态变化，每个状态对应值与说明见[AudioLoopbackStatus](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audioloopbackstatus20)。
+使用[on('statusChange')](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#onstatuschange)方法可以监听AudioLoopback的状态变化，每个状态对应值与说明见[AudioLoopbackStatus](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audioloopbackstatus20)。
 
 ### 开发步骤及注意事项
 
@@ -48,7 +52,7 @@ AudioLoopback<sup>20+</sup>是音频返听器，可将音频以更低时延的�
     }
    ```
 
-2. 调用getStatus()方法，查询当前返听状态。
+2. 调用[getStatus()](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#getstatus)方法，查询当前返听状态。
 
     > **注意：**
     > 音频返听状态受音频焦点、低时延管控、采集与播放设备等因素影响。
@@ -63,10 +67,12 @@ AudioLoopback<sup>20+</sup>是音频返听器，可将音频以更低时延的�
     })
    ```
 
-3. 调用setVolume()方法，设置音频返听音量。
+3. 调用[setVolume()](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#setvolume)方法，设置音频返听音量。
 
     > **注意：**
-    > 若在启用返听前设置音量，音量将在启用返听成功后生效。若在启用返听后设置音量，音量将立即生效。若启用返听前未设置过音量，启用返听时将采用默认音量0.5。
+    > - 在启用返听前设置音量，音量将在启用返听成功后生效。
+    > - 在启用返听后设置音量，音量将立即生效。
+    > - 启用返听前未设置音量，启用返听时将采用默认音量0.5。
 
    ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -78,7 +84,7 @@ AudioLoopback<sup>20+</sup>是音频返听器，可将音频以更低时延的�
     });
    ```
 
-4. 调用enable()方法，启用或禁用音频返听功能。
+4. 调用[enable()](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#enable)方法，启用或禁用音频返听功能。
 
    ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -106,7 +112,7 @@ AudioLoopback<sup>20+</sup>是音频返听器，可将音频以更低时延的�
 
 ### 完整示例
 
-下面展示了使用AudioLoopback启用音频低时延返听的完整示例代码。
+使用AudioLoopback启用音频低时延返听示例代码如下所示。
 
 ```ts
 import { audio } from '@kit.AudioKit';
