@@ -534,7 +534,7 @@ struct Example1 {
     Column({ space: 5 }) {
       Button('ActionSheet')
         .onClick(() => {
-          ActionSheet.show({
+          this.getUIContext().showActionSheet({
             title: 'ActionSheet',
             message: 'message',
             autoCancel: true,
@@ -586,7 +586,7 @@ struct Example1 {
               console.info("ActionSheet,is onWillDisappear!")
             }
           })
-        }).backgroundColor(0x317aff).height("88px")
+        }).backgroundColor(0x317aff).height("60vp")
       Text(this.log).fontSize(30).margin({ top: 200 })
     }.width('100%').margin({ top: 5 })
   }
