@@ -502,6 +502,7 @@ Module name:crasher_cpp <- 模块名
 Timestamp:2017-08-06 21:52:51.000 <- 故障发生时间戳
 Pid:10208 <- 进程号
 Uid:0     <- 用户ID
+HiTraceId:a92ab1c7eae68fa  <- HiTraceId(非必选，进程无HiTraceId不打印)
 Process name:./crasher_cpp <- 进程名称
 Process life time:1s  <- 进程存活时间
 Process Memory(kB): 11902(Rss)     <- 进程占用内存
@@ -693,6 +694,7 @@ Module name:crasher_cpp            <- 模块名
 Timestamp:2024-05-06 20:10:51.000  <- 故障发生时间戳
 Pid:9623   <- 进程号
 Uid:0         <- 用户ID
+HiTraceId:a92ab1c7eae68fa          <- HiTraceId(非必选，进程无HiTraceId不打印)
 Process name:./crasher_cpp         <- 进程名称
 Process life time:1s               <- 进程存活时间
 Process Memory(kB): 11902(Rss)     <- 进程占用内存
@@ -751,6 +753,7 @@ Module name:crasher_cpp                <- 模块名
 Timestamp:2024-05-06 20:18:24.000      <- 故障发生时间戳
 Pid:9838                               <- 进程号
 Uid:0                                  <- 用户ID
+HiTraceId:a92ab1c7eae68fa              <- HiTraceId(非必选，进程无HiTraceId不打印)
 Process name:./crasher_cpp             <- 进程名称
 Process life time:2s                   <- 进程存活时间
 Process Memory(kB): 11902(Rss)     <- 进程占用内存
@@ -782,6 +785,7 @@ Module name:crasher_cpp                   <- 模块名
 Timestamp:2024-05-06 20:27:23.2035266415  <- 故障发生时间戳
 Pid:10026                                 <- 进程号
 Uid:0                                     <- 用户ID
+HiTraceId:a92ab1c7eae68fa                 <- HiTraceId(非必选，进程无HiTraceId不打印)
 Process name:./crasher_cpp                <- 进程名称
 Process life time:1s                      <- 进程存活时间
 Process Memory(kB): 11902(Rss)            <- 进程占用内存
@@ -820,6 +824,7 @@ Module name:crasher_cpp                     <- 模块名
 Timestamp:2024-05-06 20:28:24.000           <- 故障发生时间戳
 Pid:9838                                    <- 进程号
 Uid:0                                       <- 用户ID
+HiTraceId:a92ab1c7eae68fa                   <- HiTraceId(非必选，进程无HiTraceId不打印)
 Process name:./crasher_cpp                  <- 进程名称
 Process life time:2s                        <- 进程存活时间
 Process Memory(kB): 11902(Rss)            <- 进程占用内存
