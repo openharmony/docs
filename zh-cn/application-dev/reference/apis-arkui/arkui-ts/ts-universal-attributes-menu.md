@@ -268,7 +268,7 @@ type BorderRadiusType = [Length](ts-types.md#length) | [BorderRadiuses](ts-types
 
 | 名称  | 值 | 说明                                   |
 | ----- | -  | --------------------------------------|
-| AUTO  | 0  | 自动模式，跟随系统设置。|
+| AUTO  | 0  | 自动模式，跟随系统设置，当前效果同ModalMode.NONE。|
 | NONE  | 1   | 菜单周围的事件可穿透到所在窗口，下层控件可响应。|
 | TARGET_WINDOW | 2 | 模住所在的窗口，菜单显示时下层控件不可响应事件。|
 
