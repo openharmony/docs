@@ -126,6 +126,8 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 
 ## MenuElement
 
+菜单项的图标、文本和交互信息。
+
 | 名称                     | 类型                                                         | 必填 | 说明                                                         |
 | ------------------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value                    | [ResourceStr](ts-types.md#resourcestr)                       | 是   | 菜单项文本。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -144,6 +146,8 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 | showInSubWindow<sup>11+</sup> | boolean                                | 否   | 是否在子窗口显示菜单。值为true表示在子窗口显示菜单，值为false表示不在子窗显示菜单。<br/>默认值：true<br>**说明：** <br/>在bindMenu中，仅对2in1设备生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## ContextMenuOptions<sup>10+</sup>
+
+菜单项的信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -181,6 +185,8 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 
 ## MenuPreviewMode<sup>11+</sup>
 
+菜单的预览样式。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -191,6 +197,8 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 | IMAGE | 1 | 预览内容为触发长按悬浮菜单组件的截图。 |
 
 ## ContextMenuAnimationOptions<sup>11+</sup>
+
+长按预览时显示的样式信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

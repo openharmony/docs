@@ -32,6 +32,8 @@ CheckboxGroup(options?: CheckboxGroupOptions)
 
 ## CheckboxGroupOptions对象说明
 
+多选框群组的信息。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -284,6 +286,8 @@ type OnCheckboxGroupChangeCallback  = (value: CheckboxGroupResult) => void
 
 ## CheckboxGroupResult对象说明
 
+多选框群组的名称和状态。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -296,6 +300,8 @@ type OnCheckboxGroupChangeCallback  = (value: CheckboxGroupResult) => void
 | status | [SelectStatus](#selectstatus枚举说明) | 否 | 否 | 选中状态。 |
 
 ## SelectStatus枚举说明
+
+多选框群组的选中状态。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
