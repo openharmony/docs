@@ -18,7 +18,7 @@
 
 3.在List内的组件添加onClick方法，并在其中使用路由栈NavPathStack的pushPathByName方法，使组件可以在点击之后从当前页面跳转到输入参数name在路由表内对应的页面。
 ```ts
-//PageOne.ets
+//Index.ets
 @Entry
 @Component
 struct NavigationDemo {
@@ -172,7 +172,7 @@ export struct MyCommonPage {
 ```ts
 //PageTwo.ets
 @Builder
-export function MySharePageBuilder(name: string, param: string) {
+export function MySharePageBuilder(name: string) {
   MySharePage({ name: name });
 }
 
