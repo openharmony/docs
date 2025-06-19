@@ -13,7 +13,7 @@
 import { sendablePhotoAccessHelper } from '@kit.MediaLibraryKit';
 ```
 
-## sendablePhotoAccessHelper.getPhotoAccessHelper
+## sendablePhotoAccessHelper.getPhotoAccessHelper<sup>19+</sup>
 
 getPhotoAccessHelper(context: Context, userId: number): PhotoAccessHelper
 
