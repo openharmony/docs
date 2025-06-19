@@ -52,7 +52,7 @@ Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous 
 | -------- | -------- |
 | [OH_Usb_Init](#oh_usb_init) (void) | Initializes the DDK.|
 | [OH_Usb_Release](#oh_usb_release) (void) | Releases the DDK.|
-| [OH_Usb_ReleaseResource](#oh_usb_releaseresource14) (void) | Releases the DDK.|
+| [OH_Usb_ReleaseResource](#oh_usb_releaseresource) (void) | Releases the DDK.|
 | [OH_Usb_GetDeviceDescriptor](#oh_usb_getdevicedescriptor) (uint64_t deviceId, struct [UsbDeviceDescriptor](_usb_device_descriptor.md) \*desc) | Obtains the device descriptor.|
 | [OH_Usb_GetConfigDescriptor](#oh_usb_getconfigdescriptor) (uint64_t deviceId, uint8_t configIndex, struct [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) \*\*const config) | Obtains the configuration descriptor. To avoid memory leakage, use **OH_Usb_FreeConfigDescriptor** to release a descriptor after use.|
 | [OH_Usb_FreeConfigDescriptor](#oh_usb_freeconfigdescriptor) (const struct [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) \*const config) | Releases the configuration descriptor. To avoid memory leakage, release a descriptor after use.|
@@ -63,7 +63,7 @@ Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous 
 | [OH_Usb_SendControlReadRequest](#oh_usb_sendcontrolreadrequest) (uint64_t [interfaceHandle](usb__ddk__types_8h.md#interfacehandle), const struct [UsbControlRequestSetup](_usb_control_request_setup.md) \*setup, uint32_t [timeout](usb__ddk__types_8h.md#timeout), uint8_t \*data, uint32_t \*dataLen) | Sends a control read transfer request. This API works in a synchronous manner.|
 | [OH_Usb_SendControlWriteRequest](#oh_usb_sendcontrolwriterequest) (uint64_t [interfaceHandle](usb__ddk__types_8h.md#interfacehandle), const struct [UsbControlRequestSetup](_usb_control_request_setup.md) \*setup, uint32_t [timeout](usb__ddk__types_8h.md#timeout), const uint8_t \*data, uint32_t dataLen) | Sends a control write transfer request. This API works in a synchronous manner.|
 | [OH_Usb_SendPipeRequest](#oh_usb_sendpiperequest) (const struct [UsbRequestPipe](_usb_request_pipe.md) \*pipe, [UsbDeviceMemMap](_usb_device_mem_map.md) \*devMmap) | Sends a pipe request. This API works in a synchronous manner. It applies to interrupt transfer and bulk transfer.|
-| [OH_Usb_SendPipeRequestWithAshmem](#oh_usb_sendpiperequestwithashmem12) (const struct [UsbRequestPipe](_usb_request_pipe.md) \*pipe, [DDK_Ashmem](_ddk_ashmem.md) \*ashmem) | Sends a pipe request for the shared memory. This API returns the result synchronously. It applies to interrupt transfer and bulk transfer.|
+| [OH_Usb_SendPipeRequestWithAshmem](#oh_usb_sendpiperequestwithashmem) (const struct [UsbRequestPipe](_usb_request_pipe.md) \*pipe, [DDK_Ashmem](_ddk_ashmem.md) \*ashmem) | Sends a pipe request for the shared memory. This API returns the result synchronously. It applies to interrupt transfer and bulk transfer.|
 | [OH_Usb_CreateDeviceMemMap](#oh_usb_createdevicememmap) (uint64_t deviceId, size_t size, [UsbDeviceMemMap](_usb_device_mem_map.md) \*\*devMmap) | Creates a buffer. To avoid memory leakage, use [OH_Usb_DestroyDeviceMemMap()](#oh_usb_destroydevicememmap) to destroy a buffer after use.|
 | [OH_Usb_DestroyDeviceMemMap](#oh_usb_destroydevicememmap) ([UsbDeviceMemMap](_usb_device_mem_map.md) \*devMmap) | Destroys a buffer. To avoid resource leakage, destroy a buffer in time after use.|
 | [OH_Usb_GetDevices](#oh_usb_getdevices) ([Usb_DeviceArray](_usb_device_array.md) \*devices) | Obtains the USB device ID list. Ensure that the input pointer is valid and the number of devices does not exceed 128. To prevent resource leakage, release the member memory after usage. Besides, make sure that the obtained USB device ID has been filtered by **vid** in the driver configuration information.|
@@ -175,6 +175,8 @@ enum UsbDdkErrCode
 
 USB DDK error code definitions.
 
+**Since**: 10
+
 | Enum| Value| Description|
 | -------- | -------- |-------- |
 | USB_DDK_SUCCESS | 0 | Operation successful.|
@@ -201,6 +203,8 @@ int32_t OH_Usb_ClaimInterface (uint64_t deviceId, uint8_t interfaceIndex, uint64
 Declares a USB interface.
 
 **Required permissions**: ohos.permission.ACCESS_DDK_USB
+
+**Since**: 10
 
 **Parameters**
 
@@ -231,6 +235,8 @@ Creates a buffer. To avoid memory leakage, use [OH_Usb_DestroyDeviceMemMap()](#o
 
 **Required permissions**: ohos.permission.ACCESS_DDK_USB
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description|
@@ -260,6 +266,8 @@ Destroys a buffer. To avoid resource leakage, destroy a buffer in time after use
 
 **Required permissions**: ohos.permission.ACCESS_DDK_USB
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description|
@@ -280,6 +288,8 @@ Releases the configuration descriptor. To avoid memory leakage, use **OH_Usb_Fre
 
 **Required permissions**: ohos.permission.ACCESS_DDK_USB
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description|
@@ -299,6 +309,8 @@ int32_t OH_Usb_GetConfigDescriptor (uint64_t deviceId, uint8_t configIndex, stru
 Obtains the configuration descriptor. To avoid memory leakage, use **OH_Usb_FreeConfigDescriptor** to release a descriptor after use.
 
 **Required permissions**: ohos.permission.ACCESS_DDK_USB
+
+**Since**: 10
 
 **Parameters**
 
@@ -330,6 +342,8 @@ Obtains the activated alternate setting of a USB interface.
 
 **Required permissions**: ohos.permission.ACCESS_DDK_USB
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description|
@@ -358,6 +372,8 @@ Obtains the device descriptor.
 
 **Required permissions**: ohos.permission.ACCESS_DDK_USB
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description|
@@ -385,6 +401,8 @@ Initializes the DDK.
 
 **Required permissions**: ohos.permission.ACCESS_DDK_USB
 
+**Since**: 10
+
 **Returns**
 
 - [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
@@ -404,7 +422,9 @@ Releases the DDK.
 
 **Required permissions**: ohos.permission.ACCESS_DDK_USB
 
-### OH_Usb_ReleaseResource()<sup>14+</sup>
+**Since**: 10
+
+### OH_Usb_ReleaseResource()
 
 ```
 int32_t OH_Usb_ReleaseResource (void)
@@ -415,6 +435,8 @@ int32_t OH_Usb_ReleaseResource (void)
 Releases the DDK.
 
 **Required permissions**: ohos.permission.ACCESS_DDK_USB
+
+**Valid since**: 18
 
 **Returns**
 
@@ -433,6 +455,8 @@ int32_t OH_Usb_ReleaseInterface (uint64_t interfaceHandle)
 Releases a USB interface.
 
 **Required permissions**: ohos.permission.ACCESS_DDK_USB
+
+**Valid since**: 10
 
 **Parameters**
 
@@ -460,6 +484,8 @@ Activates the alternate setting of a USB interface.
 
 **Required permissions**: ohos.permission.ACCESS_DDK_USB
 
+**Valid since**: 10
+
 **Parameters**
 
 | Name| Description|
@@ -486,6 +512,8 @@ int32_t OH_Usb_SendControlReadRequest (uint64_t interfaceHandle, const struct Us
 Sends a control read transfer request. This API works in a synchronous manner.
 
 **Required permissions**: ohos.permission.ACCESS_DDK_USB
+
+**Valid since**: 10
 
 **Parameters**
 
@@ -521,6 +549,8 @@ Sends a control write transfer request. This API works in a synchronous manner.
 
 **Required permissions**: ohos.permission.ACCESS_DDK_USB
 
+**Valid since**: 10
+
 **Parameters**
 
 | Name| Description|
@@ -554,6 +584,8 @@ Sends a pipe request. This API works in a synchronous manner. It applies to inte
 
 **Required permissions**: ohos.permission.ACCESS_DDK_USB
 
+**Valid since**: 10
+
 **Parameters**
 
 | Name| Description|
@@ -570,7 +602,7 @@ Sends a pipe request. This API works in a synchronous manner. It applies to inte
 - [USB_DDK_IO_FAILED](#usbddkerrcode): The device I/O operation fails.
 - [USB_DDK_TIMEOUT] (#usbddkerrcode): The request times out.
 
-### OH_Usb_SendPipeRequestWithAshmem()<sup>12+</sup>
+### OH_Usb_SendPipeRequestWithAshmem()
 
 
 ```
@@ -582,6 +614,8 @@ int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_
 Sends a pipe request for the shared memory. This API returns the result synchronously. It applies to interrupt transfer and bulk transfer.
 
 **Required permissions**: ohos.permission.ACCESS_DDK_USB
+
+**Valid since**: 12
 
 **Parameters**
 
@@ -611,6 +645,8 @@ int32_t OH_Usb_GetDevices(struct Usb_DeviceArray *devices)
 Obtains the USB device ID list. Ensure that the input pointer is valid and the number of devices does not exceed 128. To prevent resource leakage, release the member memory after usage. Besides, make sure that the obtained USB device ID has been filtered by **vid** in the driver configuration information.
 
 **Required permissions**: ohos.permission.ACCESS_DDK_USB
+
+**Valid since**: 18
 
 **Parameters**
 

@@ -8,7 +8,7 @@ For details about the APIs, see the [API Reference](../../reference/apis-multimo
 
 Understanding the following concepts would be helpful for you in device status awareness development:
 
-- Stand moe
+- Stand mode
 
     A device enters stand mode when it is stationary, and its screen is at an angle between 45 and 135 degrees relative to the horizontal plane. For foldable smartphones, the device must be in a folded state or fully unfolded state.
 

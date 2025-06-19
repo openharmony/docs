@@ -1,6 +1,6 @@
 # Time Zone Setting
 
-## Use Cases
+## When to Use
 
 The local time of different countries and regions varies according to their longitude. Therefore, different time zones are planned. For example, the UK uses time zone 0 and China uses time zone GMT+8. The time in China is eight hours earlier than that in the UK. For example, 12:00 in Beijing is 4 a.m. in London. The time zone module allows your application to obtain the time zone list to implement its own service logic, for example, a dual-clock application.
 

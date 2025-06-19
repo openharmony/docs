@@ -550,15 +550,15 @@ An incorrect server domain name is configured for the atomic service.
 
 Configure a correct server domain name for the atomic service.
 
-## 2300999 Unknown Error
+## 2300999 Internal Error
 
 **Error Message**
 
-Unknown error.
+Internal error.
 
 **Description**
 
-This error code is reported if an unknown error occurs.
+This error code is reported if an internal server error occurs.
 
 **Cause**
 

@@ -1,12 +1,12 @@
 # DST Transition
 
 
-## Use Cases
+## When to Use
 
 DST is a local time system that sees manual adjustment to the time with the aim of saving energy in certain countries/regions. Time in DST is one hour faster than that in GMT.
 
 
-## How It Works
+## How to Develop
 
 When the local time reaches the DST transition point, DST transition is automatically implemented based on the DST transition rules configured in the system. If an application uses a common TS API, for example, **Date()**, to obtain and display the time, it also displays the DST time when the DST transition time is reached.
 

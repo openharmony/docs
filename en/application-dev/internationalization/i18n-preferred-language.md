@@ -1,6 +1,6 @@
 # Preferred Language Setting
 
-## Use Cases
+## When to Use
 
 In most cases, multi-language users may set the system language to one language (for example, Chinese) and the language of a specific application to another language (for example, English). When application resources are loaded on the UI, it is expected that the resources be displayed in the language set for the application. To address this issue, you can set a preferred language in locale settings so that resources are loaded in the preferred language when the application is launched. Currently, only one preferred language can be set for an application.
 

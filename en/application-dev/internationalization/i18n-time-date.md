@@ -1,6 +1,6 @@
 # Date and Time Formatting
 
-## Use Cases
+## When to Use
 
 The date and time formats vary according to countries and cultures. The difference lies in such aspects as the sequence of year, month, and day in a date and the separator of hour, minute, and second in the time. If your application needs to display the date and time, ensure that the information is displayed in line with local user habits for easy understanding.
 

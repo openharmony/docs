@@ -1,6 +1,6 @@
 # WebSocket Connection
 
-## When to Use
+## Overview
 
 You can use WebSocket to establish a bidirectional connection between a server and a client. Before doing this, you need to use the **createWebSocket()** API to create a **WebSocket** object and then use the **connect()** API to connect to the server. If the connection is successful, the client will receive a callback of the **open** event. Then, the client can communicate with the server using the **send()** API. When the server sends a message to the client, the client will receive a callback of the **message** event. If the client no longer needs this connection, it can call the **close()** API to disconnect from the server. Then, the client will receive a callback of the **close** event.
 

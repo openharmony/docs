@@ -1,6 +1,6 @@
 # Network Connection Development
 
-## When to Use
+## Overview
 
 The **NetConnection** module provides the capability of querying common network information.
 

@@ -426,7 +426,7 @@ Obtains the wearing state of a wearable device.
 
 | Name | Type                                           | Mandatory| Description                      |
 | ------- | ----------------------------------------------- | ---- | -------------------------- |
-| options | [GetOnBodyStateOptions](#getonbodystateoptions) | Yes  | Options for obtaining the wearing state of a wearable device.|
+| options | [GetOnBodyStateOptions](#getonbodystateoptions) | Yes  | Callback invoked upon change in the wearing state of the device that accommodates the sensor.|
 
 **Example**
 
@@ -563,8 +563,8 @@ Defines the type of data to return for a subscription to the acceleration sensor
 | Name    | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | interval | string                                          | Yes  | Execution frequency of the callback for returning the acceleration sensor data.<br>The default value is **normal**. The options are as follows:<br>- **game**: called at an interval of 20 ms, which is applicable to gaming scenarios.<br>- **ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios.<br>- **normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios.|
-| success  | [AccelerometerResponse](#accelerometerresponse) | Yes  | Called when the acceleration sensor data changes.                          |
-| fail     | Function                                        | No  | Callback upon an API call failure.                                    |
+| success  | [AccelerometerResponse](#accelerometerresponse) | Yes  | Callback invoked when the acceleration sensor data changes.                          |
+| fail     | Function                                        | No  | Callback invoked upon an API call failure.                                    |
 
 ## AccelerometerResponse 
 
@@ -588,8 +588,8 @@ Defines the type of data to return for a subscription to the compass sensor data
 
 | Name   | Type                               | Mandatory| Description                          |
 | ------- | ----------------------------------- | ---- | ------------------------------ |
-| success | [CompassResponse](#compassresponse) | Yes  | Called when the compass sensor data changes.|
-| fail    | Function                            | No  | Callback upon an API call failure.      |
+| success | [CompassResponse](#compassresponse) | Yes  | Callback invoked when the compass sensor data changes.|
+| fail    | Function                            | No  | Callback invoked upon an API call failure.      |
 
 ## CompassResponse 
 
@@ -610,11 +610,11 @@ Defines the type of data to return for a subscription to the proximity sensor da
 | Name   | Type                                   | Mandatory| Description                              |
 | ------- | --------------------------------------- | ---- | ---------------------------------- |
 | success | [ProximityResponse](#proximityresponse) | Yes  | Defines the type of data to include in a **ProximityResponse** object.|
-| fail    | Function                                | No  | Callback upon an API call failure.          |
+| fail    | Function                                | No  | Callback invoked upon an API call failure.          |
 
 ## ProximityResponse 
 
-Called when the proximity sensor data changes.
+Callback invoked when the proximity sensor data changes.
 
 **System capability**: SystemCapability.Sensors.Sensor.Lite
 
@@ -630,8 +630,8 @@ Defines the type of data to return for a subscription to the ambient light senso
 
 | Name   | Type                           | Mandatory| Description                          |
 | ------- | ------------------------------- | ---- | ------------------------------ |
-| success | [LightResponse](#lightresponse) | Yes  | Called when the ambient light sensor data changes.|
-| fail    | Function                        | No  | Callback upon an API call failure.      |
+| success | [LightResponse](#lightresponse) | Yes  | Callback invoked when the ambient light sensor data changes.|
+| fail    | Function                        | No  | Callback invoked upon an API call failure.      |
 
 ## LightResponse 
 
@@ -654,11 +654,11 @@ Defines the type of data to return for a subscription to the step counter sensor
 | Name   | Type                                       | Mandatory| Description                            |
 | ------- | ------------------------------------------- | ---- | -------------------------------- |
 | success | [StepCounterResponse](#stepcounterresponse) | Yes  | Defines the type of data to include in a **StepCounterResponse** object.|
-| fail    | Function                                    | No  | Callback upon an API call failure.        |
+| fail    | Function                                    | No  | Callback invoked upon an API call failure.        |
 
 ## StepCounterResponse 
 
-Called when the step counter sensor data changes.
+Callback invoked when the step counter sensor data changes.
 
 **Required permissions**: ohos.permission.ACTIVITY_MOTION
 
@@ -676,8 +676,8 @@ Defines the type of data to return for a subscription to the barometer sensor da
 
 | Name   | Type                                   | Mandatory| Description                            |
 | ------- | --------------------------------------- | ---- | -------------------------------- |
-| success | [BarometerResponse](#barometerresponse) | Yes  | Called when the barometer sensor data changes.|
-| fail    | Function                                | No  | Callback upon an API call failure.        |
+| success | [BarometerResponse](#barometerresponse) | Yes  | Callback invoked when the barometer sensor data changes.|
+| fail    | Function                                | No  | Callback invoked upon an API call failure.        |
 
 ## BarometerResponse 
 
@@ -699,8 +699,8 @@ Defines the type of data to return for a subscription to the heart rate sensor d
 
 | Name   | Type                                   | Mandatory| Description                                           |
 | ------- | --------------------------------------- | ---- | ----------------------------------------------- |
-| success | [HeartRateResponse](#heartrateresponse) | Yes  | Called when the heart rate sensor data changes. This callback is invoked every five seconds.|
-| fail    | Function                                | No  | Callback upon an API call failure.                       |
+| success | [HeartRateResponse](#heartrateresponse) | Yes  | Callback invoked when the heart rate sensor data changes. This callback is invoked every five seconds.|
+| fail    | Function                                | No  | Callback invoked upon an API call failure.                       |
 
 ## HeartRateResponse 
 
@@ -716,18 +716,18 @@ Defines the type of data to include in a **HeartRateResponse** object.
 
 ## SubscribeOnBodyStateOptions
 
-Defines the type of data to return for a subscription to the wearing state changes.
+Defines the callback invoked upon change in the wearing state of the device that accommodates the sensor.
 
 **System capability**: SystemCapability.Sensors.Sensor.Lite
 
 | Name   | Type                                       | Mandatory| Description                      |
 | ------- | ------------------------------------------- | ---- | -------------------------- |
-| success | [OnBodyStateResponse](#onbodystateresponse) | Yes  | Called when the wearing state changes.|
-| fail    | Function                                    | No  | Callback upon an API call failure.  |
+| success | [OnBodyStateResponse](#onbodystateresponse) | Yes  | Callback invoked upon wearing state change of the device that accommodates the sensor.|
+| fail    | Function                                    | No  | Callback invoked upon an API call failure.  |
 
 ## OnBodyStateResponse 
 
-Specifies whether the device is worn.
+Whether the device where the sensor is located is worn.
 
 **System capability**: SystemCapability.Sensors.Sensor.Lite
 
@@ -737,15 +737,15 @@ Specifies whether the device is worn.
 
 ## GetOnBodyStateOptions
 
- Defines the options for obtaining the wearing state of a wearable device.
+ Defines the callback for obtaining the wearing state of the device that accommodates the sensor.
 
 **System capability**: SystemCapability.Sensors.Sensor.Lite
 
 | Name    | Type                                       | Mandatory| Description                    |
 | -------- | ------------------------------------------- | ---- | ------------------------ |
-| success  | [OnBodyStateResponse](#onbodystateresponse) | Yes  | Callback upon a successful API call.|
-| fail     | Function                                    | No  | Callback upon an API call failure.|
-| complete | Function                                    | No  | Called when the API call is complete.|
+| success  | [OnBodyStateResponse](#onbodystateresponse) | Yes  | Callback invoked upon a successful API call.|
+| fail     | Function                                    | No  | Callback invoked upon an API call failure.|
+| complete | Function                                    | No  | Callback invoked when the API call is complete.|
 
 ## SubscribeDeviceOrientationOptions<sup>6+</sup>
 
@@ -756,8 +756,8 @@ Defines the type of data to return for a subscription to the device orientation 
 | Name    | Type                                                    | Mandatory| Description                                                        |
 | -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | interval | string                                                   | Yes  | Interval at which the callback is invoked to return the device orientation sensor data.<br>The default value is **normal**. The options are as follows:<br>- **game**: called at an interval of 20 ms, which is applicable to gaming scenarios.<br>- **ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios.<br>- **normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios.|
-| success  | [DeviceOrientationResponse](#deviceorientationresponse6) | Yes  | Called when the device orientation sensor data changes.                  |
-| fail     | Function                                                 | No  | Callback upon an API call failure.                                    |
+| success  | [DeviceOrientationResponse](#deviceorientationresponse6) | Yes  | Callback invoked when the device orientation sensor data changes.                  |
+| fail     | Function                                                 | No  | Callback invoked upon an API call failure.                                    |
 
 ## DeviceOrientationResponse<sup>6+</sup> 
 
@@ -782,8 +782,8 @@ Defines the type of data to return for a subscription to the gyroscope sensor da
 | Name    | Type                                    | Mandatory| Description                                                        |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | interval | string                                   | Yes  | Interval at which the callback is invoked to return the gyroscope sensor data.<br>The default value is **normal**. The options are as follows:<br>- **game**: called at an interval of 20 ms, which is applicable to gaming scenarios.<br>- **ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios.<br>- **normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios.|
-| success  | [GyroscopeResponse](#gyroscoperesponse6) | Yes  | Called when the gyroscope sensor data changes.                          |
-| fail     | Function                                 | No  | Callback upon an API call failure.                                    |
+| success  | [GyroscopeResponse](#gyroscoperesponse6) | Yes  | Callback invoked when the gyroscope sensor data changes.                          |
+| fail     | Function                                 | No  | Callback invoked upon an API call failure.                                    |
 
 ## GyroscopeResponse<sup>6+</sup> 
 

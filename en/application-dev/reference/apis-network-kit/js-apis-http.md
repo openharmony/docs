@@ -13,11 +13,18 @@ import { http } from '@kit.NetworkKit';
 
 ## Example
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 // Import the http namespace.
 import { http } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // Each httpRequest corresponds to an HTTP request task and cannot be reused.
 let httpRequest = http.createHttp();
 // This API is used to listen for HTTP Response Header events, which is returned earlier than the result of the HTTP request. It is up to you whether to listen for HTTP response header events.
@@ -67,7 +74,7 @@ httpRequest.request(// Customize EXAMPLE_URL in extraData on your own. It is up 
         name: "Part2", // Data name. This field is supported since API version 11.
         contentType: 'text/plain', // Data type. This field is supported since API version 11.
         // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.txt
-        filePath: `${getContext(this).filesDir}/fileName.txt`, // File path, optional. This field is supported since API version 11.
+        filePath: `${context.filesDir}/fileName.txt`, // File path, optional. This field is supported since API version 11.
         remoteFileName: 'fileName.txt' // Optional. This field is supported since API version 11.
       }
     ],
@@ -87,7 +94,7 @@ httpRequest.request(// Customize EXAMPLE_URL in extraData on your own. It is up 
       // Call destroy() to destroy the JavaScript object after the HTTP request is complete.
       httpRequest.destroy();
     } else {
-      console.info('error:' + JSON.stringify(err));
+      console.error('error:' + JSON.stringify(err));
       // Unsubscribe from HTTP Response Header events.
       httpRequest.off('headersReceive');
       // Call destroy() to destroy the JavaScript object after the HTTP request is complete.
@@ -191,7 +198,7 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 | 2300094 | Authentication error.                                          |
 | 2300997 | Cleartext traffic not permitted.                               |
 | 2300998 | It is not allowed to access this domain.                       |
-| 2300999 | Unknown error.                                                 |
+| 2300999 | Internal error.                                                 |
 
 > **NOTE**
 > For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
@@ -211,7 +218,7 @@ httpRequest.request("EXAMPLE_URL", (err: Error, data: http.HttpResponse) => {
     console.info('header:' + JSON.stringify(data.header));
     console.info('cookies:' + data.cookies); // Cookies are supported since API version 8.
   } else {
-    console.info('error:' + JSON.stringify(err));
+    console.error('error:' + JSON.stringify(err));
   }
 });
 ```
@@ -277,7 +284,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300094 | Authentication error.                                          |
 | 2300997 | Cleartext traffic not permitted.                               |
 | 2300998 | It is not allowed to access this domain.                       |
-| 2300999 | Unknown error.                                                 |
+| 2300999 | Internal error.                                                 |
 
 > **NOTE**
 > For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
@@ -320,7 +327,7 @@ httpRequest.request("EXAMPLE_URL", options, (err: Error, data: http.HttpResponse
     console.info('header:' + JSON.stringify(data.header));
     console.info('cookies:' + data.cookies); // Cookies are supported since API version 8.
   } else {
-    console.info('error:' + JSON.stringify(err));
+    console.error('error:' + JSON.stringify(err));
   }
 });
 ```
@@ -391,7 +398,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300094 | Authentication error.                                          |
 | 2300997 | Cleartext traffic not permitted.                               |
 | 2300998 | It is not allowed to access this domain.                       |
-| 2300999 | Unknown error.                                                 |
+| 2300999 | Internal error.                                                 |
 
 > **NOTE**
 > For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
@@ -426,7 +433,7 @@ promise.then((data:http.HttpResponse) => {
   console.info('header.content-Type:' + data.header);
   console.info('header.Status-Line:' + data.header);
 }).catch((err:Error) => {
-  console.info('error:' + JSON.stringify(err));
+  console.error('error:' + JSON.stringify(err));
 });
 ```
 
@@ -504,7 +511,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300094 | Authentication error.                                          |
 | 2300997 | Cleartext traffic not permitted.                               |
 | 2300998 | It is not allowed to access this domain.                       |
-| 2300999 | Unknown error.                                                 |
+| 2300999 | Internal error.                                                 |
 
 > **NOTE**
 > For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
@@ -521,7 +528,7 @@ httpRequest.requestInStream("EXAMPLE_URL", (err: BusinessError, data: number) =>
   if (!err) {
     console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
   } else {
-    console.info("requestInStream ERROR : err = " + JSON.stringify(err));
+    console.error("requestInStream ERROR : err = " + JSON.stringify(err));
   }
 })
 ```
@@ -582,7 +589,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300094 | Authentication error.                                          |
 | 2300997 | Cleartext traffic not permitted.                               |
 | 2300998 | It is not allowed to access this domain.                       |
-| 2300999 | Unknown error.                                                 |
+| 2300999 | Internal error.                                                 |
 
 > **NOTE**
 > For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
@@ -621,7 +628,7 @@ httpRequest.requestInStream("EXAMPLE_URL", options, (err: BusinessError<void> , 
   if (!err) {
     console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
   } else {
-    console.info("requestInStream ERROR : err = " + JSON.stringify(err));
+    console.error("requestInStream ERROR : err = " + JSON.stringify(err));
   }
 })
 ```
@@ -687,7 +694,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300094 | Authentication error.                                          |
 | 2300997 | Cleartext traffic not permitted.                               |
 | 2300998 | It is not allowed to access this domain.                       |
-| 2300999 | Unknown error.                                                 |
+| 2300999 | Internal error.                                                 |
 
 > **NOTE**
 > For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
@@ -716,7 +723,7 @@ let promise = httpRequest.requestInStream("EXAMPLE_URL", {
 promise.then((data: number) => {
   console.info("requestInStream OK!" + data);
 }).catch((err: Error) => {
-  console.info("requestInStream ERROR : err = " + JSON.stringify(err));
+  console.error("requestInStream ERROR : err = " + JSON.stringify(err));
 });
 ```
 
@@ -746,7 +753,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("headerReceive", (data: BusinessError) => {
-  console.info("error:" + JSON.stringify(data));
+  console.error("error:" + JSON.stringify(data));
 });
 ```
 
@@ -1126,12 +1133,12 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | No  | Type of the returned data. This parameter is not used by default. If this parameter is set, the system returns the specified type of data preferentially. If the specified type is **Object**, the value can contain a maximum of 65536 characters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | usingCache<sup>9+</sup>      | boolean                         | No  | Whether to use the cache. The default value is **true**. The cache takes effect with the current process. The value **true** means to use the cache to replace the old one, and the value **false** means not to use the cache.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | priority<sup>9+</sup>        | number                          | No  | Priority of concurrent HTTP/HTTPS requests. A larger value indicates a higher priority. The value range is [1,1000]. The default value is **1**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                          |
-| header                       | Object                          | No  | HTTP request header. If the request method is POST, PUT, DELETE, or null, the default value is {'content-Type': 'application/json'}. Otherwise, the default value is {'content-Type': 'application/x-www-form-urlencoded'}.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
-| readTimeout                  | number                          | No  | Read timeout duration. The default value is **60000**, in ms.<br>The value **0** indicates no timeout.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| connectTimeout               | number                          | No  | Connection timeout interval. The default value is **60000**, in ms.<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
+| header                       | Object                          | No  | HTTP request header. If the request method is POST, PUT, DELETE, or null, the default value is {'content-Type': 'application/json'}. Otherwise, the default value is {'content-Type': 'application/x-www-form-urlencoded'}.<br>If the header contains fields of numeric type, the maximum value must be an int64 integer.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| readTimeout                  | number                          | No  | Read timeout duration. The default value is **60000**, in ms. The input value must be an uint32_t integer.<br>The value **0** indicates no timeout.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| connectTimeout               | number                          | No  | Connection timeout interval. The default value is **60000**, in ms. The input value must be an uint32_t integer.<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | No  | Protocol. The default value is automatically specified by the system.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                            |
 | usingProxy<sup>10+</sup>     | boolean \| [HttpProxy](js-apis-net-connection.md#httpproxy10)               | No  | Whether to use the HTTP proxy. The value **true** means to use the HTTP proxy, and the value **false** means the opposite. The default value is **false**.<br>- If **usingProxy** is of the **Boolean** type and the value is **true**, network proxy is used by default.<br>- If **usingProxy** is of the **HttpProxy** type, the specified network proxy is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| caPath<sup>10+</sup>     | string               | No  | Path of the CA certificate. If this parameter is set, the system uses the CA certificate in the specified path. Otherwise, the system uses the preset CA certificate.<br>The preset CA certificate is available at **/etc/ssl/certs/cacert.pem**. This path is the sandbox mapping path, which can be obtained through **getContext().filesDir**. Currently, only **.pem** certificates are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                            |
+| caPath<sup>10+</sup>     | string               | No  | Path of the CA certificate. If this parameter is set, the system uses the CA certificate in the specified path. Otherwise, the system uses the preset CA certificate.<br>The preset CA certificate is available at **/etc/ssl/certs/cacert.pem**. This path is the sandbox mapping path, which can be obtained by using **UIAbilityContext** APIs. Currently, only **.pem** certificates are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                            |
 | resumeFrom<sup>11+</sup> | number | No| Download start position. This field can be used only for the GET method. As stipulated in section 3.1 of RFC 7233, servers are allowed to ignore range requests.<br>- If the HTTP PUT method is used, do not use this option because it may conflict with other options.<br>- The value ranges from **1** to **4294967296** (4 GB). If the value is out of this range, this field does not take effect.|
 | resumeTo<sup>11+</sup> | number | No| Download end position. This field can be used only for the GET method. As stipulated in section 3.1 of RFC 7233, servers are allowed to ignore range requests.<br>- If the HTTP PUT method is used, do not use this option because it may conflict with other options.<br>- The value ranges from **1** to **4294967296** (4 GB). If the value is out of this range, this field does not take effect.|
 | clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | No| Client certificate.|
@@ -1439,7 +1446,7 @@ promise.then((data: http.HttpResponse) => {
   httpResponseCache.flush().then(() => {
     console.error('flush success');
   }).catch((err: BusinessError) => {
-    console.info('flush fail');
+    console.error('flush fail');
   });
 }).catch((err: Error) => {
   console.error('error:' + JSON.stringify(err));

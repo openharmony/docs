@@ -7,6 +7,10 @@ Declares the HID DDK functions for accessing an input device from the host.
 
 **File to include**: &lt;hid/hid_ddk_api.h&gt;
 
+**Library**: libhid.z.so
+
+**System capability**: SystemCapability.Driver.HID.Extension
+
 **Since**: 11
 
 **Related module**: [HID DDk](_hid_ddk.md)

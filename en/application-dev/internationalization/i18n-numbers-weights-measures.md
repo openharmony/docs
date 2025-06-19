@@ -1,6 +1,6 @@
 # Number and Unit of Measurement Formatting
 
-## Use Cases
+## When to Use
 
 In different countries and cultures, numbers, currencies, and units of measurement are expressed in different ways, including what symbols are used as decimal separators, how many digits are displayed after separators, and what currencies and units of measurement are used. Suppose you want to display the number 1000 on the application UI to indicate the price of a product. If the fixed format **1,000** is used, it may be considered as **1** in some European countries where a comma is used as a decimal point. Formatting is therefore needed to ensure that numbers, currencies, and units of measurement are displayed on the application UI in line with local user habits.
 

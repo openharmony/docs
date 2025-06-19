@@ -1,7 +1,7 @@
 # System Language and Region Setting
 
 
-## How It Works
+## When to Use
 
 You can add multiple languages in the **Language & region** area in **Settings**. The list formed by multiple languages is called a language list, and the first language in the list is called the system language. Regions are divided based on the region ID.
 

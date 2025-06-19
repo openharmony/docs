@@ -11,7 +11,7 @@ The **metadataBinding** module provides the capability of adding metadata to ima
 
 ## Modules to Import
 ```ts
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 ```
 
 ## encodeImage(image.PixelMap, string)
@@ -36,13 +36,13 @@ For details about the error codes, see [Metadata Binding Error Codes](errorcode-
 | -------- | ------------------------------------------------------------ |
 |   202    | Permission check failed. A non-system application uses the system API.|
 |32100001  | Internal handling failed. File creation failed.|
-|32100002  | Encode process fail.|
+|32100002  | Encode process fail. Possible causes: 1. Image processing error; 2. Channel coding error.|
 
 **Example**
 
 ```ts
 import image from '@ohos.multimedia.image';
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let captureImage: image.PixelMap | undefined = undefined;
@@ -77,12 +77,12 @@ For details about the error codes, see [Metadata Binding Error Codes](errorcode-
 | -------- | ------------------------------------------------------------ |
 |   202    | Permission check failed. A non-system application uses the system API.|
 |32100001  | Internal handling failed. File read failed.|
-|32100003  | Decode process fail.|
+|32100003  | Decode process fail. Possible causes: 1. Image is not an encoded Image; 2. Image destroyed, decoding failed.|
 
 **Example** 
 ```ts
 import image from '@ohos.multimedia.image';
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let encodeImage: image.PixelMap | undefined = undefined;
@@ -117,7 +117,7 @@ For details about the error codes, see [Metadata Binding Error Codes](errorcode-
 **Example**
 
 ```ts
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let metadata:string = '';

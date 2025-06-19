@@ -1,6 +1,7 @@
 # Introduction to Neural Network Runtime Kit
 
-## Usage Scenario
+## Overview
+
 Neural Network Runtime (NNRt) functions as a bridge to connect the upper-layer AI inference framework and underlying acceleration chips, implementing cross-chip inference computing for AI models.
 
 NNRt native APIs are intended for developers of the AI inference framework or application developers who want to directly use AI acceleration hardware to accelerate model inference.
