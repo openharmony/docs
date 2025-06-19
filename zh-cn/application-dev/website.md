@@ -1862,6 +1862,7 @@
           - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
           - [JSVM-API Tracing](napi/use-jsvm-about-trace.md)
           - [JSVM 申请JIT权限指导](napi/jsvm-apply-jit-profile.md)
+          - [JSVM 坚盾守护模式](napi/jsvm-secure-shield-mode.md)
           - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
             - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
             - [使用 code cache 加速编译](napi/use-jsvm-about-code-cache.md)
