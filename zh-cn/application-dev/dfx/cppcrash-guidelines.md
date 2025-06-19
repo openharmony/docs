@@ -23,9 +23,9 @@
 
 DevEco Studio会收集设备`/data/log/faultlog/faultlogger/`路径下的进程崩溃故障日志到FaultLog下，根据进程名和故障和时间分类显示。获取日志的方法参见：[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-fault-log)。
 
-#### 方式二：通过hiAppEvent接口订阅
+#### 方式二：通过HiAppEvent接口订阅
 
-hiAppEvent提供了故障订阅接口，可以订阅各类故障打点，详见[HiAppEvent介绍](hiappevent-intro.md)。
+HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hiappevent-intro.md)。参考[订阅崩溃事件（ArkTS）](hiappevent-watcher-crash-events-arkts.md)或[订阅崩溃事件（C/C++）](hiappevent-watcher-crash-events-ndk.md)完成崩溃事件订阅，并通过事件的[external_log](hiappevent-watcher-crash-events.md#params字段说明)字段读取崩溃日志内容。
 
 #### 方式三：通过hdc获取日志，需打开开发者选项
 
@@ -650,10 +650,15 @@ HiLog: <- 故障之前进程打印的流水日志
 | #01 | 00006e95 | /data/crasher_cpp | DfxCrasher::RaiseSegmentFaultException() | 92 | d6cead5be17c9bb7eee2a9b4df4b7626 |
 | #02 | 00008909 | /data/crasher_cpp | DfxCrasher::ParseAndDoCrash(char const*) const | 612 | d6cead5be17c9bb7eee2a9b4df4b7626 |
 
-> **说明**
+> **说明：**
 >
 > - 文件名也有可能是匿名内存映射，比如[heap]、[stack]等。
-> - 函数名长度超过256字节时，CppCrash日志不打印函数名和函数内偏移的字节数。
+> - 日志没有打印函数名可能是由于以下两种原因：
+>
+> 1. 二进制文件中没有保存该函数名信息。
+>
+> 2. 二进制文件中保存的函数名长度超过256字节。
+>
 > - 如果没打印BuildID，可以通过readelf -n xxx.so确认二进制是否有BuildID，如果没有则尝试增加编译参数--enable-linker-build-id，同时注意LDFLAGS‌里不要加--build-id=none。
 
 ARM 64位系统支持抓取CPP和JS之间跨语言的调用栈，因此如果在函数调用链上有JS代码，崩溃日志还会打印如下格式的JS代码调用栈：
