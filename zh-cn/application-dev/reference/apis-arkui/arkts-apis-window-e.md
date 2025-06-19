@@ -239,6 +239,21 @@ WindowStage生命周期。
 | RESUMED<sup>11+</sup> | 5      | 前台可交互状态，例如应用打开后，可以与用户交互的状态。 |
 | PAUSED<sup>11+</sup>  | 6      | 前台不可交互状态，例如从屏幕底部上划，应用进入到多任务界面后的状态。 |
 
+## WindowStageLifecycleEventType<sup>20+</sup>
+
+WindowStage生命周期。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称       | 值 | 说明       |
+| ---------- | ------ | ---------- |
+| SHOWN      | 1      | 切到前台。 |
+| RESUMED    | 2      | 前台可交互状态。 |
+| PAUSED     | 3      | 前台不可交互状态。 |
+| HIDDEN     | 4      | 切到后台。 |
+
 ## ModalityType<sup>14+</sup>
 
 子窗口模态类型枚举。

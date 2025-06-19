@@ -991,6 +991,121 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
+### on('windowStageLifecycleEvent')<sup>20+</sup>
+
+on(eventType: 'windowStageLifecycleEvent', callback: Callback&lt;WindowStageLifecycleEventType&gt;): void
+
+开启WindowStage生命周期变化的监听。
+
+> **说明：**
+>
+> [on('windowStageEvent')](#on('windowStageEvent')9)与本接口的区别：
+>
+> 1.前者无法保证状态切换间的顺序，对于状态间的顺序有要求的情况下不推荐使用，推荐使用本接口；
+>
+> 2.当前接口不提供WindowStage的获焦失焦状态监听，推荐使用[on('windowEvent')](#on('windowEvent')10)。
+>
+> 3.其他系统机制及其生命周期状态切换的详细说明，请参考开发指导。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| eventType  | string                                                       | 是   | 监听事件，固定为'windowStageLifecycleEvent'，即WindowStage生命周期变化事件。 |
+| callback | Callback&lt;[WindowStageLifecycleEventType](#WindowStageLifecycleEventType20)&gt; | 是   | 回调函数。返回当前的WindowStage生命周期状态。                |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300005 | This window stage is abnormal. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    try {
+      windowStage.on('windowStageLifecycleEvent', (data) => {
+        console.info('Succeeded in enabling the listener for window stage event changes. Data: ' +
+        JSON.stringify(data));
+      });
+    } catch (exception) {
+      console.error(`Failed to enable the listener for window stage event changes. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+};
+```
+
+### off('windowStageLifecycleEvent')<sup>20+</sup>
+
+off(eventType: 'windowStageLifecycleEvent', callback?: Callback&lt;WindowStageLifecycleEventType&gt;): void
+
+关闭WindowStage生命周期变化的监听。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| eventType  | string                                                       | 是   | 监听事件，固定为'windowStageLifecycleEvent'，即WindowStage生命周期变化事件。 |
+| callback | Callback&lt;[WindowStageLifecycleEventType](#WindowStageLifecycleEventType20)&gt; | 否   | 回调函数。返回当前的WindowStage生命周期状态。若传入参数，则关闭该监听。若未传入参数，则关闭所有WindowStage生命周期变化的监听。                |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300005 | This window stage is abnormal. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    const callback = (windowStageLifecycleEvent: window.WindowStageLifecycleEventType) => {
+      // ...
+    }
+    try {
+      windowStage.on('windowStageLifecycleEvent', callback);
+    } catch (exception) {
+      console.error(`Failed to enable the listener for window stage event changes. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+    try {
+      windowStage.off('windowStageLifecycleEvent', callback);
+      // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+      windowStage.off('windowStageLifecycleEvent');
+    } catch (exception) {
+      console.error(`Failed to disable the listener for window stage event changes. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+};
+```
+
 ### on('windowStageClose')<sup>14+</sup>
 
 on(eventType: 'windowStageClose', callback: Callback&lt;void&gt;): void
