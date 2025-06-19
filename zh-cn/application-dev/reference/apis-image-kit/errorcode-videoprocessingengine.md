@@ -1,332 +1,176 @@
-# @ohos.multimedia.videoProcessingEngine (视频处理引擎)
-
-本模块提供图片内容的清晰度增强及缩放能力。
-
-本模块包含一个基础类：[ImageProcessor](#imageprocessor)类。
+# 视频处理引擎错误码
 
 > **说明：**
 >
-> 本模块首批接口从API version 18开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
 
-## 导入模块
+## 29210001 未知错误
 
-```ts
-import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
-```
+**错误信息**
 
-## videoProcessingEngine.initializeEnvironment
+Some unknown error occurred, such as GPU calculation failure or memcpy failure. 
 
-initializeEnvironment(): Promise\<void>
+**错误描述**
 
-初始化环境。使用Promise异步回调。
+发生了一些未知错误。例如，GPU计算失败或内容拷贝失败。
 
-**卡片能力**：从API version 18开始，该接口支持在ArkTS卡片中使用。
+**可能原因**
 
-**系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
+1. GPU计算失败。
+2. 内容拷贝失败。
 
-**返回值：**
+**处理步骤**
 
-|  类型 | 说明  |
-| ------------ | ------------ |
-|  Promise\<void> | Promise对象。无返回结果的Promise对象。  |
+1. 检查资源是否已经初始化。
+2. 检查内存是否有效。
 
-**错误码：**
+## 29210002 初始化失败
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md#视频处理引擎错误码)
+**错误信息**
 
+The global environment initialization for video processing failed, such as failure to initialize the GPU environment.
 
-| 错误码ID  | 错误信息  |
-| :------------ | :------------ |
-| 801  | Capability not supported. Function initializeEnvironment can not work correctly due to limited device capabilities.|
-| 29200002  | The global environment initialization for image processing failed, such as failure to initialize the GPU environment.  |
-| 29200006  | The operation is not permitted. This may be caused by incorrect status.  |
-| 29200007  | Out of memory.  |
+**错误描述**
 
-**示例：**
+视频处理全局环境初始化失败。例如，初始化GPU环境失败。
 
-```ts
-import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
-async function initializeEnvironment() {
-videoProcessingEngine.initializeEnvironment();
-}
-```
+**可能原因**
 
-## videoProcessingEngine.deinitializeEnvironment
+GPU初始化失败。
 
-deinitializeEnvironment(): Promise\<void>
+**处理步骤**
 
-释放处理资源。使用Promise异步回调。
+查看log是否有GPU异常上报。
 
-**卡片能力**：从API version 18开始，该接口支持在ArkTS卡片中使用。
+## 29210003 创建失败
 
-**系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
+**错误信息**
 
-**返回值：**
+Failed to create video processing instance. For example, the number of instances exceeds the upper limit.
 
-|  类型 | 说明  |
-| ------------ | ------------ |
-|  Promise\<void> | Promise对象。无返回结果的Promise对象。  |
+**错误描述**
 
-**错误码：**
+创建视频处理实例失败。例如，实例数量超出上限。
 
-以下错误码的详细介绍请参见[视频处理引擎错误码](errorcode-videoprocessingengine.md#视频处理引擎错误码)
+**可能原因**
 
-| 错误码ID  | 错误信息  |
-| :------------ | :------------ |
-| 29200006  | The operation is not permitted. This may be caused by incorrect status.  |
+创建实例过多。
 
-**示例：**
+**处理步骤**
 
-```ts
-import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
-async function deinitializeEnvironment() {
-  videoProcessingEngine.initializeEnvironment();
-  videoProcessingEngine.deinitializeEnvironment();
-}
-```
+减少创建实例的数目。
 
-## videoProcessingEngine.create
+## 29210004 处理失败
 
-create(): ImageProcessor
+**错误信息**
 
-如果操作成功，创建图片处理模块实例，否则返回null。
+Failed to process video buffer. For example, the processing times out.
 
-**卡片能力**：从API version 18开始，该接口支持在ArkTS卡片中使用。
+**错误描述**
 
-**系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
+处理视频缓冲区失败。例如，处理超时。
 
-**返回值：**
+**可能原因**
 
-|  类型 | 说明  |
-| ------------ | ------------ |
-|  [ImageProcessor](#imageprocessor) | 图片处理模块实例。  |
+处理时间超时。
 
-**错误码：**
+**处理步骤**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md#视频处理引擎错误码)
+减小负载。
 
-| 错误码ID  | 错误信息  |
-| :------------ | :------------ |
-| 801  | Capability not supported. Function create can not work correctly due to limited device capabilities.|
-| 29200003  | Failed to create image processing instance. For example, the number of instances exceeds the upper limit. |
-| 29200007  | Out of memory.  |
+## 29210005 不支持的处理
 
-**示例：**
+**错误信息**
 
-```ts
-import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
-async function create() {
-videoProcessingEngine.initializeEnvironment();
-let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;
-}
-```
+The processing is not supported. You may call OH_VideoProcessing_IsXXXSupported to check whether the capability is supported.
 
-## ImageProcessor
+**错误描述**
 
-图像处理类，提供图片内容的清晰度增强及缩放能力。根据源图像的宽度和高度进行必要的缩放操作，生成目标图像。提供不同级别的缩放方法以平衡性能和图像质量。
+不支持该处理。可以调用OH_VideoProcessing_IsXXXSupported来检查是否支持该能力。
 
-规格约束如下：
+**可能原因**
 
-- 当前仅支持处理SDR（Standard dynamic range）图片。
-- 当前支持处理RGBA、BGRA、NV12、NV21像素格式的图片，输出格式与输入格式一致。
+能力不支持。
 
-### enhanceDetail
+**处理步骤**
 
-enhanceDetail(sourceImage: image.PixelMap, width: number, height: number, level?: QualityLevel): Promise\<image.PixelMap\>
+检查log打印。
 
-细节增强处理异步方法。使用Promise异步回调。
+## 29210006 不被允许的操作
 
-**卡片能力**：从API version 18开始，该接口支持在ArkTS卡片中使用。
+**错误信息**
 
-**系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
+The operation is not permitted. This may be caused by incorrect status.
 
-**参数：**
+**错误描述**
 
-|  参数名 | 类型  | 必填  | 说明  |
-| :------------ | :------------ | :------------ | :------------ |
-|  sourceImage | [image.PixelMap](arkts-apis-image-PixelMap.md)  | 是  | 输入图像。  |
-|  width |  number | 是  | 目标宽度（单位为像素，px）。  |
-|  height |  number | 是  |  目标高度（单位为像素，px）。 |
-|  level | [QualityLevel](#qualitylevel)| 否  |  算法档位（HIGH、MEDIUM、LOW、NONE），默认为NONE。 |
+不允许该操作。由于状态不正确造成。
 
-**返回值：**
+**可能原因**
 
-|  类型 | 说明  |
-| ------------ | ------------ |
-| Promise\<[image.PixelMap](arkts-apis-image-PixelMap.md)\>  |  异步方法返回PixelMap的Promise实例。 |
+状态异常。
 
-**错误码：**
+**处理步骤**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md#视频处理引擎错误码)
+检查log打印。
 
-| 错误码ID  | 错误信息  |
-| :------------ | :------------ |
-| 801  | Capability not supported. Function enhanceDetail can not work correctly due to limited device capabilities.|
-|  29200007  | Out of memory.  |
-|  29200009  | Input value is invalid. This error is returned for all of the following error conditions: <br>1 - Invalid input or output image buffer - The image buffer width(height) is too large or colorspace is incorrect. <br>2 - Invalid parameter - The parameter does not contain valid information, such as detail enhancer level is incorrect. |
+## 29210007 内存不足
 
-**示例：**
+**错误信息**
 
-```ts
-import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
-async function enhanceDetail(sourceImage: image.PixelMap, width: number, height: number) {
-  videoProcessingEngine.initializeEnvironment();
-  let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;
-  let enhancedPixelmap: Promise<image.PixelMap> = imageProcessor.enhanceDetail(sourceImage, width, height, videoProcessingEngine.QualityLevel.HIGH);
-}
-```
+Out of memory.
 
-### enhanceDetail
+**错误描述**
 
-enhanceDetail(sourceImage: image.PixelMap, scale: number, level?: QualityLevel): Promise\<image.PixelMap\>
+内存不足。
 
-细节增强处理异步方法。使用Promise异步回调。
+**可能原因**
 
-**卡片能力**：从API version 18开始，该接口支持在ArkTS卡片中使用。
+内存不足。
 
-**系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
+**处理步骤**
 
-**参数：**
+减少内存申请。
 
-|  参数名 | 类型  | 必填  | 说明  |
-| :------------ | :------------ | :------------ | :------------ |
-|  sourceImage | [image.PixelMap](arkts-apis-image-PixelMap.md)  | 是  | 输入图像。  |
-|  scale |  number |  是 |  目标缩放比例。 |
-|  level | [QualityLevel](#qualitylevel)| 否  |  算法档位（HIGH、MEDIUM、LOW、NONE），默认为NONE。 |
+## 29210008 实例无效
 
-**返回值：**
+**错误信息**
 
-|  类型 | 说明  |
-| ------------ | ------------ |
-| Promise\<[image.PixelMap](arkts-apis-image-PixelMap.md)\>  |  异步方法返回PixelMap的Promise实例。 |
+The video processing instance is invalid. This may be caused by null instance.
 
-**错误码：**
+**错误描述**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md#视频处理引擎错误码)
+视频处理实例无效。可能由于实例为空导致。
 
-| 错误码ID  | 错误信息  |
-| :------------ | :------------ |
-| 801  | Capability not supported. Function enhanceDetail can not work correctly due to limited device capabilities.|
-|  29200007  | Out of memory.  |
-|  29200009  | Input value is invalid. This error is returned for all of the following error conditions: <br>1 - Invalid input or output image buffer - The image buffer width(height) is too large or colorspace is incorrect. <br>2 - Invalid parameter - The parameter does not contain valid information, such as detail enhancer level is incorrect.  |
+**可能原因**
 
-**示例：**
+无效的实例。
 
-```ts
-import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
-async function enhanceDetail(sourceImage: image.PixelMap, scale: number) {
-  videoProcessingEngine.initializeEnvironment();
-  let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;
-  let enhancedPixelmap: Promise<image.PixelMap> = imageProcessor.enhanceDetail(sourceImage, scale, videoProcessingEngine.QualityLevel.HIGH);
-}
-```
+**处理步骤**
 
-### enhanceDetailSync
+检查实例的创建。
 
-enhanceDetailSync(sourceImage: image.PixelMap, width: number, height: number, level?: QualityLevel): image.PixelMap
+## 29210009 值无效
 
-细节增强处理同步方法。
+**错误信息**
 
-**卡片能力**：从API version 18开始，该接口支持在ArkTS卡片中使用。
+Input value is invalid. This error is returned for all of the following error conditions:
+1. Invalid input or output video buffer - The video buffer width(height) is too large or colorspace is incorrect.
+2. Invalid parameter - The parameter does not contain valid information, such as detail enhancer level is incorrect.
 
-**系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
+**错误描述**
 
-**参数：**
+输入值无效。以下所有错误情况都会返回此错误：
 
-|  参数名 | 类型  | 必填  | 说明  |
-| :------------ | :------------ | :------------ | :------------ |
-|  sourceImage | [image.PixelMap](arkts-apis-image-PixelMap.md)  | 是  | 输入图像。  |
-|  width |  number | 是  | 目标宽度（单位为像素，px）。  |
-|  height |  number | 是 |  目标高度（单位为像素，px）。 |
-|  level | [QualityLevel](#qualitylevel)| 否  |  算法档位（HIGH、MEDIUM、LOW、NONE），默认为NONE。 |
+1. 输入或输出视频缓冲区无效：视频缓冲区宽度（高度）过大或色彩空间不正确。
+2. 参数无效：参数不包含有效信息（例如，算法档位不正确）。
 
-**返回值：**
+**可能原因**
 
-|  类型 | 说明  |
-| ------------ | ------------ |
-| [image.PixelMap](arkts-apis-image-PixelMap.md)  |  成功同步返回PixelMap对象。 |
+1. 输入或输出分辨率过大或色彩空间异常。
+2. 算法档位错误。
 
-**错误码：**
+**处理步骤**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md#视频处理引擎错误码)
-
-| 错误码ID  | 错误信息  |
-| :------------ | :------------ |
-| 801  | Capability not supported. Function enhanceDetailSync can not work correctly due to limited device capabilities.|
-|  29200004  | Failed to process image buffer. For example, the processing times out.  |
-|  29200007  | Out of memory.  |
-|  29200009  | Input value is invalid. This error is returned for all of the following error conditions: <br>1 - Invalid input or output image buffer - The image buffer width(height) is too large or colorspace is incorrect. <br>2 - Invalid parameter - The parameter does not contain valid information, such as detail enhancer level is incorrect. |
-
-**示例：**
-
-```ts
-import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
-async function enhanceDetailSync(sourceImage:image.PixelMap, width: number, height: number) {
-  videoProcessingEngine.initializeEnvironment();
-  let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;
-  let enhancedPixelmap: image.PixelMap = imageProcessor.enhanceDetailSync(
-sourceImage, width, height, videoProcessingEngine.QualityLevel.HIGH);
-}
-```
-
-### enhanceDetailSync
-
-enhanceDetailSync(sourceImage: image.PixelMap, scale: number, level?: QualityLevel): image.PixelMap
-
-细节增强处理同步方法。
-
-**卡片能力**：从API version 18开始，该接口支持在ArkTS卡片中使用。
-
-**系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
-
-**参数：**
-
-|  参数名 | 类型  | 必填  | 说明  |
-| :------------ | :------------ | :------------ | :------------ |
-|  sourceImage | [image.PixelMap](arkts-apis-image-PixelMap.md)  | 是  | 输入图像。  |
-|  scale |  number |  是 |  目标缩放比例。 |
-|  level | [QualityLevel](#qualitylevel)| 否  |  算法档位（HIGH、MEDIUM、LOW、NONE），默认为NONE。 |
-
-**返回值：**
-
-|  类型 | 说明  |
-| ------------ | ------------ |
-| [image.PixelMap](arkts-apis-image-PixelMap.md)  |  成功同步返回PixelMap对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md#视频处理引擎错误码)
-
-| 错误码ID  | 错误信息  |
-| :------------ | :------------ |
-| 801  | Capability not supported. Function enhanceDetailSync can not work correctly due to limited device capabilities.|
-|  29200004  | Failed to process image buffer. For example, the processing times out.  |
-|  29200007  | Out of memory.  |
-|  29200009  | Input value is invalid. This error is returned for all of the following error conditions: <br>1 - Invalid input or output image buffer - The image buffer width(height) is too large or colorspace is incorrect. <br>2 - Invalid parameter - The parameter does not contain valid information, such as detail enhancer level is incorrect.  |
-
-**示例：**
-
-```ts
-import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
-async function enhanceDetailSync(sourceImage:image.PixelMap, scale: number) {
-  videoProcessingEngine.initializeEnvironment();
-  let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;
-  let enhancedPixelmap: image.PixelMap = imageProcessor.enhanceDetailSync(
-sourceImage, scale, videoProcessingEngine.QualityLevel.HIGH);
-}
-```
-
-## QualityLevel
-
-枚举，算法档位。
-
-**卡片能力**：从API version 18开始，该接口支持在ArkTS卡片中使用。
-
-**系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
-
-| 名称  | 值  | 说明  |
-| ------------ | ------------ | ------------ |
-| NONE  | 0  | 仅适用于缩放场景，支持改变宽高比例。<br>- 输入分辨率要求（单位为像素，px）：宽：[32，3000]，高：[32，3000]。<br>- 输出分辨率要求（单位为像素，px）：宽：[32，3000]，高：[32，3000]。  |
-|  LOW |  1 | 仅适用于缩放场景，支持改变宽高比例。<br>- 输入分辨率要求（单位为像素，px）：宽：[32，3000]，高：[32，3000]。<br>- 输出分辨率要求（单位为像素，px）：宽：[32，3000]，高：[32，3000]。  |
-|  MEDIUM | 2  | 仅适用于缩放场景，支持改变宽高比例。<br>- 输入分辨率要求（单位为像素，px）：宽：[32，3000]，高：[32，3000]。<br>- 输出分辨率要求（单位为像素，px）：宽：[32，3000]，高：[32，3000]。  |
-|  HIGH |  3 |  1. 缩放场景，不支持改变宽高比例。<br>- 输入分辨率要求（单位为像素，px）：宽：(32，512) (2000，8192]，高：(32，512) (2000，8192]。<br>- 输出分辨率要求（单位为像素，px）：宽：(32，512) (2000，8192]，高：(32，512) (2000，8192]。 <br>2. 清晰度增强、缩放场景，支持改变宽高比例。<br>- 输入分辨率要求（单位为像素，px）：宽：[512，2000]，高：[512，2000]。<br>- 输出分辨率要求（单位为像素，px）：宽：[512，2000]，高：[512，2000]。 |
+1. 检查输入输出的分辨率和色彩空间。
+2. 检查是否配置了算法档位。
