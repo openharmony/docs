@@ -516,7 +516,7 @@ enum HiAppEvent_ErrorCode
 | HIAPPEVENT_SUCCESS  | 操作成功。&nbsp;&nbsp; | 
 | HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH  | 参数值长度无效。<br/>**起始版本：** 18 | 
 | HIAPPEVENT_PROCESSOR_IS_NULL  | 事件处理者为空。<br/>**起始版本：** 18 | 
-| HIAPPEVENT_PROCESSOR_NOT_FOUND  | 事件处理者不存在。<br/**起始版本：** 18 | 
+| HIAPPEVENT_PROCESSOR_NOT_FOUND  | 事件处理者不存在。<br/>**起始版本：** 18 |
 | HIAPPEVENT_INVALID_PARAM_VALUE  | 参数值无效。&nbsp;&nbsp; | 
 | HIAPPEVENT_EVENT_CONFIG_IS_NULL  | 事件配置为空。&nbsp;&nbsp; | 
 | HIAPPEVENT_OPERATE_FAILED  | 操作失败。<br/>**起始版本：** 18 | 
