@@ -469,7 +469,7 @@ SA标签。
 ### HiDebug_ErrorCode
 
 ```
-typedef enum HiDebug_ErrorCodeHiDebug_ErrorCode
+typedef enum HiDebug_ErrorCode HiDebug_ErrorCode
 ```
 **描述**
 错误码定义。
@@ -480,7 +480,7 @@ typedef enum HiDebug_ErrorCodeHiDebug_ErrorCode
 ### HiDebug_MemoryLimit
 
 ```
-typedef struct HiDebug_MemoryLimitHiDebug_MemoryLimit
+typedef struct HiDebug_MemoryLimit HiDebug_MemoryLimit
 ```
 **描述**
 应用程序进程内存限制结构类型定义。
@@ -491,7 +491,7 @@ typedef struct HiDebug_MemoryLimitHiDebug_MemoryLimit
 ### HiDebug_NativeMemInfo
 
 ```
-typedef struct HiDebug_NativeMemInfoHiDebug_NativeMemInfo
+typedef struct HiDebug_NativeMemInfo HiDebug_NativeMemInfo
 ```
 **描述**
 应用程序进程本机内存信息结构类型定义。
@@ -502,7 +502,7 @@ typedef struct HiDebug_NativeMemInfoHiDebug_NativeMemInfo
 ### HiDebug_SystemMemInfo
 
 ```
-typedef struct HiDebug_SystemMemInfoHiDebug_SystemMemInfo
+typedef struct HiDebug_SystemMemInfo HiDebug_SystemMemInfo
 ```
 **描述**
 系统内存信息结构类型定义。
@@ -513,7 +513,7 @@ typedef struct HiDebug_SystemMemInfoHiDebug_SystemMemInfo
 ### HiDebug_ThreadCpuUsage
 
 ```
-typedef struct HiDebug_ThreadCpuUsageHiDebug_ThreadCpuUsage
+typedef struct HiDebug_ThreadCpuUsage HiDebug_ThreadCpuUsage
 ```
 **描述**
 应用程序所有线程的CPU使用率结构体定义。
@@ -535,7 +535,7 @@ HiDebug_ThreadCpuUsage指针定义。
 ### HiDebug_TraceFlag
 
 ```
-typedef enum HiDebug_TraceFlagHiDebug_TraceFlag
+typedef enum HiDebug_TraceFlag HiDebug_TraceFlag
 ```
 **描述**
 采集trace线程的类型。
