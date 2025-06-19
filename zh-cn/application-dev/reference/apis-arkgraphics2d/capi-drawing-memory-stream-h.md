@@ -50,7 +50,7 @@ OH_Drawing_MemoryStream* OH_Drawing_MemoryStreamCreate(const void* data, size_t 
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_MemoryStream](capi-oh-drawing-memorystream.md)* | 函数会返回一个指针，指针指向创建的内存流对象[OH_Drawing_MemoryStream](capi-oh-drawing-memorystream.md)。 |
+| [OH_Drawing_MemoryStream](capi-drawing-oh-drawing-memorystream.md)* | 函数会返回一个指针，指针指向创建的内存流对象[OH_Drawing_MemoryStream](capi-drawing-oh-drawing-memorystream.md)。 |
 
 ### OH_Drawing_MemoryStreamDestroy()
 
@@ -71,6 +71,6 @@ void OH_Drawing_MemoryStreamDestroy(OH_Drawing_MemoryStream* memoryStream)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_MemoryStream](capi-oh-drawing-memorystream.md)* memoryStream | 指向内存流对象[OH_Drawing_MemoryStream](capi-oh-drawing-memorystream.md)的指针。 |
+| [OH_Drawing_MemoryStream](capi-drawing-oh-drawing-memorystream.md)* memoryStream | 指向内存流对象[OH_Drawing_MemoryStream](capi-drawing-oh-drawing-memorystream.md)的指针。 |
 
 
