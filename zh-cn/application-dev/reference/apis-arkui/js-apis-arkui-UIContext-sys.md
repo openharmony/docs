@@ -382,7 +382,7 @@ setKeyboardAppearanceConfig(uniqueId: number, config: KeyboardAppearanceConfig):
 | 参数名     | 类型    | 必填   | 说明      |
 | --- | --- | --- | --- |
 | uniqueId | number | 是 | 组件节点对应的UniqueId。取值范围大于等于0。 |
-| config | [KeyboardAppearanceConfig](../apis-arkui/arkui-ts/ts-text-common-sys.md#keyboardappearanceconfig) | 是 | 键盘样式配置参数。|
+| config | [KeyboardAppearanceConfig](../apis-arkui/arkui-ts/ts-text-common-sys.md#keyboardappearanceconfig20) | 是 | 键盘样式配置参数。|
 
 **错误码：**
 
