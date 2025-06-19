@@ -115,7 +115,7 @@
    ```
    callback(data:motion.HoldingHandStatus) {
      console.info('callback success' + data);
-   }；
+   };
    ```
 
 3. 订阅握持手感知
