@@ -500,7 +500,7 @@
     - [ArkUI_AnimateCompleteCallback](_ark_u_i___animate_complete_callback.md)
     - [ArkUI_AttributeItem](_ark_u_i___attribute_item.md)
     - [ArkUI_ColorStop](_ark_u_i___color_stop.md)
-    - [ArkUI_Context](./_ark_ui__context.md)
+    - [ArkUI_Context](_ark_ui__context.md)
     - [ArkUI_ContextCallback](_ark_u_i___context_callback.md)
     - [ArkUI_NativeDialog](_ark_ui__native_dialog.md)
     - [ArkUI_ExpectedFrameRateRange](_ark_u_i___expected_frame_rate_range.md)
