@@ -2565,6 +2565,9 @@ prepareRemoteAuth(remoteNetworkId: string): Promise&lt;void&gt;;
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid remoteNetworkId. |
+| 12300090 | Cross-device capability not supported. |
+| 12300091 | Cross-device communication failed. |
+| 12300111 | Operation timeout. |
 
 **示例：**
   ```ts
@@ -2626,6 +2629,9 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
 | 12300013 | Network exception. |
+| 12300020 | Device hardware abnormal. |
+| 12300090 | Cross-device capability not supported. |
+| 12300091 | Cross-device communication failed. |
 | 12300101 | The credential is incorrect. |
 | 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
@@ -2637,6 +2643,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300113 | The authentication service does not exist. |
 | 12300114 | The authentication service works abnormally. |
 | 12300117 | PIN is expired. |
+| 12300119 | Multi-factor authentication failed. |
 | 12300211 | Server unreachable. |
 
 **示例：**
@@ -2696,6 +2703,9 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300002 | Invalid challenge, authType, authTrustLevel or options. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
+| 12300020 | Device hardware abnormal. |
+| 12300090 | Cross-device capability not supported. |
+| 12300091 | Cross-device communication failed. |
 | 12300101 | The credential is incorrect. |
 | 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
@@ -2707,6 +2717,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300113 | The authentication service does not exist. |
 | 12300114 | The authentication service works abnormally. |
 | 12300117 | PIN is expired. |
+| 12300119 | Multi-factor authentication failed. |
 | 12300211 | Server unreachable. |
 
 **示例：**
@@ -2769,6 +2780,9 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
+| 12300020 | Device hardware abnormal. |
+| 12300090 | Cross-device capability not supported. |
+| 12300091 | Cross-device communication failed. |
 | 12300101 | The credential is incorrect. |
 | 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
@@ -2780,6 +2794,7 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 | 12300113 | The authentication service does not exist. |
 | 12300114 | The authentication service works abnormally. |
 | 12300117 | PIN is expired. |
+| 12300119 | Multi-factor authentication failed. |
 | 12300211 | Server unreachable. |
 
 **示例：**
