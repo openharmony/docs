@@ -1226,9 +1226,7 @@ if (resultSet != undefined) {
 
 getValueForFlutter(columnIndex: number): ValueType
 
-获取当前行中指定列的值，如果当前行中指定列的值超出number的取值范围，则返回字符串类型。
-
-接口仅用于Flutter。
+获取当前行中指定列的值，如果当前行中指定列的值是数字且超出number的取值范围，将转换为字符串类型返回。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1242,7 +1240,7 @@ getValueForFlutter(columnIndex: number): ValueType
 
 | 类型       | 说明                             |
 | ---------- | -------------------------------- |
-| [ValueType](arkts-apis-data-relationalStore-t.md#valuetype) | 表示允许的数据字段类型。 |
+| [ValueType](arkts-apis-data-relationalStore-t.md#valuetype) | 返回当前行中指定列对应数据字段类型的值。 |
 
 **错误码：**
 
@@ -1274,9 +1272,7 @@ if (resultSet != undefined) {
 
 getRowForFlutter(): ValuesBucket
 
-获取指定行中所有列的值，如果当前行中某列的值超出number的取值范围，则返回字符串类型。
-
-接口仅用于Flutter。
+获取指定行中所有列的值，如果当前行中指定列的值是数字且超出number的取值范围，将转换为字符串类型返回。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1284,7 +1280,7 @@ getRowForFlutter(): ValuesBucket
 
 | 类型              | 说明                           |
 | ---------------- | ---------------------------- |
-| [ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket) | 返回指定行的值。 |
+| [ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket) | 返回指定行中所有列的值。|
 
 **错误码：**
 
