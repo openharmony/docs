@@ -638,6 +638,8 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 允许应用使用全局闪控球的能力。
 
+<!--RP46--><!--RP46End-->
+
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
