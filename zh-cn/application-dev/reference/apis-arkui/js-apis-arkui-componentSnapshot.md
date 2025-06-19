@@ -502,9 +502,9 @@ type SnapshotRegionType =  SnapshotRegion | LocalizedSnapshotRegion
 
 定义组件截图的矩形区域。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 类型   | 必填 | 说明                                    |
 | ------ | ------ | ---- | --------------------------------------- |
@@ -517,9 +517,9 @@ type SnapshotRegionType =  SnapshotRegion | LocalizedSnapshotRegion
 
 定义组件截图的矩形区域，start和end的值在布局方向为LTR时指定为left和right，在布局方向为RTL时指定为right和left。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |

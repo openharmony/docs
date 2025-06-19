@@ -832,13 +832,13 @@ export default class EntryAbility extends UIAbility {
 
     windowStage.loadContent('pages/Index', this.storage, (err, data) => {
       if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', `Code is ${err.code}, message is ${err.message}`);
         return;
       }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s',  `Code is ${err.code}, message is ${err.message}`);
       windowStage.getMainWindow((err, data) => {
         if (err.code) {
-          hilog.error(0x0000, 'Failed to abtain the main window. Cause:' + err.message, '');
+          hilog.error(0x0000, `Failed to abtain the main window. Cause: ${err.message}`, '');
           return;
         }
         let windowClass: window.Window = data;
