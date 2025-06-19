@@ -241,7 +241,7 @@ WindowStage生命周期。
 
 ## WindowStageLifecycleEventType<sup>20+</sup>
 
-WindowStage生命周期。
+WindowStage生命周期的状态类型枚举。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
