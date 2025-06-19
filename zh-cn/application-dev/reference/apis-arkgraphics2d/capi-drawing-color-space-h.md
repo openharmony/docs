@@ -42,7 +42,7 @@ OH_Drawing_ColorSpace* OH_Drawing_ColorSpaceCreateSrgb(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_ColorSpace](capi-oh-drawing-colorspace.md)* | 函数返回一个指针，指针指向创建的颜色空间对象[OH_Drawing_ColorSpace](capi-oh-drawing-colorspace.md)。 |
+| [OH_Drawing_ColorSpace](capi-drawing-oh-drawing-colorspace.md)* | 函数返回一个指针，指针指向创建的颜色空间对象[OH_Drawing_ColorSpace](capi-drawing-oh-drawing-colorspace.md)。 |
 
 ### OH_Drawing_ColorSpaceCreateSrgbLinear()
 
@@ -62,7 +62,7 @@ OH_Drawing_ColorSpace* OH_Drawing_ColorSpaceCreateSrgbLinear(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_ColorSpace](capi-oh-drawing-colorspace.md)* | 函数返回一个指针，指针指向创建的颜色空间对象[OH_Drawing_ColorSpace](capi-oh-drawing-colorspace.md)。 |
+| [OH_Drawing_ColorSpace](capi-drawing-oh-drawing-colorspace.md)* | 函数返回一个指针，指针指向创建的颜色空间对象[OH_Drawing_ColorSpace](capi-drawing-oh-drawing-colorspace.md)。 |
 
 ### OH_Drawing_ColorSpaceDestroy()
 
@@ -83,6 +83,6 @@ void OH_Drawing_ColorSpaceDestroy(OH_Drawing_ColorSpace* colorSpace)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_ColorSpace](capi-oh-drawing-colorspace.md)* colorSpace | 指向颜色空间对象[OH_Drawing_ColorSpace](capi-oh-drawing-colorspace.md)的指针。 |
+| [OH_Drawing_ColorSpace](capi-drawing-oh-drawing-colorspace.md)* colorSpace | 指向颜色空间对象[OH_Drawing_ColorSpace](capi-drawing-oh-drawing-colorspace.md)的指针。 |
 
 

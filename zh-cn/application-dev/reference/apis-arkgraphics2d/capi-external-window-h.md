@@ -21,13 +21,13 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [Region](capi-region.md) | Region | 表示本地窗口OHNativeWindow需要更新内容的矩形区域（脏区）。 |
-| [Rect](capi-rect.md) | - | 如果rects是空指针nullptr，默认Buffer大小为脏区。 |
-| [OHHDRMetaData](capi-ohhdrmetadata.md) | OHHDRMetaData | HDR元数据结构体定义。 |
-| [OHExtDataHandle](capi-ohextdatahandle.md) | OHExtDataHandle | 扩展数据句柄结构体定义。 |
-| [OHIPCParcel](capi-ohipcparcel.md) | OHIPCParcel | 提供对IPC序列化对象的访问功能。 |
-| [NativeWindow](capi-nativewindow.md) | OHNativeWindow | 提供对OHNativeWindow的访问功能。 |
-| [NativeWindowBuffer](capi-nativewindowbuffer.md) | OHNativeWindowBuffer | 提供对OHNativeWindowBuffer的访问功能。 |
+| [Region](capi-nativewindow-region.md) | Region | 表示本地窗口OHNativeWindow需要更新内容的矩形区域（脏区）。 |
+| [Rect](capi-nativewindow-rect.md) | - | 如果rects是空指针nullptr，默认Buffer大小为脏区。 |
+| [OHHDRMetaData](capi-nativewindow-ohhdrmetadata.md) | OHHDRMetaData | HDR元数据结构体定义。 |
+| [OHExtDataHandle](capi-nativewindow-ohextdatahandle.md) | OHExtDataHandle | 扩展数据句柄结构体定义。 |
+| [OHIPCParcel](capi-nativewindow-ohipcparcel.md) | OHIPCParcel | 提供对IPC序列化对象的访问功能。 |
+| [NativeWindow](capi-nativewindow-nativewindow.md) | OHNativeWindow | 提供对OHNativeWindow的访问功能。 |
+| [NativeWindowBuffer](capi-nativewindow-nativewindowbuffer.md) | OHNativeWindowBuffer | 提供对OHNativeWindowBuffer的访问功能。 |
 
 ### 枚举
 
@@ -99,7 +99,7 @@ OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。
 | GET_USAGE | 获取本地窗口读写方式，函数中的可变参数是[输出] uint64_tusage，取值具体可见[OH_NativeBuffer_Usage](capi-native-buffer-h.md#oh_nativebuffer_usage)枚举值。 |
 | SET_USAGE | 设置本地窗口缓冲区读写方式，函数中的可变参数是[输入] uint64_t usage，取值具体可见[OH_NativeBuffer_Usage](capi-native-buffer-h.md#oh_nativebuffer_usage)枚举值。 |
 | SET_STRIDE | 设置本地窗口缓冲区步幅，函数中的可变参数是[输入] int32_t stride。<br/>**废弃版本：** 16 |
-| GET_STRIDE | 获取本地窗口缓冲区步幅，函数中的可变参数是[输出] int32_t *stride。<br/>**废弃版本：** 16<br/>**替代方案：** 使用[OH_NativeWindow_GetBufferHandleFromNative](#oh_nativewindow_getbufferhandlefromnative)接口获取BufferHandle实例，从[BufferHandle](capi-bufferhandle.md)实例中获取stride值。 |
+| GET_STRIDE | 获取本地窗口缓冲区步幅，函数中的可变参数是[输出] int32_t *stride。<br/>**废弃版本：** 16<br/>**替代方案：** 使用[OH_NativeWindow_GetBufferHandleFromNative](#oh_nativewindow_getbufferhandlefromnative)接口获取BufferHandle实例，从[BufferHandle](capi-nativewindow-bufferhandle.md)实例中获取stride值。 |
 | SET_SWAP_INTERVAL | 设置本地窗口缓冲区交换间隔，函数中的可变参数是[输入] int32_t interval。 |
 | GET_SWAP_INTERVAL | 获取本地窗口缓冲区交换间隔，函数中的可变参数是[输出] int32_tinterval。 |
 | SET_TIMEOUT | 设置请求本地窗口请求缓冲区的超时等待时间，未手动设置时默认值为3000毫秒，函数中的可变参数是[输入] int32_t timeout, 单位为毫秒。 |
@@ -241,7 +241,7 @@ OHNativeWindow* OH_NativeWindow_CreateNativeWindow(void* pSurface)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OHNativeWindow](capi-nativewindow.md)* | 返回一个指针，指向OHNativeWindow的结构体实例。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md)* | 返回一个指针，指向OHNativeWindow的结构体实例。 |
 
 ### OH_NativeWindow_DestroyNativeWindow()
 
@@ -262,7 +262,7 @@ void OH_NativeWindow_DestroyNativeWindow(OHNativeWindow* window)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindow](capi-nativewindow.md)* window | 一个OHNativeWindow的结构体实例的指针。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md)* window | 一个OHNativeWindow的结构体实例的指针。 |
 
 ### OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer()
 
@@ -341,7 +341,7 @@ void OH_NativeWindow_DestroyNativeWindowBuffer(OHNativeWindowBuffer* buffer)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindowBuffer](capi-nativewindowbuffer.md)* buffer | 一个OHNativeWindowBuffer的结构体实例的指针。 |
+| [OHNativeWindowBuffer](capi-nativewindow-nativewindowbuffer.md)* buffer | 一个OHNativeWindowBuffer的结构体实例的指针。 |
 
 ### OH_NativeWindow_NativeWindowRequestBuffer()
 
@@ -362,8 +362,8 @@ int32_t OH_NativeWindow_NativeWindowRequestBuffer(OHNativeWindow *window,OHNativ
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindow](capi-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
-| [OHNativeWindowBuffer](capi-nativewindowbuffer.md) **buffer | 一个指向OHNativeWindowBuffer指针的指针（二级指针）。<br>通过OH_NativeWindow_GetBufferHandleFromNative可获取BufferHandle结构体，访问缓冲区内存。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
+| [OHNativeWindowBuffer](capi-nativewindow-nativewindowbuffer.md) **buffer | 一个指向OHNativeWindowBuffer指针的指针（二级指针）。<br>通过OH_NativeWindow_GetBufferHandleFromNative可获取BufferHandle结构体，访问缓冲区内存。 |
 | int *fenceFd | 一个文件描述符句柄，用于GPU/CPU同步：不同取值及含义如下：<br>- 返回≥0：缓冲区正被GPU使用，需要等待文件描述符fenceFd就绪。<br>- 返回-1：缓冲区可直接使用。 |
 
 **返回：**
@@ -391,10 +391,10 @@ int32_t OH_NativeWindow_NativeWindowFlushBuffer(OHNativeWindow *window, OHNative
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindow](capi-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
-| [OHNativeWindowBuffer](capi-nativewindowbuffer.md) *buffer | 一个OHNativeWindowBuffer的结构体实例的指针。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
+| [OHNativeWindowBuffer](capi-nativewindow-nativewindowbuffer.md) *buffer | 一个OHNativeWindowBuffer的结构体实例的指针。 |
 | int fenceFd | 一个文件描述符句柄，用以同步时序。不同取值及含义如下：<br>- -1：CPU渲染完成，无需同步时序。<br>- ≥0：从GPU同步对象转换（如EGL的eglDupNativeFenceFDANDROID），对端需要通过此fenceFd同步时序。 |
-| [Region](capi-region.md) region | 一个Region结构体，表示一块脏区域，该区域有内容更新。 |
+| [Region](capi-nativewindow-region.md) region | 一个Region结构体，表示一块脏区域，该区域有内容更新。 |
 
 **返回：**
 
@@ -425,8 +425,8 @@ int32_t OH_NativeWindow_GetLastFlushedBuffer(OHNativeWindow *window, OHNativeWin
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindow](capi-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
-| [OHNativeWindowBuffer](capi-nativewindowbuffer.md) **buffer | 一个OHNativeWindowBuffer结构体指针的指针。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
+| [OHNativeWindowBuffer](capi-nativewindow-nativewindowbuffer.md) **buffer | 一个OHNativeWindowBuffer结构体指针的指针。 |
 | int *fenceFd | 一个文件描述符的指针。 |
 | matrix |  表示检索到的44变换矩阵。 |
 
@@ -455,8 +455,8 @@ int32_t OH_NativeWindow_NativeWindowAbortBuffer(OHNativeWindow *window, OHNative
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindow](capi-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
-| [OHNativeWindowBuffer](capi-nativewindowbuffer.md) *buffer | 一个OHNativeWindowBuffer的结构体实例的指针。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
+| [OHNativeWindowBuffer](capi-nativewindow-nativewindowbuffer.md) *buffer | 一个OHNativeWindowBuffer的结构体实例的指针。 |
 
 **返回：**
 
@@ -483,7 +483,7 @@ int32_t OH_NativeWindow_NativeWindowHandleOpt(OHNativeWindow *window, int code, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindow](capi-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
 | int code | 表示操作码，详见[NativeWindowOperation](#nativewindowoperation)。 |
 | ... |  可变参数，必须与操作码对应的数据类型保持一致，且入参数量严格按照操作码提示传入，否则会存在未定义行为。 |
 
@@ -512,13 +512,13 @@ BufferHandle *OH_NativeWindow_GetBufferHandleFromNative(OHNativeWindowBuffer *bu
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindowBuffer](capi-nativewindowbuffer.md) *buffer | 一个OHNativeWindowBuffer的结构体实例的指针。 |
+| [OHNativeWindowBuffer](capi-nativewindow-nativewindowbuffer.md) *buffer | 一个OHNativeWindowBuffer的结构体实例的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [BufferHandle](capi-bufferhandle.md) | BufferHandle 返回一个指针，指向[BufferHandle](capi-bufferhandle.md)的结构体实例。 |
+| [BufferHandle](capi-nativewindow-bufferhandle.md) | BufferHandle 返回一个指针，指向[BufferHandle](capi-nativewindow-bufferhandle.md)的结构体实例。 |
 
 ### OH_NativeWindow_NativeObjectReference()
 
@@ -624,7 +624,7 @@ int32_t OH_NativeWindow_NativeWindowSetScalingMode(OHNativeWindow *window, uint3
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindow](capi-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
 | uint32_t sequence | 生产缓冲区的序列。 |
 | [OHScalingMode](#ohscalingmode) scalingMode | 枚举值OHScalingMode。 |
 
@@ -655,7 +655,7 @@ int32_t OH_NativeWindow_NativeWindowSetMetaData(OHNativeWindow *window, uint32_t
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindow](capi-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
 | uint32_t sequence | 生产缓冲区的序列。 |
 | int32_t size | OHHDRMetaData数组的大小。 |
 | metaDate |  指向OHHDRMetaData数组的指针。 |
@@ -687,7 +687,7 @@ int32_t OH_NativeWindow_NativeWindowSetMetaDataSet(OHNativeWindow *window, uint3
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindow](capi-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
 | uint32_t sequence | 生产缓冲区的序列。 |
 | [OHHDRMetadataKey](#ohhdrmetadatakey) key | 枚举值OHHDRMetadataKey。 |
 | int32_t size | uint8_t向量的大小。 |
@@ -720,8 +720,8 @@ int32_t OH_NativeWindow_NativeWindowSetTunnelHandle(OHNativeWindow *window, cons
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindow](capi-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
-| const [OHExtDataHandle](capi-ohextdatahandle.md) *handle | 指向OHExtDataHandle的指针。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
+| const [OHExtDataHandle](capi-nativewindow-ohextdatahandle.md) *handle | 指向OHExtDataHandle的指针。 |
 
 **返回：**
 
@@ -748,8 +748,8 @@ int32_t OH_NativeWindow_NativeWindowAttachBuffer(OHNativeWindow *window, OHNativ
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindow](capi-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
-| [OHNativeWindowBuffer](capi-nativewindowbuffer.md) *buffer | 一个OHNativeWindowBuffer的结构体实例的指针。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
+| [OHNativeWindowBuffer](capi-nativewindow-nativewindowbuffer.md) *buffer | 一个OHNativeWindowBuffer的结构体实例的指针。 |
 
 **返回：**
 
@@ -776,8 +776,8 @@ int32_t OH_NativeWindow_NativeWindowDetachBuffer(OHNativeWindow *window, OHNativ
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindow](capi-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
-| [OHNativeWindowBuffer](capi-nativewindowbuffer.md) *buffer | 一个OHNativeWindowBuffer的结构体实例的指针。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
+| [OHNativeWindowBuffer](capi-nativewindow-nativewindowbuffer.md) *buffer | 一个OHNativeWindowBuffer的结构体实例的指针。 |
 
 **返回：**
 
@@ -804,7 +804,7 @@ int32_t OH_NativeWindow_GetSurfaceId(OHNativeWindow *window, uint64_t *surfaceId
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindow](capi-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
 | uint64_t *surfaceId | 一个surface对应ID的指针。 |
 
 **返回：**
@@ -833,7 +833,7 @@ int32_t OH_NativeWindow_CreateNativeWindowFromSurfaceId(uint64_t surfaceId, OHNa
 | 参数项 | 描述 |
 | -- | -- |
 | uint64_t surfaceId | 一个surface对应的ID。 |
-| [OHNativeWindow](capi-nativewindow.md) **window | 一个OHNativeWindow的结构体实例的二级指针。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) **window | 一个OHNativeWindow的结构体实例的二级指针。 |
 
 **返回：**
 
@@ -860,7 +860,7 @@ int32_t OH_NativeWindow_NativeWindowSetScalingModeV2(OHNativeWindow* window, OHS
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindow](capi-nativewindow.md)* window | 一个OHNativeWindow的结构体实例的指针。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md)* window | 一个OHNativeWindow的结构体实例的指针。 |
 | [OHScalingModeV2](#ohscalingmodev2) scalingMode | 一个OHScalingModeV2类型的枚举值。 |
 
 **返回：**
@@ -888,8 +888,8 @@ int32_t OH_NativeWindow_GetLastFlushedBufferV2(OHNativeWindow *window, OHNativeW
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindow](capi-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
-| [OHNativeWindowBuffer](capi-nativewindowbuffer.md) **buffer | 一个OHNativeWindowBuffer结构体指针的指针。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
+| [OHNativeWindowBuffer](capi-nativewindow-nativewindowbuffer.md) **buffer | 一个OHNativeWindowBuffer结构体指针的指针。 |
 | int *fenceFd | 一个文件描述符的指针。 |
 | matrix |  表示检索到的44变换矩阵。 |
 
@@ -918,7 +918,7 @@ void OH_NativeWindow_SetBufferHold(OHNativeWindow *window)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindow](capi-nativewindow.md) *window | 一个[OHNativeWindow](capi-nativewindow.md)的结构体实例的指针。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个[OHNativeWindow](capi-nativewindow-nativewindow.md)的结构体实例的指针。 |
 
 ### OH_NativeWindow_WriteToParcel()
 
@@ -939,8 +939,8 @@ int32_t OH_NativeWindow_WriteToParcel(OHNativeWindow *window, OHIPCParcel *parce
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindow](capi-nativewindow.md) *window | 一个指向[OHNativeWindow](capi-nativewindow.md)的结构体实例的指针。 |
-| [OHIPCParcel](capi-ohipcparcel.md) *parcel | 一个指向[OHIPCParcel](capi-ohipcparcel.md)的结构体实例的指针。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个指向[OHNativeWindow](capi-nativewindow-nativewindow.md)的结构体实例的指针。 |
+| [OHIPCParcel](capi-nativewindow-ohipcparcel.md) *parcel | 一个指向[OHIPCParcel](capi-nativewindow-ohipcparcel.md)的结构体实例的指针。 |
 
 **返回：**
 
@@ -967,8 +967,8 @@ int32_t OH_NativeWindow_ReadFromParcel(OHIPCParcel *parcel, OHNativeWindow **win
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHIPCParcel](capi-ohipcparcel.md) *parcel | 一个指向[OHIPCParcel](capi-ohipcparcel.md)的结构体实例的指针。 |
-| [OHNativeWindow](capi-nativewindow.md) **window | 一个指向[OHNativeWindow](capi-nativewindow.md)的结构体实例的二级指针。 |
+| [OHIPCParcel](capi-nativewindow-ohipcparcel.md) *parcel | 一个指向[OHIPCParcel](capi-nativewindow-ohipcparcel.md)的结构体实例的指针。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) **window | 一个指向[OHNativeWindow](capi-nativewindow-nativewindow.md)的结构体实例的二级指针。 |
 
 **返回：**
 
@@ -995,7 +995,7 @@ int32_t OH_NativeWindow_SetColorSpace(OHNativeWindow *window, OH_NativeBuffer_Co
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindow](capi-nativewindow.md) *window | 一个指向[OHNativeWindow](capi-nativewindow.md)的结构体实例的指针。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个指向[OHNativeWindow](capi-nativewindow-nativewindow.md)的结构体实例的指针。 |
 | [OH_NativeBuffer_ColorSpace](capi-buffer-common-h.md#oh_nativebuffer_colorspace) colorSpace | 为OHNativeWindow设置的颜色空间，其值从[OH_NativeBuffer_ColorSpace](capi-buffer-common-h.md#oh_nativebuffer_colorspace)获取。 |
 
 **返回：**
@@ -1023,7 +1023,7 @@ int32_t OH_NativeWindow_GetColorSpace(OHNativeWindow *window, OH_NativeBuffer_Co
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindow](capi-nativewindow.md) *window | 一个指向[OHNativeWindow](capi-nativewindow.md)的结构体实例的指针。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个指向[OHNativeWindow](capi-nativewindow-nativewindow.md)的结构体实例的指针。 |
 | [OH_NativeBuffer_ColorSpace](capi-buffer-common-h.md#oh_nativebuffer_colorspace) *colorSpace | 为OHNativeWindow设置的颜色空间，其值从[OH_NativeBuffer_ColorSpace](capi-buffer-common-h.md#oh_nativebuffer_colorspace)获取。 |
 
 **返回：**
@@ -1051,7 +1051,7 @@ int32_t OH_NativeWindow_SetMetadataValue(OHNativeWindow *window, OH_NativeBuffer
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindow](capi-nativewindow.md) *window | 一个指向[OHNativeWindow](capi-nativewindow.md)的结构体实例的指针。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个指向[OHNativeWindow](capi-nativewindow-nativewindow.md)的结构体实例的指针。 |
 | [OH_NativeBuffer_MetadataKey](capi-buffer-common-h.md#oh_nativebuffer_metadatakey) metadataKey | Window的元数据类型，其值从[OH_NativeBuffer_MetadataKey](capi-buffer-common-h.md#oh_nativebuffer_metadatakey)获取。 |
 | int32_t size | uint8_t向量的大小，其取值范围见[OH_NativeBuffer_MetadataKey](capi-buffer-common-h.md#oh_nativebuffer_metadatakey)。 |
 | metaDate |  指向uint8_t向量的指针。 |
@@ -1081,7 +1081,7 @@ int32_t OH_NativeWindow_GetMetadataValue(OHNativeWindow *window, OH_NativeBuffer
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindow](capi-nativewindow.md) *window | 一个指向[OHNativeWindow](capi-nativewindow.md)的结构体实例的指针。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个指向[OHNativeWindow](capi-nativewindow-nativewindow.md)的结构体实例的指针。 |
 | [OH_NativeBuffer_MetadataKey](capi-buffer-common-h.md#oh_nativebuffer_metadatakey) metadataKey | Window的元数据类型，其值从[OH_NativeBuffer_MetadataKey](capi-buffer-common-h.md#oh_nativebuffer_metadatakey)获取。 |
 | int32_t *size | uint8_t向量的大小，其取值范围见[OH_NativeBuffer_MetadataKey](capi-buffer-common-h.md#oh_nativebuffer_metadatakey)。 |
 | metaDate |  指向uint8_t向量的二级指针。 |
@@ -1111,7 +1111,7 @@ int32_t OH_NativeWindow_CleanCache(OHNativeWindow *window)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHNativeWindow](capi-nativewindow.md) *window | 一个指向[OHNativeWindow](capi-nativewindow.md)的结构体实例的指针。 |
+| [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个指向[OHNativeWindow](capi-nativewindow-nativewindow.md)的结构体实例的指针。 |
 
 **返回：**
 
