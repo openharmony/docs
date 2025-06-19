@@ -51,7 +51,7 @@ let listener:inspector.ComponentObserver = inspector.createComponentObserver('CO
 
 组件布局和组件绘制送显完成回调的句柄，包含了申请句柄时的首次查询结果。
 
-### on
+### on('layout')
 
 on(type: 'layout', callback: () => void): void
 
@@ -65,10 +65,10 @@ on(type: 'layout', callback: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明|
 | -------- | ------ | ---- | -------------------------------------|
-| type     | string | 是   | 必须填写字符串'layout'、'draw'或'drawChildren'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。<br>drawChildren: 子组件绘制送显完成。|
-| callback | () => void   | 是   | 监听layout、draw或drawChildren的回调。|
+| type     | string | 是   | 必须填写字符串'layout'。<br>layout: 组件布局完成。|
+| callback | () => void   | 是   | 监听layout的回调。|
 
-### off
+### off('layout')
 
 off(type: 'layout', callback?: () => void): void
 
@@ -82,10 +82,10 @@ off(type: 'layout', callback?: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明 |
 | -------- | ------ | ---- | -------------------------------------------- |
-| type     | string | 是   | 必须填写字符串'layout'、'draw'或'drawChildren'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。<br>drawChildren: 子组件绘制送显完成。|
+| type     | string | 是   | 必须填写字符串'layout'。<br>layout: 组件布局完成。|
 | callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和[on](#on)方法中的callback为相同对象时才能取消回调成功。|
 
-### on
+### on('draw')
 
 on(type: 'draw', callback: () => void): void
 
@@ -99,10 +99,10 @@ on(type: 'draw', callback: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 必须填写字符串'layout'、'draw'或'drawChildren'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。<br>drawChildren: 子组件绘制送显完成。|
-| callback | () => void   | 是   | 监听layout、draw或drawChildren的回调。                                     |
+| type     | string | 是   | 必须填写字符串'draw'。<br>draw: 组件绘制送显完成。|
+| callback | () => void   | 是   | 监听draw的回调。                                     |
 
-### off
+### off('draw')
 
 off(type: 'draw', callback?: () => void): void
 
@@ -116,10 +116,10 @@ off(type: 'draw', callback?: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 必须填写字符串'layout'、'draw'或'drawChildren'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。<br>drawChildren: 子组件绘制送显完成。|
+| type     | string | 是   | 必须填写字符串'draw'。<br>draw: 组件绘制送显完成。|
 | callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和[on](#on-1)方法中的callback为相同对象时才能取消回调成功。 |
 
-### on<sup>20<sup>
+### on('drawChildren')<sup>20<sup>
 
 on(type: 'drawChildren',  callback: Callback\<void\>): void
 
@@ -133,12 +133,12 @@ on(type: 'drawChildren',  callback: Callback\<void\>): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 必须填写字符串'layout'、'draw'或'drawChildren'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。<br>drawChildren: 子组件绘制送显完成。|
-| callback | Callback\<void\>   | 是   | 监听layout、draw或drawChildren的回调。                                     |
+| type     | string | 是   | 必须填写字符串'drawChildren'。<br>drawChildren: 子组件绘制送显完成。|
+| callback | Callback\<void\>   | 是   | 监听drawChildren的回调。                                     |
 
-### off<sup>20<sup>
+### off('drawChildren')<sup>20<sup>
 
-off(type: 'drawChildren', callback: Callback\<void\>): void
+off(type: 'drawChildren', callback?: Callback\<void\>): void
 
 通过句柄向对应的查询条件取消注册回调，当组件绘制送显完成时不再触发指定的回调。
 
@@ -150,7 +150,7 @@ off(type: 'drawChildren', callback: Callback\<void\>): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 必须填写字符串'layout'、'draw'或'drawChildren'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。<br>drawChildren: 子组件绘制送显完成。|
+| type     | string | 是   | 必须填写字符串'drawChildren'。<br>drawChildren: 子组件绘制送显完成。|
 | callback | Callback\<void\>   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和[on](#on20)方法中的callback为相同对象时才能取消回调成功。 |
 
 **示例：**
