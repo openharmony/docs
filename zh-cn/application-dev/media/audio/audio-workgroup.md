@@ -8,7 +8,7 @@
 
 ### 创建音频工作组示例
 
-应用开发者在使用OH_AudioWorkgroup的API前，需要先用[OH_AudioManager_GetAudioResourceManager](../../reference/apis-audio-kit/capi-native-audio-resource-manager-h.md#oh_audiomanager_getaudioresourcemanager)获取OH_AudioResourceManager实例。
+应用开发者在使用OH_AudioWorkgroup的API前，需要先用[OH_AudioManager_GetAudioResourceManager]获取OH_AudioResourceManager实例。
 
   ```cpp
   #include <ohaudio/native_audio_resource_manager.h>
@@ -19,7 +19,7 @@
 
 ### 创建音频工作组并将关键线程加入音频工作组
 
-应用开发者可以使用[OH_AudioResourceManager_CreateWorkgroup](../../reference/apis-audio-kit/capi-native-audio-resource-manager-h.md#oh_audioresourcemanager_createworkgroup)创建一个新的音频工作组，然后使用[OH_AudioWorkgroup_AddCurrentThread](../../reference/apis-audio-kit/capi-native-audio-resource-manager-h.md#oh_audioworkgroup_addcurrentthread)将关键线程加入工作组。
+应用开发者可以使用[OH_AudioResourceManager_CreateWorkgroup]创建一个新的音频工作组，然后使用[OH_AudioWorkgroup_AddCurrentThread]将关键线程加入工作组。
 
   ```cpp
   #include <chrono>
