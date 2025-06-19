@@ -9,10 +9,13 @@
 > 本模块首批接口从API version 18开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
+
 ```ts
 import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
 ```
-## initializeEnvironment
+
+## videoProcessingEngine.initializeEnvironment
+
 initializeEnvironment(): Promise\<void>
 
 初始化环境。使用Promise异步回调。
@@ -22,6 +25,7 @@ initializeEnvironment(): Promise\<void>
 **系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
 
 **返回值：**
+
 |  类型 | 说明  |
 | ------------ | ------------ |
 |  Promise\<void> | Promise对象。无返回结果的Promise对象。  |
@@ -39,6 +43,7 @@ initializeEnvironment(): Promise\<void>
 | 29200007  | Out of memory.  |
 
 **示例：**
+
 ```ts
 import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
 async function initializeEnvironment() {
@@ -46,7 +51,8 @@ videoProcessingEngine.initializeEnvironment();
 }
 ```
 
-## deinitializeEnvironment
+## videoProcessingEngine.deinitializeEnvironment
+
 deinitializeEnvironment(): Promise\<void>
 
 释放处理资源。使用Promise异步回调。
@@ -56,6 +62,7 @@ deinitializeEnvironment(): Promise\<void>
 **系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
 
 **返回值：**
+
 |  类型 | 说明  |
 | ------------ | ------------ |
 |  Promise\<void> | Promise对象。无返回结果的Promise对象。  |
@@ -69,6 +76,7 @@ deinitializeEnvironment(): Promise\<void>
 | 29200006  | The operation is not permitted. This may be caused by incorrect status.  |
 
 **示例：**
+
 ```ts
 import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
 async function deinitializeEnvironment() {
@@ -77,7 +85,8 @@ async function deinitializeEnvironment() {
 }
 ```
 
-## create
+## videoProcessingEngine.create
+
 create(): ImageProcessor
 
 如果操作成功，创建图片处理模块实例，否则返回null。
@@ -87,6 +96,7 @@ create(): ImageProcessor
 **系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
 
 **返回值：**
+
 |  类型 | 说明  |
 | ------------ | ------------ |
 |  [ImageProcessor](#imageprocessor) | 图片处理模块实例。  |
@@ -102,6 +112,7 @@ create(): ImageProcessor
 | 29200007  | Out of memory.  |
 
 **示例：**
+
 ```ts
 import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
 async function create() {
@@ -111,12 +122,16 @@ let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.Ima
 ```
 
 ## ImageProcessor
-图像处理类，提供图片内容的清晰度增强及缩放能力。根据源图像的宽度和高度进行必要的缩放操作，生成目标图像。提供不同级别的缩放方法以平衡性能和图像质量。<br>
+
+图像处理类，提供图片内容的清晰度增强及缩放能力。根据源图像的宽度和高度进行必要的缩放操作，生成目标图像。提供不同级别的缩放方法以平衡性能和图像质量。
+
 规格约束如下：
+
 - 当前仅支持处理SDR（Standard dynamic range）图片。
 - 当前支持处理RGBA、BGRA、NV12、NV21像素格式的图片，输出格式与输入格式一致。
 
 ### enhanceDetail
+
 enhanceDetail(sourceImage: image.PixelMap, width: number, height: number, level?: QualityLevel): Promise\<image.PixelMap\>
 
 细节增强处理异步方法。使用Promise异步回调。
@@ -135,6 +150,7 @@ enhanceDetail(sourceImage: image.PixelMap, width: number, height: number, level?
 |  level | [QualityLevel](#qualitylevel)| 否  |  算法档位（HIGH、MEDIUM、LOW、NONE），默认为NONE。 |
 
 **返回值：**
+
 |  类型 | 说明  |
 | ------------ | ------------ |
 | Promise\<[image.PixelMap](js-apis-image.md#pixelmap7)\>  |  异步方法返回PixelMap的Promise实例。 |
@@ -150,6 +166,7 @@ enhanceDetail(sourceImage: image.PixelMap, width: number, height: number, level?
 |  29200009  | Input value is invalid. This error is returned for all of the following error conditions: <br>1 - Invalid input or output image buffer - The image buffer width(height) is too large or colorspace is incorrect. <br>2 - Invalid parameter - The parameter does not contain valid information, such as detail enhancer level is incorrect. |
 
 **示例：**
+
 ```ts
 import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
 async function enhanceDetail(sourceImage: image.PixelMap, width: number, height: number) {
@@ -160,6 +177,7 @@ async function enhanceDetail(sourceImage: image.PixelMap, width: number, height:
 ```
 
 ### enhanceDetail
+
 enhanceDetail(sourceImage: image.PixelMap, scale: number, level?: QualityLevel): Promise\<image.PixelMap\>
 
 细节增强处理异步方法。使用Promise异步回调。
@@ -177,6 +195,7 @@ enhanceDetail(sourceImage: image.PixelMap, scale: number, level?: QualityLevel):
 |  level | [QualityLevel](#qualitylevel)| 否  |  算法档位（HIGH、MEDIUM、LOW、NONE），默认为NONE。 |
 
 **返回值：**
+
 |  类型 | 说明  |
 | ------------ | ------------ |
 | Promise\<[image.PixelMap](js-apis-image.md#pixelmap7)\>  |  异步方法返回PixelMap的Promise实例。 |
@@ -192,6 +211,7 @@ enhanceDetail(sourceImage: image.PixelMap, scale: number, level?: QualityLevel):
 |  29200009  | Input value is invalid. This error is returned for all of the following error conditions: <br>1 - Invalid input or output image buffer - The image buffer width(height) is too large or colorspace is incorrect. <br>2 - Invalid parameter - The parameter does not contain valid information, such as detail enhancer level is incorrect.  |
 
 **示例：**
+
 ```ts
 import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
 async function enhanceDetail(sourceImage: image.PixelMap, scale: number) {
@@ -202,6 +222,7 @@ async function enhanceDetail(sourceImage: image.PixelMap, scale: number) {
 ```
 
 ### enhanceDetailSync
+
 enhanceDetailSync(sourceImage: image.PixelMap, width: number, height: number, level?: QualityLevel): image.PixelMap
 
 细节增强处理同步方法。
@@ -220,6 +241,7 @@ enhanceDetailSync(sourceImage: image.PixelMap, width: number, height: number, le
 |  level | [QualityLevel](#qualitylevel)| 否  |  算法档位（HIGH、MEDIUM、LOW、NONE），默认为NONE。 |
 
 **返回值：**
+
 |  类型 | 说明  |
 | ------------ | ------------ |
 | [image.PixelMap](js-apis-image.md#pixelmap7)  |  成功同步返回PixelMap对象。 |
@@ -236,6 +258,7 @@ enhanceDetailSync(sourceImage: image.PixelMap, width: number, height: number, le
 |  29200009  | Input value is invalid. This error is returned for all of the following error conditions: <br>1 - Invalid input or output image buffer - The image buffer width(height) is too large or colorspace is incorrect. <br>2 - Invalid parameter - The parameter does not contain valid information, such as detail enhancer level is incorrect. |
 
 **示例：**
+
 ```ts
 import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
 async function enhanceDetailSync(sourceImage:image.PixelMap, width: number, height: number) {
@@ -247,6 +270,7 @@ sourceImage, width, height, videoProcessingEngine.QualityLevel.HIGH);
 ```
 
 ### enhanceDetailSync
+
 enhanceDetailSync(sourceImage: image.PixelMap, scale: number, level?: QualityLevel): image.PixelMap
 
 细节增强处理同步方法。
@@ -264,6 +288,7 @@ enhanceDetailSync(sourceImage: image.PixelMap, scale: number, level?: QualityLev
 |  level | [QualityLevel](#qualitylevel)| 否  |  算法档位（HIGH、MEDIUM、LOW、NONE），默认为NONE。 |
 
 **返回值：**
+
 |  类型 | 说明  |
 | ------------ | ------------ |
 | [image.PixelMap](js-apis-image.md#pixelmap7)  |  成功同步返回PixelMap对象。 |
@@ -280,6 +305,7 @@ enhanceDetailSync(sourceImage: image.PixelMap, scale: number, level?: QualityLev
 |  29200009  | Input value is invalid. This error is returned for all of the following error conditions: <br>1 - Invalid input or output image buffer - The image buffer width(height) is too large or colorspace is incorrect. <br>2 - Invalid parameter - The parameter does not contain valid information, such as detail enhancer level is incorrect.  |
 
 **示例：**
+
 ```ts
 import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
 async function enhanceDetailSync(sourceImage:image.PixelMap, scale: number) {
@@ -298,10 +324,9 @@ sourceImage, scale, videoProcessingEngine.QualityLevel.HIGH);
 
 **系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
 
-
 | 名称  | 值  | 说明  |
 | ------------ | ------------ | ------------ |
-| NONE  | 0  | 仅适用于缩放场景，支持改变宽高比例。<br>- 输入分辨率要求（单位为像素，px)：宽：[32，3000]，高：[32，3000]。<br>- 输出分辨率要求（单位为像素，px)：宽：[32，3000]，高：[32，3000]。  |
-|  LOW |  1 | 仅适用于缩放场景，支持改变宽高比例。<br>- 输入分辨率要求（单位为像素，px)：宽：[32，3000]，高：[32，3000]。<br>- 输出分辨率要求（单位为像素，px)：宽：[32，3000]，高：[32，3000]。  |
-|  MEDIUM | 2  | 仅适用于缩放场景，支持改变宽高比例。<br>- 输入分辨率要求（单位为像素，px)：宽：[32，3000]，高：[32，3000]。<br>- 输出分辨率要求（单位为像素，px)：宽：[32，3000]，高：[32，3000]。  |
-|  HIGH |  3 |  1. 缩放场景，不支持改变宽高比例。<br>- 输入分辨率要求（单位为像素，px)：宽：(32，512) (2000，8192]，高：(32，512) (2000，8192]。<br>- 输出分辨率要求（单位为像素，px)：宽：(32，512) (2000，8192]，高：(32，512) (2000，8192]。 <br>2. 清晰度增强、缩放场景，支持改变宽高比例。<br>- 输入分辨率要求（单位为像素，px)：宽：[512，2000]，高：[512，2000]。<br>- 输出分辨率要求（单位为像素，px)：宽：[512，2000]，高：[512，2000]。 |
+| NONE  | 0  | 仅适用于缩放场景，支持改变宽高比例。<br>- 输入分辨率要求（单位为像素，px）：宽：[32，3000]，高：[32，3000]。<br>- 输出分辨率要求（单位为像素，px）：宽：[32，3000]，高：[32，3000]。  |
+|  LOW |  1 | 仅适用于缩放场景，支持改变宽高比例。<br>- 输入分辨率要求（单位为像素，px）：宽：[32，3000]，高：[32，3000]。<br>- 输出分辨率要求（单位为像素，px）：宽：[32，3000]，高：[32，3000]。  |
+|  MEDIUM | 2  | 仅适用于缩放场景，支持改变宽高比例。<br>- 输入分辨率要求（单位为像素，px）：宽：[32，3000]，高：[32，3000]。<br>- 输出分辨率要求（单位为像素，px）：宽：[32，3000]，高：[32，3000]。  |
+|  HIGH |  3 |  1. 缩放场景，不支持改变宽高比例。<br>- 输入分辨率要求（单位为像素，px）：宽：(32，512) (2000，8192]，高：(32，512) (2000，8192]。<br>- 输出分辨率要求（单位为像素，px）：宽：(32，512) (2000，8192]，高：(32，512) (2000，8192]。 <br>2. 清晰度增强、缩放场景，支持改变宽高比例。<br>- 输入分辨率要求（单位为像素，px）：宽：[512，2000]，高：[512，2000]。<br>- 输出分辨率要求（单位为像素，px）：宽：[512，2000]，高：[512，2000]。 |
