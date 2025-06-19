@@ -37,6 +37,10 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+>  **说明：**
+>
+>  在[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)的fingerList元素中，手指索引编号与位置相对应，即fingerList[index]的id为index。对于先按下但未参与当前手势触发的手指，fingerList中对应的位置为空。建议优先使用fingerInfos。
+
 | 名称 | 功能描述 |
 | -------- | -------- |
 | onAction(event:(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功回调。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
