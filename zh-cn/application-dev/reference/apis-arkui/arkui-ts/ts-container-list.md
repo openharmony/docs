@@ -1640,3 +1640,101 @@ struct ListExample {
 ```
 
 ![edgeEffect_list](figures/edgeEffect_list.gif)
+
+### 示例9（设置显示区域外插入数据时，保持显示内容不变）
+
+该示例通过maintainVisibleContentPosition接口，实现了上滑无限加载历史消息场景。
+
+```ts
+export class ListDataSource implements IDataSource {
+  private list: number[] = [];
+  private listeners: DataChangeListener[] = [];
+
+  constructor(list: number[]) {
+    this.list = list;
+  }
+
+  totalCount(): number {
+    return this.list.length;
+  }
+
+  getData(index: number): number {
+    return this.list[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener);
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  // 通知控制器数据删除
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index);
+    });
+  }
+
+  // 通知控制器添加数据
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    });
+  }
+
+  // 在指定索引位置删除一个元素
+  public deleteItem(index: number): void {
+    this.list.splice(index, 1);
+    this.notifyDataDelete(index);
+  }
+
+  // 在指定索引位置插入一个元素
+  public insertItem(index: number, data: number): void {
+    this.list.splice(index, 0, data);
+    this.notifyDataAdd(index);
+  }
+}
+
+@Entry
+@Component
+struct ListExample {
+  private arr: ListDataSource = new ListDataSource([990, 991, 992, 993, 994, 995, 996, 997, 998, 999]);
+  build() {
+    Column() {
+      List({ space: 20, initialIndex: 9 }) {
+        LazyForEach(this.arr, (item: number) => {
+          ListItem() {
+            Text('message:' + item)
+              .width('100%').height(100)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
+          }
+        }, (item: string) => item)
+      }
+      .maintainVisibleContentPosition(true)
+      .onScrollIndex((start:number)=>{
+        if (start < 5) {
+          for (let i = 0; i < 10; i++) {
+            this.arr.insertItem(0, this.arr.getData(0) - 1);
+          }
+        }
+      })
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor(0xDCDCDC)
+    .padding(12)
+  }
+}
+```
+
+![edgeEffect_list](figures/list_maintainvisiblecontentposition.gif)
