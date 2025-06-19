@@ -41,6 +41,7 @@
     - [native_audiorenderer.h](capi-native-audiorenderer-h.md)
     - [native_audio_common.h](capi-native-audio-common-h.md)
     - [native_audio_device_base.h](capi-native-audio-device-base-h.md)
+    - [native_audio_resource_manager.h](capi-native-audio-resource-manager-h.md)
     - [native_audiostream_base.h](capi-native-audiostream-base-h.md)
     - [native_audiostreambuilder.h](capi-native-audiostreambuilder-h.md)
   - 结构体<!--audio-struct-->
@@ -55,6 +56,8 @@
     - [OH_AudioVolumeManager](capi-oh-audiovolumemanager.md)
     - [OH_AudioDeviceDescriptorArray](capi-oh-audiodevicedescriptorarray.md)
     - [OH_AudioDeviceDescriptor](capi-oh-audiodevicedescriptor.md)
+    - [OH_AudioResourceManager](capi-oh-audioresourcemanager.md)
+    - [OH_AudioWorkgroup](capi-oh-audioworkgroup.md)
     - [OH_AudioStreamInfo](capi-oh-audiostreaminfo.md)
     - [OH_AudioRenderer_Callbacks_Struct](capi-oh-audiorenderer-callbacks-struct.md)
     - [OH_AudioCapturer_Callbacks_Struct](capi-oh-audiocapturer-callbacks-struct.md)
