@@ -26,6 +26,8 @@ Select(options: Array\<SelectOption>)
 
 ## SelectOption对象说明
 
+下拉菜单项的信息。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型                            | 必填 | 说明       |
@@ -706,6 +708,8 @@ menuBackgroundBlurStyle(style: Optional\<BlurStyle>)
 
 ## ArrowPosition<sup>10+</sup>枚举说明
 
+箭头的位置。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -716,6 +720,8 @@ menuBackgroundBlurStyle(style: Optional\<BlurStyle>)
 | START | 1 | 箭头在前，文字在后。 |
 
 ## MenuAlignType<sup>10+</sup>枚举说明
+
+下拉菜单的对齐方式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -728,6 +734,8 @@ menuBackgroundBlurStyle(style: Optional\<BlurStyle>)
 | END                 | 2 |按照语言方向末端对齐。 |
 
 ## MenuItemConfiguration<sup>12+</sup>对象说明
+
+开发者需要自定义class实现ContentModifier接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

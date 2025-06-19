@@ -6248,6 +6248,8 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 
 **示例：**
 
+该示例通过调用showToast接口，显示文本提示框。
+
 <!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
@@ -6547,6 +6549,8 @@ openCustomDialogWithController\<T extends Object>(dialogContent: ComponentConten
 
 暂不支持[isModal](js-apis-promptAction.md#basedialogoptions11) = true与[showInSubWindow](js-apis-promptAction.md#basedialogoptions11) = true同时使用。
 
+显示文本提示框并通过Promise返回其id。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -6576,6 +6580,8 @@ openCustomDialogWithController\<T extends Object>(dialogContent: ComponentConten
 | 103302 | Dialog content already exists.|
 
 **示例：**
+
+该示例通过调用openToast和closeToast接口，展示了弹出以及关闭文本提示框的功能。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6872,6 +6878,8 @@ presentCustomDialog(builder: CustomBuilder \| CustomBuilderWithId, controller?: 
 
 暂不支持isModal = true与showInSubWindow = true同时使用。
 
+关闭文本提示框。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -6900,6 +6908,8 @@ presentCustomDialog(builder: CustomBuilder \| CustomBuilderWithId, controller?: 
 | 100001   | Internal error.                                              |
 
 **示例：**
+
+该示例通过调用showDialog接口，展示了弹出对话框以及返回对话框响应结果的功能。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -7266,6 +7276,8 @@ openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, 
 
 **示例：**
 
+该示例通过调用openCustomDialog接口，展示了支持传入弹窗控制器与自定义弹窗绑定的功能。
+
 ```ts
 import { ComponentContent, FrameNode } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -7473,6 +7485,8 @@ openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, o
 
 **示例：**
 
+该示例通过调用closeCustomDialog接口，关闭已弹出的dialogContent对应的自定义弹窗。
+
 ```ts
 import { ComponentContent, FrameNode } from '@kit.ArkUI';
 
@@ -7563,6 +7577,8 @@ updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOption
 
 **示例：**
 
+该示例通过调用updateCustomDialog接口，动态调整已弹出自定义弹窗的位置。
+
 ```ts
 import { ComponentContent, FrameNode } from '@kit.ArkUI';
 
@@ -7650,6 +7666,8 @@ closeMenu\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
 | 103303 | The ComponentContent cannot be found. |
 
 **示例：**
+
+该示例通过调用openPopuo、updatePopup和closePopup接口，展示了弹出、更新以及关闭Popup的功能。
 
 ```ts
 import { ComponentContent, FrameNode } from '@kit.ArkUI';
@@ -7818,6 +7836,8 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 | 100001   | Internal handling failed. |
 
 **示例：**
+
+该示例通过调用openMenu接口，展示了弹出Menu的功能。
 
 ```ts
 import { dragController } from "@kit.ArkUI";
@@ -8109,6 +8129,8 @@ setDragEventStrictReportingEnabled(enable: boolean): void
 
 **示例：**
 
+该示例通过调用updateMenu接口，展示了更新Menu箭头样式的功能。
+
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
 import { window, UIContext } from '@kit.ArkUI';
@@ -8174,6 +8196,8 @@ notifyDragStartRequest(requestStatus: dragController.DragStartRequestStatus): vo
 | requestStatus  | [dragController.DragStartRequestStatus](js-apis-arkui-dragController.md#dragstartrequeststatus18)    | 是  |定义应用是否可以发起拖拽。|
 
 **示例：**
+
+该示例通过调用closeMenu接口，展示了关闭Menu的功能。
 
 ```ts
 import { unifiedDataChannel } from '@kit.ArkData';

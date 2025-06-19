@@ -30,6 +30,8 @@ Slider(options?: SliderOptions)
 
 ## SliderOptions对象说明
 
+滑动条的信息。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -47,6 +49,8 @@ Slider(options?: SliderOptions)
 | reverse<sup>8+</sup> | boolean | 否 | 设置滑动条取值范围是否反向。<br/>默认值：false<br/>值为true时，横向Slider从右往左滑动，竖向Slider从下往上滑动。值为false时，横向Slider从左往右滑动，竖向Slider从上往下滑动。 |
 
 ## SliderStyle枚举说明
+
+滑动条滑块在滑轨上显示的样式。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -593,6 +597,8 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 | mode   | [SliderChangeMode](#sliderchangemode枚举说明) | 是   | 事件触发的相关状态值。                                       |
 
 ## SliderChangeMode枚举说明
+
+滑块的状态值。包括按下、拖动、离开以及点击滑动条使滑块位置时。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
