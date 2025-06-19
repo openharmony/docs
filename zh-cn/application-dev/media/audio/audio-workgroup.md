@@ -45,7 +45,7 @@
 
     OH_AudioWorkgroup_Start(grp, startTimeMs, startTimeMs + intervalMs);
     
-    // 应用音频数据处理
+    // 应用音频数据处理。
 
     OH_AudioWorkgroup_Stop(grp);
   }
@@ -54,7 +54,7 @@
 ### 工作组任务结束后进行清理
 
   ```cpp
-  // 当线程已经不需要接入分组时，将其从工作组中移除
+  // 当线程已经不需要接入分组时，将其从工作组中移除。
   OH_AudioWorkgroup_RemoveThread(grp, tokenId);
 
   OH_AudioResourceManager_ReleaseWorkgroup(resMgr, grp);
