@@ -873,21 +873,6 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 | packageName           | string  |  是  | 规则适用的程序包名称。 |
 | accessType            | number  |  是  | 规则的类型。 |
 
-## DownloadableProfile<sup>18+</sup>
-
-可下载的配置文件。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.CoreService.Esim
-
-| 名称 | 类型 | 必填 | 说明 |
-| ----- | ----- | ----- | -----|
-| activationCode   | string             |  是  | 激活码。对于不基于激活码的配置文件，可能为空。 |
-| confirmationCode | string             |  否  | 确认码。      |
-| carrierName      | string             |  否  | 订阅名称。    |
-| accessRules      | Array\<AccessRule> |  否  | 访问规则数组。 |
-
 ## GetDownloadableProfileMetadataResult<sup>18+</sup>
 
 获取可下载配置文件的元数据。
