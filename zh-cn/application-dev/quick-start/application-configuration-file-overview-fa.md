@@ -69,7 +69,7 @@ config.json示例：
               "entity.system.home"
             ],
             "actions": [
-              "ohos.want.action.home"
+              "action.system.home"
             ]
           }
         ],
