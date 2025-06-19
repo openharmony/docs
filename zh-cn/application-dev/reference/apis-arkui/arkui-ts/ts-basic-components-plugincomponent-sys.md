@@ -116,6 +116,20 @@ onError(callback:&nbsp;PluginErrorCallback)
 | errcode    | number | 错误码。                    |
 | msg        | string | 错误信息。                  |
 
+错误码1为默认错误码，错误信息和处理建议详见下表：
+
+| 错误信息   | 描述                        | 处理建议 |
+| ------ | -------------------------- | ----------------- |
+| package path is empty. | 包路径为空。 | 检查PluginComponentTemplate参数中source字段是否有误。  |
+| Query Active OsAccountIds failed! | 获取激活的用户ID失败。 | 检查Account服务是否异常，或检查应用是否具备用户ID查询权限。    |
+| Template source is empty. | 模板source为空。 | 检查PluginComponentTemplate参数中source字段是否有误。  |
+| Bms bundleManager is nullptr. | 获取BundleManager失败。 |  检查BMS服务是否异常，或检查应用是否具备ohos.permission.GET_BUNDLE_INFO_PRIVILEGED,ohos.permission.GET_BUNDLE_INFO,ohos.permission.REQUIRE_FORM权限。                  |
+| App bundleName is empty. | 应用包名为空。  | 检查PluginComponentTemplate参数中bundleName字段是否有误。                   |
+| Bms get bundleName failed! | 获取包名失败。  |  检查PluginComponentTemplate参数中bundleName字段是否有误，或检查bundleName字段对应的包是否已正确安装，或检查BMS服务是否异常，或检查应用是否具备ohos.permission.GET_BUNDLE_INFO_PRIVILEGED,ohos.permission.GET_BUNDLE_INFO,ohos.permission.REQUIRE_FORM权限。                |
+| Bms moduleResPaths is empty. | 插件包moduleResPaths属性为空。 |  检查bundleName字段对应的包的moduleResPaths属性是否异常，或检查BMS服务是否异常                   |
+| Bms get hapPath failed! Cannot find hap according to BundleName and ModuleName! | 获取hapPath失败。  |   检查PluginComponentTemplate参数中bundleName字段是否有误，检查bundleName字段对应的模块是否已正确安装。               |
+
+
 ## 示例（加载PluginComponent）
 
 本示例展示`PluginComponent`组件的基础使用方式，需要创建一个`bundleName`为"com.example.user"的[使用方应用](#组件使用方)，和一个`bundleName`为"com.example.provider"的[提供方应用](#组件提供方)。应用项目构建完成后，具体测试步骤如下：
