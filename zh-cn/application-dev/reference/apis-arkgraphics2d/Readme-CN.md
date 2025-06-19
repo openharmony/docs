@@ -170,7 +170,6 @@
     - [OH_Drawing_Array](capi-drawing-oh-drawing-array.md)
     - [OH_Filter_ColorMatrix](capi-effectkit-oh-filter-colormatrix.md)
     - [OH_Filter](capi-effectkit-oh-filter.md)
-    - [OH_PixelmapNative](capi-effectkit-oh-pixelmapnative.md)
     - [OH_NativeImage](capi-oh-nativeimage-oh-nativeimage.md)
     - [NativeWindow](capi-nativewindow-nativewindow.md)
     - [NativeWindowBuffer](capi-nativewindow-nativewindowbuffer.md)
