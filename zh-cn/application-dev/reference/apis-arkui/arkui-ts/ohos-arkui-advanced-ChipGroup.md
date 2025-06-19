@@ -28,7 +28,7 @@ ChipGroup({
   multiple?: boolean,
   chipGroupSpace?: ChipGroupSpaceOptions,
   chipGroupPadding?: ChipGroupPaddingOptions,
-  onChange?: (selectedIndexes: Array<number>) => void,
+  onChange?: Callback<Array<number>>,
   suffix?: Callback<void>
 })
 ```
