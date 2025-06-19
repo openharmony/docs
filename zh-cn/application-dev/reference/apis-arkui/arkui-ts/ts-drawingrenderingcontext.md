@@ -54,6 +54,20 @@ invalidate(): void
 
 使组件无效，触发组件的重新渲染。
 
+## DrawingCanvas<sup>12+</sup>对象说明
+
+type DrawingCanvas = Canvas
+
+可用于向XComponent上绘制内容的画布对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) | 返回一个Canvas对象。 |
+
 ## 示例
 
 该示例实现了如何使用DrawingRenderingContext中的方法进行绘制。
