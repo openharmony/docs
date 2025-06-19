@@ -38,7 +38,7 @@ AtomicServiceSearch({
 | ----------- | :--------------- | ---- | ---------- | ------------------------------------------------------------ |
 | value       | [ResourceStr](ts-types.md#resourcestr) | 否 | @Prop | 设置当前显示的搜索文本内容。默认值为空字符串。 |
 | placeholder | [ResourceStr](ts-types.md#resourcestr) | 否 | @Prop | 搜索框内默认显示的提示文本。默认值为`Search`。 |
-| controller  | [SearchController](ts-basic-components-search.md#searchcontroller) | 否   | - | 原生Search组件控制器，用于设置输入光标的位置、退出编辑态等操作。默认值为`undefined`。 |
+| controller  | [SearchController](ts-basic-components-search.md#searchcontroller) | 否   | - | Search组件控制器，用于设置输入光标的位置、退出编辑态等操作。默认值为`undefined`。 |
 | select      | [SelectParams](#selectparams) | 否 | @Prop | select选择区的内容、事件及样式。默认值为`undefined`。 |
 | search      | [SearchParams](#searchparams) | 否 | @Prop | search搜索区可支持的事件及样式。默认值为`undefined`。 |
 | operation   | [OperationParams](#operationparams) | 否 | - | 选择区（右侧）的功能设置项。默认值为`undefined`。 |
