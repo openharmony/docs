@@ -605,6 +605,8 @@ Allows an application to use the Native Development Kit (NDK) of the passkey ser
 
 **Valid since**: 20
 
+## ohos.permission.USE_FLOAT_BALL
+
 Allows an application to use the global float ball.
 
 <!--RP46--><!--RP46End-->
