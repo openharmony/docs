@@ -24,7 +24,7 @@
       <!--DelEnd-->
       - [刷新本地图片和网络图片](arkts-ui-widget-image-update.md)
       - [根据卡片状态刷新不同内容](arkts-ui-widget-update-by-status.md)
-    - ArkTS卡片页面编辑<!--arkts-ui-widget-edit-->
+    - ArkTS卡片编辑<!--arkts-ui-widget-edit-->
       - [ArkTS卡片编辑概述](arkts-ui-widget-event-formeditextensionability-overview.md)
       - [卡片编辑开发指导](arkts-ui-widget-event-formeditextensionability.md)
     - 应用内请求卡片加桌<!--arkts-ui-widget-add-->
