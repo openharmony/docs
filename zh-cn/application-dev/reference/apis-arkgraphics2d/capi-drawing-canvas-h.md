@@ -652,7 +652,7 @@ void OH_Drawing_CanvasDrawRegion(OH_Drawing_Canvas* canvas, const OH_Drawing_Reg
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
-| const [OH_Drawing_Region](capi-drawing-oh-drawing-regionmd)* region | 指向区域对象的指针。 |
+| const [OH_Drawing_Region](capi-drawing-oh-drawing-region.md)* region | 指向区域对象的指针。 |
 
 ### OH_Drawing_CanvasDrawPoint()
 
@@ -1104,7 +1104,7 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasClipRegion(OH_Drawing_Canvas* canvas, cons
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
-| const [OH_Drawing_Region](capi-drawing-oh-drawing-regionmd)* region | 指向区域对象[OH_Drawing_Region](capi-drawing-oh-drawing-regionmd)的指针。 |
+| const [OH_Drawing_Region](capi-drawing-oh-drawing-region.md)* region | 指向区域对象[OH_Drawing_Region](capi-drawing-oh-drawing-region.md)的指针。 |
 | [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop) clipOp | 表示裁剪类型。支持可选的具体裁剪方式可见@{link OH_Drawing_CanvasClipOp}枚举。 |
 
 **返回：**
