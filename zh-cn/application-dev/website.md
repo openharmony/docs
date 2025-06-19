@@ -820,8 +820,8 @@
             - [卡片传递消息给应用（message事件）](form/arkts-ui-widget-event-formextensionability.md)
             - [通过router或call事件刷新卡片内容](form/arkts-ui-widget-event-uiability.md)
           - ArkTS卡片页面编辑<!--arkts-ui-widget-edit-->
-            - [ArkTS卡片页面编辑交互概述](form/arkts-ui-widget-event-formeditextensionability-overview.md)
-            - [编辑刷新卡片页面内容](form/arkts-ui-widget-event-formeditextensionability.md)
+            - [ArkTS卡片编辑概述](form/arkts-ui-widget-event-formeditextensionability-overview.md)
+            - [卡片编辑开发指导](form/arkts-ui-widget-event-formeditextensionability.md)
           - 应用内请求卡片加桌<!--arkts-ui-widget-add-->
             - [应用内拉起卡片管理加桌](form/arkts-ui-widget-open-formmanager.md)
         <!--Del--> 
