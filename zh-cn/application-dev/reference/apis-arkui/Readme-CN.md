@@ -530,6 +530,7 @@
     - [OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md)
     - [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md)
     - [OH_NativeXComponent_TouchPoint](_o_h___native_x_component___touch_point.md)
+    - [OH_NativeXComponent_HistoricalPoint](_o_h___native_x_component___historical_point.md)
     - [PictureInPicture_PipConfig](capi-pictureinpicture-pipconfig.md)
     - [WindowManager_Rect](capi-windowmanager-rect.md)
     - [struct](capi-struct.md)
