@@ -247,6 +247,8 @@ WindowStage生命周期。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 | 名称       | 值 | 说明       |
 | ---------- | ------ | ---------- |
 | SHOWN      | 1      | 切到前台。 |
