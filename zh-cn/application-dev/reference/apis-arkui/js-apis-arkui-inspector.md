@@ -50,7 +50,7 @@ let listener:inspector.ComponentObserver = inspector.createComponentObserver('CO
 
 组件布局和组件绘制送显完成回调的句柄，包含了申请句柄时的首次查询结果。
 
-### on
+### on('layout')
 
 on(type: 'layout', callback: () => void): void
 
@@ -64,10 +64,10 @@ on(type: 'layout', callback: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明|
 | -------- | ------ | ---- | -------------------------------------|
-| type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。 |
-| callback | () => void   | 是   | 监听layout或draw的回调。|
+| type     | string | 是   | 必须填写字符串'layout。<br>layout: 组件布局完成。 |
+| callback | () => void   | 是   | 监听layout的回调。|
 
-### off
+### off('layout')
 
 off(type: 'layout', callback?: () => void): void
 
@@ -81,10 +81,10 @@ off(type: 'layout', callback?: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明 |
 | -------- | ------ | ---- | -------------------------------------------- |
-| type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。 |
+| type     | string | 是   | 必须填写字符串'layout'。<br>layout: 组件布局完成。 |
 | callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和[on](#on)方法中的callback为相同对象时才能取消回调成功。|
 
-### on
+### on('draw')
 
 on(type: 'draw', callback: () => void): void
 
@@ -98,10 +98,10 @@ on(type: 'draw', callback: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。 |
-| callback | () => void   | 是   | 监听layout或draw的回调。                                     |
+| type     | string | 是   | 必须填写字符串'draw'。<br>draw: 组件绘制送显完成。 |
+| callback | () => void   | 是   | 监听draw的回调。                                     |
 
-### off
+### off('draw')
 
 off(type: 'draw', callback?: () => void): void
 
@@ -115,7 +115,7 @@ off(type: 'draw', callback?: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。 |
+| type     | string | 是   | 必须填写字符串'draw'。<br>draw: 组件绘制送显完成。 |
 | callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和[on](#on-1)方法中的callback为相同对象时才能取消回调成功。 |
 
 **示例：**
