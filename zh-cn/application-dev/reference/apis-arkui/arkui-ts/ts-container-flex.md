@@ -7,7 +7,7 @@ Flex是以弹性方式布局子组件的容器组件，能够高效地排列、�
 > **说明：**
 >
 > - 该组件从API version 7开始支持。后续版本如有新增内容将采用上角标单独标记该内容的起始版本。
-> - Flex组件在渲染时存在二次布局过程，因此建议在对性能有严格要求的场景下使用[Column](ts-container-column.md)或[Row](ts-container-row.md)代替。
+> - Flex组件在渲染时存在二次布局过程，因此在对性能有严格要求的场景下建议使用[Column](ts-container-column.md)、[Row](ts-container-row.md)代替。最佳实践请参考[合理使用布局-合理使用布局组件](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-improve-layout-performance#section12745188175420)。
 > - Flex组件主轴不设置长度时默认撑满父容器，[Column](ts-container-column.md)、[Row](ts-container-row.md)组件主轴不设置长度时默认跟随子节点大小。
 > - Flex、Column、Row组件在没有子节点且不设置宽高时，默认宽高为-1。
 > - 主轴长度可设置为auto使Flex自适应子组件布局，自适应时，Flex长度受constraintSize属性以及父容器传递的最大最小长度限制，且constraintSize属性优先级更高。
