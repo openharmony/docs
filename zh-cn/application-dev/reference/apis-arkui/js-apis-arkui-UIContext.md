@@ -6323,6 +6323,8 @@ showToast(options: promptAction.ShowToastOptions): void
 
 **示例：**
 
+该示例通过调用showToast接口，显示文本提示框。
+
 <!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
@@ -6344,6 +6346,8 @@ try {
 ### openToast<sup>18+</sup>
 
 openToast(options: promptAction.ShowToastOptions): Promise&lt;number&gt;
+
+显示文本提示框并通过Promise返回其id。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -6371,6 +6375,8 @@ openToast(options: promptAction.ShowToastOptions): Promise&lt;number&gt;
 | 100001   | Internal error.                                              |
 
 **示例：**
+
+该示例通过调用openToast和closeToast接口，展示了弹出以及关闭文本提示框的功能。
 
 ```ts
 import { PromptAction } from '@kit.ArkUI';
@@ -6417,6 +6423,8 @@ struct toastExample {
 ### closeToast<sup>18+</sup>
 
 closeToast(toastId: number): void
+
+关闭文本提示框。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -6470,6 +6478,8 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 **示例：**
 
 <!--code_no_check-->
+
+该示例通过调用showDialog接口，展示了弹出对话框以及返回对话框响应结果的功能。
 
 ```ts
 import { PromptAction } from '@kit.ArkUI';
@@ -6536,6 +6546,8 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 | 100001 | Internal error. |
 
 **示例：**
+
+该示例通过调用showDialog接口，展示了弹出对话框以及通过Promise获取对话框响应结果的功能。
 
 <!--code_no_check-->
 ```ts
@@ -6653,6 +6665,8 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.
 
 **示例：**
 
+该示例通过调用showActionMenu接口，展示了弹出对话框以及返回对话框响应结果的功能。
+
 <!--code_no_check-->
 ```ts
 import { PromptAction,promptAction  } from '@kit.ArkUI';
@@ -6712,6 +6726,8 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 | 100001 | Internal error. |
 
 **示例：**
+
+该示例通过调用showActionMenu接口，展示了弹出对话框以及通过Promise获取对话框响应结果的功能。
 
 <!--code_no_check-->
 ```ts
@@ -6909,6 +6925,8 @@ openCustomDialogWithController\<T extends Object>(dialogContent: ComponentConten
 
 **示例：**
 
+该示例通过调用openCustomDialog接口，展示了支持传入弹窗控制器与自定义弹窗绑定的功能。
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent, promptAction } from '@kit.ArkUI';
@@ -7005,6 +7023,8 @@ closeCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>): Promi
 
 **示例：**
 
+该示例通过调用closeCustomDialog接口，关闭已弹出的dialogContent对应的自定义弹窗。
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent } from '@kit.ArkUI';
@@ -7100,6 +7120,8 @@ updateCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, optio
 | 103303 | The ComponentContent cannot be found. |
 
 **示例：**
+
+该示例通过调用updateCustomDialog接口，动态调整已弹出自定义弹窗的位置。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -7556,7 +7578,7 @@ struct Index {
 
 openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, options?: PopupCommonOptions): Promise&lt;void&gt;
 
-创建并弹出以content作为内容的popup弹窗，使用Promise异步回调。
+创建并弹出以content作为内容的Popup弹窗，使用Promise异步回调。
 
 > **说明：**
 >
@@ -7597,6 +7619,8 @@ openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, 
 | 103305 | The node of targetId is not in the component tree. |
 
 **示例：**
+
+该示例通过调用openPopuo、updatePopup和closePopup接口，展示了弹出、更新以及关闭Popup的功能。
 
 ```ts
 import { ComponentContent, FrameNode } from '@kit.ArkUI';
@@ -7684,7 +7708,7 @@ struct Index {
 
 updatePopup\<T extends Object>(content: ComponentContent\<T>, options: PopupCommonOptions, partialUpdate?: boolean ): Promise&lt;void&gt;
 
-更新content对应的popup弹窗的样式，使用Promise异步回调。
+更新content对应的Popup弹窗的样式，使用Promise异步回调。
 
 > **说明：**
 >
@@ -7727,7 +7751,7 @@ updatePopup\<T extends Object>(content: ComponentContent\<T>, options: PopupComm
 
 closePopup\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
 
-关闭content对应的popup弹窗，使用Promise异步回调。
+关闭content对应的Popup弹窗，使用Promise异步回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -7763,7 +7787,7 @@ closePopup\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt
 
 openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, options?: MenuOptions): Promise&lt;void&gt;
 
-创建并弹出以content作为内容的menu弹窗。使用Promise异步回调。
+创建并弹出以content作为内容的Menu弹窗。使用Promise异步回调。
 
 > **说明：**
 >
@@ -7804,6 +7828,8 @@ openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, o
 | 103305 | The node of targetId is not in the component tree. |
 
 **示例：**
+
+该示例通过调用openMenu接口，展示了弹出Menu的功能。
 
 ```ts
 import { ComponentContent, FrameNode } from '@kit.ArkUI';
@@ -7858,7 +7884,7 @@ struct Index {
 
 updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOptions, partialUpdate?: boolean ): Promise&lt;void&gt;
 
-更新content对应的menu弹窗的样式。使用Promise异步回调。
+更新content对应的Menu弹窗的样式。使用Promise异步回调。
 
 > **说明：**
 >
@@ -7894,6 +7920,8 @@ updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOption
 | 103303 | The ComponentContent cannot be found. |
 
 **示例：**
+
+该示例通过调用updateMenu接口，展示了更新Menu箭头样式的功能。
 
 ```ts
 import { ComponentContent, FrameNode } from '@kit.ArkUI';
@@ -7953,7 +7981,7 @@ struct Index {
 
 closeMenu\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
 
-关闭content对应的menu弹窗。使用Promise异步回调。
+关闭content对应的Menu弹窗。使用Promise异步回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -7982,6 +8010,8 @@ closeMenu\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
 | 103303 | The ComponentContent cannot be found. |
 
 **示例：**
+
+该示例通过调用closeMenu接口，展示了关闭Menu的功能。
 
 ```ts
 import { ComponentContent, FrameNode } from '@kit.ArkUI';
