@@ -4,7 +4,7 @@
 
 ## 使用说明
 
-对于播放音频类的应用，开发者首先创建音频工作组，然后将工作组运行信息周期性的告知系统，在工作结束后，需要进行音频工作组的清理。
+对于播放音频类应用，开发者需要先创建音频工作组，再将工作组运行信息的周期性告知系统。当工作结束后，需要对音频工作组进行清理。
 
 ### 创建音频工作组示例
 
@@ -33,7 +33,7 @@
 
 ### 通知系统音频工作组的开始与结束
 
-应用开发者可以在音频工作组开始一个周期的工作时，通知系统任务开始时间以及任务预期完成工作的时间，并在音频工作组结束当前周期内的工作时，通知系统任务已结束。
+在当音频工作组开始进行一个周期的工作时，开发者可以通知系统任务开始时间和任务预期完成的时间，并在音频工作组结束当前周期内的工作时，通知系统任务已结束。
 
   ```cpp
   constexpr static uint64_t intervalMs = 20;
@@ -45,7 +45,7 @@
 
     OH_AudioWorkgroup_Start(grp, startTimeMs, startTimeMs + intervalMs);
     
-    // audio data processing work.
+    // 应用音频数据处理
 
     OH_AudioWorkgroup_Stop(grp);
   }
@@ -54,7 +54,7 @@
 ### 工作组任务结束后进行清理
 
   ```cpp
-  // remove thread from workgroup when thread is not needed.
+  // 当线程已经不需要接入分组时，将其从工作组中移除
   OH_AudioWorkgroup_RemoveThread(grp, tokenId);
 
   OH_AudioResourceManager_ReleaseWorkgroup(resMgr, grp);
