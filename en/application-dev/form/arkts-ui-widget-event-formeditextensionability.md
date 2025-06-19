@@ -15,19 +15,19 @@ import { ExtensionEvent } from '../pages/model/ExtensionEvent';
 const TAG: string = 'FormEditDemo[EntryFormEditAbility] -->';
 export default class EntryFormEditAbility extends FormEditExtensionAbility {
   onCreate() {
-    console.info(`${TAG} onCreate`);
+    console.log(`${TAG} onCreate`);
   }
   onForeground(): void {
-    console.info(`${TAG} EntryFormEditAbility onForeground.....`);
+    console.log(`${TAG} EntryFormEditAbility onForeground.....`);
   }
   onBackground(): void {
-    console.info(`${TAG} EntryFormEditAbility onBackground......`);
+    console.log(`${TAG} EntryFormEditAbility onBackground......`);
   }
   onDestroy(): void {
-    console.info(`${TAG} EntryFormEditAbility onDestroy......`);
+    console.log(`${TAG} EntryFormEditAbility onDestroy......`);
   }
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    console.info(`${TAG} onSessionCreate start..... want: ${JSON.stringify(want)}`);
+    console.log(`${TAG} onSessionCreate start..... want: ${JSON.stringify(want)}`);
     let storage: LocalStorage = new LocalStorage();
     let extensionEvent: ExtensionEvent = new ExtensionEvent();
     extensionEvent.setStartSecondPage(() => this.startSecondPage());
@@ -36,16 +36,16 @@ export default class EntryFormEditAbility extends FormEditExtensionAbility {
       session.loadContent('pages/Extension', storage);
       session.setWindowBackgroundColor('#00000000');
     } catch (e) {
-      console.error(`${TAG} EntryFormEditAbility loadContent err, want: ${JSON.stringify(e)}`);
+      console.log(`${TAG} EntryFormEditAbility loadContent err, want: ${JSON.stringify(e)}`);
     }
   }
   onSessionDestroy(session: UIExtensionContentSession) {
-    console.info(`${TAG} onSessionDestroy`);
+    console.log(`${TAG} onSessionDestroy`);
   }
   private startSecondPage(): void {
     const bundleName: string = this.context.extensionAbilityInfo.bundleName;
     const secPageAbilityName: string = 'FormEditSecPageAbility';
-    console.info(`${TAG} startSecondPage. bundleName: ${bundleName}, secPageAbilityName: ${secPageAbilityName}.`);
+    console.log(`${TAG} startSecondPage. bundleName: ${bundleName}, secPageAbilityName: ${secPageAbilityName}.`);
     try {
       this.context.startSecondPage({
         bundleName: bundleName,
@@ -54,7 +54,7 @@ export default class EntryFormEditAbility extends FormEditExtensionAbility {
         }
       });
     } catch (err) {
-      console.error(`${TAG} startSecondPage failed: ${err}`);
+      console.log(`${TAG} startSecondPage failed: ${err}`);
     }
   }
 };
@@ -93,7 +93,7 @@ struct Extension {
             top: 20
           })
           .onClick(() => {
-            console.info(`${TAG} Button onClick`);
+            console.log(`${TAG} Button onClick`);
             this.extensionEvent?.startFormEditSecondPage();
           })
       }
@@ -112,14 +112,14 @@ struct Extension {
 const TAG: string = 'FormEditDemo[ExtensionEvent] -->';
 export class ExtensionEvent {
   private startSecondPage: () => void = () => {
-    console.info(`${TAG} startSecondPage is empty!`);
+    console.log(`${TAG} startSecondPage is empty!`);
   };
   public setStartSecondPage(startSecondPage: () => void) {
-    console.info(`${TAG} setStartSecondPage`);
+    console.log(`${TAG} setStartSecondPage`);
     this.startSecondPage = startSecondPage;
   }
   public startFormEditSecondPage(): void {
-    console.info(`${TAG} startFormEditSecondPage`);
+    console.log(`${TAG} startFormEditSecondPage`);
     this.startSecondPage();
   }
 }
