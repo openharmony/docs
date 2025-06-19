@@ -60,7 +60,7 @@
 | [ArkUI_NodeCustomEventType](_ark_u_i___native_module.md#arkui_nodecustomeventtype) {<br/>[ARKUI_NODE_CUSTOM_EVENT_ON_MEASURE](_ark_u_i___native_module.md) = 1 &lt;&lt; 0, [ARKUI_NODE_CUSTOM_EVENT_ON_LAYOUT](_ark_u_i___native_module.md) = 1 &lt;&lt; 1, [ARKUI_NODE_CUSTOM_EVENT_ON_DRAW](_ark_u_i___native_module.md) = 1 &lt;&lt; 2, [ARKUI_NODE_CUSTOM_EVENT_ON_FOREGROUND_DRAW](_ark_u_i___native_module.md) = 1 &lt;&lt; 3,<br/>[ARKUI_NODE_CUSTOM_EVENT_ON_OVERLAY_DRAW](_ark_u_i___native_module.md) = 1 &lt;&lt; 4<br/>} | 定义自定义组件事件类型。  | 
 | [ArkUI_NodeAdapterEventType](_ark_u_i___native_module.md#arkui_nodeadaptereventtype) {<br/>[NODE_ADAPTER_EVENT_WILL_ATTACH_TO_NODE](_ark_u_i___native_module.md) = 1, [NODE_ADAPTER_EVENT_WILL_DETACH_FROM_NODE](_ark_u_i___native_module.md) = 2, [NODE_ADAPTER_EVENT_ON_GET_NODE_ID](_ark_u_i___native_module.md) = 3, [NODE_ADAPTER_EVENT_ON_ADD_NODE_TO_ADAPTER](_ark_u_i___native_module.md) = 4,<br/>[NODE_ADAPTER_EVENT_ON_REMOVE_NODE_FROM_ADAPTER](_ark_u_i___native_module.md) = 5<br/>} | 定义节点适配器事件枚举值。  | 
 | [ArkUI_NodeContentEventType](_ark_u_i___native_module.md#arkui_nodecontenteventtype) { [NODE_CONTENT_EVENT_ON_ATTACH_TO_WINDOW](_ark_u_i___native_module.md) = 0, [NODE_CONTENT_EVENT_ON_DETACH_FROM_WINDOW](_ark_u_i___native_module.md) = 1 } | 定义NodeContent事件类型。  | 
-
+| [ArkUI_InspectorErrorCode](_ark_u_i___native_module.md#arkui_inspectorerrorcode) { ARKUI_INSPECTOR_NATIVE_RESULT_SUCCESSFUL = 0, ARKUI_INSPECTOR_NATIVE_RESULT_BAD_PARAMETER = 1 } | 定义Inspector错误码。  |
 
 ### 函数
 
