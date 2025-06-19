@@ -992,7 +992,7 @@ updateConfiguration(): void
 
 **示例：**
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
+import { NodeController, BuilderNode, FrameNode, UIContext, FrameCallback } from "@kit.ArkUI";
 import { AbilityConstant, Configuration, ConfigurationConstant, EnvironmentCallback } from '@kit.AbilityKit';
 
 class Params {
@@ -1067,9 +1067,15 @@ class TextNodeController extends NodeController {
 // 记录创建的自定义节点对象
 const builderNodeMap: Array<BuilderNode<[Params]>> = new Array();
 
+class MyFrameCallback extends FrameCallback {
+  onFrame() {
+    updateColorMode();
+  }
+}
+
 function updateColorMode() {
   builderNodeMap.forEach((value, index) => {
-    // 通知BuilderNode环境变量改变
+    // 通知BuilderNode环境变量改变，触发深浅色切换
     value.updateConfiguration();
   })
 }
@@ -1088,7 +1094,7 @@ struct Index {
       },
       onConfigurationUpdated: (config: Configuration): void => {
         console.log('onConfigurationUpdated ' + JSON.stringify(config));
-        updateColorMode();
+        this.getUIContext()?.postFrameCallback(new MyFrameCallback());
       }
     };
     // 注册监听回调

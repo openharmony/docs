@@ -349,7 +349,7 @@ export default function abilityTest() {
 
 **查看测试用例覆盖率**
 
-执行完测试用例后可以查看测试用例覆盖率，具体操作请参考[代码测试](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-code-test-V5)下各章节内的覆盖率统计模式。
+执行完测试用例后可以查看测试用例覆盖率，具体操作请参考[代码测试](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-code-test)下各章节内的覆盖率统计模式。
 
 #### 在CMD执行
 
