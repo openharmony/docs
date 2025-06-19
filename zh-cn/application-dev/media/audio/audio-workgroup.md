@@ -8,7 +8,7 @@
 
 ### 创建音频工作组示例
 
-应用开发者在使用OH_AudioWorkgroup的API前，需要先用[OH_AudioManager_GetAudioResourceManager]获取OH_AudioResourceManager实例。
+开发者在使用OH_AudioWorkgroup的API前，需要先用[OH_AudioManager_GetAudioResourceManager]获取OH_AudioResourceManager实例。
 
   ```cpp
   #include <ohaudio/native_audio_resource_manager.h>
@@ -45,7 +45,7 @@
 
     OH_AudioWorkgroup_Start(grp, startTimeMs, startTimeMs + intervalMs);
     
-    // audio data processing work.
+    // 应用音频数据处理
 
     OH_AudioWorkgroup_Stop(grp);
   }
@@ -54,7 +54,7 @@
 ### 工作组任务结束后进行清理
 
   ```cpp
-  // remove thread from workgroup when thread is not needed.
+  // 当线程已经不需要接入分组时，将其从工作组中移除
   OH_AudioWorkgroup_RemoveThread(grp, tokenId);
 
   OH_AudioResourceManager_ReleaseWorkgroup(resMgr, grp);
