@@ -71,7 +71,7 @@ List和[LinkedList](../reference/apis-arkts/js-apis-linkedlist.md)相比，Linke
 
 LinkedList和[List](../reference/apis-arkts/js-apis-list.md)相比，LinkedList是双向链表，支持快速的头尾增删操作，而List是单向链表，不支持双向操作。
 
-LinkedList和[ArrayList](../reference/apis-arkts/js-apis-arraylist.md)相比，LinkedList插入数据的效率高于ArrayLis，而ArrayList的查询效率高于LinkedList。
+LinkedList和[ArrayList](../reference/apis-arkts/js-apis-arraylist.md)相比，LinkedList插入数据的效率高于ArrayList，而ArrayList的查询效率高于LinkedList。
 
 当需要频繁的插入删除元素，并且需要使用双向链表时，推荐使用LinkedList高效操作。
 
