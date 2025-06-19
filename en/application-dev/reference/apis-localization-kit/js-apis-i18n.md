@@ -620,7 +620,7 @@ Enumerates the first day of a week. The value ranges from Monday to Sunday.
 
 isRTL(locale: string): boolean
 
-Checks whether a language is an RTL language. For an RTL language, [UI mirroring](see../../internationalization/i18n-ui-design.md#ui-mirroring) is required.
+Checks whether a language is an RTL language. For an RTL language, [UI mirroring](../../internationalization/i18n-ui-design.md#ui-mirroring) is required.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
