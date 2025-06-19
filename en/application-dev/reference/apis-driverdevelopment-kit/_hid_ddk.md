@@ -724,7 +724,7 @@ ohos.permission.ACCESS_DDK_HID
 
 - HID_DDK_INVALID_OPERATION: Invalid operation. The hid_ddk service connection fails or the caller is not the device creator.
 
-- HID_DDK_FAILURE: Device not exist.
+- HID_DDK_FAILURE: Device not found.
 
 
 ### OH_Hid_EmitEvent()
@@ -763,7 +763,7 @@ ohos.permission.ACCESS_DDK_HID
 
 - HID_DDK_NULL_PTR: Null pointer. The input device is empty.
 
-- HID_DDK_FAILURE: Device not exist.
+- HID_DDK_FAILURE: Device not found.
 
 
 ### OH_Hid_GetPhysicalAddress()

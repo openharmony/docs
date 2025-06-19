@@ -25,14 +25,14 @@
   <!--DelEnd-->
 - C APIs<!--input-c-->
   - Modules<!--input-module-->
-    - [input](capi-input.md)
+    - [Input](input.md)
   - Header Files<!--input-headerfile-->
-    - [oh_axis_type.h](capi-oh-axis-type-h.md)
-    - [oh_input_manager.h](capi-oh-input-manager-h.md)
-    - [oh_key_code.h](capi-oh-key-code-h.md)
+    - [oh_axis_type.h](oh__axis__type_8h.md)
+    - [oh_input_manager.h](oh__input__manager_8h.md)
+    - [oh_key_code.h](oh__key__code_8h.md)
   - Structs<!--input-struct-->
-    - [Input_DeviceListener](capi-input-devicelistener.md)
-    - [Input_InterceptorEventCallback](capi-input-interceptoreventcallback.md)
+    - [Input_DeviceListener](_input___device_listener.md)
+    - [Input_InterceptorEventCallback](_input___interceptor_event_callback.md)
 - Error Codes<!--input-arkts-errcode-->
   <!--Del-->
   - [Screen Hopping Error Codes](errorcode-cooperator.md)
