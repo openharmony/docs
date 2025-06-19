@@ -1178,7 +1178,7 @@ having(conditions:string, args?: Array\<ValueType>): RdbPredicates
 
 | **错误码ID** | **错误信息**                                                                                                       |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 14800001       | Invalid args. Possible causes: 1. conditions are empty;  2. missing GROUP BY clause. |
+| 14800001       | Invalid arguments. Possible causes: 1. conditions are empty;  2. missing GROUP BY clause. |
 
 **示例1：**
 
