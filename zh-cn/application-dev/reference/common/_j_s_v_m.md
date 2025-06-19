@@ -332,7 +332,7 @@
 | JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_GetPrivate](#oh_jsvm_getprivate)([JSVM_Env](#jsvm_env) env, [JSVM_Value](#jsvm_value) object,  [JSVM_Data](#jsvm_data) key, [JSVM_Value](#jsvm_value) \*result) | 从传入的object获取 private key 对应的 private 属性。 |
 | JSVM_EXTERN  [JSVM_Status](#jsvm_status) [OH_JSVM_DeletePrivate](#oh_jsvm_deleteprivate)([JSVM_Env](#jsvm_env) env, [JSVM_Value](#jsvm_value) object,  [JSVM_Data](#jsvm_data) key) |  从传入的 object 上删除 private key 对应的 private 属性。 |
 | JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_CreateDataReference](#oh_jsvm_createdatareference)([JSVM_Env](#jsvm_env) env,  [JSVM_Data](#jsvm_data) data, uint32_t initialRefcount, [JSVM_Ref](#jsvm_ref) \*result) | 创建一个对于给定 JSVM_Data 对象的引用，初始的引用计数为传入的 initialRefcount。 |
-| JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_GetReferenceData](#oh_jsvm_getreferencedata)([JSVM_Env](#jsvm_env) env, [JSVM_Ref](#jsvm_ref) ref, [JSVM_Data](#jsvm_data) \*result) |  |
+| JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_GetReferenceData](#oh_jsvm_getreferencedata)([JSVM_Env](#jsvm_env) env, [JSVM_Ref](#jsvm_ref) ref, [JSVM_Data](#jsvm_data) \*result) | 如果引用仍然有效，通过 result 参数返回对应的 JSVM_Data，表示与 JSVM_Ref 关联的 JavaScript 值。否则结果将为空。 |
 
 ## 宏定义说明
 
