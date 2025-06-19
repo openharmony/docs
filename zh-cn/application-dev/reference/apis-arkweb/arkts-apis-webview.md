@@ -17,3 +17,5 @@
 ```ts
 import { webview } from '@kit.ArkWeb';
 ```
+
+**系统能力：** SystemCapability.Web.Webview.Core
