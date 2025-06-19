@@ -1870,3 +1870,51 @@ try {
   console.error(`[appManager] killProcessesInBatch error: ${code}, ${message}`);
 }
 ```
+
+## AppForegroundStateObserver<sup>11+</sup>
+
+type AppForegroundStateObserver = _AppForegroundStateObserver
+
+应用启动和退出的状态监听。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_AppForegroundStateObserver](js-apis-inner-application-appForegroundStateObserver-sys.md) | 应用启动和退出的状态监听。 |
+
+## AbilityFirstFrameStateObserver<sup>12+</sup>
+
+type AbilityFirstFrameStateObserver = _AbilityFirstFrameStateObserver
+
+UIAbility首帧绘制完成事件监听对象。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_AbilityFirstFrameStateObserver](js-apis-inner-application-abilityFirstFrameStateData-sys.md) | UIAbility首帧绘制完成事件监听对象。 |
+
+## AbilityFirstFrameStateData<sup>12+</sup>
+
+type AbilityFirstFrameStateData = _AbilityFirstFrameStateData
+
+UIAbility首帧绘制完成回调上报数据结构。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_AbilityFirstFrameStateData](js-apis-inner-application-abilityFirstFrameStateData-sys.md) | UIAbility首帧绘制完成回调上报数据结构。 |
+
+## RunningMultiAppInfo<sup>12+</sup>
+
+type RunningMultiAppInfo = _RunningMultiAppInfo
+
+应用多开在运行态的结构信息。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_RunningMultiAppInfo](js-apis-inner-application-runningMultiAppInfo-sys.md) | 应用多开在运行态的结构信息。 |
