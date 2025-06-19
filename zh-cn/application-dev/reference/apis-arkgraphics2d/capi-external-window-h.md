@@ -394,7 +394,7 @@ int32_t OH_NativeWindow_NativeWindowFlushBuffer(OHNativeWindow *window, OHNative
 | [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
 | [OHNativeWindowBuffer](capi-nativewindow-nativewindowbuffer.md) *buffer | 一个OHNativeWindowBuffer的结构体实例的指针。 |
 | int fenceFd | 一个文件描述符句柄，用以同步时序。不同取值及含义如下：<br>- -1：CPU渲染完成，无需同步时序。<br>- ≥0：从GPU同步对象转换（如EGL的eglDupNativeFenceFDANDROID），对端需要通过此fenceFd同步时序。 |
-| [Region](capi-region.md) region | 一个Region结构体，表示一块脏区域，该区域有内容更新。 |
+| [Region](capi-nativewindow-region.md) region | 一个Region结构体，表示一块脏区域，该区域有内容更新。 |
 
 **返回：**
 
@@ -721,7 +721,7 @@ int32_t OH_NativeWindow_NativeWindowSetTunnelHandle(OHNativeWindow *window, cons
 | 参数项 | 描述 |
 | -- | -- |
 | [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个OHNativeWindow的结构体实例的指针。 |
-| const [OHExtDataHandle](capi-ohextdatahandle.md) *handle | 指向OHExtDataHandle的指针。 |
+| const [OHExtDataHandle](capi-nativewindow-ohextdatahandle.md) *handle | 指向OHExtDataHandle的指针。 |
 
 **返回：**
 
@@ -940,7 +940,7 @@ int32_t OH_NativeWindow_WriteToParcel(OHNativeWindow *window, OHIPCParcel *parce
 | 参数项 | 描述 |
 | -- | -- |
 | [OHNativeWindow](capi-nativewindow-nativewindow.md) *window | 一个指向[OHNativeWindow](capi-nativewindow-nativewindow.md)的结构体实例的指针。 |
-| [OHIPCParcel](capi-ohipcparcel.md) *parcel | 一个指向[OHIPCParcel](capi-ohipcparcel.md)的结构体实例的指针。 |
+| [OHIPCParcel](capi-nativewindow-ohipcparcel.md) *parcel | 一个指向[OHIPCParcel](capi-nativewindow-ohipcparcel.md)的结构体实例的指针。 |
 
 **返回：**
 
@@ -967,7 +967,7 @@ int32_t OH_NativeWindow_ReadFromParcel(OHIPCParcel *parcel, OHNativeWindow **win
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OHIPCParcel](capi-ohipcparcel.md) *parcel | 一个指向[OHIPCParcel](capi-ohipcparcel.md)的结构体实例的指针。 |
+| [OHIPCParcel](capi-nativewindow-ohipcparcel.md) *parcel | 一个指向[OHIPCParcel](capi-nativewindow-ohipcparcel.md)的结构体实例的指针。 |
 | [OHNativeWindow](capi-nativewindow-nativewindow.md) **window | 一个指向[OHNativeWindow](capi-nativewindow-nativewindow.md)的结构体实例的二级指针。 |
 
 **返回：**
