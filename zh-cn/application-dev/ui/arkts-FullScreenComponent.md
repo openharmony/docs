@@ -1,6 +1,6 @@
 # 全屏启动原子化服务组件（FullScreenLaunchComponent）
 
-FullScreenLaunchComponent允许开发者以全屏方式拉起原子化服务，使得应用能够提供更原生和友好的用户体验。
+FullScreenLaunchComponent允许开发者以全屏方式拉起原子化服务，使得应用能够提供更友好的用户体验。
 
 ![embeddable-ui-ability](figures/embeddable-ui-ability.png)
 
