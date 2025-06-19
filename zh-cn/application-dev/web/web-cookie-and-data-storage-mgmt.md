@@ -40,6 +40,7 @@ struct WebComponent {
 > **说明：**
 >
 > Cookie每30s周期性保存到磁盘中，也可以使用接口[saveCookieAsync](../reference/apis-arkweb/arkts-apis-webview-WebCookieManager.md#savecookieasync)进行强制落盘。
+> 平板、PC/2in1设备，未设置max-age或expires任意一种属性值的Cookie不会周期性保存到磁盘中，需要应用调用接口[saveCookieAsync](../reference/apis-arkweb/arkts-apis-webview-WebCookieManager.md#savecookieasync)进行强制落盘。
 
 ## 缓存与存储管理
 
