@@ -760,7 +760,7 @@ try {
 
 isAudioLoopbackSupported(mode: AudioLoopbackMode): boolean
 
-查询是否支持传入的音频返听模式。
+查询传入的音频返听模式是否支持音频返听。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 

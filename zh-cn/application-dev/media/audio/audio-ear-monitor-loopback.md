@@ -1,4 +1,4 @@
-# 使用AudioLoopback开发音频低时延耳返功能
+# 实现音频低时延耳返
 
 AudioLoopback是音频返听器，可将音频以更低时延的方式实时传输到耳机中，让用户可以实时听到自己或者其他的相关声音。
 
@@ -16,13 +16,13 @@ AudioLoopback是音频返听器，可将音频以更低时延的方式实时传�
 
 ## 开发指导
 
-使用AudioLoopback音频返听涉及到[isAudioLoopbackSupported](../../reference/apis-audio-kit/arkts-apis-audio-AudioStreamManager.md#isaudioloopbacksupported20)返听能力查询、AudioLoopback实例创建、返听音量设置、返听状态监听与返听启用禁用等。本开发指导将以一次启用返听的过程为例，向开发者讲解如何使用AudioLoopback进行音频返听，建议搭配[AudioLoopback的API说明](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md)阅读。
+使用AudioLoopback音频返听涉及到[isAudioLoopbackSupported](../../reference/apis-audio-kit/arkts-apis-audio-AudioStreamManager.md#isaudioloopbacksupported20)返听能力查询、AudioLoopback实例创建、返听音量设置、返听状态监听与返听启用禁用等。本开发指导将以一次启用返听的过程为例，向开发者讲解如何使用AudioLoopback进行音频返听，建议搭配[AudioLoopback](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md)的API说明阅读。
 
 下图展示了AudioLoopback的状态变化，在创建实例后，调用对应的方法可以进入指定的状态实现对应行为。
 
 需要注意的是在确定的状态执行不合适的方法可能导致AudioLoopback发生错误，建议开发者在调用状态转换的方法前进行状态检查，避免程序运行产生预期以外的结果。
 
-**图1** AudioLoopback状态变化示意图
+**AudioLoopback状态变化示意图**
 
 ![AudioLoopback status change](figures/audioloopback-status-change.png)
 
@@ -52,7 +52,7 @@ AudioLoopback是音频返听器，可将音频以更低时延的方式实时传�
     }
    ```
 
-2. 调用[getStatus()](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#getstatus)方法，查询当前返听状态。
+2. 调用[getStatus](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#getstatus)方法，查询当前返听状态。
 
     > **注意：**
     > 音频返听状态受音频焦点、低时延管控、采集与播放设备等因素影响。
@@ -67,7 +67,7 @@ AudioLoopback是音频返听器，可将音频以更低时延的方式实时传�
     })
    ```
 
-3. 调用[setVolume()](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#setvolume)方法，设置音频返听音量。
+3. 调用[setVolume](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#setvolume)方法，设置音频返听音量。
 
     > **注意：**
     > - 在启用返听前设置音量，音量将在启用返听成功后生效。
@@ -84,7 +84,7 @@ AudioLoopback是音频返听器，可将音频以更低时延的方式实时传�
     });
    ```
 
-4. 调用[enable()](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#enable)方法，启用或禁用音频返听功能。
+4. 调用[enable](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#enable)方法，启用或禁用音频返听功能。
 
    ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
