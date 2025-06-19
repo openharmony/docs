@@ -151,6 +151,8 @@ Allows an application to obtain domain account information.
 
 Allows an application to query security audit events.
 
+With this permission, the application can block security audit events, such as events of file creation, file opening, and file deletion.
+
 **Permission level**: system_basic
 
 **Authorization mode**: system_grant
