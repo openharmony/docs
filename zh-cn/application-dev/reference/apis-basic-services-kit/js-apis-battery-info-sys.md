@@ -17,13 +17,14 @@ import {batteryInfo} from '@kit.BasicServicesKit';
 
 ## batteryInfo.setBatteryConfig<sup>11+</sup>
 
-setBatteryConfig(sceneName: string, sceneValue: string): number
+ArkTS1.1: setBatteryConfig(sceneName: string, sceneValue: string): number  
+ArkTS1.2: setBatteryConfig(sceneName: string, sceneValue: string): int
 
 按场景名称设置电池配置。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力:** SystemCapability.PowerManager.BatteryManager.Core
+**系统能力：** SystemCapability.PowerManager.BatteryManager.Core
 
 **参数**：
 
@@ -36,15 +37,15 @@ setBatteryConfig(sceneName: string, sceneValue: string): number
 
 | 类型   | 说明                                                       |
 | ------ | ---------------------------------------------------------- |
-| number | 返回设置充电结果。返回0表示设置成功，返回非0表示设置失败。 |
+| ArkTS1.1: number<br>ArkTS1.2: int | 返回设置充电结果。返回0表示设置成功，返回非0表示设置失败。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[电量信息错误码](errorcode-battery-info.md)。
+以下错误码的详细介绍请参见[电量信息错误码](errorcode-battery-info.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | Failed to connect to the service. |
+| 5100101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 202     | Permission verification failed. A non-system application calls a system API. |
 
@@ -68,7 +69,7 @@ getBatteryConfig(sceneName: string): string
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力:** SystemCapability.PowerManager.BatteryManager.Core
+**系统能力：** SystemCapability.PowerManager.BatteryManager.Core
 
 **参数**：
 
@@ -84,11 +85,11 @@ getBatteryConfig(sceneName: string): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[电量信息错误码](errorcode-battery-info.md)。
+以下错误码的详细介绍请参见[电量信息错误码](errorcode-battery-info.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | Failed to connect to the service. |
+| 5100101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 202     | Permission verification failed. A non-system application calls a system API. |
 
@@ -111,7 +112,7 @@ isBatteryConfigSupported(sceneName: string): boolean
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力:** SystemCapability.PowerManager.BatteryManager.Core
+**系统能力：** SystemCapability.PowerManager.BatteryManager.Core
 
 **参数**：
 
@@ -127,11 +128,11 @@ isBatteryConfigSupported(sceneName: string): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[电量信息错误码](errorcode-battery-info.md)。
+以下错误码的详细介绍请参见[电量信息错误码](errorcode-battery-info.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | Failed to connect to the service. |
+| 5100101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 202     | Permission verification failed. A non-system application calls a system API. |
 
@@ -152,7 +153,9 @@ isBatteryConfigSupported(sceneName: string): boolean
 
 **系统能力**：SystemCapability.PowerManager.BatteryManager.Core
 
-| 名称      | 类型        | 可读 | 可写 |  说明     |
+**ArkTS版本**：该接口仅适用于ArkTS1.1。
+
+| 名称      | 类型        | 只读 | 可选 |  说明     |
 | --------------- | ------------------- | ---- | ---- | ---------------------|
 | estimatedRemainingChargeTime<sup>9+</sup> | number                                         | 是   | 否   | 表示当前设备充满电的预估时间，单位毫秒。此接口为系统接口。          |
 | totalEnergy<sup>9+</sup>                  | number                                         | 是   | 否   | 表示当前设备电池的总容量，单位毫安时。此接口为系统接口。   |
@@ -172,3 +175,83 @@ isBatteryConfigSupported(sceneName: string): boolean
   console.info("The remainingEnergyInfo is: " + remainingEnergyInfo);
   ```
 
+## batteryInfo.estimatedRemainingChargeTime<sup>20+</sup>
+
+estimatedRemainingChargeTime(): long
+
+获取当前设备充满电的预估时间，单位毫秒。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.PowerManager.BatteryManager.Core
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值**：
+
+| 类型   | 说明                                                       |
+| ------ | ---------------------------------------------------------- |
+| long | 返回当前设备充满电的预估时间，单位毫秒。|
+
+**示例**：
+
+  ```ts
+  import batteryInfo from '@ohos.batteryInfo';
+
+  let result = batteryInfo.estimatedRemainingChargeTime();
+  console.info("The result is: " + result);
+  ```
+
+## batteryInfo.totalEnergy<sup>20+</sup>
+
+totalEnergy(): int
+
+获取当前设备电池的总容量，单位毫安时。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.PowerManager.BatteryManager.Core
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值**：
+
+| 类型   | 说明                                                       |
+| ------ | ---------------------------------------------------------- |
+| int | 返回当前设备电池的总容量，单位毫安时。|
+
+**示例**：
+
+  ```ts
+  import batteryInfo from '@ohos.batteryInfo';
+
+  let result = batteryInfo.totalEnergy();
+  console.info("The result is: " + result);
+  ```
+
+## batteryInfo.remainingEnergy<sup>20+</sup>
+
+remainingEnergy(): int
+
+获取当前设备电池的剩余容量，单位毫安时。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.PowerManager.BatteryManager.Core
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值**：
+
+| 类型   | 说明                                                       |
+| ------ | ---------------------------------------------------------- |
+| int | 返回当前设备电池的剩余容量，单位毫安时。|
+
+**示例**：
+
+  ```ts
+  import batteryInfo from '@ohos.batteryInfo';
+
+  let result = batteryInfo.remainingEnergy();
+  console.info("The result is: " + result);
+  ```

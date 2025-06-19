@@ -4,7 +4,7 @@
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
 
-## 4600101 连接服务失败
+## 5100101 连接服务失败
 
 **错误信息**
 
@@ -30,4 +30,4 @@ Failed to connect to the service.
     > hdc shell hidumper -ls
     ```
 
-2. 查看系统服务列表中是否包含Battery-info系统服务。
+2. 查看系统服务列表中是否包含BatteryService系统服务。

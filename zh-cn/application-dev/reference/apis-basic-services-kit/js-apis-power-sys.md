@@ -34,7 +34,7 @@ shutdown(reason: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -46,9 +46,20 @@ shutdown(reason: string): void
 
 **示例：**
 
+ArkTS1.1示例：
 ```js
+import power from '@ohos.power'
 try {
     power.shutdown('shutdown_test');
+} catch(err) {
+    console.error('shutdown failed, err: ' + err);
+}
+```
+ArkTS1.2示例：
+```js
+import oh_power from '@ohos.power'
+try {
+    oh_power.shutdown('shutdown_test');
 } catch(err) {
     console.error('shutdown failed, err: ' + err);
 }
@@ -74,7 +85,7 @@ reboot(reason: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -85,9 +96,20 @@ reboot(reason: string): void
 
 **示例：**
 
+ArkTS1.1示例：
 ```js
+import power from '@ohos.power'
 try {
     power.reboot('reboot_test');
+} catch(err) {
+    console.error('reboot failed, err: ' + err);
+}
+```
+ArkTS1.2示例：
+```js
+import oh_power from '@ohos.power'
+try {
+    oh_power.reboot('reboot_test');
 } catch(err) {
     console.error('reboot failed, err: ' + err);
 }
@@ -115,7 +137,7 @@ API version 9-17，使用该接口无需权限；从API version 18开始，需�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -126,9 +148,20 @@ API version 9-17，使用该接口无需权限；从API version 18开始，需�
 
 **示例：**
 
+ArkTS1.1示例：
 ```js
+import power from '@ohos.power'
 try {
     power.wakeup('wakeup_test');
+} catch(err) {
+    console.error('wakeup failed, err: ' + err);
+}
+```
+ArkTS1.2示例：
+```js
+import oh_power from '@ohos.power'
+try {
+    oh_power.wakeup('wakeup_test');
 } catch(err) {
     console.error('wakeup failed, err: ' + err);
 }
@@ -157,7 +190,7 @@ API version 9-17，使用该接口无需权限；从API version 18开始，需�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -168,9 +201,20 @@ API version 9-17，使用该接口无需权限；从API version 18开始，需�
 
 **示例：**
 
+ArkTS1.1示例：
 ```js
+import power from '@ohos.power'
 try {
     power.suspend();
+} catch(err) {
+    console.error('suspend failed, err: ' + err);
+}
+```
+ArkTS1.2示例：
+```js
+import oh_power from '@ohos.power'
+try {
+    oh_power.suspend();
 } catch(err) {
     console.error('suspend failed, err: ' + err);
 }
@@ -197,7 +241,7 @@ setPowerMode(mode: DevicePowerMode, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -208,8 +252,21 @@ setPowerMode(mode: DevicePowerMode, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
+ArkTS1.1示例：
 ```js
+import power from '@ohos.power'
 power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE, (err: Error) => {
+    if (typeof err === 'undefined') {
+        console.info('set power mode to MODE_PERFORMANCE');
+    } else {
+        console.error('set power mode failed, err: ' + err);
+    }
+});
+```
+ArkTS1.2示例：
+```js
+import oh_power from '@ohos.power'
+oh_power.setPowerMode(oh_power.DevicePowerMode.MODE_PERFORMANCE, (err: Error) => {
     if (typeof err === 'undefined') {
         console.info('set power mode to MODE_PERFORMANCE');
     } else {
@@ -244,7 +301,7 @@ setPowerMode(mode: DevicePowerMode): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -255,7 +312,9 @@ setPowerMode(mode: DevicePowerMode): Promise&lt;void&gt;
 
 **示例：**
 
+ArkTS1.1示例：
 ```js
+import power from '@ohos.power'
 power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE)
 .then(() => {
     console.info('set power mode to MODE_PERFORMANCE');
@@ -264,10 +323,22 @@ power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE)
     console.error('set power mode failed, err: ' + err);
 });
 ```
+ArkTS1.2示例：
+```js
+import oh_power from '@ohos.power'
+oh_power.setPowerMode(oh_power.DevicePowerMode.MODE_PERFORMANCE)
+.then(() => {
+    console.info('set power mode to MODE_PERFORMANCE');
+})
+.catch((err : Error) : void => {
+    console.error('set power mode failed, err: ' + err);
+});
+```
 
 ## power.setScreenOffTime<sup>12+</sup>
 
-setScreenOffTime(timeout: number): void
+ArkTS1.1: setScreenOffTime(timeout: number): void  
+ArkTS1.2: setScreenOffTime(timeout: long): void
 
 设置熄屏超时时间。
 
@@ -283,11 +354,11 @@ API version 12-17，使用该接口无需权限；从API version 18开始，需�
 
 | 参数名    | 类型     | 必填   | 说明    |
 | ------ | ------ | ---- | ----- |
-| timeout | number | 是    | 熄屏超时时间，单位是毫秒，大于0代表熄屏超时时间，-1代表恢复默认超时时间，其它是无效值。 |
+| timeout | ArkTS1.1: number<br>ArkTS1.2: long | 是    | 熄屏超时时间，单位是毫秒，大于0代表熄屏超时时间，-1代表恢复默认超时时间，其它是无效值。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -298,9 +369,20 @@ API version 12-17，使用该接口无需权限；从API version 18开始，需�
 
 **示例：**
 
+ArkTS1.1示例：
 ```js
+import power from '@ohos.power'
 try {
     power.setScreenOffTime(30000);
+} catch(err) {
+    console.error('set screen off time failed, err: ' + err);
+}
+```
+ArkTS1.2示例：
+```js
+import oh_power from '@ohos.power'
+try {
+    oh_power.setScreenOffTime(30000);
 } catch(err) {
     console.error('set screen off time failed, err: ' + err);
 }
@@ -328,7 +410,7 @@ API version 12-17，使用该接口无需权限；从API version 18开始，需�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -339,9 +421,20 @@ API version 12-17，使用该接口无需权限；从API version 18开始，需�
 
 **示例：**
 
+ArkTS1.1示例：
 ```js
+import power from '@ohos.power'
 try {
     power.hibernate(true);
+} catch(err) {
+    console.error('hibernate failed, err: ' + err);
+}
+```
+ArkTS1.2示例：
+```js
+import oh_power from '@ohos.power'
+try {
+    oh_power.hibernate(true);
 } catch(err) {
     console.error('hibernate failed, err: ' + err);
 }

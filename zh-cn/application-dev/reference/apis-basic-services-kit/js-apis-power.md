@@ -30,9 +30,21 @@ isActive(): boolean
 
 **示例：**
 
+ArkTS1.1示例：
 ```js
+import power from '@ohos.power'
 try {
     let isActive = power.isActive();
+    console.info('power is active: ' + isActive);
+} catch(err) {
+    console.error('check active status failed, err: ' + err);
+}
+```
+ArkTS1.2示例：
+```js
+import oh_power from '@ohos.power'
+try {
+    let isActive = oh_power.isActive();
     console.info('power is active: ' + isActive);
 } catch(err) {
     console.error('check active status failed, err: ' + err);
@@ -88,9 +100,21 @@ getPowerMode(): DevicePowerMode
 
 **示例：**
 
+ArkTS1.1示例：
 ```js
+import power from '@ohos.power'
 try {
     let mode = power.getPowerMode();
+    console.info('power mode: ' + mode);
+} catch(err) {
+    console.error('get power mode failed, err: ' + err);
+}
+```
+ArkTS1.2示例：
+```js
+import oh_power from '@ohos.power'
+try {
+    let mode = oh_power.getPowerMode();
     console.info('power mode: ' + mode);
 } catch(err) {
     console.error('get power mode failed, err: ' + err);
@@ -121,9 +145,21 @@ isStandby(): boolean
 
 **示例：**
 
+ArkTS1.1示例：
 ```js
+import power from '@ohos.power'
 try {
     let isStandby = power.isStandby();
+    console.info('device is in standby: ' + isStandby);
+} catch(err) {
+    console.error('check isStandby failed, err: ' + err);
+}
+```
+ArkTS1.2示例：
+```js
+import oh_power from '@ohos.power'
+try {
+    let isStandby = oh_power.isStandby();
     console.info('device is in standby: ' + isStandby);
 } catch(err) {
     console.error('check isStandby failed, err: ' + err);

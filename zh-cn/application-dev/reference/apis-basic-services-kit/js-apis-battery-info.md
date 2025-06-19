@@ -19,7 +19,9 @@ import {batteryInfo} from '@kit.BasicServicesKit';
 
 **系统能力**：SystemCapability.PowerManager.BatteryManager.Core
 
-| 名称      | 类型        | 可读 | 可写 |  说明     |
+**ArkTS版本**：该接口仅适用于ArkTS1.1。
+
+| 名称      | 类型        | 只读 | 可选 |  说明     |
 | --------------- | ------------------- | ---- | ---- | ---------------------|
 | batterySOC                                | number                                         | 是   | 否   | 表示当前设备剩余电池电量百分比。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                           |
 | chargingStatus                            | [BatteryChargeState](#batterychargestate)      | 是   | 否   | 表示当前设备电池的充电状态。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                               |
@@ -66,6 +68,256 @@ import {batteryInfo} from '@kit.BasicServicesKit';
 
   let nowCurrentInfo: number = batteryInfo.nowCurrent;
   console.info("The nowCurrentInfo is: " + nowCurrentInfo);
+  ```
+
+## batteryInfo.batterySOC<sup>20+</sup>
+
+batterySOC(): int
+
+获取当前设备剩余电池电量百分比。
+
+**系统能力:** SystemCapability.PowerManager.BatteryManager.Core
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值**：
+
+| 类型   | 说明                                                       |
+| ------ | ---------------------------------------------------------- |
+| int | 返回当前设备剩余电池电量百分比。|
+
+**示例**：
+
+  ```ts
+  import {batteryInfo} from '@kit.BasicServicesKit';
+
+  let result = batteryInfo.batterySOC();
+  console.info("The result is: " + result);
+  ```
+
+## batteryInfo.chargingStatus<sup>20+</sup>
+
+chargingStatus(): BatteryChargeState
+
+获取当前设备电池的充电状态。
+
+**系统能力:** SystemCapability.PowerManager.BatteryManager.Core
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值**：
+
+| 类型   | 说明                                                       |
+| ------ | ---------------------------------------------------------- |
+| [BatteryChargeState](#batterychargestate) | 返回当前设备电池的充电状态。|
+
+**示例**：
+
+  ```ts
+  import {batteryInfo} from '@kit.BasicServicesKit';
+
+  let result = batteryInfo.chargingStatus();
+  console.info("The result is: " + result);
+  ```
+
+## batteryInfo.healthStatus<sup>20+</sup>
+
+healthStatus(): BatteryHealthState
+
+获取当前设备电池的健康状态。
+
+**系统能力:** SystemCapability.PowerManager.BatteryManager.Core
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值**：
+
+| 类型   | 说明                                                       |
+| ------ | ---------------------------------------------------------- |
+| [BatteryHealthState](#batteryhealthstate) | 返回当前设备电池的健康状态。|
+
+**示例**：
+
+  ```ts
+  import {batteryInfo} from '@kit.BasicServicesKit';
+
+  let result = batteryInfo.healthStatus();
+  console.info("The result is: " + result);
+  ```
+
+## batteryInfo.pluggedType<sup>20+</sup>
+
+pluggedType(): BatteryPluggedType
+
+获取当前设备连接的充电器类型。
+
+**系统能力:** SystemCapability.PowerManager.BatteryManager.Core
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值**：
+
+| 类型   | 说明                                                       |
+| ------ | ---------------------------------------------------------- |
+| [BatteryPluggedType](#batterypluggedtype) | 返回当前设备连接的充电器类型。|
+
+**示例**：
+
+  ```ts
+  import {batteryInfo} from '@kit.BasicServicesKit';
+
+  let result = batteryInfo.pluggedType();
+  console.info("The result is: " + result);
+  ```
+
+## batteryInfo.voltage<sup>20+</sup>
+
+voltage(): int
+
+获取当前设备电池的电压，单位微伏。
+
+**系统能力:** SystemCapability.PowerManager.BatteryManager.Core
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值**：
+
+| 类型   | 说明                                                       |
+| ------ | ---------------------------------------------------------- |
+| int | 返回当前设备电池的电压，单位微伏。|
+
+**示例**：
+
+  ```ts
+  import {batteryInfo} from '@kit.BasicServicesKit';
+
+  let result = batteryInfo.voltage();
+  console.info("The result is: " + result);
+  ```
+
+## batteryInfo.technology<sup>20+</sup>
+
+technology(): string
+
+获取当前设备电池的技术型号。
+
+**系统能力:** SystemCapability.PowerManager.BatteryManager.Core
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值**：
+
+| 类型   | 说明                                                       |
+| ------ | ---------------------------------------------------------- |
+| string | 返回当前设备电池的技术型号。|
+
+**示例**：
+
+  ```ts
+  import {batteryInfo} from '@kit.BasicServicesKit';
+
+  let result = batteryInfo.technology();
+  console.info("The result is: " + result);
+  ```
+
+## batteryInfo.batteryTemperature<sup>20+</sup>
+
+batteryTemperature(): int
+
+获取当前设备电池的温度，单位0.1摄氏度。
+
+**系统能力:** SystemCapability.PowerManager.BatteryManager.Core
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值**：
+
+| 类型   | 说明                                                       |
+| ------ | ---------------------------------------------------------- |
+| int | 返回当前设备电池的温度，单位0.1摄氏度。|
+
+**示例**：
+
+  ```ts
+  import {batteryInfo} from '@kit.BasicServicesKit';
+
+  let result = batteryInfo.batteryTemperature();
+  console.info("The result is: " + result);
+  ```
+
+## batteryInfo.isBatteryPresent<sup>20+</sup>
+
+isBatteryPresent(): boolean
+
+获取当前设备是否支持电池或者电池是否在位。
+
+**系统能力:** SystemCapability.PowerManager.BatteryManager.Core
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值**：
+
+| 类型   | 说明                                                       |
+| ------ | ---------------------------------------------------------- |
+| boolean | 返回true表示当前设备支持电池或者电池在位，返回false表示当前设备不支持电池或者电池不在位。 |
+
+**示例**：
+
+  ```ts
+  import {batteryInfo} from '@kit.BasicServicesKit';
+
+  let result = batteryInfo.isBatteryPresent();
+  console.info("The result is: " + result);
+  ```
+
+## batteryInfo.batteryCapacityLevel<sup>20+</sup>
+
+batteryCapacityLevel(): BatteryCapacityLevel
+
+获取当前设备电池电量的等级。
+
+**系统能力:** SystemCapability.PowerManager.BatteryManager.Core
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值**：
+
+| 类型   | 说明                                                       |
+| ------ | ---------------------------------------------------------- |
+| [BatteryCapacityLevel](#batterycapacitylevel9) | 返回当前设备电池电量的等级。|
+
+**示例**：
+
+  ```ts
+  import {batteryInfo} from '@kit.BasicServicesKit';
+
+  let result = batteryInfo.batteryCapacityLevel();
+  console.info("The result is: " + result);
+  ```
+
+## batteryInfo.nowCurrent<sup>20+</sup>
+
+nowCurrent(): int
+
+获取当前设备电池的电流，单位毫安。
+
+**系统能力:** SystemCapability.PowerManager.BatteryManager.Core
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值**：
+
+| 类型   | 说明                                                       |
+| ------ | ---------------------------------------------------------- |
+| int | 返回当前设备电池的电流，单位毫安。|
+
+**示例**：
+
+  ```ts
+  import {batteryInfo} from '@kit.BasicServicesKit';
+
+  let result = batteryInfo.nowCurrent();
+  console.info("The result is: " + result);
   ```
 
 ## BatteryPluggedType
