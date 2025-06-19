@@ -558,7 +558,7 @@ typedef struct HiDebug_Backtrace_Object__* HiDebug_Backtrace_Object
 ### HiDebug_ErrorCode
 
 ```
-typedef enum HiDebug_ErrorCodeHiDebug_ErrorCode
+typedef enum HiDebug_ErrorCode HiDebug_ErrorCode
 ```
 
 **描述**
@@ -571,7 +571,7 @@ typedef enum HiDebug_ErrorCodeHiDebug_ErrorCode
 ### HiDebug_JsStackFrame
 
 ```
-typedef struct HiDebug_JsStackFrameHiDebug_JsStackFrame
+typedef struct HiDebug_JsStackFrame HiDebug_JsStackFrame
 ```
 
 **描述**
@@ -584,7 +584,7 @@ js栈帧内容的定义。
 ### HiDebug_MemoryLimit
 
 ```
-typedef struct HiDebug_MemoryLimitHiDebug_MemoryLimit
+typedef struct HiDebug_MemoryLimit HiDebug_MemoryLimit
 ```
 
 **描述**
@@ -597,7 +597,7 @@ typedef struct HiDebug_MemoryLimitHiDebug_MemoryLimit
 ### HiDebug_NativeMemInfo
 
 ```
-typedef struct HiDebug_NativeMemInfoHiDebug_NativeMemInfo
+typedef struct HiDebug_NativeMemInfo HiDebug_NativeMemInfo
 ```
 
 **描述**
@@ -610,7 +610,7 @@ typedef struct HiDebug_NativeMemInfoHiDebug_NativeMemInfo
 ### HiDebug_NativeStackFrame
 
 ```
-typedef struct HiDebug_NativeStackFrameHiDebug_NativeStackFrame
+typedef struct HiDebug_NativeStackFrame HiDebug_NativeStackFrame
 ```
 
 **描述**
@@ -623,7 +623,7 @@ native栈帧内容的定义。
 ### HiDebug_StackFrame
 
 ```
-typedef struct HiDebug_StackFrameHiDebug_StackFrame
+typedef struct HiDebug_StackFrame HiDebug_StackFrame
 ```
 
 **描述**
@@ -636,7 +636,7 @@ typedef struct HiDebug_StackFrameHiDebug_StackFrame
 ### HiDebug_StackFrameType
 
 ```
-typedef enum HiDebug_StackFrameTypeHiDebug_StackFrameType
+typedef enum HiDebug_StackFrameType HiDebug_StackFrameType
 ```
 
 **描述**
@@ -649,7 +649,7 @@ typedef enum HiDebug_StackFrameTypeHiDebug_StackFrameType
 ### HiDebug_SystemMemInfo
 
 ```
-typedef struct HiDebug_SystemMemInfoHiDebug_SystemMemInfo
+typedef struct HiDebug_SystemMemInfo HiDebug_SystemMemInfo
 ```
 
 **描述**
@@ -662,7 +662,7 @@ typedef struct HiDebug_SystemMemInfoHiDebug_SystemMemInfo
 ### HiDebug_ThreadCpuUsage
 
 ```
-typedef struct HiDebug_ThreadCpuUsageHiDebug_ThreadCpuUsage
+typedef struct HiDebug_ThreadCpuUsage HiDebug_ThreadCpuUsage
 ```
 
 **描述**
@@ -688,7 +688,7 @@ HiDebug_ThreadCpuUsage指针定义。
 ### HiDebug_TraceFlag
 
 ```
-typedef enum HiDebug_TraceFlagHiDebug_TraceFlag
+typedef enum HiDebug_TraceFlag HiDebug_TraceFlag
 ```
 
 **描述**
@@ -742,7 +742,7 @@ enum HiDebug_ErrorCode
 | HIDEBUG_NO_PERMISSION | 没有写文件的权限。 | 
 | HIDEBUG_TRACE_ABNORMAL | 系统内部错误。 | 
 | HIDEBUG_NO_TRACE_RUNNING | 当前没有trace正在运行。 | 
-| HIDEBUG_INVALID_SYMBOLIC_PC_ADDRESS | 传入符号解析函数的pc地址是无效的。<br/>自从<br/>20 | 
+| HIDEBUG_INVALID_SYMBOLIC_PC_ADDRESS | 传入符号解析函数的pc地址是无效的。</br>**说明**：从API version 20开始支持。 | 
 
 
 ### HiDebug_StackFrameType
