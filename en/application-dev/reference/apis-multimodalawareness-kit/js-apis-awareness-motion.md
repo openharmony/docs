@@ -17,7 +17,7 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 
 Defines the status of the operating hand.
 
-**System capability**: SystemCapability.MultimodalAwarness.Motion
+**System capability**: SystemCapability.MultimodalAwareness.Motion
 
 | Name               | Value  | Description                  |
 | ------------------- | ---- | ---------------------- |
@@ -36,13 +36,13 @@ Subscribes to operating hand change events.
 
 **Required permissions**: ohos.permission.ACTIVITY_MOTION
 
-**System capability**: SystemCapability.MultimodalAwarness.Motion
+**System capability**: SystemCapability.MultimodalAwareness.Motion
 
 **Parameters**
 
 | Name  | Type                            | Mandatory| Description                                                        |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                           | Yes  | Event type. Event type. This parameter has a fixed value of **operatingHandChanged**.|
+| type     | string                           | Yes  | Event type. This parameter has a fixed value of **operatingHandChanged**.|
 | callback | Callback&lt;[OperatingHandStatus](#operatinghandstatus)&gt; | Yes  | Callback used to return the operating hand status.                                  |
 
 **Error codes**
@@ -75,13 +75,13 @@ Unsubscribes from operating hand change events.
 
 **Required permissions**: ohos.permission.ACTIVITY_MOTION
 
-**System capability**: SystemCapability.MultimodalAwarness.Motion
+**System capability**: SystemCapability.MultimodalAwareness.Motion
 
 **Parameters**
 
 | Name  | Type                            | Mandatory| Description                                                        |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                           | Yes  | Event type. Event type. This parameter has a fixed value of **operatingHandChanged**.|
+| type     | string                           | Yes  | Event type. This parameter has a fixed value of **operatingHandChanged**.|
 | callback | Callback&lt;[OperatingHandStatus](#operatinghandstatus)&gt; | No  | Callback used to return the operating hand status.                                  |
 
 **Error codes**
@@ -114,7 +114,7 @@ Obtains the latest operating hand status.
 
 **Required permissions**: ohos.permission.ACTIVITY_MOTION
 
-**System capability**: SystemCapability.MultimodalAwarness.Motion
+**System capability**: SystemCapability.MultimodalAwareness.Motion
 
 **Return value**
 

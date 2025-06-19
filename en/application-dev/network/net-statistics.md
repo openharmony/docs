@@ -25,8 +25,8 @@ For the complete list of APIs and example code, see [Traffic Management](../refe
 | getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void; | Obtains the real-time uplink data traffic of the specified NIC.                               |
 | getCellularRxBytes(callback: AsyncCallback\<number>): void;  | Obtains the real-time downlink data traffic of the cellular network.                                  |
 | getCellularTxBytes(callback: AsyncCallback\<number>): void;  | Obtains the real-time uplink data traffic of the cellular network.                                  |
-| getAllRxBytes(callback: AsyncCallback\<number>): void;       | Obtains the real-time downlink data traffic of the all NICs.                               |
-| getAllTxBytes(callback: AsyncCallback\<number>): void;       | Obtains the real-time uplink data traffic of the all NICs.                               |
+| getAllRxBytes(callback: AsyncCallback\<number>): void;       | Obtains the real-time downlink data traffic of all NICs.                               |
+| getAllTxBytes(callback: AsyncCallback\<number>): void;       | Obtains the real-time uplink data traffic of all NICs.                               |
 | getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void; | Obtains the real-time downlink data traffic of the specified application.                               |
 | getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void; | Obtains the real-time uplink data traffic of the specified application.                               |
 | <!--DelRow-->getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void; | Obtains the historical data traffic of the specified NIC. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md).|
@@ -71,12 +71,12 @@ statistics.getCellularTxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
 
-// Obtain the real-time downlink data traffic of the all NICs. 
+// Obtain the real-time downlink data traffic of all NICs. 
 statistics.getAllRxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
 
-// Obtain the real-time uplink data traffic of the all NICs. 
+// Obtain the real-time uplink data traffic of all NICs. 
 statistics.getAllTxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
