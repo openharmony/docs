@@ -128,7 +128,7 @@ module.json5配置文件包含以下标签。
 | [metadata](#metadata标签) | 标识当前Module的自定义元信息，可通过资源引用的方式配置[distributionFilter](#distributionfilter标签)、[shortcuts](#shortcuts标签)等信息。只对当前Module、UIAbility、ExtensionAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [abilities](#abilities标签) | 标识当前Module中UIAbility的配置信息，只对当前UIAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [extensionAbilities](#extensionabilities标签) | 标识当前Module中ExtensionAbility的配置信息，只对当前ExtensionAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-| [definePermissions](#definepermissions标签) | 标识系统资源hap定义的权限，不支持应用自定义权限。 | 对象数组 | 该标签可缺省，缺省值为空。 |
+| <!--DelRow-->[definePermissions](#definepermissions标签) | 标识系统资源hap定义的权限，不支持应用自定义权限。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [requestPermissions](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)| 标识当前应用运行时需向系统申请的权限集合。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [testRunner](#testrunner标签) | 标识用于测试当前Module的测试框架的配置。 | 对象 | 该标签可缺省，缺省值为空。 |
 | [atomicService](#atomicservice标签)| 标识当前应用是原子化服务时，有关原子化服务的相关配置。| 对象 | 该标签可缺省，缺省值为空。  |
@@ -1054,6 +1054,7 @@ appEnvironments标签示例：
 }
 ```
 
+<!--Del-->
 ## definePermissions标签
 
 该标签仅支持系统资源hap定义权限，不支持应用自定义权限。权限定义方式参见[系统资源权限定义](https://gitee.com/openharmony/utils_system_resources/blob/master/systemres/main/config.json)。
@@ -1088,6 +1089,7 @@ definePermissions标签示例：
   }
 }
 ```
+<!--DelEnd-->
 
 ## hnpPackages标签
 
