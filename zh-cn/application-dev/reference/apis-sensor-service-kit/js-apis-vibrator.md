@@ -641,9 +641,9 @@ stopVibration(param?: VibratorInfoParam): Promise&lt;void&gt;
 
 **参数**：
 
-| 参数名   | 类型                                                         | 必填 | 说明                                 |
-| -------- | ------------------------------------------------------------ | ---- |------------------------------------|
-| param     | [VibratorInfoParam](#vibratorinfoparam19)                       | 否   | 指出需要控制的设备和振动器信息，不传参默认控制的为本地设备的全部马达 |
+| 参数名   | 类型                                                         | 必填 | 说明                                |
+| -------- | ------------------------------------------------------------ | ---- |-----------------------------------|
+| param     | [VibratorInfoParam](#vibratorinfoparam19)                       | 否   | 指出需要控制的设备和马达信息，不传参默认控制的为本地设备的全部马达 |
 
 **返回值**：
 
@@ -956,7 +956,7 @@ getVibratorInfoSync(param?: VibratorInfoParam): Array&lt;VibratorInfo&gt;;
 
 | 类型                            | 说明                                                      |
 |-------------------------------| --------------------------------------------------------- |
-| [VibratorInfo](#vibratorinfo19) | 振动器设备的信息。 |
+| [VibratorInfo](#vibratorinfo19) | 马达设备的信息。 |
 
 
 **示例**：
@@ -1083,7 +1083,7 @@ off(type: 'vibratorStateChange', callback?: Callback&lt;VibratorStatusEvent&gt;)
 
 ## VibratorInfoParam<sup>19+</sup>
 
-设备上振动器的参数。默认情况下，VibratorInfoParam默认为查询或控制本地默认马达
+设备上马达的参数。默认情况下，VibratorInfoParam默认为查询或控制本地默认马达
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -1109,7 +1109,7 @@ off(type: 'vibratorStateChange', callback?: Callback&lt;VibratorStatusEvent&gt;)
 
 ## VibratorInfo<sup>19+</sup>
 
-表示系统中振动器设备的信息。
+表示系统中马达的信息。
 
 | 名称 | 类型    | 说明        |
 | ---- | ------ |-----------|
@@ -1526,7 +1526,7 @@ build(): VibratorPattern;
 
 | 名称                     | 类型             | 必填 | 说明                                                         |
 |------------------------| ---------------- | ---- | ------------------------------------------------------------ |
-| id                     | number           | 否   | 振动器ID， 默认值为0。                                       |
+| id                     | number           | 否   | 马达ID， 默认值为0。                                       |
 | deviceId<sup>19+</sup> | number           | 否   | 设备ID。                                       | 
 | usage                  | [Usage](#usage9) | 是   | 马达振动的使用场景。默认值为'unknown'，取值范围只允许在[Usage](#usage9)提供的类型中选取。 |
 
