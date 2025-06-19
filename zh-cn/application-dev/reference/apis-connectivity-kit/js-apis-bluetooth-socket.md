@@ -516,14 +516,14 @@ sppReadAsync(clientSocket: number): Promise&lt;ArrayBuffer&gt;
 
 ```js
 import { socket } from '@kit.ConnectivityKit';
-import { AsyncCallback,BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 let buffer = new ArrayBuffer(1024);
 let data = new Uint8Array(buffer);
 let flag = 1;
 while (flag) {
   try {
-    socket.sppReadAsync(clientNumber).then(outBuffer => {
+    socket.sppReadAsync(clientNumber).then((outBuffer: ArrayBuffer) => {
       buffer = outBuffer;
     });
     if (buffer != null) {
@@ -545,11 +545,11 @@ while (flag) {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称     | 类型                | 可读   | 可写   | 说明          |
+| 名称     | 类型                | 只读   | 可选   | 说明          |
 | ------ | ------------------- | ---- | ---- | ----------- |
-| uuid   | string              | 是    | 是    | spp单据的uuid。 |
-| secure | boolean             | 是    | 是    | 是否是安全通道。true表示是安全通道，false表示非安全通道。    |
-| type   | [SppType](#spptype)            | 是    | 是    | Spp链路类型。    |
+| uuid   | string              | 否    | 否    | spp单据的uuid。 |
+| secure | boolean             | 否    | 否    | 是否是安全通道。true表示是安全通道，false表示非安全通道。    |
+| type   | [SppType](#spptype)            | 否    | 否    | Spp链路类型。    |
 
 
 ## SppType

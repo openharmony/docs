@@ -394,7 +394,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
-| 名称                        | 类型                       | 可读 | 可写 | 说明       |
+| 名称                        | 类型                       | 只读 | 可选 | 说明       |
 | -------------------------- | -------------------------- | ---- | ---- | ---------- |
 | networkId<sup>9+</sup>     | string                     | 是   | 否   | 组网络id。  |
 | groupId<sup>9+</sup>       | number                     | 是   | 否   | 组设备组id。 |
@@ -834,269 +834,6 @@ try {
   let error = err as BusinessError;
   console.error(`Failed to obtain the volumeGroup list ${error}`);
 }
-```
-
-### getAppVolumePercentageForUid<sup>18+</sup>
-
-getAppVolumePercentageForUid(uid: number\): Promise<number\>
-
-根据应用ID获取指定应用的音量（范围为0到100）。使用Promise异步回调。
-
-**系统接口：** 该接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
-**参数：**
-
-| 参数名     | 类型                                      | 必填 | 说明                               |
-| ---------- | ---------------------------------------- | ---- |----------------------------------|
-| uid    | number                                   | 是   | 表示应用ID。 |
-
-**返回值：**
-
-| 类型                | 说明                          |
-| ------------------- | ----------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回应用的音量（范围为0到100）。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 201 | Permission denied. |
-| 202 | Not system App. |
-| 6800101 | Parameter verification failed.|
-
-**示例：**
-
-```ts
-let uid: number = 20010041; // 应用ID。
-
-audioVolumeManager.getAppVolumePercentageForUid(20010041).then((value: number) => {
-  console.info(`app volume is ${value}.`);
-});
-```
-
-### setAppVolumePercentageForUid<sup>18+</sup>
-
-setAppVolumePercentageForUid(uid: number, volume: number\): Promise<void\>
-
-根据应用ID设置指定应用的音量（范围为0到100）。使用Promise异步回调。
-
-**系统接口：** 该接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
-**参数：**
-
-| 参数名     | 类型                                      | 必填 | 说明       |
-| ---------- | ---------------------------------------- | ---- |----------|
-| uid    | number                                   | 是   | 表示应用ID。   |
-| volume    | number                                   | 是   | 要设置的音量值。 |
-
-**返回值：**
-
-| 类型                | 说明                            |
-| ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 201 | Permission denied. |
-| 202 | Not system App. |
-| 6800101 | Parameter verification failed.|
-| 6800301 | Crash or blocking occurs in system process. |
-
-**示例：**
-
-```ts
-let uid: number = 20010041; // 应用ID。
-let volume: number = 20;    // 要设置的音量值。
-
-audioVolumeManager.setAppVolumePercentageForUid(uid, volume).then(() => {
-  console.info(`set app volume success.`);
-});
-```
-
-### isAppVolumeMutedForUid<sup>18+</sup>
-
-isAppVolumeMutedForUid(uid: number, owned: boolean\): Promise<boolean\>
-
-根据应用ID查询应用音量是否已静音。使用Promise异步回调。
-
-> **说明：**
->
-> 如果有多个调用者设置了静音状态，那么只有当所有调用者都取消静音状态后，此应用才会真正取消静音。
-
-**系统接口：** 该接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
-**参数：**
-
-| 参数名     | 类型                                      | 必填 | 说明                                        |
-| ---------- | ---------------------------------------- | ---- |-------------------------------------------|
-| uid    | number                                   | 是   | 表示应用ID。                                    |
-| owned    | boolean                                   | 是   | 要查询的静音状态。true查询当前调用者的静音状态，false查询应用的静音状态。 |
-
-**返回值：**
-
-| 类型                | 说明                  |
-| ------------------- |---------------------|
-| Promise&lt;boolean&gt; | Promise对象。返回true表示应用为静音状态；返回false表示应用为非静音状态。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 201 | Permission denied. |
-| 202 | Not system App. |
-| 6800101 |  Parameter verification failed.|
-
-**示例：**
-
-```ts
-let uid: number = 20010041; // 应用ID。
-
-audioVolumeManager.setAppVolumePercentageForUid(uid, true).then((value: boolean) => {
-  console.info(`app muted state is ${value}.`);
-});
-```
-
-### setAppVolumeMutedForUid<sup>18+</sup>
-
-setAppVolumeMutedForUid(uid: number, muted: boolean\): Promise<void\>
-
-根据应用ID设置应用静音状态。使用Promise异步回调。
-
-**系统接口：** 该接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
-**参数：**
-
-| 参数名     | 类型                                      | 必填 | 说明                             |
-| ---------- | ---------------------------------------- | ---- |--------------------------------|
-| uid    | number                                   | 是   | 表示应用ID。                         |
-| owned    | boolean                                   | 是   | 设置应用的静音状态。true设置为静音，false解除静音。 |
-
-**返回值：**
-
-| 类型                | 说明                            |
-| ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 201 | Permission denied. |
-| 202 | Not system App. |
-| 6800101 | Parameter verification failed.|
-| 6800301 | Crash or blocking occurs in system process. |
-
-**示例：**
-
-```ts
-let uid: number = 20010041; // 应用ID。
-
-audioVolumeManager.setAppVolumePercentageForUid(uid, true).then(() => {
-  console.info(`set app mute state success.`);
-});
-```
-
-### on('appVolumeChangeForUid')<sup>18+</sup>
-
-on(type: 'appVolumeChangeForUid', uid: number, callback: Callback\<VolumeEvent>): void
-
-监听指定应用应用级音量变化事件（当应用级音量发生变化时触发）。使用callback异步回调。
-
-**系统接口：** 该接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
-**参数：**
-
-| 参数名   | 类型                                   | 必填 | 说明                                |
-| -------- | -------------------------------------- | ---- |-----------------------------------|
-| type     | string                                 | 是   | 事件回调类型，支持的事件为'appVolumeChangeForUid'，当应用级音量发生变化时，触发该事件。 |
-| uid | number |  是   | 表示应用ID。                          |
-| callback | Callback<[VolumeEvent](js-apis-audio.md#volumeevent9)> | 是   | 回调函数，返回变化后的音量信息。                  |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 201 | Permission denied. |
-| 202 | Not system App. |
-| 6800101 | Parameter verification failed. |
-
-**示例：**
-
-```ts
-let uid: number = 20010041; // 应用ID。
-
-audioVolumeManager.on('appVolumeChangeForUid', uid, (volumeEvent: audio.VolumeEvent) => {
-  console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
-  console.info(`Volume level: ${volumeEvent.volume} `);
-  console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
-});
-```
-
-### off('appVolumeChangeForUid')<sup>18+</sup>
-
-off(type: 'appVolumeChangeForUid', callback?: Callback\<VolumeEvent>): void
-
-取消监听指定应用应用级音量变化事件。使用callback异步回调。
-
-**系统接口：** 该接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
-**参数：**
-
-| 参数名   | 类型                                   | 必填 | 说明                                                         |
-| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 事件回调类型，支持的事件为'appVolumeChangeForUid'，当取消监听指定应用应用级音量变化事件时，触发该事件。 |
-| callback | Callback<[VolumeEvent](js-apis-audio.md#volumeevent9)> | 否   | 回调函数，返回变化后的音量信息。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 201 | Permission denied. |
-| 202 | Not system App. |
-| 6800101 | Parameter verification failed. |
-
-**示例：**
-
-```ts
-// 取消该事件的所有监听。
-audioVolumeManager.off('appVolumeChangeForUid');
-
-// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
-let appVolumeChangeForUidCallback = (volumeEvent: audio.VolumeEvent) => {
-  console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
-  console.info(`Volume level: ${volumeEvent.volume} `);
-  console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
-};
-
-audioVolumeManager.on('appVolumeChangeForUid', appVolumeChangeForUidCallback);
-
-audioVolumeManager.off('appVolumeChangeForUid', appVolumeChangeForUidCallback);
 ```
 
 ## AudioVolumeGroupManager<sup>9+</sup>
@@ -2468,7 +2205,7 @@ async function getExcludedDevices(){
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
-| 名称               | 类型                                       | 可读 | 可写 | 说明                          |
+| 名称               | 类型                                       | 只读 | 可选 | 说明                          |
 | -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
 | clientUid          | number                                    | 是   | 否   | 音频渲染器客户端应用程序的Uid。<br/>此接口为系统接口。 |
 | rendererState      | [AudioState](js-apis-audio.md#audiostate8)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口。|
@@ -2479,7 +2216,7 @@ async function getExcludedDevices(){
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
-| 名称               | 类型                                       | 可读 | 可写 | 说明                          |
+| 名称               | 类型                                       | 只读 | 可选 | 说明                          |
 | -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
 | clientUid          | number                                    | 是   | 否   | 音频采集器客户端应用程序的Uid。<br/>此接口为系统接口。 |
 | capturerState      | [AudioState](js-apis-audio.md#audiostate8)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口。|
@@ -2488,7 +2225,7 @@ async function getExcludedDevices(){
 
 描述音频设备。
 
-| 名称                          | 类型                       | 可读 | 可写 | 说明       |
+| 名称                          | 类型                       | 只读 | 可选 | 说明       |
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
 | networkId<sup>9+</sup>        | string                     | 是   | 否   | 设备组网的ID。<br/>此接口为系统接口。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
 | interruptGroupId<sup>9+</sup> | number                     | 是   | 否   | 设备所处的焦点组ID。<br/>此接口为系统接口。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
@@ -3787,12 +3524,12 @@ try {
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
-| 名称                          | 类型                       | 可读 | 可写 | 说明       |
+| 名称                          | 类型                       | 只读 | 可选 | 说明       |
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
-| address | string         | 是   | 是   | 空间化设备地址。|
-| isSpatializationSupported | boolean        | 是   | 是   | 空间化设备是否支持空间音频渲染。true表示支持，false表示不支持。|
-| isHeadTrackingSupported | boolean        | 是   | 是   | 空间化设备是否支持头动跟踪。true表示支持，false表示不支持。|
-| spatialDeviceType | [AudioSpatialDeviceType](#audiospatialdevicetype11)   | 是   | 是   | 空间化设备类型。|
+| address | string         | 否 | 否 | 空间化设备地址。|
+| isSpatializationSupported | boolean        | 否 | 否 | 空间化设备是否支持空间音频渲染。true表示支持，false表示不支持。|
+| isHeadTrackingSupported | boolean        | 否 | 否 | 空间化设备是否支持头动跟踪。true表示支持，false表示不支持。|
+| spatialDeviceType | [AudioSpatialDeviceType](#audiospatialdevicetype11)   | 否 | 否 | 空间化设备类型。|
 
 **示例：**
 

@@ -1,4 +1,4 @@
-# WindowManager_NativeModule
+# WindowManager
 
 
 ## Overview
@@ -52,6 +52,8 @@ The WindowManager_NativeModule module provides the capabilities of managing appl
 
 | Name| Description|
 | -------- | -------- |
+| int32_t [OH_WindowManager_GetAllWindowLayoutInfoList](#oh_windowmanager_getallwindowlayoutinfolist) (int64_t displayId, [WindowManager_Rect](_window_manager___rect.md) \*\*windowLayoutInfoList, size_t \*windowLayoutInfoSize) | Obtains the layout information array of all windows visible on a display. The layout information is arranged based on the current window stacking order, and the topmost window in the hierarchy is at index 0 of the array. | 
+| void [OH_WindowManager_ReleaseAllWindowLayoutInfoList](#oh_windowmanager_releaseallwindowlayoutinfolist) ([WindowManager_Rect](_window_manager___rect.md) \*windowLayoutInfoList) | Releases the memory occupied by a window layout information array. | 
 | int32_t [OH_WindowManager_SetWindowStatusBarEnabled](#oh_windowmanager_setwindowstatusbarenabled) (int32_t windowId, bool enabled, bool enableAnimation) | Sets whether to display the status bar in a window.|
 | int32_t [OH_WindowManager_SetWindowStatusBarColor](#oh_windowmanager_setwindowstatusbarcolor) (int32_t windowId, int32_t color) | Sets the color of the status bar in a window.|
 | int32_t [OH_WindowManager_SetWindowNavigationBarEnabled](#oh_windowmanager_setwindownavigationbarenabled) (int32_t windowId, bool enabled, bool enableAnimation) | Sets whether to display the navigation bar in a window.|
@@ -228,6 +230,56 @@ Enumerates the window types.
 
 
 ## Function Description
+
+### OH_WindowManager_GetAllWindowLayoutInfoList()
+
+```
+int32_t OH_WindowManager_GetAllWindowLayoutInfoList (int64_t displayId, WindowManager_Rect** windowLayoutInfoList, size_t* windowLayoutInfoSize )
+```
+
+**Description**
+
+Obtains the layout information array of all windows visible on a display. The layout information is arranged based on the current window stacking order, and the topmost window in the hierarchy is at index 0 of the array.
+
+**Since**: 17
+
+**Parameters**
+
+| Parameter| Description|
+| -- | -- |
+| displayId | ID of the display. You can obtain a valid display ID by calling the ArkTS API **getWindowProperties** on the window object.|
+| windowLayoutInfoList | Double pointer to the layout information array of all windows visible.|
+| windowLayoutInfoSize | Pointer to the length of the layout information array.|
+
+**Return value**
+
+Returns one of the following result codes:
+
+**OK**: This code is returned if the function is successfully called, and the double pointer to the array and the pointer to the array length are returned.
+
+**WINDOW_MANAGER_ERRORCODE_INVALID_PARAM**: This code is returned if a parameter is incorrect.
+
+**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: This code is returned if the feature is not supported by the device.
+
+**WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL**: This code is returned if the window manager service is abnormal.
+
+### OH_WindowManager_ReleaseAllWindowLayoutInfoList()
+
+```
+void OH_WindowManager_ReleaseAllWindowLayoutInfoList (WindowManager_Rect* windowLayoutInfoList)
+```
+
+**Description**
+
+Releases the memory occupied by a window layout information array.
+
+**Since**: 17
+
+**Parameters**
+
+| Parameter| Description|
+| -- | -- |
+| windowLayoutInfoList | Pointer to the layout information array of all windows visible on the display. You can obtain the array pointer by calling [OH_WindowManager_GetAllWindowLayoutInfoList](#oh_windowmanager_getallwindowlayoutinfolist).|
 
 
 ### OH_NativeWindowManager_RegisterKeyEventFilter()

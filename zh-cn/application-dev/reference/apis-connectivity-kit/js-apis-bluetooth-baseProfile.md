@@ -34,11 +34,11 @@ type ProfileConnectionState = constant.ProfileConnectionState
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称     | 类型                           | 可读 | 可写 | 说明                            |
+| 名称     | 类型                           | 只读 | 可选 | 说明                            |
 | -------- | ----------------------------- | ---- | ---- | ------------------------------- |
-| deviceId | string                        | 是   | 否   | 表示蓝牙设备地址。   |
-| state    | [ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate)        | 是   | 否   | 表示蓝牙设备的profile连接状态。 |
-| cause<sup>12+</sup>| [DisconnectCause](#disconnectcause12) | 是 | 否 | 表示连接失败的原因。|
+| deviceId | string                        | 否   | 否   | 表示蓝牙设备地址。   |
+| state    | [ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate)        | 否   | 否   | 表示蓝牙设备的profile连接状态。 |
+| cause<sup>12+</sup>| [DisconnectCause](#disconnectcause12) | 否 | 否 | 表示连接失败的原因。|
 
 
 ## DisconnectCause<sup>12+</sup>

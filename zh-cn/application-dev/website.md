@@ -18,7 +18,9 @@
         - [HAP](quick-start/hap-package.md)
         - [HAR](quick-start/har-package.md)
         - [HSP](quick-start/in-app-hsp.md)
-      - [应用程序包安装卸载与更新](quick-start/application-package-install-uninstall.md)
+      - 应用程序包安装卸载与更新<!--application-package-install-->
+        - [应用安装卸载与更新开发指导](quick-start/application-package-install-uninstall.md)
+        - [应用安装与更新一致性校验](quick-start/multi_module_installation_update_consistency_verification.md)
     - 应用配置文件（Stage模型）<!--application-configuration-file-stage-->
       - [应用配置文件概述（Stage模型）](quick-start/application-configuration-file-overview-stage.md)
       - [app.json5配置文件](quick-start/app-configuration-file.md)
@@ -35,7 +37,8 @@
       - [创建应用静态快捷方式](quick-start/typical-scenario-configuration.md)
       - [创建应用分身](quick-start/app-clone.md)
       - [创建应用多实例](quick-start/multiInstance.md)
-      - [配置分层图标](quick-start/layered-image.md)
+      - [配置应用图标](quick-start/layered-image.md)
+    - [应用程序包常见问题](quick-start/common_problem_of_application.md)
     - [应用程序包术语](quick-start/application-package-glossary.md)
   - [资源分类与访问](quick-start/resource-categories-and-access.md)
   - 学习ArkTS语言<!--learning-arkts-->
@@ -270,6 +273,7 @@
         - 并发线程间通信<!--interthead-communication-->
           - [ArkTS线程间通信概述](arkts-utils/interthread-communication-overview.md)
           - 线程间通信对象<!--interthead-communication-object-->
+            - [线程间通信对象概述](arkts-utils/serializable-overview.md)
             - [普通对象](arkts-utils/normal-object.md)
             - [ArrayBuffer对象](arkts-utils/arraybuffer-object.md)
             - [SharedArrayBuffer对象](arkts-utils/shared-arraybuffer-object.md)
@@ -314,7 +318,8 @@
             - [ArkUI瀑布流渲染场景](arkts-utils/taskpool-waterflow.md)
             - [获取最近访问列表场景](arkts-utils/sendablelrucache-recent-list.md)
             - [多线程取消TaskPool任务场景](arkts-utils/multi-thread-cancel-task.md)
-            - [ArkTS多线程间操作Native对象场景](arkts-utils/napi-coerce-to-native-binding-object.md)
+            - [自定义Native Transferable对象的多线程操作场景](arkts-utils/napi-coerce-to-native-binding-object.md)
+            - [自定义Native Sendable对象的多线程操作场景](arkts-utils/napi-define-sendable-object.md)
             - [Worker常驻线程通过TaskPool进行多任务并发处理](arkts-utils/worker-and-taskpool.md)
         - [并发常见问题](arkts-utils/concurrency-faq.md)
       - [ArkTS跨语言交互](arkts-utils/arkts-cross-language-interaction.md)
@@ -695,9 +700,10 @@
         - [Web页面显示内容滚动](web/web-content-scrolling.md)
         - [Web组件对接软键盘](web/web-docking-softkeyboard.md)
         - [Web组件焦点管理](web/web-focus.md)
-        - [Web组件手势事件](web/web-gesture.md)
-        - [Web组件缩放功能](web/web-scale-zoom.md)
+        - [使用Web组件的手势与应用交互](web/web-gesture.md)
+        - [使用Web组件管理网页缩放](web/web-scale-zoom.md)
         - [使用Web组件显示网页弹框](web/web-dialog.md)
+        - [使用Web组件的拖拽功能与网页交互](web/web_drag.md)
       - 管理Web组件的网络安全与隐私<!--web-manage-cyber-security-privacy-->
         - [解决Web组件本地资源跨域问题](web/web-cross-origin.md)
         - [使用智能防跟踪功能](web/web-intelligent-tracking-prevention.md)
@@ -717,11 +723,13 @@
       - 使用网页多媒体<!--web-use-multimedia-->
         - [使用WebRTC进行Web视频会议](web/web-rtc.md)
         - [托管网页中的媒体播放](web/app-takeovers-web-media.md)
+        - [Web组件支持视频沉浸式全屏播放](web/web_full_screen.md)
       - 处理网页内容<!--web-process-page-content-->
         - [使用Web组件打印前端页面](web/web-print.md)
         - [使用Web组件的PDF文档预览能力](web/web-pdf-preview.md)
         - [网页中安全区域计算和避让适配](web/web-safe-area-insets.md)
-        - [Web组件的菜单功能](web/web_menu.md)
+        - [使用Web组件菜单处理网页内容](web/web_menu.md)
+        - [使用Web组件与系统剪贴板交互处理网页内容](web/web-clipboard.md)
       - [同层渲染](web/web-same-layer.md)
       - [使用离线Web组件](web/web-offline-mode.md)
       - Web调试维测<!--web-debugging-->
@@ -729,18 +737,13 @@
         - [使用crashpad收集Web组件崩溃信息](web/web-crashpad.md)
         - [定位与解决Web白屏问题](web/web-white-screen.md)
     - Background Tasks Kit（后台任务开发服务）<!--background-task-kit-->
-      <!--Del-->
-      - 后台任务管理 <!--background-task-management--><!--DelEnd-->
-        - [Background Tasks Kit简介](task-management/background-task-overview.md)
-        - [短时任务(ArkTS)](task-management/transient-task.md)
-        - [短时任务(C/C++)](task-management/native-transient-task.md)
-        - [长时任务(ArkTS)](task-management/continuous-task.md)
-        - [延迟任务(ArkTS)](task-management/work-scheduler.md)
-        - [代理提醒(ArkTS)](task-management/agent-powered-reminder.md)
-        <!--Del-->
-        - [能效资源申请(ArkTS)（仅对系统特权应用开放）](task-management/efficiency-resource-request.md)
-        <!--DelEnd-->
-      <!--Del-->
+      - [Background Tasks Kit简介](task-management/background-task-overview.md)
+      - [短时任务(ArkTS)](task-management/transient-task.md)
+      - [短时任务(C/C++)](task-management/native-transient-task.md)
+      - [长时任务(ArkTS)](task-management/continuous-task.md)
+      - [延迟任务(ArkTS)](task-management/work-scheduler.md)
+      - [代理提醒(ArkTS)](task-management/agent-powered-reminder.md)<!--Del-->
+      - [能效资源申请(ArkTS)（仅对系统特权应用开放）](task-management/efficiency-resource-request.md)
       - 设备使用信息统计（仅对系统应用开放）<!--device-usage-statistics-->
         - [设备使用信息统计概述](device-usage-statistics/device-usage-statistics-overview.md)
         - [设备使用信息统计开发指导](device-usage-statistics/device-usage-statistics-use-guide.md)
@@ -786,46 +789,43 @@
         - [跨设备文件拷贝](file-management/file-copy-across-devices.md)
     - Form Kit（卡片开发服务）<!--form-kit-->
       - [Form Kit简介](form/formkit-overview.md)
-      - 服务卡片开发指导（Stage模型）<!--arkts-ui-widget-stage-->
-        - 开发基于ArkTS UI的卡片<!--arkts-ui-widget-->
-          - [ArkTS卡片概述](form/arkts-form-overview.md)
-          - [ArkTS卡片运行机制](form/arkts-ui-widget-working-principles.md)
-          - [ArkTS卡片相关模块](form/arkts-ui-widget-modules.md)
-          - ArkTS卡片开发指导<!--arkts-ui-widget-dev-->
-            - [创建ArkTS卡片](form/arkts-ui-widget-creation.md)
-            - [配置卡片的配置文件](form/arkts-ui-widget-configuration.md)
-            - [卡片生命周期管理](form/arkts-ui-widget-lifecycle.md)
-            - 开发卡片页面<!--arkts-ui-widget-page-->
-              - [卡片页面能力说明](form/arkts-ui-widget-page-overview.md)
-              - [卡片使用动效能力](form/arkts-ui-widget-page-animation.md)
-              - [卡片使用自定义绘制能力](form/arkts-ui-widget-page-custom-drawing.md)
-            - 开发卡片事件<!--arkts-ui-widget-event-->
-              - [卡片事件能力说明](form/arkts-ui-widget-event-overview.md)
-              - [拉起卡片提供方的UIAbility(router事件)](form/arkts-ui-widget-event-router.md)
-              - [拉起卡片提供方的UIAbility到后台(call事件)](form/arkts-ui-widget-event-call.md)
-              - [通过message事件刷新卡片内容](form/arkts-ui-widget-event-formextensionability.md)
-              - [通过router或call事件刷新卡片内容](form/arkts-ui-widget-event-uiability.md)
-            - 卡片数据交互<!--arkts-ui-widget-interaction-->
-              - [卡片内容更新](form/arkts-ui-widget-interaction-overview.md)
-              - [卡片定时刷新](form/arkts-ui-widget-update-by-time.md)
-              - [卡片定点刷新](form/arkts-ui-widget-update-by-time-point.md)
-              <!--Del-->
-              - [卡片代理刷新](form/arkts-ui-widget-update-by-proxy.md)
-              - [卡片条件刷新](form/arkts-ui-widget-update-by-conditions.md)
-              - [卡片使用方主动请求刷新卡片内容（仅对系统应用开放）](form/arkts-ui-widget-content-update.md)
-              <!--DelEnd-->
-              - [刷新本地图片和网络图片](form/arkts-ui-widget-image-update.md)
-              - [根据卡片状态刷新不同内容](form/arkts-ui-widget-update-by-status.md)
+      - ArkTS卡片开发（推荐）<!--arkts-ui-->
+        - [ArkTS卡片概述](form/arkts-form-overview.md)
+        - [创建ArkTS卡片](form/arkts-ui-widget-creation.md)
+        - [配置ArkTS卡片的配置文件](form/arkts-ui-widget-configuration.md)
+        - [管理ArkTS卡片生命周期](form/arkts-ui-widget-lifecycle.md)
+        - ArkTS卡片提供方开发指导<!--arkts-ui-widget-->
+          - ArkTS卡片UI界面开发<!--arkts-ui-widget-page-->
+            - [ArkTS卡片界面开发概述](form/arkts-ui-widget-page-overview.md)
+            - [ArkTS卡片为组件添加动效](form/arkts-ui-widget-page-animation.md)
+            - [ArkTS卡片使用画布组件绘制自定义图形](form/arkts-ui-widget-page-custom-drawing.md)
+          - ArkTS卡片页面刷新<!--arkts-ui-widget-interaction-->
+            - [ArkTS卡片页面刷新概述](form/arkts-ui-widget-interaction-overview.md)
+            - [ArkTS卡片主动刷新](form/arkts-ui-widget-active-refresh.md)
+            - [ArkTS卡片被动刷新](form/arkts-ui-widget-passive-refresh.md)
+            <!--Del-->
+            - [卡片代理刷新](form/arkts-ui-widget-update-by-proxy.md)
+            <!--DelEnd-->
+            - [刷新本地图片和网络图片](form/arkts-ui-widget-image-update.md)
+            - [根据卡片状态刷新不同内容](form/arkts-ui-widget-update-by-status.md)
+          - ArkTS卡片页面交互<!--arkts-ui-widget-event-->
+            - [ArkTS卡片页面交互概述](form/arkts-ui-widget-event-overview.md)
+            - [卡片跳转到应用页面（router事件）](form/arkts-ui-widget-event-router.md)
+            - [卡片拉起应用UIAbility到后台（call事件）](form/arkts-ui-widget-event-call.md)
+            - [卡片传递消息给应用（message事件）](form/arkts-ui-widget-event-formextensionability.md)
+            - [通过router或call事件刷新卡片内容](form/arkts-ui-widget-event-uiability.md)
           - ArkTS卡片页面编辑<!--arkts-ui-widget-edit-->
             - [ArkTS卡片页面编辑交互概述](form/arkts-ui-widget-event-formeditextensionability-overview.md)
             - [编辑刷新卡片页面内容](form/arkts-ui-widget-event-formeditextensionability.md)
           - 应用内请求卡片加桌<!--arkts-ui-widget-add-->
             - [应用内拉起卡片管理加桌](form/arkts-ui-widget-open-formmanager.md)
-          <!--Del-->
-          - [卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
-          <!--DelEnd-->
-        - [开发基于JS UI的卡片](form/js-ui-widget-development.md)
-      - [JS卡片开发指导（FA模型）](form/widget-development-fa.md)
+        <!--Del--> 
+        - [ArkTS卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
+        <!--DelEnd-->
+      - JS卡片开发<!--form-js-ui-->
+        - [JS卡片概述](form/js-ui-widget-overview.md)
+        - [JS卡片开发指导（Stage模型）](form/js-ui-widget-development.md)
+        - [JS卡片开发指导（FA模型）](form/widget-development-fa.md)
     - IME Kit（输入法开发服务）<!--ime-kit-->
       - [IME Kit简介](inputmethod/ime-kit-intro.md)
       - [实现一个输入法应用](inputmethod/inputmethod-application-guide.md)
@@ -1262,11 +1262,12 @@
         - [Input Kit简介](device/input/input-overview.md)
         - [输入设备开发指导](device/input/inputdevice-guidelines.md)
         - [鼠标光标开发指导](device/input/pointerstyle-guidelines.md)
+        - [按键拦截监听开发指导](device/input/keypressed-guidelines.md) 
         <!--Del-->
         - [输入监听开发指导](device/input/inputmonitor-guidelines.md)
         - [事件注入开发指导](device/input/inputeventclient-guidelines.md)
-        - [组合按键开发指导](device/input/inputconsumer-guidelines.md)
-        - [快捷键开发指导](device/input/shortkey-guidelines.md)
+        - [全局快捷键开发指导](device/input/inputconsumer-guidelines.md)
+        - [系统预置全局快捷键开发指导](device/input/shortkey-guidelines.md)
         <!--DelEnd-->
         - [事件监听开发指导（C/C++）](device/input/monitor-guidelines.md)
         - [事件拦截开发指导（C/C++）](device/input/interceptor-guidelines.md)
@@ -1394,7 +1395,9 @@
         <!--DelEnd-->
         - [param工具](tools/param-tool.md)
         - [power-shell工具](tools/power-shell.md)
+        <!--Del-->
         - [OpenHarmony SDK升级助手](tools/openharmony_sdk_upgrade_assistant.md)
+        <!--DelEnd-->
         - [atm工具](tools/atm-tool.md)
         <!--Del-->
         - [acm工具](tools/acm-tool.md)
@@ -1776,6 +1779,7 @@
         - [fdsan使用指导](napi/fdsan.md)
       - 使用Node-API实现跨语言交互<!--using-napi-interaction-with-cpp-->
         - [Node-API简介](napi/napi-introduction.md)
+        - [Node-API接口返回状态码介绍](napi/napi_status_introduction.md)
         - [Node-API支持的数据类型和接口](napi/napi-data-types-interfaces.md)
         - [Node-API开发规范](napi/napi-guidelines.md)
         - [使用Node-API实现跨语言交互开发流程](napi/use-napi-process.md)
@@ -3085,9 +3089,11 @@
           - [属性字符串错误码](reference/apis-arkui/errorcode-styled-string.md)
           - [UI上下文错误码](reference/apis-arkui/errorcode-uicontext.md)
           - [交互事件错误码](reference/apis-arkui/errorcode-event.md)
+          - [自定义节点错误码](reference/apis-arkui/errorcode-node.md)
           <!--Del-->
           - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
           - [UIExtension错误码](reference/apis-arkui/errorcode-uiextension.md)
+          - [NodeAdapter错误码](reference/apis-arkui/errorcode-nodeadapter.md)
           <!--DelEnd-->
         - 图形图像<!--arkui-graphics-images-arkts-errcode-->
           - [屏幕错误码](reference/apis-arkui/errorcode-display.md)
@@ -3102,8 +3108,9 @@
           - [Class (WebCookieManager)](reference/apis-arkweb/js-apis-webview-WebCookieManager.md)
           - [Class (WebDataBase)](reference/apis-arkweb/js-apis-webview-WebDataBase.md)
           - [Class (WebMessageExt)](reference/apis-arkweb/js-apis-webview-WebMessageExt.md)
-          - [Interfaces (WebMessagePort)](reference/apis-arkweb/js-apis-webview-WebMessagePort.md)
           - [Class (WebStorage)](reference/apis-arkweb/js-apis-webview-WebStorage.md)
+          - [Interface (BackForwardList)](reference/apis-arkweb/js-apis-webview-BackForwardList.md)
+          - [Interface (WebMessagePort)](reference/apis-arkweb/js-apis-webview-WebMessagePort.md)
           - [Interfaces（其他）](reference/apis-arkweb/js-apis-webview-i.md)
           - [Enums](reference/apis-arkweb/js-apis-webview-e.md)
           - [Types](reference/apis-arkweb/js-apis-webview-t.md)
@@ -4258,6 +4265,7 @@
       - ArkTS API<!--image-arkts-->
         - [@ohos.multimedia.image (图片处理)](reference/apis-image-kit/js-apis-image.md)
         - [@ohos.multimedia.sendableImage (基于Sendable对象的图片处理)](reference/apis-image-kit/js-apis-sendableImage.md)
+        - [@ohos.multimedia.videoProcessingEngine (视频处理引擎)](reference/apis-image-kit/js-apis-videoProcessingEngine.md)
         <!--Del-->
         - [@ohos.multimedia.image (图片处理)(系统接口)](reference/apis-image-kit/js-apis-image-sys.md)
         <!--DelEnd-->
@@ -4322,6 +4330,7 @@
           - [ImageProcessing_ColorSpaceInfo](reference/apis-image-kit/_image_processing___color_space_info.md)
       - 错误码<!--image-arkts-errcode-->
         - [Image错误码](reference/apis-image-kit/errorcode-image.md)
+        - [视频处理引擎错误码](reference/apis-image-kit/errorcode-videoprocessingengine.md)
     - Media Kit（媒体服务）<!--media-api-->
       - ArkTS API<!--media-arkts-->
         - [@ohos.multimedia.media (媒体服务)](reference/apis-media-kit/js-apis-media.md)

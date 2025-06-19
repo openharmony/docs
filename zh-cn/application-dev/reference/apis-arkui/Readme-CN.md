@@ -518,9 +518,11 @@
     - [属性字符串错误码](errorcode-styled-string.md)
     - [UI上下文错误码](errorcode-uicontext.md)
     - [交互事件错误码](errorcode-event.md)
+    - [自定义节点错误码](errorcode-node.md)
     <!--Del-->
     - [用户界面外观服务错误码](errorcode-uiappearance.md)
     - [UIExtension错误码](errorcode-uiextension.md)
+    - [NodeAdapter错误码](errorcode-nodeadapter.md)
     <!--DelEnd-->
   - 图形图像<!--arkui-graphics-images-arkts-errcode-->
     - [屏幕错误码](errorcode-display.md)

@@ -35,7 +35,7 @@ class MyAbilityStage extends AbilityStage {
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | 是 | 否 | AbilityStage对应的ModuleInfo对象。 |
-| config | [Configuration](js-apis-app-ability-configuration.md) | 是 | 否 | 环境变化对象。 |
+| currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | 否 | 否 | AbilityStage对应的ModuleInfo对象。 |
+| config | [Configuration](js-apis-app-ability-configuration.md) | 否 | 否 | 环境变化对象。 |

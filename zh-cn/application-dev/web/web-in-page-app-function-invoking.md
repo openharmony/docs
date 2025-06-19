@@ -30,7 +30,7 @@
   struct WebComponent {
     webviewController: webview.WebviewController = new webview.WebviewController();
     // 声明需要注册的对象
-    @State testObj: testClass = new TestClass();
+    @State testObj: TestClass = new TestClass();
 
     build() {
       Column() {
@@ -86,7 +86,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new TestClass();
+    @State testObj: TestClass = new TestClass();
 
     build() {
       Column() {
@@ -237,7 +237,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new TestClass();
+    @State testObj: TestClass = new TestClass();
 
     build() {
       Column() {
@@ -319,7 +319,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new TestClass();
+    @State testObj: TestClass = new TestClass();
 
     build() {
       Column() {
@@ -393,7 +393,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new TestClass();
+    @State testObj: TestClass = new TestClass();
 
     build() {
       Column() {
@@ -467,7 +467,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new TestClass();
+    @State testObj: TestClass = new TestClass();
 
     build() {
       Column() {
@@ -581,7 +581,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new TestClass();
+    @State testObj: TestClass = new TestClass();
 
     build() {
       Column() {
@@ -662,7 +662,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new TestClass();
+    @State testObj: TestClass = new TestClass();
 
     build() {
       Column() {
@@ -734,7 +734,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new TestClass();
+    @State testObj: TestClass = new TestClass();
 
     build() {
       Column() {

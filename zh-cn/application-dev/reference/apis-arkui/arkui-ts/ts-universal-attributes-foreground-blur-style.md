@@ -8,7 +8,7 @@
 
 ## foregroundBlurStyle
 
-foregroundBlurStyle(value: BlurStyle, options?: ForegroundBlurStyleOptions)
+foregroundBlurStyle(value: BlurStyle, options?: ForegroundBlurStyleOptions): T
 
 为当前组件提供内容模糊能力。
 
@@ -23,9 +23,15 @@ foregroundBlurStyle(value: BlurStyle, options?: ForegroundBlurStyleOptions)
 | value   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 是   | 内容模糊样式。           |
 | options | [ForegroundBlurStyleOptions](#foregroundblurstyleoptions对象说明) | 否   | 可选参数，内容模糊选项。 |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## foregroundBlurStyle<sup>18+</sup>
 
-foregroundBlurStyle(style: Optional\<BlurStyle>, options?: ForegroundBlurStyleOptions)
+foregroundBlurStyle(style: Optional\<BlurStyle>, options?: ForegroundBlurStyleOptions): T
 
 为当前组件提供内容模糊能力。与[foregroundBlurStyle](#foregroundblurstyle)相比，style参数新增了对undefined类型的支持。
 
@@ -39,6 +45,12 @@ foregroundBlurStyle(style: Optional\<BlurStyle>, options?: ForegroundBlurStyleOp
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | style   | Optional\<[BlurStyle](ts-universal-attributes-background.md#blurstyle9)> | 是   | 内容模糊样式。<br/>当style的值为undefined时，恢复为无模糊的内容。 |
 | options | [ForegroundBlurStyleOptions](#foregroundblurstyleoptions对象说明) | 否   | 可选参数，内容模糊选项。                                     |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
 
 ## ForegroundBlurStyleOptions对象说明
 继承自[BlurStyleOptions](#blurstyleoptions)

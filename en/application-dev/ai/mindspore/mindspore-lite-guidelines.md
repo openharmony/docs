@@ -18,7 +18,7 @@ Before getting started, you need to understand the following basic concepts:
 
 ## Available APIs
 
-APIs involved in MindSpore Lite model inference are categorized into context APIs, model APIs, and tensor APIs.
+APIs involved in MindSpore Lite model inference are categorized into context APIs, model APIs, and tensor APIs. For details about the APIs, see [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md).
 
 ### Context APIs
 

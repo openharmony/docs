@@ -218,7 +218,7 @@ Sets the role type of the accessibility component, which affects how the compone
 
 | Name  | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| role | [AccessibilityRoleType](ts-universal-attributes-accessibility.md#AccessibilityRoleType18) | Yes  | Role of the component as announced by screen readers (for example, button or chart). You can define custom roles.|
+| role | [AccessibilityRoleType](ts-universal-attributes-accessibility.md#accessibilityroletype18) | Yes  | Role of the component as announced by screen readers (for example, button or chart). You can define custom roles.|
 
 ## onAccessibilityFocus<sup>18+</sup>
 
@@ -236,7 +236,7 @@ Triggered when the accessibility component gains or loses focus. Callback trigge
 
 | Name  | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| callback | [AccessibilityFocusCallback](ts-universal-attributes-accessibility.md#AccessibilityFocusCallback18) | Yes  | Callback that notifies the registered component of focus and blur events.|
+| callback | [AccessibilityFocusCallback](ts-universal-attributes-accessibility.md#accessibilityfocuscallback18) | Yes  | Callback that notifies the registered component of focus and blur events.|
 
 ## AccessibilityFocusCallback<sup>18+</sup>
 

@@ -58,6 +58,6 @@ Currently, the drawing dependency can be displayed in either of the following mo
 
 ## Constraints
 
-In a graphic drawing process, a unit used is a pixel unit px.
+In the process of graphics rendering, the unit used is pixels (px).
 
 <!--RP1--><!--RP1End-->

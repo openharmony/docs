@@ -332,7 +332,7 @@ navBarWidthRange(value: [Dimension, Dimension])
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 是   | 导航栏最小和最大宽度。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432，如果只设置一个值，则未设置的值按照默认值计算。<br/>单位：vp |
+| value | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 是   | 导航栏最小和最大宽度。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432，未正确设置的值按照默认值计算。<br/>单位：vp |
 
 ### minContentWidth<sup>10+</sup>
 
@@ -1354,7 +1354,7 @@ NavPathInfo参数信息。
 |-------|-------|------|-------|
 | name | string | 否 | NavDestination名称，如果为根视图(NavBar)，则返回值为undefined。|
 | index | number | 是 | NavDestination在NavPathStack中的序号， 如果为根视图(NavBar)，则返回值为 -1。<br/>取值范围：[-1, +∞)。 |
-| mode | [NavDestinationMode](ts-basic-components-navdestination.md#navdestinationmode枚举说明) | 否 | NavDestination的模式，如果是根视图(NavBar)，则返回值为undefined。|
+| mode | [NavDestinationMode](ts-basic-components-navdestination.md#navdestinationmode枚举说明11) | 否 | NavDestination的模式，如果是根视图(NavBar)，则返回值为undefined。|
 | param<sup>12+</sup> | Object | 否 | NavDestination页面加载的参数。|
 | navDestinationId<sup>12+</sup> | string | 否 | NavDestination的唯一标识符。|
 
@@ -1598,7 +1598,7 @@ Navigation自定义标题。
 | 名称  | 说明                                                         |
 | ----- | ------------------------------------------------------------ |
 | Stack | 导航栏与内容区独立显示，相当于两个页面。                     |
-| Split | 导航栏与内容区分两栏显示。<br/>以下navBarWidthRange的值用[minNavBarWidth,maxNavBarWidth]表示<br/>1.当navBarWidth属性的值，在navBarWidthRange属性的值范围以外时，navBarWidth按如下规则显示：<br/>navBarWidth < minNavBarWidth时，navBarWidth修正为minNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp) > maxNavBarWidth时，navBarWidth修正为maxNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp) < minNavBarWidth时，navBarWidth修正为minNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp)在navBarWidthRange范围内，navBarWidth修正为组件宽度 - 分割线宽度(1vp) - minContentWidth。<br/>2.当navBarWidth属性的值，在navBarWidthRange属性的值范围以内时，navBarWidth按如下规则显示：<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) >= 组件宽度时，navBarWidth修正为minNavBarWidth；<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度，且navBarWidth + minContentWidth + 分割线宽度(1vp) >= 组件宽度时，navBarWidth修正为组件宽度 - 分割线宽度(1vp) - minContentWidth;<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度，且navBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度时，navBarWidth为设置的值。<br/>3.缩小组件尺寸时，先缩小内容区的尺寸至minContentWidth，然后再缩小导航栏的尺寸至minNavBarWidth。若继续缩小，先缩小内容区，内容区消失后再缩小导航栏。<br/>4.设置导航栏为固定尺寸时，若持续缩小组件尺寸，导航栏最后压缩显示。<br/>5.若只设置了navBarWidth属性，则导航栏宽度为navBarWidth，且分割线不可拖动。<br/>6.分割线的热区左右各2vp，建议避让4vp以上。 |
+| Split | 导航栏与内容区分两栏显示。<br/>以下navBarWidthRange的值用[minNavBarWidth,maxNavBarWidth]表示<br/>1.当navBarWidth属性的值，在navBarWidthRange属性的值范围以外时，navBarWidth按如下规则显示：<br/>navBarWidth < minNavBarWidth时，navBarWidth修正为minNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp) > maxNavBarWidth时，navBarWidth修正为maxNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp) < minNavBarWidth时，navBarWidth修正为minNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp)在navBarWidthRange范围内，navBarWidth修正为组件宽度 - 分割线宽度(1vp) - minContentWidth。<br/>2.当navBarWidth属性的值，在navBarWidthRange属性的值范围以内时，navBarWidth按如下规则显示：<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) >= 组件宽度时，navBarWidth修正为minNavBarWidth；<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度，且navBarWidth + minContentWidth + 分割线宽度(1vp) >= 组件宽度时，navBarWidth修正为组件宽度 - 分割线宽度(1vp) - minContentWidth;<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度，且navBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度时，navBarWidth为设置的值。<br/>3.缩小组件尺寸时，先缩小内容区的尺寸至minContentWidth，然后再缩小导航栏的尺寸至minNavBarWidth。若继续缩小，先缩小内容区，内容区消失后再缩小导航栏。<br/>4.设置导航栏为固定尺寸时，若持续缩小组件尺寸，导航栏最后压缩显示。<br/>5.若只设置了navBarWidth属性，则导航栏宽度为navBarWidth，且分割线不可拖动。<br/>6.分割线的热区左右各2vp，建议避让4vp以上。<br/>7.Split模式下，内容区若只存在一个页面，则页面左上角不会显示返回按钮。 |
 | Auto  | API version 9之前：窗口宽度>=520vp时，采用Split模式显示；窗口宽度<520vp时，采用Stack模式显示。<br/>API version 10及以上：窗口宽度>=600vp时，采用Split模式显示；窗口宽度<600vp时，采用Stack模式显示，600vp等于minNavBarWidth(240vp) + minContentWidth (360vp)。 |
 
 ## NavigationOperation<sup>11+</sup>枚举说明
@@ -2050,9 +2050,10 @@ export struct PageTwo {
 }
 ```
 
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
+
 ```json
-// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
-// route_map.json
+// src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
     {
@@ -2397,6 +2398,7 @@ export struct PageTwo {
 ```ts
 // CustomNavigationUtils.ets
 // 自定义接口，用来保存某个页面相关的转场动画回调和参数
+// src/main/pages/CustomNavigationUtils.ets
 export interface AnimateCallback {
   finish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
   start: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
@@ -2532,9 +2534,9 @@ export class CustomTransition {
   }
 }
 ```
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
 ```json
-// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
-// route_map.json
+// src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
     {
@@ -2819,9 +2821,9 @@ export struct PageTwo {
   }
 }
 ```
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
 ```json
-// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
-// route_map.json
+// src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
     {
@@ -3049,9 +3051,9 @@ export function PageOneBuilder(name: string) {
   .title(name)
 }
 ```
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
 ```json
-// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
-// route_map.json
+// src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
     {
@@ -3160,9 +3162,9 @@ struct NavigationExample2 {
   }
 }
 ```
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
 ```json
-// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
-// route_map.json
+// src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
     {
@@ -3279,9 +3281,9 @@ struct NavigationExample3 {
   }
 }
 ```
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
 ```json
-// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
-// route_map.json
+// src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
     {
@@ -4012,8 +4014,8 @@ export struct PageContainer {
 ```
 ```ts
 // CustomNavigationUtils.ts 工具类，用来管理所有页面的自定义动画参数注册和获取等
-
 // 自定义接口，用来保存某个页面相关的转场动画回调和参数
+// src/main/pages/CustomNavigationUtils.ts
 export interface AnimateCallback {
   start: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
   finish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
@@ -4060,10 +4062,9 @@ export class CustomTransition {
   }
 }
 ```
-
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
 ```json
-// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
-// route_map.json
+// src/main/resources/base/profile/route_map.json
 {
   "routerMap": [
     {

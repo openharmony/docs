@@ -45,13 +45,13 @@ Emitter通过维护一个内部事件队列，来进行任务分发。应用需�
     }
 
     // 收到eventId为1的事件后执行回调函数
-    emitter.on(innerEvent, callback);
+    emitter.on(event, callback);
    ```
 
    ```ts
     // 收到eventId为1的事件后执行回调函数。
     // 注意：once订阅只接收一次事件，on订阅则一直接收直到取消订阅为止。
-    emitter.once(innerEvent, callback);
+    emitter.once(event, callback);
    ```
 
 3. 发送事件。

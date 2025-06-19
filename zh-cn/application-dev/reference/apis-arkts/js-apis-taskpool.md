@@ -18,7 +18,7 @@ taskpool使用过程中的相关注意点请查[TaskPool注意事项](../../arkt
 
 > **说明：**
 >
-> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -33,7 +33,7 @@ execute(func: Function, ...args: Object[]): Promise\<Object>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -81,7 +81,7 @@ execute<A extends Array\<Object>, R>(func: (...args: A) => R | Promise\<R>, ...a
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 13 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -143,7 +143,7 @@ execute(task: Task, priority?: Priority): Promise\<Object>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -202,7 +202,7 @@ execute<A extends Array\<Object>, R>(task: GenericsTask<A, R>, priority?: Priori
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 13 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -261,7 +261,7 @@ execute(group: TaskGroup, priority?: Priority): Promise<Object[]>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -322,7 +322,7 @@ executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Obj
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -381,7 +381,7 @@ executeDelayed<A extends Array\<Object>, R>(delayTime: number, task: GenericsTas
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 13 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -438,7 +438,7 @@ executePeriodically(period: number, task: Task, priority?: Priority): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -514,7 +514,7 @@ executePeriodically<A extends Array\<Object>, R>(period: number, task: GenericsT
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 13 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -589,7 +589,7 @@ cancel(task: Task): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -667,7 +667,7 @@ cancel(group: TaskGroup): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -728,7 +728,7 @@ cancel(taskId: number): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -879,7 +879,7 @@ getTaskPoolInfo(): TaskPoolInfo
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -901,10 +901,10 @@ let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| HIGH   | 0    | 任务为高优先级。<br/>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
-| MEDIUM | 1 | 任务为中优先级。<br/>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
-| LOW | 2 | 任务为低优先级。<br/>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
-| IDLE<sup>12+</sup> | 3 | 任务为后台任务。<br/>**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。 |
+| HIGH   | 0    | 任务为高优先级。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| MEDIUM | 1 | 任务为中优先级。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| LOW | 2 | 任务为低优先级。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| IDLE<sup>12+</sup> | 3 | 任务为后台任务。<br/>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 
@@ -944,21 +944,21 @@ for (let i: number = 0; i < taskArray.length; i+=4) { // 4: 每次执行4个任�
 
 ## Task
 
-表示任务。使用[constructor](#constructor)方法构造Task。任务可以多次执行或放入任务组执行或放入串行队列执行或放入异步队列执行或添加依赖关系执行。
+表示任务。任务可以多次执行或放入任务组执行或放入串行队列执行或放入异步队列执行或添加依赖关系执行。
 
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称                 | 类型       | 可读 | 可写 | 说明                                                         |
+| 名称                 | 类型       | 只读 | 可选 | 说明                                                         |
 | -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
-| function             | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
-| arguments            | Object[]  | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
-| name<sup>11+</sup>   | string    | 是   | 否   | 创建任务时指定的任务名称。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
-| taskId<sup>18+</sup>   | number    | 是   | 否   | 任务的ID。<br>**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。|
-| totalDuration<sup>11+</sup>  | number    | 是   | 否   | 执行任务总耗时。单位为ms。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
-| ioDuration<sup>11+</sup>     | number    | 是   | 否   | 执行任务异步IO耗时。单位为ms。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
-| cpuDuration<sup>11+</sup>    | number    | 是   | 否   | 执行任务CPU耗时。单位为ms。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
+| function             | Function  | 否   | 否   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
+| arguments            | Object[]  | 否   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
+| name<sup>11+</sup>   | string    | 是   | 否   | 创建任务时指定的任务名称。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
+| taskId<sup>18+</sup>   | number    | 是   | 否   | 任务的ID。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。|
+| totalDuration<sup>11+</sup>  | number    | 是   | 否   | 执行任务总耗时。单位为ms。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| ioDuration<sup>11+</sup>     | number    | 是   | 否   | 执行任务异步IO耗时。单位为ms。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
+| cpuDuration<sup>11+</sup>    | number    | 是   | 否   | 执行任务CPU耗时。单位为ms。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
 
 ### constructor
 
@@ -968,7 +968,7 @@ Task的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1006,7 +1006,7 @@ Task的构造函数，可以指定任务名称。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1047,7 +1047,7 @@ static isCanceled(): boolean
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -1119,7 +1119,7 @@ setTransferList(transfer?: ArrayBuffer[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1184,7 +1184,7 @@ setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1346,7 +1346,7 @@ static sendData(...args: Object[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1406,7 +1406,7 @@ onReceiveData(callback?: Function): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1457,7 +1457,7 @@ addDependency(...tasks: Task[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1517,7 +1517,7 @@ removeDependency(...tasks: Task[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1884,7 +1884,7 @@ GenericsTask的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 13 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1936,7 +1936,7 @@ GenericsTask的构造函数，可以指定任务名称。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 13 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1971,8 +1971,7 @@ let name: string = task.name;
 
 ## TaskGroup<sup>10+</sup>
 
-表示任务组，一次执行一组任务，适用于执行一组有关联的任务。如果所有任务正常执行，异步执行完毕后返回所有任务结果的数组，数组中元素的顺序与[addTask](#addtask10-1)的顺序相同；如果任意任务失败，则会抛出对应异常。如果任务组中存在多个任务失败的情况，则会抛出第一个失败任务的异常。任务组可以多次执行，但执行后不能新增任务。使用[constructor](#constructor10)方法构造TaskGroup。
-
+表示任务组，一次执行一组任务，适用于执行一组有关联的任务。如果所有任务正常执行，异步执行完毕后返回所有任务结果的数组，数组中元素的顺序与[addTask](#addtask10-1)的顺序相同；如果任意任务失败，则会抛出对应异常。如果任务组中存在多个任务失败的情况，则会抛出第一个失败任务的异常。任务组可以多次执行，但执行后不能新增任务。
 ### constructor<sup>10+</sup>
 
 constructor()
@@ -1981,7 +1980,7 @@ TaskGroup的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **示例：**
 
@@ -1997,7 +1996,7 @@ TaskGroup的构造函数，可以指定任务组名称。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2029,7 +2028,7 @@ addTask(func: Function, ...args: Object[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2068,7 +2067,7 @@ addTask(task: Task): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2105,15 +2104,15 @@ taskGroup.addTask(task);
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称 | 类型   | 可读 | 可写 | 说明                         |
+| 名称 | 类型   | 只读 | 可选 | 说明                         |
 | ---- | ------ | ---- | ---- | ---------------------------- |
-| name<sup>11+</sup> | string | 是   | 是   | 创建任务组时指定的任务组名称。 |
+| name<sup>11+</sup> | string | 否   | 否   | 创建任务组时指定的任务组名称。 |
 
 ## SequenceRunner <sup>11+</sup>
 
-表示串行队列的任务，用于执行一组需要串行执行的任务。使用[constructor](#constructor11-3)方法构造SequenceRunner。
+表示串行队列的任务，用于执行一组需要串行执行的任务。
 
 ### constructor<sup>11+</sup>
 
@@ -2123,7 +2122,7 @@ SequenceRunner的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2158,7 +2157,7 @@ SequenceRunner的构造函数。构造一个全局串行队列，如果名字相
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2194,7 +2193,7 @@ execute(task: Task): Promise\<Object>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2261,7 +2260,7 @@ async function seqRunner() {
 
 ## AsyncRunner<sup>18+</sup>
 
-表示异步队列，可以指定任务执行并发度和指定任务的排队策略。使用[constructor](#constructor18)方法构造AsyncRunner。
+表示异步队列，可以指定任务执行并发度和指定任务的排队策略。
 
 ### constructor<sup>18+</sup>
 
@@ -2271,7 +2270,7 @@ AsyncRunner的构造函数。构造一个非全局的异步队列，如果参数
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2307,7 +2306,7 @@ AsyncRunner的构造函数。构造一个全局异步队列，如果名字相同
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2349,7 +2348,7 @@ execute(task: Task, priority?: Priority): Promise\<Object>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2415,7 +2414,7 @@ async function asyRunner2() {
 
 **系统能力：**  SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称      | 值        | 说明          |
 | --------- | -------- | ------------- |
@@ -2434,12 +2433,12 @@ async function asyRunner2() {
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称     | 类型                | 可读 | 可写 | 说明                                                           |
+| 名称     | 类型                | 只读 | 可选 | 说明                                                           |
 | -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
 | name<sup>12+</sup> | string             | 是   | 否   | 任务的名字。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                    |
-| taskId   | number             | 是   | 否   | 任务的ID。<br/> **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。                                                     |
-| state    | [State](#state10)  | 是   | 否   | 任务的状态。<br/> **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。                                                    |
-| duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行。<br/> **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。  |
+| taskId   | number             | 是   | 否   | 任务的ID。<br/> **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。                                                     |
+| state    | [State](#state10)  | 是   | 否   | 任务的状态。<br/> **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。                                                    |
+| duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行。<br/> **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。  |
 
 ## ThreadInfo<sup>10+</sup>
 
@@ -2451,9 +2450,9 @@ async function asyRunner2() {
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称     | 类型                    | 可读 | 可写 | 说明                                                      |
+| 名称     | 类型                    | 只读 | 可选 | 说明                                                      |
 | -------- | ---------------------- | ---- | ---- | -------------------------------------------------------- |
 | tid      | number                 | 是   | 否   | 工作线程的标识符。返回为空时，代表没有任务执行。              |
 | taskIds  | number[]               | 是   | 否   | 在当前线程上运行的任务id列表。返回为空时，代表没有任务执行。   |
@@ -2469,9 +2468,9 @@ async function asyRunner2() {
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称          | 类型                              | 可读 | 可写 | 说明                  |
+| 名称          | 类型                              | 只读 | 可选 | 说明                  |
 | ------------- | -------------------------------- | ---- | ---- | -------------------- |
 | threadInfos   | [ThreadInfo[]](#threadinfo10)    | 是   | 否   | 工作线程的内部信息。   |
 | taskInfos     | [TaskInfo[]](#taskinfo10)        | 是   | 否   | 任务的内部信息。       |

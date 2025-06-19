@@ -1,4 +1,4 @@
-# Interfaces (WebMessagePort)
+# Interface (WebMessagePort)
 
 通过WebMessagePort可以进行消息的发送以及接收，发送[WebMessageType](./js-apis-webview-e.md#webmessagetype10)/[WebMessage](./js-apis-webview-t.md#webmessage)类型消息给HTML5侧。
 
@@ -406,6 +406,7 @@ struct WebComponent {
 </html>
 ```
 
+<!--code_no_check-->
 ```js
 //index.js
 var h5Port;

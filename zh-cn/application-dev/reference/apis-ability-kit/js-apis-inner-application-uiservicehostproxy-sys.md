@@ -16,8 +16,9 @@ UIServiceHostProxy提供代理能力，可以将数据从[UIServiceExtension](js
 import { common } from '@kit.AbilityKit';
 ```
 
+## UIServiceHostProxy
 
-## UIServiceHostProxy.sendData
+### sendData
 
 sendData(data: Record\<string, Object>): void
 
@@ -29,9 +30,9 @@ sendData(data: Record\<string, Object>): void
 
 **参数：**
 
-| 参数名 | 类型 | 只读 | 可选 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| data | Record\<string, Object> | 是 | 否 | 待发送到[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)客户端的数据。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| data | Record\<string, Object> | 是 | 待发送到[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)客户端的数据。 |
 
 **错误码：**
 
@@ -47,14 +48,14 @@ sendData(data: Record\<string, Object>): void
 
 ```ts
 import { common, UIServiceExtensionAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = '[UiServiceExtensionAbility] ';
 
 export default class MyUiServiceExtensionAbility extends UIServiceExtensionAbility {
-
   // 数据发送处理
   onData(proxy: common.UIServiceHostProxy, data: Record<string, Object>) {
-    console.log(TAG + `onData ${JSON.stringify(data)}`);
+    console.info(TAG + `onData ${JSON.stringify(data)}`);
     // 定义发送数据内容
     let formData: Record<string, string> = {
       'proxyData': 'proxyData'
@@ -63,7 +64,9 @@ export default class MyUiServiceExtensionAbility extends UIServiceExtensionAbili
       // 发送数据到UIServiceExtension的服务端
       proxy.sendData(formData);
     } catch (err) {
-      console.log(TAG + `sendData failed ${JSON.stringify(err.message)}`);
+      let code = (err as BusinessError).code;
+      let msg = (err as BusinessError).message;
+      console.error(`${TAG} sendData failed, err code: ${code}, err msg: ${msg}.`);
     }
   }
 }

@@ -9,18 +9,19 @@ Defines a native API struct of the post message. Before calling the API, you are
 
 **Related module**: [Web](_web.md)
 
+**Header file**: [arkweb_type.h](arkweb__type_8h.md)
 
 ## Summary
 
 
 ### Member Variables
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| size_t [size](#size) | Size of the struct. |
-| [ArkWeb_ErrorCode](_web.md#arkweb_errorcode)(\* [postMessage](#postmessage) )(const [ArkWeb_WebMessagePortPtr](_web.md#arkweb_webmessageportptr) webMessagePort, const char \*webTag, const [ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) webMessage) | Pointer to the function used to send the message to the HTML page. |
-| void(\* [close](#close) )(const [ArkWeb_WebMessagePortPtr](_web.md#arkweb_webmessageportptr) webMessagePort, const char \*webTag) | Pointer to the function used to close the message port. |
-| void(\* [setMessageEventHandler](#setmessageeventhandler) )(const [ArkWeb_WebMessagePortPtr](_web.md#arkweb_webmessageportptr) webMessagePort, const char \*webTag, [ArkWeb_OnMessageEventHandler](_web.md#arkweb_onmessageeventhandler) messageEventHandler, void \*userData) | Pointer to the callback used to set the HTML messages received. |
+| size_t [size](#size) | Size of the struct. | 
+| [ArkWeb_ErrorCode](_web.md#arkweb_errorcode)(\* [postMessage](#postmessage) )(const [ArkWeb_WebMessagePortPtr](_web.md#arkweb_webmessageportptr) webMessagePort, const char \*webTag, const [ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) webMessage) | Pointer to the function used to send the message to the HTML page. | 
+| void(\* [close](#close) )(const [ArkWeb_WebMessagePortPtr](_web.md#arkweb_webmessageportptr) webMessagePort, const char \*webTag) | Pointer to the function used to close the message port. | 
+| void(\* [setMessageEventHandler](#setmessageeventhandler) )(const [ArkWeb_WebMessagePortPtr](_web.md#arkweb_webmessageportptr) webMessagePort, const char \*webTag, [ArkWeb_OnMessageEventHandler](_web.md#arkweb_onmessageeventhandler) messageEventHandler, void \*userData) | Pointer to the callback used to set the HTML messages received. | 
 
 
 ## Member Variable Description
@@ -37,10 +38,10 @@ Pointer to the function used to close the message port.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| webMessagePort | Pointer to the message port. |
-| webTag | Name of a **Web** component. |
+| webMessagePort | Pointer to the message port. | 
+| webTag | Name of a **Web** component. | 
 
 
 ### postMessage
@@ -54,15 +55,15 @@ Pointer to the function used to send the message to the HTML page.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| webMessagePort | Pointer to the message port. |
-| webTag | Name of a **Web** component. |
-| webMessage | Message to send. |
+| webMessagePort | Pointer to the message port. | 
+| webTag | Name of a **Web** component. | 
+| webMessage | Message to send. | 
 
 **Returns**
 
-Returns [ARKWEB_SUCCESS](_web.md) if the operation is successful. Returns [ARKWEB_INVALID_PARAM](_web.md) if the parameter is invalid. Returns [ARKWEB_INIT_ERROR](_web.md) if the initialization fails, that is, the Web component bound to the WebTag is not found.
+Error code. [ARKWEB_SUCCESS](_web.md#arkweb_errorcode-1) is returned if the operation is successful. [ARKWEB_INVALID_PARAM](_web.md#arkweb_errorcode-1) is returned if the parameter is invalid. [ARKWEB_INIT_ERROR](_web.md#arkweb_errorcode-1) is returned if the initialization fails, that is, the **Web** component bound to the **webTag** is not found.
 
 
 ### setMessageEventHandler
@@ -76,12 +77,12 @@ Pointer to the callback used to set the HTML messages received.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| webMessagePort | Pointer to the message port. |
-| webTag | Name of a **Web** component. |
-| messageEventHandler | Callback used to handle messages. |
-| userData | User-defined data. |
+| webMessagePort | Pointer to the message port. | 
+| webTag | Name of a **Web** component. | 
+| messageEventHandler | Callback used to handle messages. | 
+| userData | User-defined data. | 
 
 
 ### size

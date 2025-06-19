@@ -29,18 +29,6 @@ Web组件返回的请求/响应头对象。
 | headerKey   | string | 否 | 否 | 请求/响应头的key。   |
 | headerValue | string | 否 | 否 | 请求/响应头的value。 |
 
-
-## BackForwardList
-
-当前Webview的历史信息列表。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-| 名称         | 类型   | 只读 | 可选 | 说明                                                         |
-| ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| currentIndex | number | 否   | 否   | 当前在页面历史列表中的索引。                                 |
-| size         | number | 否   | 否   | 历史列表中索引的数量，最多保存50条，超过时起始记录会被覆盖。 |
-
 ## WebCustomScheme
 
 自定义协议配置。
@@ -95,12 +83,6 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 ## SnapshotResult<sup>12+</sup>
 
 全量绘制回调结果。
-
-> **说明：**
->
-> 仅支持对渲染进程上的资源进行截图：静态图片和文本。
-> 
-> 不支持动态视频，如果页面有视频则截图时会显示该视频的占位图片。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

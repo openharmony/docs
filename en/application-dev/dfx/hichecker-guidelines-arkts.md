@@ -10,7 +10,7 @@ HiChecker is provided to check issues that may be easily ignored during applicat
 
 ## Working Principles
 
-1. The application calls HiChecker APIs to add, remove, query, and modify rules. \n
+1. The application calls HiChecker APIs to add, remove, query, and modify rules. 
 2. When a time-consuming call or ability resource leakage occurs, HiChecker reports an event based on the rule triggered.
 
 ## Constraints
@@ -48,7 +48,7 @@ After the application startup execution page is loaded, the check starts. After 
        const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
        const imagePackerApi = image.createImagePacker();
        let packOpts: image.PackingOption = { format:"image/jpeg", quality:98 };
-       imagePackerApi.packing(imageSourceApi, packOpts);
+       imagePackerApi.packToData(imageSourceApi, packOpts);
        // The preceding codes trigger the check rule through the image subsystem.
        hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreateend');
      }

@@ -86,7 +86,7 @@ The **drawing_text_typography.h** file declares the functions related to typogra
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \* [OH_Drawing_CreateTypographyStyle](_drawing.md#oh_drawing_createtypographystyle) (void) | Creates an **OH_Drawing_TypographyStyle** object. When [OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) is no longer required, call [OH_Drawing_DestroyTypographyStyle](_drawing.md#oh_drawing_destroytypographystyle) to release the pointer to the object. | 
+| [OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \* [OH_Drawing_CreateTypographyStyle](_drawing.md#oh_drawing_createtypographystyle) (void) | Creates an **OH_Drawing_TypographyStyle** object. When **OH_Drawing_TypographyStyle** is no longer required, call [OH_Drawing_DestroyTypographyStyle](_drawing.md#oh_drawing_destroytypographystyle) to release the pointer to the object. | 
 | void [OH_Drawing_DestroyTypographyStyle](_drawing.md#oh_drawing_destroytypographystyle) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*) | Destroys an **OH_Drawing_TypographyStyle** object and reclaims the memory occupied by the object. | 
 | void [OH_Drawing_SetTypographyTextDirection](_drawing.md#oh_drawing_settypographytextdirection) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, int) | Sets the text direction in a typography style. | 
 | void [OH_Drawing_SetTypographyTextAlign](_drawing.md#oh_drawing_settypographytextalign) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, int) | Sets the text alignment mode. | 

@@ -2748,7 +2748,7 @@ updateFormLocation(formId: string, location: formInfo.FormLocation): void;
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formId | string | 是   | 卡片标识。 |
-| location |[formInfo.FormLocation](js-apis-app-form-formInfo-sys.md#formlocation) | 是 | 卡片位置。 |
+| location |[formInfo.FormLocation](js-apis-app-form-formInfo-sys.md#formlocation12) | 是 | 卡片位置。 |
 
 **错误码：**
 

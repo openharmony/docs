@@ -16,18 +16,20 @@ AutoFillExtensionAbility模块提供账号和密码的自动填充和保存功�
 import { AutoFillExtensionAbility } from '@kit.AbilityKit';
 ```
 
-## 属性
+## AutoFillExtensionAbility
+
+### 属性
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext-sys.md)  | 是 | 否 | AutoFillExtension的上下文环境，继承自ExtensionContext。 |
+| context | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext-sys.md)  | 否 | 否 | AutoFillExtension的上下文环境，继承自ExtensionContext。 |
 
 
-## AutoFillExtensionAbility.onCreate
+### onCreate
 
 onCreate(): void
 
@@ -48,7 +50,7 @@ class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
 }
 ```
 
-## AutoFillExtensionAbility.onFillRequest
+### onFillRequest
 
 onFillRequest(session: UIExtensionContentSession, request: FillRequest, callback: FillRequestCallback): void
 
@@ -99,7 +101,7 @@ class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
 }
 ```
 
-## AutoFillExtensionAbility.onSaveRequest
+### onSaveRequest
 
 onSaveRequest(session: UIExtensionContentSession, request: SaveRequest, callback: SaveRequestCallback): void
 
@@ -148,7 +150,7 @@ class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
 }
 ```
 
-## AutoFillExtensionAbility.onUpdateRequest<sup>12+</sup>
+### onUpdateRequest<sup>12+</sup>
 
 onUpdateRequest(request: UpdateRequest): void
 
@@ -176,7 +178,7 @@ class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
 }
 ```
 
-## AutoFillExtensionAbility.onSessionDestroy
+### onSessionDestroy
 
 onSessionDestroy(session: UIExtensionContentSession): void
 
@@ -203,7 +205,7 @@ class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
 }
 ```
 
-## AutoFillExtensionAbility.onForeground
+### onForeground
 
 onForeground(): void
 
@@ -224,7 +226,7 @@ class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
 }
 ```
 
-## AutoFillExtensionAbility.onBackground
+### onBackground
 
 onBackground(): void
 
@@ -245,7 +247,7 @@ class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
 }
 ```
 
-## AutoFillExtensionAbility.onDestroy
+### onDestroy
 
 onDestroy(): void | Promise&lt;void&gt;
 

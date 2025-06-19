@@ -53,7 +53,7 @@ onAddForm(want: Want): formBindingData.FormBindingData
 
 | 参数名 | 类型                                   | 必填 | 说明                                                         |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 当前卡片相关的Want类型信息，包括卡片ID、卡片名称、卡片样式等。这些卡片信息必须作为持久数据进行管理，以便后续更新和删除卡片。 |
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 当前卡片相关的Want类型信息，其中Want中的parameters为自定义取值，取值可以包含[卡片参数枚举](./js-apis-app-form-formInfo.md#formparam)中的一个或多个，如卡片ID、卡片名称、卡片样式等。这些卡片信息必须作为持久数据进行管理，以便后续更新和删除卡片。 |
 
 **返回值：**
 
@@ -115,7 +115,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onUpdateForm(formId: string, wantParams?: Record<string, Object>): void
 
-卡片提供方接收携带参数的更新卡片的通知接口。获取最新数据后调用formProvider的[updateForm](js-apis-app-form-formProvider.md#updateform)接口刷新卡片数据。
+卡片提供方接收携带参数的更新卡片的通知接口。获取最新数据后调用formProvider的[updateForm](js-apis-app-form-formProvider.md#formproviderupdateform)接口刷新卡片数据。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 

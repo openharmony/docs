@@ -11,23 +11,8 @@
 ## 导入模块
 
 ```js
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 ```
-
-## 权限列表
-
-| 权限                           | 权限等级    | 描述             |
-| ------------------------------ | ----------- | ---------------- |
-| ohos.permission.INSTALL_BUNDLE | system_core | 允许应用安装、卸载其他应用（除了企业相关应用，目前有企业InHouse应用，企业MDM应用和企业normal应用）。 |
-| ohos.permission.INSTALL_ENTERPRISE_BUNDLE | system_core | 允许应用安装企业InHouse应用。 |
-| ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE | system_core | 允许在企业设备上安装企业MDM应用包。 |
-| ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE | system_core | 允许在企业设备上安装企业NORMAL应用包。 |
-| ohos.permission.UNINSTALL_BUNDLE | system_core | 允许应用卸载应用。 |
-| ohos.permission.RECOVER_BUNDLE | system_core | 允许应用恢复预置应用。 |
-| ohos.permission.INSTALL_SELF_BUNDLE | system_core | 允许企业MDM应用在企业设备上自升级。|
-| ohos.permission.INSTALL_INTERNALTESTING_BUNDLE | system_core | 允许应用安装开发者内测构建应用。|
-
-权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 
 ## BundleInstaller.getBundleInstaller
 
@@ -57,7 +42,7 @@ getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void
 **示例：**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -100,7 +85,7 @@ getBundleInstaller(): Promise\<BundleInstaller>
 **示例：**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -141,7 +126,7 @@ getBundleInstallerSync(): BundleInstaller
 **示例：**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -221,7 +206,7 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 **示例：**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let hapFilePaths = ['/data/storage/el2/base/haps/entry/files/'];
@@ -314,7 +299,7 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 **示例：**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let hapFilePaths = ['/data/storage/el2/base/haps/entry/files/'];
@@ -411,7 +396,7 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 **示例：**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let hapFilePaths = ['/data/storage/el2/base/haps/entry/files/'];
@@ -479,7 +464,7 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 **示例：**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.demo';
@@ -545,7 +530,7 @@ uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.demo';
@@ -613,7 +598,7 @@ uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 **示例：**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.demo';
@@ -677,7 +662,7 @@ recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&
 **示例：**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.demo';
@@ -741,7 +726,7 @@ recover(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.demo';
@@ -805,7 +790,7 @@ recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 
 **示例：**
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.demo';
@@ -867,7 +852,7 @@ uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void\>) : vo
 **示例：**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let uninstallParam: installer.UninstallParam = {
@@ -932,7 +917,7 @@ uninstall(uninstallParam: UninstallParam) : Promise\<void>
 **示例：**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let uninstallParam: installer.UninstallParam = {
@@ -997,7 +982,7 @@ addExtResource(bundleName: string, filePaths: Array\<string>): Promise\<void>;
 **示例：**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import hilog from '@ohos.hilog';
 import { BusinessError } from '@ohos.base';
 
@@ -1059,7 +1044,7 @@ removeExtResource(bundleName: string, moduleNames: Array\<string>): Promise\<voi
 **示例：**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import hilog from '@ohos.hilog';
 import { BusinessError } from '@ohos.base';
 
@@ -1132,7 +1117,7 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, installParam: InstallParam, c
 **示例：**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let hapFilePaths = ['/data/storage/el2/base/haps/entry/files/'];
@@ -1209,7 +1194,7 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, callback: AsyncCallback\<void
 **示例：**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let hapFilePaths = ['/data/storage/el2/base/haps/entry/files/'];
@@ -1288,7 +1273,7 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, installParam?: InstallParam):
 **示例：**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let hapFilePaths = ['/data/storage/el2/base/haps/entry/files/'];
@@ -1359,7 +1344,7 @@ uninstallUpdates(bundleName: string, installParam?: InstallParam): Promise\<void
 **示例：**
 
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.camera';
@@ -1426,7 +1411,7 @@ createAppClone(bundleName: string, createAppCloneParam?: CreateAppCloneParam): P
 
 **示例：**
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.camera';
@@ -1493,7 +1478,7 @@ destroyAppClone(bundleName: string, appIndex: number, userId?: number): Promise\
 
 **示例：**
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.camera';
@@ -1559,7 +1544,7 @@ destroyAppClone(bundleName: string, appIndex: number, destroyAppCloneParam?: Des
 
 **示例：**
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.camera';
@@ -1632,7 +1617,7 @@ installPreexistingApp(bundleName: string, userId?: number): Promise\<void\>;
 
 **示例：**
 ```ts
-import installer from '@ohos.bundle.installer';
+import { installer } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.camera';

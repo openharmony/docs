@@ -223,6 +223,7 @@ struct CityList {
 List() {
   ListItem() {
     Row() {
+      // app.media.iconE为自定义资源
       Image($r('app.media.iconE'))
         .width(40)
         .height(40)
@@ -235,6 +236,7 @@ List() {
 
   ListItem() {
     Row() {
+      // app.media.iconF为自定义资源
       Image($r('app.media.iconF'))
         .width(40)
         .height(40)
@@ -318,7 +320,7 @@ List({ space: 10 }) {
 
 ### 添加分隔线
 
-分隔线用来将界面元素隔开，使单个元素更加容易识别。如下图所示，当列表项左边有图标（如蓝牙图标），由于图标本身就能很好的区分，此时分隔线从图标之后开始显示即可。
+分隔线用来将界面元素隔开，使单个元素更加容易识别。以系统设置场景为例（如下图所示），列表项左侧为图标（如蓝牙图标），右侧为文字描述且分割线在文字下方。
 
   **图13** 设置列表分隔线样式  
 

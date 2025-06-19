@@ -2620,7 +2620,7 @@ Resets the current transformation to the identity matrix, and then creates a new
 
 | Name | Type| Mandatory| Description |
 | --------- | ---------------------------------------- | ---- | ----- |
-| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | No| Transformation matrix.<br>Default value: **null**|
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md#matrix2d) | No| Transformation matrix.<br>Default value: **null**|
 
 **Example**
 
@@ -2681,7 +2681,7 @@ Obtains the current transformation matrix being applied to the context.
 
 | Type                                      | Description   |
 | ---------------------------------------- | ----- |
-| [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | **Matrix2D** object.|
+| [Matrix2D](ts-components-canvas-matrix2d.md#matrix2d) | **Matrix2D** object.|
 
 **Example**
 
@@ -3829,7 +3829,7 @@ Starts AI image analysis in the given settings. Before calling this API, make su
 
 **Error codes**
 
-For details about the error codes, see [AI Analysis Error Codes](../errorcode-image-analyzer.md).
+For details about the error codes, see [AI Analysis Error Codes](errorcode-image-analyzer.md).
 
 | ID| Error Message                                     |
 | -------- | -------------------------------------------- |

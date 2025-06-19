@@ -435,4 +435,52 @@ struct Index {
 }
 ```
 
+## GC常见问题
 
+### GC稳定性问题排查指导
+
+GC稳定性问题大多由两种异常引起：一是非法多线程操作导致的对象异常，GC任务过程中遇到到这些异常的对象进而报错。二是踩内存问题导致的存储的指针异常，GC任务过程中使用这些异常的指针进而报错。这两种问题在GC任务中的表现通常为堆栈中的地址异常。 
+
+分辨GC任务需要通过线程名称和堆栈内的方法来判断。OS_GC_Thread线程主要执行GC任务和PGO相关任务；堆栈内包含`GCTask`等关键词可帮助识别GC任务。GC任务上报地址异常类型的crash时，开发者应首先应排查非法多线程问题和踩内存问题。 
+
+- 检测非法多线程操作：[方舟运行时检测](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-multi-thread-check) 
+- 检测踩内存问题：[HWASan检测](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hwasan)
+
+以下示例仅列举部分情况，实际问题上报的地址异常类型多种多样，此处不再赘述。
+
+对象异常问题堆栈： 
+
+0xffff000000000048为对象异常偏移出错。
+
+``` text
+Reason:Signal:SIGSEGV(SEGV_MAPERR)@0xffff000000000048 
+Fault thread info:
+Tid:6490, Name:OS_GC_Thread
+#00 pc 0000000000507310 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::JSHClass::SizeFromJSHClass(panda::ecmascript::TaggedObject*)+0)(a3d1ba664de66d31faed07d711ee1299)
+#01 pc 0000000000521f94 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::CompressGCMarker::EvacuateObject(unsigned int, panda::ecmascript::TaggedObject*, panda::ecmascript::MarkWord const&, panda::ecmascript::ObjectSlot)+80)(a3d1ba664de66d31faed07d711ee1299)
+#02 pc 0000000000521ee4 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::CompressGCMarker::MarkObject(unsigned int, panda::ecmascript::TaggedObject*, panda::ecmascript::ObjectSlot)+372)(a3d1ba664de66d31faed07d711ee1299)
+#03 pc 0000000000523e40 /system/lib64/platformsdk/libark_jsruntime.so(a3d1ba664de66d31faed07d711ee1299)
+#04 pc 0000000000516d74 /system/lib64/platformsdk/libark_jsruntime.so(a3d1ba664de66d31faed07d711ee1299)
+#05 pc 00000000005206d4 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::CompressGCMarker::ProcessMarkStack(unsigned int)+160)(a3d1ba664de66d31faed07d711ee1299)
+#06 pc 000000000050460c /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::Heap::ParallelGCTask::Run(unsigned int)+228)(a3d1ba664de66d31faed07d711ee1299)
+#07 pc 000000000064f648 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::Runner::Run(unsigned int)+188)(a3d1ba664de66d31faed07d711ee1299)
+#08 pc 000000000064f718 /system/lib64/platformsdk/libark_jsruntime.so(a3d1ba664de66d31faed07d711ee1299)
+#09 pc 00000000001ba6b8 /system/lib/ld-musl-aarch64.so.1(start+236)(8102fa8a64ba5e1e9f2257469d3fb251)
+```
+指针异常问题堆栈：
+
+0x000056c2fffc0008为指针异常，和正常指针位数不一致。
+
+``` text
+Reason:Signal:SIGSEGV(SEGV_MAPERR)@0x000056c2fffc0008 
+Fault thread info:
+Tid:2936, Name:OS_GC_Thread
+#00 pc 00000000004d2ec0 /system/lib64/platformsdk/libark_jsruntime.so(733f61d2f51e825872484cc344970fe5)
+#01 pc 00000000004c6cac /system/lib64/platformsdk/libark_jsruntime.so(733f61d2f51e825872484cc344970fe5)
+#02 pc 00000000004cd180 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::NonMovableMarker::ProcessMarkStack(unsigned int)+256)(733f61d2f51e825872484cc344970fe5)
+#03 pc 000000000049d108 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::ConcurrentMarker::ProcessConcurrentMarkTask(unsigned int)+52)(733f61d2f51e825872484cc344970fe5)
+#04 pc 00000000004b6620 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::Heap::ParallelGCTask::Run(unsigned int)+236)(733f61d2f51e825872484cc344970fe5)
+#05 pc 00000000005d6e60 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::Runner::Run(unsigned int)+168)(733f61d2f51e825872484cc344970fe5)
+#06 pc 00000000005d6f30 /system/lib64/platformsdk/libark_jsruntime.so(733f61d2f51e825872484cc344970fe5)
+#07 pc 00000000001bdb84 /system/lib/ld-musl-aarch64.so.1(start+236)(e65f5c83306cf9c7dd4643794946ab9f)
+```

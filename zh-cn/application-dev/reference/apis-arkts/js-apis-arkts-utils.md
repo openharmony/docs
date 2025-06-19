@@ -42,7 +42,7 @@ type AsyncLockCallback\<T> = () => T | Promise\<T>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型   | 可读 | 可写 | 说明       |
+| 名称 | 类型   | 只读 | 可选 | 说明       |
 | ---- | ------ | ---- | ---- | ---------- |
 | name | string | 是   | 否   | 锁的名称。 |
 
@@ -421,11 +421,11 @@ options.signal = s;
 
 #### 属性
 
-| 名称        | 类型                                  | 可读 | 可写 | 说明                                                                                                                      |
+| 名称        | 类型                                  | 只读 | 可选 | 说明                                                                                                                      |
 | ----------- | ------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------------------------- |
-| isAvailable | boolean                               | 是   | 是   | 当前锁是否可用。取值为true，则只有在尚未持有锁定请求时才会授予该锁定请求；为false则表示将等待当前锁被释放。默认为 false。 |
-| signal      | [AbortSignal\<T>](#abortsignal)\|null | 是   | 是   | 用于终止异步操作的对象。当signal.aborted为true时，锁请求将被丢弃；当signal.aborted为false时，请求会继续等待获取锁；当signal为null时，请求正常排队运行。默认为 null。               |
-| timeout     | number                                | 是   | 是   | 锁操作的超时时间，单位为毫秒。若该值大于零，且操作运行时间超过该时间，[lockAsync](#lockasync)将返回被拒绝的Promise。默认为 0。      |
+| isAvailable | boolean                               | 否   | 否   | 当前锁是否可用。取值为true，则只有在尚未持有锁定请求时才会授予该锁定请求；为false则表示将等待当前锁被释放。默认为 false。 |
+| signal      | [AbortSignal\<T>](#abortsignal)\|null | 否   | 否   | 用于中止异步操作的对象。当signal.aborted为true时，锁请求将被丢弃；当signal.aborted为false时，请求会继续等待获取锁；当signal为null时，请求正常排队运行。默认为 null。               |
+| timeout     | number                                | 否   | 否   | 锁操作的超时时间，单位为毫秒。若该值大于零，且操作运行时间超过该时间，[lockAsync](#lockasync)将返回被拒绝的Promise。默认为 0。      |
 
 ### AsyncLockState
 
@@ -437,10 +437,10 @@ options.signal = s;
 
 #### 属性
 
-| 名称    | 类型                              | 可读 | 可写 | 说明             |
+| 名称    | 类型                              | 只读 | 可选 | 说明             |
 | ------- | --------------------------------- | ---- | ---- | ---------------- |
-| held    | [AsyncLockInfo[]](#asynclockinfo) | 是   | 是   | 持有的锁信息。   |
-| pending | [AsyncLockInfo[]](#asynclockinfo) | 是   | 是   | 等待中的锁信息。 |
+| held    | [AsyncLockInfo[]](#asynclockinfo) | 否   | 否   | 持有的锁信息。   |
+| pending | [AsyncLockInfo[]](#asynclockinfo) | 否   | 否   | 等待中的锁信息。 |
 
 ### AsyncLockInfo
 
@@ -452,11 +452,11 @@ options.signal = s;
 
 #### 属性
 
-| 名称      | 类型                            | 可读 | 可写 | 说明                                                      |
+| 名称      | 类型                            | 只读 | 可选 | 说明                                                      |
 | --------- | ------------------------------- | ---- | ---- | --------------------------------------------------------- |
-| name      | string                          | 是   | 是   | 锁的名称。                                                |
-| mode      | [AsyncLockMode](#asynclockmode) | 是   | 是   | 锁的模式。                                                |
-| contextId | number                          | 是   | 是   | [AsyncLockMode](#asynclockmode)调用者的执行上下文标识符。 |
+| name      | string                          | 否   | 否   | 锁的名称。                                                |
+| mode      | [AsyncLockMode](#asynclockmode) | 否   | 否   | 锁的模式。                                                |
+| contextId | number                          | 否   | 否   | [AsyncLockMode](#asynclockmode)调用者的执行上下文标识符。 |
 
 ### AbortSignal
 
@@ -468,10 +468,10 @@ options.signal = s;
 
 #### 属性
 
-| 名称    | 类型    | 可读 | 可写 | 说明                                                             |
+| 名称    | 类型    | 只读 | 可选 | 说明                                                             |
 | ------- | ------- | ---- | ---- | ---------------------------------------------------------------- |
-| aborted | boolean | 是   | 是   | 是否终止异步操作。为true时表示终止异步操作，为false时表示异步操作未被终止。     |
-| reason  | \<T>    | 是   | 是   | 终止的原因。此值将用于[lockAsync](#lockasync)返回被拒绝的Promise。 |
+| aborted | boolean | 否   | 否   | 是否终止异步操作。为true时表示中止异步操作，为false时表示异步操作未被中止。     |
+| reason  | \<T>    | 否   | 否   | 中止的原因。此值将用于拒绝[lockAsync](#lockasync)返回的Promise。 |
 
 ### ConditionVariable<sup>18+</sup>
 
@@ -917,7 +917,7 @@ SendableLruCache在缓存空间不足时，会用新数据替换近期最少使�
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称   | 类型   | 可读 | 可写 | 说明                   |
+| 名称   | 类型   | 只读 | 可选 | 说明                   |
 | ------ | ------ | ---- | ---- | ---------------------- |
 | length | number | 是   | 否   | 当前缓冲区中值的总数。 |
 

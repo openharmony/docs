@@ -2,7 +2,7 @@
 
 ## Overview
 
-The FFRT concurrent queue provides the capability of setting the priority and queue concurrency. Tasks in the queue can be executed on multiple threads at the same time, achieving better effect.
+The FFRT concurrent queue provides the capability of setting the priority and queue concurrency. Tasks in the queue can be executed on multiple threads at the same time, achieving better effects.
 
 - **Queue concurrency**: You can set the maximum concurrency of a queue to control the number of tasks that can be executed at the same time. This avoids system resource impact caused by excessive concurrent tasks, ensuring system stability and performance.
 - **Task priority**: You can set a priority for each task. Different tasks are scheduled and executed strictly based on the priority. Tasks with the same priority are executed in sequence. Tasks with higher priorities are executed prior to those with lower priorities to ensure that key tasks can be processed in a timely manner.
@@ -21,8 +21,7 @@ The implementation code is as follows:
 ```c
 #include <stdio.h>
 #include <unistd.h>
-#include "ffrt/queue.h"
-#include "ffrt/task.h"
+#include "ffrt/ffrt.h"
 
 ffrt_queue_t create_bank_system(const char *name, int concurrency)
 {
@@ -89,24 +88,26 @@ int main()
         printf("create bank system failed\n");
         return -1;
     }
-    commit_request(bank, bank_business, "customer1", ffrt_queue_priority_low, 0);
-    commit_request(bank, bank_business, "customer2", ffrt_queue_priority_low, 0);
-    commit_request(bank, bank_business, "customer3", ffrt_queue_priority_low, 0);
-    commit_request(bank, bank_business, "customer4", ffrt_queue_priority_low, 0);
 
+    ffrt_task_handle_t task1 = commit_request(bank, bank_business, "customer1", ffrt_queue_priority_low, 0);
+    ffrt_task_handle_t task2 = commit_request(bank, bank_business, "customer2", ffrt_queue_priority_low, 0);
     // VIP customers have the priority to enjoy services.
-    commit_request(bank, bank_business, "VIP", ffrt_queue_priority_high, 0);
+    ffrt_task_handle_t task3 = commit_request(bank, bank_business, "customer3 VIP", ffrt_queue_priority_high, 0);
+    ffrt_task_handle_t task4 = commit_request(bank, bank_business, "customer4", ffrt_queue_priority_low, 0);
+    ffrt_task_handle_t task5 = commit_request(bank, bank_business, "customer5", ffrt_queue_priority_low, 0);
 
-    ffrt_task_handle_t task = commit_request(bank, bank_business, "customer5", ffrt_queue_priority_low, 0);
-    ffrt_task_handle_t task_last = commit_request(bank, bank_business, "customer6", ffrt_queue_priority_low, 0);
-
-    // Cancel the service for customer 5.
-    cancel_request(task);
+    // Cancel the service for customer 4.
+    cancel_request(task4);
 
     // Wait until all customer services are complete.
-    wait_for_request(task_last);
+    wait_for_request(task5);
     destroy_bank_system(bank);
 
+    ffrt_task_handle_destroy(task1);
+    ffrt_task_handle_destroy(task2);
+    ffrt_task_handle_destroy(task3);
+    ffrt_task_handle_destroy(task4);
+    ffrt_task_handle_destroy(task5);
     return 0;
 }
 ```
@@ -164,6 +165,11 @@ The main FFRT APIs involved in the preceding example are as follows:
 | [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_destroy)                                   | Destroys a queue.            |
 | [ffrt_task_attr_set_queue_priority](ffrt-api-guideline-c.md#ffrt_task_attr_set_queue_priority)     | Sets the priority of a task in a queue.  |
 | [ffrt_queue_attr_set_max_concurrency](ffrt-api-guideline-c.md#ffrt_queue_attr_set_max_concurrency) | Sets the concurrency of the concurrent queue.|
+
+> **NOTE**
+>
+> - For details about how to use FFRT C++ APIs, see [Using FFRT C++ APIs](ffrt-development-guideline.md#using-ffrt-c-api-1).
+> - When using FFRT C or C++ APIs, you can use the FFRT C++ API third-party library to simplify the header file inclusion, that is, use the `#include "ffrt/ffrt.h"` header file to include statements.
 
 ## Constraints
 

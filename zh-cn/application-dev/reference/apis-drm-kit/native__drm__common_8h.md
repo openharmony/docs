@@ -68,11 +68,11 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | typedef enum [DRM_EventType](_drm.md#drm_eventtype-1) [DRM_EventType](_drm.md#drm_eventtype) | 监听事件类型。 | 
-| typedef enum [DRM_ContentProtectionLevel](_drm.md#drm_contentprotectionlevel-1) [DRM_ContentProtectionLevel](#drm_contentprotectionlevel) | 内容保护级别。 | 
-| typedef enum [DRM_MediaKeyType](_drm.md#drm_mediakeytype-1) [DRM_MediaKeyType](#drm_mediakeytype) | 媒体密钥类型。 | 
-| typedef enum [DRM_MediaKeyRequestType](_drm.md#drm_mediakeyrequesttype-1) [DRM_MediaKeyRequestType](#drm_mediakeyrequesttype) | 媒体密钥请求类型。 | 
-| typedef enum [DRM_OfflineMediaKeyStatus](_drm.md#drm_offlinemediakeystatus-1) [DRM_OfflineMediaKeyStatus](#drm_offlinemediakeystatus) | 离线媒体密钥状态。 | 
-| typedef enum [DRM_CertificateStatus](_drm.md#drm_certificatestatus-1) [DRM_CertificateStatus](#drm_certificatestatus) | 设备DRM证书状态。 | 
+| typedef enum [DRM_ContentProtectionLevel](_drm.md#drm_contentprotectionlevel-1) [DRM_ContentProtectionLevel](_drm.md#drm_contentprotectionlevel-1) | 内容保护级别。 | 
+| typedef enum [DRM_MediaKeyType](_drm.md#drm_mediakeytype-1) [DRM_MediaKeyType](_drm.md#drm_mediakeytype-1) | 媒体密钥类型。 | 
+| typedef enum [DRM_MediaKeyRequestType](_drm.md#drm_mediakeyrequesttype-1) [DRM_MediaKeyRequestType](_drm.md#drm_mediakeyrequesttype-1) | 媒体密钥请求类型。 | 
+| typedef enum [DRM_OfflineMediaKeyStatus](_drm.md#drm_offlinemediakeystatus-1) [DRM_OfflineMediaKeyStatus](_drm.md#drm_offlinemediakeystatus-1) | 离线媒体密钥状态。 | 
+| typedef enum [DRM_CertificateStatus](_drm.md#drm_certificatestatus-1) [DRM_CertificateStatus](_drm.md#drm_certificatestatus-1) | 设备DRM证书状态。 | 
 | typedef struct [DRM_MediaKeyRequestInfo](_d_r_m___media_key_request_info.md) [DRM_MediaKeyRequestInfo](_drm.md#drm_mediakeyrequestinfo) | 媒体密钥请求信息。 | 
 | typedef struct [DRM_MediaKeyRequest](_d_r_m___media_key_request.md) [DRM_MediaKeyRequest](_drm.md#drm_mediakeyrequest) | 媒体密钥请求。 | 
 | typedef struct [DRM_Statistics](_d_r_m___statistics.md) [DRM_Statistics](_drm.md#drm_statistics) | MediaKeySystem的度量记录。 | 

@@ -11,6 +11,7 @@ The NativeDisplayManager_CutoutInfo struct describes the unusable area of a disp
 
 **Related module**: [OH_DisplayManager](_o_h___display_manager.md)
 
+**Header file**: [oh_display_info.h](oh__display__info_8h.md)
 
 ## Summary
 

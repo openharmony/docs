@@ -1,6 +1,6 @@
 # AbilityDelegator
 
-AbilityDelegator提供对[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)生命周期的监控与管理能力。开发者通过[AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例，可以实现获取UIAbility当前状态（如是否已创建/是否在前台等）、查询当前获焦的UIAbility、等待UIAbility进入某个生命周期节点（如等待UIAbility进入onForeground）、启动指定UIAbility、设置超时机制等功能。
+AbilityDelegator提供对[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)生命周期的监控与管理能力。开发者通过[AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md)实例，可以实现获取UIAbility当前状态（如是否已创建/是否在前台等）、查询当前获焦的UIAbility、等待UIAbility进入某个生命周期节点（如等待UIAbility进入onForeground）、启动指定UIAbility、设置超时机制等功能。
 
 > **说明：**
 > 
@@ -37,7 +37,7 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是       | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
+| monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md) | 是       | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md)实例。 |
 | callback | AsyncCallback\<void>                                         | 是       | 回调函数。当添加AbilityMonitor实例成功，err为undefined，否则为错误对象。   |
 
 **错误码**：
@@ -86,7 +86,7 @@ addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
+| monitor | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md) | 是   | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md)实例。 |
 
 **返回值：**
 
@@ -138,7 +138,7 @@ addAbilityMonitorSync(monitor: AbilityMonitor): void
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
+| monitor | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md) | 是   | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md)实例。 |
 
 **错误码**：
 
@@ -184,7 +184,7 @@ removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): v
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
+| monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md) | 是   | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md)实例。 |
 | callback | AsyncCallback\<void>                                         | 是   | 回调函数。当删除已经添加的AbilityMonitor实例成功，err为undefined，否则为错误对象。  |
 
 **错误码**：
@@ -234,7 +234,7 @@ removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
 | 参数名    | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
+| monitor | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md) | 是   | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md)实例。 |
 
 **返回值：**
 
@@ -287,7 +287,7 @@ removeAbilityMonitorSync(monitor: AbilityMonitor): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
+| monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md) | 是   | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md)实例。 |
 
 **错误码**：
 
@@ -332,7 +332,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
+| monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md) | 是   | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md)实例。 |
 | callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | 是   | 回调函数。当等待与AbilityMonitor实例匹配的Ability到达OnCreate生命周期成功，err为undefined，data为获取到的Ability实例，否则为错误对象。   |
 
 **错误码**：
@@ -385,7 +385,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCall
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
+| monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md) | 是   | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md)实例。 |
 | timeout  | number                                                       | 是   | 最大等待时间，单位毫秒（ms），默认值为5000毫秒。                                 |
 | callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | 是   | 表示指定的回调方法。                                           |
 
@@ -442,7 +442,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbilit
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
+| monitor | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md) | 是   | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md)实例。 |
 | timeout | number                                                       | 否   | 最大等待时间，单位毫秒（ms），默认值为5000毫秒。                                 |
 
 **返回值：**
@@ -1078,7 +1078,7 @@ executeShellCommand(cmd: string, callback: AsyncCallback\<ShellCmdResult>): void
 | 参数名   | 类型                                                         | 必填 | 说明               |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
 | cmd      | string                                                       | 是   | shell命令字符串。    |
-| callback | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | 是   | 回调函数。当执行指定的shell命令成功，err为undefined，data为获取到的执行结果；否则为错误对象。 |
+| callback | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult-1)> | 是   | 回调函数。当执行指定的shell命令成功，err为undefined，data为获取到的执行结果；否则为错误对象。 |
 
 **示例：**
 
@@ -1113,7 +1113,7 @@ executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<S
 | ----------- | ------------------------------------------------------------ | ---- | ----------------------------- |
 | cmd         | string                                                       | 是   | shell命令字符串。               |
 | timeoutSecs | number                                                       | 是   | 设定命令超时时间，单位秒（s）。 |
-| callback    | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | 是   | 回调函数。当执行指定的shell命令成功，err为undefined，data为获取到的执行结果；否则为错误对象。   |
+| callback    | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult-1)> | 是   | 回调函数。当执行指定的shell命令成功，err为undefined，data为获取到的执行结果；否则为错误对象。   |
 
 **示例：**
 
@@ -1154,7 +1154,7 @@ executeShellCommand(cmd: string, timeoutSecs?: number): Promise\<ShellCmdResult>
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | Promise对象，返回Shell命令执行结果[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)对象。 |
+| Promise\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult-1)> | Promise对象，返回Shell命令执行结果[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult-1)对象。 |
 
 **示例：**
 

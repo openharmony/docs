@@ -32,9 +32,9 @@ The VideoProcessing module provides the APIs for video processing. It provides v
 
 | Name| Description| 
 | -------- | -------- |
-| typedef struct [OH_VideoProcessing](#oh_videoprocessing-1) [OH_VideoProcessing](#oh_videoprocessing) | Defines a struct for the video processing object.| 
+| typedef struct [OH_VideoProcessing](#oh_videoprocessing) [OH_VideoProcessing](#oh_videoprocessing) | Defines a struct for the video processing object.| 
 | typedef struct NativeWindow [OHNativeWindow](#ohnativewindow) | Defines a struct for the NativeWindow object.| 
-| typedef struct [OH_AVFormat](#oh_avformat-1) [OH_AVFormat](#oh_avformat) | Defines a struct for the OH_AVFormat object.| 
+| typedef struct [OH_AVFormat](#oh_avformat) [OH_AVFormat](#oh_avformat) | Defines a struct for the OH_AVFormat object.| 
 | typedef struct [VideoProcessing_ColorSpaceInfo](_video_processing___color_space_info.md) [VideoProcessing_ColorSpaceInfo](#videoprocessing_colorspaceinfo) | Defines a struct for the color space information of video processing.| 
 | typedef enum [VideoDetailEnhancer_QualityLevel](#videodetailenhancer_qualitylevel-1) [VideoDetailEnhancer_QualityLevel](#videodetailenhancer_qualitylevel) | Defines an enum for the quality levels for detail enhancement.| 
 | typedef enum [VideoProcessing_ErrorCode](#videoprocessing_errorcode-1) [VideoProcessing_ErrorCode](#videoprocessing_errorcode) | Defines an enum for the video processing error codes.| 

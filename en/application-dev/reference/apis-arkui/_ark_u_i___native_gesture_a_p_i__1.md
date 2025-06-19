@@ -9,6 +9,7 @@ Defines the gesture APIs.
 
 **Related module**: [ArkUI_NativeModule](_ark_u_i___native_module.md)
 
+**Header file**: [native_gesture.h](native__gesture_8h.md)
 
 ## Summary
 

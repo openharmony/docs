@@ -14,14 +14,6 @@
 import bundleMonitor from '@ohos.bundle.bundleMonitor';
 ```
 
-## 权限列表
-
-| 权限                                 | 权限等级    | 描述                           |
-| ------------------------------------ | ----------- | ------------------------------ |
-| ohos.permission.LISTEN_BUNDLE_CHANGE | system_basic | 可监听应用的安装，卸载，更新。 |
-
-权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
-
 ## BundleChangedInfo
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
@@ -32,6 +24,7 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 | ---------- | ------ | ---- | ---- | -------------------------- |
 | bundleName | string | 是   | 否   | 应用状态发生变化的应用Bundle名称。 |
 | userId     | number | 是   | 否   | 应用状态发生变化的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。   |
+| appIndex<sup>12+</sup>   | number | 是   | 否   |  应用状态发生变化的应用分身索引。  |
 
 ## BundleChangedEvent
 

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-JSVM-API provide APIs for retrieving JavaScript virtual machine (JSVM) instances and performing memory analysis, profiling, and debugging, which facilitates code optimization and improves development efficiency.
+JSVM-API provides APIs for retrieving JavaScript virtual machine (JSVM) instances and performing memory analysis, profiling, and debugging, which facilitates code optimization and improves development efficiency.
 
 ## Basic Concepts
 

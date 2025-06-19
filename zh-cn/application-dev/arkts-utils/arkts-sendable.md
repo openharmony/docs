@@ -87,6 +87,8 @@ Sendable interface需同时满足以下两个规则：
 
 - 元素均为Sendable类型的union type数据。
 
+- 开发者自定义的Native Sendable对象。详情可参考[自定义Native Sendable对象的多线程操作场景](napi-define-sendable-object.md)。
+
 > **说明：**
 >
 > - JS内置对象在并发实例间的传递遵循结构化克隆算法，跨线程行为是拷贝传递。因此，JS内置对象的实例不是Sendable类型。

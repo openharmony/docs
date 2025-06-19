@@ -20,10 +20,10 @@ import { Touch } from '@kit.InputKit';
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称               | 类型                      | 可读 | 可写 | 说明             |
+| 名称               | 类型                      | 只读 | 可选 | 说明             |
 | ------------------ | ------------------------- | ---- | ---- | ---------------- |
-| action | [TouchGestureAction](#touchgestureaction18) | 是   | 否   | 触摸屏手势类型。 |
-| touches | [Touch](js-apis-touchevent.md#touch)[] | 是 | 否 | 触摸点信息。 |
+| action | [TouchGestureAction](#touchgestureaction18) | 否   | 否   | 触摸屏手势类型。 |
+| touches | [Touch](js-apis-touchevent.md#touch)[] | 否 | 否 | 触摸点信息。 |
 
 ## TouchGestureAction<sup>18+</sup>
 

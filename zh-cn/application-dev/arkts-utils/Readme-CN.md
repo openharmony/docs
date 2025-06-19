@@ -25,6 +25,7 @@
     - 并发线程间通信<!--interthead-communication-->
         - [ArkTS线程间通信概述](interthread-communication-overview.md)
         - 线程间通信对象<!--interthead-communication-object-->
+            - [线程间通信对象概述](serializable-overview.md)
             - [普通对象](normal-object.md)
             - [ArrayBuffer对象](arraybuffer-object.md)
             - [SharedArrayBuffer对象](shared-arraybuffer-object.md)
@@ -69,7 +70,8 @@
             - [ArkUI瀑布流渲染场景](taskpool-waterflow.md)
             - [获取最近访问列表场景](sendablelrucache-recent-list.md)
             - [多线程取消TaskPool任务场景](multi-thread-cancel-task.md)
-            - [ArkTS多线程间操作Native对象场景](napi-coerce-to-native-binding-object.md)
+            - [自定义Native Transferable对象的多线程操作场景](napi-coerce-to-native-binding-object.md)
+            - [自定义Native Sendable对象的多线程操作场景](napi-define-sendable-object.md)
             - [Worker常驻线程通过TaskPool进行多任务并发处理](worker-and-taskpool.md)
     - [并发常见问题](concurrency-faq.md)
 - [ArkTS跨语言交互](arkts-cross-language-interaction.md)

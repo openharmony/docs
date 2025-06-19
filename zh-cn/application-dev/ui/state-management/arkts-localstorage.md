@@ -75,7 +75,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 
 ![zh-cn_image_0000001501936014](figures/zh-cn_image_0000001501936014.png)
 
-  **图1** \@LocalStorageProp初始化规则图示  
+  **图1** \@LocalStorageProp初始化规则图示
 
 ### 观察变化和行为表现
 
@@ -143,7 +143,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 
 ![zh-cn_image_0000001552855957](figures/zh-cn_image_0000001552855957.png)
 
-  **图3** \@LocalStorageLink初始化规则图示  
+  **图3** \@LocalStorageLink初始化规则图示
 
 ### 观察变化和行为表现
 
@@ -627,7 +627,7 @@ struct Index {
 @Component
 struct Child {
   @Link count: number;
-  //  'Hello World'，和localStorage2中'PropB'的双向同步，如果localStorage2中没有'PropB'，则使用默认值'Hello World'
+  //  'Hello World'和localStorage2中'PropB'的双向同步，如果localStorage2中没有'PropB'，则使用默认值'Hello World'
   @LocalStorageLink('PropB') PropB: string = 'Hello World';
 
   build() {

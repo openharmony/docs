@@ -814,7 +814,7 @@ type ImageErrorCallback = (error: ImageError) => void
 
 ### 示例1（加载基本类型图片）
 
-加载png、gif、svg和jpg等基本类型的图片。
+该示例通过传入[Resource](ts-types.md#resource)资源，加载png、gif、svg和jpg等基本类型的图片。
 
 ```ts
 @Entry
@@ -915,7 +915,7 @@ struct ImageExample2 {
 
 ### 示例3（为图片添加事件）
 
-为图片添加onClick和onFinish事件。
+该示例为图片添加[onClick](ts-universal-events-click.md#onclick)和[onFinish](#onfinish)事件。
 
 ```ts
 @Entry
@@ -953,7 +953,7 @@ struct ImageExample3 {
 
 ### 示例4（开启图像AI分析）
 <!--RP2-->
-使用enableAnalyzer接口开启图像AI分析。
+该示例使用[enableAnalyzer](#enableanalyzer11)接口开启图像AI分析。
 
 ```ts
 import { image } from '@kit.ImageKit';
@@ -1007,7 +1007,7 @@ struct ImageExample4 {
 <!--RP2End-->
 ### 示例5（通过slice拉伸图片）
 
-调整不同方向对图片进行拉伸。
+该示例通过[resizable](#resizable11)属性的slice选项，调整不同方向对图片进行拉伸。
 
 ```ts
 @Entry
@@ -1074,7 +1074,7 @@ struct Index {
 
 ### 示例6（通过lattice拉伸图片）
 
-使用矩形网格对象对图片进行拉伸。
+该示例使用[resizable](#resizable11)属性的lattice选项，使用矩形网格对象对图片进行拉伸。
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
@@ -1118,7 +1118,7 @@ struct drawingLatticeTest {
 
 ### 示例7（播放PixelMap数组动画）
 
-该示例通过[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)播放PixelMap数组动画。
+该示例通过[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)对象播放PixelMap数组动画。
 
 ```ts
 import {AnimationOptions, AnimatedDrawableDescriptor} from '@kit.ArkUI';
@@ -1200,7 +1200,7 @@ struct ImageExample {
 
 ### 示例8（为图像设置颜色滤镜效果）
 
-该示例通过[colorFilter](#colorfilter9)实现了给图像设置颜色滤镜效果。
+该示例通过[colorFilter](#colorfilter9)属性实现了给图像设置颜色滤镜效果。
 
 ```ts
 import { drawing, common2D } from '@kit.ArkGraphics2D';
@@ -1251,7 +1251,7 @@ struct ImageExample3 {
 
 ### 示例9（为图像设置填充效果）
 
-该示例通过[objectFit](#objectfit)为图像设置填充效果。
+该示例通过[objectFit](#objectfit)属性为图像设置填充效果。
 
 ```ts
 @Entry
@@ -1298,7 +1298,7 @@ struct ImageExample{
 
 ### 示例10（切换显示不同类型图片）
 
-该示例展示了ResourceStr类型与ImageContent类型作为数据源的显示图片效果。
+该示例展示了[ResourceStr](ts-types.md#resourcestr)类型与[ImageContent](#imagecontent12)类型作为数据源的显示图片效果。
 
 ```ts
 @Entry
@@ -1327,7 +1327,7 @@ struct ImageContentExample {
 
 ### 示例11（配置隐私隐藏）
 
-该示例通过[privacySensitive](#privacysensitive12)展示了如何配置隐私隐藏，效果展示需要卡片框架支持。
+该示例通过[privacySensitive](#privacysensitive12)属性展示了如何配置隐私隐藏，效果展示需要卡片框架支持。
 
 ```ts
 @Entry
@@ -1351,7 +1351,7 @@ struct ImageExample {
 
 ### 示例12（为图片设置扫光效果）
 
-该示例通过[linearGradient](./ts-basic-components-datapanel.md#lineargradient10)接口和[animateTo()](./ts-explicit-animation.md)实现了给图片设置扫光效果。
+该示例通过[linearGradient](./ts-basic-components-datapanel.md#lineargradient10)接口和[animateTo()](./ts-explicit-animation.md)接口实现了给图片设置扫光效果。
 
 ```ts
 import { curves } from '@kit.ArkUI';
@@ -1587,7 +1587,7 @@ struct Index {
 
 ### 示例17（设置SVG图片的填充颜色）
 
-该示例通过[fillColor](#fillcolor15)为SVG图片设置不同颜色的填充效果。
+该示例通过[fillColor](#fillcolor15)属性为SVG图片设置不同颜色的填充效果。
 
 ```ts
 @Entry

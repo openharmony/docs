@@ -1572,7 +1572,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 | 名称           | 类型     | 只读    | 可选 | 说明                                                         |
 | -------------- |--------|-------|----| ------------------------------------------------------------ |
 | enableReminder | boolean | 否     | 是  | 是否打开Calendar下所有Event提醒能力。当取值为true时，该Calendar下所有Event具备提醒能力；当取值为false时，不具备提醒能力，默认具备提醒能力。 |
-| color          | number \| string | 否   | 是  | 设置Calendar颜色。不填时，默认值为'#0A59F7'。                |
+| color          | number \| string | 否   | 是  | 设置Calendar颜色。值为number时取值范围为0x000000至0xFFFFFF或0x00000000至0xFFFFFFFF，值为string时长度为7或9，如'#FFFFFF'，'#FFFFFFFFF'。不填时或输入错误数据时，默认值为'#0A59F7'。 |
 
 ## Event
 
@@ -1582,9 +1582,9 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 | 名称           | 类型                              | 只读 | 可选 | 说明                                                                                                                                                                                                      |
 | -------------- | --------------------------------- | ---- |----|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| id             | number                            | 否   | 是  | 日程id。当调用[addEvent()](#addevent)、[addEvents()](#addevents)创建日程时，不填写此参数。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                            |
+| id             | number                            | 否   | 是  | 日程id。当调用[addEvent()](#addevent)、[addEvents()](#addevents)创建日程时，不填写此参数；当调用[deleteEvent()](#deleteevent)、[deleteEvents()](#deleteevents)删除日程时，日程id数组，日程id需为正整数，传入其他非法入参会报错。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | type           | [EventType](#eventtype)           | 否   | 否  | 日程类型。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                            |
-| title          | string                            | 否   | 是  | 日程标题。不填时，默认为空字符串。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                |
+| title          | string                            | 否   | 是  | 日程标题。长度限制为5000字符，不填时，默认为空字符串。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                         |
 | location       | [Location](#location)             | 否   | 是  | 日程地点。不填时，默认为null。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                |
 | startTime      | number                            | 否   | 否  | 日程开始时间，需要13位时间戳。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                   |
 | endTime        | number                            | 否   | 否  | 日程结束时间，需要13位时间戳。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                  |
@@ -1626,9 +1626,9 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 | 名称      | 类型   | 只读 | 可选 | 说明                     |
 | --------- | ------ | ---- |----| ------------------------ |
-| location  | string | 否   | 是  | 地点位置。默认为空字符串。 |
-| longitude | number | 否   | 是  | 地点经度。默认为0。        |
-| latitude  | number | 否   | 是  | 地点纬度。默认为0。        |
+| location  | string | 否   | 是  | 地点位置。长度限制为5000字符，不填时，默认为空字符串。 |
+| longitude | number | 否   | 是  | 地点经度。取值范围[-180, 180]，默认为0。    |
+| latitude  | number | 否   | 是  | 地点纬度。取值范围[-90, 90]，默认为0。    |
 
 ## EventFilter
 
@@ -1648,7 +1648,7 @@ static filterById(ids: number[]): EventFilter
 
 | 参数名 | 类型     | 必填 | 说明         |
 | ------ | -------- | ---- | ------------ |
-| ids    | number[] | 是   | 日程id数组。 |
+| ids    | number[] | 是   | 日程id数组，日程id需为正整数。 |
 
 **返回值**：
 
@@ -1716,8 +1716,8 @@ static filterByTime(start: number, end: number): EventFilter
 
 | 参数名 | 类型   | 必填 | 说明       |
 | ------ | ------ | ---- | ---------- |
-| start  | number | 是   | 开始时间。 |
-| end    | number | 是   | 结束时间。 |
+| start  | number | 是   | 开始时间。格式为13位时间戳。 |
+| end    | number | 是   | 结束时间。格式为13位时间戳。 |
 
 **返回值**：
 
@@ -1780,7 +1780,7 @@ static filterByTitle(title: string): EventFilter
 
 | 参数名 | 类型   | 必填 | 说明       |
 | ------ | ------ | ---- | ---------- |
-| title  | string | 是   | 日程标题。 |
+| title  | string | 是   | 日程标题。长度限制为5000字符。 |
 
 **返回值**：
 
@@ -1844,7 +1844,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 | 名称                | 类型                                        | 只读 | 可选 | 说明                                                                                                                                                                                                                                                                                                                              |
 | ------------------- | ------------------------------------------- | ---- |----|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | recurrenceFrequency | [RecurrenceFrequency](#recurrencefrequency) | 否   | 否  | 日程重复规则类型。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                 |
-| expire              | number                                      | 否   | 是  | 重复周期截止日。不填时，默认为0。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                        |
+| expire              | number                                      | 否   | 是  | 重复周期截止日。格式为13位时间戳，不填时则日程无截止日期。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                               |
 | count<sup>12+</sup>               | number                                      | 否   | 是  | 重复日程的重复次数，取值为非负整数，不填时默认为0，表示不会限定重复次数，会一直重复，取值为负时，效果等同于取值为0。当count与expire同时存在时以count为准。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                     |
 | interval<sup>12+</sup>            | number                                      | 否   | 是  | 重复日程的重复间隔，取值为非负整数，不填时默认为0，表示日程按照重复规则一直重复，没有间隔。取值为负时，效果等同于取值为0。当interval与expire同时存在时以expire为准。 <br/>此属性与recurrenceFrequency重复规则相关，不同的重复规则下，表示的重复间隔不同，以interval取2为例，分为以下几种情况：<br/>每天重复时：表示日程每隔两天重复一次。<br/>每周重复时：表示日程每隔两周重复一次。<br/>每月重复时：表示日程每隔两月重复一次。<br/>每年重复时：表示日程每隔两年重复一次。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | excludedDates<sup>12+</sup>       | number[]                                    | 否   | 是  | 重复日程的排除日期，参数取值为时间戳格式，不填时，默认为空，表示没有排除的日期，0或负数为无效值，与空值效果相同。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                 |
@@ -1877,8 +1877,8 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 | 名称  | 类型   | 只读 | 可选 | 说明                                                                 |
 | ----- | ------ | ---- |----|--------------------------------------------------------------------|
-| name  | string | 否   | 否  | 会议日程参与者的姓名。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| email | string | 否   | 否  | 会议日程参与者的邮箱。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| name  | string | 否   | 否  | 会议日程参与者的姓名。长度限制为5000字符。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| email | string | 否   | 否  | 会议日程参与者的邮箱。长度限制为5000字符。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | role<sup>12+</sup>  | [AttendeeRole](#attendeerole12) | 否   | 是  | 会议日程参与者的角色。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 | status<sup>18+</sup> | [AttendeeStatus](#attendeestatus18) | 否   | 是 | 会议日程参与者的状态，不填时默认为空。   <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | type<sup>18+</sup>   | [AttendeeType](#attendeetype18)     | 否   | 是 | 会议日程参与者的类型，不填时默认为空。   <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
@@ -1894,8 +1894,8 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 | 名称        | 类型                        | 只读 | 可选 | 说明                                  |
 | ----------- | --------------------------- | ---- |----|-------------------------------------|
 | type        | [ServiceType](#servicetype) | 否   | 否  | 服务类型。                               |
-| uri         | string                      | 否   | 否  | 服务的uri，格式为Deeplink类型。可以跳转到三方应用相应界面。 |
-| description | string                      | 否   | 是  | 服务辅助描述。不填时，默认为空字符串。                 |
+| uri         | string                      | 否   | 否  | 服务的uri，格式为Deeplink类型。可以跳转到三方应用相应界面。长度限制为5000字符。 |
+| description | string                      | 否   | 是  | 服务辅助描述。长度限制为5000字符，不填时，默认为空字符串。                 |
 
 ## ServiceType
 

@@ -13,6 +13,7 @@
     - 移动应用中，用户点击“反馈”按钮时，应用调用系统功能，拉起默认邮件客户端，预先填写反馈邮箱、问题描述等信息。
     - 移动应用中，当用户点击“通过邮件分享”按钮时，应用会通过 `mailto` 调用邮件客户端，预填邮件主题和正文。
 > **说明：**
+>
 > - 如果使用mailto方式拉起邮件应用，需要拉起方先按mailto格式封装字符串，再使用mailto方式拉起。邮件应用会解析收到的mailto协议字符串，并填充发件人、收件人、邮件内容等信息。
 > - 如果拉起方已知发件人、收件人、邮件内容等信息，推荐[使用startAbilityByType方式拉起邮件应用](start-email-apps.md)。
 
@@ -35,6 +36,16 @@ mailto:someone@example.com?key1=value1&key2=value2
   | body | 邮件正文 | string | 否 |
   | cc| 抄送人，多个用逗号分隔 | string | 否 |
   | bcc| 密送人，多个用逗号分隔 | string | 否 |
+
+特殊符号处理：
+
+如果邮件头参数值中存在特殊字符，如@、?、=、&等符号，可能导致配置不生效。建议将特殊字符替换为ASCII码，并在ASCII码前加百分号%。
+
+常用符号替换为ASCII码的对照表如下：
+
+|特殊符号 | :    | @    | ?    | =    | &    | #    | $    |
+|---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+|替换编码 | %3A  | %40  | %3F  | %3D  | %26  | %23  | %24  |
 
 ## 拉起方开发步骤
 
@@ -118,12 +129,12 @@ struct Index {
         // 应用冷启动生命周期回调，其他业务处理...
         parseMailto(want);
       }
-
+    
       onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
         // 应用热启动生命周期回调，其他业务处理...
         parseMailto(want);
       }
-
+    
       public parseMailto(want: Want) {
         const uri = want?.uri;
         if (!uri || uri.length <= 0) {
@@ -132,5 +143,5 @@ struct Index {
         // 开始解析 mailto...
       }
     }
-
+    
     ```

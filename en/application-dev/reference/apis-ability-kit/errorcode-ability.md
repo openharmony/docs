@@ -296,7 +296,7 @@ When the API version of an application is later than 11, the application cannot 
 
 **Solution**
 
-Use implicit startup or [openLink](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12) for redirection.
+Use implicit startup or [openLink](js-apis-inner-application-uiAbilityContext.md#openlink12) for redirection.
 
 ## 16000019 No Matching Application Is Found During Implicit Startup
 

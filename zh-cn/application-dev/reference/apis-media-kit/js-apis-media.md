@@ -48,7 +48,7 @@ createAVPlayer(callback: AsyncCallback\<AVPlayer>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -93,7 +93,7 @@ createAVPlayer(): Promise\<AVPlayer>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                      |
 | -------- | ----------------------------- |
@@ -137,7 +137,7 @@ createAVRecorder(callback: AsyncCallback\<AVRecorder>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -181,7 +181,7 @@ createAVRecorder(): Promise\<AVRecorder>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                      |
 | -------- | ----------------------------- |
@@ -225,7 +225,7 @@ createAVTranscoder(): Promise\<AVTranscoder>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                      |
 | -------- | ----------------------------- |
@@ -265,7 +265,7 @@ createAVMetadataExtractor(callback: AsyncCallback\<AVMetadataExtractor>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -303,7 +303,7 @@ createAVMetadataExtractor(): Promise\<AVMetadataExtractor>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -350,7 +350,7 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo, ca
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -406,7 +406,7 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): P
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                      |
 | -------- | ----------------------------- |
@@ -654,7 +654,7 @@ Audio/Video播放demo可参考：[音频播放开发指导](../../media/media/us
 | url<sup>9+</sup>                                    | string                                                       | 否   | 是   | 媒体URL，只允许在**idle**状态下设置。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac、amr)。<br/>**支持路径示例**：<br>1. fd类型播放：fd://xx。<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http\://xx。<br/>3. https网络播放: https\://xx。<br/>4. hls网络播放路径：http\://xx或者https\://xx。<br>**说明：**<br>- 设置网络播放路径，需[声明权限](../../security/AccessToken/declare-permissions.md)：[ohos.permission.INTERNET](../../security/AccessToken/permissions-for-all.md#ohospermissioninternet)，相关错误码: [201](../errorcode-universal.md)。<br>- 从API version 11开始不支持webm。<br> - 将资源句柄（fd）传递给 AVPlayer 实例之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个 AVPlayer / AVMetadataExtractor / AVImageGenerator / AVTranscoder。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致媒体播放器数据获取异常。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | 否   | 是   | 媒体文件描述，只允许在**idle**状态下设置。<br/>使用场景：应用中的媒体资源被连续存储在同一个文件中。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac、amr)。<br/>**使用示例**：<br/>假设一个连续存储的媒体文件: <br/>视频1(地址偏移:0，字节长度:100)；<br/>视频2(地址偏移:101，字节长度:50)；<br/>视频3(地址偏移:151，字节长度:150)；<br/>1. 播放视频1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br/>2. 播放视频2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }。<br/>3. 播放视频3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }。<br/>假设是一个独立的媒体文件: 请使用src=fd://xx。<br>**说明：**<br>从API version 11开始不支持webm。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | 否   | 是   | 流式媒体资源描述，只允许在**idle**状态下设置。<br/>使用场景：应用播放从远端下载到本地的文件，在应用未下载完整音视频资源时，提前播放已获取的资源文件。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac、amr)。<br/>**使用示例**：<br/>假设用户正在从远端服务器获取音视频媒体文件，希望下载到本地的同时播放已经下载好的部分: <br/>1.用户需要获取媒体文件的总大小size（单位为字节），获取不到时设置为-1。<br/>2.用户需要实现回调函数func用于填写数据，如果size = -1，则func形式为：func(buffer: ArrayBuffer, length: number)，此时播放器只会按照顺序获取数据；否则func形式为：func(buffer: ArrayBuffer, length: number, pos: number)，播放器会按需跳转并获取数据。<br/>3.用户设置AVDataSrcDescriptor {fileSize = size, callback = func}。<br/>**注意事项**：<br/>如果播放的是mp4/m4a格式用户需要保证moov字段（媒体信息字段）在mdat字段（媒体数据字段）之前，或者moov之前的字段小于10M，否则会导致解析失败无法播放。<br>**说明：**<br>从API version 11开始不支持webm。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| surfaceId<sup>9+</sup>                              | string                                                       | 否   | 是   | 视频窗口ID，默认无窗口。<br/>支持在**initialized**状态下设置。<br/>支持在**prepared**/**playing**/**paused**/**completed**/**stopped**状态下重新设置，重新设置时确保已经在**initialized**状态下进行设置，否则重新设置失败，重新设置后视频播放在新的窗口渲染。<br/>使用场景：视频播放的窗口渲染，纯音频播放不用设置。<br/>**使用示例**：<br/>[通过XComponent创建surfaceId](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| surfaceId<sup>9+</sup>                              | string                                                       | 否   | 是   | 视频窗口ID，默认无窗口。<br/>支持在**initialized**状态下设置。<br/>支持在**prepared**/**playing**/**paused**/**completed**/**stopped**状态下重新设置，重新设置时确保已经在**initialized**状态下进行设置，否则重新设置失败，重新设置后视频播放在新的窗口渲染。<br/>使用场景：视频播放的窗口渲染，纯音频播放不用设置。<br/>**使用示例**：<br/>[通过XComponent创建surfaceId](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | loop<sup>9+</sup>                                   | boolean                                                      | 否   | 否   | 视频循环播放属性，默认'false'，设置为'true'表示循环播放，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。<br/>直播场景不支持loop设置。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | 否   | 是   | 视频缩放模式，默认VIDEO_SCALE_TYPE_FIT，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9)       | 否   | 是   | 音频焦点模型，默认SHARE_MODE，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。<br/>在第一次调用[play()](#play9)之前设置， 以便此后中断模式生效。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
@@ -850,7 +850,7 @@ setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -899,7 +899,7 @@ setPlaybackStrategy(strategy: PlaybackStrategy): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -952,7 +952,7 @@ setPlaybackRange(startTimeMs: number, endTimeMs: number, mode?: SeekMode) : Prom
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -1149,7 +1149,7 @@ play(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -1185,7 +1185,7 @@ pause(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -1223,7 +1223,7 @@ pause(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -1259,7 +1259,7 @@ stop(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -1297,7 +1297,7 @@ stop(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -1333,7 +1333,7 @@ reset(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -1371,7 +1371,7 @@ reset(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -1407,7 +1407,7 @@ release(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -1445,7 +1445,7 @@ release(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -1481,7 +1481,7 @@ getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -1519,7 +1519,7 @@ getTrackDescription(): Promise\<Array\<MediaDescription>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -1555,7 +1555,7 @@ getSelectedTracks(): Promise\<Array\<number>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -1784,7 +1784,7 @@ setDecryptionConfig(mediaKeySession: drm.MediaKeySession, secureVideoPath: boole
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -3624,7 +3624,7 @@ getInputSurface(callback: AsyncCallback\<string>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
@@ -3669,7 +3669,7 @@ getInputSurface(): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
@@ -3715,7 +3715,7 @@ updateRotation(rotation: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
@@ -4472,7 +4472,7 @@ getAVRecorderConfig(callback: AsyncCallback\<AVRecorderConfig>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -4515,7 +4515,7 @@ getAVRecorderConfig(): Promise\<AVRecorderConfig>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -4869,7 +4869,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 > |编码格式|封装格式|采样率|比特率|声道数|
 > |----|----|----|----|----|
 > |AUDIO_AAC|MP4,M4A|[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]|[32000-500000]|[1-8]|
-> |AUDIO_MP3|MP3|[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000]|<br>- 采样率使用16000以下时，对应比特率范围为[8000 - 64000]。<br>- 采样率使用16000~32000时对应的比特率范围为[8000 - 160000]。<br>- 采样率使用32000以上时对应的比特率范围为[32000 - 320000]。|[1-2]|
+> |AUDIO_MP3|MP3|[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000]|<br>- 采样率使用16000以下时，对应比特率范围为[8000, 16000, 32000, 40000, 48000, 56000, 64000]。<br>- 采样率使用16000~32000时对应的比特率范围为[8000, 16000, 32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000]。<br>- 采样率使用32000以上时对应的比特率范围为[32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000, 192000, 224000, 256000, 320000]。|[1-2]|
 > |AUDIO_G711MU|WAV|[8000]|[64000]|[1]|
 > |AUDIO_AMR_NB<sup>18+</sup> |AMR|[8000]|[4750, 5150, 5900, 6700, 7400, 7950, 10200, 12200]|[1]|
 > |AUDIO_AMR_WB<sup>18+</sup> |AMR|[16000]|[6600, 8850, 12650, 14250, 15850, 18250, 19850, 23050, 23850]|[1]|
@@ -5443,7 +5443,7 @@ fetchMetadata(callback: AsyncCallback\<AVMetadata>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -5480,7 +5480,7 @@ fetchMetadata(): Promise\<AVMetadata>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -5515,7 +5515,7 @@ fetchAlbumCover(callback: AsyncCallback\<image.PixelMap>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -5555,7 +5555,7 @@ fetchAlbumCover(): Promise\<image.PixelMap>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -5593,7 +5593,7 @@ release(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -5629,7 +5629,7 @@ release(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -7304,7 +7304,7 @@ prepare(config: AudioRecorderConfig): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
@@ -7622,7 +7622,7 @@ createAVImageGenerator(callback: AsyncCallback\<AVImageGenerator>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -7660,7 +7660,7 @@ createAVImageGenerator(): Promise\<AVImageGenerator>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                      |
 | -------- | ----------------------------- |
@@ -7717,7 +7717,7 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -7785,7 +7785,7 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -7843,7 +7843,7 @@ release(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -7890,7 +7890,7 @@ release(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -7970,7 +7970,7 @@ createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaS
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -8226,16 +8226,14 @@ player.setMediaSource(mediaSource, playStrategy);
 
 用于定义加载请求的对象。应用程序通过该对象来获取请求的资源位置，通过该对象和播放器进行数据交互。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
 ### 属性
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
 | 名称   | 类型    | 只读   | 可选   | 说明                |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>18+</sup>        | string                        | 否   | 否   | 资源url，需要应用程序打开的资源路径。 |
-| header<sup>18+</sup>     | Record<string, string>        | 否   | 是   | 网络请求标头，如果存在需要应用在下载数据是将头信息设置到http请求中。 |
+| url<sup>18+</sup>        | string                        | 否   | 否   | 资源url，需要应用程序打开的资源路径。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| header<sup>18+</sup>     | Record<string, string>        | 否   | 是   | 网络请求标头，如果存在需要应用在下载数据是将头信息设置到http请求中。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ### respondData<sup>18+</sup>
 

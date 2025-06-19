@@ -1,6 +1,6 @@
 # 属性
 
-通用属性仅支持[aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio)、[backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur)、[backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor)、[bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)、[bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8)、[bindMenu ](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu)、[bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)、[borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor)、[borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius)、[borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle)、[borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth)、[clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip)、[constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize)、[defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9)、[focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable)、[tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9)、[groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9)、[displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority)、[enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled)、[flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis)、[flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink)、[layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight)、[id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md)、[gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md)、[gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md)、[useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md)、[height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height)、[touchable](../apis-arkui/arkui-ts/ts-universal-attributes-click.md)、[margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)、[markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor)、[offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset)、[width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width)、[zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex)、[visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility)、[scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale)、[translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate)、[responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion)、[size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#size)、[opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md#opacity)、[shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow)、[sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md)、[transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md)。
+通用属性仅支持[aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio)、[backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur)、[backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor)、[bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)、[bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8)、[bindMenu ](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu)、[bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)、[borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor)、[borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius)、[borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle)、[borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth)、[clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip12)、[constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize)、[defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9)、[focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable)、[tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9)、[groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9)、[displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority)、[enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled)、[flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis)、[flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink)、[layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight)、[id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md#id)、[gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md#属性)、[gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md#属性)、[useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md#属性)、[height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height)、[touchable](../apis-arkui/arkui-ts/ts-universal-attributes-click.md#属性)、[margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)、[markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor)、[offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset)、[width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width)、[zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex)、[visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility)、[scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale)、[translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate)、[responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion)、[size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#size)、[opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md#opacity)、[shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow)、[sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md)、[transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md)。
 
 > **说明：**
 >
@@ -11,7 +11,7 @@
 
 domStorageAccess(domStorageAccess: boolean)
 
-设置是否开启文档对象模型存储接口（DOM Storage API）权限。
+设置是否开启文档对象模型存储接口（DOM Storage API）权限，默认未开启。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -673,18 +673,6 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
   </html>
   ```
 
-## password<sup>(deprecated)</sup>
-
-password(password: boolean)
-
-设置是否应保存密码。该接口为空接口。
-
-> **说明：**
->
-> 从API version 10开始废弃，并且不再提供新的接口作为替代。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
 ## cacheMode
 
 cacheMode(cacheMode: CacheMode)
@@ -737,51 +725,17 @@ copyOptions(value: CopyOptions)
 **示例：**
 
   ```ts
-import { webview } from '@kit.ArkWeb';
+  import { webview } from '@kit.ArkWeb';
 
-@Entry
-@Component
-struct WebComponent {
-  controller: webview.WebviewController = new webview.WebviewController();
-
-  build() {
-    Column() {
-      Web({ src: 'www.example.com', controller: this.controller })
-        .copyOptions(CopyOptions.None)
-    }
-  }
-}
-  ```
-
-## textZoomAtio<sup>(deprecated)</sup>
-
-textZoomAtio(textZoomAtio: number)
-
-设置页面的文本缩放百分比。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-从API version 9开始不再维护，建议使用[textZoomRatio<sup>9+</sup>](#textzoomratio9)代替。
-
-**参数：**
-
-| 参数名          | 类型   | 必填  | 说明                             |
-| ------------ | ------ | ---- | -------------------------------- |
-| textZoomAtio | number | 是   | 要设置的页面的文本缩放百分比。<br>取值范围为正整数。<br>默认值：100。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
-    @State ratio: number = 150
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .textZoomAtio(this.ratio)
+          .copyOptions(CopyOptions.None)
       }
     }
   }
@@ -852,45 +806,6 @@ initialScale(percent: number)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .initialScale(this.percent)
-      }
-    }
-  }
-  ```
-
-## userAgent<sup>(deprecated)</sup>
-
-userAgent(userAgent: string)
-
-设置用户代理。
-
-> **说明：**
->
-> 从API version 8开始支持，从API version 10开始废弃。建议使用[setCustomUserAgent](./js-apis-webview-WebviewController.md#setcustomuseragent10)<sup>10+</sup>替代。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名       | 类型   | 必填   | 说明      |
-| --------- | ------ | ---- | --------- |
-| userAgent | string | 是    | 要设置的用户代理。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import { webview } from '@kit.ArkWeb';
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
-    @State userAgent:string = 'Mozilla/5.0 (Phone; OpenHarmony 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 ArkWeb/4.1.6.1 Mobile DemoApp';
-
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .userAgent(this.userAgent)
       }
     }
   }
@@ -1351,30 +1266,6 @@ forceDarkAccess(access: boolean)
     }
   }
   ```
-
-## tableData<sup>(deprecated)</sup>
-
-tableData(tableData: boolean)
-
-设置是否应保存表单数据。该接口为空接口。
-
-> **说明：**
->
-> 从API version 10开始废弃，并且不再提供新的接口作为替代。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-## wideViewModeAccess<sup>(deprecated)</sup>
-
-wideViewModeAccess(wideViewModeAccess: boolean)
-
-设置web是否支持html中meta标签的viewport属性。该接口为空接口。
-
-> **说明：**
->
-> 从API version 10开始废弃，并且不再提供新的接口作为替代。
-
-**系统能力：** SystemCapability.Web.Webview.Core
 
 ## pinchSmooth<sup>9+</sup>
 
@@ -1905,7 +1796,7 @@ layoutMode(mode: WebLayoutMode)
 > - Web组件宽高规格：指定`RenderMode.SYNC_RENDER`模式时，分别不超过50万px；指定`RenderMode.ASYNC_RENDER`模式时，分别不超过7680px。
 > - 频繁更改页面宽高会触发Web组件重新布局，影响体验。
 > - 不支持瀑布流网页（下拉到底部加载更多）。
-> - 仅支持高度自适应，不支持宽度自适应。
+> - 不支持宽度自适应，仅支持高度自适应（不支持vh单位）。
 > - 由于高度自适应网页高度，您无法通过修改组件高度属性来修改组件高度。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -2365,69 +2256,6 @@ enableNativeMediaPlayer(config: NativeMediaPlayerConfig)
   }
   ```
 
-## selectionMenuOptions<sup>(deprecated)</sup>
-
-selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
-
-Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本内容、图标、回调方法。
-
-该接口只支持选中纯文本，当选中内容包含图片及其他非文本内容时，action信息中会显示乱码。
-
-> **说明：**
->
-> 从API version 12开始支持，从API version 20开始废弃。建议使用[editMenuOptions<sup>12+</sup>](#editmenuoptions12)替代。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名              | 类型                                                         | 必填   | 说明          |
-| ------------------- | ----------------------------------------------------------    | ---- | ------------- |
-| expandedMenuOptions | Array<[ExpandedMenuItemOptions](./ts-basic-components-web-i.md#expandedmenuitemoptions12)> | 是    | 扩展菜单选项。<br/>菜单项数量，及菜单的content大小、startIcon图标尺寸，与ArkUI [Menu](../apis-arkui/arkui-ts/ts-basic-components-menu.md)组件保持一致。|
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import { webview } from '@kit.ArkWeb';
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
-    @State menuOptionArray: Array<ExpandedMenuItemOptions> = [
-      {content: 'Apple', startIcon: $r('app.media.icon'), action: (selectedText) => {
-        console.info('select info ' + selectedText.toString());
-      }},
-      {content: '香蕉', startIcon: $r('app.media.icon'), action: (selectedText) => {
-        console.info('select info ' + selectedText.toString());
-      }}
-    ];
-
-    build() {
-      Column() {
-        Web({ src: $rawfile("index.html"), controller: this.controller })
-        .selectionMenuOptions(this.menuOptionArray)
-      }
-    }
-  }
-  ```
-
-  加载的html文件。
-  ```html
-  <!--index.html-->
-  <!DOCTYPE html>
-  <html>
-  <head>
-    <title>测试网页</title>
-  </head>
-  <body>
-    <h1>selectionMenuOptions Demo</h1>
-    <span>selection menu options</span>
-  </body>
-  </html>
-  ```
-
 ## onAdsBlocked<sup>12+</sup>
 
 onAdsBlocked(callback: OnAdsBlockedCallback)
@@ -2529,9 +2357,9 @@ Web组件自定义文本选择菜单。
 
 用户可以通过该属性设置自定义的文本菜单。
 
-在[onCreateMenu](../apis-arkui/arkui-ts/ts-text-common.md#oncreatemenu)中，可以修改、增加、删除菜单选项，如果希望不显示文本菜单，需要返回空数组。
+在[onCreateMenu](../apis-arkui/arkui-ts/ts-text-common.md#oncreatemenu12)中，可以修改、增加、删除菜单选项，如果希望不显示文本菜单，需要返回空数组。
 
-在[onMenuItemClick](../apis-arkui/arkui-ts/ts-text-common.md#onmenuitemclick)中，可以自定义菜单选项的回调函数。该函数在菜单选项被点击后触发，并根据返回值决定是否执行系统默认的回调。返回true不执行系统回调，返回false继续执行系统回调。
+在[onMenuItemClick](../apis-arkui/arkui-ts/ts-text-common.md#onmenuitemclick12)中，可以自定义菜单选项的回调函数。该函数在菜单选项被点击后触发，并根据返回值决定是否执行系统默认的回调。返回true不执行系统回调，返回false继续执行系统回调。
 
 本接口在与[selectionMenuOptions<sup>(deprecated)</sup>](#selectionmenuoptionsdeprecated)同时使用时，会使selectionMenuOptions<sup>(deprecated)</sup>不生效。
 
@@ -3020,6 +2848,178 @@ nativeEmbedOptions(options?: EmbedOptions)
   <div>
       <embed id="input" type = "native/view" style = "background-color:red"/>
   </div>
+  </body>
+  </html>
+  ```
+
+## password<sup>(deprecated)</sup>
+
+password(password: boolean)
+
+设置是否应保存密码。该接口为空接口。
+
+> **说明：**
+>
+> 从API version 10开始废弃，并且不再提供新的接口作为替代。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+## textZoomAtio<sup>(deprecated)</sup>
+
+textZoomAtio(textZoomAtio: number)
+
+设置页面的文本缩放百分比。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+从API version 9开始不再维护，建议使用[textZoomRatio<sup>9+</sup>](#textzoomratio9)代替。
+
+**参数：**
+
+| 参数名          | 类型   | 必填  | 说明                             |
+| ------------ | ------ | ---- | -------------------------------- |
+| textZoomAtio | number | 是   | 要设置的页面的文本缩放百分比。<br>取值范围为正整数。<br>默认值：100。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    @State ratio: number = 150
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .textZoomAtio(this.ratio)
+      }
+    }
+  }
+  ```
+
+## userAgent<sup>(deprecated)</sup>
+
+userAgent(userAgent: string)
+
+设置用户代理。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 10开始废弃。建议使用[setCustomUserAgent](./js-apis-webview-WebviewController.md#setcustomuseragent10)<sup>10+</sup>替代。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名       | 类型   | 必填   | 说明      |
+| --------- | ------ | ---- | --------- |
+| userAgent | string | 是    | 要设置的用户代理。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State userAgent:string = 'Mozilla/5.0 (Phone; OpenHarmony 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 ArkWeb/4.1.6.1 Mobile DemoApp';
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .userAgent(this.userAgent)
+      }
+    }
+  }
+  ```
+
+## tableData<sup>(deprecated)</sup>
+
+tableData(tableData: boolean)
+
+设置是否应保存表单数据。该接口为空接口。
+
+> **说明：**
+>
+> 从API version 10开始废弃，并且不再提供新的接口作为替代。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+## wideViewModeAccess<sup>(deprecated)</sup>
+
+wideViewModeAccess(wideViewModeAccess: boolean)
+
+设置web是否支持html中meta标签的viewport属性。该接口为空接口。
+
+> **说明：**
+>
+> 从API version 10开始废弃，并且不再提供新的接口作为替代。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+## selectionMenuOptions<sup>(deprecated)</sup>
+
+selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
+
+Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本内容、图标、回调方法。
+
+该接口只支持选中纯文本，当选中内容包含图片及其他非文本内容时，action信息中会显示乱码。
+
+> **说明：**
+>
+> 从API version 12开始支持，从API version 20开始废弃。建议使用[editMenuOptions<sup>12+</sup>](#editmenuoptions12)替代。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名              | 类型                                                         | 必填   | 说明          |
+| ------------------- | ----------------------------------------------------------    | ---- | ------------- |
+| expandedMenuOptions | Array<[ExpandedMenuItemOptions](./ts-basic-components-web-i.md#expandedmenuitemoptions12)> | 是    | 扩展菜单选项。<br/>菜单项数量，及菜单的content大小、startIcon图标尺寸，与ArkUI [Menu](../apis-arkui/arkui-ts/ts-basic-components-menu.md)组件保持一致。|
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State menuOptionArray: Array<ExpandedMenuItemOptions> = [
+      {content: 'Apple', startIcon: $r('app.media.icon'), action: (selectedText) => {
+        console.info('select info ' + selectedText.toString());
+      }},
+      {content: '香蕉', startIcon: $r('app.media.icon'), action: (selectedText) => {
+        console.info('select info ' + selectedText.toString());
+      }}
+    ];
+
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+        .selectionMenuOptions(this.menuOptionArray)
+      }
+    }
+  }
+  ```
+
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>测试网页</title>
+  </head>
+  <body>
+    <h1>selectionMenuOptions Demo</h1>
+    <span>selection menu options</span>
   </body>
   </html>
   ```

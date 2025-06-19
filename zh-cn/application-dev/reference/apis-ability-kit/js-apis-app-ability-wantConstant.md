@@ -1,4 +1,4 @@
-# @ohos.app.ability.wantConstant (wantConstant)
+# @ohos.app.ability.wantConstant (Want常量)
 
 wantConstant模块提供了[Want](js-apis-app-ability-want.md)操作相关的系统预设枚举和常量，例如在启动Ability时常用的Flag、Param参数等。
 

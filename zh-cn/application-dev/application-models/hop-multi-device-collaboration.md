@@ -19,6 +19,7 @@
 多端协同流程如下图所示。
 
   **图1** 多端协同流程图  
+
 ![hop-multi-device-collaboration](figures/hop-multi-device-collaboration.png)
 
 
@@ -79,16 +80,16 @@
         let list = dmClass.getAvailableDeviceListSync();
         hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(dmClass), JSON.stringify(list));
         if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
-          hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
+          hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
           return;
         }
         if (list.length === 0) {
-          hilog.info(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
+          hilog.error(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
           return;
         }
         return list[0].networkId;
       } else {
-        hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
+        hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
         return;
       }
     }
@@ -101,7 +102,7 @@
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { Want, common } from '@kit.AbilityKit';
     import { distributedDeviceManager } from '@kit.DistributedServiceKit';
-    import { PromptAction } from '@kit.ArkUI';
+    import { promptAction } from '@kit.ArkUI';
 
     const TAG: string = '[Page_CollaborateAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -112,16 +113,16 @@
         let list = dmClass.getAvailableDeviceListSync();
         hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(dmClass), JSON.stringify(list));
         if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
-          hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
+          hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
           return;
         }
         if (list.length === 0) {
-          hilog.info(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
+          hilog.error(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
           return;
         }
         return list[0].networkId;
       } else {
-        hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
+        hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
         return;
       }
     };
@@ -149,7 +150,7 @@
                 };
                 // context为发起端UIAbility的AbilityContext
                 this.context.startAbility(want).then(() => {
-                  promptAction.showToast({
+                  promptAction.openToast({
                     message: 'SuccessfulCollaboration'
                   });
                 }).catch((err: BusinessError) => {
@@ -183,16 +184,16 @@
         let list = dmClass.getAvailableDeviceListSync();
         hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(dmClass), JSON.stringify(list));
         if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
-          hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
+          hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
           return;
         }
         if (list.length === 0) {
-          hilog.info(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
+          hilog.error(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
           return;
         }
         return list[0].networkId;
       } else {
-        hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
+        hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
         return;
       }
     };
@@ -252,7 +253,7 @@
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { Want, common } from '@kit.AbilityKit';
     import { distributedDeviceManager } from '@kit.DistributedServiceKit';
-    import { PromptAction } from '@kit.ArkUI';
+    import { promptAction } from '@kit.ArkUI';
 
     const DOMAIN_NUMBER: number = 0xFF00;
     const TAG: string = '[Page_CollaborateAbility]';
@@ -263,16 +264,16 @@
         let list = dmClass.getAvailableDeviceListSync();
         hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(dmClass), JSON.stringify(list));
         if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
-          hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
+          hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
           return;
         }
         if (list.length === 0) {
-          hilog.info(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
+          hilog.error(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
           return;
         }
         return list[0].networkId;
       } else {
-        hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
+        hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
         return;
       }
     };
@@ -301,7 +302,7 @@
                 // 退出由startAbility接口启动的ServiceExtensionAbility
                 this.context.stopServiceExtensionAbility(want).then(() => {
                   hilog.info(DOMAIN_NUMBER, TAG, 'stop service extension ability success')
-                  promptAction.showToast({
+                  promptAction.openToast({
                     message: 'SuccessfullyStop'
                   });
                 }).catch((err: BusinessError) => {
@@ -378,7 +379,7 @@
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { Want, common } from '@kit.AbilityKit';
     import { distributedDeviceManager } from '@kit.DistributedServiceKit';
-    import { PromptAction } from '@kit.ArkUI';
+    import { promptAction } from '@kit.ArkUI';
 
     const TAG: string = '[Page_CollaborateAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -389,16 +390,16 @@
         let list = dmClass.getAvailableDeviceListSync();
         hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(dmClass), JSON.stringify(list));
         if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
-          hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
+          hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
           return;
         }
         if (list.length === 0) {
-          hilog.info(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
+          hilog.error(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
           return;
         }
         return list[0].networkId;
       } else {
-        hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
+        hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
         return;
       }
     };
@@ -432,7 +433,7 @@
                     let info = data.want?.parameters?.info;
                     hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(info) ?? '');
                     if (info !== null) {
-                      promptAction.showToast({
+                      promptAction.openToast({
                         message: JSON.stringify(info)
                       });
                     }
@@ -537,16 +538,16 @@
         let list = dmClass.getAvailableDeviceListSync();
         hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(dmClass), JSON.stringify(list));
         if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
-          hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
+          hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
           return;
         }
         if (list.length === 0) {
-          hilog.info(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
+          hilog.error(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
           return;
         }
         return list[0].networkId;
       } else {
-        hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
+        hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
         return;
       }
     }
@@ -592,7 +593,7 @@
     import { BusinessError } from '@kit.BasicServicesKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { common } from '@kit.AbilityKit';
-    import { PromptAction } from '@kit.ArkUI';
+    import { promptAction } from '@kit.ArkUI';
 
     let connectionId: number;
     const TAG: string = '[Page_CollaborateAbility]';
@@ -616,7 +617,7 @@
                 this.context.disconnectServiceExtensionAbility(connectionId).then(() => {
                   hilog.info(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility success');
                   // 成功断连后台服务
-                  promptAction.showToast({
+                  promptAction.openToast({
                     message: 'SuccessfullyDisconnectBackendService'
                   })
                 }).catch((error: BusinessError) => {
@@ -799,7 +800,7 @@
               }
               hilog.info(DOMAIN_NUMBER, TAG, 'caller release succeed');
             } catch (error) {
-              hilog.info(DOMAIN_NUMBER, TAG, `caller release failed with ${error}`);
+              hilog.error(DOMAIN_NUMBER, TAG, `caller release failed with ${error}`);
             }
           }
 
@@ -830,7 +831,7 @@
         import { Caller, common } from '@kit.AbilityKit';
         import { hilog } from '@kit.PerformanceAnalysisKit';
         import { distributedDeviceManager } from '@kit.DistributedServiceKit';
-        import { PromptAction } from '@kit.ArkUI';
+        import { promptAction } from '@kit.ArkUI';
 
 
         const TAG: string = '[Page_CollaborateAbility]';
@@ -843,16 +844,16 @@
             let list = dmClass.getAvailableDeviceListSync();
             hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(dmClass), JSON.stringify(list));
             if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
-              hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
+              hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
               return;
             }
             if (list.length === 0) {
-              hilog.info(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
+              hilog.error(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
               return;
             }
             return list[0].networkId;
           } else {
-            hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
+            hilog.error(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
             return;
           }
         };
@@ -888,7 +889,7 @@
                           hilog.info(DOMAIN_NUMBER, TAG, `remote caller onRelease is called ${msg}`);
                         });
                         hilog.info(DOMAIN_NUMBER, TAG, 'remote caller register OnRelease succeed');
-                        promptAction.showToast({
+                        promptAction.openToast({
                           message: 'CallerSuccess'
                         });
                         // 注册caller的协同场景下跨设备组件状态变化监听通知
@@ -897,7 +898,7 @@
                             hilog.info(DOMAIN_NUMBER, TAG, 'Remote state changed ' + str);
                           });
                         } catch (error) {
-                          hilog.info(DOMAIN_NUMBER, TAG, `Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
+                          hilog.error(DOMAIN_NUMBER, TAG, `Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
                         }
                       }
                     }).catch((error: BusinessError) => {
@@ -966,7 +967,7 @@
                 await this.caller.call(MSG_SEND_METHOD, msg);
               }
             } catch (error) {
-              hilog.info(DOMAIN_NUMBER, TAG, `caller call failed with ${error}`);
+              hilog.error(DOMAIN_NUMBER, TAG, `caller call failed with ${error}`);
             }
           }
           // ...
@@ -1029,7 +1030,7 @@
                 hilog.info(DOMAIN_NUMBER, TAG, `caller result is [${result.num}, ${result.str}]`);
               }
             } catch (error) {
-              hilog.info(DOMAIN_NUMBER, TAG, `caller callWithResult failed with ${error}`);
+              hilog.error(DOMAIN_NUMBER, TAG, `caller callWithResult failed with ${error}`);
             }
           }
           // ...
@@ -1058,7 +1059,7 @@
             }
             hilog.info(DOMAIN_NUMBER, TAG, 'caller release succeed');
           } catch (error) {
-            hilog.info(DOMAIN_NUMBER, TAG, `caller release failed with ${error}`);
+            hilog.error(DOMAIN_NUMBER, TAG, `caller release failed with ${error}`);
           }
         }
       }

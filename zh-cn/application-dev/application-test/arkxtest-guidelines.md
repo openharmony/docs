@@ -29,7 +29,7 @@
 
 ### 搭建环境
 
-DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.com/cn/develop/deveco-studio)，并进行相关的配置动作。
+DevEco Studio可参考其官网介绍进行[下载](https://developer.huawei.com/consumer/cn/download/)，并进行相关的配置动作。
 
 ### 新建和编写测试脚本
 
@@ -703,7 +703,7 @@ hdc shell uitest start-daemon
 
 1. 检查用例代码逻辑，确保即使断言失败场景认可走到done函数，保证用例执行结束。
 
-2. 可在IDE中Run/Debug Configurations中修改用例执行超时配置参数，避免用例执行超时。
+2. 可在DevEco Studio中Run/Debug Configurations中修改用例执行超时配置参数，避免用例执行超时。
 
 3. 检查用例代码逻辑，断言结果，确保断言Pass。
 ### UI测试用例常见问题

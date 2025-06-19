@@ -838,9 +838,11 @@ export default class EntryAbility extends UIAbility {
 ## window.shiftAppWindowPointerEvent<sup>15+</sup>
 shiftAppWindowPointerEvent(sourceWindowId: number, targetWindowId: number): Promise&lt;void&gt;
 
-在同应用内窗口分合场景下，需要将输入事件从源窗口转移到目标窗口，使用Promise异步回调，仅在2in1设备上，针对主窗和子窗生效。
+在同应用内窗口分合场景下，需要将输入事件从源窗口转移到目标窗口，使用Promise异步回调，针对主窗和子窗生效。
 
-在2in1设备上，源窗口需要处于鼠标按下状态，否则调用此接口将不生效。输入事件转移后，会向源窗口补发鼠标抬起事件，并且向目标窗口补发鼠标按下事件。
+源窗口需要处于鼠标按下状态，否则调用此接口将不生效。输入事件转移后，会向源窗口补发鼠标抬起事件，并且向目标窗口补发鼠标按下事件。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -2533,7 +2535,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-设置主窗口或子窗口的布局是否为沉浸式布局，使用Promise异步回调。<!--RP8-->从API version 14开始，该接口在2in1设备上调用不生效。<!--RP8End-->
+设置主窗口或子窗口的布局是否为沉浸式布局，使用Promise异步回调。系统窗口调用不生效。<!--RP8-->从API version 14开始，该接口在2in1设备上调用不生效。<!--RP8End-->
 沉浸式布局生效时，布局不避让状态栏与<!--RP15-->三键导航栏<!--RP15End-->，组件可能产生与其重叠的情况。
 非沉浸式布局生效时，布局避让状态栏与<!--RP15-->三键导航栏<!--RP15End-->，组件不会与其重叠。
 
@@ -2602,7 +2604,7 @@ export default class EntryAbility extends UIAbility {
 
 setImmersiveModeEnabledState(enabled: boolean): void
 
-设置当前窗口是否开启沉浸式布局，该调用不会改变窗口模式和窗口大小。<!--RP8-->从API version 14开始，该接口在2in1设备上调用不生效。<!--RP8End-->
+设置当前窗口是否开启沉浸式布局，该调用不会改变窗口模式和窗口大小。仅主窗口和子窗口可调用。<!--RP8-->从API version 14开始，该接口在2in1设备上调用不生效。<!--RP8End-->
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -2640,7 +2642,9 @@ try {
 
 getImmersiveModeEnabledState(): boolean
 
-查询当前窗口是否已经开启沉浸式布局。
+查询当前窗口是否开启沉浸式布局。
+
+返回值与[setImmersiveModeEnabledState()](#setimmersivemodeenabledstate12)以及[setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9)设置结果一致，若未调用上述两个接口则默认返回false。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -2649,7 +2653,7 @@ getImmersiveModeEnabledState(): boolean
 **返回值：**
 | 类型     | 说明                                                                                 |
 | ------- | ------------------------------------------------------------------------------------ |
-| boolean | 是否已经开启沉浸式布局。<br>true表示开启，false表示关闭。</br> |
+| boolean | 是否设置开启沉浸式布局。</br>true表示开启沉浸式布局，false表示关闭沉浸式布局。 |
 
 **错误码：**
 
@@ -7362,25 +7366,17 @@ setWindowTitle(titleName: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let windowClass: window.Window | undefined = undefined;
 try {
-  let promise = window.getLastWindow(this.context);
-  promise.then((data) => {
-    windowClass = data;
-    let title = "title";
-    windowClass.setWindowTitle(title).then(() => {
-      console.info('Succeeded in setting the window title.');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to set the window title. Cause code: ${err.code}, message: ${err.message}`);
-    });
+  let title = "title";
+  windowClass.setWindowTitle(title).then(() => {
+    console.info('Succeeded in setting the window title.');
   }).catch((err: BusinessError) => {
-    console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to set the window title. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to set the window title. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -8467,7 +8463,7 @@ startMoving(): Promise&lt;void&gt;
 
 开始移动窗口，使用Promise异步回调。
 
-仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标或触摸点移动。
+仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#ontouch)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标或触摸点移动。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
@@ -8537,7 +8533,7 @@ startMoving(offsetX: number, offsetY: number): Promise&lt;void&gt;
 
 在同应用内窗口分合后，且鼠标保持按下状态直接移动新窗口，如果此时鼠标快速移动，窗口移动时鼠标可能会在窗口外。可以使用本接口指定窗口移动时鼠标在窗口内的位置，先移动窗口到鼠标位置，再开始移动窗口。
 
-仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标移动。
+仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#ontouch)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标移动。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
@@ -9442,7 +9438,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口或子窗口的布局是否为沉浸式布局，使用callback异步回调。
+设置主窗口或子窗口的布局是否为沉浸式布局，使用callback异步回调。系统窗口调用不生效。
 沉浸式布局生效时，布局不避让状态栏与<!--RP15-->三键导航栏<!--RP15End-->，组件可能产生与其重叠的情况。
 非沉浸式布局生效时，布局避让状态栏与<!--RP15-->三键导航栏<!--RP15End-->，组件不会与其重叠。
 
@@ -10009,7 +10005,7 @@ setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从API version 6开始支持，从API version 9开始废弃，推荐联合使用[setWindowSystemBarEnable()](#setwindowsystembarenable9-1)和[setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9-1)实现全屏。
+> 从API version 6开始支持，从API version 9开始废弃，推荐联合使用[setWindowSystemBarEnable()](#setwindowsystembarenable9)和[setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9)实现全屏。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -10120,7 +10116,7 @@ setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9-1)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -10233,7 +10229,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowSystemBarEnable()](#setwindowsystembarenable9-1)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowSystemBarEnable()](#setwindowsystembarenable9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -10352,7 +10348,7 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;voi
 
 > **说明：**
 >
-> 从API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowSystemBarProperties()](#setwindowsystembarproperties9-1)。
+> 从API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowSystemBarProperties()](#setwindowsystembarproperties9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -12562,7 +12558,9 @@ setDefaultDensityEnabled(enabled: boolean): void
 
 设置应用是否使用系统默认Density，调用此接口前，需先调用[WindowStage.loadContent()](#loadcontent9-2)初始化布局，确保接口调用时序正确。
 
-不调用此接口进行设置，则表示不使用系统默认Density，即窗口会跟随系统显示大小变化重新布局。
+不调用此接口进行设置，则表示不使用系统默认Density。
+
+不使用系统默认Density时，若调用过[setCustomDensity()](#setcustomdensity15)，则窗口会跟随用户自定义的显示大小变化重新布局，否则跟随系统显示大小变化重新布局。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 

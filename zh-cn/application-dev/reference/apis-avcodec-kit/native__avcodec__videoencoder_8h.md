@@ -20,14 +20,14 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | typedef void(\* [OH_VideoEncoder_OnNeedInputParameter](_video_encoder.md#oh_videoencoder_onneedinputparameter)) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index, OH_AVFormat \*parameter, void \*userData) | 当OH_AVCodec在运行过程中需要新的输入参数时，将调用此函数指针，并携带可用的缓冲区来填充新的输入参数。设置的参数随帧立即生效。  | 
-| typedef enum [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode-1) [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode) | 视频编码器的比特率模式。（API14废弃） | 
+| typedef enum [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode) [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode) | 视频编码器的比特率模式。（API14废弃） | 
 
 
 ### 枚举
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode-1) { CBR = 0, VBR = 1, CQ = 2 } | 视频编码器的比特率模式。（API14废弃） | 
+| [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode) { CBR = 0, VBR = 1, CQ = 2 } | 视频编码器的比特率模式。（API14废弃） | 
 
 
 ### 函数

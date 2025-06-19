@@ -1,6 +1,6 @@
 # 自定义组件冻结功能
 
-当@ComponentV2装饰的自定义组件处于非激活状态时，状态变量将不响应更新，即@Monitor不会调用，状态变量关联的节点不会刷新。该冻结机制在复杂UI场景下能显著优化性能，避免非激活组件因状态变量更新进行无效刷新，从而减少资源消耗。通过freezeWhenInactive属性来决定是否使用冻结功能，不传参数时默认不使用。支持的场景有：页面路由、TabContent、Navigation。
+当@ComponentV2装饰的自定义组件处于非激活状态时，状态变量将不响应更新，即@Monitor不会调用，状态变量关联的节点不会刷新。该冻结机制在复杂UI场景下能显著优化性能，避免非激活组件因状态变量更新进行无效刷新，从而减少资源消耗。通过freezeWhenInactive属性来决定是否使用冻结功能，不传参数时默认不使用。支持的场景有：页面路由、TabContent、Navigation、Repeat。
 
 在阅读本文档前，开发者需要了解\@ComponentV2基本语法。建议提前阅读：[\@ComponentV2](./arkts-new-componentV2.md)。
 
@@ -562,7 +562,7 @@ struct Page2 {
 
 ### 混用场景
 
-组件冻结混用场景即当支持组件冻结的场景彼此之间组合使用，对于不同的API version版本，冻结行为会有不同。给父组件设置组件冻结标志，在API version 17及以下，当父组件解冻时，会解冻自己子组件所有的节点；从API version 18开始，父组件解冻时，只会解冻子组件的屏上节点，详细说明见[\@Compone的自定义组件冻结的混用场景](./arkts-custom-components-freeze.md#组件混用)。
+组件冻结混用场景即当支持组件冻结的场景彼此之间组合使用，对于不同的API version版本，冻结行为会有不同。给父组件设置组件冻结标志，在API version 17及以下，当父组件解冻时，会解冻自己子组件所有的节点；从API version 18开始，父组件解冻时，只会解冻子组件的屏上节点，详细说明见[\@Component的自定义组件冻结的混用场景](./arkts-custom-components-freeze.md#组件混用)。
 
 #### Navigation和TabContent的混用
 

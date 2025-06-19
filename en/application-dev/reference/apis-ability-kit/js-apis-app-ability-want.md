@@ -12,7 +12,7 @@ Want is a carrier for information transfer between objects (application componen
 import { Want } from '@kit.AbilityKit';
 ```
 
-## Properties
+## Want
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

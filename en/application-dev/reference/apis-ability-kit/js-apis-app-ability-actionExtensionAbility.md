@@ -157,7 +157,7 @@ To manually create an ActionExtensionAbility in the DevEco Studio project, perfo
         }
       }
       onForeground() {
-        console.info(TAG, `ononForeground`);
+        console.info(TAG, `onForeground`);
       }
       onBackground() {
         console.info(TAG, `onBackground`);

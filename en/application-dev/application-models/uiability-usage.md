@@ -138,7 +138,7 @@ The [getContext](../reference/apis-arkui/js-apis-getContext.md#getcontext) API e
 
 ## Obtaining Information About the UIAbility Launcher
 
-When the launcher ability (UIAbilityA) starts the target ability (UIAbilityB) using **startAbility**, UIAbilityB can obtain information about UIAbilityA, such as its PID, bundle name, and ability name, through the [parameters](../reference/apis-ability-kit/js-apis-app-ability-want.md#properties) parameter.
+When the launcher ability (UIAbilityA) starts the target ability (UIAbilityB) using **startAbility**, UIAbilityB can obtain information about UIAbilityA, such as its PID, bundle name, and ability name, through the [parameters](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter.
 
 
 1. Tap the **Start UIAbilityB** button in UIAbilityA to start UIAbilityB.

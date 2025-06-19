@@ -12,4 +12,4 @@ If the audio track format is not specified during transcoding, the system conver
 
    For details about the transcoding capabilities, see [AVTranscoder](media-kit-intro.md#avtranscoder) and [AVCodec Supported Formats](../avcodec/avcodec-support-formats.md).<!--RP1--><!--RP1End-->
 
-2. When receiving an error event, the application should send the source video. When receiving a complete event, the application first call **release** before performing operations such as sending or uploading the transcoded video.
+2. When receiving an error event, the application should send the source video. When receiving a complete event, the application first calls **release** before performing operations such as sending or uploading the transcoded video.

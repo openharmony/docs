@@ -1,4 +1,4 @@
-# @ohos.app.ability.Configuration (Configuration)
+# @ohos.app.ability.Configuration (系统环境信息)
 
 定义环境变化信息。Configuration是接口定义，仅做字段声明。
 

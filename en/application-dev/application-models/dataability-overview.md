@@ -7,4 +7,4 @@ A DataAbility is an ability that uses the Data template. It provides unified dat
 A DataAbility helps applications manage access to data stored by themselves and other applications, and provides methods for sharing data with other applications, either on the same device or across devices.
 
 
-Data can be stored in a database or files on disks. The DataAbility provide methods for inserting, deleting, updating, and querying data, and opening files. You should implement these methods.
+Data can be stored in a database or files on disks. The DataAbility provides methods for inserting, deleting, updating, and querying data, and opening files. You should implement these methods.

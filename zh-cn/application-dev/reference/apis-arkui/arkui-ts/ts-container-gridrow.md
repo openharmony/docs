@@ -83,6 +83,8 @@ GridRow(option?: GridRowOptions)
 
 **说明：**
 
+每列栅格的宽度为GridRow的内容区大小减去栅格子组件的间距gutter， 再除以总的栅格列数。比如，宽800px的GridRow设置columns为12，gutter设置为10px， padding设置为20px，那么每列栅格的宽度为(800 - 20 * 2 - 10 * 11) / 12。
+
 在GridRow栅格组件中，允许开发者使用breakpoints自定义修改[断点](../../../ui/arkts-layout-development-grid-layout.md#栅格容器断点)的取值范围，最多支持xs、sm、md、lg、xl、xxl六个断点，且名称不可修改。假设传入的数组是[n0, n1, n2, n3, n4]，各个断点取值如下：  
 |断点|取值范围|
 |---|-----------|

@@ -235,7 +235,7 @@ PathShape 的构造函数参数。
 
 | 名称         | 类型                                               | 必填                                             | 说明                                         |
 | ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| commands | string | 否 | 绘制路径的指令。更多说明请参考commands支持的[绘制命令](./arkui-ts/ts-drawing-components-path.md#commands-1)。 |
+| commands | string | 否 | 绘制路径的指令。更多说明请参考commands支持的[绘制命令](./arkui-ts/ts-drawing-components-path.md#commands)。 |
 
 ## RectShapeOptions
 

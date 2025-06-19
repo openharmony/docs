@@ -1,4 +1,4 @@
-# @ohos.app.ability.continueManager (continueManager)
+# @ohos.app.ability.continueManager (跨端迁移)
 
 continueManager提供了应用跨端迁移的管理能力，如获取应用跨端迁移过程中快速拉起目标应用的结果。
 

@@ -404,6 +404,16 @@ encoding如果为非base64（包括空值），则假定数据对安全URL字符
 
 data数据必须使用base64编码或将内容中的任何#字符编码为%23。否则#将被视为内容的结尾而剩余的文本将被用作文档片段标识符。
 
+> **说明：**
+>
+> - 若加载本地图片，可以给baseUrl或historyUrl任一参数赋值空格，详情请参考示例代码。
+>
+> - 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
+>
+> - 若html中的富文本中带有注入#等特殊字符，建议将baseUrl和historyUrl两个参数的值设置为"空格"。
+>
+> - 加载文字场景，需主动设置`<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">`避免文本字体大小不一致。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -415,16 +425,6 @@ data数据必须使用base64编码或将内容中的任何#字符编码为%23。
 | encoding   | string | 是   | 编码类型，具体为"base64"或者"URL"编码。                       |
 | baseUrl    | string | 否   | 指定的一个URL路径（"http"/"https"/"data"协议），并由Web组件赋值给`window.origin`。当加载大量html文件时，需设置为"data"。 |
 | historyUrl | string | 否   | 用作历史记录所使用的URL。非空时，历史记录以此URL进行管理。当baseUrl为空时，此属性无效。 |
-
-> **说明：**
->
-> - 若加载本地图片，可以给baseUrl或historyUrl任一参数赋值空格，详情请参考示例代码。
->
-> - 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
->
-> - 若html中的富文本中带有注入#等特殊字符，建议将baseUrl和historyUrl两个参数的值设置为"空格"。
->
-> - 加载文字场景，需主动设置<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">避免文本字体大小不一致。
 
 **错误码：**
 
@@ -689,7 +689,7 @@ struct WebComponent {
 
 backward(): void
 
-按照历史栈，后退一个页面。一般结合[accessBackward](accessbackward)一起使用。
+按照历史栈，后退一个页面。一般结合[accessBackward](#accessbackward)一起使用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1153,6 +1153,7 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 >
 > - 跨导航操作（如loadUrl）时，JavaScript状态将不再保留。例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
 > - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
+> - 目前不支持传递对象，支持传递结构体。
 > - 执行异步方法无法获取返回值，需要根据具体情境判断是否使用同步或异步方式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -1244,6 +1245,7 @@ runJavaScript(script: string): Promise\<string>
 >
 > - 跨导航操作（如loadUrl）时，JavaScript状态 将不再保留，例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
 > - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
+> - 目前不支持传递对象，支持传递结构体。
 > - 执行异步方法无法获取返回值，需要根据具体情境判断是否使用同步或异步方式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -2169,7 +2171,7 @@ createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
 | 类型                   | 说明              |
 | ---------------------- | ----------------- |
-| Array\<[WebMessagePort](./js-apis-webview-WebMessagePort.md#interfaces-webmessageport)> | web消息端口列表。 |
+| Array\<[WebMessagePort](./js-apis-webview-WebMessagePort.md)> | web消息端口列表。 |
 
 **错误码：**
 
@@ -2197,7 +2199,7 @@ postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 | 参数名 | 类型                   | 必填 | 说明                             |
 | ------ | ---------------------- | ---- | :------------------------------- |
 | name   | string                 | 是   | 要发送的消息名称。            |
-| ports  | Array\<[WebMessagePort](./js-apis-webview-WebMessagePort.md#interfaces-webmessageport)> | 是   | 要发送的消息端口。            |
+| ports  | Array\<[WebMessagePort](./js-apis-webview-WebMessagePort.md)> | 是   | 要发送的消息端口。            |
 | uri    | string                 | 是   | 接收该消息的URI。                |
 
 **错误码：**
@@ -2305,6 +2307,7 @@ struct WebComponent {
 </html>
 ```
 
+<!--code_no_check-->
 ```js
 //xxx.js
 var h5Port;
@@ -3847,7 +3850,7 @@ getBackForwardEntries(): BackForwardList
 
 | 类型                                | 说明                        |
 | ----------------------------------- | --------------------------- |
-| [BackForwardList](./js-apis-webview-i.md#backforwardlist) | 当前Webview的历史信息列表。 |
+| [BackForwardList](./js-apis-webview-BackForwardList.md) | 当前Webview的历史信息列表。 |
 
 **错误码：**
 
@@ -4674,7 +4677,7 @@ static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: numb
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
 | 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048.                                                 |
-| 171000013| The number of preconnect sockets is invalid.                                                 |
+| 17100013 | The number of preconnect sockets is invalid.                                                 |
 
 **示例：**
 
@@ -5028,6 +5031,10 @@ enableSafeBrowsing(enable: boolean): void
 <!--RP1-->启用检查网站安全风险的功能，非法和欺诈网站是强制启用的，不能通过此功能禁用。
 本功能默认不生效，OpenHarmony只提供恶意网址拦截页WebUI，网址风险检测以及显示WebUI的功能由Vendor实现。推荐在WebContentsObserver中监听跳转[DidStartNavigation](https://gitee.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidStartNavigation)、[DidRedirectNavigation](https://gitee.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidRedirectNavigation)进行检测。
 <!--RP1End-->
+
+> **说明：**
+> 
+> 该接口不生效，调用不会产生任何实际效果。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7525,6 +7532,12 @@ struct WebComponent {
 webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): void
 
 获取网页全量绘制结果。
+
+> **说明：**
+>
+> 仅支持对渲染进程上的资源进行截图：静态图片和文本。
+> 
+> 如果页面有视频则截图时会显示该视频的占位图片，没有占位图片则显示空白。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

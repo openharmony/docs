@@ -49,7 +49,7 @@ TextArea(value?: TextAreaOptions)
 >
 >  [通用属性padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: '8vp',<br>&nbsp;right: '16vp',<br>&nbsp;bottom: '8vp',<br>&nbsp;left: '16vp'<br> }
 >
->  从API version 11开始，多行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
+>  从API version 11开始，多行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md)。
 
 ### placeholderColor
 
@@ -275,7 +275,7 @@ showCounter(value: boolean, options?: InputCounterOptions)
 
 | 参数名                | 类型                                                         | 必填 | 说明             |
 | --------------------- | ------------------------------------------------------------ | ---- | ---------------- |
-| value                 | boolean                                                      | 是   | 是否显示计数器。 |
+| value                 | boolean                                                      | 是   | 是否显示计数器。<br/>true表示显示计时器，false表示不显示。 |
 | options<sup>11+</sup> | [InputCounterOptions](ts-types.md#inputcounteroptions11对象说明) | 否   | 计数器的配置项。 |
 
 ### style<sup>10+</sup>

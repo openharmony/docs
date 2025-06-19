@@ -31,7 +31,7 @@
 ```
 
 
-启动PageAbility时，对于多实例模式启动，以及单实例模式进行首次启动时，[PageAbility生命周期回调](pageability-lifecycle.md#table13118194914476)均会被触发。单实例非首次启动时不会再触发onCreate()接口，而是触发onNewWant()，onNewWant()的说明如下表2所示。
+启动PageAbility时，对于多实例模式启动，以及单实例模式进行首次启动时，[PageAbility生命周期回调](pageability-lifecycle.md)均会被触发。单实例非首次启动时不会再触发onCreate()接口，而是触发onNewWant()，onNewWant()的说明如下表2所示。
 
 
   **表2** 单实例启动模式特有的回调函数说明

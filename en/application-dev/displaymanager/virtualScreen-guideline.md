@@ -117,7 +117,7 @@ struct VirtualScreen {
                   console.error(`Failed to set screen mirroring. Code:${err.code},message is ${err.message}`);
                   return;
                 }
-                console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
+                console.info(`Succeeded in setting screen mirroring. Data:${data}`);
               });
               // Stop mirroring.
               screen.stopMirror(mirrorScreenIds, (err: BusinessError) => {

@@ -72,7 +72,7 @@ export default class ServiceExtensionAbility1 extends ServiceExtensionAbility {
     window.createWindow(config, (err: BusinessError, data) => {
       let errCode: number = err.code;
       if (errCode) {
-        console.error('Failed to create the volume window. Cause:' + JSON.stringify(err));
+        console.error(`Failed to create the volume window. Code:${err.code}, message:${err.message}`);
         return;
       }
       console.info('Succeeded in creating the volume window.')
@@ -331,7 +331,7 @@ struct Index {
     animationConfig.ShowWindowWithCustomAnimation(systemTypeWindow,(context:window.TransitionContext)=>{
       console.info('LOCAL-TEST start show window animation');
       let toWindow = context.toWindow;
-      this.getUIContext()?.animateTo({
+      animateTo({
         duration: 200, // Animation duration
         tempo: 0.5, // Playback speed.
         curve: Curve.EaseInOut, // Animation curve.
@@ -369,7 +369,7 @@ struct Index {
     animationConfig.HideWindowWithCustomAnimation(systemTypeWindow,(context:window.TransitionContext)=>{
       console.info('LOCAL-TEST start hide window animation');
       let toWindow = context.toWindow;
-      this.getUIContext()?.animateTo({
+      animateTo({
         duration: 200, // Animation duration
         tempo: 0.5, // Playback speed.
         curve: Curve.EaseInOut, // Animation curve.

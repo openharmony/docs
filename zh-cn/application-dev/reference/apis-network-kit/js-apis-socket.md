@@ -4090,6 +4090,7 @@ bind(address: LocalAddress): Promise\<void\>;
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -4146,6 +4147,7 @@ connect(options: LocalConnectOptions): Promise\<void\>
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -4203,6 +4205,7 @@ send(options: LocalSendOptions): Promise\<void\>
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -4289,6 +4292,7 @@ getState(): Promise\<SocketStateBase\>
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -4339,6 +4343,7 @@ getSocketFd(): Promise\<number\>
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -4401,6 +4406,7 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -4461,6 +4467,7 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -4518,6 +4525,7 @@ getLocalAddress(): Promise\<string\>
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 
@@ -4944,6 +4952,7 @@ listen(address: LocalAddress): Promise\<void\>
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -5504,6 +5513,7 @@ on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -6148,6 +6158,10 @@ on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 
 订阅TLSSocket连接的接收消息事件。使用callback方式作为异步方法。
 
+> **说明：**
+>
+> bind方法调用成功后，才可调用此方法。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -6171,15 +6185,26 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let messageView = '';
-tls.on('message', (value: socket.SocketMessageInfo) => {
-  for (let i: number = 0; i < value.message.byteLength; i++) {
-    let uint8Array = new Uint8Array(value.message) 
-    let messages = uint8Array[i]
-    let message = String.fromCharCode(messages);
-    messageView += message;
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+tls.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
   }
-  console.log('on message message: ' + JSON.stringify(messageView));
-  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+  console.log('bind success');
+  tls.on('message', (value: socket.SocketMessageInfo) => {
+    for (let i: number = 0; i < value.message.byteLength; i++) {
+      let uint8Array = new Uint8Array(value.message) 
+      let messages = uint8Array[i]
+      let message = String.fromCharCode(messages);
+      messageView += message;
+    }
+    console.log('on message message: ' + JSON.stringify(messageView));
+    console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+  });
 });
 ```
 
@@ -6232,6 +6257,10 @@ on(type: 'connect' | 'close', callback: Callback\<void\>): void
 
 订阅TLSSocket的连接事件或关闭事件。使用callback方式作为异步方法。
 
+> **说明：**
+>
+> bind方法调用成功后，才可调用此方法。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -6254,11 +6283,22 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-tls.on('connect', () => {
-  console.log("on connect success")
-});
-tls.on('close', () => {
-  console.log("on close success")
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+tls.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+  tls.on('connect', () => {
+    console.log("on connect success")
+  });
+  tls.on('close', () => {
+    console.log("on close success")
+  });
 });
 ```
 
@@ -6311,6 +6351,10 @@ on(type: 'error', callback: ErrorCallback): void
 
 订阅TLSSocket连接的error事件。使用callback方式作为异步方法。
 
+> **说明：**
+>
+> bind方法调用成功后，才可调用此方法。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -6333,8 +6377,19 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-tls.on('error', (err: BusinessError) => {
-  console.error("on error, err:" + JSON.stringify(err))
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+tls.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+  tls.on('error', (err: BusinessError) => {
+    console.error("on error, err:" + JSON.stringify(err))
+  });
 });
 ```
 

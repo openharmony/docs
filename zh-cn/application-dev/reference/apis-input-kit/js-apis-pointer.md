@@ -650,7 +650,7 @@ this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.m
 自定义光标资源。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
-| 名称     | 类型     | 可读     | 可写     | 说明     |
+| 名称     | 类型     | 只读     | 可选     | 说明     |
 | -------- | ------- | -------- | -------- | ------- |
 | pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否   | 否   | 自定义光标。最小限制为资源图本身的最小限制。最大限制为256 x 256px。 |
 | focusX  | number | 否   | 是   | 自定义光标焦点的水平坐标。该坐标受自定义光标大小的限制。最小值为0，最大值为资源图的宽度最大值，该参数缺省时默认为0。 |
@@ -662,7 +662,7 @@ this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.m
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
-| 名称     | 类型     | 可读     | 可写     | 说明     |
+| 名称     | 类型     | 只读     | 可选     | 说明     |
 | -------- | ------- | -------- | -------- | ------- |
 | followSystem  | boolean  | 否   | 否   | 是否根据系统设置调整光标大小。false表示使用自定义光标样式大小，true表示根据系统设置调整光标大小，可调整范围为：[光标资源图大小，256×256]。 |
 

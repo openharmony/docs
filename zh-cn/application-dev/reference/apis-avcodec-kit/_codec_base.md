@@ -2735,7 +2735,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_QP_MAX
 **描述**
 描述视频编码器允许的最大量化参数的键，值类型为int32_t。 
 
-在Configure/setparameter阶段使用，或随帧立即生效。
+在Configure/SetParameter阶段使用，或随帧立即生效。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2750,7 +2750,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_QP_MIN
 **描述**
 描述视频编码器允许的最小量化参数的键，值类型为int32_t。 
 
-在Configure/setparameter阶段使用，或随帧立即生效。
+在Configure/SetParameter阶段使用，或随帧立即生效。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 

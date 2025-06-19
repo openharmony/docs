@@ -2371,7 +2371,7 @@ getVolumeGroupManager(groupId: number, callback: AsyncCallback<AudioVolumeGroupM
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                        |
 | ---------- | ------------------------------------------------------------ | ---- |-----------------------------------------------------------|
-| groupId    | number                                    | 是   | 音量组id，默认使用LOCAL_VOLUME_GROUP_ID。                          |
+| groupId    | number                                    | 是   | 音量组id，默认使用DEFAULT_VOLUME_GROUP_ID。                          |
 | callback   | AsyncCallback&lt;[AudioVolumeGroupManager](#audiovolumegroupmanager9)&gt; | 是   | 回调函数。当获取音频组管理器成功，err为undefined，data为获取到的音频组管理器对象；否则为错误对象。 |
 
 **示例：**
@@ -2403,7 +2403,7 @@ getVolumeGroupManager(groupId: number\): Promise<AudioVolumeGroupManager\>
 
 | 参数名     | 类型                                      | 必填 | 说明                               |
 | ---------- | ---------------------------------------- | ---- |----------------------------------|
-| groupId    | number                                   | 是   | 音量组id，默认使用LOCAL_VOLUME_GROUP_ID。 |
+| groupId    | number                                   | 是   | 音量组id，默认使用DEFAULT_VOLUME_GROUP_ID。 |
 
 **返回值：**
 
@@ -2437,7 +2437,7 @@ getVolumeGroupManagerSync(groupId: number\): AudioVolumeGroupManager
 
 | 参数名     | 类型                                      | 必填 | 说明                               |
 | ---------- | ---------------------------------------- | ---- |----------------------------------|
-| groupId    | number                                   | 是   | 音量组id，默认使用LOCAL_VOLUME_GROUP_ID。 |
+| groupId    | number                                   | 是   | 音量组id，默认使用DEFAULT_VOLUME_GROUP_ID。 |
 
 **返回值：**
 
@@ -3526,7 +3526,7 @@ audio.getAudioManager().getRoutingManager().getPreferredInputDeviceForCapturerIn
 
 getMaxAmplitudeForOutputDevice(outputDevice: AudioDeviceDescriptor): Promise&lt;number&gt;
 
-获取输入设备音频流的最大电平值，取值范围为[0, 1]。使用Promise异步回调。
+获取输出设备音频流的最大电平值，取值范围为[0, 1]。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -5601,7 +5601,7 @@ type AudioRendererChangeInfoArray = Array&lt;Readonly&lt;AudioRendererChangeInfo
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
-| 名称               | 类型                                       | 可读 | 可写 | 说明                          |
+| 名称               | 类型                                       | 只读 | 可选 | 说明                          |
 | -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
 | streamId           | number                                    | 是   | 否   | 音频流唯一id。                |
 | rendererInfo       | [AudioRendererInfo](#audiorendererinfo8)  | 是   | 否   | 音频渲染器信息。               |
@@ -5656,12 +5656,12 @@ type AudioCapturerChangeInfoArray = Array&lt;Readonly&lt;AudioCapturerChangeInfo
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
-| 名称               | 类型                                       | 可读 | 可写 | 说明                          |
+| 名称               | 类型                                       | 只读 | 可选 | 说明                          |
 | -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
 | streamId           | number                                    | 是   | 否   | 音频流唯一id。                |
 | capturerInfo       | [AudioCapturerInfo](#audiocapturerinfo8)  | 是   | 否   | 音频采集器信息。               |
 | deviceDescriptors  | [AudioDeviceDescriptors](#audiodevicedescriptors)      | 是   | 否   | 音频设备信息。|
-| muted<sup>11+</sup>  | boolean    | 是   | 否   | 音频采集器是否处于静音状态。true表示静音，false表示非静音。|
+| muted<sup>11+</sup>  | boolean    | 是   | 是 | 音频采集器是否处于静音状态。true表示静音，false表示非静音。|
 
 **示例：**
 
@@ -5722,7 +5722,7 @@ type AudioDeviceDescriptors = Array&lt;Readonly&lt;AudioDeviceDescriptor&gt;&gt;
 
 描述音频设备。
 
-| 名称                          | 类型                       | 可读 | 可写 | 说明       |
+| 名称                          | 类型                       | 只读 | 可选 | 说明       |
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
 | deviceRole                    | [DeviceRole](#devicerole)  | 是   | 否   | 设备角色。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | deviceType                    | [DeviceType](#devicetype)  | 是   | 否   | 设备类型。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
@@ -5733,8 +5733,8 @@ type AudioDeviceDescriptors = Array&lt;Readonly&lt;AudioDeviceDescriptor&gt;&gt;
 | channelCounts<sup>9+</sup>    | Array&lt;number&gt;        | 是   | 否   | 支持的通道数。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | channelMasks<sup>9+</sup>     | Array&lt;number&gt;        | 是   | 否   | 支持的通道掩码。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | displayName<sup>10+</sup>     | string                     | 是   | 否   | 设备显示名。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| encodingTypes<sup>11+</sup>    | Array&lt;[AudioEncodingType](#audioencodingtype8)&gt;                     | 是   | 否   | 支持的编码类型。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Core <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| spatializationSupported<sup>18+</sup>     | boolean                     | 是   | 否   | 设备是否支持空间音频。true表示支持空间音频，false表示不支持空间音频。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Spatialization|
+| encodingTypes<sup>11+</sup>    | Array&lt;[AudioEncodingType](#audioencodingtype8)&gt;                     | 是   | 是 | 支持的编码类型。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Core <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| spatializationSupported<sup>18+</sup>     | boolean                     | 是   | 是 | 设备是否支持空间音频。true表示支持空间音频，false表示不支持空间音频。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Spatialization|
 
 **示例：**
 
@@ -5799,7 +5799,7 @@ type AudioRendererWriteDataCallback = (data: ArrayBuffer) => AudioDataCallbackRe
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
-| 名称  | 类型                     | 可读 | 可写 | 说明               |
+| 名称  | 类型                     | 只读 | 可选 | 说明               |
 | ----- | -------------------------- | ---- | ---- | ------------------ |
 | state<sup>8+</sup> | [AudioState](#audiostate8) | 是   | 否   | 音频渲染器的状态。 |
 
@@ -6538,7 +6538,7 @@ audioRenderer.getBufferSize().then((data: number)=> {
   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.cacheDir;
-  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
   let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   fs.stat(filePath).then(async (stat: fs.Stat) => {
     let buf = new ArrayBuffer(bufferSize);
@@ -6607,7 +6607,7 @@ audioRenderer.getBufferSize().then((data: number) => {
   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.cacheDir;
-  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
   let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   fs.stat(filePath).then(async (stat: fs.Stat) => {
     let buf = new ArrayBuffer(bufferSize);
@@ -7992,7 +7992,7 @@ let periodReachCallback = (position: number) => {
   }
 };
 
-audioRenderer.on('periodReach', periodReachCallback);
+audioRenderer.on('periodReach', 1000, periodReachCallback);
 
 audioRenderer.off('periodReach', periodReachCallback);
 ```
@@ -8266,7 +8266,7 @@ let bufferSize: number = 0;
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let path = context.cacheDir;
 // 确保该沙箱路径下存在该资源。
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let writeDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {
@@ -8344,7 +8344,7 @@ audioRenderer.off('writeData', writeDataCallback);
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
-| 名称  | 类型                     | 可读 | 可写 | 说明             |
+| 名称  | 类型                     | 只读 | 可选 | 说明             |
 | :---- | :------------------------- | :--- | :--- | :--------------- |
 | state<sup>8+</sup>  | [AudioState](#audiostate8) | 是 | 否   | 音频采集器状态。 |
 
@@ -9490,7 +9490,7 @@ let periodReachCallback = (position: number) => {
   }
 };
 
-audioCapturer.on('periodReach', periodReachCallback);
+audioCapturer.on('periodReach', 1000, periodReachCallback);
 
 audioCapturer.off('periodReach', periodReachCallback);
 ```

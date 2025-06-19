@@ -607,7 +607,7 @@ UnAccessPixels
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
 
@@ -636,7 +636,7 @@ int32_t OH_GetImageInfo (napi_env env, napi_value value, OhosPixelMapInfo * info
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
 
@@ -666,7 +666,7 @@ int32_t OH_Image_ClipRect (const ImageNative * native, struct OhosImageRect * re
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回IMAGE_RESULT_SUCCESS；
 
@@ -702,7 +702,7 @@ int32_t OH_Image_Format (const ImageNative * native, int32_t * format )
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回IMAGE_RESULT_SUCCESS；
 
@@ -740,7 +740,7 @@ int32_t OH_Image_GetComponent (const ImageNative * native, int32_t componentType
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回IMAGE_RESULT_SUCCESS；
 
@@ -803,7 +803,7 @@ int32_t OH_Image_Receiver_CreateImageReceiver (napi_env env, struct OhosImageRec
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS；
 
@@ -852,7 +852,7 @@ int32_t OH_Image_Receiver_GetCapacity (const ImageReceiverNative * native, int32
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS；
 
@@ -889,7 +889,7 @@ int32_t OH_Image_Receiver_GetFormat (const ImageReceiverNative * native, int32_t
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS；
 
@@ -927,7 +927,7 @@ int32_t OH_Image_Receiver_GetReceivingSurfaceId (const ImageReceiverNative * nat
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS；
 
@@ -970,7 +970,7 @@ int32_t OH_Image_Receiver_GetSize (const ImageReceiverNative * native, struct Oh
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS；
 
@@ -1032,7 +1032,7 @@ int32_t OH_Image_Receiver_On (const ImageReceiverNative * native, OH_Image_Recei
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS；
 
@@ -1077,7 +1077,7 @@ int32_t OH_Image_Receiver_ReadLatestImage (const ImageReceiverNative * native, n
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS；
 
@@ -1128,7 +1128,7 @@ int32_t OH_Image_Receiver_ReadNextImage (const ImageReceiverNative * native, nap
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS；
 
@@ -1175,7 +1175,7 @@ int32_t OH_Image_Receiver_Release (ImageReceiverNative * native)
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS；
 
@@ -1209,7 +1209,7 @@ int32_t OH_Image_Release (ImageNative * native)
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回IMAGE_RESULT_SUCCESS；
 
@@ -1243,7 +1243,7 @@ int32_t OH_Image_Size (const ImageNative * native, struct OhosImageSize * size )
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回IMAGE_RESULT_SUCCESS；
 
@@ -1279,7 +1279,7 @@ int32_t OH_ImagePacker_Create (napi_env env, napi_value * res )
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
 
@@ -1334,7 +1334,7 @@ int32_t OH_ImagePacker_PackToData (ImagePacker_Native * native, napi_value sourc
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
 
@@ -1376,7 +1376,7 @@ int32_t OH_ImagePacker_PackToFile (ImagePacker_Native * native, napi_value sourc
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
 
@@ -1419,7 +1419,7 @@ int32_t OH_ImagePacker_Release (ImagePacker_Native * native)
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回IMAGE_RESULT_SUCCESS。
 
@@ -1453,7 +1453,7 @@ int32_t OH_ImageSource_Create (napi_env env, struct OhosImageSource * src, struc
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
 
@@ -1518,7 +1518,7 @@ int32_t OH_ImageSource_CreateFromData (napi_env env, uint8_t * data, size_t data
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
 
@@ -1554,7 +1554,7 @@ int32_t OH_ImageSource_CreateFromFd (napi_env env, int32_t fd, struct OhosImageS
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
 
@@ -1590,7 +1590,7 @@ int32_t OH_ImageSource_CreateFromRawFile (napi_env env, RawFileDescriptor rawFil
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
 
@@ -1627,7 +1627,7 @@ int32_t OH_ImageSource_CreateFromUri (napi_env env, char * uri, size_t size, str
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
 
@@ -1667,7 +1667,7 @@ int32_t OH_ImageSource_CreateIncremental (napi_env env, struct OhosImageSource *
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
 
@@ -1732,7 +1732,7 @@ int32_t OH_ImageSource_CreateIncrementalFromData (napi_env env, uint8_t * data, 
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
 
@@ -1767,7 +1767,7 @@ int32_t OH_ImageSource_CreatePixelMap (const ImageSourceNative * native, struct 
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
 
@@ -1853,7 +1853,7 @@ int32_t OH_ImageSource_CreatePixelMapList (const ImageSourceNative * native, str
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回IMAGE_RESULT_SUCCESS；
 
@@ -1941,7 +1941,7 @@ int32_t OH_ImageSource_GetDelayTime (const ImageSourceNative * native, struct Oh
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
 
@@ -2003,7 +2003,7 @@ int32_t OH_ImageSource_GetFrameCount (const ImageSourceNative * native, uint32_t
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
 
@@ -2066,7 +2066,7 @@ int32_t OH_ImageSource_GetImageInfo (const ImageSourceNative * native, int32_t i
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
 
@@ -2130,7 +2130,7 @@ int32_t OH_ImageSource_GetImageProperty (const ImageSourceNative * native, struc
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
 
@@ -2191,7 +2191,7 @@ int32_t OH_ImageSource_GetSupportedFormats (struct OhosImageSourceSupportedForma
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
 
@@ -2256,7 +2256,7 @@ int32_t OH_ImageSource_ModifyImageProperty (const ImageSourceNative * native, st
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
 
@@ -2317,7 +2317,7 @@ int32_t OH_ImageSource_Release (ImageSourceNative * native)
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
 
@@ -2439,7 +2439,7 @@ int32_t OH_PixelMap_AccessPixels (const NativePixelMap * native, void ** addr )
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS；
 
@@ -2503,7 +2503,7 @@ int32_t OH_PixelMap_CreateAlphaPixelMap (napi_env env, napi_value source, napi_v
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS;
 
@@ -2586,7 +2586,7 @@ int32_t OH_PixelMap_CreatePixelMap (napi_env env, OhosPixelMapCreateOps info, vo
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS;
 
@@ -2671,7 +2671,7 @@ int32_t OH_PixelMap_CreatePixelMapWithStride (napi_env env, OhosPixelMapCreateOp
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS; 
 
@@ -2718,7 +2718,7 @@ int32_t OH_PixelMap_Crop (const NativePixelMap * native, int32_t x, int32_t y, i
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS;
 
@@ -2785,7 +2785,7 @@ int32_t OH_PixelMap_Flip (const NativePixelMap * native, int32_t x, int32_t y )
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS;
 
@@ -2848,7 +2848,7 @@ int32_t OH_PixelMap_GetBytesNumberPerRow (const NativePixelMap * native, int32_t
 
 **返回:**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS；
 
@@ -2883,7 +2883,7 @@ int32_t OH_PixelMap_GetDensity (const NativePixelMap * native, int32_t * density
 
 **返回:**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS；
 
@@ -2920,7 +2920,7 @@ int32_t OH_PixelMap_GetImageInfo (const NativePixelMap * native, OhosPixelMapInf
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS;
 
@@ -2986,7 +2986,7 @@ int32_t OH_PixelMap_GetIsEditable (const NativePixelMap * native, int32_t * edit
 
 **返回:**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS；
 
@@ -3043,7 +3043,7 @@ int32_t OH_PixelMap_IsSupportAlpha (const NativePixelMap * native, int32_t * alp
 
 **返回:**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS；
 
@@ -3081,7 +3081,7 @@ int32_t OH_PixelMap_Rotate (const NativePixelMap * native, float angle )
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS;
 
@@ -3148,7 +3148,7 @@ int32_t OH_PixelMap_Scale (const NativePixelMap * native, float x, float y )
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS;
 
@@ -3218,7 +3218,7 @@ int32_t OH_PixelMap_ScaleWithAntiAliasing (const NativePixelMap * native, float 
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS; 
 
@@ -3259,7 +3259,7 @@ int32_t OH_PixelMap_SetAlphaAble (const NativePixelMap * native, int32_t alpha )
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS；
 
@@ -3294,7 +3294,7 @@ int32_t OH_PixelMap_SetDensity (const NativePixelMap * native, int32_t density )
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS；
 
@@ -3329,7 +3329,7 @@ int32_t OH_PixelMap_SetOpacity (const NativePixelMap * native, float opacity )
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS；
 
@@ -3367,7 +3367,7 @@ int32_t OH_PixelMap_Translate (const NativePixelMap * native, float x, float y )
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS；
 
@@ -3429,7 +3429,7 @@ int32_t OH_PixelMap_UnAccessPixels (const NativePixelMap * native)
 
 **返回：**
 
-参考[IRNdkErrCode](#irndkerrcode-1)。
+参考[IRNdkErrCode](#irndkerrcode)。
 
 如果操作成功则返回IMAGE_RESULT_SUCCESS；
 

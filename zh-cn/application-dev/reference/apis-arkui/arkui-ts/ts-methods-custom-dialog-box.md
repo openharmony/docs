@@ -44,7 +44,7 @@ constructor(value: CustomDialogControllerOptions)
 | maskRect<sup>10+</sup>        | [Rectangle](ts-methods-alert-dialog-box.md#rectangle8类型说明) | 否     | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。<br/>默认值：{ x: 0, y: 0, width: '100%', height: '100%' } <br/>**说明：**<br/>showInSubWindow为true时，maskRect不生效。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | openAnimation<sup>10+</sup>   | [AnimateParam](ts-explicit-animation.md#animateparam对象说明) | 否    | 自定义设置弹窗弹出的动画效果相关参数。<br>**说明**：<br>tempo默认值为1，当设置小于等于0的值时按默认值处理。<br/>iterations默认值为1，默认播放一次，设置为其他数值时按默认值处理。<br>playMode控制动画播放模式，默认值为PlayMode.Normal，设置为其他数值时按照默认值处理。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | closeAnimation<sup>10+</sup>  | [AnimateParam](ts-explicit-animation.md#animateparam对象说明) | 否    | 自定义设置弹窗关闭的动画效果相关参数。<br>**说明**：<br>tempo默认值为1，当设置小于等于0的值时按默认值处理。<br/>iterations默认值为1，默认播放一次，设置为其他数值时按默认值处理。<br>playMode控制动画播放模式，默认值为PlayMode.Normal，设置为其他数值时按照默认值处理。<br/>页面转场切换时，建议使用默认关闭动效。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| showInSubWindow<sup>10+</sup> | boolean                                  | 否    | 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。<br>默认值：false，弹窗显示在应用内，而非独立子窗口。<br>**说明**：showInSubWindow为true的弹窗无法触发显示另一个showInSubWindow为true的弹窗。不建议在showInSubWindow为true的弹窗中使用CalendarPicker、CalendarPickerDialog、DatePickerDialog、TextPickerDialog、TimePickerDialog、Toast组件，弹窗会影响上述组件行为。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| showInSubWindow<sup>10+</sup> | boolean                                  | 否    | 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。值为true表示在子窗口显示弹窗。<br>默认值：false，弹窗显示在应用内，而非独立子窗口。<br>**说明**：showInSubWindow为true的弹窗无法触发显示另一个showInSubWindow为true的弹窗。不建议在showInSubWindow为true的弹窗中使用CalendarPicker、CalendarPickerDialog、DatePickerDialog、TextPickerDialog、TimePickerDialog、Toast组件，弹窗会影响上述组件行为。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | backgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)      | 否   | 设置弹窗背板填充。<br/>默认值：Color.Transparent<br />**说明：** 如果同时设置了内容构造器的背景色，则backgroundColor会被内容构造器的背景色覆盖。<br/>backgroundColor会与模糊属性backgroundBlurStyle叠加产生效果，如果不符合预期，可将backgroundBlurStyle设置为BlurStyle.NONE，即可取消模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | cornerRadius<sup>10+</sup>    | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9) | 否   | 设置背板的圆角半径。<br />可分别设置4个圆角的半径。<br />默认值：{ topLeft: '32vp', topRight: '32vp', bottomLeft: '32vp', bottomRight: '32vp' }<br />**说明**：自定义弹窗默认的背板圆角半径为32vp，如果需要使用cornerRadius属性，请和[borderRadius](ts-universal-attributes-border.md#borderradius)属性一起使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | isModal<sup>11+</sup> | boolean | 否 | 弹窗是否为模态窗口。值为true表示为模态窗口且有蒙层，不可与弹窗周围其他控件进行交互，即蒙层区域无法事件透传。值为false表示为非模态窗口且无蒙层，可以与弹窗周围其他控件进行交互。<br/>默认值：true<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -57,7 +57,7 @@ constructor(value: CustomDialogControllerOptions)
 | shadow<sup>12+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)   | 否 | 设置弹窗背板的阴影。 <br /> 当设备为2in1时，默认场景下获焦阴影值为ShadowStyle.OUTER_FLOATING_MD，失焦为ShadowStyle.OUTER_FLOATING_SM。其他设备默认无阴影。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | backgroundBlurStyle<sup>12+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | 否   | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK <br/>**说明：** <br/>设置为BlurStyle.NONE即可关闭背景虚化。当设置了backgroundBlurStyle为非NONE值时，则不要设置backgroundColor，否则颜色显示将不符合预期效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | keyboardAvoidMode<sup>12+</sup> | [KeyboardAvoidMode](ts-types.md#keyboardavoidmode12枚举说明) | 否 | 用于设置弹窗是否在拉起软键盘时进行自动避让。<br/>默认值：KeyboardAvoidMode.DEFAULT<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| enableHoverMode<sup>14+</sup>     | boolean | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| enableHoverMode<sup>14+</sup>     | boolean | 否   | 是否响应悬停态，值为true时，响应悬停态。<br />默认值：false，默认不响应。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 | hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 | keyboardAvoidDistance<sup>15+</sup>       | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 弹窗避让键盘后，和键盘之间的距离。<br />**说明：**<br />- 默认值：16vp。<br />- 默认单位：vp。<br />- 当且仅当keyboardAvoidMode属性设置为DEFAULT时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | levelMode<sup>15+</sup>       | [LevelMode](../js-apis-promptAction.md#levelmode15枚举说明) | 否   | 设置弹窗显示层级。<br />**说明：**<br />- 默认值：LevelMode.OVERLAY。<br />- 当且仅当showInSubWindow属性设置为false时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
@@ -74,6 +74,7 @@ constructor(value: CustomDialogControllerOptions)
 > - 为了达成良好的视觉体验，弹窗的显示和关闭存在默认动画，动画时长不同设备间可能存在差异。
 >   需要注意：在动画播放过程中，页面不响应触摸、滑动、点击操作。关闭默认弹窗动画效果可设置openAnimation和closeAnimation的duration为0。
 > - 当前，ArkUI弹出框默认为非页面级弹出框，在页面路由跳转时，如果开发者未调用close方法将其关闭，弹出框将不会自动关闭。若需实现在跳转页面时覆盖弹出框的场景，可以使用[组件导航子页面显示类型的弹窗类型](../../../ui/arkts-navigation-navigation.md#页面显示类型)或者[页面级弹出框](../../../ui/arkts-embedded-dialog.md)。
+> - customStyle为true时，弹窗显示区域是屏幕，而为false时，会受安全区域影响，显示区域要扣除安全区域。
 
 ## DismissDialogAction<sup>12+</sup>
 
@@ -725,15 +726,15 @@ struct CustomDialogUser {
       })
       Button("show loading dialog").onClick(() => {
         //获取窗口对象
-        let windowClass = window.getLastWindow(getContext());
+        let windowClass = window.getLastWindow(this.getUIContext().getHostContext());
         windowClass.then(window => {
           //获取窗口信息，设置maskRect
           let properties = window.getWindowProperties();
           let maskRect = {
-            x: px2vp(properties.windowRect.left + 150),
-            y: px2vp(properties.windowRect.top + 350),
-            width: px2vp(properties.windowRect.width - 300),
-            height: px2vp(properties.windowRect.height - 700)
+            x: this.getUIContext().px2vp(properties.windowRect.left + 150),
+            y: this.getUIContext().px2vp(properties.windowRect.top + 350),
+            width: this.getUIContext().px2vp(properties.windowRect.width - 300),
+            height: this.getUIContext().px2vp(properties.windowRect.height - 700)
           } as Rectangle
           if (this.dialogController == null) {
             this.dialogController = new CustomDialogController({
@@ -782,7 +783,6 @@ struct CustomDialogUser {
 
 ```ts
 import window from '@ohos.window';
-import { LengthMetrics } from '@kit.ArkUI';
 
 @CustomDialog
 @Component
@@ -867,7 +867,7 @@ struct CustomDialogUser {
   })
 
   aboutToAppear(): void {
-    let windowClass = window.getLastWindow(getContext());
+    let windowClass = window.getLastWindow(this.getUIContext().getHostContext());
     windowClass.then(win => {
       this.windowClass = win;
       // 获取底部导航栏高度
@@ -912,3 +912,88 @@ struct CustomDialogUser {
 }
 ```
 ![zh-cn_image_custom](figures/dialog_keyboard_distance.gif)
+
+### 示例8（不同customStyle下的弹窗示例）
+
+该示例时在对齐方式为DialogAlignment.Bottom时，展示customStyle不同值下，弹窗内容与安全区域的效果。
+
+```ts
+@CustomDialog
+@Component
+struct CustomStyleDialogExample {
+  controller?: CustomDialogController;
+  cancel: () => void = () => {
+  }
+  confirm: () => void = () => {
+  }
+
+  build() {
+    Column().borderRadius(10).width(110).height(110).backgroundColor("#2787d9")
+  }
+}
+
+@Entry
+@Component
+struct CustomDialogUser {
+  @State customStyle: boolean = false;
+  dialogController: CustomDialogController | null = null;
+
+  // 在自定义组件即将析构销毁时将dialogController置空
+  aboutToDisappear() {
+    this.dialogController = null; // 将dialogController置空
+  }
+
+  onCancel() {
+    console.info('Callback when the first button is clicked');
+  }
+
+  onAccept() {
+    console.info('Callback when the second button is clicked');
+  }
+
+  exitApp() {
+    console.info('Click the callback in the blank area');
+  }
+
+  build() {
+    Column() {
+      Button("change  customStyle:" + this.customStyle).onClick(() => {
+        this.customStyle = !this.customStyle;
+      })
+      Button("show dialog").onClick(() => {
+        if (this.dialogController != null) {
+          this.dialogController.close();
+        }
+        this.dialogController = new CustomDialogController({
+          builder: CustomStyleDialogExample({
+            cancel: () => {
+              this.onCancel();
+            },
+            confirm: () => {
+              this.onAccept();
+            },
+          }),
+          cancel: this.exitApp,
+          autoCancel: true,
+          showInSubWindow: false,
+          onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+            if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+              dismissDialogAction.dismiss();
+            }
+            if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+              dismissDialogAction.dismiss();
+            }
+          },
+          alignment: DialogAlignment.Bottom,
+          customStyle: this.customStyle,
+          cornerRadius: 10,
+          openAnimation: { duration: 0, tempo: 0 },
+          closeAnimation: { duration: 0, tempo: 0 }
+        })
+        this.dialogController.open();
+      }).margin({ top: 5 })
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+![zh-cn_image_custom](figures/customstyle_dialog_demo.gif)

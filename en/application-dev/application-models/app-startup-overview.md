@@ -41,7 +41,7 @@ Compared with Deep Linking, App Linking has higher security, reliability, and us
 | Capable of sharing or directly accessible on web pages| Yes| No. The function must be called in the code.|
 | Able to directly start the target application| Yes| Yes. However, this mode is not recommended due to spoofing risks.|
 
-Both Deep Linking and App Linking can be implemented using [openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12). The redirection effect under different conditions is as follows:
+Both Deep Linking and App Linking can be implemented using [openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#openlink12). The redirection effect under different conditions is as follows:
 
 > **NOTE**
 > 

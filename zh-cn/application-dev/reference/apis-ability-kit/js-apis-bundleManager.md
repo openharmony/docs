@@ -11,15 +11,6 @@
 import { bundleManager } from '@kit.AbilityKit';
 ```
 
-## 权限列表
-
-| 权限                                       | 权限等级     | 描述            |
-| ------------------------------------------ | ------------ | ------------------|
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 允许查询应用的基本信息和其他敏感信息。 |
-| ohos.permission.GET_SIGNATURE_INFO | system_basic | 允许应用获取应用包的签名信息。 |
-
-权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
-
 ## BundleFlag
 
 包信息标志，指示需要获取的包信息的内容。
@@ -66,7 +57,7 @@ import { bundleManager } from '@kit.AbilityKit';
 |<!--DelRow--> PRINT<sup>10+</sup> | 15 | PrintExtensionAbility：文件打印扩展能力，提供应用打印照片、文档等办公场景。仅系统应用支持。 |
 | SHARE<sup>10+</sup> | 16 | [ShareExtensionAbility](js-apis-app-ability-shareExtensionAbility.md)：提供分享业务能力，为开发者提供基于UIExtension的分享业务模板。 |
 |<!--DelRow--> PUSH<sup>10+</sup> | 17 | PushExtensionAbility：推送扩展能力，提供推送场景化消息能力。预留能力，仅系统应用支持。 |
-|<!--DelRow--> DRIVER<sup>10+</sup> | 18 | [DriverExtensionAbility](../apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)：驱动扩展能力，提供外设驱动扩展能力，仅系统应用支持。 |
+| DRIVER<sup>10+</sup> | 18 | [DriverExtensionAbility](../apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)：驱动扩展能力，提供外设驱动扩展能力。应用配置了driver类型的ExtensionAbility后会被视为驱动应用，驱动应用在安装、卸载和恢复时不会区分用户，且创建新用户时也会安装设备上已有的驱动应用。例如，创建子用户时会默认安装主用户已有的驱动应用，在子用户上卸载驱动应用时，主用户上对应的驱动应用也会同时被卸载。 |
 | ACTION<sup>10+</sup> | 19 | [ActionExtensionAbility](js-apis-app-ability-actionExtensionAbility.md)：自定义服务扩展能力，为开发者提供基于UIExtension的自定义操作业务模板。 |
 |<!--DelRow--> ADS_SERVICE<sup>11+</sup> | 20 | AdsServiceExtensionAbility：广告服务扩展能力，对外提供后台自定义广告业务服务，仅系统应用支持。 |
 | EMBEDDED_UI<sup>12+</sup> | 21 | [EmbeddedUIExtensionAbility](js-apis-app-ability-embeddedUIExtensionAbility.md)：嵌入式UI扩展能力，提供跨进程界面嵌入的能力。 |
@@ -1473,7 +1464,7 @@ type ModuleMetadata = _ModuleMetadata
 
 | 类型                                                         | 说明           |
 | ------------------------------------------------------------ | -------------- |
-| [_ModuleMetadata](js-apis-bundleManager-applicationInfo.md#ModuleMetadata10) | 模块的元数据信息。 |
+| [_ModuleMetadata](js-apis-bundleManager-applicationInfo.md#modulemetadata10) | 模块的元数据信息。 |
 
 ## Metadata
 

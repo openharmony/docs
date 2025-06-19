@@ -22,7 +22,7 @@ BuilderNode仅可作为叶子节点进行使用。如有更新需要，建议通
 > 
 > - BuilderNode只支持一个由[wrapBuilder](../ui/state-management/arkts-wrapBuilder.md)包装的[全局自定义构建函数](../ui/state-management/arkts-builder.md#全局自定义构建函数)@Builder。
 > 
-> - 一个新建的BuildNode在[build](../reference/apis-arkui/js-apis-arkui-builderNode.md#build)之后才能通过[getFrameNode](../reference/apis-arkui/js-apis-arkui-builderNode.md#getframenode)获取到一个指向根节点的FrameNode对象，否则返回null。
+> - 一个新建的BuilderNode在[build](../reference/apis-arkui/js-apis-arkui-builderNode.md#build)之后才能通过[getFrameNode](../reference/apis-arkui/js-apis-arkui-builderNode.md#getframenode)获取到一个指向根节点的FrameNode对象，否则返回null。
 > 
 > - 如果传入的Builder的根节点为语法节点（if/else/foreach/...），需要额外生成一个FrameNode，在节点树中的显示为“BuilderProxyNode”。
 > 
@@ -309,7 +309,7 @@ BuilderNode中提供了[postTouchEvent](../reference/apis-arkui/js-apis-arkui-bu
 
 通过postTouchEvent向BuilderNode对应的节点树中注入触摸事件。
 
-向BuilderNode中的Column组件转发另一个Column的接收事件，即点击下方的Column组件，上方的Colum组件也会收到同样的触摸事件。当Button中的事件被成功识别的时候，返回值为true。
+向BuilderNode中的Column组件转发另一个Column接收的事件，即点击下方的Column组件，上方的Column组件也会收到同样的触摸事件。当Button中的事件被成功识别的时候，返回值为true。
 
 ```ts
 import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';

@@ -4,7 +4,9 @@
 
 >  **说明：**
 >
->  该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 该组件不建议开发者在动效过程中修改属性数据。
 
 
 ## 子组件
@@ -44,7 +46,7 @@ DatePicker(options?: DatePickerOptions)
 >  **说明：**
 >
 >  Date的使用请参考[TimePickerOptions](ts-basic-components-timepicker.md)。  
->  在DatePicker组件滑动过程中修改DatePickerOptions中的属性（start、end、selected）,会导致这些属性无法生效。
+>  在DatePicker组件滑动过程中修改DatePickerOptions中的属性（start、end、selected、mode），会导致这些属性无法生效。
 
 
 ## DatePickerMode<sup>18+</sup>枚举说明
