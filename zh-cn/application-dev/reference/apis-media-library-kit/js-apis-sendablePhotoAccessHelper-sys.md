@@ -184,7 +184,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 获取系统预置的隐藏相册。
-async function getSysHiddenAlbum() {
+async function getSysHiddenAlbum(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('getSysHiddenAlbumDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ASSETS_MODE)
     .then( async (fetchResult) => {
@@ -201,7 +201,7 @@ async function getSysHiddenAlbum() {
 }
 
 // 获取隐藏相册-相册视图，即系统中包含隐藏文件的相册（不包含系统预置的隐藏相册本身和回收站相册）。
-async function getHiddenAlbumsView() {
+async function getHiddenAlbumsView(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper) {
   console.info('getHiddenAlbumsViewDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE).then( async (fetchResult) => {
     if (fetchResult === undefined) {
