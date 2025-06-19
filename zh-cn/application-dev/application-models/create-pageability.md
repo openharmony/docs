@@ -64,7 +64,7 @@ PageAbility创建成功后，其abilities相关的配置项在config.json中体�
               "entity.system.home"
             ],
             "actions": [
-              "ohos.want.action.home"
+              "action.system.home"
             ]
           }
         ],
