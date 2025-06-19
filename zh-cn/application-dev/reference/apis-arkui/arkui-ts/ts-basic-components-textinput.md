@@ -1145,22 +1145,6 @@ enableAutoFillAnimation(enabled: Optional\<boolean>)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | enabled  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否启用自动填充动效。<br/>true表示启用，false表示不启用。<br/>默认值：true <br/>**说明：**<br/>启用之后，仅[输入模式](#inputtype枚举说明)设置为Password、NEW_PASSWORD或NUMBER_PASSWORD的输入框在进行自动填充时动效可生效。  |
 
-### enableAutoSpacing<sup>20+</sup>
-
-enableAutoSpacing(enabled: Optional\<boolean>)
-
-设置是否开启中文与西文的自动间距。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明                               |
-| ------ | ------- | ---- | ---------------------------------- |
-| enabled | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
-
 ## InputType枚举说明
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1505,6 +1489,22 @@ onWillChange的回调时序晚于onWillInsert、onWillDelete，早于onDidInsert
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | callback  | Callback\<[EditableTextChangeValue](ts-text-common.md#editabletextchangevalue15), boolean> | 是   | 在文本内容将要发生变化时的回调。<br/>返回true时，表示正常修改。返回false时，表示拦截此次触发。 |
+
+### onWillAttachIME<sup>20+</sup>
+
+onWillAttachIME(callback: Callback\<IMEClient>)
+
+在输入框将要绑定输入法前触发该回调。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[IMEClient](ts-text-common.md#imeclient20对象说明)> | 是   | 在输入框将要绑定输入法前触发该回调。 |
 
 ## TextInputController<sup>8+</sup>
 
@@ -2881,30 +2881,3 @@ struct TextInputExample {
 ```
 
 ![textInputSetStroke](figures/textInputSetStroke.png)
-
-### 示例21（设置中西文自动间距）
-
-该示例通过enableAutoSpacing属性设置中西文自动间距。
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct TextInputExample {
-  build() {
-    Row() {
-      Column() {
-        Text('开启中西文自动间距').margin(5)
-        TextInput({text: '中西文Auto Spacing自动间距'})
-          .enableAutoSpacing(true)
-        Text('关闭中西文自动间距').margin(5)
-        TextInput({text: '中西文Auto Spacing自动间距'})
-          .enableAutoSpacing(false)
-      }.height('100%')
-    }
-    .width('60%')
-  }
-}
-```
-
-![textInputEnableAutoSpacing](figures/textInputEnableAutoSpacing.png)

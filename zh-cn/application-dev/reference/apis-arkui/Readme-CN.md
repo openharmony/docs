@@ -274,6 +274,7 @@
     - [属性字符串](arkui-ts/ts-universal-styled-string.md)
     - [文本组件公共接口](arkui-ts/ts-text-common.md)
     <!--Del-->
+    - [文本组件公共接口 (系统接口)](arkui-ts/ts-text-common-sys.md)
     - [TextInput (系统接口)](arkui-ts/ts-basic-components-textinput-sys.md)
     - [属性字符串 (系统接口)](arkui-ts/ts-universal-styled-string-sys.md)
     - [RichEditor(系统接口)](arkui-ts/ts-basic-components-richeditor-sys.md)
