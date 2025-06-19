@@ -999,11 +999,11 @@ on(eventType: 'windowStageLifecycleEvent', callback: Callback&lt;WindowStageLife
 
 > **说明：**
 >
-> [on('windowStageEvent')](#on('windowStageEvent')9)与本接口的区别：
+> [on('windowStageEvent')](arkts-apis-window-WindowStage.md#onwindowstageevent9)与本接口的区别：
 >
 > 1.前者无法保证状态切换间的顺序，对于状态间的顺序有要求的情况下不推荐使用，推荐使用本接口；
 >
-> 2.当前接口不提供WindowStage的获焦失焦状态监听，推荐使用[on('windowEvent')](#on('windowEvent')10)。
+> 2.当前接口不提供WindowStage的获焦失焦状态监听，推荐使用[on('windowEvent')](arkts-apis-window-Window.md#onwindowevent10)。
 >
 > 3.其他系统机制及其生命周期状态切换的详细说明，请参考开发指导。
 
@@ -1011,16 +1011,18 @@ on(eventType: 'windowStageLifecycleEvent', callback: Callback&lt;WindowStageLife
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | eventType  | string                                                       | 是   | 监听事件，固定为'windowStageLifecycleEvent'，即WindowStage生命周期变化事件。 |
-| callback | Callback&lt;[WindowStageLifecycleEventType](#WindowStageLifecycleEventType20)&gt; | 是   | 回调函数。返回当前的WindowStage生命周期状态。                |
+| callback | Callback&lt;[WindowStageLifecycleEventType](arkts-apis-window-e.md#windowstagelifecycleeventtype20)&gt; | 是   | 回调函数。返回当前的WindowStage生命周期状态。                |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
@@ -1060,16 +1062,18 @@ off(eventType: 'windowStageLifecycleEvent', callback?: Callback&lt;WindowStageLi
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | eventType  | string                                                       | 是   | 监听事件，固定为'windowStageLifecycleEvent'，即WindowStage生命周期变化事件。 |
-| callback | Callback&lt;[WindowStageLifecycleEventType](#WindowStageLifecycleEventType20)&gt; | 否   | 回调函数。返回当前的WindowStage生命周期状态。若传入参数，则关闭该监听。若未传入参数，则关闭所有WindowStage生命周期变化的监听。                |
+| callback | Callback&lt;[WindowStageLifecycleEventType](arkts-apis-window-e.md#windowstagelifecycleeventtype20)&gt; | 否   | 回调函数。返回当前的WindowStage生命周期状态。若传入参数，则关闭该监听。若未传入参数，则关闭所有WindowStage生命周期变化的监听。                |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
