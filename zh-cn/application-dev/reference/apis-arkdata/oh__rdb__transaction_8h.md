@@ -40,8 +40,8 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [OH_RDB_TransOptions](_r_d_b.md#oh_rdb_transoptions) \* [OH_RdbTrans_CreateOptions](_r_d_b.md#oh_rdbtrans_createoptions) (void) | 创建事务配置对象。 | 
-| int [OH_RdbTrans_DestroyOptions](_r_d_b.md#oh_rdbtrans_destroyoptions) ([OH_RDB_TransOptions](_r_d_b.md#oh_rdb_transoptions) \*opitons) | 销毁事务配置对象。 | 
-| int [OH_RdbTransOption_SetType](_r_d_b.md#oh_rdbtransoption_settype) ([OH_RDB_TransOptions](_r_d_b.md#oh_rdb_transoptions) \*opitons, [OH_RDB_TransType](_r_d_b.md#oh_rdb_transtype) type) | 设置关系型数据库事务类型。 | 
+| int [OH_RdbTrans_DestroyOptions](_r_d_b.md#oh_rdbtrans_destroyoptions) ([OH_RDB_TransOptions](_r_d_b.md#oh_rdb_transoptions) \*options) | 销毁事务配置对象。 | 
+| int [OH_RdbTransOption_SetType](_r_d_b.md#oh_rdbtransoption_settype) ([OH_RDB_TransOptions](_r_d_b.md#oh_rdb_transoptions) \*options, [OH_RDB_TransType](_r_d_b.md#oh_rdb_transtype) type) | 设置关系型数据库事务类型。 | 
 | int [OH_RdbTrans_Commit](_r_d_b.md#oh_rdbtrans_commit) ([OH_Rdb_Transaction](_r_d_b.md#oh_rdb_transaction) \*trans) | 提交事务。 | 
 | int [OH_RdbTrans_Rollback](_r_d_b.md#oh_rdbtrans_rollback) ([OH_Rdb_Transaction](_r_d_b.md#oh_rdb_transaction) \*trans) | 回滚事务。 | 
 | int [OH_RdbTrans_Insert](_r_d_b.md#oh_rdbtrans_insert) ([OH_Rdb_Transaction](_r_d_b.md#oh_rdb_transaction) \*trans, const char \*table, const [OH_VBucket](_o_h___v_bucket.md) \*row, int64_t \*rowId) | 将一行数据插入到目标表中。 | 
