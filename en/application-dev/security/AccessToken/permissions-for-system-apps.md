@@ -4976,3 +4976,17 @@ Allows the private space application to mount public directories from the main s
 **Supported devices**: Phone | Tablet
 
 **Valid since**：20
+
+## ohos.permission.ACCESS_CAMERA_SCENARIOS_CARD
+
+Allows an applications to access the remote photography card services.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: Wearable
+
+**Valid since**：20
