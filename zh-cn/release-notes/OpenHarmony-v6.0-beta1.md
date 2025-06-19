@@ -44,7 +44,7 @@ OpenHarmony 6.0 Beta1版本进一步增强ArkUI组件能力，提供更安全、
 
 ### 包管理
 
-- 新增setShortcutVisibleForSelf接口，支持设置当前应用的快捷方式是否显示。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-ability-kit/js-apis-shortcutManager.md)）
+- 新增setShortcutVisibleForSelf接口，支持设置当前应用的快捷方式是否显示。（[API参考](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-shortcutManager.md)）
 
 - 新增getAbilityInfo接口，支持根据指定的uri获取应用的ability信息。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetabilityinfo20)）
 
