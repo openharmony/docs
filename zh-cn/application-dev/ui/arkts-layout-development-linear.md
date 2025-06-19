@@ -5,6 +5,10 @@
 
 线性布局（LinearLayout）是开发中最常用的布局，通过线性容器[Row](../reference/apis-arkui/arkui-ts/ts-container-row.md)和[Column](../reference/apis-arkui/arkui-ts/ts-container-column.md)构建。线性布局是其他布局的基础，其子元素在线性方向上（水平方向和垂直方向）依次排列。线性布局的排列方向由所选容器组件决定，Row容器内子元素按照水平方向排列，Column容器内子元素按照垂直方向排列。根据不同的排列方向，开发者可选择使用Row或Column容器创建线性布局。
 
+>  **说明：**
+>
+>  在复杂界面中使用多组件嵌套时，若布局组件的嵌套层数过深或嵌套的组件数量过多，将会产生额外开销。建议通过移除冗余节点、利用布局边界减少布局计算、合理采用渲染控制语法及布局组件方法来优化性能。最佳实践请参考[合理使用布局](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-improve-layout-performance)。
+
 
   **图1** Column容器内子元素排列示意图
 
