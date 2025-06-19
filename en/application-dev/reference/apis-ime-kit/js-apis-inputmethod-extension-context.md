@@ -55,10 +55,10 @@ class InputMethodExtnAbility extends InputMethodExtensionAbility {
   onDestroy() {
     this.context.destroy((err: BusinessError) => {
       if(err) {
-        console.log(`Failed to destroy context, err code = ${err.code}`);
+        console.error(`Failed to destroy context, err code = ${err.code}`);
         return;
       }
-      console.log('Succeeded in destroying context.');
+      console.info('Succeeded in destroying context.');
     });
   }
 }
@@ -91,9 +91,9 @@ class InputMethodExtnAbility extends InputMethodExtensionAbility {
   }
   onDestroy() {
     this.context.destroy().then(() => {
-      console.log('Succeed in destroying context.');
+      console.info('Succeed in destroying context.');
     }).catch((err: BusinessError)=>{
-      console.log(`Failed to destroy context, err code = ${err.code}`);
+      console.error(`Failed to destroy context, err code = ${err.code}`);
     });
   }
 }
@@ -128,20 +128,20 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 16000001 | The specified ability does not exist.                   |
 | 16000002 | Incorrect ability type.                                 |
-| 16000004 | Can not start invisible component.                      |
+| 16000004 | Cannot start an invisible component.                    |
 | 16000005 | The specified process does not have the permission.     |
 | 16000006 | Cross-user operations are not allowed.                  |
 | 16000008 | The crowdtesting application expires.                   |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.       |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden.       |
 | 16000011 | The context does not exist.                             |
 | 16000012 | The application is controlled.                          |
 | 16000013 | The application is controlled by EDM.                   |
-| 16000019 | Can not match any component.                            |
+| 16000019 | No matching ability is found.                            |
 | 16000050 | Internal error.                                         |
 | 16000053 | The ability is not on the top of the UI.                |
 | 16000055 | Installation-free timed out.                            |
-| 16000061 | Can not start component belongs to other bundle.        |
+| 16000061 | Operation not supported.                                |
 | 16200001 | The caller has been released.                           |
 | 16000069 | The extension cannot start the third party application. |
 | 16000070 | The extension cannot start the service.                 |
@@ -164,14 +164,14 @@ class InputMethodExtnAbility extends InputMethodExtensionAbility {
     };
     try {
       this.context.startAbility(want).then(() => {
-        console.log(`startAbility success`);
+        console.info(`startAbility success`);
       }).catch((err: BusinessError) => {
         let error = err as BusinessError;
-        console.log(`startAbility error: ${error.code} ${error.message}`);
+        console.error(`startAbility error: ${error.code} ${error.message}`);
       })
     } catch (err) {
       let error = err as BusinessError;
-      console.log(`startAbility error: ${error.code} ${error.message}`);
+      console.error(`startAbility error: ${error.code} ${error.message}`);
     }
   }
 }
