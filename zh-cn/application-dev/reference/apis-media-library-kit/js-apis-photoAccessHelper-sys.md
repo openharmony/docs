@@ -8137,6 +8137,8 @@ async function example(context: Context) {
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | subtype           | [PhotoSubtype](#photosubtype) | 否  | 图片或者视频的子类型。  |
 | cameraShotKey           | string | 否  | 锁屏相机拍照或录像的标记字段（仅开放给系统相机,其key值由系统相机定义）。   |
+| userId           | number | 否  | 用户id。  |
+
 
 ## RequestPhotoOptions<sup>11+</sup>
 
