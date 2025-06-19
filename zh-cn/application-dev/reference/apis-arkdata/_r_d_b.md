@@ -196,8 +196,8 @@
 | int [OH_VBuckets_PutRows](#oh_vbuckets_putrows) ([OH_Data_VBuckets](#oh_data_vbuckets) \*buckets, const [OH_Data_VBuckets](#oh_data_vbuckets) \*rows) | 添加OH_Data_VBuckets类型数据。 |
 | int [OH_VBuckets_RowCount](#oh_vbuckets_rowcount) ([OH_Data_VBuckets](#oh_data_vbuckets) \*buckets, size_t \*count) | 获取OH_Data_VBuckets中OH_VBucket的行数。 |
 | [OH_RDB_TransOptions](#oh_rdb_transoptions) \* [OH_RdbTrans_CreateOptions](#oh_rdbtrans_createoptions) (void) | 创建事务配置对象。 |
-| int [OH_RdbTrans_DestroyOptions](#oh_rdbtrans_destroyoptions) ([OH_RDB_TransOptions](#oh_rdb_transoptions) \*opitons) | 销毁事务配置对象。 |
-| int [OH_RdbTransOption_SetType](#oh_rdbtransoption_settype) ([OH_RDB_TransOptions](#oh_rdb_transoptions) \*opitons, [OH_RDB_TransType](#oh_rdb_transtype) type) | 设置关系型数据库事务类型。 |
+| int [OH_RdbTrans_DestroyOptions](#oh_rdbtrans_destroyoptions) ([OH_RDB_TransOptions](#oh_rdb_transoptions) \*options) | 销毁事务配置对象。 |
+| int [OH_RdbTransOption_SetType](#oh_rdbtransoption_settype) ([OH_RDB_TransOptions](#oh_rdb_transoptions) \*options, [OH_RDB_TransType](#oh_rdb_transtype) type) | 设置关系型数据库事务类型。 |
 | int [OH_RdbTrans_Commit](#oh_rdbtrans_commit) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans) | 提交事务。 |
 | int [OH_RdbTrans_Rollback](#oh_rdbtrans_rollback) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans) | 回滚事务。 |
 | int [OH_RdbTrans_Insert](#oh_rdbtrans_insert) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans, const char \*table, const [OH_VBucket](_o_h___v_bucket.md) \*row, int64_t \*rowId) | 将一行数据插入到目标表中。 |
@@ -1886,7 +1886,7 @@ int OH_RdbTrans_Destroy (OH_Rdb_Transaction *trans)
 ### OH_RdbTrans_DestroyOptions()
 
 ```
-int OH_RdbTrans_DestroyOptions (OH_RDB_TransOptions *opitons)
+int OH_RdbTrans_DestroyOptions (OH_RDB_TransOptions *options)
 ```
 
 **描述**
@@ -1899,7 +1899,7 @@ int OH_RdbTrans_DestroyOptions (OH_RDB_TransOptions *opitons)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| opitons | 表示指向[OH_RDB_TransOptions](#oh_rdb_transoptions)实例的指针。 |
+| options | 表示指向[OH_RDB_TransOptions](#oh_rdb_transoptions)实例的指针。 |
 
 **返回：**
 
@@ -2179,7 +2179,7 @@ int OH_RdbTrans_Update (OH_Rdb_Transaction *trans, const OH_VBucket *row, const 
 ### OH_RdbTransOption_SetType()
 
 ```
-int OH_RdbTransOption_SetType (OH_RDB_TransOptions *opitons, OH_RDB_TransType type )
+int OH_RdbTransOption_SetType (OH_RDB_TransOptions *options, OH_RDB_TransType type )
 ```
 
 **描述**
@@ -2192,7 +2192,7 @@ int OH_RdbTransOption_SetType (OH_RDB_TransOptions *opitons, OH_RDB_TransType ty
 
 | 名称 | 描述 |
 | -------- | -------- |
-| opitons | 表示指向[OH_RDB_TransOptions](#oh_rdb_transoptions)实例的指针。 |
+| options | 表示指向[OH_RDB_TransOptions](#oh_rdb_transoptions)实例的指针。 |
 | type | 表示关系型数据库事务类型。 |
 
 **返回：**
