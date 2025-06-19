@@ -119,37 +119,53 @@ class TextNodeController extends NodeController {
   }
 }
 
-let pipController: PiPWindow.PiPController | undefined = undefined;
-let mXComponentController: XComponentController = new XComponentController(); // 开发者应使用该mXComponentController初始化XComponent: XComponent( {id: 'video', type: 'surface', controller: mXComponentController} )，保证XComponent的内容可以被迁移到画中画窗口。
-let nodeController: TextNodeController = new TextNodeController('this is custom UI');
-let navId: string = "page_1"; // 假设当前页面的导航id为page_1，详见PiPConfiguration定义，具体导航名称由开发者自行定义。
-let contentWidth: number = 800; // 假设当前内容宽度800px。
-let contentHeight: number = 600; // 假设当前内容高度600px。
-let para: Record<string, number> = { 'PropA': 47 };
-let localStorage: LocalStorage = new LocalStorage(para);
-let res: boolean = localStorage.setOrCreate('PropB', 121);
-let ctx = this.getUIContext().getHostContext() as common.UIAbilityContext; //请在组件内获取context，确保this.getUIContext().getHostContext()返回的结果为UIAbilityContext
-let defaultWindowSize: number = 1; //指定画中画第一次拉起窗口为小窗口
-let config: PiPWindow.PiPConfiguration = {
-  context: ctx,
-  componentController: mXComponentController,
-  navigationId: navId,
-  templateType: PiPWindow.PiPTemplateType.VIDEO_PLAY,
-  contentWidth: contentWidth,
-  contentHeight: contentHeight,
-  controlGroups: [PiPWindow.VideoPlayControlGroup.VIDEO_PREVIOUS_NEXT],
-  customUIController: nodeController, // 可选，如果需要在画中画显示内容上方展示自定义UI，可设置该参数。
-  localStorage: localStorage, // 可选，如果需要跟踪主窗实例，可设置此参数。
-  defaultWindowSizeType: defaultWindowSize //可选， 如果需要配置默认启动窗口档位，可设置此参数。
-};
+@Entry
+@Component
+struct Index {
+    private message: string = 'createPiP';
+    private pipController: PiPWindow.PiPController | undefined = undefined;
+    private mXComponentController: XComponentController = new XComponentController(); // 开发者应使用该mXComponentController初始化XComponent: XComponent( {id: 'video', type: 'surface', controller: mXComponentController} )，保证XComponent的内容可以被迁移到画中画窗口。
+    private nodeController: TextNodeController = new TextNodeController('this is custom UI');
+    private navId: string = "page_1"; // 假设当前页面的导航id为page_1，详见PiPConfiguration定义，具体导航名称由开发者自行定义。
+    private contentWidth: number = 800; // 假设当前内容宽度800px。
+    private contentHeight: number = 600; // 假设当前内容高度600px。
+    private para: Record<string, number> = { 'PropA': 47 };
+    private localStorage: LocalStorage = new LocalStorage(this.para);
+    private res: boolean = this.localStorage.setOrCreate('PropB', 121);
+    private defaultWindowSizeType: number = 1; // 指定画中画第一次拉起窗口为小窗口。
+    private config: PiPWindow.PiPConfiguration = {
+        context: this.getUIContext().getHostContext() as Context,
+        componentController: this.mXComponentController,
+        navigationId: this.navId,
+        templateType: PiPWindow.PiPTemplateType.VIDEO_PLAY,
+        contentWidth: this.contentWidth,
+        contentHeight: this.contentHeight,
+        controlGroups: [PiPWindow.VideoPlayControlGroup.VIDEO_PREVIOUS_NEXT],
+        customUIController: this.nodeController, // 可选，如果需要在画中画显示内容上方展示自定义UI，可设置该参数。
+        localStorage: this.localStorage, // 可选，如果需要跟踪主窗实例，可设置此参数。
+        defaultWindowSizeType: this.defaultWindowSizeType, // 可选，如果需要配置默认启动窗口档位，可设置此参数。
+    };
 
-let promise: Promise<PiPWindow.PiPController> = PiPWindow.create(config);
-promise.then((data: PiPWindow.PiPController) => {
-  pipController = data;
-  console.info(`Succeeded in creating pip controller. Data:${data}`);
-}).catch((err: BusinessError) => {
-  console.error(`Failed to create pip controller. Cause:${err.code}, message:${err.message}`);
-});
+    createPiP() {
+        let promise: Promise<PiPWindow.PiPController> = PiPWindow.create(this.config);
+        promise.then((data: PiPWindow.PiPController) => {
+            this.pipController = data;
+            console.info(`Succeeded in creating pip controller. Data:${data}`);
+        }).catch((err: BusinessError) => {
+            console.error(`Failed to create pip controller. Cause:${err.code}, message:${err.message}`);
+        });
+    }
+
+    //仅用于功能测试，实际开发过程中开发者按功能需求设计组件
+    build() {
+        RelativeContainer() {
+            Button(this.message)
+                .onClick(() => {
+                    this.createPiP();
+                })
+        }
+    }
+}
 ```
 
 ## PiPWindow.create<sup>12+</sup>
@@ -191,31 +207,48 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { PiPWindow, typeNode, UIContext } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 
-let pipController: PiPWindow.PiPController | undefined = undefined;
-let xComponentController: XComponentController = new XComponentController();
-let ctx = this.getUIContext().getHostContext() as common.UIAbilityContext; //请在组件内获取context，确保this.getUIContext().getHostContext()返回的结果为UIAbilityContext
-let options: XComponentOptions = {
-  type: XComponentType.SURFACE,
-  controller: xComponentController
-}
-let xComponent = typeNode.createNode(this.getUIContext(), 'XComponent', options);
-let contentWidth: number = 800; // 假设当前内容宽度800px。
-let contentHeight: number = 600; // 假设当前内容高度600px。
-let config: PiPWindow.PiPConfiguration = {
-  context: ctx,
-  componentController: xComponentController,
-  templateType: PiPWindow.PiPTemplateType.VIDEO_PLAY,
-  contentWidth: contentWidth,
-  contentHeight: contentHeight
-};
+@Entry
+@Component
+struct Index {
+    private message = 'createPiP'
+    private pipController: PiPWindow.PiPController | undefined = undefined;
+    private xComponentController: XComponentController = new XComponentController();
+    private context: UIContext | undefined = this.getUIContext(); // 可传入UIContext或在布局中通过this.getUIContext()为context赋有效值
+    private contentWidth: number = 800; // 假设当前内容宽度800px。
+    private contentHeight: number = 600; // 假设当前内容高度600px。
+    private config: PiPWindow.PiPConfiguration = {
+        context: this.getUIContext().getHostContext() as Context,
+        componentController: this.xComponentController,
+        templateType: PiPWindow.PiPTemplateType.VIDEO_PLAY,
+        contentWidth: this.contentWidth,
+        contentHeight: this.contentHeight,
+    };
+    private options: XComponentOptions = {
+        type: XComponentType.SURFACE,
+        controller: this.xComponentController
+    }
+    private xComponent = typeNode.createNode(this.context, 'XComponent', this.options);
 
-let promise: Promise<PiPWindow.PiPController> = PiPWindow.create(config, xComponent);
-promise.then((data: PiPWindow.PiPController) => {
-  pipController = data;
-  console.info(`Succeeded in creating pip controller. Data:${data}`);
-}).catch((err: BusinessError) => {
-  console.error(`Failed to create pip controller. Cause:${err.code}, message:${err.message}`);
-});
+    createPiP() {
+        let promise: Promise<PiPWindow.PiPController> = PiPWindow.create(this.config, this.xComponent);
+        promise.then((data: PiPWindow.PiPController) => {
+            this.pipController = data;
+            console.info(`Succeeded in creating pip controller. Data:${data}`);
+        }).catch((err: BusinessError) => {
+            console.error(`Failed to create pip controller. Cause:${err.code}, message:${err.message}`);
+        });
+    }
+
+    //仅用于功能测试，实际开发过程中开发者按功能需求设计组件
+    build() {
+        RelativeContainer() {
+            Button(this.message)
+                .onClick(() => {
+                    this.createPiP();
+                })
+        }
+    }
+}
 ```
 
 ## PiPConfiguration
@@ -561,7 +594,8 @@ startPiP(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-let promise : Promise<void> = pipController.startPiP();
+//开发者可根据pipController的定义方式自行实现pipController的调用
+let promise : Promise<void> = this.pipController.startPiP();
 promise.then(() => {
   console.info(`Succeeded in starting pip.`);
 }).catch((err: BusinessError) => {
@@ -598,7 +632,7 @@ stopPiP(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-let promise : Promise<void> = pipController.stopPiP();
+let promise : Promise<void> = this.pipController.stopPiP();
 promise.then(() => {
   console.info(`Succeeded in stopping pip.`);
 }).catch((err: BusinessError) => {
@@ -626,7 +660,7 @@ setAutoStartEnabled(enable: boolean): void
 
 ```ts
 let enable: boolean = true;
-pipController.setAutoStartEnabled(enable);
+this.pipController.setAutoStartEnabled(enable);
 ```
 
 ### updateContentSize
@@ -659,7 +693,7 @@ updateContentSize(width: number, height: number): void
 ```ts
 let width: number = 540; // 假设当前内容宽度变为540px。
 let height: number = 960; // 假设当前内容高度变为960px。
-pipController.updateContentSize(width, height);
+this.pipController.updateContentSize(width, height);
 ```
 
 ### updatePiPControlStatus<sup>12+</sup>
@@ -691,7 +725,7 @@ updatePiPControlStatus(controlType: PiPControlType, status: PiPControlStatus): v
 ```ts
 let controlType: PiPWindow.PiPControlType = PiPWindow.PiPControlType.VIDEO_PLAY_PAUSE; // 视频播放控制面板中播放/暂停控件。
 let status: PiPWindow.PiPControlStatus = PiPWindow.PiPControlStatus.PLAY; // 视频播放控制面板中播放/暂停控件为播放状态。
-pipController.updatePiPControlStatus(controlType, status);
+this.pipController.updatePiPControlStatus(controlType, status);
 ```
 
 ### updateContentNode<sup>18+</sup>
@@ -734,7 +768,7 @@ let context: UIContext | undefined = undefined; // 可传入UIContext或在布�
 
 try {
   let contentNode = typeNode.createNode(context, "XComponent");
-  pipController.updateContentNode(contentNode);
+  this.pipController.updateContentNode(contentNode);
 } catch (exception) {
   console.error(`Failed to update content node. Cause: ${exception.code}, message: ${exception.message}`);
 }
@@ -769,7 +803,7 @@ setPiPControlEnabled(controlType: PiPControlType, enabled: boolean): void
 ```ts
 let controlType: PiPWindow.PiPControlType = PiPWindow.PiPControlType.VIDEO_PLAY_PAUSE; // 视频播放控制面板中播放/暂停控件。
 let enabled: boolean = false; // 视频播放控制面板中播放/暂停控件为禁用状态。
-pipController.setPiPControlEnabled(controlType, enabled);
+this.pipController.setPiPControlEnabled(controlType, enabled);
 ```
 ### getPiPWindowInfo<sup>15+</sup>
 getPiPWindowInfo(): Promise&lt;[PiPWindowInfo](#pipwindowinfo15)&gt;
@@ -800,7 +834,7 @@ getPiPWindowInfo(): Promise&lt;[PiPWindowInfo](#pipwindowinfo15)&gt;
 ```ts
 let pipWindowInfo: PiPWindow.PiPWindowInfo | undefined = undefined;
 try {
-  let promise : Promise<PiPWindow.PiPWindowInfo> = pipController.getPiPWindowInfo();
+  let promise : Promise<PiPWindow.PiPWindowInfo> = this.pipController.getPiPWindowInfo();
   promise.then((data) => {
     pipWindowInfo = data;
     console.info('Success in get pip window info. Info: ' + JSON.stringify(data));
@@ -832,7 +866,7 @@ on(type: 'stateChange', callback: (state: PiPState, reason: string) => void): vo
 **示例：**
 
 ```ts
-pipController.on('stateChange', (state: PiPWindow.PiPState, reason: string) => {
+this.pipController.on('stateChange', (state: PiPWindow.PiPState, reason: string) => {
   let curState: string = '';
   switch (state) {
     case PiPWindow.PiPState.ABOUT_TO_START:
@@ -879,7 +913,7 @@ off(type: 'stateChange'): void
 **示例：**
 
 ```ts
-pipController.off('stateChange');
+this.pipController.off('stateChange');
 ```
 
 ### on('controlPanelActionEvent')
@@ -902,7 +936,7 @@ on(type: 'controlPanelActionEvent', callback: ControlPanelActionEventCallback): 
 **示例：**
 
 ```ts
-pipController.on('controlPanelActionEvent', (event: PiPWindow.PiPActionEventType, status?: number) => {
+this.pipController.on('controlPanelActionEvent', (event: PiPWindow.PiPActionEventType, status?: number) => {
   switch (event) {
     case 'playbackStateChanged':
       if (status === 0) {
@@ -950,7 +984,7 @@ on(type: 'controlEvent', callback: Callback&lt;ControlEventParam&gt;): void
 **示例：**
 
 ```ts
-pipController.on('controlEvent', (control) => {
+this.pipController.on('controlEvent', (control) => {
   switch (control.controlType) {
     case PiPWindow.PiPControlType.VIDEO_PLAY_PAUSE:
       if (control.status === PiPWindow.PiPControlStatus.PAUSE) {
@@ -997,7 +1031,7 @@ off(type: 'controlPanelActionEvent'): void
 **示例：**
 
 ```ts
-pipController.off('controlPanelActionEvent');
+this.pipController.off('controlPanelActionEvent');
 ```
 
 ### off('controlEvent')<sup>12+</sup>
@@ -1020,7 +1054,7 @@ off(type: 'controlEvent', callback?: Callback&lt;ControlEventParam&gt;): void
 **示例：**
 
 ```ts
-pipController.off('controlEvent', () => {});
+this.pipController.off('controlEvent', () => {});
 ```
 
 ### on('pipWindowSizeChange')<sup>15+</sup>
@@ -1054,7 +1088,7 @@ on(type: 'pipWindowSizeChange', callback: Callback&lt;PiPWindowSize&gt;): void
 
 ```ts
 try {
-  pipController.on('pipWindowSizeChange', (size: PiPWindow.PiPWindowSize) => {
+  this.pipController.on('pipWindowSizeChange', (size: PiPWindow.PiPWindowSize) => {
     console.info('Succeeded in enabling the listener for pip window size changes. size: ' + JSON.stringify(size));
   });
 } catch (exception) {
@@ -1097,16 +1131,16 @@ const callback = (size: PiPWindow.PiPWindowSize) => {
 }
 try {
   // 通过on接口开启监听
-  pipController.on('pipWindowSizeChange', callback);
+  this.pipController.on('pipWindowSizeChange', callback);
 } catch (exception) {
   console.error(`Failed to enable the listener for pip window size changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 
 try {
   // 关闭指定callback的监听
-  pipController.off('pipWindowSizeChange', callback);
+  this.pipController.off('pipWindowSizeChange', callback);
   // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-  pipController.off('pipWindowSizeChange');
+  this.pipController.off('pipWindowSizeChange');
 } catch (exception) {
   console.error(`Failed to disable the listener for pip window size changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
