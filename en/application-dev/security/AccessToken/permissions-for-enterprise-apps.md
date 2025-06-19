@@ -151,8 +151,6 @@ Allows an application to obtain domain account information.
 
 Allows an application to query security audit events.
 
-With this permission, the application can block security audit events, such as events of file creation, file opening, and file deletion.
-
 **Permission level**: system_basic
 
 **Authorization mode**: system_grant
@@ -323,6 +321,8 @@ Allows an application to obtain visible window information of the current screen
 ## ohos.permission.kernel.AUTH_AUDIT_EVENT
 
 Allows an enterprise security application to block security audit events.
+
+With this permission, the application can block security audit events, such as events of file creation, file opening, and file deletion.
 
 **Permission level**：system_basic
 
