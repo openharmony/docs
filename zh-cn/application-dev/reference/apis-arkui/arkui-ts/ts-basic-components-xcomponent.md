@@ -332,7 +332,7 @@ getXComponentContext(): Object
 
 setXComponentSurfaceRect(rect: SurfaceRect): void
 
-设置XComponent持有Surface的显示区域，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
+设置XComponent持有Surface的显示区域，包括宽高和相对于组件左上角的位置坐标，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -356,7 +356,7 @@ setXComponentSurfaceRect(rect: SurfaceRect): void
 
 getXComponentSurfaceRect(): SurfaceRect
 
-获取XComponent持有Surface的显示区域，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
+获取XComponent持有Surface的显示区域，包括宽高和相对于组件左上角的位置坐标，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -609,6 +609,8 @@ unlockCanvasAndPost(canvas: DrawingCanvas): void
 > surfaceWidth和surfaceHeight属性在未调用[setXComponentSurfaceRect](ts-basic-components-xcomponent.md#setxcomponentsurfacerect12)也未设置[border](ts-universal-attributes-border.md#border)和[padding](ts-universal-attributes-size.md#padding)等属性时，其取值大小为XComponent组件的大小。
 > 
 > surfaceWidth和surfaceHeight属性的取值都不可超过8192px，否则会导致渲染异常。
+>
+> 沉浸式场景下，默认布局的SurfaceRect不包括安全区，需调用[setXComponentSurfaceRect](ts-basic-components-xcomponent.md#setxcomponentsurfacerect12)接口主动设置Surface显示区域达到沉浸式效果。
 
 ## DrawingCanvas<sup>12+</sup>对象说明
 
