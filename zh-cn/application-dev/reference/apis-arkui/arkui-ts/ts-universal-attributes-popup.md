@@ -35,6 +35,8 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 
 ## PopupOptions类型说明
 
+基础气泡的信息。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                                  | 类型                                                         | 必填 | 说明                                                      |
@@ -69,6 +71,8 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 
 ## PopupMessageOptions<sup>10+</sup>类型说明
 
+气泡文本的样式。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -79,6 +83,8 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 | font      | [Font](ts-types.md#font)                   | 否   | 设置气泡信息字体属性。<br/>**说明：** <br/>不支持设置family。 |
 
 ## DismissPopupAction<sup>12+</sup>类型说明
+
+气泡关闭的信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -91,14 +97,22 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 
 ## DismissReason<sup>12+</sup>枚举说明
 
+关闭原因类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 说明        |
-| ------------- | ------------------ |
-| PRESS_BACK    | 点击Back键。       |
-| TOUCH_OUTSIDE | 点击组件外部区域。 |
+| 名称          | 值   | 说明                                                      |
+| ------------- | ---- | ------------------------------------------------------------ |
+| PRESS_BACK    | 0    | 点击三键back、侧滑（左滑/右滑）、键盘ESC。                           |
+| TOUCH_OUTSIDE | 1    | 点击遮障层时。                                               |
+| CLOSE_BUTTON  | 2    | 点击关闭按钮。                                               |
+| SLIDE_DOWN    | 3    | 下拉关闭。<br/>**说明：** <br/>该接口仅支持在[半模态转场](ts-universal-attributes-sheet-transition.md)中使用。 |
 
 ## CustomPopupOptions<sup>8+</sup>类型说明
+
+弹出自定义气泡的信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -106,7 +120,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 | ---------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | builder                      | [CustomBuilder](ts-types.md#custombuilder8) | 是    | 提示气泡内容的构造器。<br />**说明：**<br />Popup为通用属性，自定义Popup中不支持再次弹出Popup。对builder下的第一层容器组件不支持使用position属性，如果使用将导致气泡不显示。builder中若使用自定义组件，自定义组件的aboutToAppear和aboutToDisappear生命周期与Popup气泡的显隐无关，不能使用其生命周期判断Popup气泡的显隐。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                              |
 | placement                    | [Placement](ts-appendix-enums.md#placement8) | 否    | 气泡组件优先显示的位置，当前位置显示不下时，会自动调整位置。<br/>默认值：Placement.Bottom<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| popupColor                   | number&nbsp;\|&nbsp;[Color](ts-types.md)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 提示气泡的颜色。如需去除模糊背景填充效果，需将backgroundBlurStyle设置为BlurStyle.NONE。<br/>API version 10，默认值：'#4d4d4d'<br />API version 11及以后，默认值：透明色[TRANSPARENT](ts-appendix-enums.md#color)加模糊背景填充效果[COMPONENT_ULTRA_THICK](ts-universal-attributes-background.md#blurstyle9)<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| popupColor                   | number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 提示气泡的颜色。如需去除模糊背景填充效果，需将backgroundBlurStyle设置为BlurStyle.NONE。<br/>API version 10，默认值：'#4d4d4d'<br />API version 11及以后，默认值：透明色[TRANSPARENT](ts-appendix-enums.md#color)加模糊背景填充效果[COMPONENT_ULTRA_THICK](ts-universal-attributes-background.md#blurstyle9)<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | enableArrow                  | boolean                                  | 否    | 是否显示箭头。值为true时显示箭头，值为false时不显示箭头。<br/>从API version 9开始，如果箭头所在方位侧的气泡长度不足以显示下箭头，则会默认不显示箭头。比如：placement设置为Left，此时如果气泡高度小于箭头的宽度（32vp）与气泡圆角两倍（48vp）之和（80vp），则实际不会显示箭头。<br/>默认值：true<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | autoCancel                   | boolean                                  | 否    | 页面有操作时，值为true表示自动关闭气泡，值为false表示气泡不会自动关闭。<br/>默认值：true<br />**说明：**<br />如果要实现点击气泡内消失需要在builder中先放一个布局组件，然后再将Popup高级组件放在布局组件里面，再在布局组件的onClick事件中修改的传入bindPopup的变量（show:&nbsp;boolean）值。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onStateChange                | (event:&nbsp;{&nbsp;isVisible:&nbsp;boolean&nbsp;})&nbsp;=&gt;&nbsp;void | 否    | 气泡状态变化事件回调，参数为气泡的显示状态。返回true时，表示气泡从关闭到打开，返回false时，表示气泡从打开到关闭。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                 |

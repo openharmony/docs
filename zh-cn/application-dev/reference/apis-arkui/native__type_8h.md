@@ -23,6 +23,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| struct&nbsp;&nbsp;[ArkUI_Node](_ark_u_i___margin.md) | 提供ArkUI native组件实例对象定义。|
+| struct&nbsp;&nbsp;[ArkUI_NativeDialog](_ark_ui__native_dialog.md)| 提供ArkUI在Native侧的自定义弹窗控制器对象定义。|
+| struct&nbsp;&nbsp;[ArkUI_Context](_ark_ui__context.md)| 提供ArkUI native UI的上下文实例对象定义。|
 | struct&nbsp;&nbsp;[ArkUI_ContextCallback](_ark_u_i___context_callback.md) | 事件回调类型。  | 
 | union&nbsp;&nbsp;[ArkUI_NumberValue](union_ark_u_i___number_value.md) | ArkUI在Native侧的数字类型定义。  | 
 | struct&nbsp;&nbsp;[ARKUI_TextPickerRangeContent](_a_r_k_u_i___text_picker_range_content.md) | 定义单列滑动数据选择器支持图片资源的输入结构体。  | 
