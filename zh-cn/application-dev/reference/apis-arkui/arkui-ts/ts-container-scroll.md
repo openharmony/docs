@@ -579,6 +579,11 @@ scrollTo(options: [ScrollOptions](#scrolloptions18对象说明))
 | ----- | ---- | ---- | --------- |
 | options | [ScrollOptions](#scrolloptions18对象说明) | 是    | 滑动到指定位置的参数。 
 
+>  **说明：**
+>
+> ScrollTo动画速度大于200vp/s时，滚动组件区域内的组件不响应点击事件。
+>
+
 ### scrollEdge
 
 scrollEdge(value: Edge, options?: ScrollEdgeOptions)
