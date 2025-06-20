@@ -982,7 +982,7 @@ notifyScreenshotEvent(eventType: ScreenshotEventType): Promise&lt;void&gt;
 
 | 参数名   | 类型   | 必填  | 说明         |
 | -------- | ------ | ----- | ------------ |
-| eventType | [ScreenshotEventType](js-apis-window.md#screenshoteventtype20) | 是    | 截屏事件类型。 |
+| eventType | [ScreenshotEventType](arkts-apis-window-e.md#screenshoteventtype20) | 是    | 截屏事件类型。 |
 
 **返回值：**
 

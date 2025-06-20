@@ -3163,7 +3163,7 @@ on(type: 'screenshotAppEvent', callback: Callback&lt;ScreenshotEventType&gt;): v
 | 参数名   | 类型                | 必填 | 说明                                                         |
 | -------- | ------------------- | ---- | ------------------------------------------------------------ |
 | type     | string              | 是   | 监听事件，固定为'screenshotAppEvent'，即截屏事件。 |
-| callback | Callback&lt;[ScreenshotEventType](#screenshoteventtype20)&gt; | 是   | 回调函数。返回当前的截图事件类型。                 |
+| callback | Callback&lt;[ScreenshotEventType](arkts-apis-window-e.md#screenshoteventtype20&gt; | 是   | 回调函数。返回当前的截图事件类型。                 |
 
 **错误码：**
 
@@ -3199,7 +3199,7 @@ off(type: 'screenshotAppEvent', callback?: Callback&lt;ScreenshotEventType&gt;):
 | 参数名   | 类型                | 必填 | 说明                                                         |
 | -------- | ------------------- | ---- | ------------------------------------------------------------ |
 | type     | string              | 是   | 监听事件，固定为'screenshotAppEvent'，即截屏事件。 |
-| callback | Callback&lt;[ScreenshotEventType](#screenshoteventtype20)&gt; | 否   | 回调函数。返回当前的截图事件类型。若传入参数，则关闭该监听。若未传入参数，则关闭所有窗口截图事件的监听。                 |
+| callback | Callback&lt;[ScreenshotEventType](arkts-apis-window-e.md#screenshoteventtype20&gt; | 否   | 回调函数。返回当前的截图事件类型。若传入参数，则关闭该监听。若未传入参数，则关闭所有窗口截图事件的监听。                 |
 
 **错误码：**
 
