@@ -678,9 +678,6 @@ lineHeight(value: number | string | Resource)
 >  **说明：**
 >  
 >  特殊字符字体高度远超出同行的其他字符高度时，文本框出现截断、遮挡、内容相对位置发生变化等不符合预期的显示异常，需要开发者调整组件高度、行高等属性，修改对应的页面布局。
->
->  参考[主模块metadata标签新增ohos.graphics2d.text.adapter_text_height支持全局使能新的行高计算规则](../../../../release-notes/changelogs/OpenHarmony_5.0.0.46/changelogs-arkgraphics2d.md#clarkgraphics2d1-主模块metadata标签新增ohosgraphics2dtextadapter_text_height支持全局使能新的行高计算规则)。
-
 ### decoration<sup>12+</sup>
 
 decoration(value: TextDecorationOptions)
@@ -949,7 +946,7 @@ enablePreviewText(enable: boolean)
 
 >  **说明：**
 >  
->  “预上屏”描述的是一种文字暂存状态。需要在输入法中开启预上屏功能，在输入文本过程中、未确认输入候选词时，文本框中显示标记文本。如通过拼音输入中文过程中、未确定候选词时，在输入框中显示拼音字母，这一状态称为文字预上屏。
+>  “预上屏”描述的是一种文字暂存状态。需要在输入法中开启预上屏功能，在输入文本过程中，未确认输入候选词时，文本框中显示标记文本。例如，通过拼音输入中文时，未确定候选词之前，在输入框中显示拼音字母，该状态称为文字预上屏。
 
 ### enableHapticFeedback<sup>13+</sup>
 
@@ -1501,7 +1498,7 @@ onDidDelete(callback: Callback\<DeleteValue>)
 
 >  **说明：**
 >
->  点击cancelButton不触发onDidDelete回调。
+>  点击清除按钮不触发onDidDelete回调。
 
 ### onWillChange<sup>15+</sup>
 

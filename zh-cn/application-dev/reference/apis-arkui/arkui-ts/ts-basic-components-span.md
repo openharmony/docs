@@ -10,7 +10,7 @@
 >
 >  不支持[通用属性](ts-component-general-attributes.md)。需要设置通用属性时，使用[Text](ts-basic-components-text.md)设置通用属性实现，或者改用[属性字符串](ts-universal-styled-string.md)的[CustomSpan](ts-universal-styled-string.md#customspan)自行绘制。
 >
->  [通用事件](ts-component-general-events.md)只支持点击事件[onClick](ts-universal-events-click.md#onclick)、悬浮事件[onHover](ts-universal-events-hover.md#onhover)。
+>  [通用事件](ts-component-general-events.md)只支持点击事件[onClick](ts-universal-events-click.md#onclick)和悬浮事件[onHover](ts-universal-events-hover.md#onhover)。
 
 
 ## 子组件

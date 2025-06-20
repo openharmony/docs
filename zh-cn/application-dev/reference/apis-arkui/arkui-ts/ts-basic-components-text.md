@@ -141,8 +141,6 @@ lineHeight(value: number | string | Resource)
 >  **说明：**
 >  
 >  特殊字符字体高度远超出同行的其他字符高度时，文本框出现截断、遮挡、内容相对位置发生变化等不符合预期的显示异常，需要开发者调整组件高度、行高等属性，修改对应的页面布局。
->
->  参考[主模块metadata标签新增ohos.graphics2d.text.adapter_text_height支持全局使能新的行高计算规则](../../../../release-notes/changelogs/OpenHarmony_5.0.0.46/changelogs-arkgraphics2d.md#clarkgraphics2d1-主模块metadata标签新增ohosgraphics2dtextadapter_text_height支持全局使能新的行高计算规则)。
 
 ### decoration
 
@@ -164,7 +162,7 @@ decoration(value: DecorationStyleInterface)
 
 >  **说明：**
 >
->  当文字的下边缘轮廓与装饰线位置相交，会触发下划线避让规则，下划线会在这些字符处避让文字。常见“gjyqp”英文字符。
+>  当文字的下边缘轮廓与装饰线位置相交时，会触发下划线避让规则，下划线将在这些字符处避让文字。常见“gjyqp”等英文字符。
 
 ### baselineOffset
 
