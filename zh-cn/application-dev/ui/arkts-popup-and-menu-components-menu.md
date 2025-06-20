@@ -149,3 +149,50 @@ Button('click for Menu')
     .bindContextMenu(this.MyMenu, ResponseType.RightClick, { hapticFeedbackMode: HapticFeedbackMode.ENABLED })
 ```
 
+## 基于绑定组件弹出菜单
+
+菜单从API version 20开始支持基于绑定组件在指定位置弹出菜单。通过设定水平与垂直偏移量，控制菜单相对于绑定组件左上角的弹出位置，与单独使用offset接口不同的是可以覆盖显示在绑定组件上。需要指定弹出位置时，可以通过[ContextMenuOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#contextmenuoptions10)的anchorPosition属性进行设置。
+
+说明：
+- 当菜单处于预览状态时，设定的定位偏移量将无法生效。
+- 预设的placement对齐参数将不再生效。
+- 叠加offset参数的偏移量，最终确定菜单的精确显示位置。
+- 当水平与垂直偏移量均设为负值时，菜单以绑定组件左下角为基准点进行显示。
+- 当水平或垂直偏移量存在负值时，组件将以绑定组件的左上角为定位基准点，通过叠加偏移量参数实现反向偏移。
+
+示例
+```ts
+@Entry
+@Component
+struct DirectiveMenuExample {
+  @Builder
+  MenuBuilder() {
+    Column() {
+      Text('Options')
+      Divider().strokeWidth(2).margin(5).color('#F0F0F0')
+      Text('Hide')
+      Divider().strokeWidth(2).margin(5).color('#F0F0F0')
+      Text('Exit')
+    }
+    .width(100)
+  }
+
+  build() {
+    Column() {
+      Text("bindContextMenu")
+        .id("bindContextMenuAnchorPosition")
+        .width(200)
+        .height(100)
+        .backgroundColor('#F0F0F0')
+        .margin({ top: 50, left: 150 })
+        .bindContextMenu(this.MenuBuilder, ResponseType.RightClick, {
+          anchorPosition: { x: 10, y: 20 },
+        })
+    }
+    .alignItems(HorizontalAlign.Start)
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
