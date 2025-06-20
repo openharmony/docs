@@ -701,7 +701,7 @@ activateCooperateWithOptions(targetNetworkId: string, inputDeviceId: number,
 | --------- | ------ | ---- | ------------------------ |
 | targetNetworkId | string | 是   | 键鼠穿越目标设备描述符。 |
 | inputDeviceId   | number | 是   |  发起穿越操作的输入设备ID。   |
-|cooperateOptions | [CooperateOptions](#cooperateoptions20) | 否   | 不设置此参数时，本接口能力与[cooperate.activateCooperate](#cooperateactivatecooperate11)相同。 |
+|cooperateOptions | [CooperateOptions](#cooperateoptions20) | 否   | 不设置此参数时，本接口能力与[cooperate.activateCooperate](#cooperateactivatecooperate11-1)相同。 |
 
 **返回值：**
 
