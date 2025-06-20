@@ -7,6 +7,7 @@
 >  - 该组件嵌套List子组件滚动时，若List不设置宽高，则默认全部加载，在对性能有要求的场景下建议指定List的宽高。
 >  - 该组件滚动的前提是主轴方向大小小于内容大小。
 >  - Scroll组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。
+>  - Scroll组件的高度超出屏幕显示范围时，可以通过设置通用属性[layoutWeight](ts-universal-attributes-size.md#layoutweight)让Scroll高度适应主轴的剩余空间。
 
 
 ## 子组件
