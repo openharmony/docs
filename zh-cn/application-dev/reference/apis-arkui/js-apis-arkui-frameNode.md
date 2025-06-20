@@ -4804,7 +4804,7 @@ static detachNodeAdapter(node: FrameNode): void
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
 | node | FrameNode | 是   | 要解除绑定的FrameNode节点。 |
 
-## isDisposed<sup>20+</sup>
+### isDisposed<sup>20+</sup>
 
 isDisposed(): boolean
 
