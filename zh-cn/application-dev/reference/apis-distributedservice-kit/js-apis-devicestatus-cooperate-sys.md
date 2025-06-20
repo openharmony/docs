@@ -75,7 +75,7 @@ prepareCooperate(): Promise&lt;void&gt;;
 
 **错误码：**
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[键鼠穿越管理错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -116,7 +116,7 @@ unprepareCooperate(callback: AsyncCallback&lt;void&gt;): void;
 
 **错误码：**
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[键鼠穿越管理错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -303,7 +303,7 @@ deactivateCooperate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): 
 
 **错误码：**
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[键鼠穿越管理错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -395,7 +395,7 @@ getCooperateSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt
 
 **错误码：**
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[键鼠穿越管理错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -701,7 +701,7 @@ activateCooperateWithOptions(targetNetworkId: string, inputDeviceId: number,
 | --------- | ------ | ---- | ------------------------ |
 | targetNetworkId | string | 是   | 键鼠穿越目标设备描述符。 |
 | inputDeviceId   | number | 是   |  发起穿越操作的输入设备ID。   |
-|cooperateOptions | [CooperateOptions](#cooperateoptions20) | 否   | 不设置此参数时，本接口能力与ActiovateCooperate相同。 |
+|cooperateOptions | [CooperateOptions](#cooperateoptions20) | 否   | 不设置此参数时，本接口能力与[cooperate.activateCooperate](#cooperateactivatecooperate11)相同。 |
 
 **返回值：**
 
