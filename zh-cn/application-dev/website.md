@@ -213,7 +213,7 @@
         - [标准化数据类型 (C/C++)](database/uniform-data-type-descriptors-c.md)
         - [标准化数据结构 (ArkTS)](database/uniform-data-structure.md)
         - [标准化数据结构 (C/C++)](database/uniform-data-structure-c.md)
-        - [基于标准化数据结构的控件（ArkTS）](database/components-based-on-uniform-data-structure.md)
+        - [基于标准化数据结构的控件 (ArkTS)](database/components-based-on-uniform-data-structure.md)
         - [Uniform Type Descriptor(UTD)预置类型列表](database/uniform-data-type-list.md)
       - 应用数据持久化<!--app-data-persistence-->
         - [应用数据持久化概述](database/app-data-persistence-overview.md)
