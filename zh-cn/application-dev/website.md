@@ -213,15 +213,15 @@
         - [标准化数据类型 (C/C++)](database/uniform-data-type-descriptors-c.md)
         - [标准化数据结构 (ArkTS)](database/uniform-data-structure.md)
         - [标准化数据结构 (C/C++)](database/uniform-data-structure-c.md)
-        - [基于标准化数据结构的控件（ArkTS）](database/components-based-on-uniform-data-structure.md)
+        - [基于标准化数据结构的控件 (ArkTS)](database/components-based-on-uniform-data-structure.md)
         - [Uniform Type Descriptor(UTD)预置类型列表](database/uniform-data-type-list.md)
       - 应用数据持久化<!--app-data-persistence-->
         - [应用数据持久化概述](database/app-data-persistence-overview.md)
         - [通过用户首选项实现数据持久化 (ArkTS)](database/data-persistence-by-preferences.md)
         - [通过用户首选项实现数据持久化 (C/C++)](database/preferences-guidelines.md)
         - [通过键值型数据库实现数据持久化 (ArkTS)](database/data-persistence-by-kv-store.md)
-        - [通过关系型数据库实现数据持久化（ArkTS）](database/data-persistence-by-rdb-store.md)
-        - [通过关系型数据库实现数据持久化（C/C++）](database/native-relational-store-guidelines.md)
+        - [通过关系型数据库实现数据持久化 (ArkTS)](database/data-persistence-by-rdb-store.md)
+        - [通过关系型数据库实现数据持久化 (C/C++)](database/native-relational-store-guidelines.md)
         - [通过向量数据库实现数据持久化 (ArkTS)](database/data-persistence-by-vector-store.md)
         - [通过向量数据库实现数据持久化 (C/C++)](database/native-vector-store-guidelines.md)
       - 同应用跨设备数据同步（分布式）<!--distributed-data-sync-->
@@ -231,12 +231,12 @@
         - [分布式数据对象跨设备数据同步 (ArkTS)](database/data-sync-of-distributed-data-object.md)
       - 数据可靠性与安全性<!--data-reliability-security-->
         - [数据可靠性与安全性概述](database/data-reliability-security-overview.md)
-        - [数据库备份与恢复（ArkTS）](database/data-backup-and-restore.md)
-        - [数据库备份与恢复（C/C++）](database/native-backup-and-restore.md)
-        - [数据库加密（ArkTS）](database/data-encryption.md)
-        - [数据库加密（C/C++）](database/native-data-encryption.md)
-        - [基于设备分类和数据分级的访问控制（ArkTS）](database/access-control-by-device-and-data-level.md)
-        - [基于设备分类和数据分级的访问控制（C/C++）](database/native-access-control-by-device-and-data-level.md)
+        - [数据库备份与恢复 (ArkTS)](database/data-backup-and-restore.md)
+        - [数据库备份与恢复 (C/C++)](database/native-backup-and-restore.md)
+        - [数据库加密 (ArkTS)](database/data-encryption.md)
+        - [数据库加密 (C/C++)](database/native-data-encryption.md)
+        - [基于设备分类和数据分级的访问控制 (ArkTS)](database/access-control-by-device-and-data-level.md)
+        - [基于设备分类和数据分级的访问控制 (C/C++)](database/native-access-control-by-device-and-data-level.md)
         - [E类加密数据库的使用 (ArkTS)](database/encrypted_estore_guidelines.md)
       - 跨应用数据共享<!--cross-app-data-share-->
         - [跨应用数据共享概述](database/data-share-overview.md)
@@ -3220,7 +3220,7 @@
           - [NativeDisplayManager_DisplayHdrFormat](reference/apis-arkui/capi-nativedisplaymanager-displayhdrformat.md)
           - [NativeDisplayManager_DisplayColorSpace](reference/apis-arkui/capi-nativedisplaymanager-displaycolorspace.md)
           - [NativeDisplayManager_DisplayInfo](reference/apis-arkui/capi-nativedisplaymanager-displayinfo.md)
-         - [NativeDisplayManager_DisplaysInfo](reference/apis-arkui/capi-nativedisplaymanager-displaysinfo.md)
+          - [NativeDisplayManager_DisplaysInfo](reference/apis-arkui/capi-nativedisplaymanager-displaysinfo.md)
       - 错误码<!--arkui-arkts-errcode-->
         - UI界面<!--arkui-ui-arkts-errcode-->
           - [动画错误码](reference/apis-arkui/errorcode-animator.md)
