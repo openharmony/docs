@@ -159,11 +159,11 @@
 * origin目录：混淆前的modules.abc文件
 * 配置信息文件：`config.json`，该文件记录了混淆的配置项和白名单列表
 
-![bytecode-build-product](figures/build-product.png)
+![bytecode-build-product](figures/bytecode-build-product.png)
 
 ## 报错栈还原
 
 经过混淆的应用程序中代码名称会发生更改，crash时打印的报错栈更难以理解，因为报错栈与源码不完全一致。开发人员可使用DevEco Studio命令工具Command Line Tools中的[hstack插件](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-command-line-hstack)来还原源码堆栈，进而分析问题。
 反混淆工具需要使用应用编译过程中生成的sourceMaps.json文件以及混淆名称映射文件nameCache.json文件，因此请本地备份它们；为了更方便定位分析，有条件的可以直接备份release目录
 
-![bytecode-obfuscation-product](figures/build-product.png)
+![bytecode-obfuscation-product](figures/bytecode-obfuscation-product.png)
