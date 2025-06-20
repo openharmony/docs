@@ -764,7 +764,7 @@ networkManager.getGlobalProxy(wantTemp).then(() => {
 
 addIptablesFilterRule(admin: Want, filterRule: AddFilterRule, callback: AsyncCallback\<void>): void
 
-为设备添加网络包过滤规则。使用callback异步回调。
+为设备添加网络包过滤规则，仅支持IPv4。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -826,7 +826,7 @@ networkManager.addIptablesFilterRule(wantTemp, filterRule, (err) => {
 
 addIptablesFilterRule(admin: Want, filterRule: AddFilterRule): Promise\<void>
 
-为设备添加网络包过滤规则。使用Promise异步回调。
+为设备添加网络包过滤规则，仅支持IPv4。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -892,7 +892,7 @@ networkManager.addIptablesFilterRule(wantTemp, filterRule).then(() => {
 
 removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule, callback: AsyncCallback\<void>): void
 
-移除网络包过滤规则。使用callback异步回调。
+移除网络包过滤规则，仅支持IPv4。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -952,7 +952,7 @@ networkManager.removeIptablesFilterRule(wantTemp, filterRule, (err) => {
 
 removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule): Promise\<void>
 
-移除网络包过滤规则。使用Promise异步回调。
+移除网络包过滤规则，仅支持IPv4。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -1016,7 +1016,7 @@ networkManager.removeIptablesFilterRule(wantTemp, filterRule).then(() => {
 
 listIptablesFilterRules(admin: Want, callback: AsyncCallback\<string>): void
 
-获取网络包过滤规则。使用callback异步回调。
+获取网络包过滤规则，仅支持IPv4。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -1065,7 +1065,7 @@ networkManager.listIptablesFilterRules(wantTemp, (err, result) => {
 
 listIptablesFilterRules(admin: Want): Promise\<string>
 
-获取网络包过滤规则。使用Promise异步回调。
+获取网络包过滤规则，仅支持IPv4。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 

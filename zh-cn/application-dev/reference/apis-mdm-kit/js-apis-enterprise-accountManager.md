@@ -143,7 +143,7 @@ addOsAccountAsync(admin: Want, name: string, type: osAccount.OsAccountType): Pro
 
 | 类型                                                         | 说明                 |
 | ------------------------------------------------------------ | -------------------- |
-| [osAccount.OsAccountInfo](../apis-basic-services-kit/js-apis-osAccount.md#osaccounttype) | 返回添加的账号信息。 |
+| Promise&lt;[osAccount.OsAccountInfo](../apis-basic-services-kit/js-apis-osAccount.md#osaccountinfo)&gt; | Promise对象，返回添加的账号信息。 |
 
 **错误码**：
 
