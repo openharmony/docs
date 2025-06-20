@@ -352,6 +352,12 @@
           - [ArkGuard混淆开启指南](arkts-utils/source-obfuscation-guide.md)
           - [不同包类型的源码混淆建议](arkts-utils/source-obfuscation-practice.md)
           - [ArkGuard混淆常见问题](arkts-utils/source-obfuscation-questions.md)
+        - ArkGuard字节码混淆混淆工具<!--arkts-arkguard-bytecode-->
+          - [ArkGuard字节码混淆工具概述](arkts-utils/bytecode-obfuscation-overview.md)
+          - [ArkGuard字节码混淆原理及功能](arkts-utils/bytecode-obfuscation.md)
+          - [ArkGuard字节码混淆开启指南](arkts-utils/bytecode-obfuscation-guide.md)
+          - [不同包类型的字节码混淆建议](arkts-utils/bytecode-obfuscation-practice.md)
+          - [ArkGuard字节码混淆常见问题](arkts-utils/bytecode-obfuscation-questions.md)
         - [在build-profile.json5中配置arkOptions](arkts-utils/arkoptions-guide.md)
     - ArkUI（方舟UI框架）<!--arkui-->
       - [ArkUI简介](ui/arkui-overview.md)
@@ -2770,6 +2776,7 @@
           - [属性字符串](reference/apis-arkui/arkui-ts/ts-universal-styled-string.md)
           - [文本组件公共接口](reference/apis-arkui/arkui-ts/ts-text-common.md)
           <!--Del-->
+          - [文本组件公共接口 (系统接口)](reference/apis-arkui/arkui-ts/ts-text-common-sys.md)
           - [TextInput (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-textinput-sys.md)
           - [属性字符串 (系统接口)](reference/apis-arkui/arkui-ts/ts-universal-styled-string-sys.md)
           - [RichEditor(系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-richeditor-sys.md)
