@@ -251,3 +251,17 @@ WindowStage生命周期。
 | -------------------- | ------ | ---------- |
 | WINDOW_MODALITY      | 0      | 模态子窗类型为模窗口子窗，当仅需要其父级窗口不响应用户操作时，可选此参数。 |
 | APPLICATION_MODALITY | 1      | 模态子窗类型为模应用子窗，除其父级窗口外还需要该应用其他实例的窗口不响应用户操作时，可选此参数。<br> 此接口仅支持在2in1设备下使用。 |
+
+## ScreenshotEventType<sup>20+</sup>
+
+截图事件类型枚举。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 值 | 说明                   |
+| ------ | ---- | --------------------- |
+| SYSTEM_SCREENSHOT | 0 | 系统截图。 |
+| SYSTEM_SCREENSHOT_ABORT | 1 | 系统截图中止。 |
+| SCROLL_SHOT_START | 2 | 滚动截图开始。 |
+| SCROLL_SHOT_END | 3 | 滚动截图结束。 |
+| SCROLL_SHOT_ABORT | 4 | 滚动截图开始中止。 |

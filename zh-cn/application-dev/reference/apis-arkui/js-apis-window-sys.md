@@ -968,6 +968,57 @@ try {
 }
 ```
 
+## window.notifyScreenshotEvent<sup>20+</sup>
+
+notifyScreenshotEvent(eventType: ScreenshotEventType): Promise&lt;void&gt;
+
+通知截屏事件，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型   | 必填  | 说明         |
+| -------- | ------ | ----- | ------------ |
+| eventType | [ScreenshotEventType](js-apis-window.md#screenshoteventtype20) | 是    | 截屏事件类型。 |
+
+**返回值：**
+
+| 类型                    | 说明                            |
+| ----------------------- | ------------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 1300003  | This window manager service works abnormally. |
+| 1300016 | Parameter error. Possible cause: 1. Invalid parameter range. 2. Invalid parameter length. 3. Incorrect parameter format. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
+
+try {
+  let eventType: ScreenshotEventType = window.ScreenshotEventType.SYSTEM_SCREENSHOT;
+  let promise = window.notifyScreenshotEvent(eventType);
+  promise.then(() => {
+    console.info(`Succeeded in notify screenshot event type.`);
+  }).catch((err: BusinessError) =>{
+    console.error(`Failed to notify screenshot event type. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to notify screenshot event type. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ## window.getTopNavDestinationName<sup>20+</sup>
 
 getTopNavDestinationName(windowId: number): Promise&lt;string&gt;
