@@ -9,7 +9,7 @@
 在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加libimage_source.so、libpixelmap.so以及日志依赖libhilog_ndk.z.so。
 
 ```txt
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libpixelmap.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libimage_source.so libpixelmap.so)
 ```
 
 ### Native接口调用
@@ -57,20 +57,10 @@ static napi_value sourceTest(napi_env env, napi_callback_info info)
     char name[1024];
     size_t nameSize = 1024;
     napi_get_value_string_utf8(env, argValue[NUM_0], name, 1024, &nameSize);
-    // 获取解码能力范围。
-    Image_MimeType* mimeType = nullptr;
-    size_t length = 0;
-    Image_ErrorCode errCode = OH_ImageSourceNative_GetSupportedFormats(&mimeType, &length);
-    if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest OH_ImageSourceNative_GetSupportedFormats failed, errCode: %{public}d.", errCode);
-        return getJsResult(env, errCode);
-    }
-    for (size_t count = 0; count < length; count++) {
-        OH_LOG_INFO(LOG_APP, "Decode supportedFormats:%{public}s", mimeType[count].data);
-    }
+
     // 创建ImageSource实例。
     OH_ImageSourceNative *source = nullptr;
-    errCode = OH_ImageSourceNative_CreateFromUri(name, nameSize, &source);
+    Image_ErrorCode errCode = OH_ImageSourceNative_CreateFromUri(name, nameSize, &source);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest OH_ImageSourceNative_CreateFromUri failed, errCode: %{public}d.", errCode);
         return getJsResult(env, errCode);
