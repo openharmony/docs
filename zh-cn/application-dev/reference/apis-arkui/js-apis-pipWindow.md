@@ -660,6 +660,7 @@ setAutoStartEnabled(enable: boolean): void
 
 ```ts
 let enable: boolean = true;
+//应用在首次调用setAutoStartEnabled(true)时,会缓存栈顶的handleId,且后续无法更改
 this.pipController.setAutoStartEnabled(enable);
 ```
 
