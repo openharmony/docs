@@ -301,6 +301,7 @@
 | int32_t [OH_ArkUI_DragEvent_SetSuggestedDropOperation](#oh_arkui_dragevent_setsuggesteddropoperation) ([ArkUI_DragEvent](#arkui_dragevent) \*event, [ArkUI_DropOperation](#arkui_dropoperation) dropOperation) | 设置数据处理方式  |
 | int32_t [OH_ArkUI_DragEvent_SetDragResult](#oh_arkui_dragevent_setdragresult) ([ArkUI_DragEvent](#arkui_dragevent) \*event, [ArkUI_DragResult](#arkui_dragresult) result) | 设置拖拽事件的结果。  |
 | int32_t [OH_ArkUI_DragEvent_SetData](#oh_arkui_dragevent_setdata) ([ArkUI_DragEvent](#arkui_dragevent) \*event, [OH_UdmfData](#oh_udmfdata) \*data) | 向ArkUI_DragEvent中设置拖拽数据。  |
+| [ArkUI_ErrorCode](_ark_u_i___native_module.md#arkui_errorcode) [OH_ArkUI_DragEvent_SetDataLoadParams](#OH_ArkUI_DragEvent_SetDataLoadParams) ([ArkUI_DragEvent](#arkui_dragevent) \*dragEvent, OH_UdmfDataLoadParams \*dataLoadParams) | 使用此方法为系统提供一个数据加载参数，而不是直接提供一个完整的数据对象。当用户拖拽到目标应用程序并落入时，系统将使用dataLoadParams请求数据。可以极大地提高拖拽大量数据的效率，以及目标应用程序中处理落入数据的效率。此方法应始终优先于 [OH_ArkUI_DragEvent_SetData](#oh_arkui_dragevent_setdata)使用。请参阅<b>udmf.h</b>中的OH_UdmfDataLoadParams_Create了解如何创建和准备数据加载参数。该方法与 [OH_ArkUI_DragEvent_SetData](#oh_arkui_dragevent_setdata)存在冲突，系统始终以最后调用的方法为准。 <br/>**起始版本：** 20 |
 | int32_t [OH_ArkUI_DragEvent_GetUdmfData](#oh_arkui_dragevent_getudmfdata) ([ArkUI_DragEvent](#arkui_dragevent) \*event, [OH_UdmfData](#oh_udmfdata) \*data) | 从ArkUI_DragEvent中获取拖拽默认相关数据。  |
 | int32_t [OH_ArkUI_DragEvent_GetDataTypeCount](#oh_arkui_dragevent_getdatatypecount) ([ArkUI_DragEvent](#arkui_dragevent) \*event, int32_t \*count) | 从ArkUI_DragEvent中获取所拖拽的数据类型种类个数。  |
 | int32_t [OH_ArkUI_DragEvent_GetDataTypes](#oh_arkui_dragevent_getdatatypes) ([ArkUI_DragEvent](#arkui_dragevent) \*event, char \*\*result[], int32_t length) | 从ArkUI_DragEvent中获取拖拽数据的类型列表。  |
@@ -345,6 +346,7 @@
 | int32_t [OH_ArkUI_DragAction_SetTouchPointX](#oh_arkui_dragaction_settouchpointx) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, float x) | 设置跟手点，相对于设置的第一个pixelmap的左上角。  |
 | int32_t [OH_ArkUI_DragAction_SetTouchPointY](#oh_arkui_dragaction_settouchpointy) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, float y) | 设置跟手点，相对于设置的第一个pixelmap的左上角。  |
 | int32_t [OH_ArkUI_DragAction_SetData](#oh_arkui_dragaction_setdata) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, [OH_UdmfData](#oh_udmfdata) \*data) | 设置拖拽数据。  |
+| [ArkUI_ErrorCode](_ark_u_i___native_module.md#arkui_errorcode) [OH_ArkUI_DragAction_SetDataLoadParams](#OH_ArkUI_DragAction_SetDataLoadParams) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, OH_UdmfDataLoadParams \*dataLoadParams) | 使用此方法为系统提供一个数据加载参数，而不是直接提供一个完整的数据对象。当用户拖拽到目标应用程序并落入时，系统将使用dataLoadParams请求数据。可以极大地提高拖拽大量数据的效率，以及目标应用程序中处理落入数据的效率。此方法应始终优先于[OH_ArkUI_DragAction_SetData](#oh_arkui_dragaction_setdata)使用。请参阅<b>udmf.h</b>中的OH_UdmfDataLoadParams_Create了解如何创建和准备数据加载参数。该方法与[OH_ArkUI_DragAction_SetData](#oh_arkui_dragaction_setdata)存在冲突，系统始终以最后调用的方法为准。 <br/>**起始版本：** 20 |
 | int32_t [OH_ArkUI_DragAction_SetDragPreviewOption](#oh_arkui_dragaction_setdragpreviewoption) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, [ArkUI_DragPreviewOption](#arkui_dragpreviewoption) \*option) | 将构造的ArkUI_DragPreviewOption设置给ArkUI_DragAction。  |
 | int32_t [OH_ArkUI_DragAction_RegisterStatusListener](#oh_arkui_dragaction_registerstatuslistener) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, void \*userData, void(\*listener)([ArkUI_DragAndDropInfo](#arkui_draganddropinfo) \*dragAndDropInfo, void \*userData)) | 注册拖拽状态监听回调，该回调可感知到拖拽已经发起或用户松手结束的状态，可通过该监听获取到落入方对数据的接收处理是否成功。  |
 | void [OH_ArkUI_DragAction_UnregisterStatusListener](#oh_arkui_dragaction_unregisterstatuslistener) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction) | 解注册拖拽状态监听回调。  |
@@ -9614,6 +9616,29 @@ int32_t OH_ArkUI_DragAction_SetData (ArkUI_DragAction * dragAction, OH_UdmfData 
 
 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
+### OH_ArkUI_DragAction_SetDataLoadParams()
+
+```
+ArkUI_ErrorCode OH_ArkUI_DragAction_SetDataLoadParams(ArkUI_DragAction* dragAction,
+    OH_UdmfDataLoadParams* dataLoadParams)
+```
+**描述：**
+
+使用此方法为系统提供一个数据加载参数，而不是直接提供一个完整的数据对象。当用户拖拽到目标应用程序并落入时，系统将使用dataLoadParams请求数据。可以极大地提高拖拽大量数据的效率，以及目标应用程序中处理落入数据的效率。此方法应始终优先于[OH_ArkUI_DragAction_SetData](#oh_arkui_dragaction_setdata)使用。请参阅<b>udmf.h</b>中的OH_UdmfDataLoadParams_Create了解如何创建和准备数据加载参数。该方法与[OH_ArkUI_DragAction_SetData](#oh_arkui_dragaction_setdata)存在冲突，系统始终以最后调用的方法为准。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| dragAction | 拖拽行为对象。  |
+| dataLoadParams |在落入操作时使用的数据加载参数。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](#arkui_errorcode) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](#arkui_errorcode) 函数参数异常。
+
 
 ### OH_ArkUI_DragAction_SetDragPreviewOption()
 
@@ -9972,6 +9997,28 @@ ArkUI_ErrorCode OH_ArkUI_DragEvent_IsRemote (ArkUI_DragEvent * event, bool* isRe
 | -------- | -------- |
 | event | ArkUI_DragEvent事件指针。  |
 | isRemote | 布尔变量指针，用来接收是否是跨设备拖拽。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。
+
+### OH_ArkUI_DragEvent_SetDataLoadParams()
+
+```
+ArkUI_ErrorCode OH_ArkUI_DragEvent_SetDataLoadParams(ArkUI_DragEvent* event, OH_UdmfDataLoadParams* dataLoadParams)
+```
+**描述：**
+
+使用此方法为系统提供一个数据加载参数，而不是直接提供一个完整的数据对象。当用户拖拽到目标应用程序并落入时，系统将使用dataLoadParams请求数据。可以极大地提高拖拽大量数据的效率，以及目标应用程序中处理落入数据的效率。此方法应始终优先于 [OH_ArkUI_DragEvent_SetData](#oh_arkui_dragevent_setdata)使用。请参阅<b>udmf.h</b>中的OH_UdmfDataLoadParams_Create了解如何创建和准备数据加载参数。该方法与 [OH_ArkUI_DragEvent_SetData](#oh_arkui_dragevent_setdata)存在冲突，系统始终以最后调用的方法为准。
+
+**起始版本：** 20
+
+**参数**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| event | ArkUI_DragEvent事件指针。  |
+| dataLoadParams | 落入操作时使用的数据加载参数。 |
 
 **返回：**
 
