@@ -2491,6 +2491,57 @@ try {
 }
 ```
 
+### setKeepScreenOn<sup>20+</sup>
+
+setKeepScreenOn(isKeepScreenOn: boolean): Promise\<void>
+
+设置屏幕常亮。使用Promise异步回调。
+
+> **说明:**
+>
+> - 当键盘拉起时设置常亮生效，键盘关闭则自动失效。
+> - 规范使用该接口：必要场景（例如：语音输入）下，设置该属性为true；退出必要场景后，重置该属性为false；其他场景下，不使用该接口。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| isKeepScreenOn | boolean | 是   | 是否设置屏幕常亮。true表示打开屏幕常亮，false表示关闭屏幕常亮。 |
+
+**返回值：**
+
+| 类型   | 说明                             |
+| ------- | ------------------------------ |
+| Promise\<void> | 无返回结果的Promise对象。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 12800013 | window manager service error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let isKeepScreenOn = true;
+  this.panel.setKeepScreenOn(isKeepScreenOn).then(() => {
+    console.info(`setKeepScreenOn success.`);
+  }).catch((error: BusinessError) => {
+    console.error(`setKeepScreenOn failed, code: ${error.code}, message: ${error.message}`);
+  })
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`setKeepScreenOn failed, code: ${error.code}, message: ${error.message}`);
+}
+```
+
 ## KeyboardController
 
 下列API均需使用[on('inputStart')](#oninputstart9)获取到KeyboardController实例后，通过实例调用。
