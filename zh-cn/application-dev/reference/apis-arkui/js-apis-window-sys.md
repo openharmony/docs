@@ -179,13 +179,13 @@ import { window } from '@kit.ArkUI';
 | z    | number   | 否   | 是  | Z轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
 
 
-## StartAnimationSystemOption<sup>20+</sup>
+## StartAnimationSystemOptions<sup>20+</sup>
 
 启动动画配置。
 
 仅对同应用的不同ability间跳转生效。
 
-仅对手机以及pad的非自由多窗模式生效。
+仅在手机设备或平板设备的非自由多窗模式下生效。
 
 仅对全屏应用生效。
 
@@ -193,10 +193,10 @@ import { window } from '@kit.ArkUI';
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称     | 类型                                                      | 必填 | 说明                                                         |
-| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type    | [AnimationType](arkts-apis-window-e.md#animationtype20)           | 是   | 窗口动画类型。淡入动画在应用启动时生效，淡出动画仅在被打断时生效，非打断场景依然走默认动效。|
-| animationConifg    | [WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20) | 否   | 窗口动画参数配置。默认动画曲线类型为LINEAR，duration为0。          |
+| 名称             | 类型                                                                     | 只读 | 可选 | 说明                                                         |
+| ---------------- | ----------------------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| type             | [AnimationType](arkts-apis-window-e.md#animationtype20)                 | 否   | 否   | 窗口动画类型。淡入动画在应用启动时生效，淡出动画仅在应用启动被打断时生效，非打断场景依然走默认动效。|
+| animationConifg  | [WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20) | 否   | 是   | 窗口动画参数配置。默认动画曲线为[WindowAnimationCurve](arkts-apis-window-e.md#windowanimationcurve20).LINEAR，duration为0。          |
 
 ## window.minimizeAll<sup>9+</sup>
 minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
