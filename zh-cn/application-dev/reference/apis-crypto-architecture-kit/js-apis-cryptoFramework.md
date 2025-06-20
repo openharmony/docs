@@ -35,9 +35,9 @@ buffer数组，提供blob数据类型。
 
  **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称 | 类型       | 可读 | 可写 | 说明   |
+| 名称 | 类型       | 只读 | 可选 | 说明   |
 | ---- | ---------- | ---- | ---- | ------ |
-| data | Uint8Array | 是   | 是   | 数据。 |
+| data | Uint8Array | 否   | 否   | 数据。 |
 
 > **说明：**
 >
@@ -55,9 +55,9 @@ buffer数组，提供blob数据类型。
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 是   | 指明对称加解密参数的算法模式。可选值如下：<br/> - "IvParamsSpec"：适用于CBC\|CTR\|OFB\|CFB模式<br/> - "GcmParamsSpec"：适用于GCM模式<br/> - "CcmParamsSpec"：适用于CCM模式 |
+| algName | string | 否   | 否   | 指明对称加解密参数的算法模式。可选值如下：<br/> - "IvParamsSpec"：适用于CBC\|CTR\|OFB\|CFB模式。<br/> - "GcmParamsSpec"：适用于GCM模式。<br/> - "CcmParamsSpec"：适用于CCM模式。 |
 
 > **说明：**
 >
@@ -75,9 +75,9 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
-| 名称 | 类型                  | 可读 | 可写 | 说明                                                         |
+| 名称 | 类型                  | 只读 | 可选 | 说明                                                         |
 | ---- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
-| iv   | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv。常见取值如下：<br/>- AES的CBC\|CTR\|OFB\|CFB模式：iv长度为16字节<br/>- 3DES的CBC\|OFB\|CFB模式：iv长度为8字节<br/>- SM4<sup>10+</sup>的CBC\|CTR\|OFB\|CFB模式：iv长度为16字节 |
+| iv   | [DataBlob](#datablob) | 否   | 否  | 指明加解密参数iv。常见取值如下：<br/>- AES的CBC\|CTR\|OFB\|CFB模式：iv长度为16字节。<br/>- 3DES的CBC\|OFB\|CFB模式：iv长度为8字节。<br/>- SM4<sup>10+</sup>的CBC\|CTR\|OFB\|CFB模式：iv长度为16字节。 |
 
 > **说明：**
 >
@@ -95,11 +95,11 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
-| 名称    | 类型                  | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型                  | 只读 | 可选 | 说明                                                         |
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
-| iv      | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv，长度为1~16字节，常用为12字节。                             |
-| aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为0~INT_MAX字节，常用为16字节。                             |
-| authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为16字节。<br/>采用GCM模式加密时，需从[doFinal()](#dofinal)或[doFinalSync()](#dofinalsync12)输出的[DataBlob](#datablob)中提取末尾16字节，作为[init()](#init-1)或[initSync()](#initsync12)方法中GcmParamsSpec的authTag。 |
+| iv      | [DataBlob](#datablob) | 否   | 否   | 指明加解密参数iv，长度为1~16字节，常用为12字节。                             |
+| aad     | [DataBlob](#datablob) | 否   | 否   | 指明加解密参数aad，长度为0~INT_MAX字节，常用为16字节。                             |
+| authTag | [DataBlob](#datablob) | 否   | 否   | 指明加解密参数authTag，长度为16字节。<br/>采用GCM模式加密时，需从[doFinal()](#dofinal)或[doFinalSync()](#dofinalsync12)输出的[DataBlob](#datablob)中提取末尾16字节，作为[init()](#init-1)或[initSync()](#initsync12)方法中GcmParamsSpec的authTag。 |
 
 > **说明：**
 >
@@ -119,11 +119,11 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
-| 名称    | 类型                  | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型                  | 只读 | 可选 | 说明                                                         |
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
-| iv      | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv，长度为7字节。                              |
-| aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为8字节。                             |
-| authTag | [DataBlob](#datablob) | 是   | 是   | 指定加解密参数authTag，长度为12字节。<br/>在CCM模式加密时，需从[doFinal()](#dofinal)或[doFinalSync()](#dofinalsync12)输出的[DataBlob](#datablob)末尾提取12字节，作为[init()](#init-1)或[initSync()](#initsync12)方法的参数[CcmParamsSpec](#ccmparamsspec)中的authTag。 |
+| iv      | [DataBlob](#datablob) | 否   | 否   | 指明加解密参数iv，长度为7字节。                              |
+| aad     | [DataBlob](#datablob) | 否   | 否   | 指明加解密参数aad，长度为8字节。                             |
+| authTag | [DataBlob](#datablob) | 否   | 否   | 指定加解密参数authTag，长度为12字节。<br/>在CCM模式加密时，需从[doFinal()](#dofinal)或[doFinalSync()](#dofinalsync12)输出的[DataBlob](#datablob)末尾提取12字节，作为[init()](#init-1)或[initSync()](#initsync12)方法的参数[CcmParamsSpec](#ccmparamsspec)中的authTag。 |
 
 > **说明：**
 >
@@ -255,10 +255,10 @@ API version 10-11 系统能力为SystemCapability.Security.CryptoFramework；从
 
 API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 是   | 指定非对称密钥的算法名称，比如"RSA"、"DSA"、"ECC"、"SM2"、"Ed25519"、"X25519"、"DH"。 |
-| specType | [AsyKeySpecType](#asykeyspectype10) | 是   | 是 | 指定密钥参数类型，用于区分公/私钥参数。 |
+| algName | string | 否   | 否   | 指定非对称密钥的算法名称，比如"RSA"、"DSA"、"ECC"、"SM2"、"Ed25519"、"X25519"、"DH"。 |
+| specType | [AsyKeySpecType](#asykeyspectype10) | 否   | 否 | 指定密钥参数类型，用于区分公/私钥参数。 |
 
 ## DSACommonParamsSpec<sup>10+</sup>
 
@@ -272,11 +272,11 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| p | bigint | 是   | 是   | 指定DSA算法的素模数p。 |
-| q | bigint | 是   | 是   | 指定DSA算法中密钥参数q（p-1的素因子）。 |
-| g | bigint | 是   | 是   | 指定DSA算法的参数g。 |
+| p | bigint | 否   | 否   | 指定DSA算法的素模数p。 |
+| q | bigint | 否   | 否   | 指定DSA算法中密钥参数q（p-1的素因子）。 |
+| g | bigint | 否   | 否   | 指定DSA算法的参数g。 |
 
 ## DSAPubKeySpec<sup>10+</sup>
 
@@ -290,10 +290,10 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [DSACommonParamsSpec](#dsacommonparamsspec10) | 是   | 是   | 指定DSA算法中公私钥包含的公共参数。 |
-| pk | bigint | 是   | 是   | 指定DSA算法的公钥值。 |
+| params | [DSACommonParamsSpec](#dsacommonparamsspec10) | 否   | 否   | 指定DSA算法中公私钥包含的公共参数。 |
+| pk | bigint | 否   | 否   | 指定DSA算法的公钥值。 |
 
 ## DSAKeyPairSpec<sup>10+</sup>
 
@@ -307,11 +307,11 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [DSACommonParamsSpec](#dsacommonparamsspec10) | 是   | 是   | 指定DSA算法中公私钥都包含的公共参数。 |
-| sk | bigint | 是   | 是   | 指定DSA算法的私钥值sk。 |
-| pk | bigint | 是   | 是   | 指定DSA算法的公钥值pk。 |
+| params | [DSACommonParamsSpec](#dsacommonparamsspec10) | 否   | 否   | 指定DSA算法中公私钥都包含的公共参数。 |
+| sk | bigint | 否   | 否   | 指定DSA算法的私钥值sk。 |
+| pk | bigint | 否   | 否   | 指定DSA算法的公钥值pk。 |
 
 ## ECField<sup>10+</sup>
 
@@ -323,9 +323,9 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| fieldType | string | 是   | 是   | 指定椭圆曲线域的类型，当前只支持"Fp"。 |
+| fieldType | string | 否   | 否   | 指定椭圆曲线域的类型，当前只支持"Fp"。 |
 
 ## ECFieldFp<sup>10+</sup>
 
@@ -337,9 +337,9 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 API version 10-11系统能力为SystemCapability.Security.CryptoFramework。从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| p | bigint | 是   | 是   | 指定素数p的值。 |
+| p | bigint | 否   | 否   | 指定素数p的值。 |
 
 ## Point<sup>10+</sup>
 
@@ -351,10 +351,10 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework。从A
 
 API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| x | bigint | 是   | 是   | 指定椭圆曲线上点的x坐标。 |
-| y | bigint | 是   | 是   | 指定椭圆曲线上点的y坐标。 |
+| x | bigint | 否   | 否   | 指定椭圆曲线上点的x坐标。 |
+| y | bigint | 否   | 否   | 指定椭圆曲线上点的y坐标。 |
 
 ## ECCCommonParamsSpec<sup>10+</sup>
 
@@ -368,14 +368,14 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| field | [ECField](#ecfield10) | 是   | 是   | 指定椭圆曲线的域（当前只支持Fp域）。 |
-| a | bigint | 是   | 是   | 指定椭圆曲线的第一个系数a。 |
-| b | bigint | 是   | 是   | 指定椭圆曲线的第二个系数b。 |
-| g | [Point](#point10) | 是   | 是   | 指定基点g。 |
-| n | bigint | 是   | 是   | 指定基点g的阶数n。 |
-| h | number | 是   | 是   | 指定余因子h。 |
+| field | [ECField](#ecfield10) | 否   | 否   | 指定椭圆曲线的域（当前只支持Fp域）。 |
+| a | bigint | 否   | 否   | 指定椭圆曲线的第一个系数a。 |
+| b | bigint | 否   | 否   | 指定椭圆曲线的第二个系数b。 |
+| g | [Point](#point10) | 否   | 否   | 指定基点g。 |
+| n | bigint | 否   | 否   | 指定基点g的阶数n。 |
+| h | number | 否   | 否   | 指定余因子h。 |
 
 ## ECCPriKeySpec<sup>10+</sup>
 
@@ -389,10 +389,10 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | 是   | 是   | 指定ECC算法中公私钥都包含的公共参数。 |
-| sk | bigint | 是   | 是   | 指定ECC算法的私钥sk。 |
+| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | 否   | 否   | 指定ECC算法中公私钥都包含的公共参数。 |
+| sk | bigint | 否   | 否   | 指定ECC算法的私钥sk。 |
 
 ## ECCPubKeySpec<sup>10+</sup>
 
@@ -406,10 +406,10 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | 是   | 是   | 指定ECC算法中公私钥都包含的公共参数。 |
-| pk | [Point](#point10) | 是   | 是   | 指定ECC算法的公钥pk。 |
+| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | 否   | 否   | 指定ECC算法中公私钥都包含的公共参数。 |
+| pk | [Point](#point10) | 否   | 否   | 指定ECC算法的公钥pk。 |
 
 ## ECCKeyPairSpec<sup>10+</sup>
 
@@ -423,11 +423,11 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | 是   | 是   | 指定ECC算法中公私钥都包含的公共参数。 |
-| sk | bigint | 是   | 是   | 指定ECC算法的私钥sk。 |
-| pk | [Point](#point10) | 是   | 是   | 指定ECC算法的公钥pk。 |
+| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | 否   | 否   | 指定ECC算法中公私钥都包含的公共参数。 |
+| sk | bigint | 否   | 否   | 指定ECC算法的私钥sk。 |
+| pk | [Point](#point10) | 否   | 否   | 指定ECC算法的公钥pk。 |
 
 ## RSACommonParamsSpec<sup>10+</sup>
 
@@ -441,9 +441,9 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| n | bigint | 是   | 是   | 指定模数n。 |
+| n | bigint | 否   | 否   | 指定模数n。 |
 
 ## RSAPubKeySpec<sup>10+</sup>
 
@@ -457,10 +457,10 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [RSACommonParamsSpec](#rsacommonparamsspec10) | 是   | 是   | 指定RSA算法中公私钥都包含的公共参数。 |
-| pk | bigint | 是   | 是   | 指定RSA算法的公钥pk。 |
+| params | [RSACommonParamsSpec](#rsacommonparamsspec10) | 否   | 否   | 指定RSA算法中公私钥都包含的公共参数。 |
+| pk | bigint | 否   | 否   | 指定RSA算法的公钥pk。 |
 
 ## RSAKeyPairSpec<sup>10+</sup>
 
@@ -474,11 +474,11 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [RSACommonParamsSpec](#rsacommonparamsspec10) | 是   | 是   | 指定RSA算法中公私钥都包含的公共参数。 |
-| sk | bigint | 是   | 是   | 指定RSA算法的私钥sk。 |
-| pk | bigint | 是   | 是   | 指定RSA算法的公钥pk。 |
+| params | [RSACommonParamsSpec](#rsacommonparamsspec10) | 否   | 否   | 指定RSA算法中公私钥都包含的公共参数。 |
+| sk | bigint | 否   | 否   | 指定RSA算法的私钥sk。 |
+| pk | bigint | 否   | 否   | 指定RSA算法的公钥pk。 |
 
 ## ED25519PriKeySpec<sup>11+</sup>
 
@@ -492,9 +492,9 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称 | 类型   | 可读 | 可写 | 说明                      |
+| 名称 | 类型   | 只读 | 可选 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
-| sk   | bigint | 是   | 是   | 指定ED25519算法的私钥sk。 |
+| sk   | bigint | 否   | 否   | 指定ED25519算法的私钥sk。 |
 
 ## ED25519PubKeySpec<sup>11+</sup>
 
@@ -508,9 +508,9 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称 | 类型   | 可读 | 可写 | 说明                      |
+| 名称 | 类型   | 只读 | 可选 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
-| pk   | bigint | 是   | 是   | 指定ED25519算法的公钥pk。 |
+| pk   | bigint | 否   | 否   | 指定ED25519算法的公钥pk。 |
 
 ## ED25519KeyPairSpec<sup>11+</sup>
 
@@ -524,10 +524,10 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称 | 类型   | 可读 | 可写 | 说明                      |
+| 名称 | 类型   | 只读 | 可选 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
-| sk   | bigint | 是   | 是   | 指定ED25519算法的私钥sk。 |
-| pk   | bigint | 是   | 是   | 指定ED25519算法的公钥pk。 |
+| sk   | bigint | 否   | 否   | 指定ED25519算法的私钥sk。 |
+| pk   | bigint | 否   | 否   | 指定ED25519算法的公钥pk。 |
 
 ## X25519PriKeySpec<sup>11+</sup>
 
@@ -541,9 +541,9 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称 | 类型   | 可读 | 可写 | 说明                     |
+| 名称 | 类型   | 只读 | 可选 | 说明                     |
 | ---- | ------ | ---- | ---- | ------------------------ |
-| sk   | bigint | 是   | 是   | 指定X25519算法的私钥sk。 |
+| sk   | bigint | 否   | 否   | 指定X25519算法的私钥sk。 |
 
 ## X25519PubKeySpec<sup>11+</sup>
 
@@ -557,9 +557,9 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称 | 类型   | 可读 | 可写 | 说明                     |
+| 名称 | 类型   | 只读 | 可选 | 说明                     |
 | ---- | ------ | ---- | ---- | ------------------------ |
-| pk   | bigint | 是   | 是   | 指定X25519算法的公钥pk。 |
+| pk   | bigint | 否   | 否   | 指定X25519算法的公钥pk。 |
 
 ## X25519KeyPairSpec<sup>11+</sup>
 
@@ -573,10 +573,10 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称 | 类型   | 可读 | 可写 | 说明                     |
+| 名称 | 类型   | 只读 | 可选 | 说明                     |
 | ---- | ------ | ---- | ---- | ------------------------ |
-| sk   | bigint | 是   | 是   | 指定X25519算法的私钥sk。 |
-| pk   | bigint | 是   | 是   | 指定X25519算法的公钥pk。 |
+| sk   | bigint | 否   | 否   | 指定X25519算法的私钥sk。 |
+| pk   | bigint | 否   | 否   | 指定X25519算法的公钥pk。 |
 
 ## DHCommonParamsSpec<sup>11+</sup>
 
@@ -590,11 +590,11 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称 | 类型   | 可读 | 可写 | 说明                                |
+| 名称 | 类型   | 只读 | 可选 | 说明                                |
 | ---- | ------ | ---- | ---- | ----------------------------------- |
-| p    | bigint | 是   | 是   | 指定DH算法中大素数p。               |
-| g    | bigint | 是   | 是   | 指定DH算法中参数g。                 |
-| l    | number | 是   | 是   | 指定DH算法中私钥的长度，单位为bit。 |
+| p    | bigint | 否   | 否   | 指定DH算法中大素数p。               |
+| g    | bigint | 否   | 否   | 指定DH算法中参数g。                 |
+| l    | number | 否   | 否   | 指定DH算法中私钥的长度，单位为bit。 |
 
 ## DHPriKeySpec<sup>11+</sup>
 
@@ -608,10 +608,10 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称   | 类型               | 可读 | 可写 | 说明                                 |
+| 名称   | 类型               | 只读 | 可选 | 说明                                 |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
-| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | 是   | 是   | 指定DH算法中公私钥都包含的公共参数。 |
-| sk     | bigint             | 是   | 是   | 指定DH算法的私钥sk。                 |
+| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | 否   | 否   | 指定DH算法中公私钥都包含的公共参数。 |
+| sk     | bigint             | 否   | 否   | 指定DH算法的私钥sk。                 |
 
 ## DHPubKeySpec<sup>11+</sup>
 
@@ -625,10 +625,10 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称   | 类型               | 可读 | 可写 | 说明                                 |
+| 名称   | 类型               | 只读 | 可选 | 说明                                 |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
-| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | 是   | 是   | 指定DH算法中公私钥都包含的公共参数。 |
-| pk     | bigint             | 是   | 是   | 指定DH算法的公钥pk。                 |
+| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | 否   | 否   | 指定DH算法中公私钥都包含的公共参数。 |
+| pk     | bigint             | 否   | 否   | 指定DH算法的公钥pk。                 |
 
 ## DHKeyPairSpec<sup>11+</sup>
 
@@ -642,11 +642,11 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称   | 类型               | 可读 | 可写 | 说明                                 |
+| 名称   | 类型               | 只读 | 可选 | 说明                                 |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
-| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | 是   | 是   | 指定DH算法中公私钥都包含的公共参数。 |
-| sk     | bigint             | 是   | 是   | 指定DH算法的私钥sk。                 |
-| pk     | bigint             | 是   | 是   | 指定DH算法的公钥pk。                 |
+| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | 否   | 否   | 指定DH算法中公私钥都包含的公共参数。 |
+| sk     | bigint             | 否   | 否   | 指定DH算法的私钥sk。                 |
+| pk     | bigint             | 否   | 否   | 指定DH算法的公钥pk。                 |
 
 ## KdfSpec<sup>11+</sup>
 
@@ -658,9 +658,9 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 是   | 指明密钥派生函数的算法名，如"PBKDF2"。 |
+| algName | string | 否   | 否   | 指明密钥派生函数的算法名，如"PBKDF2"。 |
 
 ## PBKDF2Spec<sup>11+</sup>
 
@@ -672,12 +672,12 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| password | string \| Uint8Array | 是   | 是   | 用户输入的原始密码。|
-| salt | Uint8Array | 是   | 是   | 盐值。 |
-| iterations | number | 是   | 是   | 迭代次数，需要为正整数。 |
-| keySize | number | 是   | 是   | 派生得到的密钥字节长度。 |
+| password | string \| Uint8Array | 否   | 否   | 用户输入的原始密码。|
+| salt | Uint8Array | 否   | 否   | 盐值。 |
+| iterations | number | 否   | 否   | 迭代次数，需要为正整数。 |
+| keySize | number | 否   | 否   | 派生得到的密钥字节长度。 |
 
 > **说明：**
 >
@@ -691,12 +691,12 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Kdf
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| key | string \| Uint8Array | 是   | 是   | 密钥材料。|
-| salt | Uint8Array | 是   | 是   | 盐值。 |
-| info | Uint8Array | 是   | 是   | 拓展信息。 |
-| keySize | number | 是   | 是   | 派生得到的密钥字节长度。 |
+| key | string \| Uint8Array | 否   | 否   | 密钥材料。|
+| salt | Uint8Array | 否   | 否   | 盐值。 |
+| info | Uint8Array | 否   | 否   | 拓展信息。 |
+| keySize | number | 否   | 否   | 派生得到的密钥字节长度。 |
 
 > **说明：**
 >
@@ -716,13 +716,13 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 | 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| passphrase | string \| Uint8Array | 是   | 否   | 用户输入的原始密码。|
-| salt | Uint8Array | 是   | 否   | 盐值。 |
-| n | number | 是   | 否   | 迭代次数，需要为正整数。 |
-| p | number | 是   | 否   | 并行化参数，需要为正整数。 |
-| r | number | 是   | 否   | 块大小参数，需要为正整数。 |
-| maxMemory | number | 是   | 否   | 最大内存限制参数，需要为正整数。 |
-| keySize | number | 是   | 否   | 派生得到的密钥字节长度，需要为正整数。 |
+| passphrase | string \| Uint8Array | 否   | 否   | 用户输入的原始密码。|
+| salt | Uint8Array | 否   | 否   | 盐值。 |
+| n | number | 否   | 否   | 迭代次数，需要为正整数。 |
+| p | number | 否   | 否   | 并行化参数，需要为正整数。 |
+| r | number | 否   | 否   | 块大小参数，需要为正整数。 |
+| maxMemory | number | 否   | 否   | 最大内存限制参数，需要为正整数。 |
+| keySize | number | 否   | 否   | 派生得到的密钥字节长度，需要为正整数。 |
 
 > **说明：**
 >
@@ -736,12 +736,12 @@ SM2密文参数，使用SM2密文格式转换函数进行格式转换时，需�
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| xCoordinate | bigint | 是   | 是   | x分量。|
-| yCoordinate | bigint | 是   | 是   | y分量。 |
-| cipherTextData | Uint8Array | 是   | 是   | 密文。|
-| hashData | Uint8Array | 是   | 是   | 杂凑值。 |
+| xCoordinate | bigint | 否   | 否   | x分量。|
+| yCoordinate | bigint | 否   | 否   | y分量。 |
+| cipherTextData | Uint8Array | 否   | 否   | 密文。|
+| hashData | Uint8Array | 否   | 否   | 杂凑值。 |
 
 > **说明：**
 >
@@ -760,8 +760,8 @@ RSA私钥编码参数，使用获取私钥字符串时，可以添加此参数�
 
 | 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| password | string | 是   | 否   | 密码。|
-| cipherName | string | 是   | 否   | 算法名。 |
+| password | string | 否   | 否   | 密码。|
+| cipherName | string | 否   | 否   | 算法名。 |
 
 > **说明：**
 >
@@ -778,7 +778,7 @@ RSA私钥编码参数，使用获取私钥字符串时，可以添加此参数�
 
 | 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 否   | 消息验证码算法名。|
+| algName | string | 否   | 否   | 消息验证码算法名。|
 
 > **说明：**
 >
@@ -793,7 +793,7 @@ RSA私钥编码参数，使用获取私钥字符串时，可以添加此参数�
 
 | 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| mdName | string | 是   | 否   | 摘要算法名。|
+| mdName | string | 否   | 否   | 摘要算法名。|
 
 > **说明：**
 >
@@ -808,7 +808,7 @@ RSA私钥编码参数，使用获取私钥字符串时，可以添加此参数�
 
 | 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| cipherName | string | 是   | 否   | 对称加密算法名。 |
+| cipherName | string | 否   | 否   | 对称加密算法名。 |
 
 > **说明：**
 >
@@ -828,8 +828,8 @@ RSA私钥编码参数，使用获取私钥字符串时，可以添加此参数�
 
 | 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| r | bigint | 是   | 是   | r分量。|
-| s | bigint | 是   | 是   | s分量。 |
+| r | bigint | 否   | 否   | r分量。|
+| s | bigint | 否   | 否   | s分量。 |
 
 ## Key
 
@@ -845,7 +845,7 @@ RSA私钥编码参数，使用获取私钥字符串时，可以添加此参数�
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | format  | string | 是   | 否   | 密钥的格式。                 |
 | algName | string | 是   | 否   | 密钥对应的算法名（如果是对称密钥，则含密钥长度，否则不含密钥长度）。 |
@@ -1336,7 +1336,7 @@ function TestPriKeyPkcs1Encoded() {
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明           |
+| 名称    | 类型   | 只读 | 可选 | 说明           |
 | ------- | ------ | ---- | ---- | ------------ |
 | priKey  | [PriKey](#prikey) | 是   | 否   | 私钥。      |
 | pubKey | [PubKey](#pubkey) | 是   | 否   | 公钥。       |
@@ -1397,7 +1397,7 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.SymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                           |
+| 名称    | 类型   | 只读 | 可选 | 说明                           |
 | ------- | ------ | ---- | ---- | ------------------------------ |
 | algName | string | 是   | 否   | 对称密钥生成器指定的算法名称。 |
 
@@ -1756,7 +1756,7 @@ let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                             |
+| 名称    | 类型   | 只读 | 可选 | 说明                             |
 | ------- | ------ | ---- | ---- | -------------------------------- |
 | algName | string | 是   | 否   | 非对称密钥生成器指定的算法名称。 |
 
@@ -2434,7 +2434,7 @@ let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPa
 
 API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                       |
+| 名称    | 类型   | 只读 | 可选 | 说明                       |
 | ------- | ------ | ---- | ---- | -------------------------- |
 | algName | string | 是   | 否   | 非对称密钥生成器的算法名。 |
 
@@ -3229,7 +3229,7 @@ try {
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | algName | string | 是   | 否   | 加解密生成器指定的算法名称。 |
 
@@ -3910,7 +3910,7 @@ Sign类不支持重复初始化，当业务方需要使用新密钥签名时，�
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | algName | string | 是   | 否   | 签名指定的算法名称。 |
 
@@ -4474,7 +4474,7 @@ Verify类不支持重复初始化，当业务方需要使用新密钥验签时�
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | algName | string | 是   | 否   | 验签指定的算法名称。 |
 
@@ -5146,7 +5146,7 @@ KeyAgreement类，使用密钥协商方法之前需要创建该类的实例进�
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.KeyAgreement。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | algName | string | 是   | 否   | 密钥协商指定的算法名称。 |
 
@@ -5353,7 +5353,7 @@ Md类，调用Md方法可以进行MD（Message Digest）摘要计算。调用前
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                   |
+| 名称    | 类型   | 只读 | 可选 | 说明                   |
 | ------- | ------ | ---- | ---- | ---------------------- |
 | algName | string | 是   | 否   | 代表指定的摘要算法名。 |
 
@@ -5743,7 +5743,7 @@ Mac类，调用Mac方法可以进行MAC（Message Authentication Code）加密�
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                   |
+| 名称    | 类型   | 只读 | 可选 | 说明                   |
 | ------- | ------ | ---- | ---- | ---------------------- |
 | algName | string | 是   | 否   | 代表指定的摘要算法名。 |
 
@@ -6197,7 +6197,7 @@ Random类，调用Random方法可以进行随机数计算。调用前，需要�
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Rand。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                 |
+| 名称    | 类型   | 只读 | 可选 | 说明                 |
 | ------- | ------ | ---- | ---- | -------------------- |
 | algName<sup>10+</sup> | string | 是   | 否   | 代表当前使用的随机数生成算法，目前只支持“CTR_DRBG"。 |
 
@@ -6451,7 +6451,7 @@ let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
 
 API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | algName | string | 是   | 否   | 密钥派生函数的算法名称。 |
 
