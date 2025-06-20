@@ -134,147 +134,147 @@ struct ParentComponent {
 
 2. \@Link装饰的变量禁止本地初始化，否则编译期会报错。
 
-  ```ts
-  // 错误写法，编译报错
-  @Link count: number = 10;
-
-  // 正确写法
-  @Link count: number;
-  ```
+    ```ts
+    // 错误写法，编译报错
+    @Link count: number = 10;
+  
+    // 正确写法
+    @Link count: number;
+    ```
 
 3. \@Link装饰的变量的类型要和数据源类型保持一致，否则框架会抛出运行时错误。
 
-  【反例】
-
-  ```ts
-  class Info {
-    info: string = 'Hello';
-  }
-
-  class Cousin {
-    name: string = 'Hello';
-  }
-
-  @Component
-  struct Child {
-    // 错误写法，@Link与@State数据源类型不一致
-    @Link test: Cousin;
-
-    build() {
-      Text(this.test.name)
+    【反例】
+  
+    ```ts
+    class Info {
+      info: string = 'Hello';
     }
-  }
-
-  @Entry
-  @Component
-  struct LinkExample {
-    @State info: Info = new Info();
-
-    build() {
-      Column() {
-        // 错误写法，@Link与@State数据源类型不一致
-        Child({test: new Cousin()})
+  
+    class Cousin {
+      name: string = 'Hello';
+    }
+  
+    @Component
+    struct Child {
+      // 错误写法，@Link与@State数据源类型不一致
+      @Link test: Cousin;
+  
+      build() {
+        Text(this.test.name)
       }
     }
-  }
-  ```
-
-  【正例】
-
-  ```ts
-  class Info {
-    info: string = 'Hello';
-  }
-
-  @Component
-  struct Child {
-    // 正确写法
-    @Link test: Info;
-
-    build() {
-      Text(this.test.info)
-    }
-  }
-
-  @Entry
-  @Component
-  struct LinkExample {
-    @State info: Info = new Info();
-
-    build() {
-      Column() {
-        // 正确写法
-        Child({test: this.info})
+  
+    @Entry
+    @Component
+    struct LinkExample {
+      @State info: Info = new Info();
+  
+      build() {
+        Column() {
+          // 错误写法，@Link与@State数据源类型不一致
+          Child({test: new Cousin()})
+        }
       }
     }
-  }
-  ```
+    ```
+
+    【正例】
+  
+    ```ts
+    class Info {
+      info: string = 'Hello';
+    }
+  
+    @Component
+    struct Child {
+      // 正确写法
+      @Link test: Info;
+  
+      build() {
+        Text(this.test.info)
+      }
+    }
+  
+    @Entry
+    @Component
+    struct LinkExample {
+      @State info: Info = new Info();
+  
+      build() {
+        Column() {
+          // 正确写法
+          Child({test: this.info})
+        }
+      }
+    }
+    ```
 
 4. \@Link装饰的变量仅能被状态变量初始化，不能使用常规变量初始化，否则编译期会给出告警，并在运行时崩溃。
 
-  【反例】
-
-  ```ts
-  class Info {
-    info: string = 'Hello';
-  }
-
-  @Component
-  struct Child {
-    @Link msg: string;
-    @Link info: string;
-
-    build() {
-      Text(this.msg + this.info)
+    【反例】
+  
+    ```ts
+    class Info {
+      info: string = 'Hello';
     }
-  }
-
-  @Entry
-  @Component
-  struct LinkExample {
-    @State message: string = 'Hello';
-    @State info: Info = new Info();
-
-    build() {
-      Column() {
-        // 错误写法，常规变量不能初始化@Link
-        Child({msg: 'World', info: this.info.info})
+  
+    @Component
+    struct Child {
+      @Link msg: string;
+      @Link info: string;
+  
+      build() {
+        Text(this.msg + this.info)
       }
     }
-  }
-  ```
 
-  【正例】
-
-  ```ts
-  class Info {
-    info: string = 'Hello';
-  }
-
-  @Component
-  struct Child {
-    @Link msg: string;
-    @Link info: Info;
-
-    build() {
-      Text(this.msg + this.info.info)
-    }
-  }
-
-  @Entry
-  @Component
-  struct LinkExample {
-    @State message: string = 'Hello';
-    @State info: Info = new Info();
-
-    build() {
-      Column() {
-        // 正确写法
-        Child({msg: this.message, info: this.info})
+    @Entry
+    @Component
+    struct LinkExample {
+      @State message: string = 'Hello';
+      @State info: Info = new Info();
+  
+      build() {
+        Column() {
+          // 错误写法，常规变量不能初始化@Link
+          Child({msg: 'World', info: this.info.info})
+        }
       }
     }
-  }
-  ```
+    ```
+
+    【正例】
+  
+    ```ts
+    class Info {
+      info: string = 'Hello';
+    }
+  
+    @Component
+    struct Child {
+      @Link msg: string;
+      @Link info: Info;
+  
+      build() {
+        Text(this.msg + this.info.info)
+      }
+    }
+  
+    @Entry
+    @Component
+    struct LinkExample {
+      @State message: string = 'Hello';
+      @State info: Info = new Info();
+  
+      build() {
+        Column() {
+          // 正确写法
+          Child({msg: this.message, info: this.info})
+        }
+      }
+    }
+    ```
 
 5. \@Link不支持装饰Function类型的变量，框架会抛出运行时错误。
 
