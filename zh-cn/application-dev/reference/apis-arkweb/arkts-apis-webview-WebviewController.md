@@ -9080,6 +9080,42 @@ struct WebComponent {
 }
 ```
 
+## getProgress<sup>20+</sup>
+
+getProgress(): number
+
+获取当前网页加载进度。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值**
+
+| 类型                            | 说明                   |
+| :------------------------------ | ---------------------- |
+| number | 当前页面加载进度(0-100) |
+
+**示例：**
+
+```ts
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+        .onPageBegin(() => {
+          let curProgress = this.controller.getProgress();
+          console.info("current page loading progress is :" + curProgress);
+        })
+    }
+  }
+}
+```
+
 ## getHitTest<sup>(deprecated)</sup>
 
 getHitTest(): WebHitTestType
