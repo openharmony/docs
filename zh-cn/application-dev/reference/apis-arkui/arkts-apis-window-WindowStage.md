@@ -1034,7 +1034,6 @@ on(eventType: 'windowStageLifecycleEvent', callback: Callback&lt;WindowStageLife
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -1086,7 +1085,6 @@ off(eventType: 'windowStageLifecycleEvent', callback?: Callback&lt;WindowStageLi
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   // ...
