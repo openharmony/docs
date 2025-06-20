@@ -530,8 +530,12 @@ bundleManager.uninstall(wantTemp, 'bundleName', 100, true).then(() => {
 
 install(admin: Want, hapFilePaths: Array\<string>, installParam?: InstallParam): Promise\<void>
 
+<<<<<<< HEAD
 安装指定路径下的应用包。使用promise异步回调。
 注意：此接口只能安装分发类型为enterprise_mdm和enterprise_normal类型的应用。
+=======
+安装指定路径下的应用包。使用promise异步回调。</br>此接口只能安装分发类型为enterprise_mdm（MDM应用）和enterprise_normal（企业普通应用）类型的应用。
+>>>>>>> 29a34e96e48 (文档优化)
 
 **需要权限：** ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
