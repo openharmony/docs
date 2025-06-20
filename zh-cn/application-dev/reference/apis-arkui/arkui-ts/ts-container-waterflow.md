@@ -446,6 +446,22 @@ cachedCount(count: number, show: boolean)
 | count | number | 是   | 预加载的FlowItem的数量。 <br/>默认值：根据屏幕内显示的节点个数设置，最大值为16。<br/>取值范围：[0, +∞)，设置为小于0的值时，按1处理。 |
 | show  | boolean | 是   | 被预加载的FlowItem是否需要显示。设置为true时显示预加载的FlowItem，设置为false时不显示预加载的FlowItem。 <br/> 默认值：false |
 
+### syncLoad<sup>20+</sup>
+
+syncLoad(enable: boolean)
+
+设置是否同步加载WaterFlow区域内所有子组件。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| enable   | boolean | 是   | 是否同步加载子组件。<br/>true表示同步加载，false表示异步加载。<br/>**说明：** <br/>设置为fasle时，异步加载仅在首次显示等非滑动场景生效。 |
+
 ## 事件
 
 除支持[通用事件](ts-component-general-events.md)和[滚动组件通用事件](ts-container-scrollable-common.md#事件)外，还支持以下事件：
