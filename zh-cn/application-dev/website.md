@@ -4642,7 +4642,7 @@
           - [OH_PixelmapNative](reference/apis-image-kit/capi-oh-pixelmapnative.md)
           - [OH_NativeBuffer](reference/apis-image-kit/capi-oh-nativebuffer.md)
           - [OH_Pixelmap_HdrStaticMetadata](reference/apis-image-kit/capi-oh-pixelmap-hdrstaticmetadata.md)
-          - [OH_NativeColorSpaceManager](reference/apis-image-kit/capi-nativecolorspacemanager-oh-nativecolorspacemanager.md)
+          - [OH_NativeColorSpaceManager](reference/apis-image-kit/capi-oh-nativecolorspacemanager.md)
           - [OH_Pixelmap_HdrDynamicMetadata](reference/apis-image-kit/capi-oh-pixelmap-hdrdynamicmetadata.md)
           - [OH_Pixelmap_HdrGainmapMetadata](reference/apis-image-kit/capi-oh-pixelmap-hdrgainmapmetadata.md)
           - [OH_Pixelmap_HdrMetadataValue](reference/apis-image-kit/capi-oh-pixelmap-hdrmetadatavalue.md)
