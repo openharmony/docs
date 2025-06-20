@@ -195,7 +195,7 @@ import { window } from '@kit.ArkUI';
 
 | 名称             | 类型                                                                     | 只读 | 可选 | 说明                                                         |
 | ---------------- | ----------------------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type             | [AnimationType](arkts-apis-window-e.md#animationtype20)                 | 否   | 否   | 窗口动画类型。淡入动画在应用启动时生效，淡出动画仅在应用启动被打断时生效，非打断场景依然走默认动效。|
+| type             | [AnimationType](arkts-apis-window-e.md#animationtype20)                 | 否   | 否   | 窗口动画类型。淡入动画在应用启动时生效，淡出动画仅在应用启动被侧滑、上滑等手势打断时生效，非打断场景依然走默认动效。|
 | animationConifg  | [WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20) | 否   | 是   | 窗口动画参数配置。默认动画曲线为[WindowAnimationCurve](arkts-apis-window-e.md#windowanimationcurve20).LINEAR，duration为0。          |
 
 ## window.minimizeAll<sup>9+</sup>
