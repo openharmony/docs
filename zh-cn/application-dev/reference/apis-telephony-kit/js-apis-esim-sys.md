@@ -178,7 +178,7 @@ getDownloadableProfileMetadata\(slotId: number, portIndex: number,
 | ------ | ------ | ----- | ----- |
 | slotId              | number                                        | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex           | number                                        | 是 | 插槽的端口索引。     |
-| profile             | [DownloadableProfile](./js-apis-esim.md#DownloadableProfile18) | 是 | 可下载的配置文件信息。|
+| profile             | [DownloadableProfile](./js-apis-esim.md#downloadableprofile18) | 是 | 可下载的配置文件信息。|
 | forceDisableProfile | boolean | 是 | 如果值为true，则必须停用活动SIM才能执行操作。如果值为false，则提示用户首先同意此操作。|
 
 **返回值：**
