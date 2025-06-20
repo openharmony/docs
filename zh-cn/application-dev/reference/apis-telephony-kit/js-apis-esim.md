@@ -109,3 +109,16 @@ eSIM.addProfile(profile).then(() => {
     console.error(`addProfile, promise: err->${JSON.stringify(err)}`);
 });
 ```
+
+## DownloadableProfile<sup>18+</sup>
+
+可下载的配置文件。
+
+**系统能力**：SystemCapability.Telephony.CoreService.Esim
+
+| 名称 | 类型 | 必填 | 说明 |
+| ----- | ----- | ----- | -----|
+| activationCode   | string             |  是  | 激活码。对于不基于激活码的配置文件，可能为空。 |
+| confirmationCode | string             |  否  | 确认码。      |
+| carrierName      | string             |  否  | 订阅名称。    |
+| accessRules      | Array\<AccessRule> |  否  | 访问规则数组。 |
