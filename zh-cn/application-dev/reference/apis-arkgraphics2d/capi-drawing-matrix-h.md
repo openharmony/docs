@@ -97,7 +97,7 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCreate(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* | 函数会返回一个指针，指针指向创建的矩阵对象。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* | 函数会返回一个指针，指针指向创建的矩阵对象。 |
 
 ### OH_Drawing_MatrixCopy()
 
@@ -118,13 +118,13 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCopy(const OH_Drawing_Matrix* matrix)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向用于拷贝的矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
+| const [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向用于拷贝的矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* | 函数会返回一个指针，指针指向创建的新矩阵对象。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* | 函数会返回一个指针，指针指向创建的新矩阵对象。 |
 
 ### OH_Drawing_MatrixCreateRotation()
 
@@ -153,7 +153,7 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCreateRotation(float deg, float x, float y)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* | 函数返回一个指针，指针指向创建的矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* | 函数返回一个指针，指针指向创建的矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)。 |
 
 ### OH_Drawing_MatrixCreateScale()
 
@@ -183,7 +183,7 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCreateScale(float sx, float sy, float px, fl
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* | 函数返回一个指针，指针指向创建的矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* | 函数返回一个指针，指针指向创建的矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)。 |
 
 ### OH_Drawing_MatrixCreateTranslation()
 
@@ -211,7 +211,7 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCreateTranslation(float dx, float dy)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* | 函数返回一个指针，指针指向创建的矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* | 函数返回一个指针，指针指向创建的矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)。 |
 
 ### OH_Drawing_MatrixSetMatrix()
 
@@ -232,7 +232,7 @@ void OH_Drawing_MatrixSetMatrix(OH_Drawing_Matrix* matrix, float scaleX, float s
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象的指针。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象的指针。 |
 | float scaleX | 水平缩放系数。 |
 | float skewX | 水平倾斜系数。 |
 | float transX | 水平位移系数。 |
@@ -262,9 +262,9 @@ bool OH_Drawing_MatrixSetRectToRect(OH_Drawing_Matrix* matrix, const OH_Drawing_
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* src | 指向映射源的[OH_Drawing_Rect](capi-oh-drawing-rect.md)对象Rect的指针。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* dst | 指向要映射到的[OH_Drawing_Rect](capi-oh-drawing-rect.md)对象Rect的指针。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* src | 指向映射源的[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)对象Rect的指针。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* dst | 指向要映射到的[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)对象Rect的指针。 |
 | [OH_Drawing_ScaleToFit](#oh_drawing_scaletofit) stf | 缩放方式，支持方式[OH_Drawing_ScaleToFit](capi-drawing-matrix-h.md#oh_drawing_scaletofit)。 |
 
 **返回：**
@@ -292,7 +292,7 @@ void OH_Drawing_MatrixPreRotate(OH_Drawing_Matrix* matrix, float degree, float p
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
 | float degree | 旋转角度，单位为度。正数表示顺时针旋转，负数表示逆时针旋转。 |
 | float px | 旋转中心点的横坐标。 |
 | float py | 旋转中心点的纵坐标。 |
@@ -318,7 +318,7 @@ void OH_Drawing_MatrixPreScale(OH_Drawing_Matrix* matrix, float sx, float sy, fl
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
 | float sx | 轴方向的缩放比例因子，为负数时可看作是先关于y = px作镜像翻转后再进行缩放，该参数为浮点数。 |
 | float sy | 轴方向的缩放比例因子，为负数时可看作是先关于x = py作镜像翻转后再进行缩放，该参数为浮点数。 |
 | float px | 缩放中心点的横坐标。 |
@@ -343,7 +343,7 @@ void OH_Drawing_MatrixPreTranslate(OH_Drawing_Matrix* matrix, float dx, float dy
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
 | float dx | 表示在x轴方向上的平移距离，正数表示往x轴正方向平移，负数表示往x轴负方向平移，该参数为浮点数。 |
 | float dy | 表示在y轴方向上的平移距离，正数表示往y轴正方向平移，负数表示往y轴负方向平移，该参数为浮点数。 |
 
@@ -366,7 +366,7 @@ void OH_Drawing_MatrixPostRotate(OH_Drawing_Matrix* matrix, float degree, float 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
 | float degree | 旋转角度，单位为度。正数表示顺时针旋转，负数表示逆时针旋转。 |
 | float px | 旋转中心点的横坐标。 |
 | float py | 旋转中心点的纵坐标。 |
@@ -390,7 +390,7 @@ void OH_Drawing_MatrixPostScale(OH_Drawing_Matrix* matrix, float sx, float sy, f
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
 | float sx | 轴方向的缩放比例因子，为负数时可看作是先关于y = px作镜像翻转后再进行缩放，该参数为浮点数。 |
 | float sy | 轴方向的缩放比例因子，为负数时可看作是先关于x = py作镜像翻转后再进行缩放，该参数为浮点数。 |
 | float px | 缩放中心点的横坐标。 |
@@ -415,7 +415,7 @@ void OH_Drawing_MatrixPostTranslate(OH_Drawing_Matrix* matrix, float dx, float d
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
 | float dx | 表示在x轴方向上的平移距离，正数表示往x轴正方向平移，负数表示往x轴负方向平移，该参数为浮点数。 |
 | float dy | 表示在y轴方向上的平移距离，正数表示往y轴正方向平移，负数表示往y轴负方向平移，该参数为浮点数。 |
 
@@ -438,7 +438,7 @@ void OH_Drawing_MatrixReset(OH_Drawing_Matrix* matrix)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
 
 ### OH_Drawing_MatrixConcat()
 
@@ -459,9 +459,9 @@ void OH_Drawing_MatrixConcat(OH_Drawing_Matrix* total, const OH_Drawing_Matrix* 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* total | 指向最终的矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
-| const [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* a | 指向矩阵对象a[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
-| const [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* b | 指向矩阵对象b[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* total | 指向最终的矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
+| const [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* a | 指向矩阵对象a[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
+| const [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* b | 指向矩阵对象b[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
 
 ### OH_Drawing_MatrixGetAll()
 
@@ -482,7 +482,7 @@ OH_Drawing_ErrorCode OH_Drawing_MatrixGetAll(OH_Drawing_Matrix* matrix, float va
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
 | value |  用于存储得到的矩阵元素值的数组。 |
 
 **返回：**
@@ -510,7 +510,7 @@ float OH_Drawing_MatrixGetValue(OH_Drawing_Matrix* matrix, int index)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
 | int index | 索引位置，范围0-8。 |
 
 **返回：**
@@ -538,7 +538,7 @@ void OH_Drawing_MatrixRotate(OH_Drawing_Matrix* matrix, float degree, float px, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
 | float degree | 角度，单位为度。正数表示顺时针旋转，负数表示逆时针旋转。 |
 | float px | 轴上坐标点。 |
 | float py | 轴上坐标点。 |
@@ -562,7 +562,7 @@ void OH_Drawing_MatrixTranslate(OH_Drawing_Matrix* matrix, float dx, float dy)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
 | float dx | 水平方向平移距离，正数表示往x轴正方向平移，负数表示往x轴负方向平移，该参数为浮点数。 |
 | float dy | 垂直方向平移距离，正数表示往y轴正方向平移，负数表示往y轴负方向平移，该参数为浮点数。 |
 
@@ -585,7 +585,7 @@ void OH_Drawing_MatrixScale(OH_Drawing_Matrix* matrix, float sx, float sy, float
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
 | float sx | 水平缩放因子，为负数时可看作是先关于y = px作镜像翻转后再进行缩放，该参数为浮点数。 |
 | float sy | 垂直缩放因子，为负数时可看作是先关于x = py作镜像翻转后再进行缩放，该参数为浮点数。 |
 | float px | 轴上坐标点。 |
@@ -610,8 +610,8 @@ bool OH_Drawing_MatrixInvert(OH_Drawing_Matrix* matrix, OH_Drawing_Matrix* inver
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* inverse | 指向逆矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针，开发者可调用[OH_Drawing_MatrixCreate](capi-drawing-matrix-h.md#oh_drawing_matrixcreate)接口创建。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* inverse | 指向逆矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针，开发者可调用[OH_Drawing_MatrixCreate](capi-drawing-matrix-h.md#oh_drawing_matrixcreate)接口创建。 |
 
 **返回：**
 
@@ -638,9 +638,9 @@ bool OH_Drawing_MatrixSetPolyToPoly(OH_Drawing_Matrix* matrix, const OH_Drawing_
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
-| const [OH_Drawing_Point2D](capi-oh-drawing-point2d.md)* src | 源点数组，为NULL时count应当为0。 |
-| const [OH_Drawing_Point2D](capi-oh-drawing-point2d.md)* dst | 目标点数组，个数要与源点相等，为NULL时count应当为0。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
+| const [OH_Drawing_Point2D](capi-drawing-oh-drawing-point2d.md)* src | 源点数组，为NULL时count应当为0。 |
+| const [OH_Drawing_Point2D](capi-drawing-oh-drawing-point2d.md)* dst | 目标点数组，个数要与源点相等，为NULL时count应当为0。 |
 | uint32_t count | 源点数组以及目标点数组的个数，为0时将矩阵对象设为单位矩阵。 |
 
 **返回：**
@@ -668,9 +668,9 @@ void OH_Drawing_MatrixMapPoints(const OH_Drawing_Matrix* matrix, const OH_Drawin
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
-| const [OH_Drawing_Point2D](capi-oh-drawing-point2d.md)* src | 源点数组。 |
-| [OH_Drawing_Point2D](capi-oh-drawing-point2d.md)* dst | 目标点数组，个数要与源点相等。 |
+| const [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
+| const [OH_Drawing_Point2D](capi-drawing-oh-drawing-point2d.md)* src | 源点数组。 |
+| [OH_Drawing_Point2D](capi-drawing-oh-drawing-point2d.md)* dst | 目标点数组，个数要与源点相等。 |
 | int count | 源点数组以及目标点数组的个数。 |
 
 ### OH_Drawing_MatrixMapRect()
@@ -692,9 +692,9 @@ bool OH_Drawing_MatrixMapRect(const OH_Drawing_Matrix* matrix, const OH_Drawing_
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* src | 源矩形。 |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* dst | 目标矩形。 |
+| const [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* src | 源矩形。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* dst | 目标矩形。 |
 
 **返回：**
 
@@ -721,8 +721,8 @@ bool OH_Drawing_MatrixIsEqual(OH_Drawing_Matrix* matrix, OH_Drawing_Matrix* othe
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向用于判断的其中一个矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* other | 指向用于判断的另一个矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向用于判断的其中一个矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* other | 指向用于判断的另一个矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
 
 **返回：**
 
@@ -749,7 +749,7 @@ bool OH_Drawing_MatrixIsIdentity(OH_Drawing_Matrix* matrix)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
 
 **返回：**
 
@@ -776,6 +776,6 @@ void OH_Drawing_MatrixDestroy(OH_Drawing_Matrix* matrix)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向字体对象的指针。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向字体对象的指针。 |
 
 

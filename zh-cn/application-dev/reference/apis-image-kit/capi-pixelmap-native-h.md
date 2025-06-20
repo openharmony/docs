@@ -19,9 +19,9 @@
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [OH_PixelmapNative](capi-oh-pixelmapnative.md) | OH_PixelmapNative | OH_PixelmapNative结构体是native层封装的图像解码后无压缩的位图格式结构体。 |
-| [OH_NativeBuffer](capi-oh-nativebuffer.md) | OH_NativeBuffer | NativeBuffer结构体类型，用于执行NativeBuffer相关操作。 |
+| [OH_NativeBuffer](capi-oh-nativebuffer-oh-nativebuffer.md) | OH_NativeBuffer | NativeBuffer结构体类型，用于执行NativeBuffer相关操作。 |
 | [OH_Pixelmap_HdrStaticMetadata](capi-oh-pixelmap-hdrstaticmetadata.md) | OH_Pixelmap_HdrStaticMetadata | HDR_STATIC_METADATA关键字对应的静态元数据值。 |
-| [OH_NativeColorSpaceManager](capi-oh-nativecolorspacemanager.md) | OH_NativeColorSpaceManager | NativeColorSpaceManager结构体类型，用于执行NativeColorSpaceManager相关操作。 |
+| [OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md) | OH_NativeColorSpaceManager | NativeColorSpaceManager结构体类型，用于执行NativeColorSpaceManager相关操作。 |
 | [OH_Pixelmap_HdrDynamicMetadata](capi-oh-pixelmap-hdrdynamicmetadata.md) | OH_Pixelmap_HdrDynamicMetadata | DR_DYNAMIC_METADATA关键字对应的动态元数据值。 |
 | [OH_Pixelmap_HdrGainmapMetadata](capi-oh-pixelmap-hdrgainmapmetadata.md) | OH_Pixelmap_HdrGainmapMetadata | HDR_GAINMAP_METADATA关键字对应的gainmap相关元数据值，参考ISO 21496-1。 |
 | [OH_Pixelmap_HdrMetadataValue](capi-oh-pixelmap-hdrmetadatavalue.md) | OH_Pixelmap_HdrMetadataValue | Pixelmap使用的HDR元数据值，和OH_Pixelmap_HdrMetadataKey关键字相对应。 |
@@ -1490,7 +1490,7 @@ Image_ErrorCode OH_PixelmapNative_GetNativeBuffer(OH_PixelmapNative *pixelmap, O
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 要获取NativeBuffer的源PixelMap。 |
-| [OH_NativeBuffer](capi-oh-nativebuffer.md) **nativeBuffer | 被创建的NativeBuffer对象指针。 |
+| [OH_NativeBuffer](capi-oh-nativebuffer-oh-nativebuffer.md) **nativeBuffer | 被创建的NativeBuffer对象指针。 |
 
 **返回：**
 
@@ -1570,7 +1570,7 @@ Image_ErrorCode OH_PixelmapNative_SetColorSpaceNative(OH_PixelmapNative *pixelma
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 要设置NativeColorSpaceManager的目标PixelMap。 |
-| [OH_NativeColorSpaceManager](capi-oh-nativecolorspacemanager.md) *colorSpaceNative | 要设置的NativeColorSpaceManager对象。 |
+| [OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md) *colorSpaceNative | 要设置的NativeColorSpaceManager对象。 |
 
 **返回：**
 
@@ -1596,7 +1596,7 @@ Image_ErrorCode OH_PixelmapNative_GetColorSpaceNative(OH_PixelmapNative *pixelma
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 获取到NativeColorSpaceManager的源PixelMap。 |
-| [OH_NativeColorSpaceManager](capi-oh-nativecolorspacemanager.md) **colorSpaceNative | 获取到的NativeColorSpaceManager对象。 |
+| [OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md) **colorSpaceNative | 获取到的NativeColorSpaceManager对象。 |
 
 **返回：**
 
