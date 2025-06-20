@@ -654,7 +654,7 @@ onPageEnd(callback: Callback\<OnPageEndEvent\>)
   }
   ```
 
-### onLoadStarted<sup>20+</sup>
+## onLoadStarted<sup>20+</sup>
 
 onLoadStarted(callback: Callback\<OnLoadStartedEvent\>)
 
@@ -692,7 +692,7 @@ onLoadStarted(callback: Callback\<OnLoadStartedEvent\>)
   }
   ```
 
-### onLoadFinished<sup>20+</sup>
+## onLoadFinished<sup>20+</sup>
 
 onLoadFinished(callback: Callback\<OnLoadFinishedEvent\>)
 
@@ -2403,7 +2403,7 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
   </html>
   ```
 
-### onActivateContent<sup>20+</sup>
+## onActivateContent<sup>20+</sup>
 
 onActivateContent(callback: Callback\<void>)
 
