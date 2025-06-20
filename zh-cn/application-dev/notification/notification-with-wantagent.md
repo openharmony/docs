@@ -90,7 +90,7 @@
    });
    ```
 
-4. 构造NotificationRequest对象，并发布携带WantAgent的通知。
+4. 构造NotificationRequest对象，并发布携带WantAgent的通知,[示例链接](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomNotification/entry/src/main/ets/feature/NotificationOperations.ets)。
 
    > **说明：**
    >
