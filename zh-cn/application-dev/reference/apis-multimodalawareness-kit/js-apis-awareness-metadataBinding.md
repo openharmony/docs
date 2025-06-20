@@ -13,9 +13,11 @@ import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 ```
 
 ## metadataBinding.submitMetadata
-function submitMetadata(metadata: string): void;  
-第三方应用将需要编码的内容传递给MSDP，MSDP决定适时将内容传递给调用编码接口的系统应用或服务。  
-**系统能力**：SystemCapability.MultimodalAwareness.metadataBinding
+submitMetadata(metadata: string): void;
+
+第三方应用将需要编码的内容传递给MSDP，MSDP决定适时将内容传递给调用编码接口的系统应用或服务。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**系统能力**：SystemCapability.MultimodalAwareness.MetadataBinding
 
 **参数**：
 
@@ -46,16 +48,17 @@ try {
 ```
 
 ## metadataBinding.on('operationSubmitMetadata')
-metadataBinding.on(type: 'operationSubmitMetadata', bundleName: string, callback: Callback\<number\>): void;  
+on(type: 'operationSubmitMetadata', bundleName: string, callback: Callback\<number\>): void;  
 
-订阅系统事件以获取编码内容，应用注册回调，事件发生时回传编码内容。  
-**系统能力**：SystemCapability.MultimodalAwareness.metadataBinding  
+订阅系统事件以获取编码内容，应用注册回调，事件发生时回传编码内容。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**系统能力**：SystemCapability.MultimodalAwareness.MetadataBinding  
 **参数**： 
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 |type| string|是|事件类型，type为‘operationSubmitMetadata’，表示系统应用获取编码内容。|
-|bundlename|string|是|应用包名，标识注册应用的包名。|
+|bundleName|string|是|应用包名，标识注册应用的包名。|
 |callback|Callback\<number\>|是|回调函数，用于返回编码内容。| 
 
 **错误码**：
@@ -86,16 +89,18 @@ try {
 
 
 ## metadataBinding.off('operationSubmitMetadata')
-metadataBinding.off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback\<number>): void;  
-取消订阅系统获取编码内容的事件。取消注册回调接口。  
-**系统能力**：SystemCapability.MultimodalAwareness.metadataBinding  
+off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback\<number\>): void;
+
+取消订阅系统获取编码内容的事件。取消注册回调接口。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**系统能力**：SystemCapability.MultimodalAwareness.MetadataBinding  
 **参数**：
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 |type|string|是|事件类型，type为“operationSubmitMetadata”，表示系统应用获取编码内容。|
-|bundlename|string|是|应用包名，标识注册应用的包名。|
-|callback|Callback\<number\>|是|回调函数，返回编码内容。|
+|bundleName|string|是|应用包名，标识注册应用的包名。|
+|callback|Callback\<number\>|否|回调函数，返回编码内容。|
 
 **错误码**：  
 
@@ -104,7 +109,7 @@ metadataBinding.off(type: 'operationSubmitMetadata', bundleName: string, callbac
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 |32100001|Internal handling failed. Service exception.|
-|32100005|Unsubscribe Failed. Possible causes: 1. Abnormal system capability; 2. IPC communication abnormality.|
+|32100005|Unsubscribe Failed. Possible causes: 1. Abnormal system capability; 2. IPC communication abnormality|
 
 **示例**：
 
