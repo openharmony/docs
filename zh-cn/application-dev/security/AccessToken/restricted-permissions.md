@@ -645,3 +645,19 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **支持设备**：Phone | Tablet
 
 **起始版本**：20
+
+## ohos.permission.DLP_GET_HIDE_STATUS
+
+允许应用使用信息隐藏接口，获取信息隐藏状态的能力。
+
+<!--RP44--><!--RP44End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**支持设备**: Phone
+
+**起始版本**：18
+
+**变更信息**：在API18-19，该权限面向系统应用开放；从API20开始，面向普通应用开放。
