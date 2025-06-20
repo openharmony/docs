@@ -296,7 +296,7 @@ downloadProfile\(slotId: number, portIndex: number, profile: DownloadableProfile
 | ------ | ------ | ----- | ----- |
 | slotId        | number                                            | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex     | number                                            | 是 | 插槽的端口索引。 |
-| profile       | [DownloadableProfile](./js-apis-esim.md#DownloadableProfile18)     | 是 | 可下载的配置文件信息。 |
+| profile       | [DownloadableProfile](./js-apis-esim.md#downloadableprofile18)     | 是 | 可下载的配置文件信息。 |
 | configuration | [DownloadConfiguration](#downloadconfiguration18) | 是 | 下载的配置信息。 |
 
 **返回值：**
