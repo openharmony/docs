@@ -22,7 +22,7 @@
 
   ```ts
   // 不允许使用side-effects-import
-  import "./sharedModule"
+  import "./sharedModule";
   ```
 
 - 共享模块导出的变量必须是可共享对象。
