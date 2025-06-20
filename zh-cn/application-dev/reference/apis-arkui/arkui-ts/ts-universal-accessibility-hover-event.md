@@ -13,10 +13,12 @@ onAccessibilityHover(callback: AccessibilityCallback): T
 
 开启无障碍模式后，单指触摸绑定该回调的组件时触发该回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 参数名        | 参数类型                    | 必填  | 参数描述                          |
+| 参数名        | 类型                    | 必填  | 参数描述                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
 | callback      | [AccessibilityCallback](#accessibilitycallback) | 是   |  提供开启无障碍模式后的无障碍悬浮回调事件，当开启无障碍模式后，单指触摸绑定该回调的组件时触发该回调。 |
 
@@ -32,6 +34,8 @@ type AccessibilityCallback = (isHover: boolean, event: AccessibilityHoverEvent) 
 
 提供开启无障碍模式后的无障碍悬浮回调事件类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -44,6 +48,8 @@ type AccessibilityCallback = (isHover: boolean, event: AccessibilityHoverEvent) 
 ## AccessibilityHoverEvent对象说明
 
 继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明8)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -58,6 +64,10 @@ type AccessibilityCallback = (isHover: boolean, event: AccessibilityHoverEvent) 
 | displayY               | number                         | 手指位置相对于应用屏幕左上角的y轴坐标。<br/>单位：vp<br/> |
 
 ## AccessibilityHoverType
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 定义无障碍悬浮类型。
 
