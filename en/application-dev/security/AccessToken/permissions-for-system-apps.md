@@ -4990,3 +4990,17 @@ Allows an applications to access the remote photography card services.
 **Supported devices**: Wearable
 
 **Valid since**：20
+
+## ohos.permission.TRIGGER_LOCAL_WANTAGENT
+
+Allows a system application to trigger local WantAgent instances.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**：General
+
+**Valid since**：20
