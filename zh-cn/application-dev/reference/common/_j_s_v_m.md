@@ -49,7 +49,6 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| **JSVM_VERSION_EXPERIMENTAL**&nbsp;&nbsp;&nbsp;2147483647 |  |  
 | **JSVM_VERSION_EXPERIMENTAL**&nbsp;&nbsp;&nbsp;2147483647 | JSVM 实验性版本号。 | 
 | **JSVM_VERSION**&nbsp;&nbsp;&nbsp;8 | JSVM 版本号。 | 
 | **JSVM_EXTERN**&nbsp;&nbsp;&nbsp;__attribute__((visibility("default"))) | 指定符号对外部可见。 | 
