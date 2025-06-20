@@ -4741,59 +4741,86 @@ export struct Index {
 struct RichEditorExample {
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-
-  onCreateMenu(menuItems: Array<TextMenuItem>) {
-    console.log('menuItems size=' + menuItems.length);
-    menuItems.forEach((value, index) => {
-      console.log('menuItem' + index + ', id=' + JSON.stringify(value));
-    })
-    let extensionMenuItems: Array<TextMenuItem> = [
-      {
-        content: 'RichEditor扩展1', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension1')
-      },
-      {
-        content: 'RichEditor扩展2', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension2')
-      },
-      {
-        content: 'RichEditor扩展3', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension3')
-      },
-      {
-        content: 'RichEditor扩展4', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension4')
-      }
+  @State endIndex: number | undefined = 0;
+  onCreateMenu = (menuItems: Array<TextMenuItem>) => {
+    const idsToFilter = [
+      TextMenuItemId.of('OH_DEFAULT_TRANSLATE'),
+      TextMenuItemId.of('OH_DEFAULT_SHARE'),
+      TextMenuItemId.of('OH_DEFAULT_SEARCH'),
+      TextMenuItemId.of('OH_DEFAULT_AI_WRITE')
     ]
-    return menuItems.concat(extensionMenuItems);
+    const items = menuItems.filter(item => !idsToFilter.some(id => id.equals(item.id)))
+    let item1: TextMenuItem = {
+      content: 'create1',
+      icon: $r('app.media.startIcon'),
+      id: TextMenuItemId.of('create1'),
+    };
+    let item2: TextMenuItem = {
+      content: 'create2',
+      id: TextMenuItemId.of('create2'),
+      icon: $r('app.media.startIcon'),
+    };
+    items.push(item1);
+    items.unshift(item2);
+    return items;
   }
-  onMenuItemClicked(menuItem: TextMenuItem, textRange: TextRange) {
-    if (menuItem.id.equals(TextMenuItemId.of('extension1'))) {
-      console.log('click' + menuItem.content + ', textRange=' + JSON.stringify(textRange));
+  onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
+    if (menuItem.id.equals(TextMenuItemId.of("create2"))) {
+      console.log("拦截 id: create2 start:" + textRange.start + "; end:" + textRange.end);
       return true;
+    }
+    if (menuItem.id.equals(TextMenuItemId.of("prepare1"))) {
+      console.log("拦截 id: prepare1 start:" + textRange.start + "; end:" + textRange.end);
+      return true;
+    }
+    if (menuItem.id.equals(TextMenuItemId.COPY)) {
+      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
+      return true;
+    }
+    if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
+      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
+      return false;
     }
     return false;
   }
+  onPrepareMenu = (menuItems: Array<TextMenuItem>) => {
+    let item1: TextMenuItem = {
+      content: 'prepare1_' + this.endIndex,
+      icon: $r('app.media.startIcon'),
+      id: TextMenuItemId.of('prepare1'),
+    };
+    menuItems.unshift(item1);
+    return menuItems;
+  }
+  @State editMenuOptions: EditMenuOptions = {
+    onCreateMenu: this.onCreateMenu,
+    onMenuItemClick: this.onMenuItemClick,
+    onPrepareMenu: this.onPrepareMenu
+  };
 
   build() {
-    Row() {
+    Column() {
       RichEditor(this.options)
         .onReady(() => {
-          this.controller.addTextSpan("RichEditor扩展")
+          this.controller.addTextSpan("RichEditor editMenuOptions")
         })
-        .editMenuOptions({
-          onCreateMenu: (menuItems: Array<TextMenuItem>) => {
-            return this.onCreateMenu(menuItems);
-          },
-          onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
-            return this.onMenuItemClicked(menuItem, textRange);
-          }
+        .editMenuOptions(this.editMenuOptions)
+        .onSelectionChange((range: RichEditorRange) => {
+          console.log("onSelectionChange, (" + range.start + "," + range.end + ")");
+          this.endIndex = range.end
         })
-        .height(200)
+        .height(50)
+        .margin({ top: 100 })
         .borderWidth(1)
         .borderColor(Color.Red)
     }
+    .width("90%")
+    .margin("5%")
   }
 }
 ```
 
-![RichEditorSelectionMenuOptions](figures/richEditorSelectionMenuOptions.png)
+![RichEditorEditMenuOptions](figures/richEditorEditMenuOptions.gif)
 
 ### 示例23（组件部分常用属性）
 通过[barState](#barstate13)属性设置组件滚动条的显示模式。通过[enableKeyboardOnFocus](#enablekeyboardonfocus12)属性设置组件通过点击以外的方式获焦时，是否主动拉起软键盘。通过[enableHapticFeedback](#enablehapticfeedback13)属性设置组件是否支持触控反馈。通过[getPreviewText](#getpreviewtext12)接口获取组件预上屏信息。通过[stopBackPress](#stopbackpress18)属性设置是否阻止返回键向其它组件或应用侧传递。
