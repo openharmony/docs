@@ -8,6 +8,7 @@
 >  - 该组件滚动的前提是主轴方向大小小于内容大小。
 >  - Scroll组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。
 >  - Scroll组件的高度超出屏幕显示范围时，可以通过设置通用属性[layoutWeight](ts-universal-attributes-size.md#layoutweight)让Scroll高度适应主轴的剩余空间。
+>  - 手指触摸屏幕时，会停止当前触摸范围内所有滚动组件的滚动动画（[scrollTo](#scrollto)和[scrollToIndex](#scrolltoindex)接口触发的滚动动画除外），包括边缘回弹动画。
 
 
 ## 子组件
@@ -869,7 +870,7 @@ getItemIndex(x: number, y: number): number
 
 | 名称   | 类型  | 必填 | 说明              |
 | ----- | ------ | ------ | ----------------- |
-| extraOffset | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 滑动到指定Index的额外偏移量。 |
+| extraOffset | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 滑动到指定Index的额外偏移量。如果值为正数，则向底部额外偏移；如果值为负数，则向顶部额外偏移。 |
 
 ## ScrollPageOptions<sup>14+</sup>对象说明
 
