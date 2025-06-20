@@ -10723,6 +10723,10 @@ ArkUI_ErrorCode OH_ArkUI_FocusRequest(ArkUI_NodeHandle node);
 | -------- | -------- |
 | node | 组件节点指针。  |
 
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 请求成功。 [ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE](_ark_u_i___native_module.md#arkui_errorcode) - 节点无法获得焦点。 [ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR](_ark_u_i___native_module.md#arkui_errorcode) - 祖先节点无法获得焦点。[ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT](_ark_u_i___native_module.md#arkui_errorcode) - 节点不存在。
+
 ### OH_ArkUI_FocusSetAutoTransfer()
 ```
 void OH_ArkUI_FocusSetAutoTransfer(ArkUI_ContextHandle uiContext, bool autoTransfer);
@@ -10738,7 +10742,7 @@ void OH_ArkUI_FocusSetAutoTransfer(ArkUI_ContextHandle uiContext, bool autoTrans
 | 名称 | 描述 |
 | -------- | -------- |
 | uiContext | UI实例对象指针。 |
-| autoTransfer | 页面切换时，是否转移焦点。 |
+| autoTransfer | 页面切换时，是否转移焦点。true表示页面切换时转移焦点，false表示页面切换时焦点不转移。|
 
 ### OH_ArkUI_FocusSetKeyProcessingMode()
 ```
