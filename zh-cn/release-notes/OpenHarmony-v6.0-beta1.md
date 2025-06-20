@@ -35,12 +35,13 @@ OpenHarmony 6.0 Beta1版本进一步增强ArkUI组件能力，提供更安全、
 
 ### 窗口管理
 
-- 新增支持窗口显示时默认不获取焦点，点击后可获取焦点。
+- 新增支持窗口显示时默认不获取焦点，点击后可获取焦点。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md#showwindow20)）
 
-- 新增支持输入法动画开始前和结束后的回调，方便应用进行输入法弹出与收回动画的响应。
+- 新增支持输入法动画开始前和结束后的回调，方便应用进行输入法弹出与收回动画的响应。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md#onkeyboardwillshow20)
 
-- 窗口文本处理能力增强：新增支持中西文自动间距，支持排版时去除行位空格；新增支持修改文本颜色无需重新排版；新增支持不跟随系统高对比度文字开关设置。
+### 图形
 
+新增支持中西文自动间距，支持排版时去除行位空格；新增支持修改文本颜色无需重新排版；新增支持不跟随系统高对比度文字开关设置。（[API参考](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-graphics-text.md#paragraphstyle)
 
 ### 包管理
 
@@ -137,8 +138,8 @@ Wi-Fi新增支持连接候选网络时提示确认是否信任该网络，并提
 | -------- | -------- | -------- |
 | OpenHarmony | 6.0 Beta1 | NA | 
 | Public SDK | Ohos_sdk_public 6.0.0.34 (API Version 20 Beta1) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 | 
-| HUAWEI DevEco Studio（可选） | 6.0.0 Beta1 | OpenHarmony应用开发推荐使用。 | 
-| HUAWEI DevEco Device Tool（可选） | 4.0 Release | OpenHarmony智能设备集成开发环境推荐使用。 | 
+| HUAWEI DevEco Studio（可选） | 6.0.0 Beta1 | OpenHarmony应用开发推荐使用。<br />*待发布后提供*。 | 
+| HUAWEI DevEco Device Tool（可选） | 4.0 Release | OpenHarmony智能设备集成开发环境推荐使用。<br />[请点击这里获取](https://device.harmonyos.com/cn/develop/ide#download)。 | 
 
 
 ## 源码获取
@@ -210,15 +211,14 @@ Wi-Fi新增支持连接候选网络时提示确认是否信任该网络，并提
 
 | 版本源码                                | **版本信息** | **下载站点**                                                 | **SHA256校验码**                                             | **软件包容量** |
 | --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
-| 全量代码（标准、轻量和小型系统）        | 6.0 Beta1    | *软件包上传中* | *软件包上传中* | *软件包上传中* |
-| Hi3861解决方案（二进制）        | 6.0 Beta1    | *软件包上传中* | *软件包上传中* | *软件包上传中* |
-| Hi3516解决方案-LiteOS（二进制） | 6.0 Beta1    | *软件包上传中* | *软件包上传中* | *软件包上传中* |
-| Hi3516解决方案-Linux（二进制）  | 6.0 Beta1    | *软件包上传中* | *软件包上传中* | *软件包上传中* |
-| RK3568标准系统解决方案（二进制）        | 6.0.0.34  | *软件包上传中* | *软件包上传中* | *软件包上传中* |
-| 标准系统Public SDK包（Mac）             | 6.0.0.34 | *软件包上传中* | *软件包上传中* | *软件包上传中* |
-| 标准系统Public SDK包（Mac-M1）             | 6.0.0.34  | *软件包上传中* | *软件包上传中* | *软件包上传中* |
-| 标准系统Public SDK包（Windows/Linux）   | 6.0.0.34   | *软件包上传中* | *软件包上传中* | *软件包上传中* |
-
+| 全量代码（标准、轻量和小型系统）        | 6.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/6.1-Beta1/code-v6.0-Beta1.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/6.1-Beta1/code-v6.0-Beta1.tar.gz.sha256) | 49.1 GB |
+| Hi3861解决方案（二进制）        | 6.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/6.1-Beta1/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/6.1-Beta1/hispark_pegasus.tar.gz.sha256) | 28.4 MB |
+| Hi3516解决方案-LiteOS（二进制） | 6.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/6.1-Beta1/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/6.1-Beta1/hispark_taurus_LiteOS.tar.gz.sha256) | 350.0 MB |
+| Hi3516解决方案-Linux（二进制）  | 6.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/6.1-Beta1/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/6.1-Beta1/hispark_taurus_Linux.tar.gz.sha256) | 223.6 MB |
+| RK3568标准系统解决方案（二进制）        | 6.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/6.1-Beta1/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/6.1-Beta1/dayu200_standard_arm32.tar.gz.sha256) | 	9.7 GB |
+| 标准系统Public SDK包（Mac）             | 6.0.0.34 | [站点](https://repo.huaweicloud.com/openharmony/os/6.1-Beta1/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/6.1-Beta1/ohos-sdk-mac-public.tar.gz.sha256) | 1.3 GB |
+| 标准系统Public SDK包（Mac-M1）             | 6.0.0.34  | [站点](https://repo.huaweicloud.com/openharmony/os/6.1-Beta1/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/6.1-Beta1/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 1.2 GB |
+| 标准系统Public SDK包（Windows/Linux）   | 6.0.0.34   | [站点](https://repo.huaweicloud.com/openharmony/os/6.1-Beta1/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/6.1-Beta1/ohos-sdk-windows_linux-public.tar.gz.sha256) | 3.2 GB |
 
 
 ## 修复缺陷列表
