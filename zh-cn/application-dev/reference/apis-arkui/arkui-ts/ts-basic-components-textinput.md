@@ -791,7 +791,7 @@ textOverflow(value: TextOverflow)
 >  **说明：**  
 >   TextInput组件不支持设置TextOverflow.MARQUEE模式，当设置为TextOverflow.MARQUEE模式时，内联模式非编辑态下显示为TextOverflow.Ellipsis，内联模式编辑态下以及非内联模式下显示为TextOverflow.Clip。
 >
->  未设置内联模式时，按照默认风格显示。即使设置了textOverflow，也不生效。
+>  未设置内联模式时，按照默认风格显示。若此时设置textOverflow，则不生效。
 
 ### textIndent<sup>12+</sup>
 
@@ -950,6 +950,10 @@ enablePreviewText(enable: boolean)
 >  **说明：**
 >  
 >  “预上屏”描述的是一种文字暂存状态。需要在输入法中开启预上屏功能，在输入文本过程中、未确认输入候选词时，文本框中显示标记文本。如通过拼音输入中文过程中、未确定候选词时，在输入框中显示拼音字母，这一状态称为文字预上屏。
+>
+>  开启预上屏：<br>1. 通过键盘输入英文，会触发onWillInsert、onDidInsert回调。<br>2. 键盘输入中文拼音，不触发onWillInsert、onDidInsert回调，会触发onChange回调。<br>3. 通过键盘删除，会触发onWillDelete、onDidDelete回调。
+>
+>  关闭预上屏：<br>1. 通过键盘输入中英文，会触发onWillInsert、onDidInsert回调。<br>2. 键盘输入中文拼音，不触发onWillInsert、onDidInsert、onChange回调。<br>3. 通过键盘删除，会触发onWillDelete、onDidDelete回调。
 
 ### enableHapticFeedback<sup>13+</sup>
 
