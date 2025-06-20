@@ -179,6 +179,7 @@
 | [ArkUI_RouterPageState](_ark_u_i___native_module.md#arkui_routerpagestate) {<br/>[ARKUI_ROUTER_PAGE_STATE_ON_WILL_APPEAR](_ark_u_i___native_module.md) = 0, [ARKUI_ROUTER_PAGE_STATE_ON_WILL_DISAPPEAR](_ark_u_i___native_module.md) = 1, [ARKUI_ROUTER_PAGE_STATE_ON_SHOW](_ark_u_i___native_module.md) = 2, [ARKUI_ROUTER_PAGE_STATE_ON_HIDE](_ark_u_i___native_module.md) = 3,<br/>[ARKUI_ROUTER_PAGE_STATE_ON_BACK_PRESS](_ark_u_i___native_module.md) = 4<br/>} | 定义Router Page的状态。  | 
 | [ArkUI_DatePickerMode](_ark_u_i___native_module.md#arkui_datepickermode) { <br/>[ARKUI_DATEPICKER_MODE_DATE](_ark_u_i___native_module.md) = 0, [ARKUI_DATEPICKER_YEAR_AND_MONTH](_ark_u_i___native_module.md) = 1, [ARKUI_DATEPICKER_MONTH_AND_DAY](_ark_u_i___native_module.md) = 2 <br/>} | 定义要显示的日期选项列样式。 | 
 | [ArkUI_ExpandMode](_ark_u_i___native_module.md#arkui_expandmode) { <br/>[ARKUI_NOT_EXPAND](_ark_u_i___native_module.md) = 0, [ARKUI_EXPAND](_ark_u_i___native_module.md) = 1, [ARKUI_LAZY_EXPAND](_ark_u_i___native_module.md) = 2 <br/>} | 定义子节点展开模式枚举值。 | 
+| [ArkUI_ListItemGroupArea](_ark_u_i___native_module.md#arkui_listitemgrouparea) { <br/>[ARKUI_LIST_ITEM_GROUP_AREA_OUTSIDE](_ark_u_i___native_module.md) = 0, [ARKUI_LIST_ITEM_SWIPE_AREA_NONE](_ark_u_i___native_module.md) = 1, [ARKUI_LIST_ITEM_SWIPE_AREA_ITEM](_ark_u_i___native_module.md) = 2, [ARKUI_LIST_ITEM_SWIPE_AREA_HEADER](_ark_u_i___native_module.md) = 3, [ARKUI_LIST_ITEM_SWIPE_AREA_FOOTER](_ark_u_i___native_module.md) = 4 <br/>} | 定义组件区域的枚举值。 | 
 
 
 ### 函数
