@@ -514,10 +514,6 @@ WordBreak.BREAK_ALL与{overflow:&nbsp;TextOverflow.Ellipsis}、maxLines组合使
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
 | value  | [WordBreak](ts-appendix-enums.md#wordbreak11) | 是   | 断行规则。 <br />默认值：WordBreak.BREAK_WORD |
 
->  **说明：**
->
-> 更多断行规则参考[Unicode Line Breaking Algorithm](https://unicode.org/reports/tr14/)。
-
 ### selection<sup>11+</sup>
 
 selection(selectionStart: number, selectionEnd: number)
