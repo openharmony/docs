@@ -26,7 +26,7 @@ PluginComponent(options: PluginComponentOptions)
 
 **参数：**
 
-| 参数名  | 参数类型                                                     | 必填 | 说明                                                     |
+| 参数名  | 类型                                                     | 必填 | 说明                                                     |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | options | [PluginComponentOptions](#plugincomponentoptions18类型说明) | 是   | 定义用于构造插件组件的选项。 |
 
@@ -69,7 +69,7 @@ PluginComponent(options: PluginComponentOptions)
 
 ### onComplete
 
-onComplete(callback:&nbsp;VoidCallback\<void\>)
+onComplete(callback:&nbsp;VoidCallback)
 
 组件加载完成时触发回调。
 
@@ -81,7 +81,7 @@ onComplete(callback:&nbsp;VoidCallback\<void\>)
 
 | 参数名  | 类型                                                     | 必填 | 说明                                                     |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | [VoidCallback](../../apis-basic-services-kit/js-apis-base.md#callback) \<void> | 是   | 回调函数，组件加载完成时触发的回调。 |
+| callback | [VoidCallback](../../apis-basic-services-kit/js-apis-base.md#callback) | 是   | 回调函数，组件加载完成时触发的回调。 |
 
 ### onError
 
@@ -166,7 +166,7 @@ onError(callback:&nbsp;PluginErrorCallback)
           .margin({ top: 20 })
           .onClick(() => {
             plugin.onListener();
-            console.log("Button('Register Push Listener')");
+            console.info("Button('Register Push Listener')");
           })
         Button('Request')
           .fontSize(50)
@@ -175,7 +175,7 @@ onError(callback:&nbsp;PluginErrorCallback)
           .margin({ top: 20 })
           .onClick(() => {
             plugin.Request();
-            console.log("Button('Request')");
+            console.info("Button('Request')");
           })
         PluginComponent({
           // 提供方
@@ -183,10 +183,10 @@ onError(callback:&nbsp;PluginErrorCallback)
           data: { 'countDownStartValue': 'new countDownStartValue' }
         }).size({ width: 500, height: 350 })
           .onComplete(() => {
-            console.log("onComplete");
+            console.info("onComplete");
           })
           .onError((info: Info) => {
-            console.log("onComplete" + info.errcode + ":" + info.msg);
+            console.info("onComplete" + info.errcode + ":" + info.msg);
           })
       }
       .width('100%')
@@ -231,7 +231,7 @@ onError(callback:&nbsp;PluginErrorCallback)
           .margin({ top: 20 })
           .onClick(() => {
             plugin.onListener();
-            console.log("Button('Register Request Listener')");
+            console.info("Button('Register Request Listener')");
           })
         Button('Push')
           .fontSize(30)
@@ -241,7 +241,7 @@ onError(callback:&nbsp;PluginErrorCallback)
           .onClick(() => {
             plugin.Push();
             this.message = "Button('Push')";
-            console.log("Button('Push')");
+            console.info("Button('Push')");
           })
         Text(this.message)
           .height(150)
@@ -269,17 +269,17 @@ var providerName = 'Index'
 
 // push事件监听
 function onPushListener(source, template, data, extraData) {
-    console.log("onPushListener template.source=" + template.source)
-    console.log("onPushListener template.ability=" + template.ability)
-    console.log("onPushListener data=" + JSON.stringify(data))
-    console.log("onPushListener extraData=" + JSON.stringify(extraData))
+    console.info("onPushListener template.source=" + template.source)
+    console.info("onPushListener template.ability=" + template.ability)
+    console.info("onPushListener data=" + JSON.stringify(data))
+    console.info("onPushListener extraData=" + JSON.stringify(extraData))
 }
 
 // request事件监听
 function onRequestListener(source, name, data)
 {
-    console.log("onRequestListener name=" + name);
-    console.log("onRequestListener data=" + JSON.stringify(data));
+    console.info("onRequestListener name=" + name);
+    console.info("onRequestListener data=" + JSON.stringify(data));
     return {template:"pluginTemplate", data:data};
 }
 
@@ -308,7 +308,7 @@ export default {
                 jsonPath: "",
             },
             (err, data) => {
-                console.log("push_callback: push ok!");
+                console.info("push_callback: push ok!");
             }
         )
     },
@@ -327,10 +327,10 @@ export default {
             jsonPath: "",
         },
             (err, data) => {
-                console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
-                console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
-                console.log("request_callback: data=" + JSON.stringify(data.data))
-                console.log("request_callback: extraData=" + JSON.stringify(data.extraData))
+                console.info("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
+                console.info("request_callback: componentTemplate.source=" + data.componentTemplate.source)
+                console.info("request_callback: data=" + JSON.stringify(data.data))
+                console.info("request_callback: extraData=" + JSON.stringify(data.extraData))
             }
         )
     }
@@ -350,16 +350,16 @@ var providerName = 'Index'
 
 // push事件监听
 function onPushListener(source, template, data, extraData) {
-    console.log("onPushListener template.source=" + template.source)
-    console.log("onPushListener template.ability=" + template.ability)
-    console.log("onPushListener data=" + JSON.stringify(data))
-    console.log("onPushListener extraData=" + JSON.stringify(extraData))
+    console.info("onPushListener template.source=" + template.source)
+    console.info("onPushListener template.ability=" + template.ability)
+    console.info("onPushListener data=" + JSON.stringify(data))
+    console.info("onPushListener extraData=" + JSON.stringify(extraData))
 }
 
 // request事件监听
 function onRequestListener(source, name, data) {
-    console.log("onRequestListener name=" + name)
-    console.log("onRequestListener data=" + JSON.stringify(data))
+    console.info("onRequestListener name=" + name)
+    console.info("onRequestListener data=" + JSON.stringify(data))
     return { template: "pluginTemplate", data: data }
 }
 
@@ -392,7 +392,7 @@ export default {
                 jsonPath: "",
             },
             (err, data) => {
-                console.log("push_callback: push ok!");
+                console.info("push_callback: push ok!");
             }
         )
     },
@@ -415,10 +415,10 @@ export default {
             jsonPath: "",
         },
             (err, data) => {
-                console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
-                console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
-                console.log("request_callback: data=" + JSON.stringify(data.data))
-                console.log("request_callback: extraData=" + JSON.stringify(data.extraData))
+                console.info("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
+                console.info("request_callback: componentTemplate.source=" + data.componentTemplate.source)
+                console.info("request_callback: data=" + JSON.stringify(data.data))
+                console.info("request_callback: extraData=" + JSON.stringify(data.extraData))
             }
         )
     }
