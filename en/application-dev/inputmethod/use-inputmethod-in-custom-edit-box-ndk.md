@@ -14,7 +14,7 @@ For details about the APIs, see [InputMethod](../reference/apis-ime-kit/_input_m
 Add the following library to **CMakeLists.txt**.
 
 ```txt
-libohinputmethod.z.so
+libohinputmethod.so
 ```
 
 ## Including Header Files

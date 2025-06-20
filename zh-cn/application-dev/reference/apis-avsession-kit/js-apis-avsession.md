@@ -8437,7 +8437,7 @@ try {
 ## AVControlCommandType<sup>10+</sup>
 
 type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevious' | 'fastForward' | 'rewind' |
-  'seek' | 'setSpeed' | 'setLoopMode' | 'toggleFavorite' | 'playFromAssetId' | 'playWithAssetId' | 'answer' | 'hangUp' | 'toggleCallMute' | 'setTargetLoopMode'
+  'seek' | 'setSpeed' | 'setLoopMode' | 'setTargetLoopMode' | 'toggleFavorite' | 'playFromAssetId' | 'playWithAssetId' | 'answer' | 'hangUp' | 'toggleCallMute'
 
 会话可传递的命令。
 
@@ -8461,13 +8461,13 @@ type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevio
 | 'seek'           | 跳转某一节点。对应参数使用number类型。|
 | 'setSpeed'       | 设置播放倍速。对应参数使用number类型。 |
 | 'setLoopMode'    | 设置循环模式。对应参数使用[LoopMode](#loopmode10)。 |
+| 'setTargetLoopMode' <sup>18+</sup>   | 设置目标循环模式。对应参数推荐使用[LoopMode](#loopmode10)。 |
 | 'toggleFavorite' | 是否收藏。对应参数使用[AVMetadata.assetId](#avmetadata10)。     |
 | 'playFromAssetId'| 播放指定的assetId。 |
 | 'playWithAssetId' <sup>20+</sup>    | 播放指定的assetId。对应参数使用[AVMetadata.assetId](#avmetadata10)，<br>字符串长度<40960字节。<br> |
 |'answer'          | 接听。无需传入参数。        |
 | 'hangUp'         | 挂断。无需传入参数。        |
 |'toggleCallMute'  | 设置通话静音状态。无需传入参数。 |
-| 'setTargetLoopMode' <sup>18+</sup>   | 设置目标循环模式。对应参数推荐使用[LoopMode](#loopmode10)。 |
 
 ## AVControlCommand<sup>10+</sup>
 

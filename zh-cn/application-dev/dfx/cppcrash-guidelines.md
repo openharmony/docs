@@ -23,9 +23,9 @@
 
 DevEco Studio会收集设备`/data/log/faultlog/faultlogger/`路径下的进程崩溃故障日志到FaultLog下，根据进程名和故障和时间分类显示。获取日志的方法参见：[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-fault-log)。
 
-#### 方式二：通过hiAppEvent接口订阅
+#### 方式二：通过HiAppEvent接口订阅
 
-hiAppEvent提供了故障订阅接口，可以订阅各类故障打点，详见[HiAppEvent介绍](hiappevent-intro.md)。
+HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hiappevent-intro.md)。参考[订阅崩溃事件（ArkTS）](hiappevent-watcher-crash-events-arkts.md)或[订阅崩溃事件（C/C++）](hiappevent-watcher-crash-events-ndk.md)完成崩溃事件订阅，并通过事件的[external_log](hiappevent-watcher-crash-events.md#params字段说明)字段读取崩溃日志内容。
 
 #### 方式三：通过hdc获取日志，需打开开发者选项
 
@@ -502,6 +502,7 @@ Module name:crasher_cpp <- 模块名
 Timestamp:2017-08-06 21:52:51.000 <- 故障发生时间戳
 Pid:10208 <- 进程号
 Uid:0     <- 用户ID
+HiTraceId:a92ab1c7eae68fa  <- HiTraceId(非必选，进程无HiTraceId不打印)
 Process name:./crasher_cpp <- 进程名称
 Process life time:1s  <- 进程存活时间
 Process Memory(kB): 11902(Rss)     <- 进程占用内存
@@ -654,10 +655,15 @@ HiLog: <- 故障之前进程打印的流水日志
 | #01 | 00006e95 | /data/crasher_cpp | DfxCrasher::RaiseSegmentFaultException() | 92 | d6cead5be17c9bb7eee2a9b4df4b7626 |
 | #02 | 00008909 | /data/crasher_cpp | DfxCrasher::ParseAndDoCrash(char const*) const | 612 | d6cead5be17c9bb7eee2a9b4df4b7626 |
 
-> **说明**
+> **说明：**
 >
 > - 文件名也有可能是匿名内存映射，比如[heap]、[stack]等。
-> - 函数名长度超过256字节时，CppCrash日志不打印函数名和函数内偏移的字节数。
+> - 日志没有打印函数名可能是由于以下两种原因：
+>
+> 1. 二进制文件中没有保存该函数名信息。
+>
+> 2. 二进制文件中保存的函数名长度超过256字节。
+>
 > - 如果没打印BuildID，可以通过readelf -n xxx.so确认二进制是否有BuildID，如果没有则尝试增加编译参数--enable-linker-build-id，同时注意LDFLAGS‌里不要加--build-id=none。
 
 ARM 64位系统支持抓取CPP和JS之间跨语言的调用栈，因此如果在函数调用链上有JS代码，崩溃日志还会打印如下格式的JS代码调用栈：
@@ -688,6 +694,7 @@ Module name:crasher_cpp            <- 模块名
 Timestamp:2024-05-06 20:10:51.000  <- 故障发生时间戳
 Pid:9623   <- 进程号
 Uid:0         <- 用户ID
+HiTraceId:a92ab1c7eae68fa          <- HiTraceId(非必选，进程无HiTraceId不打印)
 Process name:./crasher_cpp         <- 进程名称
 Process life time:1s               <- 进程存活时间
 Process Memory(kB): 11902(Rss)     <- 进程占用内存
@@ -746,6 +753,7 @@ Module name:crasher_cpp                <- 模块名
 Timestamp:2024-05-06 20:18:24.000      <- 故障发生时间戳
 Pid:9838                               <- 进程号
 Uid:0                                  <- 用户ID
+HiTraceId:a92ab1c7eae68fa              <- HiTraceId(非必选，进程无HiTraceId不打印)
 Process name:./crasher_cpp             <- 进程名称
 Process life time:2s                   <- 进程存活时间
 Process Memory(kB): 11902(Rss)     <- 进程占用内存
@@ -777,6 +785,7 @@ Module name:crasher_cpp                   <- 模块名
 Timestamp:2024-05-06 20:27:23.2035266415  <- 故障发生时间戳
 Pid:10026                                 <- 进程号
 Uid:0                                     <- 用户ID
+HiTraceId:a92ab1c7eae68fa                 <- HiTraceId(非必选，进程无HiTraceId不打印)
 Process name:./crasher_cpp                <- 进程名称
 Process life time:1s                      <- 进程存活时间
 Process Memory(kB): 11902(Rss)            <- 进程占用内存
@@ -815,6 +824,7 @@ Module name:crasher_cpp                     <- 模块名
 Timestamp:2024-05-06 20:28:24.000           <- 故障发生时间戳
 Pid:9838                                    <- 进程号
 Uid:0                                       <- 用户ID
+HiTraceId:a92ab1c7eae68fa                   <- HiTraceId(非必选，进程无HiTraceId不打印)
 Process name:./crasher_cpp                  <- 进程名称
 Process life time:2s                        <- 进程存活时间
 Process Memory(kB): 11902(Rss)            <- 进程占用内存
@@ -833,16 +843,16 @@ Tid:18257, Name:crasher_cpp                 <- 故障线程号，线程名
 ...
 ```
 
-#### 应用通过hiAppEvent设置崩溃日志配置参数场景
+#### 应用通过HiAppEvent设置崩溃日志配置参数场景
 
-系统提供了通用的崩溃日志生成功能，但一些应用对崩溃日志打印内容有个性化的需求，因此从**API version 20**开始hiAppEvent的[setEventConfig](hiappevent-watcher-crash-events-arkts.md#崩溃日志配置参数设置接口描述)接口支持设置崩溃日志配置参数。以下是一份DevEco Studio归档在FaultLog的32位系统崩溃日志的核心内容：
+系统提供了通用的崩溃日志生成功能，但一些应用对崩溃日志打印内容有个性化的需求，因此从**API version 20**开始HiAppEvent的[setEventConfig](hiappevent-watcher-crash-events-arkts.md#崩溃日志配置参数设置接口描述)接口支持设置崩溃日志配置参数。以下是一份DevEco Studio归档在FaultLog的32位系统崩溃日志的核心内容：
 
 ``` text
 ...
 Build info:OpenHarmony 6.0.0.33
 Enabled app log configs:    <- 使能的配置参数列表，只打印不是默认值的配置参数
 Extend pc lr printing:true  <- extend_pc_lr_printing参数设置为true
-Log cut off size:102400B    <- 崩溃日志大小截断到100KB（仅通过hiAppEvent接口订阅获取的崩溃日志生效）
+Log cut off size:102400B    <- 崩溃日志大小截断到100KB（仅通过HiAppEvent接口订阅获取的崩溃日志生效）
 Simplify maps printing:true <- simplify_vma_printing参数设置为true
 Timestamp:2025-05-17 19:17:07.000
 ...

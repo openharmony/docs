@@ -16,6 +16,8 @@ constructor(value: CustomDialogControllerOptions)
 > **说明：**
 >
 > 自定义弹窗的所有参数，不支持动态刷新。
+>
+> 在CustomDialogController作为全局变量以实现全局自定义弹窗的场景下，若对controller重新赋值，则无法通过其关闭之前的弹窗。建议在重新赋值前先关闭弹窗。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1096,7 +1098,7 @@ struct Example3 {
       Button('CustomDialog')
         .onClick(() => {
           this.dialogController?.open()
-        }).backgroundColor(0x317aff).height("88px")
+        }).backgroundColor(0x317aff).height("60vp")
       Text(this.log).fontSize(30).margin({ top: 200 })
     }.width('100%').margin({ top: 5 })
   }

@@ -265,6 +265,45 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
 
   ![2023022700701(1)](figures/2023022700701(1).jpg)
 
+## 使用状态变量驱动画布刷新
+
+可以使用状态变量来驱动Canvas刷新，将变化的数据通过@Watch监听，并绑定自定义的draw()方法。当数据刷新时，@Watch绑定的方法会执行绘制逻辑，使Canvas刷新。
+
+```ts
+@Entry
+@Component
+struct CanvasContentUpdate {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  @State @Watch('draw')content: string = 'Hello World';
+
+  draw() {
+    this.context.clearRect(0, 0, 400, 200); // 清空Canvas的内容
+    this.context.fillText(this.content, 50, 100); // 重新绘制
+  }
+
+  build() {
+    Column() {
+      Canvas(this.context)
+        .width('100%')
+        .height('25%')
+        .backgroundColor('rgb(39, 135, 217)')
+        .onReady(() => {
+          this.context.font = '65px sans-serif';
+          this.context.fillText(this.content, 50, 100);
+        })
+      TextInput({
+        text:$$this.content // 修改文本输入框里的内容时，状态变量的更新会驱动Canvas刷新
+      })
+        .fontSize(35)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![data_drive_update](figures/data_drive_update.gif)
 
 ## 场景示例
 

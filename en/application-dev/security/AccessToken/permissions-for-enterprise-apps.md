@@ -318,6 +318,23 @@ Allows an application to obtain visible window information of the current screen
 
 **Valid since**: 18
 
+## ohos.permission.kernel.AUTH_AUDIT_EVENT
+
+Allows an enterprise security application to block security audit events.
+
+With this permission, the application can block security audit events, such as events of file creation, file opening, and file deletion.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: PC/2in1
+
+**Valid since**：20
+
 ## ohos.permission.SUPPORT_APP_SERVICE_EXTENSION
 
 Allows an application to be launched as an AppServiceExtension.

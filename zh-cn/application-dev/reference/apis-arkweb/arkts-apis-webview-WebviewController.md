@@ -6,7 +6,7 @@
 >
 > - 本模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> - 示例效果请以真机运行为准，当前IDE预览器不支持。
+> - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 ## constructor<sup>11+</sup>
 
@@ -4934,7 +4934,7 @@ static setAppCustomUserAgent(userAgent: string): void
 
 当需要设置应用级自定义用户代理时，建议在Web组件创建前调用setAppCustomUserAgent方法设置User-Agent，再创建指定src的Web组件或通过[loadUrl](#loadurl)加载具体页面。
 
-默认User-Agent定义与使用场景，及相关User-Agent接口定义优先级请参考[User-Agent开发指导](../../web/web-default-userAgent.md)
+默认User-Agent定义与使用场景，及相关User-Agent接口定义优先级请参考[User-Agent开发指导](../../web/web-default-userAgent.md)。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -4983,9 +4983,7 @@ static setUserAgentForHosts(userAgent: string, hosts: Array): void
 
 当需要对特定网站设置自定义用户代理时，建议在Web组件创建前调用setUserAgentForHosts方法设置User-Agent，再创建指定src的Web组件或通过[loadUrl](#loadurl)加载具体页面。
 
-
-
-默认User-Agent定义与使用场景，及相关User-Agent接口定义优先级请参考[User-Agent开发指导](../../web/web-default-userAgent.md)
+默认User-Agent定义与使用场景，及相关User-Agent接口定义优先级请参考[User-Agent开发指导](../../web/web-default-userAgent.md)。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 

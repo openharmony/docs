@@ -37,6 +37,8 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 
 ## PopupOptions类型说明
 
+基础气泡的信息。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                                  | 类型                                                         | 必填 | 说明                                                      |
@@ -76,6 +78,8 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 
 ## PopupMessageOptions<sup>10+</sup>类型说明
 
+气泡文本的样式。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -86,6 +90,8 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 | font      | [Font](ts-types.md#font)                   | 否   | 设置气泡信息字体属性。<br/>**说明：** <br/>不支持设置family。 |
 
 ## DismissPopupAction<sup>12+</sup>类型说明
+
+气泡关闭的信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -98,14 +104,21 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 
 ## DismissReason<sup>12+</sup>枚举说明
 
+关闭原因类型。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 说明        |
-| ------------- | ------------------ |
-| PRESS_BACK    | 点击Back键。       |
-| TOUCH_OUTSIDE | 点击组件外部区域。 |
+| 名称          | 值   | 说明                                                       |
+| ------------- | ---- | ------------------------------------------------------------ |
+| PRESS_BACK    | 0    | 点击三键back、侧滑（左滑/右滑）、键盘ESC。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| TOUCH_OUTSIDE | 1    | 点击遮障层时。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| CLOSE_BUTTON  | 2    | 点击关闭按钮。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| SLIDE_DOWN    | 3    | 下拉关闭。<br/>**说明：** <br/>该接口仅支持在[半模态转场](ts-universal-attributes-sheet-transition.md)中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| SLIDE<sup>20+</sup>    | 4    | 侧拉关闭。<br/>**说明：** <br/>该接口仅支持在[半模态转场](ts-universal-attributes-sheet-transition.md)中使用。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## CustomPopupOptions<sup>8+</sup>类型说明
+
+弹出自定义气泡的信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

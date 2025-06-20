@@ -73,6 +73,18 @@ try {
 }
 ```
 
+## AbilityRunningInfo<sup>14+</sup>
+
+type AbilityRunningInfo = _AbilityRunningInfo
+
+Ability运行的相关信息和状态的定义。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | ---- |
+| [_AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md) | Ability运行的相关信息和状态的定义。 |
+
 ## abilityManager.restartSelfAtomicService<sup>20+</sup>
 
 restartSelfAtomicService(context: Context): void

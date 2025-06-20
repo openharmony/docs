@@ -21,3 +21,39 @@ Internal error.
 **处理步骤**
 
 NA
+
+## 190001 无效的UIContext对象
+
+**错误信息**
+
+The uiContext is invalid.
+
+**错误描述**
+
+无效的UIContext对象。
+
+**可能原因**
+
+传入的UIContext对象无效。
+
+**处理步骤**
+
+传入有效的UIContext对象。
+
+## 190002 无效的回调函数
+
+**错误信息**
+
+The callback function is invalid.
+
+**错误描述**
+
+无效的回调函数。
+
+**可能原因**
+
+传入的回调函数类型错误。
+
+**处理步骤**
+
+传入正确类型的回调函数。

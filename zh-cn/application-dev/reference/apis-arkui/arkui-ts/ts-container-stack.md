@@ -15,6 +15,10 @@
 
 Stack(options?: StackOptions)
 
+> **说明：**
+>
+> 过多的嵌套组件数会导致性能劣化。在部分场景中，直接使用组件属性或借助系统API的能力可以替代层叠容器的效果，减少了嵌套组件数进而优化性能。最佳实践请参考[组件嵌套优化-优先使用组件属性代替嵌套组件](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-component-nesting-optimization#section78181114123811)。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -25,13 +29,13 @@ Stack(options?: StackOptions)
 
 | 参数名       | 类型                                    | 必填 | 说明                                                    |
 | ------------ | ------------------------------------------- | ---- | ----------------------------------------------------------- |
-| options | [StackOptions](#stackoptions14对象说明) | 否   | 设置子组件在容器内的对齐方式。 |
+| options | [StackOptions](#stackoptions18对象说明) | 否   | 设置子组件在容器内的对齐方式。 |
 
-## StackOptions<sup>14+</sup>对象说明
+## StackOptions<sup>18+</sup>对象说明
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

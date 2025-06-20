@@ -569,8 +569,6 @@ type OnTextPickerChangeCallback = (value: string | string[], index: number | num
 
 滑动选中[TextPicker](#textpicker)文本内容后，触发该回调。当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
 
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -590,8 +588,6 @@ type TextPickerScrollStopCallback = (value: string | string[], index: number | n
 
 当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -610,8 +606,6 @@ type TextPickerEnterSelectedAreaCallback = (value: string | string[], index: num
 滑动[TextPicker](#textpicker)过程中，选项进入分割线区域内，触发该回调。
 
 在多列联动场景中，不建议使用该回调，由于该回调标识的是滑动过程中选项进入分割线区域内的节点，而跟随变化的选项并不涉及滑动，因此，回调的返回值中，仅当前滑动列的值会正常变化，其余未滑动列的值保持不变。
-
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1009,8 +1003,6 @@ struct TextPickerExample {
 
 ```ts
 // xxx.ets
-import { TextPickerModifier } from '@kit.ArkUI';
-
 @Entry
 @Component
 struct TextPickerExample {
@@ -1021,16 +1013,6 @@ struct TextPickerExample {
       ['Text2', 'Text2', 'Text2', 'Text2'],
       ['Text3', 'Text3', 'Text3', 'Text3']
     ]
-  private textPickerModifier: TextPickerModifier = new TextPickerModifier()
-    .selectedBackgroundStyle({
-      borderRadius: {
-        topLeft:8,
-        topRight:8,
-        bottomLeft:8,
-        bottomRight:8
-      },
-      color: "#FFFFEEF6"
-    })
   build() {
     Column() {
       Row() {
@@ -1056,7 +1038,15 @@ struct TextPickerExample {
         .height("10%")
       Row() {
         TextPicker({ range: this.showText2 })
-          .attributeModifier(this.textPickerModifier)
+          .selectedBackgroundStyle({
+            borderRadius: {
+              topLeft:8,
+              topRight:8,
+              bottomLeft:8,
+              bottomRight:8
+            },
+            color: "#FFFFEEF6"
+          })
       }
     }.height('100%')
   }

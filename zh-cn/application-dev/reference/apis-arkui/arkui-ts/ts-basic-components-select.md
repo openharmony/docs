@@ -26,6 +26,8 @@ Select(options: Array\<SelectOption>)
 
 ## SelectOption对象说明
 
+下拉菜单项的信息。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型                            | 必填 | 说明       |
@@ -622,7 +624,7 @@ optionHeight(value: Dimension)
 
 设置下拉菜单显示的最大高度，不支持设置百分比。默认最大高度是屏幕可用高度的80%，设置的菜单最大高度不能超过默认最大高度。
 
-当设置为异常值或零时，属性不生效，下拉菜单最大高度设为默认值，即下拉菜单最大高度默认值为屏幕可用高度的80%。
+当设置为异常值或零时，属性不生效。
 
 如果下拉菜单所有选项的实际高度没有设定的高度大，下拉菜单的高度按实际高度显示。
 
@@ -642,7 +644,7 @@ optionHeight(height: Optional\<Dimension>)
 
 设置下拉菜单显示的最大高度，不支持设置百分比。默认最大高度是屏幕可用高度的80%，设置的菜单最大高度不能超过默认最大高度。与[optionHeight](#optionheight11)<sup>11+</sup>相比，height参数新增了对undefined类型的支持。
 
-当设置为异常值或零时，属性不生效，下拉菜单最大高度设为默认值，即下拉菜单最大高度默认值为屏幕可用高度的80%。
+当设置为异常值或零时，属性不生效。
 
 如果下拉菜单所有选项的实际高度小于设定的高度，下拉菜单的高度按实际高度显示。
 
@@ -854,6 +856,8 @@ showInSubWindow(showInSubWindow:Optional\<boolean>)
 
 ## ArrowPosition<sup>10+</sup>枚举说明
 
+箭头的位置。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -864,6 +868,8 @@ showInSubWindow(showInSubWindow:Optional\<boolean>)
 | START | 1 | 箭头在前，文字在后。 |
 
 ## MenuAlignType<sup>10+</sup>枚举说明
+
+下拉菜单的对齐方式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -889,6 +895,8 @@ showInSubWindow(showInSubWindow:Optional\<boolean>)
 | AVOID_AROUND_TARGET | 目标组件四周无足够空间时，在最大空间处压缩显示（可滚动）。 |
 
 ## MenuItemConfiguration<sup>12+</sup>对象说明
+
+开发者需要自定义class实现ContentModifier接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
