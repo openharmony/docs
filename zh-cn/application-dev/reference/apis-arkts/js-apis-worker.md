@@ -1653,7 +1653,7 @@ Worker线程自身的运行环境，GlobalScope类继承[WorkerEventTarget](#wor
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型                                                         | 可读 | 可写 | 说明                                  |
+| 名称 | 类型                                                         | 只读 | 可选 | 说明                                  |
 | ---- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------- |
 | name | string                                                       | 是   | 否   | Worker的名字，new&nbsp;Worker时指定。 |
 | self | [GlobalScope](#globalscope9)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | 是   | 否   | GlobalScope本身。                     |
@@ -2494,7 +2494,7 @@ Worker线程自身的运行环境，WorkerGlobalScope类继承[EventTarget](#eve
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型                                                         | 可读 | 可写 | 说明                                  |
+| 名称 | 类型                                                         | 只读 | 可选 | 说明                                  |
 | ---- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------- |
 | name | string                                                       | 是   | 否   | Worker的名字，new&nbsp;Worker时指定。 |
 | self | [WorkerGlobalScope](#workerglobalscopedeprecated)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | 是   | 否   | WorkerGlobalScope本身。               |
