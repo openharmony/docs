@@ -90,7 +90,7 @@
    });
    ```
 
-4. 构造NotificationRequest对象，并发布携带WantAgent的通知，[示例链接](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomNotification/entry/src/main/ets/feature/NotificationOperations.ets)。
+4. 构造NotificationRequest对象，并发布携带WantAgent的通知。
 
    > **说明：**
    >
@@ -132,3 +132,11 @@
      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in publishing notification.');
    });
    ```
+## 相关实例
+
+  <!--RP1-->
+
+  针对携带WantAgent的通知(ArkTS)，有以下相关实例可供参考：
+
+  - [NotificationOperations](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomNotification/entry/src/main/ets/feature/NotificationOperations.ets)
+  <!--RP1End-->
