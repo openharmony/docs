@@ -15,6 +15,8 @@ import { uiExtension } from '@kit.ArkUI';
 
 ## WindowProxy
 
+UIExtension宿主窗代理
+
 ### 属性
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
