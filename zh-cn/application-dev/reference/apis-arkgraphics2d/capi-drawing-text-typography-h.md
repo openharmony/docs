@@ -169,9 +169,9 @@
 | [void OH_Drawing_SetTypographyTextLineStyleHalfLeading(OH_Drawing_TypographyStyle* style, bool lineStyleHalfLeading)](#oh_drawing_settypographytextlinestylehalfleading) | 设置文本排版行样式是否为一半行间距。 |
 | [void OH_Drawing_SetTypographyTextLineStyleSpacingScale(OH_Drawing_TypographyStyle* style, double spacingScale)](#oh_drawing_settypographytextlinestylespacingscale) | 设置文本排版行样式间距比例。 |
 | [void OH_Drawing_SetTypographyTextLineStyleOnly(OH_Drawing_TypographyStyle* style, bool lineStyleOnly)](#oh_drawing_settypographytextlinestyleonly) | 设置文本排版是否仅启用行样式。 |
-| [OH_Drawing_TextShadow* OH_Drawing_CreateTextShadow(void)](#oh_drawing_createtextshadow) | 创建指向字体阴影对象的指针。不再需要[OH_Drawing_TextShadow](api-drawing-oh-drawing-textshadow.md)时，请使用[OH_Drawing_DestroyTextShadow](capi-drawing-text-typography-h.md#oh_drawing_destroytextshadow)接口释放该对象的指针。 |
+| [OH_Drawing_TextShadow* OH_Drawing_CreateTextShadow(void)](#oh_drawing_createtextshadow) | 创建指向字体阴影对象的指针。不再需要[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)时，请使用[OH_Drawing_DestroyTextShadow](capi-drawing-text-typography-h.md#oh_drawing_destroytextshadow)接口释放该对象的指针。 |
 | [void OH_Drawing_DestroyTextShadow(OH_Drawing_TextShadow* shadow)](#oh_drawing_destroytextshadow) | 释放被字体阴影对象占据的内存。 |
-| [OH_Drawing_TextShadow* OH_Drawing_TextStyleGetShadows(OH_Drawing_TextStyle* style)](#oh_drawing_textstylegetshadows) | 获取字体阴影容器。不再需要[OH_Drawing_TextShadow](api-drawing-oh-drawing-textshadow.md)时，请使用[OH_Drawing_DestroyTextShadows](capi-drawing-text-typography-h.md#oh_drawing_destroytextshadows)接口释放该对象的指针。 |
+| [OH_Drawing_TextShadow* OH_Drawing_TextStyleGetShadows(OH_Drawing_TextStyle* style)](#oh_drawing_textstylegetshadows) | 获取字体阴影容器。不再需要[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)时，请使用[OH_Drawing_DestroyTextShadows](capi-drawing-text-typography-h.md#oh_drawing_destroytextshadows)接口释放该对象的指针。 |
 | [int OH_Drawing_TextStyleGetShadowCount(OH_Drawing_TextStyle* style)](#oh_drawing_textstylegetshadowcount) | 获取字体阴影容器的大小。 |
 | [void OH_Drawing_TextStyleAddShadow(OH_Drawing_TextStyle* style, const OH_Drawing_TextShadow* shadow)](#oh_drawing_textstyleaddshadow) | 字体阴影容器中添加字体阴影元素。 |
 | [void OH_Drawing_TextStyleClearShadows(OH_Drawing_TextStyle* style)](#oh_drawing_textstyleclearshadows) | 清除字体阴影容器中的所有元素。 |
@@ -3277,7 +3277,7 @@ OH_Drawing_TextShadow* OH_Drawing_CreateTextShadow(void)
 
 **描述**
 
-创建指向字体阴影对象的指针。不再需要[OH_Drawing_TextShadow](api-drawing-oh-drawing-textshadow.md)时，请使用[OH_Drawing_DestroyTextShadow](capi-drawing-text-typography-h.md#oh_drawing_destroytextshadow)接口释放该对象的指针。
+创建指向字体阴影对象的指针。不再需要[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)时，请使用[OH_Drawing_DestroyTextShadow](capi-drawing-text-typography-h.md#oh_drawing_destroytextshadow)接口释放该对象的指针。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3287,7 +3287,7 @@ OH_Drawing_TextShadow* OH_Drawing_CreateTextShadow(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_TextShadow](api-drawing-oh-drawing-textshadow.md)* | 指向创建的字体阴影对象。 |
+| [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* | 指向创建的字体阴影对象。 |
 
 ### OH_Drawing_DestroyTextShadow()
 
@@ -3308,7 +3308,7 @@ void OH_Drawing_DestroyTextShadow(OH_Drawing_TextShadow* shadow)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextShadow](api-drawing-oh-drawing-textshadow.md)* shadow | 指向字体阴影对象[OH_Drawing_TextShadow](api-drawing-oh-drawing-textshadow.md)的指针，由[OH_Drawing_CreateTextShadow](capi-drawing-text-typography-h.md#oh_drawing_createtextshadow)获取。 |
+| [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* shadow | 指向字体阴影对象[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)的指针，由[OH_Drawing_CreateTextShadow](capi-drawing-text-typography-h.md#oh_drawing_createtextshadow)获取。 |
 
 ### OH_Drawing_TextStyleGetShadows()
 
@@ -3318,7 +3318,7 @@ OH_Drawing_TextShadow* OH_Drawing_TextStyleGetShadows(OH_Drawing_TextStyle* styl
 
 **描述**
 
-获取字体阴影容器。不再需要[OH_Drawing_TextShadow](api-drawing-oh-drawing-textshadow.md)时，请使用[OH_Drawing_DestroyTextShadows](capi-drawing-text-typography-h.md#oh_drawing_destroytextshadows)接口释放该对象的指针。
+获取字体阴影容器。不再需要[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)时，请使用[OH_Drawing_DestroyTextShadows](capi-drawing-text-typography-h.md#oh_drawing_destroytextshadows)接口释放该对象的指针。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3335,7 +3335,7 @@ OH_Drawing_TextShadow* OH_Drawing_TextStyleGetShadows(OH_Drawing_TextStyle* styl
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_TextShadow](api-drawing-oh-drawing-textshadow.md)* | 返回指向字体阴影容器[OH_Drawing_TextShadow](api-drawing-oh-drawing-textshadow.md)的指针。 |
+| [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* | 返回指向字体阴影容器[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)的指针。 |
 
 ### OH_Drawing_TextStyleGetShadowCount()
 
@@ -3384,7 +3384,7 @@ void OH_Drawing_TextStyleAddShadow(OH_Drawing_TextStyle* style, const OH_Drawing
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)* style | 指向文本样式[OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)的指针，由[OH_Drawing_CreateTextStyle](capi-drawing-text-typography-h.md#oh_drawing_createtextstyle)获取。 |
-| const [OH_Drawing_TextShadow](api-drawing-oh-drawing-textshadow.md)* shadow | 指向字体阴影对象[OH_Drawing_TextShadow](api-drawing-oh-drawing-textshadow.md)的指针，由[OH_Drawing_CreateTextShadow](capi-drawing-text-typography-h.md#oh_drawing_createtextshadow)获取。 |
+| const [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* shadow | 指向字体阴影对象[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)的指针，由[OH_Drawing_CreateTextShadow](capi-drawing-text-typography-h.md#oh_drawing_createtextshadow)获取。 |
 
 ### OH_Drawing_TextStyleClearShadows()
 
@@ -3433,7 +3433,7 @@ OH_Drawing_TextShadow* OH_Drawing_TextStyleGetShadowWithIndex(OH_Drawing_TextSty
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_TextShadow](api-drawing-oh-drawing-textshadow.md)* | 返回指向字体阴影对象[OH_Drawing_TextShadow](api-drawing-oh-drawing-textshadow.md)的指针。 |
+| [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* | 返回指向字体阴影对象[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)的指针。 |
 
 ### OH_Drawing_TypographySetIndents()
 
@@ -3534,7 +3534,7 @@ void OH_Drawing_DestroyTextShadows(OH_Drawing_TextShadow* shadow)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextShadow](api-drawing-oh-drawing-textshadow.md)* shadow | 指向字体阴影对象[OH_Drawing_TextShadow](api-drawing-oh-drawing-textshadow.md)的指针，由[OH_Drawing_CreateTextShadow](capi-drawing-text-typography-h.md#oh_drawing_createtextshadow)获取。 |
+| [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* shadow | 指向字体阴影对象[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)的指针，由[OH_Drawing_CreateTextShadow](capi-drawing-text-typography-h.md#oh_drawing_createtextshadow)获取。 |
 
 ### OH_Drawing_GetSystemFontConfigInfo()
 
@@ -5338,7 +5338,7 @@ void OH_Drawing_SetTextShadow(OH_Drawing_TextShadow* shadow, uint32_t color, OH_
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextShadow](api-drawing-oh-drawing-textshadow.md)* shadow | 指向字体阴影对象[OH_Drawing_TextShadow](api-drawing-oh-drawing-textshadow.md)的指针，由[OH_Drawing_CreateTextShadow](capi-drawing-text-typography-h.md#oh_drawing_createtextshadow)获取。 |
+| [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* shadow | 指向字体阴影对象[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)的指针，由[OH_Drawing_CreateTextShadow](capi-drawing-text-typography-h.md#oh_drawing_createtextshadow)获取。 |
 | uint32_t color | 字体阴影的颜色，例如入参为0xAABBCCDD，AA代表透明度，BB代表红色分量的值，CC代表绿色分量的值，DD代表蓝色分量的值。 |
 | [OH_Drawing_Point](capi-drawing-oh-drawing-point.md)* offset | 指向坐标点对象[OH_Drawing_Point](capi-drawing-oh-drawing-point.md)的指针，字体阴影基于当前文本的偏移位置。 |
 | double blurRadius | 模糊半径，浮点数，没有单位，值为0.0时表示没有模糊效果。 |

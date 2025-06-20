@@ -49,7 +49,7 @@ EffectErrorCode OH_Filter_CreateEffect(OH_PixelmapNative* pixelmap, OH_Filter** 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-effectkit-oh-pixelmapnative.md)* pixelmap | 创建滤镜的位图。 |
+| [OH_PixelmapNative](ccapi-drawing-oh-pixelmapnative.md)* pixelmap | 创建滤镜的位图。 |
 | [OH_Filter](capi-effectkit-oh-filter.md)** filter | 用来接收滤镜的二级指针。 |
 
 **返回：**
@@ -256,7 +256,7 @@ EffectErrorCode OH_Filter_GetEffectPixelMap(OH_Filter* filter, OH_PixelmapNative
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Filter](capi-effectkit-oh-filter.md)* filter | 用来创建位图的滤镜指针。 |
-| [OH_PixelmapNative](capi-effectkit-oh-pixelmapnative.md)** pixelmap | 用来接收位图的二级指针。 |
+| [OH_PixelmapNative](ccapi-drawing-oh-pixelmapnative.md)** pixelmap | 用来接收位图的二级指针。 |
 
 **返回：**
 

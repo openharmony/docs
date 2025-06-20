@@ -50,7 +50,7 @@ OH_Drawing_PixelMap* OH_Drawing_PixelMapGetFromNativePixelMap(NativePixelMap_* n
 
 | 参数项 | 描述 |
 | -- | -- |
-| [NativePixelMap_](capi-nativepixelmap-.md)* nativePixelMap | 指向图像框架定义的像素图对象[NativePixelMap_](capi-nativepixelmap-.md)的指针。 |
+| [NativePixelMap_](capi-drawing-nativepixelmap-.md)* nativePixelMap | 指向图像框架定义的像素图对象[NativePixelMap_](capi-drawing-nativepixelmap-.md)的指针。 |
 
 **返回：**
 

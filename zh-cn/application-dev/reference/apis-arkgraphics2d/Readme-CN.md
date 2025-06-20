@@ -122,7 +122,7 @@
     - [OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md)
     - [OH_DisplaySoloist](capi-nativedisplaysoloist-oh-displaysoloist.md)
     - [NativePixelMap_](capi-drawing-nativepixelmap-.md)
-    - [OH_PixelmapNative](capi-effectkit-oh-pixelmapnative.md)
+    - [OH_PixelmapNative](ccapi-drawing-oh-pixelmapnative.md)
     - [OH_Drawing_FontCollection](capi-drawing-oh-drawing-fontcollection.md)
     - [OH_Drawing_Typography](capi-drawing-oh-drawing-typography.md)
     - [OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)
