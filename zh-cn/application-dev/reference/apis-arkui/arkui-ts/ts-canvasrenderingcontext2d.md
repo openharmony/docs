@@ -8,9 +8,9 @@
 >
 > 本文绘制接口在调用时会存入被关联的Canvas组件的指令队列中。仅当当前帧进入渲染阶段且关联的Canvas组件处于可见状态时，这些指令才会从队列中被提取并执行。因此，在Canvas组件不可见的情况下，应尽量避免频繁调用绘制接口，以防止指令在队列中堆积，从而避免内存占用过大的问题。
 >
+> [beginPath](#beginpath)、[moveTo](#moveto)、[lineTo](#lineto)、[closePath](#closepath)、[bezierCurveTo](#beziercurveto)、[quadraticCurveTo](#quadraticcurveto)、[arc](#arc)、[arcTo](#arcto)、[ellipse](#ellipse)、[rect](#rect)和[roundRect](#roundrect20)接口只能对CanvasRenderingContext2D中的路径生效，无法对[OffscreenCanvasRenderingContext2D](./ts-offscreencanvasrenderingcontext2d.md)和[Path2D](./ts-components-canvas-path2d.md)对象中设置的路径生效。
+>
 > Canvas组件的宽或高超过8000px时使用CPU渲染，会导致性能明显下降。
-
-
 
 ## 接口
 
