@@ -863,7 +863,7 @@ getSecurityMode(): SecurityMode
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 12800004 | not an input method. |
+| 12800004 | not an input method application. |
 
 **示例：**
 
@@ -897,7 +897,7 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
 | 401        | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12800004   | not an input method. |
+| 12800004   | not an input method application. |
 
 **示例：**
 
@@ -947,7 +947,7 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
 | 401        | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12800004   | not an input method. |
+| 12800004   | not an input method application. |
 
 **示例：**
 
@@ -1856,7 +1856,7 @@ getDisplayId(): Promise\<number>
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 12800002 | input method engine error. |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
 | 12800013 | window manager service error. |
 
 **示例：**
@@ -2406,7 +2406,7 @@ setImmersiveMode(mode: ImmersiveMode): void
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
 | 401      | parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.           |
-| 12800002  | input method engine error.                                |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
 | 12800013  | window manager service error.                          |
 
 **示例：**
@@ -2515,7 +2515,7 @@ hide(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -2551,7 +2551,7 @@ hide(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -2648,7 +2648,7 @@ exitCurrentInputType(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
-| 12800008 | input method manager service error.            |
+| 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 | 12800010 | not the preconfigured default input method. |
 
 **示例：**
@@ -2685,7 +2685,7 @@ exitCurrentInputType(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
-| 12800008 | input method manager service error.            |
+| 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 | 12800010 | not the preconfigured default input method. |
 
 **示例：**
@@ -2890,7 +2890,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
  **示例：**
 
@@ -2942,7 +2942,7 @@ sendKeyFunction(action: number): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -2987,8 +2987,8 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error.     |
-| 12800006 | Input method controller error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
 
 **示例：**
 
@@ -3036,8 +3036,8 @@ getForward(length:number): Promise&lt;string&gt;
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error.     |
-| 12800006 | Input method controller error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
 
 **示例：**
 
@@ -3083,8 +3083,8 @@ getForwardSync(length:number): string
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error.     |
-| 12800006 | input method controller error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
 
 **示例：**
 
@@ -3120,8 +3120,8 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error.     |
-| 12800006 | Input method controller error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
 
 **示例：**
 
@@ -3169,8 +3169,8 @@ getBackward(length:number): Promise&lt;string&gt;
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error.     |
-| 12800006 | Input method controller error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
 
 **示例：**
 
@@ -3216,8 +3216,8 @@ getBackwardSync(length:number): string
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error.     |
-| 12800006 | input method controller error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
 
 **示例：**
 
@@ -3253,8 +3253,8 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800002 | Input method engine error. |
-| 12800003 | input method client error. |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -3306,8 +3306,8 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800002 | Input method engine error. |
-| 12800003 | input method client error. |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -3351,8 +3351,8 @@ deleteForwardSync(length:number): void
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800002 | input method engine error. |
-| 12800003 | input method client error. |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -3388,8 +3388,8 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800002 | Input method engine error. |
-| 12800003 | input method client error. |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -3441,8 +3441,8 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800002 | Input method engine error. |
-| 12800003 | input method client error. |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -3482,8 +3482,8 @@ deleteBackwardSync(length:number): void
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800002 | input method engine error. |
-| 12800003 | input method client error. |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -3519,8 +3519,8 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800002 | Input method engine error. |
-| 12800003 | input method client error. |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -3567,8 +3567,8 @@ insertText(text:string): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800002 | Input method engine error. |
-| 12800003 | input method client error. |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -3611,8 +3611,8 @@ insertTextSync(text: string): void
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800002 | input method engine error. |
-| 12800003 | input method client error. |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -3645,7 +3645,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -3682,7 +3682,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -3721,7 +3721,7 @@ getEditorAttributeSync(): EditorAttribute
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -3757,7 +3757,7 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -3804,7 +3804,7 @@ moveCursor(direction: number): Promise&lt;void&gt;
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -3843,7 +3843,7 @@ moveCursorSync(direction: number): void
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -3878,7 +3878,7 @@ selectByRange(range: Range, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -3926,7 +3926,7 @@ selectByRange(range: Range): Promise&lt;void&gt;
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -3966,7 +3966,7 @@ selectByRangeSync(range: Range): void
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -4002,7 +4002,7 @@ selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -4050,7 +4050,7 @@ selectByMovement(movement: Movement): Promise&lt;void&gt;
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -4090,7 +4090,7 @@ selectByMovementSync(movement: Movement): void
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 
 **示例：**
 
@@ -4124,8 +4124,8 @@ getTextIndexAtCursor(callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 12800003 | input method client error.     |
-| 12800006 | Input method controller error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
 
 **示例：**
 
@@ -4161,8 +4161,8 @@ getTextIndexAtCursor(): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 12800003 | input method client error.     |
-| 12800006 | Input method controller error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
 
 **示例：**
 
@@ -4196,8 +4196,8 @@ getTextIndexAtCursorSync(): number
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 12800003 | input method client error.     |
-| 12800006 | Input method controller error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
 
 **示例：**
 
@@ -4236,8 +4236,8 @@ sendExtendAction(action: ExtendAction, callback: AsyncCallback&lt;void&gt;): voi
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error.     |
-| 12800006 | Input method controller error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
 
 **示例：**
 
@@ -4288,8 +4288,8 @@ sendExtendAction(action: ExtendAction): Promise&lt;void&gt;
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error.     |
-| 12800006 | Input method controller error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
 
 **示例：**
 
@@ -4339,7 +4339,7 @@ sendPrivateCommand(commandData: Record&lt;string, CommandDataType&gt;): Promise&
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error.                     |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 | 12800010 | not the preconfigured default input method. |
 
 **示例：**
@@ -4393,7 +4393,7 @@ getCallingWindowInfo(): Promise&lt;WindowInfo&gt;
 
 | 错误码ID | 错误信息                          |
 | -------- | --------------------------------- |
-| 12800003 | input method client error.        |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 | 12800012 | the input method panel does not exist. |
 | 12800013 | window manager service error.     |
 
@@ -4442,7 +4442,7 @@ setPreviewText(text: string, range: Range): Promise&lt;void&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error.                                   |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 | 12800011 | text preview not supported.                               |
 
 **示例：**
@@ -4484,7 +4484,7 @@ setPreviewTextSync(text: string, range: Range): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error.                                   |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 | 12800011 | text preview not supported.                               |
 
 **示例：**
@@ -4523,7 +4523,7 @@ finishTextPreview(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 12800003 | input method client error.     |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 | 12800011 | text preview not supported. |
 
 **示例：**
@@ -4560,7 +4560,7 @@ finishTextPreviewSync(): void
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 12800003 | input method client error.     |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 | 12800011 | text preview not supported. |
 
 **示例：**
@@ -4608,7 +4608,7 @@ sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Incorrect parameter types. 2. Incorrect parameter length.  |
-| 12800003 | input method client error.                  |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 | 12800009 | input method client detached.               |
 | 12800014 | the input method is in basic mode.          |
 | 12800015 | the other side does not accept the request. |
