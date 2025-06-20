@@ -871,7 +871,7 @@
 | int32_t [OH_ArkUI_RegisterDrawCallbackOnNodeHandle](#oh_arkui_registerdrawcallbackonnodehandle)([ArkUI_NodeHandle](#arkui_nodehandle) node, void\* userData, void (\*onDrawCompleted)(void\* userData))| 注册组件绘制完成回调方法。同一组件仅能注册一个绘制完成回调方法。  |
 | int32_t [OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle](#oh_arkui_unregisterlayoutcallbackonnodehandle)([ArkUI_NodeHandle](#arkui_nodehandle) node)| 取消注册组件布局完成回调方法。  |
 | int32_t [OH_ArkUI_UnregisterDrawCallbackOnNodeHandle](#oh_arkui_unregisterdrawcallbackonnodehandle)([ArkUI_NodeHandle](#arkui_nodehandle) node)| 取消注册组件绘制完成回调方法。  |
-| [ArkUI_TextChangeEvent](_ark_u_i___text_change_event.md) OH_ArkUI_NodeEvent_GetTextChangeEvent([ArkUI_NodeEvent](#arkui_nodeevent-12) \*event) | 获取输入框内容改变（包括预上屏内容）事件的相关数据。  |
+| [ArkUI_TextChangeEvent](_ark_u_i___text_change_event.md) [OH_ArkUI_NodeEvent_GetTextChangeEvent](#oh_arkui_nodeevent_gettextchangeevent)([ArkUI_NodeEvent](#arkui_nodeevent-12) \*event) | 获取输入框内容改变（包括预上屏内容）事件的相关数据。  |
 |[ArkUI_ErrorCode](_ark_u_i___native_module.md#arkui_errorcode)  OH_ArkUI_FocusRequest([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node); | 请求焦点。|
 | void OH_ArkUI_FocusClear([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) uiContext); | 将当前焦点清除到根容器节点。 |
 | void OH_ArkUI_FocusActivate([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) uiContext, bool isActive, bool isAutoInactive); | 设置当前界面的焦点激活态，获焦节点显示焦点框。|
@@ -2658,9 +2658,9 @@ enum ArkUI_ErrorCode
 | ARKUI_ERROR_CODE_ADAPTER_NOT_BOUND = 106104 | 懒加载适配器未绑定到组件上，错误码详细参见[编译错误码](../apis-arkui/errorcode-nodeadapter.md#106104-适配器未绑定)。  |
 | ARKUI_ERROR_CODE_ADAPTER_EXIST = 106105 | 适配器已存在，错误码详细参见[编译错误码](../apis-arkui/errorcode-nodeadapter.md#106105-适配器已存在)。  |
 | ARKUI_ERROR_CODE_CHILD_NODE_EXIST = 106106 | 对应节点已存在子节点，无法添加适配器，错误码详细参见[编译错误码](../apis-arkui/errorcode-nodeadapter.md#106106-子节点已存在)。  |
-| ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE  | 组件事件中参数长度超限。  |
-| ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID  | 组件事件中不存在该数据。  |
-| ARKUI_ERROR_CODE_NODE_EVENT_NO_RETURN  | 组件事件不支持返回值。  |
+| ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE = 106107 | 组件事件中参数长度超限。错误码的详细介绍请参见[106107-参数下标越界](../apis-arkui/errorcode-nodeadapter.md#106107-参数下标越界)。  |
+| ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID = 106108  | 组件事件中不存在该数据。错误码的详细介绍请参见[106108-数据不存在](../apis-arkui/errorcode-nodeadapter.md#106108-数据不存在)。  |
+| ARKUI_ERROR_CODE_NODE_EVENT_NO_RETURN = 106109 | 组件事件不支持返回值。错误码的详细介绍请参见[106109-不支持返回值](../apis-arkui/errorcode-nodeadapter.md#106109-不支持返回值)。  |
 | ARKUI_ERROR_CODE_NODE_INDEX_INVALID = 106200  | 传入的索引值非法。<br/>错误码的详细介绍请参见[导航错误码](../apis-arkui/errorcode-router.md#106200-传入的索引值非法)。  |
 | ARKUI_ERROR_CODE_GET_INFO_FAILED = 106201  | 查询路由导航信息失败。 <br/>错误码的详细介绍请参见[导航错误码](../apis-arkui/errorcode-router.md#106201-查询路由导航信息失败)。 |
 | ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR = 106202  | 传入的buffer size异常。 <br/>错误码的详细介绍请参见[导航错误码](../apis-arkui/errorcode-router.md#106202-传入的buffer-size异常)。 |
@@ -18026,6 +18026,27 @@ int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle (ArkUI_NodeHandle node)
 
 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。
+
+### OH_ArkUI_NodeEvent_GetTextChangeEvent()
+
+```
+ArkUI_TextChangeEvent* OH_ArkUI_NodeEvent_GetTextChangeEvent(ArkUI_NodeEvent* event)
+```
+**描述：**
+
+获取组件事件中的ArkUI_TextChangeEvent数据。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| event | 组件事件指针，不应为空。  |
+
+**返回：**
+
+[ArkUI_TextChangeEvent*](_ark_u_i___text_change_event.md) 返回ArkUI_TextChangeEvent对象的指针。
 
 
 ### OH_ArkUI_RunTaskInScope()
