@@ -645,3 +645,17 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **支持设备**：Phone | Tablet
 
 **起始版本**：20
+
+## ohos.permission.READ_LOCAL_DEVICE_NAME
+
+允许应用获取本机的设备显示名。
+
+<!--RP46--><!--RP46End-->
+
+**权限级别**: system_basic
+
+**授权方式**: 系统授权（system_grant）
+
+**支持设备**:  Phone | PC/2in1 | Tablet
+
+**起始版本**: 20

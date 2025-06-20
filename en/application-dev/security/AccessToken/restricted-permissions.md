@@ -618,3 +618,17 @@ Allows an application to use the global float ball.
 **Supported devices**: Phone | Tablet
 
 **Valid since**: 20
+
+## ohos.permission.READ_LOCAL_DEVICE_NAME
+
+Allows an application to obtain the local device name.
+
+<!--RP45--><!--RP45End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Supported devices**:  Phone | PC/2in1 | Tablet
+
+**Valid since**: 20
