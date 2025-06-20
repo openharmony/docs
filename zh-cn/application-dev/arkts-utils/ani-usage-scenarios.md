@@ -2,11 +2,11 @@
 ## 参考索引
 | 名称 | 资源链接 | 主要用途 | 定位 |
 | ---- | ---- | ---- | ---- |
-| ANI快速入门指南（本文档） | **[ani-usage-scenarios.md](https://gitee.com/openharmony/arkcompiler_runtime_core/tree/OpenHarmony_feature_20250328/static_core/plugins/ets/runtime/ani/docs/ani_scenario.md)** | 综合的ANI文档；解决大多数问题 | 初学者指南，必读参考资料 |
-| NAPI到ANI迁移示例 | **[napi2ani.md](https://gitee.com/openharmony/arkcompiler_runtime_core/tree/OpenHarmony_feature_20250328/static_core/plugins/ets/runtime/ani/docs/napi2ani.md)** | 展示从NAPI到ANI函数的正确迁移，以确保兼容性 | 用于未知映射的参考指南 |
-| ANI用法示例（ani_cookbook） | **[ani_cookbook](https://gitee.com/ironrain/ani_cookbook)** | 提供从简单到高级用例的即用型函数示例 | 实用的烹饪书和入门工具包 |
+| ANI快速入门指南（本文档） | **[ani-usage-scenarios.md](https://gitee.com/openharmony/docs/blob/OpenHarmony_feature_20250328/zh-cn/application-dev/arkts-utils/ani-usage-scenarios.md)** | 综合的ANI文档；解决大多数问题 | 初学者指南，必读参考资料 |
+| ANI用法示例（ani_cookbook） | **[ani_cookbook](https://gitee.com/LeechyLiang/ani_cookbook)** | 提供从简单到高级用例的即用型函数示例 | 实用的烹饪书和入门工具包 |
 | ANI接口测试套件 | **[ani/tests测试文件夹](https://gitee.com/openharmony/arkcompiler_runtime_core/tree/OpenHarmony_feature_20250328/static_core/plugins/ets/tests/ani/tests)** | 验证ANI函数及其正确性；始终保持功能可用 | 用于验证API用法的参考资料 |
 | ani.h头文件 | **[ani.h](https://gitee.com/openharmony/arkcompiler_runtime_core/blob/OpenHarmony_feature_20241108/static_core/plugins/ets/runtime/ani/ani.h)** | 核心定义文件，包括函数声明、类型和继承关系 | 所有定义的来源 |
+| ArkTs语言规范 | **[下载地址](https://gitee.com/igelhaus/arkcompiler_runtime_core/releases/)** | 提供ArkTs语言的各种规范文档下载 | ArkTs语言规范参考资料 |
 
 ## 使用建议
 在进行NAPI到ANI的迁移任务时，请遵循以下步骤：
@@ -15,7 +15,7 @@
 3. **实践与验证**：在自己的开发环境中克隆并运行`ani_cookbook`中的示例。通过实践验证加深理解，并熟悉ANI API。
 
 # ANI场景文档
-## 1. 使用`loadLibrary`
+## 1 使用`loadLibrary`
 ### 1.1 native函数绑定
 绑定native函数的过程涉及几个关键步骤：
 1. 在`.ets`文件中声明native函数和方法。
@@ -45,14 +45,14 @@ void nativeStaticMethod(ani_env* env, ani_class cls, ...);
 void nativeNamespaceFunction(ani_env* env, ...);
 ```
 #### 重要注意事项
-- 传递给native函数的参数的生命周期与native函数绑定。**不要**在参数作用域之外存储native函数参数，底层内存将被释放。请参阅[生命周期管理](#9-lifecycle-management)。
+- 传递给native函数的参数的生命周期与native函数绑定。**不要**在参数作用域之外存储native函数参数，底层内存将被释放。请参阅[生命周期管理](#9-生命周期管理)。
 - `ani_env`: 通过native函数接收的参数，仅在当前native调用中有效。**不要**在native函数调用作用域之外存储`ani_env`或者传递给新线程使用。
 - native函数不能在`interface`块内声明。
 
 ---
 ### 1.1.1 类名、标识符和符号查找
 使用`ark_disasm`工具检查`.abc`文件，以确定类名和符号名。
-请参考[反汇编ABC文件](#116-disassembling-abc-files)获取`ark_disasm`工具。
+请参考[反汇编ABC文件](#116-反汇编abc文件)获取`ark_disasm`工具。
 示例反汇编结果：
 ```ts
 .record example.Foo <ets.extends=std.core.Object, access.record=public>
@@ -169,8 +169,8 @@ env->Module_BindNativeFunctions(module, methods.data(), methods.size());
 - **重载函数**：如果存在重载的native函数，必须显式绑定每个变体：
 
 ```ts
-native function foo(): void
-native function foo(arg: string): void
+native function foo(): void;
+native function foo(arg: string): void;
 ```
 
 这需要绑定两个函数：
@@ -206,7 +206,7 @@ function foo(a: int, b: int = 3): void
 - [`arkcompiler_runtime_core`](https://gitee.com/openharmony/arkcompiler_runtime_core/tree/OpenHarmony_feature_20241108/)
 - [`arkcompiler_ets_frontend`](https://gitee.com/openharmony/arkcompiler_ets_frontend/tree/OpenHarmony_feature_20241108/)
 
-**构建说明**：[遵循本指南](https://gitee.com/JianfeiLee/arkcompiler_runtime_core/wikis/下载和编译运行ArkTS演进版本代码)
+**构建说明**：[遵循本指南](https://gitee.com/JianfeiLee/arkcompiler_runtime_core/wikis/%E4%B8%8B%E8%BD%BD%E5%92%8C%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8CArkTS%E6%BC%94%E8%BF%9B%E7%89%88%E4%BB%A3%E7%A0%81)
 
 **用法**：
 
@@ -267,7 +267,7 @@ hdc file send bootpath.json /system/framework/bootpath.json
 
 ----
 
-### 2. 名称修饰符（Mangling）规则
+## 2 名称修饰符（Mangling）规则
 
 _Mangling_ 是一种对函数签名进行编码的方法，通过参数和返回类型来区分重载函数。其格式如下：
 
@@ -275,7 +275,7 @@ _Mangling_ 是一种对函数签名进行编码的方法，通过参数和返回
 <参数类型>:<返回类型>
 ```
 
-### 示例
+### 2.1 示例
 
 - `toInt(num: number): int` → `d:i`
 - `toInt(str: string): int` → `C{std.core.String}:i`
@@ -289,7 +289,7 @@ Object_CallMethodByName_Int(obj, "toInt", "C{std.core.String}:i", &result);
 
 ---
 
-### 类型Mangling参考
+### 2.2 类型Mangling参考
 
 | ArkTS 类型 | 修饰代码 | ANI 类型 |
 |------------|----------------|---------------|
@@ -305,7 +305,7 @@ Object_CallMethodByName_Int(obj, "toInt", "C{std.core.String}:i", &result);
 
 注意：`number`在ArkTS中是`double`的别名
 
-#### 对象类型
+#### 2.2.1 对象类型
 
 | ArkTS Class Type            | Mangling                    | 说明                                                              |
 |-----------------------------|-----------------------------|-------------------------------------------------------------------|
@@ -317,7 +317,7 @@ Object_CallMethodByName_Int(obj, "toInt", "C{std.core.String}:i", &result);
 | `()=>void`                  | `C{std.core.Function0}`     | 根据所需参数数量确定的函数对象                                       |
 | `(...args: double[])=>void` | `C{std.core.FunctionR0}`    | 带有剩余参数、根据所需参数数量确定的函数对象                          |
 
-#### 数组类型
+#### 2.2.2 数组类型
 
 据ArkTS 规范的`3.16.1 Resizeble Array Types`的描述，`T[]`和`Array<T>`表示的是相同的类型。因此，它们在底层都会被等价转换为`C{escompat.Array}`
 
@@ -325,7 +325,7 @@ Object_CallMethodByName_Int(obj, "toInt", "C{std.core.String}:i", &result);
 function foo(a: string[], b: Array<Int>): void  // "C{escompat.Array}C{escompat.Array}:"
 ```
 
-#### 固定数组类型
+#### 2.2.3 固定数组类型
 
 | ArkTS 数组 | Mangling |
 |-------------------------------|-------------------------|
@@ -333,7 +333,7 @@ function foo(a: string[], b: Array<Int>): void  // "C{escompat.Array}C{escompat.
 | `FixedArray<FixedArray<int>>` | `A{A{i}}`               |
 | `FixedArray<String>`          | `A{C{std.core.String}}` |
 
-#### 特殊类型
+#### 2.2.4 特殊类型
 
 | 特殊值 | Mangling | 说明 |
 |----------------|-----------------------|----------------------|
@@ -342,7 +342,7 @@ function foo(a: string[], b: Array<Int>): void  // "C{escompat.Array}C{escompat.
 
 ---
 
-### 主要Mangling规则
+### 2.3 主要Mangling规则
 
 1. **分隔参数和返回类型**
     - 使用 `:` 来分隔参数和返回类型，例如 `dd:i`（两个双精度浮点数，返回整数）。
@@ -385,7 +385,7 @@ function foo(a: C | I): void    // "C{hello_ani.I}:"
 
 ---
 
-### Mangled的签名示例
+### 2.4 Mangled的签名示例
 
 ```ts
 class A {/*...*/}
@@ -449,7 +449,7 @@ typedef double   ani_double;   // 双精度浮点型    ETS声明：double/numbe
 | `ani_array`         | `T[]`                     | 等价于`Array<T>`                                 |
 
 
-如果函数参数期望的是 `ani_ref` 或 `ani_object`，需要传递一个 `ani_int` 类型的值，则需要将其装箱为 `ani_ref`。请参阅[4.1节](#41-boxing--unboxing)。
+如果函数参数期望的是 `ani_ref` 或 `ani_object`，需要传递一个 `ani_int` 类型的值，则需要将其装箱为 `ani_ref`。请参阅[4.1节](#411-装箱类型)。
 
 ### 3.3 类型转换
 
@@ -488,7 +488,7 @@ ani_ref
 
 - 如何将 `ani_int` / `ani_double` 等基本类型转换为 `ani_ref`？
 
-请参考[第4.1节](#41-boxing--unboxing)中的“装箱”过程。
+请参考[第4.1节](#411-装箱类型)中的“装箱”过程。
 
 ### 3.4 类型识别：Object_InstanceOf
 
@@ -571,7 +571,7 @@ static void handleData_union(ani_env *env, ani_object obj, ani_object union_obj)
 |         -          | `Void`      | `C{std.core.Void}`    | `ani_object`     | 通常无意义           |
 
 
-可以参考[第5.1节](#51-querying-methods-of-standard-classes)来查询这些装箱类型及其对应模块的方法。
+可以参考[第5.1节](#51-查询标准类的方法)来查询这些装箱类型及其对应模块的方法。
 
 如果函数参数的名称修饰（mangling）是 `C{std.core.Object}`，则它只接受类实例。例如，`Array<T>` 方法 `$_set(i: int, val: T): void` 的Mangling为 `iC{std.core.Object}:`，其中第二个参数必须是类实例。
 
@@ -635,7 +635,7 @@ void HandleDataImpl(ani_env *env, ani_object param)
 
 ### 4.2 泛型参数
 
-- 除了`FixedArray`外，所有泛型类型在运行时都会被擦除
+- 除了`FixedArray`外，所有泛型类型在运行时都会被擦除。
 - 在字节码中，类型参数会被编译为其类型约束。
 - 默认的类型约束是 `Object | null | undefined`。
 - 基本类型作为类型参数使用时总是会被装箱。
@@ -656,7 +656,7 @@ class C implements I {}
 function foo(arg: C | I): void  // Signature: "C{some_module.I}:"
 ```
 
-> 可选参数 `arg?: T` 始终等同于 `arg: T | undefined`，可以在ArkTS 语言规范`第4.8.4 Optional Parameters`中查看
+> 可选参数 `arg?: T` 始终等同于 `arg: T | undefined`，可以在[ArkTS 语言规范](#参考索引)`第4.8.4 Optional Parameters`中查看
 
 由于联合类型用引用表示，基本类型的值必须装箱后才能作为联合类型的一部分使用。
 
@@ -666,14 +666,14 @@ function foo(arg: C | I): void  // Signature: "C{some_module.I}:"
 
 **参数处理**：
 
-使用 `Object_InstanceOf` 来确定参数的实际类型并进行相应处理。请参阅[3.4 类型识别：Object_InstanceOf](#3.4-Type-Identification:-Object_InstanceOf)
+使用 `Object_InstanceOf` 来确定参数的实际类型并进行相应处理。请参阅[3.4 类型识别：Object_InstanceOf](#34-类型识别object_instanceof)
 
 ### 4.4 可选参数
 
 **Mangling**：
 1. 像 `int`、`double` 这样的基本类型会被装箱为 `Int`、`Double` 等。
 2. 非基本类型保留其原始的Mangling。
-3. 所有可选参数都被视为包含 `undefined` 的联合类型（请参阅ArkTS 语言规范 `第4.8.4 可选参数`）。
+3. 所有可选参数都被视为包含 `undefined` 的联合类型（请参阅[ArkTS 语言规范](#参考索引) `第4.8.4 可选参数`）。
 4. 对于带有可选参数的构造函数，`.abc` 文件中存在重载构造函数。
 
 | ETS 类型 | Mangling | 绑定/ANI 类型 | 补充说明 |
@@ -725,13 +725,11 @@ function foo(a: boolean, b: boolean = false): void {}
 function foo(a: int, ...b: int[]): void
 ```
 
-## 5. 对象创建
+## 5 对象创建
 
 ### 5.1 查询标准类的方法
 
 在 [stdlib](https://gitee.com/openharmony/arkcompiler_runtime_core/blob/OpenHarmony_feature_20250328/static_core/plugins/ets/stdlib/) 路径下查找所需的标准库函数。如果不确定要查询哪个类，可以反汇编 `etsstdlib.abc` 文件来确认类名和编译后的签名。
-
-#### 示例1：ArrayBuffer
 
 在 [ArrayBuffer.ets](https://gitee.com/openharmony/arkcompiler_runtime_core/tree/OpenHarmony_feature_20250328/static_core/plugins/ets/stdlib/escompat/ArrayBuffer.ets) 中找到 “class ArrayBuffer” 与对应的`constructor`。
 
@@ -767,7 +765,7 @@ export class ArrayBuffer extends Buffer
 2. 使用 `Class_FindMethod`，通过正确的mangling查找所需的构造函数。
 3. 使用 `Object_New` 创建对象。
 
-#### 示例
+#### 5.3.1 示例
 ```ts
 // 文件名: example.ets
 // 模块名: example
@@ -816,7 +814,7 @@ env->Object_New(cls, ctor2, &obj2, static_cast<ani_double>(1), static_cast<ani_d
 - `obj1` 是使用 `constructor(x: int, y: int)` 创建的。
 - `obj2` 是使用 `constructor(x: double, y: double)` 创建的。
 
-#### 创建ArkTS标准库类的实例
+#### 5.3.2 创建ArkTS标准库类的实例
 1. `FindClass`：在 `arkcompiler/runtime_core/static_core/plugins/ets/stdlib` 下定位类。文件会声明包名，通常是 `std.core` 或 `escompat`，mangling将是 `std.core.<ClassName>` 或 `escompat.<ClassName>`。
 2. `Class_FindMethod`：通过mangling识别目标构造函数。
 3. `Object_New`：调用此函数创建实例。
@@ -827,7 +825,7 @@ env->Object_New(cls, ctor2, &obj2, static_cast<ani_double>(1), static_cast<ani_d
 - 字符串 (`ani_string`) —— 必须使用专门的ANI创建函数
 - `FixedArray<T>` 类型 —— 必须使用专门的ANI数组创建函数
 
-## 6. 接口和类
+## 6 接口和类
 在ANI中，接口不能直接实例化。必须在类中实现它们（类实现接口）后才能使用。
 接口中的所有字段都会自动被视为属性(property)。当一个类实现一个接口时，继承的成员也会变成属性。
 
@@ -1043,11 +1041,11 @@ ani_double CallOptionalFnImpl(ani_env *env, ani_object opt, ani_double val1, ani
 
 ### 6.5 包装与解包
 
-示例：[ani_wrap_native_ptr.ets](https://gitee.com/ironrain/ani_cookbook/blob/master/ani_wrap_native_ptr/ani_wrap_native_ptr.ets)
+示例：[ani_wrap_native_ptr.ets](https://gitee.com/LeechyLiang/ani_cookbook/blob/master/ani_wrap_native_ptr/ani_wrap_native_ptr.ets)
 
 ## 7 回调函数/ Lambda 函数对象
 
-函数对象和回调示例：[ani_fn_object/ani_fn_object.ets · ironrain/ani_cookbook](https://gitee.com/ironrain/ani_cookbook/blob/master/ani_fn_object/ani_fn_object.ets)
+函数对象和回调示例：[ani_fn_object/ani_fn_object.ets · LeechyLiang/ani_cookbook](https://gitee.com/LeechyLiang/ani_cookbook/blob/master/ani_fn_object/ani_fn_object.ets)
 ```cpp
 ani_status FunctionalObject_Call(ani_env *env, ani_fn_object fn, ani_size argc, ani_ref *argv, ani_ref *result)
 ```
@@ -1071,7 +1069,7 @@ env->FunctionalObject_Call(show_every, ani_size(2), vec.data(), &result);
 ```
 
 ## 8 异步执行
-异步示例：[ani_async_wrapper/ani_async_wrapper.ets · ironrain/ani_cookbook](https://gitee.com/ironrain/ani_cookbook/blob/master/ani_async_wrapper/ani_async_wrapper.ets)
+异步示例：[ani_async_wrapper/ani_async_wrapper.ets · LeechyLiang/ani_cookbook](https://gitee.com/LeechyLiang/ani_cookbook/blob/master/ani_async_wrapper/ani_async_wrapper.ets)
 > [! Warning] **潜在问题**
 > 在异步上下文中抛出异常可能会导致程序冻结且无法正常终止。
 > 若配置了执行超时，最终可能会自动崩溃。
@@ -1185,7 +1183,7 @@ ani_status PromiseResolver_Reject(ani_env *env, ani_resolver resolver, ani_error
 **注意：`ani_env` 无法跨线程使用**。在lambda 或者 thread function中捕获`ani_env`会导致空指针异常。
 参考[第九章](#9-生命周期管理)
 
-### 建议
+**建议：**
 - 定义一个在其他线程上执行的lambda表达式时，**捕获`ani_vm`而不是`ani_env`**。
 - 参考[9.2章节](#92-vm-和-env-生命周期)正确使用`AttachCurrenThread`和`GetEnv`。
 
@@ -1279,7 +1277,7 @@ static void HandleDataImpl(ani_env *env, ani_object obj, ani_arraybuffer arraybu
 }
 ```
 
-完整示例：[ani_arraybuffer.cpp](https://gitee.com/ironrain/ani_cookbook/blob/master/ani_arraybuffer/ani_arraybuffer.cpp)
+完整示例：[ani_arraybuffer.cpp](https://gitee.com/LeechyLiang/ani_cookbook/blob/master/ani_arraybuffer/ani_arraybuffer.cpp)
 
 ## 14 枚举
 枚举声明属于类（自 3 月 15 日之后），相关方法均可用。
@@ -1289,7 +1287,7 @@ static void HandleDataImpl(ani_env *env, ani_object obj, ani_arraybuffer arraybu
 | `COLOR`       | `ani_enum`     | `E{moduleName.COLOR}` |
 | `COLOR.Blue`  | `ani_enum_item`| `C{std.core.Object}`  |
 
-示例：[ani_enum.cpp](https://gitee.com/ironrain/ani_cookbook/blob/master/ani_enum/ani_enum.cpp)
+示例：[ani_enum.cpp](https://gitee.com/LeechyLiang/ani_cookbook/blob/master/ani_enum/ani_enum.cpp)
 
 ## 15 错误处理 Exception
 
@@ -1340,7 +1338,7 @@ try {
 
 ## 16 字符串 String
 
-### 将 `std::string` 转换为 `ani_string`
+### 16.1 将 `std::string` 转换为 `ani_string`
 ```cpp
 std::optional<ani_string> ANIUtils_StdStringToANIString(ani_env *env, std::string str) {
     ani_string result_string{};
@@ -1351,7 +1349,7 @@ std::optional<ani_string> ANIUtils_StdStringToANIString(ani_env *env, std::strin
 }
 ```
 
-### 将 `ani_string` 转换为 `std::string`
+### 16.2 将 `ani_string` 转换为 `std::string`
 ```cpp
 std::string ANIUtils_ANIStringToStdString(ani_env *env, ani_string ani_str) {
     ani_size sz {};
@@ -1451,7 +1449,7 @@ void CallWithRecordImpl(ani_env *env, ani_object record) {
 ```
 
 
-### 18.3 元组（Tuple）
+### 18.2 元组（Tuple）
 
 **示例：** 
 ```ts
@@ -1463,9 +1461,11 @@ native callWithTuple(tuple:[double, double, double, double, double]):void;
 ```cpp
 void callWithTupleImpl(ani_env *env, ani_tuple_value tuple) {
     ani_double result = 0.0;
-    env_->TupleValue_GetItem_Double(tuple, 0U, &result);  // result = 3.14
+    env->TupleValue_GetItem_Double(tuple, 0U, &result);  // result = 3.14
 }
 ``` 
+上述元组示例，通过传入元组对象和序号参数，获取对应元组序号位置的值。
+
 ## 19 错误码分析
 ```cpp
 typedef enum {
@@ -1551,15 +1551,15 @@ class A {
 
 ```cpp
 // .ets 文件
-function foo(i: int): void
-function foo(d: number): void
+function foo(i: int): void;
+function foo(d: number): void;
 
 // .cpp 文件
 FindMethod(cls, "foo", nullptr, &method); // 错误
 FindMethod(cls, "foo", "d:", &method);   // 正确
 ```
 
-## 20. 常见问题解答（FAQ）
+## 20 常见问题解答（FAQ）
 - **BussinessError无法创建或行为异常**：检查是否存在`BussinessError$partial`。系统可能包含内置的`BussinessError`，这会在ABC文件中引发冲突。请联系前端和标准库的维护人员。
 - **`Object_New`后程序崩溃**：通常是由于参数类型不匹配。在查找构造函数时，绝不要使用`nullptr`作为签名。
 - **声明和实现不匹配**：`.d.ets`和`.ets`文件之间的不一致会导致字段或方法无法识别。

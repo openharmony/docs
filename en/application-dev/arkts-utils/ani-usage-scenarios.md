@@ -3,11 +3,11 @@
 
 | Name                        | Resource Link                                                                                                                                                                   | Main Purpose                                                                 | Positioning                         |
 | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------- |
-| ANI Getting Started Guide (This Doc) | **[ani-usage-scenarios.md](https://gitee.com/openharmony/docs/blob/OpenHarmony_feature_20250328/en/application-dev/arkts-utils/ani_scenario.md)** | Comprehensive ANI documentation; resolves most issues                        | Beginner guide, must-read reference |
-| NAPI to ANI Migration Examples     | **[napi2ani.md](https://gitee.com/liwentao_uiw/arkcompiler_runtime_core/blob/ani_spec/static_core/plugins/ets/runtime/ani/docs/napi2ani.md)**             | Demonstrates correct NAPI-to-ANI function migration for compatibility        | Reference guide for unknown mappings |
-| ANI Usage Examples (ani_cookbook)  | **[ani_cookbook](https://gitee.com/ironrain/ani_cookbook)**                                                                                                   | Provides ready-to-use function examples for simple to advanced use cases     | Practical cookbook and starter kit  |
+| ANI Getting Started Guide (This Doc) | **[ani-usage-scenarios.md](https://gitee.com/openharmony/docs/blob/OpenHarmony_feature_20250328/en/application-dev/arkts-utils/ani-usage-scenarios.md)** | Comprehensive ANI documentation; resolves most issues                        | Beginner's guide; essential reference |
+| ANI Usage Examples (ani_cookbook)  | **[ani_cookbook](https://gitee.com/LeechyLiang/ani_cookbook)**                                                                                                   | Provides ready-to-use function examples ranging from simple to advanced use cases     | Practical cookbook and onboarding toolkit  |
 | ANI Interface Test Suite           | **[ani/tests test folder](https://gitee.com/openharmony/arkcompiler_runtime_core/tree/OpenHarmony_feature_20250328/static_core/plugins/ets/tests/ani/tests)** | Validates ANI functions and correctness; always functional                   | Reference for verifying API usage   |
 | ani.h Header File                  | **[ani.h](https://gitee.com/openharmony/arkcompiler_runtime_core/blob/OpenHarmony_feature_20250328/static_core/plugins/ets/runtime/ani/ani.h)**           | Core definition file including function declarations, types, and inheritance | Source of truth for all definitions |
+| ArkTs Language Specification                  | **[Download link](https://gitee.com/igelhaus/arkcompiler_runtime_core/releases/)**           | Provides downloadable documentation for various specifications of the ArkTS language | Reference for ArkTS language specifications |
 
 ## Usage Suggestions
 
@@ -24,7 +24,7 @@ When working on NAPI-to-ANI migration tasks, follow this step-by-step approach:
    
 # ANI Scenario Documentation
 
-## 1. Using `loadLibrary`
+## 1 Using `loadLibrary`
 
 ### 1.1 Native Function Binding
 
@@ -201,8 +201,8 @@ env->Module_BindNativeFunctions(module, methods.data(), methods.size());
 - **Overloaded functions:** In case of overloaded native functions, you must bind each variant explicitly:
 
 ```ts
-native function foo(): void
-native function foo(arg: string): void
+native function foo(): void;
+native function foo(arg: string): void;
 ```
 
 will require to bind both functions:
@@ -242,7 +242,7 @@ To disassemble `.abc` files, use `ark_disasm` binary, which is built during regu
 - [`arkcompiler_runtime_core`](https://gitee.com/openharmony/arkcompiler_runtime_core/tree/OpenHarmony_feature_20250328/)
 - [`arkcompiler_ets_frontend`](https://gitee.com/openharmony/arkcompiler_ets_frontend/tree/OpenHarmony_feature_20250328/)
 
-**Build Instructions:** [Follow this guide](https://gitee.com/JianfeiLee/arkcompiler_runtime_core/wikis/下载和编译运行ArkTS演进版本代码)
+**Build Instructions:** [Follow this guide](https://gitee.com/JianfeiLee/arkcompiler_runtime_core/wikis/%E4%B8%8B%E8%BD%BD%E5%92%8C%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8CArkTS%E6%BC%94%E8%BF%9B%E7%89%88%E4%BB%A3%E7%A0%81)
 
 **Usage:**
 
@@ -305,7 +305,7 @@ hdc file send bootpath.json /system/framework/bootpath.json
 
 ----
 
-## 2. Mangling Rules
+## 2 Mangling Rules
 
 _Mangling_ denotes to method of encoding function signatures, which is used to distinguish functions overloads. The format is:
 
@@ -313,7 +313,7 @@ _Mangling_ denotes to method of encoding function signatures, which is used to d
 <parameter_types>:<return_type>
 ```
 
-### Examples
+### 2.1 Examples
 
 - `toInt(num: number): int` → `d:i`
 - `toInt(str: string): int` → `C{std.core.String}:i`
@@ -327,7 +327,7 @@ Object_CallMethodByName_Int(obj, "toInt", "C{std.core.String}:i", &result);
 
 ---
 
-### Type Mangling Reference
+### 2.2 Type Mangling Reference
 
 | ArkTS Type | Mangling Code  |   ANI Type    |
 |------------|----------------|---------------|
@@ -343,7 +343,7 @@ Object_CallMethodByName_Int(obj, "toInt", "C{std.core.String}:i", &result);
 
 Note that `number` is alias to `double` in ArkTS.
 
-#### Object Types
+#### 2.2.1 Object Types
 
 | ArkTS Class Type            | Mangling                    | Notes                                                             |
 |-----------------------------|-----------------------------|-------------------------------------------------------------------|
@@ -355,7 +355,7 @@ Note that `number` is alias to `double` in ArkTS.
 | `()=>void`                  | `C{std.core.Function0}`     | Function objects by required arguments count                      |
 | `(...args: double[])=>void` | `C{std.core.FunctionR0}`    | Function objects with rest parameters by required arguments count |
 
-#### Array Types
+#### 2.2.2 Array Types
 
 According to `3.16.1 Resizable Array Types` chapter of ArkTS specification, both `T[]` and `Array<T>` specify identical types.
 Hence they are lowered identically into `C{escompat.Array}`:
@@ -364,7 +364,7 @@ Hence they are lowered identically into `C{escompat.Array}`:
 function foo(a: string[], b: Array<Int>): void  // "C{escompat.Array}C{escompat.Array}:"
 ```
 
-#### Fixed Array Types
+#### 2.2.3 Fixed Array Types
 
 | ArkTS Array                   |       Mangling          |
 |-------------------------------|-------------------------|
@@ -372,7 +372,7 @@ function foo(a: string[], b: Array<Int>): void  // "C{escompat.Array}C{escompat.
 | `FixedArray<FixedArray<int>>` | `A{A{i}}`               |
 | `FixedArray<String>`          | `A{C{std.core.String}}` |
 
-#### Special Types
+#### 2.2.4 Special Types
 
 | Special Value  | Mangling              |        Notes         |
 |----------------|-----------------------|----------------------|
@@ -381,7 +381,7 @@ function foo(a: string[], b: Array<Int>): void  // "C{escompat.Array}C{escompat.
 
 ---
 
-### Key Mangling Rules
+### 2.3 Key Mangling Rules
 
 1. **Separate Parameters and Return Types**
    - Use `:` to separate arguments from return type, e.g., `dd:i` (two doubles, returns int).
@@ -424,7 +424,7 @@ function foo(a: C | I): void    // "C{hello_ani.I}:"
 
 ---
 
-### Example Mangled Signatures
+### 2.4 Example Mangled Signatures
 
 ```ts
 class A {/*...*/}
@@ -525,7 +525,7 @@ e.g. `auto str = static_cast<ani_string>(string_ref);`
 
 - How to convert `ani_int` / `ani_double` and other primitive types to `ani_ref`?
 
-Refer to [Section 4.1](#41-boxing--unboxing). "Boxing" for the procedure.
+Refer to [Section 4.1](#41-primitive-types). "Boxing" for the procedure.
 
 ### 3.4 Type Identification: Object_InstanceOf
 
@@ -693,7 +693,7 @@ class C implements I {}
 function foo(arg: C | I): void  // Signature: "C{some_module.I}:"
 ```
 
-> Optional parameter `arg?: T` always equals to `arg: T | undefined`, see ArkTS specification chapter `4.8.4 Optional Parameters`.
+> Optional parameter `arg?: T` always equals to `arg: T | undefined`, see [ArkTS specification chapter](#reference-index) `4.8.4 Optional Parameters`.
 
 As union are represented with references, primitive values must be boxed to be used as part of union.
 
@@ -703,14 +703,14 @@ As union are represented with references, primitive values must be boxed to be u
 
 **Handling Arguments**:
 
-Use `Object_InstanceOf` to determine the actual type of the argument and handle accordingly. See [3.4 Type Identification: Object_InstanceOf](#3.4-Type-Identification:-Object_InstanceOf)
+Use `Object_InstanceOf` to determine the actual type of the argument and handle accordingly. See [3.4 Type Identification: Object_InstanceOf](#34-type-identification-object_instanceof)
 
 ### 4.4 Optional Parameters
 
 **Mangling**:
 1. Primitive types like `int`, `double` are boxed to `Int`, `Double`, etc.
 2. Non-primitives retain their original mangling.
-3. All optional parameters are considered union types with `undefined` (see ArkTS specification chapter `4.8.4 Optional Parameters`).
+3. All optional parameters are considered union types with `undefined` (see [ArkTS specification chapter](#reference-index) `4.8.4 Optional Parameters`).
 4. Overloaded constructors exist in the `.abc` file for functions with optional parameters.
 
 | ArkTS Type          | Mangling               | Binding / ANI Type |    Notes   |
@@ -1078,12 +1078,12 @@ ani_double CallOptionalFnImpl(ani_env *env, ani_object opt, ani_double val1, ani
 
 ### 6.5 wrap & unwrap
 
-Example: [ani_wrap_native_ptr.ets](https://gitee.com/ironrain/ani_cookbook/blob/master/ani_wrap_native_ptr/ani_wrap_native_ptr.ets)
+Example: [ani_wrap_native_ptr.ets](https://gitee.com/LeechyLiang/ani_cookbook/blob/master/ani_wrap_native_ptr/ani_wrap_native_ptr.ets)
 
 ## 7 Callback Function / Lambda Function Objects
 
 Function object and callback example:  
-[ani_fn_object/ani_fn_object.ets · ironrain/ani_cookbook](https://gitee.com/ironrain/ani_cookbook/blob/master/ani_fn_object/ani_fn_object.ets)
+[ani_fn_object/ani_fn_object.ets · LeechyLiang/ani_cookbook](https://gitee.com/LeechyLiang/ani_cookbook/blob/master/ani_fn_object/ani_fn_object.ets)
 
 ```cpp
 ani_status FunctionalObject_Call(ani_env *env, ani_fn_object fn, ani_size argc, ani_ref *argv, ani_ref *result)
@@ -1110,7 +1110,7 @@ env->FunctionalObject_Call(show_every, vec.size(), vec.data(), &result);
 ## 8 Asynchronous Execution
 
 Asynchronous example:  
-[ani_async_wrapper/ani_async_wrapper.ets · ironrain/ani_cookbook](https://gitee.com/ironrain/ani_cookbook/blob/master/ani_async_wrapper/ani_async_wrapper.ets)
+[ani_async_wrapper/ani_async_wrapper.ets · LeechyLiang/ani_cookbook](https://gitee.com/LeechyLiang/ani_cookbook/blob/master/ani_async_wrapper/ani_async_wrapper.ets)
 
 > [! Warning] **Potential Issue**
 > Throwing an exception inside an asynchronous context may cause the program to freeze and not terminate properly.
@@ -1228,7 +1228,7 @@ Aside from them, users have the following ways to use multithreading in their pr
 **Note that `ani_env` cannot be used across threads**. Capturing `ani_env` in a lambda or thread function will lead to null pointer exceptions.
 See Section 9 (Lifecycle Management) for important details.
 
-### Key Advice
+**Key Advice:**
 
 - When defining a lambda to be executed on another thread, **capture `ani_vm` instead of `ani_env`**.
 - Refer to Section 9.2 for proper usage of `AttachCurrentThread` and `GetEnv`.
@@ -1319,7 +1319,7 @@ static void HandleDataImpl(ani_env *env, ani_object obj, ani_arraybuffer arraybu
 }
 ```
 
-Full example: [ani_arraybuffer.cpp](https://gitee.com/ironrain/ani_cookbook/blob/master/ani_arraybuffer/ani_arraybuffer.cpp)
+Full example: [ani_arraybuffer.cpp](https://gitee.com/LeechyLiang/ani_cookbook/blob/master/ani_arraybuffer/ani_arraybuffer.cpp)
 
 ## 14 Enum
 
@@ -1380,7 +1380,7 @@ try {
 
 ## 16 String
 
-### Convert `std::string` → `ani_string`
+### 16.1 Convert `std::string` → `ani_string`
 
 ```cpp
 std::optional<ani_string> ANIUtils_StdStringToANIString(ani_env *env, std::string str) {
@@ -1392,7 +1392,7 @@ std::optional<ani_string> ANIUtils_StdStringToANIString(ani_env *env, std::strin
 }
 ```
 
-### Convert `ani_string` → `std::string`
+### 16.2 Convert `ani_string` → `std::string`
 
 ```cpp
 std::string ANIUtils_ANIStringToStdString(ani_env *env, ani_string ani_str) {
@@ -1507,7 +1507,7 @@ native callWithTuple(tuple:[double, double, double, double, double]):void;
 ```cpp
 void callWithTupleImpl(ani_env *env, ani_tuple_value tuple) {
     ani_double result = 0.0;
-    env_->TupleValue_GetItem_Double(tuple, 0U, &result);  // result = 3.14
+    env->TupleValue_GetItem_Double(tuple, 0U, &result);  // result = 3.14
 }
 ``` 
 
@@ -1600,8 +1600,8 @@ Occurs when overloads exist and `nullptr` is used for mangling:
 
 ```cpp
 // .ets
-function foo(i: int): void
-function foo(d: number): void
+function foo(i: int): void;
+function foo(d: number): void;
 
 // .cpp
 FindMethod(cls, "foo", nullptr, &method); // ERROR
