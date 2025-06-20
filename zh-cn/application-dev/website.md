@@ -4941,7 +4941,7 @@
           - [OH_NativeColorSpaceManager](reference/apis-arkgraphics2d/capi-nativecolorspacemanager-oh-nativecolorspacemanager.md)
           - [OH_DisplaySoloist](reference/apis-arkgraphics2d/capi-nativedisplaysoloist-oh-displaysoloist.md)
           - [NativePixelMap_](reference/apis-arkgraphics2d/capi-drawing-nativepixelmap-.md)
-          - [OH_PixelmapNative](reference/apis-arkgraphics2d/ccapi-drawing-oh-pixelmapnative.md)
+          - [OH_PixelmapNative](reference/apis-arkgraphics2d/capi-drawing-oh-pixelmapnative.md)
           - [OH_Drawing_FontCollection](reference/apis-arkgraphics2d/capi-drawing-oh-drawing-fontcollection.md)
           - [OH_Drawing_Typography](reference/apis-arkgraphics2d/capi-drawing-oh-drawing-typography.md)
           - [OH_Drawing_TextStyle](reference/apis-arkgraphics2d/capi-drawing-oh-drawing-textstyle.md)

@@ -23,8 +23,8 @@
 | -- | -- | -- |
 | [OH_OnFrameAvailableListener](capi-oh-nativeimage-oh-onframeavailablelistener.md) | OH_OnFrameAvailableListener | 一个OH_NativeImage的监听者，通过[OH_NativeImage_SetOnFrameAvailableListener](capi-native-image-h.md#oh_nativeimage_setonframeavailablelistener)接口注册该监听结构体，当有buffer可获取时，将触发回调给用户。 |
 | [OH_NativeImage](capi-oh-nativeimage-oh-nativeimage.md) | OH_NativeImage | 提供OH_NativeImage结构体声明。 |
-| [NativeWindow](capi-oh-nativeimage-nativewindow-nativewindow.md) | OHNativeWindow | 提供对NativeWindow的访问功能。 |
-| [NativeWindowBuffer](capi-oh-nativeimage-nativewindow-nativewindowbuffer.md) | OHNativeWindowBuffer | 提供NativeWindowBuffer结构体声明。 |
+| [NativeWindow](capi-nativewindow-nativewindow.md) | OHNativeWindow | 提供对NativeWindow的访问功能。 |
+| [NativeWindowBuffer](capi-nativewindow-nativewindowbuffer.md) | OHNativeWindowBuffer | 提供NativeWindowBuffer结构体声明。 |
 
 ### 函数
 
