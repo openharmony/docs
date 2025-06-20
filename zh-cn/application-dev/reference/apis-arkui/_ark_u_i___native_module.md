@@ -18411,7 +18411,7 @@ ArkUI_ErrorCode OH_ArkUI_PanGesture_SetDistanceMap(ArkUI_GestureRecognizer* reco
 ```
 **描述：**
 
-设置手势最小滑动阈值表。
+设置手势最小滑动阈值表。当设备类型为非法值时，设置不生效。
 
 **起始版本：** 19
 
@@ -18437,7 +18437,7 @@ ArkUI_ErrorCode OH_ArkUI_PanGesture_GetDistanceByToolType(ArkUI_GestureRecognize
 ```
 **描述：**
 
-获取手势识别器的手势移动阈值表。
+获取手势识别器的手势移动阈值表。仅支持对通过OH_ArkUI_PanGesture_SetDistanceMap修改过的设备类型的阈值查询，对于默认滑动阈值可通过查询UI_INPUT_EVENT_TOOL_TYPE_UNKNOWN类型获得，其他未主动设置过的类型不会返回。
 
 **起始版本：** 19
 
