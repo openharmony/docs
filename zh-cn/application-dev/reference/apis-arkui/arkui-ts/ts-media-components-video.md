@@ -6,7 +6,7 @@
 >
 >  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。<br/>
 >  Video组件只提供简单的视频播放功能，无法支撑复杂的视频播控场景。复杂开发场景推荐使用[AVPlayer](../../apis-media-kit/js-apis-media.md#avplayer9)播控API和[XComponent](ts-basic-components-xcomponent.md)组件开发。<br/>
->  Video组件在使用expandSafeAre扩展到安全区域时，组件视频显示内容区域不支持扩展。
+>  Video组件在使用expandSafeArea扩展到安全区域时，组件视频显示内容区域不支持扩展。
 
 ## 权限列表
 
