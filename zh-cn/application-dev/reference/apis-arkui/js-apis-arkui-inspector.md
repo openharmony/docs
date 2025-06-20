@@ -25,7 +25,7 @@ createComponentObserver(id: string): ComponentObserver
 >
 > 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getUIInspector](js-apis-arkui-UIContext.md#getuiinspector)方法获取当前UI上下文关联的[UIInspector](js-apis-arkui-UIContext.md#uiinspector)对象。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -57,7 +57,7 @@ on(type: 'layout', callback: () => void): void
 
 通过句柄向对应的查询条件注册回调，当组件布局完成时会触发该回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -74,7 +74,7 @@ off(type: 'layout', callback?: () => void): void
 
 通过句柄向对应的查询条件取消注册回调，当组件布局完成时不再触发指定的回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -91,7 +91,7 @@ on(type: 'draw', callback: () => void): void
 
 通过句柄向对应的查询条件注册回调，当组件绘制送显完成时会触发该回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -108,7 +108,7 @@ off(type: 'draw', callback?: () => void): void
 
 通过句柄向对应的查询条件取消注册回调，当组件绘制送显完成时不再触发指定的回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -119,11 +119,11 @@ off(type: 'draw', callback?: () => void): void
 | type     | string | 是   | 必须填写字符串'draw'。<br>draw: 组件绘制送显完成。|
 | callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和[on('draw')](#ondraw)方法中的callback为相同对象时才能取消回调成功。 |
 
-### on('drawChildren')<sup>20<sup>
+### on('drawChildren')<sup>20+<sup>
 
 on(type: 'drawChildren',  callback: Callback\<void\>): void
 
-通过句柄向对应的查询条件注册回调，当组件绘制送显完成时会触发该回调。如果组件树包含多个[ComponentObserver](#componentobserver)句柄，只有在最顶层的句柄注册drawChildren事件，回调函数才能生效。
+通过[ComponentObserver](#componentobserver)注册drawChildren事件回调方法，当组件的子组件绘制送显完成时会触发该回调方法。如果组件树中存在多个drawChildren事件回调，只会触发在最顶层的drawChildren事件回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -134,9 +134,9 @@ on(type: 'drawChildren',  callback: Callback\<void\>): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 必须填写字符串'drawChildren'。<br>drawChildren: 子组件绘制送显完成。|
-| callback | Callback\<void\>   | 是   | 监听drawChildren的回调。                                     |
+| callback | [Callback\<void\>](js-apis-arkui-inspector.md#)   | 是   | 监听drawChildren的回调。                                     |
 
-### off('drawChildren')<sup>20<sup>
+### off('drawChildren')<sup>20+<sup>
 
 off(type: 'drawChildren', callback?: Callback\<void\>): void
 
@@ -151,7 +151,7 @@ off(type: 'drawChildren', callback?: Callback\<void\>): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 必须填写字符串'drawChildren'。<br>drawChildren: 子组件绘制送显完成。|
-| callback | Callback\<void\>   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和[on('drawChildren')](#ondrawchildren20)方法中的callback为相同对象时才能取消回调成功。 |
+| callback | Callback\<void\>   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和[on('drawChildren')20+](#ondrawchildren20)方法中的callback为相同对象时才能取消回调成功。 |
 
 **示例：**
 
