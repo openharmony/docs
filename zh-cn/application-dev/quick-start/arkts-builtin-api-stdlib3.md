@@ -351,6 +351,7 @@
 - [Reflect-has方法变更](#reflect-has方法变更)
 - [Reflect-ownKeys方法变更](#reflect-ownkeys方法变更)
 - [Reflect-set方法变更](#reflect-set方法变更)
+- [Reflect-方法新增](#reflect-方法新增)
 
 ### 变更详情
 
@@ -548,6 +549,33 @@
 **适配建议：** 
   不使用泛型参数，属性名只能是字符串，值必须是对象类型。
 
+#### Reflect-方法新增
+
+**ArkTS1.2版本签名：**
+  `function isLiteralInitializedInterface(target: Object): boolean`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  |--------|------|------|------|
+  | target | Object | 是 | 目标对象。 |
+
+**返回值：**
+  | 类型 | 说明 |
+  |------|------|
+  | boolean | 表示对象是否由Interface创建出来的ObjectLiteral，true表示是，false表示不是。 |
+
+**示例：**
+  ```typescript
+  interface TestIface {
+    str: string
+    num: number
+    bl: boolean
+  }
+
+  let tif: TestIface = { str: "strstr", num: 42, bl: false}
+  let res: boolean = Reflect.isLiteralInitializedInterface(tif);
+  console.log(res); // True
+  ```
 
 ## TemplateStringsArray
 
