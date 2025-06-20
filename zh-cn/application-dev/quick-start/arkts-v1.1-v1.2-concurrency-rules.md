@@ -58,8 +58,8 @@ const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/w
 **ArkTS1.2**
 ```typescript
 let eaw = new EAWorker();
-eaw.run<void>(() => {
-    console.info("hello, eaworker!");
+eaw.run<void>(():void => {
+    console.info('hello, eaworker!');
 });
 
 eaw.join();
@@ -75,13 +75,16 @@ eaw.join();
 
 **ArkTS1.1**
 ```typescript
-"use shared"
-export function test() {}
+// test.ets
+export let num = 1;
+// shared.ets
+'use shared'
+export {num} from './test';
 ```
 
 **ArkTS1.2**
 ```typescript
-export function test() {}
+export let num = 1;
 ```
 
 ## 共享函数不需要use concurrent修饰
@@ -95,7 +98,7 @@ export function test() {}
 **ArkTS1.1**
 ```typescript
 function func() {
-"use concurrent" 
+'use concurrent' 
 }
 ```
 
@@ -143,7 +146,7 @@ console.info(str);
 
 **ArkTS1.2**
 ```typescript
-let arr = new Array(1, 2, 3);
+let arr = new Array<number>(1, 2, 3);
 let str = JSON.stringify(arr);
 console.info(str);
 ```
@@ -178,6 +181,7 @@ let int32 = new Int32Array(sab);
 
 **ArkTS1.1**
 ```typescript
+import { taskpool } from '@kit.ArkTS';
 @Concurrent
 function test() {}
 let result: Boolean = taskpool.isConcurrent(test);
@@ -207,6 +211,7 @@ taskpool.execute(test);
 **ArkTS1.2**
 ```typescript
 function test() {}
+
 taskpool.execute(test);
 ```
 
@@ -244,14 +249,14 @@ import { process } from '@kit.ArkTS';
 
 let result = process.is64Bit();
 let pro = new process.ProcessManager();
-let pres = pro.getUidForName("tool");
+let pres = pro.getUidForName('tool');
 ```
 
 **ArkTS1.2**
 ```typescript
 let result = StdProcess.is64Bit();
 let pro = new StdProcess.ProcessManager();
-let pres = pro.getUidForName("tool");
+let pres = pro.getUidForName('tool');
 ```
 
 ## 移除taskpool setCloneList接口
@@ -264,19 +269,50 @@ let pres = pro.getUidForName("tool");
 
 **ArkTS1.1**
 ```typescript
-let baseInstance1: BaseClass = new BaseClass();
-let array1 = new Array<BaseClass>();
-array1.push(baseInstance1);
-let task1 = new taskpool.Task(testFunc, array1, 10);
-task1.setCloneList(array1);
+import { taskpool } from '@kit.ArkTS';
+
+@Sendable
+class BaseClass {
+  public str: string = 'sendable: BaseClass';
+}
+
+@Concurrent
+function testFunc(array: Array<BaseClass>) {
+  let baseInstance = array[0];
+  console.info('sendable: str1 is: ' + baseInstance.str);
+  return baseInstance.str;
+}
+
+let baseInstance: BaseClass = new BaseClass();
+let array = new Array<BaseClass>();
+array.push(baseInstance);
+let task = new taskpool.Task(testFunc, array);
+task.setCloneList(array);
+taskpool.execute(task).then((res: Object) => {
+  console.info('sendable: task res is: ' + res)
+});
 ```
 
 **ArkTS1.2**
 ```typescript
-let baseInstance1: BaseClass = new BaseClass();
-let array1 = new Array<BaseClass>();
-array1.push(baseInstance1);
-let task1 = new taskpool.Task(testFunc, array1, 10);
+class BaseClass {
+  public str: string = 'BaseClass';
+}
+
+function testFunc(array: Array<BaseClass>) {
+  let baseInstance = array[0];
+  console.info('str1 is: ' + baseInstance.str);
+  return baseInstance.str;
+}
+
+
+let baseInstance: BaseClass = new BaseClass();
+let array = new Array<BaseClass>();
+array.push(baseInstance);
+let task = new taskpool.Task(testFunc, array);
+taskpool.execute(task).then((res: NullishType):void => {
+  console.info('task res is: ' + res)
+});
 ```
 
 ## 移除taskpool setTransferList接口
@@ -289,21 +325,63 @@ let task1 = new taskpool.Task(testFunc, array1, 10);
 
 **ArkTS1.1**
 ```typescript
+import { taskpool } from '@kit.ArkTS';
+
+@Concurrent
+function testTransfer(arg1: ArrayBuffer, arg2: ArrayBuffer): number {
+  console.info('testTransfer arg1 byteLength: ' + arg1.byteLength);
+  console.info('testTransfer arg2 byteLength: ' + arg2.byteLength);
+  return 100;
+}
+
 let buffer: ArrayBuffer = new ArrayBuffer(8);
 let view: Uint8Array = new Uint8Array(buffer);
 let buffer1: ArrayBuffer = new ArrayBuffer(16);
 let view1: Uint8Array = new Uint8Array(buffer1);
+
+console.info('testTransfer view byteLength: ' + view.byteLength);
+console.info('testTransfer view1 byteLength: ' + view1.byteLength);
+// 执行结果为：
+// testTransfer view byteLength: 8
+// testTransfer view1 byteLength: 16
+
 let task: taskpool.Task = new taskpool.Task(testTransfer, view, view1);
 task.setTransferList([view.buffer, view1.buffer]);
+taskpool.execute(task).then((res: Object) => {
+  console.info('test result: ' + res);
+}).catch((e: string) => {
+  console.error('test catch: ' + e);
+})
+console.info('testTransfer view2 byteLength: ' + view.byteLength);
+console.info('testTransfer view3 byteLength: ' + view1.byteLength);
+// 经过transfer转移之后值为0，执行结果为：
+// testTransfer view2 byteLength: 0
+// testTransfer view3 byteLength: 0
 ```
 
 **ArkTS1.2**
 ```typescript
+function testTransfer(arg1: Uint8Array, arg2: Uint8Array): number {
+  console.info('testTransfer arg1 byteLength: ' + arg1.byteLength);
+  console.info('testTransfer arg2 byteLength: ' + arg2.byteLength);
+  return 100.0;
+}
+
 let buffer: ArrayBuffer = new ArrayBuffer(8);
 let view: Uint8Array = new Uint8Array(buffer);
 let buffer1: ArrayBuffer = new ArrayBuffer(16);
 let view1: Uint8Array = new Uint8Array(buffer1);
+
 let task: taskpool.Task = new taskpool.Task(testTransfer, view, view1);
+taskpool.execute(task).then((res: Object) => {
+  console.info('test result: ' + res);
+}).catch((e: Error): void => {
+  console.error('test catch: ' + e);
+})
+// 内存共享，此处可直接访问view,view1的内容，不需要使用setTransferList
+// 执行结果为：
+// testTransfer arg1 byteLength: 8
+// testTransfer arg2 byteLength: 16
 ```
 
 ## 删除ISendable接口
@@ -355,15 +433,15 @@ import { ArkTSUtils } from '@kit.ArkTS'
 
 @Sendable
 function sendableFunc() {
-  console.info("sendableFunc")
+  console.info('sendableFunc')
 }
 
 if (ArkTSUtils.isSendable(sendableFunc)) {
-  console.info("sendableFunc is Sendable");
+  console.info('sendableFunc is Sendable');
 } else {
-  console.info("sendableFunc is not Sendable");
+  console.info('sendableFunc is not Sendable');
 }
 ```
 
 **ArkTS1.2**
-内存共享，不需要判断是否为Sendable对象。
+内存共享，不需要判断是否为Sendable对象，不再提供isSendable接口。
