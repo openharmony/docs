@@ -132,11 +132,9 @@
      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in publishing notification.');
    });
    ```
-## 相关实例
+<!--RP1-->
 
-  <!--RP1-->
+## 示例代码
 
-  针对携带WantAgent的通知(ArkTS)，有以下相关实例可供参考：
-
-  - [NotificationOperations](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomNotification/entry/src/main/ets/feature/NotificationOperations.ets)
-  <!--RP1End-->
+  - [自定义通知](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomNotification/README_zh.md)
+<!--RP1End-->
