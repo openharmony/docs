@@ -202,7 +202,7 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// addslot回调
+// addSlot回调
 let addSlotCallBack = (err: BusinessError): void => {
     if (err) {
         console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
@@ -3758,7 +3758,7 @@ let onCheckNotification = (info : notificationManager.NotificationCheckInfo): no
 }
 try{
     notificationManager.on("checkNotification", onCheckNotification);
-} catch (err: BusinessError){
+} catch (err){
     console.error(`notificationManager.on failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -3854,7 +3854,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     notificationManager.off("checkNotification");
-} catch (err: BusinessError){
+} catch (err){
     console.error(`notificationManager.off failed, code is ${err.code}, message is ${err.message}`);
 }
 ```

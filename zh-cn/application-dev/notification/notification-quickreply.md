@@ -32,7 +32,6 @@
     import { window } from '@kit.ArkUI';
     import { rpc } from '@kit.IPCKit';
     import { BusinessError } from '@kit.BasicServicesKit';
-    import { common } from '@kit.AbilityKit';
     ```
 
 2. 手机中应用订阅通知回复事件。
