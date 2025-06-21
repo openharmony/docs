@@ -1708,3 +1708,57 @@ The target bundle is not in u1.
 
 将指定的应用安装在userId为1的用户下。
 <!--DelEnd-->
+
+## 16000115 当前进程未运行isolationProcess字段设为true的组件
+
+**错误信息**
+
+The current process is not running a component configured with "isolationProcess" and cannot be set as a candidate master process.
+
+**错误描述**
+
+当前进程未运行配置了"isolationProcess"的组件，不支持设置为备选主控进程。
+
+**可能原因**
+
+当前进程没有运行配置了isolationProcess字段的组件，不支持声明为主控进程。
+
+**处理步骤**
+
+不支持处理，当前进程未运行isolationProcess字段设为true的组件，无法将其设置为备选主控进程。
+
+## 16000116 当前进程已经是主控进程
+
+**错误信息**
+
+The current process is already a master process and does not support cancellation.
+
+**错误描述**
+
+当前进程已经是主控进程，不支持取消备选主控进程。
+
+**可能原因**
+
+当前进程已经是主控进程，不支持取消备选主控进程。
+
+**处理步骤**
+
+不支持处理，当前进程已经是主控进程的情况下，不支持取消。
+
+## 16000117 当前进程非备选主控进程
+
+**错误信息**
+
+The current process is not a candidate master process and does not support cancellation.
+
+**错误描述**
+
+当前进程不是备选主控进程，不支持取消。
+
+**可能原因**
+
+当前进程不是备选主控进程，不支持取消。
+
+**处理步骤**
+
+不支持处理，当前进程不是备选主控进程，不支持取消。
