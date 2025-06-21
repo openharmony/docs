@@ -133,8 +133,8 @@ Bluetooth_ResultCode OH_Bluetooth_GetBluetoothSwitchState (Bluetooth_SwitchState
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| state | 指向接收蓝牙开关状态的枚举值的指针。 需要传入非空指针，否则将返回错误码。 详细定义请参考[Bluetooth_SwitchState](#bluetooth_switchstate)。 | 
+| state | 指向接收蓝牙开关状态的枚举值的指针。需要传入非空指针，否则将返回错误码。详细定义请参考[Bluetooth_SwitchState](#bluetooth_switchstate)。 | 
 
 **返回：**
 
-返回蓝牙开关状态函数的错误码。详细定义请参考[Bluetooth_ResultCode](#bluetooth_resultcode)。 <br/>BLUETOOTH_SUCCESS 成功获取蓝牙开关状态。 BLUETOOTH_INVALID_PARAM 输入参数为空指针。
+返回蓝牙开关状态函数的错误码。详细定义请参考[Bluetooth_ResultCode](#bluetooth_resultcode)。<br/>BLUETOOTH_SUCCESS 成功获取蓝牙开关状态。 BLUETOOTH_INVALID_PARAM 输入参数为空指针。
