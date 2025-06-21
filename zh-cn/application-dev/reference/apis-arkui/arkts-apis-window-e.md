@@ -247,8 +247,6 @@ WindowStage生命周期的状态类型枚举。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**ArkTS版本：** 该接口仅适用于ArkTS1.1。
-
 | 名称       | 值 | 说明       |
 | ---------- | ------ | ---------- |
 | SHOWN      | 1      | 切到前台。 |
