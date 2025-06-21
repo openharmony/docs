@@ -77,6 +77,8 @@
 | typedef struct [ArkUI_EmbeddedComponentOption](_ark_u_i___native_module.md#arkui_embeddedcomponentoption) [ArkUI_EmbeddedComponentOption](_ark_u_i___native_module.md#arkui_embeddedcomponentoption) | 定义EmbeddedComponent组件的选项。  | 
 | typedef struct [ArkUI_TextPickerRangeContentArray](_ark_u_i___native_module.md#arkui_textpickerrangecontentarray) [ArkUI_TextPickerRangeContentArray](_ark_u_i___native_module.md#arkui_textpickerrangecontentarray) | 定义文本选择器的数据选择列表。<br/>**起始版本：** 19  | 
 | typedef struct [ArkUI_TextCascadePickerRangeContentArray](_ark_u_i___native_module.md#arkui_textcascadepickerrangecontentarray) [ArkUI_TextCascadePickerRangeContentArray](_ark_u_i___native_module.md#arkui_textcascadepickerrangecontentarray) | 定义多列联动数据选择器的多列联动数据选择列表。<br/>**起始版本：** 19  | 
+| typedef struct [ArkUI_ActiveChildrenInfo](_ark_u_i___native_module.md#arkui_activechildreninfo) [ArkUI_ActiveChildrenInfo](_ark_u_i___native_module.md#arkui_activechildreninfo) | 定义ActiveChildrenInfo类信息。<br/>**起始版本：** 14  | 
+| typedef struct ArkUI_CrossLanguageOption ArkUI_CrossLanguageOption | 定义跨语言配置。<br/>**起始版本：** 15  | 
 
 ### 枚举
 
@@ -189,6 +191,7 @@
 | [ArkUI_DatePickerMode](_ark_u_i___native_module.md#arkui_datepickermode) { <br/>[ARKUI_DATEPICKER_MODE_DATE](_ark_u_i___native_module.md) = 0, [ARKUI_DATEPICKER_YEAR_AND_MONTH](_ark_u_i___native_module.md) = 1, [ARKUI_DATEPICKER_MONTH_AND_DAY](_ark_u_i___native_module.md) = 2 <br/>} | 定义要显示的日期选项列样式。 | 
 | [ArkUI_ExpandMode](_ark_u_i___native_module.md#arkui_expandmode) { <br/>[ARKUI_NOT_EXPAND](_ark_u_i___native_module.md) = 0, [ARKUI_EXPAND](_ark_u_i___native_module.md) = 1, [ARKUI_LAZY_EXPAND](_ark_u_i___native_module.md) = 2 <br/>} | 定义子节点展开模式枚举值。 | 
 | [ArkUI_ListItemGroupArea](_ark_u_i___native_module.md#arkui_listitemgrouparea) { <br/>[ARKUI_LIST_ITEM_GROUP_AREA_OUTSIDE](_ark_u_i___native_module.md) = 0, [ARKUI_LIST_ITEM_SWIPE_AREA_NONE](_ark_u_i___native_module.md) = 1, [ARKUI_LIST_ITEM_SWIPE_AREA_ITEM](_ark_u_i___native_module.md) = 2, [ARKUI_LIST_ITEM_SWIPE_AREA_HEADER](_ark_u_i___native_module.md) = 3, [ARKUI_LIST_ITEM_SWIPE_AREA_FOOTER](_ark_u_i___native_module.md) = 4 <br/>} | 定义组件区域的枚举值。 | 
+| [ArkUI_UIState](_ark_u_i___native_module.md#arkui_uistate) { <br/>[UI_STATE_NORMAL](_ark_u_i___native_module.md) = 0, [UI_STATE_PRESSED](_ark_u_i___native_module.md) = 1 &lt;&lt; 0, [UI_STATE_FOCUSED](_ark_u_i___native_module.md) = 1 &lt;&lt; 1, [UI_STATE_DISABLED](_ark_u_i___native_module.md) = 1 &lt;&lt; 2, [UI_STATE_SELECTED](_ark_u_i___native_module.md) = 1 &lt;&lt; 3 <br/>} | 组件的UI状态枚举，用于处理状态样式。 | 
 
 
 ### 函数
@@ -444,3 +447,9 @@
 | void [OH_ArkUI_EmbeddedComponentOption_Dispose](_ark_u_i___native_module.md#oh_arkui_embeddedcomponentoption_dispose) ([ArkUI_EmbeddedComponentOption](_ark_u_i___native_module.md#arkui_embeddedcomponentoption)\* option) |   删除EmbeddedComponent组件选项的对象。 |
 | void [OH_ArkUI_EmbeddedComponentOption_SetOnError](_ark_u_i___native_module.md#oh_arkui_embeddedcomponentoption_setonerror) ([ArkUI_EmbeddedComponentOption](_ark_u_i___native_module.md#arkui_embeddedcomponentoption)\* option, void(\*callback)(int32_t code, const char\* name, const char\* message)) | 设置EmbeddedComponent组件的onError回调。 | 
 | void [OH_ArkUI_EmbeddedComponentOption_SetOnTerminated](_ark_u_i___native_module.md#oh_arkui_embeddedcomponentoption_setonterminated) ([ArkUI_EmbeddedComponentOption](_ark_u_i___native_module.md#arkui_embeddedcomponentoption)\* option, void(\*callback)(int32_t code, [AbilityBase_Want](../apis-ability-kit/_ability_base.md#abilitybase_want)\* want)) | 设置EmbeddedComponent组件的onTerminated回调。 |
+| const char\* [OH_ArkUI_HostWindowInfo_GetName](_ark_u_i___native_module.md#oh_arkui_hostwindowinfo_getname) ([ArkUI_HostWindowInfo](_ark_u_i___native_module.md#arkui_hostwindowinfo)\* info) | 获取HostWindowInfo对象中的窗口名称。 |
+| void [OH_ArkUI_HostWindowInfo_Destroy](_ark_u_i___native_module.md#oh_arkui_hostwindowinfo_destroy) ([ArkUI_HostWindowInfo](_ark_u_i___native_module.md#arkui_hostwindowinfo)\* info) | 销毁HostWindowInfo对象。 |
+| ArkUI_CrossLanguageOption\* [OH_ArkUI_CrossLanguageOption_Create](_ark_u_i___native_module.md#oh_arkui_crosslanguageoption_create) (void) | 创建跨语言配置实例。 |
+| void [OH_ArkUI_CrossLanguageOption_Destroy](_ark_u_i___native_module.md#oh_arkui_crosslanguageoption_destroy) (ArkUI_CrossLanguageOption\* option) | 销毁跨语言配置实例。 |
+| void [OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus](_ark_u_i___native_module.md#oh_arkui_crosslanguageoption_setattributesettingstatus) (ArkUI_CrossLanguageOption\* option, bool enabled) | 设置是否允许跨语言修改属性的配置项。 |
+| bool [OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus](_ark_u_i___native_module.md#oh_arkui_crosslanguageoption_getattributesettingstatus) (ArkUI_CrossLanguageOption\* option) | 获取是否允许跨语言修改属性的配置项的值。 |
