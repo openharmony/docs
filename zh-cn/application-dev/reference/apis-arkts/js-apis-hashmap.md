@@ -90,6 +90,7 @@ isEmpty(): boolean
 ```ts
 const hashMap: HashMap<string, number> = new HashMap();
 let result = hashMap.isEmpty();
+console.info("result = ", result) // result = true
 ```
 
 
@@ -389,7 +390,7 @@ hashMap.set("sparrow", 356);
 let iter = hashMap.keys();
 let temp: IteratorResult<string,number> = iter.next();
 while(!temp.done) {
-  console.log("value:" + temp.value);
+  console.info("value:" + temp.value);
   temp = iter.next();
 }
 ```
@@ -428,7 +429,7 @@ hashMap.set("sparrow", 356);
 let iter = hashMap.values();
 let temp: IteratorResult<number> = iter.next();
 while(!temp.done) {
-  console.log("value:" + temp.value);
+  console.info("value:" + temp.value);
   temp = iter.next();
 }
 ```
@@ -438,7 +439,7 @@ while(!temp.done) {
 
 replace(key: K, newValue: V): boolean
 
-对HashMap中一组数据进行更新（替换）。
+用于替换指定键对应的值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -478,7 +479,7 @@ let result = hashMap.replace("sparrow", 357);
 
 forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object): void
 
-通过回调函数来遍历HashMap实例对象上的元素以及元素对应的下标。
+在遍历过程中对每个元素调用一次回调函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -514,7 +515,7 @@ let hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("sparrow", 123);
 hashMap.set("gull", 357);
 hashMap.forEach((value?: number, key?: string) => {
-  console.log("value:" + value, "key:" + key);
+  console.info("value:" + value, "key:" + key);
 });
 ```
 ```ts
@@ -562,8 +563,8 @@ hashMap.set("sparrow", 356);
 let iter = hashMap.entries();
 let temp: IteratorResult<Object[]> = iter.next();
 while(!temp.done) {
-  console.log("key:" + temp.value[0]);
-  console.log("value:" + temp.value[1]);
+  console.info("key:" + temp.value[0]);
+  console.info("value:" + temp.value[1]);
   temp = iter.next();
 }
 ```
@@ -611,16 +612,16 @@ hashMap.set("sparrow", 356);
 // 使用方法一：
 let keys = Array.from(hashMap.keys());
 for (let key of keys) {
-  console.log("key:" + key);
-  console.log("value:" + hashMap.get(key));
+  console.info("key:" + key);
+  console.info("value:" + hashMap.get(key));
 }
 
 // 使用方法二：
  let iter = hashMap[Symbol.iterator]();
  let temp: IteratorResult<Object[]> = iter.next();
  while(!temp.done) {
-   console.log("key:" + temp.value[0]);
-   console.log("value:" + temp.value[1]);
+   console.info("key:" + temp.value[0]);
+   console.info("value:" + temp.value[1]);
    temp = iter.next();
  }
 ```
