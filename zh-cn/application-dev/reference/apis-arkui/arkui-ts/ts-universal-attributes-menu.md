@@ -911,7 +911,7 @@ struct Index {
                 }
               })
             .onClick(() => {
-              console.log('trigger onClick')
+              console.info('trigger onClick')
             })
         }
       }.width('100%')
