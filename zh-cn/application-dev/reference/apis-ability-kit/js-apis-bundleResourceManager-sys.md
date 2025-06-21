@@ -522,3 +522,31 @@ try {
     console.error(`getExtensionAbilityResourceInfo failed, err code:${code}, err msg: ${message}`);
 }
 ```
+
+## BundleResourceInfo
+
+type BundleResourceInfo = _BundleResourceInfo
+
+应用配置的图标和名称信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Resource
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md#bundleresourceinfo) |应用配置的图标和名称信息。 |
+
+## LauncherAbilityResourceInfo
+
+type LauncherAbilityResourceInfo = _LauncherAbilityResourceInfo
+
+应用配置的入口图标和名称信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Resource
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md#launcherabilityresourceinfo) |应用配置的入口图标和名称信息。 |
