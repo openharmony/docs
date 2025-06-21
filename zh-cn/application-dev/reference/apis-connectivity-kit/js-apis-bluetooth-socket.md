@@ -28,9 +28,9 @@ sppListen(name: string, options: SppOptions, callback: AsyncCallback&lt;number&g
 
 | 参数名      | 类型                          | 必填   | 说明                      |
 | -------- | --------------------------- | ---- | ----------------------- |
-| name     | string                      | 是    | 服务的名称。                  |
+| name     | string                      | 是    | 服务的名称，该字符串的字符个数范围为[0, 256]。                  |
 | options   | [SppOptions](#sppoptions)     | 是    | spp监听配置参数。              |
-| callback | AsyncCallback&lt;number&gt; | 是    | 表示回调函数的入参，服务端Socket的id。 |
+| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数。当创建服务端scoket成功，err为undefined，data为获取到的服务端socket的id；否则为错误对象。 |
 
 **错误码**：
 
@@ -82,8 +82,8 @@ sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名          | 类型                          | 必填   | 说明                      |
 | ------------ | --------------------------- | ---- | ----------------------- |
-| serverSocket | number                      | 是    | 服务端socket的id。           |
-| callback     | AsyncCallback&lt;number&gt; | 是    | 表示回调函数的入参，客户端socket的id。 |
+| serverSocket | number                      | 是    | 服务端socket的id。<br>该值是调用[sppListen](#socketspplisten)接口后，通过其异步callback获取到的。           |
+| callback     | AsyncCallback&lt;number&gt; | 是    | 回调函数。当收到客户端的连接时，err为undefined，data为该客户端socket的id；否则为错误对象。 |
 
 **错误码**：
 
@@ -137,7 +137,7 @@ sppConnect(deviceId: string, options: SppOptions, callback: AsyncCallback&lt;num
 | -------- | --------------------------- | ---- | ------------------------------ |
 | deviceId | string                      | 是    | 对端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | options   | [SppOptions](#sppoptions)     | 是    | spp客户端连接配置参数。                  |
-| callback | AsyncCallback&lt;number&gt; | 是    | 表示回调函数的入参，客户端socket的id。        |
+| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数。当客户端发起连接成功，err为undefined，data为当前客户端socket的id；否则为错误对象。        |
 
 **错误码**：
 
@@ -188,13 +188,13 @@ getDeviceId(clientSocket: number): string
 
 | 参数名      | 类型                          | 必填   | 说明                             |
 | -------- | ------------------------------- | ---- | ------------------------------ |
-| clientSocket | number                      | 是    | 客户端Socket的id。 |
+| clientSocket | number                      | 是    | 客户端socket的id。<br>该值是调用[sppAccept](#socketsppaccept)或[sppConnect](#socketsppconnect)接口，通过其异步callback获取到的。 |
 
 **返回值：**
 
 | 类型                                       | 说明                         |
 | ---------------------------------------- | -------------------------- |
-| string | 返回对端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| string | 返回对端设备地址。 |
 
 **错误码**：
 
@@ -239,7 +239,7 @@ sppCloseServerSocket(socket: number): void
 
 | 参数名    | 类型     | 必填   | 说明              |
 | ------ | ------ | ---- | --------------- |
-| socket | number | 是    | 服务端监听socket的id。 |
+| socket | number | 是    | 服务端监听socket的id。<br>该值是调用[sppListen](#socketspplisten)接口，通过其异步callback获取到的。 |
 
 **错误码**：
 
@@ -277,7 +277,7 @@ sppCloseClientSocket(socket: number): void
 
 | 参数名    | 类型     | 必填   | 说明       |
 | ------ | ------ | ---- | ------------- |
-| socket | number | 是    | 客户端socket的id。 |
+| socket | number | 是    | 客户端socket的id。<br>该值是调用[sppAccept](#socketsppaccept)或[sppConnect](#socketsppconnect)接口，通过其异步callback获取到的。 |
 
 **错误码**：
 
@@ -315,7 +315,7 @@ sppWrite(clientSocket: number, data: ArrayBuffer): void
 
 | 参数名          | 类型          | 必填   | 说明            |
 | ------------ | ----------- | ---- | ------------- |
-| clientSocket | number      | 是    | 客户端socket的id。 |
+| clientSocket | number      | 是    | 客户端socket的id。<br>该值是调用[sppAccept](#socketsppaccept)或[sppConnect](#socketsppconnect)接口，通过其异步callback获取到的。 |
 | data         | ArrayBuffer | 是    | 写入的数据。        |
 
 **错误码**：
@@ -357,9 +357,9 @@ on(type: 'sppRead', clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;)
 
 | 参数名          | 类型                          | 必填   | 说明                         |
 | ------------ | --------------------------- | ---- | -------------------------- |
-| type         | string                      | 是    | 填写"sppRead"字符串，表示spp读请求事件。 |
-| clientSocket | number                      | 是    | 客户端socket的id。              |
-| callback     | Callback&lt;ArrayBuffer&gt; | 是    | 表示回调函数的入参，读取到的数据。          |
+| type         | string                      | 是    | 事件回调类型，支持的事件为'sppRead'，表示订阅spp读请求事件。<br>当收到了对端发送的数据时，触发该事件。|
+| clientSocket | number                      | 是    | 客户端socket的id。<br>该值是调用[sppAccept](#socketsppaccept)或[sppConnect](#socketsppconnect)接口，通过其异步callback获取到的。              |
+| callback     | Callback&lt;ArrayBuffer&gt; | 是    | 指定订阅的回调函数，会返回读取到的数据。       |
 
 **错误码**：
 
@@ -401,9 +401,9 @@ off(type: 'sppRead', clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt
 
 | 参数名          | 类型                          | 必填   | 说明                                       |
 | ------------ | --------------------------- | ---- | ---------------------------------------- |
-| type         | string                      | 是    | 填写"sppRead"字符串，表示spp读请求事件。               |
-| clientSocket | number                      | 是    | 客户端Socket的id。                            |
-| callback     | Callback&lt;ArrayBuffer&gt; | 否    | 表示取消订阅spp读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| type         | string                      | 是    | 事件回调类型，支持的事件为'sppRead'，表示取消订阅spp读请求事件。               |
+| clientSocket | number                      | 是    | 客户端socket的id。<br>该值是调用[sppAccept](#socketsppaccept)或[sppConnect](#socketsppconnect)接口，通过其异步callback获取到的。                            |
+| callback     | Callback&lt;ArrayBuffer&gt; | 否    | 指定取消订阅的回调函数通知。<br>若传参，则需与[socket.on('sppRead')](#socketonsppread)中的回调函数一致；若无传参，则取消订阅该type对应的所有回调函数通知。 |
 
 **错误码**：
 
@@ -439,14 +439,14 @@ sppWriteAsync(clientSocket: number, data: ArrayBuffer): Promise&lt;void&gt;
 
 | 参数名          | 类型                          | 必填   | 说明                                       |
 | ------------ | --------------------------- | ---- | ---------------------------------------- |
-| clientSocket | number                      | 是    | 客户端Socket的id。                            |
+| clientSocket | number                      | 是    | 客户端socket的id。<br>该值是调用[sppAccept](#socketsppaccept)或[sppConnect](#socketsppconnect)接口，通过其异步callback获取到的。                            |
 | data         | ArrayBuffer                 | 是    | 写入的数据。 |
 
 **返回值：**
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| Promise&lt;void&gt; | 以Promise的形式返回结果。如果成功，err为undefined，否则为错误对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码**：
 
@@ -494,13 +494,13 @@ sppReadAsync(clientSocket: number): Promise&lt;ArrayBuffer&gt;
 
 | 参数名          | 类型                          | 必填   | 说明                                       |
 | ------------ | --------------------------- | ---- | ---------------------------------------- |
-| clientSocket | number                      | 是    | 客户端Socket的id。                            |
+| clientSocket | number                      | 是    | 客户端socket的id。<br>该值是调用[sppAccept](#socketsppaccept)或[sppConnect](#socketsppconnect)接口，通过其异步callback获取到的。                            |
 
 **返回值：**
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| Promise&lt;ArrayBuffer&gt; | 以Promise的形式返回读取数据结果。如果成功，值在ArrayBuffer中返回，如果失败，返回对应错误码。 |
+| Promise&lt;ArrayBuffer&gt; | Promise对象。返回读取的数据。 |
 
 **错误码**：
 

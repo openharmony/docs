@@ -2230,7 +2230,7 @@ server端订阅MTU（最大传输单元）大小变更事件。使用Callback异
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 事件回调类型，支持的事件为'BLEMtuChange'，表示MTU状态变化事件。<br>当收到了client端发起了MTU协商请求时，触发该事件。 |
-| callback | Callback&lt;number&gt; | 是    | 指定订阅的回调函数，会携带协商后的MTU大小。单位是字节。 |
+| callback | Callback&lt;number&gt; | 是    | 指定订阅的回调函数，会携带协商后的MTU大小。单位：Byte。 |
 
 **错误码**：
 
@@ -3222,7 +3222,7 @@ client端获取GATT连接链路信号强度 (Received Signal Strength Indication
 
 | 参数名      | 类型                          | 必填   | 说明                             |
 | -------- | --------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数。获取链路信号强度成功，err为undefined，data为获取到的信号强度值，单位是dBm；否则为错误对象。 |
+| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数。获取链路信号强度成功，err为undefined，data为获取到的信号强度值，单位：dBm；否则为错误对象。 |
 
 **错误码**：
 
@@ -3273,7 +3273,7 @@ client端获取GATT连接链路信号强度 (Received Signal Strength Indication
 
 | 类型                    | 说明                                |
 | --------------------- | --------------------------------- |
-| Promise&lt;number&gt; | Promise对象。返回链路的信号强度，单位是dBm。 |
+| Promise&lt;number&gt; | Promise对象。返回链路的信号强度，单位：dBm。 |
 
 **错误码**：
 
@@ -3322,7 +3322,7 @@ client端同server端协商MTU（最大传输单元）大小。<br>
 
 | 参数名  | 类型     | 必填   | 说明             |
 | ---- | ------ | ---- | -------------- |
-| mtu  | number | 是    | 需要协商的mtu大小，取值范围是[23, 517]，单位是字节。 |
+| mtu  | number | 是    | 需要协商的mtu大小，取值范围：[23, 517]，单位：Byte。 |
 
 **错误码**：
 
@@ -3834,7 +3834,7 @@ client端订阅MTU（最大传输单元）大小变更事件。使用Callback异
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 事件回调类型，支持的事件为'BLEMtuChange'，表示MTU大小变更事件。<br>当调用[setBLEMtuSize](#setblemtusize)方法，client端发起MTU大小协商后，会触发该事件。 |
-| callback | Callback&lt;number&gt; | 是    | 指定订阅的回调函数，会携带协商后的MTU大小。单位是字节。 |
+| callback | Callback&lt;number&gt; | 是    | 指定订阅的回调函数，会携带协商后的MTU大小。单位：Byte。 |
 
 **错误码**：
 
@@ -4329,7 +4329,7 @@ GATT描述符结构定义，是特征值[BLECharacteristic](#blecharacteristic)�
 | 名称       | 类型        | 只读 | 可选   | 说明                                 |
 | -------- | ----------- | ---- | ---- | ---------------------------------- |
 | deviceId | string      | 否 | 否    | 扫描到的蓝牙设备地址。例如："XX:XX:XX:XX:XX:XX"。<br>基于信息安全考虑，此处获取的设备地址为虚拟MAC地址。<br>- 若和该设备地址配对成功后，该地址不会变更。<br>- 若取消配对该设备或蓝牙关闭后，再次重新发起扫描，该虚拟地址会变更。<br>- 若要持久化保存该地址，可使用[access.addPersistentDeviceId](js-apis-bluetooth-access.md#accessaddpersistentdeviceid16)方法。 |
-| rssi     | number      | 否 | 否    | 扫描到的设备信号强度，单位dBm。                    |
+| rssi     | number      | 否 | 否    | 扫描到的设备信号强度，单位：dBm。                    |
 | data     | ArrayBuffer | 否 | 否    | 扫描到的设备发送的广播报文内容。                    |
 | deviceName | string | 否 | 否    | 扫描到的设备名称。                    |
 | connectable  | boolean | 否 | 否    | 扫描到的设备是否可连接。true表示可连接，false表示不可连接。                    |
@@ -4345,9 +4345,9 @@ GATT描述符结构定义，是特征值[BLECharacteristic](#blecharacteristic)�
 
 | 名称          | 类型    | 只读 | 可选   | 说明                                       |
 | ----------- | ------- | ---- | ---- | ---------------------------------------- |
-| interval    | number  | 否 | 是    | 广播发送间隔。<br>取值范围是[32, 16777215]，单位是slot（时间槽），一个slot代表0.625毫秒，默认值为1600。<br>其中传统广播的最大值是16384。 |
-| txPower     | number  | 否 | 是    | 广播发送功率。取值范围是[-127, 1]，单位是dBm，默认值为-7。<br>考虑到发送广播的性能和功耗，建议高档取值为1，中档取为-7，低档取值为-15。   |
-| connectable | boolean | 否 | 是    | 是否是可连接广播。true表示发送可连接广播，默认值为true。                   |
+| interval    | number  | 否 | 是    | 广播发送间隔。<br>取值范围：[32, 16777215]，单位：slot（时间槽），一个slot代表0.625毫秒，默认值为1600。<br>其中传统广播的最大值是16384。 |
+| txPower     | number  | 否 | 是    | 广播发送功率。取值范围：[-127, 1]，单位：dBm，默认值为-7。<br>考虑到发送广播的性能和功耗，建议高档取值为1，中档取为-7，低档取值为-15。   |
+| connectable | boolean | 否 | 是    | 是否是可连接广播。true表示发送可连接广播，false表示发送不可连接广播，默认值为true。                   |
 
 
 ## AdvertiseData
@@ -4376,7 +4376,7 @@ GATT描述符结构定义，是特征值[BLECharacteristic](#blecharacteristic)�
 | advertisingSettings<sup>11+</sup> | [AdvertiseSetting](#advertisesetting) | 否 | 否    | 广播的发送参数。    |
 | advertisingData<sup>11+</sup>    | [AdvertiseData](#advertisedata) | 否 | 否    | 需要发送的广播报文数据内容。      |
 | advertisingResponse<sup>11+</sup> | [AdvertiseData](#advertisedata) | 否 | 是    | 回复扫描请求的广播报文数据内容。 |
-| duration<sup>11+</sup>    | number   | 否 | 是    | 发送广播的持续时间。有效的取值范围为[1, 65535]，单位为10毫秒。<br>如果未指定此参数或者将其设置为0，则会持续发送广播。    |
+| duration<sup>11+</sup>    | number   | 否 | 是    | 发送广播的持续时间。取值范围：[1, 65535]，单位：10ms。<br>如果未指定此参数或者将其设置为0，则会持续发送广播。    |
 
 ## AdvertisingEnableParams<sup>11+</sup>
 
@@ -4387,7 +4387,7 @@ GATT描述符结构定义，是特征值[BLECharacteristic](#blecharacteristic)�
 | 名称                | 类型                   | 只读 | 可选  | 说明                      |
 | ------------------- | --------------------- | ----- | ----- | ------------------------ |
 | advertisingId       | number                | 否 | 否    | 需要启动的广播标识。     |
-| duration            | number                | 否 | 是    | 发送广播的持续时间。有效的取值范围为[1, 65535]，单位为10毫秒。<br>如果未指定此参数或者将其设置为0，则会持续发送广播。   |
+| duration            | number                | 否 | 是    | 发送广播的持续时间。取值范围：[1, 65535]，单位：10ms。<br>如果未指定此参数或者将其设置为0，则会持续发送广播。   |
 
 ## AdvertisingDisableParams<sup>11+</sup>
 
@@ -4469,7 +4469,7 @@ BLE扫描的配置参数。
 
 | 名称        | 类型                    | 只读 | 可选   | 说明                                     |
 | --------- | ----------------------- | ---- | ---- | -------------------------------------- |
-| interval  | number                  | 否 | 是    | 扫描结果上报的延迟时间，单位为ms，默认值为0。搭配 [ScanReportMode](#scanreportmode15)使用。<br>- 该值在常规或围栏扫描上报模式下不生效，当扫描到符合过滤条件的广播报文后，立刻上报。<br>- 该值在批量扫描上报模式下生效，当扫描到符合过滤条件的广播报文后，会存入缓存队列，延时上报。若不设置该值或该值在[0,5000)范围内，蓝牙子系统会默认设置延时时间为5000。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                    |
+| interval  | number                  | 否 | 是    | 扫描结果上报的延迟时间，单位：ms，默认值为0。搭配 [ScanReportMode](#scanreportmode15)使用。<br>- 该值在常规或围栏扫描上报模式下不生效，当扫描到符合过滤条件的广播报文后，立刻上报。<br>- 该值在批量扫描上报模式下生效，当扫描到符合过滤条件的广播报文后，会存入缓存队列，延时上报。若不设置该值或该值在[0, 5000)范围内，蓝牙子系统会默认设置延时时间为5000。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                    |
 | dutyMode  | [ScanDuty](#scanduty)   | 否 | 是    | 扫描模式，默认值为SCAN_MODE_LOW_POWER。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。        |
 | matchMode | [MatchMode](#matchmode) | 否 | 是    | 硬件的过滤匹配模式，默认值为MATCH_MODE_AGGRESSIVE。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
 | phyType<sup>12+</sup> | [PhyType](#phytype12) | 否 | 是    | 扫描中使用的物理通道类型，默认值为PHY_LE_1M。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |

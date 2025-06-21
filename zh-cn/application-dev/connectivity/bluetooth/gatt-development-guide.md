@@ -250,9 +250,9 @@ try {
   // enable入参: true表示启用，false表示禁用
   gattClient.setCharacteristicChangeIndication(characteristic, true, (err: BusinessError) => {
     if (err) {
-      console.info('setCharacteristicChangeNotification callback failed');
+      console.info('setCharacteristicChangeIndication callback failed');
     } else {
-      console.info('setCharacteristicChangeNotification callback successful');
+      console.info('setCharacteristicChangeIndication callback successful');
     }
   });
 } catch (err) {
@@ -875,9 +875,9 @@ export class GattClientManager {
       // 设置特征值变化指示能力，enable: true表示启用，false表示禁用
       this.gattClient.setCharacteristicChangeIndication(this.myCharacteristic, enable, (err: BusinessError) => {
         if (err) {
-          console.info('setCharacteristicChangeNotification callback failed');
+          console.info('setCharacteristicChangeIndication callback failed');
         } else {
-          console.info('setCharacteristicChangeNotification callback successful');
+          console.info('setCharacteristicChangeIndication callback successful');
         }
       });
     } catch (err) {

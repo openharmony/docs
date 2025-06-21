@@ -65,7 +65,7 @@ try {
 ```
 
 
-### connect<a name="HidHost-connect"></a>
+### connect<sup>(deprecated)</sup><a name="HidHost-connect"></a>
 
 connect(device: string): void
 

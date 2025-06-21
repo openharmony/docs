@@ -31,7 +31,7 @@ connect(deviceId: string): void
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **错误码**：
 
@@ -77,7 +77,7 @@ disconnect(deviceId: string): void
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **错误码**：
 
@@ -123,7 +123,7 @@ isAbsoluteVolumeSupported(deviceId: string, callback: AsyncCallback&lt;boolean&g
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当接口调用返回成功，err为undefined，data为获取到的设备是否支持绝对音量结果；否则为错误对象。 |
 
 
@@ -171,7 +171,7 @@ isAbsoluteVolumeSupported(deviceId: string): Promise&lt;boolean&gt;
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
@@ -223,7 +223,7 @@ isAbsoluteVolumeEnabled(deviceId: string, callback: AsyncCallback&lt;boolean&gt;
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当接口调用返回成功，err为undefined，data为获取到的绝对音量能力开启结果，true表示设备支持绝对音量能力，返回false表示设备不支持绝对音量能力；否则为错误对象。 |
 
 
@@ -271,7 +271,7 @@ isAbsoluteVolumeEnabled(deviceId: string): Promise&lt;boolean&gt;
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
@@ -323,7 +323,7 @@ enableAbsoluteVolume(deviceId: string, callback: AsyncCallback&lt;void&gt;): voi
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。如果成功，err为undefined，否则为错误对象。 |
 
 
@@ -373,7 +373,7 @@ enableAbsoluteVolume(deviceId: string): Promise&lt;void&gt;
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
@@ -426,7 +426,7 @@ disableAbsoluteVolume(deviceId: string, callback: AsyncCallback&lt;void&gt;): vo
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。如果成功，err为undefined，否则为错误对象。 |
 
 
@@ -476,7 +476,7 @@ disableAbsoluteVolume(deviceId: string): Promise&lt;void&gt;
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
@@ -528,7 +528,7 @@ getCurrentCodecInfo(deviceId: string): CodecInfo
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
@@ -578,7 +578,7 @@ setCurrentCodecInfo(deviceId: string, codecInfo: CodecInfo): void
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | codecInfo | [CodecInfo](js-apis-bluetooth-a2dp.md#codecinfo11) | 是    | 编码器信息。 |
 
 **错误码**：
@@ -630,8 +630,8 @@ disableAutoPlay(deviceId: string, duration: number): Promise&lt;void&gt;
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址，例如："11:22:33:AA:BB:FF"。 |
-| duration | number | 是    | 拦截时长，单位：毫秒。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| duration | number | 是    | 拦截时长，取值范围：[3000, 20000]，单位：ms。 |
 
 **返回值：**
 
@@ -685,7 +685,7 @@ enableAutoPlay(deviceId: string): Promise&lt;void&gt;
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址，例如："11:22:33:AA:BB:FF"。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
@@ -738,13 +738,13 @@ getAutoPlayDisabledDuration(deviceId: string): Promise&lt;number&gt;
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址，例如："11:22:33:AA:BB:FF"。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| Promise&lt;number&gt; | 以Promise的形式返回结果。number为返回的拦截时长，单位：毫秒。如果返回-1，则表示允许设备在连接成功后自动播放音乐。 |
+| Promise&lt;number&gt; | 以Promise的形式返回结果。number为返回的拦截时长，单位：ms。如果返回-1，则表示允许设备在连接成功后自动播放音乐。 |
 
 **错误码**：
 
