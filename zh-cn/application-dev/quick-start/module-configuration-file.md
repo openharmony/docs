@@ -246,7 +246,7 @@ deviceTypes示例：
 | value | 标识数据项的值，取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | resource | 标识了用户自定义数据，取值为长度不超过255字节的字符串，内容为该数据的资源索引，例如配置成$profile:shortcuts_config，表示指向了/resources/base/profile/shortcuts_config.json配置文件。| 字符串 | 该标签可缺省，缺省值为空。 |
 
-下面给出五种metadata标签的使用场景及示例，开发者也可以根据实际需求自定义设置。
+下面给出几种metadata标签的使用场景及示例，开发者也可以根据实际需求自定义设置。
 
 1. 使用metadata标签配置主窗口的默认大小和位置（单位为vp）。其中name取值及对应含义如下：
 
@@ -269,9 +269,7 @@ deviceTypes示例：
 
 4. 使用metadata配置[自由多窗](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-multi-window#section118295375110)下的可支持窗口模式。配置项为：name为ohos.ability.window.SupportWindowModeInFreeWindow，value取值为：fullscreen（表示全屏模式）、split（表示分屏模式）、floating（表示悬浮窗模式）。value取值为字符串，可以取多种模式，每个之间用逗号分隔开，不区分顺序，不添加空格，例如：fullscreen,split。仅在平板、PC/2in1设备上生效。
 
-5. 使用metadata标签配置主窗边角以直角显示。配置项为：name为ohos.ability.window.isRightAngle，value取值为true或false，取值为true表示窗口边角以直角显示、取值为false则使用系统默认圆角，未配置时默认为false。主窗直角配置存在如下约束与限制：
-    * 该配置项仅在PC/2in1设备上生效。
-    * 该配置项仅支持系统应用。
+5. ~~使用metadata标签配置主窗边角以直角显示。配置项为：name为ohos.ability.window.isRightAngle，value取值为true或false，取值为true表示窗口边角以直角显示、取值为false则使用系统默认圆角，未配置时默认为false。主窗直角配置仅在PC/2in1设备上生效，且仅支持系统应用。~~
 
 自由多窗下的可支持窗口模式可以采用多种方法进行配置，配置优先级为：通过[SetSupportedWindowModes](../reference/apis-arkui/arkts-apis-window-WindowStage.md#setsupportedwindowmodes15)接口配置 > 通过StartAbility配置[StartOption](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md#startoptions)中的SupportWindowMode > 使用metadata配置 > 配置module.json5中[abilities](#abilities标签)标签下的SupportWindowMode属性。
 
