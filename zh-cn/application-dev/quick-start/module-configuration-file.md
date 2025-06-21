@@ -315,10 +315,10 @@ deviceTypes示例：
         "name": "ohos.ability.window.isMaximize",
         "value": "true"
       },
-      {
+      <!--Del-->{
         "name": "ohos.ability.window.isRightAngle",
         "value": "true"
-      },
+      },<!--DelEnd-->
       {
         "name": "enable.remove.starting.window",
         "value": "true"
